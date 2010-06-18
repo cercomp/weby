@@ -1,0 +1,15 @@
+<fieldset>
+  <legend><%= t('setting') %></legend>
+  <p>
+    <b><%= t('name') %>: </b>
+    <%=h @setting.name %>
+  </p>
+  <p>
+    <b><%= t('value') %>: </b>
+    <%=h @setting.value %>
+  </p>
+
+  <%= link_to t('edit'), edit_setting_path(@setting) %></td>
+  <%= link_to t('back'), settings_path %>
+</fieldset>
+

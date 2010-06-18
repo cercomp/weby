@@ -1,0 +1,21 @@
+<fieldset>
+  <legend><%= t:listing, :param => t('settings') %></legend>
+	
+  <% form_tag '/settings', :method => 'put' do %>
+    <table class="list">
+      <thead>
+        <tr>
+          <th><th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="<%= cycle 'odd', 'even' %>">
+            <td></td>
+          </tr>
+        <% reset_cycle %>
+      </tbody>
+    </table>
+    <p> <%= submit_tag 'Salvar' %> </p>
+  <% end %>
+
+</fieldset>

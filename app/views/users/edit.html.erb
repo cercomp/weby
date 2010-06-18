@@ -1,0 +1,11 @@
+<h1>Edit My Account</h1>
+
+<% form_for @user, :url => account_path do |f| %>
+  <% @user.errors.full_messages.each do |msg| %>  
+    <li><%= msg %></li>  
+  <% end %>  
+  <%= render :partial => "form", :object => f %>
+  <%= f.submit "Update" %>
+<% end %>
+
+<br /><%= link_to "My Profile", user_path %>

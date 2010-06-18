@@ -1,0 +1,2 @@
+class Informativo < Pagina
+end

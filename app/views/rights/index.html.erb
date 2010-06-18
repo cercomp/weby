@@ -1,0 +1,42 @@
+<h1>Listando permissões</h1>
+
+<%#  current_user.roles.each do |role|
+      role.rights.each do |right|
+        right.action.split(' ').each do |ri|
+          if RightsController.action_methods.include? "new" and ri == "new" and right.controller == controller.controller_name %>
+            <%#= debug(ri)+"==new" %>
+<%#      end
+      end
+    end
+  end %>
+
+<table class="list">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Controller</th>
+      <th>Action</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @rights.each do |right| %>
+    <tr class="<%= cycle 'odd', 'even' %>">
+      <td><%= right.name %></td>
+      <td><%= right.controller %></td>
+      <td><%= right.action %></td>
+      <td>
+        <%= make_menu(right) %>
+        <%#= link_to 'Edit', edit_right_path(right) %>
+        <%#= link_to 'Destroy', right, :confirm => 'Are you sure?', :method => :delete %>
+      </td>
+    </tr>
+  <% end; reset_cycle %>
+  </tbody>
+</table>
+
+<p> <%= link_to t("list roles and permissions"), :controller => "roles", :action => "index" %> </p>
+
+<% if check_permission(RightsController, "new") %>
+  <p><%= link_to t('new'), new_right_path %></p>
+<% end %>

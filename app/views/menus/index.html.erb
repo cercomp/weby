@@ -1,0 +1,21 @@
+<h1>Lista de menus</h1>
+
+<div style="height:30px">
+  <div class="simple_box" onmouseover="showEsquerdo();">Esquerdo</div>
+  <div class="simple_box" onmouseover="showSuperior();">Superior</div>
+  <div class="simple_box" onmouseover="showDireito();">Direito</div>
+</div>
+<div id="left_m" style="display:none;">
+  <%= render :partial => "esquerdo" %>
+</div>
+
+<div id="right_m" style="display:none;">
+  <%= render :partial => "direito" %>
+</div>
+
+<div id="top_m" style="display:none;">
+  <%= render :partial => "superior" %>
+</div>
+
+  
+<%= link_to 'Criar menu', new_menu_path %>

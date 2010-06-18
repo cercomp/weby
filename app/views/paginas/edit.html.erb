@@ -1,0 +1,124 @@
+<h1>Editing pagina</h1>
+
+<% form_for(@pagina) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :dt_cadastro %><br />
+    <%= f.date_select :dt_cadastro %>
+  </p>
+  <p>
+    <%= f.label :dt_publica %><br />
+    <%= f.date_select :dt_publica %>
+  </p>
+  <p>
+    <%= f.label :db_inicio %><br />
+    <%= f.date_select :db_inicio %>
+  </p>
+  <p>
+    <%= f.label :dt_fim %><br />
+    <%= f.date_select :dt_fim %>
+  </p>
+  <p>
+    <%= f.label :imagem %><br />
+    <%= f.text_field :imagem %>
+  </p>
+  <p>
+    <%= f.label :posicao %><br />
+    <%= f.text_field :posicao %>
+  </p>
+  <p>
+    <%= f.label :fonte %><br />
+    <%= f.text_field :fonte %>
+  </p>
+  <p>
+    <%= f.label :status %><br />
+    <%= f.text_field :status %>
+  </p>
+  <p>
+    <%= f.label :autor %><br />
+    <%= f.text_field :autor %>
+  </p>
+  <p>
+    <%= f.label :editor %><br />
+    <%= f.text_field :editor %>
+  </p>
+  <p>
+    <%= f.label :editor_chefe %><br />
+    <%= f.text_field :editor_chefe %>
+  </p>
+  <p>
+    <%= f.label :kind %><br />
+    <%= f.text_field :kind %>
+  </p>
+  <p>
+    <%= f.label :titulo %><br />
+    <%= f.text_field :titulo %>
+  </p>
+  <p>
+    <%= f.label :local_realiza %><br />
+    <%= f.text_field :local_realiza %>
+  </p>
+  <p>
+    <%= f.label :inicio %><br />
+    <%= f.datetime_select :inicio %>
+  </p>
+  <p>
+    <%= f.label :fim %><br />
+    <%= f.datetime_select :fim %>
+  </p>
+  <p>
+    <%= f.label :texto %><br />
+    <%= f.text_field :texto %>
+  </p>
+  <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :url %><br />
+    <%= f.text_field :url %>
+  </p>
+  <p>
+    <%= f.label :texto_imagem %><br />
+    <%= f.text_field :texto_imagem %>
+  </p>
+  <p>
+    <%= f.label :resumo %><br />
+    <%= f.text_field :resumo %>
+  </p>
+  <p>
+    <%= f.label :pdf %><br />
+    <%= f.text_field :pdf %>
+  </p>
+  <p>
+    <%= f.label :site_id %><br />
+    <%= f.text_field :site_id %>
+  </p>
+  <p>
+    <%= f.label :capa %><br />
+    <%= f.text_field :capa %>
+  </p>
+  <p>
+    <%= f.label :time_capa %><br />
+    <%= f.datetime_select :time_capa %>
+  </p>
+  <p>
+    <%= f.label :assunto %><br />
+    <%= f.text_field :assunto %>
+  </p>
+  <p>
+    <%= f.label :texto_clob %><br />
+    <%= f.text_field :texto_clob %>
+  </p>
+  <p>
+    <%= f.label :lado %><br />
+    <%= f.text_field :lado %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @pagina %> |
+<%= link_to 'Back', paginas_path %>

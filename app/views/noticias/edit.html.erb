@@ -1,0 +1,92 @@
+<h1>Editing noticia</h1>
+
+<% form_for(@noticia) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :dt_cadastro %><br />
+    <%= f.date_select :dt_cadastro %>
+  </p>
+  <p>
+    <%= f.label :dt_publica %><br />
+    <%= f.date_select :dt_publica %>
+  </p>
+  <p>
+    <%= f.label :dt_inicio %><br />
+    <%= f.date_select :dt_inicio %>
+  </p>
+  <p>
+    <%= f.label :dt_fim %><br />
+    <%= f.date_select :dt_fim %>
+  </p>
+  <p>
+    <%= f.label :imagem %><br />
+    <%= f.text_field :imagem %>
+  </p>
+  <p>
+    <%= f.label :posicao %><br />
+    <%= f.text_field :posicao %>
+  </p>
+  <p>
+    <%= f.label :status %><br />
+    <%= f.text_field :status %>
+  </p>
+  <p>
+    <%= f.label :autor %><br />
+    <%= f.text_field :autor %>
+  </p>
+  <p>
+    <%= f.label :editor %><br />
+    <%= f.text_field :editor %>
+  </p>
+  <p>
+    <%= f.label :editor_chefe %><br />
+    <%= f.text_field :editor_chefe %>
+  </p>
+  <p>
+    <%= f.label :texto %><br />
+    <%= f.text_area :texto %>
+  </p>
+  <p>
+    <%= f.label :url %><br />
+    <%= f.text_field :url %>
+  </p>
+  <p>
+    <%= f.label :site_id %><br />
+    <%= f.text_field :site_id %>
+  </p>
+  <p>
+    <%= f.label :fonte %><br />
+    <%= f.text_field :fonte %>
+  </p>
+  <p>
+    <%= f.label :titulo %><br />
+    <%= f.text_field :titulo %>
+  </p>
+  <p>
+    <%= f.label :texto_imagem %><br />
+    <%= f.text_field :texto_imagem %>
+  </p>
+  <p>
+    <%= f.label :resumo %><br />
+    <%= f.text_field :resumo %>
+  </p>
+  <p>
+    <%= f.label :pdf %><br />
+    <%= f.text_field :pdf %>
+  </p>
+  <p>
+    <%= f.label :capa %><br />
+    <%= f.text_field :capa %>
+  </p>
+  <p>
+    <%= f.label :time_capa %><br />
+    <%= f.datetime_select :time_capa %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @noticia %> |
+<%= link_to 'Back', noticias_path %>

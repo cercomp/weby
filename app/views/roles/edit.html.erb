@@ -1,0 +1,16 @@
+<fieldset>
+  <legend><%= t:editing, :param => t('roles') %></legend>
+
+  <% form_for(@roles) do |f| %>
+    <%= f.error_messages %>
+    <p>
+      <%= f.label t:name %><br />
+      <%= f.text_field :name %>
+    </p>
+    <p>
+      <%= f.label :theme, t('layout') %><br />
+      <%= f.select :theme, @themes.collect{|p| [ p , p]}, {:include_blank => true} %>
+    </p>
+    <%= f.submit t:update, :param => t('role') %> <%= link_to t:back %>
+  <% end %>
+</fieldset>

@@ -1,0 +1,157 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  this_file_language: "American English"
+
+  accessing as: "Accessing as"
+  access denied!: "Access denied!"
+  activate user: "Activate user"
+  add comment: "Add comment"
+  add service: "Add service"
+  admin: "Administration"
+  are you sure?: "Are you sure?"
+  back: "Back"
+  branch:  "Branch"
+  change password: "Change password"
+  changing password: "Changing password"
+  current login at: "Current login at"
+  current login ip: "Current login ip"
+  create:  "Create"
+  department: "Department"
+  departments: "Departments"
+  observation: "Observation"
+  destroy: "Destroy"
+  direitosReservados: "All rights reserved."
+  edit: "Edit"
+  editing department: "Editing department"
+  editing my account: "Editing my account"
+  editing oss: "Editing SOs"
+  editing service: "Editing service"
+  email: "E-mail"
+  forgot password: "Forgot password"
+  home: "Home"
+  inform an e-mail to receive a new access link: "Inform an e-mail to receive a new access link"
+  last login at: "Last login at"
+  last login ip: "Last login ip"
+  last request at: "Last request at"
+  list departments: "List departments"
+  list services: "List services"
+  list users: "List users"
+  listing departments: "Listing departments"
+  listing services: "Listing services"
+  listing sos: "Listing SOs"
+  title: "Title"
+  localization: "Localization"
+  location: "Location"
+  logged: "Logged"
+  login: "Login"
+  logout: "Logout"
+  register: "Register"
+  my profile: "My Profile"
+  my sos: "My SOs"
+  name: "Name"
+  new: "New"
+  new department: "New department"
+  new so: "New SO"
+  no department!: "No department!"
+  no service!: "No service!"
+  no so!: "No SO!"
+  number of logins: "Number of logins"
+  password: "Password"
+  password confirmation: "Password confirmation"
+  phone number: "Phone Number"
+  property: "Property"
+  permissions: "Permissions"
+  register: "Register"
+  remove: "remove"
+  right: "Right"
+  role: "Role"
+  roles and permissions: "Roles and permissions"
+  room: "Room"
+  search SO: "Search SO"
+  service: "Service"
+  services: "Services"
+  Service Order System: "Service Order System"
+  shortcuts: "Shortcuts"
+  show: "Show"
+  so: "SO"
+  sos: "SOs"
+  us: "{{param}} updated successfully."
+  uso: "{{param}} updated successfully."
+  users list: "Users list"
+  user: "User"
+  cs: "{{param}} created successfully."
+  cso: "{{param}} created successfully."
+  wellcomeMessage: "The Service Order System come to make agile and attend better your
+  necessities of support in the UFG's computer network "
+  wellcomeMessage2: "Before require the CERCOMP's support services, take a look on the tutorials. You can do it!"
+  permissions and roles: "Permissions and roles"
+
+  pagination:
+    next: "Next >>"
+    prev: "<< Prev"
+  authlogic:
+    error_messages:
+      login_blank: "Can't leave it blank"
+      login_not_found: "Invalid"
+      login_invalid: "Invalid" #should use osadfsdfnly letters, numbers, spaces, and .-_@ please.
+      consecutive_failed_logins_limit_exceeded: "You have exceeded the number of allowed login attempts"
+      email_invalid: "Invalid" #should look like an email address.
+      password_blank: "Can't leave it blank"
+      password_invalid: "Invalid"
+      not_active: "Account not active"
+      not_confirmed: "Account not confirmed"
+      not_approved: "Account not approved"
+      no_authentication_details: "No authentication details"
+    models:
+      user_session: UserSession (or whatever name you are using)
+    attributes:
+      user_session: (or whatever name you are using)
+      login: Login
+      email: E-mail
+      password: Senha
+      remember_me: Lembrar-me
+  activerecord:
+     attributes:
+       _all:
+         created_at: "Created at"
+         updated_at: "Updated at"
+       history:
+         title: "Title"
+         content: "Content"
+     errors:
+       template:
+         header:
+           one: "model não pôde ser salvo: 1 erro"
+           other: "model não pôde ser salvo: {{count}} erros."
+         body: "Please, check the following fields:"
+       messages:
+         inclusion: "não está incluso na lista"
+         exclusion: "unavailable"
+         invalid: "invalid"
+         confirmation: "confirmation does not match"
+         accepted: "acception required"
+         empty: "can't leave it blank"
+         blank: "can't leave it blank"
+         too_long: "too long (no more than {{count}} characters)"
+         too_short: "too short (no less than {{count}} characters)"
+         wrong_length: "wrong length ({{count}} characters required)"
+         taken: "unavailable"
+         not_a_number: "not a number"
+         greater_than: "greater than {{count}} required"
+         greater_than_or_equal_to: "greater than or equal to {{count}} required"
+         equal_to: "equal to {{count}} required"
+         less_than: "less than {{count}} required"
+         less_than_or_equal_to: "less than or equal to {{count}} required"
+         odd: "odd required"
+         even: "even required"
+  flash:
+    actions:
+      create:
+        notice: "{resource_name} was successfully created"
+      update:
+        notice: "{resource_name} was successfully updated"
+      destroy:
+        notice: "{resource_name} was successfully destroyed"
+        alert: "{resource_name} could not be destroyed"

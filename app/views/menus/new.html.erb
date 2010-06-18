@@ -1,0 +1,29 @@
+<% if !params[:father_id] %>
+  <h1>Criar menu</h1>
+<% else %>
+  <h1>Criar sub-menu</h1>
+<% end %>
+
+<%= form_for(@menu) do |f| %>
+  <% @menu.errors.full_messages.each do |msg| %>  
+    <li><%= msg %></li>  
+  <% end %>  
+
+  <%= f.hidden_field :father_id, :value => params[:father_id] %>
+
+  <p>
+    Texto:<br />
+    <%= f.text_field :title %>
+  </p>    
+  <% if !params[:father_id] %>
+    <p>
+      Posição:<br />
+      <%= select(:menu, :position, [ "Superior", "Direito" , "Esquerdo"]) %>
+    </p>
+  <% end %>
+  <p>
+    <%= f.submit 'Criar' %>
+  </p>
+<% end %>
+
+<%= link_to 'Voltar', menus_path %> 

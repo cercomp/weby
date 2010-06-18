@@ -1,0 +1,75 @@
+<h1>New informativo</h1>
+
+<% form_for(@informativo) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :dt_cadastro %><br />
+    <%= f.date_select :dt_cadastro %>
+  </p>
+  <p>
+    <%= f.label :dt_publica %><br />
+    <%= f.date_select :dt_publica %>
+  </p>
+  <p>
+    <%= f.label :dt_inicio %><br />
+    <%= f.date_select :dt_inicio %>
+  </p>
+  <p>
+    <%= f.label :dt_fim %><br />
+    <%= f.date_select :dt_fim %>
+  </p>
+  <p>
+    <%= f.label :imagem %><br />
+    <%= f.text_field :imagem %>
+  </p>
+  <p>
+    <%= f.label :posicao %><br />
+    <%= f.text_field :posicao %>
+  </p>
+  <p>
+    <%= f.label :status %><br />
+    <%= f.text_field :status %>
+  </p>
+  <p>
+    <%= f.label :autor %><br />
+    <%= f.text_field :autor %>
+  </p>
+  <p>
+    <%= f.label :editor %><br />
+    <%= f.text_field :editor %>
+  </p>
+  <p>
+    <%= f.label :editor_chefe %><br />
+    <%= f.text_field :editor_chefe %>
+  </p>
+  <p>
+    <%= f.label :texto %><br />
+    <%= f.text_area :texto %>
+  </p>
+  <p>
+    <%= f.label :url %><br />
+    <%= f.text_field :url %>
+  </p>
+  <p>
+    <%= f.label :site_id %><br />
+    <%= f.text_field :site_id %>
+  </p>
+  <p>
+    <%= f.label :assunto %><br />
+    <%= f.text_field :assunto %>
+  </p>
+  <p>
+    <%= f.label :texto_clob %><br />
+    <%= f.text_field :texto_clob %>
+  </p>
+  <p>
+    <%= f.label :lado %><br />
+    <%= f.text_field :lado %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', informativos_path %>

@@ -1,0 +1,67 @@
+<h1>Listing eventos</h1>
+
+<table class='list'>
+  <thead>
+    <th>Dt cadastro</th>
+    <th>Dt publica</th>
+    <th>Dt inicio</th>
+    <th>Dt fim</th>
+    <th>Imagem</th>
+    <th>Posicao</th>
+    <th>Status</th>
+    <th>Autor</th>
+    <th>Editor</th>
+    <th>Editor chefe</th>
+    <th>Texto</th>
+    <th>Url</th>
+    <th>Site</th>
+    <th>Fonte</th>
+    <th>Titulo</th>
+    <th>Texto imagem</th>
+    <th>Resumo</th>
+    <th>Pdf</th>
+    <th>Capa</th>
+    <th>Time capa</th>
+    <th>Kind</th>
+    <th>Local realiza</th>
+    <th>Inicio</th>
+    <th>Fim</th>
+    <th>Email</th>
+  </thead>
+  <tbody>
+  <% @eventos.each do |evento| %>
+    <tr class="<%= cycle 'odd', 'even' %>">
+      <td><%=h evento.dt_cadastro %></td>
+      <td><%=h evento.dt_publica %></td>
+      <td><%=h evento.dt_inicio %></td>
+      <td><%=h evento.dt_fim %></td>
+      <td><%=h evento.imagem %></td>
+      <td><%=h evento.posicao %></td>
+      <td><%=h evento.status %></td>
+      <td><%=h evento.autor %></td>
+      <td><%=h evento.editor %></td>
+      <td><%=h evento.editor_chefe %></td>
+      <td><%=h evento.texto %></td>
+      <td><%=h evento.url %></td>
+      <td><%=h evento.site_id %></td>
+      <td><%=h evento.fonte %></td>
+      <td><%=h evento.titulo %></td>
+      <td><%=h evento.texto_imagem %></td>
+      <td><%=h evento.resumo %></td>
+      <td><%=h evento.pdf %></td>
+      <td><%=h evento.capa %></td>
+      <td><%=h evento.time_capa %></td>
+      <td><%=h evento.kind %></td>
+      <td><%=h evento.local_realiza %></td>
+      <td><%=h evento.inicio %></td>
+      <td><%=h evento.fim %></td>
+      <td><%=h evento.email %></td>
+      <td><%= link_to 'Show', evento %></td>
+      <td><%= link_to 'Edit', edit_evento_path(evento) %></td>
+      <td><%= link_to 'Destroy', evento, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end; reset_cycle %>
+  <tbody>
+</table>
+
+<%= link_to "Criar Evento", new_pagina_path(:type => "Evento") %>

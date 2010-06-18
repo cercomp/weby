@@ -1,0 +1,49 @@
+<h1>Listing informativos</h1>
+
+<table class="list">
+  <thead>
+    <th>Dt cadastro</th>
+    <th>Dt publica</th>
+    <th>Dt inicio</th>
+    <th>Dt fim</th>
+    <th>Imagem</th>
+    <th>Posicao</th>
+    <th>Status</th>
+    <th>Autor</th>
+    <th>Editor</th>
+    <th>Editor chefe</th>
+    <th>Texto</th>
+    <th>Url</th>
+    <th>Site</th>
+    <th>Assunto</th>
+    <th>Texto clob</th>
+    <th>Lado</th>
+  </thead>
+  <tbody>
+  <% @informativos.each do |informativo| %>
+    <tr class="<%= cycle 'odd', 'even' %>">
+      <td><%=h informativo.dt_cadastro %></td>
+      <td><%=h informativo.dt_publica %></td>
+      <td><%=h informativo.dt_inicio %></td>
+      <td><%=h informativo.dt_fim %></td>
+      <td><%=h informativo.imagem %></td>
+      <td><%=h informativo.posicao %></td>
+      <td><%=h informativo.status %></td>
+      <td><%=h informativo.autor %></td>
+      <td><%=h informativo.editor %></td>
+      <td><%=h informativo.editor_chefe %></td>
+      <td><%=h informativo.texto %></td>
+      <td><%=h informativo.url %></td>
+      <td><%=h informativo.site_id %></td>
+      <td><%=h informativo.assunto %></td>
+      <td><%=h informativo.texto_clob %></td>
+      <td><%=h informativo.lado %></td>
+      <td><%= link_to 'Show', informativo %></td>
+      <td><%= link_to 'Edit', edit_informativo_path(informativo) %></td>
+      <td><%= link_to 'Destroy', informativo, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end; reset_cycle %>
+  <tbody>
+</table>
+
+<%= link_to "Criar Informativo", new_pagina_path(:type => "Informativo") %>

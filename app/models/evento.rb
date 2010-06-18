@@ -1,0 +1,2 @@
+class Evento < Pagina
+end

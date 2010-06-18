@@ -1,0 +1,19 @@
+<h1>Editando menu</h1>
+
+<% form_for(@menu) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label "Texto" %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label "Digite o link (URL)" %><br />
+    <%= f.text_field :link %>
+  </p>
+  <p>
+    <%= f.submit 'Atualizar' %>
+  </p>
+<% end %>
+
+<%= link_to 'Voltar', menus_path %>

@@ -1,0 +1,25 @@
+<hr />
+
+  <p>
+    Título: <%= f.text_field :titulo %> *
+  </p>
+  <p>
+    Resumo: <%= f.text_field :resumo %>
+  </p>
+  <p>
+    Fonte: <%= f.text_field :fonte %> *
+  </p>
+
+  <p>
+    <%= f.check_box :capa %> A notícia é capa?
+  </p>
+
+<p>
+  <%= f.label :texto_imagem %><br />
+  <%= f.text_field :texto_imagem %>
+</p>
+
+<p>
+  <%= f.label :pdf %><br />
+  <%= f.text_field :pdf %>
+</p>

@@ -1,0 +1,30 @@
+<h1><%=  t'users list' %></h1>
+
+<%= will_paginate @users %>
+
+<table class="list">
+  <thead>
+  <tr>
+    <th><%=  'id' %></th>
+    <th>Login</th>
+    <th><%=  t:email %></th>
+    <th>Status</th>
+    <th>Papéis</th>
+    <th></th>
+  </tr>
+  </thead>
+
+  <tbody>
+<% @users.each do |user| %>
+  <tr class="<%= cycle 'odd', 'even' %>">
+    <td><%=h user.id %></td>
+    <td><%=h user.login %></td>
+    <td><%=h user.email %></td>
+    <td><%= %></td>
+    <td> </td>
+  </tr>
+<% end; reset_cycle %>
+  </tbody>
+</table>
+
+<%= will_paginate @users %>

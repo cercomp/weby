@@ -1,0 +1,37 @@
+<h1><%= t('permissions and roles') %></h1>
+
+<%= form_tag '/roles', :method => 'put' do %>
+<table class="list">
+  <thead>
+   <tr>
+    <th>Permissões / Papéis</th>
+    <% @roles.each do |role| %>
+      <th><%= role.name %> [<%= link_to t('destroy'), role, :confirm => t('are you sure?'), :method => :delete %>]</th>
+      <%# role.rights.collect do |each|%>
+        <%#=  each.name %>
+      <%# end %>
+    <% end %>
+  </tr>
+  </thead>
+  <tbody>
+    <% @rights.each do |right| %>
+    <tr class="<%= cycle 'odd', 'even' %>">
+      <td><%= right.name %></td>
+      <% @roles.each do |role| %>
+        <td>
+          <%= check_box_tag "role[#{role.id}][right_ids][]", right.id, role.rights.include?(right), :id => nil %>
+          <%#= check_box_tag "role[right_ids][]", right.id, role.rights.include?(right), :id => nil %>
+        </td>
+      <% end %>
+    </tr>
+    <% end; reset_cycle %>
+  </tbody>
+</table>
+  <%= submit_tag 'Salvar' %>
+<% end %>
+
+<p> <%= link_to t("list permissions"), :controller => "rights", :action => "index" %> </p>
+
+<% if check_permission(RolesController, "new") %>
+  <p><%= link_to t("new"), :controller => "roles", :action => "new" %></p>
+<% end %>

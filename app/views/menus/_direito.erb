@@ -1,0 +1,46 @@
+
+<% @direito.each do |menu| %>
+  <!-- ============================= Menus de primeiro nivel ==================== -->
+  <% if !menu.father_id %>
+    <div class="listMenus">
+      <%=h menu.title %>
+      <div class="listOptions">
+        <%= link_to image_tag("editar.gif", :border => 0), edit_menu_path(menu) %>
+        <%= link_to image_tag("subitem.gif", :border => 0), :controller => "menus", :action => "new", :father_id => menu.id %>
+        <%= link_to image_tag("setaup.gif", :border => 0), new_menu_path, :father_id => menu.id %>
+        <%= link_to image_tag("setadown.gif", :border => 0), new_menu_path, :father_id => menu.id %>
+        <%= link_to image_tag("apagar.gif", :border => 0), menu, :confirm => 'Are you sure?', :method => :delete %>
+      </div>
+    </div>
+    <!-- ============================= Menus de segundo nivel ==================== -->
+    <% Menu.find(:all, :conditions => {:father_id => menu.id }).each do |sub| %>
+      <div class="listSubMenus">
+        <%=h sub.title %>
+        <div class="listOptions">
+          <%= link_to image_tag("editar.gif", :border => 0), edit_menu_path(sub) %>
+          <%= link_to image_tag("subitem.gif", :border => 0),  :controller => "menus", :action => "new", :father_id => sub.id %>
+          <%= link_to image_tag("setaup.gif", :border => 0), new_menu_path, :father_id => sub.id %>
+          <%= link_to image_tag("setadown.gif", :border => 0), new_menu_path, :father_id => sub.id %>
+          <%= link_to image_tag("apagar.gif", :border => 0), sub, :confirm => 'Are you sure?', :method => :delete %>
+        </div>
+      </div>
+
+      <!-- ============================= Menus de terceiro nivel ==================== -->
+      <% Menu.find(:all, :conditions => {:father_id => sub.id }).each do |subs| %>
+        <div class="listSubSubMenus">
+          <%=h subs.title %>
+          <div class="listOptions">
+            <%= link_to image_tag("editar.gif", :border => 0), edit_menu_path(subs) %>
+            <%#= link_to image_tag("subitem.gif", :border => 0), new_menu_path, :father_id => subs.id %>
+            <%= link_to image_tag("setaup.gif", :border => 0), new_menu_path, :father_id => menu.id %>
+            <%= link_to image_tag("setadown.gif", :border => 0), new_menu_path, :father_id => menu.id %>
+            <%= link_to image_tag("apagar.gif", :border => 0), menu, :confirm => 'Are you sure?', :method => :delete %>
+          </div>
+        </div>
+      <% end %>
+
+    <% end %>
+
+  <% end %>
+
+<% end %>
