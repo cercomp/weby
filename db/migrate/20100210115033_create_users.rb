@@ -18,8 +18,9 @@ class CreateUsers < ActiveRecord::Migration
       t.string    :current_login_ip                                   # optional, see Authlogic::Session::MagicColumns
       t.string    :last_login_ip                                      # optional, see Authlogic::Session::MagicColumns
 
-      t.string    :theme, :default => "admin2"
+      t.string    :theme
       t.boolean   :status, :default => false
+      t.boolean   :is_admin, :default => false
     end
     user = User.create do |u|
       u.id = 1

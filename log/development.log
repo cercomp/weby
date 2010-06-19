@@ -47627,3 +47627,90 @@ Started GET "/users/1" for 127.0.0.1 at Fri Jun 18 19:13:21 -0300 2010
   [1m[35mSQL (0.3ms)[0m  COMMIT
 Rendered users/show.html.erb within layouts/elementary (17.0ms)
 Completed 200 OK in 104ms (Views: 53.9ms | ActiveRecord: 1.0ms)
+  [1m[36mSQL (0.7ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (278.8ms)[0m  CREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB
+  [1m[36mSQL (69.4ms)[0m  [1mSHOW KEYS FROM `schema_migrations`[0m
+  [1m[35mSQL (134.0ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)
+  [1m[36mSQL (1.0ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.9ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.6ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations`[0m
+Migrating to CreateUsers (20100210115033)
+  [1m[35mSQL (12.9ms)[0m  CREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `login` varchar(255) NOT NULL, `email` varchar(255) NOT NULL, `crypted_password` varchar(255) NOT NULL, `password_salt` varchar(255) NOT NULL, `persistence_token` varchar(255) NOT NULL, `single_access_token` varchar(255) NOT NULL, `perishable_token` varchar(255) NOT NULL, `login_count` int(11) DEFAULT 0 NOT NULL, `failed_login_count` int(11) DEFAULT 0 NOT NULL, `last_request_at` datetime, `current_login_at` datetime, `last_login_at` datetime, `current_login_ip` varchar(255), `last_login_ip` varchar(255), `theme` varchar(255) DEFAULT 'admin2', `status` tinyint(1) DEFAULT 0) ENGINE=InnoDB
+  [1m[36mSQL (0.7ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.6ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations`[0m
+Migrating to CreateUsers (20100210115033)
+  [1m[35mSQL (1.2ms)[0m  CREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `login` varchar(255) NOT NULL, `email` varchar(255) NOT NULL, `crypted_password` varchar(255) NOT NULL, `password_salt` varchar(255) NOT NULL, `persistence_token` varchar(255) NOT NULL, `single_access_token` varchar(255) NOT NULL, `perishable_token` varchar(255) NOT NULL, `login_count` int(11) DEFAULT 0 NOT NULL, `failed_login_count` int(11) DEFAULT 0 NOT NULL, `last_request_at` datetime, `current_login_at` datetime, `last_login_at` datetime, `current_login_ip` varchar(255), `last_login_ip` varchar(255), `theme` varchar(255), `status` tinyint(1) DEFAULT 0, `is_admin` tinyint(1) DEFAULT 0) ENGINE=InnoDB
+Mysql::Error: Table 'users' already exists: CREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `login` varchar(255) NOT NULL, `email` varchar(255) NOT NULL, `crypted_password` varchar(255) NOT NULL, `password_salt` varchar(255) NOT NULL, `persistence_token` varchar(255) NOT NULL, `single_access_token` varchar(255) NOT NULL, `perishable_token` varchar(255) NOT NULL, `login_count` int(11) DEFAULT 0 NOT NULL, `failed_login_count` int(11) DEFAULT 0 NOT NULL, `last_request_at` datetime, `current_login_at` datetime, `last_login_at` datetime, `current_login_ip` varchar(255), `last_login_ip` varchar(255), `theme` varchar(255), `status` tinyint(1) DEFAULT 0, `is_admin` tinyint(1) DEFAULT 0) ENGINE=InnoDB
+  [1m[36mSQL (0.7ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (3.5ms)[0m  CREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB
+  [1m[36mSQL (1.3ms)[0m  [1mSHOW KEYS FROM `schema_migrations`[0m
+  [1m[35mSQL (8.0ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)
+  [1m[36mSQL (0.6ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.6ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.5ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations`[0m
+Migrating to CreateUsers (20100210115033)
+  [1m[35mSQL (7.1ms)[0m  CREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `login` varchar(255) NOT NULL, `email` varchar(255) NOT NULL, `crypted_password` varchar(255) NOT NULL, `password_salt` varchar(255) NOT NULL, `persistence_token` varchar(255) NOT NULL, `single_access_token` varchar(255) NOT NULL, `perishable_token` varchar(255) NOT NULL, `login_count` int(11) DEFAULT 0 NOT NULL, `failed_login_count` int(11) DEFAULT 0 NOT NULL, `last_request_at` datetime, `current_login_at` datetime, `last_login_at` datetime, `current_login_ip` varchar(255), `last_login_ip` varchar(255), `theme` varchar(255), `status` tinyint(1) DEFAULT 0, `is_admin` tinyint(1) DEFAULT 0) ENGINE=InnoDB
+  [1m[36mSQL (7.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  SHOW TABLES
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT `users`.`id` FROM `users` WHERE (LOWER(`users`.`email`) = LOWER('admin@domain.com')) LIMIT 1[0m
+  [1m[35mUser Load (0.7ms)[0m  SELECT `users`.`id` FROM `users` WHERE (LOWER(`users`.`login`) = LOWER('admin')) LIMIT 1
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT `users`.`id` FROM `users` WHERE (`users`.`persistence_token` = BINARY 'b07de458ef08ce94a20cb37e0a12f9b6ddeb7c8aa0c5625b7b6b9ebec4a2a88ba3472a16b898848c8f92df5c9fc283bb2b45cf9a8e97de437cd00fcef364e49c') LIMIT 1[0m
+  [1m[35mUser Load (0.7ms)[0m  SELECT `users`.`id` FROM `users` WHERE (`users`.`single_access_token` = BINARY '9YpKRcXBLu_w8EeyffEr') LIMIT 1
+  [1m[36mSQL (2.1ms)[0m  [1mdescribe `users`[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO `users` (`crypted_password`, `current_login_at`, `current_login_ip`, `email`, `failed_login_count`, `id`, `is_admin`, `last_login_at`, `last_login_ip`, `last_request_at`, `login`, `login_count`, `password_salt`, `perishable_token`, `persistence_token`, `single_access_token`, `status`, `theme`) VALUES ('e49945ee16bdf898bba83e614cff211be159b576222dfac26bc3365d7976deec381f8922c9cd6d3b19c47944363997691af2e99928958a757c11ad985d12a02c', NULL, NULL, 'admin@domain.com', 0, 1, 1, NULL, NULL, NULL, 'admin', 0, 'vT9B6rJ9CwlIEDfS4CQ8', 'pD29S9Y6NmGChElsce2D', 'b07de458ef08ce94a20cb37e0a12f9b6ddeb7c8aa0c5625b7b6b9ebec4a2a88ba3472a16b898848c8f92df5c9fc283bb2b45cf9a8e97de437cd00fcef364e49c', '9YpKRcXBLu_w8EeyffEr', 1, NULL)
+  [1m[36mSQL (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35mSQL (1.1ms)[0m  describe `schema_migrations`
+  [1m[36mSQL (51.2ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20100210115033')[0m
+Migrating to CreateRights (20100222135242)
+  [1m[35mSQL (7.6ms)[0m  CREATE TABLE `rights` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `controller` varchar(255), `action` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36mSQL (1.5ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20100222135242')[0m
+Migrating to CreateRoles (20100222140004)
+  [1m[35mSQL (4.3ms)[0m  CREATE TABLE `roles` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36mSQL (6.6ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (5.0ms)[0m  SHOW TABLES
+  [1m[36mSQL (4.6ms)[0m  [1mdescribe `roles`[0m
+  [1m[35mSQL (2.3ms)[0m  INSERT INTO `roles` (`created_at`, `name`, `updated_at`) VALUES ('2010-06-19 02:16:49', 'manager', '2010-06-19 02:16:49')
+  [1m[36mSQL (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mSQL (1.6ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20100222140004')
+Migrating to CreateRightsRoles (20100222140905)
+  [1m[36mSQL (4.5ms)[0m  [1mCREATE TABLE `rights_roles` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `right_id` int(11), `role_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20100222140905')
+Migrating to CreateRolesUsers (20100222141547)
+  [1m[36mSQL (6.4ms)[0m  [1mCREATE TABLE `roles_users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `user_id` int(11), `role_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (6.9ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20100222141547')
+Migrating to CreatePaginas (20100223140955)
+  [1m[36mSQL (9.7ms)[0m  [1mCREATE TABLE `paginas` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `dt_cadastro` date, `dt_publica` date, `dt_inicio` date, `dt_fim` date, `imagem` varchar(255), `posicao` varchar(255), `status` varchar(255), `autor_id` int(11), `editor` varchar(255), `editor_chefe` varchar(255), `texto` varchar(255), `url` varchar(255), `site_id` int(11), `fonte` varchar(255), `titulo` varchar(255), `texto_imagem` varchar(255), `resumo` varchar(255), `pdf` varchar(255), `capa` int(11), `time_capa` datetime, `kind` varchar(255), `local_realiza` varchar(255), `inicio` datetime, `fim` datetime, `email` varchar(255), `assunto` varchar(255), `texto_clob` varchar(255), `lado` varchar(255), `type` varchar(255) NOT NULL, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (3.9ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20100223140955')
+Migrating to CreateMenus (20100324141625)
+  [1m[36mSQL (3.6ms)[0m  [1mCREATE TABLE `menus` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `father_id` int(11), `position` varchar(255), `link` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20100324141625')
+Migrating to AddcolumnThemeInTableRole (20100427165013)
+  [1m[36mSQL (130.9ms)[0m  [1mALTER TABLE `roles` ADD `theme` varchar(255)[0m
+  [1m[35mSQL (1.1ms)[0m  SHOW KEYS FROM `roles_users`
+  [1m[36mSQL (18.9ms)[0m  [1mCREATE INDEX `index_roles_users_on_role_id_and_user_id` ON `roles_users` (`role_id`, `user_id`)[0m
+  [1m[35mSQL (1.1ms)[0m  SHOW KEYS FROM `rights_roles`
+  [1m[36mSQL (138.5ms)[0m  [1mCREATE INDEX `index_rights_roles_on_role_id_and_right_id` ON `rights_roles` (`role_id`, `right_id`)[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20100427165013')
+Migrating to CreateSettings (20100507153616)
+  [1m[36mSQL (12.0ms)[0m  [1mCREATE TABLE `settings` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `value` varchar(255), `description` text, `group` varchar(255), `position` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20100507153616')
+  [1m[36mSQL (0.8ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.6ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations`
+  [1m[36mSQL (2.9ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (4.3ms)[0m  describe `menus`
+  [1m[36mSQL (0.8ms)[0m  [1mSHOW KEYS FROM `menus`[0m
+  [1m[35mSQL (4.8ms)[0m  describe `paginas`
+  [1m[36mSQL (0.9ms)[0m  [1mSHOW KEYS FROM `paginas`[0m
+  [1m[35mSQL (3.6ms)[0m  describe `rights`
+  [1m[36mSQL (0.9ms)[0m  [1mSHOW KEYS FROM `rights`[0m
+  [1m[35mSQL (1.3ms)[0m  describe `rights_roles`
+  [1m[36mSQL (0.8ms)[0m  [1mSHOW KEYS FROM `rights_roles`[0m
+  [1m[35mSQL (1.3ms)[0m  describe `roles`
+  [1m[36mSQL (1.0ms)[0m  [1mSHOW KEYS FROM `roles`[0m
+  [1m[35mSQL (1.3ms)[0m  describe `roles_users`
+  [1m[36mSQL (0.8ms)[0m  [1mSHOW KEYS FROM `roles_users`[0m
+  [1m[35mSQL (1.7ms)[0m  describe `settings`
+  [1m[36mSQL (1.0ms)[0m  [1mSHOW KEYS FROM `settings`[0m
+  [1m[35mSQL (2.3ms)[0m  describe `users`
+  [1m[36mSQL (0.7ms)[0m  [1mSHOW KEYS FROM `users`[0m
