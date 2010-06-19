@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(:version => 20100507153616) do
     t.datetime "last_login_at"
     t.string   "current_login_ip"
     t.string   "last_login_ip"
-    t.string   "theme"
+    t.string   "theme",               :default => "",    :null => false
     t.boolean  "status",              :default => false
     t.boolean  "is_admin",            :default => false
   end

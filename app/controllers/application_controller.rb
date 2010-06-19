@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
   def choose_layout
     if current_user && !current_user.theme.empty?
-        return current_user.theme
+      return current_user.theme
     elsif current_user && !current_user.role_ids.empty?
       role_theme = Role.find(current_user.role_ids.to_s).theme
       unless role_theme.nil? or role_theme.empty?
