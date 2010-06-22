@@ -7,4 +7,4 @@
 <%= form.label :password_confirmation %><br />
 <%= form.password_field :password_confirmation %><br />
 <%= form.label :theme, t('layout') %><br />
-<%= form.select :theme, @themes.collect{|p| [ p , p]}, {:include_blank => true} %><br />
+<%= form.select :theme, @themes.collect{|p| [ p , p]} %><br />

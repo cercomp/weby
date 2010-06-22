@@ -1,12 +1,18 @@
 class UserSessionsController < ApplicationController
-  layout "application"
+  layout :choose_layout
 
-#  before_filter :require_no_user, :only => [:new, :create]
+#  before_filter :require_no_user, :only => [:new, :create, :show, :index, :edit]
   before_filter :require_user, :only => :destroy
   skip_before_filter :check_authorization
 
+  def index
+    redirect_back_or_default root_path
+  end
+  def edit
+    redirect_back_or_default root_path
+  end
   def show
-    redirect_to root_path
+    redirect_back_or_default root_path
   end
   
   def new
@@ -17,7 +23,7 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.new(params[:user_session])
     if @user_session.save
       if current_user.status #verifica se o usuário esta ativo  
-        redirect_to :back
+        redirect_back_or_default root_path
       else  
         destroy  
       end  

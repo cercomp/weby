@@ -12,11 +12,14 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
+<%#= request.env['HTTP_REFERER'] %>
+<%#= request.fullpath.match(%r{/(login|user_sessions/new)}) %>
+<br />
   <div class="outsidebox">
     <div class="insidebox">
       <!-- Topo -->
       <div class="top">
-        <%= link_to "Home", root_path %>
+        
       </div>
       <!-- Conteúdo geral inclue menus esquerdo e direito -->
       <div class="content">
@@ -26,6 +29,9 @@
 
         <!-- Menu superior -->
         <div class="top-menu">
+          <%= link_to image_tag("flag_uk.png"), :locale => "en" %>
+          <%= link_to image_tag("flag_br.png"), :locale => "pt-BR" %>
+
           <% Menu.find(:all, :conditions => {:position => "Superior"}).each do |menus| %>
 
             <% if !menus.father_id %>
@@ -37,7 +43,6 @@
                   <% Menu.find(:all, :conditions => {:father_id => menus.id}).each do |subs| %>
                     <div class="subSup"><%= link_to subs.title, "#{subs.link}" %></div>
                   <% end %>
-
                 </div>
 
               </div>
@@ -62,12 +67,13 @@
 
         <!-- Conteúdo principal -->
         <div class="main-content">
+          <%= link_to t("home"), root_path %> |
           <% if !current_user %>
-            <%= link_to "Register", new_account_path, :layout => "application" %> |
-            <%= link_to "Log In", new_user_session_path %>
+            <%= link_to t("register"), :controller => "users", :action => "new" %> |
+            <%= link_to t("login"), :controller => "user_sessions", :action => "new" %> |
           <% else %>
-            <p> <%= link_to "My Account", :controller => "users", :action => "show", :id => current_user.id %> </p>
-            <p> <%= link_to "Logout", user_sessions_path, :method => :delete, :confirm => "Are you sure you want to logout?" %> </p>
+            <%= link_to t("my_profile"), :controller => "users", :action => "show", :id => current_user.id %> |
+            <%= link_to t("logout"), '/logout', :method => :delete, :confirm => "Are you sure you want to logout?" %> |
           <% end %>
           <%= pluralize User.logged_in.count, "user" %> currently logged in
           <!-- This based on last_request_at, if they were active < 10 minutes they are logged in -->
@@ -95,7 +101,7 @@
       </div>
       <!-- Topo -->
       <div class="bottom">
-        Rodapé
+
       </div>
     </div>
   </div>

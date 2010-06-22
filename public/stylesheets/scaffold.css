@@ -1,27 +1,8 @@
-body { background-color: #fff; color: #333; }
-
-body, p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size:   13px;
-  line-height: 18px;
-}
-
-pre {
-  background-color: #eee;
-  padding: 10px;
-  font-size: 11px;
-}
-
-a { color: #000; text-decoration:none; }
-a:visited {}
-a:hover {text-decoration:none;}
-
-.fieldWithErrors {
+.field_with_errors {
   padding: 2px;
   background-color: red;
   display: table;
 }
-
 #errorExplanation {
   width: 400px;
   border: 2px solid red;
@@ -30,7 +11,6 @@ a:hover {text-decoration:none;}
   margin-bottom: 20px;
   background-color: #f0f0f0;
 }
-
 #errorExplanation h2 {
   text-align: left;
   font-weight: bold;
@@ -40,25 +20,20 @@ a:hover {text-decoration:none;}
   background-color: #c00;
   color: #fff;
 }
-
 #errorExplanation p {
   color: #333;
   margin-bottom: 0;
   padding: 5px;
 }
-
 #errorExplanation ul li {
   font-size: 12px;
   list-style: square;
 }
-
 .listMenus{
     background-color: ButtonFace;
     border-bottom:solid 1px Silver;
     height:23px;
-    
 }
-
 .listSubMenus{
     background-color: #E0FFFF;
     height:23px;
@@ -66,7 +41,6 @@ a:hover {text-decoration:none;}
     border-bottom: solid 1px activeborder;
     border-left: solid 1px activeborder;
 }
-
 .listSubSubMenus{
     background-color: InfoBackground;
     height:23px;
@@ -74,28 +48,10 @@ a:hover {text-decoration:none;}
     border-bottom: solid 1px activeborder;
     border-left: solid 1px activeborder;
 }
-
 .listOptions{
     float:right;
     margin-left: 20px;
 }
-.foldMenus{
-
-}
-
-.item{
-    float:left;
-    background-color: #F0FFFF;
-    border: solid 1px #9FB6CD;
-    padding: 0 4px 0 4px;
-}
-
-.item:hover{
-    background-color: #F0F8FF;
-    border: solid 1px #9FB6CD;
-}
-
-
 .simple_box{
     width: 75px;
     height:18px;

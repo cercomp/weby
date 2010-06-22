@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
         return role_theme
       end
     end
-    return "application"
+    return "old"
   end
 
   def check_authorization
@@ -31,36 +31,25 @@ class ApplicationController < ActionController::Base
             end
           end
         end
-        flash[:error] = t:access_denied_page
-        request.env["HTTP_REFERER" ] ? (redirect_to :back) : (render :template => 'admin/access_denied')
-        #(render :template => 'admin/access_denied')
+        flash[:error] = t('access_denied')
         return false
       end
-    else
-        request.env["HTTP_REFERER" ] ? (redirect_to :back) : (render :template => 'admin/access_denied')
-        #(render :template => 'admin/access_denied')
     end
   end
 
   def set_locale
-    # I18n.default_locale returns the current default locale. Defaults to 'en-US'
-    I18n.load_path += Dir[ File.join(Rails.root, 'lib', 'locale', '*.{rb,yml}') ]
+    # I18n.load_path += Dir[ File.join(Rails.root, 'lib', 'locale', '*.{rb,yml}') ]
     locale = params[:locale] || session[:locale] || I18n.default_locale
     session[:locale] = I18n.locale = locale
   end
 
   def access_denied
     if current_user
-      render :template => 'admin/access_denied'
+      flash[:error] = 'Acesso negado!'
     else
-      flash[:error] = 'Acesso negado. Tente logar primeiro.'
-      redirect_to login_path
+      flash[:error] = 'Tente logar primeiro!'
     end
-  end
-
-  # Retorna o papel do usuario
-  def user_role_name(user)
-    return RolesUser.find(:first, :select => "roles.name", :joins => "INNER JOIN users ON users.id=user_id INNER JOIN roles ON roles.id=role_id", :conditions => [ "users.id = ?", user.id ], :order => "role_id")
+    redirect_back_or_default login_path
   end
 
   private
@@ -77,7 +66,7 @@ class ApplicationController < ActionController::Base
   def require_user
     unless current_user
       store_location
-      flash[:notice] = "You must be logged in to access this page"
+      flash[:error] = "Você deve estar logado para acessar acessar essa página"
       redirect_to new_user_session_url
       return false
     end
@@ -86,21 +75,35 @@ class ApplicationController < ActionController::Base
   def require_no_user
     if current_user
       store_location
-      flash[:notice] = "You must be logged out to access this page"
-      redirect_to account_url
+      flash[:error] = "Você não deve estar logado para acessar essa página."
+      redirect_to users_url
       return false
     end
   end
     
   def store_location
-    session[:return_to] = request.request_uri
+    session[:return_to] = request.fullpath
   end
-    
+
   def redirect_back_or_default(default)
-    if default
-      redirect_to(default)
-    else
-      redirect_to :back
+    back_url = CGI.unescape(params[:back_url].to_s)
+    if !back_url.blank?
+      begin
+        uri = URI.parse(back_url)
+        # do not redirect user to another host or to the login or register page
+        if (uri.relative? || (uri.host == request.host)) && !uri.path.match(%r{/(login|account/register)})
+          redirect_to(back_url)
+          return
+        end
+      rescue URI::InvalidURIError
+        # redirect to default
+      end
     end
+    if session[:return_to] && !session[:return_to].match(%r{/(login|user_sessions/new)}).nil?
+      redirect_to(session[:return_to])
+    else
+      redirect_to(default)
+    end
+    session[:return_to] = nil
   end
 end

@@ -1,6 +1,8 @@
 class NoticiasController < ApplicationController
   layout :choose_layout
 
+  before_filter :require_user
+
   respond_to :html, :xml
 
   def index

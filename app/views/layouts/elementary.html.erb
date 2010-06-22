@@ -17,7 +17,7 @@
         <div id="header3">
           <div id="header_content">
             <div id="logo">
-              <%=  image_tag("logo.png", :border => 0) %>
+              <%= image_tag("logo.png", :border => 0) %>
               <%= link_to image_tag("flag_uk.png"), :locale => "en" %>
               <%= link_to image_tag("flag_br.png"), :locale => "pt-BR" %>
             </div>
@@ -31,7 +31,7 @@
   </div>
 
   <div id="title">
-    <%= link_to "Administração", :controller => 'admin', :action => 'show', :class => "linkFoo" %>
+    <%= link_to t("admin"), :controller => 'admin', :action => 'show' %>
   </div>
 
   <div id="content">
@@ -42,12 +42,12 @@
     <div id="menus-bg">
       <p> <%= link_to t("user").pluralize, :controller => "users", :action => "index" %> </p>
       <p> <%= link_to t("permissions"), :controller => "rights", :action => "index" %> </p>
-      <p> <%= link_to t("roles and permissions"), :controller => "roles", :action => "index" %> </p>
+      <p> <%= link_to t("roles_permissions"), :controller => "roles", :action => "index" %> </p>
       <p> <%= link_to "Páginas", paginas_path %> </p>
       <p> <%= link_to "Menus", menus_path %> </p>
       <% if current_user %>
-        <p> <%= link_to "My Account", :controller => 'users', :action => 'show', :id => current_user.id %> </p>
-        <p> <%= link_to "Sair", '/logout', :confirm => "Are you sure you want to logout?" %> </p>
+        <p> <%= link_to t("my_profile"), :controller => 'users', :action => 'show', :id => current_user.id %> </p>
+        <p> <%= link_to t("logout"), '/logout', :confirm => "Are you sure you want to logout?" %> </p>
       <% end %>
     </div>
 

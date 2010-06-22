@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   layout :choose_layout
 
   before_filter :require_user, :only => [:edit, :destroy, :update, :change_status, :change_roles, :change_theme]
+#  before_filter :require_no_user, :only => [:create, :new, :show]
   before_filter :check_authorization, :except => [:new, :create, :show, :edit, :update]
 
   respond_to :html, :xml
@@ -12,7 +13,7 @@ class UsersController < ApplicationController
       @user.update_attribute(:theme, params[:id])
       flash[:notice] = 'Aparência alterada!'
     end
-    redirect_to :back
+    redirect_back_or_default root_path
   end
 
   def change_roles
@@ -21,7 +22,7 @@ class UsersController < ApplicationController
       @r = RolesUser.create :user_id => params[:user_id], :role_id => params[:role_id]
       flash[:notice] = t'uso', :param => t('role')
     end
-    redirect_to users_path
+    redirect_back_or_default users_path
   end
 
   def index
@@ -32,15 +33,25 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    files = []
+    for file in Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*")]
+      files << file.split("/")[-1].split(".")[0]
+    end
+    @themes = files
     respond_with(@user)
   end
   
   def create
     @user = User.new(params[:user])
+    files = []
+    for file in Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*")]
+      files << file.split("/")[-1].split(".")[0]
+    end
+    @themes = files
     
     if @user.save
       flash[:notice] = "Conta registrada!"
-      redirect_to osses_path
+      redirect_to users_path
     else
       render :action => :new
     end

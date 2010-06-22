@@ -1,9 +1,10 @@
-<h1>Register</h1>
-
-<% form_for @user, :url => account_path do |f| %>
+<fieldset>
+  <legend><%= t:new_param, :param => t('user') %></legend>
+<%= form_for @user, :url => users_path do |f| %>
   <% @user.errors.full_messages.each do |msg| %>  
-    <li><%= msg %></li>  
+    <%= msg %><br />
   <% end %>  
   <%= render :partial => "form", :object => f %>
-  <%= f.submit "Register" %>
+  <%= f.submit t:send %>
 <% end %>
+</fieldset>
