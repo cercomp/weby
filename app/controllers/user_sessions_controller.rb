@@ -34,9 +34,9 @@ class UserSessionsController < ApplicationController
   
   def destroy
     if !current_user.status
-      flash[:warning] = t:user_inactive  
+      flash[:warning] = t('user_inactive')
     else
-      flash[:notice] = t:logout_success
+      flash[:notice] = t('logout_success')
     end
     current_user_session.destroy
     redirect_back_or_default login_path

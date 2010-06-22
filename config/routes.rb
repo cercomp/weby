@@ -12,10 +12,11 @@ Webyge3::Application.routes.draw do |map|
   resources :admin, :controller => 'admin'
   resources :account, :controller => "users"
   resources :user_sessions
+  resources :user_sessions, :as => 'account'
 
-  match 'logout', :to => 'user_sessions#destroy', :as => "logout"
-  match 'login', :to => 'user_sessions#new', :as => 'login'
-  match 'denied', :to => "admin#access_denied", :as => 'denied'
+  match 'logout' => 'user_sessions#destroy', :as => "logout"
+  match 'login' => 'user_sessions#new', :as => 'login'
+  match 'denied' => "admin#access_denied", :as => 'denied'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

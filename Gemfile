@@ -5,7 +5,8 @@ gem 'rails', '3.0.0.beta4'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql'
+#gem 'mysql'
+gem 'pg'
 gem "authlogic", :git => "git://github.com/odorcicd/authlogic.git", :branch => "rails3"
 gem "will_paginate", :git => "http://github.com/mislav/will_paginate.git", :branch => "rails3"
 
