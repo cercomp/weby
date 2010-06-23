@@ -12,7 +12,6 @@ Webyge3::Application.routes.draw do |map|
   resources :admin, :controller => 'admin'
   resources :account, :controller => "users"
   resources :user_sessions
-  resources :user_sessions, :as => 'account'
 
   match 'logout' => 'user_sessions#destroy', :as => "logout"
   match 'login' => 'user_sessions#new', :as => 'login'
