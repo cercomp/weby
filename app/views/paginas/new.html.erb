@@ -65,12 +65,9 @@
     <%= f.datetime_select :time_capa %>
   </p>
 
+  <%= render :partial => "new" + params[:type], :locals=> { :f=>f } %>
 
-  <%= render :partial => "new" + params[:type], :locals=>{:f=>f} %>
-
-  <p>
-    <%= f.submit 'Criar' %>
-  </p>
+  <p> <%= f.submit 'Criar' %> </p>
 <% end %>
 
 <%= link_to 'Voltar', :back %>

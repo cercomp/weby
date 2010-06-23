@@ -29,7 +29,7 @@
   </div>
 
   <div id="title">
-    <%= link_to "Administração", :controller => 'admin', :action => 'index', :class => "linkFoo" %>
+    <%= link_to "Administração", :controller => 'admin', :action => 'index' %>
   </div>
 
   <div id="content">
@@ -40,12 +40,12 @@
     <div id="menus-bg">
       <p> <%= link_to t("user").pluralize , :controller => "users", :action => "index" %> </p>
       <p> <%= link_to t("permissions"), :controller => "rights", :action => "index" %> </p>
-      <p> <%= link_to t("roles and permissions"), :controller => "roles", :action => "index" %> </p>
+      <p> <%= link_to t("roles_permissions"), :controller => "roles", :action => "index" %> </p>
       <p> <%= link_to "Páginas", paginas_path %> </p>
       <p> <%= link_to "Menus", menus_path %> </p>
       <% if current_user %>
-        <p> <%= link_to "My Account", :controller => "users", :action => "show", :id => current_user.id %> </p>
-        <p> <%= link_to "Logout", user_sessions_path, :method => :delete, :confirm => "Are you sure you want to logout?" %> </p>
+        <p> <%= link_to t("my_profile"), :controller => "users", :action => "show", :id => current_user.id %> </p>
+        <p> <%= link_to t("logout"), "/logout", :method => :delete, :confirm => "Are you sure you want to logout?" %> </p>
       <% end %>
     </div>
 
