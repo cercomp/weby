@@ -59,6 +59,7 @@ en:
   email_password: "One e-mail with the instructions of how to change your password was sent."
   equipment_register: "Equipment Register"
   error: "Error, impossible to  {{param}}"
+  event: "Event"
 
 #---F---#
   forgot_password: "Forgot password"
