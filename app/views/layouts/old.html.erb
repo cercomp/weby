@@ -71,6 +71,7 @@
           <% if !current_user %>
             <%= link_to t("register"), :controller => "users", :action => "new" %> |
             <%= link_to t("login"), :controller => "user_sessions", :action => "new" %> |
+            <%= link_to "teste", :site => 'a', :controller => 'menus', :action => 'new' %>
           <% else %>
             <%= link_to t("my_profile"), :controller => "users", :action => "show", :id => current_user.id %> |
             <%= link_to t("logout"), '/logout', :method => :delete, :confirm => "Are you sure you want to logout?" %> |

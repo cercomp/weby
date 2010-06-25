@@ -1,17 +1,29 @@
 Webyge3::Application.routes.draw do |map|
+
+  resources :site do
+    resources :menus
+    resources :eventos
+    resources :noticias
+    resources :informativos
+    resources :paginas
+    resources :chats
+  end
+
   resources :menus
-  resources :roles
-  resources :rights
   resources :eventos
   resources :noticias
   resources :informativos
   resources :paginas
-  resources :password_resets
-  resources :users
   resources :chats
+
+  resources :roles
+  resources :rights
+  resources :users
   resources :admin, :controller => 'admin'
-  resources :account, :controller => "users"
   resources :user_sessions
+  resources :account, :controller => "users"
+  resources :password_resets
+
 
   match 'logout' => 'user_sessions#destroy', :as => "logout"
   match 'login' => 'user_sessions#new', :as => 'login'
@@ -74,5 +86,11 @@ Webyge3::Application.routes.draw do |map|
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
+  match '(:site/):controller(/:action(/:id))', :constraints => {
+    :site       => /[a-z]*/, # Nenhuma ou mais letras minúsculas
+    :controller => /[a-z_]+/, # Uma ou mais letras minúsculas e sublinhado
+    :action     => /[a-z]*/,
+    :id => /\d*/ # Nenhuma ou mais números
+  } 
   match ':controller(/:action(/:id(.:format)))'
 end
