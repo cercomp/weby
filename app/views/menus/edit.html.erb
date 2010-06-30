@@ -1,18 +1,18 @@
-<h1>Editando menu</h1>
+<h1><%= t:editing, :param => t("menu") menu</h1>
 
 <% form_for(@menu) do |f| %>
   <%= f.error_messages %>
 
   <p>
-    <%= f.label "Texto" %><br />
+    <%= f.label t:text %><br />
     <%= f.text_field :title %>
   </p>
   <p>
-    <%= f.label "Digite o link (URL)" %><br />
+    <%= f.label t:type, :param => t("url") %><br />
     <%= f.text_field :link %>
   </p>
   <p>
-    <%= f.submit 'Atualizar' %>
+    <%= f.submit %>
   </p>
 <% end %>
 

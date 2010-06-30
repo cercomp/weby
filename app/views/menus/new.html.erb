@@ -1,7 +1,7 @@
 <% if !params[:father_id] %>
-  <h1>Criar menu</h1>
+  <h1><%= t:create_param, :param => t("menu")%></h1>
 <% else %>
-  <h1>Criar sub-menu</h1>
+  <h1><%= t:create_param, :param => t("sub-menu")%></h1>
 <% end %>
 
 <%= form_for(@menu) do |f| %>
@@ -12,12 +12,12 @@
   <%= f.hidden_field :father_id, :value => params[:father_id] %>
 
   <p>
-    Texto:<br />
+    <%= t:text %>:<br />
     <%= f.text_field :title %>
   </p>    
   <% if !params[:father_id] %>
     <p>
-      Posição:<br />
+      <%= t:position %>:<br />
       <%= select(:menu, :position, [ "Superior", "Direito" , "Esquerdo"]) %>
     </p>
   <% end %>

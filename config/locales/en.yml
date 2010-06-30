@@ -2,6 +2,7 @@ en:
   this_file_language: "American English"
 
 #---A---#
+  author: "Author"
   accessing_as: "Accessing as"
   access_denied: "Access denied!"
   access_denied_page: "You are not allowed to see this page!"
@@ -23,12 +24,14 @@ en:
   ip: "ip"
 
 #---B---#
+  begin: "Inicio"  
   back: "Back"
   branch: "Branch"
   button_check_all: "Check all"
   button_uncheck_all: "Uncheck all"
 
 #---C---#
+  chief_editor: "Editor chefe"
   change_password: "Change password"
   changing_password: "Changing password"
   comment: "Comment"
@@ -47,6 +50,7 @@ en:
   created_at: "Created at"
 
 #---D---#
+  date: "Date of {{param}}" 
   department: "Department"
   departments: "Departments"
   description: "Description"
@@ -140,11 +144,13 @@ en:
   priorities: "Priorities"
   profile_incomplete: "Your profile is not complete."
   property: "Property"
+  picture: "imagem"
 
 #---Q---#
   quantity: "Quantity"
 
 #---R---#
+  registration: "Registration"
   register: "Register"
   remember_me: "Remember me"
   remove: "remove {{param}}"
@@ -175,12 +181,15 @@ en:
   successfully_removed: "{{param}} successfully removed!"
   suggestion: "Suggestion"
   suggestions: "Suggestions"
+  site_id: "Site ID"
+  source: "Fonte"
 
 #---T---#
   trainee: "Resolver"
   title: "Title"
 
 #---U---#
+  url: "URL"
   update: "Update {{param}}"
   user: "User"
   user_inactive: "User was not activated."

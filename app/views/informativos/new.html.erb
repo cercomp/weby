@@ -1,62 +1,114 @@
-<h1>New informativo</h1>
+<h1><%= t:new_param, :param => t:("newsletter") %></h1>
 
 <% form_for(@informativo) do |f| %>
   <%= f.error_messages %>
 
-  <p>
-    <%= f.label :dt_cadastro %><br />
+ <p>
+    <%= f.label :dt_cadastro, t:date, :param => t("registration") %><br />
     <%= f.date_select :dt_cadastro %>
   </p>
   <p>
-    <%= f.label :dt_publica %><br />
+    <%= f.label :dt_publica, t:date, :param => t(":publication") %><br />
     <%= f.date_select :dt_publica %>
   </p>
   <p>
-    <%= f.label :dt_inicio %><br />
+    <%= f.label :dt_inicio, t:date, :param => t("begin") %><br />
     <%= f.date_select :dt_inicio %>
   </p>
   <p>
-    <%= f.label :dt_fim %><br />
+    <%= f.label :dt_fim, t:data, :param => t("end") %><br />
     <%= f.date_select :dt_fim %>
   </p>
   <p>
-    <%= f.label :imagem %><br />
+    <%= f.label :imagem, t:picture %><br />
     <%= f.text_field :imagem %>
   </p>
   <p>
-    <%= f.label :posicao %><br />
+    <%= f.label :posicao, t:position %><br />
     <%= f.text_field :posicao %>
   </p>
   <p>
-    <%= f.label :status %><br />
+    <%= f.label :status, t:status %><br />
     <%= f.text_field :status %>
   </p>
   <p>
-    <%= f.label :autor %><br />
-    <%= f.text_field :autor %>
+    <%= f.label :autor, t:author %><br />
   </p>
   <p>
-    <%= f.label :editor %><br />
+    <%= f.label :editor, t:editor %><br />
     <%= f.text_field :editor %>
   </p>
   <p>
-    <%= f.label :editor_chefe %><br />
+    <%= f.label :editor_chefe, t:chief_editor %><br />
     <%= f.text_field :editor_chefe %>
   </p>
+
   <p>
-    <%= f.label :texto %><br />
+    <%= f.label :texto, t:text %><br />
     <%= f.text_area :texto %>
   </p>
   <p>
-    <%= f.label :url %><br />
+    <%= f.label :url, t:url %><br />
     <%= f.text_field :url %>
   </p>
   <p>
-    <%= f.label :site_id %><br />
+    <%= f.label :site_id, t:site_id %><br />
     <%= f.text_field :site_id %>
   </p>
   <p>
     <%= f.label :assunto %><br />
+    <%= f.text_field :assunto %>
+  </p>
+<p>
+    <%= f.label :texto_clob %><br />
+    <%= f.text_field :texto_clob %>
+  </p>
+  <p>
+    <%= f.label :texto_imagem, t:picture_text %><br />
+    <%= f.text_field :texto_imagem %>
+  </p>
+  <p>
+    <%= f.label :lado %><br />
+    <%= f.text_field :lado %>
+  </p>
+  <p>
+    <%= f.label :resumo, t:summary %><br />
+    <%= f.text_field :resumo %>
+  </p>
+  <p>
+    <%= f.label :pdf %><br />
+    <%= f.text_field :pdf %>
+  </p>
+<p>
+    <%= f.label :capa, t:cover %><br />
+    <%= f.text_field :capa %>
+  </p>
+  <p>
+    <%= f.label :time_capa, t:time_cover %><br />
+    <%= f.text_field :time_capa %>
+  </p>
+  <p>
+    <%= f.label :kind, t:kind %><br />
+    <%= f.text_field :kind %>
+  </p>
+  <p>
+    <%= f.label :local_realiza, t:localization %><br />
+    <%= f.text_field :local_realiza %>
+  </p>
+  <p>
+    <%= f.label :inicio, t:begin %><br />
+    <%= f.datetime_select :inicio %>
+  </p>
+  <p>
+    <%= f.label :fim, t:end %><br />
+    <%= f.datetime_select :fim %>
+  </p>
+  <p>
+    <%= f.label :email, t:email %><br />
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :assunto, t:subject %><br />
     <%= f.text_field :assunto %>
   </p>
   <p>
@@ -64,11 +116,10 @@
     <%= f.text_field :texto_clob %>
   </p>
   <p>
-    <%= f.label :lado %><br />
+    <%= f.label :lado, t:side %><br />
     <%= f.text_field :lado %>
   </p>
-  <p>
-    <%= f.submit 'Create' %>
+    <%= f.submit  %>
   </p>
 <% end %>
 

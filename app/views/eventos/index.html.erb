@@ -58,7 +58,7 @@
       <td><%=h evento.email %></td>
       <td><%= link_to 'Show', evento %></td>
       <td><%= link_to 'Edit', edit_evento_path(evento) %></td>
-      <td><%= link_to 'Destroy', evento, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to 'Destroy', evento, :confirm => t("are_you_sure?"), :method => :delete %></td>
     </tr>
   <% end; reset_cycle %>
   <tbody>

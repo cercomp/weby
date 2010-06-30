@@ -2,11 +2,11 @@
 
 <table list='class'>
   <thead>
-    <th>Titulo</th>
-    <th>Capa</th>
-    <th>Status</th>
-    <th>Autor</th>
-    <th>Data de cadastro</th>
+    <th><%= t:title %></th>
+    <th><%= t:cover %></th>
+    <th><%= t:status %></th>
+    <th><%= t:autor %></th>
+    <th><%= t:date, :param => t("registration")%></th>
   </thead>
   <tbody>
   <% @noticias.each do |noticia| %>
@@ -19,7 +19,7 @@
 
       <td><%= link_to 'Show', noticia %></td>
       <td><%= link_to 'Edit', edit_noticia_path(noticia) %></td>
-      <td><%= link_to 'Destroy', noticia, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to 'Destroy', noticia, :confirm => t("are_you_sure?"), :method => :delete %></td>
     </tr>
   <% end; reset_cycle %>
   </tbody>
