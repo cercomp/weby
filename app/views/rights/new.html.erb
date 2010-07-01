@@ -1,13 +1,13 @@
-<h1><%= t:new, :param => t("right")%></h1>
+<h1><%= t:new_param, :param => t("right")%></h1>
 
 <% form_for(@right) do |f| %>
   <%= f.error_messages %>
   
-  <%= f.label :name, t:name%><br />
+  <%= f.label  t:name%><br />
   <%= f.text_field :name %><br />
-  <%= f.label :controller, t:controller %><br />
+  <%= f.label  t:controller %><br />
   <%= f.text_field :controller %><br />
-  <%= f.label :action, t:action %><br />
+  <%= f.label  t:action %><br />
   <%= f.text_field :action %><br />
   <p>
     <%= f.submit  %>

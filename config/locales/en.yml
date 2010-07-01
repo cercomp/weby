@@ -3,7 +3,7 @@ en:
 
 #---A---#
   accessing_as: "Accessing as"
-  access_denied: "Access denied
+  access_denied: "Access denied"
   access_denied_page: "You are not allowed to see this page!"
   account: "Account"
   action: "Action" 
@@ -91,9 +91,9 @@ en:
 #---R---#
   registration: "Registration"
   remember_me: "Remember me"
-  remove: "remove {{param}}
+  remove: "remove {{param}}"
   right: "Right"
-  rights: "Rights
+  rights: "Rights"
   role: "Role"
   roles: "Roles"
   roles_permissions: "Roles and Permissions"

@@ -91,7 +91,7 @@ en:
 #---R---#
   registration: "Cadastro"
   remember_me: "Remember me"
-  remove: "remove {{param}}
+  remove: "remove {{param}}"
   right: "Direito"
   rights: "Direitos"
   role: "Papel"
@@ -127,7 +127,7 @@ en:
   url: "URL"
   user: "User"
   user: "Users"
-  user_inactive: ""Seu usuário ainda não está ativo."  
+  user_inactive: "Seu usuário ainda não está ativo."  
 
 #---V---#
   value: "Value" 

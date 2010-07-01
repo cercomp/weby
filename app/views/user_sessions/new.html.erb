@@ -5,9 +5,9 @@
   <% @user_session.errors.full_messages.each do |msg| %>  
     <p><%= msg %></p>
   <% end %>  
-  <%= f.label :login, t:login%><br />
+  <%= f.label  t:login  %><br />
   <%= f.text_field :login %><br />
-  <%= f.label :password, t:password %><br />
+  <%= f.label  t:password %><br />
   <%= f.password_field :password %><br />
   <%= f.check_box :remember_me %><%= f.label :remember_me %><br />
   <br />
