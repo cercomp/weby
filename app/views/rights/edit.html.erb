@@ -1,13 +1,13 @@
-<h1>Editing right</h1>
+<h1><%= t:editing, :param => t("rights") %> </h1>
 
 <% form_for(@right) do |f| %>
   <%= f.error_messages %>
 
-  <%= f.label :name %><br />
+  <%= f.label :name, t:name %><br />
   <%= f.text_field :name %><br />
-  <%= f.label :controller %><br />
+  <%= f.label :controller, t:controller %><br />
   <%= f.text_field :controller %><br />
-  <%= f.label :action %><br />
+  <%= f.label :action, t:action %><br />
   <%= f.text_field :action %><br />
   <p>
     <%= f.submit 'Update' %> | <%= link_to 'Back', rights_path %>

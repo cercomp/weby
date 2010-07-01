@@ -1,4 +1,4 @@
-<h1><%= t('permissions and roles') %></h1>
+<h1><%= t('roles_permissions') %></h1>
 
 <%#= debug(params[:role_ids]) %>
 <%= debug(params[:right_ids]) %>
@@ -8,7 +8,7 @@
 <table class="list">
   <thead>
    <tr>
-    <th>Permissões / Papéis</th>
+    <th><%= t:permissions  %> / <%= t:roles  %></th>
     <% @roles.each do |role| %>
       <th><%= role.name %></th>
       <%# role.rights.collect do |each|%>

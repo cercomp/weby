@@ -4,9 +4,9 @@
 <table class="list">
   <thead>
    <tr>
-    <th>Permissões / Papéis</th>
+    <th><%= t:permissions%> / <%= t:roles  %></th>
     <% @roles.each do |role| %>
-      <th><%= role.name %> [<%= link_to t('destroy'), role, :confirm => t('are you sure?'), :method => :delete %>]</th>
+      <th><%= role.name %> [<%= link_to t('destroy'), role, :confirm => t('are_you_sure?'), :method => :delete %>]</th>
       <%# role.rights.collect do |each|%>
         <%#=  each.name %>
       <%# end %>

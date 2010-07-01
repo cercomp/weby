@@ -1,289 +1,144 @@
-pt-BR:
-  this_file_language: "Português Brasileiro"
+en:
+  this_file_language: "American English"
 
 #---A---#
   accessing_as: "Accessando como"
   access_denied: "Acesso negado!"
   access_denied_page: "Você não está autorizado a ver está página!"
-  acess_denied_try_login: "Acesso negado. Tente logar primeiro."
   account: "Conta"
-  action: "Ação"
-  activate_user: "Usuário ativado"
-  activate_success: "{{param}} foi ativado com sucesso"
-  active: "Ativo?"
-  active_os: "OS ativada"
-  add: "Adicionar {{param}}"
-  add2: "Adiciona {{param}}"
-  admin: "Administração"
-  administrate: "Administrar"
-  allowed_domain: "Registro apenas de emails como o domínio: "
-  amount: "Quantidade:"
+  action: "Ação" 
   are_you_sure: "Você tem certeza?"
-  at: "em"
-  ip: "ip"
+  at: "at"
+  author: "Autor"
+ 
 
 #---B---#
   back: "Voltar"
-  branch: "Ramal"
-  button_check_all: "Marcar todos"
-  button_uncheck_all: "Desmarcar todos"
-
+  begin: "Inicio"  
+  
 #---C---#
-  change_password: "Mudar senha"
-  changing_password: "Mudando senha"
-  comment: "Comentário"
-  comments: "Comentários"
-  setting: "Configuração"
-  settings: "Configurações"
-  confirm_password: "Confirmar senha"
+  chief_editor: "Editor chefe"
   controller: "Controle"
-  create:  "Criar"
-  created_by: "Criado por"
+  cover: "Capa"
+  create: "Criar"
   create_param: "Criar {{param}}"
-  create_so: "Criar uma ordem de serviço" 
   current_login: "Entrada atual {{param}}" 
-  cs: "{{param}} criado com sucesso!"
-  cso: "{{param}} criado com sucesso!"
-  created_at: "Criado em"
 
 #---D---#
-  department: "Departamento"
-  departments: "Departamentos"
-  description: "Descrição"
-  destroy: "Destruir"
+  date: "Data de {{param}}" 
+  
 
 #---E---#
-  edit: "Editar"
   editing: "Editando {{param}}"
   email: "E-mail"
-  email_password: "Foi enviado por e-mail a instrução de como alterar a sua senha."
-  equipment_register: "Reg. do Equipamento"
-  error: "Erro ao {{param}}" 
+  end: "fim"
+  event: "Evento"
 
 #---F---#
-  forgot_password: "Esqueci a senha"
-  full_time: "Integral"
-  find: "Pesquisar {{param}}"
+  father: "Pai"
+  fill_email_form: "Preencha o formulário para resgatar sua senha. Ela será enviada para seu e-mail:" 
+  forgot_password: "Perdi minha senha"
 
 #---G---#
-  go_home: "Ir para a página principal" 
-  get_os: "Pegar OS"
 
 #---H---#
-  hide: "Esconder"
-  home: "Principal"
 
 #---I---#
-  inactive: "Inativo {{param}}"
-  inform_mail: "Informe um email para receber o link de acesso"
-  invalid_token: "Token inválido"
-  id: "Id"
-  is_admin: "Admin?"
+  ip: "ip"
 
 #---K---#
-  kind_of_fiter: "Filtros"
+  time_cover: "capa agendada"
+ 
 
 #---L---#
-  layout: "Leiaute"
   last_login: "Último entrada {{param}}"
   last_request: "Última submissão em"
-  list: "Lista {{param}}"
+  layout: "Leiaute"
   listing: "Listando {{param}}"
-  listing_suggestions: "Listando Sugestões"
-  localization: "Localização"
-  location: "Local"
-  login: "Entrar"
+  localization: "Local de realização"
+  login: "Login"
+  login: "Login"
   logout: "Sair"
   logout_success: "Logout com sucesso!"
-  limit: "Limite por página"
-
+  login_count: "Login Count"
+  
 #---M---#
-  matutinal: "Matutino"
-  my: "My {{param}}"
+  menu: "Menu"
   my_account: "Minha conta"
-  my_profile: "Meu Perfil" 
-  my_so: "Minhas ordens de serviço"
+  my_profile: "Meu Perfil"
 
 #---N---#
-  name: "Nome"
-  new: "Novo"
+  new: "New"
+  news: "Noticia"
+  newsletter: "Informativo"
   new_param: "Novo {{param}}!"
-  new_suggestion: "Nova Sugestão"
-  no: "Nenhum {{param}}!"
-  no_need_to_login: "Você não deve estar logado para acessar essa página!"
-  no_so: "Não existe nenhuma OS!"
-  number_logins: "Numero de entradas" 
 
 #---O---#
-  observation: "Observação"
-  owner: "Dono"
-  opened: "OSes Abertas"
-  os: "Ordem de Serviço"
-  os_number: "Número"
-  os_return: "Devolver OS" 
-  os_take: "Pegar OS" 
-  os_to_you: "OS atribuída para você!"
-  os_to_open: "OS foi devolvida para a lista de OSs abertas!"
-  oss: "OS's"
-  osses: "OS's"
 
 #---P---#
+  page: "Página"
   password: "Senha"
   password_confirmation: "Confirmação da senha"
-  period: "Período"
   permissions: "Permissão"
-  phone: "Número de Telefone"
-  preferencial_attendance: "Atentimento preferencial"
-  preferencial_period: "Horário preferencial de atendimento:"
-  priority: "Prioridade"
-  priorities: "Prioridades"
-  profile_incomplete: "Seu perfil não está completo"
-  property: "Propriedade"
+  pdf: "PDF"
+  picture: "imagem"
+  picture_text: "Texto da imagem"
+  position: "posição"
+  
 
 #---Q---#
-  quantity: "Quantidade"
 
 #---R---#
-  register: "Registro"
-  remember_me: "Lembrar-me"
-  remove: "remover {{param}}"
-  removed_service: "Serviço removido!"
-  reserved_rights: "Todos os direitos reservados"
+  registration: "Cadastro"
+  remember_me: "Remember me"
+  remove: "remove {{param}}
   right: "Direito"
   rights: "Direitos"
   role: "Papel"
   roles: "Papéis"
   roles_permissions: "Permissões e Papéis"
-  room: "Sala"
-
+ 
 #---S---#
   save: "Salvar"
-  search_so: "Pesquisar OS"
-  send: "Enviar"
-  sender: "Remetente"
-  service: "Serviço"
-  services: "Serviços"
-  shortcuts: "Shortcuts"
+  setting: "configuração"
+  settings: "Confiurações"
   show: "Mostrar"
-  showing_os: "Mostrar OS"
-  showing_suggestion: "Mostrando Sugestão"
-  status: "Situação"
-  so_without_atribuition: "Ordens de Serviço sem atribuição"
-  so_system: "Sistema de Ordem de Serviço"
-  statuses: "Situações"
+  side: "Lado"
+  site_id: "Site ID"
+  source: "Fonte"
+  status: "Status"
+  subject: "Assunto"
+  sub-menu: "Sub-menu"
   successfully_removed: "{{param}} foi removido com sucesso!"
   suggestion: "Sugestão"
   suggestions: "Sugestões"
+  summary: "Resumo"
 
 #---T---#
-  trainee: "Resolvedor"
+  text: "Texto" 
   title: "Título"
+  time_cover: "Capa agendada"
+  time: "Tempo"
+  type: "Digite a {{param}}"
 
 #---U---#
   update: "Atualizar {{param}}"
-  user: "Usuário"
-  user_inactive: "Seu usuário ainda não está ativo."
-  username: "Nome do usuário"
-  users: "Usuários"
-  users_extended: "Users extended"
-  users_list: "Lista de usuários"
-  update_success: "{{param}} foi atualizado com sucesso."
-  us: "{{param}} atualizado com sucesso."
-  uso: "{{param}} atualizado com sucesso."
+  update_password_log: "Atualize minha senha e me conecte." 
+  url: "URL"
+  user: "User"
+  user: "Users"
+  user_inactive: ""Seu usuário ainda não está ativo."  
 
 #---V---#
-  value: "Valor"
-  vesper: "Vespertino"
-  visualize_oss: "Visualizar Oss / Papéis"
+  value: "Value" 
 
 #---W---#
-  wellcomeMessage: "Bem vindo ao Sistema de Ordem de Serviço"
+  
   
 #--- Other locales ---#
+
   helpers:
     submit:
       create: "Criar {{model}}"
-      update: "Atualizar {{model}}"
-  will_paginate:
-    entry: "registros"
-    found:
-      zero: "não existe {{entry_name}}"
-      one: "<b>{{size}}</b> {{entry_name}}"
-      other: "Total: <b>{{size}}</b> {{entry_name}}"
-    display: "{{entry_name}} <b>{{from}}</b> a <b>{{to}}</b> de {{total}} no total"
-    next: "Próximo >>"
-    previous: "<< Anterior"
-  authlogic:
-    error_messages:
-      login_blank: "deve ser preenchido"
-      login_not_found: "Inválido"
-      login_invalid: "Inválido" #should use osadfsdfnly letters, numbers, spaces, and .-_@ please.
-      consecutive_failed_logins_limit_exceeded: "Você excedeu o número permitido de tentativas de login"
-      email_invalid: "Inválido" #should look like an email address.
-      password_blank: "deve ser preenchido"
-      password_invalid: "Inválido"
-      not_active: "Conta não está ativa"
-      not_confirmed: "A conta não foi confirmada"
-      not_approved: "A conta não foi aprovada"
-      no_authentication_details: "Não há detalhes de autenticação"
-    attributes:
-      user_session:
-        login: "Nome de usuário"
-        email: "E-mail"
-        password: "Senha"
-        remember_me: "Lembrar-me"
-  activerecord:
-    attributes:
-      _all:
-        created_at: "Criado em"
-        updated_at: "Atualizado em"
-      history:
-         title: "Título"
-         content: "Conteúdo"
-      oss:
-        equipment_register: "Reg. do Equipamento"
-        period: "Horário preferencial de serviço"
-        department_id: "Departamento"
-        service_id: "Serviço"
-      user:
-        login: "Nome do usuário"
-        password: "Senha"
-        password_confirmation: "Confirmação da senha"
-        user_extended_name: "Nome"
-      users_extended:
-        name: "Nome"
-    errors:
-      template:
-        header:
-          one: "não foi possivel atualizar o modelo: 1 erro"
-          other: "não foi possivel atualizar o modelo: {{count}} erros."
-        body: "Por favor cheque os seguintes campos:"
-      messages:
-        inclusion: " não está incluido na lista"
-        exclusion: "indisponível"
-        invalid: "inválido"
-        confirmation: "confirmação não equivalente"
-        accepted: "acception required"
-        empty: "deve ser preenchido"
-        blank: "deve ser preenchido"
-        too_long: "muito longo (não é possível usar mais de {{count}} characteres)"
-        too_short: "muito curto (não é possível usar menos de {{count}} characteres)"
-        wrong_length: "wrong length ({{count}} characters required)"
-        taken: "indisponível"
-        not_a_number: "não é um número"
-        greater_than: "greater than {{count}} required"
-        greater_than_or_equal_to: "greater than or equal to {{count}} required"
-        equal_to: "equal to {{count}} required"
-        less_than: "less than {{count}} required"
-        less_than_or_equal_to: "less than or equal to {{count}} required"
-        odd: "odd required"
-        even: "even required"
-  flash:
-    actions:
-      create:
-        notice: "{resource_name} foi criado com sucesso"
-      update:
-        notice: "{resource_name} foi atualizado com sucesso"
-      destroy:
-        notice: "{resource_name} foi excluído com sucesso"
-        alert: "{resource_name} não pode ser excluído"
+      update: "Confirmar mudanças para {{model}}"
+

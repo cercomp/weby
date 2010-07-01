@@ -1,11 +1,11 @@
 <fieldset>
-  <legend>Forgot Password</legend>
+  <legend><%= t:forgot_password  %></legend>
 
-  Fill out the form below and instructions to reset your password will be emailed to you:<br />
+  <%= t:fill_email_form  %>:<br />
   <br />
 
   <% form_tag password_resets_path do %>
-    <label>Email:</label><br />
+    <label><%= t:email  %>:</label><br />
     <%= text_field_tag "email" %><br />
     <br />
     <%= submit_tag "Reset my password" %>

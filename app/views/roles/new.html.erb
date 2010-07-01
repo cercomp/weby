@@ -1,6 +1,6 @@
 <% form_for @roles, :url => { :action => "create" }  do |f|%>
   <%= f.error_messages %>
-    <p> Novo Papel <br />
+    <p><%= t:new_param, :param => t("role")%> <br />
     <%= f.text_field :name%><br />
     <%= f.submit 'Salvar' %>
     </p>

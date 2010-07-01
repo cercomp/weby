@@ -2,295 +2,143 @@ en:
   this_file_language: "American English"
 
 #---A---#
-  author: "Author"
   accessing_as: "Accessing as"
-  access_denied: "Access denied!"
+  access_denied: "Access denied
   access_denied_page: "You are not allowed to see this page!"
-  acess_denied_try_login: "Access denied. Try to login first"
   account: "Account"
-  action: "Action"
-  activate_user: "Activate user"
-  activate_success: "{{param}} was successfully activated"
-  active: "Active?"
-  active_os: "Active SO "
-  add: "Add {{param}}"
-  add2: "Adiciona {{param}}"
-  admin: "Administration"
-  administrate: "Administrate"
-  allowed_domain: "Accept email registration only from domain: "
-  amount: "Quantity:"
+  action: "Action" 
   are_you_sure: "Are you sure?"
   at: "at"
-  ip: "ip"
+  author: "Author"
+ 
 
 #---B---#
-  begin: "Inicio"  
   back: "Back"
-  branch: "Branch"
-  button_check_all: "Check all"
-  button_uncheck_all: "Uncheck all"
-
+  begin: "Begin"  
+  
 #---C---#
-  chief_editor: "Editor chefe"
-  change_password: "Change password"
-  changing_password: "Changing password"
-  comment: "Comment"
-  comments: "Comments"
-  setting: "Setting"
-  settings: "Settings"
-  confirm_password: "Confirm password"
+  chief_editor: "Chief Editor"
   controller: "Controller"
-  create:  "Create"
-  created_by: "Created by"
+  cover: "Cover"
+  create: "Create"
   create_param: "Create {{param}}"
-  create_so: "Create Service Order" 
   current_login: "Current login {{param}}" 
-  cs: "{{param}} successfully created!"
-  cso: "{{param}} successfully created!"
-  created_at: "Created at"
 
 #---D---#
   date: "Date of {{param}}" 
-  department: "Department"
-  departments: "Departments"
-  description: "Description"
-  destroy: "Destroy"
+  
 
 #---E---#
-  edit: "Edit"
   editing: "Editing {{param}}"
   email: "E-mail"
-  email_password: "One e-mail with the instructions of how to change your password was sent."
-  equipment_register: "Equipment Register"
-  error: "Error, impossible to  {{param}}"
+  end: "end"
   event: "Event"
 
 #---F---#
+  father: "Father"
+  fill_email_form: "Fill out the form below to reset your password. It will be e-mailed to you:" 
   forgot_password: "Forgot password"
-  full_time: "Full-time"
-  find: "Find {{param}}"
 
 #---G---#
-  go_home: "Main Page" 
-  get_os: "Take OS"
 
 #---H---#
-  hide: "Hide"
-  home: "Home"
 
 #---I---#
-  inactive: "Inactive {{param}}"
-  inform_mail: "Inform an e-mail to receive a new access link"
-  invalid_token: "Invalid Token"
-  id: "Id"
-  is_admin: "Admin?"
+  ip: "ip"
 
 #---K---#
-  kind_of_fiter: "Filters"
+  time_cover: "capa agendada"
+ 
 
 #---L---#
-  layout: "Layout"
   last_login: "Last login {{param}}"
   last_request: "Last request at"
-  list: "List {{param}}"
+  layout: "Layout"
   listing: "Listing {{param}}"
-  listing_suggestions: "Listing Suggestions"
   localization: "Localization"
-  location: "Location"
+  login: "Login"
   login: "Login"
   logout: "Logout"
   logout_success: "Logged out successfully!"
-  limit: "Limit per page"
-
+  login_count: "Login Count"
+  
 #---M---#
-  matutinal: "Matutinal"
-  my: "My {{param}}"
+  menu: "Menu"
   my_account: "My account"
-  my_profile: "My profile" 
-  my_so: "My service Orders"
+  my_profile: "My profile"
 
 #---N---#
-  name: "Name"
   new: "New"
+  news: "News"
+  newsletter: "Newsletter"
   new_param: "New {{param}}!"
-  new_suggestion: "Send Suggestion"
-  no: "No {{param}}!"
-  no_need_to_login: "There is no need to be logged in to access this page!"
-  no_so: "There aren't any SOs!"
-  number_logins: "Number of logins" 
 
 #---O---#
-  observation: "Observation"
-  owner: "Owner"
-  opened: "Opened SOs"
-  os: "SO"
-  os_number: "SO number"
-  os_return: "Return OS" 
-  os_take: "Take OS" 
-  os_to_you: "OS was designed to you!"
-  os_to_open: "SO returned to opened SOs list!"
-  oss: "SOs"
-  osses: "SOs"
 
 #---P---#
+  page: "Page"
   password: "Password"
   password_confirmation: "Password confirmation"
-  period: "Period"
   permissions: "Permissions"
-  phone: "Phone Number"
-  preferencial_attendance: "preferencial attendance" 
-  preferencial_period: "Service preferencial period:"
-  priority: "Priority"
-  priorities: "Priorities"
-  profile_incomplete: "Your profile is not complete."
-  property: "Property"
-  picture: "imagem"
+  pdf: "PDF"
+  picture: "picture"
+  picture_text: "Picture´s text"
+  position: "Position"
+  
 
 #---Q---#
-  quantity: "Quantity"
 
 #---R---#
   registration: "Registration"
-  register: "Register"
   remember_me: "Remember me"
-  remove: "remove {{param}}"
-  removed_service: "Service was removed!"
-  reserved_rights: "All rights reserved."
+  remove: "remove {{param}}
   right: "Right"
-  rights: "Rights"
+  rights: "Rights
   role: "Role"
   roles: "Roles"
   roles_permissions: "Roles and Permissions"
-  room: "Room"
-
+ 
 #---S---#
   save: "Save"
-  search_so: "Search OS"
-  send: "Send"
-  sender: "Sender"
-  service: "Service"
-  services: "Services"
-  shortcuts: "Shortcuts"
+  setting: "Setting"
+  settings: "Settings"
   show: "Show"
-  showing_os: "Showing OS"
-  showing_suggestion: "Show Suggestion"
+  side: "Side"
+  site_id: "Site ID"
+  source: "Source"
   status: "Status"
-  so_without_atribuition: "Service Orders whithout atribuition"
-  so_system: "Service Order System"
-  statuses: "Statuses"
+  subject: "Subject"
+  sub-menu: "Sub-menu"
   successfully_removed: "{{param}} successfully removed!"
   suggestion: "Suggestion"
   suggestions: "Suggestions"
-  site_id: "Site ID"
-  source: "Fonte"
+  summary: "Summary"
 
 #---T---#
-  trainee: "Resolver"
+  text: "Text" 
   title: "Title"
+  time_cover: "Capa agendada"
+  time: "Time"
+  type: "Type a {{param}}"
 
 #---U---#
-  url: "URL"
   update: "Update {{param}}"
+  update_password_log: "update my password and log me in" 
+  url: "URL"
   user: "User"
-  user_inactive: "User was not activated."
-  username: "Username"
-  users: "Users"
-  users_extended: "Users extended"
-  users_list: "Users list"
-  update_success: "{{param}} successfully updated."
-  us: "{{param}} successfully updated."
-  uso: "{{param}} successfully updated."
+  user: "Users"
+  user_inactive: "User was not activated."   
 
 #---V---#
-  value: "Value"
-  vesper: "Vesper"
-  visualize_oss: "Visualize Oss / Roles"
+  value: "Value" 
 
 #---W---#
-  wellcomeMessage: "Welcome to Service Order System"
+  
   
 #--- Other locales ---#
-  will_paginate:
-    entry: "registers"
-    found:
-      zero: "no exist {{entry_name}}"
-      one: "<b>{{size}}</b> {{entry_name}}"
-      other: "Total: <b>{{size}}</b> {{entry_name}}"
-    display: "{{entry_name}} <b>{{from}}</b> of <b>{{to}}</b> from {{total}} in total"
-    next: "Next >>"
-    previous: "<< Previous"
-  authlogic:
-    error_messages:
-      login_blank: "Can't leave it blank"
-      login_not_found: "Invalid"
-      login_invalid: "Invalid" #should use osadfsdfnly letters, numbers, spaces, and .-_@ please.
-      consecutive_failed_logins_limit_exceeded: "You have exceeded the number of allowed login attempts"
-      email_invalid: "Invalid" #should look like an email address.
-      password_blank: "Can't leave it blank"
-      password_invalid: "Invalid"
-      not_active: "Account not active"
-      not_confirmed: "Account not confirmed"
-      not_approved: "Account not approved"
-      no_authentication_details: "No authentication details"
-    models:
-      user_session:
-    attributes:
-      user_session:
-        login: "Login"
-        email: "E-mail"
-        password: "Senha"
-        remember_me: "Remember me"
-  activerecord:
-    attributes:
-      _all:
-        created_at: "Created at"
-        updated_at: "Updated at"
-      history:
-         title: "Title"
-         content: "Content"
-      oss:
-        equipment_register: "Property"
-        period: "Service preferencial period"
-        department_id: "Department"
-        service_id: "Service"
-      user_session:
-        login: "User name"
-        password: "Password"
-        user_extended_name: "Name"
-      users_extended:
-        name: "Name"
-    errors:
-      template:
-        header:
-          one: "model could not be updated: 1 error"
-          other: "model could not be updated: {{count}} erros."
-        body: "Please, check the following fields:"
-      messages:
-        inclusion: "it is not included in the list"
-        exclusion: "unavailable"
-        invalid: "invalid"
-        confirmation: "confirmation does not match"
-        accepted: "acception required"
-        empty: "can't leave it blank"
-        blank: "can't leave it blank"
-        too_long: "too long (no more than {{count}} characters)"
-        too_short: "too short (no less than {{count}} characters)"
-        wrong_length: "wrong length ({{count}} characters required)"
-        taken: "unavailable"
-        not_a_number: "not a number"
-        greater_than: "greater than {{count}} required"
-        greater_than_or_equal_to: "greater than or equal to {{count}} required"
-        equal_to: "equal to {{count}} required"
-        less_than: "less than {{count}} required"
-        less_than_or_equal_to: "less than or equal to {{count}} required"
-        odd: "odd required"
-        even: "even required"
-  flash:
-    actions:
-      create:
-        notice: "{resource_name} foi criado com sucesso"
-      update:
-        notice: "{resource_name} foi atualizado com sucesso"
-      destroy:
-        notice: "{resource_name} foi excluído com sucesso"
-        alert: "{resource_name} não pode ser excluído"
+
+  helpers:
+    submit:
+      create: "Create a {{model}}"
+      update: "Confirm changes to {{model}}"
+
