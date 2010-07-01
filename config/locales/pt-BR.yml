@@ -42,6 +42,7 @@ pt-BR:
 #---G---#
 
 #---H---#
+  home: "Principal"
 
 #---I---#
   ip: "ip"
@@ -89,9 +90,9 @@ pt-BR:
 #---Q---#
 
 #---R---#
-  registration: "Cadastro"
+  register: "Cadastro"
   remember_me: "Remember me"
-  remove: "remove {{param}}"
+  remove: "remover {{param}}"
   right: "Direito"
   rights: "Direitos"
   role: "Papel"
@@ -125,8 +126,8 @@ pt-BR:
   update: "Atualizar {{param}}"
   update_password_log: "Atualize minha senha e me conecte." 
   url: "URL"
-  user: "User"
-  user: "Users"
+  user: "Usuário"
+  users: "Usuários"
   user_inactive: "Seu usuário ainda não está ativo."  
 
 #---V---#

@@ -4,7 +4,6 @@
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <link rel="shortcut icon" href="../images/favicon.ico" />
   <title> Webyge </title>
-  <%= stylesheet_link_tag :all %>
   <%= stylesheet_link_tag 'scaffold' %>
   <%= stylesheet_link_tag 'application' %>
   <%= stylesheet_link_tag 'this2' %>
@@ -12,100 +11,34 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-<%#= request.env['HTTP_REFERER'] %>
-<%#= request.fullpath.match(%r{/(login|user_sessions/new)}) %>
-<br />
-  <div class="outsidebox">
-    <div class="insidebox">
-      <!-- Topo -->
-      <div class="top">
-        
+  <%#= request.env['HTTP_REFERER'] %>
+  <div class="all">
+    <div class="top"> </div>
+
+    <%= render 'layouts/menu_top' %>
+    <%= render 'layouts/menu_left' %>  
+
+    <div class="content">
+      <div id="flash_messages">
+        <%= raw flash_message %>
       </div>
-      <!-- Conteúdo geral inclue menus esquerdo e direito -->
-      <div class="content">
-        <div id="flash_messages">
-          <%= raw flash_message %>
-        </div>
 
-        <!-- Menu superior -->
-        <div class="top-menu">
-          <%= link_to image_tag("flag_uk.png"), :locale => "en" %>
-          <%= link_to image_tag("flag_br.png"), :locale => "pt-BR" %>
+        <%= link_to t("home"), root_path %> |
+        <% if !current_user %>
+          <%= link_to t("register"), :controller => "users", :action => "new" %> |
+          <%= link_to t("login"), :controller => "user_sessions", :action => "new" %> |
+        <% else %>
+          <%= link_to t("my_profile"), :controller => "users", :action => "show", :id => current_user.id %> |
+          <%= link_to t("logout"), '/logout', :method => :delete, :confirm => "Are you sure you want to logout?" %> |
+        <% end %>
+        <%= pluralize User.logged_in.count, t("users") %> logado.
 
-          <% Menu.find(:all, :conditions => {:position => "Superior"}).each do |menus| %>
-
-            <% if !menus.father_id %>
-              <div class="top-menus" onmouseout="mostramenu(<%= menus.id %>,'');" onmouseover="mostramenu(<%= menus.id %>,'mostra');">
-                <%= link_to menus.title, "#{menus.link}" %>
-
-                <div id="<%= menus.id %>" class="menuBox"  style="display:none;" >
-
-                  <% Menu.find(:all, :conditions => {:father_id => menus.id}).each do |subs| %>
-                    <div class="subSup"><%= link_to subs.title, "#{subs.link}" %></div>
-                  <% end %>
-                </div>
-
-              </div>
-            <% end %>
-          <% end %>
-        </div>
-
-        <!-- Menu esquerdo -->
-        <div class="left-menu">
-          <% Menu.find(:all, :conditions => {:position => "Esquerdo"}).each do |menus| %>
-            <% if !menus.father_id %>
-              <div class="menus"><%= link_to menus.title, "#{menus.link}" %></div>
-              <% Menu.find(:all, :conditions => {:father_id => menus.id}).each do |subs| %>
-                <div class="submenus"><%= link_to subs.title, "#{subs.link}" %></div>
-                <% Menu.find(:all, :conditions => {:father_id => subs.id}).each do |susu| %>
-                  <div class="subsubmenus"><%= link_to susu.title, "#{susu.link}" %></div>
-                <% end %>
-              <% end %>
-            <% end %>
-          <% end %>
-        </div>
-
-        <!-- Conteúdo principal -->
-        <div class="main-content">
-          <%= link_to t("home"), root_path %> |
-          <% if !current_user %>
-            <%= link_to t("register"), :controller => "users", :action => "new" %> |
-            <%= link_to t("login"), :controller => "user_sessions", :action => "new" %> |
-            <%= link_to "teste", :site => 'a', :controller => 'menus', :action => 'new' %>
-          <% else %>
-            <%= link_to t("my_profile"), :controller => "users", :action => "show", :id => current_user.id %> |
-            <%= link_to t("logout"), '/logout', :method => :delete, :confirm => "Are you sure you want to logout?" %> |
-          <% end %>
-          <%= pluralize User.logged_in.count, "user" %> currently logged in
-          <!-- This based on last_request_at, if they were active < 10 minutes they are logged in -->
-
-          <%= yield  %>
-        </div>
-
-        <!-- Menu direito -->
-        <div class="right-menu">
-          <div id="date">10/10/2010</div>
-          <div id="search">Busca</div>
-          <% Menu.find(:all, :conditions => {:position => "Direito"}).each do |menus| %>
-            <% if !menus.father_id %>
-              <div class="menus"><%= link_to menus.title, "#{menus.link}" %></div>
-              <% Menu.find(:all, :conditions => {:father_id => menus.id}).each do |subs| %>
-                <div class="submenus"><%= link_to subs.title, "#{subs.link}" %></div>
-                <% Menu.find(:all, :conditions => {:father_id => menus.id}).each do |susu| %>
-                  <div class="subsubmenus"><%= link_to susu.title, "#{susu.link}" %></div>
-                <% end %>
-              <% end %>
-            <% end %>
-          <% end %>
-        </div>
-
+        <%= yield  %>
       </div>
-      <!-- Topo -->
-      <div class="bottom">
 
-      </div>
-    </div>
+    <%= render 'layouts/menu_right' %>
+    <%= render 'layouts/menu_bottom' %>
+
   </div>
-
 </body>
 </html>

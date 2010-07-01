@@ -1,0 +1,13 @@
+<div class="right-menu">
+  <% Menu.find(:all, :conditions => {:position => "right"}).each do |menus| %>
+    <% if !menus.father_id %>
+      <div class="menus"><%= link_to menus.title, "#{menus.link}" %></div>
+      <% Menu.find(:all, :conditions => {:father_id => menus.id}).each do |subs| %>
+        <div class="submenus"><%= link_to subs.title, "#{subs.link}" %></div>
+        <% Menu.find(:all, :conditions => {:father_id => menus.id}).each do |susu| %>
+          <div class="subsubmenus"><%= link_to susu.title, "#{susu.link}" %></div>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

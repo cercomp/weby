@@ -3,12 +3,12 @@ class MenusController < ApplicationController
   
   before_filter :require_user
 
-  respond_to :html, :xml
+  respond_to :html, :xml, :js
 
   def index
-    @esquerdo = Menu.find(:all, :conditions => {:position => "Esquerdo"})
-    @direito = Menu.find(:all, :conditions => {:position => "Direito"})
-    @superior = Menu.find(:all, :conditions => {:position => "Superior"})
+    @esquerdo = Menu.where(["position = ?", "left"])
+    @direito = Menu.where(["position = ?", "right"])
+    @superior = Menu.where(["position = ?", "top"])
   end
 
   def show

@@ -1,20 +1,21 @@
-<h1>Lista de menus</h1>
+<fieldset>
+  <legend>Lista de menus</legend>
+  <div style="height:30px">
+    <div class="simple_box" onClick="Effect.toggle('left_m', 'appear'); return false;" style="cursor: pointer;">Esquerdo</div>
+    <div class="simple_box" onClick="Effect.toggle('right_m', 'appear'); return false;" style="cursor: pointer;">Direito</div>
+    <div class="simple_box" onClick="Effect.toggle('top_m', 'appear'); return false;" style="cursor: pointer;">Superior</div>
+  </div>
+  <div id="left_m" style="display:none;">
+    <%= render "left" %>
+  </div>
 
-<div style="height:30px">
-  <div class="simple_box" onmouseover="showEsquerdo();">Esquerdo</div>
-  <div class="simple_box" onmouseover="showSuperior();">Superior</div>
-  <div class="simple_box" onmouseover="showDireito();">Direito</div>
-</div>
-<div id="left_m" style="display:none;">
-  <%= render :partial => "esquerdo" %>
-</div>
+  <div id="right_m" style="display:none;">
+    <%= render "right" %>
+  </div>
 
-<div id="right_m" style="display:none;">
-  <%= render :partial => "direito" %>
-</div>
+  <div id="top_m" style="display:none;">
+    <%= render "top" %>
+  </div>
 
-<div id="top_m" style="display:none;">
-  <%= render :partial => "superior" %>
-</div>
-
-<%= link_to 'Criar menu', new_menu_path %>
+  <p> <%= link_to 'Criar menu', new_menu_path %> </p>
+</fieldset>

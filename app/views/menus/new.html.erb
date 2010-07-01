@@ -1,29 +1,30 @@
-<% if !params[:father_id] %>
-  <h1><%= t:create_param, :param => t("menu")%></h1>
-<% else %>
-  <h1><%= t:create_param, :param => t("sub-menu")%></h1>
-<% end %>
-
-<%= form_for(@menu) do |f| %>
-  <% @menu.errors.full_messages.each do |msg| %>  
-    <li><%= msg %></li>  
-  <% end %>  
-
-  <%= f.hidden_field :father_id, :value => params[:father_id] %>
-
-  <p>
-    <%= t:text %>:<br />
-    <%= f.text_field :title %>
-  </p>    
+<fieldset> 
   <% if !params[:father_id] %>
-    <p>
-      <%= t:position %>:<br />
-      <%= select(:menu, :position, [ "Superior", "Direito" , "Esquerdo"]) %>
-    </p>
+    <legend><%= t:create_param, :param => t("menu")%></legend>
+  <% else %>
+    <legend><%= t:create_param, :param => t("sub-menu")%></legend>
   <% end %>
-  <p>
-    <%= f.submit 'Criar' %>
-  </p>
-<% end %>
 
-<%= link_to 'Voltar', menus_path %> 
+  <%= form_for(@menu) do |f| %>
+    <% @menu.errors.full_messages.each do |msg| %>  
+      <li><%= msg %></li>  
+    <% end %>  
+
+    <%= f.hidden_field :father_id, :value => params[:father_id] %>
+
+    <p>
+      <%= t:text %>:<br />
+      <%= f.text_field :title %>
+    </p>    
+    <% if !params[:father_id] %>
+      <p>
+        <%= t:position %>:<br />
+        <%= select(:menu, :position, [ "top", "right" , "left"]) %>
+      </p>
+    <% end %>
+
+    <p> <%= f.submit 'Criar' %> </p>
+  <% end %>
+
+  <%= link_to 'Voltar', menus_path %> 
+</fieldset>

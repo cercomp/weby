@@ -1,0 +1,23 @@
+<div class="top-menu">
+  <div style="float:right">
+    <%= link_to image_tag("flag_uk.png"), :locale => "en" %>
+    <%= link_to image_tag("flag_br.png"), :locale => "pt-BR" %>
+  </div>
+
+  <% Menu.find(:all, :conditions => {:position => "top"}).each do |menus| %>
+
+    <% if !menus.father_id %>
+      <div class="top-menus" onmouseout="mostramenu(<%= menus.id %>,'');" onmouseover="mostramenu(<%= menus.id %>,'mostra');">
+        <%= link_to menus.title, "#{menus.link}" %>
+
+        <div id="<%= menus.id %>" class="menuBox"  style="display:none;" >
+
+          <% Menu.find(:all, :conditions => {:father_id => menus.id}).each do |subs| %>
+            <div class="subSup"><%= link_to subs.title, "#{subs.link}" %></div>
+          <% end %>
+        </div>
+
+      </div>
+    <% end %>
+  <% end %>
+</div>

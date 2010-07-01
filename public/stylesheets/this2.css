@@ -1,128 +1,77 @@
-.odd {background-color: #f6f7f8;}
-.even {background-color: #fff;}
-
-.outsidebox{
-    background:#99CC33 scroll 50% 0;
-    float:left;
-    left:50%;
-    margin-left: -381px;
-    position:relative;
-    width:763px;
-    padding: 3px 0;
+.all{
+  background: #e5e5e5;
+  left: 50%;
+  margin-left: -381px;
+  position: relative;
+  width: 763px;
+  clear: both;
 }
-
-.insidebox{
-    width: 757px;
-    margin: 0 3px;
-    background-color: green;
-}
-
 .top{
-    width: 757px;
-    height: 80px;
-    background-color: #969CAA;
+  width: 100%;
+  height: 80px;
+  background-color: #ccc;
 }
-
-.content{
-    width: 757px;
-    height: auto;
-    background-color: #660033;
-    overflow:hidden;
+.content{ 
+  padding: 10px;
+  float: left;
+  margin-left: auto; 
+  margin-right: auto; 
 }
 /*=================== Menus ====================================*/
-
 .top-menu{
-    width: 81%;
-    height: 21px;
-    padding-left:145px;
-    background-color: #003399;
+  width: 100%;
+  height: 21px;
+  background-color: #b2b2b2;
 }
-
 .top-menus{
-    width: 145px;
-    height: auto;
-    float:left;
-    background-color: aqua;
-    border: solid 1px orange;
+  width: 145px;
+  height: auto;
+  float: left;
+  background-color: aqua;
 }
-
 .left-menu{
-    float:left;
-    width: 145px;
-    height:100%;
-    background-color: #990033;
+  padding: 10px;
+  float: left;
+  width: 135px;
+  background-color: #7f7f7f;
 }
-
 .right-menu{
-    float:right;
-    width: 145px;
-    height:100%;
-    background-color: #990099;
+  padding: 10px;
+  float: right;
+  width: 135px;
+  height: 100%;
+  background-color: #7f7f7f;
 }
-
 .menuBox{
-    width:144px;
-    position:absolute;
-    background-color: WhiteSmoke;
-    border: solid 1px orange;
+  width:144px;
+  position:absolute;
+  background-color: WhiteSmoke;
 }
 .menus{
-    background-color:teal;
-    width:100%;
-    height: 25px;
-    border: solid 1px orange;
+  background-color: aqua;
+  height: 25px;
 }
-
 .submenus{
-    background-color: #E0FFFF;
-    width:100%;
-    height: 25px;
-    border: solid 1px orange;
-    padding-left: 10px;
+  background-color: #E0FFFF;
+  height: 25px;
+  padding-left: 10px;
 }
 .subsubmenus{
-    background-color: #EFFFFF;
-    width:100%;
-    height: 25px;
-    border: solid 1px orange;
-    border-top:none;
-    padding-left: 20px;
+  background-color: #EFFFFF;
+  height: 25px;
+  border-top: none;
+  padding-left: 20px;
 }
-
 .subSup{
-    background-color: WhiteSmoke;
-    width:144px;
-    height: auto;
-    border-bottom: solid 1px gray;
+  background-color: WhiteSmoke;
+  width: 144px;
+  height: auto;
+  border-bottom: solid 1px gray;
 }
-
 /*======================= FIM MENUS ====================================*/
-
-.main-content{
-    float:left;
-    width: 467px;
-    height:100%;
-    background-color: #FFF;
-}
-
-
-#date{
-    width:100%;
-    border: solid 1px blue;
-}
-
-#search{
-    background-color:#B0C4DE;
-    width:100%;
-    height: 25px;
-    color:white;
-    padding-top: 15px;
-    font-weight:bold;
-    text-align: center;
-}
-
 .bottom{
-    width: 100%;
-    height: 50px;
-    background-color: gray;
+  width: 100%;
+  height: 50px;
+  background-color: #ccc;
+  clear: both;
 }

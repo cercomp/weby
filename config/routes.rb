@@ -19,11 +19,10 @@ Webyge3::Application.routes.draw do |map|
   resources :roles
   resources :rights
   resources :users
-  resources :admin, :controller => 'admin'
   resources :user_sessions
-  resources :account, :controller => "users"
   resources :password_resets
-
+  resources :account, :controller => "users"
+  resources :admin, :controller => 'admin'
 
   match 'logout' => 'user_sessions#destroy', :as => "logout"
   match 'login' => 'user_sessions#new', :as => 'login'

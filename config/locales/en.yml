@@ -42,6 +42,7 @@ en:
 #---G---#
 
 #---H---#
+  home: "Home"
 
 #---I---#
   ip: "ip"
@@ -89,7 +90,7 @@ en:
 #---Q---#
 
 #---R---#
-  registration: "Registration"
+  register: "Register"
   remember_me: "Remember me"
   remove: "remove {{param}}"
   right: "Right"
@@ -126,7 +127,7 @@ en:
   update_password_log: "update my password and log me in" 
   url: "URL"
   user: "User"
-  user: "Users"
+  users: "Users"
   user_inactive: "User was not activated."   
 
 #---V---#
