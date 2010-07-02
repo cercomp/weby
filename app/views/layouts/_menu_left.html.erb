@@ -1,13 +1,3 @@
 <div class="left-menu">
-  <% Menu.where(["position = ?", 'left']).each do |menus| %>
-    <% if !menus.father_id %>
-      <div class="menus"> <%= link_to menus.title, "#{menus.link}" %> </div>
-      <% Menu.where(["father_id = ?", menus.id]).each do |subs| %>
-        <div class="submenus"> <%= link_to subs.title, "#{subs.link}" %> </div>
-        <% Menu.where(["father_id = ?", subs.id]).each do |susu| %>
-          <div class="subsubmenus"> <%= link_to susu.title, "#{susu.link}" %> </div>
-        <% end %>
-      <% end %>
-    <% end %>
-  <% end %>
+  <%= raw list_menus(Menu.where(["position = ?", 'left']), 10, 0) %>
 </div>

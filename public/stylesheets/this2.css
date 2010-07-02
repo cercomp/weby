@@ -18,57 +18,33 @@
   margin-left: auto; 
   margin-right: auto; 
 }
-/*=================== Menus ====================================*/
 .top-menu{
   width: 100%;
   height: 21px;
   background-color: #b2b2b2;
 }
 .top-menus{
-  width: 145px;
+  width: 150px;
   height: auto;
   float: left;
   background-color: aqua;
 }
 .left-menu{
-  padding: 10px;
   float: left;
-  width: 135px;
+  padding: 2px;
+  width: 150px;
   background-color: #7f7f7f;
 }
 .right-menu{
-  padding: 10px;
   float: right;
-  width: 135px;
+  padding: 2px;
+  width: 150px;
   background-color: #7f7f7f;
-}
-.menuBox{
-  width:144px;
-  position:absolute;
-  background-color: WhiteSmoke;
 }
 .menus{
   background-color: aqua;
   height: 25px;
 }
-.submenus{
-  background-color: #E0FFFF;
-  height: 25px;
-  padding-left: 10px;
-}
-.subsubmenus{
-  background-color: #EFFFFF;
-  height: 25px;
-  border-top: none;
-  padding-left: 20px;
-}
-.subSup{
-  background-color: WhiteSmoke;
-  width: 144px;
-  height: auto;
-  border-bottom: solid 1px gray;
-}
-/*======================= FIM MENUS ====================================*/
 .bottom{
   width: 100%;
   height: 50px;

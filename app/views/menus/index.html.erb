@@ -1,18 +1,18 @@
 <fieldset>
   <legend>Lista de menus</legend>
+
   <div style="height:30px">
     <div class="simple_box" onClick="Effect.toggle('left_m', 'appear'); return false;" style="cursor: pointer;">Esquerdo</div>
     <div class="simple_box" onClick="Effect.toggle('right_m', 'appear'); return false;" style="cursor: pointer;">Direito</div>
     <div class="simple_box" onClick="Effect.toggle('top_m', 'appear'); return false;" style="cursor: pointer;">Superior</div>
   </div>
+
   <div id="left_m" style="display:none;">
     <%= render "left" %>
   </div>
-
   <div id="right_m" style="display:none;">
     <%= render "right" %>
   </div>
-
   <div id="top_m" style="display:none;">
     <%= render "top" %>
   </div>
