@@ -1,14 +1,4 @@
 <div class="left-menu">
-  <% if current_user %>
-    <p> <%= link_to t("user").pluralize, :controller => "users", :action => "index" %> </p>
-    <p> <%= link_to t("permissions"), :controller => "rights", :action => "index" %> </p>
-    <p> <%= link_to t("roles_permissions"), :controller => "roles", :action => "index" %> </p>
-    <p> <%= link_to "Páginas", paginas_path %> </p>
-    <p> <%= link_to "Menus", menus_path %> </p>
-    <p> <%= link_to t("my_profile"), :controller => 'users', :action => 'show', :id => current_user.id %> </p>
-    <p> <%= link_to t("logout"), '/logout', :confirm => "Are you sure you want to logout?" %> </p>
-  <% end %>
-
   <% Menu.where(["position = ?", 'left']).each do |menus| %>
     <% if !menus.father_id %>
       <div class="menus"> <%= link_to menus.title, "#{menus.link}" %> </div>

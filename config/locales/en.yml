@@ -10,7 +10,7 @@ en:
   are_you_sure: "Are you sure?"
   at: "at"
   author: "Author"
- 
+  admin: "Admin" 
 
 #---B---#
   back: "Back"
@@ -26,13 +26,15 @@ en:
 
 #---D---#
   date: "Date of {{param}}" 
-  
+  destroy: "destroy"  
 
 #---E---#
   editing: "Editing {{param}}"
   email: "E-mail"
   end: "end"
   event: "Event"
+  editor: "Editor"
+  edit: "Edit"
 
 #---F---#
   father: "Father"
@@ -58,10 +60,10 @@ en:
   listing: "Listing {{param}}"
   localization: "Localization"
   login: "Login"
-  login: "Login"
   logout: "Logout"
   logout_success: "Logged out successfully!"
   login_count: "Login Count"
+  list: "List"
   
 #---M---#
   menu: "Menu"
@@ -73,6 +75,7 @@ en:
   news: "News"
   newsletter: "Newsletter"
   new_param: "New {{param}}!"
+  name: "Name"
 
 #---O---#
 
@@ -85,8 +88,8 @@ en:
   picture: "picture"
   picture_text: "Picture´s text"
   position: "Position"
+  publication: "Publication"
   
-
 #---Q---#
 
 #---R---#
@@ -114,6 +117,7 @@ en:
   suggestion: "Suggestion"
   suggestions: "Suggestions"
   summary: "Summary"
+  site: "site"
 
 #---T---#
   text: "Text" 
@@ -133,11 +137,9 @@ en:
 #---V---#
   value: "Value" 
 
-#---W---#
-  
+#---W---# 
   
 #--- Other locales ---#
-
   helpers:
     submit:
       create: "Create a {{model}}"

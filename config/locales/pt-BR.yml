@@ -10,7 +10,7 @@ pt-BR:
   are_you_sure: "Você tem certeza?"
   at: "at"
   author: "Autor"
- 
+  admin: "Admin" 
 
 #---B---#
   back: "Voltar"
@@ -26,13 +26,15 @@ pt-BR:
 
 #---D---#
   date: "Data de {{param}}" 
-  
+  destroy: "Excluir"  
 
 #---E---#
   editing: "Editando {{param}}"
   email: "E-mail"
   end: "fim"
   event: "Evento"
+  editor: "Editor"
+  edit: "Editar"
 
 #---F---#
   father: "Pai"
@@ -48,8 +50,7 @@ pt-BR:
   ip: "ip"
 
 #---K---#
-  time_cover: "capa agendada"
- 
+  time_cover: "capa agendada" 
 
 #---L---#
   last_login: "Último entrada {{param}}"
@@ -57,11 +58,11 @@ pt-BR:
   layout: "Leiaute"
   listing: "Listando {{param}}"
   localization: "Local de realização"
-  login: "Login"
-  login: "Login"
+  login: "Entrar"
   logout: "Sair"
   logout_success: "Logout com sucesso!"
   login_count: "Login Count"
+  list: "Listar"
   
 #---M---#
   menu: "Menu"
@@ -69,10 +70,11 @@ pt-BR:
   my_profile: "Meu Perfil"
 
 #---N---#
-  new: "New"
+  new: "Novo"
   news: "Noticia"
   newsletter: "Informativo"
   new_param: "Novo {{param}}!"
+  name: "Nome"
 
 #---O---#
 
@@ -85,13 +87,13 @@ pt-BR:
   picture: "imagem"
   picture_text: "Texto da imagem"
   position: "posição"
+  publication: "Publicação"
   
-
 #---Q---#
 
 #---R---#
   register: "Cadastro"
-  remember_me: "Remember me"
+  remember_me: "Lembrar-me"
   remove: "remover {{param}}"
   right: "Direito"
   rights: "Direitos"
@@ -114,6 +116,7 @@ pt-BR:
   suggestion: "Sugestão"
   suggestions: "Sugestões"
   summary: "Resumo"
+  site: "Sítio"
 
 #---T---#
   text: "Texto" 

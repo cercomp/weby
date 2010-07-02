@@ -1,18 +1,18 @@
-<p>
-  <b><%= t:title %>:</b>
-  <%=h @menu.title %>
-</p>
+<fieldset>
+  <legend><%= t"show" %></legend>
 
-<p>
-  <b><%= t:father %>:</b>
-  <%=h @menu.father_id %>
-</p>
+  <p>
+    <b><%= t:title %>:</b>
+    <%=h @menu.title %>
+  </p>
+  <p>
+    <b><%= t:father %>:</b>
+    <%=h @menu.father_id %>
+  </p>
+  <p>
+    <b><%= t:position  %>:</b>
+    <%=h @menu.position %>
+  </p>
 
-<p>
-  <b><%= t:position  %>:</b>
-  <%=h @menu.position %>
-</p>
-
-
-<%= link_to 'Edit', edit_menu_path(@menu) %> |
-<%= link_to 'Back', menus_path %>
+  <p> <%= link_to t("edit"), edit_menu_path(@menu) %> | <%= link_to t("back"), menus_path %> </p>
+</fieldset>

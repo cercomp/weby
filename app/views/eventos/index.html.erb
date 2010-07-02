@@ -1,67 +1,69 @@
-<h1>Listing eventos</h1>
+<fieldset>
+  <legend>Listing eventos</legend>
 
-<table class='list'>
-  <thead>
-    <th><%= t:data, :param => t("registration") %></th>
-    <th><%= t:data, :param => t("publication")%></th>
-    <th><%= t:data, :param => t("begin")%></th>
-    <th><%= t:data, :param => t("end") %></th>
-    <th><%= t:picture %></th>
-    <th><%= t:position %></th>
-    <th><%= t:status%></th>
-    <th><%= t:author%></th>
-    <th><%= t:editor%></th>
-    <th><%= t:chief_editor %></th>
-    <th><%= t:text %></th>
-    <th><%= t:url%></th>
-    <th><%= t:site%></th>
-    <th><%= t:source %></th>
-    <th><%= t:title %></th>
-    <th><%= t:picture_text %></th>
-    <th><%= t:summary %></th>
-    <th><%= t:pdf %></th>
-    <th><%= t:cover %></th>
-    <th><%= t:time_cover %></th>
-    <th><%= t:kind %></th>
-    <th><%= t:localization%></th>
-    <th><%= t:begin%></th>
-    <th><%= t:end %></th>
-    <th><%= t:email %></th>
-  </thead>
-  <tbody>
-  <% @eventos.each do |evento| %>
-    <tr class="<%= cycle 'odd', 'even' %>">
-      <td><%=h evento.dt_cadastro %></td>
-      <td><%=h evento.dt_publica %></td>
-      <td><%=h evento.dt_inicio %></td>
-      <td><%=h evento.dt_fim %></td>
-      <td><%=h evento.imagem %></td>
-      <td><%=h evento.posicao %></td>
-      <td><%=h evento.status %></td>
-      <td><%=h evento.autor %></td>
-      <td><%=h evento.editor %></td>
-      <td><%=h evento.editor_chefe %></td>
-      <td><%=h evento.texto %></td>
-      <td><%=h evento.url %></td>
-      <td><%=h evento.site_id %></td>
-      <td><%=h evento.fonte %></td>
-      <td><%=h evento.titulo %></td>
-      <td><%=h evento.texto_imagem %></td>
-      <td><%=h evento.resumo %></td>
-      <td><%=h evento.pdf %></td>
-      <td><%=h evento.capa %></td>
-      <td><%=h evento.time_capa %></td>
-      <td><%=h evento.kind %></td>
-      <td><%=h evento.local_realiza %></td>
-      <td><%=h evento.inicio %></td>
-      <td><%=h evento.fim %></td>
-      <td><%=h evento.email %></td>
-      <td><%= link_to 'Show', evento %></td>
-      <td><%= link_to 'Edit', edit_evento_path(evento) %></td>
-      <td><%= link_to 'Destroy', evento, :confirm => t("are_you_sure?"), :method => :delete %></td>
-    </tr>
-  <% end; reset_cycle %>
-  <tbody>
-</table>
+  <table class='list'>
+    <thead>
+      <th><%= t:date, :param => t("register") %></th>
+      <th><%= t:date, :param => t("publication")%></th>
+      <th><%= t:date, :param => t("begin")%></th>
+      <th><%= t:date, :param => t("end") %></th>
+      <th><%= t:picture %></th>
+      <th><%= t:position %></th>
+      <th><%= t:status%></th>
+      <th><%= t:author%></th>
+      <th><%= t:editor%></th>
+      <th><%= t:chief_editor %></th>
+      <th><%= t:text %></th>
+      <th><%= t:url%></th>
+      <th><%= t:site%></th>
+      <th><%= t:source %></th>
+      <th><%= t:title %></th>
+      <th><%= t:picture_text %></th>
+      <th><%= t:summary %></th>
+      <th><%= t:pdf %></th>
+      <th><%= t:cover %></th>
+      <th><%= t:time_cover %></th>
+      <th><%= t:kind %></th>
+      <th><%= t:localization%></th>
+      <th><%= t:begin%></th>
+      <th><%= t:end %></th>
+      <th><%= t:email %></th>
+    </thead>
+    <tbody>
+    <% @eventos.each do |evento| %>
+      <tr class="<%= cycle 'odd', 'even' %>">
+        <td><%=h evento.dt_cadastro %></td>
+        <td><%=h evento.dt_publica %></td>
+        <td><%=h evento.dt_inicio %></td>
+        <td><%=h evento.dt_fim %></td>
+        <td><%=h evento.imagem %></td>
+        <td><%=h evento.posicao %></td>
+        <td><%=h evento.status %></td>
+        <td><%=h evento.autor %></td>
+        <td><%=h evento.editor %></td>
+        <td><%=h evento.editor_chefe %></td>
+        <td><%=h evento.texto %></td>
+        <td><%=h evento.url %></td>
+        <td><%=h evento.site_id %></td>
+        <td><%=h evento.fonte %></td>
+        <td><%=h evento.titulo %></td>
+        <td><%=h evento.texto_imagem %></td>
+        <td><%=h evento.resumo %></td>
+        <td><%=h evento.pdf %></td>
+        <td><%=h evento.capa %></td>
+        <td><%=h evento.time_capa %></td>
+        <td><%=h evento.kind %></td>
+        <td><%=h evento.local_realiza %></td>
+        <td><%=h evento.inicio %></td>
+        <td><%=h evento.fim %></td>
+        <td><%=h evento.email %></td>
+        <td><%= link_to 'Show', evento %></td>
+        <td><%= link_to 'Edit', edit_evento_path(evento) %></td>
+        <td><%= link_to 'Destroy', evento, :confirm => t("are_you_sure?"), :method => :delete %></td>
+      </tr>
+    <% end; reset_cycle %>
+    <tbody>
+  </table>
 
-<%= link_to "Criar Evento", new_pagina_path(:type => "Evento") %>
+  <p> <%= link_to "Criar Evento", new_pagina_path(:type => "Evento") %> </p>
+</fieldset>

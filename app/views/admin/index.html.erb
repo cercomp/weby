@@ -1,0 +1,7 @@
+<% if current_user %>
+  <p> <%= link_to t("user").pluralize, users_path %> </p>
+  <p> <%= link_to t("permissions"), rights_path %> </p>
+  <p> <%= link_to t("roles_permissions"), roles_path %> </p>
+  <p> <%= link_to "Páginas", paginas_path %> </p>
+  <p> <%= link_to "Menus", menus_path %> </p>
+<% end %>

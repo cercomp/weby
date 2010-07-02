@@ -12,6 +12,7 @@
   background-color: #ccc;
 }
 .content{ 
+  top: 0;
   padding: 10px;
   float: left;
   margin-left: auto; 
@@ -39,7 +40,6 @@
   padding: 10px;
   float: right;
   width: 135px;
-  height: 100%;
   background-color: #7f7f7f;
 }
 .menuBox{

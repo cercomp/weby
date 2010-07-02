@@ -1,8 +1,6 @@
 class MenusController < ApplicationController
   layout :choose_layout
-  
   before_filter :require_user
-
   respond_to :html, :xml, :js
 
   def index
@@ -27,8 +25,8 @@ class MenusController < ApplicationController
 
   def create
     @menu = Menu.new(params[:menu])
-    respond_with(@menu)
     @menu.save
+    respond_with(@menu)
   end
 
   def update

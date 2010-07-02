@@ -1,10 +1,10 @@
-<%= form.label :login %><br />
+<%= form.label t:login %><br />
 <%= form.text_field :login %><br />
-<%= form.label :email %><br />
+<%= form.label t:email %><br />
 <%= form.text_field :email %><br />
-<%= form.label :password, form.object.new_record? ? nil : "Change password" %><br />
+<%= form.label t("password"), form.object.new_record? ? nil : "Change password" %><br />
 <%= form.password_field :password %><br />
-<%= form.label :password_confirmation %><br />
+<%= form.label t:password_confirmation %><br />
 <%= form.password_field :password_confirmation %><br />
 <%= form.label :theme, t('layout') %><br />
 <%= form.select :theme, @themes.collect{|p| [ p , p]} %><br />

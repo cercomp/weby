@@ -1,11 +1,11 @@
-<h1><%= t:edit, :param => t("my_account")%></h1>
+<fieldset>
+  <legend><%= t:edit, :param => t("my_account")%></legend>
 
-<% form_for @user, :url => account_path do |f| %>
-  <% @user.errors.full_messages.each do |msg| %>  
-    <li><%= msg %></li>  
-  <% end %>  
-  <%= render :partial => "form", :object => f %>
-  <%= f.submit "Update" %>
-<% end %>
-
-<br /><%= link_to t("my_Profile"), user_path %>
+  <% form_for @user, :url => account_path do |f| %>
+    <% @user.errors.full_messages.each do |msg| %>  
+      <li><%= msg %></li>  
+    <% end %>  
+    <%= render :partial => "form", :object => f %><br />
+    <%= f.submit t:"update", :param => "" %> <%= link_to t("my_profile"), user_path %>
+  <% end %>
+</fieldset>
