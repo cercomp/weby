@@ -11,6 +11,7 @@ en:
   at: "at"
   author: "Author"
   admin: "Admin" 
+  active: "Active?"
 
 #---B---#
   back: "Back"
@@ -48,6 +49,7 @@ en:
 
 #---I---#
   ip: "ip"
+  is_admin: "Admin?"
 
 #---K---#
   time_cover: "capa agendada"
@@ -63,10 +65,11 @@ en:
   logout: "Logout"
   logout_success: "Logged out successfully!"
   login_count: "Login Count"
-  list: "List"
+  list: "List {{param}}"
   
 #---M---#
   menu: "Menu"
+  menus: "Menus"
   my_account: "My account"
   my_profile: "My profile"
 
@@ -81,6 +84,7 @@ en:
 
 #---P---#
   page: "Page"
+  pages: "Pages"
   password: "Password"
   password_confirmation: "Password confirmation"
   permissions: "Permissions"
@@ -133,6 +137,7 @@ en:
   user: "User"
   users: "Users"
   user_inactive: "User was not activated."   
+  username: "User name"
 
 #---V---#
   value: "Value" 

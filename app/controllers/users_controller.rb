@@ -2,7 +2,6 @@ class UsersController < ApplicationController
   layout :choose_layout
 
   before_filter :require_user, :only => [:edit, :destroy, :update, :change_status, :change_roles, :change_theme]
-#  before_filter :require_no_user, :only => [:create, :new, :show]
   before_filter :check_authorization, :except => [:new, :create, :show, :edit, :update]
 
   respond_to :html, :xml
@@ -64,7 +63,6 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    @roles = Role.find(params[:id])
     files = []
     for file in Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*")]
       files << file.split("/")[-1].split(".")[0]
@@ -94,7 +92,6 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attribute(params[:field], params[:status])
-       #flash[:notice] = 'Department was successfully updated.'
         format.html {
           render :update do |page|
             page.reload

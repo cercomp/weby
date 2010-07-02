@@ -18,7 +18,12 @@ Webyge3::Application.routes.draw do |map|
 
   resources :roles
   resources :rights
-  resources :users
+
+  resources :users do
+    collection do
+      get :change_roles
+    end
+  end
   resources :user_sessions
   resources :password_resets
   resources :account, :controller => "users"

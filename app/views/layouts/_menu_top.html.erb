@@ -6,9 +6,9 @@
 
   <% Menu.where(["position = ?", "top"]).each do |menus| %>
     <% if !menus.father_id %>
-      <div class="top-menus" onmouseout="mostramenu(<%= menus.id %>,'');" onmouseover="mostramenu(<%= menus.id %>,'mostra');">
+      <div class="top-menus" onMouseOver="$('<%= menus.id %>').show();" onMouseOut="$('<%= menus.id %>').hide();">
         <%= link_to menus.title, "#{menus.link}" %>
-        <div id="<%= menus.id %>" class="menuBox"  style="display:none;" >
+        <div id="<%= menus.id %>" style="display: none; top: 0;">
           <% Menu.where(["father_id = ?", menus.id]).each do |subs| %>
             <div class="subSup"> <%= link_to subs.title, "#{subs.link}" %> </div>
           <% end %>

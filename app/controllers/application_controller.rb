@@ -18,6 +18,8 @@ class ApplicationController < ActionController::Base
     return "old"
   end
 
+  #flash[:error] = t:access_denied_page
+  #request.env["HTTP_REFERER" ] ? (redirect_to :back) : (render :template => 'admin/access_denied')
   def check_authorization
     if current_user
       if current_user.is_admin
@@ -32,7 +34,8 @@ class ApplicationController < ActionController::Base
           end
         end
         flash[:error] = t('access_denied')
-        return false
+        (render :template => 'admin/access_denied')
+        return true
       end
     end
   end
@@ -45,9 +48,9 @@ class ApplicationController < ActionController::Base
 
   def access_denied
     if current_user
-      flash[:error] = 'Acesso negado!'
+      flash.now[:error] = 'Acesso negado!'
     else
-      flash[:error] = 'Tente logar primeiro!'
+      flash.now[:error] = 'Tente logar primeiro!'
     end
     redirect_back_or_default login_path
   end

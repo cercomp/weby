@@ -1,7 +1,32 @@
 <% if current_user %>
-  <p> <%= link_to t("user").pluralize, users_path %> </p>
-  <p> <%= link_to t("permissions"), rights_path %> </p>
-  <p> <%= link_to t("roles_permissions"), roles_path %> </p>
-  <p> <%= link_to "Páginas", paginas_path %> </p>
-  <p> <%= link_to "Menus", menus_path %> </p>
+  <p>
+    <%= link_to (t:list, :param => t("users")), users_path %>
+    <% if check_permission(UsersController, "new") %>
+     | <%= link_to t("new"), new_user_path, :class => 'icon icon-add' %>
+    <% end %>
+  </p>
+  <p>
+    <%= link_to (t:list, :param => t("permissions")), rights_path %>
+    <% if check_permission(RightsController, "new") %>
+     | <%= link_to t("new"), new_right_path, :class => 'icon icon-add' %>
+    <% end %>
+  </p>
+  <p>
+    <%= link_to (t:list, :param => t("roles_permissions")), roles_path %>
+    <% if check_permission(RolesController, "new") %>
+     | <%= link_to t("new"), new_role_path, :class => 'icon icon-add' %>
+    <% end %>
+  </p>
+  <p>
+    <%= link_to (t:list, :param => t("pages")), paginas_path %>
+    <% if check_permission(PaginasController, "new") %>
+     | <%= link_to t("new"), new_pagina_path, :class => 'icon icon-add' %>
+    <% end %>
+  </p>
+  <p>
+    <%= link_to (t:list, :param => t("menus")), menus_path %>
+    <% if check_permission(MenusController, "new") %>
+     | <%= link_to t("new"), new_menu_path, :class => 'icon icon-add' %>
+    <% end %>
+  </p>
 <% end %>

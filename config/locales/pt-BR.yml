@@ -11,6 +11,7 @@ pt-BR:
   at: "at"
   author: "Autor"
   admin: "Admin" 
+  active: "Ativo?"
 
 #---B---#
   back: "Voltar"
@@ -48,6 +49,7 @@ pt-BR:
 
 #---I---#
   ip: "ip"
+  is_admin: "Admin?"
 
 #---K---#
   time_cover: "capa agendada" 
@@ -62,10 +64,11 @@ pt-BR:
   logout: "Sair"
   logout_success: "Logout com sucesso!"
   login_count: "Login Count"
-  list: "Listar"
+  list: "Listar {{param}}"
   
 #---M---#
   menu: "Menu"
+  menus: "Menus"
   my_account: "Minha conta"
   my_profile: "Meu Perfil"
 
@@ -80,6 +83,7 @@ pt-BR:
 
 #---P---#
   page: "Página"
+  pages: "Páginas"
   password: "Senha"
   password_confirmation: "Confirmação da senha"
   permissions: "Permissão"
@@ -132,6 +136,7 @@ pt-BR:
   user: "Usuário"
   users: "Usuários"
   user_inactive: "Seu usuário ainda não está ativo."  
+  username: "Nome de usuário"
 
 #---V---#
   value: "Value" 

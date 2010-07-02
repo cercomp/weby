@@ -1,30 +1,53 @@
-<h1><%=  t:list, :param => t('users') %></h1>
+<fieldset>
+  <legend><%=  t:list, :param => t('users') %></legend>
 
-<%= will_paginate @users %>
+  <%= will_paginate @users %>
 
-<table class="list">
-  <thead>
-  <tr>
-    <th><%=  'id' %></th>
-    <th><%= t:login %></th>
-    <th><%=  t:email %></th>
-    <th><%= t:status %></th>
-    <th><%= t:roles %></th>
-    <th></th>
-  </tr>
-  </thead>
+  <table class="list">
+    <thead>
+    <tr>
+      <th><%=  'id' %></th>
+      <th><%= t:login %></th>
+      <th><%=  t:email %></th>
+      <th><%= t:active %></th>
+      <th><%= t:is_admin %></th>
+      <% if check_permission(UsersController, "change_roles") %>
+        <th><%= t:roles %></th>
+      <% end %>
+      <th></th>
+    </tr>
+    </thead>
 
-  <tbody>
-<% @users.each do |user| %>
-  <tr class="<%= cycle 'odd', 'even' %>">
-    <td><%=h user.id %></td>
-    <td><%=h user.login %></td>
-    <td><%=h user.email %></td>
-    <td><%= %></td>
-    <td> </td>
-  </tr>
-<% end; reset_cycle %>
-  </tbody>
-</table>
+    <tbody>
+  <% @users.each do |user| %>
+    <tr class="<%= cycle 'odd', 'even' %>">
+      <td><%=h user.id %></td>
+      <td><%=h user.login %></td>
+      <td><%=h user.email %></td>
+      <td align="center"><%= raw menu_change_status(UsersController, user, user.status,  'status') %></td>
+      <td align="center"><%= raw menu_change_status(UsersController, user, user.is_admin ,'is_admin' ) %></td>
+      <% if check_permission(UsersController, "change_roles") %>
+      <% form_tag({:controller => "users", :action => "change_roles"}, :method => "get") do %>
+        <td>
+        <% @roles.each do |role| %> 
+          <% if current_user && !user.role_ids.empty? %> 
+            <% ok = role.name == Role.find(user.role_ids.to_s).name ? true : false%>
+          <% end %>
+          <%= hidden_field_tag "user_id", user.id %>
+          <%= radio_button_tag "role_id", role.id, ok %>
+          <%= role.name %>
+        <% end %>
+        <%= submit_tag 'Salvar' %>
+      <% end %>
+      <% end %>
+      </td>
+      <td nowrap>
+        <%= raw make_menu(user) %> 
+      </td>
+    </tr>
+  <% end; reset_cycle %>
+    </tbody>
+  </table>
 
-<%= will_paginate @users %>
+  <%= will_paginate @users %>
+</fieldset>
