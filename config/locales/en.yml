@@ -33,7 +33,9 @@ en:
   editing: "Editing {{param}}"
   email: "E-mail"
   end: "end"
-  event: "Event"
+  event: 
+    one: "Evento"
+    other: "Eventos"
   editor: "Editor"
   edit: "Edit"
 
@@ -68,26 +70,35 @@ en:
   list: "List {{param}}"
   
 #---M---#
-  menu: "Menu"
+  menu: 
+    one: "Menu"
+    other: "Menus"
   menus: "Menus"
   my_account: "My account"
   my_profile: "My profile"
 
 #---N---#
   new: "New"
-  news: "News"
-  newsletter: "Newsletter"
+  news:
+    one: "News"
+    other: "News"
+  newsletter: 
+    one: "Informativo"
+    other: "Informativos"
   new_param: "New {{param}}!"
   name: "Name"
 
 #---O---#
 
 #---P---#
-  page: "Page"
-  pages: "Pages"
+  page: 
+    one: "Páginas"
+    other: "Páginas"
   password: "Password"
   password_confirmation: "Password confirmation"
-  permissions: "Permissions"
+  permission: 
+    one: "Permission"
+    other: "Permissions"
   pdf: "PDF"
   picture: "picture"
   picture_text: "Picture´s text"
@@ -108,8 +119,9 @@ en:
  
 #---S---#
   save: "Save"
-  setting: "Setting"
-  settings: "Settings"
+  setting:
+    one: "configuração"
+    other: "Confiurações"
   show: "Show"
   side: "Side"
   site_id: "Site ID"
@@ -118,8 +130,9 @@ en:
   subject: "Subject"
   sub-menu: "Sub-menu"
   successfully_removed: "{{param}} successfully removed!"
-  suggestion: "Suggestion"
-  suggestions: "Suggestions"
+  suggestion:
+    one:  "Sugestão"
+    other: "Sugestões"
   summary: "Summary"
   site: "site"
 
@@ -134,8 +147,9 @@ en:
   update: "Update {{param}}"
   update_password_log: "update my password and log me in" 
   url: "URL"
-  user: "User"
-  users: "Users"
+  user:
+    one: "Usuário"
+    other: "Usuários"
   user_inactive: "User was not activated."   
   username: "User name"
 

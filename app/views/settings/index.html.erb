@@ -1,5 +1,5 @@
 <fieldset>
-  <legend><%= t:listing, :param => t('settings') %></legend>
+  <legend><%= t:listing, :param => (t:setting, :count => 2) %></legend>
 	
   <% form_tag '/settings', :method => 'put' do %>
     <table class="list">

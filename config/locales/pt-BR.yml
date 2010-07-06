@@ -33,7 +33,9 @@ pt-BR:
   editing: "Editando {{param}}"
   email: "E-mail"
   end: "fim"
-  event: "Evento"
+  event: 
+    one: "Evento"
+    other: "Eventos"
   editor: "Editor"
   edit: "Editar"
 
@@ -67,26 +69,34 @@ pt-BR:
   list: "Listar {{param}}"
   
 #---M---#
-  menu: "Menu"
-  menus: "Menus"
+  menu: 
+    one: "Menu"
+    other: "Menus"
   my_account: "Minha conta"
   my_profile: "Meu Perfil"
 
 #---N---#
   new: "Novo"
-  news: "Noticia"
-  newsletter: "Informativo"
+  news: 
+    one: "Notícia"
+    other: "Notícias"  
+  newsletter: 
+    one: "Informativo"
+    other: "Informativos"
   new_param: "Novo {{param}}!"
   name: "Nome"
 
 #---O---#
 
 #---P---#
-  page: "Página"
-  pages: "Páginas"
+  page: 
+    one: "Páginas"
+    other: "Páginas"
   password: "Senha"
   password_confirmation: "Confirmação da senha"
-  permissions: "Permissão"
+  permission: 
+    one: "Permissão"
+    other: "Permissões"
   pdf: "PDF"
   picture: "imagem"
   picture_text: "Texto da imagem"
@@ -107,8 +117,9 @@ pt-BR:
  
 #---S---#
   save: "Salvar"
-  setting: "configuração"
-  settings: "Confiurações"
+  setting:
+    one: "configuração"
+    other: "Confiurações"
   show: "Mostrar"
   side: "Lado"
   site_id: "Site ID"
@@ -117,8 +128,9 @@ pt-BR:
   subject: "Assunto"
   sub-menu: "Sub-menu"
   successfully_removed: "{{param}} foi removido com sucesso!"
-  suggestion: "Sugestão"
-  suggestions: "Sugestões"
+  suggestion:
+    one:  "Sugestão"
+    other: "Sugestões"
   summary: "Resumo"
   site: "Sítio"
 
@@ -133,8 +145,9 @@ pt-BR:
   update: "Atualizar {{param}}"
   update_password_log: "Atualize minha senha e me conecte." 
   url: "URL"
-  user: "Usuário"
-  users: "Usuários"
+  user: 
+    one: "Usuário"
+    other: "Usuários"
   user_inactive: "Seu usuário ainda não está ativo."  
   username: "Nome de usuário"
 

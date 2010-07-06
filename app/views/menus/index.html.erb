@@ -1,5 +1,5 @@
 <fieldset>
-  <legend>Lista de menus</legend>
+  <legend><%= t:list, :param => (t:menu, :count => 2)  %></legend>
 
   <div style="height:30px">
     <div class="simple_box" onClick="$('#left_m').toggle();" style="cursor: pointer;">Esquerdo</div>
@@ -17,5 +17,5 @@
     <%= render "top" %>
   </div>
 
-  <p> <%= link_to 'Criar menu', new_menu_path %> </p>
+  <p> <%= link_to (t:create_param, :param => (t:menu, :count => 2)), new_menu_path %> </p>
 </fieldset>

@@ -1,5 +1,5 @@
 <fieldset>
-  <legend>Listing eventos</legend>
+  <legend><%= t:listing, :param => (t:event, :count => 2)  %></legend>
 
   <table class='list'>
     <thead>
@@ -65,5 +65,5 @@
     <tbody>
   </table>
 
-  <p> <%= link_to "Criar Evento", new_pagina_path(:type => "Evento") %> </p>
+  <p> <%= link_to (t:create_param, :param => (t:event, :count => 1)), new_pagina_path(:type => "Evento") %> </p>
 </fieldset>

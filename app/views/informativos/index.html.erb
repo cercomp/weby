@@ -1,5 +1,5 @@
 <fieldset>
-  <legend><%= t:listing, :param => t("newsletter") %></legend>
+  <legend><%= t:listing, :param => ( t:newsletter, :count => 2) %></legend>
 
   <table class="list">
     <thead>
@@ -47,5 +47,5 @@
     <tbody>
   </table>
 
-  <p> <%= link_to "Criar Informativo", new_pagina_path(:type => "Informativo") %> </p>
+  <p> <%= link_to (t:create_param , :param => (t:newsletter, :count => 1)), new_pagina_path(:type => "Informativo") %> </p>
 </fieldset>

@@ -4,7 +4,7 @@
 <table class="list">
   <thead>
    <tr>
-    <th><%= t:permissions%> / <%= t:roles  %></th>
+    <th><%= t:permission, :count => 2%> / <%= t:roles  %></th>
     <% @roles.each do |role| %>
       <th><%= role.name %> [<%= link_to t('destroy'), role, :confirm => t('are_you_sure?'), :method => :delete %>]</th>
       <%# role.rights.collect do |each|%>
@@ -30,7 +30,7 @@
   <%= submit_tag 'Salvar' %>
 <% end %>
 
-<p> <%= link_to (t:list, :param => t("permissions")), :controller => "rights", :action => "index" %> </p>
+<p> <%= link_to (t:list, :param => (t:permission, :count => 2)), :controller => "rights", :action => "index" %> </p>
 
 <% if check_permission(RolesController, "new") %>
   <p><%= link_to t("new"), :controller => "roles", :action => "new" %></p>

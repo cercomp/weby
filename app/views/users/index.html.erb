@@ -1,5 +1,5 @@
 <fieldset>
-  <legend><%=  t:list, :param => t('users') %></legend>
+  <legend><%=  t:list, :param => (t:user, :count => 2) %></legend>
 
   <%= will_paginate @users %>
 
