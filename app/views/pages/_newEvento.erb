@@ -1,0 +1,41 @@
+<hr />
+<p>
+  <%= f.label :kind %><br />
+  <%= f.text_field :kind %>
+</p>
+<p>
+  <%= f.label :local %><br />
+  <%= f.text_field :local %>
+</p>
+<p>
+  <%= f.label :event_begin %><br />
+  <%= f.datetime_select :event_begin, :order => [:year, :month, :day], :use_month_numbers => true %>
+</p>
+<p>
+  <%= f.label :event_end %><br />
+  <%= f.datetime_select :event_end, :order => [:year, :month, :day], :use_month_numbers => true %>
+</p>
+<p>
+  <%= f.label :source %><br />
+  <%= f.text_field :source %>
+</p>
+<p>
+  <%= f.label :title %><br />
+  <%= f.text_field :title %>
+</p>
+<p>
+  <%= f.label :text_image %><br />
+  <%= f.text_field :text_image %>
+</p>
+<p>
+  <%= f.label :summary %><br />
+  <%= f.text_field :summary %>
+</p>
+<p>
+  <%= f.label :pdf %><br />
+  <%= f.text_field :pdf %>
+</p>
+<p>
+  <%= f.label :front %><br />
+  <%= f.text_field :front %>
+</p>

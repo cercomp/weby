@@ -23,22 +23,22 @@
     <tbody>
     <% @informativos.each do |informativo| %>
       <tr class="<%= cycle 'odd', 'even' %>">
-        <td><%=h informativo.dt_cadastro %></td>
-        <td><%=h informativo.dt_publica %></td>
-        <td><%=h informativo.dt_inicio %></td>
-        <td><%=h informativo.dt_fim %></td>
-        <td><%=h informativo.imagem %></td>
-        <td><%=h informativo.posicao %></td>
+        <td><%=h informativo.created_at %></td>
+        <td><%=h informativo.date_pub %></td>
+        <td><%=h informativo.date_begin %></td>
+        <td><%=h informativo.date_end %></td>
+        <td><%=h informativo.image %></td>
+        <td><%=h informativo.position %></td>
         <td><%=h informativo.status %></td>
-        <td><%=h informativo.autor %></td>
-        <td><%=h informativo.editor %></td>
-        <td><%=h informativo.editor_chefe %></td>
-        <td><%=h informativo.texto %></td>
+        <td><%=h informativo.author_id %></td>
+        <td><%=h informativo.editor_id %></td>
+        <td><%=h informativo.editor_chief_id %></td>
+        <td><%=h informativo.text %></td>
         <td><%=h informativo.url %></td>
         <td><%=h informativo.site_id %></td>
-        <td><%=h informativo.assunto %></td>
-        <td><%=h informativo.texto_clob %></td>
-        <td><%=h informativo.lado %></td>
+        <td><%=h informativo.subject %></td>
+        <td><%=h informativo.text_clob %></td>
+        <td><%=h informativo.align %></td>
         <td><%= link_to 'Show', informativo %></td>
         <td><%= link_to 'Edit', edit_informativo_path(informativo) %></td>
         <td><%= link_to 'Destroy', informativo, :confirm => t("are_you_sure"), :method => :delete %></td>
@@ -47,5 +47,5 @@
     <tbody>
   </table>
 
-  <p> <%= link_to (t:create_param , :param => (t:newsletter, :count => 1)), new_pagina_path(:type => "Informativo") %> </p>
+  <p> <%= link_to (t:create_param , :param => (t:newsletter, :count => 1)), new_page_path(:type => "Informativo") %> </p>
 </fieldset>

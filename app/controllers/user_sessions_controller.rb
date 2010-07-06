@@ -1,7 +1,7 @@
 class UserSessionsController < ApplicationController
   layout :choose_layout
 
-#  before_filter :require_no_user, :only => [:new, :create, :show, :index, :edit]
+#  before_filter :require_no_user, :only => [:new, :create]
   before_filter :require_user, :only => :destroy
   skip_before_filter :check_authorization
 

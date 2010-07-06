@@ -6,27 +6,27 @@
 
     <p>
       <%= f.label  t:date, :param => t("registration") %><br />
-      <%= f.date_select :dt_cadastro %>
+      <%= f.date_select :created_at, :order => [:year, :month, :day], :use_month_numbers => true  %>
     </p>
     <p>
       <%= f.label  t:date, :param => t(":publication") %><br />
-      <%= f.date_select :dt_publica %>
+      <%= f.date_select :date_pub, :order => [:year, :month, :day], :use_month_numbers => true  %>
     </p>
     <p>
       <%= f.label  t:date, :param => t("begin") %><br />
-      <%= f.date_select :dt_inicio %>
+      <%= f.date_select :date_begin, :order => [:year, :month, :day], :use_month_numbers => true  %>
     </p>
     <p>
       <%= f.label t:data, :param => t("end") %><br />
-      <%= f.date_select :dt_fim %>
+      <%= f.date_select :date_end, :order => [:year, :month, :day], :use_month_numbers => true  %>
     </p>
     <p>
       <%= f.label  t:picture %><br />
-      <%= f.text_field :imagem %>
+      <%= f.text_field :image %>
     </p>
     <p>
       <%= f.label  t:position %><br />
-      <%= f.text_field :posicao %>
+      <%= f.text_field :position %>
     </p>
     <p>
       <%= f.label  t:status %><br />
@@ -34,19 +34,19 @@
     </p>
     <p>
       <%= f.label t:author %><br />
-      <%= f.text_field :autor %>
+      <%= f.text_field :author_id %>
     </p>
     <p>
       <%= f.label  t:editor %><br />
-      <%= f.text_field :editor %>
+      <%= f.text_field :editor_id %>
     </p>
     <p>
       <%= f.label  t:chief_editor %><br />
-      <%= f.text_field :editor_chefe %>
+      <%= f.text_field :editor_chief_id %>
     </p>
     <p>
       <%= f.label  t:text %><br />
-      <%= f.text_area :texto %>
+      <%= f.text_area :text %>
     </p>
     <p>
       <%= f.label  t:url %><br />
@@ -58,19 +58,19 @@
     </p>
     <p>
       <%= f.label  t:source %><br />
-      <%= f.text_field :fonte %>
+      <%= f.text_field :source %>
     </p>
     <p>
       <%= f.label t:title %><br />
-      <%= f.text_field :titulo %>
+      <%= f.text_field :title %>
     </p>
     <p>
       <%= f.label t:picture_text %><br />
-      <%= f.text_field :texto_imagem %>
+      <%= f.text_field :text_image %>
     </p>
     <p>
       <%= f.label  t:summary %><br />
-      <%= f.text_field :resumo %>
+      <%= f.text_field :summary %>
     </p>
     <p>
       <%= f.label :pdf %><br />
@@ -78,11 +78,11 @@
     </p>
     <p>
       <%= f.label t:cover %><br />
-      <%= f.text_field :capa %>
+      <%= f.text_field :front %>
     </p>
     <p>
       <%= f.label  t:time_cover %><br />
-      <%= f.text_field :time_capa %>
+      <%= f.text_field :front_time %>
     </p>
     <p>
       <%= f.label  t:kind %><br />
@@ -90,15 +90,15 @@
     </p>
     <p>
       <%= f.label  t:localization %><br />
-      <%= f.text_field :local_realiza %>
+      <%= f.text_field :local %>
     </p>
     <p>
       <%= f.label  t:begin %><br />
-      <%= f.datetime_select :inicio %>
+      <%= f.datetime_select :event_begin %>
     </p>
     <p>
       <%= f.label  t:end %><br />
-      <%= f.datetime_select :fim %>
+      <%= f.datetime_select :event_end %>
     </p>
     <p>
       <%= f.label  t:email %><br />

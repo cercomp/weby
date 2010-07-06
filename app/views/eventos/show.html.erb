@@ -1,123 +1,99 @@
 <p>
   <b><%= t:data, :param => t("registration") %></b>
-  <%=h @evento.dt_cadastro %>
+  <%=h @evento.created_at %>
 </p>
-
 <p>
   <b><%= t:data, :param => t("publication")%></b>
-  <%=h @evento.dt_publica %>
+  <%=h @evento.date_pub %>
 </p>
-
 <p>
   <b><%= t:data, :param => t("begin")%></b>
-  <%=h @evento.dt_inicio %>
+  <%=h @evento.date_begin %>
 </p>
-
 <p>
   <b><%= t:data, :param => t("end") %></b>
-  <%=h @evento.dt_fim %>
+  <%=h @evento.date_end %>
 </p>
-
 <p>
   <b><%= t:picture %></b>
-  <%=h @evento.imagem %>
+  <%=h @evento.image %>
 </p>
-
 <p>
   <b><%= t:position %></b>
-  <%=h @evento.posicao %>
+  <%=h @evento.position %>
 </p>
-
 <p>
   <b><%= t:status%></b>
   <%=h @evento.status %>
 </p>
-
 <p>
   <b><%= t:author%></b>
-  <%=h @evento.autor %>
+  <%=h @evento.author %>
 </p>
-
 <p>
   <b><%= t:editor%></b>
-  <%=h @evento.editor %>
+  <%=h @evento.editor_id %>
 </p>
-
 <p>
   <b><%= t:chief_editor %></b>
-  <%=h @evento.editor_chefe %>
+  <%=h @evento.editor_chief_id %>
 </p>
-
 <p>
   <b><%= t:text %></b>
-  <%=h @evento.texto %>
+  <%=h @evento.text %>
 </p>
-
 <p>
   <b><%= t:url%></b>
   <%=h @evento.url %>
 </p>
-
 <p>
   <b><%= t:site%></b>
   <%=h @evento.site_id %>
 </p>
-
 <p>
   <b><%= t:source %></b>
-  <%=h @evento.fonte %>
+  <%=h @evento.source %>
 </p>
-
 <p>
   <b><%= t:title %></b>
-  <%=h @evento.titulo %>
+  <%=h @evento.title %>
 </p>
-
 <p>
   <b><%= t:picture_text %></b>
-  <%=h @evento.texto_imagem %>
+  <%=h @evento.text_image %>
 </p>
-
 <p>
   <b><%= t:summary %></b>
-  <%=h @evento.resumo %>
+  <%=h @evento.summary %>
 </p>
-
 <p>
   <b><%= t:pdf %></b>
   <%=h @evento.pdf %>
 </p>
-
 <p>
   <b><%= t:cover %></b>
-  <%=h @evento.capa %>
+  <%=h @evento.front %>
 </p>
-
 <p>
   <b><%= t:time_cover %></b>
-  <%=h @evento.time_capa %>
+  <%=h @evento.front_time %>
 </p>
-
 <p>
   <b><%= t:kind %></b>
   <%=h @evento.kind %>
 </p>
-
 <p>
   <b><%= t:localization%></b>
-  <%=h @evento.local_realiza %>
+  <%=h @evento.local %>
 </p>
-
 <p>
   <b><%= t:begin%></b>
-  <%=h @evento.inicio %>
+  <%=h @evento.event_begin %>
 </p>
-
 <p>
   <b><%= t:end %></b>
-  <%=h @evento.fim %>
+  <%=h @evento.event_end %>
 </p>
-
 <p>
   <b><%= t:email %></b>
   <%=h @evento.email %>

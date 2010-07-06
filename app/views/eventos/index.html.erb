@@ -32,30 +32,30 @@
     <tbody>
     <% @eventos.each do |evento| %>
       <tr class="<%= cycle 'odd', 'even' %>">
-        <td><%=h evento.dt_cadastro %></td>
-        <td><%=h evento.dt_publica %></td>
-        <td><%=h evento.dt_inicio %></td>
-        <td><%=h evento.dt_fim %></td>
-        <td><%=h evento.imagem %></td>
-        <td><%=h evento.posicao %></td>
+        <td><%=h evento.created_at %></td>
+        <td><%=h evento.date_pub %></td>
+        <td><%=h evento.date_begin %></td>
+        <td><%=h evento.date_end %></td>
+        <td><%=h evento.image %></td>
+        <td><%=h evento.position %></td>
         <td><%=h evento.status %></td>
-        <td><%=h evento.autor %></td>
-        <td><%=h evento.editor %></td>
-        <td><%=h evento.editor_chefe %></td>
-        <td><%=h evento.texto %></td>
+        <td><%=h evento.author %></td>
+        <td><%=h evento.editor_id %></td>
+        <td><%=h evento.editor_cheif_id %></td>
+        <td><%=h evento.text %></td>
         <td><%=h evento.url %></td>
         <td><%=h evento.site_id %></td>
-        <td><%=h evento.fonte %></td>
-        <td><%=h evento.titulo %></td>
-        <td><%=h evento.texto_imagem %></td>
-        <td><%=h evento.resumo %></td>
+        <td><%=h evento.source %></td>
+        <td><%=h evento.title %></td>
+        <td><%=h evento.text_image %></td>
+        <td><%=h evento.summary %></td>
         <td><%=h evento.pdf %></td>
-        <td><%=h evento.capa %></td>
-        <td><%=h evento.time_capa %></td>
+        <td><%=h evento.front %></td>
+        <td><%=h evento.front_time %></td>
         <td><%=h evento.kind %></td>
-        <td><%=h evento.local_realiza %></td>
-        <td><%=h evento.inicio %></td>
-        <td><%=h evento.fim %></td>
+        <td><%=h evento.local %></td>
+        <td><%=h evento.event_begin %></td>
+        <td><%=h evento.event_end %></td>
         <td><%=h evento.email %></td>
         <td><%= link_to 'Show', evento %></td>
         <td><%= link_to 'Edit', edit_evento_path(evento) %></td>
@@ -65,5 +65,5 @@
     <tbody>
   </table>
 
-  <p> <%= link_to (t:create_param, :param => (t:event, :count => 1)), new_pagina_path(:type => "Evento") %> </p>
+  <p> <%= link_to (t:create_param, :param => (t:event, :count => 1)), new_page_path(:type => "Evento") %> </p>
 </fieldset>

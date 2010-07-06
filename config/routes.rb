@@ -1,11 +1,12 @@
 Webyge3::Application.routes.draw do |map|
+  resources :sites
 
   resources :site do
     resources :menus
     resources :eventos
     resources :noticias
     resources :informativos
-    resources :paginas
+    resources :pages
     resources :chats
   end
 
@@ -13,7 +14,7 @@ Webyge3::Application.routes.draw do |map|
   resources :eventos
   resources :noticias
   resources :informativos
-  resources :paginas
+  resources :pages
   resources :chats
 
   resources :roles

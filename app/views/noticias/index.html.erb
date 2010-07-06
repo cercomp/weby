@@ -12,8 +12,8 @@
     <tbody>
     <% @noticias.each do |noticia| %>
       <tr class="<%= cycle 'odd', 'even' %>">
-        <td><%=h noticia.titulo %></td>
-        <td><%=h noticia.capa %></td>
+        <td><%=h noticia.title %></td>
+        <td><%=h noticia.front %></td>
         <td><%=h noticia.status %></td>
         <td><%=h noticia.user.login %></td>
         <td><%=h noticia.created_at %></td>
@@ -26,5 +26,5 @@
     </tbody>
   </table>
 
-  <p> <%= link_to (t:create_param, :param => (t:news, :count => 1)), new_pagina_path(:type => "Noticia") %> </p>
+  <p> <%= link_to (t:create_param, :param => (t:news, :count => 1)), new_page_path(:type => "Noticia") %> </p>
 </fieldset>

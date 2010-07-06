@@ -1,2 +1,2 @@
-class Evento < Pagina
+class Evento < Page
 end

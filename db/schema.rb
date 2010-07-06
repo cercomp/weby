@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100507153616) do
+ActiveRecord::Schema.define(:version => 20100706164432) do
 
   create_table "menus", :force => true do |t|
     t.string   "title"
@@ -20,36 +20,35 @@ ActiveRecord::Schema.define(:version => 20100507153616) do
     t.datetime "updated_at"
   end
 
-  create_table "paginas", :force => true do |t|
-    t.date     "dt_cadastro"
-    t.date     "dt_publica"
-    t.date     "dt_inicio"
-    t.date     "dt_fim"
-    t.string   "imagem"
-    t.string   "posicao"
+  create_table "pages", :force => true do |t|
+    t.date     "date_pub"
+    t.date     "date_begin"
+    t.date     "date_end"
+    t.string   "image"
+    t.string   "position"
     t.string   "status"
-    t.integer  "autor_id"
-    t.string   "editor"
-    t.string   "editor_chefe"
-    t.string   "texto"
+    t.integer  "author_id"
+    t.string   "editor_id"
+    t.string   "editor_chief_id"
+    t.string   "text"
     t.string   "url"
     t.integer  "site_id"
-    t.string   "fonte"
-    t.string   "titulo"
-    t.string   "texto_imagem"
-    t.string   "resumo"
+    t.string   "source"
+    t.string   "title"
+    t.string   "text_image"
+    t.string   "summary"
     t.string   "pdf"
-    t.integer  "capa"
-    t.datetime "time_capa"
+    t.integer  "front"
+    t.datetime "front_time"
     t.string   "kind"
-    t.string   "local_realiza"
-    t.datetime "inicio"
-    t.datetime "fim"
-    t.string   "email"
-    t.string   "assunto"
-    t.string   "texto_clob"
-    t.string   "lado"
-    t.string   "type",          :null => false
+    t.string   "local"
+    t.datetime "event_begin"
+    t.datetime "event_end"
+    t.string   "event_email"
+    t.string   "subject"
+    t.string   "text_clob"
+    t.string   "align"
+    t.string   "type",            :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -93,6 +92,36 @@ ActiveRecord::Schema.define(:version => 20100507153616) do
     t.text     "description"
     t.string   "group"
     t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sites", :force => true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.integer  "menu_id"
+    t.integer  "page_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sites_menus", :force => true do |t|
+    t.integer  "site_id"
+    t.integer  "menu_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sites_pages", :force => true do |t|
+    t.integer  "site_id"
+    t.integer  "page_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sites_users", :force => true do |t|
+    t.integer  "site_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

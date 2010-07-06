@@ -1,2 +1,2 @@
-class Informativo < Pagina
+class Informativo < Page
 end

@@ -158,7 +158,6 @@ pt-BR:
   
   
 #--- Other locales ---#
-
   helpers:
     submit:
       create: "Criar {{model}}"

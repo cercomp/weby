@@ -18,9 +18,9 @@
     <% end %>
   </p>
   <p>
-    <%= link_to (t:list, :param => (t:page, :count => 2)), paginas_path %>
-    <% if check_permission(PaginasController, "new") %>
-     | <%= link_to t("new"), new_pagina_path, :class => 'icon icon-add' %>
+    <%= link_to (t:list, :param => (t:page, :count => 2)), pages_path %>
+    <% if check_permission(PagesController, "new") %>
+     | <%= link_to t("new"), new_page_path, :class => 'icon icon-add' %>
     <% end %>
   </p>
   <p>

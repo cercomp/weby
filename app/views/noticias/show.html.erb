@@ -1,103 +1,82 @@
 <p>
   <b><%= t:data, :param => t("registration") %>:</b>
-  <%=h @noticia.dt_cadastro %>
+  <%=h @noticia.created_at %>
 </p>
-
 <p>
   <b><%= t:data, :param => t("publication")%>:</b>
-  <%=h @noticia.dt_publica %>
+  <%=h @noticia.date_pub %>
 </p>
-
 <p>
   <b><%= t:data, :param => t("begin")%>:</b>
-  <%=h @noticia.dt_inicio %>
+  <%=h @noticia.date_begin %>
 </p>
-
 <p>
   <b><%= t:data, :param => t("end") %>:</b>
-  <%=h @noticia.dt_fim %>
+  <%=h @noticia.date_end %>
 </p>
-
 <p>
   <b><%= t:picture %>:</b>
-  <%=h @noticia.imagem %>
+  <%=h @noticia.image %>
 </p>
-
 <p>
   <b><%= t:position %>:</b>
-  <%=h @noticia.posicao %>
+  <%=h @noticia.position %>
 </p>
-
 <p>
   <b><%= t:status%>:</b>
   <%=h @noticia.status %>
 </p>
-
 <p>
   <b><%= t:author%>:</b>
-  <%=h @noticia.autor %>
+  <%=h @noticia.author_id %>
 </p>
-
 <p>
   <b><%= t:editor%></b>
-  <%=h @noticia.editor %>
+  <%=h @noticia.editor_id %>
 </p>
-
 <p>
   <b><%= t:chief_editor %></b>
-  <%=h @noticia.editor_chefe %>
+  <%=h @noticia.editor_chief_id %>
 </p>
-
 <p>
   <b><%= t:text %>:</b>
-  <%=h @noticia.texto %>
+  <%=h @noticia.text %>
 </p>
-
 <p>
   <b><%= t:url %>:</b>
   <%=h @noticia.url %>
 </p>
-
 <p>
   <b><%= t:site_id %>:</b>
   <%=h @noticia.site_id %>
 </p>
-
 <p>
   <b><%= t:sorce%>:</b>
-  <%=h @noticia.fonte %>
+  <%=h @noticia.source %>
 </p>
-
 <p>
   <b><%= t:title:</b>
-  <%=h @noticia.titulo %>
+  <%=h @noticia.title %>
 </p>
-
 <p>
   <b><%= t:text_picture %>:</b>
-  <%=h @noticia.texto_imagem %>
+  <%=h @noticia.text_image %>
 </p>
-
 <p>
   <b><%= t:summary%>:</b>
-  <%=h @noticia.resumo %>
+  <%=h @noticia.summary %>
 </p>
-
 <p>
   <b><%= t:pdf %>:</b>
   <%=h @noticia.pdf %>
 </p>
-
 <p>
   <b><%= t:capa %>:</b>
-  <%=h @noticia.capa %>
+  <%=h @noticia.front %>
 </p>
-
 <p>
   <b><%= :time_cover %>:</b>
-  <%=h @noticia.time_capa %>
+  <%=h @noticia.front_time %>
 </p>
 
-
-<%= link_to 'Edit', edit_noticia_path(@noticia) %> |
-<%= link_to 'Back', noticias_path %>
+<%= link_to 'Edit', edit_noticia_path(@noticia) %> | <%= link_to 'Back', noticias_path %>

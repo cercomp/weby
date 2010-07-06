@@ -1,83 +1,66 @@
 <p>
   <b> <%= t:data, :param => t("registration") %></b>
-  <%=h @informativo.dt_cadastro %>
+  <%=h @informativo.created_at %>
 </p>
-
 <p>
   <b><%= t:data, :param => t("publication")%></b>
-  <%=h @informativo.dt_publica %>
+  <%=h @informativo.date_pub %>
 </p>
-
 <p>
   <b><%= t:data, :param => t("begin")%></b>
-  <%=h @informativo.dt_inicio %>
+  <%=h @informativo.date_begin %>
 </p>
-
 <p>
   <b><%= t:data, :param => t("end") %></b>
-  <%=h @informativo.dt_fim %>
+  <%=h @informativo.date_end %>
 </p>
-
 <p>
   <b><%= t:picture %></b>
-  <%=h @informativo.imagem %>
+  <%=h @informativo.image %>
 </p>
-
 <p>
   <b><%= t:position %></b>
-  <%=h @informativo.posicao %>
+  <%=h @informativo.position %>
 </p>
-
 <p>
   <b><%= t:status%></b>
   <%=h @informativo.status %>
 </p>
-
 <p>
   <b><%= t:author%></b>
-  <%=h @informativo.autor %>
+  <%=h @informativo.author_id %>
 </p>
-
 <p>
   <b><%= t:editor%></b>
-  <%=h @informativo.editor %>
+  <%=h @informativo.editor_id %>
 </p>
-
 <p>
   <b><%= t:chief_editor %></b>
-  <%=h @informativo.editor_chefe %>
+  <%=h @informativo.editor_chief_id %>
 </p>
-
 <p>
   <b><%= t:text %></b>
-  <%=h @informativo.texto %>
+  <%=h @informativo.text %>
 </p>
-
 <p>
   <b><%= t:url%></b>
   <%=h @informativo.url %>
 </p>
-
 <p>
   <b><%= t:site%></b>
   <%=h @informativo.site_id %>
 </p>
-
 <p>
   <b><%= t:subject%></b>
-  <%=h @informativo.assunto %>
+  <%=h @informativo.subject %>
 </p>
-
 <p>
   <b><%= "Texto clob" %></b>
-  <%=h @informativo.texto_clob %>
+  <%=h @informativo.text_clob %>
 </p>
-
 <p>
   <b><%= t:side %></b>
-  <%=h @informativo.lado %>
+  <%=h @informativo.align %>
 </p>
 
-
-<%= link_to 'Edit', edit_informativo_path(@informativo) %> |
-<%= link_to 'Back', informativos_path %>
+<%= link_to 'Edit', edit_informativo_path(@informativo) %> | <%= link_to 'Back', informativos_path %>

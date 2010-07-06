@@ -10,4 +10,7 @@ class User < ActiveRecord::Base
 
   has_many :roles_users #, :foreign_key => "user_id"
   has_many :roles, :through => :roles_users
+
+  has_many :sites_users #, :foreign_key => "user_id"
+  has_many :sites, :through => :sites_users
 end
