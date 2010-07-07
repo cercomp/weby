@@ -28,7 +28,7 @@
 </p>
 <p>
   <b><%= t:author%></b>
-  <%=h @evento.author %>
+  <%=h @evento.author_id %>
 </p>
 <p>
   <b><%= t:editor%></b>
@@ -94,11 +94,6 @@
   <b><%= t:end %></b>
   <%=h @evento.event_end %>
 </p>
-<p>
-  <b><%= t:email %></b>
-  <%=h @evento.email %>
-</p>
-
 
 <%= link_to 'Edit', edit_evento_path(@evento) %> |
 <%= link_to 'Back', eventos_path %>

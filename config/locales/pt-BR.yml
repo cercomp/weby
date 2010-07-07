@@ -8,14 +8,14 @@ pt-BR:
   account: "Conta"
   action: "Ação" 
   are_you_sure: "Você tem certeza?"
-  at: "at"
+  at: "por"
   author: "Autor"
   admin: "Admin" 
   active: "Ativo?"
 
 #---B---#
   back: "Voltar"
-  begin: "Inicio"  
+  begin: "Início" 
   
 #---C---#
   chief_editor: "Editor chefe"
@@ -98,9 +98,9 @@ pt-BR:
     one: "Permissão"
     other: "Permissões"
   pdf: "PDF"
-  picture: "imagem"
+  picture: "Imagem"
   picture_text: "Texto da imagem"
-  position: "posição"
+  position: "Posição"
   publication: "Publicação"
   
 #---Q---#
@@ -132,7 +132,9 @@ pt-BR:
     one:  "Sugestão"
     other: "Sugestões"
   summary: "Resumo"
-  site: "Sítio"
+  site:
+    one: "Sítio"
+    other: "Sítios"
 
 #---T---#
   text: "Texto" 
@@ -162,4 +164,46 @@ pt-BR:
     submit:
       create: "Criar {{model}}"
       update: "Confirmar mudanças para {{model}}"
+
+  activerecord:
+    attributes:
+      _all:
+        created_at: "Criado em"
+        updated_at: "Atualizado em"
+      history:
+         title: "Título"
+         content: "Conteúdo"
+      user:
+        login: "Nome do usuário"
+        password: "Senha"
+        password_confirmation: "Confirmação da senha"
+        user_extended_name: "Nome"
+      site:
+        name: "Nome"
+    errors:
+      template:
+        header:
+          one: "não foi possivel atualizar o modelo: 1 erro"
+          other: "não foi possivel atualizar o modelo: {{count}} erros."
+        body: "Por favor cheque os seguintes campos:"
+      messages:
+        inclusion: " não está incluido na lista"
+        exclusion: "indisponível"
+        invalid: "inválido"
+        confirmation: "confirmação não equivalente"
+        accepted: "acception required"
+        empty: "deve ser preenchido"
+        blank: "deve ser preenchido"
+        too_long: "muito longo (não é possível usar mais de {{count}} characteres)"
+        too_short: "muito curto (não é possível usar menos de {{count}} characteres)"
+        wrong_length: "wrong length ({{count}} characters required)"
+        taken: "indisponível"
+        not_a_number: "não é um número"
+        greater_than: "Requerido maior do que {{count}}"
+        greater_than_or_equal_to: "Requerido maior que ou igual a {{count}}"
+        equal_to: "Requerido igual a {{count}}"
+        less_than: "Requerido menor que {{count}}"
+        less_than_or_equal_to: "Requerido menor que ou igual a {{count}}"
+        odd: "odd requerido"
+        even: "even requerido"
 

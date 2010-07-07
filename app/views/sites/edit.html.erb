@@ -1,6 +1,7 @@
-<h1>Editing site</h1>
+<fieldset>
+  <legend>Editing site</legend>
 
-<%= render 'form' %>
+  <%= render 'form' %>
 
-<%= link_to 'Show', @site %> |
-<%= link_to 'Back', sites_path %>
+  <%= link_to t('show'), @site %> | <%= link_to t('back'), sites_path %>
+</fieldset>

@@ -29,15 +29,16 @@ module ApplicationHelper
     colors = ["#00ffff", "#85fcfc", "#baffff", "#ceffff", "#e0ffff"]
     menus = ""
     parent_menu.each do |menu|
-      menus += "\n<div style=\"padding-left: #{padding_left * depth}px; height: 25px; background-color: #{colors[depth]};\">" + 
-        link_to(menu.title, "#{menu.link}") +
-        "\n<div style='float: right;  white-space: nowrap;'>" +
+      menus += "<div style=\"padding-left: #{padding_left * depth}px; height: 25px; background-color: #{colors[depth]};\">" + link_to(menu.title, "#{menu.link}")
+      if current_user
+        menus += "<div style='float: right;  white-space: nowrap;'>" +
           link_to(image_tag('editar.gif', :border => 0), edit_menu_path(menu)) +
           link_to(image_tag('subitem.gif', :border => 0), :controller => 'menus', :action => 'new', :father_id => menu.id) +
           link_to(image_tag('setaup.gif', :border => 0), new_menu_path, :father_id => menu.id) +
           link_to(image_tag('setadown.gif', :border => 0), new_menu_path, :father_id => menu.id) +
-          link_to(image_tag('apagar.gif', :border => 0), menu, :confirm => 'Are you sure?', :method => :delete) +
-       "</div>\n</div>\n"
+          link_to(image_tag('apagar.gif', :border => 0), menu, :confirm => 'Are you sure?', :method => :delete) + "</div>"
+      end
+      menus += "</div>"
       menus += list_menus(Menu.where(["father_id = ?", menu.id]), padding_left, depth += 1)
       depth -= 1
     end

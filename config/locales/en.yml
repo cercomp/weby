@@ -134,7 +134,9 @@ en:
     one:  "Sugestão"
     other: "Sugestões"
   summary: "Summary"
-  site: "site"
+  site:
+    one: "Site"
+    other: "Sites"
 
 #---T---#
   text: "Text" 
@@ -164,3 +166,44 @@ en:
       create: "Create a {{model}}"
       update: "Confirm changes to {{model}}"
 
+  activerecord:
+    attributes:
+      _all:
+        created_at: "Created at"
+        updated_at: "Updated at"
+      history:
+         title: "Title"
+         content: "Content"
+      user:
+        login: "Nome do usuário"
+        password: "Senha"
+        password_confirmation: "Confirmação da senha"
+        user_extended_name: "Nome"
+      site:
+        name: "Name"
+    errors:
+      template:
+        header:
+          one: "Is not possible update model: 1 error"
+          other: "Is not possible update model: {{count}} errors."
+        body: "Please, verify this fields:"
+      messages:
+        inclusion: "Not include in list"
+        exclusion: "Unavailable"
+        invalid: "Invalid"
+        confirmation: "confirmation is not equivalent"
+        accepted: "acception required"
+        empty: "Must be completed"
+        blank: "Must be completed"
+        too_long: "very long (can not use use more than {{count}} characters)"
+        too_short: "very short (can not use less than {{count}} characters)"
+        wrong_length: "wrong length ({{count}} characters required)"
+        taken: "Unavailable"
+        not_a_number: "Not is a number"
+        greater_than: "greater than {{count}} required"
+        greater_than_or_equal_to: "greater than or equal to {{count}} required"
+        equal_to: "equal to {{count}} required"
+        less_than: "less than {{count}} required"
+        less_than_or_equal_to: "less than or equal to {{count}} required"
+        odd: "odd required"
+        even: "even required"

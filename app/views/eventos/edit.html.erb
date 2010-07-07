@@ -1,15 +1,15 @@
 <fieldset>
-  <legend><%= t:editing, :param => t("evento")%></legend>
+  <legend><%= t:editing, :param => (t:event, :count => 1) %></legend>
 
   <% form_for(@evento) do |f| %>
     <%= f.error_messages %>
 
     <p>
-      <%= f.label  t:date, :param => t("registration") %><br />
+      <%= f.label  t:date, :param => t("register") %><br />
       <%= f.date_select :created_at, :order => [:year, :month, :day], :use_month_numbers => true  %>
     </p>
     <p>
-      <%= f.label  t:date, :param => t(":publication") %><br />
+      <%= f.label  t:date, :param => t("publication") %><br />
       <%= f.date_select :date_pub, :order => [:year, :month, :day], :use_month_numbers => true  %>
     </p>
     <p>
@@ -17,7 +17,7 @@
       <%= f.date_select :date_begin, :order => [:year, :month, :day], :use_month_numbers => true  %>
     </p>
     <p>
-      <%= f.label t:data, :param => t("end") %><br />
+      <%= f.label t:date, :param => t("end") %><br />
       <%= f.date_select :date_end, :order => [:year, :month, :day], :use_month_numbers => true  %>
     </p>
     <p>
@@ -82,7 +82,7 @@
     </p>
     <p>
       <%= f.label  t:time_cover %><br />
-      <%= f.text_field :front_time %>
+      <%= f.datetime_select :front_time, :order => [:year, :month, :day], :use_month_numbers => true %>
     </p>
     <p>
       <%= f.label  t:kind %><br />
@@ -94,15 +94,11 @@
     </p>
     <p>
       <%= f.label  t:begin %><br />
-      <%= f.datetime_select :event_begin %>
+      <%= f.datetime_select :event_begin, :order => [:year, :month, :day], :use_month_numbers => true   %>
     </p>
     <p>
       <%= f.label  t:end %><br />
-      <%= f.datetime_select :event_end %>
-    </p>
-    <p>
-      <%= f.label  t:email %><br />
-      <%= f.text_field :email %>
+      <%= f.datetime_select :event_end, :order => [:year, :month, :day], :use_month_numbers => true %>
     </p>
     <p>
       <%= f.submit  %>

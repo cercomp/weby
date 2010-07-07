@@ -42,7 +42,6 @@
     <%= f.label t:chief_editor %><br />
     <%= f.text_field :editor_chief_id %>
   </p>
-
   <p>
     <%= f.label  t:text %><br />
     <%= f.text_area :text %>
@@ -97,11 +96,11 @@
   </p>
   <p>
     <%= f.label t:begin %><br />
-    <%= f.datetime_select :event_begin %>
+    <%= f.datetime_select :event_begin, :order => [:year, :month, :day], :use_month_numbers => true   %>
   </p>
   <p>
     <%= f.label t:end %><br />
-    <%= f.datetime_select :event_end %>
+    <%= f.datetime_select :event_end, :order => [:year, :month, :day], :use_month_numbers => true   %>
   </p>
   <p>
     <%= f.label t:email %><br />

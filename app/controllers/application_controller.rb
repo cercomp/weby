@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
         end
         flash[:error] = t('access_denied')
         (render :template => 'admin/access_denied')
-        return true
+        return false
       end
     end
   end
@@ -88,25 +88,30 @@ class ApplicationController < ActionController::Base
     session[:return_to] = request.fullpath
   end
 
+#  def redirect_back_or_default(default)
+#    back_url = CGI.unescape(params[:back_url].to_s)
+#    if !back_url.blank?
+#      begin
+#        uri = URI.parse(back_url)
+#        # do not redirect user to another host or to the login or register page
+#        if (uri.relative? || (uri.host == request.host)) && !uri.path.match(%r{/(login|account/register)})
+#          redirect_to(back_url)
+#          return
+#        end
+#      rescue URI::InvalidURIError
+#        # redirect to default
+#      end
+#    end
+#    if session[:return_to] && !session[:return_to].match(%r{/(login|user_sessions/new)}).nil?
+#      redirect_to(session[:return_to])
+#    else
+#      redirect_to(default)
+#    end
+#    session[:return_to] = nil
+#  end
+
   def redirect_back_or_default(default)
-    back_url = CGI.unescape(params[:back_url].to_s)
-    if !back_url.blank?
-      begin
-        uri = URI.parse(back_url)
-        # do not redirect user to another host or to the login or register page
-        if (uri.relative? || (uri.host == request.host)) && !uri.path.match(%r{/(login|account/register)})
-          redirect_to(back_url)
-          return
-        end
-      rescue URI::InvalidURIError
-        # redirect to default
-      end
-    end
-    if session[:return_to] && !session[:return_to].match(%r{/(login|user_sessions/new)}).nil?
-      redirect_to(session[:return_to])
-    else
-      redirect_to(default)
-    end
+    redirect_to(session[:return_to] || default)
     session[:return_to] = nil
   end
 end

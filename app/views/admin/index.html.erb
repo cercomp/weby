@@ -29,4 +29,10 @@
      | <%= link_to t("new"), new_menu_path, :class => 'icon icon-add' %>
     <% end %>
   </p>
+  <p>
+    <%= link_to (t:list, :param => (t:site, :count => 2)), sites_path %>
+    <% if check_permission(SitesController, "new") %>
+     | <%= link_to t("new"), new_site_path, :class => 'icon icon-add' %>
+    <% end %>
+  </p>
 <% end %>

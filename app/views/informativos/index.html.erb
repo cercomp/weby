@@ -5,43 +5,24 @@
     <thead>
       <th><%= t:date, :param => t("register") %></th>
       <th><%= t:date, :param => t("publication")%></th>
-      <th><%= t:date, :param => t("begin")%></th>
-      <th><%= t:date, :param => t("end") %></th>    
-      <th><%= t:picture %></th>
+      <th><%= t:title %></th>
       <th><%= t:position %></th>
       <th><%= t:status%></th>
-      <th><%= t:author%></th> 
-      <th><%= t:editor%></th>
-      <th><%= t:chief_editor %></th>
-      <th><%= t:text %></th>
-      <th><%= t:url%></th>
-      <th><%= t:site%></th>
-      <th><%= t:subject%></th>
-      <th><%= "Texto clob" %></th>
-      <th><%= t:side %></th>
+      <th></th>
     </thead>
     <tbody>
     <% @informativos.each do |informativo| %>
       <tr class="<%= cycle 'odd', 'even' %>">
-        <td><%=h informativo.created_at %></td>
-        <td><%=h informativo.date_pub %></td>
-        <td><%=h informativo.date_begin %></td>
-        <td><%=h informativo.date_end %></td>
-        <td><%=h informativo.image %></td>
-        <td><%=h informativo.position %></td>
-        <td><%=h informativo.status %></td>
-        <td><%=h informativo.author_id %></td>
-        <td><%=h informativo.editor_id %></td>
-        <td><%=h informativo.editor_chief_id %></td>
-        <td><%=h informativo.text %></td>
-        <td><%=h informativo.url %></td>
-        <td><%=h informativo.site_id %></td>
-        <td><%=h informativo.subject %></td>
-        <td><%=h informativo.text_clob %></td>
-        <td><%=h informativo.align %></td>
-        <td><%= link_to 'Show', informativo %></td>
-        <td><%= link_to 'Edit', edit_informativo_path(informativo) %></td>
-        <td><%= link_to 'Destroy', informativo, :confirm => t("are_you_sure"), :method => :delete %></td>
+        <td><%= informativo.created_at %></td>
+        <td><%= informativo.date_pub %></td>
+        <td><%= informativo.position %></td>
+        <td><%= informativo.status %></td>
+        <td><%= informativo.title %></td>
+        <td>
+          <%= link_to 'Show', informativo %>
+          <%= link_to 'Edit', edit_informativo_path(informativo) %>
+          <%= link_to 'Destroy', informativo, :confirm => t("are_you_sure"), :method => :delete %>
+        </td>
       </tr>
     <% end; reset_cycle %>
     <tbody>

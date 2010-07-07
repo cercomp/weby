@@ -1,23 +1,24 @@
-<h1>Listing sites</h1>
+<fieldset>
+  <legend><%= t:list, :param => (t:site, :count => 2) %></legend>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+  <table class='list'>
+    <thead>
+      <th><%= t:name %></th>
+      <th></th>
+    </thead>
+    <tbody>
+    <% @sites.each do |site| %>
+      <tr class="<%= cycle 'odd', 'even' %>">
+        <td><%= site.name %></td>
+        <td>
+          <%= link_to 'Show', site %>
+          <%= link_to 'Edit', edit_site_path(site) %>
+          <%= link_to 'Destroy', site, :confirm => 'Are you sure?', :method => :delete %>
+        </td>
+      </tr>
+    <% end; reset_cycle %>
+    </tbody>
+  </table>
 
-<% @sites.each do |site| %>
-  <tr>
-    <td><%= site.name %></td>
-    <td><%= link_to 'Show', site %></td>
-    <td><%= link_to 'Edit', edit_site_path(site) %></td>
-    <td><%= link_to 'Destroy', site, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Site', new_site_path %>
+  <p> <%= link_to (t:new_param, :param => (t:site, :count => 1)) , new_site_path %> </p>
+</fieldset>
