@@ -4,184 +4,42 @@ body, ol{
   margin: 0 0;
 }
 
-pre {
-  background-color: #eee;
-  padding: 10px;
-  font-size: 11px;
-}
-.blue{
- color:#087EA6;
-}
+
 
 a { color: #000; text-decoration:none;}
 a:hover { color: gray; text-decoration:none;}
 
 #header{
-    -moz-background-clip:border;
-    -moz-background-inline-policy:continuous;
-    -moz-background-origin:padding;
-    background:transparent url(../images/top_left.jpg) repeat-x scroll 100% 0;
+    background:transparent url(../images/bg.jpg) repeat scroll 100% 0;
     height:142px;
     overflow:hidden;
     position:relative;
     width:100%;
 }
 
-#header1{
-    -moz-background-clip:border;
-    -moz-background-inline-policy:continuous;
-    -moz-background-origin:padding;
-    background:transparent url(../images/top_right.jpg) repeat-x scroll 50% 0;
-    float:left;
-    left:50%;
-    position:relative;
-    width:999px;
-}
-#header2{
-    float:left;
-    left: -50%;
-    position:relative;
-    width:999px;
-}
-
-#header3{
-    -moz-background-clip:border;
-    -moz-background-inline-policy:continuous;
-    -moz-background-origin:padding;
-    background:transparent url(../images/top_center.png) no-repeat scroll 50% 0;
-    height:142px;
-    overflow:hidden;
-    width:999px;
-     position:relative;
-    z-index:5000;
-}
-
-#header_content{
-    height:142px;
-    margin:0 auto;
-    position:relative;
-    width:970px;
-}
-
-.left{
-    height: 15px;
-    border-left: solid 4px #B0C4DE;
-    margin: 0 0 2px 2px;
-    padding: 0 0 4px 3px;
-    overflow:hidden;
-}
-
-#logo{
-    left:50px;
-    position:absolute;
-    top:22px;
-}
-#title{
-    background: transparent url("../images/title_bg.png") no-repeat;
-    width: 272px;
-    height: 74px;
-    position:relative;
-    margin: -64px auto -30px 70%;
-    z-index:5000;
-    padding: 25px 0 0 20px;
-    font-family: Arno Pro;
-    font-size:x-large;
-    color: white;
-}
 #content{
-    position:relative;
-    padding: 20px;
-    vertical-align:top;
 }
 #main-content{
-    float:left;
-    margin-left: 50px;
-    vertical-align:top;
+    margin: 0 165px;
+    border: solid #888866 1px;
+    min-width: 615px;
 }
 
-#menus-bg{
-    background: transparent url(../images/menu-bg.jpg) no-repeat;
-    float:left;
-    height: 400px;
-    width: 170px;
-    margin-top: 10px;
-    border: none;
+#menu-left{
+    float: left;
+    border: solid #888866 1px;
+    position: absolute;
+    width: 160px;
 }
-.menus{
-    background:transparent url(../images/bulletOff.gif) no-repeat;
-    height: 20px;
-    width: 151px;
-    border-bottom: solid 1px #E4E4E4;
-    padding-left: 28px;
-    margin: 5px 0;
+#menu-right{
+    position: absolute;
+    top: 147px;
+    right: 0;
+    border: solid #888866 1px;
+    width: 160px;
 }
-.menus:hover{
-    background:transparent url(../images/bulletOn.gif) no-repeat;
-}
-
-/*------------------------ Rodapé --------------------------------------------*/
-
 .footer{
-    -moz-background-clip:border;
-    -moz-background-inline-policy:continuous;
-    -moz-background-origin:padding;
-    background:transparent url(../images/foo-left.png) repeat-x scroll 0 0;
-    height:113px;
-    overflow:hidden;
-    position:relative;
-    width:100%;
-    z-index:1;
-    margin-top: 50px;
-}
-.foo1{
-    -moz-background-clip:border;
-    -moz-background-inline-policy:continuous;
-    -moz-background-origin:padding;
-    background:transparent url(../images/foo-right.png) repeat-x scroll 50% 0;
-    float:left;
-    left:50%;
-    position:relative;
-    width:986px;
-}
-
-.foo2{
-    float:left;
-    left:-50%;
-    position:relative;
-    width:986px;
-}
-
-.foo3{
-    -moz-background-clip:border;
-    -moz-background-inline-policy:continuous;
-    -moz-background-origin:padding;
-    background:transparent url(../images/foo-center.png) no-repeat scroll 50% 0;
-    height:113px;
-    overflow:hidden;
-    width:986px;
-}
-
-.foocenter{
-    margin:0 auto;
-    padding:66px 25px 0;
-    width:920px;
-}
-
-#ufgLogo{
-    position:relative;
-    top:-46px;
-    float:right;
-}
-.temas{
-    width:250px;
-}
-
-a.linkFoo{
-    color:white;
-    text-decoration:none;
-}
-a.linkFoo:hover{
-    background:transparent;
-    color:#E4E4E4;
-    text-decoration:none;
+    border: solid #888866 1px;
+    width: 100%;
+    padding-left: 20px;
 }

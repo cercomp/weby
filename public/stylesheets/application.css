@@ -309,3 +309,6 @@ fieldset.collapsible legend{ border-width: 0 ; font-size: 1.2em; background-colo
 fieldset.collapsible { border-width: 1px 0 0 0; font-size: 0.9em; background-color: white;}
 fieldset.collapsible legend { padding-left: 16px; background: url(../images/arrow_expanded.png) no-repeat 0% 40%; cursor:pointer; }
 fieldset.collapsible.collapsed legend { background-image: url(../images/arrow_collapsed.png); }
+.clear{
+    clear: both;
+}
