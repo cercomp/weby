@@ -19,9 +19,9 @@
         <td><%= informativo.status %></td>
         <td><%= informativo.title %></td>
         <td>
-          <%= link_to 'Show', informativo %>
-          <%= link_to 'Edit', edit_informativo_path(informativo) %>
-          <%= link_to 'Destroy', informativo, :confirm => t("are_you_sure"), :method => :delete %>
+          <%= link_to t("show"), informativo %>
+          <%= link_to t("dit"), edit_informativo_path(informativo) %>
+          <%= link_to t("destroy"), informativo, :confirm => t("are_you_sure"), :method => :delete %>
         </td>
       </tr>
     <% end; reset_cycle %>

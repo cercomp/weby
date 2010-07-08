@@ -1,4 +1,4 @@
-<h1>Editing informativo</h1>
+<h1><%= t:editing, :param => (t:newsletter, :count => 1)%></h1>
 
 <% form_for(@informativo) do |f| %>
   <%= f.error_messages %>
@@ -119,5 +119,5 @@
   </p>
 <% end %>
 
-<%= link_to 'Show', @informativo %> |
-<%= link_to 'Back', informativos_path %>
+<%= link_to t("Show"), @informativo %> |
+<%= link_to t("back"), informativos_path %>

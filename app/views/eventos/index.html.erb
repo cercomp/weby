@@ -21,9 +21,9 @@
         <td><%=h evento.status %></td>
         <td><%=h evento.author_id %></td>
         <td>
-          <%= link_to 'Show', evento %>
-          <%= link_to 'Edit', edit_evento_path(evento) %>
-          <%= link_to 'Destroy', evento, :confirm => t("are_you_sure?"), :method => :delete %>
+          <%= link_to t("show"), evento %>
+          <%= link_to t("Edit"), edit_evento_path(evento) %>
+          <%= link_to t("Destroy"), evento, :confirm => t("are_you_sure?"), :method => :delete %>
         </td>
       </tr>
     <% end; reset_cycle %>

@@ -35,7 +35,7 @@
 <% end %>
 
 <% form_for @roles do %>
-    <p> Novo Papel <br />
+    <p><%= t:new_param, :param => t("role") %>  <br />
       <%= text_field_tag "roles" %>
       <%= submit_tag 'Salvar' %>
     </p>

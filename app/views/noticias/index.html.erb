@@ -18,9 +18,9 @@
         <td><%=h noticia.user.login %></td>
         <td><%=h noticia.created_at %></td>
 
-        <td><%= link_to 'Show', noticia %></td>
-        <td><%= link_to 'Edit', edit_noticia_path(noticia) %></td>
-        <td><%= link_to 'Destroy', noticia, :confirm => t("are_you_sure?"), :method => :delete %></td>
+        <td><%= link_to t("show"), noticia %></td>
+        <td><%= link_to t("edit"), edit_noticia_path(noticia) %></td>
+        <td><%= link_to t("destroy"), noticia, :confirm => t("are_you_sure?"), :method => :delete %></td>
       </tr>
     <% end; reset_cycle %>
     </tbody>
