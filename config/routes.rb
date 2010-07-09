@@ -33,9 +33,7 @@ Webyge3::Application.routes.draw do |map|
   match 'login' => 'user_sessions#new', :as => 'login'
   match 'denied' => "admin#access_denied", :as => 'denied'
   match 'admin' => "admin#index"
-#  match ':site' => "sites#index" # Página agregadora dos sites
-
-#  match "/:site/:controller/:action/:id" => redirect("/%{controller}/%{action}/%{id}")
+  match ':site' => "sites#index" # Página principal do site
 
   root :to => "sites#index" # Página agregadora dos sites
 

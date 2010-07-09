@@ -33,7 +33,7 @@ module ApplicationHelper
       if current_user
         menus += "<div style='float: right;  white-space: nowrap;'>" +
           link_to(image_tag('editar.gif', :border => 0), edit_menu_path(menu)) +
-          link_to(image_tag('subitem.gif', :border => 0), :controller => 'menus', :action => 'new', :father_id => menu.id) +
+          link_to(image_tag('subitem.gif', :border => 0), new_menu_path, :father_id => menu.id) +
           link_to(image_tag('setaup.gif', :border => 0), new_menu_path, :father_id => menu.id) +
           link_to(image_tag('setadown.gif', :border => 0), new_menu_path, :father_id => menu.id) +
           link_to(image_tag('apagar.gif', :border => 0), menu, :confirm => 'Are you sure?', :method => :delete) + "</div>"
