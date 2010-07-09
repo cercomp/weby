@@ -12,13 +12,11 @@
 
 <body>
   <div id="header">
-      <div id="logo">
-        <%= image_tag("logo.png", :border => 0) %>
-        <%= link_to image_tag("flag_uk.png"), :locale => "en" %>
-        <%= link_to image_tag("flag_br.png"), :locale => "pt-BR" %>
-      </div>
-      <div id="main_menu">
-      </div>
+    <div id="logo">
+      <%= link_to image_tag("flag_uk.png"), :locale => "en" %>
+      <%= link_to image_tag("flag_br.png"), :locale => "pt-BR" %>
+    </div>
+    <div id="main_menu"> </div>
   </div>
 
   <div id="content-out">
@@ -29,18 +27,20 @@
     <div id="menu-left">
       <%= render 'layouts/menu_left' %>
     </div>
+
     <div id="content">
       <div id="main-content">
 
-         <p> <%= link_to t("user").pluralize, :controller => "users", :action => "index" %> </p>
-        <p> <%= link_to t("permissions"), :controller => "rights", :action => "index" %> </p>
-        <p> <%= link_to t("roles_permissions"), :controller => "roles", :action => "index" %> </p>
-        <p> <%#= link_to "Páginas", paginas_path %> </p>
-        <p> <%#= link_to "Menus", menus_path %> </p>
-        <% if current_user %>
-          <p> <%= link_to t("my_profile"), :controller => 'users', :action => 'show', :id => current_user.id %> </p>
-          <p> <%= link_to t("logout"), '/logout', :confirm => "Are you sure you want to logout?" %> </p>
+        <%= link_to t("home"), root_path %> |
+        <% if !current_user %>
+          <%= link_to t("register"), new_user_path %> |
+          <%= link_to t("login"), login_path %> |
+        <% else %>
+          <%= link_to t("admin"), admin_path %> |
+          <%= link_to t("my_profile"), user_path(current_user) %> |
+          <%= link_to t("logout"), logout_path, :confirm => "Are you sure you want to logout?" %>
         <% end %>
+        <%= User.logged_in.count %> <%= (t:user, :count => User.logged_in.count) %> logado.
 
         <%= yield  %>
           
@@ -50,19 +50,10 @@
     <div id="menu-right">
       <%= render 'layouts/menu_right' %>
     </div>
-    <div class="clear"></div>
-  </div>
-  <div class="clear"></div>
-  <div class="footer">
-  <% if current_user %>
-    <p class="temas">
-      Escolha seu layout:
-      <%= link_to image_tag("L1.png", :border => 0), { :controller => "users", :action => "change_theme", :id => "translucent" } %>
-      <%= link_to image_tag("L2.png", :border => 0), { :controller => "users", :action => "change_theme", :id => "elementary" } %>
-    </p>
-    <p>2009 © <a href="http://www.cercomp.ufg.br">CERCOMP</a>. <%= t("direitosReservados") %></p>
-  <% end %>
   </div>
 
+  <div class="footer">
+    <p>2009 © <a href="http://www.cercomp.ufg.br">CERCOMP</a>. <%= t("direitosReservados") %></p>
+  </div>
 </body>
 </html>

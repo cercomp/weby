@@ -1,5 +1,17 @@
 @import url(alternate.css);
 
+/* Css dos menus */
+.simple_box{
+    width: 75px;
+    height:18px;
+    cursor:pointer;
+    float:left;
+    margin-right:17px;
+    border: solid 1px #E0EEEE;
+    background-color:#F0FFFF;
+    text-align:center;
+}
+
 html { 
   height: 99%; 
   max-height: 99%; 
