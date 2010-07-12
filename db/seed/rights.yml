@@ -1,0 +1,59 @@
+um:
+  name: "Ver página administrativa"
+  action: index
+  id: 1
+  controller: admin
+
+dois:
+  name: "Gerenciar papéis"
+  action: create index edit new show update change_status
+  id: 2
+  controller: roles
+
+tres:
+  name: "Excluir papéis"
+  action: destroy
+  id: 3
+  controller: roles
+
+quatro:
+  name: "Editar usuários"
+  action: edit
+  id: 4
+  controller: users
+
+cinco:
+  name: "Ver usuários"
+  action: index
+  id: 5
+  controller: users
+
+seis:
+  name: "Gerenciar direitos"
+  action: index new create update edit change_status
+  id: 6
+  controller: rights
+
+sete:
+  name: "Excluir direitos"
+  action: destroy
+  id: 7
+  controller: rights
+
+oito:
+  name: "Mudar papéis de usuários" 
+  action: change_roles
+  id: 8
+  controller: users
+
+nove:
+  name: "Gerenciar menus"
+  action: index new create update edit
+  id: 9
+  controller: menus
+
+dez:
+  name: "Excluir menus"
+  action: destroy
+  id: 10
+  controller: menus
