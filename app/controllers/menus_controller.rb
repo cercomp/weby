@@ -6,6 +6,8 @@ class MenusController < ApplicationController
   respond_to :html, :xml, :js
 
   def index
+    #@menus = SitesMenu.where(["site_id = ? ", params[:site_id]])
+
     @esquerdo = Menu.where(["position = ?", "left"])
     @direito = Menu.where(["position = ?", "right"])
     @superior = Menu.where(["position = ?", "top"])

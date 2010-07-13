@@ -24,7 +24,7 @@
     <% end %>
   </p>
   <p>
-    <%= link_to (t:list, :param => (t:menu, :count => 2)), menus_path %>
+    <%= link_to (t:list, :param => (t:menu, :count => 2)), site_menus_path %>
     <% if check_permission(MenusController, "new") %>
      | <%= link_to t("new"), new_menu_path, :class => 'icon icon-add' %>
     <% end %>

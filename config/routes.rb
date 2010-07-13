@@ -6,6 +6,7 @@ Webyge3::Application.routes.draw do |map|
     resources :informativos
     resources :pages
     resources :chats
+    resources :admin, :controller => "admin", :only => [:index]
   end
 
   resources :sites
