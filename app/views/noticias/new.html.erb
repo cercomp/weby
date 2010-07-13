@@ -3,7 +3,7 @@
 <% form_for(@noticia) do |f| %>
   <%= f.error_messages %>
 
-<p>
+  <p>
     <%= f.label  t:date, :param => t("register") %><br />
     <%= f.date_select :created_at, :order => [:year, :month, :day], :use_month_numbers => true  %>
   </p>
@@ -19,22 +19,19 @@
     <%= f.label  t:data, :param => t("end") %><br />
     <%= f.date_select :date_end, :order => [:year, :month, :day], :use_month_numbers => true  %>
   </p>
-<p>
+  <p>
     <%= f.label  t:picture %><br />
     <%= f.text_field :image %>
   </p>
   <p>
     <%= f.label t:position %><br />
     <%= f.text_field :position %>
-    </p>
-    <p>
+  </p>
+  <p>
     <%= f.label t:status %><br />
     <%= f.text_field :status %>
   </p>
-
- <%= f.hidden_field :autor, :value => current_user.id %>
-
- <p>
+  <p>
     <%= f.label t:editor %><br />
     <%= f.text_field :editor_id %>
   </p>
@@ -56,7 +53,7 @@
     <%= f.label  t:site_id %><br />
     <%= f.text_field :site_id %>
   </p>
- <p>
+  <p>
     <%= f.label  t:picture_text %><br />
     <%= f.text_field :text_image %>
   </p>
@@ -64,14 +61,12 @@
     <%= f.label  t:pdf %><br />
     <%= f.text_field :pdf %>
   </p>
-
   <p>
     <%= f.label  t:time_cover %><br />
     <%= f.datetime_select :front_time, :order => [:year, :month, :day], :use_month_numbers => true  %>
   </p>
+  <%= f.hidden_field :autor, :value => current_user.id %>
   <p>
-    <%= f.submit %>
+    <%= f.submit %> <%= link_to t("back") %>
   </p>
 <% end %>
-
-<%= link_to t("back"), noticias_path %>

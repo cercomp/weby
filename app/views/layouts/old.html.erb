@@ -28,7 +28,7 @@
         <%= link_to t("register"), new_user_path %> |
         <%= link_to t("login"), login_path %> |
       <% else %>
-        <%= link_to t("admin"), admin_path %> |
+        <%= link_to t("admin"), site_admins_path if params[:site_id] %> |
         <%= link_to t("my_profile"), user_path(current_user) %> |
         <%= link_to t("logout"), logout_path, :confirm => "Are you sure you want to logout?" %>
       <% end %>

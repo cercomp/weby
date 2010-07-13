@@ -1,82 +1,78 @@
 <p>
-  <b><%= t:data, :param => t("registration") %>:</b>
-  <%=h @noticia.created_at %>
+  <b><%= t:date, :param => t("register") %>:</b>
+  <%= @noticia.created_at %>
 </p>
 <p>
-  <b><%= t:data, :param => t("publication")%>:</b>
-  <%=h @noticia.date_pub %>
+  <b><%= t:date, :param => t("publication")%>:</b>
+  <%= @noticia.date_pub %>
 </p>
 <p>
-  <b><%= t:data, :param => t("begin")%>:</b>
-  <%=h @noticia.date_begin %>
+  <b><%= t:date, :param => t("begin")%>:</b>
+  <%= @noticia.date_begin %>
 </p>
 <p>
-  <b><%= t:data, :param => t("end") %>:</b>
-  <%=h @noticia.date_end %>
+  <b><%= t:date, :param => t("end") %>:</b>
+  <%= @noticia.date_end %>
 </p>
 <p>
   <b><%= t:picture %>:</b>
-  <%=h @noticia.image %>
+  <%= @noticia.image %>
 </p>
 <p>
   <b><%= t:position %>:</b>
-  <%=h @noticia.position %>
+  <%= @noticia.position %>
 </p>
 <p>
-  <b><%= t:status%>:</b>
-  <%=h @noticia.status %>
+  <b><%= t:status %>:</b>
+  <%= @noticia.status %>
 </p>
 <p>
-  <b><%= t:author%>:</b>
-  <%=h @noticia.author_id %>
+  <b><%= t:author %>:</b>
+  <%= @noticia.author_id %>
 </p>
 <p>
-  <b><%= t:editor%></b>
-  <%=h @noticia.editor_id %>
+  <b><%= t:editor %></b>
+  <%= @noticia.editor_id %>
 </p>
 <p>
   <b><%= t:chief_editor %></b>
-  <%=h @noticia.editor_chief_id %>
+  <%= @noticia.editor_chief_id %>
 </p>
 <p>
   <b><%= t:text %>:</b>
-  <%=h @noticia.text %>
+  <%= @noticia.text %>
 </p>
 <p>
   <b><%= t:url %>:</b>
-  <%=h @noticia.url %>
+  <%= @noticia.url %>
 </p>
 <p>
   <b><%= t:site_id %>:</b>
-  <%=h @noticia.site_id %>
+  <%= @noticia.site_id %>
 </p>
 <p>
-  <b><%= t:sorce%>:</b>
-  <%=h @noticia.source %>
+  <b><%= t:title %>:</b>
+  <%= @noticia.title %>
 </p>
 <p>
-  <b><%= t:title:</b>
-  <%=h @noticia.title %>
+  <b><%= t:text_image %>:</b>
+  <%= @noticia.text_image %>
 </p>
 <p>
-  <b><%= t:text_picture %>:</b>
-  <%=h @noticia.text_image %>
-</p>
-<p>
-  <b><%= t:summary%>:</b>
-  <%=h @noticia.summary %>
+  <b><%= t:summary %>:</b>
+  <%= @noticia.summary %>
 </p>
 <p>
   <b><%= t:pdf %>:</b>
-  <%=h @noticia.pdf %>
+  <%= @noticia.pdf %>
 </p>
 <p>
-  <b><%= t:capa %>:</b>
-  <%=h @noticia.front %>
+  <b><%= t:front %>:</b>
+  <%= @noticia.front %>
 </p>
 <p>
-  <b><%= :time_cover %>:</b>
-  <%=h @noticia.front_time %>
+  <b><%= t:front_time %>:</b>
+  <%= @noticia.front_time %>
 </p>
 
-<%= link_to t("edit"), edit_noticia_path(@noticia) %> | <%= link_to t("back"), noticias_path %>
+<%= link_to t("edit"), edit_noticia_path(@noticia) %> <%= link_to t("back") %>

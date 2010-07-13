@@ -7,6 +7,9 @@ Webyge3::Application.routes.draw do |map|
     resources :pages
     resources :chats
     resources :admin, :controller => "admin", :only => [:index]
+    resources :roles
+    resources :rights
+    resources :users
   end
 
   resources :sites
@@ -16,13 +19,13 @@ Webyge3::Application.routes.draw do |map|
   resources :informativos
   resources :pages
   resources :chats
-
+  resources :admin, :controller => "admin", :only => [:index]
   resources :roles
   resources :rights
+
   resources :user_sessions
   resources :password_resets
   resources :account, :controller => "users"
-  resources :admin, :controller => "admin", :only => [:index]
 
   resources :users do
     collection do

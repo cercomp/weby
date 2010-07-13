@@ -2,12 +2,12 @@
 
 <% form_for(@noticia) do |f| %>
   <%= f.error_messages %>
-<p>
-    <%= f.label  t:date, :param => t("registration") %><br />
+  <p>
+    <%= f.label  t:date, :param => t("register") %><br />
     <%= f.date_select :created_at, :order => [:year, :month, :day], :use_month_numbers => true  %>
   </p>
   <p>
-    <%= f.label  t:date, :param => t(":publication") %><br />
+    <%= f.label  t:date, :param => t("publication") %><br />
     <%= f.date_select :date_pub, :order => [:year, :month, :day], :use_month_numbers => true  %>
   </p>
   <p>
@@ -15,7 +15,7 @@
     <%= f.date_select :date_begin, :order => [:year, :month, :day], :use_month_numbers => true  %>
   </p>
   <p>
-    <%= f.label  t:data, :param => t("end") %><br />
+    <%= f.label  t:date, :param => t("end") %><br />
     <%= f.date_select :date_end, :order => [:year, :month, :day], :use_month_numbers => true  %>
   </p>
   <p>
@@ -41,7 +41,6 @@
     <%= f.label  t:chief_editor %><br />
     <%= f.text_field :editor_chief_id %>
   </p>
-
   <p>
     <%= f.label  t:text %><br />
     <%= f.text_area :text %>
@@ -49,10 +48,6 @@
    <p>
     <%= f.label  t:url %><br />
     <%= f.text_field :url %>
-  </p>
-  <p>
-    <%= f.label  t:site_id %><br />
-    <%= f.text_field :site_id %>
   </p>
   <p>
     <%= f.label  t:source %><br />
@@ -87,5 +82,4 @@
   </p>
 <% end %>
 
-<%= link_to t("show"), @noticia %> |
-<%= link_to t("back"), noticias_path %>
+<%= link_to t("show"), @noticia %> <%= link_to t("back") %>

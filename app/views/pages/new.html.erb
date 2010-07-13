@@ -1,11 +1,9 @@
 <h1><%= t:new %> <%= params[:type] %></h1>
 
-<%= form_for "page", @page, :url => :pages do |f| %>
+<%= form_for @page, :as => :page, :url => :pages do |f| %>
   <% @page.errors.full_messages.each do |msg| %>  
     <li><%= msg %></li>  
   <% end %>  
-
-  <%= f.hidden_field :type, :value => params[:type] %>
 
   <p>
     <%= f.label  t:date, :param => t("register") %><br />
@@ -56,17 +54,12 @@
     <%= f.text_field :url %>
   </p>
   <p>
-    <%= f.label  t:site_id %><br />
-    <%= f.text_field :site_id %>
-  </p>
-  <p>
     <%= f.label  t:time_cover %><br />
     <%= f.datetime_select :front_time, :order => [:year, :month, :day], :use_month_numbers => true %>
   </p>
+  <%= f.hidden_field :type, :value => params[:type] %>
 
-  <%= render :partial => "new" + params[:type], :locals=> { :f=>f } %>
+  <%= render :partial => "new" + params[:type], :locals=> { :f => f } %>
 
-  <p> <%= f.submit %> </p>
+  <%= f.submit %> <%= link_to t("back") %>
 <% end %>
-
-<%= link_to t("voltar"), :back %>

@@ -1,144 +1,114 @@
 <p>
   <b><%= t:data, :param => t("registration") %>:</b>
-  <%=h @page.created_at %>
+  <%= @page.created_at %>
 </p>
-
 <p>
   <b><%= t:data, :param => t("publication")%>:</b>
-  <%=h @page.date_pub %>
+  <%= @page.date_pub %>
 </p>
-
 <p>
   <b><%= t:data, :param => t("begin")%>:</b>
-  <%=h @page.date_begin %>
+  <%= @page.date_begin %>
 </p>
-
 <p>
   <b><%= t:data, :param => t("end") %>:</b>
-  <%=h @page.date_end %>
+  <%= @page.date_end %>
 </p>
-
 <p>
   <b><%= t:picture %>:</b>
-  <%=h @page.image %>
+  <%= @page.image %>
 </p>
-
 <p>
   <b><%= t:position %>:</b>
-  <%=h @page.position %>
+  <%= @page.position %>
 </p>
-
 <p>
   <b><%= t:source %>:</b>
-  <%=h @page.source %>
+  <%= @page.source %>
 </p>
-
 <p>
   <b><%= t:status%>:</b>
-  <%=h @page.status %>
+  <%= @page.status %>
 </p>
-
 <p>
   <b><%= t:author%>:</b>
-  <%=h @page.author %>
-</p>
-
+  <%= @page.author %>
+</p
 <p>
   <b><%= t:editor%></b>
-  <%=h @page.editor %>
+  <%= @page.editor %>
 </p>
-
 <p>
   <b><%= t:chief_editor %></b>
-  <%=h @page.editor_cheif_id %>
+  <%= @page.editor_cheif_id %>
 </p>
-
-
 <p>
   <b><%= t:kind %>:</b>
-  <%=h @page.kind %>
+  <%= @page.kind %>
 </p>
-
 <p>
-  <b><%= t:title:</b>
-  <%=h @noticia.title %>
+  <b><%= t:title %>:</b>
+  <%= @noticia.title %>
 </p>
-
 <p>
   <b><%= t:localization %>:</b>
-  <%=h @page.local %>
+  <%= @page.local %>
 </p>
-
 <p>
   <b><%= t:begin  %>:</b>
-  <%=h @page.event_begin %>
+  <%= @page.event_begin %>
 </p>
-
 <p>
   <b><%= t:end  %>:</b>
-  <%=h @page.event_end %>
+  <%= @page.event_end %>
 </p>
-
 <p>
   <b><%= t:text  %>:</b>
-  <%=h @page.text %>
+  <%= @page.text %>
 </p>
-
 <p>
   <b><%= t:email  %>Email:</b>
-  <%=h @page.email %>
+  <%= @page.email %>
 </p>
-
 <p>
   <b><% t:url %>:</b>
-  <%=h @page.url %>
+  <%= @page.url %>
 </p>
-
 <p>
   <b><%= t:picture_text %>:</b>
-  <%=h @page.text_image %>
+  <%= @page.text_image %>
 </p>
-
 <p>
   <b><%= t:summary  %>:</b>
-  <%=h @page.summary %>
+  <%= @page.summary %>
 </p>
-
 <p>
   <b><%= t:pdf %>:</b>
-  <%=h @page.pdf %>
+  <%= @page.pdf %>
 </p>
-
 <p>
   <b><% t:site %>:</b>
-  <%=h @page.site_id %>
+  <%= @page.site_id %>
 </p>
-
 <p>
   <b><%= t:cover  %>:</b>
-  <%=h @page.front %>
+  <%= @page.front %>
 </p>
-
 <p>
   <b><%= t:time_cover %>:</b>
-  <%=h @page.front_time %>
+  <%= @page.front_time %>
 </p>
-
 <p>
   <b><%= t:subject  %>:</b>
-  <%=h @page.subject %>
+  <%= @page.subject %>
 </p>
-
 <p>
   <b><%=#??   %>Texto clob:</b>
-  <%=h @page.text_clob %>
+  <%= @page.text_clob %>
 </p>
-
 <p>
   <b><%= t:side %>:</b>
-  <%=h @page.align %>
+  <%= @page.align %>
 </p>
 
-
-<%= link_to t('edit'), edit_page_path(@page) %> |
-<%= link_to t('back'), pages_path %>
+<%= link_to t('edit'), edit_page_path(@page) %> | <%= link_to t('back') %>

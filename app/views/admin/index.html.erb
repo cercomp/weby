@@ -1,24 +1,24 @@
 <% if current_user %>
   <p>
-    <%= link_to (t:list, :param => (t:user, :count => 2)), users_path %>
+    <%= link_to (t:list, :param => (t:user, :count => 2)), site_users_path %>
     <% if check_permission(UsersController, "new") %>
      | <%= link_to t("new"), new_user_path, :class => 'icon icon-add' %>
     <% end %>
   </p>
   <p>
-    <%= link_to (t:list, :param => (t:permission, :count => 2)), rights_path %>
+    <%= link_to (t:list, :param => (t:permission, :count => 2)), site_rights_path %>
     <% if check_permission(RightsController, "new") %>
      | <%= link_to t("new"), new_right_path, :class => 'icon icon-add' %>
     <% end %>
   </p>
   <p>
-    <%= link_to (t:list, :param => t("roles_permissions")), roles_path %>
+    <%= link_to (t:list, :param => t("roles_permissions")), site_roles_path %>
     <% if check_permission(RolesController, "new") %>
      | <%= link_to t("new"), new_role_path, :class => 'icon icon-add' %>
     <% end %>
   </p>
   <p>
-    <%= link_to (t:list, :param => (t:page, :count => 2)), pages_path %>
+    <%= link_to (t:list, :param => (t:page, :count => 2)), site_pages_path %>
     <% if check_permission(PagesController, "new") %>
      | <%= link_to t("new"), new_page_path, :class => 'icon icon-add' %>
     <% end %>

@@ -3,8 +3,6 @@ class NoticiasController < ApplicationController
   before_filter :require_user
   before_filter :check_authorization
 
-  before_filter :require_user
-
   respond_to :html, :xml
 
   def index

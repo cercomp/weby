@@ -8,6 +8,7 @@
       <th><%= t:status %></th>
       <th><%= t:author %></th>
       <th><%= t:date, :param => t("register")%></th>
+      <th></th>
     </thead>
     <tbody>
     <% @noticias.each do |noticia| %>
@@ -15,16 +16,17 @@
         <td><%=h noticia.title %></td>
         <td><%=h noticia.front %></td>
         <td><%=h noticia.status %></td>
-        <td><%=h noticia.user.login %></td>
+        <td><%=h noticia.author_id %></td>
         <td><%=h noticia.created_at %></td>
-
-        <td><%= link_to t("show"), noticia %></td>
-        <td><%= link_to t("edit"), edit_noticia_path(noticia) %></td>
-        <td><%= link_to t("destroy"), noticia, :confirm => t("are_you_sure?"), :method => :delete %></td>
+        <td>
+          <%= link_to t("show"), noticia %>
+          <%= link_to t("edit"), edit_noticia_path(noticia) %>
+          <%= link_to t("destroy"), noticia, :confirm => t("are_you_sure"), :method => :delete %>
+        </td>
       </tr>
     <% end; reset_cycle %>
     </tbody>
   </table>
 
-  <p> <%= link_to (t:create_param, :param => (t:news, :count => 1)), new_page_path(:type => "Noticia") %> </p>
+  <p> <%= link_to (t:create_param, :param => (t:news, :count => 1)), new_site_page_path(:type => "Noticia") %> </p>
 </fieldset>

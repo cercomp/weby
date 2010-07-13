@@ -1,5 +1,4 @@
 class Noticia < Page
-  validates_presence_of :titulo
-  validates_presence_of :fonte
-
+#  validates_presence_of :title
+#  validates_presence_of :source
 end
