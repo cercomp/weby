@@ -1,5 +1,5 @@
-<% if @direito.empty? %>
+<% if @right.empty? %>
   <p> <%= "Nenhum menu direito" %> </p>
 <% else %>
-  <%= raw list_menus(Menu.where(["position = ?", 'right']), 10, 0) %>
+  <%= raw list_menus(@right, 10, 0) %>
 <% end %>

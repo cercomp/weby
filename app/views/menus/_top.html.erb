@@ -1,5 +1,5 @@
-<% if @superior.empty? %>
+<% if @top.empty? %>
   <p> <%= "Nenhum menu superior" %> </p>
 <% else %>
-  <%= raw list_menus(Menu.where(["position = ?", 'top']), 10, 0) %>
+  <%= raw list_menus(@top, 10, 0) %>
 <% end %>

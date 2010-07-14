@@ -3,17 +3,4 @@
     <%= link_to image_tag("flag_uk.png"), :locale => "en" %>
     <%= link_to image_tag("flag_br.png"), :locale => "pt-BR" %>
   </div>
-
-  <% Menu.where(["position = ?", "top"]).each do |menus| %>
-    <% if !menus.father_id %>
-      <div class="top-menus" onMouseOver="$('<%= menus.id %>').show();" onMouseOut="$('<%= menus.id %>').hide();">
-        <%= link_to menus.title, "#{menus.link}" %>
-        <div id="<%= menus.id %>" style="display: none; top: 0;">
-          <% Menu.where(["father_id = ?", menus.id]).each do |subs| %>
-            <div class="subSup"> <%= link_to subs.title, "#{subs.link}" %> </div>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
-  <% end %>
 </div>

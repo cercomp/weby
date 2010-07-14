@@ -6,11 +6,12 @@ class MenusController < ApplicationController
   respond_to :html, :xml, :js
 
   def index
+    @site = Site.find(params[:site_id])
     #@menus = SitesMenu.where(["site_id = ? ", params[:site_id]])
 
-    @esquerdo = Menu.where(["position = ?", "left"])
-    @direito = Menu.where(["position = ?", "right"])
-    @superior = Menu.where(["position = ?", "top"])
+    @left = Site.find(params[:site_id]).sites_menus
+    @right = ""
+    @top = "" 
   end
 
   def show

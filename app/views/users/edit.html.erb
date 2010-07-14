@@ -2,9 +2,17 @@
   <legend><%= t:edit, :param => t("my_account")%></legend>
 
   <% form_for @user, :url => account_path do |f| %>
-    <% @user.errors.full_messages.each do |msg| %>  
-      <li><%= msg %></li>  
-    <% end %>  
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this site from being saved:</h2>
+        <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
     <%= render :partial => "form", :object => f %><br />
     <%= f.submit t:"update", :param => "" %> <%= link_to t("my_profile"), user_path %>
   <% end %>

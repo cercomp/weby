@@ -2,7 +2,16 @@
   <legend><%= t:editing, :param => (t:event, :count => 1) %></legend>
 
   <% form_for(@evento) do |f| %>
-    <%= f.error_messages %>
+    <% if @evento.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@evento.errors.count, "error") %> prohibited this site from being saved:</h2>
+        <ul>
+        <% @evento.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
 
     <p>
       <%= f.label  t:date, :param => t("register") %><br />

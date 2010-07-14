@@ -1,7 +1,16 @@
 <h1><%= t:editing, :param => (t:newsletter, :count => 1)%></h1>
 
 <% form_for(@informativo) do |f| %>
-  <%= f.error_messages %>
+  <% if @informativo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@informativo.errors.count, "error") %> prohibited this site from being saved:</h2>
+      <ul>
+      <% @informativo.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
   <p>
     <%= f.label  t:date, :param => t("register") %><br />

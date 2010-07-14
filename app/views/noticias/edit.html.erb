@@ -1,7 +1,17 @@
 <h1>Editing noticia</h1>
 
 <% form_for(@noticia) do |f| %>
-  <%= f.error_messages %>
+  <% if @noticia.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@noticia.errors.count, "error") %> prohibited this site from being saved:</h2>
+      <ul>
+      <% @noticia.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
   <p>
     <%= f.label  t:date, :param => t("register") %><br />
     <%= f.date_select :created_at, :order => [:year, :month, :day], :use_month_numbers => true  %>

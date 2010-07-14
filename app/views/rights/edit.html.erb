@@ -1,7 +1,16 @@
 <h1><%= t:editing, :param => t("rights") %> </h1>
 
 <% form_for(@right) do |f| %>
-  <%= f.error_messages %>
+  <% if @right.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@right.errors.count, "error") %> prohibited this site from being saved:</h2>
+      <ul>
+      <% @right.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
   <%= f.label  t:name %><br />
   <%= f.text_field :name %><br />

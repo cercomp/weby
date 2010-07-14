@@ -2,9 +2,17 @@
   <legend><%= (t:editing, :param => t("settings")) %></legend>
 
   <%= form_for(@setting) do |f| %>
-    <% @user.errors.full_messages.each do |msg| %>  
-      <li><%= msg %></li>  
-    <% end %>  
+    <% if @setting.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@setting.errors.count, "error") %> prohibited this site from being saved:</h2>
+        <ul>
+        <% @setting.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
     <p>
       <%= f.label t("name") %><br />
       <%= f.text_field :name%><br />

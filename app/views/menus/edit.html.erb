@@ -2,7 +2,16 @@
   <legend><%= t:editing, :param => (t:menu, :count => 1) %></legend>
 
   <% form_for(@menu) do |f| %>
-    <%= f.error_messages %>
+    <% if @menu.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@menu.errors.count, "error") %> prohibited this site from being saved:</h2>
+        <ul>
+        <% @menu.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
 
     <p>
       <%= f.label t:text %><br />
