@@ -21,14 +21,16 @@
         <td><%=h evento.status %></td>
         <td><%=h evento.author_id %></td>
         <td>
-          <%= link_to t("show"), site_evento_path("#{params[:site_id]}", evento) %>
-          <%= link_to t("edit"), edit_site_evento_path("#{params[:site_id]}", evento) %>
-          <%= link_to t("destroy"), site_evento_path("#{params[:site_id]}", evento), :confirm => t("are_you_sure"), :method => :delete %>
+          <% if params[:site_id] %>
+            <%= link_to t("show"), site_evento_path("#{params[:site_id]}", evento) %>
+            <%= link_to t("edit"), edit_site_evento_path("#{params[:site_id]}", evento) %>
+            <%= link_to t("destroy"), site_evento_path("#{params[:site_id]}", evento), :confirm => t("are_you_sure"), :method => :delete %>
+          <% end %>
         </td>
       </tr>
     <% end; reset_cycle %>
     <tbody>
   </table>
 
-  <p> <%= link_to (t:create_param, :param => (t:event, :count => 1)), new_site_page_path(:type => "Evento") %> </p>
+  <p> <%= link_to (t:create_param, :param => (t:event, :count => 1)), new_site_page_path(:type => "Evento") if params[:site_id]%> </p>
 </fieldset>

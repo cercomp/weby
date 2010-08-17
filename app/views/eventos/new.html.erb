@@ -1,14 +1,17 @@
-<h1><%=  t:new_param, :param => t("evento")%></h1>
+<fieldset>
+  <legend><%=  t:new_param, :param => t("evento")%></legend>
 
 <% form_for(@evento) do |f| %>
-  <%= f.error_messages %>
+  <% @evento.errors.full_messages.each do |msg| %>  
+    <li><%= msg %></li>  
+  <% end %>  
 
   <p>
     <%= f.label  :dt_cadastro, t:date, :param => t("registration") %><br />
     <%= f.date_select :created_at, :order => [:year, :month, :day], :use_month_numbers => true  %>
   </p>
   <p>
-    <%= f.label t:date, :param => t(":publication") %><br />
+    <%= f.label t:date, :param => t("publication") %><br />
     <%= f.date_select :date_pub, :order => [:year, :month, :day], :use_month_numbers => true  %>
   </p>
   <p>
@@ -109,3 +112,4 @@
 <% end %>
 
 <%= link_to t("back"), eventos_path %>
+</fieldset>

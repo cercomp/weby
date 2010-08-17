@@ -1,5 +1,7 @@
-<div class="foldMenus">
-  <p> <%= link_to (t:news, :count => 2), site_noticias_path, :class => 'simple_box' %> </p>
-  <p> <%= link_to (t:newsletter, :count => 2), site_informativos_path, :class => 'simple_box' %> </p>
-  <p> <%= link_to (t:event, :count => 2), site_eventos_path, :class => 'simple_box' %> </p>
-</div>
+<fieldset>
+  <legend><%= t:list, :param => (t:page, :count => 2)  %></legend>
+
+  <p> <%= link_to (t:news, :count => 2), {:controller => 'noticias', :action => 'index'}, :class => 'simple_box' %> </p>
+  <p> <%= link_to (t:newsletter, :count => 2), {:controller => 'informativos', :action => 'index'}, :class => 'simple_box' %> </p>
+  <p> <%= link_to (t:event, :count => 2), {:controller => 'eventos', :action => 'index'}, :class => 'simple_box' %> </p>
+</fieldset>

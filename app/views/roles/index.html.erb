@@ -1,37 +1,39 @@
-<h1><%= t('roles_permissions') %></h1>
+<fieldset>
+  <legend><%= t('roles_permissions') %></legend>
 
-<%= form_tag '/roles', :method => 'put' do %>
-<table class="list">
-  <thead>
-   <tr>
-    <th><%= t:permission, :count => 2%> / <%= t:roles  %></th>
-    <% @roles.each do |role| %>
-      <th><%= role.name %> [<%= link_to t('destroy'), role, :confirm => t('are_you_sure?'), :method => :delete %>]</th>
-      <%# role.rights.collect do |each|%>
-        <%#=  each.name %>
-      <%# end %>
-    <% end %>
-  </tr>
-  </thead>
-  <tbody>
-    <% @rights.each do |right| %>
-    <tr class="<%= cycle 'odd', 'even' %>">
-      <td><%= right.name %></td>
+  <%= form_tag '/roles', :method => 'put' do %>
+  <table class="list">
+    <thead>
+     <tr>
+      <th><%= t:permission, :count => 2%> / <%= t:roles  %></th>
       <% @roles.each do |role| %>
-        <td>
-          <%= check_box_tag "role[#{role.id}][right_ids][]", right.id, role.rights.include?(right), :id => nil %>
-          <%#= check_box_tag "role[right_ids][]", right.id, role.rights.include?(right), :id => nil %>
-        </td>
+        <th><%= role.name %> [<%= link_to t('destroy'), role, :confirm => t('are_you_sure'), :method => :delete %>]</th>
+        <%# role.rights.collect do |each|%>
+          <%#=  each.name %>
+        <%# end %>
       <% end %>
     </tr>
-    <% end; reset_cycle %>
-  </tbody>
-</table>
-  <%= submit_tag 'Salvar' %>
-<% end %>
+    </thead>
+    <tbody>
+      <% @rights.each do |right| %>
+      <tr class="<%= cycle 'odd', 'even' %>">
+        <td><%= right.name %></td>
+        <% @roles.each do |role| %>
+          <td>
+            <%= check_box_tag "role[#{role.id}][right_ids][]", right.id, role.rights.include?(right), :id => nil %>
+            <%#= check_box_tag "role[right_ids][]", right.id, role.rights.include?(right), :id => nil %>
+          </td>
+        <% end %>
+      </tr>
+      <% end; reset_cycle %>
+    </tbody>
+  </table>
+    <%= submit_tag 'Salvar' %>
+  <% end %>
 
-<p> <%= link_to (t:list, :param => (t:permission, :count => 2)), :controller => "rights", :action => "index" %> </p>
+  <p> <%= link_to (t:list, :param => (t:permission, :count => 2)), :controller => "rights", :action => "index" %> </p>
 
-<% if check_permission(RolesController, "new") %>
-  <p><%= link_to t("new"), :controller => "roles", :action => "new" %></p>
-<% end %>
+  <% if check_permission(RolesController, "new") %>
+    <p><%= link_to t("new"), :controller => "roles", :action => "new" %></p>
+  <% end %>
+</fieldset>

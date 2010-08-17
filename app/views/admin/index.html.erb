@@ -1,38 +1,38 @@
 <% if current_user %>
   <p>
-    <%= link_to (t:list, :param => (t:user, :count => 2)), site_users_path %>
+    <%= link_to (t:list, :param => (t:user, :count => 2)), :controller => 'users', :action => 'index' %>
     <% if check_permission(UsersController, "new") %>
      | <%= link_to t("new"), new_user_path, :class => 'icon icon-add' %>
     <% end %>
   </p>
   <p>
-    <%= link_to (t:list, :param => (t:permission, :count => 2)), site_rights_path %>
-    <% if check_permission(RightsController, "new") %>
-     | <%= link_to t("new"), new_right_path, :class => 'icon icon-add' %>
-    <% end %>
-  </p>
-  <p>
-    <%= link_to (t:list, :param => t("roles_permissions")), site_roles_path %>
-    <% if check_permission(RolesController, "new") %>
-     | <%= link_to t("new"), new_role_path, :class => 'icon icon-add' %>
-    <% end %>
-  </p>
-  <p>
-    <%= link_to (t:list, :param => (t:page, :count => 2)), site_pages_path %>
-    <% if check_permission(PagesController, "new") %>
-     | <%= link_to t("new"), new_page_path, :class => 'icon icon-add' %>
-    <% end %>
-  </p>
-  <p>
-    <%= link_to (t:list, :param => (t:menu, :count => 2)), site_menus_path %>
+    <%= link_to (t:list, :param => (t:menu, :count => 2)), :controller => 'menus', :action => 'index' %>
     <% if check_permission(MenusController, "new") %>
      | <%= link_to t("new"), new_menu_path, :class => 'icon icon-add' %>
     <% end %>
   </p>
   <p>
-    <%= link_to (t:list, :param => (t:site, :count => 2)), sites_path %>
+    <%= link_to (t:list, :param => (t:page, :count => 2)), :controller => 'pages', :action => 'index' %>
+    <% if check_permission(PagesController, "new") %>
+     | <%= link_to t("new"), new_page_path, :class => 'icon icon-add' %>
+    <% end %>
+  </p>
+  <p>
+    <%= link_to (t:list, :param => (t:site, :count => 2)), {:controller => 'sites', :action => 'index'} %>
     <% if check_permission(SitesController, "new") %>
      | <%= link_to t("new"), new_site_path, :class => 'icon icon-add' %>
+    <% end %>
+  </p>
+  <p>
+    <%= link_to (t:list, :param => (t:permission, :count => 2)), :controller => 'rights', :action => 'index' %>
+    <% if check_permission(RightsController, "new") %>
+     | <%= link_to t("new"), new_right_path, :class => 'icon icon-add' %>
+    <% end %>
+  </p>
+  <p>
+    <%= link_to (t:list, :param => t("roles_permissions")), :controller => 'roles', :action => 'index' %>
+    <% if check_permission(RolesController, "new") %>
+     | <%= link_to t("new"), new_role_path, :class => 'icon icon-add' %>
     <% end %>
   </p>
 <% end %>

@@ -19,14 +19,16 @@
         <td><%=h noticia.author_id %></td>
         <td><%=h noticia.created_at %></td>
         <td>
-          <%= link_to t("show"), noticia %>
-          <%= link_to t("edit"), edit_noticia_path(noticia) %>
-          <%= link_to t("destroy"), noticia, :confirm => t("are_you_sure"), :method => :delete %>
+          <% if params[:site_id] %>
+            <%= link_to t("show"), :controller => 'noticias', :action => 'show', :id => noticia %>
+            <%= link_to t("edit"), :controller => 'noticias', :action => 'edit', :id => noticia %>
+            <%= link_to t("destroy"), {:controller => 'noticias', :action => 'destroy', :id => noticia}, :confirm => t("are_you_sure"), :method => :delete %>
+          <% end %>
         </td>
       </tr>
     <% end; reset_cycle %>
     </tbody>
   </table>
 
-  <p> <%= link_to (t:create_param, :param => (t:news, :count => 1)), new_site_page_path(:type => "Noticia") %> </p>
+  <p> <%= link_to (t:create_param, :param => (t:news, :count => 1)), :controller => 'noticias', :action => 'new', :type => "Noticia" %> </p>
 </fieldset>

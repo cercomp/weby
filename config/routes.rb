@@ -1,5 +1,5 @@
 Webyge3::Application.routes.draw do |map|
-  resources :site do
+  resources :sites do
     resources :menus
     resources :eventos
     resources :noticias
@@ -12,7 +12,6 @@ Webyge3::Application.routes.draw do |map|
     resources :users
   end
 
-  resources :sites
   resources :menus
   resources :eventos
   resources :noticias
@@ -37,18 +36,17 @@ Webyge3::Application.routes.draw do |map|
   match 'login' => 'user_sessions#new', :as => 'login'
   match 'denied' => "admin#access_denied", :as => 'denied'
   match 'admin' => "admin#index"
-  match ':site' => "sites#index" # Página principal do site
+#  match ':site' => "sites#index" # Página principal do site
 
   root :to => "sites#index" # Página agregadora dos sites
 
+#  match ':site(/:controller(/:action(/:id)))', :constraints => {
+#    :site       => /[a-z]*/, # Nenhuma ou mais letras minúsculas
+#    :controller => /[a-z_]+/, # Uma ou mais letras minúsculas e sublinhado
+#    :action     => /[a-z]*/,
+#    :id => /\d*/ # Nenhuma ou mais números
+#  } 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id(.:format)))'
-  match ':site(/:controller(/:action(/:id)))', :constraints => {
-    :site       => /[a-z]*/, # Nenhuma ou mais letras minúsculas
-    :controller => /[a-z_]+/, # Uma ou mais letras minúsculas e sublinhado
-    :action     => /[a-z]*/,
-    :id => /\d*/ # Nenhuma ou mais números
-  } 
   match ':controller(/:action(/:id(.:format)))'
 end

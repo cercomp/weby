@@ -19,14 +19,16 @@
         <td><%= informativo.status %></td>
         <td><%= informativo.title %></td>
         <td>
-          <%= link_to t("show"), site_informativo_path("#{params[:site_id]}", informativo) %>
-          <%= link_to t("edit"), edit_site_informativo_path("#{params[:site_id]}", informativo) %>
-          <%= link_to t("destroy"), site_informativo_path("#{params[:site_id]}", informativo), :confirm => t("are_you_sure"), :method => :delete %>
+          <% if params[:site_id] %>
+            <%= link_to t("show"), site_informativo_path("#{params[:site_id]}", informativo) %>
+            <%= link_to t("edit"), edit_site_informativo_path("#{params[:site_id]}", informativo) %>
+            <%= link_to t("destroy"), site_informativo_path("#{params[:site_id]}", informativo), :confirm => t("are_you_sure"), :method => :delete %>
+          <% end %>
         </td>
       </tr>
     <% end; reset_cycle %>
     <tbody>
   </table>
 
-  <p> <%= link_to (t:create_param , :param => (t:newsletter, :count => 1)), new_site_page_path(:type => "Informativo") %> </p>
+  <p> <%= link_to (t:create_param , :param => (t:newsletter, :count => 1)), new_site_page_path(:type => "Informativo") if params[:site_id] %> </p>
 </fieldset>

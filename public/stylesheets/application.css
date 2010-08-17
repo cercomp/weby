@@ -1,17 +1,5 @@
 @import url(alternate.css);
 
-/* Css dos menus */
-.simple_box{
-    width: 75px;
-    height:18px;
-    cursor:pointer;
-    float:left;
-    margin-right:17px;
-    border: solid 1px #E0EEEE;
-    background-color:#F0FFFF;
-    text-align:center;
-}
-
 html { 
   height: 99%; 
   max-height: 99%; 
@@ -32,7 +20,6 @@ legend { color: #000; font-weight: bold; font-size: 18px; background-color: #FFF
 #quick-search { float: right; padding: 16px 0px 5px 0px; }
 #title { float: left; padding: 16px 0px 5px 10px; font-size: 30px; }
 #account { float: right; }
-
 #header {
   background-color: #507AAA;
   color: #f8f8f8; 
@@ -40,7 +27,17 @@ legend { color: #000; font-weight: bold; font-size: 18px; background-color: #FFF
   height: 75px;
   margin-bottom: 5px;
 }
-
+/* Css dos menus */
+.simple_box{
+  padding: 5px;
+  cursor: pointer;
+  float: left;
+  margin-right: 5px;
+  border: 1px solid #E0EEEE;
+  background-color: #F0FFFF;
+  text-align: center;
+}
+.simple_box:hover {background: #759FCF; color:#fff;}
 .splitcontentleft{float:left; width:49%;}
 .splitcontentright{float:right; width:49%;}
 

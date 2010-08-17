@@ -14,8 +14,16 @@
   <div class="all">
     <div class="top"> </div>
 
-    <%= render 'layouts/menu_top' %>
-    <%= render 'layouts/menu_left' %>  
+    <div class="top-menu">
+      <div style="float:right">
+        <%= link_to image_tag("flag_uk.png"), :locale => "en" %>
+        <%= link_to image_tag("flag_br.png"), :locale => "pt-BR" %>
+      </div>
+      <%#= render 'layouts/menu_top' %>
+    </div>
+    <div class="left-menu">
+      <%#= render 'layouts/menu_left' %>  
+    </div>
 
     <div class="content">
       <div id="flash_messages">
@@ -27,7 +35,7 @@
         <%= link_to t("register"), new_user_path %> |
         <%= link_to t("login"), login_path %> |
       <% else %>
-        <%= link_to t("admin"), site_admins_path if params[:site_id] %> |
+        <%= link_to t("admin"), :controller => 'admin', :action => 'index' %> |
         <%= link_to t("my_profile"), user_path(current_user) %> |
         <%= link_to t("logout"), logout_path, :confirm => "Are you sure you want to logout?" %>
       <% end %>
@@ -36,8 +44,12 @@
       <%= yield  %>
     </div>
 
-    <%= render 'layouts/menu_right' %>
-    <%= render 'layouts/menu_bottom' %>
+    <div class="right-menu">
+      <%#= render 'layouts/menu_right' %>
+    </div>
+    <div class="bottom">
+      <%#= render 'layouts/menu_bottom' %>
+    </div>
 
   </div>
 </body>

@@ -15,6 +15,7 @@
         <th><%= t:roles %></th>
       <% end %>
       <th></th>
+      <th></th>
     </tr>
     </thead>
 
@@ -27,7 +28,7 @@
       <td align="center"><%= raw menu_change_status(UsersController, user, user.status,  'status') %></td>
       <td align="center"><%= raw menu_change_status(UsersController, user, user.is_admin ,'is_admin' ) %></td>
       <% if check_permission(UsersController, "change_roles") %>
-      <% form_tag({:controller => "users", :action => "change_roles"}, :method => "get") do %>
+      <%= form_tag({:controller => "users", :action => "change_roles"}, :method => "get") do %>
         <td>
         <% @roles.each do |role| %> 
           <% if current_user && !user.role_ids.empty? %> 
