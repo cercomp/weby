@@ -23,15 +23,15 @@ pt-BR:
   controller: "Controle"
   cover: "Capa"
   create: "Criar"
-  create_param: "Criar {{param}}"
-  current_login: "Entrada atual {{param}}" 
+  create_param: "Criar %{param}"
+  current_login: "Entrada atual %{param}" 
 
 #---D---#
-  date: "Data de {{param}}" 
+  date: "Data de %{param}" 
   destroy: "Excluir"  
 
 #---E---#
-  editing: "Editando {{param}}"
+  editing: "Editando %{param}"
   email: "E-mail"
   end: "fim"
   event: 
@@ -58,16 +58,16 @@ pt-BR:
   time_cover: "capa agendada" 
 
 #---L---#
-  last_login: "Último entrada {{param}}"
+  last_login: "Último entrada %{param}"
   last_request: "Última submissão em"
   layout: "Leiaute"
-  listing: "Listando {{param}}"
+  listing: "Listando %{param}"
   localization: "Local de realização"
   login: "Entrar"
   logout: "Sair"
   logout_success: "Logout com sucesso!"
   login_count: "Login Count"
-  list: "Listar {{param}}"
+  list: "Listar %{param}"
   
 #---M---#
   menu: 
@@ -84,7 +84,7 @@ pt-BR:
   newsletter: 
     one: "Informativo"
     other: "Informativos"
-  new_param: "Novo {{param}}!"
+  new_param: "Novo %{param}!"
   name: "Nome"
 
 #---O---#
@@ -109,7 +109,7 @@ pt-BR:
 #---R---#
   register: "Cadastro"
   remember_me: "Lembrar-me"
-  remove: "remover {{param}}"
+  remove: "remover %{param}"
   right: "Direito"
   rights: "Direitos"
   role: "Papel"
@@ -128,7 +128,7 @@ pt-BR:
   status: "Status"
   subject: "Assunto"
   sub-menu: "Sub-menu"
-  successfully_removed: "{{param}} foi removido com sucesso!"
+  successfully_removed: "%{param} foi removido com sucesso!"
   suggestion:
     one:  "Sugestão"
     other: "Sugestões"
@@ -142,10 +142,10 @@ pt-BR:
   title: "Título"
   time_cover: "Capa agendada"
   time: "Tempo"
-  type: "Digite a {{param}}"
+  type: "Digite a %{param}"
 
 #---U---#
-  update: "Atualizar {{param}}"
+  update: "Atualizar %{param}"
   update_password_log: "Atualize minha senha e me conecte." 
   url: "URL"
   user: 
@@ -163,8 +163,8 @@ pt-BR:
 #--- Other locales ---#
   helpers:
     submit:
-      create: "Criar {{model}}"
-      update: "Confirmar mudanças para {{model}}"
+      create: "Criar %{model}"
+      update: "Confirmar mudanças para %{model}"
 
   activerecord:
     attributes:
@@ -185,7 +185,7 @@ pt-BR:
       template:
         header:
           one: "não foi possivel atualizar o modelo: 1 erro"
-          other: "não foi possivel atualizar o modelo: {{count}} erros."
+          other: "não foi possivel atualizar o modelo: %{count} erros."
         body: "Por favor cheque os seguintes campos:"
       messages:
         inclusion: " não está incluido na lista"
@@ -195,16 +195,16 @@ pt-BR:
         accepted: "acception required"
         empty: "deve ser preenchido"
         blank: "deve ser preenchido"
-        too_long: "muito longo (não é possível usar mais de {{count}} characteres)"
-        too_short: "muito curto (não é possível usar menos de {{count}} characteres)"
-        wrong_length: "wrong length ({{count}} characters required)"
+        too_long: "muito longo (não é possível usar mais de %{count} characteres)"
+        too_short: "muito curto (não é possível usar menos de %{count} characteres)"
+        wrong_length: "wrong length (%{count} characters required)"
         taken: "indisponível"
         not_a_number: "não é um número"
-        greater_than: "Requerido maior do que {{count}}"
-        greater_than_or_equal_to: "Requerido maior que ou igual a {{count}}"
-        equal_to: "Requerido igual a {{count}}"
-        less_than: "Requerido menor que {{count}}"
-        less_than_or_equal_to: "Requerido menor que ou igual a {{count}}"
+        greater_than: "Requerido maior do que %{count}"
+        greater_than_or_equal_to: "Requerido maior que ou igual a %{count}"
+        equal_to: "Requerido igual a %{count}"
+        less_than: "Requerido menor que %{count}"
+        less_than_or_equal_to: "Requerido menor que ou igual a %{count}"
         odd: "odd requerido"
         even: "even requerido"
 

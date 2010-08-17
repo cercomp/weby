@@ -23,15 +23,15 @@ en:
   controller: "Controller"
   cover: "Cover"
   create: "Create"
-  create_param: "Create {{param}}"
-  current_login: "Current login {{param}}" 
+  create_param: "Create %{param}"
+  current_login: "Current login %{param}" 
 
 #---D---#
-  date: "Date of {{param}}" 
+  date: "Date of %{param}" 
   destroy: "destroy"  
 
 #---E---#
-  editing: "Editing {{param}}"
+  editing: "Editing %{param}"
   email: "E-mail"
   end: "end"
   event: 
@@ -59,16 +59,16 @@ en:
  
 
 #---L---#
-  last_login: "Last login {{param}}"
+  last_login: "Last login %{param}"
   last_request: "Last request at"
   layout: "Layout"
-  listing: "Listing {{param}}"
+  listing: "Listing %{param}"
   localization: "Localization"
   login: "Login"
   logout: "Logout"
   logout_success: "Logged out successfully!"
   login_count: "Login Count"
-  list: "List {{param}}"
+  list: "List %{param}"
   
 #---M---#
   menu: 
@@ -86,7 +86,7 @@ en:
   newsletter: 
     one: "Informativo"
     other: "Informativos"
-  new_param: "New {{param}}!"
+  new_param: "New %{param}!"
   name: "Name"
 
 #---O---#
@@ -111,7 +111,7 @@ en:
 #---R---#
   register: "Register"
   remember_me: "Remember me"
-  remove: "remove {{param}}"
+  remove: "remove %{param}"
   right: "Right"
   rights: "Rights"
   role: "Role"
@@ -130,7 +130,7 @@ en:
   status: "Status"
   subject: "Subject"
   sub-menu: "Sub-menu"
-  successfully_removed: "{{param}} successfully removed!"
+  successfully_removed: "%{param} successfully removed!"
   suggestion:
     one:  "Sugestão"
     other: "Sugestões"
@@ -144,10 +144,10 @@ en:
   title: "Title"
   time_cover: "Capa agendada"
   time: "Time"
-  type: "Type a {{param}}"
+  type: "Type a %{param}"
 
 #---U---#
-  update: "Update {{param}}"
+  update: "Update %{param}"
   update_password_log: "update my password and log me in" 
   url: "URL"
   user:
@@ -164,8 +164,8 @@ en:
 #--- Other locales ---#
   helpers:
     submit:
-      create: "Create a {{model}}"
-      update: "Confirm changes to {{model}}"
+      create: "Create a %{model}"
+      update: "Confirm changes to %{model}"
 
   activerecord:
     attributes:
@@ -186,7 +186,7 @@ en:
       template:
         header:
           one: "Is not possible update model: 1 error"
-          other: "Is not possible update model: {{count}} errors."
+          other: "Is not possible update model: %{count} errors."
         body: "Please, verify this fields:"
       messages:
         inclusion: "Not include in list"
@@ -196,15 +196,15 @@ en:
         accepted: "acception required"
         empty: "Must be completed"
         blank: "Must be completed"
-        too_long: "very long (can not use use more than {{count}} characters)"
-        too_short: "very short (can not use less than {{count}} characters)"
-        wrong_length: "wrong length ({{count}} characters required)"
+        too_long: "very long (can not use use more than %{count} characters)"
+        too_short: "very short (can not use less than %{count} characters)"
+        wrong_length: "wrong length (%{count} characters required)"
         taken: "Unavailable"
         not_a_number: "Not is a number"
-        greater_than: "greater than {{count}} required"
-        greater_than_or_equal_to: "greater than or equal to {{count}} required"
-        equal_to: "equal to {{count}} required"
-        less_than: "less than {{count}} required"
-        less_than_or_equal_to: "less than or equal to {{count}} required"
+        greater_than: "greater than %{count} required"
+        greater_than_or_equal_to: "greater than or equal to %{count} required"
+        equal_to: "equal to %{count} required"
+        less_than: "less than %{count} required"
+        less_than_or_equal_to: "less than or equal to %{count} required"
         odd: "odd required"
         even: "even required"
