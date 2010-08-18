@@ -10,6 +10,20 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
+  <%#= debug(params) %>
+  <%
+    if params[:site_id]
+      @top = "" 
+      @left = Site.find(params[:site_id]).sites_menus
+      @right = ""
+      @bottom = ""
+    else
+      @top = "" 
+      @left = ""
+      @right = ""
+      @bottom = ""
+    end
+  %>
   <%#= request.env['HTTP_REFERER'] %>
   <div class="all">
     <div class="top"> </div>
@@ -19,10 +33,10 @@
         <%= link_to image_tag("flag_uk.png"), :locale => "en" %>
         <%= link_to image_tag("flag_br.png"), :locale => "pt-BR" %>
       </div>
-      <%#= render 'layouts/menu_top' %>
+      <%= render 'menus/top', :object => @top %>
     </div>
     <div class="left-menu">
-      <%#= render 'layouts/menu_left' %>  
+      <%= render 'menus/left', :object => @left %>  
     </div>
 
     <div class="content">
@@ -45,10 +59,10 @@
     </div>
 
     <div class="right-menu">
-      <%#= render 'layouts/menu_right' %>
+      <%= render 'menus/right', :object => @right %>
     </div>
     <div class="bottom">
-      <%#= render 'layouts/menu_bottom' %>
+      <%= render 'menus/bottom', :object => @bottom %>  
     </div>
 
   </div>
