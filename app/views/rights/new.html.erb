@@ -1,17 +1,21 @@
-<h1><%= t:new_param, :param => t("right")%></h1>
+<fieldset>
+  <legend><%= t:new_param, :param => t("right")%></legend>
 
-<% form_for(@right) do |f| %>
-  <%= f.error_messages %>
-  
-  <%= f.label  t:name%><br />
-  <%= f.text_field :name %><br />
-  <%= f.label  t:controller %><br />
-  <%= f.text_field :controller %><br />
-  <%= f.label  t:action %><br />
-  <%= f.text_field :action %><br />
-  <p>
-    <%= f.submit  %>
-  </p>
-<% end %>
+  <% form_for(@right) do |f| %>
+    <% @right.errors.full_messages.each do |msg| %>  
+      <li><%= msg %></li>  
+    <% end %>  
+    
+    <%= f.label  t:name%><br />
+    <%= f.text_field :name %><br />
+    <%= f.label  t:controller %><br />
+    <%= f.text_field :controller %><br />
+    <%= f.label  t:action %><br />
+    <%= f.text_field :action %><br />
+    <p>
+      <%= f.submit  %>
+    </p>
+  <% end %>
 
-<%= link_to t('back'), rights_path %>
+  <%= link_to t('back'), rights_path %>
+</fieldset>

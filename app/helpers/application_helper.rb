@@ -32,17 +32,17 @@ module ApplicationHelper
       menus += "<div style=\"padding-left: #{padding_left * depth}px; height: 25px; background-color: #{colors[depth]};\">" + link_to('title', "link")
       if current_user
         menus += "<div style='float: right;  white-space: nowrap;'>" +
-          link_to(image_tag('editar.gif', :border => 0), edit_site_menu_path(params[:site_id], menu)) +
-          link_to(image_tag('subitem.gif', :border => 0), new_site_menu_path(:parent_id => menu.id)) +
-          link_to(image_tag('setaup.gif', :border => 0), new_site_menu_path(:parent_id => menu.id)) +
-          link_to(image_tag('setadown.gif', :border => 0), new_site_menu_path(:parent_id => menu.id)) +
-          link_to(image_tag('apagar.gif', :border => 0), site_menu_path(params[:site_id], menu), :confirm => 'are_you_sure', :method => :delete) + "</div>"
+          link_to(image_tag('editar.gif', :border => 0), edit_site_menu_path(@site, menu)) +
+          link_to(image_tag('subitem.gif', :border => 0), new_site_menu_path(@site, :parent_id => menu.id)) +
+          link_to(image_tag('setaup.gif', :border => 0), new_site_menu_path(@site, :parent_id => menu.id)) +
+          link_to(image_tag('setadown.gif', :border => 0), new_site_menu_path(@site, :parent_id => menu.id)) +
+          link_to(image_tag('apagar.gif', :border => 0), site_menu_path(@site, menu), :confirm => 'are_you_sure', :method => :delete) + "</div>"
       end
       menus += "</div>"
 #      menus += list_menus(menu.parent_id, padding_left, depth += 1)
       depth += 1
     end
-    return menus
+    menus
   end
 
   # Define mensagens personalizadas

@@ -1,5 +1,12 @@
 Webyge3::Application.routes.draw do |map|
-  match ':sites/:site_id' => "sites#index"
+  resources :users do
+    collection do
+      get :change_roles
+    end
+  end
+
+  match ':sites/new' => "sites#new"
+  match ':sites/:site_id' => "sites#index"#, :constraints => {:site_id => /\d/}
 
   resources :sites do
     resources :menus
@@ -27,12 +34,6 @@ Webyge3::Application.routes.draw do |map|
   resources :user_sessions
   resources :password_resets
   resources :account, :controller => "users"
-
-  resources :users do
-    collection do
-      get :change_roles
-    end
-  end
 
   match 'logout' => 'user_sessions#destroy', :as => "logout"
   match 'login' => 'user_sessions#new', :as => 'login'

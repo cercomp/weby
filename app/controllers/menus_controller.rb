@@ -7,11 +7,8 @@ class MenusController < ApplicationController
 
   def index
     if params[:site_id]
-      @site = Site.find(params[:site_id])
-      @menus = SitesMenu.where(["site_id = ?", params[:site_id]])
-    
       @top = "" 
-      @left = Site.find(params[:site_id]).sites_menus
+      @left = @site.sites_menus
       @right = ""
     else
       @top = "" 

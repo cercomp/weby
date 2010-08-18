@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :set_locale
   before_filter :check_authorization, :except => [:current_user_session, :current_user, :access_denied, :choose_layout]
+  before_filter :get_site_obj
  
   helper :all
   helper_method :current_user_session, :current_user, :user_not_authorized
@@ -113,5 +114,10 @@ class ApplicationController < ActionController::Base
   def redirect_back_or_default(default)
     redirect_to(session[:return_to] || default)
     session[:return_to] = nil
+  end
+  
+  # Pegar o id do site a partir do seu nome
+  def get_site_obj
+    @site = Site.find(:first, :conditions => [ "name = ?", params[:site_id]])
   end
 end
