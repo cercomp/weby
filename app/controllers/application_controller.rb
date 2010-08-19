@@ -118,6 +118,7 @@ class ApplicationController < ActionController::Base
   
   # Pegar o id do site a partir do seu nome
   def get_site_obj
-    @site = Site.find(:first, :conditions => [ "name = ?", params[:site_id]])
+    @site = Site.find(:first, :conditions => ["name = ?", params[:site_id]])
+    @menus = Menu.find(:all, :conditions => ["id IN (?)", @site.menu_ids]) if @site && !@site.menu_ids.empty?
   end
 end

@@ -2,20 +2,26 @@
   <legend><%= t:list, :param => (t:menu, :count => 2)  %></legend>
 
   <div style="height:30px">
-    <div class="simple_box" onClick="$('#left_m').toggle();" style="cursor: pointer;">Esquerdo</div>
-    <div class="simple_box" onClick="$('#right_m').toggle();" style="cursor: pointer;">Direito</div>
-    <div class="simple_box" onClick="$('#top_m').toggle();" style="cursor: pointer;">Superior</div>
+    <div class="simple_box"><%= link_to("Esquerdo", :controller => 'menus', :action => 'index', :left_menu => 1) %></div>
+    <div class="simple_box"><%= link_to("Direito", :controller => 'menus', :action => 'index', :right_menu => 1) %></div>
+    <div class="simple_box"><%= link_to("Superior", :controller => 'menus', :action => 'index', :top_menu => 1) %></div>
   </div>
 
-  <div id="left_m" style="display:none;">
+  <% if params[:left_menu] %>
+  <div id="left_m">
     <%= render "left" %>
   </div>
-  <div id="right_m" style="display:none;">
+  <% end %>
+  <% if params[:right_menu] %>
+  <div id="right_m">
     <%= render "right" %>
   </div>
-  <div id="top_m" style="display:none;">
+  <% end %>
+  <% if params[:top_menu] %>
+  <div id="top_m">
     <%= render "top" %>
   </div>
+  <% end %>
 
-  <p> <%= link_to (t:create_param, :param => (t:menu, :count => 2)),  :controller => 'menus', :site => params[:site_id], :action => 'index' %> </p>
+  <p> <%= link_to (t:create_param, :param => (t:menu, :count => 2)),  :controller => 'menus', :site => params[:site_id], :action => 'new' %> </p>
 </fieldset>

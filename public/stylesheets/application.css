@@ -38,6 +38,7 @@ legend { color: #000; font-weight: bold; font-size: 18px; background-color: #FFF
   text-align: center;
 }
 .simple_box:hover {background: #759FCF; color:#fff;}
+.simple_box a:hover {background: #759FCF; color:#fff;}
 .splitcontentleft{float:left; width:49%;}
 .splitcontentright{float:right; width:49%;}
 

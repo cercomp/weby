@@ -34,7 +34,7 @@ class MenusController < ApplicationController
   def create
     @menu = Menu.new(params[:menu])
     @menu.save
-    respond_with(@menu)
+    redirect_to :back, :notice => "Successfully created." 
   end
 
   def update
@@ -47,5 +47,11 @@ class MenusController < ApplicationController
     @menu = Menu.find(params[:id])
     @menu.destroy
     respond_with(@menu)
+  end
+  
+  def rm_menu
+    @rm_menu = SitesMenu.find(params[:id])
+    @rm_menu.destroy
+    redirect_to :back, :notice => "Successfully deleted." 
   end
 end

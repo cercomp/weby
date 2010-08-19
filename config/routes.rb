@@ -9,7 +9,7 @@ Webyge3::Application.routes.draw do |map|
   match ':sites/:site_id' => "sites#index"#, :constraints => {:site_id => /\d/}
 
   resources :sites do
-    resources :menus
+    resources :menus do collection { get :rm_menu } end
     resources :eventos
     resources :noticias
     resources :informativos

@@ -8,18 +8,22 @@
   <%= form_for(@menu) do |f| %>
     <% @menu.errors.full_messages.each do |msg| %>  
       <li><%= msg %></li>  
-    <% end %>  
+    <% end %>
 
-    <%#= f.hidden_field :parent_id, :value => params[:parent_id] %>
-    <%= f.hidden_field "sites_menus_attributes[][site_id]", :value => params[:site_id] %>
+    <%#= f.fields_for :sites_menus do |menus_form| %>
+      <%#= menus_form.hidden_field :parent_id, :value => params[:parent_id] %>
+    <%# end %>
+
+    <%= f.hidden_field "sites_menus_attributes[][parent_id]", :value => params[:parent_id] %>
+    <%= f.hidden_field "sites_menus_attributes[][site_id]", :value => @site.id %>
     <p>
       <%= t:text %>:<br />
       <%= f.text_field :title %>
     </p>    
     <% if !params[:parent_id] %>
       <p>
-        <%= t:position %>:<br />
-        <%#= select(:menu, :position, [ "top", "right" , "left", "bottom"]) %>
+        <%#= t:position %>:<br />
+          <%#= select(:menu, :position, [ "top", "left", "right", "bottom"]) %>
       </p>
     <% end %>
 
