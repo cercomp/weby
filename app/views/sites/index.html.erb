@@ -11,7 +11,7 @@
       <tr class="<%= cycle 'odd', 'even' %>">
         <td><%= site.name %></td>
         <td>
-          <%= link_to t('show'), :controller => "sites", :action => "show", :id => site.name %>
+          <%= link_to t('show'), :controller => "site", :action => "show", :id => site.name %>
           <%= link_to t('edit'), edit_site_path(site) %>
           <%= link_to t('destroy'), site, :confirm => t("are_you_sure"), :method => :delete %>
         </td>

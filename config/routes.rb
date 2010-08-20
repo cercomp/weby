@@ -1,14 +1,10 @@
 Webyge3::Application.routes.draw do |map|
-  resources :users do
-    collection do
-      get :change_roles
-    end
-  end
+  resources :users do collection { get :change_roles } end
 
-  match ':sites/new' => "sites#new"
-  match ':sites/:site_id' => "sites#index"#, :constraints => {:site_id => /\d/}
+  match 'site/new' => "sites#new"
+  match 'site/:site_id' => "sites#index"#, :constraints => {:site_id => /\d/}
 
-  resources :sites do
+  resources :site do
     resources :menus do collection { get :rm_menu } end
     resources :eventos
     resources :noticias
@@ -18,9 +14,10 @@ Webyge3::Application.routes.draw do |map|
     resources :admin, :controller => "admin", :only => [:index]
     resources :roles
     resources :rights
-    resources :users
+    resources :users do collection { get :change_roles } end
   end
 
+  resources :sites
   resources :menus
   resources :eventos
   resources :noticias
@@ -42,7 +39,7 @@ Webyge3::Application.routes.draw do |map|
 
   root :to => "sites#index" # Página agregadora dos sites
 
-  match ':site(/:controller(/:action(/:id)))', :constraints => {
+  match 'site/:site_id(/:controller(/:action(/:id)))', :constraints => {
     :site       => /[a-z]*/, # Nenhuma ou mais letras minúsculas
     :controller => /[a-z_]+/, # Uma ou mais letras minúsculas e sublinhado
     :action     => /[a-z]*/,
