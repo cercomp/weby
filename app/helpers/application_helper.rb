@@ -29,7 +29,7 @@ module ApplicationHelper
     colors = ["#00ffff", "#85fcfc", "#baffff", "#ceffff", "#e0ffff"]
     menus = ""
     start_menu.each do |menu|
-      menus += "<div style=\"padding-left: #{padding_left * depth}px; height: 25px; background-color: #{colors[depth]};\">" + link_to("#{@menus[depth].title}", "#{@menus[depth].link}")
+      menus += "<div style=\"padding-left: #{padding_left * depth}px; height: 25px; background-color: #{colors[depth]};\">" + link_to("#{@site.menus[depth].title}", "#{@site.menus[depth].link}")
       if current_user
         menus += "<div style='float: right;  white-space: nowrap;'>" +
           link_to(image_tag('editar.gif', :border => 0), edit_site_menu_path(@site.name, menu)) +

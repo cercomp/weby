@@ -124,10 +124,10 @@ class ApplicationController < ActionController::Base
       else
         @site = Site.find(:first, :conditions => ["name = ?", params[:site_id]])
       end
-      @menus = Menu.find(:all, :conditions => ["id IN (?)", @site.menu_ids]) if @site && !@site.menu_ids.empty?
+#      @menus = Menu.find(:all, :conditions => ["id IN (?)", @site.menu_ids]) if @site && !@site.menu_ids.empty?
     elsif params[:id]
       @site = Site.find(:first, :conditions => ["id = ?", params[:id]])
-      @menus = Menu.find(:all, :conditions => ["id IN (?)", @site.menu_ids]) if @site && !@site.menu_ids.empty?
+#      @menus = Menu.find(:all, :conditions => ["id IN (?)", @site.menu_ids]) if @site && !@site.menu_ids.empty?
     end
   end
 end
