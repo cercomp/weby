@@ -1,4 +1,3 @@
-require "#{Rails.root}/lib/semantic_form_helper.rb"
 class SemanticFormBuilder < ActionView::Helpers::FormBuilder
   include SemanticFormHelper
   

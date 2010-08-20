@@ -1,8 +1,7 @@
-<%= __FILE__ %>
 <fieldset>
   <legend><%= t:edit, :param => t("my_account")%></legend>
 
-  <%= form_for @user, :url => account_path do |f| %>
+  <%= form_for @user, :builder => SemanticFormBuilder, :url => account_path do |f| %>
     <% if @user.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@user.errors.count, "error") %> prohibited this site from being saved:</h2>
