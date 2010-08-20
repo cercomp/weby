@@ -1,13 +1,7 @@
-<%= form.label :login, t("username") %><br />
-<%= form.text_field :login %><br />
-<%= form.label t:email %><br />
-<%= form.text_field :email %><br />
-<%= form.label t("password"), form.object.new_record? ? nil : "Change password" %><br />
-<%= form.password_field :password %><br />
-<%= form.label t:password_confirmation %><br />
-<%= form.password_field :password_confirmation %><br />
-<%= form.label t:status %>
-<%= form.check_box :status %><br />
+<%= form.text_field :login, :label => t('username') %><br />
+<%= form.text_field :email, :label => t('email') %><br />
+<%= form.password_field :password, :label => form.object.new_record? ?  t('password') : 'Change password'  %><br />
+<%= form.password_field :password_confirmation, :label => t('password_confirmation') %><br />
+<%= form.check_box :status, :label => t('status') %><br />
 
-<%= form.label :theme, t('layout') %><br />
-<%= form.select :theme, @themes.collect{|p| [ p , p]} %><br />
+<%= form.select :theme, @themes.collect{|p| [ p , p]}, :label => t('layout') %><br />
