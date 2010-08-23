@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100818175046) do
+ActiveRecord::Schema.define(:version => 20100820164522) do
 
   create_table "feedback_users_groups", :force => true do |t|
     t.integer  "talk_id"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20100818175046) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "site_id"
   end
 
   create_table "menus", :force => true do |t|
