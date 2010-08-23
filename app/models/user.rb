@@ -13,4 +13,8 @@ class User < ActiveRecord::Base
 
   has_many :sites_users #, :foreign_key => "user_id"
   has_many :sites, :through => :sites_users
+
+  #has_many :group, :through => :feedback_users_group
+  #has_many :feedback, :through => :feedback_users_group
+  has_many :feedback_users_group
 end

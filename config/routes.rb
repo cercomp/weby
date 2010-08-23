@@ -9,6 +9,8 @@ Webyge3::Application.routes.draw do |map|
     resources :eventos
     resources :noticias
     resources :informativos
+    resources :groups
+    resources :feedbacks
     resources :pages
     resources :chats
     resources :admin, :controller => "admin", :only => [:index]
@@ -18,6 +20,8 @@ Webyge3::Application.routes.draw do |map|
   end
 
   resources :sites
+  resources :groups
+  resources :feedbacks
   resources :menus
   resources :eventos
   resources :noticias
