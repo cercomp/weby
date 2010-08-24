@@ -1,8 +1,7 @@
-<%= form_for(@group) do |f| %>
+<%= form_for @group, :builder => SemanticFormBuilder do |f| %>
   <% if @group.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@group.errors.count, "error") %> prohibited this group from being saved:</h2>
-
       <ul>
       <% @group.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -11,11 +10,10 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.text_field :name, :label => t("name") %>
+
+  <%=  f.hidden_field :site_id, :value => params[:site_id] %>
+
+  <%= f.submit t("create") %>
+
 <% end %>

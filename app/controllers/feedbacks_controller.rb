@@ -1,4 +1,5 @@
 class FeedbacksController < ApplicationController
+  layout :choose_layout
   # GET /feedbacks
   # GET /feedbacks.xml
   def index

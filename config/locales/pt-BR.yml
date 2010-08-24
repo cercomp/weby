@@ -73,6 +73,7 @@ pt-BR:
   menu: 
     one: "Menu"
     other: "Menus"
+  message: "Menssagem"
   my_account: "Minha conta"
   my_profile: "Meu Perfil"
 
@@ -127,6 +128,7 @@ pt-BR:
   source: "Fonte"
   status: "Status"
   subject: "Assunto"
+  submit: "Enviar"
   sub-menu: "Sub-menu"
   successfully_removed: "%{param} foi removido com sucesso!"
   suggestion:
@@ -142,6 +144,7 @@ pt-BR:
   title: "Título"
   time_cover: "Capa agendada"
   time: "Tempo"
+  to: "para"
   type: "Digite a %{param}"
 
 #---U---#

@@ -75,6 +75,7 @@ en:
     one: "Menu"
     other: "Menus"
   menus: "Menus"
+  message: "Message"
   my_account: "My account"
   my_profile: "My profile"
 
@@ -129,6 +130,7 @@ en:
   source: "Source"
   status: "Status"
   subject: "Subject"
+  submit: "Send"
   sub-menu: "Sub-menu"
   successfully_removed: "%{param} successfully removed!"
   suggestion:
@@ -144,6 +146,7 @@ en:
   title: "Title"
   time_cover: "Capa agendada"
   time: "Time"
+  to: "To"
   type: "Type a %{param}"
 
 #---U---#
