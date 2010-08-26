@@ -46,6 +46,9 @@ pt-BR:
   forgot_password: "Perdi minha senha"
 
 #---G---#
+  group:
+    one: "Grupo"
+    other: "Grupos"
 
 #---H---#
   home: "Principal"

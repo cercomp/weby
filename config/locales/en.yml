@@ -46,6 +46,9 @@ en:
   forgot_password: "Forgot password"
 
 #---G---#
+  group:
+    one: "Group"
+    other: "Groups"
 
 #---H---#
   home: "Home"
