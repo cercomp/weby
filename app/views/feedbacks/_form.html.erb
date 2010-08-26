@@ -11,9 +11,11 @@
   <% end %>
 
   <%#= f.select(:name,Groups.find(:all, :conditions => 'status = 1', :order => 'created_at DESC').collect{|p| [ p.service, p.id ]}) %>
-  <%= f.select(:name, Group.find(:all, :conditions => "site_id = #{params[:site_id]}").collect{|p| [ p.name, p.id ]}) %>
+  <% unless @groups.empty? %>
+    <%= f.select(:name, Group.find(:all, :conditions => "site_id = #{params[:site_id]}").collect{|p| [ p.name, p.id ]}) %>
+  <% end %>
 
-  <%= f.text_field :email, :label => t("name") %>
+  <%= f.text_field :name, :label => t("name") %>
   
   <%= f.text_field :email, :label => t("email") %>
   

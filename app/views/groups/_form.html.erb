@@ -12,7 +12,7 @@
 
   <%= f.text_field :name, :label => t("name") %>
 
-  <%=  f.hidden_field :site_id, :value => params[:site_id] %>
+  <%=  f.hidden_field :site_id, :value => @site.id %>
 
   <%= f.submit t("create") %>
 
