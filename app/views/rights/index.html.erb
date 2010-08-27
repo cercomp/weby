@@ -1,12 +1,12 @@
 <fieldset>
-  <legend><%= t:listing, :param => (t:permission, :count => 2)%></legend>
+  <legend><%= t"listing", :param => (t"permission", :count => 2)%></legend>
 
   <table class="list">
     <thead>
       <tr>
-        <th><%= t:name %></th>
-        <th><%= t:controller%></th>
-        <th><%= t:action%></th>
+        <th><%= t"name" %></th>
+        <th><%= t"controller" %></th>
+        <th><%= t"action" %></th>
         <th></th>
       </tr>
     </thead>
@@ -22,7 +22,7 @@
     </tbody>
   </table>
 
-  <p> <%= link_to (t:list, :param => t("roles_permissions")), :controller => "roles", :action => "index" %> </p>
+  <p> <%= link_to (t"list", :param => t("roles_permissions")), :controller => "roles", :action => "index" %> </p>
 
   <% if check_permission(RightsController, "new") %>
     <p><%= link_to t('new'), new_right_path %></p>

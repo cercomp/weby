@@ -1,9 +1,9 @@
 <fieldset>
-  <legend><%= t:list, :param => (t:site, :count => 2) %></legend>
+  <legend><%= t"list", :param => (t"site", :count => 2) %></legend>
 
   <table class='list'>
     <thead>
-      <th><%= t:name %></th>
+      <th><%= t"name" %></th>
       <th></th>
     </thead>
     <tbody>
@@ -20,5 +20,5 @@
     </tbody>
   </table>
 
-  <p> <%= link_to (t:new_param, :param => (t:site, :count => 1)) , new_site_path %> </p>
+  <p> <%= link_to (t"new_param", :param => (t"site", :count => 1)) , new_site_path %> </p>
 </fieldset>

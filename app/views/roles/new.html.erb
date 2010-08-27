@@ -1,12 +1,12 @@
 <fieldset>
-  <legend><%= t:new_param, :param => t("role")%></legend>
+  <legend><%= t"new_param", :param => t("role")%></legend>
 
   <% form_for @roles, :url => { :action => "create" }  do |f|%>
     <% @roles.errors.full_messages.each do |msg| %>  
       <li><%= msg %></li>  
     <% end %>  
 
-      <p><%= t:new_param, :param => t("role")%> <br />
+      <p><%= t"new_param", :param => t("role")%> <br />
       <%= f.text_field :name%><br />
       <%= f.submit 'Salvar' %>
       </p>

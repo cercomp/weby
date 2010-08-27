@@ -1,25 +1,25 @@
 <p>
-  <b> <%= t:data, :param => t("registration") %></b>
+  <b> <%= t"date", :param => t("registration") %></b>
   <%=h @informativo.created_at %>
 </p>
 <p>
-  <b><%= t:data, :param => t("publication")%></b>
+  <b><%= t"date", :param => t("publication")%></b>
   <%=h @informativo.date_pub %>
 </p>
 <p>
-  <b><%= t:data, :param => t("begin")%></b>
+  <b><%= t"date", :param => t("begin")%></b>
   <%=h @informativo.date_begin %>
 </p>
 <p>
-  <b><%= t:data, :param => t("end") %></b>
+  <b><%= t"date", :param => t("end") %></b>
   <%=h @informativo.date_end %>
 </p>
 <p>
-  <b><%= t:picture %></b>
+  <b><%= t"picture" %></b>
   <%=h @informativo.image %>
 </p>
 <p>
-  <b><%= t:position %></b>
+  <b><%= t"position" %></b>
   <%=h @informativo.position %>
 </p>
 <p>
@@ -35,11 +35,11 @@
   <%=h @informativo.editor_id %>
 </p>
 <p>
-  <b><%= t:chief_editor %></b>
+  <b><%= t"chief_editor" %></b>
   <%=h @informativo.editor_chief_id %>
 </p>
 <p>
-  <b><%= t:text %></b>
+  <b><%= t"text" %></b>
   <%=h @informativo.text %>
 </p>
 <p>
@@ -59,7 +59,7 @@
   <%=h @informativo.text_clob %>
 </p>
 <p>
-  <b><%= t:side %></b>
+  <b><%= t"side" %></b>
   <%=h @informativo.align %>
 </p>
 

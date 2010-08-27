@@ -1,11 +1,11 @@
 <fieldset>
-  <legend><%= t:forgot_password  %></legend>
+  <legend><%= t"forgot_password"  %></legend>
 
-  <%= t:fill_email_form  %>:<br />
+  <%= t"fill_email_form"  %>:<br />
   <br />
 
   <% form_tag password_resets_path do %>
-    <label><%= t:email  %>:</label><br />
+    <label><%= t"email"  %>:</label><br />
     <%= text_field_tag "email" %><br />
     <br />
     <%= submit_tag "Reset my password" %>

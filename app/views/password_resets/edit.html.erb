@@ -3,10 +3,10 @@
 
   <% form_for @user, :url => password_reset_path, :method => :put do |f| %>
     <%= f.error_messages %>
-    <%= f.label  t:password %><br />
+    <%= f.label  t"password" %><br />
     <%= f.password_field :password %><br />
     <br />
-    <%= f.label  t:password_confirmation %><br />
+    <%= f.label  t"password_confirmation" %><br />
     <%= f.password_field :password_confirmation %><br />
     <br />
     <%= f.submit t("update_password_log") %>

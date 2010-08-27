@@ -1,3 +1,4 @@
+# coding: utf-8
 module ApplicationHelper
 
   def session_user
@@ -128,7 +129,7 @@ module ApplicationHelper
           when "edit"
             menu << link_to( t("edit"), {:controller => "#{controller.controller_name}", :action => "edit", :id => obj.id}, :class => 'icon icon-edit')+' '
           when "destroy"
-            menu << link_to( (t:remove, :param => ''), {:controller => "#{controller.controller_name}", :action => "destroy", :id => obj.id}, :class => 'icon icon-del', :confirm => t('are_you_sure'), :method => :delete)+' '
+            menu << link_to( (t"remove", :param => ''), {:controller => "#{controller.controller_name}", :action => "destroy", :id => obj.id}, :class => 'icon icon-del', :confirm => t('are_you_sure'), :method => :delete)+' '
 
         end
       end

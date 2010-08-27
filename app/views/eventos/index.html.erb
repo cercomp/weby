@@ -1,14 +1,14 @@
 <fieldset>
-  <legend><%= t:listing, :param => (t:event, :count => 2)  %></legend>
+  <legend><%= t"listing", :param => (t"event", :count => 2)  %></legend>
 
   <table class='list'>
     <thead>
-      <th><%= t:date, :param => t("register") %></th>
-      <th><%= t:date, :param => t("publication")%></th>
-      <th><%= t:title %></th>
-      <th><%= t:cover %></th>
-      <th><%= t:status %></th>
-      <th><%= t:author %></th>
+      <th><%= t"date", :param => t("register") %></th>
+      <th><%= t"date", :param => t("publication")%></th>
+      <th><%= t"title" %></th>
+      <th><%= t"cover" %></th>
+      <th><%= t"status" %></th>
+      <th><%= t"author" %></th>
       <th></th>
     </thead>
     <tbody>
@@ -32,5 +32,5 @@
     <tbody>
   </table>
 
-  <p> <%= link_to (t:create_param, :param => (t:event, :count => 1)), new_site_page_path(:type => "Evento") if params[:site_id]%> </p>
+  <p> <%= link_to (t"create_param", :param => (t"event", :count => 1)), new_site_page_path(:type => "Evento") if params[:site_id]%> </p>
 </fieldset>

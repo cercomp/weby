@@ -1,5 +1,5 @@
 <fieldset>
-  <legend><%= t:edit, :param => t("my_account")%></legend>
+  <legend><%= t"edit", :param => t("my_account")%></legend>
 
   <%= form_for @user, :builder => SemanticFormBuilder, :url => account_path do |f| %>
     <% if @user.errors.any? %>

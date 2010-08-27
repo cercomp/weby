@@ -1,4 +1,4 @@
-<h1><%= t:new %> <%= params[:type] %></h1>
+<h1><%= t"new" %> <%= params[:type] %></h1>
 
 <%= form_for @page, :as => :page, :url => :pages do |f| %>
   <% @page.errors.full_messages.each do |msg| %>  
@@ -6,27 +6,27 @@
   <% end %>  
 
   <p>
-    <%= f.label  t:date, :param => t("register") %><br />
+    <%= f.label  t"date", :param => t("register") %><br />
     <%= f.date_select :created_at, :order => [:year, :month, :day], :use_month_numbers => true %>
   </p>
   <p>
-    <%= f.label  t:date, :param => t("publication") %><br />
+    <%= f.label  t"date", :param => t("publication") %><br />
     <%= f.date_select :date_pub, :order => [:year, :month, :day], :use_month_numbers => true %>
   </p>
   <p>
-    <%= f.label  t:date, :param => t("begin") %><br />
+    <%= f.label  t"date", :param => t("begin") %><br />
     <%= f.date_select :date_begin, :order => [:year, :month, :day], :use_month_numbers => true %>
   </p>
   <p>
-    <%= f.label  t:date, :param => t("end") %><br />
+    <%= f.label  t"date", :param => t("end") %><br />
     <%= f.date_select :date_end, :order => [:year, :month, :day], :use_month_numbers => true %>
   </p>
   <p>
-    <%= f.label  t:picture %><br />
+    <%= f.label  t"picture" %><br />
     <%= f.text_field :image %>
   </p>
   <p>
-    <%= f.label  t:position %><br />
+    <%= f.label  t"position" %><br />
     <%= f.text_field :position %>
   </p>
   <p>
@@ -38,23 +38,23 @@
     <%= f.text_field :author_id %>
   </p>
   <p>
-    <%= f.label  t:editor %><br />
+    <%= f.label  t"editor" %><br />
     <%= f.text_field :editor_id %>
   </p>
   <p>
-    <%= f.label t:chief_editor %><br />
+    <%= f.label t"chief_editor" %><br />
     <%= f.text_field :editor_chief_id %>
   </p>
   <p>
-    <%= f.label  t:text %><br />
+    <%= f.label  t"text" %><br />
     <%= f.text_field :text %>
   </p>
   <p>
-    <%= f.label  t:url %><br />
+    <%= f.label  t"url" %><br />
     <%= f.text_field :url %>
   </p>
   <p>
-    <%= f.label  t:time_cover %><br />
+    <%= f.label  t"time_cover" %><br />
     <%= f.datetime_select :front_time, :order => [:year, :month, :day], :use_month_numbers => true %>
   </p>
   <%= f.hidden_field :type, :value => params[:type] %>

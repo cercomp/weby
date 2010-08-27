@@ -1,4 +1,4 @@
-<h1><%= t:editing, :param => t("page") %></h1>
+<h1><%= t"editing", :param => t("page") %></h1>
 
 <% form_for(@page) do |f| %>
   <% if @page.errors.any? %>
@@ -13,106 +13,106 @@
   <% end %>
 
   <p>
-    <%= f.label  t:date, :param => t("registration") %><br />
+    <%= f.label  t"date", :param => t("registration") %><br />
     <%= f.date_select :created_at, :order => [:year, :month, :day], :use_month_numbers => true  %>
   </p>
   <p>
-    <%= f.label  t:date, :param => t(":publication") %><br />
+    <%= f.label  t"date", :param => t(":publication") %><br />
     <%= f.date_select :date_pub, :order => [:year, :month, :day], :use_month_numbers => true  %>
   </p>
   <p>
-    <%= f.label  t:date, :param => t("begin") %><br />
+    <%= f.label  t"date", :param => t("begin") %><br />
     <%= f.date_select :date_begin, :order => [:year, :month, :day], :use_month_numbers => true  %>
   </p>
   <p>
-    <%= f.label  t:data, :param => t("end") %><br />
+    <%= f.label  t"data", :param => t("end") %><br />
     <%= f.date_select :date_end, :order => [:year, :month, :day], :use_month_numbers => true  %>
   </p>
   <p>
-    <%= f.label t:picture %><br />
+    <%= f.label t"picture" %><br />
     <%= f.text_field :image %>
   </p>
   <p>
-    <%= f.label  t:position %><br />
+    <%= f.label  t"position" %><br />
     <%= f.text_field :position %>
     </p>
   <p>
-    <%= f.label t:source %><br />
+    <%= f.label t"source" %><br />
     <%= f.text_field :source %>
   </p>
   <p>
-    <%= f.label  t:status %><br />
+    <%= f.label  t"status" %><br />
     <%= f.text_field :status %>
   </p>
   <p>
-    <%= f.label  t:author %><br />
+    <%= f.label  t"author" %><br />
   </p>
   <p>
-    <%= f.label  t:editor %><br />
+    <%= f.label  t"editor" %><br />
     <%= f.text_field :editor %>
   </p>
   <p>
-    <%= f.label t:chief_editor %><br />
+    <%= f.label t"chief_editor" %><br />
     <%= f.text_field :editor_chief_id %>
   </p>
   <p>
-    <%= f.label t:kind %><br />
+    <%= f.label t"kind" %><br />
     <%= f.text_field :kind %>
   </p>
   <p>
-    <%= f.label  t:title %><br />
+    <%= f.label  t"title" %><br />
     <%= f.text_field :title %>
   </p>
   <p>
-    <%= f.label  t:localization %><br />
+    <%= f.label  t"localization" %><br />
     <%= f.text_field :local %>
   </p>
   <p>
-    <%= f.label  t:begin %><br />
+    <%= f.label  t"begin" %><br />
     <%= f.datetime_select :event_begin, :order => [:year, :month, :day], :use_month_numbers => true  %>
   </p>
   <p>
-    <%= f.label  t:end %><br />
+    <%= f.label  t"end" %><br />
     <%= f.datetime_select :event_end, :order => [:year, :month, :day], :use_month_numbers => true  %>
   </p>
   <p>
-    <%= f.label  t:text %><br />
+    <%= f.label  t"text" %><br />
     <%= f.text_field :text %>
   </p>
   <p>
-    <%= f.label  t:email %><br />
+    <%= f.label  t"email" %><br />
     <%= f.text_field :email %>
   </p>
   <p>
-    <%= f.label  t:url %><br />
+    <%= f.label  t"url" %><br />
     <%= f.text_field :url %>
   </p>
   <p>
-    <%= f.label  t:picture_text %><br />
+    <%= f.label  t"picture_text" %><br />
     <%= f.text_field :text_image %>
   </p>
   <p>
-    <%= f.label  t:summary %><br />
+    <%= f.label  t"summary" %><br />
     <%= f.text_field :summary %>
   </p>
   <p>
-    <%= f.label  t:pdf %><br />
+    <%= f.label  t"pdf" %><br />
     <%= f.text_field :pdf %>
   </p>
   <p>
-    <%= f.label  t:site_id %><br />
+    <%= f.label  t"site_id" %><br />
     <%= f.text_field :site_id %>
   </p>
   <p>
-    <%= f.label t:cover %><br />
+    <%= f.label t"cover" %><br />
     <%= f.text_field :front %>
   </p>
   <p>
-    <%= f.label  t:time_cover %><br />
+    <%= f.label  t"time_cover" %><br />
     <%= f.datetime_select :front_time, :order => [:year, :month, :day], :use_month_numbers => true  %>
   </p>
   <p>
-    <%= f.label  t:subject %><br />
+    <%= f.label  t"subject" %><br />
     <%= f.text_field :subject %>
   </p>
   <p>
@@ -120,7 +120,7 @@
     <%= f.text_field :text_clob %>
   </p>
   <p>
-    <%= f.label  t:side %><br />
+    <%= f.label  t"side" %><br />
     <%= f.text_field :align %>
   </p>
   <p>

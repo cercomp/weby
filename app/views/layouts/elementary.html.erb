@@ -40,7 +40,7 @@
           <%= link_to t("my_profile"), user_path(current_user) %> |
           <%= link_to t("logout"), logout_path, :confirm => "Are you sure you want to logout?" %>
         <% end %>
-        <%= User.logged_in.count %> <%= (t:user, :count => User.logged_in.count) %> logado.
+        <%= User.logged_in.count %> <%= (t"user", :count => User.logged_in.count) %> logado.
 
         <%= yield  %>
           

@@ -1,5 +1,5 @@
 <fieldset>
-  <legend><%=  t:list, :param => (t:user, :count => 2) %></legend>
+  <legend><%=  t"list", :param => (t"user", :count => 2) %></legend>
 
   <%= will_paginate @users %>
 
@@ -7,12 +7,12 @@
     <thead>
     <tr>
       <th><%=  'id' %></th>
-      <th><%= t:login %></th>
-      <th><%=  t:email %></th>
-      <th><%= t:active %></th>
-      <th><%= t:is_admin %></th>
+      <th><%= t"login" %></th>
+      <th><%=  t"email" %></th>
+      <th><%= t"active" %></th>
+      <th><%= t"is_admin" %></th>
       <% if check_permission(UsersController, "change_roles") %>
-        <th><%= t:roles %></th>
+        <th><%= t"roles" %></th>
       <% end %>
       <th></th>
     </tr>
@@ -31,7 +31,8 @@
       <%= form_tag({:controller => "users", :action => "change_roles"}, :method => "get") do %>
         <% @roles.each do |role| %> 
           <% if current_user && !user.role_ids.empty? %> 
-            <% ok = role.name == Role.find(user.role_ids.to_s).name ? true : false%>
+            <% ok = role.name == Role.find(user.role_ids.join).name ? true : false %>
+						<% ok = 1 %>
           <% end %>
           <%= hidden_field_tag "user_id", user.id %>
           <%= radio_button_tag "role_id", role.id, ok %>

@@ -1,5 +1,5 @@
 <fieldset>
-  <legend><%= (t:editing, :param => t("settings")) %></legend>
+  <legend><%= (t"editing", :param => t("settings")) %></legend>
 
   <%= form_for(@setting) do |f| %>
     <% if @setting.errors.any? %>
@@ -22,7 +22,7 @@
       <%= f.text_field :value%><br />
     </p>
     <p>
-      <%= f.submit (t:update, :param => t("setting"))  %> <%= link_to t('back'), settings_path %>
+      <%= f.submit (t"update", :param => t("setting"))  %> <%= link_to t('back'), settings_path %>
     </p>
   <% end %>
 </fieldset>

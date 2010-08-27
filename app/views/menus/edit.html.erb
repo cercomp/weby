@@ -1,5 +1,5 @@
 <fieldset>
-  <legend><%= t:editing, :param => (t:menu, :count => 1) %></legend>
+  <legend><%= t"editing", :param => (t"menu", :count => 1) %></legend>
 
   <% form_for(@menu) do |f| %>
     <% if @menu.errors.any? %>
@@ -14,11 +14,11 @@
     <% end %>
 
     <p>
-      <%= f.label t:text %><br />
+      <%= f.label t"text" %><br />
       <%= f.text_field :title %>
     </p>
     <p>
-      <%= f.label t:type, :param => t("url") %><br />
+      <%= f.label t"type", :param => t("url") %><br />
       <%= f.text_field :link %>
     </p>
     <p>

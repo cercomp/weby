@@ -1,8 +1,8 @@
 <fieldset> 
   <% if !params[:parent_id] %>
-    <legend><%= t:create_param, :param => (t:menu, :count => 1) %></legend>
+    <legend><%= t"create_param", :param => (t"menu", :count => 1) %></legend>
   <% else %>
-    <legend><%= t:create_param, :param => t("sub-menu")%></legend>
+    <legend><%= t"create_param", :param => t("sub-menu")%></legend>
   <% end %>
 
   <%= form_for(@menu) do |f| %>
@@ -17,16 +17,16 @@
     <%= f.hidden_field "sites_menus_attributes[][parent_id]", :value => params[:parent_id] %>
     <%= f.hidden_field "sites_menus_attributes[][site_id]", :value => @site.id %>
     <p>
-      <%= t:text %>:<br />
+      <%= t"text" %>:<br />
       <%= f.text_field :title %>
     </p>    
     <% if !params[:parent_id] %>
       <p>
-        <%#= t:position %>:<br />
+        <%#= t"position" %>:<br />
           <%#= select(:menu, :position, [ "top", "left", "right", "bottom"]) %>
       </p>
     <% end %>
 
-    <p> <%= f.submit t("create") %> <%= link_to t("back"), site_menus_path %></p>
+    <p> <%= f.submit t("create") %> <%= link_to t("back"), :back %></p>
   <% end %> 
 </fieldset>

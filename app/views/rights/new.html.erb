@@ -1,16 +1,16 @@
 <fieldset>
-  <legend><%= t:new_param, :param => t("right")%></legend>
+  <legend><%= t"new_param", :param => t("right")%></legend>
 
   <% form_for(@right) do |f| %>
     <% @right.errors.full_messages.each do |msg| %>  
       <li><%= msg %></li>  
     <% end %>  
     
-    <%= f.label  t:name%><br />
+    <%= f.label t"name" %><br />
     <%= f.text_field :name %><br />
-    <%= f.label  t:controller %><br />
+    <%= f.label  t"controller" %><br />
     <%= f.text_field :controller %><br />
-    <%= f.label  t:action %><br />
+    <%= f.label  t"action" %><br />
     <%= f.text_field :action %><br />
     <p>
       <%= f.submit  %>

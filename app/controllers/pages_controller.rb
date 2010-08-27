@@ -16,6 +16,7 @@ class PagesController < ApplicationController
   end
 
   def new
+    params[:type] ||= 'Noticia'
     @page = Object.const_get(params[:type]).new
     #@page = Pagina.new
     respond_with(@page)

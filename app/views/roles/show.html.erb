@@ -8,7 +8,7 @@
 <table class="list">
   <thead>
    <tr>
-    <th><%= t:permissions  %> / <%= t:roles  %></th>
+    <th><%= t"permissions"  %> / <%= t"roles"  %></th>
     <% @roles.each do |role| %>
       <th><%= role.name %></th>
       <%# role.rights.collect do |each|%>
@@ -35,7 +35,7 @@
 <% end %>
 
 <% form_for @roles do %>
-    <p><%= t:new_param, :param => t("role") %>  <br />
+    <p><%= t"new_param", :param => t("role") %>  <br />
       <%= text_field_tag "roles" %>
       <%= submit_tag 'Salvar' %>
     </p>
