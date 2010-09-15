@@ -13,15 +13,17 @@
   </tr>
 
 <% @feedbacks.each do |feedback| %>
-  <tr>
-    <td><%= feedback.name %></td>
-    <td><%= feedback.email %></td>
-    <td><%= feedback.subject %></td>
-    <td><%= feedback.message %></td>
-    <td><%= feedback.site_id %></td>
-    <td><%= link_to 'Show', :controller => "feedbacks", :action => "show", :id => feedback.id %></td>
-    <td><%= link_to 'Edit', :controller => "feedbacks", :action => "edit", :id => feedback.id %></td>
-  </tr>
+  <% if feedback.site_id == @site.id %>
+    <tr>
+      <td><%= feedback.name %></td>
+      <td><%= feedback.email %></td>
+      <td><%= feedback.subject %></td>
+      <td><%= feedback.message %></td>
+      <td><%= feedback.site_id %></td>
+      <td><%= link_to 'Show', :controller => "feedbacks", :action => "show", :id => feedback.id %></td>
+      <td><%= link_to 'Edit', :controller => "feedbacks", :action => "edit", :id => feedback.id %></td>
+    </tr>
+  <% end %>
 <% end %>
 </table>
 

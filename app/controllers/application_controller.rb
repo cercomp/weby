@@ -18,6 +18,8 @@ class ApplicationController < ActionController::Base
       end
     end
     return "old"
+    #return "elementary"
+    #return "translucent"
   end
 
   #flash[:error] = t:access_denied_page
