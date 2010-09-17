@@ -11,19 +11,6 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-  <%
-    if @site
-      @top = "" 
-      @left = @site.sites_menus #Site.find(params[:site_id]).sites_menus
-      @right = ""
-      @bottom = ""
-    else
-      @top = "" 
-      @left = ""
-      @right = ""
-      @bottom = ""
-    end
-  %>
   <%#= debug(params) %>
   <%#= request.env['HTTP_REFERER'] %>
   <div class="all">

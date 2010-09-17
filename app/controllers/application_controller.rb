@@ -2,7 +2,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :set_locale
-  before_filter :check_authorization, :except => [:current_user_session, :current_user, :access_denied, :choose_layout]
+  before_filter :check_authorization, :except => [:current_user_session, :current_user, :access_denied, :choose_layout, :menu_treat, :search_son]
   before_filter :get_site_obj
  
   helper :all
@@ -18,8 +18,6 @@ class ApplicationController < ActionController::Base
       end
     end
     return "old"
-    #return "elementary"
-    #return "translucent"
   end
 
   #flash[:error] = t:access_denied_page
