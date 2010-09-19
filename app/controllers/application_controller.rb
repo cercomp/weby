@@ -57,6 +57,38 @@ class ApplicationController < ActionController::Base
     redirect_back_or_default login_path
   end
 
+  # Metodo para tratar o menu
+  def menu_treat(obj)
+    result = []
+    i = 0 
+    obj.sort!{|x,y| x.id <=> y.id }
+    while i < obj.size
+      l = obj[i]
+      result << l
+      obj.delete(l)
+      result_test = search_son(l.id, obj)
+      result << result_test unless result_test.empty?
+    end
+    return result
+  end
+  # Procura pelo id de um filho (id) em um dado vetor (arr)
+  def search_son(id, arr)
+    result = []
+    i = 0 
+    while i < arr.size
+      a = arr[i]
+      if id.to_s == a.parent_id
+        result << a
+        arr.delete(a)
+        res_test = search_son(a.id, arr)
+        result << res_test unless res_test.empty?
+      else
+        i = i + 1 
+      end 
+    end 
+    return result
+  end
+
   private
   def current_user_session
     return @current_user_session if defined?(@current_user_session)
