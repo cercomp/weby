@@ -61,7 +61,7 @@ class ApplicationController < ActionController::Base
   def menu_treat(obj)
     result = []
     i = 0 
-    obj.sort!{|x,y| x.id <=> y.id }
+    obj.sort!{|x,y| x.parent_id.to_i <=> y.parent_id.to_i }
     while i < obj.size
       l = obj[i]
       result << l
