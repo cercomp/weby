@@ -1,4 +1,4 @@
-Webyge3::Application.routes.draw do |map|
+Webyge::Application.routes.draw do |map|
   resources :users do collection { get :change_roles } end
 
   match 'site/new' => "sites#new"
