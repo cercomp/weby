@@ -33,10 +33,11 @@ module ApplicationHelper
       if menu.class == Array
         menus += list_menus(menu,10,depth+1)
       else
+        #menus += debug(menu)
         menus += "<div style=\"padding-left: #{padding_left * depth}px; height: 25px; background-color: #{colors[depth]};\">" + link_to("#{menu.title}", "#{menu.link}")
         if current_user
           menus += "<div style='float: right;  white-space: nowrap;'>" +
-            link_to(image_tag('editar.gif', :border => 0), edit_site_menu_path(@site.name, menu)) +
+            link_to(image_tag('editar.gif', :border => 0), edit_site_menu_path(@site.name, menu.menu_id)) +
             link_to(image_tag('subitem.gif', :border => 0), new_site_menu_path(@site.name, :parent_id => menu.id)) +
             link_to(image_tag('setaup.gif', :border => 0), new_site_menu_path(@site.name, :parent_id => menu.id)) +
             link_to(image_tag('setadown.gif', :border => 0), new_site_menu_path(@site.name, :parent_id => menu.id)) +

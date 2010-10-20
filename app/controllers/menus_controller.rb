@@ -32,10 +32,20 @@ class MenusController < ApplicationController
 
   def new
     @menu = Menu.new
+    @menu.sites_menus.build
     respond_with(@menu)
   end
 
   def edit
+      top_untreated = Site.find_by_sql("SELECT sites_menus.id,menus.id as menu_id,menus.title,menus.link,sites_menus.parent_id,sites_menus.position FROM menus INNER JOIN sites_menus ON sites_menus.menu_id=menus.id WHERE sites_menus.position = 'top'")
+      left_untreated = Site.find_by_sql("SELECT sites_menus.id,menus.id as menu_id,menus.title,menus.link,sites_menus.parent_id,sites_menus.position FROM menus INNER JOIN sites_menus ON sites_menus.menu_id=menus.id WHERE sites_menus.position = 'left'")
+      right_untreated = Site.find_by_sql("SELECT sites_menus.id,menus.id as menu_id,menus.title,menus.link,sites_menus.parent_id,sites_menus.position FROM menus INNER JOIN sites_menus ON sites_menus.menu_id=menus.id WHERE sites_menus.position = 'right'")
+      bottom_untreated = Site.find_by_sql("SELECT sites_menus.id,menus.id as menu_id,menus.title,menus.link,sites_menus.parent_id,sites_menus.position FROM menus INNER JOIN sites_menus ON sites_menus.menu_id=menus.id WHERE sites_menus.position = 'bottom'")
+
+    @left = menu_treat(left_untreated) 
+    @right = menu_treat(right_untreated) 
+    @top = menu_treat(top_untreated) 
+    @bottom = menu_treat(bottom_untreated) 
     @menu = Menu.find(params[:id])
   end
 

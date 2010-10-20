@@ -10,20 +10,21 @@
       <li><%= msg %></li>  
     <% end %>
 
-    <%#= f.fields_for :sites_menus do |menus_form| %>
-      <%#= menus_form.hidden_field :parent_id, :value => params[:parent_id] %>
-    <%# end %>
-
     <%= f.hidden_field "sites_menus_attributes[][parent_id]", :value => params[:parent_id] %>
     <%= f.hidden_field "sites_menus_attributes[][site_id]", :value => @site.id %>
     <p>
       <%= t"text" %>:<br />
       <%= f.text_field :title %>
     </p>    
-    <% if !params[:parent_id] %>
+    <%# f.fields_for :sites_menus do |menus_form| %>
+      <%#= menus_form.hidden_field :parent_id, :value => params[:parent_id] %>
+      <%#= menus_form.text_field :position %>
+    <%#end %>
+
+    <% if params[:parent_id] %>
       <p>
-        <%#= t"position" %>:<br />
-          <%#= select(:menu, :position, [ "top", "left", "right", "bottom"]) %>
+        <%= t"position" %>:<br />
+          <%= select(:sites_menus, :position, ["top", "left", "right", "bottom"]) %>
       </p>
     <% end %>
 

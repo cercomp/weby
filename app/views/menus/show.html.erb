@@ -6,12 +6,8 @@
     <%=h @menu.title %>
   </p>
   <p>
-    <b><%= t"father" %>:</b>
-    <%=h @menu.father_id %>
-  </p>
-  <p>
-    <b><%= t"position"  %>:</b>
-    <%=h @menu.position %>
+    <b><%= t"link" %>:</b>
+    <%=h @menu.link %>
   </p>
 
   <p> <%= link_to t("edit"), edit_menu_path(@menu) %> | <%= link_to t("back"), menus_path %> </p>
