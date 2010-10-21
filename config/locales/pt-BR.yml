@@ -23,6 +23,7 @@ pt-BR:
   controller: "Controle"
   cover: "Capa"
   create: "Criar"
+  created: "Criado"
   create_param: "Criar %{param}"
   current_login: "Entrada atual %{param}" 
 
@@ -56,6 +57,7 @@ pt-BR:
 #---I---#
   ip: "ip"
   is_admin: "Admin?"
+  instructions_change_password: "Instruções para trocar a senha"
 
 #---K---#
   time_cover: "capa agendada" 
@@ -67,16 +69,19 @@ pt-BR:
   listing: "Listando %{param}"
   localization: "Local de realização"
   login: "Entrar"
+  login_success: "Logado com sucesso!"
   logout: "Sair"
   logout_success: "Logout com sucesso!"
   login_count: "Login Count"
   list: "Listar %{param}"
+  look_changed: "Aparência alterada!"
   
 #---M---#
   menu: 
     one: "Menu"
     other: "Menus"
   message: "Menssagem"
+  missing_account: "We're sorry, but we could not locate your account. If you are having issues try copying and pasti    ng the URL from your email into your browser or restarting the reset password process."
   my_account: "Minha conta"
   my_profile: "Meu Perfil"
 
@@ -90,6 +95,9 @@ pt-BR:
     other: "Informativos"
   new_param: "Novo %{param}!"
   name: "Nome"
+  need_login: "Você deve estar logado para acessar acessar essa página." 
+  no_need_to_login: "Você não deve estar logado para acessar essa página."	
+  no_mail: "Nenhum usuário com esse e-mail foi econtrado." 
 
 #---O---#
 
@@ -114,6 +122,7 @@ pt-BR:
   register: "Cadastro"
   remember_me: "Lembrar-me"
   remove: "remover %{param}"
+  reset_mail: "Instruções de como modificar sua senha foram enviada. Cheque seu e-mail."
   right: "Direito"
   rights: "Direitos"
   role: "Papel"
@@ -133,6 +142,9 @@ pt-BR:
   subject: "Assunto"
   submit: "Enviar"
   sub-menu: "Sub-menu"
+  succesfully_created: "Criado com sucesso!"
+  succesfully_created_param: "%{param} Criado com sucesso!"
+  succesfully_deleted: "Deletado com sucesso!"
   successfully_removed: "%{param} foi removido com sucesso!"
   suggestion:
     one:  "Sugestão"
@@ -149,9 +161,11 @@ pt-BR:
   time: "Tempo"
   to: "para"
   type: "Digite a %{param}"
+  try_login: "Tente logar primeiro!"	
 
 #---U---#
   update: "Atualizar %{param}"
+  updated: "%{param} atualizada" 
   update_password_log: "Atualize minha senha e me conecte." 
   url: "URL"
   user: 

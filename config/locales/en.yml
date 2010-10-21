@@ -56,6 +56,7 @@ en:
 #---I---#
   ip: "ip"
   is_admin: "Admin?"
+  instructions_change_password: "Instructions to change your password"
 
 #---K---#
   time_cover: "capa agendada"
@@ -68,10 +69,12 @@ en:
   listing: "Listing %{param}"
   localization: "Localization"
   login: "Login"
+  login_success: "Logged in succesfully!"
   logout: "Logout"
   logout_success: "Logged out successfully!"
   login_count: "Login Count"
   list: "List %{param}"
+  look_changed: "Appearence was changed."
   
 #---M---#
   menu: 
@@ -79,6 +82,7 @@ en:
     other: "Menus"
   menus: "Menus"
   message: "Message"
+  missing_account: "We're sorry, but we could not locate your account. If you are having issues try copying and pasting the URL from your email into your browser or restarting the reset password process."  
   my_account: "My account"
   my_profile: "My profile"
 
@@ -92,6 +96,9 @@ en:
     other: "Informativos"
   new_param: "New %{param}!"
   name: "Name"
+  need_login: "You need to be logged in to access this page."
+  no_need_to_login: "You should not be logged in to access this page."
+  no_mail: "No user was found with that email address."
 
 #---O---#
 
@@ -116,6 +123,7 @@ en:
   register: "Register"
   remember_me: "Remember me"
   remove: "remove %{param}"
+  reset_mail: "Instructions to reset your password have been emailed to you. Please check your email."
   right: "Right"
   rights: "Rights"
   role: "Role"
@@ -135,7 +143,10 @@ en:
   subject: "Subject"
   submit: "Send"
   sub-menu: "Sub-menu"
-  successfully_removed: "%{param} successfully removed!"
+  succesfully_created: "Succesfully Created"
+  succesfully_deleted: "Deletado com sucesso!"
+  succesfully_updated: "%{param} atualizado com sucesso"
+  successfully_removed: "%{param} removido com sucesso!"
   suggestion:
     one:  "Sugestão"
     other: "Sugestões"
@@ -151,9 +162,11 @@ en:
   time: "Time"
   to: "To"
   type: "Type a %{param}"
+  try_login: "Try to login first!"
 
 #---U---#
   update: "Update %{param}"
+  updated: "%{param} updated."
   update_password_log: "update my password and log me in" 
   url: "URL"
   user:

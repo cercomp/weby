@@ -1,4 +1,5 @@
 # coding: utf-8
+
 class UsersController < ApplicationController
   layout :choose_layout
 
@@ -12,7 +13,7 @@ class UsersController < ApplicationController
     if params[:id] && current_user
       @user = User.find(current_user.id)
       @user.update_attribute(:theme, params[:id])
-      flash[:notice] = 'Aparência alterada!'
+      flash[:notice] = t:look_changed
     end
     redirect_back_or_default root_path
   end
@@ -79,7 +80,7 @@ class UsersController < ApplicationController
     end
     @user = User.find(params[:id])
     @user.update_attributes(params[:user])
-    flash[:notice] = "Conta atualizada!"
+    flash[:notice] = t"updated", :param => t("account")
     respond_with(@user)
   end
 

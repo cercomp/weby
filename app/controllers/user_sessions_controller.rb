@@ -23,7 +23,7 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.new(params[:user_session])
     if @user_session.save
 #      if current_user.status #verifica se o usuário esta ativo  
-        flash[:notice] = "Login successful!"
+        flash[:notice] = t:login_success
         redirect_back_or_default root_path
 #      else  
 #        destroy  
