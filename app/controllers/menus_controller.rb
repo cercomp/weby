@@ -52,7 +52,7 @@ class MenusController < ApplicationController
   def create
     @menu = Menu.new(params[:menu])
     @menu.save
-    redirect_to :back, :notice =>  t:succesfully_created
+    redirect_to :back, :notice =>  t("succesfully_created")
  
   end
 
@@ -71,6 +71,6 @@ class MenusController < ApplicationController
   def rm_menu
     @rm_menu = SitesMenu.find(params[:id])
     @rm_menu.destroy
-    redirect_to :back, :notice => t:successfully_deleted
+    redirect_to :back, :notice => t("successfully_deleted")
   end
 end

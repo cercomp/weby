@@ -49,7 +49,7 @@ class SitesController < ApplicationController
 
     respond_to do |format|
       if @site.save
-        format.html { redirect_to(@site, :notice => t:"succesfully_created_param", :param => t("site")
+        format.html { redirect_to(@site, :notice => t("succesfully_created_param"), :param => t("site")) }
         format.xml  { render :xml => @site, :status => :created, :location => @site }
       else
         format.html { render :action => "new" }
@@ -65,7 +65,7 @@ class SitesController < ApplicationController
 
     respond_to do |format|
       if @site.update_attributes(params[:site])
-        format.html { redirect_to(@site, :notice => t:"succesfully_created_param", :param => t("site") }
+        format.html { redirect_to(@site, :notice => t("succesfully_created_param"), :param => t("site")) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

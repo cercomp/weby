@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
     return "old"
   end
 
-  #flash[:error] = t:access_denied_page
+  #flash[:error] = t("access_denied_page")
   #request.env["HTTP_REFERER" ] ? (redirect_to :back) : (render :template => 'admin/access_denied')
   def check_authorization
     if current_user
@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
             end
           end
         end
-        flash[:error] = t:access_denied
+        flash[:error] = t("access_denied")
         (render :template => 'admin/access_denied')
         return false
       end
@@ -50,9 +50,9 @@ class ApplicationController < ActionController::Base
 
   def access_denied
     if current_user
-      flash.now[:error] = t:acess_denied
+      flash.now[:error] = t("acess_denied")
     else
-      flash.now[:error] = t:try_login
+      flash.now[:error] = t("try_login")
     end
     redirect_back_or_default login_path
   end
@@ -103,7 +103,7 @@ class ApplicationController < ActionController::Base
   def require_user
     unless current_user
       store_location
-      flash[:error] = t:need_login
+      flash[:error] = t("need_login")
       redirect_to new_user_session_url
       return false
     end
@@ -112,7 +112,7 @@ class ApplicationController < ActionController::Base
   def require_no_user
     if current_user
       store_location
-      flash[:error] = t:no_need_to_login
+      flash[:error] = t("no_need_to_login")
       redirect_to users_url
       return false
     end

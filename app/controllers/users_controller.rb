@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     if params[:id] && current_user
       @user = User.find(current_user.id)
       @user.update_attribute(:theme, params[:id])
-      flash[:notice] = t:look_changed
+      flash[:notice] = t("look_changed")
     end
     redirect_back_or_default root_path
   end

@@ -10,22 +10,24 @@
       <li><%= msg %></li>  
     <% end %>
 
-    <%= f.hidden_field "sites_menus_attributes[][parent_id]", :value => params[:parent_id] %>
-    <%= f.hidden_field "sites_menus_attributes[][site_id]", :value => @site.id %>
+    <%#= f.hidden_field "sites_menus_attributes[][parent_id]", :value => params[:parent_id] %>
+    <%#= f.hidden_field "sites_menus_attributes[][site_id]", :value => @site.id %>
     <p>
       <%= t"text" %>:<br />
       <%= f.text_field :title %>
-    </p>    
-    <%# f.fields_for :sites_menus do |menus_form| %>
-      <%#= menus_form.hidden_field :parent_id, :value => params[:parent_id] %>
-      <%#= menus_form.text_field :position %>
-    <%#end %>
+    </p>
 
-    <% if params[:parent_id] %>
-      <p>
-        <%= t"position" %>:<br />
-          <%= select(:sites_menus, :position, ["top", "left", "right", "bottom"]) %>
-      </p>
+		<%# @menus.build_sites_menu %>
+		<%= f.fields_for :sites_menus do |menus_form| %>
+      <%= menus_form.hidden_field :parent_id, :value => params[:parent_id] %>
+      <%= menus_form.hidden_field :site_id, :value => @site.id %>
+
+			<% if params[:parent_id] %>
+				<p>
+					<%= t"position" %>:<br />
+					<%= menus_form.select(:position, ["top", "left", "right", "bottom"]) %>
+				</p>
+			<% end %>
     <% end %>
 
     <p> <%= f.submit t("create") %> <%= link_to t("back"), :back %></p>
