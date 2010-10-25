@@ -7,6 +7,7 @@ pt-BR:
   access_denied_page: "Você não está autorizado a ver está página!"
   account: "Conta"
   action: "Ação" 
+  activate_deactivate: "Ativar/Desativar"
   are_you_sure: "Você tem certeza?"
   at: "por"
   author: "Autor"
@@ -98,6 +99,8 @@ pt-BR:
   need_login: "Você deve estar logado para acessar acessar essa página." 
   no_need_to_login: "Você não deve estar logado para acessar essa página."	
   no_mail: "Nenhum usuário com esse e-mail foi econtrado." 
+  no_permission_to_activate_deactivate: "Você não tem permissão para Ativar/Desativar"
+
 
 #---O---#
 

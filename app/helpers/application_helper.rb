@@ -9,15 +9,15 @@ module ApplicationHelper
     menu = ""
     if current_user.is_admin || check_permission(ctrl, "change_status")
       if obj != true or !obj
-         menu << (link_to image_tag("false.png", :title => "Ativar/Desativar", :alt => "Inativo"), :url => { :action => "change_status", :id => user.id, :status => 1, :field => parameter })
+         menu << (link_to image_tag("false.png", :title => t"activate_deactivate", :alt => "Inativo"), :url => { :action => "change_status", :id => user.id, :status => 1, :field => parameter })
       else
-         menu << (link_to image_tag("true.png", :title => "Desativar/Ativar", :alt => "Ativo"), :url => { :action => "change_status", :id=> user.id, :status => 0, :field => parameter })
+         menu << (link_to image_tag("true.png", :title =>  t"activate_deactivate", :alt => "Ativo"), :url => { :action => "change_status", :id=> user.id, :status => 0, :field => parameter })
       end
     else
       if obj != true or !obj
-         menu << image_tag("false_off.png", :title => "Você não tem permissão para Ativar/Desativar", :alt => "Inativo")
+         menu << image_tag("false_off.png", :title => t:no_permission_to_activate_deactivate, :alt => "Inativo")
       else
-         menu << image_tag("true_off.png", :title => "Você não tem permissão para Desativar/Ativar", :alt => "Ativo")
+         menu << image_tag("true_off.png", :title => t:no_permission_to_activate_deactivate, :alt => "Ativo")
       end
     end
     menu

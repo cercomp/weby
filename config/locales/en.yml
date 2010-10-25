@@ -7,6 +7,7 @@ en:
   access_denied_page: "You are not allowed to see this page!"
   account: "Account"
   action: "Action" 
+  activate_deactivate: "Activate/Deactivate"
   are_you_sure: "Are you sure?"
   at: "at"
   author: "Author"
@@ -99,6 +100,7 @@ en:
   need_login: "You need to be logged in to access this page."
   no_need_to_login: "You should not be logged in to access this page."
   no_mail: "No user was found with that email address."
+  no_permission_to_activate_deactivate: "You don´t have permission to Activate/Deactivate"
 
 #---O---#
 
