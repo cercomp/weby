@@ -146,6 +146,7 @@ en:
   succesfully_created: "Succesfully Created"
   succesfully_deleted: "Deletado com sucesso!"
   succesfully_updated: "%{param} atualizado com sucesso"
+  succesfully_updated_param: "%{param} atualizado com sucesso"
   successfully_removed: "%{param} removido com sucesso!"
   suggestion:
     one:  "Sugestão"

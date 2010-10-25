@@ -144,6 +144,8 @@ pt-BR:
   sub-menu: "Sub-menu"
   succesfully_created: "Criado com sucesso!"
   succesfully_created_param: "%{param} Criado com sucesso!"
+  succesfully_updated_param: "%{param} atualizado com sucesso"
+  succesfully_updated: "%{param} atualizado com sucesso"
   succesfully_deleted: "Deletado com sucesso!"
   successfully_removed: "%{param} foi removido com sucesso!"
   suggestion:
