@@ -61,7 +61,7 @@ en:
 
 #---K---#
   time_cover: "capa agendada"
- 
+  kind: "Kind"
 
 #---L---#
   last_login: "Last login %{param}"

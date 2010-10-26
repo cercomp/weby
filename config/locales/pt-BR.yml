@@ -35,10 +35,11 @@ pt-BR:
 #---E---#
   editing: "Editando %{param}"
   email: "E-mail"
-  end: "fim"
+  end: "Fim"
   event: 
     one: "Evento"
     other: "Eventos"
+  event_param: "%{param} do Evento"
   editor: "Editor"
   edit: "Editar"
 
@@ -61,7 +62,8 @@ pt-BR:
   instructions_change_password: "Instruções para trocar a senha"
 
 #---K---#
-  time_cover: "capa agendada" 
+  time_cover: "capa agendada"
+  kind: "tipo" 
 
 #---L---#
   last_login: "Último entrada %{param}"
