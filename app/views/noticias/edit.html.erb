@@ -13,82 +13,64 @@
   <% end %>
   
   <p>
-    <%= f.label  t"date", :param => t("register") %><br />
-    <%= f.date_select :created_at, :order => [:year, :month, :day], :use_month_numbers => true  %>
+    <%= f.date_select :created_at, :order => [:year, :month, :day], :use_month_numbers => true, :label => t("date"), :param => t("register")  %>
   </p>
   <p>
-    <%= f.label  t"date", :param => t("publication") %><br />
-    <%= f.date_select :date_pub, :order => [:year, :month, :day], :use_month_numbers => true  %>
+    <%= f.date_select :date_pub, :order => [:year, :month, :day], :use_month_numbers => true, :label =>  t("date"), :param => t("publication")%>
   </p>
   <p>
-    <%= f.label  t"date", :param => t("begin") %><br />
-    <%= f.date_select :date_begin, :order => [:year, :month, :day], :use_month_numbers => true  %>
+    <%= f.date_select :date_begin, :order => [:year, :month, :day], :use_month_numbers => true, :label =>  t("date"), :param => t("begin")%>
   </p>
   <p>
-    <%= f.label  t"date", :param => t("end") %><br />
-    <%= f.date_select :date_end, :order => [:year, :month, :day], :use_month_numbers => true  %>
+    <%= f.date_select :date_end, :order => [:year, :month, :day], :use_month_numbers => true, :label => t("date"), :param => t("end") %>
   </p>
   <p>
-    <%= f.label  t"picture" %><br />
-    <%= f.text_field :image %>
+    <%= f.text_field :image, :label => t("picture") %>
   </p>
   <p>
-    <%= f.label  t"position" %><br />
-    <%= f.text_field :position %>
+    <%= f.text_field :position, :label => t("position")%>
     </p>
     <p>
-    <%= f.label  t"status" %><br />
-    <%= f.text_field :status %>
+    <%= f.text_field :status, :label => t("status") %>
   </p>
   <p>
     <%= f.label  t"author" %><br />
   </p>
   <p>
-    <%= f.label  t"editor" %><br />
-    <%= f.text_field :editor_id %>
+    <%= f.text_field :editor_id, :label => t("editor")%>
   </p>
   <p>
-    <%= f.label  t"chief_editor" %><br />
-    <%= f.text_field :editor_chief_id %>
+    <%= f.text_field :editor_chief_id, :label => t("chief_editor")%>
   </p>
   <p>
-    <%= f.label  t"text" %><br />
-    <%= f.text_area :text %>
+    <%= f.text_area :text, :label => t("text")%>
   </p>
    <p>
-    <%= f.label  t"url" %><br />
-    <%= f.text_field :url %>
+    <%= f.text_field :url, :label => t("url")%>
   </p>
   <p>
-    <%= f.label  t"source" %><br />
-    <%= f.text_field :source %>
+    <%= f.text_field :source, :label => t("source")%>
   </p>
   <p>
-    <%= f.label t"title" %><br />
-    <%= f.text_field :title %>
+    <%= f.text_field :title, :label => t("title")%>
   </p>
   <p>
-    <%= f.label  t"picture_text" %><br />
-    <%= f.text_field :text_image %>
+    <%= f.text_field :text_image, :label => %>
   </p>
   <p>
-    <%= f.label  t"summary" %><br />
-    <%= f.text_field :summary %>
+    <%= f.text_field :summary, :label => t("picture_text")%>
   </p>
   <p>
-    <%= f.label  t"pdf" %><br />
-    <%= f.text_field :pdf %>
+    <%= f.text_field :pdf, :label => t("pdf")%>
   </p>
   <p>
-    <%= f.label  t"cover" %><br />
-    <%= f.text_field :front %>
+    <%= f.text_field :front, :label => (t"cover")%>
   </p>
   <p>
-    <%= f.label  t"time_cover" %><br />
-    <%= f.datetime_select :front_time, :order => [:year, :month, :day], :use_month_numbers => true  %>
+    <%= f.datetime_select :front_time, :order => [:year, :month, :day], :use_month_numbers => true, :label =>  t("time_cover")%>
   </p>
   <p>
-    <%= f.submit  %>
+    <%= f.submit  t("send")%>
   </p>
 <% end %>
 
