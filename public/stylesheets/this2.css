@@ -11,7 +11,8 @@
   height: 80px;
   background-color: #ccc;
 }
-.content{ 
+.content{
+  width: 435px;
   top: 0;
   padding: 10px;
   float: left;

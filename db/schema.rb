@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100820164522) do
+ActiveRecord::Schema.define(:version => 20101028171618) do
 
   create_table "feedback_users_groups", :force => true do |t|
     t.integer  "talk_id"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(:version => 20100820164522) do
     t.integer  "author_id"
     t.string   "editor_id"
     t.string   "editor_chief_id"
-    t.string   "text"
+    t.text     "text"
     t.string   "url"
     t.integer  "site_id"
     t.string   "source"
