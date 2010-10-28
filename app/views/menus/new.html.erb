@@ -5,7 +5,7 @@
     <legend><%= t"create_param", :param => t("sub-menu")%></legend>
   <% end %>
 
-  <%= form_for(@menu) do |f| %>
+  <%= form_for(@menu, :builder => SemanticFormBuilder  ) do |f| %>
     <% @menu.errors.full_messages.each do |msg| %>  
       <li><%= msg %></li>  
     <% end %>

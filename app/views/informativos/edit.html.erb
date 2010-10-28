@@ -1,6 +1,6 @@
 <h1><%= t"editing", :param => (t"newsletter", :count => 1)%></h1>
 
-<% form_for(@informativo) do |f| %>
+<% form_for(@informativo, :builder => SemanticFormBuilder ) do |f| %>
   <% if @informativo.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@informativo.errors.count, "error") %> prohibited this site from being saved:</h2>
