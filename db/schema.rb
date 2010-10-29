@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101028171618) do
+ActiveRecord::Schema.define(:version => 20101029163703) do
 
   create_table "feedback_users_groups", :force => true do |t|
     t.integer  "talk_id"
@@ -135,7 +135,8 @@ ActiveRecord::Schema.define(:version => 20101028171618) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "parent_id"
-    t.string   "position"
+    t.string   "side"
+    t.integer  "position"
   end
 
   create_table "sites_pages", :force => true do |t|

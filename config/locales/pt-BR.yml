@@ -86,7 +86,7 @@ pt-BR:
     one: "Menu"
     other: "Menus"
   message: "Menssagem"
-  missing_account: "We're sorry, but we could not locate your account. If you are having issues try copying and pasti    ng the URL from your email into your browser or restarting the reset password process."
+  missing_account: "We're sorry, but we could not locate your account. If you are having issues try copying and pasting the URL from your email into your browser or restarting the reset password process."
   my_account: "Minha conta"
   my_profile: "Meu Perfil"
 

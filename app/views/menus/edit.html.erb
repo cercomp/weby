@@ -17,10 +17,10 @@
       <%= f.text_field :title, :label => t("text")%>
     </p>
     <p>
-      <%= f.text_field :link, :label => t("type"), :param => t("url") %>
+      <%= f.text_field :link, :label => (t"type", :param => t("url")) %>
     </p>
     <p>
-      <%= f.submit %>
+      <%= f.submit t("save") %>
     </p>
   <% end %>
 

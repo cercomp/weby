@@ -1,5 +1,7 @@
 <% if @bottom.empty? %>
   <p> <%= "Nenhum menu inferior" %> </p>
 <% else %>
-  <%= raw list_menus(@bottom, 10, 0) %>
+  <menu>
+ 		<%= raw list_menus(@bottom) %>	
+	</menu>
 <% end %>

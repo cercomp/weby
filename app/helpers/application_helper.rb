@@ -24,28 +24,32 @@ module ApplicationHelper
   end
 
   # Define os menus
-  # Parâmetros: Lista de menu (menus), Distância da base esquerda em px (padding_left)
+  # Parâmetros: Lista de menu (menus)
   # Retorna: O menu com seus controles
-  def list_menus(start_menu, padding_left, depth)
+  def list_menus(start_menu)
     colors = ["#00ffff", "#85fcfc", "#baffff", "#ceffff", "#e0ffff"]
-    menus = ""
+    menus = "" 
+    menus += "\t<ul>\n"
     start_menu.each do |menu|
       if menu.class == Array
-        menus += list_menus(menu,10,depth+1)
+        menus += "\t\t<li>\n"
+        menus += list_menus(menu)
       else
         #menus += debug(menu)
-        menus += "<div style=\"padding-left: #{padding_left * depth}px; height: 25px; background-color: #{colors[depth]};\">" + link_to("#{menu.title}", "#{menu.link}")
         if current_user
-          menus += "<div style='float: right;  white-space: nowrap;'>" +
+          menus += "\t\t\t<li>\n"
+          menus += "\t\t\t\t" + link_to("#{menu.title}", "#{menu.link}") +
             link_to(image_tag('editar.gif', :border => 0), edit_site_menu_path(@site.name, menu.menu_id)) +
             link_to(image_tag('subitem.gif', :border => 0), new_site_menu_path(@site.name, :parent_id => menu.id)) +
             link_to(image_tag('setaup.gif', :border => 0), new_site_menu_path(@site.name, :parent_id => menu.id)) +
             link_to(image_tag('setadown.gif', :border => 0), new_site_menu_path(@site.name, :parent_id => menu.id)) +
-            link_to(image_tag('apagar.gif', :border => 0), {:controller => 'menus', :action => 'rm_menu', :id => menu.id}, :confirm => t('are_you_sure'), :method => :get) + "</div>"
+            link_to(image_tag('apagar.gif', :border => 0), {:controller => 'menus', :action => 'rm_menu', :id => menu.id}, :confirm => t('are_you_sure'), :method => :get)
+          menus += "\t\t\t</li>\n"
         end
-        menus += "</div>"
       end
+      menus += "\t\t</li>\n"
     end
+    menus += "\t</ul>\n"
     menus
   end
 
