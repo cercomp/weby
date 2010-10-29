@@ -1,5 +1,5 @@
 <fieldset>
-  <legend><%= t"edit", :param => t("my_account")%></legend>
+  <legend><%= t"editing", :param => t("my_account")%></legend>
 
   <%= form_for @user, :builder => SemanticFormBuilder, :url => account_path do |f| %>
     <% if @user.errors.any? %>
@@ -14,6 +14,6 @@
     <% end %>
 
     <%= render :partial => "form", :object => f %><br />
-    <%= f.submit t:"update", :param => "" %> <%= link_to t("my_profile"), user_path %>
+    <%= f.submit t:"submit" %> <%= link_to t("my_profile"), user_path %>
   <% end %>
 </fieldset>

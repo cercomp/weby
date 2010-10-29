@@ -5,7 +5,7 @@
   <table class="list">
     <thead>
      <tr>
-      <th><%= t"permission", :count => 2%> / <%= t"roles"  %></th>
+      <th><%= t"roles_permissions", :count => 2%></th>
       <% @roles.each do |role| %>
         <th><%= role.name %> [<%= link_to t('destroy'), role, :confirm => t('are_you_sure'), :method => :delete %>]</th>
         <%# role.rights.collect do |each|%>
@@ -28,7 +28,7 @@
       <% end; reset_cycle %>
     </tbody>
   </table>
-    <%= submit_tag 'Salvar' %>
+    <%= submit_tag t("save") %>
   <% end %>
 
   <p> <%= link_to (t"list", :param => (t"permission", :count => 2)), :controller => "rights", :action => "index" %> </p>

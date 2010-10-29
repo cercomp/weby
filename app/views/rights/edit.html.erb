@@ -1,6 +1,6 @@
 <h1><%= t"editing", :param => t("rights") %> </h1>
 
-<% form_for(@right) do |f| %>
+<% form_for(@right, :builder => SemanticFormBuilder) do |f| %>
   <% if @right.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@right.errors.count, "error") %> prohibited this site from being saved:</h2>
@@ -12,13 +12,10 @@
     </div>
   <% end %>
 
-  <%= f.label  t"name" %><br />
-  <%= f.text_field :name %><br />
-  <%= f.label  t"controller" %><br />
-  <%= f.text_field :controller %><br />
-  <%= f.label  t"action" %><br />
-  <%= f.text_field :action %><br />
+  <%= f.text_field :name, :label => t("name") %><br />
+  <%= f.text_field :controller, :label => t("controller") %><br />
+  <%= f.text_field :action, :label => t("action") %><br />
   <p>
-    <%= f.submit 'Update' %> | <%= link_to t('back'), rights_path %>
+    <%= f.submit t("submit") %> | <%= link_to t('back'), rights_path %>
   </p>
 <% end %>

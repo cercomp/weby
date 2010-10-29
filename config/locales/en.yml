@@ -34,10 +34,11 @@ en:
 #---E---#
   editing: "Editing %{param}"
   email: "E-mail"
-  end: "end"
+  end: "End"
   event: 
     one: "Evento"
     other: "Eventos"
+  event_param: "Event %{param}"
   editor: "Editor"
   edit: "Edit"
 
@@ -110,6 +111,7 @@ en:
     other: "Páginas"
   password: "Password"
   password_confirmation: "Password confirmation"
+  password_change: "Change password "
   permission: 
     one: "Permission"
     other: "Permissions"

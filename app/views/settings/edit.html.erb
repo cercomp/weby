@@ -1,7 +1,7 @@
 <fieldset>
   <legend><%= (t"editing", :param => t("settings")) %></legend>
 
-  <%= form_for(@setting) do |f| %>
+  <%= form_for(@setting, :builder => SemanticFormBuilder) do |f| %>
     <% if @setting.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@setting.errors.count, "error") %> prohibited this site from being saved:</h2>
@@ -12,17 +12,14 @@
         </ul>
       </div>
     <% end %>
-
     <p>
-      <%= f.label t("name") %><br />
-      <%= f.text_field :name%><br />
+      <%= f.text_field :name, :label => t("name") %><br />
     </p>
     <p>	
-    	<%= f.label t("value") %><br />
-      <%= f.text_field :value%><br />
+      <%= f.text_field :value, :label => t("value") %><br />
     </p>
     <p>
-      <%= f.submit (t"update", :param => t("setting"))  %> <%= link_to t('back'), settings_path %>
+      <%= f.submit t("submit")  %> <%= link_to t('back'), settings_path %>
     </p>
   <% end %>
 </fieldset>

@@ -1,21 +1,20 @@
 <hr />
   <p>
-    Título: <%= f.text_field :title %> *
+    <%= f.text_field :title, :label => t("title") %>
   </p>
   <p>
-    Resumo: <%= f.text_field :summary %>
+    <%= f.text_field :summary, :label => t("summary") %>
   </p>
   <p>
-    Fonte: <%= f.text_field :source %> *
+    <%= f.text_field :source, :label => t("source") %>
   </p>
   <p>
-    <%= f.check_box :front %> A notícia é capa?
+     A notícia é capa?
+    <%= f.check_box :front , :label => t("cover")%>
   </p>
   <p>
-    <%= f.label :text_image %><br />
-    <%= f.text_field :text_image %>
+    <%= f.text_field :text_image, :label => t("picture_text") %>
   </p>
   <p>
-    <%= f.label :pdf %><br />
-    <%= f.text_field :pdf %>
+    <%= f.text_field :pdf, :label => t("pdf") %>
   </p>

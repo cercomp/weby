@@ -1,6 +1,6 @@
 <%= form.text_field :login, :label => t('username') %><br />
 <%= form.text_field :email, :label => t('email') %><br />
-<%= form.password_field :password, :label => form.object.new_record? ?  t('password') : 'Change password'  %><br />
+<%= form.password_field :password, :label => form.object.new_record? ?  t('password') : t("password_change")  %><br />
 <%= form.password_field :password_confirmation, :label => t('password_confirmation') %><br />
 <%= form.check_box :status, :label => t('status') %><br />
 

@@ -1,14 +1,13 @@
 <fieldset>
   <legend><%= t"new_param", :param => t("role")%></legend>
 
-  <% form_for @roles, :url => { :action => "create" }  do |f|%>
+  <% form_for @roles, :builder => SemanticFormBuilder, :url => { :action => "create" }  do |f|%>
     <% @roles.errors.full_messages.each do |msg| %>  
       <li><%= msg %></li>  
     <% end %>  
 
-      <p><%= t"new_param", :param => t("role")%> <br />
-      <%= f.text_field :name%><br />
-      <%= f.submit 'Salvar' %>
+      <%= f.text_field :name, :label => (t"new_param", :param => (t("role"))) %><br />
+      <%= f.submit t("create") %>
       </p>
   <% end %>
 </fieldset>

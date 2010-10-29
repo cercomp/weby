@@ -1,19 +1,16 @@
 <fieldset>
   <legend><%= t"new_param", :param => t("right")%></legend>
 
-  <% form_for(@right) do |f| %>
+  <% form_for(@right, :builder => SemanticFormBuilder) do |f| %>
     <% @right.errors.full_messages.each do |msg| %>  
       <li><%= msg %></li>  
     <% end %>  
     
-    <%= f.label t"name" %><br />
-    <%= f.text_field :name %><br />
-    <%= f.label  t"controller" %><br />
-    <%= f.text_field :controller %><br />
-    <%= f.label  t"action" %><br />
-    <%= f.text_field :action %><br />
+    <%= f.text_field :name, :label => t("name") %><br />
+    <%= f.text_field :controller, :label => t("controller") %><br />
+    <%= f.text_field :action, :label => t("action") %><br />
     <p>
-      <%= f.submit  %>
+      <%= f.submit  t("create")%>
     </p>
   <% end %>
 
