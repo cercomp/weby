@@ -5,7 +5,11 @@ Webyge::Application.routes.draw do |map|
   match 'site/:site_id' => "sites#index"#, :constraints => {:site_id => /\d/}
 
   resources :site do
-    resources :menus do collection { get :rm_menu } end
+    resources :menus do 
+      collection do 
+        get :rm_menu, :change_position
+      end 
+    end
     resources :eventos
     resources :noticias
     resources :informativos

@@ -56,12 +56,11 @@ class ApplicationController < ActionController::Base
     end
     redirect_back_or_default login_path
   end
-
   # Metodo para tratar o menu
   def menu_treat(obj)
     result = []
     i = 0 
-    obj.sort!{|x,y| x.parent_id.to_i <=> y.parent_id.to_i }
+    #obj.sort!{|x,y| x.parent_id.to_i <=> y.parent_id.to_i }
     while i < obj.size
       l = obj[i]
       result << l

@@ -22,7 +22,6 @@ module ApplicationHelper
     end
     menu
   end
-
   # Define os menus
   # Parâmetros: Lista de menu (menus)
   # Retorna: O menu com seus controles
@@ -41,8 +40,8 @@ module ApplicationHelper
           menus += "\t\t\t\t" + link_to("#{menu.title}", "#{menu.link}") +
             link_to(image_tag('editar.gif', :border => 0), edit_site_menu_path(@site.name, menu.menu_id)) +
             link_to(image_tag('subitem.gif', :border => 0), new_site_menu_path(@site.name, :parent_id => menu.id)) +
-            link_to(image_tag('setaup.gif', :border => 0), new_site_menu_path(@site.name, :parent_id => menu.id)) +
-            link_to(image_tag('setadown.gif', :border => 0), new_site_menu_path(@site.name, :parent_id => menu.id)) +
+            link_to(image_tag('setaup.gif', :border => 0), {:controller => 'menus', :action => 'change_position', :id => menu.id, :position => (menu.position.to_i + 1)}, :method => :get) +
+            link_to(image_tag('setadown.gif', :border => 0), {:controller => 'menus', :action => 'change_position', :id => menu.id, :position => (menu.position.to_i - 1)}, :method => :get) +
             link_to(image_tag('apagar.gif', :border => 0), {:controller => 'menus', :action => 'rm_menu', :id => menu.id}, :confirm => t('are_you_sure'), :method => :get)
           menus += "\t\t\t</li>\n"
         end
