@@ -1,6 +1,6 @@
 <h1><%= t"editing", :param => t("page") %></h1>
 
-<% form_for(@page) do |f| %>
+<% form_for(@page,:builder => SemanticFormBuilder) do |f| %>
   <% if @page.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@page.errors.count, "error") %> prohibited this site from being saved:</h2>
