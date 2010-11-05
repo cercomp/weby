@@ -26,24 +26,33 @@ module ApplicationHelper
   # Parâmetros: Lista de menu (menus)
   # Retorna: O menu com seus controles
   def list_menus(start_menu)
-    colors = ["#00ffff", "#85fcfc", "#baffff", "#ceffff", "#e0ffff"]
     menus = "" 
     menus += "\t<ul>\n"
+    i=0
+    j=0
     start_menu.each do |menu|
+      j+=1
       if menu.class == Array
         menus += "\t\t<li>\n"
         menus += list_menus(menu)
       else
+        i+=1
+        if menu.position.nil? or menu.position.to_i < 1
+          mm = SitesMenu.find(menu.id)
+          mm.update_attribute(:position, i)
+        end
         #menus += debug(menu)
         if current_user
           menus += "\t\t\t<li>\n"
-          menus += "\t\t\t\t" + link_to("#{menu.title}", "#{menu.link}") +
-            link_to(image_tag('editar.gif', :border => 0), edit_site_menu_path(@site.name, menu.menu_id)) +
-            link_to(image_tag('subitem.gif', :border => 0), new_site_menu_path(@site.name, :parent_id => menu.id)) +
-            link_to(image_tag('setaup.gif', :border => 0), {:controller => 'menus', :action => 'change_position', :id => menu.id, :position => (menu.position.to_i + 1)}, :method => :get) +
-            link_to(image_tag('setadown.gif', :border => 0), {:controller => 'menus', :action => 'change_position', :id => menu.id, :position => (menu.position.to_i - 1)}, :method => :get) +
-            link_to(image_tag('apagar.gif', :border => 0), {:controller => 'menus', :action => 'rm_menu', :id => menu.id}, :confirm => t('are_you_sure'), :method => :get)
+          menus += "\t\t\t\t" + link_to("#{menu.title}", "#{menu.link}")
+          menus += link_to(image_tag('editar.gif', :border => 0), edit_site_menu_path(@site.name, menu.menu_id))
+          menus += link_to(image_tag('subitem.gif', :border => 0), new_site_menu_path(@site.name, :parent_id => menu.id))
+          menus += link_to(image_tag('setaup.gif', :border => 0), {:controller => 'menus', :action => 'change_position', :id => menu.id, :position => (menu.position.to_i - 1)}, :method => :get) if menu.position.to_i > 1
+          menus += link_to(image_tag('setadown.gif', :border => 0), {:controller => 'menus', :action => 'change_position', :id => menu.id, :position => (menu.position.to_i + 1)}, :method => :get) if not start_menu[j].nil? and start_menu[j].class == Array
+          menus += link_to(image_tag('apagar.gif', :border => 0), {:controller => 'menus', :action => 'rm_menu', :id => menu.id}, :confirm => t('are_you_sure'), :method => :get)
           menus += "\t\t\t</li>\n"
+          #menus += "id: #{menu.id} parent_id:#{menu.parent_id} position: #{menu.position.to_i} i:#{i} "
+          #menus += "debug:#{start_menu[j].class}"
         end
       end
       menus += "\t\t</li>\n"

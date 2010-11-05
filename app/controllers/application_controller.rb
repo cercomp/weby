@@ -1,5 +1,6 @@
 # coding: utf-8
 class ApplicationController < ActionController::Base
+  require 'pp'
   protect_from_forgery
   before_filter :set_locale
   before_filter :check_authorization, :except => [:current_user_session, :current_user, :access_denied, :choose_layout, :menu_treat, :search_son]
@@ -59,12 +60,12 @@ class ApplicationController < ActionController::Base
   # Metodo para tratar o menu
   def menu_treat(obj)
     result = []
-    i = 0 
     #obj.sort!{|x,y| x.parent_id.to_i <=> y.parent_id.to_i }
-    while i < obj.size
-      l = obj[i]
-      result << l
-      obj.delete(l)
+    pp obj
+    i=0
+    while not obj.empty?
+      l = obj.shift
+      result << l 
       result_test = search_son(l.id, obj)
       result << result_test unless result_test.empty?
     end
@@ -76,13 +77,12 @@ class ApplicationController < ActionController::Base
     i = 0 
     while i < arr.size
       a = arr[i]
-      if id.to_s == a.parent_id
-        result << a
-        arr.delete(a)
-        res_test = search_son(a.id, arr)
-        result << res_test unless res_test.empty?
+      if id.to_i == a.parent_id.to_i
+        result << arr.delete(a)
+        result_test = search_son(a.id, arr)
+        result << result_test unless result_test.empty?
       else
-        i = i + 1 
+        i += 1
       end 
     end 
     return result
