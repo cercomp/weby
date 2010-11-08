@@ -18,7 +18,7 @@ class PagesController < ApplicationController
   def new
     params[:type] ||= 'Noticia'
     @page = Object.const_get(params[:type]).new
-    #@page = Pagina.new
+    #@page = Page.new
     respond_with(@page)
   end
 
@@ -27,8 +27,8 @@ class PagesController < ApplicationController
   end
 
   def create
-    @page = Object.const_get(params[:page][:type]).new(params[:type])
-    #@page = Pagina.new(params[:pagina])
+    @page = Object.const_get(params[:page][:type]).new(params[:page])
+    #@page = Page.new(params[:page])
     @page.save
     respond_with(@page)
   end

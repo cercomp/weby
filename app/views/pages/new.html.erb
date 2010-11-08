@@ -3,7 +3,8 @@
 
 <h1><%= t"new" %> <%= params[:type] %></h1>
 
-<%= form_for @page, :builder => SemanticFormBuilder, :url => :pages  do |f| %>
+<%= form_for @page, :builder => SemanticFormBuilder, :as => :page, :url => :pages do |f| %>
+
   <% @page.errors.full_messages.each do |msg| %>  
     <li><%= msg %></li>  
   <% end %>  
@@ -49,7 +50,7 @@
   </p>
   <%= f.hidden_field :type, :value => params[:type] %>
 
-  <%= render :partial => "new" + params[:type], :locals=> { :f => f } %>
+  <%= render :partial => "new" + params[:type], :locals => {:f => f} %>
 
   <%= f.submit t("submit") %> <%= link_to t("back") %>
 <% end %>

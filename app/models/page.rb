@@ -1,6 +1,6 @@
 class Page < ActiveRecord::Base
-  validates_presence_of :title
-  validates_presence_of :source
+  #validates_presence_of :title
+  #validates_presence_of :source
 
   belongs_to :user, :foreign_key => "author_id"
 
