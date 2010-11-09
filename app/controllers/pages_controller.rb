@@ -18,6 +18,7 @@ class PagesController < ApplicationController
   def new
     params[:type] ||= 'Noticia'
     @page = Object.const_get(params[:type]).new
+    @page.sites_pages.build
     #@page = Page.new
     respond_with(@page)
   end
@@ -30,7 +31,8 @@ class PagesController < ApplicationController
     @page = Object.const_get(params[:page][:type]).new(params[:page])
     #@page = Page.new(params[:page])
     @page.save
-    respond_with(@page)
+    redirect_to({:site => @page.site_ids , :controller => 'pages', :action => 'index'}, :notice => 'Page was successfully created.')
+    #respond_with(@page)
   end
 
   def update
