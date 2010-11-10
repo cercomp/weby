@@ -330,6 +330,7 @@ menu
 menu ul
 {
   list-style: none;
+  padding-left: 15px;
 }
 menu li
 {

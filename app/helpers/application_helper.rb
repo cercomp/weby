@@ -9,15 +9,15 @@ module ApplicationHelper
     menu = ""
     if current_user.is_admin || check_permission(ctrl, "change_status")
       if obj != true or !obj
-         menu << (link_to image_tag("false.png", :title => t("activate_deactivate"), :alt => "Inativo"), :url => { :action => "change_status", :id => user.id, :status => 1, :field => parameter })
+        menu << (link_to image_tag("false.png", :title => t("activate_deactivate"), :alt => "Inativo"), :url => { :action => "change_status", :id => user.id, :status => 1, :field => parameter })
       else
-         menu << (link_to image_tag("true.png", :title =>  t("activate_deactivate"), :alt => "Ativo"), :url => { :action => "change_status", :id=> user.id, :status => 0, :field => parameter })
+        menu << (link_to image_tag("true.png", :title =>  t("activate_deactivate"), :alt => "Ativo"), :url => { :action => "change_status", :id=> user.id, :status => 0, :field => parameter })
       end
     else
       if obj != true or !obj
-         menu << image_tag("false_off.png", :title => t("no_permission_to_activate_deactivate"), :alt => "Inativo")
+        menu << image_tag("false_off.png", :title => t("no_permission_to_activate_deactivate"), :alt => "Inativo")
       else
-         menu << image_tag("true_off.png", :title => t("no_permission_to_activate_deactivate"), :alt => "Ativo")
+        menu << image_tag("true_off.png", :title => t("no_permission_to_activate_deactivate"), :alt => "Ativo")
       end
     end
     menu
@@ -33,7 +33,7 @@ module ApplicationHelper
     start_menu.each do |menu|
       j+=1
       if menu.class == Array
-        menus += "\t\t<li>\n"
+        #menus += "\t\t<li>\n"
         menus += list_menus(menu)
       else
         i+=1
@@ -44,18 +44,18 @@ module ApplicationHelper
         #menus += debug(menu)
         if current_user
           menus += "\t\t\t<li>\n"
-          menus += "\t\t\t\t" + link_to("#{menu.title}", "#{menu.link}")
+          menus += "\t\t\t\t" + link_to("#{menu.title}", "#{menu.link}") + " "
           menus += link_to(image_tag('editar.gif', :border => 0), edit_site_menu_path(@site.name, menu.menu_id))
           menus += link_to(image_tag('subitem.gif', :border => 0), new_site_menu_path(@site.name, :parent_id => menu.id))
           menus += link_to(image_tag('setaup.gif', :border => 0), {:controller => 'menus', :action => 'change_position', :id => menu.id, :position => (menu.position.to_i - 1)}, :method => :get) if menu.position.to_i > 1
-          menus += link_to(image_tag('setadown.gif', :border => 0), {:controller => 'menus', :action => 'change_position', :id => menu.id, :position => (menu.position.to_i + 1)}, :method => :get) if not start_menu[j].nil? and start_menu[j].class == Array
+          menus += link_to(image_tag('setadown.gif', :border => 0), {:controller => 'menus', :action => 'change_position', :id => menu.id, :position => (menu.position.to_i + 1)}, :method => :get) if not start_menu[j].nil? and not start_menu[j+1].nil?
           menus += link_to(image_tag('apagar.gif', :border => 0), {:controller => 'menus', :action => 'rm_menu', :id => menu.id}, :confirm => t('are_you_sure'), :method => :get)
-          menus += "\t\t\t</li>\n"
+          #menus += "\t\t\t</li>\n"
           #menus += "id: #{menu.id} parent_id:#{menu.parent_id} position: #{menu.position.to_i} i:#{i} "
-          #menus += "debug:#{start_menu[j].class}"
+          #menus += "debug:#{start_menu[j+1]}"
         end
       end
-      menus += "\t\t</li>\n"
+      menus += "\n\t\t\t</li>\n"
     end
     menus += "\t</ul>\n"
     menus

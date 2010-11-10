@@ -41,6 +41,7 @@ en:
   event_param: "Event %{param}"
   editor: "Editor"
   edit: "Edit"
+  error_updating_object: "Error updating object"
 
 #---F---#
   father: "Father"
@@ -137,8 +138,8 @@ en:
 #---S---#
   save: "Save"
   setting:
-    one: "configuração"
-    other: "Confiurações"
+    one: "Config"
+    other: "Configs"
   show: "Show"
   side: "Side"
   site_id: "Site ID"
@@ -147,14 +148,14 @@ en:
   subject: "Subject"
   submit: "Send"
   sub-menu: "Sub-menu"
-  succesfully_created: "Succesfully Created"
-  succesfully_deleted: "Deletado com sucesso!"
-  succesfully_updated: "%{param} atualizado com sucesso"
-  succesfully_updated_param: "%{param} atualizado com sucesso"
-  successfully_removed: "%{param} removido com sucesso!"
+  succesfully_created: "Succesfully created!"
+  succesfully_deleted: "Successfully deleted!"
+  succesfully_updated: "Successfully updated!"
+  succesfully_updated_param: "%{param} successfully updated!"
+  successfully_removed: "%{param} successfully removed!"
   suggestion:
-    one:  "Sugestão"
-    other: "Sugestões"
+    one:  "Sugestion"
+    other: "Sugestions"
   summary: "Summary"
   site:
     one: "Site"
@@ -163,7 +164,7 @@ en:
 #---T---#
   text: "Text" 
   title: "Title"
-  time_cover: "Capa agendada"
+  time_cover: "Front scheduling"
   time: "Time"
   to: "To"
   type: "Type a %{param}"
@@ -175,8 +176,8 @@ en:
   update_password_log: "update my password and log me in" 
   url: "URL"
   user:
-    one: "Usuário"
-    other: "Usuários"
+    one: "User"
+    other: "Users"
   user_inactive: "User was not activated."   
   username: "User name"
 
@@ -200,9 +201,9 @@ en:
          title: "Title"
          content: "Content"
       user:
-        login: "Nome do usuário"
+        login: "User name"
         password: "Senha"
-        password_confirmation: "Confirmação da senha"
+        password_confirmation: "Confirm password"
         user_extended_name: "Nome"
       site:
         name: "Name"

@@ -1,6 +1,5 @@
 # coding: utf-8
 class ApplicationController < ActionController::Base
-  require 'pp'
   protect_from_forgery
   before_filter :set_locale
   before_filter :check_authorization, :except => [:current_user_session, :current_user, :access_denied, :choose_layout, :menu_treat, :search_son]
@@ -61,8 +60,6 @@ class ApplicationController < ActionController::Base
   def menu_treat(obj)
     result = []
     #obj.sort!{|x,y| x.parent_id.to_i <=> y.parent_id.to_i }
-    pp obj
-    i=0
     while not obj.empty?
       l = obj.shift
       result << l 
@@ -119,6 +116,8 @@ class ApplicationController < ActionController::Base
     
   def store_location
     session[:return_to] = request.fullpath
+    #session[:return_to] = request.request_uri if request.get? and controller_name != "user_sessions" and controller_name != "sessions"
+    #session[:return_to] ||= request.referer
   end
 
 #  def redirect_back_or_default(default)

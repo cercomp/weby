@@ -1,3 +1,4 @@
+# coding: utf-8
 class MenusController < ApplicationController
   attr_accessor :side
   layout :choose_layout
@@ -19,10 +20,10 @@ class MenusController < ApplicationController
       bottom_untreated = ""
     end
     
-    @left = menu_treat(left_untreated) 
-    @right = menu_treat(right_untreated) 
-    @top = menu_treat(top_untreated) 
-    @bottom = menu_treat(bottom_untreated) 
+    @left = menu_treat(left_untreated)
+    @right = menu_treat(right_untreated)
+    @top = menu_treat(top_untreated)
+    @bottom = menu_treat(bottom_untreated)
   end
 
   def show
@@ -75,8 +76,16 @@ class MenusController < ApplicationController
   end
   # Altera a ordenação do menu
   def change_position
-    @ch_pos = SitesMenu.find(params[:id])
-    @ch_pos.update_attributes(params[:position])
-    redirect_to :back, :notice => t("successfully_change")
+    @ch_pos_new = SitesMenu.find(params[:id])
+    @ch_pos_old = SitesMenu.find(:first, :conditions => ["parent_id = ? and position = ?", @ch_pos_new.parent_id, params[:position]])
+    if @ch_pos_old
+      @ch_pos_new.position,@ch_pos_old.position = @ch_pos_old.position,@ch_pos_new.position
+      @ch_pos_old.save!
+      @ch_pos_new.update_attributes(params[:position])
+      flash[:notice] = t"successfully_updated"
+    else
+      flash[:error] = t"error_updating_object"
+    end
+    redirect_back_or_default :controller => "menus", :action => "index", :side => @ch_pos_new.side
   end
 end

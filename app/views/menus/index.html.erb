@@ -2,22 +2,22 @@
   <legend><%= t"list", :param => (t"menu", :count => 2)  %></legend>
 
   <div style="height:30px">
-    <div class="simple_box"><%= link_to("Esquerdo", :controller => 'menus', :action => 'index', :left_menu => 1) %></div>
-    <div class="simple_box"><%= link_to("Direito", :controller => 'menus', :action => 'index', :right_menu => 1) %></div>
-    <div class="simple_box"><%= link_to("Superior", :controller => 'menus', :action => 'index', :top_menu => 1) %></div>
+    <div class="simple_box"><%= link_to("Esquerdo", :controller => 'menus', :action => 'index', :side => "left") %></div>
+    <div class="simple_box"><%= link_to("Direito", :controller => 'menus', :action => 'index', :side => "right") %></div>
+    <div class="simple_box"><%= link_to("Superior", :controller => 'menus', :action => 'index', :side => "top") %></div>
   </div>
 
-  <% if params[:left_menu] %>
+  <% if params[:side] == "left" %>
   <div id="left_m">
     <%= render "left" %>
   </div>
   <% end %>
-  <% if params[:right_menu] %>
+  <% if params[:side] == "right" %>
   <div id="right_m">
     <%= render "right" %>
   </div>
   <% end %>
-  <% if params[:top_menu] %>
+  <% if params[:side] == "top" %>
   <div id="top_m">
     <%= render "top" %>
   </div>

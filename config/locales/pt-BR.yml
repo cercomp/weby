@@ -44,6 +44,7 @@ pt-BR:
   event_param: "%{param} do Evento"
   editor: "Editor"
   edit: "Editar"
+  error_updating_object: "Erro ao atualizar objeto"
 
 #---F---#
   father: "Pai"
@@ -150,11 +151,11 @@ pt-BR:
   subject: "Assunto"
   submit: "Enviar"
   sub-menu: "Sub-menu"
-  succesfully_created: "Criado com sucesso!"
-  succesfully_created_param: "%{param} Criado com sucesso!"
-  succesfully_updated_param: "%{param} atualizado com sucesso"
-  succesfully_updated: "%{param} atualizado com sucesso"
-  succesfully_deleted: "Deletado com sucesso!"
+  successfully_created: "Criado com sucesso!"
+  successfully_created_param: "%{param} Criado com sucesso!"
+  successfully_updated_param: "%{param} atualizado com sucesso!"
+  successfully_updated: "Atualizado com sucesso!"
+  successfully_deleted: "Deletado com sucesso!"
   successfully_removed: "%{param} foi removido com sucesso!"
   suggestion:
     one:  "Sugestão"
