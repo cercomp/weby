@@ -12,6 +12,7 @@
 </head>
 <body>
   <%#= debug(params) %>
+  <%#= debug(@sites) %>
   <%#= request.env['HTTP_REFERER'] %>
   <div class="all">
     <div class="top"> </div>
@@ -32,7 +33,10 @@
         <%= raw flash_message %>
       </div>
 
-      <%= link_to t("home"), root_path %> |
+	    <%= link_to t("home"), root_path %> |
+			<% if @site and @site.name %>
+				<%= link_to (t"setting", :count => 1), edit_site_path(@site.name) %> |
+			<% end %>
       <% if !current_user %>
         <%= link_to t("register"), new_user_path %> |
         <%= link_to t("login"), login_path %> |

@@ -1,11 +1,9 @@
 Webyge::Application.routes.draw do |map|
-
-  resources :users do collection { get :change_roles } end
-
   match 'site/new' => "sites#new"
   match 'site/:site_id' => "sites#index"#, :constraints => {:site_id => /\d/}
 
-  resources :site do
+#  resources :sites, :as => 'site' do
+  resources :site, :controller => 'sites' do
     resources :menus do 
       collection do 
         get :rm_menu, :change_position
@@ -26,7 +24,8 @@ Webyge::Application.routes.draw do |map|
     resources :archives
   end
 
-  resources :sites
+  resources :users do collection { get :change_roles } end
+  resources :site, :contoller => "sites"
   resources :groups
   resources :feedbacks
   resources :menus

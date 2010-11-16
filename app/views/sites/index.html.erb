@@ -4,16 +4,15 @@
   <table class='list'>
     <thead>
       <th><%= t"name" %></th>
-      <th></th>
+      <th><%= t"description" %></th>
     </thead>
     <tbody>
     <% @sites.each do |site| %>
       <tr class="<%= cycle 'odd', 'even' %>">
-        <td><%= site.name %></td>
         <td>
-          <%= link_to t('show'), :controller => "site", :action => "show", :id => site.name %>
-          <%= link_to t('edit'), edit_site_path(site) %>
-          <%= link_to t('destroy'), site, :confirm => t("are_you_sure"), :method => :delete %>
+          <%= link_to site.name, site_path(site.name) %>
+				</td>
+        <td>
         </td>
       </tr>
     <% end; reset_cycle %>

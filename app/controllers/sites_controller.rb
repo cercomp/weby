@@ -39,7 +39,7 @@ class SitesController < ApplicationController
 
   # GET /sites/1/edit
   def edit
-    @site = Site.find(params[:id])
+    @site = Site.where(["name = ?", params[:id]]).first
   end
 
   # POST /sites
@@ -61,7 +61,7 @@ class SitesController < ApplicationController
   # PUT /sites/1
   # PUT /sites/1.xml
   def update
-    @site = Site.find(params[:id])
+    @site = Site.where(["name = ?", params[:id]]).first
 
     respond_to do |format|
       if @site.update_attributes(params[:site])

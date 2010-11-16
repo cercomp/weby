@@ -33,6 +33,7 @@ en:
 #---D---#
   date: "Date of %{param}" 
   destroy: "destroy"  
+  description: "Description"
 
 #---E---#
   editing: "Editing %{param}"
@@ -141,8 +142,8 @@ en:
 #---S---#
   save: "Save"
   setting:
-    one: "Config"
-    other: "Configs"
+    one: "Setting"
+    other: "Settings"
   show: "Show"
   side: "Side"
   site_id: "Site ID"

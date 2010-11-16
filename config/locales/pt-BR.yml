@@ -36,6 +36,7 @@ pt-BR:
 #---D---#
   date: "Data de %{param}" 
   destroy: "Excluir"  
+  description: "Descrição"
 
 #---E---#
   editing: "Editando %{param}"
@@ -144,8 +145,8 @@ pt-BR:
 #---S---#
   save: "Salvar"
   setting:
-    one: "configuração"
-    other: "Confiurações"
+    one: "Configuração"
+    other: "Configurações"
   show: "Mostrar"
   side: "Lado"
   site_id: "Site ID"
