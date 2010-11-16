@@ -6,7 +6,8 @@ Webyge::Application.routes.draw do |map|
   resources :site, :controller => 'sites' do
     resources :menus do 
       collection do 
-        get :rm_menu, :change_position
+        get :rm_menu, :change_position, :to_site
+        post :link_site, :unlink_site
       end 
     end
     resources :eventos

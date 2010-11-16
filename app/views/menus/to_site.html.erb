@@ -1,0 +1,50 @@
+<h1><%= t('registered_menu', :count => 2) %></h1>
+
+<% menu_sides = ['left', 'right', 'top'] %>
+<div style="height:30px">
+  <% menu_sides.each do |side| %>
+    <div class="simple_box">
+      <%= link_to(t(side), :controller => 'menus', :action => 'to_site', :side => side) %>
+    </div>
+  <% end %>
+</div>
+
+<!-- TODO retirar ambiguidade ao acessar elementos (menu.menu) -->
+<%= form_tag url_for(:action => 'link_site', :controller => 'menus'), :id => 'menus_disponiveis' do %>
+  <%= hidden_field_tag 'side', @side %>
+  <table id="menusDisponiveis">
+    <tr>
+      <th>Menu</th>
+      <th>Incluir?</th>
+    </tr>
+
+    <% @menus.each do |menu| %>
+      <tr id="<%= dom_id(menu) %>">
+        <td><%= menu.title %></td>
+        <td><%= check_box_tag "menus[]", menu.id %></td>
+      </tr>
+    <% end %>
+  </table>
+  <%= submit_tag "Incluir os menus selecionados" %>
+<% end %>
+
+<hr/>
+
+<!-- To remove a menu -->
+<%= form_tag url_for(:action => 'unlink_site', :controller => 'menus'), :id => 'menus_site' do %>
+  <table id="menusSite">
+    <tr>
+      <th>Menu</th>
+      <th>Remover?</th>
+    </tr>
+
+    <% @site_menus.each do |menu| %>
+      <tr id="<%= dom_id(menu.menu) %>">
+        <td><%= menu.menu.title %></td>
+        <td><%= check_box_tag "sites_menus[]", menu.id %></td>
+      </tr>
+    <% end %>
+  </table>
+  <%= submit_tag "Remover os menus selecionados" %>
+<% end %>
+

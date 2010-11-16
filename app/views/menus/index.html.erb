@@ -7,6 +7,8 @@
     <div class="simple_box"><%= link_to("Superior", :controller => 'menus', :action => 'index', :side => "top") %></div>
   </div>
 
+  <!-- Versão antiga para chamar as partials
+  -- TODO remover isso aqui --
   <% if params[:side] == "left" %>
   <div id="left_m">
     <%= render "left" %>
@@ -21,6 +23,14 @@
   <div id="top_m">
     <%= render "top" %>
   </div>
+  <% end %>
+  -->
+  
+  <!-- Versão nova -->
+  <% unless params[:side].empty? %>
+    <div id="<%= params[:side] %>_m">
+      <%= render params[:side] %>
+    </div>
   <% end %>
 
   <p> <%= link_to (t"create_param", :param => (t"menu", :count => 2)),  :controller => 'menus', :site => params[:site_id], :action => 'new' %> </p>

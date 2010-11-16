@@ -73,6 +73,7 @@ en:
   last_login: "Last login %{param}"
   last_request: "Last request at"
   layout: "Layout"
+  left: "Left"
   listing: "Listing %{param}"
   localization: "Localization"
   login: "Login"
@@ -130,6 +131,10 @@ en:
 
 #---R---#
   register: "Register"
+  registered: "Registered"
+  registered_menu:
+    one: "Registered Menu"
+    other: "Registered Menus"
   remember_me: "Remember me"
   remove: "remove %{param}"
   reset_mail: "Instructions to reset your password have been emailed to you. Please check your email."
@@ -171,6 +176,7 @@ en:
   time_cover: "Front scheduling"
   time: "Time"
   to: "To"
+  top: "Top"
   type: "Type a %{param}"
   try_login: "Try to login first!"
 

@@ -76,6 +76,7 @@ pt-BR:
   last_login: "Último entrada %{param}"
   last_request: "Última submissão em"
   layout: "Leiaute"
+  left: "Esquerdo"
   listing: "Listando %{param}"
   localization: "Local de realização"
   login: "Entrar"
@@ -133,6 +134,10 @@ pt-BR:
 
 #---R---#
   register: "Cadastro"
+  registered: "Cadastrado"
+  registered_menu:
+    one: "Menu Cadastrado"
+    other: "Menus Cadastrados"
   remember_me: "Lembrar-me"
   remove: "remover %{param}"
   reset_mail: "Instruções de como modificar sua senha foram enviada. Cheque seu e-mail."
@@ -175,6 +180,7 @@ pt-BR:
   time_cover: "Capa agendada"
   time: "Tempo"
   to: "para"
+  top: "Superior"
   type: "Digite a %{param}"
   try_login: "Tente logar primeiro!"	
 
