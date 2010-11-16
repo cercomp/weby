@@ -8,6 +8,9 @@ en:
   account: "Account"
   action: "Action" 
   activate_deactivate: "Activate/Deactivate"
+  archive: 
+    one: "File"	
+    other: "Files"
   are_you_sure: "Are you sure?"
   at: "at"
   author: "Author"

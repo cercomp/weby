@@ -1,4 +1,5 @@
 Webyge::Application.routes.draw do |map|
+
   resources :users do collection { get :change_roles } end
 
   match 'site/new' => "sites#new"
@@ -21,6 +22,8 @@ Webyge::Application.routes.draw do |map|
     resources :roles
     resources :rights
     resources :users do collection { get :change_roles } end
+    resources :repositories
+    resources :archives
   end
 
   resources :sites
@@ -35,6 +38,9 @@ Webyge::Application.routes.draw do |map|
   resources :admin, :controller => "admin", :only => [:index]
   resources :roles
   resources :rights
+  resources :repositories
+  resources :archives
+
 
   resources :user_sessions
   resources :password_resets

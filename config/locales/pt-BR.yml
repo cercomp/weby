@@ -8,6 +8,9 @@ pt-BR:
   account: "Conta"
   action: "Ação" 
   activate_deactivate: "Ativar/Desativar"
+  archive: 
+    one: "Arquivo"
+    other: "Arquivos"
   are_you_sure: "Você tem certeza?"
   at: "por"
   author: "Autor"
@@ -175,6 +178,7 @@ pt-BR:
   try_login: "Tente logar primeiro!"	
 
 #---U---#
+  update_param:
   update: "Atualizar %{param}"
   updated: "%{param} atualizada" 
   update_password_log: "Atualize minha senha e me conecte." 

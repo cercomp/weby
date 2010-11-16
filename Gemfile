@@ -10,6 +10,9 @@ gem 'pg'
 gem "authlogic", :git => "git://github.com/odorcicd/authlogic.git", :branch => "rails3"
 gem "will_paginate", :git => "http://github.com/mislav/will_paginate.git", :branch => "rails3"
 
+# Repositório de arquivos
+gem "paperclip", :git => "http://github.com/thoughtbot/paperclip.git" 
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
