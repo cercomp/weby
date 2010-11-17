@@ -1,0 +1,48 @@
+article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary { display:block; }
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+div#wrapper {
+	background: #eee;
+	width: 775px;
+	margin: 0 auto;
+}
+
+header {
+	height: 102px; }
+  header div#topo {
+    height: 80px;
+    background: #ddd;}
+  header nav {
+    height: 22px;
+    background: #ccc;
+  }
+
+div#main { }
+
+aside {
+	width: 140px;
+	background: #999;
+  padding: 5px; }
+  aside.left { float: left; }
+  aside.right { float: right; }
+
+section#content {
+	float:left;
+	margin: 0 auto;
+	width: 465px;
+	background: #eee;
+	min-height:50px;
+  padding:5px;
+  padding-bottom:30px;
+}
+
+footer {
+	background: #ccc;
+	height: 22px;
+}
+
+.clear {clear: both;}
