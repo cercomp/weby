@@ -20,11 +20,11 @@
         <td><%=h evento.front %></td>
         <td><%=h evento.status %></td>
         <td><%=h evento.author_id %></td>
-        <td>
+        <td>          
           <% if params[:site_id] %>
-            <%= link_to t("show"), site_evento_path("#{params[:site_id]}", evento) %>
-            <%= link_to t("edit"), edit_site_evento_path("#{params[:site_id]}", evento) %>
-            <%= link_to t("destroy"), site_evento_path("#{params[:site_id]}", evento), :confirm => t("are_you_sure"), :method => :delete %>
+            <%= link_to t("show"), {:controller => 'eventos', :action => 'show', :id => evento, :type => 'Evento'} %>
+            <%= link_to t("edit"), {:controller => 'pages', :action => 'edit', :id => evento, :type => 'Evento'}  %>
+            <%= link_to t("destroy"),  {:controller => 'pages', :action => 'destroy', :id => evento } , :confirm => t("are_you_sure"), :method => :delete %>
           <% end %>
         </td>
       </tr>

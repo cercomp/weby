@@ -111,4 +111,4 @@
   <%= @page.align %>
 </p>
 
-<%= link_to t('edit'), edit_page_path(@page) %> | <%= link_to t('back') %>
+<%= link_to t('edit'), {:controller => 'pages', :action => 'edit' , :type => "Noticia"} %> | <%= link_to t('back'), :back %>

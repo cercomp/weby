@@ -1,48 +1,33 @@
-<h1><%= t"editing", :param => t("page") %></h1>
+<%= javascript_include_tag 'tinymce/tiny_mce.js' %>
+<%= javascript_include_tag 'tinymce/webyge_tinymce_default.js' %>
 
-<% form_for(@page,:builder => SemanticFormBuilder) do |f| %>
-  <% if @page.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@page.errors.count, "error") %> prohibited this site from being saved:</h2>
-      <ul>
-      <% @page.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
+<fieldset>
+  <legend><%= t"editing", :param => params[:type] %></legend>
+   
+
+  <%= form_for @page, :builder => SemanticFormBuilder do |f| %>
+    <% @page.errors.full_messages.each do |msg| %>  
+      <li><%= msg %></li>  
+    <% end %>  
+
+    <%= f.date_select :created_at, :order => [:year, :month, :day], :use_month_numbers => true, :label => (t"date", :param => t("register")), :start_year => Time.now.year %>
+    <%= f.date_select :date_pub, :order => [:year, :month, :day], :use_month_numbers => true, :label => (t"date", :param => t("publication")), :start_year => Time.now.year %>
+    <%= f.date_select :date_begin, :order => [:year, :month, :day], :use_month_numbers => true, :label =>  (t"date", :param => t("begin")), :start_year => Time.now.year %>
+    <%= f.date_select :date_end, :order => [:year, :month, :day], :use_month_numbers => true, :label => (t"date", :param => t("end")), :start_year => Time.now.year %>
+    <%= f.text_field :image, :label => t("picture") %>
+    <%= f.text_field :position, :label => t("position") %>
+    <%= f.text_field :status, :label => t("status") %>
+    <%= f.text_field :author_id, :label => t("author") %>
+    <%= f.text_field :editor_id, :label => t("editor") %>
+    <%= f.text_field :editor_chief_id, :label => t("chief_editor") %>
+    <%= f.text_area :text, :label => t("text") %>
+    <%= f.text_field :url, :label => t("url") %>
+    <%= f.datetime_select :front_time, :label => t("time_cover"), :order => [:year, :month, :day], :use_month_numbers => true, :start_year => Time.now.year %>
+
+    <%= f.hidden_field :type, :value => params[:type] %>
+    <%= f.hidden_field :site_id, :value => @site.id %>
+    <%= render :partial => "edit"+ params[:type], :locals => {:f => f} %>
+    <%= f.submit t("submit") %> <%= link_to t("back"), :back %>
   <% end %>
 
-  <%= f.date_select :created_at, :order => [:year, :month, :day], :use_month_numbers => true, :label => (t"date", :param => t("register"))  %>
-  <%= f.date_select :date_pub, :order => [:year, :month, :day], :use_month_numbers => true, :label => (t"date", :param => t("publication"))  %>
-  <%= f.date_select :date_begin, :order => [:year, :month, :day], :use_month_numbers => true, :label =>  (t"date", :param => t("begin"))  %>
-  <%= f.date_select :date_end, :order => [:year, :month, :day], :use_month_numbers => true, :label => (t"date", :param => t("end") )  %>
-  <%= f.text_field :image, :label => t("picture") %>
-  <%= f.text_field :position, :label => t("position") %>
-  <%= f.text_field :source, :label => t("source") %>
-  <%= f.text_field :status, :label => t("status") %>
-  <%= f.label  t("author") %>
-  <%= f.text_field :editor, :label => t("editor") %>
-  <%= f.text_field :editor_chief_id, :label => t("chief_editor") %>
-  <%= f.text_field :kind, :label => t("kind") %>
-  <%= f.text_field :title, :label => t("title") %>
-  <%= f.text_field :local, :label => t("localization") %>
-  <%= f.datetime_select :event_begin, :label => t("begin"), :order => [:year, :month, :day], :use_month_numbers => true  %>
-  <%= f.datetime_select :event_end, :label => t("end"), :order => [:year, :month, :day], :use_month_numbers => true  %>
-  <%= f.text_field :text, :label => t("text") %>
-  <%= f.text_field :email, :label => t("email") %>
-  <%= f.text_field :url, :label => t("url") %>
-  <%= f.text_field :text_image, :label => t("picture_text") %>
-  <%= f.text_field :summary, :label => t("summary") %>
-  <%= f.text_field :pdf, :label => t("pdf") %>
-  <%= f.text_field :site_id, :label => t("site_id") %>
-  <%= f.text_field :front, :label => t("cover") %>
-  <%= f.datetime_select :front_time, :label => t("time_cover") :order => [:year, :month, :day], :use_month_numbers => true  %>
-  <%= f.text_field :subject, :label => t("subject") %>
-  <%= f.text_field :text_clob, :label => t("texto_clob") %>
-  <%= f.text_field :align, :label => t("side") %>
-
-  <%= f.submit t("submit") %>
-<% end %>
-
-<%= link_to t("show"), @page %> |
-<%= link_to t("back", pages_path %>
+</fieldset>

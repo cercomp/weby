@@ -21,8 +21,8 @@
         <td>
           <% if params[:site_id] %>
             <%= link_to t("show"), :controller => 'noticias', :action => 'show', :id => noticia %>
-            <%= link_to t("edit"), :controller => 'noticias', :action => 'edit', :id => noticia %>
-            <%= link_to t("destroy"), {:controller => 'noticias', :action => 'destroy', :id => noticia}, :confirm => t("are_you_sure"), :method => :delete %>
+            <%= link_to t("edit"), {:controller => 'pages', :action => 'edit', :id => noticia, :type => 'Noticia'} %> 
+            <%= link_to t("destroy"), {:controller => 'pages', :action => 'destroy', :id => noticia}, :confirm => t("are_you_sure"), :method => :delete %>
           <% end %>
         </td>
       </tr>

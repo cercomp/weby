@@ -4,7 +4,7 @@
 <fieldset>
   <legend><%= t"new" %> <%= params[:type] %></legend>
 
-  <%= form_for @page, :builder => SemanticFormBuilder, :as => :page, :url => :pages do |f| %>
+  <%= form_for @page, :builder => SemanticFormBuilder do |f| %>
     <% @page.errors.full_messages.each do |msg| %>  
       <li><%= msg %></li>  
     <% end %>  
@@ -22,14 +22,10 @@
     <%= f.text_area :text, :label => t("text") %>
     <%= f.text_field :url, :label => t("url") %>
     <%= f.datetime_select :front_time, :label => t("time_cover"), :order => [:year, :month, :day], :use_month_numbers => true, :start_year => Time.now.year %>
+
     <%= f.hidden_field :type, :value => params[:type] %>
-
+    <%= f.hidden_field :site_id, :value => @site.id %>
     <%= render :partial => "new" + params[:type], :locals => {:f => f} %>
-
-    <%= f.fields_for :sites_pages do |pages_form| %>
-      <%= pages_form.hidden_field :site_id, :value => @site.id %>
-    <% end %>
-
     <%= f.submit t("submit") %> <%= link_to t("back") %>
   <% end %>
 

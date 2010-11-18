@@ -28,10 +28,11 @@ class PagesController < ApplicationController
   end
 
   def create
+    #@page = Page.new(params[:page])    
     @page = Object.const_get(params[:page][:type]).new(params[:page])
-    #@page = Page.new(params[:page])
     @page.save
-    redirect_to({:site => @page.site_ids , :controller => 'pages', :action => 'index'}, :notice => 'Page was successfully created.')
+    # TODO ver se existe um metodo melhor para redirecionar
+    redirect_to({:site_id => Site.find(params[:page][:site_id]).name, :controller => 'pages', :action => 'index'}, :notice => 'Page was successfully created.')
     #respond_with(@page)
   end
 
@@ -44,6 +45,7 @@ class PagesController < ApplicationController
   def destroy
     @page = Page.find(params[:id])
     @page.destroy
-    respond_with(@page)
+    redirect_to(:back)
+    #respond_with(@page)
   end
 end
