@@ -77,6 +77,16 @@ ActiveRecord::Schema.define(:version => 20101116194133) do
     t.datetime "updated_at"
   end
 
+  create_table "repositories", :force => true do |t|
+    t.integer  "site_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "archive_file_name"
+    t.string   "archive_content_type"
+    t.integer  "archive_file_size"
+    t.datetime "archive_updated_at"
+  end
+
   create_table "rights", :force => true do |t|
     t.string   "name"
     t.string   "controller"

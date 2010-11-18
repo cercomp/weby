@@ -19,5 +19,7 @@
     </tbody>
   </table>
 
+  <% if check_permission(SitesController, "new")  %>
   <p> <%= link_to (t"new_param", :param => (t"site", :count => 1)) , new_site_path %> </p>
+  <% end %>
 </fieldset>

@@ -27,7 +27,7 @@
   -->
   
   <!-- Versão nova -->
-  <% unless params[:side].empty? %>
+  <% if not params[:side].nil? and not params[:side].empty? %>
     <div id="<%= params[:side] %>_m">
       <%= render params[:side] %>
     </div>

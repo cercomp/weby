@@ -1,9 +1,6 @@
 Webyge::Application.routes.draw do |map|
-  match 'site/new' => "sites#new"
-  match 'site/:site_id' => "sites#index"#, :constraints => {:site_id => /\d/}
 
-#  resources :sites, :as => 'site' do
-  resources :site, :controller => 'sites' do
+  resources :sites do
     resources :menus do 
       collection do 
         get :rm_menu, :change_position, :to_site
@@ -26,7 +23,7 @@ Webyge::Application.routes.draw do |map|
   end
 
   resources :users do collection { get :change_roles } end
-  resources :site, :contoller => "sites"
+  resources :sites
   resources :groups
   resources :feedbacks
   resources :menus
@@ -53,12 +50,13 @@ Webyge::Application.routes.draw do |map|
 
   root :to => "sites#index" # Página agregadora dos sites
 
-  match 'site/:site_id(/:controller(/:action(/:id)))', :constraints => {
-    :site       => /[a-z]*/, # Nenhuma ou mais letras minúsculas
-    :controller => /[a-z_]+/, # Uma ou mais letras minúsculas e sublinhado
-    :action     => /[a-z]*/,
-    :id => /\d*/ # Nenhuma ou mais números
-  } 
+#  match 'site/:site_id(/:controller(/:action(/:id)))', :constraints => {
+#    :site       => /[a-z]*/, # Nenhuma ou mais letras minúsculas
+#    :controller => /[a-z_]+/, # Uma ou mais letras minúsculas e sublinhado
+#    :action     => /[a-z]*/,
+#    :id => /\d*/ # Nenhuma ou mais números
+#  } 
+
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   match ':controller(/:action(/:id(.:format)))'

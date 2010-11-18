@@ -51,6 +51,7 @@ en:
   father: "Father"
   fill_email_form: "Fill out the form below to reset your password. It will be e-mailed to you:" 
   forgot_password: "Forgot password"
+  field_required: "Field required!"
 
 #---G---#
   group:
@@ -169,6 +170,7 @@ en:
   site:
     one: "Site"
     other: "Sites"
+  site_comments: "Comments about goals site."
 
 #---T---#
   text: "Text" 

@@ -4,86 +4,42 @@ class SitesController < ApplicationController
   #before_filter :require_no_user, :except => [:show, :index]
   before_filter :check_authorization, :except => [:show, :index]
   
-  # GET /sites
-  # GET /sites.xml
+  respond_to :html, :xml
+
   def index
     @sites = Site.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @sites }
-    end
+    respond_with(@sites)
   end
 
-  # GET /sites/1
-  # GET /sites/1.xml
   def show
-    @site = Site.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @site }
-    end
+    @site = Site.find_by_name(params[:id])
+    respond_with(@site)
   end
 
-  # GET /sites/new
-  # GET /sites/new.xml
   def new
     @site = Site.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @site }
-    end
+#    respond_with(@site)
   end
 
-  # GET /sites/1/edit
   def edit
-    @site = Site.where(["name = ?", params[:id]]).first
+    @site = Site.find_by_name(params[:id])
   end
 
-  # POST /sites
-  # POST /sites.xml
   def create
     @site = Site.new(params[:site])
-
-    respond_to do |format|
-      if @site.save
-        format.html { redirect_to(@site, :notice => t("succesfully_created_param"), :param => t("site")) }
-        format.xml  { render :xml => @site, :status => :created, :location => @site }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @site.errors, :status => :unprocessable_entity }
-      end
-    end
+    @site.save
+    respond_with(@site)
   end
 
-  # PUT /sites/1
-  # PUT /sites/1.xml
   def update
-    @site = Site.where(["name = ?", params[:id]]).first
-
-    respond_to do |format|
-      if @site.update_attributes(params[:site])
-        format.html { redirect_to(@site, :notice => t("succesfully_created_param"), :param => t("site")) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @site.errors, :status => :unprocessable_entity }
-      end
-    end
+    @site = Site.find_by_name(params[:id])
+    @site.update_attributes(params[:site])
+    respond_with(@site)
   end
 
-  # DELETE /sites/1
-  # DELETE /sites/1.xml
   def destroy
-    @site = Site.find(params[:id])
+    @site = Site.find_by_name(params[:id])
     @site.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(sites_url) }
-      format.xml  { head :ok }
-    end
+    respond_with(@site)
   end
-
 end

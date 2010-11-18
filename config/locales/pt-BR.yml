@@ -54,6 +54,7 @@ pt-BR:
   father: "Pai"
   fill_email_form: "Preencha o formulário para resgatar sua senha. Ela será enviada para seu e-mail:" 
   forgot_password: "Perdi minha senha"
+  field_required: "Campo obrigatório!"
 
 #---G---#
   group:
@@ -92,7 +93,7 @@ pt-BR:
     one: "Menu"
     other: "Menus"
   message: "Menssagem"
-  missing_account: "We're sorry, but we could not locate your account. If you are having issues try copying and pasting the URL from your email into your browser or restarting the reset password process."
+  missing_account: "Desculpe-nos, mas não conseguimos localizar sua conta. Se você está tentando copiar e colar a URL de um email dentro do seu navegador ou reiniciando o processo de recuperar senha."
   my_account: "Minha conta"
   my_profile: "Meu Perfil"
 
@@ -173,13 +174,14 @@ pt-BR:
   site:
     one: "Sítio"
     other: "Sítios"
-
+  site_comments: "Comentário sobre os objetivos do site."
+  
 #---T---#
   text: "Texto" 
   title: "Título"
   time_cover: "Capa agendada"
   time: "Tempo"
-  to: "para"
+  to: "Para"
   top: "Superior"
   type: "Digite a %{param}"
   try_login: "Tente logar primeiro!"	
@@ -239,7 +241,7 @@ pt-BR:
         blank: "deve ser preenchido"
         too_long: "muito longo (não é possível usar mais de %{count} characteres)"
         too_short: "muito curto (não é possível usar menos de %{count} characteres)"
-        wrong_length: "wrong length (%{count} characters required)"
+        wrong_length: "Tamanho errado (%{count} são requeridos)"
         taken: "indisponível"
         not_a_number: "não é um número"
         greater_than: "Requerido maior do que %{count}"
@@ -247,6 +249,6 @@ pt-BR:
         equal_to: "Requerido igual a %{count}"
         less_than: "Requerido menor que %{count}"
         less_than_or_equal_to: "Requerido menor que ou igual a %{count}"
-        odd: "odd requerido"
-        even: "even requerido"
+        odd: "ímpar requerido"
+        even: "par requerido"
 
