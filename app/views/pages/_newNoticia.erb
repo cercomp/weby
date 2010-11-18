@@ -1,19 +1,6 @@
-  <p>
-    <%= f.text_field :title, :label => t("title") %>
-  </p>
-  <p>
-    <%= f.text_field :summary, :label => t("summary") %>
-  </p>
-  <p>
-    <%= f.text_field :source, :label => t("source") %>
-  </p>
-  <p>
-     A notícia é capa?
-    <%= f.check_box :front , :label => t("cover")%>
-  </p>
-  <p>
-    <%= f.text_field :text_image, :label => t("picture_text") %>
-  </p>
-  <p>
-    <%= f.text_field :pdf, :label => t("pdf") %>
-  </p>
+  <%= f.text_field :title, :label => t("title") %>
+  <%= f.text_field :summary, :label => t("summary") %>
+  <%= f.text_field :source, :label => t("source") %> 
+  <%= f.check_box :front , :label => t("cover"), :help => "A notícia é capa?" %>
+  <%= f.text_field :text_image, :label => t("picture_text") %>
+  <%= f.text_field :pdf, :label => t("pdf") %>

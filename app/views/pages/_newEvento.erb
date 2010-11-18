@@ -1,31 +1,11 @@
 <hr />
-<p>
   <%= f.text_field :kind, :label => t("kind") %>
-</p>
-<p>
   <%= f.text_field :local, :label => t("localization") %>
-</p>
-<p>
   <%= f.datetime_select :event_begin, :label => (t"event_param", :param => t("begin")), :order => [:year, :month, :day], :use_month_numbers => true %>
-</p>
-<p>
-  <%= f.datetime_select :event_end,:label => (t"event_param", :param => t("end")), :order => [:year, :month, :day], :use_month_numbers => true %>
-</p>
-<p>
+  <%= f.datetime_select :event_end, :label => (t"event_param", :param => t("end")), :order => [:year, :month, :day], :use_month_numbers => true %>
   <%= f.text_field :source, :label => t("source") %>
-</p>
-<p>
   <%= f.text_field :title, :label => t("title") %>
-</p>
-<p>
   <%= f.text_field :text_image, :label => t("picture_text") %>
-</p>
-<p>
   <%= f.text_field :summary, :label => t("summary") %>
-</p>
-<p>
   <%= f.text_field :pdf, :label => t("pdf") %>
-</p>
-<p>
   <%= f.text_field :front, :label => t("cover") %>
-</p>
