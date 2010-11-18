@@ -1,0 +1,6 @@
+<h1><%= t("editing"), :param => t("archive", :count) %>Editing repository</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', @repository %> |
+<%= link_to 'Back', {:controller => 'repositories', :action => 'index'} %>

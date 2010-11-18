@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <%= image_tag @repository.archive(:original)%>	
+</p>
+
+
+<%= link_to t("edit"),{:controller => 'repositories', :action => 'edit', :id=> @repository.id} %> |
+<%= link_to t("back"),{:controller => 'repositories', :action => 'index'}%>
