@@ -23,9 +23,9 @@ module ApplicationHelper
     menu
   end
   # Define os menus
-  # Parâmetros: Lista de menu (menus)
+  # Parâmetros: Lista de menu (menus, view_ctrl=0)
   # Retorna: O menu com seus controles
-  def list_menus(start_menu)
+  def list_menus(start_menu, view_ctrl=0)
     menus = "" 
     menus += "\t<ul>\n"
     i=0
@@ -34,7 +34,7 @@ module ApplicationHelper
       j+=1
       if menu.class == Array
         #menus += "\t\t<li>\n"
-        menus += list_menus(menu)
+        menus += list_menus(menu, view_ctrl)
       else
         i+=1
         if menu.position.nil? or menu.position.to_i < 1
@@ -45,11 +45,13 @@ module ApplicationHelper
         if current_user
           menus += "\t\t\t<li>\n"
           menus += "\t\t\t\t" + link_to("#{menu.title}", "#{menu.link}") + " "
-          menus += link_to(image_tag('editar.gif', :border => 0), edit_site_menu_path(@site.name, menu.menu_id))
-          menus += link_to(image_tag('subitem.gif', :border => 0), new_site_menu_path(@site.name, :parent_id => menu.id))
-          menus += link_to(image_tag('setaup.gif', :border => 0), {:controller => 'menus', :action => 'change_position', :id => menu.id, :position => (menu.position.to_i - 1)}, :method => :get) if menu.position.to_i > 1
-          menus += link_to(image_tag('setadown.gif', :border => 0), {:controller => 'menus', :action => 'change_position', :id => menu.id, :position => (menu.position.to_i + 1)}, :method => :get) if not start_menu[j].nil? and not start_menu[j+1].nil?
-          menus += link_to(image_tag('apagar.gif', :border => 0), {:controller => 'menus', :action => 'rm_menu', :id => menu.id}, :confirm => t('are_you_sure'), :method => :get)
+          if view_ctrl == 1
+            menus += link_to(image_tag('editar.gif', :border => 0), edit_site_menu_path(@site.name, menu.menu_id))
+            menus += link_to(image_tag('subitem.gif', :border => 0), new_site_menu_path(@site.name, :parent_id => menu.id))
+            menus += link_to(image_tag('setaup.gif', :border => 0), {:controller => 'menus', :action => 'change_position', :id => menu.id, :position => (menu.position.to_i - 1)}, :method => :get) if menu.position.to_i > 1
+            menus += link_to(image_tag('setadown.gif', :border => 0), {:controller => 'menus', :action => 'change_position', :id => menu.id, :position => (menu.position.to_i + 1)}, :method => :get) if not start_menu[j].nil? and not start_menu[j+1].nil?
+            menus += link_to(image_tag('apagar.gif', :border => 0), {:controller => 'menus', :action => 'rm_menu', :id => menu.id}, :confirm => t('are_you_sure'), :method => :get)
+          end
           #menus += "\t\t\t</li>\n"
           #menus += "id: #{menu.id} parent_id:#{menu.parent_id} position: #{menu.position.to_i} i:#{i} "
           #menus += "debug:#{start_menu[j+1]}"

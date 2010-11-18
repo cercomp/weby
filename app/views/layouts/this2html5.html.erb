@@ -23,12 +23,20 @@
       <nav>
         <%= link_to image_tag("flag_uk.png"), :locale => "en" %>
         <%= link_to image_tag("flag_br.png"), :locale => "pt-BR" %>
-        <%#= render 'menus/top', :object => @top %>
       </nav>
     </header>
+    <% unless @top.nil? %>
+      <menu>
+        <%= raw list_menus(@top) %>
+      </menu>
+    <% end %>
     <div id="main">
       <aside class="left">
-        <%#= render 'menus/left', :object => @left %>  
+        <% unless @left.nil? %>
+          <menu>
+            <%= raw list_menus(@left) %>
+          </menu>
+        <% end %>
       </aside>
       <section id="content">
         <div id="flash_messages">
@@ -50,12 +58,20 @@
       <%= yield  %>
       </section>
       <aside class="right">
-        <%#= render 'menus/right', :object => @right %>
+        <% unless @right.nil? %>
+          <menu>
+            <%= raw list_menus(@right) %>
+          </menu>
+        <% end %>
       </aside>
       <div class="clear"></div>
     </div>
+    <% unless @bottom.nil? %>
+       <menu>
+        <%= raw list_menus(@bottom) %>
+      </menu>
+    <% end %>
     <footer>
-      <%#= render 'menus/bottom', :object => @bottom %>  
     </footer>
   </div>
 </body>

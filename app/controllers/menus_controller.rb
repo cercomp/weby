@@ -1,6 +1,5 @@
 # coding: utf-8
 class MenusController < ApplicationController
-  attr_accessor :side
   layout :choose_layout
   before_filter :require_user
   before_filter :check_authorization
@@ -8,22 +7,8 @@ class MenusController < ApplicationController
   respond_to :html, :xml, :js
 
   def index
-    if params[:site_id]
-      top_untreated = Site.find_by_sql("SELECT sites_menus.id,menus.id as menu_id,menus.title,menus.link,sites_menus.parent_id,sites_menus.side,sites_menus.position FROM menus INNER JOIN sites_menus ON sites_menus.menu_id=menus.id WHERE sites_menus.side = 'top' ORDER BY sites_menus.parent_id,sites_menus.position")
-      left_untreated = Site.find_by_sql("SELECT sites_menus.id,menus.id as menu_id,menus.title,menus.link,sites_menus.parent_id,sites_menus.side,sites_menus.position FROM menus INNER JOIN sites_menus ON sites_menus.menu_id=menus.id WHERE sites_menus.side = 'left' ORDER BY sites_menus.parent_id,sites_menus.position")
-      right_untreated = Site.find_by_sql("SELECT sites_menus.id,menus.id as menu_id,menus.title,menus.link,sites_menus.parent_id,sites_menus.side,sites_menus.position FROM menus INNER JOIN sites_menus ON sites_menus.menu_id=menus.id WHERE sites_menus.side = 'right' ORDER BY sites_menus.parent_id,sites_menus.position")
-      bottom_untreated = Site.find_by_sql("SELECT sites_menus.id,menus.id as menu_id,menus.title,menus.link,sites_menus.parent_id,sites_menus.side ,sites_menus.position FROM menus INNER JOIN sites_menus ON sites_menus.menu_id=menus.id WHERE sites_menus.side = 'bottom' ORDER BY sites_menus.parent_id,sites_menus.position")
-    else
-      top_untreated = "" 
-      left_untreated = ""
-      right_untreated = ""
-      bottom_untreated = ""
-    end
-    
-    @left = menu_treat(left_untreated)
-    @right = menu_treat(right_untreated)
-    @top = menu_treat(top_untreated)
-    @bottom = menu_treat(bottom_untreated)
+    @menus = Menu.all
+    respond_with(@menus)
   end
 
   def show
@@ -38,15 +23,6 @@ class MenusController < ApplicationController
   end
 
   def edit
-      top_untreated = Site.find_by_sql("SELECT sites_menus.id,menus.id as menu_id,menus.title,menus.link,sites_menus.parent_id,sites_menus.side,sites_menus.position FROM menus INNER JOIN sites_menus ON sites_menus.menu_id=menus.id WHERE sites_menus.side = 'top' ORDER BY sites_menus.parent_id,sites_menus.position")
-      left_untreated = Site.find_by_sql("SELECT sites_menus.id,menus.id as menu_id,menus.title,menus.link,sites_menus.parent_id,sites_menus.side,sites_menus.position FROM menus INNER JOIN sites_menus ON sites_menus.menu_id=menus.id WHERE sites_menus.side = 'left' ORDER BY sites_menus.parent_id,sites_menus.position")
-      right_untreated = Site.find_by_sql("SELECT sites_menus.id,menus.id as menu_id,menus.title,menus.link,sites_menus.parent_id,sites_menus.side,sites_menus.position FROM menus INNER JOIN sites_menus ON sites_menus.menu_id=menus.id WHERE sites_menus.side = 'right' ORDER BY sites_menus.parent_id,sites_menus.position")
-      bottom_untreated = Site.find_by_sql("SELECT sites_menus.id,menus.id as menu_id,menus.title,menus.link,sites_menus.parent_id,sites_menus.side,sites_menus.position FROM menus INNER JOIN sites_menus ON sites_menus.menu_id=menus.id WHERE sites_menus.side = 'bottom' ORDER BY sites_menus.parent_id,sites_menus.position")
-
-    @left = menu_treat(left_untreated) 
-    @right = menu_treat(right_untreated) 
-    @top = menu_treat(top_untreated) 
-    @bottom = menu_treat(bottom_untreated) 
     @menu = Menu.find(params[:id])
   end
 
@@ -54,13 +30,12 @@ class MenusController < ApplicationController
     @menu = Menu.new(params[:menu])
     @menu.save
     redirect_to :back, :notice =>  t("succesfully_created")
- 
   end
 
   def update
     @menu = Menu.find(params[:id])
     @menu.update_attributes(params[:menu])
-    respond_with(@menu)
+    redirect_back_or_default :site_id => @menu.sites[0].name, :controller => "menus", :action => "index", :side => @menu.sites_menus[0].side
   end
 
   def destroy

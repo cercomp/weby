@@ -3,7 +3,6 @@ class UserSessionsController < ApplicationController
 
   before_filter :require_no_user, :only => [:new, :create]
   before_filter :require_user, :only => :destroy
-#  skip_before_filter :check_authorization
 
   def index
     redirect_back_or_default root_path
@@ -23,7 +22,7 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.new(params[:user_session])
     if @user_session.save
 #      if current_user.status #verifica se o usuário esta ativo  
-        flash[:notice] = t("login_success")
+        flash.now[:notice] = t("login_success")
         redirect_back_or_default root_path
 #      else  
 #        destroy  
@@ -35,10 +34,11 @@ class UserSessionsController < ApplicationController
   
   def destroy
     if !current_user.status
-      flash[:warning] = t('user_inactive')
+      flash.now[:warning] = t('user_inactive')
     else
-      flash[:notice] = t('logout_success')
+      flash.now[:notice] = t('logout_success')
     end
+    flash.now[:notice] = "tstes"
     current_user_session.destroy
     redirect_back_or_default login_path
   end

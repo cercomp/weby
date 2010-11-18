@@ -1,10 +1,10 @@
 <fieldset>
   <legend><%= t"editing", :param => (t"menu", :count => 1) %></legend>
 
-  <%= form_for(@menu, :builder => SemanticFormBuilder ) do |f| %>
+  <%= form_for @menu, :builder => SemanticFormBuilder do |f| %>
     <% if @menu.errors.any? %>
       <div id="error_explanation">
-        <h2><%= pluralize(@menu.errors.count, "error") %> prohibited this site from being saved:</h2>
+        <h2><%= pluralize(@menu.errors.count, "error") %> </h2>
         <ul>
         <% @menu.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
@@ -13,15 +13,9 @@
       </div>
     <% end %>
 
-    <p>
-      <%= f.text_field :title, :label => t("text")%>
-    </p>
-    <p>
-      <%= f.text_field :link, :label => (t"type", :param => t("url")) %>
-    </p>
-    <p>
-      <%= f.submit t("save") %>
-    </p>
+    <%= f.text_field :title, :label => t("text")%>
+    <%= f.text_field :link, :label => (t"type", :param => t("url")) %>
+    <%= f.submit t("save") %>
   <% end %>
 
   <%= link_to t("back"), menus_path %>

@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
             end
           end
         end
-        flash[:error] = t("access_denied")
+        flash.now[:error] = t("access_denied")
         (render :template => 'admin/access_denied')
         return false
       end
@@ -155,10 +155,19 @@ class ApplicationController < ActionController::Base
       else
         @site = Site.find(:first, :conditions => ["name = ?", params[:site_id]])
       end
-#      @menus = Menu.find(:all, :conditions => ["id IN (?)", @site.menu_ids]) if @site && !@site.menu_ids.empty?
+
+      top_untreated = Site.find_by_sql("SELECT sites_menus.id,menus.id as menu_id,menus.title,menus.link,sites_menus.parent_id,sites_menus.side,sites_menus.position FROM menus INNER JOIN sites_menus ON sites_menus.menu_id=menus.id WHERE sites_menus.side = 'top' AND sites_menus.site_id = #{@site.id} ORDER BY sites_menus.parent_id,sites_menus.position")
+      left_untreated = Site.find_by_sql("SELECT sites_menus.id,menus.id as menu_id,menus.title,menus.link,sites_menus.parent_id,sites_menus.side,sites_menus.position FROM menus INNER JOIN sites_menus ON sites_menus.menu_id=menus.id WHERE sites_menus.side = 'left' AND sites_menus.site_id = '#{@site.id}' ORDER BY sites_menus.parent_id,sites_menus.position")
+      right_untreated = Site.find_by_sql("SELECT sites_menus.id,menus.id as menu_id,menus.title,menus.link,sites_menus.parent_id,sites_menus.side,sites_menus.position FROM menus INNER JOIN sites_menus ON sites_menus.menu_id=menus.id WHERE sites_menus.side = 'right' AND sites_menus.site_id = #{@site.id} ORDER BY sites_menus.parent_id,sites_menus.position")
+      bottom_untreated = Site.find_by_sql("SELECT sites_menus.id,menus.id as menu_id,menus.title,menus.link,sites_menus.parent_id,sites_menus.side ,sites_menus.position FROM menus INNER JOIN sites_menus ON sites_menus.menu_id=menus.id WHERE sites_menus.side = 'bottom' AND sites_menus.site_id = #{@site.id} ORDER BY sites_menus.parent_id,sites_menus.position")
+
+      @left = menu_treat(left_untreated)
+      @right = menu_treat(right_untreated)
+      @top = menu_treat(top_untreated)
+      @bottom = menu_treat(bottom_untreated)
     elsif params[:id]
       @site = Site.find(:first, :conditions => ["name = ?", params[:id]])
-#      @menus = Menu.find(:all, :conditions => ["id IN (?)", @site.menu_ids]) if @site && !@site.menu_ids.empty?
     end
+
   end
 end
