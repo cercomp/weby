@@ -1,31 +1,26 @@
 article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary { display:block; }
 
-body {
-	margin: 0;
-	padding: 0;
-}
+body { margin: 0; }
 
 div#wrapper {
-	background: #eee;
-	width: 775px;
-	margin: 0 auto;
-}
+  background-color: #e5e5e5;
+	width: 960px;
+	margin: 0 auto; }
 
 header {
-	height: 102px; }
-  header div#topo {
-    height: 80px;
-    background: #ddd;}
+  width: 100%;
+  background-color: #ccc;
+	height: 142px; }
+  header div#topo { height: 120px; }
   header nav {
     height: 22px;
-    background: #ccc;
-  }
+    background-color: #b2b2b2; }
 
 div#main { }
 
 aside {
-	width: 140px;
-	background: #999;
+	width: 180px;
+  background-color: #7f7f7f;
   padding: 5px; }
   aside.left { float: left; }
   aside.right { float: right; }
@@ -33,16 +28,20 @@ aside {
 section#content {
 	float:left;
 	margin: 0 auto;
-	width: 465px;
+	width: 570px;
 	background: #eee;
-	min-height:50px;
   padding:5px;
   padding-bottom:30px;
 }
 
 footer {
-	background: #ccc;
+  background-color: #ccc;
 	height: 22px;
 }
 
 .clear {clear: both;}
+
+.menus{
+  background-color: aqua;
+  height: 25px;
+}

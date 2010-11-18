@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
         return role_theme
       end
     end
-    return "old"
+    return "this2html5"
   end
 
   #flash[:error] = t("access_denied_page")
