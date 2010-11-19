@@ -1,3 +1,4 @@
+# encoding: utf-8
 class NoticiasController < ApplicationController
   layout :choose_layout
   before_filter :require_user
@@ -33,7 +34,7 @@ class NoticiasController < ApplicationController
   def update
     @noticia = Noticia.find(params[:id])
     @noticia.update_attributes(params[:noticia])
-    respond_with(@noticia)
+    redirect_to({:site_id => @noticia.sites[0].name, :controller => 'noticias', :action => 'index'}, :notice => (t"successfully_updated"))
   end
 
   def destroy

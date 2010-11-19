@@ -39,7 +39,8 @@ class PagesController < ApplicationController
   def update
     @page = Page.find(params[:id])
     @page.update_attributes(params[@page.class.name.underscore])
-    respond_with(@page)
+    redirect_to({:site_id => @site.name, :controller => 'pages', :action => 'index'}, :notice => 'Page was successfully created.')
+    #respond_with(@page)
   end
 
   def destroy
