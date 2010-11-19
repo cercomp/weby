@@ -1,3 +1,5 @@
+<fieldset>
+
 <p>
   <b><%= t"date", :param => t("register") %></b>
   <%=h @evento.created_at %>
@@ -94,6 +96,7 @@
   <b><%= t"end" %></b>
   <%=h @evento.event_end %>
 </p>
+    <%= link_to t("edit"), :controller => 'pages', :action => 'edit', :type => 'Evento'%>
+    <%= link_to t("back"), :back %>
 
-<%= link_to t("edit"), {:controller => 'pages', :action => 'edit', :type => 'Evento'}  %> |
-<%= link_to t("back"), :back %>
+</fieldset>
