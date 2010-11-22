@@ -16,5 +16,6 @@ class User < ActiveRecord::Base
 
   #has_many :group, :through => :feedback_users_group
   #has_many :feedback, :through => :feedback_users_group
-  has_many :feedback_users_group
+  #has_many :feedback_users_group
+  has_and_belongs_to_many :groups
 end
