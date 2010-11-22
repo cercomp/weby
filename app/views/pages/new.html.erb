@@ -25,6 +25,12 @@
 
     <%= f.hidden_field :type, :value => params[:type] %>
     <%= f.hidden_field :site_id, :value => @site.id %>
+
+    <%= f.fields_for :sites_pages do |pages_form| %>
+      <%= pages_form.hidden_field :site_id, :value => @site.id %>
+      <%= pages_form.hidden_field :page_id, :value => @page.id %>
+    <% end %>
+
     <%= render :partial => "new" + params[:type], :locals => {:f => f} %>
     <%= f.submit t("submit") %> <%= link_to t("back") %>
   <% end %>

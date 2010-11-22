@@ -1,4 +1,3 @@
-# encoding: utf-8
 class NoticiasController < ApplicationController
   layout :choose_layout
   before_filter :require_user

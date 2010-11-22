@@ -33,7 +33,7 @@ class InformativosController < ApplicationController
   def update
     @informativo = Informativo.find(params[:id])
     @informativo.update_attributes(params[:informativo])
-    respond_with(@informativo)
+    redirect_to({:site_id => @informativo.sites[0].name, :controller => 'informativos', :action => 'index'}, :notice => (t"successfully_updated"))
   end
 
   def destroy

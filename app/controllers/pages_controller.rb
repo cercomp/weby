@@ -19,7 +19,6 @@ class PagesController < ApplicationController
     params[:type] ||= 'Noticia'
     @page = Object.const_get(params[:type]).new
     @page.sites_pages.build
-    #@page = Page.new
     respond_with(@page)
   end
 
@@ -28,25 +27,23 @@ class PagesController < ApplicationController
   end
 
   def create
-    #@page = Page.new(params[:page])    
     @page = Object.const_get(params[:page][:type]).new(params[:page])
     @page.save
     # TODO ver se existe um metodo melhor para redirecionar
-    redirect_to({:site_id => Site.find(params[:page][:site_id]).name, :controller => 'pages', :action => 'index'}, :notice => 'Page was successfully created.')
-    #respond_with(@page)
+    redirect_to({:site_id => Site.find(params[:page][:site_id]).name, :controller => 'pages', :action => 'index'}, :notice => (t"successfully_created"))
   end
 
   def update
     @page = Page.find(params[:id])
     @page.update_attributes(params[@page.class.name.underscore])
-    redirect_to({:site_id => @site.name, :controller => 'pages', :action => 'index'}, :notice => 'Page was successfully created.')
-    #respond_with(@page)
+    redirect_to({:site_id => @page.sites[0].name, :controller => 'pages', :action => 'index'}, :notice => (t"successfully_created"))
   end
 
   def destroy
     @page = Page.find(params[:id])
+    # deleta todas as relacoes da pagina com os sites
+    SitesPage.find(@page.sites_pages).each{ |p| p.destroy }
     @page.destroy
     redirect_to(:back)
-    #respond_with(@page)
   end
 end

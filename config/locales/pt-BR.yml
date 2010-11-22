@@ -162,7 +162,7 @@ pt-BR:
   submit: "Enviar"
   sub-menu: "Sub-menu"
   successfully_created: "Criado com sucesso!"
-  successfully_created_param: "%{param} Criado com sucesso!"
+  successfully_created_param: "%{param} criado com sucesso!"
   successfully_updated_param: "%{param} atualizado com sucesso!"
   successfully_updated: "Atualizado com sucesso!"
   successfully_deleted: "Deletado com sucesso!"
