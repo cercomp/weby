@@ -1,6 +1,6 @@
 class CreateGroupsUsers < ActiveRecord::Migration
   def self.up
-    crate_table :groups_users, :id => false do |t|
+    create_table :groups_users, :id => false do |t|
       t.integer :group_id, :null => false
       t.integer :user_id, :null => false
     end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101116194133) do
+ActiveRecord::Schema.define(:version => 20101122184115) do
 
   create_table "feedback_users_groups", :force => true do |t|
     t.integer  "talk_id"
@@ -36,6 +36,13 @@ ActiveRecord::Schema.define(:version => 20101116194133) do
     t.datetime "updated_at"
     t.integer  "site_id"
   end
+
+  create_table "groups_users", :id => false, :force => true do |t|
+    t.integer "group_id", :null => false
+    t.integer "user_id",  :null => false
+  end
+
+  add_index "groups_users", ["group_id", "user_id"], :name => "index_groups_users_on_group_id_and_user_id", :unique => true
 
   create_table "menus", :force => true do |t|
     t.string   "title"
