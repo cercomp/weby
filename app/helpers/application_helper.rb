@@ -27,7 +27,8 @@ module ApplicationHelper
   # Retorna: O menu com seus controles
   def list_menus(start_menu, view_ctrl=0)
     menus = "" 
-    menus += "\t<ul>\n"
+    menus += "\t<menu id=\"root\">\n"
+    aberto = false;
     i=0
     j=0
     start_menu.each do |menu|
@@ -43,7 +44,9 @@ module ApplicationHelper
         end
         #menus += debug(menu)
         if current_user
-          menus += "\t\t\t<li>\n"
+          menus += "\n\t\t\t</li>\n" if aberto
+          menus += "\t\t\t<li class=\"parent\">\n"
+          aberto = true
           menus += "\t\t\t\t" + link_to("#{menu.title}", "#{menu.link}") + " "
           if view_ctrl == 1
             menus += link_to(image_tag('editar.gif', :border => 0), edit_site_menu_path(@site.name, menu.menu_id))
@@ -57,9 +60,10 @@ module ApplicationHelper
           #menus += "debug:#{start_menu[j+1]}"
         end
       end
-      menus += "\n\t\t\t</li>\n"
+      #menus += "\n\t\t\t</li>\n"
     end
-    menus += "\t</ul>\n"
+    menus += "\n\t\t\t</li>\n" if aberto
+    menus += "\t</menu>\n"
     menus
   end
 

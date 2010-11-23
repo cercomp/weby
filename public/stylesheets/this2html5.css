@@ -7,23 +7,47 @@ div#wrapper {
 	width: 960px;
 	margin: 0 auto; }
 
-header {
+header, footer {
   width: 100%;
-  background-color: #ccc;
-	height: 142px; }
+  text-align: right;
+  background-color: #ccc; }
   header div#topo { height: 120px; }
-  header nav {
-    height: 22px;
+  header nav, footer nav {
+    padding:5px;
     background-color: #b2b2b2; }
-
-div#main { }
+  header nav menu, footer nav menu { float:left; }
+  header nav menu li, footer nav menu li { display: inline-block; }
 
 aside {
 	width: 180px;
-  background-color: #7f7f7f;
+  background-color: #CCC;
   padding: 5px; }
   aside.left { float: left; }
   aside.right { float: right; }
+  aside nav menu li { margin-bottom: 3px; }
+  aside nav menu li { position: relative; }
+  aside nav menu menu { margin-left: 10px; }
+  aside nav menu, aside nav menu menu {
+    margin: 0;
+    width: 180px; } 
+  aside nav menu menu {
+    position: absolute;
+    display: none;
+    left: 180px;
+    top: 0;}
+  aside nav menu#root li:hover menu menu,
+  aside nav menu#root li:hover menu menu menu,
+  aside nav menu#root li.over menu menu,
+  aside nav menu#root li.over menu menu menu { display: none; }
+  aside nav menu#root li:hover menu,
+  aside nav menu#root li li:hover menu,
+  aside nav menu#root li li li:hover menu, 
+  aside nav menu#root li.over menu, aside nav menu#root li li.over menu, aside nav menu#root li li li.over menu { display: block; }
+  aside nav menu#root li.parent a:hover, aside nav menu#root li.over a{ background-color: #fff; }
+  /* Fix IE. Hide from IE Mac \*/
+  * html aside nav menu#root li { float: left; height: 1%; }
+  * html aside nav menu#root li a { height: 1%; }
+  /* End */ 
 
 section#content {
 	float:left;
@@ -34,14 +58,15 @@ section#content {
   padding-bottom:30px;
 }
 
-footer {
-  background-color: #ccc;
-	height: 22px;
-}
-
 .clear {clear: both;}
 
-.menus{
-  background-color: aqua;
-  height: 25px;
-}
+menu { margin: 0; }
+  menu li { list-style: none; }
+  menu li a {
+    background: #ddd;
+    display: block;
+    padding: 5px; }
+
+/** **/
+
+
