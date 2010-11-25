@@ -13,6 +13,7 @@ class Site < ActiveRecord::Base
   has_many :sites_pages
   has_many :pages, :through => :sites_pages
 
+  has_many :groups
   has_many :feedbacks
 
   accepts_nested_attributes_for :sites_users, :allow_destroy => true#, :reject_if => proc { |attributes| attributes['title'].blank? }

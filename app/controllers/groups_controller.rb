@@ -26,6 +26,7 @@ class GroupsController < ApplicationController
   # GET /groups/new.xml
   def new
     @group = Group.new
+    @users = @group.users_off_groups
 
     respond_to do |format|
       format.html # new.html.erb
@@ -36,19 +37,28 @@ class GroupsController < ApplicationController
   # GET /groups/1/edit
   def edit
     @group = Group.find(params[:id])
+    @users = @group.users_off_groups
   end
 
   # POST /groups
   # POST /groups.xml
   def create
     @group = Group.new(params[:group])
+    @users = params[:users_ids] || []
 
     respond_to do |format|
       if @group.save
+        # Cadastra usuarios no grupo
+        unless @users.empty?
+          @users.each do |u|
+            @group.users << User.find(u)
+          end
+        end
+
         format.html { redirect_to({:site_id => @group.site_id, :controller => 'groups', :action => 'index'}, :notice => t("succesfully_created_param"), :param => t("group")) }
         format.xml  { render :xml => @group, :status => :created, :location => @group }
       else
-        format.html { render :action => "new" }
+        format.html { render :site_id => @site.id, :controller => 'groups', :action => "new" }
         format.xml  { render :xml => @group.errors, :status => :unprocessable_entity }
       end
     end
@@ -77,8 +87,9 @@ class GroupsController < ApplicationController
     @group.destroy
 
     respond_to do |format|
-      format.html { redirect_to(groups_url) }
+      format.html { redirect_to(site_groups_url) }
       format.xml  { head :ok }
     end
   end
+
 end

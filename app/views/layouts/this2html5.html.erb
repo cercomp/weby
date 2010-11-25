@@ -89,6 +89,9 @@
           <%= raw list_menus(@bottom) %>
           <div class="clear"></div>
         <% end %>
+        <div id="feedback">
+          <%= link_to 'Novo feedback', new_site_feedback_path(@site.id) unless @site.nil? %>
+        </div>
       </nav>
     </footer>
 

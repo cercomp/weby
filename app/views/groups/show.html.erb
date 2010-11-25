@@ -5,5 +5,14 @@
   <%= @group.name %>
 </p>
 
-<%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', groups_path %>
+<p>
+  <b>Usuários:</b>
+  <ul>
+    <% @group.users.each do |user| %>
+      <li><%= user.login %></li>
+    <% end %>
+  </ul>
+</p>
+
+<%= link_to 'Edit', edit_site_group_path(@site.id, @group) %> |
+<%= link_to 'Back', site_groups_path %>

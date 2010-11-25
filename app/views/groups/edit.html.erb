@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @group %> |
-<%= link_to 'Back', groups_path %>
+<%= link_to 'Show', site_group_path(@site.id, @group) %> |
+<%= link_to 'Back', site_groups_path %>

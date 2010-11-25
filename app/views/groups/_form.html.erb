@@ -1,3 +1,4 @@
+<% #TODO colocar traduções %>
 <%= form_for @group, :builder => SemanticFormBuilder do |f| %>
   <% if @group.errors.any? %>
     <div id="error_explanation">
@@ -12,7 +13,18 @@
 
   <%= f.text_field :name, :label => t("name") %>
 
-  <%=  f.hidden_field :site_id, :value => @site.id %>
+  <div class="select-field">
+    <label for="users_id_">Usuários</label>
+    <div class="input">
+      <%= select_tag "users_ids[]",
+          options_for_select(@users.collect{|u| [u.login, u.id]}),
+          :multiple => true,
+          :size => 7,
+          :style => "width: 205px" %>
+    </div>
+  </div>
+
+  <%= f.hidden_field :site_id, :value => @site.id %>
 
   <%= f.submit t("create") %>
 

@@ -13,20 +13,19 @@
   </tr>
 
 <% @feedbacks.each do |feedback| %>
-  <% if feedback.site_id == @site.id %>
-    <tr>
-      <td><%= feedback.name %></td>
-      <td><%= feedback.email %></td>
-      <td><%= feedback.subject %></td>
-      <td><%= feedback.message %></td>
-      <td><%= feedback.site_id %></td>
-      <td><%= link_to 'Show', :controller => "feedbacks", :action => "show", :id => feedback.id %></td>
-      <td><%= link_to 'Edit', :controller => "feedbacks", :action => "edit", :id => feedback.id %></td>
-    </tr>
-  <% end %>
+  <tr>
+    <td><%= feedback.name %></td>
+    <td><%= feedback.email %></td>
+    <td><%= feedback.subject %></td>
+    <td><%= feedback.message %></td>
+    <td><%= feedback.site_id %></td>
+    <td><%= link_to 'Show', site_feedback_path(@site, feedback) %></td>
+    <td><%= link_to 'Edit', edit_site_feedback_path(@site, feedback) %></td>
+    <td><%= link_to 'Destroy', site_feedback_path(@site, feedback), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Feedback', new_site_feedback_path %>
+<%= link_to 'New Feedback', new_site_feedback_path(@site) %>

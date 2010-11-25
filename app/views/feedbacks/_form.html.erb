@@ -1,4 +1,7 @@
-<%= form_for @feedback, :builder => SemanticFormBuilder do |f| %>
+<%= form_for @feedback,
+              :url => @feedback.id.nil? ? site_feedbacks_path(@site) : site_feedback_path(@site),
+              :method => @feedback.id.nil? ? 'post' : 'put',
+              :builder => SemanticFormBuilder do |f| %>
   <% if @feedback.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@feedback.errors.count, "error") %> prohibited this feedback from being saved:</h2>
@@ -12,7 +15,7 @@
 
   <%#= f.select(:name,Groups.find(:all, :conditions => 'status = 1', :order => 'created_at DESC').collect{|p| [ p.service, p.id ]}) %>
   <% unless @groups.empty? %>
-    <%= f.select :name , Group.find(:all, :conditions => "site_id = #{params[:site_id]}").collect{|p| [ p.name, p.id ]}, :required => true, :label => t(:group, :count => 1) %>
+    <%= f.select :name , @groups.collect{|p| [ p.name, p.id ]}, :required => true, :label => t(:group, :count => 1) %>
   <% end %>
 
   <%= f.text_field :name, :label => t("name") %>

@@ -1,10 +1,16 @@
 class FeedbacksController < ApplicationController
   layout :choose_layout
+
+  before_filter :get_groups, :only => [:new, :edit, :create, :update]
+
+  def get_groups
+    @groups = Group.where(:site_id => @site.id)
+  end
+
   # GET /feedbacks
   # GET /feedbacks.xml
   def index
-    @feedbacks = Feedback.all
-    @groups = Group.all
+    @feedbacks = Feedback.where(:site_id => @site.id)
 
     #Group.find(:all, :select => 'name')
 
@@ -29,7 +35,6 @@ class FeedbacksController < ApplicationController
   # GET /feedbacks/new.xml
   def new
     @feedback = Feedback.new
-    @groups = Group.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -49,7 +54,8 @@ class FeedbacksController < ApplicationController
 
     respond_to do |format|
       if @feedback.save
-        format.html { redirect_to({:site_id => @feedback.site.name, :controller => 'feedbacks', :action => 'index'}, :notice => 'Feedback was successfully created.') }
+        format.html { redirect_to(site_feedback_path(@site.id, @feedback),
+                      :notice => 'Feedback was successfully created.') }
         format.xml  { render :xml => @feedback, :status => :created, :location => @feedback }
       else
         format.html { render :action => "new" }
@@ -65,7 +71,8 @@ class FeedbacksController < ApplicationController
 
     respond_to do |format|
       if @feedback.update_attributes(params[:feedback])
-        format.html { redirect_to(@feedback, :notice => 'Feedback was successfully updated.') }
+        format.html { redirect_to(site_feedback_url,
+                      :notice => 'Feedback was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -81,7 +88,7 @@ class FeedbacksController < ApplicationController
     @feedback.destroy
 
     respond_to do |format|
-      format.html { redirect_to(feedbacks_url) }
+      format.html { redirect_to(site_feedbacks_url) }
       format.xml  { head :ok }
     end
   end

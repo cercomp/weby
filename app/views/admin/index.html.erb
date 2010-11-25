@@ -32,6 +32,13 @@
     <% end %>
   </p>
   <p>
+    <!-- TODO colocar tradução aqui -->
+    <%= link_to "Feedbacks", :controller => 'feedbacks', :action => 'index' %>
+    <% if check_permission(FeedbacksController, "new") %>
+     | <%= link_to t("new"), {:controller => 'feedbacks', :action => 'new'}, :class => 'icon icon-add' %>
+    <% end %>
+  </p>
+  <p>
     <%= link_to (t"list", :param => t("roles_permissions")), :controller => 'roles', :action => 'index' %>
     <% if check_permission(RolesController, "new") %>
      | <%= link_to t("new"), {:controller => 'roles', :action => 'new'}, :class => 'icon icon-add' %>
