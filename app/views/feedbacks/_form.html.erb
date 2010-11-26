@@ -13,9 +13,13 @@
     </div>
   <% end %>
 
+  <%# TODO Fazer a implementação usando f.select %>
   <%#= f.select(:name,Groups.find(:all, :conditions => 'status = 1', :order => 'created_at DESC').collect{|p| [ p.service, p.id ]}) %>
   <% unless @groups.empty? %>
-    <%= f.select :name , @groups.collect{|p| [ p.name, p.id ]}, :required => true, :label => t(:group, :count => 1) %>
+    <%= f.fields_for :group_ids do |group_id| %>
+      <%= group_id.select nil, options_for_select(@groups.collect{|p| [ p.name, p.id ]}), :required => true, :label => t(:group, :count => 1) %>
+    <% end %>
+    <%#= select_tag "feedback[group_ids][]", options_for_select(@groups.collect{|p| [ p.name, p.id ]}), :required => true, :label => t(:group, :count => 1) %>
   <% end %>
 
   <%= f.text_field :name, :label => t("name") %>
