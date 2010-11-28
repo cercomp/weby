@@ -18,6 +18,11 @@ header, footer {
   header nav menu, footer nav menu { float:left; }
   header nav menu li, footer nav menu li { display: inline-block; }
 
+menu li div#menu_ctrl a
+{
+  display: inline;
+}
+
 aside {
 	width: 180px;
   background-color: #CCC;
@@ -25,9 +30,10 @@ aside {
   aside.left { float: left; }
   aside.right { float: right; }
   aside nav menu li { margin-bottom: 3px; }
-  aside nav menu li { position: relative; }
+  aside nav menu li { position: relative; display: block; background: #ddd; padding: 5px; }
   aside nav menu menu { margin-left: 10px; }
   aside nav menu, aside nav menu menu {
+    padding: 0;
     margin: 0;
     width: 180px; } 
   aside nav menu menu {
@@ -61,12 +67,8 @@ section#content {
 .clear {clear: both;}
 
 menu { margin: 0; }
-  menu li { list-style: none; }
-  menu li a {
-    background: #ddd;
-    display: block;
-    padding: 5px; }
-
-/** **/
-
-
+menu li { list-style: none; }
+menu li a {
+    display: inline;
+    padding: 5px; 
+}

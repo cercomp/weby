@@ -322,19 +322,3 @@ fieldset.collapsible.collapsed legend { background-image: url(../images/arrow_co
 .clear{
     clear: both;
 }
-
-menu
-{
-  padding: 0px;
-}
-menu ul
-{
-  list-style: none;
-  padding-left: 15px;
-}
-menu li
-{
-}
-menu li a
-{
-}

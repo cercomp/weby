@@ -1,7 +1,5 @@
 <% if @left.nil? %>
   <p> <%= "Nenhum menu esquerdo" %> </p>
 <% else %>
-	<menu>
   	<%= raw list_menus(@left, 1) %>
-	</menu>
 <% end %>
