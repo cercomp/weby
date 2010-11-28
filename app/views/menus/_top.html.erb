@@ -1,5 +1,5 @@
 <% if @top.nil? %>
   <p> <%= "Nenhum menu superior" %> </p>
 <% else %>
-  	<%= raw list_menus(@top) %>
+  	<%= raw list_menus(@top, 1) %>
 <% end %>

@@ -29,7 +29,7 @@ class MenusController < ApplicationController
   def create
     @menu = Menu.new(params[:menu])
     @menu.save
-    redirect_to :back, :notice =>  t("succesfully_created")
+    redirect_to :back, :notice =>  t("successfully_created")
   end
 
   def update
