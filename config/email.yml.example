@@ -1,0 +1,31 @@
+production:
+  delivery_method: :smtp
+  smtp_settings:
+    address: localhost
+    port: 25
+    domain: localhost
+    authentication: :none
+    user_name: "redmine@example.net"
+    password: "redmine"
+  
+development:
+  delivery_method: :smtp
+  smtp_settings:
+    address: 127.0.0.1
+    port: 25
+    domain: localhost
+    authentication: :none
+    user_name:
+    password:
+
+# Send email using gmail
+# development:
+#   delivery_method: :smtp
+#   smtp_settings:
+#     address: "smtp.gmail.com"
+#     port: 587
+#     user_name: ''
+#     password: ''
+#     authentication: 'plain'
+#     enable_starttls_auto: true 
+
