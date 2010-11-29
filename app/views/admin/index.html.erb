@@ -51,7 +51,10 @@
      | <%= link_to t("new"), new_site_path, :class => 'icon icon-add' %>
     <% end %>
   </p>
-  <p>
+   <p>
+    <%= link_to (t"list", :param => (t"archive", :count => 2)), :controller => 'repositories', :action => 'index' %>
+   </p>
+   <p>
 	  <%= link_to (t"setting", :count => 2), edit_site_path(@site.name) %>
   </p>
 <% end %>
