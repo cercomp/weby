@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(:version => 20101123160831) do
     t.string   "archive_content_type"
     t.integer  "archive_file_size"
     t.datetime "archive_updated_at"
+    t.string   "description"
   end
 
   create_table "rights", :force => true do |t|

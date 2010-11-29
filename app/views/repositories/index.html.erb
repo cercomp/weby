@@ -2,16 +2,17 @@
 
 
 <% @repositories.each do |repository| %>
-  <%# if repository.site_id == @site.id %>
+  <% if repository.site_id == @site.id %>
   <tr>
-    <td><%=image_tag repository.archive(:thumb) %></td>
-	<td><%= repository.site_id %></td>	
-    
+    <td><%=image_tag "/images/arquivo.gif" %></td>
+	<td>ID: <%= repository.site_id %></td><br/>	
+    <td><%= t("Descrpition") %>: <%= repository.description %> </td><br/>
     <td><%= link_to t("show"), {:controller => 'repositories', :action => 'show', :id => repository.id}%></td>
     <td><%= link_to t("edit"), {:controller => 'repositories', :action => 'edit', :id=> repository.id} %></td>
     <td><%= link_to t("destroy"), repository, :confirm => "are_you_sure?", :method => :delete %></td>
   </tr>
-  <%# end %>
+  <br/>
+  <% end %>
 <% end %>
 </table>
 

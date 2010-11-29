@@ -12,8 +12,8 @@
   <% end %>
 
   <div class="field">
-	<%= f.file_field :archive%>
- 
+	<%= f.text_field :description, :label => t("description") %>
+	<%= f.file_field :archive %>
 	<%=  f.hidden_field :site_id, :value => @site.id %>
   </div>
 

@@ -62,6 +62,7 @@ section#content {
 	background: #eee;
   padding:5px;
   padding-bottom:30px;
+	overflow: hidden;
 }
 
 .clear {clear: both;}

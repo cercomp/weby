@@ -1,7 +1,10 @@
 <p id="notice"><%= notice %></p>
 
+<%#= debug @repository.archive%>
+
 <p>
-  <%= image_tag @repository.archive(:original)%>	
+  <%= image_tag @repository.archive.url %>	
+  <%=h  @repository.description %>	
 </p>
 
 
