@@ -1,6 +1,4 @@
-<%= form_for @feedback,
-              :url => @feedback.id.nil? ? site_feedbacks_path(@site) : site_feedback_path(@site),
-              :method => @feedback.id.nil? ? 'post' : 'put',
+<%= form_for [@site, @feedback],
               :builder => SemanticFormBuilder do |f| %>
   <% if @feedback.errors.any? %>
     <div id="error_explanation">
@@ -13,14 +11,22 @@
     </div>
   <% end %>
 
-  <%# TODO Fazer a implementação usando f.select %>
-  <%#= f.select(:name,Groups.find(:all, :conditions => 'status = 1', :order => 'created_at DESC').collect{|p| [ p.service, p.id ]}) %>
+  <div id="feedback_group">
   <% unless @groups.empty? %>
-    <%= f.fields_for :group_ids do |group_id| %>
-      <%= group_id.select nil, options_for_select(@groups.collect{|p| [ p.name, p.id ]}), :required => true, :label => t(:group, :count => 1) %>
-    <% end %>
-    <%#= select_tag "feedback[group_ids][]", options_for_select(@groups.collect{|p| [ p.name, p.id ]}), :required => true, :label => t(:group, :count => 1) %>
+    <div class="text-field">
+      <label for="group_ids">Grupos</label>
+
+      <div class="input">
+      <% @groups.each do |group| %>
+        <p>
+        <%= check_box_tag 'feedback[group_ids][]', group.id %>
+        <%= group.name %>
+        </p>
+      <% end %>
+      </div>
+    </div>
   <% end %>
+  </div>
 
   <%= f.text_field :name, :label => t("name") %>
   
