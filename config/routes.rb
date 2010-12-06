@@ -1,5 +1,7 @@
 Webyge::Application.routes.draw do |map|
 
+  match 'sites/:site_id(/:controller(/:action(/:id)))' => "sites#index"
+
   resources :sites do
     resources :menus do 
       collection do 
@@ -23,7 +25,7 @@ Webyge::Application.routes.draw do |map|
   end
 
   resources :users do collection { get :change_roles } end
-  resources :sites
+#  resources :sites
   resources :groups
   resources :feedbacks
   resources :menus
@@ -37,7 +39,6 @@ Webyge::Application.routes.draw do |map|
   resources :rights
   resources :repositories
   resources :archives
-
 
   resources :user_sessions
   resources :password_resets

@@ -1,9 +1,7 @@
 # coding: utf-8
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :set_locale
-  before_filter :check_authorization, :except => [:current_user_session, :current_user, :access_denied, :choose_layout, :menu_treat, :search_son]
-  before_filter :get_site_obj
+  before_filter :set_locale, :get_site_obj
  
   helper :all
   helper_method :current_user_session, :current_user, :user_not_authorized
@@ -20,8 +18,6 @@ class ApplicationController < ActionController::Base
     return "this2html5"
   end
 
-  #flash[:error] = t("access_denied_page")
-  #request.env["HTTP_REFERER" ] ? (redirect_to :back) : (render :template => 'admin/access_denied')
   def check_authorization
     if current_user
       if current_user.is_admin
@@ -35,7 +31,8 @@ class ApplicationController < ActionController::Base
             end
           end
         end
-        flash.now[:error] = t("access_denied")
+        flash[:error] = t("access_denied")
+        #request.env["HTTP_REFERER" ] ? (redirect_to :back) : (render :template => 'admin/access_denied')
         (render :template => 'admin/access_denied')
         return false
       end
@@ -168,6 +165,5 @@ class ApplicationController < ActionController::Base
     elsif params[:id]
       @site = Site.find(:first, :conditions => ["name = ?", params[:id]])
     end
-
   end
 end
