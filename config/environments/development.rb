@@ -15,6 +15,15 @@ Webyge::Application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
   config.active_support.deprecation = :log 
+
+  #config.action_mailer.delivery_method = :smtp
+  #config.action_mailer.smtp_settings = {
+  #  :address              => "",
+  #  :port                 => 587,
+  #  :user_name            => '',
+  #  :password             => '',
+  #  :authentication       => '',
+  #  :enable_starttls_auto => true  }
 end

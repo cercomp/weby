@@ -1,10 +1,10 @@
 class FeedbackMailer < ActionMailer::Base
-  default :from => "web@cercomp.ufg.br"
+  default :from => "nicolaslazartekaqui@gmail.com"
 
-  def send_email feedback
+  def send_feedback feedback
+    @feedback = feedback
     feedback.groups.each do |group|
       group.users.each do |user|
-        logger.debug "enviando email para >>>>> " + user.email
         mail :to => user.email, :subject => feedback.subject
       end
     end
