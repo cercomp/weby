@@ -54,7 +54,7 @@ class FeedbacksController < ApplicationController
 
     respond_to do |format|
       if @feedback.save
-        # FeedbackMailer.send(@user).deliver
+        FeedbackMailer.send_email(@feedback).deliver
         format.html { redirect_to(site_feedback_path(@site.id, @feedback),
                       :notice => 'Feedback was successfully created.') }
         format.xml  { render :xml => @feedback, :status => :created, :location => @feedback }

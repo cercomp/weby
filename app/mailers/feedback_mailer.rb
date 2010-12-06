@@ -1,8 +1,13 @@
 class FeedbackMailer < ActionMailer::Base
-  default :from => "from@example.com"
+  default :from => "web@cercomp.ufg.br"
 
-  def send(user)
-    mail (:to => user.email,
-          :subject => "Feedback to you")
+  def send_email feedback
+    feedback.groups.each do |group|
+      group.users.each do |user|
+        logger.debug "enviando email para >>>>> " + user.email
+        mail :to => user.email, :subject => feedback.subject
+      end
+    end
   end
+
 end
