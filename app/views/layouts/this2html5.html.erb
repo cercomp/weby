@@ -27,7 +27,7 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-  <%#= debug(params) %>
+  <%= debug(params) %>
   <%#= request.env['HTTP_REFERER'] %>
   <div id="wrapper">
     
@@ -90,7 +90,9 @@
           <div class="clear"></div>
         <% end %>
         <div id="feedback">
-          <%= link_to 'Novo feedback', new_site_feedback_path(@site.id) unless @site.nil? %>
+          <% unless @site.nil? %>
+            <%= link_to 'Novo feedback', new_site_feedback_path(@site.id) if @site.id %>
+          <% end %>
         </div>
       </nav>
     </footer>
