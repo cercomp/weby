@@ -4,7 +4,7 @@
 <fieldset>
   <legend><%= t"new" %> <%= params[:type] %></legend>
 
-  <%= form_for @page, :builder => SemanticFormBuilder, :as => :page, :url => :pages do |f| %>
+  <%= form_for @page, :html => { :multipart => true }, :builder => SemanticFormBuilder, :as => :page, :url => :pages do |f| %>
     <% @page.errors.full_messages.each do |msg| %>  
       <li><%= msg %></li>  
     <% end %>  
@@ -13,7 +13,7 @@
     <%= f.date_select :date_pub, :order => [:year, :month, :day], :use_month_numbers => true, :label => (t"date", :param => t("publication")), :start_year => Time.now.year %>
     <%= f.date_select :date_begin, :order => [:year, :month, :day], :use_month_numbers => true, :label =>  (t"date", :param => t("begin")), :start_year => Time.now.year %>
     <%= f.date_select :date_end, :order => [:year, :month, :day], :use_month_numbers => true, :label => (t"date", :param => t("end")), :start_year => Time.now.year %>
-    <%= f.text_field :image, :label => t("picture") %>
+    <%= f.file_field :image, :label => t("picture") %>
     <%= f.text_field :position, :label => t("position") %>
     <%= f.text_field :status, :label => t("status") %>
     <%= f.text_field :author_id, :label => t("author") %>

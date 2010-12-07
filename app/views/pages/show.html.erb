@@ -16,7 +16,7 @@
 </p>
 <p>
   <b><%= t"picture" %>:</b>
-  <%= @page.image %>
+  <%= image_tag @page.image.url[:medium] %>
 </p>
 <p>
   <b><%= t"position" %>:</b>

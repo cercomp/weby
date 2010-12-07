@@ -78,9 +78,13 @@ ActiveRecord::Schema.define(:version => 20101126182515) do
     t.string   "subject"
     t.string   "text_clob"
     t.string   "align"
-    t.string   "type",            :null => false
+    t.string   "type",               :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "repositories", :force => true do |t|

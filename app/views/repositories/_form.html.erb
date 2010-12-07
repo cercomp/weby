@@ -13,11 +13,11 @@
 
   <div class="field">
 	<%= f.text_field :description, :label => t("description") %>
-	<%= f.file_field :archive %>
+	<%= f.file_field :archive, :label => t(:archive, :count => 1) %>
 	<%=  f.hidden_field :site_id, :value => @site.id %>
   </div>
 
   <div class="actions">
-    <%= f.submit t("send"),{:controller => 'repositories', :action => 'show', :id =>  @repository.id} %>
+    <%= f.submit t("submit"),{:controller => 'repositories', :action => 'show', :id =>  @repository.id} %>
   </div>
 <% end %>
