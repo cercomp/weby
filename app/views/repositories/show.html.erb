@@ -1,12 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <%#= debug @repository.archive%>
-
 <p>
   <%= image_tag @repository.archive.url %>	
-  <%=h  @repository.description %>	
+  <%= @repository.description %>	
 </p>
-
 
 <%= link_to t("edit"),{:controller => 'repositories', :action => 'edit', :id=> @repository.id} %> |
 <%= link_to t("back"),{:controller => 'repositories', :action => 'index'}%>

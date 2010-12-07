@@ -6,7 +6,7 @@
   <tr>
     <td><%=image_tag "/images/arquivo.gif" %></td>
 	<td>ID: <%= repository.id %></td><br/>	
-    <td><%= t("Descrpition") %>: <%= repository.description %> </td><br/>
+    <td><%= t("description") %>: <%= repository.description %> </td><br/>
     <td><%= link_to t("show"), {:controller => 'repositories', :action => 'show', :id => repository.id}%></td>
     <td><%= link_to t("edit"), {:controller => 'repositories', :action => 'edit', :id=> repository.id} %></td>
     <td><%= link_to t("destroy"), repository, :confirm => "are_you_sure?", :method => :delete %></td>
