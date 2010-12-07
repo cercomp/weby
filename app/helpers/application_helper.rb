@@ -43,7 +43,6 @@ module ApplicationHelper
           mm.update_attribute(:position, i)
         end
         #menus += debug(menu)
-        if current_user
           menus += "\n\t\t\t</li>\n" if aberto
           menus += "\t\t\t<li class=\"parent\">\n"
           aberto = true
@@ -58,7 +57,6 @@ module ApplicationHelper
           #menus += "\t\t\t</li>\n"
           #menus += "id: #{menu.id} parent_id:#{menu.parent_id} position: #{menu.position.to_i} i:#{i} "
           #menus += "debug:#{start_menu[j+1]}"
-        end
       end
       #menus += "\n\t\t\t</li>\n"
     end

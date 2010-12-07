@@ -1,7 +1,6 @@
 class SitesController < ApplicationController
   layout :choose_layout
-  before_filter :require_user, :except => [:show, :index]
-  #before_filter :require_no_user, :except => [:show, :index]
+
   before_filter :check_authorization, :except => [:show, :index]
   
   respond_to :html, :xml
