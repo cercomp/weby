@@ -20,8 +20,6 @@
     <%= f.text_field :editor_id, :label => t("editor") %>
     <%= f.text_field :editor_chief_id, :label => t("chief_editor") %>
     <%= f.text_area :text, :label => t("text") %>
-    <%= f.text_field :url, :label => t("url") %>
-    <%= f.datetime_select :front_time, :label => t("time_cover"), :order => [:year, :month, :day], :use_month_numbers => true, :start_year => Time.now.year %>
 
     <%= f.hidden_field :type, :value => params[:type] %>
     <%= f.hidden_field :site_id, :value => @site.id %>

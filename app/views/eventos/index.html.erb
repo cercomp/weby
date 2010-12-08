@@ -22,7 +22,7 @@
         <td><%=h evento.author_id %></td>
         <td>          
           <% if params[:site_id] %>
-            <%= link_to t("show"), {:controller => 'eventos', :action => 'show', :id => evento, :type => 'Evento'} %>
+            <%= link_to t("show"), {:controller => 'eventos', :action => 'show', :id => evento} %>
             <%= link_to t("edit"), {:controller => 'pages', :action => 'edit', :id => evento, :type => 'Evento'}  %>
             <%= link_to t("destroy"),  {:controller => 'pages', :action => 'destroy', :id => evento } , :confirm => t("are_you_sure"), :method => :delete %>
           <% end %>

@@ -73,3 +73,33 @@ menu li a {
     display: inline;
     padding: 5px; 
 }
+
+#pages {
+  font-family: Verdana;
+  font-weight: Normal;
+  padding-top:5px;
+  padding-bottom:5px;
+  padding-right:10px;
+  padding-left:10px;
+}
+
+#pages h1 {
+  font-size: 23px;
+  color: #1C1C1C; 
+}
+
+#pages h2 {
+  line-height: 100%;
+  color: #2F4F4F;
+  font-size: 15px;
+}
+
+#pages h3 {
+  font-size: 15px;
+  line-height: 100%;
+  color: #696969;
+}
+
+#pages p {
+
+}

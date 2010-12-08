@@ -1,66 +1,13 @@
-<p>
-  <b> <%= t"date", :param => t("register") %></b>
-  <%=h @informativo.created_at %>
-</p>
-<p>
-  <b><%= t"date", :param => t("publication")%></b>
-  <%=h @informativo.date_pub %>
-</p>
-<p>
-  <b><%= t"date", :param => t("begin")%></b>
-  <%=h @informativo.date_begin %>
-</p>
-<p>
-  <b><%= t"date", :param => t("end") %></b>
-  <%=h @informativo.date_end %>
-</p>
-<p>
-  <b><%= t"picture" %></b>
-  <%=h @informativo.image %>
-</p>
-<p>
-  <b><%= t"position" %></b>
-  <%=h @informativo.position %>
-</p>
-<p>
-  <b><%= t"status"%></b>
-  <%=h @informativo.status %>
-</p>
-<p>
-  <b><%= t"author"%></b>
-  <%=h @informativo.author_id %>
-</p>
-<p>
-  <b><%= t"editor"%></b>
-  <%=h @informativo.editor_id %>
-</p>
-<p>
-  <b><%= t"chief_editor" %></b>
-  <%=h @informativo.editor_chief_id %>
-</p>
-<p>
-  <b><%= t"text" %></b>
-  <%=h @informativo.text %>
-</p>
-<p>
-  <b><%= t"url"%></b>
-  <%=h @informativo.url %>
-</p>
-<p>
-  <b><%= t"site"%></b>
-  <%=h @informativo.site_id %>
-</p>
-<p>
-  <b><%= t"subject"%></b>
-  <%=h @informativo.subject %>
-</p>
-<p>
-  <b><%= "Texto clob" %></b>
-  <%=h @informativo.text_clob %>
-</p>
-<p>
-  <b><%= t"side" %></b>
-  <%=h @informativo.align %>
-</p>
+<div id="pages">
+  <p> <h1> <%= t("newsletter", :count => 1) %> </h1> </p>
+  <p> <a href="<%= @informativo.image.url %>" alt="<%= @informativo.text_image %>">
+    <img src="<%= @informativo.image.url %>" align="right" width="200" height="200">
+    </img>
+  </a> </p>
+  <i> <%=h @informativo.date_pub %> </i>
 
-<%= link_to t("edit"), {:controller => 'pages', :action => 'edit', :type => 'Informativo'}%> | <%= link_to t("back"), :back %>
+  <p> <h3> <%=h @informativo.url %> </h3> </p>
+
+
+  <%= link_to t("edit"), {:controller => 'pages', :action => 'edit', :id => @informativo.id, :type => 'Informativo'}%> | <%= link_to t("back"), :back %>
+</div>

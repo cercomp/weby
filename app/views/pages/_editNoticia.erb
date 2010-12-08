@@ -1,6 +1,7 @@
-  <%= f.text_field :title, :label => t("title") %>
-  <%= f.text_field :summary, :label => t("summary") %>
   <%= f.text_field :source, :label => t("source") %> 
-  <%= f.check_box :front , :label => t("cover"), :help => "A notícia é capa?" %>
+  <%= f.text_field :title, :label => t("title") %>
   <%= f.text_field :text_image, :label => t("picture_text") %>
+  <%= f.text_field :summary, :label => t("summary") %>
   <%= f.text_field :pdf, :label => t("pdf") %>
+  <%= f.check_box :front , :label => t("cover"), :help => "A notícia é capa?" %>
+  <%= f.datetime_select :front_time, :label => t("time_cover"), :order => [:year, :month, :day], :use_month_numbers => true, :start_year => Time.now.year %>
