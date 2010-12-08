@@ -9,7 +9,7 @@ class Page < ActiveRecord::Base
 
   has_attached_file :image, 
      :styles => { :medium => "300X300"},
-	 :url => "/uploads/:class/:attachment/:id/:style_:basename.:extension"	
+	 :url => "/uploads/:class/:site_id/:id/:style_:basename.:extension"	
   
   
   accepts_nested_attributes_for :sites_pages, :allow_destroy => true#, :reject_if => proc { |attributes| attributes['title'].blank? }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101129170919) do
+ActiveRecord::Schema.define(:version => 20101208162331) do
 
   create_table "feedbacks", :force => true do |t|
     t.string   "name"
@@ -58,16 +58,12 @@ ActiveRecord::Schema.define(:version => 20101129170919) do
     t.string   "position"
     t.string   "status"
     t.integer  "author_id"
-    t.string   "editor_id"
-    t.string   "editor_chief_id"
     t.text     "text"
     t.string   "url"
     t.integer  "site_id"
     t.string   "source"
     t.string   "title"
     t.string   "text_image"
-    t.string   "summary"
-    t.string   "pdf"
     t.integer  "front"
     t.datetime "front_time"
     t.string   "kind"
@@ -85,6 +81,7 @@ ActiveRecord::Schema.define(:version => 20101129170919) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.text     "summary"
   end
 
   create_table "repositories", :force => true do |t|
