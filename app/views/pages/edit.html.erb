@@ -3,27 +3,26 @@
 
 <fieldset>
   <legend><%= t"editing", :param => params[:type] %></legend>
-   
 
   <%= form_for @page, :builder => SemanticFormBuilder do |f| %>
     <% @page.errors.full_messages.each do |msg| %>  
       <li><%= msg %></li>  
     <% end %>  
 
-    <%= f.date_select :created_at, :order => [:year, :month, :day], :use_month_numbers => true, :label => (t"date", :param => t("register")), :start_year => Time.now.year %>
     <%= f.date_select :date_pub, :order => [:year, :month, :day], :use_month_numbers => true, :label => (t"date", :param => t("publication")), :start_year => Time.now.year %>
     <%= f.date_select :date_begin, :order => [:year, :month, :day], :use_month_numbers => true, :label =>  (t"date", :param => t("begin")), :start_year => Time.now.year %>
     <%= f.date_select :date_end, :order => [:year, :month, :day], :use_month_numbers => true, :label => (t"date", :param => t("end")), :start_year => Time.now.year %>
-    <%= f.file_field :image, :label => t("picture") %>
-    <%= f.text_field :position, :label => t("position") %>
-    <%= f.text_field :status, :label => t("status") %>
-    <%= f.text_field :author_id, :label => t("author") %>
-    <%= f.text_field :editor_id, :label => t("editor") %>
-    <%= f.text_field :editor_chief_id, :label => t("chief_editor") %>
+
+    <%= f.hidden_field :position %>
+    <%= f.hidden_field :status %>
+    <%= f.hidden_field :author_id %>
     <%= f.text_area :text, :label => t("text") %>
 
     <%= render :partial => "edit"+ params[:type], :locals => {:f => f} %>
+    <%= f.file_field :image, :label => t("picture") %>
+
     <%= f.submit t("submit") %> <%= link_to t("back"), :back %>
   <% end %>
 
 </fieldset>
+

@@ -6,11 +6,10 @@
     </img>
   </a>
 
-  <p> <i> <%= @noticia.user.login %>, <%=h @noticia.date_pub %> </i> </p>
-  <h2> <p> <%= @noticia.summary %> </p> </h2>
+  <p> <i> <%#= @noticia.user.login %> <%=h @noticia.date_pub %> </i> </p>
+  <h2> <%= raw @noticia.summary %> </h2>
   <h3> <%= raw @noticia.text %> </h3>
-  <%= @noticia.url %> </br>
-  <%= @noticia.pdf %> </br>
+  <p> <h3> <%= @noticia.url %> </h3> </p>
 
   <%= link_to t("edit"), {:controller => 'pages', :action => 'edit', :id => @noticia.id, :type => 'Noticia'} %> | <%= link_to t("back"), :back %>
 </div>
