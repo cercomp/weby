@@ -25,15 +25,13 @@
     <% end %>
   </p>
   <p>
-    <!-- TODO colocar tradução aqui -->
-    <%= link_to "Grupos", :controller => 'groups', :action => 'index' %>
+    <%= link_to t("group", :count => 2), :controller => 'groups', :action => 'index' %>
     <% if check_permission(GroupsController, "new") %>
      | <%= link_to t("new"), {:controller => 'groups', :action => 'new'}, :class => 'icon icon-add' %>
     <% end %>
   </p>
   <p>
-    <!-- TODO colocar tradução aqui -->
-    <%= link_to "Feedbacks", :controller => 'feedbacks', :action => 'index' %>
+    <%= link_to t("feedback", :count => 2), :controller => 'feedbacks', :action => 'index' %>
     <% if check_permission(FeedbacksController, "new") %>
      | <%= link_to t("new"), {:controller => 'feedbacks', :action => 'new'}, :class => 'icon icon-add' %>
     <% end %>

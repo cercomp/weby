@@ -48,6 +48,9 @@ en:
   error_updating_object: "Error updating object"
 
 #---F---#
+  feedback:
+    one: "Feedback"
+    other: "Feedbacks"
   father: "Father"
   fill_email_form: "Fill out the form below to reset your password. It will be e-mailed to you:" 
   forgot_password: "Forgot password"

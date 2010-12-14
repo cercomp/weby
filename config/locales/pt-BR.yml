@@ -51,6 +51,9 @@ pt-BR:
   error_updating_object: "Erro ao atualizar objeto"
 
 #---F---#
+  feedback:
+    one: "Feedback"
+    other: "Feedbacks"
   father: "Pai"
   fill_email_form: "Preencha o formulário para resgatar sua senha. Ela será enviada para seu e-mail:" 
   forgot_password: "Perdi minha senha"
