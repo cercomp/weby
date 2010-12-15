@@ -55,7 +55,12 @@ class GroupsController < ApplicationController
           end
         end
 
-        format.html { redirect_to({:site_id => @group.site_id, :controller => 'groups', :action => 'index'}, :notice => t("succesfully_created_param"), :param => t("group")) }
+        format.html {
+          redirect_to(
+                      {:site_id => @group.site_id, :controller => 'groups', :action => 'index'},
+                      :notice => t('successfully_created_param', :param => t('group', :count => 1))
+          )
+        }
         format.xml  { render :xml => @group, :status => :created, :location => @group }
       else
         format.html { render :site_id => @site.id, :controller => 'groups', :action => "new" }

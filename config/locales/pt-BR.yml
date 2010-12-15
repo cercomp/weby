@@ -108,7 +108,7 @@ pt-BR:
   newsletter: 
     one: "Informativo"
     other: "Informativos"
-  new_param: "Novo %{param}!"
+  new_param: "Novo %{param}"
   name: "Nome"
   need_login: "Você deve estar logado para acessar acessar essa página." 
   no_need_to_login: "Você não deve estar logado para acessar essa página."	
