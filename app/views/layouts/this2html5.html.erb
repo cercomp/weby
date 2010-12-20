@@ -56,18 +56,21 @@
         <div id="flash_messages">
           <%= raw flash_message %>
         </div>
-      <%= link_to t("home"), root_path %> |
-      <% if check_permission(AdminController, "index") %>
-        <%= link_to t("admin"), :controller => 'admin', :action => 'index' %> |
-      <% end %>
-      <% if !current_user %>
-        <%= link_to t("register"), new_user_path %> |
-        <%= link_to t("login"), login_path %> |
-      <% else %>
-        <%= link_to t("my_profile"), user_path(current_user) %> |
-        <%= link_to t("logout"), logout_path, :confirm => "Are you sure you want to logout?" %>
-      <% end %>
-      <%= User.logged_in.count %> <%= (t"user", :count => User.logged_in.count) %> logado.
+        
+        <div id="menu_admin">
+          <%= link_to t("home"), root_path %> |
+          <% if check_permission(AdminController, "index") %>
+            <%= link_to t("admin"), :controller => 'admin', :action => 'index' %> |
+          <% end %>
+          <% if !current_user %>
+            <%= link_to t("register"), new_user_path %> |
+            <%= link_to t("login"), login_path %> |
+          <% else %>
+            <%= link_to t("my_profile"), user_path(current_user) %> |
+            <%= link_to t("logout"), logout_path, :confirm => "Are you sure you want to logout?" %>
+          <% end %>
+          <%= User.logged_in.count %> <%= (t"user", :count => User.logged_in.count) %> logado.
+        </div>
 
       <%= yield  %>
       </section>

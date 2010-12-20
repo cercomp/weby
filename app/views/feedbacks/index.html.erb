@@ -1,12 +1,11 @@
-<h1>Listing feedbacks</h1>
+<h1><%= t 'listing', :param => t('feedback', :count => 2) %></h1>
 
 <table>
   <tr>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Subject</th>
-    <th>Message</th>
-    <th>Site</th>
+    <th><%= t 'name' %></th>
+    <th><%= t 'email' %></th>
+    <th><%= t 'subject' %></th>
+    <th><%= t 'message' %></th>
     <th></th>
     <th></th>
     <th></th>
@@ -18,14 +17,13 @@
     <td><%= feedback.email %></td>
     <td><%= feedback.subject %></td>
     <td><%= feedback.message %></td>
-    <td><%= feedback.site_id %></td>
-    <td><%= link_to 'Show', site_feedback_path(@site, feedback) %></td>
-    <td><%= link_to 'Edit', edit_site_feedback_path(@site, feedback) %></td>
-    <td><%= link_to 'Destroy', site_feedback_path(@site, feedback), :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to t('show'), site_feedback_path(@site, feedback) %></td>
+    <td><%= link_to t('edit'), edit_site_feedback_path(@site, feedback) %></td>
+    <td><%= link_to t('destroy'), site_feedback_path(@site, feedback), :confirm => t('are_you_sure'), :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Feedback', new_site_feedback_path(@site) %>
+<%= link_to t('new_param', :param => t('feedback', :count => 1)), new_site_feedback_path(@site) %>

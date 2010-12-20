@@ -1,6 +1,6 @@
-<h1>Editing feedback</h1>
+<h1><%= t 'editing', :param => t('feedback', :count => 1) %></h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', site_feedback_path(@site, @feedback) %> |
-<%= link_to 'Back', site_feedbacks_path %>
+<%= link_to t('show'), site_feedback_path(@site, @feedback) %> |
+<%= link_to t('back'), site_feedbacks_path %>

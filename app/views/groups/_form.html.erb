@@ -1,4 +1,3 @@
-<% #TODO colocar traduções %>
 <%= form_for @group, :builder => SemanticFormBuilder do |f| %>
   <% if @group.errors.any? %>
     <div id="error_explanation">
@@ -16,11 +15,13 @@
   <div class="select-field">
     <label for="users_id_">Usuários</label>
     <div class="input">
-      <%= select_tag "users_ids[]",
-          options_for_select(@users.collect{|u| [u.login, u.id]}),
-          :multiple => true,
-          :size => 7,
-          :style => "width: 205px" %>
+      <% @users.each do |user| %>
+        <p>
+          <%= check_box_tag 'users_ids[]', user.id %>
+          <%= user.login %>
+        </p>
+      <% end %>
+
     </div>
   </div>
 
