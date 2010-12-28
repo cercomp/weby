@@ -4,7 +4,7 @@
 <fieldset>
   <legend><%= t"editing", :param => params[:type] %></legend>
 
-  <%= form_for @page, :builder => SemanticFormBuilder do |f| %>
+  <%= form_for @page, :html => { :multipart => true }, :builder => SemanticFormBuilder do |f| %>
     <% @page.errors.full_messages.each do |msg| %>  
       <li><%= msg %></li>  
     <% end %>  
