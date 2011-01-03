@@ -10,9 +10,13 @@ Webyge::Application.routes.draw do |map|
         post :link_site, :unlink_site
       end 
     end
-    resources :eventos
-    resources :noticias
-    resources :informativos
+    
+    # Mapa para os tipos das paginas
+    match ':type'          => 'pages#index', :constraints => { :type => /Noticia|Evento|Informativo/ }
+    match ':type/new'      => 'pages#new', :constraints => { :type => /Noticia|Evento|Informativo/ }
+    match ':type/:id/edit' => 'pages#edit', :constraints => { :type => /Noticia|Evento|Informativo/ }
+    match ':type/:id/show' => 'pages#show', :constraints => { :type => /Noticia|Evento|Informativo/ }
+
     resources :groups
     resources :feedbacks
     resources :pages
