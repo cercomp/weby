@@ -6,7 +6,7 @@
   </a>
   <%= @evento.date_pub %> </i>
 
-  <p> <h2> <%= @evento.summary %> </p>
+  <p> <h2> <%= raw @evento.summary %> </p>
   <p> <%= @evento.local %> </h2> </p>
   <p> <h3> <%= raw @evento.text %> </h3> </p>
   <p> <h3> <b> <%= t("source") %> <%= @evento.source %> </h3> </b> </p>

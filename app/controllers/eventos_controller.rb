@@ -33,7 +33,7 @@ class EventosController < ApplicationController
   def update
     @evento = Evento.find(params[:id])
     @evento.update_attributes(params[:evento])
-    redirect_to({:site_id => @evento.sites[0].name, :controller => 'eventos', :action => 'index'}, :notice => (t"successfully_updated"))
+    redirect_to({:site_id => @evento.sites[0].name, :controller => 'eventos'}, :notice => (t"successfully_updated"))
   end
 
   def destroy

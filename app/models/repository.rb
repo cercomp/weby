@@ -1,4 +1,5 @@
 class Repository < ActiveRecord::Base
+  
   belongs_to :site
 
   has_attached_file :archive, :url => "/uploads/:class/:site_id/:style_:basename.:extension"

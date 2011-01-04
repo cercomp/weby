@@ -14,7 +14,7 @@
   <div class="field">
 	<%= f.text_field :description, :label => t("description") %>
 	<%= f.file_field :archive, :label => t(:archive, :count => 1) %>
-	<%=  f.hidden_field :site_id, :value => @site.id %>
+	<%= f.hidden_field :site_id, :value => @site.id %>
   </div>
 
   <div class="actions">

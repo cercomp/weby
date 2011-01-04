@@ -1,6 +1,4 @@
 class Page < ActiveRecord::Base
-  #validates_presence_of :title
-  #validates_presence_of :source
 
   belongs_to :user, :foreign_key => "author_id"
 
@@ -11,6 +9,6 @@ class Page < ActiveRecord::Base
      :styles => { :medium => "300X300"},
 	 :url => "/uploads/:class/:site_id/:id/:style_:basename.:extension"	
   
-  
   accepts_nested_attributes_for :sites_pages, :allow_destroy => true#, :reject_if => proc { |attributes| attributes['title'].blank? }
+
 end

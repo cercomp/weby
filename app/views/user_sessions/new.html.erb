@@ -2,9 +2,18 @@
   <legend><%= t"login" %></legend>
 
   <%= form_for @user_session, :builder => SemanticFormBuilder do |f| %>
-    <% @user_session.errors.full_messages.each do |msg| %>  
-      <p><%= msg %></p>
-    <% end %>  
+    <% if @user_session.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@user_session.errors.count, "error") %> prohibited this site from being saved:</h2>
+  
+        <ul>
+        <% @user_session.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
     <%= f.text_field :login, {:label => t("username"), :autofocus => true } %><br />
     <%= f.password_field :password, :label => t("password") %><br />
     <%= f.check_box :remember_me, :label => t("remember_me") %><br />

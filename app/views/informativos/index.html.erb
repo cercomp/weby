@@ -5,9 +5,7 @@
     <thead>
       <th><%= t"date", :param => t("register") %></th>
       <th><%= t"date", :param => t("publication")%></th>
-      <th><%= t"title" %></th>
-      <th><%= t"position" %></th>
-      <th><%= t"status" %></th>
+      <th><%= t"url" %></th>
       <th></th>
     </thead>
     <tbody>
@@ -15,9 +13,7 @@
       <tr class="<%= cycle 'odd', 'even' %>">
         <td><%= informativo.created_at %></td>
         <td><%= informativo.date_pub %></td>
-        <td><%= informativo.position %></td>
-        <td><%= informativo.status %></td>
-        <td><%= informativo.title %></td>
+        <td><%= informativo.url %></td>
         <td>
           <% if params[:site_id] %>
             <%= link_to t("show"), {:controller => 'informativos', :action => 'show', :id => informativo} %>

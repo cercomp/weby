@@ -5,9 +5,18 @@
   <legend><%= t"editing", :param => params[:type] %></legend>
 
   <%= form_for @page, :html => { :multipart => true }, :builder => SemanticFormBuilder do |f| %>
-    <% @page.errors.full_messages.each do |msg| %>  
-      <li><%= msg %></li>  
-    <% end %>  
+
+   <% if @page.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@page.errors.count, "error") %> prohibited this page from being saved:</h2>
+
+        <ul>
+        <% @page.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %> 
 
     <%= f.date_select :date_pub, :order => [:year, :month, :day], :use_month_numbers => true, :label => (t"date", :param => t("publication")), :start_year => Time.now.year %>
     <%= f.date_select :date_begin, :order => [:year, :month, :day], :use_month_numbers => true, :label =>  (t"date", :param => t("begin")), :start_year => Time.now.year %>
@@ -16,9 +25,9 @@
     <%= f.hidden_field :position %>
     <%= f.hidden_field :status %>
     <%= f.hidden_field :author_id %>
-    <%= f.text_area :text, :label => t("text") %>
+    <%= f.text_area :text, :label => t("text"), :class => "mceAdvanced" %>
 
-    <%= render :partial => "edit"+ params[:type], :locals => {:f => f} %>
+    <%= render :partial => "form" + params[:type], :locals => {:f => f} %>
     <%= f.file_field :image, :label => t("picture") %>
 
     <%= f.submit t("submit") %> <%= link_to t("back"), :back %>

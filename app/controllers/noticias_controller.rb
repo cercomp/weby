@@ -33,7 +33,7 @@ class NoticiasController < ApplicationController
   def update
     @noticia = Noticia.find(params[:id])
     @noticia.update_attributes(params[:noticia])
-    redirect_to({:site_id => @noticia.sites[0].name, :controller => 'noticias', :action => 'index'}, :notice => (t"successfully_updated"))
+    redirect_to({:site_id => @noticia.sites[0].name, :controller => 'noticias'}, :notice => (t"successfully_updated"))
   end
 
   def destroy

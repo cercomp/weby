@@ -55,7 +55,7 @@ pt-BR:
     one: "Feedback"
     other: "Feedbacks"
   father: "Pai"
-  fill_email_form: "Preencha o formulário para resgatar sua senha. Ela será enviada para seu e-mail:" 
+  fill_email_form: "Preencha o formulário para resgatar sua senha. Ela será enviada para seu e-mail" 
   forgot_password: "Perdi minha senha"
   field_required: "Campo obrigatório!"
 
@@ -97,8 +97,9 @@ pt-BR:
     other: "Menus"
   message: "Menssagem"
   missing_account: "Desculpe-nos, mas não conseguimos localizar sua conta. Se você está tentando copiar e colar a URL de um email dentro do seu navegador ou reiniciando o processo de recuperar senha."
-  my_account: "Minha conta"
+  my_account: "Minha Conta"
   my_profile: "Meu Perfil"
+  my_password: "Minha Senha" 
 
 #---N---#
   new: "Novo"
@@ -120,7 +121,7 @@ pt-BR:
 
 #---P---#
   page: 
-    one: "Páginas"
+    one: "Página"
     other: "Páginas"
   password: "Senha"
   password_change: "Nova senha"
@@ -145,6 +146,7 @@ pt-BR:
   remember_me: "Lembrar-me"
   remove: "remover %{param}"
   reset_mail: "Instruções de como modificar sua senha foram enviada. Cheque seu e-mail."
+  reset_my_password: "Alterar minha senha"  
   right: "Direito"
   rights: "Direitos"
   role: "Papel"

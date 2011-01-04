@@ -1,9 +1,18 @@
 <fieldset>
   <legend><%= t"new_param", :param => (t"user", :count => 1) %></legend>
   <%= form_for @user, :builder => SemanticFormBuilder, :url => users_path do |f| %>
-    <% @user.errors.full_messages.each do |msg| %>  
-      <p> <%= msg %> <p>
-    <% end %>  
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this site from being saved:</h2>
+  
+        <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
     <%= render :partial => "form", :object => f %>
     <p> <%= f.submit t"create" %> </p>
   <% end %>

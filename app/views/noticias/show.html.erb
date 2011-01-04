@@ -5,8 +5,8 @@
     <img src="<%= @noticia.image.url %>" align="right" width="200" height="200" >
     </img>
   </a>
-
-  <p> <i> <%#= @noticia.user.login %> <%=h @noticia.date_pub %> </i> </p>
+  <%#=inserir o nome do autor da pagina(login) %>
+  <%=h @noticia.date_pub %> </i> </p>
   <h2> <%= raw @noticia.summary %> </h2>
   <h3> <%= raw @noticia.text %> </h3>
   <p> <h3> <%= @noticia.url %> </h3> </p>

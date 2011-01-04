@@ -4,8 +4,7 @@
   <table class='list'>
     <thead>
       <th><%= t"title" %></th>
-      <th><%= t"cover" %></th>
-      <th><%= t"status" %></th>
+      <th><%= t"source" %></th>
       <th><%= t"author" %></th>
       <th><%= t"date", :param => t("register")%></th>
       <th></th>
@@ -14,8 +13,7 @@
     <% @noticias.each do |noticia| %>
       <tr class="<%= cycle 'odd', 'even' %>">
         <td><%=h noticia.title %></td>
-        <td><%=h noticia.front %></td>
-        <td><%=h noticia.status %></td>
+        <td><%=h noticia.source %></td>
         <td><%=h noticia.author_id %></td>
         <td><%=h noticia.created_at %></td>
         <td>

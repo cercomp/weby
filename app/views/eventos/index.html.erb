@@ -7,7 +7,6 @@
       <th><%= t"date", :param => t("publication")%></th>
       <th><%= t"title" %></th>
       <th><%= t"cover" %></th>
-      <th><%= t"status" %></th>
       <th><%= t"author" %></th>
       <th></th>
     </thead>
@@ -18,7 +17,6 @@
         <td><%=h evento.date_pub %></td>
         <td><%=h evento.title %></td>
         <td><%=h evento.front %></td>
-        <td><%=h evento.status %></td>
         <td><%=h evento.author_id %></td>
         <td>          
           <% if params[:site_id] %>

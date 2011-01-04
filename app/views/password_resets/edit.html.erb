@@ -1,5 +1,5 @@
 <fieldset>
-  <legend>Change My Password</legend>
+  <legend><%= t"editing", :param => (t"my_password") %></legend>
 
   <% form_for @user, :url => password_reset_path, :method => :put do |f| %>
     <%= f.error_messages %>
