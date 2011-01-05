@@ -210,6 +210,28 @@ en:
       create: "Create a %{model}"
       update: "Confirm changes to %{model}"
 
+  authlogic:
+    error_messages:
+      login_blank: "Can't leave it blank"
+      login_not_found: "Invalid"
+      login_invalid: "Should use letters, numbers, spaces, and .-_@ please."
+      consecutive_failed_logins_limit_exceeded: "You have exceeded the number of allowed login attempts"
+      email_invalid: "Should look like an email address."
+      password_blank: "Can't leave it blank"
+      password_invalid: "Invalid"
+      not_active: "Account not active"
+      not_confirmed: "Account not confirmed"
+      not_approved: "Account not approved"
+      no_authentication_details: "No authentication details"
+    models:
+      user_session:
+    attributes:
+      user_session:
+        login: "Login"
+        email: "E-mail"
+        password: "Password"
+        remember_me: "Remember me"
+
   activerecord:
     attributes:
       _all:

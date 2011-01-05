@@ -204,7 +204,7 @@ pt-BR:
   username: "Nome de usuário"
 
 #---V---#
-  value: "Value" 
+  value: "Valor"
 
 #---W---#
   
@@ -214,6 +214,26 @@ pt-BR:
     submit:
       create: "Criar %{model}"
       update: "Confirmar mudanças para %{model}"
+
+  authlogic:
+    error_messages:
+      login_blank: "deve ser preenchido"
+      login_not_found: "Inválido"
+      login_invalid: "Deveria usar letras, números, espaços e -_@, por favor."
+      consecutive_failed_logins_limit_exceeded: "Você excedeu o número permitido de tentativas de login"
+      email_invalid: "Não parece um email válido"
+      password_blank: "deve ser preenchido"
+      password_invalid: "Inválido"
+      not_active: "Conta não está ativa"
+      not_confirmed: "A conta não foi confirmada"
+      not_approved: "A conta não foi aprovada"
+      no_authentication_details: "Não há detalhes de autenticação"
+    attributes:
+      user_session:
+        login: "Nome de usuário"
+        email: "E-mail"
+        password: "Senha"
+        remember_me: "Lembrar-me"
 
   activerecord:
     attributes:
