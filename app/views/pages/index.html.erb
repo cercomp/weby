@@ -1,12 +1,22 @@
 <fieldset>
   <legend><%= t"list", :param => (t"page", :count => 2)  %></legend>
 
-  <p> <%= link_to (t"news", :count => 2), site_pages_path(:type => 'Noticia'), :class => 'simple_box' %> </p>
-  <p> <%= link_to (t"newsletter", :count => 2), site_pages_path(:type => 'Informativo'), :class => 'simple_box' %> </p>
-  <p> <%= link_to (t"event", :count => 2), site_pages_path(:type => 'Evento'), :class => 'simple_box' %> </p>
+  <p> <%= link_to (t"news", :count => 2), site_pages_path(:type => 'News'), :class => 'simple_box' %> </p>
+  <p> <%= link_to (t"newsletter", :count => 2), site_pages_path(:type => 'Newsletter'), :class => 'simple_box' %> </p>
+  <p> <%= link_to (t"event", :count => 2), site_pages_path(:type => 'Event'), :class => 'simple_box' %> </p>
 
-  <% if params[:type] == 'Noticia' %>
-    <% if @pages %>
+  <% if params[:type] %>
+    <div class="contextual">
+      <p> 
+        <%= link_to (t"create_param", :param => (t"#{params[:type].downcase}", :count => 1)), 
+          {:controller => 'pages', :action => 'new', :type => "#{params[:type]}"}, 
+          :class => 'icon icon-add' %> 
+      </p>
+    </div>
+  <% end %>
+
+  <% if params[:type] == 'News' %>
+    <% unless @pages.empty? %>
       <table class='list'>
         <thead>
           <th><%= t"title" %></th>
@@ -36,10 +46,10 @@
         </tbody>
       </table>
     <% else %>
-      <p> No News </p>
+      <% flash.now[:warning] = (t"none_param", :param => (t"#{params[:type].downcase}", :count => 1)) %>
     <% end %>
-  <% elsif params[:type] == 'Informativo' %>
-    <% if @pages %>
+  <% elsif params[:type] == 'Newsletter' %>
+    <% unless @pages.empty? %>
       <table class="list">
         <thead>
           <th><%= t"date", :param => t("register") %></th>
@@ -68,12 +78,12 @@
         <% end; reset_cycle %>
         <tbody>
       </table>
-      <p> <%#= link_to (t"create_param" , :param => (t"newsletter", :count => 1)), new_site_page_path(:type => "Informativo") if params[:site_id] %> </p>
+      <p> <%#= link_to (t"create_param" , :param => (t"newsletter", :count => 1)), new_site_page_path(:type => "Newsletter") if params[:site_id] %> </p>
     <% else %>
-      <p> No informativos </p>
+      <% flash.now[:warning] = (t"none_param", :param => (t"#{params[:type].downcase}", :count => 1)) %>
     <% end %>
-  <% elsif params[:type] == 'Evento' %>
-    <% if @pages %>
+  <% elsif params[:type] == 'Event' %>
+    <% unless @pages.empty? %>
     <table class='list'>
       <thead>
         <th><%= t"date", :param => t("register") %></th>
@@ -104,13 +114,10 @@
       <% end; reset_cycle %>
       <tbody>
     </table>
-    <p> <%#= link_to (t"create_param", :param => (t"event", :count => 1)), new_site_page_path(:type => "Evento") if params[:site_id]%> </p>
+    <p> <%#= link_to (t"create_param", :param => (t"event", :count => 1)), new_site_page_path(:type => "Event") if params[:site_id]%> </p>
     <% else %>
-      <p> No Evento </p>
+      <% flash.now[:warning] = (t"none_param", :param => (t"#{params[:type].downcase}", :count => 1)) %>
     <% end %>
   <% end %>
 
-  <% if params[:type] %>
-    <p> <%= link_to (t"create_param", :param => (t"#{params[:type]}", :count => 1)), :controller => 'pages', :action => 'new', :type => "#{params[:type]}" %> </p>
-  <% end %>
 </fieldset>

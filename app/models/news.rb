@@ -1,4 +1,4 @@
-class Noticia < Page
+class News < Page
   validates_presence_of :title
   validates_presence_of :source
 end
