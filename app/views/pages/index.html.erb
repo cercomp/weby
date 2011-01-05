@@ -1,7 +1,116 @@
 <fieldset>
   <legend><%= t"list", :param => (t"page", :count => 2)  %></legend>
 
-  <p> <%= link_to (t"news", :count => 2), {:controller => 'noticias', :action => 'index'}, :class => 'simple_box' %> </p>
-  <p> <%= link_to (t"newsletter", :count => 2), {:controller => 'informativos', :action => 'index'}, :class => 'simple_box' %> </p>
-  <p> <%= link_to (t"event", :count => 2), {:controller => 'eventos', :action => 'index'}, :class => 'simple_box' %> </p>
+  <p> <%= link_to (t"news", :count => 2), site_pages_path(:type => 'Noticia'), :class => 'simple_box' %> </p>
+  <p> <%= link_to (t"newsletter", :count => 2), site_pages_path(:type => 'Informativo'), :class => 'simple_box' %> </p>
+  <p> <%= link_to (t"event", :count => 2), site_pages_path(:type => 'Evento'), :class => 'simple_box' %> </p>
+
+  <% if params[:type] == 'Noticia' %>
+    <% if @pages %>
+      <table class='list'>
+        <thead>
+          <th><%= t"title" %></th>
+          <th><%= t"cover" %></th>
+          <th><%= t"status" %></th>
+          <th><%= t"author" %></th>
+          <th><%= t"date", :param => t("register")%></th>
+          <th></th>
+        </thead>
+        <tbody>
+        <% @pages.each do |page| %>
+          <tr class="<%= cycle 'odd', 'even' %>">
+            <td><%=h page.title %></td>
+            <td><%=h page.front %></td>
+            <td><%=h page.status %></td>
+            <td><%=h page.author_id %></td>
+            <td><%=h page.created_at %></td>
+            <td>
+              <% if params[:site_id] %>
+                <%= link_to t("show"), site_page_path(@site, page, :type => params[:type]) %>
+                <%= link_to t("edit"), edit_site_page_path(@site, page, :type => params[:type]) %>
+                <%= link_to t("destroy"), {:controller => 'pages', :action => 'destroy', :id => page}, :confirm => t("are_you_sure"), :method => :delete %>
+              <% end %>
+            </td>
+          </tr>
+        <% end; reset_cycle %>
+        </tbody>
+      </table>
+    <% else %>
+      <p> No News </p>
+    <% end %>
+  <% elsif params[:type] == 'Informativo' %>
+    <% if @pages %>
+      <table class="list">
+        <thead>
+          <th><%= t"date", :param => t("register") %></th>
+          <th><%= t"date", :param => t("publication")%></th>
+          <th><%= t"title" %></th>
+          <th><%= t"position" %></th>
+          <th><%= t"status" %></th>
+          <th></th>
+        </thead>
+        <tbody>
+        <% @pages.each do |page| %>
+          <tr class="<%= cycle 'odd', 'even' %>">
+            <td><%= page.created_at %></td>
+            <td><%= page.date_pub %></td>
+            <td><%= page.position %></td>
+            <td><%= page.status %></td>
+            <td><%= page.title %></td>
+            <td>
+              <% if params[:site_id] %>
+                <%= link_to t("show"), site_page_path(@site, page, :type => params[:type]) %>
+                <%= link_to t("edit"), edit_site_page_path(@site, page, :type => params[:type]) %>
+                <%= link_to t("destroy"), {:controller => 'pages', :action => 'destroy', :id => page}, :confirm => t("are_you_sure"), :method => :delete %>
+              <% end %>
+            </td>
+          </tr>
+        <% end; reset_cycle %>
+        <tbody>
+      </table>
+      <p> <%#= link_to (t"create_param" , :param => (t"newsletter", :count => 1)), new_site_page_path(:type => "Informativo") if params[:site_id] %> </p>
+    <% else %>
+      <p> No informativos </p>
+    <% end %>
+  <% elsif params[:type] == 'Evento' %>
+    <% if @pages %>
+    <table class='list'>
+      <thead>
+        <th><%= t"date", :param => t("register") %></th>
+        <th><%= t"date", :param => t("publication")%></th>
+        <th><%= t"title" %></th>
+        <th><%= t"cover" %></th>
+        <th><%= t"status" %></th>
+        <th><%= t"author" %></th>
+        <th></th>
+      </thead>
+      <tbody>
+      <% @pages.each do |page| %>
+        <tr class="<%= cycle 'odd', 'even' %>">
+          <td><%=h page.created_at %></td>
+          <td><%=h page.date_pub %></td>
+          <td><%=h page.title %></td>
+          <td><%=h page.front %></td>
+          <td><%=h page.status %></td>
+          <td><%=h page.author_id %></td>
+          <td>          
+            <% if params[:site_id] %>
+              <%= link_to t("show"), site_page_path(@site, page, :type => params[:type]) %>
+              <%= link_to t("edit"), edit_site_page_path(@site, page, :type => params[:type]) %>
+              <%= link_to t("destroy"),  {:controller => 'pages', :action => 'destroy', :id => page } , :confirm => t("are_you_sure"), :method => :delete %>
+            <% end %>
+          </td>
+        </tr>
+      <% end; reset_cycle %>
+      <tbody>
+    </table>
+    <p> <%#= link_to (t"create_param", :param => (t"event", :count => 1)), new_site_page_path(:type => "Evento") if params[:site_id]%> </p>
+    <% else %>
+      <p> No Evento </p>
+    <% end %>
+  <% end %>
+
+  <% if params[:type] %>
+    <p> <%= link_to (t"create_param", :param => (t"#{params[:type]}", :count => 1)), :controller => 'pages', :action => 'new', :type => "#{params[:type]}" %> </p>
+  <% end %>
 </fieldset>

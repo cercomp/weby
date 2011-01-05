@@ -4,7 +4,18 @@
 <fieldset>
   <legend><%= t"new" %> <%= params[:type] %></legend>
 
-  <%= form_for @page, :html => { :multipart => true }, :builder => SemanticFormBuilder, :as => :page, :url => :pages do |f| %>
+
+  <%= form_for [@site, @page], :url => site_pages_path(:type => params[:type]), :html => { :multipart => true }, :builder => SemanticFormBuilder do |f| %>
+    <% if @page.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@page.errors.count, "error") %> prohibited this feedback from being saved:</h2>
+        <ul>
+        <% @page.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
 
    <% if @page.errors.any? %>
       <div id="error_explanation">

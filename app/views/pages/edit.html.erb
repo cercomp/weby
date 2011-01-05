@@ -4,8 +4,7 @@
 <fieldset>
   <legend><%= t"editing", :param => params[:type] %></legend>
 
-  <%= form_for @page, :html => { :multipart => true }, :builder => SemanticFormBuilder do |f| %>
-
+  <%= form_for [@site, @page], :url => site_page_path(@site, @page, :type => params[:type]), :html => { :multipart => true }, :builder => SemanticFormBuilder do |f| %>
    <% if @page.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@page.errors.count, "error") %> prohibited this page from being saved:</h2>

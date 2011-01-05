@@ -1,2 +1,1 @@
-<p> <%= link_to (t"page", :count => 2), {:controller => 'pages'}%> 
-| <%= link_to t("back"), :back %> </p>
+<%= render :partial => "show" + params[:type] %>
