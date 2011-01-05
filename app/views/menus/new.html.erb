@@ -7,15 +7,22 @@
   <% end %>
 
   <%= form_for(@menu, :builder => SemanticFormBuilder  ) do |f| %>
-    <% @menu.errors.full_messages.each do |msg| %>  
-      <li><%= msg %></li>  
+     <% if @menu.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@menu.errors.count,"") %> <%= t"prohibited_being_saved", :count => @menu.errors.count %>:</h2>
+
+        <ul>
+        <% @menu.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     <% end %>
 
     <%#= f.hidden_field "sites_menus_attributes[][parent_id]", :value => params[:parent_id] %>
     <%#= f.hidden_field "sites_menus_attributes[][site_id]", :value => @site.id %>
     <p>
-      <%= t"text" %>:<br />
-      <%= f.text_field :title %>
+      <%= f.text_field :title, :label => t("text") %>
     </p>
 
 		<%# @menus.build_sites_menu %>
@@ -24,8 +31,7 @@
       <%= menus_form.hidden_field :site_id, :value => @site.id %>
 
 			<p>
-				<%= t"position" %>:<br />
-				<%= menus_form.select(:side, ["top", "left", "right", "bottom"]) %>
+				<%= menus_form.select(:side, ["top", "left", "right", "bottom"], :label => t("position")) %>
 			</p>
     <% end %>
 

@@ -2,9 +2,17 @@
   <legend><%= t"new_param", :param => t("role")%></legend>
 
   <% form_for @roles, :builder => SemanticFormBuilder, :url => { :action => "create" }  do |f|%>
-    <% @roles.errors.full_messages.each do |msg| %>  
-      <li><%= msg %></li>  
-    <% end %>  
+     <% if @roles.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@roles.errors.count,"") %> <%= t"prohibited_being_saved", :count => @roles.errors.count %>:</h2>
+
+        <ul>
+        <% @roles.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
 
       <%= f.text_field :name, :label => (t"new_param", :param => (t("role"))) %><br />
       <%= f.submit t("create") %>

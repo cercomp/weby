@@ -134,7 +134,9 @@ pt-BR:
   picture_text: "Texto da imagem"
   position: "Posição"
   publication: "Publicação"
-  
+  prohibited_being_saved: 
+    one: " erro, impede que você prossiga"
+    other: " erros, impedem que você prossiga"
 #---Q---#
 
 #---R---#

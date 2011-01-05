@@ -132,7 +132,9 @@ en:
   picture_text: "Picture´s text"
   position: "Position"
   publication: "Publication"
-  
+  prohibited_being_saved:
+    one: " error, prevent you from proceeding"
+    other: " errors, prevent you from proceeding"
 #---Q---#
 
 #---R---#

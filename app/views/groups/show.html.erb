@@ -1,12 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
+  <b>t"name":</b>
   <%= @group.name %>
 </p>
 
 <p>
-  <b>Usuários:</b>
+  <b><%= t"user", :count => 2 %>:</b>
   <ul>
     <% @group.users.each do |user| %>
       <li><%= user.login %></li>
