@@ -1,4 +1,3 @@
-# coding: utf-8
 class MenusController < ApplicationController
   layout :choose_layout
 
@@ -30,7 +29,14 @@ class MenusController < ApplicationController
   def create
     @menu = Menu.new(params[:menu])
     @menu.save
-    redirect_to :back, :notice =>  t("successfully_created")
+    if @menu.save 
+    redirect_to :site_id => @menu.sites[0].name
+    flash[:notice] =  t("successfully_created")
+    else
+    redirect_to :back
+    flash[:error] = @menu.errors.full_messages
+    end
+
   end
 
   def update

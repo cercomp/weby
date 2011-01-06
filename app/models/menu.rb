@@ -1,6 +1,6 @@
 class Menu < ActiveRecord::Base
   validates_presence_of :title
-
+ 
   has_many :sites_menus
   has_many :sites, :through => :sites_menus
 
