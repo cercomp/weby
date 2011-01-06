@@ -17,7 +17,7 @@ class PagesController < ApplicationController
   end
 
   def new
-    @page = Object.const_get(params[:type]).new
+    @page = Object.const_get(params[:type].capitalize).new
     @page.sites_pages.build
     respond_with(@page)
   end

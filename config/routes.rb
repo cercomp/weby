@@ -18,12 +18,16 @@ Webyge::Application.routes.draw do |map|
     resources :admin, :controller => "admin", :only => [:index]
     resources :roles
     resources :rights
-    resources :users do collection { get :change_roles } end
+    resources :users do
+      collection { get :change_roles, :manage_roles }
+    end
     resources :repositories
     resources :archives
   end
 
-  resources :users do collection { get :change_roles } end
+  resources :users do
+    collection { get :change_roles, :manage_roles }
+  end
   resources :sites
   resources :groups
   resources :feedbacks

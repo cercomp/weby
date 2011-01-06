@@ -159,7 +159,7 @@ class ApplicationController < ActionController::Base
       bottom_untreated = Site.find_by_sql("SELECT sites_menus.id,menus.id as menu_id,menus.title,menus.link,sites_menus.parent_id,sites_menus.side ,sites_menus.position FROM menus INNER JOIN sites_menus ON sites_menus.menu_id=menus.id WHERE sites_menus.side = 'bottom' AND sites_menus.site_id = #{@site.id} ORDER BY sites_menus.parent_id,sites_menus.position")
 
       @left = menu_treat(left_untreated)
-      @right = menu_treat(right_untreated)
+      @right_menu = menu_treat(right_untreated)
       @top = menu_treat(top_untreated)
       @bottom = menu_treat(bottom_untreated)
     elsif params[:id]

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101208162331) do
+ActiveRecord::Schema.define(:version => 20110105182057) do
 
   create_table "feedbacks", :force => true do |t|
     t.string   "name"
@@ -119,15 +119,6 @@ ActiveRecord::Schema.define(:version => 20101208162331) do
     t.string   "theme"
   end
 
-  create_table "roles_users", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "role_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "roles_users", ["role_id", "user_id"], :name => "index_roles_users_on_role_id_and_user_id"
-
   create_table "settings", :force => true do |t|
     t.string   "name"
     t.string   "value"
@@ -163,9 +154,10 @@ ActiveRecord::Schema.define(:version => 20101208162331) do
     t.datetime "updated_at"
   end
 
-  create_table "sites_users", :force => true do |t|
-    t.integer  "site_id"
+  create_table "user_site_enroleds", :force => true do |t|
     t.integer  "user_id"
+    t.integer  "site_id"
+    t.integer  "role_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

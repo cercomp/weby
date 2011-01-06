@@ -141,9 +141,9 @@ module ApplicationHelper
   # Parametros: objeto
   def make_menu(obj, args={})
     menu = ""
-    get_permissions(current_user, '', args).each do |ri|
-      if controller.class.instance_methods(false).include? ri
-        case ri
+    get_permissions(current_user, '', args).each do |permission|
+      if controller.class.instance_methods(false).include? permission
+        case permission.to_s
           when "show"
             menu << link_to( t('show'), {:controller => "#{controller.controller_name}", :action => 'show', :id => obj.id}, :class => 'icon icon-show')+' '
           when "edit"

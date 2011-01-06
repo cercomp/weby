@@ -41,6 +41,19 @@ class UsersController < ApplicationController
     @themes = files
     respond_with(@user)
   end
+
+  def manage_roles
+    # Se a ação for selecionada para um site:
+    unless @site.nil?
+      @users = User.paginate :page => params[:page], :order => 'id DESC', :per_page => 10
+      @roles = Role.find(:all, :order => "id")
+
+    else
+      @users = User.paginate :page => params[:page], :order => 'id DESC', :per_page => 10
+      @roles = Role.find(:all, :select => 'id,name,theme', :group => "name,id,theme", :order => "id")
+      render :index
+    end
+  end
   
   def create
     @user = User.new(params[:user])

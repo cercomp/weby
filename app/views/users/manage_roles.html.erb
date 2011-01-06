@@ -1,0 +1,50 @@
+<h1>Gerenciar papeis</h1>
+
+<% # TODO separar entre visualização global e por site %>
+<table>
+
+  <thead>
+    <tr>
+      <th>Usuário</th>
+      <th>Papel</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @site.users.each do |user| %>
+      <tr>
+        <td><%= user.login %></td>
+
+        <td>
+          <span id="user-<%= user.id %>">
+            <%= user.roles.sort.map(&:name).join(', ') %>
+          </span>
+          
+          <form id="form-user-<%= user.id %>" style="display: none;">
+            <p>
+              <% @roles.each do |role| %>
+                <label>
+                  <%= check_box_tag 'user[role_ids][]', role.id, user.roles.include?(role) %>
+                  <%= role.name %>
+                </label>
+                <br />
+              <% end %>
+            </p>
+          </form>
+        </td>
+
+        <td></td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
+
+<p>
+<h2>Todos os Usuarios</h2>
+<% (@users - @site.users).each do |user| %>
+  <%= user.login %><br />
+<% end %>
+</p>
+

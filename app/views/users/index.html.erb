@@ -6,7 +6,6 @@
   <table class="list">
     <thead>
     <tr>
-      <th><%=  'id' %></th>
       <th><%= t"login" %></th>
       <th><%=  t"email" %></th>
       <th><%= t"active" %></th>
@@ -21,13 +20,12 @@
     <tbody>
   <% @users.each do |user| %>
     <tr class="<%= cycle 'odd', 'even' %>">
-      <td><%=h user.id %></td>
       <td><%=h user.login %></td>
       <td><%=h user.email %></td>
       <td align="center"><%= raw menu_change_status(UsersController, user, user.status,  'status') %></td>
       <td align="center"><%= raw menu_change_status(UsersController, user, user.is_admin ,'is_admin' ) %></td>
       <% if check_permission(UsersController, "change_roles") %>
-      <td>
+      <!--td>
       <%= form_tag({:controller => "users", :action => "change_roles"}, :method => "get") do %>
         <% @roles.each do |role| %> 
           <% if current_user && !user.role_ids.empty? %> 
@@ -41,8 +39,9 @@
         <%= submit_tag 'Salvar' %>
       <% end %>
       <% end %>
-      </td>
-      <td nowrap>
+      </td-->
+      <td><%= link_to 'gerenciar papeis', {:controller => 'users', :action => 'manage_roles'} %></td>
+      <td>
         <%= raw make_menu(user) %> 
       </td>
     </tr>

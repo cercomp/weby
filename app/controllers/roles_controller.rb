@@ -38,6 +38,7 @@ class RolesController < ApplicationController
 
   def create
     @roles = Role.new(params[:role])
+    @roles.save
     respond_with(@roles)
   end
 
