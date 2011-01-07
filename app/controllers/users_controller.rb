@@ -18,12 +18,40 @@ class UsersController < ApplicationController
   end
 
   def change_roles
+=begin
     if params[:role_id] && params[:user_id]
       @r = RolesUser.delete_all(["user_id = ?", params[:user_id]])
       @r = RolesUser.create :user_id => params[:user_id], :role_id => params[:role_id]
       flash[:notice] = t'uso', :param => t('role')
     end
     redirect_back_or_default users_path
+=end
+
+    user = params[:user]
+    if user[:id] and !user[:role_ids].empty?
+
+      # Verifica se o usuário já possui o papel no site
+      # TODO mover isso para um helper
+      i = user[:role_ids].size() -1
+      while i >= 0
+        user[:role_ids].slice!(i, 1) unless UserSiteEnroled.where(:user_id => user[:id],
+                                :site_id => @site.id,
+                                :role_id => user[:role_ids][i]).empty?
+        i-=1
+      end
+
+      # Grava no banco os papel do usuário
+      user[:role_ids].each do |role_id|
+        UserSiteEnroled.create :user_id => user[:id], :site_id => @site.id, :role_id => role_id
+      end
+    end
+    
+    logger.debug params
+    logger.debug @site
+
+    manage_roles
+    render :manage_roles
+    
   end
 
   def index

@@ -19,14 +19,19 @@ Webyge::Application.routes.draw do |map|
     resources :roles
     resources :rights
     resources :users do
-      collection { get :change_roles, :manage_roles }
+      collection do
+        get :manage_roles
+        post :change_roles
+      end
     end
     resources :repositories
     resources :archives
   end
 
   resources :users do
-    collection { get :change_roles, :manage_roles }
+    collection do
+      get :manage_roles
+    end
   end
   resources :sites
   resources :groups
