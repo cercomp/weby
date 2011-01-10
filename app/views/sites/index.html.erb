@@ -27,6 +27,17 @@
       </tbody>
     </table>
   <% else %>
+
+			<%@news = News.find(:all, :limit => 7)%>
+			<% @news.each do |page| %>
+				<% if page.site_id == @site.id %>
+						<%if page.date_begin <= Date.today%>
+						  <p>	Esta é uma notícia.  Título <%= page[:title] %>	</p>
+						<%end%>
+				<%end%>		
+			<%end%>	
+
+			
     
   <% end %>
 </fieldset>

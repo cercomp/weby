@@ -18,8 +18,8 @@
       </div>
     <% end %>
 
-    <%= f.hidden_field :created_at, :order => [:year, :month, :day], :use_month_numbers => true, :label => (t"date", :param => t("register")), :start_year => Time.now.year %>
-    <%= f.date_select :date_pub, :order => [:year, :month, :day], :use_month_numbers => true, :label => (t"date", :param => t("publication")), :start_year => Time.now.year %>
+    <%#= f.hidden_field :created_at, :order => [:year, :month, :day], :use_month_numbers => true, :label => (t"date", :param => t("register")), :start_year => Time.now.year %>
+    <%= f.hidden_field :date_pub, :value => Time.now.year %>
     <%= f.date_select :date_begin, :order => [:year, :month, :day], :use_month_numbers => true, :label =>  (t"date", :param => t("begin")), :start_year => Time.now.year %>
     <%= f.date_select :date_end, :order => [:year, :month, :day], :use_month_numbers => true, :label => (t"date", :param => t("end")), :start_year => Time.now.year %>
     <%= f.hidden_field :position %>
