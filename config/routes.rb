@@ -24,13 +24,22 @@ Webyge::Application.routes.draw do |map|
         post :change_roles
       end
     end
-    resources :repositories
+    resources :repositories do
+      collection do
+       get :manage
+      end
+    end
     resources :archives
   end
 
   resources :users do
     collection do
       get :manage_roles
+    end
+  end
+  resources :attachments do
+    collection do
+     get :manage
     end
   end
   resources :sites
@@ -42,7 +51,11 @@ Webyge::Application.routes.draw do |map|
   resources :admin, :controller => "admin", :only => [:index]
   resources :roles
   resources :rights
-  resources :repositories
+  resources :repositories do
+    collection do
+     get :manage
+    end
+  end
   resources :archives
 
   resources :user_sessions

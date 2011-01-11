@@ -1,6 +1,13 @@
 class RepositoriesController < ApplicationController
-  layout :choose_layout
-  
+  layout :choose_layout, :except => [:show]
+ 
+  respond_to :js
+
+  def manage
+    @repositories = @site.repositories.paginate :page => params[:page], :order => 'created_at DESC', :per_page => 10
+    respond_with(@repositories)
+  end
+
   # GET /repositories
   # GET /repositories.xml
   def index

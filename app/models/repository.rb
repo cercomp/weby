@@ -1,7 +1,7 @@
 class Repository < ActiveRecord::Base
   belongs_to :site
 
-  has_attached_file :archive, :url => "/uploads/:class/:site_id/:style_:basename.:extension"
+  has_attached_file :archive, :url => "/uploads/:site_id/:style_:basename.:extension"
   validates_presence_of :description
   validates_attachment_presence :archive, :message => I18n.t('activerecord.errors.messages.attachment_presence')
   

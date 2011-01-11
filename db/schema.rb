@@ -83,6 +83,14 @@ ActiveRecord::Schema.define(:version => 20110111152512) do
     t.text     "summary"
   end
 
+  create_table "prints", :force => true do |t|
+    t.string   "image_file_name"
+    t.string   "image_file_size"
+    t.string   "image_content_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "repositories", :force => true do |t|
     t.integer  "site_id"
     t.datetime "created_at"
@@ -179,6 +187,14 @@ ActiveRecord::Schema.define(:version => 20110111152512) do
     t.string   "theme",               :default => "",    :null => false
     t.boolean  "status",              :default => false
     t.boolean  "is_admin",            :default => false
+  end
+
+  create_table "videos", :force => true do |t|
+    t.string   "original_file_name"
+    t.string   "original_file_size"
+    t.string   "original_content_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
