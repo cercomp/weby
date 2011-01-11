@@ -29,10 +29,15 @@
   <% else %>
 
 			<%@news = News.find(:all, :limit => 7)%>
-			<% @news.each do |page| %>
-				<% if page.site_id == @site.id %>
+			<% @news.each do |page| %> <!-- Para cada noticia verifiar se
+			é capa. Se pertence aquele site e se a data de publicação é anterior ou igual a data de hoje-->
+				<% if page.front == 1 && page.site_id == @site.id %>
 						<%if page.date_begin <= Date.today%>
-						  <p>	Esta é uma notícia.  Título <%= page[:title] %>	</p>
+						  <p>	Esta é uma notícia. <br/> 
+							Título <b><%= page[:title] %>	</b> <br/>
+							<%= page[:summary] %>
+								
+							</p>
 						<%end%>
 				<%end%>		
 			<%end%>	

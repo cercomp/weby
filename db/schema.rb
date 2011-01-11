@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110105182057) do
+ActiveRecord::Schema.define(:version => 20110111152512) do
 
   create_table "feedbacks", :force => true do |t|
     t.string   "name"
@@ -65,7 +65,6 @@ ActiveRecord::Schema.define(:version => 20110105182057) do
     t.string   "title"
     t.string   "text_image"
     t.integer  "front"
-    t.datetime "front_time"
     t.string   "kind"
     t.string   "local"
     t.datetime "event_begin"
