@@ -27,22 +27,30 @@
       </tbody>
     </table>
   <% else %>
-
-			<%@news = News.find(:all, :limit => 7)%>
-			<% @news.each do |page| %> <!-- Para cada noticia verifiar se
-			é capa. Se pertence aquele site e se a data de publicação é anterior ou igual a data de hoje-->
-				<% if page.front == 1 && page.site_id == @site.id %>
-						<%if page.date_begin <= Date.today%>
-						  <p>	Esta é uma notícia. <br/> 
-							Título <b><%= page[:title] %>	</b> <br/>
-							<%= page[:summary] %>
-								
+			
+			<!-- Para cada noticia verifiar se
+			é capa. Se pertence aquele site e se a data de publicação é anterior ou igual a data de hoje
+			e a data final posterior a data de hoje-->
+				
+			<%@news = News.find(:all, :limit => 7, :order => :date_begin)%>
+			
+			<h2><%= t("news", :count => 2) %> </h2>
+			
+			<% @news.each do |page| %> 
+				<% if page.front == 1 && page.site_id == @site.id %>	
+						<%if page.date_begin <= Date.today && page.date_end > Date.today  %>
+						<div id="News" style="float:left">
+							<p>
+							<b><%= page[:title] %></b> 
+							<img src="<%= page.image.url(:little) %>" align="right"> </img>
 							</p>
+							<%= raw page[:summary] %>															
+						</div>							
+
 						<%end%>
 				<%end%>		
 			<%end%>	
-
-			
+		
     
   <% end %>
 </fieldset>
