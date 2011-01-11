@@ -1,10 +1,9 @@
-<p id="notice"><%= notice %></p>
+<fieldset>
+    <p>
+      <%= image_tag @repository.archive.url %>	
+      <%= @repository.description %>	
+    </p>
 
-<%#= debug @repository.archive%>
-<p>
-  <%= image_tag @repository.archive.url %>	
-  <%= @repository.description %>	
-</p>
-
-<%= link_to t("edit"),{:controller => 'repositories', :action => 'edit', :id=> @repository.id} %> |
-<%= link_to t("back"),{:controller => 'repositories', :action => 'index'}%>
+    <%= link_to t("edit"),{:controller => 'repositories', :action => 'edit', :id=> @repository.id} %> |
+    <%= link_to t("back"),{:controller => 'repositories', :action => 'index'}%>
+</fieldset>

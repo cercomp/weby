@@ -170,8 +170,8 @@ pt-BR:
   sub-menu: "Sub-menu"
   successfully_created: "Criado com sucesso!"
   successfully_created_param: "%{param} criado com sucesso!"
-  successfully_updated_param: "%{param} atualizado com sucesso!"
   successfully_updated: "Atualizado com sucesso!"
+  successfully_updated_param: "%{param} atualizado com sucesso!"
   successfully_deleted: "Deletado com sucesso!"
   successfully_removed: "%{param} foi removido com sucesso!"
   suggestion:
@@ -259,6 +259,7 @@ pt-BR:
           other: "não foi possivel atualizar o modelo: %{count} erros."
         body: "Por favor cheque os seguintes campos:"
       messages:
+        attachment_presence: "deve ser anexado"
         inclusion: " não está incluido na lista"
         exclusion: "indisponível"
         invalid: "inválido"

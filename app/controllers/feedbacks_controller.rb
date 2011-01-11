@@ -55,7 +55,7 @@ class FeedbacksController < ApplicationController
     respond_to do |format|
       if @feedback.save
         FeedbackMailer.send_feedback(@feedback).deliver
-        format.html { redirect_to(site_feedback_path(@site.id, @feedback), :notice => 'Feedback was successfully created.') }
+        format.html { redirect_to(site_feedback_path(@site.id, @feedback), :notice => t("successfully_created")) }
         format.xml  { render :xml => @feedback, :status => :created, :location => @feedback }
       else
         format.html { render :action => "new" }
@@ -72,7 +72,7 @@ class FeedbacksController < ApplicationController
     respond_to do |format|
       if @feedback.update_attributes(params[:feedback])
         format.html { redirect_to(site_feedback_url,
-                      :notice => 'Feedback was successfully updated.') }
+                      :notice => t("successfully_updated")) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

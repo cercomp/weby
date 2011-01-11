@@ -1,5 +1,7 @@
-<h1><%= t"new_param", :param => t("archive", :count => 1) %></h1>
+<fieldset> 
+  <h1><%= t"new_param", :param => t("archive", :count => 1) %></h1>
+  
+  <%= render 'form' %>
 
-<%= render 'form' %>
-
-<%= link_to t("back"),{:controller => 'repositories', :action => 'index'} %>
+  <%= link_to t("back"),{:controller => 'repositories', :action => 'index'} %>
+</fieldset> 

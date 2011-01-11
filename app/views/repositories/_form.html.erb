@@ -1,8 +1,7 @@
-<%= form_for(@repository, :html => { :multipart => true }, :builder => SemanticFormBuilder) do |f| %>
+<%= form_for(@repository, :html => { :multipart => true }, :builder => SemanticFormBuilder) do |f| %> 
   <% if @repository.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@repository.errors.count,"") %><%= t"prohibited_being_saved", :count => @repository.errors.count %>:</h2>
-
+      <h2> <%= pluralize(@repository.errors.count, "") %> <%= t"prohibited_being_saved", :count => @repository.errors.count %>: </h2>
       <ul>
       <% @repository.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -10,14 +9,14 @@
       </ul>
     </div>
   <% end %>
+    
+    <%= f.text_field :description, :label => t("description"), :required => true, :help => t("field_required") %>
 
-  <div class="field">
-	<%= f.text_field :description, :label => t("description") %>
-	<%= f.file_field :archive, :label => t(:archive, :count => 1) %>
-	<%= f.hidden_field :site_id, :value => @site.id %>
-  </div>
+    <%= f.file_field :archive, :label => t(:archive, :count => 1), :required => true, :help => t("field_required") %>
 
-  <div class="actions">
-    <%= f.submit t("submit"),{:controller => 'repositories', :action => 'show', :id =>  @repository.id} %>
-  </div>
+    <%= f.hidden_field :site_id, :value => @site.id %>
+
+    <%= f.submit t("submit") %>
+
 <% end %>
+

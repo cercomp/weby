@@ -46,10 +46,12 @@ class RepositoriesController < ApplicationController
 
     respond_to do |format|
       if @repository.save
-        format.html { redirect_to({:site_id => @repository.site.name, :controller => "repositories", :action => 'show', :id => @repository.id}, :notice => 'Repository was successfully created.') }
+        format.html { redirect_to(:site_id => @repository.site.name, :controller => "repositories", :action => 'show', :id => @repository.id) }
+        flash[:notice] = t("successfully_created") 
         format.xml  { render :xml => @repository, :status => :created, :location => @repository }
       else
-        format.html { render :action => "new" }
+        format.html { redirect_to :back }
+        flash[:error] = @repository.errors.full_messages # usar @repository.errors.any? na view para mostrar erros
         format.xml  { render :xml => @repository.errors, :status => :unprocessable_entity }
       end
     end
@@ -61,12 +63,14 @@ class RepositoriesController < ApplicationController
     @repository = Repository.find(params[:id])
 
     respond_to do |format|
-      if @repository.update_attributes(params[:repository])
-        format.html { redirect_to({:site_id => @repository.site.name, :controller => 'repositories', :action => 'show', :id => @repository.id}, :notice => 'Repository was successfully updated.') }
+        if @repository.update_attributes(params[:repository]) 
+        format.html { redirect_to(:site_id => @repository.site.name, :controller => 'repositories', :action => 'show', :id => @repository.id) }
         format.xml  { head :ok }
+        flash[:notice] = t("successfully_updated") 
       else
-        format.html { render :action => "edit" }
+        format.html { redirect_to :back }
         format.xml  { render :xml => @repository.errors, :status => :unprocessable_entity }
+        flash[:error] = @repository.errors.full_messages
       end
     end
   end

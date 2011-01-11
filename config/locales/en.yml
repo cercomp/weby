@@ -32,7 +32,7 @@ en:
 
 #---D---#
   date: "Date of %{param}" 
-  destroy: "destroy"  
+  destroy: "Destroy"  
   description: "Description"
 
 #---E---#
@@ -107,7 +107,7 @@ en:
   newsletter: 
     one: "Informativo"
     other: "Informativos"
-  new_param: "New %{param}!"
+  new_param: "New %{param}"
   name: "Name"
   need_login: "You need to be logged in to access this page."
   no_need_to_login: "You should not be logged in to access this page."
@@ -166,10 +166,11 @@ en:
   subject: "Subject"
   submit: "Send"
   sub-menu: "Sub-menu"
-  succesfully_created: "Succesfully created!"
-  succesfully_deleted: "Successfully deleted!"
-  succesfully_updated: "Successfully updated!"
-  succesfully_updated_param: "%{param} successfully updated!"
+  successfully_created: "Successfully created!"
+  successfully_created_param: "%{param} successfully created!"
+  successfully_updated: "Successfully updated!"
+  successfully_updated_param: "%{param} successfully updated!"
+  successfully_deleted: "Successfully deleted!"
   successfully_removed: "%{param} successfully removed!"
   suggestion:
     one:  "Sugestion"
@@ -256,6 +257,7 @@ en:
           other: "Is not possible update model: %{count} errors."
         body: "Please, verify this fields:"
       messages:
+        attachment_presence: "must be attached"
         inclusion: "Not include in list"
         exclusion: "Unavailable"
         invalid: "Invalid"

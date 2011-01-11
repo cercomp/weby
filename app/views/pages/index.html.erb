@@ -20,20 +20,18 @@
       <table class='list'>
         <thead>
           <th><%= t"title" %></th>
-          <th><%= t"cover" %></th>
-          <th><%= t"status" %></th>
-          <th><%= t"author" %></th>
+          <th><%= t"source" %></th>
           <th><%= t"date", :param => t("register")%></th>
+          <th><%= t"author" %></th>
           <th></th>
         </thead>
         <tbody>
         <% @pages.each do |page| %>
           <tr class="<%= cycle 'odd', 'even' %>">
             <td><%=h page.title %></td>
-            <td><%=h page.front %></td>
-            <td><%=h page.status %></td>
-            <td><%=h page.author_id %></td>
+            <td><%=h page.source %></td>
             <td><%=h page.created_at %></td>
+            <td><%=h page.author_id %></td>
             <td>
               <% if params[:site_id] %>
                 <%= link_to t("show"), site_page_path(@site, page, :type => params[:type]) %>
@@ -55,8 +53,7 @@
           <th><%= t"date", :param => t("register") %></th>
           <th><%= t"date", :param => t("publication")%></th>
           <th><%= t"title" %></th>
-          <th><%= t"position" %></th>
-          <th><%= t"status" %></th>
+          <th><%= t"url" %></th>
           <th></th>
         </thead>
         <tbody>
@@ -64,9 +61,8 @@
           <tr class="<%= cycle 'odd', 'even' %>">
             <td><%= page.created_at %></td>
             <td><%= page.date_pub %></td>
-            <td><%= page.position %></td>
-            <td><%= page.status %></td>
             <td><%= page.title %></td>
+            <td><%= page.url %></td>
             <td>
               <% if params[:site_id] %>
                 <%= link_to t("show"), site_page_path(@site, page, :type => params[:type]) %>
@@ -89,9 +85,7 @@
         <th><%= t"date", :param => t("register") %></th>
         <th><%= t"date", :param => t("publication")%></th>
         <th><%= t"title" %></th>
-        <th><%= t"cover" %></th>
-        <th><%= t"status" %></th>
-        <th><%= t"author" %></th>
+        <th><%= t"localization" %></th>
         <th></th>
       </thead>
       <tbody>
@@ -100,9 +94,7 @@
           <td><%=h page.created_at %></td>
           <td><%=h page.date_pub %></td>
           <td><%=h page.title %></td>
-          <td><%=h page.front %></td>
-          <td><%=h page.status %></td>
-          <td><%=h page.author_id %></td>
+          <td><%=h page.local %></td>
           <td>          
             <% if params[:site_id] %>
               <%= link_to t("show"), site_page_path(@site, page, :type => params[:type]) %>
