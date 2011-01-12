@@ -1,8 +1,5 @@
-<%= javascript_include_tag 'tinymce/tiny_mce.js' %>
-<%= javascript_include_tag 'tinymce/webyge_tinymce_default.js' %>
-
 <fieldset>
-  <legend><%= t"editing", :param => params[:type] %></legend>
+  <legend><%= t"editing", :param => t("#{params[:type].downcase}", :count => 1) %></legend>
 
   <%= form_for [@site, @page], :url => site_page_path(@site, @page, :type => params[:type]), :html => { :multipart => true }, :builder => SemanticFormBuilder do |f| %>
    <% if @page.errors.any? %>
@@ -24,7 +21,7 @@
     <%= f.hidden_field :position %>
     <%= f.hidden_field :status %>
     <%= f.hidden_field :author_id %>
-    <%= f.text_area :text, :label => t("text"), :class => "mceAdvanced" %>
+    <%= f.text_area :text, :label => t("text"), :class => "mceAdvance" %>
 
     <%= render :partial => "form" + params[:type], :locals => {:f => f} %>
     <%= f.file_field :image, :label => t("picture") %>
