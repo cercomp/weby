@@ -1,78 +1,107 @@
-article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary { display:block; }
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary { display: block; }
 
 body { margin: 0; }
 
 div#wrapper {
   background-color: #e5e5e5;
-	width: 960px;
-	margin: 0 auto; }
+  width: 960px;
+  margin: 0 auto; }
 
-header, footer {
+header,
+footer {
   width: 100%;
-  text-align: right;
   background-color: #ccc; }
   header div#topo { height: 120px; }
-  header nav, footer nav {
+  footer div#menu,
+  header div#menu { float: left; }
+  footer div#navbox,
+  header div#navbox { float: right; }
+  header nav,
+  footer nav {
     padding:5px;
     background-color: #b2b2b2; }
-  header nav menu, footer nav menu { float:left; }
-  header nav menu li, footer nav menu li { display: inline-block; }
+    header nav menu,
+    footer nav menu { 
+      padding: 0;
+      margin: 0; }
+      header nav menu li,
+      footer nav menu li {
+        list-style: none;
+        background: white;
+        position: relative;
+        display: inline-block; }
+      header nav menu a,
+      footer nav menu a {
+        display: block;
+        padding: 5px; }
+      header nav menu menu { top: 24px; }
+      footer nav menu menu { bottom: 24px; }
+      header nav menu menu,
+      footer nav menu menu {
+        display: none;
+        background: white;
+        position: absolute;}
+        header nav menu menu li,
+        footer nav menu menu li { margin-left: 10px;}
+        
+	header nav menu li:hover menu menu,
+        footer nav menu li:hover menu menu,
+        header nav menu li:hover menu menu menu,
+        footer nav menu li:hover menu menu menu { display: none; }
+        
+	header nav menu li:hover menu,
+        footer nav menu li:hover menu,
+        header nav menu li li:hover menu,
+        footer nav menu li li:hover menu,
+        header nav menu li li li:hover menu,
+        footer nav menu li li li:hover menu { display: block; }
+        
+	header nav menu menu menu { top: 0; }
+        footer nav menu menu menu { bottom: 0; }
+        
+	header nav menu menu menu,
+        footer nav menu menu menu { position: relative; }
 
-menu li div#menu_ctrl a
-{
-  display: inline;
-}
+menu li div#menu_ctrl a { display: inline; }
 
 aside {
-	width: 180px;
+  width: 180px;
   background-color: #CCC;
   padding: 5px; }
   aside.left { float: left; }
   aside.right { float: right; }
-  aside nav menu li { margin-bottom: 3px; }
-  aside nav menu li { position: relative; display: block; background: #ddd; padding: 5px; }
-  aside nav menu menu { margin-left: 10px; }
-  aside nav menu, aside nav menu menu {
-    padding: 0;
-    margin: 0;
-    width: 180px; } 
-  aside nav menu menu {
-    position: absolute;
-    display: none;
-    left: 180px;
-    top: 0;}
-  aside nav menu#root li:hover menu menu,
-  aside nav menu#root li:hover menu menu menu,
-  aside nav menu#root li.over menu menu,
-  aside nav menu#root li.over menu menu menu { display: none; }
-  aside nav menu#root li:hover menu,
-  aside nav menu#root li li:hover menu,
-  aside nav menu#root li li li:hover menu, 
-  aside nav menu#root li.over menu, aside nav menu#root li li.over menu, aside nav menu#root li li li.over menu { display: block; }
-  aside nav menu#root li.parent a:hover, aside nav menu#root li.over a{ background-color: #fff; }
-  /* Fix IE. Hide from IE Mac \*/
-  * html aside nav menu#root li { float: left; height: 1%; }
-  * html aside nav menu#root li a { height: 1%; }
-  /* End */ 
+    aside nav menu {
+      margin: 0;
+      padding: 0; }
+      aside nav menu menu { margin-left: 10px; }
+      aside nav menu li { list-style: none; }
+        aside nav menu li a {
+          margin-bottom: 5px;
+	  background: white;
+	  display: block;
+	  padding: 5px; }
 
 section#content {
-	float:left;
-	margin: 0 auto;
-	width: 570px;
-	background: #eee;
-  padding:5px;
-  padding-bottom:30px;
-	overflow: hidden;
-}
+  float:left;
+  margin: 0 auto;
+  width: 570px;
+  padding: 5px;
+  padding-bottom: 100px;
+  overflow: hidden; }
 
-.clear {clear: both;}
-
-menu { margin: 0; }
-menu li { list-style: none; }
-menu li a {
-    display: inline;
-    padding: 5px; 
-}
+.clear { clear: both; }
 
 #pages {
   font-family: Verdana;
@@ -80,26 +109,16 @@ menu li a {
   padding-top:5px;
   padding-bottom:5px;
   padding-right:10px;
-  padding-left:10px;
-}
-
-#pages h1 {
-  font-size: 23px;
-  color: #1C1C1C; 
-}
-
-#pages h2 {
-  line-height: 100%;
-  color: #2F4F4F;
-  font-size: 15px;
-}
-
-#pages h3 {
-  font-size: 15px;
-  line-height: 100%;
-  color: #696969;
-}
-
-#pages p {
-
-}
+  padding-left:10px; }
+  #pages h1 {
+    font-size: 23px;
+    color: #1C1C1C; } 
+  #pages h2 {
+    line-height: 100%;
+    color: #2F4F4F;
+    font-size: 15px; }
+  #pages h3 {
+    font-size: 15px;
+    line-height: 100%;
+    color: #696969; }
+  #pages p { }
