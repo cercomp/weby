@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110111152512) do
+ActiveRecord::Schema.define(:version => 20110113154155) do
 
   create_table "feedbacks", :force => true do |t|
     t.string   "name"
@@ -51,7 +51,6 @@ ActiveRecord::Schema.define(:version => 20110111152512) do
   end
 
   create_table "pages", :force => true do |t|
-    t.date     "date_pub"
     t.date     "date_begin"
     t.date     "date_end"
     t.string   "image"

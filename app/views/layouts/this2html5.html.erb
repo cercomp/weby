@@ -116,11 +116,12 @@
 			<!-- Informativos -->
 				<!--  TODO  usar variável para limitar o número de eventos 	-->
 				<div id="Newsletter">													
-				 <%@Newsletter = Newsletter.find(:all, :limit => 5, :order => :date_begin)%>
+				<h2><%= t("newsletter", :count => 2)%></h2>
+				<%@Newsletter = Newsletter.find(:all, :limit => 5, :order => :date_begin)%>
 					<% @Newsletter.each do |page| %> 
 						<% if !@site.nil? && page.site_id == @site.id %>	
 							<%if page.date_begin <= Date.today && page.date_end > Date.today  %>
-								<img src="<%= page.image.url(:little) %>" height=80% width=80% > </img>
+								<img src="<%= page.image.url(:little) %>" height=180px width=180px > </img>
 								<%= raw page[:summary] %>															
 							<%end%>
 						<%end%>		
