@@ -1,15 +1,17 @@
-<div id="pages">
-  <p> <h1> <%= @page.title %> </h1> </p>
+<fieldset>
+  <div id="pages">
+    <p> <h1> <%= @page.title %> </h1> </p>
 
-  <a href="<%= @page.image.url %>" alt="<%= @page.text_image %>">
-    <img src="<%= @page.image.url %>" align="right" width="200" height="200" >
-    </img>
-  </a>
+    <a href="<%= @page.image.url %>" alt="<%= @page.text_image %>">
+      <img src="<%= @page.image.url %>" align="right" width="200" height="200" >
+      </img>
+    </a>
 
-  <p> <i> <%#= @page.user.login %> <%=h @page.date_pub %> </i> </p>
-  <h2> <%= raw @page.summary %> </h2>
-  <h3> <%= raw @page.text %> </h3>
-  <p> <h3> <%= @page.url %> </h3> </p>
+    <p> <i> <%#= @page.user.login %> <%=h @page.date_pub %> </i> </p>
+    <h2> <%= raw @page.summary %> </h2>
+    <h3> <%= raw @page.text %> </h3>
+    <p> <h3> <%= @page.url %> </h3> </p>
 
-  <%= link_to t("edit"), {:controller => 'pages', :action => 'edit', :id => @page.id, :type => 'News'} %> | <%= link_to t("back"), :back %>
-</div>
+    <%= link_to t("edit"), {:controller => 'pages', :action => 'edit', :id => @page.id, :type => 'News'} %> | <%=   link_to t("back"), :back %>
+  </div>
+</fieldset>

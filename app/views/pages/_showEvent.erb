@@ -1,16 +1,18 @@
-<div id="pages">
-  <p> <h1> <%= @page.title %> </h1> </p>
-  <a href="<%= @page.image.url %>" alt="<%= @page.text_image %>">
-    <img src="<%= @page.image.url %>" align="right" width="200" height="200" >
-    </img>
-  </a>
-  <%= @page.date_pub %> </i>
+<fieldset>
+  <div id="pages">
+    <p> <h1> <%= @page.title %> </h1> </p>
+    <a href="<%= @page.image.url %>" alt="<%= @page.text_image %>">
+      <img src="<%= @page.image.url %>" align="right" width="200" height="200" >
+      </img>
+    </a>
+    <%= @page.date_pub %> </i>
 
-  <p> <h2> <%= @page.summary %> </p>
-  <p> <%= @page.local %> </h2> </p>
-  <p> <h3> <%= raw @page.text %> </h3> </p>
-  <p> <h3> <b> <%= t("source") %> <%= @page.source %> </h3> </b> </p>
+    <p> <h2> <%= @page.summary %> </p>
+    <p> <%= @page.local %> </h2> </p>
+    <p> <h3> <%= raw @page.text %> </h3> </p>
+    <p> <h3> <b> <%= t("source") %> <%= @page.source %> </h3> </b> </p>
 
-  <%= link_to t("edit"), :controller => 'pages', :action => 'edit', :id => @page.id, :type => 'Event'%>
-  <%= link_to t("back"), :back %>
-</div>
+    <%= link_to t("edit"), :controller => 'pages', :action => 'edit', :id => @page.id, :type => 'Event'%>
+    <%= link_to t("back"), :back %>
+  </div>
+</fieldset>

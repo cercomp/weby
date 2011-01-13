@@ -1,22 +1,21 @@
-<h1><%= t 'listing', :param => t('group', :count => 2) %></h1>
+<fieldset>
+  <h1><%= t 'listing', :param => t('group', :count => 2) %></h1>
 
-<table>
-  <tr>
-    <th><%= t 'name' %></th>
-    <th><%= t 'edit' %></th>
-    <th><%= t 'destroy' %></th>
-  </tr>
+  <table>
+    <tr>
+      <th><%= t 'name' %></th>
+      <th><%= t 'edit' %></th>
+      <th><%= t 'destroy' %></th>
+    </tr>
 
-<% @groups.each do |group| %>
-  <tr>
-    <td><%= link_to group.name, site_group_path(@site, group) %></td>
-    <td><%= link_to t('edit'), edit_site_group_path(@site, group) %></td>
-    <td><%= link_to t('destroy'), site_group_path(@site, group), :confirm => t('are_you_sure'), :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to "#{t('new')} #{t('group', :count => 1)}", new_site_group_path %>
-
+  <% @groups.each do |group| %>
+    <tr>
+      <td><%= link_to group.name, site_group_path(@site, group) %></td>
+      <td><%= link_to t('edit'), edit_site_group_path(@site, group) %></td>
+      <td><%= link_to t('destroy'), site_group_path(@site, group), :confirm => t('are_you_sure'), :method => :delete %></td>
+    </tr>
+  <% end %>
+  </table>
+  <br />
+  <%= link_to "#{t('new')} #{t('group', :count => 1)}", new_site_group_path %>
+</fieldset>

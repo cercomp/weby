@@ -1,43 +1,44 @@
-<h1><%= t('roles_permissions') %></h1>
+<fieldset>
+  <h1><%= t('roles_permissions') %></h1>
 
-<%#= debug(params[:role_ids]) %>
-<%= debug(params[:right_ids]) %>
+  <%#= debug(params[:role_ids]) %>
+  <%= debug(params[:right_ids]) %>
 
-<% form_tag 'roles' do %>
+  <% form_tag 'roles' do %>
 
-<table class="list">
-  <thead>
-   <tr>
-    <th><%= t"roles_permissions"  %></th>
-    <% @roles.each do |role| %>
-      <th><%= role.name %></th>
-      <%# role.rights.collect do |each|%>
-        <%#=  each.name %>
-      <%# end %>
-    <% end %>
-  </tr>
-  </thead>
-  <tbody>
-    <% @rights.each do |right| %>
-    <tr>
-      <td><%= right.name %></td>
+  <table class="list">
+    <thead>
+     <tr>
+      <th><%= t"roles_permissions"  %></th>
       <% @roles.each do |role| %>
-        <td>
-          <%#= check_box_tag "role_ids[#{role.id}][right_ids][]", right.id, role.rights.include?(right), :id => nil %>
-          <%= check_box_tag "right_ids[#{right.id}][role_ids][]", role.id, role.rights.include?(right), :id => nil %>
-        </td>
+        <th><%= role.name %></th>
+        <%# role.rights.collect do |each|%>
+          <%#=  each.name %>
+        <%# end %>
       <% end %>
     </tr>
-    <% end %>
-  </tbody>
-</table>
-  <%= submit_tag t("submit") %>
-<% end %>
+    </thead>
+    <tbody>
+      <% @rights.each do |right| %>
+      <tr>
+        <td><%= right.name %></td>
+        <% @roles.each do |role| %>
+          <td>
+           <%#= check_box_tag "role_ids[#{role.id}][right_ids][]", right.id, role.rights.include?(right), :id => nil %>
+            <%= check_box_tag "right_ids[#{right.id}][role_ids][]", role.id, role.rights.include?(right), :id => nil %>
+          </td>
+        <% end %>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+    <%= submit_tag t("submit") %>
+  <% end %>
 
-<% form_for @roles do %>
-    <p><%= t"new_param", :param => t("role") %>  <br />
-      <%= text_field_tag "roles" %>
-      <%= submit_tag 'Salvar' %>
-    </p>
-<% end %>
-
+  <% form_for @roles do %>
+      <p><%= t"new_param", :param => t("role") %>  <br />
+        <%= text_field_tag "roles" %>
+        <%= submit_tag 'Salvar' %>
+      </p>
+  <% end %>
+<fieldset>

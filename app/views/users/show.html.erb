@@ -1,23 +1,25 @@
-<p>
-  <b><%= t"login" %>:</b> <%=h @user.login %>
-</p>
-<p>
-  <b><%= t"login_count" %>:</b> <%=h @user.login_count %>
-</p>
-<p>
-  <b><%= t"last_request" %>:</b> <%=h @user.last_request_at %>
-</p>
-<p>
-  <b><%= t"last_login", :param => t("at") %>:</b> <%=h @user.last_login_at %>
-</p>
-<p>
-  <b><%= t"current_login", :param => t("at")  %>:</b> <%=h @user.current_login_at %>
-</p>
-<p>
-  <b><%= t"last_login", :param => t("ip") %>:</b> <%=h @user.last_login_ip %>
-</p>
-<p>
-  <b><%= t"current_login", :param => t("ip") %>:</b> <%=h @user.current_login_ip %>
-</p>
+<fieldset>
+  <p>
+    <b><%= t"login" %>:</b> <%=h @user.login %>
+  </p>
+  <p>
+    <b><%= t"login_count" %>:</b> <%=h @user.login_count %>
+  </p>
+  <p>
+    <b><%= t"last_request" %>:</b> <%=h @user.last_request_at %>
+  </p>
+  <p>
+    <b><%= t"last_login", :param => t("at") %>:</b> <%=h @user.last_login_at %>
+  </p>
+  <p>
+    <b><%= t"current_login", :param => t("at")  %>:</b> <%=h @user.current_login_at %>
+  </p>
+  <p>
+    <b><%= t"last_login", :param => t("ip") %>:</b> <%=h @user.last_login_ip %>
+  </p>
+  <p>
+    <b><%= t"current_login", :param => t("ip") %>:</b> <%=h @user.current_login_ip %>
+  </p>
 
-<%= link_to t('edit'), edit_user_path %> | <%= link_to t('back'), :back %>
+  <%= link_to t('edit'), edit_user_path %> | <%= link_to t('back'), :back %>
+</fieldset>

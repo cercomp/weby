@@ -1,6 +1,8 @@
-<h1><%= t 'editing', :param => t('group', :count => 1) %></h1>
+<fieldset>  
+  <h1><%= t 'editing', :param => t('group', :count => 1) %></h1>
 
-<%= render 'form' %>
+  <%= render 'form' %>
 
-<%= link_to t('show'), site_group_path(@site.id, @group) %> |
-<%= link_to t('back'), site_groups_path %>
+  <%= link_to t('show'), site_group_path(@site.id, @group) %> |
+  <%= link_to t('back'), site_groups_path %>
+</fieldset>

@@ -57,8 +57,8 @@ class GroupsController < ApplicationController
 
         format.html {
           redirect_to(
-                      {:site_id => @group.site_id, :controller => 'groups', :action => 'index'},
-                      :notice => t('successfully_created_param', :param => t('group', :count => 1))
+                      {:site_id => @group.site.id, :controller => 'groups', :action => 'index'},
+                      :notice => t('successfully_created')
           )
         }
         format.xml  { render :xml => @group, :status => :created, :location => @group }
@@ -79,7 +79,7 @@ class GroupsController < ApplicationController
         format.html {
          redirect_to(
                       {:site_id => @group.site_id, :controller => 'groups', :action => 'index'},
-                      :notice => t('successfully_updated_param', :param => t('group', :count => 1))
+                      :notice => t('successfully_updated'))
           )
 	}
         format.xml  { head :ok }

@@ -1,21 +1,23 @@
-<h1><%= t"editing", :param => t("rights") %> </h1>
+<fieldset>
+  <h1><%= t"editing", :param => t("rights") %> </h1>
 
-<% form_for(@right, :builder => SemanticFormBuilder) do |f| %>
-  <% if @right.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@right.errors.count, "error") %> prohibited this site from being saved:</h2>
-      <ul>
-      <% @right.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
+  <% form_for(@right, :builder => SemanticFormBuilder) do |f| %>
+    <% if @right.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@right.errors.count, "error") %> prohibited this site from being saved:</h2>
+        <ul>
+        <% @right.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= f.text_field :name, :label => t("name") %><br />
+    <%= f.text_field :controller, :label => t("controller") %><br />
+    <%= f.text_field :action, :label => t("action") %><br />
+    <p>
+      <%= f.submit t("submit") %> | <%= link_to t('back'), rights_path %>
+    </p>
   <% end %>
-
-  <%= f.text_field :name, :label => t("name") %><br />
-  <%= f.text_field :controller, :label => t("controller") %><br />
-  <%= f.text_field :action, :label => t("action") %><br />
-  <p>
-    <%= f.submit t("submit") %> | <%= link_to t('back'), rights_path %>
-  </p>
-<% end %>
+</fieldset>

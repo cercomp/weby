@@ -1,21 +1,23 @@
-<h1><%= t"listing", :param => (t"archive", :count => 2) %></h1>
+<fieldset>
+  <h1><%= t"listing", :param => (t"archive", :count => 2) %></h1>
 
-<table>
-<% @repositories.each do |repository| %>
-  <tr>
-    <% unless repository.archive %>
-      <td><%= image_tag "/images/arquivo.gif" %></td>
-    <% else %>
-      <td><%= image_tag repository.archive.url %></td>
-    <% end %>
-  	<td>ID: <%= repository.id %></td><br/>	
-    <td><%= t("description") %>: <%= repository.description %> </td><br/>
-    <td><%= link_to t("show"), {:controller => 'repositories', :action => 'show', :id => repository.id}%></td>
-    <td><%= link_to t("edit"), {:controller => 'repositories', :action => 'edit', :id=> repository.id} %></td>
-    <td><%= link_to t("destroy"), repository, :confirm => t("are_you_sure"), :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+  <table>
+  <% @repositories.each do |repository| %>
+    <tr>
+      <% unless repository.archive %>
+        <td><%= image_tag "/images/arquivo.gif" %></td>
+      <% else %>
+        <td><%= image_tag repository.archive.url %></td>
+      <% end %>
+    	<td>ID: <%= repository.id %></td><br/>	
+      <td><%= t("description") %>: <%= repository.description %> </td><br/>
+      <td><%= link_to t("show"), {:controller => 'repositories', :action => 'show', :id => repository.id}%></td>
+      <td><%= link_to t("edit"), {:controller => 'repositories', :action => 'edit', :id=> repository.id} %></td>
+      <td><%= link_to t("destroy"), repository, :confirm => t("are_you_sure"), :method => :delete %></td>
+    </tr>
+  <% end %>
+  </table>
 
-<br />
-<%= link_to (t"new_param", :param => (t"archive", :count => 1)), {:controller => 'repositories', :action => 'new'} %>
+  <br />
+  <%= link_to (t"new_param", :param => (t"archive", :count => 1)), {:controller => 'repositories', :action => 'new'} %>
+</fieldset>
