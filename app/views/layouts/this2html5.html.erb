@@ -98,7 +98,7 @@
             <%= link_to t("login"), login_path %> |
           <% else %>
             <%= link_to t("my_profile"), user_path(current_user) %> |
-            <%= link_to t("logout"), logout_path, :confirm => "Are you sure you want to logout?" %>
+            <%= link_to t("logout"), logout_path, :confirm => "Are you sure that you want to logout?" %>
           <% end %>
           <%= User.logged_in.count %> <%= (t"user", :count => User.logged_in.count) %> logado.
         </div>
@@ -112,7 +112,21 @@
             <%= raw list_menus(@right) %>
           </nav>
         <% end %>
-      </aside>
+        
+			<!-- Informativos -->
+				<!--  TODO  usar variável para limitar o número de eventos 	-->
+				<div id="Newsletter">													
+				 <%@Newsletter = Newsletter.find(:all, :limit => 5, :order => :date_begin)%>
+					<% @Newsletter.each do |page| %> 
+						<% if !@site.nil? && page.site_id == @site.id %>	
+							<%if page.date_begin <= Date.today && page.date_end > Date.today  %>
+								<img src="<%= page.image.url(:little) %>" height=80% width=80% > </img>
+								<%= raw page[:summary] %>															
+							<%end%>
+						<%end%>		
+				<%end%>
+				</div>				
+		</aside>		
       <div class="clear"></div>
 
     </div>
