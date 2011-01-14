@@ -57,7 +57,7 @@ class GroupsController < ApplicationController
 
         format.html {
           redirect_to(
-                      {:site_id => @group.site.id, :controller => 'groups', :action => 'index'},
+                      {:site_id => @group.site.name, :controller => 'groups', :action => 'index'},
                       :notice => t('successfully_created')
           )
         }
@@ -78,8 +78,8 @@ class GroupsController < ApplicationController
       if @group.update_attributes(params[:group])
         format.html {
          redirect_to(
-                      {:site_id => @group.site_id, :controller => 'groups', :action => 'index'},
-                      :notice => t('successfully_updated'))
+                      {:site_id => @group.site.name, :controller => 'groups', :action => 'index'},
+                      :notice => t('successfully_updated')
           )
 	}
         format.xml  { head :ok }
