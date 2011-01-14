@@ -27,7 +27,7 @@ module ApplicationHelper
   # Retorna: O menu com seus controles
   def list_menus(start_menu, view_ctrl=0)
     menus = "" 
-    menus += "\t<menu id=\"root\">\n"
+    menus += "\t<menu>\n"
     aberto = false;
     i=0
     j=0
@@ -44,7 +44,7 @@ module ApplicationHelper
         end
         #menus += debug(menu)
           menus += "\n\t\t\t</li>\n" if aberto
-          menus += "\t\t\t<li class=\"parent\">\n"
+          menus += "\t\t\t<li>\n"
           aberto = true
           menus += "\t\t\t\t" + link_to("#{menu.title}", "#{menu.link}") + " "
           if view_ctrl == 1
