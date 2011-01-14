@@ -47,17 +47,22 @@ footer {
 		    footer nav menu menu menu {
 			    margin-left: 0px;
 			    margin-top: 0px; }
+			header nav menu menu a,
+      footer nav menu menu a { border: 1px solid #eee; }
 			header nav menu a,
       footer nav menu a {
 	      background: #fff;
+	      border: 1px solid transparent;
 	      display: block;
-	      line-height: 25px;
+	      line-height: 23px;
 	      margin: 0;
 	      padding-left: 10px;
-	      width: 90px;
+	      width: 88px;
 	      text-overflow: ellipsis; }
       header nav menu li,
-      footer nav menu li { float: left; }
+      footer nav menu li { 
+        margin-right: 2px;
+        float: left;}
         header nav menu li.submenu > a,
   		  footer nav menu li.submenu > a {
 			    background: url("../images/arrow_collapsed.png") no-repeat scroll #fff;
