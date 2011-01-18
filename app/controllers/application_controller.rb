@@ -1,4 +1,5 @@
 # coding: utf-8
+require 'pp'
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :set_locale, :get_site_obj
@@ -157,7 +158,10 @@ class ApplicationController < ActionController::Base
       left_untreated = Site.find_by_sql("SELECT sites_menus.id,menus.id as menu_id,menus.title,menus.link,sites_menus.parent_id,sites_menus.side,sites_menus.position FROM menus INNER JOIN sites_menus ON sites_menus.menu_id=menus.id WHERE sites_menus.side = 'left' AND sites_menus.site_id = '#{@site.id}' ORDER BY sites_menus.parent_id,sites_menus.position")
       right_untreated = Site.find_by_sql("SELECT sites_menus.id,menus.id as menu_id,menus.title,menus.link,sites_menus.parent_id,sites_menus.side,sites_menus.position FROM menus INNER JOIN sites_menus ON sites_menus.menu_id=menus.id WHERE sites_menus.side = 'right' AND sites_menus.site_id = #{@site.id} ORDER BY sites_menus.parent_id,sites_menus.position")
       bottom_untreated = Site.find_by_sql("SELECT sites_menus.id,menus.id as menu_id,menus.title,menus.link,sites_menus.parent_id,sites_menus.side ,sites_menus.position FROM menus INNER JOIN sites_menus ON sites_menus.menu_id=menus.id WHERE sites_menus.side = 'bottom' AND sites_menus.site_id = #{@site.id} ORDER BY sites_menus.parent_id,sites_menus.position")
-
+      
+      @par_left = left_untreated.group_by(&:parent_id)
+      @par_top = top_untreated.group_by(&:parent_id)
+      
       @left = menu_treat(left_untreated)
       @right = menu_treat(right_untreated)
       @top = menu_treat(top_untreated)

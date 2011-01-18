@@ -22,6 +22,30 @@ module ApplicationHelper
     end
     menu
   end
+  # Novo metodo para tratar o menu
+  def print_menu(sons)
+    menus ||= ""
+    menus += "<menu>"
+    sons["0"].each do |child|
+      menus += print_menu_entry(sons, child, 2)
+    end
+    menus += "<menu>"
+  end
+	#
+  def print_menu_entry(sons, entry, indent=0)
+    indent_space = " " * indent
+    menus ||= ""
+    menus += indent_space + "<menu>"
+    menus += indent_space + "  <li class=\"sub\">" + link_to("#{entry.title}", "#{entry.link}") + " "
+    if sons["#{entry.id}"].class.to_s == "Array"
+      sons["#{entry.id}"].each do |child|
+        menus += print_menu_entry(sons, child, indent+2)
+      end
+    end
+    menus += indent_space + "  </li>"
+    menus += indent_space + "</menu>"
+    menus
+  end
   # Define os menus
   # Parâmetros: Lista de menu (menus, view_ctrl=0)
   # Retorna: O menu com seus controles

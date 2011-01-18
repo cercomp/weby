@@ -54,8 +54,7 @@
   </script> 
 </head>
 <body>
-  <%#= debug(params) %>
-  <%#= request.env['HTTP_REFERER'] %>
+  <%#= pp @par_top %>
   <div id="wrapper">
     
     <header>
@@ -78,7 +77,7 @@
       <aside class="left">
         <% unless @left.nil? %>
           <nav>
-            <%= raw list_menus(@left) %>
+            <%= raw print_menu(@par_left) %>
           </nav>
         <% end %>
       </aside>
