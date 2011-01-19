@@ -54,7 +54,7 @@
   </script> 
 </head>
 <body>
-  <%#= pp @par_top %>
+  <%#= pp @top %>
   <div id="wrapper">
     
     <header>
@@ -62,12 +62,14 @@
       <nav>
         <div id="menu">
           <% unless @top.nil? %>
-            <%= raw list_menus(@top) %>
-  	  <% end %>
+            <menu>
+              <%= raw print_menu(@top) %>
+            </menu>
+  	      <% end %>
         </div>
-	<div id="navbox">
+        <div id="navbox">
           <%= link_to image_tag("flag_uk.png"), :locale => "en" %>
-	  <%= link_to image_tag("flag_br.png"), :locale => "pt-BR" %>
+      	  <%= link_to image_tag("flag_br.png"), :locale => "pt-BR" %>
         </div>
         <div class="clear"></div>
       </nav>
@@ -77,7 +79,9 @@
       <aside class="left">
         <% unless @left.nil? %>
           <nav>
-            <%= raw print_menu(@par_left) %>
+            <menu>
+              <%= raw print_menu(@left) %>
+            </menu>
           </nav>
         <% end %>
       </aside>
@@ -108,7 +112,9 @@
       <aside class="right">
         <% unless @right.nil? %>
           <nav>
-            <%= raw list_menus(@right) %>
+            <menu>
+              <%= raw print_menu(@right) %>
+            </menu>
           </nav>
         <% end %>
         
@@ -135,9 +141,11 @@
       <nav>
         <div id="menu">
           <% unless @bottom.nil? %>
-            <%= raw list_menus(@bottom) %>
+            <menu>
+              <%= raw print_menu(@bottom) %>
+            </menu>
           <% end %>
-	</div>
+      	</div>
         <div id="navbox">
           <% unless @site.nil? %>
             <%= link_to 'Novo feedback', new_site_feedback_path(@site.id) if @site.id %>

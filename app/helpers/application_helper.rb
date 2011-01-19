@@ -22,70 +22,38 @@ module ApplicationHelper
     end
     menu
   end
-  # Novo metodo para tratar o menu
-  def print_menu(sons)
+  # Define os menus
+  # Parâmetros: Lista de menu (sons, view_ctrl=0)
+  # Retorna: O menu com seus controles
+  def print_menu(sons, view_ctrl=0)
     menus ||= ""
-    menus += "<menu>"
+    #menus += "<menu>"
     sons["0"].each do |child|
-      menus += print_menu_entry(sons, child, 2)
+      menus += print_menu_entry(sons, child, view_ctrl, 1)
     end
-    menus += "<menu>"
-  end
-	#
-  def print_menu_entry(sons, entry, indent=0)
-    indent_space = " " * indent
-    menus ||= ""
-    menus += indent_space + "<menu>"
-    menus += indent_space + "  <li class=\"sub\">" + link_to("#{entry.title}", "#{entry.link}") + " "
-    if sons["#{entry.id}"].class.to_s == "Array"
-      sons["#{entry.id}"].each do |child|
-        menus += print_menu_entry(sons, child, indent+2)
-      end
-    end
-    menus += indent_space + "  </li>"
-    menus += indent_space + "</menu>"
+    #menus += "</menu>"
     menus
   end
-  # Define os menus
-  # Parâmetros: Lista de menu (menus, view_ctrl=0)
-  # Retorna: O menu com seus controles
-  def list_menus(start_menu, view_ctrl=0)
-    menus = "" 
-    menus += "\t<menu>\n"
-    aberto = false;
-    i=0
-    j=0
-    start_menu.each do |menu|
-      j+=1
-      if menu.class == Array
-        #menus += "\t\t<li>\n"
-        menus += list_menus(menu, view_ctrl)
-      else
-        i+=1
-        if menu.position.nil? or menu.position.to_i < 1
-          mm = SitesMenu.find(menu.id)
-          mm.update_attribute(:position, i)
-        end
-        #menus += debug(menu)
-          menus += "\n\t\t\t</li>\n" if aberto
-          menus += "\t\t\t<li>\n"
-          aberto = true
-          menus += "\t\t\t\t" + link_to("#{menu.title}", "#{menu.link}") + " "
-          if view_ctrl == 1
-            menus += link_to(image_tag('editar.gif', :border => 0), edit_site_menu_path(@site.name, menu.menu_id))
-            menus += link_to(image_tag('subitem.gif', :border => 0), new_site_menu_path(@site.name, :parent_id => menu.id))
-            menus += link_to(image_tag('setaup.gif', :border => 0), {:controller => 'menus', :action => 'change_position', :id => menu.id, :position => (menu.position.to_i - 1)}, :method => :get) if menu.position.to_i > 1
-            menus += link_to(image_tag('setadown.gif', :border => 0), {:controller => 'menus', :action => 'change_position', :id => menu.id, :position => (menu.position.to_i + 1)}, :method => :get) if not start_menu[j].nil? and not start_menu[j+1].nil?
-            menus += link_to(image_tag('apagar.gif', :border => 0), {:controller => 'menus', :action => 'rm_menu', :id => menu.id}, :confirm => t('are_you_sure'), :method => :get)
-          end
-          #menus += "\t\t\t</li>\n"
-          #menus += "id: #{menu.id} parent_id:#{menu.parent_id} position: #{menu.position.to_i} i:#{i} "
-          #menus += "debug:#{start_menu[j+1]}"
-      end
-      #menus += "\n\t\t\t</li>\n"
+	# Método recursivo para gerar submenus e os controles
+  def print_menu_entry(sons, entry, view_ctrl, indent=0)
+    indent_space = "    " * indent
+    menus ||= ""
+    menus += indent_space + "<menu>\n" if indent != 1
+    menus += indent_space + "  <li class=\"sub\">" + link_to("#{entry.title}", "#{entry.link}") + "\n"
+    if view_ctrl == 1
+      menus += indent_space + link_to(image_tag('editar.gif', :border => 0), edit_site_menu_path(@site.name, entry.menu_id))
+      menus += indent_space + link_to(image_tag('subitem.gif', :border => 0), new_site_menu_path(@site.name, :parent_id => entry.id))
+      menus += indent_space + link_to(image_tag('setaup.gif', :border => 0), {:controller => 'menus', :action => 'change_position', :id => entry.id, :position => (entry.position.to_i - 1)}, :method => :get) if entry.position.to_i > 1
+      menus += indent_space + link_to(image_tag('setadown.gif', :border => 0), {:controller => 'menus', :action => 'change_position', :id => entry.id, :position => (entry.position.to_i + 1)}, :method => :get) if (entry.position.to_i < sons[entry.parent_id].count.to_i)
+      menus += indent_space + link_to(image_tag('apagar.gif', :border => 0), {:controller => 'menus', :action => 'rm_menu', :id => entry.id}, :confirm => t('are_you_sure'), :method => :get) + "\n"
     end
-    menus += "\n\t\t\t</li>\n" if aberto
-    menus += "\t</menu>\n"
+    if sons["#{entry.id}"].class.to_s == "Array"
+      sons["#{entry.id}"].each do |child|
+        menus += print_menu_entry(sons, child, view_ctrl, indent+2)
+      end
+    end
+    menus += indent_space + "  </li>\n"
+    menus += indent_space + "</menu>\n" if indent != 1
     menus
   end
 

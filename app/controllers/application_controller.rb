@@ -54,34 +54,6 @@ class ApplicationController < ActionController::Base
     end
     redirect_back_or_default login_path
   end
-  # Metodo para tratar o menu
-  def menu_treat(obj)
-    result = []
-    #obj.sort!{|x,y| x.parent_id.to_i <=> y.parent_id.to_i }
-    while not obj.empty?
-      l = obj.shift
-      result << l 
-      result_test = search_son(l.id, obj)
-      result << result_test unless result_test.empty?
-    end
-    return result
-  end
-  # Procura pelo id de um filho (id) em um dado vetor (arr)
-  def search_son(id, arr)
-    result = []
-    i = 0 
-    while i < arr.size
-      a = arr[i]
-      if id.to_i == a.parent_id.to_i
-        result << arr.delete(a)
-        result_test = search_son(a.id, arr)
-        result << result_test unless result_test.empty?
-      else
-        i += 1
-      end 
-    end 
-    return result
-  end
 
   private
   def current_user_session
@@ -159,13 +131,10 @@ class ApplicationController < ActionController::Base
       right_untreated = Site.find_by_sql("SELECT sites_menus.id,menus.id as menu_id,menus.title,menus.link,sites_menus.parent_id,sites_menus.side,sites_menus.position FROM menus INNER JOIN sites_menus ON sites_menus.menu_id=menus.id WHERE sites_menus.side = 'right' AND sites_menus.site_id = #{@site.id} ORDER BY sites_menus.parent_id,sites_menus.position")
       bottom_untreated = Site.find_by_sql("SELECT sites_menus.id,menus.id as menu_id,menus.title,menus.link,sites_menus.parent_id,sites_menus.side ,sites_menus.position FROM menus INNER JOIN sites_menus ON sites_menus.menu_id=menus.id WHERE sites_menus.side = 'bottom' AND sites_menus.site_id = #{@site.id} ORDER BY sites_menus.parent_id,sites_menus.position")
       
-      @par_left = left_untreated.group_by(&:parent_id)
-      @par_top = top_untreated.group_by(&:parent_id)
-      
-      @left = menu_treat(left_untreated)
-      @right = menu_treat(right_untreated)
-      @top = menu_treat(top_untreated)
-      @bottom = menu_treat(bottom_untreated)
+      @top = top_untreated.group_by(&:parent_id)
+      @left = left_untreated.group_by(&:parent_id)
+      @right = right_untreated.group_by(&:parent_id)
+      @bottom = bottom_untreated.group_by(&:parent_id)
     elsif params[:id]
       @site = Site.find(:first, :conditions => ["name = ?", params[:id]])
     end
