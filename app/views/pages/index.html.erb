@@ -60,7 +60,7 @@
         <% @pages.each do |page| %>
           <tr class="<%= cycle 'odd', 'even' %>">
             <td><%= page.created_at %></td>
-            <td><%= page.date_pub %></td>
+            <td><%= page.date_begin %></td>
             <td><%= page.title %></td>
             <td><%= page.url %></td>
             <td>
