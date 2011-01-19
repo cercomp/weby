@@ -27,19 +27,23 @@ module ApplicationHelper
   # Retorna: O menu com seus controles
   def print_menu(sons, view_ctrl=0)
     menus ||= ""
-    #menus += "<menu>"
     sons["0"].each do |child|
+      #menus += "<menu>"
       menus += print_menu_entry(sons, child, view_ctrl, 1)
+      #menus += "</menu>"
     end
-    #menus += "</menu>"
     menus
   end
 	# Método recursivo para gerar submenus e os controles
   def print_menu_entry(sons, entry, view_ctrl, indent=0)
     indent_space = "    " * indent
     menus ||= ""
-    menus += indent_space + "<menu>\n" if indent != 1
-    menus += indent_space + "  <li class=\"sub\">" + link_to("#{entry.title}", "#{entry.link}") + "\n"
+    unless sons["#{entry.id}"].nil?
+      menus += indent_space + "  <li class=\"sub\">" + link_to("#{entry.title}", "#{entry.link}") + "\n"
+      menus += indent_space + "<menu>\n"
+    else
+      menus += indent_space + "  <li>" + link_to("#{entry.title}", "#{entry.link}") + "\n"
+    end
     if view_ctrl == 1
       menus += indent_space + link_to(image_tag('editar.gif', :border => 0), edit_site_menu_path(@site.name, entry.menu_id))
       menus += indent_space + link_to(image_tag('subitem.gif', :border => 0), new_site_menu_path(@site.name, :parent_id => entry.id))
@@ -52,8 +56,12 @@ module ApplicationHelper
         menus += print_menu_entry(sons, child, view_ctrl, indent+2)
       end
     end
-    menus += indent_space + "  </li>\n"
-    menus += indent_space + "</menu>\n" if indent != 1
+    unless sons["#{entry.id}"].nil?
+      menus += indent_space + "</menu>\n"
+      menus += indent_space + "  </li>\n"
+    else
+      menus += indent_space + "  </li>\n"
+    end
     menus
   end
 

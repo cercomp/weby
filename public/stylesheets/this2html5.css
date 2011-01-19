@@ -84,26 +84,44 @@ footer {
 			    header nav menu li:hover li:hover > menu { top: 0px; }
 			    footer nav menu li:hover li:hover > menu { bottom: 0px; }
 
-
-
 menu li div#menu_ctrl a { display: inline; }
 
 aside {
+  white-space: nowrap;
   width: 180px;
   background-color: #CCC;
   padding: 5px; }
-  aside.left { float: left; }
-  aside.right { float: right; }
-    aside nav menu {
-      margin: 0;
-      padding: 0; }
-      aside nav menu menu { margin-left: 10px; }
-      aside nav menu li { list-style: none; }
-        aside nav menu li a {
-          margin-bottom: 5px;
-	  background: white;
-	  display: block;
-	  padding: 5px; }
+
+  aside.right {float:right; position: relative; margin: 0; padding: 0;}
+  aside.right > menu {width: 5em; margin-left: -1px;}
+  aside.right menu {border: 1px solid silver; border-width: 0 0 0 1px; padding: 0; margin: 0; border-bottom: 1px solid silver;}
+  aside.right menu li {border-width: 1px 0; padding: 0 0 0 5px; line-height: 1.25em; list-style-type: none; border: 1px solid silver; border-width: 1px 1px 0 3px; position: relative; margin: 0; padding: 0;}
+  aside.right menu li:hover > menu {display: block; position: absolute; top: -1px; left: 100%;}
+  aside.right menu menu {width: 6em; display: none; border-width: 0 1px 1px 1px; border-color: gray silver gray gray;}
+  aside.right menu menu li {border-color: #FEFEFC;}
+  aside.right li a {display: block; padding: 5px 7px; text-decoration: none;}
+  aside.right li > a {background-color: transparent; padding: 3px;}
+  aside.right li:hover {background-color: #EED;}
+  aside.right li.sub > a {font-weight: bold;}
+  aside.right li.sub:hover {margin-left: -4em; border: 1px solid gray; background: #DDB;}
+  aside.right li.sub:hover > a {color: #330;}
+  aside.right li.sub:hover > menu {top: 1.75em; left: -1px; background: #FEFEFC;}
+
+
+  aside.left {float:left; position: relative; margin: 0; padding: 0;}
+  aside.left > menu {width: 5em; margin-right: -1px;}
+  aside.left menu {border: 1px solid silver; border-width: 0 0 0 1px; padding: 0; margin: 0; border-bottom: 1px solid silver;}
+  aside.left menu li {border-width: 1px 0; padding: 0 0 0 5px; line-height: 1.25em; list-style-type: none; border: 1px solid silver; border-width: 1px 1px 0 3px; position: relative; margin: 0; padding: 0;}
+  aside.left menu li:hover > menu {display: block; position: absolute; top: -1px; right: 100%;}
+  aside.left menu menu {width: 6em; display: none; border-width: 0 1px 1px 1px; border-color: gray silver gray gray;}
+  aside.left menu menu li {border-color: #FEFEFC;}
+  aside.left li a {display: block; padding: 5px 7px; text-decoration: none;}
+  aside.left li > a {background-color: transparent; padding: 3px;}
+  aside.left li:hover {background-color: #EED; }
+  aside.left li.sub > a {font-weight: bold;}
+  aside.left li.sub:hover {margin-right: -6em; border: 1px solid gray; background: #DDB;}
+  aside.left li.sub:hover > a {color: #330;}
+  aside.left li.sub:hover > menu {top: 1.75em; right: -1px; background: #FEFEFC;}
 
 section#content {
   float:left;
