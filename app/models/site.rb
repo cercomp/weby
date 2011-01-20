@@ -26,4 +26,7 @@ class Site < ActiveRecord::Base
   accepts_nested_attributes_for :sites_pages, :allow_destroy => true#, :reject_if => proc { |attributes| attributes['title'].blank? }
  
   has_many :repositories
+
+	 has_attached_file :top_banner, :url => "/uploads/:site_id/:style_:basename.:extension"
+
 end

@@ -1,0 +1,24 @@
+<!--  TODO  usar variável para limitar o número de eventos 	-->
+
+
+
+<div id="Newsletter">													
+
+<% @Newsletter = Newsletter.find(:all, :limit => 5, :order => :date_begin) %>
+
+<% if !@site.nil?  %>
+
+<h2><%= t("newsletter", :count => 2)%></h2>
+
+	<% @Newsletter.each do |page| %> 
+			
+			<% if  page.site_id == @site.id && page.date_begin <= Date.today && page.date_end > Date.today  %>
+							<img src="<%= page.image.url(:little) %>" height=180px width=180px > </img>
+							<%= raw page[:summary] %>															
+			<% end %>		
+
+	<% end %>
+	
+<% end %>
+</div>	
+

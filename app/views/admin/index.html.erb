@@ -50,8 +50,11 @@
     <% end %>
   </p>
   <p>
+    <% if @site %>	
     <%= link_to (t"list", :param => (t"archive", :count => 2)), :controller => 'repositories', :action => 'index' %>
+    <% end %>	
   </p>
+
   <% if @site %>
     <p>
 	    <%= link_to (t"setting", :count => 2), edit_site_path(@site.name) %>

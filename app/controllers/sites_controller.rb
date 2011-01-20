@@ -41,4 +41,11 @@ class SitesController < ApplicationController
     @site.destroy
     respond_with(@site)
   end
+
+	def select_top_banner
+		@site = Site.find_by_name(params[:id])
+		@reposiroties = Repository.all
+		respond_with(@repositories)
+	end
+
 end

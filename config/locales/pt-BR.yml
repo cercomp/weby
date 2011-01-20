@@ -160,6 +160,7 @@ pt-BR:
   setting:
     one: "Configuração"
     other: "Configurações"
+  select_param: "Selecionar %{param}"   
   show: "Mostrar"
   side: "Lado"
   site_id: "Site ID"
@@ -190,6 +191,7 @@ pt-BR:
   time: "Tempo"
   to: "Para"
   top: "Superior"
+  top_banner: "Topo"
   type: "Digite a %{param}"
   try_login: "Tente logar primeiro!"	
 

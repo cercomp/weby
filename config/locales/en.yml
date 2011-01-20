@@ -158,6 +158,7 @@ en:
   setting:
     one: "Setting"
     other: "Settings"
+  select_param: "Select %{param}"
   show: "Show"
   side: "Side"
   site_id: "Site ID"
@@ -188,6 +189,7 @@ en:
   time: "Time"
   to: "To"
   top: "Top"
+  top_banner: "Banner"
   type: "Type a %{param}"
   try_login: "Try to login first!"
 
