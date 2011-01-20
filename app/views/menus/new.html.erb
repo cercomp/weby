@@ -1,37 +1,36 @@
 <fieldset> 
   <% if !params[:parent_id] %>
 		<% params[:parent_id] = "0" %>
-    <legend><%= t"create_param", :param => (t"menu", :count => 1) %></legend>
+    <legend> <%= t"create_param", :param => (t"menu", :count => 1) %> </legend>
   <% else %>
-    <legend><%= t"create_param", :param => t("sub-menu")%></legend>
+    <legend> <%= t"create_param", :param => t("sub-menu")%> </legend>
   <% end %>
 
   <%= form_for(@menu, :builder => SemanticFormBuilder  ) do |f| %>
     <% if @menu.errors.any? %>
       <div id="error_explanation">
-        <h2><%= pluralize(@menu.errors.count, "") %> <%= t"prohibited_being_saved",:count => @menu.errors.count%>:</h2>
+        <h2> <%= pluralize(@menu.errors.count, "") %> <%= t"prohibited_being_saved",:count => @menu.errors.count%>: </h2>
         <ul>
         <% @menu.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
+          <li> <%= msg %> </li>
         <% end %>
         </ul>
       </div>
     <% end %>
 
-    <%#= f.hidden_field "sites_menus_attributes[][parent_id]", :value => params[:parent_id] %>
-    <%#= f.hidden_field "sites_menus_attributes[][site_id]", :value => @site.id %>
-    <p>
-      <%= f.text_field :title, :label => t("text") %>
-    </p>
+    <p> <%= f.text_field :title, :label => t("text") %> </p>
+    <p> <%= f.text_field :link, :label => (t"type", :param => t("url")) %> </p>
 
-		<%# @menus.build_sites_menu %>
 		<%= f.fields_for :sites_menus do |menus_form| %>
       <%= menus_form.hidden_field :parent_id, :value => params[:parent_id] %>
       <%= menus_form.hidden_field :site_id, :value => @site.id %>
 
-			<p>
-				<%= menus_form.select(:side, ["top", "left", "right", "bottom"], :label => t("position")) %>
-			</p>
+      <% if @menu_parent %>
+        <%= menus_form.hidden_field "side", :value => "#{@menu_parent.side}" %>
+      <% else %>
+        <% menus_list = [[t("top"), "top"], [t("left"), "left"], [t("right"), "right"], [t("bottom"), "bottom"]] %>
+        <p> <%= menus_form.select(:side, options_for_select(menus_list), :label => t("position")) %> </p>
+      <% end %>
     <% end %>
 
     <p> <%= f.submit t("create") %> <%= link_to t("back"), :back %></p>

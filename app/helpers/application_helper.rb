@@ -38,10 +38,11 @@ module ApplicationHelper
   end
 	# Método recursivo para gerar submenus e os controles
   def print_menu_entry(sons, entry, view_ctrl, indent=0)
-    indent_space = "    " * indent
+    indent_space = "  " * indent
+    submenu = (not sons["#{entry.id}"].nil?) ? "class='sub'" : nil
+
     menus ||= ""
-    submenu = (not sons["#{entry.id}"].nil?) ? "class='sub'" : false
-    menus += indent_space + "  <li #{submenu}>" + link_to("#{entry.title}", "#{entry.link}") + "\n"
+    menus += indent_space + "<li #{submenu}>" + link_to("#{entry.title}", "#{entry.link}") + "\n"
     if view_ctrl == 1
       menus += indent_space + link_to(image_tag('editar.gif', :border => 0), edit_site_menu_path(@site.name, entry.menu_id))
       menus += indent_space + link_to(image_tag('subitem.gif', :border => 0), new_site_menu_path(@site.name, :parent_id => entry.id))
@@ -49,14 +50,14 @@ module ApplicationHelper
       menus += indent_space + link_to(image_tag('setadown.gif', :border => 0), {:controller => 'menus', :action => 'change_position', :id => entry.id, :position => (entry.position.to_i + 1)}, :method => :get) if (entry.position.to_i < sons[entry.parent_id].count.to_i)
       menus += indent_space + link_to(image_tag('apagar.gif', :border => 0), {:controller => 'menus', :action => 'rm_menu', :id => entry.id}, :confirm => t('are_you_sure'), :method => :get) + "\n"
     end
-    menus += indent_space + "<menu>\n" unless submenu.nil?
+    menus += indent_space + "  <menu>\n" unless submenu.nil?
     if sons["#{entry.id}"].class.to_s == "Array"
       sons["#{entry.id}"].each do |child|
         menus += print_menu_entry(sons, child, view_ctrl, indent+2)
       end
     end
-    menus += indent_space + "</menu>\n" unless submenu.nil?
-    menus += indent_space + "  </li>\n"
+    menus += indent_space + "  </menu>\n" unless submenu.nil?
+    menus += indent_space + "</li>\n"
     menus
   end
 

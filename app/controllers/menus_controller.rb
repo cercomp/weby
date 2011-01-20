@@ -16,7 +16,9 @@ class MenusController < ApplicationController
     respond_with(@menu)
   end
 
-  def new
+  def new 
+    @menu_parent = SitesMenu.find(params[:parent_id]) if params[:parent_id]
+
     @menu = Menu.new
     @menu.sites_menus.build
     respond_with(@menu)

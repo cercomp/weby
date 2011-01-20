@@ -21,7 +21,8 @@ pt-BR:
 
 #---B---#
   back: "Voltar"
-  begin: "Início" 
+  begin: "Início"
+  bottom: "Inferior"
   
 #---C---#
   chief_editor: "Editor chefe"
