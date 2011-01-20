@@ -2,12 +2,13 @@
   <div id="pages">
     <p> <h1> <%= @page.title %> </h1> </p>
 
-    <a href="<%= @page.image.url %>" alt="<%= @page.text_image %>">
-      <img src="<%= @page.image.url %>" align="right" width="200" height="200" >
-      </img>
-    </a>
+    <% unless @page.image_file_name.nil? %>
+      <a href="<%= @page.image.url %>" alt="<%= @page.text_image %>">
+        <img src="<%= @page.image.url %>" align="right" width="200" height="200" > </img>
+      </a>
+    <% end %>
 
-    <p> <i> <%#= @page.user.login %> <%=h @page.created_at %> </i> </p>
+    <p> <i> <%#= @page.user.login %> <%= l @page.created_at, :format => :short  %> </i> </p>
     <h2> <%= raw @page.summary %> </h2>
     <h3> <%= raw @page.text %> </h3>
     <p> <h3> <%= @page.url %> </h3> </p>

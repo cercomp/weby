@@ -1,11 +1,14 @@
 <fieldset>
   <div id="pages">
     <p> <h1> <%= @page.title %> </h1> </p>
-    <a href="<%= @page.image.url %>" alt="<%= @page.text_image %>">
-      <img src="<%= @page.image.url %>" align="right" width="200" height="200" >
-      </img>
-    </a>
-    <%= @page.created_at %> </i>
+
+    <% unless @page.image_file_name.nil? %>
+      <a href="<%= @page.image.url %>" alt="<%= @page.text_image %>">
+        <img src="<%= @page.image.url %>" align="right" width="200" height="200" > </img>
+      </a>
+    <% end %>
+
+    <i> <%= l @page.created_at, :format => :short %> </i>
 
     <p> <h2> <%= @page.summary %> </p>
     <p> <%= @page.local %> </h2> </p>

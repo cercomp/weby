@@ -1,14 +1,18 @@
 <fieldset>
   <div id="pages">
     <p> <h1> <%= t("newsletter", :count => 1) %> </h1> </p>
-    <p> <a href="<%= @page.image.url %>" alt="<%= @page.text_image %>">
-      <img src="<%= @page.image.url %>" align="right" width="200" height="200">
-      </img>
-    </a> </p>
-    <i> <%=h @page.created_at %> </i>
+
+    <% unless @page.image_file_name.nil? %>
+      <p> 
+        <a href="<%= @page.image.url %>" alt="<%= @page.text_image %>">
+        <img src="<%= @page.image.url %>" align="right" width="200" height="200"> </img>
+        </a> 
+      </p>
+    <% end %>
+
+    <i><%= l @page.created_at, :format => :short %></i>
 
     <p> <h3> <%=h @page.url %> </h3> </p>
-
 
     <%= link_to t("edit"), {:controller => 'pages', :action => 'edit', :id => @page.id, :type => 'Newsletter'}%> | <%= link_to t("back"), :back %>
   </div>

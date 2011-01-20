@@ -19,19 +19,21 @@
     <% unless @pages.empty? %>
       <table class='list'>
         <thead>
+          <th><%= "id" %></th>
+          <th><%= t"date_param", :param => t("register")%></th>
           <th><%= t"title" %></th>
           <th><%= t"source" %></th>
-          <th><%= t"date", :param => t("register")%></th>
           <th><%= t"author" %></th>
           <th></th>
         </thead>
         <tbody>
         <% @pages.each do |page| %>
           <tr class="<%= cycle 'odd', 'even' %>">
-            <td><%=h page.title %></td>
-            <td><%=h page.source %></td>
-            <td><%=h page.created_at %></td>
-            <td><%=h page.author_id %></td>
+            <td><%= page.id %></td>
+            <td><%= l page.created_at, :format => :short %></td>
+            <td><%= page.title %></td>
+            <td><%= page.source %></td>
+            <td><%= page.user.login %></td>
             <td>
               <% if params[:site_id] %>
                 <%= link_to t("show"), site_page_path(@site, page, :type => params[:type]) %>
@@ -50,19 +52,19 @@
     <% unless @pages.empty? %>
       <table class="list">
         <thead>
-          <th><%= t"date", :param => t("register") %></th>
-          <th><%= t"date", :param => t("publication")%></th>
-          <th><%= t"title" %></th>
-          <th><%= t"url" %></th>
+          <th><%= "id" %></th>
+          <th><%= t"date_param", :param => t("register") %></th>
+          <th><%= t"date_param", :param => t("publication")%></th>
+          <th><%= t"subject" %></th>
           <th></th>
         </thead>
         <tbody>
         <% @pages.each do |page| %>
           <tr class="<%= cycle 'odd', 'even' %>">
-            <td><%= page.created_at %></td>
-            <td><%= page.date_begin %></td>
-            <td><%= page.title %></td>
-            <td><%= page.url %></td>
+            <td><%= page.id %></td>
+            <td><%= l page.created_at, :format => :short %></td>
+            <td><%= l page.date_begin %></td>
+            <td><%= page.subject %></td>
             <td>
               <% if params[:site_id] %>
                 <%= link_to t("show"), site_page_path(@site, page, :type => params[:type]) %>
@@ -82,19 +84,19 @@
     <% unless @pages.empty? %>
     <table class='list'>
       <thead>
-        <th><%= t"date", :param => t("register") %></th>
-        <th><%= t"date", :param => t("publication")%></th>
+        <th><%= "id" %></th>
+        <th><%= t"date_param", :param => t("register") %></th>
+        <th><%= t"date_param", :param => t("publication")%></th>
         <th><%= t"title" %></th>
-        <th><%= t"localization" %></th>
         <th></th>
       </thead>
       <tbody>
       <% @pages.each do |page| %>
         <tr class="<%= cycle 'odd', 'even' %>">
-          <td><%=h page.created_at %></td>
-          <td><%=h page.date_pub %></td>
-          <td><%=h page.title %></td>
-          <td><%=h page.local %></td>
+          <td><%= page.id %></td>
+          <td><%= l page.created_at, :format => :short %></td>
+          <td><%= l page.event_begin, :format => :short %></td>
+          <td><%= page.title %></td>
           <td>          
             <% if params[:site_id] %>
               <%= link_to t("show"), site_page_path(@site, page, :type => params[:type]) %>
