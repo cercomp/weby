@@ -86,36 +86,28 @@ footer {
 
 menu li div#menu_ctrl a { display: inline; }
 
-aside {
-  width: 180px;
-  background-color: #CCC;
-  padding: 5px; }
+aside {width: 180px; background-color: #CCC; padding: 5px;}
 
-  aside.right {float: right; position: relative; margin: 0; padding: 0;}
-  aside.right > menu {width: 5em;}
-  aside.right menu {padding: 0; margin: 0;}
-  aside.right menu li {position: relative; margin: 0; padding: 0 5px 0 0; list-style-type: none; border: 1px solid silver;}
-  aside.right menu li:hover > menu {display: block; position: absolute; top: -1px;}
-  aside.right menu menu {width: 180px; display: none; border-width: 0px;}
-  aside.right li a {display: block; padding: 5px 7px; text-decoration: none;}
-  aside.right li > a {background-color: #FFF; text-align: right}
-  aside.right li:hover {background-color: #FF0000;}
-  aside.right li.sub > a {font-weight: bold; background: url("../images/arrow_collapsed_right.png") no-repeat scroll #FFF; background-position: 5px center;}
-  aside.right li.sub:hover {margin-left: 0px; border: 1px solid gray;}
-  aside.right li.sub:hover > menu {left: -180px;}
+  aside menu {padding: 0; margin: 0;}
+  aside > menu {width: 5em;}
+  aside menu li:hover > menu {display: block; position: absolute; top: -1px;}
+  aside menu menu {width: 180px; display: none; border-width: 0px;}
+  aside li a {display: block; padding: 5px 7px; text-decoration: none;}
+  aside li:hover {background-color: #FF0000;}
 
-  aside.left {float:left; position: relative; margin: 0; padding: 0; z-index: 1}
-  aside.left > menu {width: 5em;}
-  aside.left menu {padding: 0; margin: 0;}
-  aside.left menu li {position: relative; margin: 0; padding: 0 0 0 5px; list-style-type: none; border: 1px solid silver;}
-  aside.left menu li:hover > menu {display: block; position: absolute; top: -1px;}
-  aside.left menu menu {width: 180px; display: none; border-width: 0px;}
-  aside.left li a {display: block; padding: 5px 7px; text-decoration: none;}
-  aside.left li > a {background-color: #FFF;}
-  aside.left li:hover {background-color: #FF0000;}
-  aside.left li.sub > a {font-weight: bold; background: url("../images/arrow_collapsed.png") no-repeat scroll #FFF; background-position: 155px center;}
-  aside.left li.sub:hover {margin-right: -180px; border: 1px solid gray; }
-  aside.left li.sub:hover > menu {right: 0px;}
+    aside.right {float: right; position: relative; margin: 0; padding: 0;}
+    aside.right menu li {position: relative; margin: 0; padding: 0 5px 0 0; list-style-type: none; border: 1px solid silver;}
+    aside.right li > a {background-color: #FFF; text-align: right}
+    aside.right li.sub > a {font-weight: bold; background: url("../images/arrow_collapsed_right.png") no-repeat scroll #FFF; background-position: 5px center;}
+    aside.right li.sub:hover {margin-left: 0px; border: 1px solid gray;}
+    aside.right li.sub:hover > menu {left: -180px;}
+
+    aside.left {float:left; position: relative; margin: 0; padding: 0; z-index: 1}
+    aside.left menu li {position: relative; margin: 0; padding: 0 0 0 5px; list-style-type: none; border: 1px solid silver;}
+    aside.left li > a {background-color: #FFF;}
+    aside.left li.sub > a {font-weight: bold; background: url("../images/arrow_collapsed.png") no-repeat scroll #FFF; background-position: 155px center;}
+    aside.left li.sub:hover {margin-right: -180px; border: 1px solid gray; }
+    aside.left li.sub:hover > menu {right: 0px;}
 
 section#content {
   float:left;
