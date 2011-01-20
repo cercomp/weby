@@ -14,7 +14,7 @@
   <div id="feedback_group">
   <% unless @groups.empty? %>
     <div class="text-field">
-      <label for="group_ids">Grupos</label>
+      <label for="group_ids"><%= t("group.one") %></label>
 
       <div class="input">
       <% @groups.each do |group| %>

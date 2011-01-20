@@ -80,6 +80,7 @@ en:
   left: "Left"
   listing: "Listing %{param}"
   localization: "Localization"
+  logged: "logged"
   login: "Login"
   login_success: "Logged in succesfully!"
   logout: "Logout"

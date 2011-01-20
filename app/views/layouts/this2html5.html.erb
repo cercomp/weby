@@ -109,7 +109,7 @@
             <%= link_to t("my_profile"), user_path(current_user) %> |
             <%= link_to t("logout"), logout_path, :confirm => "Are you sure that you want to logout?" %>
           <% end %>
-          <%= User.logged_in.count %> <%= (t"user", :count => User.logged_in.count) %> logado.
+          <%= User.logged_in.count %> <%= (t"user", :count => User.logged_in.count) %> <%= t("logged") %>.
         </div>
 
       <%= yield  %>
@@ -156,7 +156,7 @@
       	</div>
         <div id="navbox">
           <% unless @site.nil? %>
-            <%= link_to 'Novo feedback', new_site_feedback_path(@site.id) if @site.id %>
+            <%= link_to "#{t('new')} #{t('feedback', :count => 1)}", new_site_feedback_path(@site.id) if @site.id %>
           <% end %>
         </div>
         <div class="clear"></div>

@@ -83,6 +83,7 @@ pt-BR:
   left: "Esquerdo"
   listing: "Listando %{param}"
   localization: "Local de realização"
+  logged: "logado"
   login: "Entrar"
   login_success: "Logado com sucesso!"
   logout: "Sair"
