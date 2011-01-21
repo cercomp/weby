@@ -1,5 +1,5 @@
 <fieldset>
-  <legend><%= t"new" %> <%= params[:type] %></legend>
+  <legend><%= t"new" %> <%= (t"#{params[:type].downcase}", :count => 1) %></legend>
 
   <%= form_for [@site, @page], :url => site_pages_path(:type => params[:type]), :html => { :multipart => true }, :builder => SemanticFormBuilder do |f| %>
     <% if @page.errors.any? %>
@@ -20,6 +20,7 @@
     <%= f.hidden_field :position %>
     <%= f.hidden_field :status %>
     <%= f.hidden_field :author_id, :value => "#{@current_user.id}"%>
+    <%= f.text_field :title, :label => t("title"), :required => true, :help => t("field_required")  %>
     <%= f.text_area :text, :label => t("text"), :class => "mceAdvance" %>
 
     <%= f.hidden_field :type, :value => params[:type] %>

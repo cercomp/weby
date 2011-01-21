@@ -32,11 +32,11 @@ class MenusController < ApplicationController
     @menu = Menu.new(params[:menu])
     @menu.save
     if @menu.save 
-    redirect_to :site_id => @menu.sites[0].name
-    flash[:notice] =  t("successfully_created")
+      flash[:notice] =  t("successfully_created")
     else
-    respond_with(@menu)
+      flash[:error] = @menu.errors.full_messages
     end
+    redirect_back_or_default :site_id => @menu.sites[0].name, :controller => "menus", :action => "index", :side => @menu.sites_menus[0].side
   end
 
   def update
@@ -59,11 +59,11 @@ class MenusController < ApplicationController
   # Altera a ordenação do menu
   def change_position
     @ch_pos_new = SitesMenu.find(params[:id])
-    @ch_pos_old = SitesMenu.find(:first, :conditions => ["parent_id = ? and position = ?", @ch_pos_new.parent_id, params[:position]])
+    @ch_pos_old = SitesMenu.find(:first, :conditions => ["parent_id = ? and side = ? and position = ?", @ch_pos_new.parent_id, @ch_pos_new.side, params[:position]])
     if @ch_pos_old
       @ch_pos_new.position,@ch_pos_old.position = @ch_pos_old.position,@ch_pos_new.position
-      @ch_pos_old.save!
-      @ch_pos_new.update_attributes(params[:position])
+      @ch_pos_new.save
+      @ch_pos_old.save
       flash[:notice] = t"successfully_updated"
     else
       flash[:error] = t"error_updating_object"

@@ -15,6 +15,6 @@
   <% end %>
 
   <p> 
-    <%= link_to (t"create_param", :param => (t"menu", :count => 2)),  :controller => 'menus', :site => params[:site_id], :action => 'new' %>
+    <%= link_to (t"create_param", :param => (t"menu", :count => 2)),  new_site_menu_path %>
   </p>
 </fieldset>

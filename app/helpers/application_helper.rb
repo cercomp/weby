@@ -44,16 +44,26 @@ module ApplicationHelper
     menus ||= ""
     menus += indent_space + "<li #{submenu}>" + link_to("#{entry.title}", "#{entry.link}") + "\n"
     if view_ctrl == 1
+      menus += " (#{entry.position}) "
       menus += indent_space + link_to(image_tag('editar.gif', :border => 0), edit_site_menu_path(@site.name, entry.menu_id))
       menus += indent_space + link_to(image_tag('subitem.gif', :border => 0), new_site_menu_path(@site.name, :parent_id => entry.id))
       menus += indent_space + link_to(image_tag('setaup.gif', :border => 0), {:controller => 'menus', :action => 'change_position', :id => entry.id, :position => (entry.position.to_i - 1)}, :method => :get) if entry.position.to_i > 1
       menus += indent_space + link_to(image_tag('setadown.gif', :border => 0), {:controller => 'menus', :action => 'change_position', :id => entry.id, :position => (entry.position.to_i + 1)}, :method => :get) if (entry.position.to_i < sons[entry.parent_id].count.to_i)
       menus += indent_space + link_to(image_tag('apagar.gif', :border => 0), {:controller => 'menus', :action => 'rm_menu', :id => entry.id}, :confirm => t('are_you_sure'), :method => :get) + "\n"
+      # Se existir um position nulo ele será organizado e todos do seu nível
+      if entry.position.nil? or entry.position.to_i < 1
+        sons[entry.parent_id].each_with_index do |item, idx|
+          if item.parent_id == entry.parent_id
+            mm = SitesMenu.find(item.id)
+            mm.update_attribute(:position, idx+1)
+          end
+        end
+      end
     end
     menus += indent_space + "  <menu>\n" unless submenu.nil?
     if sons["#{entry.id}"].class.to_s == "Array"
       sons["#{entry.id}"].each do |child|
-        menus += print_menu_entry(sons, child, view_ctrl, indent+2)
+        menus += print_menu_entry(sons, child, view_ctrl, indent+1)
       end
     end
     menus += indent_space + "  </menu>\n" unless submenu.nil?

@@ -2,8 +2,8 @@
   <legend><%= t"list", :param => (t"page", :count => 2)  %></legend>
 
   <p> <%= link_to (t"news", :count => 2), site_pages_path(:type => 'News'), :class => 'simple_box' %> </p>
-  <p> <%= link_to (t"newsletter", :count => 2), site_pages_path(:type => 'Newsletter'), :class => 'simple_box' %> </p>
   <p> <%= link_to (t"event", :count => 2), site_pages_path(:type => 'Event'), :class => 'simple_box' %> </p>
+  <p> <%= link_to (t"newsletter", :count => 2), site_pages_path(:type => 'Newsletter'), :class => 'simple_box' %> </p>
 
   <% if params[:type] %>
     <div class="contextual">
@@ -21,8 +21,8 @@
         <thead>
           <th><%= "id" %></th>
           <th><%= t"date_param", :param => t("register")%></th>
+          <th><%= t"date_param", :param => t("publication")%></th>
           <th><%= t"title" %></th>
-          <th><%= t"source" %></th>
           <th><%= t"author" %></th>
           <th></th>
         </thead>
@@ -31,8 +31,8 @@
           <tr class="<%= cycle 'odd', 'even' %>">
             <td><%= page.id %></td>
             <td><%= l page.created_at, :format => :short %></td>
+            <td><%= l page.date_begin %></td>
             <td><%= page.title %></td>
-            <td><%= page.source %></td>
             <td><%= page.user.login %></td>
             <td>
               <% if params[:site_id] %>
@@ -55,7 +55,8 @@
           <th><%= "id" %></th>
           <th><%= t"date_param", :param => t("register") %></th>
           <th><%= t"date_param", :param => t("publication")%></th>
-          <th><%= t"subject" %></th>
+          <th><%= t"title" %></th>
+          <th><%= t"author" %></th>
           <th></th>
         </thead>
         <tbody>
@@ -64,7 +65,8 @@
             <td><%= page.id %></td>
             <td><%= l page.created_at, :format => :short %></td>
             <td><%= l page.date_begin %></td>
-            <td><%= page.subject %></td>
+            <td><%= page.title %></td>
+            <td><%= page.user.login %></td>
             <td>
               <% if params[:site_id] %>
                 <%= link_to t("show"), site_page_path(@site, page, :type => params[:type]) %>
@@ -88,6 +90,7 @@
         <th><%= t"date_param", :param => t("register") %></th>
         <th><%= t"date_param", :param => t("publication")%></th>
         <th><%= t"title" %></th>
+        <th><%= t"author" %></th>
         <th></th>
       </thead>
       <tbody>
@@ -97,6 +100,7 @@
           <td><%= l page.created_at, :format => :short %></td>
           <td><%= l page.event_begin, :format => :short %></td>
           <td><%= page.title %></td>
+          <td><%= page.user.login %></td>
           <td>          
             <% if params[:site_id] %>
               <%= link_to t("show"), site_page_path(@site, page, :type => params[:type]) %>
