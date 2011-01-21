@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
         return role_theme
       end
     end
-    if @site.nil?
+    unless !@site.nil?
       return "webyge"
     else
       return "this2html5"
