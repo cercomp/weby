@@ -1,0 +1,45 @@
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary { display: block; }
+
+html { background-color: #f9f9f9; }
+
+body {
+  background: #fff;
+  color: #484848;
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 12px;
+  margin:2em auto;
+  width:960px;
+  border: 1px solid #d7d7d7; }
+
+header {
+  height: 105px;
+  padding-left: 20px;
+  background-color: #A31A2A;
+  background-image: url(../images/logo_2.png);
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#8C0C1B, endColorstr=#BF4458)";
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#8C0C1B, endColorstr=#BF4458);
+  background: -moz-linear-gradient(top, #8C0C1B, #BF4458) repeat-X;
+  background: -webkit-gradient(linear, left top, left bottom, from(#8C0C1B), to(#BF4458)) repeat-X; }
+  header div#lang { 
+    padding: 5px 5px 0 0;
+    text-align: right; }
+
+section#content { padding: 10px; }
+
+footer {
+  padding-bottom: 10px;
+  text-align: center;
+  font-weight: bold; }
+

@@ -1,3 +1,4 @@
+<fieldset>
 <% if current_user %>
   <p>
     <%= link_to (t"list", :param => (t"user", :count => 2)), :controller => 'users', :action => 'index' %>
@@ -61,3 +62,4 @@
     </p>
   <% end %>
 <% end %>
+</fieldset>

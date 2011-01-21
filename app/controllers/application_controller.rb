@@ -15,7 +15,11 @@ class ApplicationController < ActionController::Base
         return role_theme
       end
     end
-    return "this2html5"
+    if @site.nil?
+      return "webyge"
+    else
+      return "this2html5"
+    end
   end
 
   def check_authorization

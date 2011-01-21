@@ -87,7 +87,6 @@ footer {
 menu li div#menu_ctrl a { display: inline; }
 
 aside {width: 180px; background-color: #CCC; padding: 5px;}
-
   aside menu {padding: 0; margin: 0;}
   aside > menu {width: 5em;}
   aside menu li:hover > menu {display: block; position: absolute; top: -1px;}
@@ -109,10 +108,11 @@ aside {width: 180px; background-color: #CCC; padding: 5px;}
     aside.left li.sub:hover {margin-right: -180px; border: 1px solid gray; }
     aside.left li.sub:hover > menu {right: 0px;}
 
+
 section#content {
   float:left;
   margin: 0 auto;
-  width: 570px;
+  width: 590px;
   padding: 5px;
   padding-bottom: 100px;
   overflow: hidden; }
