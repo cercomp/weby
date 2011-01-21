@@ -1,5 +1,5 @@
-<fieldset>
-  <% unless @site %>
+<% unless @site %>
+  <fieldset>
     <legend><%= t"list", :param => (t"site", :count => 2) %></legend>
 
     <% if check_permission(SitesController, "new")  %>
@@ -27,8 +27,6 @@
       </tbody>
     </table>
   <% else %>
-					
-			<%= render :partial => "sites/viewNews" %>		
-    
-  <% end %>
-</fieldset>
+			<%= render :partial => "sites/viewNews" %>		  
+  </fieldset>
+<% end %>

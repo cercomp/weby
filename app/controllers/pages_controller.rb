@@ -8,7 +8,7 @@ class PagesController < ApplicationController
   def index 
     params[:type] ||= 'News'
  
-    @pages = Object.const_get(params[:type]).all
+    @pages = Object.const_get(params[:type]).where(["site_id = ?", @site.id]).all
     respond_with(@pages)
   end
 
