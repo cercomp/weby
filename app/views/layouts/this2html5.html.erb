@@ -135,7 +135,7 @@
           <% end %>
       	</div>
         <div id="navbox">
-          <% unless @site.id.nil? %>
+          <% unless @site.nil? %>
             <%= link_to t("feedback"), new_site_feedback_path(@site) if @site %>
           <% end %>
         </div>

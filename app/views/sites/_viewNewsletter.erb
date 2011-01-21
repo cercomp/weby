@@ -6,7 +6,7 @@
 
 <% @Newsletter = Newsletter.find(:all, :limit => 5, :order => :date_begin) %>
 
-<% if !@site.id.nil?  %>
+<% if !@site.nil?  %>
 
 <h2><%= t("newsletter", :count => 2)%></h2>
 
