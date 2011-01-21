@@ -1,7 +1,8 @@
 class GroupsController < ApplicationController
   layout :choose_layout
-  # GET /groups
-  # GET /groups.xml
+
+  respond_to :html, :xml, :js
+
   def index
     @groups = Group.all
 
@@ -11,8 +12,6 @@ class GroupsController < ApplicationController
     end
   end
 
-  # GET /groups/1
-  # GET /groups/1.xml
   def show
     @group = Group.find(params[:id])
 
@@ -22,8 +21,6 @@ class GroupsController < ApplicationController
     end
   end
 
-  # GET /groups/new
-  # GET /groups/new.xml
   def new
     @group = Group.new
     @users = @group.users_off_groups
@@ -34,14 +31,11 @@ class GroupsController < ApplicationController
     end
   end
 
-  # GET /groups/1/edit
   def edit
     @group = Group.find(params[:id])
     @users = @group.users_off_groups
   end
 
-  # POST /groups
-  # POST /groups.xml
   def create
     @group = Group.new(params[:group])
     @users = params[:users_ids] || []
@@ -54,44 +48,31 @@ class GroupsController < ApplicationController
             @group.users << User.find(u)
           end
         end
-
         format.html {
-          redirect_to(
-                      {:site_id => @group.site.name, :controller => 'groups', :action => 'index'},
-                      :notice => t('successfully_created')
-          )
-        }
+          redirect_to({:site_id => @group.site.name, :controller => 'groups', :action => 'index'},
+                      :notice => t('successfully_created')) }
         format.xml  { render :xml => @group, :status => :created, :location => @group }
       else
-        format.html { render :site_id => @site.id, :controller => 'groups', :action => "new" }
+        format.html { render :site_id => @site.id, :controller => 'groups', :action => 'new' }
         format.xml  { render :xml => @group.errors, :status => :unprocessable_entity }
       end
     end
   end
-
-  # PUT /groups/1
-  # PUT /groups/1.xml
   def update
     @group = Group.find(params[:id])
-
     respond_to do |format|
       if @group.update_attributes(params[:group])
         format.html {
-         redirect_to(
-                      {:site_id => @group.site.name, :controller => 'groups', :action => 'index'},
-                      :notice => t('successfully_updated')
-          )
-	}
+         redirect_to({:site_id => @group.site.name, :controller => 'groups', :action => 'index'},
+                      :notice => t('successfully_updated')) }
         format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
+        format.html { redirect_to :back }
         format.xml  { render :xml => @group.errors, :status => :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /groups/1
-  # DELETE /groups/1.xml
   def destroy
     @group = Group.find(params[:id])
     @group.destroy

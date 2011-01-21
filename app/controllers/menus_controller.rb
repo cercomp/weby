@@ -35,10 +35,8 @@ class MenusController < ApplicationController
     redirect_to :site_id => @menu.sites[0].name
     flash[:notice] =  t("successfully_created")
     else
-    redirect_to :back
-    flash[:error] = @menu.errors.full_messages
+    respond_with(@menu)
     end
-
   end
 
   def update

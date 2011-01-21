@@ -3,12 +3,12 @@ class FeedbacksController < ApplicationController
 
   before_filter :get_groups, :only => [:new, :edit, :create, :update]
 
+  respond_to :html, :xml, :js
+
   def get_groups
     @groups = Group.where(:site_id => @site.id)
   end
 
-  # GET /feedbacks
-  # GET /feedbacks.xml
   def index
     @feedbacks = Feedback.where(:site_id => @site.id)
 
@@ -20,8 +20,6 @@ class FeedbacksController < ApplicationController
     end
   end
 
-  # GET /feedbacks/1
-  # GET /feedbacks/1.xml
   def show
     @feedback = Feedback.find(params[:id])
 
@@ -31,8 +29,6 @@ class FeedbacksController < ApplicationController
     end
   end
 
-  # GET /feedbacks/new
-  # GET /feedbacks/new.xml
   def new
     @feedback = Feedback.new
 
@@ -42,13 +38,10 @@ class FeedbacksController < ApplicationController
     end
   end
 
-  # GET /feedbacks/1/edit
   def edit
     @feedback = Feedback.find(params[:id])
   end
 
-  # POST /feedbacks
-  # POST /feedbacks.xml
   def create
     @feedback = Feedback.new(params[:feedback])
 
@@ -64,8 +57,6 @@ class FeedbacksController < ApplicationController
     end
   end
 
-  # PUT /feedbacks/1
-  # PUT /feedbacks/1.xml
   def update
     @feedback = Feedback.find(params[:id])
 
@@ -81,8 +72,6 @@ class FeedbacksController < ApplicationController
     end
   end
 
-  # DELETE /feedbacks/1
-  # DELETE /feedbacks/1.xml
   def destroy
     @feedback = Feedback.find(params[:id])
     @feedback.destroy

@@ -283,9 +283,9 @@ en:
          content: "Content"
       user:
         login: "User name"
-        password: "Senha"
+        password: "Password"
         password_confirmation: "Confirm password"
-        user_extended_name: "Nome"
+        user_extended_name: "Name"
       site:
         name: "Name"
     errors:

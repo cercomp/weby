@@ -10,7 +10,7 @@
     </div>
   <% end %>
 
-  <%= f.text_field :name, :label => t("name") %>
+  <%= f.text_field :name, :label => t("name"), :required => true, :help => t("field_required") %>
 
   <div class="select-field">
     <label for="users_id_"><%= t"user", :count => 2 %>:</label>
