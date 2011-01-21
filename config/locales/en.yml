@@ -41,8 +41,8 @@ en:
   email: "E-mail"
   end: "End"
   event: 
-    one: "Evento"
-    other: "Eventos"
+    one: "Event"
+    other: "Events"
   event_param: "Event %{param}"
   editor: "Editor"
   edit: "Edit"
@@ -105,8 +105,8 @@ en:
     one: "News"
     other: "News"
   newsletter: 
-    one: "Informativo"
-    other: "Informativos"
+    one: "Newsletter"
+    other: "Newsletters"
   new_param: "New %{param}"
   name: "Name"
   need_login: "You need to be logged in to access this page."
@@ -119,8 +119,8 @@ en:
 
 #---P---#
   page: 
-    one: "Páginas"
-    other: "Páginas"
+    one: "Page"
+    other: "Pages"
   password: "Password"
   password_confirmation: "Password confirmation"
   password_change: "Change password "
