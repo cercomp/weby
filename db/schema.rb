@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110113154155) do
+ActiveRecord::Schema.define(:version => 20110121183128) do
 
   create_table "feedbacks", :force => true do |t|
     t.string   "name"
@@ -133,6 +133,7 @@ ActiveRecord::Schema.define(:version => 20110113154155) do
     t.datetime "updated_at"
     t.string   "url"
     t.text     "description"
+    t.integer  "cover_id"
   end
 
   create_table "sites_menus", :force => true do |t|

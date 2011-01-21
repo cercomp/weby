@@ -15,5 +15,24 @@
   <%= f.text_field :url, :label => "URL", :required => true, :help => t("field_required") %><br />
   <%= f.text_area :description, :label => t("description"), :rows => 8, :help => t("site_comments") %><br />
 
+<br/><%= t"select_param", :param => (t"top_banner", :count => 2) %>
+
+<div class="choose_cover">	
+			<%# repositories = Repository.find(:all, :order => :created_at) %>
+<optgroup label="choose_cover">
+	<% if !@repositories.nil? %>
+		<% @repositories.each do |image| %>	
+			<% if image.archive_content_type.gsub(%r(/.*),'') == "image" %>
+					<%= image_tag image.archive.url, :size => "80x80" %>	
+					<%= radio_button_tag "option", image.id, image.id %>
+								<label for="<% image.description  %>">  <%= image.description  %>   </label>
+					<% end %>
+  			<% end %>
+	<br/>			
+	<%= will_paginate @repositories, :previous_label => "Anteriores", :next_label => "Próximas" %>
+		<% end %>
+	</optgroup>	
+</div>
+			
   <%= f.submit t("submit") %>
 <% end %>
