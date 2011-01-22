@@ -19,7 +19,6 @@
   <section id="content">
     <div id="menu_admin">
       <%= link_to t("portal"), root_path %> |
-      <%= link_to t("home"), site_path(@site) %> |
       <% if check_permission(AdminController, "index") %>
         <%= link_to t("admin"), :controller => 'admin', :action => 'index' %> |
       <% end %>
