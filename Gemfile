@@ -8,7 +8,7 @@ gem 'rails', '3.0.0'
 #gem 'mysql'
 gem 'pg', '0.9.0'
 gem "authlogic", :git => "git://github.com/odorcicd/authlogic.git", :branch => "rails3"
-gem "will_paginate", :git => "http://github.com/mislav/will_paginate.git", :branch => "rails3"
+gem "will_paginate", "~> 3.0.pre2"
 
 # Repositório de arquivos
 gem "paperclip", :git => "http://github.com/thoughtbot/paperclip.git" 

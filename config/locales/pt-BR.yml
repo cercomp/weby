@@ -185,6 +185,7 @@ pt-BR:
     one: "Sítio"
     other: "Sítios"
   site_comments: "Comentário sobre os objetivos do site."
+  search: "Busca"
   
 #---T---#
   text: "Texto" 
@@ -320,3 +321,12 @@ pt-BR:
         odd: "ímpar requerido"
         even: "par requerido"
 
+  will_paginate:
+    next: "Posteriores"
+    previous: "Anteriores"
+    entry: "registos"
+    found:
+      zero: "Não existem {{entry_name}}"
+      one: "<b>{{size}}</b> {{entry_name}}"
+      other: "Todos os <b>{{size}}</b> {{entry_name}}"
+    display: "{{entry_name}} de <b>{{from}}</b> a <b>{{to}}</b> de {{total}} no total"

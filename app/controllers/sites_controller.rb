@@ -17,12 +17,13 @@ class SitesController < ApplicationController
 
   def new
     @site = Site.new
-#    respond_with(@site)
+    respond_with(@site)
   end
 
   def edit
-     @repositories = Repository.paginate :page => params[:page], :order => 'created_at DESC', :per_page => 4 
-   	 @site = Site.find_by_name(params[:id])
+    @repositories = Repository.search(params[:search], params[:page])
+#    @repositories = Repository.paginate :page => params[:page], :order => 'created_at DESC', :per_page => 1 
+   	@site = Site.find_by_name(params[:id])
   end
 
   def create
@@ -33,7 +34,6 @@ class SitesController < ApplicationController
 
   def update
     @site = Site.find_by_name(params[:id])
-		@site.cover_id = params[:option]
 		@site.update_attributes(params[:site])
     respond_with(@site)
   end

@@ -182,6 +182,7 @@ en:
     one: "Site"
     other: "Sites"
   site_comments: "Comments about goals site."
+  search: "Search"
 
 #---T---#
   text: "Text" 
@@ -316,3 +317,14 @@ en:
         less_than_or_equal_to: "less than or equal to %{count} required"
         odd: "odd required"
         even: "even required"
+
+  will_paginate:
+    next: "Next"
+    previous: "Previous"
+    entry: "registers"
+    found:
+      zero: "There aren't {{entry_name}}"
+      one: "<b>{{size}}</b> {{entry_name}}"
+      other: "All the <b>{{size}}</b> {{entry_name}}"
+    display: "{{entry_name}} of <b>{{from}}</b> the <b>{{to}}</b> of {{total}} in total"
+

@@ -10,7 +10,7 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-  <%#= pp @top %>
+  <%= debug(params) %>
   <div id="wrapper">
     
     <header>
@@ -52,9 +52,9 @@
         
         <div id="menu_admin">
           <%= link_to t("portal"), root_path %> |
-          <%= link_to t("home"), site_path(@site) %> |
+          <%= link_to t("home"), @site %> |
           <% if check_permission(AdminController, "index") %>
-            <%= link_to t("admin"), :controller => 'admin', :action => 'index' %> |
+            <%= link_to t("admin"), site_admin_index_path %> |
           <% end %>
           <% if !current_user %>
             <%= link_to t("register"), new_user_path %> |

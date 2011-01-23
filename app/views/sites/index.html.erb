@@ -17,7 +17,7 @@
       <% @sites.each do |site| %>
         <tr class="<%= cycle 'odd', 'even' %>">
           <td>
-            <%= link_to site.name, site_path(site.name) %>
+            <%= link_to site.name, site_path(site) %>
           </td>
           <td>
             <%= site.description %>

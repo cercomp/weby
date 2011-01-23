@@ -1,65 +1,62 @@
 <fieldset>
 <% if current_user %>
   <p>
-    <%= link_to (t"list", :param => (t"user", :count => 2)), :controller => 'users', :action => 'index' %>
-    <% if check_permission(UsersController, "new") %>
-     | <%= link_to t("new"), new_user_path, :class => 'icon icon-add' %>
-    <% end %>
-  </p>
-  <% if @site %>
-  <p>
-    <%= link_to (t"list", :param => (t"menu", :count => 2)), :controller => 'menus', :action => 'index' %>
-    <% if check_permission(MenusController, "new") %>
-     | <%= link_to t("new"), {:controller => 'menus', :action => 'new'}, :class => 'icon icon-add' %>
-    <% end %>
-  </p>
-  <p>
-    <%= link_to (t"list", :param => (t"page", :count => 2)), :controller => 'pages', :action => 'index' %>
-    <% if check_permission(PagesController, "new") %>
-     | <%= link_to t("new"), {:controller => 'pages', :action => 'new'}, :class => 'icon icon-add' %>
-    <% end %>
-  </p>
-  <p>
-    <%= link_to (t"list", :param => (t"permission", :count => 2)), :controller => 'rights', :action => 'index' %>
-    <% if check_permission(RightsController, "new") %>
-     | <%= link_to t("new"), {:controller => 'rights', :action => 'new'}, :class => 'icon icon-add' %>
-    <% end %>
-  </p>
-  <p>
-    <%= link_to t("group", :count => 2), :controller => 'groups', :action => 'index' %>
-    <% if check_permission(GroupsController, "new") %>
-     | <%= link_to t("new"), {:controller => 'groups', :action => 'new'}, :class => 'icon icon-add' %>
-    <% end %>
-  </p>
-  <p>
-    <%= link_to t("feedback", :count => 2), :controller => 'feedbacks', :action => 'index' %>
-    <% if check_permission(FeedbacksController, "new") %>
-     | <%= link_to t("new"), {:controller => 'feedbacks', :action => 'new'}, :class => 'icon icon-add' %>
-    <% end %>
-  </p>
-  <p>
-    <%= link_to (t"list", :param => t("roles_permissions")), :controller => 'roles', :action => 'index' %>
-    <% if check_permission(RolesController, "new") %>
-     | <%= link_to t("new"), {:controller => 'roles', :action => 'new'}, :class => 'icon icon-add' %>
-    <% end %>
-  </p>
-  <% end %>
-  <p>
-    <%= link_to (t"list", :param => (t"site", :count => 2)), {:controller => 'sites', :action => 'index'} %>
+    <%= link_to (t"list", :param => (t"site", :count => 2)), sites_path %>
     <% if check_permission(SitesController, "new") %>
      | <%= link_to t("new"), new_site_path, :class => 'icon icon-add' %>
     <% end %>
   </p>
   <p>
-    <% if @site %>	
-    <%= link_to (t"list", :param => (t"archive", :count => 2)), :controller => 'repositories', :action => 'index' %>
-    <% end %>	
+    <%= link_to (t"list", :param => (t"user", :count => 2)), users_path %>
+    <% if check_permission(UsersController, "new") %>
+     | <%= link_to t("new"), new_user_path, :class => 'icon icon-add' %>
+    <% end %>
   </p>
 
   <% if @site %>
     <p>
-	    <%= link_to (t"setting", :count => 2), edit_site_path(@site.name) %>
+      <%= link_to (t"list", :param => (t"menu", :count => 2)), site_menus_path %>
+      <% if check_permission(MenusController, "new") %>
+       | <%= link_to t("new"), new_site_menu_path, :class => 'icon icon-add' %>
+      <% end %>
+    </p>
+    <p>
+      <%= link_to (t"list", :param => (t"page", :count => 2)), site_pages_path %>
+      <% if check_permission(PagesController, "new") %>
+       | <%= link_to t("new"), new_site_page_path, :class => 'icon icon-add' %>
+      <% end %>
+    </p>
+    <p>
+      <%= link_to (t"list", :param => (t"permission", :count => 2)), :controller => 'rights', :action => 'index' %>
+      <% if check_permission(RightsController, "new") %>
+       | <%= link_to t("new"), {:controller => 'rights', :action => 'new'}, :class => 'icon icon-add' %>
+      <% end %>
+    </p>
+    <p>
+      <%= link_to (t"list", :param => t("roles_permissions")), site_roles_path %>
+      <% if check_permission(RolesController, "new") %>
+       | <%= link_to t("new"), new_site_role_path, :class => 'icon icon-add' %>
+      <% end %>
+    </p>
+    <p>
+      <%= link_to t("group", :count => 2), site_groups_path %>
+      <% if check_permission(GroupsController, "new") %>
+       | <%= link_to t("new"), new_site_group_path, :class => 'icon icon-add' %>
+      <% end %>
+    </p>
+    <p>
+      <%= link_to t("feedback", :count => 2), site_feedbacks_path %>
+      <% if check_permission(FeedbacksController, "new") %>
+       | <%= link_to t("new"), new_site_feedback_path , :class => 'icon icon-add' %>
+      <% end %>
+    </p>
+    <p>
+      <%= link_to (t"list", :param => (t"archive", :count => 2)), site_repositories_path %>
+    </p>
+    <p>
+	    <%= link_to (t"setting", :count => 2), edit_site_admin_path(:id => @site.id) %>
     </p>
   <% end %>
+
 <% end %>
 </fieldset>

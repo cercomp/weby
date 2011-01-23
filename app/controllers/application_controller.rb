@@ -125,23 +125,13 @@ class ApplicationController < ActionController::Base
   # Pegar o id do site a partir do seu nome
   def get_site_obj
     if params[:site_id]
-      if params[:site_id].match(/^[0-9]+$/)
-        @site = Site.find(:first, :conditions => ["id = ?", params[:site_id]])
-      else
-        @site = Site.find(:first, :conditions => ["name = ?", params[:site_id]])
-      end
-
-      top_untreated = Site.find_by_sql("SELECT sites_menus.id,menus.id as menu_id,menus.title,menus.link,sites_menus.parent_id,sites_menus.side,sites_menus.position FROM menus INNER JOIN sites_menus ON sites_menus.menu_id=menus.id WHERE sites_menus.side = 'top' AND sites_menus.site_id = #{@site.id} ORDER BY sites_menus.parent_id,sites_menus.position")
-      left_untreated = Site.find_by_sql("SELECT sites_menus.id,menus.id as menu_id,menus.title,menus.link,sites_menus.parent_id,sites_menus.side,sites_menus.position FROM menus INNER JOIN sites_menus ON sites_menus.menu_id=menus.id WHERE sites_menus.side = 'left' AND sites_menus.site_id = '#{@site.id}' ORDER BY sites_menus.parent_id,sites_menus.position")
-      right_untreated = Site.find_by_sql("SELECT sites_menus.id,menus.id as menu_id,menus.title,menus.link,sites_menus.parent_id,sites_menus.side,sites_menus.position FROM menus INNER JOIN sites_menus ON sites_menus.menu_id=menus.id WHERE sites_menus.side = 'right' AND sites_menus.site_id = #{@site.id} ORDER BY sites_menus.parent_id,sites_menus.position")
-      bottom_untreated = Site.find_by_sql("SELECT sites_menus.id,menus.id as menu_id,menus.title,menus.link,sites_menus.parent_id,sites_menus.side ,sites_menus.position FROM menus INNER JOIN sites_menus ON sites_menus.menu_id=menus.id WHERE sites_menus.side = 'bottom' AND sites_menus.site_id = #{@site.id} ORDER BY sites_menus.parent_id,sites_menus.position")
-      
-      @top = top_untreated.group_by(&:parent_id)
-      @left = left_untreated.group_by(&:parent_id)
-      @right = right_untreated.group_by(&:parent_id)
-      @bottom = bottom_untreated.group_by(&:parent_id)
-    elsif params[:id]
-      @site = Site.find(:first, :conditions => ["name = ?", params[:id]])
+      @site = Site.find(:first, :conditions => ["name = ?", params[:site_id]])
+    end
+    if @site
+      @top = Site.find_by_sql("SELECT sites_menus.id,menus.id as menu_id,menus.title,menus.link,sites_menus.parent_id,sites_menus.side,sites_menus.position FROM menus INNER JOIN sites_menus ON sites_menus.menu_id=menus.id WHERE sites_menus.side = 'top' AND sites_menus.site_id = #{@site.id} ORDER BY sites_menus.parent_id,sites_menus.position").group_by(&:parent_id)
+      @left = Site.find_by_sql("SELECT sites_menus.id,menus.id as menu_id,menus.title,menus.link,sites_menus.parent_id,sites_menus.side,sites_menus.position FROM menus INNER JOIN sites_menus ON sites_menus.menu_id=menus.id WHERE sites_menus.side = 'left' AND sites_menus.site_id = '#{@site.id}' ORDER BY sites_menus.parent_id,sites_menus.position").group_by(&:parent_id)
+      @right = Site.find_by_sql("SELECT sites_menus.id,menus.id as menu_id,menus.title,menus.link,sites_menus.parent_id,sites_menus.side,sites_menus.position FROM menus INNER JOIN sites_menus ON sites_menus.menu_id=menus.id WHERE sites_menus.side = 'right' AND sites_menus.site_id = #{@site.id} ORDER BY sites_menus.parent_id,sites_menus.position").group_by(&:parent_id)
+      @bottom = Site.find_by_sql("SELECT sites_menus.id,menus.id as menu_id,menus.title,menus.link,sites_menus.parent_id,sites_menus.side ,sites_menus.position FROM menus INNER JOIN sites_menus ON sites_menus.menu_id=menus.id WHERE sites_menus.side = 'bottom' AND sites_menus.site_id = #{@site.id} ORDER BY sites_menus.parent_id,sites_menus.position").group_by(&:parent_id)
     end
   end
 end
