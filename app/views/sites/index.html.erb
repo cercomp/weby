@@ -1,32 +1,28 @@
-<% unless @site %>
-  <fieldset>
-    <legend><%= t"list", :param => (t"site", :count => 2) %></legend>
+<fieldset>
+  <legend><%= t"list", :param => (t"site", :count => 2) %></legend>
 
-    <% if check_permission(SitesController, "new")  %>
-      <div class="contextual">
-        <p> <%= link_to (t"new_param", :param => (t"site", :count => 1)), new_site_path, :class => 'icon icon-add' %> </p>
-      </div>
-    <% end %>
+  <% if check_permission(SitesController, "new")  %>
+    <div class="contextual">
+      <p> <%= link_to (t"new_param", :param => (t"site", :count => 1)), new_site_path, :class => 'icon icon-add' %> </p>
+    </div>
+  <% end %>
 
-    <table class='list'>
-      <thead>
-        <th><%= t"name" %></th>
-        <th><%= t"description" %></th>
-      </thead>
-      <tbody>
-      <% @sites.each do |site| %>
-        <tr class="<%= cycle 'odd', 'even' %>">
-          <td>
-            <%= link_to site.name, site_path(site) %>
-          </td>
-          <td>
-            <%= site.description %>
-          </td>
-        </tr>
-      <% end; reset_cycle %>
-      </tbody>
-    </table>
-  <% else %>
-			<%= render :partial => "sites/viewNews" %>		  
-  </fieldset>
-<% end %>
+  <table class='list'>
+    <thead>
+      <th><%= t"name" %></th>
+      <th><%= t"description" %></th>
+    </thead>
+    <tbody>
+    <% @sites.each do |site| %>
+      <tr class="<%= cycle 'odd', 'even' %>">
+        <td>
+          <%= link_to site.name, site_path(site) %>
+        </td>
+        <td>
+          <%= site.description %>
+        </td>
+      </tr>
+    <% end; reset_cycle %>
+    </tbody>
+  </table>
+</fieldset>

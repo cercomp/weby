@@ -1,6 +1,12 @@
 <fieldset>
   <legend><%= t"list", :param => (t"menu", :count => 2)  %></legend>
 
+  <div class="contextual">
+    <p> 
+      <%= link_to (t"create_param", :param => (t"menu", :count => 1)),  new_site_menu_path(:side => params[:side]), :class => 'icon icon-add'%>
+    </p>
+  </div>
+
   <div style="height:30px">
     <div class="simple_box"><%= link_to("Esquerdo", :controller => 'menus', :action => 'index', :side => "left") %></div>
     <div class="simple_box"><%= link_to("Direito", :controller => 'menus', :action => 'index', :side => "right") %></div>
@@ -15,6 +21,5 @@
   <% end %>
 
   <p> 
-    <%= link_to (t"create_param", :param => (t"menu", :count => 2)),  new_site_menu_path %>
   </p>
 </fieldset>

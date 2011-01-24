@@ -21,7 +21,7 @@
 
   <%= f.submit t("submit") %>
 <% end %>
-  <%= form_tag edit_site_path(@site), :method => 'get' do %>
+  <%= form_tag @site, :method => 'get' do %>
     <%= label_tag t"search" %>
     <%= text_field_tag :search, params[:search]  %>
 

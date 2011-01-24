@@ -15,8 +15,6 @@
     
     <header>
       <div id="topo">
-        <% if !@site.nil?%>
-  			<% end %>							
 			</div>
       <nav>
         <div id="menu">
@@ -54,7 +52,7 @@
           <%= link_to t("portal"), root_path %> |
           <%= link_to t("home"), @site %> |
           <% if check_permission(AdminController, "index") %>
-            <%= link_to t("admin"), site_admin_index_path %> |
+            <%= link_to t("admin"), site_admin_index_path(@site) %> |
           <% end %>
           <% if !current_user %>
             <%= link_to t("register"), new_user_path %> |
@@ -93,7 +91,7 @@
       	</div>
         <div id="navbox">
           <% unless @site.nil? %>
-            <%= link_to t("feedback"), new_site_feedback_path(@site) if @site %>
+            <%= link_to t("feedback"), new_site_feedback_path(@site) %>
           <% end %>
         </div>
         <div class="clear"></div>

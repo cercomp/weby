@@ -28,8 +28,8 @@
       <% if @menu_parent %>
         <%= menus_form.hidden_field "side", :value => "#{@menu_parent.side}" %>
       <% else %>
-        <% menus_list = [[t("top"), "top"], [t("left"), "left"], [t("right"), "right"], [t("bottom"), "bottom"]] %>
-        <p> <%= menus_form.select(:side, options_for_select(menus_list), :label => t("position")) %> </p>
+        <% menus_list = [[t("left"), "left"], [t("right"), "right"], [t("top"), "top"], [t("bottom"), "bottom"]] %>
+        <p> <%= menus_form.select(:side, options_for_select(menus_list, selected = "#{params[:side]}"), :label => t("position")) %> </p>
       <% end %>
     <% end %>
 

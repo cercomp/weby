@@ -1,7 +1,7 @@
 # coding: utf-8
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :set_locale, :get_site_obj
+  before_filter :set_locale, :set_global_vars
  
   helper :all
   helper_method :current_user_session, :current_user, :user_not_authorized
@@ -122,11 +122,14 @@ class ApplicationController < ActionController::Base
     session[:return_to] = nil
   end
   
-  # Pegar o id do site a partir do seu nome
-  def get_site_obj
+  # Defini variáveis globais
+  def set_global_vars
     if params[:site_id]
-      @site = Site.find(:first, :conditions => ["name = ?", params[:site_id]])
+      @site = Site.find_by_name(params[:site_id])
+    elsif params[:id]
+      @site = Site.find_by_name(params[:id])
     end
+
     if @site
       @top = Site.find_by_sql("SELECT sites_menus.id,menus.id as menu_id,menus.title,menus.link,sites_menus.parent_id,sites_menus.side,sites_menus.position FROM menus INNER JOIN sites_menus ON sites_menus.menu_id=menus.id WHERE sites_menus.side = 'top' AND sites_menus.site_id = #{@site.id} ORDER BY sites_menus.parent_id,sites_menus.position").group_by(&:parent_id)
       @left = Site.find_by_sql("SELECT sites_menus.id,menus.id as menu_id,menus.title,menus.link,sites_menus.parent_id,sites_menus.side,sites_menus.position FROM menus INNER JOIN sites_menus ON sites_menus.menu_id=menus.id WHERE sites_menus.side = 'left' AND sites_menus.site_id = '#{@site.id}' ORDER BY sites_menus.parent_id,sites_menus.position").group_by(&:parent_id)

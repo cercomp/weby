@@ -8,10 +8,8 @@ class RepositoriesController < ApplicationController
     respond_with(@repositories)
   end
 
-  # GET /repositories
-  # GET /repositories.xml
   def index
-    @repositories = Repository.all
+    @repositories = Repository.where(["site_id = ?", @site.id]).all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -19,8 +17,6 @@ class RepositoriesController < ApplicationController
     end
   end
 
-  # GET /repositories/1
-  # GET /repositories/1.xml
   def show
     @repository = Repository.find(params[:id])
 
@@ -30,8 +26,6 @@ class RepositoriesController < ApplicationController
     end
   end
 
-  # GET /repositories/new
-  # GET /repositories/new.xml
   def new
     @repository = Repository.new
 
@@ -41,13 +35,10 @@ class RepositoriesController < ApplicationController
     end
   end
 
-  # GET /repositories/1/edit
   def edit
     @repository = Repository.find(params[:id])
   end
 
-  # POST /repositories
-  # POST /repositories.xml
   def create
     @repository = Repository.new(params[:repository])
 
@@ -64,8 +55,6 @@ class RepositoriesController < ApplicationController
     end
   end
 
-  # PUT /repositories/1
-  # PUT /repositories/1.xml
   def update
     @repository = Repository.find(params[:id])
 
@@ -82,8 +71,6 @@ class RepositoriesController < ApplicationController
     end
   end
 
-  # DELETE /repositories/1
-  # DELETE /repositories/1.xml
   def destroy
     @repository = Repository.find(params[:id])
     @repository.destroy

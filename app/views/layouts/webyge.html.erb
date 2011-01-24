@@ -20,7 +20,7 @@
     <div id="menu_admin">
       <%= link_to t("portal"), root_path %> |
       <% if check_permission(AdminController, "index") %>
-        <%= link_to t("admin"), :controller => 'admin', :action => 'index' %> |
+        <%= link_to t("admin"), admin_index_path %> |
       <% end %>
       <% if !current_user %>
         <%= link_to t("register"), new_user_path %> |
