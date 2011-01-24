@@ -1,31 +1,34 @@
 <fieldset>
   <legend><%= t 'listing', :param => t('feedback', :count => 2) %></legend>
 
-  <table>
-    <tr>
+  <div class="contextual">
+    <p> 
+      <%= link_to t('new_param', :param => t('feedback', :count => 1)), new_site_feedback_path(@site), :class => 'icon icon-add' %>
+    </p>
+  </div>
+
+  <table class='list'>
+    <thead>
       <th><%= t 'name' %></th>
       <th><%= t 'email' %></th>
       <th><%= t 'subject' %></th>
       <th><%= t 'message' %></th>
       <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-
-  <% @feedbacks.each do |feedback| %>
-    <tr>
-      <td><%= feedback.name %></td>
-      <td><%= feedback.email %></td>
-      <td><%= feedback.subject %></td>
-      <td><%= feedback.message %></td>
-      <td><%= link_to t('show'), site_feedback_path(@site, feedback) %></td>
-      <td><%= link_to t('edit'), edit_site_feedback_path(@site, feedback) %></td>
-      <td><%= link_to t('destroy'), site_feedback_path(@site, feedback), :confirm => t('are_you_sure'), :method => :delete %></td>
-    </tr>
-  <% end %>
+    </thead>
+    <tbody>
+    <% @feedbacks.each do |feedback| %>
+      <tr class="<%= cycle 'odd', 'even' %>">
+        <td><%= feedback.name %></td>
+        <td><%= feedback.email %></td>
+        <td><%= feedback.subject %></td>
+        <td><%= feedback.message %></td>
+        <td>
+          <%= link_to t('show'), site_feedback_path(@site, feedback) %>
+          <%= link_to t('edit'), edit_site_feedback_path(@site, feedback) %>
+          <%= link_to t('destroy'), site_feedback_path(@site, feedback), :confirm => t('are_you_sure'), :method => :delete %>
+        </td>
+      </tr>
+    <% end; reset_cycle %>
+    </tbody>
   </table>
-  
-  <br />
-
-  <%= link_to t('new_param', :param => t('feedback', :count => 1)), new_site_feedback_path(@site) %>
 </fieldset>

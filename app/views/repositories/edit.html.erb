@@ -3,6 +3,6 @@
   
   <%= render 'form' %>
   
-  <%= link_to t("show"), site_repository_path(@site.name, @repository.id) %> |
-  <%= link_to t("back"), site_repositories_path(@site.name) %>
+  <%= link_to t("show"), site_repository_path(@site, @repository.id) %> |
+  <%= link_to t("back"), site_repositories_path(@site) %>
 </fieldset> 

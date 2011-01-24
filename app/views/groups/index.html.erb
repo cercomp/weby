@@ -1,21 +1,27 @@
 <fieldset>
   <legend><%= t 'listing', :param => t('group', :count => 2) %></legend>
 
-  <table>
-    <tr>
-      <th><%= t 'name' %></th>
-      <th><%= t 'edit' %></th>
-      <th><%= t 'destroy' %></th>
-    </tr>
+  <div class="contextual">
+    <p> 
+      <%= link_to (t"new_param", :param => (t"group", :count => 1)), new_site_group_path, :class => 'icon icon-add' %>
+    </p>
+  </div>
 
-  <% @groups.each do |group| %>
-    <tr>
-      <td><%= link_to group.name, site_group_path(@site, group) %></td>
-      <td><%= link_to t('edit'), edit_site_group_path(@site, group) %></td>
-      <td><%= link_to t('destroy'), site_group_path(@site, group), :confirm => t('are_you_sure'), :method => :delete %></td>
-    </tr>
-  <% end %>
+  <table class='list'>
+    <thead>
+      <th><%= t'name' %></th>
+      <th></th>
+    </thead>
+    <tbody>
+    <% @groups.each do |group| %>
+      <tr class="<%= cycle 'odd', 'even' %>">
+        <td><%= link_to group.name, site_group_path(@site, group) %></td>
+        <td>
+          <%= link_to t('edit'), edit_site_group_path(@site, group) %>
+          <%= link_to t('destroy'), site_group_path(@site, group), :confirm => t('are_you_sure'), :method => :delete %>
+        </td>
+      </tr>
+    <% end; reset_cycle %>
+    </tbody>
   </table>
-  <br />
-  <%= link_to "#{t('new')} #{t('group', :count => 1)}", new_site_group_path %>
 </fieldset>
