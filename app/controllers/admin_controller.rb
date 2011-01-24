@@ -13,6 +13,7 @@ class AdminController < ApplicationController
   end
 
   def edit
+    @repositories = Repository.search(params[:search], params[:page])
   end
 
   def update

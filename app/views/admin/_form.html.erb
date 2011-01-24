@@ -1,0 +1,38 @@
+<%= form_tag edit_site_admin_path(@site, @site), :method => 'get' do %>
+  <%= label_tag t("search") %>
+  <%= text_field_tag :search %>
+  <%= submit_tag t("submit") %>
+<% end %>
+
+<h3> <%= t"select_param", :param => (t"top_banner", :count => 2) %> </h3>
+<%= form_for @site, :builder => SemanticFormBuilder do |f| %>
+  <% if !@repositories.nil? %>
+    <% @repositories.each do |image| %>
+      <% if image.archive_content_type.gsub(%r(/.*),'') == "image" %>
+        <%= will_paginate @repositories, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next") %>
+        <p>
+          <%= image_tag image.archive.url, :size => "80x80", :alt => "#{image.description}" %>
+          <%= f.radio_button :cover_id, image.id.to_i, :label => "#{image.description}" %>
+        </p>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <% if @site.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@site.errors.count, "") %> <%= t"prohibited_being_saved", :count => @site.errors.count %>:</h2>
+      <ul>
+      <% @site.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.text_field :name, :label => t("name"), :required => true, :help => t("field_required") %><br />
+  <%= f.text_field :url, :label => "URL", :required => true, :help => t("field_required") %><br />
+  <%= f.text_area :description, :label => t("description"), :rows => 8, :help => t("site_comments") %><br />
+
+  <%= f.submit t("submit") %>
+<% end %>
+
