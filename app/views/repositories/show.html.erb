@@ -6,6 +6,6 @@
       <%= @repository.description %>	
     </p>
 
-    <%= link_to t("edit"),{:controller => 'repositories', :action => 'edit', :id=> @repository.id} %> |
-    <%= link_to t("back"),{:controller => 'repositories', :action => 'index'}%>
+    <%= link_to t("edit"), edit_site_repository_path(@site, @repository) %> |
+    <%= link_to t("back"), site_repositories_path(@site.name) %>
 </fieldset>

@@ -1,8 +1,8 @@
 <fieldset> 
-  <h1><%= t"editing", :param => t("archive", :count => 1) %></h1>
+  <legend><%= t"editing", :param => t("archive", :count => 1) %></legend>
   
   <%= render 'form' %>
   
-  <%= link_to t("show"), @repository %> |
-  <%= link_to t("back"), {:controller => 'repositories', :action => 'index'} %>
+  <%= link_to t("show"), site_repository_path(@site.name, @repository.id) %> |
+  <%= link_to t("back"), site_repositories_path(@site.name) %>
 </fieldset> 

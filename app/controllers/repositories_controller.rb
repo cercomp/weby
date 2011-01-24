@@ -1,7 +1,7 @@
 class RepositoriesController < ApplicationController
   layout :choose_layout, :except => [:show]
  
-  respond_to :js
+  respond_to :html, :xml, :js
 
   def manage
     @repositories = @site.repositories.paginate :page => params[:page], :order => 'created_at DESC', :per_page => 10
@@ -49,7 +49,7 @@ class RepositoriesController < ApplicationController
         format.xml  { render :xml => @repository, :status => :created, :location => @repository }
       else
         format.html { redirect_to :back }
-        flash[:error] = @repository.errors.full_messages # usar @repository.errors.any? na view para mostrar erros
+        flash[:error] = @repository.errors.full_messages 
         format.xml  { render :xml => @repository.errors, :status => :unprocessable_entity }
       end
     end

@@ -1,5 +1,5 @@
 <fieldset>
-  <h1><%= t"listing", :param => (t"archive", :count => 2) %></h1>
+  <legend><%= t"listing", :param => (t"archive", :count => 2) %></legend>
 
   <table>
   <% @repositories.each do |repository| %>
@@ -11,13 +11,13 @@
       <% end %>
     	<td>ID: <%= repository.id %></td><br/>	
       <td><%= t("description") %>: <%= repository.description %> </td><br/>
-      <td><%= link_to t("show"), {:controller => 'repositories', :action => 'show', :id => repository.id}%></td>
-      <td><%= link_to t("edit"), {:controller => 'repositories', :action => 'edit', :id=> repository.id} %></td>
-      <td><%= link_to t("destroy"), repository, :confirm => t("are_you_sure"), :method => :delete %></td>
+      <td><%= link_to t("show"), site_repository_path(:id => repository.id) %></td>
+      <td><%= link_to t("edit"), edit_site_repository_path(:id => repository.id) %></td>
+      <td><%= link_to t("destroy"), site_repository_path(:id => repository.id), :confirm => t("are_you_sure"), :method => :delete%></td>
     </tr>
   <% end %>
   </table>
 
   <br />
-  <%= link_to (t"new_param", :param => (t"archive", :count => 1)), {:controller => 'repositories', :action => 'new'} %>
+  <%= link_to (t"new_param", :param => (t"archive", :count => 1)), new_site_repository_path %>
 </fieldset>

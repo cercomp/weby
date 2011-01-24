@@ -58,6 +58,7 @@ class GroupsController < ApplicationController
       end
     end
   end
+
   def update
     @group = Group.find(params[:id])
     respond_to do |format|

@@ -1,7 +1,7 @@
 <fieldset>
-  <h1><%= t('new_param', :param => t('group', :count => 1)) %></h1>
+  <legend><%= t('new_param', :param => t('group', :count => 1)) %></legend>
 
   <%= render 'form' %>
 
-  <%= link_to t('back'), :back %>
+  <%= link_to t('back'), site_groups_path(@site.name) %>
 </fieldset>
