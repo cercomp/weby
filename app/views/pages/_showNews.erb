@@ -8,11 +8,12 @@
       </a>
     <% end %>
 
-    <p> <i> <%#= @page.user.login %> <%= l @page.created_at, :format => :short  %> </i> </p>
+    <p> <i> <%= @page.user.login %>, <%= l @page.created_at, :format => :short  %> </i> </p>
     <h2> <%= raw @page.summary %> </h2>
     <h3> <%= raw @page.text %> </h3>
     <p> <h3> <%= @page.url %> </h3> </p>
 
-    <%= link_to t("edit"), {:controller => 'pages', :action => 'edit', :id => @page.id, :type => 'News'} %> | <%=   link_to t("back"), :back %>
+    <%= link_to t("edit"), {:controller => 'pages', :action => 'edit', :id => @page.id, :type => 'News'} %> | 
+    <%= link_to t("back"), :back %>
   </div>
 </fieldset>

@@ -1,23 +1,38 @@
 <fieldset>
   <legend><%= t"listing", :param => (t"archive", :count => 2) %></legend>
 
-  <table>
-  <% @repositories.each do |repository| %>
-    <tr>
-      <% unless repository.archive %>
-        <td><%= image_tag "/images/arquivo.gif" %></td>
-      <% else %>
-        <td><%= image_tag repository.archive.url %></td>
-      <% end %>
-    	<td>ID: <%= repository.id %></td><br/>	
-      <td><%= t("description") %>: <%= repository.description %> </td><br/>
-      <td><%= link_to t("show"), site_repository_path(:id => repository.id) %></td>
-      <td><%= link_to t("edit"), edit_site_repository_path(:id => repository.id) %></td>
-      <td><%= link_to t("destroy"), site_repository_path(:id => repository.id), :confirm => t("are_you_sure"), :method => :delete%></td>
-    </tr>
-  <% end %>
-  </table>
+  <div class="contextual">
+    <p> 
+      <%= link_to (t"new_param", :param => (t"archive", :count => 1)), new_site_repository_path, :class => 'icon icon-add' %>
+    </p>
+  </div>
 
-  <br />
-  <%= link_to (t"new_param", :param => (t"archive", :count => 1)), new_site_repository_path %>
+  <table class='list'>
+    <thead>
+      <th><%= t("archive.other") %></th>
+      <th> ID </th>
+      <th><%= t("description") %></th>
+      <th></th>
+    </thead>
+    <tbody>    
+    <% @repositories.each do |repository| %>
+      <tr class="<%= cycle 'odd', 'even' %>">
+        <% unless repository.archive %>
+          <td><%= image_tag "/images/arquivo.gif" %></td>
+        <% else %>
+          <td><%= image_tag repository.archive.url %></td>
+        <% end %>
+      	<td> <%= repository.id %></td><br/>	
+        <td> <%= repository.description %> </td><br/>
+        <td>
+          <%= link_to t("show"), site_repository_path(:id => repository.id) %>
+          <%= link_to t("edit"), edit_site_repository_path(:id => repository.id) %>
+          <%= link_to t("destroy"), site_repository_path(:id => repository.id), :confirm => t("are_you_sure"), :method => :delete %>
+        </td>
+      </tr>
+    <% end; reset_cycle %>
+    </tbody>
+  </table>
 </fieldset>
+
+

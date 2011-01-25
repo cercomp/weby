@@ -10,7 +10,7 @@
 
     <i> <%= l @page.created_at, :format => :short %> </i>
 
-    <p> <h2> <%= @page.summary %> </p>
+    <p> <h2> <%= raw @page.summary %> </p>
     <p> <%= @page.local %> </h2> </p>
     <p> <h3> <%= raw @page.text %> </h3> </p>
     <p> <h3> <b> <%= t("source") %> <%= @page.source %> </h3> </b> </p>
