@@ -1,12 +1,5 @@
 <fieldset>
   <legend><%= t 'listing', :param => t('feedback', :count => 2) %></legend>
-
-  <div class="contextual">
-    <p> 
-      <%= link_to t('new_param', :param => t('feedback', :count => 1)), new_site_feedback_path(@site), :class => 'icon icon-add' %>
-    </p>
-  </div>
-
   <table class='list'>
     <thead>
       <th><%= t 'name' %></th>
