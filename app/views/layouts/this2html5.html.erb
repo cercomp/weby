@@ -91,7 +91,7 @@
       	</div>
         <div id="navbox">
           <% unless @site.nil? %>
-            <%= link_to t("feedback"), new_site_feedback_path(@site) %>
+            <%= link_to t("feedback"), new_site_feedback_path(@site), :class => 'icon icon-add' %>
           <% end %>
         </div>
         <div class="clear"></div>

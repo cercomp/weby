@@ -1,29 +1,22 @@
 <fieldset>
+	<legend><%= t("subject") %>: <%= @feedback.subject %></legend>
+	
   <p>
-    <b>Name:</b>
+    <b><%= t("name") %>:</b>
     <%= @feedback.name %>
   </p>
 
   <p>
-    <b>Email:</b>
+    <b><%= t("email") %>:</b>
     <%= @feedback.email %>
   </p>
 
   <p>
-    <b>Subject:</b>
-    <%= @feedback.subject %>
+    <b><%= t("message") %>:</b>
+    <i><%= @feedback.message %><i/>
   </p>
 
-  <p>
-    <b>Message:</b>
-    <%= @feedback.message %>
-  </p>
-
-  <p>
-    <b>Site:</b>
-    <%= @feedback.site_id %>
-  </p>
-
-  <%= link_to 'Edit', edit_site_feedback_path(@site, @feedback) %> |
-  <%= link_to 'Back', site_feedbacks_path %>
+  <%= link_to t('edit'), edit_site_feedback_path(@site, @feedback) %> |
+  <%= link_to t('back'), site_feedbacks_path(@site) %>  
+  
 </fieldset>

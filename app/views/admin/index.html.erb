@@ -46,7 +46,6 @@
     <p>
       <%= link_to t("feedback", :count => 2), site_feedbacks_path %>
       <% if check_permission(FeedbacksController, "new") %>
-       | <%= link_to t("new"), new_site_feedback_path , :class => 'icon icon-add' %>
       <% end %>
     </p>
     <p>
