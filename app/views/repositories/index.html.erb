@@ -17,8 +17,12 @@
     <tbody>    
     <% @repositories.each do |repository| %>
       <tr class="<%= cycle 'odd', 'even' %>">
-        <% unless repository.archive_content_type.gsub(%r(/.*),'') == "image" %>
-          <td><%= image_tag "/images/arquivo.gif" %></td>
+        <% unless repository.archive_content_type.include?("image") %>
+          <%if repository.archive_content_type.include?("pdf") %>
+					 	<td><%= image_tag "/images/pdf_file.png", :size => "80x80" %></td>
+					<% else %>	
+				  	<td><%= image_tag "/images/arquivo.gif", :size => "80x80" %></td>
+					<% end %>	
         <% else %>
           <td><%= image_tag repository.archive.url, :size=>"80x80" %></td>
         <% end %>
