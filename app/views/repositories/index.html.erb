@@ -17,10 +17,10 @@
     <tbody>    
     <% @repositories.each do |repository| %>
       <tr class="<%= cycle 'odd', 'even' %>">
-        <% unless repository.archive %>
+        <% unless repository.archive_content_type.gsub(%r(/.*),'') == "image" %>
           <td><%= image_tag "/images/arquivo.gif" %></td>
         <% else %>
-          <td><%= image_tag repository.archive.url %></td>
+          <td><%= image_tag repository.archive.url, :size=>"80x80" %></td>
         <% end %>
       	<td> <%= repository.id %></td><br/>	
         <td> <%= repository.description %> </td><br/>
@@ -32,6 +32,7 @@
       </tr>
     <% end; reset_cycle %>
     </tbody>
+		<%= will_paginate @repositories, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next") %>
   </table>
 </fieldset>
 

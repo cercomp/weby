@@ -9,7 +9,7 @@ class RepositoriesController < ApplicationController
   end
 
   def index
-    @repositories = Repository.where(["site_id = ?", @site.id]).all
+    @repositories = Repository.where(["site_id = ?", @site.id]).all.paginate :page => params[:page], :order => 'created_at DESC', :per_page => 8
 
     respond_to do |format|
       format.html # index.html.erb
