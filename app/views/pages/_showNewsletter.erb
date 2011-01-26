@@ -14,6 +14,7 @@
 
     <p> <h3> <%=h @page.url %> </h3> </p>
 
-    <%= link_to t("edit"), {:controller => 'pages', :action => 'edit', :id => @page.id, :type => 'Newsletter'}%> | <%= link_to t("back"), :back %>
+    <%= link_to t("edit"), {:controller => 'pages', :action => 'edit', :id => @page.id, :type => 'Newsletter'}%> | 
+    <%= link_to t("back"), :back %>
   </div>
 </fieldset>

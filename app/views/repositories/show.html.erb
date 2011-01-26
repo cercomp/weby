@@ -1,6 +1,14 @@
 <fieldset>
     <p>
-      <%= image_tag @repository.archive.url %>
+        <% unless @repository.archive_content_type.include?("image") %>
+          <%if @repository.archive_content_type.include?("pdf") %>
+					 	<%= image_tag "/images/pdf_file.png", :size => "80x80" %>
+					<% else %>	
+				  	<%= image_tag "/images/arquivo.gif", :size => "80x80" %>
+					<% end %>	
+        <% else %>
+          <%= image_tag @repository.archive.url %>
+        <% end %>
     </p>	
     <p>
       <%= @repository.description %>	

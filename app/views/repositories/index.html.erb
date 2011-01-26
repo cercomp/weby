@@ -6,7 +6,8 @@
       <%= link_to (t"new_param", :param => (t"archive", :count => 1)), new_site_repository_path, :class => 'icon icon-add' %>
     </p>
   </div>
-
+  <br />
+  <%= will_paginate @repositories, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next") %>
   <table class='list'>
     <thead>
       <th><%= t("archive.other") %></th>
@@ -26,8 +27,8 @@
         <% else %>
           <td><%= image_tag repository.archive.url, :size=>"80x80" %></td>
         <% end %>
-      	<td> <%= repository.id %></td><br/>	
-        <td> <%= repository.description %> </td><br/>
+      	<td> <%= repository.id %></td>
+        <td> <%= repository.description %></td>
         <td>
           <%= link_to t("show"), site_repository_path(:id => repository.id) %>
           <%= link_to t("edit"), edit_site_repository_path(:id => repository.id) %>
@@ -36,8 +37,5 @@
       </tr>
     <% end; reset_cycle %>
     </tbody>
-		<%= will_paginate @repositories, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next") %>
   </table>
 </fieldset>
-
-
