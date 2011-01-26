@@ -2,10 +2,10 @@
   <div id="pages">
     <p> <h1> <%= t("newsletter", :count => 1) %> </h1> </p>
 
-    <% unless @page.image_file_name.nil? %>
+    <% unless @page.repository.archive_file_name.nil? %>
       <p> 
-        <a href="<%= @page.image.url %>" alt="<%= @page.text_image %>">
-        <img src="<%= @page.image.url %>" align="right" width="200" height="200"> </img>
+        <a href="<%= @page.repository.archive.url %>" alt="<%= @page.repository.description %>">
+        <%= image_tag("#{@page.repository.archive.url}", :size => "200x200", :align => "right") %>
         </a> 
       </p>
     <% end %>

@@ -15,8 +15,8 @@
     <% end %>
 
     <%= f.hidden_field :created_at, :order => [:year, :month, :day], :use_month_numbers => true, :label => (t"date_param", :param => t("register")), :start_year => Time.now.year %>
-    <%= f.date_select :date_begin, :order => [:year, :month, :day], :use_month_numbers => true, :label =>  (t"date_param", :param => t("begin")), :start_year => Time.now.year %>
-    <%= f.date_select :date_end, :order => [:year, :month, :day], :use_month_numbers => true, :label => (t"date_param", :param => t("end")), :start_year => Time.now.year %>
+    <%= f.datetime_select :date_begin_at, :order => [:year, :month, :day], :use_month_numbers => true, :label =>  (t"date_param", :param => t("begin")), :start_year => Time.now.year %>
+    <%= f.datetime_select :date_end_at, :order => [:year, :month, :day], :use_month_numbers => true, :label => (t"date_param", :param => t("end")), :start_year => Time.now.year %>
     <%= f.hidden_field :position %>
     <%= f.hidden_field :status %>
     <%= f.hidden_field :author_id, :value => "#{@current_user.id}"%>
@@ -32,8 +32,18 @@
     <% end %>
 
     <%= render :partial => "form" + params[:type], :locals => {:f => f} %>
-    <%= f.file_field :image, :label => t("picture") %>
-    <%= f.text_field :text_image, :label => t("picture_text") %>
+  
+    <% if !@repositories.nil? %>
+      <% @repositories.each do |image| %>
+        <p>
+        <% if image.archive_content_type.gsub(%r(/.*),'') == "image" %>
+          <%= image_tag image.archive.url, :size => "80x80" %>
+          <%= f.radio_button :repository_id, image.id.to_i, :label => "#{image.description}" %>
+        <% end %>
+        </p>
+      <% end %>
+      <%= will_paginate @repositories, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next") %>
+    <% end %>
 
     <%= f.submit t("submit") %> <%= link_to t("back"), :back %>
   <% end %>

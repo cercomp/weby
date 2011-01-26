@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110121183128) do
+ActiveRecord::Schema.define(:version => 20110126133436) do
 
   create_table "feedbacks", :force => true do |t|
     t.string   "name"
@@ -51,9 +51,8 @@ ActiveRecord::Schema.define(:version => 20110121183128) do
   end
 
   create_table "pages", :force => true do |t|
-    t.date     "date_begin"
-    t.date     "date_end"
-    t.string   "image"
+    t.datetime "date_begin_at"
+    t.datetime "date_end_at"
     t.string   "position"
     t.string   "status"
     t.integer  "author_id"
@@ -62,7 +61,6 @@ ActiveRecord::Schema.define(:version => 20110121183128) do
     t.integer  "site_id"
     t.string   "source"
     t.string   "title"
-    t.string   "text_image"
     t.integer  "front"
     t.string   "kind"
     t.string   "local"
@@ -70,16 +68,12 @@ ActiveRecord::Schema.define(:version => 20110121183128) do
     t.datetime "event_end"
     t.string   "event_email"
     t.string   "subject"
-    t.string   "text_clob"
     t.string   "align"
-    t.string   "type",               :null => false
+    t.string   "type",          :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
     t.text     "summary"
+    t.integer  "repository_id"
   end
 
   create_table "repositories", :force => true do |t|

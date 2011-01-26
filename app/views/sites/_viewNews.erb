@@ -1,15 +1,15 @@
-<% news = News.where(["front=1 and site_id = ? and date_begin <= ? and date_end > ?", @site.id, Date.today, Date.today]).limit(7).order("date_begin").all %>
+<% news = News.where(["front=1 and site_id = ? and date_begin_at <= ? and date_end_at > ?", @site.id, Time.now, Time.now]).limit(7).order("date_begin_at").all %>
 <% if !@site.nil? and !news.empty? %>
   <div id="News" style="float:left;">
   <h2><%= t("news", :count => 2) %> </h2>
   <% news.each do |page| %>
     <p>
-      <b><%= page[:title] %></b>
-      <% unless page.image_file_name.nil? %>
-        <img src="<%= page.image.url(:little) %>" align="right"  > </img>
+      <b><%= page.title %></b>
+      <% unless page.repository.nil? %>
+        <%= image_tag("#{page.repository.archive.url(:little)}", :size => "180x180") %>
       <% end %>
     </p>
-    <%= raw page[:summary] %>
+    <%= raw page.summary %>
 		<br/>
   <% end %>
   </div>							

@@ -31,7 +31,7 @@
           <tr class="<%= cycle 'odd', 'even' %>">
             <td><%= page.id %></td>
             <td><%= l page.created_at, :format => :short %></td>
-            <td><%= l page.date_begin %></td>
+            <td><%= l page.date_begin_at, :format => :short %></td>
             <td><%= page.title %></td>
             <td><%= page.user.login %></td>
             <td>
@@ -64,7 +64,7 @@
           <tr class="<%= cycle 'odd', 'even' %>">
             <td><%= page.id %></td>
             <td><%= l page.created_at, :format => :short %></td>
-            <td><%= l page.date_begin %></td>
+            <td><%= l page.date_begin_at, :format => :short %></td>
             <td><%= page.title %></td>
             <td><%= page.user.login %></td>
             <td>
@@ -98,7 +98,7 @@
         <tr class="<%= cycle 'odd', 'even' %>">
           <td><%= page.id %></td>
           <td><%= l page.created_at, :format => :short %></td>
-          <td><%= l page.event_begin, :format => :short %></td>
+          <td><%= l page.date_begin_at, :format => :short %></td>
           <td><%= page.title %></td>
           <td><%= page.user.login %></td>
           <td>          
