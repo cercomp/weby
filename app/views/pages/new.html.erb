@@ -33,6 +33,7 @@
 
     <%= render :partial => "form" + params[:type], :locals => {:f => f} %>
     <%= f.file_field :image, :label => t("picture") %>
+    <%= f.text_field :text_image, :label => t("picture_text") %>
 
     <%= f.submit t("submit") %> <%= link_to t("back"), :back %>
   <% end %>
