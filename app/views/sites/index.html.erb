@@ -9,18 +9,16 @@
 
   <table class='list'>
     <thead>
+      <th><%= "id" %></th>
       <th><%= t"name" %></th>
       <th><%= t"description" %></th>
     </thead>
     <tbody>
     <% @sites.each do |site| %>
       <tr class="<%= cycle 'odd', 'even' %>">
-        <td>
-          <%= link_to site.name, site_path(site) %>
-        </td>
-        <td>
-          <%= site.description %>
-        </td>
+        <td> <%= site.id %> </td>
+        <td> <%= link_to site.name, site_path(site) %> </td>
+        <td> <%= site.description %> </td>
       </tr>
     <% end; reset_cycle %>
     </tbody>
