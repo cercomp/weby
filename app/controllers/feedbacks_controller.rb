@@ -48,7 +48,7 @@ class FeedbacksController < ApplicationController
     respond_to do |format|
       if @feedback.save
         FeedbackMailer.send_feedback(@feedback).deliver
-        format.html { redirect_to(site_feedback_path(@site.id, @feedback), :notice => t("successfully_created")) }
+        format.html { redirect_to(site_feedback_path(@site.name, @feedback), :notice => t("successfully_created")) }
         format.xml  { render :xml => @feedback, :status => :created, :location => @feedback }
       else
         format.html { render :action => "new" }
