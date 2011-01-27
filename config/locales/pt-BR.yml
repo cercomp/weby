@@ -33,6 +33,7 @@ pt-BR:
   created_at: "Criado em"
   create_param: "Criar %{param}"
   current_login: "Entrada atual %{param}" 
+  cancel: "Cancelar"
 
 #---D---#
   date_param: "Data de %{param}" 

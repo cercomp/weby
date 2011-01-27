@@ -13,25 +13,19 @@
       </div>
     <% end %> 
 
+    <%= f.radio_button_group :repository_id, @repositories.map{|u| { :value => u.id, :image => u.archive.url }}, (will_paginate @repositories, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next")), :label => t("picture"), :help => t("picture") %>
+
     <%= f.datetime_select :date_begin_at, :order => [:year, :month, :day], :use_month_numbers => true, :label =>  (t"date_param", :param => t("begin")), :start_year => Time.now.year %>
     <%= f.datetime_select :date_end_at, :order => [:year, :month, :day], :use_month_numbers => true, :label => (t"date_param", :param => t("end")), :start_year => Time.now.year %>
 
     <%= f.hidden_field :position %>
     <%= f.hidden_field :status %>
     <%= f.hidden_field :author_id %>
-    <%= f.text_area :text, :label => t("text"), :class => "mceAdvance" %>
+    <%= f.text_area :text, :label => t("text"), :class => "mceAdvance", :size => "48x10" %>
 
     <%= render :partial => "form" + params[:type], :locals => {:f => f} %>
 
-    <% if !@repositories.nil? %>
-      <% @repositories.each do |image| %>
-        <%= image_tag image.archive.url, :size => "80x80" %>
-        <%= f.radio_button :repository_id, image.id, :label => "#{image.description}" %>
-      <% end %>
-      <%= will_paginate @repositories, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next") %>
-    <% end %>
-
-    <%= f.submit t("submit") %> <%= link_to t("back"), :back %>
+    <%= f.submit(t"save") %>
   <% end %>
 
 </fieldset>

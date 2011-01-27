@@ -30,6 +30,7 @@ en:
   create: "Create"
   create_param: "Create %{param}"
   current_login: "Current login %{param}" 
+  cancel: "Cancel"
 
 #---D---#
   date_param: "Date of %{param}" 

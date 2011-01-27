@@ -12,21 +12,28 @@ module SemanticFormHelper
     to_return.html_safe
   end
 
-  def semantic_group(type, field_name, label, fields, options = {})
+  def semantic_group(type, field_name, label, fields, will, options = {})
     help = %Q{<span class="help">#{options[:help]}</span>} if options[:help]
     to_return = ""
     to_return << %Q{<div class="#{type}-fields #{options[:class]}">}
     to_return << %Q{<label for="#{field_name}">#{label}#{help}</label>}
-    to_return << %Q{<div class="input">}    
+    to_return << %Q{<div class="input">}
     to_return << fields.join
+    to_return << %Q{#{will}}
     to_return << %Q{</div></div>}
     to_return.html_safe
   end
 
   def boolean_field_wrapper(input, name, value, text, help = nil)
     field = ""
-    field << %Q{<label>#{input} #{text}</label>}
+    field << %Q{#{input} #{text}}
     field << %Q{<div class="help">#{help}</div>} if help
+    field.html_safe
+  end
+
+  def insert_img(input, img)
+    field = ""
+    field << %Q{<img src="#{img}" width="70", height="70"> </img>} if img
     field.html_safe
   end
 

@@ -74,25 +74,25 @@ class SemanticFormBuilder < ActionView::Helpers::FormBuilder
     wrapping("submit", nil, "", submit_button+cancel_button, options)
   end
   
-  def radio_button_group(method, values, options = {})
+  def radio_button_group(method, values, will, options = {})
     selections = []
     values.each do |value|
       if value.is_a?(Hash)
         tag_value = value[:value]
         label = value[:label]
         help = value.delete(:help)
+        image = value[:image]
       else
         tag_value = value
         value_text = value
       end
       radio_button = @template.radio_button(@object_name, method, tag_value, options.merge(:object => @object, :help => help))
-      selections << boolean_field_wrapper(
-                        radio_button, "#{@object_name}_#{method.to_s}",
-                        tag_value, value_text)
+      selections << boolean_field_wrapper(radio_button, "#{@object_name}_#{method.to_s}", tag_value, value_text)
+      selections << insert_img(radio_button, image)
     end
     selections    
     field_name, label, options = field_settings(method, options)
-    semantic_group("radio", field_name, label, selections, options)    
+    semantic_group("radio", field_name, label, selections, will, options)
   end
   
   def check_box_group(method, values, options = {})
