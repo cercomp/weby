@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110126133436) do
+ActiveRecord::Schema.define(:version => 20110127151500) do
 
   create_table "feedbacks", :force => true do |t|
     t.string   "name"
@@ -128,6 +128,7 @@ ActiveRecord::Schema.define(:version => 20110126133436) do
     t.string   "url"
     t.text     "description"
     t.integer  "cover_id"
+    t.string   "footer"
   end
 
   create_table "sites_menus", :force => true do |t|

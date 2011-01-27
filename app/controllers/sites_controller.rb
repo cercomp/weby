@@ -21,7 +21,7 @@ class SitesController < ApplicationController
   end
 
   def edit
-    @repositories = Repository.search(params[:search], params[:page])
+    @repositories = Repository.search(params[:search], params[:page],["archive_content_type LIKE ?","image%"])
 #    @repositories = Repository.paginate :page => params[:page], :order => 'created_at DESC', :per_page => 1 
    	@site = Site.find_by_name(params[:id])
   end

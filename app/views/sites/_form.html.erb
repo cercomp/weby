@@ -28,11 +28,9 @@
   <div class="choose_cover">
     <% if !@repositories.nil? %>
       <% @repositories.each do |image| %>
-        <% if image.archive_content_type.gsub(%r(/.*),'') == "image" %>
           <%= image_tag image.archive.url, :size => "80x80" %>
           <%= label_tag :cover_id, image.description, :value => "#{image.id}" %>
           <%= radio_button_tag :cover_id, image.id.to_i %>
-        <% end %>
       <% end %>
       <br/>			
       <%= will_paginate @repositories, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next") %>
