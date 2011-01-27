@@ -2,7 +2,7 @@
   <div id="pages">
     <p> <h1> <%= @page.title %> </h1> </p>
 
-    <% unless @page.repository.archive_file_name.nil? %>
+    <% unless @page.repository.nil? %>
       <a href="<%= @page.repository.archive.url %>" alt="<%= @page.repository.description %>">
         <%= image_tag("#{@page.repository.archive.url}", :size => "200x200", :align => "right") %>
       </a>
