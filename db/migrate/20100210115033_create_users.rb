@@ -22,14 +22,6 @@ class CreateUsers < ActiveRecord::Migration
       t.boolean   :status, :default => false
       t.boolean   :is_admin, :default => false
     end
-    user = User.create do |u|
-      u.id = 1
-      u.login = 'admin'
-      u.password = u.password_confirmation = 'admin'
-      u.email = 'admin@domain.com'
-      u.status = true
-      u.is_admin = true
-    end
   end
 
   def self.down
