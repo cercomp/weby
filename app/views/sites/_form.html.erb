@@ -2,7 +2,6 @@
   <% if @site.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@site.errors.count, "") %> <%= t"prohibited_being_saved", :count => @site.errors.count %>:</h2>
-
       <ul>
       <% @site.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -11,30 +10,13 @@
     </div>
   <% end %>
 
+  <% unless @repositories.nil? %>
+    <%= f.radio_button_group :repository_id, @repositories.map{|u| { :value => u.id, :image => u.archive.url }}, (will_paginate @repositories, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next")), :label => t("picture"), :help => t("picture") %>
+  <% end %>
+
   <%= f.text_field :name, :label => t("name"), :required => true, :help => t("field_required") %><br />
   <%= f.text_field :url, :label => "URL", :required => true, :help => t("field_required") %><br />
   <%= f.text_area :description, :label => t("description"), :rows => 8, :help => t("site_comments") %><br />
 
-  <br/>
-    <%= t"select_param", :param => (t"top_banner", :count => 2) %>
-  <br/>
-
   <%= f.submit t("submit") %>
 <% end %>
-  <%= form_tag @site, :method => 'get' do %>
-    <%= label_tag t"search" %>
-    <%= text_field_tag :search, params[:search]  %>
-
-  <div class="choose_cover">
-    <% if !@repositories.nil? %>
-      <% @repositories.each do |image| %>
-          <%= image_tag image.archive.url, :size => "80x80" %>
-          <%= label_tag :cover_id, image.description, :value => "#{image.id}" %>
-          <%= radio_button_tag :cover_id, image.id.to_i %>
-      <% end %>
-      <br/>			
-      <%= will_paginate @repositories, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next") %>
-    <% end %>
-  </div>
-    <%= submit_tag t("submit") %>
-  <% end %>

@@ -13,7 +13,9 @@
       </div>
     <% end %>
 
-    <%= f.radio_button_group :repository_id, @repositories.map{|u| { :value => u.id, :image => u.archive.url }}, (will_paginate @repositories, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next")), :label => t("picture"), :help => t("picture") %>
+    <% unless @repositories.nil? %>
+      <%= f.radio_button_group :repository_id, @repositories.map{|u| { :value => u.id, :image => u.archive.url }}, (will_paginate @repositories, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next")), :label => t("picture"), :help => t("picture") %>
+    <% end %>
 
     <%= f.hidden_field :created_at, :order => [:year, :month, :day], :use_month_numbers => true, :label => (t"date_param", :param => t("register")), :start_year => Time.now.year %>
     <%= f.datetime_select :date_begin_at, :order => [:year, :month, :day], :use_month_numbers => true, :label =>  (t"date_param", :param => t("begin")), :start_year => Time.now.year %>
