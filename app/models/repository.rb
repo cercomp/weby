@@ -1,6 +1,6 @@
 class Repository < ActiveRecord::Base
-  def self.search(search, page)
-    paginate :per_page => 4, :page => page, :conditions => ['description like ?', "%#{search}%"], :order => 'id DESC'
+  def self.search(site_id, search, page)
+    paginate :per_page => 4, :page => page, :conditions => ['site_id = ? AND description like ?', "#{site_id}", "%#{search}%"], :order => 'id DESC'
   end
   belongs_to :site
   has_one :page

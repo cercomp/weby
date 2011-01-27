@@ -21,14 +21,14 @@ class PagesController < ApplicationController
   def new
     params[:type] ||= 'News'
 
-    @repositories = Repository.paginate :page => params[:page], :order => 'created_at DESC', :per_page => 4 
+    @repositories = Repository.where(["site_id = ? AND archive_content_type LIKE ?", @site.id, "image%"]).paginate :page => params[:page], :order => 'created_at DESC', :per_page => 4 
     @page = Object.const_get(params[:type].capitalize).new
     @page.sites_pages.build
     respond_with(@page)
   end
 
   def edit
-    @repositories = Repository.paginate :page => params[:page], :order => 'created_at DESC', :per_page => 4 
+    @repositories = Repository.where(["site_id = ? AND archive_content_type LIKE ?", @site.id, "image%"]).paginate :page => params[:page], :order => 'created_at DESC', :per_page => 4 
     @page = Page.find(params[:id])
   end
 
