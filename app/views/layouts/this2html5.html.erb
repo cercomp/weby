@@ -94,7 +94,14 @@
             </menu>
           <% end %>
       	</div>
-        <div id="navbox">
+			
+				<div id="footer">
+						<% unless @site.nil? %>
+							<%= @site.footer %>
+						<% end %>						
+				</div>
+
+				<div id="navbox">
           <% unless @site.nil? %>
             <%= link_to t("feedback"), new_site_feedback_path(@site), :class => 'icon icon-add' %>
           <% end %>

@@ -54,6 +54,8 @@ en:
   father: "Father"
   fill_email_form: "Fill out the form below to reset your password. It will be e-mailed to you" 
   forgot_password: "Forgot password"
+  footer: "Footer"
+  footer_text: "Institution - Address. Zip XXXXX-XXX - Post Box XXX. City-State - Fone: +XX XX XXXX-XXXX; Customer Care: +XX XX XXXX-XXXX, +XX XXXX-XXXX. Fax: +XX XX XXXX-XXXX"
   field_required: "Field required!"
 
 #---G---#

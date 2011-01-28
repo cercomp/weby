@@ -57,6 +57,8 @@ pt-BR:
   father: "Pai"
   fill_email_form: "Preencha o formulário para resgatar sua senha. Ela será enviada para seu e-mail" 
   forgot_password: "Perdi minha senha"
+  footer: "Rodapé"
+  footer_text: "Instituição - Endereço. CEP XXXXX-XXX - Caixa Postal XXX. Cidade-Estado - Fone: Geral: +XX XX XXXX-XXXX; Atendimento ao Usuário: +XX XX XXXX-XXXX, +XX XXXX-XXXX. Fax: +XX XX XXXX-XXXX"
   field_required: "Campo obrigatório!"
 
 #---G---#
