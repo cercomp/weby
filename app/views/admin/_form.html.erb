@@ -25,8 +25,8 @@
 
   <%= f.text_field :name, :label => t("name"), :required => true, :help => t("field_required") %><br />
   <%= f.text_field :url, :label => "URL", :required => true, :help => t("field_required") %><br />
-  <%= f.text_area :description, :label => t("description"), :rows => 8, :help => t("site_comments") %><br />
-	<%= f.text_area :footer, :value => t("footer_text"), :class => "mceAdvance", :label => t("footer"), :rows =>8%>
+  <%= f.text_area :description, :label => t("description"), :class => "mceSimple", :size => "48x10", :rows => 8, :help => t("site_comments") %><br />
+	<%= f.text_area :footer, :value => t("footer_text"), :class => "mceSimple", :label => t("footer"), :size => "48x10"%>
 
   <%= f.submit t("submit") %>
 <% end %>
