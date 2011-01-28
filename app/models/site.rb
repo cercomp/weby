@@ -25,6 +25,7 @@ class Site < ActiveRecord::Base
   accepts_nested_attributes_for :sites_menus, :allow_destroy => true#, :reject_if => proc { |attributes| attributes['title'].blank? }
   accepts_nested_attributes_for :sites_pages, :allow_destroy => true#, :reject_if => proc { |attributes| attributes['title'].blank? }
  
+ 	belongs_to :repository, :foreign_key => "cover_id"
   has_many :repositories
 
 	 has_attached_file :top_banner, :url => "/uploads/:site_id/:style_:basename.:extension"

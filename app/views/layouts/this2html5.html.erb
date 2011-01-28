@@ -17,8 +17,7 @@
     <header>
       <div id="topo">
 				
-				<% repository = Repository.where(["id ?",@site.id ]) %>
-				<%#= image_tag repository.archive.url  %>
+			<%=  render :partial => "sites/viewCover" %>				
 
 			</div>
       <nav>
