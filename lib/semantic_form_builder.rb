@@ -82,15 +82,17 @@ class SemanticFormBuilder < ActionView::Helpers::FormBuilder
         label = value[:label]
         help = value.delete(:help)
         image = value[:image]
+        alt = value[:alt]
+        title = value[:title]
       else
         tag_value = value
         value_text = value
       end
       radio_button = @template.radio_button(@object_name, method, tag_value, options.merge(:object => @object, :help => help))
       selections << boolean_field_wrapper(radio_button, "#{@object_name}_#{method.to_s}", tag_value, value_text)
-      selections << insert_img(radio_button, image)
+      selections << insert_img(radio_button, image, alt, title)
     end
-    selections    
+    selections
     field_name, label, options = field_settings(method, options)
     semantic_group("radio", field_name, label, selections, will, options)
   end

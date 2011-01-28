@@ -31,9 +31,9 @@ module SemanticFormHelper
     field.html_safe
   end
 
-  def insert_img(input, img)
+  def insert_img(input, image, alt, title)
     field = ""
-    field << %Q{<img src="#{img}" width="70", height="70"> </img>} if img
+    field << %Q{<img src="#{image}" width="70", height="70" alt="#{alt}" title="#{title}"> </img>} if image
     field.html_safe
   end
 

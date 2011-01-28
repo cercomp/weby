@@ -13,7 +13,9 @@ class AdminController < ApplicationController
   end
 
   def edit
-    @repositories = Repository.search(@site.id, params[:search], params[:page])
+    params[:type] ||= 'image'
+
+    @repositories = Repository.search(@site.id, params[:search], params[:page], params[:type])
     if @repositories.empty?
       flash.now[:warning] = (t"none_param", :param => t("picture"))
     end
