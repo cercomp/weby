@@ -9,30 +9,18 @@ class RepositoriesController < ApplicationController
   end
 
   def index
-    @repositories = Repository.where(["site_id = ?", @site.id]).all.paginate :page => params[:page], :order => 'created_at DESC', :per_page => 8
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @repositories }
-    end
+    @repositories = @site.repositories.paginate :page => params[:page], :order => 'created_at DESC', :per_page => 5
+    respond_with(@repositories)
   end
 
   def show
     @repository = Repository.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @repository }
-    end
+    respond_with(@repository)
   end
 
   def new
     @repository = Repository.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @repository }
-    end
+    respond_with(@repository)
   end
 
   def edit

@@ -10,13 +10,10 @@
     </div>
   <% end %>
     
-    <%= f.text_field :description, :label => t("description"), :required => true, :help => t("field_required") %>
+  <%= f.file_field :archive, :label => t(:archive, :count => 1), :required => true, :help => t("field_required") %>
+  <%= f.text_field :description, :label => t("description"), :required => true, :help => t("field_required") %>
+  <%= f.hidden_field :site_id, :value => @site.id %>
 
-    <%= f.file_field :archive, :label => t(:archive, :count => 1), :required => true, :help => t("field_required") %>
-
-    <%= f.hidden_field :site_id, :value => @site.id %>
-
-    <%= f.submit t("submit") %>
-
+  <%= f.submit t("submit") %>
 <% end %>
 

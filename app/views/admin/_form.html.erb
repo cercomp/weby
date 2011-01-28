@@ -18,6 +18,9 @@
     </div>
   <% end %>
 
+  <div class="contextual">
+    <%= link_to (t"new_param", :param => (t"archive", :count => 1)), new_site_repository_path, :class => 'icon icon-add' %> 
+  </div>
   <%= f.radio_button_group :cover_id, @repositories.map{|u| { :value => u.id, :image => u.archive.url }}, (will_paginate @repositories, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next")), :label => t("picture"), :help => t("picture") %>
 
   <%= f.text_field :name, :label => t("name"), :required => true, :help => t("field_required") %><br />
