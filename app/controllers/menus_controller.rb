@@ -7,8 +7,7 @@ class MenusController < ApplicationController
   respond_to :html, :xml, :js
 
   def index
-    @menus = Menu.all
-    respond_with(@menus)
+    params[:side] ||= 'left'
   end
 
   def show
