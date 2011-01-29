@@ -1,92 +1,63 @@
-article,
-aside,
-canvas,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section,
-summary { display: block; }
+/* To work with HTML5 more easy */
+article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav,  section, summary { display: block; }
 
+/* Define basic style to layout */
 body { margin: 0; }
+  body div#wrapper {
+    width: 960px;
+    margin: 0 auto; }
 
-div#wrapper {
-  background-color: #e5e5e5;
-  width: 960px;
-  margin: 0 auto; }
-
+/* Define style to Header, Footer and contents */
 header,
-footer {
-  width: 100%;
-  background-color: #ccc; }
-  header div#topo { height: 120px; }
-  footer div#menu,
-  header div#menu { float: left; }
+footer { background: #ccc; }
+
+  /* Define footer information */
+  footer section#info { padding: 1px 5px; }
+
+  /* Define area of top image */
+  header div#topimage {
+    max-height: 120px;
+    overflow: hidden; }
+
+  /* Define Header and Footer menus */
   footer div#navbox,
   header div#navbox { float: right; }
+  
   header nav,
-  footer nav {
-    padding: 5px;
-    background-color: #b2b2b2; }
+  footer nav { padding: 5px; background-color: #b2b2b2; }
+    
     header nav menu,
-    footer nav menu {
-      list-style: none outside none; 
-      padding: 0;
-      margin: 0; }
-      header nav menu menu,
-      footer nav menu menu {
-	      position: absolute;
-	      left: -9999px;
-	      margin-left: 20px;
-	      width: 100px; }
-		    header nav menu menu menu,
-		    footer nav menu menu menu {
-			    margin-left: 0px;
-			    margin-top: 0px; }
-			header nav menu menu a,
-      footer nav menu menu a { border: 1px solid #eee; }
-			header nav menu a,
-      footer nav menu a {
-	      background: #fff;
-	      border: 1px solid transparent;
-	      display: block;
-	      line-height: 23px;
-	      margin: 0;
-	      padding-left: 10px;
-	      width: 88px;
-	      text-overflow: ellipsis; }
-      header nav menu li,
-      footer nav menu li { 
-        margin-right: 2px;
-        float: left;}
-        header nav menu li.sub > a,
-  		  footer nav menu li.sub > a {
-			    background: url("../images/arrow_collapsed.png") no-repeat scroll #fff;
-			    background-position: 80px center; }
-      header nav menu li:hover,
-    	footer nav menu li:hover {
-		    position: relative;
-		    z-index: 100; }
-		    header nav menu li:hover > menu { top: 25px; }
-			  footer nav menu li:hover > menu { bottom: 25px; }
-        header nav menu li:hover > menu,    		
-			  footer nav menu li:hover > menu {
-    			left: -20px;
-			    z-index: -1; }			  
- 			    header nav menu li:hover li:hover > menu,
-			    footer nav menu li:hover li:hover > menu {
-				    left: 100px;
-				    z-index: 100; }
-			    header nav menu li:hover li:hover > menu { top: 0px; }
-			    footer nav menu li:hover li:hover > menu { bottom: 0px; }
+    footer nav menu { list-style: none outside none; padding: 0; margin: 0; }
+    header nav menu li,
+    footer nav menu li { margin-right: 2px; float: left;}
+    header nav menu li:hover,
+    footer nav menu li:hover { position: relative; z-index: 100; }
+    header nav menu li:hover > menu,    		
+    footer nav menu li:hover > menu {	left: -20px; z-index: -1; }			  
+    header nav menu li:hover menu li:hover > menu,
+    footer nav menu li:hover menu li:hover > menu { left: 100px; z-index: 100; }
+    header nav menu li menu,
+    footer nav menu li menu { position: absolute; left: -9999px; margin-left: 20px; width: 100px; }
+    header nav menu li menu a,
+    footer nav menu li menu a { border: 1px solid #eee; }
+    header nav menu li menu li menu,
+    footer nav menu li menu li menu { margin-left: 0px; margin-top: 0px; }
+    header nav menu li a,
+    footer nav menu li a { background: #fff; border: 1px solid transparent; display: block; line-height: 23px; margin: 0; padding-left: 10px; width: 88px; text-overflow: ellipsis; }
+    /* TODO: Mudar as setas para serem usadas no contexto */
+    header nav menu li.sub > a,
+    footer nav menu li.sub > a { background: url("../images/arrow_collapsed.png") no-repeat scroll #fff; background-position: 80px center; }
+      
+      header nav menu li:hover > menu { top: 25px; }
+      header nav menu li:hover menu li:hover > menu { top: 0px; }
+      
+      footer nav menu li:hover > menu { bottom: 25px; }
+      footer nav menu li:hover menu li:hover > menu { bottom: 0px; }
 
-menu li div#menu_ctrl a { display: inline; }
-
+/* Define side area and contents */
 aside {width: 180px; background-color: #CCC; padding: 5px;}
+
+  /* Define style to menu in side area */
   aside menu {padding: 0; margin: 0;}
   aside > menu {width: 5em;}
   aside menu li:hover > menu {display: block; position: absolute; top: -1px;}
@@ -108,7 +79,7 @@ aside {width: 180px; background-color: #CCC; padding: 5px;}
     aside.left li.sub:hover {margin-right: -180px; border: 1px solid gray; }
     aside.left li.sub:hover > menu {right: 0px;}
 
-
+/* Define content area */
 section#content {
   float:left;
   margin: 0 auto;
@@ -116,25 +87,28 @@ section#content {
   padding: 5px;
   padding-bottom: 100px;
   overflow: hidden; }
+  #pages {
+    font-family: Verdana;
+    font-weight: Normal;
+    padding-top:5px;
+    padding-bottom:5px;
+    padding-right:10px;
+    padding-left:10px; }
+    #pages h1 {
+      font-size: 23px;
+      color: #1C1C1C; } 
+    #pages h2 {
+      line-height: 100%;
+      color: #2F4F4F;
+      font-size: 15px; }
+    #pages h3 {
+      font-size: 15px;
+      line-height: 100%;
+      color: #696969; }
+    #pages p { }
 
+/* Classes to help build layout */
 .clear { clear: both; }
 
-#pages {
-  font-family: Verdana;
-  font-weight: Normal;
-  padding-top:5px;
-  padding-bottom:5px;
-  padding-right:10px;
-  padding-left:10px; }
-  #pages h1 {
-    font-size: 23px;
-    color: #1C1C1C; } 
-  #pages h2 {
-    line-height: 100%;
-    color: #2F4F4F;
-    font-size: 15px; }
-  #pages h3 {
-    font-size: 15px;
-    line-height: 100%;
-    color: #696969; }
-  #pages p { }
+/* To review */
+/* menu li div#menu_ctrl a { display: inline; } */

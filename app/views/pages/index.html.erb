@@ -33,7 +33,7 @@
             <td><%= l page.created_at, :format => :short %></td>
             <td><%= l page.date_begin_at, :format => :short %></td>
             <td><%= page.title %></td>
-            <td><%= page.user.login %></td>
+            <td><%#= page.user.login %></td>
             <td>
               <% if params[:site_id] %>
                 <%= link_to t("show"), site_page_path(@site, page, :type => params[:type]) %>

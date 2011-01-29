@@ -15,19 +15,15 @@
   <div id="wrapper">
     
     <header>
-      <div id="topo">
-				
-			<%=  render :partial => "sites/viewCover" %>				
-
-			</div>
+      <% unless @site.repository.nil? %>
+      <div id="topimage"> <%=  render :partial => "sites/viewCover" %> </div>
+      <% end %>
       <nav>
-        <div id="menu">
-          <% unless @top.nil? %>
-            <menu>
-              <%= raw print_menu(@top) %>
-            </menu>
-  	      <% end %>
-        </div>
+        <% unless @top.nil? %>
+          <menu>
+            <%= raw print_menu(@top) %>
+          </menu>
+        <% end %>
         <div id="navbox">
           <%= link_to image_tag("flag_uk.png", :size => "24x12"), :locale => "en" %>
       	  <%= link_to image_tag("flag_br.png", :size => "24x12"), :locale => "pt-BR" %>
@@ -86,30 +82,23 @@
     
     <footer>
       <nav>
-        <div id="menu">
-          <% unless @bottom.nil? %>
-            <menu>
-              <%= raw print_menu(@bottom) %>
-            </menu>
-          <% end %>
-      	</div>
-			
-				<div id="footer">
-						<% unless @site.nil? %>
-							<%= raw @site.footer %>
-						<% end %>						
-				</div>
-
-				<div id="navbox">
-          <% unless @site.nil? %>
-            <%= link_to t("feedback"), new_site_feedback_path(@site), :class => 'icon icon-add' %>
-          <% end %>
+        <% unless @bottom.nil? %>
+        <menu>
+          <%= raw print_menu(@bottom) %>
+        </menu>
+        <% end %>
+        <div id="navbox">
+          <%= link_to t("feedback"), new_site_feedback_path(@site), :class => 'icon icon-add' %>
         </div>
-        <div class="clear"></div>
+        <div class="clear"> </div>
       </nav>
+      <section id="info">
+        <%= raw @site.footer %>
+      </section>
     </footer>
 
   </div>
+
   <%= javascript_include_tag :defaults %>
   <!--[if lt IE 9]>
     <%= javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js" %>
