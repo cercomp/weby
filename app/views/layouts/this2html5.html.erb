@@ -12,92 +12,93 @@
 </head>
 <body>
   <%#= debug(params) %>
-  <div id="wrapper">
     
-    <header>
-      <% unless @site.repository.nil? %>
+  <header>
+    <% unless @site.repository.nil? %>
       <div id="topimage"> <%=  render :partial => "sites/viewCover" %> </div>
+    <% end %>
+    <nav>
+      <% unless @top.nil? %>
+        <menu>
+          <%= raw print_menu(@top) %>
+        </menu>
       <% end %>
-      <nav>
-        <% unless @top.nil? %>
-          <menu>
-            <%= raw print_menu(@top) %>
-          </menu>
-        <% end %>
-        <div id="navbox">
-          <%= link_to image_tag("flag_uk.png", :size => "24x12"), :locale => "en" %>
-      	  <%= link_to image_tag("flag_br.png", :size => "24x12"), :locale => "pt-BR" %>
-        </div>
-        <div class="clear"></div>
+      <nav class="right">
+        <%= link_to image_tag("flag_uk.png", :size => "24x12"), :locale => "en" %>
+        <%= link_to image_tag("flag_br.png", :size => "24x12"), :locale => "pt-BR" %>
       </nav>
-    </header>
+      <div class="clear"></div>
+    </nav>
+  </header>
+  
+  <div id="main">
+    <aside class="left">
+      <% unless @left.nil? %>
+        <nav>
+          <menu>
+            <%= raw print_menu(@left) %>
+          </menu>
+        </nav>
+      <% end %>
+    </aside>
     
-    <div id="main">
-      <aside class="left">
-        <% unless @left.nil? %>
-          <nav>
-            <menu>
-              <%= raw print_menu(@left) %>
-            </menu>
-          </nav>
-        <% end %>
-      </aside>
+    <section id="content">
+      <div id="flash_messages">
+        <%= raw flash_message %>
+      </div>
       
-      <section id="content">
-        <div id="flash_messages">
-          <%= raw flash_message %>
-        </div>
-        
-        <div id="menu_admin">
-          <%= link_to t("portal"), root_path %> |
-          <%= link_to t("home"), @site %> |
-          <% if check_permission(AdminController, "index") %>
-            <%= link_to t("admin"), site_admin_index_path(@site) %> |
-          <% end %>
-          <% if !current_user %>
-            <%= link_to t("register"), new_user_path %> |
-            <%= link_to t("login"), login_path %> |
-          <% else %>
-            <%= link_to t("my_profile"), user_path(current_user) %> |
-            <%= link_to t("logout"), logout_path, :confirm => "Are you sure that you want to logout?" %>
-          <% end %>
-          <%= User.logged_in.count %> <%= (t"user", :count => User.logged_in.count) %> <%= t("logged") %>.
-        </div>
+      <div id="menu_admin">
+        <%= link_to t("portal"), root_path %> |
+        <%= link_to t("home"), @site %> |
+        <% if check_permission(AdminController, "index") %>
+          <%= link_to t("admin"), site_admin_index_path(@site) %> |
+        <% end %>
+        <% if !current_user %>
+          <%= link_to t("register"), new_user_path %> |
+          <%= link_to t("login"), login_path %> |
+        <% else %>
+          <%= link_to t("my_profile"), user_path(current_user) %> |
+          <%= link_to t("logout"), logout_path, :confirm => "Are you sure that you want to logout?" %>
+        <% end %>
+        <%= User.logged_in.count %> <%= (t"user", :count => User.logged_in.count) %> <%= t("logged") %>.
+      </div>
 
       <%= yield  %>
-      </section>
-      
-      <aside class="right">
-        <% unless @right.nil? %>
-          <nav>
-            <menu>
-              <%= raw print_menu(@right) %>
-            </menu>
-          </nav>
-        <% end %>
-      	<%= render :partial => "sites/viewNewsletter"  %>     
-		  </aside>		
-      <div class="clear"></div>
-    </div>
+    </section>
     
-    <footer>
-      <nav>
-        <% unless @bottom.nil? %>
-        <menu>
-          <%= raw print_menu(@bottom) %>
-        </menu>
-        <% end %>
-        <div id="navbox">
-          <%= link_to t("feedback"), new_site_feedback_path(@site), :class => 'icon icon-add' %>
-        </div>
-        <div class="clear"> </div>
-      </nav>
-      <section id="info">
-        <%= raw @site.footer %>
-      </section>
-    </footer>
+    <aside class="right">
+      <% unless @right.nil? %>
+        <nav>
+          <menu>
+            <%= raw print_menu(@right) %>
+          </menu>
+        </nav>
+      <% end %>
+
+      <%= render :partial => "sites/viewNewsletter"  %>     
+    </aside>		
+    
+    <div class="clear"></div>
 
   </div>
+  
+  <footer>
+    <nav>
+      <% unless @bottom.nil? %>
+      <menu>
+        <%= raw print_menu(@bottom) %>
+      </menu>
+      <% end %>
+      <nav class="right">
+        <%= link_to t("feedback"), new_site_feedback_path(@site), :class => 'icon icon-add' %>
+      </nav>
+      <div class="clear"> </div>
+    </nav>
+
+    <section id="info">
+      <%= raw @site.footer %>
+    </section>
+  </footer>
 
   <%= javascript_include_tag :defaults %>
   <!--[if lt IE 9]>
