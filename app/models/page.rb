@@ -1,6 +1,8 @@
 class Page < ActiveRecord::Base
   belongs_to :user, :foreign_key => "author_id"
-  belongs_to :repository, :foreign_key => "repository_id"
+	belongs_to :repository, :foreign_key => "repository_id"
+
+	has_and_belongs_to_many :repositories
 
   has_many :sites_pages
   has_many :sites, :through => :sites_pages
