@@ -4,16 +4,15 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 /* Define basic style to layout */
 html { background: white; }
 body {
-  background: #EEE;
   font-family: Verdana, sans-serif; 
   font-size: 12px; 
   color:#484848;
-  width: 960px;
+  width: auto;
   margin: 0 auto; }
 
 /* Define style to Header, Footer and contents */
 header,
-footer { background: #ccc; }
+footer { }
 
   /* Define footer information */
   footer section#info { padding: 5px; }
@@ -21,7 +20,7 @@ footer { background: #ccc; }
 
   /* Define area of top image */
   header div#topimage {
-    max-height: 120px;
+    float: left;
     overflow: hidden; }
 
   /* Define Header and Footer menus */
@@ -86,7 +85,7 @@ aside { width: 180px; background-color: #CCC; position: relative; }
 /* Define content area */
 section#content {
   float: left;
-  width: 590px;
+  width: auto;
   padding: 5px;
   padding-bottom: 100px;
   overflow: hidden; }

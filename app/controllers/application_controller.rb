@@ -90,9 +90,9 @@ class ApplicationController < ActionController::Base
   end
     
   def store_location
+    #session[:return_to] = request.fullpath if request.get? and controller_name != "user_sessions" and controller_name != "sessions"
     session[:return_to] = request.fullpath
-    #session[:return_to] = request.request_uri if request.get? and controller_name != "user_sessions" and controller_name != "sessions"
-    #session[:return_to] ||= request.referer
+    session[:return_to] ||= request.referer
   end
 
 #  def redirect_back_or_default(default)

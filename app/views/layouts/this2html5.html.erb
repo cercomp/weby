@@ -10,11 +10,11 @@
   <%= stylesheet_link_tag 'this2html5' %>
   <%= stylesheet_link_tag 'will_paginate' %>
 </head>
-<body>
+<%= raw @site.body_width ? "<body style='width:#{@site.body_width}px'>" : "<body>" %>
   <%#= debug(session) %>
     
+  <%= render :partial => "sites/viewCover" %>
   <header>
-    <%=  render :partial => "sites/viewCover" %>
     <nav>
       <%= raw print_menu(@top) %>
       <nav class="right">

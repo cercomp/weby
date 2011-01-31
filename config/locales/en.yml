@@ -22,6 +22,7 @@ en:
   back: "Back"
   begin: "Begin"  
   bottom: "Bottom"
+  body_width: "Body width"
   
 #---C---#
   chief_editor: "Chief Editor"
@@ -48,6 +49,7 @@ en:
   editor: "Editor"
   edit: "Edit"
   error_updating_object: "Error updating object"
+  example_param: "Example: %{param}"
 
 #---F---#
   feedback: "Feedback"
@@ -195,6 +197,8 @@ en:
   to: "To"
   top: "Top"
   top_banner: "Banner"
+  top_banner_width: "Top banner width"
+  top_banner_height: "Top banner height"
   type: "Type a %{param}"
   try_login: "Try to login first!"
 

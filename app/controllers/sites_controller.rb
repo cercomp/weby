@@ -1,8 +1,9 @@
 class SitesController < ApplicationController
   layout :choose_layout
 
+  before_filter :require_user, :only => [:new, :create, :edit, :update, :destroy, :select_top_banner]
   before_filter :check_authorization, :except => [:show, :index]
-  
+
   respond_to :html, :xml
 
   def index
@@ -34,8 +35,10 @@ class SitesController < ApplicationController
 
   def update
     @site = Site.find_by_name(params[:id])
-		@site.update_attributes(params[:site])
-    respond_with(@site)
+		if @site.update_attributes(params[:site])
+      flash[:notice] = t"successfully_updated"
+    end
+    redirect_to edit_site_admin_path(@site, @site)
   end
 
   def destroy

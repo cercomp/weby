@@ -132,8 +132,11 @@ ActiveRecord::Schema.define(:version => 20110131164021) do
     t.datetime "updated_at"
     t.string   "url"
     t.text     "description"
-    t.integer  "cover_id"
+    t.integer  "top_banner_id"
     t.string   "footer"
+    t.integer  "top_banner_width"
+    t.integer  "top_banner_height"
+    t.integer  "body_width"
   end
 
   create_table "sites_menus", :force => true do |t|

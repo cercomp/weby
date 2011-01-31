@@ -23,6 +23,7 @@ pt-BR:
   back: "Voltar"
   begin: "Início"
   bottom: "Inferior"
+  body_width: "Largura do site"
   
 #---C---#
   chief_editor: "Editor chefe"
@@ -51,6 +52,7 @@ pt-BR:
   editor: "Editor"
   edit: "Editar"
   error_updating_object: "Erro ao atualizar objeto"
+  example_param: "Exemplo: %{param}"
 
 #---F---#
   feedback: "Fale Conosco"
@@ -198,6 +200,8 @@ pt-BR:
   to: "Para"
   top: "Superior"
   top_banner: "Topo"
+  top_banner_width: "Largura do banner principal"
+  top_banner_height: "Altura do banner principal"
   type: "Digite a %{param}"
   try_login: "Tente logar primeiro!"	
 
