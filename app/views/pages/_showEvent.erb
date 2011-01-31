@@ -1,6 +1,6 @@
 <fieldset>
   <div id="pages">
-    <p> <h1> <%= @page.title %> </h1> </p>
+      <p> <h1> <%= @page.title %> </h1> </p>
 
     <% unless @page.repository.nil? %>
       <a href="<%= @page.repository.archive.url %>" alt="<%= @page.repository.description %>">
@@ -16,6 +16,6 @@
     <p> <h3> <b> <%= t("source") %> <%= @page.source %> </h3> </b> </p>
 
     <%= link_to t("edit"), :controller => 'pages', :action => 'edit', :id => @page.id, :type => 'Event'%> |
-    <%= link_to t("back"), :back %>
+    <%= link_to t("back"), site_pages_path()%>
   </div>
 </fieldset>

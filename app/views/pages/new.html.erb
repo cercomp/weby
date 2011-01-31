@@ -12,9 +12,10 @@
         </ul>
       </div>
     <% end %>
-
+    <%= link_to t("back"), site_pages_path()%>
     <div class="contextual">
-      <%= link_to (t"new_param", :param => (t"archive", :count => 1)), new_site_repository_path, :class => 'icon icon-add' %> 
+      <%= link_to (t"new_param", :param => (t"archive", :count => 1)), new_site_repository_path, :class => 'icon icon-add' %>
+ 
     </div>
     <% unless @repositories.nil? %>
       <%= f.radio_button_group :repository_id, @repositories.map{|u| { :value => u.id, :image => u.archive.url, :alt => u.description, :title => u.description }}, (will_paginate @repositories, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next")), :label => t("picture"), :help => t("picture") %>
@@ -38,8 +39,8 @@
     <% end %>
 
     <%= render :partial => "form" + params[:type], :locals => {:f => f} %>
-  
-    <%= f.submit(t"save") %>
+    <%= f.submit (t"create_param", :param => (t"#{params[:type].downcase}.one")) %>
+    <div> <%= link_to t("back"), site_pages_path()%> </div>
   <% end %>
 
 </fieldset>

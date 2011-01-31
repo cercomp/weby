@@ -12,7 +12,7 @@
         </ul>
       </div>
     <% end %> 
-
+    <%= link_to t("back"), site_pages_path()%>
     <div class="contextual">
       <%= link_to (t"new_param", :param => (t"archive", :count => 1)), new_site_repository_path, :class => 'icon icon-add' %> 
     </div>
@@ -31,7 +31,8 @@
 
     <%= render :partial => "form" + params[:type], :locals => {:f => f} %>
 
-    <%= f.submit(t"save") %>
+    <%= f.submit_and_cancel t("save"), "cancel" %>
+    <div> <%= link_to t("back"), site_pages_path()%> </div>
   <% end %>
 
 </fieldset>
