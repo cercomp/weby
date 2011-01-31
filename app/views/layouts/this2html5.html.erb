@@ -11,7 +11,7 @@
   <%= stylesheet_link_tag 'will_paginate' %>
 </head>
 <body>
-  <%#= debug(params) %>
+  <%#= debug(session) %>
     
   <header>
     <%=  render :partial => "sites/viewCover" %>
@@ -21,7 +21,7 @@
         <%= link_to image_tag("flag_uk.png", :size => "24x12"), :locale => "en" %>
         <%= link_to image_tag("flag_br.png", :size => "24x12"), :locale => "pt-BR" %>
       </nav>
-      <div class="clear" />
+      <div class="clear" /></div>
     </nav>
   </header>
   
@@ -68,7 +68,7 @@
       <nav class="right">
         <%= link_to t("feedback"), new_site_feedback_path(@site), :class => 'icon icon-add' %>
       </nav>
-      <div class="clear" />
+      <div class="clear" /></div>
     </nav>
     <section id="info">
       <%= raw @site.footer %>
