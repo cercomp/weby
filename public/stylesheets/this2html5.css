@@ -2,7 +2,12 @@
 article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary { display: block; }
 
 /* Define basic style to layout */
+html { background: white; }
 body {
+  background: #EEE;
+  font-family: Verdana, sans-serif; 
+  font-size: 12px; 
+  color:#484848;
   width: 960px;
   margin: 0 auto; }
 
@@ -21,7 +26,9 @@ footer { background: #ccc; }
 
   /* Define Header and Footer menus */
   header > nav,
-  footer > nav { padding: 5px; background-color: #b2b2b2; }
+  footer > nav {
+    padding: 5px;
+    background-color: #b2b2b2; }
      
     header nav menu,
     footer nav menu { list-style: none outside none; padding: 0; margin: 0; }

@@ -1,2 +1,6 @@
-<% repository = @site.repository %>
-<%= image_tag repository.archive.url %>
+<% unless @site.repository.nil? %>
+  <div id="topimage">
+    <% repository = @site.repository %>
+    <%= image_tag repository.archive.url %>
+  </div>
+<% end %>

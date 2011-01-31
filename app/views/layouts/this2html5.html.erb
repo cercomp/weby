@@ -1,100 +1,75 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
   <title>Webyge</title>
+  <meta charset="utf-8">
+  <%= csrf_meta_tag %>
   <%= stylesheet_link_tag 'scaffold' %>
   <%= stylesheet_link_tag 'application' %>
   <%= stylesheet_link_tag 'semantic_forms' %>
   <%= stylesheet_link_tag 'this2html5' %>
   <%= stylesheet_link_tag 'will_paginate' %>
-  <%= csrf_meta_tag %>
 </head>
 <body>
   <%#= debug(params) %>
     
   <header>
-    <% unless @site.repository.nil? %>
-      <div id="topimage"> <%=  render :partial => "sites/viewCover" %> </div>
-    <% end %>
+    <%=  render :partial => "sites/viewCover" %>
     <nav>
-      <% unless @top.nil? %>
-        <menu>
-          <%= raw print_menu(@top) %>
-        </menu>
-      <% end %>
+      <%= raw print_menu(@top) %>
       <nav class="right">
         <%= link_to image_tag("flag_uk.png", :size => "24x12"), :locale => "en" %>
         <%= link_to image_tag("flag_br.png", :size => "24x12"), :locale => "pt-BR" %>
       </nav>
-      <div class="clear"></div>
+      <div class="clear" />
     </nav>
   </header>
   
-  <div id="main">
-    <aside class="left">
-      <% unless @left.nil? %>
-        <nav>
-          <menu>
-            <%= raw print_menu(@left) %>
-          </menu>
-        </nav>
-      <% end %>
-    </aside>
-    
-    <section id="content">
-      <div id="flash_messages">
-        <%= raw flash_message %>
-      </div>
-      
-      <div id="menu_admin">
-        <%= link_to t("portal"), root_path %> |
-        <%= link_to t("home"), @site %> |
-        <% if check_permission(AdminController, "index") %>
-          <%= link_to t("admin"), site_admin_index_path(@site) %> |
-        <% end %>
-        <% if !current_user %>
-          <%= link_to t("register"), new_user_path %> |
-          <%= link_to t("login"), login_path %> |
-        <% else %>
-          <%= link_to t("my_profile"), user_path(current_user) %> |
-          <%= link_to t("logout"), logout_path, :confirm => "Are you sure that you want to logout?" %>
-        <% end %>
-        <%= User.logged_in.count %> <%= (t"user", :count => User.logged_in.count) %> <%= t("logged") %>.
-      </div>
-
-      <%= yield  %>
-    </section>
-    
-    <aside class="right">
-      <% unless @right.nil? %>
-        <nav>
-          <menu>
-            <%= raw print_menu(@right) %>
-          </menu>
-        </nav>
-      <% end %>
-
-      <%= render :partial => "sites/viewNewsletter"  %>     
-    </aside>		
-    
-    <div class="clear"></div>
-
-  </div>
-  
-  <footer>
+  <aside class="left">
     <nav>
-      <% unless @bottom.nil? %>
-      <menu>
-        <%= raw print_menu(@bottom) %>
-      </menu>
+      <%= raw print_menu(@left) %>
+    </nav>
+  </aside>
+  
+  <section id="content">
+    <div id="flash_messages">
+      <%= raw flash_message %>
+    </div>
+    
+    <div id="menu_admin">
+      <%= link_to t("portal"), root_path %> |
+      <%= link_to t("home"), @site %> |
+      <% if check_permission(AdminController, "index") %>
+        <%= link_to t("admin"), site_admin_index_path(@site) %> |
       <% end %>
+      <% if !current_user %>
+        <%= link_to t("register"), new_user_path %> |
+        <%= link_to t("login"), login_path %> |
+      <% else %>
+        <%= link_to t("my_profile"), user_path(current_user) %> |
+        <%= link_to t("logout"), logout_path, :confirm => "Are you sure that you want to logout?" %>
+      <% end %>
+      <%= User.logged_in.count %> <%= (t"user", :count => User.logged_in.count) %> <%= t("logged") %>.
+    </div>
+
+    <%= yield %>
+  </section>
+  
+  <aside class="right">
+    <nav>
+      <%= raw print_menu(@right) %>
+    </nav>
+    <%= render :partial => "sites/viewNewsletter"  %>     
+  </aside>		
+  
+  <footer class="clear">
+    <nav>
+      <%= raw print_menu(@bottom) %>
       <nav class="right">
         <%= link_to t("feedback"), new_site_feedback_path(@site), :class => 'icon icon-add' %>
       </nav>
-      <div class="clear"> </div>
+      <div class="clear" />
     </nav>
-
     <section id="info">
       <%= raw @site.footer %>
     </section>
@@ -105,8 +80,8 @@
     <%= javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js" %>
     <%= javascript_include_tag "http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js" %>
   <![endif]-->
-  <script type="text/javascript" src="/javascripts/tiny_mce/jquery.tinymce.js"></script>
-  <script language="javascript" type="text/javascript">
+  <%= javascript_include_tag "tiny_mce/jquery.tinymce" %>
+  <%= javascript_tag do %>
     $().ready(function() {  
       $('textarea.mceAdvance').tinymce({  
         script_url : '/javascripts/tiny_mce/tiny_mce.js',  
@@ -140,7 +115,7 @@
         theme_advanced_buttons3 : ""
       });
     }); 
-  </script> 
+  <% end %>
 </body>
 </html>
 

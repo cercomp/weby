@@ -28,11 +28,11 @@ module ApplicationHelper
   def print_menu(sons, view_ctrl=0)
     menus ||= ""
     unless sons["0"].nil?
+      menus += "<menu>"
       sons["0"].each do |child|
-        #menus += "<menu>"
         menus += print_menu_entry(sons, child, view_ctrl, 1)
-        #menus += "</menu>"
       end
+      menus += "</menu>"
     end
     menus
   end
