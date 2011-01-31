@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110127151500) do
+ActiveRecord::Schema.define(:version => 20110131164021) do
 
   create_table "feedbacks", :force => true do |t|
     t.string   "name"
@@ -74,6 +74,11 @@ ActiveRecord::Schema.define(:version => 20110127151500) do
     t.datetime "updated_at"
     t.text     "summary"
     t.integer  "repository_id"
+  end
+
+  create_table "pages_repositories", :id => false, :force => true do |t|
+    t.integer "page_id"
+    t.integer "repository_id"
   end
 
   create_table "repositories", :force => true do |t|
