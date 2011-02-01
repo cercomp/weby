@@ -1,12 +1,7 @@
 <% unless @site.repository.nil? %>
   <div id="topimage">
-    <% repository = @site.repository %>
-
-    <% size = (@site.top_banner_width and @site.top_banner_height) ? ":size => \"#{@site.top_banner_width}x#{@site.top_banner_height}\"" : Paperclip::Geometry.from_file(repository.archive) %>
-    <% if size %>
-      <%= image_tag repository.archive.url, :alt => repository.description, :title => repository.description, :size => "#{@site.top_banner_width}x#{@site.top_banner_height}" %>
-    <% else %>
-      <%= image_tag repository.archive.url, :alt => repository.description, :title => size %>
-    <% end %>
+    <% size = (@site.top_banner_width and @site.top_banner_height) ? "#{@site.top_banner_width}x#{@site.top_banner_height}" : "#{@site.body_width}x#{@top_banner_height}" %>
+    <% size = "#{@top_banner_width}x#{@top_banner_height}" if @site.body_width.nil? %>
+    <%= image_tag @site.repository.archive.url, :alt => @site.repository.description, :title => @site.repository.description, :size => size.to_s %>
   </div>
 <% end %>

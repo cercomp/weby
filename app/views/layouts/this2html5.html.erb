@@ -10,9 +10,15 @@
   <%= stylesheet_link_tag 'this2html5' %>
   <%= stylesheet_link_tag 'will_paginate' %>
 </head>
-<%= raw @site.body_width ? "<body style='width:#{@site.body_width}px'>" : "<body>" %>
+<% if @site.body_width %>
+  <body style='width:<%= "#{@site.body_width}" %>px'>
+<% elsif @top_banner_width %>
+  <body style='width:<%= "#{@top_banner_width}" %>px'>
+<% else %>
+  <body>
+<% end %>
+
   <%#= debug(session) %>
-    
   <%= render :partial => "sites/viewCover" %>
   <header>
     <nav>
