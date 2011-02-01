@@ -83,6 +83,8 @@ en:
   last_request: "Last request at"
   layout: "Layout"
   left: "Left"
+  link: "Link"
+  list: "List %{param}"
   listing: "Listing %{param}"
   localization: "Localization"
   logged: "logged"
@@ -91,7 +93,6 @@ en:
   logout: "Logout"
   logout_success: "Logged out successfully!"
   login_count: "Login Count"
-  list: "List %{param}"
   look_changed: "Appearence was changed."
   
 #---M---#
@@ -288,16 +289,38 @@ en:
       _all:
         created_at: "Created at"
         updated_at: "Updated at"
+      event:
+         title: "Title"
+         local: "Local"
+      feedback:
+          name: "Name"
+          email: "Email"
+          subject: "Subject"
+          message: "Message"
+      group:
+          name: "Name"
       history:
          title: "Title"
          content: "Content"
+      menu:
+        title: "Title"
+      news:
+        title: "Title"
+        source: "Source"
+      newsletter:
+        title: "Title"
+        url: "Url"
+      repository:
+        description: "Descrição"
+        archive: "Arquivo"
+      site:
+        name: "Name"
       user:
         login: "User name"
         password: "Password"
         password_confirmation: "Confirm password"
         user_extended_name: "Name"
-      site:
-        name: "Name"
+
     errors:
       template:
         header:
@@ -311,8 +334,8 @@ en:
         invalid: "Invalid"
         confirmation: "confirmation is not equivalent"
         accepted: "acception required"
-        empty: "Must be completed"
-        blank: "Must be completed"
+        empty: "must be completed"
+        blank: "must be completed"
         too_long: "very long (can not use use more than %{count} characters)"
         too_short: "very short (can not use less than %{count} characters)"
         wrong_length: "wrong length (%{count} characters required)"
