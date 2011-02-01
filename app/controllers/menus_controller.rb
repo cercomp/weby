@@ -29,19 +29,22 @@ class MenusController < ApplicationController
 
   def create
     @menu = Menu.new(params[:menu])
-    @menu.save
     if @menu.save 
-      flash[:notice] =  t("successfully_created")
+      flash[:notice] = t("successfully_created")
+      redirect_back_or_default site_menus_path(@site, @menu, :side => @menu.sites_menus[0].side)
     else
-      flash[:error] = @menu.errors.full_messages
+      respond_with(@site, @menu)
     end
-    redirect_back_or_default :site_id => @menu.sites[0].name, :controller => "menus", :action => "index", :side => @menu.sites_menus[0].side
   end
 
   def update
     @menu = Menu.find(params[:id])
-    @menu.update_attributes(params[:menu])
-    redirect_back_or_default :site_id => @menu.sites[0].name, :controller => "menus", :action => "index", :side => @menu.sites_menus[0].side
+    if @menu.update_attributes(params[:menu])
+      flash[:notice] = t("successfully_updated")
+      redirect_back_or_default site_menus_path(@site, @menu, :side => @menu.sites_menus[0].side)
+    else
+      respond_with(@site, @menu)
+    end 
   end
 
   def destroy

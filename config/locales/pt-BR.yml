@@ -53,6 +53,7 @@ pt-BR:
   edit: "Editar"
   error_updating_object: "Erro ao atualizar objeto"
   example_param: "Exemplo: %{param}"
+  expires: "Expira em"
 
 #---F---#
   feedback: "Fale Conosco"

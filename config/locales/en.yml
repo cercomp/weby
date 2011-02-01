@@ -50,6 +50,7 @@ en:
   edit: "Edit"
   error_updating_object: "Error updating object"
   example_param: "Example: %{param}"
+  expires: "Expires"
 
 #---F---#
   feedback: "Feedback"

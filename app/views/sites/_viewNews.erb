@@ -13,7 +13,7 @@
       <h2> <%= raw page.summary %> </h2>
       <h3> <%= raw page.text %> </h3>
       <p> <h3> <%= page.url %> </h3> </p>
-      <p> Expira em: <%= l page.date_end_at, :format => :short %></p>
+      <p> <%= t"expires" %>: <%= l page.date_end_at, :format => :short %></p>
 
       <%= link_to t("edit"), edit_site_page_path(@site, page) %> | <%= link_to t("back"), :back %>
     <div class="clear" /></div>
