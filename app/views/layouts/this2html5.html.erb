@@ -37,6 +37,13 @@
     </nav>
   </aside>
   
+  <aside class="right">
+    <nav>
+      <%= raw print_menu(@right) %>
+    </nav>
+    <%= render :partial => "sites/viewNewsletter"  %>     
+  </aside>		
+
   <section id="content">
     <div id="flash_messages">
       <%= raw flash_message %>
@@ -59,22 +66,15 @@
     </div>
 
     <%= yield %>
-  </section>
-  
-  <aside class="right">
-    <nav>
-      <%= raw print_menu(@right) %>
-    </nav>
-    <%= render :partial => "sites/viewNewsletter"  %>     
-  </aside>		
+  </section> 
   
   <footer class="clear">
     <nav>
       <%= raw print_menu(@bottom) %>
-      <nav class="right">
-        <%= link_to t("feedback"), new_site_feedback_path(@site), :class => 'icon icon-add' %>
-      </nav>
       <div class="clear" /></div>
+    </nav>
+    <nav class="right">
+      <%= link_to t("feedback"), new_site_feedback_path(@site), :class => 'icon icon-add' %>
     </nav>
     <section id="info">
       <%= raw @site.footer %>

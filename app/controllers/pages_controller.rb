@@ -30,6 +30,7 @@ class PagesController < ApplicationController
   def edit
     @repositories = Repository.where(["site_id = ? AND archive_content_type LIKE ?", @site.id, "image%"]).paginate :page => params[:page], :order => 'created_at DESC', :per_page => 4 
     @page = Page.find(params[:id])
+    params[:type] ||= @page.type
   end
 
   def create

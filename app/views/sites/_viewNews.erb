@@ -1,17 +1,20 @@
 <% news = News.where(["front=1 and site_id = ? and date_begin_at <= ? and date_end_at > ?", @site.id, Time.now, Time.now]).limit(7).order("date_begin_at").all %>
+
 <% if !@site.nil? and !news.empty? %>
-  <div id="News" style="float:left;">
-  <h2><%= t("news", :count => 2) %> </h2>
   <% news.each do |page| %>
-    <p>
-      <b><%= page.title %></b>
+    <div id="pages">
       <% unless page.repository.nil? %>
-        <%= image_tag("#{page.repository.archive.url(:little)}", :size => "180x180") %>
+        <%= link_to image_tag("#{page.repository.archive.url}", :size => "180x180"), page.url.to_s, :alt => page.repository.description, :title => page.repository.description %>
       <% end %>
-    </p>
-    <%= raw page.summary %>
-		<br/>
+
+      <p> <h1> <%= page.title %> </h1> </p>
+      <p> <i><%= page.user.login %>, <%= l page.created_at, :format => :short  %>.</i> </p>
+      <h2> <%= raw page.summary %> </h2>
+      <h3> <%= raw page.text %> </h3>
+      <p> <h3> <%= page.url %> </h3> </p>
+
+      <%= link_to t("edit"), edit_site_page_path(@site, page) %> | <%= link_to t("back"), :back %>
+    </div>
   <% end %>
-  </div>							
 <% end %>
 

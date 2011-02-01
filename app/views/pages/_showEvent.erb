@@ -1,21 +1,16 @@
 <fieldset>
   <div id="pages">
-      <p> <h1> <%= @page.title %> </h1> </p>
-
     <% unless @page.repository.nil? %>
-      <a href="<%= @page.repository.archive.url %>" alt="<%= @page.repository.description %>">
-        <%= image_tag("#{@page.repository.archive.url}", :size => "200x200", :align => "right") %>
-      </a>
+      <%= link_to image_tag("#{@page.repository.archive.url}", :size => "200x200", :align => "right"), @page.url, :alt => @page.repository.description, :title => @page.repository.description %>
     <% end %>
 
+    <p> <h1> <%= @page.title %> </h1> </p>
     <i> <%= l @page.created_at, :format => :short %> </i>
-
     <p> <h2> <%= raw @page.summary %> </p>
     <p> <%= @page.local %> </h2> </p>
     <p> <h3> <%= raw @page.text %> </h3> </p>
     <p> <h3> <b> <%= t("source") %> <%= @page.source %> </h3> </b> </p>
 
-    <%= link_to t("edit"), :controller => 'pages', :action => 'edit', :id => @page.id, :type => 'Event'%> |
-    <%= link_to t("back"), site_pages_path()%>
+    <%= link_to t("edit"), edit_site_page_path(@site, @page) %> | <%= link_to t("back"), :back %>
   </div>
 </fieldset>
