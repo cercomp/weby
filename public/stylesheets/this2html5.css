@@ -105,8 +105,12 @@ section#content {
       font-size: 15px;
       line-height: 100%;
       color: #696969; }
-    #pages a img { float: right; }
     #pages p { }
+
+    #pages #left { background-color: #FFF; }
+    #pages #left a img { float: left; padding-right: 15px; }
+    #pages #right { background-color: #F6F7F8; }
+    #pages #right a img { float: right; padding-left: 15px; }
 
 /* Classes to help build layout */
 .clear { clear: both; }

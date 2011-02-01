@@ -13,8 +13,9 @@ class PagesController < ApplicationController
   end
 
   def show
-    #@page = Page.find(params[:id])
-    @page = Object.const_get(params[:type]).find(params[:id]) if params[:type]
+    @page = Page.find(params[:id])
+    #@page = Object.const_get(params[:type]).find(params[:id]) if params[:type]
+    params[:type] ||= @page.type
     respond_with(@page)
   end
 
@@ -43,7 +44,8 @@ class PagesController < ApplicationController
     #@page = Object.const_get(params[:type]).find(params[:id])
     @page = Page.find(params[:id])
     @page.update_attributes(params[@page.class.name.underscore])
-    respond_with(@page, :location => site_pages_path(:type => params[:type]))
+    #respond_with(@page, :location => site_pages_path(:type => params[:type]))
+    redirect_to site_page_path(@site, @page)
   end
 
   def destroy

@@ -1,20 +1,24 @@
-<% news = News.where(["front=1 and site_id = ? and date_begin_at <= ? and date_end_at > ?", @site.id, Time.now, Time.now]).limit(7).order("date_begin_at").all %>
+<% news = Page.where(["front=1 and site_id = ? and date_begin_at <= ? and date_end_at > ?", @site.id, Time.now, Time.now]).limit(7).order("date_begin_at").all %>
 
 <% if !@site.nil? and !news.empty? %>
-  <% news.each do |page| %>
-    <div id="pages">
+  <div id="pages">
+  <% news.each do |page| %> 
+    <div id="<%= cycle 'left', 'right' %>">
       <% unless page.repository.nil? %>
         <%= link_to image_tag("#{page.repository.archive.url}", :size => "180x180"), page.url.to_s, :alt => page.repository.description, :title => page.repository.description %>
       <% end %>
 
       <p> <h1> <%= page.title %> </h1> </p>
-      <p> <i><%= page.user.login %>, <%= l page.created_at, :format => :short  %>.</i> </p>
+      <p> <i><%= page.user.login %>, <%= l page.created_at, :format => :short %>.</i> </p>
       <h2> <%= raw page.summary %> </h2>
       <h3> <%= raw page.text %> </h3>
       <p> <h3> <%= page.url %> </h3> </p>
+      <p> Expira em: <%= l page.date_end_at, :format => :short %></p>
 
       <%= link_to t("edit"), edit_site_page_path(@site, page) %> | <%= link_to t("back"), :back %>
+    <div class="clear" /></div>
     </div>
-  <% end %>
+  <% end; reset_cycle %>
+  </div>
 <% end %>
 
