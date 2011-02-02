@@ -19,6 +19,10 @@ class AdminController < ApplicationController
     if @repositories.empty?
       flash.now[:warning] = (t"none_param", :param => t("picture"))
     end
+    respond_with do |format|
+      format.js #{ render :partial => 'form' }
+      format.html
+    end
   end
 
   def update

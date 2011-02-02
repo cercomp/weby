@@ -1,7 +1,19 @@
 <fieldset>
   <legend><%= (t"editing", :param => (t"site", :count => 1)) %></legend>
+  <center>
+    <% menus_list = [[t("picture"), "image"], [t("pdf"), "pdf"]] %>
+    <%= form_tag edit_site_admin_path(@site, @site), :method => 'get', :remote => true do %>
+      <%= label_tag t("search") %>
+      <%= text_field_tag :search %>
+      <%= select_tag(:type, options_for_select(menus_list, selected = "#{params[:type]}")) %>
+      <%= submit_tag t("submit") %>
+    <% end %>
+  </center>
+  <hr>
 
-  <%= render 'form' %>
+  <div id='form'>
+    <%= render 'form' %>
+  </div>
 
   <%= link_to t('back'), :back %>
 </fieldset>
