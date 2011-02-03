@@ -20,7 +20,12 @@ class AdminController < ApplicationController
       flash.now[:warning] = (t"none_param", :param => t("picture"))
     end
     respond_with do |format|
-      format.js #{ render :partial => 'form' }
+      format.js { 
+        render :update do |page|
+          page.call "$('#form').html", render(:partial => 'form', :locals => { :f => SemanticFormBuilder.new(:site, @site, self, {}, proc{}) })
+          #page.replace_html 'form', :partial => 'form'
+        end
+      }
       format.html
     end
   end

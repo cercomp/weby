@@ -1,32 +1,3 @@
-<%= form_for @site, :builder => SemanticFormBuilder do |f| %>
-  <% if @site.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@site.errors.count, "") %> <%= t"prohibited_being_saved", :count => @site.errors.count %>:</h2>
-      <ul>
-      <% @site.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="contextual">
-    <%= link_to (t"new_param", :param => (t"archive", :count => 1)), new_site_repository_path, :class => 'icon icon-add' %> 
-  </div>
   <% unless @repositories.nil? %>
-  <%= f.radio_button_group :top_banner_id, @repositories.map{|u| { :value => u.id, :image => u.archive.url, :alt => u.description, :title => u.description }}, (will_paginate @repositories, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next")), :label => t("picture"), :help => t("picture") %>
+  <%= f.radio_button_group :top_banner_id, @repositories.map{|u| { :value => u.id, :image => u.archive.url, :alt => u.description, :title => u.description }}, (will_paginate @repositories, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax'), :label => t("picture"), :help => t("picture") %>
   <% end %>
-
-  <%= f.text_field :body_width, :label => t("body_width"), :help => (t"example_param", :param => "960") %><br />
-  <% unless @site.repository.nil? %>
-    <%= f.text_field :top_banner_width, :label => t("top_banner_width"), :help => (t"example_param", :param => "960") %><br />
-    <%= f.text_field :top_banner_height, :label => t("top_banner_height"), :help => (t"example_param", :param => "101") %><br />
-  <% end %>
-  <%= f.text_field :name, :label => t("name"), :required => true, :help => t("field_required") %><br />
-  <%= f.text_field :url, :label => "URL", :required => true, :help => t("field_required") %><br />
-  <%= f.text_area :description, :label => t("description"), :size => "48x8", :help => t("site_comments") %><br />
-	<%= f.text_area :footer, :value => (@site.footer.nil? ? t("footer_text") : @site.footer), :class => "mceSimple", :label => t("footer"), :size => "48x10"%>
-
-  <%= f.submit t("submit") %>
-<% end %>
-

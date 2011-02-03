@@ -2,7 +2,6 @@ class RepositoriesController < ApplicationController
   layout :choose_layout, :except => [:show]
  
   respond_to :html, :xml, :js
-
   def manage
     @repositories = @site.repositories.paginate :page => params[:page], :order => 'created_at DESC', :per_page => 10
     respond_with(@repositories)
@@ -10,7 +9,14 @@ class RepositoriesController < ApplicationController
 
   def index
     @repositories = @site.repositories.paginate :page => params[:page], :order => 'created_at DESC', :per_page => 5
-    respond_with(@repositories)
+    respond_with do |format|
+      format.js { 
+        render :update do |page|
+          page.call "$('#repo_list').html", render(:partial => 'repo_list')
+        end
+      }
+      format.html
+    end
   end
 
   def show

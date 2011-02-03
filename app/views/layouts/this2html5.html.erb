@@ -82,6 +82,13 @@
   </footer>
 
   <%= javascript_include_tag :defaults %>
+  <%= javascript_tag do %>
+    //ajax search
+    $('.pagination a').live('click',function (){
+      $.getScript(this.href);
+      return false;
+    });
+  <% end %>
   <!--[if lt IE 9]>
     <%= javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js" %>
     <%= javascript_include_tag "http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js" %>

@@ -1,0 +1,32 @@
+
+    <%= will_paginate @repositories, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax' %>
+    <table class='list'>
+      <thead>
+        <th><%= t("archive.other") %></th>
+        <th> ID </th>
+        <th><%= t("description") %></th>
+        <th></th>
+      </thead>
+      <tbody>    
+      <% @repositories.each do |repository| %>
+        <tr class="<%= cycle 'odd', 'even' %>">
+          <% unless repository.archive_content_type.include?("image") %>
+            <%if repository.archive_content_type.include?("pdf") %>
+              <td><%= image_tag "/images/pdf_file.png", :size => "80x80" %></td>
+            <% else %>	
+              <td><%= image_tag "/images/arquivo.gif", :size => "80x80" %></td>
+            <% end %>	
+          <% else %>
+            <td><%= image_tag repository.archive.url, :size=>"80x80" %></td>
+          <% end %>
+          <td> <%= repository.id %></td>
+          <td> <%= repository.description %></td>
+          <td>
+            <%= link_to t("show"), site_repository_path(:id => repository.id) %>
+            <%= link_to t("edit"), edit_site_repository_path(:id => repository.id) %>
+            <%= link_to t("destroy"), site_repository_path(:id => repository.id), :confirm => t("are_you_sure"), :method => :delete %>
+          </td>
+        </tr>
+      <% end; reset_cycle %>
+      </tbody>
+    </table>
