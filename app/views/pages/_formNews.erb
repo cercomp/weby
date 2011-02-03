@@ -2,3 +2,6 @@
   <%= f.text_field :source, :label => t("source"), :required => true, :help => t("field_required") %> 
   <%= f.text_field :url, :label => t("url") %>
   <%= f.check_box :front , :label => t("cover"), :help => "A notícia é capa?" %>
+  <div>
+    <%= raw show_repositories_list %>
+  </div>

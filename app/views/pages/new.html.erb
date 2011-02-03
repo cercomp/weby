@@ -41,6 +41,7 @@
     <%= render :partial => "form" + params[:type], :locals => {:f => f} %>
     <%= f.submit (t"create_param", :param => (t"#{params[:type].downcase}.one")) %>
     <div> <%= link_to t("back"), site_pages_path()%> </div>
+
   <% end %>
 
 </fieldset>
