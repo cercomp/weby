@@ -37,7 +37,7 @@ module SemanticFormHelper
     field.html_safe
   end
 
-  def check_box_tag_group(name, values, options = {})
+  def check_box_tag_group(name, values, will, obj, options = {})
     selections = []
     values.each do |item|
       if item.is_a?(Hash)
@@ -48,11 +48,10 @@ module SemanticFormHelper
         value = item
         text = item
       end
-      box = check_box_tag(name, value)
+      box = check_box_tag(name, value, obj.include?(item[:obj]))
       selections << boolean_field_wrapper(box, name, value, text)
     end
     label = options[:label]
-    semantic_group("check-box", name, label, selections, options)    
+    semantic_group("check-box", name, label, selections, will, options) 
   end      
-
 end

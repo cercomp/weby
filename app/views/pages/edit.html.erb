@@ -12,13 +12,16 @@
         </ul>
       </div>
     <% end %> 
-    <%= link_to t("back"), site_pages_path()%>
+
+    <%= link_to t("back"), :back %>
+
     <div class="contextual">
       <%= link_to (t"new_param", :param => (t"archive", :count => 1)), new_site_repository_path, :class => 'icon icon-add' %> 
     </div>
-    <% unless @repositories.nil? %>
-      <%= f.radio_button_group :repository_id, @repositories.map{|u| { :value => u.id, :image => u.archive.url, :alt => u.description, :title => u.description }}, (will_paginate @repositories, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next")), :label => t("picture"), :help => t("picture") %>
-    <% end %>
+
+    <div id='repo_list'>
+      <%= render :partial => 'repo_list', :locals => { :f => f } %>
+    </div>
 
     <%= f.datetime_select :date_begin_at, :order => [:year, :month, :day], :use_month_numbers => true, :label =>  (t"date_param", :param => t("begin")), :start_year => Time.now.year %>
     <%= f.datetime_select :date_end_at, :order => [:year, :month, :day], :use_month_numbers => true, :label => (t"date_param", :param => t("end")), :start_year => Time.now.year %>
@@ -29,10 +32,18 @@
     <%= f.text_field :title, :label => t("title"), :required => true, :help => t("field_required")  %>
     <%= f.text_area :text, :label => t("text"), :class => "mceAdvance", :size => "48x10" %>
 
-    <%= render :partial => "form" + params[:type], :locals => {:f => f} %>
+    <%= render :partial => "form" + params[:type], :locals => { :f => f } %>
+  
+    <div id='files_list'>
+      <%= render :partial => 'files_list' %>
+    </div>
 
     <%= f.submit_and_cancel t("save"), "cancel" %>
-    <div> <%= link_to t("back"), site_pages_path()%> </div>
+    <%= link_to t("back"), :back %>
+
+    <div class="contextual">
+      <%= link_to (t"new_param", :param => (t"archive", :count => 1)), new_site_repository_path, :class => 'icon icon-add' %> 
+    </div>
   <% end %>
 
 </fieldset>

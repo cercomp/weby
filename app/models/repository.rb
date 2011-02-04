@@ -5,7 +5,9 @@ class Repository < ActiveRecord::Base
   belongs_to :site
 
 	has_one :page
-	has_and_belongs_to_many :pages
+	
+  has_many :pages_repositories
+  has_many :pages, :through => :pages_repositories
 
   validates_presence_of :description
   has_attached_file :archive, :styles => { :medium => "300X300", :little =>"190X140"}, :url => "/uploads/:site_id/:style_:basename.:extension"

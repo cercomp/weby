@@ -97,7 +97,7 @@ class SemanticFormBuilder < ActionView::Helpers::FormBuilder
     semantic_group("radio", field_name, label, selections, will, options)
   end
   
-  def check_box_group(method, values, options = {})
+  def check_box_group(method, values, will, options = {})
     selections = []
     values.each do |value|
       if value.is_a?(Hash)
@@ -111,11 +111,9 @@ class SemanticFormBuilder < ActionView::Helpers::FormBuilder
         value_text = value
       end
       check_box = @template.check_box(@object_name, method, options.merge(:object => @object), checked_value, unchecked_value)
-      selections << boolean_field_wrapper(
-                        check_box, "#{@object_name}_#{method.to_s}",
-                        checked_value, value_text)
+      selections << boolean_field_wrapper(check_box, "#{@object_name}_#{method.to_s}", checked_value, value_text)
     end
     field_name, label, options = field_settings(method, options)
-    semantic_group("check-box", field_name, label, selections, options)    
+    semantic_group("check-box", field_name, label, selections, will, options)    
   end
 end

@@ -84,7 +84,6 @@ form div.submit-field {
   form div.textarea-field div.input,
   form div.time-zone-select-field div.input,
   form div.submit-field div.input {
-    float: left;
     clear: right;
     text-align: left;
     width: auto;
@@ -104,7 +103,7 @@ form div.submit-field {
   form div.submit-field label {
     float: left;
     display: block;
-    width: 8em;
+    width: 20%;
     padding-right: 10px;
     text-align: right; }
     form div.check-box-field label span.help,
