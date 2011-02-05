@@ -52,9 +52,7 @@
     <div id="menu_admin">
       <%= link_to t("portal"), root_path %> |
       <%= link_to t("home"), @site %> |
-      <% if check_permission(AdminController, "index") %>
-        <%= link_to t("admin"), site_admin_index_path(@site) %> |
-      <% end %>
+      <%= link_to t("admin"), site_admin_index_path(@site) %> |
       <% if !current_user %>
         <%= link_to t("register"), new_user_path %> |
         <%= link_to t("login"), login_path %> |

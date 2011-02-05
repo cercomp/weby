@@ -69,12 +69,12 @@ aside { width: 155px; position: relative; }
     aside.right menu li { padding: 0 5px 0 0; }
     aside.right menu li > a { text-align: right; }
     aside.right menu li.sub > a { background: url("../images/arrow_collapsed_right.png") no-repeat scroll #FFF; background-position: 5px center; }
-    aside.right menu li.sub:hover > menu { left: -155px; }
+    aside.right menu li.sub:hover > menu { left: -155px; z-index: 1 }
 
     aside.left menu li { padding: 0 0 0 5px; z-index: 1;}
     aside.left menu li > a { text-align: left; }
     aside.left menu li.sub > a { background: url("../images/arrow_collapsed.png") no-repeat scroll #FFF; background-position: 125px center;}
-    aside.left menu li.sub:hover > menu { right: -155px; }
+    aside.left menu li.sub:hover > menu { right: -155px; z-index: 1 }
 
 /* Define content area */
 section#content {
