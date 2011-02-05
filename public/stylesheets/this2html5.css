@@ -5,7 +5,6 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 html { background: white; }
 body {
   font-family: Verdana, sans-serif; 
-  font-size: 12px; 
   color:#484848;
   width: auto;
   margin: 0 auto; }
@@ -90,14 +89,14 @@ section#content {
     padding-right:10px;
     padding-left:10px; }
     #pages h1 {
-      font-size: 14px;
+      font-size: 160%;
       color: #1C1C1C; }
     #pages h2 {
       line-height: 100%;
       color: #2F4F4F;
-      font-size: 15px; }
+      font-size: 140%; }
     #pages h3 {
-      font-size: 15px;
+      font-size: 120%;
       line-height: 100%;
       color: #696969; }
     #pages p { }

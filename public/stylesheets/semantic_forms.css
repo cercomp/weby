@@ -1,7 +1,6 @@
 /* Start Forms */
 form fieldset {
-  max-width: 100%;
-  font-size: 12px; }
+  max-width: 100%; }
 form fieldset legend,
 form label,
 form input,
@@ -9,7 +8,6 @@ form select,
 form select option,
 form textarea {
   font-family: Georgia;
-  font-size: 14px;
   font-color: #000; }
 form label {
   line-height: 1.8em; }
@@ -19,14 +17,12 @@ form textarea {
   border-top: 2px solid #999999;
   border-left: 2px solid #999999;
   border-right: 2px solid #cccccc;
-  border-bottom: 2px solid #cccccc;
-  font-size: 14px; }
+  border-bottom: 2px solid #cccccc; }
 form input[type=text],
 form input[type=password],
 form textarea {
   width: auto; }
-form select {
-  font-size: 13px;}
+form select { }
 form input[type=submit],
 form input[type=button] {
   background: #229316;
@@ -69,8 +65,7 @@ form div.submit-field {
   clear: both;
   margin: 0;
   padding: 10px 0;
-  border-bottom: 1px solid #cccccc;
-  font-size: 12px; }
+  border-bottom: 1px solid #cccccc; }
   form div.check-box-field div.input,
   form div.check-box-fields div.input,
   form div.date-field div.input,
@@ -127,7 +122,6 @@ form div.submit-field {
 form div.submit-field {
   border: none; }
 form div.submit-field div.input {
-  font-size: 12px;
   margin-left: 12em; }
 form div.check-box-fields div.input label,
 form div.radio-fields div.input label {
