@@ -85,9 +85,7 @@ section#content {
     font-family: Verdana;
     font-weight: Normal;
     padding-top:5px;
-    padding-bottom:5px;
-    padding-right:10px;
-    padding-left:10px; }
+    padding-bottom:5px; }
     #pages h1 {
       font-size: 160%;
       color: #1C1C1C; }
@@ -110,4 +108,17 @@ section#content {
 .clear { clear: both; }
 .left { float: left; }
 .right { float: right; }
+
+table.zebra tr:nth-child(2n+2) { background-color: #F6F7F8; }
+table.fullwidth { width: 100%; }
+table.border,
+table.border th,
+table.border td {
+  border-collapse: collapse;
+  border: 1px solid #DDD;
+}
+
+table th,
+table td { padding: 5px; }
+table th { font-size: 13px; }
 

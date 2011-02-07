@@ -163,6 +163,7 @@ pt-BR:
   role: "Papel"
   roles: "Papéis"
   roles_permissions: "Permissões e Papéis"
+  read_more: "Leia mais ..."
  
 #---S---#
   save: "Salvar"
