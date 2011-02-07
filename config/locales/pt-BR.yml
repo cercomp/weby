@@ -170,6 +170,7 @@ pt-BR:
     one: "Configuração"
     other: "Configurações"
   select_param: "Selecionar %{param}"   
+  select_site: "Selecione um site"
   show: "Mostrar"
   side: "Lado"
   site_id: "Site ID"

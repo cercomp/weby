@@ -1,0 +1,18 @@
+<fieldset>
+  <legend><%= t "select_site" %></legend>
+
+  <table class='list'>
+    <thead>
+      <th><%= t"name" %></th>
+      <th><%= t"action" %></th>
+    </thead>
+    <tbody>
+    <% @sites.each do |site| %>
+      <tr class="<%= cycle 'odd', 'even' %>">
+        <td> <%= link_to site.name, manage_roles_site_users_path(site) %> </td>
+        <td> <%= link_to t('select_param', :param => ''), manage_roles_site_users_path(site) %> </td>
+      </tr>
+    <% end; reset_cycle %>
+    </tbody>
+  </table>
+</fieldset>

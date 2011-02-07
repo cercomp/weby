@@ -73,13 +73,13 @@ class UsersController < ApplicationController
   def manage_roles
     # Se a ação for selecionada para um site:
     unless @site.nil?
-      @users = User.paginate :page => params[:page], :order => 'id DESC', :per_page => 10
+      @users = User.find(:all)
+      @users_unroled = @users - @site.users
       @roles = Role.find(:all, :order => "id")
 
     else
-      @users = User.paginate :page => params[:page], :order => 'id DESC', :per_page => 10
-      @roles = Role.find(:all, :select => 'id,name,theme', :group => "name,id,theme", :order => "id")
-      render :index
+      @sites = Site.find(:all)
+      render :select_site
     end
   end
   

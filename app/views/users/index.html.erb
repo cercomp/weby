@@ -27,11 +27,15 @@
       <% if check_permission(UsersController, "change_roles") %>
       <!--td>
       <%= form_tag({:controller => "users", :action => "change_roles"}, :method => "get") do %>
-        <% @roles.each do |role| %> 
-          <% if current_user && !user.role_ids.empty? %> 
-            <% ok = role.name == Role.find(user.role_ids.join).name ? true : false %>
-						<% ok = 1 %>
+        <% @roles.each do |role| %>
+          <%# Verfica se o usuário possui o papel %>
+          <% if current_user && !user.role_ids.empty? %>
+            <% ok = !user.role_ids.index(role.id).nil? %>
+
+            <%= debug ok %>
+
           <% end %>
+
           <%= hidden_field_tag "user_id", user.id %>
           <%= radio_button_tag "role_id", role.id, ok %>
           <%= role.name %>

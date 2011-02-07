@@ -167,6 +167,7 @@ en:
     one: "Setting"
     other: "Settings"
   select_param: "Select %{param}"
+  select_site: "Select a site"
   show: "Show"
   side: "Side"
   site_id: "Site ID"

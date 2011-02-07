@@ -1,6 +1,6 @@
+<%# TODO escrever traduções %>
 <h1>Gerenciar papeis</h1>
 
-<% # TODO separar entre visualização global e por site %>
 <table class="list">
 
   <thead>
@@ -14,14 +14,14 @@
   <tbody>
     <% @site.users.uniq.each do |user| %>
       <tr class="<%= cycle 'odd', 'even' %>">
-        <td><%= user.login %></td>
+        <td><%= link_to user.login, user %></td>
 
         <td>
           <span id="user-<%= user.id %>">
             <%= user.roles.map(&:name).join(', ') %>
           </span>
           
-          <form id="form-user-<%= user.id %>" style="display: block;">
+          <form id="form-user-<%= user.id %>" style="display: none;">
             <p>
               <% @roles.each do |role| %>
                 <label>
@@ -31,22 +31,24 @@
                 <br />
               <% end %>
             </p>
+            <%= submit_tag 'Enviar' %>
           </form>
         </td>
 
-        <td></td>
+        <td><%= link_to_function t('edit'), "$('#form-user-#{user.id}').hide(); $('#form-user-#{user.id}').show(); return false;" %></td>
       </tr>
     <% end %>
   </tbody>
 
 </table>
 
-<h2>Todos os Usuarios</h2>
+<% unless @users_unroled.empty? %>
+<h2>Cadastrar novo usuário</h2>
 
 <%= form_tag change_roles_site_users_path(@site), :method => "post", :id => "subscribe_users" %>
 
   <div id="_left">
-    <% (@users - @site.users).each do |user| %>
+    <% @users_unroled.each do |user| %>
       <label>
         <%= check_box_tag 'user[id]', user.id %>
         <%= user.login %>
@@ -70,3 +72,6 @@
   </div>
 </form>
 
+<% else %>
+<h2>Nenhum usuário para cadastrar</h2>
+<% end %>
