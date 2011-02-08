@@ -1,7 +1,6 @@
 <fieldset>
   <div id="pages">
     <% unless @page.repository.nil? %>
-      <%#= link_to image_tag("#{@page.repository.archive.url}", :size => "200x200", :align => "right"), @page.url, :alt => @page.repository.description, :title => @page.repository.description %>
       <%= link_to image_tag("#{@page.repository.archive.url}", :align => "right"), @page.url, :alt => @page.repository.description, :title => @page.repository.description %>
     <% end %>
 
@@ -11,23 +10,26 @@
     <h3> <%= raw @page.text %> </h3>
     <p> <h3> <%= @page.url.nil? ? "#{@page.source}" : (link_to @page.source , @page.url) %> </h3> </p>
 
-    <table class="list">
-      <thead bgcolor = white>
-        <th><%= t"related_files" %></th>
-        <th><%= t"size" %></th>
-        <th> MD5 </th>
-      </thead>
-      <tbody>    
-      <% @page.repositories.each do |repository| %>
-        <tr class="<%= cycle 'odd', 'even' %>">
-        <td><%= link_to repository.description, repository.archive.url %></td>
-        <td><%= repository.archive_file_size.to_i/1024 %> KB</td>
-        <td><%= Digest::MD5.hexdigest ("#{repository.archive.url}") %></td>
-        </tr>
-      <% end; reset_cycle %>
-      </tbody>
-    </table>
-    <br />
+    <% unless @page.repositories.empty? %>
+      <table class="list">
+        <thead bgcolor = white>
+          <th><%= t"related_files" %></th>
+          <th><%= t"size" %></th>
+          <th> MD5 </th>
+        </thead>
+        <tbody>    
+        <% @page.repositories.each do |repository| %>
+          <tr class="<%= cycle 'odd', 'even' %>">
+          <td><%= link_to repository.description, repository.archive.url %></td>
+          <td><%= repository.archive_file_size.to_i/1024 %> KB</td>
+          <td><%= Digest::MD5.hexdigest ("#{repository.archive.url}") %></td>
+          </tr>
+        <% end; reset_cycle %>
+        </tbody>
+      </table>
+      <br />
+    <% end %>
+
     <%= link_to t("edit"), edit_site_page_path(@site, @page) %> | <%= link_to t("back"), :back %>
   </div>
 </fieldset>
