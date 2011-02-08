@@ -1,0 +1,19 @@
+.barra_ufg { 
+  background: #ccc;
+  font-family: Tahoma, sans-serif;
+  font-size: 12pt;
+  width: 100%; }
+  .barra_ufg .barra_ufg_box { padding: 1px 10px; }
+    .barra_ufg .barra_ufg_box img {
+      vertical-align: bottom;
+      padding-right: 5px; }
+    .barra_ufg .barra_ufg_box select {
+      float: right;
+      width: 150px;
+      height: 21px; }
+    .barra_ufg .barra_ufg_box a {
+      text-decoration: none;
+      color: #000; }
+    .barra_ufg .barra_ufg_box a:hover {
+      text-decoration: underline;
+      color: #000; }
