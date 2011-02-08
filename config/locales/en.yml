@@ -151,6 +151,8 @@ en:
   registered_menu:
     one: "Registered Menu"
     other: "Registered Menus"
+  related_files: "Related files"
+  related_files_help: "Will be related to the listing of the page"
   remember_me: "Remember me"
   remove: "remove %{param}"
   reset_mail: "Instructions to reset your password have been emailed to you. Please check your email."
@@ -172,6 +174,7 @@ en:
   show: "Show"
   side: "Side"
   site_id: "Site ID"
+  size: "Size"
   source: "Source"
   status: "Status"
   subject: "Subject"
