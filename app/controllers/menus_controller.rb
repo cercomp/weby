@@ -31,7 +31,7 @@ class MenusController < ApplicationController
     @menu = Menu.new(params[:menu])
     if @menu.save 
       flash[:notice] = t("successfully_created")
-      redirect_back_or_default site_menus_path(@site, @menu, :side => @menu.sites_menus[0].side)
+      redirect_back_or_default site_menus_path(@site, :side => @menu.sites_menus[0].side)
     else
       respond_with(@site, @menu)
     end
@@ -41,7 +41,7 @@ class MenusController < ApplicationController
     @menu = Menu.find(params[:id])
     if @menu.update_attributes(params[:menu])
       flash[:notice] = t("successfully_updated")
-      redirect_back_or_default site_menus_path(@site, @menu, :side => @menu.sites_menus[0].side)
+      redirect_back_or_default site_menus_path(@site, :side => @menu.sites_menus[0].side)
     else
       respond_with(@site, @menu)
     end 
@@ -61,10 +61,13 @@ class MenusController < ApplicationController
       @ch_pos_new.save
       @ch_pos_old.save
       flash[:notice] = t"successfully_updated"
+    elsif params[:position]
+      @ch_pos_new.position = params[:position]
+      @ch_pos_new.save
     else
       flash[:error] = t"error_updating_object"
     end
-    redirect_back_or_default :controller => "menus", :action => "index", :side => @ch_pos_new.side
+    redirect_back_or_default site_menus_path(@site, :side => @ch_pos_new.side)
   end
 
   def to_site
@@ -121,7 +124,7 @@ class MenusController < ApplicationController
       format.html {redirect_to :controller => 'menus', :action => 'to_site'}
     end
   end
-  # Remove um item de menu
+  # Remove iten(s) do menu
   def rm_menu
     @rm_menu = SitesMenu.find(params[:id])
     if @rm_menu  

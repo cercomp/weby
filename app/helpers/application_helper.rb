@@ -49,12 +49,14 @@ module ApplicationHelper
       # Se existir um position nulo ele será organizado e todos do seu nível
       if entry.position.nil? or entry.position.to_i < 1
         sons[entry.parent_id].each_with_index do |item, idx|
-          mm = SitesMenu.find(item.id)
-          mm.update_attribute(:position, idx+1)
-          entry.position = idx+1 if item.id == entry.id
+          #menus += " (item.id:#{item.id} entry.id:#{entry.id} idx:#{idx+1}) "
+          if item.id == entry.id
+           entry.update_attribute(:position, idx+1)
+            entry.position = idx+1
+          end
         end
       end
-      #menus += " #{entry.id} (#{entry.position}) "
+      #menus += " [ id:#{entry.id} pos:#{entry.position} ]" # Para debug
       menus += indent_space + link_to(image_tag('editar.gif', :border => 0), edit_site_menu_path(@site.name, entry.menu_id))
       menus += indent_space + link_to(image_tag('subitem.gif', :border => 0), new_site_menu_path(@site.name, :parent_id => entry.id))
       menus += indent_space + link_to(image_tag('setaup.gif', :border => 0), {:controller => 'menus', :action => 'change_position', :id => entry.id, :position => (entry.position.to_i - 1)}, :method => :get) if entry.position.to_i > 1
