@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Webyge</title>
+  <title> <%= @site.name %> </title>
   <meta charset="utf-8">
   <%= csrf_meta_tag %>
   <%= stylesheet_link_tag 'scaffold' %>
@@ -10,6 +10,7 @@
   <%= stylesheet_link_tag 'this2html5' %>
   <%= stylesheet_link_tag 'will_paginate' %>
 </head>
+
 <% if @site.body_width %>
   <body style='width:<%= "#{@site.body_width}" %>px'>
 <% elsif @top_banner_width %>
@@ -27,28 +28,26 @@
         <%= link_to image_tag("flag_uk.png", :size => "24x12"), :locale => "en" %>
         <%= link_to image_tag("flag_br.png", :size => "24x12"), :locale => "pt-BR" %>
       </nav>
-      <div class="clear" /></div>
+      <div class="clear"> </div>
     </nav>
   </header>
-  
+
   <aside class="left">
     <nav>
       <%= raw print_menu(@left) %>
     </nav>
   </aside>
-  
+
   <aside class="right">
     <nav>
       <%= raw print_menu(@right) %>
     </nav>
-    <%= render :partial => "sites/viewNewsletter"  %>     
-  </aside>		
+    <%= render :partial => "sites/viewNewsletter"  %>
+  </aside>
 
   <section id="content">
-    <div id="flash_messages">
-      <%= raw flash_message %>
-    </div>
-    
+    <%= raw flash_message %>
+
     <div id="menu_admin">
       <%= link_to t("portal"), root_path %> |
       <%= link_to t("home"), @site %> |
@@ -64,12 +63,12 @@
     </div>
 
     <%= yield %>
-  </section> 
-  
+  </section>
+
   <footer class="clear">
     <nav>
       <%= raw print_menu(@bottom) %>
-      <div class="clear" /></div>
+      <div class="clear"></div>
     </nav>
     <nav class="right">
       <%= link_to t("feedback"), new_site_feedback_path(@site), :class => 'icon icon-add' %>

@@ -82,28 +82,28 @@ section#content {
   padding: 5px;
   padding-top: 0;
   overflow: hidden; }
-  #pages {
+  section#content section#pages {
     font-family: Verdana;
     font-weight: Normal;
     padding-top:5px;
     padding-bottom:5px; }
-    #pages h1 {
+    section#content section#pages h1 {
       font-size: 160%;
       color: #1C1C1C; }
-    #pages h2 {
+    section#content section#pages h2 {
       line-height: 100%;
       color: #2F4F4F;
       font-size: 140%; }
-    #pages h3 {
+    section#content section#pages h3 {
       font-size: 120%;
       line-height: 100%;
       color: #696969; }
-    #pages p { }
+    section#content section#pages p { }
 
-    #pages #left { background-color: #FFF; }
-    #pages #left a img { float: left; padding-right: 15px; }
-    #pages #right { background-color: #F6F7F8; }
-    #pages #right a img { float: right; padding-left: 15px; }
+    section#content section#pages .left { background-color: #FFF; }
+    section#content section#pages .left a img { float: left; padding-right: 15px; }
+    section#content section#pages .right { background-color: #F6F7F8; }
+    section#content section#pages .right a img { float: right; padding-left: 15px; }
 
 /* Classes to help build layout */
 .clear { clear: both; }

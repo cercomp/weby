@@ -1,8 +1,9 @@
-<% news = Page.where(["front=1 and site_id = ? and date_begin_at <= ? and date_end_at > ?", @site.id, Time.now, Time.now]).limit(7).order("date_begin_at").all %>
+<% frontnews = Page.where(["front=1 and site_id = ? and date_begin_at <= ? and date_end_at > ?", @site.id, Time.now, Time.now]).limit(7).order("date_begin_at").all %>
+<% nofrontnews = Page.where(["front=0 and site_id = ? and date_begin_at <= ? and date_end_at > ?", @site.id, Time.now, Time.now]).limit(7).order("date_begin_at").all %>
 
-<% if !@site.nil? and !news.empty? %>
-  <div id="pages">
-  <% news.each do |page| %> 
+<% unless frontnews.empty? %>
+  <section id="pages">
+  <% frontnews.each do |page| %> 
     <div id="<%= cycle 'left', 'right' %>">
       <% unless page.repository.nil? %>
         <%#= link_to image_tag("#{page.repository.archive.url}", :size => "180x180"), page.url.to_s, :alt => page.repository.description, :title => page.repository.description %>
@@ -24,15 +25,14 @@
     <div class="clear" /></div>
     </div>
   <% end; reset_cycle %>
-  </div>
+  </section>
 <% end %>
 
-<% othernews = Page.where(["front=0 and site_id = ? and date_begin_at <= ? and date_end_at > ?", @site.id, Time.now, Time.now]).limit(7).order("date_begin_at").all %>
 
-<% if !@site.nil? and !othernews.empty? %>
+<% unless nofrontnews.empty? %>
   <table class="border fullwidth zebra">
     <tr> <th> <%= t "page", :count => 2 %> </th> </tr>
-    <% othernews.each do |page| %>
+    <% nofrontnews.each do |page| %>
       <tr>
         <td>
           <p> <b> <%= link_to page.title, site_page_path(@site, page) %> </b> </p>

@@ -1,13 +1,13 @@
 <!--  TODO: Usar variável para limitar o número de eventos 	-->
 <% newsletter = Newsletter.where(["site_id = ? and date_begin_at <= ? and date_end_at > ?", @site.id, Time.now, Time.now]).limit(5).order("date_begin_at").all %>
-<% if !@site.nil? and !newsletter.empty? %>
-  <div id="Newsletter">
+<% unless newsletter.empty? %>
+  <section id="newsletter">
   <% newsletter.each do |page| %> 
     <% unless page.repository.nil? %>
       <%= image_tag("#{page.repository.archive.url(:little)}", :size => "155x100") %>
     <% end %>
-    <%= raw page[:summary] %>															
+    <%= raw page[:summary] %>
   <% end %>
-  </div>	
+  </section>
 <% end %>
 

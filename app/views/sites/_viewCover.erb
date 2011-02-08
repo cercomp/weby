@@ -2,6 +2,6 @@
   <div id="topimage">
     <% size = (@site.top_banner_width and @site.top_banner_height) ? "#{@site.top_banner_width}x#{@site.top_banner_height}" : "#{@site.body_width}x#{@top_banner_height}" %>
     <% size = "#{@top_banner_width}x#{@top_banner_height}" if @site.body_width.nil? %>
-    <%= image_tag @site.repository.archive.url, :alt => @site.repository.description, :title => @site.repository.description, :size => size.to_s %>
+    <%= link_to image_tag(@site.repository.archive.url, :alt => @site.repository.description, :title => @site.repository.description, :size => size.to_s), @site %>
   </div>
 <% end %>
