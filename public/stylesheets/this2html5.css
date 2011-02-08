@@ -40,9 +40,10 @@ footer { }
     footer nav menu li menu li menu { margin-left: 0px; margin-top: 0px; }
     header nav menu li a,
     footer nav menu li a { background: #fff; display: block; line-height: 25px; margin: 0; padding-left: 10px; width: 90px; text-overflow: ellipsis; }
-    /* TODO: Mudar as setas para serem usadas no contexto */
     header nav menu li.sub > a,
     footer nav menu li.sub > a { background: url("../images/arrow_collapsed.png") no-repeat scroll #fff; background-position: 80px center; }
+    header nav > menu > li.sub > a { background: url("../images/arrow_expanded.png") no-repeat scroll #fff; background-position: 80px center; }
+    footer nav > menu > li.sub > a { background: url("../images/arrow_expanded_up.png") no-repeat scroll #fff; background-position: 80px center; }
 
       header nav menu li:hover > menu { top: 26px; }
       header nav menu li:hover menu li:hover > menu { top: -1px; }
