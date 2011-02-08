@@ -2,8 +2,7 @@
 class UsersController < ApplicationController
   layout :choose_layout
 
-  before_filter :require_user, :only => [:edit, :show, :update, :destroy, :change_status, :change_roles, :change_theme]
-  before_filter :require_no_user, :only => [:new, :create]
+  before_filter :require_user, :only => [:edit, :show, :update, :destroy, :change_status, :change_roles, :change_theme, :index]
   before_filter :check_authorization, :except => [:new, :create, :update, :edit, :show]
 
   respond_to :html, :xml

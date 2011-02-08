@@ -52,12 +52,6 @@ class MenusController < ApplicationController
     @menu.destroy
     respond_with(@menu)
   end
-  # Remove um item de menu
-  def rm_menu
-    @rm_menu = SitesMenu.find(params[:id])
-    @rm_menu.destroy
-    redirect_to :back, :notice => t("successfully_deleted")
-  end
   # Altera a ordenação do menu
   def change_position
     @ch_pos_new = SitesMenu.find(params[:id])
@@ -127,5 +121,37 @@ class MenusController < ApplicationController
       format.html {redirect_to :controller => 'menus', :action => 'to_site'}
     end
   end
+  # Remove um item de menu
+  def rm_menu
+    @rm_menu = SitesMenu.find(params[:id])
+    if @rm_menu  
+        ary_for_del = del_deep(@menus_all[@rm_menu.side], @rm_menu.id)
+        ary_for_del.each do |item|
+          item.destroy
+      end
+    end
+    @rm_menu.destroy
+    redirect_to :back, :notice => t("successfully_deleted")
+  end
 
+  private
+  def del_deep(obj, pos)
+    res ||= []
+    unless obj[pos].nil?
+      obj[pos].each do |child|
+        del_deep_entry(obj, child, res)
+      end
+      res.flatten
+    end
+    res
+  end
+  def del_deep_entry(obj, child, res)
+    res << child
+    if obj[child.id].class.to_s == "Array"
+      obj[child.id].each do |sub_child|
+        del_deep_entry(obj, sub_child, res)
+      end
+    end
+    res
+  end
 end

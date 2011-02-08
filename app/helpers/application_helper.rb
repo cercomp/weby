@@ -6,13 +6,13 @@ module ApplicationHelper
     @session_user ||= User.find(:first, :conditions => ['id = ?', session[:user]])
   end
 
-  def menu_change_status(ctrl, user ,obj, parameter)
+  def menu_change_status(ctrl, user, obj, parameter)
     menu = ""
     if current_user.is_admin || check_permission(ctrl, "change_status")
       if obj != true or !obj
-        menu << (link_to image_tag("false.png", :title => t("activate_deactivate"), :alt => "Inativo"), :url => { :action => "change_status", :id => user.id, :status => 1, :field => parameter })
+        menu << (link_to image_tag("false.png", :title => t("activate_deactivate"), :alt => "Inativo"), :url => { :action => "change_status", :id => user.id, :status => true, :field => parameter })
       else
-        menu << (link_to image_tag("true.png", :title =>  t("activate_deactivate"), :alt => "Ativo"), :url => { :action => "change_status", :id=> user.id, :status => 0, :field => parameter })
+        menu << (link_to image_tag("true.png", :title =>  t("activate_deactivate"), :alt => "Ativo"), :url => { :action => "change_status", :id=> user.id, :status => false, :field => parameter })
       end
     else
       if obj != true or !obj
@@ -28,9 +28,9 @@ module ApplicationHelper
   # Retorna: O menu com seus controles
   def print_menu(sons, view_ctrl=0)
     menus ||= ""
-    unless sons["0"].nil?
+    unless sons[0].nil?
       menus += "\n<menu>"
-      sons["0"].each do |child|
+      sons[0].each do |child|
         menus += print_menu_entry(sons, child, view_ctrl, 1)
       end
       menus += "\n</menu>\n"
@@ -41,21 +41,20 @@ module ApplicationHelper
   def print_menu_entry(sons, entry, view_ctrl, indent=0)
     indent_space = " " * indent
     indent += 2
-    submenu = (not sons["#{entry.id}"].nil?) ? "class='sub'" : nil
+    submenu = (not sons[entry.id].nil?) ? "class='sub'" : nil
 
     menus ||= ""
-    menus += "\n" + indent_space + "<li #{submenu}>" + link_to("#{entry.title}", "#{entry.link}")
+    menus += "\n" + indent_space + "<li #{submenu}>" + link_to("#{entry.menu.title}", "#{entry.menu.link}")
     if view_ctrl == 1
       # Se existir um position nulo ele será organizado e todos do seu nível
       if entry.position.nil? or entry.position.to_i < 1
         sons[entry.parent_id].each_with_index do |item, idx|
-          if item.parent_id == entry.parent_id
-            mm = SitesMenu.find(item.id)
-            mm.update_attribute(:position, idx+1)
-          end
+          mm = SitesMenu.find(item.id)
+          mm.update_attribute(:position, idx+1)
+          entry.position = idx+1 if item.id == entry.id
         end
       end
-      menus += " (#{entry.position}) "
+      #menus += " #{entry.id} (#{entry.position}) "
       menus += indent_space + link_to(image_tag('editar.gif', :border => 0), edit_site_menu_path(@site.name, entry.menu_id))
       menus += indent_space + link_to(image_tag('subitem.gif', :border => 0), new_site_menu_path(@site.name, :parent_id => entry.id))
       menus += indent_space + link_to(image_tag('setaup.gif', :border => 0), {:controller => 'menus', :action => 'change_position', :id => entry.id, :position => (entry.position.to_i - 1)}, :method => :get) if entry.position.to_i > 1
@@ -63,8 +62,8 @@ module ApplicationHelper
       menus += indent_space + link_to(image_tag('apagar.gif', :border => 0), {:controller => 'menus', :action => 'rm_menu', :id => entry.id}, :confirm => t('are_you_sure'), :method => :get)
     end
     menus += "\n" + indent_space + " <menu>" unless submenu.nil?
-    if sons["#{entry.id}"].class.to_s == "Array"
-      sons["#{entry.id}"].each do |child|
+    if sons[entry.id].class.to_s == "Array"
+      sons[entry.id].each do |child|
         menus += print_menu_entry(sons, child, view_ctrl, indent+1)
       end
     end
@@ -166,7 +165,7 @@ module ApplicationHelper
     menu
   end
 
-  def adminnav site=nil
+  def adminnav(site=nil)
     adminnav = "<nav id=\"admin\">\n\t"
     adminnav << link_to( t("portal"), root_path )
     adminnav += " | \n\t"
@@ -189,7 +188,7 @@ module ApplicationHelper
     else
       adminnav << link_to( t("my_profile"), user_path(current_user) )
       adminnav += " | \n\t"
-      adminnav << link_to( t("logout"), logout_path, :confirm => "Are you sure that you want to logout?" )
+      adminnav << link_to( t("logout"), logout_path, :confirm => t("are_you_sure") )
       adminnav += "\n\t"
     end
 

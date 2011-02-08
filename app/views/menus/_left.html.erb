@@ -1,4 +1,4 @@
-<% if @left.nil? %>
+<% if @left.empty? %>
   <p> <%= "Nenhum menu esquerdo" %> </p>
 <% else %>
   	<%= raw print_menu(@left, 1) %>

@@ -1,4 +1,4 @@
-<% if @top.nil? %>
+<% if @top.empty? %>
   <p> <%= "Nenhum menu superior" %> </p>
 <% else %>
   	<%= raw print_menu(@top, 1) %>
