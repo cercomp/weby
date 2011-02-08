@@ -271,6 +271,8 @@ pt-BR:
     submit:
       create: "Criar %{model}"
       update: "Confirmar mudanças para %{model}"
+    save: "Salvar"
+    cancel: "Cancelar"
 
   authlogic:
     error_messages:

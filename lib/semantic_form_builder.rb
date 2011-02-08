@@ -67,10 +67,10 @@ class SemanticFormBuilder < ActionView::Helpers::FormBuilder
     field_name, label, options = field_settings(method, options.merge( :label => "&nbsp;"))
     wrapping("submit", field_name, label, super, options)
   end
-  
+
   def submit_and_cancel(submit_name, cancel_name, options = {})
     submit_button = @template.submit_tag(submit_name, options)
-    cancel_button = @template.submit_tag(cancel_name, options)
+    cancel_button = @template.submit_tag(cancel_name, options.merge( :id => "btnCancel"))
     wrapping("submit", nil, "", submit_button+cancel_button, options)
   end
   

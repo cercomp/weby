@@ -266,6 +266,8 @@ en:
     submit:
       create: "Create a %{model}"
       update: "Confirm changes to %{model}"
+    save: "Save"
+    cancel: "Cancel"
 
   authlogic:
     error_messages:

@@ -11,6 +11,23 @@
     <p> <h3> <%= raw @page.text %> </h3> </p>
     <p> <h3> <b> <%= t("source") %> <%= @page.source %> </h3> </b> </p>
 
+    <table class="list">
+      <thead bgcolor = white>
+        <th><%= t"related_files" %></th>
+        <th><%= t"size" %></th>
+        <th> MD5 </th>
+      </thead>
+      <tbody>    
+      <% @page.repositories.each do |repository| %>
+        <tr class="<%= cycle 'odd', 'even' %>">
+        <td><%= link_to repository.description, repository.archive.url %></td>
+        <td><%= repository.archive_file_size.to_i/1024 %> KB</td>
+        <td><%= Digest::MD5.hexdigest ("#{repository.archive.url}") %></td>
+        </tr>
+      <% end; reset_cycle %>
+      </tbody>
+    </table>
+    <br />
     <%= link_to t("edit"), edit_site_page_path(@site, @page) %> | <%= link_to t("back"), :back %>
   </div>
 </fieldset>
