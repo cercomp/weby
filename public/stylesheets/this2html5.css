@@ -100,10 +100,10 @@ section#content {
       color: #696969; }
     section#content section#pages p { }
 
-    section#content section#pages .left { background-color: #FFF; }
-    section#content section#pages .left a img { float: left; padding-right: 15px; }
-    section#content section#pages .right { background-color: #F6F7F8; }
-    section#content section#pages .right a img { float: right; padding-left: 15px; }
+    section#content section#pages .pageleft { background-color: #F6F7F8; }
+    section#content section#pages .pageleft a img { float: left; padding-right: 15px; }
+    section#content section#pages .pageright { background-color: #FFF; }
+    section#content section#pages .pageright a img { float: right; padding-left: 15px; }
 
 /* Classes to help build layout */
 .clear { clear: both; }
@@ -116,10 +116,10 @@ table.border,
 table.border th,
 table.border td {
   border-collapse: collapse;
-  border: 1px solid #DDD;
+  border: 1px solid silver;
 }
 
 table th,
-table td { padding: 5px; }
+table td { padding: 3px; }
 table th { font-size: 13px; }
 
