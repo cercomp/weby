@@ -48,19 +48,7 @@
   <section id="content">
     <%= raw flash_message %>
 
-    <div id="menu_admin">
-      <%= link_to t("portal"), root_path %> |
-      <%= link_to t("home"), @site %> |
-      <%= link_to t("admin"), site_admin_index_path(@site) %> |
-      <% if !current_user %>
-        <%= link_to t("register"), new_user_path %> |
-        <%= link_to t("login"), login_path %> |
-      <% else %>
-        <%= link_to t("my_profile"), user_path(current_user) %> |
-        <%= link_to t("logout"), logout_path, :confirm => "Are you sure that you want to logout?" %>
-      <% end %>
-      <%= User.logged_in.count %> <%= (t"user", :count => User.logged_in.count) %> <%= t("logged") %>.
-    </div>
+    <%= raw adminnav(@site) %>
 
     <%= yield %>
   </section>

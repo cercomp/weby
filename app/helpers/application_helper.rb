@@ -166,4 +166,36 @@ module ApplicationHelper
     menu
   end
 
+  def adminnav site=nil
+    adminnav = "<nav id=\"admin\">\n\t"
+    adminnav << link_to( t("portal"), root_path )
+    adminnav += " | \n\t"
+
+    if site
+      adminnav << link_to( t("home"), site )
+      adminnav += " | \n\t"
+      adminnav << link_to( t("admin"), site_admin_index_path(site) )
+      adminnav += " | \n\t"
+    else
+      adminnav << link_to( t("admin"), admin_index_path )
+      adminnav += " | \n\t"
+    end
+
+    unless current_user
+      adminnav << link_to( t("register"), new_user_path )
+      adminnav += " | \n\t"
+      adminnav << link_to( t("login"), login_path )
+      adminnav += " | \n\t"
+    else
+      adminnav << link_to( t("my_profile"), user_path(current_user) )
+      adminnav += " | \n\t"
+      adminnav << link_to( t("logout"), logout_path, :confirm => "Are you sure that you want to logout?" )
+      adminnav += "\n\t"
+    end
+
+    adminnav << User.logged_in.count.to_s + ' ' + t('user', :count => User.logged_in.count) + ' ' + t('logged') + ".\n"
+    adminnav += "</nav>"
+    adminnav
+  end
+
 end

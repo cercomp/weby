@@ -20,23 +20,7 @@
   </header>
 
   <section id="content">
-    <nav id="administrator" class="left">
-      <%= link_to t("portal"), root_path %> |
-      <% if check_permission(AdminController, "index") %>
-        <%= link_to t("admin"), admin_index_path %> |
-      <% end %>
-      <% if !current_user %>
-        <%= link_to t("register"), new_user_path %> |
-        <%= link_to t("login"), login_path %> |
-      <% else %>
-        <%= link_to t("my_profile"), user_path(current_user) %> |
-        <%= link_to t("logout"), logout_path, :confirm => "Are you sure that you want to logout?" %>
-      <% end %>
-    </nav>
-    <section id="info" class="right">
-      <%= User.logged_in.count %> <%= (t"user", :count => User.logged_in.count) %> <%= t("logged") %>.
-    </section>
-    <div style="clear: both;" />
+    <%= raw adminnav %>
     <%= yield %>
   </section>
   

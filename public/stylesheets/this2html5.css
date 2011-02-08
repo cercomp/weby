@@ -82,10 +82,10 @@ section#content {
   padding: 5px;
   padding-top: 0;
   overflow: hidden; }
+  section#content nav#admin { padding-bottom: 5px; }
   section#content section#pages {
     font-family: Verdana;
     font-weight: Normal;
-    padding-top:5px;
     padding-bottom:5px; }
     section#content section#pages h1 {
       font-size: 160%;
