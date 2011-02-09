@@ -17,7 +17,6 @@
     <div class="contextual">
       <%= link_to (t"new_param", :param => (t"archive", :count => 1)), new_site_repository_path, :class => 'icon icon-add' %> 
     </div>
-
     <div id='repo_list'>
       <%= render :partial => 'repo_list', :locals => { :f => f } %>
     </div>

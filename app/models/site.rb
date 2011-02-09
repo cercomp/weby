@@ -17,6 +17,9 @@ class Site < ActiveRecord::Base
 
   has_many :sites_pages
   has_many :pages, :through => :sites_pages
+  
+  has_many :sites_banners
+  has_many :banners, :through => :sites_banners
 
   has_many :groups
   has_many :feedbacks

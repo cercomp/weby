@@ -23,6 +23,9 @@ en:
   begin: "Begin"  
   bottom: "Bottom"
   body_width: "Body width"
+  banner:
+    one: "Banner"
+    other: "Banners"
   
 #---C---#
   chief_editor: "Chief Editor"
@@ -68,6 +71,8 @@ en:
 
 #---H---#
   home: "Home"
+  hide: "Hidden?"
+  height: "Height"
 
 #---I---#
   ip: "ip"
@@ -84,8 +89,10 @@ en:
   layout: "Layout"
   left: "Left"
   link: "Link"
-  list: "List %{param}"
-  listing: "Listing %{param}"
+  list: "List"
+  list_param: "List %{param}"
+  listing: "Listing"
+  listing_param: "Listing %{param}"
   localization: "Localization"
   logged: "logged"
   login: "Login"
@@ -143,6 +150,8 @@ en:
     one: " error, prevent you from proceeding"
     other: " errors, prevent you from proceeding"
   portal: "Portal"
+  publish: "Publish"
+
 #---Q---#
 
 #---R---#
@@ -224,6 +233,7 @@ en:
   value: "Value" 
 
 #---W---# 
+  width: "Width"
   
 #--- Other locales ---#
   date:

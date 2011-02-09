@@ -10,7 +10,7 @@ class RemoveJoinTables < ActiveRecord::Migration
       t.integer :user_id
       t.integer :role_id
 
-      t;timestamps
+      t.timestamps
     end
 
     create_table :sites_users do |t|

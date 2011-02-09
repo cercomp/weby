@@ -24,6 +24,9 @@ pt-BR:
   begin: "Início"
   bottom: "Inferior"
   body_width: "Largura do site"
+  banner:
+    one: "Banner"
+    other: "Banners"
   
 #---C---#
   chief_editor: "Editor chefe"
@@ -71,6 +74,8 @@ pt-BR:
 
 #---H---#
   home: "Página inicial"
+  hide: "Ocultar?"
+  height: "Altura"
 
 #---I---#
   ip: "ip"
@@ -87,8 +92,10 @@ pt-BR:
   layout: "Leiaute"
   left: "Esquerdo"
   link: "Link"
-  list: "Listar %{param}"
-  listing: "Listando %{param}"
+  list: "Lista"
+  list_param: "Listar %{param}"
+  listing: "Listando"
+  listing_param: "Listando %{param}"
   localization: "Local de realização"
   logged: "logado"
   login: "Entrar"
@@ -145,6 +152,7 @@ pt-BR:
     one: " erro, impede que você prossiga"
     other: " erros, impedem que você prossiga"
   portal: "Portal"
+  publish: "Publicar"
 
 #---Q---#
 
@@ -228,7 +236,7 @@ pt-BR:
   value: "Valor"
 
 #---W---#
-  
+  width: "Largura"
   
 #--- Other locales ---#
   date:

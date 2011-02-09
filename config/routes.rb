@@ -18,6 +18,11 @@ Webyge::Application.routes.draw do |map|
         post :link_site, :unlink_site
       end 
     end
+    resources :banners do 
+      member do 
+        get :publish, :unpublish
+      end 
+    end
     
    resources :groups, :feedbacks, :pages, :chats, :roles, :rights, :archives, :admin
   end
