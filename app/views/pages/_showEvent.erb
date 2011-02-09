@@ -24,8 +24,7 @@
           <td><%= link_to repository.description, repository.archive.url %></td>
           <td><%= repository.archive_file_size.to_i/1024 %> KB</td>
           <td><% remove_trash = "#{repository.archive.url}".index('?') - 1 %>
-          <% open_file = "public"+"#{repository.archive.url}"[0..remove_trash] %>
-          <%= Digest::MD5.file(File.open("#{open_file}", "rb")) %></td>
+          <%= Digest::MD5.file(File.open("public"+"#{repository.archive.url}"[0..remove_trash], "rb")) %></td>
           </tr>
         <% end; reset_cycle %>
         </tbody>
