@@ -27,8 +27,10 @@ class UsersController < ApplicationController
 =end
     
     params[:role_ids] ||= []
+    user_ids = []
+    user_ids.push(params[:user][:id]).flatten!
 
-    params[:user][:id].each do |id|
+    user_ids.each do |id|
       user = User.find(id)
 
       # limpa os papeis do usuário
