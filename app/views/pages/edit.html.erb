@@ -18,6 +18,9 @@
     <div class="contextual">
       <%= link_to (t"new_param", :param => (t"archive", :count => 1)), new_site_repository_path, :class => 'icon icon-add' %> 
     </div>
+    <div id="div_event">
+      <%= render :partial => "formEvent", :locals => {:f => f} %>
+    </div>
 
     <div id='repo_list'>
       <%= render :partial => 'repo_list', :locals => { :f => f } %>
@@ -26,14 +29,18 @@
     <%= f.datetime_select :date_begin_at, :order => [:year, :month, :day], :use_month_numbers => true, :label =>  (t"date_param", :param => t("begin")), :start_year => Time.now.year %>
     <%= f.datetime_select :date_end_at, :order => [:year, :month, :day], :use_month_numbers => true, :label => (t"date_param", :param => t("end")), :start_year => Time.now.year %>
 
-    <%= f.hidden_field :position %>
-    <%= f.hidden_field :status %>
-    <%= f.hidden_field :author_id %>
     <%= f.text_field :title, :label => t("title"), :required => true, :help => t("field_required")  %>
     <%= f.text_area :text, :label => t("text"), :class => "mceAdvance", :size => "48x10" %>
 
-    <%= render :partial => "form" + params[:type], :locals => { :f => f } %>
-  
+    <%= f.text_area :summary, :label => t("summary"), :class => "mceSimple", :size => "48x8" %>
+    <%= f.text_field :source, :label => t("source"), :required => true, :help => t("field_required") %> 
+    <%= f.text_field :url, :label => t("url") %>
+    <%= f.check_box :front , :label => t("cover"), :help => "A notícia é capa?" %>
+
+    <%= f.hidden_field :position %>
+    <%= f.hidden_field :status %>
+    <%= f.hidden_field :author_id %>
+
     <div id='files_list'>
       <%= render :partial => 'files_list' %>
     </div>

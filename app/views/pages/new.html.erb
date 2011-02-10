@@ -1,5 +1,5 @@
 <fieldset>
-  <legend><%= t"new" %> <%= (t"#{params[:type].downcase}", :count => 1) %></legend>
+  <legend><%= t"new" %> <%= (t"page.one") %></legend>
 
   <%= form_for [@site, @page], :url => site_pages_path(:type => params[:type]), :html => { :multipart => true }, :builder => SemanticFormBuilder do |f| %>
     <% if @page.errors.any? %>
@@ -17,6 +17,10 @@
     <div class="contextual">
       <%= link_to (t"new_param", :param => (t"archive", :count => 1)), new_site_repository_path, :class => 'icon icon-add' %> 
     </div>
+    <div id="div_event">
+      <%= render :partial => "formEvent", :locals => {:f => f} %>
+    </div>
+
     <div id='repo_list'>
       <%= render :partial => 'repo_list', :locals => { :f => f } %>
     </div>
@@ -24,13 +28,17 @@
     <%= f.hidden_field :created_at, :order => [:year, :month, :day], :use_month_numbers => true, :label => (t"date_param", :param => t("register")), :start_year => Time.now.year %>
     <%= f.datetime_select :date_begin_at, :order => [:year, :month, :day], :use_month_numbers => true, :label =>  (t"date_param", :param => t("begin")), :start_year => Time.now.year %>
     <%= f.datetime_select :date_end_at, :order => [:year, :month, :day], :use_month_numbers => true, :label => (t"date_param", :param => t("end")), :start_year => Time.now.year %>
-    <%= f.hidden_field :position %>
-    <%= f.hidden_field :status %>
-    <%= f.hidden_field :author_id, :value => "#{@current_user.id}"%>
     <%= f.text_field :title, :label => t("title"), :required => true, :help => t("field_required")  %>
     <%= f.text_area :text, :label => t("text"), :class => "mceAdvance", :size => "48x10" %>
 
-    <%= f.hidden_field :type, :value => params[:type] %>
+    <%= f.text_area :summary, :label => t("summary"), :class => "mceSimple", :size => "48x8" %>
+    <%= f.text_field :source, :label => t("source"), :required => true, :help => t("field_required") %> 
+    <%= f.text_field :url, :label => t("url") %>
+    <%= f.check_box :front , :label => t("cover"), :help => "A notícia é capa?" %>
+
+    <%= f.hidden_field :position %>
+    <%= f.hidden_field :status %>
+    <%= f.hidden_field :author_id, :value => "#{@current_user.id}"%>
     <%= f.hidden_field :site_id, :value => @site.id %>
 
     <%= f.fields_for :sites_pages do |pages_form| %>
@@ -38,13 +46,11 @@
       <%= pages_form.hidden_field :page_id, :value => @page.id %>
     <% end %>
 
-    <%= render :partial => "form" + params[:type], :locals => {:f => f} %>
-
     <div id='files_list'>
       <%= render :partial => 'files_list' %>
     </div>
 
-    <%= f.submit (t"create_param", :param => (t"#{params[:type].downcase}.one")) %>
+    <%= f.submit (t"create_param", :param => (t"page.one")) %>
 
     <%= link_to t("back"), :back %>
 
@@ -52,5 +58,4 @@
       <%= link_to (t"new_param", :param => (t"archive", :count => 1)), new_site_repository_path, :class => 'icon icon-add' %> 
     </div>
   <% end %>
-
 </fieldset>

@@ -1,61 +1,23 @@
 <fieldset>
   <legend><%= t"list_param", :param => (t"page", :count => 2)  %></legend>
 
-  <p> <%= link_to (t"news", :count => 2), site_pages_path(:type => 'News'), :class => 'simple_box' %> </p>
-  <p> <%= link_to (t"event", :count => 2), site_pages_path(:type => 'Event'), :class => 'simple_box' %> </p>
-
   <% if params[:type] %>
     <div class="contextual">
       <p> 
-        <%= link_to (t"create_param", :param => (t"#{params[:type].downcase}", :count => 1)), 
-          {:controller => 'pages', :action => 'new', :type => "#{params[:type]}"}, 
-          :class => 'icon icon-add' %> 
+        <%= link_to (t"create_param", :param => (t"page", :count => 1)), new_site_page_path, :class => 'icon icon-add' %> 
       </p>
     </div>
   <% end %>
 
-  <% if params[:type] == 'News' %>
-    <% unless @pages.empty? %>
-      <table class='list'>
-        <thead>
-          <th><%= "id" %></th>
-          <th><%= t"date_param", :param => t("register")%></th>
-          <th><%= t"date_param", :param => t("publication")%></th>
-          <th><%= t"title" %></th>
-          <th><%= t"author" %></th>
-          <th></th>
-        </thead>
-        <tbody>
-        <% @pages.each do |page| %>
-          <tr class="<%= cycle 'odd', 'even' %>">
-            <td><%= page.id %></td>
-            <td><%= l page.created_at, :format => :short %></td>
-            <td><%= l page.date_begin_at, :format => :short %></td>
-            <td><%= page.title %></td>
-            <td><%= page.user.login %></td>
-            <td>
-              <% if params[:site_id] %>
-                <%= link_to t("show"), site_page_path(@site, page, :type => params[:type]) %>
-                <%= link_to t("edit"), edit_site_page_path(@site, page, :type => params[:type]) %>
-                <%= link_to t("destroy"), {:controller => 'pages', :action => 'destroy', :id => page}, :confirm => t("are_you_sure"), :method => :delete %>
-              <% end %>
-            </td>
-          </tr>
-        <% end; reset_cycle %>
-        </tbody>
-      </table>
-    <% else %>
-      <% flash.now[:warning] = (t"none_param", :param => (t"#{params[:type].downcase}", :count => 1)) %>
-    <% end %>
-  <% elsif params[:type] == 'Event' %>
-    <% unless @pages.empty? %>
+  <% unless @pages.empty? %>
     <table class='list'>
       <thead>
         <th><%= "id" %></th>
-        <th><%= t"date_param", :param => t("register") %></th>
+        <th><%= t"date_param", :param => t("register")%></th>
         <th><%= t"date_param", :param => t("publication")%></th>
         <th><%= t"title" %></th>
         <th><%= t"author" %></th>
+        <th><%= t"type" %></th>
         <th></th>
       </thead>
       <tbody>
@@ -66,21 +28,19 @@
           <td><%= l page.date_begin_at, :format => :short %></td>
           <td><%= page.title %></td>
           <td><%= page.user.login %></td>
-          <td>          
+          <td><%= t"#{page.type.downcase}", :count => 1 %></td>
+          <td>
             <% if params[:site_id] %>
-              <%= link_to t("show"), site_page_path(@site, page, :type => params[:type]) %>
-              <%= link_to t("edit"), edit_site_page_path(@site, page, :type => params[:type]) %>
-              <%= link_to t("destroy"),  {:controller => 'pages', :action => 'destroy', :id => page } , :confirm => t("are_you_sure"), :method => :delete %>
+              <%= link_to t("show"), site_page_path(@site, page) %>
+              <%= link_to t("edit"), edit_site_page_path(@site, page, :type => page.type) %>
+              <%= link_to t("destroy"), {:controller => 'pages', :action => 'destroy', :id => page}, :confirm => t("are_you_sure"), :method => :delete %>
             <% end %>
           </td>
         </tr>
       <% end; reset_cycle %>
-      <tbody>
+      </tbody>
     </table>
-    <p> <%#= link_to (t"create_param", :param => (t"event", :count => 1)), new_site_page_path(:type => "Event") if params[:site_id]%> </p>
-    <% else %>
-      <% flash.now[:warning] = (t"none_param", :param => (t"#{params[:type].downcase}", :count => 1)) %>
-    <% end %>
+  <% else %>
+    <% flash.now[:warning] = (t"none_param", :param => (t"#{params[:type].downcase}", :count => 1)) %>
   <% end %>
-
 </fieldset>

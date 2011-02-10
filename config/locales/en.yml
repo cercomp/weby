@@ -78,6 +78,7 @@ en:
   ip: "ip"
   is_admin: "Admin?"
   instructions_change_password: "Instructions to change your password"
+  is_event: "Is a event?"
 
 #---K---#
   time_cover: "capa agendada"
@@ -128,6 +129,7 @@ en:
   no_mail: "No user was found with that email address."
   no_permission_to_activate_deactivate: "You don´t have permission to Activate/Deactivate"
   none_param: "None %{param}"
+  "no": "No"
 
 #---O---#
 
@@ -215,7 +217,8 @@ en:
   top_banner: "Banner"
   top_banner_width: "Top banner width"
   top_banner_height: "Top banner height"
-  type: "Type a %{param}"
+  type: "Type"
+  type_param: "Type a %{param}"
   try_login: "Try to login first!"
 
 #---U---#
@@ -231,6 +234,9 @@ en:
 
 #---V---#
   value: "Value" 
+
+#---Y---#
+  "yes": "Yes"
 
 #---W---# 
   width: "Width"

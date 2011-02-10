@@ -81,6 +81,7 @@ pt-BR:
   ip: "ip"
   is_admin: "Admin?"
   instructions_change_password: "Instruções para trocar a senha"
+  is_event: "É um evento?"
 
 #---K---#
   time_cover: "capa agendada"
@@ -130,6 +131,7 @@ pt-BR:
   no_mail: "Nenhum usuário com esse e-mail foi econtrado." 
   no_permission_to_activate_deactivate: "Você não tem permissão para Ativar/Desativar"
   none_param: "Nenhum %{param}"
+  "no": "Não"
 
 #---O---#
 
@@ -217,7 +219,8 @@ pt-BR:
   top_banner: "Topo"
   top_banner_width: "Largura do banner principal"
   top_banner_height: "Altura do banner principal"
-  type: "Digite a %{param}"
+  type: "Tipo"
+  type_param: "Digite a %{param}"
   try_login: "Tente logar primeiro!"	
 
 #---U---#
@@ -234,6 +237,9 @@ pt-BR:
 
 #---V---#
   value: "Valor"
+
+#---Y---#
+  "yes": "Sim"
 
 #---W---#
   width: "Largura"

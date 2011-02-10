@@ -4,17 +4,15 @@ class PagesController < ApplicationController
   before_filter :check_authorization
 
   respond_to :html, :xml, :js
-
   def index 
     params[:type] ||= 'News'
  
-    @pages = Object.const_get(params[:type]).where(["site_id = ?", @site.id]).all
+    @pages = @site.pages.all
     respond_with(@pages)
   end
 
   def show
     @page = Page.find(params[:id])
-    #@page = Object.const_get(params[:type]).find(params[:id]) if params[:type]
     params[:type] ||= @page.type
     respond_with(@page)
   end
@@ -27,13 +25,14 @@ class PagesController < ApplicationController
     # Objeto para pages_repositories (relacionamento muitos-para-muitos)
     @repo_files = @site.repositories.paginate :page => params[:page_files], :order => 'created_at DESC', :per_page => 5
 
-    @page = Object.const_get(params[:type].capitalize).new
+    @page = Page.new
     @page.sites_pages.build
     @page.pages_repositories.build
     respond_with do |format|
       format.js { 
         render :update do |page|
           page.call "$('#repo_list').html", render(:partial => 'repo_list', :locals => { :f => SemanticFormBuilder.new(:page, @page, self, {}, proc{}) })
+          page.call "$('#div_event').html", render(:partial => 'formEvent', :locals => { :f => SemanticFormBuilder.new(:page, @page, self, {}, proc{}) })
         end
       }
       format.html
@@ -64,7 +63,8 @@ class PagesController < ApplicationController
   end
 
   def create
-    @page = Object.const_get(params[:type]).new(params[params[:type].downcase.to_s])
+    params[:page][:type] ||= 'News'
+    @page = Object.const_get(params[:page][:type]).new(params[:page])
     @page.save
     respond_with(@page, :location => site_pages_path(:type => params[:type]))
   end
