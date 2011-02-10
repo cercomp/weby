@@ -6,7 +6,7 @@
   <% frontnews.each do |page| %> 
     <div class="<%= cycle 'pageright', 'pageleft' %>">
       <% unless page.repository.nil? %>
-        <%= link_to image_tag("#{page.repository.archive.url}"), page.url.to_s, :alt => page.repository.description, :title => page.repository.description %>
+        <%= link_to image_tag("#{page.repository.archive.url}"), site_page_path(@site, page, :type => params[:type]), :alt => page.repository.description, :title => page.repository.description %>
       <% end %>
       <p> <h2> <%= page.title %> </h2> </p>
       <%= raw page.summary %>
