@@ -307,6 +307,10 @@ pt-BR:
       _all:
         created_at: "Criado em"
         updated_at: "Atualizado em"
+      banner:
+        title: "Título"
+        text: "Texto"
+        url: "Url"
       event:
          title: "Título"
          local: "Local"
@@ -325,9 +329,6 @@ pt-BR:
       news:
         title: "Título"
         source: "Fonte"
-      newsletter:
-        title: "Título"
-        url: "Url"
       site:
         name: "Nome"
       repository:

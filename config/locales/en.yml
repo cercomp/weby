@@ -306,6 +306,10 @@ en:
       _all:
         created_at: "Created at"
         updated_at: "Updated at"
+      banner:
+        title: "Title"
+        text: "Text"
+        url: "Url"
       event:
          title: "Title"
          local: "Local"
@@ -324,9 +328,6 @@ en:
       news:
         title: "Title"
         source: "Source"
-      newsletter:
-        title: "Title"
-        url: "Url"
       repository:
         description: "Descrição"
         archive: "Arquivo"
