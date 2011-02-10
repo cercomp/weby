@@ -63,7 +63,7 @@
 	<td>
     <% @users_unroled.each do |user| %>
       <label>
-        <%= check_box_tag 'user[id]', user.id %>
+        <%= check_box_tag 'user[id][]', user.id %>
         <%= user.login %>
       </label><br/>
     <% end %>

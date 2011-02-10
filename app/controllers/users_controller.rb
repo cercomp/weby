@@ -27,16 +27,19 @@ class UsersController < ApplicationController
 =end
     
     params[:role_ids] ||= []
-    user = User.find(params[:user][:id])
 
-    # limpa os papeis do usuário
-    user.user_site_enroled.where(:site_id => @site.id).each{ |role| role.destroy }
+    params[:user][:id].each do |id|
+      user = User.find(id)
 
-    params[:role_ids].each do |role_id|
-      user.user_site_enroled << UserSiteEnroled.new(
-                                    :site_id => @site.id,
-                                    :user_id => user.id,
-                                    :role_id => role_id)
+      # limpa os papeis do usuário
+      user.user_site_enroled.where(:site_id => @site.id).each{ |role| role.destroy }
+
+      params[:role_ids].each do |role_id|
+        user.user_site_enroled << UserSiteEnroled.new(
+                                      :site_id => @site.id,
+                                      :user_id => user.id,
+                                      :role_id => role_id)
+      end
     end
     
     redirect_to :action => 'manage_roles'
