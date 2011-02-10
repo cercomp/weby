@@ -107,6 +107,7 @@ section#content {
 
 /* Classes to help build layout */
 .clear { clear: both; }
+.center { text-align: center; }
 .left { float: left; }
 .right { float: right; }
 

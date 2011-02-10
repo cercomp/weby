@@ -40,11 +40,6 @@ Webyge::Application.routes.draw do |map|
      get :manage
     end
   end
-  resources :users do
-    collection do
-      get :manage_roles
-    end
-  end
   resources :attachments do
     collection do
      get :manage

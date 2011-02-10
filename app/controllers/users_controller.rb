@@ -25,31 +25,21 @@ class UsersController < ApplicationController
     end
     redirect_back_or_default users_path
 =end
+    
+    params[:role_ids] ||= []
+    user = User.find(params[:user][:id])
 
-    user = params[:user]
-    if user[:id] and !user[:role_ids].empty?
+    # limpa os papeis do usuário
+    user.user_site_enroled.where(:site_id => @site.id).each{ |role| role.destroy }
 
-      # Verifica se o usuário já possui o papel no site
-      # TODO mover isso para um helper
-      i = user[:role_ids].size() -1
-      while i >= 0
-        user[:role_ids].slice!(i, 1) unless UserSiteEnroled.where(:user_id => user[:id],
-                                :site_id => @site.id,
-                                :role_id => user[:role_ids][i]).empty?
-        i-=1
-      end
-
-      # Grava no banco os papel do usuário
-      user[:role_ids].each do |role_id|
-        UserSiteEnroled.create :user_id => user[:id], :site_id => @site.id, :role_id => role_id
-      end
+    params[:role_ids].each do |role_id|
+      user.user_site_enroled << UserSiteEnroled.new(
+                                    :site_id => @site.id,
+                                    :user_id => user.id,
+                                    :role_id => role_id)
     end
     
-    logger.debug params
-    logger.debug @site
-
-    manage_roles
-    render :manage_roles
+    redirect_to :action => 'manage_roles'
     
   end
 

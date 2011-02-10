@@ -23,4 +23,6 @@ class User < ActiveRecord::Base
   #has_many :feedback, :through => :feedback_users_group
   #has_many :feedback_users_group
   has_and_belongs_to_many :groups
+
+  accepts_nested_attributes_for :user_site_enroled, :allow_destroy => true
 end

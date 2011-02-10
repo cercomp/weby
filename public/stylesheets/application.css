@@ -179,26 +179,6 @@ html>body #ajax-indicator { position: fixed; }
 .icon22-settings { background-image: url(../images/22x22/settings.png); }
 .icon22-plugin { background-image: url(../images/22x22/plugin.png); }
 
-/* Formulário para a seção 'manage_roles' */
-form#subscribe_users {
-  display: block;
-  position: relative;
-  background-color: white;
-  border: 1px solid black;
-}
-  form#subscribe_users #_left {
-    width: 250px;
-    float: left;
-  }
-  form#subscribe_users #_right {
-    border-left: 1px solid black;
-    margin-left: 250px;
-    width: 300px;
-  }
-  form#subscribe_users #_submit {
-    border-top: 1px solid black;
-  }
-
 /* Simula um botão usados nos menus e pages */
 .simple_box{
   padding: 5px;
