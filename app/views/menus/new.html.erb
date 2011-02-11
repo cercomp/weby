@@ -3,7 +3,7 @@
 		<% params[:parent_id] = "0" %>
     <legend> <%= t"create_param", :param => (t"menu", :count => 1) %> </legend>
   <% else %>
-    <legend> <%= t"create_param", :param => t("sub-menu")%> </legend>
+    <legend> <%= t"create_param", :param => t("sub_menu")%> </legend>
   <% end %>
 
   <%= form_for [@site, @menu], :builder => SemanticFormBuilder   do |f| %>

@@ -18,6 +18,7 @@ pt-BR:
   administration: "Administração"  
   active: "Ativo?"
   align: "Alinhar"
+  add_sub_menu: "Adiciona um menu filho"
 
 #---B---#
   back: "Voltar"
@@ -115,6 +116,8 @@ pt-BR:
   my_account: "Minha Conta"
   my_profile: "Meu Perfil"
   my_password: "Minha Senha" 
+  move_menu_up: "Move o menu para cima"
+  move_menu_down: "Move o menu para baixo"
 
 #---N---#
   new: "Novo"
@@ -192,7 +195,7 @@ pt-BR:
   status: "Status"
   subject: "Assunto"
   submit: "Enviar"
-  sub-menu: "Sub-menu"
+  sub_menu: "Sub-menu"
   successfully_created: "Criado com sucesso!"
   successfully_created_param: "%{param} criado com sucesso!"
   successfully_updated: "Atualizado com sucesso!"

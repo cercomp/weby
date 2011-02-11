@@ -17,6 +17,7 @@ en:
   admin: "Admin" 
   administration: "Administration"  
   active: "Active?"
+  add_sub_menu: "Add sub menu"
 
 #---B---#
   back: "Back"
@@ -113,6 +114,8 @@ en:
   my_account: "My account"
   my_profile: "My profile"
   my_password: "My Password"
+  move_menu_up: "Move menu up"
+  move_menu_down: "Move menu down"
 
 #---N---#
   new: "New"
@@ -190,7 +193,7 @@ en:
   status: "Status"
   subject: "Subject"
   submit: "Send"
-  sub-menu: "Sub-menu"
+  sub_menu: "Sub-menu"
   successfully_created: "Successfully created!"
   successfully_created_param: "%{param} successfully created!"
   successfully_updated: "Successfully updated!"
