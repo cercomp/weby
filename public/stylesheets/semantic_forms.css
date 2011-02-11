@@ -66,8 +66,13 @@ form div.submit-field {
   margin: 0;
   padding: 10px 0;
   border-bottom: 1px solid #cccccc; }
+  form div.check-box-fields div.input {
+    float: left;
+    clear: right;
+    text-align: left;
+    width: auto;
+    padding-left: 5px; }
   form div.check-box-field div.input,
-  form div.check-box-fields div.input,
   form div.date-field div.input,
   form div.datetime-field div.input,
   form div.file-field div.input,

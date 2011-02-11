@@ -116,6 +116,7 @@ en:
   my_password: "My Password"
   move_menu_up: "Move menu up"
   move_menu_down: "Move menu down"
+  more: "More"
 
 #---N---#
   new: "New"
@@ -176,7 +177,7 @@ en:
   role: "Role"
   roles: "Roles"
   roles_permissions: "Roles and Permissions"
-  read_more: "Read more ..."
+  read_more: "Read more..."
  
 #---S---#
   save: "Save"

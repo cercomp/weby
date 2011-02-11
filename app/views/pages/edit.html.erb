@@ -26,6 +26,10 @@
       <%= render :partial => 'repo_list', :locals => { :f => f } %>
     </div>
 
+    <%= f.hidden_field :position %>
+    <%= f.hidden_field :status %>
+    <%= f.hidden_field :author_id %>
+
     <%= f.datetime_select :date_begin_at, :order => [:year, :month, :day], :use_month_numbers => true, :label =>  (t"date_param", :param => t("begin")), :start_year => Time.now.year %>
     <%= f.datetime_select :date_end_at, :order => [:year, :month, :day], :use_month_numbers => true, :label => (t"date_param", :param => t("end")), :start_year => Time.now.year %>
 
@@ -37,12 +41,25 @@
     <%= f.text_field :url, :label => t("url") %>
     <%= f.check_box :front , :label => t("cover"), :help => "A notícia é capa?" %>
 
-    <%= f.hidden_field :position %>
-    <%= f.hidden_field :status %>
-    <%= f.hidden_field :author_id %>
-
-    <div id='files_list'>
-      <%= render :partial => 'files_list' %>
+    <div class="check-box-fields">
+      <label for="div_event">
+        <%= t("related_files") %>
+        <span class="help"> <%= t("related_files_help") %> </span>
+      </label>
+      <div class="input">
+        <% @page.repositories.each do |repo_file| %>
+          <%= check_box_tag("news[repository_ids][]", repo_file.id, true) %>
+          <%= "#{repo_file.description} (#{repo_file.archive_file_name})" %>
+          <br />
+        <% end %>
+        <div id="files_list">
+          <%= render :partial => 'files_list' %>
+        </div>
+        <div id="will_paginate">
+          <%#= page_entries_info @repo_files %>
+          <%= will_paginate @page_files_unchecked, :param_name => 'page_files', :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax', :page_links => false, :renderer => WillPaginateRenderers::Twitter %>
+        </div>
+      </div>
     </div>
 
     <%= f.submit_and_cancel t("save"), t("cancel") %>

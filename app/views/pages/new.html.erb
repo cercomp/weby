@@ -46,12 +46,22 @@
       <%= pages_form.hidden_field :page_id, :value => @page.id %>
     <% end %>
 
-    <div id='files_list'>
-      <%= render :partial => 'files_list' %>
+    <div class="check-box-fields">
+      <label for="div_event">
+        <%= t("related_files") %>
+        <span class="help"> <%= t("related_files_help") %> </span>
+      </label>
+      <div class="input">
+        <div id="files_list">
+          <%= render :partial => 'files_list' %>
+        </div>
+        <div id="will_paginate">
+          <%= will_paginate @page_files_unchecked, :param_name => 'page_files', :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax', :page_links => false, :renderer => WillPaginateRenderers::Twitter %>
+        </div>
+      </div>
     </div>
-
+    
     <%= f.submit (t"create_param", :param => (t"page.one")) %>
-
     <%= link_to t("back"), :back %>
 
     <div class="contextual">

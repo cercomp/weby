@@ -1,1 +1,5 @@
-    <%= check_box_tag_group "news[repository_ids][]", @repo_files.map{|u| {:value => u.id, :label => "#{u.description} (#{u.archive_file_name})", :obj => u}}, (will_paginate @repo_files, :param_name => 'page_files', :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax'), @page.repositories, :label => t("related_files"), :help => t("related_files_help") %>
+  <% @page_files_unchecked.each do |repo_file| %>
+    <%= check_box_tag("news[repository_ids][]", repo_file.id, false) %>
+    <%= "#{repo_file.description} (#{repo_file.archive_file_name})" %>
+    <br />
+  <% end %>

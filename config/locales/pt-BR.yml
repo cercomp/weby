@@ -118,6 +118,7 @@ pt-BR:
   my_password: "Minha Senha" 
   move_menu_up: "Move o menu para cima"
   move_menu_down: "Move o menu para baixo"
+  more: "Mais"
 
 #---N---#
   new: "Novo"
@@ -178,7 +179,7 @@ pt-BR:
   role: "Papel"
   roles: "Papéis"
   roles_permissions: "Permissões e Papéis"
-  read_more: "Leia mais ..."
+  read_more: "Leia mais..."
  
 #---S---#
   save: "Salvar"

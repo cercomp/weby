@@ -17,16 +17,18 @@ module SemanticFormHelper
     to_return = ""
     to_return << %Q{<div class="#{type}-fields #{options[:class]}">}
     to_return << %Q{<label for="#{field_name}">#{label}#{help}</label>}
+#    to_return << %Q{<div id="#{options[:more]}">} if "#{options[:more]}"
     to_return << %Q{<div class="input">}
     to_return << fields.join
     to_return << %Q{#{will}}
+#    to_return << %Q{</div>} if "#{options[:more]}"
     to_return << %Q{</div></div>}
     to_return.html_safe
   end
 
   def boolean_field_wrapper(input, name, value, text, help = nil)
     field = ""
-    field << %Q{#{input} #{text}}
+    field << %Q{#{input} #{text}\n}
     field << %Q{<div class="help">#{help}</div>} if help
     field.html_safe
   end
