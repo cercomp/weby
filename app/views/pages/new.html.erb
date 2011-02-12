@@ -56,7 +56,7 @@
           <%= render :partial => 'files_list' %>
         </div>
         <div id="will_paginate">
-          <%= will_paginate @page_files_unchecked, :param_name => 'page_files', :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax', :page_links => false, :renderer => WillPaginateRenderers::Twitter %>
+          <%= will_paginate @page_files_unchecked, :param_name => 'page_files', :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax', :page_links => false, :renderer => Twitter, :twitter_label => t("more") %>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 class Banner < ActiveRecord::Base
   default_scope :conditions => { :hide => false }, :order => 'created_at DESC'
-  named_scope :unhide, :conditions => { :hide => false }, :order => 'created_at DESC'
+  scope :unhide, :conditions => { :hide => false }, :order => 'created_at DESC'
 
 	belongs_to :repository, :foreign_key => "repository_id"
   belongs_to :user, :foreign_key => "user_id"

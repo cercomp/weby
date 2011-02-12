@@ -8,7 +8,7 @@
     <p> <i><%= @page.user.login %>, <%= l @page.created_at, :format => :short  %>.</i> </p>
     <h2> <%= raw @page.summary %> </h2>
     <h3> <%= raw @page.text %> </h3>
-    <p> <h3> <%= @page.url.empty? ? @page.source : link_to(@page.source, @page.url) %> </h3> </p>
+    <p> <h3> <%= @page.url.nil? ? @page.source : link_to(@page.source, @page.url) %> </h3> </p>
 
     <% unless @page.repositories.empty? %>
       <table class="list">

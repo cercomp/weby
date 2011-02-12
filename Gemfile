@@ -9,7 +9,6 @@ gem 'rails', '3.0.0'
 gem 'pg', '0.9.0'
 gem "authlogic", :git => "git://github.com/odorcicd/authlogic.git", :branch => "rails3"
 gem "will_paginate", "~> 3.0.pre2"
-gem 'will_paginate_renderers'
 
 # Repositório de arquivos
 gem "paperclip", :git => "http://github.com/thoughtbot/paperclip.git" 
