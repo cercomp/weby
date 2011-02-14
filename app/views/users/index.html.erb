@@ -22,8 +22,8 @@
     <tr class="<%= cycle 'odd', 'even' %>">
       <td><%=h user.login %></td>
       <td><%=h user.email %></td>
-      <td align="center"><%= raw menu_change_status(UsersController, user, user.status,  'status') %></td>
-      <td align="center"><%= raw menu_change_status(UsersController, user, user.is_admin, 'is_admin') %></td>
+      <td align="center"><%= raw toggle_field(user, 'status') %></td>
+      <td align="center"><%= raw toggle_field(user, 'is_admin') %></td>
       <td><%= link_to 'gerenciar papeis', {:controller => 'users', :action => 'manage_roles'} %></td>
       <td>
         <%= raw make_menu(user) %> 

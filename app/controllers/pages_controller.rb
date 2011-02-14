@@ -47,14 +47,16 @@ class PagesController < ApplicationController
   end
 
   def edit
-    # Objeto para repository_id (relacionamento um-para-um)
-    @repositories = Repository.where(["site_id = ? AND archive_content_type LIKE ?", @site.id, "image%"]).paginate :page => params[:page], :order => 'created_at DESC', :per_page => 4 
     # Objeto para pages_repositories (relacionamento muitos-para-muitos)
     @page = Page.find(params[:id])
-    # Criando objeto com os arquivos que não estão relacionados com a página
-    @page_files_unchecked = (@site.repositories - @page.repositories).paginate :page => params[:page_files], :order => 'created_at DESC', :per_page => 5
+    @page.pages_repositories.build
     # Automaticamente define o tipo, se não for passado como parâmetro
     params[:type] ||= @page.type
+
+    # Objeto para repository_id (relacionamento um-para-um)
+    @repositories = Repository.where(["site_id = ? AND archive_content_type LIKE ?", @site.id, "image%"]).paginate :page => params[:page], :order => 'created_at DESC', :per_page => 4 
+    # Criando objeto com os arquivos que não estão relacionados com a página
+    @page_files_unchecked = (@site.repositories - @page.repositories).paginate :page => params[:page_files], :order => 'created_at DESC', :per_page => 5
 
     respond_with do |format|
       format.js { 
@@ -81,8 +83,11 @@ class PagesController < ApplicationController
   def update
     @page = Page.find(params[:id])
     # Se não houver nenhum checkbox marcado, remover todos.
-    params[@page.class.name.underscore.to_s][:repository_ids] ||= []
-    if @page.update_attributes(params[@page.class.name.underscore.to_s])
+    if params[@page.type.downcase.pluralize.to_s].nil?
+      params[@page.type.downcase.pluralize.to_s] = {}
+      params[@page.type.downcase.pluralize.to_s][:repository_ids] = [] 
+    end
+    if @page.update_attributes(params[@page.type.downcase.pluralize.to_s])
       flash[:notice] = t"successfully_updated"
     end
     #respond_with(@page, :location => site_pages_path(:type => params[:type]))
@@ -95,5 +100,16 @@ class PagesController < ApplicationController
     SitesPage.find(@page.sites_pages).each{ |p| p.destroy }
     @page.destroy
     redirect_to(:back)
+  end
+
+  def toggle_publish
+    @page = Page.find(params[:id])
+    front = @page.front == 0 or not @page.front ? true : false
+    if @page.update_attributes(:front => front)
+      flash[:notice] = t"successfully_updated"
+    else
+      flash[:notice] = t"error_updating_object"
+    end
+    redirect_back_or_default site_pages_path(@site)
   end
 end

@@ -44,6 +44,7 @@ pt-BR:
   date_param: "Data de %{param}" 
   destroy: "Excluir"  
   description: "Descrição"
+  disable: "Desabilitado"
 
 #---E---#
   editing: "Editando %{param}"
@@ -58,6 +59,7 @@ pt-BR:
   error_updating_object: "Erro ao atualizar objeto"
   example_param: "Exemplo: %{param}"
   expires: "Expira em"
+  enable: "Habilitado"
 
 #---F---#
   feedback: "Fale Conosco"
@@ -83,6 +85,7 @@ pt-BR:
   is_admin: "Admin?"
   instructions_change_password: "Instruções para trocar a senha"
   is_event: "É um evento?"
+  internacional: "Internacional"
 
 #---K---#
   time_cover: "capa agendada"
@@ -135,6 +138,7 @@ pt-BR:
   no_mail: "Nenhum usuário com esse e-mail foi econtrado." 
   no_permission_to_activate_deactivate: "Você não tem permissão para Ativar/Desativar"
   none_param: "Nenhum %{param}"
+  nacional: "Nacional"
   "no": "Não"
 
 #---O---#
@@ -180,6 +184,7 @@ pt-BR:
   roles: "Papéis"
   roles_permissions: "Permissões e Papéis"
   read_more: "Leia mais..."
+  regional: "Regional"
  
 #---S---#
   save: "Salvar"

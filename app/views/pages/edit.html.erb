@@ -18,6 +18,7 @@
     <div class="contextual">
       <%= link_to (t"new_param", :param => (t"archive", :count => 1)), new_site_repository_path, :class => 'icon icon-add' %> 
     </div>
+
     <div id="div_event">
       <%= render :partial => "formEvent", :locals => {:f => f} %>
     </div>
@@ -48,7 +49,7 @@
       </label>
       <div class="input">
         <% @page.repositories.each do |repo_file| %>
-          <%= check_box_tag("news[repository_ids][]", repo_file.id, true) %>
+          <%= check_box_tag("#{@page.type.downcase.pluralize}[repository_ids][]", repo_file.id, true) %>
           <%= "#{repo_file.description} (#{repo_file.archive_file_name})" %>
           <br />
         <% end %>

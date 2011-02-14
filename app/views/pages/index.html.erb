@@ -18,6 +18,7 @@
         <th><%= t"title" %></th>
         <th><%= t"author" %></th>
         <th><%= t"type" %></th>
+        <th><%= t"publish" %></th>
         <th></th>
       </thead>
       <tbody>
@@ -29,6 +30,7 @@
           <td><%= page.title %></td>
           <td><%= page.user.login %></td>
           <td><%= t"#{page.type.downcase}", :count => 1 %></td>
+          <td align="center"><%= raw toggle_field(page, "front") %></td>
           <td>
             <% if params[:site_id] %>
               <%= link_to t("show"), site_page_path(@site, page) %>

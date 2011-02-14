@@ -2,7 +2,7 @@
 class UsersController < ApplicationController
   layout :choose_layout
 
-  before_filter :require_user, :only => [:edit, :show, :update, :destroy, :change_status, :change_roles, :change_theme, :index]
+  before_filter :require_user, :only => [:edit, :show, :update, :destroy, :toggle_field, :change_roles, :change_theme, :index]
   before_filter :check_authorization, :except => [:new, :create, :update, :edit, :show]
 
   respond_to :html, :xml
@@ -124,18 +124,15 @@ class UsersController < ApplicationController
     respond_with(@user)
   end
 
-  def change_status
+  def toggle_field
     @user = User.find(params[:id])
-
-    respond_to do |format|
-      if @user.update_attribute(params[:field], params[:status])
-        format.html {
-          render :update do |page|
-            page.reload
-          end
-        }
-      end
+    status = @user.status == 0 or not @user.status ? true : false
+    if @user.update_attributes(:status => status)
+      flash[:notice] = t"successfully_updated"
+    else
+      flash[:notice] = t"error_updating_object"
     end
+    redirect_back_or_default site_users_path(@site)
   end
 
  private

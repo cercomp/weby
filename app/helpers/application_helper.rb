@@ -6,19 +6,22 @@ module ApplicationHelper
     @session_user ||= User.find(:first, :conditions => ['id = ?', session[:user]])
   end
 
-  def menu_change_status(ctrl, user, obj, parameter)
+  # Alterna entre habilitar e desabilitar registro
+  # Parâmetros: obj (Objeto), publish (Campo para alternar)
+  # Campo com imagens V ou X para habilitar/desabilitar e degradê se não tiver permissão para alteração.
+  def toggle_field(obj, publish)
     menu = ""
-    if current_user.is_admin || check_permission(ctrl, "change_status")
-      if obj != true or !obj
-        menu << (link_to image_tag("false.png", :title => t("activate_deactivate"), :alt => "Inativo"), :url => { :action => "change_status", :id => user.id, :status => true, :field => parameter })
+    if current_user.is_admin
+      if obj[publish.to_s] == 0 or not obj[publish.to_s]
+        menu = link_to(image_tag("false.png", :alt => t("disable")), {:action => "toggle_publish", :id => obj.id}, :title => t("activate_deactivate"))
       else
-        menu << (link_to image_tag("true.png", :title =>  t("activate_deactivate"), :alt => "Ativo"), :url => { :action => "change_status", :id=> user.id, :status => false, :field => parameter })
+        menu = link_to(image_tag("true.png", :alt => t("enable")), {:action => "toggle_publish", :id=> obj.id}, :title => t("activate_deactivate"))
       end
     else
-      if obj != true or !obj
-        menu << image_tag("false_off.png", :title => t("no_permission_to_activate_deactivate"), :alt => "Inativo")
+      if obj[publish.to_s] == 0 or not obj[publish.to_s]
+        menu = image_tag("false_off.png", :alt => t("enable"), :title => t("no_permission_to_activate_deactivate"))
       else
-        menu << image_tag("true_off.png", :title => t("no_permission_to_activate_deactivate"), :alt => "Ativo")
+        menu = image_tag("true_off.png", :alt => t("disable"), :title => t("no_permission_to_activate_deactivate"))
       end
     end
     menu

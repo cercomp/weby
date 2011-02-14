@@ -1,5 +1,6 @@
+  <% @page.type ||= "News" %>
   <% @page_files_unchecked.each do |repo_file| %>
-    <%= check_box_tag("news[repository_ids][]", repo_file.id, false) %>
+    <%= check_box_tag("#{@page.type.downcase.pluralize}[repository_ids][]", repo_file.id, false) %>
     <%= "#{repo_file.description} (#{repo_file.archive_file_name})" %>
     <br />
   <% end %>

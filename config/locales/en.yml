@@ -41,6 +41,7 @@ en:
   date_param: "Date of %{param}" 
   destroy: "Destroy"  
   description: "Description"
+  disable: "Disable"
 
 #---E---#
   editing: "Editing %{param}"
@@ -55,6 +56,7 @@ en:
   error_updating_object: "Error updating object"
   example_param: "Example: %{param}"
   expires: "Expires"
+  enable: "Enable"
 
 #---F---#
   feedback: "Feedback"
@@ -80,6 +82,7 @@ en:
   is_admin: "Admin?"
   instructions_change_password: "Instructions to change your password"
   is_event: "Is a event?"
+  internacional: "Internacional"
 
 #---K---#
   time_cover: "capa agendada"
@@ -134,6 +137,7 @@ en:
   no_permission_to_activate_deactivate: "You don´t have permission to Activate/Deactivate"
   none_param: "None %{param}"
   "no": "No"
+  nacional: "Nacional"
 
 #---O---#
 
@@ -178,6 +182,7 @@ en:
   roles: "Roles"
   roles_permissions: "Roles and Permissions"
   read_more: "Read more..."
+  regional: "Regional"
  
 #---S---#
   save: "Save"

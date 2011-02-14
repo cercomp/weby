@@ -23,8 +23,13 @@ Webyge::Application.routes.draw do |map|
         get :publish, :unpublish
       end 
     end
+    resources :pages do 
+      member do 
+        get :toggle_publish
+      end 
+    end
     
-   resources :groups, :feedbacks, :pages, :chats, :roles, :rights, :archives, :admin
+   resources :groups, :feedbacks, :chats, :roles, :rights, :archives, :admin
   end
 
   resources :groups, :feedbacks, :menus, :pages, :chats, :roles, :rights, :archives, :user_sessions, :password_resets, :admin
@@ -34,6 +39,9 @@ Webyge::Application.routes.draw do |map|
       get :manage_roles
       post :change_roles
     end
+    member do 
+      get :toggle_publish
+    end 
   end
   resources :repositories do
     collection do
