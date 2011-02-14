@@ -49,7 +49,7 @@
       </label>
       <div class="input">
         <% @page.repositories.each do |repo_file| %>
-          <%= check_box_tag("#{@page.type.downcase.pluralize}[repository_ids][]", repo_file.id, true) %>
+          <%= check_box_tag("#{@page.type.downcase}[repository_ids][]", repo_file.id, true) %>
           <%= "#{repo_file.description} (#{repo_file.archive_file_name})" %>
           <br />
         <% end %>

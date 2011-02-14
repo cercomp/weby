@@ -83,11 +83,8 @@ class PagesController < ApplicationController
   def update
     @page = Page.find(params[:id])
     # Se não houver nenhum checkbox marcado, remover todos.
-    if params[@page.type.downcase.pluralize.to_s].nil?
-      params[@page.type.downcase.pluralize.to_s] = {}
-      params[@page.type.downcase.pluralize.to_s][:repository_ids] = [] 
-    end
-    if @page.update_attributes(params[@page.type.downcase.pluralize.to_s])
+    params[@page.type.downcase.to_s][:repository_ids] ||= [] 
+    if @page.update_attributes(params[@page.type.downcase.to_s])
       flash[:notice] = t"successfully_updated"
     end
     #respond_with(@page, :location => site_pages_path(:type => params[:type]))

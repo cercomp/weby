@@ -50,12 +50,15 @@
       <% end %>
     </p>
     <p>
-      <%= link_to t("feedback", :count => 2), site_feedbacks_path %>
-      <% if check_permission(FeedbacksController, "new") %>
+      <%= link_to (t"list_param", :param => (t"archive", :count => 2)), site_repositories_path %>
+      <% if check_permission(RepositoriesController, "new") %>
+       | <%= link_to t("new"), new_site_repository_path, :class => 'icon icon-add' %>
       <% end %>
     </p>
     <p>
-      <%= link_to (t"list_param", :param => (t"archive", :count => 2)), site_repositories_path %>
+      <%= link_to t("feedback", :count => 2), site_feedbacks_path %>
+      <% if check_permission(FeedbacksController, "new") %>
+      <% end %>
     </p>
     <p>
 	    <%= link_to (t"setting", :count => 2), edit_site_admin_path(@site, @site) %>
