@@ -102,13 +102,14 @@ class PagesController < ApplicationController
     redirect_to(:back)
   end
 
-  def toggle_publish
+  def toggle_field
     @page = Page.find(params[:id])
-    front = @page.front == 0 or not @page.front ? true : false
-    if @page.update_attributes(:front => front)
-      flash[:notice] = t"successfully_updated"
-    else
-      flash[:notice] = t"error_updating_object"
+    if params[:field] 
+      if @page.update_attributes("#{params[:field]}" => (@page[params[:field]] == 0 or not @page[params[:field]] ? true : false))
+        flash[:notice] = t"successfully_updated"
+      else
+        flash[:notice] = t"error_updating_object"
+      end
     end
     redirect_back_or_default site_pages_path(@site)
   end

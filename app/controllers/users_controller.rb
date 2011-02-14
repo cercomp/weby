@@ -126,13 +126,14 @@ class UsersController < ApplicationController
 
   def toggle_field
     @user = User.find(params[:id])
-    status = @user.status == 0 or not @user.status ? true : false
-    if @user.update_attributes(:status => status)
-      flash[:notice] = t"successfully_updated"
-    else
-      flash[:notice] = t"error_updating_object"
+    if params[:field] 
+      if @user.update_attributes("#{params[:field]}" => (@user[params[:field]] == 0 or not @user[params[:field]] ? true : false))
+        flash[:notice] = t"successfully_updated"
+      else
+        flash[:notice] = t"error_updating_object"
+      end
     end
-    redirect_back_or_default site_users_path(@site)
+    redirect_back_or_default users_path(@site)
   end
 
  private

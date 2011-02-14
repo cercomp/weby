@@ -25,7 +25,7 @@ Webyge::Application.routes.draw do |map|
     end
     resources :pages do 
       member do 
-        get :toggle_publish
+        get :toggle_field
       end 
     end
     
@@ -40,7 +40,7 @@ Webyge::Application.routes.draw do |map|
       post :change_roles
     end
     member do 
-      get :toggle_publish
+      get :toggle_field
     end 
   end
   resources :repositories do

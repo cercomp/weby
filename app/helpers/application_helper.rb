@@ -9,16 +9,16 @@ module ApplicationHelper
   # Alterna entre habilitar e desabilitar registro
   # Parâmetros: obj (Objeto), publish (Campo para alternar)
   # Campo com imagens V ou X para habilitar/desabilitar e degradê se não tiver permissão para alteração.
-  def toggle_field(obj, publish)
+  def toggle_field(obj, field)
     menu = ""
     if current_user.is_admin
-      if obj[publish.to_s] == 0 or not obj[publish.to_s]
-        menu = link_to(image_tag("false.png", :alt => t("disable")), {:action => "toggle_publish", :id => obj.id}, :title => t("activate_deactivate"))
+      if obj[field.to_s] == 0 or not obj[field.to_s]
+        menu = link_to(image_tag("false.png", :alt => t("disable")), {:action => "toggle_field", :id => obj.id, :field => "#{field}"}, :title => t("activate_deactivate"))
       else
-        menu = link_to(image_tag("true.png", :alt => t("enable")), {:action => "toggle_publish", :id=> obj.id}, :title => t("activate_deactivate"))
+        menu = link_to(image_tag("true.png", :alt => t("enable")), {:action => "toggle_field", :id=> obj.id, :field => "#{field}"}, :title => t("activate_deactivate"))
       end
     else
-      if obj[publish.to_s] == 0 or not obj[publish.to_s]
+      if obj[field.to_s] == 0 or not obj[field.to_s]
         menu = image_tag("false_off.png", :alt => t("enable"), :title => t("no_permission_to_activate_deactivate"))
       else
         menu = image_tag("true_off.png", :alt => t("disable"), :title => t("no_permission_to_activate_deactivate"))
