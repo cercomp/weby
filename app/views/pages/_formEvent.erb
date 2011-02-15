@@ -20,6 +20,7 @@
         <label for="div_event"><%= t("is_event") %></label>
         <div class="input">
           <%= link_to (t"yes"), new_site_page_path(:type => "Event"), :update => "div_event", :remote => true %>
+          <%= f.hidden_field :type, :value => "News" %>
         </div>
       </div>
     <% end %>

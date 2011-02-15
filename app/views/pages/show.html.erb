@@ -1,7 +1,7 @@
 <fieldset>
   <div id="pages">
     <% unless @page.repository.nil? %>
-      <%= link_to image_tag("#{@page.repository.archive.url}", :align => "right"), @page.repository.archive.url, :alt => @page.repository.description, :title => @page.repository.description %>
+      <%= link_to image_tag("#{@page.repository.archive.url(:medium)}", :align => "right"), @page.repository.archive.url, :alt => @page.repository.description, :title => @page.repository.description %>
     <% end %>
 
     <p> <h1> <%= @page.title %> </h1> </p>
