@@ -6,7 +6,7 @@ gem 'rails', '3.0.4'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 #gem 'mysql'
-gem 'pg', '0.9.0'
+gem 'pg'
 gem "authlogic", :git => "git://github.com/odorcicd/authlogic.git", :branch => "rails3"
 gem "will_paginate", "~> 3.0.pre2"
 

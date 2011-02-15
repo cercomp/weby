@@ -4,7 +4,7 @@
       <div class="text-field ">
         <label for="div_event"><%= t("is_event") %></label>
         <div class="input">
-          <%= link_to (t"no"), new_site_page_path(:type => "News"), :update => "div_event", :remote => true %>
+          <%= link_to (t"no"), new_site_page_path(:type => "News"), :update => "div_event", :remote => true, :onclick => "var img = new Image; img.src = '/images/spinner.gif'; $(this).html('').append(function(){return img})" %>
         </div>
       </div>
     <% end %>
@@ -19,7 +19,7 @@
       <div class="text-field ">
         <label for="div_event"><%= t("is_event") %></label>
         <div class="input">
-          <%= link_to (t"yes"), new_site_page_path(:type => "Event"), :update => "div_event", :remote => true %>
+          <%= link_to (t"yes"), new_site_page_path(:type => "Event"), :update => "div_event", :remote => true, :onclick => "var img = new Image; img.src = '/images/spinner.gif'; $(this).html('').append(function(){return img})" %>
           <%= f.hidden_field :type, :value => "News" %>
         </div>
       </div>
