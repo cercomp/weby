@@ -7,7 +7,7 @@
     <% end %>
   </p>
   <p>
-    <%= link_to (t"list_param", :param => (t"user", :count => 2)), users_path %>
+    <%= link_to (t"list_param", :param => (t"user", :count => 2)), @site ? site_users_path : users_path %>
     <% if check_permission(UsersController, "new") %>
      | <%= link_to t("new"), new_user_path, :class => 'icon icon-add' %>
     <% end %>

@@ -16,16 +16,31 @@ class UsersController < ApplicationController
     redirect_back_or_default root_path
   end
 
-  def change_roles
-=begin
-    if params[:role_id] && params[:user_id]
-      @r = RolesUser.delete_all(["user_id = ?", params[:user_id]])
-      @r = RolesUser.create :user_id => params[:user_id], :role_id => params[:role_id]
-      flash[:notice] = t'uso', :param => t('role')
+  def manage_roles
+    # Se a ação for selecionada para um site:
+    unless @site.nil?
+      @users = User.find(:all)
+      @users_unroled = @users - @site.users
+      @roles = Role.find(:all, :order => "id")
+
+			respond_with do |format|
+				format.js do
+					render :update do |page|
+						page.call "$('#enroled').html", render('enroled')
+						page.call "$('#enrole').html", render('enrole')
+					end
+				end
+
+				format.html
+			end
+
+    else
+      @sites = Site.find(:all)
+      render :select_site
     end
-    redirect_back_or_default users_path
-=end
-    
+  end
+
+  def change_roles
     params[:role_ids] ||= []
     user_ids = []
     user_ids.push(params[:user][:id]).flatten!
@@ -43,7 +58,7 @@ class UsersController < ApplicationController
                                       :role_id => role_id)
       end
     end
-    
+
     redirect_to :action => 'manage_roles'
     
   end
@@ -62,19 +77,6 @@ class UsersController < ApplicationController
     end
     @themes = files
     respond_with(@user)
-  end
-
-  def manage_roles
-    # Se a ação for selecionada para um site:
-    unless @site.nil?
-      @users = User.find(:all)
-      @users_unroled = @users - @site.users
-      @roles = Role.find(:all, :order => "id")
-
-    else
-      @sites = Site.find(:all)
-      render :select_site
-    end
   end
   
   def create

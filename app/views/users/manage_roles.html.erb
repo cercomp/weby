@@ -1,95 +1,12 @@
 <%# TODO escrever traduções %>
 <h1>Gerenciar papeis</h1>
 <br/>
-<table class="list">
 
-  <thead>
-    <tr>
-      <th>Usuário</th>
-      <th style="width: 40%">Papel</th>
-      <th style="width: 15%"></th>
-    </tr>
-  </thead>
+<div id="enroled">
+	<%= render 'enroled' %>
+</div>
 
-  <tbody>
-    <% @site.users.uniq.each do |user| %>
-      <tr class="<%= cycle 'odd', 'even' %>">
-        <td><%= link_to user.login, user %></td>
+<div id="enrole">
+	<%= render 'enrole' %>
+</div>
 
-        <td>
-          <span id="user-<%= user.id %>">
-            <%= user.roles.map(&:name).join(', ') %>
-          </span>
-          
-					<%= form_tag change_roles_site_users_path(@site), :method => "post", :id => "form-user-#{user.id}" %>
-					<%= hidden_field_tag 'user[id]', user.id %>
-            <p>
-              <% @roles.each do |role| %>
-                <label>
-                  <%= check_box_tag 'role_ids[]', role.id, user.roles.include?(role) %>
-                  <%= role.name %>
-                </label>
-                <br />
-              <% end %>
-            </p>
-            <%= submit_tag 'Enviar' %>
-						<%= link_to_function t('cancel'), "$('#user-#{user.id}').show(); $('#form-user-#{user.id}').hide(); return false;" %>
-          </form>
-        </td>
-
-        <td><%= link_to_function t('edit'), "$('#user-#{user.id}').hide(); $('#form-user-#{user.id}').show(); return false;" %></td>
-      </tr>
-    <% end %>
-  </tbody>
-
-</table>
-
-<% unless @users_unroled.empty? %>
-<h2>Cadastrar novo usuário</h2>
-
-<%= form_tag change_roles_site_users_path(@site), :method => "post", :id => "subscribe_users" %>
-
-	<table class="list">
-
-  <thead>
-    <tr>
-      <th>Usuário</th>
-      <th style="width: 55%">Papel</th>
-    </tr>
-  </thead>
-
-	<tbody>
-	<tr>
-	<td>
-    <% @users_unroled.each do |user| %>
-      <label>
-        <%= check_box_tag 'user[id][]', user.id %>
-        <%= user.login %>
-      </label><br/>
-    <% end %>
-  </td>
-
-	<td>
-    <% @roles.each do |role| %>
-      <label>
-        <%= check_box_tag 'role_ids][]', role.id %>
-        <%= role.name %>
-      </label>
-      <br />
-    <% end %>
-  </td>
-	</tr>
-	</tbody>
-	</table>
-
-  <div class="center">
-    <input type="submit" value="cadastrar" />
-  </div>
-</form>
-
-<% else %>
-<h2>Nenhum usuário para cadastrar</h2>
-<% end %>
-
-<%# TODO remover essa função daqui %>
-<%= javascript_tag "window.onload = function() { $('form[id^=\"form-user\"]').each(function (e){ $(this).hide(); }) }" %>
