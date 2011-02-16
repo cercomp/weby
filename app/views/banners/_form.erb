@@ -7,8 +7,13 @@
     <%= render :partial => 'pages/repo_list', :locals => { :f => f } %>
   </div>
 
-  <%= f.text_field :height, :label => t("height"), :size => 5 %>
+  <% repo_styles = Repository.attachment_definitions[:archive][:styles] %>
+  <% unless repo_styles.nil? %>
+    <%= f.radio_button_group :size, repo_styles.map{|u| { :value => u[0], :label => "#{t(u[0])} #{u[1]}"}}, "", :label => t("size"), :help => t("size") %>
+  <% end %>
+
   <%= f.text_field :width, :label => t("width"), :size => 5 %>
+  <%= f.text_field :height, :label => t("height"), :size => 5 %>
   <%= f.datetime_select :date_begin_at, :order => [:year, :month, :day], :use_month_numbers => true, :label =>  (t"date_param", :param => t("begin")), :start_year => Time.now.year %>
   <%= f.datetime_select :date_end_at, :order => [:year, :month, :day], :use_month_numbers => true, :label => (t"date_param", :param => t("end")), :start_year => Time.now.year, :default => 1.month.from_now %>
   <%= f.text_field :title, :label => t("title"), :required => true, :help => t("field_required") %>

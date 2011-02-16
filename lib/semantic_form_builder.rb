@@ -79,6 +79,7 @@ class SemanticFormBuilder < ActionView::Helpers::FormBuilder
     values.each do |value|
       if value.is_a?(Hash)
         tag_value = value[:value]
+        value_text = value[:label]
         label = value[:label]
         help = value.delete(:help)
         image = value[:image]
@@ -90,7 +91,7 @@ class SemanticFormBuilder < ActionView::Helpers::FormBuilder
       end
       radio_button = @template.radio_button(@object_name, method, tag_value, options.merge(:object => @object, :help => help))
       selections << boolean_field_wrapper(radio_button, "#{@object_name}_#{method.to_s}", tag_value, value_text)
-      selections << insert_img(radio_button, image, alt, title)
+      selections << insert_img(radio_button, image, alt, title) if image
     end
     selections
     field_name, label, options = field_settings(method, options)

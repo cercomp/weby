@@ -94,6 +94,7 @@ en:
   layout: "Layout"
   left: "Left"
   link: "Link"
+  list_all: "List all"
   list: "List"
   list_param: "List %{param}"
   listing: "Listing"
@@ -106,6 +107,7 @@ en:
   logout_success: "Logged out successfully!"
   login_count: "Login Count"
   look_changed: "Appearence was changed."
+  little: "Little"
   
 #---M---#
   menu: 
@@ -120,6 +122,8 @@ en:
   move_menu_up: "Move menu up"
   move_menu_down: "Move menu down"
   more: "More"
+  mini: "Mini"
+  medium: "Medium"
 
 #---N---#
   new: "New"
@@ -140,6 +144,7 @@ en:
   nacional: "Nacional"
 
 #---O---#
+  original: "Original"
 
 #---P---#
   page: 
@@ -240,6 +245,7 @@ en:
     other: "Users"
   user_inactive: "User was not activated."   
   username: "User name"
+  unpublish: "Unpublish"
 
 #---V---#
   value: "Value" 

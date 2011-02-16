@@ -97,7 +97,8 @@ pt-BR:
   layout: "Leiaute"
   left: "Esquerdo"
   link: "Link"
-  list: "Lista"
+  list: "Listar"
+  list_all: "Listar todos"
   list_param: "Listar %{param}"
   listing: "Listando"
   listing_param: "Listando %{param}"
@@ -109,6 +110,7 @@ pt-BR:
   logout_success: "Logout com sucesso!"
   login_count: "Login Count"
   look_changed: "Aparência alterada!"
+  little: "Pequeno"
   
 #---M---#
   menu: 
@@ -122,6 +124,8 @@ pt-BR:
   move_menu_up: "Move o menu para cima"
   move_menu_down: "Move o menu para baixo"
   more: "Mais"
+  mini: "Miniatura"
+  medium: "Médio"
 
 #---N---#
   new: "Novo"
@@ -142,6 +146,7 @@ pt-BR:
   "no": "Não"
 
 #---O---#
+  original: "Original"
 
 #---P---#
   page: 
@@ -243,6 +248,7 @@ pt-BR:
     other: "Usuários"
   user_inactive: "Seu usuário ainda não está ativo."  
   username: "Nome de usuário"
+  unpublish: "Despublicar"
 
 #---V---#
   value: "Valor"

@@ -1,6 +1,7 @@
 <fieldset>
   <% unless @banner.repository.nil? %>
-    <%= link_to image_tag("#{@banner.repository.archive.url}", :width => "#{@banner.width}", :height => "#{@banner.height}", :align => "right"), @banner.url, :alt => @banner.repository.description, :title => @banner.repository.description %>
+    <% size = @banner.size ? @banner.size : "little" %>
+    <%= link_to image_tag("#{@banner.repository.archive.url(size)}", :width => "#{@banner.width}", :height => "#{@banner.height}", :align => "right"), @banner.url, :alt => @banner.repository.description, :title => @banner.repository.description %>
   <% end %>
 
   <p> <h1> <%= t("banner", :count => 1) %> </h1> </p>
@@ -8,5 +9,5 @@
   <p> <h2> <%= @banner.text %> </h2> </p>
   <p> <h3> <%= t("url") %> : <%= link_to h @banner.url %> </h3> </p>
 
-  <%= link_to t("edit"), edit_site_banner_path(@site, @banner) %> | <%= link_to t("list"), site_banners_path(@site) %> | <%= link_to t("back"), :back %>
+  <%= link_to t("edit"), edit_site_banner_path(@site, @banner) %> | <%= link_to t("list_all"), site_banners_path(@site) %> | <%= link_to t("back"), :back %>
 </fieldset>
