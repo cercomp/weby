@@ -2,25 +2,11 @@
   <legend><%= t"list_param", :param => (t"site", :count => 2) %></legend>
 
   <% if check_permission(SitesController, "new")  %>
-    <div class="contextual">
-      <p> <%= link_to (t"new_param", :param => (t"site", :count => 1)), new_site_path, :class => 'icon icon-add' %> </p>
-    </div>
+    <p> <%= link_to (t"new_param", :param => (t"site", :count => 1)), new_site_path, :class => 'icon icon-add' %> </p>
   <% end %>
 
-  <table class='list'>
-    <thead>
-      <th><%= "id" %></th>
-      <th><%= t"name" %></th>
-      <th><%= t"description" %></th>
-    </thead>
-    <tbody>
-    <% @sites.each do |site| %>
-      <tr class="<%= cycle 'odd', 'even' %>">
-        <td> <%= site.id %> </td>
-        <td> <%= link_to site.name, site_path(site) %> </td>
-        <td> <%= site.description %> </td>
-      </tr>
-    <% end; reset_cycle %>
-    </tbody>
-  </table>
+  <div id="list">
+    <%= render :partial => "list" %>
+  </div>
+
 </fieldset>

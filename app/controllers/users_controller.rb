@@ -64,7 +64,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.paginate :page => params[:page], :order => 'id DESC', :per_page => 10
+    @users = User.paginate :page => params[:page], :per_page => 10
     @roles = Role.find(:all, :select => 'id,name,theme', :group => "name,id,theme", :order => "id")
     respond_with(@user)
   end

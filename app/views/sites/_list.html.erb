@@ -1,0 +1,19 @@
+  
+  <%= will_paginate @sites, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax' %>
+  <table class='list'>
+    <thead>
+      <th><%= "id" %></th>
+      <th><%= t"name" %></th>
+      <th><%= t"description" %></th>
+    </thead>
+    <tbody>
+    <% @sites.each do |site| %>
+      <tr class="<%= cycle 'odd', 'even' %>">
+        <td> <%= site.id %> </td>
+        <td> <%= link_to site.name, site_path(site) %> </td>
+        <td> <%= site.description %> </td>
+      </tr>
+    <% end; reset_cycle %>
+    </tbody>
+  </table>
+  <%= will_paginate @sites, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax' %>

@@ -20,7 +20,7 @@
     </tbody>
   </table>
 
-  <p> <%= link_to (t"list", :param => t("roles_permissions")), :controller => "roles", :action => "index" %> </p>
+  <p> <%= link_to (t"list_param", :param => t("roles_permissions")), :controller => "roles", :action => "index" %> </p>
 
   <% if check_permission(RightsController, "new") %>
     <p><%= link_to t('new'), new_right_path %></p>

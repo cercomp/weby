@@ -7,7 +7,7 @@
      <tr>
       <th><%= t"roles_permissions", :count => 2%></th>
       <% @roles.each do |role| %>
-        <th><%= role.name %> [<%= link_to t('destroy'), role, :confirm => t('are_you_sure'), :method => :delete %>]</th>
+        <th><%= role.name %> [<%= link_to t('edit'), edit_role_path(role) %>, <%= link_to t('destroy'), role, :confirm => t('are_you_sure'), :method => :delete %>]</th>
         <%# role.rights.collect do |each|%>
           <%#=  each.name %>
         <%# end %>
@@ -28,10 +28,10 @@
       <% end; reset_cycle %>
     </tbody>
   </table>
-    <%= submit_tag t("save") %>
+  <p> <%= submit_tag t("save") %> </p>
   <% end %>
 
-  <p> <%= link_to (t"list", :param => (t"permission", :count => 2)), :controller => "rights", :action => "index" %> </p>
+  <p> <%= link_to (t"list_param", :param => (t"permission", :count => 2)), :controller => "rights", :action => "index" %> </p>
 
   <% if check_permission(RolesController, "new") %>
     <p><%= link_to t("new"), :controller => "roles", :action => "new" %></p>

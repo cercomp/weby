@@ -1,4 +1,6 @@
 class Site < ActiveRecord::Base
+  default_scope :order => 'created_at DESC'
+
   def to_param
     "#{name}"
   end

@@ -7,8 +7,16 @@ class SitesController < ApplicationController
   respond_to :html, :xml
 
   def index
-    @sites = Site.all
-    respond_with(@sites)
+    @sites = Site.paginate :page => params[:page], :per_page => 10
+
+    respond_with do |format|
+      format.js { 
+        render :update do |site|
+          site.call "$('#list').html", render(:partial => 'list')
+        end
+      }
+      format.html
+    end
   end
 
   def show

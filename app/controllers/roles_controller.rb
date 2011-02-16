@@ -18,7 +18,7 @@ class RolesController < ApplicationController
   end
 
   def edit
-    @roles = Role.find(params[:id])
+    @role = Role.find(params[:id])
     files = []
     for file in Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*")]
       files << file.split("/")[-1].split(".")[0]
@@ -43,9 +43,9 @@ class RolesController < ApplicationController
   end
 
   def update
-    @roles = Role.find(params[:id])
-    @roles.update_attributes(params[:roles])
-    respond_with(@roles)
+    @role = Role.find(params[:id])
+    @role.update_attributes(params[:role])
+    respond_with(@role)
   end
 
   def destroy
