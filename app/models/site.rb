@@ -20,11 +20,9 @@ class Site < ActiveRecord::Base
   has_many :sites_pages
   has_many :pages, :through => :sites_pages
   
-  has_many :sites_banners
-  has_many :banners, :through => :sites_banners
-
   has_many :groups
   has_many :feedbacks
+  has_many :banners
 
   #accepts_nested_attributes_for :sites_users, :allow_destroy => true#, :reject_if => proc { |attributes| attributes['title'].blank? }
   accepts_nested_attributes_for :sites_menus, :allow_destroy => true#, :reject_if => proc { |attributes| attributes['title'].blank? }
@@ -33,6 +31,5 @@ class Site < ActiveRecord::Base
  	belongs_to :repository, :foreign_key => "top_banner_id"
   has_many :repositories
 
-	 has_attached_file :top_banner, :url => "/uploads/:site_id/:style_:basename.:extension"
-
+	has_attached_file :top_banner, :url => "/uploads/:site_id/:style_:basename.:extension"
 end

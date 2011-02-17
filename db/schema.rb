@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110216112322) do
+ActiveRecord::Schema.define(:version => 20110217101439) do
 
   create_table "banners", :force => true do |t|
     t.datetime "date_begin_at"
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(:version => 20110216112322) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "size"
+    t.boolean  "publish"
+    t.integer  "site_id"
   end
 
   create_table "feedbacks", :force => true do |t|
@@ -77,7 +79,6 @@ ActiveRecord::Schema.define(:version => 20110216112322) do
     t.integer  "site_id"
     t.string   "source"
     t.string   "title"
-    t.integer  "front"
     t.string   "kind"
     t.string   "local"
     t.datetime "event_begin"
@@ -91,6 +92,8 @@ ActiveRecord::Schema.define(:version => 20110216112322) do
     t.text     "summary"
     t.integer  "repository_id"
     t.string   "size"
+    t.boolean  "publish"
+    t.boolean  "front"
   end
 
   create_table "pages_repositories", :id => false, :force => true do |t|
@@ -154,13 +157,6 @@ ActiveRecord::Schema.define(:version => 20110216112322) do
     t.integer  "top_banner_height"
     t.integer  "body_width"
     t.text     "footer"
-  end
-
-  create_table "sites_banners", :force => true do |t|
-    t.integer  "site_id"
-    t.integer  "banner_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "sites_menus", :force => true do |t|

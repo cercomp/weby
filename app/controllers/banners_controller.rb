@@ -5,22 +5,10 @@ class BannersController < ApplicationController
 
   respond_to :html, :xml, :js
 
-  def publish
-    @banner = Banner.find(params[:id])
-    @banner.sites_banners.build(:site_id => @site.id)
-    @banner.save
-    redirect_back_or_default site_banners_path(@site)
-  end
-  def unpublish
-    @site_banner = SitesBanner.find(:first, :conditions => {:banner_id => params[:id]})
-    @site_banner.destroy
-    #redirect_to(site_banners_path(@site))
-    redirect_to :back
-  end
   # GET /banners
   # GET /banners.xml
   def index
-    @banners = Banner.all
+    @banners = @site.banners
 
     respond_to do |format|
       format.html # index.html.erb
@@ -103,12 +91,24 @@ class BannersController < ApplicationController
   # DELETE /banners/1
   # DELETE /banners/1.xml
   def destroy
-    @banner = SitesBanner.find(:first, :conditions => { :banner_id => params[:id] })
+    @banner = Banner.find(params[:id])
     @banner.destroy
 
     respond_to do |format|
       format.html { redirect_to(site_banners_path(@site)) }
       format.xml  { head :ok }
     end
+  end
+
+  def toggle_field
+    @banner = Banner.find(params[:id])
+    if params[:field] 
+      if @banner.update_attributes("#{params[:field]}" => (@banner[params[:field]] == 0 or not @banner[params[:field]] ? true : false))
+        flash[:notice] = t"successfully_updated"
+      else
+        flash[:notice] = t"error_updating_object"
+      end
+    end
+    redirect_to :back
   end
 end

@@ -18,6 +18,7 @@
         <th><%= t"title" %></th>
         <th><%= t"author" %></th>
         <th><%= t"type" %></th>
+        <th><%= t"cover" %></th>
         <th><%= t"publish" %></th>
         <th></th>
       </thead>
@@ -31,12 +32,11 @@
           <td><%= page.user.login %></td>
           <td><%= t"#{page.type.downcase}", :count => 1 %></td>
           <td align="center"><%= raw toggle_field(page, "front") %></td>
+          <td align="center"><%= raw toggle_field(page, "publish") %></td>
           <td>
-            <% if params[:site_id] %>
-              <%= link_to t("show"), site_page_path(@site, page) %>
-              <%= link_to t("edit"), edit_site_page_path(@site, page, :type => page.type) %>
-              <%= link_to t("destroy"), {:controller => 'pages', :action => 'destroy', :id => page}, :confirm => t("are_you_sure"), :method => :delete %>
-            <% end %>
+            <%= link_to t("show"), site_page_path(@site, page) %>
+            <%= link_to t("edit"), edit_site_page_path(@site, page, :type => page.type) %>
+            <%= link_to t("destroy"), site_page_path(@site, page), :confirm => t("are_you_sure"), :method => :delete %>
           </td>
         </tr>
       <% end; reset_cycle %>

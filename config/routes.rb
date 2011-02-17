@@ -20,7 +20,7 @@ Webyge::Application.routes.draw do |map|
     end
     resources :banners do 
       member do 
-        get :publish, :unpublish
+        get :toggle_field
       end 
     end
     resources :pages do 

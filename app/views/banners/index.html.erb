@@ -15,6 +15,7 @@
         <th><%= t"date_param", :param => t("publication")%></th>
         <th><%= t"title" %></th>
         <th><%= t"author" %></th>
+        <th><%= t"publish" %></th>
         <th></th>
       </thead>
       <tbody>
@@ -25,10 +26,12 @@
           <td><%= banner.date_end_at %></td>
           <td><%= banner.title %></td>
           <td><%= banner.user.login %></td>
-          <td>
-            <% if (banner.date_begin_at <= Time.now and banner.date_end_at > Time.now) and not banner.sites_banners.any? %>
-              <%= link_to t('publish'), publish_site_banner_path(@site, banner) %>
+          <td align="center">
+            <% if (banner.date_begin_at <= Time.now and banner.date_end_at > Time.now) %>
+              <%= raw toggle_field(banner, "publish") %>
             <% end %>
+          </td>
+          <td>
             <%= link_to t('show'), site_banner_path(@site, banner) %>
             <%= link_to t('edit'), edit_site_banner_path(@site, banner) %>
             <%= link_to t('destroy'), site_banner_path(@site, banner), :confirm => t('are_you_sure'), :method => :delete %>

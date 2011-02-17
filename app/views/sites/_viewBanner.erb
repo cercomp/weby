@@ -1,11 +1,11 @@
-<% banners = @site.banners.where(["date_begin_at <= ? and date_end_at > ?", Time.now, Time.now]).order("date_begin_at").all %>
+<% banners = @site.banners.where(["publish='true' AND date_begin_at <= ? AND date_end_at > ?", Time.now, Time.now]).order("date_begin_at").all %>
 <% unless banners.empty? %>
   <section id="banner">
   <% banners.each do |banner| %> 
     <% unless banner.repository.nil? %>
       <% size = banner.size ? banner.size : "little" %>
       <%= link_to image_tag("#{banner.repository.archive.url(size)}", :width => "#{banner.width}", :height => "#{banner.height}", :alt => "#{banner.text}", :title => "#{banner.text}"), "#{banner.url}" %>
-      <%= link_to t("unpublish"), unpublish_site_banner_path(@site, banner) %>
+      <%= link_to t("unpublish"), toggle_field_site_banner_path(@site, banner, :field => 'publish') %>
     <% end %>
   <% end %>
   </section>
