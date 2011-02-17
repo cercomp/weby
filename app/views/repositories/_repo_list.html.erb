@@ -17,7 +17,7 @@
               <td><%= image_tag "/images/arquivo.gif" %></td>
             <% end %>	
           <% else %>
-            <td><%= image_tag repository.archive.url(:little) %></td>
+            <td><%= link_to (image_tag repository.archive.url(:little), :alt => repository.description), repository.archive.url, :title => repository.description %></td>
           <% end %>
           <td> <%= repository.id %></td>
           <td> <%= repository.description %></td>
