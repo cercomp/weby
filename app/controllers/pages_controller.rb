@@ -6,9 +6,17 @@ class PagesController < ApplicationController
   respond_to :html, :xml, :js
   def index 
     params[:type] ||= 'News'
- 
-    @pages = @site.pages.all
-    respond_with(@pages)
+    @pages = @site.pages.paginate :page => params[:page], :per_page => 10
+    
+    respond_with do |format|
+      format.js { 
+        render :update do |site|
+          site.call "$('#list').html", render(:partial => 'list')
+        end
+      }
+      format.xml  { render :xml => @pages }
+      format.html
+    end
   end
 
   def show

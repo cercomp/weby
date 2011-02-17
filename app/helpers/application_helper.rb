@@ -153,17 +153,16 @@ module ApplicationHelper
   # Monta o menu baseado nas permissões do usuário
   # Parametros: objeto
   def make_menu(obj, args={})
-    menu = ""
+    menu ||= ""
     get_permissions(current_user, '', args).each do |permission|
       if controller.class.instance_methods(false).include? permission
         case permission.to_s
           when "show"
-            menu << link_to( t('show'), {:controller => "#{controller.controller_name}", :action => 'show', :id => obj.id}, :class => 'icon icon-show')+' '
+            menu += link_to(t('show'), {:controller => "#{controller.controller_name}", :action => 'show', :id => obj.id}, :class => 'icon icon-show', :alt => t('show'), :title => t('show'))
           when "edit"
-            menu << link_to( t("edit"), {:controller => "#{controller.controller_name}", :action => "edit", :id => obj.id}, :class => 'icon icon-edit')+' '
+            menu += link_to(t("edit"), {:controller => "#{controller.controller_name}", :action => "edit", :id => obj.id}, :class => 'icon icon-edit', :alt => t('edit'), :title => t('edit'))
           when "destroy"
-            menu << link_to( (t"remove", :param => ''), {:controller => "#{controller.controller_name}", :action => "destroy", :id => obj.id}, :class => 'icon icon-del', :confirm => t('are_you_sure'), :method => :delete)+' '
-
+            menu += link_to((t"remove", :param => ''), {:controller => "#{controller.controller_name}", :action => "destroy", :id => obj.id}, :class => 'icon icon-del', :confirm => t('are_you_sure'), :method => :delete, :alt => t('destroy'), :title => t('destroy'))
         end
       end
     end

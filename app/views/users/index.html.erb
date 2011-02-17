@@ -1,37 +1,7 @@
 <fieldset>
   <legend><%=  t"list_param", :param => (t"user", :count => 2) %></legend>
 
-  <%= will_paginate @users %>
-
-  <table class="list">
-    <thead>
-    <tr>
-      <th><%= t"login" %></th>
-      <th><%=  t"email" %></th>
-      <th><%= t"active" %></th>
-      <th><%= t"is_admin" %></th>
-      <% if check_permission(UsersController, "change_roles") %>
-        <th><%= t"roles" %></th>
-      <% end %>
-      <th></th>
-    </tr>
-    </thead>
-
-    <tbody>
-  <% @users.each do |user| %>
-    <tr class="<%= cycle 'odd', 'even' %>">
-      <td><%=h user.login %></td>
-      <td><%=h user.email %></td>
-      <td align="center"><%= raw toggle_field(user, 'status') %></td>
-      <td align="center"><%= raw toggle_field(user, 'is_admin') %></td>
-      <td><%= link_to 'gerenciar papeis', {:controller => 'users', :action => 'manage_roles'} %></td>
-      <td>
-        <%= raw make_menu(user) %> 
-      </td>
-    </tr>
-  <% end; reset_cycle %>
-    </tbody>
-  </table>
-
-  <%= will_paginate @users %>
+  <div id="list">
+    <%= render :partial => "list" %>
+  </div>
 </fieldset>

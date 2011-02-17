@@ -1,0 +1,22 @@
+  <% unless @groups.empty? %>
+    <%= will_paginate @groups, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax' %>
+    <table class='list'>
+      <thead>
+        <th><%= t'name' %></th>
+        <th></th>
+      </thead>
+      <tbody>
+      <% @groups.each do |group| %>
+        <tr class="<%= cycle 'odd', 'even' %>">
+          <td><%= link_to group.name, site_group_path(@site, group) %></td>
+          <td>
+            <%= raw make_menu(group) %> 
+          </td>
+        </tr>
+      <% end; reset_cycle %>
+      </tbody>
+    </table>
+    <%= will_paginate @groups, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax' %>
+  <% else %>
+    <% flash.now[:warning] = (t"none_param", :param => t("group.one")) %>
+  <% end %>

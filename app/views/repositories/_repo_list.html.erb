@@ -1,3 +1,4 @@
+  <% unless @repositories.empty? %>
     <%= will_paginate @repositories, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax' %>
     <table class='list'>
       <thead>
@@ -21,11 +22,12 @@
           <td> <%= repository.id %></td>
           <td> <%= repository.description %></td>
           <td>
-            <%= link_to t("show"), site_repository_path(:id => repository.id) %>
-            <%= link_to t("edit"), edit_site_repository_path(:id => repository.id) %>
-            <%= link_to t("destroy"), site_repository_path(:id => repository.id), :confirm => t("are_you_sure"), :method => :delete %>
-          </td>
+            <%= raw make_menu(repository) %> 
+         </td>
         </tr>
       <% end; reset_cycle %>
       </tbody>
     </table>
+  <% else %>
+    <% flash.now[:warning] = (t"none_param", :param => t("archive.one")) %>
+  <% end %>

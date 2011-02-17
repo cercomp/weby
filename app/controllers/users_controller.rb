@@ -66,7 +66,16 @@ class UsersController < ApplicationController
   def index
     @users = User.paginate :page => params[:page], :per_page => 10
     @roles = Role.find(:all, :select => 'id,name,theme', :group => "name,id,theme", :order => "id")
-    respond_with(@user)
+
+    respond_with do |format|
+      format.js { 
+        render :update do |site|
+          site.call "$('#list').html", render(:partial => 'list')
+        end
+      }
+      format.xml  { render :xml => @users }
+      format.html
+    end
   end
 
   def new

@@ -95,8 +95,9 @@ html>body #ajax-indicator { position: fixed; }
   width:100%; 
   text-align:right;
 }
-.contextual input, .contextual select { font-size:0.9em; }
-.message .contextual { margin-top: 0; }
+  .contextual p { margin-top: 0;}
+  .contextual input, .contextual select { font-size:0.9em; }
+  .message .contextual { margin-top: 0; }
 
 /***** Icons *****/
 .icon {

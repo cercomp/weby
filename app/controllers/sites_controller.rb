@@ -15,6 +15,7 @@ class SitesController < ApplicationController
           site.call "$('#list').html", render(:partial => 'list')
         end
       }
+      format.xml  { render :xml => @sites }
       format.html
     end
   end

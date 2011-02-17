@@ -2,13 +2,17 @@ class GroupsController < ApplicationController
   layout :choose_layout
 
   respond_to :html, :xml, :js
-
   def index
-    @groups = Group.all
+    @groups = Group.paginate :page => params[:page], :per_page => 10
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @groups }
+    respond_with do |format|
+      format.js { 
+        render :update do |site|
+          site.call "$('#list').html", render(:partial => 'list')
+        end
+      }
+      format.xml  { render :xml => @banners }
+      format.html
     end
   end
 
