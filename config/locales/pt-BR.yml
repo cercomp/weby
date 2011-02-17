@@ -33,7 +33,7 @@ pt-BR:
   chief_editor: "Editor chefe"
   controller: "Controle"
   cover: "Capa"
-  cover_help: "Essa notícia aparecerá na frente do site?"
+  cover_help: "Deseja que esta notícia apareça na frente do site?"
   create: "Criar"
   created: "Criado"
   created_at: "Criado em"
@@ -78,7 +78,8 @@ pt-BR:
 
 #---H---#
   home: "Página inicial"
-  hide: "Ocultar?"
+  hide: "Ocultar"
+  hide_help: "Deseja ocultar? Somente usuários com cargos específicos poderão recuperá-los."
   height: "Altura"
 
 #---I---#

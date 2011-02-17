@@ -1,12 +1,12 @@
-<% frontnews = Page.where(["front='true' AND publish='true' AND site_id = ? AND date_begin_at <= ? AND date_end_at > ?", @site.id, Time.now, Time.now]).limit(7).order("date_begin_at").all %>
-<% nofrontnews = Page.where(["front='false' AND publish='true' AND site_id = ? AND date_begin_at <= ? AND date_end_at > ?", @site.id, Time.now, Time.now]).limit(7).order("date_begin_at").all %>
+<% frontnews = Page.where(["front='true' AND publish='true' AND site_id = ? AND date_begin_at <= ? AND date_end_at > ?", @site.id, Time.now, Time.now]).order("date_begin_at").all %>
+<% nofrontnews = Page.where(["front='false' AND publish='true' AND site_id = ? AND date_begin_at <= ? AND date_end_at > ?", @site.id, Time.now, Time.now]).order("date_begin_at").all %>
 
 <% unless frontnews.empty? %>
   <section id="pages">
   <% frontnews.each do |page| %> 
     <div class="<%= cycle 'pageright', 'pageleft' %>">
       <% unless page.repository.nil? %>
-        <%= link_to image_tag("#{page.repository.archive.url(:little)}", :alt => page.repository.description), site_page_path(@site, page, :type => params[:type]), :title => page.repository.description %>
+        <%= link_to image_tag("#{page.repository.archive.url(:mini)}", :alt => page.repository.description), site_page_path(@site, page, :type => params[:type]), :title => page.repository.description %>
       <% end %>
       <p> <h2> <%= page.title %> </h2> </p>
       <%= raw page.summary %>

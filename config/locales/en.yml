@@ -76,6 +76,7 @@ en:
 #---H---#
   home: "Home"
   hide: "Hidden?"
+  hide_help: "Want to hide? Only users with specific positions might retrieve them."
   height: "Height"
 
 #---I---#
