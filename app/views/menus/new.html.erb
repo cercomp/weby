@@ -19,7 +19,7 @@
     <% end %>
 
     <p> <%= f.text_field :title, :label => t("text"), :required => true, :help => t("field_required") %> </p>
-    <p> <%= f.text_field :link, :label => (t"type", :param => t("url")) %> </p>
+    <p> <%= f.text_field :link, :label => t("url"), :help => (t"type_param", :param => t("url")) %> </p>
 
 		<%= f.fields_for :sites_menus do |menus_form| %>
       <%= menus_form.hidden_field :parent_id, :value => params[:parent_id] %>

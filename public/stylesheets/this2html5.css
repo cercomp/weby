@@ -100,9 +100,9 @@ section#content {
       color: #696969; }
     section#content section#pages p { }
 
-    section#content section#pages .pageleft { background-color: #F6F7F8; }
+    section#content section#pages .pageleft { border-bottom: 1px dotted #DDD; padding: 10px 0 10px 0; text-align: left; }
     section#content section#pages .pageleft a img { float: left; padding-right: 15px; }
-    section#content section#pages .pageright { background-color: #FFF; }
+    section#content section#pages .pageright { border-bottom: 1px dotted #DDD; padding: 10px 0 10px 0; text-align: right; }
     section#content section#pages .pageright a img { float: right; padding-left: 15px; }
 
 /* Classes to help build layout */

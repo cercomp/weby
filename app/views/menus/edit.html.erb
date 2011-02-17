@@ -14,7 +14,7 @@
     <% end %>
 
     <p> <%= f.text_field :title, :label => t("text"), :required => true, :help => t("field_required") %> </p>
-    <p> <%= f.text_field :link, :label => (t"type", :param => t("url")) %> </p>
+    <p> <%= f.text_field :link, :label => t("url"), :help => (t"type_param", :param => t("url")) %> </p>
 
     <p> <%= f.submit t("save") %> <%= link_to t("back"), :back %> </p>
   <% end %> 
