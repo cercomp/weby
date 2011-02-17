@@ -38,7 +38,7 @@ class RepositoriesController < ApplicationController
 
     respond_to do |format|
       if @repository.save
-        format.html { redirect_to(:site_id => @repository.site.name, :controller => "repositories", :action => 'show', :id => @repository.id) }
+        format.html { redirect_to :back }
         flash[:notice] = t("successfully_created") 
         format.xml  { render :xml => @repository, :status => :created, :location => @repository }
       else

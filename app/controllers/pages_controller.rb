@@ -27,7 +27,8 @@ class PagesController < ApplicationController
 
   def new
     params[:type] ||= 'News'
-
+    
+    @repository = Repository.new
     @page = Page.new
     @page.sites_pages.build
     @page.pages_repositories.build
@@ -55,6 +56,7 @@ class PagesController < ApplicationController
   end
 
   def edit
+    @repository = Repository.new
     # Objeto para pages_repositories (relacionamento muitos-para-muitos)
     @page = Page.find(params[:id])
     @page.pages_repositories.build

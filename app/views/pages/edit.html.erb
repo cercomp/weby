@@ -1,6 +1,15 @@
 <fieldset>
   <legend><%= t"editing", :param => t("#{params[:type].downcase}", :count => 1) %></legend>
 
+  <div id="repo_new" >
+    <div class="contextual">
+      <%= link_to (t"new_param", :param => (t"archive.one")), nil, :update => "repo_new", :remote => true, :onclick => "$('#page1').toggle();", :class => 'icon icon-add', %>
+    </div>
+    <div id="page1" style="display:none">
+      <%= render :partial => 'repositories/form'%>
+    </div>
+  </div>
+
   <%= form_for [@site, @page], :url => site_page_path(@site, @page, :type => params[:type]), :html => { :multipart => true }, :builder => SemanticFormBuilder do |f| %>
    <% if @page.errors.any? %>
       <div id="error_explanation">
@@ -15,12 +24,8 @@
 
     <%= link_to t("back"), :back %>
 
-    <div class="contextual">
-      <%= link_to (t"new_param", :param => (t"archive", :count => 1)), new_site_repository_path, :class => 'icon icon-add' %> 
-    </div>
-
     <div id="div_event">
-      <%= render :partial => "formEvent", :locals => {:f => f} %>
+      <%= render :partial => 'formEvent', :locals => {:f => f} %>
     </div>
 
     <div id='repo_list'>
@@ -66,11 +71,15 @@
 
     <%= f.submit_and_cancel t("save"), t("cancel") %>
     <%= link_to t("back"), :back %>
-
-    <div class="contextual">
-      <%= link_to (t"new_param", :param => (t"archive", :count => 1)), new_site_repository_path, :class => 'icon icon-add' %> 
-    </div>
   <% end %>
 
+  <div id="repo_new" >
+    <div class="contextual">
+      <%= link_to (t"new_param", :param => (t"archive.one")), nil, :update => "repo_new", :remote => true, :onclick => "$('#page2').toggle();", :class => 'icon icon-add' %>
+    </div>
+    <div id="page2" style="display:none">
+      <%= render :partial => 'repositories/form'%>
+    </div>
+  </div>
 </fieldset>
 
