@@ -4,10 +4,9 @@ class RolesController < ApplicationController
   before_filter :check_authorization
 
   respond_to :html, :xml
-
   def index
-    @roles = Role.find(:all, :order => "id")
-    @rights = Right.find(:all, :order => "controller,name")
+    @roles = Role.order("id").all
+    @rights = Right.order("controller,name").all
 
     if params[:role] && request.put?
       params[:role].each do |role, right|
@@ -27,30 +26,32 @@ class RolesController < ApplicationController
   end
 
   def show
-    @roles = Role.find(:all, :order => "id")
-    @rights = Right.find(:all, :order => "id")
+    @role = Role.new
+    @roles = Role.order("id").all
+    @rights = Right.order("id").all
     respond_with(@roles)
   end
 
   def new
-    respond_with(@roles = Role.new)
+    @role = Role.new
+    respond_with(@role)
   end
 
   def create
-    @roles = Role.new(params[:role])
-    @roles.save
-    respond_with(@roles)
+    @role = Role.new(params[:role])
+    @role.save
+    redirect_to(roles_path)
   end
 
   def update
     @role = Role.find(params[:id])
     @role.update_attributes(params[:role])
-    respond_with(@role)
+    redirect_to(roles_path)
   end
 
   def destroy
     @roles = Role.find(params[:id])
     @roles.destroy
-    respond_with(@roles)
+    redirect_to :back
   end
 end

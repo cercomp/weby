@@ -16,9 +16,7 @@
         <td><%= feedback.subject %></td>
         <td><%= feedback.message %></td>
         <td>
-          <%= link_to t('show'), site_feedback_path(@site, feedback) %>
-          <%= link_to t('edit'), edit_site_feedback_path(@site, feedback) %>
-          <%= link_to t('destroy'), site_feedback_path(@site, feedback), :confirm => t('are_you_sure'), :method => :delete %>
+          <%= raw make_menu(feedback) %> 
         </td>
       </tr>
     <% end; reset_cycle %>

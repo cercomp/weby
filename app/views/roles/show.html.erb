@@ -1,7 +1,7 @@
 <fieldset>
   <legend><%= t('roles_permissions') %></legend>
 
-  <% form_tag 'roles' do %>
+  <%= form_tag 'roles' do %>
     <table class="list">
       <thead>
        <tr>
@@ -27,9 +27,5 @@
     <p> <%= submit_tag t("submit") %> </p>
   <% end %>
 
-  <% form_for @roles do %>
-      <%= t"new_param", :param => t("role") %>
-        <%= text_field_tag "roles" %>
-        <%= submit_tag t("submit") %>
-  <% end %>
+  <%= render :file => 'roles/new' %>
 </fieldset>
