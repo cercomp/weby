@@ -32,6 +32,7 @@ en:
   chief_editor: "Chief Editor"
   controller: "Controller"
   cover: "Cover"
+  cover_help: "This pages will apear in site front."
   create: "Create"
   create_param: "Create %{param}"
   current_login: "Current login %{param}" 
@@ -140,8 +141,8 @@ en:
   no_mail: "No user was found with that email address."
   no_permission_to_activate_deactivate: "You don´t have permission to Activate/Deactivate"
   none_param: "None %{param}"
-  "no": "No"
   nacional: "Nacional"
+  "no": "No"
 
 #---O---#
   original: "Original"
@@ -151,8 +152,8 @@ en:
     one: "Page"
     other: "Pages"
   password: "Password"
-  password_confirmation: "Password confirmation"
   password_change: "Change password "
+  password_confirmation: "Password confirmation"
   permission: 
     one: "Permission"
     other: "Permissions"
@@ -166,6 +167,7 @@ en:
     other: " errors, prevent you from proceeding"
   portal: "Portal"
   publish: "Publish"
+  publish_help: "You want to publish this page?"
 
 #---Q---#
 

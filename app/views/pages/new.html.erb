@@ -35,7 +35,8 @@
     <%= f.text_area :summary, :label => t("summary"), :class => "mceSimple", :size => "48x8" %>
     <%= f.text_field :source, :label => t("source"), :required => true, :help => t("field_required") %> 
     <%= f.text_field :url, :label => t("url") %>
-    <%= f.check_box :front , :label => t("cover"), :help => "A notícia é capa?" %>
+    <%= f.check_box :publish , :label => t("publish"), :help => t("publish_help") %>
+    <%= f.check_box :front , :label => t("cover"), :help => t("cover_help") %>
 
     <%= f.hidden_field :position %>
     <%= f.hidden_field :status %>

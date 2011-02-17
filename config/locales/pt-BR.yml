@@ -33,6 +33,7 @@ pt-BR:
   chief_editor: "Editor chefe"
   controller: "Controle"
   cover: "Capa"
+  cover_help: "Essa notícia aparecerá na frente do site?"
   create: "Criar"
   created: "Criado"
   created_at: "Criado em"
@@ -168,6 +169,7 @@ pt-BR:
     other: " erros, impedem que você prossiga"
   portal: "Portal"
   publish: "Publicar"
+  publish_help: "Você deseja publicar essa página?"
 
 #---Q---#
 

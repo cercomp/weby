@@ -36,7 +36,6 @@ class BannersController < ApplicationController
   # GET /banners/new.xml
   def new
     @banner = Banner.new
-    @banner.sites_banners.build
     @repositories = Repository.where(["site_id = ? AND archive_content_type LIKE ?", @site.id, "image%"]).paginate :page => params[:page], :order => 'created_at DESC', :per_page => 4 
 
     respond_with do |format|
@@ -54,7 +53,6 @@ class BannersController < ApplicationController
   def edit
     @repositories = Repository.where(["site_id = ? AND archive_content_type LIKE ?", @site.id, "image%"]).paginate :page => params[:page], :order => 'created_at DESC', :per_page => 4 
     @banner = Banner.find(params[:id])
-    @banner.sites_banners.build
 
     respond_with do |format|
       format.js { 
