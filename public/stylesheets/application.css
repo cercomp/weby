@@ -91,8 +91,9 @@ html>body #ajax-indicator { position: fixed; }
 
 /**** Contextual *****/
 .contextual { 
-  float:right; 
   white-space: nowrap;
+  width:100%; 
+  text-align:right;
 }
 .contextual input, .contextual select { font-size:0.9em; }
 .message .contextual { margin-top: 0; }

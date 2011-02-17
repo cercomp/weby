@@ -1,6 +1,12 @@
 <fieldset>
   <legend><%= t('roles_permissions') %></legend>
 
+  <% if check_permission(RolesController, "new") %>
+    <div class="contextual">
+      <p><%= link_to (t"create_param", :param => t("role")), new_role_path, :class => 'icon icon-add' %></p>
+    </div>
+  <% end %>
+
   <%= form_tag '/roles', :method => 'put' do %>
   <table class="list">
     <thead>
@@ -32,8 +38,4 @@
   <% end %>
 
   <p> <%= link_to (t"list_param", :param => (t"permission", :count => 2)), :controller => "rights", :action => "index" %> </p>
-
-  <% if check_permission(RolesController, "new") %>
-    <p><%= link_to t("new"), :controller => "roles", :action => "new" %></p>
-  <% end %>
 </fieldset>

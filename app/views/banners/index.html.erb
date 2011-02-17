@@ -2,9 +2,7 @@
   <legend><%= t"list_param", :param => (t"banner", :count => 2)  %></legend>
 
   <div class="contextual">
-    <p> 
-      <%= link_to (t"create_param", :param => (t"banner", :count => 1)), new_site_banner_path, :class => 'icon icon-add' %> 
-    </p>
+    <p> <%= link_to (t"create_param", :param => (t"banner", :count => 1)), new_site_banner_path, :class => 'icon icon-add' %> </p>
   </div>
 
   <% unless @banners.empty? %>

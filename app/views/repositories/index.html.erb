@@ -2,12 +2,8 @@
   <legend><%= t"listing_param", :param => (t"archive", :count => 2) %></legend>
 
   <div class="contextual">
-    <p> 
-      <%= link_to (t"new_param", :param => (t"archive", :count => 1)), new_site_repository_path, :class => 'icon icon-add' %>
-    </p>
+    <p> <%= link_to (t"new_param", :param => (t"archive", :count => 1)), new_site_repository_path, :class => 'icon icon-add' %> </p>
   </div>
-
-  <br />
 
   <div id="repo_list">
     <%= render :partial => 'repo_list' %>

@@ -2,7 +2,9 @@
   <legend><%= t"list_param", :param => (t"site", :count => 2) %></legend>
 
   <% if check_permission(SitesController, "new")  %>
-    <p> <%= link_to (t"new_param", :param => (t"site", :count => 1)), new_site_path, :class => 'icon icon-add' %> </p>
+    <div class="contextual">
+      <p> <%= link_to (t"new_param", :param => (t"site", :count => 1)), new_site_path, :class => 'icon icon-add' %> </p>
+    </div>
   <% end %>
 
   <div id="list">
