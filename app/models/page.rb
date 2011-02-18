@@ -4,6 +4,8 @@ class Page < ActiveRecord::Base
 
   belongs_to :user, :foreign_key => "author_id"
 	belongs_to :repository, :foreign_key => "repository_id"
+  
+  has_many :menus
 
   has_many :pages_repositories
   has_many :repositories, :through => :pages_repositories

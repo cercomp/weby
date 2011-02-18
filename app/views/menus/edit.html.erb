@@ -1,5 +1,5 @@
 <fieldset>
-  <legend><%= t"editing", :param => (t"menu.one") %></legend>
+  <legend><%= t"editing", :param => (t"menu", :count => 1) %></legend>
 
   <%= form_for [@site, @menu], :builder => SemanticFormBuilder do |f| %>
      <% if @menu.errors.any? %>
@@ -13,9 +13,20 @@
       </div>
     <% end %>
 
-    <p> <%= f.text_field :title, :label => t("text"), :required => true, :help => t("field_required") %> </p>
-    <p> <%= f.text_field :link, :label => t("url"), :help => (t"type_param", :param => t("url")) %> </p>
+    <%= f.text_field :title, :label => t("text"), :required => true, :help => t("field_required") %>
 
-    <p> <%= f.submit t("save") %> <%= link_to t("back"), :back %> </p>
+    <div class="text-field ">
+      <label for="div_event"><%= t"type" %></label>
+      <div class="input">
+        <%= link_to ("Externo"), edit_site_menu_path(:type => "external"), :update => "div_link", :remote => true %> |
+        <%= link_to ("Interno"), edit_site_menu_path(:type => "internal"), :update => "div_link", :remote => true %>
+      </div>
+    </div>
+    <div id="div_link">
+      <%#= render :partial => 'formPages', :locals => {:f => f} %>
+    </div>
+
+    <%= f.submit t("save") %> <%= link_to t("back"), :back %>
   <% end %> 
+
 </fieldset>

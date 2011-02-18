@@ -57,6 +57,7 @@ form div.radio-field,
 form div.radio-fields,
 form div.select-field,
 form div.text-field,
+form div.url-field,
 form div.textarea-field,
 form div.time-zone-select-field,
 form div.submit-field {
@@ -81,6 +82,7 @@ form div.submit-field {
   form div.radio-fields div.input,
   form div.select-field div.input,
   form div.text-field div.input,
+  form div.url-field div.input,
   form div.textarea-field div.input,
   form div.time-zone-select-field div.input,
   form div.submit-field div.input {
@@ -98,6 +100,7 @@ form div.submit-field {
   form div.radio-fields label,
   form div.select-field label,
   form div.text-field label,
+  form div.url-field label,
   form div.textarea-field label,
   form div.time-zone-select-field label,
   form div.submit-field label {
@@ -116,6 +119,7 @@ form div.submit-field {
     form div.radio-fields label span.help,
     form div.select-field label span.help,
     form div.text-field label span.help,
+    form div.url-field label span.help,
     form div.textarea-field label span.help,
     form div.time-zone-select-field label span.help,
     form div.submit-field label span.help {

@@ -17,14 +17,36 @@ class MenusController < ApplicationController
 
   def new 
     @menu_parent = SitesMenu.find(params[:parent_id]) if params[:parent_id]
-
     @menu = Menu.new
     @menu.sites_menus.build
-    respond_with(@menu)
+    @pages = @site.pages.paginate :page => params[:page], :per_page => 10
+
+    respond_with do |format|
+      format.js { 
+        render :update do |page|
+          if params[:type]
+            page.call "$('#div_link').html", render(:partial => 'formPages', :locals => { :f => SemanticFormBuilder.new(:menu, @menu, self, {}, proc{}) })
+          end
+        end
+      }
+      format.html
+    end
   end
 
   def edit
     @menu = Menu.find(params[:id])
+    @pages = @site.pages.paginate :page => params[:page], :per_page => 10
+
+    respond_with do |format|
+      format.js { 
+        render :update do |page|
+          if params[:type]
+            page.call "$('#div_link').html", render(:partial => 'formPages', :locals => { :f => SemanticFormBuilder.new(:menu, @menu, self, {}, proc{}) })
+          end
+        end
+      }
+      format.html
+    end
   end
 
   def create

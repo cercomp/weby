@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110217101439) do
+ActiveRecord::Schema.define(:version => 20110218193808) do
 
   create_table "banners", :force => true do |t|
     t.datetime "date_begin_at"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(:version => 20110217101439) do
     t.string   "link"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "page_id"
   end
 
   create_table "pages", :force => true do |t|

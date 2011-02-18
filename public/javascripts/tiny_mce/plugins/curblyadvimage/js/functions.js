@@ -3,7 +3,7 @@ function cancel_image(){
 }
 
 function delete_attachment(element){
-  $('#dynamic_images_list').html("Uploading...<br /><img src='/images/tiny_mce/spinner.gif'>");
+  $('#dynamic_images_list').html("Uploading...<br /><img src='/images/spinner.gif'>");
   $('.attachment_list').removeClass("selected")
   //$.ajax({type: "GET", url: "/"+channel+"/"+feature+"/attachments/manage?media=print&page=1", dataType: "script"});
 }
@@ -24,7 +24,7 @@ function select_thumb(element) {
 
 function upload_callback(){
     //$('#dynamic_images_list').html('');
-    $.ajax({type: "GET", url: "/attachments/manage.js?media=print&page=1", dataType: "script"});
+    $.ajax({type: "GET", url: "/repositories/manage.js?media=print&page=1", dataType: "script"});
 }
 
 function curbly_insert_image(url, alt_text){
@@ -54,7 +54,7 @@ function ts_onload(){
 }
 function ts_upload_image_path() {
   path=window.parent.location.pathname.split('/')
-  return "/attachments/create.js?media=print";
+  return "/repositories/create.js?media=print";
 }
 function ts_ce(tag,name){
     if (name && window.ActiveXObject){

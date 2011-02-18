@@ -10,6 +10,11 @@ class SemanticFormBuilder < ActionView::Helpers::FormBuilder
     label += "<strong><sup>*</sup></strong>".html_safe if options[:required]
     [field_name, label, options]
   end
+
+  def url_field(method, options = {})
+    field_name, label, options = field_settings(method, options)
+    wrapping("url", field_name, label, super, options)
+  end
   
   def text_field(method, options = {})
     field_name, label, options = field_settings(method, options)

@@ -18,7 +18,7 @@
       <fieldset>
       <legend>{#advimage_dlg.upload_new_image}</legend>
       <form id='image_upload_form' enctype="multipart/form-data" method="post" onsubmit="if($('#media_photo').val()!=''){ts_onload(); return true;}else{alert('Please, select file to upload');return false;}" target="html_editor_image_upload_frame">
-          <input class="input-file" id="media_photo" name="print[image]" size="22" type="file"/>
+          <input class="input-file" id="media_photo" name="repository[archive]" size="22" type="file"/>
           <input class="submit" name="commit" type="submit" value="Upload"/>
         </form>
       </fieldset>
