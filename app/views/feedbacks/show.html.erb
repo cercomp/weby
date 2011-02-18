@@ -13,7 +13,7 @@
 
   <p>
     <b><%= t("message") %>:</b>
-    <i><%= @feedback.message %><i/>
+    <%= @feedback.message%>
   </p>
 
   <%= link_to t('edit'), edit_site_feedback_path(@site, @feedback) %> | <%= link_to t("list_all"), site_feedbacks_path(@site) %> | <%= link_to t('back'), :back %>  

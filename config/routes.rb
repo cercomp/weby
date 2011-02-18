@@ -28,11 +28,18 @@ Webyge::Application.routes.draw do |map|
         get :toggle_field
       end 
     end
+
+    resources :feedbacks do
+      collection do
+        get :sent
+      end
+    end
     
-   resources :groups, :feedbacks, :chats, :roles, :rights, :archives, :admin
+   resources :groups, :chats, :roles, :rights, :archives, :admin
   end
 
-  resources :groups, :feedbacks, :menus, :pages, :chats, :roles, :rights, :archives, :user_sessions, :password_resets, :admin
+  resources :groups,:menus, :pages, :chats, :roles, :rights, :archives, :user_sessions, :password_resets, :admin
+
   resources :account, :controller => "users"
   resources :users do
     collection do

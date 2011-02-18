@@ -45,15 +45,24 @@ class FeedbacksController < ApplicationController
   def create
     @feedback = Feedback.new(params[:feedback])
 
-    respond_to do |format|
-      if @feedback.save
-        FeedbackMailer.send_feedback(@feedback).deliver
-        format.html { redirect_to(site_feedback_path(@site.name, @feedback), :notice => t("successfully_created")) }
-        format.xml  { render :xml => @feedback, :status => :created, :location => @feedback }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @feedback.errors, :status => :unprocessable_entity }
-      end
+    if @feedback.save
+      FeedbackMailer.send_feedback(@feedback).deliver
+      session[:feedback_id] = @feedback.id
+      redirect_to :action => 'sent'
+    else
+      render :action => "new"
+    end
+
+  end
+
+  def sent
+    # Mostra mensagem de feedback enviado apenas uma vez
+    unless session[:feedback_id].nil?
+      @feedback = Feedback.find(session[:feedback_id])
+      session.delete :feedback_id
+    else
+      # Se o usuário já viu a mensagem, ele é redirecionado para a página inicial do site
+      redirect_to [@site]
     end
   end
 

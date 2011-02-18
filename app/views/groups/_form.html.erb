@@ -13,14 +13,15 @@
   <%= f.text_field :name, :label => t("name"), :required => true, :help => t("field_required") %>
 
   <div class="select-field">
-    <label for="users_id_"><%= t"user", :count => 2 %>:</label>
-    <div class="input">
+    <label for="users_id_"><%= t "user", :count => 2 %>:</label>
+    <div class="input" style="margin-left: 20%; padding-left: 10px">
       <% @users.each do |user| %>
-        <p>
-          <%= check_box_tag 'users_ids[]', user.id %>
-          <%= user.login %>
-        </p>
+				<%= check_box_tag 'group[user_ids][]', user.id, @group.user_ids.include?(user.id) %>
+				<%= user.login %>
+				<br/>
       <% end %>
+
+			<%= hidden_field_tag 'group[user_ids][]', '' %>
 
     </div>
   </div>

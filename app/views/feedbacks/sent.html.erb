@@ -1,0 +1,11 @@
+<div id="feedback_sent">
+  Sua mensagem foi enviada com sucesso para o grupo :
+  <span>
+    <%= @feedback.groups.collect{|g| g.name }.join(', ') %>
+  </span>
+
+  <p>
+    <button><%= link_to 'Clique aqui para voltar', [@site] %></button>
+  <p>
+</div>
+

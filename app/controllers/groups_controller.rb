@@ -27,7 +27,7 @@ class GroupsController < ApplicationController
 
   def new
     @group = Group.new
-    @users = @group.users_off_groups
+    @users = User.find(:all)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -37,21 +37,14 @@ class GroupsController < ApplicationController
 
   def edit
     @group = Group.find(params[:id])
-    @users = @group.users_off_groups
+    @users = User.find(:all)
   end
 
   def create
     @group = Group.new(params[:group])
-    @users = params[:users_ids] || []
 
     respond_to do |format|
       if @group.save
-        # Cadastra usuarios no grupo
-        unless @users.empty?
-          @users.each do |u|
-            @group.users << User.find(u)
-          end
-        end
         format.html {
           redirect_to({:site_id => @group.site.name, :controller => 'groups', :action => 'index'},
                       :notice => t('successfully_created')) }

@@ -64,6 +64,7 @@ pt-BR:
 
 #---F---#
   feedback: "Fale Conosco"
+  feedback_sent: "Feedback enviado com sucesso!"
   father: "Pai"
   fill_email_form: "Preencha o formulário para resgatar sua senha. Ela será enviada para seu e-mail" 
   forgot_password: "Perdi minha senha"

@@ -61,6 +61,7 @@ en:
 
 #---F---#
   feedback: "Feedback"
+  feedback_sent: "Feedback sent successfully!"
   father: "Father"
   fill_email_form: "Fill out the form below to reset your password. It will be e-mailed to you" 
   forgot_password: "Forgot password"
