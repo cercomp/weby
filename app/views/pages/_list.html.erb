@@ -20,7 +20,7 @@
           <td><%= l page.date_begin_at, :format => :short %></td>
           <td><%= page.title %></td>
           <td><%= page.user.login %></td>
-          <td><%= t"#{page.type.downcase}", :count => 1 %></td>
+          <td><%= t"#{page.type.downcase}.one" %></td>
           <td align="center"><%= raw toggle_field(page, "front") %></td>
           <td align="center"><%= raw toggle_field(page, "publish") %></td>
           <td>

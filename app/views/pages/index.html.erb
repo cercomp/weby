@@ -1,9 +1,9 @@
 <fieldset>
-  <legend><%= t"list_param", :param => (t"page", :count => 2)  %></legend>
+  <legend><%= t"page.other"  %></legend>
 
   <% if params[:type] %>
     <div class="contextual">
-      <p> <%= link_to (t"create_param", :param => (t"page", :count => 1)), new_site_page_path, :class => 'icon icon-add' %> </p>
+      <p> <%= link_to (t"create_param", :param => (t"page.one")), new_site_page_path, :class => 'icon icon-add' %> </p>
     </div>
   <% end %>
 

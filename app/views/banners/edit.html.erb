@@ -1,5 +1,5 @@
 <fieldset>
-  <legend><%= t"edit" %> <%= (t"banner", :count => 1) %></legend>
+  <legend><%= t"edit" %> <%= (t"banner.one") %></legend>
 
   <%= form_for [@site, @banner], :html => { :multipart => true }, :builder => SemanticFormBuilder do |f| %>
     <% if @banner.errors.any? %>

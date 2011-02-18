@@ -4,7 +4,7 @@
     <%= link_to image_tag("#{@banner.repository.archive.url(size)}", :width => "#{@banner.width}", :height => "#{@banner.height}", :align => "right"), @banner.url, :alt => @banner.repository.description, :title => @banner.repository.description %>
   <% end %>
 
-  <p> <h1> <%= t("banner", :count => 1) %> </h1> </p>
+  <p> <h1> <%= t("banner.one") %> </h1> </p>
   <i><%= @banner.user.login %>, <%= l @banner.created_at, :format => :short %></i>
   <p> <h2> <%= @banner.text %> </h2> </p>
   <p> <h3> <%= t("url") %> : <%= link_to h @banner.url %> </h3> </p>

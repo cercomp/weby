@@ -21,5 +21,5 @@
     <b><%= t"current_login", :param => t("ip") %>:</b> <%=h @user.current_login_ip %>
   </p>
 
-  <%= link_to t('edit'), edit_user_path %> | <%= link_to t('back'), :back %>
+  <%= link_to t('edit'), edit_user_path %> | <%= link_to t("list_all"), site_users_path %> | <%= link_to t('back'), :back %>
 </fieldset>

@@ -1,5 +1,5 @@
 <fieldset>
-  <legend><%= t"editing", :param => (t"menu", :count => 1) %></legend>
+  <legend><%= t"editing", :param => (t"menu.one") %></legend>
 
   <%= form_for [@site, @menu], :builder => SemanticFormBuilder do |f| %>
      <% if @menu.errors.any? %>

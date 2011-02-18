@@ -32,7 +32,7 @@ form input[type=button] {
   border-right: 2px solid #006000;
   border-bottom: 2px solid #006000;
   margin: 0 5px; }
-form input[type=submit][id=btnCancel] {
+form input[id=btnCancel] {
   border-top: 2px solid #e68582;
   border-left: 2px solid #e68582;
   border-bottom: 2px solid #801f1c;
