@@ -63,6 +63,12 @@
     <p>
 	    <%= link_to (t"setting.other"), edit_site_admin_path(@site, @site) %>
     </p>
+    <p>
+      <%= link_to (t"css"), site_csses_path %>
+      <% if check_permission(CssesController, "new") %>
+       | <%= link_to t("new"), new_site_css_path, :class => 'icon icon-add' %>
+      <% end %>
+    </p>
   <% end %>
 
 <% end %>
