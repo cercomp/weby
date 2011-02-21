@@ -24,10 +24,8 @@
 
     <div class="text-field ">
       <label for="div_event"><%= t"type" %></label>
-      <div class="input">
-        <div id="link_form_pages">
-        <%= link_to t("external"), edit_site_menu_path(@site, :type => "external"), :update => "div_link", :remote => true, :onclick => "var img = new Image; img.src = '/images/spinner.gif'; $(this).html(function(){return img})" %>
-        </div>
+      <div class="input" id="link_form_pages">
+        <%= t("internal") %> | <%= link_to t("external"), edit_site_menu_path(@site, :type => "external"), :update => "div_link", :remote => true, :onclick => "var img = new Image; img.src = '/images/spinner.gif'; $(this).parent().html(function(){return img})" %>
       </div>
     </div>
 

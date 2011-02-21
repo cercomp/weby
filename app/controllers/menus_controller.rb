@@ -25,7 +25,7 @@ class MenusController < ApplicationController
       format.js { 
         render :update do |page|
           page.call "$('#div_link').html", render(:partial => 'formPages', :locals => { :f => SemanticFormBuilder.new(:menu, @menu, self, {}, proc{}) })
-          page.call "$('#link_form_pages').html", ((params[:type] == "internal") ? (link_to t("external"), new_site_menu_path(@site, :type => "external"), :update => "div_link", :remote => true, :onclick => "var img = new Image; img.src = '/images/spinner.gif'; $(this).html('').append(function(){return img})") : (link_to t("internal"), new_site_menu_path(@site, :type => "internal"), :update => "div_link", :remote => true, :onclick => "var img = new Image; img.src = '/images/spinner.gif'; $(this).html('').append(function(){return img})"))
+          page.call "$('#link_form_pages').html", (params[:type] == "internal") ? "#{t("internal")} | #{(link_to t("external"), new_site_menu_path(@site, :type => "external"), :update => "div_link", :remote => true, :onclick => "var img = new Image; img.src = '/images/spinner.gif'; $(this).parent().html('').append(function(){return img})")}" : "#{(link_to t("internal"), new_site_menu_path(@site, :type => "internal"), :update => "div_link", :remote => true, :onclick => "var img = new Image; img.src = '/images/spinner.gif'; $(this).parent().html('').append(function(){return img})")} | #{t("external")}"
         end
       }
       format.html
@@ -40,7 +40,7 @@ class MenusController < ApplicationController
       format.js { 
         render :update do |page|
           page.call "$('#div_link').html", render(:partial => 'formPages', :locals => { :f => SemanticFormBuilder.new(:menu, @menu, self, {}, proc{}) })
-          page.call "$('#link_form_pages').html", ((params[:type] == "internal") ? (link_to t("external"), new_site_menu_path(@site, :type => "external"), :update => "div_link", :remote => true, :onclick => "var img = new Image; img.src = '/images/spinner.gif'; $(this).html('').append(function(){return img})") : (link_to t("internal"), new_site_menu_path(@site, :type => "internal"), :update => "div_link", :remote => true, :onclick => "var img = new Image; img.src = '/images/spinner.gif'; $(this).html('').append(function(){return img})"))
+          page.call "$('#link_form_pages').html", (params[:type] == "internal") ? "#{t("internal")} | #{(link_to t("external"), edit_site_menu_path(@site, :type => "external"), :update => "div_link", :remote => true, :onclick => "var img = new Image; img.src = '/images/spinner.gif'; $(this).parent().html('').append(function(){return img})")}" : "#{(link_to t("internal"), edit_site_menu_path(@site, :type => "internal"), :update => "div_link", :remote => true, :onclick => "var img = new Image; img.src = '/images/spinner.gif'; $(this).parent().html('').append(function(){return img})")} | #{t("external")}"
         end
       }
       format.html

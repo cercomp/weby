@@ -9,8 +9,7 @@ form select option,
 form textarea {
   font-family: Georgia;
   font-color: #000; }
-form label {
-  line-height: 1.8em; }
+form label { }
 form input,
 form select,
 form textarea {
