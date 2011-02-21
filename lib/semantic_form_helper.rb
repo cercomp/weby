@@ -26,10 +26,11 @@ module SemanticFormHelper
     to_return.html_safe
   end
 
-  def boolean_field_wrapper(input, name, value, text, help = nil)
+  def boolean_field_wrapper(input, name, value, text, help = nil, br = nil)
     field = ""
     field << %Q{#{input} #{text}\n}
     field << %Q{<div class="help">#{help}</div>} if help
+    field << %Q{<br />} if br
     field.html_safe
   end
 

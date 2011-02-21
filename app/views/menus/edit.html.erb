@@ -1,6 +1,15 @@
 <fieldset>
   <legend><%= t"editing", :param => (t"menu", :count => 1) %></legend>
 
+  <center>
+    <%= form_tag edit_site_menu_path(@site, @menu), :method => 'get', :remote => true do %>
+      <%= label_tag t("search") %>
+      <%= text_field_tag :search %>
+      <%= submit_tag t("submit") %>
+    <% end %>
+  </center>
+  <hr>
+
   <%= form_for [@site, @menu], :builder => SemanticFormBuilder do |f| %>
      <% if @menu.errors.any? %>
       <div id="error_explanation">
@@ -13,18 +22,20 @@
       </div>
     <% end %>
 
-    <%= f.text_field :title, :label => t("text"), :required => true, :help => t("field_required") %>
-
     <div class="text-field ">
       <label for="div_event"><%= t"type" %></label>
       <div class="input">
-        <%= link_to ("Externo"), edit_site_menu_path(:type => "external"), :update => "div_link", :remote => true %> |
-        <%= link_to ("Interno"), edit_site_menu_path(:type => "internal"), :update => "div_link", :remote => true %>
+        <div id="link_form_pages">
+        <%= link_to t("external"), edit_site_menu_path(@site, :type => "external"), :update => "div_link", :remote => true, :onclick => "var img = new Image; img.src = '/images/spinner.gif'; $(this).html(function(){return img})" %>
+        </div>
       </div>
     </div>
+
     <div id="div_link">
-      <%#= render :partial => 'formPages', :locals => {:f => f} %>
+      <%= render :partial => 'formPages', :locals => {:f => f} %>
     </div>
+
+    <%= f.text_field :title, :label => t("text"), :required => true, :help => t("field_required") %>
 
     <%= f.submit t("save") %> <%= link_to t("back"), :back %>
   <% end %> 

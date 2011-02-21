@@ -19,14 +19,13 @@ class MenusController < ApplicationController
     @menu_parent = SitesMenu.find(params[:parent_id]) if params[:parent_id]
     @menu = Menu.new
     @menu.sites_menus.build
-    @pages = @site.pages.paginate :page => params[:page], :per_page => 10
+    @pages = @site.pages.search(params[:search], params[:page])
 
     respond_with do |format|
       format.js { 
         render :update do |page|
-          if params[:type]
-            page.call "$('#div_link').html", render(:partial => 'formPages', :locals => { :f => SemanticFormBuilder.new(:menu, @menu, self, {}, proc{}) })
-          end
+          page.call "$('#div_link').html", render(:partial => 'formPages', :locals => { :f => SemanticFormBuilder.new(:menu, @menu, self, {}, proc{}) })
+          page.call "$('#link_form_pages').html", ((params[:type] == "internal") ? (link_to t("external"), new_site_menu_path(@site, :type => "external"), :update => "div_link", :remote => true, :onclick => "var img = new Image; img.src = '/images/spinner.gif'; $(this).html('').append(function(){return img})") : (link_to t("internal"), new_site_menu_path(@site, :type => "internal"), :update => "div_link", :remote => true, :onclick => "var img = new Image; img.src = '/images/spinner.gif'; $(this).html('').append(function(){return img})"))
         end
       }
       format.html
@@ -35,14 +34,13 @@ class MenusController < ApplicationController
 
   def edit
     @menu = Menu.find(params[:id])
-    @pages = @site.pages.paginate :page => params[:page], :per_page => 10
+    @pages = @site.pages.search(params[:search], params[:page])
 
     respond_with do |format|
       format.js { 
         render :update do |page|
-          if params[:type]
-            page.call "$('#div_link').html", render(:partial => 'formPages', :locals => { :f => SemanticFormBuilder.new(:menu, @menu, self, {}, proc{}) })
-          end
+          page.call "$('#div_link').html", render(:partial => 'formPages', :locals => { :f => SemanticFormBuilder.new(:menu, @menu, self, {}, proc{}) })
+          page.call "$('#link_form_pages').html", ((params[:type] == "internal") ? (link_to t("external"), new_site_menu_path(@site, :type => "external"), :update => "div_link", :remote => true, :onclick => "var img = new Image; img.src = '/images/spinner.gif'; $(this).html('').append(function(){return img})") : (link_to t("internal"), new_site_menu_path(@site, :type => "internal"), :update => "div_link", :remote => true, :onclick => "var img = new Image; img.src = '/images/spinner.gif'; $(this).html('').append(function(){return img})"))
         end
       }
       format.html

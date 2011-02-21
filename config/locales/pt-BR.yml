@@ -61,6 +61,7 @@ pt-BR:
   example_param: "Exemplo: %{param}"
   expires: "Expira em"
   enable: "Habilitado"
+  external: "Externo"
 
 #---F---#
   feedback: "Fale Conosco"
@@ -89,6 +90,7 @@ pt-BR:
   instructions_change_password: "Instruções para trocar a senha"
   is_event: "É um evento?"
   internacional: "Internacional"
+  internal: "Interno"
 
 #---K---#
   time_cover: "capa agendada"

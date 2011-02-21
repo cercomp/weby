@@ -1,5 +1,8 @@
 class Page < ActiveRecord::Base
   default_scope :order => 'updated_at DESC'
+  def self.search(search, page)
+    paginate :per_page => 4, :page => page, :conditions => ['title like ?', "%#{search}%"], :order => 'id DESC'
+  end
   validates_presence_of :title, :source, :author_id
 
   belongs_to :user, :foreign_key => "author_id"

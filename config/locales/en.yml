@@ -58,6 +58,7 @@ en:
   example_param: "Example: %{param}"
   expires: "Expires"
   enable: "Enable"
+  external: "External"
 
 #---F---#
   feedback: "Feedback"
@@ -86,6 +87,7 @@ en:
   instructions_change_password: "Instructions to change your password"
   is_event: "Is a event?"
   internacional: "Internacional"
+  internal: "Internal"
 
 #---K---#
   time_cover: "capa agendada"

@@ -1,22 +1,12 @@
   
-  <% if params[:type] == "internal" %>
-    <center>
-      <%= form_tag edit_site_admin_path(@site, @site), :method => 'get', :remote => true do %>
-        <%= label_tag t("search") %>
-        <%= text_field_tag :search %>
-        <%= submit_tag t("submit") %>
-      <% end %>
-    </center>
-    <div class="radio-field ">
-      <label for="div_page">Pages</label>
-      <div class="input">
-        <% @pages.each do |page| %>
-          <%= radio_button_tag :menu, 'page_id', page.id %>
-          <%= "#{page.title}" %>
-          <br />
-        <% end %>
-      </div>
-    </div>
-  <% else %>
+  <% if params[:type] == "external" %>
+
     <%= f.url_field :link, :label => t("url"), :help => (t"type_param", :param => t("url")), :placeholder => 'http://' %>
+
+  <% else %>
+
+    <% unless @pages.nil? %>
+      <%= f.radio_button_group :page_id, @pages.map{|u| { :value => u.id, :label => u.title }}, (will_paginate @pages, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax'), :label => t("url"), :help => t("url") %>
+    <% end %>
+
   <% end %>

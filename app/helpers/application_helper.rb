@@ -47,7 +47,7 @@ module ApplicationHelper
     submenu = (not sons[entry.id].nil?) ? "class='sub'" : nil
 
     menus ||= ""
-    menus += "\n" + indent_space + "<li #{submenu}>" + link_to("#{entry.menu.title}", "#{entry.menu.link}")
+    menus += "\n" + indent_space + "<li #{submenu}>" + link_to("#{entry.menu.title}", entry.menu.page_id ? site_page_path(@site, "#{entry.menu.page_id}") :"#{entry.menu.link}")
     if view_ctrl == 1
       # Se existir um position nulo ele será organizado e todos do seu nível
       if entry.position.nil? or entry.position.to_i < 1

@@ -4,7 +4,7 @@
   <title> <%= @site.name %> </title>
   <meta charset="utf-8">
   <%= csrf_meta_tag %>
-  <%= stylesheet_link_tag 'http://bibliotecaweb.mec.gov.br/barra_do_governo/css/barra_do_governo.css' %>
+  <%#= stylesheet_link_tag 'http://bibliotecaweb.mec.gov.br/barra_do_governo/css/barra_do_governo.css' %>
   <%= stylesheet_link_tag 'barra_ufg' %>
   <%= stylesheet_link_tag 'scaffold' %>
   <%= stylesheet_link_tag 'application' %>
@@ -104,8 +104,8 @@
 
   <%= javascript_include_tag :defaults %>
   <!--[if lt IE 9]>
-    <%= javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js" %>
-    <%= javascript_include_tag "http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js" %>
+    <%#= javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js" %>
+    <%#= javascript_include_tag "http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js" %>
   <![endif]-->
   <%= javascript_include_tag "tiny_mce/jquery.tinymce" %>
   <%= javascript_tag do %>

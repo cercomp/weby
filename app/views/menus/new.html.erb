@@ -1,10 +1,15 @@
 <fieldset> 
-  <% if !params[:parent_id] %>
-		<% params[:parent_id] = "0" %>
-    <legend> <%= t"new_param", :param => (t"menu.one") %> </legend>
-  <% else %>
-    <legend> <%= t"new_param", :param => t("sub_menu")%> </legend>
-  <% end %>
+	<% params[:parent_id] ||= 0 %>
+  <legend> <%= params[:parent_id] == 0 ? (t"new_param", :param => (t"menu.one")) : (t"new_param", :param => t("sub_menu")) %> </legend>
+
+  <center>
+    <%= form_tag new_site_menu_path(@site, @menu), :method => 'get', :remote => true do %>
+      <%= label_tag t("search") %>
+      <%= text_field_tag :search %>
+      <%= submit_tag t("submit") %>
+    <% end %>
+  </center>
+  <hr>
 
   <%= form_for [@site, @menu], :builder => SemanticFormBuilder   do |f| %>
     <% if @menu.errors.any? %>
@@ -18,9 +23,20 @@
       </div>
     <% end %>
 
-    <p> <%= f.text_field :title, :label => t("text"), :required => true, :help => t("field_required") %> </p>
-    <p> <%= f.text_field :link, :label => t("url"), :help => (t"type_param", :param => t("url")) %> </p>
+    <div class="text-field ">
+      <label for="div_event"><%= t"type" %></label>
+      <div class="input">
+        <div id="link_form_pages">
+        <%= link_to t("external"), new_site_menu_path(@site, :type => "external"), :update => "div_link", :remote => true, :onclick => "var img = new Image; img.src = '/images/spinner.gif'; $(this).html(function(){return img})" %>
+        </div>
+      </div>
+    </div>
 
+    <div id="div_link">
+      <%= render :partial => 'formPages', :locals => {:f => f} %>
+    </div>
+
+    <%= f.text_field :title, :label => t("text"), :required => true, :help => t("field_required") %>
 		<%= f.fields_for :sites_menus do |menus_form| %>
       <%= menus_form.hidden_field :parent_id, :value => params[:parent_id] %>
       <%= menus_form.hidden_field :site_id, :value => @site.id %>
@@ -29,10 +45,10 @@
         <%= menus_form.hidden_field "side", :value => "#{@menu_parent.side}" %>
       <% else %>
         <% menus_list = [[t("left"), "left"], [t("right"), "right"], [t("top"), "top"], [t("bottom"), "bottom"]] %>
-        <p> <%= menus_form.select(:side, options_for_select(menus_list, selected = "#{params[:side]}"), :label => t("position")) %> </p>
+        <%= menus_form.select(:side, options_for_select(menus_list, selected = "#{params[:side]}"), :label => t("position")) %>
       <% end %>
     <% end %>
 
-    <p> <%= f.submit t("create") %> <%= link_to t("back"), :back %></p>
+    <%= f.submit t("create") %> <%= link_to t("back"), :back %>
   <% end %> 
 </fieldset>
