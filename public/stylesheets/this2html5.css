@@ -14,15 +14,15 @@ header,
 footer { }
 
   /* Define footer information */
-  footer section#info { padding: 0; }
+  footer section#info { padding: 0 0 5px 5px; }
     footer section#info p { margin: 0; }
 
   /* Define area of top image */
   /*header div#topimage { overflow: hidden; }*/
 
   /* Define Header and Footer menus */
-  header > nav { padding: 0px 0px 5px 0px; }
-  footer > nav { padding: 5px 0px 5px 0px; }
+  header > nav { padding: 0px 5px 5px 0px; }
+  footer > nav { padding: 5px 5px 5px 0px; }
 
     header nav menu,
     footer nav menu { list-style: none outside none; padding: 0; margin: 0; }
