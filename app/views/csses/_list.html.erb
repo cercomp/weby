@@ -1,0 +1,30 @@
+  <% unless @csses.empty? %>
+    <%= will_paginate @csses, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax' %>
+    <table class='list'>
+      <thead>
+        <th><%= 'id' %></th>
+        <th><%= t'name' %></th>
+        <th><%= t'css' %></th>
+        <th><%= t'site_id' %></th>
+        <th><%= t'publish' %></th>
+        <th></th>
+      </thead>
+      <tbody>
+      <% @csses.each do |css| %>
+        <tr class="<%= cycle 'odd', 'even' %>">
+          <td><%= link_to css.id, site_css_path(@site, css) %></td>
+          <td><%= css.name %></td>
+          <td><%= css.css %></td>
+          <td><%= css.site_id %></td>
+          <td><%= css.publish %></td>
+          <td>
+            <%= raw make_menu(css) %> 
+          </td>
+        </tr>
+      <% end; reset_cycle %>
+      </tbody>
+    </table>
+    <%= will_paginate @csses, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax' %>
+  <% else %>
+    <% flash.now[:warning] = (t"none_param", :param => t("css")) %>
+  <% end %>

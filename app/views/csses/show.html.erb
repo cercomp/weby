@@ -1,0 +1,25 @@
+<fieldset>  
+  <p id="notice"><%= notice %></p>
+
+  <p>
+    <b>Name:</b>
+    <%= @css.name %>
+  </p>
+
+  <p>
+    <b>Css:</b>
+    <%= @css.css %>
+  </p>
+
+  <p>
+    <b>Site:</b>
+    <%= @css.site_id %>
+  </p>
+
+  <p>
+    <b>Publish:</b>
+    <%= @css.publish %>
+  </p>
+
+  <%= link_to t('edit'), edit_site_css_path(@site, @css) %> | <%= link_to t('back'), :back %>
+</fieldset>

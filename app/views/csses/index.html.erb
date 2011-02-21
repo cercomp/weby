@@ -1,0 +1,11 @@
+<fieldset>
+  <legend><%= t("css") %></legend>
+
+  <div class="contextual">
+    <p> <%= link_to (t"new_param", :param => (t"css")), new_site_css_path, :class => 'icon icon-add' %> </p>
+  </div>
+
+  <div id="list">
+    <%= render :partial => "list" %>
+  </div>
+</fieldset>

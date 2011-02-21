@@ -1,0 +1,20 @@
+<%= form_for [@site, @css], :builder => SemanticFormBuilder do |f| %>
+  <% if @css.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@css.errors.count,"") %> <%= t"prohibited_being_saved", :count => @css.errors.count%>:</h2>
+      <ul>
+      <% @css.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.text_field :name, :label => t("name"), :required => true, :help => t("field_required") %>
+  <%= f.text_area :css, :label => t("css") %>
+  <%= f.check_box :publish, :label => t("publish") %>
+
+  <%= f.hidden_field :site_id, :value => @site.id %>
+  <%= f.submit t("submit") %>
+
+<% end %>

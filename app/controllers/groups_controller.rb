@@ -62,7 +62,7 @@ class GroupsController < ApplicationController
       if @group.update_attributes(params[:group])
         format.html {
          redirect_to({:site_id => @group.site.name, :controller => 'groups', :action => 'index'},
-                      :notice => t('successfully_updated')) }
+                     :notice => t('successfully_updated')) }
         format.xml  { head :ok }
       else
         format.html { redirect_to :back }

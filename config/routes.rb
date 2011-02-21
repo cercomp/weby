@@ -35,10 +35,10 @@ Webyge::Application.routes.draw do |map|
       end
     end
     
-   resources :groups, :chats, :roles, :rights, :archives, :admin
+   resources :groups, :chats, :roles, :rights, :archives, :admin, :csses
   end
 
-  resources :groups,:menus, :pages, :chats, :roles, :rights, :archives, :user_sessions, :password_resets, :admin
+  resources :groups,:menus, :pages, :chats, :roles, :rights, :archives, :user_sessions, :password_resets, :admin, :csses
 
   resources :account, :controller => "users"
   resources :users do

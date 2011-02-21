@@ -5,7 +5,7 @@ class Site < ActiveRecord::Base
     "#{name}"
   end
   validates_presence_of :name, :url
-  
+
   # Removido para utilizar a relação ternária entre roles e sites
     #has_many :sites_users #, :foreign_key => "role_id"
     #has_many :users, :through => :sites_users
@@ -19,15 +19,16 @@ class Site < ActiveRecord::Base
 
   has_many :sites_pages
   has_many :pages, :through => :sites_pages
-  
+
   has_many :groups
   has_many :feedbacks
   has_many :banners
+  has_many :csses
 
   #accepts_nested_attributes_for :sites_users, :allow_destroy => true#, :reject_if => proc { |attributes| attributes['title'].blank? }
   accepts_nested_attributes_for :sites_menus, :allow_destroy => true#, :reject_if => proc { |attributes| attributes['title'].blank? }
   accepts_nested_attributes_for :sites_pages, :allow_destroy => true#, :reject_if => proc { |attributes| attributes['title'].blank? }
- 
+
  	belongs_to :repository, :foreign_key => "top_banner_id"
   has_many :repositories
 

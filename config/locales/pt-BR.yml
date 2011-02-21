@@ -40,6 +40,7 @@ pt-BR:
   create_param: "Criar %{param}"
   current_login: "Entrada atual %{param}" 
   cancel: "Cancelar"
+  css: "Estilo"
 
 #---D---#
   date_param: "Data de %{param}" 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110218193808) do
+ActiveRecord::Schema.define(:version => 20110221123546) do
 
   create_table "banners", :force => true do |t|
     t.datetime "date_begin_at"
@@ -28,6 +28,15 @@ ActiveRecord::Schema.define(:version => 20110218193808) do
     t.string   "size"
     t.boolean  "publish"
     t.integer  "site_id"
+  end
+
+  create_table "csses", :force => true do |t|
+    t.string   "name"
+    t.text     "css"
+    t.integer  "site_id"
+    t.boolean  "publish"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "feedbacks", :force => true do |t|
