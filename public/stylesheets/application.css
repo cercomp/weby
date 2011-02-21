@@ -191,3 +191,12 @@ html>body #ajax-indicator { position: fixed; }
   background-color: #F0FFFF;
   text-align: center;
 }
+
+#main-tabs { background:#FFF; padding:0; margin:0; float:left; width:100%; }
+#tabs { background:#EFF8F9; width:100%; }
+#tabs ul { margin:0; padding:0; }
+#tabs li { float:left; list-style-type:none; margin:0 2px 0 0; padding:0; white-space:nowrap; }
+#tabs li a { background:#EFF8F9; color:#555; display:block; font-weight:bold; margin:0; padding:4px 10px; text-decoration:none; }
+#tabs li a:hover { background:#759FCF none repeat scroll 0 0; color:#FFF; }
+#tabs li a.selected, #main-menu li a.selected:hover { background:#FFF none repeat scroll 0 0; color:#000; }
+

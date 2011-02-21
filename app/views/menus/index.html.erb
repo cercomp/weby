@@ -5,16 +5,18 @@
     <p> <%= link_to (t"create_param", :param => (t"menu.one")),  new_site_menu_path(:side => params[:side]), :class => 'icon icon-add'%> </p>
   </div>
 
-  <div style="height:30px">
-    <div class="simple_box"><%= link_to("Esquerdo", :controller => 'menus', :action => 'index', :side => "left") %></div>
-    <div class="simple_box"><%= link_to("Direito", :controller => 'menus', :action => 'index', :side => "right") %></div>
-    <div class="simple_box"><%= link_to("Superior", :controller => 'menus', :action => 'index', :side => "top") %></div>
-    <div class="simple_box"><%= link_to("Inferior", :controller => 'menus', :action => 'index', :side => "bottom") %></div>
+  <div id='tabs'>
+    <ul>
+      <li><%= link_to("Esquerdo", site_menus_path(@site, :side => "left"), :class => 'selected') %></li>
+      <li><%= link_to("Direito", site_menus_path(@site, :side => "right")) %></li>
+      <li><%= link_to("Superior", site_menus_path(@site, :side => "top")) %></li>
+      <li><%= link_to("Inferior", site_menus_path(@site, :side => "bottom")) %></li>
+    </ul>
   </div>
 
-  <% if not params[:side].nil? and not params[:side].empty? %>
-    <div id="<%= params[:side] %>_m">
+  <div id='main-tabs'>
+    <% if not params[:side].nil? and not params[:side].empty? %>
       <%= render params[:side] %>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </fieldset>
