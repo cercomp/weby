@@ -23,11 +23,18 @@ class UsersController < ApplicationController
       @users_unroled = @users - @site.users
       @roles = Role.find(:all, :order => "id")
 
+      # Quando a edição dos papeis é solicitada
+      @user = User.find(params[:user_id]) if params[:user_id]
+
 			respond_with do |format|
 				format.js do
 					render :update do |page|
-						page.call "$('#enroled').html", render('enroled')
-						page.call "$('#enrole').html", render('enrole')
+            if params[:user_id]
+              page.call "$('#role-form-#{params[:user_id]}').html", render('role_form')
+            else
+              page.call "$('#enroled').html", render('enroled')
+              page.call "$('#enrole').html", render('enrole')
+            end
 					end
 				end
 

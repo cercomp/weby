@@ -18,25 +18,18 @@
           <span id="user-<%= user.id %>">
             <%= user.roles.map(&:name).join(', ') %>
           </span>
+
+          <div id="role-form-<%= user.id %>">
+            <% if @user and @user.id == user.id %>
+              <%= render 'role_form' %>
+            <% end %>
+          </div>
           
-          <%= form_tag change_roles_site_users_path(@site), :method => "post",
-                        :id => "form-user-#{user.id}", :remote => 'true', :update => 'enroled' %>
-          <%= hidden_field_tag 'user[id]', user.id %>
-            <p>
-              <% @roles.each do |role| %>
-                <label>
-                  <%= check_box_tag 'role_ids[]', role.id, user.roles.include?(role) %>
-                  <%= role.name %>
-                </label>
-                <br />
-              <% end %>
-            </p>
-            <%= submit_tag 'Enviar' %>
-            <%= link_to_function t('cancel'), "$('#user-#{user.id}').show(); $('#form-user-#{user.id}').hide(); return false;" %>
-          </form>
         </td>
 
-        <td><%= link_to_function t('edit'), "$('#user-#{user.id}').hide(); $('#form-user-#{user.id}').show(); return false;" %></td>
+        <td>
+          <%= link_to "editar", { :action => 'manage_roles', :user_id => user.id }, :remote => 'true' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
@@ -45,18 +38,3 @@
 <% else %>
   <h2>Nenhum usuário cadastrado</h2>
 <% end %>
-
-<%# TODO remover essa função daqui %>
-<%= javascript_tag "
-        if(typeof jQuery == 'undefined'){
-          window.onload = function() {
-            $('form[id^=\"form-user\"]').each(function (e){
-              $(this).hide();
-            })
-          }
-        }
-        else {
-          $('form[id^=\"form-user\"]').each(function (e){
-            $(this).hide();
-          })
-        }" %>
