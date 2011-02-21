@@ -70,7 +70,7 @@ class RepositoriesController < ApplicationController
     @repository.destroy
 
     respond_to do |format|
-      format.html { redirect_to({:site_id => @repository.site.name, :controller => 'repositories', }) }
+      format.html { redirect_to({:site_id => @repository.site.name, :controller => 'repositories'}) }
       format.xml  { head :ok }
     end
   end

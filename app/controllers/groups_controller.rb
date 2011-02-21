@@ -46,11 +46,11 @@ class GroupsController < ApplicationController
     respond_to do |format|
       if @group.save
         format.html {
-          redirect_to({:site_id => @group.site.name, :controller => 'groups', :action => 'index'},
+          redirect_to({:site_id => @group.site.name, :controller => 'groups'},
                       :notice => t('successfully_created')) }
         format.xml  { render :xml => @group, :status => :created, :location => @group }
       else
-        format.html { render :site_id => @site.id, :controller => 'groups', :action => 'new' }
+        format.html { respond_with(@site, @group) }
         format.xml  { render :xml => @group.errors, :status => :unprocessable_entity }
       end
     end
