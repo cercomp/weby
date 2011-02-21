@@ -105,7 +105,9 @@ section#content {
     section#content section#pages .pageright { border-bottom: 1px dotted #DDD; padding: 0px 0 10px 0; text-align: right; }
     section#content section#pages .pageright a img { float: right; padding-left: 15px; }
 
-section#banner { padding-top: 5px; }
+section#banner { 
+  text-align: center;
+  padding-top: 5px; }
 
 /* Classes to help build layout */
 .clear { clear: both; }
