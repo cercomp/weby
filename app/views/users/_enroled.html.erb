@@ -19,9 +19,9 @@
             <%= user.roles.map(&:name).join(', ') %>
           </span>
           
-					<%= form_tag change_roles_site_users_path(@site), :method => "post",
-												:id => "form-user-#{user.id}", :remote => 'true', :update => 'enroled' %>
-					<%= hidden_field_tag 'user[id]', user.id %>
+          <%= form_tag change_roles_site_users_path(@site), :method => "post",
+                        :id => "form-user-#{user.id}", :remote => 'true', :update => 'enroled' %>
+          <%= hidden_field_tag 'user[id]', user.id %>
             <p>
               <% @roles.each do |role| %>
                 <label>
@@ -32,7 +32,7 @@
               <% end %>
             </p>
             <%= submit_tag 'Enviar' %>
-						<%= link_to_function t('cancel'), "$('#user-#{user.id}').show(); $('#form-user-#{user.id}').hide(); return false;" %>
+            <%= link_to_function t('cancel'), "$('#user-#{user.id}').show(); $('#form-user-#{user.id}').hide(); return false;" %>
           </form>
         </td>
 
@@ -43,8 +43,20 @@
 
 </table>
 <% else %>
-	<h2>Nenhum usuário cadastrado</h2>
+  <h2>Nenhum usuário cadastrado</h2>
 <% end %>
 
 <%# TODO remover essa função daqui %>
-<%= javascript_tag "window.onload = function() { $('form[id^=\"form-user\"]').each(function (e){ $(this).hide(); }) }" %>
+<%= javascript_tag "
+        if(typeof jQuery == 'undefined'){
+          window.onload = function() {
+            $('form[id^=\"form-user\"]').each(function (e){
+              $(this).hide();
+            })
+          }
+        }
+        else {
+          $('form[id^=\"form-user\"]').each(function (e){
+            $(this).hide();
+          })
+        }" %>
