@@ -7,7 +7,7 @@ class MenusController < ApplicationController
   respond_to :html, :xml, :js
 
   def index
-    params[:side] ||= 'left'
+    params[:side] ||= 'secondary'
   end
 
   def show
@@ -91,7 +91,7 @@ class MenusController < ApplicationController
   end
 
   def to_site
-    @side = params[:side] || 'left'
+    @side = params[:side] || 'secondary'
     site_menus_aux = Site.find(:first, :conditions => ['name = ?', params[:site_id]]).sites_menus
     @site_menus = []
 

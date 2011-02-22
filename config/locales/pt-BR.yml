@@ -19,6 +19,7 @@ pt-BR:
   active: "Ativo?"
   align: "Alinhar"
   add_sub_menu: "Adiciona um menu filho"
+  auxiliary: "Auxiliar"
 
 #---B---#
   back: "Voltar"
@@ -28,6 +29,7 @@ pt-BR:
   banner:
     one: "Banner"
     other: "Banners"
+  base: "Base"
   
 #---C---#
   chief_editor: "Editor chefe"
@@ -132,6 +134,7 @@ pt-BR:
   more: "Mais"
   mini: "Miniatura"
   medium: "Médio"
+  main: "Principal"
 
 #---N---#
   new: "Novo"
@@ -229,6 +232,7 @@ pt-BR:
     other: "Sítios"
   site_comments: "Comentário sobre os objetivos do site."
   search: "Busca"
+  secondary: "Secundário"
   
 #---T---#
   text: "Texto" 

@@ -44,7 +44,7 @@
       <% if @menu_parent %>
         <%= menus_form.hidden_field "side", :value => "#{@menu_parent.side}" %>
       <% else %>
-        <% menus_list = [[t("left"), "left"], [t("right"), "right"], [t("top"), "top"], [t("bottom"), "bottom"]] %>
+        <% menus_list = [[t("secondary"), "secondary"], [t("auxiliary"), "auxiliary"], [t("main"), "main"], [t("base"), "base"]] %>
         <%= menus_form.select(:side, options_for_select(menus_list, selected = "#{params[:side]}"), :label => t("position")) %>
       <% end %>
     <% end %>

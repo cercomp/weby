@@ -134,19 +134,15 @@ class ApplicationController < ActionController::Base
       @menus_all = @site.sites_menus.group_by(&:side)
       @menus_all.each{ |key,value| @menus_all[key] = value.group_by(&:parent_id) }
 
-      #@top = Site.find_by_sql("SELECT sites_menus.id,menus.id as menu_id,menus.title,menus.link,sites_menus.parent_id,sites_menus.side,sites_menus.position FROM menus INNER JOIN sites_menus ON sites_menus.menu_id=menus.id WHERE sites_menus.side = 'top' AND sites_menus.site_id = #{@site.id} ORDER BY sites_menus.parent_id,sites_menus.position").group_by(&:parent_id)
-      #@left = Site.find_by_sql("SELECT sites_menus.id,menus.id as menu_id,menus.title,menus.link,sites_menus.parent_id,sites_menus.side,sites_menus.position FROM menus INNER JOIN sites_menus ON sites_menus.menu_id=menus.id WHERE sites_menus.side = 'left' AND sites_menus.site_id = '#{@site.id}' ORDER BY sites_menus.parent_id,sites_menus.position").group_by(&:parent_id)
-      #@right = Site.find_by_sql("SELECT sites_menus.id,menus.id as menu_id,menus.title,menus.link,sites_menus.parent_id,sites_menus.side,sites_menus.position FROM menus INNER JOIN sites_menus ON sites_menus.menu_id=menus.id WHERE sites_menus.side = 'right' AND sites_menus.site_id = #{@site.id} ORDER BY sites_menus.parent_id,sites_menus.position").group_by(&:parent_id)
-      #@bottom = Site.find_by_sql("SELECT sites_menus.id,menus.id as menu_id,menus.title,menus.link,sites_menus.parent_id,sites_menus.side ,sites_menus.position FROM menus INNER JOIN sites_menus ON sites_menus.menu_id=menus.id WHERE sites_menus.side = 'bottom' AND sites_menus.site_id = #{@site.id} ORDER BY sites_menus.parent_id,sites_menus.position").group_by(&:parent_id)
-      @top = @menus_all["top"]
-      @left = @menus_all["left"]
-      @right = @menus_all["right"]
-      @bottom = @menus_all["bottom"]
+      @main = @menus_all["main"]
+      @secondary = @menus_all["secondary"]
+      @auxiliary = @menus_all["auxiliary"]
+      @base = @menus_all["base"]
       
-      @top ||= ""
-      @left ||= ""
-      @right ||= ""
-      @bottom ||= ""
+      @main ||= ""
+      @secondary ||= ""
+      @auxiliary ||= ""
+      @base ||= ""
       
       @top_banner_width,@top_banner_height = Paperclip::Geometry.from_file(@site.repository.archive).to_s.split('x') unless @site.repository.nil? 
     end

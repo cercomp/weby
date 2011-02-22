@@ -7,10 +7,11 @@
 
   <div id='tabs'>
     <ul>
-      <li><%= link_to("Esquerdo", site_menus_path(@site, :side => "left"), :class => 'selected') %></li>
-      <li><%= link_to("Direito", site_menus_path(@site, :side => "right")) %></li>
-      <li><%= link_to("Superior", site_menus_path(@site, :side => "top")) %></li>
-      <li><%= link_to("Inferior", site_menus_path(@site, :side => "bottom")) %></li>
+      <% links = ["main","secondary","base","auxiliary"] %>
+      <% for link in links do %>
+        <% selected = params[:side] == link ? "selected" : "" %>
+        <li><%= link_to(t("#{link}"), site_menus_path(@site, :side => link), :class => "#{selected}") %></li>
+      <% end %>
     </ul>
   </div>
 

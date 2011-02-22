@@ -1,0 +1,5 @@
+<% if @secondary.empty? %>
+  <p> <%= "Nenhum menu esquerdo" %> </p>
+<% else %>
+  	<%= raw print_menu(@secondary, 1) %>
+<% end %>

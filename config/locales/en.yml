@@ -18,6 +18,7 @@ en:
   administration: "Administration"  
   active: "Active?"
   add_sub_menu: "Add sub menu"
+  auxiliary: "Auxiliary"
 
 #---B---#
   back: "Back"
@@ -27,6 +28,7 @@ en:
   banner:
     one: "Banner"
     other: "Banners"
+  base: "Base"
   
 #---C---#
   chief_editor: "Chief Editor"
@@ -130,6 +132,7 @@ en:
   more: "More"
   mini: "Mini"
   medium: "Medium"
+  main: "Main"
 
 #---N---#
   new: "New"
@@ -227,6 +230,7 @@ en:
     other: "Sites"
   site_comments: "Comments about goals site."
   search: "Search"
+  secondary: "Secondary"
 
 #---T---#
   text: "Text" 

@@ -60,7 +60,7 @@
   <header>
     <%= render :partial => "sites/viewCover" %>
     <nav>
-      <%= raw print_menu(@top) %>
+      <%= raw print_menu(@main) %>
       <nav class="right">
         <%= link_to image_tag("flag_uk.png", :size => "24x12"), :locale => "en" %>
         <%= link_to image_tag("flag_br.png", :size => "24x12"), :locale => "pt-BR" %>
@@ -71,13 +71,13 @@
 
   <aside class="left">
     <nav>
-      <%= raw print_menu(@left) %>
+      <%= raw print_menu(@secondary) %>
     </nav>
   </aside>
 
   <aside class="right">
     <nav>
-      <%= raw print_menu(@right) %>
+      <%= raw print_menu(@auxiliary) %>
     </nav>
     <%= render :partial => "sites/viewBanner"  %>
   </aside>
@@ -92,7 +92,7 @@
 
   <footer class="clear">
     <nav>
-      <%= raw print_menu(@bottom) %>
+      <%= raw print_menu(@base) %>
       <div class="clear"></div>
     </nav>
     <nav class="right">
