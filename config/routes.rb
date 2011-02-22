@@ -23,10 +23,10 @@ Webyge::Application.routes.draw do |map|
         get :toggle_field
       end 
     end
-    resources :pages do 
-      member do 
+    resources :pages do
+      member do
         get :toggle_field
-      end 
+      end
     end
 
     resources :feedbacks do
@@ -34,8 +34,14 @@ Webyge::Application.routes.draw do |map|
         get :sent
       end
     end
-    
-   resources :groups, :chats, :roles, :rights, :archives, :admin, :csses
+
+    resources :csses do
+      member do
+        get :toggle_field
+      end
+    end
+
+   resources :groups, :chats, :roles, :rights, :archives, :admin
   end
 
   resources :groups,:menus, :pages, :chats, :roles, :rights, :archives, :user_sessions, :password_resets, :admin, :csses

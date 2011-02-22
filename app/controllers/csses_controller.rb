@@ -74,4 +74,15 @@ class CssesController < ApplicationController
     end
   end
 
+  def toggle_field
+    @css = Css.find(params[:id])
+    if params[:field] 
+      if @css.update_attributes("#{params[:field]}" => (@css[params[:field]] == 0 or not @css[params[:field]] ? true : false))
+        flash[:notice] = t"successfully_updated"
+      else
+        flash[:notice] = t"error_updating_object"
+      end
+    end
+    redirect_back_or_default site_csses_path(@site)
+  end
 end
