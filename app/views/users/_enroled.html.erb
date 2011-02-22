@@ -1,4 +1,5 @@
 <% unless @site.users.empty? %>
+<h2>Usuários cadastrados no site</h2>
 <table class="list">
 
   <thead>
@@ -28,7 +29,11 @@
         </td>
 
         <td>
-          <%= link_to "editar", { :action => 'manage_roles', :user_id => user.id }, :remote => 'true' %>
+          <%= link_to "editar",
+                      { :action => 'manage_roles', :user_id => user.id },
+                      :remote => 'true',
+                      :class => 'role_edit',
+                      :user_id => user.id %>
         </td>
       </tr>
     <% end %>

@@ -10,3 +10,4 @@
 	<%= render 'enrole' %>
 </div>
 
+<%= javascript_tag "window.onload = function () {$('form[id^=\"form-user\"]').each(function (e){ $(this).hide(); })}" %>

@@ -36,6 +36,7 @@ class UsersController < ApplicationController
               page.call "$('#enrole').html", render('enrole')
             end
 					end
+					"$('form[id^=\"form-user\"]').each(function (e){ $(this).hide(); })"
 				end
 
 				format.html
