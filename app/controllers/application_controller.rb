@@ -134,15 +134,10 @@ class ApplicationController < ActionController::Base
       @menus_all = @site.sites_menus.group_by(&:side)
       @menus_all.each{ |key,value| @menus_all[key] = value.group_by(&:parent_id) }
 
-      @main = @menus_all["main"]
-      @secondary = @menus_all["secondary"]
-      @auxiliary = @menus_all["auxiliary"]
-      @base = @menus_all["base"]
-      
-      @main ||= ""
-      @secondary ||= ""
-      @auxiliary ||= ""
-      @base ||= ""
+      @main       = @menus_all["main"]      || ""
+      @secondary  = @menus_all["secondary"] || ""
+      @auxiliary  = @menus_all["auxiliary"] || ""
+      @base       = @menus_all["base"]      || ""
       
       @top_banner_width,@top_banner_height = Paperclip::Geometry.from_file(@site.repository.archive).to_s.split('x') unless @site.repository.nil? 
     end
