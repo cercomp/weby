@@ -16,11 +16,11 @@
         <td><%= link_to user.login, user %></td>
 
         <td>
-          <span id="user-<%= user.id %>">
+          <span id="user_<%= user.id %>">
             <%= user.roles.map(&:name).join(', ') %>
           </span>
 
-          <div id="role-form-<%= user.id %>">
+          <div id="role_form_<%= user.id %>">
             <% if @user and @user.id == user.id %>
               <%= render 'role_form' %>
             <% end %>
@@ -32,7 +32,7 @@
           <%= link_to "editar",
                       { :action => 'manage_roles', :user_id => user.id },
                       :remote => 'true',
-                      :class => 'role_edit',
+                      :class => 'role_edit icon icon-edit',
                       :user_id => user.id %>
         </td>
       </tr>

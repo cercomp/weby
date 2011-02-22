@@ -30,13 +30,13 @@ class UsersController < ApplicationController
 				format.js do
 					render :update do |page|
             if params[:user_id]
-              page.call "$('#role-form-#{params[:user_id]}').html", render('role_form')
+              page.call "$('#role_form_#{params[:user_id]}').html", render('role_form')
             else
               page.call "$('#enroled').html", render('enroled')
               page.call "$('#enrole').html", render('enrole')
             end
 					end
-					"$('form[id^=\"form-user\"]').each(function (e){ $(this).hide(); })"
+					"$('form[id^=\"form_user\"]').each(function (e){ $(this).hide(); })"
 				end
 
 				format.html

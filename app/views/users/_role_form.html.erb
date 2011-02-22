@@ -1,6 +1,6 @@
 <%= form_tag change_roles_site_users_path(@site),
               :method => "post",
-              :id => "form-user-#{@user.id}",
+              :id => "form_user_#{@user.id}",
               :remote => 'true',
               :update => 'enroled' %>
 
@@ -15,5 +15,8 @@
     <% end %>
   </p>
   <%= submit_tag 'Enviar' %>
-  <%#= link_to_function t('cancel'), "$('#user-#{@user.id}').show(); $('#form-user-#{@user.id}').hide(); return false;" %>
+  <%= link_to t('cancel'),
+              {:action => 'manage_roles'},
+              :onclick => "return hide_form(#{@user.id});",
+              :id => "form_role_cancel" %>
 </form>

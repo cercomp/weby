@@ -90,60 +90,6 @@ class MenusController < ApplicationController
     redirect_back_or_default site_menus_path(@site, :side => @ch_pos_new.side)
   end
 
-  def to_site
-    @side = params[:side] || 'secondary'
-    site_menus_aux = Site.find(:first, :conditions => ['name = ?', params[:site_id]]).sites_menus
-    @site_menus = []
-
-    # remove os menus que já pertencem ao site
-    @menus_linked = []
-    site_menus_aux.each do |m|
-      logger.debug "entra? " + m.side + ", " + @side
-      if m.side.eql? @side
-        logger.debug "entrou"
-        @site_menus << m
-        @menus_linked << Menu.find(m.menu.id)
-      end
-    end
-    @menus = Menu.find(:all) - @menus_linked
-
-  end
-
-  def link_site
-    @site = Site.find(:first, :conditions => ["name = ?", params[:site_id]])
-    menus_id = params[:menus]
-    
-    unless menus_id.blank?
-      menus_id.each do |menu_id|
-        menu = Menu.find(menu_id)
-        logger.debug "Adicionando o menu " + menu.title+ " no site " + @site.name
-        @site.sites_menus << SitesMenu.new(:menu_id => menu.id, :side => params[:side])
-      end
-    end
-
-    respond_to do |format|
-      format.html {redirect_to :controller => 'menus', :action => 'to_site', :side => params[:side]}
-    end
-  end
-
-  def unlink_site
-    @site = Site.find(:first, :conditions => ["name = ?", params[:site_id]])
-    menus_id = params[:sites_menus]
-    
-    unless menus_id.blank?
-      menus_id.each do |menu_id|
-        menu = SitesMenu.find(menu_id)
-        unless @site.sites_menus.index(menu).nil?
-          @site.sites_menus.delete menu
-        else
-        end
-      end
-    end
-
-    respond_to do |format|
-      format.html {redirect_to :controller => 'menus', :action => 'to_site'}
-    end
-  end
   # Remove iten(s) do menu
   def rm_menu
     @rm_menu = SitesMenu.find(params[:id])

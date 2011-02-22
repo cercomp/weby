@@ -15,12 +15,34 @@ $(document).ready(function() {
   // ManageRoles limpa area do formulário
   $('.role_edit').each(function (link) {
     $(this).bind("ajax:success", function(data, status, xhr) {
-      $('#user-'+$(this).attr('user_id')).toggle()
+      $('#user_'+$(this).attr('user_id')).hide()
     })
   })
+
+  // ManageRoles muda o cursor do ponteiro
+  $('.role_edit').each(
+    function (link) {
+      $(this).bind("ajax:success", function (data, status, xhr) { document.body.style.cursor = "default" })
+
+      $(this).click(
+        function () {
+          document.body.style.cursor = "wait"
+        }
+      )
+    }
+
+  )
 
 })
 
 function hide_enroled_option() {
-	$('form[id^=\"form-user\"]').each(function (e){ $(this).hide(); })
+	$('form[id^=\"form_user\"]').each(function (e){ $(this).hide(); })
 }
+
+function hide_form(id) {
+  $('#user_' + id).show();
+  $('#form_user_' + id).hide();
+
+  return false;
+}
+
