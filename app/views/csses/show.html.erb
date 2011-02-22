@@ -8,7 +8,9 @@
 
   <p>
     <b>Css:</b>
-    <%= @css.css %>
+    <pre class="brush: css">
+<%= @css.css %>
+    </pre>
   </p>
 
   <%= link_to t('edit'), edit_site_css_path(@site, @css) %> | <%= link_to t('back'), :back %>
