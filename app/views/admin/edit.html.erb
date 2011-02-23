@@ -14,10 +14,12 @@
 
   <div id="repo_new" >
     <div class="contextual">
-      <%= link_to (t"new_param", :param => (t"archive.one")), nil, :update => "repo_new", :remote => true, :onclick => "$('#page').toggle();", :class => 'icon icon-add', %>
+      <%= link_to (t"new_param", :param => (t"archive.one")), new_site_repository_path(:back => 'admin'),
+        :update => "repo_new",
+        :remote => true,
+        :class => 'icon icon-add', %>
     </div>
-    <div id="page" style="display:none">
-    <%= render :partial => 'repositories/form'%>
+    <div id="page">
     </div>
   </div>
 

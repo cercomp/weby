@@ -26,7 +26,16 @@ class RepositoriesController < ApplicationController
 
   def new
     @repository = Repository.new
-    respond_with(@repository)
+    
+    respond_to do |format|
+      format.js do
+        render :update do |page|
+          page.call "$('#page').html", render('form')
+        end 
+        "$('form[id^=\"form_user\"]').each(function (e){ $(this).hide(); })"
+      end
+      format.html
+    end
   end
 
   def edit
@@ -38,6 +47,11 @@ class RepositoriesController < ApplicationController
 
     respond_to do |format|
       if @repository.save
+        # Redireciona o usuários para a página de administração
+        if params[:back] == 'admin'
+          format.html { redirect_to edit_site_admin_path(@site, @site) }
+        end
+
         format.html { redirect_to :back }
         flash[:notice] = t("successfully_created") 
         format.xml  { render :xml => @repository, :status => :created, :location => @repository }
