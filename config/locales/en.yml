@@ -17,6 +17,7 @@ en:
   admin: "Admin" 
   administration: "Administration"  
   active: "Active?"
+  add_selected_menus: "Add selected menus"
   add_sub_menu: "Add sub menu"
   auxiliary: "Auxiliary"
 
@@ -85,12 +86,12 @@ en:
   height: "Height"
 
 #---I---#
-  ip: "ip"
-  is_admin: "Admin?"
   instructions_change_password: "Instructions to change your password"
-  is_event: "Is a event?"
   internacional: "Internacional"
   internal: "Internal"
+  ip: "ip"
+  is_admin: "Admin?"
+  is_event: "Is a event?"
 
 #---K---#
   time_cover: "capa agendada"
@@ -148,6 +149,10 @@ en:
   no_need_to_login: "You should not be logged in to access this page."
   no_mail: "No user was found with that email address."
   no_permission_to_activate_deactivate: "You don´t have permission to Activate/Deactivate"
+  none_left_menu: "None left menu"
+  none_right_menu: "None right menu"
+  none_top_menu: "None top menu"
+  none_bot_menu: "None bottom menu"
   none_param: "None %{param}"
   nacional: "Nacional"
   "no": "No"
@@ -189,6 +194,7 @@ en:
   related_files_help: "Will be related to the listing of the page"
   remember_me: "Remember me"
   remove: "remove %{param}"
+  remove_selected_menus: "Remove selected menus"
   reset_mail: "Instructions to reset your password have been emailed to you. Please check your email."
   reset_my_password: "Reset my password" 
   right: "Right"

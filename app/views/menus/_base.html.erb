@@ -1,5 +1,5 @@
 <% if @base.empty? %>
-  <p> <%= "Nenhum menu inferior" %> </p>
+  <p> <%= t("none_bot_menu") %> </p>
 <% else %>
  		<%= raw print_menu(@base, 1) %>	
 <% end %>

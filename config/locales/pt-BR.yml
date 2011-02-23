@@ -18,6 +18,7 @@ pt-BR:
   administration: "Administração"  
   active: "Ativo?"
   align: "Alinhar"
+  add_selected_menus: "Incluir os menus selecionados"  
   add_sub_menu: "Adiciona um menu filho"
   auxiliary: "Auxiliar"
 
@@ -88,12 +89,12 @@ pt-BR:
   height: "Altura"
 
 #---I---#
-  ip: "ip"
-  is_admin: "Admin?"
   instructions_change_password: "Instruções para trocar a senha"
-  is_event: "É um evento?"
   internacional: "Internacional"
   internal: "Interno"
+  ip: "ip"
+  is_admin: "Admin?"
+  is_event: "É um evento?"
 
 #---K---#
   time_cover: "capa agendada"
@@ -150,6 +151,10 @@ pt-BR:
   no_need_to_login: "Você não deve estar logado para acessar essa página."	
   no_mail: "Nenhum usuário com esse e-mail foi econtrado." 
   no_permission_to_activate_deactivate: "Você não tem permissão para Ativar/Desativar"
+  none_left_menu: "Nenhum menu esquerdo"
+  none_right_menu: "Nenhum menu direito"
+  none_top_menu: "Nenhum menu superior"
+  none_bot_menu: "Nenhum menu inferior"
   none_param: "Nenhum %{param}"
   nacional: "Nacional"
   "no": "Não"
@@ -189,6 +194,7 @@ pt-BR:
     other: "Menus Cadastrados"
   remember_me: "Lembrar-me"
   remove: "remover %{param}"
+  remove_selected_menus: "Remover os menus selecionados"
   related_files: "Arquivos relacionados"
   related_files_help: "Serão relacionados na listagem da página"
   reset_mail: "Instruções de como modificar sua senha foram enviada. Cheque seu e-mail."
