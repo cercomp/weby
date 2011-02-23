@@ -131,6 +131,7 @@ class ApplicationController < ActionController::Base
     end
 
     if @site
+      # TODO documentar essas duas linhas, como elas funcionam?
       @menus_all = @site.sites_menus.group_by(&:side)
       @menus_all.each{ |key,value| @menus_all[key] = value.group_by(&:parent_id) }
 

@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   def manage_roles
     # Se a ação for selecionada para um site:
     unless @site.nil?
-      @users = User.find(:all)
+      @users = User.all.select{ |u| u.is_admin == false }
       @users_unroled = @users - @site.users
       @roles = Role.find(:all, :order => "id")
 
@@ -36,7 +36,6 @@ class UsersController < ApplicationController
               page.call "$('#enrole').html", render('enrole')
             end
 					end
-					"$('form[id^=\"form_user\"]').each(function (e){ $(this).hide(); })"
 				end
 
 				format.html
