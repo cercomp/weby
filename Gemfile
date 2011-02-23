@@ -13,6 +13,9 @@ gem "will_paginate", "~> 3.0.pre2"
 # Repositório de arquivos
 gem "paperclip", :git => "http://github.com/thoughtbot/paperclip.git" 
 
+# https://github.com/rails/acts_as_list/
+gem "acts_as_list"
+
 # Use unicorn as the web server
 # gem 'unicorn'
 

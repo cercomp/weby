@@ -1,9 +1,11 @@
-<% frontnews = Page.where(["front='true' AND publish='true' AND site_id = ? AND date_begin_at <= ? AND date_end_at > ?", @site.id, Time.now, Time.now]).order("date_begin_at").all %>
-<% nofrontnews = Page.where(["front='false' AND publish='true' AND site_id = ? AND date_begin_at <= ? AND date_end_at > ?", @site.id, Time.now, Time.now]).order("date_begin_at").all %>
+<% frontnews = @site.pages.where(["front='true' AND publish='true' AND date_begin_at <= ? AND date_end_at > ?", Time.now, Time.now]).all %>
+<% nofrontnews = @site.pages.where(["front='false' AND publish='true' AND date_begin_at <= ? AND date_end_at > ?", Time.now, Time.now]).all %>
 
 <% unless frontnews.empty? %>
   <section id="pages">
+  <ul id="pages-list" style="margin:0;padding:0;">
   <% frontnews.each do |page| %> 
+    <li id=<%= "page_#{page.id}" %> style="list-style-type:none;">
     <div class="<%= cycle 'pageright', 'pageleft' %>">
       <% unless page.repository.nil? %>
         <%= link_to image_tag("#{page.repository.archive.url(:mini)}", :alt => page.repository.description), site_page_path(@site, page, :type => params[:type]), :title => page.repository.description %>
@@ -11,15 +13,19 @@
       <p> <h2> <%= page.title %> </h2> </p>
       <%= raw page.summary %>
       <p> <%= link_to t("read_more"), site_page_path(@site, page) %> </p>
-      <div class="clear" /></div>
+      <%= raw make_menu(page) %>
+      <%= link_to t("move"), {}, :class => 'handle icon icon-drag' %>
+      <div class="clear"></div>
     </div>
+    </li>
   <% end; reset_cycle %>
   </section>
 <% end %>
-
 <% unless nofrontnews.empty? %>
   <table class="border fullwidth zebra">
-    <tr> <th> <%= t "page.other" %> </th> </tr>
+    <tr> 
+      <th> <%= t "page.other" %> </th> 
+    </tr>
     <% nofrontnews.each do |page| %>
       <tr>
         <td>
@@ -32,4 +38,19 @@
     <% end %>
   </table>
 <% end %>
-
+<%= javascript_tag do %>
+  window.onload=function(){
+    $().ready(function() {
+      $('#pages-list').sortable({
+        axis: 'y', 
+        dropOnEmpty:false, 
+        handle: '.handle', 
+        cursor: 'crosshair',
+        items: 'li',
+        opacity: 0.4,
+        scroll: true,
+        update: function(){ $.ajax({ type: 'post', data: $('#pages-list').sortable('serialize'), dataType: 'script', complete: function(request){ $('#pages-list').effect('highlight'); }, url: '/sites/<%=@site.name%>/pages/sort' }) }
+      })
+    })
+  }
+<% end %>

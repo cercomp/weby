@@ -6,10 +6,6 @@ class Site < ActiveRecord::Base
   end
   validates_presence_of :name, :url
 
-  # Removido para utilizar a relação ternária entre roles e sites
-    #has_many :sites_users #, :foreign_key => "role_id"
-    #has_many :users, :through => :sites_users
-
   has_many :user_site_enroled, :dependent => :destroy
   has_many :users, :through => :user_site_enroled
   has_many :roles, :through => :user_site_enroled

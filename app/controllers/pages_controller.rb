@@ -120,4 +120,14 @@ class PagesController < ApplicationController
     end
     redirect_back_or_default site_pages_path(@site)
   end
+
+  def sort
+    params['page'] ||= []
+    params['page'].each do |p|
+      page = Page.find(p)
+      page.position = (params['page'].index(p.to_s).to_i + 1)
+      page.save
+    end
+    render :nothing => true
+  end
 end

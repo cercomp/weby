@@ -1,6 +1,6 @@
   <% unless @pages.empty? %>
     <%= will_paginate @pages, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax' %>
-    <table class='list'>
+    <table id='pages-list' class='list'>
       <thead>
         <th><%= "id" %></th>
         <th><%= t"date_param", :param => t("register")%></th>
@@ -14,7 +14,7 @@
       </thead>
       <tbody>
       <% @pages.each do |page| %>
-        <tr class="<%= cycle 'odd', 'even' %>">
+        <tr class="<%= cycle 'odd', 'even' %>" id="<%= "page_#{page.id}" %>">
           <td><%= page.id %></td>
           <td><%= l page.created_at, :format => :short %></td>
           <td><%= l page.date_begin_at, :format => :short %></td>
@@ -25,6 +25,7 @@
           <td align="center"><%= raw toggle_field(page, "publish") %></td>
           <td>
             <%= raw make_menu(page) %> 
+            <div class='handle icon icon-drag'><%= t("move") %></div>
           </td>
         </tr>
       <% end; reset_cycle %>
@@ -33,4 +34,31 @@
     <%= will_paginate @pages, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax' %>
   <% else %>
     <% flash.now[:warning] = (t"none_param", :param => t("page.one")) %>
+  <% end %>
+
+  <%= javascript_tag do %>
+    window.onload=function(){
+      $().ready(function() {
+        $('#pages-list').sortable({
+          axis: 'y', 
+          dropOnEmpty:false, 
+          handle: '.handle', 
+          cursor: 'crosshair',
+          items: 'tr',
+          opacity: 0.4,
+          scroll: true,
+          update: function(){
+            $.ajax({
+              type: 'post', 
+              data: $('#pages-list').sortable('serialize'),
+              dataType: 'script', 
+              complete: function(request){
+                  $('#pages-list').effect('highlight');
+                },
+              url: '<%= sort_site_pages_path %>'
+            })
+          }
+        })
+      })
+    }
   <% end %>

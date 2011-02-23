@@ -44,6 +44,12 @@
       <% end %>
     </p>
     <p>
+      <%= link_to (t"css"), site_csses_path %>
+      <% if check_permission(CssesController, "new") %>
+       | <%= link_to t("new"), new_site_css_path, :class => 'icon icon-add' %>
+      <% end %>
+    </p>
+    <p>
       <%= link_to (t"permission.other"), rights_path %>
       <% if check_permission(RightsController, "new") %>
        | <%= link_to t("new"), new_right_path, :class => 'icon icon-add' %>

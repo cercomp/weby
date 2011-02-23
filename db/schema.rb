@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110222121830) do
+ActiveRecord::Schema.define(:version => 20110222184248) do
 
   create_table "banners", :force => true do |t|
     t.datetime "date_begin_at"
@@ -81,7 +81,6 @@ ActiveRecord::Schema.define(:version => 20110222121830) do
   create_table "pages", :force => true do |t|
     t.datetime "date_begin_at"
     t.datetime "date_end_at"
-    t.string   "position"
     t.string   "status"
     t.integer  "author_id"
     t.text     "text"
@@ -104,6 +103,7 @@ ActiveRecord::Schema.define(:version => 20110222121830) do
     t.string   "size"
     t.boolean  "publish"
     t.boolean  "front"
+    t.integer  "position"
   end
 
   create_table "pages_repositories", :id => false, :force => true do |t|
