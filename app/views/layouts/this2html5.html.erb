@@ -17,7 +17,7 @@
   <%= stylesheet_link_tag 'SyntaxHighlighter/shThemeDefault' %>
   <%= render :partial => 'sites/viewCsses' %>
 </head>
-
+<%#= debug params %>
 <% if @site.body_width %>
   <body style='width:<%= "#{@site.body_width}" %>px'>
 <% elsif @top_banner_width %>

@@ -1,24 +1,24 @@
 <% frontnews = @site.pages.where(["front='true' AND publish='true' AND date_begin_at <= ? AND date_end_at > ?", Time.now, Time.now]).all %>
 <% nofrontnews = @site.pages.where(["front='false' AND publish='true' AND date_begin_at <= ? AND date_end_at > ?", Time.now, Time.now]).all %>
 
+<ul id="pages-list" style="margin:0;padding:0;">
 <% unless frontnews.empty? %>
   <section id="pages">
-  <ul id="pages-list" style="margin:0;padding:0;">
-  <% frontnews.each do |page| %> 
-    <li id=<%= "page_#{page.id}" %> style="list-style-type:none;">
-    <div class="<%= cycle 'pageright', 'pageleft' %>">
-      <% unless page.repository.nil? %>
-        <%= link_to image_tag("#{page.repository.archive.url(:mini)}", :alt => page.repository.description), site_page_path(@site, page, :type => params[:type]), :title => page.repository.description %>
-      <% end %>
-      <p> <h2> <%= page.title %> </h2> </p>
-      <%= raw page.summary %>
-      <p> <%= link_to t("read_more"), site_page_path(@site, page) %> </p>
-      <%= raw make_menu(page) %>
-      <%= link_to t("move"), {}, :class => 'handle icon icon-drag' %>
-      <div class="clear"></div>
-    </div>
+    <% frontnews.each do |page| %> 
+      <li id=<%= "page_#{page.id}" %> style="list-style-type:none;">
+      <div class="<%= cycle 'pageright', 'pageleft' %>">
+        <% unless page.repository.nil? %>
+          <%= link_to image_tag("#{page.repository.archive.url(:mini)}", :alt => page.repository.description), site_page_path(@site, page, :type => params[:type]), :title => page.repository.description %>
+        <% end %>
+        <p> <h2> <%= page.title %> </h2> </p>
+        <%= raw page.summary %>
+        <p> <%= link_to t("read_more"), site_page_path(@site, page) %> </p>
+        <%= raw make_menu(page) %>
+        <%= link_to t("move"), {}, :class => 'handle icon icon-drag' %>
+        <div class="clear"></div>
+      </div>
+    <% end; reset_cycle %>
     </li>
-  <% end; reset_cycle %>
   </section>
 <% end %>
 <% unless nofrontnews.empty? %>
@@ -38,6 +38,7 @@
     <% end %>
   </table>
 <% end %>
+</ul>
 <%= javascript_tag do %>
   window.onload=function(){
     $().ready(function() {
