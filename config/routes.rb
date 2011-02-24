@@ -34,14 +34,20 @@ Webyge::Application.routes.draw do |map|
         get :view
       end
     end
-   
+
     resources :feedbacks do
       collection do
         get :sent
       end
     end
-    
-   resources :groups, :chats, :roles, :rights, :archives, :admin, :csses
+
+    resources :csses do
+      member do
+        get :use_css
+      end
+    end
+
+    resources :groups, :chats, :roles, :rights, :archives, :admin
   end
 
   resources :groups, :menus, :chats, :rights, :archives, :user_sessions, :password_resets, :admin, :csses

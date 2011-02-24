@@ -1,7 +1,5 @@
-<% csses = Css.where(["publish='true' AND site_id = ?", @site.id]).all %>
-
-<% unless csses.empty? %>
-  <% csses.each do |css| %>
+<% unless @site.csses.empty? %>
+  <% @site.csses.each do |css| %>
     <style>
       <%= css.css %>
     </style>

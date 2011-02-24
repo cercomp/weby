@@ -44,6 +44,7 @@ pt-BR:
   current_login: "Entrada atual %{param}" 
   cancel: "Cancelar"
   css: "Estilo"
+  copy: "Copiar"
 
 #---D---#
   date_param: "Data de %{param}" 
@@ -268,6 +269,7 @@ pt-BR:
   user_inactive: "Seu usuário ainda não está ativo."  
   username: "Nome de usuário"
   unpublish: "Despublicar"
+  use: "Usar"
 
 #---V---#
   value: "Valor"

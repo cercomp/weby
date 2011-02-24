@@ -19,7 +19,9 @@ class Site < ActiveRecord::Base
   has_many :groups
   has_many :feedbacks
   has_many :banners
-  has_many :csses
+
+  has_many :sites_csses
+  has_many :csses, :through => :sites_csses
 
   #accepts_nested_attributes_for :sites_users, :allow_destroy => true#, :reject_if => proc { |attributes| attributes['title'].blank? }
   accepts_nested_attributes_for :sites_menus, :allow_destroy => true#, :reject_if => proc { |attributes| attributes['title'].blank? }

@@ -41,6 +41,7 @@ en:
   current_login: "Current login %{param}" 
   cancel: "Cancel"
   css: "Style"
+  copy: "Copy"
 
 #---D---#
   date_param: "Date of %{param}" 
@@ -264,6 +265,7 @@ en:
   user_inactive: "User was not activated."   
   username: "User name"
   unpublish: "Unpublish"
+  use: "Use"
 
 #---V---#
   value: "Value" 
