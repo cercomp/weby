@@ -1,10 +1,6 @@
-<% frontnews = @site.pages.where(["front='true' AND publish='true' AND date_begin_at <= ? AND date_end_at > ?", Time.now, Time.now]).all %>
-<% nofrontnews = @site.pages.where(["front='false' AND publish='true' AND date_begin_at <= ? AND date_end_at > ?", Time.now, Time.now]).all %>
-
-<ul id="pages-list" style="margin:0;padding:0;">
-<% unless frontnews.empty? %>
+<% unless @front_news.empty? %>
   <section id="pages">
-    <% frontnews.each do |page| %> 
+    <% @front_news.each do |page| %> 
       <li id=<%= "page_#{page.id}" %> style="list-style-type:none;">
       <div class="<%= cycle 'pageright', 'pageleft' %>">
         <% unless page.repository.nil? %>
@@ -21,12 +17,12 @@
     </li>
   </section>
 <% end %>
-<% unless nofrontnews.empty? %>
+<% unless @no_front_news.empty? %>
   <table class="border fullwidth zebra">
     <tr> 
       <th> <%= t "page.other" %> </th> 
     </tr>
-    <% nofrontnews.each do |page| %>
+    <% @no_front_news.each do |page| %>
       <tr>
         <td>
           <p> 
@@ -37,21 +33,4 @@
       </tr>
     <% end %>
   </table>
-<% end %>
-</ul>
-<%= javascript_tag do %>
-  window.onload=function(){
-    $().ready(function() {
-      $('#pages-list').sortable({
-        axis: 'y', 
-        dropOnEmpty:false, 
-        handle: '.handle', 
-        cursor: 'crosshair',
-        items: 'li',
-        opacity: 0.4,
-        scroll: true,
-        update: function(){ $.ajax({ type: 'post', data: $('#pages-list').sortable('serialize'), dataType: 'script', complete: function(request){ $('#pages-list').effect('highlight'); }, url: '/sites/<%=@site.name%>/pages/sort' }) }
-      })
-    })
-  }
 <% end %>

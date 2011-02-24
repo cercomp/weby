@@ -122,9 +122,15 @@ class PagesController < ApplicationController
   end
   
   def view
+    @front_news = @site.pages.where(["front='true' AND publish='true' AND date_begin_at <= ? AND date_end_at > ?", Time.now, Time.now])
+    @no_front_news = @site.pages.where(["front='false' AND publish='true' AND date_begin_at <= ? AND date_end_at > ?", Time.now, Time.now])
   end
 
   def sort
+    @pages = @site.pages.paginate :page => params[:paginate], :per_page => 10
+    @front_news = @site.pages.where(["front='true' AND publish='true' AND date_begin_at <= ? AND date_end_at > ?", Time.now, Time.now])
+    @no_front_news = @site.pages.where(["front='false' AND publish='true' AND date_begin_at <= ? AND date_end_at > ?", Time.now, Time.now])
+
     params['page'] ||= []
     params['page'].each do |p|
       page = Page.find(p)
@@ -134,10 +140,14 @@ class PagesController < ApplicationController
     respond_with do |format|
       format.js { 
         render :update do |page|
-          page.call "$('#pages-list').html", render(:partial => 'pages/viewNews')
+          if params[:from] == 'view'
+            page.call "$('#list').html", render(:partial => 'viewNews')
+          else
+            #page.call "$('#list').html", render(:partial => 'list')
+            render :nothing => true
+          end
         end
       }
     end
-    #render :nothing => true
   end
 end
