@@ -1,7 +1,7 @@
 <fieldset>
   <legend><%= t"permission.other" %></legend>
 
-  <% if check_permission(RightsController, "new") %>
+  <% if check_permission(RightsController, [:new]) %>
     <div class="contextual">
       <p> <%= link_to (t"create_param", :param => t('right')), new_right_path, :class => 'icon icon-add' %> </p>
     </div>

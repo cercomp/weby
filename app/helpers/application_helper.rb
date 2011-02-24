@@ -90,27 +90,28 @@ module ApplicationHelper
   end
 
   # Verifica se o usuário tem permissão no controlador e na ação passada como parâmetro
-  # Parâmetros: (Objeto) ctrl, (string) action
+  # Parâmetros: (Objeto) ctrl, (array) actions
   # Retorna: verdadeiro ou falso
-  def check_permission(ctrl, action)
+  def check_permission(ctrl, actions)
     # Se o usuário for admin então dê todas as permissões
     if current_user and current_user.is_admin
       return true
     elsif current_user
-      user_obj = User.find(current_user.id)
       # Obtem todos os papéis do usuário
-      user_obj.roles.each do |role|
+      current_user.roles.each do |role|
         # Obtem o campo multi-valorados contendo todos os direitos
         role.rights.each do |right|
           # Controlador do usuario (right.controller) = nome do controlador recebido como parâmetro (ctr.controller_name)
           if right.controller == ctrl.controller_name
-            # Cria a vetor ri com todos os direitos do usuário
+            # Cria o vetor ri com todos os direitos do usuário
             right.action.split(' ').each do |ri|
-              # Verifica:
-              # 1. Se a ação existe no controlador (Caso o usuário tenha adicionado nome incorreto)
-              # 2. Direito do usuário (ri) = ação recebida como parâmetro (action)
-              if ctrl.instance_methods(false).include? action and ri == action
-                return true
+              actions.each do |action|
+                # Verifica:
+                # 1. Se a ação existe no controlador (Caso o usuário tenha adicionado nome incorreto)
+                # 2. Direito do usuário (ri) = ação recebida como parâmetro (action)
+                if ctrl.instance_methods(false).include? action and ri.to_s == action.to_s
+                  return true
+                end
               end
             end
           end
@@ -124,13 +125,14 @@ module ApplicationHelper
   # Parametros: (objeto) usuário, (string) controlador
   # Retorna: um vetor com as permissões
   def get_permissions(user, ctr, args={})
+    user ||= current_user
+    # Se não está logado não existe permissões
+    return [] if user.nil?
     perms = []
     perms_user = []
-    user = user.nil? ? current_user : user
-    ctr  = ctr.empty? ? controller.controller_name : ctr
+    ctr = ctr.empty? ? controller.controller_name : ctr
     if user.is_admin
-      controller.class.instance_methods(false).each{ |ri| perms_user << ri }
-      return perms_user
+      return controller.class.instance_methods(false)
     else
       user.roles.each do |role|
         role.rights.each do |right|
@@ -143,11 +145,12 @@ module ApplicationHelper
     if args.length > 0
       if args[:except]
         perms = (controller.class.instance_methods(false) - args[:except]) & perms_user
-      else
+      elsif args[:only]
         perms = args[:only] & perms_user
       end
+      return perms
     end
-    return perms
+    return perms_user
   end
 
   # Monta o menu baseado nas permissões do usuário
@@ -155,7 +158,7 @@ module ApplicationHelper
   def make_menu(obj, args={})
     menu ||= ""
     get_permissions(current_user, '', args).each do |permission|
-      if controller.class.instance_methods(false).include? permission
+      if controller.class.instance_methods(false).include?(permission.to_sym)
         case permission.to_s
           when "show"
             menu += link_to(t('show'), {:controller => "#{controller.controller_name}", :action => 'show', :id => obj.id}, :class => 'icon icon-show', :alt => t('show'), :title => t('show')) + " "

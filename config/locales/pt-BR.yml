@@ -125,6 +125,7 @@ pt-BR:
   menu: 
     one: "Menu"
     other: "Menus"
+  menus: "Menus"
   message: "Mensagem"
   missing_account: "Desculpe-nos, mas não conseguimos localizar sua conta. Se você está tentando copiar e colar a URL de um email dentro do seu navegador ou reiniciando o processo de recuperar senha."
   my_account: "Minha Conta"

@@ -8,8 +8,10 @@
         <th><%= t"title" %></th>
         <th><%= t"author" %></th>
         <th><%= t"type" %></th>
-        <th><%= t"cover" %></th>
-        <th><%= t"publish" %></th>
+        <% if check_permission(PagesController, [:toggle_field]) %>
+          <th><%= t"cover" %></th>
+          <th><%= t"publish" %></th>
+        <% end %>
         <th></th>
       </thead>
       <tbody>
@@ -21,11 +23,15 @@
           <td><%= page.title %></td>
           <td><%= page.user.login %></td>
           <td><%= t"#{page.type.downcase}.one" %></td>
-          <td align="center"><%= raw toggle_field(page, "front") %></td>
-          <td align="center"><%= raw toggle_field(page, "publish") %></td>
+          <% if check_permission(PagesController, [:toggle_field]) %>
+            <td align="center"><%= raw toggle_field(page, "front") %></td>
+            <td align="center"><%= raw toggle_field(page, "publish") %></td>
+          <% end %>
           <td>
             <%= raw make_menu(page) %> 
-            <div class='handle icon icon-drag'><%= t("move") %></div>
+            <% if check_permission(PagesController, [:sort]) %>
+              <div class='handle icon icon-drag'><%= t("move") %></div>
+            <% end %>
           </td>
         </tr>
       <% end; reset_cycle %>

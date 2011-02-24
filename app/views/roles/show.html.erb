@@ -1,7 +1,7 @@
 <fieldset>
   <legend><%= t('roles_permissions') %></legend>
 
-  <%= form_tag 'roles' do %>
+  <%= form_tag @roles, :method => :put do %>
     <table class="list">
       <thead>
        <tr>

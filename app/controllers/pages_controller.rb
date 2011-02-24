@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   layout :choose_layout
-  before_filter :require_user
-  before_filter :check_authorization
+  before_filter :require_user, :only => [:new, :edit, :update, :destroy, :sort, :toggle_field]
+  before_filter :check_authorization, :except => [:view]
     
   respond_to :html, :xml, :js
   def index 

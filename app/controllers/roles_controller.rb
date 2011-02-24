@@ -12,8 +12,8 @@ class RolesController < ApplicationController
       params[:role].each do |role, right|
         Role.find(role).update_attributes(right)
       end
+      redirect_to :back
     end
-    respond_with(@roles)
   end
 
   def edit

@@ -44,9 +44,14 @@ Webyge::Application.routes.draw do |map|
    resources :groups, :chats, :roles, :rights, :archives, :admin, :csses
   end
 
-  resources :groups, :menus, :chats, :roles, :rights, :archives, :user_sessions, :password_resets, :admin, :csses
+  resources :groups, :menus, :chats, :rights, :archives, :user_sessions, :password_resets, :admin, :csses
 
   resources :account, :controller => "users"
+  resources :roles do
+    collection do
+      put :index
+    end
+  end
   resources :users do
     collection do
       get :manage_roles
