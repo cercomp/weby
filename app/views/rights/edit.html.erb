@@ -1,5 +1,5 @@
 <fieldset>
-  <h1><%= t"editing", :param => t("rights") %> </h1>
+  <legend> <%= t"editing", :param => t("rights") %> </legend>
 
   <% form_for(@right, :builder => SemanticFormBuilder) do |f| %>
     <% if @right.errors.any? %>
@@ -17,7 +17,7 @@
     <%= f.text_field :controller, :label => t("controller") %><br />
     <%= f.text_field :action, :label => t("action") %><br />
     <p>
-      <%= f.submit t("submit") %> | <%= link_to t('back'), :back %>
+      <%= f.submit t("save") %> <%= link_to t('back'), :back %>
     </p>
   <% end %>
 </fieldset>

@@ -9,11 +9,11 @@
         <p> <h2> <%= page.title %> </h2> </p>
         <%= raw page.summary %>
         <p> <%= link_to t("read_more"), site_page_path(@site, page) %> </p>
+        <div class="clear"></div>
         <%= raw make_menu(page) %>
         <% if check_permission(PagesController, [:sort]) %>
           <%= link_to t("move"), "#", :class => 'handle icon icon-drag' %>
         <% end %>
-        <div class="clear"></div>
       </div>
     <% end; reset_cycle %>
     </li>

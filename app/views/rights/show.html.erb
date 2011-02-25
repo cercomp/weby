@@ -1,20 +1,16 @@
 <fieldset>
   <p>
     <b><%= t"name" %>:</b>
-    <%#=h @right.name %>
+    <%=h @right.name %>
   </p>
-
   <p>
     <b><%= t"controller" %>:</b>
-    <%#=h @right.controller %>
+    <%=h @right.controller %>
   </p>
-
   <p>
     <b><%= t"action" %>:</b>
-    <%#=h @right.action %>
+    <%=h @right.action %>
   </p>
 
-
-  <%= link_to t('edit'), edit_right_path(@right) %> | <%= link_to t("list_all"), site_rights_path %> |
-  <%= link_to t('back'), :back %>
+  <%= link_to t('edit'), edit_right_path(@right) %> | <%= link_to t("list_all"), rights_path %> | <%= link_to t('back'), :back %>
 </fieldset>

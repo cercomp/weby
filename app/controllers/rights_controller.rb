@@ -37,4 +37,8 @@ class RightsController < ApplicationController
     @right.destroy
     respond_with(@right)
   end
+
+  def show
+    @right = Right.find(params[:id])
+  end
 end
