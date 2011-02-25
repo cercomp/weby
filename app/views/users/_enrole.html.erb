@@ -1,5 +1,4 @@
 <% unless @users_unroled.empty? %>
-<h2>Cadastrar novo usuário</h2>
 
 <%= form_tag change_roles_site_users_path(@site), :method => "post", :id => "subscribe_users",
 													:remote => 'true', :update => 'enrole' %>
@@ -7,7 +6,7 @@
 	<table class="list">
 		<thead>
 			<tr>
-				<th>Usuário</th>
+				<th><%= t "enrole_user" %></th>
 				<th style="width: 55%">Papel</th>
 			</tr>
 		</thead>

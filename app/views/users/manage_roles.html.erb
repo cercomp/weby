@@ -1,6 +1,6 @@
 <%# TODO escrever traduções %>
-<h1>Gerenciar papeis</h1>
-<br/>
+<fieldset>
+<legend><%= t "manage_roles" %></legend>
 
 <div id="enroled">
 	<%= render 'enroled' %>
@@ -9,5 +9,6 @@
 <div id="enrole">
 	<%= render 'enrole' %>
 </div>
+</fieldset>
 
 <%= javascript_tag "window.onload = function () {$('form[id^=\"form-user\"]').each(function (e){ $(this).hide(); })}" %>

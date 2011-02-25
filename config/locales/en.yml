@@ -50,19 +50,20 @@ en:
   disable: "Disable"
 
 #---E---#
+  edit: "Edit"
   editing: "Editing %{param}"
+  editor: "Editor"
   email: "E-mail"
+  enable: "Enable"
   end: "End"
+  enrole_user: "Enrole user"
   event: 
     one: "Event"
     other: "Events"
   event_param: "Event %{param}"
-  editor: "Editor"
-  edit: "Edit"
   error_updating_object: "Error updating object"
   example_param: "Example: %{param}"
   expires: "Expires"
-  enable: "Enable"
   external: "External"
 
 #---F---#
@@ -120,6 +121,7 @@ en:
   little: "Little"
   
 #---M---#
+  manage_roles: "Manage Roles"
   menu: 
     one: "Menu"
     other: "Menus"

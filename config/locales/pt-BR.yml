@@ -53,19 +53,20 @@ pt-BR:
   disable: "Desabilitado"
 
 #---E---#
+  edit: "Editar"
   editing: "Editando %{param}"
+  editor: "Editor"
   email: "E-mail"
+  enable: "Habilitado"
   end: "Fim"
+  enrole_user: "Cadastrar usuário"
   event: 
     one: "Evento"
     other: "Eventos"
   event_param: "%{param} do Evento"
-  editor: "Editor"
-  edit: "Editar"
   error_updating_object: "Erro ao atualizar objeto"
   example_param: "Exemplo: %{param}"
   expires: "Expira em"
-  enable: "Habilitado"
   external: "Externo"
 
 #---F---#
@@ -123,6 +124,7 @@ pt-BR:
   little: "Pequeno"
   
 #---M---#
+  manage_roles: "Gerenciar Papéis"
   menu: 
     one: "Menu"
     other: "Menus"
