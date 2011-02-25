@@ -63,6 +63,7 @@ en:
   enable: "Enable"
   end: "End"
   enrole_user: "Enrole user"
+  enroled_user: "Enroled user"
   event: 
     one: "Event"
     other: "Events"

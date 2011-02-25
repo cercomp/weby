@@ -17,6 +17,7 @@ class UsersController < ApplicationController
   def manage_roles
     # Se a ação for selecionada para um site:
     unless @site.nil?
+      # Seleciona os todos os usuários que não são administradores
       @users = User.all.select{ |u| u.is_admin == false }
       @users_unroled = @users - @site.users
       @roles = Role.find(:all, :order => "id")
