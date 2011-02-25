@@ -1,10 +1,8 @@
 # coding: utf-8
 class UsersController < ApplicationController
   layout :choose_layout
-
   before_filter :require_user, :only => [:edit, :show, :update, :destroy, :toggle_field, :change_roles, :change_theme, :index]
   before_filter :check_authorization, :except => [:new, :create, :update, :edit, :show]
-
   respond_to :html, :xml
 
   def change_theme

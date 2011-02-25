@@ -1,9 +1,7 @@
 class MenusController < ApplicationController
   layout :choose_layout
-
   before_filter :require_user, :except => [:index, :show]
   before_filter :check_authorization, :except => [:index, :show]
-
   respond_to :html, :xml, :js
 
   def index

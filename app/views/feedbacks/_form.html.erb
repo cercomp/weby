@@ -1,5 +1,4 @@
-<%= form_for [@site, @feedback],
-              :builder => SemanticFormBuilder do |f| %>
+<%= form_for [@site, @feedback], :builder => SemanticFormBuilder do |f| %>
   <% if @feedback.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@feedback.errors.count,"") %> <%= t"prohibited_being_saved", :count => @feedback.errors.count %>:</h2>
@@ -29,15 +28,11 @@
   </div>
 
   <%= f.text_field :name, :label => t("name") %>
-  
   <%= f.text_field :email, :label => t("email") %>
-  
   <%= f.text_field :subject, :label => t("subject") %>
-
   <%= f.text_area :message, :label => t("message") %>
 
   <%=  f.hidden_field :site_id, :value => @site.id %>
 
   <%= f.submit t("submit") %>
-
 <% end %>

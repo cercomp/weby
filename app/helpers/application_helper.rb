@@ -109,7 +109,7 @@ module ApplicationHelper
                 # Verifica:
                 # 1. Se a ação existe no controlador (Caso o usuário tenha adicionado nome incorreto)
                 # 2. Direito do usuário (ri) = ação recebida como parâmetro (action)
-                if ctrl.instance_methods(false).include? action and ri.to_s == action.to_s
+                if ctrl.instance_methods(false).include?(action.to_sym) and ri.to_s == action.to_s
                   return true
                 end
               end
@@ -180,10 +180,10 @@ module ApplicationHelper
     if site
       adminnav << link_to( t("home"), site )
       adminnav += " | \n\t"
-      adminnav << link_to( t("admin"), site_admin_index_path(site) )
+      adminnav << link_to( t("admin.one"), site_admin_index_path(site) )
       adminnav += " | \n\t"
     else
-      adminnav << link_to( t("admin"), admin_index_path )
+      adminnav << link_to( t("admin.one"), admin_index_path )
       adminnav += " | \n\t"
     end
 

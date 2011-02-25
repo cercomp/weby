@@ -43,7 +43,7 @@ Webyge::Application.routes.draw do |map|
 
     resources :csses do
       member do
-        get :use_css
+        get :use_css, :toggle_field
       end
     end
 

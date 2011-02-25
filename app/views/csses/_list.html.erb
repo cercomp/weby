@@ -1,35 +1,33 @@
 <% unless @csses.empty? %>
-
   <%= will_paginate @csses, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax' %>
-
   <table class='list'>
     <thead>
       <th><%= t'name' %></th>
       <th><%= t'publish' %></th>
-      <th><%= "site_id" %></th>
+      <th><%= t("site.other") %></th>
       <th></th>
     </thead>
     <tbody>
     <% @csses.each do |css| %>
       <tr class="<%= cycle 'odd', 'even' %>">
         <td> <%= css.name %> </td>
-        <td align="center"><%#= raw toggle_field(css, "publish") %></td>
+        <td align="center"><%= raw toggle_field(css, "publish") %></td>
         <td>
-          <% css.sites.each do |site| %>
-            <%= site.name %>
-          <% end%>
+          <%= css.sites.map{|site| site.name}.join(', ') %>
         </td>
         <td>
+          <% if check_permission(CssesController, [:use_css]) %>
+            <%= link_to t('use'), {:action => 'use_css', :id => css.id }, :class => 'icon icon-fav', :alt => t("enable"), :title => t("activate_deactivate") %>
+          <% else %>
+            <%= link_to t('use'), nil, :class => 'icon icon-fav-off', :alt => t("disable"), :title => t("no_permission_to_activate_deactivate") %>
+          <% end %>
           <%= raw make_menu(css) %>
-          <%= link_to(t('use'), {:action => 'use_css', :id => css.id }) %>
         </td>
       </tr>
     <% end; reset_cycle %>
     </tbody>
   </table>
-
   <%= will_paginate @csses, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax' %>
-
 <% else %>
-  <% flash.now[:warning] = (t"none_param", :param => t("css")) %>
+  <% flash.now[:warning] = (t"none_param", :param => t("css.one")) %>
 <% end %>

@@ -5,17 +5,14 @@
     <b><%= t("name") %>:</b>
     <%= @feedback.name %>
   </p>
-
   <p>
     <b><%= t("email") %>:</b>
     <%= @feedback.email %>
   </p>
-
   <p>
     <b><%= t("message") %>:</b>
     <%= @feedback.message%>
   </p>
 
   <%= link_to t('edit'), edit_site_feedback_path(@site, @feedback) %> | <%= link_to t("list_all"), site_feedbacks_path(@site) %> | <%= link_to t('back'), :back %>  
-  
 </fieldset>

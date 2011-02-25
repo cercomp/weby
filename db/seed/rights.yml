@@ -1,59 +1,307 @@
-um:
-  name: "Ver página administrativa"
-  action: index
+1:
   id: 1
+  name: "Ver página administrativa"
   controller: admin
-
-dois:
-  name: "Gerenciar papéis"
-  action: create index edit new show update change_status
-  id: 2
-  controller: roles
-
-tres:
-  name: "Excluir papéis"
-  action: destroy
-  id: 3
-  controller: roles
-
-quatro:
-  name: "Editar usuários"
-  action: edit
-  id: 4
-  controller: users
-
-cinco:
-  name: "Ver usuários"
   action: index
+
+2:
+  id: 2
+  name: "Gerenciar papéis"
+  controller: roles
+  action: create index edit new show update
+
+3:
+  id: 3
+  name: "Excluir papéis"
+  controller: roles
+  action: destroy
+
+4:
+  id: 4
+  name: "Editar usuários"
+  controller: users
+  action: edit
+
+5:
   id: 5
+  name: "Ver usuários"
   controller: users
+  action: index
 
-seis:
-  name: "Gerenciar direitos"
-  action: index new create update edit change_status
+6:
   id: 6
-  controller: rights
-
-sete:
-  name: "Excluir direitos"
-  action: destroy
-  id: 7
-  controller: rights
-
-oito:
   name: "Mudar papéis de usuários" 
-  action: change_roles
-  id: 8
   controller: users
+  action: change_roles
 
-nove:
-  name: "Gerenciar menus"
+7:
+  id: 7
+  name: "Gerenciar direitos"
+  controller: rights
   action: index new create update edit
-  id: 9
-  controller: menus
 
-dez:
-  name: "Excluir menus"
+8:
+  id: 8
+  name: "Excluir direitos"
+  controller: rights
   action: destroy
-  id: 10
-  controller: menus
+
+
+9:
+ id: 9
+ name: "Listar Páginas"
+ controller: pages
+ action: index
+
+10:
+ id: 10
+ name: "Ver Página"
+ controller: pages
+ action: show
+
+11:
+ id: 11
+ name: "Editar Página"
+ controller: pages
+ action: edit update
+
+12:
+ id: 12
+ name: "Excluir Página"
+ controller: pages
+ action: destroy
+
+13:
+ id: 13
+ name: "Ordernar Páginas"
+ controller: pages
+ action: sort
+
+14:
+ id: 14
+ name: "Criar Página"
+ controller: pages
+ action: new create
+
+15:
+ id: 15
+ name: "Publicar Página"
+ controller: pages
+ action: toggle_field
+
+
+16:
+ id: 16
+ name: "Listar Menus"
+ controller: menus
+ action: index
+
+17:
+ id: 17
+ name: "Ver Menus"
+ controller: menus
+ action: show
+
+18:
+ id: 18
+ name: "Editar Menu"
+ controller: menus
+ action: edit update
+
+19:
+ id: 19
+ name: "Excluir Menu"
+ controller: menus
+ action: destroy rm_menu del_deep del_deep_entry
+
+20:
+ id: 20
+ name: "Ordernar Menus"
+ controller: menus
+ action: change_position
+
+21:
+ id: 21
+ name: "Criar Menu"
+ controller: menus
+ action: new create
+
+
+22:
+ id: 22
+ name: "Listar Banners"
+ controller: banners
+ action: index
+
+22:
+ id: 22
+ name: "Ver Banner"
+ controller: banners
+ action: show
+
+23:
+ id: 23
+ name: "Editar Banner"
+ controller: banners
+ action: edit update
+
+24:
+ id: 24
+ name: "Excluir Banner"
+ controller: banners
+ action: destroy
+
+25:
+ id: 25
+ name: "Ordernar Banners"
+ controller: banners
+ action: change_position
+
+26:
+ id: 26
+ name: "Criar Banner"
+ controller: banners
+ action: new create
+
+27:
+ id: 27
+ name: "Publicar Banner"
+ controller: banners
+ action: toggle_field
+
+
+28:
+ id: 28
+ name: "Listar Fale Conosco"
+ controller: feedbacks
+ action: index
+
+29:
+ id: 29
+ name: "Ver Fale Conosco"
+ controller: feedbacks
+ action: show
+
+30:
+ id: 30
+ name: "Editar Fale Conosco"
+ controller: feedbacks
+ action: edit update get_groups
+
+31:
+ id: 31
+ name: "Excluir Fale Conosco"
+ controller: feedbacks
+ action: destroy
+
+32:
+ id: 32
+ name: "Criar Fale Conosco"
+ controller: feedbacks
+ action: new create get_groups
+
+
+33:
+ id: 33
+ name: "Listar Grupos"
+ controller: groups
+ action: index
+
+34:
+ id: 34
+ name: "Ver Grupo"
+ controller: groups
+ action: show
+
+35:
+ id: 35
+ name: "Editar Grupo"
+ controller: groups
+ action: edit update
+
+36:
+ id: 36
+ name: "Excluir Grupo"
+ controller: groups
+ action: destroy
+
+37:
+ id: 37
+ name: "Criar Grupo"
+ controller: groups
+ action: new create
+
+
+38:
+ id: 38
+ name: "Listar Repositório"
+ controller: repositories
+ action: index
+
+39:
+ id: 39
+ name: "Ver Repositório"
+ controller: repositories
+ action: show
+
+40:
+ id: 40
+ name: "Editar Repositório"
+ controller: repositories
+ action: edit update
+
+41:
+ id: 41
+ name: "Excluir Repositório"
+ controller: repositories
+ action: destroy
+
+42:
+ id: 42
+ name: "Criar Repositório"
+ controller: repositories
+ action: new create
+
+
+43:
+ id: 43
+ name: "Listar Estilo"
+ controller: csses
+ action: index
+
+44:
+ id: 44
+ name: "Ver Estilo"
+ controller: csses
+ action: show
+
+45:
+ id: 45
+ name: "Editar Estilo"
+ controller: csses
+ action: edit update
+
+46:
+ id: 46
+ name: "Excluir Estilo"
+ controller: csses
+ action: destroy
+
+47:
+ id: 47
+ name: "Criar Estilo"
+ controller: csses
+ action: new create
+
+48:
+ id: 48
+ name: "Publicar Estilo"
+ controller: csses
+ action: toggle_field
+
+49:
+ id: 49
+ name: "Usar Estilo"
+ controller: csses
+ action: use_css
+

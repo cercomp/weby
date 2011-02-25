@@ -5,8 +5,6 @@ class BannersController < ApplicationController
 
   respond_to :html, :xml, :js
 
-  # GET /banners
-  # GET /banners.xml
   def index
     @banners = @site.banners.paginate :page => params[:page], :per_page => 10
 
@@ -21,8 +19,6 @@ class BannersController < ApplicationController
     end
   end
 
-  # GET /banners/1
-  # GET /banners/1.xml
   def show
     @banner = Banner.find(params[:id])
 
@@ -32,8 +28,6 @@ class BannersController < ApplicationController
     end
   end
 
-  # GET /banners/new
-  # GET /banners/new.xml
   def new
     @banner = Banner.new
     @repositories = Repository.where(["site_id = ? AND archive_content_type LIKE ?", @site.id, "image%"]).paginate :page => params[:page], :order => 'created_at DESC', :per_page => 4 
@@ -49,7 +43,6 @@ class BannersController < ApplicationController
     end
   end
 
-  # GET /banners/1/edit
   def edit
     @repositories = Repository.where(["site_id = ? AND archive_content_type LIKE ?", @site.id, "image%"]).paginate :page => params[:page], :order => 'created_at DESC', :per_page => 4 
     @banner = Banner.find(params[:id])
@@ -65,8 +58,6 @@ class BannersController < ApplicationController
     end
   end
 
-  # POST /banners
-  # POST /banners.xml
   def create
     @repositories = Repository.where(["site_id = ? AND archive_content_type LIKE ?", @site.id, "image%"]).paginate :page => params[:page], :order => 'created_at DESC', :per_page => 4 
     @banner = Banner.new(params[:banner])
@@ -74,8 +65,6 @@ class BannersController < ApplicationController
     respond_with(@site, @banner)
   end
 
-  # PUT /banners/1
-  # PUT /banners/1.xml
   def update
     @repositories = Repository.where(["site_id = ? AND archive_content_type LIKE ?", @site.id, "image%"]).paginate :page => params[:page], :order => 'created_at DESC', :per_page => 4 
     @banner = Banner.find(params[:id])
@@ -91,8 +80,6 @@ class BannersController < ApplicationController
     end
   end
 
-  # DELETE /banners/1
-  # DELETE /banners/1.xml
   def destroy
     @banner = Banner.find(params[:id])
     @banner.destroy

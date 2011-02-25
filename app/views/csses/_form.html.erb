@@ -11,7 +11,7 @@
   <% end %>
 
   <%= f.text_field :name, :label => t("name"), :required => true, :help => t("field_required") %>
-  <%= f.text_area :css, :label => t("css") %>
+  <%= f.text_area :css, :label => t("css.one") %>
 
   <%= hidden_field_tag "css[site_ids][]", @site.id %>
 

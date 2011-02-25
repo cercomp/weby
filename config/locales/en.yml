@@ -14,7 +14,9 @@ en:
   are_you_sure: "Are you sure?"
   at: "at"
   author: "Author"
-  admin: "Admin" 
+  admin:
+    one: "Admin"
+    other: "Admins"
   administration: "Administration"  
   active: "Active?"
   add_selected_menus: "Add selected menus"
@@ -30,6 +32,8 @@ en:
     one: "Banner"
     other: "Banners"
   base: "Base"
+  button_check_all: "Check all"
+  button_uncheck_all: "Uncheck all"
   
 #---C---#
   chief_editor: "Chief Editor"
@@ -40,7 +44,9 @@ en:
   create_param: "Create %{param}"
   current_login: "Current login %{param}" 
   cancel: "Cancel"
-  css: "Style"
+  css: 
+    one: "Style"
+    other: "Styles"
   copy: "Copy"
 
 #---D---#
@@ -67,7 +73,9 @@ en:
   external: "External"
 
 #---F---#
-  feedback: "Feedback"
+  feedback:
+    one: "Feedback"
+    other: "Feedback"
   feedback_sent: "Feedback sent successfully!"
   father: "Father"
   fill_email_form: "Fill out the form below to reset your password. It will be e-mailed to you" 
@@ -201,13 +209,18 @@ en:
   remove_selected_menus: "Remove selected menus"
   reset_mail: "Instructions to reset your password have been emailed to you. Please check your email."
   reset_my_password: "Reset my password" 
-  right: "Right"
-  rights: "Rights"
-  role: "Role"
-  roles: "Roles"
+  right:
+    one: "Right"
+    other: "Rights"
+  role:
+    one: "Role"
+    other: "Roles"
   roles_permissions: "Roles and Permissions"
   read_more: "Read more..."
   regional: "Regional"
+  repository:
+    one: "Repository"
+    other: "Repositories"
  
 #---S---#
   save: "Save"

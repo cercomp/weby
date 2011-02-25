@@ -1,9 +1,9 @@
 class PagesController < ApplicationController
   layout :choose_layout
   before_filter :require_user, :only => [:new, :edit, :update, :destroy, :sort, :toggle_field]
-  before_filter :check_authorization, :except => [:view]
-    
+  before_filter :check_authorization, :except => [:view]    
   respond_to :html, :xml, :js
+
   def index 
     params[:type] ||= 'News'
     @pages = @site.pages.paginate :page => params[:page], :per_page => 10

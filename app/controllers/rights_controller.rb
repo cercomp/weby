@@ -2,11 +2,10 @@ class RightsController < ApplicationController
   layout :choose_layout
   before_filter :require_user
   before_filter :check_authorization
-
   respond_to :html, :xml
 
   def index
-    @rights = Right.find(:all, :order => "controller,name")
+    @rights = Right.order("controller,name")
     respond_with(@rights)
   end
 

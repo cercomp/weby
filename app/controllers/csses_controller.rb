@@ -1,7 +1,7 @@
 class CssesController < ApplicationController
-
   layout :choose_layout
-
+  before_filter :require_user
+  before_filter :check_authorization
   respond_to :html, :xml
 
   def index
@@ -40,16 +40,7 @@ class CssesController < ApplicationController
 
     respond_to do |format|
       if @css.save 
-        format.html {
-          redirect_to(
-            {
-              :site_id => @site.name,
-              :controller => 'csses',
-              :action => 'index'
-            },
-            :notice => t('successfully_created')
-          )
-        }
+        format.html { redirect_to(site_csses_path, :notice => t('successfully_created')) }
         format.xml  { render :xml => @css, :status => :created, :location => @css }
       else
         format.html { render :site_id => @site.id, :controller => 'csses', :action => 'new' }
@@ -63,16 +54,7 @@ class CssesController < ApplicationController
 
     respond_to do |format|
       if @css.update_attributes(params[:css])
-        format.html {
-          redirect_to(
-            {
-              :site_id => @site.name,
-              :controller => 'csses',
-              :action => 'index'
-            },
-            :notice => t('successfully_updated')
-          )
-        }
+        format.html { redirect_to(site_csses_path, :notice => t('successfully_updated')) }
         format.xml  { head :ok }
       else
         format.html { redirect_to :back }
@@ -86,7 +68,7 @@ class CssesController < ApplicationController
     @css.destroy
 
     respond_to do |format|
-      format.html { redirect_to(site_csses_url) }
+      format.html { redirect_to(site_csses_path) }
       format.xml  { head :ok }
     end
   end
@@ -115,5 +97,4 @@ class CssesController < ApplicationController
 
     redirect_back_or_default site_csses_path(@site)
   end
-
 end

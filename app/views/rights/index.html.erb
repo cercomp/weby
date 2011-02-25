@@ -3,7 +3,7 @@
 
   <% if check_permission(RightsController, [:new]) %>
     <div class="contextual">
-      <p> <%= link_to (t"create_param", :param => t('right')), new_right_path, :class => 'icon icon-add' %> </p>
+      <p> <%= link_to (t"create_param", :param => t('right.other')), new_right_path, :class => 'icon icon-add' %> </p>
     </div>
   <% end %>
 
@@ -17,16 +17,23 @@
       </tr>
     </thead>
     <tbody>
-    <% @rights.each do |right| %>
-      <tr class="<%= cycle 'odd', 'even' %>">
-        <td><%= right.name %></td>
-        <td><%= right.controller %></td>
-        <td><%= right.action %></td>
-        <td>
-          <%= raw make_menu(right) %>
-        </td>
-      </tr>
-    <% end; reset_cycle %>
+      <% @rights.group_by(&:controller).sort.each do |p, i| %>
+        <tr class="<%= cycle 'odd', 'even' %>">
+          <td colspan="<%= @rights.length + 1%>">
+           <b><%= t("#{p.singularize}.other") %></b>
+          </td>
+        </tr>
+        <% i.each do |right| %>
+          <tr class="<%= cycle 'odd', 'even' %>">
+            <td><%= right.name %></td>
+            <td><%= right.controller %></td>
+            <td><%= right.action %></td>
+            <td>
+              <%= raw make_menu(right) %>
+            </td>
+          </tr>
+        <% end %>
+      <% end; reset_cycle %>
     </tbody>
   </table>
 

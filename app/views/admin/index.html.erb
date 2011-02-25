@@ -44,7 +44,7 @@
       <% end %>
     </p>
     <p>
-      <%= link_to (t"css"), site_csses_path %>
+      <%= link_to (t"css.other"), site_csses_path %>
       <% if check_permission(CssesController, [:new]) %>
        | <%= link_to t("new"), new_site_css_path, :class => 'icon icon-add' %>
       <% end %>
@@ -61,14 +61,8 @@
        | <%= link_to t("new"), new_site_role_path, :class => 'icon icon-add' %>
       <% end %>
     </p>
-      <p>
-      <%= link_to (t"css"), site_csses_path %>
-      <% if check_permission(CssesController, [:new]) %>
-       | <%= link_to t("new"), new_site_css_path, :class => 'icon icon-add' %>
-      <% end %>
-    </p>
     <p>
-      <%= link_to (t"feedback"), site_feedbacks_path %>
+      <%= link_to (t"feedback.one"), site_feedbacks_path %>
       <% if check_permission(FeedbacksController, [:new]) %>
       <% end %>
     </p>
