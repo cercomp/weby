@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
   def change_theme
     if params[:id] && current_user
-      @user = User.find(current_user.id)
+      @user = current_user
       @user.update_attribute(:theme, params[:id])
       flash[:notice] = t("look_changed")
     end
@@ -21,7 +21,6 @@ class UsersController < ApplicationController
       @users = User.all.select{ |u| u.is_admin == false }
       @users_unroled = @users - @site.users
       @roles = Role.find(:all, :order => "id")
-
       # Quando a edição dos papeis é solicitada
       @user = User.find(params[:user_id]) if params[:user_id]
 
@@ -36,10 +35,8 @@ class UsersController < ApplicationController
             end
 					end
 				end
-
 				format.html
 			end
-
     else
       @sites = Site.find(:all)
       render :select_site

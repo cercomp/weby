@@ -1,45 +1,36 @@
 <% unless @users_unroled.empty? %>
-
-<%= form_tag change_roles_site_users_path(@site), :method => "post", :id => "subscribe_users",
-													:remote => 'true', :update => 'enrole' %>
-
-	<table class="list">
-		<thead>
-			<tr>
-				<th><%= t "enrole_user" %></th>
-				<th style="width: 55%">Papel</th>
-			</tr>
-		</thead>
-
-		<tbody>
-		<tr>
-		<td>
-			<% @users_unroled.each do |user| %>
-				<label>
-					<%= check_box_tag 'user[id][]', user.id %>
-					<%= user.login %>
-				</label><br/>
-			<% end %>
-		</td>
-
-		<td>
-			<% @roles.each do |role| %>
-				<label>
-					<%= check_box_tag 'role_ids][]', role.id %>
-					<%= role.name %>
-				</label>
-				<br />
-			<% end %>
-		</td>
-		</tr>
-		</tbody>
-	</table>
-
-  <div class="center">
-    <input type="submit" value="cadastrar" />
-  </div>
-</form>
-
+  <%= form_tag change_roles_site_users_path(@site), :method => "post", :id => "subscribe_users", :remote => 'true', :update => 'enrole' %>
+    <table class="list">
+      <thead>
+        <tr>
+          <th><%= t "enrole_user" %></th>
+          <th style="width: 55%">Papel</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>
+          <% @users_unroled.each do |user| %>
+            <label>
+              <%= check_box_tag 'user[id][]', user.id %>
+              <%= user.login %>
+            </label><br/>
+          <% end %>
+        </td>
+        <td>
+          <% @roles.each do |role| %>
+            <label>
+              <%= check_box_tag 'role_ids][]', role.id %>
+              <%= role.name %>
+            </label>
+            <br />
+          <% end %>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <p> <input type="submit" value="cadastrar" /> </p>
+  </form>
 <% else %>
 <h2>Nenhum usuário para cadastrar</h2>
 <% end %>

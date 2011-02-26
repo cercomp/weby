@@ -1,22 +1,14 @@
-<%= form_tag change_roles_site_users_path(@site),
-              :method => "post",
-              :id => "form_user_#{@user.id}",
-              :remote => 'true',
-              :update => 'enroled' %>
-
+<%= form_tag change_roles_site_users_path(@site), :method => "post", :id => "form_user_#{@user.id}", :remote => 'true', :update => 'enroled' %> 
   <%= hidden_field_tag 'user[id]', @user.id %>
   <p>
     <% @roles.each do |role| %>
       <label>
-        <%= check_box_tag 'role_ids[]', role.id, @user.roles.include?(role) %>
+        <%= check_box_tag 'role_ids[]', role.id, @user.sites.find(@site).roles.include?(role) %>
         <%= role.name %>
       </label>
       <br />
     <% end %>
   </p>
   <%= submit_tag 'Enviar' %>
-  <%= link_to t('cancel'),
-              {:action => 'manage_roles'},
-              :onclick => "return hide_form(#{@user.id});",
-              :id => "form_role_cancel" %>
+  <%= link_to t('cancel'), {:action => 'manage_roles'}, :onclick => "return hide_form(#{@user.id});", :id => "form_role_cancel" %>
 </form>
