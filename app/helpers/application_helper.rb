@@ -111,7 +111,7 @@ module ApplicationHelper
                 # Verifica:
                 # 1. Se a ação existe no controlador (Caso o usuário tenha adicionado nome incorreto)
                 # 2. Direito do usuário (ri) = ação recebida como parâmetro (action)
-                if ctrl.instance_methods(false).include?(action.to_sym) and ri.to_s == action.to_s
+                if ctrl.instance_methods(false).include?(action.to_s) and ri.to_s == action.to_s
                   return true
                 end
               end
@@ -160,7 +160,7 @@ module ApplicationHelper
   def make_menu(obj, args={})
     menu ||= ""
     get_permissions(current_user, '', args).each do |permission|
-      if controller.class.instance_methods(false).include?(permission.to_sym)
+      if controller.class.instance_methods(false).include?(permission.to_s)
         case permission.to_s
           when "show"
             menu += link_to(t('show'), {:controller => "#{controller.controller_name}", :action => 'show', :id => obj.id}, :class => 'icon icon-show', :alt => t('show'), :title => t('show')) + " "
