@@ -96,9 +96,11 @@ module ApplicationHelper
     # Se o usuário for admin então dê todas as permissões
     if current_user and current_user.is_admin
       return true
-    elsif current_user
-      # Obtem todos os papéis do usuário
-      current_user.roles.each do |role|
+    elsif current_user and @site
+      # Obtem todos os papéis do usuário relacionados com site
+      current_user.sites.find(@site).roles.each do |role|
+      # Obtem qualquer papél do usuário
+      #current_user.roles.each do |role| 
         # Obtem o campo multi-valorados contendo todos os direitos
         role.rights.each do |right|
           # Controlador do usuario (right.controller) = nome do controlador recebido como parâmetro (ctr.controller_name)
@@ -134,7 +136,7 @@ module ApplicationHelper
     if user.is_admin
       return controller.class.instance_methods(false)
     else
-      user.roles.each do |role|
+      user.sites.find(@site).roles.each do |role|
         role.rights.each do |right|
           if right.controller == ctr
             right.action.split(' ').each{ |ri| perms_user << ri }

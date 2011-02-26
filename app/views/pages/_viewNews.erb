@@ -12,7 +12,7 @@
         <div class="clear"></div>
         <%= raw make_menu(page) %>
         <% if check_permission(PagesController, [:sort]) %>
-          <%= link_to t("move"), "#", :class => 'handle icon icon-drag' %>
+          <%= link_to t("move"), "#", :class => 'handle icon icon-drag' if @front_news.length > 1 %>
         <% end %>
       </div>
     <% end; reset_cycle %>
