@@ -1,5 +1,7 @@
 class RepositoriesController < ApplicationController
   layout :choose_layout, :except => [:show]
+  before_filter :require_user
+  before_filter :check_authorization
  
   respond_to :html, :xml, :js
   def manage

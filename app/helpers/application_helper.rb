@@ -190,7 +190,7 @@ module ApplicationHelper
     unless current_user
       adminnav << link_to( t("register"), new_user_path )
       adminnav += " | \n\t"
-      adminnav << link_to( t("login"), login_path )
+      adminnav << link_to( t("login"), login_path(:back_url => "#{request.fullpath}"))
       adminnav += " | \n\t"
     else
       adminnav << link_to( t("my_profile"), user_path(current_user) )

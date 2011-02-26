@@ -13,7 +13,7 @@ class UserSessionsController < ApplicationController
     if @user_session.save
 #      if current_user.status #verifica se o usuário esta ativo  
         flash.now[:notice] = t("login_success")
-        redirect_back_or_default root_path
+        redirect_back_or_default("#{params[:back_url]}")
 #      else  
 #        destroy  
 #      end  
