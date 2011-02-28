@@ -26,7 +26,8 @@
 
     <div id="div_event">
       <%= render :partial => 'formEvent', :locals => {:f => f} %>
-    </div>
+		</div>
+
 
     <div id='repo_list'>
       <%= render :partial => 'repo_list', :locals => { :f => f } %>
@@ -68,7 +69,8 @@
         </div>
       </div>
     </div>
-
+		
+	
     <%= f.submit_and_cancel t("save"), t("cancel") %>
     <%= link_to t("back"), :back %>
   <% end %>
