@@ -98,7 +98,7 @@ module ApplicationHelper
       return true
     elsif current_user and @site
       # Obtem todos os papéis do usuário relacionados com site
-      current_user.sites.find(@site).roles.each do |role|
+      current_user.roles.where(:site_id => @site).each do |role|
       # Obtem qualquer papél do usuário
       #current_user.roles.each do |role| 
         # Obtem o campo multi-valorados contendo todos os direitos
@@ -136,7 +136,7 @@ module ApplicationHelper
     if user.is_admin
       return controller.class.instance_methods(false)
     else
-      user.sites.find(@site).roles.each do |role|
+      user.roles.where(:site_id => @site).each do |role|
         role.rights.each do |right|
           if right.controller == ctr
             right.action.split(' ').each{ |ri| perms_user << ri }

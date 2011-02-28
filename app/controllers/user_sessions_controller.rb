@@ -29,6 +29,6 @@ class UserSessionsController < ApplicationController
       flash.now[:notice] = t('logout_success')
     end
     current_user_session.destroy
-    redirect_back_or_default login_path
+    redirect_to :back
   end
 end
