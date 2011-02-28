@@ -3,17 +3,20 @@
 
   <div id="repo_new" >
     <div class="contextual">
-      <%= link_to (t"new_param", :param => t("archive.one")), nil, :update => "repo_new", :remote => true, :onclick => "$('#page1').toggle();", :class => 'icon icon-add' %>
+    <%= link_to (t"new_param", :param => (t"archive.one")), new_site_repository_path(),
+      :remote => true,
+      :onclick => "$('#page').toggle();",
+      :class => 'icon icon-add' %>
     </div>
-    <div id="page1" style="display:none">
-      <%= render :partial => 'repositories/form'%>
+    <div id="page" style="display:none">
     </div>
   </div>
 
   <%= form_for [@site, @page], :url => site_page_path(@site, @page, :type => params[:type]), :html => { :multipart => true }, :builder => SemanticFormBuilder do |f| %>
    <% if @page.errors.any? %>
       <div id="error_explanation">
-        <h2><%= pluralize(@page.errors.count,"") %><%= t"prohibited_being_saved", :count => @page.errors.count %>:</h2>
+        <h2><%= pluralize(@page.errors.count,"") %><%= t"prohibited_being_saved", 
+            :count => @page.errors.count %>:</h2>
         <ul>
         <% @page.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
@@ -27,8 +30,6 @@
     <div id="div_event">
       <%= render :partial => 'formEvent', :locals => {:f => f} %>
 		</div>
-
-
     <div id='repo_list'>
       <%= render :partial => 'repo_list', :locals => { :f => f } %>
     </div>
@@ -70,18 +71,20 @@
       </div>
     </div>
 		
-	
     <%= f.submit_and_cancel t("save"), t("cancel") %>
     <%= link_to t("back"), :back %>
   <% end %>
 
   <div id="repo_new" >
     <div class="contextual">
-      <%= link_to (t"new_param", :param => (t"archive.one")), nil, :update => "repo_new", :remote => true, :onclick => "$('#page2').toggle();", :class => 'icon icon-add' %>
+      <%= link_to (t"new_param", :param => (t"archive.one")), new_site_repository_path(), 
+          :update => "repo_new", 
+          :remote => true, 
+          :onclick => "$('#page1').toggle();", 
+          :class => 'icon icon-add' %>
     </div>
-    <div id="page2" style="display:none">
-      <%= render :partial => 'repositories/form'%>
+    <div id="page1" style="display:none">
+    <%= render :partial => 'repositories/form'%>
     </div>
   </div>
 </fieldset>
-
