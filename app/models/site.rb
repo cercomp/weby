@@ -6,9 +6,7 @@ class Site < ActiveRecord::Base
   end
   validates_presence_of :name, :url
 
-  has_many :user_site_enroled, :dependent => :destroy
-  has_many :users, :through => :user_site_enroled
-  has_many :roles, :through => :user_site_enroled
+  has_many :roles
 
   has_many :sites_menus
   has_many :menus, :through => :sites_menus

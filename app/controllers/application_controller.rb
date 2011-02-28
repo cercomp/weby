@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
       return current_user.theme
     # Se não existir tente o definido no papel do usuário
     elsif current_user && !current_user.role_ids.empty?
-      role_theme = Role.find(current_user.role_ids.to_s).theme
+      role_theme = Role.find(current_user.role_ids).theme
       unless role_theme.nil? or role_theme.empty?
         return role_theme
       end

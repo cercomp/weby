@@ -18,8 +18,10 @@ class UsersController < ApplicationController
     # Se a ação for selecionada para um site:
     unless @site.nil?
       # Seleciona os todos os usuários que não são administradores
-      @users = User.all.select{ |u| u.is_admin == false }
-      @users_unroled = @users - @site.users
+      @users = User.where :is_admin => false
+      @site_users = @site.roles.collect{|r| r.users}.flatten
+
+      @users_unroled = @users - @site_users
       @roles = @site.roles.order("id")
       # Quando a edição dos papeis é solicitada
       @user = User.find(params[:user_id]) if params[:user_id]
@@ -51,9 +53,9 @@ class UsersController < ApplicationController
     user_ids.each do |id|
       user = User.find(id)
       # limpa os papeis do usuário
-      user.user_site_enroled.where(:site_id => @site.id).each{ |role| role.destroy }
+      user.roles.delete_if{ |r| r.site_id == @site.id }
       params[:role_ids].each do |role_id|
-        user.user_site_enroled << UserSiteEnroled.new( :site_id => @site.id, :user_id => user.id, :role_id => role_id)
+        user.roles << Role.find(role_id)
       end
     end
 

@@ -1,4 +1,4 @@
-<% unless @site.users.empty? %>
+<% unless @site_users.empty? %>
   <table class="list">
     <thead>
       <tr>
@@ -8,12 +8,12 @@
       </tr>
     </thead>
     <tbody>
-      <% @site.users.uniq.each do |user| %>
+      <% @site_users.uniq.each do |user| %>
         <tr class="<%= cycle 'odd', 'even' %>">
           <td><%= link_to user.login, user %></td>
           <td>
             <span id="user_<%= user.id %>">
-              <%= user.sites.find(@site).roles.map(&:name).join(', ') %>
+              <%= user.roles.map{ |r| r.name if r.site_id == @site.id }.join(', ') %>
             </span>
             <div id="role_form_<%= user.id %>">
               <% if @user and @user.id == user.id %>
@@ -22,7 +22,10 @@
             </div>
           </td>
           <td>
-            <%= link_to "editar", { :action => 'manage_roles', :user_id => user.id }, :remote => 'true', :class => 'role_edit icon icon-edit', :user_id => user.id %>
+            <%= link_to "editar", { :action => 'manage_roles', :user_id => user.id },
+                  :remote => 'true',
+                  :class => 'role_edit icon icon-edit',
+                  :user_id => user.id %>
           </td>
         </tr>
       <% end %>

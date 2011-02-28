@@ -1,5 +1,9 @@
 <% unless @users_unroled.empty? %>
-  <%= form_tag change_roles_site_users_path(@site), :method => "post", :id => "subscribe_users", :remote => 'true', :update => 'enrole' %>
+  <%= form_tag change_roles_site_users_path(@site),
+        :method => "post",
+        :id => "subscribe_users",
+        :remote => 'true',
+        :update => 'enrole' %>
     <table class="list">
       <thead>
         <tr>
@@ -20,7 +24,7 @@
         <td>
           <% @roles.each do |role| %>
             <label>
-              <%= check_box_tag 'role_ids][]', role.id %>
+              <%= check_box_tag 'role_ids[]', role.id %>
               <%= role.name %>
             </label>
             <br />
