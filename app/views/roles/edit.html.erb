@@ -1,5 +1,5 @@
 <fieldset>
-  <legend><%= t"editing", :param => (t("roles")) %></legend>
+  <legend><%= t"editing", :param => t("role.one") %></legend>
 
   <%= form_for @role, :builder => SemanticFormBuilder do |f| %>
      <% if @role.errors.any? %>

@@ -20,7 +20,7 @@ class UsersController < ApplicationController
       # Seleciona os todos os usuários que não são administradores
       @users = User.all.select{ |u| u.is_admin == false }
       @users_unroled = @users - @site.users
-      @roles = Role.find(:all, :order => "id")
+      @roles = @site.roles.order("id")
       # Quando a edição dos papeis é solicitada
       @user = User.find(params[:user_id]) if params[:user_id]
 
@@ -50,20 +50,14 @@ class UsersController < ApplicationController
 
     user_ids.each do |id|
       user = User.find(id)
-
       # limpa os papeis do usuário
       user.user_site_enroled.where(:site_id => @site.id).each{ |role| role.destroy }
-
       params[:role_ids].each do |role_id|
-        user.user_site_enroled << UserSiteEnroled.new(
-                                      :site_id => @site.id,
-                                      :user_id => user.id,
-                                      :role_id => role_id)
+        user.user_site_enroled << UserSiteEnroled.new( :site_id => @site.id, :user_id => user.id, :role_id => role_id)
       end
     end
 
     redirect_to :action => 'manage_roles'
-    
   end
 
   def index

@@ -5,8 +5,8 @@ class RolesController < ApplicationController
 
   respond_to :html, :xml
   def index
-    @roles = Role.order("id").all
-    @rights = Right.order("controller,name").all
+    @roles = @site ? @site.roles.order("id") : Role.order("id")
+    @rights = Right.order("controller,name")
 
     if params[:role] && request.put?
       params[:role].each do |role, right|
@@ -27,8 +27,8 @@ class RolesController < ApplicationController
 
   def show
     @role = Role.new
-    @roles = Role.order("id").all
-    @rights = Right.order("id").all
+    @roles = Role.order("id")
+    @rights = Right.order("id")
     respond_with(@roles)
   end
 
