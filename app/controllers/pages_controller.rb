@@ -72,10 +72,10 @@ class PagesController < ApplicationController
       format.js { 
         render :update do |page|
           if params[:page]
-            page.call "$('#repo_list').html", render(:partial => 'repo_list', :locals => { :f => semanticformbuilder.new(@page.class.name.underscore.to_s, @page, self, {}, proc{}) })
+            page.call "$('#repo_list').html", render(:partial => 'repo_list', :locals => { :f => SemanticFormBuilder.new(@page.class.name.underscore.to_s, @page, self, {}, proc{}) })
           elsif params[:page_files]
             page.call "$('#files_list').append", render(:partial => 'files_list')
-            page.call "$('#will_paginate').html", (will_paginate @page_files_unchecked, :param_name => 'page_files', :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax', :page_links => false, :renderer => twitter, :twitter_label => t("more"))
+            page.call "$('#will_paginate').html", (will_paginate @page_files_unchecked, :param_name => 'page_files', :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax', :page_links => false, :renderer => Twitter, :twitter_label => t("more"))
           end
         end
       }
