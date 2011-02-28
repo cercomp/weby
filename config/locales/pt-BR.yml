@@ -8,37 +8,39 @@ pt-BR:
   account: "Conta"
   action: "Ação" 
   activate_deactivate: "Ativar/Desativar"
+  active: "Ativo?"
+  add_selected_menus: "Incluir os menus selecionados"  
+  add_sub_menu: "Adiciona um menu filho"
+  admin:
+    one: "Admin"
+    other: "Admins"
+  administration: "Administração"  
+  align: "Alinhar"
   archive: 
     one: "Arquivo"
     other: "Arquivos"
   are_you_sure: "Você tem certeza?"
   at: "por"
   author: "Autor"
-  admin:
-    one: "Admin"
-    other: "Admins"
-  administration: "Administração"  
-  active: "Ativo?"
-  align: "Alinhar"
-  add_selected_menus: "Incluir os menus selecionados"  
-  add_sub_menu: "Adiciona um menu filho"
   auxiliary: "Auxiliar"
 
 #---B---#
   back: "Voltar"
-  begin: "Início"
-  bottom: "Inferior"
-  body_width: "Largura do site"
   banner:
     one: "Banner"
     other: "Banners"
   base: "Base"
+  begin: "Início"
+  bottom: "Inferior"
+  body_width: "Largura do site"
   button_check_all: "Marcar todos"
   button_uncheck_all: "Desmarcar todos"
   
 #---C---#
+  cancel: "Cancelar"
   chief_editor: "Editor chefe"
   controller: "Controle"
+  copy: "Copiar"
   cover: "Capa"
   cover_help: "Deseja que esta notícia apareça na frente do site?"
   create: "Criar"
@@ -46,11 +48,9 @@ pt-BR:
   created_at: "Criado em"
   create_param: "Criar %{param}"
   current_login: "Entrada atual %{param}" 
-  cancel: "Cancelar"
   css: 
     one: "Estilo"
     other: "Estilos"
-  copy: "Copiar"
 
 #---D---#
   date_param: "Data de %{param}" 
@@ -67,26 +67,26 @@ pt-BR:
   end: "Fim"
   enrole_user: "Cadastrar usuário"
   enroled_user: "Usuário cadastrado"
+  error_updating_object: "Erro ao atualizar objeto"
   event: 
     one: "Evento"
     other: "Eventos"
   event_param: "%{param} do Evento"
-  error_updating_object: "Erro ao atualizar objeto"
   example_param: "Exemplo: %{param}"
   expires: "Expira em"
   external: "Externo"
 
 #---F---#
+  father: "Pai"
   feedback:
     one: "Fale Conosco"
     other: "Fale Conosco"
   feedback_sent: "Feedback enviado com sucesso!"
-  father: "Pai"
+  field_required: "Campo obrigatório!"
   fill_email_form: "Preencha o formulário para resgatar sua senha. Ela será enviada para seu e-mail" 
   forgot_password: "Perdi minha senha"
   footer: "Rodapé"
   footer_text: "Instituição - Endereço. CEP XXXXX-XXX - Caixa Postal XXX. Cidade-Estado - Fone: Geral: +XX XX XXXX-XXXX; Atendimento ao Usuário: +XX XX XXXX-XXXX, +XX XXXX-XXXX. Fax: +XX XX XXXX-XXXX"
-  field_required: "Campo obrigatório!"
 
 #---G---#
   group:
@@ -94,10 +94,10 @@ pt-BR:
     other: "Grupos"
 
 #---H---#
-  home: "Página inicial"
   hide: "Ocultar"
   hide_help: "Deseja ocultar? Somente usuários com cargos específicos poderão recuperá-los."
   height: "Altura"
+  home: "Página inicial"
 
 #---I---#
   instructions_change_password: "Instruções para trocar a senha"
@@ -108,7 +108,6 @@ pt-BR:
   is_event: "É um evento?"
 
 #---K---#
-  time_cover: "capa agendada"
   kind: "Tipo" 
 
 #---L---#
@@ -122,6 +121,7 @@ pt-BR:
   list_param: "Listar %{param}"
   listing: "Listando"
   listing_param: "Listando %{param}"
+  little: "Pequeno"
   localization: "Local de realização"
   logged: "logado"
   login: "Entrar"
@@ -130,28 +130,30 @@ pt-BR:
   logout_success: "Logout com sucesso!"
   login_count: "Login Count"
   look_changed: "Aparência alterada!"
-  little: "Pequeno"
   
 #---M---#
+  main: "Principal"
   manage_roles: "Gerenciar Papéis"
+  medium: "Médio"
   menu: 
     one: "Menu"
     other: "Menus"
   menus: "Menus"
   message: "Mensagem"
+  mini: "Miniatura"
   missing_account: "Desculpe-nos, mas não conseguimos localizar sua conta. Se você está tentando copiar e colar a URL de um email dentro do seu navegador ou reiniciando o processo de recuperar senha."
-  my_account: "Minha Conta"
-  my_profile: "Meu Perfil"
-  my_password: "Minha Senha" 
   move: "Mover"
   move_menu_up: "Move o menu para cima"
   move_menu_down: "Move o menu para baixo"
   more: "Mais"
-  mini: "Miniatura"
-  medium: "Médio"
-  main: "Principal"
+  my_account: "Minha Conta"
+  my_profile: "Meu Perfil"
+  my_password: "Minha Senha"
 
 #---N---#
+  nacional: "Nacional"
+  name: "Nome"
+  need_login: "Você deve estar logado para acessar acessar essa página." 
   new: "Novo"
   news: 
     one: "Notícia"
@@ -160,8 +162,6 @@ pt-BR:
     one: "Informativo"
     other: "Informativos"
   new_param: "Novo %{param}"
-  name: "Nome"
-  need_login: "Você deve estar logado para acessar acessar essa página." 
   no_need_to_login: "Você não deve estar logado para acessar essa página."	
   no_mail: "Nenhum usuário com esse e-mail foi econtrado." 
   no_permission_to_activate_deactivate: "Você não tem permissão para Ativar/Desativar"
@@ -170,7 +170,6 @@ pt-BR:
   none_top_menu: "Nenhum menu superior"
   none_bot_menu: "Nenhum menu inferior"
   none_param: "Nenhum %{param}"
-  nacional: "Nacional"
   "no": "Não"
 
 #---O---#
@@ -183,34 +182,39 @@ pt-BR:
   password: "Senha"
   password_change: "Nova senha"
   password_confirmation: "Confirmação da senha"
+  pdf: "PDF"
   permission: 
     one: "Permissão"
     other: "Permissões"
-  pdf: "PDF"
   picture: "Imagem"
   picture_text: "Texto da imagem"
   position: "Posição"
-  publication: "Publicação"
   prohibited_being_saved: 
     one: " erro, impede que você prossiga"
     other: " erros, impedem que você prossiga"
   portal: "Portal"
+  publication: "Publicação"
   publish: "Publicar"
   publish_help: "Você deseja publicar essa página?"
 
 #---Q---#
 
 #---R---#
+  read_more: "Leia mais..."
+  regional: "Regional"
   register: "Cadastro"
   registered: "Cadastrado"
   registered_menu:
     one: "Menu Cadastrado"
     other: "Menus Cadastrados"
+  related_files: "Arquivos relacionados"
+  related_files_help: "Serão relacionados na listagem da página"
   remember_me: "Lembrar-me"
   remove: "remover %{param}"
   remove_selected_menus: "Remover os menus selecionados"
-  related_files: "Arquivos relacionados"
-  related_files_help: "Serão relacionados na listagem da página"
+  repository:
+    one: "Repositório"
+    other: "Repositório"
   reset_mail: "Instruções de como modificar sua senha foram enviada. Cheque seu e-mail."
   reset_my_password: "Alterar minha senha"  
   right:
@@ -220,14 +224,11 @@ pt-BR:
     one: "Papel"
     other: "Papéis"
   roles_permissions: "Permissões e Papéis"
-  read_more: "Leia mais..."
-  regional: "Regional"
-  repository:
-    one: "Repositório"
-    other: "Repositório"
  
 #---S---#
   save: "Salvar"
+  search: "Busca"
+  secondary: "Secundário"
   setting:
     one: "Configuração"
     other: "Configurações"
@@ -235,6 +236,10 @@ pt-BR:
   select_site: "Selecione um site"
   show: "Mostrar"
   side: "Lado"
+  site:
+    one: "Sítio"
+    other: "Sítios"
+  site_comments: "Comentário sobre os objetivos do site."
   site_id: "Site ID"
   size: "Tamanho"
   source: "Fonte"
@@ -252,12 +257,6 @@ pt-BR:
     one:  "Sugestão"
     other: "Sugestões"
   summary: "Resumo"
-  site:
-    one: "Sítio"
-    other: "Sítios"
-  site_comments: "Comentário sobre os objetivos do site."
-  search: "Busca"
-  secondary: "Secundário"
   
 #---T---#
   text: "Texto" 
@@ -274,7 +273,7 @@ pt-BR:
   try_login: "Tente logar primeiro!"	
 
 #---U---#
-  update_param:
+  unpublish: "Despublicar"
   update: "Atualizar %{param}"
   updated: "%{param} atualizada" 
   update_password_log: "Atualize minha senha e me conecte." 
@@ -284,7 +283,6 @@ pt-BR:
     other: "Usuários"
   user_inactive: "Seu usuário ainda não está ativo."  
   username: "Nome de usuário"
-  unpublish: "Despublicar"
   use: "Usar"
 
 #---V---#
@@ -347,12 +345,12 @@ pt-BR:
       login_invalid: "Deveria usar letras, números, espaços e -_@, por favor."
       consecutive_failed_logins_limit_exceeded: "Você excedeu o número permitido de tentativas de login"
       email_invalid: "Não parece um email válido"
-      password_blank: "deve ser preenchido"
-      password_invalid: "Inválido"
       not_active: "Conta não está ativa"
       not_confirmed: "A conta não foi confirmada"
       not_approved: "A conta não foi aprovada"
       no_authentication_details: "Não há detalhes de autenticação"
+      password_blank: "deve ser preenchido"
+      password_invalid: "Inválido"
     attributes:
       user_session:
         login: "Nome de usuário"
@@ -387,11 +385,11 @@ pt-BR:
       news:
         title: "Título"
         source: "Fonte"
-      site:
-        name: "Nome"
       repository:
         description: "Descrição"
         archive: "Arquivo"
+      site:
+        name: "Nome"
       user:
         login: "Nome do usuário"
         password: "Senha"
@@ -405,26 +403,26 @@ pt-BR:
           other: "não foi possivel atualizar o modelo: %{count} erros."
         body: "Por favor cheque os seguintes campos:"
       messages:
-        attachment_presence: "deve ser anexado"
-        inclusion: " não está incluido na lista"
-        exclusion: "indisponível"
-        invalid: "inválido"
-        confirmation: "confirmação não equivalente"
         accepted: "acception required"
-        empty: "deve ser preenchido"
+        attachment_presence: "deve ser anexado"
         blank: "deve ser preenchido"
+        confirmation: "confirmação não equivalente"
+        empty: "deve ser preenchido"
+        equal_to: "Requerido igual a %{count}"
+        even: "par requerido"
+        exclusion: "indisponível"
+        greater_than: "Requerido maior do que %{count}"
+        greater_than_or_equal_to: "Requerido maior que ou igual a %{count}"
+        inclusion: " não está incluido na lista"
+        invalid: "inválido"
+        less_than: "Requerido menor que %{count}"
+        less_than_or_equal_to: "Requerido menor que ou igual a %{count}"
+        not_a_number: "não é um número"
+        odd: "ímpar requerido"
+        taken: "indisponível"
         too_long: "muito longo (não é possível usar mais de %{count} characteres)"
         too_short: "muito curto (não é possível usar menos de %{count} characteres)"
         wrong_length: "Tamanho errado (%{count} são requeridos)"
-        taken: "indisponível"
-        not_a_number: "não é um número"
-        greater_than: "Requerido maior do que %{count}"
-        greater_than_or_equal_to: "Requerido maior que ou igual a %{count}"
-        equal_to: "Requerido igual a %{count}"
-        less_than: "Requerido menor que %{count}"
-        less_than_or_equal_to: "Requerido menor que ou igual a %{count}"
-        odd: "ímpar requerido"
-        even: "par requerido"
 
   will_paginate:
     next: "Posteriores"

@@ -8,46 +8,49 @@ en:
   account: "Account"
   action: "Action" 
   activate_deactivate: "Activate/Deactivate"
+  active: "Active?"
+  add_selected_menus: "Add selected menus"
+  add_sub_menu: "Add sub menu"
+  admin:
+    one: "Admin"
+    other: "Admins"
+  administration: "Administration"  
+  align: "Align"
   archive: 
     one: "File"	
     other: "Files"
   are_you_sure: "Are you sure?"
   at: "at"
   author: "Author"
-  admin:
-    one: "Admin"
-    other: "Admins"
-  administration: "Administration"  
-  active: "Active?"
-  add_selected_menus: "Add selected menus"
-  add_sub_menu: "Add sub menu"
   auxiliary: "Auxiliary"
 
 #---B---#
   back: "Back"
-  begin: "Begin"  
-  bottom: "Bottom"
-  body_width: "Body width"
   banner:
     one: "Banner"
     other: "Banners"
   base: "Base"
+  begin: "Begin"  
+  bottom: "Bottom"
+  body_width: "Body width"
   button_check_all: "Check all"
   button_uncheck_all: "Uncheck all"
   
 #---C---#
+  cancel: "Cancel"
   chief_editor: "Chief Editor"
   controller: "Controller"
+  copy: "Copy"
   cover: "Cover"
   cover_help: "This pages will apear in site front."
   create: "Create"
+  created: "Created"
+  created_at: "Created_at"
   create_param: "Create %{param}"
   current_login: "Current login %{param}" 
-  cancel: "Cancel"
   css: 
     one: "Style"
     other: "Styles"
-  copy: "Copy"
 
 #---D---#
   date_param: "Date of %{param}" 
@@ -64,26 +67,26 @@ en:
   end: "End"
   enrole_user: "Enrole user"
   enroled_user: "Enroled user"
+  error_updating_object: "Error updating object"
   event: 
     one: "Event"
     other: "Events"
   event_param: "Event %{param}"
-  error_updating_object: "Error updating object"
   example_param: "Example: %{param}"
   expires: "Expires"
   external: "External"
 
 #---F---#
+  father: "Father"
   feedback:
     one: "Feedback"
     other: "Feedback"
   feedback_sent: "Feedback sent successfully!"
-  father: "Father"
+  field_required: "Field required!"
   fill_email_form: "Fill out the form below to reset your password. It will be e-mailed to you" 
   forgot_password: "Forgot password"
   footer: "Footer"
   footer_text: "Institution - Address. Zip XXXXX-XXX - Post Box XXX. City-State - Fone: +XX XX XXXX-XXXX; Customer Care: +XX XX XXXX-XXXX, +XX XXXX-XXXX. Fax: +XX XX XXXX-XXXX"
-  field_required: "Field required!"
 
 #---G---#
   group:
@@ -91,10 +94,10 @@ en:
     other: "Groups"
 
 #---H---#
-  home: "Home"
   hide: "Hidden?"
   hide_help: "Want to hide? Only users with specific positions might retrieve them."
   height: "Height"
+  home: "Home"
 
 #---I---#
   instructions_change_password: "Instructions to change your password"
@@ -105,7 +108,6 @@ en:
   is_event: "Is a event?"
 
 #---K---#
-  time_cover: "capa agendada"
   kind: "Kind"
 
 #---L---#
@@ -119,6 +121,7 @@ en:
   list_param: "List %{param}"
   listing: "Listing"
   listing_param: "Listing %{param}"
+  little: "Little"
   localization: "Localization"
   logged: "logged"
   login: "Login"
@@ -127,28 +130,30 @@ en:
   logout_success: "Logged out successfully!"
   login_count: "Login Count"
   look_changed: "Appearence was changed."
-  little: "Little"
   
 #---M---#
+  main: "Main"
   manage_roles: "Manage Roles"
+  medium: "Medium"
   menu: 
     one: "Menu"
     other: "Menus"
   menus: "Menus"
   message: "Message"
+  mini: "Mini"
   missing_account: "We're sorry, but we could not locate your account. If you are having issues try copying and pasting the URL from your email into your browser or restarting the reset password process."  
-  my_account: "My account"
-  my_profile: "My profile"
-  my_password: "My Password"
   move: "Move"
   move_menu_up: "Move menu up"
   move_menu_down: "Move menu down"
   more: "More"
-  mini: "Mini"
-  medium: "Medium"
-  main: "Main"
+  my_account: "My account"
+  my_profile: "My profile"
+  my_password: "My Password"
 
 #---N---#
+  nacional: "Nacional"
+  name: "Name"
+  need_login: "You need to be logged in to access this page."
   new: "New"
   news:
     one: "News"
@@ -157,8 +162,6 @@ en:
     one: "Newsletter"
     other: "Newsletters"
   new_param: "New %{param}"
-  name: "Name"
-  need_login: "You need to be logged in to access this page."
   no_need_to_login: "You should not be logged in to access this page."
   no_mail: "No user was found with that email address."
   no_permission_to_activate_deactivate: "You don´t have permission to Activate/Deactivate"
@@ -167,7 +170,6 @@ en:
   none_top_menu: "None top menu"
   none_bot_menu: "None bottom menu"
   none_param: "None %{param}"
-  nacional: "Nacional"
   "no": "No"
 
 #---O---#
@@ -180,24 +182,26 @@ en:
   password: "Password"
   password_change: "Change password "
   password_confirmation: "Password confirmation"
+  pdf: "PDF"
   permission: 
     one: "Permission"
     other: "Permissions"
-  pdf: "PDF"
   picture: "picture"
   picture_text: "Picture´s text"
   position: "Position"
-  publication: "Publication"
   prohibited_being_saved:
     one: " error, prevent you from proceeding"
     other: " errors, prevent you from proceeding"
   portal: "Portal"
+  publication: "Publication"
   publish: "Publish"
   publish_help: "You want to publish this page?"
 
 #---Q---#
 
 #---R---#
+  read_more: "Read more..."
+  regional: "Regional"
   register: "Register"
   registered: "Registered"
   registered_menu:
@@ -208,6 +212,9 @@ en:
   remember_me: "Remember me"
   remove: "remove %{param}"
   remove_selected_menus: "Remove selected menus"
+  repository:
+    one: "Repository"
+    other: "Repositories"
   reset_mail: "Instructions to reset your password have been emailed to you. Please check your email."
   reset_my_password: "Reset my password" 
   right:
@@ -217,14 +224,11 @@ en:
     one: "Role"
     other: "Roles"
   roles_permissions: "Roles and Permissions"
-  read_more: "Read more..."
-  regional: "Regional"
-  repository:
-    one: "Repository"
-    other: "Repositories"
  
 #---S---#
   save: "Save"
+  search: "Search"
+  secondary: "Secondary"
   setting:
     one: "Setting"
     other: "Settings"
@@ -232,6 +236,10 @@ en:
   select_site: "Select a site"
   show: "Show"
   side: "Side"
+  site:
+    one: "Site"
+    other: "Sites"
+  site_comments: "Comments about goals site."
   site_id: "Site ID"
   size: "Size"
   source: "Source"
@@ -249,12 +257,6 @@ en:
     one:  "Sugestion"
     other: "Sugestions"
   summary: "Summary"
-  site:
-    one: "Site"
-    other: "Sites"
-  site_comments: "Comments about goals site."
-  search: "Search"
-  secondary: "Secondary"
 
 #---T---#
   text: "Text" 
@@ -271,16 +273,16 @@ en:
   try_login: "Try to login first!"
 
 #---U---#
+  unpublish: "Unpublish"
   update: "Update %{param}"
   updated: "%{param} updated."
-  update_password_log: "update my password and log me in" 
+  update_password_log: "Update my password and log me in." 
   url: "URL"
   user:
     one: "User"
     other: "Users"
   user_inactive: "User was not activated."   
   username: "User name"
-  unpublish: "Unpublish"
   use: "Use"
 
 #---V---#
@@ -343,14 +345,12 @@ en:
       login_invalid: "Should use letters, numbers, spaces, and .-_@ please."
       consecutive_failed_logins_limit_exceeded: "You have exceeded the number of allowed login attempts"
       email_invalid: "Should look like an email address."
-      password_blank: "Can't leave it blank"
-      password_invalid: "Invalid"
       not_active: "Account not active"
       not_confirmed: "Account not confirmed"
       not_approved: "Account not approved"
       no_authentication_details: "No authentication details"
-    models:
-      user_session:
+      password_blank: "Can't leave it blank"
+      password_invalid: "Invalid"
     attributes:
       user_session:
         login: "Login"
@@ -386,8 +386,8 @@ en:
         title: "Title"
         source: "Source"
       repository:
-        description: "Descrição"
-        archive: "Arquivo"
+        description: "Description"
+        archive: "Archive"
       site:
         name: "Name"
       user:
@@ -403,26 +403,26 @@ en:
           other: "Is not possible update model: %{count} errors."
         body: "Please, verify this fields:"
       messages:
-        attachment_presence: "must be attached"
-        inclusion: "Not include in list"
-        exclusion: "Unavailable"
-        invalid: "Invalid"
-        confirmation: "confirmation is not equivalent"
         accepted: "acception required"
-        empty: "must be completed"
+        attachment_presence: "must be attached"
         blank: "must be completed"
+        confirmation: "confirmation is not equivalent"
+        empty: "must be completed"
+        equal_to: "equal to %{count} required"
+        even: "even required"
+        exclusion: "Unavailable"
+        greater_than: "greater than %{count} required"
+        greater_than_or_equal_to: "greater than or equal to %{count} required"
+        inclusion: "Not include in list"
+        invalid: "Invalid"
+        less_than: "less than %{count} required"
+        less_than_or_equal_to: "less than or equal to %{count} required"
+        not_a_number: "Not is a number"
+        odd: "odd required"
+        taken: "Unavailable"
         too_long: "very long (can not use use more than %{count} characters)"
         too_short: "very short (can not use less than %{count} characters)"
         wrong_length: "wrong length (%{count} characters required)"
-        taken: "Unavailable"
-        not_a_number: "Not is a number"
-        greater_than: "greater than %{count} required"
-        greater_than_or_equal_to: "greater than or equal to %{count} required"
-        equal_to: "equal to %{count} required"
-        less_than: "less than %{count} required"
-        less_than_or_equal_to: "less than or equal to %{count} required"
-        odd: "odd required"
-        even: "even required"
 
   will_paginate:
     next: "Next"
@@ -433,4 +433,3 @@ en:
       one: "<b>{{size}}</b> {{entry_name}}"
       other: "All the <b>{{size}}</b> {{entry_name}}"
     display: "{{entry_name}} of <b>{{from}}</b> the <b>{{to}}</b> of {{total}} in total"
-
