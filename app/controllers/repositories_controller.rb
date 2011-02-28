@@ -30,13 +30,13 @@ class RepositoriesController < ApplicationController
     @repository = Repository.new
     
     respond_to do |format|
-      format.js do
+      format.js do 
         render :update do |page|
-          page.call "$('#page').html", render('form')
-        end 
-        "$('form[id^=\"form_user\"]').each(function (e){ $(this).hide(); })"
-      end
-      format.html
+          page.call "$('#page').html", render(:partial => 'form')
+        end
+      end 
+    
+    format.html
     end
   end
 
