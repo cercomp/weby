@@ -8,6 +8,9 @@ Webyge::Application.routes.draw do |map|
         get :manage_roles
         post :change_roles
       end
+      member do 
+        get :toggle_field
+      end 
     end
     resources :repositories do
       collection do
