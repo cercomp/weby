@@ -1,6 +1,6 @@
 <fieldset> 
 	<% params[:parent_id] ||= 0 %>
-  <legend> <%= params[:parent_id] == 0 ? (t"new_param", :param => (t"menu.one")) : (t"new_param", :param => t("sub_menu")) %> </legend>
+  <legend> <%= params[:parent_id] == 0 ? (t"new_param.masc", :param => (t"menu.one")) : (t"new_param.masc", :param => t("sub_menu")) %> </legend>
 
   <center>
     <%= form_tag new_site_menu_path(@site, @menu), :method => 'get', :remote => true do %>

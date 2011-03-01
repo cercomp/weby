@@ -1,5 +1,5 @@
 <fieldset> 
-  <legend><%= t 'new_param', :param => t('feedback.one') %></legend>
+  <legend><%= t"new_param.masc", :param => t('feedback.one') %></legend>
 
   <%= form_for [@site, @feedback], :builder => SemanticFormBuilder do |f| %>
     <% if @feedback.errors.any? %>

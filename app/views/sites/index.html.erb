@@ -3,7 +3,7 @@
 
   <% if check_permission(SitesController, ["new"])  %>
     <div class="contextual">
-      <p> <%= link_to (t"new_param", :param => (t"site.one")), new_site_path, :class => 'icon icon-add' %> </p>
+      <p> <%= link_to (t"new_param.masc", :param => (t"site.one")), new_site_path, :class => 'icon icon-add' %> </p>
     </div>
   <% end %>
 

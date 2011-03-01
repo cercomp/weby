@@ -10,6 +10,6 @@
   <p> <b><%= t"current_login", :param => t("ip") %>:</b> <%=h @user.current_login_ip %> </p>
 
   <%= link_to t('edit'), :controller => 'users', :action => "edit", :id => @user.id %> | 
-  <%= link_to t("list_all"), :controller => 'users', :action => 'index' %> | 
+  <%= link_to t("list_all.masc"), :controller => 'users', :action => 'index' %> | 
   <%= link_to t('back'), :back %>
 </fieldset>

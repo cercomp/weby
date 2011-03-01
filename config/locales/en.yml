@@ -33,8 +33,12 @@ en:
   begin: "Begin"  
   bottom: "Bottom"
   body_width: "Body width"
-  button_check_all: "Check all"
-  button_uncheck_all: "Uncheck all"
+  button_check_all: 
+    fem: "Check all"
+    masc: "Check all"
+  button_uncheck_all: 
+    fem: "Uncheck all"
+    masc: "Uncheck all"
   
 #---C---#
   cancel: "Cancel"
@@ -44,8 +48,12 @@ en:
   cover: "Cover"
   cover_help: "This pages will apear in site front."
   create: "Create"
-  created: "Created"
-  created_at: "Created_at"
+  created: 
+    fem: "Created"
+    masc: "Created"
+  created_at: 
+    fem: "Created_at"
+    masc: "Created_at"
   create_param: "Create %{param}"
   current_login: "Current login %{param}" 
   css: 
@@ -56,14 +64,20 @@ en:
   date_param: "Date of %{param}" 
   destroy: "Destroy"  
   description: "Description"
-  disable: "Disable"
+  disable: 
+    fem: "Disable"
+    masc: "Disable"
 
 #---E---#
   edit: "Edit"
   editing: "Editing %{param}"
-  editor: "Editor"
+  editor: 
+    fem: "Editor"
+    masc: "Editor"
   email: "E-mail"
-  enable: "Enable"
+  enable: 
+    fem: "Enable"
+    masc: "Enable"
   end: "End"
   enrole_user: "Enrole user"
   enroled_user: "Enroled user"
@@ -116,7 +130,9 @@ en:
   layout: "Layout"
   left: "Left"
   link: "Link"
-  list_all: "List all"
+  list_all: 
+    fem: "List all"
+    masc: "List all"
   list: "List"
   list_param: "List %{param}"
   listing: "Listing"
@@ -155,7 +171,9 @@ en:
   nacional: "Nacional"
   name: "Name"
   need_login: "You need to be logged in to access this page."
-  new: "New"
+  new: 
+    fem: "New"
+    masc: "New"
   news:
     one: "News"
     other: "News"
@@ -205,7 +223,9 @@ en:
   read_more: "Read more..."
   regional: "Regional"
   register: "Register"
-  registered: "Registered"
+  registered: 
+    fem: "Registered"
+    masc: "Registered"
   registered_menu:
     one: "Registered Menu"
     other: "Registered Menus"

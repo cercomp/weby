@@ -133,7 +133,7 @@ pt-BR:
   list: "Listar"
   list_all: 
     fem: "Listar todas"
-    msc: "Listar todos"
+    masc: "Listar todos"
   list_param: "Listar %{param}"
   listing: "Listando"
   listing_param: "Listando %{param}"
@@ -171,14 +171,18 @@ pt-BR:
   nacional: "Nacional"
   name: "Nome"
   need_login: "Você deve estar logado para acessar acessar essa página." 
-  new: "Novo"
+  new: 
+    fem: "Nova"
+    masc: "Novo"
   news: 
     one: "Notícia"
     other: "Notícias"  
   newsletter: 
     one: "Informativo"
     other: "Informativos"
-  new_param: "Novo %{param}"
+  new_param: 
+    fem: "Nova %{param}"
+    masc: "Novo %{param}"
   no_need_to_login: "Você não deve estar logado para acessar essa página."	
   no_mail: "Nenhum usuário com esse e-mail foi econtrado." 
   no_permission_to_activate_deactivate: "Você não tem permissão para Ativar/Desativar"
