@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110228121649) do
+ActiveRecord::Schema.define(:version => 20110301124601) do
 
   create_table "banners", :force => true do |t|
     t.datetime "date_begin_at"
@@ -218,6 +218,11 @@ ActiveRecord::Schema.define(:version => 20110228121649) do
     t.string   "theme",               :default => "",    :null => false
     t.boolean  "status",              :default => false
     t.boolean  "is_admin",            :default => false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "phone"
+    t.string   "mobile"
+    t.string   "register"
   end
 
 end
