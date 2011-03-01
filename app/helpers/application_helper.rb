@@ -195,7 +195,8 @@ module ApplicationHelper
       adminnav += link_to( t("login"), login_path(:back_url => "#{request.fullpath}"))
       adminnav += " | \n\t"
     else
-      adminnav += @site ? link_to(t("my_profile"), site_user_path(@site, current_user)) : link_to(t("my_profile"), user_path(current_user))
+      # TODO: Erro ao criar novo site, é criado um objeto @site vazio, não sendo tratado para exibir o my_profile
+      #adminnav += @site ? link_to(t("my_profile"), site_user_path(@site, current_user)) : link_to(t("my_profile"), user_path(current_user))
       adminnav += " | \n\t"
       adminnav += link_to( t("logout"), logout_path, :confirm => t("are_you_sure") )
       adminnav += "\n\t"

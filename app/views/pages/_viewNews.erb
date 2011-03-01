@@ -1,4 +1,4 @@
-<% unless @front_news.empty? %>
+<% unless @front_news.nil? %>
   <section id="pages">
     <% @front_news.each do |page| %> 
       <li id=<%= "page_#{page.id}" %> style="list-style-type:none;">
@@ -19,7 +19,7 @@
     </li>
   </section>
 <% end %>
-<% unless @no_front_news.empty? %>
+<% unless @no_front_news.nil? %>
   <table class="border fullwidth zebra">
     <tr> 
       <th> <%= t "page.other" %> </th> 
