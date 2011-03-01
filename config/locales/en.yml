@@ -149,6 +149,7 @@ en:
   my_account: "My account"
   my_profile: "My profile"
   my_password: "My Password"
+  my_css: "My Styles"
 
 #---N---#
   nacional: "Nacional"
@@ -174,6 +175,7 @@ en:
 
 #---O---#
   original: "Original"
+  other_css: "Other Styles"
 
 #---P---#
   page: 

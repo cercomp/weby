@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110301124601) do
+ActiveRecord::Schema.define(:version => 20110301134903) do
 
   create_table "banners", :force => true do |t|
     t.datetime "date_begin_at"
@@ -175,10 +175,11 @@ ActiveRecord::Schema.define(:version => 20110301124601) do
     t.text     "footer"
   end
 
-  create_table "sites_csses", :id => false, :force => true do |t|
+  create_table "sites_csses", :force => true do |t|
     t.integer  "site_id",    :null => false
     t.integer  "css_id",     :null => false
     t.boolean  "publish"
+    t.boolean  "owner"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

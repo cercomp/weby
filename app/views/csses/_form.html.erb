@@ -13,7 +13,11 @@
   <%= f.text_field :name, :label => t("name"), :required => true, :help => t("field_required") %>
   <%= f.text_area :css, :label => t("css.one") %>
 
-  <%= hidden_field_tag "css[site_ids][]", @site.id %>
+  <%= f.fields_for :sites_csses do |ff| %>
+    <%= ff.hidden_field :publish, :value => true %>
+    <%= ff.hidden_field :site_id, :value => @site.id %>
+    <%#= hidden_field_tag "css[][owner]", "1" %>
+  <% end %>
 
   <%= f.submit t("submit") %>
 

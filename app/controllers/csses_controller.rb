@@ -5,7 +5,9 @@ class CssesController < ApplicationController
   respond_to :html, :xml
 
   def index
-    @csses = Css.paginate :page => params[:page], :per_page => 10
+    #@csses = Css.paginate :page => params[:page], :per_page => 10
+    @my_csses = @site.csses.paginate :page => params[:page], :per_page => 10
+    @other_csses = (Css.all - @my_csses).paginate :page => params[:page], :per_page => 10
 
     respond_to do |format|
       format.html # index.html.erb
@@ -24,6 +26,7 @@ class CssesController < ApplicationController
 
   def new
     @css = Css.new
+    @css.sites_csses.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -39,7 +42,7 @@ class CssesController < ApplicationController
     @css = Css.new(params[:css])
 
     respond_to do |format|
-      if @css.save 
+      if @css.save
         format.html { redirect_to(site_csses_path, :notice => t('successfully_created')) }
         format.xml  { render :xml => @css, :status => :created, :location => @css }
       else
