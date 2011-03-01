@@ -52,13 +52,8 @@ class UsersController < ApplicationController
 
     user_ids.each do |id|
       user = User.find(id)
-      # limpa os papeis do usuário
-      user.roles.delete_if{ |r| r.site_id == @site.id }
-      params[:role_ids].each do |role_id|
-        user.roles << Role.find(role_id)
-      end
+      user.role_ids = params[:role_ids]
     end
-
     redirect_to :action => 'manage_roles'
   end
 

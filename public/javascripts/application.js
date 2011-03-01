@@ -22,7 +22,10 @@ $(document).ready(function() {
   // ManageRoles muda o cursor do ponteiro
   $('.role_edit').each(
     function (link) {
-      $(this).bind("ajax:success", function (data, status, xhr) { document.body.style.cursor = "default" })
+      $(this).bind("ajax:success", function (data, status, xhr) {
+        document.body.style.cursor = "default"
+        $('#user_'+$(this).attr('user_id')).hide()
+      })
 
       $(this).click(
         function () {
