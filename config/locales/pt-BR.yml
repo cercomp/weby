@@ -33,8 +33,12 @@ pt-BR:
   begin: "Início"
   bottom: "Inferior"
   body_width: "Largura do site"
-  button_check_all: "Marcar todos"
-  button_uncheck_all: "Desmarcar todos"
+  button_check_all: 
+    fem: "Marcar todas"
+    masc: "Marcar todos"
+  button_uncheck_all: 
+    fem: "Desmarcar todas"
+    masc: "Desmarcar todos"
   
 #---C---#
   cancel: "Cancelar"
@@ -44,8 +48,12 @@ pt-BR:
   cover: "Capa"
   cover_help: "Deseja que esta notícia apareça na frente do site?"
   create: "Criar"
-  created: "Criado"
-  created_at: "Criado em"
+  created: 
+    fem: "Criada"
+    masc: "Criado"
+  created_at: 
+    fem: "Criada em"
+    masc: "Criado em"
   create_param: "Criar %{param}"
   current_login: "Entrada atual %{param}" 
   css: 
@@ -56,14 +64,20 @@ pt-BR:
   date_param: "Data de %{param}" 
   destroy: "Excluir"  
   description: "Descrição"
-  disable: "Desabilitado"
+  disable: 
+    fem: "Desabilitada"
+    masc: "Desabilitada"
 
 #---E---#
   edit: "Editar"
   editing: "Editando %{param}"
-  editor: "Editor"
+  editor: 
+    fem: "Editora"
+    masc: "Editor"
   email: "E-mail"
-  enable: "Habilitado"
+  enable: 
+    fem: "Habilitada"
+    masc: "Habilitado"
   end: "Fim"
   enrole_user: "Cadastrar usuário"
   enroled_user: "Usuário cadastrado"
@@ -117,7 +131,9 @@ pt-BR:
   left: "Esquerdo"
   link: "Link"
   list: "Listar"
-  list_all: "Listar todos"
+  list_all: 
+    fem: "Listar todas"
+    msc: "Listar todos"
   list_param: "Listar %{param}"
   listing: "Listando"
   listing_param: "Listando %{param}"
@@ -203,7 +219,9 @@ pt-BR:
   read_more: "Leia mais..."
   regional: "Regional"
   register: "Cadastro"
-  registered: "Cadastrado"
+  registered: 
+    fem: "Cadastrada"
+    masc: "Cadastrado"
   registered_menu:
     one: "Menu Cadastrado"
     other: "Menus Cadastrados"

@@ -36,7 +36,7 @@
       <th><%= t"roles_permissions", :count => 2%></th>
       <% @roles.each do |role| %>
         <th>
-          <%= link_to '', nil, :title => "#{t(:button_check_all)}/#{t(:button_uncheck_all)}", :class => 'icon icon-toggle-check', :onclick => "toggleCheckboxesBySelector('input.column-#{role.id}')", :remote => true %>
+          <%= link_to '', nil, :title => "#{t("button_check_all.fem")}/#{t("button_uncheck_all.fem")}", :class => 'icon icon-toggle-check', :onclick => "toggleCheckboxesBySelector('input.column-#{role.id}')", :remote => true %>
           <%= role.name %> 
           <p> <%= link_to t('edit'), edit_role_path(role), :class => "icon icon-edit" %> <%= link_to t('destroy'), role, :confirm => t('are_you_sure'), :method => :delete, :class => "icon icon-del" %> </p>
         </th>
@@ -53,7 +53,7 @@
         <% i.each do |right| %>
           <tr class="<%= cycle 'odd', 'even' %> right-<%= right.id %>">
             <td>
-              <%= link_to '', nil, :title => "#{t(:button_check_all)}/#{t(:button_uncheck_all)}", :class => 'icon icon-toggle-check', :onclick => "toggleCheckboxesBySelector('.right-#{right.id} input')", :remote => true %>
+              <%= link_to '', nil, :title => "#{t("button_check_all.fem")}/#{t("button_uncheck_all.fem")}", :class => 'icon icon-toggle-check', :onclick => "toggleCheckboxesBySelector('.right-#{right.id} input')", :remote => true %>
               <%= right.name %>
             </td>
             <% @roles.each do |role| %>
@@ -68,7 +68,7 @@
   </table>
 
   <p> 
-    <%= link_to t(:button_check_all), nil, :onclick => "checkAll('#roles_form',true)", :remote => true %> | <%= link_to t(:button_uncheck_all), nil, :onclick => "checkAll('#roles_form',false)", :remote => true %> 
+    <%= link_to t("button_check_all.fem"), nil, :onclick => "checkAll('#roles_form',true)", :remote => true %> | <%= link_to t("button_uncheck_all.fem"), nil, :onclick => "checkAll('#roles_form',false)", :remote => true %> 
   </p>
   <%= submit_tag t("save") %>
   <% end %>
