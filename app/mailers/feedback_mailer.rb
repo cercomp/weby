@@ -5,7 +5,7 @@ class FeedbackMailer < ActionMailer::Base
     @feedback = feedback
     feedback.groups.each do |group|
       group.users.each do |user|
-        mail :to => user.email, :subject => feedback.subject
+        mail :to => user.email, :subject => @feedback.subject
       end
     end
   end

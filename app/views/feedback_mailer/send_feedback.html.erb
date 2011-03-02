@@ -4,7 +4,10 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
   </head>
   <body>
+    <h1>Mensagem enviada por <%= "#{@feedback.name} <#{@feedback.email}>" %> atravéz do "fale conosco"</h1>
+    Menssagem:
     <pre>
+      <%= @feedback.message %>
     </pre>
   </body>
 </html>
