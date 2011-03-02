@@ -11,20 +11,19 @@
     </div>
   <% end %>
 
-  <div id="feedback_group">
   <% unless @groups.empty? %>
-    <div class="text-field">
+    <div class="check-box-fields">
       <label for="group_ids"><%= t("group.one") %></label>
  
       <div class="input">
       <% @groups.each do |group| %>
         <%= check_box_tag 'feedback[group_ids][]', group.id %>
         <%= group.name %>
+        <br />
       <% end %>
       </div>
     </div>
   <% end %>
-  </div>
 
   <%= f.text_field :name, :label => t("name") %>
   <%= f.text_field :email, :label => t("email") %>
