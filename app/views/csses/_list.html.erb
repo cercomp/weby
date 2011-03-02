@@ -2,63 +2,58 @@
 
   <%#= will_paginate @csses, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax' %>
 
-  <table class='list'>
-    <thead>
-      <th><%= t'name' %></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </thead>
-    <tbody>
+  <% unless @my_csses.empty? %>
+    <%= t'my_css' %>
+    <table class='list'>
+      <thead>
+        <th><%= t'name' %></th>
+        <th><%= t'publish' %></th>
+        <th></th>
+      </thead>
+      <tbody>
+        <% @my_csses.each do |css| %>
+          <tr class="<%= cycle 'odd', 'even' %>">
+            <td> <%= css.css.name %> </td>
+            <td align="center"><%= raw toggle_field(css, "publish") %></td>
+            <td> <%= raw make_menu(css) %> </td>
+          </tr>
+        <% end; reset_cycle %>
+      </tbody>
+    </table>
+  <% end %>
 
-    <% unless @my_csses.empty? %>
-    <tr class="even">
-      <td colspan="10" style="font-weight: bold; text-align: center;"><%= t'my_css' %></td>
-    </tr>
-      <% @my_csses.each do |css| %>
-        <tr class="<%= cycle 'odd', 'even' %>">
-          <td> <%= css.name %> </td>
-          <td align="center"><%= raw toggle_field(css, "publish") %></td>
-          <td>
-            <%= css.sites.map{|site| site.name}.join(', ') %>
-          </td>
-          <td>
-            <% if check_permission(CssesController, [:use_css]) %>
-              <%= link_to t('use'), {:action => 'use_css', :id => css.id }, :class => 'icon icon-fav', :alt => t("enable"), :title => t("activate_deactivate") %>
-            <% else %>
-              <%= link_to t('use'), nil, :class => 'icon icon-fav-off', :alt => t("disable"), :title => t("no_permission_to_activate_deactivate") %>
-            <% end %>
-            <%= raw make_menu(css) %>
-          </td>
+  <% unless @other_csses.empty? %>
+    <%= t'other_css' %>
+    <table class='list'>
+      <thead>
+        <th><%= t'name' %></th>
+        <th><%= t'publish' %></th>
+        <th></th>
+      </thead>
+      <tbody>
+        <tr class="even">
+          <td>Css Usados</td>
         </tr>
-      <% end; reset_cycle %>
-    <% end %>
-
-    <% unless @other_csses.empty? %>
-      <tr class="even">
-        <td colspan="10" style="font-weight: bold; text-align: center;"><%= t'other_css' %></td>
-      </tr>
-      <% @other_csses.each do |css| %>
+        <% @used_csses.each do |css| %>
         <tr class="<%= cycle 'odd', 'even' %>">
-          <td> <%= css.name %> </td>
+          <td> <%= css.css.name %> </td>
           <td align="center"><%= raw toggle_field(css, "publish") %></td>
-          <td>
-            <%= css.sites.map{|site| site.name}.join(', ') %>
-          </td>
-          <td>
-            <% if check_permission(CssesController, [:use_css]) %>
-              <%= link_to t('use'), {:action => 'use_css', :id => css.id }, :class => 'icon icon-fav', :alt => t("enable"), :title => t("activate_deactivate") %>
-            <% else %>
-              <%= link_to t('use'), nil, :class => 'icon icon-fav-off', :alt => t("disable"), :title => t("no_permission_to_activate_deactivate") %>
-            <% end %>
-            <%= raw make_menu(css) %>
-          </td>
+          <td> <%= raw make_menu(css) %> </td>
         </tr>
-      <% end; reset_cycle %>
-    <% end %>
-
-    </tbody>
-  </table>
+        <% end; reset_cycle %>
+        <tr class="even">
+          <td>Css Não Usados</td>
+        </tr>
+        <% @other_csses.each do |css| %>
+        <tr class="<%= cycle 'odd', 'even' %>">
+          <td> <%= css.css.name %> </td>
+          <td align="center"><%= raw toggle_field(css, "publish") %></td>
+          <td> <%= raw make_menu(css) %> </td>
+        </tr>
+        <% end; reset_cycle %>
+      </tbody>
+    </table>
+  <% end %>
 
   <%#= will_paginate @csses, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax' %>
 

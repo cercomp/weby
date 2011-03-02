@@ -6,8 +6,9 @@ class CssesController < ApplicationController
 
   def index
     #@csses = Css.paginate :page => params[:page], :per_page => 10
-    @my_csses = @site.csses.paginate :page => params[:page], :per_page => 10
-    @other_csses = (Css.all - @my_csses).paginate :page => params[:page], :per_page => 10
+    @my_csses = @site.sites_csses.where('owner=true')
+    @used_csses = @site.sites_csses - @my_csses
+    @other_csses = SitesCss.where('owner=true') - @my_csses) - @used_csses
 
     respond_to do |format|
       format.html # index.html.erb
@@ -77,7 +78,7 @@ class CssesController < ApplicationController
   end
 
   def toggle_field
-    @css = Css.find(params[:id])
+    @css = SitesCss.find(params[:id])
     if params[:field] 
       if @css.update_attributes("#{params[:field]}" => (@css[params[:field]] == 0 or not @css[params[:field]] ? true : false))
         flash[:notice] = t"successfully_updated"
@@ -88,9 +89,9 @@ class CssesController < ApplicationController
     redirect_back_or_default site_csses_path(@site)
   end
 
-  def use_css
+  def use
     @css = Css.find(params[:id])
-    @css.sites_csses.create(:site_id => @site.id)
+    @css.sites_csses.create(:site_id => @site.id, :publish => :true, :owner => :false )
 
     if @css.save
       flash[:notice] = t"successfully_updated"
