@@ -203,3 +203,13 @@ html>body #ajax-indicator { position: fixed; }
 #tabs li a:hover { background:#759FCF none repeat scroll 0 0; color:#FFF; }
 #tabs li a.selected, #main-menu li a.selected:hover { background:#FFF none repeat scroll 0 0; color:#000; }
 
+/* Feedbacks enviados */
+#feedback_sent {
+  border: 1px solid #E4E4E4;
+  padding: 10px 5px;
+  background: #EFF8F9;
+}
+
+#feedback_sent h1,
+#feedback_sent p {
+  text-align: center; }
