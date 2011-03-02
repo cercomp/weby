@@ -3,7 +3,7 @@
 
   <% if check_permission(RightsController, [:new]) %>
     <div class="contextual">
-      <p> <%= link_to (t"create_param", :param => t('right.other')), new_right_path, :class => 'icon icon-add' %> </p>
+      <p> <%= link_to (t"new_param.masc", :param => t('right.other')), new_right_path, :class => 'icon icon-add' %> </p>
     </div>
   <% end %>
 

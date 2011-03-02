@@ -1,7 +1,8 @@
 <%= form_for [@site, @feedback], :builder => SemanticFormBuilder do |f| %>
   <% if @feedback.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@feedback.errors.count,"") %> <%= t"prohibited_being_saved", :count => @feedback.errors.count %>:</h2>
+      <h2><%= pluralize(@feedback.errors.count,"") %> <%= t"prohibited_being_saved", 
+            :count => @feedback.errors.count %>:</h2>
       <ul>
       <% @feedback.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -14,13 +15,11 @@
   <% unless @groups.empty? %>
     <div class="text-field">
       <label for="group_ids"><%= t("group.one") %></label>
-
+ 
       <div class="input">
       <% @groups.each do |group| %>
-        <p>
         <%= check_box_tag 'feedback[group_ids][]', group.id %>
         <%= group.name %>
-        </p>
       <% end %>
       </div>
     </div>

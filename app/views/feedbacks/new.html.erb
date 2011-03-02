@@ -20,10 +20,8 @@
 
         <div class="input">
         <% @groups.each do |group| %>
-          <p>
           <%= check_box_tag 'feedback[group_ids][]', group.id %>
           <%= group.name %>
-          </p>
         <% end %>
         </div>
       </div>

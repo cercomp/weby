@@ -20,6 +20,6 @@
     <p>
       <%= f.select :theme, @themes.collect{|p| [ p , p]}, {:label => t("layout"), :include_blank => true} %>
     </p>
-    <%= f.submit t("submit") %> <%= link_to t"back" %>
+    <%= f.submit t("submit") %> <%= link_to t"back", :back %>
   <% end %>
 </fieldset>
