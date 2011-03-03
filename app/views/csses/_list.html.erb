@@ -13,7 +13,7 @@
           <tr class="<%= cycle 'odd', 'even' %>">
             <td> <%= css.css.name %> </td>
             <td align="center"> <%= raw toggle_field(css, "publish") %> </td>
-            <td> <%= raw make_menu(css) %> </td>
+            <td> <%= raw make_menu_css(css) %> </td>
           </tr>
         <% end; reset_cycle %>
       </tbody>
@@ -36,7 +36,7 @@
               <td> <%= css.css.name %> </td>
               <td> <%= css.site.name %> </td>
               <td align="center"> <%= raw follow(css, true) %> </td>
-              <td> <%= raw make_menu(css) %> </td>
+              <td> <%= raw make_menu_css(css) %> </td>
             </tr>
           <% end; reset_cycle %>
         <% end %>
@@ -46,7 +46,7 @@
               <td> <%= css.css.name %> </td>
               <td> <%= css.site.name %> </td>
               <td align="center"> <%= raw follow(css, false) %> </td>
-              <td> <%= raw make_menu(css) %> </td>
+              <td> <%= raw make_menu_css(css) %> </td>
             </tr>
           <% end; reset_cycle %>
         <% end %>

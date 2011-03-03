@@ -1,5 +1,5 @@
 module CssesHelper
-  def make_menu(cssrel, args={})
+  def make_menu_css(cssrel, args={})
     menu ||= ""
     get_permissions(current_user, '', args).each do |permission|
       if controller.class.instance_methods(false).include?(permission.to_sym)
