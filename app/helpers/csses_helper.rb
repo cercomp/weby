@@ -9,8 +9,6 @@ module CssesHelper
               menu += link_to(t('show'), {:action => 'show', :id => cssrel.css.id}, :class => 'icon icon-show', :alt => t('show'), :title => t('show')) + " "
             when "edit"
               menu += link_to(t("edit"), {:action => "edit", :id => cssrel.css.id}, :class => 'icon icon-edit', :alt => t('edit'), :title => t('edit')) + " "
-            when "destroy"
-              menu += link_to((t"destroy"), {:action => "destroy", :id => cssrel.id}, :class => 'icon icon-del', :confirm => t('are_you_sure'), :method => :delete, :alt => t('destroy'), :title => t('destroy')) + " "
           end
         else
           case permission.to_s

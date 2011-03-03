@@ -8,9 +8,9 @@ class CssesController < ApplicationController
 
   def index
     @my_csses = @site.sites_csses.where('owner=true')
-    
+
     @used_csses = SitesCss.where(:css_id => @site.sites_csses.where('owner=false').group_by(&:css_id).keys, :owner => :true)
-    
+
     keys = (SitesCss.where('owner=true') - @my_csses).group_by(&:css_id).keys - @used_csses.group_by(&:css_id).keys
     @other_csses = SitesCss.where(:css_id => keys, :owner => :true)
 
@@ -70,33 +70,18 @@ class CssesController < ApplicationController
       end
     end
   end
-  
-  # TODO
-  # Falta implementar a verificação se exite algum outro site usando o css
-  # se sim mudar o css de dono, se nao excluir
-  def destroy
-    @cssrel = SitesCss.find(params[:id])
-    @css = @cssrel.css
-    @cssrel.destroy
-    @css.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(site_csses_path) }
-      format.xml  { head :ok }
-    end
-  end
 
   def toggle_field
     @css = SitesCss.find(params[:id])
 
-    if params[:field] 
+    if params[:field]
       if @css.update_attributes("#{params[:field]}" => (@css[params[:field]] == 0 or not @css[params[:field]] ? true : false))
         flash[:notice] = t"successfully_updated"
       else
         flash[:notice] = t"error_updating_object"
       end
     end
-    
+
     redirect_back_or_default site_csses_path(@site)
   end
 
@@ -109,7 +94,7 @@ class CssesController < ApplicationController
     else
       @css = @cssrel.css
       @css.sites_csses.create(:site_id => @site.id, :publish => "true", :owner => "false" )
-      
+
       if @css.save
         flash[:notice] = t"successfully_updated"
       else
@@ -120,9 +105,20 @@ class CssesController < ApplicationController
     redirect_back_or_default site_csses_path(@site)
   end
 
-  # TODO
-  # Implementar a possibilidade de um site criar uma copia de um css para si proprio
-  # Para implementar basta implementar a copia de uma relação mudando o site_id para o do site e o campo owner para false
   def copy
+    @css = Css.find(params[:id]).clone
+
+    if @css.save
+      @css.sites_csses.create(:site_id => @site.id, :publish => "true", :owner => "true" )
+      if @css.save
+        flash[:notice] = t"successfully_created"
+      else
+        flash[:notice] = t"error_creating_object"
+      end
+    else
+      flash[:notice] = t"error_creating_object"
+    end
+
+    redirect_back_or_default site_csses_path(@site)
   end
 end
