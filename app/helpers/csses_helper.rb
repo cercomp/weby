@@ -1,5 +1,4 @@
 module CssesHelper
-
   def make_menu(cssrel, args={})
     menu ||= ""
     get_permissions(current_user, '', args).each do |permission|
@@ -34,5 +33,4 @@ module CssesHelper
     end
     menu
   end
-
 end

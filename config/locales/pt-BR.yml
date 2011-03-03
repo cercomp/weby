@@ -101,6 +101,7 @@ pt-BR:
   forgot_password: "Perdi minha senha"
   footer: "Rodapé"
   footer_text: "Instituição - Endereço. CEP XXXXX-XXX - Caixa Postal XXX. Cidade-Estado - Fone: Geral: +XX XX XXXX-XXXX; Atendimento ao Usuário: +XX XX XXXX-XXXX, +XX XXXX-XXXX. Fax: +XX XX XXXX-XXXX"
+  follow: "Seguir"
 
 #---G---#
   group:
@@ -196,6 +197,7 @@ pt-BR:
 #---O---#
   original: "Original"
   other_css: "Outros Estilos"
+  owner: "Dono"
 
 #---P---#
   page: 

@@ -1,9 +1,7 @@
 <% unless @my_csses.nil? and @othe_csses.nil? OR @my_csses.empty? and @othe_csses.empty? %>
 
-  <%#= will_paginate @csses, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax' %>
-
   <% unless @my_csses.empty? %>
-    <%= t'my_css' %>
+    <h3><%= t'my_css' %></h3>
     <table class='list'>
       <thead>
         <th><%= t'name' %></th>
@@ -14,7 +12,7 @@
         <% @my_csses.each do |css| %>
           <tr class="<%= cycle 'odd', 'even' %>">
             <td> <%= css.css.name %> </td>
-            <td align="center"><%= raw toggle_field(css, "publish") %></td>
+            <td align="center"> <%= raw toggle_field(css, "publish") %> </td>
             <td> <%= raw make_menu(css) %> </td>
           </tr>
         <% end; reset_cycle %>
@@ -23,7 +21,7 @@
   <% end %>
 
   <% unless @other_csses.empty? and @used_csses.empty? %>
-    <%= t'other_css' %>
+    <h3><%= t'other_css' %></h3>
     <table class='list'>
       <thead>
         <th><%= t'name' %></th>
@@ -32,34 +30,29 @@
         <th></th>
       </thead>
       <tbody>
-
         <% unless @used_csses.empty? %>
           <% @used_csses.each do |css| %>
             <tr class="<%= cycle 'odd', 'even' %>">
               <td> <%= css.css.name %> </td>
               <td> <%= css.site.name %> </td>
-              <td align="center"><%= raw follow(css, true) %></td>
+              <td align="center"> <%= raw follow(css, true) %> </td>
               <td> <%= raw make_menu(css) %> </td>
             </tr>
           <% end; reset_cycle %>
         <% end %>
-        
         <% unless @other_csses.empty? %>
           <% @other_csses.each do |css| %>
             <tr class="<%= cycle 'odd', 'even' %>">
               <td> <%= css.css.name %> </td>
               <td> <%= css.site.name %> </td>
-              <td align="center"><%= raw follow(css, false) %></td>
+              <td align="center"> <%= raw follow(css, false) %> </td>
               <td> <%= raw make_menu(css) %> </td>
             </tr>
           <% end; reset_cycle %>
         <% end %>
-
       </tbody>
     </table>
   <% end %>
-
-  <%#= will_paginate @csses, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax' %>
 
 <% else %>
   <% flash.now[:warning] = (t"none_param", :param => t("css.one")) %>

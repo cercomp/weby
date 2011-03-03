@@ -1,4 +1,5 @@
 <%= form_for [@site,@css], :builder => SemanticFormBuilder do |f| %>
+
   <% if @css.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@css.errors.count,"") %> <%= t"prohibited_being_saved", :count => @css.errors.count%>:</h2>
@@ -17,7 +18,6 @@
     <%= sc.hidden_field :site_id, :value => @site.id %>
     <%= sc.hidden_field :owner, :value => true %>
     <%= sc.hidden_field :publish, :value => true %>
-    <%#= hidden_field_tag "css[][owner]", "1" %>
   <% end %>
 
   <%= f.submit t("submit") %>

@@ -1,13 +1,16 @@
 class CssesController < ApplicationController
   layout :choose_layout
+
   before_filter :require_user
   before_filter :check_authorization
+
   respond_to :html, :xml
 
   def index
-    #@csses = Css.paginate :page => params[:page], :per_page => 10
     @my_csses = @site.sites_csses.where('owner=true')
+    
     @used_csses = SitesCss.where(:css_id => @site.sites_csses.where('owner=false').group_by(&:css_id).keys, :owner => :true)
+    
     keys = (SitesCss.where('owner=true') - @my_csses).group_by(&:css_id).keys - @used_csses.group_by(&:css_id).keys
     @other_csses = SitesCss.where(:css_id => keys, :owner => :true)
 
@@ -67,7 +70,10 @@ class CssesController < ApplicationController
       end
     end
   end
-
+  
+  # TODO
+  # Falta implementar a verificação se exite algum outro site usando o css
+  # se sim mudar o css de dono, se nao excluir
   def destroy
     @cssrel = SitesCss.find(params[:id])
     @css = @cssrel.css
@@ -82,6 +88,7 @@ class CssesController < ApplicationController
 
   def toggle_field
     @css = SitesCss.find(params[:id])
+
     if params[:field] 
       if @css.update_attributes("#{params[:field]}" => (@css[params[:field]] == 0 or not @css[params[:field]] ? true : false))
         flash[:notice] = t"successfully_updated"
@@ -89,6 +96,7 @@ class CssesController < ApplicationController
         flash[:notice] = t"error_updating_object"
       end
     end
+    
     redirect_back_or_default site_csses_path(@site)
   end
 
@@ -112,16 +120,9 @@ class CssesController < ApplicationController
     redirect_back_or_default site_csses_path(@site)
   end
 
+  # TODO
+  # Implementar a possibilidade de um site criar uma copia de um css para si proprio
+  # Para implementar basta implementar a copia de uma relação mudando o site_id para o do site e o campo owner para false
   def copy
-    @css = Css.find(params[:id])
-    @css.sites_csses.create(:site_id => @site.id, :publish => :true, :owner => :false )
-
-    if @css.save
-      flash[:notice] = t"successfully_updated"
-    else
-      flash[:notice] = t"error_updating_object"
-    end
-
-    redirect_back_or_default site_csses_path(@site)
   end
 end

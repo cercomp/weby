@@ -101,6 +101,7 @@ en:
   forgot_password: "Forgot password"
   footer: "Footer"
   footer_text: "Institution - Address. Zip XXXXX-XXX - Post Box XXX. City-State - Fone: +XX XX XXXX-XXXX; Customer Care: +XX XX XXXX-XXXX, +XX XXXX-XXXX. Fax: +XX XX XXXX-XXXX"
+  follow: "Follow"
 
 #---G---#
   group:
@@ -194,6 +195,7 @@ en:
 #---O---#
   original: "Original"
   other_css: "Other Styles"
+  owner: "Owner"
 
 #---P---#
   page: 

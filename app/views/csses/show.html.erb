@@ -1,15 +1,11 @@
 <fieldset>  
-  <p id="notice"><%= notice %></p>
-
   <p>
     <b>Name:</b>
     <%= @css.name %>
   </p>
   <p>
     <b>Css:</b>
-    <pre class="brush: css">
-<%= @css.css %>
-    </pre>
+    <pre class="brush: css"><%= @css.css %></pre>
   </p>
 
   <%= link_to t('edit'), edit_site_css_path(@site, @css) %> | <%= link_to t('back'), :back %>
