@@ -1,22 +1,36 @@
 module CssesHelper
 
-  # Monta o menu baseado nas permissões do usuário
-  def make_menu(obj, args={})
+  def make_menu(cssrel, args={})
     menu ||= ""
     get_permissions(current_user, '', args).each do |permission|
       if controller.class.instance_methods(false).include?(permission.to_sym)
-        case permission.to_s
-          when "use_obj"
-            menu += link_to t('use'), {:action => 'use_obj', :id => css.id }, :class => 'icon icon-fav', :alt => t("enable"), :title => t("activate_deactivate")
-            # link_to t('use'), nil, :class => 'icon icon-fav-off', :alt => t("disable"), :title => t("no_permission_to_activate_deactivate")
-          when "show"
-            menu += link_to(t('show'), {:controller => "#{controller.controller_name}", :action => 'show', :id => obj.id}, :class => 'icon icon-show', :alt => t('show'), :title => t('show')) + " "
-          when "edit"
-            menu += link_to(t("edit"), {:controller => "#{controller.controller_name}", :action => "edit", :id => obj.id}, :class => 'icon icon-edit', :alt => t('edit'), :title => t('edit')) + " "
-          when "destroy"
-            menu += link_to((t"destroy"), {:controller => "#{controller.controller_name}", :action => "destroy", :id => obj.id}, :class => 'icon icon-del', :confirm => t('are_you_sure'), :method => :delete, :alt => t('destroy'), :title => t('destroy')) + " "
+        if @site.id == cssrel.site.id
+          case permission.to_s
+            when "show"
+              menu += link_to(t('show'), {:action => 'show', :id => cssrel.css.id}, :class => 'icon icon-show', :alt => t('show'), :title => t('show')) + " "
+            when "edit"
+              menu += link_to(t("edit"), {:action => "edit", :id => cssrel.css.id}, :class => 'icon icon-edit', :alt => t('edit'), :title => t('edit')) + " "
+            when "destroy"
+              menu += link_to((t"destroy"), {:action => "destroy", :id => cssrel.id}, :class => 'icon icon-del', :confirm => t('are_you_sure'), :method => :delete, :alt => t('destroy'), :title => t('destroy')) + " "
+          end
+        else
+          case permission.to_s
+            when "show"
+              menu += link_to(t('show'), {:action => 'show', :id => cssrel.css.id}, :class => 'icon icon-show', :alt => t('show'), :title => t('show')) + " "
+            when "copy"
+              menu += link_to(t('copy'), {:action => 'copy', :id => cssrel.css.id}, :class => 'icon icon-fav', :alt => t('copy'), :title => t('copy')) + " "
+          end
         end
       end
+    end
+    menu
+  end
+
+  def follow(obj, following)
+    if following == false 
+      menu = link_to(image_tag("false.png", :alt => t("disable")), {:action => "follow", :id => obj.id, :following => "#{following}"}, :title => t("activate_deactivate"))
+    else
+      menu = link_to(image_tag("true.png", :alt => t("enable")), {:action => "follow", :id=> obj.id, :following => "#{following}"}, :title => t("activate_deactivate"))
     end
     menu
   end

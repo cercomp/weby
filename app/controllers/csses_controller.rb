@@ -7,8 +7,9 @@ class CssesController < ApplicationController
   def index
     #@csses = Css.paginate :page => params[:page], :per_page => 10
     @my_csses = @site.sites_csses.where('owner=true')
-    @used_csses = @site.sites_csses - @my_csses
-    @other_csses = SitesCss.where('owner=true') - @my_csses) - @used_csses
+    @used_csses = SitesCss.where(:css_id => @site.sites_csses.where('owner=false').group_by(&:css_id).keys, :owner => :true)
+    keys = (SitesCss.where('owner=true') - @my_csses).group_by(&:css_id).keys - @used_csses.group_by(&:css_id).keys
+    @other_csses = SitesCss.where(:css_id => keys, :owner => :true)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -68,7 +69,9 @@ class CssesController < ApplicationController
   end
 
   def destroy
-    @css = Css.find(params[:id])
+    @cssrel = SitesCss.find(params[:id])
+    @css = @cssrel.css
+    @cssrel.destroy
     @css.destroy
 
     respond_to do |format|
@@ -89,7 +92,27 @@ class CssesController < ApplicationController
     redirect_back_or_default site_csses_path(@site)
   end
 
-  def use
+  def follow
+    @cssrel = SitesCss.find(params[:id])
+
+    if params[:following] == "true"
+      @css = @cssrel.css.sites_csses.where(:site_id => @site.id).first
+      @css.destroy
+    else
+      @css = @cssrel.css
+      @css.sites_csses.create(:site_id => @site.id, :publish => "true", :owner => "false" )
+      
+      if @css.save
+        flash[:notice] = t"successfully_updated"
+      else
+        flash[:notice] = t"error_updating_object"
+      end
+    end
+
+    redirect_back_or_default site_csses_path(@site)
+  end
+
+  def copy
     @css = Css.find(params[:id])
     @css.sites_csses.create(:site_id => @site.id, :publish => :true, :owner => :false )
 
