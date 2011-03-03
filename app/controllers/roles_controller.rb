@@ -2,10 +2,18 @@ class RolesController < ApplicationController
   layout :choose_layout
   before_filter :require_user
   before_filter :check_authorization
+  before_filter :load_themes, :only => [:new, :edit]
+
+  def load_themes
+    @themes = []
+    for file in Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*")]
+      @themes << file.split("/")[-1].split(".")[0]
+    end
+  end
 
   respond_to :html, :xml
   def index
-    @roles = @site ? @site.roles.order("id") : Role.order("id")
+    @roles = @site ? @site.roles.order("id") : Role.where(:site_id => nil)
     @rights = Right.order("controller,name")
 
     if params[:role] && request.put?
@@ -18,11 +26,6 @@ class RolesController < ApplicationController
 
   def edit
     @role = Role.find(params[:id])
-    files = []
-    for file in Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*")]
-      files << file.split("/")[-1].split(".")[0]
-    end
-    @themes = files
   end
 
   def show
@@ -40,7 +43,12 @@ class RolesController < ApplicationController
   def create
     @role = Role.new(params[:role])
     @role.save
-    redirect_to(roles_path)
+
+    if @site
+      redirect_to site_roles_path
+    else
+      redirect_to roles_path
+    end
   end
 
   def update

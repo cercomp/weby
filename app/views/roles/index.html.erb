@@ -25,7 +25,11 @@
 
   <% if check_permission(RolesController, [:new]) %>
     <div class="contextual">
-      <p><%= link_to (t"create_param", :param => t("role.one")), new_role_path, :class => 'icon icon-add' %></p>
+      <p>
+        <%= link_to (t"create_param", :param => t("role.one")),
+          @site ? new_site_role_path : new_role_path,
+          :class => 'icon icon-add' %>
+      </p>
     </div>
   <% end %>
 

@@ -1,0 +1,23 @@
+<%= form_for (@site ? [@site, @role] : @role), :builder => SemanticFormBuilder do |f| %>
+    <% if @role.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@role.errors.count,"") %> <%= t"prohibited_being_saved", :count => @role.errors.count %>:</h2>
+
+      <ul>
+      <% @role.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :site_id, :value => @site.id if @site %>
+  
+  <p>
+    <%= f.text_field :name, :label => t("name") %>
+  </p>
+  <p>
+    <%= f.select :theme, @themes.collect{|p| [ p , p]}, {:label => t("layout"), :include_blank => true} %>
+  </p>
+  <%= f.submit t("submit") %> <%= link_to t("back"), :back %>
+<% end %>

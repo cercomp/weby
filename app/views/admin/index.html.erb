@@ -69,6 +69,13 @@
     <p>
 	    <%= link_to (t"setting.other"), edit_site_admin_path(@site, @site) %>
     </p>
+  <% else %>
+    <p>
+      <%= link_to (t"roles_permissions"), roles_path %>
+      <% if check_permission(RolesController, ["new"]) %>
+       | <%= link_to t("new.fem"), new_role_path, :class => 'icon icon-add' %>
+      <% end %>
+    </p>
   <% end %>
 
 <% end %>
