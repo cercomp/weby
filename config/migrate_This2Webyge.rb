@@ -8,6 +8,7 @@ require 'pg'
 require 'awesome_print'
 require 'authlogic'
 require 'yaml'
+require 'cgi'
  
 #authlogic = Authlogic::ActsAsAuthentic::Base::Config
 class Migrate_this2weby
@@ -65,8 +66,8 @@ weby:
     # Laço de repetição
     sites_this.each do |s_this|
       insert_site = "INSERT INTO sites (name,url,description) VALUES ('#{s_this['nm_site']}','#{s_this['caminho_http']}','#{s_this['nm_site']}') RETURNING id"
-      puts "\t\t#{insert_site}\n" if @verbose
       site = @con_weby.exec(insert_site)
+      puts "\t\t(#{site[0]['id']}) #{insert_site}\n" if @verbose
 
       # Migrando Tabela: this.menu_[direito,esquerdo,superior,inferior] => weby.menus
       select_menu_d = "SELECT * FROM menu_direito WHERE site_id='#{s_this['site_id']}'"# AND item_pai=0"
@@ -75,12 +76,17 @@ weby:
       # Agrupando por item_pai
       menus_this_d_groupby = menus_this_d.group_by{|i| i['item_pai']}
       # Laço this.menu_direito
-      menus_this_d_groupby.each do |m_d|
-        #insert_menu = "INSERT INTO menus (title,link) VALUES ('#{m_d['texto_item']}','#{m_d['url']}') RETURNING id"
-        #puts "\t\t\t\t#{insert_menu}\n" if @verbose
-        #menu_d = @con_weby.exec(insert_menu)
-        #insert_sites_menus = "INSERT INTO sites_menus(site_id,menu_id,parent_id,side) VALUES ('#{site[0]['id']}','#{menu_d[0]['id']}','#{m_d['item_pai']}','auxiliary')"
-        #@con_weby.exec(insert_sites_menus)
+      unless menus_this_d_groupby["0"].nil?
+        menus_this_d_groupby["0"].each do |m_d|
+          insert_menu = "INSERT INTO menus (title,link) VALUES ('#{m_d['texto_item']}','#{m_d['url']}') RETURNING id"
+          menu_d = @con_weby.exec(insert_menu)
+          puts "\t\t\t\t(#{menu_d[0]['id']}) #{insert_menu}\n" if @verbose
+          insert_menu_p = "INSERT INTO sites_menus(site_id,menu_id,parent_id,side) VALUES ('#{site[0]['id']}','#{menu_d[0]['id']}',0,'auxiliary') RETURNING id"
+          menu_d0 = @con_weby.exec(insert_menu_p)
+          puts "\t\t\t\t#({menu_d0[0]['id']}) #{insert_menu_p}\n" if @verbose
+          # Recursão
+          deep_insert_menu(menus_this_d_groupby, m_d, site[0]['id'], menu_d0[0]['id'])
+        end
       end
       #menus_this_e = @con_this.exec("SELECT * FROM menu_esquerdo WHERE site_id='#{site[0]['id']}' AND item_pai=0")
       #menus_this_s = @con_this.exec("SELECT * FROM menu_superior WHERE site_id='#{site[0]['id']}' AND item_pai=0")
@@ -91,6 +97,20 @@ weby:
       #menus_this_i.clear()
     end
     sites_this.clear()
+  end
+
+  def deep_insert_menu(sons, entry, site_id, menu_id)
+    if sons["#{entry['id']}"].class.to_s == "Array"
+      sons["#{entry['id']}"].each do |child|
+        deep_insert_menu(sons, child, site_id, menu_id)
+      end
+    end
+    insert_menu_sub = "INSERT INTO menus (title,link) VALUES ('#{entry['texto_item']}','#{@con_weby.escape(entry['url'])}') RETURNING id"
+    menu_sub = @con_weby.exec(insert_menu_sub)
+    puts "\t\t\t\t(#{menu_sub[0]['id']}) #{insert_menu_sub}\n" if @verbose
+    insert_sites_menus = "INSERT INTO sites_menus(site_id,menu_id,parent_id,side) VALUES ('#{site_id}','#{menu_sub[0]['id']}','#{menu_id}','auxiliary')"
+    @con_weby.exec(insert_sites_menus)
+    puts "\t\t\t\t#{insert_sites_menus}\n" if @verbose
   end
 
   def finalize
