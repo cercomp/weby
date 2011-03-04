@@ -20,7 +20,6 @@ function font_size_down(){
     $('html').css('font-size', size.toString() + 'px') 
 
 		//atualiza valor de font_size no cookie
-		$.cookie("font_size", null)
 		$.cookie("font_size", size, { path: '/' })
 
 }
@@ -29,5 +28,6 @@ function font_size_down(){
 function font_size_original(){ 
  		
 		$('html').css('font-size', $.cookie("font_size_original"))
+        $.cookie("font_size", null, {path: '/'})
  
  }
