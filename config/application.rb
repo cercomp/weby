@@ -45,6 +45,6 @@ module Webyge
 #    config.filter_parameters += [:password]
     config.filter_parameters << :password << :password_confirmation
 
-    config.action_view.javascript_expansions[:defaults] = ['jquery', 'rails']
+    config.action_view.javascript_expansions[:defaults] = ['jquery', 'rails', 'jquery.cookie', 'font_size_control']
   end
 end

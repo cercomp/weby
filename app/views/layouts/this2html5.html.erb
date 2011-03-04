@@ -65,7 +65,11 @@
     <%= render :partial => "sites/viewCover" %>
     <nav>
       <%= raw print_menu(@main) %>
+			<br/>
       <nav class="right">
+				<%= image_tag("font_size_down.png", :onclick => "font_size_down()") %>
+				<%= image_tag("font_size_original.png", :onclick => "font_size_original()") %>
+				<%= image_tag("font_size_up.png", :onclick => "font_size_up()")%>
         <%= link_to image_tag("flag_uk.png", :size => "24x12"), :locale => "en" %>
         <%= link_to image_tag("flag_br.png", :size => "24x12"), :locale => "pt-BR" %>
       </nav>
