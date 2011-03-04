@@ -9,6 +9,7 @@ require 'awesome_print'
 require 'authlogic'
 require 'yaml'
 require 'cgi'
+require 'htmlentities'
  
 #authlogic = Authlogic::ActsAsAuthentic::Base::Config
 class Migrate_this2weby
@@ -16,21 +17,7 @@ class Migrate_this2weby
     # Coneção com os dois bancos
     if not File.exist?("config-migrate.yml")
       puts "É necessário criar o arquivo config-migrate.yml com as diretivas de conexão."
-      puts "Exemplo:
-this:
-  adapter: postgresql
-  host: localhost
-  database: this
-  username: this
-  password: senha_this
-
-weby:
-  adapter: postgresql
-  host: localhost
-  database: weby
-  username: weby
-  password: senha_weby
-"
+      print "Exemplo:\nthis:\n  adapter: postgresql\n  host: localhost\n  database: this\n  username: this\n  password: senha_this\n\nweby:\n  adapter: postgresql\n  host: localhost\n  database: weby\n  username: weby\n  password: senha_weby\n"
       exit
     end
     @config = YAML::load(File.open("./config-migrate.yml"))
@@ -78,12 +65,12 @@ weby:
       # Laço this.menu_direito
       unless menus_this_d_groupby["0"].nil?
         menus_this_d_groupby["0"].each do |m_d|
-          insert_menu = "INSERT INTO menus (title,link) VALUES ('#{m_d['texto_item']}','#{m_d['url']}') RETURNING id"
+          insert_menu = "INSERT INTO menus (title,link) VALUES ('#{treatment(m_d['texto_item'])}','#{treatment(m_d['url'])}') RETURNING id"
           menu_d = @con_weby.exec(insert_menu)
           puts "\t\t\t\t(#{menu_d[0]['id']}) #{insert_menu}\n" if @verbose
           insert_menu_p = "INSERT INTO sites_menus(site_id,menu_id,parent_id,side) VALUES ('#{site[0]['id']}','#{menu_d[0]['id']}',0,'auxiliary') RETURNING id"
           menu_d0 = @con_weby.exec(insert_menu_p)
-          puts "\t\t\t\t#({menu_d0[0]['id']}) #{insert_menu_p}\n" if @verbose
+          puts "\t\t\t\t(#{menu_d0[0]['id']}) #{insert_menu_p}\n" if @verbose
           # Recursão
           deep_insert_menu(menus_this_d_groupby, m_d, site[0]['id'], menu_d0[0]['id'])
         end
@@ -105,12 +92,19 @@ weby:
         deep_insert_menu(sons, child, site_id, menu_id)
       end
     end
-    insert_menu_sub = "INSERT INTO menus (title,link) VALUES ('#{entry['texto_item']}','#{@con_weby.escape(entry['url'])}') RETURNING id"
+    insert_menu_sub = "INSERT INTO menus (title,link) VALUES ('#{treatment(entry['texto_item'])}','#{treatment(entry['url'])}') RETURNING id"
     menu_sub = @con_weby.exec(insert_menu_sub)
     puts "\t\t\t\t(#{menu_sub[0]['id']}) #{insert_menu_sub}\n" if @verbose
     insert_sites_menus = "INSERT INTO sites_menus(site_id,menu_id,parent_id,side) VALUES ('#{site_id}','#{menu_sub[0]['id']}','#{menu_id}','auxiliary')"
     @con_weby.exec(insert_sites_menus)
     puts "\t\t\t\t#{insert_sites_menus}\n" if @verbose
+  end
+
+  def treatment(string)
+    coder = HTMLEntities.new
+    string = coder.decode(string)
+    string = @con_weby.escape(string)
+    return string
   end
 
   def finalize
