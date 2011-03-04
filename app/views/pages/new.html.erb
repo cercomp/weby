@@ -34,9 +34,18 @@
       <%= render :partial => 'repo_list', :locals => { :f => f } %>
     </div>
 
-    <%= f.hidden_field :created_at, :order => [:year, :month, :day], :use_month_numbers => true, :label => (t"date_param", :param => t("register")), :start_year => Time.now.year %>
-    <%= f.datetime_select :date_begin_at, :order => [:year, :month, :day], :use_month_numbers => true, :label =>  (t"date_param", :param => t("begin")), :start_year => Time.now.year %>
-    <%= f.datetime_select :date_end_at, :order => [:year, :month, :day], :use_month_numbers => true, :label => (t"date_param", :param => t("end")), :start_year => Time.now.year, :default => 1.month.from_now %>
+    <%= f.hidden_field :created_at, :order => [:year, :month, :day],
+      :use_month_numbers => true, :label => (t"date_param", :param => t("register")),
+      :start_year => Time.now.year %>
+
+    <%= f.datetime_select :date_begin_at, :order => [:day, :month, :year],
+      :use_month_numbers => true, :label =>  (t"date_param", :param => t("begin")),
+      :start_year => Time.now.year, :id => "datapicker" %>
+
+    <%= f.datetime_select :date_end_at, :order => [:day, :month, :year],
+      :use_month_numbers => true, :label => (t"date_param", :param => t("end")),
+      :start_year => Time.now.year, :default => 1.month.from_now, :id => "datapicker" %>
+
     <%= f.text_field :title, :label => t("title"), :required => true, :help => t("field_required")  %>
     <%= f.text_area :text, :label => t("text"), :class => "mceAdvance", :size => "48x10" %>
 

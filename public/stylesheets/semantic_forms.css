@@ -38,7 +38,16 @@ form input[type=button]:hover {
   border-left: 2px solid #48bb3d;
   border-right: 2px solid #005200;
   border-bottom: 2px solid #005200; }
-form input[id=btnCancel] {
+form input[type=submit]:active,
+form input[type=button]:active {
+  background: #156c0d;
+  border-top: 2px solid #38a82f;
+  border-left: 2px solid #38a82f;
+  border-right: 2px solid #004000;
+  border-bottom: 2px solid #004000; }
+form input[id=btnCancel],
+form input[id=btnCancel]:hover,
+form input[id=btnCancel]:active {
   border-top: 2px solid #e68582;
   border-left: 2px solid #e68582;
   border-bottom: 2px solid #801f1c;
