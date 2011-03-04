@@ -11,17 +11,15 @@
   <%= stylesheet_link_tag 'semantic_forms' %>
   <%= stylesheet_link_tag 'this2html5' %>
   <%= stylesheet_link_tag 'will_paginate' %>
-  <%= javascript_include_tag "SyntaxHighlighter/shCore" %>
-  <%= javascript_include_tag "SyntaxHighlighter/shBrushCss" %>
   <%= stylesheet_link_tag 'SyntaxHighlighter/shCore' %>
   <%= stylesheet_link_tag 'SyntaxHighlighter/shThemeDefault' %>
   <%= render :partial => 'sites/viewCsses' %>
 </head>
 <%#= debug params %>
 <% if @site.body_width %>
-  <body style='width:<%= "#{@site.body_width}" %>px'>
+  <body style='width:<%= "#{@site.body_width + 4}" %>px'>
 <% elsif @top_banner_width %>
-  <body style='width:<%= "#{@top_banner_width}" %>px'>
+  <body style='width:<%= "#{@top_banner_width + 4}" %>px'>
 <% else %>
   <body>
 <% end %>
@@ -60,6 +58,7 @@
      </div>
   </div>
 
+  <div id="wraper">
   <%#= debug(session) %>
   <header>
     <%= render :partial => "sites/viewCover" %>
@@ -110,7 +109,10 @@
       <%= raw @site.footer %>
     </section>
   </footer>
+  </div>
 
+  <%= javascript_include_tag "SyntaxHighlighter/shCore" %>
+  <%= javascript_include_tag "SyntaxHighlighter/shBrushCss" %>
   <%= javascript_include_tag :defaults %>
   <%= javascript_include_tag "jquery-ui.min.js" %>
   <!--[if lt IE 9]>

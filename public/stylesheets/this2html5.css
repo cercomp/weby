@@ -8,6 +8,9 @@ body {
   color:#484848;
   width: auto;
   margin: 0 auto; }
+#wraper {
+  border: 2px solid transparent;
+  border-top: none }
 
 /* Define style to Header, Footer and contents */
 header,
