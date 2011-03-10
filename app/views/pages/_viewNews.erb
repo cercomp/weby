@@ -6,7 +6,7 @@
         <% unless page.repository.nil? %>
           <%= link_to image_tag("#{page.repository.archive.url(:mini)}", :alt => page.repository.description), site_page_path(@site, page, :type => params[:type]), :title => page.repository.description %>
         <% end %>
-        <p> <h2> <%= page.title %> </h2> </p>
+         <h2> <%= page.title %> </h2> 
         <%= raw page.summary %>
         <p> <%= link_to t("read_more"), site_page_path(@site, page) %> </p>
         <div class="clear"></div>
