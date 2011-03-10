@@ -136,104 +136,61 @@ class Migrate_this2weby
       end
       this_informativos.clear()
 
-      # Migrando Tabela: this.menu_direito => weby.menus
-      select_menu_d = "SELECT * FROM menu_direito WHERE site_id='#{s_this['site_id']}'"
-      puts "\t\t\t#{select_menu_d}\n" if @verbose
-      menus_this_d = @con_this.exec(select_menu_d)
-      # Agrupando por item_pai
-      menus_this_d_groupby = menus_this_d.group_by{|i| i['item_pai']}
-      # Laço this.menu_direito
-      unless menus_this_d_groupby["0"].nil?
-        menus_this_d_groupby["0"].each do |menu|
-          if not menu['texto'].empty? # Se o campo texto for significante o menu está embutido
-            insert_page = "INSERT INTO pages (created_at,date_begin_at,date_end_at,site_id,author_id,title,text,publish,front,type) VALUES ('#{Time.now}','#{Time.now}','#{Time.now}','#{site_id}','#{@convar['usuarios'][menu['modificador']]}','#{treatment(menu['texto_item'])}','#{treatment(menu['texto'])}',true,false,'News') RETURNING id"
-            page_id = @con_weby.exec(insert_page)
-            puts "\t\t\t\t\t(#{page_id[0]['id']}) #{insert_page[0,300]}" if @verbose
-            insert_menu = "INSERT INTO menus (title,link,page_id) VALUES ('#{treatment(menu['texto_item'])}','','#{page_id[0]['id']}') RETURNING id"
-          elsif not /javascript:mostrar_pagina.*\('([0-9]+)'.*/.match("#{menu['url']}").nil? # Verificando se o menu é interno, externo
-            page_id = /javascript:mostrar_pagina.*\('([0-9]+)'.*/.match("#{menu['url']}")[1]
-            page_id = @convar["paginas"]["#{page_id}"]
-            insert_menu = "INSERT INTO menus (title,link,page_id) VALUES ('#{treatment(menu['texto_item'])}','','#{page_id}') RETURNING id"
-          else
-            insert_menu = "INSERT INTO menus (title,link) VALUES ('#{treatment(menu['texto_item'])}','#{treatment(menu['url'])}') RETURNING id"
-          end
-          menu_d = @con_weby.exec(insert_menu)
-          puts "\t\t\t\t(#{menu_d[0]['id']}) #{insert_menu}\n" if @verbose
-          insert_menu_p = "INSERT INTO sites_menus(site_id,menu_id,parent_id,side) VALUES ('#{site[0]['id']}','#{menu_d[0]['id']}',0,'auxiliary') RETURNING id"
-          menu_d0 = @con_weby.exec(insert_menu_p)
-          puts "\t\t\t\t(#{menu_d0[0]['id']}) #{insert_menu_p}\n" if @verbose
-          # Recursão
-          deep_insert_menu(menus_this_d_groupby, menu, site[0]['id'], menu_d0[0]['id'], 'auxiliary')
-        end
-        menus_this_d_groupby.clear()
-      end
-      menus_this_d.clear()
+      # Migrando Tabelas: this.menu_[direito,esquerdo,superior,inferior] => weby.menus 
+      # Parâmetros: 
+      #   1o. menus   (Hash)    Onde os índices são as tabelas no this e os valores são seus respectivos no weby
+      #   2o. this_id (integer) id do site no this
+      #   3o. weby_id (integer) id do site no weby
+      migrate_this_menus({'direito' => 'auxiliary', 'esquerdo' => 'secondary', 'superior' => 'main', 'inferior' => 'base'}, s_this['site_id'], site[0]['id'])
 
-      # Migrando Tabela: this.menu_esquerdo => weby.menus
-      select_menu_e = "SELECT * FROM menu_esquerdo WHERE site_id='#{s_this['site_id']}'"
-      menus_this_e = @con_this.exec("SELECT * FROM menu_esquerdo WHERE site_id='#{site[0]['id']}'")
-      puts "\t\t\t#{select_menu_e}\n" if @verbose
-      menus_this_e = @con_this.exec(select_menu_e)
-      # Agrupando por item_pai
-      menus_this_e_groupby = menus_this_e.group_by{|i| i['item_pai']}
-      # Laço this.menu_direito
-      unless menus_this_e_groupby["0"].nil?
-        menus_this_e_groupby["0"].each do |menu|
-          if not menu['texto'].empty? # Se o campo texto for significante o menu está embutido
-            insert_page = "INSERT INTO pages (created_at,date_begin_at,date_end_at,site_id,author_id,title,text,publish,front,type) VALUES ('#{Time.now}','#{Time.now}','#{Time.now}','#{site_id}','#{@convar['usuarios'][menu['modificador']]}','#{treatment(menu['texto_item'])}','#{treatment(menu['texto'])}',true,false,'News') RETURNING id"
-            page_id = @con_weby.exec(insert_page)
-            puts "\t\t\t\t\t(#{page_id[0]['id']}) #{insert_page[0,300]}" if @verbose
-            insert_menu = "INSERT INTO menus (title,link,page_id) VALUES ('#{treatment(menu['texto_item'])}','','#{page_id[0]['id']}') RETURNING id"
-          elsif not /javascript:mostrar_pagina.*\('([0-9]+)'.*/.match("#{menu['url']}").nil? # Verificando se o menu é interno, externo
-            page_id = /javascript:mostrar_pagina.*\('([0-9]+)'.*/.match("#{menu['url']}")[1]
-            page_id = @convar["paginas"]["#{page_id}"]
-            insert_menu = "INSERT INTO menus (title,link,page_id) VALUES ('#{treatment(menu['texto_item'])}','','#{page_id}') RETURNING id"
-          else
-            insert_menu = "INSERT INTO menus (title,link) VALUES ('#{treatment(menu['texto_item'])}','#{treatment(menu['url'])}') RETURNING id"
-          end
-          menu_e = @con_weby.exec(insert_menu)
-          puts "\t\t\t\t(#{menu_e[0]['id']}) #{insert_menu}\n" if @verbose
-          insert_menu_p = "INSERT INTO sites_menus(site_id,menu_id,parent_id,side) VALUES ('#{site[0]['id']}','#{menu_e[0]['id']}',0,'secondary') RETURNING id"
-          menu_e0 = @con_weby.exec(insert_menu_p)
-          puts "\t\t\t\t(#{menu_e0[0]['id']}) #{insert_menu_p}\n" if @verbose
-          # Recursão
-          deep_insert_menu(menus_this_e_groupby, menu, site[0]['id'], menu_e0[0]['id'], 'secondary')
-        end
-        menus_this_e_groupby.clear()
-      end
-      menus_this_e.clear()
-
-      #menus_this_s = @con_this.exec("SELECT * FROM menu_superior WHERE site_id='#{site[0]['id']}'")
-      #menus_this_i = @con_this.exec("SELECT * FROM menu_inferior WHERE site_id='#{site[0]['id']}'")
-      #menus_this_s.clear()
-      #menus_this_i.clear()
     end
     sites_this.clear()
   end
 
+  # Metodo para chamada recursiva
   def deep_insert_menu(sons, entry, site_id, menu_id, type)
-    if sons["#{entry['id']}"].class.to_s == "Array"
-      sons["#{entry['id']}"].each do |child|
-        deep_insert_menu(sons, child, site_id, menu_id, type)
-      end
-    end
     if not entry['texto'].empty? # Se o campo texto for significante o menu está embutido
       insert_page = "INSERT INTO pages (created_at,date_begin_at,date_end_at,site_id,author_id,title,text,publish,front,type) VALUES ('#{Time.now}','#{Time.now}','#{Time.now}','#{site_id}','#{@convar['usuarios'][entry['modificador']]}','#{treatment(entry['texto_item'])}','#{treatment(entry['texto'])}',true,false,'News') RETURNING id"
       page_id = @con_weby.exec(insert_page)
       puts "\t\t\t\t\t(#{page_id[0]['id']}) #{insert_page[0,300]}" if @verbose
-      insert_menu_sub = "INSERT INTO menus (title,link,page_id) VALUES ('#{treatment(entry['texto_item'])}','','#{page_id[0]['id']}') RETURNING id"
+      insert_menu = "INSERT INTO menus (title,link,page_id) VALUES ('#{treatment(entry['texto_item'])}','','#{page_id[0]['id']}') RETURNING id"
     elsif not /javascript:mostrar_pagina.*\('([0-9]+)'.*/.match("#{entry['url']}").nil? # Verificando se o menu é interno, externo
       page_id = /javascript:mostrar_pagina.*\('([0-9]+)'.*/.match("#{entry['url']}")[1]
       page_id = @convar["paginas"]["#{page_id}"]
-      insert_menu_sub = "INSERT INTO menus (title,link,page_id) VALUES ('#{treatment(entry['texto_item'])}','','#{page_id}') RETURNING id"
+      insert_menu = "INSERT INTO menus (title,link,page_id) VALUES ('#{treatment(entry['texto_item'])}','','#{page_id}') RETURNING id"
     else
-      insert_menu_sub = "INSERT INTO menus (title,link) VALUES ('#{treatment(entry['texto_item'])}','#{treatment(entry['url'])}') RETURNING id"
+      insert_menu = "INSERT INTO menus (title,link) VALUES ('#{treatment(entry['texto_item'])}','#{treatment(entry['url'])}') RETURNING id"
     end
-    menu_sub = @con_weby.exec(insert_menu_sub)
-    puts "\t\t\t\t(#{menu_sub[0]['id']}) #{insert_menu_sub}\n" if @verbose
-    insert_sites_menus = "INSERT INTO sites_menus(site_id,menu_id,parent_id,side) VALUES ('#{site_id}','#{menu_sub[0]['id']}','#{menu_id}','#{type}')"
-    @con_weby.exec(insert_sites_menus)
-    puts "\t\t\t\t#{insert_sites_menus}\n" if @verbose
+    menu_sub = @con_weby.exec(insert_menu)
+    puts "\t\t\t\t(#{menu_sub[0]['id']}) #{insert_menu}\n" if @verbose
+    insert_sites_menus = "INSERT INTO sites_menus(site_id,menu_id,parent_id,side) VALUES ('#{site_id}','#{menu_sub[0]['id']}',#{menu_id},'#{type}') RETURNING id"
+    menu_e0 = @con_weby.exec(insert_sites_menus)
+    puts "\t\t\t\t(#{menu_e0[0]['id']}) #{insert_sites_menus}\n" if @verbose
+
+    if sons["#{entry['id']}"].class.to_s == "Array"
+      sons["#{entry['id']}"].each do |child|
+        deep_insert_menu(sons, child, site_id, menu_e0[0]['id'], type)
+      end
+    end
+  end
+  # Método para migração dos menus
+  def migrate_this_menus(menus, this_id, weby_id)
+    menus.each do |menus_this|
+      select_menu = "SELECT * FROM menu_#{menus_this[0]} WHERE site_id='#{this_id}'"
+      puts "\t\t\t#{select_menu}\n" if @verbose
+      menu_this = @con_this.exec(select_menu)
+      # Agrupando por item_pai
+      menus_this_groupby = menu_this.group_by{|i| i['item_pai']}
+      # Laço
+      unless menus_this_groupby["0"].nil?
+        menus_this_groupby["0"].each do |menu|
+          # Recursão
+          deep_insert_menu(menus_this_groupby, menu, weby_id, '0', menus_this[1])
+        end
+        menus_this_groupby.clear()
+      end
+      menu_this.clear()
+    end
   end
 
   def treatment(string)

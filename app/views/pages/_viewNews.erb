@@ -7,6 +7,7 @@
           <%= link_to image_tag("#{page.repository.archive.url(:mini)}", :alt => page.repository.description), site_page_path(@site, page, :type => params[:type]), :title => page.repository.description %>
         <% end %>
          <h2> <%= page.title %> </h2> 
+        <p> <i><%= page.user.first_name ? ("#{page.user.first_name} #{page.user.last_name}") : page.user.login %>, <%= l page.created_at, :format => :short  %>.</i> </p>
         <%= raw page.summary %>
         <p> <%= link_to t("read_more"), site_page_path(@site, page) %> </p>
         <div class="clear"></div>
@@ -21,19 +22,7 @@
 <% end %>
 
 <% unless @no_front_news.nil? or @no_front_news.empty? %>
-  <table class="border fullwidth zebra">
-    <tr> 
-      <th> <%= t "page.other" %> </th> 
-    </tr>
-    <% @no_front_news.each do |page| %>
-      <tr>
-        <td>
-          <p> 
-            <%= link_to page.title, site_page_path(@site, page) %>
-            <%= raw page.summary %>
-          </p>
-        </td>
-      </tr>
-    <% end %>
-  </table>
+  <div id='no_front_news'>
+    <%= render :partial => "no_front_news" %>
+  </div>
 <% end %>

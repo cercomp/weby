@@ -129,7 +129,7 @@ module ApplicationHelper
   def get_permissions(user, ctr, args={})
     user ||= current_user
     # Se não está logado não existe permissões
-    return [] if user.nil?
+    return [args[:except]] if user.nil?
     perms = []
     perms_user = []
     ctr = ctr.empty? ? controller.controller_name : ctr

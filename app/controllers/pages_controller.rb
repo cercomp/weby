@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   layout :choose_layout
   before_filter :require_user, :only => [:new, :edit, :update, :destroy, :sort, :toggle_field]
-  before_filter :check_authorization, :except => [:view]
+  before_filter :check_authorization, :except => [:view, :show]
   respond_to :html, :xml, :js
 
   def index 
@@ -123,13 +123,21 @@ class PagesController < ApplicationController
   
   def view
     @front_news = @site.pages.where(["front='true' AND publish='true' AND date_begin_at <= ? AND date_end_at > ?", Time.now, Time.now]) || ""
-    @no_front_news = @site.pages.where(["front='false' AND publish='true' AND date_begin_at <= ? AND date_end_at > ?", Time.now, Time.now]) || ""
+    @no_front_news = @site.pages.where(["front='false' AND publish='true' AND date_begin_at <= ? AND date_end_at > ?", Time.now, Time.now]).paginate :page => params[:page], :per_page => 5 || ""
+    respond_with do |format|
+      format.js { 
+        render :update do |page|
+          page.call "$('#no_front_news').html", render(:partial => 'no_front_news', :locals => { :f => SemanticFormBuilder.new(@page.class.name.underscore.to_s, @page, self, {}, proc{}) })
+        end
+      }
+      format.html
+    end
   end
 
   def sort
     @pages = @site.pages.paginate :page => params[:paginate], :per_page => 10
     @front_news = @site.pages.where(["front='true' AND publish='true' AND date_begin_at <= ? AND date_end_at > ?", Time.now, Time.now])
-    @no_front_news = @site.pages.where(["front='false' AND publish='true' AND date_begin_at <= ? AND date_end_at > ?", Time.now, Time.now])
+    @no_front_news = @site.pages.where(["front='false' AND publish='true' AND date_begin_at <= ? AND date_end_at > ?", Time.now, Time.now]).paginate :page => params[:page], :per_page => 5
 
     params['page'] ||= []
     params['page'].each do |p|

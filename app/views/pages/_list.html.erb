@@ -28,8 +28,8 @@
             <td align="center"><%= raw toggle_field(page, "publish") %></td>
           <% end %>
           <td>
-            <%= raw make_menu(page) %> 
-            <% if check_permission(PagesController, [:sort]) %>
+            <%= raw make_menu(page, :except => "show") %> 
+            <% if check_permission(PagesController, ["sort"]) %>
               <div class='handle icon icon-drag'><%= t("move") %></div>
             <% end %>
           </td>
