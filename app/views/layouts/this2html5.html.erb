@@ -17,9 +17,9 @@
 </head>
 <%#= debug params %>
 <% if @site.body_width %>
-  <body style='width:<%= "#{@site.body_width + 4}" %>px'>
+  <body style='width:<%= "#{@site.body_width.to_i + 4}" %>px'>
 <% elsif @top_banner_width %>
-  <body style='width:<%= "#{@top_banner_width + 4}" %>px'>
+  <body style='width:<%= "#{@top_banner_width.to_i + 4}" %>px'>
 <% else %>
   <body>
 <% end %>
