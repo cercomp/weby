@@ -62,7 +62,7 @@ class Mover
 
     # Para cada id de site conhecido
     @ids.each do |id|
-      destino = TO + MAP[id.to_i].to_s
+      destino = TO + MAP[id]['weby']
       # Se a pasta destino ainda não existe
       Dir.mkdir("#{destino}") unless Dir.exists?("#{destino}")
 
@@ -73,11 +73,15 @@ class Mover
     end
   end
 
+	# compacta a pasta de saida
   def self.tar_dir
-    tar_name = TO[0...-1] << '.tar.gz'
+    tar_name = TO[0..-2] << '.tar.gz'
     `tar -zcvf #{tar_name} #{TO}`
   end
 
+	private
+	def flatte_dir(dir)
+	end
 end
 
 Mover.copy_files
