@@ -160,7 +160,7 @@ module ApplicationHelper
   def make_menu(obj, args={})
     menu ||= ""
     get_permissions(current_user, '', args).each do |permission|
-      if controller.class.instance_methods(false).include?(permission.to_sym)
+      if permission and controller.class.instance_methods(false).include?(permission.to_sym)
         case permission.to_s
           when "show"
             menu += link_to(t('show'), {:controller => "#{controller.controller_name}", :action => 'show', :id => obj.id}, :class => 'icon icon-show', :alt => t('show'), :title => t('show')) + " "
