@@ -1,4 +1,4 @@
-<%= form_for [@site, @repository], :html => { :multipart => true } , :builder => SemanticFormBuilder do |f| %> 
+<%= form_for [@site, @repository], :url => site_repositories_path(:from => 'other'), :html => { :multipart => true } , :builder => SemanticFormBuilder do |f| %> 
   <% if @repository.errors.any? %>
     <div id="error_explanation">
       <h2> <%= pluralize(@repository.errors.count, "") %> <%= t"prohibited_being_saved", 

@@ -1,6 +1,7 @@
 <fieldset>
   <legend><%= (t"editing", :param => (t"site.one")) %></legend>
   <%= link_to t('back'), :back %>
+
   <center>
     <% menus_list = [[t("picture"), "image"], [t("pdf"), "pdf"]] %>
     <%= form_tag edit_site_admin_path(@site, @site), :method => 'get', :remote => true do %>

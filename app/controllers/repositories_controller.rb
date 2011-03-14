@@ -28,15 +28,14 @@ class RepositoriesController < ApplicationController
 
   def new
     @repository = Repository.new
-    
+
     respond_to do |format|
       format.js do 
         render :update do |page|
-          page.call "$('#page').html", render(:partial => 'form')
+          page.call "$('#page').html", render(:partial => 'pages/newRepo')
         end
       end 
-    
-    format.html
+      format.html
     end
   end
 
@@ -46,16 +45,15 @@ class RepositoriesController < ApplicationController
 
   def create
     @repository = Repository.new(params[:repository])
-
     respond_to do |format|
       if @repository.save
-        # Redireciona o usuários para a página de administração
-        if params[:back] == 'admin'
-          format.html { redirect_to edit_site_admin_path(@site, @site) }
-        end
-
-        format.html { redirect_to :back }
-        flash[:notice] = t("successfully_created") 
+        format.html { 
+          if params[:from] != 'other'
+            redirect_to(:site_id => @repository.site.name, :controller => 'repositories', :action => 'show', :id => @repository.id) 
+          else
+            redirect_to :back
+          end
+         } 
         format.xml  { render :xml => @repository, :status => :created, :location => @repository }
       else
         format.html { redirect_to :back }

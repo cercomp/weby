@@ -82,8 +82,6 @@
     
     <%= f.submit (t"create_param", :param => (t"page.one")) %>
     <%= link_to t("back"), :back %>
-
-    </div>
   <% end %>
 
   <div id="repo_new" >
@@ -94,7 +92,7 @@
           :class => 'icon icon-add' %>
     </div>
     <div id="page1" style="display:none">
-    <%= render :partial => 'repositories/form'%>
+    <%= render :partial => 'pages/newRepo'%>
     </div>
   </div>
 
