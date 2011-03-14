@@ -47,7 +47,7 @@ end
 
 class Mover
 
-  @folders  = ['banners/', 'files/']
+  @folders  = ['banners', 'files']
   @files = @ids = []
 
   def self.copy_files
@@ -68,7 +68,21 @@ class Mover
 
       # Verifica cada pasta conhecida
       @folders.each do |folder|
-        puts `cp -vr #{FROM + folder + id + '/*'} #{destino}`
+        puts `cp -vr #{FROM + folder + '/' + id + '/*'} #{destino}`
+      end
+
+      # Busca por diretórios dentro das pastas
+	    puts "Removendo diretórios internos da pasta \"#{destino}\""
+      dirs = `find #{destino}/ -maxdepth 1 -mindepth 1 -type d`.split("\n")
+
+      while dirs.count > 0
+        d = dirs.pop
+        puts `mv -v #{d}/* #{destino}/` if (Dir.entries(d) - ['.', '..']).size > 0
+        # remove o diretório, já que não precisamos mais dele
+        puts `rm -vr #{d}`
+        
+        # verfica novamente os diretórios
+        dirs = `find #{destino}/ -maxdepth 1 -mindepth 1 -type d`.split("\n")
       end
     end
   end
@@ -79,10 +93,25 @@ class Mover
     `tar -zcvf #{tar_name} #{TO}`
   end
 
-	private
-	def flatte_dir(dir)
-	end
+  # move arquivos 'soltos' para a posta temp
+  def self.move_temp
+    puts "Movendo arquivos avulsos"
+    
+    to_move = (Dir.entries(FROM) - ['.', '..']) - @folders
+    puts "debug\n#{to_move}"
+    if to_move.size > 0
+      temp_folder = "#{TO}/temp"
+
+      puts `mkdir #{temp_folder}`
+      to_move.each do |d|
+        d = Regexp.escape(d).gsub(/([:~!<>="])/,'\\\1')
+        puts `cp -rv #{FROM + d} #{temp_folder}`
+      end
+    end
+  end
+
 end
 
 Mover.copy_files
+Mover.move_temp
 Mover.tar_dir
