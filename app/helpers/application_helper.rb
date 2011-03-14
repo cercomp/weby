@@ -206,4 +206,7 @@ module ApplicationHelper
     adminnav
   end
 
+  def institutional_bar
+    @bars
+  end
 end
