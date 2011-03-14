@@ -13,5 +13,7 @@ User.create do |u|
   u.status = true
   u.is_admin = true
 end
+
+Role.create :name => 'manager'
  
 #Fixtures.create_fixtures("#{Rails.root}/db/seed", "*.yml")  

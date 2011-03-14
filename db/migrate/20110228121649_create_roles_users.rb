@@ -5,6 +5,7 @@ class CreateRolesUsers  < ActiveRecord::Migration
       t.integer :user_id, :null => false
     end
 
+    say "Adicionando index na join table roles_users"
     add_index :roles_users, [:role_id, :user_id], :unique => true
   end
 

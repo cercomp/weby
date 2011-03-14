@@ -5,7 +5,6 @@ class CreateRoles < ActiveRecord::Migration
 
       t.timestamps
     end
-    Role.create :name => 'manager'
   end
 
   def self.down

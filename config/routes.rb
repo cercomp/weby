@@ -1,6 +1,9 @@
 Webyge::Application.routes.draw do |map|
 
-  match "sites/:site_id" => 'pages#view', :via => :get#, :constraints => {:site_id => /#{Site.all.map{|p| p.name}.join('|')}/}
+  if Page.table_exists?
+    match "sites/:site_id" => 'pages#view', :via => :get,
+      :constraints => { :site_id => /#{Site.all.map{|p| p.name}.join('|')}/ }
+  end
 
   resources :sites do
     resources :users do
