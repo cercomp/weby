@@ -1,0 +1,16 @@
+    <%= will_paginate @no_front_news, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax' %>
+    <table class="border fullwidth zebra">
+      <tr> 
+        <th> <%= t "page.other" %> </th> 
+      </tr>
+      <% @no_front_news.each do |page| %>
+        <tr>
+          <td>
+            <p> 
+              <%= link_to page.title, site_page_path(@site, page) %>
+              <%= raw page.summary %>
+            </p>
+          </td>
+        </tr>
+      <% end %>
+    </table>
