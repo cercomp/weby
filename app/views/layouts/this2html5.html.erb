@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <%= csrf_meta_tag %>
   <%= stylesheet_link_tag 'http://bibliotecaweb.mec.gov.br/barra_do_governo/css/barra_do_governo.css' %>
-  <%= stylesheet_link_tag 'barra_ufg' %>
+  <%= stylesheet_link_tag 'institutional' %>
   <%= stylesheet_link_tag 'scaffold' %>
   <%= stylesheet_link_tag 'application' %>
   <%= stylesheet_link_tag 'semantic_forms' %>
@@ -25,20 +25,15 @@
 <% end %>
 
   <%= raw institutional_bar %>
-
   <div id="wraper">
   <%#= debug(session) %>
   <header>
     <%= render :partial => "sites/viewCover" %>
     <nav>
       <%= raw print_menu(@main) %>
-			<br/>
       <nav class="right">
-				<%= image_tag("font_size_down.png", :onclick => "font_size_down()") %>
-				<%= image_tag("font_size_original.png", :onclick => "font_size_original()") %>
-				<%= image_tag("font_size_up.png", :onclick => "font_size_up()")%>
-        <%= link_to image_tag("flag_uk.png", :size => "24x12"), :locale => "en" %>
-        <%= link_to image_tag("flag_br.png", :size => "24x12"), :locale => "pt-BR" %>
+        <%= raw menu_acessibility %>
+        <%= raw menu_location %>
       </nav>
       <div class="clear"> </div>
     </nav>
@@ -123,9 +118,7 @@
       });
     }); 
   <% end %>
-  <%= javascript_tag do %>
-    SyntaxHighlighter.all()
-  <% end %>
+  <%= javascript_tag "SyntaxHighlighter.all()" %>
 </body>
 </html>
 

@@ -243,4 +243,17 @@ module ApplicationHelper
     </div>'
     bar
   end
+
+  def menu_acessibility
+				menu_a = image_tag("font_size_down.png", :onclick => "font_size_down()")
+				menu_a += image_tag("font_size_original.png", :onclick => "font_size_original()")
+				menu_a += image_tag("font_size_up.png", :onclick => "font_size_up()")
+        menu_a
+  end
+
+  def menu_location
+        menu_l = link_to image_tag("flag_uk.png", :size => "24x12"), :locale => "en"
+        menu_l += link_to image_tag("flag_br.png", :size => "24x12"), :locale => "pt-BR"
+        menu_l
+  end
 end

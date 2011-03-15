@@ -27,6 +27,7 @@ footer { }
   header > nav { padding: 0px 5px 5px 0px; }
   footer > nav { padding: 5px 5px 5px 0px; }
 
+    header nav img { margin-left: 3px; }
     header nav menu,
     footer nav menu { list-style: none outside none; padding: 0; margin: 0; }
     header nav menu li,
