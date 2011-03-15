@@ -1,6 +1,6 @@
-  <% @page.type ||= "Page" %>
-  <% @page_files_unchecked.each do |repo_file| %>
-    <%= check_box_tag("#{@page.type.downcase}[repository_ids][]", repo_file.id, false) %>
-    <%= "#{repo_file.description} (#{repo_file.archive_file_name})" %>
-    <br />
-  <% end %>
+<% @page.type ||= "Page" %>
+<% @page_files_unchecked.each do |repo_file| %>
+  <%= check_box_tag("#{@page.type.downcase}[repository_ids][]", repo_file.id, false) %>
+  <%= "#{repo_file.description} (#{repo_file.archive_file_name})" %>
+  <br />
+<% end %>

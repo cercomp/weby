@@ -8,7 +8,7 @@ body {
   color:#484848;
   width: auto;
   margin: 0 auto; }
-#wraper {
+#wrapper {
   border: 2px solid transparent;
   border-top: none }
 
@@ -21,7 +21,8 @@ footer { }
     footer section#info p { margin: 0; }
 
   /* Define area of top image */
-  /*header div#topimage { overflow: hidden; }*/
+  /*header figure#cover { overflow: hidden; }*/
+  header figure#cover { margin: 0px; }
 
   /* Define Header and Footer menus */
   header > nav { padding: 0px 5px 5px 0px; }
@@ -114,7 +115,8 @@ section#content {
     section#content section#pages .pageright { border-bottom: 1px dotted #DDD; padding: 0px 0 10px 0; text-align: right; }
     section#content section#pages .pageright a img { float: right; padding-left: 15px; }
 
-section#banner { 
+figure#banner {
+  margin: 0;
   text-align: center;
   padding-top: 5px; }
 

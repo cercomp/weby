@@ -1,27 +1,26 @@
-  
-  <% if params[:type] == "Event" %>
-    <% unless self.controller.action_name == "edit" %>
-      <div class="text-field ">
-        <label for="div_event"><%= t("is_event") %></label>
-        <div class="input">
-          <%= link_to (t"no"), new_site_page_path(:type => "News"), :update => "div_event", :remote => true, :onclick => "var img = new Image; img.src = '/images/spinner.gif'; $(this).html('').append(function(){return img})" %>
-        </div>
+<% if params[:type] == "Event" %>
+  <% unless self.controller.action_name == "edit" %>
+    <div class="text-field ">
+      <label for="div_event"><%= t("is_event") %></label>
+      <div class="input">
+        <%= link_to (t"no"), new_site_page_path(:type => "News"), :update => "div_event", :remote => true, :onclick => "var img = new Image; img.src = '/images/spinner.gif'; $(this).html('').append(function(){return img})" %>
       </div>
-    <% end %>
-    <% kind_list = [[t("regional"), "regional"], [t("nacional"), "nacional"], [t("internacional"), "internacional"]] %>
-    <%= f.select :kind, kind_list.map{|p| [p[0], p[1]]}, {:include_blank => true, :label => t("kind")} %>
-    <%= f.text_field :local, :label => t("localization"), :required => true, :help => t("field_required")  %>
-    <%= f.datetime_select :event_begin, :label => (t"event_param", :param => t("begin")), :order => [:year, :month, :day], :use_month_numbers => true %>
-    <%= f.datetime_select :event_end, :label => (t"event_param", :param => t("end")), :order => [:year, :month, :day], :use_month_numbers => true %>
-    <%= f.hidden_field :type, :value => "Event" %>
-  <% else %>
-    <% unless self.controller.action_name == "edit" %>
-      <div class="text-field ">
-        <label for="div_event"><%= t("is_event") %></label>
-        <div class="input">
-          <%= link_to (t"yes"), new_site_page_path(:type => "Event"), :update => "div_event", :remote => true, :onclick => "var img = new Image; img.src = '/images/spinner.gif'; $(this).html('').append(function(){return img})" %>
-          <%= f.hidden_field :type, :value => "News" %>
-        </div>
-      </div>
-    <% end %>
+    </div>
   <% end %>
+  <% kind_list = [[t("regional"), "regional"], [t("nacional"), "nacional"], [t("internacional"), "internacional"]] %>
+  <%= f.select :kind, kind_list.map{|p| [p[0], p[1]]}, {:include_blank => true, :label => t("kind")} %>
+  <%= f.text_field :local, :label => t("localization"), :required => true, :help => t("field_required")  %>
+  <%= f.datetime_select :event_begin, :label => (t"event_param", :param => t("begin")), :order => [:year, :month, :day], :use_month_numbers => true %>
+  <%= f.datetime_select :event_end, :label => (t"event_param", :param => t("end")), :order => [:year, :month, :day], :use_month_numbers => true %>
+  <%= f.hidden_field :type, :value => "Event" %>
+<% else %>
+  <% unless self.controller.action_name == "edit" %>
+    <div class="text-field ">
+      <label for="div_event"><%= t("is_event") %></label>
+      <div class="input">
+        <%= link_to (t"yes"), new_site_page_path(:type => "Event"), :update => "div_event", :remote => true, :onclick => "var img = new Image; img.src = '/images/spinner.gif'; $(this).html('').append(function(){return img})" %>
+        <%= f.hidden_field :type, :value => "News" %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
