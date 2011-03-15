@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
       end
     end
     # Se não for nenhum dos acima use este
-    return "this2html5"
+    return "this2"
   end
 
   def check_authorization
