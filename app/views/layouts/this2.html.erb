@@ -9,12 +9,13 @@
   <%= stylesheet_link_tag 'scaffold' %>
   <%= stylesheet_link_tag 'application' %>
   <%= stylesheet_link_tag 'semantic_forms' %>
-  <%= stylesheet_link_tag 'this2html5' %>
+  <%= stylesheet_link_tag 'this2' %>
   <%= stylesheet_link_tag 'will_paginate' %>
   <%= stylesheet_link_tag 'SyntaxHighlighter/shCore' %>
   <%= stylesheet_link_tag 'SyntaxHighlighter/shThemeDefault' %>
   <%= render :partial => 'sites/viewCsses' %>
 </head>
+
 <%#= debug params %>
 <% if @site.body_width %>
   <body style='width:<%= "#{@site.body_width.to_i + 4}" %>px'>
@@ -25,53 +26,53 @@
 <% end %>
 
   <%= raw institutional_bar %>
+
   <div id="wraper">
-  <%#= debug(session) %>
-  <header>
-    <%= render :partial => "sites/viewCover" %>
-    <nav>
-      <%= raw print_menu(@main) %>
-      <nav class="right">
-        <%= raw menu_acessibility %>
-        <%= raw menu_location %>
+    <%#= debug(session) %>
+
+    <header>
+      <%= render :partial => "sites/viewCover" %>
+      <nav>
+        <%= raw print_menu(@main) %>
+        <nav class="right">
+          <%= raw menu_acessibility %>
+          <%= raw menu_locale %>
+        </nav>
+        <div class="clear"> </div>
       </nav>
-      <div class="clear"> </div>
-    </nav>
-  </header>
+    </header>
 
-  <aside class="left">
-    <nav>
-      <%= raw print_menu(@secondary) %>
-    </nav>
-  </aside>
+    <aside class="left">
+      <nav>
+        <%= raw print_menu(@secondary) %>
+      </nav>
+    </aside>
 
-  <aside class="right">
-    <nav>
-      <%= raw print_menu(@auxiliary) %>
-    </nav>
-    <%= render :partial => "sites/viewBanner"  %>
-  </aside>
+    <aside class="right">
+      <nav>
+        <%= raw print_menu(@auxiliary) %>
+      </nav>
+      <%= render :partial => "sites/viewBanner"  %>
+    </aside>
 
-  <section id="content">
-    <%= raw flash_message %>
-
-    <%= raw adminnav(@site) %>
-
-    <%= yield %>
-  </section>
-
-  <footer class="clear">
-    <nav>
-      <%= raw print_menu(@base) %>
-      <div class="clear"></div>
-    </nav>
-    <nav class="right">
-      <%= link_to t("feedback.one"), new_site_feedback_path(@site), :class => 'icon icon-add' %>
-    </nav>
-    <section id="info">
-      <%= raw @site.footer %>
+    <section id="content">
+      <%= raw flash_message %>
+      <%= raw adminnav(@site) %>
+      <%= yield %>
     </section>
-  </footer>
+
+    <footer class="clear">
+      <nav>
+        <%= raw print_menu(@base) %>
+        <div class="clear"></div>
+      </nav>
+      <nav class="right">
+        <%= link_to t("feedback.one"), new_site_feedback_path(@site), :class => 'icon icon-add' %>
+      </nav>
+      <section id="info">
+        <%= raw @site.footer %>
+      </section>
+    </footer>
   </div>
 
   <%= javascript_include_tag "SyntaxHighlighter/shCore" %>
@@ -83,42 +84,42 @@
     <%#= javascript_include_tag "http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js" %>
   <![endif]-->
   <%= javascript_include_tag "tiny_mce/jquery.tinymce" %>
+  <%= javascript_tag "SyntaxHighlighter.all()" %>
   <%= javascript_tag do %>
-    $().ready(function() {  
-      $('textarea.mceAdvance').tinymce({  
-        script_url : '/javascripts/tiny_mce/tiny_mce.js',  
+    $().ready(function() {
+      $('textarea.mceAdvance').tinymce({
+        script_url : '/javascripts/tiny_mce/tiny_mce.js',
         editor_selector : "mceAdvance",
         mode : "textareas",
         theme : "advanced",
         browsers : ["msie", "gecko", "safari"],
         convert_fonts_to_spans : true,
-        theme_advanced_resizing : true, 
-        theme_advanced_toolbar_location : "top",  
-        theme_advanced_statusbar_location : "bottom", 
+        theme_advanced_resizing : true,
+        theme_advanced_toolbar_location : "top",
+        theme_advanced_statusbar_location : "bottom",
         plugins : "inlinepopups,safari,curblyadvimage,paste,table",
         theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,fontselect,fontsizeselect",
         theme_advanced_buttons2 : "forecolor,backcolor,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup",
         theme_advanced_buttons3 : "tablecontrols,|,removeformat,charmap,help,code",
         plugin_preview_pageurl : "<%= @site.name.to_s if @site %>"
       });
-    }); 
-    $().ready(function() {  
-      $('textarea.mceSimple').tinymce({  
-        script_url : '/javascripts/tiny_mce/tiny_mce.js',  
+    });
+    $().ready(function() {
+      $('textarea.mceSimple').tinymce({
+        script_url : '/javascripts/tiny_mce/tiny_mce.js',
         editor_selector : "mceSimple",
         mode : "textareas",
         theme : "advanced",
         browsers : ["msie", "gecko", "safari"],
-        theme_advanced_resizing : true, 
-        theme_advanced_toolbar_location : "top",  
-        theme_advanced_statusbar_location : "bottom", 
+        theme_advanced_resizing : true,
+        theme_advanced_toolbar_location : "top",
+        theme_advanced_statusbar_location : "bottom",
         theme_advanced_buttons1 : "bold,italic,underline,|,justifyleft,justifycenter,justifyright,justifyfull,|,bullist,numlist,|,link,unlink,|,removeformat,cleanup,help,|,pasteword,code",
         theme_advanced_buttons2 : "",
         theme_advanced_buttons3 : ""
       });
-    }); 
+    });
   <% end %>
-  <%= javascript_tag "SyntaxHighlighter.all()" %>
 </body>
 </html>
 
