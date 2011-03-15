@@ -24,41 +24,7 @@
   <body>
 <% end %>
 
-  <%= raw institute_bar :bars => ["mec","ufg"] %>
-
-  <div class="barra_governo">
-    <div class="barra_governo_box">
-      <div class="box2">
-        <div class="box3">
-          <div class="box4">
-            <div class="marca_mec">
-              <a id="top_barra" name="top_barra" target="_blank" href="http://portal.mec.gov.br" class="txtIndent" title="Minist&eacute;rio da Educa&ccedil;&atilde;o">MEC - Minist&eacute;rio da Educa&ccedil;&atilde;o</a>
-            </div>
-            <div class="marca_brasil">
-              <a href="http://www.brasil.gov.br/" target="_blank" title="Portal Brasil">Portal Brasil</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="barra_ufg">
-    <div class="barra_ufg_box">
-      <a href="http://www.ufg.br"><img src="/images/ufg.png" border="0" alt="UFG" />Universidade Federal de Goiás</a>
-      <select onchange="if(options[selectedIndex].value) window.location.href= (options[selectedIndex].value)">
-        <option value="" selected="selected">Portal UFG</option>
-        <option value="http://sistemas.ufg.br/PORTAL/arquivos/login.php">Portal UFGNet</option>
-        <option value="http://www.ufg.br/page.php?menu_id=180&amp;pos=esq">Pró-reitorias</option>
-        <option value="http://www.ufg.br/page.php?menu_id=277&amp;pos=esq">Unidades Acadêmicas</option>
-        <option value="http://www.prodirh.ufg.br/">Concursos</option>
-        <option value="http://www.vestibular.ufg.br/ps2009-2/home.htm">Vestibular</option>
-        <option value="http://www.ufg.br/page.php?tipo=fale_conosco_form">Fale Conosco</option>
-        <option value="http://www.ufg.br/page.php?menu_id=282&amp;pos=esq">Dúvidas frequentes</option>
-      </select>
-      <div style="clear: both;"></div>
-     </div>
-  </div>
+  <%= raw institutional_bar %>
 
   <div id="wraper">
   <%#= debug(session) %>
