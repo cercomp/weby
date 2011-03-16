@@ -47,7 +47,7 @@ end
 
 class Mover
 
-  @folders  = ['banners', 'files']
+  @folders  = ['banners', 'files', 'imgd', 'topo']
   @files = @ids = []
 
   def self.copy_files
@@ -71,6 +71,7 @@ class Mover
         puts `cp -vr #{FROM + folder + '/' + id + '/*'} #{destino}`
       end
 
+      #### Remove subpastas, trazendo todos os arquivos para a pasta principal
       # Busca por diretórios dentro das pastas
 	    puts "Removendo diretórios internos da pasta \"#{destino}\""
       dirs = `find #{destino}/ -maxdepth 1 -mindepth 1 -type d`.split("\n")
