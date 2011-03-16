@@ -5,7 +5,7 @@ class Site < ActiveRecord::Base
     "#{name}"
   end
   def self.search(search, page)
-    paginate :per_page => 10, :page => page, :conditions => ['name like ?', "%#{search}%"]  
+    paginate :per_page => 20, :page => page, :conditions => ['name like ?', "%#{search}%"]  
   end
   validates_presence_of :name, :url
 
