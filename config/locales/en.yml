@@ -99,6 +99,7 @@ en:
   feedback_sent: "Feedback sent successfully!"
   field_required: "Field required!"
   fill_email_form: "Fill out the form below to reset your password. It will be e-mailed to you" 
+  first_name: "First name"
   forgot_password: "Forgot password"
   footer: "Footer"
   footer_text: "Institution - Address. Zip XXXXX-XXX - Post Box XXX. City-State - Fone: +XX XX XXXX-XXXX; Customer Care: +XX XX XXXX-XXXX, +XX XXXX-XXXX. Fax: +XX XX XXXX-XXXX"
@@ -128,6 +129,7 @@ en:
 
 #---L---#
   last_login: "Last login %{param}"
+  last_name: "Last name"
   last_request: "Last request at"
   layout: "Layout"
   left: "Left"
@@ -160,6 +162,7 @@ en:
   message: "Message"
   mini: "Mini"
   missing_account: "We're sorry, but we could not locate your account. If you are having issues try copying and pasting the URL from your email into your browser or restarting the reset password process."  
+  mobile: "Mobile"
   move: "Move"
   move_menu_up: "Move menu up"
   move_menu_down: "Move menu down"
@@ -182,7 +185,9 @@ en:
   newsletter: 
     one: "Newsletter"
     other: "Newsletters"
-  new_param: "New %{param}"
+  new_param: 
+    fem: "New %{param}"
+    masc: "New %{param}"
   no_need_to_login: "You should not be logged in to access this page."
   no_mail: "No user was found with that email address."
   no_permission_to_activate_deactivate: "You don´t have permission to Activate/Deactivate"
@@ -209,6 +214,7 @@ en:
   permission: 
     one: "Permission"
     other: "Permissions"
+  phone: "Phone number"
   picture: "picture"
   picture_text: "Picture´s text"
   position: "Position"

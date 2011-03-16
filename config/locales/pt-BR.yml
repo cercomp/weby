@@ -98,7 +98,8 @@ pt-BR:
     other: "Fale Conosco"
   feedback_sent: "Feedback enviado com sucesso!"
   field_required: "Campo obrigatório!"
-  fill_email_form: "Preencha o formulário para resgatar sua senha. Ela será enviada para seu e-mail" 
+  fill_email_form: "Preencha o formulário para resgatar sua senha. Ela será enviada para seu e-mail"
+  first_name: "Nome" 
   forgot_password: "Perdi minha senha"
   footer: "Rodapé"
   footer_text: "Instituição - Endereço. CEP XXXXX-XXX - Caixa Postal XXX. Cidade-Estado - Fone: Geral: +XX XX XXXX-XXXX; Atendimento ao Usuário: +XX XX XXXX-XXXX, +XX XXXX-XXXX. Fax: +XX XX XXXX-XXXX"
@@ -128,6 +129,7 @@ pt-BR:
 
 #---L---#
   last_login: "Último entrada %{param}"
+  last_name: "Sobrenome"
   last_request: "Última submissão em"
   layout: "Leiaute"
   left: "Esquerdo"
@@ -160,6 +162,7 @@ pt-BR:
   message: "Mensagem"
   mini: "Miniatura"
   missing_account: "Desculpe-nos, mas não conseguimos localizar sua conta. Se você está tentando copiar e colar a URL de um email dentro do seu navegador ou reiniciando o processo de recuperar senha."
+  mobile: "Celular"
   move: "Mover"
   move_menu_up: "Move o menu para cima"
   move_menu_down: "Move o menu para baixo"
@@ -211,6 +214,7 @@ pt-BR:
   permission: 
     one: "Permissão"
     other: "Permissões"
+  phone: "Telefone"
   picture: "Imagem"
   picture_text: "Texto da imagem"
   position: "Posição"

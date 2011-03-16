@@ -1,6 +1,9 @@
 <fieldset>
   <legend> <%= t("my_profile") %> </legend>
 
+  <p> <b><%= t"name" %>:</b> <%= h @user.first_name%> <%= h @user.last_name %> </p>
+  <p> <b><%= t"phone" %>:</b> <%= h @user.phone %> </p>
+  <p> <b><%= t"mobile" %>:</b> <%=h @user.mobile %> </p>
   <p> <b><%= t"login" %>:</b> <%=h @user.login %> </p>
   <p> <b><%= t"login_count" %>:</b> <%=h @user.login_count %> </p>
   <p> <b><%= t"last_request" %>:</b> <%=h @user.last_request_at %> </p>
