@@ -259,4 +259,13 @@ module ApplicationHelper
         menu_l += link_to image_tag("flag_br.png", :size => "24x12"), :locale => "pt-BR"
         menu_l
   end
+
+  def menu_contraste
+        if params[:contraste] != 'NEGATIVO'
+          menu_c =  link_to "contraste", :contraste => 'NEGATIVO'
+        else
+          menu_c =link_to "contraste", :contraste => '' 
+        end
+        menu_c
+  end
 end
