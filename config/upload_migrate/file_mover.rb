@@ -62,6 +62,10 @@ class Mover
 
     # Para cada id de site conhecido
     @ids.each do |id|
+      if MAP[id]['weby'].nil?
+        next
+      end
+
       destino = TO + MAP[id]['weby']
       # Se a pasta destino ainda não existe
       Dir.mkdir("#{destino}") unless Dir.exists?("#{destino}")
