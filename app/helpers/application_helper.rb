@@ -261,8 +261,8 @@ module ApplicationHelper
   end
 
   def menu_contraste
-        if params[:contraste] != 'NEGATIVO'
-          menu_c =  link_to "contraste", :contraste => 'NEGATIVO'
+        if params[:contraste] != 'negativo'
+          menu_c =  link_to "contraste", :contraste => 'negativo'
         else
           menu_c =link_to "contraste", :contraste => '' 
         end

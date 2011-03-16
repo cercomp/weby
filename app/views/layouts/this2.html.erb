@@ -14,12 +14,12 @@
   <%= stylesheet_link_tag 'SyntaxHighlighter/shCore' %>
   <%= stylesheet_link_tag 'SyntaxHighlighter/shThemeDefault' %>
   <%= render :partial => 'sites/viewCsses' %>
-  <% if params[:contraste] == 'NEGATIVO' %>
+  <% if params[:contraste] == 'negativo' %>
     <%= stylesheet_link_tag 'negativo' %>
   <%end%>
 </head>
 
-<%= debug params %>
+<%#= debug params %>
 <% if @site.body_width %>
   <body style='width:<%= "#{@site.body_width.to_i + 4}" %>px'>
 <% elsif @top_banner_width %>
