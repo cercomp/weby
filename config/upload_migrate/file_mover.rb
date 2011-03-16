@@ -62,7 +62,7 @@ class Mover
 
     # Para cada id de site conhecido
     @ids.each do |id|
-      if MAP[id]['weby'].nil?
+      if MAP[id].nil? || MAP[id]['weby'].nil?
         next
       end
 
