@@ -4,6 +4,9 @@ class Site < ActiveRecord::Base
   def to_param
     "#{name}"
   end
+  def self.search(search, page)
+    paginate :per_page => 10, :page => page, :conditions => ['name like ?', "%#{search}%"]  
+  end
   validates_presence_of :name, :url
 
   has_many :roles

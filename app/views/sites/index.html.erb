@@ -2,10 +2,18 @@
   <legend><%= t"site.other" %></legend>
 
   <% if check_permission(SitesController, ["new"])  %>
-    <div class="contextual">
+    <div class="left">
       <p> <%= link_to (t"new_param.masc", :param => (t"site.one")), new_site_path, :class => 'icon icon-add' %> </p>
     </div>
   <% end %>
+
+  <center>
+    <%= form_tag "/", :method => 'get', :remote => true do %>
+      <%= label_tag t("search") %>
+      <%= text_field_tag :search %>
+      <%= submit_tag t("submit") %>
+    <% end %>
+  </center>
 
   <div id="list">
     <%= render :partial => "list" %>
