@@ -35,8 +35,17 @@ class Migrate_this2weby
     sites_this = @con_this.exec(select_sites)
     # Laço de repetição
     sites_this.each do |s_this|
-      site_name = /http:\/\/www.([a-z]+).*\/([a-z]+)/.match("#{s_this['caminho_http']}").nil? ? /http:\/\/www.([a-z]+).*/.match("#{s_this['caminho_http']}")[1] : /http:\/\/www.([a-z]+).*\/([a-z]+)/.match("#{s_this['caminho_http']}")[2]
+      site_name = /http:\/\/www.([a-z]+).*\/([a-z]+)/.match("#{s_this['caminho_http']}")
+      if not site_name.nil?
+        site_name = "#{site_name[1]}_#{site_name[2]}"
+      else
+        site_name = /http:\/\/www.([a-z]+).*/.match("#{s_this['caminho_http']}")
+        if not site_name.nil?
+          site_name = site_name[1]
+        end
+      end
       site_name ||= s_this['site_id']
+
       select_rodape = "SELECT * FROM rodape WHERE site_id='#{s_this['site_id']}'"
       puts "\tRodapé: #{select_rodape}"
       rodape = @con_this.exec(select_rodape)
@@ -61,7 +70,7 @@ class Migrate_this2weby
         # Separa o primeiro nome do resto
         first_name,last_name = u_this['nome'].split(" ",0)
         # Populando weby.users
-        insert_usuario = "INSERT INTO users (register,first_name,last_name,login,crypted_password,email,phone,mobile,status,password_salt,persistence_token,single_access_token,perishable_token) VALUES ('#{u_this['matricula']}','#{first_name}','#{last_name}','#{u_this['login_name']}','#{u_this['senha']}','#{u_this['email']}','#{u_this['telefone']}','#{u_this['celular']}','#{u_this['status']}','#{Authlogic::Random.friendly_token}','#{Authlogic::Random.hex_token}','#{Authlogic::Random.friendly_token}','#{Authlogic::Random.friendly_token}') RETURNING id"
+        insert_usuario = "INSERT INTO users (register,first_name,last_name,login,crypted_password,email,phone,mobile,status,password_salt,persistence_token,single_access_token,perishable_token) VALUES ('#{u_this['matricula']}','#{treat(first_name)}','#{treat(last_name)}','#{u_this['login_name']}','#{u_this['senha']}','#{u_this['email']}','#{u_this['telefone']}','#{u_this['celular']}','#{u_this['status']}','#{Authlogic::Random.friendly_token}','#{Authlogic::Random.hex_token}','#{Authlogic::Random.friendly_token}','#{Authlogic::Random.friendly_token}') RETURNING id"
         puts "\t\t#{insert_usuario}\n" if @verbose
         user = @con_weby.exec(insert_usuario)
         # Relacionando usuários na variável de conversão
