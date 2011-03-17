@@ -3,13 +3,16 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 
 /* Define basic style to layout */
 html { background: black; }
+
 body {
   font-family: Verdana, sans-serif; 
-  color:#484848;
+  color:white;
+	background: black;
   width: auto;
   margin: 0 auto; }
 #wrapper {
-  border: 2px solid transparent;
+  border: 2px solid white;
+	color: white;
   border-top: none }
 
 /* Define style to Header, Footer and contents */
@@ -31,9 +34,9 @@ footer { }
     header nav menu,
     footer nav menu { list-style: none outside none; padding: 0; margin: 0; }
     header nav menu li,
-    footer nav menu li { padding: 0 0 0 5px; margin-right: 2px; float: left; border: 1px solid silver; }
+    footer nav menu li { padding: 0 0 0 5px; margin-right: 2px; float: left; border: 1px solid white; }
     header nav menu li:hover,
-    footer nav menu li:hover { position: relative; z-index: 100; background-color: #FF0000; }
+    footer nav menu li:hover { position: relative; z-index: 100; background-color: white; }
     header nav menu li:hover > menu,    		
     footer nav menu li:hover > menu {	left: -21px; z-index: -1; }
     header nav menu li:hover menu li:hover > a,
@@ -45,7 +48,7 @@ footer { }
     header nav menu li menu li menu,
     footer nav menu li menu li menu { margin-left: 0px; margin-top: 0px; }
     header nav menu li a,
-    footer nav menu li a { background: #fff; display: block; line-height: 25px; margin: 0; padding-left: 5px; width: 81px; padding-right: 14px; }
+    footer nav menu li a { background: black; display: block; line-height: 25px; margin: 0; padding-left: 5px; width: 81px; padding-right: 14px; }
     header nav menu li > a,
     footer nav menu li > a { text-overflow: ellipsis; overflow: hidden; white-space:nowrap; }
     header nav > menu > li:hover > a,
@@ -67,9 +70,9 @@ aside { width: 155px; position: relative; }
   /* Define style to menu in side area */
   /* aside > menu { width: 5em; } */
   aside menu { padding: 0; margin: 0; }
-  aside menu li { position: relative; margin: 0; list-style-type: none; border: 1px solid silver; }
-  aside menu li > a { background-color: #FFF; }
-  aside menu li:hover { background-color: #FF0000; }
+  aside menu li { position: relative; margin: 0; list-style-type: none; border: 1px solid white; }
+  aside menu li > a { background-color: black; }
+  aside menu li:hover { background-color: black; }
   aside menu li:hover > menu { display: block; position: absolute; top: -1px; }
   aside menu li menu { width: 155px; display: none; border-width: 0px; }
   aside menu li a { display: block; padding: 5px 7px; text-decoration: none; }
@@ -99,15 +102,15 @@ section#content {
     padding-bottom:5px; }
     section#content section#pages h1 {
       font-size: 160%;
-      color: #1C1C1C; }
+      color: white; }
     section#content section#pages h2 {
       line-height: 100%;
-      color: #2F4F4F;
+      color: white;
       font-size: 140%; }
     section#content section#pages h3 {
       font-size: 120%;
       line-height: 100%;
-      color: #696969; }
+      color: white; }
     section#content section#pages p { }
 
     section#content section#pages .pageleft { border-bottom: 1px dotted #DDD; padding: 0px 0 10px 0; text-align: left; }
@@ -126,13 +129,13 @@ figure#banner {
 .left { float: left; }
 .right { float: right; }
 
-table.zebra tr:nth-child(2n+2) { background-color: #F6F7F8; }
+table.zebra tr:nth-child(2n+2) { background-color: black; }
 table.fullwidth { width: 100%; }
 table.border,
 table.border th,
 table.border td {
   border-collapse: collapse;
-  border: 1px solid silver;
+  border: 1px solid white;
 }
 
 table th,
