@@ -7,6 +7,23 @@ DEBUG = 1
 #
 require 'yaml'
 
+# Função retirada do paperclip
+class Paperclip
+  # Infer the MIME-type of the file from the extension.
+  def self.content_type file
+      type = (file.match(/\.(\w+)$/)[1] rescue "octet-stream").downcase
+      case type
+      when %r"jp(e|g|eg)"            then "image/jpeg"
+      when %r"tiff?"                 then "image/tiff"
+      when %r"png", "gif", "bmp"     then "image/#{type}"
+      when "txt"                     then "text/plain"
+      when %r"html?"                 then "text/html"
+      when "js"                      then "application/js"
+      when "csv", "xml", "css"       then "text/#{type}"
+      end
+    end
+end
+
 # É esperado pelo menos um argumento
 #   - o caminho do arquivo .yml com o mapa dos ids dos sites,
 #     do this para o weby
@@ -32,7 +49,9 @@ cpath = `pwd`.chomp + '/' # current path
 MAP     = open(ARGV[0]) {|f| YAML.load(f) }
 FROM    = ARGV[1] || cpath + 'uploads/'
 TO      = 'weby_structure'
-VERBOSE = true 
+VERBOSE = true
+# TODO temporario
+FILE    = File.new 'repositorie_inserts.sql', 'w'
 
 # Cria o diretório que conterá os arquivos na nova estrutura
 begin
@@ -47,8 +66,9 @@ end
 
 class Mover
 
-  @folders  = ['banners', 'files', 'imgd', 'topo']
-  @files = @ids = []
+  #@folders  = ['banners', 'files', 'imgd', 'topo']
+  @folders  = ['banners']
+  @ids = []
 
   def self.copy_files
     # Descobre os ids dos sites
@@ -89,6 +109,48 @@ class Mover
         # verfica novamente os diretórios
         dirs = `find #{destino}/ -maxdepth 1 -mindepth 1 -type d`.split("\n")
       end
+
+      # Depois que todos os arquivos foram movidos, registra todos eles no banco
+      files = `find "#{destino}" -maxdepth 1 -mindepth 1`.split("\n")
+      db_registry(files, MAP[id]['weby'])
+
+    end
+  end
+
+  def self.db_registry(files, site_id)
+    puts "Criando as sqls para os arquivos do site #{site_id}(id)"
+
+    files.each do |file|
+      file_name = file.slice(file.rindex('/')+1, file.size)
+      file_type = Paperclip.content_type  file
+      file_size = File.new(file).size
+      descricao = "Este arquivo ainda não possui descrição"
+
+      sql = %Q{
+insert into repositories(
+  site_id,
+  created_at,
+  updated_at,
+  archive_file_name,
+  archive_content_type,
+  archive_file_size,
+  archive_updated_at,
+  description
+) 
+values (
+  #{site_id}, 
+  '#{Time.now}',
+  '#{Time.now}',
+  '#{file_name}',
+  '#{file_type}',
+  '#{file_size}',
+  '#{Time.now}',
+  '#{descricao}'
+);\n
+}
+
+      FILE.puts sql
+      puts sql
     end
   end
 
@@ -103,7 +165,6 @@ class Mover
     puts "Movendo arquivos avulsos"
     
     to_move = (Dir.entries(FROM) - ['.', '..']) - @folders
-    puts "debug\n#{to_move}"
     if to_move.size > 0
       temp_folder = "#{TO}/temp"
 
@@ -120,3 +181,5 @@ end
 Mover.copy_files
 Mover.move_temp
 Mover.tar_dir
+
+
