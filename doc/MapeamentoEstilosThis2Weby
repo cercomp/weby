@@ -1,0 +1,53 @@
+O mapeamento ocorre com o valor banco de dados do THIS2 para uma variável com finalidade
+de criar um CSS que corresponda no WEBY
+
+== Principal ==
+
+# Fundo do site
+  THIS2: body_background
+  WEBY: Fundo do site
+
+# Borda dos menus
+  THIS2: body_background
+
+# Fundo Tabela frontal das páginas
+  THIS2: cor_borda_noticias
+
+# Cor Letra Titulo Tabela Frontal
+  THIS2: cor_letra_link_noticias_out
+
+# Cor Letra Titulo Tabela Frontal Hover
+  THIS2: cor_letra_link_noticias_over
+
+# Cor Letra Tabela Frontal
+  THIS2: cor_letra_noticias_resumos
+
+# Cor da letra do rodape
+  THIS2: cor_letra_rodape
+
+== Menu ==
+
+  == Esquerdo ==
+
+  == Direito ==
+
+  == Superior ==
+
+  == Inferior ==
+
+== CSS ==
+
+# Avançado
+  THIS2: avancado
+
+== Estilo das páginas ==
+
+# Cor Links
+
+# Cor Links Hover
+
+# Cor Letra
+
+# Cor Titulos
+
+# Cor Subtitulos 

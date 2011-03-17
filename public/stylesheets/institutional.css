@@ -17,3 +17,5 @@
     .barra_ufg .barra_ufg_box a:hover {
       text-decoration: underline;
       color: #000; }
+
+.barra_governo { width: auto !important;}

@@ -1,7 +1,7 @@
 <% unless @site.csses.empty? %>
   <% @site.sites_csses.where(:publish => :true).each do |c| %>
     <style>
-      <%= c.css.css %>
+      <%= raw c.css.css %>
     </style>
   <% end %>
 <% end %>

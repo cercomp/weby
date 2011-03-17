@@ -9,8 +9,8 @@ body {
   width: auto;
   margin: 0 auto; }
 #wrapper {
-  border: 2px solid transparent;
-  border-top: none }
+  background: white;
+  border: 2px solid transparent; }
 
 /* Define style to Header, Footer and contents */
 header,
