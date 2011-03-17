@@ -92,7 +92,8 @@ class Mover
 
       # Verifica cada pasta conhecida
       @folders.each do |folder|
-        puts `cp -vr #{FROM + folder + '/' + id + '/*'} #{destino}`
+        #puts `cp -vr #{FROM + folder + '/' + id + '/*'} #{destino}`
+        puts `for i in $(find #{FROM + folder + '/' + id + '/'} -type f -printf "%P\n"); do cp -v #{FROM + folder + '/' + id + '/'}$i #{destino}/original_$i; done`
       end
 
       #### Remove subpastas, trazendo todos os arquivos para a pasta principal
@@ -166,7 +167,7 @@ values (
     
     to_move = (Dir.entries(FROM) - ['.', '..']) - @folders
     if to_move.size > 0
-      temp_folder = "#{TO}/temp"
+      temp_folder = "#{TO}temp" # Diretório foi incrementado com barra linha 59
 
       puts `mkdir #{temp_folder}`
       to_move.each do |d|
