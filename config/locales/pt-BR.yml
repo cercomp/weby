@@ -104,6 +104,9 @@ pt-BR:
   footer: "Rodapé"
   footer_text: "Instituição - Endereço. CEP XXXXX-XXX - Caixa Postal XXX. Cidade-Estado - Fone: Geral: +XX XX XXXX-XXXX; Atendimento ao Usuário: +XX XX XXXX-XXXX, +XX XXXX-XXXX. Fax: +XX XX XXXX-XXXX"
   follow: "Seguir"
+  font_size_down: "Diminuir o tamanho das letras."
+  font_size_normal: "Voltar as letras para o tamanho padrão."
+  font_size_up: "Aumentar o tamanho das letras."
 
 #---G---#
   group:
