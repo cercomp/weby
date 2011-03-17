@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
     reset_perishable_token!
     Notifier.deliver_password_reset_instructions(self)
   end  
+  
+  validates_presence_of :first_name, :last_name
 
   has_and_belongs_to_many :roles
 

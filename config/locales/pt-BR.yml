@@ -402,18 +402,18 @@ pt-BR:
         text: "Texto"
         url: "Url"
       event:
-         title: "Título"
-         local: "Local"
+        title: "Título"
+        local: "Local"
       feedback:
-          name: "Nome"
-          email: "Email"
-          subject: "Assunto"
-          message: "Mensagem"
+        name: "Nome"
+        email: "Email"
+        subject: "Assunto"
+        message: "Mensagem"
       group:
-          name: "Nome"
+        name: "Nome"
       history:
-         title: "Título"
-         content: "Conteúdo"
+        title: "Título"
+        content: "Conteúdo"
       menu:
         title: "Texto"
       news:
@@ -429,6 +429,8 @@ pt-BR:
         password: "Senha"
         password_confirmation: "Confirmação da senha"
         user_extended_name: "Nome"
+        first_name: "Nome"
+        last_name: "Sobrenome"
 
     errors:
       template:

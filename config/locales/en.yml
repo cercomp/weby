@@ -402,18 +402,18 @@ en:
         text: "Text"
         url: "Url"
       event:
-         title: "Title"
-         local: "Local"
+        title: "Title"
+        local: "Local"
       feedback:
-          name: "Name"
-          email: "Email"
-          subject: "Subject"
-          message: "Message"
+        name: "Name"
+        email: "Email"
+        subject: "Subject"
+        message: "Message"
       group:
-          name: "Name"
+        name: "Name"
       history:
-         title: "Title"
-         content: "Content"
+        title: "Title"
+        content: "Content"
       menu:
         title: "Title"
       news:
@@ -429,6 +429,8 @@ en:
         password: "Password"
         password_confirmation: "Confirm password"
         user_extended_name: "Name"
+        first_name: "First name"
+        last_name: "Last name"
 
     errors:
       template:
