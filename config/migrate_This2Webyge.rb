@@ -46,11 +46,10 @@ class Migrate_this2weby
       end
       site_name ||= this_site['site_id']
 
-      select_rodape = "SELECT * FROM rodape WHERE site_id='#{this_site['site_id']}'"
+      select_rodape = "SELECT endereco,telefone FROM rodape WHERE site_id='#{this_site['site_id']}'"
       puts "\tRodapé: #{select_rodape}"
       rodape = @con_this.exec(select_rodape)
-      #rodape_text = "#{rodape[0]['endereco']} #{rodape[0]['telefone']}" if not rodape[0].nil?
-      rodape_text = ""
+      rodape_text = "#{treat(rodape.first['endereco'])} #{rodape.first['telefone']}" unless rodape.first.nil?
       insert_site = "INSERT INTO sites (name,url,description,footer) VALUES ('#{site_name}','#{this_site['caminho_http']}','#{pre_treat(this_site['nm_site'])}','#{rodape_text}') RETURNING id"
       site = @con_weby.exec(insert_site)
       puts "\t\t(#{site[0]['id']}) #{insert_site}\n" if @verbose
@@ -176,7 +175,7 @@ class Migrate_this2weby
       #   1o. menus   (Hash)    Onde os índices são as tabelas no this e os valores são seus respectivos no weby
       #   2o. this_id (integer) id do site no this
       #   3o. weby_id (integer) id do site no weby
-      migrate_this_menus({'direito' => 'auxiliary', 'esquerdo' => 'secondary', 'superior' => 'main', 'inferior' => 'base'}, s_this['site_id'], site[0]['id'])
+      migrate_this_menus({'direito' => 'auxiliary', 'esquerdo' => 'secondary', 'superior' => 'main', 'inferior' => 'base'}, this_site['site_id'], site[0]['id'])
 
     end
     this_sites.clear()
@@ -241,7 +240,7 @@ class Migrate_this2weby
       menu_this.clear()
     end
   end
-
+  # Pré tratamento de caracteres
   def pre_treat(string)
     unless string.nil?
       coder = HTMLEntities.new
@@ -250,7 +249,7 @@ class Migrate_this2weby
     end
     return string
   end
- 
+  # Tratamento de caracteres 
   def treat(string)
     unless string.nil?
       if string.match(/javascript:mostrar_pagina\('([0-9]+)','([0-9]+)'\);/)
@@ -263,7 +262,7 @@ class Migrate_this2weby
     end
     return string
   end
-
+  # Destrutor
   def finalize
     @con_this.close()
     @con_weby.close()
