@@ -1,53 +1,98 @@
-O mapeamento ocorre com o valor banco de dados do THIS2 para uma variável com finalidade
-de criar um CSS que corresponda no WEBY
-
 == Principal ==
-
-# Fundo do site
-  THIS2: body_background
-  WEBY: Fundo do site
-
-# Borda dos menus
-  THIS2: body_background
-
-# Fundo Tabela frontal das páginas
-  THIS2: cor_borda_noticias
-
-# Cor Letra Titulo Tabela Frontal
-  THIS2: cor_letra_link_noticias_out
-
-# Cor Letra Titulo Tabela Frontal Hover
-  THIS2: cor_letra_link_noticias_over
-
-# Cor Letra Tabela Frontal
-  THIS2: cor_letra_noticias_resumos
-
-# Cor da letra do rodape
-  THIS2: cor_letra_rodape
+  # Fundo do site
+    THIS2: body_background
+  # Borda dos menus
+    THIS2: body_background
+  # Fundo Tabela frontal das páginas
+    THIS2: cor_borda_noticias
+  # Cor Letra Titulo Tabela Frontal
+    THIS2: cor_letra_link_noticias_out
+  # Cor Letra Titulo Tabela Frontal Hover
+    THIS2: cor_letra_link_noticias_over
+  # Cor Letra Tabela Frontal
+    THIS2: cor_letra_noticias_resumos
+  # Cor da letra do rodape
+    THIS2: cor_letra_rodape
 
 == Menu ==
 
   == Esquerdo ==
 
+    == Menu ==
+      # Cor
+        THIS2: cor_mouseout
+      # Cor Hover
+        THIS2: cor_mouseover
+      # Cor fonte
+        THIS2: cor_letra_out
+      # Cor fonte hover
+        THIS2: cor_letra_hover
+
+    == Submenu ==
+      # Cor
+        THIS2: cor_td_subitem_mouseout
+      # Cor Hover
+        THIS2: cor_td_subitem_mouseover
+      # Cor fonte
+        THIS2: cor_letra_subitem_out
+      # Cor fonte hover
+        THIS2: cor_letra_subitem_over
+
   == Direito ==
+    == Menu ==
+      # Cor
+        THIS2: cor_mouseout2
+      # Cor Hover
+        THIS2: cor_mouseover2
+      # Cor fonte
+        THIS2: cor_letra_out2
+      # Cor fonte hover
+        THIS2: cor_letra_hover2
+
+    == Submenu ==
+      # Cor
+        THIS2: cor_td_subitem_mouseout2
+      # Cor Hover
+        THIS2: cor_td_subitem_mouseover2
+      # Cor fonte
+        THIS2: cor_letra_subitem_out2
+      # Cor fonte hover
+        THIS2: cor_letra_subitem_over2
 
   == Superior ==
+    == Menu ==
+      # Cor
+        THIS2: cor_mouseout3
+      # Cor Hover
+        THIS2: cor_mouseover3
+      # Cor fonte
+        THIS2: cor_letra_out3
+      # Cor fonte hover
+        THIS2: cor_letra_hover3
 
   == Inferior ==
+    == Menu ==
+      # Cor
+        THIS2: cor_mouseout4
+      # Cor Hover
+        THIS2: cor_mouseover4
+      # Cor fonte
+        THIS2: cor_letra_out4
+      # Cor fonte hover
+        THIS2: cor_letra_hover4
 
 == CSS ==
-
-# Avançado
-  THIS2: avancado
+  # Avançado
+    THIS2: avancado
 
 == Estilo das páginas ==
-
-# Cor Links
-
-# Cor Links Hover
-
-# Cor Letra
-
-# Cor Titulos
-
-# Cor Subtitulos 
+  # Cor Links
+    THIS2: cor_letra_links_out
+  # Cor Links Hover
+    THIS2: cor_letra_links_over
+  # Cor Letra
+    THIS2: cor_letra_paragrafos
+  # Cor Titulos
+    THIS2: cor_letra_subtitulos (Sim esta trocado mesmo)
+  # Cor Subtitulos
+    THIS2: cor_letra_titulos
