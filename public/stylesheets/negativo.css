@@ -4,6 +4,51 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 /* Define basic style to layout */
 html { background: black; }
 
+/*Links*/
+a, a:link, a:visited { color: white; text-decoration: none; }
+a:hover, a:active { color: white; text-decoration: underline; }
+a img{ border: 0; text-decoration: none;}
+
+/*Legends*/
+legend {
+background-color: black;
+border: 1px solid white;
+color: white;
+font-size: 130%;
+font-weight: bold;
+padding: 5px;
+}
+
+/***** Tables *****/
+table.list { border: 1px solid #e4e4e4;  border-collapse: collapse; width: 100%; margin-bottom: 0px; }
+table.list th { background-color: black; padding: 4px; /*white-space:nowrap;*/ }
+table.list td { vertical-align: top; }
+table.list td.id { width: 2%; text-align: center;}
+table.list td.checkbox { width: 15px; padding: 0px;}
+table.list td.buttons { width: 15%; white-space:nowrap; text-align: right; }
+table.list td.buttons a { padding-right: 0.6em; }
+ 
+ table.list tbody tr.group td { padding: 0.8em 0 0.5em 0.3em; font-weight: bold; border-bottom: 1px solid #ccc; }
+ table.list tbody tr.group span.count { color: #aaa; font-size: 80%; }
+ table.list tbody tr:hover { background-color:#AAAAAA; }
+ table.list tbody tr.group:hover { background-color:inherit; }
+ table td {padding:2px;}
+ table p {margin:0;}
+ .odd {background-color: black;}
+ .even {background-color: #555;}
+ .box{ padding:6px; margin-bottom: 10px; background-color: black; color:black; line-height:1.5em; border: 1px solid #e4e4e4; }
+
+ form {display: inline;}
+ input, select {vertical-align: middle; margin-top: 1px; margin-bottom: 1px;}
+ hr { width: 100%; height: 1px; background: #ccc; border: 0;}
+
+/*Fildset*/
+fieldset {
+background-color: black;
+border: 1px solid #E4E4E4;
+width: auto;
+}
+
 body {
   font-family: Verdana, sans-serif; 
   color:white;
@@ -11,6 +56,7 @@ body {
   width: auto;
   margin: 0 auto; }
 #wrapper {
+	background: black;
   border: 2px solid white;
 	color: white;
   border-top: none }
@@ -34,7 +80,7 @@ footer { }
     header nav menu,
     footer nav menu { list-style: none outside none; padding: 0; margin: 0; }
     header nav menu li,
-    footer nav menu li { padding: 0 0 0 5px; margin-right: 2px; float: left; border: 1px solid white; }
+    footer nav menu li { padding: 0 0 0 5px; margin-right: 2px; float: left; border: 2px solid white; }
     header nav menu li:hover,
     footer nav menu li:hover { position: relative; z-index: 100; background-color: white; }
     header nav menu li:hover > menu,    		
@@ -54,9 +100,9 @@ footer { }
     header nav > menu > li:hover > a,
     footer nav > menu > li:hover > a { min-width: 82px; width: auto;  }
     header nav menu li.sub > a,
-    footer nav menu li.sub > a { background: url("../images/arrow_collapsed.png") no-repeat scroll #fff; background-position: 80px center; }
-    header nav > menu > li.sub > a { background: url("../images/arrow_expanded.png") no-repeat scroll #fff; background-position: right center; }
-    footer nav > menu > li.sub > a { background: url("../images/arrow_expanded_up.png") no-repeat scroll #fff; background-position: right center; }
+    footer nav menu li.sub > a { background: url("../images/arrow_collapsed.png") no-repeat scroll black; background-position: 80px center; }
+    header nav > menu > li.sub > a { background: url("../images/arrow_expanded.png") no-repeat scroll black; background-position: right center; }
+    footer nav > menu > li.sub > a { background: url("../images/arrow_expanded_up.png") no-repeat scroll black; background-position: right center; }
 
       header nav menu li:hover > menu { top: 26px; }
       header nav menu li:hover menu li:hover > menu { top: -1px; }
@@ -70,9 +116,9 @@ aside { width: 155px; position: relative; }
   /* Define style to menu in side area */
   /* aside > menu { width: 5em; } */
   aside menu { padding: 0; margin: 0; }
-  aside menu li { position: relative; margin: 0; list-style-type: none; border: 1px solid white; }
+  aside menu li { position: relative; margin: 0; list-style-type: none; border: 2px solid white; }
   aside menu li > a { background-color: black; }
-  aside menu li:hover { background-color: black; }
+  aside menu li:hover { background-color: white; }
   aside menu li:hover > menu { display: block; position: absolute; top: -1px; }
   aside menu li menu { width: 155px; display: none; border-width: 0px; }
   aside menu li a { display: block; padding: 5px 7px; text-decoration: none; }
@@ -81,12 +127,12 @@ aside { width: 155px; position: relative; }
 
     aside.right menu li { padding: 0 5px 0 0; }
     aside.right menu li > a { text-align: right; }
-    aside.right menu li.sub > a { background: url("../images/arrow_collapsed_right.png") no-repeat scroll #FFF; background-position: left center; }
+    aside.right menu li.sub > a { background: url("../images/arrow_collapsed_right.png") no-repeat scroll black; background-position: left center; }
     aside.right menu li.sub:hover > menu { left: -155px; z-index: 1 }
 
     aside.left menu li { padding: 0 0 0 5px; z-index: 1;}
     aside.left menu li > a { text-align: left; }
-    aside.left menu li.sub > a { background: url("../images/arrow_collapsed.png") no-repeat scroll #FFF; background-position: right center;}
+    aside.left menu li.sub > a { background: url("../images/arrow_collapsed.png") no-repeat scroll black; background-position: right center;}
     aside.left menu li.sub:hover > menu { right: -155px; z-index: 1 }
 
 /* Define content area */
