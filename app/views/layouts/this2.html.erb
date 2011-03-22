@@ -16,7 +16,7 @@
   <%= render :partial => 'sites/viewCsses' %>
   <%= javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js" %>
   <%= javascript_include_tag "http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js" %>
-  <% if session[:contraste] == 'negativo' %>
+  <% if session[:contrast] == 'yes' %>
     <%= stylesheet_link_tag 'negativo' %>
   <%end%>
 </head>
@@ -42,7 +42,7 @@
         <nav class="right">
           <%= raw menu_acessibility %>
           <%= raw menu_locale %>
-          <%= raw menu_contraste %>
+          <%= raw menu_contrast %>
         </nav>
         <div class="clear"> </div>
       </nav>

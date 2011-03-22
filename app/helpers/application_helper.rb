@@ -270,11 +270,11 @@ module ApplicationHelper
     menu_l
   end
 
-  def menu_contraste
-    if session[:contraste] != 'negativo'
-      menu_c = link_to "contraste", :contraste => 'negativo'
+  def menu_contrast
+    if session[:contrast] != 'yes'
+      menu_c = link_to "contrast", :contrast => 'yes'
     else
-      menu_c = link_to "contraste", :contraste => 'no'
+      menu_c = link_to "contrast", :contrast => 'no'
     end
     menu_c
   end

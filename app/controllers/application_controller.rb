@@ -1,7 +1,7 @@
 # coding: utf-8
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :set_contraste, :set_locale, :set_global_vars
+  before_filter :set_contrast, :set_locale, :set_global_vars
  
   helper :all
   helper_method :current_user_session, :current_user, :user_not_authorized
@@ -51,8 +51,8 @@ class ApplicationController < ActionController::Base
     session[:locale] = I18n.locale = locale
   end
 
-  def set_contraste
-    session[:contraste] = params[:contraste] || session[:contraste] || 'no'
+  def set_contrast
+    session[:contrast] = params[:contrast] || session[:contrast] || 'no'
   end
 
   def access_denied
