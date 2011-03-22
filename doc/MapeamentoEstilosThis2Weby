@@ -1,89 +1,185 @@
 == Principal ==
   # Fundo do site
     THIS2: body_background
+    WEBY:
+      html{ background: VAR; }
+
   # Borda dos menus
     THIS2: body_background
+    WEBY:
+      aside menu li,
+      header nav menu li,
+      footer nav menu li { border:1px solid VAR; }
+
   # Fundo Tabela frontal das páginas
     THIS2: cor_borda_noticias
+    WEBY:
+      #no_front_news table,
+      #no_front_news table th,
+      #no_front_news table td { border-color: VAR; }
+      #no_front_news table th { background-color: VAR; }
+
+  # Cor titulo da tabela frontal das páginas
+    THIS2: cor_letra_topo_noticias
+    WEBY:
+      #no_front_news table th { color: VAR; }
+
   # Cor Letra Titulo Tabela Frontal
     THIS2: cor_letra_link_noticias_out
+    WEBY:
+      #no_front_news table td a { color: VAR; }
+
   # Cor Letra Titulo Tabela Frontal Hover
     THIS2: cor_letra_link_noticias_over
+    WEBY:
+      #no_front_news table td a:hover { color: VAR; }
+
   # Cor Letra Tabela Frontal
     THIS2: cor_letra_noticias_resumos
+    WEBY:
+      #no_front_news table td { color: VAR; }
+
   # Cor da letra do rodape
     THIS2: cor_letra_rodape
+    WEBY:
+      footer section#info { color: VAR; }
 
 == Menu ==
-
   == Esquerdo ==
-
     == Menu ==
       # Cor
         THIS2: cor_mouseout
+        WEBY:
+          aside.left menu li a { background-color: VAR !important; }
+
       # Cor Hover
         THIS2: cor_mouseover
+        WEBY:
+          aside.left menu li:hover { background-color: VAR; }
+
       # Cor fonte
         THIS2: cor_letra_out
+        WEBY:
+          aside.left menu li a { color: VAR !important; }
+
       # Cor fonte hover
         THIS2: cor_letra_hover
+        WEBY:
+          aside.left menu li a:hover { color: VAR !important; }
 
     == Submenu ==
       # Cor
         THIS2: cor_td_subitem_mouseout
+        WEBY:
+          aside.left menu li.sub > a { background-color: VAR !important; }
+
       # Cor Hover
         THIS2: cor_td_subitem_mouseover
+        WEBY:
+          aside.left menu li.sub:hover { background-color: VAR !important; }
+
       # Cor fonte
         THIS2: cor_letra_subitem_out
+        WEBY:
+          aside.left menu li.sub > a { color: VAR !important; }
+
       # Cor fonte hover
         THIS2: cor_letra_subitem_over
+        WEBY:
+          aside.left menu li.sub > a:hover { color: VAR !important; }
 
   == Direito ==
     == Menu ==
       # Cor
         THIS2: cor_mouseout2
+        WEBY:
+          aside.right menu li a { background-color: VAR !important; }
+
       # Cor Hover
         THIS2: cor_mouseover2
+        WEBY:
+          aside.right menu li:hover { background-color: VAR; }
+
       # Cor fonte
         THIS2: cor_letra_out2
+        WEBY:
+          aside.right menu li a { color: VAR !important; }
+
       # Cor fonte hover
         THIS2: cor_letra_hover2
+        WEBY:
+          aside.right menu li a:hover { color: VAR !important; }
 
     == Submenu ==
       # Cor
         THIS2: cor_td_subitem_mouseout2
+        WEBY:
+          aside.right menu li.sub > a { background-color: VAR !important; }
+
       # Cor Hover
         THIS2: cor_td_subitem_mouseover2
+        WEBY:
+          aside.right menu li.sub:hover { background-color: VAR !important; }
+
       # Cor fonte
         THIS2: cor_letra_subitem_out2
+        WEBY:
+          aside.right menu li.sub > a { color: VAR !important; }
+
       # Cor fonte hover
         THIS2: cor_letra_subitem_over2
+        WEBY:
+          aside.right menu li.sub > a:hover { color: VAR !important; }
 
   == Superior ==
     == Menu ==
       # Cor
         THIS2: cor_mouseout3
+        WEBY:
+          header nav menu li a { background-color: VAR !important; }
+
       # Cor Hover
         THIS2: cor_mouseover3
+        WEBY:
+          header nav menu li:hover { background-color: VAR; }
+
       # Cor fonte
         THIS2: cor_letra_out3
+        WEBY:
+          header nav menu li a { color: VAR !important; }
+
       # Cor fonte hover
         THIS2: cor_letra_hover3
+        WEBY:
+          header nav menu li a:hover { color: VAR !important; }
 
   == Inferior ==
     == Menu ==
       # Cor
         THIS2: cor_mouseout4
+        WEBY:
+          footer nav menu li a { background-color: VAR !important; }
+
       # Cor Hover
         THIS2: cor_mouseover4
+        WEBY:
+          footer nav menu li:hover { background-color: VAR; }
+
       # Cor fonte
         THIS2: cor_letra_out4
+        WEBY:
+          footer nav menu li a { color: VAR !important; }
+
       # Cor fonte hover
         THIS2: cor_letra_hover4
+        WEBY:
+          footer nav menu li a:hover { color: VAR !important; }
 
 == CSS ==
   # Avançado
     THIS2: avancado
+    WEBY:
+      /* Pegar todo o CSS avançado, guardar em um arquivo */
 
 == Estilo das páginas ==
   # Cor Links
