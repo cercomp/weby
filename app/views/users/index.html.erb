@@ -1,6 +1,14 @@
 <fieldset>
   <legend><%=  t"user.other" %></legend>
 
+  <center>
+    <%= form_tag site_users_path, :method => 'get', :remote => true do %>
+      <%= label_tag t("search") %>
+      <%= text_field_tag :search %>
+      <%= submit_tag t("submit") %>
+    <% end %>
+  </center>
+
   <div id="list">
     <%= render :partial => "list" %>
   </div>

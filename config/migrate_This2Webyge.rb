@@ -57,6 +57,114 @@ class Migrate_this2weby
       @convar["#{this_site['site_id']}"] = {}
       @convar["#{this_site['site_id']}"]["weby"] = site[0]['id']
       @convar["#{this_site['site_id']}"]["weby_name"] = "#{site_name}"
+      
+      # Migrando estilos
+      puts "Migrando tabela this.estilo"
+      select_estilo = "SELECT * FROM estilo WHERE id='#{this_site['id_estilo']}'"
+      puts "\t\t#{select_estilo}\n" if @verbose
+      this_estilo = @con_this.exec(select_estilo)
+      weby_estilo = <<EOF
+  /* Principal */
+  /* Fundo do site */
+      html{ background: #{this_estilo.first['body_background']}; }
+  /* Borda dos menus */ 
+      aside menu li,
+      header nav menu li,
+      footer nav menu li { border:1px solid #{this_estilo.first['body_background']}; }
+  /* Fundo Tabela frontal das páginas */ 
+      #no_front_news table,
+      #no_front_news table th,
+      #no_front_news table td { border-color: #{this_estilo.first['cor_borda_noticias']}; }
+      #no_front_news table th { background-color: #{this_estilo.first['cor_borda_noticias']}; }
+  /* Cor titulo da tabela frontal das páginas */
+      #no_front_news table th { color: #{this_estilo.first['cor_letra_topo_noticias']}; }
+  /* Cor Letra Titulo Tabela Frontal */ 
+      #no_front_news table td a { color: #{this_estilo.first['cor_letra_link_noticias_out']}; }
+  /* Cor Letra Titulo Tabela Frontal Hover */ 
+      #no_front_news table td a:hover { color: #{this_estilo.first['cor_letra_link_noticias_over']}; }
+  /* Cor Letra Tabela Frontal */ 
+      #no_front_news table td { color: #{this_estilo.first['cor_letra_noticias_resumos']}; }
+  /* Cor da letra do rodape */ 
+      footer section#info { color: #{this_estilo.first['cor_letra_rodape']}; }
+/* Menu  */
+  /* Esquerdo  */
+    /* Menu  */
+      /* Cor */ 
+          aside.left menu li a { background-color: #{this_estilo.first['cor_mouseout']} !important; }
+      /* Cor Hover */ 
+          aside.left menu li:hover { background-color: #{this_estilo.first['cor_mouseover']}; }
+      /* Cor fonte */ 
+          aside.left menu li a { color: #{this_estilo.first['cor_letra_out']} !important; }
+      /* Cor fonte hover */ 
+          aside.left menu li a:hover { color: #{this_estilo.first['cor_letra_hover']} !important; }
+    /* Submenu  */
+      /* Cor */ 
+          aside.left menu li.sub > a { background-color: #{this_estilo.first['cor_td_subitem_mouseout']} !important; }
+      /* Cor Hover */ 
+          aside.left menu li.sub:hover { background-color: #{this_estilo.first['cor_td_subitem_mouseover']} !important; }
+      /* Cor fonte */ 
+          aside.left menu li.sub > a { color: #{this_estilo.first['cor_letra_subitem_out']} !important; }
+      /* Cor fonte hover */ 
+          aside.left menu li.sub > a:hover { color: #{this_estilo.first['cor_letra_subitem_over']} !important; }
+    /* Menu  */
+      /* Cor */
+          aside.right menu li a { background-color: #{this_estilo.first['cor_mouseout2']} !important; }
+      /* Cor Hover */
+          aside.right menu li:hover { background-color: #{this_estilo.first['cor_mouseover2']}; }
+      /* Cor fonte */
+          aside.right menu li a { color: #{this_estilo.first['cor_letra_out2']} !important; }
+      /* Cor fonte hover */
+          aside.right menu li a:hover { color: #{this_estilo.first['cor_letra_hover2']} !important; }
+    /* Submenu  */
+      /* Cor */
+          aside.right menu li.sub > a { background-color: #{this_estilo.first['cor_td_subitem_mouseout2']} !important; }
+      /* Cor Hover */
+          aside.right menu li.sub:hover { background-color: #{this_estilo.first['cor_td_subitem_mouseover2']} !important; }
+      /* Cor fonte */
+          aside.right menu li.sub > a { color: #{this_estilo.first['cor_letra_subitem_out2']} !important; }
+      /* Cor fonte hover */
+          aside.right menu li.sub > a:hover { color: #{this_estilo.first['cor_letra_subitem_over2']} !important; }
+  /* Superior  */
+    /* Menu  */
+      /* Cor */
+          header nav menu li a { background-color: #{this_estilo.first['cor_mouseout3']} !important; }
+      /* Cor Hover */
+          header nav menu li:hover { background-color: #{this_estilo.first['cor_mouseover3']}; }
+      /* Cor fonte */
+          header nav menu li a { color: #{this_estilo.first['cor_letra_out3']} !important; }
+      /* Cor fonte hover */
+          header nav menu li a:hover { color: #{this_estilo.first['cor_letra_hover3']} !important; }
+  /* Inferior  */
+    /* Menu  */
+      /* Cor */
+          footer nav menu li a { background-color: #{this_estilo.first['cor_mouseout4']} !important; }
+      /* Cor Hover */
+          footer nav menu li:hover { background-color: #{this_estilo.first['cor_mouseover4']}; }
+      /* Cor fonte */
+          footer nav menu li a { color: #{this_estilo.first['cor_letra_out4']} !important; }
+      /* Cor fonte hover */
+          footer nav menu li a:hover { color: #{this_estilo.first['cor_letra_hover4']} !important; }
+/* CSS  */
+/* Estilo das páginas  */
+  /* Cor Links */
+  /*  #{this_estilo.first['cor_letra_links_out']} */
+  /* Cor Links Hover */
+  /*  #{this_estilo.first['cor_letra_links_over']} */
+  /* Cor Letra */
+  /*  #{this_estilo.first['cor_letra_paragrafos']} */
+  /* Cor Titulos */
+  /*  #{this_estilo.first['cor_letra_subtitulos (Sim esta trocado mesmo)']} */
+  /* Cor Subtitulos */
+  /*  #{this_estilo.first['cor_letra_titulos']} */
+  /* Avançado */
+      /* Pegar todo o CSS avançado, guardar em um arquivo */
+      /* #{this_estilo.first['avancado']} */
+EOF
+      insert_css = "INSERT INTO csses (name,css) VALUES ('#{site_name}','#{pre_treat(weby_estilo)}') RETURNING id"
+      css = @con_weby.exec(insert_css)
+      puts "\t\t\t(#{css[0]['id']}) #{insert_css[0,300]}\n" if @verbose
+      insert_sites_csses = "INSERT INTO sites_csses (site_id,css_id,publish,owner) VALUES ('#{site[0]['id']}','#{css[0]['id']}',true,true)"
+      site_css = @con_weby.exec(insert_sites_csses)
 
       puts "Migrando tabela this.usuarios para weby.users...\n" if @verbose
       select_usuarios = "SELECT * FROM usuarios #{@param} WHERE site_id='#{this_site['site_id']}' ORDER BY id"
@@ -211,7 +319,7 @@ class Migrate_this2weby
     end
     menu_sub = @con_weby.exec(insert_menu)
     puts "\t\t\t\t(#{menu_sub[0]['id']}) #{insert_menu}\n" if @verbose
-    insert_sites_menus = "INSERT INTO sites_menus(site_id,menu_id,parent_id,side) VALUES ('#{site_id}','#{menu_sub[0]['id']}',#{menu_id},'#{type}') RETURNING id"
+    insert_sites_menus = "INSERT INTO sites_menus(site_id,menu_id,parent_id,side,position) VALUES ('#{site_id}','#{menu_sub[0]['id']}',#{menu_id},'#{type}','#{entry['posicao']}') RETURNING id"
     menu_e0 = @con_weby.exec(insert_sites_menus)
     puts "\t\t\t\t(#{menu_e0[0]['id']}) #{insert_sites_menus}\n" if @verbose
 

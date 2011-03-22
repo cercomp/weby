@@ -58,7 +58,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.paginate :page => params[:page], :per_page => 10
+    @users = User.search(params[:search], params[:page]) 
     @roles = Role.find(:all, :select => 'id,name,theme', :group => "name,id,theme", :order => "id")
 
     respond_with do |format|

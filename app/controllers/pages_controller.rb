@@ -6,7 +6,7 @@ class PagesController < ApplicationController
 
   def index 
     params[:type] ||= 'News'
-    @pages = @site.pages.paginate :page => params[:paginate], :per_page => 10
+    @pages = @site.pages.search(params[:search], params[:paginate])
     
     respond_with do |format|
       format.js { 
