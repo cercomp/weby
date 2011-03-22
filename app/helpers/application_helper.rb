@@ -245,39 +245,37 @@ module ApplicationHelper
   end
 
   def menu_acessibility
+    if params[:contraste] == 'negativo'
+      menu_a = image_tag("font_size_down_contraste.png", :onclick => "font_size_down()", :alt => t("font_size_down"), :title => t("font_size_down"))
+      menu_a += "\n"
+      menu_a += image_tag("font_size_original_contraste.png", :onclick => "font_size_original()", :alt => t("font_size_normal"), :title => t("font_size_normal"))
+      menu_a += "\n"
+      menu_a += image_tag("font_size_up_contraste.png", :onclick => "font_size_up()", :alt => t("font_size_up"), :title => t("font_size_up"))
+      menu_a
+    else
+      menu_a = image_tag("font_size_down.png", :onclick => "font_size_down()", :alt => t("font_size_down"), :title => t("font_size_down"))
+      menu_a += "\n"
+      menu_a += image_tag("font_size_original.png", :onclick => "font_size_original()", :alt => t("font_size_normal"), :title => t("font_size_normal"))
+      menu_a += "\n"
+      menu_a += image_tag("font_size_up.png", :onclick => "font_size_up()", :alt => t("font_size_up"), :title => t("font_size_up"))
+      menu_a
 
-				if params[:contraste] == 'negativo'
-					menu_a = image_tag("font_size_down_contraste.png", :onclick => "font_size_down()", :alt => t("font_size_down"), :title => t("font_size_down"))
-        	menu_a += "\n"
-					menu_a += image_tag("font_size_original_contraste.png", :onclick => "font_size_original()", :alt => t("font_size_normal"), :title => t("font_size_normal"))
-        	menu_a += "\n"
-					menu_a += image_tag("font_size_up_contraste.png", :onclick => "font_size_up()", :alt => t("font_size_up"), :title => t("font_size_up"))
-        	menu_a
-				
-				else
-					menu_a = image_tag("font_size_down.png", :onclick => "font_size_down()", :alt => t("font_size_down"), :title => t("font_size_down"))
-        	menu_a += "\n"
-					menu_a += image_tag("font_size_original.png", :onclick => "font_size_original()", :alt => t("font_size_normal"), :title => t("font_size_normal"))
-        	menu_a += "\n"
-					menu_a += image_tag("font_size_up.png", :onclick => "font_size_up()", :alt => t("font_size_up"), :title => t("font_size_up"))
-        	menu_a
-
-				end
+    end
   end
 
   def menu_locale
-        menu_l = link_to image_tag("flag_uk.png", :size => "24x12"), :locale => "en"
-        menu_l += "\n"
-        menu_l += link_to image_tag("flag_br.png", :size => "24x12"), :locale => "pt-BR"
-        menu_l
+    menu_l = link_to image_tag("flag_uk.png", :size => "24x12"), :locale => "en"
+    menu_l += "\n"
+    menu_l += link_to image_tag("flag_br.png", :size => "24x12"), :locale => "pt-BR"
+    menu_l
   end
 
   def menu_contraste
-        if params[:contraste] != 'negativo'
-          menu_c =  link_to "contraste", :contraste => 'negativo'
-        else
-          menu_c =link_to "contraste", :contraste => 'no' 
-        end
-        menu_c
+    if session[:contraste] != 'negativo'
+      menu_c = link_to "contraste", :contraste => 'negativo'
+    else
+      menu_c = link_to "contraste", :contraste => 'no'
+    end
+    menu_c
   end
 end

@@ -1,7 +1,7 @@
 # coding: utf-8
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :set_locale, :set_global_vars
+  before_filter :set_contraste, :set_locale, :set_global_vars
  
   helper :all
   helper_method :current_user_session, :current_user, :user_not_authorized
@@ -49,6 +49,10 @@ class ApplicationController < ActionController::Base
     # I18n.load_path += Dir[ File.join(Rails.root, 'lib', 'locale', '*.{rb,yml}') ]
     locale = params[:locale] || session[:locale] || I18n.default_locale
     session[:locale] = I18n.locale = locale
+  end
+
+  def set_contraste
+    session[:contraste] = params[:contraste] || session[:contraste] || 'no'
   end
 
   def access_denied
