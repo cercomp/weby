@@ -14,6 +14,9 @@
   <%= stylesheet_link_tag 'SyntaxHighlighter/shCore' %>
   <%= stylesheet_link_tag 'SyntaxHighlighter/shThemeDefault' %>
   <%= render :partial => 'sites/viewCsses' %>
+  <% if session[:contrast] == 'yes' %>
+    <%= stylesheet_link_tag 'negativo' %>
+  <%end%>
 </head>
 <%#= debug params %>
 <% if @site.body_width %>
@@ -29,7 +32,7 @@
   <div id="wraper">
   <%#= debug(session) %>
   <header>
-  	<div align="right"><%= raw adminnav(@site) %></div>
+  	<div align="left"><%= raw adminnav(@site) %></div>
 			<% unless @site.repository.nil? %>
 				<figure id="top_figure">
 					<% size = 155 %>
@@ -43,7 +46,7 @@
 			<nav class="right" id="acessibilidade">
         <%= raw menu_acessibility %>
         <%= raw menu_locale %>
-        <%= raw menu_contraste %>
+        <%= raw menu_contrast %>
       </nav>
     <div class="clear"> </div>
   </header>
