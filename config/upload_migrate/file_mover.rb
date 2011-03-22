@@ -66,8 +66,7 @@ end
 
 class Mover
 
-  #@folders  = ['banners', 'files', 'imgd', 'topo']
-  @folders  = ['banners']
+  @folders  = ['banners', 'files', 'imgd', 'topo']
   @ids = []
 
   def self.copy_files
@@ -93,7 +92,50 @@ class Mover
       # Verifica cada pasta conhecida
       @folders.each do |folder|
         #puts `cp -vr #{FROM + folder + '/' + id + '/*'} #{destino}`
-        puts `for i in $(find #{FROM + folder + '/' + id + '/'} -type f -printf "%P\n"); do cp -v #{FROM + folder + '/' + id + '/'}$i #{destino}/original_$i; done`
+        tfrom = FROM + folder + '/' + id + '/'
+        puts `for i in $(find #{tfrom} -type f -printf "%P\n"); do cp -v #{tfrom}$i #{destino}/original_$i; done`
+
+        # Identifica a pasta para executar a ação especifica
+        case folder
+          # Na pasta imgd teremos imagens de informativos, evento e noticia
+          when "imgd"
+            `ls #{destino}`.split("\n").each do |file|
+              # Para cada arquivo da pasta busca o tipo e o id original do tabela (banner, informativo ou paginas)
+              file_data = file.match(/([a-z]{3,})(\d*)/)
+              type,original_id = file_data[0], file_data[1]
+
+              repository_id = create_repository(file, MAP[id])
+
+              id+weby = nil
+
+              # Verifica se é informativo
+              if type == 'inf'
+                tabela = 'banners'
+                id_weby = MAP[id]['informativos'][original_id]
+
+              elsif
+                # Se não for informativo, é uma página
+                tabela = 'pages'
+
+                # Do tipo evento?
+                if type == 'evento'
+                  id_weby = MAP[id]['eventos'][original_id]
+
+                # Ou do tipo noticia?
+                elsif type == 'noticia'
+                  id_weby = MAP[id]['noticias'][original_id]
+
+                # Se não for nehum dos tipos: continua o loop
+                elsif id_weby.nil?
+                  break
+              end
+
+              if !original_id.nil? and repository_id.nil?
+                sql = "update <tabela> set repository_id = #{repository_id} where id = #{id_weby}"
+                # con_weby.exec(sql)
+              end
+            end
+        end
       end
 
       #### Remove subpastas, trazendo todos os arquivos para a pasta principal
@@ -113,21 +155,19 @@ class Mover
 
       # Depois que todos os arquivos foram movidos, registra todos eles no banco
       files = `find "#{destino}" -maxdepth 1 -mindepth 1`.split("\n")
-      db_registry(files, MAP[id]['weby'])
+      #db_registry(files, MAP[id]['weby'])
 
     end
   end
 
-  def self.db_registry(files, site_id)
-    puts "Criando as sqls para os arquivos do site #{site_id}(id)"
+  def self.create_repository(file, site_id)
 
-    files.each do |file|
-      file_name = file.slice(file.rindex('/')+1, file.size)
-      file_type = Paperclip.content_type  file
-      file_size = File.new(file).size
-      descricao = "Este arquivo ainda não possui descrição"
+    file_name = file.slice(file.rindex('/')+1, file.size)
+    file_type = Paperclip.content_type file
+    file_size = File.new(file).size
+    descricao = "Este arquivo ainda não possui descrição"
 
-      sql = %Q{
+    sql = %Q{
 insert into repositories(
   site_id,
   created_at,
@@ -147,12 +187,13 @@ values (
   '#{file_size}',
   '#{Time.now}',
   '#{descricao}'
-);\n
+); returning id
 }
 
-      FILE.puts sql
-      puts sql
-    end
+    # puts sql
+    # repository = @con_weby.exec(sql)
+    # repository[0]['id']
+    FILE.puts sql
   end
 
 	# compacta a pasta de saida
