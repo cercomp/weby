@@ -2,27 +2,38 @@
   <section id="pages">
     <% @front_news.each do |page| %>
       <li id=<%= "page_#{page.id}" %> style="list-style-type:none;">
-      <article class="<%= cycle 'pageright', 'pageleft' %>">
-        <% unless page.repository.nil? %>
-          <%= link_to image_tag("#{page.repository.archive.url(:mini)}", :alt => page.repository.description), site_page_path(@site, page, :type => params[:type]), :title => page.repository.description %>
-        <% end %>
-         <h2> <%= page.title %> </h2>
-        <p> <i><%= page.user.first_name ? ("#{page.user.first_name} #{page.user.last_name}") : page.user.login %>, <%= l page.created_at, :format => :short  %>.</i> </p>
-        <%= raw page.summary %>
-        <p> <%= link_to t("read_more"), site_page_path(@site, page) %> </p>
-        <div class="clear"></div>
-        <%= raw make_menu(page) %>
-        <% if check_permission(PagesController, ["sort"]) %>
-          <%= link_to t("move"), "#", :class => 'handle icon icon-drag' if @front_news.length > 1 %>
-        <% end %>
-      </article>
+        <article class="<%= cycle 'pageright', 'pageleft' %>">
+
+          <% unless page.repository.nil? %>
+            <%= link_to image_tag("#{page.repository.archive.url(:mini)}", :alt => page.repository.description), site_page_path(@site, page, :type => params[:type]), :title => page.repository.description %>
+          <% end %>
+
+          <header>
+            <h2> <%= page.title %> </h2>
+            <p>
+              <i>
+                <%= page.user.first_name ? ("#{page.user.first_name} #{page.user.last_name}") : page.user.login %>
+                <%= l page.created_at, :format => :short  %>
+              </i>
+            </p>
+          </header>
+
+          <summary>
+            <%= raw page.summary %>
+          </summary>
+
+          <p> <%= link_to t("read_more"), site_page_path(@site, page) %> </p>
+          <div class="clear"></div>
+
+          <%= raw make_menu(page) %>
+          <% if check_permission(PagesController, ["sort"]) %>
+            <%= link_to t("move"), "#", :class => 'handle icon icon-drag' if @front_news.length > 1 %>
+          <% end %>
+
+        </article>
+      </li>
     <% end; reset_cycle %>
-    </li>
   </section>
 <% end %>
 
-<% unless @no_front_news.nil? or @no_front_news.empty? %>
-  <div id='no_front_news'>
-    <%= render :partial => "no_front_news" %>
-  </div>
-<% end %>
+<%= render :partial => "no_front_news" %>

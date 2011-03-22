@@ -92,6 +92,12 @@ section#content {
   padding: 5px;
   padding-top: 0;
   overflow: hidden; }
+  section#content > article {
+    padding: 5px 9px;
+    border: 1px solid #E4E4E4;
+    background: #F9F9F9;
+  }
+
   section#content nav#admin { padding-bottom: 5px; }
   section#content section#pages {
     font-family: Verdana;

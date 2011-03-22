@@ -1,13 +1,20 @@
-<fieldset>
-  <div id="pages">
+<article>
     <% unless @page.repository.nil? %>
       <%= link_to image_tag("#{@page.repository.archive.url(:little)}", :align => "right"), @page.repository.archive.url, :alt => @page.repository.description, :title => @page.repository.description %>
     <% end %>
 
-    <p> <h1> <%= @page.title %> </h1> </p>
-    <p> <i><%= @page.user.first_name ? ("#{@page.user.first_name} #{@page.user.last_name}") : @page.user.login %>, <%= l @page.created_at, :format => :short  %>.</i> </p>
-    <h2> <%= raw @page.summary %> </h2>
-    <h3> <%= raw @page.text %> </h3>
+    <header>
+      <h1> <%= @page.title %> </h1>
+      <summary>
+        <p>
+          <%= @page.user.first_name ? ("#{@page.user.first_name} #{@page.user.last_name}") : @page.user.login %>
+          <%= l @page.created_at, :format => :short  %>
+        </p>
+        <%= raw @page.summary %>
+      </summary>
+    </header>
+
+    <%= raw @page.text %>
     <p> <h3> <%= @page.url.nil? ? @page.source : link_to(@page.source, @page.url) %> </h3> </p>
 
     <% unless @page.repositories.empty? %>
@@ -31,5 +38,4 @@
     <% end %>
 
     <%= link_to t("edit"), edit_site_page_path(@site, @page) %> | <%= link_to t("list_all.fem"), site_pages_path(@site) %> |  <%= link_to t("back"), :back %>
-  </div>
-</fieldset>
+  </article>
