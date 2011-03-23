@@ -91,7 +91,6 @@ class Mover
 
       # Verifica cada pasta conhecida
       @folders.each do |folder|
-        #puts `cp -vr #{FROM + folder + '/' + id + '/*'} #{destino}`
         tfrom = FROM + folder + '/' + id + '/'
         puts `for i in $(find #{tfrom} -type f -printf "%P\n"); do cp -v #{tfrom}$i #{destino}/original_$i; done`
 
@@ -99,41 +98,71 @@ class Mover
         case folder
           # Na pasta imgd teremos imagens de informativos, evento e noticia
           when "imgd"
-            `ls #{destino}`.split("\n").each do |file|
-              # Para cada arquivo da pasta busca o tipo e o id original do tabela (banner, informativo ou paginas)
-              file_data = file.match(/([a-z]{3,})(\d*)/)
-              type,original_id = file_data[0], file_data[1]
+            `find #{tfrom} -maxdepth 1 -mindepth 1 -type f`.split("\n").each do |file|
+              file_name = file.slice(file.rindex('/')+1, file.size)
 
+              # Para cada arquivo da pasta busca o tipo e o id original do tabela (banner, informativo ou paginas)
+              file_data = file_name.match(/([a-z]{3,})(\d*).[a-z]{3,}$/)
+              type,original_id = file_data[1], file_data[2]
+
+              # Cria uma entrada na tabela repositories
               repository_id = create_repository(file, MAP[id])
 
-              id+weby = nil
-
+              id_weby = nil
               # Verifica se é informativo
               if type == 'inf'
                 tabela = 'banners'
                 id_weby = MAP[id]['informativos'][original_id]
-
               elsif
                 # Se não for informativo, é uma página
-                tabela = 'pages'
-
+                tabela == 'pages'
                 # Do tipo evento?
                 if type == 'evento'
                   id_weby = MAP[id]['eventos'][original_id]
-
                 # Ou do tipo noticia?
                 elsif type == 'noticia'
                   id_weby = MAP[id]['noticias'][original_id]
-
                 # Se não for nehum dos tipos: continua o loop
                 elsif id_weby.nil?
                   break
+                end
               end
 
               if !original_id.nil? and repository_id.nil?
-                sql = "update <tabela> set repository_id = #{repository_id} where id = #{id_weby}"
+                sql = "update #{tabela} set repository_id = #{repository_id} where id = #{id_weby}"
                 # con_weby.exec(sql)
+                puts sql
               end
+            end
+
+          when "banners"
+            `find #{tfrom} -maxdepth 1 -mindepth 1 -type f`.split("\n").each do |file|
+              file_data = file.match(/([a-z]{3,})(\d*).[a-z]{3,}$/)
+              type,original_id = file_data[1], file_data[2]
+
+              # Cria uma entrada na tabela repositories
+              repository_id = create_repository(file, MAP[id])
+
+              tabela = 'banners'
+              id_weby = MAP[id]['informativos'][original_id]
+
+              sql = "update #{tabela} set repository_id = #{repository_id} where id = #{id_weby}"
+              # con_weby.exec(sql)
+              puts sql
+            end
+
+          when "topo"
+            `find #{tfrom} -maxdepth 1 -mindepth 1 -type f`.split("\n").each do |file|
+              # Cria uma entrada na tabela repositories
+              repository_id = create_repository(file, MAP[id])
+              sql = "update sites set to_banner_id = #{repository_id} where id = #{id}"
+              # con_weby.exec(sql)
+              puts sql
+            end
+          else
+            `find #{tfrom} -maxdepth 1 -mindepth 1 -type f`.split("\n").each do |file|
+              # Cria uma entrada na tabela repositories
+              repository_id = create_repository(file, MAP[id])
             end
         end
       end
