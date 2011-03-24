@@ -93,9 +93,9 @@ section#content {
   padding-top: 0;
   overflow: hidden; }
   section#content > article {
-    padding: 5px 9px;
-    border: 1px solid #E4E4E4;
-    background: #F9F9F9;
+    padding: 9px;
+    border: 1px solid #EEE;
+    margin: 0px 3px;
   }
 
   section#content nav#admin { padding-bottom: 5px; }

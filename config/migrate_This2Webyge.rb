@@ -147,15 +147,18 @@ class Migrate_this2weby
 /* CSS  */
 /* Estilo das páginas  */
   /* Cor Links */
-  /*  #{this_estilo.first['cor_letra_links_out']} */
+    section#content article > p a { color: #{this_estilo.first['cor_letra_links_out']} !important; }
   /* Cor Links Hover */
-  /*  #{this_estilo.first['cor_letra_links_over']} */
+    section#content article > p a:hover { color: #{this_estilo.first['cor_letra_links_over']} !important; }
   /* Cor Letra */
-  /*  #{this_estilo.first['cor_letra_paragrafos']} */
+    section#content article > p,
+    section#content article > summary { color: #{this_estilo.first['cor_letra_paragrafos']} !important; }}
   /* Cor Titulos */
-  /*  #{this_estilo.first['cor_letra_subtitulos (Sim esta trocado mesmo)']} */
+    section#content article header h1,
+    section#content article header h2 {color: #{this_estilo.first['cor_letra_subtitulos']} !important; }}
   /* Cor Subtitulos */
-  /*  #{this_estilo.first['cor_letra_titulos']} */
+    section#content article header,
+    section#content article header summary { color: #{this_estilo.first['cor_letra_titulos']} !important; }}
   /* Avançado */
       /* Pegar todo o CSS avançado, guardar em um arquivo */
       /* #{this_estilo.first['avancado']} */
