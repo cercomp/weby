@@ -264,9 +264,9 @@ module ApplicationHelper
   end
 
   def menu_locale
-    menu_l = link_to image_tag("flag_uk.png", :size => "24x12", :alt => "English", :title => "English"), :locale => "en"
+    menu_l = link_to image_tag("flag_uk.png", :size => "24x12", :alt => t("english"), :title => t("english")), :locale => "en"
     menu_l += "\n"
-    menu_l += link_to image_tag("flag_br.png", :size => "24x12", :alt => "Portuguese", :title => "Portuguese"), :locale => "pt-BR"
+    menu_l += link_to image_tag("flag_br.png", :size => "24x12", :alt => t("portuguese"), :title => t("portuguese")), :locale => "pt-BR"
     menu_l
   end
 
