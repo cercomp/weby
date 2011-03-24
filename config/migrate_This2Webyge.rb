@@ -171,6 +171,7 @@ EOF
 
       puts "Migrando tabela this.usuarios para weby.users...\n" if @verbose
         param_aux = "#{@param} AND " if @param
+        param_aux = "WHERE" if not @param
         select_usuarios = "SELECT * FROM usuarios #{param_aux} site_id='#{this_site['site_id']}' ORDER BY id"
         puts "\t#{select_usuarios}\n" if @verbose
         this_users = @con_this.exec(select_usuarios)
