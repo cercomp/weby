@@ -48,7 +48,7 @@
     <% end %>
     <%= f.text_field :name, :label => t("name"), :required => true, :help => t("field_required") %><br />
     <%= f.text_field :url, :label => "URL", :required => true, :help => t("field_required") %><br />
-    <%= f.text_area :description, :label => t("description"), :size => "48x8", :help => t("site_comments") %><br />
+    <%= f.text_area :description, :label => t("description"), :size => "44x8", :help => t("site_comments") %><br />
 	  <%= f.text_area :footer, :value => (@site.footer.nil? ? t("footer_text") : @site.footer), :class => "mceSimple", :label => t("footer"), :size => "48x10"%>
     <%= f.submit t("submit") %>
   <% end %>

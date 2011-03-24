@@ -17,7 +17,7 @@
   <%= f.datetime_select :date_begin_at, :order => [:year, :month, :day], :use_month_numbers => true, :label =>  (t"date_param", :param => t("begin")), :start_year => Time.now.year %>
   <%= f.datetime_select :date_end_at, :order => [:year, :month, :day], :use_month_numbers => true, :label => (t"date_param", :param => t("end")), :start_year => Time.now.year, :default => 1.month.from_now %>
   <%= f.text_field :title, :label => t("title"), :required => true, :help => t("field_required") %>
-  <%= f.text_area :text, :label => t("text"), :size => "48x6", :required => true, :help => t("field_required") %>
+  <%= f.text_area :text, :label => t("text"), :size => "44x6", :required => true, :help => t("field_required") %>
   <%= f.text_field :url, :label => t("url"), :required => true, :help => t("field_required") %>
   <%= f.check_box :publish, :label => t("publish"), :help => t("publish_help") %>
   <%= f.check_box :hide, :label => t("hide"), :help => t("hide_help") %>

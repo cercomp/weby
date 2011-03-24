@@ -36,12 +36,12 @@ section#content {
   width: auto;
   padding: 5px;
   padding-top: 0;
-  overflow: hidden; }
+  overflow: hidden; 
+}
   section#content > article {
     padding: 5px 9px;
     border: 1px solid white;
-    background: black;
-  }
+    background: black;  }
 
   section#content nav#admin { padding-bottom: 5px; }
   section#content section#pages {
@@ -69,7 +69,8 @@ section#content {
 figure#banner {
   margin: 0;
   text-align: center;
-  padding-top: 5px; }
+  padding-top: 5px; 
+}
 
 /*Links*/
 a, a:link, a:visited { color: white !important; text-decoration: none; }
@@ -113,20 +114,21 @@ table.list td.buttons a { padding-right: 0.6em; }
 fieldset {
 background-color: black !important;
 border: 1px solid #E4E4E4;
-width: auto;
-}
+width: auto;}
 
 body {
   font-family: Verdana, sans-serif; 
   color:white !important;
 	background: black !important;
   width: auto;
-  margin: 0 auto; }
+  margin: 0 auto; 
+}
 #wrapper {
 	background: black !important;
   border: 2px solid white !important;
 	color: white !important;
-  border-top: none }
+  border-top: none 
+}
 
 /* Define style to Header, Footer and contents */
 header,
@@ -239,7 +241,8 @@ section#content {
 figure#banner {
   margin: 0;
   text-align: center;
-  padding-top: 5px; }
+  padding-top: 5px; 
+}
 
 /* Classes to help build layout */
 .clear { clear: both; }
@@ -259,3 +262,24 @@ table.border td {
 table th,
 table td { padding: 3px; }
 table th { font-size: 13px; }
+
+/*Fonte das Labels dos Campos Obrigatórios em vermelho, no contraste passam a ser brancas*/
+form div.required label, form div.required p, form div.required span {
+    color: white !important;
+    font-weight: bold; 
+}
+/*CSS pagina de listagem dos menus*/
+#main-tabs { 
+  background: #333 !important; }
+#tabs li a { 
+  background: black !important;
+  color: white !important;}
+#tabs li a:hover { 
+  background: #555 !important; none repeat scroll 0 0; 
+  color: white !important; 
+  text-decoration: underline; 
+  font-weight: bold; }
+#tabs li a.selected, #main-menu li a.selected:hover { 
+  background: #333 !important; none repeat scroll 0 0; 
+  color: white !important; 
+  text-decoration: underline; }
