@@ -245,7 +245,7 @@ module ApplicationHelper
   end
 
   def menu_acessibility
-    if params[:contraste] == 'negativo'
+    if session[:contrast] == 'yes'
       menu_a = image_tag("font_size_down_contraste.png", :onclick => "font_size_down()", :alt => t("font_size_down"), :title => t("font_size_down"))
       menu_a += "\n"
       menu_a += image_tag("font_size_original_contraste.png", :onclick => "font_size_original()", :alt => t("font_size_normal"), :title => t("font_size_normal"))

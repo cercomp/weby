@@ -4,6 +4,73 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 /* Define basic style to layout */
 html { background: black !important; }
 
+/***** Flash & error messages ****/
+#errorExplanation, div.flash, .nodata, .warning {
+  padding: 4px 4px 4px 30px;
+  margin-bottom: 12px;
+  font-size: 1.1em;
+  border: 2px solid;
+}
+div.flash { margin-top: 8px; }
+div.flash.error {
+   background: url(../images/false.png) 8px 5px no-repeat;
+   background-color: black;
+   border-color: white;
+   color: white;
+}
+div.flash.notice {
+	  background: url(../images/true.png) 8px 5px no-repeat;
+      background-color: black;
+      border-color: white;
+      color: white;
+}
+div.flash.warning {
+    background: url(../images/warning.png) 8px 5px no-repeat;     
+	border-color: grey;
+ 	color: white;
+	text-align: left;
+}
+
+/* Define content area */
+section#content {
+  width: auto;
+  padding: 5px;
+  padding-top: 0;
+  overflow: hidden; }
+  section#content > article {
+    padding: 5px 9px;
+    border: 1px solid white;
+    background: black;
+  }
+
+  section#content nav#admin { padding-bottom: 5px; }
+  section#content section#pages {
+    font-family: Verdana;
+    font-weight: Normal;
+    padding-bottom:5px; }
+    section#content section#pages h1 {
+      font-size: 160%;
+      color: white; }
+    section#content section#pages h2 {
+      line-height: 100%;
+      color: white;
+      font-size: 140%; }
+    section#content section#pages h3 {
+      font-size: 120%;
+      line-height: 100%;
+      color: white; }
+    section#content section#pages p { }
+
+    section#content section#pages .pageleft { border-bottom: 1px dotted #DDD; padding: 0px 0 10px 0; text-align: left; }
+    section#content section#pages .pageleft a img { float: left; padding-right: 15px; }
+    section#content section#pages .pageright { border-bottom: 1px dotted #DDD; padding: 0px 0 10px 0; text-align: right; }
+    section#content section#pages .pageright a img { float: right; padding-left: 15px; }
+
+figure#banner {
+  margin: 0;
+  text-align: center;
+  padding-top: 5px; }
+
 /*Links*/
 a, a:link, a:visited { color: white !important; text-decoration: none; }
 a:hover, a:active { color: white !important; text-decoration: underline; }

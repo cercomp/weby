@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_session, :current_user, :user_not_authorized
 
   def choose_layout
-    if @site.nil? or @site.id.nil?
+    if @site.nil? or @site.id.nil? 
       return "webyge"
     end
     # Tentar usar tema definido no perfil do usuário
