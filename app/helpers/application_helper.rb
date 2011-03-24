@@ -26,6 +26,7 @@ module ApplicationHelper
     end
     menu
   end
+
   # Define os menus
   # Parâmetros: Lista de menu (sons, view_ctrl=0)
   # Retorna: O menu com seus controles
@@ -40,7 +41,8 @@ module ApplicationHelper
     end
     menus
   end
-	# Método recursivo para gerar submenus e os controles
+
+  # Método recursivo para gerar submenus e os controles
   def print_menu_entry(sons, entry, view_ctrl, indent=0)
     indent_space = " " * indent
     indent += 2
@@ -174,7 +176,7 @@ module ApplicationHelper
     menu
   end
 
-  def adminnav(site=nil)
+  def menu_admin(site=nil)
     adminnav = "<nav id=\"admin\">\n\t"
     adminnav += link_to( t("portal"), root_path )
     adminnav += " | \n\t"
@@ -246,21 +248,21 @@ module ApplicationHelper
 
   def menu_acessibility
     if session[:contrast] == 'yes'
-      menu_a = image_tag("font_size_down_contraste.png", :onclick => "font_size_down()", :alt => t("font_size_down"), :title => t("font_size_down"))
+      menu_a = link_to image_tag("alto-contraste2.png", :title => t("high_contrast"), :alt => t("high_contrast")), :contrast => 'yes'
+      menu_a += image_tag("font_size_down_contraste.png", :onclick => "font_size_down()", :alt => t("font_size_down"), :title => t("font_size_down"))
       menu_a += "\n"
       menu_a += image_tag("font_size_original_contraste.png", :onclick => "font_size_original()", :alt => t("font_size_normal"), :title => t("font_size_normal"))
       menu_a += "\n"
       menu_a += image_tag("font_size_up_contraste.png", :onclick => "font_size_up()", :alt => t("font_size_up"), :title => t("font_size_up"))
-      menu_a
     else
-      menu_a = image_tag("font_size_down.png", :onclick => "font_size_down()", :alt => t("font_size_down"), :title => t("font_size_down"))
+      menu_a = link_to image_tag("alto-contraste2.png", :title => t("high_contrast"), :alt => t("high_contrast")), :contrast => 'no'
+      menu_a += image_tag("font_size_down.png", :onclick => "font_size_down()", :alt => t("font_size_down"), :title => t("font_size_down"))
       menu_a += "\n"
       menu_a += image_tag("font_size_original.png", :onclick => "font_size_original()", :alt => t("font_size_normal"), :title => t("font_size_normal"))
       menu_a += "\n"
       menu_a += image_tag("font_size_up.png", :onclick => "font_size_up()", :alt => t("font_size_up"), :title => t("font_size_up"))
-      menu_a
-
     end
+      menu_a
   end
 
   def menu_locale
@@ -270,12 +272,4 @@ module ApplicationHelper
     menu_l
   end
 
-  def menu_contrast
-    if session[:contrast] != 'yes'
-      menu_c = link_to image_tag("alto-contraste2.png", :title => t("high_contrast"), :alt => t("high_contrast")), :contrast => 'yes'
-    else
-      menu_c = link_to image_tag("alto-contraste2.png", :title => t("high_contrast"), :alt => t("high_contrast")), :contrast => 'no'
-    end
-    menu_c
-  end
 end

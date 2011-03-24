@@ -49,3 +49,39 @@ function hide_form(id) {
   return false;
 }
 
+$().ready(function() {
+  $('textarea.mceAdvance').tinymce({
+    script_url : '/javascripts/tiny_mce/tiny_mce.js',
+    editor_selector : "mceAdvance",
+    mode : "textareas",
+    theme : "advanced",
+    browsers : ["msie", "gecko", "safari"],
+    convert_fonts_to_spans : true,
+    theme_advanced_resizing : true,
+    theme_advanced_toolbar_location : "top",
+    theme_advanced_statusbar_location : "bottom",
+    plugins : "inlinepopups,safari,curblyadvimage,paste,table",
+    theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,fontselect,fontsizeselect",
+    theme_advanced_buttons2 : "forecolor,backcolor,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup",
+    theme_advanced_buttons3 : "tablecontrols,|,removeformat,charmap,help,code",
+    plugin_preview_pageurl : "<%= @site.name.to_s if @site %>"
+  });
+});
+$().ready(function() {
+  $('textarea.mceSimple').tinymce({
+    script_url : '/javascripts/tiny_mce/tiny_mce.js',
+    editor_selector : "mceSimple",
+    mode : "textareas",
+    theme : "advanced",
+    browsers : ["msie", "gecko", "safari"],
+    theme_advanced_resizing : true,
+    theme_advanced_toolbar_location : "top",
+    theme_advanced_statusbar_location : "bottom",
+    theme_advanced_buttons1 : "bold,italic,underline,|,justifyleft,justifycenter,justifyright,justifyfull,|,bullist,numlist,|,link,unlink,|,removeformat,cleanup,help,|,pasteword,code",
+    theme_advanced_buttons2 : "",
+    theme_advanced_buttons3 : ""
+  });
+});
+
+SyntaxHighlighter.all();
+
