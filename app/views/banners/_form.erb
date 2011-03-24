@@ -1,8 +1,16 @@
   <%= link_to t('back'), :back %>
 
-  <div class="contextual">
-    <%= link_to (t"new_param.masc", :param => (t"archive.one")), new_site_repository_path, :class => 'icon icon-add' %> 
+  <div id="repo_new" >
+    <div class="contextual">
+      <%= link_to (t"new_param.masc", :param => (t"archive.one")), new_site_repository_path(),
+        :remote => true,
+        :onclick => "$('#page').toggle();",
+        :class => 'icon icon-add' %>
+    </div>
+    <div id="page" style="display:none">
+    </div>
   </div>
+
   <div id='repo_list'>
     <%= render :partial => 'pages/repo_list', :locals => { :f => f } %>
   </div>
