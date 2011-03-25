@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-  <%= f.file_field :archive, :label => t(:archive, :count => 1), :required => true, :help => t("field_required") %>
+  <%= f.file_field :archive, :label => t(:archive, :count => 1) %>
   <%= f.text_field :description, :label => t("description"), :required => true, :help => t("field_required") %>
   <%= f.hidden_field :site_id, :value => @site.id %>
 

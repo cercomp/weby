@@ -14,6 +14,6 @@ class Repository < ActiveRecord::Base
 
   validates_presence_of :description
   has_attached_file :archive, :styles => { :mini => "95x70", :little =>"190x140", :medium => "400x300", :original => "" }, :url => "/uploads/:site_id/:style_:basename.:extension"
-  validates_attachment_presence :archive, :message => I18n.t('activerecord.errors.messages.attachment_presence')
+  validates_attachment_presence :archive, :message => I18n.t('activerecord.errors.messages.attachment_presence'), :on => :create
   #validates_attachment_content_type :mp3, :content_type => [ "image/bmp", "image/x-png", "image/pjpeg", "image/jpg", "image/jpeg", "image/png", "image/gif" ] 
 end
