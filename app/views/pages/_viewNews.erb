@@ -9,7 +9,7 @@
           <% end %>
 
           <header>
-            <h2> <%= page.title %> </h2>
+            <h2> <%= link_to page.title, site_page_path(@site, page) %> </h2>
             <p>
               <i>
                 <%= page.user.first_name ? ("#{page.user.first_name} #{page.user.last_name}") : page.user.login %>

@@ -469,8 +469,8 @@ class Migrate_files
               # Para cada arquivo da pasta busca o tipo e o id original do tabela (banner, informativo ou paginas)
               file_data = file_name.match(/([a-zA-Z]{3,})(\d*)[a-zA-Z_]*.[a-zA-Z_]{3,}$/)
 
-              puts "file_name: #{file_name}, file_data: #{file_data}, file_data.size: #{file_data.size}"
-              puts "file_data[1]: #{file_data[1]}, file_data[2]: #{file_data[2]}"
+              #puts "file_name: #{file_name}, file_data: #{file_data}, file_data.size: #{file_data.size}"
+              #puts "file_data[1]: #{file_data[1]}, file_data[2]: #{file_data[2]}"
               next if not file_data or file_data.size < 2
               type,original_id = "#{file_data[1]}", "#{file_data[2]}"
               # Cria uma entrada na tabela repositories
