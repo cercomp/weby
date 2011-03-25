@@ -446,6 +446,79 @@ class Migrate_files
       Dir.mkdir("#{destino}") unless Dir.exists?("#{destino}")
 
       # Verifica cada pasta conhecida
+      @folder.each do |folder|
+        temp_from = @from + folder + '/' + id + '/'
+
+        # Remove todos subdiretorios
+        dirs_to_flat = [temp_from]
+        while !dirs_to_flat.empty?
+          current_dir = dirs_to_flat.pop
+
+          `find #{current_dir} -maxdepth 1 -mindepth 1 -type f`.split("\n").each do |file|
+            puts `cp #{file} #{destino}/`
+          end
+          `find #{current_dir} -maxdepth 1 -mindepth 1 -type d`.split("\n").each do |dir|
+            dirs_to_flat << dir
+          end
+        end
+      end
+
+      # Registra cada arquivo na base
+      `find #{destino} -maxdepth 1 -mindepth 1 -type f`.split("\n").each do |file|
+        
+        file_name = file.match(/\/(.*)/)[1]
+        repository_id = create_repository(file, @convar[id]['weby'])
+
+        if(file_name == "topo.gif" || file_name == "topo.jpg" || file_name == "topo.png")
+            sql = "UPDATE sites SET top_banner_id='#{repository_id}' WHERE id='#{id}'"
+            @con_weby.exec(sql)
+            puts sql
+            next
+        end
+
+        file_info = file_name.match(/([a-zA-Z]{3,})(\d*)[a-zA-Z_]*.[a-zA-Z_]{3,}$/)
+        if(file_info.size != 3)
+          next
+        end
+        type,original_id = "#{file_info[1]}", "#{file_info[2]}"
+
+
+        if type == 'banner'
+          tabela = 'banners'
+          id_weby = @convar[id]['informativos'][original_id]
+
+        elsif type == 'inf'
+          tabela = 'banners'
+          id_weby = @convar[id]['informativos'][original_id]
+
+        else
+          # Se não for informativo, é uma página
+          tabela = 'pages'
+          # Do tipo evento?
+          if type == 'evento'
+            id_weby = @convar[id]['eventos'][original_id]
+          # Ou do tipo noticia?
+          elsif type == 'noticia'
+            id_weby = @convar[id]['noticias'][original_id]
+          # Se não for nehum dos tipos: continua o loop
+          elsif id_weby.nil?
+            next
+          end
+        end
+
+        #puts "type: #{type}, original_id: #{original_id}, id_weby: #{id_weby}, repository_id: #{repository_id}"
+        if not repository_id.nil? and not id_weby.nil?
+          sql = "UPDATE #{tabela} SET repository_id='#{repository_id}' WHERE id='#{id_weby}'"
+          @con_weby.exec(sql)
+          puts sql
+        end
+
+        # Renomeia o arquivo para o padrao do paperclip
+        puts `mv #{file} #{destino}/original_#{file_name}`
+      end
+    end
+=begin
+      # Verifica cada pasta conhecida
       @folders.each do |folder|
         tfrom = @from + folder + '/' + id + '/'
         #puts `for i in $(find "#{tfrom}" -maxdepth 1 -type f -printf "\"%P\"\n"); do echo "cp -u #{tfrom}$i #{destino}/original_$i"; cp -u #{tfrom}$i #{destino}/original_$i; done`
@@ -564,6 +637,7 @@ class Migrate_files
       # Depois que todos os arquivos foram movidos, registra todos eles no banco
       files = `find "#{destino}" -maxdepth 1 -mindepth 1`.split("\n")
     end
+=end
   end
 
   def create_repository(file, site_id)
