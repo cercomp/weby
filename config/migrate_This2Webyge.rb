@@ -10,6 +10,7 @@ require 'authlogic'
 require 'yaml'
 require 'cgi'
 require 'htmlentities'
+require 'iconv'
  
 #authlogic = Authlogic::ActsAsAuthentic::Base::Config
 class Migrate_this2weby
@@ -49,8 +50,8 @@ class Migrate_this2weby
       select_rodape = "SELECT endereco,telefone FROM rodape WHERE site_id='#{this_site['site_id']}'"
       puts "\tRodapé: #{select_rodape}"
       rodape = @con_this.exec(select_rodape)
-      rodape_text = "#{treat(rodape.first['endereco'])} #{rodape.first['telefone']}" unless rodape.first.nil?
-      insert_site = "INSERT INTO sites (name,url,description,footer) VALUES ('#{site_name}','#{this_site['caminho_http']}','#{pre_treat(this_site['nm_site'])}','#{rodape_text}') RETURNING id"
+      rodape_text = "#{treat(rodape.first['endereco'])} #{treat(rodape.first['telefone'])}" unless rodape.first.nil?
+      insert_site = "INSERT INTO sites (name,url,description,footer) VALUES ('#{treat(site_name)}','#{this_site['caminho_http']}','#{pre_treat(this_site['nm_site'])}','#{rodape_text}') RETURNING id"
       site = @con_weby.exec(insert_site)
       puts "\t\t(#{site[0]['id']}) #{insert_site}\n" if @verbose
       # Criando objeto de conversão
@@ -356,23 +357,25 @@ EOF
     def pre_treat(string)
       unless string.nil?
         coder = HTMLEntities.new
-        string = coder.decode(string)
         string = @con_weby.escape(string)
+				str = Iconv.conv("UTF-8//IGNORE","ASCII","#{string}")
+        str = coder.decode(str)
       end
-      return string
+      return str
     end
     # Tratamento de caracteres 
     def treat(string)
-      unless string.nil?
-        if string.match(/javascript:mostrar_pagina\('([0-9]+)','([0-9]+)'\);/)
-          string.gsub!(/javascript:mostrar_pagina\('([0-9]+)','([0-9]+)'\);/){|x| "/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["paginas"][$1]}" }
+			str = Iconv.conv("UTF-8//IGNORE","ASCII","#{string}")
+      unless str.nil?
+        if str.match(/javascript:mostrar_pagina\('([0-9]+)','([0-9]+)'\);/)
+          str.gsub!(/javascript:mostrar_pagina\('([0-9]+)','([0-9]+)'\);/){|x| "/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["paginas"][$1]}" }
         end
-        if string.match(/javascript:mostrar_noticia\('([0-9]+)','([0-9]+)'\);/)
-          string.gsub!(/javascript:mostrar_noticia\('([0-9]+)','([0-9]+)'\);/){|x| "/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["noticias"][$1]}" }
+        if str.match(/javascript:mostrar_noticia\('([0-9]+)','([0-9]+)'\);/)
+          str.gsub!(/javascript:mostrar_noticia\('([0-9]+)','([0-9]+)'\);/){|x| "/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["noticias"][$1]}" }
         end
-        string = @con_weby.escape(string)
+        str = @con_weby.escape(str)
       end
-      return string
+      return str
     end
     # Destrutor
     def finalize
