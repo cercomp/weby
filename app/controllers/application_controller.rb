@@ -9,15 +9,18 @@ class ApplicationController < ActionController::Base
   def choose_layout
     if @site.nil? or @site.id.nil? 
       return "webyge"
-    end
-    # Tentar usar tema definido no perfil do usuário
-    if current_user && !current_user.theme.empty?
-      return current_user.theme
-    # Se não existir tente o definido no papel do usuário
-    elsif current_user && !current_user.role_ids.empty?
-      role_theme = Role.find(current_user.role_ids).theme
-      unless role_theme.nil? or role_theme.empty?
-        return role_theme
+    else
+      if @site.theme
+        return @site.theme
+      # Tentar usar tema definido no perfil do usuário
+      elsif current_user && !current_user.theme.empty?
+        return current_user.theme
+      # Se não existir tente o definido no papel do usuário
+      elsif current_user && !current_user.role_ids.empty?
+        role_theme = Role.find(current_user.role_ids).theme
+        unless role_theme.nil? or role_theme.empty?
+          return role_theme
+        end
       end
     end
     # Se não for nenhum dos acima use este

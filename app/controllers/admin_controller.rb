@@ -16,6 +16,11 @@ class AdminController < ApplicationController
     params[:type] ||= 'image'
     @repository = Repository.new
     @repositories = @site.repositories.search(params[:search], params[:page], params[:type])
+    files = []
+    for file in Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*")]
+      files << file.split("/")[-1].split(".")[0]
+    end
+    @themes = files
     if @repositories.empty?
       flash.now[:warning] = (t"none_param", :param => t("picture"))
     end
