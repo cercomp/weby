@@ -14,7 +14,7 @@
       </div>
     <% end %>
 
-    <%= f.text_field :login, {:label => t("username"), :autofocus => true } %><br />
+    <%= f.text_field :login, {:label => t("username"), :autofocus => true, :autocapitalize => "off" } %><br />
     <%= f.password_field :password, :label => t("password") %><br />
     <%= f.check_box :remember_me, :label => t("remember_me") %><br />
     <%= hidden_field_tag :back_url, "#{params[:back_url]}" %>

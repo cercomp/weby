@@ -3,6 +3,13 @@ Webyge::Application.routes.draw do |map|
 #  if Page.table_exists?
     match "sites/:site_id" => 'pages#view', :via => :get#, :constraints => { :site_id => /#{Site.all.map{|p| p.name}.join('|')}/ }
 #  end
+  
+  match '/page/:page' => 'sites#index' # Paginate URL on sites
+  match '/sites/:site_id/users/page/:page' => 'users#index' # Paginate URL on users
+  match '/sites/:site_id/pages/paginate/:paginate' => 'pages#index' # Paginate URL on pages
+  match '/sites/:site_id/banners/page/:page' => 'banners#index' # Paginate URL on banners
+  match '/sites/:site_id/repositories/page/:page' => 'repositories#index' # Paginate URL on repositories
+  match '/sites/:site_id/groups/page/:page' => 'groups#index' # Paginate URL on groups
 
   resources :sites do
     resources :users do
