@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Webyge</title>
+  <title>Weby</title>
   <meta charset="utf-8">
   <%= csrf_meta_tag %>
   <%= stylesheet_link_tag 'scaffold' %>
   <%= stylesheet_link_tag 'application' %>
   <%= stylesheet_link_tag 'semantic_forms' %>
-  <%= stylesheet_link_tag 'webyge' %>
+  <%= stylesheet_link_tag 'weby' %>
   <%= stylesheet_link_tag 'will_paginate' %>
   <!--[if lt IE 9]>
   <%= javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js" %>
@@ -20,7 +20,6 @@
     <nav class="right">
       <%= raw menu_locale %>
     </nav>
-    <%= image_tag("logo_2.png") %>
   </header>
 
   <section id="content">
@@ -29,7 +28,7 @@
   </section>
 
   <footer>
-    2011 © UFG. All Rights Reserved.
+    <%=Time.now.year%><%=t'licence' %>
   </footer>
 
   <%= javascript_include_tag :defaults %>
