@@ -15,7 +15,7 @@
     </header>
 
     <%= raw @page.text %>
-    <p> <h3> <%= @page.url.nil? ? @page.source : link_to(@page.source, @page.url) %> </h3> </p>
+    <p> <h3> <%= @page.url.empty? ? @page.source : link_to(@page.source, @page.url) %> </h3> </p>
 
     <% unless @page.repositories.empty? %>
       <table class="list">

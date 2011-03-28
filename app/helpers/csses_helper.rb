@@ -25,9 +25,9 @@ module CssesHelper
 
   def follow(obj, following)
     if following == false 
-      menu = link_to(image_tag("false.png", :alt => t("disable")), {:action => "follow", :id => obj.id, :following => "#{following}"}, :title => t("activate_deactivate"))
+      menu = link_to(image_tag("false.png", :alt => t("disable.masc")), {:action => "follow", :id => obj.id, :following => "#{following}"}, :title => t("activate_deactivate"))
     else
-      menu = link_to(image_tag("true.png", :alt => t("enable")), {:action => "follow", :id=> obj.id, :following => "#{following}"}, :title => t("activate_deactivate"))
+      menu = link_to(image_tag("true.png", :alt => t("enable.masc")), {:action => "follow", :id => obj.id, :following => "#{following}"}, :title => t("activate_deactivate"))
     end
     menu
   end

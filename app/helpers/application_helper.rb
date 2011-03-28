@@ -13,15 +13,15 @@ module ApplicationHelper
     menu = ""
     if current_user.is_admin
       if obj[field.to_s] == 0 or not obj[field.to_s]
-        menu = link_to(image_tag("false.png", :alt => t("disable")), {:action => "toggle_field", :id => obj.id, :field => "#{field}"}, :title => t("activate_deactivate"))
+        menu = link_to(image_tag("false.png", :alt => t("disable.masc")), {:action => "toggle_field", :id => obj.id, :field => "#{field}"}, :title => t("activate_deactivate"))
       else
-        menu = link_to(image_tag("true.png", :alt => t("enable")), {:action => "toggle_field", :id=> obj.id, :field => "#{field}"}, :title => t("activate_deactivate"))
+        menu = link_to(image_tag("true.png", :alt => t("enable.masc")), {:action => "toggle_field", :id=> obj.id, :field => "#{field}"}, :title => t("activate_deactivate"))
       end
     else
       if obj[field.to_s] == 0 or not obj[field.to_s]
-        menu = image_tag("false_off.png", :alt => t("enable"), :title => t("no_permission_to_activate_deactivate"))
+        menu = image_tag("false_off.png", :alt => t("enable.masc"), :title => t("no_permission_to_activate_deactivate"))
       else
-        menu = image_tag("true_off.png", :alt => t("disable"), :title => t("no_permission_to_activate_deactivate"))
+        menu = image_tag("true_off.png", :alt => t("disable.masc"), :title => t("no_permission_to_activate_deactivate"))
       end
     end
     menu

@@ -42,9 +42,9 @@
     <%= f.datetime_select :date_end_at, :order => [:year, :month, :day], :use_month_numbers => true, :label => (t"date_param", :param => t("end")) %>
 
     <%= f.text_field :title, :label => t("title"), :required => true, :help => t("field_required")  %>
-    <%= f.text_area :text, :label => t("text"), :class => "mceAdvance", :size => "48x10" %>
+    <%= f.text_area :text, :label => t("text"), :class => "mceAdvance", :size => "44x10" %>
 
-    <%= f.text_area :summary, :label => t("summary"), :class => "mceSimple", :size => "48x8" %>
+    <%= f.text_area :summary, :label => t("summary"), :class => "mceSimple", :size => "44x8" %>
     <%= f.text_field :source, :label => t("source"), :required => true, :help => t("field_required") %> 
     <%= f.text_field :url, :label => t("url") %>
     <%= f.check_box :publish , :label => t("publish"), :help => t("publish_help") %>
