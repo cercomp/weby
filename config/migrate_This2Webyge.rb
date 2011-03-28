@@ -48,10 +48,11 @@ class Migrate_this2weby
       site_name ||= this_site['site_id']
 
       select_rodape = "SELECT endereco,telefone FROM rodape WHERE site_id='#{this_site['site_id']}'"
-      puts "\tRodapé: #{select_rodape}"
+      puts "\tRodapé: #{pre_treat(select_rodape)}"
       rodape = @con_this.exec(select_rodape)
-      rodape_text = "#{treat(rodape.first['endereco'])} #{treat(rodape.first['telefone'])}" unless rodape.first.nil?
-      insert_site = "INSERT INTO sites (name,url,description,footer) VALUES ('#{treat(site_name)}','#{this_site['caminho_http']}','#{pre_treat(this_site['nm_site'])}','#{rodape_text}') RETURNING id"
+      rodape_text = "#{pre_treat(rodape.first['endereco'])} #{pre_treat(rodape.first['telefone'])}" unless rodape.first.nil?
+#      rodape_text = rodape_text.force_encoding("UTF-8").valid_encoding? ? rodape_text : "" if rodape_text
+      insert_site = "INSERT INTO sites (name,url,description,footer) VALUES ('#{pre_treat(site_name)}','#{pre_treat(this_site['caminho_http'])}','#{pre_treat(this_site['nm_site'])}','#{rodape_text}') RETURNING id"
       site = @con_weby.exec(insert_site)
       puts "\t\t(#{site[0]['id']}) #{insert_site}\n" if @verbose
       # Criando objeto de conversão
@@ -64,87 +65,89 @@ class Migrate_this2weby
       select_estilo = "SELECT * FROM estilo WHERE id='#{this_site['id_estilo']}'"
       puts "\t\t#{select_estilo}\n" if @verbose
       this_estilo = @con_this.exec(select_estilo)
+
+      unless this_estilo.first.nil?
       weby_estilo = <<EOF
-  /* Principal */
-  /* Fundo do site */
-      html{ background: #{this_estilo.first['body_background']}; }
-  /* Borda dos menus */ 
-      aside menu li,
-      header nav menu li,
-      footer nav menu li { border:1px solid #{this_estilo.first['body_background']}; }
-  /* Fundo Tabela frontal das páginas */ 
-      #no_front_news table,
-      #no_front_news table th,
-      #no_front_news table td { border-color: #{this_estilo.first['cor_borda_noticias']}; }
-      #no_front_news table th { background-color: #{this_estilo.first['cor_borda_noticias']}; }
-  /* Cor titulo da tabela frontal das páginas */
-      #no_front_news table th { color: #{this_estilo.first['cor_letra_topo_noticias']}; }
-  /* Cor Letra Titulo Tabela Frontal */ 
-      #no_front_news table td a { color: #{this_estilo.first['cor_letra_link_noticias_out']}; }
-  /* Cor Letra Titulo Tabela Frontal Hover */ 
-      #no_front_news table td a:hover { color: #{this_estilo.first['cor_letra_link_noticias_over']}; }
-  /* Cor Letra Tabela Frontal */ 
-      #no_front_news table td { color: #{this_estilo.first['cor_letra_noticias_resumos']}; }
-  /* Cor da letra do rodape */ 
-      footer section#info { color: #{this_estilo.first['cor_letra_rodape']}; }
+/* Principal */
+/* Fundo do site */
+  html{ background: #{this_estilo.first['body_background']}; }
+/* Borda dos menus */ 
+  aside menu li,
+  header nav menu li,
+  footer nav menu li { border:1px solid #{this_estilo.first['body_background']}; }
+/* Fundo Tabela frontal das páginas */ 
+  #no_front_news table,
+  #no_front_news table th,
+  #no_front_news table td { border-color: #{this_estilo.first['cor_borda_noticias']}; }
+  #no_front_news table th { background-color: #{this_estilo.first['cor_borda_noticias']}; }
+/* Cor titulo da tabela frontal das páginas */
+  #no_front_news table th { color: #{this_estilo.first['cor_letra_topo_noticias']}; }
+/* Cor Letra Titulo Tabela Frontal */ 
+  #no_front_news table td a { color: #{this_estilo.first['cor_letra_link_noticias_out']}; }
+/* Cor Letra Titulo Tabela Frontal Hover */ 
+  #no_front_news table td a:hover { color: #{this_estilo.first['cor_letra_link_noticias_over']}; }
+/* Cor Letra Tabela Frontal */ 
+  #no_front_news table td { color: #{this_estilo.first['cor_letra_noticias_resumos']}; }
+/* Cor da letra do rodape */ 
+  footer section#info { color: #{this_estilo.first['cor_letra_rodape']}; }
 /* Menu  */
   /* Esquerdo  */
     /* Menu  */
       /* Cor */ 
-          aside.left menu li a { background-color: #{this_estilo.first['cor_mouseout']} !important; }
+        aside.left menu li a { background-color: #{this_estilo.first['cor_mouseout']} !important; }
       /* Cor Hover */ 
-          aside.left menu li:hover { background-color: #{this_estilo.first['cor_mouseover']}; }
+        aside.left menu li:hover { background-color: #{this_estilo.first['cor_mouseover']}; }
       /* Cor fonte */ 
-          aside.left menu li a { color: #{this_estilo.first['cor_letra_out']} !important; }
+        aside.left menu li a { color: #{this_estilo.first['cor_letra_out']} !important; }
       /* Cor fonte hover */ 
-          aside.left menu li a:hover { color: #{this_estilo.first['cor_letra_hover']} !important; }
+        aside.left menu li a:hover { color: #{this_estilo.first['cor_letra_hover']} !important; }
     /* Submenu  */
       /* Cor */ 
-          aside.left menu li.sub > a { background-color: #{this_estilo.first['cor_td_subitem_mouseout']} !important; }
+        aside.left menu li.sub > a { background-color: #{this_estilo.first['cor_td_subitem_mouseout']} !important; }
       /* Cor Hover */ 
-          aside.left menu li.sub:hover { background-color: #{this_estilo.first['cor_td_subitem_mouseover']} !important; }
+        aside.left menu li.sub:hover { background-color: #{this_estilo.first['cor_td_subitem_mouseover']} !important; }
       /* Cor fonte */ 
-          aside.left menu li.sub > a { color: #{this_estilo.first['cor_letra_subitem_out']} !important; }
+        aside.left menu li.sub > a { color: #{this_estilo.first['cor_letra_subitem_out']} !important; }
       /* Cor fonte hover */ 
-          aside.left menu li.sub > a:hover { color: #{this_estilo.first['cor_letra_subitem_over']} !important; }
+        aside.left menu li.sub > a:hover { color: #{this_estilo.first['cor_letra_subitem_over']} !important; }
     /* Menu  */
       /* Cor */
-          aside.right menu li a { background-color: #{this_estilo.first['cor_mouseout2']} !important; }
+        aside.right menu li a { background-color: #{this_estilo.first['cor_mouseout2']} !important; }
       /* Cor Hover */
-          aside.right menu li:hover { background-color: #{this_estilo.first['cor_mouseover2']}; }
+        aside.right menu li:hover { background-color: #{this_estilo.first['cor_mouseover2']}; }
       /* Cor fonte */
-          aside.right menu li a { color: #{this_estilo.first['cor_letra_out2']} !important; }
+        aside.right menu li a { color: #{this_estilo.first['cor_letra_out2']} !important; }
       /* Cor fonte hover */
-          aside.right menu li a:hover { color: #{this_estilo.first['cor_letra_hover2']} !important; }
+        aside.right menu li a:hover { color: #{this_estilo.first['cor_letra_hover2']} !important; }
     /* Submenu  */
       /* Cor */
-          aside.right menu li.sub > a { background-color: #{this_estilo.first['cor_td_subitem_mouseout2']} !important; }
+        aside.right menu li.sub > a { background-color: #{this_estilo.first['cor_td_subitem_mouseout2']} !important; }
       /* Cor Hover */
-          aside.right menu li.sub:hover { background-color: #{this_estilo.first['cor_td_subitem_mouseover2']} !important; }
+        aside.right menu li.sub:hover { background-color: #{this_estilo.first['cor_td_subitem_mouseover2']} !important; }
       /* Cor fonte */
-          aside.right menu li.sub > a { color: #{this_estilo.first['cor_letra_subitem_out2']} !important; }
+        aside.right menu li.sub > a { color: #{this_estilo.first['cor_letra_subitem_out2']} !important; }
       /* Cor fonte hover */
-          aside.right menu li.sub > a:hover { color: #{this_estilo.first['cor_letra_subitem_over2']} !important; }
+        aside.right menu li.sub > a:hover { color: #{this_estilo.first['cor_letra_subitem_over2']} !important; }
   /* Superior  */
     /* Menu  */
       /* Cor */
-          header nav menu li a { background-color: #{this_estilo.first['cor_mouseout3']} !important; }
+        header nav menu li a { background-color: #{this_estilo.first['cor_mouseout3']} !important; }
       /* Cor Hover */
-          header nav menu li:hover { background-color: #{this_estilo.first['cor_mouseover3']}; }
+        header nav menu li:hover { background-color: #{this_estilo.first['cor_mouseover3']}; }
       /* Cor fonte */
-          header nav menu li a { color: #{this_estilo.first['cor_letra_out3']} !important; }
+        header nav menu li a { color: #{this_estilo.first['cor_letra_out3']} !important; }
       /* Cor fonte hover */
-          header nav menu li a:hover { color: #{this_estilo.first['cor_letra_hover3']} !important; }
+        header nav menu li a:hover { color: #{this_estilo.first['cor_letra_hover3']} !important; }
   /* Inferior  */
     /* Menu  */
       /* Cor */
-          footer nav menu li a { background-color: #{this_estilo.first['cor_mouseout4']} !important; }
+        footer nav menu li a { background-color: #{this_estilo.first['cor_mouseout4']} !important; }
       /* Cor Hover */
-          footer nav menu li:hover { background-color: #{this_estilo.first['cor_mouseover4']}; }
+        footer nav menu li:hover { background-color: #{this_estilo.first['cor_mouseover4']}; }
       /* Cor fonte */
-          footer nav menu li a { color: #{this_estilo.first['cor_letra_out4']} !important; }
+        footer nav menu li a { color: #{this_estilo.first['cor_letra_out4']} !important; }
       /* Cor fonte hover */
-          footer nav menu li a:hover { color: #{this_estilo.first['cor_letra_hover4']} !important; }
+        footer nav menu li a:hover { color: #{this_estilo.first['cor_letra_hover4']} !important; }
 /* CSS  */
 /* Estilo das páginas  */
   /* Cor Links */
@@ -161,9 +164,10 @@ class Migrate_this2weby
     section#content article header,
     section#content article header summary { color: #{this_estilo.first['cor_letra_titulos']} !important; }}
   /* Avançado */
-      /* Pegar todo o CSS avançado, guardar em um arquivo */
-      /* #{this_estilo.first['avancado']} */
+    /* Pegar todo o CSS avançado, guardar em um arquivo */
+    /* #{this_estilo.first['avancado']} */
 EOF
+      end
       insert_css = "INSERT INTO csses (name,css) VALUES ('#{site_name}','#{pre_treat(weby_estilo)}') RETURNING id"
       css = @con_weby.exec(insert_css)
       puts "\t\t\t(#{css[0]['id']}) #{insert_css[0,300]}\n" if @verbose
@@ -289,6 +293,7 @@ EOF
         #   1o. menus   (Hash)    Onde os índices são as tabelas no this e os valores são seus respectivos no weby
         #   2o. this_id (integer) id do site no this
         #   3o. weby_id (integer) id do site no weby
+        @convar["#{this_site['site_id']}"]["menus"] ||= {}
         migrate_this_menus({'direito' => 'auxiliary', 'esquerdo' => 'secondary', 'superior' => 'main', 'inferior' => 'base'}, this_site['site_id'], site[0]['id'])
 
       end
@@ -308,25 +313,37 @@ EOF
 
     # Metodo para chamada recursiva
     def deep_insert_menu(sons, entry, this_id, site_id, menu_id, type)
-      if not entry['texto'].nil? # Se o campo texto for significante o menu está embutido
+      if (not entry['texto'].nil?) and (entry['texto'].size > 5) # Se o campo texto não for nulo e não for vazio então o menu está embutido
         modificador = @convar["#{this_id}"]['usuarios'][entry['modificador']] 
         modificador ||= 1
         insert_page = "INSERT INTO pages (created_at,date_begin_at,date_end_at,site_id,author_id,title,text,publish,front,type) VALUES ('#{Time.now}','#{Time.now}','#{Time.now}','#{site_id}','#{modificador}','#{pre_treat(entry['texto_item'])}','#{pre_treat(entry['texto'])}',true,false,'News') RETURNING id"
         page_id = @con_weby.exec(insert_page)
+        @convar["#{this_id}"]["paginas"]["#{entry['id']}"] = page_id[0]['id']
         puts "\t\t\t\t\t(#{page_id[0]['id']}) #{insert_page[0,300]}" if @verbose
         insert_menu = "INSERT INTO menus (title,link,page_id) VALUES ('#{pre_treat(entry['texto_item'])}','','#{page_id[0]['id']}') RETURNING id"
       elsif not /javascript:mostrar_pagina.*\('([0-9]+)'.*/.match("#{entry['url']}").nil? # Verificando se o menu é interno, externo
         page_id = /javascript:mostrar_pagina.*\('([0-9]+)'.*/.match("#{entry['url']}")[1]
         page_id = @convar["#{this_id}"]["paginas"]["#{page_id}"]
-        insert_menu = "INSERT INTO menus (title,link,page_id) VALUES ('#{pre_treat(entry['texto_item'])}','','#{page_id}') RETURNING id"
+        insert_menu = "INSERT INTO menus (title,link,page_id) VALUES ('#{pre_treat(entry['texto_item'])}','','#{page_id}') RETURNING id" unless page_id.nil?
+
+      elsif not /javascript:mostrar_menu.*\('([0-9]+)'.*/.match("#{entry['url']}").nil?
+        page_id = /javascript:mostrar_menu.*\('([0-9]+)'.*/.match("#{entry['url']}")[1]
+        page_id = @convar["#{this_id}"]["paginas"]["#{page_id}"]
+        insert_menu = "INSERT INTO menus (title,link,page_id) VALUES ('#{pre_treat(entry['texto_item'])}','','#{page_id}') RETURNING id" unless page_id.nil?
       else
         insert_menu = "INSERT INTO menus (title,link) VALUES ('#{pre_treat(entry['texto_item'])}','#{pre_treat(entry['url'])}') RETURNING id"
       end
-      menu_sub = @con_weby.exec(insert_menu)
-      puts "\t\t\t\t(#{menu_sub[0]['id']}) #{insert_menu}\n" if @verbose
-      insert_sites_menus = "INSERT INTO sites_menus(site_id,menu_id,parent_id,side,position) VALUES ('#{site_id}','#{menu_sub[0]['id']}',#{menu_id},'#{type}','#{entry['posicao']}') RETURNING id"
-      menu_e0 = @con_weby.exec(insert_sites_menus)
-      puts "\t\t\t\t(#{menu_e0[0]['id']}) #{insert_sites_menus}\n" if @verbose
+      # Evitar erros quando não consegue inserir menu
+      unless insert_menu.nil?
+        menu_sub = @con_weby.exec(insert_menu)
+        puts "\t\t\t\t(#{menu_sub[0]['id']}) #{insert_menu}\n" if @verbose
+        insert_sites_menus = "INSERT INTO sites_menus(site_id,menu_id,parent_id,side,position) VALUES ('#{site_id}','#{menu_sub[0]['id']}',#{menu_id},'#{type}','#{entry['posicao']}') RETURNING id"
+        menu_e0 = @con_weby.exec(insert_sites_menus)
+        puts "\t\t\t\t(#{menu_e0[0]['id']}) #{insert_sites_menus}\n" if @verbose
+      else
+        menu_e0 = []
+        menu_e0 << {'id' => menu_id}
+      end
 
       if sons["#{entry['id']}"].class.to_s == "Array"
         sons["#{entry['id']}"].each do |child|
@@ -357,8 +374,8 @@ EOF
     def pre_treat(string)
       unless string.nil?
         coder = HTMLEntities.new
-        string = @con_weby.escape(string)
 				str = Iconv.conv("UTF-8//IGNORE","ASCII","#{string}")
+        str = @con_weby.escape(str)
         str = coder.decode(str)
       end
       return str
@@ -403,8 +420,7 @@ class Migrate_files
     @config = YAML::load(File.open("./config-migrate.yml"))
     @convar = YAML::load(File.open("./convar.yml"))
     @con_weby = PGconn.connect(@config['weby']['host'],nil,nil,nil,@config['weby']['database'],@config['weby']['username'],@config['weby']['password'])
-    #@folders = ['topo', 'imgd', 'banners', 'files']
-    @folders = ['files']
+    @folders = ['topo', 'imgd', 'banners', 'files']
     @ids = id
     from += '/' if from[-1] != '/'
     to += '/' if to[-1] != '/'
@@ -430,7 +446,9 @@ class Migrate_files
   def copy_files
     if @ids.empty?
       # Descobre os ids dos sites
-      `ls #{@from + @folders.first}`.split("\n").each do |f|
+        ls = `ls #{@from + @folders.first}`
+        ls = Iconv.conv("UTF-8//IGNORE","ASCII","#{ls}")
+        ls.split("\n").each do |f|
         # Dentro de cada pasta teremos os ids dos sites
         # desde que  nome da pasta seja apenas números
         if f.scan(/\D/).empty?
@@ -460,7 +478,7 @@ class Migrate_files
           current_dir = dirs_to_flat.pop
 
           `find #{current_dir} -maxdepth 1 -mindepth 1 -type f`.split("\n").each do |file|
-            `cp "#{file}" #{destino}/`
+          `cp "#{file}" #{destino}/`
           end
           `find #{current_dir} -maxdepth 1 -mindepth 1 -type d`.split("\n").each do |dir|
             dirs_to_flat << dir
@@ -469,7 +487,7 @@ class Migrate_files
       end
 
       # Registra cada arquivo na base
-      `find #{destino} -maxdepth 1 -mindepth 1 -type f`.split("\n").each do |file|
+      `find #{destino} -maxdepth 1 -mindepth 1 -type f -not -iname "original_*" -not -iname "medium_*" -not -iname "little_*" -not -iname "mini_*"`.split("\n").each do |file|
         
         file_name = file.slice(file.rindex("/").to_i + 1, file.size)
         repository_id = create_repository(file, @convar[id]['weby'])
@@ -489,24 +507,21 @@ class Migrate_files
         end
         type,original_id = "#{file_info[1]}", "#{file_info[2]}"
 
-
-        if type == 'banner'
+        if type == 'banner' and @convar[id]['informativos'][original_id]
           tabela = 'banners'
-          id_weby = @convar[id]['informativos'][original_id]['id']
-
-        elsif type == 'inf'
+          id_weby = @convar[id]['informativos'][original_id]['id'] if @convar[id]['informativos'][original_id]['id']
+        elsif type == 'inf' and @convar[id]['informativos'][original_id]
           tabela = 'banners'
-          id_weby = @convar[id]['informativos'][original_id]['id']
-
+          id_weby = @convar[id]['informativos'][original_id]['id'] if @convar[id]['informativos'][original_id]['id']
         else
           # Se não for informativo, é uma página
           tabela = 'pages'
           # Do tipo evento?
-          if type == 'evento'
-            id_weby = @convar[id]['eventos'][original_id]['id']
+          if type == 'evento' and @convar[id]['eventos'][original_id]
+            id_weby = @convar[id]['eventos'][original_id]['id'] if @convar[id]['eventos'][original_id]['id']
           # Ou do tipo noticia?
-          elsif type == 'noticia'
-            id_weby = @convar[id]['noticias'][original_id]['id']
+          elsif type == 'noticia' and @convar[id]['noticias'][original_id]
+            id_weby = @convar[id]['noticias'][original_id]['id'] if @convar[id]['noticias'][original_id]['id']
           # Se não for nehum dos tipos: continua o loop
           elsif id_weby.nil?
             next
@@ -531,7 +546,8 @@ class Migrate_files
     file_name = file.slice(file.rindex('/')+1, file.size)
     file_type = content_type file
     file_size = File.new(file).size
-    descricao = "#{file_name}"
+    descricao = ""
+    #descricao = "#{file_name}"
 
     sql = "INSERT INTO repositories(site_id,created_at,updated_at,archive_file_name,archive_content_type,archive_file_size,archive_updated_at,description) VALUES ('#{site_id}','#{Time.now}','#{Time.now}','#{file_name}','#{file_type}','#{file_size}','#{Time.now}','#{descricao}') RETURNING id"
 
@@ -557,7 +573,7 @@ class Migrate_files
 end
 
 def use_mode
-  puts "Modo de usar:\n #{__FILE__} [--dir-uploads-this /path/upload/this --dir-uploads-weby /path/upload/weby]"
+  puts "Modo de usar:\n #{__FILE__} [--no-migrate-db] [--dir-uploads-this /path/upload/this --dir-uploads-weby /path/upload/weby]"
   exit
 end
 

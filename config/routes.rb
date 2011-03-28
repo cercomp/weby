@@ -1,7 +1,7 @@
 Webyge::Application.routes.draw do |map|
 
 #  if Page.table_exists?
-    match "sites/:site_id" => 'pages#view', :via => :get, :constraints => { :site_id => /#{Site.all.map{|p| p.name}.join('|')}/ }
+    match "sites/:site_id" => 'pages#view', :via => :get#, :constraints => { :site_id => /#{Site.all.map{|p| p.name}.join('|')}/ }
 #  end
   
   match '/page/:page' => 'sites#index' # Paginate URL on sites
