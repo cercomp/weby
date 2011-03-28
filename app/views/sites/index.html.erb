@@ -1,3 +1,4 @@
+<% if @sites.nil? %>
 <fieldset>
   <legend><%= t"site.other" %></legend>
 
@@ -20,3 +21,6 @@
     <%= render :partial => "list" %>
   </div>
 </fieldset>
+<% else %>
+ <% flash.now[:warning] = (t"none_param", :param => t("site.one")) %>	
+<% end %>
