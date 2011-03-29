@@ -8,6 +8,7 @@ class Site < ActiveRecord::Base
     paginate :per_page => 20, :page => page, :conditions => ['lower(name) LIKE ? OR lower(description) LIKE ?', "%#{search}%", "%#{search}%"]  
   end
   validates_presence_of :name, :url
+  validates_uniqueness_of :name
 
   has_many :roles
 

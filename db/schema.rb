@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110326004609) do
+ActiveRecord::Schema.define(:version => 20110328185624) do
 
   create_table "banners", :force => true do |t|
     t.datetime "date_begin_at"
@@ -104,10 +104,14 @@ ActiveRecord::Schema.define(:version => 20110326004609) do
     t.integer  "position"
   end
 
+  add_index "pages", ["site_id", "repository_id"], :name => "index_pages_on_site_id_and_repository_id", :unique => true
+
   create_table "pages_repositories", :id => false, :force => true do |t|
     t.integer "page_id"
     t.integer "repository_id"
   end
+
+  add_index "pages_repositories", ["page_id", "repository_id"], :name => "index_pages_repositories_on_page_id_and_repository_id", :unique => true
 
   create_table "repositories", :force => true do |t|
     t.integer  "site_id"
@@ -195,12 +199,16 @@ ActiveRecord::Schema.define(:version => 20110326004609) do
     t.integer  "position"
   end
 
+  add_index "sites_menus", ["site_id", "menu_id"], :name => "index_sites_menus_on_site_id_and_menu_id", :unique => true
+
   create_table "sites_pages", :force => true do |t|
     t.integer  "site_id"
     t.integer  "page_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "sites_pages", ["site_id", "page_id"], :name => "index_sites_pages_on_site_id_and_page_id", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "login",                                  :null => false
