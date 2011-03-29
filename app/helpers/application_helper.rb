@@ -217,7 +217,7 @@ module ApplicationHelper
           <div class="box3">
             <div class="box4">
               <div class="marca_mec">
-                <a id="top_barra" name="top_barra" target="_blank" href="http://portal.mec.gov.br" class="txtIndent" title="Minist&eacute;rio da Educa&ccedil;&atilde;o">MEC - Minist&eacute;rio da Educa&ccedil;&atilde;o</a>
+                <a href="http://portal.mec.gov.br" target="_blank" title="Minist&eacute;rio da Educa&ccedil;&atilde;o">MEC - Minist&eacute;rio da Educa&ccedil;&atilde;o</a>
               </div>
               <div class="marca_brasil">
                 <a href="http://www.brasil.gov.br/" target="_blank" title="Portal Brasil">Portal Brasil</a>
