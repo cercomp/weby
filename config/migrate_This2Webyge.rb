@@ -381,8 +381,7 @@ EOF
       return str
     end
     # Tratamento de caracteres 
-    def treat(string)
-			str = Iconv.conv("UTF-8//IGNORE","ASCII","#{string}")
+    def treat(str)
       unless str.nil?
         if str.match(/javascript:mostrar_pagina\('([0-9]+)','([0-9]+)'\);/)
           str.gsub!(/javascript:mostrar_pagina\('([0-9]+)','([0-9]+)'\);/){|x| "/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["paginas"][$1]}" }
@@ -390,7 +389,6 @@ EOF
         if str.match(/javascript:mostrar_noticia\('([0-9]+)','([0-9]+)'\);/)
           str.gsub!(/javascript:mostrar_noticia\('([0-9]+)','([0-9]+)'\);/){|x| "/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["noticias"][$1]}" }
         end
-        str = @con_weby.escape(str)
       end
       return str
     end
@@ -446,9 +444,9 @@ class Migrate_files
   def copy_files
     if @ids.empty?
       # Descobre os ids dos sites
-        ls = `ls #{@from + @folders.first}`
-        ls = Iconv.conv("UTF-8//IGNORE","ASCII","#{ls}")
-        ls.split("\n").each do |f|
+      ls = `ls #{@from + @folders.first}`
+      ls = Iconv.conv("UTF-8//IGNORE","ASCII","#{ls}")
+      ls.split("\n").each do |f|
         # Dentro de cada pasta teremos os ids dos sites
         # desde que  nome da pasta seja apenas números
         if f.scan(/\D/).empty?
@@ -460,6 +458,7 @@ class Migrate_files
     puts "ids = #{@ids}"
     # Para cada id de site conhecido
     @ids.each do |id|
+      #id = id.to_s
       if @convar[id].nil? || @convar[id]['weby'].nil?
         next
       end
@@ -478,7 +477,7 @@ class Migrate_files
           current_dir = dirs_to_flat.pop
 
           `find #{current_dir} -maxdepth 1 -mindepth 1 -type f`.split("\n").each do |file|
-          `cp "#{file}" #{destino}/`
+            `cp "#{file}" #{destino}/`
           end
           `find #{current_dir} -maxdepth 1 -mindepth 1 -type d`.split("\n").each do |dir|
             dirs_to_flat << dir
@@ -500,35 +499,33 @@ class Migrate_files
         end
 
         file_info = file_name.match(/([a-zA-Z]{3,})(\d*)[a-zA-Z_]*.[a-zA-Z_]{3,}$/)
-        puts "File info = #{file_info}"
+        puts "file_info = #{file_info}, file_info.size: #{file_info.size}" unless file_info.nil?
 
         if(!file_info or file_info.size < 3)
           next
         end
+        puts "file_info[1] = #{file_info[1]}, file_inf[2] = #{file_info[2]}"
         type,original_id = "#{file_info[1]}", "#{file_info[2]}"
 
-        if type == 'banner' and @convar[id]['informativos'][original_id]
+        if (type == 'banner' or type == 'inf')
           tabela = 'banners'
-          id_weby = @convar[id]['informativos'][original_id]['id'] if @convar[id]['informativos'][original_id]['id']
-        elsif type == 'inf' and @convar[id]['informativos'][original_id]
-          tabela = 'banners'
-          id_weby = @convar[id]['informativos'][original_id]['id'] if @convar[id]['informativos'][original_id]['id']
+          id_weby = @convar[id]['informativos'][original_id] if @convar[id]['informativos'][original_id]
         else
           # Se não for informativo, é uma página
           tabela = 'pages'
           # Do tipo evento?
-          if type == 'evento' and @convar[id]['eventos'][original_id]
-            id_weby = @convar[id]['eventos'][original_id]['id'] if @convar[id]['eventos'][original_id]['id']
+          if type == 'evento'
+            id_weby = @convar[id]['eventos'][original_id] if @convar[id]['eventos'][original_id]
           # Ou do tipo noticia?
-          elsif type == 'noticia' and @convar[id]['noticias'][original_id]
-            id_weby = @convar[id]['noticias'][original_id]['id'] if @convar[id]['noticias'][original_id]['id']
+          elsif type == 'noticia'
+            id_weby = @convar[id]['noticias'][original_id] if @convar[id]['noticias'][original_id]
           # Se não for nehum dos tipos: continua o loop
           elsif id_weby.nil?
             next
           end
         end
 
-        #puts "type: #{type}, original_id: #{original_id}, id_weby: #{id_weby}, repository_id: #{repository_id}"
+        puts "type: #{type}, original_id: #{original_id}, id_weby: #{id_weby}, repository_id: #{repository_id}"
         if not repository_id.nil? and not id_weby.nil?
           sql = "UPDATE #{tabela} SET repository_id='#{repository_id}' WHERE id='#{id_weby}'"
           @con_weby.exec(sql)
@@ -543,7 +540,7 @@ class Migrate_files
 
   def create_repository(file, site_id)
     #puts "file: #{file}, site_id: #{site_id}"
-    file_name = file.slice(file.rindex('/')+1, file.size)
+    file_name = file.slice(file.rindex('/').to_i + 1, file.size)
     file_type = content_type file
     file_size = File.new(file).size
     descricao = ""
