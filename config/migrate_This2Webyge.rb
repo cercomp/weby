@@ -485,8 +485,21 @@ class Migrate_files
         end
       end
 
+      # Cria uma entrada para repositories no convas caso essa ainda não exista
+      if @convar[id]["repositories"].nil?
+        @convar[id]["repositories"] = []
+      end
+
       # Registra cada arquivo na base
       `find #{destino} -maxdepth 1 -mindepth 1 -type f -not -iname "original_*" -not -iname "medium_*" -not -iname "little_*" -not -iname "mini_*"`.split("\n").each do |file|
+        
+        # Verifica se o arquivo já existe no canvar, ou seja, se ele já foi migrado
+        unless @convar[id]["repositories"].index(file).nil?
+          next
+        # Se ainda não existe, coloca o arquivo na lista
+        else
+          @convar[id]["repositories"].push file
+        end
         
         file_name = file.slice(file.rindex("/").to_i + 1, file.size)
         repository_id = create_repository(file, @convar[id]['weby'])
