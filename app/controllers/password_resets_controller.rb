@@ -6,17 +6,18 @@ class PasswordResetsController < ApplicationController
   skip_before_filter :check_authorization
 
   def new
+    flash[:warning] = t"fill_email_form"
     render
   end
 
   def create
     @user = User.find_by_email(params[:email])
-    if @user && @user.deliver_password_reset_instructions!
-      send_email_password_reset
+    if @user
+      @user.password_reset!(request.env["HTTP_HOST"])
       flash[:notice] = t("reset_mail")
-      redirect_to root_url
+      redirect_to :back
     else
-      flash.now[:warning] = t("no_mail")
+      flash[:warning] = t("no_mail")
       render :action => :new
     end
   end
@@ -30,31 +31,18 @@ class PasswordResetsController < ApplicationController
     @user.password_confirmation = params[:user][:password_confirmation]  
     if @user.save  
       flash[:notice] = t"successfully_updated", :param => t("password")
-      redirect_to account_url  
+      redirect_to root_path
     else  
       render :action => :edit  
     end  
   end  
   
   private  
-    def load_user_using_perishable_token  
-      @user = User.find_using_perishable_token(params[:id])  
-      unless @user  
-        flash[:notice] = t("missing_account")
-        redirect_to root_url  
-      end  
+  def load_user_using_perishable_token  
+    @user = User.find_using_perishable_token(params[:id])  
+    unless @user  
+      flash[:error] = t("missing_account")
+      redirect_to :back
     end  
-
-    #Envia email (instruções para recuperar a senha)
-    def send_email_password_reset
-      corpo = <<-CODE
-      <b>Instruções para trocar a senha a senha<br></b>
-      <b>Login: </b>#{@user.login}<br>
-      <b>E-mail: </b>#{@user.email}<br>
-      <b>Para trocar a senha <b>Link: </b><a href='#{edit_password_reset_url(@user.perishable_token)}'>clique aqui.</a>
-      CODE
-
-      Email.deliver_padrao(:corpo => corpo, :assunto => t("instructions_change_password"), :para => @user.email)
-  end     
-
+  end  
 end

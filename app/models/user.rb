@@ -10,8 +10,9 @@ class User < ActiveRecord::Base
   def self.search(search, page)
     paginate :per_page => 20, :page => page, :conditions => ['login like ? OR first_name like ? OR last_name like ?', "%#{search}%","%#{search}%","%#{search}%"], :order => 'id DESC'
   end
-  def deliver_password_reset_instructions!
+
+  def password_reset!(host)
     reset_perishable_token!
-    Notifier.deliver_password_reset_instructions(self)
+    Notifier.password_reset_instructions(self, host).deliver
   end  
 end

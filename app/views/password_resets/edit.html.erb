@@ -1,12 +1,20 @@
 <fieldset>
   <legend><%= t"editing", :param => (t"my_password") %></legend>
 
-  <% form_for @user, :url => password_reset_path, :method => :put do |f| %>
-    <%= f.error_messages %>
-    <%= f.password_field :password, :label => t("password") %><br />
-    <br />
-    <%= f.password_field :password_confirmation, :label => t("password_confirmation") %><br />
-    <br />
+  <%= form_for @user, :builder => SemanticFormBuilder, :url => password_reset_path, :method => :put do |f| %>
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@user.errors.count, "") %> <%= t"prohibited_being_saved", :count => @user.errors.count %>:</h2>
+        <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <%= f.password_field :password, :label => f.object.new_record? ?  t('password') : t("password_change"), :required => true, :help => t("field_required") %><br />
+    <%= f.password_field :password_confirmation, :label => t('password_confirmation'), :required => true, :help => t("field_required") %><br />
+
     <%= f.submit t("update_password_log") %>
   <% end %>
 </fieldset>

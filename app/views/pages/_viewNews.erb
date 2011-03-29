@@ -2,7 +2,7 @@
   <section id="pages">
     <% @front_news.each do |page| %>
       <li id=<%= "page_#{page.id}" %> style="list-style-type:none;">
-        <article class="<%= cycle 'pageright', 'pageleft' %>">
+        <article class="<%= cycle 'pageleft','pageright' %>">
 
           <% unless page.repository.nil? %>
             <%= link_to image_tag("#{page.repository.archive.url(:mini)}", :alt => page.repository.description), site_page_path(@site, page, :type => params[:type]), :title => page.repository.description %>
