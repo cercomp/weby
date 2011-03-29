@@ -25,7 +25,7 @@ class Migrate_this2weby
     @con_this = PGconn.connect(@config['this']['host'],nil,nil,nil,@config['this']['database'],@config['this']['username'],@config['this']['password'])
     @con_weby = PGconn.connect(@config['weby']['host'],nil,nil,nil,@config['weby']['database'],@config['weby']['username'],@config['weby']['password'])
     @verbose = verbose
-    #@param = "WHERE site_id=1"
+    #@param = "WHERE site_id=106"
     @convar = {} # Variável de conversão
   end
 
@@ -280,7 +280,7 @@ EOF
           autor = @convar["#{this_site['site_id']}"]['usuarios'][inform['autor']]
           autor ||= 1
           status = inform['status'] == 'P' ? true : false
-          insert_banner = "INSERT INTO banners (created_at,updated_at,date_begin_at,date_end_at,site_id,user_id,text,url,title,publish,hide) VALUES ('#{dt_cadastro}','#{dt_cadastro}','#{dt_inicio}','#{dt_fim}','#{site[0]['id']}','#{autor}','#{pre_treat(inform['texto'])}','#{pre_treat(inform['url'])}','#{pre_treat(inform['assunto'])}',#{status},false) RETURNING id"
+          insert_banner = "INSERT INTO banners (created_at,updated_at,date_begin_at,date_end_at,site_id,user_id,text,url,title,publish,hide,width) VALUES ('#{dt_cadastro}','#{dt_cadastro}','#{dt_inicio}','#{dt_fim}','#{site[0]['id']}','#{autor}','#{pre_treat(inform['texto'])}','#{pre_treat(inform['url'])}','#{pre_treat(inform['assunto'])}',#{status},false,'153') RETURNING id"
           banner = @con_weby.exec(insert_banner)
           puts "\t\t\t\t(#{banner[0]['id']}) #{insert_banner[0,300]}\n" if @verbose
           # Relacionando notícias na variável de conversão
@@ -357,8 +357,13 @@ EOF
         select_menu = "SELECT * FROM menu_#{menus_this[0]} WHERE site_id='#{this_id}'"
         puts "\t\t\t#{select_menu}\n" if @verbose
         menu_this = @con_this.exec(select_menu)
-        # Agrupando por item_pai
-        menus_this_groupby = menu_this.group_by{|i| i['item_pai']}
+        if menus_this[0] != 'inferior'
+          # Agrupando por item_pai
+          menus_this_groupby = menu_this.group_by{|i| i['item_pai']}
+        else
+          menus_this_groupby = {}
+          menus_this_groupby["0"] = menu_this.each{|i| i}
+        end
         # Laço
         unless menus_this_groupby["0"].nil?
           menus_this_groupby["0"].each do |menu|
@@ -381,16 +386,17 @@ EOF
       return str
     end
     # Tratamento de caracteres 
-    def treat(str)
-      unless str.nil?
+    def treat(string)
+      unless string.nil?
+        str = @con_weby.escape(string)
         if str.match(/javascript:mostrar_pagina\('([0-9]+)','([0-9]+)'\);/)
           str.gsub!(/javascript:mostrar_pagina\('([0-9]+)','([0-9]+)'\);/){|x| "/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["paginas"][$1]}" }
         end
         if str.match(/javascript:mostrar_noticia\('([0-9]+)','([0-9]+)'\);/)
           str.gsub!(/javascript:mostrar_noticia\('([0-9]+)','([0-9]+)'\);/){|x| "/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["noticias"][$1]}" }
         end
+        return str
       end
-      return str
     end
     # Destrutor
     def finalize
@@ -554,13 +560,14 @@ class Migrate_files
   def create_repository(file, site_id)
     #puts "file: #{file}, site_id: #{site_id}"
     file_name = file.slice(file.rindex('/').to_i + 1, file.size)
+    file_name = @con_weby.escape(file_name) if file_name
     file_type = content_type file
     file_size = File.new(file).size
     descricao = ""
     #descricao = "#{file_name}"
-
+ 
     sql = "INSERT INTO repositories(site_id,created_at,updated_at,archive_file_name,archive_content_type,archive_file_size,archive_updated_at,description) VALUES ('#{site_id}','#{Time.now}','#{Time.now}','#{file_name}','#{file_type}','#{file_size}','#{Time.now}','#{descricao}') RETURNING id"
-
+  
     repository = @con_weby.exec(sql)
     puts "\t\t(#{repository[0]['id']}) #{sql}"
     repository[0]['id']
@@ -578,6 +585,13 @@ class Migrate_files
       to_move.each do |d|
         puts `cp -urv "#{@from + d}" "#{temp_folder}"`
       end
+    end
+  end
+  # Destrutor
+  def finalize
+    @con_weby.close()
+    File.open('convar.yml', 'w') do |out|
+    YAML::dump(@convar, out)
     end
   end
 end
@@ -618,4 +632,5 @@ if (up_this = ARGV.index('--dir-uploads-this')) and (up_weby = ARGV.index('--dir
   move = Migrate_files.new(from, to)
   move.copy_files
   move.move_temp
+  move.finalize
 end

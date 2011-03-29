@@ -17,7 +17,7 @@
           <td><%= banner.date_begin_at %></td>
           <td><%= banner.date_end_at %></td>
           <td><%= banner.title %></td>
-          <td><%= banner.user.login %></td>
+          <td><%= banner.user.first_name ? ("#{banner.user.first_name} #{banner.user.last_name}") : banner.user.login %></td>
           <td align="center">
             <% if (banner.date_begin_at <= Time.now and banner.date_end_at > Time.now) %>
               <%= raw toggle_field(banner, "publish") %>
