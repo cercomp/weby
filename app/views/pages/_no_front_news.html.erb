@@ -2,11 +2,9 @@
   <div id='no_front_news'>
   <%= will_paginate @no_front_news, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax' %>
     <table class="border fullwidth zebra">
-
       <tr>
-        <th> <%= t "page.other" %> </th>
+        <th> <%= link_to t("page.other"), site_pages_path(@site) %> </th>
       </tr>
-
       <% @no_front_news.each do |page| %>
         <tr>
           <td>
