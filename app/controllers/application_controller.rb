@@ -48,7 +48,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def set_locale
+	def set_contraste
+			contraste = params[:contraste] || session[:contraste]
+			session[:contraste] = 'no'
+	end
+  
+	def set_locale
     # I18n.load_path += Dir[ File.join(Rails.root, 'lib', 'locale', '*.{rb,yml}') ]
     locale = params[:locale] || session[:locale] || I18n.default_locale
     session[:locale] = I18n.locale = locale
