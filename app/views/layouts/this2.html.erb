@@ -20,7 +20,7 @@
   <%= stylesheet_link_tag 'negativo' if session[:contrast] == 'yes' %>
 </head>
 
-<%= debug params %>
+<%#= debug params %>
 <% if @site.body_width %>
   <body style='width:<%= "#{@site.body_width.to_i + 4}" %>px'>
 <% elsif @top_banner_width %>
