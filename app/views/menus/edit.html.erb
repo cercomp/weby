@@ -9,7 +9,6 @@
     <% end %>
   </center>
   <hr>
-
   <%= form_for [@site, @menu], :builder => SemanticFormBuilder do |f| %>
     <% if @menu.errors.any? %>
       <div id="error_explanation">
