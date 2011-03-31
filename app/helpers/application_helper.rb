@@ -62,7 +62,7 @@ module ApplicationHelper
         end
       end
       #menus += " [ id:#{entry.id} pos:#{entry.position} ]" # Para debug
-      menus += (entry.menu and not entry.menu.link.empty?) ? " [ #{entry.menu.link} ] " : " [ #{entry.menu.page.id if entry.menu.page} ] "
+      menus += (entry.menu and not entry.menu.link.nil?) ? " [ #{entry.menu.link} ] " : " [ #{entry.menu.page.id if entry.menu.page} ] "
       menus += indent_space + link_to(image_tag('editar.gif', :border => 0, :alt => t("edit")), edit_site_menu_path(@site.name, entry.menu_id), :title => t("edit"))
       menus += indent_space + link_to(image_tag('subitem.gif', :border => 0, :alt => t("add_sub_menu")), new_site_menu_path(@site.name, :parent_id => entry.id), :title => t("add_sub_menu"))
       menus += indent_space + link_to(image_tag('setaup.gif', :border => 0, :alt => t("move_menu_up")), change_position_site_menus_path(:id => entry.id, :position => (entry.position.to_i - 1)), :title => t("move_menu_up")) if entry.position.to_i > 1
@@ -273,4 +273,10 @@ module ApplicationHelper
     menu_l
   end
 
+  # Método para ordenar tabelas pela coluna
+  def sortable(column, title = nil)
+    title ||= column.titleize
+    direction = (column == params[:sort] && params[:direction] == "asc") ? "desc" : "asc"
+    link_to title, :sort => column, :direction => direction
+  end
 end
