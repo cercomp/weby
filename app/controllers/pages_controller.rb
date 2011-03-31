@@ -6,7 +6,7 @@ class PagesController < ApplicationController
 
   def index 
     params[:type] ||= 'News'
-    @pages = @site.pages.search(params[:search], params[:paginate])
+    @pages = @site.pages.unscoped.search(params[:search], params[:paginate], sort_column + " " + sort_direction)
     
     respond_with do |format|
       format.js { 
@@ -157,5 +157,15 @@ class PagesController < ApplicationController
         end
       }
     end
+  end
+
+  helper_method :sort_column, :sort_direction
+  private
+  def sort_column
+    params[:sort] || 'id'
+  end
+
+  def sort_direction
+    params[:direction] || 'asc'
   end
 end

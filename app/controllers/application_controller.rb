@@ -147,6 +147,8 @@ class ApplicationController < ActionController::Base
       @menus_all = @site.sites_menus.group_by(&:side)
       @menus_all.each{ |key,value| @menus_all[key] = value.group_by(&:parent_id) }
 
+      logger.debug @menus_all
+
       @main       = @menus_all["main"]      || ""
       @secondary  = @menus_all["secondary"] || ""
       @auxiliary  = @menus_all["auxiliary"] || ""

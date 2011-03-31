@@ -2,12 +2,12 @@
     <%= will_paginate @pages, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :param_name => 'paginate', :class => 'pagination ajax' %>
     <table class='list'>
       <thead>
-        <th><%= "id" %></th>
-        <th><%= t"date_param", :param => t("register")%></th>
-        <th><%= t"date_param", :param => t("publication")%></th>
-        <th><%= t"title" %></th>
-        <th><%= t"author" %></th>
-        <th><%= t"type" %></th>
+        <th><%= sortable 'id' %></th>
+        <th><%= sortable 'date_begin_at', t("date_param", :param => t("register"))%></th>
+        <th><%= sortable 'date_end_at', t("date_param", :param => t("publication"))%></th>
+        <th><%= sortable 'title', t("title") %></th>
+        <th><%= sortable 'author_id', t("author") %></th>
+        <th><%= sortable 'type', t("type") %></th>
         <% if check_permission(PagesController, [:toggle_field]) %>
           <th><%= t"cover" %></th>
           <th><%= t"publish" %></th>
