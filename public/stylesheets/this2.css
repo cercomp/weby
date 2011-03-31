@@ -49,9 +49,9 @@ footer { }
     header nav menu li > a,
     footer nav menu li > a { text-overflow: ellipsis; overflow: hidden; white-space:nowrap; }
     header nav > menu > li:hover > a,
-    footer nav > menu > li:hover > a { min-width: 82px; width: auto;  }
+    footer nav > menu > li:hover > a { min-width: 81px; width: auto;  }
     header nav menu li.sub > a,
-    footer nav menu li.sub > a { background: url("../images/arrow_collapsed.png") no-repeat scroll #fff; background-position: 80px center; }
+    footer nav menu li.sub > a { background: url("../images/arrow_collapsed.png") no-repeat scroll #fff; background-position: right center; }
     header nav > menu > li.sub > a { background: url("../images/arrow_expanded.png") no-repeat scroll #fff; background-position: right center; }
     footer nav > menu > li.sub > a { background: url("../images/arrow_expanded_up.png") no-repeat scroll #fff; background-position: right center; }
 
@@ -65,7 +65,6 @@ footer { }
 aside { width: 155px; position: relative; }
 
   /* Define style to menu in side area */
-  /* aside > menu { width: 5em; } */
   aside menu { padding: 0; margin: 0; }
   aside menu li { position: relative; margin: 0; list-style-type: none; border: 1px solid silver; }
   aside menu li > a { background-color: #FFF; }
