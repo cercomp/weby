@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_contrast, :set_locale, :set_global_vars
  
   helper :all
-  helper_method :current_user_session, :current_user, :user_not_authorized
+  helper_method :current_user_session, :current_user, :user_not_authorized, :sort_direction
 
   def choose_layout
     if @site.nil? or @site.id.nil? 
@@ -156,5 +156,10 @@ class ApplicationController < ActionController::Base
       
       @top_banner_width,@top_banner_height = Paperclip::Geometry.from_file(@site.repository.archive).to_s.split('x') unless @site.repository.nil? 
     end
+  end
+
+  # Metodo usado na ordenação de tabelas por alguma coluna
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
   end
 end

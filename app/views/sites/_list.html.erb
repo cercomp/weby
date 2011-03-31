@@ -2,8 +2,8 @@
   <%= will_paginate @sites, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax' %>
   <table class='list'>
     <thead>
-      <th><%= "id" %></th>
-      <th><%= t"name" %></th>
+      <th><%= sortable "id" %></th>
+      <th><%= sortable 'name', t("name") %></th>
       <th><%= t"description" %></th>
     </thead>
     <tbody>

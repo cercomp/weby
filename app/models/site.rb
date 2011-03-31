@@ -4,8 +4,9 @@ class Site < ActiveRecord::Base
   def to_param
     "#{name}"
   end
-  def self.search(search, page)
-    paginate :per_page => 20, :page => page, :conditions => ['lower(name) LIKE ? OR lower(description) LIKE ?', "%#{search}%", "%#{search}%"]  
+  def self.search(search, page, order = 'id desc')
+    paginate :per_page => 20, :page => page, :conditions => ['lower(name) LIKE ? OR lower(description) LIKE ?', "%#{search}%", "%#{search}%"],
+              :order => order
   end
   validates_presence_of :name, :url
   validates_uniqueness_of :name

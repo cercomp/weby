@@ -4,8 +4,10 @@ class SitesController < ApplicationController
   before_filter :check_authorization, :except => [:show, :index]
   respond_to :html, :xml
 
+  helper_method :sort_column
+
   def index
-    @sites = Site.search(params[:search], params[:page])
+    @sites = Site.search(params[:search], params[:page], sort_column + " " + sort_direction)
     respond_with do |format|
       format.js { 
         render :update do |site|
@@ -51,5 +53,10 @@ class SitesController < ApplicationController
     @site = Site.find_by_name(params[:id])
     @site.destroy
     respond_with(@site)
+  end
+
+  private
+  def sort_column
+    Site.column_names.include?(params[:column]) ? params[:column] : 'id'
   end
 end
