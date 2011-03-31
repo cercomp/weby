@@ -140,18 +140,4 @@ class UsersController < ApplicationController
     end
     redirect_back_or_default users_path(@site)
   end
-
- private
-  #Envia email (usuário ativar usuário)
-  def send_email_active_user
-    corpo = <<-CODE
-    <b>Seu cadastro precisa ser confirmado<br></b>
-    <b>Data do cadastro: </b>#{@user.created_at}<br>
-    <b>Login: </b>#{@user.login}<br>
-    <b>E-mail: </b>#{@user.email}<br>
-    <b>Para ativar </b><a href='#{edit_active_user_url(@user.perishable_token)}'>clique aqui.</a>
-    CODE
-
-    Email.deliver_padrao(:corpo => corpo, :assunto => "Cadastro Aceito", :para => @user.email)
-  end   
 end

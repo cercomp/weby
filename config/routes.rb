@@ -1,9 +1,21 @@
 Webyge::Application.routes.draw do |map|
 
+  resources :password_resets, :only => [ :new, :create, :edit, :update ]
+  resources :account, :controller => "users"
+  resources :users do
+    collection do
+      get :manage_roles
+      post :change_roles
+    end
+    member do 
+      get :toggle_field
+    end 
+  end
+
   if Page.table_exists?
     match "sites/:site_id" => 'pages#view', :via => :get, :constraints => { :site_id => /#{Site.all.map{|p| p.name}.join('|')}/ }
   end
-
+  
   match '/page/:page' => 'sites#index' # Paginate URL on sites
   match '/sites/:site_id/users/page/:page' => 'users#index' # Paginate URL on users
   match '/sites/:site_id/pages/paginate/:paginate' => 'pages#index' # Paginate URL on pages
@@ -63,22 +75,12 @@ Webyge::Application.routes.draw do |map|
     resources :groups, :chats, :roles, :rights, :archives, :admin
   end
 
-  resources :groups, :menus, :chats, :rights, :archives, :user_sessions, :password_resets, :admin, :csses
+  resources :groups, :menus, :chats, :rights, :archives, :user_sessions, :admin, :csses
 
-  resources :account, :controller => "users"
   resources :roles do
     collection do
       put :index
     end
-  end
-  resources :users do
-    collection do
-      get :manage_roles
-      post :change_roles
-    end
-    member do 
-      get :toggle_field
-    end 
   end
   resources :repositories do
     collection do

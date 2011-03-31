@@ -7,7 +7,6 @@ class PasswordResetsController < ApplicationController
 
   def new
     flash[:warning] = t"fill_email_form"
-    render
   end
 
   def create
@@ -23,15 +22,14 @@ class PasswordResetsController < ApplicationController
   end
   
   def edit  
-    render  
   end  
   
-  def update  
+  def update
     @user.password = params[:user][:password]  
     @user.password_confirmation = params[:user][:password_confirmation]  
     if @user.save  
       flash[:notice] = t"successfully_updated", :param => t("password")
-      redirect_to root_path
+      redirect_to @user
     else  
       render :action => :edit  
     end  
@@ -42,7 +40,7 @@ class PasswordResetsController < ApplicationController
     @user = User.find_using_perishable_token(params[:id])  
     unless @user  
       flash[:error] = t("missing_account")
-      redirect_to :back
+      redirect_to root_url
     end  
   end  
 end
