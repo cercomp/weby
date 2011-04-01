@@ -325,6 +325,8 @@ pt-BR:
 
 #---V---#
   value: "Valor"
+  view_desc_pages: "Visualizar descrição"
+  view_desc_pages_help: "Deseja mostrar a data de criação e o autor das páginas?"
 
 #---Y---#
   "yes": "Sim"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110328185624) do
+ActiveRecord::Schema.define(:version => 20110401134013) do
 
   create_table "banners", :force => true do |t|
     t.datetime "date_begin_at"
@@ -178,6 +178,7 @@ ActiveRecord::Schema.define(:version => 20110328185624) do
     t.integer  "body_width"
     t.text     "footer"
     t.string   "theme"
+    t.boolean  "view_desc_pages",   :default => false
   end
 
   create_table "sites_csses", :force => true do |t|

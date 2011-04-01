@@ -324,7 +324,9 @@ en:
   use: "Use"
 
 #---V---#
-  value: "Value" 
+  value: "Value"
+  view_desc_pages_help: "View description"
+  view_desc_pages_help: "You wish to show the creation date and author of pages?"
 
 #---Y---#
   "yes": "Yes"
