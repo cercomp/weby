@@ -5,7 +5,9 @@
       <figure id="banner">
         <% size = banner.size ? banner.size : "little" %>
         <%= link_to image_tag("#{banner.repository.archive.url(size)}", :width => "#{banner.width}", :height => "#{banner.height}", :alt => "#{banner.text}", :title => "#{banner.text}"), "#{banner.url}" %>
-        <%= link_to t("unpublish"), toggle_field_site_banner_path(@site, banner, :field => 'publish') %>
+        <% if check_permission(BannersController, ["toggle_field"]) %>
+          <%= link_to t("unpublish"), toggle_field_site_banner_path(@site, banner, :field => 'publish') %>
+        <% end %>
       </figure>
     <% end %>
   <% end %>
