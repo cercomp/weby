@@ -10,12 +10,15 @@
 
           <header>
             <h2> <%= link_to page.title, site_page_path(@site, page) %> </h2>
-            <p>
-              <i>
-                <%= page.user.first_name ? ("#{page.user.first_name} #{page.user.last_name}") : page.user.login %>
-                <%= l page.created_at, :format => :short  %>
-              </i>
-            </p>
+            
+            <% if @site.view_desc_pages %>
+              <p>
+                <i>
+                  <%= page.user.first_name ? ("#{page.user.first_name} #{page.user.last_name}") : page.user.login %>
+                  <%= l page.created_at, :format => :short  %>
+                </i>
+              </p>
+            <% end %>
           </header>
 
           <summary>
