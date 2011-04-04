@@ -5,12 +5,12 @@
         <article class="<%= cycle 'pageleft','pageright' %>">
 
           <% unless page.repository.nil? %>
+            <% page.repository.archive.reprocess! if File.file?(page.repository.archive.path) and not File.file?(page.repository.archive.path(:little)) %>
             <%= link_to image_tag("#{page.repository.archive.url(:mini)}", :alt => page.repository.description), site_page_path(@site, page, :type => params[:type]), :title => page.repository.description %>
           <% end %>
 
           <header>
-            <h2> <%= link_to page.title, site_page_path(@site, page) %> </h2>
-            
+            <h2> <%= link_to page.title, site_page_path(@site, page) %> </h2>            
             <% if @site.view_desc_pages %>
               <p>
                 <i>
