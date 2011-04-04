@@ -1,3 +1,8 @@
     <% unless @repositories.nil? %>
-      <%= f.radio_button_group :repository_id, @repositories.map{|u| { :value => u.id, :image => u.archive.url(:mini), :alt => u.description, :title => u.description }}, (will_paginate @repositories, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax'), :label => t("picture"), :help => t("picture") %>
+      <%= f.radio_button_group :repository_id, 
+        @repositories.map{|u|
+          u.archive.reprocess! if File.file?(u.archive.path) and not File.file?(u.archive.path(:mini))
+          { :value => u.id, :image => u.archive.url(:mini), :alt => u.description, :title => u.description }
+        }, (will_paginate @repositories, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax'), :label => t("picture"), :help => t("picture") 
+      %>
     <% end %>
