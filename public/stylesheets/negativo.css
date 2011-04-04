@@ -283,3 +283,94 @@ form div.required label, form div.required p, form div.required span {
   background: #333 !important; none repeat scroll 0 0; 
   color: white !important; 
   text-decoration: underline; }
+
+/* Borda dos menus */ 
+  aside menu li,
+  header nav menu li,
+  footer nav menu li { border:1px white ; }
+/* Fundo Tabela frontal das pginas */ 
+  #no_front_news table td { border-color: white; }
+  #no_front_news table th { background-color: black; }
+/* Cor titulo da tabela frontal das pginas */
+  #no_front_news table th { color: white; }
+/* Cor Letra Titulo Tabela Frontal */ 
+  #no_front_news table td a { color: white; }
+/* Cor Letra Titulo Tabela Frontal Hover */ 
+  #no_front_news table td a:hover { color: white; }
+/* Cor Letra Tabela Frontal */ 
+  #no_front_news table td { color: white; }
+/* Cor da letra do rodape */ 
+  footer section#info { color: white; }
+/* Menu  */
+  /* Esquerdo  */
+    /* Menu  */
+      /* Cor */ 
+        aside.left menu li a { background-color: black !important; }
+      /* Cor Hover */ 
+        aside.left menu li:hover { background-color: black !important; }
+      /* Cor fonte */ 
+        aside.left menu li a { color: white !important; }
+      /* Cor fonte hover */ 
+        aside.left menu li a:hover { color: white !important; }
+    /* Submenu  */
+      /* Cor */ 
+        aside.left menu li.sub > a { background-color: black  !important; }
+      /* Cor Hover */ 
+        aside.left menu li.sub:hover { background-color:  black !important; }
+      /* Cor fonte */ 
+        aside.left menu li.sub > a { color: white !important; }
+      /* Cor fonte hover */ 
+        aside.left menu li.sub > a:hover { color: white !important; }
+    /* Menu  */
+      /* Cor */
+        aside.right menu li a { background-color: black !important; }
+      /* Cor Hover */
+        aside.right menu li:hover { background-color: black; }
+      /* Cor fonte */
+        aside.right menu li a { color: white !important; }
+      /* Cor fonte hover */
+        aside.right menu li a:hover { color: white !important; }
+    /* Submenu  */
+      /* Cor */
+        aside.right menu li.sub > a { background-color: black !important; }
+      /* Cor Hover */
+        aside.right menu li.sub:hover { background-color: black !important; }
+      /* Cor fonte */
+        aside.right menu li.sub > a { color: white !important; }
+      /* Cor fonte hover */
+        aside.right menu li.sub > a:hover { color: white !important; }
+  /* Superior  */
+    /* Menu  */
+      /* Cor */
+        header nav menu li a { background-color:  black !important; }
+      /* Cor Hover */
+        header nav menu li:hover { background-color: black !important; }
+      /* Cor fonte */
+        header nav menu li a { color:  white !important; }
+      /* Cor fonte hover */
+        header nav menu li a:hover { color: white !important; }
+  /* Inferior  */
+    /* Menu  */
+      /* Cor */
+        footer nav menu li a { background-color: black !important; }
+      /* Cor Hover */
+        footer nav menu li:hover { background-color: black !important; }
+      /* Cor fonte */
+        footer nav menu li a { color: white !important; }
+      /* Cor fonte hover */
+        footer nav menu li a:hover { color: white  !important; }
+/* CSS  */
+/* Estilo das pginas  */
+  /* Cor Links */
+    section#content article > p a { color: white !important; }
+  /* Cor Links Hover */
+    section#content article > p a:hover { color: white !important; text-decoration: underline;}
+  /* Cor Letra */
+    section#content article > p,
+    section#content article > summary { color: white !important; }}
+  /* Cor Titulos */
+    section#content article header h1,
+    section#content article header h2 {color: white !important; }}
+  /* Cor Subtitulos */
+    section#content article header,
+    section#content article header summary { color: white !important; }}
