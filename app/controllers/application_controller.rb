@@ -154,7 +154,9 @@ class ApplicationController < ActionController::Base
       @auxiliary  = @menus_all["auxiliary"] || ""
       @base       = @menus_all["base"]      || ""
       
-      @top_banner_width,@top_banner_height = Paperclip::Geometry.from_file(@site.repository.archive).to_s.split('x') unless @site.repository.nil? 
+			if not @site.repository.nil? and File.file?(@site.repository.archive.path)
+	      @top_banner_width,@top_banner_height = Paperclip::Geometry.from_file(@site.repository.archive).to_s.split('x')
+			end
     end
   end
 
