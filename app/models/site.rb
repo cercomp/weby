@@ -4,10 +4,12 @@ class Site < ActiveRecord::Base
   def to_param
     "#{name}"
   end
+
   def self.search(search, page, order = 'id desc')
     paginate :per_page => 20, :page => page, :conditions => ['lower(name) LIKE ? OR lower(description) LIKE ?', "%#{search}%", "%#{search}%"],
-              :order => order
+    :order => order
   end
+
   validates_presence_of :name, :url
   validates_uniqueness_of :name
 
@@ -30,8 +32,8 @@ class Site < ActiveRecord::Base
   accepts_nested_attributes_for :sites_menus, :allow_destroy => true#, :reject_if => proc { |attributes| attributes['title'].blank? }
   accepts_nested_attributes_for :sites_pages, :allow_destroy => true#, :reject_if => proc { |attributes| attributes['title'].blank? }
 
- 	belongs_to :repository, :foreign_key => "top_banner_id"
+  belongs_to :repository, :foreign_key => "top_banner_id"
   has_many :repositories
 
-	has_attached_file :top_banner, :url => "/uploads/:site_id/:style_:basename.:extension"
+  has_attached_file :top_banner, :url => "/uploads/:site_id/:style_:basename.:extension"
 end

@@ -1,7 +1,7 @@
 class Page < ActiveRecord::Base
   default_scope :order => 'position'
-  def self.search(search, page, order = "id DESC")
-    paginate :per_page => 10, :page => page, :conditions => ['title like ?', "%#{search}%"], :order => order
+  def self.search(search, page, order = "id DESC", per_page = 10)
+    paginate :per_page => per_page, :page => page, :conditions => ['title like ?', "%#{search}%"], :order => order
   end
   validates_presence_of :title, :source, :author_id
 

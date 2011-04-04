@@ -1,6 +1,3 @@
-// Place your application-specific JavaScript functions and classes here
-// This file is automatically included by javascript_include_tag :defaults
-
 $(document).ready(function() {
   var img = new Image
   img.src = '/images/spinner.gif'
@@ -36,7 +33,7 @@ $(document).ready(function() {
 
   )
 
-})
+});
 
 function hide_enroled_option() {
 	$('form[id^=\"form_user\"]').each(function (e){ $(this).hide(); })
@@ -50,4 +47,3 @@ function hide_form(id) {
 }
 
 SyntaxHighlighter.all();
-
