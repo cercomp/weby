@@ -250,6 +250,7 @@ module ApplicationHelper
   def menu_acessibility
     if session[:contrast] == 'yes'
       menu_a = link_to image_tag("alto-contraste2.png", :title => t("high_contrast"), :alt => t("high_contrast")), :contrast => 'no'
+			menu_a += "\n"
       menu_a += image_tag("font_size_down_contraste.png", :onclick => "font_size_down()", :alt => t("font_size_down"), :title => t("font_size_down"))
       menu_a += "\n"
       menu_a += image_tag("font_size_original_contraste.png", :onclick => "font_size_original()", :alt => t("font_size_normal"), :title => t("font_size_normal"))
@@ -257,6 +258,7 @@ module ApplicationHelper
       menu_a += image_tag("font_size_up_contraste.png", :onclick => "font_size_up()", :alt => t("font_size_up"), :title => t("font_size_up"))
     else
       menu_a = link_to image_tag("alto-contraste2.png", :title => t("high_contrast"), :alt => t("high_contrast")), :contrast => 'yes'
+			menu_a += "\n"
       menu_a += image_tag("font_size_down.png", :onclick => "font_size_down()", :alt => t("font_size_down"), :title => t("font_size_down"))
       menu_a += "\n"
       menu_a += image_tag("font_size_original.png", :onclick => "font_size_original()", :alt => t("font_size_normal"), :title => t("font_size_normal"))
