@@ -2,6 +2,7 @@
 <% unless banners.empty? %>
   <% banners.each do |banner| %> 
     <% unless banner.repository.nil? %>
+      <% banner.repository.archive.reprocess! if File.file?(banner.repository.archive.path) and not File.file?(banner.repository.archive.path(:little)) %>
       <figure id="banner">
         <% size = banner.size ? banner.size : "little" %>
         <%= link_to image_tag("#{banner.repository.archive.url(size)}", :width => "#{banner.width}", :height => "#{banner.height}", :alt => "#{banner.text}", :title => "#{banner.text}"), "#{banner.url}" %>
