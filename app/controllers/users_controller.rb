@@ -58,7 +58,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.search(params[:search], params[:page]) 
+    @users = User.search(params[:search], params[:page], sort_column + " " + sort_direction) 
     @roles = Role.find(:all, :select => 'id,name,theme', :group => "name,id,theme", :order => "id")
 
     respond_with do |format|
@@ -139,5 +139,11 @@ class UsersController < ApplicationController
       end
     end
     redirect_back_or_default users_path(@site)
+  end
+
+  helper_method :sort_column
+  private
+  def sort_column
+    User.column_names.include?(params[:column]) ? params[:column] : 'id'
   end
 end

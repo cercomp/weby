@@ -31,6 +31,7 @@ module ApplicationHelper
   # Parâmetros: Lista de menu (sons, view_ctrl=0)
   # Retorna: O menu com seus controles
   def print_menu(sons, view_ctrl=0)
+    sons ||= ""
     menus ||= ""
     unless sons[0].nil?
       menus += "\n<menu>"

@@ -143,17 +143,13 @@ class ApplicationController < ActionController::Base
     end
 
     if @site
-      # TODO documentar essas duas linhas, como elas funcionam?
-      @menus_all = @site.sites_menus.group_by(&:side)
-      @menus_all.each{ |key,value| @menus_all[key] = value.group_by(&:parent_id) }
+      # Agrupa todos os menus do site pelo "side" definido
+      @menus = @site.sites_menus.group_by(&:side)
 
-      logger.debug @menus_all
+      # Agrupa os menu afi de deixar os submenus organizados.
+      #   Exemplo: menu['principal'] = { 0 => [menu1, menu2], 1 => [menu3, menu4] }
+      @menus.each{ |key,value| @menus[key] = value.group_by(&:parent_id) || "" }
 
-      @main       = @menus_all["main"]      || ""
-      @secondary  = @menus_all["secondary"] || ""
-      @auxiliary  = @menus_all["auxiliary"] || ""
-      @base       = @menus_all["base"]      || ""
-      
 			if not @site.repository.nil? and File.file?(@site.repository.archive.path)
 	      @top_banner_width,@top_banner_height = Paperclip::Geometry.from_file(@site.repository.archive).to_s.split('x')
 			end

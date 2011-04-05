@@ -37,7 +37,7 @@
           <header>
           <%= render :partial => "sites/viewCover" %>
           <nav>
-          <%= raw print_menu(@main) %>
+          <%= raw print_menu(@menus['main']) %>
           <nav class="right">
           <%= raw menu_acessibility %>
           <%= raw menu_locale %>
@@ -48,13 +48,13 @@
 
           <aside class="left">
           <nav>
-          <%= raw print_menu(@secondary) %>
+          <%= raw print_menu(@menus['secondary']) %>
           </nav>
           </aside>
 
           <aside class="right">
           <nav>
-          <%= raw print_menu(@auxiliary) %>
+          <%= raw print_menu(@menus['auxiliary']) %>
           </nav>
           <%= render :partial => "sites/viewBanner"  %>
           </aside>
@@ -67,7 +67,7 @@
 
           <footer class="clear">
           <nav>
-          <%= raw print_menu(@base) %>
+          <%= raw print_menu(@menus['base']) %>
           <div class="clear"></div>
           </nav>
           <nav class="right">
