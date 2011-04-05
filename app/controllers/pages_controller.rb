@@ -9,12 +9,14 @@ class PagesController < ApplicationController
     @tiny_mce = params[:tiny_mce] || false
     per_page = @tiny_mce ? 5 : 10
 
-    @pages = @site.pages.unscoped.search(params[:search], params[:paginate], sort_column + " " + sort_direction, per_page)
-    
+    site_pages = @tiny_mce ? @site.pages.published : @site.pages.unscoped
+
+    @pages = site_pages.search(params[:search], params[:paginate], sort_column + " " + sort_direction, per_page)
+
     respond_with do |format|
       format.js { 
         render :update do |site|
-          site.call "$('#page_list').html", ( @tiny_mce ? render(:partial => 'list_popup') : render(:partial => 'list') )
+        site.call "$('#page_list').html", ( @tiny_mce ? render(:partial => 'list_popup') : render(:partial => 'list') )
         end
       }
       format.xml  { render :xml => @pages }
@@ -30,7 +32,7 @@ class PagesController < ApplicationController
 
   def new
     params[:type] ||= 'News'
-    
+
     @repository = Repository.new
     @page = Page.new
     @page.sites_pages.build
@@ -44,14 +46,14 @@ class PagesController < ApplicationController
     respond_with do |format|
       format.js { 
         render :update do |page|
-          if params[:page]
-            page.call "$('#repo_list').html", render(:partial => 'repo_list', :locals => { :f => SemanticFormBuilder.new(:page, @page, self, {}, proc{}) })
-          elsif params[:page_files]
-            page.call "$('#files_list').append", render(:partial => 'files_list')
-            page.call "$('#will_paginate').html", (will_paginate @page_files_unchecked, :param_name => 'page_files', :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax', :page_links => false, :renderer => Twitter, :twitter_label => t("more"))
-          elsif params[:type]
-            page.call "$('#div_event').html", render(:partial => 'formEvent', :locals => { :f => SemanticFormBuilder.new(:page, @page, self, {}, proc{}) })
-          end
+        if params[:page]
+          page.call "$('#repo_list').html", render(:partial => 'repo_list', :locals => { :f => SemanticFormBuilder.new(:page, @page, self, {}, proc{}) })
+        elsif params[:page_files]
+          page.call "$('#files_list').append", render(:partial => 'files_list')
+          page.call "$('#will_paginate').html", (will_paginate @page_files_unchecked, :param_name => 'page_files', :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax', :page_links => false, :renderer => Twitter, :twitter_label => t("more"))
+        elsif params[:type]
+          page.call "$('#div_event').html", render(:partial => 'formEvent', :locals => { :f => SemanticFormBuilder.new(:page, @page, self, {}, proc{}) })
+        end
         end
       }
       format.html
@@ -74,12 +76,12 @@ class PagesController < ApplicationController
     respond_with do |format|
       format.js { 
         render :update do |page|
-          if params[:page]
-            page.call "$('#repo_list').html", render(:partial => 'repo_list', :locals => { :f => SemanticFormBuilder.new(@page.class.name.underscore.to_s, @page, self, {}, proc{}) })
-          elsif params[:page_files]
-            page.call "$('#files_list').append", render(:partial => 'files_list')
-            page.call "$('#will_paginate').html", (will_paginate @page_files_unchecked, :param_name => 'page_files', :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax', :page_links => false, :renderer => Twitter, :twitter_label => t("more"))
-          end
+        if params[:page]
+          page.call "$('#repo_list').html", render(:partial => 'repo_list', :locals => { :f => SemanticFormBuilder.new(@page.class.name.underscore.to_s, @page, self, {}, proc{}) })
+        elsif params[:page_files]
+          page.call "$('#files_list').append", render(:partial => 'files_list')
+          page.call "$('#will_paginate').html", (will_paginate @page_files_unchecked, :param_name => 'page_files', :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax', :page_links => false, :renderer => Twitter, :twitter_label => t("more"))
+        end
         end
       }
       format.html
@@ -123,14 +125,14 @@ class PagesController < ApplicationController
     end
     redirect_back_or_default site_pages_path(@site)
   end
-  
+
   def view
     @front_news = @site.pages.where(["front='true' AND publish='true' AND date_begin_at <= ? AND date_end_at > ?", Time.now, Time.now]) || ""
     @no_front_news = @site.pages.where(["front='false' AND publish='true' AND date_begin_at <= ? AND date_end_at > ?", Time.now, Time.now]).paginate :page => params[:page], :per_page => 5 || ""
     respond_with do |format|
       format.js { 
         render :update do |page|
-          page.call "$('#no_front_news').html", render(:partial => 'no_front_news', :locals => { :f => SemanticFormBuilder.new(@page.class.name.underscore.to_s, @page, self, {}, proc{}) })
+        page.call "$('#no_front_news').html", render(:partial => 'no_front_news', :locals => { :f => SemanticFormBuilder.new(@page.class.name.underscore.to_s, @page, self, {}, proc{}) })
         end
       }
       format.html
@@ -151,12 +153,12 @@ class PagesController < ApplicationController
     respond_with do |format|
       format.js { 
         render :update do |page|
-          if params[:from] == 'view'
-            page.call "$('#list').html", render(:partial => 'viewNews')
-          else
-            #page.call "$('#list').html", render(:partial => 'list')
-            render :nothing => true
-          end
+        if params[:from] == 'view'
+          page.call "$('#list').html", render(:partial => 'viewNews')
+        else
+          #page.call "$('#list').html", render(:partial => 'list')
+          render :nothing => true
+        end
         end
       }
     end
