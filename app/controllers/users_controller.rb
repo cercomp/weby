@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_filter :require_user, :only => [:edit, :show, :update, :destroy, :toggle_field, :change_roles, :change_theme, :index]
   before_filter :check_authorization, :except => [:new, :create, :update, :edit, :show]
   respond_to :html, :xml
+  helper_method :sort_column
 
   def change_theme
     if params[:id] && current_user
@@ -141,9 +142,8 @@ class UsersController < ApplicationController
     redirect_back_or_default users_path(@site)
   end
 
-  helper_method :sort_column
   private
   def sort_column
-    User.column_names.include?(params[:column]) ? params[:column] : 'id'
+    User.column_names.include?(params[:sort]) ? params[:sort] : 'id'
   end
 end

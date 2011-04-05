@@ -3,7 +3,7 @@
     <table class="list">
       <thead>
       <tr>
-        <th><%= t("login") %></th>
+        <th><%= sortable 'login', t("user", :count => 1) %></th>
         <th><%= t("email") %></th>
         <th><%= t"active" %></th>
         <th><%= t"is_admin" %></th>

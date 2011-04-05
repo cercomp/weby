@@ -1,17 +1,5 @@
 Webyge::Application.routes.draw do |map|
 
-  resources :password_resets, :only => [ :new, :create, :edit, :update ]
-  resources :account, :controller => "users"
-  resources :users do
-    collection do
-      get :manage_roles
-      post :change_roles
-    end
-    member do 
-      get :toggle_field
-    end 
-  end
-
   if Page.table_exists?
     match "sites/:site_id" => 'pages#view', :via => :get, :constraints => { :site_id => /#{Site.all.map{|p| p.name}.join('|')}/ }
   end
@@ -76,6 +64,18 @@ Webyge::Application.routes.draw do |map|
   end
 
   resources :groups, :menus, :chats, :rights, :archives, :user_sessions, :admin, :csses
+
+  resources :password_resets, :only => [ :new, :create, :edit, :update ]
+  resources :account, :controller => "users"
+  resources :users do
+    collection do
+      get :manage_roles
+      post :change_roles
+    end
+    member do 
+      get :toggle_field
+    end 
+  end
 
   resources :roles do
     collection do

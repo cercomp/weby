@@ -57,6 +57,6 @@ class SitesController < ApplicationController
 
   private
   def sort_column
-    Site.column_names.include?(params[:column]) ? params[:column] : 'id'
+    Site.column_names.include?(params[:sort]) ? params[:sort] : 'id'
   end
 end
