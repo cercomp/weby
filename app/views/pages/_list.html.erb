@@ -1,77 +1,43 @@
-<% if tiny_mce %>
-  <script>
-    $(function() {
-      $(".pagination a").live("click", function() {
-        $(".pagination").html("<img src='/images/spinner.gif'>");
-        $.get(this.href, null, null, "script");
-        return false;
-      });
-      $("table.list > thead > tr > th > a").live("click", function() {
-        $('table.list').html("<img src='/images/spinner.gif'>");
-        $.get(this.href, {'tiny_mce': true, 'per_page': 5 }, null, "script");
-        return false;
-      });
-    });
-  </script>
-<% end %>
-
 <% unless @pages.empty? %>
-  <% unless tiny_mce %>
-    <%= will_paginate @pages, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :param_name => 'paginate', :class => 'pagination ajax' %>
-  <% end %>
-  <table class='list' <%= 'style=width:100% rules=all' if tiny_mce %>>
+  <%= will_paginate @pages, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :param_name => 'paginate', :class => 'pagination ajax' %>
+  <table class='list'>
     <thead>
       <th><%= sortable 'id' %></th>
-      <% unless tiny_mce %>
-        <th><%= sortable 'date_begin_at', t("date_param", :param => t("register"))%></th>
-        <th><%= sortable 'date_end_at', t("date_param", :param => t("publication"))%></th>
-      <% end %>
+      <th><%= sortable 'date_begin_at', t("date_param", :param => t("register"))%></th>
+      <th><%= sortable 'date_end_at', t("date_param", :param => t("publication"))%></th>
       <th><%= sortable 'title', t("title") %></th>
-      <% unless tiny_mce %>
-        <th><%= sortable 'author_id', t("author") %></th>
-        <th><%= sortable 'type', t("type") %></th>
-        <% if check_permission(PagesController, [:toggle_field]) %>
-          <th><%= t"cover" %></th>
-          <th><%= t"publish" %></th>
-        <% end %>
-        <th></th>
+      <th><%= sortable 'author_id', t("author") %></th>
+      <th><%= sortable 'type', t("type") %></th>
+      <% if check_permission(PagesController, [:toggle_field]) %>
+        <th><%= t"cover" %></th>
+        <th><%= t"publish" %></th>
       <% end %>
+      <th></th>
     </thead>
     <tbody>
       <% @pages.each do |page| %>
         <tr class="<%= cycle 'odd', 'even' %>" id="<%= "page_#{page.id}" %>">
           <td><%= page.id %></td>
-          <% unless tiny_mce %>
-            <td><%= l page.created_at, :format => :short %></td>
-            <td><%= l page.date_begin_at, :format => :short %></td>
-          <% end %>
+          <td><%= l page.created_at, :format => :short %></td>
+          <td><%= l page.date_begin_at, :format => :short %></td>
           <td><%= page.title %></td>
-          <% unless tiny_mce %>
-            <td><%= page.user.first_name ? ("#{page.user.first_name} #{page.user.last_name}") : page.user.login %></td>
-            <td><%= t"#{page.type.downcase}.one" %></td>
-            <% if check_permission(PagesController, [:toggle_field]) %>
-              <td align="center"><%= raw toggle_field(page, "front") %></td>
-              <td align="center"><%= raw toggle_field(page, "publish") %></td>
-            <% end %>
-            <td>
-              <%= raw make_menu(page, :except => "show") %> 
-              <% if check_permission(PagesController, ["sort"]) %>
-                <div class='handle icon icon-drag'><%= t("move") %></div>
-              <% end %>
-            </td>
+          <td><%= page.user.first_name ? ("#{page.user.first_name} #{page.user.last_name}") : page.user.login %></td>
+          <td><%= t"#{page.type.downcase}.one" %></td>
+          <% if check_permission(PagesController, [:toggle_field]) %>
+            <td align="center"><%= raw toggle_field(page, "front") %></td>
+            <td align="center"><%= raw toggle_field(page, "publish") %></td>
           <% end %>
+          <td>
+            <%= raw make_menu(page, :except => "show") %> 
+            <% if check_permission(PagesController, ["sort"]) %>
+              <div class='handle icon icon-drag'><%= t("move") %></div>
+            <% end %>
+          </td>
         </tr>
         <% end; reset_cycle %>
       </tbody>
     </table>
-    <% if tiny_mce %>
-      <br style="clear:both;" />
-      <div style="float:right;margin-bottom:10px;">
-    <% end %>
-      <%= will_paginate @pages, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :param_name => 'paginate', :class => 'pagination' %>
-    <% if tiny_mce %>
-      </div>
-    <% end %>
+    <%= will_paginate @pages, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :param_name => 'paginate', :class => 'pagination' %>
   <% else %>
     <% flash.now[:warning] = (t"none_param", :param => t("page.one")) %>
   <% end %>

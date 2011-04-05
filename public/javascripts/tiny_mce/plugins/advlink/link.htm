@@ -9,14 +9,6 @@
         <script type="text/javascript" src="../../utils/validate.js"></script>
         <script type="text/javascript" src="js/advlink.js"></script>
         <link href="css/advlink.css" rel="stylesheet" type="text/css" />
-        <style>
-            #local_pages > select {
-                width: 100%;
-                border: none;
-                background: inherit;
-                font-size: 12px;
-            }
-        </style>
     </head>
     <body id="advlink" style="display: none">
         <form onsubmit="insertAction();return false;" action="#">
@@ -36,16 +28,13 @@
                         <script>
                             $().ready(function(){
                                 $("#page_list").html("<img src='/images/spinner.gif'>");
-                            });
-                            var page_url = tinyMCEPopup.editor.settings.plugin_preview_pageurl;
-                            $.ajax({
-                                type: "GET",
-                                url: "/sites/"+page_url+"/pages",
-                                data: {
-                                    'tiny_mce': true,
-                                    'per_page': 5
-                                },
-                                dataType: "script"
+                                var page_url = tinyMCEPopup.editor.settings.plugin_preview_pageurl;
+                                $.ajax({
+                                    type: "GET",
+                                    url: "/sites/"+page_url+"/pages",
+                                    data: { 'tiny_mce': true },
+                                    dataType: "script"
+                                });
                             });
                         </script>
                         <div id="page_list">

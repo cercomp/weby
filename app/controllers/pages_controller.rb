@@ -6,15 +6,15 @@ class PagesController < ApplicationController
 
   def index 
     params[:type] ||= 'News'
-    params[:tiny_mce] ||= false
-    params[:per_page] ||= 10
+    @tiny_mce = params[:tiny_mce] || false
+    per_page = @tiny_mce ? 5 : 10
 
-    @pages = @site.pages.unscoped.search(params[:search], params[:paginate], sort_column + " " + sort_direction, params[:per_page])
+    @pages = @site.pages.unscoped.search(params[:search], params[:paginate], sort_column + " " + sort_direction, per_page)
     
     respond_with do |format|
       format.js { 
         render :update do |site|
-          site.call "$('#page_list').html", render(:partial => 'list', :locals => {:tiny_mce => params[:tiny_mce]} )
+          site.call "$('#page_list').html", ( @tiny_mce ? render(:partial => 'list_popup') : render(:partial => 'list') )
         end
       }
       format.xml  { render :xml => @pages }

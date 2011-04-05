@@ -16,9 +16,10 @@
   </center>
 
   <div id="page_list">
-    <%= render :partial => "list", :locals => {:tiny_mce => false} %>
+    <%= render :partial => ( @tiny_mce ? "list_popup" : "list" ) %>
   </div>
   <%= javascript_tag do %>
+
     window.onload=function(){
       $().ready(function() {
         $('#list').sortable({
