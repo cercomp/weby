@@ -10,14 +10,15 @@
       <% links = ["main","secondary","base","auxiliary"] %>
       <% for link in links do %>
         <% selected = params[:side] == link ? "selected" : "" %>
-        <li><%= link_to(t("#{link}"), site_menus_path(@site, :side => link), :class => "#{selected}") %></li>
+        <li><%= link_to_unless(@menus[link].blank?, t("#{link}"), site_menus_path(@site, :side => link), :class => "#{selected}") %></li>
       <% end %>
     </ul>
   </div>
-
   <div id='main-tabs'>
-    <% if not params[:side].nil? and not params[:side].empty? %>
-      <%= render params[:side] %>
+    <% if @menus[params[:side]].empty? %>
+      <p> <%= t("none_left_menu") %> </p>
+    <% else %>
+      <%= raw print_menu(@menus[params[:side]], 1) %>
     <% end %>
   </div>
 </fieldset>
