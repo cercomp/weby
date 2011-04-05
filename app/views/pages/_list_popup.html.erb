@@ -1,0 +1,47 @@
+<script>
+  $(function() {
+    $(".pagination a").live("click", function() {
+      $(".pagination").html("<img src='/images/spinner.gif'>");
+      $.get(this.href, null, null, "script");
+      return false;
+    });
+    $("table.list > thead > tr > th > a").live("click", function() {
+      $('table.list').html("<img src='/images/spinner.gif'>");
+      $.get(this.href, {'tiny_mce': true }, null, "script");
+      return false;
+    });
+    $("table.list > tbody > tr").live("click", function(){
+      var page = tinyMCEPopup.editor.settings.plugin_preview_pageurl;
+      $('#href').val("/sites/"+page+"/pages/"+$(this).find('td').first().text());
+    });
+  });
+</script>
+<style>
+  table.list tr{
+    cursor: pointer;
+  }
+  table.list tbody tr:hover {
+    background: rgb(204, 204, 204);
+  }
+</style>
+
+<table class='list' style="width:100%" rules="all" >
+  <thead>
+    <th><%= sortable 'id' %></th>
+    <th><%= sortable 'title', t("title") %></th>
+    <th><%= sortable 'author_id', t("author") %></th>
+  </thead>
+  <tbody>
+    <% @pages.each do |page| %>
+      <tr class="<%= cycle 'odd', 'even' %>" id="<%= "page_#{page.id}" %>">
+        <td><%= page.id %></td>
+        <td><%= page.title %></td>
+        <td><%= page.user.first_name ? ("#{page.user.first_name} #{page.user.last_name}") : page.user.login %></td>
+      </tr>
+    <% end; reset_cycle %>
+  </tbody>
+</table>
+<br style="clear:both;" />
+<div style="float:right;margin-bottom:10px;">
+  <%= will_paginate @pages, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :param_name => 'paginate', :class => 'pagination' %>
+</div>
