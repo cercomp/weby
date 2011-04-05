@@ -5,7 +5,7 @@ class GroupsController < ApplicationController
   respond_to :html, :xml, :js
 
   def index
-    @groups = Group.paginate :page => params[:page], :per_page => 10
+    @groups = Group.paginate :page => params[:page], :per_page => params[:per_page]
 
     respond_with do |format|
       format.js { 

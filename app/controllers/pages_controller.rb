@@ -7,11 +7,12 @@ class PagesController < ApplicationController
   def index 
     params[:type] ||= 'News'
     @tiny_mce = params[:tiny_mce] || false
-    per_page = @tiny_mce ? 5 : 10
+    params[:per_page] ||= @site.array_per_page.first
+    params[:per_page] = 5 if @tiny_mce
 
     site_pages = @tiny_mce ? @site.pages.published : @site.pages.unscoped
 
-    @pages = site_pages.search(params[:search], params[:paginate], sort_column + " " + sort_direction, per_page)
+    @pages = site_pages.search(params[:search], params[:paginate], sort_column + " " + sort_direction, params[:per_page])
 
     respond_with do |format|
       format.js { 
@@ -128,7 +129,7 @@ class PagesController < ApplicationController
 
   def view
     @front_news = @site.pages.where(["front='true' AND publish='true' AND date_begin_at <= ? AND date_end_at > ?", Time.now, Time.now]) || ""
-    @no_front_news = @site.pages.where(["front='false' AND publish='true' AND date_begin_at <= ? AND date_end_at > ?", Time.now, Time.now]).paginate :page => params[:page], :per_page => 5 || ""
+    @no_front_news = @site.pages.where(["front='false' AND publish='true' AND date_begin_at <= ? AND date_end_at > ?", Time.now, Time.now]).paginate :page => params[:page], :per_page => params[:per_page]
     respond_with do |format|
       format.js { 
         render :update do |page|

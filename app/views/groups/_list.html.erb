@@ -1,5 +1,6 @@
   <% unless @groups.empty? %>
     <%= will_paginate @groups, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax' %>
+    <%= itens_per_page @site %>
     <table class='list'>
       <thead>
         <th><%= t'name' %></th>
@@ -17,6 +18,7 @@
       </tbody>
     </table>
     <%= will_paginate @groups, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax' %>
+    <%= itens_per_page @site %>
   <% else %>
     <% flash.now[:warning] = (t"none_param", :param => t("group.one")) %>
   <% end %>

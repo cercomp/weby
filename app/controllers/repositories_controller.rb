@@ -5,12 +5,12 @@ class RepositoriesController < ApplicationController
  
   respond_to :html, :xml, :js
   def manage
-    @repositories = @site.repositories.paginate :page => params[:page], :order => 'created_at DESC', :per_page => 10
+    @repositories = @site.repositories.paginate :page => params[:page], :order => 'created_at DESC', :per_page => params[:per_page]
     respond_with(@repositories)
   end
 
   def index
-    @repositories = @site.repositories.paginate :page => params[:page], :order => 'created_at DESC', :per_page => 5
+    @repositories = @site.repositories.paginate :page => params[:page], :order => 'created_at DESC', :per_page => params[:per_page] 
     respond_with do |format|
       format.js { 
         render :update do |page|

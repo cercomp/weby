@@ -1,5 +1,6 @@
 <% unless @pages.empty? %>
   <%= will_paginate @pages, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :param_name => 'paginate', :class => 'pagination ajax' %>
+  <%= itens_per_page(@site)  %>
   <table class='list'>
     <thead>
       <th><%= sortable 'id' %></th>
@@ -38,6 +39,7 @@
       </tbody>
     </table>
     <%= will_paginate @pages, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :param_name => 'paginate', :class => 'pagination' %>
+    <%= itens_per_page(@site)  %>
   <% else %>
     <% flash.now[:warning] = (t"none_param", :param => t("page.one")) %>
   <% end %>

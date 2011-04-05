@@ -214,5 +214,7 @@ html>body #ajax-indicator { position: fixed; }
 }
 
 #feedback_sent h1,
-#feedback_sent p {
-  text-align: center; }
+#feedback_sent p { text-align: center; }
+
+#itens_per_page { float: right; margin: 15px 0; font-weight: bold }
+#itens_per_page a { font-weight: normal; }

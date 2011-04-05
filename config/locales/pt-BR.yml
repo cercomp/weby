@@ -128,6 +128,7 @@ pt-BR:
   ip: "ip"
   is_admin: "Admin?"
   is_event: "É um evento?"
+  itens_per_page: "Por página"
 
 #---K---#
   kind: "Tipo" 

@@ -1,7 +1,8 @@
-  <% unless @users.empty? %>
-    <%= will_paginate @users, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax' %>
-    <table class="list">
-      <thead>
+<% unless @users.empty? %>
+  <%= will_paginate @users, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax' %>
+  <%= itens_per_page(@site) %>
+  <table class="list">
+    <thead>
       <tr>
         <th><%= sortable 'login', t("user", :count => 1) %></th>
         <th><%= t("email") %></th>
@@ -12,8 +13,8 @@
         <% end %>
         <th></th>
       </tr>
-      </thead>
-      <tbody>
+    </thead>
+    <tbody>
       <% @users.each do |user| %>
         <tr class="<%= cycle 'odd', 'even' %>">
           <td><%=h user.login %></td>
@@ -25,10 +26,11 @@
             <%= raw make_menu(user) %> 
           </td>
         </tr>
-      <% end; reset_cycle %>
+        <% end; reset_cycle %>
       </tbody>
     </table>
     <%= will_paginate @users, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax' %>
+    <%= itens_per_page(@site) %>
   <% else %>
     <% flash.now[:warning] = (t"none_param", :param => t("user.one")) %>
   <% end %>

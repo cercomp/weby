@@ -57,7 +57,7 @@ module ApplicationHelper
         sons[entry.parent_id].each_with_index do |item, idx|
           #menus += " (item.id:#{item.id} entry.id:#{entry.id} idx:#{idx+1}) "
           if item.id == entry.id
-           entry.update_attribute(:position, idx+1)
+            entry.update_attribute(:position, idx+1)
             entry.position = idx+1
           end
         end
@@ -103,8 +103,8 @@ module ApplicationHelper
     elsif current_user and @site
       # Obtem todos os papéis do usuário relacionados com site
       current_user.roles.where(:site_id => @site).each do |role|
-      # Obtem qualquer papél do usuário
-      #current_user.roles.each do |role| 
+        # Obtem qualquer papél do usuário
+        #current_user.roles.each do |role| 
         # Obtem o campo multi-valorados contendo todos os direitos
         role.rights.each do |right|
           # Controlador do usuario (right.controller) = nome do controlador recebido como parâmetro (ctr.controller_name)
@@ -166,12 +166,12 @@ module ApplicationHelper
     get_permissions(current_user, '', args).each do |permission|
       if permission and controller.class.instance_methods(false).include?(permission.to_sym)
         case permission.to_s
-          when "show"
-            menu += link_to(t('show'), {:controller => "#{controller.controller_name}", :action => 'show', :id => obj.id}, :class => 'icon icon-show', :alt => t('show'), :title => t('show')) + " "
-          when "edit"
-            menu += link_to(t("edit"), {:controller => "#{controller.controller_name}", :action => "edit", :id => obj.id}, :class => 'icon icon-edit', :alt => t('edit'), :title => t('edit')) + " "
-          when "destroy"
-            menu += link_to((t"destroy"), {:controller => "#{controller.controller_name}", :action => "destroy", :id => obj.id}, :class => 'icon icon-del', :confirm => t('are_you_sure'), :method => :delete, :alt => t('destroy'), :title => t('destroy')) + " "
+        when "show"
+          menu += link_to(t('show'), {:controller => "#{controller.controller_name}", :action => 'show', :id => obj.id}, :class => 'icon icon-show', :alt => t('show'), :title => t('show')) + " "
+        when "edit"
+          menu += link_to(t("edit"), {:controller => "#{controller.controller_name}", :action => "edit", :id => obj.id}, :class => 'icon icon-edit', :alt => t('edit'), :title => t('edit')) + " "
+        when "destroy"
+          menu += link_to((t"destroy"), {:controller => "#{controller.controller_name}", :action => "destroy", :id => obj.id}, :class => 'icon icon-del', :confirm => t('are_you_sure'), :method => :delete, :alt => t('destroy'), :title => t('destroy')) + " "
         end
       end
     end
@@ -251,7 +251,7 @@ module ApplicationHelper
   def menu_acessibility
     if session[:contrast] == 'yes'
       menu_a = link_to image_tag("alto-contraste2.png", :title => t("high_contrast"), :alt => t("high_contrast")), :contrast => 'no'
-			menu_a += "\n"
+      menu_a += "\n"
       menu_a += image_tag("font_size_down_contraste.png", :onclick => "font_size_down()", :alt => t("font_size_down"), :title => t("font_size_down"))
       menu_a += "\n"
       menu_a += image_tag("font_size_original_contraste.png", :onclick => "font_size_original()", :alt => t("font_size_normal"), :title => t("font_size_normal"))
@@ -259,14 +259,14 @@ module ApplicationHelper
       menu_a += image_tag("font_size_up_contraste.png", :onclick => "font_size_up()", :alt => t("font_size_up"), :title => t("font_size_up"))
     else
       menu_a = link_to image_tag("alto-contraste2.png", :title => t("high_contrast"), :alt => t("high_contrast")), :contrast => 'yes'
-			menu_a += "\n"
+      menu_a += "\n"
       menu_a += image_tag("font_size_down.png", :onclick => "font_size_down()", :alt => t("font_size_down"), :title => t("font_size_down"))
       menu_a += "\n"
       menu_a += image_tag("font_size_original.png", :onclick => "font_size_original()", :alt => t("font_size_normal"), :title => t("font_size_normal"))
       menu_a += "\n"
       menu_a += image_tag("font_size_up.png", :onclick => "font_size_up()", :alt => t("font_size_up"), :title => t("font_size_up"))
     end
-      menu_a
+    menu_a
   end
 
   def menu_locale
@@ -282,5 +282,24 @@ module ApplicationHelper
     css_class = column == sort_column ? "current #{sort_direction}" : nil
     direction = (column == sort_column && sort_direction == "asc") ? "desc" : "asc"
     link_to title, {:sort => column, :direction => direction}, {:class => css_class}
+  end
+
+  def itens_per_page(site, html_options = {})
+    html = "<div id='itens_per_page'> #{t('itens_per_page')}"
+
+    params[:per_page] ||= site.array_per_page.first
+    html_options[:class] ||= 'per_page'
+
+    site.array_per_page.each do |item|
+      html << " #{link_to_unless( params[:per_page] == item,
+                  item,
+                  { :controller => params[:controller],
+                    :action => params[:action],
+                    :per_page => item },
+                    html_options )}"
+    end
+
+    html +='</div>'
+    raw html
   end
 end

@@ -9,6 +9,12 @@ $(document).ready(function() {
     return false;
   })
 
+  $('.per_page').live('click',function (){
+    $(this).parent().html('').append(img)
+    $.getScript(this.href);
+    return false;
+  })
+
   // ManageRoles limpa area do formulário
   $('.role_edit').each(function (link) {
     $(this).bind("ajax:success", function(data, status, xhr) {

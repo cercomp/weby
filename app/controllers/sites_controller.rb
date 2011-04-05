@@ -7,7 +7,7 @@ class SitesController < ApplicationController
   helper_method :sort_column
 
   def index
-    @sites = Site.search(params[:search], params[:page], sort_column + " " + sort_direction)
+    @sites = Site.search(params[:search], params[:page], sort_column + " " + sort_direction, params[:per_page])
     respond_with do |format|
       format.js { 
         render :update do |site|

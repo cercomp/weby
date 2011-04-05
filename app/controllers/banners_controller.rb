@@ -6,7 +6,7 @@ class BannersController < ApplicationController
   respond_to :html, :xml, :js
 
   def index
-    @banners = @site.banners.paginate :page => params[:page], :per_page => 10
+    @banners = @site.banners.paginate :page => params[:page], :per_page => params[:per_page] 
 
     respond_with do |format|
       format.js { 

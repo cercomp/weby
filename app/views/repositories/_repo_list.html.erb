@@ -1,5 +1,6 @@
   <% unless @repositories.empty? %>
     <%= will_paginate @repositories, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax' %>
+    <%= itens_per_page @site %>
     <table class='list'>
       <thead>
         <th><%= t("archive.other") %></th>

@@ -1,12 +1,16 @@
 class Site < ActiveRecord::Base
   default_scope :order => 'id DESC'
 
+  def array_per_page
+    self.itens_per_page.delete(' ').split(',')
+  end
+
   def to_param
     "#{name}"
   end
 
-  def self.search(search, page, order = 'id desc')
-    paginate :per_page => 20, :page => page, :conditions => ['lower(name) LIKE ? OR lower(description) LIKE ?', "%#{search}%", "%#{search}%"],
+  def self.search(search, page, order = 'id desc', per_page = 20)
+    paginate :per_page => per_page, :page => page, :conditions => ['lower(name) LIKE ? OR lower(description) LIKE ?', "%#{search}%", "%#{search}%"],
     :order => order
   end
 
@@ -36,4 +40,5 @@ class Site < ActiveRecord::Base
   has_many :repositories
 
   has_attached_file :top_banner, :url => "/uploads/:site_id/:style_:basename.:extension"
+
 end

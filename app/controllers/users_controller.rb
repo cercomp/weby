@@ -59,7 +59,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.search(params[:search], params[:page], sort_column + " " + sort_direction) 
+    @users = User.search(params[:search], params[:page], sort_column + " " + sort_direction, params[:per_page]) 
     @roles = Role.find(:all, :select => 'id,name,theme', :group => "name,id,theme", :order => "id")
 
     respond_with do |format|
