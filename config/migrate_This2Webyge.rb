@@ -395,6 +395,12 @@ EOF
         if str.match(/javascript:mostrar_noticia\('([0-9]+)','([0-9]+)'\);/)
           str.gsub!(/javascript:mostrar_noticia\('([0-9]+)','([0-9]+)'\);/){|x| "/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["noticias"][$1]}" }
         end
+        if str.match(/javascript:pagina_inicial\('([0-9]+)'\);/)
+          str.gsub!(/javascript:pagina_inicial\('([0-9]+)'\);/){|x| "/sites/#{@convar[$1]['weby_name']}" }
+        end
+        if str.match(/javascript:mostrar_fale_conosco\('([0-9]+)'\);/)
+          str.gsub!(/javascript:mostrar_fale_conosco\('([0-9]+)'\);/){|x| "/sites/#{@convar[$1]['weby_name']}/feedbacks/new" }
+        end
         return str
       end
     end
