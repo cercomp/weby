@@ -15,7 +15,7 @@ class AdminController < ApplicationController
   def edit
     params[:type] ||= 'image'
     @repository = Repository.new
-    @repositories = @site.repositories.search(params[:search], params[:page], params[:type])
+    @repositories = @site.repositories.search(params[:search], params[:page], params[:type], params[:per_page])
     files = []
     for file in Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*")]
       files << file.split("/")[-1].split(".")[0]

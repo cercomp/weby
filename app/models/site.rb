@@ -2,7 +2,11 @@ class Site < ActiveRecord::Base
   default_scope :order => 'id DESC'
 
   def array_per_page
-    self.itens_per_page.delete(' ').split(',')
+    unless self.itens_per_page.nil?
+      self.itens_per_page.delete(' ').split(',')
+    else
+      [5,10,15,20,100]
+    end
   end
 
   def to_param
