@@ -25,7 +25,7 @@ class Migrate_this2weby
     @con_this = PGconn.connect(@config['this']['host'],nil,nil,nil,@config['this']['database'],@config['this']['username'],@config['this']['password'])
     @con_weby = PGconn.connect(@config['weby']['host'],nil,nil,nil,@config['weby']['database'],@config['weby']['username'],@config['weby']['password'])
     @verbose = verbose
-    #@param = "WHERE site_id=18"
+    #@param = "WHERE site_id=17"
     @convar = {} # Variável de conversão
   end
 
@@ -299,17 +299,6 @@ EOF
       end
       this_sites.clear()
 
-      # Tratando links de weby.pages
-      select_pages = "SELECT id,title,url,source,summary,text FROM pages"
-      puts "\t\t\t#{select_pages}\n" if @verbose
-      weby_pages = @con_weby.exec(select_pages)
-      weby_pages.each do |weby_page|
-        update_page = "UPDATE pages SET title='#{treat(weby_page['title'])}',url='#{treat(weby_page['url'])}',source='#{treat(weby_page['source'])}',summary='#{treat(weby_page['summary'])}',text='#{treat(weby_page['text'])}' WHERE id='#{weby_page['id']}'"
-        puts "\t\t\t\t(#{weby_page['id']}) #{update_page[0,300]}\n" if @verbose
-        @con_weby.exec(update_page)
-      end
-      weby_pages.clear()
-
       # Tratando links de weby.menus
       select_menus = "SELECT id,title,link FROM menus"
       puts "\t\t\t#{select_menus}\n" if @verbose
@@ -320,6 +309,17 @@ EOF
         @con_weby.exec(update_menu)
       end
       weby_menus.clear()
+
+      # Tratando links de weby.pages
+      select_pages = "SELECT id,title,url,source,summary,text FROM pages"
+      puts "\t\t\t#{select_pages}\n" if @verbose
+      weby_pages = @con_weby.exec(select_pages)
+      weby_pages.each do |weby_page|
+        update_page = "UPDATE pages SET title='#{treat(weby_page['title'])}',url='#{treat(weby_page['url'])}',source='#{treat(weby_page['source'])}',summary='#{treat(weby_page['summary'])}',text='#{treat(weby_page['text'])}' WHERE id='#{weby_page['id']}'"
+        puts "\t\t\t\t(#{weby_page['id']}) #{update_page[0,300]}\n" if @verbose
+        @con_weby.exec(update_page)
+      end
+      weby_pages.clear()
     end
 
     # Metodo para chamada recursiva
@@ -402,26 +402,26 @@ EOF
       unless string.nil?
         str = @con_weby.escape(string)
         if str.match(/javascript:mostrar_pagina.*'([0-9]+)'.*'([0-9]+)'.*/) 
-          str.gsub!(/javascript:mostrar_pagina.*'([0-9]+)'.*'([0-9]+)'.*/){|x| "/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["paginas"][$1]}" }
-        end
+          str.gsub!(/javascript:mostrar_pagina.*'([0-9]+)'.*'([0-9]+)'.*;/){|x| "/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["paginas"][$1]}" if @convar[$2] }
+        end 
         if str.match(/javascript:mostrar_noticia.*'([0-9]+)'.*'([0-9]+)'.*/)
-          str.gsub!(/javascript:mostrar_noticia.*'([0-9]+)'.*'([0-9]+)'.*/){|x| "/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["noticias"][$1]}" }
-        end
+          str.gsub!(/javascript:mostrar_noticia.*'([0-9]+)'.*'([0-9]+)'.*;/){|x| "/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["noticias"][$1]}" if @convar[$2] }
+        end 
         if str.match(/javascript:mostrar_informativo.*'([0-9]+)'.*'([0-9]+)'.*/)
-          str.gsub!(/javascript:mostrar_informativo.*'([0-9]+)'.*'([0-9]+)'.*/){|x| "/sites/#{@convar[$2]['weby_name']}/banners/#{@convar[$2]["informativos"][$1]}" }
-        end
+          str.gsub!(/javascript:mostrar_informativo.*'([0-9]+)'.*'([0-9]+)'.*;/){|x| "/sites/#{@convar[$2]['weby_name']}/banners/#{@convar[$2]["informativos"][$1]}" if @convar[$2] }
+        end 
         if str.match(/javascript:pagina_inicial.*'([0-9]+)'.*/)
-          str.gsub!(/javascript:pagina_inicial.*'([0-9]+)'.*/){|x| "/sites/#{@convar[$1]['weby_name']}" }
-        end
+          str.gsub!(/javascript:pagina_inicial.*'([0-9]+)'.*;/){|x| "/sites/#{@convar[$1]['weby_name']}" if @convar[$1] }
+        end 
         if str.match(/javascript:mostrar_fale_conosco.*'([0-9]+)'.*/)
-          str.gsub!(/javascript:mostrar_fale_conosco.*'([0-9]+)'.*/){|x| "/sites/#{@convar[$1]['weby_name']}/feedbacks/new" }
-        end
+          str.gsub!(/javascript:mostrar_fale_conosco.*'([0-9]+)'.*;/){|x| "/sites/#{@convar[$1]['weby_name']}/feedbacks/new" if @convar[$1] }
+        end 
         if str.match(/.*uploads.*\/([0-9]+)\/(.*)/)
-          str.gsub!(/.*uploads.*\/([0-9]+)\/(.*)/){|x| "/uploads/#{$1}/original_#{$2}"}
-        end
-        return str
-      end
-    end
+          str.gsub!(/".*uploads.*\/([0-9]+)\/(.*)"/){|x| "/uploads/#{$1}/original_#{$2}" if @convar[$1] }
+        end 
+        return str 
+      end 
+    end 
     # Destrutor
     def finalize
       @con_this.close()
