@@ -3,10 +3,14 @@ class BannersController < ApplicationController
   before_filter :require_user
   before_filter :check_authorization
 
+  helper_method :sort_column
+
   respond_to :html, :xml, :js
 
   def index
-    @banners = @site.banners.paginate :page => params[:page], :per_page => params[:per_page] 
+    @banners = @site.banners.unscoped.paginate :page => params[:page],
+                                :per_page => params[:per_page],
+                                :order => sort_column + ' ' + sort_direction 
 
     respond_with do |format|
       format.js { 
@@ -102,5 +106,10 @@ class BannersController < ApplicationController
       end
     end
     redirect_to :back
+  end
+
+  private
+  def sort_column
+    Banner.column_names.include?(params[:sort]) ? params[:sort] : 'id'
   end
 end

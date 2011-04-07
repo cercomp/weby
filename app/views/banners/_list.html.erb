@@ -3,11 +3,11 @@
     <%= itens_per_page @site %>
     <table class='list'>
       <thead>
-        <th><%= "id" %></th>
-        <th><%= t"date_param", :param => t("register")%></th>
-        <th><%= t"date_param", :param => t("publication")%></th>
-        <th><%= t"title" %></th>
-        <th><%= t"author" %></th>
+        <th><%= sortable "id" %></th>
+        <th><%= sortable 'date_begin_at', t("date_param", :param => t("register"))%></th>
+        <th><%= sortable 'date_end_at', t("date_param", :param => t("publication"))%></th>
+        <th><%= sortable 'title', t("title") %></th>
+        <th><%= sortable 'user_id', t("author") %></th>
         <th><%= t"publish" %></th>
         <th></th>
       </thead>

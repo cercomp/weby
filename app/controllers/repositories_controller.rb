@@ -2,6 +2,8 @@ class RepositoriesController < ApplicationController
   layout :choose_layout, :except => [:show]
   before_filter :require_user
   before_filter :check_authorization
+
+  helper_method :sort_column
  
   respond_to :html, :xml, :js
   def manage
@@ -10,7 +12,9 @@ class RepositoriesController < ApplicationController
   end
 
   def index
-    @repositories = @site.repositories.paginate :page => params[:page], :order => 'created_at DESC', :per_page => params[:per_page] 
+    @repositories = @site.repositories.paginate :page => params[:page], :order => 'created_at DESC',
+        :per_page => params[:per_page], :order => sort_column + ' ' + sort_direction
+
     respond_with do |format|
       format.js { 
         render :update do |page|
@@ -87,5 +91,10 @@ class RepositoriesController < ApplicationController
       format.html { redirect_to({:site_id => @repository.site.name, :controller => 'repositories'}) }
       format.xml  { head :ok }
     end
+  end
+
+  private
+  def sort_column
+    Repository.column_names.include?(params[:sort]) ? params[:sort] : 'id'
   end
 end

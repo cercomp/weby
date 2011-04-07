@@ -4,8 +4,11 @@ class GroupsController < ApplicationController
   before_filter :check_authorization
   respond_to :html, :xml, :js
 
+  helper_method :sort_column
+
   def index
-    @groups = Group.paginate :page => params[:page], :per_page => params[:per_page]
+    @groups = Group.paginate :page => params[:page], :per_page => params[:per_page],
+        :order => sort_column + ' ' + sort_direction
 
     respond_with do |format|
       format.js { 
@@ -83,4 +86,8 @@ class GroupsController < ApplicationController
     end
   end
 
+  private
+  def sort_column
+    Group.column_names.include?(params[:sort]) ? params[:sort] : 'id'
+  end
 end
