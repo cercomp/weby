@@ -309,6 +309,17 @@ EOF
         page = @con_weby.exec(update_page)
       end
       weby_pages.clear()
+
+      # Tratando links de weby.menus
+      select_menus = "SELECT id,title,link FROM menus"
+      puts "\t\t\t#{select_menus}\n" if @verbose
+      weby_menus = @con_weby.exec(select_menus)
+      weby_menus.each do |weby_menu|
+      update_menu = "UPDATE menus SET title='#{treat(weby_menu['title'])}',link='#{treat(weby_menu['link'])}' WHERE id='#{weby_menu['id']}'"
+        puts "\t\t\t\t(#{weby_menu['id']}) #{update_menu[0,300]}\n" if @verbose
+        menu = @con_weby.exec(update_menu)
+      end
+      weby_menus.clear()
     end
 
     # Metodo para chamada recursiva
@@ -330,6 +341,7 @@ EOF
         page_id = /javascript:mostrar_menu.*\('([0-9]+)'.*/.match("#{entry['url']}")[1]
         page_id = @convar["#{this_id}"]["paginas"]["#{page_id}"]
         insert_menu = "INSERT INTO menus (title,link,page_id) VALUES ('#{pre_treat(entry['texto_item'])}','','#{page_id}') RETURNING id" unless page_id.nil?
+
       else
         insert_menu = "INSERT INTO menus (title,link) VALUES ('#{pre_treat(entry['texto_item'])}','#{pre_treat(entry['url'])}') RETURNING id"
       end
@@ -394,6 +406,9 @@ EOF
         end
         if str.match(/javascript:mostrar_noticia\('([0-9]+)','([0-9]+)'\);/)
           str.gsub!(/javascript:mostrar_noticia\('([0-9]+)','([0-9]+)'\);/){|x| "/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["noticias"][$1]}" }
+        end
+        if str.match(/javascript:mostrar_informativo\('([0-9]+)','([0-9]+)'\);/)
+          str.gsub!(/javascript:mostrar_informativo\('([0-9]+)','([0-9]+)'\);/){|x| "/sites/#{@convar[$2]['weby_name']}/banners/#{@convar[$2]["informativos"][$1]}" }
         end
         if str.match(/javascript:pagina_inicial\('([0-9]+)'\);/)
           str.gsub!(/javascript:pagina_inicial\('([0-9]+)'\);/){|x| "/sites/#{@convar[$1]['weby_name']}" }
@@ -516,7 +531,7 @@ class Migrate_files
         file_name = file.slice(file.rindex("/").to_i + 1, file.size)
         repository_id = create_repository(file, @convar[id]['weby'])
 
-        if(file_name == "topo.gif" || file_name == "topo.jpg" || file_name == "topo.png")
+        if(file_name == "topo.jpg" || file_name == "topo.gif" || file_name == "topo.png")
             sql = "UPDATE sites SET top_banner_id='#{repository_id}' WHERE id='#{id}'"
             @con_weby.exec(sql)
             puts sql
