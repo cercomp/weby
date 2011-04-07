@@ -416,6 +416,9 @@ EOF
         if str.match(/javascript:mostrar_fale_conosco.*'([0-9]+)'.*/)
           str.gsub!(/javascript:mostrar_fale_conosco.*'([0-9]+)'.*/){|x| "/sites/#{@convar[$1]['weby_name']}/feedbacks/new" }
         end
+        if str.match(/.*uploads.*\/([0-9]+)\/(.*)/)
+          str.gsub!(/.*uploads.*\/([0-9]+)\/(.*)/){|x| "/uploads/#{$1}/original_#{$2}"}
+        end
         return str
       end
     end
