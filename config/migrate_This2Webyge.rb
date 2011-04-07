@@ -25,7 +25,7 @@ class Migrate_this2weby
     @con_this = PGconn.connect(@config['this']['host'],nil,nil,nil,@config['this']['database'],@config['this']['username'],@config['this']['password'])
     @con_weby = PGconn.connect(@config['weby']['host'],nil,nil,nil,@config['weby']['database'],@config['weby']['username'],@config['weby']['password'])
     @verbose = verbose
-    #@param = "WHERE site_id=106"
+    #@param = "WHERE site_id=18"
     @convar = {} # Variável de conversão
   end
 
@@ -304,9 +304,9 @@ EOF
       puts "\t\t\t#{select_pages}\n" if @verbose
       weby_pages = @con_weby.exec(select_pages)
       weby_pages.each do |weby_page|
-      update_page = "UPDATE pages SET title='#{treat(weby_page['title'])}',url='#{treat(weby_page['url'])}',source='#{treat(weby_page['source'])}',summary='#{treat(weby_page['summary'])}',text='#{treat(weby_page['text'])}' WHERE id='#{weby_page['id']}'"
+        update_page = "UPDATE pages SET title='#{treat(weby_page['title'])}',url='#{treat(weby_page['url'])}',source='#{treat(weby_page['source'])}',summary='#{treat(weby_page['summary'])}',text='#{treat(weby_page['text'])}' WHERE id='#{weby_page['id']}'"
         puts "\t\t\t\t(#{weby_page['id']}) #{update_page[0,300]}\n" if @verbose
-        page = @con_weby.exec(update_page)
+        @con_weby.exec(update_page)
       end
       weby_pages.clear()
 
@@ -315,9 +315,9 @@ EOF
       puts "\t\t\t#{select_menus}\n" if @verbose
       weby_menus = @con_weby.exec(select_menus)
       weby_menus.each do |weby_menu|
-      update_menu = "UPDATE menus SET title='#{treat(weby_menu['title'])}',link='#{treat(weby_menu['link'])}' WHERE id='#{weby_menu['id']}'"
+        update_menu = "UPDATE menus SET title='#{treat(weby_menu['title'])}',link='#{treat(weby_menu['link'])}' WHERE id='#{weby_menu['id']}'"
         puts "\t\t\t\t(#{weby_menu['id']}) #{update_menu[0,300]}\n" if @verbose
-        menu = @con_weby.exec(update_menu)
+        @con_weby.exec(update_menu)
       end
       weby_menus.clear()
     end
@@ -401,20 +401,20 @@ EOF
     def treat(string)
       unless string.nil?
         str = @con_weby.escape(string)
-        if str.match(/javascript:mostrar_pagina\('([0-9]+)','([0-9]+)'\);/)
-          str.gsub!(/javascript:mostrar_pagina\('([0-9]+)','([0-9]+)'\);/){|x| "/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["paginas"][$1]}" }
+        if str.match(/javascript:mostrar_pagina.*'([0-9]+)'.*'([0-9]+)'.*/) 
+          str.gsub!(/javascript:mostrar_pagina.*'([0-9]+)'.*'([0-9]+)'.*/){|x| "/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["paginas"][$1]}" }
         end
-        if str.match(/javascript:mostrar_noticia\('([0-9]+)','([0-9]+)'\);/)
-          str.gsub!(/javascript:mostrar_noticia\('([0-9]+)','([0-9]+)'\);/){|x| "/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["noticias"][$1]}" }
+        if str.match(/javascript:mostrar_noticia.*'([0-9]+)'.*'([0-9]+)'.*/)
+          str.gsub!(/javascript:mostrar_noticia.*'([0-9]+)'.*'([0-9]+)'.*/){|x| "/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["noticias"][$1]}" }
         end
-        if str.match(/javascript:mostrar_informativo\('([0-9]+)','([0-9]+)'\);/)
-          str.gsub!(/javascript:mostrar_informativo\('([0-9]+)','([0-9]+)'\);/){|x| "/sites/#{@convar[$2]['weby_name']}/banners/#{@convar[$2]["informativos"][$1]}" }
+        if str.match(/javascript:mostrar_informativo.*'([0-9]+)'.*'([0-9]+)'.*/)
+          str.gsub!(/javascript:mostrar_informativo.*'([0-9]+)'.*'([0-9]+)'.*/){|x| "/sites/#{@convar[$2]['weby_name']}/banners/#{@convar[$2]["informativos"][$1]}" }
         end
-        if str.match(/javascript:pagina_inicial\('([0-9]+)'\);/)
-          str.gsub!(/javascript:pagina_inicial\('([0-9]+)'\);/){|x| "/sites/#{@convar[$1]['weby_name']}" }
+        if str.match(/javascript:pagina_inicial.*'([0-9]+)'.*/)
+          str.gsub!(/javascript:pagina_inicial.*'([0-9]+)'.*/){|x| "/sites/#{@convar[$1]['weby_name']}" }
         end
-        if str.match(/javascript:mostrar_fale_conosco\('([0-9]+)'\);/)
-          str.gsub!(/javascript:mostrar_fale_conosco\('([0-9]+)'\);/){|x| "/sites/#{@convar[$1]['weby_name']}/feedbacks/new" }
+        if str.match(/javascript:mostrar_fale_conosco.*'([0-9]+)'.*/)
+          str.gsub!(/javascript:mostrar_fale_conosco.*'([0-9]+)'.*/){|x| "/sites/#{@convar[$1]['weby_name']}/feedbacks/new" }
         end
         return str
       end
