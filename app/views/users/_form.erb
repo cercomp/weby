@@ -1,7 +1,7 @@
 <%= form.text_field :login, :label => t('username'), :required => true, :help => t("field_required") %><br />
 <%= form.text_field :email, :label => t('email'), :required => true, :help => t("field_required") %><br />
-<%= form.password_field :password, :label => form.object.new_record? ?  t('password') : t("password_change"), :required => true, :help => t("field_required") %><br />
-<%= form.password_field :password_confirmation, :label => t('password_confirmation'), :required => true, :help => t("field_required") %><br />
+<%= form.password_field :password, :label => form.object.new_record? ?  t('password') : t("password_change"), :help => t("field_required") %><br />
+<%= form.password_field :password_confirmation, :label => t('password_confirmation'), :help => t("field_required") %><br />
 <%= form.text_field :first_name, :label => t('first_name'), :required => true, :help => t("field_required") %>
 <%= form.text_field :last_name, :label => t('last_name'), :required => true, :help => t("field_required") %>
 <%= form.text_field :phone, :label => t('phone'), :size => 20, :maxlength => 20 %>
