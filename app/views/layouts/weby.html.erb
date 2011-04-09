@@ -34,7 +34,7 @@
 
     <%= javascript_include_tag :defaults %>
     <%= javascript_include_tag "tiny_mce/jquery.tinymce" %>
-    <% javascript_tag do %>
+    <%= javascript_tag do %>
       $().ready(function() {
         $('textarea.mceAdvance').tinymce({
           script_url : '/javascripts/tiny_mce/tiny_mce.js',

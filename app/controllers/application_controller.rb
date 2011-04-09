@@ -87,7 +87,7 @@ class ApplicationController < ActionController::Base
     unless current_user
       store_location
       flash[:error] = t("need_login")
-      redirect_to new_user_session_url
+      redirect_to new_user_session_url(:back_url => "#{params[:back_url]}")
       return false
     end
   end
