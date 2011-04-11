@@ -7,14 +7,15 @@ class RepositoriesController < ApplicationController
  
   respond_to :html, :xml, :js
   def manage
-    @repositories = @site.repositories.paginate :page => params[:page], :order => 'created_at DESC', :per_page => params[:per_page]
+    @repositories = @site.repositories.order('created_at DESC').page(params[:page]).per(params[:per_page])
     respond_with(@repositories)
   end
 
   def index
-    @repositories = @site.repositories.paginate :page => params[:page], :order => 'created_at DESC',
-        :per_page => params[:per_page], :order => sort_column + ' ' + sort_direction
-
+    @repositories = @site.repositories.order(sort_column + ' ' + sort_direction).page(params[:page]).per(params[:per_page])
+    unless @repositories
+      flash.now[:warning] = (t"none_param", :param => t("archive.one")) 
+    end
     respond_with do |format|
       format.js { 
         render :update do |page|

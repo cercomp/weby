@@ -76,9 +76,9 @@ class PagesController < ApplicationController
     params[:type] ||= @page.type
 
     # Objeto para repository_id (relacionamento um-para-um)
-    @repositories = Repository.where(["site_id = ? AND archive_content_type LIKE ?", @site.id, "image%"]).paginate :page => params[:page], :order => 'created_at DESC', :per_page => 4 
+    @repositories = Repository.where(["site_id = ? AND archive_content_type LIKE ?", @site.id, "image%"]).order('created_at DESC').page(params[:page]).per(params[:per_page])
     # Criando objeto com os arquivos que não estão relacionados com a página
-    @page_files_unchecked = (@site.repositories - @page.repositories).paginate :page => params[:page_files], :order => 'created_at DESC', :per_page => 5
+    @page_files_unchecked = @site.repositories.where("id NOT IN (#{@page.repository_ids.to_s.delete('[]')})").order('created_at DESC').page(1).per(params[:page_files].to_i*5)
 
     respond_with do |format|
       format.js { 
@@ -87,7 +87,7 @@ class PagesController < ApplicationController
           page.call "$('#repo_list').html", render(:partial => 'repo_list', :locals => { :f => SemanticFormBuilder.new(@page.class.name.underscore.to_s, @page, self, {}, proc{}) })
         elsif params[:page_files]
           page.call "$('#files_list').append", render(:partial => 'files_list')
-          page.call "$('#will_paginate').html", (will_paginate @page_files_unchecked, :param_name => 'page_files', :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax', :page_links => false, :renderer => Twitter, :twitter_label => t("more"))
+          page.call "$('#will_paginate').html", render(:partial => 'will_paginate')
         end
         end
       }
@@ -183,8 +183,10 @@ class PagesController < ApplicationController
   end
 
   def per_page
-   unless params[:per_page]
-     @tiny_mce ? 5 : @site.per_page_array.first
-   end
+    unless params[:per_page]
+     @tiny_mce ? 5 : per_page_array.first
+    else
+      params[:per_page]
+    end
   end
 end

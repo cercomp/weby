@@ -1,0 +1,7 @@
+<nav class="paginator">
+  <%= paginator.render do -%>
+  <div class="pages_paginator">
+    <%= num_pages > current_page ? next_link_tag : next_span_tag -%>
+  </div>
+  <% end -%>
+</nav>

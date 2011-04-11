@@ -335,6 +335,7 @@ pt-BR:
       previous: 'Anterior'
       truncate: '...'
       per_page: 'Por página'
+      more: 'Mais'
 
 #---Y---#
   "yes": "Sim"

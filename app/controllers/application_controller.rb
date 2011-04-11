@@ -159,8 +159,7 @@ class ApplicationController < ActionController::Base
   end
 
   def per_page_array
-    ( Site.columns_hash['per_page'].default || @site ).
-      gsub(/[^\d,]/,'').split(',')
+    (@site.per_page || Site.columns_hash['per_page'].default).gsub(/[^\d,]/,'').split(',')
   end
 
   # Metodo usado na ordenação de tabelas por alguma coluna

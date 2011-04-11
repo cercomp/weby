@@ -15,8 +15,7 @@ class AdminController < ApplicationController
   def edit
     params[:type] ||= 'image'
     @repository = Repository.new
-    @repositories = @site.repositories.where("archive_content_type LIKE '%#{params[:search]}%'").
-      and("description LIKE '%#{params[:type]}%'").
+    @repositories = @site.repositories.where("archive_content_type LIKE '%#{params[:search]}%' and description LIKE '%#{params[:type]}%'").
       order('id DESC').page(params[:page]).per(params[:per_page])
 
     @themes = []

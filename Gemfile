@@ -9,7 +9,7 @@ gem 'rails', '3.0.4'
 gem 'pg'
 gem "authlogic", :git => "git://github.com/odorcicd/authlogic.git", :branch => "rails3"
 # gem "will_paginate", "~> 3.0.pre2"
-gem 'kaminari'
+gem 'kaminari', :git => "git://github.com/tmilewski/kaminari.git"
 
 # Repositório de arquivos
 gem "paperclip", :git => "http://github.com/thoughtbot/paperclip.git" 
