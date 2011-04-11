@@ -3,25 +3,31 @@ class PagesController < ApplicationController
   before_filter :require_user, :only => [:new, :edit, :update, :destroy, :sort, :toggle_field]
   before_filter :check_authorization, :except => [:view, :show]
   respond_to :html, :xml, :js
+  before_filter :per_page, :only => [:index]
 
   def index 
     params[:type] ||= 'News'
+
     @tiny_mce = params[:tiny_mce] || false
-    params[:per_page] ||= @site.array_per_page.first
-    params[:per_page] = 5 if @tiny_mce
 
-    site_pages = @tiny_mce ? @site.pages.published : @site.pages.unscoped
+    @pages = @site.pages.where("title like '%#{params[:search]}'").
+    order(sort_column + " " + sort_direction).
+      page(params[:page]).per(per_page)
 
-    @pages = site_pages.search(params[:search], params[:paginate], sort_column + " " + sort_direction, params[:per_page])
+    @pages.published if @tiny_mce
 
-    respond_with do |format|
-      format.js { 
-        render :update do |site|
-        site.call "$('#page_list').html", ( @tiny_mce ? render(:partial => 'list_popup') : render(:partial => 'list') )
-        end
-      }
-      format.xml  { render :xml => @pages }
-      format.html
+    if @pages
+      respond_with do |format|
+        format.js { 
+          render :update do |site|
+          site.call "$('#page_list').html", ( @tiny_mce ? render(:partial => 'list_popup') : render(:partial => 'list') )
+          end
+        }
+        format.xml  { render :xml => @pages }
+        format.html
+      end
+    else
+      flash[:warning] = (t"none_param", :param => t("page.one"))
     end
   end
 
@@ -39,10 +45,10 @@ class PagesController < ApplicationController
     @page.sites_pages.build
     @page.pages_repositories.build
     # Objeto para repository_id (relacionamento um-para-um)
-    @repositories = Repository.where(["site_id = ? AND archive_content_type LIKE ?", @site.id, "image%"]).paginate :page => params[:page], :order => 'created_at DESC', :per_page => 4 
+    @repositories = Repository.where(["site_id = ? AND archive_content_type LIKE ?", @site.id, "image%"]).order('created_at DESC').page(params[:page]).per(4)
     # Objeto para pages_repositories (relacionamento muitos-para-muitos)
     ## Criando objeto com os arquivos que não estão relacionados com a página
-    @page_files_unchecked = (@site.repositories - @page.repositories).paginate :page => params[:page_files], :order => 'created_at DESC', :per_page => 5
+    @page_files_unchecked = @site.repositories.order('created_at DESC').page(params[:page_files]).per(5)
 
     respond_with do |format|
       format.js { 
@@ -129,7 +135,10 @@ class PagesController < ApplicationController
 
   def view
     @front_news = @site.pages.where(["front='true' AND publish='true' AND date_begin_at <= ? AND date_end_at > ?", Time.now, Time.now]) || ""
-    @no_front_news = @site.pages.where(["front='false' AND publish='true' AND date_begin_at <= ? AND date_end_at > ?", Time.now, Time.now]).paginate :page => params[:page], :per_page => params[:per_page]
+
+    @no_front_news = @site.pages.where(["front='false' AND publish='true' AND date_begin_at <= ? AND date_end_at > ?", Time.now, Time.now]).
+      page(params[:page]).per(params[:per_page])
+
     respond_with do |format|
       format.js { 
         render :update do |page|
@@ -142,7 +151,9 @@ class PagesController < ApplicationController
 
   def sort
     @pages = @site.pages.paginate :page => params[:paginate], :per_page => 10
+
     @front_news = @site.pages.where(["front='true' AND publish='true' AND date_begin_at <= ? AND date_end_at > ?", Time.now, Time.now])
+
     @no_front_news = @site.pages.where(["front='false' AND publish='true' AND date_begin_at <= ? AND date_end_at > ?", Time.now, Time.now]).paginate :page => params[:page], :per_page => 5
 
     params['page'] ||= []
@@ -169,5 +180,11 @@ class PagesController < ApplicationController
   private
   def sort_column
     Page.column_names.include?(params[:sort]) ? params[:sort] : 'id'
+  end
+
+  def per_page
+   unless params[:per_page]
+     @tiny_mce ? 5 : @site.per_page_array.first
+   end
   end
 end

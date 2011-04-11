@@ -32,8 +32,8 @@ table.list tbody tr:hover { background-color:#e5ffe5; }
 table.list tbody tr.group:hover { background-color:inherit; }
 table td {padding:2px;}
 table p {margin:0;}
-.odd {background-color: #f6f7f8;}
-.even {background-color: #fff;}
+table.list tr:nth-child(odd), .odd {background-color: #f6f7f8;}
+table.list tr:nth-child(even), .even {background-color: #fff;}
 .box{ padding:6px; margin-bottom: 10px; background-color:#f6f6f6; color:#505050; line-height:1.5em; border: 1px solid #e4e4e4; }
 
 form {display: inline;}

@@ -206,6 +206,7 @@ pt-BR:
   "no": "Não"
 
 #---O---#
+  of: "de"
   original: "Original"
   other_css: "Outros Estilos"
   owner: "Dono"
@@ -328,6 +329,12 @@ pt-BR:
   value: "Valor"
   view_desc_pages: "Visualizar descrição"
   view_desc_pages_help: "Deseja mostrar a data de criação e o autor das páginas?"
+  views:
+    pagination:
+      next: 'Próxima'
+      previous: 'Anterior'
+      truncate: '...'
+      per_page: 'Por página'
 
 #---Y---#
   "yes": "Sim"

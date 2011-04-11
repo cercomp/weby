@@ -1,13 +1,7 @@
 class Site < ActiveRecord::Base
   default_scope :order => 'id DESC'
 
-  def array_per_page
-    unless self.itens_per_page.nil?
-      self.itens_per_page.delete(' ').split(',')
-    else
-      [5,10,15,20,100]
-    end
-  end
+  # TODO colocar um validates format para o per_page
 
   def to_param
     "#{name}"
@@ -18,7 +12,7 @@ class Site < ActiveRecord::Base
     :order => order
   end
 
-  validates_presence_of :name, :url
+  validates_presence_of :name, :url, :per_page
   validates_uniqueness_of :name
 
   has_many :roles

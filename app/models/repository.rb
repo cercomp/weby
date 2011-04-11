@@ -1,11 +1,6 @@
 class Repository < ActiveRecord::Base
   default_scope :order => 'updated_at DESC'
 
-  def self.search(search, page, type, per_page, order = 'id DESC')
-    paginate :per_page => per_page, :page => page,
-        :conditions => ['archive_content_type LIKE ? AND description like ?', "%#{type}%", "%#{search}%"],
-        :order => order
-  end
   belongs_to :site
 
 	has_one :page

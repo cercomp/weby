@@ -3,6 +3,6 @@
         @repositories.map{|u|
           u.archive.reprocess! if File.file?(u.archive.path) and not File.file?(u.archive.path(:mini))
           { :value => u.id, :image => u.archive.url(:mini), :alt => u.description, :title => u.description }
-        }, (will_paginate @repositories, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax'), :label => t("picture"), :help => t("picture") 
+        }, (paginate @repositories)
       %>
     <% end %>

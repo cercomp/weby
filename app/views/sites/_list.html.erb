@@ -1,22 +1,18 @@
-<% unless @sites.empty? %>
-  <%= will_paginate @sites, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax' %>
-  <table class='list'>
-    <thead>
-      <th><%= sortable "id" %></th>
-      <th><%= sortable 'name', t("name") %></th>
-      <th><%= t"description" %></th>
-    </thead>
-    <tbody>
+<%= paginate @sites %>
+<table class='list'>
+  <thead>
+    <th><%= sortable "id" %></th>
+    <th><%= sortable 'name', t("name") %></th>
+    <th><%= t"description" %></th>
+  </thead>
+  <tbody>
     <% @sites.each do |site| %>
-      <tr class="<%= cycle 'odd', 'even' %>">
+      <tr>
         <td> <%= site.id %> </td>
         <td> <%= link_to site.name, site_path(site) %> </td>
         <td> <%= site.description %> </td>
       </tr>
-    <% end; reset_cycle %>
-    </tbody>
-  </table>
-  <%= will_paginate @sites, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax' %>
-<% else %>
-  <% flash.now[:warning] = (t"none_param", :param => t("site.one")) %>
-<% end %>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @sites %>

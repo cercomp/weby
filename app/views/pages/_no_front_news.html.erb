@@ -1,21 +1,18 @@
-<% unless @no_front_news.nil? or @no_front_news.empty? %>
-  <div id='no_front_news'>
-    <%= will_paginate @no_front_news, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax' %>
-    <%= itens_per_page(@site)  %>
-    <table class="border fullwidth zebra">
+<div id='no_front_news'>
+  <%= paginate @no_front_news %>
+  <table class="border fullwidth zebra">
+    <tr>
+      <th> <%= link_to t("page.other"), site_pages_path(@site) %> </th>
+    </tr>
+    <% @no_front_news.each do |page| %>
       <tr>
-        <th> <%= link_to t("page.other"), site_pages_path(@site) %> </th>
+        <td>
+          <p>
+          <%= link_to page.title, site_page_path(@site, page) %>
+          <%= raw page.summary %>
+          </p>
+        </td>
       </tr>
-      <% @no_front_news.each do |page| %>
-        <tr>
-          <td>
-            <p>
-            <%= link_to page.title, site_page_path(@site, page) %>
-            <%= raw page.summary %>
-            </p>
-          </td>
-        </tr>
-      <% end %>
-    </table>
-  </div>
-<% end %>
+    <% end %>
+  </table>
+</div>
