@@ -76,6 +76,8 @@ class Migrate_this2weby
         # Criando objeto de conversão
         @convar["#{this_site['site_id']}"]["weby"] = site[0]['id']
       end
+      # FIXME Melhorar para remover somente os necessários
+      @con_weby.exec("DELETE FROM menus")
       
       # Migrando estilos
       select_estilo = "SELECT * FROM estilo WHERE id='#{this_site['id_estilo']}'"
@@ -314,6 +316,8 @@ EOF
       end
       this_informativos.clear()
 
+      # FIXME Melhorar para remover os relacionamento necessários
+      @con_weby.exec("DELETE FROM sites_menus WHERE site_id='#{@convar["#{this_site['site_id']}"]['weby']}'")
       # Migrando Tabelas: this.menu_[direito,esquerdo,superior,inferior] => weby.menus 
       # Parâmetros: 
       #   1o. menus   (Hash)    Onde os índices são as tabelas no this e os valores são seus respectivos no weby
