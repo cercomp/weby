@@ -303,7 +303,7 @@ module ApplicationHelper
       html << if collection.length != item.to_i
                 content_tag(:span, :class => 'item_per_page_paginator') do
                   link_to item, {:controller => params[:controller], :action => params[:action],
-                                       :per_page => item.to_i}, :remote => remote
+                                 :per_page => item.to_i}, :remote => remote
                 end
       else
         content_tag(:span, :class => 'current') do
@@ -317,9 +317,20 @@ module ApplicationHelper
   end
 
   # Cria array de itens por página
-  # Ordem: Site, Valor Padrão da coluna, valor fixo.
   def per_page_array
-    (@site.per_page || Site.columns_hash['per_page'].default || "5,10,15,20").gsub(/[^\d,]/,'').split(',')
+    per_page_string.gsub(/[^\d,]/,'').split(',') 
+  end
+
+  # Pega string de itens por página
+  # Ordem: Site, Valor Padrão da coluna, valor fixo.
+  def per_page_string
+    @site.per_page
+  rescue
+    if Site.columns_hash['per_page']
+      Site.columns_hash['per_page'].default
+    else
+      "5,10,15,20"
+    end
   end
 
 end

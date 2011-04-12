@@ -1,5 +1,6 @@
 <div id='no_front_news'>
   <%= paginate @no_front_news %>
+  <%= per_page_links @no_front_news %>
   <table class="border fullwidth zebra">
     <tr>
       <th> <%= link_to t("page.other"), site_pages_path(@site) %> </th>

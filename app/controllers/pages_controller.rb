@@ -5,29 +5,30 @@ class PagesController < ApplicationController
   respond_to :html, :xml, :js
   before_filter :per_page, :only => [:index]
 
+
+  # FIXME corrigir para paginação funcionar no tiny_mce
   def index 
     params[:type] ||= 'News'
 
     @tiny_mce = params[:tiny_mce] || false
-
     @pages = @site.pages.where("title like '%#{params[:search]}'").
     order(sort_column + " " + sort_direction).
       page(params[:page]).per(per_page)
-
+    
     @pages.published if @tiny_mce
 
-    if @pages
-      respond_with do |format|
-        format.js { 
-          render :update do |site|
-          site.call "$('#page_list').html", ( @tiny_mce ? render(:partial => 'list_popup') : render(:partial => 'list') )
-          end
-        }
-        format.xml  { render :xml => @pages }
-        format.html
-      end
-    else
+    unless @pages
       flash[:warning] = (t"none_param", :param => t("page.one"))
+    end
+    respond_with do |format|
+      format.js { 
+        render :update do |site|
+        site.call "$('#page_list').html",
+          render(:partial => ( @tiny_mce ? 'list_popup' : 'list') )
+        end
+      }
+      format.xml  { render :xml => @pages }
+      format.html
     end
   end
 
@@ -184,7 +185,7 @@ class PagesController < ApplicationController
 
   def per_page
     unless params[:per_page]
-     @tiny_mce ? 5 : per_page_array.first
+      @tiny_mce ? 5 : per_page_array.first
     else
       params[:per_page]
     end
