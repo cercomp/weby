@@ -3,13 +3,6 @@
   width: 100%
 }
 
-p{
-  margin: 0px;
-  border: 0px;
-  padding: 0px;
-  color: #1A417E;
-}
-
 .page_info_paginator{ float: left }
 .per_page_paginator { float: right; }
 

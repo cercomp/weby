@@ -9,7 +9,7 @@ paginator:     the paginator that renders the pagination tags inside
 -%>
 
 <nav class="paginator">
-<div class="pages_paginator">
+<div class="pages_paginator <%= "ajax" if remote %>">
   <%= paginator.render do -%>
     <%= current_page > 1 ? prev_link_tag : prev_span_tag %>
     <% each_page do |page| -%>

@@ -3,11 +3,12 @@ $(document).ready(function() {
   img.src = '/images/spinner.gif'
 
   // Mostra spinner em ajax com pagination
-  $('.paginator a').live('click',function (){
+  $('.pages_paginator.ajax a').live('click',function (){
     $(this).parent().parent().html('').append(img)
     return false;
   })
 
+  // Mostra spinner em ajax com links de itens por pagina
   $('.per_page_paginator.ajax a').live('click',function (){
     $(this).parent().parent().html('').append(img)
     return false;

@@ -1,4 +1,4 @@
-<%= paginate @pages %>
+<%= paginate @pages, :remote => true %>
 <%= info_page @pages %>
 <%= per_page_links @pages, true %>
 <table class='list'>
