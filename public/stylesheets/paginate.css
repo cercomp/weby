@@ -3,25 +3,18 @@
   width: 100%
 }
 
-span.per_page_item a, span.per_page_item a:link, span.per_page_item a:visited {
-	margin: 0px;
-	border: 0px;
-	padding: 0px;
-	color: #1A417E;
-}
-span.per_page_item a:active, span.per_page_item a:hover {
-  border: 0;
-	color: #3399FF;
+p{
+  margin: 0px;
+  border: 0px;
+  padding: 0px;
+  color: #1A417E;
 }
 
-.per_page_paginator {
-  float: left;
-  font-weight: bold;
-}
+.page_info_paginator{ float: left }
+.per_page_paginator { float: right; }
 
-.per_page_paginator a {
-  font-weight: normal !important;
-}
+.page_info_paginator,
+.per_page_paginator { margin-bottom: 5px }
 
 .pages_paginator {
   text-align: center;
@@ -29,20 +22,27 @@ span.per_page_item a:active, span.per_page_item a:hover {
   margin: 3px;
 }
 
+.disabled{
+  color: #999;
+}
+
+.item_per_page_paginator a,
 .pages_paginator a {
-  padding: 2px 5px 2px 5px;
+  padding: 2px 5px;
   margin: 2px;
   border: 1px solid #d7d7d7;
   text-decoration: none; /* no underline */
   color: #000;
 }
 
+.item_per_page_paginator a:hover,
 .pages_paginator a:hover, div.digg a:active {
   border: 1px solid #000;
   color: #000;
 }
 
-.pages_paginator span.current {
+.pages_paginator span.current,
+.per_page_paginator span.current{
   padding: 2px 5px 2px 5px;
   margin: 2px;
   border: 1px solid #000;

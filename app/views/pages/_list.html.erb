@@ -1,4 +1,6 @@
 <%= paginate @pages %>
+<%= info_page @pages %>
+<%= per_page_links @pages, true %>
 <table class='list'>
   <thead>
     <th><%= sortable 'id' %></th>

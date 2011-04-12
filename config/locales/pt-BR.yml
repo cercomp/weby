@@ -331,11 +331,13 @@ pt-BR:
   view_desc_pages_help: "Deseja mostrar a data de criação e o autor das páginas?"
   views:
     pagination:
-      next: 'Próxima'
-      previous: 'Anterior'
-      truncate: '...'
-      per_page: 'Por página'
+      displaying: 'Mostrando'
       more: 'Mais'
+      next: 'Próxima'
+      per_page: 'Por página'
+      previous: 'Anterior'
+      total: 'Total'
+      truncate: '...'
 
 #---Y---#
   "yes": "Sim"

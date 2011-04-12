@@ -284,22 +284,42 @@ module ApplicationHelper
     link_to title, {:sort => column, :direction => direction}, {:class => css_class}
   end
 
-  def itens_per_page(site, html_options = {})
-    html = "<div id='itens_per_page'> #{t('itens_per_page')}"
-
-    params[:per_page] ||= site.array_per_page.first
-    html_options[:class] ||= 'per_page'
-
-    site.array_per_page.each do |item|
-      html << " #{link_to_unless( params[:per_page] == item,
-                  item,
-                  { :controller => params[:controller],
-                    :action => params[:action],
-                    :per_page => item },
-                    html_options )}"
+  # Informações sobre paginação
+  def info_page(collection)
+    content_tag :div, :class => "page_info_paginator" do
+      collection_name = collection.klass.name.downcase.pluralize
+      if collection.klass.count > 0
+        "#{t('views.pagination.displaying')} #{collection.offset_value + 1} - 
+        #{collection.offset_value + collection.length} #{t('of')} 
+        #{collection.klass.count} #{t('views.pagination.total')}" 
+      end
     end
-
-    html +='</div>'
-    raw html
   end
+
+  # Seleciona a quantidade de itens por página
+  def per_page_links(collection, remote = false)
+    html = "#{t('views.pagination.per_page')} "
+    per_page_array.each do |item|
+      html << if collection.length != item.to_i
+                content_tag(:span, :class => 'item_per_page_paginator') do
+                  link_to item, {:controller => params[:controller], :action => params[:action],
+                                       :per_page => item.to_i}, :remote => remote
+                end
+      else
+        content_tag(:span, :class => 'current') do
+          item
+        end
+      end
+    end
+    content_tag :div, :class => "per_page_paginator #{'ajax' if remote}" do
+      raw html
+    end
+  end
+
+  # Cria array de itens por página
+  # Ordem: Site, Valor Padrão da coluna, valor fixo.
+  def per_page_array
+    (@site.per_page || Site.columns_hash['per_page'].default || "5,10,15,20").gsub(/[^\d,]/,'').split(',')
+  end
+
 end

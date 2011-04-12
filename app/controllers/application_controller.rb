@@ -1,12 +1,12 @@
 # coding: utf-8
 class ApplicationController < ActionController::Base
+  include ApplicationHelper # Para usar helper methods nos controllers
   protect_from_forgery
   before_filter :set_contrast, :set_locale, :set_global_vars
 
   helper :all
   helper_method :current_user_session, :current_user,
-    :user_not_authorized, :sort_direction,
-    :per_page_array
+    :user_not_authorized, :sort_direction
 
   def choose_layout
     if @site.nil? or @site.id.nil? 
@@ -155,15 +155,6 @@ class ApplicationController < ActionController::Base
       if not @site.repository.nil? and File.file?(@site.repository.archive.path)
         @top_banner_width,@top_banner_height = Paperclip::Geometry.from_file(@site.repository.archive).to_s.split('x')
       end
-    end
-  end
-
-  def per_page_array
-    if @site
-      (@site.per_page || Site.columns_hash['per_page'].default).gsub(/[^\d,]/,'').split(',')
-    else
-      # TODO Quando não existir @site implemntar na tabela setting um campo/valor per_page por omissão.
-      [5,10,15,20]
     end
   end
 

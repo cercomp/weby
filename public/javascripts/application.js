@@ -5,13 +5,11 @@ $(document).ready(function() {
   // Mostra spinner em ajax com pagination
   $('.paginator a').live('click',function (){
     $(this).parent().parent().html('').append(img)
-    $.getScript(this.href);
     return false;
   })
 
-  $('.per_page').live('click',function (){
-    $(this).parent().html('').append(img)
-    $.getScript(this.href);
+  $('.per_page_paginator.ajax a').live('click',function (){
+    $(this).parent().parent().html('').append(img)
     return false;
   })
 
