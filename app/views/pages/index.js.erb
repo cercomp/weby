@@ -1,0 +1,3 @@
+$('#page_list').html(function(){
+  "<%= raw escape_javascript( render(:partial => ( @tiny_mce ? 'list_popup' : 'list' ) ) ) %>");
+});

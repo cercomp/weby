@@ -7,6 +7,7 @@ class PagesController < ApplicationController
 
 
   # FIXME corrigir para paginação funcionar no tiny_mce
+  # FIXME busca não está funcionando
   def index 
     params[:type] ||= 'News'
 
@@ -17,18 +18,10 @@ class PagesController < ApplicationController
     
     @pages.published if @tiny_mce
 
-    unless @pages
+    if @pages
+      respond_with @pages
+    else
       flash[:warning] = (t"none_param", :param => t("page.one"))
-    end
-    respond_with do |format|
-      format.js { 
-        render :update do |site|
-        site.call "$('#page_list').html",
-          render(:partial => ( @tiny_mce ? 'list_popup' : 'list') )
-        end
-      }
-      format.xml  { render :xml => @pages }
-      format.html
     end
   end
 

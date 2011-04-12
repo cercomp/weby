@@ -19,7 +19,7 @@
     background: rgb(204, 204, 204);
   }
 </style>
-
+<%= debug params %>
 <table class='list' style="width:100%" rules="all" >
   <thead>
     <th><%= sortable 'id' %></th>
@@ -38,5 +38,5 @@
 </table>
 <br style="clear:both;" />
 <div style="float:right;margin-bottom:10px;">
-  <%= paginate @pages, :params => {:tiny_mce => true}, :remote => true %>
+  <%= paginate @pages, :remote => true %>
 </div>
