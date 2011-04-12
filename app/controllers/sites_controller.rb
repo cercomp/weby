@@ -7,7 +7,7 @@ class SitesController < ApplicationController
   helper_method :sort_column
 
   def index
-    @sites = Site.where('lower(name) LIKE ? OR lower(description) LIKE ?', "%#{params[:search]}%", "%#{params[:search]}%").
+    @sites = Site.where('lower(name) LIKE ? OR lower(description) LIKE ?', "%#{params[:search]}%", false).
     order(sort_column + " " + sort_direction).page(params[:page]).per(params[:per_page])
 
     if @sites
