@@ -3,8 +3,8 @@ $(document).ready(function() {
   img.src = '/images/spinner.gif'
 
   // Mostra spinner em ajax com pagination
-  $('.pagination.ajax a').live('click',function (){
-    $(this).parent().html('').append(img)
+  $('.paginator a').live('click',function (){
+    $(this).parent().parent().html('').append(img)
     $.getScript(this.href);
     return false;
   })

@@ -159,7 +159,12 @@ class ApplicationController < ActionController::Base
   end
 
   def per_page_array
-    (@site.per_page || Site.columns_hash['per_page'].default).gsub(/[^\d,]/,'').split(',')
+    if @site
+      (@site.per_page || Site.columns_hash['per_page'].default).gsub(/[^\d,]/,'').split(',')
+    else
+      # TODO Quando não existir @site implemntar na tabela setting um campo/valor per_page por omissão.
+      [5,10,15,20]
+    end
   end
 
   # Metodo usado na ordenação de tabelas por alguma coluna
