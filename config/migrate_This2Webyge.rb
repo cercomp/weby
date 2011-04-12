@@ -534,6 +534,7 @@ class Migrate_files
             sql = "UPDATE sites SET top_banner_id='#{repository_id}' WHERE id='#{id}'"
             @con_weby.exec(sql)
             puts "\tATUALIZANDO topo"
+            puts `mv #{file} #{destino}/original_#{file_name}`
             next
         end
 

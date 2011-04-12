@@ -11,6 +11,8 @@
     <%= form_tag site_pages_path, :method => 'get', :remote => true do %>
       <%= label_tag t("search") %>
       <%= text_field_tag :search %>
+      <%= hidden_field_tag 'page', "#{params[:page]}" %>
+      <%= hidden_field_tag 'per_page', "#{params[:per_page]}" %>
       <%= submit_tag t("submit") %>
     <% end %>
   </center>
@@ -19,7 +21,6 @@
     <%= render :partial => ( @tiny_mce ? "list_popup" : "list" ) %>
   </div>
   <%= javascript_tag do %>
-
     window.onload=function(){
       $().ready(function() {
         $('#list').sortable({
