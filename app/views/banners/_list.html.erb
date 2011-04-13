@@ -1,6 +1,8 @@
   <% unless @banners.empty? %>
-    <%= will_paginate @banners, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax' %>
-    <%= itens_per_page @site %>
+    <%#= will_paginate @banners, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax' %>
+    <%#= itens_per_page @site %>
+    <%= paginate @banners, :remote => true %>
+    <%= per_page_links @banners, true %>
     <table class='list'>
       <thead>
         <th><%= sortable "id" %></th>
@@ -31,8 +33,8 @@
       <% end; reset_cycle %>
       </tbody>
     </table>
-    <%= will_paginate @banners, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax' %>
-    <%= itens_per_page @site %>
+    <%#= will_paginate @banners, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax' %>
+    <%#= itens_per_page @site %>
   <% else %>
     <% flash.now[:warning] = (t"none_param", :param => t("banner.one")) %>
   <% end %>

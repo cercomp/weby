@@ -2,15 +2,15 @@ class BannersController < ApplicationController
   layout :choose_layout
   before_filter :require_user
   before_filter :check_authorization
+  before_filter :repositories, :only => ['new', 'edit', 'create', 'update']
 
   helper_method :sort_column
 
   respond_to :html, :xml, :js
 
   def index
-    @banners = @site.banners.unscoped.paginate :page => params[:page],
-                                :per_page => params[:per_page],
-                                :order => sort_column + ' ' + sort_direction 
+    @banners = @site.banners.unscoped.order(sort_column + " " + sort_direction).
+      page(params[:page]).per(per_page)
 
     respond_with do |format|
       format.js { 
@@ -34,8 +34,6 @@ class BannersController < ApplicationController
 
   def new
     @banner = Banner.new
-    @repositories = Repository.new
-    @repositories = Repository.where(["site_id = ? AND archive_content_type LIKE ?", @site.id, "image%"]).paginate :page => params[:page], :order => 'created_at DESC', :per_page => 4 
 
     respond_with do |format|
       format.js { 
@@ -49,8 +47,6 @@ class BannersController < ApplicationController
   end
 
   def edit
-    @repositories = Repository.new
-    @repositories = Repository.where(["site_id = ? AND archive_content_type LIKE ?", @site.id, "image%"]).paginate :page => params[:page], :order => 'created_at DESC', :per_page => 4 
     @banner = Banner.find(params[:id])
 
     respond_with do |format|
@@ -65,14 +61,12 @@ class BannersController < ApplicationController
   end
 
   def create
-    @repositories = Repository.where(["site_id = ? AND archive_content_type LIKE ?", @site.id, "image%"]).paginate :page => params[:page], :order => 'created_at DESC', :per_page => 4 
     @banner = Banner.new(params[:banner])
     @banner.save
     respond_with(@site, @banner)
   end
 
   def update
-    @repositories = Repository.where(["site_id = ? AND archive_content_type LIKE ?", @site.id, "image%"]).paginate :page => params[:page], :order => 'created_at DESC', :per_page => 4 
     @banner = Banner.find(params[:id])
 
     respond_to do |format|
@@ -111,5 +105,17 @@ class BannersController < ApplicationController
   private
   def sort_column
     Banner.column_names.include?(params[:sort]) ? params[:sort] : 'id'
+  end
+
+  def per_page
+    unless params[:per_page]
+      @tiny_mce ? 5 : per_page_array.first
+    else
+      params[:per_page]
+    end
+  end
+
+  def repositories
+    @repositories = Repository.where(["site_id = ? AND archive_content_type LIKE ?", @site.id, "image%"]).page(params[:page]).per(per_page)
   end
 end
