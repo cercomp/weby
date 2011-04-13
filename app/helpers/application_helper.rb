@@ -287,7 +287,7 @@ module ApplicationHelper
   # Informações sobre paginação
   def info_page(collection, total_entries = collection.klass.count)
     content_tag :div, :class => "page_info_paginator" do
-      if collection.klass.count > 0
+      if collection.klass.count.to_i > 0
         "#{t('views.pagination.displaying')} #{collection.offset_value + 1} - 
         #{collection.offset_value + collection.length} #{t('of')} 
         #{total_entries} #{t('views.pagination.total')}" 
@@ -333,5 +333,4 @@ module ApplicationHelper
       "5,10,15,20"
     end
   end
-
 end

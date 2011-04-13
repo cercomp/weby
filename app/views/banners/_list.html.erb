@@ -1,40 +1,33 @@
-  <% unless @banners.empty? %>
-    <%#= will_paginate @banners, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax' %>
-    <%#= itens_per_page @site %>
-    <%= paginate @banners, :remote => true %>
-    <%= per_page_links @banners, true %>
-    <table class='list'>
-      <thead>
-        <th><%= sortable "id" %></th>
-        <th><%= sortable 'date_begin_at', t("date_param", :param => t("register"))%></th>
-        <th><%= sortable 'date_end_at', t("date_param", :param => t("publication"))%></th>
-        <th><%= sortable 'title', t("title") %></th>
-        <th><%= sortable 'user_id', t("author") %></th>
-        <th><%= t"publish" %></th>
-        <th></th>
-      </thead>
-      <tbody>
-      <% @banners.each do |banner| %>
-        <tr class="<%= cycle 'odd', 'even' %>">
-          <td><%= banner.id %></td>
-          <td><%= banner.date_begin_at %></td>
-          <td><%= banner.date_end_at %></td>
-          <td><%= banner.title %></td>
-          <td><%= banner.user.first_name ? ("#{banner.user.first_name} #{banner.user.last_name}") : banner.user.login %></td>
-          <td align="center">
-            <% if (banner.date_begin_at <= Time.now and banner.date_end_at > Time.now) %>
-              <%= raw toggle_field(banner, "publish") %>
-            <% end %>
-          </td>
-          <td>
-            <%= raw make_menu(banner) %> 
-          </td>
-        </tr>
-      <% end; reset_cycle %>
-      </tbody>
-    </table>
-    <%#= will_paginate @banners, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax' %>
-    <%#= itens_per_page @site %>
-  <% else %>
-    <% flash.now[:warning] = (t"none_param", :param => t("banner.one")) %>
-  <% end %>
+  <%= paginate @banners, :remote => true %>
+  <%= info_page @banners %>
+  <%= per_page_links @banners, true %>
+  <table class='list'>
+    <thead>
+      <th><%= sortable "id" %></th>
+      <th><%= sortable 'date_begin_at', t("date_param", :param => t("register"))%></th>
+      <th><%= sortable 'date_end_at', t("date_param", :param => t("publication"))%></th>
+      <th><%= sortable 'title', t("title") %></th>
+      <th><%= sortable 'user_id', t("author") %></th>
+      <th><%= t"publish" %></th>
+      <th></th>
+    </thead>
+    <tbody>
+    <% @banners.each do |banner| %>
+      <tr class="<%= cycle 'odd', 'even' %>">
+        <td><%= banner.id %></td>
+        <td><%= banner.date_begin_at %></td>
+        <td><%= banner.date_end_at %></td>
+        <td><%= banner.title %></td>
+        <td><%= banner.user.first_name ? ("#{banner.user.first_name} #{banner.user.last_name}") : banner.user.login %></td>
+        <td align="center">
+          <% if (banner.date_begin_at <= Time.now and banner.date_end_at > Time.now) %>
+            <%= raw toggle_field(banner, "publish") %>
+          <% end %>
+        </td>
+        <td>
+          <%= raw make_menu(banner) %> 
+        </td>
+      </tr>
+    <% end; reset_cycle %>
+    </tbody>
+  </table>

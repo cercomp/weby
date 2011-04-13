@@ -9,9 +9,12 @@ class BannersController < ApplicationController
   respond_to :html, :xml, :js
 
   def index
-    @banners = @site.banners.unscoped.order(sort_column + " " + sort_direction).
-      page(params[:page]).per(per_page)
+    @banners = @site.banners.order(sort_column + " " + sort_direction).
+      page(params[:page]).per(params[:per_page])
 
+    unless @banners
+      flash.now[:warning] = (t"none_param", :param => t("banner.one"))
+    end
     respond_with do |format|
       format.js { 
         render :update do |site|
@@ -107,15 +110,7 @@ class BannersController < ApplicationController
     Banner.column_names.include?(params[:sort]) ? params[:sort] : 'id'
   end
 
-  def per_page
-    unless params[:per_page]
-      @tiny_mce ? 5 : per_page_array.first
-    else
-      params[:per_page]
-    end
-  end
-
   def repositories
-    @repositories = Repository.where(["site_id = ? AND archive_content_type LIKE ?", @site.id, "image%"]).page(params[:page]).per(per_page)
+    @repositories = Repository.where(["site_id = ? AND archive_content_type LIKE ?", @site.id, "image%"]).page(params[:page]).per(params[:per_page])
   end
 end

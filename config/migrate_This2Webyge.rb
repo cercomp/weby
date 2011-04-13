@@ -76,8 +76,6 @@ class Migrate_this2weby
         # Criando objeto de conversão
         @convar["#{this_site['site_id']}"]["weby"] = site[0]['id']
       end
-      # FIXME Melhorar para remover somente os necessários
-      @con_weby.exec("DELETE FROM menus")
       
       # Migrando estilos
       select_estilo = "SELECT * FROM estilo WHERE id='#{this_site['id_estilo']}'"
@@ -227,7 +225,7 @@ EOF
           autor ||= 1
           insert_pages = "INSERT INTO pages (created_at,updated_at,date_begin_at,date_end_at,site_id,author_id,text,url,source,title,summary,publish,front,type) VALUES ('#{dt_cadastro}','#{dt_cadastro}','#{dt_inicio}','#{dt_fim}','#{@convar["#{this_site['site_id']}"]['weby']}','#{autor}','#{pre_treat(noticia['texto'])}','#{pre_treat(noticia['url'])}','#{pre_treat(noticia['fonte'])}','#{pre_treat(noticia['titulo'])}','#{pre_treat(noticia['resumo'])}',#{status},#{capa},'News') RETURNING id"
           page = @con_weby.exec(insert_pages)
-          puts "\t\t\tINSERINDO página: (#{page[0]['id']})\n" if @verbose
+          puts "\t\t\tINSERINDO (notícias) página: (#{page[0]['id']}) no weby\n" if @verbose
           insert_sites_pages = "INSERT INTO sites_pages (site_id,page_id) VALUES ('#{@convar["#{this_site['site_id']}"]['weby']}','#{page[0]['id']}')"
           site_page = @con_weby.exec(insert_sites_pages)
           # Relacionando notícias na variável de conversão
@@ -250,7 +248,7 @@ EOF
           autor ||= 1
           insert_pages = "INSERT INTO pages (created_at,date_begin_at,date_end_at,site_id,author_id,title,text,publish,front,type) VALUES ('#{Time.now}','#{Time.now}','#{data_publica}','#{@convar["#{this_site['site_id']}"]['weby']}','#{autor}','#{pre_treat(pagina['titulo'])}','#{pre_treat(pagina['texto'])}',true,false,'News') RETURNING id"
           page = @con_weby.exec(insert_pages)
-          puts "\t\t\tINSERINDO página (#{page[0]['id']}) no weby\n" if @verbose
+          puts "\t\t\tINSERINDO (avulsa) página: (#{page[0]['id']}) no weby\n" if @verbose
           insert_sites_pages = "INSERT INTO sites_pages (site_id,page_id) VALUES ('#{@convar["#{this_site['site_id']}"]['weby']}','#{page[0]['id']}')"
           site_page = @con_weby.exec(insert_sites_pages)
           # Relacionando notícias na variável de conversão
@@ -282,7 +280,7 @@ EOF
           autor ||= 1
           insert_pages = "INSERT INTO pages (created_at,updated_at,date_begin_at,date_end_at,event_begin,event_end,site_id,author_id,text,url,source,title,summary,publish,front,type,kind,event_email,local) VALUES ('#{dt_cadastro}','#{dt_cadastro}','#{dt_inicio}','#{dt_fim}','#{inicio}','#{fim}','#{@convar["#{this_site['site_id']}"]['weby']}','#{autor}','#{pre_treat(evento['texto'])}','#{pre_treat(evento['url'])}','#{pre_treat(evento['fonte'])}','#{pre_treat(evento['titulo'])}','#{pre_treat(evento['resumo'])}',#{status},#{capa},'Event','#{tipo}','#{evento['email']}','#{pre_treat(evento['local_realiza'])}') RETURNING id"
           page = @con_weby.exec(insert_pages)
-          puts "\t\t\tINSERINDO página: (#{page[0]['id']}) no weby\n" if @verbose
+          puts "\t\t\tINSERINDO (eventos) página: (#{page[0]['id']}) no weby\n" if @verbose
           insert_sites_pages = "INSERT INTO sites_pages (site_id,page_id) VALUES ('#{@convar["#{this_site['site_id']}"]['weby']}','#{page[0]['id']}')"
           site_page = @con_weby.exec(insert_sites_pages)
           # Relacionando notícias na variável de conversão
@@ -360,7 +358,7 @@ EOF
         insert_page = "INSERT INTO pages (created_at,date_begin_at,date_end_at,site_id,author_id,title,text,publish,front,type) VALUES ('#{Time.now}','#{Time.now}','#{Time.now}','#{site_id}','#{modificador}','#{pre_treat(entry['texto_item'])}','#{pre_treat(entry['texto'])}',true,false,'News') RETURNING id"
         page_id = @con_weby.exec(insert_page)
         @convar["#{this_id}"]["paginas"]["#{entry['id']}"] = page_id[0]['id']
-        puts "\t\t\t\tINSERINDO página (#{page_id[0]['id']})\n" if @verbose
+        puts "\t\t\t\tINSERINDO (menus) página (#{page_id[0]['id']})\n" if @verbose
         insert_menu = "INSERT INTO menus (title,link,page_id) VALUES ('#{pre_treat(entry['texto_item'])}','','#{page_id[0]['id']}') RETURNING id"
       end
     elsif not /javascript:mostrar_pagina.*\('([0-9]+)'.*/.match("#{entry['url']}").nil? # Verificando se o menu é interno, externo
@@ -376,10 +374,10 @@ EOF
     end
     # Evitar erros quando não consegue inserir menu
     unless insert_menu.nil?
-      #if @convar["#{this_id}"]["menus"]["#{entry['id']}"].nil?
+      #if @convar["#{this_id}"]['menus']["#{entry['id']}"].nil?
         menu_sub = @con_weby.exec(insert_menu)
         puts "\t\t\tINSERINDO sub_menu: (#{menu_sub[0]['id']})\n" if @verbose
-        @convar["#{this_id}"]["menus"]["#{entry['id']}"] = menu_sub[0]['id']
+        @convar["#{this_id}"]['menus']["#{entry['id']}"] = menu_sub[0]['id']
         insert_sites_menus = "INSERT INTO sites_menus(site_id,menu_id,parent_id,side,position) VALUES ('#{site_id}','#{menu_sub[0]['id']}',#{menu_id},'#{type}','#{entry['posicao']}') RETURNING id"
         menu_e0 = @con_weby.exec(insert_sites_menus)
         puts "\t\t\t\tINSERINDO relacionamento sites_menus (#{menu_e0[0]['id']})\n" if @verbose

@@ -17,7 +17,7 @@ class PagesController < ApplicationController
     @pages = @pages.  order(sort_column + " " + sort_direction).
       page(params[:page]).per(per_page)
 
-    @pages.published if @tiny_mce
+    @pages = @pages.published if @tiny_mce
 
     if @pages
       respond_with @pages
@@ -43,19 +43,21 @@ class PagesController < ApplicationController
     @repositories = Repository.where(["site_id = ? AND archive_content_type LIKE ?", @site.id, "image%"]).order('created_at DESC').page(params[:page]).per(4)
     # Objeto para pages_repositories (relacionamento muitos-para-muitos)
     ## Criando objeto com os arquivos que não estão relacionados com a página
-    @page_files_unchecked = @site.repositories.order('created_at DESC').page(params[:page_files]).per(5)
+    @page_files_unchecked = @site.repositories.order('id DESC').page(1).per(params[:page_files].to_i*5)
 
     respond_with do |format|
       format.js { 
         render :update do |page|
-        if params[:page]
-          page.call "$('#repo_list').html", render(:partial => 'repo_list', :locals => { :f => SemanticFormBuilder.new(:page, @page, self, {}, proc{}) })
-        elsif params[:page_files]
-          page.call "$('#files_list').append", render(:partial => 'files_list')
-          page.call "$('#will_paginate').html", (will_paginate @page_files_unchecked, :param_name => 'page_files', :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax', :page_links => false, :renderer => Twitter, :twitter_label => t("more"))
-        elsif params[:type]
-          page.call "$('#div_event').html", render(:partial => 'formEvent', :locals => { :f => SemanticFormBuilder.new(:page, @page, self, {}, proc{}) })
-        end
+          if params[:page]
+            page.call "$('#repo_list').html", render(:partial => 'repo_list', :locals => { :f => SemanticFormBuilder.new(:page, @page, self, {}, proc{}) })
+          end
+          if params[:page_files]
+            page.call "$('#files_list').append", render(:partial => 'files_list')
+            page.call "$('#will_paginate').html", (paginate @page_files_unchecked, :param_name => 'page_files', :theme => 'twitter')
+          end
+          if params[:type]
+            page.call "$('#div_event').html", render(:partial => 'formEvent', :locals => { :f => SemanticFormBuilder.new(:page, @page, self, {}, proc{}) })
+          end
         end
       }
       format.html
@@ -73,17 +75,22 @@ class PagesController < ApplicationController
     # Objeto para repository_id (relacionamento um-para-um)
     @repositories = Repository.where(["site_id = ? AND archive_content_type LIKE ?", @site.id, "image%"]).order('created_at DESC').page(params[:page]).per(params[:per_page])
     # Criando objeto com os arquivos que não estão relacionados com a página
-    @page_files_unchecked = @site.repositories.where("id NOT IN (#{@page.repository_ids.to_s.delete('[]')})").order('created_at DESC').page(1).per(params[:page_files].to_i*5)
+    if not @page.repository_ids
+      @page_files_unchecked = @site.repositories.where("id NOT IN (?)", @page.repository_ids.to_s.delete('[]')).page(1).per(params[:page_files].to_i*5) 
+    else
+      @page_files_unchecked = @site.repositories.page(1).per(params[:page_files].to_i*5)
+    end
 
     respond_with do |format|
       format.js { 
         render :update do |page|
-        if params[:page]
-          page.call "$('#repo_list').html", render(:partial => 'repo_list', :locals => { :f => SemanticFormBuilder.new(@page.class.name.underscore.to_s, @page, self, {}, proc{}) })
-        elsif params[:page_files]
-          page.call "$('#files_list').append", render(:partial => 'files_list')
-          page.call "$('#will_paginate').html", render(:partial => 'will_paginate')
-        end
+          if params[:page]
+            page.call "$('#repo_list').html", render(:partial => 'repo_list', :locals => { :f => SemanticFormBuilder.new(@page.class.name.underscore.to_s, @page, self, {}, proc{}) })
+          end
+          if params[:page_files]
+            page.call "$('#files_list').append", render(:partial => 'files_list')
+            page.call "$('#will_paginate').html", (paginate @page_files_unchecked, :param_name => 'page_files', :theme => 'twitter')
+          end
         end
       }
       format.html

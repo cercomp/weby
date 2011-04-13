@@ -75,7 +75,7 @@
           <%= render :partial => 'files_list' %>
         </div>
         <div id="will_paginate">
-          <%= paginate @page_files_unchecked %>
+          <%= paginate @page_files_unchecked, :param_name => 'page_files', :theme => 'twitter' %>
         </div>
       </div>
     </div>
