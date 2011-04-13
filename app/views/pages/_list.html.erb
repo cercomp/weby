@@ -1,5 +1,5 @@
 <%= paginate @pages, :remote => true %>
-<%= info_page @pages %>
+<%= info_page @pages, @total_entries %>
 <%= per_page_links @pages, true %>
 <table class='list'>
   <thead>

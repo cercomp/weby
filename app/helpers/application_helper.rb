@@ -285,12 +285,12 @@ module ApplicationHelper
   end
 
   # Informações sobre paginação
-  def info_page(collection)
+  def info_page(collection, total_entries = collection.klass.count)
     content_tag :div, :class => "page_info_paginator" do
       if collection.klass.count > 0
         "#{t('views.pagination.displaying')} #{collection.offset_value + 1} - 
         #{collection.offset_value + collection.length} #{t('of')} 
-        #{collection.klass.count} #{t('views.pagination.total')}" 
+        #{total_entries} #{t('views.pagination.total')}" 
       end
     end
   end
@@ -298,18 +298,20 @@ module ApplicationHelper
   # Seleciona a quantidade de itens por página
   def per_page_links(collection, remote = false)
     if collection.klass.count > per_page_array.first.to_i
+
       html = "#{t('views.pagination.per_page')} "
       per_page_array.each do |item|
-        html << if collection.length == item.to_i
+        html << 
+        if collection.length == item.to_i
                   content_tag :span, item, :class => 'current'
         else
+          params[:per_page] = item.to_i
           content_tag(:span, :class => 'item_per_page_paginator') do
-            link_to item, {:controller => params[:controller],
-                           :action => params[:action],
-                           :per_page => item.to_i}, :remote => remote
+            link_to item, params, :remote => remote
           end
         end
       end
+
       content_tag :div, raw(html),
         :class => "per_page_paginator #{'ajax' if remote}"
     end

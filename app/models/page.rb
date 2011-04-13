@@ -3,6 +3,10 @@ class Page < ActiveRecord::Base
 
   scope :published, where(:publish => true)
 
+  scope :titles_like, lambda { |title|
+      where(["LOWER(title) like ?", "%#{title.downcase if title}%"])
+  }
+
   validates_presence_of :title, :source, :author_id
 
   belongs_to :user, :foreign_key => "author_id"
