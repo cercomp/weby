@@ -1,5 +1,10 @@
 <script>
   $(function() {
+    $(".pages_paginator.ajax a").live("click", function() {
+      $('table.list').html("<img src='/images/spinner.gif'>");
+      $.get(this.href, {'tiny_mce': true }, null, 'script');
+      return false;
+    });
     $("table.list > thead > tr > th > a").live("click", function() {
       $('table.list').html("<img src='/images/spinner.gif'>");
       $.get(this.href, {'tiny_mce': true }, null, "script");
@@ -19,7 +24,6 @@
     background: rgb(204, 204, 204);
   }
 </style>
-<%= debug params %>
 <table class='list' style="width:100%" rules="all" >
   <thead>
     <th><%= sortable 'id' %></th>
@@ -28,15 +32,19 @@
   </thead>
   <tbody>
     <% @pages.each do |page| %>
-      <tr class="<%= cycle 'odd', 'even' %>" id="<%= "page_#{page.id}" %>">
+      <tr>
         <td><%= page.id %></td>
         <td><%= page.title %></td>
         <td><%= page.user.first_name ? ("#{page.user.first_name} #{page.user.last_name}") : page.user.login %></td>
       </tr>
-    <% end; reset_cycle %>
+    <% end %>
   </tbody>
 </table>
 <br style="clear:both;" />
 <div style="float:right;margin-bottom:10px;">
+  <%# 
+      FIXME Remote true não está funcionando aqui,
+      ajax está sendo realizado por javascript manual
+    %>
   <%= paginate @pages, :remote => true %>
 </div>

@@ -5,14 +5,12 @@ class PagesController < ApplicationController
   respond_to :html, :xml, :js
   before_filter :per_page, :only => [:index]
 
-
-  # FIXME corrigir para paginação funcionar no tiny_mce
-  # FIXME busca não está funcionando
   def index 
     params[:type] ||= 'News'
 
-    @tiny_mce = params[:tiny_mce] || false
-    @pages = @site.pages.where("title like '%#{params[:search]}'").
+    @tiny_mce = tiny_mce
+
+    @pages = @site.pages.where("LOWER(title) like '%#{params[:search].downcase if params[:search]}%'").
     order(sort_column + " " + sort_direction).
       page(params[:page]).per(per_page)
     
@@ -176,9 +174,17 @@ class PagesController < ApplicationController
     Page.column_names.include?(params[:sort]) ? params[:sort] : 'id'
   end
 
+  def tiny_mce
+    if params.include? :tiny_mce 
+      %w(true yes T t 1).include? params[:tiny_mce]
+    else
+      false
+    end
+  end
+
   def per_page
     unless params[:per_page]
-      @tiny_mce ? 5 : per_page_array.first
+      tiny_mce ? 5 : per_page_array.first
     else
       params[:per_page]
     end
