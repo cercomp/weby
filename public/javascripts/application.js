@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $('form[loading=true]')
+  $('form[data-remote=true]')
   .bind('submit', function(){
     LoadingGif($('span#loading'));
   })
