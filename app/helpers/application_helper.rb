@@ -295,7 +295,7 @@ module ApplicationHelper
     end
   end
 
-  # Seleciona a quantidade de itens por página
+  # Links para selecionar a quantidade de itens por página
   def per_page_links(collection, remote = false)
     if collection.klass.count > per_page_array.first.to_i
 
@@ -305,6 +305,7 @@ module ApplicationHelper
         if collection.length == item.to_i
                   content_tag :span, item, :class => 'current'
         else
+          params[:page] = 1
           params[:per_page] = item.to_i
           content_tag(:span, :class => 'item_per_page_paginator') do
             link_to item, params, :remote => remote

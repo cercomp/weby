@@ -1,20 +1,21 @@
 $(document).ready(function() {
+  var loading = LoadingGif.new();
   $('form[data-remote=true]')
   .bind('submit', function(){
-    LoadingGif($('span#loading'));
+    loading.setLocal($('span#loading')).show();
   })
   .bind('ajax:complete', function(){
-    $('span#loading').hide();
+    loading.hide();
   });
   // Mostra spinner em ajax com pagination
   $('.pages_paginator.ajax a').live('click',function (){
-    LoadingGif($(this).parent().parent());
+    loading.setLocal($(this).parent().parent()).show();
     return false;
   })
 
   // Mostra spinner em ajax com links de itens por pagina
   $('.per_page_paginator.ajax a').live('click',function (){
-    LoadingGif($(this).parent().parent());
+    loading.setLocal($(this).parent().parent()).show();
     return false;
   })
 
@@ -64,13 +65,24 @@ function addToSelect(selectId){
 
 SyntaxHighlighter.all();
 
-function LoadingGif(obj){
-  this.obj = obj;
-
-  this.img = new Image();
-  this.img.src = '/images/spinner.gif';
-
-  this.obj.html(img).show();
-
-  return true;
-}
+// Objeto para carregar gif
+var LoadingGif = {
+  new: function(obj){
+         this.obj = obj;
+         this.img = new Image();
+         this.img.src = '/images/spinner.gif';
+         return this;
+       },
+  setLocal: function(obj){
+         this.obj = obj;
+         return this;
+       },
+  show: function(){
+          this.obj.html(this.img).show();
+          return this;
+        },
+  hide: function(){
+          this.obj.html('').hide();
+          return this;
+        }
+};

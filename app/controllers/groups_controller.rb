@@ -7,15 +7,15 @@ class GroupsController < ApplicationController
   helper_method :sort_column
 
   def index
-    @groups = Group.paginate :page => params[:page], :per_page => params[:per_page],
-        :order => sort_column + ' ' + sort_direction
+    @groups = Group.order(sort_column + ' ' + sort_direction).
+      page(params[:page]).per(params[:per_page])
+
+    unless @groups
+      flash.now[:warning] = (t"none_param", :param => t("group.one"))
+    end
 
     respond_with do |format|
-      format.js { 
-        render :update do |site|
-          site.call "$('#list').html", render(:partial => 'list')
-        end
-      }
+      format.js  
       format.xml  { render :xml => @banners }
       format.html
     end
@@ -53,7 +53,7 @@ class GroupsController < ApplicationController
         format.html {
           redirect_to({:site_id => @group.site.name, :controller => 'groups'},
                       :notice => t('successfully_created')) }
-        format.xml  { render :xml => @group, :status => :created, :location => @group }
+                      format.xml  { render :xml => @group, :status => :created, :location => @group }
       else
         format.html { respond_with(@site, @group) }
         format.xml  { render :xml => @group.errors, :status => :unprocessable_entity }
@@ -66,9 +66,9 @@ class GroupsController < ApplicationController
     respond_to do |format|
       if @group.update_attributes(params[:group])
         format.html {
-         redirect_to({:site_id => @group.site.name, :controller => 'groups', :action => 'index'},
-                     :notice => t('successfully_updated')) }
-        format.xml  { head :ok }
+          redirect_to({:site_id => @group.site.name, :controller => 'groups', :action => 'index'},
+                      :notice => t('successfully_updated')) }
+                      format.xml  { head :ok }
       else
         format.html { redirect_to :back }
         format.xml  { render :xml => @group.errors, :status => :unprocessable_entity }
