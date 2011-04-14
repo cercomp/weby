@@ -29,4 +29,5 @@ class Page < ActiveRecord::Base
   accepts_nested_attributes_for :sites_pages, :allow_destroy => true#, :reject_if => proc { |attributes| attributes['title'].blank? }
   accepts_nested_attributes_for :pages_repositories
   acts_as_list 
+
 end

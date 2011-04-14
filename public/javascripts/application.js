@@ -55,9 +55,14 @@ function hide_form(id) {
   return false;
 }
 
+function addToSelect(selectId){
+  var new_cat = prompt('nova categoria'), option = new Option(new_cat);
+  if(!new_cat) return;
+  $(selectId).append(option);
+  $(option).attr('selected', true);
+}
+
 SyntaxHighlighter.all();
-
-
 
 function LoadingGif(obj){
   this.obj = obj;

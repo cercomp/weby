@@ -4,6 +4,7 @@ class PagesController < ApplicationController
   before_filter :check_authorization, :except => [:view, :show]
   respond_to :html, :xml, :js
   before_filter :per_page, :only => [:index]
+  helper_method :sort_column
 
   def index 
     params[:type] ||= 'News'
@@ -180,7 +181,6 @@ class PagesController < ApplicationController
     end
   end
 
-  helper_method :sort_column
   private
   def sort_column
     Page.column_names.include?(params[:sort]) ? params[:sort] : 'id'

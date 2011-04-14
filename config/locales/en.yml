@@ -42,6 +42,7 @@ en:
   
 #---C---#
   cancel: "Cancel"
+  category: "Category"
   chief_editor: "Chief Editor"
   contact: "Contact"
   controller: "Controller"
@@ -197,10 +198,7 @@ en:
   no_need_to_login: "You should not be logged in to access this page."
   no_mail: "No user was found with that email address."
   no_permission_to_activate_deactivate: "You don´t have permission to Activate/Deactivate"
-  none_left_menu: "None left menu"
-  none_right_menu: "None right menu"
-  none_top_menu: "None top menu"
-  none_bot_menu: "None bottom menu"
+  none_category_menu: "None %{param} menu"
   none_param: "None %{param}"
   "no": "No"
 

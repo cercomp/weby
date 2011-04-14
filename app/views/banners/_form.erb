@@ -27,6 +27,10 @@
   <%= f.text_field :title, :label => t("title"), :required => true, :help => t("field_required") %>
   <%= f.text_area :text, :label => t("text"), :size => "44x6", :required => true, :help => t("field_required") %>
   <%= f.text_field :url, :label => t("url"), :required => true, :help => t("field_required") %>
+  <%= f.select(:category,
+                        options_for_select(@site.banner_categories),
+                        :label => t("category"),
+                        :add => ["categoria", "#banner_category"]) %>
   <%= f.check_box :publish, :label => t("publish"), :help => t("publish_help") %>
   <%= f.check_box :hide, :label => t("hide"), :help => t("hide_help") %>
   <%= f.hidden_field :user_id, :value => "#{@current_user.id}"%>

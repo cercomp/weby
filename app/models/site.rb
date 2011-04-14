@@ -12,6 +12,19 @@ class Site < ActiveRecord::Base
     :order => order
   end
 
+  # TODO tentar agrupar os 3 metodos a seguir em apenas 1
+  def page_categories
+    self.pages.map{ |m| m.category }.uniq
+  end
+
+  def banner_categories
+    self.banners.map{ |m| m.category }.uniq
+  end
+
+  def menu_categories
+    self.sites_menus.map{ |m| m.category }.uniq
+  end
+
   validates_presence_of :name, :url, :per_page
 
   validates_uniqueness_of :name

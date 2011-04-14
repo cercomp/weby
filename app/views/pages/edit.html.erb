@@ -47,6 +47,10 @@
     <%= f.text_area :summary, :label => t("summary"), :class => "mceSimple", :size => "44x8" %>
     <%= f.text_field :source, :label => t("source"), :required => true, :help => t("field_required") %> 
     <%= f.text_field :url, :label => t("url") %>
+    <%= f.select(:category,
+                          options_for_select(@site.page_categories),
+                          :label => t("category"),
+                          :add => ["categoria", "##{@page.type.downcase}_category"]) %>
     <%= f.check_box :publish , :label => t("publish"), :help => t("publish_help") %>
     <%= f.check_box :front , :label => t("cover"), :help => t("cover_help") %>
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110408174013) do
+ActiveRecord::Schema.define(:version => 20110413143047) do
 
   create_table "banners", :force => true do |t|
     t.datetime "date_begin_at"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20110408174013) do
     t.string   "size"
     t.boolean  "publish"
     t.integer  "site_id"
+    t.string   "category"
   end
 
   create_table "csses", :force => true do |t|
@@ -102,6 +103,7 @@ ActiveRecord::Schema.define(:version => 20110408174013) do
     t.boolean  "publish"
     t.boolean  "front"
     t.integer  "position"
+    t.string   "category"
   end
 
   add_index "pages", ["site_id", "repository_id"], :name => "index_pages_on_site_id_and_repository_id", :unique => true
@@ -166,6 +168,15 @@ ActiveRecord::Schema.define(:version => 20110408174013) do
     t.datetime "updated_at"
   end
 
+  create_table "site_configs", :force => true do |t|
+    t.integer  "site_id"
+    t.string   "name"
+    t.string   "value"
+    t.boolean  "destroyable", :default => true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "sites", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -197,7 +208,7 @@ ActiveRecord::Schema.define(:version => 20110408174013) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "parent_id",  :default => 0
-    t.string   "side"
+    t.string   "category"
     t.integer  "position"
   end
 

@@ -2,23 +2,24 @@
   <legend><%= t"menu.other"  %></legend>
 
   <div class="contextual">
-    <p> <%= link_to (t"new_param.masc", :param => (t"menu.one")),  new_site_menu_path(:side => params[:side]), :class => 'icon icon-add'%> </p>
+    <p> <%= link_to (t"new_param.masc", :param => (t"menu.one")),  new_site_menu_path(:category => params[:category]), :class => 'icon icon-add'%> </p>
   </div>
 
   <div id='tabs'>
     <ul>
-      <% links = ["main","secondary","base","auxiliary"] %>
+      <%# links = ["main","secondary","base","auxiliary"] %>
+      <% links = @site.menu_categories %>
       <% for link in links do %>
-        <% selected = params[:side] == link ? "selected" : "" %>
-        <li><%= link_to_unless(@menus[link].blank?, t("#{link}"), site_menus_path(@site, :side => link), :class => "#{selected}") %></li>
+        <% selected = params[:category] == link ? "selected" : "" %>
+        <li><%= link_to_unless(@menus[link].blank?, link.titleize, site_menus_path(@site, :category => link), :class => "#{selected}") %></li>
       <% end %>
     </ul>
   </div>
   <div id='main-tabs'>
-    <% if @menus[params[:side]].empty? %>
-      <p> <%= t("none_left_menu") %> </p>
+    <% unless @menus[params[:category]] %>
+      <p> <%= t("none_category_menu", :param => params[:category]) %> </p>
     <% else %>
-      <%= raw print_menu(@menus[params[:side]], 1) %>
+      <%= raw print_menu(@menus[params[:category]], 1) %>
     <% end %>
   </div>
 </fieldset>

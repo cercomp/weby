@@ -7,6 +7,8 @@ module SemanticFormHelper
     to_return << %Q{<label for="#{field_name}">#{label}#{help}</label>} unless ["radio","check", "submit"].include?(type)
     to_return << %Q{<div class="input">}
     to_return << field
+    to_return << %Q{<a title="adicionar uma nova #{options[:add][0]}"
+                    href="javascript:addToSelect('#{options[:add][1]}')">[+]</a>} if options[:add]
     to_return << %Q{<label for="#{field_name}">#{label}</label>} if ["radio","check"].include?(type)    
     to_return << %Q{</div></div>}
     to_return.html_safe

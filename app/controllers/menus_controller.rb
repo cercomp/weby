@@ -5,7 +5,7 @@ class MenusController < ApplicationController
   respond_to :html, :xml, :js
 
   def index
-    params[:side] ||= 'secondary'
+    params[:category] ||= 'secondary'
   end
 
   def show
@@ -17,7 +17,7 @@ class MenusController < ApplicationController
     @menu_parent = SitesMenu.find(params[:parent_id]) if params[:parent_id]
     @menu = Menu.new
     @menu.sites_menus.build
-    @pages = @site.pages.search(params[:search], params[:page])
+    @pages = @site.pages.page(params[:page]).per(params[:per_page])
 
     respond_with do |format|
       format.js { 
@@ -32,7 +32,7 @@ class MenusController < ApplicationController
 
   def edit
     @menu = Menu.find(params[:id])
-    @pages = @site.pages.search(params[:search], params[:page])
+    @pages = @site.pages.page(params[:page]).per(params[:per_page])
 
     respond_with do |format|
       format.js { 
@@ -49,7 +49,7 @@ class MenusController < ApplicationController
     @menu = Menu.new(params[:menu])
     if @menu.save 
       flash[:notice] = t("successfully_created")
-      redirect_back_or_default site_menus_path(@site, :side => @menu.sites_menus[0].side)
+      redirect_back_or_default site_menus_path(@site, :category => @menu.sites_menus[0].category)
     else
       respond_with(@site, @menu)
     end
@@ -59,7 +59,7 @@ class MenusController < ApplicationController
     @menu = Menu.find(params[:id])
     if @menu.update_attributes(params[:menu])
       flash[:notice] = t("successfully_updated")
-      redirect_back_or_default site_menus_path(@site, :side => @menu.sites_menus[0].side)
+      redirect_back_or_default site_menus_path(@site, :category => @menu.sites_menus[0].category)
     else
       respond_with(@site, @menu)
     end 
@@ -73,7 +73,7 @@ class MenusController < ApplicationController
   # Altera a ordenação do menu
   def change_position
     @ch_pos_new = SitesMenu.find(params[:id])
-    @ch_pos_old = SitesMenu.find(:first, :conditions => ["parent_id = ? and side = ? and position = ?", @ch_pos_new.parent_id, @ch_pos_new.side, params[:position]])
+    @ch_pos_old = SitesMenu.find(:first, :conditions => ["parent_id = ? and category = ? and position = ?", @ch_pos_new.parent_id, @ch_pos_new.category, params[:position]])
     if @ch_pos_old
       @ch_pos_new.position,@ch_pos_old.position = @ch_pos_old.position,@ch_pos_new.position
       @ch_pos_new.save
@@ -85,14 +85,14 @@ class MenusController < ApplicationController
     else
       flash[:error] = t"error_updating_object"
     end
-    redirect_back_or_default site_menus_path(@site, :side => @ch_pos_new.side)
+    redirect_back_or_default site_menus_path(@site, :category => @ch_pos_new.category)
   end
 
   # Remove iten(s) do menu
   def rm_menu
     @rm_menu = SitesMenu.find(params[:id])
     if @rm_menu  
-        ary_for_del = del_deep(@menus_all[@rm_menu.side], @rm_menu.id)
+        ary_for_del = del_deep(@menus[@rm_menu.category], @rm_menu.id)
         ary_for_del.each do |item|
           item.destroy
       end

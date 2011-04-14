@@ -2,6 +2,6 @@
   <%= f.url_field :link, :label => t("url"), :help => (t"type_param", :param => t("url")), :placeholder => 'http://' %>
 <% else %>
   <% unless @pages.nil? %>
-    <%= f.radio_button_group :page_id, @pages.map{|u| { :value => u.id, :label => u.title }}, (will_paginate @pages, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax'), :label => t("url"), :help => t("url") %>
+    <%= f.radio_button_group :page_id, @pages.map{|u| { :value => u.id, :label => u.title }}, (paginate @pages), :label => t("url"), :help => t("url") %>
   <% end %>
 <% end %>

@@ -42,10 +42,13 @@
       <%= menus_form.hidden_field :site_id, :value => @site.id %>
 
       <% if @menu_parent %>
-        <%= menus_form.hidden_field "side", :value => "#{@menu_parent.side}" %>
+        <%= menus_form.hidden_field "category", :value => "#{@menu_parent.category}" %>
       <% else %>
-        <% menus_list = [[t("secondary"), "secondary"], [t("auxiliary"), "auxiliary"], [t("main"), "main"], [t("base"), "base"]] %>
-        <%= menus_form.select(:side, options_for_select(menus_list, selected = "#{params[:side]}"), :label => t("position")) %>
+        <%= menus_form.select(:category,
+                              options_for_select(@site.menu_categories),
+                              :label => t("category"),
+                              :add => ["categoria", "#menu_sites_menus_attributes_0_category"]) %>
+
       <% end %>
     <% end %>
 

@@ -145,8 +145,8 @@ class ApplicationController < ActionController::Base
     end
 
     if @site
-      # Agrupa todos os menus do site pelo "side" definido
-      @menus = @site.sites_menus.group_by(&:side)
+      # Agrupa todos os menus do site pelo "category" definido
+      @menus = @site.sites_menus.group_by(&:category)
 
       # Agrupa os menu afi de deixar os submenus organizados.
       #   Exemplo: menu['principal'] = { 0 => [menu1, menu2], 1 => [menu3, menu4] }
