@@ -54,7 +54,7 @@ class PagesController < ApplicationController
           end
           if params[:page_files]
             page.call "$('#files_list').append", render(:partial => 'files_list')
-            page.call "$('#will_paginate').html", (paginate @page_files_unchecked, :param_name => 'page_files', :theme => 'twitter')
+            page.call "$('#paginate').html", (paginate @page_files_unchecked, :param_name => 'page_files', :theme => 'twitter')
           end
           if params[:type]
             page.call "$('#div_event').html", render(:partial => 'formEvent', :locals => { :f => SemanticFormBuilder.new(:page, @page, self, {}, proc{}) })
@@ -90,7 +90,7 @@ class PagesController < ApplicationController
           end
           if params[:page_files]
             page.call "$('#files_list').append", render(:partial => 'files_list')
-            page.call "$('#will_paginate').html", (paginate @page_files_unchecked, :param_name => 'page_files', :theme => 'twitter')
+            page.call "$('#paginate').html", (paginate @page_files_unchecked, :param_name => 'page_files', :theme => 'twitter')
           end
         end
       }

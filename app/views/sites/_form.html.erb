@@ -11,7 +11,7 @@
   <% end %>
 
   <% unless @repositories.nil? %>
-    <%= f.radio_button_group :repository_id, @repositories.map{|u| { :value => u.id, :image => u.archive.url(:mini) }}, (will_paginate @repositories, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next")), :label => t("picture"), :help => t("picture") %>
+    <%= f.radio_button_group :repository_id, @repositories.map{|u| { :value => u.id, :image => u.archive.url(:mini) }}, (paginate @repositories %>
   <% end %>
 
   <%= f.text_field :name, :label => t("name"), :required => true, :help => t("field_required") %><br />

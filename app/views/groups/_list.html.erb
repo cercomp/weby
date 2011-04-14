@@ -7,13 +7,13 @@
   </thead>
   <tbody>
   <% @groups.each do |group| %>
-    <tr class="<%= cycle 'odd', 'even' %>">
+    <tr>
       <td><%= link_to group.name, site_group_path(@site, group) %></td>
       <td>
         <%= raw make_menu(group) %> 
       </td>
     </tr>
-  <% end; reset_cycle %>
+  <% end %>
   </tbody>
 </table>
 <%= paginate @groups %>

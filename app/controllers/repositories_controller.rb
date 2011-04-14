@@ -7,7 +7,8 @@ class RepositoriesController < ApplicationController
  
   respond_to :html, :xml, :js
   def manage
-    @repositories = @site.repositories.order('created_at DESC').page(params[:page]).per(params[:per_page])
+    @repositories = @site.repositories.order('created_at DESC').
+      page(params[:page]).per(params[:per_page])
     respond_with(@repositories)
   end
 
