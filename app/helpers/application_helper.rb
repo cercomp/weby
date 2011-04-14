@@ -301,15 +301,16 @@ module ApplicationHelper
     if collection.klass.count > per_page_array.first.to_i
 
       html = "#{t('views.pagination.per_page')} "
+
+      params[:per_page] = per_page_array.first if params[:per_page].nil?
+
       per_page_array.each do |item|
         html << 
-        if collection.length == item.to_i
+        if params[:per_page] == item
           content_tag :span, item, :class => 'current'
         else
-          params[:page] = 1
-          params[:per_page] = item.to_i
           content_tag(:span, :class => 'item_per_page_paginator') do
-            link_to item, params, :remote => remote
+            link_to item, {:per_page => item, :page => 1}, :remote => remote
           end
         end
       end
@@ -332,7 +333,7 @@ module ApplicationHelper
     if Site.columns_hash['per_page']
       Site.columns_hash['per_page'].default
     else
-      "5,10,15,20"
+      "5,15,50,100"
     end
   end
 end

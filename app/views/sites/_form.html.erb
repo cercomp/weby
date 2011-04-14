@@ -3,21 +3,25 @@
     <div id="error_explanation">
       <h2><%= pluralize(@site.errors.count, "") %> <%= t"prohibited_being_saved", :count => @site.errors.count %>:</h2>
       <ul>
-      <% @site.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @site.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
   <% unless @repositories.nil? %>
-    <%= f.radio_button_group :repository_id, @repositories.map{|u| { :value => u.id, :image => u.archive.url(:mini) }}, (paginate @repositories %>
+    <%= f.radio_button_group :repository_id,
+      @repositories.map { |u| { 
+      :value => u.id,
+      :image => u.archive.url(:mini) } } %>
+    <%= (paginate @repositories) %>
   <% end %>
 
   <%= f.text_field :name, :label => t("name"), :required => true, :help => t("field_required") %><br />
   <%= f.text_field :url, :label => "URL", :required => true, :help => t("field_required") %><br />
   <%= f.text_field :per_page, :label => t("itens_per_page"), :required => true, :help => (t"example_param", :param => "15, 30, 50, 100, 250, 500") %><br />
   <%= f.text_area :description, :label => t("description"), :rows => 8, :help => t("site_comments") %><br />
-	<%= f.text_area :footer, :value => t("footer_text"), :label => t("footer"), :rows =>8%>
+  <%= f.text_area :footer, :value => t("footer_text"), :label => t("footer"), :rows =>8%>
   <%= f.submit t("submit") %>
 <% end %>

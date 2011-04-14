@@ -8,7 +8,7 @@ class SitesController < ApplicationController
 
   def index
     @sites = Site.name_or_description_like(params[:search]).
-      order(sort_column + " " + sort_direction).
+      order(sort_column + " " + sort_direction). # FIXME Ordenação não está funcionando
       page(params[:page]).
       per(params[:per_page])
 
