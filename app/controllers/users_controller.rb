@@ -59,8 +59,17 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.search(params[:search], params[:page], sort_column + " " + sort_direction, params[:per_page]) 
-    @roles = Role.find(:all, :select => 'id,name,theme', :group => "name,id,theme", :order => "id")
+    @users = User.login_or_name_like(params[:search]).
+      order(sort_column + " " + sort_direction).
+      page(params[:page]).
+      per(params[:per_page]) 
+
+    @roles = Role.select('id, name, theme').
+      group("id, name, theme").order("id")
+
+    unless @users
+      flash.now[:warning] = (t"none_param", :param => t("user.one"))
+    end
 
     respond_with do |format|
       format.js { 

@@ -6,10 +6,11 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :roles
   has_and_belongs_to_many :groups
-  
-  def self.search(search, page, order = 'id desc', per_page)
-    paginate :per_page => per_page, :page => page, :conditions => ['login like ? OR first_name like ? OR last_name like ?', "%#{search}%","%#{search}%","%#{search}%"], :order => order
-  end
+
+  scope :login_or_name_like, lambda { |name|
+    where(['login like ? OR first_name like ? OR last_name like ?',
+           "%#{name}%","%#{name}%","%#{name}%"])
+  }
 
   def password_reset!(host)
     reset_perishable_token!

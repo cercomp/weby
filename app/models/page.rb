@@ -7,6 +7,12 @@ class Page < ActiveRecord::Base
       where(["LOWER(title) like ?", "%#{title.downcase if title}%"])
   }
 
+  scope :news, lambda { |front|
+    where(["front='true' AND date_begin_at <= ? AND date_end_at > ?",
+           Time.now,
+           Time.now]).published
+  }
+
   validates_presence_of :title, :source, :author_id
 
   belongs_to :user, :foreign_key => "author_id"

@@ -1,7 +1,7 @@
 class Site < ActiveRecord::Base
-  default_scope :order => 'id DESC'
+  before_save :clear_per_page
 
-  # TODO colocar um validates format para o per_page
+  default_scope :order => 'id DESC'
 
   def to_param
     "#{name}"
@@ -13,7 +13,10 @@ class Site < ActiveRecord::Base
   end
 
   validates_presence_of :name, :url, :per_page
+
   validates_uniqueness_of :name
+
+  validates_format_of :per_page, :with => /([0-9]+[,\s]*)+[0-9]*/
 
   has_many :roles
 
@@ -38,5 +41,9 @@ class Site < ActiveRecord::Base
   has_many :repositories
 
   has_attached_file :top_banner, :url => "/uploads/:site_id/:style_:basename.:extension"
-
+  private
+  def clear_per_page
+    self.per_page.gsub!(/[^\d,]/,'')
+    self.per_page.gsub!(',,',',')
+  end
 end

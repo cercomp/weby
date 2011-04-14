@@ -1,6 +1,5 @@
-<% unless @users.empty? %>
-  <%= will_paginate @users, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax' %>
-  <%= itens_per_page(@site) %>
+  <%= paginate @users %>
+  <%= per_page_links @users %>
   <table class="list">
     <thead>
       <tr>
@@ -29,8 +28,5 @@
         <% end; reset_cycle %>
       </tbody>
     </table>
-    <%= will_paginate @users, :previous_label => t("will_paginate.previous"), :next_label => t("will_paginate.next"), :class => 'pagination ajax' %>
-    <%= itens_per_page(@site) %>
-  <% else %>
-    <% flash.now[:warning] = (t"none_param", :param => t("user.one")) %>
-  <% end %>
+  <%= paginate @users %>
+  <%= per_page_links @users %>
