@@ -7,20 +7,12 @@ class SitesController < ApplicationController
   helper_method :sort_column
 
   def index
-    @sites = Site.where('lower(name) LIKE ? OR lower(description) LIKE ?', "%#{params[:search]}%", false).
-    order(sort_column + " " + sort_direction).page(params[:page]).per(params[:per_page])
+    @sites = Site.name_or_description_like(params[:search]).
+      order(sort_column + " " + sort_direction).
+      page(params[:page]).
+      per(params[:per_page])
 
-    if @sites
-      respond_with do |format|
-        format.js { 
-          render :update do |site|
-          site.call "$('#list').html", render(:partial => 'list')
-          end
-        }
-        format.xml  { render :xml => @sites }
-        format.html
-      end
-    else
+    unless @sites
       flash[:warning] = (t"none_param", :param => t("page.one"))
     end
   end

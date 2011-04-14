@@ -1,1 +1,2 @@
-<%= link_to raw(t'views.pagination.more'), url, :remote => remote -%>
+<% params[:twitter_page] = per_page.to_i.next * current_page.to_i.next %>
+<%= link_to raw(t'views.pagination.more'), params, :remote => remote %>

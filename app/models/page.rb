@@ -8,9 +8,9 @@ class Page < ActiveRecord::Base
   }
 
   scope :news, lambda { |front|
-    where(["front='true' AND date_begin_at <= ? AND date_end_at > ?",
-           Time.now,
-           Time.now]).published
+    where("front='true' AND date_begin_at <= :time AND date_end_at > :time",
+          { :time => Time.now }).
+          published
   }
 
   validates_presence_of :title, :source, :author_id

@@ -168,15 +168,6 @@ ActiveRecord::Schema.define(:version => 20110413143047) do
     t.datetime "updated_at"
   end
 
-  create_table "site_configs", :force => true do |t|
-    t.integer  "site_id"
-    t.string   "name"
-    t.string   "value"
-    t.boolean  "destroyable", :default => true
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "sites", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"

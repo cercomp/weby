@@ -8,13 +8,13 @@ $(document).ready(function() {
     loading.hide();
   });
   // Mostra spinner em ajax com pagination
-  $('.pages_paginator.ajax a').live('click',function (){
+  $('.pages_paginator a[data-remote=true]').live('click',function (){
     loading.setLocal($(this).parent().parent()).show();
     return false;
   })
 
   // Mostra spinner em ajax com links de itens por pagina
-  $('.per_page_paginator.ajax a').live('click',function (){
+  $('.per_page_paginator a[data-remote=true]').live('click',function (){
     loading.setLocal($(this).parent().parent()).show();
     return false;
   })

@@ -7,9 +7,9 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :roles
   has_and_belongs_to_many :groups
 
-  scope :login_or_name_like, lambda { |name|
-    where(['login like ? OR first_name like ? OR last_name like ?',
-           "%#{name}%","%#{name}%","%#{name}%"])
+  scope :login_or_name_like, lambda { |text|
+    where('login like :text OR first_name like :text OR last_name like :text',
+           { :text => "%#{name}%" })
   }
 
   def password_reset!(host)

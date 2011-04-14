@@ -7,10 +7,10 @@ class Site < ActiveRecord::Base
     "#{name}"
   end
 
-  def self.search(search, page, order = 'id desc', per_page = 20)
-    paginate :per_page => per_page, :page => page, :conditions => ['lower(name) LIKE ? OR lower(description) LIKE ?', "%#{search}%", "%#{search}%"],
-    :order => order
-  end
+  scope :name_or_description_like, lambda { |text|
+    where('lower(name) LIKE :text OR lower(description) LIKE :text',
+           { :text => "%#{text}%" })
+  }
 
   # TODO tentar agrupar os 3 metodos a seguir em apenas 1
   def page_categories

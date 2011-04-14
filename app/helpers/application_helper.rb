@@ -285,14 +285,15 @@ module ApplicationHelper
   end
 
   # Informações sobre paginação
-  def info_page(collection, total_entries = collection.klass.count)
-    content_tag :div, :class => "page_info_paginator" do
-      if collection.klass.count.to_i > 0
-        "#{t('views.pagination.displaying')} #{collection.offset_value + 1} - 
-        #{collection.offset_value + collection.length} #{t('of')} 
-        #{total_entries} #{t('views.pagination.total')}" 
-      end
+  def info_page(collection, total_entries = 0)
+    html = "#{t('views.pagination.displaying')} #{collection.offset_value + 1} - 
+    #{collection.offset_value + collection.length}"
+    
+    if total_entries > 0
+      html << " #{t('of')} #{total_entries} #{t('views.pagination.total')}" 
     end
+
+    content_tag :div, html, :class => "page_info_paginator"
   end
 
   # Links para selecionar a quantidade de itens por página
@@ -303,7 +304,7 @@ module ApplicationHelper
       per_page_array.each do |item|
         html << 
         if collection.length == item.to_i
-                  content_tag :span, item, :class => 'current'
+          content_tag :span, item, :class => 'current'
         else
           params[:page] = 1
           params[:per_page] = item.to_i
@@ -314,7 +315,7 @@ module ApplicationHelper
       end
 
       content_tag :div, raw(html),
-        :class => "per_page_paginator #{'ajax' if remote}"
+        :class => "per_page_paginator"
     end
   end
 

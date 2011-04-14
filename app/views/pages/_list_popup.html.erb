@@ -1,6 +1,6 @@
 <script>
   $(function() {
-    $(".pages_paginator.ajax a").live("click", function() {
+    $(".pages_paginator a[data-remote=true]").live("click", function() {
       $('table.list').html("<img src='/images/spinner.gif'>");
       $.get(this.href, {'tiny_mce': true }, null, 'script');
       return false;
