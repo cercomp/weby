@@ -13,8 +13,6 @@ class PagesController < ApplicationController
 
     @pages = @site.pages.titles_like(params[:search])
 
-    @total_entries = @pages.count
-
     @pages = @pages.order(sort_column + " " + sort_direction).
       page(params[:page]).per(per_page)
 
