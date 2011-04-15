@@ -19,7 +19,7 @@
   <%= raw @page.text %>
   <p>
   <h3> <%= @page.url.empty? ? @page.source : link_to(@page.source, @page.url) %>
-  <%= " | categoria: " + @page.category unless @page.category.empty? %> </h3>
+  <%= " | categoria: " + @page.category unless @page.category.blank? %> </h3>
   </p>
 
   <% unless @page.repositories.empty? %>
