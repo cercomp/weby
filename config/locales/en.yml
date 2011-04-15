@@ -198,6 +198,7 @@ en:
   no_need_to_login: "You should not be logged in to access this page."
   no_mail: "No user was found with that email address."
   no_permission_to_activate_deactivate: "You don´t have permission to Activate/Deactivate"
+  none_category: "No category"
   none_category_menu: "None %{param} menu"
   none_param: "None %{param}"
   "no": "No"

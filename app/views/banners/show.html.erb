@@ -7,7 +7,10 @@
   <p> <h1> <%= t("banner.one") %> </h1> </p>
   <i><%= @banner.user.login %>, <%= l @banner.created_at, :format => :short %></i>
   <p> <h2> <%= @banner.text %> </h2> </p>
-  <p> <h3> <%= t("url") %> : <%= link_to h @banner.url %> </h3> </p>
+  <p>
+  <h3> <%= t("url") %> : <%= link_to h @banner.url %>
+  <%= " | categoria: " + @banner.category unless @banner.category.empty? %> </h3>
+  <p>
 
   <%= link_to t("edit"), edit_site_banner_path(@site, @banner) %> | <%= link_to t("list_all.masc"), site_banners_path(@site) %> | <%= link_to t("back"), :back %>
 </fieldset>

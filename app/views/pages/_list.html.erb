@@ -8,6 +8,7 @@
     <th><%= sortable 'date_end_at', t("date_param", :param => t("publication"))%></th>
     <th><%= sortable 'title', t("title") %></th>
     <th><%= sortable 'author_id', t("author") %></th>
+    <th><%= sortable 'category', t("category") %></th>
     <th><%= sortable 'type', t("type") %></th>
     <% if check_permission(PagesController, [:toggle_field]) %>
       <th><%= t"cover" %></th>
@@ -21,8 +22,10 @@
         <td><%= page.id %></td>
         <td><%= l page.created_at, :format => :short %></td>
         <td><%= l page.date_begin_at, :format => :short %></td>
-        <td><%= page.title %></td>
+        <%# TODO verificar se é possível melhorar o link abaixo %>
+        <td><%= link_to page.title, {:controller => controller.controller_name, :action => 'show', :id => page.id} %></td>
         <td><%= page.user.first_name ? ("#{page.user.first_name} #{page.user.last_name}") : page.user.login %></td>
+        <td><%= page.category %></td>
         <td><%= t"#{page.type.downcase}.one" %></td>
         <% if check_permission(PagesController, [:toggle_field]) %>
           <td align="center"><%= raw toggle_field(page, "front") %></td>
