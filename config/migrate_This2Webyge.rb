@@ -378,7 +378,7 @@ EOF
         menu_sub = @con_weby.exec(insert_menu)
         puts "\t\t\tINSERINDO sub_menu: (#{menu_sub[0]['id']})\n" if @verbose
         @convar["#{this_id}"]['menus']["#{entry['id']}"] = menu_sub[0]['id']
-        insert_sites_menus = "INSERT INTO sites_menus(site_id,menu_id,parent_id,side,position) VALUES ('#{site_id}','#{menu_sub[0]['id']}',#{menu_id},'#{type}','#{entry['posicao']}') RETURNING id"
+        insert_sites_menus = "INSERT INTO sites_menus(site_id,menu_id,parent_id,category,position) VALUES ('#{site_id}','#{menu_sub[0]['id']}',#{menu_id},'#{type}','#{entry['posicao']}') RETURNING id"
         menu_e0 = @con_weby.exec(insert_sites_menus)
         puts "\t\t\t\tINSERINDO relacionamento sites_menus (#{menu_e0[0]['id']})\n" if @verbose
       #end

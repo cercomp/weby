@@ -8,8 +8,8 @@ class Page < ActiveRecord::Base
   }
 
   scope :news, lambda { |front|
-    where("front='true' AND date_begin_at <= :time AND date_end_at > :time",
-          { :time => Time.now }).
+    where("front=:front AND date_begin_at <= :time AND date_end_at > :time",
+          { :time => Time.now, :front => front }).
           published
   }
 

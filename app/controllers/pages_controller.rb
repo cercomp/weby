@@ -15,7 +15,7 @@ class PagesController < ApplicationController
 
     @total_entries = @pages.count
 
-    @pages = @pages.  order(sort_column + " " + sort_direction).
+    @pages = @pages.order(sort_column + " " + sort_direction).
       page(params[:page]).per(per_page)
 
     @pages = @pages.published if @tiny_mce
