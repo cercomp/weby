@@ -288,14 +288,14 @@ module ApplicationHelper
   def info_page(collection)
     html = "#{t('views.pagination.displaying')} #{collection.offset_value + 1} - 
     #{collection.offset_value + collection.length}"
-    html << " #{t('of')} #{collection.page(1).per(-1).count} #{t('views.pagination.total')}" 
+    html << " #{t('of')} #{collection.page(1).count} #{t('views.pagination.total')}" 
 
     content_tag :div, html, :class => "page_info_paginator"
   end
 
   # Links para selecionar a quantidade de itens por página
   def per_page_links(collection, remote = false)
-    if collection.page(1).per(-1).count > per_page_array.first.to_i
+    if collection.page(1).count > per_page_array.first.to_i
       html = "#{t('views.pagination.per_page')} "
 
       params[:per_page] = per_page_array.first if params[:per_page].nil?
