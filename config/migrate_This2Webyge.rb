@@ -560,6 +560,8 @@ class Migrate_files
         else
           @convar[id]["repositories"].push file
         end
+        # Renomeia o arquivo para o padrao do paperclip
+        puts `mv #{file} #{destino}/original_#{file_name}`
         
         file_name = file.slice(file.rindex("/").to_i + 1, file.size)
         repository_id = create_repository(file, @convar[id]['weby'])
@@ -605,9 +607,6 @@ class Migrate_files
           @con_weby.exec(sql)
           puts "\t\tATUALIZANDO tabela: #{tabela}, id: #{id_weby}, repository_id: #{repository_id} "
         end
-
-        # Renomeia o arquivo para o padrao do paperclip
-        puts `mv #{file} #{destino}/original_#{file_name}`
       end
     end
   end
