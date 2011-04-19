@@ -5,15 +5,15 @@
 
   <header>
     <h1> <%= @page.title %> </h1>
-    <% if @site.view_desc_pages %>
       <summary>
-        <p>
-          <%= @page.user.first_name ? ("#{@page.user.first_name} #{@page.user.last_name}") : @page.user.login %>
-          <%= l @page.created_at, :format => :short  %>
-        </p>
-        <%= raw @page.summary %>
+        <% if @site.view_desc_pages %>
+          <p>
+            <%= @page.user.first_name ? ("#{@page.user.first_name} #{@page.user.last_name}") : @page.user.login %>
+            <%= l @page.created_at, :format => :short  %>
+          </p>
+        <% end %>
+        <p> <%= raw @page.summary %> </p>
       </summary>
-    <% end %>
   </header>
 
   <%= raw @page.text %>
