@@ -298,11 +298,11 @@ module ApplicationHelper
     if collection.page(1).count > per_page_array.first.to_i
       html = "#{t('views.pagination.per_page')} "
 
-      params[:per_page] = per_page_array.first if params[:per_page].nil?
+      params[:per_page] = per_page_default if params[:per_page].blank?
 
       per_page_array.each do |item|
         html << 
-        if params[:per_page] == item
+        if params[:per_page].to_i == item.to_i
           content_tag :span, item, :class => 'current'
         else
           content_tag(:span, :class => 'item_per_page_paginator') do
@@ -318,18 +318,31 @@ module ApplicationHelper
 
   # Cria array de itens por página
   def per_page_array
-    per_page_string.gsub(/[^\d,]/,'').split(',') 
+    per_page_string.gsub(/[^\d,]/,'').
+      split(',').uniq.
+      sort {|a,b| a.to_i <=> b.to_i}
+  end
+
+  # Quantidade de registro por página padrão
+  def per_page_default
+    if @site.per_page_default.blank?
+      Site.columns_hash['per_page_default'].default
+    else
+      @site.per_page_default
+    end
+  rescue
+    25
   end
 
   # Pega string de itens por página
   # Ordem: Site, Valor Padrão da coluna, valor fixo.
   def per_page_string
-		if @site.per_page.blank?
+    if @site.per_page.blank?
       Site.columns_hash['per_page'].default
-		else
-			@site.per_page
-		end
+    else
+      "#{@site.per_page},#{per_page_default}"
+    end
   rescue
-		"5,15,50,100"
+    "5,15,50,100,#{per_page_default}"
   end
 end

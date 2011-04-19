@@ -57,7 +57,10 @@ class PagesController < ApplicationController
     params[:type] ||= @page.type
 
     # Objeto para repository_id (relacionamento um-para-um)
-    @repositories = Repository.where(["site_id = ? AND archive_content_type LIKE ?", @site.id, "image%"]).order('created_at DESC').page(params[:page]).per(params[:per_page])
+    @repositories = Repository.site_and_content_file(@site.id, "image%").
+      order('created_at DESC').page(params[:page]).
+      per(params[:per_page])
+
     # Criando objeto com os arquivos que não estão relacionados com a página
     if not @page.repository_ids
       @page_files_unchecked = @site.repositories.where("id NOT IN (?)", @page.repository_ids.to_s.delete('[]')).page(1).per(params[:twitter_page].to_i*5) 
@@ -68,13 +71,13 @@ class PagesController < ApplicationController
     respond_with do |format|
       format.js { 
         render :update do |page|
-          if params[:page]
-            page.call "$('#repo_list').html", render(:partial => 'repo_list', :locals => { :f => SemanticFormBuilder.new(@page.class.name.underscore.to_s, @page, self, {}, proc{}) })
-          end
-          if params[:twitter_page]
-            page.call "$('#files_list').append", render(:partial => 'files_list')
-            page.call "$('#paginate').html", (paginate @page_files_unchecked, :param_name => 'twitter_page', :theme => 'twitter', :remote => true)
-          end
+        if params[:page]
+          page.call "$('#repo_list').html", render(:partial => 'repo_list', :locals => { :f => SemanticFormBuilder.new(@page.class.name.underscore.to_s, @page, self, {}, proc{}) })
+        end
+        if params[:twitter_page]
+          page.call "$('#files_list').append", render(:partial => 'files_list')
+          page.call "$('#paginate').html", (paginate @page_files_unchecked, :param_name => 'twitter_page', :theme => 'twitter', :remote => true)
+        end
         end
       }
       format.html
@@ -178,10 +181,6 @@ class PagesController < ApplicationController
   end
 
   def per_page
-    unless params[:per_page]
-      tiny_mce ? 5 : per_page_array.first
-    else
-      params[:per_page]
-    end
+    tiny_mce ? 5 : per_page_default
   end
 end

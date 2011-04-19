@@ -49,6 +49,7 @@
     <%= f.text_field :name, :label => t("name"), :required => true, :help => t("field_required") %><br />
     <%= f.text_field :url, :label => "URL", :required => true, :help => t("field_required") %><br />
     <%= f.text_field :per_page, :label => t("itens_per_page"), :required => true, :help => (t"example_param", :param => "15, 30, 50, 100, 250, 500") %><br />
+    <%= f.text_field :per_page_default, :label => t("per_page_default"), :required => true %><br />
     <%= f.text_area :description, :label => t("description"), :size => "44x8", :help => t("site_comments") %><br />
 	  <%= f.text_area :footer, :value => (@site.footer.nil? ? t("footer_text") : @site.footer), :class => "mceSimple", :label => t("footer"), :size => "45x10"%>
 	  <%= f.check_box :view_desc_pages, :label => t("view_desc_pages"), :help => t("view_desc_pages_help") %>

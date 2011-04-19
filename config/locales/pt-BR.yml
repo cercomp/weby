@@ -217,6 +217,7 @@ pt-BR:
   password: "Senha"
   password_change: "Nova senha"
   password_confirmation: "Confirmação da senha"
+  per_page_default: 'Quantidade padrão de itens por página'
   pdf: "PDF"
   permission: 
     one: "Permissão"

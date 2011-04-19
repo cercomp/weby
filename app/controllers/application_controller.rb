@@ -138,6 +138,8 @@ class ApplicationController < ActionController::Base
 
   # Defini variáveis globais
   def set_global_vars
+    params[:per_page] ||= per_page_default
+
     if params[:site_id]
       @site = Site.find_by_name(params[:site_id])
     elsif params[:id]
