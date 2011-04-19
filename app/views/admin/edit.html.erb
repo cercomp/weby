@@ -38,7 +38,7 @@
     <% end %>
 
     <div id='form'>
-      <%#= render :partial => 'form', :locals => { :f => f } %>
+      <%= render :partial => 'form', :locals => { :f => f } %>
     </div>
 
     <%= f.text_field :body_width, :label => t("body_width"), :help => (t"example_param", :param => "960") %><br />

@@ -1,10 +1,10 @@
-<% unless @repositories.nil? %>
-  <%# FIXME Melhorar para não ficar código tão longo %>
-  <%= f.radio_button_group :top_banner_id,
-  @repositories.map{ |image| { :value                 => image.id,
-                           :image                     => image.archive.url(:mini),
-                           :alt                       => image.description,
-                           :title                     => image.description }},
-                           :label                     => t("picture"),
-                           :help                      => t("picture") %>
-                       <% end %>
+  <% unless @repositories.nil? %>
+    <%= f.radio_button_group :top_banner_id, 
+      @repositories.map{|u|
+        u.archive.reprocess! if File.file?(u.archive.path) and not File.file?(u.archive.path(:mini))
+        { :value => u.id, :image => u.archive.url(:mini), :alt => u.description, :title => u.description }
+      }, (paginate @repositories), :label => t("picture"), :help => t("picture")
+    %>
+  <% else %>
+    <% flash.now[:warning] = (t"none_param", :param => t("picture")) %>
+  <% end %>

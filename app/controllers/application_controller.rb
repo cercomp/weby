@@ -138,7 +138,6 @@ class ApplicationController < ActionController::Base
 
   # Defini variáveis globais
   def set_global_vars
-    params[:per_page] ||= per_page_default
 
     if params[:site_id]
       @site = Site.find_by_name(params[:site_id])
@@ -147,6 +146,8 @@ class ApplicationController < ActionController::Base
     end
 
     if @site
+      params[:per_page] ||= per_page_default
+
       # Agrupa todos os menus do site pelo "category" definido
       @menus = @site.sites_menus.group_by(&:category)
 

@@ -331,7 +331,7 @@ module ApplicationHelper
       @site.per_page_default
     end
   rescue
-    25
+    5
   end
 
   # Pega string de itens por página
