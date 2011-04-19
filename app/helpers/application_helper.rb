@@ -324,12 +324,12 @@ module ApplicationHelper
   # Pega string de itens por página
   # Ordem: Site, Valor Padrão da coluna, valor fixo.
   def per_page_string
-    @site.per_page
-  rescue
-    if Site.columns_hash['per_page']
+		if @site.per_page.blank?
       Site.columns_hash['per_page'].default
-    else
-      "5,15,50,100"
-    end
+		else
+			@site.per_page
+		end
+  rescue
+		"5,15,50,100"
   end
 end
