@@ -286,11 +286,13 @@ module ApplicationHelper
 
   # Informações sobre paginação
   def info_page(collection)
-    html = "#{t('views.pagination.displaying')} #{collection.offset_value + 1} - 
-    #{collection.offset_value + collection.length}"
-    html << " #{t('of')} #{collection.page(1).count} #{t('views.pagination.total')}" 
+    if collection.page(1).count > 0
+      html = "#{t('views.pagination.displaying')} #{collection.offset_value + 1} - 
+      #{collection.offset_value + collection.length}"
+      html << " #{t('of')} #{collection.page(1).count} #{t('views.pagination.total')}" 
 
-    content_tag :div, html, :class => "page_info_paginator"
+      content_tag :div, html, :class => "page_info_paginator"
+    end
   end
 
   # Links para selecionar a quantidade de itens por página
@@ -325,10 +327,10 @@ module ApplicationHelper
 
   # Quantidade de registro por página padrão
   def per_page_default
-    if @site.per_page_default.blank?
-      Site.columns_hash['per_page_default'].default
+    if @site and not(@site.per_page_default.blank?)
+      @site.per_page_default.to_i
     else
-      @site.per_page_default
+      Site.columns_hash['per_page_default'].default.to_i
     end
   rescue
     5
