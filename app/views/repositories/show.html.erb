@@ -1,4 +1,4 @@
-    <p>
+	<p>
       <% unless @repository.archive_content_type.include?("image") %>
         <%if @repository.archive_content_type.include?("pdf") %>
           <%= image_tag "/images/pdf_file.png", :size => "80x80" %>
@@ -10,7 +10,10 @@
       <% end %>
     </p>	
     <p>
-      <%= @repository.description %>	
+      <%= @repository.description %>
+			<br/>
+			<%= t("image_link") %>
+			<%= link_to request.env["HTTP_HOST"]+@repository.archive.url.to_s, request.env["HTTP_HOST"]+@repository.archive.url %>
     </p>
 
     <%= link_to t("edit"), edit_site_repository_path(@site, @repository) %> | <%= link_to t("list_all.masc"), site_repositories_path(@site) %> | <%= link_to t("back"), :back %>
