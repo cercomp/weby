@@ -25,7 +25,7 @@ class Migrate_this2weby
     @con_this = PGconn.connect(@config['this']['host'],nil,nil,nil,@config['this']['database'],@config['this']['username'],@config['this']['password'])
     @con_weby = PGconn.connect(@config['weby']['host'],nil,nil,nil,@config['weby']['database'],@config['weby']['username'],@config['weby']['password'])
     @verbose = verbose
-    #@param = "WHERE site_id=1"
+    #@param = "WHERE site_id=106"
 
     count_sites = @con_weby.exec("SELECT count(*) FROM sites")
     if File.exists?("./convar.yml") and count_sites[0]['count'].to_i > 0
@@ -486,6 +486,17 @@ class Migrate_files
     @to = to
   end
 
+  # Pré tratamento de caracteres
+  def pre_treat(string)
+    unless string.nil?
+      coder = HTMLEntities.new
+      str = Iconv.conv("UTF-8//IGNORE","ASCII","#{string}")
+      str = @con_weby.escape(str)
+      str = coder.decode(str)
+    end
+    return str
+  end
+
   # Função retirada do paperclip
   def content_type file
     # Infer the MIME-type of the file from the extension.
@@ -560,17 +571,20 @@ class Migrate_files
         else
           @convar[id]["repositories"].push file
         end
-        # Renomeia o arquivo para o padrao do paperclip
-        puts `mv #{file} #{destino}/original_#{file_name}`
         
         file_name = file.slice(file.rindex("/").to_i + 1, file.size)
         repository_id = create_repository(file, @convar[id]['weby'])
+
+        # Renomeia o arquivo para o padrao do paperclip
+				file = pre_treat(file)
+				file_name = pre_treat(file_name)
+        #puts "mv -ufv \"#{file}\" \"#{destino}/original_#{file_name}\""
+        `mv -ufv "#{file}" "#{destino}/original_#{file_name}"`
 
         if(file_name == "topo.jpg" || file_name == "topo.gif" || file_name == "topo.png")
             sql = "UPDATE sites SET top_banner_id='#{repository_id}' WHERE id='#{id}'"
             @con_weby.exec(sql)
             puts "\tATUALIZANDO topo"
-            puts `mv #{file} #{destino}/original_#{file_name}`
             next
         end
 
@@ -620,7 +634,7 @@ class Migrate_files
     descricao = ""
     #descricao = "#{file_name}"
  
-    sql = "INSERT INTO repositories(site_id,created_at,updated_at,archive_file_name,archive_content_type,archive_file_size,archive_updated_at,description) VALUES ('#{site_id}','#{Time.now}','#{Time.now}','#{file_name}','#{file_type}','#{file_size}','#{Time.now}','#{descricao}') RETURNING id"
+    sql = "INSERT INTO repositories(site_id,created_at,updated_at,archive_file_name,archive_content_type,archive_file_size,archive_updated_at,description) VALUES ('#{site_id}','#{Time.now}','#{Time.now}','#{pre_treat(file_name)}','#{file_type}','#{file_size}','#{Time.now}','#{descricao}') RETURNING id"
   
     repository = @con_weby.exec(sql)
     puts "\t\tINSERINDO no repositório: (#{repository[0]['id']})"

@@ -186,7 +186,7 @@ module ApplicationHelper
     if site
       adminnav += link_to( t("home"), site )
       adminnav += " | \n\t"
-      adminnav += link_to( t("admin.one"), site_admin_index_path(site, :back_url => "#{request.fullpath}") )
+      adminnav += link_to( t("admin.one"), site_admin_index_path(site) )
       adminnav += " | \n\t"
     else
       adminnav += link_to( t("admin.one"), admin_index_path(:back_url => "#{request.fullpath}") )
