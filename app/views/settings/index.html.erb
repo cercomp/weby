@@ -1,20 +1,23 @@
 <fieldset>
   <legend><%= t"setting.other" %></legend>
-	
+
   <% form_tag '/settings', :method => 'put' do %>
     <table class="list">
       <thead>
         <tr>
-          <th><th>
+          <th><%= t('setting.name') %></th>
+          <th><%= t('setting.value') %></th>
         </tr>
       </thead>
       <tbody>
-          <tr class="<%= cycle 'odd', 'even' %>">
-            <td></td>
+        <%= @settings.each do |setting| %>
+          <tr>
+            <td><%= setting.name  %></td>
+            <td><%= setting.value  %></td>
           </tr>
-        <% reset_cycle %>
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    <% end %>
     <p> <%= submit_tag t("submit") %> </p>
   <% end %>
 

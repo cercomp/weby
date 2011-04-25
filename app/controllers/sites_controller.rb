@@ -18,8 +18,12 @@ class SitesController < ApplicationController
   end
 
   def show
-    @site = Site.find_by_name(params[:id])
-    respond_with(@site)
+    params[:controller] = 'pages'
+    params[:action] = 'view'
+    params[:site_id] = @site.name
+    redirect_to  params
+#    @site = Site.find_by_name(params[:id])
+#    respond_with(@site)
   end
 
   def new

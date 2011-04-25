@@ -1,9 +1,5 @@
 Webyge::Application.routes.draw do |map|
 
-  if Page.table_exists?
-    match "sites/:site_id" => 'pages#view', :via => :get, :constraints => { :site_id => /#{Site.all.map{|p| p.name}.join('|')}/ }
-  end
-  
   match '/page/:page' => 'sites#index' # Paginate URL on sites
   match '/sites/:site_id/users/page/:page' => 'users#index' # Paginate URL on users
   match '/sites/:site_id/pages/paginate/:paginate' => 'pages#index' # Paginate URL on pages
@@ -99,10 +95,4 @@ Webyge::Application.routes.draw do |map|
 
   root :to => "sites#index" # Página agregadora dos sites
 
-  match ':sites/:site_id(/:controller(/:action(/:id)))', :controller => 'sites',
-    :constraints => {:site_id => /[^new|index|show|edit|update|destroy]/}
-
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  #match ':controller(/:action(/:id(.:format)))'
 end
