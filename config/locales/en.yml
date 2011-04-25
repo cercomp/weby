@@ -19,6 +19,8 @@ en:
   archive: 
     one: "File"	
     other: "Files"
+  archive_link: "The archive link "
+  archive_description: "The archive description"
   are_you_sure: "Are you sure?"
   at: "at"
   author: "Author"
@@ -123,7 +125,6 @@ en:
   home: "Home"
 
 #---I---#
-  image_link: "Image link"
   instructions_change_password: "Instructions to change your password"
   internacional: "Internacional"
   internal: "Internal"

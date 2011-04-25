@@ -19,6 +19,8 @@ pt-BR:
   archive: 
     one: "Arquivo"
     other: "Arquivos"
+  archive_link: "Link para o arquivo"
+  archive_description: "Descrição do arquivo"
   are_you_sure: "Você tem certeza?"
   at: "por"
   author: "Autor"
@@ -123,7 +125,6 @@ pt-BR:
   home: "Página inicial"
 
 #---I---#
-  image_link: "Link da imagem"
   istructions_change_password: "Instruções para trocar a senha"
   internacional: "Internacional"
   internal: "Interno"

@@ -1,19 +1,12 @@
-	<p>
-      <% unless @repository.archive_content_type.include?("image") %>
-        <%if @repository.archive_content_type.include?("pdf") %>
-          <%= image_tag "/images/pdf_file.png", :size => "80x80" %>
-        <% else %>	
-          <%= image_tag "/images/arquivo.gif", :size => "80x80" %>
-        <% end %>	
-      <% else %>
-        <%= image_tag @repository.archive.url %>
-      <% end %>
-    </p>	
+<fieldset>
+	<p> <%= raw archive_type_image(@repository) %>  </p>	
     <p>
-      <%= @repository.description %>
+      <b><%= t("archive_description") %>:</b> <%= @repository.description %>
 			<br/>
-			<%= t("image_link") %>
+			<b><%= t("archive_link") %>:</b>
 			<%= link_to request.env["HTTP_HOST"]+@repository.archive.url.to_s, request.env["HTTP_HOST"]+@repository.archive.url %>
     </p>
 
     <%= link_to t("edit"), edit_site_repository_path(@site, @repository) %> | <%= link_to t("list_all.masc"), site_repositories_path(@site) %> | <%= link_to t("back"), :back %>
+
+</fieldset>

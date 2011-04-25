@@ -349,4 +349,24 @@ module ApplicationHelper
   rescue
     "5,15,50,100,#{per_page_default}"
   end
+
+
+	# Define qual imagem de exibição será mostrada para o arquivo.
+	# Recebe um objeto do tipo Repository
+	def archive_type_image(repository)
+		unless repository.archive_content_type.include?("image")
+			if repository.archive_content_type.include?("pdf") 
+				image_t = link_to (image_tag "/images/pdf_file.png", :alt => repository.description, :size => "80x80"), repository.archive.url, :title => repository.description 
+			else
+				image_t = link_to (image_tag "/images/arquivo.gif", :alt => repository.description, :size => "80x80"), repository.archive.url, :title => repository.description 
+			end
+		else
+			image_t = link_to (image_tag repository.archive.url(:little), :alt => repository.description), repository.archive.url, :title => repository.description 
+		end
+		
+		image_t
+	end
+
 end
+
+
