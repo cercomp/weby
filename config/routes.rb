@@ -1,4 +1,4 @@
-Webyge::Application.routes.draw do |map|
+Webyge::Application.routes.draw do
 
   match '/page/:page' => 'sites#index' # Paginate URL on sites
   match '/sites/:site_id/users/page/:page' => 'users#index' # Paginate URL on users
