@@ -21,6 +21,7 @@ class SitesController < ApplicationController
     params[:controller] = 'pages'
     params[:action] = 'view'
     params[:site_id] = @site.name
+    params[:id] = nil
     redirect_to  params
 #    @site = Site.find_by_name(params[:id])
 #    respond_with(@site)
