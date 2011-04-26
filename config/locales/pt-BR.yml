@@ -75,6 +75,7 @@ pt-BR:
   disable: 
     fem: "Desabilitada"
     masc: "Desabilitada"
+  desc_use_menu_dropdown: "Deseja que os menus sejam desdobráveis?"
 
 #---E---#
   edit: "Editar"
@@ -330,6 +331,7 @@ pt-BR:
   user_inactive: "Seu usuário ainda não está ativo."  
   username: "Nome de usuário"
   use: "Usar"
+  use_menu_dropdown: "Usar menus desdobráveis"
 
 #---V---#
   value: "Valor"

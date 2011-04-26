@@ -5,8 +5,6 @@
 #
 require 'rubygems'
 require 'pg'
-require 'awesome_print'
-require 'authlogic'
 require 'yaml'
 require 'cgi'
 require 'htmlentities'
@@ -25,7 +23,7 @@ class Migrate_this2weby
     @con_this = PGconn.connect(@config['this']['host'],nil,nil,nil,@config['this']['database'],@config['this']['username'],@config['this']['password'])
     @con_weby = PGconn.connect(@config['weby']['host'],nil,nil,nil,@config['weby']['database'],@config['weby']['username'],@config['weby']['password'])
     @verbose = verbose
-    #@param = "WHERE site_id=106"
+    @param = "WHERE site_id=1"
 
     count_sites = @con_weby.exec("SELECT count(*) FROM sites")
     if File.exists?("./convar.yml") and count_sites[0]['count'].to_i > 0
@@ -70,7 +68,8 @@ class Migrate_this2weby
 #      rodape_text = rodape_text.force_encoding("UTF-8").valid_encoding? ? rodape_text : "" if rodape_text
 
       if @convar["#{this_site['site_id']}"]["weby"].nil?
-        insert_site = "INSERT INTO sites (name,url,description,footer,body_width) VALUES ('#{pre_treat(site_name)}','#{pre_treat(this_site['caminho_http'])}','#{pre_treat(this_site['nm_site'])}','#{rodape_text}','996') RETURNING id"
+        use_menu_dropdown = this_site['drop_down_esquerdo'] == 1 ? true : false
+        insert_site = "INSERT INTO sites (name,url,description,footer,body_width,menu_dropdown) VALUES ('#{pre_treat(site_name)}','#{pre_treat(this_site['caminho_http'])}','#{pre_treat(this_site['nm_site'])}','#{rodape_text}','996','#{use_menu_dropdown}') RETURNING id"
         site = @con_weby.exec(insert_site)
         puts "\t\tINSERINDO (#{site[0]['id']}) #{site_name} - #{this_site['nm_site']} \n" if @verbose
         # Criando objeto de conversão
@@ -88,7 +87,6 @@ class Migrate_this2weby
 /* Fundo do site */
   html{ background: #{this_estilo.first['body_background']}; }
 /* Borda dos menus */ 
-  aside menu li,
   header nav menu li,
   footer nav menu li { border:1px solid #{this_estilo.first['body_background']}; }
 /* Fundo Tabela frontal das páginas */ 
@@ -203,11 +201,11 @@ EOF
       this_users = @con_this.exec(select_usuarios)
       # Laço de repetição
       this_users.each do |this_user|
-        if @convar["#{this_site['site_id']}"]["usuarios"]["#{this_user['id']}"].nil?
+        if @convar["#{this_site['site_id']}"]["usuarios"]["#{this_user['id']}"].nil? and this_user['login_name'] != 'admin'
           # Separa o primeiro nome do resto
           first_name,last_name = this_user['nome'].split(" ",0)
           # Populando weby.users
-          insert_usuario = "INSERT INTO users (register,first_name,last_name,login,crypted_password,email,phone,mobile,status,password_salt,persistence_token,single_access_token,perishable_token) VALUES ('#{this_user['matricula']}','#{pre_treat(first_name)}','#{pre_treat(last_name)}','#{this_user['login_name']}','#{this_user['senha']}','#{this_user['email']}','#{this_user['telefone']}','#{this_user['celular']}','#{this_user['status']}','#{Authlogic::Random.friendly_token}','#{Authlogic::Random.hex_token}','#{Authlogic::Random.friendly_token}','#{Authlogic::Random.friendly_token}') RETURNING id"
+          insert_usuario = "INSERT INTO users (register,first_name,last_name,login,crypted_password,email,phone,mobile,status,password_salt,persistence_token,single_access_token,perishable_token) VALUES ('#{this_user['matricula']}','#{pre_treat(first_name)}','#{pre_treat(last_name)}','#{this_user['login_name']}','#{this_user['senha']}','#{this_user['email']}','#{this_user['telefone']}','#{this_user['celular']}','#{this_user['status']}','','','','') RETURNING id"
           puts "\t\tINSERINDO usuário: #{this_user['login_name']}\n" if @verbose
           user = @con_weby.exec(insert_usuario)
           # Relacionando usuários na variável de conversão
@@ -225,7 +223,7 @@ EOF
           capa = noticia['capa'] != false ? true : false
           dt_cadastro = ((noticia['dt_cadastro'].nil?) || (/([-]+)/.match("#{noticia['dt_cadastro']}").nil?)) ? Time.now : noticia['dt_cadastro']
           dt_inicio = ((noticia['dt_inicio'].nil?) || (/([-]+)/.match("#{noticia['dt_inicio']}").nil?)) ? Time.now : noticia['dt_inicio']
-          dt_fim = ((noticia['dt_fim'].nil?) || (/([-]+)/.match("#{noticia['dt_fim']}").nil?)) ? 2.years.from_now : noticia['dt_fim']
+          dt_fim = ((noticia['dt_fim'].nil?) || (/([-]+)/.match("#{noticia['dt_fim']}").nil?)) ? Time.now + 30000000 : noticia['dt_fim']
           status = noticia['status'] == 'P' ? true : false
           autor = @convar["#{this_site['site_id']}"]['usuarios'][noticia['autor']]
           autor ||= 1
@@ -249,7 +247,7 @@ EOF
       this_paginas = @con_this.exec(select_paginas)
       this_paginas.each do |pagina|
         if @convar["#{this_site['site_id']}"]["paginas"]["#{pagina['id']}"].nil?
-          data_publica = ((pagina['dt_publica'].nil?) || (/([-]+)/.match("#{pagina['dt_publica']}").nil?)) ? 2.years.from_now : pagina['dt_publica']
+          data_publica = ((pagina['dt_publica'].nil?) || (/([-]+)/.match("#{pagina['dt_publica']}").nil?)) ? Time.now + 30000000 : pagina['dt_publica']
           autor = @convar["#{this_site['site_id']}"]['usuarios'][pagina['autor']]
           autor ||= 1
           insert_pages = "INSERT INTO pages (created_at,date_begin_at,date_end_at,site_id,author_id,title,text,publish,front,type) VALUES ('#{Time.now}','#{Time.now}','#{data_publica}','#{@convar["#{this_site['site_id']}"]['weby']}','#{autor}','#{pre_treat(pagina['titulo'])}','#{pre_treat(pagina['texto'])}',true,false,'News') RETURNING id"
@@ -278,7 +276,7 @@ EOF
           tipo = evento['tipo'].nil? ? '' : kind_list["#{evento['tipo']}"]
           dt_cadastro = ((evento['dt_cadastro'].nil?) || (/([-]+)/.match("#{evento['dt_cadastro']}").nil?)) ? Time.now : evento['dt_cadastro']
           dt_inicio = ((evento['dt_inicio'].nil?) || (/([-]+)/.match("#{evento['dt_inicio']}").nil?)) ? Time.now : evento['dt_inicio']
-          dt_fim = ((evento['dt_fim'].nil?) || (/([-]+)/.match("#{evento['dt_fim']}").nil?)) ? 2.years.from_now : evento['dt_fim']
+          dt_fim = ((evento['dt_fim'].nil?) || (/([-]+)/.match("#{evento['dt_fim']}").nil?)) ? Time.now + 30000000 : evento['dt_fim']
           inicio = ((evento['inicio'].nil?) || (/([-]+)/.match("#{evento['inicio']}").nil?)) ? Time.now : evento['inicio']
           fim = ((evento['fim'].nil?) || (/([-]+)/.match("#{evento['fim']}").nil?)) ? Time.now : evento['fim']
           status = evento['status'] == 'P' ? true : false
@@ -307,7 +305,7 @@ EOF
         if @convar["#{this_site['site_id']}"]["informativos"]["#{inform['id']}"].nil?
           dt_cadastro = ((inform['dt_cadastro'].nil?) || (/([-]+)/.match("#{inform['dt_cadastro']}").nil?)) ? Time.now : inform['dt_cadastro']
           dt_inicio = ((inform['dt_inicio'].nil?) || (/([-]+)/.match("#{inform['dt_inicio']}").nil?)) ? Time.now : inform['dt_inicio']
-          dt_fim = ((inform['dt_fim'].nil?) || (/([-]+)/.match("#{inform['dt_fim']}").nil?)) ? 2.years.from_now : inform['dt_fim']
+          dt_fim = ((inform['dt_fim'].nil?) || (/([-]+)/.match("#{inform['dt_fim']}").nil?)) ? Time.now + 30000000 : inform['dt_fim']
           autor = @convar["#{this_site['site_id']}"]['usuarios'][inform['autor']]
           autor ||= 1
           status = inform['status'] == 'P' ? true : false

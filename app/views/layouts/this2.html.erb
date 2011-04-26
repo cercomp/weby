@@ -18,6 +18,7 @@
     <%= javascript_include_tag "http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js" %>
     <![endif]-->
     <%= stylesheet_link_tag 'negativo' if session[:contrast] == 'yes' %>
+    <%= stylesheet_link_tag 'menu_dropdown' if @site.menu_dropdown == true %>
   </head>
 
   <%#= debug params %>
