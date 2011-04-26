@@ -1,0 +1,24 @@
+article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary { display: block; }
+
+html { background-color: #F9F9F9; }
+
+body {
+  background: #FFF;
+  margin: 2em auto;
+  width: 900px;
+  border: 1px solid #E4E4E4; }
+
+header {
+  padding: 10px 10px 0 0;
+  height: 120px;
+  background: url(../images/weby-logo.png) no-repeat 20px 50%; }
+
+section#content { padding: 10px; }
+  section#content nav#admin { padding-bottom: 10px; }
+
+footer {
+  padding-bottom: 10px;
+  text-align: center;
+  font-weight: bold; }
+
+.right { float: right; }
