@@ -9,10 +9,8 @@
     <%= stylesheet_link_tag 'scaffold' %>
     <%= stylesheet_link_tag 'application' %>
     <%= stylesheet_link_tag 'semantic_forms' %>
-    <%= stylesheet_link_tag 'this2' %>
+    <%= stylesheet_link_tag 'weby' %>
     <%= stylesheet_link_tag 'paginate' %>
-    <%= stylesheet_link_tag 'SyntaxHighlighter/shCore' %>
-    <%= stylesheet_link_tag 'SyntaxHighlighter/shThemeDefault' %>
     <%= render :partial => 'sites/viewCsses' %>
     <!--[if lt IE 9]>
     <%= javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js" %>
@@ -21,15 +19,15 @@
     <%= stylesheet_link_tag 'weby_negativo' if session[:contrast] == 'yes' %>
   </head>
 
-  <% if @site.body_width %>
-    <body style='width:<%= "#{@site.body_width.to_i + 4}" %>px'>
-    <% elsif @top_banner_width %>
-      <body style='width:<%= "#{@top_banner_width.to_i + 4}" %>px'>
-      <% else %>
-        <body>
-        <% end %>	
-	
-	<div id="wrapper">
+  <body>
+  	<% if @site.body_width %> 		
+		<div id="wrapper" style='width:<%= "#{@site.body_width.to_i + 2}" %>px'>
+	<% elsif @top_banner_width %>
+      <div id="wrapper" style='width:<%= "#{@top_banner_width.to_i + 2}" %>px'>
+   <% else %>
+        <div id="wrapper">
+   <% end %>
+   
 		<%= raw institutional_bar %>
 		<%= raw menu_admin(@site) %>
 				
@@ -54,11 +52,13 @@
 		<section id="content">
 			<%= raw flash_message %>
 			<%= yield %>		
-		<section>
-		
-		<footer></footer>	
-	
+		<section>	
 	</div>  
+	<footer>
+		<section id="info">
+   	<%= raw @site.footer %>
+   	</section>		
+	</footer>
   
   </body>
     

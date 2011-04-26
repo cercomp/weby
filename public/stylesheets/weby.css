@@ -3,22 +3,60 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 html { background-color: #F9F9F9; }
 
 body {
-  background: #FFF;
-  margin: 2em auto;
-  width: 900px;
-  border: 1px solid #E4E4E4; }
+  font-family: Verdana, sans-serif; 
+  color:#484848;
+  width: auto;
+  margin: 0 auto; }
 
-header {
-  padding: 10px 10px 0 0;
-  height: 120px;
-  background: url(../images/weby-logo.png) no-repeat 20px 50%; }
+#wrapper {
+  background: white;
+  align: center;
+  border: 2px solid transparent; }  
+
+/* Define style to Header, Footer and contents */
+header,
+footer { }
 
 section#content { padding: 10px; }
-  section#content nav#admin { padding-bottom: 10px; }
+section#content nav#admin { padding-bottom: 10px; }
 
 footer {
+  background-color: #CAE2F1;	
+  min-height: 300px;	
   padding-bottom: 10px;
   text-align: center;
   font-weight: bold; }
 
 .right { float: right; }
+
+/* Define area of top image */
+header figure#cover { margin: 0px; }
+
+
+/* ------------------  MENUS ---------------------------s */
+
+/* Define side area and contents */
+aside { width: 155px; position: relative; }
+
+  /* Define style to menu in side area */
+  aside menu { padding: 0; margin: 0; }
+  aside menu li { position: relative; margin: 0; list-style-type: none; border: 1px solid silver; }
+  aside menu li > a { background-color: #FFF; }
+  aside menu li:hover { background-color: #FF0000; }
+  aside menu li:hover > menu { display: block; position: absolute; top: -1px; }
+  aside menu li menu { width: 155px; display: none; border-width: 0px; }
+  aside menu li a { display: block; padding: 5px 7px; text-decoration: none; }
+  aside menu li.sub:hover { margin-right: 0px; border: 1px solid gray; }
+  aside menu li.sub > a { font-weight: bold; }
+
+    aside.right menu li { padding: 0 5px 0 0; }
+    aside.right menu li > a { text-align: right; }
+    aside.right menu li.sub > a { background: url("../images/arrow_collapsed_right.png") no-repeat scroll #FFF; background-position: left center; }
+    aside.right menu li.sub:hover > menu { left: -155px; z-index: 1 }
+
+    aside.left menu li { padding: 0 0 0 5px; z-index: 1;}
+    aside.left menu li > a { text-align: left; }
+    aside.left menu li.sub > a { background: url("../images/arrow_collapsed.png") no-repeat scroll #FFF; background-position: right center;}
+    aside.left menu li.sub:hover > menu { right: -155px; z-index: 1 }
+
+

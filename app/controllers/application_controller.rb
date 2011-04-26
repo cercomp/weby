@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
   def choose_layout
     if @site.nil? or @site.id.nil? 
-      return "weby"
+      return "portal"
     else
       if @site.theme
         return @site.theme
