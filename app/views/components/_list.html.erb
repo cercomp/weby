@@ -1,0 +1,20 @@
+<%= paginate @components %>
+<%= per_page_links @components %>
+<table class='list'>
+  <thead>
+    <th><%= sortable 'name', t('name') %></th>
+    <th></th>
+  </thead>
+  <tbody>
+  <% @components.each do |component| %>
+    <tr>
+      <td><%= link_to component.name, [@site, component] %></td>
+      <td>
+        <%= raw make_menu(component) %> 
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= paginate @components %>
+<%= per_page_links @components %>

@@ -34,6 +34,7 @@ en:
   base: "Base"
   begin: "Begin"  
   bottom: "Bottom"
+  body: "Body"
   body_width: "Body width"
   button_check_all: 
     fem: "Check all"
@@ -46,6 +47,9 @@ en:
   cancel: "Cancel"
   category: "Category"
   chief_editor: "Chief Editor"
+  component:
+    one: "Component"
+    other: "Components"
   contact: "Contact"
   controller: "Controller"
   copy: "Copy"

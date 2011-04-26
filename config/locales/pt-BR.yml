@@ -34,6 +34,7 @@ pt-BR:
   base: "Base"
   begin: "Início"
   bottom: "Inferior"
+  body: "Corpo"
   body_width: "Largura do site"
   button_check_all: 
     fem: "Marcar todas"
@@ -46,6 +47,9 @@ pt-BR:
   cancel: "Cancelar"
   category: "Categoria"
   chief_editor: "Editor chefe"
+  component:
+    one: "Componente"
+    other: "Componentes"
   contact: "Contato"
   controller: "Controle"
   copy: "Copiar"

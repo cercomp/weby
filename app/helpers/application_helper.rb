@@ -365,6 +365,15 @@ module ApplicationHelper
 		image_t
 	end
 
+  def load_component component_name
+    component = Component.find_by_name(component_name)
+    if component
+      render :inline => component.body
+    else
+      # TODO locales
+      raw "<h3>Component <i>#{component_name}</i> não encontrado no sistema!</h3>"
+    end
+  end
 end
 
 

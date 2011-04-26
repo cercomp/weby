@@ -1,0 +1,13 @@
+<fieldset>
+  <legend><%= t("component.other") %></legend>
+
+  <div class="contextual">
+    <p> <%= link_to (t"new_param.masc", :param => (t"component.one")), new_site_component_path, :class => 'icon icon-add' %></p>
+  </div>
+
+  <div id="list">
+    <% #TODO tradução %>
+    <%= raw "<h1>Nenhum componente cadastrado</h1>" if @components.blank? %>
+    <%= render :partial => "list" unless @components.blank? %>
+  </div>
+</fieldset>
