@@ -110,8 +110,9 @@ class Migrate_this2weby
     /* Menu  */
       /* Cor */ 
         aside.left menu li a { background-color: #{this_estilo.first['cor_mouseout']} !important; }
+        aside.left menu li { background-color: #{this_estilo.first['cor_mouseout']} !important; }
       /* Cor Hover */ 
-        aside.left menu li:hover { background-color: #{this_estilo.first['cor_mouseout']}; }
+        aside.left menu li:hover { background-color: #{this_estilo.first['cor_mouseover']} !important; }
         aside.left menu li a:hover { background-color: #{this_estilo.first['cor_mouseover']} !important; }
       /* Cor fonte */ 
         aside.left menu li a { color: #{this_estilo.first['cor_letra_out']} !important; }
@@ -120,18 +121,20 @@ class Migrate_this2weby
     /* Submenu  */
       /* Cor */ 
         aside.left menu li.sub > a { background-color: #{this_estilo.first['cor_td_subitem_mouseout']} !important; }
+        aside.left menu li.sub { background-color: #{this_estilo.first['cor_td_subitem_mouseout']} !important; }
       /* Cor Hover */ 
         aside.left menu li.sub:hover { background-color: #{this_estilo.first['cor_td_subitem_mouseout']} !important; }
         aside.left menu li.sub:hover > a { background-color: #{this_estilo.first['cor_td_subitem_mouseover']} !important; }
       /* Cor fonte */ 
         aside.left menu li.sub > a { color: #{this_estilo.first['cor_letra_subitem_out']} !important; }
       /* Cor fonte hover */ 
-        aside.left menu li.sub > a:hover { color: #{this_estilo.first['cor_letra_subitem_over']} !important; }
+        aside.left menu li.sub > a:hover { color: #{this_estilo.first['cor_letra_subitem_out']} !important; }
     /* Menu  */
       /* Cor */
         aside.right menu li a { background-color: #{this_estilo.first['cor_mouseout2']} !important; }
+        aside.right menu li { background-color: #{this_estilo.first['cor_mouseout2']} !important; }        
       /* Cor Hover */
-        aside.right menu li:hover { background-color: #{this_estilo.first['cor_mouseout2']}; }
+        aside.right menu li:hover { background-color: #{this_estilo.first['cor_mouseover2']} !important; }
         aside.right menu li a:hover { background-color: #{this_estilo.first['cor_mouseover2']} !important; }
       /* Cor fonte */
         aside.right menu li a { color: #{this_estilo.first['cor_letra_out2']} !important; }
@@ -146,13 +149,14 @@ class Migrate_this2weby
       /* Cor fonte */
         aside.right menu li.sub > a { color: #{this_estilo.first['cor_letra_subitem_out2']} !important; }
       /* Cor fonte hover */
-        aside.right menu li.sub > a:hover { color: #{this_estilo.first['cor_letra_subitem_over2']} !important; }
+        aside.right menu li.sub > a:hover { color: #{this_estilo.first['cor_letra_subitem_out2']} !important; }
   /* Superior  */
     /* Menu  */
       /* Cor */
         header nav menu li a { background-color: #{this_estilo.first['cor_mouseout3']} !important; }
+        header nav menu li { background-color: #{this_estilo.first['cor_mouseout3']} !important; }
       /* Cor Hover */
-        header nav menu li:hover { background-color: #{this_estilo.first['cor_mouseout3']}; }
+        header nav menu li:hover { background-color: #{this_estilo.first['cor_mouseover3']} !important; }
         header nav menu li a:hover { background-color: #{this_estilo.first['cor_mouseover3']} !important; }
       /* Cor fonte */
         header nav menu li a { color: #{this_estilo.first['cor_letra_out3']} !important; }
@@ -162,8 +166,9 @@ class Migrate_this2weby
     /* Menu  */
       /* Cor */
         footer nav menu li a { background-color: #{this_estilo.first['cor_mouseout4']} !important; }
+        footer nav menu li { background-color: #{this_estilo.first['cor_mouseout4']} !important; }
       /* Cor Hover */
-        footer nav menu li:hover { background-color: #{this_estilo.first['cor_mouseout4']}; }
+        footer nav menu li:hover { background-color: #{this_estilo.first['cor_mouseover4']} !important; }
         footer nav menu li a:hover { background-color: #{this_estilo.first['cor_mouseover4']} !important; }
       /* Cor fonte */
         footer nav menu li a { color: #{this_estilo.first['cor_letra_out4']} !important; }
