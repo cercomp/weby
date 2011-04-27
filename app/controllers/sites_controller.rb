@@ -9,10 +9,9 @@ class SitesController < ApplicationController
   def index
     @sites = Site.name_or_description_like(params[:search]).
       except(:order).
-      order(sort_column + " " + sort_direction). # FIXME Ordenação não está funcionando
+      order(sort_column + " " + sort_direction).
       page(params[:page]).
       per(params[:per_page])
-
     unless @sites
       flash[:warning] = (t"none_param", :param => t("page.one"))
     end
@@ -24,8 +23,6 @@ class SitesController < ApplicationController
     params[:site_id] = @site.name
     params[:id] = nil
     redirect_to  params
-#    @site = Site.find_by_name(params[:id])
-#    respond_with(@site)
   end
 
   def new

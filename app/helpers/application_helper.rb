@@ -130,7 +130,7 @@ module ApplicationHelper
   # Verifica as permissões do usuário dado um controlador
   # Parametros: (objeto) usuário, (string) controlador
   # Retorna: um vetor com as permissões
-  def get_permissions(user, ctr, args={})
+  def get_permissions(user, ctr, args={}) # FIXME except no make_menu não está funcionando
     user ||= current_user
     # Se não está logado não existe permissões
     return [args[:except]] if user.nil?
@@ -204,7 +204,7 @@ module ApplicationHelper
       adminnav += link_to( t("logout"), logout_path, :confirm => t("are_you_sure") )
       adminnav += "\n\t"
     end
-
+    # FIXME Contador de usuários não está funcionando ao realizar logoff.
     adminnav += User.logged_in.count.to_s + ' ' + t('user', :count => User.logged_in.count) + ' ' + t('logged') + ".\n"
     adminnav += "</nav>"
     adminnav
@@ -308,7 +308,7 @@ module ApplicationHelper
           content_tag :span, item, :class => 'current'
         else
           content_tag(:span, :class => 'item_per_page_paginator') do
-            link_to item, {:per_page => item, :page => 1}, :remote => remote
+            link_to item, params.merge({:per_page => item, :page => 1}), :remote => remote
           end
         end
       end
@@ -333,7 +333,11 @@ module ApplicationHelper
       Site.columns_hash['per_page_default'].default.to_i
     end
   rescue
-    5
+    if Setting.get(:per_page_default)
+      Setting.get(:per_page_default).to_i
+    else
+      25
+    end
   end
 
   # Pega string de itens por página
@@ -345,25 +349,29 @@ module ApplicationHelper
       "#{@site.per_page},#{per_page_default}"
     end
   rescue
-    "5,15,50,100,#{per_page_default}"
+    if Setting.get(:per_page)
+      "#{Setting.get(:per_page)},#{per_page_default}"
+    else
+      "5,15,30,60,100,#{per_page_default}"
+    end
   end
 
 
-	# Define qual imagem de exibição será mostrada para o arquivo.
-	# Recebe um objeto do tipo Repository
-	def archive_type_image(repository)
-		unless repository.archive_content_type.include?("image")
-			if repository.archive_content_type.include?("pdf") 
-				image_t = link_to (image_tag "/images/pdf_file.png", :alt => repository.description, :size => "80x80"), repository.archive.url, :title => repository.description 
-			else
-				image_t = link_to (image_tag "/images/arquivo.gif", :alt => repository.description, :size => "80x80"), repository.archive.url, :title => repository.description 
-			end
-		else
-			image_t = link_to (image_tag repository.archive.url(:little), :alt => repository.description), repository.archive.url, :title => repository.description 
-		end
-		
-		image_t
-	end
+  # Define qual imagem de exibição será mostrada para o arquivo.
+  # Recebe um objeto do tipo Repository
+  def archive_type_image(repository)
+    unless repository.archive_content_type.include?("image")
+      if repository.archive_content_type.include?("pdf") 
+        image_t = link_to (image_tag "/images/pdf_file.png", :alt => repository.description, :size => "80x80"), repository.archive.url, :title => repository.description 
+      else
+        image_t = link_to (image_tag "/images/arquivo.gif", :alt => repository.description, :size => "80x80"), repository.archive.url, :title => repository.description 
+      end
+    else
+      image_t = link_to (image_tag repository.archive.url(:little), :alt => repository.description), repository.archive.url, :title => repository.description 
+    end
+
+    image_t
+  end
 
   def load_component component_name
     component = Component.find_by_name(component_name)

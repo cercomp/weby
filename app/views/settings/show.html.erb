@@ -1,15 +1,22 @@
 <fieldset>
-  <legend><%= t('setting') %></legend>
+  <legend><%= t('setting.one') %></legend>
   <p>
-    <b><%= t('name') %>: </b>
-    <%=h @setting.name %>
-  </p>
-  <p>
-    <b><%= t('value') %>: </b>
-    <%=h @setting.value %>
+    <p> <b><%= t('name') %></b> </p>
+    <%= @setting.name %>
   </p>
 
-  <%= link_to t('edit'), edit_setting_path(@setting) %></td>
-  <%= link_to t('back'), settings_path %>
+  <p>
+    <p> <b><%= t('value') %></b> </p>
+    <%= @setting.value %>
+  </p>
+
+  <p>
+    <p> <b><%= t('description') %><br> </p>
+    <%= @setting.description %>
+  </p>
 </fieldset>
 
+
+  <%= link_to t('edit'), edit_setting_path(@setting) %> |
+  <%= link_to t('remove', :param => t('setting.one')).capitalize, @setting, :method => 'delete', :confirm => t('are_you_sure') %> |
+  <%= link_to t('back'), settings_path %>
