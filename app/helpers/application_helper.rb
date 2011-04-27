@@ -377,9 +377,6 @@ module ApplicationHelper
       r.archive.url, :title => r.description
   end
 
-    image_t
-  end
-
   def load_component component_name
     component = Component.find_by_name(component_name)
     if component
