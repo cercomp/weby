@@ -68,10 +68,11 @@ class Migrate_this2weby
 #      rodape_text = rodape_text.force_encoding("UTF-8").valid_encoding? ? rodape_text : "" if rodape_text
 
       if @convar["#{this_site['site_id']}"]["weby"].nil?
-        use_menu_dropdown = this_site['drop_down_esquerdo'] == 1 ? true : false
+        use_menu_dropdown = this_site['drop_down_esquerdo'] ? true : false
         insert_site = "INSERT INTO sites (name,url,description,footer,body_width,menu_dropdown) VALUES ('#{pre_treat(site_name)}','#{pre_treat(this_site['caminho_http'])}','#{pre_treat(this_site['nm_site'])}','#{rodape_text}','996','#{use_menu_dropdown}') RETURNING id"
         site = @con_weby.exec(insert_site)
         puts "\t\tINSERINDO (#{site[0]['id']}) #{site_name} - #{this_site['nm_site']} \n" if @verbose
+        puts "\t\t\tMenu Dropdown: #{use_menu_dropdown}"
         # Criando objeto de conversão
         @convar["#{this_site['site_id']}"]["weby"] = site[0]['id']
       end
@@ -670,7 +671,7 @@ class Migrate_files
 end
 
 def use_mode
-  puts "Modo de usar:\n #{__FILE__} [--no-migrate-db] [--dir-uploads-this /path/upload/this --dir-uploads-weby /path/upload/weby]"
+  puts "Modo de usar:\n #{__FILE__} [--no-migrate-db] [--no-migrate-files] [--dir-uploads-this /path/upload/this --dir-uploads-weby /path/upload/weby]"
   exit
 end
 
@@ -682,7 +683,9 @@ else
   this2weby.finalize
 end
 
-if (up_this = ARGV.index('--dir-uploads-this')) and (up_weby = ARGV.index('--dir-uploads-weby'))
+if no_migrate_files = ARGV.index('--no-migrate-files')
+  puts "Os arquivos não serão migrados!"
+elsif (up_this = ARGV.index('--dir-uploads-this')) and (up_weby = ARGV.index('--dir-uploads-weby'))
   unless up_this.nil?
     from_aux = ARGV[up_this.to_i+1]
     if (from_aux and File.directory?(from_aux))
