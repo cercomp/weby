@@ -333,10 +333,10 @@ module ApplicationHelper
       Site.columns_hash['per_page_default'].default.to_i
     end
   rescue
-    if Setting.get(:per_page_default)
-      Setting.get(:per_page_default).to_i
-    else
+    if Setting.get(:per_page_default).blank?
       25
+    else
+      Setting.get(:per_page_default).to_i
     end
   end
 
@@ -349,10 +349,10 @@ module ApplicationHelper
       "#{@site.per_page},#{per_page_default}"
     end
   rescue
-    if Setting.get(:per_page)
-      "#{Setting.get(:per_page)},#{per_page_default}"
-    else
+    if Setting.get(:per_page).blank?
       "5,15,30,60,100,#{per_page_default}"
+    else
+      "#{Setting.get(:per_page)},#{per_page_default}"
     end
   end
 
