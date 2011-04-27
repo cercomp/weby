@@ -54,6 +54,7 @@ en:
   controller: "Controller"
   copy: "Copy"
   cover: "Cover"
+  cover_size: "Quantity items on cover"
   cover_help: "This pages will apear in site front."
   create: "Create"
   created: 

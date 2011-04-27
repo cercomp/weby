@@ -1,7 +1,6 @@
 <div id='no_front_news'>
   <%= paginate @no_front_news, :remote => true %>
   <%= info_page @no_front_news %>
-  <%= per_page_links @no_front_news, true %>
   <% if @no_front_news.count > 0 %>
     <table class="border fullwidth zebra">
       <tr>

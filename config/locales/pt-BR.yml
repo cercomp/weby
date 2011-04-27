@@ -54,6 +54,7 @@ pt-BR:
   controller: "Controle"
   copy: "Copiar"
   cover: "Capa"
+  cover_size: "Quantidade de itens na capa"
   cover_help: "Deseja que esta notícia apareça na frente do site?"
   create: "Criar"
   created: 

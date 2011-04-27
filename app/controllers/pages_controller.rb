@@ -123,7 +123,13 @@ class PagesController < ApplicationController
   end
 
   def view
-    @front_news = @site.pages.news(true)
+    cover_size = @site.cover_size.blank? ? 
+      Site.columns_hash['cover_size'].default :
+      @site.cover_size
+
+    params[:per_page] = 5
+
+    @front_news = @site.pages.news(true).page(1).per(cover_size)
 
     @no_front_news = @site.pages.news(false).
       page(params[:page]).per(params[:per_page])
@@ -131,7 +137,7 @@ class PagesController < ApplicationController
     flash[:warning] = (t"none_param", :param => t("news")) unless @front_news
 
     respond_with do |format|
-      format.js { 
+      format.js { # FIXME chamada ajax da paginação não está funcionando.
         render :update do |page|
         page.call "$('#no_front_news').html", render(:partial => 'no_front_news', :locals => { :f => SemanticFormBuilder.new(@page.class.name.underscore.to_s, @page, self, {}, proc{}) })
         end
