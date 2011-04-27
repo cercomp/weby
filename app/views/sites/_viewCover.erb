@@ -1,7 +1,12 @@
 <% unless @site.repository.nil? %>
   <figure id="cover">
-    <% size = (@site.top_banner_width and @site.top_banner_height) ? "#{@site.top_banner_width}x#{@site.top_banner_height}" : "#{@site.body_width}x#{@top_banner_height}" %>
+    <% size = (@site.top_banner_width and @site.top_banner_height) ?
+      "#{@site.top_banner_width}x#{@site.top_banner_height}" :
+      "#{@site.body_width}x#{@top_banner_height}" %>
     <% size = "#{@top_banner_width}x#{@top_banner_height}" if @site.body_width.nil? %>
-    <%= link_to image_tag(@site.repository.archive.url, :alt => @site.repository.description, :title => @site.repository.description, :size => size.to_s), @site %>
+    <%= link_to image_tag(@site.repository.archive.url,
+      :alt => @site.repository.description,
+      :title => @site.repository.description,
+      :size => size.to_s), @site %>
   </figure>
 <% end %>

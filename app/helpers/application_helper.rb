@@ -357,18 +357,25 @@ module ApplicationHelper
   end
 
 
-  # Define qual imagem de exibição será mostrada para o arquivo.
-  # Recebe um objeto do tipo Repository
-  def archive_type_image(repository)
-    unless repository.archive_content_type.include?("image")
-      if repository.archive_content_type.include?("pdf") 
-        image_t = link_to (image_tag "/images/pdf_file.png", :alt => repository.description, :size => "80x80"), repository.archive.url, :title => repository.description 
-      else
-        image_t = link_to (image_tag "/images/arquivo.gif", :alt => repository.description, :size => "80x80"), repository.archive.url, :title => repository.description 
-      end
-    else
-      image_t = link_to (image_tag repository.archive.url(:little), :alt => repository.description), repository.archive.url, :title => repository.description 
+	# Define qual imagem de exibição será mostrada para o arquivo.
+	# Recebe um objeto do tipo Repository
+	def archive_type_image r
+	  if r.archive_content_type.include? 'pdf'
+	    image = '/images/pdf_file.png'
+	    size  = '80x80'
+	    
+    elsif r.archive_content_type.include? 'image'
+      image = r.archive.url(:little)
+	    size  = ''
+      
+    elsif
+      image = '/images/arquivo.gif'
+	    size  = '80x80'
     end
+    
+    link_to image_tag(image, :alt => r.description, :size => size),
+      r.archive.url, :title => r.description
+  end
 
     image_t
   end

@@ -20,45 +20,45 @@
   </head>
 
   <body>
-  	<% if @site.body_width %> 		
-		<div id="wrapper" style='width:<%= "#{@site.body_width.to_i + 2}" %>px'>
-	<% elsif @top_banner_width %>
+    <% if @site.body_width %>     
+      <div id="wrapper" style='width:<%= "#{@site.body_width.to_i + 2}" %>px'>
+    <% elsif @top_banner_width %>
       <div id="wrapper" style='width:<%= "#{@top_banner_width.to_i + 2}" %>px'>
-   <% else %>
-        <div id="wrapper">
-   <% end %>
+    <% else %>
+      <div id="wrapper">
+    <% end %>
    
-		<%= raw institutional_bar %>
-		<%= raw menu_admin(@site) %>
-				
-		<header>
-			<%= render :partial => "sites/viewCover" %>
-			<nav>
-         	<%= raw print_menu(@menus['main']) %>
-         	<nav class="right">
-         		<%= raw menu_acessibility %>
-         		<%= raw menu_locale %>
-        		</nav>
-          <div class="clear"> </div>
-          </nav> 					
-		</header>
-		
-		<aside class="right" >
-			<nav>
-         	<%= raw print_menu(@menus['secondary']) %>
-         </nav>	
-		</aside>
-		
-		<section id="content">
-			<%= raw flash_message %>
-			<%= yield %>		
-		<section>	
-	</div>  
-	<footer>
-		<section id="info">
-   	<%= raw @site.footer %>
-   	</section>		
-	</footer>
+    <%= raw institutional_bar %>
+    <%= raw menu_admin(@site) %>
+        
+    <header>
+      <%= render :partial => "sites/viewCover" %>
+      <nav>
+       <%= raw print_menu(@menus['main']) %>
+       <nav class="right">
+         <%= raw menu_acessibility %>
+         <%= raw menu_locale %>
+        </nav>
+      <div class="clear"> </div>
+      </nav>           
+    </header>
+    
+    <aside class="right" >
+      <nav>
+        <%= raw print_menu(@menus['secondary']) %>
+      </nav>  
+    </aside>
+    
+    <section id="content">
+      <%= raw flash_message %>
+      <%= yield %>    
+    <section>  
+  </div>  
+  <footer>
+    <section id="info">
+      <%= raw @site.footer %>
+    </section>
+  </footer>
   
   </body>
     
