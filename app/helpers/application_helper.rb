@@ -327,52 +327,43 @@ module ApplicationHelper
 
   # Quantidade de registro por página padrão
   def per_page_default
-    if @site and not(@site.per_page_default.blank?)
-      @site.per_page_default.to_i
+    if @site
+      ( @site.try(:per_page_default) || 
+       Site.columns_hash['per_page_default'].try(:default) ).to_i
     else
-      Site.columns_hash['per_page_default'].default.to_i
-    end
-  rescue
-    if Setting.get(:per_page_default).blank?
-      25
-    else
-      Setting.get(:per_page_default).to_i
+      Setting.get(:per_page_default).try(:to_i) || 25
     end
   end
 
   # Pega string de itens por página
   # Ordem: Site, Valor Padrão da coluna, valor fixo.
   def per_page_string
-    if @site.per_page.blank?
-      Site.columns_hash['per_page'].default
+    if @site
+      ( @site.try(:per_page) || Site.columns_hash['per_page'].default ) << 
+      ",#{per_page_default}"
     else
-      "#{@site.per_page},#{per_page_default}"
-    end
-  rescue
-    if Setting.get(:per_page).blank?
-      "5,15,30,60,100,#{per_page_default}"
-    else
-      "#{Setting.get(:per_page)},#{per_page_default}"
+      ( Setting.get(:per_page) || "5,15,30,60,100" ) << 
+      ",#{per_page_default}"
     end
   end
 
 
-	# Define qual imagem de exibição será mostrada para o arquivo.
-	# Recebe um objeto do tipo Repository
-	def archive_type_image r
-	  if r.archive_content_type.include? 'pdf'
-	    image = '/images/pdf_file.png'
-	    size  = '80x80'
-	    
+  # Define qual imagem de exibição será mostrada para o arquivo.
+  # Recebe um objeto do tipo Repository
+  def archive_type_image r
+    if r.archive_content_type.include? 'pdf'
+      image = '/images/pdf_file.png'
+      size  = '80x80'
+
     elsif r.archive_content_type.include? 'image'
       image = r.archive.url(:little)
-	    size  = ''
-      
+      size  = ''
+
     elsif
       image = '/images/arquivo.gif'
-	    size  = '80x80'
+      size  = '80x80'
     end
-    
+
     link_to image_tag(image, :alt => r.description, :size => size),
       r.archive.url, :title => r.description
   end

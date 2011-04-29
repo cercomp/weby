@@ -28,7 +28,8 @@
       <% end %>
     </article>
     <% end; reset_cycle %>
-  </li>
+    </li>
+    <%= paginate @front_news %>
 </section>
 
 <%= render :partial => "pages/no_front_news" %>

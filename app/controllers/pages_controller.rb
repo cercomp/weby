@@ -187,6 +187,10 @@ class PagesController < ApplicationController
   end
 
   def per_page
-    tiny_mce ? 5 : per_page_default
+    if tiny_mce
+      5
+    else
+      params[:per_page] || per_page_default
+    end
   end
 end
