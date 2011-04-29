@@ -359,7 +359,7 @@ module ApplicationHelper
       image = r.archive.url(:little)
       size  = ''
 
-    elsif
+    else
       image = '/images/arquivo.gif'
       size  = '80x80'
     end

@@ -2,15 +2,19 @@ class Page < ActiveRecord::Base
   default_scope :order => 'position'
 
   scope :published, where(:publish => true)
-
+  
   scope :titles_like, lambda { |title|
       where(["LOWER(title) like ?", "%#{title.downcase if title}%"])
   }
-
+  
   scope :news, lambda { |front|
     where("front=:front AND date_begin_at <= :time AND date_end_at > :time",
           { :time => Time.now, :front => front }).
           published
+  }
+  
+  scope :category, lambda { |category|
+    where("category like ?", category)
   }
 
   validates_presence_of :title, :source, :author_id

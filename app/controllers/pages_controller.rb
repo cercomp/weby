@@ -135,15 +135,6 @@ class PagesController < ApplicationController
       page(params[:page]).per(params[:per_page])
 
     flash[:warning] = (t"none_param", :param => t("news")) unless @front_news
-
-    respond_with do |format|
-      format.js { # FIXME chamada ajax da paginação não está funcionando.
-        render :update do |page|
-        page.call "$('#no_front_news').html", render(:partial => 'no_front_news', :locals => { :f => SemanticFormBuilder.new(@page.class.name.underscore.to_s, @page, self, {}, proc{}) })
-        end
-      }
-      format.html
-    end
   end
 
   def sort

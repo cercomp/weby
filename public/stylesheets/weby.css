@@ -9,6 +9,7 @@ body {
   margin: 0 auto; }
 
 #wrapper {
+  position: relative;
   background: white;
   margin: 0px auto;
   border: 2px solid transparent; }  
@@ -17,8 +18,54 @@ body {
 header,
 footer { }
 
-section#content { padding: 10px; }
-section#content nav#admin { padding-bottom: 10px; }
+section#content {
+  width: auto;
+  padding: 5px;
+  padding-top: 0;
+  overflow: hidden; }
+  
+  section#content > article {
+    padding: 9px;
+    border: 1px solid #EEE;
+    margin: 0px 3px;
+  }
+  
+  section#pages li {
+    width: 360px;
+    height: 150px;
+    float: left;
+    margin-left: 5px;
+  }
+
+  section#content nav#admin { padding-bottom: 5px; }
+  section#content section#pages {
+    font-family: Verdana;
+    font-weight: Normal;
+    padding-bottom:5px; }
+    section#content section#pages h1 {
+      font-size: 160%;
+      color: #1C1C1C; }
+    section#content section#pages h2 {
+      line-height: 100%;
+      color: #2F4F4F;
+      font-size: 140%; }
+    section#content section#pages h3 {
+      font-size: 120%;
+      line-height: 100%;
+      color: #696969; }
+    section#content section#pages p { }
+
+    section#content section#pages .pageleft { border-bottom: 1px dotted #DDD; padding: 0px 0 10px 0; text-align: left; }
+    section#content section#pages .pageleft a img { float: left; padding-right: 15px; }
+    section#content section#pages .pageright { border-bottom: 1px dotted #DDD; padding: 0px 0 10px 0; text-align: right; }
+    section#content section#pages .pageright a img { float: right; padding-left: 15px; }
+  
+section#content #slider {
+  background-color: yellow;
+  float: left;
+  height: 300px;
+  width: 400px;
+}
 
 footer {
   background-color: #CAE2F1;	
@@ -28,6 +75,7 @@ footer {
   font-weight: bold; }
 
 .right { float: right; }
+.clear { clear: both; }
 
 /* Define area of top image */
 header figure#cover { margin: 0px; }
