@@ -12,6 +12,10 @@ class User < ActiveRecord::Base
            { :text => "%#{name}%" })
   }
 
+  def name_or_login
+     self.first_name ? ("#{self.first_name} #{self.last_name}") : self.login
+  end
+
   def password_reset!(host)
     reset_perishable_token!
     Notifier.password_reset_instructions(self, host).deliver

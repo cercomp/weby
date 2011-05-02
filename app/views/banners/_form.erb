@@ -17,7 +17,7 @@
 
   <% repo_styles = Repository.attachment_definitions[:archive][:styles] %>
   <% unless repo_styles.nil? %>
-    <%= f.radio_button_group :size, repo_styles.map{|u| { :value => u[0], :label => "#{t(u[0])} #{u[1]}"}}, "", :label => t("size"), :help => t("size") %>
+    <%= repos_radio(f, :size, repo_styles) %>
   <% end %>
 
   <%= f.text_field :width, :label => t("width"), :size => 5 %>

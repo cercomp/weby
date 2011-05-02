@@ -9,7 +9,7 @@ class Site < ActiveRecord::Base
 
   scope :name_or_description_like, lambda { |text|
     where('lower(name) LIKE :text OR lower(description) LIKE :text',
-           { :text => "%#{text}%" })
+          { :text => "%#{text}%" })
   }
 
   # TODO tentar agrupar os 3 metodos a seguir em apenas 1
@@ -45,7 +45,7 @@ class Site < ActiveRecord::Base
 
   has_many :sites_csses
   has_many :csses, :through => :sites_csses
-  
+
   has_many :components
 
   #accepts_nested_attributes_for :sites_users, :allow_destroy => true#, :reject_if => proc { |attributes| attributes['title'].blank? }
