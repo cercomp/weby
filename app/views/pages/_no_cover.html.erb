@@ -1,0 +1,17 @@
+  <table class="border fullwidth zebra">
+    <tr>
+      <th> <%= link_to t("page.other"), site_pages_path(@site) %> </th>
+    </tr>
+    <% @no_front_news.try(:each) do |page| %>
+      <tr>
+        <td>
+          <p>
+          <%= link_to page.title, site_page_path(@site, page) %>
+          <%= raw page.summary %>
+          </p>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <%= info_page @no_front_news, 'width: 100%' %>
+  <%= paginate @no_front_news, :param_name => 'no_front_pages', :remote => true %>

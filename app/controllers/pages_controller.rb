@@ -127,12 +127,13 @@ class PagesController < ApplicationController
       Site.columns_hash['cover_size'].default :
       @site.cover_size
 
-    params[:per_page] = 5
-
-    @front_news = @site.pages.news(true).page(1).per(cover_size)
+    @front_news = @site.pages.news(true).
+      except(:order).page(params[:front_pages]).
+      per(cover_size)
 
     @no_front_news = @site.pages.news(false).
-      page(params[:page]).per(params[:per_page])
+      except(:order).page(params[:no_front_pages]).
+      per(5)
 
     flash[:warning] = (t"none_param", :param => t("news")) unless @front_news
   end

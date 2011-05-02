@@ -285,13 +285,13 @@ module ApplicationHelper
   end
 
   # Informações sobre paginação
-  def info_page(collection)
+  def info_page(collection, style = nil)
     if collection.page(1).count > 0
       html = "#{t('views.pagination.displaying')} #{collection.offset_value + 1} - 
       #{collection.offset_value + collection.length}"
       html << " #{t('of')} #{collection.page(1).count} #{t('views.pagination.total')}" 
 
-      content_tag :div, html, :class => "page_info_paginator"
+      content_tag :div, html, :class => "page_info_paginator", :style => style
     end
   end
 

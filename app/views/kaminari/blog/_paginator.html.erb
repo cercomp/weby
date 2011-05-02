@@ -1,0 +1,19 @@
+<style>
+  .blog.pages_paginator{
+    width: 100%;
+  }
+  .blog.pages_paginator .prev{
+    float: left !important;
+  }
+  .blog.pages_paginator .next{
+    float: right !important;
+  }
+</style>
+<nav class="blog paginator">
+<div class="blog pages_paginator">
+  <%= paginator.render do -%>
+    <%= current_page > 1 ? prev_link_tag : prev_span_tag %>
+    <%= num_pages > current_page ? next_link_tag : next_span_tag %>
+  <% end -%>
+</div>
+</nav>
