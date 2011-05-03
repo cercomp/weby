@@ -51,9 +51,10 @@
     
     <%= raw flash_message %>
     <% if controller.controller_name.include? 'pages' and controller.action_name.include? 'view' %>
-      <section id="content" style="background-color: #ddd;">
+      <section id="content">
         <!-- slider com imagens na lateral -->
         <div id="slider">
+          <%= image_tag @site.pages.category('slider').first.repository.archive.url(:medium) %>
         </div>
         <section id="pages">
         <ul>

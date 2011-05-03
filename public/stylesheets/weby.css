@@ -26,7 +26,7 @@ section#content {
   
   section#content > article {
     padding: 9px;
-    border: 1px solid #EEE;
+    border: 1px solid #999;
     margin: 0px 3px;
   }
   
@@ -61,10 +61,15 @@ section#content {
     section#content section#pages .pageright a img { float: right; padding-left: 15px; }
   
 section#content #slider {
-  background-color: yellow;
+  background-color: #333;
   float: left;
   height: 300px;
   width: 400px;
+  line-height: 300px;
+}
+
+section#content #slider img {
+  vertical-align: middle;
 }
 
 footer {
