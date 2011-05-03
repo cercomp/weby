@@ -1,4 +1,5 @@
-article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary { display: block; }
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary { display: block; }
 
 html { background-color: #F9F9F9; }
 
@@ -6,17 +7,24 @@ body {
   font-family: Verdana, sans-serif; 
   color:#484848;
   width: auto;
-  margin: 0 auto; }
+	background-color: #BFDBED;
+}
 
 #wrapper {
+
+	/*Arrendondar bordas para encaixar com a barra institucional*/
+	-moz-border-radius-topleft: 26px;
+	-moz-border-radius-topright: 26px;
+	border-top-left-radius: 26px;
+	border-top-right-radius: 26px;
+
   position: relative;
   background: white;
   margin: 0px auto;
-  border: 2px solid transparent; }  
+}
 
 /* Define style to Header, Footer and contents */
-header,
-footer { }
+header{}
 
 section#content {
   width: auto;
@@ -73,11 +81,23 @@ section#content #slider img {
 }
 
 footer {
+	margin-top: -11px;
   background-color: #CAE2F1;	
   min-height: 300px;	
   padding-bottom: 10px;
   text-align: center;
   font-weight: bold; }
+
+section#footer {
+	width: 960px;
+	text-align: center;
+	margin: 0px auto;
+}
+
+
+#banners{
+ background-color: #70B0D9;
+ min-height: 60px; }
 
 .right { float: right; }
 .clear { clear: both; }

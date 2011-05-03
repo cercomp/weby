@@ -31,8 +31,8 @@
     <%= raw institutional_bar %>
         
     <header>
-      <%= render :partial => "sites/viewCover" %>
       <%= raw menu_admin(@site) %>
+      <%= render :partial => "sites/viewCover" %>
       <nav>
         <%= raw print_menu(@menus['superior']) %>
         <nav class="right">
@@ -54,7 +54,7 @@
       <section id="content">
         <!-- slider com imagens na lateral -->
         <div id="slider">
-          <%= image_tag @site.pages.category('slider').first.repository.archive.url(:medium) %>
+          <%#= image_tag @site.pages.category('slider').first.repository.archive.url(:medium) %>
         </div>
         <section id="pages">
         <ul>
@@ -100,8 +100,14 @@
       <section>
     <% end %>
   </div>  
-  <footer class="clear">
-    <section id="info">
+	
+	<div id="banners">
+		<%#= raw view_banners"%>	
+	</div>
+  
+	<footer>
+    <section id="footer">
+			<div id="content-footer"></div>
       <%= raw @site.footer %>
     </section>
   </footer>
