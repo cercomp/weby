@@ -211,6 +211,7 @@ pt-BR:
   none_category_menu: "Nenhum menu %{param}"
   none_param: "Nenhum %{param}"
   "no": "Não"
+  not_found: "não encontrado!"
 
 #---O---#
   of: "de"

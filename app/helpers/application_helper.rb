@@ -63,7 +63,7 @@ module ApplicationHelper
         end
       end
       #menus += " [ id:#{entry.id} pos:#{entry.position} ]" # Para debug
-      menus += (entry.menu and not entry.menu.link.nil?) ? " [ #{entry.menu.link} ] " : " [ #{entry.menu.page.id if entry.menu.page} ] "
+      menus += (entry.menu and not entry.menu.link.empty?) ? " [ #{entry.menu.link} ] " : " [ #{entry.menu.page.id if entry.menu.page} ] "
       menus += indent_space + link_to(image_tag('editar.gif', :border => 0, :alt => t("edit")), edit_site_menu_path(@site.name, entry.menu_id), :title => t("edit"))
       menus += indent_space + link_to(image_tag('subitem.gif', :border => 0, :alt => t("add_sub_menu")), new_site_menu_path(@site.name, :parent_id => entry.id), :title => t("add_sub_menu"))
       menus += indent_space + link_to(image_tag('setaup.gif', :border => 0, :alt => t("move_menu_up")), change_position_site_menus_path(:id => entry.id, :position => (entry.position.to_i - 1)), :title => t("move_menu_up")) if entry.position.to_i > 1
@@ -373,8 +373,7 @@ module ApplicationHelper
     if component
       render :inline => component.body
     else
-      # TODO locales
-      raw "<h3>Component <i>#{component_name}</i> não encontrado no sistema!</h3>"
+      raw "<h3>Component <i>#{component_name}</i> #{t('not_found')}</h3>"
     end
   end
 end

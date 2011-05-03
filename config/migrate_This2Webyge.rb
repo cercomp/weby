@@ -256,7 +256,7 @@ EOF
           data_publica = ((pagina['dt_publica'].nil?) || (/([-]+)/.match("#{pagina['dt_publica']}").nil?)) ? Time.now + 30000000 : pagina['dt_publica']
           autor = @convar["#{this_site['site_id']}"]['usuarios'][pagina['autor']]
           autor ||= 1
-          insert_pages = "INSERT INTO pages (created_at,date_begin_at,date_end_at,site_id,author_id,title,text,publish,front,type) VALUES ('#{Time.now}','#{Time.now}','#{data_publica}','#{@convar["#{this_site['site_id']}"]['weby']}','#{autor}','#{pre_treat(pagina['titulo'])}','#{pre_treat(pagina['texto'])}',true,false,'News') RETURNING id"
+          insert_pages = "INSERT INTO pages (created_at,date_begin_at,date_end_at,site_id,author_id,title,text,publish,front,type) VALUES ('#{Time.now}','#{Time.now}','#{data_publica}','#{@convar["#{this_site['site_id']}"]['weby']}','#{pre_treat(autor)}','#{pre_treat(pagina['titulo'])}','#{pre_treat(pagina['texto'])}',true,false,'News') RETURNING id"
           page = @con_weby.exec(insert_pages)
           puts "\t\t\tINSERINDO (avulsa) página: (#{page[0]['id']}) no weby\n" if @verbose
           insert_sites_pages = "INSERT INTO sites_pages (site_id,page_id) VALUES ('#{@convar["#{this_site['site_id']}"]['weby']}','#{page[0]['id']}')"
@@ -362,12 +362,12 @@ EOF
   # Metodo para chamada recursiva
   def deep_insert_menu(sons, entry, this_id, site_id, menu_id, type)
     if (not entry['texto'].nil?) and (entry['texto'].size > 5) # Se o campo texto não for nulo e não for vazio então o menu está embutido
-      if @convar["#{this_id}"]["paginas"]["#{entry['id']}"].nil?
+      if @convar["#{this_id}"]["menus"]["#{entry['id']}"].nil?
         modificador = @convar["#{this_id}"]['usuarios'][entry['modificador']] 
         modificador ||= 1
         insert_page = "INSERT INTO pages (created_at,date_begin_at,date_end_at,site_id,author_id,title,text,publish,front,type) VALUES ('#{Time.now}','#{Time.now}','#{Time.now}','#{site_id}','#{modificador}','#{pre_treat(entry['texto_item'])}','#{pre_treat(entry['texto'])}',true,false,'News') RETURNING id"
         page_id = @con_weby.exec(insert_page)
-        @convar["#{this_id}"]["paginas"]["#{entry['id']}"] = page_id[0]['id']
+        @convar["#{this_id}"]["menus"]["#{entry['id']}"] = page_id[0]['id']
         puts "\t\t\t\tINSERINDO (menus) página (#{page_id[0]['id']})\n" if @verbose
         insert_menu = "INSERT INTO menus (title,link,page_id) VALUES ('#{pre_treat(entry['texto_item'])}','','#{page_id[0]['id']}') RETURNING id"
       end
@@ -459,6 +459,10 @@ EOF
       if str.match(/javascript:mostrar_fale_conosco.*'([0-9]+)'.*/)
         str.gsub!(/javascript:mostrar_fale_conosco.*'([0-9]+)'.*;/){|x| "/sites/#{@convar[$1]['weby_name']}/feedbacks/new" if @convar[$1] }
       end 
+      if str.match(/javascript:mostrar_menu.*'([0-9]+)'.*([0-9]+).*/) 
+        str.gsub!(/javascript:mostrar_menu.*'([0-9]+)'.*([0-9]+).*;/){|x| "/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["menus"][$1]}" if @convar[$2] }
+      end 
+
       return str 
     end 
   end 
