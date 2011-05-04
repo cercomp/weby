@@ -11,7 +11,7 @@
       <% links = @site.menu_categories %>
       <% for link in links do %>
         <% selected = params[:category] == link ? "selected" : "" %>
-        <li><%= link_to_unless(@menus[link].blank?, link.titleize, site_menus_path(@site, :category => link), :class => "#{selected}") %></li>
+        <li><%= link_to(link.try(:titleize), site_menus_path(@site, :category => link), :class => "#{selected}") %></li>
       <% end %>
     </ul>
   </div>
