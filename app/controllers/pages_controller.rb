@@ -13,7 +13,7 @@ class PagesController < ApplicationController
 
     @pages = @site.pages.titles_like(params[:search])
 
-    @pages = @pages.order(sort_column + " " + sort_direction).
+    @pages = @pages.except(:order).order(sort_column + " " + sort_direction).
       page(params[:page]).per(per_page)
 
     @pages = @pages.published if @tiny_mce
@@ -128,7 +128,7 @@ class PagesController < ApplicationController
       @site.cover_size
 
     @front_news = @site.pages.news(true).
-      except(:order).page(params[:front_pages]).
+      page(params[:front_pages]).
       per(cover_size)
 
     @no_front_news = @site.pages.news(false).

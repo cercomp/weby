@@ -23,7 +23,7 @@ class Migrate_this2weby
     @con_this = PGconn.connect(@config['this']['host'],nil,nil,nil,@config['this']['database'],@config['this']['username'],@config['this']['password'])
     @con_weby = PGconn.connect(@config['weby']['host'],nil,nil,nil,@config['weby']['database'],@config['weby']['username'],@config['weby']['password'])
     @verbose = verbose
-    @param = "WHERE site_id=17"
+    #@param = "WHERE site_id=17"
 
     count_sites = @con_weby.exec("SELECT count(*) FROM sites")
     if File.exists?("./convar.yml") and count_sites[0]['count'].to_i > 0
@@ -227,13 +227,14 @@ EOF
       this_noticias.each do |noticia|
         if @convar["#{this_site['site_id']}"]["noticias"]["#{noticia['id']}"].nil?
           capa = noticia['capa'] != false ? true : false
+          position = noticia['capa'] != 'f' ? noticia['capa'] : 'NULL'
           dt_cadastro = ((noticia['dt_cadastro'].nil?) || (/([-]+)/.match("#{noticia['dt_cadastro']}").nil?)) ? Time.now : noticia['dt_cadastro']
           dt_inicio = ((noticia['dt_inicio'].nil?) || (/([-]+)/.match("#{noticia['dt_inicio']}").nil?)) ? Time.now : noticia['dt_inicio']
           dt_fim = ((noticia['dt_fim'].nil?) || (/([-]+)/.match("#{noticia['dt_fim']}").nil?)) ? Time.now + 30000000 : noticia['dt_fim']
           status = noticia['status'] == 'P' ? true : false
           autor = @convar["#{this_site['site_id']}"]['usuarios'][noticia['autor']]
           autor ||= 1
-          insert_pages = "INSERT INTO pages (created_at,updated_at,date_begin_at,date_end_at,site_id,author_id,text,url,source,title,summary,publish,front,type) VALUES ('#{dt_cadastro}','#{dt_cadastro}','#{dt_inicio}','#{dt_fim}','#{@convar["#{this_site['site_id']}"]['weby']}','#{autor}','#{pre_treat(noticia['texto'])}','#{pre_treat(noticia['url'])}','#{pre_treat(noticia['fonte'])}','#{pre_treat(noticia['titulo'])}','#{pre_treat(noticia['resumo'])}',#{status},#{capa},'News') RETURNING id"
+          insert_pages = "INSERT INTO pages (created_at,updated_at,date_begin_at,date_end_at,site_id,author_id,text,url,source,title,summary,publish,front,type,position) VALUES ('#{dt_cadastro}','#{dt_cadastro}','#{dt_inicio}','#{dt_fim}','#{@convar["#{this_site['site_id']}"]['weby']}','#{autor}','#{pre_treat(noticia['texto'])}','#{pre_treat(noticia['url'])}','#{pre_treat(noticia['fonte'])}','#{pre_treat(noticia['titulo'])}','#{pre_treat(noticia['resumo'])}',#{status},#{capa},'News',#{position}) RETURNING id"
           page = @con_weby.exec(insert_pages)
           puts "\t\t\tINSERINDO (notícias) página: (#{page[0]['id']}) no weby\n" if @verbose
           insert_sites_pages = "INSERT INTO sites_pages (site_id,page_id) VALUES ('#{@convar["#{this_site['site_id']}"]['weby']}','#{page[0]['id']}')"
@@ -279,6 +280,7 @@ EOF
       this_eventos.each do |evento|
         if @convar["#{this_site['site_id']}"]["eventos"]["#{evento['id']}"].nil?
           capa = evento['capa'] != false ? true : false
+          position = evento['capa'] != 'f' ? evento['capa'] : 'NULL'
           tipo = evento['tipo'].nil? ? '' : kind_list["#{evento['tipo']}"]
           dt_cadastro = ((evento['dt_cadastro'].nil?) || (/([-]+)/.match("#{evento['dt_cadastro']}").nil?)) ? Time.now : evento['dt_cadastro']
           dt_inicio = ((evento['dt_inicio'].nil?) || (/([-]+)/.match("#{evento['dt_inicio']}").nil?)) ? Time.now : evento['dt_inicio']
@@ -288,7 +290,7 @@ EOF
           status = evento['status'] == 'P' ? true : false
           autor = @convar["#{this_site['site_id']}"]['usuarios'][evento['autor']]
           autor ||= 1
-          insert_pages = "INSERT INTO pages (created_at,updated_at,date_begin_at,date_end_at,event_begin,event_end,site_id,author_id,text,url,source,title,summary,publish,front,type,kind,event_email,local) VALUES ('#{dt_cadastro}','#{dt_cadastro}','#{dt_inicio}','#{dt_fim}','#{inicio}','#{fim}','#{@convar["#{this_site['site_id']}"]['weby']}','#{autor}','#{pre_treat(evento['texto'])}','#{pre_treat(evento['url'])}','#{pre_treat(evento['fonte'])}','#{pre_treat(evento['titulo'])}','#{pre_treat(evento['resumo'])}',#{status},#{capa},'Event','#{tipo}','#{evento['email']}','#{pre_treat(evento['local_realiza'])}') RETURNING id"
+          insert_pages = "INSERT INTO pages (created_at,updated_at,date_begin_at,date_end_at,event_begin,event_end,site_id,author_id,text,url,source,title,summary,publish,front,type,kind,event_email,local,position) VALUES ('#{dt_cadastro}','#{dt_cadastro}','#{dt_inicio}','#{dt_fim}','#{inicio}','#{fim}','#{@convar["#{this_site['site_id']}"]['weby']}','#{autor}','#{pre_treat(evento['texto'])}','#{pre_treat(evento['url'])}','#{pre_treat(evento['fonte'])}','#{pre_treat(evento['titulo'])}','#{pre_treat(evento['resumo'])}',#{status},#{capa},'Event','#{tipo}','#{evento['email']}','#{pre_treat(evento['local_realiza'])}',#{position}) RETURNING id"
           page = @con_weby.exec(insert_pages)
           puts "\t\t\tINSERINDO (eventos) página: (#{page[0]['id']}) no weby\n" if @verbose
           insert_sites_pages = "INSERT INTO sites_pages (site_id,page_id) VALUES ('#{@convar["#{this_site['site_id']}"]['weby']}','#{page[0]['id']}')"

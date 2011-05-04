@@ -1,5 +1,5 @@
 class Page < ActiveRecord::Base
-  default_scope :order => 'position'
+  default_scope :order => 'position,id desc'
 
   scope :published, where(:publish => true)
   
