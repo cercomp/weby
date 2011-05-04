@@ -20,9 +20,8 @@
   </head>
 
   <body>
+    <%= raw institutional_bar %>
     <div id="wrapper" <%= "style='width: #{ @main_width }px'" if @main_width %>>
-
-      <%= raw institutional_bar %>
 
       <header>
       <%= raw menu_admin(@site) %>

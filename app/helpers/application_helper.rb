@@ -211,7 +211,10 @@ module ApplicationHelper
   end
 
   def institutional_bar
-    bar = '
+    bar_style = "margin: 0px auto;"
+    bar_style << " width: #{@main_width + 4}px'" if @main_width 
+    bar = "<div style='#{bar_style}'>"
+    bar << '
     <div class="barra_governo">
       <div class="barra_governo_box">
         <div class="box2">
@@ -244,6 +247,7 @@ module ApplicationHelper
         </select>
         <div style="clear: both;"></div>
        </div>
+     </div>
     </div>'
     bar
   end
