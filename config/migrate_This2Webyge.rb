@@ -23,7 +23,7 @@ class Migrate_this2weby
     @con_this = PGconn.connect(@config['this']['host'],nil,nil,nil,@config['this']['database'],@config['this']['username'],@config['this']['password'])
     @con_weby = PGconn.connect(@config['weby']['host'],nil,nil,nil,@config['weby']['database'],@config['weby']['username'],@config['weby']['password'])
     @verbose = verbose
-    #@param = "WHERE site_id=1"
+    @param = "WHERE site_id=17"
 
     count_sites = @con_weby.exec("SELECT count(*) FROM sites")
     if File.exists?("./convar.yml") and count_sites[0]['count'].to_i > 0
@@ -441,28 +441,27 @@ EOF
   def treat(string)
     unless string.nil?
       if string.match(/['"]?[^'"]*uploads[^'"0-9]*([0-9]+)[^'"]*\/([^'"]*)['"]?/)
-        string.gsub!(/['"]?[^'"]*uploads[^'"0-9]*([0-9]+)[^'"]*\/([^'"]*)['"]?/){|x| "/uploads/#{@convar[$1]['weby']}/original_#{$2}" if @convar[$1] }
+        string.gsub!(/['"]?[^'"]*uploads[^'"0-9]*([0-9]+)[^'"]*\/([^'"]*)['"]?/){|x| "'/uploads/#{@convar[$1]['weby']}/original_#{$2}'" if @convar[$1] }
+      end 
+      if string.match(/javascript:mostrar_pagina.*'([0-9]+)'.*'([0-9]+)'.*/) 
+        string.gsub!(/['"]javascript:mostrar_pagina.*'([0-9]+)'.*'([0-9]+)'.*;['"]/){|x| "'/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["paginas"][$1]}'" if @convar[$2] }
+      end 
+      if string.match(/javascript:mostrar_noticia.*'([0-9]+)'.*'([0-9]+)'.*/)
+        string.gsub!(/['"]javascript:mostrar_noticia.*'([0-9]+)'.*'([0-9]+)'.*;['"]/){|x| "'/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["noticias"][$1]}'" if @convar[$2] }
+      end 
+      if string.match(/javascript:mostrar_informativo.*'([0-9]+)'.*'([0-9]+)'.*/)
+        string.gsub!(/['"]javascript:mostrar_informativo.*'([0-9]+)'.*'([0-9]+)'.*;['"]/){|x| "'/sites/#{@convar[$2]['weby_name']}/banners/#{@convar[$2]["informativos"][$1]}'" if @convar[$2] }
+      end 
+      if string.match(/javascript:mostrar_menu.*'([0-9]+)'.*([0-9]+).*/) 
+        string.gsub!(/['"]javascript:mostrar_menu.*'([0-9]+)'.*([0-9]+).*;['"]/){|x| "'/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["menus"][$1]}'" if @convar[$2] }
+      end 
+      if string.match(/javascript:pagina_inicial.*'([0-9]+)'.*/)
+        string.gsub!(/['"]javascript:pagina_inicial.*'([0-9]+)'.*;['"]/){|x| "'/sites/#{@convar[$1]['weby_name']}'" if @convar[$1] }
+      end 
+      if string.match(/javascript:mostrar_fale_conosco.*'([0-9]+)'.*/)
+        string.gsub!(/['"]javascript:mostrar_fale_conosco.*'([0-9]+)'.*;['"]/){|x| "'/sites/#{@convar[$1]['weby_name']}/feedbacks/new'" if @convar[$1] }
       end 
       str = @con_weby.escape(string)
-      if str.match(/javascript:mostrar_pagina.*'([0-9]+)'.*'([0-9]+)'.*/) 
-        str.gsub!(/javascript:mostrar_pagina.*'([0-9]+)'.*'([0-9]+)'.*;/){|x| "/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["paginas"][$1]}" if @convar[$2] }
-      end 
-      if str.match(/javascript:mostrar_noticia.*'([0-9]+)'.*'([0-9]+)'.*/)
-        str.gsub!(/javascript:mostrar_noticia.*'([0-9]+)'.*'([0-9]+)'.*;/){|x| "/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["noticias"][$1]}" if @convar[$2] }
-      end 
-      if str.match(/javascript:mostrar_informativo.*'([0-9]+)'.*'([0-9]+)'.*/)
-        str.gsub!(/javascript:mostrar_informativo.*'([0-9]+)'.*'([0-9]+)'.*;/){|x| "/sites/#{@convar[$2]['weby_name']}/banners/#{@convar[$2]["informativos"][$1]}" if @convar[$2] }
-      end 
-      if str.match(/javascript:pagina_inicial.*'([0-9]+)'.*/)
-        str.gsub!(/javascript:pagina_inicial.*'([0-9]+)'.*;/){|x| "/sites/#{@convar[$1]['weby_name']}" if @convar[$1] }
-      end 
-      if str.match(/javascript:mostrar_fale_conosco.*'([0-9]+)'.*/)
-        str.gsub!(/javascript:mostrar_fale_conosco.*'([0-9]+)'.*;/){|x| "/sites/#{@convar[$1]['weby_name']}/feedbacks/new" if @convar[$1] }
-      end 
-      if str.match(/javascript:mostrar_menu.*'([0-9]+)'.*([0-9]+).*/) 
-        str.gsub!(/javascript:mostrar_menu.*'([0-9]+)'.*([0-9]+).*;/){|x| "/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["menus"][$1]}" if @convar[$2] }
-      end 
-
       return str 
     end 
   end 
