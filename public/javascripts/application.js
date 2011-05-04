@@ -63,8 +63,6 @@ function addToSelect(selectId){
   $(option).attr('selected', true);
 }
 
-SyntaxHighlighter.all();
-
 // Objeto para carregar gif
 var LoadingGif = {
   new: function(obj){

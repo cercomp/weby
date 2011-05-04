@@ -81,13 +81,13 @@ section#content #slider img {
 }
 
 footer {
-	margin-top: -11px;
   background-color: #CAE2F1;	
+  font-weight: bold;
   min-height: 200px;	
   padding-bottom: 10px;
-  text-align: center;
   position: relative;
-  font-weight: bold; }
+  text-align: center;
+}
 
 section#footer {
 	width: 960px;
@@ -106,9 +106,21 @@ section#footer p {
 }
 
 
-#banners{
- background-color: #70B0D9;
- min-height: 60px; }
+#banners {
+  background-color: #70B0D9;
+  min-height: 60px;
+  padding: 5px 0;
+}
+
+#banners div {
+  width: 960px;
+  margin: 0 auto;
+}
+
+#banners figure {
+  margin: 0 25px;
+  float: left;
+}
 
 .right { float: right; }
 .clear { clear: both; }
@@ -179,3 +191,80 @@ aside { width: 155px; position: relative; }
 
       footer nav menu li:hover > menu { bottom: 26px; }
       footer nav menu li:hover menu li:hover > menu { bottom: -1px; }
+
+/* ------------------  NIVO SLIDER  ---------------------------s */
+#slider {
+    position:relative;
+    width:618px; /* Change this to your images width */
+    height:246px; /* Change this to your images height */
+    background:url(images/loading.gif) no-repeat 50% 50%;
+}
+#slider img {
+    position:absolute;
+    top:0px;
+    left:0px;
+    display:none;
+}
+#slider a {
+    border:0;
+    display:block;
+}
+
+#slider {
+	position:relative;
+	background:url(images/loading.gif) no-repeat 50% 50%;
+}
+#slider img {
+	position:absolute;
+	top:0px;
+	left:0px;
+	display:none;
+}
+#slider a {
+	border:0;
+	display:block;
+}
+
+.nivo-controlNav {
+	position:absolute;
+	left:260px;
+	bottom:-42px;
+}
+.nivo-controlNav a {
+	display:block;
+	width:22px;
+	height:22px;
+	background:url(images/bullets.png) no-repeat;
+	text-indent:-9999px;
+	border:0;
+	margin-right:3px;
+	float:left;
+}
+.nivo-controlNav a.active {
+	background-position:0 -22px;
+}
+
+.nivo-directionNav a {
+	display:block;
+	width:30px;
+	height:30px;
+	background:url(images/arrows.png) no-repeat;
+	text-indent:-9999px;
+	border:0;
+}
+a.nivo-nextNav {
+	background-position:-30px 0;
+	right:15px;
+}
+a.nivo-prevNav {
+	left:15px;
+}
+
+.nivo-caption {
+    text-shadow:none;
+    font-family: Helvetica, Arial, sans-serif;
+}
+.nivo-caption a { 
+    color:#efe9d1;
+    text-decoration:underline;
+}
