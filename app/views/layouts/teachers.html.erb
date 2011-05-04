@@ -1,77 +1,73 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title> <%= @site.name %> </title>
-  <meta charset="utf-8">
-  <%= csrf_meta_tag %>
-  <%= stylesheet_link_tag 'institutional' %>
-  <%= stylesheet_link_tag 'scaffold' %>
-  <%= stylesheet_link_tag 'application' %>
-  <%= stylesheet_link_tag 'semantic_forms' %>
-  <%= stylesheet_link_tag 'teachers' %>
-  <%= stylesheet_link_tag 'paginate' %>
-  <%= stylesheet_link_tag 'SyntaxHighlighter/shCore' %>
-  <%= stylesheet_link_tag 'SyntaxHighlighter/shThemeDefault' %>
-  <%= render :partial => 'sites/viewCsses' %>
-  <!--[if lt IE 9]>
-  <%= javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js" %>
-  <%= javascript_include_tag "http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js" %>
-  <![endif]-->
-  <%= stylesheet_link_tag 'negativo' if session[:contrast] == 'yes' %>
-</head>
-<%#= debug params %>
-<% if @site.body_width %>
-  <body style='width:<%= "#{@site.body_width.to_i + 4}" %>px'>
-<% elsif @top_banner_width %>
-  <body style='width:<%= "#{@top_banner_width.to_i + 4}" %>px'>
-<% else %>
+  <head>
+    <title> <%= @site.name %> </title>
+    <meta charset="utf-8">
+    <%= csrf_meta_tag %>
+    <%= stylesheet_link_tag 'institutional' %>
+    <%= stylesheet_link_tag 'scaffold' %>
+    <%= stylesheet_link_tag 'application' %>
+    <%= stylesheet_link_tag 'semantic_forms' %>
+    <%= stylesheet_link_tag 'teachers' %>
+    <%= stylesheet_link_tag 'paginate' %>
+    <%= stylesheet_link_tag 'SyntaxHighlighter/shCore' %>
+    <%= stylesheet_link_tag 'SyntaxHighlighter/shThemeDefault' %>
+    <%= render :partial => 'sites/viewCsses' %>
+    <!--[if lt IE 9]>
+    <%= javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js" %>
+    <%= javascript_include_tag "http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js" %>
+    <![endif]-->
+    <%= stylesheet_link_tag 'negativo' if session[:contrast] == 'yes' %>
+  </head>
+
+  <%#= debug params %>
+
   <body>
-<% end %>
+      <div id="wrapper" <%= "style='width: #{ @main_width }px'" if @main_width %>>
 
-  <%= raw institutional_bar %>
+      <%= raw institutional_bar %>
 
-  <div id="wraper">
-  <%#= debug(session) %>
-  <header>
-  	<div align="left"><%= raw menu_admin(@site) %></div>
-			<% unless @site.repository.nil? %>
-				<figure id="top_figure">
-					<% size = 155 %>
-					<%= link_to image_tag(@site.repository.archive.url, :alt => @site.repository.description, :title => @site.repository.description, :size => size.to_s), @site %>
-				</figure>
-			<% end %>
-			<section id="description">
-	 		 	<spam><%= @site.description %></spam>
-			
-			</section>
-			<nav class="right" id="acessibilidade">
+        <%#= debug(session) %>
+        <header>
+        <div align="left"><%= raw menu_admin(@site) %></div>
+        <% unless @site.repository.nil? %>
+          <figure id="top_figure">
+          <% size = 155 %>
+          <%= link_to image_tag(@site.repository.archive.url, :alt => @site.repository.description, :title => @site.repository.description, :size => size.to_s), @site %>
+          </figure>
+        <% end %>
+        <section id="description">
+        <spam><%= @site.description %></spam>
+
+        </section>
+        <nav class="right" id="acessibilidade">
         <%= raw menu_acessibility %>
         <%= raw menu_locale %>
-      </nav>
-    <div class="clear"> </div>
-  </header>
-  <aside class="left">
-    <nav>
-      <%= raw print_menu(@menus['secondary']) %>
-    </nav>
-  </aside>
-  <section id="content">
-    <%= raw flash_message %>
-    <%= yield %>
-  </section>
+        </nav>
+        <div class="clear"> </div>
+        </header>
+        <aside class="left">
+        <nav>
+        <%= raw print_menu(@menus['secondary']) %>
+        </nav>
+        </aside>
+        <section id="content">
+        <%= raw flash_message %>
+        <%= yield %>
+        </section>
 
-  <footer class="clear">
-    <nav class="right">
-      <%= link_to t("contact"), new_site_feedback_path(@site), :class => 'icon icon-add' %>
-    </nav>
-  </footer>
-  </div>
+        <footer class="clear">
+        <nav class="right">
+        <%= link_to t("contact"), new_site_feedback_path(@site), :class => 'icon icon-add' %>
+        </nav>
+        </footer>
+      </div>
 
-  <%= javascript_include_tag "SyntaxHighlighter/shCore" %>
-  <%= javascript_include_tag "SyntaxHighlighter/shBrushCss" %>
-  <%= javascript_include_tag :defaults %>
-  <%= javascript_include_tag "jquery-ui.min.js" %>
-  <%= javascript_include_tag "tiny_mce/jquery.tinymce" %>
-</body>
-</html>
+      <%= javascript_include_tag "SyntaxHighlighter/shCore" %>
+      <%= javascript_include_tag "SyntaxHighlighter/shBrushCss" %>
+      <%= javascript_include_tag :defaults %>
+      <%= javascript_include_tag "jquery-ui.min.js" %>
+      <%= javascript_include_tag "tiny_mce/jquery.tinymce" %>
+    </body>
+  </html>
 

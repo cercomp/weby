@@ -158,6 +158,13 @@ class ApplicationController < ActionController::Base
         @top_banner_width,@top_banner_height = Paperclip::Geometry.from_file(@site.repository.archive).to_s.split('x')
       end
     end
+
+    @main_width = nil
+    if @site and @site.try(:body_width)
+      @main_width = @site.body_width.to_i + 4
+    elsif @site and @top_banner_width
+      @main_width = @top_banner_width.to_i + 4
+    end
   end
 
   # Metodo usado na ordenação de tabelas por alguma coluna
