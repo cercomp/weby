@@ -191,7 +191,7 @@ class Migrate_this2weby
     section#content article header summary { color: #{this_estilo.first['cor_letra_titulos']} !important; }
   /* Avançado */
     /* Pegar todo o CSS avançado, guardar em um arquivo */
-    /* #{this_estilo.first['avancado']} */
+    #{this_estilo.first['avancado']}
 EOF
       end
       insert_css = "INSERT INTO csses (name,css) VALUES ('#{site_name}','#{pre_treat(weby_estilo)}') RETURNING id"
