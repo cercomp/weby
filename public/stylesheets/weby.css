@@ -83,15 +83,26 @@ section#content #slider img {
 footer {
 	margin-top: -11px;
   background-color: #CAE2F1;	
-  min-height: 300px;	
+  min-height: 200px;	
   padding-bottom: 10px;
   text-align: center;
+  position: relative;
   font-weight: bold; }
 
 section#footer {
 	width: 960px;
 	text-align: center;
 	margin: 0px auto;
+}
+
+section#footer p {
+  bottom: 0;
+  left: 50%;
+  margin-top: 0;
+  /* Centralizando a div absolute, por isso o margin negativo */
+  margin-left: -300px;;
+  position: absolute;
+  width: 600px;
 }
 
 
