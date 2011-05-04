@@ -182,13 +182,13 @@ class Migrate_this2weby
     section#content article > p a:hover { color: #{this_estilo.first['cor_letra_links_over']} !important; }
   /* Cor Letra */
     section#content article > p,
-    section#content article > summary { color: #{this_estilo.first['cor_letra_paragrafos']} !important; }}
+    section#content article > summary { color: #{this_estilo.first['cor_letra_paragrafos']} !important; }
   /* Cor Titulos */
     section#content article header h1,
-    section#content article header h2 {color: #{this_estilo.first['cor_letra_subtitulos']} !important; }}
+    section#content article header h2 {color: #{this_estilo.first['cor_letra_subtitulos']} !important; }
   /* Cor Subtitulos */
     section#content article header,
-    section#content article header summary { color: #{this_estilo.first['cor_letra_titulos']} !important; }}
+    section#content article header summary { color: #{this_estilo.first['cor_letra_titulos']} !important; }
   /* Avançado */
     /* Pegar todo o CSS avançado, guardar em um arquivo */
     /* #{this_estilo.first['avancado']} */
