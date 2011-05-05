@@ -50,7 +50,7 @@
           <div id="slider">
             <% images = @site.pages.category('slider')[0..3] %>
             <% images.each do |image| %>
-              <%= image_tag image.repository.archive.url(:medium) %>
+              <%= image_tag image.repository.archive.url() %>
             <% end %>
           </div>
           <section id="pages">
@@ -123,7 +123,8 @@
     <%= javascript_tag do %>
       $().ready(function() {
         $('#slider').nivoSlider({
-          directionNav:false,
+          controlNav:false,
+          directionNavHide:false,
           keyboardNav:false,
           prevText: 'Anterior',
           nextText: 'Próximo'

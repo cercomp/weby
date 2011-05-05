@@ -43,6 +43,7 @@ section#content {
     height: 150px;
     float: left;
     margin-left: 5px;
+    border-bottom: 1px dotted #DDD;
   }
 
   section#content nav#admin { padding-bottom: 5px; }
@@ -63,16 +64,16 @@ section#content {
       color: #696969; }
     section#content section#pages p { }
 
-    section#content section#pages .pageleft { border-bottom: 1px dotted #DDD; padding: 0px 0 10px 0; text-align: left; }
+    section#content section#pages .pageleft { padding: 0px 0 10px 0; text-align: left; }
     section#content section#pages .pageleft a img { float: left; padding-right: 15px; }
-    section#content section#pages .pageright { border-bottom: 1px dotted #DDD; padding: 0px 0 10px 0; text-align: right; }
+    section#content section#pages .pageright { padding: 0px 0 10px 0; text-align: right; }
     section#content section#pages .pageright a img { float: right; padding-left: 15px; }
   
 section#content #slider {
   background-color: #333;
   float: left;
-  height: 300px;
-  width: 400px;
+  height: 300px !important;
+  width: 400px !important;
   line-height: 300px;
 }
 
@@ -195,8 +196,6 @@ aside { width: 155px; position: relative; }
 /* ------------------  NIVO SLIDER  ---------------------------s */
 #slider {
     position:relative;
-    width:618px; /* Change this to your images width */
-    height:246px; /* Change this to your images height */
     background:url(images/loading.gif) no-repeat 50% 50%;
 }
 #slider img {
@@ -212,7 +211,7 @@ aside { width: 155px; position: relative; }
 
 #slider {
 	position:relative;
-	background:url(images/loading.gif) no-repeat 50% 50%;
+	background:url(../images/loading.gif) no-repeat 50% 50%;
 }
 #slider img {
 	position:absolute;
@@ -225,30 +224,11 @@ aside { width: 155px; position: relative; }
 	display:block;
 }
 
-.nivo-controlNav {
-	position:absolute;
-	left:260px;
-	bottom:-42px;
-}
-.nivo-controlNav a {
-	display:block;
-	width:22px;
-	height:22px;
-	background:url(images/bullets.png) no-repeat;
-	text-indent:-9999px;
-	border:0;
-	margin-right:3px;
-	float:left;
-}
-.nivo-controlNav a.active {
-	background-position:0 -22px;
-}
-
 .nivo-directionNav a {
 	display:block;
 	width:30px;
 	height:30px;
-	background:url(images/arrows.png) no-repeat;
+	background:url(../images/arrows.png) no-repeat;
 	text-indent:-9999px;
 	border:0;
 }
