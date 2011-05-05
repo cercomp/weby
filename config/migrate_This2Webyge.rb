@@ -228,6 +228,7 @@ EOF
         if @convar["#{this_site['site_id']}"]["noticias"]["#{noticia['id']}"].nil?
           capa = noticia['capa'] != false ? true : false
           position = noticia['capa'] != 'f' ? noticia['capa'] : 'NULL'
+					position = 'NULL' if position.to_i == 0
           dt_cadastro = ((noticia['dt_cadastro'].nil?) || (/([-]+)/.match("#{noticia['dt_cadastro']}").nil?)) ? Time.now : noticia['dt_cadastro']
           dt_inicio = ((noticia['dt_inicio'].nil?) || (/([-]+)/.match("#{noticia['dt_inicio']}").nil?)) ? Time.now : noticia['dt_inicio']
           dt_fim = ((noticia['dt_fim'].nil?) || (/([-]+)/.match("#{noticia['dt_fim']}").nil?)) ? Time.now + 30000000 : noticia['dt_fim']
@@ -281,6 +282,7 @@ EOF
         if @convar["#{this_site['site_id']}"]["eventos"]["#{evento['id']}"].nil?
           capa = evento['capa'] != false ? true : false
           position = evento['capa'] != 'f' ? evento['capa'] : 'NULL'
+					position = 'NULL' if position.to_i == 0
           tipo = evento['tipo'].nil? ? '' : kind_list["#{evento['tipo']}"]
           dt_cadastro = ((evento['dt_cadastro'].nil?) || (/([-]+)/.match("#{evento['dt_cadastro']}").nil?)) ? Time.now : evento['dt_cadastro']
           dt_inicio = ((evento['dt_inicio'].nil?) || (/([-]+)/.match("#{evento['dt_inicio']}").nil?)) ? Time.now : evento['dt_inicio']
