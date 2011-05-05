@@ -1,8 +1,8 @@
 @import url(alternate.css);
 
 html { height: 99%; max-height: 99%; font-family: Verdana, sans-serif; font-size: 11px; color:#484848; }
-#wrapper{ margin: 0 auto; }
-body{ margin: 0 auto; } 
+#wrapper{ margin: 0 auto; height: 100%; }
+body{ margin: 0 auto; height: 100%; } 
 h1, h2, h3, h4 { font-family: "Trebuchet MS", Verdana, sans-serif;}
 h1 { margin:0; padding:0; font-size: 160%; }
 
