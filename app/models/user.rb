@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 
   scope :login_or_name_like, lambda { |text|
     where('login like :text OR first_name like :text OR last_name like :text',
-           { :text => "%#{name}%" })
+           { :text => "%#{text}%" })
   }
 
   def name_or_login
