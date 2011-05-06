@@ -37,15 +37,29 @@
       <div class="clear"> </div>   
       </header>
 
+      <!-- MENUS RIGHT -->
       <aside class="right" >
       <nav>
       <%= raw print_menu(@menus['direita']) %>
       </nav>  
       </aside>
 
-      <%= raw flash_message %>
-      <% if controller.controller_name.include? 'pages' and controller.action_name.include? 'view' %>
-        <section id="content">
+      <!-- BANNERS RIGHT -->
+      <aside id="banners_right">
+      <div>
+        <% @banners = @site.banners[0..3] %>
+        <% @banners.each do |b| %>
+          <figure>
+            <%= image_tag(b.repository.archive.url(b.size), :height => '60', :alt => b.text) %>
+          </figure>
+        <% end %>
+      </div>
+      <div class="clear"></div>
+      </aside>
+
+      <section id="content">
+        <%= raw flash_message %>
+        <% if controller.controller_name.include? 'pages' and controller.action_name.include? 'view' %>
           <!-- slider com imagens na lateral -->
           <div id="slider">
             <% images = @site.pages.category('slider')[0..3] %>
@@ -87,17 +101,17 @@
               <%= raw make_menu(page) %>
             </article>
             </li>
-            <% end; reset_cycle %>
+            <% end %>
           </ul>
-        </section>
-      <% else %>
-        <section id="content">
-        <%= yield %>    
-        <section>
-      <% end %>
+          <div class="clear"></div>
+          <%#= paginate @front_news, :param_name => 'front_pages', :them => 'blog', :remote => true %>
+        <% else %>
+          <%= yield %>    
+        <% end %>
+      </section>
     </div>  
 
-    <section id="banners">
+    <section id="banners_footer">
       <div>
         <% @banners = @site.banners[0..3] %>
         <% @banners.each do |b| %>

@@ -16,7 +16,7 @@
     </ul>
   </div>
   <div id='main-tabs'>
-    <% unless @menus[params[:category]] %>
+    <% if @menus[params[:category]].blank? %>
       <p> <%= t("none_category_menu", :param => params[:category]) %> </p>
     <% else %>
       <%= raw print_menu(@menus[params[:category]], 1) %>
