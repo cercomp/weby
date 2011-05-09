@@ -23,7 +23,7 @@ class Migrate_this2weby
     @con_this = PGconn.connect(@config['this']['host'],nil,nil,nil,@config['this']['database'],@config['this']['username'],@config['this']['password'])
     @con_weby = PGconn.connect(@config['weby']['host'],nil,nil,nil,@config['weby']['database'],@config['weby']['username'],@config['weby']['password'])
     @verbose = verbose
-    #@param = "WHERE site_id=17"
+    #@param = "WHERE site_id=24"
 
     count_sites = @con_weby.exec("SELECT count(*) FROM sites")
     if File.exists?("./convar.yml") and count_sites[0]['count'].to_i > 0
@@ -319,7 +319,7 @@ EOF
           autor = @convar["#{this_site['site_id']}"]['usuarios'][inform['autor']]
           autor ||= 1
           status = inform['status'] == 'P' ? true : false
-          insert_banner = "INSERT INTO banners (created_at,updated_at,date_begin_at,date_end_at,site_id,user_id,text,url,title,publish,hide,width) VALUES ('#{dt_cadastro}','#{dt_cadastro}','#{dt_inicio}','#{dt_fim}','#{@convar["#{this_site['site_id']}"]['weby']}','#{autor}','#{pre_treat(inform['texto'])}','#{pre_treat(inform['url'])}','#{pre_treat(inform['assunto'])}',#{status},false,'153') RETURNING id"
+          insert_banner = "INSERT INTO banners (created_at,updated_at,date_begin_at,date_end_at,site_id,user_id,text,url,title,publish,hide,width,category,position) VALUES ('#{dt_cadastro}','#{dt_cadastro}','#{dt_inicio}','#{dt_fim}','#{@convar["#{this_site['site_id']}"]['weby']}','#{autor}','#{pre_treat(inform['texto'])}','#{pre_treat(inform['url'])}','#{pre_treat(inform['assunto'])}',#{status},false,'153','#{pre_treat(inform['lado'])}','#{pre_treat(inform['posicao'])}') RETURNING id"
           banner = @con_weby.exec(insert_banner)
           puts "\t\t\tINSERIRNDO banner (#{banner[0]['id']}) no weby\n" if @verbose
           # Relacionando notícias na variável de conversão
