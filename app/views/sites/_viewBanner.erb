@@ -1,4 +1,4 @@
-<% banners = @site.banners.where(["publish='true' AND date_begin_at <= ? AND date_end_at > ?", Time.now, Time.now]).order("date_begin_at").all %>
+<% banners = @site.banners.where(["publish='true' AND date_begin_at <= ? AND date_end_at > ?", Time.now, Time.now]) %>
 <% unless banners.empty? %>
   <% banners.each do |banner| %> 
     <% unless banner.repository.nil? %>

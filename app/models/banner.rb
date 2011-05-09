@@ -1,6 +1,7 @@
 class Banner < ActiveRecord::Base
-  default_scope :conditions => { :hide => false }, :order => 'created_at DESC'
-  scope :unhide, :conditions => { :hide => false }, :order => 'created_at DESC'
+  default_scope :conditions => { :hide => false }, :order => 'position,id DESC'
+  
+  scope :unhide, :conditions => { :hide => false }, :order => 'position,id DESC'
   scope :category, lambda { |cat| where("category = ?", cat)}
 
 	belongs_to :repository, :foreign_key => "repository_id"

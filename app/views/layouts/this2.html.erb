@@ -26,34 +26,39 @@
       <%#= debug(session) %>
 
       <header>
-      <%= render :partial => "sites/viewCover" %>
-      <nav>
-      <%= raw print_menu(@menus['main']) %>
-      <nav class="right">
-      <%= raw menu_acessibility %>
-      <%= raw menu_locale %>
-      </nav>
-      <div class="clear"> </div>
-      </nav>
+        <%= render :partial => "sites/viewCover" %>
+        <nav>
+          <%= raw print_menu(@menus['main']) %>
+          <nav class="right">
+            <%= raw menu_acessibility %>
+            <%= raw menu_locale %>
+          </nav>
+          <div class="clear"> </div>
+        </nav>
       </header>
 
       <aside class="left">
-      <nav>
-      <%= raw print_menu(@menus['secondary']) %>
-      </nav>
+        <nav>
+          <%= raw print_menu(@menus['secondary']) %>
+        </nav>
+        <% if @site.banners %>
+          <%= raw print_banner(@site.banners.category('esq'))%>
+        <% end %>
       </aside>
 
       <aside class="right">
-      <nav>
-      <%= raw print_menu(@menus['auxiliary']) %>
-      </nav>
-      <%= render :partial => "sites/viewBanner"  %>
+        <nav>
+          <%= raw print_menu(@menus['auxiliary']) %>
+        </nav>
+        <% if @site.banners %>
+          <%= raw print_banner(@site.banners.category('dir'))%>
+        <% end %>
       </aside>
 
       <section id="content">
-      <%= raw flash_message %>
-      <%= raw menu_admin(@site) %>
-      <%= yield %>
+        <%= raw flash_message %>
+        <%= raw menu_admin(@site) %>
+        <%= yield %>
       </section>
 
       <footer class="clear">
