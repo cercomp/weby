@@ -33,7 +33,6 @@
         <td>
           <%= raw make_menu(page, :except => "show") %>
           <% if check_permission(PagesController, ["sort"]) %>
-            <%# FIXME drag and drop não está funcionando %>
             <div class='handle icon icon-drag'><%= t("move") %></div>
           <% end %>
         </td>
