@@ -110,10 +110,10 @@ section#content {
       color: #696969; }
     section#content section#pages p { }
 
-    section#content section#pages .pageleft { border-bottom: 1px dotted #DDD; padding: 0px 0 10px 0; text-align: left; }
-    section#content section#pages .pageleft a img { float: left; padding-right: 15px; }
-    section#content section#pages .pageright { border-bottom: 1px dotted #DDD; padding: 0px 0 10px 0; text-align: right; }
-    section#content section#pages .pageright a img { float: right; padding-left: 15px; }
+    section#content section#pages li:nth-child(odd) { border-bottom: 1px dotted #DDD; padding: 0px 0 10px 0; text-align: left; }
+    section#content section#pages li:nth-child(odd) a img { float: left; padding-right: 15px; }
+    section#content section#pages li:nth-child(even) { border-bottom: 1px dotted #DDD; padding: 0px 0 10px 0; text-align: right; }
+    section#content section#pages li:nth-child(even) a img { float: right; padding-left: 15px; }
 
 figure#banner {
   margin: 0;

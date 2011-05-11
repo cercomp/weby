@@ -1,7 +1,7 @@
 <%= paginate @pages, :remote => true %>
 <%= info_page @pages %>
 <%= per_page_links @pages, true %>
-<table class='list'>
+<table id='list'>
   <thead>
     <th><%= sortable 'id' %></th>
     <th><%= sortable 'date_begin_at', t("date_param", :param => t("register"))%></th>
@@ -18,7 +18,7 @@
   </thead>
   <tbody>
     <% @pages.each do |page| %>
-      <tr>
+      <tr id="sort_page_<%= page.id %>">
         <td><%= page.id %></td>
         <td><%= l page.created_at, :format => :short %></td>
         <td><%= l page.date_begin_at, :format => :short %></td>

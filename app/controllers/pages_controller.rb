@@ -139,35 +139,23 @@ class PagesController < ApplicationController
   end
 
   def sort
-    @pages = @site.pages.paginate :page => params[:paginate], :per_page => 10
+    @pages = @site.pages.page(params[:page]).per(10)
 
-    @front_news = @site.pages.where(["front='true' AND publish='true' AND date_begin_at <= ? AND date_end_at > ?", Time.now, Time.now])
+    @front_news = @site.pages.news(true)
 
-    @no_front_news = @site.pages.where(["front='false' AND publish='true' AND date_begin_at <= ? AND date_end_at > ?", Time.now, Time.now]).paginate :page => params[:page], :per_page => 5
+    @no_front_news = @site.pages.news(false).page(params[:page]).per(5)
 
-    params['page'] ||= []
-    params['page'].each do |p|
+    params['sort_page'] ||= []
+    params['sort_page'].to_a.each do |p|
       page = Page.find(p)
-      page.position = (params['page'].index(p.to_s).to_i + 1)
+      page.position = (params['sort_page'].index(p) + 1)
       page.save
-    end
-    respond_with do |format|
-      format.js { 
-        render :update do |page|
-        if params[:from] == 'view'
-          page.call "$('#list').html", render(:partial => 'viewNews')
-        else
-          #page.call "$('#list').html", render(:partial => 'list')
-          render :nothing => true
-        end
-        end
-      }
     end
   end
 
   private
   def sort_column
-    Page.column_names.include?(params[:sort]) ? params[:sort] : 'id'
+    Page.column_names.include?(params[:sort]) ? params[:sort] : 'position, id'
   end
 
   def tiny_mce

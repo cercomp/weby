@@ -1,6 +1,6 @@
 <% @front_news.try(:each) do |page| %>
-  <li id=<%= "page_#{page.id}" %> style="list-style-type:none;">
-  <article class="<%= cycle 'pageleft','pageright' %>">
+  <li id=<%= "sort_page_#{page.id}" %> style="list-style-type:none;">
+  <article>
   <% unless page.repository.nil? %>
     <% recreate_thumbs! page %>
     <%= link_to_cover_image page %>
@@ -27,6 +27,5 @@
   <% end %>
   </article>
 <% end %>
-<% reset_cycle %>
 </li>
 <%= paginate @front_news, :param_name => 'front_pages', :theme => 'blog', :remote => true %>
