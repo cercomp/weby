@@ -9,9 +9,9 @@ class Repository < ActiveRecord::Base
   has_many :pages_repositories
   has_many :pages, :through => :pages_repositories
 
-  scope :site_and_content_file, lambda { |site, content_file|
-    where(["site_id = ? AND archive_content_type LIKE ?",
-           site, "#{content_file}%"])
+  scope :search, lambda { |site, search, content_file|
+    where(["site_id = ? AND (description LIKE ? OR archive_file_name LIKE ?) AND archive_content_type LIKE ?",
+           site, "%#{search}%", "%#{search}%", "#{content_file}%"])
   }
 
   validates_presence_of :description

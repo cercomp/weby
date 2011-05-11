@@ -40,7 +40,7 @@ class PagesController < ApplicationController
     @page.pages_repositories.build
 
     # Objeto para repository_id (relacionamento um-para-um)
-    @repositories = Repository.site_and_content_file(@site.id, "image%").
+    @repositories = Repository.search(@site.id, "#{params[:search]}", "image%").
       order('created_at DESC').page(params[:page]).per(4)
 
     # Objeto para pages_repositories (relacionamento muitos-para-muitos)

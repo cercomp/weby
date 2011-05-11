@@ -4,7 +4,7 @@
 
   <center>
     <% menus_list = [[t("picture"), "image"], [t("pdf"), "pdf"]] %>
-    <%= form_tag edit_site_admin_path(@site, @site), :method => 'get', :remote => true do %>
+    <%= form_tag edit_site_admin_path(@site, @site), :method => 'get' do %>
       <%= label_tag t("search") %>
       <%= text_field_tag :search %>
       <%= select_tag(:type, options_for_select(menus_list, selected = "#{params[:type]}")) %>

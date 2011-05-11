@@ -14,9 +14,9 @@ class AdminController < ApplicationController
 
   def edit
     params[:type] ||= 'image'
+		params[:per_page] ||= 4
     @repository = Repository.new
-    @repositories = Repository.site_and_content_file(@site.id, "#{params[:type]}").order('id DESC').page(params[:page]).per(params[:per_page])
-
+    @repositories = Repository.search(@site.id, "#{params[:search]}", "#{params[:type]}").order('id DESC').page(params[:page]).per(params[:per_page])
     @themes = []
     Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*")].each do |file|
       @themes << file.split("/")[-1].split(".")[0]
