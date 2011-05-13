@@ -1,0 +1,10 @@
+<% unless @banners_side.blank? %>
+  <div>
+    <% @banners_side.each do |b| %>
+      <figure>
+        <%= image_tag(b.repository.archive.url(b.size), :height => '60', :alt => b.text) %>
+      </figure>
+    <% end %>
+  </div>
+<% end %>
+<h1 style="font-size: 100px">Component</h1>

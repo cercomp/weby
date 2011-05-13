@@ -1,0 +1,29 @@
+<h1>Listing site_components</h1>
+
+<table>
+  <tr>
+    <th>Site</th>
+    <th>Place holder</th>
+    <th>Settings</th>
+    <th>Component</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @site_components.each do |site_component| %>
+  <tr>
+    <td><%= site_component.site %></td>
+    <td><%= site_component.place_holder %></td>
+    <td><%= site_component.settings %></td>
+    <td><%= site_component.component %></td>
+    <td><%= link_to 'Show', [@site, site_component] %></td>
+    <td><%= link_to 'Edit', edit_site_site_component_path(@site,site_component) %></td>
+    <td><%= link_to 'Destroy', [@site, site_component], :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Site component', new_site_site_component_path %>

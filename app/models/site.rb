@@ -51,7 +51,8 @@ class Site < ActiveRecord::Base
   has_many :sites_csses
   has_many :csses, :through => :sites_csses
 
-  has_many :components
+  # FIXME testando relação de componentes
+  has_many :site_components
 
   accepts_nested_attributes_for :sites_menus, :allow_destroy => true
   accepts_nested_attributes_for :sites_pages, :allow_destroy => true

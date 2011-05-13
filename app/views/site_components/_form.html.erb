@@ -1,0 +1,61 @@
+<script>
+  function join_data(){
+    var result = [];
+    $('#settings p').each(function(i, v){
+      var input = $(v).children('input');
+      result.push([':', input.attr('name'), ' => "', input.val(), '"'].join(''));
+    });
+    $('#settings').empty().append(['<textarea name="site_component[settings]">{', result.join(', '), '}</textarea>'].join(''));
+  }
+</script>
+<%= form_for([@site,@site_component], :html => {:onSubmit => 'join_data()'}) do |f| %>
+  <% if @site_component.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@site_component.errors.count, "error") %> prohibited this site_component from being saved:</h2>
+
+      <ul>
+      <% @site_component.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.hidden_field :site_id, :value => @site.id %>
+
+  <%# FIXME arrumar esse form %>
+
+  <%= javascript_include_tag 'jquery' %>
+  <script>
+  var settings = <%= raw components_settings.to_json %>
+  function switch_settings() {
+    var setting = $("#component :selected").val();
+    var old_settings;
+    $('#settings').empty();
+
+    $(settings[setting]).each(function (i, s){
+      var a = $(['<p><label>', s, '</label><input name="', s, '" type="text"></p>'].join(''));
+      $('#settings').append(a);
+    });
+  }
+  </script>
+
+  <div class="field">
+    <%= f.label :place_holder %><br />
+    <%= f.select :place_holder, places_holder %>
+  </div>
+
+  <div class="field">
+    <%= f.label :component %><br />
+    <%= f.select :component, components, {}, {:onchange => 'switch_settings()', :id => "component"} %>
+  </div>
+
+  <div class="field" id="settings">
+    <%= f.label :settings %><br />
+    <%= f.text_area :settings %>
+  </div>
+  <%= javascript_tag "old_settings = '#{@site_component.settings}'; switch_settings()" %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

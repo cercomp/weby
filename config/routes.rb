@@ -56,7 +56,7 @@ Webyge::Application.routes.draw do
       end
     end
 
-    resources :groups, :chats, :roles, :rights, :archives, :admin, :components
+    resources :groups, :chats, :roles, :rights, :archives, :admin, :site_components
   end
 
   resources :groups, :menus, :chats, :rights,
