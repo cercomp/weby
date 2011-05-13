@@ -1,7 +1,7 @@
 class Site < ActiveRecord::Base
   before_save :clear_per_page
 
-  default_scope :order => 'id DESC'
+  default_scope :order => 'sites.id DESC'
 
   def to_param
     "#{name}"
@@ -15,17 +15,17 @@ class Site < ActiveRecord::Base
   # TODO tentar agrupar os 3 metodos a seguir em apenas 1
   def page_categories
     # FIXME: Verificar se Rails possui um método para isso.
-    self.pages.find_by_sql('SELECT DISTINCT category FROM pages').map{ |m| m.category }.uniq
+    self.pages.unscoped.find(:all, :select => 'DISTINCT category').map{ |m| m.category }.uniq
   end
 
   def banner_categories
     #self.banners.map{ |m| m.category }.uniq
-    self.pages.find_by_sql('SELECT DISTINCT category FROM banners').map{ |m| m.category }.uniq
+    self.banners.unscoped.find(:all, :select => 'DISTINCT category').map{ |m| m.category }.uniq
   end
 
   def menu_categories
     #self.sites_menus.map{ |m| m.category }.uniq
-    self.pages.find_by_sql('SELECT DISTINCT category FROM menus').map{ |m| m.category }.uniq
+    self.menus.unscoped.find(:all, :select => 'DISTINCT category').map{ |m| m.category }.uniq
   end
 
   validates_presence_of :name, :url, :per_page
