@@ -59,7 +59,7 @@ class PagesController < ApplicationController
 
     # Objeto para repository_id (relacionamento um-para-um)
     @repositories = @site.repositories.description_or_file_and_content_file('', "image%").
-      order('created_at DESC').page(params[:page]).
+      page(params[:page]).
       per(params[:per_page])
 
     # Criando objeto com os arquivos que não estão relacionados com a página
