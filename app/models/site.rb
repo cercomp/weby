@@ -33,6 +33,8 @@ class Site < ActiveRecord::Base
 
   has_many :roles
 
+  has_one :repository
+
   has_many :sites_menus
   has_many :menus, :through => :sites_menus
 
@@ -48,9 +50,8 @@ class Site < ActiveRecord::Base
 
   has_many :components
 
-  #accepts_nested_attributes_for :sites_users, :allow_destroy => true#, :reject_if => proc { |attributes| attributes['title'].blank? }
-  accepts_nested_attributes_for :sites_menus, :allow_destroy => true#, :reject_if => proc { |attributes| attributes['title'].blank? }
-  accepts_nested_attributes_for :sites_pages, :allow_destroy => true#, :reject_if => proc { |attributes| attributes['title'].blank? }
+  accepts_nested_attributes_for :sites_menus, :allow_destroy => true
+  accepts_nested_attributes_for :sites_pages, :allow_destroy => true
 
   belongs_to :repository, :foreign_key => "top_banner_id"
   has_many :repositories
