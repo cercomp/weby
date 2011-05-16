@@ -10,7 +10,10 @@ form textarea {
   font-family: Georgia;
   font-color: #000; }
 form label { }
-form input,
+form input[type='file'] {
+
+}
+form input:not([type='file']),
 form select,
 form textarea {
   border-top: 2px solid #999999;
