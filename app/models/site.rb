@@ -25,7 +25,7 @@ class Site < ActiveRecord::Base
 
   def menu_categories
     #self.sites_menus.map{ |m| m.category }.uniq
-    self.menus.unscoped.find(:all, :select => 'DISTINCT category').map{ |m| m.category }.uniq
+    self.menus.find(:all, :select => 'DISTINCT category').map{ |m| m.category }.uniq
   end
 
   validates_presence_of :name, :url, :per_page

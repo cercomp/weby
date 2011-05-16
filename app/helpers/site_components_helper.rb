@@ -16,7 +16,7 @@ module SiteComponentsHelper
 
   def components_settings
     {
-      'banner_horizontal' => ['id', 'cattegory'],
+      'banner_horizontal' => ['id', 'category'],
       'banner_side' => [],
       'menu_side' => ['class', 'category']
     }

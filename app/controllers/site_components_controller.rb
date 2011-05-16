@@ -1,4 +1,6 @@
 class SiteComponentsController < ApplicationController
+  layout :choose_layout
+
   # GET /site_components
   # GET /site_components.xml
   def index

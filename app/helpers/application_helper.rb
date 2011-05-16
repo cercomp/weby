@@ -394,10 +394,11 @@ module ApplicationHelper
       r.archive.url, :title => r.description
   end
 
-  # TODO remover este código se ele não estiver sendo usado
+  # FIXME dar nome descente às variáveis
   def load_components component_place
     eca = ''
     @site.site_components.where(["place_holder = ?", component_place]).each do |b|
+      b.settings ||= "{}"
       settings = eval(b.settings)
       eca << render(:partial => "components_partials/#{b.component}", :locals => { :settings => settings })
     end

@@ -19,7 +19,7 @@
     <td><%= site_component.component %></td>
     <td><%= link_to 'Show', [@site, site_component] %></td>
     <td><%= link_to 'Edit', edit_site_site_component_path(@site,site_component) %></td>
-    <td><%= link_to 'Destroy', [@site, site_component], :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Destroy', site_site_component_path(@site, site_component), :confirm => 'Tem certeza?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
