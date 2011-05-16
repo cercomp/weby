@@ -461,10 +461,10 @@ EOF
         string.gsub!(/['"]javascript:mostrar_menu.*'([0-9]+)'.*([0-9]+).*;['"]/){|x| "'/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["menus"][$1]}'" if @convar[$2] }
       end 
       if string.match(/javascript:pagina_inicial.*'([0-9]+)'.*/)
-        string.gsub!(/['"]javascript:pagina_inicial.*'([0-9]+)'.*;['"]/){|x| "'/sites/#{@convar[$1]['weby_name']}'" if @convar[$1] }
+        string.gsub!(/javascript:pagina_inicial\('([0-9]+)'\);/){|x| "/sites/#{@convar[$1]['weby_name']}" if @convar[$1] }
       end 
       if string.match(/javascript:mostrar_fale_conosco.*'([0-9]+)'.*/)
-        string.gsub!(/['"]javascript:mostrar_fale_conosco.*'([0-9]+)'.*;['"]/){|x| "'/sites/#{@convar[$1]['weby_name']}/feedbacks/new'" if @convar[$1] }
+        string.gsub!(/javascript:mostrar_fale_conosco\('([0-9]+)'\);/){|x| "/sites/#{@convar[$1]['weby_name']}/feedbacks/new" if @convar[$1] }
       end 
       str = @con_weby.escape(string)
       return str 
