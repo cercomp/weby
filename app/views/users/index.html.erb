@@ -1,6 +1,12 @@
 <fieldset>
   <legend><%=  t"user.other" %></legend>
 
+  <% if current_user.is_admin? %>
+    <div class="contextual">
+      <p> <%= link_to (t"new_param.masc", :param => (t"user.one")), new_user_path, :class => 'icon icon-add' %> </p>
+    </div>
+  <% end %>
+
   <center>
     <%= form_tag @site.nil? ? users_path : site_users_path, :method => 'get', :remote => true do %>
       <%= label_tag t("search") %>

@@ -39,10 +39,7 @@ class PagesController < ApplicationController
     @page.sites_pages.build
     @page.pages_repositories.build
 
-    # Objeto para repository_id (relacionamento um-para-um)
-    @repositories = @site.repositories.
-      description_or_file_and_content_file(params[:search], "image%").
-      order('created_at DESC').page(params[:page]).per(4)
+    @repositories = images
 
     # Objeto para pages_repositories (relacionamento muitos-para-muitos)
     ## Criando objeto com os arquivos que não estão relacionados com a página
@@ -57,10 +54,7 @@ class PagesController < ApplicationController
     # Automaticamente define o tipo, se não for passado como parâmetro
     params[:type] ||= @page.type
 
-    # Objeto para repository_id (relacionamento um-para-um)
-    @repositories = @site.repositories.description_or_file_and_content_file('', "image%").
-      page(params[:page]).
-      per(params[:per_page])
+    @repositories = images 
 
     # Criando objeto com os arquivos que não estão relacionados com a página
     if not @page.repository_ids
@@ -173,5 +167,11 @@ class PagesController < ApplicationController
     else
       params[:per_page] || per_page_default
     end
+  end
+
+  def images
+    @site.repositories.
+      description_or_file_and_content_file(params[:search], "image%").
+      order('created_at DESC').page(params[:page]).per(4)
   end
 end

@@ -9,11 +9,18 @@ class User < ActiveRecord::Base
 
   scope :login_or_name_like, lambda { |text|
     where('login like :text OR first_name like :text OR last_name like :text',
-           { :text => "%#{text}%" })
+          { :text => "%#{text}%" })
+  }
+
+  scope :by_site, lambda { |site_id, admin|
+    joins('LEFT JOIN roles_users ON roles_users.user_id = users.id 
+          LEFT JOIN roles ON roles.id = roles_users.role_id').
+          where(["roles.site_id = ? or users.is_admin = ?",
+                         site_id, admin])
   }
 
   def name_or_login
-     self.first_name ? ("#{self.first_name} #{self.last_name}") : self.login
+    self.first_name ? ("#{self.first_name} #{self.last_name}") : self.login
   end
 
   def password_reset!(host)

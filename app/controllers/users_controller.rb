@@ -60,9 +60,12 @@ class UsersController < ApplicationController
 
   def index
     @users = User.login_or_name_like(params[:search]).
-      order(sort_column + " " + sort_direction).
-      page(params[:page]).
+      order(sort_column + " " + sort_direction).page(params[:page]).
       per(params[:per_page]) 
+
+    if @site
+      @users = @users.by_site(@site.id, current_user.is_admin?)
+    end
 
     @roles = Role.select('id, name, theme').
       group("id, name, theme").order("id")
