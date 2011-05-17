@@ -20,7 +20,7 @@ class AdminController < ApplicationController
       description_or_file_and_content_file(params[:search], params[:type]).
       order('id DESC').page(params[:page]).per(params[:per_page])
     @themes = []
-    Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*")].each do |file|
+    (Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*.erb")] - Dir[File.join(Rails.root + "app/views/layouts/portal.html.erb")]).each do |file|
       @themes << file.split("/")[-1].split(".")[0]
     end
 

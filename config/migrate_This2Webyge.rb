@@ -23,7 +23,7 @@ class Migrate_this2weby
     @con_this = PGconn.connect(@config['this']['host'],nil,nil,nil,@config['this']['database'],@config['this']['username'],@config['this']['password'])
     @con_weby = PGconn.connect(@config['weby']['host'],nil,nil,nil,@config['weby']['database'],@config['weby']['username'],@config['weby']['password'])
     @verbose = verbose
-    #@param = "WHERE site_id=24"
+    #@param = "WHERE site_id=68"
 
     count_sites = @con_weby.exec("SELECT count(*) FROM sites")
     if File.exists?("./convar.yml") and count_sites[0]['count'].to_i > 0
@@ -650,7 +650,7 @@ class Migrate_files
     file_type = content_type file
     file_size = File.new(file).size
     descricao = ""
-    #descricao = "#{file_name}"
+    descricao = "#{file_name}"
  
     sql = "INSERT INTO repositories(site_id,created_at,updated_at,archive_file_name,archive_content_type,archive_file_size,archive_updated_at,description) VALUES ('#{site_id}','#{Time.now}','#{Time.now}','#{pre_treat(file_name)}','#{file_type}','#{file_size}','#{Time.now}','#{descricao}') RETURNING id"
   
