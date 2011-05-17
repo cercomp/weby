@@ -1,29 +1,30 @@
-<h1>Listing site_components</h1>
+<fieldset>
+<legend><%= t("component.other") %></legend>
 
-<table>
-  <tr>
-    <th>Site</th>
-    <th>Place holder</th>
-    <th>Settings</th>
-    <th>Component</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+  <div class="contextual">
+    <p>
+      <%= link_to t("new_param.masc", :param => t("component.one")),
+        new_site_site_component_path, :class => "icon icon-add" %>
+    </p>
+  </div>
 
-<% @site_components.each do |site_component| %>
-  <tr>
-    <td><%= site_component.site %></td>
-    <td><%= site_component.place_holder %></td>
-    <td><%= site_component.settings %></td>
-    <td><%= site_component.component %></td>
-    <td><%= link_to 'Show', [@site, site_component] %></td>
-    <td><%= link_to 'Edit', edit_site_site_component_path(@site,site_component) %></td>
-    <td><%= link_to 'Destroy', site_site_component_path(@site, site_component), :confirm => 'Tem certeza?', :method => :delete %></td>
-  </tr>
-<% end %>
+<table id="list">
+  <thead>
+    <th><%= t("place") %></th>
+    <th><%= t("component.one") %></th>
+    <th></th>
+  </thead>
+
+  <tbody>
+    <% @site_components.each do |site_component| %>
+      <tr>
+        <td><%= site_component.place_holder %></td>
+        <td><%= site_component.component %></td>
+        <td><%= raw make_menu(site_component) %>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
 <br />
 
-<%= link_to 'New Site component', new_site_site_component_path %>

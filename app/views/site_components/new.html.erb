@@ -1,5 +1,7 @@
-<h1>New site_component</h1>
+<fieldset>
+<legend><%= t('new_param.masc', :param => t('component.one')) %></legend>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', site_site_components_path %>
+<%= link_to t('back'), site_site_components_path %>
+</fieldset>

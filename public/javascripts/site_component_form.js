@@ -13,7 +13,7 @@ window.onload = function(){
 
   switch_settings();
   $('form[id*="site_component"]').submit( join_data );
-  $('#component').change( switch_settings );
+  $('#site_component_component').change( switch_settings );
 };
 
 /**
@@ -21,15 +21,15 @@ window.onload = function(){
  *
  */
 function switch_settings() {
-  var setting = $("#component :selected").val();
+  var setting = $("#site_component_component :selected").val();
 
-  $('#settings').empty();
+  $('#settings .input').empty().append("<br>");
 
   $(settings[setting]).each(function (i, s){
     var a = $(['<p><label>', s, '</label><input name="', s, '" type="text" value="',
       old_settings[s], '"></p>'].join(''));
 
-    $('#settings').append(a);
+    $('#settings .input').append(a);
   });
 }
 
@@ -40,11 +40,11 @@ function switch_settings() {
 function join_data(){
   var result = [];
 
-  $('#settings p').each(function(i, v){
+  $('#settings .input p').each(function(i, v){
     var input = $(v).children('input');
     result.push([':', input.attr('name'), ' => "', input.val(), '"'].join(''));
   });
 
-  $('#settings').append(['<textarea name="site_component[settings]" style="display:none">{',
+  $('#settings .input').append(['<textarea name="site_component[settings]" style="display:none">{',
     result.join(', '), '}</textarea>'].join(''));
 }

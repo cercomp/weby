@@ -234,6 +234,7 @@ pt-BR:
   phone: "Telefone"
   picture: "Imagem"
   picture_text: "Texto da imagem"
+  place: "local"
   position: "Posição"
   prohibited_being_saved: 
     one: " erro, impede que você prossiga"
