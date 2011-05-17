@@ -14,18 +14,15 @@ class Site < ActiveRecord::Base
 
   # TODO tentar agrupar os 3 metodos a seguir em apenas 1
   def page_categories
-    # FIXME: Verificar se Rails possui um método para isso.
-    self.pages.unscoped.find(:all, :select => 'DISTINCT category').map{ |m| m.category }.uniq
+    self.pages.except(:order, :select).find(:all, :select => 'DISTINCT category').map{ |m| m.category }
   end
 
   def banner_categories
-    #self.banners.map{ |m| m.category }.uniq
-    self.banners.unscoped.find(:all, :select => 'DISTINCT category').map{ |m| m.category }.uniq
+    self.banners.except(:order, :select).find(:all, :select => 'DISTINCT category').map{ |m| m.category }
   end
 
   def menu_categories
-    #self.sites_menus.map{ |m| m.category }.uniq
-    self.menus.find(:all, :select => 'DISTINCT category').map{ |m| m.category }.uniq
+    self.sites_menus.except(:order, :select).find(:all, :select => 'DISTINCT category').map{ |m| m.category }
   end
 
   validates_presence_of :name, :url, :per_page
