@@ -233,6 +233,7 @@ en:
   phone: "Phone number"
   picture: "picture"
   picture_text: "Picture´s text"
+  place: "place"
   position: "Position"
   prohibited_being_saved:
     one: " error, prevent you from proceeding"

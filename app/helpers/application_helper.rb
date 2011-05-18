@@ -152,7 +152,7 @@ module ApplicationHelper
   # Verifica as permissões do usuário dado um controlador
   # Parametros: (objeto) usuário, (string) controlador
   # Retorna: um vetor com as permissões
-  def get_permissions(user, ctr, args={}) # FIXME except no make_menu não está funcionando
+  def get_permissions(user, ctr, args={})
     user ||= current_user
     # Se não está logado não existe permissões
     return [args[:except]] if user.nil?
@@ -184,9 +184,22 @@ module ApplicationHelper
   # Monta o menu baseado nas permissões do usuário
   # Parametros: objeto
   def make_menu(obj, args={})
-    menu ||= ""
+    menu = ""
+    excepts = args[:except]
+    # Trata os argumentos para excluir itens do menu
+
+    # Transforma o parâmetro em array caso não seja
+    excepts = [excepts] unless excepts.is_a? Array
+    excepts.each_index do |i|
+      # Transforma parâmetros em símbolos caso não sejam
+      excepts[i] = excepts[i].to_sym unless excepts[i].is_a? Symbol
+    end
+
+    # Os itens do menu serão as actions do controller menos os itens no parâmetro :except
+    actions = controller.class.instance_methods(false) - excepts
+
     get_permissions(current_user, '', args).each do |permission|
-      if permission and controller.class.instance_methods(false).include?(permission.to_sym)
+      if permission and actions.include?(permission.to_sym)
         case permission.to_s
         when "show"
           menu += link_to(t('show'), {:controller => "#{controller.controller_name}", :action => 'show', :id => obj.id}, :class => 'icon icon-show', :alt => t('show'), :title => t('show')) + " "

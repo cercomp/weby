@@ -20,7 +20,7 @@
       <tr>
         <td><%= site_component.place_holder %></td>
         <td><%= site_component.component %></td>
-        <td><%= raw make_menu(site_component) %>
+        <td><%= raw make_menu(site_component, :except => "show") %>
       </tr>
     <% end %>
   </tbody>
