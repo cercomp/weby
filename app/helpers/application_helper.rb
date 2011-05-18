@@ -185,7 +185,7 @@ module ApplicationHelper
   # Parametros: objeto
   def make_menu(obj, args={})
     menu = ""
-    excepts = args[:except]
+    excepts = args[:except] || []
     # Trata os argumentos para excluir itens do menu
 
     # Transforma o parâmetro em array caso não seja
