@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html lang=<%= session[:locale].to_s %> >
-  <%= render :partial => 'layouts/shared/head' %>
-	<%= content_for :stylesheets do %>
-		<%= stylesheet_link_tag 'weby_negativo' if session[:contrast] == 'yes' %>
-  <% end %>
+  <%= render 'layouts/shared/head', :contrast => 'weby_contrast' %>
   <body>
-    <%= render :partial => 'layouts/shared/institutional_bar' %>
+    <%= render 'layouts/shared/institutional_bar' %>
     <div id="wrapper" <%= "style='width: #{ @main_width }px'" if @main_width %>>
 
       <header>
      		<%= raw menu_admin(@site) %>
-     		<%= render :partial => "sites/viewCover" %>
+     		<%= render "sites/viewCover" %>
       	<nav>
       		<%= raw print_menu(@menus['superior']) %>
       		<nav class="right">
-						<%= render :partial => "layouts/shared/menu_acessibility" %>
-            <%= render :partial => "layouts/shared/menu_locale" %>
+						<%= render "layouts/shared/menu_acessibility" %>
+            <%= render "layouts/shared/menu_locale" %>
       		</nav>
       	</nav>        
       <div class="clear"> </div>   
@@ -118,7 +115,7 @@
       </section>
     </footer>
 
-	<%= render :partial => 'layouts/shared/javascripts'%>
+	<%= render 'layouts/shared/javascripts'%>
  	<%= content_for :javascripts do %>
 		<%= javascript_include_tag "jquery.nivo.slider.pack.js" %>
   <% end %>

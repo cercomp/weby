@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html>
-  <%= render :partial => 'layouts/shared/head' %>
+  <%= render 'layouts/shared/head', :contrast => 'contrast' %>
   <body>
-    <%#= debug params %>
     <header>
       <nav class="right">
-        <%= render :partial => "layouts/shared/menu_locale" %>
+        <%= render "layouts/shared/menu_locale" %>
       </nav>
     </header>
 
@@ -19,7 +18,7 @@
       <%= Time.now.year %><%=t'licence' %>
     </footer>
 
-    <%= render :partial => 'layouts/shared/javascripts' %>
+    <%= render 'layouts/shared/javascripts' %>
   </body>
 </html>
 

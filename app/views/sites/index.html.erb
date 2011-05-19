@@ -1,3 +1,6 @@
+  <%= content_for :stylesheets do %>
+    <%= stylesheet_link_tag 'portal' %>
+  <% end %>
 <fieldset>
   <legend><%= t"site.other" %></legend>
 
@@ -17,6 +20,6 @@
   <br />
 
   <div id="list">
-    <%= render :partial => "list" %>
+    <%= render "list" %>
   </div>
 </fieldset>

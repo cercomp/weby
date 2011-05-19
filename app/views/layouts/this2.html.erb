@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang=<%= session[:locale].to_s %> >
-  <%= render :partial => 'layouts/shared/head' %>
+    <%= render 'layouts/shared/head', :contrast => 'contrast' %>
 	<%= content_for :stylesheets do %>
 		<%= stylesheet_link_tag 'negativo' if session[:contrast] == 'yes' %>
   <% end %>
   <body>
-    <%= render :partial => 'layouts/shared/institutional_bar' %>
+    <%= render 'layouts/shared/institutional_bar' %>
     <div id="wrapper" <%= "style='width: #{ @main_width }px'" if @main_width %>>
 
       <header>
-        <%= render :partial => "sites/viewCover" %>
+        <%= render "sites/viewCover" %>
         <nav>
           <%= raw print_menu(@menus['main']) %>
           <nav class="right">
-            <%= render :partial => "layouts/shared/menu_acessibility" %>
-            <%= render :partial => "layouts/shared/menu_locale" %>
+            <%= render "layouts/shared/menu_acessibility" %>
+            <%= render "layouts/shared/menu_locale" %>
           </nav>
           <div class="clear"> </div>
         </nav>
@@ -57,6 +57,6 @@
         </section>
       </footer>
     </div>
-    <%= render :partial => 'layouts/shared/javascripts' %>
+    <%= render 'layouts/shared/javascripts' %>
   </body>
 </html>
