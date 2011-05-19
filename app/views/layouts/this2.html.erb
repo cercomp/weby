@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang=<%= session[:locale].to_s %> >
   <%= render :partial => 'layouts/shared/head' %>
+	<%= content_for :stylesheets do %>
+		<%= stylesheet_link_tag 'negativo' if session[:contrast] == 'yes' %>
+  <% end %>
   <body>
     <%= render :partial => 'layouts/shared/institutional_bar' %>
     <div id="wrapper" <%= "style='width: #{ @main_width }px'" if @main_width %>>
