@@ -1,40 +1,60 @@
-<% unless @users_unroled.empty? %>
-  <%= form_tag change_roles_site_users_path(@site),
-        :method => "post",
-        :id => "subscribe_users",
-        :remote => 'true',
-        :update => 'enrole' %>
-    <table class="list">
-      <thead>
-        <tr>
-          <th><%= t "enrole_user" %></th>
-          <th style="width: 55%">Papel</th>
-        </tr>
-      </thead>
-      <tbody>
-      <tr class="<%= cycle 'odd', 'even' %>">
-        <td>
-          <% @users_unroled.each do |user| %>
-            <label>
-              <%= check_box_tag 'user[id][]', user.id %>
-              <%= user.login %>
-            </label><br/>
-          <% end %>
-        </td>
-        <td>
-          <% @roles.each do |role| %>
-            <label>
-              <%= check_box_tag 'role_ids[]', role.id %>
-              <%= role.name %>
-            </label>
-            <br />
-          <% end %>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-    <p> <input type="submit" value="cadastrar" /> </p>
-  </form>
+<% if @users_unroled.empty? %>
+  <h2>Nenhum usuário para cadastrar</h2>
 <% else %>
-<h2>Nenhum usuário para cadastrar</h2>
+  <%= form_tag change_roles_site_users_path(@site),
+    :method => "post",
+    :id => "subscribe_users",
+    :remote => 'true',
+    :update => 'enrole' %>
+  <table class="list">
+    <thead>
+      <tr>
+        <th><%= t "enrole_user" %></th>
+        <th style="width: 55%">Papel</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="<%= cycle 'odd', 'even' %>">
+        <td style="height: 500px; overflow: auto">
+          <div>
+            <%= label_tag :users_unroled, 'Pesquisar por usuários' %><br />
+            <%= text_field_tag :users_unroled, params[:users_unroled] %>
+          </div>
+          <div style="height: 500px; overflow: auto">
+            <ul id="users_list_roles"> 
+              <% @users_unroled.each do |user| %>
+                <li><%= check_box_tag 'user[id][]', user.id %><%= user.login %>
+            <% end %>
+          </ul>
+        </div>
+      </td>
+      <td>
+        <ul> 
+          <% @roles.each do |role| %>
+            <li><%= check_box_tag 'role_ids[]', role.id %><%= role.name %>
+        <% end %>
+      </ul>
+    </td>
+  </tr>
+</tbody>
+  </table>
+  <p> <input type="submit" value="cadastrar" /> </p>
+</form>
+<% end %>
+
+<%= content_for :javascripts do %>
+  <%= javascript_tag do %>
+    $(document).ready(function(){
+        $('#users_unroled').bind('keyup',function(){
+        var pattern = new RegExp(".*" + $(this).val() + ".*", "gi");
+        $('#users_list_roles li').each(function(index, element){
+          if( $(element).text().match(pattern) ){
+            $(element).show();
+          } else {
+            $(element).hide();
+          }
+        });
+      });
+    });
+  <% end %>
 <% end %>

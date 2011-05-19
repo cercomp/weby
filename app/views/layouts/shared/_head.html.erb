@@ -1,0 +1,19 @@
+<head>
+  <title> <%= @site.description %> </title>
+  <meta charset="utf-8">
+  <%= csrf_meta_tag %>
+  <%= stylesheet_link_tag 'institutional' %>
+  <%= stylesheet_link_tag 'scaffold' %>
+  <%= stylesheet_link_tag 'application' %>
+  <%= stylesheet_link_tag 'semantic_forms' %>
+  <%= stylesheet_link_tag 'this2' %>
+  <%= stylesheet_link_tag 'paginate' %>
+  <%= render :partial => 'sites/viewCsses' %>
+  <!--[if lt IE 9]>
+  <%= javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js" %>
+  <%= javascript_include_tag "http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js" %>
+  <![endif]-->
+  <%= stylesheet_link_tag 'negativo' if session[:contrast] == 'yes' %>
+  <%= stylesheet_link_tag 'menu_dropdown' if @site.menu_dropdown == true %>
+  <%= yield :stylesheets %>
+</head>

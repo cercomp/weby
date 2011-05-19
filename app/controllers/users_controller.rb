@@ -17,29 +17,30 @@ class UsersController < ApplicationController
 
   def manage_roles
     # Se a ação for selecionada para um site:
-    unless @site.nil?
+    if @site
       # Seleciona os todos os usuários que não são administradores
-      @users = User.where :is_admin => false
-      @site_users = @site.roles.collect{|r| r.users}.flatten
+      @users = User.no_admin
+      @site_users = User.by_site @site
 
-      @users_unroled = @users - @site_users
+      @users_unroled = User.by_no_site @site
+
       @roles = @site.roles.order("id")
       # Quando a edição dos papeis é solicitada
       @user = User.find(params[:user_id]) if params[:user_id]
 
-			respond_with do |format|
-				format.js do
-					render :update do |page|
+      respond_with do |format|
+        format.js do
+          render :update do |page|
             if params[:user_id]
               page.call "$('#role_form_#{params[:user_id]}').html", render('role_form')
             else
               page.call "$('#enroled').html", render('enroled')
               page.call "$('#enrole').html", render('enrole')
             end
-					end
-				end
-				format.html
-			end
+          end
+        end
+        format.html
+      end
     else
       @sites = Site.find(:all)
       render :select_site
@@ -77,7 +78,7 @@ class UsersController < ApplicationController
     respond_with do |format|
       format.js { 
         render :update do |site|
-          site.call "$('#list').html", render(:partial => 'list')
+        site.call "$('#list').html", render(:partial => 'list')
         end
       }
       format.xml  { render :xml => @users }
@@ -94,7 +95,7 @@ class UsersController < ApplicationController
     @themes = files
     respond_with(@user)
   end
-  
+
   def create
     @user = User.new(params[:user])
     files = []
@@ -102,7 +103,7 @@ class UsersController < ApplicationController
       files << file.split("/")[-1].split(".")[0]
     end
     @themes = files
-    
+
     if @user.save
       flash[:notice] = "Conta registrada!"
       redirect_to users_path
@@ -110,7 +111,7 @@ class UsersController < ApplicationController
       render :action => :new
     end
   end
-  
+
   def show
     @user = User.find(params[:id])
     respond_with(@user)
@@ -125,7 +126,7 @@ class UsersController < ApplicationController
     @themes = files
     respond_with(@user)
   end
-  
+
   def update
     unless current_user.is_admin
       params[:id] = current_user.id

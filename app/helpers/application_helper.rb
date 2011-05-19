@@ -37,11 +37,11 @@ module ApplicationHelper
         unless banner.repository.nil?
           banner.repository.archive.reprocess! if File.file?(banner.repository.archive.path) and not File.file?(banner.repository.archive.path(:little))
           bans += "<figure id='banner'>"
-            size = banner.size ? banner.size : "little"
-            bans += link_to image_tag("#{banner.repository.archive.url(size)}", :width => "#{banner.width}", :height => "#{banner.height}", :alt => "#{banner.text}", :title => "#{banner.text}"), "#{banner.url}"
-            #if check_permission(BannersController, ["toggle_field"])
-            #  ban += link_to t("unpublish"), toggle_field_site_banner_path(@site, banner, :field => 'publish')
-            #end
+          size = banner.size ? banner.size : "little"
+          bans += link_to image_tag("#{banner.repository.archive.url(size)}", :width => "#{banner.width}", :height => "#{banner.height}", :alt => "#{banner.text}", :title => "#{banner.text}"), "#{banner.url}"
+          #if check_permission(BannersController, ["toggle_field"])
+          #  ban += link_to t("unpublish"), toggle_field_site_banner_path(@site, banner, :field => 'publish')
+          #end
           bans += "</figure>"
         end
       end
@@ -109,7 +109,7 @@ module ApplicationHelper
     messages = ""
     [:notice, :info, :warning, :error].each do |type|
       if flash[type]
-        messages += "<div class=\"flash #{type}\">#{flash.now[type]}</div>"
+        messages << content_tag('div', flash.now[type], :class => "flash #{type}")
       end
     end
     messages
@@ -243,76 +243,6 @@ module ApplicationHelper
     adminnav += User.logged_in.count.to_s + ' ' + t('user', :count => User.logged_in.count) + ' ' + t('logged') + ".\n"
     adminnav += "</nav>"
     adminnav
-  end
-
-  def institutional_bar
-    bar_style = "margin: 0px auto;"
-    bar_style << " width: #{@main_width + 4}px'" if @main_width 
-    bar = "<div style='#{bar_style}'>"
-    bar << '
-    <div class="barra_governo">
-      <div class="barra_governo_box">
-        <div class="box2">
-          <div class="box3">
-            <div class="box4">
-              <div class="marca_mec">
-                <a href="http://portal.mec.gov.br" target="_blank" title="Minist&eacute;rio da Educa&ccedil;&atilde;o">MEC - Minist&eacute;rio da Educa&ccedil;&atilde;o</a>
-              </div>
-              <div class="marca_brasil">
-                <a href="http://www.brasil.gov.br/" target="_blank" title="Portal Brasil">Portal Brasil</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="barra_ufg">
-      <div class="barra_ufg_box">
-        <a href="http://www.ufg.br"><img src="/images/ufg.png" border="0" alt="UFG" />Universidade Federal de Goiás</a>
-        <select onchange="if(options[selectedIndex].value) window.location.href= (options[selectedIndex].value)">
-          <option value="" selected="selected">Portal UFG</option>
-          <option value="http://sistemas.ufg.br/PORTAL/arquivos/login.php">Portal UFGNet</option>
-          <option value="http://www.ufg.br/page.php?menu_id=180&amp;pos=esq">Pró-reitorias</option>
-          <option value="http://www.ufg.br/page.php?menu_id=277&amp;pos=esq">Unidades Acadêmicas</option>
-          <option value="http://www.prodirh.ufg.br/">Concursos</option>
-          <option value="http://www.vestibular.ufg.br/ps2009-2/home.htm">Vestibular</option>
-          <option value="http://www.ufg.br/page.php?tipo=fale_conosco_form">Fale Conosco</option>
-          <option value="http://www.ufg.br/page.php?menu_id=282&amp;pos=esq">Dúvidas frequentes</option>
-        </select>
-        <div style="clear: both;"></div>
-       </div>
-     </div>
-    </div>'
-    bar
-  end
-
-  def menu_acessibility
-    if session[:contrast] == 'yes'
-      menu_a = link_to image_tag("alto-contraste2.png", :title => t("high_contrast"), :alt => t("high_contrast")), :contrast => 'no'
-      menu_a += "\n"
-      menu_a += image_tag("font_size_down_contraste.png", :onclick => "font_size_down()", :alt => t("font_size_down"), :title => t("font_size_down"))
-      menu_a += "\n"
-      menu_a += image_tag("font_size_original_contraste.png", :onclick => "font_size_original()", :alt => t("font_size_normal"), :title => t("font_size_normal"))
-      menu_a += "\n"
-      menu_a += image_tag("font_size_up_contraste.png", :onclick => "font_size_up()", :alt => t("font_size_up"), :title => t("font_size_up"))
-    else
-      menu_a = link_to image_tag("alto-contraste2.png", :title => t("high_contrast"), :alt => t("high_contrast")), :contrast => 'yes'
-      menu_a += "\n"
-      menu_a += image_tag("font_size_down.png", :onclick => "font_size_down()", :alt => t("font_size_down"), :title => t("font_size_down"))
-      menu_a += "\n"
-      menu_a += image_tag("font_size_original.png", :onclick => "font_size_original()", :alt => t("font_size_normal"), :title => t("font_size_normal"))
-      menu_a += "\n"
-      menu_a += image_tag("font_size_up.png", :onclick => "font_size_up()", :alt => t("font_size_up"), :title => t("font_size_up"))
-    end
-    menu_a
-  end
-
-  def menu_locale
-    menu_l = link_to image_tag("flags/24/United Kingdom(Great Britain).png", :alt => t("english"), :title => t("english")), :locale => "en"
-    menu_l += "\n"
-    menu_l += link_to image_tag("flags/24/Brazil.png",  :alt => t("portuguese"), :title => t("portuguese")), :locale => "pt-BR"
-    menu_l
   end
 
   # Método para ordenar tabelas pela coluna

@@ -12,11 +12,21 @@ class User < ActiveRecord::Base
           { :text => "%#{text}%" })
   }
 
-  scope :by_site, lambda { |site_id, admin|
+  scope :admin, where(:is_admin => true)
+  scope :no_admin, where(:is_admin => false)
+
+  scope :by_site, lambda { |site_id, *admin|
     joins('LEFT JOIN roles_users ON roles_users.user_id = users.id 
-          LEFT JOIN roles ON roles.id = roles_users.role_id').
-          where(["roles.site_id = ? or users.is_admin = ?",
-                         site_id, admin])
+           LEFT JOIN roles ON roles.id = roles_users.role_id').
+           where(["roles.site_id = ? or users.is_admin = ?", site_id, admin])
+  }
+
+  scope :by_no_site, lambda { |site_id|
+    where "not exists (#{
+      Role.joins('INNER JOIN roles_users ON 
+      roles_users.role_id = roles.id AND users.id = roles_users.user_id').
+      where(:site_id => site_id).to_sql
+    })" 
   }
 
   def name_or_login
@@ -27,4 +37,5 @@ class User < ActiveRecord::Base
     reset_perishable_token!
     Notifier.password_reset_instructions(self, host).deliver
   end  
+
 end

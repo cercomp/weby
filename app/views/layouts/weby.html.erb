@@ -138,6 +138,7 @@
     <%= javascript_include_tag "tiny_mce/jquery.tinymce" %>
     <%= javascript_include_tag "jquery-ui.min.js" %>
     <%= javascript_include_tag "jquery.nivo.slider.pack.js" %>
+    <%= yield :javascripts %>
     <%= javascript_tag do %>
       $().ready(function() {
         $('#slider').nivoSlider({
