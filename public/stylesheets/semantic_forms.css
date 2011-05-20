@@ -36,6 +36,7 @@ form input[type=button] {
   margin: 0 5px; }
 form input[type=submit]:hover,
 form input[type=button]:hover {
+  cursor: pointer;
   background: #1c8312;
   border-top: 2px solid #48bb3d;
   border-left: 2px solid #48bb3d;
@@ -49,7 +50,6 @@ form input[type=button]:active {
   border-right: 2px solid #004000;
   border-bottom: 2px solid #004000; }
 form input[id=btnCancel],
-form input[id=btnCancel]:hover,
 form input[id=btnCancel]:active {
   border-top: 2px solid #e68582;
   border-left: 2px solid #e68582;
@@ -57,6 +57,14 @@ form input[id=btnCancel]:active {
   border-right: 2px solid #801f1c;
   color: #fff;
   background: #b3524f; }
+form input[id=btnCancel]:hover {
+  cursor: pointer;
+  border-top: 2px solid #dd6966;
+  border-left: 2px solid #dd6966;
+  border-bottom: 2px solid #641513;
+  border-right: 2px solid #641513;
+  color: #fff;
+  background: #9b3b39; }
 form div.fieldWithErrors {
   display: inline; }
   form div.fieldWithErrors input, form div.fieldWithErrors select, form div.fieldWithErrors textarea {

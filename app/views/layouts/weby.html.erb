@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang=<%= session[:locale].to_s %> >
+  <%= content_for :stylesheets do %>
+    <%= stylesheet_link_tag 'weby' %>
+    <%= stylesheet_link_tag 'nivo-slider' %>
+  <% end %>
   <%= render 'layouts/shared/head', :contrast => 'weby_contrast' %>
   <body>
     <%= render 'layouts/shared/institutional_bar' %>
@@ -115,10 +119,21 @@
       </section>
     </footer>
 
-	<%= render 'layouts/shared/javascripts'%>
  	<%= content_for :javascripts do %>
 		<%= javascript_include_tag "jquery.nivo.slider.pack.js" %>
+    <%= javascript_tag do %>
+      $().ready(function() {
+        $('#slider').nivoSlider({
+          controlNav:false,
+          directionNavHide:false,
+          keyboardNav:false,
+          prevText: 'Anterior',
+          nextText: 'Próximo'
+        });
+      });
+    <% end %>
   <% end %>
+	<%= render 'layouts/shared/javascripts'%>
   </body>
 
 </html>  

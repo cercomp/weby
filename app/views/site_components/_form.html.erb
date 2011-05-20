@@ -5,7 +5,7 @@
 <input id="components_settings" type="hidden" meta-components_settings="<%= components_settings.to_json %>" />
 <input id="component_settings" type="hidden" meta-component_settings="<%= eval(@site_component.settings).to_json %>" />
 
-<%= javascript_include_tag 'site_component_form' %>
+<%= content_for :javascripts, javascript_include_tag('site_component_form') %>
 
 <%= form_for [@site,@site_component], :builder => SemanticFormBuilder do |f| %>
   <% if @site_component.errors.any? %>
