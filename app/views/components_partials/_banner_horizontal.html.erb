@@ -1,6 +1,6 @@
-<section id="<%= settings[:id] %>">
+<section id="banner_horizontal">
   <div>
-    <% @banners = @site.banners[0..3] %>
+    <% @banners = @site.banners.category(settings[:category])[0..3] %>
     <% @banners.each do |b| %>
       <figure>
         <%= image_tag(b.repository.archive.url(b.size), :width => b.width, :height => b.height, :alt => b.text) %>

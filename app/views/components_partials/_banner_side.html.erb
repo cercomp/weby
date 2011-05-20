@@ -1,9 +1,8 @@
-<% unless @banners_side.blank? %>
-  <div>
-    <% @banners_side.each do |b| %>
-      <figure>
-        <%= image_tag(b.repository.archive.url(b.size), :height => '60', :alt => b.text) %>
-      </figure>
-    <% end %>
-  </div>
-<% end %>
+<div  id="banners_right">
+  <% @banners = @site.banners.category(settings[:category]) %>
+  <% @banners.each do |b| %>
+    <figure>
+      <%= image_tag(b.repository.archive.url(b.size), :height => '60', :alt => b.text) %>
+    </figure>
+  <% end %>
+</div>

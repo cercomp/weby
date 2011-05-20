@@ -21,29 +21,10 @@
       	</nav>        
       <div class="clear"> </div>   
       </header>
-
-      <!-- MENUS RIGHT -->
-      <!--aside class="right" >
-      <nav>
-      <%= raw print_menu(@menus['direita']) %>
-      </nav>  
-      </aside-->
-
-      <!-- BANNERS RIGHT -->
-      <!--aside id="banners_right">
-      <div>
-        <% @banners = @site.banners[0..3] %>
-        <% @banners.each do |b| %>
-          <figure>
-            <%= image_tag(b.repository.archive.url(b.size), :height => '60', :alt => b.text) %>
-          </figure>
-        <% end %>
-      </div>
-      <div class="clear"></div>
-      </aside-->
-
-      <!-- TESTE PARA COMPONENTES -->
+      
+      <aside class="right" >
       <%= load_components 'right' %>
+      </aside>
 
       <section id="content">
         <%= raw flash_message %>
@@ -97,22 +78,10 @@
           <%= yield %>    
         <% end %>
       </section>
-    </div>  
+    </div>
 
-    <!--section id="banners_footer">
-      <div>
-        <% @banners = @site.banners[0..3] %>
-        <% @banners.each do |b| %>
-          <figure>
-            <%= image_tag(b.repository.archive.url(b.size), :width => b.width, :height => b.height, :alt => b.text) %>
-          </figure>
-        <% end %>
-      </div>
-      <div class="clear"></div>
-    </section-->
-    <%= load_components 'bottom' %>
-
-    <footer>
+    <footer style="clear:both">
+      <%= load_components 'bottom' %>
       <section id="footer">
         <div id="content-footer"></div>
         <%= raw @site.footer %>

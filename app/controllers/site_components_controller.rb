@@ -4,7 +4,7 @@ class SiteComponentsController < ApplicationController
   # GET /site_components
   # GET /site_components.xml
   def index
-    @site_components = SiteComponent.all
+    @site_components = @site.site_components
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,7 +15,7 @@ class SiteComponentsController < ApplicationController
   # GET /site_components/1
   # GET /site_components/1.xml
   def show
-    @site_component = SiteComponent.find(params[:id])
+    @site_component = @site.site_components.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -36,7 +36,7 @@ class SiteComponentsController < ApplicationController
 
   # GET /site_components/1/edit
   def edit
-    @site_component = SiteComponent.find(params[:id])
+    @site_component = @site.site_components.find(params[:id])
   end
 
   # POST /site_components
@@ -46,7 +46,8 @@ class SiteComponentsController < ApplicationController
 
     respond_to do |format|
       if @site_component.save
-        format.html { redirect_to([@site,@site_component], :notice => 'Site component was successfully created.') }
+        # TODO colocar tradução na mensagem de sucesso
+        format.html { redirect_to(site_site_components_url, :notice => 'Componente criado com sucesso.') }
         format.xml  { render :xml => @site_component, :status => :created, :location => @site_component }
       else
         format.html { render :action => "new" }
@@ -58,11 +59,12 @@ class SiteComponentsController < ApplicationController
   # PUT /site_components/1
   # PUT /site_components/1.xml
   def update
-    @site_component = SiteComponent.find(params[:id])
+    @site_component = @site.site_components.find(params[:id])
 
     respond_to do |format|
       if @site_component.update_attributes(params[:site_component])
-        format.html { redirect_to([@site,@site_component], :notice => 'Site component was successfully updated.') }
+        # TODO colocar tradução na mensagem de sucesso
+        format.html { redirect_to(site_site_components_url, :notice => 'Componente atualizado com sucesso.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

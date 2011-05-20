@@ -1,5 +1,7 @@
 article, aside, canvas, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section, summary { display: block; }
+.right { float: right; }
+.clear { clear: both; }
 
 html { background-color: #F9F9F9; }
 
@@ -112,24 +114,21 @@ section#footer p {
   float: right;
 }
 
-#banners_footer {
+footer #banner_horizontal {
   background-color: #70B0D9;
   min-height: 60px;
   padding: 5px 0;
 }
 
-#banners_footer div {
+footer #banner_horizontal div {
   width: 960px;
   margin: 0 auto;
 }
 
-#banners_footer figure {
+footer #banner_horizontal figure {
   margin: 0 25px;
   float: left;
 }
-
-.right { float: right; }
-.clear { clear: both; }
 
 /* Define area of top image */
 header figure#cover { margin: 0px; }
