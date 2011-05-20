@@ -27,28 +27,6 @@ module ApplicationHelper
     menu
   end
 
-  # Define os banners
-  # Parâmetros: category (string)
-  # Retorna: Visualização de uma lista de banners
-  def print_banner(banners)
-    bans = ""
-    unless banners.empty?
-      banners.each do |banner|
-        unless banner.repository.nil?
-          banner.repository.archive.reprocess! if File.file?(banner.repository.archive.path) and not File.file?(banner.repository.archive.path(:little))
-          bans += "<figure id='banner'>"
-          size = banner.size ? banner.size : "little"
-          bans += link_to image_tag("#{banner.repository.archive.url(size)}", :width => "#{banner.width}", :height => "#{banner.height}", :alt => "#{banner.text}", :title => "#{banner.text}"), "#{banner.url}"
-          #if check_permission(BannersController, ["toggle_field"])
-          #  ban += link_to t("unpublish"), toggle_field_site_banner_path(@site, banner, :field => 'publish')
-          #end
-          bans += "</figure>"
-        end
-      end
-    end
-    bans
-  end
-
   # Define os menus
   # Parâmetros: Lista de menu (sons, view_ctrl=0)
   # Retorna: O menu com seus controles
@@ -339,14 +317,12 @@ module ApplicationHelper
 
   def load_components component_place
     components = []
-    @site.site_components.where(["place_holder = ?", component_place]).each do |comp|
+    @site.site_components.where(["publish = true AND place_holder = ?", component_place]).each do |comp|
       comp.settings ||= "{}"
       settings = eval(comp.settings)
       components << render(:partial => "components_partials/#{comp.component}", :locals => { :settings => settings })
     end
-    logger.debug components
     raw components.join
   end
 end
-
 

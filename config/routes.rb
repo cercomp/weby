@@ -42,7 +42,14 @@ Webyge::Application.routes.draw do
         get :view
       end
     end
-
+    resources :site_components do
+      member do
+        get :toggle_field
+      end
+      collection do
+        post :sort
+      end
+    end
     resources :feedbacks do
       collection do
         get :sent
@@ -56,7 +63,7 @@ Webyge::Application.routes.draw do
       end
     end
 
-    resources :groups, :chats, :roles, :rights, :archives, :admin, :site_components
+    resources :groups, :chats, :roles, :rights, :archives, :admin
   end
 
   resources :groups, :menus, :chats, :rights,

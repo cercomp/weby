@@ -1,8 +1,9 @@
 class SiteComponentsController < ApplicationController
   layout :choose_layout
+  before_filter :require_user, :only => [:new, :edit, :update, :destroy, :sort, :toggle_field]
+  before_filter :check_authorization
 
-  # GET /site_components
-  # GET /site_components.xml
+  respond_to :html, :xml, :js
   def index
     @site_components = @site.site_components
 
@@ -12,8 +13,6 @@ class SiteComponentsController < ApplicationController
     end
   end
 
-  # GET /site_components/1
-  # GET /site_components/1.xml
   def show
     @site_component = @site.site_components.find(params[:id])
 
@@ -23,8 +22,6 @@ class SiteComponentsController < ApplicationController
     end
   end
 
-  # GET /site_components/new
-  # GET /site_components/new.xml
   def new
     @site_component = SiteComponent.new
 
@@ -34,13 +31,10 @@ class SiteComponentsController < ApplicationController
     end
   end
 
-  # GET /site_components/1/edit
   def edit
     @site_component = @site.site_components.find(params[:id])
   end
 
-  # POST /site_components
-  # POST /site_components.xml
   def create
     @site_component = SiteComponent.new(params[:site_component])
 
@@ -56,8 +50,6 @@ class SiteComponentsController < ApplicationController
     end
   end
 
-  # PUT /site_components/1
-  # PUT /site_components/1.xml
   def update
     @site_component = @site.site_components.find(params[:id])
 
@@ -73,8 +65,6 @@ class SiteComponentsController < ApplicationController
     end
   end
 
-  # DELETE /site_components/1
-  # DELETE /site_components/1.xml
   def destroy
     @site_component = SiteComponent.find(params[:id])
     @site_component.destroy
@@ -83,5 +73,28 @@ class SiteComponentsController < ApplicationController
       format.html { redirect_to(site_site_components_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  def sort
+    @site_components = @site.site_components
+
+    params['sort_sites_component'] ||= []
+    params['sort_sites_component'].to_a.each do |p|
+      site_component = SiteComponent.find(p)
+      site_component.position = (params['sort_sites_component'].index(p) + 1)
+      site_component.save
+    end
+  end
+  
+  def toggle_field
+    @site_component = SiteComponent.find(params[:id])
+    if params[:field] 
+      if @site_component.update_attributes("#{params[:field]}" => (@site_component[params[:field]] == 0 or not @site_component[params[:field]] ? true : false))
+        flash[:notice] = t"successfully_updated"
+      else
+        flash[:notice] = t"error_updating_object"
+      end
+    end
+    redirect_back_or_default site_site_components_path(@site)
   end
 end

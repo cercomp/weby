@@ -4,14 +4,15 @@ module SiteComponentsHelper
 
   def places_holder
     places = {
-      'weby' => ['left', 'right', 'top', 'bottom']
+      'weby' => ['left', 'right', 'top', 'bottom'],
+      'this2' => ['left', 'right', 'top', 'bottom']
     }
 
     places[@site.theme] || []
   end
 
   def components
-    ['banner_horizontal', 'banner_side', 'menu_side']
+    ['banner_horizontal', 'banner_side', 'menu_side', 'feedback', 'info_footer', 'header', 'accessibility_menu']
   end
 
   def components_settings

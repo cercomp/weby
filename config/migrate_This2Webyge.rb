@@ -82,6 +82,11 @@ class Migrate_this2weby
       puts "\tSELECIONANDO todos os estilos" if @verbose
       this_estilo = @con_this.exec(select_estilo)
 
+      # Inserindo componentes por omissão para portais vindos do This
+      puts "\tINSERINDO estruturando de componentes...\n"
+      insert_site_comp = "INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'top','{}','header',7,true);INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'top','{:category => \"main\"}','menu_side',8,true);INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'top','{}','menu_accessibility',9,true);INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'bottom','{}','info_footer',1,true);INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'bottom','{}','feedback',2,true);INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'right','{:category => \"dir\"}','banner_side',5,true);INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'right','{:category => \"auxiliary\"}','menu_side',6,true);INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'left','{:category => \"secondary\"}','menu_side',3,true);INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'left','{:category => \"esq\"}','banner_side',4,true)"
+      @con_weby.exec(insert_site_comp)
+
       unless this_estilo.first.nil?
       weby_estilo = <<EOF
 /* Principal */

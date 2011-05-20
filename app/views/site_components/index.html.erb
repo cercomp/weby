@@ -1,5 +1,5 @@
 <fieldset>
-<legend><%= t("component.other") %></legend>
+  <legend><%= t("component.other") %></legend>
 
   <div class="contextual">
     <p>
@@ -8,23 +8,52 @@
     </p>
   </div>
 
-<table id="list">
-  <thead>
-    <th><%= t("place") %></th>
-    <th><%= t("component.one") %></th>
-    <th></th>
-  </thead>
+  <table id="list" class="list">
+    <thead>
+      <th>id</th>
+      <th><%= t("place") %></th>
+      <th><%= t("component.one") %></th>
+      <th><%= t"publish" %></th>
+      <th></th>
+    </thead>
 
-  <tbody>
-    <% @site_components.each do |site_component| %>
-      <tr>
-        <td><%= site_component.place_holder %></td>
-        <td><%= site_component.component %></td>
-        <td><%= raw make_menu(site_component, :except => "show") %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br />
-
+    <tbody>
+      <% @site_components.each do |site_component| %>
+        <tr id="sort_sites_component_<%= site_component.id %>">
+          <td><%= site_component.id %></td>
+          <td><%= site_component.place_holder %></td>
+          <td><%= site_component.component %></td>
+          <td align="center"><%= raw toggle_field(site_component, "publish") %></td>
+          <td>
+            <%= raw make_menu(site_component, :except => "show") %>
+            <span class='handle icon icon-drag'><%= t("move") %></span>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= javascript_tag do %>
+    window.onload=function(){
+      $().ready(function() {
+        $('#list').sortable({
+          axis: 'y', 
+          dropOnEmpty:false, 
+          handle: '.handle', 
+          cursor: 'crosshair',
+          items: 'tr',
+          opacity: 0.4,
+          scroll: true,
+          update: function(){
+            $.ajax({
+              type: 'post', 
+              data: $('#list').sortable('serialize'),
+              dataType: 'script', 
+              complete: function(request){ $('#list tr').effect('highlight'); },
+              url: '<%= sort_site_site_components_path %>'
+            })
+          }
+        })
+      })
+    }
+  <% end %>
+</fieldset>

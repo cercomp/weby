@@ -34,7 +34,7 @@
         <td>
           <%= raw make_menu(page, :except => "show") %>
           <% if check_permission(PagesController, ["sort"]) %>
-            <div class='handle icon icon-drag'><%= t("move") %></div>
+            <span class='handle icon icon-drag'><%= t("move") %></span>
           <% end %>
         </td>
       </tr>

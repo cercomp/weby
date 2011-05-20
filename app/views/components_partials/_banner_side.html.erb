@@ -1,8 +1,13 @@
 <div  id="banners_right">
   <% @banners = @site.banners.category(settings[:category]) %>
   <% @banners.each do |b| %>
-    <figure>
-      <%= image_tag(b.repository.archive.url(b.size), :height => '60', :alt => b.text) %>
-    </figure>
+    <% unless b.repository.nil? %>
+      <% #TODO: Trocar id para class %>
+      <figure id='banner'>
+        <% b.repository.archive.reprocess! if File.file?(b.repository.archive.path) and not File.file?(b.repository.archive.path(:little)) %>
+        <% size = b.size ? b.size : "little" %>
+        <%= link_to image_tag("#{b.repository.archive.url(size)}", :width => "#{b.width}", :height => "#{b.height}", :alt => "#{b.text}", :title => "#{b.text}"), "#{b.url}" %>
+      </figure>
+    <% end %>
   <% end %>
 </div>

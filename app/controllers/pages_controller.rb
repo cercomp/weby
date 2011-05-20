@@ -2,10 +2,10 @@ class PagesController < ApplicationController
   layout :choose_layout
   before_filter :require_user, :only => [:new, :edit, :update, :destroy, :sort, :toggle_field]
   before_filter :check_authorization, :except => [:view, :show]
-  respond_to :html, :xml, :js
   before_filter :per_page, :only => [:index]
   helper_method :sort_column
 
+  respond_to :html, :xml, :js
   def index 
     params[:type] ||= 'News'
 
@@ -135,9 +135,7 @@ class PagesController < ApplicationController
 
   def sort
     @pages = @site.pages.page(params[:page]).per(10)
-
     @front_news = @site.pages.news(true)
-
     @no_front_news = @site.pages.news(false).page(params[:page]).per(5)
 
     params['sort_page'] ||= []
