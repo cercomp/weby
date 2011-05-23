@@ -10,6 +10,7 @@
     <div id="wrapper" <%= "style='width: #{ @main_width }px'" if @main_width %>>
       <header>
         <%= load_components 'top' %>
+        <div class="clear"> </div>
       </header>
 
       <aside class="left">
@@ -26,8 +27,9 @@
         <%= yield %>
       </section>
 
-      <footer class="clear">
+      <footer>
         <%= load_components 'bottom' %>
+        <div class="clear"> </div>
       </footer>
     </div>
     <%= render 'layouts/shared/javascripts' %>
