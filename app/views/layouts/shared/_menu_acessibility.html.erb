@@ -2,7 +2,7 @@
 
 <% has_contrast = ( ['yes', 'no'] - [session[:contrast]] ).first %>
 
-<%= link_to image_tag("high_contrast.png", :title => t("high_contrast"), :alt => t("high_contrast")), :contrast => has_contrast %>
+<%= link_to image_tag("high_contrast.png", :title => t("high_contrast"), :alt => t("high_contrast")), :contrast => has_contrast, :id => @site.name %>
 <%= image_tag("font_size_down#{contrast}.png", :onclick => "font_size_down()", :alt => t("font_size_down"), :title => t("font_size_down")) %>
 <%= image_tag("font_size_original#{contrast}.png", :onclick => "font_size_original()", :alt => t("font_size_normal"), :title => t("font_size_normal")) %>
 <%= image_tag("font_size_up#{contrast}.png", :onclick => "font_size_up()", :alt => t("font_size_up"), :title => t("font_size_up")) %>
