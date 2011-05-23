@@ -18,17 +18,22 @@
     </thead>
 
     <tbody>
-      <% @site_components.each do |site_component| %>
-        <tr id="sort_sites_component_<%= site_component.id %>">
-          <td><%= site_component.id %></td>
-          <td><%= site_component.place_holder %></td>
-          <td><%= site_component.component %></td>
-          <td align="center"><%= raw toggle_field(site_component, "publish") %></td>
-          <td>
-            <%= raw make_menu(site_component, :except => "show") %>
-            <span class='handle icon icon-drag'><%= t("move") %></span>
-          </td>
+      <% @site_components.group_by(&:place_holder).sort.each do |place_holder, i| %>
+        <tr>
+          <td colspan="<%= @site_components.length + 1%>"><%= place_holder %></td>
         </tr>
+        <% i.each do |site_component| %>
+          <tr id="sort_sites_component_<%= site_component.id %>">
+            <td><%= site_component.id %></td>
+            <td><%= site_component.place_holder %></td>
+            <td><%= site_component.component %></td>
+            <td align="center"><%= raw toggle_field(site_component, "publish") %></td>
+            <td>
+              <%= raw make_menu(site_component, :except => "show") %>
+              <span class='handle icon icon-drag'><%= t("move") %></span>
+            </td>
+          </tr>
+        <% end %>
       <% end %>
     </tbody>
   </table>

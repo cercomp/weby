@@ -6,7 +6,9 @@
   <% end %>
   <%= render 'layouts/shared/head', :contrast => 'contrast' %>
   <body>
-    <%= render 'layouts/shared/institutional_bar' %>
+    <div class='first_place'>
+      <%= load_components 'first_place' %>
+    </div>
     <div id="wrapper" <%= "style='width: #{ @main_width }px'" if @main_width %>>
       <header>
         <%= load_components 'top' %>
