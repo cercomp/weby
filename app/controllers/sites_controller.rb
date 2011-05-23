@@ -18,11 +18,8 @@ class SitesController < ApplicationController
   end
 
   def show
-    params[:controller] = 'pages'
-    params[:action] = 'view'
     params[:site_id] = @site.name
-    params[:id] = nil
-    redirect_to  params
+    params[:id] = params[:per_page] = nil
   end
 
   def new

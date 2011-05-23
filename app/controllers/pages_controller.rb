@@ -117,22 +117,6 @@ class PagesController < ApplicationController
     redirect_back_or_default site_pages_path(@site)
   end
 
-  def view
-    cover_size = @site.cover_size.blank? ? 
-      Site.columns_hash['cover_size'].default :
-      @site.cover_size
-
-    @front_news = @site.pages.news(true).
-      page(params[:front_pages]).
-      per(cover_size)
-
-    @no_front_news = @site.pages.news(false).
-      except(:order).page(params[:no_front_pages]).
-      per(5)
-
-    flash[:warning] = (t"none_param", :param => t("news")) unless @front_news
-  end
-
   def sort
     @pages = @site.pages.page(params[:page]).per(10)
     @front_news = @site.pages.news(true)

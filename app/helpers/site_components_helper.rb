@@ -4,22 +4,24 @@ module SiteComponentsHelper
 
   def places_holder
     places = {
-      'weby' => ['left', 'right', 'top', 'bottom'],
-      'this2' => ['left', 'right', 'top', 'bottom']
+      'weby' => ['left', 'right', 'top', 'bottom', 'home'],
+      'this2' => ['left', 'right', 'top', 'bottom', 'home']
     }
 
     places[@site.theme] || []
   end
 
   def components
-    ['banner_horizontal', 'banner_side', 'menu_side', 'feedback', 'info_footer', 'header', 'accessibility_menu']
+    ['banner_horizontal', 'banner_side', 'menu_side', 'feedback', 'info_footer', 'header', 'accessibility_menu', 'front_news', 'no_front_news']
   end
 
   def components_settings
     {
       'banner_horizontal' => ['category'],
       'banner_side' => ['category'],
-      'menu_side' => ['category']
+      'menu_side' => ['category'],
+      'front_news' => ['quant'],
+      'no_front_news' => ['quant']
     }
   end
 end

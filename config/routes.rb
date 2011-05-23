@@ -8,6 +8,11 @@ Webyge::Application.routes.draw do
   match '/sites/:site_id/groups/page/:page' => 'groups#index' # Paginate URL on groups
 
   resources :sites do
+    collection do
+      post :sort
+      get :show
+    end
+    
     resources :users do
       collection do
         get :manage_roles
@@ -39,7 +44,6 @@ Webyge::Application.routes.draw do
       end 
       collection do
         post :sort
-        get :view
       end
     end
     resources :site_components do

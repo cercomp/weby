@@ -18,7 +18,7 @@
 
   <%= raw @page.text %>
   <p>
-  <h3> <%= @page.url.empty? ? @page.source : link_to(@page.source, @page.url) %>
+  <h3> <%= @page.url.try(:empty?) ? @page.source : link_to(@page.source, @page.url) %>
   <%= " | categoria: " + @page.category unless @page.category.blank? %> </h3>
   </p>
 
