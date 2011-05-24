@@ -12,7 +12,7 @@ module SiteComponentsHelper
   end
 
   def components
-    ['banner_horizontal', 'banner_side', 'menu_side', 'feedback', 'info_footer', 'header', 'accessibility_menu', 'front_news', 'no_front_news', 'institutional_bar']
+    ['banner_horizontal', 'banner_side', 'menu_side', 'feedback', 'info_footer', 'header', 'menu_accessibility', 'front_news', 'no_front_news', 'institutional_bar']
   end
 
   def components_settings
