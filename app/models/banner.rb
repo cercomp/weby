@@ -2,7 +2,7 @@ class Banner < ActiveRecord::Base
   default_scope :conditions => { :hide => false }, :order => 'position,id DESC'
   
   scope :unhide, :conditions => { :hide => false }, :order => 'position,id DESC'
-  scope :category, lambda { |cat| where("category = ?", cat)}
+  scope :category, lambda { |cat| where("publish = true AND category = ?", cat)}
 
 	belongs_to :repository, :foreign_key => "repository_id"
   belongs_to :user, :foreign_key => "user_id"
