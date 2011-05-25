@@ -10,7 +10,6 @@ Webyge::Application.routes.draw do
   resources :sites do
     collection do
       post :sort
-      get :show
     end
     
     resources :users do
@@ -62,7 +61,6 @@ Webyge::Application.routes.draw do
 
     resources :csses do
       member do
-        #get :use_css, :toggle_field
         get :copy, :follow, :toggle_field
       end
     end
