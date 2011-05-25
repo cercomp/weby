@@ -43,7 +43,7 @@ section#content {
     border: 1px solid white;
     background: black;  }
 
-  section#content nav#admin { padding-bottom: 5px; }
+  section#content nav#weby_bar { padding-bottom: 5px; }
   section#content section#pages {
     font-family: Verdana;
     font-weight: Normal;
@@ -215,7 +215,7 @@ section#content {
   padding: 5px;
   padding-top: 0;
   overflow: hidden; }
-  section#content nav#admin { padding-bottom: 5px; }
+  section#content nav#weby_bar { padding-bottom: 5px; }
   section#content section#pages {
     font-family: Verdana;
     font-weight: Normal;

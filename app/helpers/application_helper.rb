@@ -191,38 +191,6 @@ module ApplicationHelper
     menu
   end
 
-  def menu_admin(site=nil)
-    adminnav = "<nav id=\"admin\">\n\t"
-    adminnav += link_to( t("portal"), root_path )
-    adminnav += " | \n\t"
-
-    if site
-      adminnav += link_to( t("home"), site )
-      adminnav += " | \n\t"
-      adminnav += link_to( t("admin.one"), site_admin_index_path(site) )
-      adminnav += " | \n\t"
-    else
-      adminnav += link_to( t("admin.one"), admin_index_path(:back_url => "#{request.fullpath}") )
-      adminnav += " | \n\t"
-    end
-
-    unless current_user
-      adminnav += link_to( t("register"), new_user_path )
-      adminnav += " | \n\t"
-      adminnav += link_to( t("login"), login_path(:back_url => "#{request.fullpath}"))
-      adminnav += " | \n\t"
-    else
-      adminnav += site ? link_to(t("my_profile"), site_user_path(site, current_user)) : link_to(t("my_profile"), user_path(current_user))
-      adminnav += " | \n\t"
-      adminnav += link_to( t("logout"), logout_path, :confirm => t("are_you_sure") )
-      adminnav += "\n\t"
-    end
-    # FIXME Contador de usuários não está funcionando ao realizar logoff.
-    adminnav += User.logged_in.count.to_s + ' ' + t('user', :count => User.logged_in.count) + ' ' + t('logged') + ".\n"
-    adminnav += "</nav>"
-    adminnav
-  end
-
   # Método para ordenar tabelas pela coluna
   def sortable(column, title = nil)
     title ||= column.titleize

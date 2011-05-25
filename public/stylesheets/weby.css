@@ -25,6 +25,7 @@ body {
   margin: 0px auto;
   padding: 0 2px;
 }
+nav#weby_bar { padding-bottom: 5px; }
 
 /* Define style to Header, Footer and contents */
 header{}
@@ -48,7 +49,6 @@ section#content {
     margin-left: 5px;
   }
 
-  section#content nav#admin { padding-bottom: 5px; }
   section#content section#pages {
     font-family: Verdana;
     font-weight: Normal;

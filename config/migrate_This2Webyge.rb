@@ -96,7 +96,8 @@ class Migrate_this2weby
         INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'left','{:category => \"esq\"}','banner_side',4,true);
         INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'home','{:quant => \"5\"}','front_news',10,true);
         INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'home','{:quant => \"5\"}','no_front_news',11,true);
-        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'first_place','{}','institutional_bar',12,true);
+        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'first_place','{}','weby_bar',12,true);
+        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'first_place','{}','institutional_bar',13,true);
 EOF
 
       @con_weby.exec(insert_site_comp)

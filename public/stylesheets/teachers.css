@@ -8,9 +8,8 @@ body {
   color:#484848;
   width: auto;
   margin: 0 auto; }
-#wrapper {
-  border: 2px solid transparent;
-  border-top: none }
+#wrapper { border: 2px solid transparent; border-top: none }
+nav#weby_bar { padding-bottom: 5px; }
 
 /* Define style to Header, Footer and contents */
 header,
@@ -92,7 +91,6 @@ section#content {
   padding: 5px;
   padding-top: 0;
   overflow: hidden; }
-  section#content nav#admin { padding-bottom: 5px; }
   section#content section#pages {
     font-family: Verdana;
     font-weight: Normal;

@@ -9,6 +9,22 @@ body {
   width: auto;
   margin: 0 auto; }
 #wrapper { background: white; border: 2px solid transparent; }
+nav#weby_bar { top:0; background-color:#FFF;  line-height: 21px; width:100%; border-bottom: 1px solid gray; }
+  nav#weby_bar menu { list-style: none outside none; padding: 0; margin: 0; }
+  nav#weby_bar menu li { padding: 0 0 0 0; float: left; }
+  nav#weby_bar menu li:hover { position: relative; z-index: 100; background-color: #1a54e1; }
+  nav#weby_bar menu li:hover > menu {	left: -21px; z-index: -1; }
+  nav#weby_bar menu li:hover menu li:hover > a { white-space: normal; height: auto; }
+  nav#weby_bar menu li:hover menu li:hover > menu { left: 85px; z-index: 100; }
+  nav#weby_bar menu li menu { position: absolute; left: -9999px; margin-left: 20px; width: 85px; }
+  nav#weby_bar menu li menu li menu { margin-left: 0px; margin-top: 0px; }
+  nav#weby_bar menu li a { background: #FFF; display: block; line-height: 20px; margin: 0; padding-left: 10px; width: 71px; padding-right: 0px; }
+  nav#weby_bar menu li > a { text-overflow: ellipsis; overflow: hidden; white-space:nowrap; }
+  nav#weby_bar > menu > li:hover > a { min-width: 71px; width: auto;  }
+  nav#weby_bar menu li.sub > a { background: url("../images/arrow_collapsed.png") no-repeat scroll #fff; background-position: right center; }
+  nav#weby_bar > menu > li.sub > a { background: url("../images/arrow_expanded.png") no-repeat scroll #fff; background-position: right center; }
+    nav#weby_bar menu li:hover > menu { top: 20px; }
+    nav#weby_bar menu li:hover menu li:hover > menu { top: 0px; }
 
 /* Define style to Header, Footer and contents */
 header {}
@@ -84,7 +100,6 @@ section#content {
     margin: 0px 3px;
   }
 
-  section#content nav#admin { padding-bottom: 5px; }
   section#content section#pages {
     font-family: Verdana;
     font-weight: Normal;
