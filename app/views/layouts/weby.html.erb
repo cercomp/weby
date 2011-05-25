@@ -6,12 +6,10 @@
   <% end %>
   <%= render 'layouts/shared/head', :contrast => 'weby_contrast' %>
   <body>
-    <%= render 'layouts/shared/institutional_bar' %>
+    <%= load_components 'first_place' %>
     <div id="wrapper" <%= "style='width: #{ @main_width }px'" if @main_width %>>
 
       <header>
-     		<%= raw menu_admin(@site) %>
-     		<%= render "sites/viewCover" %>
       	<nav>
       		<%= raw print_menu(@menus['superior']) %>
       		<nav class="right">
