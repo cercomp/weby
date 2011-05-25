@@ -220,6 +220,15 @@ EOF
       insert_sites_csses = "INSERT INTO sites_csses (site_id,css_id,publish,owner) VALUES ('#{@convar["#{this_site['site_id']}"]['weby']}','#{css[0]['id']}',true,true)"
       site_css = @con_weby.exec(insert_sites_csses)
 
+			dir_css = '/data/css_changed'
+			css_file = "#{dir_css}/#{@convar["#{this_site['site_id']}"]['weby'].to_i + 1}_#{site_name}.css"
+			if File.file?(css_file)
+				puts "ATUALIZANDO estilo alterando manualmente..."
+				css_new = IO.read(css_file)
+	      update_sites_csses = "UPDATE csses set css='#{css_new}' WHERE id='#{css[0]['id']}'"
+  	    @con_weby.exec(update_sites_csses)
+			end
+
       param_aux = "#{@param} AND " if @param
       param_aux = "WHERE" if not @param
       select_usuarios = "SELECT * FROM usuarios #{param_aux} site_id='#{this_site['site_id']}' ORDER BY id"
@@ -499,6 +508,7 @@ EOF
     end
   end
 end
+
 # Classe para migração dos arquivos
 class Migrate_files
   def initialize(from, to, id=[])
