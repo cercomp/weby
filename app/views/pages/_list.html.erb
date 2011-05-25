@@ -5,7 +5,6 @@
   <thead>
     <th><%= sortable 'id' %></th>
     <th><%= sortable 'date_begin_at', t("date_param", :param => t("register"))%></th>
-    <th><%= sortable 'date_end_at', t("date_param", :param => t("publication"))%></th>
     <th><%= sortable 'title', t("title") %></th>
     <th><%= sortable 'author_id', t("author") %></th>
     <th><%= sortable 'category', t("category") %></th>
@@ -22,7 +21,6 @@
       <tr id="sort_page_<%= page.id %>">
         <td><%= page.id %></td>
         <td><%= l page.created_at, :format => :short %></td>
-        <td><%= l page.date_begin_at, :format => :short %></td>
         <td><%= link_to page.title, site_page_path(@site,page) %></td>
         <td><%= page.user.first_name ? ("#{page.user.first_name} #{page.user.last_name}") : page.user.login %></td>
         <td><%= page.category %></td>

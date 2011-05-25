@@ -69,7 +69,7 @@ class Migrate_this2weby
 
       if @convar["#{this_site['site_id']}"]["weby"].nil?
         use_menu_dropdown = this_site['drop_down_esquerdo'].to_i == 1 ? true : false
-        insert_site = "INSERT INTO sites (name,url,description,footer,body_width,menu_dropdown,theme) VALUES ('#{pre_treat(site_name)}','#{pre_treat(this_site['caminho_http'])}','#{pre_treat(this_site['nm_site'])}','#{rodape_text}','996','#{use_menu_dropdown}','this2') RETURNING id"
+        insert_site = "INSERT INTO sites (name,url,description,footer,body_width,menu_dropdown,theme) VALUES ('#{pre_treat(site_name)}','#{pre_treat(this_site['caminho_http'])}','#{pre_treat(this_site['nm_site'])}','#{rodape_text}','900','#{use_menu_dropdown}','this2') RETURNING id"
         site = @con_weby.exec(insert_site)
         puts "\t\tINSERINDO (#{site[0]['id']}) #{site_name} - #{this_site['nm_site']} \n" if @verbose
         puts "\t\t\tMenu Dropdown: #{use_menu_dropdown}"
