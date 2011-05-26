@@ -1,7 +1,7 @@
 module FormsHelper
-  def images_radio(form, id)
+  def images_radio(images, form, id)
     form.radio_button_group id, 
-      @repositories.map { |u|
+      images.map { |u|
       if File.file?(u.archive.path) and not File.file?(u.archive.path(:mini))
         u.archive.reprocess! 
       end
@@ -12,7 +12,7 @@ module FormsHelper
         :title => u.description 
       }
     }, 
-      (paginate @repositories),
+      (paginate images),
       :label => t("picture"),
       :help => t("picture")
   end

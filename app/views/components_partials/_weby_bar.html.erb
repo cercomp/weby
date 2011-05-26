@@ -2,7 +2,7 @@
   <menu>
     <li> <%= link_to( t("portal"), root_path ) %> </li>
 
-    <% if @site %>
+    <% if @site.try(:id) %>
       <li> <%= link_to( t("home"), @site ) %> </li>
       <li class='sub'> <%= link_to( t("admin.one"), site_admin_index_path(@site) ) %>
         <menu>
@@ -35,7 +35,7 @@
       <li> <%= link_to( t("register"), new_user_path ) %> </li>
       <li> <%= link_to( t("login"), login_path(:back_url => "#{request.fullpath}")) %> </li>
     <% else %>
-      <li> <%= @site ? link_to(t("my_profile"), site_user_path(@site, current_user)) : link_to(t("my_profile"), user_path(current_user)) %> </li>
+      <li> <%= @site.try(:id) ? link_to(t("my_profile"), site_user_path(@site, current_user)) : link_to(t("my_profile"), user_path(current_user)) %> </li>
       <li> <%= link_to( t("logout"), logout_path, :confirm => t("are_you_sure") ) %> </li>
     <% end %>
     <% # FIXME Contador de usuários não está funcionando ao realizar logoff. %>

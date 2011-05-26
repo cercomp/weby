@@ -2,17 +2,6 @@
   <legend><%= (t"editing", :param => (t"site.one")) %></legend>
   <%= link_to t('back'), :back %>
 
-  <center>
-    <% menus_list = [[t("picture"), "image"], [t("pdf"), "pdf"]] %>
-    <%= form_tag edit_site_admin_path(@site, @site), :method => 'get' do %>
-      <%= label_tag t("search") %>
-      <%= text_field_tag :search %>
-      <%= select_tag(:type, options_for_select(menus_list, selected = "#{params[:type]}")) %>
-      <%= submit_tag t("submit") %>
-    <% end %>
-  </center>
-  <hr>
-
   <div id="repo_new" >
     <div class="contextual">
       <%= link_to (t"new_param.masc", :param => (t"archive.one")), new_site_repository_path(),
@@ -38,7 +27,7 @@
     <% end %>
 
     <div id='form'>
-      <%= render :partial => 'form', :locals => { :f => f } %>
+      <%= render 'repositories/images_radio_list', :f => f, :id => :top_banner_id %>
     </div>
 
     <%= f.text_field :body_width, :label => t("body_width"), :help => (t"example_param", :param => "960") %><br />

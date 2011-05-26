@@ -165,6 +165,8 @@ module ApplicationHelper
     menu = ""
     excepts = args[:except] || []
     # Trata os argumentos para excluir itens do menu
+    
+    controller_name = args[:controller] || controller.controller_name
 
     # Transforma o parâmetro em array caso não seja
     excepts = [excepts] unless excepts.is_a? Array
@@ -180,15 +182,15 @@ module ApplicationHelper
       if permission and actions.include?(permission.to_sym)
         case permission.to_s
         when "show"
-          menu += link_to(t('show'), {:controller => "#{controller.controller_name}", :action => 'show', :id => obj.id}, :class => 'icon icon-show', :alt => t('show'), :title => t('show')) + " "
+          menu += link_to(t('show'), params.merge({:controller => controller_name, :action => 'show', :id => obj.id}), :class => 'icon icon-show', :alt => t('show'), :title => t('show')) + " "
         when "edit"
-          menu += link_to(t("edit"), {:controller => "#{controller.controller_name}", :action => "edit", :id => obj.id}, :class => 'icon icon-edit', :alt => t('edit'), :title => t('edit')) + " "
+          menu += link_to(t("edit"), params.merge({:controller => controller_name, :action => 'edit', :id => obj.id}), :class => 'icon icon-edit', :alt => t('edit'), :title => t('edit')) + " "
         when "destroy"
-          menu += link_to((t"destroy"), {:controller => "#{controller.controller_name}", :action => "destroy", :id => obj.id}, :class => 'icon icon-del', :confirm => t('are_you_sure'), :method => :delete, :alt => t('destroy'), :title => t('destroy')) + " "
+          menu += link_to(t("destroy"), params.merge({:controller => controller_name, :action => 'destroy', :id => obj.id}), :class => 'icon icon-del', :confirm => t('are_you_sure'), :method => :delete, :alt => t('destroy'), :title => t('destroy')) + " "
         end
       end
     end
-    menu
+    raw menu
   end
 
   # Método para ordenar tabelas pela coluna

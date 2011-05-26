@@ -171,4 +171,13 @@ class ApplicationController < ActionController::Base
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
   end
+
+
+  protected
+  def load_images
+    @images = @site.repositories.
+      description_or_file_and_content_file(params[:image_search], "image%").
+      page(params[:page]).
+      per(4)
+  end
 end

@@ -2,10 +2,11 @@
 <html lang="<%= session[:locale].to_s %>">
 	<%= content_for :stylesheets do %>
     <%= stylesheet_link_tag 'this2' %>
-		<%= stylesheet_link_tag 'negativo' if session[:contrast] == 'yes' %>
+		<%= stylesheet_link_tag 'contrast' if session[:contrast] == 'yes' %>
   <% end %>
-  <%= render 'layouts/shared/head', :contrast => 'contrast' %>
+  <%= render 'layouts/shared/head' %>
   <body>
+    <%= debug params %>
     <div class='first_place'>
       <%= load_components 'first_place' %>
     </div>

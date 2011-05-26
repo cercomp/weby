@@ -31,7 +31,7 @@
     </div>
 
     <div id='repo_list'> 
-      <%= render :partial => 'repo_list', :locals => { :f => f } %>
+      <%= render 'repositories/images_radio_list', :f => f, :id => :repository_id %>
     </div>
 
     <%= f.hidden_field :created_at, :order => [:year, :month, :day],

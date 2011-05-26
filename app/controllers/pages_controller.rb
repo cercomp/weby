@@ -3,6 +3,7 @@ class PagesController < ApplicationController
   before_filter :require_user, :only => [:new, :edit, :update, :destroy, :sort, :toggle_field]
   before_filter :check_authorization, :except => [:view, :show]
   before_filter :per_page, :only => [:index]
+  before_filter :load_images, :only => [:edit, :new]
   helper_method :sort_column
 
   respond_to :html, :xml, :js
@@ -39,8 +40,6 @@ class PagesController < ApplicationController
     @page.sites_pages.build
     @page.pages_repositories.build
 
-    @repositories = images
-
     # Objeto para pages_repositories (relacionamento muitos-para-muitos)
     ## Criando objeto com os arquivos que não estão relacionados com a página
     @page_files_unchecked = @site.repositories.order('id DESC').page(1).per(params[:twitter_page] || 5)
@@ -54,8 +53,6 @@ class PagesController < ApplicationController
     # Automaticamente define o tipo, se não for passado como parâmetro
     params[:type] ||= @page.type
 
-    @repositories = images 
-
     # Criando objeto com os arquivos que não estão relacionados com a página
     if not @page.repository_ids
       @page_files_unchecked = @site.repositories.where("id NOT IN (?)", @page.repository_ids.to_s.delete('[]')).page(1).per(params[:twitter_page].to_i*5) 
@@ -65,14 +62,11 @@ class PagesController < ApplicationController
 
     respond_with do |format|
       format.js { 
-        render :update do |page|
-        if params[:page]
-          page.call "$('#repo_list').html", render(:partial => 'repo_list', :locals => { :f => SemanticFormBuilder.new(@page.class.name.underscore.to_s, @page, self, {}, proc{}) })
-        end
         if params[:twitter_page]
-          page.call "$('#files_list').append", render(:partial => 'files_list')
-          page.call "$('#paginate').html", (paginate @page_files_unchecked, :param_name => 'twitter_page', :theme => 'twitter', :remote => true)
-        end
+          render :update do |page|
+            page.call "$('#files_list').append", render(:partial => 'files_list')
+            page.call "$('#paginate').html", (paginate @page_files_unchecked, :param_name => 'twitter_page', :theme => 'twitter', :remote => true)
+          end
         end
       }
       format.html
@@ -149,11 +143,5 @@ class PagesController < ApplicationController
     else
       params[:per_page] || per_page_default
     end
-  end
-
-  def images
-    @site.repositories.
-      description_or_file_and_content_file(params[:search], "image%").
-      order('created_at DESC').page(params[:page]).per(4)
   end
 end

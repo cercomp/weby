@@ -10,13 +10,7 @@
     </div>
   <% end %>
 
-  <% unless @repositories.nil? %>
-    <%= f.radio_button_group :repository_id,
-      @repositories.map { |u| { 
-      :value => u.id,
-      :image => u.archive.url(:mini) } } %>
-    <%= (paginate @repositories) %>
-  <% end %>
+  <%= render 'repositories/images_radio_list', :f => f, :id => :repository_id %>
 
   <%= f.text_field :name, :label => t("name"), :required => true, :help => t("field_required") %><br />
   <%= f.text_field :url, :label => "URL", :required => true, :help => t("field_required") %><br />
