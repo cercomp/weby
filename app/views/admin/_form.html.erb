@@ -1,5 +1,0 @@
-<% unless @repositories.nil? %>
-  <%= images_radio(f, :top_banner_id) %>
-<% else %>
-  <% flash.now[:warning] = (t"none_param", :param => t("picture")) %>
-<% end %>

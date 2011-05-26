@@ -1,0 +1,35 @@
+<% if @images %>
+  <center>
+    <%= label_tag :image_search, t('search') %>
+    <%= text_field_tag :image_search, params[:image_search] %>
+    <span id='loading'></span>
+  </center>
+
+  <div id="images_list">
+    <%= images_radio(@images, f, id) %>
+  </div>
+
+  <%= content_for :javascripts do %>
+    <%= javascript_tag do %>
+      xhr = null;
+      $('#image_search').bind('keyup', function(){
+        var loading = LoadingGif.new();
+        loading.setLocal($('span#loading')).show();
+
+        if(xhr != null){ xhr.abort(); }
+
+        xhr = $.ajax({ 
+          data: { 'image_search': $(this).val() },
+          dataType: 'html',
+          success: function(data){
+            ndata = $(data);
+            $('#images_list').html(ndata.find('#images_list'));
+            loading.hide();
+          }
+        });
+      });
+    <% end %>
+  <% end %>
+<% else %>
+  <%= flash.now[:warning] = (t"none_param", :param => t("picture")) %>
+<% end %>
