@@ -37,6 +37,11 @@ class Migrate_this2weby
     puts "Migrando tabela this.sites para weby.sites...\n" if @verbose
     select_sites = "SELECT * FROM sites #{@param} ORDER BY site_id"
     this_sites = @con_this.exec(select_sites)
+
+		# Inserindo o que futuramente seria o site da UFG
+    insert_UFG = "INSERT INTO sites (name,url,description,footer,body_width,menu_dropdown,theme) VALUES ('ufg','www.ufg.br','Portal UFG','','900',true,'this2')"
+    @con_weby.exec(insert_UFG)
+
     # Laço de repetição
     this_sites.each do |this_site|
       # Gerando o nome do site
@@ -221,11 +226,11 @@ EOF
       site_css = @con_weby.exec(insert_sites_csses)
 
 			dir_css = '/data/css_changed'
-			css_file = "#{dir_css}/#{@convar["#{this_site['site_id']}"]['weby'].to_i + 1}_#{site_name}.css"
+			css_file = "#{dir_css}/#{@convar["#{this_site['site_id']}"]['weby']}_#{site_name}.css"
 			if File.file?(css_file)
 				puts "ATUALIZANDO estilo alterando manualmente..."
 				css_new = IO.read(css_file)
-	      update_sites_csses = "UPDATE csses set css='#{css_new}' WHERE id='#{css[0]['id']}'"
+	      update_sites_csses = "UPDATE csses set css='#{pre_treat(css_new)}' WHERE id='#{css[0]['id']}'"
   	    @con_weby.exec(update_sites_csses)
 			end
 
