@@ -1,7 +1,7 @@
-<%# hack para criar um hash vazio caso as configurações sejam nulas %>
+<% #hack para criar um hash vazio caso as configurações sejam nulas %>
 <% @site_component.settings ||= "{}" %>
 
-<%= #TODO Traduzir componentes para o ingles; Transformar componentes em pacotes (estilo redmine) %>
+<% #TODO Traduzir componentes para o ingles; Transformar componentes em pacotes (estilo redmine) %>
 
 <!-- VARIAVEIS PARA O JS -->
 <input id="components_settings"         type="hidden" meta-data="<%= components_settings.to_json %>" />
