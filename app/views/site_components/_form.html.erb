@@ -1,9 +1,12 @@
 <%# hack para criar um hash vazio caso as configurações sejam nulas %>
 <% @site_component.settings ||= "{}" %>
 
+<%= #TODO Traduzir componentes para o ingles; Transformar componentes em pacotes (estilo redmine) %>
+
 <!-- VARIAVEIS PARA O JS -->
-<input id="components_settings" type="hidden" meta-components_settings="<%= components_settings.to_json %>" />
-<input id="component_settings" type="hidden" meta-component_settings="<%= eval(@site_component.settings).to_json %>" />
+<input id="components_settings"         type="hidden" meta-data="<%= components_settings.to_json %>" />
+<input id="component_settings"          type="hidden" meta-data="<%= eval(@site_component.settings).to_json %>" />
+<input id="components_settings_locales" type="hidden" meta-data="<%= components_settings_locales.to_json %>" />
 
 <%= content_for :javascripts, javascript_include_tag('site_component_form') %>
 
@@ -22,12 +25,12 @@
   <%= f.hidden_field :site_id, :value => @site.id %>
 
   <div class="field">
-    <%= f.select :place_holder, places_holder,
-      :label => t("place") %>
+    <%= f.select :place_holder, places_holder.collect{ |p| [t("components.pos.#{p}"), p] },
+      :label => t("place").capitalize %>
   </div>
 
   <div class="field">
-    <%= f.select :component, components,
+    <%= f.select :component, components.collect{ |c| [t("components.#{c}"), c] }.sort{ |a,b| a[0].downcase <=> b[0].downcase },
       :label => t("component.one") %>
   </div>
 

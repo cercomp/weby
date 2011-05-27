@@ -497,3 +497,4 @@ pt-BR:
       one: "<b>{{size}}</b> {{entry_name}}"
       other: "Todos os <b>{{size}}</b> {{entry_name}}"
     display: "{{entry_name}} de <b>{{from}}</b> a <b>{{to}}</b> de {{total}} no total"
+    

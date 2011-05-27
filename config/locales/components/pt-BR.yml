@@ -1,0 +1,27 @@
+pt-BR:  
+  this_file_language: "Português Brasileiro"
+
+  components:
+    banner_horizontal: "Banner Horizontal"
+    banner_side: "Banner Lateral"
+    category: "Categoria"
+    feedback: "Feedback"
+    front_news: "Notícias Capas"
+    header: "Cabeçalho (Topo)"
+    info_footer: "Informação de Rodapé"
+    institutional_bar: "Barra Institucional (MEC)"
+    menu_accessibility: "Menu de acessibilidade"
+    menu_side: "Menu"
+    no_front_news: "Lista de Notícias que não são capas"
+    quant: "Quantidade de itens"
+    settings: "Configurações"
+    weby_bar: "Barra de Administração do Sistema"
+    
+    pos:
+      bottom: "Inferior"
+      first_place: "Superior"
+      home: "Tela Inicial"
+      left: "Esquerda"
+      right: "Direita"
+      top: "Topo"
+

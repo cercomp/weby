@@ -12,16 +12,37 @@ module SiteComponentsHelper
   end
 
   def components
-    ['banner_horizontal', 'banner_side', 'menu_side', 'feedback', 'info_footer', 'header', 'menu_accessibility', 'front_news', 'no_front_news', 'institutional_bar', 'weby_bar']
+    ['banner_horizontal',
+     'banner_side',
+     'menu_side',
+     'feedback',
+     'info_footer',
+     'header',
+     'menu_accessibility',
+     'front_news',
+     'no_front_news',
+     'institutional_bar',
+     'weby_bar']
   end
 
   def components_settings
     {
       'banner_horizontal' => ['category'],
-      'banner_side' => ['category'],
-      'menu_side' => ['category'],
-      'front_news' => ['quant'],
-      'no_front_news' => ['quant']
+      'no_front_news'     => ['quant'],
+      'banner_side'       => ['category'],
+      'front_news'        => ['quant'],
+      'menu_side'         => ['category']
     }
+  end
+  
+  def components_settings_locales
+    locales = {}
+    self.components_settings.each do |component, array|
+      locales[component] = []
+      array.each do |v|
+        locales[component] << t("components." + v);
+      end
+    end
+    locales
   end
 end
