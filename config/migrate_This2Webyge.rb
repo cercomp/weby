@@ -635,7 +635,7 @@ class Migrate_files
         `mv -ufv "#{file}" "#{destino}/original_#{file_name}"`
 
         if(file_name == "topo.jpg" || file_name == "topo.gif" || file_name == "topo.png")
-            sql = "UPDATE sites SET top_banner_id='#{repository_id}' WHERE id='#{id}'"
+            sql = "UPDATE sites SET top_banner_id='#{repository_id}' WHERE id='#{@convar[id]['weby']}'"
             @con_weby.exec(sql)
             puts "\tATUALIZANDO topo"
             next
