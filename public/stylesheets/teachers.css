@@ -90,7 +90,9 @@ aside { width: 155px; position: relative; }
 section#content {
   width: auto;
   padding: 5px;
-  padding-top: 0; }
+  padding-top: 0; 
+  overflow: hidden;
+  }
   section#content section#pages {
     font-family: Verdana;
     font-weight: Normal;
