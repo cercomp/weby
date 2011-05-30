@@ -5,7 +5,8 @@ module SiteComponentsHelper
   def places_holder
     places = {
       'weby' => ['left', 'right', 'top', 'bottom', 'home', 'first_place'],
-      'this2' => ['left', 'right', 'top', 'bottom', 'home', 'first_place']
+      'this2' => ['left', 'right', 'top', 'bottom', 'home', 'first_place'],
+      'teachers' => ['left', 'top', 'bottom', 'home', 'first_place']
     }
 
     places[@site.theme] || []

@@ -10,6 +10,7 @@ body {
   margin: 0 auto; }
 #wrapper { border: 2px solid transparent; border-top: none }
 nav#weby_bar { padding-bottom: 5px; }
+nav.right { clear: both;}
 
 /* Define style to Header, Footer and contents */
 header,
@@ -17,7 +18,7 @@ footer { }
 
   /* Define footer information */
   footer section#info { padding: 0 0 5px 5px; }
-    footer section#info p { margin: 0; }
+  footer section#info p { margin: 0; }
 
   /* Define area of top image */
   /*header figure#cover { overflow: hidden; }*/
@@ -89,8 +90,7 @@ aside { width: 155px; position: relative; }
 section#content {
   width: auto;
   padding: 5px;
-  padding-top: 0;
-  overflow: hidden; }
+  padding-top: 0; }
   section#content section#pages {
     font-family: Verdana;
     font-weight: Normal;
@@ -138,5 +138,4 @@ table td { padding: 3px; }
 table th { font-size: 13px; }
 
 #description { float: left;  font-size: 15px; padding-top: 75px; width: 580px; text-align: center; }
-#acessibilidade { float: right; }
 #top_figure { float: left; width: 155px; position: relative; margin-left: 0px; padding: 0; display:inline; }
