@@ -15,7 +15,7 @@ header {}
 footer { clear:both; bottom:0; }
 
   /* Define footer information */
-  footer section#info { padding: 0 0 5px 5px; }
+  footer section#info { padding: 0 0 5px 5px; clear: both; }
     footer section#info p { margin: 0; }
 
   /* Define area of top image */
