@@ -11,6 +11,7 @@ var settings_loc;
 window.onload = function(){
   settings     = $.parseJSON($("#components_settings").attr('meta-data'));
   settings_loc = $.parseJSON($("#components_settings_locales").attr('meta-data'));
+  custom       = $.parseJSON($("#components_custom_fields").attr('meta-data'));
   old_settings = $.parseJSON($("#component_settings").attr('meta-data'));
   
   switch_settings();
@@ -35,8 +36,13 @@ function switch_settings() {
       label = s;
     }
     
-    var field = $(['<p><label>', label, '</label><input name="', s, '" type="text" value="',
-      old_settings[s], '"></p>'].join(''));
+    if(custom[setting] == null) {
+      var field = $(['<p><label>', label, '</label><input name="', s, '" type="text" value="',
+        old_settings[s], '"></p>'].join(''));
+    }
+    else {
+      var field = $(['<p><label>', label, '</label>', custom[setting][s],'</p>'].join(''));
+    }
 
     $('#settings .input').append(field);
   });
@@ -51,9 +57,14 @@ function join_data(){
 
   $('#settings .input p').each(function(i, v){
     var input = $(v).children('input');
+    
+    // Caso o campo seja um select
+    if(input.length == 0) input = $(v).children('select');
+    
     result.push([':', input.attr('name'), ' => "', input.val(), '"'].join(''));
   });
 
   $('#settings .input').append(['<textarea name="site_component[settings]" style="display:none">{',
     result.join(', '), '}</textarea>'].join(''));
+    
 }

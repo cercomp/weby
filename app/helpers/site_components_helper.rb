@@ -36,6 +36,21 @@ module SiteComponentsHelper
     }
   end
   
+  def components_settings_custom_field
+    cur_setting = eval(@site_component.settings);
+    {
+      'banner_horizontal' => {
+        'category' => ['<select name="category">', options_for_select(@site.banner_categories, cur_setting[:category]), '</select>'].join
+      },
+      'banner_side' => {
+        'category' => ['<select name="category">', options_for_select(@site.banner_categories, cur_setting[:category]), '</select>'].join
+      },
+      'menu_side' => {
+        'category' => ['<select name="category">', options_for_select(@site.menu_categories, cur_setting[:category]), '</select>'].join
+      }
+    }
+  end
+  
   def components_settings_locales
     locales = {}
     self.components_settings.each do |component, array|

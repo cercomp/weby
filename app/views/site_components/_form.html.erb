@@ -7,6 +7,7 @@
 <input id="components_settings"         type="hidden" meta-data="<%= components_settings.to_json %>" />
 <input id="component_settings"          type="hidden" meta-data="<%= eval(@site_component.settings).to_json %>" />
 <input id="components_settings_locales" type="hidden" meta-data="<%= components_settings_locales.to_json %>" />
+<input id="components_custom_fields"    type="hidden" meta-data="<%= components_settings_custom_field.to_json %>" />
 
 <%= content_for :javascripts, javascript_include_tag('site_component_form') %>
 
