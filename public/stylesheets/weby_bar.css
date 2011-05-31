@@ -1,15 +1,15 @@
 nav#weby_bar { color: white; top:0; background-color: #20263f;  line-height: 21px; width:100%; border-bottom: 1px solid 	white; padding-left: 10px;}
-	nav#weby_bar menu { list-style: none outside none; padding: 0; margin: 0; }
+	nav#weby_bar menu { list-style: none outside none; padding: 0; margin: 0; background-color: #20263f;}
   nav#weby_bar menu li { padding: 0 0 0 0; float: left; }
   nav#weby_bar menu li:hover { position: relative; z-index: 100; background-color: #20263f; }
   nav#weby_bar menu li:hover > menu {	left: -21px; z-index: -1; }
-  nav#weby_bar menu li:hover menu li:hover > a { white-space: normal; height: auto; }
+  nav#weby_bar menu li:hover menu li:hover > a { white-space: normal; height: auto;  background-color: #FFFFFF}
   nav#weby_bar menu li:hover menu li:hover > menu { left: 85px; z-index: 100; }
   nav#weby_bar menu li menu { position: absolute; left: -9999px; margin-left: 20px; width: 85px; }
   nav#weby_bar menu li menu li menu { margin-left: 0px; margin-top: 0px; }
-  nav#weby_bar menu li a { background: #20263f; display: block; line-height: 20px; margin: 0;  width: 71px; padding-right: 0px; }
+  nav#weby_bar menu li a { background: #20263f; display: block; line-height: 20px; margin: 0;  width: 71px; padding-right: 0px; margin-bottom: 12px; }
   nav#weby_bar menu li > a { text-overflow: ellipsis; overflow: hidden; white-space:nowrap; color: #FAB710;}
-  nav#weby_bar > menu > li:hover > a { min-width: 71px; width: auto;  }
+  nav#weby_bar > menu > li:hover > a { min-width: 71px; width: auto; }
   nav#weby_bar menu li.sub > a { background: url("../images/arrow_collapsed.png") no-repeat scroll #20263f; background-position: right center; }
   nav#weby_bar > menu > li.sub > a { background: url("../images/arrow_expanded.png") no-repeat scroll #20263f; background-position: right center; }
     nav#weby_bar menu li:hover > menu { top: 20px; }
