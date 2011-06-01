@@ -5,40 +5,41 @@
     <% if @site.try(:id) %>
       <li> <%= link_to( t("home"), @site ) %> </li>
       <li class='sub'> <%= link_to( t("admin.one"), site_admin_index_path(@site) ) %>
-        <menu>
-        <% if current_user %>
-          <li> <%= link_to (t"user.other"), @site ? site_users_path(@site) : users_path %> </li>
-          <% if @site %>
-            <li> <%= link_to (t"setting.other"), edit_site_admin_path(@site, @site) %> </li>
-            <li> <%= link_to t("component.other"), site_site_components_path(@site) %> </li>
-            <li> <%= link_to (t"menu.other"), site_menus_path(@site) %> </li>
-            <li> <%= link_to (t"page.other"), site_pages_path(@site) %> </li>
-            <li> <%= link_to (t"banner.other"), site_banners_path(@site) %> </li>
-            <li> <%= link_to (t"group.other"), site_groups_path(@site) %> </li>
-            <li> <%= link_to (t"archive.other"), site_repositories_path(@site) %> </li>
-            <li> <%= link_to (t"css.other"), site_csses_path(@site) %> </li>
-            <li> <%= link_to (t"permission.other"), rights_path %> </li>
-            <li> <%= link_to (t"roles_permissions"), site_roles_path(@site) %> </li>
-            <li> <%= link_to (t"feedback.one"), site_feedbacks_path(@site) %> </li>
-          <% else %>
-            <li> <%= link_to (t"roles_permissions"), roles_path %> </li>
-            <li> <%= link_to (t"setting.other"), settings_path %> </li>
-          <% end %>
+    <menu>
+      <% if current_user %>
+        <li> 
+        <%= link_to (t"user.other"), @site ? site_users_path(@site) : users_path %> </li>
+        <% if @site %>
+          <li> <%= link_to (t"setting.other"), edit_site_admin_path(@site, @site) %> </li>
+          <li> <%= link_to t("component.other"), site_site_components_path(@site) %> </li>
+          <li> <%= link_to (t"menu.other"), site_menus_path(@site) %> </li>
+          <li> <%= link_to (t"page.other"), site_pages_path(@site) %> </li>
+          <li> <%= link_to (t"banner.other"), site_banners_path(@site) %> </li>
+          <li> <%= link_to (t"group.other"), site_groups_path(@site) %> </li>
+          <li> <%= link_to (t"archive.other"), site_repositories_path(@site) %> </li>
+          <li> <%= link_to (t"css.other"), site_csses_path(@site) %> </li>
+          <li> <%= link_to (t"permission.other"), rights_path %> </li>
+          <li> <%= link_to (t"roles_permissions"), site_roles_path(@site) %> </li>
+          <li> <%= link_to (t"feedback.one"), site_feedbacks_path(@site) %> </li>
+        <% else %>
+          <li> <%= link_to (t"roles_permissions"), roles_path %> </li>
+          <li> <%= link_to (t"setting.other"), settings_path %> </li>
         <% end %>
-        </menu>
-      </li>
-    <% else %>
-      <li> <%= link_to( t("admin.one"), admin_index_path(:back_url => "#{request.fullpath}") ) %> </li>
-    <% end %>
+      <% end %>
+    </menu>
+    </li>
+  <% else %>
+    <li> <%= link_to( t("admin.one"), admin_index_path(:back_url => "#{request.fullpath}") ) %> </li>
+  <% end %>
 
-    <% unless current_user %>
-      <li> <%= link_to( t("register"), new_user_path ) %> </li>
-      <li> <%= link_to( t("login"), login_path(:back_url => "#{request.fullpath}")) %> </li>
-    <% else %>
-      <li> <%= @site.try(:id) ? link_to(t("my_profile"), site_user_path(@site, current_user)) : link_to(t("my_profile"), user_path(current_user)) %> </li>
-      <li> <%= link_to( t("logout"), logout_path, :confirm => t("are_you_sure") ) %> </li>
-    <% end %>
-    <% # FIXME Contador de usuários não está funcionando ao realizar logoff. %>
-    <%= User.logged_in.count.to_s + ' ' + t('user', :count => User.logged_in.count) + ' ' + t('logged') + ".\n" %>
-  </menu>
+  <% unless current_user %>
+    <li> <%= link_to( t("register"), new_user_path ) %> </li>
+    <li> <%= link_to( t("login"), login_path(:back_url => "#{request.fullpath}")) %> </li>
+  <% else %>
+    <li> <%= @site.try(:id) ? link_to(t("my_profile"), site_user_path(@site, current_user)) : link_to(t("my_profile"), user_path(current_user)) %> </li>
+    <li> <%= link_to( t("logout"), logout_path, :confirm => t("are_you_sure") ) %> </li>
+  <% end %>
+  <% # FIXME Contador de usuários não está funcionando ao realizar logoff. %>
+  <%= User.logged_in.count.to_s + ' ' + t('user', :count => User.logged_in.count) + ' ' + t('logged') + ".\n" %>
+</menu>
 </nav>
