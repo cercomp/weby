@@ -11,7 +11,8 @@ nav#weby_bar {
     padding: 0;
     margin: 0;
     background-color: inherit;
-    list-style: none outside none; }
+    list-style: none outside none;
+    z-index: 999; }
     nav#weby_bar menu li a {
       width: 100%; }
     nav#weby_bar menu li:hover {
