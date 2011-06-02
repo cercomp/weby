@@ -1,80 +1,61 @@
+/*Variables*/
 nav#weby_bar {
-  color: white;
-  top:0;
-  background-color: #666666;
-  line-height: 23px;
-  width:100%;
-  border-bottom: 1px solid 	white;
-  padding-left: 10px;
-}
-
-nav#weby_bar > menu li {
-  background-color: #666666;
-}
-
-nav#weby_bar menu {
-  list-style: none outside none;
-  padding: 0;
-  margin: 0;
-  background-color: #666666;
-}
-
-nav#weby_bar menu li {
-  padding: 0 10px;
-  float: left;
-}
-
-nav#weby_bar menu li:hover {
-  position: relative;
-  z-index: 100;
-}
-
-nav#weby_bar menu li > a {
-  display: block;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space:nowrap;
-  color: white;
-}
-
-nav#weby_bar menu li menu {
-  position: absolute;
-  left: -9999px;
-  margin-left: 20px;
-}
-
-nav#weby_bar menu li menu li menu {
-  margin: 0px;
-}
-
-nav#weby_bar menu li > menu li {
+  top: 0;
   width: 100%;
-  border-bottom: 1px solid #ddd;
-  padding: 2px 3px;
-}
-
-nav#weby_bar menu li:hover > menu {
-  left: -21px;
-  z-index: -1;
-  top: 20px;
-}
-
-nav#weby_bar menu li.sub > a:after {
-  content: url("../images/arrow_collapsed.png");
-  position: relative;
-  top: 3px;
-  right: 0;
-}
-
-nav#weby_bar menu li:hover menu li:hover > menu {
-  top: 0px;
-  z-index: 100;
-}
-
-nav#weby_bar > menu li:hover {
-  background-color: #444444;
-}
-
-nav#weby_bar menu#user_info{
-  float: right;
-}
+  padding-left: 5px;
+  line-height: 23px;
+  color: #1f1f1f;
+  background-color: #dddddd;
+  border-bottom: 1px solid white; }
+  nav#weby_bar menu {
+    padding: 0;
+    margin: 0;
+    background-color: inherit;
+    list-style: none outside none; }
+    nav#weby_bar menu li a {
+      width: 100%; }
+    nav#weby_bar menu li:hover {
+      position: relative;
+      background-color: #c4c4c4;
+      z-index: 100px; }
+      nav#weby_bar menu li:hover > menu {
+        left: 0px;
+        top: 23px; }
+      nav#weby_bar menu li:hover menu li:hover > menu {
+        border-left: 1px solid white;
+        border-right: 1px solid white;
+        border-top: 1px solid white;
+        left: 83%;
+        top: 2px;
+        z-index: 900px; }
+    nav#weby_bar menu li.sub > a:after {
+      content: url("../images/arrow_collapsed.png");
+      position: relative;
+      top: 3px;
+      right: 0; }
+    nav#weby_bar menu li.sub:hover > a:after {
+      content: url("../images/arrow_expanded.png");
+      position: relative;
+      top: 3px;
+      right: 0; }
+    nav#weby_bar menu li > menu {
+      position: absolute;
+      left: -9999px;
+      margin-left: 20px;
+      border-left: 1px solid white;
+      border-right: 1px solid white; }
+      nav#weby_bar menu li > menu li {
+        width: 100%;
+        border-bottom: 1px solid white;
+        padding: 2px 5px; }
+    nav#weby_bar menu li menu li:hover > menu {
+      top: 20px; }
+    nav#weby_bar menu > li {
+      padding: 0 10px;
+      float: left;
+      background-color: #dddddd; }
+      nav#weby_bar menu > li a {
+        display: block;
+        color: #1f1f1f;
+        overflow: hidden;
+        white-space: nowrap; }
