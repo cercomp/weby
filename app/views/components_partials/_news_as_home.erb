@@ -1,0 +1,4 @@
+<% @page = Page.find(settings[:page]) %>
+<% params[:type] = @page.type %>
+
+<%= render :template => 'pages/show' %>

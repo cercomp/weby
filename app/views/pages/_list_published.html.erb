@@ -1,0 +1,22 @@
+<%= paginate @pages, :remote => true %>
+<%= info_page @pages %>
+<%= per_page_links @pages, true %>
+<table id='list' class="list">
+  <thead>
+    <th><%= sortable 'date_begin_at', t("date_param", :param => t("register"))%></th>
+    <th><%= sortable 'title', t("title") %></th>
+    <th><%= sortable 'category', t("category") %></th>
+    <th><%= sortable 'type', t("type") %></th>
+  </thead>
+
+  <tbody>
+    <% @pages.each do |page| %>
+      <tr id="sort_page_<%= page.id %>">
+        <td><%= l page.created_at, :format => :short %></td>
+        <td><%= link_to_function page.title, "selected(#{page.id}, '#{page.title}')" %></td>
+        <td><%= page.category %></td>
+        <td><%= t"#{page.type.downcase}.one" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
