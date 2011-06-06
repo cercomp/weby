@@ -407,6 +407,9 @@ EOF
         modificador ||= 1
         insert_page = "INSERT INTO pages (created_at,date_begin_at,date_end_at,site_id,author_id,title,text,publish,front,type) VALUES ('#{Time.now}','#{Time.now}','#{Time.now}','#{site_id}','#{modificador}','#{pre_treat(entry['texto_item'])}','#{pre_treat(entry['texto'])}',true,false,'News') RETURNING id"
         page_id = @con_weby.exec(insert_page)
+        insert_site_page = "INSERT INTO sites_pages (site_id,page_id) VALUES ('#{site_id}','#{page_id[0]['id']}')"
+				@con_weby.exec(insert_site_page)
+        puts "\t\t\t\tINSERINDO (sites_pages) (#{site_id} #{page_id[0]['id']})\n" if @verbose
         @convar["#{this_id}"]["menus"]["#{entry['id']}"] = page_id[0]['id']
         puts "\t\t\t\tINSERINDO (menus) página (#{page_id[0]['id']})\n" if @verbose
         insert_menu = "INSERT INTO menus (title,link,page_id) VALUES ('#{pre_treat(entry['texto_item'])}','','#{page_id[0]['id']}') RETURNING id"
