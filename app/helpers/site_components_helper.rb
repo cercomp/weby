@@ -23,7 +23,8 @@ module SiteComponentsHelper
      'front_news',
      'no_front_news',
      'institutional_bar',
-     'weby_bar']
+     'weby_bar',
+     'news_as_home']
   end
 
   def components_settings
@@ -32,7 +33,8 @@ module SiteComponentsHelper
       'no_front_news'     => ['quant'],
       'banner_side'       => ['category'],
       'front_news'        => ['quant'],
-      'menu_side'         => ['category']
+      'menu_side'         => ['category'],
+      'news_as_home'      => ['page']
     }
   end
   
@@ -42,11 +44,17 @@ module SiteComponentsHelper
       'banner_horizontal' => {
         'category' => ['<select name="category">', options_for_select(@site.banner_categories, cur_setting[:category]), '</select>'].join
       },
+      
       'banner_side' => {
         'category' => ['<select name="category">', options_for_select(@site.banner_categories, cur_setting[:category]), '</select>'].join
       },
+      
       'menu_side' => {
         'category' => ['<select name="category">', options_for_select(@site.menu_categories, cur_setting[:category]), '</select>'].join
+      },
+      
+      'news_as_home' => {
+        'page' => ['<a onclick="select_page(); return false;">', t('select_param', :param => t('news.one')), '</a>'].join
       }
     }
   end

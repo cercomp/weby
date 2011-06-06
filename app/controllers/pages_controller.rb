@@ -20,7 +20,7 @@ class PagesController < ApplicationController
     @pages = @pages.published if @tiny_mce
 
     if @pages
-      respond_with @pages
+      respond_with @page
     else
       flash[:warning] = (t"none_param", :param => t("page.one"))
     end
@@ -122,6 +122,16 @@ class PagesController < ApplicationController
       page.position = (params['sort_page'].index(p) + 1)
       page.save
     end
+  end
+  
+  # TODO teste para listar páginas na criação do componente news_as_home
+  # FIXEME método semelhante ao usado pelo 'index', verificar uma maneira de agrupa-los
+  # Lista com paginação as notícias cadastradas
+  def list_published
+    @pages = @site.pages.titles_like(params[:search]).except(:order).order(sort_column + " " + sort_direction).
+      page(params[:page]).per(per_page)
+
+    @pages = @pages.published
   end
 
   private

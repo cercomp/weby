@@ -56,15 +56,47 @@ function join_data(){
   var result = [];
 
   $('#settings .input p').each(function(i, v){
-    var input = $(v).children('input');
+    $(v).children('input').each(function(i2, v2){
+      var input = $(v2);
     
-    // Caso o campo seja um select
-    if(input.length == 0) input = $(v).children('select');
-    
-    result.push([':', input.attr('name'), ' => "', input.val(), '"'].join(''));
+      // Caso o input não tenha o atributo "name"
+      if(input.attr('name') == '') return;
+      
+      // Caso o campo seja um select
+      if(input.length == 0) input = $(v).children('select');
+      
+      result.push([':', input.attr('name'), ' => "', input.val(), '"'].join(''));
+      
+    });
   });
 
   $('#settings .input').append(['<textarea name="site_component[settings]" style="display:none">{',
     result.join(', '), '}</textarea>'].join(''));
     
+}
+
+/**
+ * Abre um popup para seleção de páginas
+ */
+function select_page() {
+  if(!$('#page_list').length)
+    $('#settings').append('<div id="page_list" style="display: none;" title="Selecione uma notícia"><img src="/images/spinner.gif"></div>');
+    
+  $('#page_list').dialog({
+    width: '500px'
+  });
+  
+  
+  $.get($('#list_published_site_pages_path').attr('meta-data'), function(){
+  }, 'script');
+}
+
+/**
+ * Ao selecionar a notícia, cria um input com o id da noticia selecionada
+ */
+function selected (id, title) {
+  $('#settings .input p').append('<input type="hidden" name="page" value="' + id + '" />');
+  $('#settings a').before('<input type="text" disabled="disabled" value="'+ title +'" />');
+  
+  $('#page_list').dialog('close');
 }

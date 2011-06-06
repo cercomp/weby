@@ -43,6 +43,7 @@ Webyge::Application.routes.draw do
       end 
       collection do
         post :sort
+        get :list_published
       end
     end
     resources :site_components do
