@@ -2,7 +2,7 @@ $(document).ready(function() {
   var loading = LoadingGif.new();
   $('form[data-remote=true]')
   .bind('submit', function(){
-    loading.setLocal($('span#loading')).show();
+    loading.setLocal($(this).find('span#loading')).show();
   })
   .bind('ajax:complete', function(){
     loading.hide();

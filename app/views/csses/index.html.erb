@@ -11,7 +11,8 @@
       <center>
         <%= form_tag site_csses_path, :method => 'get', :name => 'my_css_search', :remote => true do %>
           <%= label_tag t("search") %>
-          <%= text_field_tag :my_css_name, @my_css_name %>
+          <%= text_field_tag :my_css_name %>
+          <%= hidden_field_tag :other_css_name %>
           <%= hidden_field_tag 'page_my_csses', 1 %>
           <%= submit_tag t("submit") %>
           <span id='loading'></span>
@@ -24,9 +25,10 @@
     <details open>
       <summary><%= t('other_css') %></summary>
       <center>
-        <%= form_tag site_csses_path, :method => 'get', :name => 'my_css_search', :remote => true do %>
+        <%= form_tag site_csses_path, :method => 'get', :name => 'other_css_search', :remote => true do %>
           <%= label_tag t("search") %>
-          <%= text_field_tag :other_css_name, @other_css_name %>
+          <%= text_field_tag :other_css_name %>
+          <%= hidden_field_tag :my_css_name %>
           <%= hidden_field_tag 'page_other_csses', 1 %>
           <%= submit_tag t("submit") %>
           <span id='loading'></span>
