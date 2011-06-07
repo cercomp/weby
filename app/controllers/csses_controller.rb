@@ -4,16 +4,21 @@ class CssesController < ApplicationController
   before_filter :require_user
   before_filter :check_authorization
 
-  respond_to :html, :xml
+  respond_to :html, :xml, :js
 
   def index
-    @my_csses = @site.my_csses.
+    @my_css_name = params[:my_css_name]
+    @other_css_name = params[:other_css_name]
+
+    @my_csses = @site.my_csses.joins(:css).where(['csses.name like ?', "%#{params[:my_css_name]}%"]).
       page(params[:page_my_csses] || 1).per(15)
 
-    @other_csses = @site.other_csses.page(params[:page_other_csses] || 1).per(15)
+    @other_csses = @site.other_csses.joins(:css).where(['csses.name like ?', "%#{params[:other_css_name]}%"]).
+      page(params[:page_other_csses] || 1).per(15)
 
     respond_to do |format|
       format.html 
+      format.js
       format.xml  { render :xml => @csses }
     end
   end

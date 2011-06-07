@@ -1,0 +1,18 @@
+<%= paginate my_csses, :param_name => :page_my_csses, :window => 1 %>
+<%= info_page my_csses %>
+<table class='list'>
+  <thead>
+    <th><%= t'name' %></th>
+    <th><%= t'publish' %></th>
+    <th></th>
+  </thead>
+  <tbody>
+    <% my_csses.each do |site_css| %>
+      <tr>
+        <td> <%= site_css.css.name %> </td>
+        <td align="center"> <%= raw toggle_field(site_css, "publish") %> </td>
+        <td> <%= raw make_menu_css(site_css) %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
