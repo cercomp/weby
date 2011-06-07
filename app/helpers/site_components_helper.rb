@@ -30,7 +30,7 @@ module SiteComponentsHelper
   def components_settings
     {
       'banner_horizontal' => ['category'],
-      'no_front_news'     => ['quant'],
+      'no_front_news'     => ['quant', 'front'],
       'banner_side'       => ['category'],
       'front_news'        => ['quant'],
       'menu_side'         => ['category'],
@@ -51,6 +51,10 @@ module SiteComponentsHelper
       
       'menu_side' => {
         'category' => ['<select name="category">', options_for_select(@site.menu_categories, cur_setting[:category]), '</select>'].join
+      },
+      
+      'no_front_news' => {
+        'front' => '<input type="checkbox" name="front" value="true" />'
       },
       
       'news_as_home' => {

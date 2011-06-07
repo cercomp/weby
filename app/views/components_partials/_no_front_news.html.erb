@@ -1,6 +1,7 @@
 
 <% quant = settings[:quant] || 5 %>
-<% @no_front_news = @site.pages.news(false).except(:order).page(params[:no_front_pages]).per(quant) %>
+<% front = settings[:front] || false %>
+<% @no_front_news = @site.pages.news(front).except(:order).page(params[:no_front_pages]).per(quant) %>
 
 <div id='no_front_news'>
   <table class="border fullwidth zebra">

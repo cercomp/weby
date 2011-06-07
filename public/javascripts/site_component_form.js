@@ -31,12 +31,12 @@ function switch_settings() {
   $(settings[setting]).each(function (i, s){
     var label;
     try {
-      label = settings_loc[setting][0];
+      label = settings_loc[setting][i];
     } catch (err) {
       label = s;
     }
     
-    if(custom[setting] == null) {
+    if(custom[setting][s] === undefined) {
       var field = $(['<p><label>', label, '</label><input name="', s, '" type="text" value="',
         old_settings[s], '"></p>'].join(''));
     }
@@ -56,14 +56,14 @@ function join_data(){
   var result = [];
 
   $('#settings .input p').each(function(i, v){
-    $(v).children('input').each(function(i2, v2){
+    $(v).children('input, select').each(function(i2, v2){
       var input = $(v2);
-    
+      
       // Caso o input não tenha o atributo "name"
       if(input.attr('name') == '') return;
       
-      // Caso o campo seja um select
-      if(input.length == 0) input = $(v).children('select');
+      // Caso o input seja um checkbox e não esteja marcado
+      if(input.is(':checkbox') && $(input + ':checked').val() === undefined) return;
       
       result.push([':', input.attr('name'), ' => "', input.val(), '"'].join(''));
       
@@ -72,7 +72,7 @@ function join_data(){
 
   $('#settings .input').append(['<textarea name="site_component[settings]" style="display:none">{',
     result.join(', '), '}</textarea>'].join(''));
-    
+  
 }
 
 /**
