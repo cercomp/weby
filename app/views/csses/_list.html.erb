@@ -1,7 +1,7 @@
 
 <details open>
   <summary><%= t("my_css") %></summary>
-  <%= paginate @my_csses, :param_name => :page_my_csses %>
+  <%= paginate @my_csses, :param_name => :page_my_csses, :window => 1 %>
   <%= info_page @my_csses %>
   <table class='list'>
     <thead>
@@ -23,7 +23,7 @@
 
 <details open>
   <summary><%= t('other_css') %></summary>
-  <%= paginate @other_csses, :param_name => :page_other_csses %>
+  <%= paginate @other_csses, :param_name => :page_other_csses, :window => 1 %>
   <%= info_page @other_csses %>
   <table class='list'>
     <thead>
