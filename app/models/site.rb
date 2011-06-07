@@ -12,6 +12,21 @@ class Site < ActiveRecord::Base
           { :text => "%#{text}%" })
   }
 
+  def my_csses
+    sites_csses.where(:owner => true)
+  end
+
+  def other_csses
+    SitesCss.where(['(
+                        site_id = :site_id AND owner = false
+                     ) OR (
+                        site_id <> :site_id AND css_id NOT IN (
+                          SELECT css_id FROM sites_csses WHERE site_id = :site_id
+                        )
+                     )',
+             {:site_id => self.id}]).order(:owner, :site_id, :css_id)
+  end
+
   # TODO tentar agrupar os 3 metodos a seguir em apenas 1
   def page_categories
     self.pages.except(:order, :select).find(:all, :select => 'DISTINCT category').map{ |m| m.category }

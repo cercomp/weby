@@ -15,6 +15,9 @@ a img{ border: 0; text-decoration: none;}
 fieldset { border: 1px solid #e4e4e4; background-color: #eff8f9; width: auto;}
 legend { color: #000; font-weight: bold; font-size: 130%; background-color: #FFF; border: 1px solid #e4e4e4; padding: 5px; }
 
+details { border: 1px solid #e4e4e4; background-color: #eff8f9; width: auto; margin: 10px 0;}
+summary { color: #000; font-weight: bold; font-size: 130%; background-color: #FFF; border: 1px solid #e4e4e4; padding: 5px; }
+
 /***** Tables *****/
 table.list { border: 1px solid #e4e4e4;  border-collapse: collapse; width: 100%; margin-bottom: 0px; }
 table.list th { background-color:#EEEEEE; padding: 4px; /*white-space:nowrap;*/ }
@@ -26,7 +29,7 @@ table.list td.id { width: 2%; text-align: center;}
 table.list td.checkbox { width: 15px; padding: 0px;}
 table.list td.buttons { width: 15%; white-space:nowrap; text-align: right; }
 table.list td.buttons a { padding-right: 0.6em; }
- 
+
 table.list tbody tr.group td { padding: 0.8em 0 0.5em 0.3em; font-weight: bold; border-bottom: 1px solid #ccc; }
 table.list tbody tr.group span.count { color: #aaa; font-size: 80%; }
 table.list tbody tr:hover { background-color:#e5ffe5; }
@@ -45,27 +48,27 @@ hr { width: 100%; height: 1px; background: #ccc; border: 0;}
 #errorExplanation, div.flash, .nodata, .warning {
   padding: 4px 4px 4px 30px;
   margin-bottom: 12px;
-	font-size: 1.1em;
-	border: 2px solid;
+  font-size: 1.1em;
+  border: 2px solid;
 }
 div.flash { margin-top: 8px; }
 div.flash.error {
   background: url(../images/false.png) 8px 5px no-repeat;
-	background-color: #ffe3e3;
-	border-color: #dd0000;
-	color: #550000;
+  background-color: #ffe3e3;
+  border-color: #dd0000;
+  color: #550000;
 }
 div.flash.notice {
   background: url(../images/true.png) 8px 5px no-repeat;
-	background-color: #dfffdf;
-	border-color: #9fcf9f;
-	color: #005f00;
+  background-color: #dfffdf;
+  border-color: #9fcf9f;
+  color: #005f00;
 }
 div.flash.warning {
   background: url(../images/warning.png) 8px 5px no-repeat;
-	background-color: #FFEBC1;
-	border-color: #FDBF3B;
-	color: #A6750C;
+  background-color: #FFEBC1;
+  border-color: #FDBF3B;
+  color: #A6750C;
   text-align: left;
 }
 
@@ -99,9 +102,9 @@ html>body #ajax-indicator { position: fixed; }
   width:100%; 
   text-align:right;
 }
-  .contextual p { margin-top: 0;}
-  .contextual input, .contextual select { font-size:0.9em; }
-  .message .contextual { margin-top: 0; }
+.contextual p { margin-top: 0;}
+.contextual input, .contextual select { font-size:0.9em; }
+.message .contextual { margin-top: 0; }
 
 /***** Icons *****/
 .icon {

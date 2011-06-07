@@ -165,7 +165,7 @@ module ApplicationHelper
     menu = ""
     excepts = args[:except] || []
     # Trata os argumentos para excluir itens do menu
-    
+
     controller_name = args[:controller] || controller.controller_name
 
     # Transforma o parâmetro em array caso não seja

@@ -7,15 +7,13 @@ class CssesController < ApplicationController
   respond_to :html, :xml
 
   def index
-    @my_csses = @site.sites_csses.where('owner=true')
+    @my_csses = @site.my_csses.
+      page(params[:page_my_csses] || 1).per(15)
 
-    @used_csses = SitesCss.where(:css_id => @site.sites_csses.where('owner=false').group_by(&:css_id).keys, :owner => :true)
-
-    keys = (SitesCss.where('owner=true') - @my_csses).group_by(&:css_id).keys - @used_csses.group_by(&:css_id).keys
-    @other_csses = SitesCss.where(:css_id => keys, :owner => :true)
+    @other_csses = @site.other_csses.page(params[:page_other_csses] || 1).per(15)
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html 
       format.xml  { render :xml => @csses }
     end
   end

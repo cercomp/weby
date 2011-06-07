@@ -2,7 +2,7 @@
 <% if @images %>
   <center>
     <%= label_tag :image_search, t('search') %>
-    <%= text_field_tag :image_search, params[:image_search] %>
+    <%= search_field_tag :image_search, params[:image_search] %>
     <%= button_to_function t('search'), "search_images()" %>
     <span id='loading'></span>
   </center>
