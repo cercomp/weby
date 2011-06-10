@@ -6,8 +6,8 @@
   </div>
 
   <div>
-    <details open>
-      <summary><%= t("my_css") %></summary>
+    <details open id="csses">
+      <summary id="csses"><%= t("my_css") %></summary>
       <center>
         <%= form_tag site_csses_path, :method => 'get', :name => 'my_css_search', :remote => true do %>
           <%= label_tag t("search") %>
@@ -22,8 +22,8 @@
         <%= render 'my_csses', :my_csses => @my_csses %>
       </div>
     </details>
-    <details open>
-      <summary><%= t('other_css') %></summary>
+    <details open id="csses">
+      <summary id="csses"><%= t('other_css') %></summary>
       <center>
         <%= form_tag site_csses_path, :method => 'get', :name => 'other_css_search', :remote => true do %>
           <%= label_tag t("search") %>
