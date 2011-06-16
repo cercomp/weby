@@ -414,12 +414,12 @@ EOF
         puts "\t\t\t\tINSERINDO (menus) página (#{page_id[0]['id']})\n" if @verbose
         insert_menu = "INSERT INTO menus (title,link,page_id) VALUES ('#{pre_treat(entry['texto_item'])}','','#{page_id[0]['id']}') RETURNING id"
       end
-    elsif not /javascript:mostrar_pagina.*\('([0-9]+)'.*/.match("#{entry['url']}").nil? # Verificando se o menu é interno, externo
-      page_id = /javascript:mostrar_pagina.*\('([0-9]+)'.*/.match("#{entry['url']}")[1]
+    elsif not /javascript:mostrar_pagina.*?([0-9]+).*?/.match("#{entry['url']}").nil? # Verificando se o menu é interno, externo
+      page_id = /javascript:mostrar_pagina.*?([0-9]+).*?/.match("#{entry['url']}")[1]
       page_id = @convar["#{this_id}"]["paginas"]["#{page_id}"]
       insert_menu = "INSERT INTO menus (title,link,page_id) VALUES ('#{pre_treat(entry['texto_item'])}','','#{page_id}') RETURNING id" unless page_id.nil?
-    elsif not /javascript:mostrar_menu.*\('([0-9]+)'.*/.match("#{entry['url']}").nil?
-      page_id = /javascript:mostrar_menu.*\('([0-9]+)'.*/.match("#{entry['url']}")[1]
+    elsif not /javascript:mostrar_menu.*?([0-9]+).*?/.match("#{entry['url']}").nil?
+      page_id = /javascript:mostrar_menu.*?([0-9]+).*?/.match("#{entry['url']}")[1]
       page_id = @convar["#{this_id}"]["paginas"]["#{page_id}"]
       insert_menu = "INSERT INTO menus (title,link,page_id) VALUES ('#{pre_treat(entry['texto_item'])}','','#{page_id}') RETURNING id" unless page_id.nil?
     else
@@ -486,23 +486,23 @@ EOF
       if string.match(/['"]?[^'"]*uploads[^'"0-9]*([0-9]+)[^'"]*\/([^'"]*)['"]?/)
         string.gsub!(/['"]?[^'"]*uploads[^'"0-9]*([0-9]+)[^'"]*\/([^'"]*)['"]?/){|x| "'/uploads/#{@convar[$1]['weby']}/original_#{$2}'" if @convar[$1] }
       end 
-      if string.match(/javascript:mostrar_pagina.*'([0-9]+)'.*'([0-9]+)'.*/) 
-        string.gsub!(/['"]javascript:mostrar_pagina.*'([0-9]+)'.*'([0-9]+)'.*;['"]/){|x| "'/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["paginas"][$1]}'" if @convar[$2] }
+      if string.match(/javascript:mostrar_pagina.*?([0-9]+).*?([0-9]+).*?/) 
+        string.gsub!(/['"]javascript:mostrar_pagina.*?([0-9]+).*?([0-9]+).*?;['"]/){|x| "'/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["paginas"][$1]}'" if @convar[$2] }
       end 
-      if string.match(/javascript:mostrar_noticia.*'([0-9]+)'.*'([0-9]+)'.*/)
-        string.gsub!(/['"]javascript:mostrar_noticia.*'([0-9]+)'.*'([0-9]+)'.*;['"]/){|x| "'/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["noticias"][$1]}'" if @convar[$2] }
+      if string.match(/javascript:mostrar_noticia.*?([0-9]+).*?([0-9]+).*?/)
+        string.gsub!(/['"]javascript:mostrar_noticia.*?([0-9]+).*?([0-9]+).*?;['"]/){|x| "'/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["noticias"][$1]}'" if @convar[$2] }
       end 
-      if string.match(/javascript:mostrar_informativo.*'([0-9]+)'.*'([0-9]+)'.*/)
-        string.gsub!(/['"]javascript:mostrar_informativo.*'([0-9]+)'.*'([0-9]+)'.*;['"]/){|x| "'/sites/#{@convar[$2]['weby_name']}/banners/#{@convar[$2]["informativos"][$1]}'" if @convar[$2] }
+      if string.match(/javascript:mostrar_informativo.*?([0-9]+).*?([0-9]+).*?/)
+        string.gsub!(/['"]javascript:mostrar_informativo.*?([0-9]+).*?([0-9]+).*?;['"]/){|x| "'/sites/#{@convar[$2]['weby_name']}/banners/#{@convar[$2]["informativos"][$1]}'" if @convar[$2] }
       end 
-      if string.match(/javascript:mostrar_menu.*'([0-9]+)'.*([0-9]+).*/) 
-        string.gsub!(/['"]javascript:mostrar_menu.*'([0-9]+)'.*([0-9]+).*;['"]/){|x| "'/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["menus"][$1]}'" if @convar[$2] }
+      if string.match(/javascript:mostrar_menu.*?([0-9]+).*?([0-9]+).*?/) 
+        string.gsub!(/['"]javascript:mostrar_menu.*?([0-9]+).*?([0-9]+).*?;['"]/){|x| "'/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["menus"][$1]}'" if @convar[$2] }
       end 
-      if string.match(/javascript:pagina_inicial.*'([0-9]+)'.*/)
-        string.gsub!(/javascript:pagina_inicial\('([0-9]+)'\);/){|x| "/sites/#{@convar[$1]['weby_name']}" if @convar[$1] }
+      if string.match(/javascript:pagina_inicial.*?([0-9]+).*?/)
+        string.gsub!(/javascript:pagina_inicial.*?([0-9]+).*?;/){|x| "/sites/#{@convar[$1]['weby_name']}" if @convar[$1] }
       end 
-      if string.match(/javascript:mostrar_fale_conosco.*'([0-9]+)'.*/)
-        string.gsub!(/javascript:mostrar_fale_conosco\('([0-9]+)'\);/){|x| "/sites/#{@convar[$1]['weby_name']}/feedbacks/new" if @convar[$1] }
+      if string.match(/javascript:mostrar_fale_conosco.*?([0-9]+).*?/)
+        string.gsub!(/javascript:mostrar_fale_conosco.*?([0-9]+).*?;/){|x| "/sites/#{@convar[$1]['weby_name']}/feedbacks/new" if @convar[$1] }
       end 
       str = @con_weby.escape(string)
       return str 
