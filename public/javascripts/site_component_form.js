@@ -36,7 +36,7 @@ function switch_settings() {
       label = s;
     }
     
-    if(custom[setting][s] === undefined) {
+    if(custom[setting] === undefined || custom[setting][s] === undefined) {
       var field = $(['<p><label>', label, '</label><input name="', s, '" type="text" value="',
         old_settings[s], '"></p>'].join(''));
     }
