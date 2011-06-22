@@ -305,3 +305,32 @@
  controller: csses
  action: use_css
 
+50:
+ id: 50
+ name: "Listar Componentes"
+ controller: site_components
+ action: index
+
+51:
+ id: 51
+ name: "Ver Componentes"
+ controller: site_components
+ action: show
+
+52:
+ id: 52
+ name: "Editar Componente"
+ controller: site_components
+ action: edit update
+
+53:
+ id: 53
+ name: "Excluir Componente"
+ controller: site_components
+ action: destroy
+
+54:
+ id: 54
+ name: "Criar Componente"
+ controller: site_components
+ action: new create
