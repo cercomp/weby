@@ -29,7 +29,7 @@
     <% end %>
 
     <% if(not(@site.try(:id)) and current_user) %>
-      <li> <%= link_to t("setting.other"), settings_path %> </li>
+      <li> <%= link_to( t("admin.one"), admin_index_path(:back_url => "#{request.fullpath}") ) %> </li>
       <li> <%= link_to (t"roles_permissions"), roles_path %> </li>
       <li> <%= link_to(t("my_profile"), user_path(current_user)) %> </li>
     <% end %>
