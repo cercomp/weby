@@ -1,46 +1,37 @@
 /*Variables*/
-$main-color: #dddddd;
+$main-color: rgba(255, 255, 255, 0.7);
 $menu_line_height: 23px;
 $menu_background: $main-color;
-$menu_text_color: $main-color / 7;
+$menu_text_color: rgba(0, 0, 0, 1);
 $menu_border: 1px solid lighten($menu_background, 50%);
 
-nav#weby_bar {
+nav#weby_bar, left_side {
   top:0;
   width:100%;
-  padding-left: 5px;
   line-height: $menu_line_height;
-  color: $menu_text_color;
+  color: $menu_text_color !important;
   background-color: $menu_background;
   border-bottom: $menu_border; 
 
   menu { 
     padding: 0;
     margin: 0;
-    background-color: inherit;
     list-style: none outside none;
     z-index: 999;
 
     li{
-      a{
-        width: 100%;
-      }
-
       &:hover {
         position: relative;
-        background-color: darken($menu_background, 10%);
         z-index: 100px;
 
         & > menu {
           left: 0px;
-          top: $menu_line_height;
+          top: $menu_line_height+0.5px;
         }
-
         menu li:hover > menu {
           border:{
             left: $menu_border;
             right: $menu_border;
-            top: $menu_border;
           }
           left: 83%;
           top: 2px;
@@ -54,46 +45,44 @@ nav#weby_bar {
         top: 3px;
         right: 0;
       }
-
       &.sub:hover > a:after {
         content: url("../images/arrow_expanded.png");
         position: relative;
         top: 3px;
         right: 0;
       }
-
       & > menu {
         position: absolute;
-        left: -9999px;
-        margin-left: 20px;
-        border:{
-          left: $menu_border;
-          right: $menu_border;
-        }
-
+        left: 500%;
         li {
           width: 100%;
-          border-bottom: $menu_border;
-          padding: 2px 5px;
+          padding: 3px;
+          padding-right: 0px;
+          background-color: $menu_background;
+          border:{
+            botom: $menu_border;
+            left: $menu_border;
+            right: $menu_border;
+          }
         }
       }
-
       menu li:hover > menu {
         top: 20px;
       }
     }
-
     & > li {
       padding: 0 10px;
       float: left;
-      background-color: $menu_background;
 
-      a {
-        display: block;
-        color: $menu_text_color;
-        overflow: hidden;
-        white-space:nowrap;
+      &:hover{
+        background-color: darken(opacify($menu_background, 1), 10%);
       }
+    }
+    a {
+      display: block;
+      color: $menu_text_color !important;
+      overflow: hidden;
+      white-space:nowrap;
     }
   }
 }
