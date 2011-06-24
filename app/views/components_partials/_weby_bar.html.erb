@@ -1,49 +1,59 @@
-<nav id="weby_bar">
-  <menu>
-    <li> <%= link_to( t("portal"), root_path ) %> </li>
+<section id="weby_bar">
+  <nav  class="top_menu left">
+    <menu>
+      <li> <%= link_to( t("portal"), root_path ) %> </li>
 
-    <% if @site.try(:id) %>
-      <li> <%= link_to( t("home"), @site ) %> </li>
-    <% end %>
+      <% if @site %>
+        <li> <%= link_to( t("home"), @site ) %> </li>
+      <% end %>
 
-    <% if(@site.try(:id) and current_user) %>
-      <li class='sub'>
-      <%= link_to( t("admin.one"), site_admin_index_path(@site) ) %>
-      <menu>
-        <li> 
-        <%= link_to (t"user.other"), @site ? site_users_path(@site) : users_path %> </li>
-        <li> <%= link_to (t"setting.other"), edit_site_admin_path(@site, @site) %> </li>
-        <li> <%= link_to t("component.other"), site_site_components_path(@site) %> </li>
-        <li> <%= link_to (t"menu.other"), site_menus_path(@site) %> </li>
-        <li> <%= link_to (t"page.other"), site_pages_path(@site) %> </li>
-        <li> <%= link_to (t"banner.other"), site_banners_path(@site) %> </li>
-        <li> <%= link_to (t"group.other"), site_groups_path(@site) %> </li>
-        <li> <%= link_to (t"archive.other"), site_repositories_path(@site) %> </li>
-        <li> <%= link_to (t"css.other"), site_csses_path(@site) %> </li>
-        <li> <%= link_to (t"permission.other"), rights_path %> </li>
-        <li> <%= link_to (t"roles_permissions"), site_roles_path(@site) %> </li>
-        <li> <%= link_to (t"feedback.one"), site_feedbacks_path(@site) %> </li>
-      </menu>
-      </li>
-      <li> <%= link_to(t("my_profile"), site_user_path(@site, current_user)) %> </li>
-    <% end %>
+      <% if(@site and current_user) %>
+        <li class='sub'>
+        <%= link_to( t("admin.one"), site_admin_index_path(@site) ) %>
+        <menu>
+          <li> <%= link_to (t"user.other"), @site ? site_users_path(@site) : users_path %> </li>
+          <li> <%= link_to (t"setting.other"), edit_site_admin_path(@site, @site) %> </li>
+          <li> <%= link_to t("component.other"), site_site_components_path(@site) %> </li>
+          <li> <%= link_to (t"menu.other"), site_menus_path(@site) %> </li>
+          <li> <%= link_to (t"page.other"), site_pages_path(@site) %> </li>
+          <li> <%= link_to (t"banner.other"), site_banners_path(@site) %> </li>
+          <li> <%= link_to (t"group.other"), site_groups_path(@site) %> </li>
+          <li> <%= link_to (t"archive.other"), site_repositories_path(@site) %> </li>
+          <li> <%= link_to (t"css.other"), site_csses_path(@site) %> </li>
+          <li> <%= link_to (t"permission.other"), rights_path %> </li>
+          <li> <%= link_to (t"roles_permissions"), site_roles_path(@site) %> </li>
+          <li> <%= link_to (t"feedback.one"), site_feedbacks_path(@site) %> </li>
+        </menu>
+        </li>
+      <% end %>
+      <% if(not(@site) and current_user) %>
+        <li> <%= link_to( t("admin.one"), admin_index_path(:back_url => "#{request.fullpath}") ) %> </li>
+        <li> <%= link_to (t"roles_permissions"), roles_path %> </li>
+      <% end %>
+    </menu>
+  </nav>
+  <nav  class="top_menu right">
+    <menu>
+      <% if(@site and current_user) %>
+        <li> <%= link_to(current_user.first_name.titleize, site_user_path(@site, current_user)) %> </li>
+      <% end %>
 
-    <% if(not(@site.try(:id)) and current_user) %>
-      <li> <%= link_to( t("admin.one"), admin_index_path(:back_url => "#{request.fullpath}") ) %> </li>
-      <li> <%= link_to (t"roles_permissions"), roles_path %> </li>
-      <li> <%= link_to(t("my_profile"), user_path(current_user)) %> </li>
-    <% end %>
+      <% if(not(@site) and current_user) %>
+        <li> <%= link_to(current_user.first_name.titleize, user_path(current_user)) %> </li>
+      <% end %>
 
-    <% if current_user %>
-      <li> <%= link_to( t("logout"), logout_path, :confirm => t("are_you_sure") ) %> </li>
-    <% end %>
+      <% if current_user %>
+        <li> <%= link_to( t("logout"), logout_path, :confirm => t("are_you_sure") ) %> </li>
+      <% end %>
 
-    <% if not(current_user) %>
-      <li> <%= link_to( t("register"), new_user_path ) %> </li>
-      <li> <%= link_to( t("login"), login_path(:back_url => "#{request.fullpath}")) %> </li>
-    <% end %>
+      <% if not(current_user) %>
+        <li> <%= link_to( t("register"), new_user_path ) %> </li>
+        <li> <%= link_to( t("login"), login_path(:back_url => "#{request.fullpath}")) %> </li>
+      <% end %>
 
-    <% # FIXME Contador de usuários não está funcionando ao realizar logoff. %>
-    <%= User.logged_in.count.to_s + ' ' + t('user', :count => User.logged_in.count) + ' ' + t('logged') + ".\n" %>
-  </menu>
-</nav>
+      <% # FIXME Contador de usuários não está funcionando ao realizar logoff. %>
+      <%= User.logged_in.count.to_s + ' ' + t('logged') %>
+    </menu>
+  </nav>
+</section>
+

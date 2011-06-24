@@ -1,42 +1,51 @@
 /*Variables*/
-nav#weby_bar, left_side {
-  top: 0;
-  width: 100%;
-  line-height: 23px;
-  color: black !important;
+#weby_bar {
+  height: 23px;
   background-color: rgba(255, 255, 255, 0.7);
   border-bottom: 1px solid rgba(255, 255, 255, 0.7); }
-  nav#weby_bar menu, left_side menu {
-    padding: 0;
+
+.left {
+  float: left; }
+
+.right {
+  float: right; }
+
+.top_menu {
+  top: 0;
+  line-height: 23px;
+  color: black !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.7); }
+  .top_menu menu {
+    padding: 0 2px;
     margin: 0;
     list-style: none outside none;
     z-index: 999; }
-    nav#weby_bar menu li:hover, left_side menu li:hover {
+    .top_menu menu li:hover {
       position: relative;
       z-index: 100px; }
-      nav#weby_bar menu li:hover > menu, left_side menu li:hover > menu {
+      .top_menu menu li:hover > menu {
+        padding: 0;
         left: 0px;
         top: 23.5px; }
-      nav#weby_bar menu li:hover menu li:hover > menu, left_side menu li:hover menu li:hover > menu {
+      .top_menu menu li:hover menu li:hover > menu {
         border-left: 1px solid rgba(255, 255, 255, 0.7);
         border-right: 1px solid rgba(255, 255, 255, 0.7);
-        left: 83%;
         top: 2px;
         z-index: 900px; }
-    nav#weby_bar menu li.sub > a:after, left_side menu li.sub > a:after {
+    .top_menu menu li.sub > a:after {
       content: url("../images/arrow_collapsed.png");
       position: relative;
       top: 3px;
       right: 0; }
-    nav#weby_bar menu li.sub:hover > a:after, left_side menu li.sub:hover > a:after {
+    .top_menu menu li.sub:hover > a:after {
       content: url("../images/arrow_expanded.png");
       position: relative;
       top: 3px;
       right: 0; }
-    nav#weby_bar menu li > menu, left_side menu li > menu {
+    .top_menu menu li > menu {
       position: absolute;
-      left: 500%; }
-      nav#weby_bar menu li > menu li, left_side menu li > menu li {
+      display: none; }
+      .top_menu menu li > menu li {
         width: 100%;
         padding: 3px;
         padding-right: 0px;
@@ -44,14 +53,16 @@ nav#weby_bar, left_side {
         border-botom: 1px solid rgba(255, 255, 255, 0.7);
         border-left: 1px solid rgba(255, 255, 255, 0.7);
         border-right: 1px solid rgba(255, 255, 255, 0.7); }
-    nav#weby_bar menu li menu li:hover > menu, left_side menu li menu li:hover > menu {
+    .top_menu menu li:hover > menu {
+      display: block; }
+    .top_menu menu li menu li:hover > menu {
       top: 20px; }
-    nav#weby_bar menu > li, left_side menu > li {
+    .top_menu menu > li {
       padding: 0 10px;
       float: left; }
-      nav#weby_bar menu > li:hover, left_side menu > li:hover {
+      .top_menu menu > li:hover {
         background-color: #e6e6e6; }
-    nav#weby_bar menu a, left_side menu a {
+    .top_menu menu a {
       display: block;
       color: black !important;
       overflow: hidden;
