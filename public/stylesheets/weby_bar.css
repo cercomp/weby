@@ -13,8 +13,7 @@
 .top_menu {
   top: 0;
   line-height: 23px;
-  color: black !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.7); }
+  color: black !important; }
   .top_menu menu {
     padding: 0 2px;
     margin: 0;
