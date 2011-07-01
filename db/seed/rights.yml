@@ -133,204 +133,204 @@
  controller: banners
  action: index
 
-22:
- id: 22
+23:
+ id: 23
  name: "Ver Banner"
  controller: banners
  action: show
 
-23:
- id: 23
+24:
+ id: 24
  name: "Editar Banner"
  controller: banners
  action: edit update
 
-24:
- id: 24
+25:
+ id: 25
  name: "Excluir Banner"
  controller: banners
  action: destroy
 
-25:
- id: 25
+26:
+ id: 26
  name: "Ordernar Banners"
  controller: banners
  action: change_position
 
-26:
- id: 26
+27:
+ id: 27
  name: "Criar Banner"
  controller: banners
  action: new create
 
-27:
- id: 27
+28:
+ id: 28
  name: "Publicar Banner"
  controller: banners
  action: toggle_field
 
 
-28:
- id: 28
+29:
+ id: 29
  name: "Listar Fale Conosco"
  controller: feedbacks
  action: index
 
-29:
- id: 29
+30:
+ id: 30
  name: "Ver Fale Conosco"
  controller: feedbacks
  action: show
 
-30:
- id: 30
+31:
+ id: 31
  name: "Editar Fale Conosco"
  controller: feedbacks
  action: edit update get_groups
 
-31:
- id: 31
+32:
+ id: 32
  name: "Excluir Fale Conosco"
  controller: feedbacks
  action: destroy
 
-32:
- id: 32
+33:
+ id: 33
  name: "Criar Fale Conosco"
  controller: feedbacks
  action: new create get_groups
 
 
-33:
- id: 33
+34:
+ id: 34
  name: "Listar Grupos"
  controller: groups
  action: index
 
-34:
- id: 34
+35:
+ id: 35
  name: "Ver Grupo"
  controller: groups
  action: show
 
-35:
- id: 35
+36:
+ id: 36
  name: "Editar Grupo"
  controller: groups
  action: edit update
 
-36:
- id: 36
+37:
+ id: 37
  name: "Excluir Grupo"
  controller: groups
  action: destroy
 
-37:
- id: 37
+38:
+ id: 38
  name: "Criar Grupo"
  controller: groups
  action: new create
 
 
-38:
- id: 38
+39:
+ id: 39
  name: "Listar Repositório"
  controller: repositories
  action: index
 
-39:
- id: 39
+40:
+ id: 40
  name: "Ver Repositório"
  controller: repositories
  action: show
 
-40:
- id: 40
+41:
+ id: 41
  name: "Editar Repositório"
  controller: repositories
  action: edit update
 
-41:
- id: 41
+42:
+ id: 42
  name: "Excluir Repositório"
  controller: repositories
  action: destroy
 
-42:
- id: 42
+43:
+ id: 43
  name: "Criar Repositório"
  controller: repositories
  action: new create
 
 
-43:
- id: 43
+44:
+ id: 44
  name: "Listar Estilo"
  controller: csses
  action: index
 
-44:
- id: 44
+45:
+ id: 45
  name: "Ver Estilo"
  controller: csses
  action: show
 
-45:
- id: 45
+46:
+ id: 46
  name: "Editar Estilo"
  controller: csses
  action: edit update
 
-46:
- id: 46
+47:
+ id: 47
  name: "Excluir Estilo"
  controller: csses
  action: destroy
 
-47:
- id: 47
+48:
+ id: 48
  name: "Criar Estilo"
  controller: csses
  action: new create
 
-48:
- id: 48
+49:
+ id: 49
  name: "Publicar Estilo"
  controller: csses
  action: toggle_field
 
-49:
- id: 49
+50:
+ id: 50
  name: "Usar Estilo"
  controller: csses
  action: use_css
 
-50:
- id: 50
+51:
+ id: 51
  name: "Listar Componentes"
  controller: site_components
  action: index
 
-51:
- id: 51
+52:
+ id: 52
  name: "Ver Componentes"
  controller: site_components
  action: show
 
-52:
- id: 52
+53:
+ id: 53
  name: "Editar Componente"
  controller: site_components
  action: edit update
 
-53:
- id: 53
+54:
+ id: 54
  name: "Excluir Componente"
  controller: site_components
  action: destroy
 
-54:
- id: 54
+55:
+ id: 55
  name: "Criar Componente"
  controller: site_components
  action: new create
