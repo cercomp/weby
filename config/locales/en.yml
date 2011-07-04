@@ -289,6 +289,7 @@ en:
     one: "Site"
     other: "Sites"
   site_comments: "Comments about goals site."
+  site_components: "Components"
   site_id: "Site ID"
   size: "Size"
   source: "Source"
