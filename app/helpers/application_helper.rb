@@ -88,6 +88,8 @@ module ApplicationHelper
     [:notice, :info, :warning, :error].each do |type|
       if flash[type]
         messages << content_tag('div', flash.now[type], :class => "flash #{type}")
+        # Limpa a mensagem
+        flash[type] = nil
       end
     end
     messages
@@ -149,6 +151,8 @@ module ApplicationHelper
       end
     end
     if args.length > 0
+      # Se o argumento de exceção for uma string, passa para array
+      args[:except] = [args[:except]] if args[:except].is_a? String
       if args[:except]
         perms = (controller.class.instance_methods(false) - args[:except]) & perms_user
       elsif args[:only]
