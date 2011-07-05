@@ -1,24 +1,5 @@
-<%= javascript_tag do %>
-  function checkAll(id, checked) {
-    var els = $(id).find('input[type=checkbox]');
-    for (var i = 0; i < els.length; i++) {
-      if (els[i].disabled==false) {
-        els[i].checked = checked;
-      }
-    }
-  }
-  function toggleCheckboxesBySelector(selector) {
-    boxes = $(selector);
-    var all_checked = true;
-    for (i = 0; i < boxes.length; i++) {
-      if (boxes[i].checked == false) {
-        all_checked = false;
-      }
-    }
-    for (i = 0; i < boxes.length; i++) {
-      boxes[i].checked = !all_checked;
-    }
-  }
+<% content_for :javascripts do %>
+  <%= javascript_include_tag "roles_index" %>
 <% end %>
 <fieldset>
   <legend><%= t('roles_permissions') %></legend>
@@ -33,7 +14,7 @@
     </div>
   <% end %>
 
-  <%= form_tag roles_path, :method => :put, :id => 'roles_form' do %>
+  <%= form_tag (@site ? site_roles_path : roles_path), :method => :put, :id => 'roles_form' do %>
   <table class="list">
     <thead>
      <tr>
@@ -42,7 +23,7 @@
         <th>
           <%= link_to '', nil, :title => "#{t("button_check_all.fem")}/#{t("button_uncheck_all.fem")}", :class => 'icon icon-toggle-check', :onclick => "toggleCheckboxesBySelector('input.column-#{role.id}')", :remote => true %>
           <%= role.name %> 
-          <p> <%= link_to t('edit'), edit_role_path(role), :class => "icon icon-edit" %> <%= link_to t('destroy'), role, :confirm => t('are_you_sure'), :method => :delete, :class => "icon icon-del" %> </p>
+          <p> <%= link_to t('edit'), (@site ? edit_site_role_path(@site, role) : edit_role_path(role)), :class => "icon icon-edit" %> <%= link_to t('destroy'), role, :confirm => t('are_you_sure'), :method => :delete, :class => "icon icon-del" %> </p>
         </th>
       <% end %>
     </tr>
@@ -71,6 +52,11 @@
     </tbody>
   </table>
 
+  <% # Campos identificar que o formulário foi enviado sem nenhuma permissão marcada %>
+  <% @roles.each do |role| %>
+    <%= hidden_field_tag "role[#{role.id}][right_ids][]", "" %>
+  <% end %>
+  
   <p> 
     <%= link_to t("button_check_all.fem"), nil, :onclick => "checkAll('#roles_form',true)", :remote => true %> | <%= link_to t("button_uncheck_all.fem"), nil, :onclick => "checkAll('#roles_form',false)", :remote => true %> 
   </p>

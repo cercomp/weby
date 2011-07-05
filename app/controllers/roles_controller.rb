@@ -20,7 +20,7 @@ class RolesController < ApplicationController
       params[:role].each do |role, right|
         Role.find(role).update_attributes(right)
       end
-      redirect_to :back
+      redirect_to @site ? site_roles_path : roles_path
     end
   end
 
@@ -44,17 +44,13 @@ class RolesController < ApplicationController
     @role = Role.new(params[:role])
     @role.save
 
-    if @site
-      redirect_to site_roles_path
-    else
-      redirect_to roles_path
-    end
+    redirect_to @site ? site_roles_path : roles_path
   end
 
   def update
     @role = Role.find(params[:id])
     @role.update_attributes(params[:role])
-    redirect_to(roles_path)
+    redirect_to roles_path
   end
 
   def destroy
