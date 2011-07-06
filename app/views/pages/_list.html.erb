@@ -9,11 +9,13 @@
     <th><%= sortable 'author_id', t("author") %></th>
     <th><%= sortable 'category', t("category") %></th>
     <th><%= sortable 'type', t("type") %></th>
-    <% if check_permission(PagesController, [:toggle_field]) %>
+    <% if check_permission(PagesController, 'toggle_field') %>
       <th><%= t"cover" %></th>
       <th><%= t"publish" %></th>
     <% end %>
-    <th></th>
+    <% if check_permission(PagesController, 'sort') %>
+      <th></th>
+    <% end %>
   </thead>
 
   <tbody>
@@ -29,12 +31,13 @@
           <td align="center"><%= raw toggle_field(page, "front") %></td>
           <td align="center"><%= raw toggle_field(page, "publish") %></td>
         <% end %>
-        <td>
-          <%= make_menu(page, :except => "show") %>
-          <% if check_permission(PagesController, 'sort') %>
+        <%# Verificar se o make_menu a seguir está correto %>
+        <%#= make_menu(page, :except => "show") %>
+        <% if check_permission(PagesController, 'sort') %>
+          <td>
             <span class='handle icon icon-drag'><%= t("move") %></span>
-          <% end %>
-        </td>
+          </td>
+        <% end %>
       </tr>
       <% end %>
     </tbody>

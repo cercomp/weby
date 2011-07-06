@@ -291,6 +291,9 @@ pt-BR:
     other: "Sítios"
   site_comments: "Comentário sobre os objetivos do site."
   site_components: "Componentes"  
+  site_component:
+    one: "Componente"  
+    other: "Componentes"  
   site_id: "Site ID"
   size: "Tamanho"
   source: "Fonte"

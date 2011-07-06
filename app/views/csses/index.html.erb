@@ -1,9 +1,11 @@
 <fieldset>
   <legend><%= t("css.other") %></legend>
 
-  <div class="contextual">
-    <p> <%= link_to (t"new_param.masc", :param => (t"css.one")), new_site_css_path, :class => 'icon icon-add' %> </p>
-  </div>
+  <% if check_permission(CssesController, 'new') %>
+    <div class="contextual">
+      <p> <%= link_to (t"new_param.masc", :param => (t"css.one")), new_site_css_path, :class => 'icon icon-add' %> </p>
+    </div>
+  <% end %>
 
   <div>
     <details open id="csses">

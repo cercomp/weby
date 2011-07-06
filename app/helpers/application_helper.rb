@@ -11,7 +11,7 @@ module ApplicationHelper
   # Campo com imagens V ou X para habilitar/desabilitar e degradê se não tiver permissão para alteração.
   def toggle_field(obj, field)
     menu = ""
-    if current_user.is_admin
+    if check_permission(controller.class, 'toggle_field')
       if obj[field.to_s] == 0 or not obj[field.to_s]
         menu = link_to(image_tag("false.png", :alt => t("disable.masc")), {:action => "toggle_field", :id => obj.id, :field => "#{field}"}, :title => t("activate_deactivate"))
       else

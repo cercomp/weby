@@ -1,6 +1,6 @@
 module CssesHelper
   def make_menu_css(cssrel, args={})
-    menu ||= ""
+    menu = ''
     get_permissions(current_user, '', args).each do |permission|
       if controller.class.instance_methods(false).include?(permission.to_sym)
         if @site.id == cssrel.site.id
