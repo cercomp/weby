@@ -46,25 +46,26 @@ module ApplicationHelper
   # Método recursivo para gerar submenus e os controles
   def print_menu_entry(sons, entry, view_ctrl, indent=0)
     indent_space = " " * indent
-    indent += 2
     submenu = (not sons[entry.id].nil?) ? "class='sub'" : nil
 
-    menus ||= ""
-    menus += "\n" + indent_space + "<li #{submenu}>" + link_to("#{entry.menu.title}", entry.menu.page_id ? site_page_path(@site, "#{entry.menu.page_id}") :"#{entry.menu.link}")
+    menus = ''
+    menus = "<li #{submenu}>" + 
+              link_to(entry.menu.title, entry.menu.page_id ? site_page_path(@site, entry.menu.page_id) : entry.menu.link)
+    
     if view_ctrl == 1
       # Se existir um position nulo ele será organizado e todos do seu nível
       if entry.position.nil? or entry.position.to_i < 1 or entry.position.to_i > 2000
         sons[entry.parent_id].each_with_index do |item, idx|
           #menus += " (item.id:#{item.id} entry.id:#{entry.id} idx:#{idx+1}) "
           if item.id == entry.id
-            entry.update_attribute(:position, idx+1)
-            entry.position = idx+1
+            entry.update_attribute(:position, idx + 1)
+            entry.position = idx + 1
           end
         end
       end
       #menus += " [ id:#{entry.id} pos:#{entry.position} ]" # Para debug
       menus += (entry.menu and not entry.menu.link.blank?) ? " [ #{entry.menu.link} ] " : " [ #{entry.menu.page.id if entry.menu.page} ] "
-      menus += indent_space + link_to(image_tag('editar.gif', :border => 0, :alt => t("edit")), edit_site_menu_path(@site.name, entry.menu_id), :title => t("edit"))
+      menus += link_to(image_tag('editar.gif', :border => 0, :alt => t("edit")), edit_site_menu_path(@site.name, entry.menu_id), :title => t("edit"))
       menus += indent_space + link_to(image_tag('subitem.gif', :border => 0, :alt => t("add_sub_menu")), new_site_menu_path(@site.name, :parent_id => entry.id), :title => t("add_sub_menu"))
       menus += indent_space + link_to(image_tag('setaup.gif', :border => 0, :alt => t("move_menu_up")), change_position_site_menus_path(:id => entry.id, :position => (entry.position.to_i - 1)), :title => t("move_menu_up")) if entry.position.to_i > 1
       menus += indent_space + link_to(image_tag('setadown.gif', :border => 0, :alt => t("move_menu_down")), change_position_site_menus_path(:id => entry.id, :position => (entry.position.to_i + 1)), :title => t("move_menu_down")) if (entry.position.to_i < sons[entry.parent_id].count.to_i)
@@ -73,7 +74,7 @@ module ApplicationHelper
     menus += "\n" + indent_space + " <menu>" unless submenu.nil?
     if sons[entry.id].class.to_s == "Array"
       sons[entry.id].each do |child|
-        menus += print_menu_entry(sons, child, view_ctrl, indent+1)
+        menus += print_menu_entry(sons, child, view_ctrl, indent+3)
       end
     end
     menus += "\n" + indent_space + " </menu>" unless submenu.nil?
@@ -99,6 +100,9 @@ module ApplicationHelper
   # Parâmetros: (Objeto) ctrl, (array) actions
   # Retorna: verdadeiro ou falso
   def check_permission(ctrl, actions)
+    # Se o argumento de ações for uma string, passa para array
+    actions = [actions] if actions.is_a? String
+    
     # Se o usuário for admin então dê todas as permissões
     if current_user and current_user.is_admin
       return true
