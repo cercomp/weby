@@ -138,19 +138,19 @@ EOF
         aside.left menu li a { background-color: #{this_estilo.first['cor_mouseout']} !important; }
         aside.left menu li { background-color: #{this_estilo.first['cor_mouseout']} !important; }
       /* Cor Hover */ 
-        aside.left menu li:hover { background-color: #{this_estilo.first['cor_mouseover']} !important; }
-        aside.left menu li a:hover { background-color: #{this_estilo.first['cor_mouseover']} !important; }
+        /* aside.left menu li:hover { background-color: #{this_estilo.first['cor_mouseover']} !important; } */
+        /* aside.left menu li a:hover { background-color: #{this_estilo.first['cor_mouseover']} !important; } */
       /* Cor fonte */ 
         aside.left menu li a { color: #{this_estilo.first['cor_letra_out']} !important; }
       /* Cor fonte hover */ 
         aside.left menu li a:hover { color: #{this_estilo.first['cor_letra_hover']} !important; }
     /* Submenu  */
       /* Cor */ 
-        aside.left menu li.sub > a { background-color: #{this_estilo.first['cor_td_subitem_mouseout']} !important; }
-        aside.left menu li.sub { background-color: #{this_estilo.first['cor_td_subitem_mouseout']} !important; }
+        /* aside.left menu li.sub > a { background-color: #{this_estilo.first['cor_td_subitem_mouseout']} !important; } */
+        /* aside.left menu li.sub { background-color: #{this_estilo.first['cor_td_subitem_mouseout']} !important; } */
       /* Cor Hover */ 
-        aside.left menu li.sub:hover { background-color: #{this_estilo.first['cor_td_subitem_mouseout']} !important; }
-        aside.left menu li.sub:hover > a { background-color: #{this_estilo.first['cor_td_subitem_mouseover']} !important; }
+        /* aside.left menu li.sub:hover { background-color: #{this_estilo.first['cor_td_subitem_mouseout']} !important; } */
+        /* aside.left menu li.sub:hover > a { background-color: #{this_estilo.first['cor_td_subitem_mouseover']} !important; } */
       /* Cor fonte */ 
         aside.left menu li.sub > a { color: #{this_estilo.first['cor_letra_subitem_out']} !important; }
       /* Cor fonte hover */ 
@@ -165,13 +165,13 @@ EOF
       /* Cor fonte */
         aside.right menu li a { color: #{this_estilo.first['cor_letra_out2']} !important; }
       /* Cor fonte hover */
-        aside.right menu li a:hover { color: #{this_estilo.first['cor_letra_hover2']} !important; }
+      /*  aside.right menu li a:hover { color: #{this_estilo.first['cor_letra_hover2']} !important; } */
     /* Submenu  */
       /* Cor */
-        aside.right menu li.sub > a { background-color: #{this_estilo.first['cor_td_subitem_mouseout2']} !important; }
+        /* aside.right menu li.sub > a { background-color: #{this_estilo.first['cor_td_subitem_mouseout2']} !important; } */
       /* Cor Hover */
-        aside.right menu li.sub:hover { background-color: #{this_estilo.first['cor_td_subitem_mouseout2']} !important; }
-        aside.right menu li.sub:hover > a { background-color: #{this_estilo.first['cor_td_subitem_mouseover2']} !important; }
+        /* aside.right menu li.sub:hover { background-color: #{this_estilo.first['cor_td_subitem_mouseout2']} !important; } */
+        /* aside.right menu li.sub:hover > a { background-color: #{this_estilo.first['cor_td_subitem_mouseover2']} !important; } */
       /* Cor fonte */
         aside.right menu li.sub > a { color: #{this_estilo.first['cor_letra_subitem_out2']} !important; }
       /* Cor fonte hover */
