@@ -104,7 +104,7 @@ module ApplicationHelper
   # Retorna: verdadeiro ou falso
   def check_permission(ctrl, actions)
     # Se o argumento de ações for uma string, passa para array
-    actions = [actions] if actions.is_a? String
+    actions = [actions] unless actions.is_a? Array
     
     # Se o usuário for admin então dê todas as permissões
     if current_user and current_user.is_admin

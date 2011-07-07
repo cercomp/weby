@@ -1,8 +1,8 @@
 # coding: utf-8
 class UsersController < ApplicationController
   layout :choose_layout
-  before_filter :require_user, :only => [:edit, :show, :update, :destroy, :toggle_field, :change_roles, :change_theme, :index]
-  before_filter :check_authorization, :except => [:new, :create, :update, :edit, :show]
+  before_filter :require_user, :except => [:new, :create]
+  before_filter :check_authorization, :except => [:new, :create]
   respond_to :html, :xml
   helper_method :sort_column
 
@@ -20,9 +20,10 @@ class UsersController < ApplicationController
     if @site
       # Seleciona os todos os usuários que não são administradores
       @users = User.no_admin
-      @site_users = User.by_site @site
-
-      @users_unroled = User.by_no_site @site
+      # Usuários que possuem papel no site e não são administradores
+      @site_users = User.by_site(@site) - User.admin
+      # Usuários que NÃO possuem papel no site e não são administradores
+      @users_unroled = User.by_no_site(@site) - User.admin
 
       @roles = @site.roles.order("id")
       # Quando a edição dos papeis é solicitada

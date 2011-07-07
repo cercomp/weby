@@ -1,7 +1,7 @@
 <fieldset>
   <legend> <%= t"editing", :param => t("right.one") %> </legend>
 
-  <% form_for(@right, :builder => SemanticFormBuilder) do |f| %>
+  <% form_for([@site, @right], :builder => SemanticFormBuilder) do |f| %>
     <% if @right.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@right.errors.count, "error") %> prohibited this site from being saved:</h2>

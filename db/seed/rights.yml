@@ -32,7 +32,7 @@
   id: 6
   name: "Mudar papéis de usuários" 
   controller: users
-  action: change_roles
+  action: change_roles manage_roles
 
 7:
   id: 7

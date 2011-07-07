@@ -50,7 +50,7 @@ class RolesController < ApplicationController
   def update
     @role = Role.find(params[:id])
     @role.update_attributes(params[:role])
-    redirect_to roles_path
+    redirect_to @site ? site_roles_path : roles_path
   end
 
   def destroy
