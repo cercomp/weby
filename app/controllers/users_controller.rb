@@ -43,7 +43,12 @@ class UsersController < ApplicationController
         format.html
       end
     else
-      @sites = Site.find(:all)
+      #@sites = Site.all.except(:order).page(params[:page]).per(params[:per_page])
+      @sites = Site.name_or_description_like(params[:search]).
+        except(:order).
+        order(sort_column + " " + sort_direction).
+        page(params[:page]).
+        per(params[:per_page])
       render :select_site
     end
   end

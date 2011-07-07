@@ -1,6 +1,10 @@
 <fieldset>
   <legend><%= t "select_site" %></legend>
 
+  <%= paginate @sites %>
+  <%= info_page @sites %>
+  <%= per_page_links @sites %>
+
   <table class='list'>
     <thead>
       <th><%= t"name" %></th>
@@ -15,4 +19,5 @@
     <% end; reset_cycle %>
     </tbody>
   </table>
+  <%= paginate @sites %>
 </fieldset>
