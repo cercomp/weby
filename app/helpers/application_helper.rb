@@ -11,7 +11,7 @@ module ApplicationHelper
   # Campo com imagens V ou X para habilitar/desabilitar e degradê se não tiver permissão para alteração.
   def toggle_field(obj, field)
     menu = ""
-    if current_user.is_admin
+    if check_permission(controller.class, 'toggle_field')
       if obj[field.to_s] == 0 or not obj[field.to_s]
         menu = link_to(image_tag("false.png", :alt => t("disable.masc")), {:action => "toggle_field", :id => obj.id, :field => "#{field}"}, :title => t("activate_deactivate"))
       else
@@ -48,8 +48,7 @@ module ApplicationHelper
     indent_space = " " * indent
     submenu = (not sons[entry.id].nil?) ? "class='sub'" : nil
 
-    menus = ""
-    menus += "<li #{submenu}>"
+    menus = "<li #{submenu}>"
 #		if (entry.menu.try(:page_id).nil? and entry.menu.try(:link).empty?)
 			#menus += "#{entry.menu.try(:title)}"
 #		else
@@ -153,7 +152,7 @@ module ApplicationHelper
       user.roles.where(:site_id => @site).each do |role|
         role.rights.each do |right|
           if right.controller == ctr
-            right.action.split(' ').each{ |ri| perms_user << ri }
+            right.action.split(' ').each{ |ri| perms_user << ri.to_sym }
           end
         end
       end
@@ -168,6 +167,7 @@ module ApplicationHelper
       end
       return perms
     end
+
     return perms_user
   end
 
