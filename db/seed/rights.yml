@@ -303,34 +303,40 @@
  id: 50
  name: "Usar Estilo"
  controller: csses
- action: use_css
+ action: follow
 
 51:
  id: 51
+ name: "Copiar Estilo"
+ controller: csses
+ action: copy
+
+52:
+ id: 52
  name: "Listar Componentes"
  controller: site_components
  action: index
 
-52:
- id: 52
+53:
+ id: 53
  name: "Ver Componentes"
  controller: site_components
  action: show
 
-53:
- id: 53
+54:
+ id: 54
  name: "Editar Componente"
  controller: site_components
  action: edit update
 
-54:
- id: 54
+55:
+ id: 55
  name: "Excluir Componente"
  controller: site_components
  action: destroy
 
-55:
- id: 55
+56:
+ id: 56
  name: "Criar Componente"
  controller: site_components
  action: new create
