@@ -71,7 +71,8 @@ pt-BR:
 
 #---D---#
   date_param: "Data de %{param}" 
-  destroy: "Excluir"  
+  destroy: "Excluir"
+  destroyed_param: "%{param} removído"
   description: "Descrição"
   disable: 
     fem: "Desabilitada"

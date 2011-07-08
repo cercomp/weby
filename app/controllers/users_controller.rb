@@ -146,7 +146,8 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    respond_with(@user)
+
+    redirect_to @site ? site_users_path : users_path, :notice => t('destroyed_param', :param => @user.first_name)
   end
 
   def toggle_field

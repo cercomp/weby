@@ -72,6 +72,7 @@ en:
 #---D---#
   date_param: "Date of %{param}" 
   destroy: "Destroy"  
+  destroyed_param: "%{param} destroyed"
   description: "Description"
   disable: 
     fem: "Disable"
