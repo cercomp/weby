@@ -20,7 +20,9 @@
           <td><%=h user.email %></td>
           <td align="center"><%= raw toggle_field(user, 'status') %></td>
           <td align="center"><%= raw toggle_field(user, 'is_admin') %></td>
-          <td><%= link_to 'gerenciar papeis', {:controller => 'users', :action => 'manage_roles'} %></td>
+          <% if check_permission(UsersController, :change_roles) %>
+            <td><%= link_to 'gerenciar papeis', {:controller => 'users', :action => 'manage_roles', :user => user.id} %></td>
+          <% end %>
           <td>
             <%= raw make_menu(user) %> 
           </td>
