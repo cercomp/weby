@@ -236,13 +236,13 @@ EOF
 			end
 
 			puts "\tINSERINDO papel Gerente.\n"
-      insert_gerente = "INSERT INTO roles (name) VALUES ('Gerente') RETURNING id"
+      insert_gerente = "INSERT INTO roles (name,site_id) VALUES ('Gerente',#{site[0]['id']}) RETURNING id"
       id_gerente = @con_weby.exec(insert_gerente)
 			puts "\tINSERINDO papel Editor Chefe.\n"
-      insert_editor = "INSERT INTO roles (name) VALUES ('Editor-Chefe') RETURNING id"
+      insert_editor = "INSERT INTO roles (name,site_id) VALUES ('Editor-Chefe',#{site[0]['id']}) RETURNING id"
       id_editor = @con_weby.exec(insert_editor)
 			puts "\tINSERINDO papel Redator.\n"
-      insert_redator = "INSERT INTO roles (name) VALUES ('Redator') RETURNING id"
+      insert_redator = "INSERT INTO roles (name,site_id) VALUES ('Redator',#{site[0]['id']}) RETURNING id"
       id_redator = @con_weby.exec(insert_redator)
 			
       puts "\tINSERINDO permissões e papéis por site...\n"
