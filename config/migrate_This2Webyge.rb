@@ -45,11 +45,11 @@ class Migrate_this2weby
     # Laço de repetição
     this_sites.each do |this_site|
       # Gerando o nome do site
-      site_name = /http:\/\/www.([a-z]+).*\/([a-z]+)/.match("#{this_site['caminho_http']}")
+      site_name = /http:\/\/www.([a-z\-]+).*\/([a-z]+)/.match("#{this_site['caminho_http']}")
       if not site_name.nil?
         site_name = "#{site_name[1]}_#{site_name[2]}"
       else
-        site_name = /http:\/\/www.([a-z]+).*/.match("#{this_site['caminho_http']}")
+        site_name = /http:\/\/www.([a-z\-]+).*/.match("#{this_site['caminho_http']}")
         if not site_name.nil?
           site_name = site_name[1]
         end
