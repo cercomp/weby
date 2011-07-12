@@ -36,307 +36,315 @@
 
 7:
   id: 7
+  name: "Ativar Desativar Usuário" 
+  controller: users
+  action: toggle_field
+
+8:
+  id: 8
   name: "Gerenciar direitos"
   controller: rights
   action: index new create update edit
 
-8:
-  id: 8
+9:
+  id: 9
   name: "Excluir direitos"
   controller: rights
   action: destroy
 
 
-9:
- id: 9
+10:
+ id: 10
  name: "Listar Páginas"
  controller: pages
  action: index
 
-10:
- id: 10
+11:
+ id: 11
  name: "Ver Página"
  controller: pages
  action: show
 
-11:
- id: 11
+12:
+ id: 12
  name: "Editar Página"
  controller: pages
  action: edit update
 
-12:
- id: 12
+13:
+ id: 13
  name: "Excluir Página"
  controller: pages
  action: destroy
 
-13:
- id: 13
+14:
+ id: 14
  name: "Ordernar Páginas"
  controller: pages
  action: sort
 
-14:
- id: 14
+15:
+ id: 15
  name: "Criar Página"
  controller: pages
  action: new create
 
-15:
- id: 15
+16:
+ id: 16
  name: "Publicar Página"
  controller: pages
  action: toggle_field
 
 
-16:
- id: 16
+17:
+ id: 17
  name: "Listar Menus"
  controller: menus
  action: index
 
-17:
- id: 17
+18:
+ id: 18
  name: "Ver Menus"
  controller: menus
  action: show
 
-18:
- id: 18
+19:
+ id: 19
  name: "Editar Menu"
  controller: menus
  action: edit update
 
-19:
- id: 19
+20:
+ id: 20
  name: "Excluir Menu"
  controller: menus
  action: destroy rm_menu del_deep del_deep_entry
 
-20:
- id: 20
+21:
+ id: 21
  name: "Ordernar Menus"
  controller: menus
  action: change_position
 
-21:
- id: 21
+22:
+ id: 22
  name: "Criar Menu"
  controller: menus
  action: new create
 
 
-22:
- id: 22
+23:
+ id: 23
  name: "Listar Banners"
  controller: banners
  action: index
 
-23:
- id: 23
+24:
+ id: 24
  name: "Ver Banner"
  controller: banners
  action: show
 
-24:
- id: 24
+25:
+ id: 25
  name: "Editar Banner"
  controller: banners
  action: edit update
 
-25:
- id: 25
+26:
+ id: 26
  name: "Excluir Banner"
  controller: banners
  action: destroy
 
-26:
- id: 26
+27:
+ id: 27
  name: "Ordernar Banners"
  controller: banners
  action: change_position
 
-27:
- id: 27
+28:
+ id: 28
  name: "Criar Banner"
  controller: banners
  action: new create
 
-28:
- id: 28
+29:
+ id: 29
  name: "Publicar Banner"
  controller: banners
  action: toggle_field
 
 
-29:
- id: 29
+30:
+ id: 30
  name: "Listar Fale Conosco"
  controller: feedbacks
  action: index
 
-30:
- id: 30
+31:
+ id: 31
  name: "Ver Fale Conosco"
  controller: feedbacks
  action: show
 
-31:
- id: 31
+32:
+ id: 32
  name: "Editar Fale Conosco"
  controller: feedbacks
  action: edit update get_groups
 
-32:
- id: 32
+33:
+ id: 33
  name: "Excluir Fale Conosco"
  controller: feedbacks
  action: destroy
 
-33:
- id: 33
+34:
+ id: 34
  name: "Criar Fale Conosco"
  controller: feedbacks
  action: new create get_groups
 
 
-34:
- id: 34
+35:
+ id: 35
  name: "Listar Grupos"
  controller: groups
  action: index
 
-35:
- id: 35
+36:
+ id: 36
  name: "Ver Grupo"
  controller: groups
  action: show
 
-36:
- id: 36
+37:
+ id: 37
  name: "Editar Grupo"
  controller: groups
  action: edit update
 
-37:
- id: 37
+38:
+ id: 38
  name: "Excluir Grupo"
  controller: groups
  action: destroy
 
-38:
- id: 38
+39:
+ id: 39
  name: "Criar Grupo"
  controller: groups
  action: new create
 
 
-39:
- id: 39
+40:
+ id: 40
  name: "Listar Repositório"
  controller: repositories
  action: index
 
-40:
- id: 40
+41:
+ id: 41
  name: "Ver Repositório"
  controller: repositories
  action: show
 
-41:
- id: 41
+42:
+ id: 42
  name: "Editar Repositório"
  controller: repositories
  action: edit update
 
-42:
- id: 42
+43:
+ id: 43
  name: "Excluir Repositório"
  controller: repositories
  action: destroy
 
-43:
- id: 43
+44:
+ id: 44
  name: "Criar Repositório"
  controller: repositories
  action: new create
 
 
-44:
- id: 44
+45:
+ id: 45
  name: "Listar Estilo"
  controller: csses
  action: index
 
-45:
- id: 45
+46:
+ id: 46
  name: "Ver Estilo"
  controller: csses
  action: show
 
-46:
- id: 46
+47:
+ id: 47
  name: "Editar Estilo"
  controller: csses
  action: edit update
 
-47:
- id: 47
+48:
+ id: 48
  name: "Excluir Estilo"
  controller: csses
  action: destroy
 
-48:
- id: 48
+49:
+ id: 49
  name: "Criar Estilo"
  controller: csses
  action: new create
 
-49:
- id: 49
+50:
+ id: 50
  name: "Publicar Estilo"
  controller: csses
  action: toggle_field
 
-50:
- id: 50
+51:
+ id: 51
  name: "Usar Estilo"
  controller: csses
  action: follow
 
-51:
- id: 51
+52:
+ id: 52
  name: "Copiar Estilo"
  controller: csses
  action: copy
 
-52:
- id: 52
+53:
+ id: 53
  name: "Listar Componentes"
  controller: site_components
  action: index
 
-53:
- id: 53
+54:
+ id: 54
  name: "Ver Componentes"
  controller: site_components
  action: show
 
-54:
- id: 54
+55:
+ id: 55
  name: "Editar Componente"
  controller: site_components
  action: edit update
 
-55:
- id: 55
+56:
+ id: 56
  name: "Excluir Componente"
  controller: site_components
  action: destroy
 
-56:
- id: 56
+57:
+ id: 57
  name: "Criar Componente"
  controller: site_components
  action: new create
+
+
