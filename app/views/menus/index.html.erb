@@ -7,7 +7,6 @@
 
   <div id='tabs'>
     <ul>
-      <%# links = ["main","secondary","base","auxiliary"] %>
       <% links = @site.menu_categories %>
       <% for link in links do %>
         <% selected = params[:category] == link ? "selected" : "" %>

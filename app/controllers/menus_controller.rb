@@ -5,7 +5,6 @@ class MenusController < ApplicationController
   respond_to :html, :xml, :js
 
   def index
-    params[:category] ||= 'secondary'
   end
 
   def show
