@@ -2,7 +2,7 @@
 class UsersController < ApplicationController
   layout :choose_layout
   before_filter :require_user, :except => [:new, :create]
-  before_filter :check_authorization, :except => [:new, :create]
+  before_filter :check_authorization, :except => [:new, :create, :show]
   respond_to :html, :xml
   helper_method :sort_column
 

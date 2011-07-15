@@ -12,7 +12,7 @@ class PasswordResetsController < ApplicationController
   def create
     @user = User.find_by_email(params[:email])
     if @user
-      @user.password_reset!(request.env["HTTP_HOST"])
+      @user.password_reset!(request.env["SERVER_NAME"])
       flash[:notice] = t("reset_mail")
       redirect_to :back
     else

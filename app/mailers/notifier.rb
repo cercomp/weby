@@ -4,7 +4,7 @@ class Notifier < ActionMailer::Base
  def password_reset_instructions(user, host)
     default_url_options[:host] = host
     subject = "Weby - Instruções de Recuperação de Senha"
-    from = "weby@weby.ufg.br"
+    from = "web@cercomp.ufg.br"
     recipients = user.email  
     sent_on = Time.now
     @user = user
