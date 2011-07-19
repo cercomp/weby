@@ -6,7 +6,7 @@
       <figure id='banner'>
         <% b.repository.archive.reprocess! if File.file?(b.repository.archive.path) and not File.file?(b.repository.archive.path(:little)) %>
         <% size = b.size ? b.size : "little" %>
-        <%= link_to image_tag("#{b.repository.archive.url(size)}", :width => "#{b.width}", :height => "#{b.height}", :alt => "#{b.text}", :title => "#{b.text}"), "#{b.url}" %>
+        <%= link_to image_tag("#{b.repository.archive.url(size)}", :width => "#{b.width}", :height => "#{b.height}", :alt => "#{b.repository.description}", :title => "#{b.text}"), "#{b.url}" %>
       </figure>
     <% end %>
   <% end %>
