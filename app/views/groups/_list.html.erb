@@ -1,5 +1,5 @@
-<%= paginate @groups %>
-<%= per_page_links @groups %>
+<%= paginate @groups, :remote => true %>
+<%= info_page @groups %>
 <table class='list'>
   <thead>
     <th><%= sortable 'name', t('name') %></th>
@@ -16,5 +16,5 @@
   <% end %>
   </tbody>
 </table>
-<%= paginate @groups %>
+<%= paginate @groups, :remote => true %>
 <%= per_page_links @groups %>

@@ -1,6 +1,5 @@
   <%= paginate @banners, :remote => true %>
   <%= info_page @banners %>
-  <%= per_page_links @banners, true %>
   <table class='list'>
     <thead>
       <th><%= sortable "id" %></th>
@@ -33,3 +32,5 @@
     <% end; reset_cycle %>
     </tbody>
   </table>
+  <%= paginate @banners, :remote => true %>
+  <%= per_page_links @banners, true %>

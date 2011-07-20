@@ -234,7 +234,7 @@ module ApplicationHelper
       per_page_array.each do |item|
         html << 
         if params[:per_page].to_i == item.to_i
-          content_tag :span, item, :class => 'current'
+          content_tag :span, item, :class => 'item_per_page_paginator current'
         else
           content_tag(:span, :class => 'item_per_page_paginator') do
             link_to item, params.merge({:per_page => item, :page => 1}), :remote => remote

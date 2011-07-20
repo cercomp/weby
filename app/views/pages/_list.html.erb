@@ -1,6 +1,5 @@
 <%= paginate @pages, :remote => true %>
 <%= info_page @pages %>
-<%= per_page_links @pages, true %>
 <table id='list' class="list">
   <thead>
     <th><%= sortable 'id' %></th>
@@ -17,7 +16,6 @@
       <th></th>
     <% end %>
   </thead>
-
   <tbody>
     <% @pages.each do |page| %>
       <tr id="sort_page_<%= page.id %>">
@@ -39,6 +37,8 @@
           </td>
         <% end %>
       </tr>
-      <% end %>
-    </tbody>
-  </table>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @pages, :remote => true %>
+<%= per_page_links @pages, true %>

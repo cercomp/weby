@@ -1,28 +1,14 @@
-.paginator {
-  display: block;
-  width: 100%
-}
+.paginator { display: block; }
 
-.page_info_paginator{ float: left }
-.per_page_paginator { float: right; }
+.page_info_paginator { float: right; padding: 5px; }
+.per_page_paginator { float: right; padding: 5px; }
+.pages_paginator { float: left; padding: 5px; }
+.disabled { color: #999; padding: 5px; }
 
-.page_info_paginator,
-.per_page_paginator { margin-bottom: 5px }
-
-.pages_paginator {
-  text-align: center;
-  padding: 3px;
-  margin: 3px;
-}
-
-.disabled{
-  color: #999;
-}
-
+.item_per_page_paginator { padding: 3px; }
 .item_per_page_paginator a,
 .pages_paginator a {
-  padding: 2px 5px;
-  margin: 2px;
+  padding: 3px;
   border: 1px solid #d7d7d7;
   text-decoration: none; /* no underline */
   color: #000;
@@ -35,9 +21,8 @@
 }
 
 .pages_paginator span.current,
-.per_page_paginator span.current{
-  padding: 2px 5px 2px 5px;
-  margin: 2px;
+.per_page_paginator span.current {
+  padding: 3px;
   border: 1px solid #000;
   font-weight: bold;
   background-color: #000;
@@ -45,8 +30,7 @@
 }
 
 .pages_paginator span.disabled {
-  padding: 2px 5px 2px 5px;
-  margin: 2px;
+  padding: 3px;
   border: 1px solid #EEE;
   color: #DDD;
 }

@@ -1,6 +1,5 @@
 <%= paginate @sites %>
 <%= info_page @sites %>
-<%= per_page_links @sites %>
 <table class='list'>
   <thead>
     <th><%= sortable "id" %></th>
@@ -18,3 +17,4 @@
   </tbody>
 </table>
 <%= paginate @sites %>
+<%= per_page_links @sites %>

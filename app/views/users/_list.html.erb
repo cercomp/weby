@@ -1,5 +1,5 @@
-  <%= paginate @users %>
-  <%= per_page_links @users %>
+  <%= paginate @users, :remote => true %>
+  <%= info_page @users %>
   <table class="list">
     <thead>
       <tr>
@@ -30,5 +30,5 @@
         <% end; reset_cycle %>
       </tbody>
     </table>
-  <%= paginate @users %>
+  <%= paginate @users, :remote => true %>
   <%= per_page_links @users %>
