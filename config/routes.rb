@@ -11,7 +11,6 @@ Webyge::Application.routes.draw do
     collection do
       post :sort
     end
-    
     resources :users do
       collection do
         get :manage_roles
@@ -59,26 +58,20 @@ Webyge::Application.routes.draw do
         get :sent
       end
     end
-
     resources :csses do
       member do
         get :copy, :follow, :toggle_field
       end
     end
-
-    resources :groups, :chats, :rights, :archives, :admin
-    
     resources :roles do
       collection do
         put :index
       end
     end
+    resources :groups, :chats, :rights, :archives, :admin
   end
 
-  resources :groups, :menus, :chats, :rights,
-    :archives, :user_sessions, :admin,
-    :csses, :settings
-
+  resources :groups, :menus, :chats, :rights, :archives, :user_sessions, :admin, :csses, :settings
   resources :password_resets, :only => [ :new, :create, :edit, :update ]
   resources :account, :controller => "users"
   resources :users do
@@ -90,7 +83,6 @@ Webyge::Application.routes.draw do
       get :toggle_field
     end 
   end
-
   resources :roles do
     collection do
       put :index
@@ -112,5 +104,4 @@ Webyge::Application.routes.draw do
   match 'denied' => "admin#access_denied", :as => 'denied'
 
   root :to => "sites#index" # Página agregadora dos sites
-
 end

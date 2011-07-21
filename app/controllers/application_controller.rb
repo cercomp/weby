@@ -5,8 +5,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_contrast, :set_locale, :set_global_vars
 
   helper :all
-  helper_method :current_user_session, :current_user,
-    :user_not_authorized, :sort_direction
+  helper_method :current_user_session, :current_user, :user_not_authorized, :sort_direction
 
   def choose_layout
     if @site.nil? or @site.id.nil? 
@@ -171,7 +170,6 @@ class ApplicationController < ActionController::Base
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
   end
-
 
   protected
   def load_images

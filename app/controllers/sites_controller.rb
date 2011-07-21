@@ -25,6 +25,10 @@ class SitesController < ApplicationController
 
   def new
     @site = Site.new
+    @themes = []
+    (Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*.erb")] - Dir[File.join(Rails.root + "app/views/layouts/portal.html.erb")]).each do |file|
+      @themes << file.split("/")[-1].split(".")[0]
+    end
     respond_with(@site)
   end
 
@@ -36,8 +40,11 @@ class SitesController < ApplicationController
 
   def create
     @site = Site.new(params[:site])
-    @site.save
-    respond_with(@site)
+    if @site.save
+      redirect_to edit_site_admin_path(@site, @site)
+    else
+      respond_with(@site)
+    end
   end
 
   def update
