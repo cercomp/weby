@@ -4,7 +4,8 @@
 <% @no_front_news = @site.pages.news(front).except(:order).page(params[:no_front_pages]).per(quant) %>
 
 <div id='no_front_news'>
-  <table class="border fullwidth zebra">
+  <%= info_page @no_front_news, 'width: 100%' %>
+    <table class="list border fullwidth zebra">
     <tr>
       <th> <%= link_to t("page.other"), site_pages_path(@site) %> </th>
     </tr>
@@ -19,6 +20,5 @@
       </tr>
     <% end %>
   </table>
-  <%= info_page @no_front_news, 'width: 100%' %>
   <%= paginate @no_front_news, :param_name => 'no_front_pages' %>
 </div>
