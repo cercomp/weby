@@ -4,7 +4,7 @@
 
 <section id="pages">
   <% @front_news.try(:each) do |page| %>
-    <li id=<%= "sort_page_#{page.id}" %> style="list-style-type:none;">
+    <li id="sort_page_<%= "#{page.id}" %>" style="list-style-type:none;">
     <article>
       <% unless page.repository.nil? %>
         <% recreate_thumbs! page %>
@@ -55,7 +55,7 @@
             complete: function(request){
               $('#list').effect('highlight'); 
             },
-            url: '<%= sort_sites_path(:from => 'view') %>'
+            url: '<%= params[:site_id] %>/pages/sort?from=view<%#= sort_sites_path(:from => 'view') %>'
           });
         }
       });

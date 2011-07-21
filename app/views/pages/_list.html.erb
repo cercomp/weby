@@ -12,9 +12,7 @@
       <th><%= t"cover" %></th>
       <th><%= t"publish" %></th>
     <% end %>
-    <% if check_permission(PagesController, 'sort') %>
-      <th></th>
-    <% end %>
+    <th></th>
   </thead>
   <tbody>
     <% @pages.each do |page| %>
@@ -29,16 +27,15 @@
           <td align="center"><%= raw toggle_field(page, "front") %></td>
           <td align="center"><%= raw toggle_field(page, "publish") %></td>
         <% end %>
-        <%# Verificar se o make_menu a seguir está correto %>
-        <%#= make_menu(page, :except => "show") %>
-        <% if check_permission(PagesController, 'sort') %>
-          <td>
+        <td>
+          <%= make_menu(page, :except => "show") %>
+          <% if check_permission(PagesController, 'sort') %>
             <span class='handle icon icon-drag'><%= t("move") %></span>
-          </td>
-        <% end %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 <%= paginate @pages, :remote => true %>
-<%= per_page_links @pages, true %>
+<%= per_page_links @pages %>

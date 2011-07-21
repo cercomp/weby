@@ -54,15 +54,6 @@ class SitesController < ApplicationController
     respond_with(@site)
   end
 
-  def sort
-    params['sort_page'] ||= []
-    params['sort_page'].to_a.each do |p|
-      page = Page.find(p)
-      page.position = (params['sort_page'].index(p) + 1)
-      page.save
-    end
-  end
-
   private
   def sort_column
     Site.column_names.include?(params[:sort]) ? params[:sort] : 'id'
