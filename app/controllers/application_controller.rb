@@ -153,7 +153,7 @@ class ApplicationController < ActionController::Base
       #   Exemplo: menu['principal'] = { 0 => [menu1, menu2], 1 => [menu3, menu4] }
       @menus.each{ |key,value| @menus[key] = value.group_by(&:parent_id) || "" }
 
-      if not @site.repository.nil? and File.file?(@site.repository.archive.path)
+      if not @site.repository.nil? and File.file?(@site.repository.archive.path) and @site.repository.image?
         @top_banner_width,@top_banner_height = Paperclip::Geometry.from_file(@site.repository.archive).to_s.split('x')
       end
     end

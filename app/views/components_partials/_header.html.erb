@@ -4,9 +4,23 @@
       "#{@site.top_banner_width}x#{@site.top_banner_height}" :
       "#{@site.body_width}x#{@top_banner_height}" %>
     <% size = "#{@top_banner_width}x#{@top_banner_height}" if @site.body_width.nil? %>
-    <%= link_to image_tag(@site.repository.archive.url,
-      :alt => @site.repository.description,
-      :title => @site.repository.description,
-      :size => size.to_s), @site %>
+		<% if @site.repository.image? %>
+	    <%= link_to image_tag(@site.repository.archive.url,
+  	    :alt => @site.repository.description,
+    	  :title => @site.repository.description,
+      	:size => size.to_s), @site %>
+		<% else %>
+			<object codebase='http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0'>
+		    <param name=quality value=high>
+		    <param name=wmode value=transparent>
+		    <embed src='<%= @site.repository.archive.url %>'
+					width='<%= @site.body_width %>'
+					wmode='transparent' 
+					quality='high' 
+					type='application/x-shockwave-flash' 
+					pluginspage='http://www.macromedia.com/go/getflashplayer'>
+		    </embed> 
+			</object>
+		<% end %>
   </figure>
 <% end %>

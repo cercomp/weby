@@ -2,7 +2,7 @@ module FormsHelper
   def images_radio(images, form, id)
     form.radio_button_group id, 
       images.map { |u|
-      if File.file?(u.archive.path) and not File.file?(u.archive.path(:mini))
+      if File.file?(u.archive.path) and not File.file?(u.archive.path(:mini)) and u.image?
         u.archive.reprocess! 
       end
       { 

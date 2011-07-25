@@ -710,6 +710,7 @@ class Migrate_files
       when %r"html?"                 then "text/html"
       when "js"                      then "application/js"
       when "csv", "xml", "css"       then "text/#{type}"
+			when "swf"                     then "application/x-shockwave-flash"
     end
   end
 
@@ -782,7 +783,7 @@ class Migrate_files
         #puts "mv -ufv \"#{file}\" \"#{destino}/original_#{file_name}\""
         `mv -ufv "#{file}" "#{destino}/original_#{file_name}"`
 
-        if(file_name == "topo.jpg" || file_name == "topo.gif" || file_name == "topo.png")
+        if(file_name == "topo.swf" || file_name == "topo.jpg" || file_name == "topo.gif" || file_name == "topo.png")
             sql = "UPDATE sites SET top_banner_id='#{repository_id}' WHERE id='#{@convar[id]['weby']}'"
             @con_weby.exec(sql)
             puts "\tATUALIZANDO topo"
