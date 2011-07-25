@@ -343,4 +343,8 @@
  controller: site_components
  action: new create
 
-
+57:
+  id: 57
+  name: "Editar configurações do site"
+  controller: admin
+  action: edit

@@ -33,11 +33,11 @@ class ApplicationController < ActionController::Base
       if current_user.is_admin
         return true
       end
-      u = User.find(current_user.id)
-      unless u.roles.detect do |role|
+      unless current_user.roles.where(:site_id => @site).detect do |role|
+#      unless current_user.roles.detect do |role|
         role.rights.detect do |right|
           right.action.split(' ').detect do |ri| 
-            ri == action_name && right.controller == self.class.controller_path 
+            right.controller == self.class.controller_path && ri == action_name
           end
         end
       end
