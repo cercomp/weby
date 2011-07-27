@@ -679,7 +679,7 @@ class Migrate_files
     @config = YAML::load(File.open("./config-migrate.yml"))
     @convar = YAML::load(File.open("./convar.yml"))
     @con_weby = PGconn.connect(@config['weby']['host'],nil,nil,nil,@config['weby']['database'],@config['weby']['username'],@config['weby']['password'])
-    @folders = ['topo', 'imgd', 'banners', 'files']
+    @folders = ['imgd', 'banners', 'files', 'topo']
     @ids = id
     from += '/' if from[-1] != '/'
     to += '/' if to[-1] != '/'
@@ -766,7 +766,7 @@ class Migrate_files
       # Registra cada arquivo na base
       `find #{destino} -maxdepth 1 -mindepth 1 -type f -not -iname "original_*" -not -iname "medium_*" -not -iname "little_*" -not -iname "mini_*"`.split("\n").each do |file|
         
-        # Verifica se o arquivo já existe no canvar, ou seja, se ele já foi migrado
+        # Verifica se o arquivo já existe no convar, ou seja, se ele já foi migrado
         unless @convar[id]["repositories"].index(file).nil?
           next
         # Se ainda não existe, coloca o arquivo na lista
