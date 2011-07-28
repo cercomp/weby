@@ -14,18 +14,7 @@
     	  :title => @site.repository.description,
       	:size => size.to_s), @site %>
 		<% else %>
-			<object codebase='http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0'>
-		    <param name=quality value=high>
-		    <param name=wmode value=transparent>
-		    <embed src='<%= @site.repository.archive.url %>'
-					width='<%= width %>'
-					height='<%= height %>'
-					wmode='transparent' 
-					quality='high' 
-					type='application/x-shockwave-flash' 
-					pluginspage='http://www.macromedia.com/go/getflashplayer'>
-		    </embed> 
-			</object>
+		    <embed src='<%= @site.repository.archive.url %>' width='<%= width %>' height='<%= height %>' type='application/x-shockwave-flash'></embed> 
 		<% end %>
   </figure>
 <% end %>
