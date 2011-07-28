@@ -1,9 +1,13 @@
 <% unless @site.repository.nil? %>
+	<% if @site.body_width.nil? %>
+		<% size = "#{@top_banner_width}x#{@top_banner_height}" %>
+	<% else %>
+		<% size = (@site.top_banner_width and @site.top_banner_height) ? "#{@site.top_banner_width}x#{@site.top_banner_height}" : "#{@site.body_width}x#{@top_banner_height}" %>
+	<% end %>
+	<% width = @site.top_banner_width ? @site.top_banner_width : @site.body_width %>
+	<% height = @site.top_banner_height %>
+
   <figure id="cover">
-    <% size = (@site.top_banner_width and @site.top_banner_height) ?
-      "#{@site.top_banner_width}x#{@site.top_banner_height}" :
-      "#{@site.body_width}x#{@top_banner_height}" %>
-    <% size = "#{@top_banner_width}x#{@top_banner_height}" if @site.body_width.nil? %>
 		<% if @site.repository.image? %>
 	    <%= link_to image_tag(@site.repository.archive.url,
   	    :alt => @site.repository.description,
@@ -14,7 +18,8 @@
 		    <param name=quality value=high>
 		    <param name=wmode value=transparent>
 		    <embed src='<%= @site.repository.archive.url %>'
-					width='<%= @site.body_width %>'
+					width='<%= width %>'
+					height='<%= height %>'
 					wmode='transparent' 
 					quality='high' 
 					type='application/x-shockwave-flash' 
