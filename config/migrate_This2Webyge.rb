@@ -627,8 +627,8 @@ EOF
   # Tratamento de caracteres 
   def treat(string)
     unless string.nil?
-      if string.match(/['"]?[^'"]*uploads[^'"0-9]*([0-9]+)[^'"]*\/([^'"]*)['"]?/)
-        string.gsub!(/['"]?[^'"]*uploads[^'"0-9]*([0-9]+)[^'"]*\/([^'"]*)['"]?/){|x| "'/uploads/#{@convar[$1]['weby']}/original_#{$2}'" if @convar[$1] }
+      if string.match(/['"].*?uploads\/.*?([0-9]+).*?\/(.*?)['"]/)
+        string.gsub!(/['"].*?uploads\/.*?([0-9]+).*?\/(.*?)['"]/){|x| "'/uploads/#{@convar[$1]['weby']}/original_#{$2}'" if @convar[$1] }
       end 
       if string.match(/javascript:mostrar_pagina.*?([0-9]+).*?([0-9]+).*?/) 
         string.gsub!(/['"]javascript:mostrar_pagina.*?([0-9]+).*?([0-9]+).*?;['"]/){|x| "'/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["paginas"][$1]}'" if @convar[$2] }
@@ -685,6 +685,7 @@ class Migrate_files
     to += '/' if to[-1] != '/'
     @from = from
     @to = to
+		puts "Preparando para migrar arquivos..."
   end
 
   # Pré tratamento de caracteres
