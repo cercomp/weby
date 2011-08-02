@@ -11,8 +11,6 @@ $menu_border: 1px solid lighten($menu_background, 50%);
   border-bottom: $menu_border; 
 }
 
-body{ overflow: hidden; } 
-
 .left{float: left}
 .right{float: right}
 
@@ -27,42 +25,29 @@ body{ overflow: hidden; }
     list-style: none outside none;
     z-index: 999;
 
-    li{
-      &:hover {
-        position: relative;
-        margin: auto;
+    & > a {
+      display: block;
+      color: $menu_text_color !important;
+      overflow: hidden;
+      white-space:nowrap;
+    }
 
-        & > menu {
-          padding: 0;
-          left: 0;
-          top: $menu_line_height+0.5px;
-          display: block;
-        }
-        menu li:hover > menu {
-          border:{
-            left: $menu_border;
-            right: $menu_border;
-          }
-          top: 20px;
-          z-index: 900px; 
-        }
-      }
-      &.sub.to_left > menu > * {
-        position: relative;
-        right: 150px;
-      }
-      &.sub > a:after {
-        content: url("../images/arrow_collapsed.png");
-        position: relative;
-        top: 3px;
-        right: 0;
-      }
-      &.sub:hover > a:after {
-        content: url("../images/arrow_expanded.png");
-      }
+    & > li{
+      padding: 0 10px;
+      float: left;
+      position: relative;
+      margin: auto;
+
       & > menu {
         position: absolute;
-        display: none;
+        -webkit-transition: -webkit-transform 0.25s ease-out;
+        -webkit-transform: translateY(-999px);
+        -moz-transition: -webkit-transform 0.25s ease-out;
+        -moz-transform: translateY(-999px);
+        padding: 0;
+        left: 0;
+        top: $menu_line_height+0.5px;
+        display: block;
         li {
           width: 100%;
           padding: 3px;
@@ -75,21 +60,39 @@ body{ overflow: hidden; }
           }
         }
       }
-    }
 
-    & > li {
-      padding: 0 10px;
-      float: left;
-
-      &:hover{
-        background-color: darken(opacify($menu_background, 1), 10%);
+      &.sub.to_left > menu  {
+        left: -150px;
       }
-    }
-    a {
-      display: block;
-      color: $menu_text_color !important;
-      overflow: hidden;
-      white-space:nowrap;
+
+      &:hover {
+        background-color: darken(opacify($menu_background, 1), 10%);
+
+        & > menu {
+          -webkit-transition: -webkit-transform 0.25s ease-in;
+          -webkit-transform: translateY(0);
+          -moz-transition: -webkit-transform 0.25s ease-in;
+          -moz-transform: translateY(0);
+          li:hover > menu {
+            border:{
+              left: $menu_border;
+              right: $menu_border;
+            }
+            top: 20px;
+            z-index: 900px; 
+          }
+        }
+      }
+
+      &.sub > a:after {
+        content: url("../images/arrow_collapsed.png");
+        position: relative;
+        top: 3px;
+        right: 0;
+      }
+      &.sub:hover > a:after {
+        content: url("../images/arrow_expanded.png");
+      }
     }
   }
 }

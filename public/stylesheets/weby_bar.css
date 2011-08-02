@@ -4,9 +4,6 @@
   background-color: rgba(255, 255, 255, 0.7);
   border-bottom: 1px solid rgba(255, 255, 255, 0.7); }
 
-body {
-  overflow: hidden; }
-
 .left {
   float: left; }
 
@@ -22,47 +19,52 @@ body {
     margin: 0;
     list-style: none outside none;
     z-index: 999; }
-    .top_menu menu li:hover {
-      position: relative;
-      margin: auto; }
-      .top_menu menu li:hover > menu {
-        padding: 0;
-        left: 0;
-        top: 23.5px;
-        display: block; }
-      .top_menu menu li:hover menu li:hover > menu {
-        border-left: 1px solid rgba(255, 255, 255, 0.7);
-        border-right: 1px solid rgba(255, 255, 255, 0.7);
-        top: 20px;
-        z-index: 900px; }
-    .top_menu menu li.sub.to_left > menu > * {
-      position: relative;
-      right: 150px; }
-    .top_menu menu li.sub > a:after {
-      content: url("../images/arrow_collapsed.png");
-      position: relative;
-      top: 3px;
-      right: 0; }
-    .top_menu menu li.sub:hover > a:after {
-      content: url("../images/arrow_expanded.png"); }
-    .top_menu menu li > menu {
-      position: absolute;
-      display: none; }
-      .top_menu menu li > menu li {
-        width: 100%;
-        padding: 3px;
-        padding-right: 0px;
-        background-color: rgba(255, 255, 255, 0.7);
-        border-botom: 1px solid rgba(255, 255, 255, 0.7);
-        border-left: 1px solid rgba(255, 255, 255, 0.7);
-        border-right: 1px solid rgba(255, 255, 255, 0.7); }
-    .top_menu menu > li {
-      padding: 0 10px;
-      float: left; }
-      .top_menu menu > li:hover {
-        background-color: #e6e6e6; }
-    .top_menu menu a {
+    .top_menu menu > a {
       display: block;
       color: black !important;
       overflow: hidden;
       white-space: nowrap; }
+    .top_menu menu > li {
+      padding: 0 10px;
+      float: left;
+      position: relative;
+      margin: auto; }
+      .top_menu menu > li > menu {
+        position: absolute;
+        -webkit-transition: -webkit-transform 0.25s ease-out;
+        -webkit-transform: translateY(-999px);
+        -moz-transition: -webkit-transform 0.25s ease-out;
+        -moz-transform: translateY(-999px);
+        padding: 0;
+        left: 0;
+        top: 23.5px;
+        display: block; }
+        .top_menu menu > li > menu li {
+          width: 100%;
+          padding: 3px;
+          padding-right: 0px;
+          background-color: rgba(255, 255, 255, 0.7);
+          border-botom: 1px solid rgba(255, 255, 255, 0.7);
+          border-left: 1px solid rgba(255, 255, 255, 0.7);
+          border-right: 1px solid rgba(255, 255, 255, 0.7); }
+      .top_menu menu > li.sub.to_left > menu {
+        left: -150px; }
+      .top_menu menu > li:hover {
+        background-color: #e6e6e6; }
+        .top_menu menu > li:hover > menu {
+          -webkit-transition: -webkit-transform 0.25s ease-in;
+          -webkit-transform: translateY(0);
+          -moz-transition: -webkit-transform 0.25s ease-in;
+          -moz-transform: translateY(0); }
+          .top_menu menu > li:hover > menu li:hover > menu {
+            border-left: 1px solid rgba(255, 255, 255, 0.7);
+            border-right: 1px solid rgba(255, 255, 255, 0.7);
+            top: 20px;
+            z-index: 900px; }
+      .top_menu menu > li.sub > a:after {
+        content: url("../images/arrow_collapsed.png");
+        position: relative;
+        top: 3px;
+        right: 0; }
+      .top_menu menu > li.sub:hover > a:after {
+        content: url("../images/arrow_expanded.png"); }
