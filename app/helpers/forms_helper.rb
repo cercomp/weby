@@ -22,7 +22,7 @@ module FormsHelper
       @pages.map { |u| 
       {
         :value => u.id,
-        :label => u.title[0,59] + ((u.title.size > 59) ?  "..." : "")
+        :label => u.title[0,50] + ((u.title.size > 50) ?  "..." : "")
       }
     },
       (paginate @pages),
