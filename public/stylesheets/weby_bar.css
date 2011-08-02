@@ -4,6 +4,9 @@
   background-color: rgba(255, 255, 255, 0.7);
   border-bottom: 1px solid rgba(255, 255, 255, 0.7); }
 
+body {
+  overflow: hidden; }
+
 .left {
   float: left; }
 
@@ -21,26 +24,27 @@
     z-index: 999; }
     .top_menu menu li:hover {
       position: relative;
-      z-index: 100px; }
+      margin: auto; }
       .top_menu menu li:hover > menu {
         padding: 0;
-        left: 0px;
-        top: 23.5px; }
+        left: 0;
+        top: 23.5px;
+        display: block; }
       .top_menu menu li:hover menu li:hover > menu {
         border-left: 1px solid rgba(255, 255, 255, 0.7);
         border-right: 1px solid rgba(255, 255, 255, 0.7);
-        top: 2px;
+        top: 20px;
         z-index: 900px; }
+    .top_menu menu li.sub.to_left > menu > * {
+      position: relative;
+      right: 150px; }
     .top_menu menu li.sub > a:after {
       content: url("../images/arrow_collapsed.png");
       position: relative;
       top: 3px;
       right: 0; }
     .top_menu menu li.sub:hover > a:after {
-      content: url("../images/arrow_expanded.png");
-      position: relative;
-      top: 3px;
-      right: 0; }
+      content: url("../images/arrow_expanded.png"); }
     .top_menu menu li > menu {
       position: absolute;
       display: none; }
@@ -52,10 +56,6 @@
         border-botom: 1px solid rgba(255, 255, 255, 0.7);
         border-left: 1px solid rgba(255, 255, 255, 0.7);
         border-right: 1px solid rgba(255, 255, 255, 0.7); }
-    .top_menu menu li:hover > menu {
-      display: block; }
-    .top_menu menu li menu li:hover > menu {
-      top: 20px; }
     .top_menu menu > li {
       padding: 0 10px;
       float: left; }

@@ -30,6 +30,7 @@
         <li> <%= link_to( t("admin.one"), admin_index_path(:back_url => "#{request.fullpath}") ) %> </li>
         <li> <%= link_to (t"roles_permissions"), roles_path %> </li>
       <% end %>
+      <li> <%= link_to (t"help"), "https://softifes.andifes.org.br/projects/weby/wiki/Documenta%C3%A7%C3%A3o_para_usu%C3%A1rios", target: '_blank' %> </li>
     </menu>
   </nav>
   <nav  class="top_menu right">
@@ -47,13 +48,20 @@
       <% end %>
 
       <% if not(current_user) %>
-        <li> <%= link_to( t("register"), new_user_path ) %> </li>
-        <li> <%= link_to( t("login"), login_path(:back_url => "#{request.fullpath}")) %> </li>
-      <% end %>
+        <li class='sub to_left'> <%= link_to( t("login"), login_path(:back_url => "#{request.fullpath}")) %>
+          <menu>
+            <li>
+            <% @user_session = UserSession.new %>
+            <%= render :file => 'user_sessions/new.html.erb' %>
+            </li>
+          </menu>
+        </li>
+      <li> <%= link_to( t("register"), new_user_path ) %> </li>
+    <% end %>
 
-      <% # FIXME Contador de usuários não está funcionando ao realizar logoff. %>
-      <%= User.logged_in.count.to_s + ' ' + t('logged') %>
-    </menu>
-  </nav>
+    <% # FIXME Contador de usuários não está funcionando ao realizar logoff. %>
+    <%= User.logged_in.count.to_s + ' ' + t('logged') %>
+  </menu>
+</nav>
 </section>
 

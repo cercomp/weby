@@ -125,10 +125,11 @@ pt-BR:
     other: "Grupos"
 
 #---H---#
+  height: "Altura"
+  help: "Ajuda"
   hide: "Ocultar"
   hide_help: "Deseja ocultar? Somente usuários com cargos específicos poderão recuperá-los."
   high_contrast: "Alto contraste"
-  height: "Altura"
   home: "Página inicial"
 
 #---I---#

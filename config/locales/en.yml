@@ -125,10 +125,11 @@ en:
     other: "Groups"
 
 #---H---#
+  height: "Height"
+  help: "Help"
   hide: "Hidden?"
   hide_help: "Want to hide? Only users with specific positions might retrieve them."
   high_contrast: "High contrast"
-  height: "Height"
   home: "Home"
 
 #---I---#

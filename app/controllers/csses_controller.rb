@@ -10,11 +10,18 @@ class CssesController < ApplicationController
     @my_css_name = params[:my_css_name]
     @other_css_name = params[:other_css_name]
 
-    @my_csses = @site.my_csses.joins(:css).where(['csses.name like ?', "%#{params[:my_css_name]}%"]).
-      page(params[:page_my_csses] || 1).per(15)
+    @my_csses = @site.my_csses.
+      joins(:css).
+      where(['csses.name like ?', "%#{params[:my_css_name]}%"]).
+      order(:id).
+      page(params[:page_my_csses] || 1).
+      per(15)
 
-    @other_csses = @site.other_csses.joins(:css).where(['csses.name like ?', "%#{params[:other_css_name]}%"]).
-      page(params[:page_other_csses] || 1).per(15)
+    @other_csses = @site.other_csses.
+      joins(:css).where(['csses.name like ?', "%#{params[:other_css_name]}%"]).
+      order(:id).
+      page(params[:page_other_csses] || 1).
+      per(15)
 
     respond_to do |format|
       format.html 
