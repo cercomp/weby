@@ -1,13 +1,9 @@
 class FeedbacksController < ApplicationController
   layout :choose_layout
-  before_filter :require_user
-  before_filter :check_authorization, :except => [:new, :create, :sent]
+  before_filter :require_user, :except => [:new, :create, :sent, :get_groups]
+  before_filter :check_authorization, :except => [:new, :create, :sent, :get_groups]
   before_filter :get_groups, :only => [:new, :edit, :create, :update]
   respond_to :html, :xml, :js
-
-  def get_groups
-    @groups = Group.where(:site_id => @site.id)
-  end
 
   def index
     @feedbacks = Feedback.where(:site_id => @site.id)
@@ -88,5 +84,10 @@ class FeedbacksController < ApplicationController
       format.html { redirect_to(site_feedbacks_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  private
+  def get_groups
+    @groups = Group.where(:site_id => @site.id)
   end
 end
