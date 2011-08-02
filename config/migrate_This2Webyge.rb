@@ -300,6 +300,7 @@ EOF
 				insert into rights_roles (right_id,role_id)values(54,#{id_gerente[0]['id']});
 				insert into rights_roles (right_id,role_id)values(56,#{id_gerente[0]['id']});
 				insert into rights_roles (right_id,role_id)values(57,#{id_gerente[0]['id']});
+				insert into rights_roles (right_id,role_id)values(58,#{id_gerente[0]['id']});
 				insert into rights_roles (right_id,role_id)values(9,#{id_editor[0]['id']});
 				insert into rights_roles (right_id,role_id)values(10,#{id_editor[0]['id']});
 				insert into rights_roles (right_id,role_id)values(11,#{id_editor[0]['id']});

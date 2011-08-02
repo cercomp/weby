@@ -7,15 +7,15 @@ module ApplicationHelper
   end
 
   # Alterna entre habilitar e desabilitar registro
-  # Parâmetros: obj (Objeto), publish (Campo para alternar)
+  # Parâmetros: obj (Objeto), publish (Campo para alternar), action (Ação a ser executada no controller)
   # Campo com imagens V ou X para habilitar/desabilitar e degradê se não tiver permissão para alteração.
-  def toggle_field(obj, field)
+  def toggle_field(obj, field, action='toggle_field')
     menu = ""
-    if check_permission(controller.class, 'toggle_field')
+    if check_permission(controller.class, "#{action}")
       if obj[field.to_s] == 0 or not obj[field.to_s]
-        menu = link_to(image_tag("false.png", :alt => t("disable.masc")), {:action => "toggle_field", :id => obj.id, :field => "#{field}"}, :title => t("activate_deactivate"))
+        menu = link_to(image_tag("false.png", :alt => t("disable.masc")), {:action => "#{action}", :id => obj.id, :field => "#{field}"}, :title => t("activate_deactivate"))
       else
-        menu = link_to(image_tag("true.png", :alt => t("enable.masc")), {:action => "toggle_field", :id=> obj.id, :field => "#{field}"}, :title => t("activate_deactivate"))
+        menu = link_to(image_tag("true.png", :alt => t("enable.masc")), {:action => "#{action}", :id=> obj.id, :field => "#{field}"}, :title => t("activate_deactivate"))
       end
     else
       if obj[field.to_s] == 0 or not obj[field.to_s]

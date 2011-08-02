@@ -18,6 +18,7 @@ Webyge::Application.routes.draw do
       end
       member do 
         get :toggle_field
+        get :set_admin
       end 
     end
     resources :repositories do
@@ -81,6 +82,7 @@ Webyge::Application.routes.draw do
     end
     member do 
       get :toggle_field
+      get :set_admin
     end 
   end
   resources :roles do

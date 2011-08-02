@@ -4,7 +4,6 @@
   controller: admin
   action: index
 
-
 2:
   id: 2
   name: "Gerenciar papéis"
@@ -16,7 +15,6 @@
   name: "Excluir papéis"
   controller: roles
   action: destroy
-
 
 4:
   id: 4
@@ -48,7 +46,6 @@
   name: "Excluir direitos"
   controller: rights
   action: destroy
-
 
 9:
  id: 9
@@ -129,7 +126,6 @@
  controller: menus
  action: new create
 
-
 22:
  id: 22
  name: "Listar Banners"
@@ -172,7 +168,6 @@
  controller: banners
  action: toggle_field
 
-
 29:
  id: 29
  name: "Listar Fale Conosco"
@@ -203,7 +198,6 @@
  controller: feedbacks
  action: new create get_groups
 
-
 34:
  id: 34
  name: "Listar Grupos"
@@ -233,7 +227,6 @@
  name: "Criar Grupo"
  controller: groups
  action: new create
-
 
 39:
  id: 39
@@ -348,3 +341,9 @@
   name: "Editar configurações do site"
   controller: admin
   action: edit
+
+58:
+  id: 58
+  name: "Ativar usuário"
+  controller: users
+  action: toggle_field
