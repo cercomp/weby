@@ -7,3 +7,7 @@
 <%= form.text_field :phone, :label => t('phone'), :size => 20, :maxlength => 20 %>
 <%= form.text_field :mobile, :label => t('mobile'), :size => 20, :maxlength => 20 %>
 <%= form.select :theme, @themes.collect{|p| [ p , p]}, :label => t('layout') %><br />
+
+<% if @site %>
+<%= form.select :role_ids, @site.roles.collect{|r| [r.name, r.id]}, { :label => t('role.one') }, :multiple => "multiple" %>
+<% end %>

@@ -21,7 +21,14 @@
           <td align="center"><%= raw toggle_field(user, 'status') %></td>
           <td align="center"><%= raw toggle_field(user, 'is_admin', 'set_admin') %></td>
           <% if check_permission(UsersController, :change_roles) %>
-            <td><%= link_to 'gerenciar papeis', {:controller => 'users', :action => 'manage_roles', :user => user.id} %></td>
+            <%# Regra para pegar o papel do usuário:
+                1. Usuário pertence ao site corrente e possui papeis?
+                2. Usuário é administrador?
+                3. Usuário não é nada
+            %>
+            <% link = @site && !user.roles.empty? ? user.roles.select{ |r| r.site_id == @site.id }.map{ |r| r.name }.join(', ') :
+                      user.is_admin? ? t('admin.one') : t('manage_roles') %>
+            <td><%= link_to link, manage_roles_users_path(:user => user.id ) %></td>
           <% end %>
           <td>
             <%= raw make_menu(user) %> 

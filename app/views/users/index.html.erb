@@ -3,7 +3,11 @@
 
   <% if current_user.is_admin? %>
     <div class="contextual">
-      <p> <%= link_to (t"new_param.masc", :param => (t"user.one")), new_user_path, :class => 'icon icon-add' %> </p>
+      <% if @site %>
+        <p> <%= link_to (t"new_param.masc", :param => (t"user.one")), new_site_user_path, :class => 'icon icon-add' %> </p>
+      <% else %>
+        <p> <%= link_to (t"new_param.masc", :param => (t"user.one")), new_user_path, :class => 'icon icon-add' %> </p>
+      <% end %>
     </div>
   <% end %>
 

@@ -99,7 +99,6 @@ class UsersController < ApplicationController
       files << file.split("/")[-1].split(".")[0]
     end
     @themes = files
-    respond_with(@user)
   end
 
   def create
@@ -112,7 +111,7 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:notice] = "Conta registrada!"
-      redirect_to users_path
+      redirect_to @site ? site_users_path : users_path
     else
       render :action => :new
     end
