@@ -40,14 +40,10 @@ $menu_border: 1px solid lighten($menu_background, 50%);
 
       & > menu {
         position: absolute;
-        -webkit-transition: -webkit-transform 0.25s ease-out;
-        -webkit-transform: translateY(-999px);
-        -moz-transition: -webkit-transform 0.25s ease-out;
-        -moz-transform: translateY(-999px);
         padding: 0;
         left: 0;
         top: $menu_line_height+0.5px;
-        display: block;
+        display: none;
         li {
           width: 100%;
           padding: 3px;
@@ -69,10 +65,7 @@ $menu_border: 1px solid lighten($menu_background, 50%);
         background-color: darken(opacify($menu_background, 1), 10%);
 
         & > menu {
-          -webkit-transition: -webkit-transform 0.25s ease-in;
-          -webkit-transform: translateY(0);
-          -moz-transition: -webkit-transform 0.25s ease-in;
-          -moz-transform: translateY(0);
+          display: block;
           li:hover > menu {
             border:{
               left: $menu_border;

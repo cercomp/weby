@@ -38,7 +38,7 @@
         padding: 0;
         left: 0;
         top: 23.5px;
-        display: block; }
+        display: none; }
         .top_menu menu > li > menu li {
           width: 100%;
           padding: 3px;
@@ -55,7 +55,8 @@
           -webkit-transition: -webkit-transform 0.25s ease-in;
           -webkit-transform: translateY(0);
           -moz-transition: -webkit-transform 0.25s ease-in;
-          -moz-transform: translateY(0); }
+          -moz-transform: translateY(0);
+          display: block; }
           .top_menu menu > li:hover > menu li:hover > menu {
             border-left: 1px solid rgba(255, 255, 255, 0.7);
             border-right: 1px solid rgba(255, 255, 255, 0.7);
