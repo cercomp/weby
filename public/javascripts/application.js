@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  var loading = LoadingGif.new();
+  var loading = LoadingGif.build();
   $('form[data-remote=true]')
   .bind('submit', function(){
     loading.setLocal($(this).find('span#loading')).show();
@@ -65,7 +65,7 @@ function addToSelect(selectId){
 
 // Objeto para carregar gif
 var LoadingGif = {
-  new: function(obj){
+  build: function(obj){
          this.obj = obj;
          this.img = new Image();
          this.img.src = '/images/spinner.gif';
