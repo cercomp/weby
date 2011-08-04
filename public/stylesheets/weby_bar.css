@@ -1,8 +1,11 @@
 /*Variables*/
 #weby_bar {
   height: 23px;
-  background-color: rgba(255, 255, 255, 0.7);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.7); }
+  background-color: white;
+  border-bottom: 1px solid white;
+  opacity: 0.7;
+  -moz-opacity: 0.7;
+  filter: alpha(opacity=0.7); }
 
 .left {
   float: left; }
@@ -31,10 +34,6 @@
       margin: auto; }
       .top_menu menu > li > menu {
         position: absolute;
-        -webkit-transition: -webkit-transform 0.25s ease-out;
-        -webkit-transform: translateY(-999px);
-        -moz-transition: -webkit-transform 0.25s ease-out;
-        -moz-transform: translateY(-999px);
         padding: 0;
         left: 0;
         top: 23.5px;
@@ -43,23 +42,19 @@
           width: 100%;
           padding: 3px;
           padding-right: 0px;
-          background-color: rgba(255, 255, 255, 0.7);
-          border-botom: 1px solid rgba(255, 255, 255, 0.7);
-          border-left: 1px solid rgba(255, 255, 255, 0.7);
-          border-right: 1px solid rgba(255, 255, 255, 0.7); }
+          background-color: white;
+          border-botom: 1px solid white;
+          border-left: 1px solid white;
+          border-right: 1px solid white; }
       .top_menu menu > li.sub.to_left > menu {
         left: -150px; }
       .top_menu menu > li:hover {
         background-color: #e6e6e6; }
         .top_menu menu > li:hover > menu {
-          -webkit-transition: -webkit-transform 0.25s ease-in;
-          -webkit-transform: translateY(0);
-          -moz-transition: -webkit-transform 0.25s ease-in;
-          -moz-transform: translateY(0);
           display: block; }
           .top_menu menu > li:hover > menu li:hover > menu {
-            border-left: 1px solid rgba(255, 255, 255, 0.7);
-            border-right: 1px solid rgba(255, 255, 255, 0.7);
+            border-left: 1px solid white;
+            border-right: 1px solid white;
             top: 20px;
             z-index: 900px; }
       .top_menu menu > li.sub > a:after {

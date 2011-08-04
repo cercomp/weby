@@ -1,14 +1,15 @@
 /*Variables*/
-$main-color: rgba(255, 255, 255, 0.7);
-$menu_line_height: 23px;
-$menu_background: $main-color;
-$menu_text_color: rgba(0, 0, 0, 1);
-$menu_border: 1px solid lighten($menu_background, 50%);
+$main-opacity: 0.7;
+$main-color: rgba(255, 255, 255, $main-opacity);
+$menu-line-height: 23px;
+$menu-background: $main-color;
+$menu-text-color: rgba(0, 0, 0, 1);
+$menu-border: 1px solid lighten($menu-background, 50%);
 
 #weby_bar{
-  height: $menu_line_height;
-  background-color: $menu_background;
-  border-bottom: $menu_border; 
+  height: $menu-line-height;
+  background-color: $menu-background;
+  border-bottom: $menu-border; 
 }
 
 .left{float: left}
@@ -16,8 +17,8 @@ $menu_border: 1px solid lighten($menu_background, 50%);
 
 .top_menu {
   top: 0;
-  line-height: $menu_line_height;
-  color: $menu_text_color !important;
+  line-height: $menu-line-height;
+  color: $menu-text-color !important;
 
   menu { 
     padding: 0 2px;
@@ -27,7 +28,7 @@ $menu_border: 1px solid lighten($menu_background, 50%);
 
     & > a {
       display: block;
-      color: $menu_text_color !important;
+      color: $menu-text-color !important;
       overflow: hidden;
       white-space:nowrap;
     }
@@ -42,17 +43,17 @@ $menu_border: 1px solid lighten($menu_background, 50%);
         position: absolute;
         padding: 0;
         left: 0;
-        top: $menu_line_height+0.5px;
+        top: $menu-line-height+0.5px;
         display: none;
         li {
           width: 100%;
           padding: 3px;
           padding-right: 0px;
-          background-color: $menu_background;
+          background-color: $menu-background;
           border:{
-            botom: $menu_border;
-            left: $menu_border;
-            right: $menu_border;
+            botom: $menu-border;
+            left: $menu-border;
+            right: $menu-border;
           }
         }
       }
@@ -62,14 +63,14 @@ $menu_border: 1px solid lighten($menu_background, 50%);
       }
 
       &:hover {
-        background-color: darken(opacify($menu_background, 1), 10%);
+        background-color: darken(opacify($menu-background, 1), 10%);
 
         & > menu {
           display: block;
           li:hover > menu {
             border:{
-              left: $menu_border;
-              right: $menu_border;
+              left: $menu-border;
+              right: $menu-border;
             }
             top: 20px;
             z-index: 900px; 
