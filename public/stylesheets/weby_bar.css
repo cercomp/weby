@@ -1,10 +1,14 @@
 /*Variables*/
 #weby_bar {
-  height: 23px;
   background-color: white;
-  background-color: rgba(255, 255, 255, 0.7);
+  /* for IE */
+  filter: alpha(opacity=70);
+  /* for IE */
+  border-bottom: 1px solid white;
+  /* for IE */
   border-bottom: 1px solid rgba(255, 255, 255, 0.7);
-  filter: alpha(opacity=70); }
+  background-color: rgba(255, 255, 255, 0.7);
+  height: 23px; }
 
 .left {
   float: left; }
@@ -20,7 +24,8 @@
     padding: 0 2px;
     margin: 0;
     list-style: none outside none;
-    z-index: 999; }
+    z-index: 999;
+    background-color: inherit; }
     .top_menu menu > a {
       display: block;
       color: black !important;
@@ -36,12 +41,16 @@
         padding: 0;
         left: 0;
         top: 23.5px;
+        background-color: inherit;
         display: none; }
         .top_menu menu > li > menu li {
           width: 100%;
           padding: 3px;
           padding-right: 0px;
-          background-color: rgba(255, 255, 255, 0.7);
+          background-color: inherit;
+          border-botom: 1px solid white;
+          border-left: 1px solid white;
+          border-right: 1px solid white;
           border-botom: 1px solid rgba(255, 255, 255, 0.7);
           border-left: 1px solid rgba(255, 255, 255, 0.7);
           border-right: 1px solid rgba(255, 255, 255, 0.7); }
@@ -52,6 +61,8 @@
         .top_menu menu > li:hover > menu {
           display: block; }
           .top_menu menu > li:hover > menu li:hover > menu {
+            border-left: 1px solid white;
+            border-right: 1px solid white;
             border-left: 1px solid rgba(255, 255, 255, 0.7);
             border-right: 1px solid rgba(255, 255, 255, 0.7);
             top: 20px;
