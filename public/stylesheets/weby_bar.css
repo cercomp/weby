@@ -2,10 +2,8 @@
 #weby_bar {
   height: 23px;
   background-color: white;
-  border-bottom: 1px solid white;
-  opacity: 0.7;
-  -moz-opacity: 0.7;
-  filter: alpha(opacity=0.7); }
+  background-color: rgba(255, 255, 255, 0.7);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.7); }
 
 .left {
   float: left; }
@@ -42,10 +40,10 @@
           width: 100%;
           padding: 3px;
           padding-right: 0px;
-          background-color: white;
-          border-botom: 1px solid white;
-          border-left: 1px solid white;
-          border-right: 1px solid white; }
+          background-color: rgba(255, 255, 255, 0.7);
+          border-botom: 1px solid rgba(255, 255, 255, 0.7);
+          border-left: 1px solid rgba(255, 255, 255, 0.7);
+          border-right: 1px solid rgba(255, 255, 255, 0.7); }
       .top_menu menu > li.sub.to_left > menu {
         left: -150px; }
       .top_menu menu > li:hover {
@@ -53,8 +51,8 @@
         .top_menu menu > li:hover > menu {
           display: block; }
           .top_menu menu > li:hover > menu li:hover > menu {
-            border-left: 1px solid white;
-            border-right: 1px solid white;
+            border-left: 1px solid rgba(255, 255, 255, 0.7);
+            border-right: 1px solid rgba(255, 255, 255, 0.7);
             top: 20px;
             z-index: 900px; }
       .top_menu menu > li.sub > a:after {
