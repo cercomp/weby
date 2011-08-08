@@ -1,14 +1,14 @@
 /*Variables*/
 #weby_bar {
-  background-color: white;
-  /* for IE */
-  filter: alpha(opacity=70);
-  /* for IE */
   border-bottom: 1px solid white;
   /* for IE */
   border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+  height: 23px;
+  background-color: white;
+  /* for IE */
   background-color: rgba(255, 255, 255, 0.7);
-  height: 23px; }
+  filter: alpha(opacity=70);
+  /* for IE */ }
 
 .left {
   float: left; }
@@ -24,36 +24,44 @@
     padding: 0 2px;
     margin: 0;
     list-style: none outside none;
-    z-index: 999;
-    background-color: inherit; }
-    .top_menu menu > a {
-      display: block;
-      color: black !important;
-      overflow: hidden;
-      white-space: nowrap; }
+    z-index: 999; }
     .top_menu menu > li {
       padding: 0 10px;
       float: left;
       position: relative;
       margin: auto; }
+      .top_menu menu > li > a {
+        display: block;
+        color: black !important;
+        overflow: hidden;
+        white-space: nowrap; }
       .top_menu menu > li > menu {
         position: absolute;
         padding: 0;
         left: 0;
         top: 23.5px;
-        background-color: inherit;
         display: none; }
         .top_menu menu > li > menu li {
           width: 100%;
           padding: 3px;
           padding-right: 0px;
-          background-color: inherit;
-          border-botom: 1px solid white;
+          border-bottom: 1px solid white;
           border-left: 1px solid white;
           border-right: 1px solid white;
-          border-botom: 1px solid rgba(255, 255, 255, 0.7);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.7);
           border-left: 1px solid rgba(255, 255, 255, 0.7);
-          border-right: 1px solid rgba(255, 255, 255, 0.7); }
+          border-right: 1px solid rgba(255, 255, 255, 0.7);
+          background-color: white;
+          /* for IE */
+          background-color: rgba(255, 255, 255, 0.7);
+          filter: alpha(opacity=70);
+          /* for IE */ }
+          .top_menu menu > li > menu li > * {
+            filter: alpha(opacity=100);
+            /* for IE */
+            opacity: 1;
+            height: 100%;
+            position: relative; }
       .top_menu menu > li.sub.to_left > menu {
         left: -150px; }
       .top_menu menu > li:hover {

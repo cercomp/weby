@@ -49,13 +49,13 @@
 
       <% if not(current_user) %>
         <li class='sub to_left'> <%= link_to( t("login"), login_path(:back_url => "#{request.fullpath}")) %>
-          <menu>
-            <li>
-            <% @user_session = UserSession.new %>
-            <%= render :file => 'user_sessions/new.html.erb' %>
-            </li>
-          </menu>
+      <menu>
+        <li>
+        <% @user_session = UserSession.new %>
+        <%= render :file => 'user_sessions/new.html.erb' %>
         </li>
+      </menu>
+      </li>
       <li> <%= link_to( t("register"), new_user_path ) %> </li>
     <% end %>
 
@@ -64,4 +64,5 @@
   </menu>
 </nav>
 </section>
+
 
