@@ -92,6 +92,7 @@ en:
   end: "End"
   english: "English"
   enrole_user: "Enrole user"
+  enrole_user_site: "Enrole user on site"
   enroled_user: "Enroled user"
   error_updating_object: "Error updating object"
   event: 

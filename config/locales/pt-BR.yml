@@ -92,6 +92,7 @@ pt-BR:
   end: "Fim"
   english: "Inglês"
   enrole_user: "Cadastrar usuário"
+  enrole_user_site: "Relacionar usuário ao site"
   enroled_user: "Usuário cadastrado"
   error_updating_object: "Erro ao atualizar objeto"
   event: 

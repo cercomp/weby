@@ -26,9 +26,14 @@
                 2. Usuário é administrador?
                 3. Usuário não é nada
             %>
-            <% link = @site && !user.roles.empty? ? user.roles.select{ |r| r.site_id == @site.id }.map{ |r| r.name }.join(', ') :
+            <% link = @site && !user.roles.empty? ?
+                      user.roles.select{ |r| r.site_id == @site.id }.map{ |r| r.name }.join(', ') :
                       user.is_admin? ? t('admin.one') : t('manage_roles') %>
-            <td><%= link_to link, manage_roles_users_path(:user => user.id ) %></td>
+            <% if @site %>
+              <td><%= link_to link, manage_roles_site_users_path(:user => user.id ) %></td>
+            <% else %>
+              <td><%= link_to link, manage_roles_users_path(:user => user.id ) %></td>
+            <% end %>
           <% end %>
           <td>
             <%= raw make_menu(user) %> 
