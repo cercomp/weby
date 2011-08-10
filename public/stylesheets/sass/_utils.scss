@@ -1,0 +1,17 @@
+@mixin background_opacity($color: $main-color, $opacity: $main-opacity){
+  background-color: opacify($color, 1); /* for IE */
+  background-color: $color;
+  filter: alpha(opacity= $opacity * 100); /* for IE */
+}
+
+@mixin border_radius($value){
+  -webkit-border-radius: $value;
+  -moz-border-radius: $value;
+  border-radius: $value;
+}
+
+@mixin box_shadow($value: 5px 5px 5px #ccc){
+  -moz-box-shadow: $value;
+  -webkit-box-shadow: $value;
+  box-shadow: $value;
+}

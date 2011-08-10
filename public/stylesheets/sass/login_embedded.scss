@@ -1,0 +1,72 @@
+@import "utils";
+fieldset.login_embedded{
+  margin: 5px !important;
+  padding: 15px !important;
+  @include border_radius(8px);
+
+  &:parent{
+    @include border_radius(0 0 8px 8px);
+  }
+
+  div.text-field, div.password-field{
+    border: 0;
+    margin: 0;
+    label{
+      display: inline !important;
+      width: 100% !important;
+    }
+    input{
+      margin: 5px 0;
+      border: 1px solid gray;
+      padding: 3px;
+      background-color: #fff;
+
+      &:focus{
+        background-color: #faffbd;
+        border: 1px solid black;
+        @include box_shadow(0 0 8px 1px #aaa);
+      }
+    }
+  }
+
+  div.check-box-field{
+    border: 0;
+    label{
+      width: 70%;
+    }
+    div.input{
+      text-align: right !important;
+    }
+  }
+
+  div.submit-field{
+    margin: 0 !important;
+    padding: 0 !important;
+    div.input{
+      text-align: right !important;
+    }
+  }
+
+  a{
+    width: 100%;
+    text-align: right !important;
+    float: right !important;
+  }
+
+
+  label {
+    text:{
+      align: left !important;
+    }
+    font:{
+      size: 16px !important;
+      weight: bold !important;
+      family: Sans;
+    }
+  }
+
+  legend{
+    display: none;
+  }
+
+}
