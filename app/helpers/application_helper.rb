@@ -1,7 +1,5 @@
 #coding: utf-8
 module ApplicationHelper
-  include SemanticFormHelper
-
   def session_user
     @session_user ||= User.find(:first, :conditions => ['id = ?', session[:user]])
   end
