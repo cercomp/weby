@@ -62,6 +62,11 @@
             opacity: 1;
             height: 100%;
             position: relative; }
+          .top_menu menu > li > menu li:last-child {
+            -webkit-border-radius: 0 0 5px 5px;
+            -moz-border-radius: 0 0 5px 5px;
+            border-radius: 0 0 5px 5px;
+            behavior: url("/ie-css3.htc"); }
       .top_menu menu > li.sub.to_left > menu {
         left: -150px; }
       .top_menu menu > li:hover {

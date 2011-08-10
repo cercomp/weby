@@ -1,4 +1,10 @@
-<fieldset>
+<% begin %>
+  <% class_for_login %>
+<% rescue %>
+  <% class_for_login = "" %>
+<% end %>
+<%= stylesheet_link_tag 'login_embedded' %>
+<fieldset class="<%= class_for_login %>">
   <legend><%= t"login" %></legend>
 
   <%= form_for @user_session, :builder => SemanticFormBuilder do |f| %>
@@ -7,9 +13,9 @@
         <h2><%= pluralize(@user_session.errors.count,"") %><%= t"prohibited_being_saved", :count => @user_session.errors.count %>:</h2>
 
         <ul>
-        <% @user_session.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
+          <% @user_session.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
         </ul>
       </div>
     <% end %>
