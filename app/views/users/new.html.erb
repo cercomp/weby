@@ -1,6 +1,7 @@
 <fieldset>
   <legend><%= t"new_param.masc", :param => (t"user.one") %></legend>
-  <%= form_for [@site, @user], :builder => SemanticFormBuilder do |f| %>
+
+  <%= simple_form_for [@site, @user] do |f| %>
     <% if @user.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@user.errors.count, "") %> <%= t"prohibited_being_saved", :count => @user.errors.count %>:</h2>
@@ -13,6 +14,7 @@
     <% end %>
 
     <%= render :partial => "form", :object => f %>
-    <p> <%= f.submit (t"create_param", :param => (t"user.one")) %> </p>
+
+    <%= f.submit t("submit") %>
   <% end %>
 </fieldset>

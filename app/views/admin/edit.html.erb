@@ -13,11 +13,10 @@
     </div>
   </div>
 
-  <%= form_for @site, :builder => SemanticFormBuilder do |f| %>
+  <%= simple_form_for @site do |f| %>
     <% if @site.errors.any? %>
       <div id="error_explanation">
-        <h2><%= pluralize(@site.errors.count, "") %> <%= t"prohibited_being_saved", 
-            :count => @site.errors.count %>:</h2>
+        <h2><%= pluralize(@site.errors.count, "") %> <%= t"prohibited_being_saved", :count => @site.errors.count %>:</h2>
         <ul>
         <% @site.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
@@ -27,23 +26,32 @@
     <% end %>
 
     <div id='form'>
-      <%= render 'repositories/images_radio_list', :f => f, :id => :top_banner_id %>
+      <%= f.input :top_banner_id, 
+        :label => t('picture'),
+        :collection => @images,
+        :collection_wrapper_tag => "div class='radio-group'",
+        :as => :radio, 
+        :label_method => lambda { |context| image_tag(context.archive.url(:mini)) },
+        :value_method => 'id',
+        :paginate => "#{paginate @images}" %>
+      <%#= render 'repositories/images_radio_list', :f => f, :id => :top_banner_id %>
     </div>
 
-    <%= f.text_field :body_width, :label => t("body_width"), :help => (t"example_param", :param => "960") %><br />
+    <%= f.input :body_width, :label => t("body_width"), :hint => (t"example_param", :param => "960") %>
     <% unless @site.repository.nil? %>
-      <%= f.text_field :top_banner_width, :label => t("top_banner_width"), :help => (t"example_param", :param => "960") %><br />
-      <%= f.text_field :top_banner_height, :label => t("top_banner_height"), :help => (t"example_param", :param => "101") %><br />
+      <%= f.input :top_banner_width, :label => t("top_banner_width"), :hint => (t"example_param", :param => "960") %>
+      <%= f.input :top_banner_height, :label => t("top_banner_height"), :hint => (t"example_param", :param => "101") %>
     <% end %>
-    <%= f.text_field :name, :label => t("name"), :required => true, :help => t("field_required") %><br />
-    <%= f.text_field :url, :label => "URL", :required => true, :help => t("field_required") %><br />
-    <%= f.text_field :per_page, :label => t("itens_per_page"), :required => true, :help => (t"example_param", :param => "15, 30, 50, 100, 250, 500") %><br />
-    <%= f.text_field :per_page_default, :label => t("per_page_default"), :required => true %><br />
-    <%= f.text_area :description, :label => t("description"), :size => "44x8", :help => t("site_comments") %><br />
-	  <%= f.text_area :footer, :value => (@site.footer.nil? ? t("footer_text") : @site.footer), :class => "mceSimple", :label => t("footer"), :size => "45x10"%>
-	  <%= f.check_box :view_desc_pages, :label => t("view_desc_pages"), :help => t("view_desc_pages_help") %>
-	  <%= f.check_box :menu_dropdown, :label => t("use_menu_dropdown"), :help => t("desc_use_menu_dropdown") %>
-    <%= f.select :theme, @themes.collect{|p| [ p , p]}, :label => t('layout') %><br />
+    <%= f.input :name, :label => t("name"), :hint => t("field_required") %>
+    <%= f.input :url, :label => "URL", :hint => t("field_required"), :as => :url %>
+    <%= f.input :per_page, :label => t("itens_per_page"), :hint => (t"example_param", :param => "15, 30, 50, 100, 250, 500") %>
+    <%= f.input :per_page_default, :label => t("per_page_default") %>
+    <%= f.input :description, :label => t("description"), :input_html => { :size => "44x8" }, :hint => t("site_comments"), :as => :text %>
+	  <%= f.input :footer, :label => t("footer"), :input_html => {:value => (@site.footer.nil? ? t("footer_text") : @site.footer), :class => "mceSimple", :size => "45x10"}, :as => :text %>
+	  <%= f.input :view_desc_pages, :label => t("view_desc_pages"), :hint => t("view_desc_pages_help"), :as => :boolean %>
+	  <%= f.input :menu_dropdown, :label => t("use_menu_dropdown"), :hint => t("desc_use_menu_dropdown"), :as => :boolean %>
+    <%= f.input :theme, :collection => @themes.collect{|p| [ p , p]}, :label => t('layout') %>
+
     <%= f.submit t("submit") %>
   <% end %>
 

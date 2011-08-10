@@ -11,7 +11,7 @@
   </center>
   <hr>
 
-  <%= form_for [@site, @menu], :builder => SemanticFormBuilder   do |f| %>
+  <%= simple_form_for [@site, @menu] do |f| %>
     <% if @menu.errors.any? %>
       <div id="error_explanation">
         <h2> <%= pluralize(@menu.errors.count, "") %> <%= t"prohibited_being_saved",:count => @menu.errors.count%>: </h2>
@@ -36,19 +36,15 @@
       <%= render :partial => 'formPages', :locals => {:f => f} %>
     </div>
 
-    <%= f.text_field :title, :label => t("text"), :required => true, :help => t("field_required") %>
-		<%= f.fields_for :sites_menus do |menus_form| %>
-      <%= menus_form.hidden_field :parent_id, :value => params[:parent_id] %>
-      <%= menus_form.hidden_field :site_id, :value => @site.id %>
+    <%= f.input :title, :label => t("text"), :hint => t("field_required") %>
+		<%= f.simple_fields_for :sites_menus do |menus_form| %>
+      <%= menus_form.input :parent_id, :input_html => {:value => params[:parent_id]}, :as => :hidden %>
+      <%= menus_form.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
 
       <% if @menu_parent %>
-        <%= menus_form.hidden_field "category", :value => "#{@menu_parent.category}" %>
+        <%= menus_form.input "category", :input_html => {:value => "#{@menu_parent.category}"}, :as => :hidden %>
       <% else %>
-        <%= menus_form.select(:category,
-                              options_for_select(@site.menu_categories),
-                              :label => t("category"),
-                              :add => ["categoria", "#menu_sites_menus_attributes_0_category"]) %>
-
+        <%= menus_form.input :category, :collection => @site.menu_categories, :label => t("category"), :add => ["categoria", "#menu_sites_menus_attributes_0_category"] %>
       <% end %>
     <% end %>
 

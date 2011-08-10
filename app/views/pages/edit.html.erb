@@ -3,20 +3,18 @@
 
   <div id="repo_new" >
     <div class="contextual">
-      <%= link_to (t"new_param.masc", :param => (t"archive.one")), new_site_repository_path(),
+      <%= link_to (t"new_param.masc", :param => (t"archive.one")), new_site_repository_path,
         :remote => true,
         :onclick => "$('#page').toggle();",
         :class => 'icon icon-add' %>
     </div>
-    <div id="page" style="display:none">
-    </div>
+    <div id="page" style="display:none"> </div>
   </div>
 
-  <%= form_for [@site, @page], :url => site_page_path(@site, @page, :type => params[:type]), :html => { :multipart => true }, :builder => SemanticFormBuilder do |f| %>
+  <%= simple_form_for [@site, @page], :url => site_page_path(@site, @page, :type => params[:type]), :html => { :multipart => true } do |f| %>
     <% if @page.errors.any? %>
       <div id="error_explanation">
-        <h2><%= pluralize(@page.errors.count,"") %><%= t"prohibited_being_saved", 
-          :count => @page.errors.count %>:</h2>
+        <h2><%= pluralize(@page.errors.count,"") %><%= t"prohibited_being_saved", :count => @page.errors.count %>:</h2>
         <ul>
           <% @page.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
@@ -24,69 +22,65 @@
         </ul>
       </div>
     <% end %> 
-
     <%= link_to t("back"), :back %>
 
     <div id="div_event">
       <%= render :partial => 'formEvent', :locals => {:f => f} %>
     </div>
-    <div id='repo_list'>
-      <%= render 'repositories/images_radio_list', :f => f, :id => :repository_id %>
+
+    <div id='repo_list'> 
+      <%= info_page @repos %>
+      <%= f.input :repository_id, 
+        :label => t('picture'),
+        :collection => @repos,
+        :collection_wrapper_tag => "div class='radio-group'",
+        :as => :radio, 
+        :label_method => lambda { |context| image_tag(context.archive.url(:mini)) },
+        :value_method => 'id',
+        :paginate => "#{paginate @repos}" %>
+        <%#= paginate @repos %>
     </div>
 
-    <%= f.hidden_field :position %>
-    <%= f.hidden_field :status %>
-    <%= f.hidden_field :author_id %>
+    <%= f.input :date_begin_at, :order => [:year, :month, :day], :use_month_numbers => true, :label =>  (t"date_param", :param => t("begin")), :as => :datetime %>
+    <%= f.input :date_end_at, :order => [:day, :month, :year], :use_month_numbers => true, :label => (t"date_param", :param => t("end")), :id => "datapicker", :as => :datetime %>
 
-    <%= f.datetime_select :date_begin_at, :order => [:year, :month, :day], :use_month_numbers => true, :label =>  (t"date_param", :param => t("begin")) %>
-    <%= f.datetime_select :date_end_at, :order => [:year, :month, :day], :use_month_numbers => true, :label => (t"date_param", :param => t("end")) %>
+    <%= f.input :title, :label => t("title"), :hint => t("field_required")  %>
+    <%= f.input :text, :label => t("text"), :input_html => {:class => "mceAdvance", :size => "44x10"}, :as => :text %>
 
-    <%= f.text_field :title, :label => t("title"), :required => true, :help => t("field_required")  %>
-    <%= f.text_area :text, :label => t("text"), :class => "mceAdvance", :size => "44x10" %>
+    <%= f.input :summary, :label => t("summary"), :input_html => {:class => "mceSimple", :size => "44x8"}, :as => :text %>
+    <%= f.input :source, :label => t("source"), :hint => t("field_required") %> 
+    <%= f.input :url, :label => t("url") %>
+    <%= f.input :category, :collection => @site.page_categories, :label_html => { :add => ["categoria", "#page_category"] } %>
 
-    <%= f.text_area :summary, :label => t("summary"), :class => "mceSimple", :size => "44x8" %>
-    <%= f.text_field :source, :label => t("source"), :required => true, :help => t("field_required") %> 
-    <%= f.text_field :url, :label => t("url") %>
-    <%= f.select(:category,
-                 options_for_select(@site.page_categories),
-                 :label => t("category"),
-                 :add => ["categoria", "##{@page.type.downcase}_category"]) %>
-               <%= f.check_box :publish , :label => t("publish"), :help => t("publish_help") %>
-               <%= f.check_box :front , :label => t("cover"), :help => t("cover_help") %>
+    <%= f.input :publish , :label => t("publish"), :hint => t("publish_help"), :as => :boolean %>
+    <%= f.input :front , :label => t("cover"), :hint => t("cover_help"), :as => :boolean %>
+    
+    <%= f.input :position, :as => :hidden %>
+    <%= f.input :status, :as => :hidden %>
+    <%= f.input :author_id, :input_html => {:value => "#{@current_user.id}"}, :as => :hidden %>
 
-               <div class="check-box-fields">
-                 <label for="div_event">
-                   <%= t("related_files") %>
-                   <span class="help"> <%= t("related_files_help") %> </span>
-                 </label>
-                 <div class="input">
-                   <% @page.repositories.each do |repo_file| %>
-                     <%= check_box_tag("#{@page.type.downcase}[repository_ids][]", repo_file.id, true) %>
-                     <%= "#{repo_file.description} (#{repo_file.archive_file_name})" %>
-                     <br />
-                   <% end %>
-                   <div id="files_list">
-                     <%= render :partial => 'files_list' %>
-                   </div>
-                   <div id="paginate">
-                     <%= paginate @page_files_unchecked, :param_name => 'twitter_page', :theme => 'twitter', :remote => true %> 
-                   </div>
-                 </div>
-               </div>
+    <div class="collection_check_boxes">
+      <label>
+        <%= t("related_files") %>
+      </label>
+      <div class="check_boxes">
+        <% @page.repositories.each do |repo_file| %>
+          <p class='checklabel'>
+            <%= check_box_tag("#{@page.type.downcase}[repository_ids][]", repo_file.id, true) %>
+            <%= "#{repo_file.description} (#{repo_file.archive_file_name})" %>
+          </p>
+        <% end %>
+        <div id="files_list">
+          <%= render :partial => 'files_list' %>
+        </div>
+        <div id="twitter">
+          <%= paginate @page_files_unchecked, :param_name => 'twitter_page', :theme => 'twitter', :remote => true %> 
+        </div>
+        <span class="hint"> <%= t("related_files_help") %> </span>
+      </div>
+    </div>
 
-               <%= f.submit_and_cancel t("save"), t("cancel") %>
-               <%= link_to t("back"), :back %>
-             <% end %>
-
-             <div id="repo_new" >
-               <div class="contextual">
-                 <%= link_to (t"new_param.masc", :param => (t"archive.one")), new_site_repository_path(), 
-                   :remote => true, 
-                   :onclick => "$('#page1').toggle();", 
-                   :class => 'icon icon-add' %>
-               </div>
-               <div id="page1" style="display:none">
-                 <%= render :partial => 'pages/newRepo'%>
-               </div>
-             </div>
-           </fieldset>
+    <label class="string"></label>
+    <%= f.submit t("edit") %> <%= link_to t("back"), :back %>
+  <% end %>
+</fieldset>

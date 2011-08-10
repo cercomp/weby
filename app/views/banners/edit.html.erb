@@ -1,7 +1,7 @@
 <fieldset>
   <legend><%= t"edit" %> <%= (t"banner.one") %></legend>
 
-  <%= form_for [@site, @banner], :html => { :multipart => true }, :builder => SemanticFormBuilder do |f| %>
+  <%= simple_form_for [@site, @banner], :html => { :multipart => true } do |f| %>
     <% if @banner.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@banner.errors.count,"") %><%= t"prohibited_being_saved", :count => @banner.errors.count %>:</h2>
@@ -15,7 +15,6 @@
   
     <%= render :partial => 'form', :locals => {:f => f} %>
 
-    <%= f.submit t"save" %>
-    <%= link_to t('back'), :back %>
+    <%= f.submit t"save" %> <%= link_to t('back'), :back %>
   <% end %>
 </fieldset>

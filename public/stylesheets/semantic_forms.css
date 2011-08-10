@@ -1,6 +1,77 @@
+/* ----- SimpleForm Styles ----- */
+.simple_form div.input { 
+  padding: 3px; 
+  clear: both;
+}
+.simple_form label.numeric,
+.simple_form label.text,
+.simple_form label.url,
+.simple_form label.tel,
+.simple_form label.datetime,
+.simple_form label.select,
+.simple_form label.boolean,
+.simple_form label.integer {
+  display: block;
+}
+.simple_form label abbr[title='required'] { 
+  color: red; 
+}
+.simple_form input[type='submit'] { 
+  color: #fff;
+  background: #229316;
+  border-top: 2px solid #55c649;
+  border-left: 2px solid #55c649;
+  border-right: 2px solid #006000;
+  border-bottom: 2px solid #006000;
+  margin: 0 5px; 
+}
+label.collection_radio {
+  float: none;
+  margin: 0;
+}
+label.collection_radio {
+  margin-right: 10px;
+  vertical-align: -2px;
+  margin-left: 2px;
+}
+.field_with_errors {
+  background-color: #ff3333;
+}
+.simple_form .error {
+  clear: left;
+  color: black;
+  display: block;
+  margin-left: 120px;
+  font-size: 12px;
+}
+.simple_form .hint {
+  clear: left;
+  display: block;
+  font-size: 80%;
+  color: #555;
+  font-style: italic;
+}
+.simple_form .checklabel {
+  font-size: 90%;
+  padding: 0px; 
+  margin: 0px;
+}
+input.radio {
+  margin-right: 5px;
+  vertical-align: -3px;
+}
+.simple_form div.check_boxes {
+  vertical-align: -3px;
+}
+.simple_form div.collection_check_boxes {
+  vertical-align: -2px;
+  margin-left: 2px;
+  width: 100%;
+}
+
 /* Start Forms */
-form fieldset {
-  max-width: 100%; }
+/*
+form fieldset { max-width: 100%; }
 form fieldset legend,
 form label,
 form input,
@@ -10,9 +81,7 @@ form textarea {
   font-family: Georgia;
   font-color: #000; }
 form label { }
-form input[type='file'] {
-
-}
+form input[type='file'] { }
 form input:not([type='file']),
 form select,
 form textarea {
@@ -22,8 +91,7 @@ form textarea {
   border-bottom: 2px solid #cccccc; }
 form input[type=text],
 form input[type=password],
-form textarea {
-  width: auto; }
+form textarea { width: auto; }
 form select { }
 form input[type=submit],
 form input[type=button] {
@@ -172,5 +240,5 @@ form div.required {
     font-weight: bold; }
   form div.required label span.help {
     margin-top: 0; }
-
 /* End Forms */
+

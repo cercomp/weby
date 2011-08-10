@@ -1,8 +1,8 @@
 .paginator { display: block; }
 
-.page_info_paginator { float: right; padding: 5px; }
+.page_info_paginator { padding: 5px; text-align: right; }
 .per_page_paginator { float: right; padding: 5px; }
-.pages_paginator { float: left; padding: 5px; }
+.pages_paginator { padding: 5px; }
 .disabled { color: #999; padding: 5px; }
 
 .item_per_page_paginator { padding: 3px; }

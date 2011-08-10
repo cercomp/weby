@@ -174,7 +174,7 @@ class ApplicationController < ActionController::Base
   protected
   def load_images
     @images = @site.repositories.
-      description_or_file_and_content_file(params[:image_search], "image%").
+      description_or_file_and_content_file(params[:image_search], "").
       page(params[:page]).
       per(4)
   end

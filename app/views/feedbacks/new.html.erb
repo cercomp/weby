@@ -1,42 +1,7 @@
 <fieldset> 
   <legend><%= t"new_param.masc", :param => t('feedback.one') %></legend>
 
-  <%= form_for [@site, @feedback], :builder => SemanticFormBuilder do |f| %>
-    <% if @feedback.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@feedback.errors.count,"") %> <%= t"prohibited_being_saved", 
-              :count => @feedback.errors.count %>:</h2>
-        <ul>
-        <% @feedback.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-    <% unless @groups.empty? %>
-      <div class="check-box-fields">
-        <label for="group_ids"><%= t("group.one") %></label>
-
-        <div class="input">
-        <% @groups.each do |group| %>
-          <%= check_box_tag 'feedback[group_ids][]', group.id %>
-          <%= group.name %>
-          <br />
-        <% end %>
-        </div>
-      </div>
-    <% end %>
-
-    <%= f.text_field :name, :label => t("name") %>
-    <%= f.text_field :email, :label => t("email") %>
-    <%= f.text_field :subject, :label => t("subject") %>
-    <%= f.text_area :message, :label => t("message") %>
-
-    <%=  f.hidden_field :site_id, :value => @site.id %>
-
-    <%= f.submit t("submit") %>
-  <% end %>
+  <%= render 'form' %>
 
   <%= link_to t('back'), site_feedbacks_path %>
 </fieldset> 

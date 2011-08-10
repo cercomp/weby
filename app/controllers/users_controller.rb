@@ -28,20 +28,6 @@ class UsersController < ApplicationController
       @roles = @site.roles.order("id")
       # Quando a edição dos papeis é solicitada
       @user = User.find(params[:user_id]) if params[:user_id]
-
-      respond_with do |format|
-        format.js do
-          render :update do |page|
-            if params[:user_id]
-              page.call "$('#role_form_#{params[:user_id]}').html", render('role_form')
-            else
-              page.call "$('#enroled').html", render('enroled')
-              page.call "$('#enrole').html", render('enrole')
-            end
-          end
-        end
-        format.html
-      end
     else
       #@sites = Site.all.except(:order).page(params[:page]).per(params[:per_page])
       @sites = Site.name_or_description_like(params[:search]).
@@ -79,16 +65,6 @@ class UsersController < ApplicationController
 
     unless @users
       flash.now[:warning] = (t"none_param", :param => t("user.one"))
-    end
-
-    respond_with do |format|
-      format.js { 
-        render :update do |site|
-        site.call "$('#list').html", render(:partial => 'list')
-        end
-      }
-      format.xml  { render :xml => @users }
-      format.html
     end
   end
 

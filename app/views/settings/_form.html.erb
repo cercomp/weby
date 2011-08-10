@@ -1,19 +1,18 @@
-<%= form_for(@setting, :builder => SemanticFormBuilder) do |f| %>
-  <% if @setting.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@setting.errors.count, "error") %> prohibited this setting from being saved:</h2>
+  <%= simple_form_for @setting do |f| %>
+    <% if @setting.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@setting.errors.count, "error") %> prohibited this setting from being saved:</h2>
+        <ul>
+          <% @setting.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-      <ul>
-        <% @setting.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-    <%= f.text_field :name, :label => t('name'), :required => true %>
-    <%= f.text_field :value, :label => t('value'), :required => true %>
-    <%= f.text_area :description, :label => t('description') %>
+    <%= f.input :name, :label => t('name') %>
+    <%= f.input :value, :label => t('value') %>
+    <%= f.input :description, :label => t('description'), :as => :text %>
 
     <%= f.submit t('submit') %>
-<% end %>
+  <% end %>

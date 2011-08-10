@@ -13,11 +13,10 @@
 <%= content_for :javascripts, javascript_include_tag('site_component_form') %>
 <%= content_for :stylesheets, stylesheet_link_tag('site_component_form') %>
 
-<%= form_for [@site,@site_component], :builder => SemanticFormBuilder do |f| %>
+<%= simple_form_for [@site,@site_component] do |f| %>
   <% if @site_component.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@site_component.errors.count, "error") %> <%= t "prohibited_being_saved", :count => @site_component.errors.count %>:</h2>
-
       <ul>
       <% @site_component.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -25,23 +24,16 @@
       </ul>
     </div>
   <% end %>
-  <%= f.hidden_field :site_id, :value => @site.id %>
 
+  <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
   <div class="field">
-    <%= f.select :place_holder, places_holder.collect{ |p| [t("components.pos.#{p}"), p] },
-      :label => t("place").capitalize %>
+    <%= f.input :place_holder, :collection => places_holder.collect{ |p| [t("components.pos.#{p}"), p] }, :label => t("place").capitalize %>
   </div>
-
   <div class="field">
-    <%= f.select :component, components.collect{ |c| [t("components.#{c}"), c] }.sort{ |a,b| a[0].downcase <=> b[0].downcase },
-      :label => t("component.one") %>
+    <%= f.input :component, :collection => components.collect{ |c| [t("components.#{c}"), c] }.sort{ |a,b| a[0].downcase <=> b[0].downcase }, :label => t("component.one") %>
   </div>
-
   <div class="field" id="settings">
-    <%= f.text_area :settings, :label => t("setting.other") %>
+    <%= f.input :settings, :label => t("setting.other"), :as => :text %> 
   </div>
-
-  <div class="actions">
-    <%= f.submit_and_cancel t("save"), t("cancel") %>
-  </div>
+  <%= f.submit t("save") %>
 <% end %>

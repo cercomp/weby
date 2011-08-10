@@ -1,7 +1,17 @@
-<% if params[:type] == "external" %>
-  <%= f.url_field :link, :label => t("url"), :help => (t"type_param", :param => t("url")), :placeholder => 'http://' %>
-<% else %>
-  <% unless @pages.nil? %>
-    <%= pages_radio(f, :page_id) %>
+<%= simple_fields_for @menu do |f| %>
+  <% if params[:type] == "external" %>
+    <%= f.input :link, :label => t("url"), :hint => (t"type_param", :param => t("url")), :placeholder => 'http://', :as => :url %>
+  <% else %>
+    <% unless @pages.nil? %>
+      <%= f.input :page_id, 
+        :label => t('url'),
+        :collection => @pages,
+        :collection_wrapper_tag => "div class='radio-group'",
+        :as => :radio, 
+        #:label_method => lambda { |context| image_tag(context.archive.url(:mini)) },
+        :value_method => 'id',
+        :paginate => "#{paginate @pages}" %>
+      <%#= pages_radio(f, :page_id) %>
+    <% end %>
   <% end %>
 <% end %>

@@ -34,42 +34,35 @@ class PagesController < ApplicationController
 
   def new
     params[:type] ||= 'News'
+    params[:twitter_page] ||= 1
 
     @repository = Repository.new
     @page = Page.new
     @page.sites_pages.build
     @page.pages_repositories.build
+    @repos = @site.repositories.page(params[:page]).per(params[:per_page])
 
     # Objeto para pages_repositories (relacionamento muitos-para-muitos)
     ## Criando objeto com os arquivos que não estão relacionados com a página
-    @page_files_unchecked = @site.repositories.order('id DESC').page(1).per(params[:twitter_page] || 5)
+    @page_files_unchecked = @site.repositories.page(1).per(params[:twitter_page])
   end
 
   def edit
-    @repository = Repository.new
     # Objeto para pages_repositories (relacionamento muitos-para-muitos)
     @page = Page.find(params[:id])
-    @page.pages_repositories.build
     # Automaticamente define o tipo, se não for passado como parâmetro
     params[:type] ||= @page.type
+    params[:twitter_page] ||= 1
+
+    @repository = Repository.new
+    @page.pages_repositories.build
+    @repos = @site.repositories.page(params[:page]).per(params[:per_page])
 
     # Criando objeto com os arquivos que não estão relacionados com a página
-    if not @page.repository_ids
-      @page_files_unchecked = @site.repositories.where("id NOT IN (?)", @page.repository_ids.to_s.delete('[]')).page(1).per(params[:twitter_page].to_i*5) 
+    unless @page.repository_ids.empty?
+      @page_files_unchecked = @site.repositories.where("id NOT IN (?)", @page.repository_ids).page(1).per(params[:twitter_page]*5) 
     else
-      @page_files_unchecked = @site.repositories.page(1).per(params[:twitter_page].to_i*5)
-    end
-
-    respond_with do |format|
-      format.js { 
-        if params[:twitter_page]
-          render :update do |page|
-            page.call "$('#files_list').append", render(:partial => 'files_list')
-            page.call "$('#paginate').html", (paginate @page_files_unchecked, :param_name => 'twitter_page', :theme => 'twitter', :remote => true)
-          end
-        end
-      }
-      format.html
+      @page_files_unchecked = @site.repositories.page(1).per(params[:twitter_page]*5)
     end
   end
 

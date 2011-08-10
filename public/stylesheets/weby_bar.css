@@ -10,10 +10,10 @@
   filter: alpha(opacity=70);
   /* for IE */ }
 
-.left {
+nav.left {
   float: left; }
 
-.right {
+nav.right {
   float: right; }
 
 .top_menu {
@@ -65,8 +65,7 @@
           .top_menu menu > li > menu li:last-child {
             -webkit-border-radius: 0 0 5px 5px;
             -moz-border-radius: 0 0 5px 5px;
-            border-radius: 0 0 5px 5px;
-            behavior: url("/ie-css3.htc"); }
+            border-radius: 0 0 5px 5px; }
       .top_menu menu > li.sub.to_left > menu {
         left: -150px; }
       .top_menu menu > li:hover {

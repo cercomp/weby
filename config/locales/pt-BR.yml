@@ -349,6 +349,8 @@ pt-BR:
   view_desc_pages_help: "Deseja mostrar a data de criação e o autor das páginas?"
   views:
     pagination:
+      first: 'Primeira'
+      last: 'Última'
       displaying: 'Mostrando'
       more: 'Mais'
       next: 'Próxima'

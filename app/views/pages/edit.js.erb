@@ -1,0 +1,4 @@
+<% if params[:twitter_page] %>
+  $('#files_list').html('<%= escape_javascript(render(:partial => 'files_list')) %>')
+  $('#twitter').html('<%= paginate(@page_files_unchecked, :param_name => 'twitter_page', :theme => 'twitter', :remote => true).to_s %>')
+<% end %>

@@ -7,6 +7,8 @@ class SitesController < ApplicationController
   helper_method :sort_column
 
   def index
+    params[:per_page] ||= Setting.get(:per_page_default)
+
     @sites = Site.name_or_description_like(params[:search]).
       except(:order).
       order(sort_column + " " + sort_direction).

@@ -15,52 +15,18 @@ class BannersController < ApplicationController
     unless @banners
       flash.now[:warning] = (t"none_param", :param => t("banner.one"))
     end
-    respond_with do |format|
-      format.js { 
-        render :update do |site|
-          site.call "$('#list').html", render(:partial => 'list')
-        end
-      }
-      format.xml  { render :xml => @banners }
-      format.html
-    end
   end
 
   def show
     @banner = Banner.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @banner }
-    end
   end
 
   def new
     @banner = Banner.new
-
-    respond_with do |format|
-      format.js { 
-        render :update do |page|
-          page.call "$('#repo_list').html", render(:partial => 'pages/repo_list', :locals => { :f => SemanticFormBuilder.new(:banner, @banner, self, {}, proc{}) })
-        end
-      }
-      format.html
-      format.xml  { render :xml => @banner }
-    end
   end
 
   def edit
     @banner = Banner.find(params[:id])
-
-    respond_with do |format|
-      format.js { 
-        render :update do |page|
-          page.call "$('#repo_list').html", render(:partial => 'pages/repo_list', :locals => { :f => SemanticFormBuilder.new(:banner, @banner, self, {}, proc{}) })
-        end
-      }
-      format.html
-      format.xml  { render :xml => @banner, :status => :created, :location => @banner }
-    end
   end
 
   def create

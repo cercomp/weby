@@ -1,23 +1,14 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.4'
-
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
-#gem 'mysql'
+gem 'rails', '3.0.9'
 gem 'pg'
 gem "authlogic", :git => "git://github.com/odorcicd/authlogic.git", :branch => "rails3"
-# gem "will_paginate", "~> 3.0.pre2"
 gem 'kaminari', :git => "git://github.com/tmilewski/kaminari.git"
-
-# Repositório de arquivos
 gem "paperclip", :git => "http://github.com/thoughtbot/paperclip.git" 
-
-# https://github.com/rails/acts_as_list/
 gem "acts_as_list"
-
+gem "simple_form"
 gem "sass"
+gem "jquery-rails"
 
 # Use unicorn as the web server
 # gem 'unicorn'

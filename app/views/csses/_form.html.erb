@@ -1,4 +1,4 @@
-<%= form_for [@site,@css], :builder => SemanticFormBuilder do |f| %>
+<%= simple_form_for [@site,@css] do |f| %>
 
   <% if @css.errors.any? %>
     <div id="error_explanation">
@@ -11,15 +11,14 @@
     </div>
   <% end %>
 
-  <%= f.text_field :name, :label => t("name"), :required => true, :help => t("field_required") %>
-  <%= f.text_area :css, :label => t("css.one") %>
+  <%= f.input :name, :label => t("name"), :hint => t("field_required") %>
+  <%= f.input :css, :label => t("css.one"), :as => :text %>
 
   <%= f.fields_for :sites_csses do |sc| %>
-    <%= sc.hidden_field :site_id, :value => @site.id %>
-    <%= sc.hidden_field :owner, :value => true %>
-    <%= sc.hidden_field :publish, :value => true %>
+    <%= sc.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
+    <%= sc.input :owner, :input_html => {:value => true}, :as => :hidden %>
+    <%= sc.input :publish, :input_html => {:value => true}, :as => :hidden %>
   <% end %>
 
   <%= f.submit t("submit") %>
-
 <% end %>

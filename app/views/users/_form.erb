@@ -1,13 +1,17 @@
-<%= form.text_field :login, :label => t('username'), :required => true, :help => t("field_required") %><br />
-<%= form.text_field :email, :label => t('email'), :required => true, :help => t("field_required") %><br />
-<%= form.password_field :password, :label => form.object.new_record? ?  t('password') : t("password_change"), :help => t("field_required") %><br />
-<%= form.password_field :password_confirmation, :label => t('password_confirmation'), :help => t("field_required") %><br />
-<%= form.text_field :first_name, :label => t('first_name'), :required => true, :help => t("field_required") %>
-<%= form.text_field :last_name, :label => t('last_name'), :required => true, :help => t("field_required") %>
-<%= form.text_field :phone, :label => t('phone'), :size => 20, :maxlength => 20 %>
-<%= form.text_field :mobile, :label => t('mobile'), :size => 20, :maxlength => 20 %>
-<%= form.select :theme, @themes.collect{|p| [ p , p]}, :label => t('layout') %><br />
+<%= form.input :login, :label => t('username'), :hint => t("field_required") %>
+<%= form.input :email, :label => t('email'), :hint => t("field_required"), :as => :email %>
+<%= form.input :password, :label => form.object.new_record? ?  t('password') : t("password_change"), :hint => t("field_required"), :as => :password %>
+<%= form.input :password_confirmation, :label => t('password_confirmation'), :hint => t("field_required"), :as => :password %>
+<%= form.input :first_name, :label => t('first_name'), :hint => t("field_required") %>
+<%= form.input :last_name, :label => t('last_name'), :hint => t("field_required") %>
+<%= form.input :phone, :label => t('phone'), :input_html => {:size => 20, :maxlength => 20} %>
+<%= form.input :mobile, :label => t('mobile'), :input_html => {:size => 20, :maxlength => 20}, :as => :tel %>
+<%= form.input :theme, :collection => @themes.collect{|p| [ p , p]}, :label => t('layout') %>
 
 <% if @site %>
-<%= form.select :role_ids, @site.roles.collect{|r| [r.name, r.id]}, { :label => t('role.one') }, :multiple => "multiple" %>
+  <%= form.input :role_ids, 
+    :collection => @site.roles.collect{|r| [r.name, r.id]}, 
+    :label => t('role.one'), 
+    :input_html => {:multiple => "multiple"} 
+  %>
 <% end %>

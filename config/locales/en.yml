@@ -346,6 +346,8 @@ en:
   view_desc_pages_help: "You wish to show the creation date and author of pages?"
   views:
     pagination:
+      first: 'First'
+      last: 'Last'
       displaying: 'Showing'
       more: 'More'
       next: 'Next'

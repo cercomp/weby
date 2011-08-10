@@ -1,12 +1,11 @@
 <% if params[:page] %>
-  $('#repo_list').html('<%= escape_javascript(render(:partial => 'repo_list', :locals => { :f => SemanticFormBuilder.new(:page, @page, self, {}, proc{}) })) %>')
+  $('#repo_list').html('<%= escape_javascript(render(:partial => 'repo_list')) %>')
 <% end %>
-
-<% if params[:twitter_page] %>
-  $('#files_list').append('<%= escape_javascript(render(:partial => 'files_list')) %>')
-  $('#paginate').html('<%= escape_javascript(paginate @page_files_unchecked, :param_name => 'twitter_page', :theme => 'twitter', :remote => true) %>')
-<% end %>
-
 <% if params[:type] %>
-  $('#div_event').html('<%= escape_javascript(render(:partial => 'formEvent', :locals => { :f => SemanticFormBuilder.new(:page, @page, self, {}, proc{}) })) %>')
+  $('#div_event').html('<%= escape_javascript(render(:partial => 'formEvent')) %>')
 <% end %>
+<% if params[:twitter_page] %>
+  $('#files_list').html('<%= escape_javascript(render(:partial => 'files_list')) %>')
+  $('#twitter').html('<%= escape_javascript(paginate(@page_files_unchecked, :param_name => 'twitter_page', :theme => 'twitter', :remote => true).to_s) %>')
+<% end %>
+

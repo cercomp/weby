@@ -1,11 +1,10 @@
 <fieldset>
-  <legend><%= t"new_param.masc", :param => t("right.one")%></legend>
+  <legend> <%= t"new_param.masc", :param => t("right.one")%> </legend>
 
-  <% form_for(@right, :builder => SemanticFormBuilder) do |f| %>
-     <% if @right.errors.any? %>
+  <% simple_form_for @right, :class => false do |f| %>
+    <% if @right.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@right.errors.count,"") %> <%= t"prohibited_being_saved", :count => @right.errors.count %>:</h2>
-
         <ul>
         <% @right.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
@@ -14,13 +13,10 @@
       </div>
     <% end %>
     
-    <%= f.text_field :name, :label => t("name") %><br />
-    <%= f.text_field :controller, :label => t("controller") %><br />
-    <%= f.text_field :action, :label => t("action") %><br />
-    <p>
-      <%= f.submit  t("create")%>
-    </p>
+    <%= f.input :name, :label => t("name"), :hint => t("field_required") %>
+    <%= f.input :controller, :label => t("controller"), :hint => t("field_required") %>
+    <%= f.input :action, :label => t("action"), :hint => t("field_required") %>
+  
+    <%= f.submit t("create")%> <%= link_to t('back'), :back %>
   <% end %>
-
-  <%= link_to t('back'), :back %>
 </fieldset>

@@ -18,14 +18,6 @@ class RepositoriesController < ApplicationController
     unless @repositories
       flash.now[:warning] = (t"none_param", :param => t("archive.one")) 
     end
-    respond_with do |format|
-      format.js { 
-        render :update do |page|
-          page.call "$('#repo_list').html", render(:partial => 'repo_list')
-        end
-      }
-      format.html
-    end
   end
 
   def show
@@ -35,15 +27,6 @@ class RepositoriesController < ApplicationController
 
   def new
     @repository = Repository.new
-
-    respond_to do |format|
-      format.js do 
-        render :update do |page|
-          page.call "$('#page').html", render(:partial => 'pages/newRepo')
-        end
-      end 
-      format.html
-    end
   end
 
   def edit
