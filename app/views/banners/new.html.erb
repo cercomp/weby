@@ -1,6 +1,15 @@
 <fieldset>
   <legend><%= t"new.masc" %> <%= (t"banner.one") %></legend>
   
+  <center>
+    <%= form_tag new_site_banner_path(@site), :method => 'get', :remote => true do %>
+      <%= label_tag t("search") %>
+      <%= text_field_tag :image_search %>
+      <%= submit_tag t("submit") %>
+    <% end %>
+  </center>
+  <hr>
+  
   <%= simple_form_for [@site, @banner], :html => { :multipart => true } do |f| %>
     <% if @banner.errors.any? %>
       <div id="error_explanation">
@@ -13,8 +22,8 @@
       </div>
     <% end %>
 
-    <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
     <%= render :partial => 'form', :locals => {:f => f} %>
+    <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
 
     <%= f.submit t"create" %> <%= link_to t('back'), :back %>
   <% end %>

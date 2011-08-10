@@ -8,13 +8,12 @@ class RepositoriesController < ApplicationController
  
   respond_to :html, :xml, :js
   def manage
-    @repositories = @site.repositories.order('created_at DESC').
-      page(params[:page]).per(params[:per_page])
+    @repositories = @site.repositories.order('created_at DESC').page(params[:page]).per(params[:per_page])
     respond_with(@repositories)
   end
 
   def index
-    @repositories = @site.repositories.order(sort_column + ' ' + sort_direction).page(params[:page]).per(params[:per_page])
+    @repositories = @site.repositories.description_or_file_and_content_file(params[:search], '').order(sort_column + ' ' + sort_direction).page(params[:page]).per(params[:per_page])
     unless @repositories
       flash.now[:warning] = (t"none_param", :param => t("archive.one")) 
     end

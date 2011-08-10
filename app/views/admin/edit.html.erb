@@ -1,16 +1,14 @@
 <fieldset>
   <legend><%= (t"editing", :param => (t"site.one")) %></legend>
-  <%= link_to t('back'), :back %>
 
   <div id="repo_new" >
     <div class="contextual">
-      <%= link_to (t"new_param.masc", :param => (t"archive.one")), new_site_repository_path(),
+      <%= link_to (t"new_param.masc", :param => (t"archive.one")), new_site_repository_path,
         :remote => true,
         :onclick => "$('#page').toggle();",
         :class => 'icon icon-add' %>
     </div>
-    <div id="page" style="display:none">
-    </div>
+    <div id="page" style="display:none"> </div>
   </div>
 
   <%= simple_form_for @site do |f| %>

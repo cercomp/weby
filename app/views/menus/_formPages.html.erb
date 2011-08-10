@@ -8,10 +8,9 @@
         :collection => @pages,
         :collection_wrapper_tag => "div class='radio-group'",
         :as => :radio, 
-        #:label_method => lambda { |context| image_tag(context.archive.url(:mini)) },
+        :label_method => lambda { |u| raw "#{u.title[0,50] + ((u.title.size > 50) ?  "..." : "")}" + "<br />" },
         :value_method => 'id',
         :paginate => "#{paginate @pages}" %>
-      <%#= pages_radio(f, :page_id) %>
     <% end %>
   <% end %>
 <% end %>

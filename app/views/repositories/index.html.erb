@@ -1,5 +1,14 @@
 <fieldset>
   <legend><%= t"archive.other" %></legend>
+  
+  <center>
+    <%= form_tag site_repositories_path(@site), :method => 'get', :remote => true do %>
+      <%= label_tag t("search") %>
+      <%= text_field_tag :search %>
+      <%= submit_tag t("submit") %>
+    <% end %>
+  </center>
+  <hr>
 
   <div class="contextual">
     <p> <%= link_to (t"new_param.masc", :param => (t"archive.one")), new_site_repository_path, :class => 'icon icon-add' %> </p>

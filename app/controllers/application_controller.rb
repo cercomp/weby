@@ -176,6 +176,6 @@ class ApplicationController < ActionController::Base
     @images = @site.repositories.
       description_or_file_and_content_file(params[:image_search], "").
       page(params[:page]).
-      per(4)
+      per(Setting.get(:per_page_default))
   end
 end

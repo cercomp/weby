@@ -16,12 +16,12 @@ class MenusController < ApplicationController
     #@menu_parent = SitesMenu.find(params[:parent_id]) if params[:parent_id]
     @menu = Menu.new
     @menu.sites_menus.build
-    @pages = @site.pages.page(params[:page]).per(params[:per_page])
+    @pages = @site.pages.titles_like(params[:search]).page(params[:page]).per(params[:per_page])
   end
 
   def edit
     @menu = Menu.find(params[:id])
-    @pages = @site.pages.page(params[:page]).per(params[:per_page])
+    @pages = @site.pages.titles_like(params[:search]).page(params[:page]).per(params[:per_page])
   end
 
   def create

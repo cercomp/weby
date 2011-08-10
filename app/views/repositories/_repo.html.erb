@@ -1,0 +1,10 @@
+<%= simple_fields_for obj do |f| %>
+  <%= f.input field, 
+    :label => t('picture'),
+    :collection => collection,
+    :collection_wrapper_tag => "div class='radio-group'",
+    :as => :radio, 
+    :label_method => lambda { |context| image_tag(context.archive.url(:mini)) },
+    :value_method => 'id',
+    :paginate => "#{paginate collection, :remote => true}" %>
+<% end %>
