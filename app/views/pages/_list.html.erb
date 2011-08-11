@@ -27,9 +27,9 @@
           <td align="center"><%= raw toggle_field(page, "front") %></td>
           <td align="center">
             <% if (page.date_begin_at <= Time.now and page.date_end_at > Time.now) %>
-              <%= t("expired") %>
-            <% else %>
               <%= raw toggle_field(page, "publish") %>
+            <% else %>
+              <%= t("expired") %>
             <% end %>
           </td>
         <% end %>

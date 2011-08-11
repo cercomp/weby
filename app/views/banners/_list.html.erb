@@ -22,9 +22,9 @@
         <td><%= banner.category || t('none_category') %></td>
         <td align="center">
           <% if (banner.date_begin_at <= Time.now and banner.date_end_at > Time.now) %>
-            <%= t("expired") %>
-          <% else %>
             <%= raw toggle_field(banner, "publish") %>
+          <% else %>
+            <%= t("expired") %>
           <% end %>
         </td>
         <td>
