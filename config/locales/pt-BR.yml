@@ -102,6 +102,7 @@ pt-BR:
   example_param: "Exemplo: %{param}"
   expires: "Expira em"
   external: "Externo"
+  expired: "Expirado"
 
 #---F---#
   father: "Pai"

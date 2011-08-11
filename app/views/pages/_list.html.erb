@@ -25,7 +25,13 @@
         <td><%= t"#{page.type.downcase}.one" %></td>
         <% if check_permission(PagesController, [:toggle_field]) %>
           <td align="center"><%= raw toggle_field(page, "front") %></td>
-          <td align="center"><%= raw toggle_field(page, "publish") %></td>
+          <td align="center">
+            <% if (page.date_begin_at <= Time.now and page.date_end_at > Time.now) %>
+              <%= t("expired") %>
+            <% else %>
+              <%= raw toggle_field(page, "publish") %>
+            <% end %>
+          </td>
         <% end %>
         <td>
           <%= make_menu(page, :except => "show") %>
