@@ -1,11 +1,10 @@
-<% if params[:page] %>
-  $('#repo_list').html('<%= escape_javascript(render(:partial => 'repo_list')) %>')
-<% end %>
+$('#repo_list').html('<%= escape_javascript(render(:partial => 'repositories/repo', :locals => {:obj => @page, :field => :repository_id, :collection => @repos })) %>')
+
 <% if params[:type] %>
   $('#div_event').html('<%= escape_javascript(render(:partial => 'formEvent')) %>')
 <% end %>
 <% if params[:twitter_page] %>
-  $('#files_list').html('<%= escape_javascript(render(:partial => 'files_list')) %>')
+  $('#files_list').append('<%= escape_javascript(render(:partial => 'files_list')) %>')
   $('#twitter').html('<%= escape_javascript(paginate(@page_files_unchecked, :param_name => 'twitter_page', :theme => 'twitter', :remote => true).to_s) %>')
 <% end %>
 

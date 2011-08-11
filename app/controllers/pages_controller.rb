@@ -44,7 +44,7 @@ class PagesController < ApplicationController
 
     # Objeto para pages_repositories (relacionamento muitos-para-muitos)
     ## Criando objeto com os arquivos que não estão relacionados com a página
-    @page_files_unchecked = @site.repositories.page(1).per(params[:twitter_page])
+    @page_files_unchecked = @site.repositories.page(params[:twitter_page]).per(params[:per_page])
   end
 
   def edit
@@ -60,9 +60,9 @@ class PagesController < ApplicationController
 
     # Criando objeto com os arquivos que não estão relacionados com a página
     unless @page.repository_ids.empty?
-      @page_files_unchecked = @site.repositories.where("id NOT IN (?)", @page.repository_ids).page(1).per(params[:twitter_page]*5) 
+      @page_files_unchecked = @site.repositories.where("id NOT IN (?)", @page.repository_ids).page(params[:twitter_page]).per(params[:per_page]) 
     else
-      @page_files_unchecked = @site.repositories.page(1).per(params[:twitter_page]*5)
+      @page_files_unchecked = @site.repositories.page(params[:twitter_page]).per(params[:per_page])
     end
   end
 

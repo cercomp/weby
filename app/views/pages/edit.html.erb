@@ -22,7 +22,6 @@
         </ul>
       </div>
     <% end %> 
-    <%= link_to t("back"), :back %>
 
     <div id="div_event">
       <%= render :partial => 'formEvent', :locals => {:f => f} %>
@@ -30,15 +29,7 @@
 
     <div id='repo_list'> 
       <%= info_page @repos %>
-      <%= f.input :repository_id, 
-        :label => t('picture'),
-        :collection => @repos,
-        :collection_wrapper_tag => "div class='radio-group'",
-        :as => :radio, 
-        :label_method => lambda { |context| image_tag(context.archive.url(:mini)) },
-        :value_method => 'id',
-        :paginate => "#{paginate @repos}" %>
-        <%#= paginate @repos %>
+      <%= render :partial => 'repositories/repo', :locals => {:obj => @page, :field => :repository_id, :collection => @repos} %>
     </div>
 
     <%= f.input :date_begin_at, :order => [:year, :month, :day], :use_month_numbers => true, :label =>  (t"date_param", :param => t("begin")), :as => :datetime %>
