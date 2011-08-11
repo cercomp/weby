@@ -7,7 +7,7 @@ class GroupsController < ApplicationController
   helper_method :sort_column
 
   def index
-    @groups = Group.order(sort_column + ' ' + sort_direction).
+    @groups = @site.groups.order(sort_column + ' ' + sort_direction).
       page(params[:page]).per(params[:per_page])
 
     unless @groups
@@ -32,7 +32,7 @@ class GroupsController < ApplicationController
 
   def new
     @group = Group.new
-    @users = User.find(:all)
+    @users = User.by_site(@site)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -42,7 +42,7 @@ class GroupsController < ApplicationController
 
   def edit
     @group = Group.find(params[:id])
-    @users = User.find(:all)
+    @users = User.by_site(@site)
   end
 
   def create

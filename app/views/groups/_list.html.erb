@@ -1,4 +1,4 @@
-<% unless @group.nil? %>
+<% unless @groups.empty? %>
   <%= info_page @groups %>
   <%= paginate @groups, :remote => true %>
   <table class='list'>

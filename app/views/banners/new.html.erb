@@ -2,7 +2,7 @@
   <legend><%= t"new.masc" %> <%= (t"banner.one") %></legend>
   
   <center>
-    <%= form_tag new_site_banner_path(@site), :method => 'get', :remote => true do %>
+    <%= form_tag request.path, :method => 'get', :remote => true do %>
       <%= label_tag t("search") %>
       <%= text_field_tag :image_search %>
       <%= submit_tag t("submit") %>

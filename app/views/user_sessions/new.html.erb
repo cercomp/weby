@@ -24,7 +24,6 @@
     <%= f.input :remember_me, :label => t("remember_me"), :as => :boolean %>
     <%= hidden_field_tag :back_url, "#{params[:back_url].blank? ? request.fullpath : params[:back_url]}" %>
 
-    <label class="string"></label>
     <%= f.submit t"login" %> <%= link_to t('forgot_password'), new_password_reset_path %>
   <% end %>
 </fieldset>
