@@ -39,8 +39,8 @@
         :paginate => "#{paginate @repos}" %>
     </div>
 
-    <%= f.input :date_begin_at, :order => [:day, :month, :year], :use_month_numbers => true, :label =>  (t"date_param", :param => t("begin")), :start_year => Time.now.year, :id => "datapicker", :as => :datetime %>
-    <%= f.input :date_end_at, :order => [:day, :month, :year], :use_month_numbers => true, :label => (t"date_param", :param => t("end")), :start_year => Time.now.year, :default => 1.month.from_now, :id => "datapicker", :as => :datetime %>
+    <%= f.input :date_begin_at, :order => [:year, :month, :day], :use_month_numbers => true, :label =>  (t"date_param", :param => t("begin")), :start_year => Time.now.year, :id => "datapicker", :as => :datetime %>
+    <%= f.input :date_end_at, :order => [:year, :month, :day], :use_month_numbers => true, :label => (t"date_param", :param => t("end")), :start_year => Time.now.year, :default => 1.month.from_now, :id => "datapicker", :as => :datetime %>
 
     <%= f.input :title, :label => t("title"), :hint => t("field_required")  %>
     <%= f.input :text, :label => t("text"), :input_html => {:class => "mceAdvance", :size => "45x10"}, :as => :text %>
