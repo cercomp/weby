@@ -17,7 +17,7 @@ class MenusController < ApplicationController
   end
 
   def new 
-    #@menu_parent = SitesMenu.find(params[:parent_id]) if params[:parent_id]
+    @menu_parent = SitesMenu.find(params[:parent_id]) if params[:parent_id]
     @menu = Menu.new
     @menu.sites_menus.build
     @pages = @site.pages.titles_like(params[:search]).page(params[:page]).per(params[:per_page])
