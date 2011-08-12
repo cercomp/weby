@@ -5,6 +5,10 @@ class MenusController < ApplicationController
 
   respond_to :html, :xml, :js
   def index
+    params[:category] ||= @site.menu_categories.first
+    unless params[:category]
+      flash[:warning] = t("none_category_menu", :param => params[:category])
+    end
   end
 
   def show
