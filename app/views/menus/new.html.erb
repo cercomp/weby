@@ -23,7 +23,7 @@
       </div>
     <% end %>
 
-    <div class="text-field ">
+    <div class="link-field ">
       <label for="div_event"><%= t"type" %></label>
       <div class="input">
         <div id="link_form_pages">
@@ -48,6 +48,8 @@
       <% end %>
     <% end %>
 
+    <div class="actions">
     <%= f.submit t("create") %> <%= link_to t("back"), :back %>
+    </div>
   <% end %> 
 </fieldset>

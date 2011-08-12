@@ -1,8 +1,12 @@
 <%= simple_fields_for @page do |f| %>
   <% if params[:type] == "Event" %>
     <% unless self.controller.action_name == "edit" %>
-      <label><%= t("is_event") %></label>
-      <%= link_to (t"no"), new_site_page_path(:type => "News"), :update => "div_event", :remote => true, :onclick => "var img = new Image; img.src = '/images/spinner.gif'; $(this).html('').append(function(){return img})" %>
+      <div class="link-field ">
+        <label><%= t("is_event") %></label>
+        <div class="input">
+          <%= link_to (t"no"), new_site_page_path(:type => "News"), :update => "div_event", :remote => true, :onclick => "var img = new Image; img.src = '/images/spinner.gif'; $(this).html('').append(function(){return img})" %>
+        </div>
+      </div>
     <% end %>
     <% kind_list = [[t("regional"), "regional"], [t("nacional"), "nacional"], [t("internacional"), "internacional"]] %>
     <%= f.input :kind, :collection => kind_list.map{|p| [p[0], p[1]]}, :label => t("kind"), :label_html => {:include_blank => true} %>
@@ -12,9 +16,13 @@
     <%= f.input :type, :input_html => {:value => "Event"}, :as => :hidden %>
   <% else %>
     <% unless self.controller.action_name == "edit" %>
-      <label><%= t("is_event") %></label>
-      <%= link_to (t"yes"), new_site_page_path(:type => "Event"), :update => "div_event", :remote => true, :onclick => "var img = new Image; img.src = '/images/spinner.gif'; $(this).html('').append(function(){return img})" %>
+      <div class="link-field ">
+        <label><%= t("is_event") %></label>
+        <div class="input">
+          <%= link_to (t"yes"), new_site_page_path(:type => "Event"), :update => "div_event", :remote => true, :onclick => "var img = new Image; img.src = '/images/spinner.gif'; $(this).html('').append(function(){return img})" %>
           <%= f.input :type, :input_html => {:value => "News"}, :as => :hidden %>
+        </div>
+      </div>
     <% end %>
   <% end %>
 <% end %>

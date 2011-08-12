@@ -3,48 +3,25 @@ fieldset.login_embedded {
   padding: 15px !important;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
-  border-radius: 8px;
-  behavior: url("/ie-css3.htc"); }
+  border-radius: 8px; }
   fieldset.login_embedded:parent {
     -webkit-border-radius: 0 0 8px 8px;
     -moz-border-radius: 0 0 8px 8px;
-    border-radius: 0 0 8px 8px;
-    behavior: url("/ie-css3.htc"); }
+    border-radius: 0 0 8px 8px; }
   fieldset.login_embedded div.text-field, fieldset.login_embedded div.password-field {
     border: 0;
     margin: 0; }
     fieldset.login_embedded div.text-field label, fieldset.login_embedded div.password-field label {
       display: inline !important;
       width: 100% !important; }
-    fieldset.login_embedded div.text-field input, fieldset.login_embedded div.password-field input {
-      /*margin: 5px 0;*/
-      zoom: 1;
-      border: 1px solid gray;
-      padding: 3px;
-      background-color: #fff; }
-      fieldset.login_embedded div.text-field input:focus, fieldset.login_embedded div.password-field input:focus {
-        background-color: #faffbd;
-        border: 1px solid black;
-        -moz-box-shadow: 0 0 8px 1px #aaaaaa;
-        -webkit-box-shadow: 0 0 8px 1px #aaaaaa;
-        box-shadow: 0 0 8px 1px #aaaaaa;
-        behavior: url("/ie-css3.htc"); }
-  fieldset.login_embedded div.check-box-field {
-    border: 0; }
-    fieldset.login_embedded div.check-box-field label {
-      width: 70%; }
-    fieldset.login_embedded div.check-box-field div.input {
-      text-align: right !important; }
-  fieldset.login_embedded div.submit-field {
-    margin: 0 !important;
-    padding: 0 !important; }
-    fieldset.login_embedded div.submit-field div.input {
-      text-align: right !important; }
-  fieldset.login_embedded a {
-    width: 100%;
-    text-align: right !important;
-    float: right !important; }
+  fieldset.login_embedded .input.boolean input[type="checkbox"] {
+    float: left;
+    margin-right: 5px; }
   fieldset.login_embedded label {
+    width: 100% !important;
+    float: none !important;
+    margin: 0 !important;
+    color: #444444;
     text-align: left !important;
     font-size: 16px !important;
     font-weight: bold !important;

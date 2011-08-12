@@ -22,8 +22,10 @@
     <%= f.input :login, :required => true, :autofocus => true, :autocapitalize => "off" %>
     <%= f.input :password, :required => true %>
     <%= f.input :remember_me, :label => t("remember_me"), :as => :boolean %>
-    <%= hidden_field_tag :back_url, "#{params[:back_url].blank? ? request.fullpath : params[:back_url]}" %>
 
-    <%= f.submit t"login" %> <%= link_to t('forgot_password'), new_password_reset_path %>
+    <div class="actions">
+      <%= hidden_field_tag :back_url, "#{params[:back_url].blank? ? request.fullpath : params[:back_url]}" %>
+      <%= link_to t('forgot_password'), new_password_reset_path %> <%= f.submit t"login" %> 
+    </div>
   <% end %>
 </fieldset>

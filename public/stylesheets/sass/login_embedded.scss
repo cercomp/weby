@@ -15,46 +15,18 @@ fieldset.login_embedded{
       display: inline !important;
       width: 100% !important;
     }
-    input{
-      margin: 5px 0;
-      border: 1px solid gray;
-      padding: 3px;
-      background-color: #fff;
-
-      &:focus{
-        background-color: #faffbd;
-        border: 1px solid black;
-        @include box_shadow(0 0 8px 1px #aaa);
-      }
-    }
   }
 
-  div.check-box-field{
-    border: 0;
-    label{
-      width: 70%;
-    }
-    div.input{
-      text-align: right !important;
-    }
+  .input.boolean input[type="checkbox"]{
+    float: left;
+    margin-right: 5px;
   }
-
-  div.submit-field{
-    margin: 0 !important;
-    padding: 0 !important;
-    div.input{
-      text-align: right !important;
-    }
-  }
-
-  a{
-    width: 100%;
-    text-align: right !important;
-    float: right !important;
-  }
-
 
   label {
+    width: 100% !important;
+    float: none !important;
+    margin: 0 !important;
+    color: #444444;
     text:{
       align: left !important;
     }
