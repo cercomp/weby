@@ -123,7 +123,7 @@ figure#banner {
 .center { text-align: center; }
 .left { float: left; }
 .right { float: right; }
-nav.right { float: right; clear: both; }
+header nav.right { float: right; clear: both; }
 
 table.zebra tr:nth-child(2n+2) { background-color: #F6F7F8; }
 table.fullwidth { width: 100%; }
