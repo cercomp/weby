@@ -9,8 +9,8 @@ class Repository < ActiveRecord::Base
   has_many :pages, :through => :pages_repositories
 
   scope :description_or_file_and_content_file, lambda { |text, content_file|
-    where( [ "(description LIKE :text OR archive_file_name LIKE :text) AND archive_content_type LIKE :content_file",
-           { :text => "%#{text}%", :content_file => "#{content_file}%" } ] )
+    where( [ "(LOWER(description) LIKE :text OR LOWER(archive_file_name) LIKE :text) AND LOWER(archive_content_type) LIKE :content_file",
+           { :text => "%#{text.try(:downcase)}%", :content_file => "#{content_file.try(:downcase)}%" } ] )
   }
 
   validates_presence_of :description

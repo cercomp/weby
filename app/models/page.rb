@@ -4,7 +4,7 @@ class Page < ActiveRecord::Base
   scope :published, where(:publish => true)
 
   scope :titles_like, lambda { |title|
-      where(["LOWER(title) like ?", "%#{title.downcase if title}%"])
+      where(["LOWER(title) like ?", "%#{title.try(:downcase)}%"])
   }
 
   scope :news, lambda { |front|

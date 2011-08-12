@@ -5,7 +5,7 @@ class Banner < ActiveRecord::Base
   scope :category, lambda { |cat| where("publish = true AND category = ?", cat)}
 
   scope :titles_or_texts_like, lambda { |str|
-      where("LOWER(title) like :str OR LOWER(text) like :str", { :str => "%#{str.downcase if str}%"})}
+      where("LOWER(title) like :str OR LOWER(text) like :str", { :str => "%#{str.try(:downcase)}%"})}
 
 	belongs_to :repository, :foreign_key => "repository_id"
   belongs_to :user, :foreign_key => "user_id"

@@ -8,8 +8,8 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :groups
 
   scope :login_or_name_like, lambda { |text|
-    where('login like :text OR first_name like :text OR last_name like :text',
-          { :text => "%#{text}%" })
+    where('LOWER(login) like :text OR LOWER(first_name) like :text OR LOWER(last_name) like :text',
+          { :text => "%#{text.try(:downcase)}%" })
   }
 
   scope :admin, where(:is_admin => true)
