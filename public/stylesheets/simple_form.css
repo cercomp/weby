@@ -1,0 +1,73 @@
+.simple_form .pages_paginator {
+  float: none; }
+.simple_form div.input {
+  clear: both;
+  margin-bottom: 15px; }
+  .simple_form div.input:hover label {
+    color: black; }
+.simple_form label {
+  font-size: 11px;
+  font-familly: Verdana;
+  cursor: pointer;
+  float: left;
+  width: 120px;
+  text-align: right;
+  margin: 2px 10px; }
+  .simple_form label abbr {
+    color: red; }
+.simple_form .hint {
+  color: #555;
+  display: block;
+  margin-left: 140px;
+  width: 200px;
+  font-size: 11px;
+  font-style: italic; }
+.simple_form input {
+  display: inline;
+  margin: 5px 0;
+  border: 1px solid gray;
+  padding: 3px; }
+  .simple_form input:focus {
+    background-color: #faffbd;
+    border: 1px solid black;
+    -moz-box-shadow: 0 0 28px 1px #aaaaaa;
+    -webkit-box-shadow: 0 0 28px 1px #aaaaaa;
+    box-shadow: 0 0 28px 1px #aaaaaa;
+    outline: none; }
+.simple_form select:active,
+.simple_form select:focus {
+  background-color: #faffbd;
+  outline: none; }
+.simple_form label.collection_radio {
+  float: none;
+  margin: 0;
+  vertical-align: -2px;
+  margin-right: 10px;
+  margin-left: 2px; }
+.simple_form .field_with_errors {
+  background-color: #ff3333; }
+.simple_form input.radio {
+  margin-right: 5px;
+  vertical-align: -3px; }
+.simple_form .check_boxes {
+  margin-left: 3px;
+  vertical-align: -3px;
+  margin-left: 140px; }
+  .simple_form .check_boxes .hint {
+    margin: 0; }
+.simple_form label.collection_check_boxes {
+  margin: 0;
+  vertical-align: -2px;
+  margin-left: 2px; }
+.simple_form .actions {
+  margin: 10px 0; }
+  .simple_form .actions input[type='submit'] {
+    float: right;
+    text-align: right;
+    color: #fff;
+    background: #229316;
+    border-top: 2px solid #55c649;
+    border-left: 2px solid #55c649;
+    border-right: 2px solid #006000;
+    border-bottom: 2px solid #006000;
+    margin: 0 5px; }

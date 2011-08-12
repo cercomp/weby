@@ -495,12 +495,25 @@ en:
         too_short: "very short (can not use less than %{count} characters)"
         wrong_length: "wrong length (%{count} characters required)"
 
-  will_paginate:
-    next: "Next"
-    previous: "Previous"
-    entry: "registers"
-    found:
-      zero: "There aren't {{entry_name}}"
-      one: "<b>{{size}}</b> {{entry_name}}"
-      other: "All the <b>{{size}}</b> {{entry_name}}"
-    display: "{{entry_name}} of <b>{{from}}</b> the <b>{{to}}</b> of {{total}} in total"
+#  will_paginate:
+#    next: "Next"
+#    previous: "Previous"
+#    entry: "registers"
+#    found:
+#      zero: "There aren't {{entry_name}}"
+#      one: "<b>{{size}}</b> {{entry_name}}"
+#      other: "All the <b>{{size}}</b> {{entry_name}}"
+#    display: "{{entry_name}} of <b>{{from}}</b> the <b>{{to}}</b> of {{total}} in total"
+#
+# -- SIMPLE FORM -- #
+# simple_form:  
+    "yes": 'Yes'  
+    "no": 'No'  
+    required:  
+      text: 'required'  
+      mark: '*'  
+      # You can uncomment the line below if you need to overwrite the whole required html.  
+      # When using html, text and mark won't be used.  
+      # html: '<abbr title="required">*</abbr>'  
+    error_notification:  
+      default_message: "Some errors were found, please take a look:"  

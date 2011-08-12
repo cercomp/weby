@@ -32,10 +32,20 @@
       <%= render :partial => 'repositories/repo', :locals => {:obj => @page, :field => :repository_id, :collection => @repos} %>
     </div>
 
-    <%= f.input :date_begin_at, :order => [:year, :month, :day], :use_month_numbers => true, :label =>  (t"date_param", :param => t("begin")), :start_year => Time.now.year, :id => "datapicker", :as => :datetime %>
-    <%= f.input :date_end_at, :order => [:year, :month, :day], :use_month_numbers => true, :label => (t"date_param", :param => t("end")), :start_year => Time.now.year, :default => 1.month.from_now, :id => "datapicker", :as => :datetime %>
+    <%= f.input :date_begin_at,
+      :label =>  (t"date_param", :param => t("begin")),
+      :start_year => Time.now.year,
+      :id => "datapicker",
+      :as => :datetime %>
 
-    <%= f.input :title, :label => t("title"), :hint => t("field_required")  %>
+    <%= f.input :date_end_at,
+      :label => (t"date_param", :param => t("end")),
+      :start_year => Time.now.year,
+      :default => 1.month.from_now,
+      :id => "datapicker",
+      :as => :datetime %>
+
+    <%= f.input :title, :label => t("title"), :hint => t("field_required") %>
     <%= f.input :text, :label => t("text"), :input_html => {:class => "mceAdvance", :size => "45x10"}, :as => :text %>
 
     <%= f.input :summary, :label => t("summary"), :input_html => {:class => "mceSimple", :size => "45x8"}, :as => :text %>
@@ -75,7 +85,8 @@
       </div>
     </div>
 
-    <label class="string"></label>
-    <%= f.submit (t"create_param", :param => (t"page.one")) %> <%= link_to t("back"), :back %>
+    <div class="actions">
+      <%= f.submit (t"create_param", :param => (t"page.one")) %> <%= link_to t("back"), :back %>
+    </div>
   <% end %>
 </fieldset>

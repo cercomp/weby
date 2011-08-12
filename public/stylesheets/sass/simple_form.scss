@@ -1,0 +1,113 @@
+@import "utils";
+
+$label_width: 120px;
+$label_horizontal_margin: 10px;
+
+.simple_form{
+.pages_paginator{float: none}
+  div.input{
+    clear: both;
+    margin:{
+      bottom: 15px;
+    }
+
+    &:hover{
+      label{
+        color: black;
+      }
+    }
+  }
+
+  label{
+    font:{
+      size: 11px;
+      familly: Verdana;
+    }
+    cursor: pointer;
+    float: left;
+    width: $label_width;
+    text-align: right;
+    margin: 2px $label_horizontal_margin;
+    abbr{
+      color: red;
+    }
+  }
+
+  .hint {
+    color: #555;
+    display: block;
+    margin-left: $label_width + (2 * $label_horizontal_margin);
+    width: 200px;
+    font:{
+      size: 11px;
+      style: italic;
+    }
+  }
+
+  input{
+    display: inline;
+    margin: 5px 0;
+    border: 1px solid gray;
+    padding: 3px;
+
+    &:focus{
+      background-color: #faffbd;
+      border: 1px solid black;
+      @include box_shadow(0 0 28px 1px #aaa);
+      outline: none;
+    }
+  }
+  select:active,
+  select:focus{
+    background-color: #faffbd;
+    outline:none;
+  }
+
+  label.collection_radio {
+    float: none;
+    margin: 0;
+    vertical-align: -2px;
+    margin-right: 10px;
+    margin-left:   2px;
+  }
+
+  .field_with_errors {
+    background-color: #ff3333;
+  }
+
+  input.radio {
+    margin-right: 5px;
+    vertical-align: -3px;
+  }
+
+  .check_boxes {
+    margin-left: 3px;
+    vertical-align: -3px;
+    margin-left: $label_width + (2 * $label_horizontal_margin);
+    .hint{
+      margin: 0;
+    }
+  }
+
+  label.collection_check_boxes {
+    margin: 0;
+    vertical-align: -2px;
+    margin-left:   2px;
+  }
+
+  .actions{
+    margin: 10px 0;
+    input[type='submit'] {
+      float: right;
+      text-align: right;
+      color: #fff;
+      background: #229316;
+      border-top: 2px solid #55c649;
+      border-left: 2px solid #55c649;
+      border-right: 2px solid #006000;
+      border-bottom: 2px solid #006000;
+      margin: 0 5px; 
+    }
+  }
+
+}

@@ -384,9 +384,9 @@ pt-BR:
     abbr_month_names: [~, Jan, Feb, Mar, Abr, Mai, Jun, Jul, Ago, Set, Out, Nov, Dez]
     # Used in date_select and datetime_select.
     order:
-      - :year
-      - :month
       - :day
+      - :month
+      - :year
 
   time:
     formats:
@@ -498,13 +498,25 @@ pt-BR:
         too_short: "muito curto (não é possível usar menos de %{count} characteres)"
         wrong_length: "Tamanho errado (%{count} são requeridos)"
 
-  will_paginate:
-    next: "Posteriores"
-    previous: "Anteriores"
-    entry: "registos"
-    found:
-      zero: "Não existem {{entry_name}}"
-      one: "<b>{{size}}</b> {{entry_name}}"
-      other: "Todos os <b>{{size}}</b> {{entry_name}}"
-    display: "{{entry_name}} de <b>{{from}}</b> a <b>{{to}}</b> de {{total}} no total"
+#  will_paginate:
+#    next: "Posteriores"
+#    previous: "Anteriores"
+#    entry: "registos"
+#    found:
+#      zero: "Não existem {{entry_name}}"
+#      one: "<b>{{size}}</b> {{entry_name}}"
+#      other: "Todos os <b>{{size}}</b> {{entry_name}}"
+#    display: "{{entry_name}} de <b>{{from}}</b> a <b>{{to}}</b> de {{total}} no total"
     
+# -- SIMPLE FORM -- #
+  simple_form:  
+    "yes": 'Sim'  
+    "no": 'Não'  
+    required:  
+      text: 'obrigatório'  
+      mark: '*'  
+      # You can uncomment the line below if you need to overwrite the whole required html.  
+      # When using html, text and mark won't be used.  
+      # html: '<abbr title="required">*</abbr>'  
+    error_notification:  
+      default_message: "Alguns erros foram encontrados, por favor verifique:"  
