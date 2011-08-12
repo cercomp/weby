@@ -30,6 +30,8 @@ table.list td.checkbox { width: 15px; padding: 0px;}
 table.list td.buttons { width: 15%; white-space:nowrap; text-align: right; }
 table.list td.buttons a { padding-right: 0.6em; }
 
+table.list td.dark {background-color: #eee;}
+
 table.list tbody tr.group td { padding: 0.8em 0 0.5em 0.3em; font-weight: bold; border-bottom: 1px solid #ccc; }
 table.list tbody tr.group span.count { color: #aaa; font-size: 80%; }
 table.list tbody tr:hover { background-color:#e5ffe5; }
