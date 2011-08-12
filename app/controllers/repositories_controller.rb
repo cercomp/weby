@@ -1,5 +1,5 @@
 class RepositoriesController < ApplicationController
-  layout :choose_layout, :except => [:show]
+  layout :choose_layout
   before_filter :require_user
   before_filter :check_authorization
   before_filter :load_images, :only => [:new, :edit]
