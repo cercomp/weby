@@ -10,7 +10,7 @@
         :as => :radio, 
         :label_method => lambda { |u| raw "#{u.title[0,50] + ((u.title.size > 50) ?  "..." : "")}" + "<br />" },
         :value_method => 'id',
-        :paginate => "#{paginate @pages}" %>
+        :paginate => "#{paginate @pages, :remote => true}" %>
     <% end %>
   <% end %>
 <% end %>
