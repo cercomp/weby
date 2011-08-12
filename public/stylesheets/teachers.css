@@ -9,8 +9,6 @@ body {
   width: auto;
   margin: 0 auto; }
 #wrapper { border: 2px solid transparent; border-top: none }
-nav#weby_bar { padding-bottom: 5px; }
-nav.right { clear: both;}
 
 /* Define style to Header, Footer and contents */
 header,
@@ -25,7 +23,7 @@ footer { }
   header figure#cover { margin: 0px; }
 
   /* Define Header and Footer menus */
-  header > nav { padding: 0px 5px 5px 0px; }
+  header > nav { padding: 0px 5px 5px 0px; float: left; }
   footer > nav { padding: 5px 5px 5px 0px; }
 
     header nav menu,
@@ -125,6 +123,7 @@ figure#banner {
 .center { text-align: center; }
 .left { float: left; }
 .right { float: right; }
+nav.right { float: right; clear: both; }
 
 table.zebra tr:nth-child(2n+2) { background-color: #F6F7F8; }
 table.fullwidth { width: 100%; }

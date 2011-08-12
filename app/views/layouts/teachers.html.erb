@@ -17,7 +17,7 @@
           </figure>
         <% end %>
         <section id="description">
-          <spam><%= @site.description %></spam>
+          <spam><%= raw @site.description %></spam>
         </section>
         
         <%= load_components 'top' %>
