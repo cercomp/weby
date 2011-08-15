@@ -20,5 +20,6 @@
   <%= yield :stylesheets %>
 
   <%= stylesheet_link_tag 'menu_dropdown' if @site.try(:menu_dropdown) %>
+  <%= stylesheet_link_tag 'contrast' if session[:contrast] == 'yes' %>
   <%= render 'sites/viewCsses' if @site %>
 </head>
