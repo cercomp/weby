@@ -16,7 +16,7 @@
       </summary>
       <%# TODO: Páginas poderão ser vistas por i18n %>
       <div id="page-i18n">
-        Veja também essa notícia em:
+        <%= t("see_notice_too") %>:
         <%= @page.page_i18ns.map{ |p| t(p.locale.name) }.join(", ") %>
       </div>
   </header>

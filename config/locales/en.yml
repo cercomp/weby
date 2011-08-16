@@ -312,6 +312,7 @@ en:
     one:  "Sugestion"
     other: "Sugestions"
   summary: "Summary"
+  see_notice_too: "See notice too in"
 
 #---T---#
   text: "Text" 
@@ -364,6 +365,10 @@ en:
   width: "Width"
   
 #--- Other locales ---#
+  # Locales translation
+  pt-BR: "Portuguese (Brazil)"
+  en: "English"
+
   date:
     formats:
       # Use the strftime parameters for formats.
@@ -506,7 +511,7 @@ en:
 #    display: "{{entry_name}} of <b>{{from}}</b> the <b>{{to}}</b> of {{total}} in total"
 #
 # -- SIMPLE FORM -- #
-# simple_form:  
+  simple_form:  
     "yes": 'Yes'  
     "no": 'No'  
     required:  
