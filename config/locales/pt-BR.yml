@@ -367,6 +367,10 @@ pt-BR:
   width: "Largura"
   
 #--- Other locales ---#
+  # Locales translation
+  pt-BR: "Português (Brasil)"
+  en: "Inglês"
+
   date:
     formats:
       # Use the strftime parameters for formats.

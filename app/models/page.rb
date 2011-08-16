@@ -4,7 +4,7 @@ class Page < ActiveRecord::Base
   scope :published, where(:publish => true)
 
   scope :titles_like, lambda { |title|
-      where(["LOWER(title) like ?", "%#{title.try(:downcase)}%"])
+    joins(:page_i18ns).where(['page_i18ns.title like ?', "%#{title}%"])
   }
 
   scope :news, lambda { |front|
@@ -17,7 +17,7 @@ class Page < ActiveRecord::Base
     where("category like ?", category)
   }
 
-  validates_presence_of :title, :source, :author_id
+  validates_presence_of :source, :author_id
 
   belongs_to :user, :foreign_key => "author_id"
 	belongs_to :repository, :foreign_key => "repository_id"
@@ -30,7 +30,24 @@ class Page < ActiveRecord::Base
   has_many :sites_pages
   has_many :sites, :through => :sites_pages
 
+  # Teste i18n
+  has_many :page_i18ns, :dependent => :destroy
+  accepts_nested_attributes_for :page_i18ns
+
   accepts_nested_attributes_for :sites_pages, :allow_destroy => true#, :reject_if => proc { |attributes| attributes['title'].blank? }
   accepts_nested_attributes_for :pages_repositories
   acts_as_list
+  # Find i18n based on locale_name
+  # Example: locale_name = 'pt-BR'
+  def by_locale locale_name
+    loc = Locale.find_by_name(locale_name)
+    page_i18ns.by_locale(loc).first or page_i18ns.first
+  end
+
+  # Find current i18n page
+  # Try use session[:locale] to find actual i18n
+  def page_i18n
+    by_locale(session[:locale])
+  end
+
 end

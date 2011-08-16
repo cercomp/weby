@@ -1,0 +1,4 @@
+<%= f.input :locale_id, :as => 'hidden' %>
+<%= f.input :title, :label => t("title"), :hint => t("field_required") %>
+<%= f.input :text, :label => t("text"), :input_html => {:class => "mceAdvance", :size => "45x10"}, :as => :text %>
+<%= f.input :summary, :label => t("summary"), :input_html => {:class => "mceSimple", :size => "45x8"}, :as => :text %>

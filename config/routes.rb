@@ -69,6 +69,7 @@ Webyge::Application.routes.draw do
         put :index
       end
     end
+    
     resources :groups, :chats, :rights, :archives, :admin
   end
 

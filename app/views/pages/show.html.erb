@@ -4,7 +4,7 @@
   <% end %>
 
   <header>
-    <h1> <%= @page.title %> </h1>
+    <h1> <%= @page.by_locale(session[:locale]).title %> </h1>
       <summary>
         <% if @site.view_desc_pages %>
           <p>
@@ -12,11 +12,16 @@
             <%= l @page.created_at, :format => :short  %>
           </p>
         <% end %>
-        <p> <%= raw @page.summary %> </p>
+        <p> <%= raw @page.by_locale(session[:locale]).summary %> </p>
       </summary>
+      <%# TODO: Páginas poderão ser vistas por i18n %>
+      <div id="page-i18n">
+        Veja também essa notícia em:
+        <%= @page.page_i18ns.map{ |p| t(p.locale.name) }.join(", ") %>
+      </div>
   </header>
 
-  <%= raw @page.text %>
+  <%= raw @page.by_locale(session[:locale]).text %>
   <p>
   <h3> <%= @page.url.try(:empty?) ? @page.source : link_to(@page.source, @page.url) %>
   <%= " | categoria: " + @page.category unless @page.category.blank? %> </h3>

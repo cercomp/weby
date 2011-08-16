@@ -13,7 +13,7 @@
     <% @pages.each do |page| %>
       <tr id="sort_page_<%= page.id %>">
         <td><%= l page.created_at, :format => :short %></td>
-        <td><%= link_to_function page.title, "selected(#{page.id}, '#{page.title}')" %></td>
+        <td><%= link_to_function page.page.by_locale(session[:locale]).title, "selected(#{page.id}, '#{page.title}')" %></td>
         <td><%= page.category %></td>
         <td><%= t"#{page.type.downcase}.one" %></td>
       </tr>

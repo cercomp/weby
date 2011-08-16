@@ -40,6 +40,8 @@ class PagesController < ApplicationController
     @page = Page.new
     @page.sites_pages.build
     @page.pages_repositories.build
+    @page.page_i18ns.build(:locale_id => Locale.find_by_name(session[:locale]).id)
+
     @repos = @site.repositories.page(params[:page]).per(params[:per_page])
 
     # Objeto para pages_repositories (relacionamento muitos-para-muitos)
@@ -69,8 +71,20 @@ class PagesController < ApplicationController
   def create
     params[:page][:type] ||= 'News'
     @page = Object.const_get(params[:page][:type]).new(params[:page])
-    @page.save
-    respond_with(@page, :location => site_pages_path(:type => params[:type]))
+    if @page.save
+      redirect_to(site_page_url(@site, @page.id, :type => params[:type]),
+                  :notice => t('successfully_created'))
+      #respond_with(@page, :location => site_pages_path(:type => params[:type]))
+    else
+      # Recarrega variáveis para formulário
+      @repository = Repository.new
+      if not @page.repository_ids
+        @page_files_unchecked = @site.repositories.where("id NOT IN (?)", @page.repository_ids.to_s.delete('[]')).page(1).per(params[:twitter_page].to_i*5) 
+      else
+        @page_files_unchecked = @site.repositories.page(1).per(params[:twitter_page].to_i*5)
+      end
+    end
+
   end
 
   def update
