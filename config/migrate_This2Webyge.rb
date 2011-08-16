@@ -417,6 +417,8 @@ EOF
           autor ||= 1
           insert_pages = "INSERT INTO pages (created_at,updated_at,date_begin_at,date_end_at,site_id,author_id,text,url,source,title,summary,publish,front,type,position) VALUES ('#{dt_cadastro}','#{dt_cadastro}','#{dt_inicio}','#{dt_fim}','#{@convar["#{this_site['site_id']}"]['weby']}','#{autor}','#{pre_treat(noticia['texto'])}','#{pre_treat(noticia['url'])}','#{pre_treat(noticia['fonte'])}','#{pre_treat(noticia['titulo'])}','#{pre_treat(noticia['resumo'])}',#{status},#{capa},'News',#{position}) RETURNING id"
           page = @con_weby.exec(insert_pages)
+          insert_pages_i18n = "INSERT INTO page_i18ns (page_id,locale_id,text,title,summary) VALUES ('#{page[0]['id']}',1,'#{pre_treat(noticia['texto'])}','#{pre_treat(noticia['titulo'])}','#{pre_treat(noticia['resumo'])}')"
+          @con_weby.exec(insert_pages_i18n)
           puts "\t\t\tINSERINDO (notícias) página: (#{page[0]['id']}) no weby\n" if @verbose
           insert_sites_pages = "INSERT INTO sites_pages (site_id,page_id) VALUES ('#{@convar["#{this_site['site_id']}"]['weby']}','#{page[0]['id']}')"
           site_page = @con_weby.exec(insert_sites_pages)
@@ -440,6 +442,8 @@ EOF
           autor ||= 1
           insert_pages = "INSERT INTO pages (created_at,date_begin_at,date_end_at,site_id,author_id,title,text,publish,front,type) VALUES ('#{Time.now}','#{Time.now}','#{data_publica}','#{@convar["#{this_site['site_id']}"]['weby']}','#{pre_treat(autor)}','#{pre_treat(pagina['titulo'])}','#{pre_treat(pagina['texto'])}',true,false,'News') RETURNING id"
           page = @con_weby.exec(insert_pages)
+          insert_pages_i18n = "INSERT INTO page_i18ns (page_id,locale_id,title,text) VALUES ('#{page[0]['id']}',1,'#{pre_treat(pagina['titulo'])}','#{pre_treat(pagina['texto'])}')"
+          @con_weby.exec(insert_pages_i18n)
           puts "\t\t\tINSERINDO (avulsa) página: (#{page[0]['id']}) no weby\n" if @verbose
           insert_sites_pages = "INSERT INTO sites_pages (site_id,page_id) VALUES ('#{@convar["#{this_site['site_id']}"]['weby']}','#{page[0]['id']}')"
           site_page = @con_weby.exec(insert_sites_pages)
@@ -474,6 +478,8 @@ EOF
           autor ||= 1
           insert_pages = "INSERT INTO pages (created_at,updated_at,date_begin_at,date_end_at,event_begin,event_end,site_id,author_id,text,url,source,title,summary,publish,front,type,kind,event_email,local,position) VALUES ('#{dt_cadastro}','#{dt_cadastro}','#{dt_inicio}','#{dt_fim}','#{inicio}','#{fim}','#{@convar["#{this_site['site_id']}"]['weby']}','#{autor}','#{pre_treat(evento['texto'])}','#{pre_treat(evento['url'])}','#{pre_treat(evento['fonte'])}','#{pre_treat(evento['titulo'])}','#{pre_treat(evento['resumo'])}',#{status},#{capa},'Event','#{tipo}','#{evento['email']}','#{pre_treat(evento['local_realiza'])}',#{position}) RETURNING id"
           page = @con_weby.exec(insert_pages)
+          insert_pages_i18n = "INSERT INTO page_i18ns (page_id,locale_id,text,title,summary) VALUES ('#{page[0]['id']}',1,'#{pre_treat(evento['texto'])}','#{pre_treat(evento['titulo'])}','#{pre_treat(evento['resumo'])}')"
+          @con_weby.exec(insert_pages_i18n)
           puts "\t\t\tINSERINDO (eventos) página: (#{page[0]['id']}) no weby\n" if @verbose
           insert_sites_pages = "INSERT INTO sites_pages (site_id,page_id) VALUES ('#{@convar["#{this_site['site_id']}"]['weby']}','#{page[0]['id']}')"
           site_page = @con_weby.exec(insert_sites_pages)
@@ -532,12 +538,23 @@ EOF
     end
     weby_menus.clear()
 
-    # Tratando links de weby.pages
-    select_pages = "SELECT id,title,url,source,summary,text FROM pages"
+    # Tratando páginas de weby.pages
+    select_pages = "SELECT id,url,source FROM pages"
     puts "\t\tSELECIONANDO todas as páginas para tratamento de caracteres\n" if @verbose
     weby_pages = @con_weby.exec(select_pages)
     weby_pages.each do |weby_page|
-      update_page = "UPDATE pages SET title='#{treat(weby_page['title'])}',url='#{treat(weby_page['url'])}',source='#{treat(weby_page['source'])}',summary='#{treat(weby_page['summary'])}',text='#{treat(weby_page['text'])}' WHERE id='#{weby_page['id']}'"
+      update_page = "UPDATE pages SET url='#{treat(weby_page['url'])}',source='#{treat(weby_page['source'])}' WHERE id='#{weby_page['id']}'"
+      puts "\t\t\tATUALIZANDO id:(#{weby_page['id']})\n" if @verbose
+      @con_weby.exec(update_page)
+    end
+    weby_pages.clear()
+    
+    # Tratando páginas de weby.page_i18ns
+    select_pages = "SELECT id,title,summary,text FROM page_i18ns"
+    puts "\t\tSELECIONANDO todas as páginas internacionalizáveis para tratamento de caracteres\n" if @verbose
+    weby_pages = @con_weby.exec(select_pages)
+    weby_pages.each do |weby_page|
+      update_page = "UPDATE page_i18ns SET title='#{treat(weby_page['title'])}',summary='#{treat(weby_page['summary'])}',text='#{treat(weby_page['text'])}' WHERE id='#{weby_page['id']}'"
       puts "\t\t\tATUALIZANDO id:(#{weby_page['id']})\n" if @verbose
       @con_weby.exec(update_page)
     end
@@ -550,8 +567,10 @@ EOF
       if @convar["#{this_id}"]["menus"]["#{entry['id']}"].nil?
         modificador = @convar["#{this_id}"]['usuarios'][entry['modificador']] 
         modificador ||= 1
-        insert_page = "INSERT INTO pages (created_at,date_begin_at,date_end_at,site_id,author_id,title,text,publish,front,type) VALUES ('#{Time.now}','#{Time.now}','#{Time.now}','#{site_id}','#{modificador}','#{pre_treat(entry['texto_item'])}','#{pre_treat(entry['texto'])}',true,false,'News') RETURNING id"
+        insert_page = "INSERT INTO pages (created_at,date_begin_at,date_end_at,site_id,author_id,publish,front,type) VALUES ('#{Time.now}','#{Time.now}','#{Time.now}','#{site_id}','#{modificador}',true,false,'News') RETURNING id"
         page_id = @con_weby.exec(insert_page)
+        insert_page_i18n = "INSERT INTO page_i18ns (page_id,locale_id,title,text) VALUES ('#{page_id[0]['id']}',1,'#{pre_treat(entry['texto_item'])}','#{pre_treat(entry['texto'])}')"
+        @con_weby.exec(insert_page_i18n)
         insert_site_page = "INSERT INTO sites_pages (site_id,page_id) VALUES ('#{site_id}','#{page_id[0]['id']}')"
 				@con_weby.exec(insert_site_page)
         puts "\t\t\t\tINSERINDO (sites_pages) (#{site_id} #{page_id[0]['id']})\n" if @verbose
