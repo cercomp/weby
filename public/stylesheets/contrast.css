@@ -64,7 +64,7 @@ div.flash.warning{
 
 aside menu li {border: 1px solid white;}
 aside menu li > a {background-color: black !important;}
-aside menu li:hover {background-color: black; text-decoration:underline;}
+aside menu li:hover > a {background-color: black; text-decoration:underline;}
 aside menu li a {color: white;}
 aside menu li.sub:hover {border: 1px solid white;}
 
@@ -107,4 +107,9 @@ fieldset.login_embedded label {   color: white;}
 .handle { color: white;}
 
 footer section#info {  color: white;}
+section#content article > p, section#content article > summary { color: white;}
+
+
+section#content article > p, section#content article > summary { color: white;}
+article, summary :hover { background-color: black;}
 
