@@ -17,6 +17,13 @@
     <%= f.input :controller, :label => t("controller"), :hint => t("field_required") %>
     <%= f.input :action, :label => t("action"), :hint => t("field_required") %>
   
-    <%= f.submit t("save") %> <%= link_to t('back'), :back %>
+		<div class = "actions">
+    	<%= link_to t('back'), :back %> <%= f.submit t("save") %> 
+		</div>
   <% end %>
 </fieldset>
+
+<style>
+<%# TODO: ver melhor maneira de ignorar o float right do formulario(simple_form) %>
+.right{ float: none !important;}
+</style>
