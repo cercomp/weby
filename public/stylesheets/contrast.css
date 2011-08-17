@@ -1,6 +1,6 @@
 
 /***** General ****/
-html{ color: white; background-color: black;}
+html{ color: white !important; background-color: black;}
 #wrapper{ color: white; background-color: black; border-color: white;}
 
 /****** Links ******/
@@ -68,7 +68,15 @@ aside menu li:hover {background-color: black; text-decoration:underline;}
 aside menu li a {color: white;}
 aside menu li.sub:hover {border: 1px solid white;}
 
-    aside.right menu li {background-color: black;}
+aside.right menu li {background-color: black;}
+
+header nav menu li a {  background-color: black;  border: 1px solid white;}
+
+aside.right menu li.sub {  background-color: white !important; }
+aside.left menu li, li:hover {  background-color: white !important;}
+aside.left menu li.sub {  background-color: white !important;}
+aside.left menu li.sub:hover {  background-color: white !important;}
+header nav menu li a:hover {  background-color: black;  text-decoration: underline;}
 
 /** Form ***/
    .simple_form div.input:hover label {
@@ -84,14 +92,19 @@ aside menu li.sub:hover {border: 1px solid white;}
    }
 
 /*** Other ***/
-summary#csses {
-  color: white;
-  background-color: black;
-  border: 1px solid white;
-}
 
-details#csses {
-  border: 1px solid white;
-  background-color: black;
-}
+summary#csses {  color: white;   background-color: black;   border: 1px solid white; }
+details#csses {   border: 1px solid white;  background-color: black;}
+
+#no_front_news table, #no_front_news table th, #no_front_news table td {  border-color: white;}
+#no_front_news table th {  background-color: black;   border: 2px solid white;}
+
+fieldset.login_embedded label {   color: white;}
+
+#tabs li a { background-color: black;}
+#tabs li a:hover { background:black; text-decoration: underline;  }
+
+.handle { color: white;}
+
+footer section#info {  color: white;}
 
