@@ -1,7 +1,7 @@
 <fieldset>
   <legend> <%= t"new_param.masc", :param => t("right.one")%> </legend>
 
-  <% simple_form_for @right, :class => false do |f| %>
+  <% simple_form_for @right do |f| %>
     <% if @right.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@right.errors.count,"") %> <%= t"prohibited_being_saved", :count => @right.errors.count %>:</h2>
@@ -17,6 +17,14 @@
     <%= f.input :controller, :label => t("controller"), :hint => t("field_required") %>
     <%= f.input :action, :label => t("action"), :hint => t("field_required") %>
   
-    <%= f.submit t("create")%> <%= link_to t('back'), :back %>
+		<div class = "actions">
+	    <%= link_to t('back'), :back %> <%= f.submit t("create")%> 
+		</div>		
+
   <% end %>
 </fieldset>
+
+<style>
+<%# TODO: ver melhor maneira de ignorar o float right do formulario(simple_form) %>
+.right{ float: none !important;}
+</style>
