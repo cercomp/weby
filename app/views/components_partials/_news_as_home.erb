@@ -1,4 +1,9 @@
-<% @page = Page.find(settings[:page]) %>
-<% params[:type] = @page.type %>
+<% @page = Page.where(['id = ?', settings[:page]]) %>
 
-<%= render :template => 'pages/show' %>
+<% unless @page.empty? %>
+  <% params[:type] = @page.type %>
+  <%= render :template => 'pages/show' %>
+<% else %>
+  <%# TODO arrumar mensagem de componente mal configurado %>
+  <h1>Página não encontrada, por favor verifique a configuração do componente</h1>
+<% end %>

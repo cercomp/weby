@@ -41,7 +41,8 @@
 
     <%= f.input :source, :label => t("source"), :hint => t("field_required") %> 
     <%= f.input :url, :label => t("url") %>
-    <%= f.input :category, :collection => @site.page_categories, :label_html => { :add => ["categoria", "#page_category"] } %>
+    <%#= f.input :category, :collection => @site.page_categories, :label_html => { :add => ["categoria", "#page_category"] } %>
+    <%= f.input :category_list, :label => t('categories'), :hint => t('page_categories_help') %>
 
     <%= f.input :publish , :label => t("publish"), :hint => t("publish_help"), :as => :boolean %>
     <%= f.input :front , :label => t("cover"), :hint => t("cover_help"), :as => :boolean %>

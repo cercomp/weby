@@ -46,6 +46,7 @@ pt-BR:
 #---C---#
   cancel: "Cancelar"
   category: "Categoria"
+  categories: "Categorias"
   chief_editor: "Editor chefe"
   component:
     one: "Componente"
@@ -227,6 +228,7 @@ pt-BR:
   page: 
     one: "Página"
     other: "Páginas"
+  page_categories_help: 'Categorias são separadas por vírgula'
   password: "Senha"
   password_change: "Nova senha"
   password_confirmation: "Confirmação da senha"

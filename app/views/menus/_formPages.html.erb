@@ -8,7 +8,9 @@
         :collection => @pages,
         :collection_wrapper_tag => "div class='radio-group'",
         :as => :radio, 
-        :label_method => lambda { |u| raw "#{u.title[0,50] + ((u.title.size > 50) ?  "..." : "")}" + "<br />" },
+        :label_method => lambda { |u|
+          raw "#{u.by_locale(session[:locale]).title[0,50] + ((u.by_locale(session[:locale]).title.size > 50) ?  "..." : "")}" + "<br />"
+        },
         :value_method => 'id',
         :paginate => "#{paginate @pages, :remote => true}" %>
     <% end %>

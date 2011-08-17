@@ -27,6 +27,10 @@
   <%= " | categoria: " + @page.category unless @page.category.blank? %> </h3>
   </p>
 
+  <p>
+    <h3><%= t('categories') %>: <%= @page.category_list.join ', ' %></h3>
+  </p>
+
   <% unless @page.repositories.empty? %>
     <table class="list">
       <thead bgcolor = white>

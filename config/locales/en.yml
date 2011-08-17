@@ -46,6 +46,7 @@ en:
 #---C---#
   cancel: "Cancel"
   category: "Category"
+  categories: "Categories"
   chief_editor: "Chief Editor"
   component:
     one: "Component"
@@ -227,6 +228,8 @@ en:
   page: 
     one: "Page"
     other: "Pages"
+  page_categories_help: 'Categories are separated by commas'
+  page_categories_help: 'Categorias são separadas por vírgula'
   password: "Password"
   password_change: "Change password "
   password_confirmation: "Password confirmation"

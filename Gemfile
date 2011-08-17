@@ -9,6 +9,7 @@ gem "acts_as_list"
 gem "simple_form"
 gem "sass"
 gem "jquery-rails"
+gem "acts-as-taggable-on"
 
 # Use unicorn as the web server
 # gem 'unicorn'

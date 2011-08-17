@@ -1,4 +1,7 @@
 class Page < ActiveRecord::Base
+  acts_as_taggable_on :categories
+  acts_as_list
+
   default_scope :order => 'pages.position,pages.id desc'
 
   scope :published, where(:publish => true)
@@ -11,10 +14,6 @@ class Page < ActiveRecord::Base
     where("front=:front AND date_begin_at <= :time AND date_end_at > :time",
           { :time => Time.now, :front => front }).
           published
-  }
-
-  scope :category, lambda { |category|
-    where("category like ?", category)
   }
 
   validates_presence_of :source, :author_id
@@ -36,7 +35,7 @@ class Page < ActiveRecord::Base
 
   accepts_nested_attributes_for :sites_pages, :allow_destroy => true#, :reject_if => proc { |attributes| attributes['title'].blank? }
   accepts_nested_attributes_for :pages_repositories
-  acts_as_list
+
   # Find i18n based on locale_name
   # Example: locale_name = 'pt-BR'
   def by_locale locale_name
