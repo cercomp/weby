@@ -15,6 +15,9 @@
 
     <%= render :partial => "form", :object => f %>
 
-    <%= f.submit t("submit") %> <%= link_to t("my_profile"), user_path %>
+		<div class="actions">
+		  <%= f.submit t("submit") %> <%= link_to t("my_profile"), user_path %>
+  	</div>
+    
   <% end %>
 </fieldset>

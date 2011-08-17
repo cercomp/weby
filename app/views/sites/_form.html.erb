@@ -22,5 +22,8 @@
 	<%= f.input :menu_dropdown, :label => t("use_menu_dropdown"), :hint => t("desc_use_menu_dropdown"), :as => :boolean %>
   <%= f.input :theme, :collection => @themes.collect{|p| [ p , p]}, :label => t('layout') %>
 
-  <%= f.submit t("submit") %>
+  <div class="actions">
+    <%= f.submit t("submit") %>
+  </div>
+
 <% end %>

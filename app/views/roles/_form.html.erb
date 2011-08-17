@@ -14,5 +14,8 @@
   <%= f.input :name, :label => t("name") %>
   <%= f.input :theme, :collection => @themes.collect{|p| [ p , p]}, :label => t("layout") %>
 
-  <%= f.submit t("submit") %> <%= link_to t("back"), :back %>
+		<div class="actions">
+		   <%= f.submit t("submit") %> <%= link_to t("back"), :back %>
+  	</div>
+  
 <% end %>

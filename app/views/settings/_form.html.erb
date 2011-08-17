@@ -14,5 +14,8 @@
     <%= f.input :value, :label => t('value') %>
     <%= f.input :description, :label => t('description'), :as => :text %>
 
-    <%= f.submit t('submit') %>
+		<div class="actions">
+		   <%= link_to t("back"), settings_path %> <%= f.submit t("submit") %>
+  	</div>
+  	
   <% end %>
