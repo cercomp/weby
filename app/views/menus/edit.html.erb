@@ -35,7 +35,10 @@
 
     <%= f.input :title, :label => t("text"), :hint => t("field_required") %>
 
-    <%= f.submit t("save") %> <%= link_to t("back"), :back %>
+		<div class="actions">
+		   <%= f.submit t("save") %> <%= link_to t("back"), :back %>
+  	</div>
+
   <% end %> 
 
 </fieldset>

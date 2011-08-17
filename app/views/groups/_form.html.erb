@@ -28,5 +28,8 @@
 
   <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
 
-  <%= f.submit t("submit") %>
+	<div class="actions">
+		<%= f.submit t("submit") %>
+	</div>
+
 <% end %>
