@@ -10,13 +10,11 @@ class PagesController < ApplicationController
   def index 
     params[:type] ||= 'News'
 
-    @tiny_mce = tiny_mce
-
     @pages = @site.pages.titles_like(params[:search])
-
     @pages = @pages.except(:order).order(sort_column + " " + sort_direction).
-      page(params[:page]).per(per_page)
+                page(params[:page]).per(per_page)
 
+    @tiny_mce = tiny_mce
     @pages = @pages.published if @tiny_mce
 
     if @pages
@@ -29,6 +27,7 @@ class PagesController < ApplicationController
   def show
     @page = Page.find(params[:id])
     params[:type] ||= @page.type
+    @current_locale = params[:page_loc] || session[:locale]
     respond_with(@page)
   end
 
@@ -84,7 +83,6 @@ class PagesController < ApplicationController
         @page_files_unchecked = @site.repositories.page(1).per(params[:twitter_page].to_i*5)
       end
     end
-
   end
 
   def update
@@ -128,6 +126,25 @@ class PagesController < ApplicationController
       page = Page.find(p)
       page.position = (params['sort_page'].index(p) + 1)
       page.save
+    end
+  end
+
+  def add_i18n
+    @page = Page.find(params[:id])
+    @page_i18n = PageI18n.new(:page_id => @page.id)
+    # Available languages
+    @langs = Locale.all - @page.page_i18ns.map{|p| p.locale}
+  end
+
+  def create_i18n
+    @page_i18n = PageI18n.new(params[:page_i18n])
+    if @page_i18n.save
+      # TODO escrever 18n da frase 'Sucesso'
+      redirect_to site_page_url(@site, @page_i18n.page, :page_loc => @page_i18n.locale.name), :notice => 'Sucesso'
+    else
+      @page = @page_i18n.page
+      @langs = Locale.all - @page.page_i18ns.map{|p| p.locale}
+      render :add_i18n
     end
   end
   

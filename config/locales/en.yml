@@ -9,6 +9,7 @@ en:
   action: "Action" 
   activate_deactivate: "Activate/Deactivate"
   active: "Active?"
+  add_param: "Add %{param}"
   add_selected_menus: "Add selected menus"
   add_sub_menu: "Add sub menu"
   admin:
@@ -136,6 +137,7 @@ en:
   home: "Home"
 
 #---I---#
+  i18n: 'Internationalization'
   instructions_change_password: "Instructions to change your password"
   internacional: "Internacional"
   internal: "Internal"
@@ -163,6 +165,7 @@ en:
   listing: "Listing"
   listing_param: "Listing %{param}"
   little: "Little"
+  locale: "Locale"
   localization: "Localization"
   logged: "logged"
   login: "Login"

@@ -40,6 +40,8 @@ Webyge::Application.routes.draw do
     resources :pages do 
       member do 
         get :toggle_field
+        get :add_i18n
+        post :create_i18n
       end 
       collection do
         post :sort

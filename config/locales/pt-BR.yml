@@ -9,6 +9,7 @@ pt-BR:
   action: "Ação" 
   activate_deactivate: "Ativar/Desativar"
   active: "Ativo?"
+  add_param: "Adicionar %{param}"
   add_selected_menus: "Incluir os menus selecionados"  
   add_sub_menu: "Adiciona um menu filho"
   admin:
@@ -136,6 +137,7 @@ pt-BR:
   home: "Página inicial"
 
 #---I---#
+  i18n: 'Internacionalização'
   istructions_change_password: "Instruções para trocar a senha"
   internacional: "Internacional"
   internal: "Interno"
@@ -163,6 +165,7 @@ pt-BR:
   listing: "Listando"
   listing_param: "Listando %{param}"
   little: "Pequeno"
+  locale: "Linguagem"
   localization: "Local de realização"
   logged: "logado"
   login: "Entrar"

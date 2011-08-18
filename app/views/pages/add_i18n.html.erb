@@ -1,0 +1,15 @@
+<fieldset>
+  <legend><%= t "create_param", :param => t("i18n") %></legend>
+
+  <%= simple_form_for @page_i18n, :url => create_i18n_site_page_path(@site, @page), :html => { :method => :post } do |f| %>
+    <%= f.input :page_id, :as => :hidden %>
+    <%= f.association :locale, :label => t('locale'), :collection => @langs.map{ |l| [t(l.name), l.id] }, :include_blank => false %>
+    
+    <%= render 'page_i18ns/form', :f => f %>
+    
+		<div class="actions">
+		   <%= f.submit t("create") %> <%= link_to t("back"), :back %>
+     </div>
+
+  <% end %>
+</fieldset>

@@ -4,7 +4,7 @@
   <% end %>
 
   <header>
-    <h1> <%= @page.by_locale(session[:locale]).title %> </h1>
+    <h1> <%= @page.by_locale(@current_locale).title %> </h1>
       <summary>
         <% if @site.view_desc_pages %>
           <p>
@@ -12,24 +12,31 @@
             <%= l @page.created_at, :format => :short  %>
           </p>
         <% end %>
-        <p> <%= raw @page.by_locale(session[:locale]).summary %> </p>
+        <p> <%= raw @page.by_locale(@current_locale).summary %> </p>
       </summary>
-      <%# TODO: Páginas poderão ser vistas por i18n %>
-      <div id="page-i18n">
-        <%= t("see_notice_too") %>:
-        <%= @page.page_i18ns.map{ |p| t(p.locale.name) }.join(", ") %>
-      </div>
   </header>
 
-  <%= raw @page.by_locale(session[:locale]).text %>
+  <%= raw @page.by_locale(@current_locale).text %>
   <p>
-  <h3> <%= @page.url.try(:empty?) ? @page.source : link_to(@page.source, @page.url) %>
-  <%= " | categoria: " + @page.category unless @page.category.blank? %> </h3>
+  <h3> <%= @page.url.try(:empty?) ? @page.source : link_to(@page.source, @page.url) %> </h3>
   </p>
 
   <p>
     <h3><%= t('categories') %>: <%= @page.category_list.join ', ' %></h3>
   </p>
+
+  <%# TODO: Páginas poderão ser vistas por i18n %>
+  <% i18ns = @page.page_i18ns - [@page.by_locale(@current_locale)] %>
+  <% unless i18ns.empty? %>
+    <p>
+    <%= t("see_notice_too") %>
+    <ul>
+      <% i18ns.each do |i18n| %>
+        <li><%= link_to t(i18n.locale.name), {:page_loc => i18n.locale.name}  %></li>
+      <% end %>
+    </ul>
+    </p>
+  <% end %>
 
   <% unless @page.repositories.empty? %>
     <table class="list">
@@ -53,6 +60,13 @@
 
   <% if check_permission(PagesController, ["edit"]) %>
     <%= link_to t("edit"), edit_site_page_path(@site, @page) %> |
+    <%# Verifica se todas as i18n já foram criadas %>
+    <% if @page.page_i18ns.size < Locale.all.size %>
+      <%= link_to t("add_param", :param => t('i18n')), add_i18n_site_page_path(@site, @page) %> |
+    <% else %>
+      <%# TODO adicionar i18n nesta frase %>
+      Você não pode criar mais internacionalizações |
+    <% end %>
   <% end %>
   <%= link_to t("list_all.fem"), site_pages_path(@site) %> | <%= link_to t("back"), :back %>
 </article>

@@ -43,9 +43,9 @@ class SitesController < ApplicationController
   def create
     @site = Site.new(params[:site])
     if @site.save
-      redirect_to edit_site_admin_path(@site, @site)
+      redirect_to site_admin_path(@site)
     else
-      respond_with(@site)
+      respond_with @site
     end
   end
 

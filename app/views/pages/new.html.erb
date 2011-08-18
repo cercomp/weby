@@ -46,6 +46,7 @@
       :as => :datetime %>
 
     <%= f.fields_for :page_i18ns do |i18nbuilder| %>
+      <%= i18nbuilder.input :locale_id, :as => :hidden %>
       <%= render 'page_i18ns/form', :f => i18nbuilder %>
     <% end %>
 
