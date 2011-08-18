@@ -130,6 +130,7 @@ class PagesController < ApplicationController
   end
 
   def add_i18n
+		flash[:warning] = t("edit_yours_i18ns")
     @page = Page.find(params[:id])
     @page_i18n = PageI18n.new(:page_id => @page.id)
     # Available languages
