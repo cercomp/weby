@@ -220,6 +220,7 @@ pt-BR:
   none_param: "Nenhum %{param}"
   "no": "Não"
   not_found: "não encontrado!"
+  no_more_i18ns: "Você não pode mais criar internacionalizações"
 
 #---O---#
   of: "de"

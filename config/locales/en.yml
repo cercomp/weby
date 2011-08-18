@@ -220,6 +220,7 @@ en:
   none_param: "None %{param}"
   "no": "No"
   not_found: "not found!"
+  no_more_i18ns: "You can't more create internationalizations"
 
 #---O---#
   of: 'of'

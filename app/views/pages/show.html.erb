@@ -64,8 +64,7 @@
     <% if @page.page_i18ns.size < Locale.all.size %>
       <%= link_to t("add_param", :param => t('i18n')), add_i18n_site_page_path(@site, @page) %> |
     <% else %>
-      <%# TODO adicionar i18n nesta frase %>
-      Você não pode criar mais internacionalizações |
+      <%= t("no_more_i18ns") %> |
     <% end %>
   <% end %>
   <%= link_to t("list_all.fem"), site_pages_path(@site) %> | <%= link_to t("back"), :back %>
