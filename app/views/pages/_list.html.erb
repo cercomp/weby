@@ -21,7 +21,7 @@
         <td><%= l page.created_at, :format => :short %></td>
         <td><%= link_to page.by_locale(session[:locale]).title, site_page_path(@site,page) %></td>
         <td><%= page.user.first_name ? ("#{page.user.first_name} #{page.user.last_name}") : page.user.login %></td>
-        <td><%= page.category %></td>
+        <td><%= page.category_list.join ', ' %></td>
         <td><%= t"#{page.type.downcase}.one" %></td>
         <% if check_permission(PagesController, [:toggle_field]) %>
           <td align="center"><%= raw toggle_field(page, "front") %></td>
