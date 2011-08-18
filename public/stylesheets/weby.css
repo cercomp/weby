@@ -13,7 +13,6 @@ body {
 }
 
 #wrapper {
-
 	/*Arrendondar bordas para encaixar com a barra institucional
 	-moz-border-radius-topleft: 26px;
 	-moz-border-radius-topright: 26px;
@@ -41,6 +40,15 @@ section#content {
     border: 1px solid #999;
     margin: 0px 3px;
   }
+
+  article p#available-i18n {
+    padding: 5px 3px;
+    font-weight: bold;
+  }
+    article p#available-i18n img {
+      margin-left: 8px;
+      vertical-align: middle;
+    }
   
   section#pages li {
     width: 360px;

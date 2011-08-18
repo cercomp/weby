@@ -5,15 +5,26 @@
 
   <header>
     <h1> <%= @page.by_locale(@current_locale).title %> </h1>
-      <summary>
-        <% if @site.view_desc_pages %>
-          <p>
-            <%= @page.user.first_name ? ("#{@page.user.first_name} #{@page.user.last_name}") : @page.user.login %>
-            <%= l @page.created_at, :format => :short  %>
-          </p>
-        <% end %>
-        <p> <%= raw @page.by_locale(@current_locale).summary %> </p>
-      </summary>
+    <summary>
+      <% if @site.view_desc_pages %>
+        <p>
+          <%= @page.user.first_name ? ("#{@page.user.first_name} #{@page.user.last_name}") : @page.user.login %>
+          <%= l @page.created_at, :format => :short  %>
+        </p>
+      <% end %>
+      <p> <%= raw @page.by_locale(@current_locale).summary %> </p>
+    </summary>
+
+    <%# TODO: Páginas poderão ser vistas por i18n %>
+    <% i18ns = @page.page_i18ns - [@page.by_locale(@current_locale)] %>
+    <% unless i18ns.empty? %>
+      <p id="available-i18n">
+      <%= t("see_notice_too") %>: 
+      <% i18ns.each do |i18n| %>
+        <%= link_to image_tag("flags/16/#{i18n.locale.flag}", :title => t(i18n.locale.name)), {:page_loc => i18n.locale.name}  %>
+      <% end %>
+      </p>
+    <% end %>
   </header>
 
   <%= raw @page.by_locale(@current_locale).text %>
@@ -24,19 +35,6 @@
   <p>
     <h3><%= t('categories') %>: <%= @page.category_list.join ', ' %></h3>
   </p>
-
-  <%# TODO: Páginas poderão ser vistas por i18n %>
-  <% i18ns = @page.page_i18ns - [@page.by_locale(@current_locale)] %>
-  <% unless i18ns.empty? %>
-    <p>
-    <%= t("see_notice_too") %>
-    <ul>
-      <% i18ns.each do |i18n| %>
-        <li><%= link_to t(i18n.locale.name), {:page_loc => i18n.locale.name}  %></li>
-      <% end %>
-    </ul>
-    </p>
-  <% end %>
 
   <% unless @page.repositories.empty? %>
     <table class="list">
