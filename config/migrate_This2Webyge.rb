@@ -135,86 +135,86 @@ EOF
   /* Esquerdo  */
     /* Menu  */
       /* Cor */ 
-        aside.left menu li a { background-color: #{this_estilo.first['cor_mouseout']} !important; }
-        aside.left menu li { background-color: #{this_estilo.first['cor_mouseout']} !important; }
+        aside.left menu li a { background-color: #{this_estilo.first['cor_mouseout']}; }
+        aside.left menu li { background-color: #{this_estilo.first['cor_mouseout']}; }
       /* Cor Hover */ 
-        /* aside.left menu li:hover { background-color: #{this_estilo.first['cor_mouseover']} !important; } */
-        /* aside.left menu li a:hover { background-color: #{this_estilo.first['cor_mouseover']} !important; } */
+        /* aside.left menu li:hover { background-color: #{this_estilo.first['cor_mouseover']}; } */
+        /* aside.left menu li a:hover { background-color: #{this_estilo.first['cor_mouseover']}; } */
       /* Cor fonte */ 
-        aside.left menu li a { color: #{this_estilo.first['cor_letra_out']} !important; }
+        aside.left menu li a { color: #{this_estilo.first['cor_letra_out']}; }
       /* Cor fonte hover */ 
-        aside.left menu li a:hover { color: #{this_estilo.first['cor_letra_hover']} !important; }
+        aside.left menu li a:hover { color: #{this_estilo.first['cor_letra_hover']}; }
     /* Submenu  */
       /* Cor */ 
-        /* aside.left menu li.sub > a { background-color: #{this_estilo.first['cor_td_subitem_mouseout']} !important; } */
-        /* aside.left menu li.sub { background-color: #{this_estilo.first['cor_td_subitem_mouseout']} !important; } */
+        /* aside.left menu li.sub > a { background-color: #{this_estilo.first['cor_td_subitem_mouseout']}; } */
+        /* aside.left menu li.sub { background-color: #{this_estilo.first['cor_td_subitem_mouseout']}; } */
       /* Cor Hover */ 
-        /* aside.left menu li.sub:hover { background-color: #{this_estilo.first['cor_td_subitem_mouseout']} !important; } */
-        /* aside.left menu li.sub:hover > a { background-color: #{this_estilo.first['cor_td_subitem_mouseover']} !important; } */
+        /* aside.left menu li.sub:hover { background-color: #{this_estilo.first['cor_td_subitem_mouseout']}; } */
+        /* aside.left menu li.sub:hover > a { background-color: #{this_estilo.first['cor_td_subitem_mouseover']}; } */
       /* Cor fonte */ 
-        aside.left menu li.sub > a { color: #{this_estilo.first['cor_letra_subitem_out']} !important; }
+        aside.left menu li.sub > a { color: #{this_estilo.first['cor_letra_subitem_out']}; }
       /* Cor fonte hover */ 
-        aside.left menu li.sub > a:hover { color: #{this_estilo.first['cor_letra_subitem_out']} !important; }
+        aside.left menu li.sub > a:hover { color: #{this_estilo.first['cor_letra_subitem_out']}; }
     /* Menu  */
       /* Cor */
-        aside.right menu li a { background-color: #{this_estilo.first['cor_mouseout2']} !important; }
-        aside.right menu li { background-color: #{this_estilo.first['cor_mouseout2']} !important; }        
+        aside.right menu li a { background-color: #{this_estilo.first['cor_mouseout2']}; }
+        aside.right menu li { background-color: #{this_estilo.first['cor_mouseout2']}; }        
       /* Cor Hover */
-        aside.right menu li:hover { background-color: #{this_estilo.first['cor_mouseover2']} !important; }
-        aside.right menu li a:hover { background-color: #{this_estilo.first['cor_mouseover2']} !important; }
+        aside.right menu li:hover { background-color: #{this_estilo.first['cor_mouseover2']}; }
+        aside.right menu li a:hover { background-color: #{this_estilo.first['cor_mouseover2']}; }
       /* Cor fonte */
-        aside.right menu li a { color: #{this_estilo.first['cor_letra_out2']} !important; }
+        aside.right menu li a { color: #{this_estilo.first['cor_letra_out2']}; }
       /* Cor fonte hover */
-      /*  aside.right menu li a:hover { color: #{this_estilo.first['cor_letra_hover2']} !important; } */
+      /*  aside.right menu li a:hover { color: #{this_estilo.first['cor_letra_hover2']}; } */
     /* Submenu  */
       /* Cor */
-        /* aside.right menu li.sub > a { background-color: #{this_estilo.first['cor_td_subitem_mouseout2']} !important; } */
+        /* aside.right menu li.sub > a { background-color: #{this_estilo.first['cor_td_subitem_mouseout2']}; } */
       /* Cor Hover */
-        /* aside.right menu li.sub:hover { background-color: #{this_estilo.first['cor_td_subitem_mouseout2']} !important; } */
-        /* aside.right menu li.sub:hover > a { background-color: #{this_estilo.first['cor_td_subitem_mouseover2']} !important; } */
+        /* aside.right menu li.sub:hover { background-color: #{this_estilo.first['cor_td_subitem_mouseout2']}; } */
+        /* aside.right menu li.sub:hover > a { background-color: #{this_estilo.first['cor_td_subitem_mouseover2']}; } */
       /* Cor fonte */
-        aside.right menu li.sub > a { color: #{this_estilo.first['cor_letra_subitem_out2']} !important; }
+        aside.right menu li.sub > a { color: #{this_estilo.first['cor_letra_subitem_out2']}; }
       /* Cor fonte hover */
-        aside.right menu li.sub > a:hover { color: #{this_estilo.first['cor_letra_subitem_out2']} !important; }
+        aside.right menu li.sub > a:hover { color: #{this_estilo.first['cor_letra_subitem_out2']}; }
   /* Superior  */
     /* Menu  */
       /* Cor */
-        header nav menu li a { background-color: #{this_estilo.first['cor_mouseout3']} !important; }
-        header nav menu li { background-color: #{this_estilo.first['cor_mouseout3']} !important; }
+        header nav menu li a { background-color: #{this_estilo.first['cor_mouseout3']}; }
+        header nav menu li { background-color: #{this_estilo.first['cor_mouseout3']}; }
       /* Cor Hover */
-        header nav menu li:hover { background-color: #{this_estilo.first['cor_mouseover3']} !important; }
-        header nav menu li a:hover { background-color: #{this_estilo.first['cor_mouseover3']} !important; }
+        header nav menu li:hover { background-color: #{this_estilo.first['cor_mouseover3']}; }
+        header nav menu li a:hover { background-color: #{this_estilo.first['cor_mouseover3']}; }
       /* Cor fonte */
-        header nav menu li a { color: #{this_estilo.first['cor_letra_out3']} !important; }
+        header nav menu li a { color: #{this_estilo.first['cor_letra_out3']}; }
       /* Cor fonte hover */
-        header nav menu li a:hover { color: #{this_estilo.first['cor_letra_hover3']} !important; }
+        header nav menu li a:hover { color: #{this_estilo.first['cor_letra_hover3']}; }
   /* Inferior  */
     /* Menu  */
       /* Cor */
-        footer nav menu li a { background-color: #{this_estilo.first['cor_mouseout4']} !important; }
-        footer nav menu li { background-color: #{this_estilo.first['cor_mouseout4']} !important; }
+        footer nav menu li a { background-color: #{this_estilo.first['cor_mouseout4']}; }
+        footer nav menu li { background-color: #{this_estilo.first['cor_mouseout4']}; }
       /* Cor Hover */
-        footer nav menu li:hover { background-color: #{this_estilo.first['cor_mouseover4']} !important; }
-        footer nav menu li a:hover { background-color: #{this_estilo.first['cor_mouseover4']} !important; }
+        footer nav menu li:hover { background-color: #{this_estilo.first['cor_mouseover4']}; }
+        footer nav menu li a:hover { background-color: #{this_estilo.first['cor_mouseover4']}; }
       /* Cor fonte */
-        footer nav menu li a { color: #{this_estilo.first['cor_letra_out4']} !important; }
+        footer nav menu li a { color: #{this_estilo.first['cor_letra_out4']}; }
       /* Cor fonte hover */
-        footer nav menu li a:hover { color: #{this_estilo.first['cor_letra_hover4']} !important; }
+        footer nav menu li a:hover { color: #{this_estilo.first['cor_letra_hover4']}; }
 /* CSS  */
 /* Estilo das páginas  */
   /* Cor Links */
-    section#content article > p a { color: #{this_estilo.first['cor_letra_links_out']} !important; }
+    section#content article > p a { color: #{this_estilo.first['cor_letra_links_out']}; }
   /* Cor Links Hover */
-    section#content article > p a:hover { color: #{this_estilo.first['cor_letra_links_over']} !important; }
+    section#content article > p a:hover { color: #{this_estilo.first['cor_letra_links_over']}; }
   /* Cor Letra */
     section#content article > p,
-    section#content article > summary { color: #{this_estilo.first['cor_letra_paragrafos']} !important; }
+    section#content article > summary { color: #{this_estilo.first['cor_letra_paragrafos']}; }
   /* Cor Titulos */
     section#content article header h1,
-    section#content article header h2 {color: #{this_estilo.first['cor_letra_subtitulos']} !important; }
+    section#content article header h2 {color: #{this_estilo.first['cor_letra_subtitulos']}; }
   /* Cor Subtitulos */
     section#content article header,
-    section#content article header summary { color: #{this_estilo.first['cor_letra_titulos']} !important; }
+    section#content article header summary { color: #{this_estilo.first['cor_letra_titulos']}; }
   /* Avançado */
     /* Pegar todo o CSS avançado, guardar em um arquivo */
     #{this_estilo.first['avancado']}
