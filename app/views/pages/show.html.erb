@@ -4,7 +4,16 @@
   <% end %>
 
   <header>
-    <h1> <%= @page.by_locale(@current_locale).title %> </h1>
+    <h1>
+      <%= @page.by_locale(@current_locale).title %>
+      <%# Bandeiras temporárias... %>
+      <% i18ns = @page.page_i18ns - [@page.by_locale(@current_locale)] %>
+      <% unless i18ns.empty? %>
+        <% i18ns.each do |i18n| %>
+          <%= link_to image_tag("flags/16/#{i18n.locale.flag}", :title => t(i18n.locale.name)), {:page_loc => i18n.locale.name}  %>
+        <% end %>
+      <% end %>
+    </h1>
     <summary>
       <% if @site.view_desc_pages %>
         <p>
@@ -18,12 +27,12 @@
     <%# TODO: Páginas poderão ser vistas por i18n %>
     <% i18ns = @page.page_i18ns - [@page.by_locale(@current_locale)] %>
     <% unless i18ns.empty? %>
-      <p id="available-i18n">
+      <!--p id="available-i18n">
       <%= t("see_notice_too") %>: 
       <% i18ns.each do |i18n| %>
         <%= link_to image_tag("flags/16/#{i18n.locale.flag}", :title => t(i18n.locale.name)), {:page_loc => i18n.locale.name}  %>
       <% end %>
-      </p>
+      </p-->
     <% end %>
   </header>
 
@@ -58,6 +67,7 @@
 
   <% if check_permission(PagesController, ["edit"]) %>
     <%= link_to t("edit"), edit_site_page_path(@site, @page) %> |
+    <%= link_to t("edit_i18ns", :param => t('i18n')), edit_i18n_site_page_path(@site, @page) %> |
     <%# Verifica se todas as i18n já foram criadas %>
     <% if @page.page_i18ns.size < Locale.all.size %>
       <%= link_to t("add_param", :param => t('i18n')), add_i18n_site_page_path(@site, @page) %> |

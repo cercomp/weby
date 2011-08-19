@@ -7,6 +7,7 @@ class PagesController < ApplicationController
   helper_method :sort_column
 
   respond_to :html, :xml, :js
+
   def index 
     params[:type] ||= 'News'
 
@@ -129,12 +130,26 @@ class PagesController < ApplicationController
     end
   end
 
+  # Actions referêntes ao gerenciamento de internacionalizações
   def add_i18n
 		flash[:warning] = t("edit_yours_i18ns")
     @page = Page.find(params[:id])
     @page_i18n = PageI18n.new(:page_id => @page.id)
     # Available languages
     @langs = Locale.all - @page.page_i18ns.map{|p| p.locale}
+  end
+
+  def edit_i18n
+    @page = Page.find(params[:id])
+  end
+
+  def update_i18n
+    @page = Page.find(params[:id])
+    if @page.update_attributes(params[:news])
+      redirect_to :site_page, :notice => 'Alterado com sucesso'
+    else
+      render :edit_i18n, :notice => 'Erros foram encontrados...'
+    end
   end
 
   def create_i18n

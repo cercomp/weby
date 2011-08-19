@@ -83,6 +83,8 @@ en:
 
 #---E---#
   edit: "Edit"
+  edit_i18ns: "Edit Internationalizations"
+  edit_yours_i18ns: "Edit the fields corresponding to their language" 
   editing: "Editing %{param}"
   editor: 
     fem: "Editor"
@@ -105,7 +107,6 @@ en:
   expires: "Expires"
   external: "External"
   expired: "Expired"
-  edit_yours_i18ns: "Edit the fields corresponding to their language" 
 
 #---F---#
   father: "Father"

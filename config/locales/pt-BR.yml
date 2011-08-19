@@ -83,6 +83,8 @@ pt-BR:
 
 #---E---#
   edit: "Editar"
+  edit_i18ns: "Editar Internacionalizações"
+  edit_yours_i18ns: "Edite os campos correspondentes a sua linguagem"
   editing: "Editando %{param}"
   editor: 
     fem: "Editora"
@@ -105,7 +107,6 @@ pt-BR:
   expires: "Expira em"
   external: "Externo"
   expired: "Expirado"
-  edit_yours_i18ns: "Edite os campos correspondentes a sua linguagem"
 
 #---F---#
   father: "Pai"
