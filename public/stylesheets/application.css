@@ -12,7 +12,7 @@ a:hover, a:active { color: #3399FF; text-decoration: none;}
 a img{ border: 0; text-decoration: none;}
 
 /* Fieldset */
-fieldset { border: 1px solid #e4e4e4; background-color: #eff8f9; width: auto;}
+fieldset { border: 1px solid #e4e4e4; background-color: #eff8f9; width: auto; min-height: 50px;}
 legend { color: #000; font-weight: bold; font-size: 130%; background-color: #FFF; border: 1px solid #e4e4e4; padding: 5px; }
 
 details#csses { border: 1px solid #e4e4e4; background-color: #eff8f9; width: auto; margin: 10px 0;}
