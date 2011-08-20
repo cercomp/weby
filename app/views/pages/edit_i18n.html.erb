@@ -1,11 +1,6 @@
 <fieldset>
   <legend><%= t "edit_param", :param => t("i18n") %></legend>
 
-  <p>Nóticia original<p>
-  <h2><%= @page.by_locale(@current_locale).title %></h2>
-  <small><%= raw @page.by_locale(@current_locale).summary %></small>
-  <p><%= raw @page.by_locale(@current_locale).text %></p>
-
   <%= simple_form_for @page, :url => update_i18n_site_page_path(@site, @page), :html => { :method => :post } do |f| %>
     <% f.fields_for :page_i18ns do |i18n| %>
       <br />

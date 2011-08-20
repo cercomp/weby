@@ -1,5 +1,12 @@
 <fieldset>
   <legend><%= t "create_param", :param => t("i18n") %></legend>
+ 
+  <%# TODO: Internacionalizar campos %>
+  <p>Nóticia original<p>
+  <h2><%= @page.by_locale(@current_locale).title %></h2>
+  <small><%= raw @page.by_locale(@current_locale).summary %></small>
+  <p><%= raw @page.by_locale(@current_locale).text %></p>
+  <hr>
 
   <%= simple_form_for @page_i18n, :url => create_i18n_site_page_path(@site, @page), :html => { :method => :post } do |f| %>
     <%= f.input :page_id, :as => :hidden %>
