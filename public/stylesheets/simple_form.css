@@ -33,15 +33,21 @@
 .simple_form input.radio {
   margin-right: 5px;
   vertical-align: -3px; }
-.simple_form .check_boxes, .simple_form .radio-group {
+.simple_form .collection_check_boxes .check_boxes, .simple_form .radio-group {
   vertical-align: -3px;
   margin-left: 140px; }
-  .simple_form .check_boxes .hint, .simple_form .radio-group .hint {
+  .simple_form .collection_check_boxes .check_boxes .hint, .simple_form .radio-group .hint {
     margin: 0; }
-.simple_form label.collection_check_boxes {
-  margin: 0;
-  vertical-align: -2px;
-  margin-left: 2px; }
+.simple_form .input.check_boxes input.check_boxes {
+  display: list-item;
+  margin-left: 0;
+  margin-left: 140px; }
+  .simple_form .input.check_boxes input.check_boxes + label {
+    position: relative;
+    left: 160px;
+    top: -23px;
+    margin: 0;
+    float: none; }
 .simple_form .link-field .input {
   margin-left: 140px;
   position: relative;

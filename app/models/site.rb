@@ -72,6 +72,8 @@ class Site < ActiveRecord::Base
   belongs_to :repository, :foreign_key => "top_banner_id"
   has_many :repositories
 
+  has_and_belongs_to_many :locales
+
   has_attached_file :top_banner, :url => "/uploads/:site_id/:style_:basename.:extension"
   private
   def clear_per_page

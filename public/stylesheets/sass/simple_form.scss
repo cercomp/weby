@@ -61,7 +61,7 @@ $label_horizontal_margin: 10px;
     vertical-align: -3px;
   }
 
-  .check_boxes, .radio-group {
+  .collection_check_boxes .check_boxes, .radio-group {
     vertical-align: -3px;
     margin-left: $label_width + (2 * $label_horizontal_margin);
     .hint{
@@ -69,10 +69,20 @@ $label_horizontal_margin: 10px;
     }
   }
 
-  label.collection_check_boxes {
-    margin: 0;
-    vertical-align: -2px;
-    margin-left:   2px;
+  .input.check_boxes{
+    input.check_boxes{
+      display: list-item;
+      margin-left: 0;
+      //vertical-align: -3px;
+      margin-left: $label_width + (2 * $label_horizontal_margin);
+      &+label{
+        position: relative;
+        left: $label_width + (4 * $label_horizontal_margin);
+        top: -23px;
+        margin: 0;
+        float: none;
+      }
+    }
   }
 
   .link-field{
