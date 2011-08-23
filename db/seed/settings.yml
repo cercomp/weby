@@ -1,0 +1,14 @@
+per_page:
+  id: 1
+  name: 'per_page'
+  value: '5,15,30,60,100'
+
+per_page_default:
+  id: 2
+  name: 'per_page_default'
+  value: '25'
+
+default_locale:
+  id: 3
+  name: 'default_locale'
+  value: 'pt-BR'

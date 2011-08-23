@@ -16,7 +16,7 @@ User.create do |u|
 end
 
 load(Rails.root.join('db', 'seed', 'default_per_page.rb').to_s)
-load(Rails.root.join('db', 'seed', 'default_settings.rb').to_s)
+#load(Rails.root.join('db', 'seed', 'default_settings.rb').to_s)
 #Fixtures.create_fixtures("#{Rails.root}/db/seed", "*.yml")  
 
 # Permissões Globais
