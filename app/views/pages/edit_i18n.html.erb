@@ -2,10 +2,14 @@
   <legend><%= t "edit_param", :param => t("i18n") %></legend>
 
   <%= simple_form_for @page, :url => update_i18n_site_page_path(@site, @page), :html => { :method => :post } do |f| %>
-    <% f.fields_for :page_i18ns do |i18n| %>
+    <%= f.fields_for :page_i18ns do |i18n| %>
       <br />
       <hr />
       <h1><%= t i18n.object.locale.name %></h1>
+      <div class="remove-i18n">
+        <%= i18n.label :_destroy %>
+        <%= i18n.check_box :_destroy %>
+      </div>
       <%= render 'page_i18ns/form', :f => i18n %>
      <% end %>
       

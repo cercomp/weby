@@ -377,6 +377,7 @@ en:
   # Locales translation
   pt-BR: "Portuguese (Brazil)"
   en: "English"
+  es: "Espanish"
 
   date:
     formats:
