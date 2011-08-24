@@ -67,7 +67,6 @@
 
   <% if check_permission(PagesController, ["edit"]) %>
     <%= link_to t("edit"), edit_site_page_path(@site, @page) %> |
-    <%= link_to t("edit_i18ns", :param => t('i18n')), edit_i18n_site_page_path(@site, @page) %> |
     <%# Verifica se todas as i18n já foram criadas %>
     <% if @page.page_i18ns.size < Locale.all.size %>
       <%= link_to t("add_param", :param => t('i18n')), add_i18n_site_page_path(@site, @page) %> |

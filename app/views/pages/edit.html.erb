@@ -35,9 +35,18 @@
     <%= f.input :date_begin_at, :order => [:year, :month, :day], :use_month_numbers => true, :label =>  (t"date_param", :param => t("begin")), :as => :datetime %>
     <%= f.input :date_end_at, :order => [:year, :month, :day], :use_month_numbers => true, :label => (t"date_param", :param => t("end")), :id => "datapicker", :as => :datetime %>
 
-    <%= f.fields_for :page_i18ns do |i18nbuilder| %>
-      <%= i18nbuilder.input :locale_id, :as => :hidden %>
-      <%= render 'page_i18ns/form', :f => i18nbuilder %>
+    <%= f.fields_for :page_i18ns do |i18n| %>
+      <%= i18n.input :locale_id, :as => :hidden %>
+      <br />
+      <hr />
+      <h1><%= t i18n.object.locale.name %></h1>
+      <% unless Setting.get('default_locale') == i18n.object.locale.name %>
+        <div class="remove-i18n">
+          <%= i18n.label :_destroy, t('mark_to_destroy') %>
+          <%= i18n.check_box :_destroy %>
+        </div>
+      <% end %>
+      <%= render 'page_i18ns/form', :f => i18n %>
     <% end %>
 
     <%= f.input :source, :label => t("source"), :hint => t("field_required") %> 

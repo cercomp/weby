@@ -139,19 +139,6 @@ class PagesController < ApplicationController
     @langs = Locale.all - @page.page_i18ns.map{|p| p.locale}
   end
 
-  def edit_i18n
-    @page = Page.find(params[:id])
-  end
-
-  def update_i18n
-    @page = Page.find(params[:id])
-    if @page.update_attributes(params[:news])
-      redirect_to :site_page, :notice => 'Alterado com sucesso'
-    else
-      render :edit_i18n, :notice => 'Erros foram encontrados...'
-    end
-  end
-
   def create_i18n
     @page_i18n = PageI18n.new(params[:page_i18n])
     if @page_i18n.save

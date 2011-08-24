@@ -41,8 +41,6 @@ Webyge::Application.routes.draw do
       member do 
         get :toggle_field
         get :add_i18n
-        get :edit_i18n
-        post :update_i18n
         post :create_i18n
       end 
       collection do

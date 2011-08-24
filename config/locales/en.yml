@@ -180,6 +180,7 @@ en:
 #---M---#
   main: "Main"
   manage_roles: "Manage Roles"
+  mark_to_destroy: "Mark to Destroy"
   medium: "Medium"
   menu: 
     one: "Menu"

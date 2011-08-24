@@ -180,6 +180,7 @@ pt-BR:
 #---M---#
   main: "Principal"
   manage_roles: "Gerenciar Papéis"
+  mark_to_destroy: "Marcar para Remoção"
   medium: "Médio"
   menu: 
     one: "Menu"
