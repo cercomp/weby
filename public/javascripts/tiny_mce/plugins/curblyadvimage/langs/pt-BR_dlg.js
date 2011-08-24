@@ -1,4 +1,4 @@
-tinyMCE.addI18n('pt.advimage_dlg',{
+tinyMCE.addI18n('pt-BR.advimage_dlg',{
 available_images:"Imagens disponíveis",
 upload_new_image:"Novo Upload",
 loading_images:"Carregando imagens...",
