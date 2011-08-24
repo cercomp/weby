@@ -73,7 +73,7 @@ aside.right menu li {background-color: black;}
 header nav menu li a {  background-color: black;  border: 1px solid white;}
 
 aside.right menu li.sub {  background-color: white !important; }
-aside.left menu li, li:hover {  background-color: white !important;}
+aside.left menu li, aside.left menu li:hover {  background-color: white !important;}
 aside.left menu li.sub {  background-color: white !important;}
 aside.left menu li.sub:hover {  background-color: white !important;}
 header nav menu li a:hover {  background-color: black;  text-decoration: underline;}
@@ -109,6 +109,9 @@ fieldset.login_embedded label {   color: white;}
 footer section#info {  color: white;}
 section#content article > p, section#content article > summary { color: white;}
 
+#users_list_roles li:hover {
+  text-decoration: underline
+}
 
 section#content article > p, section#content article > summary { color: white;}
 article, summary :hover { background-color: black;}
