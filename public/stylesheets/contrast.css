@@ -116,3 +116,7 @@ section#content article > p, section#content article > summary { color: white;}
 section#content article > p, section#content article > summary { color: white;}
 article, summary :hover { background-color: black;}
 
+#main-tabs li:hover {
+  background-color: black !important;
+  text-decoration: underline;
+}
