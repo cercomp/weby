@@ -73,6 +73,9 @@ replace_desc:"Localizar/substituir"
 advimage:{
 image_desc:"Inserir/editar imagem"
 },
+curblyadvimage:{
+image_desc:"Inserir/editar imagem"
+},
 advlink:{
 link_desc:"Inserir/editar hyperlink"
 },
