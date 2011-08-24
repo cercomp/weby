@@ -84,6 +84,7 @@ section#content {
   }
 
   section#content section#pages {
+  	width: 99%;
     font-family: Verdana;
     font-weight: Normal;
     padding-bottom:5px; }
