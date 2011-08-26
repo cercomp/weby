@@ -44,7 +44,12 @@
       <% if @menu_parent %>
         <%= menus_form.input "category", :input_html => {:value => "#{@menu_parent.category}"}, :as => :hidden %>
       <% else %>
-        <%= menus_form.input :category, :collection => @site.menu_categories, :label => t("category"), :add => ["categoria", "#menu_sites_menus_attributes_0_category"] %>
+        <div class="input select">
+          <%= menus_form.label :category, t("category"), :class => "select", :for => "menu-category" %>
+          <%= menus_form.select :category, @site.menu_categories, {}, :id => "menu-category" %>
+          <%= link_to_function image_tag("add.png", :title => "Adicionar um acategoria"),
+                "addToSelect('#menu-category')", :title => "Adicionar um acategoria" %>
+        </div>
       <% end %>
     <% end %>
 
