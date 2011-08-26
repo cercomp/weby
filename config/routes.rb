@@ -75,7 +75,7 @@ Webyge::Application.routes.draw do
     resources :groups, :chats, :rights, :archives, :admin
   end
 
-  resources :groups, :menus, :chats, :rights, :archives, :user_sessions, :admin, :csses, :settings
+  resources :groups, :chats, :rights, :archives, :user_sessions, :admin, :settings
   resources :password_resets, :only => [ :new, :create, :edit, :update ]
   resources :account, :controller => "users"
   resources :users do

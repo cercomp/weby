@@ -87,7 +87,7 @@ module ApplicationHelper
   # Define mensagens personalizadas
   def flash_message
     messages = ""
-    [:notice, :info, :warning, :error].each do |type|
+    [:notice, :info, :warning, :error, :alert].each do |type|
       if flash[type]
         messages << content_tag('div', flash.now[type], :class => "flash #{type}")
         # Limpa a mensagem

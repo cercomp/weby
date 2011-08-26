@@ -9,5 +9,9 @@
     <pre class="brush: css"><%= @css.css %></pre>
   </p>
 
-  <%= link_to t('edit'), edit_site_css_path(@site, @css) %> | <%= link_to t('back'), :back %>
+  <% if @site.id == @css.owner.id %>
+    <%= link_to t('edit'), edit_site_css_path(@site, @css) %> |
+  <% end %>
+
+  <%= link_to t('back'), :back %>
 </fieldset>

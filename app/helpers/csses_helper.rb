@@ -6,16 +6,28 @@ module CssesHelper
         if @site.id == cssrel.site.id
           case permission.to_s
           when "show"
-            menu += link_to(t('show'), {:action => 'show', :id => cssrel.css.id}, :class => 'icon icon-show', :alt => t('show'), :title => t('show')) + " "
+            menu += link_to(t('show'), [@site, cssrel.css], :class => 'icon icon-show',
+                    :alt => t('show'), :title => t('show')) + " "
+
           when "edit"
-            menu += link_to(t("edit"), {:action => "edit", :id => cssrel.css.id}, :class => 'icon icon-edit', :alt => t('edit'), :title => t('edit')) + " "
+            menu += link_to(t("edit"), edit_site_css_path(@site, cssrel.css), :class => 'icon icon-edit',
+                    :alt => t('edit'), :title => t('edit')) + " "
+
+          when "destroy"
+            # verify if css belongs only to owner
+            if cssrel.css.sites.count == 1
+              menu += link_to(t("destroy"), site_css_path(@site, cssrel.css), :class => 'icon icon-del',
+                      :confirm => t("are_you_sure"), :method => :delete, :alt => t("destroy"), :title => t("destroy")) + " "
+            end
           end
         else
           case permission.to_s
           when "show"
-            menu += link_to(t('show'), {:action => 'show', :id => cssrel.css.id}, :class => 'icon icon-show', :alt => t('show'), :title => t('show')) + " "
+            menu += link_to(t('show'), [@site, cssrel.css], :class => 'icon icon-show',
+                    :alt => t('show'), :title => t('show')) + " "
           when "copy"
-            menu += link_to(t('copy'), {:action => 'copy', :id => cssrel.css.id}, :class => 'icon icon-fav', :alt => t('copy'), :title => t('copy')) + " "
+            menu += link_to(t('copy'), copy_site_css_path(@site, cssrel.css), :class => 'icon icon-fav',
+                    :alt => t('copy'), :title => t('copy')) + " "
           end
         end
       end

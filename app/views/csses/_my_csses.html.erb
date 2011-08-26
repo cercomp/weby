@@ -2,9 +2,9 @@
 <%= paginate my_csses, :param_name => :page_my_csses, :window => 1 %>
 <table class='list'>
   <thead>
-    <th><%= t'name' %></th>
-    <th><%= t'publish' %></th>
-    <th></th>
+    <th><%= t("name") %></th>
+    <th><%= t("publish") %></th>
+    <th><%= t("actions") %></th>
   </thead>
   <tbody>
     <% my_csses.each do |site_css| %>

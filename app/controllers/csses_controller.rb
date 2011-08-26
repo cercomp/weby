@@ -4,6 +4,9 @@ class CssesController < ApplicationController
   before_filter :require_user
   before_filter :check_authorization
 
+  # Verify if current site is owner of the edited/updated css
+  before_filter :verify_ownership, :only => [:edit, :update, :destroy]
+
   respond_to :html, :xml, :js
 
   def index
@@ -50,7 +53,6 @@ class CssesController < ApplicationController
   end
 
   def edit
-    @css = Css.find(params[:id])
   end
 
   def create
@@ -68,8 +70,6 @@ class CssesController < ApplicationController
   end
 
   def update
-    @css = Css.find(params[:id])
-
     respond_to do |format|
       if @css.update_attributes(params[:css])
         format.html { redirect_to(site_csses_path, :notice => t('successfully_updated')) }
@@ -78,6 +78,25 @@ class CssesController < ApplicationController
         format.html { redirect_to :back }
         format.xml  { render :xml => @css.errors, :status => :unprocessable_entity }
       end
+    end
+  end
+
+  def destroy
+    @css = Css.find(params[:id])
+
+    # Verify if this css has more that one site
+    if @css.sites.count > 1
+      flash[:warning] = t("no_permission_to_action")
+      redirect_to site_csses_url
+
+    else
+      if @css.destroy
+        flash[:notice] = t("destroyed_param", :param => t("css.one"))
+      else
+        flash[:alert] = t("destroyed_param_error", :param => t("css.one"))
+      end
+
+      redirect_to site_csses_path(@site)
     end
   end
 
@@ -108,7 +127,7 @@ class CssesController < ApplicationController
       if @css.save
         flash[:notice] = t"successfully_updated"
       else
-        flash[:notice] = t"error_updating_object"
+       flash[:notice] = t"error_updating_object"
       end
     end
 
@@ -130,5 +149,17 @@ class CssesController < ApplicationController
     end
 
     redirect_back_or_default site_csses_path(@site)
+  end
+
+  private
+  def verify_ownership
+    @css = Css.find(params[:id])
+
+    logger.debug @css.owner
+
+    unless @site.id == @css.owner.id
+      flash[:warning] = t("no_permission_to_action")
+      redirect_to site_css_url
+    end
   end
 end

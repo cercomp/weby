@@ -7,6 +7,7 @@ en:
   access_denied_page: "You are not allowed to see this page!"
   account: "Account"
   action: "Action" 
+  actions: "Actions" 
   activate_deactivate: "Activate/Deactivate"
   active: "Active?"
   add_param: "Add %{param}"
@@ -75,6 +76,7 @@ en:
   date_param: "Date of %{param}" 
   destroy: "Destroy"  
   destroyed_param: "%{param} destroyed"
+  destroyed_param_error: "Error when remove %{param}"
   description: "Description"
   disable: 
     fem: "Disable"
@@ -217,6 +219,7 @@ en:
     masc: "New %{param}"
   no_need_to_login: "You should not be logged in to access this page."
   no_mail: "No user was found with that email address."
+  no_permission_to_action: "Yout don't have permission to execute this action"
   no_permission_to_activate_deactivate: "You don´t have permission to Activate/Deactivate"
   none_category: "No category"
   none_category_menu: "None %{param} menu"

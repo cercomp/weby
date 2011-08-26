@@ -60,7 +60,7 @@ class Site < ActiveRecord::Base
   has_many :feedbacks
   has_many :banners
 
-  has_many :sites_csses
+  has_many :sites_csses, :dependent => :destroy
   has_many :csses, :through => :sites_csses
 
   # FIXME testando relação de componentes
