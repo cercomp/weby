@@ -4,6 +4,7 @@
   <thead>
     <th><%= t("name") %></th>
     <th><%= t("publish") %></th>
+    <th><%= t("sites_followers") %></th>
     <th><%= t("actions") %></th>
   </thead>
   <tbody>
@@ -11,6 +12,7 @@
       <tr>
         <td> <%= site_css.css.name %> </td>
         <td align="center"> <%= raw toggle_field(site_css, "publish") %> </td>
+        <td> <%= list_css_sites(site_css) %> </td>
         <td> <%= raw make_menu_css(site_css) %> </td>
       </tr>
     <% end %>

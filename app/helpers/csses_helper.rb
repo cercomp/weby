@@ -44,4 +44,14 @@ module CssesHelper
     end
     raw menu
   end
+
+  def list_css_sites site_css
+    max_lenght = 45
+    result = (site_css.css.sites - [@site]).map{|s| s.name }.join(", ")
+    if result.size > max_lenght
+      raw "#{result[0..max_lenght]}<span class=\"ellipsis\">...</span><span style=\"display:none\">#{result[max_lenght..-1]}</span>"
+    else
+      raw result
+    end
+  end
 end

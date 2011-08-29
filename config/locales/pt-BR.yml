@@ -311,6 +311,7 @@ pt-BR:
     one: "Componente"  
     other: "Componentes"  
   site_id: "Site ID"
+  sites_followers: "Sites que seguem esse estilo"
   size: "Tamanho"
   source: "Fonte"
   status: "Status"
