@@ -49,7 +49,7 @@ module CssesHelper
     max_lenght = 45
     result = (site_css.css.sites - [@site]).map{|s| s.name }.join(", ")
     if result.size > max_lenght
-      raw "#{result[0..max_lenght]}<span class=\"ellipsis\">...</span><span style=\"display:none\">#{result[max_lenght..-1]}</span>"
+      raw "#{result[0..max_lenght]}<a href=\"#\" class=\"more\"> ...mais</a><span style=\"display:none\">#{result[max_lenght..-1]}</span>"
     else
       raw result
     end
