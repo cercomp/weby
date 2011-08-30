@@ -9,7 +9,7 @@
   <p> <h2> <%= @banner.text %> </h2> </p>
   <p>
     <h3> <%= t("url") %> : <%= link_to h @banner.url %> </h3>
-    <h3> <%= "#{t("category")} : #{@banner.category}" unless @banner.category.empty? %> </h3>
+    <h3> <%= "#{t("categories")} : #{@banner.categories.join(', ')}" unless @banner.categories.empty? %> </h3>
   </p>
 
   <%= link_to t("edit"), edit_site_banner_path(@site, @banner) %> | <%= link_to t("list_all.masc"), site_banners_path(@site) %> | <%= link_to t("back"), :back %>

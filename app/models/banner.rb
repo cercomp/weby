@@ -1,8 +1,9 @@
 class Banner < ActiveRecord::Base
+  acts_as_taggable_on :categories
+
   default_scope :conditions => { :hide => false }, :order => 'position,id DESC'
   
   scope :unhide, :conditions => { :hide => false }, :order => 'position,id DESC'
-  scope :category, lambda { |cat| where("publish = true AND category = ?", cat)}
 
   scope :titles_or_texts_like, lambda { |str|
       where("LOWER(title) like :str OR LOWER(text) like :str", { :str => "%#{str.try(:downcase)}%"})}

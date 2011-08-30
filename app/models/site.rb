@@ -27,15 +27,6 @@ class Site < ActiveRecord::Base
              {:site_id => self.id}]).order(:owner, :site_id, :css_id)
   end
 
-  # TODO tentar agrupar os 3 metodos a seguir em apenas 1
-  def page_categories
-    self.pages.except(:order, :select).find(:all, :select => 'DISTINCT category').map{ |m| m.category }
-  end
-
-  def banner_categories
-    self.banners.except(:order, :select).find(:all, :select => 'DISTINCT category').map{ |m| m.category }
-  end
-
   def menu_categories
     self.sites_menus.except(:order, :select).find(:all, :select => 'DISTINCT category').map{ |m| m.category }
   end

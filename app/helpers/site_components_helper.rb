@@ -42,11 +42,11 @@ module SiteComponentsHelper
     cur_setting = eval(@site_component.settings);
     {
       'banner_horizontal' => {
-        'category' => ['<select name="category">', options_for_select(@site.banner_categories, cur_setting[:category]), '</select>'].join
+        'category' => ['<select name="category">', options_for_select(Banner.category_counts.map{|b| b.name}, cur_setting[:category]), '</select>'].join
       },
       
       'banner_side' => {
-        'category' => ['<select name="category">', options_for_select(@site.banner_categories, cur_setting[:category]), '</select>'].join
+        'category' => ['<select name="category">', options_for_select(Banner.category_counts.map{|b| b.name}, cur_setting[:category]), '</select>'].join
       },
       
       'menu_side' => {

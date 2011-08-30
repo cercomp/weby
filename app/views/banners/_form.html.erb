@@ -30,7 +30,9 @@
   <%= f.input :title, :label => t("title"), :hint => t("field_required") %>
   <%= f.input :text, :label => t("text"), :input_html => {:size => "44x6"}, :hint => t("field_required"), :as => :text %>
   <%= f.input :url, :label => t("url"), :hint => t("field_required"), :as => :url %>
-  <%= f.input :category, :collection => @site.banner_categories, :label => t("category"), :add => ["categoria", "#banner_category"] %>
+
+  <%= f.input :category_list, :label => t('categories'), :hint => t('page_categories_help') %>
+  
   <%= f.input :publish, :label => t("publish"), :hint => t("publish_help"), :as => :boolean %>
   <%= f.input :hide, :label => t("hide"), :hint => t("hide_help"), :as => :boolean %>
   <%= f.input :user_id, :input_html => {:value => "#{@current_user.id}"}, :as => :hidden %>
