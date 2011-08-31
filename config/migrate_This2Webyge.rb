@@ -83,12 +83,12 @@ class Migrate_this2weby
       end
       
       # Migrando estilos
-      select_estilo = "SELECT * FROM estilo WHERE id='#{this_site['id_estilo']}'"
       puts "\tSELECIONANDO todos os estilos" if @verbose
+      select_estilo = "SELECT * FROM estilo WHERE id='#{this_site['id_estilo']}'"
       this_estilo = @con_this.exec(select_estilo)
 
       # Inserindo componentes por omissão para portais vindos do This
-      puts "\tINSERINDO estruturando de componentes...\n"
+      puts "\tINSERINDO estruturação de componentes...\n"
       insert_site_comp = <<EOF
         INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'first_place','{}','weby_bar',1,true);
         INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'first_place','{}','institutional_bar',2,true);
@@ -109,7 +109,7 @@ EOF
       @con_weby.exec(insert_site_comp)
 
       unless this_estilo.first.nil?
-      weby_estilo = <<EOF
+weby_estilo = <<EOF
 /* Principal */
 /* Fundo do site */
   html{ background: #{this_estilo.first['body_background']}; }
@@ -417,7 +417,7 @@ EOF
           autor ||= 1
           insert_pages = "INSERT INTO pages (created_at,updated_at,date_begin_at,date_end_at,site_id,author_id,url,source,publish,front,type,position) VALUES ('#{dt_cadastro}','#{dt_cadastro}','#{dt_inicio}','#{dt_fim}','#{@convar["#{this_site['site_id']}"]['weby']}','#{autor}','#{pre_treat(noticia['url'])}','#{pre_treat(noticia['fonte'])}',#{status},#{capa},'News',#{position}) RETURNING id"
           page = @con_weby.exec(insert_pages)
-          insert_pages_i18n = "INSERT INTO page_i18ns (page_id,locale_id,text,title,summary) VALUES ('#{page[0]['id']}',1,'#{pre_treat(noticia['texto'])}','#{pre_treat(noticia['titulo'])}','#{pre_treat(noticia['resumo'])}')"
+          insert_pages_i18n = "INSERT INTO page_i18ns (page_id,locale_id,text,title,summary) VALUES ('#{page[0]['id']}',1,E'#{pre_treat(noticia['texto'])}','#{pre_treat(noticia['titulo'])}','#{pre_treat(noticia['resumo'])}')"
           @con_weby.exec(insert_pages_i18n)
           puts "\t\t\tINSERINDO (notícias) página: (#{page[0]['id']}) no weby\n" if @verbose
           insert_sites_pages = "INSERT INTO sites_pages (site_id,page_id) VALUES ('#{@convar["#{this_site['site_id']}"]['weby']}','#{page[0]['id']}')"
@@ -440,9 +440,9 @@ EOF
           data_publica = ((pagina['dt_publica'].nil?) || (/([-]+)/.match("#{pagina['dt_publica']}").nil?)) ? Time.now + 30000000 : pagina['dt_publica']
           autor = @convar["#{this_site['site_id']}"]['usuarios'][pagina['autor']]
           autor ||= 1
-          insert_pages = "INSERT INTO pages (created_at,date_begin_at,date_end_at,site_id,author_id,publish,front,type) VALUES ('#{Time.now}','#{Time.now}','#{data_publica}','#{@convar["#{this_site['site_id']}"]['weby']}','#{pre_treat(autor)}',true,false,'News') RETURNING id"
+          insert_pages = "INSERT INTO pages (created_at,date_begin_at,date_end_at,site_id,author_id,publish,front,type) VALUES ('#{Time.now}','#{Time.now}','#{data_publica}','#{@convar["#{this_site['site_id']}"]['weby']}','#{autor}',true,false,'News') RETURNING id"
           page = @con_weby.exec(insert_pages)
-          insert_pages_i18n = "INSERT INTO page_i18ns (page_id,locale_id,title,text) VALUES ('#{page[0]['id']}',1,'#{pre_treat(pagina['titulo'])}','#{pre_treat(pagina['texto'])}')"
+          insert_pages_i18n = "INSERT INTO page_i18ns (page_id,locale_id,title,text) VALUES ('#{page[0]['id']}',1,'#{pre_treat(pagina['titulo'])}',E'#{pre_treat(pagina['texto'])}')"
           @con_weby.exec(insert_pages_i18n)
           puts "\t\t\tINSERINDO (avulsa) página: (#{page[0]['id']}) no weby\n" if @verbose
           insert_sites_pages = "INSERT INTO sites_pages (site_id,page_id) VALUES ('#{@convar["#{this_site['site_id']}"]['weby']}','#{page[0]['id']}')"
@@ -478,7 +478,7 @@ EOF
           autor ||= 1
           insert_pages = "INSERT INTO pages (created_at,updated_at,date_begin_at,date_end_at,event_begin,event_end,site_id,author_id,url,source,publish,front,type,kind,event_email,local,position) VALUES ('#{dt_cadastro}','#{dt_cadastro}','#{dt_inicio}','#{dt_fim}','#{inicio}','#{fim}','#{@convar["#{this_site['site_id']}"]['weby']}','#{autor}','#{pre_treat(evento['url'])}','#{pre_treat(evento['fonte'])}',#{status},#{capa},'Event','#{tipo}','#{evento['email']}','#{pre_treat(evento['local_realiza'])}',#{position}) RETURNING id"
           page = @con_weby.exec(insert_pages)
-          insert_pages_i18n = "INSERT INTO page_i18ns (page_id,locale_id,text,title,summary) VALUES ('#{page[0]['id']}',1,'#{pre_treat(evento['texto'])}','#{pre_treat(evento['titulo'])}','#{pre_treat(evento['resumo'])}')"
+          insert_pages_i18n = "INSERT INTO page_i18ns (page_id,locale_id,text,title,summary) VALUES ('#{page[0]['id']}',1,E'#{pre_treat(evento['texto'])}','#{pre_treat(evento['titulo'])}','#{pre_treat(evento['resumo'])}')"
           @con_weby.exec(insert_pages_i18n)
           puts "\t\t\tINSERINDO (eventos) página: (#{page[0]['id']}) no weby\n" if @verbose
           insert_sites_pages = "INSERT INTO sites_pages (site_id,page_id) VALUES ('#{@convar["#{this_site['site_id']}"]['weby']}','#{page[0]['id']}')"
@@ -506,9 +506,19 @@ EOF
           autor ||= 1
           status = inform['status'] == 'P' ? true : false
           position = inform['posicao'].to_i == 0 ? 'NULL' : inform['posicao']
-          insert_banner = "INSERT INTO banners (created_at,updated_at,date_begin_at,date_end_at,site_id,user_id,text,url,title,publish,hide,width,category,position) VALUES ('#{dt_cadastro}','#{dt_cadastro}','#{dt_inicio}','#{dt_fim}','#{@convar["#{this_site['site_id']}"]['weby']}','#{autor}','#{pre_treat(inform['texto'])}','#{pre_treat(inform['url'])}','#{pre_treat(inform['assunto'])}',#{status},false,'153','#{pre_treat(inform['lado'])}',#{pre_treat(position)}) RETURNING id"
+          insert_banner = "INSERT INTO banners (created_at,updated_at,date_begin_at,date_end_at,site_id,user_id,text,url,title,publish,hide,width,position) VALUES ('#{dt_cadastro}','#{dt_cadastro}','#{dt_inicio}','#{dt_fim}','#{@convar["#{this_site['site_id']}"]['weby']}','#{autor}',E'#{pre_treat(inform['texto'])}','#{pre_treat(inform['url'])}','#{pre_treat(inform['assunto'])}',#{status},false,'153',#{pre_treat(position)}) RETURNING id"
           banner = @con_weby.exec(insert_banner)
           puts "\t\t\tINSERIRNDO banner (#{banner[0]['id']}) no weby\n" if @verbose
+					# Verificando e selecionando id para rotulamento
+					sql_select_tag = "SELECT id FROM tags WHERE name='#{pre_treat(inform['lado'])}'"
+					select_tag = @con_weby.exec(sql_select_tag)
+					if select_tag.first.nil?
+						insert_tag = "INSERT INTO tags (name)VALUES('#{pre_treat(inform['lado'])}') RETURNING id"
+						select_tag = @con_weby.exec(insert_tag)
+					end
+					puts "\t\t\tINSERINDO rotulamento"
+					insert_tagging = "INSERT INTO taggings (tag_id,taggable_id,taggable_type,context)VALUES('#{select_tag[0]['id']}','#{banner[0]['id']}','Banner','categories')"
+					@con_weby.exec(insert_tagging)
           # Relacionando notícias na variável de conversão
           @convar["#{this_site['site_id']}"]["informativos"]["#{inform['id']}"] = banner[0]['id']
         end
@@ -569,7 +579,7 @@ EOF
         modificador ||= 1
         insert_page = "INSERT INTO pages (created_at,date_begin_at,date_end_at,site_id,author_id,publish,front,type) VALUES ('#{Time.now}','#{Time.now}','#{Time.now}','#{site_id}','#{modificador}',true,false,'News') RETURNING id"
         page_id = @con_weby.exec(insert_page)
-        insert_page_i18n = "INSERT INTO page_i18ns (page_id,locale_id,title,text) VALUES ('#{page_id[0]['id']}',1,'#{pre_treat(entry['texto_item'])}','#{pre_treat(entry['texto'])}')"
+        insert_page_i18n = "INSERT INTO page_i18ns (page_id,locale_id,title,text) VALUES ('#{page_id[0]['id']}',1,'#{pre_treat(entry['texto_item'])}',E'#{pre_treat(entry['texto'])}')"
         @con_weby.exec(insert_page_i18n)
         insert_site_page = "INSERT INTO sites_pages (site_id,page_id) VALUES ('#{site_id}','#{page_id[0]['id']}')"
 				@con_weby.exec(insert_site_page)
@@ -638,11 +648,10 @@ EOF
   def pre_treat(string)
     unless string.nil?
       coder = HTMLEntities.new
-      str = Iconv.conv("UTF-8//IGNORE","ASCII","#{string}")
+      str = Iconv.conv("UTF-8//IGNORE//TRANSLIT","ASCII",string)
       str = @con_weby.escape(str)
       str = coder.decode(str)
     end
-    return str
   end
   # Tratamento de caracteres 
   def treat(string)
