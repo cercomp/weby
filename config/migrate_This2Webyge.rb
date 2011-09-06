@@ -108,7 +108,7 @@ EOF
 
       @con_weby.exec(insert_site_comp)
 
-      unless this_estilo.first.nil?
+      if not this_estilo.first.nil?# and site[0]['id'].to_i != 70
 weby_estilo = <<EOF
 /* Principal */
 /* Fundo do site */
@@ -301,6 +301,7 @@ EOF
 				insert into rights_roles (right_id,role_id)values(56,#{id_gerente[0]['id']});
 				insert into rights_roles (right_id,role_id)values(57,#{id_gerente[0]['id']});
 				insert into rights_roles (right_id,role_id)values(58,#{id_gerente[0]['id']});
+				insert into rights_roles (right_id,role_id)values(59,#{id_gerente[0]['id']});
 				insert into rights_roles (right_id,role_id)values(9,#{id_editor[0]['id']});
 				insert into rights_roles (right_id,role_id)values(10,#{id_editor[0]['id']});
 				insert into rights_roles (right_id,role_id)values(11,#{id_editor[0]['id']});

@@ -347,3 +347,9 @@
   name: "Ativar usuário"
   controller: users
   action: toggle_field
+
+59:
+  id: 59
+  name: "Ordenar Componentes"
+  controller: site_components
+  action: sort

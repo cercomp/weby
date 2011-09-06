@@ -31,7 +31,9 @@
             <td align="center"><%= raw toggle_field(site_component, "publish") %></td>
             <td>
               <%= raw make_menu(site_component, :except => "show") %>
-              <span class='handle icon icon-drag'><%= t("move") %></span>
+          		<% if check_permission(SiteComponentsController, 'sort') %>
+              	<span class='handle icon icon-drag'><%= t("move") %></span>
+							<% end %>
             </td>
           </tr>
         <% end %>
