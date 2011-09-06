@@ -156,7 +156,7 @@ en:
 #---L---#
   last_login: "Last login %{param}"
   last_name: "Last name"
-  last_request: "Last request at"
+  last_request: "Last action at"
   layout: "Layout"
   left: "Left"
   licence: "© UFG, All Rights Reserved"

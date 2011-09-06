@@ -1,18 +1,16 @@
 <fieldset>
-  <legend> <%= t("my_profile") %> </legend>
+  <legend> <%= t('user.one') %> </legend>
 
-  <p> <b><%= t"name" %>:</b> <%= h @user.first_name%> <%= h @user.last_name %> </p>
-  <p> <b><%= t"phone" %>:</b> <%= h @user.phone %> </p>
-  <p> <b><%= t"mobile" %>:</b> <%=h @user.mobile %> </p>
-  <p> <b><%= t"login" %>:</b> <%=h @user.login %> </p>
-  <p> <b><%= t"login_count" %>:</b> <%=h @user.login_count %> </p>
-  <p> <b><%= t"last_request" %>:</b> <%=h @user.last_request_at %> </p>
-  <p> <b><%= t"last_login", :param => t("at") %>:</b> <%=h @user.last_login_at %> </p>
-  <p> <b><%= t"current_login", :param => t("at")  %>:</b> <%=h @user.current_login_at %> </p>
-  <p> <b><%= t"last_login", :param => t("ip") %>:</b> <%=h @user.last_login_ip %> </p>
-  <p> <b><%= t"current_login", :param => t("ip") %>:</b> <%=h @user.current_login_ip %> </p>
+  <div>
+    <h1><%= @user.first_name + " " + @user.last_name %></h1>
+    <p> <b><%= t('email') %>:</b> <%= @user.email %> </p>
+    <p> <b><%= t('phone') %>:</b> <%= @user.phone %> </p>
+    <p> <b><%= t('mobile') %>:</b> <%= @user.mobile %> </p>
+    <p> <b><%= t('last_request') %>:</b> <%= @user.last_request_at.to_s(:short) %> </p>
+  </div>
 
-  <%= link_to t('edit'), :controller => 'users', :action => "edit", :id => @user.id %> | 
-  <%= link_to t("list_all.masc"), :controller => 'users', :action => 'index' %> | 
+  <% if @user.id == @current_user.id or check_permission(UsersController, 'edit') %>
+    <%= link_to t('edit'), :controller => 'users', :action => "edit", :id => @user.id %> |
+  <% end %>
   <%= link_to t('back'), :back %>
 </fieldset>
