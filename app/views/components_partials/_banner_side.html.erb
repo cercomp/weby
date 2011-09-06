@@ -1,5 +1,5 @@
 <div  id="banners_right">
-  <% @banners = @site.banners.tagged_with(settings[:category]) %>
+  <% @banners = @site.banners.published.tagged_with(settings[:category]) %>
   <% @banners.each do |b| %>
     <% unless b.repository.nil? %>
       <% #TODO: Trocar id para class %>

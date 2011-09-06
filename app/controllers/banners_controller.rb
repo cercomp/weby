@@ -67,7 +67,7 @@ class BannersController < ApplicationController
       if @banner.update_attributes("#{params[:field]}" => (@banner[params[:field]] == 0 or not @banner[params[:field]] ? true : false))
         flash[:notice] = t"successfully_updated"
       else
-        flash[:notice] = t"error_updating_object"
+        flash[:warning] = t"error_updating_object"
       end
     end
     redirect_to :back

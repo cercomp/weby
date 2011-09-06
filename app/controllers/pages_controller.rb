@@ -12,8 +12,13 @@ class PagesController < ApplicationController
     params[:type] ||= 'News'
 
     @pages = @site.pages.titles_like(params[:search])
-    @pages = @pages.except(:order).order(sort_column + " " + sort_direction).
+		if current_user
+	    @pages = @pages.except(:order).order(sort_column + " " + sort_direction).
                 page(params[:page]).per(per_page)
+		else
+	    @pages = @pages.published.except(:order).order(sort_column + " " + sort_direction).
+               	page(params[:page]).per(per_page)
+		end
 
     @tiny_mce = tiny_mce
     @pages = @pages.published if @tiny_mce
