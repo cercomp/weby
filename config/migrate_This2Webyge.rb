@@ -9,6 +9,7 @@ require 'yaml'
 require 'cgi'
 require 'htmlentities'
 require 'iconv'
+require 'pp'
  
 # Classe par migração do banco
 class Migrate_this2weby
@@ -82,11 +83,6 @@ class Migrate_this2weby
         @convar["#{this_site['site_id']}"]["weby"] = site[0]['id']
       end
       
-      # Migrando estilos
-      puts "\tSELECIONANDO todos os estilos" if @verbose
-      select_estilo = "SELECT * FROM estilo WHERE id='#{this_site['id_estilo']}'"
-      this_estilo = @con_this.exec(select_estilo)
-
       # Inserindo componentes por omissão para portais vindos do This
       puts "\tINSERINDO estruturação de componentes...\n"
       insert_site_comp = <<EOF
@@ -105,56 +101,60 @@ class Migrate_this2weby
         INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'home','{:quant => \"5\"}','front_news',13,true);
         INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'home','{:quant => \"5\"}','no_front_news',14,true);
 EOF
-
       @con_weby.exec(insert_site_comp)
+      
+			# Migrando estilos
+      puts "\tSELECIONANDO todos os estilos" if @verbose
+      select_estilo = "SELECT * FROM estilo WHERE id='#{this_site['id_estilo']}'"
+      this_estilo = @con_this.exec(select_estilo)
 
       if not this_estilo.first.nil?# and site[0]['id'].to_i != 70
 weby_estilo = <<EOF
 /* Principal */
 /* Fundo do site */
-  html{ background: #{this_estilo.first['body_background']}; }
+  html{ background: #{pre_treat(this_estilo.first['body_background'])}; }
 /* Borda dos menus */ 
   header nav menu li,
-  footer nav menu li { border:1px solid #{this_estilo.first['body_background']}; }
+  footer nav menu li { border:1px solid #{pre_treat(this_estilo.first['body_background'])}; }
 /* Fundo Tabela frontal das páginas */ 
   #no_front_news table,
   #no_front_news table th,
-  #no_front_news table td { border-color: #{this_estilo.first['cor_borda_noticias']}; }
-  #no_front_news table th { background-color: #{this_estilo.first['cor_borda_noticias']}; }
+  #no_front_news table td { border-color: #{pre_treat(this_estilo.first['cor_borda_noticias'])}; }
+  #no_front_news table th { background-color: #{pre_treat(this_estilo.first['cor_borda_noticias'])}; }
 /* Cor titulo da tabela frontal das páginas */
-  #no_front_news table th { color: #{this_estilo.first['cor_letra_topo_noticias']}; }
+  #no_front_news table th { color: #{pre_treat(this_estilo.first['cor_letra_topo_noticias'])}; }
 /* Cor Letra Titulo Tabela Frontal */ 
-  #no_front_news table td a { color: #{this_estilo.first['cor_letra_link_noticias_out']}; }
+  #no_front_news table td a { color: #{pre_treat(this_estilo.first['cor_letra_link_noticias_out'])}; }
 /* Cor Letra Titulo Tabela Frontal Hover */ 
-  #no_front_news table td a:hover { color: #{this_estilo.first['cor_letra_link_noticias_over']}; }
+  #no_front_news table td a:hover { color: #{pre_treat(this_estilo.first['cor_letra_link_noticias_over'])}; }
 /* Cor Letra Tabela Frontal */ 
-  #no_front_news table td { color: #{this_estilo.first['cor_letra_noticias_resumos']}; }
+  #no_front_news table td { color: #{pre_treat(this_estilo.first['cor_letra_noticias_resumos'])}; }
 /* Cor da letra do rodape */ 
-  footer section#info { color: #{this_estilo.first['cor_letra_rodape']}; }
+  footer section#info { color: #{pre_treat(this_estilo.first['cor_letra_rodape'])}; }
 /* Menu  */
   /* Esquerdo  */
     /* Menu  */
       /* Cor */ 
-        aside.left menu li a { background-color: #{this_estilo.first['cor_mouseout']}; }
-        aside.left menu li { background-color: #{this_estilo.first['cor_mouseout']}; }
+        aside.left menu li a { background-color: #{pre_treat(this_estilo.first['cor_mouseout'])}; }
+        aside.left menu li { background-color: #{pre_treat(this_estilo.first['cor_mouseout'])}; }
       /* Cor Hover */ 
-        /* aside.left menu li:hover { background-color: #{this_estilo.first['cor_mouseover']}; } */
-        /* aside.left menu li a:hover { background-color: #{this_estilo.first['cor_mouseover']}; } */
+        /* aside.left menu li:hover { background-color: #{pre_treat(this_estilo.first['cor_mouseover'])}; } */
+        /* aside.left menu li a:hover { background-color: #{pre_treat(this_estilo.first['cor_mouseover'])}; } */
       /* Cor fonte */ 
-        aside.left menu li a { color: #{this_estilo.first['cor_letra_out']}; }
+        aside.left menu li a { color: #{pre_treat(this_estilo.first['cor_letra_out'])}; }
       /* Cor fonte hover */ 
-        aside.left menu li a:hover { color: #{this_estilo.first['cor_letra_hover']}; }
+        aside.left menu li a:hover { color: #{pre_treat(this_estilo.first['cor_letra_hover'])}; }
     /* Submenu  */
       /* Cor */ 
-        /* aside.left menu li.sub > a { background-color: #{this_estilo.first['cor_td_subitem_mouseout']}; } */
-        /* aside.left menu li.sub { background-color: #{this_estilo.first['cor_td_subitem_mouseout']}; } */
+        /* aside.left menu li.sub > a { background-color: #{pre_treat(this_estilo.first['cor_td_subitem_mouseout'])}; } */
+        /* aside.left menu li.sub { background-color: #{pre_treat(this_estilo.first['cor_td_subitem_mouseout'])}; } */
       /* Cor Hover */ 
-        /* aside.left menu li.sub:hover { background-color: #{this_estilo.first['cor_td_subitem_mouseout']}; } */
-        /* aside.left menu li.sub:hover > a { background-color: #{this_estilo.first['cor_td_subitem_mouseover']}; } */
+        /* aside.left menu li.sub:hover { background-color: #{pre_treat(this_estilo.first['cor_td_subitem_mouseout'])}; } */
+        /* aside.left menu li.sub:hover > a { background-color: #{pre_treat(this_estilo.first['cor_td_subitem_mouseover'])}; } */
       /* Cor fonte */ 
-        aside.left menu li.sub > a { color: #{this_estilo.first['cor_letra_subitem_out']}; }
+        aside.left menu li.sub > a { color: #{pre_treat(this_estilo.first['cor_letra_subitem_out'])}; }
       /* Cor fonte hover */ 
-        aside.left menu li.sub > a:hover { color: #{this_estilo.first['cor_letra_subitem_out']}; }
+        aside.left menu li.sub > a:hover { color: #{pre_treat(this_estilo.first['cor_letra_subitem_out'])}; }
     /* Menu  */
       /* Cor */
         aside.right menu li a { background-color: #{this_estilo.first['cor_mouseout2']}; }
@@ -203,21 +203,21 @@ weby_estilo = <<EOF
 /* CSS  */
 /* Estilo das páginas  */
   /* Cor Links */
-    section#content article > p a { color: #{this_estilo.first['cor_letra_links_out']}; }
+    section#content article > p a { color: #{pre_treat(this_estilo.first['cor_letra_links_out'])}; }
   /* Cor Links Hover */
-    section#content article > p a:hover { color: #{this_estilo.first['cor_letra_links_over']}; }
+    section#content article > p a:hover { color: #{pre_treat(this_estilo.first['cor_letra_links_over'])}; }
   /* Cor Letra */
     section#content article > p,
-    section#content article > summary { color: #{this_estilo.first['cor_letra_paragrafos']}; }
+    section#content article > summary { color: #{pre_treat(this_estilo.first['cor_letra_paragrafos'])}; }
   /* Cor Titulos */
     section#content article header h1,
-    section#content article header h2 {color: #{this_estilo.first['cor_letra_subtitulos']}; }
+    section#content article header h2 {color: #{pre_treat(this_estilo.first['cor_letra_subtitulos'])}; }
   /* Cor Subtitulos */
     section#content article header,
-    section#content article header summary { color: #{this_estilo.first['cor_letra_titulos']}; }
+    section#content article header summary { color: #{pre_treat(this_estilo.first['cor_letra_titulos'])}; }
   /* Avançado */
     /* Pegar todo o CSS avançado, guardar em um arquivo */
-    #{this_estilo.first['avancado']}
+    #{pre_treat(this_estilo.first['avancado'])}
 EOF
       end
       insert_css = "INSERT INTO csses (name,css) VALUES ('#{site_name}','#{pre_treat(weby_estilo)}') RETURNING id"
