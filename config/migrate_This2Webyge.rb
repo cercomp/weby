@@ -659,7 +659,7 @@ EOF
   def treat(string)
     unless string.nil?
       if string.match(/['"][^'"]*?uploads\/.*?([0-9]+).*?\/(.*?)['"]/)
-        string.gsub!(/['"][^'"]*?uploads\/.*?([0-9]+).*?\/(.*?)['"]/){|x| "'/uploads/#{@convar[$1]['weby']}/original_#{$2}'" if @convar[$1] }
+        string.gsub!(/['"][^'"]*?uploads\/.*?([0-9]+).*\/(.*?)['"]/){|x| "'/uploads/#{@convar[$1]['weby']}/original_#{$2}'" if @convar[$1] }
       end 
       if string.match(/javascript:mostrar_pagina.*?([0-9]+).*?([0-9]+).*?/) 
         string.gsub!(/['"]javascript:mostrar_pagina.*?([0-9]+).*?([0-9]+).*?;['"]/){|x| "'/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["paginas"][$1]}'" if @convar[$2] }
@@ -723,7 +723,7 @@ class Migrate_files
   def pre_treat(string)
     unless string.nil?
       coder = HTMLEntities.new
-      str = Iconv.conv("UTF-8//IGNORE","ASCII","#{string}")
+      str = Iconv.conv("UTF-8//IGNORE//TRANSLIT","ASCII",string)
       str = @con_weby.escape(str)
       str = coder.decode(str)
     end
@@ -750,7 +750,7 @@ class Migrate_files
     if @ids.empty?
       # Descobre os ids dos sites
       ls = `ls #{@from + @folders.first}`
-      ls = Iconv.conv("UTF-8//IGNORE","ASCII","#{ls}")
+      ls = Iconv.conv("UTF-8//IGNORE//TRANSLIT","ASCII",ls)
       ls.split("\n").each do |f|
         # Dentro de cada pasta teremos os ids dos sites
         # desde que  nome da pasta seja apenas números
@@ -810,7 +810,7 @@ class Migrate_files
         repository_id = create_repository(file, @convar[id]['weby'])
 
         # Renomeia o arquivo para o padrao do paperclip
-				file = pre_treat(file)
+				#file = pre_treat(file)
 				file_name = pre_treat(file_name)
         #puts "mv -ufv \"#{file}\" \"#{destino}/original_#{file_name}\""
         `mv -ufv "#{file}" "#{destino}/original_#{file_name}"`
