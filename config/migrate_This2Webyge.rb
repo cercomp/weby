@@ -226,6 +226,7 @@ EOF
       insert_sites_csses = "INSERT INTO sites_csses (site_id,css_id,publish,owner) VALUES ('#{@convar["#{this_site['site_id']}"]['weby']}','#{css[0]['id']}',true,true)"
       site_css = @con_weby.exec(insert_sites_csses)
 
+      # Atualizando os estilos estáticos pré-elaborados.
 			dir_css = '/data/css_changed'
 			css_file = "#{dir_css}/#{@convar["#{this_site['site_id']}"]['weby']}_#{site_name}.css"
 			if File.file?(css_file)
@@ -585,7 +586,7 @@ EOF
         insert_site_page = "INSERT INTO sites_pages (site_id,page_id) VALUES ('#{site_id}','#{page_id[0]['id']}')"
 				@con_weby.exec(insert_site_page)
         puts "\t\t\t\tINSERINDO (sites_pages) (#{site_id} #{page_id[0]['id']})\n" if @verbose
-        @convar["#{this_id}"]["menus"]["#{entry['id']}"] = page_id[0]['id']
+        @convar["#{this_id}"]["paginas"]["#{entry['id']}"] = page_id[0]['id']
         puts "\t\t\t\tINSERINDO (menus) página (#{page_id[0]['id']})\n" if @verbose
         insert_menu = "INSERT INTO menus (title,link,page_id) VALUES ('#{pre_treat(entry['texto_item'])}','','#{page_id[0]['id']}') RETURNING id"
       end
