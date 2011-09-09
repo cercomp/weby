@@ -566,7 +566,7 @@ EOF
     puts "\t\tSELECIONANDO todas as páginas internacionalizáveis para tratamento de caracteres\n" if @verbose
     weby_pages = @con_weby.exec(select_pages)
     weby_pages.each do |weby_page|
-      update_page = "UPDATE page_i18ns SET title='#{treat(weby_page['title'])}',summary='#{treat(weby_page['summary'])}',text='#{treat(weby_page['text'])}' WHERE id='#{weby_page['id']}'"
+      update_page = "UPDATE page_i18ns SET title='#{treat(weby_page['title'])}',summary=E'#{treat(weby_page['summary'])}',text=E'#{treat(weby_page['text'])}' WHERE id='#{weby_page['id']}'"
       puts "\t\t\tATUALIZANDO id:(#{weby_page['id']})\n" if @verbose
       @con_weby.exec(update_page)
     end
@@ -671,7 +671,7 @@ EOF
         string.gsub!(/['"]javascript:mostrar_informativo.*?([0-9]+).*?([0-9]+).*?;['"]/){|x| "'/sites/#{@convar[$2]['weby_name']}/banners/#{@convar[$2]["informativos"][$1]}'" if @convar[$2] }
       end 
       if string.match(/javascript:mostrar_menu.*?([0-9]+).*?([0-9]+).*?/) 
-        string.gsub!(/['"]javascript:mostrar_menu.*?([0-9]+).*?([0-9]+).*?;['"]/){|x| "'/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["menus"][$1]}'" if @convar[$2] }
+        string.gsub!(/['"]javascript:mostrar_menu.*?([0-9]+).*?([0-9]+).*?;['"]/){|x| "'/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["paginas"][$1]}'" if @convar[$2] }
       end 
       if string.match(/javascript:pagina_inicial.*?([0-9]+).*?/)
         string.gsub!(/javascript:pagina_inicial.*?([0-9]+).*?;/){|x| "/sites/#{@convar[$1]['weby_name']}" if @convar[$1] }
