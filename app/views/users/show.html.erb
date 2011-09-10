@@ -1,13 +1,30 @@
 <fieldset>
   <legend> <%= t('user.one') %> </legend>
 
-  <div>
-    <h1><%= @user.first_name + " " + @user.last_name %></h1>
+  <div id="user_profile">
+    <%# Jeito de realizar um camel case do nome do usuário, assim mesmo que ele escreva
+        o nome em uppercase, será mostrado em camelcase.
+        #NOTE procurei no ruby uma função para isso e não achei %>
+    <h1><%= [@user.first_name, @user.last_name].join(' ').split.map{ |word| word.capitalize }.join(' ') %></h1>
     <p> <b><%= t('email') %>:</b> <%= @user.email %> </p>
     <p> <b><%= t('phone') %>:</b> <%= @user.phone %> </p>
     <p> <b><%= t('mobile') %>:</b> <%= @user.mobile %> </p>
     <p> <b><%= t('last_request') %>:</b> <%= @user.last_request_at.to_s(:short) %> </p>
   </div>
+
+  <div id="user_current_roles">
+    <h1><%= t('user_current_sites') %></h1>
+    <ul>
+      <% sites_with_roles.each do |s, roles| %>
+        <li>
+          <%= link_to s, roles.first.site %>
+          (<%= t('role.other') %>: <%= roles.map{|r| r.name}.join(', ') %>)
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div style="clear:both;"></div>
 
   <% if @user.id == @current_user.id or check_permission(UsersController, 'edit') %>
     <%= link_to t('edit'), :controller => 'users', :action => "edit", :id => @user.id %> |

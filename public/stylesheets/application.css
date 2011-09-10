@@ -223,6 +223,9 @@ html>body #ajax-indicator { position: fixed; }
 #itens_per_page { float: right; margin: 15px 0; font-weight: bold }
 #itens_per_page a { font-weight: normal; }
 
+/** User fields **/
 label[for='users_unroled']{ font-weight: bold; font-family: Verdana, sans-serif; margin: 5px 3px; }
 #users_unroled { border: 1px solid gray; width: 80%; margin: 5px 10px; }
 #users_list_roles { list-style: none; margin: 5px 0px; }
+#user_current_roles { margin-left: 350px; }
+#user_profile { width: 300px; float: left; }

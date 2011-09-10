@@ -25,6 +25,7 @@ class UsersController < ApplicationController
       # Usuários que NÃO possuem papel no site e não são administradores
       @users_unroled = User.by_no_site(@site) - User.admin
 
+      # Busca os papéis do site e global
       @roles = @site.roles.order("id")
       # Quando a edição dos papeis é solicitada
       @user = User.find(params[:user_id]) if params[:user_id]
@@ -46,7 +47,15 @@ class UsersController < ApplicationController
 
     user_ids.each do |id|
       user = User.find(id)
-      user.role_ids = params[:role_ids]
+      # Limpa os papeis do usuário no site
+      user.role_ids.each do |r_id|
+        if @site.roles.map{|r| r.id }.index(r_id)
+          user.role_ids -= [r_id]
+        end
+      end
+      # NOTE Talvez seja melhor usar (user.role_ids += params[:role_ids]).uniq
+      # assim removemos o each logo a cima
+      user.role_ids += params[:role_ids]
     end
     redirect_to :action => 'manage_roles'
   end
@@ -56,8 +65,8 @@ class UsersController < ApplicationController
       order(sort_column + " " + sort_direction).page(params[:page]).
       per(params[:per_page]) 
 
-    if @site
-      @users = @users.by_site(@site.id, current_user.is_admin?)
+    if @site and not current_user.is_admin?
+      @users = @users.by_site(@site.id)
     end
 
     @roles = Role.select('id, name, theme').

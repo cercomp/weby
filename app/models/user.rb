@@ -15,10 +15,12 @@ class User < ActiveRecord::Base
   scope :admin, where(:is_admin => true)
   scope :no_admin, where(:is_admin => false)
 
-  scope :by_site, lambda { |site_id, *admin|
+  scope :by_site, lambda { |site_id|
+    select("DISTINCT users.* ").
     joins('LEFT JOIN roles_users ON roles_users.user_id = users.id 
            LEFT JOIN roles ON roles.id = roles_users.role_id').
-           where(["roles.site_id = ? or users.is_admin = ?", site_id, admin])
+    where(["roles.site_id = ?", site_id])
+           
   }
 
   scope :by_no_site, lambda { |site_id|

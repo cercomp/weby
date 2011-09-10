@@ -13,7 +13,7 @@
           <td><%= link_to user.login, user %></td>
           <td>
             <span id="user_<%= user.id %>">
-              <%= user.roles.map{ |r| r.name if r.site_id == @site.id }.join(', ') %>
+              <%= user.roles.map{ |r| r.name if r.site_id == @site.id }.compact.join(', ') %>
             </span>
             <div id="role_form_<%= user.id %>">
               <% if @user and @user.id == user.id %>

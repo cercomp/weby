@@ -348,13 +348,14 @@ en:
   updated: "%{param} updated."
   update_password_log: "Update my password and log me in." 
   url: "URL"
+  use: "Use"
+  use_menu_dropdown: "Use dropdown menus"
   user:
     one: "User"
     other: "Users"
+  user_current_sites: "Current Sites"
   user_inactive: "User was not activated."   
   username: "User name"
-  use: "Use"
-  use_menu_dropdown: "Use dropdown menus"
 
 #---V---#
   value: "Value"

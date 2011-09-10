@@ -1,5 +1,5 @@
 <% if params[:user_id] %>
-('#role_form_#{params[:user_id]}').html('<%= escape_javascript(render('role_form')) %>')
+$("#role_form_<%= params[:user_id] %>").html('<%= escape_javascript(render('role_form')) %>')
 <% else %>
 $('#enroled').html('<%= escape_javascript(render('enroled')) %>')
 $('#enrole').html('<%= escape_javascript(render('enrole')) %>')

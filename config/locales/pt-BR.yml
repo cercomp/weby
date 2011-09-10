@@ -350,13 +350,14 @@ pt-BR:
   updated: "%{param} atualizada" 
   update_password_log: "Atualize minha senha e me conecte." 
   url: "URL"
+  use: "Usar"
+  use_menu_dropdown: "Usar menus desdobráveis"
   user: 
     one: "Usuário"
     other: "Usuários"
-  user_inactive: "Seu usuário ainda não está ativo."  
+  user_current_sites: "Sites Cadastrados"
+  user_inactive: "Seu usuário ainda não está ativo."
   username: "Nome de usuário"
-  use: "Usar"
-  use_menu_dropdown: "Usar menus desdobráveis"
 
 #---V---#
   value: "Valor"
