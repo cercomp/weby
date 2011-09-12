@@ -659,7 +659,7 @@ EOF
   def treat(string)
     unless string.nil?
       if string.match(/['"][^'"]*?uploads\/.*?([0-9]+).*?\/(.*?)['"]/)
-        string.gsub!(/['"][^'"]*?uploads\/.*?([0-9]+).*\/(.*?)['"]/){|x| "'/uploads/#{@convar[$1]['weby']}/original_#{$2}'" if @convar[$1] }
+        string.gsub!(/['"][^'"]*?uploads\/.*?([0-9]+)[^'"]*\/(.*?)['"]/){|x| "'/uploads/#{@convar[$1]['weby']}/original_#{$2}'" if @convar[$1] }
       end 
       if string.match(/javascript:mostrar_pagina.*?([0-9]+).*?([0-9]+).*?/) 
         string.gsub!(/['"]javascript:mostrar_pagina.*?([0-9]+).*?([0-9]+).*?;['"]/){|x| "'/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["paginas"][$1]}'" if @convar[$2] }
