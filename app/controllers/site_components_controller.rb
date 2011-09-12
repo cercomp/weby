@@ -1,6 +1,6 @@
 class SiteComponentsController < ApplicationController
   layout :choose_layout
-  before_filter :require_user, :only => [:new, :edit, :update, :destroy, :sort, :toggle_field]
+  before_filter :require_user
   before_filter :check_authorization
 
   respond_to :html, :xml, :js
