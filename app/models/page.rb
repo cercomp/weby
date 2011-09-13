@@ -16,7 +16,7 @@ class Page < ActiveRecord::Base
           published
   }
 
-  validates_presence_of :source, :author_id
+  validates_presence_of :author_id
 
   belongs_to :user, :foreign_key => "author_id"
 	belongs_to :repository, :foreign_key => "repository_id"
@@ -31,8 +31,8 @@ class Page < ActiveRecord::Base
 
   # Teste i18n
   has_many :page_i18ns, :dependent => :destroy
-  accepts_nested_attributes_for :page_i18ns, :allow_destroy => true
 
+  accepts_nested_attributes_for :page_i18ns, :allow_destroy => true
   accepts_nested_attributes_for :sites_pages, :allow_destroy => true#, :reject_if => proc { |attributes| attributes['title'].blank? }
   accepts_nested_attributes_for :pages_repositories, :allow_destroy => true
 
