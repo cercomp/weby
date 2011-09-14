@@ -282,7 +282,7 @@ module ApplicationHelper
     unless file.nil? 
       image =  file.archive_content_type.split('/')[1]
       size = '64x64'
-      link_to image_tag( "mime_type_list/#{CGI::escape(image)}.ico", :alt => file.description, :size => size)
+      link_to image_tag( "mime_list/#{CGI::escape(image)}.png", :alt => file.description, :size => size)
     else
       link_to image_tag ("false.png")
     end 
