@@ -284,7 +284,7 @@ module ApplicationHelper
       size = '64x64'
       link_to image_tag( "mime_type_list/#{CGI::escape(image)}.ico", :alt => file.description, :size => size)
     else
-      link_to image_tag ("false.png", :size => size)
+      link_to image_tag ("false.png")
     end 
     #if r.archive_content_type.include? 'pdf'
     #  image = '/images/pdf_file.png'
