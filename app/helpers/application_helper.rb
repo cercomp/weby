@@ -277,13 +277,15 @@ module ApplicationHelper
 
   # Define qual imagem de exibição será mostrada para o arquivo.
   # Recebe um objeto do tipo Repository
-  def archive_type_image r
+  def archive_type_image file
     
-   image =  r.archive_content_type.split('/')[1]
-   size = '64x64'
-   
-   link_to image_tag( "mime_type_list/#{CGI::escape(image)}.ico", :alt => r.description, :size => size)
-    
+    unless file.nil? 
+      image =  file.archive_content_type.split('/')[1]
+      size = '64x64'
+      link_to image_tag( "mime_type_list/#{CGI::escape(image)}.ico", :alt => file.description, :size => size)
+    else
+      link_to image_tag ("false.png", :size => size)
+    end 
     #if r.archive_content_type.include? 'pdf'
     #  image = '/images/pdf_file.png'
     #  size  = '80x80'
