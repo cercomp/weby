@@ -1,0 +1,19 @@
+.barra_governo {
+  margin: auto;
+  height: 27px; 
+}
+.barra_governo .listras {
+  margin: 0 10px 0 -999px;
+  height: 27px; 
+  background: url("../images/gov/listras_logoBrasil.png") left bottom repeat-x;
+}
+.barra_governo .listras .logo { 
+  margin: 0 -10px 0 0;
+  height: 27px; 
+  background: url("../images/gov/logoBrasil.png") right bottom no-repeat;
+}
+.barra_governo .listras .logo a { 
+  height: 27px; 
+  width: 5%; 
+  float: right; 
+}

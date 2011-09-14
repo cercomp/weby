@@ -86,20 +86,21 @@ class Migrate_this2weby
       # Inserindo componentes por omissão para portais vindos do This
       puts "\tINSERINDO estruturação de componentes...\n"
       insert_site_comp = <<EOF
-        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'first_place','{}','weby_bar',1,true);
-        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'first_place','{}','institutional_bar',2,true);
-        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'top','{}','header',3,true);
-        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'top','{:category => \"principal\"}','menu_side',4,true);
-        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'top','{}','menu_accessibility',5,true);
-        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'right','{:category => \"auxiliar\"}','menu_side',6,true);
-        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'right','{:category => \"dir\"}','banner_side',7,true);
-        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'bottom','{:category => \"base\"}','menu_side',8,true);
-        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'bottom','{}','info_footer',9,true);
-        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'bottom','{}','feedback',10,true);
-        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'left','{:category => \"secundario\"}','menu_side',11,true);
-        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'left','{:category => \"esq\"}','banner_side',12,true);
-        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'home','{:quant => \"5\"}','front_news',13,true);
-        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'home','{:quant => \"5\"}','no_front_news',14,true);
+        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'first_place','{:background => "#7f7f7f"}','gov_bar',1,true);
+        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'first_place','{}','weby_bar',2,true);
+        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'first_place','{}','institutional_bar',3,true);
+        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'top','{}','header',4,true);
+        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'top','{:category => \"principal\"}','menu_side',5,true);
+        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'top','{}','menu_accessibility',6,true);
+        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'right','{:category => \"auxiliar\"}','menu_side',7,true);
+        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'right','{:category => \"dir\"}','banner_side',8,true);
+        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'bottom','{:category => \"base\"}','menu_side',9,true);
+        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'bottom','{}','info_footer',10,true);
+        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'bottom','{}','feedback',11,true);
+        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'left','{:category => \"secundario\"}','menu_side',12,true);
+        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'left','{:category => \"esq\"}','banner_side',13,true);
+        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'home','{:quant => \"5\"}','front_news',14,true);
+        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'home','{:quant => \"5\"}','no_front_news',15,true);
 EOF
       @con_weby.exec(insert_site_comp)
       

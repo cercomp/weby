@@ -24,7 +24,8 @@ module SiteComponentsHelper
      'no_front_news',
      'institutional_bar',
      'weby_bar',
-     'news_as_home']
+     'news_as_home',
+     'gov_bar']
   end
 
   def components_settings
@@ -34,7 +35,8 @@ module SiteComponentsHelper
       'banner_side'       => ['category'],
       'front_news'        => ['quant'],
       'menu_side'         => ['category'],
-      'news_as_home'      => ['page']
+      'news_as_home'      => ['page'],
+      'gov_bar'           => ['background']
     }
   end
   
@@ -59,6 +61,9 @@ module SiteComponentsHelper
       
       'news_as_home' => {
         'page' => ['<a onclick="select_page(); return false;">', t('select_param', :param => t('news.one')), '</a>'].join
+      },
+      'gov_bar' => {
+        'background' => ['<select name="background">', options_for_select([["Azul","#004b82"],["Verde","#00500f"],["Cinza","#7f7f7f"],["Preto","#000000"]], cur_setting[:background]), '</select>'].join
       }
     }
   end

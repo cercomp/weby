@@ -160,9 +160,9 @@ class ApplicationController < ActionController::Base
 
     @main_width = nil
     if @site and @site.try(:body_width)
-      @main_width = @site.body_width.to_i + 4
+      @main_width = @site.body_width.to_i
     elsif @site and @top_banner_width
-      @main_width = @top_banner_width.to_i + 4
+      @main_width = @top_banner_width.to_i
     end
   end
 

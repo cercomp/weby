@@ -1,9 +1,10 @@
 div.barra_ufg { 
+  margin: 2px auto 0 auto; 
   background: #ccc;
   font-family: Tahoma, sans-serif;
   font-size: 12pt;
   width: 100%; }
-  div.barra_ufg div.barra_ufg_box { padding: 1px 10px; }
+  div.barra_ufg div.barra_ufg_box { padding: 4px 8px; }
     div.barra_ufg div.barra_ufg_box img {
       vertical-align: bottom;
       padding-right: 5px; }
@@ -17,35 +18,3 @@ div.barra_ufg {
       div.barra_ufg div.barra_ufg_box a:hover {
         text-decoration: underline;
         color: #000; }
-
-div.barra_governo {}
-  div.barra_governo div.barra_governo_box {
-    height: 36px;
-    width: 100%;
-    margin: 0 auto;
-    background: url(../images/mec/left.png) no-repeat left top; }
-    div.barra_governo div.barra_governo_box div.box2 { 
-      height: 36px;
-      margin-left: 20px;
-      background: url(../images/mec/right.png) no-repeat right top; }
-      div.barra_governo div.barra_governo_box div.box2 div.box3 {
-        height: 36px;
-        margin-right: 20px;
-        background: url(../images/mec/bg.png) repeat-x right top; }
-        div.barra_governo div.barra_governo_box div.box2 div.box3 div.box4 {
-          height: 36px;
-          background: url(../images/mec/middle.png) no-repeat right top; }
-          div.barra_governo div.barra_governo_box div.box2 div.box3 div.box4 div.marca_mec {
-            height: 36px;
-            width: 203px;
-            background: url(../images/mec/mec.png) no-repeat 8px 50%; 
-            float: left; }
-          div.barra_governo div.barra_governo_box div.box2 div.box3 div.box4 div.marca_brasil{
-            height: 36px;
-            width: 94px;
-            background: url(../images/mec/brasil.png) no-repeat right 50%;
-            float:right; }
-            div.barra_governo div.barra_governo_box div.box2 div.box3 div.box4 a {
-              display:block;
-              text-indent: -9999px; }
-

@@ -10,7 +10,7 @@ pt-BR:
     front: "Apenas notícias de capa?"
     header: "Cabeçalho (Topo)"
     info_footer: "Informação de Rodapé"
-    institutional_bar: "Barra Institucional (MEC)"
+    institutional_bar: "Barra Institucional (UFG)"
     menu_accessibility: "Menu de acessibilidade"
     menu_side: "Menu"
     news_as_home: "Notícia como página inicial"
@@ -19,6 +19,8 @@ pt-BR:
     quant: "Quantidade de itens"
     settings: "Configurações"
     weby_bar: "Barra de Administração do Sistema"
+    gov_bar: "Barra do Governo"
+    background: "Cor de fundo"
     
     pos:
       bottom: "Inferior"
