@@ -10,6 +10,7 @@ require 'cgi'
 require 'htmlentities'
 require 'iconv'
 require 'pp'
+require 'mime/types'
  
 # Classe par migração do banco
 class Migrate_this2weby
@@ -734,16 +735,15 @@ class Migrate_files
   # Função retirada do paperclip
   def content_type file
     # Infer the MIME-type of the file from the extension.
-    type = (file.match(/\.(\w+)$/)[1] rescue "octet-stream").downcase
-    case type
-      when %r"jp(e|g|eg)"            then "image/jpeg"
-      when %r"tiff?"                 then "image/tiff"
-      when %r"png", "gif", "bmp"     then "image/#{type}"
-      when "txt"                     then "text/plain"
-      when %r"html?"                 then "text/html"
-      when "js"                      then "application/js"
-      when "csv", "xml", "css"       then "text/#{type}"
-			when "swf"                     then "application/x-shockwave-flash"
+    types = MIME::Types.type_for(file)
+    if types.length == 0
+      ''
+      # Função asseguir retirar pois nescessita de algumas gems e parece desnecessária
+      # type_from_file_command
+    elsif types.length == 1
+      types.first.content_type
+    else
+      types.reject {|type| type.content_type.match(/\/x-/) }.first
     end
   end
 
