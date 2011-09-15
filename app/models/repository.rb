@@ -20,6 +20,10 @@ class Repository < ActiveRecord::Base
 
 	before_post_process :image?
 	def image?
-	  !(archive_content_type =~ /^image.*/).nil?
-	end
+    if archive_content_type.include?("svg")
+      return false
+    else  
+      archive_content_type.include?("image") 
+    end  
+  end
 end
