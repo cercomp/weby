@@ -29,7 +29,7 @@
         :collection => @images,
         :collection_wrapper_tag => "div class='radio-group-xxx'",
         :as => :radio, 
-        :label_method => lambda { |context| image_tag(context.archive.url(:mini)) },
+        :label_method => lambda { |context| archive_type_image(context) },
         :value_method => 'id',
         :paginate => "#{paginate @images}" %>
       <%#= render 'repositories/images_radio_list', :f => f, :id => :top_banner_id %>
