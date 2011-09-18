@@ -274,21 +274,22 @@ module ApplicationHelper
     end
   end
 
-
   # Define qual imagem de exibição será mostrada para o arquivo.
   # Recebe um objeto do tipo Repository
-  def archive_type_image file
-      unless file.archive_content_type.empty?
-         mime_type =  file.archive_content_type.split('/')
-        size = '64x64'
+  def archive_type_image(file, type, size=nil)
+		# Gera um thumb se ele não existir
+    file.archive.reprocess! if File.file?(file.archive.path) and not File.file?(file.archive.path(type))
+		
+	  unless file.archive_content_type.empty?
+    	mime_type = file.archive_content_type.split('/')
 
-         if mime_type[0] != "image" 
-           link_to image_tag("mime_list/#{CGI::escape(mime_type[1])}.png", :alt => file.description, :size => size)
-         else
-           link_to image_tag(file.archive.url, :alt => file.description, :size => size)
-         end
-      else
-       link_to image_tag ("false.png")
+  		if mime_type[0] != "image" 
+    		link_to(image_tag("mime_list/#{CGI::escape(mime_type[1])}.png", :alt => file.description, :size => size), file.archive.url, :title => file.description)
+	    else
+  	    link_to(image_tag(file.archive.url(type), :alt => file.description, :size => size), file.archive.url, :title => file.description)
+    	end
+    else
+			image_tag("false.png")
     end 
   end
 

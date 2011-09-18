@@ -1,10 +1,9 @@
 <fieldset>
-	<p> <%= raw archive_type_image(@repository) %>  </p>	
+	<p> <%= raw archive_type_image(@repository, :original) %>  </p>	
   <p> <b><%= t("name") %>:</b> <%= @repository.archive_file_name %> </p>
   <p> <b><%= t("size") %>:</b> <%= @repository.archive_file_size %> </p>
   <p> <b><%= t("type") %>:</b> <%= @repository.archive_content_type %> </p>
   <p> <b><%= t("archive_description") %>:</b> <%= @repository.description %> </p>
-  <p> <b><%= t("url")  %>:</b> <%= @repository.archive.url %> </p>
 
   <%= link_to t("edit"), edit_site_repository_path(@site, @repository) %> | 
   <%= link_to t("list_all.masc"), site_repositories_path(@site) %> | 
