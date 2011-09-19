@@ -51,7 +51,7 @@
     <% end %>
 
     <%= f.input :source, :label => t("source") %> 
-    <%= f.input :url, :label => t("url") %>
+    <%= f.input :url, :label => t("url"), :input_html => {:value => "http://"} %>
 
     <%#= f.input :category, :collection => @site.page_categories, :label_html => { :add => ["categoria", "#page_category"] } %>
     <%= f.input :category_list, :label => t('categories'), :hint => t('page_categories_help') %>

@@ -4,7 +4,7 @@
     :collection => collection,
     :collection_wrapper_tag => "div class='radio-group'",
     :as => :radio, 
-    :label_method => lambda { |context| image_tag(context.archive.url(:mini)) },
+    :label_method => lambda { |context| archive_type_image(context, :mini, "64x64") },
     :value_method => 'id',
     :paginate => "#{paginate collection, :remote => true}" %>
 <% end %>
