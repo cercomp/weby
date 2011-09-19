@@ -6,19 +6,19 @@ pt-BR:
   access_denied: "Acesso negado!"
   access_denied_page: "Você não está autorizado a ver está página!"
   account: "Conta"
-  action: "Ação" 
-  actions: "Ações" 
+  action: "Ação"
+  actions: "Ações"
   activate_deactivate: "Ativar/Desativar"
   active: "Ativo?"
   add_param: "Adicionar %{param}"
-  add_selected_menus: "Incluir os menus selecionados"  
+  add_selected_menus: "Incluir os menus selecionados"
   add_sub_menu: "Adiciona um menu filho"
   admin:
     one: "Admin"
     other: "Admins"
-  administration: "Administração"  
+  administration: "Administração"
   align: "Alinhar"
-  archive: 
+  archive:
     one: "Arquivo"
     other: "Arquivos"
   archive_link: "Link para o arquivo"
@@ -38,13 +38,13 @@ pt-BR:
   bottom: "Inferior"
   body: "Corpo"
   body_width: "Largura do site"
-  button_check_all: 
+  button_check_all:
     fem: "Marcar todas"
     masc: "Marcar todos"
-  button_uncheck_all: 
+  button_uncheck_all:
     fem: "Desmarcar todas"
     masc: "Desmarcar todos"
-  
+
 #---C---#
   cancel: "Cancelar"
   category: "Categoria"
@@ -60,25 +60,25 @@ pt-BR:
   cover_size: "Quantidade de itens na capa"
   cover_help: "Deseja que esta notícia apareça na frente do site?"
   create: "Criar"
-  created: 
+  created:
     fem: "Criada"
     masc: "Criado"
-  created_at: 
+  created_at:
     fem: "Criada em"
     masc: "Criado em"
   create_param: "Criar %{param}"
-  current_login: "Entrada atual %{param}" 
-  css: 
+  current_login: "Entrada atual %{param}"
+  css:
     one: "Estilo"
     other: "Estilos"
 
 #---D---#
-  date_param: "Data de %{param}" 
+  date_param: "Data de %{param}"
   destroy: "Excluir"
   destroyed_param: "%{param} removído"
   destroyed_param_error: "Erro ao remover %{param}"
   description: "Descrição"
-  disable: 
+  disable:
     fem: "Desabilitada"
     masc: "Desabilitada"
   desc_use_menu_dropdown: "Deseja que os menus sejam desdobráveis?"
@@ -88,11 +88,11 @@ pt-BR:
   edit_i18ns: "Editar Internacionalizações"
   edit_yours_i18ns: "Edite os campos correspondentes a sua linguagem"
   editing: "Editando %{param}"
-  editor: 
+  editor:
     fem: "Editora"
     masc: "Editor"
   email: "E-mail"
-  enable: 
+  enable:
     fem: "Habilitada"
     masc: "Habilitado"
   end: "Fim"
@@ -101,7 +101,7 @@ pt-BR:
   enrole_user_site: "Relacionar usuário ao site"
   enroled_user: "Usuário cadastrado"
   error_updating_object: "Erro ao atualizar objeto"
-  event: 
+  event:
     one: "Evento"
     other: "Eventos"
   event_param: "%{param} do Evento"
@@ -118,7 +118,7 @@ pt-BR:
   feedback_sent: "Feedback enviado com sucesso!"
   field_required: "Campo obrigatório!"
   fill_email_form: "Preencha o formulário para resgatar sua senha. Ela será enviada para seu e-mail"
-  first_name: "Nome" 
+  first_name: "Nome"
   forgot_password: "Perdi minha senha"
   footer: "Rodapé"
   footer_text: "Instituição - Endereço. CEP XXXXX-XXX - Caixa Postal XXX. Cidade-Estado - Fone: Geral: +XX XX XXXX-XXXX; Atendimento ao Usuário: +XX XX XXXX-XXXX, +XX XXXX-XXXX. Fax: +XX XX XXXX-XXXX"
@@ -139,6 +139,7 @@ pt-BR:
   hide_help: "Deseja ocultar? Somente usuários com cargos específicos poderão recuperá-los."
   high_contrast: "Alto contraste"
   home: "Página inicial"
+  help_image: "A imagem selecionada será o topo do site!"
 
 #---I---#
   i18n: 'Internacionalização'
@@ -151,7 +152,7 @@ pt-BR:
   itens_per_page: "Por página"
 
 #---K---#
-  kind: "Tipo" 
+  kind: "Tipo"
 
 #---L---#
   last_login: "Último entrada %{param}"
@@ -162,7 +163,7 @@ pt-BR:
   licence: "© UFG, Todos os direitos reservados"
   link: "Link"
   list: "Listar"
-  list_all: 
+  list_all:
     fem: "Listar todas"
     masc: "Listar todos"
   list_param: "Listar %{param}"
@@ -178,13 +179,13 @@ pt-BR:
   logout_success: "Logout com sucesso!"
   login_count: "Login Count"
   look_changed: "Aparência alterada!"
-  
+
 #---M---#
   main: "Principal"
   manage_roles: "Gerenciar Papéis"
   mark_to_destroy: "Marcar para Remoção"
   medium: "Médio"
-  menu: 
+  menu:
     one: "Menu"
     other: "Menus"
   menus: "Menus"
@@ -204,20 +205,20 @@ pt-BR:
 #---N---#
   nacional: "Nacional"
   name: "Nome"
-  need_login: "Você deve estar logado para acessar acessar essa página." 
-  new: 
+  need_login: "Você deve estar logado para acessar acessar essa página."
+  new:
     fem: "Nova"
     masc: "Novo"
-  news: 
+  news:
     one: "Notícia"
-    other: "Notícias"  
-  newsletter: 
+    other: "Notícias"
+  newsletter:
     one: "Informativo"
     other: "Informativos"
-  new_param: 
+  new_param:
     fem: "Nova %{param}"
     masc: "Novo %{param}"
-  no_need_to_login: "Você não deve estar logado para acessar essa página."	
+  no_need_to_login: "Você não deve estar logado para acessar essa página."
   no_mail: "Nenhum usuário com esse e-mail foi econtrado."
   no_permission_to_action: "Você não tem permissão para executar essa ação"
   no_permission_to_activate_deactivate: "Você não tem permissão para Ativar/Desativar"
@@ -235,7 +236,7 @@ pt-BR:
   owner: "Dono"
 
 #---P---#
-  page: 
+  page:
     one: "Página"
     other: "Páginas"
   page_categories_help: 'Categorias são separadas por vírgula'
@@ -244,7 +245,7 @@ pt-BR:
   password_confirmation: "Confirmação da senha"
   per_page_default: 'Quantidade padrão de itens por página'
   pdf: "PDF"
-  permission: 
+  permission:
     one: "Permissão"
     other: "Permissões"
   phone: "Telefone"
@@ -252,7 +253,7 @@ pt-BR:
   picture_text: "Texto da imagem"
   place: "local"
   position: "Posição"
-  prohibited_being_saved: 
+  prohibited_being_saved:
     one: " erro, impede que você prossiga"
     other: " erros, impedem que você prossiga"
   portal: "Portal"
@@ -267,7 +268,7 @@ pt-BR:
   read_more: "Leia mais..."
   regional: "Regional"
   register: "Cadastro"
-  registered: 
+  registered:
     fem: "Cadastrada"
     masc: "Cadastrado"
   registered_menu:
@@ -282,7 +283,7 @@ pt-BR:
     one: "Repositório"
     other: "Repositório"
   reset_mail: "Instruções de como modificar sua senha foram enviada. Cheque seu e-mail."
-  reset_my_password: "Alterar minha senha"  
+  reset_my_password: "Alterar minha senha"
   right:
     one: "Direito"
     other: "Direitos"
@@ -290,7 +291,7 @@ pt-BR:
     one: "Papel"
     other: "Papéis"
   roles_permissions: "Permissões e Papéis"
- 
+
 #---S---#
   save: "Salvar"
   search: "Busca"
@@ -298,7 +299,7 @@ pt-BR:
   setting:
     one: "Configuração"
     other: "Configurações"
-  select_param: "Selecionar %{param}"   
+  select_param: "Selecionar %{param}"
   select_site: "Selecione um site"
   show: "Mostrar"
   side: "Lado"
@@ -306,10 +307,10 @@ pt-BR:
     one: "Sítio"
     other: "Sítios"
   site_comments: "Comentário sobre os objetivos do site."
-  site_components: "Componentes"  
+  site_components: "Componentes"
   site_component:
-    one: "Componente"  
-    other: "Componentes"  
+    one: "Componente"
+    other: "Componentes"
   site_id: "Site ID"
   sites_followers: "Sites que seguem esse estilo"
   size: "Tamanho"
@@ -329,9 +330,9 @@ pt-BR:
     other: "Sugestões"
   summary: "Resumo"
   see_notice_too: "Veja essa notícia também em"
-  
+
 #---T---#
-  text: "Texto" 
+  text: "Texto"
   title: "Título"
   time_cover: "Capa agendada"
   time: "Tempo"
@@ -342,17 +343,17 @@ pt-BR:
   top_banner_height: "Altura do banner principal"
   type: "Tipo"
   type_param: "Digite a %{param}"
-  try_login: "Tente logar primeiro!"	
+  try_login: "Tente logar primeiro!"
 
 #---U---#
   unpublish: "Despublicar"
   update: "Atualizar %{param}"
-  updated: "%{param} atualizada" 
-  update_password_log: "Atualize minha senha e me conecte." 
+  updated: "%{param} atualizada"
+  update_password_log: "Atualize minha senha e me conecte."
   url: "URL"
   use: "Usar"
   use_menu_dropdown: "Usar menus desdobráveis"
-  user: 
+  user:
     one: "Usuário"
     other: "Usuários"
   user_current_sites: "Sites Cadastrados"
@@ -380,7 +381,7 @@ pt-BR:
 
 #---W---#
   width: "Largura"
-  
+
 #--- Other locales ---#
   # Locales translation
   pt-BR: "Português (Brasil)"
@@ -527,16 +528,17 @@ pt-BR:
 #      one: "<b>{{size}}</b> {{entry_name}}"
 #      other: "Todos os <b>{{size}}</b> {{entry_name}}"
 #    display: "{{entry_name}} de <b>{{from}}</b> a <b>{{to}}</b> de {{total}} no total"
-    
+
 # -- SIMPLE FORM -- #
-  simple_form:  
-    "yes": 'Sim'  
-    "no": 'Não'  
-    required:  
-      text: 'obrigatório'  
-      mark: '*'  
-      # You can uncomment the line below if you need to overwrite the whole required html.  
-      # When using html, text and mark won't be used.  
-      # html: '<abbr title="required">*</abbr>'  
-    error_notification:  
-      default_message: "Alguns erros foram encontrados, por favor verifique:"  
+  simple_form:
+    "yes": 'Sim'
+    "no": 'Não'
+    required:
+      text: 'obrigatório'
+      mark: '*'
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+      default_message: "Alguns erros foram encontrados, por favor verifique:"
+

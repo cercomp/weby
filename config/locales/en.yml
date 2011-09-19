@@ -6,8 +6,8 @@ en:
   access_denied: "Access denied"
   access_denied_page: "You are not allowed to see this page!"
   account: "Account"
-  action: "Action" 
-  actions: "Actions" 
+  action: "Action"
+  actions: "Actions"
   activate_deactivate: "Activate/Deactivate"
   active: "Active?"
   add_param: "Add %{param}"
@@ -16,10 +16,10 @@ en:
   admin:
     one: "Admin"
     other: "Admins"
-  administration: "Administration"  
+  administration: "Administration"
   align: "Align"
-  archive: 
-    one: "File"	
+  archive:
+    one: "File"
     other: "Files"
   archive_link: "The archive link "
   archive_description: "The archive description"
@@ -34,17 +34,17 @@ en:
     one: "Banner"
     other: "Banners"
   base: "Base"
-  begin: "Begin"  
+  begin: "Begin"
   bottom: "Bottom"
   body: "Body"
   body_width: "Body width"
-  button_check_all: 
+  button_check_all:
     fem: "Check all"
     masc: "Check all"
-  button_uncheck_all: 
+  button_uncheck_all:
     fem: "Uncheck all"
     masc: "Uncheck all"
-  
+
 #---C---#
   cancel: "Cancel"
   category: "Category"
@@ -60,25 +60,25 @@ en:
   cover_size: "Quantity items on cover"
   cover_help: "This pages will apear in site front."
   create: "Create"
-  created: 
+  created:
     fem: "Created"
     masc: "Created"
-  created_at: 
+  created_at:
     fem: "Created_at"
     masc: "Created_at"
   create_param: "Create %{param}"
-  current_login: "Current login %{param}" 
-  css: 
+  current_login: "Current login %{param}"
+  css:
     one: "Style"
     other: "Styles"
 
 #---D---#
-  date_param: "Date of %{param}" 
-  destroy: "Destroy"  
+  date_param: "Date of %{param}"
+  destroy: "Destroy"
   destroyed_param: "%{param} destroyed"
   destroyed_param_error: "Error when remove %{param}"
   description: "Description"
-  disable: 
+  disable:
     fem: "Disable"
     masc: "Disable"
   desc_use_menu_dropdown: "Do you want dropdown menu use?"
@@ -86,13 +86,13 @@ en:
 #---E---#
   edit: "Edit"
   edit_i18ns: "Edit Internationalizations"
-  edit_yours_i18ns: "Edit the fields corresponding to their language" 
+  edit_yours_i18ns: "Edit the fields corresponding to their language"
   editing: "Editing %{param}"
-  editor: 
+  editor:
     fem: "Editor"
     masc: "Editor"
   email: "E-mail"
-  enable: 
+  enable:
     fem: "Enable"
     masc: "Enable"
   end: "End"
@@ -101,7 +101,7 @@ en:
   enrole_user_site: "Enrole user on site"
   enroled_user: "Enroled user"
   error_updating_object: "Error updating object"
-  event: 
+  event:
     one: "Event"
     other: "Events"
   event_param: "Event %{param}"
@@ -117,7 +117,7 @@ en:
     other: "Feedback"
   feedback_sent: "Feedback sent successfully!"
   field_required: "Field required!"
-  fill_email_form: "Fill out the form below to reset your password. It will be e-mailed to you" 
+  fill_email_form: "Fill out the form below to reset your password. It will be e-mailed to you"
   first_name: "First name"
   forgot_password: "Forgot password"
   footer: "Footer"
@@ -139,6 +139,7 @@ en:
   hide_help: "Want to hide? Only users with specific positions might retrieve them."
   high_contrast: "High contrast"
   home: "Home"
+  help_image: "The selected image will be the site top!"
 
 #---I---#
   i18n: 'Internationalization'
@@ -161,7 +162,7 @@ en:
   left: "Left"
   licence: "© UFG, All Rights Reserved"
   link: "Link"
-  list_all: 
+  list_all:
     fem: "List all"
     masc: "List all"
   list: "List"
@@ -178,19 +179,19 @@ en:
   logout_success: "Logged out successfully!"
   login_count: "Login Count"
   look_changed: "Appearence was changed."
-  
+
 #---M---#
   main: "Main"
   manage_roles: "Manage Roles"
   mark_to_destroy: "Mark to Destroy"
   medium: "Medium"
-  menu: 
+  menu:
     one: "Menu"
     other: "Menus"
   menus: "Menus"
   message: "Message"
   mini: "Mini"
-  missing_account: "We're sorry, but we could not locate your account. If you are having issues try copying and pasting the URL from your email into your browser or restarting the reset password process."  
+  missing_account: "We're sorry, but we could not locate your account. If you are having issues try copying and pasting the URL from your email into your browser or restarting the reset password process."
   mobile: "Mobile"
   move: "Move"
   move_menu_up: "Move menu up"
@@ -205,16 +206,16 @@ en:
   nacional: "Nacional"
   name: "Name"
   need_login: "You need to be logged in to access this page."
-  new: 
+  new:
     fem: "New"
     masc: "New"
   news:
     one: "News"
     other: "News"
-  newsletter: 
+  newsletter:
     one: "Newsletter"
     other: "Newsletters"
-  new_param: 
+  new_param:
     fem: "New %{param}"
     masc: "New %{param}"
   no_need_to_login: "You should not be logged in to access this page."
@@ -235,7 +236,7 @@ en:
   owner: "Owner"
 
 #---P---#
-  page: 
+  page:
     one: "Page"
     other: "Pages"
   page_categories_help: 'Categories are separated by commas'
@@ -245,7 +246,7 @@ en:
   password_confirmation: "Password confirmation"
   per_page_default: 'Default quantity of items per page'
   pdf: "PDF"
-  permission: 
+  permission:
     one: "Permission"
     other: "Permissions"
   phone: "Phone number"
@@ -268,7 +269,7 @@ en:
   read_more: "Read more..."
   regional: "Regional"
   register: "Register"
-  registered: 
+  registered:
     fem: "Registered"
     masc: "Registered"
   registered_menu:
@@ -283,7 +284,7 @@ en:
     one: "Repository"
     other: "Repositories"
   reset_mail: "Instructions to reset your password have been emailed to you. Please check your email."
-  reset_my_password: "Reset my password" 
+  reset_my_password: "Reset my password"
   right:
     one: "Right"
     other: "Rights"
@@ -291,7 +292,7 @@ en:
     one: "Role"
     other: "Roles"
   roles_permissions: "Roles and Permissions"
- 
+
 #---S---#
   save: "Save"
   search: "Search"
@@ -329,7 +330,7 @@ en:
   see_notice_too: "See notice too in"
 
 #---T---#
-  text: "Text" 
+  text: "Text"
   title: "Title"
   time_cover: "Front scheduling"
   time: "Time"
@@ -346,7 +347,7 @@ en:
   unpublish: "Unpublish"
   update: "Update %{param}"
   updated: "%{param} updated."
-  update_password_log: "Update my password and log me in." 
+  update_password_log: "Update my password and log me in."
   url: "URL"
   use: "Use"
   use_menu_dropdown: "Use dropdown menus"
@@ -354,7 +355,7 @@ en:
     one: "User"
     other: "Users"
   user_current_sites: "Current Sites"
-  user_inactive: "User was not activated."   
+  user_inactive: "User was not activated."
   username: "User name"
 
 #---V---#
@@ -376,9 +377,9 @@ en:
 #---Y---#
   "yes": "Yes"
 
-#---W---# 
+#---W---#
   width: "Width"
-  
+
 #--- Other locales ---#
   # Locales translation
   pt-BR: "Portuguese (Brazil)"
@@ -527,14 +528,15 @@ en:
 #    display: "{{entry_name}} of <b>{{from}}</b> the <b>{{to}}</b> of {{total}} in total"
 #
 # -- SIMPLE FORM -- #
-  simple_form:  
-    "yes": 'Yes'  
-    "no": 'No'  
-    required:  
-      text: 'required'  
-      mark: '*'  
-      # You can uncomment the line below if you need to overwrite the whole required html.  
-      # When using html, text and mark won't be used.  
-      # html: '<abbr title="required">*</abbr>'  
-    error_notification:  
-      default_message: "Some errors were found, please take a look:"  
+  simple_form:
+    "yes": 'Yes'
+    "no": 'No'
+    required:
+      text: 'required'
+      mark: '*'
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+      default_message: "Some errors were found, please take a look:"
+

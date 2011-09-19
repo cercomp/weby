@@ -24,14 +24,15 @@
     <% end %>
 
     <div id='form'>
-      <%= f.input :top_banner_id, 
+      <%= f.input :top_banner_id,
         :label => t('picture'),
         :collection => @images,
         :collection_wrapper_tag => "div class='radio-group-xxx'",
-        :as => :radio, 
+        :as => :radio,
         :label_method => lambda { |context| archive_type_image(context, :mini) },
         :value_method => 'id',
-        :paginate => "#{paginate @images}" %>
+        :paginate => "#{paginate @images}",
+        :hint => t('help_image') %>
       <%#= render 'repositories/images_radio_list', :f => f, :id => :top_banner_id %>
     </div>
 
@@ -62,3 +63,4 @@
 <% end %>
 
 </fieldset>
+
