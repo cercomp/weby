@@ -316,7 +316,7 @@ pt-BR:
   source: "Fonte"
   status: "Status"
   subject: "Assunto"
-  submit: "Salvar"
+  submit: "Enviar"
   sub_menu: "Sub-menu"
   successfully_created: "Criado com sucesso!"
   successfully_created_param: "%{param} criado com sucesso!"
