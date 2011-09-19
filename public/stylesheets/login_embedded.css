@@ -28,3 +28,6 @@ fieldset.login_embedded {
     font-family: Sans; }
   fieldset.login_embedded legend {
     display: none; }
+  fieldset.login_embedded .actions button, fieldset.login_embedded .actions input[type='submit'] {
+    margin-left: 0px;
+    float: right; }

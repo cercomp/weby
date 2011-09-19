@@ -41,4 +41,11 @@ fieldset.login_embedded{
     display: none;
   }
 
+  .actions{
+    button, input[type='submit'] {
+      margin-left: 0px;
+      float: right;
+    }
+  }
+
 }
