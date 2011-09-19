@@ -139,7 +139,7 @@ en:
   hide_help: "Want to hide? Only users with specific positions might retrieve them."
   high_contrast: "High contrast"
   home: "Home"
-  help_image: "The selected image will be the site top!"
+  help_image: "This image will be the site header!"
 
 #---I---#
   i18n: 'Internationalization'

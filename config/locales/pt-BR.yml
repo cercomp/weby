@@ -139,7 +139,7 @@ pt-BR:
   hide_help: "Deseja ocultar? Somente usuários com cargos específicos poderão recuperá-los."
   high_contrast: "Alto contraste"
   home: "Página inicial"
-  help_image: "A imagem selecionada será o topo do site!"
+  help_image: "Essa imagem será o topo do site"
 
 #---I---#
   i18n: 'Internacionalização'
