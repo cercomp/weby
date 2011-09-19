@@ -54,10 +54,13 @@
   top: -15px;
   margin-bottom: 0px; }
 .simple_form .actions {
-  margin: 10px 0; }
+  clear: both;
+  width: 100%;
+  margin: 10px auto; }
   .simple_form .actions button, .simple_form .actions input[type='submit'] {
-    float: right;
-    text-align: right; }
+    margin-left: 435px; }
+  .simple_form .actions a {
+    float: left; }
 
 button, input[type='submit'] {
   color: #fff;

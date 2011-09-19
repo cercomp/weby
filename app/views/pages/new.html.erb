@@ -11,7 +11,7 @@
     <div id="page" style="display:none"> </div>
   </div>
 
-  <%= simple_form_for [@site, @page], :url => site_pages_path(:type => params[:type]), :html => { :multipart => true } do |f| %>
+  <%= simpl_form_for [@site, @page], :url => site_pages_path(:type => params[:type]), :html => { :multipart => true } do |f| %>
     <% if @page.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@page.errors.count,"") %><%= t"prohibited_being_saved", :count => @page.errors.count %>:</h2>

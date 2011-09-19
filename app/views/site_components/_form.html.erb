@@ -18,22 +18,25 @@
     <div id="error_explanation">
       <h2><%= pluralize(@site_component.errors.count, "error") %> <%= t "prohibited_being_saved", :count => @site_component.errors.count %>:</h2>
       <ul>
-      <% @site_component.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @site_component.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
   <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
   <div class="field">
-    <%= f.input :place_holder, :collection => places_holder.collect{ |p| [t("components.pos.#{p}"), p] }, :label => t("place").capitalize %>
-  </div>
-  <div class="field">
     <%= f.input :component, :collection => components.collect{ |c| [t("components.#{c}"), c] }.sort{ |a,b| a[0].downcase <=> b[0].downcase }, :label => t("component.one") %>
   </div>
   <div class="field" id="settings">
     <%= f.input :settings, :label => t("setting.other"), :as => :text %> 
   </div>
-  <%= f.submit t("save") %>
+  <div class="field">
+    <%= f.input :place_holder, :collection => places_holder.collect{ |p| [t("components.pos.#{p}"), p] }, :label => t("place").capitalize %>
+  </div>
+  <div class="actions">
+    <%= f.submit t("save") %>
+    <%= link_to t('back'), site_site_components_path %>
+  </div>
 <% end %>

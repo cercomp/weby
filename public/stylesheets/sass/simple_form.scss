@@ -95,10 +95,14 @@ $label_horizontal_margin: 10px;
   }
 
   .actions{
-    margin: 10px 0;
+    clear: both;
+    width: 100%;
+    margin: 10px auto;
     button, input[type='submit'] {
-      float: right;
-      text-align: right;
+      margin-left: 435px;
+    }
+    a{
+      float: left
     }
   }
 

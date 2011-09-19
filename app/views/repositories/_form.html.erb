@@ -2,11 +2,11 @@
   <% if @repository.errors.any? %>
     <div id="error_explanation">
       <h2> <%= pluralize(@repository.errors.count, "") %> <%= t"prohibited_being_saved", 
-              :count => @repository.errors.count %>: </h2>
+        :count => @repository.errors.count %>: </h2>
       <ul>
-      <% @repository.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @repository.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
@@ -15,7 +15,8 @@
   <%= f.input :archive, :label => t(:archive, :count => 1), :as => :file %>
   <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
 
-	<div class = "actions">
-	  <%= f.submit t("submit") %>
-	</div>
+  <div class = "actions">
+    <%= f.submit t("submit") %>
+    <%= link_to t("back"), :back %>
+  </div>
 <% end %>

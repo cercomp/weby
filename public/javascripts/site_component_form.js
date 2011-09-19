@@ -97,6 +97,5 @@ function select_page() {
 function selected (id, title) {
   $('#settings .input p').append('<input type="hidden" name="page" value="' + id + '" />');
   $('#settings a').before('<input type="text" disabled="disabled" value="'+ title +'" />');
-  
   $('#page_list').dialog('close');
 }
