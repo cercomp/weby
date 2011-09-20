@@ -3,9 +3,8 @@
   
   <center>
     <%= form_tag request.path, :method => 'get', :remote => true do %>
-      <%= label_tag t("search") %>
       <%= text_field_tag :image_search %>
-      <%= submit_tag t("submit") %>
+      <%= submit_tag t("search") %>
     <% end %>
   </center>
   <hr>

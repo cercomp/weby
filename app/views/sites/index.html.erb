@@ -12,9 +12,8 @@
 
   <center>
     <%= form_tag "/", :method => 'get', :autocapitalize => "off" do %>
-      <%= label_tag t("search") %>
       <%= text_field_tag :search %>
-      <%= submit_tag t("submit") %>
+      <%= submit_tag t("search") %>
     <% end %>
   </center>
   <br />
