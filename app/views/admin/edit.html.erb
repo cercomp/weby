@@ -1,6 +1,15 @@
 <fieldset>
   <legend><%= (t"editing", :param => (t"site.one")) %></legend>
 
+  <center>
+    <%= form_tag request.path, :method => 'get', :remote => true do %>
+      <%= label_tag t("search") %>
+      <%= text_field_tag :image_search %>
+      <%= submit_tag t("submit") %>
+    <% end %>
+  </center>
+  <hr>
+
   <div id="repo_new" >
     <div class="contextual">
       <%= link_to (t"new_param.masc", :param => (t"archive.one")), new_site_repository_path,
