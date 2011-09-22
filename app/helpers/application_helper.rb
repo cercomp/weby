@@ -297,7 +297,9 @@ module ApplicationHelper
     end 
   end
 
-  def load_components component_place
+  #
+  #
+  def load_components(component_place)
     components = []
     @site.site_components.where(["publish = true AND place_holder = ?", component_place]).each do |comp|
       comp.settings ||= "{}"
@@ -306,5 +308,12 @@ module ApplicationHelper
     end
     raw components.join
   end
+
+  # Retorna quais os tipos de arquivos existentes em um Site
+  # Recebe um objeto do tipo Site
+  def load_mime_types(site)
+    site.repositories.except(:order).all( :select => 'DISTINCT archive_content_type').map {|t| t.archive_content_type }.sort
+  end
+
 end
 
