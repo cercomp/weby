@@ -8,13 +8,10 @@
   <center>
     <%= form_tag request.path, :method => 'get', :remote => true do %>
       <%= text_field_tag :search %>
+      <%= select_tag("mime_type", options_for_select(load_mime_types(@site)), {:include_blank => true})%>
       <%= submit_tag t("search") %>
     <% end %>
   
-    <%= form_tag '', :method => :get do%>
-      <%= select_tag("mime_type", options_for_select(load_mime_types(@site)), {:include_blank => true})%>
-      <%= submit_tag t("filter")%>
-    <% end %>  
   </center>
   
   <div id="repo_list">
