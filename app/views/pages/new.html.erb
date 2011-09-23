@@ -28,8 +28,8 @@
     </div>
 
     <div id='repo_list'> 
-      <%= info_page @repos %>
-      <%= render :partial => 'repositories/repo', :locals => {:obj => @page, :field => :repository_id, :collection => @repos} %>
+      <%= info_page @images %>
+      <%= render :partial => 'repositories/repo', :locals => {:obj => @page, :field => :repository_id, :collection => @images} %>
     </div>
 
     <%= f.input :date_begin_at,

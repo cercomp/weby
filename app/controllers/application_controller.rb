@@ -171,13 +171,4 @@ class ApplicationController < ActionController::Base
     %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
   end
 
-
-  protected
-  # Retorna as imagens pertencentes ao site
-  def load_images
-    @images = @site.repositories.where("archive_content_type LIKE '%image/%'").
-      description_or_file_and_content_file(params[:image_search], "").
-      page(params[:page]).
-      per(Setting.get(:per_page_default))
-  end
 end

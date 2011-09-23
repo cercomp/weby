@@ -22,12 +22,12 @@ class BannersController < ApplicationController
   end
 
   def new
-    @images = @site.repositories.description_or_file_and_content_file(params[:image_search], "").page(params[:page]).per(@site.per_page_default)
+    @images = load_files(@site, "image").description_or_file_and_content_file(params[:image_search], "").page(params[:page]).per(@site.per_page_default)
     @banner = Banner.new
   end
 
   def edit
-    @images = @site.repositories.description_or_file_and_content_file(params[:image_search], "").page(params[:page]).per(@site.per_page_default)
+    @images = load_files(@site,"image").description_or_file_and_content_file(params[:image_search], "").page(params[:page]).per(@site.per_page_default)
     @banner = Banner.find(params[:id])
   end
 

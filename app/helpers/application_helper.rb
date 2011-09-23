@@ -312,8 +312,18 @@ module ApplicationHelper
   # Retorna quais os tipos de arquivos existentes em um Site
   # Recebe um objeto do tipo Site
   def load_mime_types(site)
-    site.repositories.except(:order).all( :select => 'DISTINCT archive_content_type').map {|t| t.archive_content_type }.sort
+     site.repositories.except(:order).all( :select => 'DISTINCT archive_content_type').map {|t| t.archive_content_type }.sort
   end
+
+  # Retorna todos os arquivos pertencentes a um site que sejam de determinado tipo
+  # Recebe um objeto do tipo Site e uma String com o tipo do arquivo
+  def load_files (site, type)
+    @files = @site.repositories.where("archive_content_type LIKE '%#{type}%'").
+      description_or_file_and_content_file(params[:image_search], "").
+      page(params[:page]).
+      per(Setting.get(:per_page_default))
+  end
+
 
 end
 

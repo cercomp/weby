@@ -32,18 +32,9 @@
       </div>
     <% end %>
 
-    <div id='form'>
-      <%= f.input :top_banner_id,
-        :label => t('picture'),
-        :collection => @images,
-        :collection_wrapper_tag => "div class='radio-group-xxx'",
-        :as => :radio,
-        :label_method => lambda { |context| archive_type_image(context, :mini, "64x64") },
-        :value_method => 'id',
-        :paginate => "#{paginate @images}",
-        :hint => t('help_image') %>
-      <%#= render 'repositories/images_radio_list', :f => f, :id => :top_banner_id %>
-    </div>
+    <%= render :partial => 'repositories/repo', :locals => {:obj => @site, :field => :top_banner_id, :collection => @images}%>	
+
+    
 
     <%= f.input :body_width, :label => t("body_width"), :hint => (t"example_param", :param => "960") %>
     <% unless @site.repository.nil? %>

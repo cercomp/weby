@@ -3,7 +3,6 @@ class PagesController < ApplicationController
   before_filter :require_user, :only => [:new, :edit, :update, :destroy, :sort, :toggle_field]
   before_filter :check_authorization, :except => [:view, :show]
   before_filter :per_page, :only => [:index]
-  before_filter :load_images, :only => [:edit, :new]
   helper_method :sort_column
 
   respond_to :html, :xml, :js
@@ -49,6 +48,8 @@ class PagesController < ApplicationController
 
     @repos = @site.repositories.page(params[:page]).per(params[:per_page])
 
+    @images = load_files(@site, "image").page(params[:page]).per(params[:per_page])
+    
     # Objeto para pages_repositories (relacionamento muitos-para-muitos)
     ## Criando objeto com os arquivos que não estão relacionados com a página
     @page_files_unchecked = @site.repositories.page(params[:twitter_page]).per(params[:per_page])
@@ -60,6 +61,8 @@ class PagesController < ApplicationController
     # Automaticamente define o tipo, se não for passado como parâmetro
     params[:type] ||= @page.type
     params[:twitter_page] ||= 1
+
+    @images = load_files(@site, "image").page(params[:page]).per(params[:per_page])
 
     @repository = Repository.new
     @page.pages_repositories.build
