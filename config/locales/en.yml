@@ -118,6 +118,7 @@ en:
   feedback_sent: "Feedback sent successfully!"
   field_required: "Field required!"
   fill_email_form: "Fill out the form below to reset your password. It will be e-mailed to you"
+  filter: "Filter"
   first_name: "First name"
   forgot_password: "Forgot password"
   footer: "Footer"

@@ -118,6 +118,7 @@ pt-BR:
   feedback_sent: "Feedback enviado com sucesso!"
   field_required: "Campo obrigatório!"
   fill_email_form: "Preencha o formulário para resgatar sua senha. Ela será enviada para seu e-mail"
+  filter: "Filtrar"
   first_name: "Nome"
   forgot_password: "Perdi minha senha"
   footer: "Rodapé"

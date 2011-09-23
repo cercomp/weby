@@ -13,7 +13,7 @@ class RepositoriesController < ApplicationController
   end
 
   def index
-    @repositories = @site.repositories.description_or_file_and_content_file(params[:search], '').order(sort_column + ' ' + sort_direction).page(params[:page]).per(params[:per_page])
+    @repositories = load_files(@site, params[:mime_type]).description_or_file_and_content_file(params[:search], "").order(sort_column + ' ' + sort_direction).page(params[:page]).per(params[:per_page])
     unless @repositories
       flash.now[:warning] = (t"none_param", :param => t("archive.one")) 
     end
