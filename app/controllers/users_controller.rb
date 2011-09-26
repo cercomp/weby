@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   layout :choose_layout
   before_filter :require_user, :except => [:new, :create]
   before_filter :check_authorization, :except => [:new, :create, :show]
+	before_filter :get_theme
   respond_to :html, :xml
   helper_method :sort_column
 
@@ -79,21 +80,10 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    files = []
-    for file in Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*")]
-      files << file.split("/")[-1].split(".")[0]
-    end
-    @themes = files
   end
 
   def create
     @user = User.new(params[:user])
-    files = []
-    for file in Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*")]
-      files << file.split("/")[-1].split(".")[0]
-    end
-    @themes = files
-
     if @user.save
       flash[:notice] = "Conta registrada!"
       redirect_to @site ? site_users_path : users_path
@@ -109,11 +99,6 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    files = []
-    for file in Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*")]
-      files << file.split("/")[-1].split(".")[0]
-    end
-    @themes = files
     respond_with(@user)
   end
 
@@ -162,4 +147,12 @@ class UsersController < ApplicationController
   def sort_column
     User.column_names.include?(params[:sort]) ? params[:sort] : 'id'
   end
+	# Cria uma variável themes com base nos temas disponíveis
+	def get_theme
+    files = []
+    for file in Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*")]
+      files << file.split("/")[-1].split(".")[0]
+    end
+    @themes = files
+	end
 end

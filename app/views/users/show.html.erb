@@ -9,7 +9,7 @@
     <p> <b><%= t('email') %>:</b> <%= @user.email %> </p>
     <p> <b><%= t('phone') %>:</b> <%= @user.phone %> </p>
     <p> <b><%= t('mobile') %>:</b> <%= @user.mobile %> </p>
-    <p> <b><%= t('last_request') %>:</b> <%= @user.last_request_at.to_s(:short) %> </p>
+    <p> <b><%= t('last_request') %>:</b> <%= @user.last_request_at.to_s(:short) if @user.last_request_at %> </p>
   </div>
 
   <div id="user_current_roles">
