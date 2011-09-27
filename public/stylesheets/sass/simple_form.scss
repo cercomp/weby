@@ -124,7 +124,6 @@ input{
   padding: 3px;
 
   &:focus{
-    background-color: #faffbd;
     border: 1px solid black;
     @include box_shadow(0 0 28px 1px #aaa);
     outline: none;
