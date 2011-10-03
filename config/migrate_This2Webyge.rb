@@ -222,7 +222,7 @@ weby_estilo = <<EOF
     #{pre_treat(this_estilo.first['avancado'])}
 EOF
       end
-      insert_css = "INSERT INTO csses (name,css) VALUES ('#{site_name}','#{pre_treat(weby_estilo)}') RETURNING id"
+      insert_css = "INSERT INTO csses (name,css) VALUES ('#{site_name}',E'#{pre_treat(weby_estilo)}') RETURNING id"
       css = @con_weby.exec(insert_css)
       puts "\t\tINSERINDO csses: (#{css[0]['id']})\n" if @verbose
       insert_sites_csses = "INSERT INTO sites_csses (site_id,css_id,publish,owner) VALUES ('#{@convar["#{this_site['site_id']}"]['weby']}','#{css[0]['id']}',true,true)"
