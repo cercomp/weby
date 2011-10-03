@@ -75,7 +75,7 @@ $label_horizontal_margin: 10px;
       margin-left: 0;
       //vertical-align: -3px;
       margin-left: $label_width + (2 * $label_horizontal_margin);
-      &+label{
+      & + label{
         position: relative;
         left: $label_width + (4 * $label_horizontal_margin);
         top: -23px;

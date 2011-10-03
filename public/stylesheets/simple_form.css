@@ -77,7 +77,6 @@ input {
   border: 1px solid gray;
   padding: 3px; }
   input:focus {
-    background-color: #faffbd;
     border: 1px solid black;
     -moz-box-shadow: 0 0 28px 1px #aaaaaa;
     -webkit-box-shadow: 0 0 28px 1px #aaaaaa;

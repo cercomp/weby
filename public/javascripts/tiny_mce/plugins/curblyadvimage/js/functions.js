@@ -16,26 +16,23 @@ function select_image(element){
 
 function select_thumb(element) {
   element = $(element);
-  //size = element.attr('href').split('#')[1];
-  img =  element.parents(".selected").removeClass("selected").find("img")
-  //src = img.attr('src').replace(element.attr('href'));
-  curbly_insert_image(element.attr('href'), img.attr('alt') );
+  curbly_insert_image(element.get(0).href, element.get(0).alt);
 }
 
 function upload_callback(){
-    //$('#dynamic_images_list').html('');
     $.ajax({type: "GET", url: "/repositories/manage.js?media=print&page=1", dataType: "script"});
 }
 
 function curbly_insert_image(url, alt_text){
     var formObj = formElement();
+    console.dir(formObj);
     formObj.src.value = url;
     formObj.alt.value = alt_text;
     mcTabs.displayTab('general_tab','general_panel');
     ImageDialog.showPreviewImage(url);
 }
 function formElement() {
-    return document.forms[1];
+    return document.forms[0];
 }
 function ts_onload(){
     $('#dynamic_images_list').html("Uploading...<br /><img src='/images/tiny_mce/spinner.gif'>");

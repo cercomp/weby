@@ -1,5 +1,6 @@
 tinyMCE.addI18n('pt-BR.advimage_dlg',{
 available_images:"Imagens disponíveis",
+images:"Imagens",
 upload_new_image:"Novo Upload",
 loading_images:"Carregando imagens...",
 tab_general:"Geral",

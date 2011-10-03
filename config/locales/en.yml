@@ -74,10 +74,11 @@ en:
 
 #---D---#
   date_param: "Date of %{param}"
+  description: "Description"
   destroy: "Destroy"
   destroyed_param: "%{param} destroyed"
   destroyed_param_error: "Error when remove %{param}"
-  description: "Description"
+  details: "Details"
   disable:
     fem: "Disable"
     masc: "Disable"
@@ -144,6 +145,7 @@ en:
 
 #---I---#
   i18n: 'Internationalization'
+  insert: "Insert"
   instructions_change_password: "Instructions to change your password"
   internacional: "Internacional"
   internal: "Internal"

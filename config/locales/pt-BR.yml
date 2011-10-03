@@ -74,10 +74,11 @@ pt-BR:
 
 #---D---#
   date_param: "Data de %{param}"
+  description: "Descrição"
   destroy: "Excluir"
   destroyed_param: "%{param} removído"
   destroyed_param_error: "Erro ao remover %{param}"
-  description: "Descrição"
+  details: "Detalhes"
   disable:
     fem: "Desabilitada"
     masc: "Desabilitada"
@@ -144,9 +145,10 @@ pt-BR:
 
 #---I---#
   i18n: 'Internacionalização'
-  istructions_change_password: "Instruções para trocar a senha"
+  insert: "Inserir"
   internacional: "Internacional"
   internal: "Interno"
+  istructions_change_password: "Instruções para trocar a senha"
   ip: "ip"
   is_admin: "Admin?"
   is_event: "É um evento?"

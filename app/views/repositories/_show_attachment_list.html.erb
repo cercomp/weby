@@ -3,10 +3,10 @@
     <li id="<%= p.id %>" class="attachment_list">
     <% if params[:media] == 'print'%> 
       <div class="thumbs">
-        Insert:
+        <%= "#{t("insert")}:" %>
         <br/>
-        <%= link_to "Detail", p.archive.url( :original ), :onclick => "select_thumb(this);return false;"%><br/>
-        <%= link_to 'Cancel', 'javascript:void(0)', :onclick => "cancel_image();return false;"%>
+        <%= link_to t("details"), p.archive.url( :original ), :onclick => "select_thumb(this);return false;"%><br/>
+        <%= link_to t('cancel'), 'javascript:void(0)', :onclick => "cancel_image();return false;"%>
       </div>
       <%= link_to_function( image_tag( p.archive.url(), :alt => p.description ), "select_image(this)" )%>
     <% else%>
