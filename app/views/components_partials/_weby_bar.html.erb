@@ -109,7 +109,7 @@
         <li> <%= link_to( t("admin.one"), admin_index_path(:back_url => "#{request.fullpath}") ) %> </li>
         <li> <%= link_to (t"roles_permissions"), roles_path %> </li>
       <% end %>
-      <li> <%= link_to (t"help"), "https://softifes.andifes.org.br/projects/weby/wiki/Documenta%C3%A7%C3%A3o_para_usu%C3%A1rios", target: '_blank' %> </li>
+      <li> <%= link_to (t"help"), "https://softifes.andifes.org.br/projects/weby/wiki/Documenta%C3%A7%C3%A3o_para_usu%C3%A1rios", :target => '_blank' %> </li>
     </menu>
   </nav>
   <nav  class="top_menu right">
