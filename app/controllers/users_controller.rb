@@ -66,7 +66,7 @@ class UsersController < ApplicationController
       order(sort_column + " " + sort_direction).page(params[:page]).
       per(params[:per_page]) 
 
-    if @site and not current_user.is_admin?
+    if @site 
       @users = @users.by_site(@site.id)
     end
 
