@@ -31,13 +31,17 @@ class UsersController < ApplicationController
       # Quando a edição dos papeis é solicitada
       @user = User.find(params[:user_id]) if params[:user_id]
     else
-      #@sites = Site.all.except(:order).page(params[:page]).per(params[:per_page])
-      @sites = Site.name_or_description_like(params[:search]).
-        except(:order).
-        order(sort_column + " " + sort_direction).
-        page(params[:page]).
-        per(params[:per_page])
-      render :select_site
+#      @sites = Site.name_or_description_like(params[:search]).
+#        except(:order).
+#        order(sort_column + " " + sort_direction).
+#        page(params[:page]).
+#        per(params[:per_page])
+#      render :select_site
+			@user = User.no_admin
+			@site_users = User.global_role - User.admin
+			@users_unroled = User.all - User.admin
+			@roles = Role.where("site_id IS NULL")
+      @user = User.find(params[:user_id]) if params[:user_id]
     end
   end
 
@@ -50,9 +54,11 @@ class UsersController < ApplicationController
       user = User.find(id)
       # Limpa os papeis do usuário no site
       user.role_ids.each do |r_id|
-        if @site.roles.map{|r| r.id }.index(r_id)
-          user.role_ids -= [r_id]
-        end
+				if @site and @site.roles.map{|r| r.id }.index(r_id)
+					user.role_ids -= [r_id]
+				else
+					user.role_ids -= [r_id]
+				end
       end
       # NOTE Talvez seja melhor usar (user.role_ids += params[:role_ids]).uniq
       # assim removemos o each logo a cima

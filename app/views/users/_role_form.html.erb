@@ -1,4 +1,4 @@
-<%= form_tag change_roles_site_users_path(@site),
+<%= form_tag @site ? change_roles_site_users_path(@site) : change_roles_users_path,
       :method => "post",
       :id => "form_user_#{@user.id}",
       :remote => 'true',
@@ -8,7 +8,7 @@
     <% @roles.each do |role| %>
       <label>
         <%= check_box_tag 'role_ids[]', role.id,
-              @user.roles.any?{ |r| r.site_id == @site.id && r.id == role.id} %>
+              @user.roles.any?{ |r| r.site_id == @site.try(:id) && r.id == role.id} %>
         <%= role.name %>
       </label>
       <br />

@@ -13,10 +13,10 @@
           <td><%= link_to user.login, user %></td>
           <td>
             <span id="user_<%= user.id %>">
-              <%= user.roles.map{ |r| r.name if r.site_id == @site.id }.compact.join(', ') %>
+              <%= user.roles.map{ |r| r.name if r.site_id == @site.try(:id) }.compact.join(', ') %>
             </span>
             <div id="role_form_<%= user.id %>">
-              <% if @user and @user.id == user.id %>
+              <% if @user and @user == user %>
                 <%= render 'role_form' %>
               <% end %>
             </div>
