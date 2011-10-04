@@ -25,7 +25,6 @@ function upload_callback(){
 
 function curbly_insert_image(url, alt_text){
     var formObj = formElement();
-    console.dir(formObj);
     formObj.src.value = url;
     formObj.alt.value = alt_text;
     mcTabs.displayTab('general_tab','general_panel');

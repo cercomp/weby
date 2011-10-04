@@ -10,75 +10,70 @@
 #class_list {width:180px;}
 input {width: 280px;}
 input.submit {
-	width: auto;
-	margin: 0;
-	}
+  width: auto;
+  margin: 0;
+}
 #constrain, #onmousemovecheck {width:auto;}
 #id, #dir, #lang, #usemap, #longdesc {width:200px;}
 
 ul.attachment_list {
-	list-style: none;
-	margin:0;
-	padding:0;
-	}
-	ul.attachment_list li {
-		display:block;
-		width: 50px;
-		float: left;
-		margin-right: 8px;
-		margin-bottom:5px;
-		}
-		ul.attachment_list li img {
-			width: 50px;
-			}
-		ul.attachment_list li a {		
-			outline:none;
-			}
-	ul.attachment_list li.selected a img {
-		border: 2px solid red;
-		}
-	ul.attachment_list li .thumbs {
-		display:none;
-		background: #efefef;
-		position: absolute;
-		width:65px;
-		margin: 45px 5px 5px 25px;
-		border-right: 2px solid #666;
-		border-bottom: 2px solid #333;
-		border-top: 2px solid #efefef;		
-		border-left: 2px solid #efefef;		
-		}
-		ul.attachment_list li .thumbs a {		
-			margin-bottom: 5px;
-			line-height: 1.5em;
-			text-decoration: none;
-			}
-			ul.attachment_list li .thumbs a {					
-				text-decoration: underline;
-				}
-	ul.attachment_list li.selected .thumbs {
-		display:block;
-		}
-
+  list-style: none;
+  margin:0;
+  padding:0;
+}
+ul.attachment_list li {
+  width: 50px;
+  float: left;
+  margin-right: 8px;
+  margin-bottom:5px;
+}
+ul.attachment_list li img {
+  width: 50px;
+}
+ul.attachment_list li a {		
+  outline:none;
+}
+ul.attachment_list li.selected a img {
+  border: 2px solid red;
+}
+ul.attachment_list li .thumbs {
+  display:none;
+  background: #efefef;
+  position: absolute;
+  width:65px;
+  margin: 45px 5px 5px 25px;
+  border-right: 2px solid #666;
+  border-bottom: 2px solid #333;
+  border-top: 2px solid #efefef;		
+  border-left: 2px solid #efefef;		
+}
+ul.attachment_list li .thumbs a {		
+  margin-bottom: 5px;
+  line-height: 1.5em;
+  text-decoration: none;
+}
+ul.attachment_list li.selected .thumbs {
+  display: block;
+}
 .right {
-	float:right;
+  float:right;
 }
 .left {
-	float:left;
+  float:left;
 }
 .clear {
-	clear:both;
+  clear:both;
 }
 .pagination a {
   border: 1px solid #7DA807;
   color: #7DA807;
   margin-right: .3em;
-  padding: .3em; }
+padding: .3em; }
 .pagination a:hover {
   background: #7DA807;
   border: 1px solid #7DA807;
-  color: #ffffff; }
+color: #ffffff; }
 .pagination a.active {
   background: #1EA2C1;
   border: none;
-  color: #ffffff; }
+color: #ffffff; }

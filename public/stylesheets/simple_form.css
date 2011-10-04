@@ -25,9 +25,21 @@
 .simple_form label.collection_radio {
   float: none;
   margin: 0;
+  padding: 0;
   vertical-align: -2px;
   margin-right: 10px;
   margin-left: 2px; }
+.simple_form .radio-group-images {
+  display: table; }
+  .simple_form .radio-group-images > input[type=radio] {
+    display: none; }
+    .simple_form .radio-group-images > input[type=radio] + label.collection_radio > img {
+      padding: 4px 2px;
+      margin: 5px; }
+.simple_form .radio-group-images-selected, .simple_form .radio-group-images > input[type=radio]:checked + label.collection_radio > img, .simple_form .radio-group-images > input[type=radio] + label.collection_radio > img:hover {
+  margin: 4px 2px;
+  padding: 2px;
+  border: 3px solid red; }
 .simple_form .field_with_errors {
   background-color: #ff3333; }
 .simple_form input.radio {

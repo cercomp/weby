@@ -4,6 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <title>{#advimage_dlg.dialog_title}</title>
     <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../rails.js"></script>
     <script type="text/javascript" src="../../tiny_mce_popup.js"></script>
     <script type="text/javascript" src="../../utils/mctabs.js"></script>
     <script type="text/javascript" src="../../utils/form_utils.js"></script>
@@ -32,7 +33,9 @@
             <script type="text/javascript">//<![CDATA[
               //$.ajax({type: "GET", url: "/attachments/manage?media=print", dataType: "script"});
               //$.ajax({type: "GET", url: "/sites/"+tinyMCEPopup.getWindowArg('site_name')+"/repositories/manage?media=print", dataType: "script"});
-            $.ajax({type: "GET", url: "/sites/"+tinyMCEPopup.editor.settings.plugin_preview_pageurl+"/repositories/manage?media=print", dataType: "script"});
+            $.ajax({type: "GET",
+                    url: "/sites/"+tinyMCEPopup.editor.settings.plugin_preview_pageurl+"/repositories?template=tinymce",
+                    dataType: "script"});
             //]]>
             </script>
             <div id="dynamic_images_list">

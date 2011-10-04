@@ -47,9 +47,35 @@ $label_horizontal_margin: 10px;
   label.collection_radio {
     float: none;
     margin: 0;
+    padding: 0;
     vertical-align: -2px;
-    margin-right: 10px;
-    margin-left:   2px;
+    margin:{
+      right: 10px;
+      left:   2px;
+    }
+  }
+
+  .radio-group-images{
+    display: table;
+    & > input[type=radio]{
+      display: none;
+      &:checked + label.collection_radio > img{
+        @extend .radio-group-images-selected
+      }
+      & + label.collection_radio > img{
+        padding: 4px 2px;
+        margin: 5px;
+        &:hover{
+          @extend .radio-group-images-selected
+        }
+      }
+    }
+  }
+
+  .radio-group-images-selected{
+    margin: 4px 2px;
+    padding: 2px;
+    border: 3px solid red;
   }
 
   .field_with_errors {

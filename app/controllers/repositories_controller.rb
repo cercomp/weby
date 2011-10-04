@@ -2,18 +2,23 @@ class RepositoriesController < ApplicationController
   layout :choose_layout
   before_filter :require_user
   before_filter :check_authorization
- # before_filter :load_images, :only => [:new, :edit]
+  # before_filter :load_images, :only => [:new, :edit]
 
   helper_method :sort_column
- 
-  respond_to :html, :xml, :js
-  def manage
-    @repositories = @site.repositories.order('created_at DESC').page(params[:page]).per(params[:per_page])
-    respond_with(@repositories)
-  end
 
+  respond_to :html, :xml, :js
   def index
-    @repositories = load_files(@site, params[:mime_type]).description_or_file_and_content_file(params[:search], "").order(sort_column + ' ' + sort_direction).page(params[:page]).per(params[:per_page])
+    @repositories = load_files(@site, params[:mime_type]).
+      description_or_file_and_content_file(params[:search], "").
+      order(sort_column + ' ' + sort_direction).
+      page(params[:page]).per(params[:per_page])
+
+    request_type = request.env["HTTP_X_REQUESTED_WITH"] == "XMLHttpRequest" ? 'js' : 'html'
+
+    if params[:template] 
+      render :template => "repositories/#{params[:template]}.#{request_type}.erb"
+    end
+
     unless @repositories
       flash.now[:warning] = (t"none_param", :param => t("archive.one")) 
     end
@@ -42,7 +47,7 @@ class RepositoriesController < ApplicationController
           else
             redirect_to :back
           end
-         } 
+        } 
         format.xml  { render :xml => @repository, :status => :created, :location => @repository }
       else
         format.html { redirect_to :back }
@@ -56,7 +61,7 @@ class RepositoriesController < ApplicationController
     @repository = Repository.find(params[:id])
 
     respond_to do |format|
-        if @repository.update_attributes(params[:repository]) 
+      if @repository.update_attributes(params[:repository]) 
         format.html { redirect_to(:site_id => @repository.site.name, :controller => 'repositories', :action => 'show', :id => @repository.id) }
         format.xml  { head :ok }
         flash[:notice] = t("successfully_updated") 
