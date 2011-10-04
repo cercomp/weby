@@ -41,9 +41,11 @@
   <h3> <%= @page.url.try(:empty?) ? @page.source : link_to(@page.source, @page.url) %> </h3>
   </p>
 
-  <p>
-    <h3><%= t('categories') %>: <%= @page.category_list.join ', ' %></h3>
-  </p>
+	<% unless @page.category_list.empty? %>
+	  <p>
+  	  <h3><%= t('categories') %>: <%= @page.category_list.join ', ' %></h3>
+	  </p>
+	<% end %>
 
   <% unless @page.repositories.empty? %>
     <table class="list">

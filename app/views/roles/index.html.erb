@@ -14,7 +14,7 @@
     </div>
   <% end %>
 
-  <%= form_tag (@site ? site_roles_path : roles_path), :method => :put, :id => 'roles_form' do %>
+	<%= form_tag @site ? site_roles_path : roles_path, :method => :put, :id => 'roles_form' do %>
   <table class="list">
     <thead>
      <tr>

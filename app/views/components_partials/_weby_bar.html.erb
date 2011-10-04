@@ -131,7 +131,7 @@
       <menu>
         <li>
         <% @user_session = UserSession.new %>
-        <%= render file: 'user_sessions/new.html.erb', locals: { class_for_login: 'login_embedded' } %>
+				<%= render :file => 'user_sessions/new.html.erb', :locals => { :class_for_login => 'login_embedded' } %>
         </li>
       </menu>
       </li>
