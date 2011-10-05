@@ -1,0 +1,12 @@
+<ul class="attachment_list">
+  <% @repositories.each do |repository| %>
+    <li id="<%= repository.id %>" class="attachment_list">
+      <%= link_to( image_tag( repository.archive.url(), :alt => repository.description ),
+                           repository.archive.url( :original ), :onclick => "select_thumb(this); return false;" ) %>
+    </li>
+  <% end %>
+</ul>
+
+<div style="clear: both">
+  <%= paginate @repositories, :remote => true %>
+</div>
