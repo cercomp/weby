@@ -25,22 +25,20 @@ class UsersController < ApplicationController
       @site_users = User.by_site(@site) - User.admin
       # Usuários que NÃO possuem papel no site e não são administradores
       @users_unroled = User.by_no_site(@site) - User.admin
-
       # Busca os papéis do site e global
       @roles = @site.roles.order("id")
       # Quando a edição dos papeis é solicitada
       @user = User.find(params[:user_id]) if params[:user_id]
     else
-#      @sites = Site.name_or_description_like(params[:search]).
-#        except(:order).
-#        order(sort_column + " " + sort_direction).
-#        page(params[:page]).
-#        per(params[:per_page])
-#      render :select_site
+      # Seleciona os todos os usuários que não são administradores
 			@user = User.no_admin
+      # Usuários que possuem papel global e não são administradores
 			@site_users = User.global_role - User.admin
+      # Todos os usuários menos os que não são administradores
 			@users_unroled = User.all - User.admin
+      # Busca os papéis globais
 			@roles = Role.where("site_id IS NULL")
+      # Quando a edição dos papeis é solicitada
       @user = User.find(params[:user_id]) if params[:user_id]
     end
   end

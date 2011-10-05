@@ -10,7 +10,7 @@
     <thead>
       <tr>
         <th><%= t "enrole_user" %></th>
-        <th style="width: 55%">Papel</th>
+        <th style="width: 40%">Papel</th>
       </tr>
     </thead>
     <tbody>
@@ -23,7 +23,7 @@
           <div style="height: 500px; overflow: auto">
             <ul id="users_list_roles"> 
               <% @users_unroled.each do |user| %>
-                <li><%= check_box_tag 'user[id][]', user.id, user.id == params[:user].to_i %><%= user.login %>
+                <li><%= check_box_tag 'user[id][]', user.id, user.id == params[:user].to_i %><%= " #{user.first_name} #{user.last_name} (#{user.login})" %>
             <% end %>
           </ul>
         </div>
