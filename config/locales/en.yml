@@ -2,6 +2,7 @@ en:
   this_file_language: "American English"
 
 #---A---#
+  all: "All"
   accessing_as: "Accessing as"
   access_denied: "Access denied"
   access_denied_page: "You are not allowed to see this page!"

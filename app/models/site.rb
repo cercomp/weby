@@ -32,9 +32,7 @@ class Site < ActiveRecord::Base
   end
 
   validates_presence_of :name, :url, :per_page
-
   validates_uniqueness_of :name
-
   validates_format_of :per_page, :with => /([0-9]+[,\s]*)+[0-9]*/
 
   has_many :roles
