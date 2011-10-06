@@ -18,7 +18,8 @@ class Repository < ActiveRecord::Base
   validates_attachment_presence :archive, :message => I18n.t('activerecord.errors.messages.attachment_presence'), :on => :create
   #validates_attachment_content_type :mp3, :content_type => [ "image/bmp", "image/x-png", "image/pjpeg", "image/jpg", "image/jpeg", "image/png", "image/gif" ] 
 
-	before_post_process :image?
+	before_post_process :image?, :normalize_file_name
+
 	def image?
     if archive_content_type.include?("svg")
       return false
@@ -26,4 +27,12 @@ class Repository < ActiveRecord::Base
       archive_content_type.include?("image") 
     end  
   end
+
+  def normalize_file_name
+    file_name = (archive.to_s + '_file_name').to_sym
+    if self.send(file_name)
+       self.send(archive).instance_write(:file_name, self.send(attachment_file_name).gsub(/ /,'_'))
+    end
+  end
+
 end

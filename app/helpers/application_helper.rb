@@ -289,7 +289,19 @@ module ApplicationHelper
   # Retorna quais os tipos de arquivos existentes em um Site
   # Recebe um objeto do tipo Site
   def load_mime_types(site)
-    site.repositories.except(:order).all( :select => 'DISTINCT archive_content_type').map {|t| t.archive_content_type }.sort
+   mime_types = site.repositories.except(:order).all( :select => 'DISTINCT archive_content_type').map {|t| t.archive_content_type }.sort
+   
+   mime_types.collect! { |m| m.split('/') }
+
+   hash = Hash.new {|hash,key| hash[key] = Array.new}
+  
+   #TODO: Colocar o campo todos para cada opcao 
+   mime_types.each do  |a, b|  
+     hash[a] << b
+   end
+
+  return hash
+
   end
 
   # Retorna todos os arquivos pertencentes a um site que sejam de determinado tipo

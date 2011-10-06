@@ -8,7 +8,7 @@
   <center>
     <%= form_tag request.path, :method => 'get', :remote => true do %>
       <%= text_field_tag :search %>
-      <%= select_tag("mime_type", options_for_select(load_mime_types(@site)), {:include_blank => true})%>
+      <%= select_tag("mime_type", grouped_options_for_select(load_mime_types(@site)), {:include_blank => "Todos os tipos"})%>
       <%= submit_tag t("search") %>
     <% end %>
   
