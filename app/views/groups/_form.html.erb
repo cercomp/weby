@@ -13,9 +13,9 @@
   <%= f.input :name, :label => t("name"), :hint => t("field_required") %>
 
   <% unless @users.nil? %>
-    <div class="select-field">
+    <div class="collection_check_boxes">
       <label for="users_id_"><%= t "user.other" %>:</label>
-      <div style="margin-left: 20%; padding-left: 10px">
+      <div class="check_boxes">
         <% @users.each do |user| %>
           <%= check_box_tag 'group[user_ids][]', user.id, @group.user_ids.include?(user.id) %>
           <%= user.login %>
@@ -29,8 +29,7 @@
   <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
 
   <div class="actions">
-    <%= f.submit t("save") %>
-    <%= link_to t('back'), site_groups_path(@site) %>
+    <%= f.submit t("save") %> <%= link_to t('back') %>
   </div>
 
 <% end %>
