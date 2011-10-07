@@ -15,8 +15,8 @@ function select_image(element){
 }
 
 function select_thumb(element) {
-  element = $(element);
-  curbly_insert_image(element.get(0).href, element.get(0).alt);
+  element = $(element).children();
+  curbly_insert_image(element.get(0)['src'], element.get(0)['alt']);
 }
 
 function upload_callback(){
@@ -27,6 +27,7 @@ function curbly_insert_image(url, alt_text){
     var formObj = formElement();
     formObj.src.value = url;
     formObj.alt.value = alt_text;
+    formObj.title.value = alt_text;
     mcTabs.displayTab('general_tab','general_panel');
     ImageDialog.showPreviewImage(url);
 }
