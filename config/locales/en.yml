@@ -176,7 +176,9 @@ en:
   little: "Little"
   locale: "Locale"
   localization: "Localization"
-  logged: "logged"
+  logged:
+    one: "logged"
+    other: "logged"
   login: "Login"
   login_success: "Logged in succesfully!"
   logout: "Logout"

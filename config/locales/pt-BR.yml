@@ -176,7 +176,9 @@ pt-BR:
   little: "Pequeno"
   locale: "Linguagem"
   localization: "Local de realização"
-  logged: "logado"
+  logged: 
+    one: "logado"
+    other: "logados"
   login: "Entrar"
   login_success: "Logado com sucesso!"
   logout: "Sair"
