@@ -1,49 +1,42 @@
 $(document).ready(function() {
   var loading = LoadingGif.build();
 
-  $('form[data-remote=true]')
-  .bind('submit', function(){
+  $('form[data-remote=true]').bind('submit', function(){
     loading.setLocal($(this).find('span#loading')).show();
+  }).bind('ajax:complete', function(){
+    loading.hide();
+  });
+
+  // Mostra spinner em ajax com pagination
+  $('.pages_paginator a[data-remote=true]').live('click',function (){
+    loading.setLocal($(this).parent().parent()).show();
+    return false;
   })
-.bind('ajax:complete', function(){
-  loading.hide();
-});
-// Mostra spinner em ajax com pagination
-$('.pages_paginator a[data-remote=true]').live('click',function (){
-  loading.setLocal($(this).parent().parent()).show();
-  return false;
-})
 
-// Mostra spinner em ajax com links de itens por pagina
-$('.per_page_paginator a[data-remote=true]').live('click',function (){
-  loading.setLocal($(this).parent().parent()).show();
-  return false;
-})
-
-// ManageRoles limpa area do formulário
-$('.role_edit').each(function (link) {
-  $(this).bind("ajax:success", function(data, status, xhr) {
-    $('#user_'+$(this).attr('user_id')).hide()
+  // Mostra spinner em ajax com links de itens por pagina
+  $('.per_page_paginator a[data-remote=true]').live('click',function (){
+    loading.setLocal($(this).parent().parent()).show();
+    return false;
   })
-})
 
-// ManageRoles muda o cursor do ponteiro
-$('.role_edit').each(
-    function (link) {
-      $(this).bind("ajax:success", function (data, status, xhr) {
-        document.body.style.cursor = "default"
-        $('#user_'+$(this).attr('user_id')).hide()
-      })
+  // ManageRoles limpa area do formulário
+  $('.role_edit').each(function (link) {
+    $(this).bind("ajax:success", function(data, status, xhr) {
+      $('#user_'+$(this).attr('user_id')).hide()
+    })
+  })
 
-      $(this).click(
-        function () {
-          document.body.style.cursor = "wait"
-        }
-        )
-    }
+  // ManageRoles muda o cursor do ponteiro
+  $('.role_edit').each( function (link) {
+    $(this).bind("ajax:success", function (data, status, xhr) {
+      document.body.style.cursor = "default"
+      $('#user_'+$(this).attr('user_id')).hide()
+    })
 
-    )
-
+    $(this).click( function () {
+      document.body.style.cursor = "wait"
+    })
+  })
 });
 
 function hide_enroled_option() {
@@ -92,4 +85,17 @@ function toogle_select_multiple(select){
   }else{
     $(select).attr("multiple","multiple");
   }
+}
+
+function show_selected_image(object,field_name){
+  $('input[name="'+object+'['+field_name+']"]').change(function(){
+    $('#selected-image-of-radio-group-images').html($('label[for="'+$(this).attr("id")+'"] > img').clone()); 
+    $('#selected-image-of-radio-group-images').append($(this).clone());
+  });
+  $('#selected-image-of-radio-group-images').bind('click', function(){
+    var input_id = $(this).find(':radio').attr("id");
+    $("#"+input_id).prop("checked", false);
+    $(this).find('img').hide();
+    return false;
+  });
 }

@@ -11,3 +11,4 @@ $('#repo_list').html('<%= escape_javascript(render(partial: 'repositories/repo',
   $('#twitter').html('<%= escape_javascript(paginate(@page_files_unchecked, :param_name => 'twitter_page', :theme => 'twitter', :remote => true).to_s) %>')
 <% end %>
 
+show_selected_image('page', 'repository_id');
