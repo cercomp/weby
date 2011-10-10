@@ -38,7 +38,7 @@ class Repository < ActiveRecord::Base
     if archive_content_type.include?("svg")
       return false
     else  
-      archive_file_namee_content_type.include?("image") 
+      archive_content_type.include?("image") 
     end  
   end
 
