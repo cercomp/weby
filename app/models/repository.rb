@@ -30,7 +30,8 @@ class Repository < ActiveRecord::Base
     :styles => { :mini => "95x70", :little =>"190x140", :medium => "400x300", :original => "" },
     :url => "/uploads/:site_id/:style_:basename.:extension"
 
-  validates_attachment_presence :archive, :message => I18n.t('activerecord.errors.messages.attachment_presence'), :on => :create
+  validates_attachment_presence :archive,
+    :message => I18n.t('activerecord.errors.messages.attachment_presence'), :on => :create
 
   before_post_process :image?, :normalize_file_name
 

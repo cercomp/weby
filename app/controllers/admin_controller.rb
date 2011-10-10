@@ -16,7 +16,7 @@ class AdminController < ApplicationController
     @repository = Repository.new
 
     @images = @site.repositories.content_file("image").
-      description_or_filename(params[:image_search])
+      description_or_filename(params[:image_search]).
       page(params[:page]).
       per(params[:per_page])
 
