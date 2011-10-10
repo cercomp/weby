@@ -43,10 +43,9 @@ class Repository < ActiveRecord::Base
     end  
   end
 
+  # Remoção de caracteres que causava erro no paperclip
+  # TODO: Rever uma melhor implementação
   def normalize_file_name
-    file_name = (archive.to_s + '_file_name')._file_nameto_sym
-    if self.send(file_name)
-      self.send(archive).instance_write(:file_name, self.send(attachment_file_name).gsub(/ /,'_'))
-    end
+    archive.instance_write(:file_name, CGI.unescape(archive.original_filename))
   end
 end
