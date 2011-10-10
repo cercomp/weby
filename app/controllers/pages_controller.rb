@@ -45,7 +45,7 @@ class PagesController < ApplicationController
     @page.pages_repositories.build
     @page.page_i18ns.build(:locale_id => Locale.find_by_name(session[:locale]).id)
 
-    @images = @site.repositories.by_content_file("image").
+    @images = @site.repositories.content_file("image").
       page(params[:page]).per(params[:per_page])
 
     # Objeto para pages_repositories (relacionamento muitos-para-muitos)
@@ -61,7 +61,7 @@ class PagesController < ApplicationController
 
     @page.pages_repositories.build
 
-    @images = @site.repositories.by_content_file("image").
+    @images = @site.repositories.content_file("image").
       page(params[:page]).per(params[:per_page])
 
     # Criando objeto com os arquivos que não estão relacionados com a página
