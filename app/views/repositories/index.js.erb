@@ -1,1 +1,2 @@
 $('#repo_list').html('<%= escape_javascript(render(:partial => 'repo_list')) %>')
+$("#debugg").html('<%= escape_javascript(@repositories.to_sql) %>' + '<%= escape_javascript(debug params) %>')

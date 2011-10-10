@@ -1,0 +1,22 @@
+  <%= info_page @repositories %>
+  <%= paginate @repositories, :remote => true %>
+  <table class='list'>
+    <thead>
+      <th><%= t("archive.other") %></th>
+      <th><%= sortable 'id' %></th>
+      <th><%= sortable 'description', t("description") %></th>
+      <th></th>
+    </thead>
+    <tbody>    
+    <% @repositories.each do |repository| %>
+      <tr class="<%= cycle 'odd', 'even' %>">
+        <td> <%= raw archive_type_image(repository, :mini, "64x64") %> </td>
+        <td> <%= repository.id %></td> 
+        <td> <%= repository.description %> </td>
+        <td> <%= raw make_menu(repository) %> </td>
+      </tr>
+    <% end; reset_cycle %>
+    </tbody>
+  </table>
+  <%= paginate @repositories, :remote => true %>
+  <%= per_page_links @repositories, true %>

@@ -1,4 +1,7 @@
-$('#repo_list').html('<%= escape_javascript(render(:partial => 'repositories/repo', :locals => {:obj => @page, :field => :repository_id, :collection => @repos })) %>')
+$('#repo_list').html('<%= escape_javascript(render(partial: 'repositories/repo',
+                                                   locals: { obj: @page,
+                                                             field: :repository_id,
+                                                             collection: @images } )) %>')
 
 <% if params[:type] %>
   $('#div_event').html('<%= escape_javascript(render(:partial => 'formEvent')) %>')

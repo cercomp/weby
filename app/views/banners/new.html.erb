@@ -5,6 +5,7 @@
     <%= form_tag request.path, :method => 'get', :remote => true do %>
       <%= text_field_tag :image_search %>
       <%= submit_tag t("search") %>
+      <span id="loading"></span>
     <% end %>
   </center>
   <hr>

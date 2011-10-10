@@ -1,4 +1,4 @@
-$('#repo_list').html('<%= escape_javascript(render(:partial => 'repositories/repo', :locals => {:obj => @page, :field => :repository_id, :collection => @repos })) %>')
+$('#repo_list').html('<%= escape_javascript(render(:partial => 'repositories/repo', :locals => {:obj => @page, :field => :repository_id, :collection => @images })) %>')
 
 <% if params[:twitter_page] %>
   $('#files_list').append('<%= escape_javascript(render(:partial => 'files_list')) %>')

@@ -36,6 +36,9 @@ module RepositoryHelper
   end
 
   def link_to_image(file, image, size)
-    link_to(image_tag(image, alt: file.description, size: size), file.archive.url, :title => file.description)
+    link_to(image_tag(image, alt: file.description, size: size),
+            file.archive.url,
+            title: file.description,
+            target: '_blank')
   end
 end

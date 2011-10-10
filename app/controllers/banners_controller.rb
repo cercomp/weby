@@ -9,7 +9,9 @@ class BannersController < ApplicationController
   respond_to :html, :xml, :js
 
   def index
-    @banners = @site.banners.except(:order).order(sort_column + " " + sort_direction).titles_or_texts_like(params[:search]).
+    @banners = @site.banners.except(:order).
+      order(sort_column + " " + sort_direction).
+      titles_or_texts_like(params[:search]).
       page(params[:page]).per(params[:per_page])
 
     unless @banners
@@ -22,12 +24,18 @@ class BannersController < ApplicationController
   end
 
   def new
-    @images = load_files(@site, "image").description_or_file_and_content_file(params[:image_search], "").page(params[:page]).per(@site.per_page_default)
+    @images = @site.repositories.
+      description_or_filename(params[:image_search]).
+      content_file("image").
+      page(params[:page]).per(@site.per_page_default)
     @banner = Banner.new
   end
 
   def edit
-    @images = load_files(@site,"image").description_or_file_and_content_file(params[:image_search], "").page(params[:page]).per(@site.per_page_default)
+    @images = @site.repositories.
+      description_or_filename(params[:image_search]).
+      content_file("image").
+      page(params[:page]).per(@site.per_page_default)
     @banner = Banner.find(params[:id])
   end
 

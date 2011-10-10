@@ -1,7 +1,7 @@
 <div id="form">
   <%= simple_fields_for obj do |f| %>
     <%= f.input field, 
-      :label => t('picture'),
+      :label => "#{t('picture')}<div id='selected-image-of-radio-group-images'></div>",
       :collection => collection,
       :collection_wrapper_tag => "div class='radio-group-images'",
       :as => :radio, 

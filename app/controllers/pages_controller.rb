@@ -11,13 +11,13 @@ class PagesController < ApplicationController
     params[:type] ||= 'News'
 
     @pages = @site.pages.titles_like(params[:search])
-		if current_user
-	    @pages = @pages.except(:order).order(sort_column + " " + sort_direction).
-                page(params[:page]).per(per_page)
-		else
-	    @pages = @pages.published.except(:order).order(sort_column + " " + sort_direction).
-               	page(params[:page]).per(per_page)
-		end
+    if current_user
+      @pages = @pages.except(:order).order(sort_column + " " + sort_direction).
+        page(params[:page]).per(per_page)
+    else
+      @pages = @pages.published.except(:order).order(sort_column + " " + sort_direction).
+        page(params[:page]).per(per_page)
+    end
 
     @tiny_mce = tiny_mce
     @pages = @pages.published if @tiny_mce
@@ -40,33 +40,29 @@ class PagesController < ApplicationController
     params[:type] ||= 'News'
     params[:twitter_page] ||= 1
 
-    @repository = Repository.new
     @page = Page.new
     @page.sites_pages.build
     @page.pages_repositories.build
     @page.page_i18ns.build(:locale_id => Locale.find_by_name(session[:locale]).id)
 
-    @repos = @site.repositories.page(params[:page]).per(params[:per_page])
+    @images = @site.repositories.by_content_file("image").
+      page(params[:page]).per(params[:per_page])
 
-    @images = load_files(@site, "image").page(params[:page]).per(params[:per_page])
-    
     # Objeto para pages_repositories (relacionamento muitos-para-muitos)
     ## Criando objeto com os arquivos que não estão relacionados com a página
     @page_files_unchecked = @site.repositories.page(params[:twitter_page]).per(params[:per_page])
   end
 
   def edit
-    # Objeto para pages_repositories (relacionamento muitos-para-muitos)
     @page = Page.find(params[:id])
-    # Automaticamente define o tipo, se não for passado como parâmetro
+    # Automaticamente define o tipo da pagina, se não for passado como parâmetro
     params[:type] ||= @page.type
     params[:twitter_page] ||= 1
 
-    @images = load_files(@site, "image").page(params[:page]).per(params[:per_page])
-
-    @repository = Repository.new
     @page.pages_repositories.build
-    @repos = @site.repositories.page(params[:page]).per(params[:per_page])
+
+    @images = @site.repositories.by_content_file("image").
+      page(params[:page]).per(params[:per_page])
 
     # Criando objeto com os arquivos que não estão relacionados com a página
     unless @page.repository_ids.empty?
@@ -140,7 +136,7 @@ class PagesController < ApplicationController
 
   # Actions referêntes ao gerenciamento de internacionalizações
   def add_i18n
-		flash[:warning] = t("edit_yours_i18ns")
+    flash[:warning] = t("edit_yours_i18ns")
     @page = Page.find(params[:id])
     @page_i18n = PageI18n.new(:page_id => @page.id)
     # Available languages
@@ -158,7 +154,7 @@ class PagesController < ApplicationController
       render :add_i18n
     end
   end
-  
+
   # TODO teste para listar páginas na criação do componente news_as_home
   # FIXEME método semelhante ao usado pelo 'index', verificar uma maneira de agrupa-los
   # Lista com paginação as notícias cadastradas
