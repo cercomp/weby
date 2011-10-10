@@ -3,7 +3,6 @@ class AdminController < ApplicationController
 
   before_filter :require_user
   before_filter :check_authorization
- # before_filter :load_images, :only => :edit
 
   respond_to :html, :xml, :js
 
@@ -16,7 +15,10 @@ class AdminController < ApplicationController
   def edit
     @repository = Repository.new
 
-    @images = load_files(@site, "image").page(params[:page]).per(params[:per_page])
+    @images = @site.repositories.content_file("image").
+      description_or_filename(params[:image_search])
+      page(params[:page]).
+      per(params[:per_page])
 
     @themes = []
     (Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*.erb")] - Dir[File.join(Rails.root + "app/views/layouts/portal.html.erb")]).each do |file|
