@@ -25,7 +25,7 @@
     <div class="link-field ">
       <label for="div_event"><%= t"type" %></label>
       <div class="input" id="link_form_pages">
-        <% if @menu.link.empty?%>
+        <% if @menu.link == nil || @menu.link.empty? %>
           <% params[:type] = "internal"%>
         <% else %>
           <% params[:type] = "external" %>
