@@ -25,7 +25,12 @@
     <div class="link-field ">
       <label for="div_event"><%= t"type" %></label>
       <div class="input" id="link_form_pages">
-        <%= t("internal") %> | <%= link_to t("external"), edit_site_menu_path(@site, :type => "external"), :update => "div_link", :remote => true, :onclick => "var img = new Image; img.src = '/images/spinner.gif'; $(this).parent().html(function(){return img})" %>
+        <% if @menu.link.empty?%>
+          <% params[:type] = "internal"%>
+        <% else %>
+          <% params[:type] = "external" %>
+        <% end %>
+        <%= links_to_menu_type(params[:type]) %>
       </div>
     </div>
 
@@ -35,9 +40,9 @@
 
     <%= f.input :title, :label => t("text"), :hint => t("field_required") %>
 
-		<div class="actions">
-		   <%= f.submit t("save") %> <%= link_to t("back"), :back %>
-  	</div>
+    <div class="actions">
+      <%= f.submit t("save") %> <%= link_to t("back"), :back %>
+    </div>
 
   <% end %> 
 

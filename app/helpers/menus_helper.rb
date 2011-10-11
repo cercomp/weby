@@ -13,7 +13,7 @@ module MenusHelper
       'external' => "#{ link_to_menu_type :internal } | #{t 'external' }"
     }
 
-    return links_hash[type]
+    raw links_hash[type]
   end
 
 end
