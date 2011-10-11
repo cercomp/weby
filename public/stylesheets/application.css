@@ -182,30 +182,24 @@ div.flash.warning {
   text-align: left; }
 
 /***** Ajax indicator ******/
-#ajax-indicator {
-  position: absolute;
-  /* fixed not supported by IE */
-  background-color: #eee;
-  border: 1px solid #bbb;
-  top: 35%;
-  left: 40%;
-  width: 20%;
-  font-weight: bold;
-  text-align: center;
-  padding: 0.6em;
-  z-index: 100;
-  filter: alpha(opacity=50);
-  opacity: 0.5; }
-
-html > body #ajax-indicator {
-  position: fixed; }
-
-#ajax-indicator span {
-  background-position: 0% 40%;
-  background-repeat: no-repeat;
-  background-image: url(../images/loading.gif);
-  padding-left: 26px;
-  vertical-align: bottom; }
+.ajax-indicator {
+  margin: 0 auto;
+  display: none;
+  font-size: 18px;
+  background-color: #ffffc4;
+  padding: 5px;
+  position: fixed;
+  top: 0;
+  right: 45%;
+  z-index: 999;
+  border: 2px solid #c4c400;
+  border-top: 0;
+  -webkit-border-radius: 0 0 5px 5px;
+  -moz-border-radius: 0 0 5px 5px;
+  border-radius: 0 0 5px 5px; }
+  .ajax-indicator:hover {
+    opacity: 0.4;
+    filter: alpha(opacity=40); }
 
 /**** Contextual *****/
 .contextual {
