@@ -15,15 +15,17 @@ class AdminController < ApplicationController
   def edit
     @repository = Repository.new
 
-    @images = @site.repositories.content_file("image").
+    @images = @site.repositories.
+      multiple_content_file(["application/image", "application/x-shockwave-flash"]).
       description_or_filename(params[:image_search]).
       page(params[:page]).
       per(params[:per_page])
 
     @themes = []
-    (Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*.erb")] - Dir[File.join(Rails.root + "app/views/layouts/portal.html.erb")]).each do |file|
+    (Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*.erb")] - 
+     Dir[File.join(Rails.root + "app/views/layouts/portal.html.erb")]).each do |file|
       @themes << file.split("/")[-1].split(".")[0]
-    end
+     end
   end
 
   def update
