@@ -15,14 +15,25 @@ class Repository < ActiveRecord::Base
   }
 
   scope :content_file, lambda{ |content_file|
-    where [ "LOWER(archive_content_type) LIKE :content_file",
-            { :content_file => "%#{content_file.try(:downcase)}%" } ]
+    if content_file.is_a?(Array)
+      # TODO: Esse código funcionará exclusivamente para o Postgresql
+      # TODO: Corrigir para funcionar independente do banco de dados.
+      where ["archive_content_type SIMILAR TO :values",
+             {values: "%(#{content_file.join('|')})%"}
+      ]
+    else
+      archive_content_file(content_file)
+    end
   }
 
-  # Para esse escopo deve ser passado o mimetype completo em um array
-  # Example:: ["image/png", "application/pdf"]
-  scope :multiple_content_file, lambda { |multiple_content_file|
-    where(archive_content_type: multiple_content_file) unless multiple_content_file.blank?
+  scope :archive_content_file, lambda{ |content_file|
+      where [ "LOWER(archive_content_type) LIKE :content_file",
+              { :content_file => "%#{content_file.try(:downcase)}%" } ]
+  }
+
+  scope :or_content_file, lambda{ |content_file|
+    where(or: [ "LOWER(archive_content_type) LIKE :content_file",
+              { :content_file => "%#{content_file.try(:downcase)}%" } ])
   }
 
   validates_presence_of :description

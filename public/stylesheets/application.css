@@ -522,10 +522,12 @@ label[for='users_unroled'] {
   width: 300px;
   float: left; }
 
-#selected-image-of-radio-group-images input {
-  display: none; }
-#selected-image-of-radio-group-images:hover:before {
-  content: url(../images/apagar.gif);
-  position: relative;
-  top: -50px;
-  right: 0; }
+#selected-image-of-radio-group-images {
+  margin-top: 15px; }
+  #selected-image-of-radio-group-images input {
+    display: none; }
+  #selected-image-of-radio-group-images:hover:before {
+    content: url(../images/apagar.gif);
+    position: relative;
+    top: -50px;
+    right: 0; }

@@ -16,7 +16,7 @@ class AdminController < ApplicationController
     @repository = Repository.new
 
     @images = @site.repositories.
-      multiple_content_file(["application/image", "application/x-shockwave-flash"]).
+      content_file(["image", "x-shockwave-flash"]).
       description_or_filename(params[:image_search]).
       page(params[:page]).
       per(params[:per_page])

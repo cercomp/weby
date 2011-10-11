@@ -1,5 +1,5 @@
 <fieldset>
-	<p> <%= raw archive_type_image(@repository, :original) %>  </p>	
+	<p> <%= weby_file_view(@repository, :original) %>  </p>	
   <p> <b><%= t("name") %>:</b> <%= @repository.archive_file_name %> </p>
   <p> <b><%= t("size") %>:</b> <%= @repository.archive_file_size %> </p>
   <p> <b><%= t("type") %>:</b> <%= @repository.archive_content_type %> </p>

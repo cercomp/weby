@@ -16,7 +16,7 @@ class RepositoriesController < ApplicationController
       order(sort_column + ' ' + sort_direction).
       page(params[:page]).per(params[:per_page])
 
-    @repositories = @repositories.multiple_content_file(params[:mime_type]) if params[:mime_type]
+    @repositories = @repositories.content_file(params[:mime_type]) if params[:mime_type]
 
     request_type = request.env["HTTP_X_REQUESTED_WITH"] == "XMLHttpRequest" ? 'js' : 'html'
 

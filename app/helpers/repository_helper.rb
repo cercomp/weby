@@ -1,44 +1,47 @@
 module RepositoryHelper
+  attr_accessor :file, :format, :options, :size, :thumbnail
 
-  def image_field(file, type, size)
-    make_thumb(file, type)
-    image_tag(file.archive.url(type), :alt => file.description, :size => size)
-  end
-
-  # Define qual imagem de exibição será mostrada para o arquivo.
-  # Recebe um objeto do tipo Repository
-  def archive_type_image(file, type, size=nil)
-    # Gera um thumb se ele não existir
-    make_thumb(file, type)
-
-    if file.archive_content_type.empty?
-      image_tag("false.png")
-    else
-      mime_type = get_mime(file)
-      if mime_type[0] == "image"
-        type = :original if mime_type[1].include?("svg") 
-        size = nil unless mime_type[1].include?("svg")
-
-        link_to_image(file, file.archive.url(type), size)
-      else
-        link_to_image(file, "mime_list/#{CGI::escape(mime_type[1])}.png", size)
-      end
-    end 
+  def weby_file_view(file, format, size = nil, options = {as: 'link'})
+    @file, @format, @size, @options = file, format, size, options
+    make_thumbnail!
+    send("#{@options[:as]}_viewer")
   end
 
   private
-  def make_thumb(file, type)
-    file.archive.reprocess! if File.file?(file.archive.path) and not File.file?(file.archive.path(type)) and file.image?
+  def make_thumbnail!
+    @file.archive.reprocess! if need_reprocess?
+    if file.archive_content_type.empty?
+      @thumbnail = "false.png"
+    else
+      if mime_type.first == "image"
+        @format, @size = :original, nil if mime_type.last.include?("svg") 
+
+        @thumbnail = @file.archive.url(@format)
+      else
+        @thumbnail = mime_image
+        @size = "64x64"
+      end
+    end
   end
 
-  def get_mime(file)
-    file.archive_content_type.split('/')
+  def link_viewer
+    raw link_to(image_viewer, @file.archive.url, title: @file.description, target: '_blank')
   end
 
-  def link_to_image(file, image, size)
-    link_to(image_tag(image, alt: file.description, size: size),
-            file.archive.url,
-            title: file.description,
-            target: '_blank')
+  def image_viewer
+    raw image_tag(@thumbnail, alt: @file.description, size: @size, title: @file.description)
+  end
+
+  def mime_type
+    @file.archive_content_type.split('/')
+  end
+
+  def mime_image
+    "mime_list/#{CGI::escape(mime_type.last)}.png"
+  end
+
+  def need_reprocess?
+    not File.file?(@file.archive.path(@format)) and 
+      @file.image?
   end
 end
