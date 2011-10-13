@@ -1,6 +1,9 @@
 <article>
   <% unless @page.repository.nil? %>
-    <%= link_to image_tag("#{@page.repository.archive.url(:little)}", :align => "right"), @page.repository.archive.url, :alt => @page.repository.description, :title => @page.repository.description %>
+    <%= link_to thumbnail_on_show,
+      @page.repository.archive.url,
+      :alt => @page.repository.description,
+      :title => @page.repository.description %>
   <% end %>
 
   <header>
@@ -17,8 +20,8 @@
     <summary>
       <% if @site.view_desc_pages %>
         <p>
-          <%= @page.user.first_name ? ("#{@page.user.first_name} #{@page.user.last_name}") : @page.user.login %>
-          <%= l @page.created_at, :format => :short  %>
+        <%= @page.user.first_name ? ("#{@page.user.first_name} #{@page.user.last_name}") : @page.user.login %>
+        <%= l @page.created_at, :format => :short  %>
         </p>
       <% end %>
       <p> <%= raw @page.by_locale(@current_locale).summary %> </p>
@@ -41,11 +44,11 @@
   <h3> <%= @page.url.try(:empty?) ? @page.source : link_to(@page.source, @page.url) %> </h3>
   </p>
 
-	<% unless @page.category_list.empty? %>
-	  <p>
-  	  <h3><%= t('categories') %>: <%= @page.category_list.join ', ' %></h3>
-	  </p>
-	<% end %>
+  <% unless @page.category_list.empty? %>
+    <p>
+    <h3><%= t('categories') %>: <%= @page.category_list.join ', ' %></h3>
+    </p>
+  <% end %>
 
   <% unless @page.repositories.empty? %>
     <table class="list">
@@ -55,26 +58,26 @@
         <th> MD5 </th>
       </thead>
       <tbody>    
-      <% @page.repositories.each do |repository| %>
-        <tr class="<%= cycle 'odd', 'even' %>">
-        <td><%= link_to repository.description, repository.archive.url %></td>
-        <td><%= repository.archive_file_size.to_i/1024 %> KB</td>
-        <td><%= Digest::MD5.file(repository.archive.path) %></td>
-        </tr>
-      <% end; reset_cycle %>
-      </tbody>
-    </table>
-    <br />
-  <% end %>
-
-  <% if check_permission(PagesController, ["edit"]) %>
-    <%= link_to t("edit"), edit_site_page_path(@site, @page) %> |
-    <%# Verifica se todas as i18n já foram criadas %>
-    <% if @page.page_i18ns.size < Locale.all.size %>
-      <%= link_to t("add_param", :param => t('i18n')), add_i18n_site_page_path(@site, @page) %> |
-    <% else %>
-      <%= t("no_more_i18ns") %> |
+        <% @page.repositories.each do |repository| %>
+          <tr class="<%= cycle 'odd', 'even' %>">
+            <td><%= link_to repository.description, repository.archive.url %></td>
+            <td><%= repository.archive_file_size.to_i/1024 %> KB</td>
+            <td><%= Digest::MD5.file(repository.archive.path) %></td>
+          </tr>
+          <% end; reset_cycle %>
+        </tbody>
+      </table>
+      <br />
     <% end %>
-  <% end %>
-  <%= link_to t("list_all.fem"), site_pages_path(@site) %> | <%= link_to t("back"), :back %>
-</article>
+
+    <% if check_permission(PagesController, ["edit"]) %>
+      <%= link_to t("edit"), edit_site_page_path(@site, @page) %> |
+      <%# Verifica se todas as i18n já foram criadas %>
+      <% if @page.page_i18ns.size < Locale.all.size %>
+        <%= link_to t("add_param", :param => t('i18n')), add_i18n_site_page_path(@site, @page) %> |
+      <% else %>
+        <%= t("no_more_i18ns") %> |
+      <% end %>
+    <% end %>
+    <%= link_to t("list_all.fem"), site_pages_path(@site) %> | <%= link_to t("back"), :back %>
+  </article>
