@@ -14,18 +14,20 @@ module RepositoryHelper
       @thumbnail = "false.png"
     else
       if mime_type.first == "image"
-        @format, @size = :original, nil if mime_type.last.include?("svg") 
+        if mime_type.last.include?("svg") 
+          @size.delete!('#')
+          @format = :original 
+        end
 
         @thumbnail = @file.archive.url(@format)
       else
         @thumbnail = mime_image
-        @size = "64x64"
       end
     end
   end
 
   def link_viewer
-    raw link_to(image_viewer, @file.archive.url, title: @file.description, target: '_blank')
+    raw link_to(image_viewer, @file.archive.url, target: '_blank')
   end
 
   def image_viewer
@@ -41,7 +43,7 @@ module RepositoryHelper
   end
 
   def need_reprocess?
-    not File.file?(@file.archive.path(@format)) and 
+    (not File.file?(@file.archive.path(@format))) and 
       @file.image?
   end
 end

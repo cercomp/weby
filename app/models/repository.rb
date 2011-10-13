@@ -27,13 +27,8 @@ class Repository < ActiveRecord::Base
   }
 
   scope :archive_content_file, lambda{ |content_file|
-      where [ "LOWER(archive_content_type) LIKE :content_file",
-              { :content_file => "%#{content_file.try(:downcase)}%" } ]
-  }
-
-  scope :or_content_file, lambda{ |content_file|
-    where(or: [ "LOWER(archive_content_type) LIKE :content_file",
-              { :content_file => "%#{content_file.try(:downcase)}%" } ])
+    where [ "LOWER(archive_content_type) LIKE :content_file",
+            { :content_file => "%#{content_file.try(:downcase)}%" } ]
   }
 
   validates_presence_of :description
@@ -47,11 +42,8 @@ class Repository < ActiveRecord::Base
   before_post_process :image?, :normalize_file_name
 
   def image?
-    if archive_content_type.include?("svg")
-      return false
-    else  
-      archive_content_type.include?("image") 
-    end  
+    return false if archive_content_type.include?("svg")
+    archive_content_type.include?("image") 
   end
 
   # Remoção de caracteres que causava erro no paperclip

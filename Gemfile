@@ -11,6 +11,10 @@ gem "sass"
 gem "jquery-rails"
 gem "acts-as-taggable-on"
 
+group :development do
+  gem 'wirble'
+end
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
