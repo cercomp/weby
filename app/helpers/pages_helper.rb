@@ -13,4 +13,15 @@ module PagesHelper
                     site_page_path(@site, page, :type => params[:type]),
                     :title => page.repository.description
   end  
+
+  # Retorna um link externo quando existente ou um link interno da página. 
+  # Recebe uma página e o site.
+  def link_on_title(site, page)
+      if page.url.nil?
+        site_page_path(@site, page)
+      else
+        page.url
+      end
+  end
+
 end

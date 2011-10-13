@@ -11,7 +11,7 @@
         <%= link_to_cover_image page %>
       <% end %>
       <header>
-        <h2> <%= link_to page.by_locale(session[:locale]).title, site_page_path(@site, page) %> </h2>
+        <h2> <%= link_to page.by_locale(session[:locale]).title, link_on_title(@site, page) %> </h2>
         <% if @site.view_desc_pages %>
           <p>
           <i>
