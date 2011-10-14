@@ -33,12 +33,15 @@ class Repository < ActiveRecord::Base
 
   validates_presence_of :description
 
+  STYLES = {
+    mini: "95x70",
+    little: "190x140",
+    medium: "400x300",
+    original: ""
+  }
+
   has_attached_file :archive,
-    :styles => { mini: "95x70",
-                 little: "190x140",
-                 medium: "400x300",
-                 original: "" },
-                 url: "/uploads/:site_id/:style_:basename.:extension"
+    :styles => STYLES, url: "/uploads/:site_id/:style_:basename.:extension"
 
   validates_attachment_presence :archive,
     :message => I18n.t('activerecord.errors.messages.attachment_presence'), :on => :create
@@ -63,7 +66,7 @@ class Repository < ActiveRecord::Base
   private
   def need_reprocess?
     return false unless image?
-    %w(mini little medium original).each do |format|
+    STYLES.keys.each do |format|
       return true unless exists_archive?(format)
     end
   end
