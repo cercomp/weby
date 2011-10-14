@@ -82,14 +82,24 @@ function toogle_select_multiple(select){
 }
 
 function show_selected_image(object,field_name){
-  $('input[name="'+object+'['+field_name+']"]').change(function(){
-    $('#selected-image-of-radio-group-images').html($('label[for="'+$(this).attr("id")+'"] > img').clone()); 
-    $('#selected-image-of-radio-group-images').append($(this).clone());
+  place = $('#selected-image-of-radio-group-images');
+
+  place.click(function(){
+    image = $(this).find('img');
+    input = $('input#'+image.attr('id'));
+    if(input.prop('checked')){
+      input.prop('checked', null);
+      image.remove();
+      place.before('');
+    } 
   });
-  $('#selected-image-of-radio-group-images').bind('click', function(){
-    var input_id = $(this).find(':radio').attr("id");
-    $("#"+input_id).prop("checked", false);
-    $(this).find('img').hide();
-    return false;
+
+  $('input[name="'+object+'['+field_name+']"]').change(function(){
+    var selected = $(this);
+    var image = $('label[for="'+selected.attr('id')+'"] > img').clone();
+    image.attr('id',selected.attr('id'));
+    place.html(image); 
+    selected.prop('checked', true);
   });
 }
+

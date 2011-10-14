@@ -40,6 +40,15 @@
   margin: 4px 2px;
   padding: 2px;
   border: 3px solid red; }
+.simple_form #selected-image-of-radio-group-images {
+  margin-top: 15px; }
+  .simple_form #selected-image-of-radio-group-images input {
+    display: none; }
+  .simple_form #selected-image-of-radio-group-images:hover::before {
+    content: url(../images/apagar.gif);
+    position: relative;
+    top: -50px;
+    right: 0; }
 .simple_form .field_with_errors {
   background-color: #ff3333; }
 .simple_form input.radio {

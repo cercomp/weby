@@ -230,18 +230,3 @@ label[for='users_unroled']{ font-weight: bold; font-family: Verdana, sans-serif;
 #users_list_roles { list-style: none; margin: 5px 0px; }
 #user_current_roles { margin-left: 350px; }
 #user_profile { width: 300px; float: left; }
-
-
-
-#selected-image-of-radio-group-images{
-  margin-top: 15px;
-  & input{
-    display: none;
-  }
-  &:hover:before{
-    content: url(../images/apagar.gif);
-    position: relative;
-    top: -50px;
-    right: 0;
-  }
-}

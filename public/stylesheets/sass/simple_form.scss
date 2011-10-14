@@ -78,6 +78,19 @@ $label_horizontal_margin: 10px;
     border: 3px solid red;
   }
 
+  #selected-image-of-radio-group-images{
+    margin-top: 15px;
+    & input{
+      display: none;
+    }
+    &:hover::before{
+      content: url(../images/apagar.gif);
+      position: relative;
+      top: -50px;
+      right: 0;
+    }
+  }
+
   .field_with_errors {
     background-color: #ff3333;
   }

@@ -521,13 +521,3 @@ label[for='users_unroled'] {
 #user_profile {
   width: 300px;
   float: left; }
-
-#selected-image-of-radio-group-images {
-  margin-top: 15px; }
-  #selected-image-of-radio-group-images input {
-    display: none; }
-  #selected-image-of-radio-group-images:hover:before {
-    content: url(../images/apagar.gif);
-    position: relative;
-    top: -50px;
-    right: 0; }
