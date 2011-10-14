@@ -32,9 +32,13 @@ class Repository < ActiveRecord::Base
   }
 
   validates_presence_of :description
+
   has_attached_file :archive,
-    :styles => { :mini => "95x70", :little =>"190x140", :medium => "400x300", :original => "" },
-    :url => "/uploads/:site_id/:style_:basename.:extension"
+    :styles => { mini: "95x70",
+                 little: "190x140",
+                 medium: "400x300",
+                 original: "" },
+                 url: "/uploads/:site_id/:style_:basename.:extension"
 
   validates_attachment_presence :archive,
     :message => I18n.t('activerecord.errors.messages.attachment_presence'), :on => :create
@@ -42,13 +46,29 @@ class Repository < ActiveRecord::Base
   before_post_process :image?, :normalize_file_name
 
   def image?
-    return false if archive_content_type.include?("svg")
-    archive_content_type.include?("image") 
+    archive_content_type.include?("image") &&
+      !archive_content_type.include?("svg")
   end
 
   # Remoção de caracteres que causava erro no paperclip
   # TODO: Rever uma melhor implementação
   def normalize_file_name
     archive.instance_write(:file_name, CGI.unescape(archive.original_filename))
+  end
+
+  def reprocess!
+    archive.reprocess! if need_reprocess?
+  end
+
+  private
+  def need_reprocess?
+    return false unless image?
+    %w(mini little medium original).each do |format|
+      return true unless exists_archive?(format)
+    end
+  end
+
+  def exists_archive?(format=nil)
+    File.file?(archive.path(format))
   end
 end

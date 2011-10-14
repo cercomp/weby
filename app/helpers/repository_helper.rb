@@ -9,29 +9,33 @@ module RepositoryHelper
 
   private
   def make_thumbnail!
-    @file.archive.reprocess! if need_reprocess?
+    @file.reprocess!
     if file.archive_content_type.empty?
       @thumbnail = "false.png"
     else
       if mime_type.first == "image"
         if mime_type.last.include?("svg") 
-          @size.delete!('#')
           @format = :original 
+          clean_size!
         end
 
         @thumbnail = @file.archive.url(@format)
       else
         @thumbnail = mime_image
+        clean_size!
       end
     end
   end
 
   def link_viewer
-    raw link_to(image_viewer, @file.archive.url, target: '_blank')
+    raw link_to(image_viewer, @options[:url] || @file.archive.url, target: '_blank')
   end
 
   def image_viewer
-    raw image_tag(@thumbnail, alt: @file.description, size: @size, title: @file.description)
+    raw image_tag(@thumbnail,
+                  alt: @options[:alt] || @file.description,
+                  size: @size,
+                  title: @options[:title] || @file.description)
   end
 
   def mime_type
@@ -42,8 +46,8 @@ module RepositoryHelper
     "mime_list/#{CGI::escape(mime_type.last)}.png"
   end
 
-  def need_reprocess?
-    (not File.file?(@file.archive.path(@format))) and 
-      @file.image?
+  def clean_size!
+    @size.delete!('#') if @size
   end
+
 end

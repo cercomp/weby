@@ -1,13 +1,16 @@
 <div  id="banners_right">
-  <% @banners = @site.banners.published.tagged_with(settings[:category]) %>
-  <% @banners.each do |b| %>
-    <% unless b.repository.nil? %>
+  <% @component_banners = @site.banners.published.tagged_with(settings[:category]) %>
+  <% @component_banners.each do |banner| %>
+    <% unless banner.repository.nil? %>
       <% #TODO: Trocar id para class %>
       <figure id='banner'>
-        <% b.repository.archive.reprocess! if File.file?(b.repository.archive.path) and not File.file?(b.repository.archive.path(:little)) %>
-        <% size = b.size ? b.size : "little" %>
-        <%= link_to image_tag("#{b.repository.archive.url(size)}", :width => "#{b.width}", :height => "#{b.height}", :alt => "#{b.repository.description}", :title => "#{b.text}"), "#{b.url}" %>
-      </figure>
-    <% end %>
-  <% end %>
-</div>
+        <% banner.repository.reprocess! %>
+        <% format = banner.size ? banner.size : "little" %>
+        <%= weby_file_view(banner.repository,
+                           format,
+                           "#{banner.width}x#{banner.height}",
+                           {as: 'link', alt: banner.text, title: banner.text, url: banner.url }) %>
+                       </figure>
+                     <% end %>
+                   <% end %>
+                 </div>

@@ -1,4 +1,3 @@
-
 <% quant = settings[:quant] || 5 %>
 <% @front_news = @site.pages.news(true).page(params[:front_pages]).per(quant) %>
 
@@ -7,8 +6,7 @@
     <li id="sort_page_<%= "#{page.id}" %>" style="list-style-type:none;">
     <article>
       <% unless page.repository.nil? %>
-        <% recreate_thumbs! page %>
-        <%= link_to_cover_image page %>
+        <%= weby_file_view(page.repository, :little, "128x128#") %>
       <% end %>
       <header>
         <h2> <%= link_to page.by_locale(session[:locale]).title, link_on_title(@site, page) %> </h2>

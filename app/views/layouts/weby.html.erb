@@ -40,8 +40,9 @@
               <li id=<%= "page_#{page.id}" %> style="list-style-type:none;">
               <article class="<%= cycle 'pageleft','pageright' %>">
                 <% unless page.repository.nil? %>
-                  <% page.repository.archive.reprocess! if File.file?(page.repository.archive.path) and
-                    not File.file?(page.repository.archive.path(:little)) %>
+                  <% page.repository.reprocess! %>
+
+                  <%= weby_file_view(page.repository, :mini) %>
 
                   <%= link_to image_tag("#{page.repository.archive.url(:mini)}",
                                         :alt => page.repository.description),

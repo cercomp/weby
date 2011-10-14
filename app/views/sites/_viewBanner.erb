@@ -2,14 +2,20 @@
 <% unless banners.empty? %>
   <% banners.each do |banner| %> 
     <% unless banner.repository.nil? %>
-      <% banner.repository.archive.reprocess! if File.file?(banner.repository.archive.path) and not File.file?(banner.repository.archive.path(:little)) %>
+      <% banner.repository.reprocess! %>
       <figure id="banner">
-        <% size = banner.size ? banner.size : "little" %>
-        <%= link_to image_tag("#{banner.repository.archive.url(size)}", :width => "#{banner.width}", :height => "#{banner.height}", :alt => "#{banner.text}", :title => "#{banner.text}"), "#{banner.url}" %>
-        <% if check_permission(BannersController, ["toggle_field"]) %>
-          <%= link_to t("unpublish"), toggle_field_site_banner_path(@site, banner, :field => 'publish') %>
-        <% end %>
-      </figure>
-    <% end %>
-  <% end %>
-<% end %>
+
+        <% format = banner.size ? banner.size : "little" %>
+        <%= weby_file_view(banner.repository,
+                           format,
+                           "#{banner.width}x#{banner.height}",
+                           {as: 'link', alt: banner.text, title: banner.text }) %>
+
+                         <% if check_permission(BannersController, ["toggle_field"]) %>
+                           <%= link_to t("unpublish"), toggle_field_site_banner_path(@site, banner, :field => 'publish') %>
+                         <% end %>
+
+                       </figure>
+                     <% end %>
+                   <% end %>
+                 <% end %>

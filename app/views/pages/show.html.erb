@@ -1,9 +1,6 @@
 <article>
   <% unless @page.repository.nil? %>
-    <%= link_to thumbnail_on_show,
-      @page.repository.archive.url,
-      :alt => @page.repository.description,
-      :title => @page.repository.description %>
+    <%= weby_file_view(@page.repository, :little, '128x128#') %>
   <% end %>
 
   <header>

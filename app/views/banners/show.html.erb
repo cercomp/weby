@@ -1,16 +1,28 @@
 <fieldset>
   <% unless @banner.repository.nil? %>
-    <% size = @banner.size ? @banner.size : "little" %>
-    <%= link_to image_tag("#{@banner.repository.archive.url(size)}", :width => "#{@banner.width}", :height => "#{@banner.height}", :align => "right"), @banner.url, :alt => @banner.repository.description, :title => @banner.repository.description %>
-  <% end %>
+    <% format = @banner.size ? @banner.size : "little" %>
+    <%= weby_file_view(@banner.repository,
+                       format,
+                       "#{@banner.width}x#{@banner.height}",
+                       {as: 'link', alt: @banner.text, title: @banner.text }) %>
+                   <% end %>
 
-  <p> <h1> <%= t("banner.one") %> </h1> </p>
-  <i><%= @banner.user.login %>, <%= l @banner.created_at, :format => :short %></i>
-  <p> <h2> <%= @banner.text %> </h2> </p>
-  <p>
-    <h3> <%= t("url") %> : <%= link_to h @banner.url %> </h3>
-    <h3> <%= "#{t("categories")} : #{@banner.categories.join(', ')}" unless @banner.categories.empty? %> </h3>
-  </p>
+                   <p> 
+                   <h1> <%= t("banner.one") %> </h1>
+                   </p>
 
-  <%= link_to t("edit"), edit_site_banner_path(@site, @banner) %> | <%= link_to t("list_all.masc"), site_banners_path(@site) %> | <%= link_to t("back"), :back %>
-</fieldset>
+                   <i><%= @banner.user.login %>, <%= l @banner.created_at, :format => :short %></i>
+
+                   <p> 
+                   <h2> <%= @banner.text %> </h2>
+                   </p>
+
+                   <p>
+                   <h3> <%= t("url") %> : <%= link_to h @banner.url %> </h3>
+                   <h3> <%= "#{t("categories")} : #{@banner.categories.join(', ')}" unless @banner.categories.empty? %> </h3>
+                   </p>
+
+                   <%= link_to t("edit"), edit_site_banner_path(@site, @banner) %> | 
+                   <%= link_to t("list_all.masc"), site_banners_path(@site) %> |
+                   <%= link_to t("back"), :back %>
+                 </fieldset>
