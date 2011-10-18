@@ -69,6 +69,7 @@ class Repository < ActiveRecord::Base
     STYLES.keys.each do |format|
       return true unless exists_archive?(format)
     end
+    return false
   end
 
   def exists_archive?(format=nil)
