@@ -11,6 +11,9 @@
                            "#{banner.width}x#{banner.height}",
                            {as: 'link', alt: banner.text, title: banner.text, url: banner.url }) %>
                        </figure>
+                       <% if check_permission(BannersController, ["toggle_field"]) %>
+                         <%= link_to t("unpublish"), toggle_field_site_banner_path(@site, banner, :field => 'publish') %>
+                       <% end %>
                      <% end %>
                    <% end %>
                  </div>

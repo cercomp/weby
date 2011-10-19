@@ -49,8 +49,7 @@ class Repository < ActiveRecord::Base
   before_post_process :image?, :normalize_file_name
 
   def image?
-    archive_content_type.include?("image") &&
-      !archive_content_type.include?("svg")
+    archive_content_type.include?("image") and not archive_content_type.include?("svg")
   end
 
   # Remoção de caracteres que causava erro no paperclip
@@ -59,20 +58,25 @@ class Repository < ActiveRecord::Base
     archive.instance_write(:file_name, CGI.unescape(archive.original_filename))
   end
 
+  # Reprocessamento de imagens para (re)gerar os thumbnails quando necessário
   def reprocess!
     archive.reprocess! if need_reprocess?
   end
 
   private
   def need_reprocess?
-    return false unless image?
-    STYLES.keys.each do |format|
-      return true unless exists_archive?(format)
-    end
-    return false
+    image? and not has_all_formats?
   end
 
   def exists_archive?(format=nil)
     File.file?(archive.path(format))
+  end
+
+  def has_all_formats?
+    STYLES.each_key do |format|
+      return false unless exists_archive?(format)
+    end 
+
+    true
   end
 end
