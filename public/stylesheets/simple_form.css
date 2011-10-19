@@ -77,14 +77,22 @@
 .simple_form .actions {
   clear: both;
   width: 100%;
-  margin: 10px auto; }
-  .simple_form .actions button, .simple_form .actions input[type='submit'] {
-    margin-left: 435px; }
+  margin: 10px auto;
+  margin-left: 435px; }
   .simple_form .actions a {
+    color: #fff;
+    font-size: 14px;
+    background: #2C4056;
+    border-top: 2px solid #507AAA;
+    border-left: 2px solid #507AAA;
+    border-right: 2px solid #000;
+    border-bottom: 2px solid #000;
+    margin: 0 5px;
     float: left; }
 
 button, input[type='submit'] {
   color: #fff;
+  cursor: pointer;
   background: #229316;
   border-top: 2px solid #55c649;
   border-left: 2px solid #55c649;

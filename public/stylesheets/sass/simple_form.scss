@@ -137,17 +137,24 @@ $label_horizontal_margin: 10px;
     clear: both;
     width: 100%;
     margin: 10px auto;
-    button, input[type='submit'] {
-      margin-left: 435px;
-    }
+    margin-left: 435px;
     a{
-      float: left
+     color: #fff;
+     font-size: 14px;
+     background: #2C4056; 
+     border-top: 2px solid #507AAA;
+     border-left: 2px solid #507AAA;
+     border-right: 2px solid #000;
+     border-bottom: 2px solid #000;
+     margin: 0 5px; 
+     float: left;
     }
   }
 
 }
 button, input[type='submit'] {
   color: #fff;
+  cursor:pointer;
   background: #229316;
   border-top: 2px solid #55c649;
   border-left: 2px solid #55c649;
