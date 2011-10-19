@@ -12,7 +12,7 @@ gem "jquery-rails"
 gem "acts-as-taggable-on"
 
 group :development do
-  gem 'wirble'
+  gem 'pry-rails'
 end
 
 # Use unicorn as the web server
