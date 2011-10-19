@@ -81,13 +81,14 @@
   margin-left: 435px; }
   .simple_form .actions a {
     color: #fff;
-    font-size: 14px;
+    font-size: 13px;
     background: #2C4056;
     border-top: 2px solid #507AAA;
     border-left: 2px solid #507AAA;
     border-right: 2px solid #000;
     border-bottom: 2px solid #000;
     margin: 0 5px;
+    padding: 3px;
     float: left; }
 
 button, input[type='submit'] {
