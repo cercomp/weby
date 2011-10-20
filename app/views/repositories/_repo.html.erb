@@ -15,7 +15,7 @@
       :label_method => lambda { |context| weby_file_view(context, :mini, "64x64#", as: 'image') },
       :value_method => 'id',
       :paginate => "#{paginate collection, :remote => true}", 
-      :hint => t('help_image')  %>
+      :hint => label %>   
   <% end %>
 </div>
 

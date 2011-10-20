@@ -1,16 +1,6 @@
 <fieldset>
   <legend><%= t"new_param.fem", :param => (t"page.one") %></legend>
 
-  <div id="repo_new" >
-    <div class="contextual">
-      <%= link_to (t"new_param.masc", :param => (t"archive.one")), new_site_repository_path,
-        :remote => true,
-        :onclick => "$('#page').toggle();",
-        :class => 'icon icon-add' %>
-    </div>
-    <div id="page" style="display:none"> </div>
-  </div>
-
   <%= simple_form_for [@site, @page], :url => site_pages_path(:type => params[:type]), :html => { :multipart => true } do |f| %>
     <% if @page.errors.any? %>
       <div id="error_explanation">
@@ -26,12 +16,7 @@
     <div id="div_event">
       <%= render :partial => 'formEvent', :locals => {:f => f} %>
     </div>
-
-    <div id='repo_list'> 
-      <%= info_page @images %>
-      <%= render :partial => 'repositories/repo', :locals => {:obj => @page, :field => :repository_id, :collection => @images} %>
-    </div>
-
+  
     <%= f.input :date_begin_at,
       :label =>  (t"date_param", :param => t("begin")),
       :start_year => Time.now.year,
@@ -71,6 +56,26 @@
       <%= pages_form.input :site_id, :input_html => {:value => @site.id}, :as => :hidden  %>
       <%= pages_form.input :page_id, :input_html => {:value => @page.id}, :as => :hidden  %>
     <% end %>
+
+      <div id="repo_new" >
+    <hr/>    
+    <div class="contextual">
+      <%= link_to (t"new_param.masc", :param => (t"archive.one")), new_site_repository_path,
+        :remote => true,
+        :onclick => "$('#page').toggle();",
+        :class => 'icon icon-add' %>
+    </div>
+    <div id="page" style="display:none"> </div>
+  </div>
+
+
+    <div id='repo_list'> 
+      <%= info_page @images %>
+      <%= render :partial => 'repositories/repo', :locals => {:obj => @page, :field => :repository_id, :collection => @images, :label => (t"help_image_page")} %>
+      <hr/>
+    </div>
+
+
 
     <div class="collection_check_boxes">
       <label>
