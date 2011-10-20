@@ -148,6 +148,7 @@ pt-BR:
 
 #---I---#
   i18n: 'Internacionalização'
+  image: "Imagem"
   insert: "Inserir"
   internacional: "Internacional"
   internal: "Interno"

@@ -148,6 +148,7 @@ en:
 
 #---I---#
   i18n: 'Internationalization'
+  image: "Image"
   insert: "Insert"
   instructions_change_password: "Instructions to change your password"
   internacional: "Internacional"
