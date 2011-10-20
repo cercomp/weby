@@ -13,7 +13,23 @@ module PagesHelper
         page.url
       end
   end
+  
+  def link_to_page_type(type)
+    link_to t("#{type.to_s.try(:downcase)}#{'.one'}"),
+      new_site_page_path(:type => type.to_s),
+      :update => "div_link",
+      :remote => true
+  end
 
+  def links_to_page_type(type)
+    links_hash = {
+      'News' => "#{t 'news.one' } | #{ link_to_page_type :Event }",
+      'Event' => "#{ link_to_page_type :News} | #{t 'event.one' }"
+    }
+
+    raw links_hash[type]
+  end
+  
   private
   def page_image(format)
     page_image? ? 

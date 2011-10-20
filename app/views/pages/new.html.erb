@@ -12,8 +12,18 @@
         </ul>
       </div>
     <% end %>
+    
+    <% unless self.controller.action_name == "edit" %>
+      <div class="link-field ">
+        <label> <%= t"kind_of_page" %> </label>
+        <div id="link_form_pages">
+          <%= t"news.one" %> |
+          <%= link_to (t"event.one"), new_site_page_path(:type => "Event"), :remote => true, :update => "div_link" %>
+        </div>
+      </div>
+    <% end %>
 
-    <div id="div_event">
+    <div id="div_link">
       <%= render :partial => 'formEvent', :locals => {:f => f} %>
     </div>
   

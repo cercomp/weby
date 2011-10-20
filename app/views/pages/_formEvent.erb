@@ -1,14 +1,5 @@
 <%= simple_fields_for @page do |f| %>
   <% if params[:type] == "Event" %>
-    <% unless self.controller.action_name == "edit" %>
-      <div class="link-field ">
-        <label> <%= t"kind_of_page" %>  </label>
-        <div class="input">
-          <%= t"event.one"%> |
-          <%= link_to (t"news.one"), new_site_page_path(:type => "News")%>
-        </div>
-      </div>
-    <% end %>
     <% kind_list = [[t("regional"), "regional"], [t("nacional"), "nacional"], [t("internacional"), "internacional"]] %>
     <%= f.input :kind, :collection => kind_list.map{|p| [p[0], p[1]]}, :label => t("kind"), :label_html => {:include_blank => true} %>
     <%= f.input :local, :label => t("localization"), :required => true, :help => t("field_required") %>
@@ -16,15 +7,6 @@
     <%= f.input :event_end, :label => (t"event_param", :param => t("end")), :order => [:year, :month, :day], :use_month_numbers => true, :as => :datetime %>
     <%= f.input :type, :input_html => {:value => "Event"}, :as => :hidden %>
   <% else %>
-    <% unless self.controller.action_name == "edit" %>
-      <div class="link-field ">
-        <label> <%= t"kind_of_page" %>  </label>
-        <div class="input">
-          <%= t"news.one" %> |
-          <%= link_to (t"event.one"), new_site_page_path(:type => "Event") %>
-          <%= f.input :type, :input_html => {:value => "News"}, :as => :hidden %>
-        </div>
-      </div>
-    <% end %>
+    <%= f.input :type, :input_html => {:value => "News"}, :as => :hidden %>
   <% end %>
 <% end %>

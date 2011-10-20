@@ -4,8 +4,10 @@ $('#repo_list').html('<%= escape_javascript(render(partial: 'repositories/repo',
                                                              collection: @images } )) %>')
 
 <% if params[:type] %>
-  $('#div_event').html('<%= escape_javascript(render(:partial => 'formEvent')) %>')
+  $('#div_link').html('<%= escape_javascript(render(:partial => 'formEvent')) %>')
+  $('#link_form_pages').html('<%= escape_javascript(raw links_to_page_type(params[:type])) %>')
 <% end %>
+
 <% if params[:twitter_page] %>
   $('#files_list').append('<%= escape_javascript(render(:partial => 'files_list')) %>')
   $('#twitter').html('<%= escape_javascript(paginate(@page_files_unchecked, :param_name => 'twitter_page', :theme => 'twitter', :remote => true).to_s) %>')

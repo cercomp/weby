@@ -26,7 +26,7 @@
       <label for="div_event"><%= t"type" %></label>
       <div class="input">
         <div id="link_form_pages">
-        <%= t("internal") %> | <%= link_to t("external"), new_site_menu_path(@site, :type => "external"), :update => "div_link", :remote => true, :onclick => "var img = new Image; img.src = '/images/spinner.gif'; $(this).html(function(){return img})" %>
+        <%= t("internal") %> | <%= link_to t("external"), new_site_menu_path(@site, :type => "external"), :update => "div_link", :remote => true %>
         </div>
       </div>
     </div>
