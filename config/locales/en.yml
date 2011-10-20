@@ -157,6 +157,7 @@ en:
 
 #---K---#
   kind: "Kind"
+  kind_of_page: "Which is the page type?"
 
 #---L---#
   last_login: "Last login %{param}"

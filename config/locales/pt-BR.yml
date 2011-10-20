@@ -157,6 +157,7 @@ pt-BR:
 
 #---K---#
   kind: "Tipo"
+  kind_of_page: "Qual é o tipo da página?"
 
 #---L---#
   last_login: "Último entrada %{param}"

@@ -2,9 +2,10 @@
   <% if params[:type] == "Event" %>
     <% unless self.controller.action_name == "edit" %>
       <div class="link-field ">
-        <label><%= t("is_event") %></label>
+        <label> <%= t"kind_of_page" %>  </label>
         <div class="input">
-          <%= link_to (t"no"), new_site_page_path(:type => "News"), :update => "div_event", :remote => true, :onclick => "var img = new Image; img.src = '/images/spinner.gif'; $(this).html('').append(function(){return img})" %>
+          <%= t"event.one"%> |
+          <%= link_to (t"news.one"), new_site_page_path(:type => "News"), :update => "div_event", :remote => true, :onclick => "var img = new Image; img.src = '/images/spinner.gif'; $(this).html('').append(function(){return img})" %>
         </div>
       </div>
     <% end %>
@@ -17,9 +18,10 @@
   <% else %>
     <% unless self.controller.action_name == "edit" %>
       <div class="link-field ">
-        <label><%= t("is_event") %></label>
+        <label> <%= t"kind_of_page" %>  </label>
         <div class="input">
-          <%= link_to (t"yes"), new_site_page_path(:type => "Event"), :update => "div_event", :remote => true, :onclick => "var img = new Image; img.src = '/images/spinner.gif'; $(this).html('').append(function(){return img})" %>
+          <%= t"news.one" %> |
+          <%= link_to (t"event.one"), new_site_page_path(:type => "Event"), :update => "div_event", :remote => true, :onclick => "var img = new Image; img.src = '/images/spinner.gif'; $(this).html('').append(function(){return img})" %>
           <%= f.input :type, :input_html => {:value => "News"}, :as => :hidden %>
         </div>
       </div>
