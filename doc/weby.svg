@@ -9,13 +9,13 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="210mm"
-   height="297mm"
+   width="261"
+   height="69"
    id="svg2"
    version="1.1"
    inkscape:version="0.48.1 r9760"
    sodipodi:docname="weby.svg"
-   inkscape:export-filename="/home/nicolas/weby.png"
+   inkscape:export-filename="/home/arthur/public_html/webyge/public/images/weby-logo.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <defs
@@ -27,16 +27,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1"
-     inkscape:cx="563.54533"
-     inkscape:cy="297.14702"
+     inkscape:zoom="2"
+     inkscape:cx="241.736"
+     inkscape:cy="93.01211"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1920"
-     inkscape:window-height="1022"
+     inkscape:window-width="1280"
+     inkscape:window-height="947"
      inkscape:window-x="0"
-     inkscape:window-y="25"
+     inkscape:window-y="24"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata7">
@@ -46,17 +46,18 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <g
      inkscape:label="Camada 1"
      inkscape:groupmode="layer"
-     id="layer1">
+     id="layer1"
+     transform="translate(0,-983.36218)">
     <g
        id="g3779"
-       transform="matrix(0.81530999,0,0,0.81530999,32.183021,142.92691)">
+       transform="matrix(0.37390735,0,0,0.37390735,-62.637613,761.69478)">
       <rect
          inkscape:export-ydpi="90"
          inkscape:export-xdpi="90"
@@ -229,31 +230,31 @@
          id="flowPara3001"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Ecliptic BRK;-inkscape-font-specification:Ecliptic BRK" /></flowRoot>    <text
        xml:space="preserve"
-       style="font-size:86.84517669999999612px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#c11303;fill-opacity:1;stroke:none;font-family:Syncopate;-inkscape-font-specification:Syncopate"
-       x="315.97964"
-       y="753.89978"
+       style="font-size:57.12945938px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#c11303;fill-opacity:1;stroke:none;font-family:Syncopate;-inkscape-font-specification:Syncopate"
+       x="80.879478"
+       y="1036.819"
        id="text3003"
        sodipodi:linespacing="125%"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
          id="tspan3005"
-         x="315.97964"
-         y="753.89978"
+         x="80.879478"
+         y="1036.819"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#c11303;fill-opacity:1;font-family:Orbitron;-inkscape-font-specification:Orbitron"><tspan
    style="fill:#000000"
    id="tspan3794">web</tspan>y</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#c11303;fill-opacity:1;stroke:none;font-family:Droid Sans;-inkscape-font-specification:Droid Sans"
-       x="489.01535"
-       y="773.87421"
+       style="font-size:24.47088623px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#c11303;fill-opacity:1;stroke:none;font-family:Droid Sans;-inkscape-font-specification:Droid Sans"
+       x="198.90654"
+       y="1049.9587"
        id="text3775"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3777"
-         x="489.01535"
-         y="773.87421"
-         style="font-size:14px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;fill:#c11303;fill-opacity:1;font-family:Orbitron;-inkscape-font-specification:Orbitron Medium">alpha</tspan></text>
+         x="198.90654"
+         y="1049.9587"
+         style="font-size:8.5648098px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;fill:#c11303;fill-opacity:1;font-family:Orbitron;-inkscape-font-specification:Orbitron Medium">alpha</tspan></text>
   </g>
 </svg>
