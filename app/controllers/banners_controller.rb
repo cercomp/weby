@@ -3,6 +3,7 @@ class BannersController < ApplicationController
   before_filter :require_user
   before_filter :check_authorization
   before_filter :repositories, :only => ['new', 'edit', 'create', 'update']
+  before_filter :search_images, only: [:new, :edit]
 
   helper_method :sort_column
 
@@ -24,37 +25,40 @@ class BannersController < ApplicationController
   end
 
   def new
-    @images = @site.repositories.
-      description_or_filename(params[:image_search]).
-      content_file("image").
-      page(params[:page]).per(@site.per_page_default)
     @banner = Banner.new
   end
 
   def edit
-    @images = @site.repositories.
-      description_or_filename(params[:image_search]).
-      content_file("image").
-      page(params[:page]).per(@site.per_page_default)
     @banner = Banner.find(params[:id])
   end
 
   def create
     @banner = Banner.new(params[:banner])
-    @banner.save
-    respond_with(@site, @banner)
+    if params[:submit_search]
+      search_images
+      render action: :edit
+    else
+      @banner.save
+      respond_with(@site, @banner)
+    end
   end
 
   def update
     @banner = Banner.find(params[:id])
 
-    respond_to do |format|
-      if @banner.update_attributes(params[:banner])
-        format.html { redirect_to([@site, @banner], :notice => t("successfully_updated")) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @banner.errors, :status => :unprocessable_entity }
+    if params[:submit_search]
+      @banner.attributes = params[:banner]
+      search_images
+      render action: :edit
+    else
+      respond_to do |format|
+        if @banner.update_attributes(params[:banner])
+          format.html { redirect_to([@site, @banner], :notice => t("successfully_updated")) }
+          format.xml  { head :ok }
+        else
+          format.html { render :action => "edit" }
+          format.xml  { render :xml => @banner.errors, :status => :unprocessable_entity }
+        end
       end
     end
   end
@@ -88,5 +92,12 @@ class BannersController < ApplicationController
 
   def repositories
     @repositories = Repository.where(["site_id = ? AND archive_content_type LIKE ?", @site.id, "image%"]).page(params[:page]).per(params[:per_page])
+  end
+
+  def search_images
+    @images = @site.repositories.
+      description_or_filename(params[:search]).
+      content_file("image").
+      page(params[:page]).per(@site.per_page_default)
   end
 end

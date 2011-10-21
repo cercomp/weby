@@ -1,0 +1,9 @@
+<center>
+  <%= search_field_tag :search %>
+  <%= submit_tag t('search'),
+    name: 'submit_search',
+    formnovalidate: "true",
+    data_remote: true,
+    disable_with: t('searching') %>
+</center>
+<hr>

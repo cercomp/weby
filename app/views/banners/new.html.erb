@@ -1,13 +1,6 @@
 <fieldset>
   <legend><%= t"new.masc" %> <%= (t"banner.one") %></legend>
-  
-  <center>
-    <%= form_tag request.path, :method => 'get', :remote => true do %>
-      <%= text_field_tag :image_search %>
-      <%= submit_tag t("search") %>
-    <% end %>
-  </center>
-  <hr>
+
 
   <div id="repo_new" >
     <div class="contextual">
@@ -18,18 +11,21 @@
     </div>
     <div id="page" style="display:none"> </div>
   </div>
-  
+
   <%= simple_form_for [@site, @banner], :html => { :multipart => true } do |f| %>
+
     <% if @banner.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@banner.errors.count,"") %><%= t"prohibited_being_saved", :count => @banner.errors.count %>:</h2>
         <ul>
-        <% @banner.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
+          <% @banner.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
         </ul>
       </div>
     <% end %>
+
+    <%= render 'layouts/shared/search_form' %>
 
     <%= render :partial => 'form', :locals => {:f => f} %>
     <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>

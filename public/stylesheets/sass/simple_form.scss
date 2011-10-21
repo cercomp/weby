@@ -3,6 +3,18 @@
 $label_width: 120px;
 $label_horizontal_margin: 10px;
 
+@mixin button_style($background_color, $left_border_color, $rigth_border_color){
+  cursor: pointer;
+  background: $background_color;
+  margin: 0 5px; 
+  border:{
+    top: 2px solid $left_border_color;
+    left: 2px solid $left_border_color;
+    right: 2px solid $rigth_border_color;
+    bottom: 2px solid $rigth_border_color;
+  }
+}
+
 .simple_form{
   .pages_paginator{float: none}
   div.input{
@@ -138,32 +150,22 @@ $label_horizontal_margin: 10px;
     width: 100%;
     margin: 10px auto;
     a{
-     color: #fff;
-     font-size: 13px;
-     background: #2C4056; 
-     border-top: 2px solid #507AAA;
-     border-left: 2px solid #507AAA;
-     border-right: 2px solid #000;
-     border-bottom: 2px solid #000;
-     margin: 0 5px; 
-     padding: 3px;
-     float: left;
+      color: #fff;
+      font-size: 13px;
+      padding: 3px;
+      float: left;
+      @include button_style(#2C4056, #507AAA, #000);
     }
   }
 
 }
+
 button, input[type='submit'] {
   color: #fff;
-  cursor:pointer;
-  background: #229316;
-  border-top: 2px solid #55c649;
-  border-left: 2px solid #55c649;
-  border-right: 2px solid #006000;
-  border-bottom: 2px solid #006000;
-  margin: 0 5px; 
+  @include button_style(#229316, #55C649, #006000);
 }
 
-input{
+input, select, textarea{
   display: inline;
   margin: 5px 0;
   border: 1px solid gray;
@@ -171,12 +173,8 @@ input{
 
   &:focus{
     border: 1px solid black;
-    @include box_shadow(0 0 28px 1px #aaa);
+    background-color: #faffbd;
     outline: none;
+    @include box_shadow(0 0 28px 1px #aaa);
   }
-}
-select:active,
-select:focus{
-  background-color: #faffbd;
-  outline:none;
 }

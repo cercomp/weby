@@ -81,38 +81,35 @@
   .simple_form .actions a {
     color: #fff;
     font-size: 13px;
-    background: #2C4056;
-    border-top: 2px solid #507AAA;
-    border-left: 2px solid #507AAA;
-    border-right: 2px solid #000;
-    border-bottom: 2px solid #000;
-    margin: 0 5px;
     padding: 3px;
-    float: left; }
+    float: left;
+    cursor: pointer;
+    background: #2c4056;
+    margin: 0 5px;
+    border-top: 2px solid #507aaa;
+    border-left: 2px solid #507aaa;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black; }
 
 button, input[type='submit'] {
   color: #fff;
   cursor: pointer;
   background: #229316;
+  margin: 0 5px;
   border-top: 2px solid #55c649;
   border-left: 2px solid #55c649;
   border-right: 2px solid #006000;
-  border-bottom: 2px solid #006000;
-  margin: 0 5px; }
+  border-bottom: 2px solid #006000; }
 
-input {
+input, select, textarea {
   display: inline;
   margin: 5px 0;
   border: 1px solid gray;
   padding: 3px; }
-  input:focus {
+  input:focus, select:focus, textarea:focus {
     border: 1px solid black;
+    background-color: #faffbd;
+    outline: none;
     -moz-box-shadow: 0 0 28px 1px #aaaaaa;
     -webkit-box-shadow: 0 0 28px 1px #aaaaaa;
-    box-shadow: 0 0 28px 1px #aaaaaa;
-    outline: none; }
-
-select:active,
-select:focus {
-  background-color: #faffbd;
-  outline: none; }
+    box-shadow: 0 0 28px 1px #aaaaaa; }

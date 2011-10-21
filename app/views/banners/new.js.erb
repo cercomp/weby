@@ -1,1 +1,3 @@
-$('#repo_list').html('<%= escape_javascript(render(:partial => 'repositories/repo', :locals => {:obj => @banner, :field => :repository_id, :collection => @images })) %>')
+$('#repo_list').html('<%= escape_javascript(render(partial: 'repositories/repo', locals: { obj: @banner,
+                                                                                           field: :repository_id,
+                                                                                           collection: @images })) %>');

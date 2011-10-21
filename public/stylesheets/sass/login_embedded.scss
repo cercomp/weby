@@ -2,6 +2,7 @@
 fieldset.login_embedded{
   margin: 5px !important;
   padding: 15px !important;
+  line-height: normal;
   @include border_radius(8px);
 
   &:parent{

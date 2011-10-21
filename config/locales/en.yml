@@ -306,6 +306,7 @@ en:
 #---S---#
   save: "Save"
   search: "Search"
+  search: "Searching..."
   secondary: "Secondary"
   setting:
     one: "Setting"

@@ -305,6 +305,7 @@ pt-BR:
 #---S---#
   save: "Salvar"
   search: "Buscar"
+  searching: "Buscando..."
   secondary: "Secundário"
   setting:
     one: "Configuração"
