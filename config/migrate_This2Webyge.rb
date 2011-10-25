@@ -91,14 +91,14 @@ class Migrate_this2weby
         INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'first_place','{}','weby_bar',2,true);
         INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'first_place','{}','institutional_bar',3,true);
         INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'top','{}','header',4,true);
-        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'top','{:category => \"principal\"}','menu_side',5,true);
+        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'top','{:category => \"menu1\"}','menu_side',5,true);
         INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'top','{}','menu_accessibility',6,true);
-        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'right','{:category => \"auxiliar\"}','menu_side',7,true);
+        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'right','{:category => \"menu4\"}','menu_side',7,true);
         INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'right','{:category => \"dir\"}','banner_side',8,true);
-        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'bottom','{:category => \"base\"}','menu_side',9,true);
+        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'bottom','{:category => \"menu3\"}','menu_side',9,true);
         INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'bottom','{}','info_footer',10,true);
         INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'bottom','{}','feedback',11,true);
-        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'left','{:category => \"secundario\"}','menu_side',12,true);
+        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'left','{:category => \"menu2\"}','menu_side',12,true);
         INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'left','{:category => \"esq\"}','banner_side',13,true);
         INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'home','{:quant => \"5\"}','front_news',14,true);
         INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'home','{:quant => \"5\"}','no_front_news',15,true);
@@ -536,7 +536,7 @@ EOF
       #   1o. menus   (Hash)    Onde os índices são as tabelas no this e os valores são seus respectivos no weby
       #   2o. this_id (integer) id do site no this
       #   3o. weby_id (integer) id do site no weby
-      migrate_this_menus({'direito' => 'auxiliar', 'esquerdo' => 'secundario', 'superior' => 'principal', 'inferior' => 'base'}, this_site['site_id'], @convar["#{this_site['site_id']}"]['weby'])
+      migrate_this_menus({'direito' => 'menu4', 'esquerdo' => 'menu2', 'superior' => 'menu1', 'inferior' => 'menu3'}, this_site['site_id'], @convar["#{this_site['site_id']}"]['weby'])
 
     end
     this_sites.clear()
