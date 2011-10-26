@@ -1,6 +1,7 @@
 $('#form').html('<%= escape_javascript(render(:partial => 'repositories/repo',
                                               :locals => {:obj => @site,
                                                           :field => :top_banner_id,
-                                                          :collection => @images })) %>');
+                                                          :collection => @images,
+                                                          :hint => t("help_image")  })) %>');
 show_selected_image('site', 'top_banner_id');
 
