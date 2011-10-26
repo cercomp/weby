@@ -60,7 +60,7 @@
 
     <div id='repo_list'> 
       <%= info_page @images %>
-      <%= render :partial => 'repositories/repo', :locals => {:obj => @page, :field => :repository_id, :collection => @images, :label => (t"help_image_page")} %>
+      <%= render :partial => 'repositories/repo', :locals => {:obj => @page, :field => :repository_id, :collection => @images, :hint => (t"help_image_page")} %>
       <hr/>
     </div>
 
