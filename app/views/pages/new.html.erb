@@ -26,7 +26,9 @@
     <div id="div_link">
       <%= render :partial => 'formEvent', :locals => {:f => f} %>
     </div>
-  
+
+    <hr />
+    
     <%= f.input :date_begin_at,
       :label =>  (t"date_param", :param => t("begin")),
       :start_year => Time.now.year,
