@@ -12,7 +12,7 @@
 
   <%= f.input :body_width, :label => t("body_width"), :hint => (t"example_param", :param => "960") %>
   <%= f.input :name, :label => t("name"), :hint => t("field_required") %>
-  <%= f.input :url, :label => "URL", :hint => t("field_required") %>
+  <%= f.input :url, :label => t("url"), :hint =>  (t("field_required") + " " + t("example_param", :param => "http://site.com")), :placeholder => "http://"%>
   <%= f.input :per_page, :label => t("itens_per_page"), :hint => (t"example_param", :param => "15, 30, 50, 100, 250, 500") %>
   <%= f.input :per_page_default, :label => t("per_page_default"), :required => true %>
   <%= f.input :description, :label => t("description"), :input_html => {:rows => 8}, :hint => t("site_comments"), :as => :text %>
