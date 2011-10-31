@@ -51,7 +51,7 @@
       <%= f.input :top_banner_height, :label => t("top_banner_height"), :hint => (t"example_param", :param => "101") %>
     <% end %>
     <%= f.input :name, :label => t("name"), :hint => t("field_required") %>
-    <%= f.input :url, :label => "URL", :hint => t("field_required") + " " + t("example_param", :param => "http://site.com")), :as => :url %>
+    <%= f.input :url, :label => "URL", :hint => (t("field_required") + " " + t("example_param", :param => "http://site.com")), :as => :url %>
     <%= f.input :per_page, :label => t("itens_per_page"), :hint => (t"example_param", :param => "15, 30, 50, 100, 250, 500") %>
     <%= f.input :per_page_default, :label => t("per_page_default") %>
     <%= f.input :description, :label => t("description"), :input_html => { :size => "55x8" }, :hint => t("site_comments"), :as => :text %>
