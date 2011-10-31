@@ -1,17 +1,15 @@
-  <div id='repo_list'>
-    <%= render :partial => 'repositories/repo', :locals => {:obj => @banner, :field => :repository_id, :collection => @images, :hint => (t"help_image_banner") } %>
+  <div id="repo_styles">
+    <% repo_styles = Repository.attachment_definitions[:archive][:styles] %>
+    <% unless repo_styles.nil? %>
+     <%= f.input :size, 
+       :label => t('size'),
+       :collection => repo_styles,
+       :collection_wrapper_tag => "div class='radio-group'",
+       :label_method => lambda { |u| "#{t(u[0])} #{u[1]}" }, 
+       :value_method => lambda { |u| u[0] },
+       :as => :radio %>
+    <% end %>
   </div>
-
-  <% repo_styles = Repository.attachment_definitions[:archive][:styles] %>
-  <% unless repo_styles.nil? %>
-    <%= f.input :size, 
-      :label => t('size'),
-      :collection => repo_styles,
-      :collection_wrapper_tag => "div class='radio-group'",
-      :label_method => lambda { |u| "#{t(u[0])} #{u[1]}" }, 
-      :value_method => lambda { |u| u[0] },
-      :as => :radio %>
-  <% end %>
 
   <%= f.input :width, :label => t("width"), :input_html => {:size => 5} %>
   <%= f.input :height, :label => t("height"), :input_html => {:size => 5} %>

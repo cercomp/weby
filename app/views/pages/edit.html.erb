@@ -1,6 +1,16 @@
 <fieldset>
   <legend><%= t"editing", :param => t("#{params[:type].downcase}.one") %></legend>
 
+  <div id="repo_new"  style="display:none">
+    <div class="contextual">
+      <%= link_to (t"new_param.fem", :param => (t"image")), new_site_repository_path,
+        :remote => true,
+        :onclick => "$('#page').toggle();",
+        :class => 'icon icon-add' %>
+    </div>
+    <div id="page" style="display:none"> </div>
+  </div>
+
   <%= simple_form_for [@site, @page], :url => site_page_path(@site, @page, :type => params[:type]), :html => { :multipart => true } do |f| %>
     <% if @page.errors.any? %>
       <div id="error_explanation">
@@ -12,6 +22,20 @@
         </ul>
       </div>
     <% end %> 
+
+    <label>
+      <%= link_to t("show_hide_image_list"), site_pages_path(:type => params[:type]),  
+        :remote => true, 
+        :onclick => "$('#repo_list').toggle(); $('#repo_new').toggle();"%>
+    </label>  
+   
+    <div id='repo_list' style="display:none" >
+      <%= info_page @images %>
+      <%= render :partial => 'repositories/repo', :locals => {:obj => @page, :field => :repository_id, :collection => @images, :hint => (t"help_image_page")} %>
+    </div>
+
+    <hr/>
+
 
     <div id="div_event">
       <%= render :partial => 'formEvent', :locals => {:f => f} %>
@@ -46,25 +70,6 @@
     <%= f.input :status, :as => :hidden %>
     <%= f.input :author_id, :input_html => {:value => "#{@current_user.id}"}, :as => :hidden %>
    
-  <div id="repo_new" >
-    <hr/>
-    <div class="contextual">
-      <%= link_to (t"new_param.fem", :param => (t"image")), new_site_repository_path,
-        :remote => true,
-        :onclick => "$('#page').toggle();",
-        :class => 'icon icon-add' %>
-    </div>
-    <div id="page" style="display:none"> </div>
-  </div>
-
-
-    <div id='repo_list'> 
-      <%= info_page @images %>
-      <%= render :partial => 'repositories/repo', :locals => {:obj => @page, :field => :repository_id, :collection => @images, :hint => (t"help_image_page")} %>
-      <hr/>
-    </div>
-
-
     <div class="collection_check_boxes">
       <label>
         <%= t("related_files") %>

@@ -313,6 +313,7 @@ pt-BR:
   select_param: "Selecionar %{param}"
   select_site: "Selecione um site"
   show: "Mostrar"
+  show_hide_image_list: "Mostrar/Esconder lista de Imagens"
   side: "Lado"
   site:
     one: "Sítio"

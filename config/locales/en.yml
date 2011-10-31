@@ -74,7 +74,7 @@ en:
     other: "Styles"
 
 #---D---#
-  date_param: "Date of %{param}"
+  date_param: "%{param} Date"
   description: "Description"
   destroy: "Destroy"
   destroyed_param: "%{param} destroyed"
@@ -314,6 +314,7 @@ en:
   select_param: "Select %{param}"
   select_site: "Select a site"
   show: "Show"
+  show_hide_image_list: "Show/Hide list of images"
   side: "Side"
   site:
     one: "Site"

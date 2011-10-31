@@ -1,6 +1,27 @@
 <fieldset>
   <legend><%= t"edit" %> <%= (t"banner.one") %></legend>
 
+  <div id="search" style="display:none">
+   <center>
+     <%= form_tag request.path, :method => 'get', :remote => true do %>
+       <%= label_tag t("search") %>
+       <%= text_field_tag :image_search %>
+       <%= submit_tag t("search") %>
+     <% end %>
+   </center>
+  </div>
+
+  <div id="repo_new" style="display:none">
+    <div class="contextual">
+      <%= link_to (t"new_param.fem", :param => (t"image")), new_site_repository_path,
+        :remote => true,
+        :onclick => "$('#page').toggle();",
+        :class => 'icon icon-add' %>
+    </div>
+    <div id="page" style="display:none"> </div>
+  </div>
+
+
   <%= simple_form_for [@site, @banner], :html => { :multipart => true } do |f| %>
     <% if @banner.errors.any? %>
       <div id="error_explanation">
@@ -12,8 +33,19 @@
         </ul>
       </div>
     <% end %>
+    
+    <label>
+      <%= link_to t("show_hide_image_list"), "#",  
+        :remote => true, 
+        :onclick => "$('#repo_list').toggle(); $('#repo_new').toggle(); $('#search').toggle();"%>
+    </label>  
+  
+    <div id='repo_list' style="display:none">
+      <%= render :partial => 'repositories/repo', :locals => {:obj => @banner,
+          :field => :repository_id, :collection => @images, :hint => (t"help_image_banner") } %>
+    </div>
 
-    <%= render 'layouts/shared/search_form' %>
+
 
     <%= render :partial => 'form', :locals => {:f => f} %>
 

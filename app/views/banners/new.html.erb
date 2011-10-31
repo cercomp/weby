@@ -1,8 +1,17 @@
 <fieldset>
   <legend><%= t"new.masc" %> <%= (t"banner.one") %></legend>
 
+  <div id="search" style="display:none">
+   <center>
+     <%= form_tag request.path, :method => 'get', :remote => true do %>
+       <%= label_tag t("search") %>
+       <%= text_field_tag :image_search %>
+       <%= submit_tag t("search") %>
+     <% end %>
+   </center>
+  </div>
 
-  <div id="repo_new" >
+  <div id="repo_new" style="display:none">
     <div class="contextual">
       <%= link_to (t"new_param.fem", :param => (t"image")), new_site_repository_path,
         :remote => true,
@@ -24,8 +33,17 @@
         </ul>
       </div>
     <% end %>
-
-    <%= render 'layouts/shared/search_form' %>
+    
+    <label>
+      <%= link_to t("show_hide_image_list"), "#",  
+        :remote => true, 
+        :onclick => "$('#repo_list').toggle(); $('#repo_new').toggle(); $('#search').toggle();"%>
+    </label>  
+  
+    <div id='repo_list' style="display:none">
+      <%= render :partial => 'repositories/repo', :locals => {:obj => @banner,
+          :field => :repository_id, :collection => @images, :hint => (t"help_image_banner") } %>
+    </div>
 
     <%= render :partial => 'form', :locals => {:f => f} %>
     <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
