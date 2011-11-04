@@ -2,6 +2,8 @@ module SiteComponentsHelper
   # FIXME melhorar a forma de representar os hash e array de configurações
   # Ver o uso de arquivos .yml
 
+  #TODO - Documentar
+  #
   def places_holder
     places = {
       'weby' => ['left', 'right', 'top', 'bottom', 'home', 'first_place'],
@@ -11,7 +13,9 @@ module SiteComponentsHelper
 
     places[@site.theme] || []
   end
-
+  
+  #TODO -> Documentar
+  #
   def components
     ['banner_horizontal',
      'banner_side',
@@ -40,6 +44,8 @@ module SiteComponentsHelper
     }
   end
   
+  #TODO -> Documentar
+  #
   def components_settings_custom_field
     cur_setting = eval(@site_component.settings);
     {
@@ -68,6 +74,8 @@ module SiteComponentsHelper
     }
   end
   
+  #TODO -> Documentar o que o método faz
+  #
   def components_settings_locales
     locales = {}
     self.components_settings.each do |component, array|

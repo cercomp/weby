@@ -146,6 +146,7 @@ en:
   help_image: "This image will be the site header!"
   help_image_page: "This image will be set as the main image of the page!"
   help_image_banner: "This image will be set as the main image of the baner!"
+  help_with_css: "Need Help with the Css"
 
 #---I---#
   i18n: 'Internationalization'

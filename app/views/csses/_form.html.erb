@@ -12,6 +12,11 @@
   <% end %>
 
   <%= f.input :name, :label => t("name"), :hint => t("field_required") %>
+  <span style="margin-left:300px;"> 
+    <%= link_to t("help_with_css"), "https://softifes.andifes.org.br/projects/weby/wiki/Working_with_css",
+      :target => "_blank" %>
+    <%= image_tag "help-icon.png" %>
+  </span>
   <%= f.input :css, :label => t("css.one"), :as => :text %>
 
   <%= f.fields_for :sites_csses do |sc| %>

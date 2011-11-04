@@ -146,6 +146,7 @@ pt-BR:
   help_image: "Essa imagem será o topo do site"
   help_image_page: "Essa imagem será a imagem principal da página!"
   help_image_banner: "Essa imagem será utilizada como banner!"
+  help_with_css: "Precisa de ajuda com o Css"
 
 #---I---#
   i18n: 'Internacionalização'
