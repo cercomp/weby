@@ -1,5 +1,5 @@
 <fieldset> 
-	<% params[:parent_id] ||= 0 %>
+  <% params[:parent_id] ||= 0 %>
   <legend> <%= params[:parent_id] == 0 ? (t"new_param.masc", :param => (t"menu.one")) : (t"new_param.masc", :param => t("sub_menu")) %> </legend>
 
   <center>
@@ -15,19 +15,18 @@
       <div id="error_explanation">
         <h2> <%= pluralize(@menu.errors.count, "") %> <%= t"prohibited_being_saved",:count => @menu.errors.count%>: </h2>
         <ul>
-        <% @menu.errors.full_messages.each do |msg| %>
-          <li> <%= msg %> </li>
-        <% end %>
+          <% @menu.errors.full_messages.each do |msg| %>
+            <li> <%= msg %> </li>
+          <% end %>
         </ul>
       </div>
     <% end %>
 
-    <div class="link-field ">
+    <div class="link-field">
       <label for="div_event"><%= t"type" %></label>
-      <div class="input">
-        <div id="link_form_pages">
-        <%= t("internal") %> | <%= link_to t("external"), new_site_menu_path(@site, :type => "external"), :update => "div_link", :remote => true %>
-        </div>
+      <div id="link_form_pages">
+        <% set_params_type_value %>
+        <%= links_to_menu_type(params[:type]) %>
       </div>
     </div>
 
@@ -36,7 +35,7 @@
     </div>
 
     <%= f.input :title, :label => t("text"), :hint => t("field_required") %>
-		<%= f.simple_fields_for :sites_menus do |menus_form| %>
+    <%= f.simple_fields_for :sites_menus do |menus_form| %>
       <%= menus_form.input :parent_id, :input_html => {:value => params[:parent_id]}, :as => :hidden %>
       <%= menus_form.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
 
@@ -47,13 +46,13 @@
           <%= menus_form.label :category, t("category"), :class => "select", :for => "menu-category" %>
           <%= menus_form.select :category, @site.menu_categories, {}, :id => "menu-category" %>
           <%= link_to_function image_tag("add.png", :title => "Adicionar um acategoria"),
-                "addToSelect('#menu-category')", :title => "Adicionar um acategoria" %>
+            "addToSelect('#menu-category')", :title => "Adicionar um acategoria" %>
         </div>
       <% end %>
     <% end %>
 
     <div class="actions">
-    <%= f.submit t("create") %> <%= link_to t("back"), :back %>
+      <%= f.submit t("create") %> <%= link_to t("back"), :back %>
     </div>
   <% end %> 
 </fieldset>

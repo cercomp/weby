@@ -1,23 +1,29 @@
 <%= simple_fields_for @menu do |f| %>
   <% if params[:type] == "external"  %>
-    <%= f.input :link, :label => t("url"), :hint => (t"type_param", :param => t("url")), :placeholder => 'http://', :as => :url %>
+    <%= f.input :link,
+      label: t("url"),
+      hint: (t"type_param", param: t("url")),
+      input_html: {value: 'http://'},
+      as: :url %>
   <% else %>
-    <% unless @pages.nil? %>
+    <% unless @pages.try(:count) %>
       <% pages = @pages.to_a %>
       <% unless @menu.page_id.nil? %>
+        <%# FIXME: Retirar essa regra de negócio da view! %>
         <% pages = [Page.find(@menu.page_id)] + (pages - [Page.find(@menu.page_id)])%>
       <% end %>
 
+      <%# FIXME: Retirar essa regra de negócio da view! %>
       <%= f.input :page_id, 
-        :label => t('url'),
-        :collection => pages,
-        :collection_wrapper_tag => "div class='radio-group'",
-        :as => :radio, 
-        :label_method => lambda { |u|
-          raw "#{u.by_locale(session[:locale]).title[0,50] + ((u.by_locale(session[:locale]).title.size > 50) ?  "..." : "")}" + "<br />"
-        },
-        :value_method => 'id',
-        :paginate => "#{paginate @pages, :remote => true}" %>
-    <% end %>
+      label: t('url'),
+      collection: pages,
+      collection_wrapper_tag: "div class='radio-group'",
+      as: :radio, 
+      label_method: lambda {|u|
+        raw "#{u.by_locale(session[:locale]).title[0,50] + ((u.by_locale(session[:locale]).title.size > 50) ?  "..." : "")}" + "<br />"
+      },
+      value_method: 'id',
+      paginate: "#{paginate @pages, remote: true}" %>
   <% end %>
+<% end %>
 <% end %>

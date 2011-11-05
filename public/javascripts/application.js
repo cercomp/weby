@@ -14,8 +14,9 @@ $(document).ready(function() {
       return false;
    });
 
-   $('form').live('submit', function(){
+   $('form').submit(function(){
       Loading.show();
+      $(this).submit();
    })
 
    /////////////////////////////////////////////////////////////////////////////

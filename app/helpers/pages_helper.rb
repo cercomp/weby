@@ -21,10 +21,10 @@ module PagesHelper
       :remote => true
   end
 
-  def links_to_page_type(type)
+  def links_to_page_type(type = "News")
     links_hash = {
-      'News' => "#{t 'news.one' } | #{ link_to_page_type :Event }",
-      'Event' => "#{ link_to_page_type :News} | #{t 'event.one' }"
+      'News' => "<span>#{t 'news.one' }</span> #{ link_to_page_type :Event }",
+      'Event' => "#{ link_to_page_type :News} <span>#{t 'event.one' }</span>"
     }
 
     raw links_hash[type]

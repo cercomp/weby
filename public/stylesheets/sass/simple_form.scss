@@ -16,148 +16,124 @@ $label_horizontal_margin: 10px;
 }
 
 .simple_form{
+  font-size: 12px;
   .pages_paginator{float: none}
-  div.input{
-    clear: both;
-    margin:{
-      bottom: 15px;
-    }
+}
 
-    &:hover{
-      label{
-        color: black;
-      }
-    }
+div.input {
+  clear: both;
+  margin-bottom: 15px;
+
+  &:hover label{
+    color: black;
   }
+}
 
-  label{
-    font:{
-      size: 11px;
-      familly: Verdana;
-    }
-    cursor: pointer;
-    float: left;
-    width: $label_width;
-    text-align: right;
-    margin: 2px $label_horizontal_margin;
-    abbr{
-      color: red;
-    }
+div.input.image_list{
+  padding-bottom: 25px;
+}
+
+.hint {
+  color: #555;
+  display: block;
+  margin-left: $label_width + (2 * $label_horizontal_margin);
+  width: 200px;
+  font:{
+    size: 11px;
+    style: italic;
   }
+}
 
-  .hint {
-    color: #555;
-    display: block;
-    margin-left: $label_width + (2 * $label_horizontal_margin);
-    width: 200px;
-    font:{
-      size: 11px;
-      style: italic;
-    }
+label.collection_radio {
+  float: none;
+  margin: 0;
+  padding: 0;
+  vertical-align: -2px;
+  margin:{
+    right: 10px;
+    left:   2px;
   }
+}
 
-  label.collection_radio {
-    float: none;
-    margin: 0;
-    padding: 0;
-    vertical-align: -2px;
-    margin:{
-      right: 10px;
-      left:   2px;
+.radio-group-images{
+  display: table;
+  & > input[type=radio]{
+    display: none;
+    &:checked + label.collection_radio > img{
+      @extend .radio-group-images-selected
     }
-  }
-
-  .radio-group-images{
-    display: table;
-    & > input[type=radio]{
-      display: none;
-      &:checked + label.collection_radio > img{
+    & + label.collection_radio > img{
+      padding: 4px 2px;
+      margin: 5px;
+      &:hover{
         @extend .radio-group-images-selected
       }
-      & + label.collection_radio > img{
-        padding: 4px 2px;
-        margin: 5px;
-        &:hover{
-          @extend .radio-group-images-selected
-        }
-      }
     }
   }
+}
 
-  .radio-group-images-selected{
-    margin: 4px 2px;
-    padding: 2px;
-    border: 3px solid red;
+.radio-group-images-selected{
+  margin: 4px 2px;
+  padding: 2px;
+  border: 3px solid red;
+}
+
+#selected-image-of-radio-group-images{
+  margin-top: 15px;
+  & input{
+    display: none;
   }
-
-  #selected-image-of-radio-group-images{
-    margin-top: 15px;
-    & input{
-      display: none;
-    }
-    &:hover::before{
-      content: url(../images/apagar.gif);
-      position: relative;
-      top: -50px;
-      right: 0;
-    }
+  &:hover::before{
+    content: url(../images/apagar.gif);
+    position: relative;
+    top: -50px;
+    right: 0;
   }
+}
 
-  .field_with_errors {
-    background-color: #ff3333;
+.field_with_errors {
+  background-color: #ff3333;
+}
+
+input.radio {
+  margin-right: 5px;
+  vertical-align: -3px;
+}
+
+.collection_check_boxes .check_boxes, .radio-group {
+  vertical-align: -3px;
+  margin-left: $label_width + (2 * $label_horizontal_margin);
+  .hint{
+    margin: 0;
   }
+}
 
-  input.radio {
-    margin-right: 5px;
-    vertical-align: -3px;
-  }
-
-  .collection_check_boxes .check_boxes, .radio-group {
-    vertical-align: -3px;
+.input.check_boxes{
+  input.check_boxes{
+    display: list-item;
+    margin-left: 0;
+    //vertical-align: -3px;
     margin-left: $label_width + (2 * $label_horizontal_margin);
-    .hint{
-      margin: 0;
-    }
-  }
-
-  .input.check_boxes{
-    input.check_boxes{
-      display: list-item;
-      margin-left: 0;
-      //vertical-align: -3px;
-      margin-left: $label_width + (2 * $label_horizontal_margin);
-      & + label{
-        position: relative;
-        left: $label_width + (4 * $label_horizontal_margin);
-        top: -23px;
-        margin: 0;
-        float: none;
-      }
-    }
-  }
-
-  .link-field{
-    .input{
-      margin-left: $label_width + (2 * $label_horizontal_margin);
+    & + label{
       position: relative;
-      top: -15px;
-      margin-bottom: 0px;
+      left: $label_width + (4 * $label_horizontal_margin);
+      margin: 0;
+      float: none;
     }
   }
+}
 
-  .actions{
-    clear: both;
-    width: 100%;
-    margin: 10px auto;
-    a{
-      color: #fff;
-      font-size: 13px;
-      padding: 3px;
-      float: left;
-      @include button_style(#2C4056, #507AAA, #000);
-    }
+.actions{
+  clear: both;
+  width: 100%;
+  margin: 10px auto;
+  a{
+    color: #fff;
+    font-size: 13px;
+    padding: 3px;
+    float: left;
+    @include button_style(#2C4056, #507AAA, #000);
   }
-
 }
 
 button, input[type='submit'] {
@@ -177,4 +153,43 @@ input, select, textarea{
     outline: none;
     @include box_shadow(0 0 28px 1px #aaa);
   }
+}
+
+.link-field{
+  margin: 15px 0;
+  span{
+    color: black;
+    border: 1px solid black;
+    background-color: #ccf6b3;
+    padding: 5px 8px;
+    font-weight: bold;
+  }
+  a{
+    color: gray;
+    border: 1px solid gray;
+    padding: 5px 8px;
+  }
+  .input{
+    margin-left: $label_width + (2 * $label_horizontal_margin);
+    position: relative;
+    margin-bottom: 0px;
+  }
+}
+
+label{
+  font:{
+    size: 12px;
+    familly: Verdana;
+  }
+  cursor: pointer;
+  float: left;
+  width: $label_width;
+  text-align: right;
+  margin: 0 $label_horizontal_margin;
+  abbr{
+    color: red;
+  }
+}
+.input label{
+  margin: 5px $label_horizontal_margin;
 }
