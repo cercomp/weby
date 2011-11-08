@@ -20,6 +20,13 @@
   top: 0;
   line-height: 23px;
   color: black !important; }
+  .top_menu .separator {
+    background: rgba(242, 242, 242, 0.85);
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc; }
+    .top_menu .separator:hover {
+      background: rgba(242, 242, 242, 0.85); }
   .top_menu menu {
     padding: 0 2px;
     margin: 0;

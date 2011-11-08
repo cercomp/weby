@@ -24,6 +24,19 @@ $menu-border-ie: 1px solid opacify($border-color, 1);
   line-height: $menu-line-height;
   color: $menu-text-color !important;
 
+.separator{
+  background:  darken($main-color, 5%);
+  font-weight: bold;
+  border:{
+    bottom: 1px solid #ccc;
+    top: 1px solid #ccc;
+  }
+  
+  &:hover{
+    background: darken($main-color, 5%);
+  }
+}
+
   menu { 
     padding: 0 2px;
     margin: 0;
