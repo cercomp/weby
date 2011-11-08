@@ -2,7 +2,7 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 
 html { background-color: #F9F9F9; }
 
-body {
+#wrapper {
   background: #FFF;
   margin: 2em auto;
   width: 900px;

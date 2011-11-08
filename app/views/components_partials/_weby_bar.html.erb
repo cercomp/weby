@@ -1,7 +1,7 @@
 <section id="weby_bar">
   <nav  class="top_menu left">
     <menu>
-      <li> <%= link_to( t("portal"), root_path ) %> </li>
+      <li>  <%= link_to( ( t"portal", :count => 2 ), root_path ) %>  </li>
 
       <% if @site %>
         <li> <%= link_to( t("home"), @site ) %> </li>

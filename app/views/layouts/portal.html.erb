@@ -1,8 +1,16 @@
 <!DOCTYPE html>
 <html lang="<%= session[:locale].to_s %>">
   <%= stylesheet_link_tag 'portal' %>
+    
   <%= render 'layouts/shared/head', :contrast => 'contrast' %>
+  
   <body>
+    
+  <div class='first_place'>
+    <%= render :partial => 'components_partials/weby_bar' %>
+  </div>
+
+  <div id="wrapper">
     <header>
       <nav class="right">
         <%= render "layouts/shared/menu_locale" %>
@@ -11,7 +19,6 @@
 
     <section id="content">
       <%= raw flash_message %>
-      <%= render :partial => 'components_partials/weby_bar' %>
       <%= yield %>
     </section>
 
@@ -20,6 +27,7 @@
     </footer>
 
     <%= render 'layouts/shared/javascripts' %>
+  </div>
   </body>
 </html>
 

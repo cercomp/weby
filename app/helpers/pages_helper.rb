@@ -21,6 +21,8 @@ module PagesHelper
       :remote => true
   end
 
+  # Define qual tipo de página o usuário está criando/editando
+  #
   def links_to_page_type(type = "News")
     links_hash = {
       'News' => "<span>#{t 'news.one' }</span> #{ link_to_page_type :Event }",
