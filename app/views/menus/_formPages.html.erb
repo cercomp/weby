@@ -6,7 +6,7 @@
       input_html: {value: 'http://'},
       as: :url %>
   <% else %>
-    <% unless @pages.try(:count) %>
+    <% if @pages.try(:count) %>
       <% pages = @pages.to_a %>
       <% unless @menu.page_id.nil? %>
         <%# FIXME: Retirar essa regra de negócio da view! %>
@@ -22,8 +22,8 @@
       label_method: lambda {|u|
         raw "#{u.by_locale(session[:locale]).title[0,50] + ((u.by_locale(session[:locale]).title.size > 50) ?  "..." : "")}" + "<br />"
       },
-      value_method: 'id',
-      paginate: "#{paginate @pages, remote: true}" %>
+        value_method: 'id',
+        paginate: "#{paginate @pages, remote: true}" %>
+    <% end %>
   <% end %>
-<% end %>
 <% end %>
