@@ -167,6 +167,7 @@ en:
 #---L---#
   last_login: "Last login %{param}"
   last_name: "Last name"
+  last_news: "Latest news"
   last_request: "Last action at"
   layout: "Layout"
   left: "Left"
