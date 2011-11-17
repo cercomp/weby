@@ -122,6 +122,11 @@ input, select, textarea {
     background-color: #ccf6b3;
     padding: 5px 8px;
     font-weight: bold; }
+    .link-field span:before {
+      content: url("../images/true.png");
+      position: relative;
+      top: 3px;
+      right: 0; }
   .link-field a {
     color: gray;
     border: 1px solid gray;

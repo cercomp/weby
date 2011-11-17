@@ -261,6 +261,9 @@ div.flash.warning {
 .icon-folder:before {
   content: url(../images/folder.png); }
 
+.icon-i18n:before {
+  content: url(../forms/i18n.png); }
+
 .open .icon-folder:before {
   content: url(../images/folder_open.png); }
 

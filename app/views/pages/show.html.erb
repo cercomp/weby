@@ -69,12 +69,7 @@
 
     <% if check_permission(PagesController, ["edit"]) %>
       <%= link_to t("edit"), edit_site_page_path(@site, @page) %> |
-      <%# Verifica se todas as i18n já foram criadas %>
-      <% if @page.page_i18ns.size < Locale.all.size %>
-        <%= link_to t("add_param", :param => t('i18n')), add_i18n_site_page_path(@site, @page) %> |
-      <% else %>
-        <%= t("no_more_i18ns") %> |
-      <% end %>
+      <%= add_page_i18n(@page, @site) %> |
     <% end %>
     <%= link_to t("list_all.fem"), site_pages_path(@site) %> | <%= link_to t("back"), :back %>
   </article>
