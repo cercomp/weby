@@ -67,9 +67,7 @@
       <br />
     <% end %>
 
-    <% if check_permission(PagesController, ["edit"]) %>
-      <%= link_to t("edit"), edit_site_page_path(@site, @page) %> |
-      <%= add_page_i18n(@page, @site) %> |
-    <% end %>
+    <%= make_menu(@page, :except => "show") %> |
+    <%= link_to_add_page_i18n(@page, @site) %> |
     <%= link_to t("list_all.fem"), site_pages_path(@site) %> | <%= link_to t("back"), :back %>
   </article>

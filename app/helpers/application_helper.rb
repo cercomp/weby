@@ -203,17 +203,6 @@ module ApplicationHelper
     end)
   end
 
-  # Retorna o link para adicionar o i18n para uma página
-  # Parametros: pagina, site
-  def add_page_i18n(page, site)
-    if page.page_i18ns.size < Locale.all.size #verifica se todos os locales já foram utilizados
-       link_to image_tag("forms/i18n.png",
-                        :alt => t("add_param", :param => t("i18n"))), add_i18n_site_page_path(site, page)
-    else 
-      image_tag("forms/i18n.png", :alt => t("no_more_i18ns"))
-    end
-  end
-
   # Método para ordenar tabelas pela coluna
   def sortable(column, title = nil)
     title ||= column.titleize
