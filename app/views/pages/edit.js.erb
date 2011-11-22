@@ -3,9 +3,12 @@ $('#repo_list').html('<%= escape_javascript(render(:partial => 'repositories/rep
                                                                :field => :repository_id,
                                                                :collection => @images })) %>')
 
+
 <% if params[:twitter_page] %>
   $('#files_list').append('<%= escape_javascript(render(:partial => 'files_list')) %>')
   $('#twitter').html('<%= escape_javascript(paginate(@page_files_unchecked, :param_name => 'twitter_page', :theme => 'twitter', :remote => true).to_s) %>')
 <% end %>
 
 show_selected_image('page', 'repository_id');
+
+

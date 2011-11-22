@@ -146,6 +146,8 @@ function set_jquery_ui(){
       changeYear: true
    });
 
+   $(".tabs").tabs();
+
    return true;
 }
 
