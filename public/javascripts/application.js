@@ -1,17 +1,13 @@
 $(document).ready(function() {
-   // Ajax indicator
-   $('form[data-remote=true]').bind('submit', function(){
-      Loading.show();
-   }).ajaxComplete(function(){
-      Loading.hide();
-   });
+   //////////////////////////////////
+   set_jquery_ui();
+   ////////////////////////////////
 
-   $('a[data-remote=true]').live('click',function (){
+   // Ajax indicator
+   $('*').ajaxSend(function(){
       Loading.show();
-      return false;
    }).ajaxComplete(function(){
       Loading.hide();
-      return false;
    });
 
    $('form').submit(function(){
@@ -38,7 +34,16 @@ $(document).ready(function() {
       $(this).click( function () {
          document.body.style.cursor = "wait"
       })
-   })
+   });
+
+   $(".check-button").bind("click", function(){
+      remove_button_icons($(this));
+      remove_button_icons($(this).parent().find("input[type=radio]"));
+      if($(this).is(".check-button:checked")){
+         add_check_icon($(this));
+      }
+   });
+
 });
 
 function hide_enroled_option() {
@@ -63,18 +68,17 @@ function addToSelect(selectId){
 Loading = {
    place_holder: $(document.createElement('div')), 
    image: new Image(),
-   show: function(){
+   show: function(isModal){
       if($('#ajax-indicator').length <= 0){
-         this.place_holder.attr('id', 'ajax-indicator');
-         this.place_holder.addClass('ajax-indicator');
          this.image.src = '/images/loading.gif';
          this.place_holder.html(this.image).append(' Loading...');
          this.place_holder.appendTo($('body'));
+         this.place_holder.addClass("ajax-indicator ui-state-highlight");
       }
-      this.place_holder.show();
+      this.place_holder.slideDown();
    },
    hide: function(){
-      this.place_holder.hide();
+      this.place_holder.slideUp();
    }
 }
 
@@ -106,5 +110,56 @@ function show_selected_image(object,field_name){
       place.html(image); 
       selected.prop('checked', true);
    });
+}
+
+function set_jquery_ui(){
+   $(".actions > a, input:submit, button, .button").button();
+
+   $(".checkbox-button-set > input[type=checkbox]").button();
+   $(".radio-button-set > input[type=radio]").button();
+
+   $(".checkbox-button-set, .radio-button-set").buttonset();
+
+   $(".search-button").button({
+      icons: { secondary: "ui-icon-search" }
+   });
+
+   $(".add-button").button({
+      icons: { primary: "ui-icon-plusthick" }
+   });
+
+   $(".check-button").button();
+
+   $(".check-button:checked").button({
+      icons: { primary: 'ui-icon-check' }
+   });
+
+   $(".save-button").addClass("green-button");
+
+   $(".cancel-button").addClass("red-button");
+
+   $('.multiselect').multiselect();
+
+   $('.datepicker').datepicker({
+      dateFormat: "yy-mm-dd",
+      changeMonth: true,
+      changeYear: true
+   });
+
+   return true;
+}
+
+function add_check_icon(element){
+   element.button({
+      icons: { primary: 'ui-icon-check' }
+   });
+   return true;
+}
+
+function remove_button_icons(element){
+   element.button({
+      icons: {}
+   });
+   return true;
 }
 

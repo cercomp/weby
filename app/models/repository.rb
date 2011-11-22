@@ -14,10 +14,11 @@ class Repository < ActiveRecord::Base
             { :text => "%#{text}%" } ] 
   }
 
-  scope :content_file, lambda{ |content_file|
+  scope :content_file, proc { |content_file|
     if content_file.is_a?(Array)
       # TODO: Esse código funcionará exclusivamente para o Postgresql
       # TODO: Corrigir para funcionar independente do banco de dados.
+      content_file.map! {|content| "%#{content}%"}
       where ["archive_content_type SIMILAR TO :values",
              {values: "%(#{content_file.join('|')})%"}
       ]
@@ -26,7 +27,7 @@ class Repository < ActiveRecord::Base
     end
   }
 
-  scope :archive_content_file, lambda{ |content_file|
+  scope :archive_content_file, proc { |content_file|
     where [ "LOWER(archive_content_type) LIKE :content_file",
             { :content_file => "%#{content_file.try(:downcase)}%" } ]
   }

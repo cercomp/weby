@@ -1,0 +1,8 @@
+$(".files_list_search_result").
+html("<%= escape_javascript(render "repositories_search/files_list",
+                            name: "selected_files[]",
+                            label: "selected_files_",
+                            show_selected: false,
+                            multiplicity: @multiplicity) %>");
+
+set_jquery_ui();

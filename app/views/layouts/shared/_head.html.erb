@@ -1,4 +1,13 @@
 <head>
+  <%#= TODO: Internacionalizar esta mensagem %>
+  <noscript>
+    <div style="width: 22em; position: absolute; left: 50%; margin-left: -11em;
+      color: red; background-color: white; border: 1px solid red; padding: 4px;
+      font-family: Tahoma, Verdana, sans-serif;font-size: 11px">
+      Your web browser must have JavaScript enabled
+      in order for this application to display correctly.
+    </div>
+  </noscript>
   <title> <%= @site.try(:description) || 'Weby' %> </title>
   <meta charset="utf-8">
   <%= csrf_meta_tag %>
@@ -9,10 +18,12 @@
   <%= stylesheet_link_tag 'application' %>
   <%= stylesheet_link_tag 'simple_form' %>
   <%= stylesheet_link_tag 'paginate' %>
-  
-  <!-- Css do tema ui-lightness do jquery-ui -->
-  <%= stylesheet_link_tag 'ui-lightness/jquery-ui-1.8.13.custom.css' %>
-  
+
+  <!-- Css do tema personalizado do jquery-ui -->
+  <%= stylesheet_link_tag 'jquery-ui/jquery-ui-1.8.16.custom.css' %>
+
+  <%= stylesheet_link_tag 'jquery.multiselect.css' %>
+
   <!--[if lt IE 9]>
   <%= javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js" %>
   <%#= javascript_include_tag "http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js" %>

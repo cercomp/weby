@@ -1,0 +1,14 @@
+#page_type {
+  margin: 0 15px;
+  margin-bottom: 10px; }
+
+#include_page_file {
+  margin: 0 15px;
+  margin-bottom: 10px;
+  width: 113px; }
+  #include_page_file ul, #include_page_file li {
+    text-align: center;
+    padding: 0;
+    margin: 0; }
+  #include_page_file li {
+    margin-top: 5px; }

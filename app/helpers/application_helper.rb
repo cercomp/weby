@@ -286,21 +286,4 @@ module ApplicationHelper
     end.join)
   end
 
-  # Retorna quais os tipos de arquivos existentes em um Site
-  # Recebe um objeto do tipo Site
-  def load_mime_types(site)
-    mime_types = site.repositories.except(:order).
-      map{|t| t.archive_content_type }.
-      tap{|mime_type| mime_type.uniq!}.
-      tap{|mime_type| mime_type.delete("")}.
-      collect!{ |m| m.split('/') }.sort
-
-    hash = Hash.new{|hash,key| hash[key] = Array.new}
-
-    mime_types.each do  |type, subtype|  
-      hash[type] << [subtype, "#{type}/#{subtype}"]
-    end
-
-    hash
-  end
 end

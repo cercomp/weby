@@ -8,8 +8,8 @@ h1, h2, h3, h4 { font-family: "Trebuchet MS", Verdana, sans-serif;}
 h1 { margin:0; padding:0; font-size: 160%; }
 
 /***** Links *****/
-a, a:link, a:visited { color:#1A417E; text-decoration: none; }
-a:hover, a:active { color: #3399FF; text-decoration: none;}
+a, a:link, a:visited {  text-decoration: none; }
+a:hover, a:active {  text-decoration: none;}
 a img{ border: 0; text-decoration: none;}
 
 /* Fieldset */
@@ -82,21 +82,11 @@ div.flash.warning {
   font:{
     size: 18px;
   }
-  background-color: rgb(255, 255, 196);
   padding: 5px;
   position: fixed;
   top: 0;
   right: 45%;
-  z-index: 999;
-  border: 2px solid darken(rgb(255,255,196), 50%);
-  border:{
-    top: 0
-  }
-  @include border_radius(0 0 5px 5px);
-  &:hover{
-    opacity: 0.4;
-    filter:alpha(opacity=40);
-  }
+  z-index: 9999;
 }
 
 /**** Contextual *****/
@@ -230,3 +220,32 @@ label[for='users_unroled']{ font-weight: bold; font-family: Verdana, sans-serif;
 #users_list_roles { list-style: none; margin: 5px 0px; }
 #user_current_roles { margin-left: 350px; }
 #user_profile { width: 300px; float: left; }
+
+.files_list{
+  float: left;
+  width: 420px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+
+.files_item{
+  display: table-cell;
+  float: left;
+  margin: 10px 15px;
+  padding: 0;
+  label{
+    @include border_radius(4px);
+    width: 110px;
+    height: 125px;
+    font:{
+      size: 12px !important;
+      familly: Verdana !important;
+    }
+  }
+}
+
+.ui-helper-clearfix::after{
+  display: inline !important;
+}

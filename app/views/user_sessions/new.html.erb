@@ -25,7 +25,8 @@
 
     <div class="actions">
       <%= hidden_field_tag :back_url, "#{params[:back_url].blank? ? request.fullpath : params[:back_url]}" %>
-      <%= link_to t('forgot_password'), new_password_reset_path %> <%= f.submit t"login" %> 
+      <%= f.submit t"login" %> 
+      <%= link_to t('forgot_password'), new_password_reset_path %>
     </div>
   <% end %>
 </fieldset>

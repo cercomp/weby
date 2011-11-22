@@ -1,6 +1,8 @@
 <%= javascript_include_tag :defaults %>
 <%= javascript_include_tag "tiny_mce/jquery.tinymce" %>
 <%= javascript_include_tag "jquery-ui.min.js" %>
+<%= javascript_include_tag "jquery.multiselect.min.js" %>
+<%= javascript_include_tag "jquery.multiselect.#{ session[:locale].to_s.downcase }.js" %>
 
 <%= yield :before_javascripts_libraries %>
 <%= yield :javascripts_libraries %>

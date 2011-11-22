@@ -1,0 +1,13 @@
+<ul class="checkbox-button-set">
+  <% @files.each do |file| %>
+    <li class='files_item'>
+    <%= file_selector(multiplicity, name, file.id,
+                      show_selected, class: "boolean optional", 
+                      id: "#{label}_#{file.id}") %>
+      <label for="<%= "#{label}_#{file.id}" %>" class="boolean optional">
+      <%= weby_file_view(file, :mini, "64x64", as: "image") %><br />
+      <%= file.description.truncate(30) %>
+    </label>
+    </li>
+  <% end %>
+</ul>

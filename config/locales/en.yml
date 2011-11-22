@@ -120,6 +120,9 @@ en:
     other: "Feedback"
   feedback_sent: "Feedback sent successfully!"
   field_required: "Field required!"
+  file:
+    one: "File"
+    other: "Files"
   fill_email_form: "Fill out the form below to reset your password. It will be e-mailed to you"
   filter: "Filter"
   first_name: "First name"

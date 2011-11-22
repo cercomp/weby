@@ -1,0 +1,36 @@
+var place = $(document.createElement("div"));
+place.attr('id', 'file_search_box');
+place.
+html('<%= escape_javascript(render "repositories_search/file_search_box",
+                            name: @name,
+                            final_files_list: @final_files_list,
+                            multiplicity: @multiplicity,
+                            file_types: @file_types ) %>');
+
+
+place.show();
+
+place.dialog({ 
+  width: '520px',
+  height: 500,
+  modal: true,
+  resizable: false,
+  position: 'top',
+  title: "<%= escape_javascript(params[:title]) %>",
+  show: 'slideDown',
+  buttons:[{
+    class: 'green-button',
+    text: "<%= t('save') %>",
+            click: function(){
+              $(this).find('form').submit();
+            }
+  },{
+    class: 'red-button',
+    text: "<%= t('cancel') %>",
+            click: function(){
+              $(this).dialog('close');
+            }
+  }]
+})
+
+set_jquery_ui();

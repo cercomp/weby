@@ -1,0 +1,12 @@
+  <%= link_to @label, params.merge({
+    controller: 'repositories_search',
+    action: 'open_file_search_box',
+    name: @name,
+    file_types: @file_types,
+    title: @label,
+    final_files_list: @final_files_list,
+    multiplicity: @multiplicity
+  }), remote: true,
+  title: t("add_param", param: t("file.#{@multiplicity}")), class: "add-button"%>
+<div id="<%= @final_files_list %>">
+</div>

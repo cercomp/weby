@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.9'
+gem 'rails', '3.0.11'
 gem 'pg'
 gem "authlogic", :git => "git://github.com/odorcicd/authlogic.git", :branch => "rails3"
 gem 'kaminari', :git => "git://github.com/tmilewski/kaminari.git"
@@ -11,6 +11,7 @@ gem "sass"
 gem "jquery-rails"
 gem "acts-as-taggable-on"
 gem 'mongrel', '>= 1.2.0.pre2'
+gem 'cells'
 
 group :development do
   gem 'pry-rails'

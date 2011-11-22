@@ -7,6 +7,7 @@ Webyge::Application.routes.draw do
   match '/sites/:site_id/repositories/page/:page' => 'repositories#index' # Paginate URL on repositories
   match '/sites/:site_id/groups/page/:page' => 'groups#index' # Paginate URL on groups
 
+
   resources :sites do
     collection do
       post :sort
@@ -26,6 +27,13 @@ Webyge::Application.routes.draw do
         get :manage
       end
     end
+    resources :repositories_search do
+      collection do 
+        get :open_file_search_box
+        get :search
+        post :include_files
+      end
+    end
     resources :menus do 
       collection do 
         get :rm_menu, :change_position, :to_site
@@ -41,6 +49,7 @@ Webyge::Application.routes.draw do
       member do 
         get :toggle_field
         get :add_i18n
+        get :add_related_files
         post :create_i18n
       end 
       collection do
@@ -71,7 +80,7 @@ Webyge::Application.routes.draw do
         put :index
       end
     end
-    
+
     resources :groups, :chats, :rights, :archives, :admin
   end
 

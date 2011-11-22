@@ -44,8 +44,11 @@ fieldset.login_embedded{
 
   .actions{
     button, input[type='submit'] {
+      line-height: 19px;
       margin-left: 0px;
-      float: right;
+    }
+    a{
+      line-height: 20px;
     }
   }
 

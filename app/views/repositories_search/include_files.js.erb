@@ -1,0 +1,14 @@
+$("#file_search_box").dialog("close").remove();
+console.dir("<%= @final_files_list %>");
+console.dir("<%= @files.count %>");
+console.dir("<%= @s %>");
+
+$("#<%= @final_files_list %>").
+html("<%= escape_javascript(render "repositories_search/files_list",
+                            name: @name,
+                            label: @name.gsub(/(\]|\[)/, '_'),
+                            show_selected: true,
+                            multiplicity: @multiplicity) %>");
+
+
+set_jquery_ui();

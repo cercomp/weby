@@ -100,14 +100,6 @@ input.radio {
   vertical-align: -3px;
 }
 
-.collection_check_boxes .check_boxes, .radio-group {
-  vertical-align: -3px;
-  margin-left: $label_width + (2 * $label_horizontal_margin);
-  .hint{
-    margin: 0;
-  }
-}
-
 .input.check_boxes{
   input.check_boxes{
     display: list-item;
@@ -124,21 +116,28 @@ input.radio {
 }
 
 .actions{
+  float: right;
   clear: both;
-  width: 100%;
   margin: 10px auto;
   a{
-    color: #fff;
-    font-size: 13px;
-    padding: 3px;
-    float: left;
-    @include button_style(#2C4056, #507AAA, #000);
+    line-height: 20px;
+    color: black;
   }
 }
 
-button, input[type='submit'] {
-  color: #fff;
-  @include button_style(#229316, #55C649, #006000);
+.green-button{
+  background: rgb(189, 255, 187) !important;
+  @extend .button;
+}
+
+.red-button{
+  background: rgb(255, 197, 187) !important;
+  @extend .button;
+}
+
+.button{
+  line-height: 1.4;
+  color: black;
 }
 
 input, select, textarea{
@@ -155,31 +154,10 @@ input, select, textarea{
   }
 }
 
-.link-field{
-  margin: 15px 0;
-  span{
-    color: black;
-    border: 1px solid black;
-    background-color: #ccf6b3;
-    padding: 5px 8px;
-    font-weight: bold;
-
-    &:before{
-      content: url('../images/true.png');
-      position: relative;
-      top: 3px;
-      right: 0;
-    }
-  }
-  a{
-    color: gray;
-    border: 1px solid gray;
-    padding: 5px 8px;
-  }
-  .input{
-    margin-left: $label_width + (2 * $label_horizontal_margin);
-    position: relative;
-    margin-bottom: 0px;
+input[type=search]{
+  -webkit-appearance: none;
+  &:focus{
+    -webkit-appearance: none;
   }
 }
 
@@ -199,4 +177,19 @@ label{
 }
 .input label{
   margin: 5px $label_horizontal_margin;
+}
+
+button, 
+input[type=submit],
+input[type=button],
+input[type=reset]{
+  @extend .button;
+}
+
+.ui-multiselect-checkboxes{
+  label{
+    width: 98% !important;
+    margin: 0 !important;
+    text-align: left !important;
+  }
 }

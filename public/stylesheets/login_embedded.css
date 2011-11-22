@@ -30,5 +30,7 @@ fieldset.login_embedded {
   fieldset.login_embedded legend {
     display: none; }
   fieldset.login_embedded .actions button, fieldset.login_embedded .actions input[type='submit'] {
-    margin-left: 0px;
-    float: right; }
+    line-height: 19px;
+    margin-left: 0px; }
+  fieldset.login_embedded .actions a {
+    line-height: 20px; }
