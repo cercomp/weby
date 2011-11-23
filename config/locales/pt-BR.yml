@@ -256,7 +256,7 @@ pt-BR:
     one: "Página"
     other: "Páginas"
     image: "Imagem da Página"
-  page_categories_help: 'Categorias são separadas por vírgula'
+  page_categories_help: 'Categorias são separadas por vírgula, a categoria de uma página é relacionada ao seu conteúdo. Ex: Esporte, Notícia, UFG'
   password: "Senha"
   password_change: "Nova senha"
   password_confirmation: "Confirmação da senha"

@@ -17,6 +17,7 @@ class Page < ActiveRecord::Base
   }
 
   validates_presence_of :author_id
+  validates_presence_of :date_begin_at, :date_end_at
 
   belongs_to :user, :foreign_key => "author_id"
 	belongs_to :repository, :foreign_key => "repository_id"
