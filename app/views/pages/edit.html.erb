@@ -45,7 +45,8 @@
     <%= f.input :date_end_at, :order => [:year, :month, :day], :use_month_numbers => true, :label => (t"date_param", :param => t("end")), :id => "datapicker", :as => :datetime %>
 
     <div id="i18n" class="tabs">
-      <%= render :partial => 'i18n_edit', :locals => {:locales => @locales, :f => f} %>
+      <%= link_to_add_page_i18n(@page,@site)%>
+      <%= render :partial => 'i18n_edit', :locals => {:site => @site, :page => @page, :locales => @locales, :f => f} %>
     </div>
     
     <%= f.input :source, :label => t("source") %> 
