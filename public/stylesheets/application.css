@@ -250,9 +250,6 @@ div.flash.warning {
 .icon-folder:before {
   content: url(../images/folder.png); }
 
-.icon-i18n:before {
-  content: url(../images/forms/i18n.png); }
-
 .open .icon-folder:before {
   content: url(../images/folder_open.png); }
 
@@ -516,7 +513,6 @@ label[for='users_unroled'] {
 
 .files_list {
   float: left;
-  width: 420px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -525,7 +521,7 @@ label[for='users_unroled'] {
 .files_item {
   display: table-cell;
   float: left;
-  margin: 10px 15px;
+  margin: 10px 10px;
   padding: 0; }
   .files_item label {
     -webkit-border-radius: 4px;
@@ -536,5 +532,6 @@ label[for='users_unroled'] {
     font-size: 12px !important;
     font-familly: Verdana !important; }
 
-.ui-helper-clearfix::after {
-  display: inline !important; }
+.ui-button, .ui-button-text,
+.ui-button .ui-button-text {
+  line-height: 1.9 !important; }

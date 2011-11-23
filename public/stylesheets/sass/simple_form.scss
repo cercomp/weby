@@ -16,7 +16,7 @@ $label_horizontal_margin: 10px;
 }
 
 .simple_form{
-  font-size: 12px;
+  font-size: 14px;
   .pages_paginator{float: none}
 }
 
@@ -120,8 +120,8 @@ input.radio {
   clear: both;
   margin: 10px auto;
   a{
-    line-height: 20px;
     color: black;
+    @extend .button;
   }
 }
 
@@ -136,7 +136,7 @@ input.radio {
 }
 
 .button{
-  line-height: 1.4;
+  line-height: 1.9 !important;
   color: black;
 }
 
@@ -145,6 +145,9 @@ input, select, textarea{
   margin: 5px 0;
   border: 1px solid gray;
   padding: 3px;
+  line-height: 23px;
+  font-size: 14px;
+  @include border_radius(4px);
 
   &:focus{
     border: 1px solid black;
@@ -155,6 +158,7 @@ input, select, textarea{
 }
 
 input[type=search]{
+  width: 250px;
   -webkit-appearance: none;
   &:focus{
     -webkit-appearance: none;
@@ -163,7 +167,7 @@ input[type=search]{
 
 label{
   font:{
-    size: 12px;
+    size: 14px;
     familly: Verdana;
   }
   cursor: pointer;

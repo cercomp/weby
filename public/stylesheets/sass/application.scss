@@ -223,7 +223,6 @@ label[for='users_unroled']{ font-weight: bold; font-family: Verdana, sans-serif;
 
 .files_list{
   float: left;
-  width: 420px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -233,7 +232,7 @@ label[for='users_unroled']{ font-weight: bold; font-family: Verdana, sans-serif;
 .files_item{
   display: table-cell;
   float: left;
-  margin: 10px 15px;
+  margin: 10px 10px;
   padding: 0;
   label{
     @include border_radius(4px);
@@ -246,6 +245,7 @@ label[for='users_unroled']{ font-weight: bold; font-family: Verdana, sans-serif;
   }
 }
 
-.ui-helper-clearfix::after{
-  display: inline !important;
+.ui-button, .ui-button-text,
+.ui-button .ui-button-text{
+  line-height: 1.9 !important;
 }

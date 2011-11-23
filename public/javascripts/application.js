@@ -138,7 +138,9 @@ function set_jquery_ui(){
 
    $(".cancel-button").addClass("red-button");
 
-   $('.multiselect').multiselect();
+   $('.multiselect').multiselect().
+      addClass("ui-button ui-button-text-only").
+      attr('role', 'button');
 
    $('.datepicker').datepicker({
       dateFormat: "yy-mm-dd",

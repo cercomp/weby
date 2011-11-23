@@ -11,13 +11,12 @@ html('<%= escape_javascript(render "repositories_search/file_search_box",
 place.show();
 
 place.dialog({ 
-  width: '520px',
+  width: '630px',
   height: 500,
   modal: true,
   resizable: false,
-  position: 'top',
+  position: ['center', 'top'],
   title: "<%= escape_javascript(params[:title]) %>",
-  show: 'slideDown',
   buttons:[{
     class: 'green-button',
     text: "<%= t('save') %>",
@@ -31,6 +30,8 @@ place.dialog({
               $(this).dialog('close');
             }
   }]
-})
+});
 
 set_jquery_ui();
+
+$(".multiselect .file-search-box").width(180);

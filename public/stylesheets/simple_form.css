@@ -1,5 +1,5 @@
 .simple_form {
-  font-size: 12px; }
+  font-size: 14px; }
   .simple_form .pages_paginator {
     float: none; }
 
@@ -73,7 +73,6 @@ input.radio {
   clear: both;
   margin: 10px auto; }
   .actions a {
-    line-height: 20px;
     color: black; }
 
 .green-button {
@@ -82,18 +81,23 @@ input.radio {
 .red-button {
   background: #ffc5bb !important; }
 
-.button, .green-button, .red-button, button,
+.button, .actions a, .green-button, .red-button, button,
 input[type=submit],
 input[type=button],
 input[type=reset] {
-  line-height: 1.4;
+  line-height: 1.9 !important;
   color: black; }
 
 input, select, textarea {
   display: inline;
   margin: 5px 0;
   border: 1px solid gray;
-  padding: 3px; }
+  padding: 3px;
+  line-height: 23px;
+  font-size: 14px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px; }
   input:focus, select:focus, textarea:focus {
     border: 1px solid black;
     background-color: #faffbd;
@@ -103,12 +107,13 @@ input, select, textarea {
     box-shadow: 0 0 28px 1px #aaaaaa; }
 
 input[type=search] {
+  width: 250px;
   -webkit-appearance: none; }
   input[type=search]:focus {
     -webkit-appearance: none; }
 
 label {
-  font-size: 12px;
+  font-size: 14px;
   font-familly: Verdana;
   cursor: pointer;
   float: left;

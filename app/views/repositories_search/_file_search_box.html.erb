@@ -4,14 +4,14 @@
   <%= hidden_field_tag "multiplicity", multiplicity %>
   <%= hidden_field_tag "name", name %>
   <%= hidden_field_tag "final_files_list", final_files_list %>
-  <%= search_field_tag "search[name]" %>
+  <%= search_field_tag "search[name]", nil, placeholder: 'filename_or_description' %>
   <% if file_types.try(:any?) %>
     <% file_types.each do |file_type| %>
       <%= hidden_field_tag "search[type][]", file_type %>
     <% end %>
   <% else %>
     <%= select_tag("search[type][]", grouped_options_for_select(
-      load_mime_types(@site)), {class: "multiselect", multiple: true}) %>
+      load_mime_types(@site)), {class: "multiselect file-search-box", multiple: true}) %>
   <% end %>
   <%= submit_tag t("search"), class: "search-button" %>
 <% end %>
