@@ -134,10 +134,6 @@ function set_jquery_ui(){
       icons: { primary: 'ui-icon-check' }
    });
 
-   $(".save-button").addClass("green-button");
-
-   $(".cancel-button").addClass("red-button");
-
    $('.multiselect').multiselect().
       addClass("ui-button ui-button-text-only").
       attr('role', 'button');

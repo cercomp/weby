@@ -135,6 +135,11 @@ input.radio {
   @extend .button;
 }
 
+.blue-button{
+  background: rgb(187, 208, 255) !important;
+  @extend .button;
+}
+
 .button{
   line-height: 1.9 !important;
   color: black;

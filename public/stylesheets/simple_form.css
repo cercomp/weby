@@ -81,7 +81,10 @@ input.radio {
 .red-button {
   background: #ffc5bb !important; }
 
-.button, .actions a, .green-button, .red-button, button,
+.blue-button {
+  background: #bbd0ff !important; }
+
+.button, .actions a, .green-button, .red-button, .blue-button, button,
 input[type=submit],
 input[type=button],
 input[type=reset] {

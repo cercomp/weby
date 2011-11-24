@@ -10,7 +10,7 @@
   <%= simple_form_for @user_session do |f| %>
     <% if @user_session.errors.any? %>
       <div id="error_explanation">
-        <h2><%= pluralize(@user_session.errors.count,"") %><%= t"prohibited_being_saved", :count => @user_session.errors.count %>:</h2>
+        <h2><%= pluralize(@user_session.errors.count,"") %><%= t"prohibited_being_saved", count: @user_session.errors.count %>:</h2>
         <ul>
           <% @user_session.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
@@ -18,15 +18,15 @@
         </ul>
       </div>
     <% end %>
+    <%= hidden_field_tag :back_url, "#{params[:back_url].blank? ? request.fullpath : params[:back_url]}" %>
 
-    <%= f.input :login, :required => true, :autofocus => true, :autocapitalize => "off" %>
-    <%= f.input :password, :required => true %>
-    <%= f.input :remember_me, :label => t("remember_me"), :as => :boolean %>
+    <%= f.input :login, required: true, autofocus: true, autocapitalize: "off" %>
+    <%= f.input :password, required: true %>
+    <%= f.input :remember_me, label: t("remember_me"), as: :boolean %>
 
     <div class="actions">
-      <%= hidden_field_tag :back_url, "#{params[:back_url].blank? ? request.fullpath : params[:back_url]}" %>
-      <%= f.submit t"login" %> 
-      <%= link_to t('forgot_password'), new_password_reset_path %>
+      <%= f.submit t("login"), class: "green-button" %> 
+      <%= link_to t('forgot_password'), new_password_reset_path, class: 'blue-button' %>
     </div>
   <% end %>
 </fieldset>
