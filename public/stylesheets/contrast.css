@@ -12,6 +12,10 @@ a, a:link, a:visited, a:hover, a:active { color: white !important; }
 fieldset{ background-color: black; border: 1px solid white;}
 legend { color: white; background-color: black; border: 1px solid white;} 
 
+/*** Hints ***/
+.hint { color: white;}
+
+
 /***** Tables *****/
 table.list {border: 1px solid white; color: white;}
 table.list th {background-color: black;}
