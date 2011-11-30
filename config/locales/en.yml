@@ -138,6 +138,7 @@ en:
   group:
     one: "Group"
     other: "Groups"
+  group_explain: "List of groups that can receive Feedback."
 
 #---H---#
   height: "Height"
@@ -255,8 +256,7 @@ en:
   page:
     one: "Page"
     other: "Pages"
-  page_categories_help: 'Categories are separated by commas'
-  page_categories_help: 'Categorias são separadas por vírgula'
+  page_categories_help: "Categories are separated by commas, the page's category are related with your content. Ex:Sports, News, Policy"
   password: "Password"
   password_change: "Change password "
   password_confirmation: "Password confirmation"

@@ -138,6 +138,7 @@ pt-BR:
   group:
     one: "Grupo"
     other: "Grupos"
+  group_explain: "Lista dos grupos que podem receber Fale Conosco."
 
 #---H---#
   height: "Altura"
