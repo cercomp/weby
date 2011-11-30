@@ -170,7 +170,7 @@ pt-BR:
 #---L---#
   last_login: "Último entrada %{param}"
   last_name: "Sobrenome"
-  last_news: "Ultimas Notícias"
+  last_news: "Últimas Notícias"
   last_request: "Última ação"
   layout: "Leiaute"
   left: "Esquerdo"
