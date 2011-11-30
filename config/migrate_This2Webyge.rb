@@ -646,13 +646,16 @@ EOF
   # Método para migração dos menus
   def migrate_this_menus(menus, this_id, weby_id)
     menus.each do |menus_this|
-      select_menu = "SELECT * FROM menu_#{menus_this[0]} WHERE site_id='#{this_id}'"
-      puts "\t\tSELECIONANDO todos os menus do lado: #{menus_this[0]}\n" if @verbose
-      menu_this = @con_this.exec(select_menu)
       if menus_this[0] != 'inferior'
+        select_menu = "SELECT * FROM menu_#{menus_this[0]} WHERE site_id='#{this_id}' AND id != item_pai"
+        puts "\t\tSELECIONANDO todos os menus do lado: #{menus_this[0]}\n" if @verbose
+        menu_this = @con_this.exec(select_menu)
         # Agrupando por item_pai
         menus_this_groupby = menu_this.group_by{|i| i['item_pai']}
       else
+        select_menu = "SELECT * FROM menu_#{menus_this[0]} WHERE site_id='#{this_id}'"
+        puts "\t\tSELECIONANDO todos os menus do lado: #{menus_this[0]}\n" if @verbose
+        menu_this = @con_this.exec(select_menu)
         menus_this_groupby = {}
         menus_this_groupby["0"] = menu_this.each{|i| i}
       end
