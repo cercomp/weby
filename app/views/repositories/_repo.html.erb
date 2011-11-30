@@ -23,7 +23,7 @@
 </div>
 
 <%= content_for :javascripts do %>
-  <% javascript_tag do %>
+  <%= javascript_tag do %>
     show_selected_image('<%= object_name %>', '<%= field.to_s %>');
   <% end %>
 <% end %>

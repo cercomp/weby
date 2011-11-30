@@ -7,7 +7,9 @@ class Page < ActiveRecord::Base
   scope :published, where(:publish => true)
 
   scope :titles_like, lambda { |title|
-    joins(:page_i18ns).where(['LOWER(page_i18ns.title) like ?', "%#{title.try(:downcase)}%"])
+    joins('LEFT JOIN page_i18ns ON pages.id = page_i18ns.id 
+           LEFT JOIN locales ON page_i18ns.id = locales.id')
+           .where(['LOWER(page_i18ns.title) like ?', "%#{title.try(:downcase)}%"])
   }
 
   scope :news, lambda { |front|
@@ -16,8 +18,7 @@ class Page < ActiveRecord::Base
           published
   }
 
-  validates_presence_of :author_id
-  validates_presence_of :date_begin_at, :date_end_at
+  validates_presence_of :author_id, :date_begin_at, :date_end_at
 
   belongs_to :user, :foreign_key => "author_id"
 	belongs_to :repository, :foreign_key => "repository_id"
