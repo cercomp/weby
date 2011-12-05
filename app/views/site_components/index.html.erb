@@ -13,7 +13,6 @@
   <table id="list" class="list">
     <thead>
       <th>id</th>
-      <th><%= t("place") %></th>
       <th><%= t("component.one") %></th>
       <th><%= t("category") %></th>
       <th><%= t"active" %></th>
@@ -27,7 +26,6 @@
         <% i.each do |site_component| %>
           <tr id="sort_sites_component_<%= site_component.id %>">
             <td><%= site_component.id %></td>
-            <td><%= t("components.pos.#{site_component.place_holder}") %></td>
             <td><%= t("components.#{site_component.component}") %></td>
             <td><%= components_settings_category(site_component) %></td>
             <td align="center"><%= raw toggle_field(site_component, "publish") %></td>

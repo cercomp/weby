@@ -24,7 +24,7 @@ pt-BR:
     
     pos:
       bottom: "Inferior"
-      first_place: "Superior"
+      first_place: "Primeiro carregamento"
       home: "Página Inicial"
       left: "Esquerda"
       right: "Direita"
