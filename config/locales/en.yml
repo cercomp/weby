@@ -287,6 +287,7 @@ en:
 
 #---R---#
   read_more: "Read more..."
+  redirect: "The page doesn't exist"
   regional: "Regional"
   register: "Register"
   registered:

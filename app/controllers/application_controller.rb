@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
         return true
       end
       unless current_user.roles.where(:site_id => @site).detect do |role|
-#      unless current_user.roles.detect do |role|
+        #      unless current_user.roles.detect do |role|
         role.rights.detect do |right|
           right.action.split(' ').detect do |ri| 
             right.controller == self.class.controller_path && ri == action_name
@@ -72,6 +72,13 @@ class ApplicationController < ActionController::Base
     end
     redirect_back_or_default login_path
   end
+
+  #Método utilizado para redirecionamento, quando endereçõ não existe
+  def catcher
+    flash[:error] = t('redirect') 
+    redirect_to root_url
+  end
+
 
   private
   def current_user_session
@@ -170,5 +177,7 @@ class ApplicationController < ActionController::Base
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
   end
+
+
 
 end

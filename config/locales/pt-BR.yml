@@ -288,6 +288,7 @@ pt-BR:
 
 #---R---#
   read_more: "Leia mais..."
+  redirect: "Página Inexistente."
   regional: "Regional"
   register: "Cadastro"
   registered:

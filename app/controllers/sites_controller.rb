@@ -20,9 +20,13 @@ class SitesController < ApplicationController
   end
 
   def show
-    params[:site_id] = @site.name
-    params[:id] = @site.id
-    params[:per_page] = nil
+    if(@site)
+      params[:site_id] = @site.name
+      params[:id] = @site.id
+      params[:per_page] = nil
+    else
+      catcher
+    end
   end
 
   def new

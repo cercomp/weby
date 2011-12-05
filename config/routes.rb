@@ -118,4 +118,9 @@ Webyge::Application.routes.draw do
   match 'denied' => "admin#access_denied", :as => 'denied'
 
   root :to => "sites#index" # Página agregadora dos sites
+
+  ActionController::Routing::Routes.draw do |map|
+    map.connect '*path'
+    map.connect '*path', :controller =>'application', :action => 'catcher'
+  end
 end
