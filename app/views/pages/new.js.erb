@@ -4,10 +4,12 @@ $('#repo_list').html('<%= escape_javascript(render(partial: 'repositories/repo',
                                                              collection: @images,
                                                              hint: t("help_image_page") } )) %>')
 
-<% if params[:type] %>
-  $('#event_fields').hide().
+$('#event_fields').hide("fast");
+console.dir("<%=j params[:type] %>")
+<% if params[:type] == 'Event' %>
+  $('#event_fields').
   html('<%= escape_javascript(render(:partial => 'formEvent')) %>').
-  show("slow");
+  show("fade").addClass("left");
 <% end %>
 
 show_selected_image('page', 'repository_id');

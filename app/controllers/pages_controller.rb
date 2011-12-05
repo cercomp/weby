@@ -59,8 +59,7 @@ class PagesController < ApplicationController
     params[:type] ||= @page.type
     params[:twitter_page] ||= 1
 
-    @locales = Array.new
-    @page.page_i18ns.each{|i18n| @locales.push(Locale.find(i18n.locale_id).name)}
+    @locales = @page.page_i18ns.map{|i18n| Locale.find(i18n.locale_id).name}
 
     @page.pages_repositories.build
 

@@ -14,6 +14,12 @@ module PagesHelper
     end
   end
 
+  def international_fields(locale, form)
+    form.fields_for :page_i18ns do |i18nbuilder| 
+      render('page_i18ns/form', f: i18nbuilder, locale: locale)
+    end 
+  end
+
   private
   def page_image(format)
     page_image? ? 

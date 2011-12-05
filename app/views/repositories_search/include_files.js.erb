@@ -1,14 +1,23 @@
 $("#file_search_box").dialog("close").remove();
-console.dir("<%= @final_files_list %>");
-console.dir("<%= @files.count %>");
-console.dir("<%= @s %>");
 
 $("#<%= @final_files_list %>").
 html("<%= escape_javascript(render "repositories_search/files_list",
                             name: @name,
-                            label: @name.gsub(/(\]|\[)/, '_'),
+                            label: @label,
                             show_selected: true,
                             multiplicity: @multiplicity) %>");
 
+
+if('<%= @same_place %>' == 'true' && <%= @files.count %> > 0 ){
+
+  $("#link-to-include-files").hide();
+
+  $("#<%= @final_files_list %>").click(function(){
+    $("#link-to-include-files").trigger('click');
+    return false;
+  });
+}else{
+  $("#<%= @final_files_list %>").parent().find("#link-to-include-files").show();
+}
 
 set_jquery_ui();

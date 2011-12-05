@@ -6,7 +6,8 @@ class RepositoryCell < Cell::Rails
     @final_files_list = @label.parameterize("_")
 
     @multiplicity = args[:multiplicity] || "other"
-    @file_types = args[:file_types] || []
+    @file_types = [args[:file_types]].flatten
+    @same_place = args[:same_place].to_s || 'false'
 
     render
   end

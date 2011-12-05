@@ -160,6 +160,7 @@ pt-BR:
   internal: "Interno"
   istructions_change_password: "Instruções para trocar a senha"
   ip: "ip"
+  is: "É"
   is_admin: "Admin?"
   is_event: "É um evento?"
   itens_per_page: "Por página"
@@ -287,6 +288,7 @@ pt-BR:
 #---Q---#
 
 #---R---#
+  redirect_address: "Endereço de redirecionamento"
   read_more: "Leia mais..."
   redirect: "Página Inexistente."
   regional: "Regional"

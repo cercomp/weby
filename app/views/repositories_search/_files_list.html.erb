@@ -4,10 +4,14 @@
     <%= file_selector(multiplicity, name, file.id,
                       show_selected, class: "boolean optional", 
                       id: "#{label}_#{file.id}") %>
-      <label for="<%= "#{label}_#{file.id}" %>" class="boolean optional">
-      <%= weby_file_view(file, :mini, "64x64", as: "image") %><br />
-      <%= file.description.truncate(30) %>
+                    <label for="<%= "#{label}_#{file.id}" %>"
+                      title="<%= file.description %>"
+                      class="boolean optional">
+        <%= weby_file_view(file, :mini, "64x64", as: "image"  ) %>
     </label>
     </li>
   <% end %>
 </ul>
+
+<%= paginate @files, theme: 'paginate_on_scroll', remote: true,
+  scroll_place: 'file_search_box' if @files %> 

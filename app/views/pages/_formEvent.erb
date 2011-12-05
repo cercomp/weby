@@ -1,22 +1,31 @@
 <%= simple_fields_for @page do |f| %>
   <% if params[:type] == "Event" %>
     <% kind_list = [[t("regional"), "regional"], [t("nacional"), "nacional"], [t("internacional"), "internacional"]] %>
-    <%= f.input :kind, :collection => kind_list.map{|p| [p[0], p[1]]}, :label => t("kind"), :label_html => {:include_blank => true} %>
-    <%= f.input :local, :label => t("localization"), :required => true, :help => t("field_required") %>
-    <%= f.input :date_begin_at,
-      :label =>  (t"event_param", :param => t("begin")),
-      :start_year => Time.now.year,
-      :id => "datapicker",
-      :as => :datetime %>
 
-    <%= f.input :event_end,
-      :label => (t"event_param", :param => t("end")),
-      :start_year => Time.now.year,
-      :default => 1.month.from_now,
-      :id => "datapicker",
-      :as => :datetime %>
+    <%= f.input :local, :label => t("localization"), :required => true, :help => t("field_required") %>
+    <%= f.input :kind, :collection => kind_list.map{|p| [p[0], p[1]]}, :label => t("kind"), :label_html => {:include_blank => true} %>
+
+    <div class="period-dates left">
+      <label>Período da Notícia: </label>
+      <div class="period-dates-inputs">
+        <%= f.input :event_begin, as: :string,
+          placeholder: t("begin"),
+          wrapper_html: {class: "period-date period-date-left"},
+          input_html: {class: "datepicker"} %>
+
+        <%= f.input :event_end, as: :string,
+          placeholder: t("end"),
+          wrapper_html: {class: "period-date period-date-right"},
+          input_html: {class: "datepicker"} %>
+      </div>
+    </div>
     <%= f.input :type, :input_html => {:value => "Event"}, :as => :hidden %>
+
   <% else %>
     <%= f.input :type, :input_html => {:value => "News"}, :as => :hidden %>
   <% end %>
+<% end %>
+
+<%= javascript_tag do %>
+  set_jquery_ui();
 <% end %>

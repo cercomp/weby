@@ -1,19 +1,6 @@
 <fieldset>
   <legend><%= t"new_param.fem", :param => (t"page.one") %></legend>
 
-  <% unless self.controller.action_name == "edit" %>
-
-    <div class="left" id="page_type">
-      <div class="radio-button-set" id="link_form_pages">
-        <%= radio_button_tag :type, :News, params[:type] == 'News', class: 'check-button' %>
-        <%= label_tag :type_News, t("news.one") %>
-        <%= radio_button_tag :type, :Event, params[:type] == 'Event', class: 'check-button' %>
-        <%= label_tag :type_Event, t("event.one") %>
-      </div>
-    </div>
-
-  <% end %>
-
   <%= simple_form_for [@site, @page], :url => site_pages_path(:type => params[:type]), :html => { :multipart => true } do |f| %>
     <% if @page.errors.any? %>
       <div id="error_explanation">
@@ -26,46 +13,76 @@
       </div>
     <% end %>
 
-    <div class="right" id="include_page_file">
-      <%= render_cell :repository, :include_file, "page[repository_id]", 
-        t("add_param", param: t("page.image")),
-        file_types: "image", multiplicity: "one" %>
-    </div>
+    <% unless self.controller.action_name == "edit" %>
 
-    <div class="left" id="event_fields">
-    </div>
+      <fieldset class="left" id="page-event" >
+        <legend>
+          <div id="page_type">
+            <%= check_box_tag :type, :Event, params[:type] == 'Event' %>
+            <%= label_tag :type, "#{t("is")} #{t("event.one")}?" %>
+          </div>
+        </legend>  
+        <div id="event_fields"></div>
+      </fieldset>
 
-    <%= f.fields_for :page_i18ns do |i18nbuilder| %>
-      <%= i18nbuilder.input :locale_id, :as => :hidden %>
-      <%= render 'page_i18ns/form', :f => i18nbuilder %>
     <% end %>
 
-    <div class="left">
-      <%= f.input :date_begin_at, as: :string,
-        input_html: {class: "datepicker"} %>
-  
-      <%= f.input :date_end_at, as: :string,
-        input_html: {class: "datepicker"} %>
+    <div class="right" id="include_page_image">
+      <%= render_cell :repository, :include_file, "page[repository_id]", 
+        t("page.image"), file_types: "image", multiplicity: "one",
+        same_place: true %>
     </div>
 
-    <div class="right">
-      <%= f.input :publish , :label => t("publish"),
-        as: :boolean, input_html: { class: "check-button" } %>
-      <%= f.input :front , :label => t("cover"), 
-        as: :boolean, input_html: { class: "check-button" } %>
+    <div class="tabs">
+      <ul>
+        <% @site.locales.each do |locale| %>
+          <li>
+          <%= link_to t(locale.name), "##{locale.name}"  %>
+          </li>
+        <% end %>
+      </ul>
+      <% @site.locales.each do |locale| %>
+        <div id="<%= locale.name %>">
+          <%= international_fields(locale.id, f) %>
+        </div>
+      <% end %>
     </div>
 
-    <%= f.input :source, label: t("source") %> 
-    <%= f.input :url, label: t("url"),
-      hint: "#{t("field_required")} #{t("example_param", :param => "http://site.com")}" %>
+    <div>
+      <div class="left">
+        <%= f.input :source, label: t("source") %> 
+      </div>
+      <div class="right">
+        <%= f.input :url, label: t("redirect_address"),
+          placeholder: "http://site.com" %>
+      </div>
+    </div>
 
-    <%= f.input :category_list, :label => t('categories'), :hint => t('page_categories_help') %>
+    <div class="period-dates left">
+      <label>Período da Notícia: </label>
+      <div class="period-dates-inputs">
+        <%= f.input :date_begin_at, as: :string,
+          placeholder: t("begin"),
+          wrapper_html: {class: "period-date period-date-left"},
+          input_html: {class: "datepicker"} %>
+
+        <%= f.input :date_end_at, as: :string,
+          placeholder: t("end"),
+          wrapper_html: {class: "period-date period-date-right"},
+          input_html: {class: "datepicker"} %>
+      </div>
+    </div>
+
+    <%= f.input :category_list, :label => t('categories'),
+      placeholder: "UFG, Sports, Arts",
+      :hint => t('page_categories_help') %>
 
     <%= f.input :created_at, :order => [:year, :month, :day],
       :use_month_numbers => true, :label => (t"date_param", :param => t("register")),
       :start_year => Time.now.year, :as => :hidden %>
-    <%= f.input :position, :as => :hidden %>
-    <%= f.input :status, :as => :hidden %>
+
+    <%#= f.input :position, :as => :hidden %>
+    <%#= f.input :status, :as => :hidden %>
     <%= f.input :author_id, :input_html => {:value => "#{@current_user.id}"}, :as => :hidden %>
     <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden  %>
 
@@ -74,8 +91,22 @@
       <%= pages_form.input :page_id, :input_html => {:value => @page.id}, :as => :hidden  %>
     <% end %>
 
-    <%= render_cell :repository, :include_file, "page[repository_ids][]",
-      t("add_param", param: t("related_files")) %>
+
+    <div style="margin-top: 30px">
+      <div class="left">
+        <%= render_cell :repository, :include_file, "page[repository_ids][]",
+          t("add_param", param: t("related_files")) %>
+      </div>
+
+      <div class="right">
+        <%= f.input :publish , :label => t("publish"),
+          wrapper_html: { class: "left no-clearfix" },
+          as: :boolean, input_html: { class: "check-button" } %>
+        <%= f.input :front , :label => t("cover"), 
+          wrapper_html: { class: "right no-clearfix" },
+          as: :boolean, input_html: { class: "check-button" } %>
+      </div>
+    </div>
 
     <div class="actions">
       <%= f.submit (t"create_param", :param => (t"page.one")), class: "green-button" %>
@@ -85,4 +116,5 @@
 </fieldset>
 
 <%= content_for :javascripts, javascript_include_tag("pages_new") %>
+<%= content_for :javascripts, javascript_include_tag("paginate_on_scroll") %>
 <%= content_for :stylesheets, stylesheet_link_tag("pages_new") %>

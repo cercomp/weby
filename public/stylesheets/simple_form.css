@@ -87,7 +87,10 @@ input.radio {
 .button, .actions a, .green-button, .red-button, .blue-button, button,
 input[type=submit],
 input[type=button],
-input[type=reset] {
+input[type=reset], .ui-button {
+  border-width: 1px !important;
+  border-bottom-width: 2px !important;
+  border-right-width: 2px !important;
   line-height: 1.9 !important;
   color: black; }
 
@@ -95,6 +98,8 @@ input, select, textarea {
   display: inline;
   margin: 5px 0;
   border: 1px solid gray;
+  border-right: 2px solid gray;
+  border-bottom: 2px solid gray;
   padding: 3px;
   line-height: 23px;
   font-size: 14px;
@@ -103,6 +108,8 @@ input, select, textarea {
   border-radius: 4px; }
   input:focus, select:focus, textarea:focus {
     border: 1px solid black;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
     background-color: #faffbd;
     outline: none;
     -moz-box-shadow: 0 0 28px 1px #aaaaaa;
@@ -133,3 +140,9 @@ label {
   width: 98% !important;
   margin: 0 !important;
   text-align: left !important; }
+
+::-webkit-input-placeholder {
+  font-family: Verdana, Arial, sans !important; }
+
+input:-moz-placeholder {
+  font-family: Verdana, Arial, sans !important; }

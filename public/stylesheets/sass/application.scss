@@ -237,7 +237,6 @@ label[for='users_unroled']{ font-weight: bold; font-family: Verdana, sans-serif;
   label{
     @include border_radius(4px);
     width: 110px;
-    height: 125px;
     font:{
       size: 12px !important;
       familly: Verdana !important;
@@ -249,3 +248,10 @@ label[for='users_unroled']{ font-weight: bold; font-family: Verdana, sans-serif;
 .ui-button .ui-button-text{
   line-height: 1.9 !important;
 }
+
+.ui-button-text > .ui-button-text{
+    padding: 0 !important;
+}
+
+.clearfix{ clear: both !important; }
+.no-clearfix{ clear: none !important; }

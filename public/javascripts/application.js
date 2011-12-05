@@ -113,7 +113,9 @@ function show_selected_image(object,field_name){
 }
 
 function set_jquery_ui(){
-   $(".actions > a, input:submit, button, .button").button();
+   $(".actions > a, input:submit, button, .button").
+      not('.ui-datepicker-trigger').
+      button();
 
    $(".checkbox-button-set > input[type=checkbox]").button();
    $(".radio-button-set > input[type=radio]").button();
@@ -141,7 +143,10 @@ function set_jquery_ui(){
    $('.datepicker').datepicker({
       dateFormat: "yy-mm-dd",
       changeMonth: true,
-      changeYear: true
+      changeYear: true,
+      showOn: "both",
+      buttonImage: "/images/calendar-icon.gif",
+      buttonImageOnly: false
    });
 
    $(".tabs").tabs();

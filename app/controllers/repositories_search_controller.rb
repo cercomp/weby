@@ -13,12 +13,14 @@ class RepositoriesSearchController < ApplicationController
   def search
     @files = @site.repositories.
       description_or_filename(params[:search][:name]).
-      content_file(params[:search][:type])
+      content_file(params[:search][:type]).
+      page(params[:page]).per(24)
   end
 
   def include_files
-    @s = params[:selected_files]
-    @files = Repository.where(id: params[:selected_files])
+    @files = Repository.where(id: params[:selected_files]).
+      page(1)
+    @label = @name.gsub(/(\]|\[)/, '_')
   end
 
   private
@@ -27,5 +29,6 @@ class RepositoriesSearchController < ApplicationController
     @multiplicity = params[:multiplicity]
     @final_files_list = params[:final_files_list]
     @file_types = [params[:file_types]].flatten
+    @same_place = params[:same_place]
   end
 end

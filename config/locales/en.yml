@@ -155,15 +155,16 @@ en:
 #---I---#
   i18n: 'Internationalization'
   image: "Image"
+  infinite: "Never expire"
   insert: "Insert"
   instructions_change_password: "Instructions to change your password"
   internacional: "Internacional"
   internal: "Internal"
   ip: "ip"
+  is: "Is"
   is_admin: "Admin?"
   is_event: "Is a event?"
   itens_per_page: "Per page"
-  infinite: "Never expire"
 
 #---K---#
   kind: "Kind"

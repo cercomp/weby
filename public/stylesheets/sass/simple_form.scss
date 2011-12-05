@@ -3,18 +3,6 @@
 $label_width: 120px;
 $label_horizontal_margin: 10px;
 
-@mixin button_style($background_color, $left_border_color, $rigth_border_color){
-  cursor: pointer;
-  background: $background_color;
-  margin: 0 5px; 
-  border:{
-    top: 2px solid $left_border_color;
-    left: 2px solid $left_border_color;
-    right: 2px solid $rigth_border_color;
-    bottom: 2px solid $rigth_border_color;
-  }
-}
-
 .simple_form{
   font-size: 14px;
   .pages_paginator{float: none}
@@ -140,7 +128,11 @@ input.radio {
   @extend .button;
 }
 
-.button{
+.button, .ui-button{
+  border-width: 1px !important;
+  border-bottom-width: 2px !important;
+  border-right-width: 2px !important;
+
   line-height: 1.9 !important;
   color: black;
 }
@@ -149,6 +141,8 @@ input, select, textarea{
   display: inline;
   margin: 5px 0;
   border: 1px solid gray;
+  border-right: 2px solid gray;
+  border-bottom: 2px solid gray;
   padding: 3px;
   line-height: 23px;
   font-size: 14px;
@@ -156,6 +150,8 @@ input, select, textarea{
 
   &:focus{
     border: 1px solid black;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
     background-color: #faffbd;
     outline: none;
     @include box_shadow(0 0 28px 1px #aaa);
@@ -202,3 +198,11 @@ input[type=reset]{
     text-align: left !important;
   }
 }
+
+@mixin placeholders{
+  font-family: Verdana, Arial, sans !important;
+}
+
+::-webkit-input-placeholder { @include placeholders }
+input:-moz-placeholder { @include placeholders }
+
