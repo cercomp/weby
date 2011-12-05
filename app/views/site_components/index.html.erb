@@ -15,6 +15,7 @@
       <th>id</th>
       <th><%= t("place") %></th>
       <th><%= t("component.one") %></th>
+      <th><%= t("category") %></th>
       <th><%= t"active" %></th>
       <th></th>
     </thead>
@@ -28,6 +29,7 @@
             <td><%= site_component.id %></td>
             <td><%= t("components.pos.#{site_component.place_holder}") %></td>
             <td><%= t("components.#{site_component.component}") %></td>
+            <td><%= components_settings_category(site_component) %></td>
             <td align="center"><%= raw toggle_field(site_component, "publish") %></td>
             <td>
               <%= raw make_menu(site_component, :except => "show") %>

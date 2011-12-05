@@ -86,4 +86,13 @@ module SiteComponentsHelper
     end
     locales
   end
+  
+  #Método que retorna a categoria que um dados componente está relacionado
+  def components_settings_category(site_component)
+   if site_component.settings and site_component.settings.include? "category" 
+      ini = site_component.settings.index('"')  
+      fim = site_component.settings.rindex('"')  
+      site_component.settings[ini+1..fim-1] 
+   end 
+  end
 end
