@@ -163,6 +163,7 @@ en:
   is_admin: "Admin?"
   is_event: "Is a event?"
   itens_per_page: "Per page"
+  infinite: "Never expire"
 
 #---K---#
   kind: "Kind"

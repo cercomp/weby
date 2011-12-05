@@ -163,6 +163,7 @@ pt-BR:
   is_admin: "Admin?"
   is_event: "É um evento?"
   itens_per_page: "Por página"
+  infinite: "Nunca expira"
 
 #---K---#
   kind: "Tipo"

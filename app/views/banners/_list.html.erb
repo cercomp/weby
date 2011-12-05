@@ -1,37 +1,33 @@
-  <%= info_page @banners %>
-  <%= paginate @banners, :remote => true %>
-  <table class='list'>
-    <thead>
-      <th><%= sortable "id" %></th>
-      <th><%= sortable 'date_begin_at', t("date_param", :param => t("register"))%></th>
-      <th><%= sortable 'date_end_at', t("date_param", :param => t("publication"))%></th>
-      <th><%= sortable 'title', t("title") %></th>
-      <th><%= sortable 'user_id', t("author") %></th>
-      <th><%= sortable 'categories', t("categories") %></th>
-      <th><%= t"publish" %></th>
-      <th></th>
-    </thead>
-    <tbody>
+<%= info_page @banners %>
+<%= paginate @banners, :remote => true %>
+<table class='list'>
+  <thead>
+    <th><%= sortable "id" %></th>
+    <th><%= sortable 'date_begin_at', t("date_param", :param => t("register"))%></th>
+    <th><%= sortable 'date_end_at', t("date_param", :param => t("publication"))%></th>
+    <th><%= sortable 'title', t("title") %></th>
+    <th><%= sortable 'user_id', t("author") %></th>
+    <th><%= sortable 'categories', t("categories") %></th>
+    <th><%= t"publish" %></th>
+    <th></th>
+  </thead>
+  <tbody>
     <% @banners.each do |banner| %>
       <tr class="<%= cycle 'odd', 'even' %>">
         <td><%= banner.id %></td>
         <td><%= banner.date_begin_at %></td>
-        <td><%= banner.date_end_at %></td>
+        <td><%= print_date_end(banner.date_end_at) %></td>
         <td><%= banner.title %></td>
         <td><%= banner.user.first_name ? ("#{banner.user.first_name} #{banner.user.last_name}") : banner.user.login %></td>
         <td><%= banner.categories.join(", ") || t('none_category') %></td>
         <td align="center">
-          <% if (banner.date_begin_at <= Time.now and banner.date_end_at > Time.now) %>
-            <%= raw toggle_field(banner, "publish") %>
-          <% else %>
-            <%= t("expired") %>
-          <% end %>
+        <%= publication_status(banner) %>
         </td>
         <td>
           <%= raw make_menu(banner) %> 
         </td>
       </tr>
-    <% end; reset_cycle %>
+      <% end; reset_cycle %>
     </tbody>
   </table>
   <%= paginate @banners, :remote => true %>
