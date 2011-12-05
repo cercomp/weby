@@ -224,6 +224,7 @@ en:
   nacional: "Nacional"
   name: "Name"
   need_login: "You need to be logged in to access this page."
+  need_javascript: "Your web browser must have JavaScript enabled in order for this application to display correctly."
   new:
     fem: "New"
     masc: "New"
