@@ -1,5 +1,3 @@
-# PostgreSQL. Versions 7.4 and 8.x are supported.
-#
 # Install the pg driver:
 #   gem install pg
 # On Mac OS X with macports:
@@ -11,10 +9,10 @@
 development:
   adapter: postgresql
   encoding: UTF-8
-  database: webyge_dev
+  database: weby
   pool: 5
-  username: webyge
-  password: webyge
+  username: weby
+  password: weby
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -37,15 +35,15 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: webyge_test
+  database: weby_test
   pool: 5
-  username: webyge
-  password: webyge
+  username: weby
+  password: weby
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: webyge_production
+  database: weby_production
   pool: 5
-  username: webyge
-  password: webyge
+  username: weby
+  password: weby
