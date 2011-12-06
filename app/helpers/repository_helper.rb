@@ -1,8 +1,8 @@
 module RepositoryHelper
   attr_accessor :file, :format, :options, :size, :thumbnail
 
-  def weby_file_view(file, format, size = nil, options = {as: 'link'})
-    @file, @format, @size, @options = file, format, size, options
+  def weby_file_view(file, format, width = nil, height = nil, options = {as: 'link'})
+    @file, @format, @width, @height, @options = file, format, width, height, options
     make_thumbnail!
     send("#{@options[:as]}_viewer")
   end
@@ -52,7 +52,8 @@ module RepositoryHelper
   def image_viewer
     raw image_tag(@thumbnail,
                   alt: @options[:alt] || @file.description,
-                  size: @size,
+                  width: @width,
+                  height: @height,
                   title: @options[:title] || @file.description)
   end
 

@@ -26,7 +26,7 @@ window.onload = function(){
 function switch_settings() {
   var setting = $("#site_component_component :selected").val();
 
-  $('#settings .input').empty().append("<br>");
+  $('#settings .input').empty();
 
   $(settings[setting]).each(function (i, s){
     var label;

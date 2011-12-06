@@ -27,13 +27,13 @@
           <tr id="sort_sites_component_<%= site_component.id %>">
             <td><%= site_component.id %></td>
             <td><%= t("components.#{site_component.component}") %></td>
-            <td><%= components_settings_category(site_component) %></td>
+            <td><%= site_component.settings %></td>
             <td align="center"><%= raw toggle_field(site_component, "publish") %></td>
             <td>
               <%= raw make_menu(site_component, :except => "show") %>
-          		<% if check_permission(SiteComponentsController, 'sort') %>
-              	<span class='handle icon icon-drag'><%= t("move") %></span>
-							<% end %>
+              <% if check_permission(SiteComponentsController, 'sort') %>
+                <span class='handle icon icon-drag'><%= t("move") %></span>
+              <% end %>
             </td>
           </tr>
         <% end %>

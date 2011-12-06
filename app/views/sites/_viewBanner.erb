@@ -8,14 +8,14 @@
         <% format = banner.size ? banner.size : "little" %>
         <%= weby_file_view(banner.repository,
                            format,
-                           "#{banner.width}x#{banner.height}",
+                           "#{banner.width}",
+                           "#{banner.height}",
                            {as: 'link', alt: banner.text, title: banner.text }) %>
 
-                         <% if check_permission(BannersController, ["toggle_field"]) %>
-                           <%= link_to t("unpublish"), toggle_field_site_banner_path(@site, banner, :field => 'publish') %>
-                         <% end %>
-
-                       </figure>
-                     <% end %>
-                   <% end %>
-                 <% end %>
+        <% if check_permission(BannersController, ["toggle_field"]) %>
+          <%= link_to t("unpublish"), toggle_field_site_banner_path(@site, banner, :field => 'publish') %>
+        <% end %>
+      </figure>
+    <% end %>
+  <% end %>
+<% end %>

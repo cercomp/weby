@@ -11,16 +11,28 @@
     <% end %>
   </div>
 
-  <%= f.input :width, :label => t("width"), :input_html => {:size => 5} %>
-  <%= f.input :height, :label => t("height"), :input_html => {:size => 5} %>
-  <%= f.input :date_begin_at, :order => [:year, :month, :day], :use_month_numbers => true, :label =>  (t"date_param", :param => t("begin")), :as => :datetime %>
-  <%= f.input :date_end_at, :order => [:year, :month, :day], :use_month_numbers => true, :label => (t"date_param", :param => t("end")), :default => 1.month.from_now, :as => :datetime %>
+  <%= f.input :width, :label => t("width"), :input_html => {:size => 3} %> 
+  <%= f.input :height, :label => t("height"), :input_html => {:size => 3} %>
+
+  <%= f.input :date_begin_at, :order => [:year, :month, :day], 
+    :use_month_numbers => true, 
+    :label =>  (t"date_param", 
+    :param => t("begin")), :as => :datetime %>
+
+  <%= f.input :date_end_at, :order => [:year, :month, :day], 
+    :use_month_numbers => true, 
+    :label => (t"date_param", 
+    :param => t("end")), 
+    :default => 1.month.from_now, :as => :datetime %>
+
   <%= f.input :title, :label => t("title"), :hint => t("field_required") %>
-  <%= f.input :text, :label => t("text"), :input_html => {:size => "44x6"}, :hint => t("field_required"), :as => :text %>
+  <%= f.input :text, :label => t("text"),
+    :input_html => {:size => "44x6"}, 
+    :hint => t("field_required"), :as => :text %>
   <%= f.input :url, :label => t("url"), :hint => t("field_required"), :as => :url %>
 
   <%= f.input :category_list, :label => t('categories'), :hint => t('page_categories_help') %>
-  
+
   <%= f.input :publish, :label => t("publish"), :hint => t("publish_help"), :as => :boolean %>
   <%= f.input :hide, :label => t("hide"), :hint => t("hide_help"), :as => :boolean %>
   <%= f.input :user_id, :input_html => {:value => "#{@current_user.id}"}, :as => :hidden %>

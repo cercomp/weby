@@ -4,16 +4,16 @@
     <% unless banner.repository.nil? %>
       <% #TODO: Trocar id para class %>
       <figure id='banner'>
-        <% banner.repository.reprocess! %>
         <% format = banner.size ? banner.size : "little" %>
         <%= weby_file_view(banner.repository,
                            format,
-                           "#{banner.width}x#{banner.height}",
+                           "#{banner.width}",
+                           "#{banner.height}",
                            {as: 'link', alt: banner.text, title: banner.text, url: banner.url }) %>
-                       </figure>
-                       <% if check_permission(BannersController, ["toggle_field"]) %>
-                         <%= link_to t("unpublish"), toggle_field_site_banner_path(@site, banner, :field => 'publish') %>
-                       <% end %>
-                     <% end %>
-                   <% end %>
-                 </div>
+      </figure>
+      <% if check_permission(BannersController, ["toggle_field"]) %>
+        <%= link_to t("unpublish"), toggle_field_site_banner_path(@site, banner, :field => 'publish') %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
