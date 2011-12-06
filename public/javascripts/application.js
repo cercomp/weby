@@ -12,7 +12,6 @@ $(document).ready(function() {
 
    $('form').submit(function(){
       Loading.show();
-      $(this).submit();
    })
 
    /////////////////////////////////////////////////////////////////////////////
