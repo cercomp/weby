@@ -41,7 +41,7 @@ class Migrate_this2weby
     this_sites = @con_this.exec(select_sites)
 
 		# Inserindo o que futuramente seria o site da UFG
-    insert_UFG = "INSERT INTO sites (name,url,description,footer,body_width,menu_dropdown,theme) VALUES ('ufg','www.ufg.br','Portal UFG','','900',true,'this2')"
+    insert_UFG = "INSERT INTO sites (name,url,description,footer,body_width,menu_dropdown,theme) VALUES ('ufg','www.ufg.br','Portal UFG','','960',true,'this2')"
     @con_weby.exec(insert_UFG)
 
     # Laço de repetição
@@ -371,6 +371,12 @@ EOF
 				insert into rights_roles (right_id,role_id)values(45,#{id_redator[0]['id']});
 EOF
       @con_weby.exec(insert_rr_sites)
+      puts "\tINSERINDO idiomas por site...\n"
+      insert_locales_sites = <<EOF
+				insert into locales_sites (locale_id,site_id)values(1,#{site[0]['id']});
+				insert into locales_sites (locale_id,site_id)values(2,#{site[0]['id']});
+EOF
+      @con_weby.exec(insert_locales_sites)
 
       param_aux = "#{@param} AND " if @param
       param_aux = "WHERE" if not @param
