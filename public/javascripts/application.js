@@ -148,6 +148,15 @@ function set_jquery_ui(){
       buttonImageOnly: false
    });
 
+   $('.datetimepicker').datetimepicker({
+      dateFormat: "yy-mm-dd",
+      changeMonth: true,
+      changeYear: true,
+      showOn: "both",
+      buttonImage: "/images/calendar-icon.gif",
+      buttonImageOnly: false
+   });
+
    $(".tabs").tabs();
 
    return true;

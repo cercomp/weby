@@ -11,12 +11,12 @@
         <%= f.input :event_begin, as: :string,
           placeholder: t("begin"),
           wrapper_html: {class: "period-date period-date-left"},
-          input_html: {class: "datepicker"} %>
+          input_html: {class: "datetimepicker"} %>
 
         <%= f.input :event_end, as: :string,
           placeholder: t("end"),
           wrapper_html: {class: "period-date period-date-right"},
-          input_html: {class: "datepicker"} %>
+          input_html: {class: "datetimepicker"} %>
       </div>
     </div>
     <%= f.input :type, :input_html => {:value => "Event"}, :as => :hidden %>
