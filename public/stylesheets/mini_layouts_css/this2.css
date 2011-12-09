@@ -1,0 +1,66 @@
+#mini_layout{
+  border: 1px dotted black;
+  background-color: #E6E6E6;	
+  max-width:  300px;	
+}
+#mini_first_place{
+  border-bottom: 1px dotted black;
+  height: 25px;
+  width:  298px;
+}
+#mini_first_place:hover {
+  background-color: white;	
+}
+#mini_top{
+  border-bottom: 1px dotted black;
+  height: 30px;
+  width:  298px;
+}
+#mini_top:hover {
+  background-color: white;	
+}
+
+#mini_left{
+  border-bottom: 1px dotted black;
+  width: 99px;
+  height: 200px;			
+}
+#mini_left:hover {
+  background-color: white;	
+}
+
+#mini_home{
+  border: 1px dotted black;
+  border-top: 0px;
+  width: 99px;
+  height: 200px;
+  margin-left: 99px;
+  margin-top: -201px;
+
+}
+#mini_home:hover {
+  background-color: white;	
+}
+
+#mini_right{
+  border-bottom: 1px dotted black;
+  width: 99px;
+  height: 200px;
+  margin-top: -201px;
+  margin-left: 204px;			
+}
+#mini_right:hover {
+  background-color: white;	
+}
+
+#mini_bottom{
+  height: 30px;
+  width:  298px;
+}
+#mini_bottom:hover {
+  background-color: white;	
+}
+
+.clicked {
+  background-color: white;	
+}

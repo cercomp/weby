@@ -99,3 +99,27 @@ function selected (id, title) {
   $('#settings a').before('<input type="text" disabled="disabled" value="'+ title +'" />');
   $('#page_list').dialog('close');
 }
+
+/**
+  * Funções para manipulação do mini Layout
+  */
+
+function clear_mini_layout(){
+  $(".clicked").each(function(){
+    $(this).removeClass("clicked");
+  });
+}
+
+//Retorna o id sem o "mini_" como o valor para o input
+function select_position(){
+  var id = ""
+  $(".clicked").each(function(){ id = this.id});	
+  $("input[type=hidden][id=site_component_place_holder]").val(id.slice(5));
+}
+
+//Controla o que acontence no momento em que a local e selecionado
+$("#[id*=mini_]").click(function(event){
+  clear_mini_layout();
+  $(event.target).addClass('clicked');
+  select_position();
+});

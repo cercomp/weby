@@ -12,6 +12,7 @@
 
 <%= content_for :javascripts, javascript_include_tag('site_component_form') %>
 <%= content_for :stylesheets, stylesheet_link_tag('site_component_form') %>
+<%= content_for :stylesheets, stylesheet_link_tag("mini_layouts_css/#{@site.theme}") %>
 
 <%= simple_form_for [@site,@site_component] do |f| %>
   <% if @site_component.errors.any? %>
@@ -33,8 +34,13 @@
     <%= f.input :settings, :label => t("setting.other"), :as => :text %> 
   </div>
   <div class="field">
-    <%= f.input :place_holder, :collection => places_holder.collect{ |p| [t("components.pos.#{p}"), p] }, :label => t("place").capitalize %>
+    <label><%= t("place").capitalize  %></label>
+    <br/>
+    <%= raw make_mini_layout %>
+    <%= f.input :place_holder, :as => :hidden %>
   </div>
+
+
   <div class="actions">
     <%= f.submit t("save") %>
     <%= link_to t('back'), site_site_components_path %>
