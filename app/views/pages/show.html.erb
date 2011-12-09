@@ -5,7 +5,7 @@
 
   <header>
     <h1>
-      <%= @page.by_locale(@current_locale).title %>
+      <%= @page.by_locale(@current_locale).title if @site.view_desc_pages %> 
       <%# Bandeiras temporárias... %>
       <% i18ns = @page.page_i18ns - [@page.by_locale(@current_locale)] %>
       <% unless i18ns.empty? %>
@@ -67,7 +67,8 @@
       <br />
     <% end %>
 
-    <%= make_menu(@page, :except => "show") %> |
-    <%= link_to_add_page_i18n(@page, @site) %> |
-    <%= link_to t("list_all.fem"), site_pages_path(@site) %> | <%= link_to t("back"), :back %>
+    <%= make_menu(@page, :except => "show") %>
+    <%= link_to_add_page_i18n(@page, @site) %>
+    <%= link_to t("list_all.fem"), site_pages_path(@site), :class => 'icon icon-list' %>
+    <%= link_to t("back"), :back , :class => 'icon icon-back' %>
   </article>

@@ -235,6 +235,12 @@ div.flash.warning {
 .icon-del:before {
   content: url(../images/delete.png); }
 
+.icon-list:before {
+    content: url(../images/b_browse.png); }
+
+.icon-back:before {
+    content: url(../images/cancel.png); }
+
 .icon-move:before {
   content: url(../images/move.png); }
 
