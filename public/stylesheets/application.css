@@ -553,11 +553,11 @@ label[for='users_unroled'] {
 .no-clearfix {
   clear: none !important; }
 
-.truncated_150px {
+.truncated_300px {
   text-overflow: ellipsis;
   display: inline-block;
-  width: 150px;
+  width: 300px;
   white-space: nowrap;
   overflow: hidden;
-  vertical-align: top;
+  text-align: left;
 }

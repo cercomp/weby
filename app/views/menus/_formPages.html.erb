@@ -1,29 +1,19 @@
-<%= simple_fields_for @menu do |f| %>
-  <% if params[:type] == "external"  %>
-    <%= f.input :link,
+<%= simple_fields_for @menu do |extend| %>
+  <% if params[:type] == "external" %>
+    <%= extend.input :link,
       label: t("url"),
       hint: (t"type_param", param: t("url")),
-      input_html: {value: 'http://'},
       as: :url %>
-  <% else %>
-    <% if @pages.try(:count) %>
-      <% pages = @pages.to_a %>
-      <% unless @menu.page_id.nil? %>
-        <%# FIXME: Retirar essa regra de negócio da view! %>
-        <% pages = [Page.find(@menu.page_id)] + (pages - [Page.find(@menu.page_id)])%>
-      <% end %>
-
-      <%# FIXME: Retirar essa regra de negócio da view! %>
-      <%= f.input :page_id, 
+  <% elsif @pages.try(:count) %>
+    <%= extend.input :page_id, 
       label: t('url'),
-      collection: pages,
+      collection: @pages_on_menu,
       collection_wrapper_tag: "div class='radio-group'",
       as: :radio, 
       label_method: lambda {|u|
-        raw "#{u.by_locale(session[:locale]).title[0,50] + ((u.by_locale(session[:locale]).title.size > 50) ?  "..." : "")}" + "<br />"
+        raw "<span class='truncated_300px'>#{u.by_locale(session[:locale]).title}</span><br />"
       },
-        value_method: 'id',
-        paginate: "#{paginate @pages, remote: true}" %>
-    <% end %>
+      value_method: 'id',
+      paginate: "#{paginate @pages}" %>
   <% end %>
 <% end %>

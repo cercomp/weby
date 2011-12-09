@@ -50,7 +50,7 @@ module ApplicationHelper
       #		if (entry.menu.try(:page_id).nil? and entry.menu.try(:link).empty?)
       #menus << "#{entry.menu.try(:title)}"
       #		else
-      menus << link_to(entry.menu.title, entry.menu.page_id ? site_page_path(@site, entry.menu.page_id) : entry.menu.link)
+      menus << link_to(entry.menu.title, entry.menu.page_id ? site_page_path(@site, entry.menu.page_id) : entry.menu.link, :alt => entry.menu.title,:title => entry.menu.description)
       #		end
 
       if view_ctrl == 1

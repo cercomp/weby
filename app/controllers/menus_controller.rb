@@ -21,11 +21,16 @@ class MenusController < ApplicationController
     @menu = Menu.new
     @menu.sites_menus.build
     @pages = @site.pages.titles_like(params[:search]).page(params[:page]).per(params[:per_page])
+    @pages_on_menu = @pages.to_a 
   end
 
   def edit
     @menu = Menu.find(params[:id])
     @pages = @site.pages.titles_like(params[:search]).page(params[:page]).per(params[:per_page])
+    @pages_on_menu = @pages.to_a 
+    unless @menu.page_id.nil? 
+      @pages_on_menu = [Page.find(@menu.page_id)] + (@pages - [Page.find(@menu.page_id)])
+    end
   end
 
   def create

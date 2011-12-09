@@ -2,10 +2,9 @@
   <legend><%= t"editing", :param => (t"menu", :count => 1) %></legend>
 
   <center>
-    <%= form_tag edit_site_menu_path(@site, @menu), :method => 'get', :remote => true do %>
-      <%= label_tag t("search") %>
+    <%= form_tag new_site_menu_path(@site, @menu), :method => 'get', :remote => true do %>
       <%= text_field_tag :search %>
-      <%= submit_tag t("submit") %>
+      <%= submit_tag t("search") %>
     <% end %>
   </center>
   <hr>
@@ -13,7 +12,7 @@
   <%= simple_form_for [@site, @menu] do |f| %>
     <% if @menu.errors.any? %>
       <div id="error_explanation">
-        <h2><%= pluralize(@menu.errors.count,"") %> <%= t"prohibited_being_saved", :count => @menu.errors.count %>:</h2>
+        <h2><%= pluralize(@menu.errors.count, "") %> <%= t"prohibited_being_saved", :count => @menu.errors.count %>:</h2>
         <ul>
           <% @menu.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
@@ -26,7 +25,7 @@
       <label for="div_event"><%= t"type" %></label>
       <div id="link_form_pages">
         <% set_params_type_value %>
-        <%= links_to_menu_type(params[:type]) %>
+        <%= links_to_menu_type(params[:type], 'edit') %>
       </div>
     </div>
 
@@ -34,12 +33,17 @@
       <%= render :partial => 'formPages', :locals => {:f => f} %>
     </div>
 
-    <%= f.input :title, :label => t("text"), :hint => t("field_required") %>
+    <%= f.input :title, :label => t("title"),
+      placeholder: t("title"),
+      input_html: {class: "title_page_input"} %>
+
+    <%= f.input :description, :label => t("description"),
+      :input_html => {:size => "40x4" },
+      :as => :text %>
 
     <div class="actions">
-      <%= f.submit t("save") %> <%= link_to t("back"), :back %>
+      <%= f.submit (t"edit_param", :param => (t"menu.one")), class: "green-button" %>
+      <%= link_to t("back"), :back, class: "red-button" %>
     </div>
-
   <% end %> 
-
 </fieldset>

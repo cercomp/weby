@@ -1,12 +1,2 @@
 $('#div_link').html('<%= escape_javascript(render(:partial => 'formPages')) %>')
-$('#link_form_pages').html('<%= escape_javascript(raw links_to_menu_type(params[:type])) %>')
-
-/*
-$(document).ready(function() {
-  $('a[data-remote=true]').click(function(){
-    img = new Image();
-    img.src = '/images/spinner.gif';
-    $(this).html(img);
-  });
-});
-*/
+$('#link_form_pages').html('<%= escape_javascript(raw links_to_menu_type(params[:type], 'new')) %>')

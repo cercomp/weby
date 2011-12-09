@@ -615,18 +615,18 @@ EOF
         puts "\t\t\t\tINSERINDO (sites_pages) (#{site_id} #{page_id[0]['id']})\n" if @verbose
         @convar["#{this_id}"]["paginas"]["#{entry['id']}"] = page_id[0]['id']
         puts "\t\t\t\tINSERINDO (menus) página (#{page_id[0]['id']})\n" if @verbose
-        insert_menu = "INSERT INTO menus (title,link,page_id) VALUES ('#{pre_treat(entry['texto_item'])}','','#{page_id[0]['id']}') RETURNING id"
+        insert_menu = "INSERT INTO menus (title,link,page_id,description) VALUES ('#{pre_treat(entry['texto_item'])}','','#{page_id[0]['id']}','#{pre_treat(entry['alt'])}') RETURNING id"
       end
     elsif not /javascript:mostrar_pagina.*?([0-9]+).*?/.match("#{entry['url']}").nil? # Verificando se o menu é interno, externo
       page_id = /javascript:mostrar_pagina.*?([0-9]+).*?/.match("#{entry['url']}")[1]
       page_id = @convar["#{this_id}"]["paginas"]["#{page_id}"]
-      insert_menu = "INSERT INTO menus (title,link,page_id) VALUES ('#{pre_treat(entry['texto_item'])}','','#{page_id}') RETURNING id" unless page_id.nil?
+      insert_menu = "INSERT INTO menus (title,link,page_id,description) VALUES ('#{pre_treat(entry['texto_item'])}','','#{page_id}','#{pre_treat(entry['alt'])}') RETURNING id" unless page_id.nil?
     elsif not /javascript:mostrar_menu.*?([0-9]+).*?/.match("#{entry['url']}").nil?
       page_id = /javascript:mostrar_menu.*?([0-9]+).*?/.match("#{entry['url']}")[1]
       page_id = @convar["#{this_id}"]["paginas"]["#{page_id}"]
-      insert_menu = "INSERT INTO menus (title,link,page_id) VALUES ('#{pre_treat(entry['texto_item'])}','','#{page_id}') RETURNING id" unless page_id.nil?
+      insert_menu = "INSERT INTO menus (title,link,page_id,description) VALUES ('#{pre_treat(entry['texto_item'])}','','#{page_id}','#{pre_treat(entry['alt'])}') RETURNING id" unless page_id.nil?
     else
-      insert_menu = "INSERT INTO menus (title,link) VALUES ('#{pre_treat(entry['texto_item'])}','#{pre_treat(entry['url'])}') RETURNING id"
+      insert_menu = "INSERT INTO menus (title,link,description) VALUES ('#{pre_treat(entry['texto_item'])}','#{pre_treat(entry['url'])}','#{pre_treat(entry['alt'])}') RETURNING id"
     end
     # Evitar erros quando não consegue inserir menu
     unless insert_menu.nil?
