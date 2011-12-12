@@ -311,6 +311,7 @@ en:
     other: "Repositories"
   reset_mail: "Instructions to reset your password have been emailed to you. Please check your email."
   reset_my_password: "Reset my password"
+  reset_send_email: "Send new password"
   right:
     one: "Right"
     other: "Rights"

@@ -312,6 +312,7 @@ pt-BR:
     other: "Repositório"
   reset_mail: "Instruções de como modificar sua senha foram enviada. Cheque seu e-mail."
   reset_my_password: "Alterar minha senha"
+  reset_send_email: "Enviar senha por email"
   right:
     one: "Direito"
     other: "Direitos"
