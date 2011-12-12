@@ -12,9 +12,9 @@ if('<%= @same_place %>' == 'true' && <%= @files.count %> > 0 ){
 
   $("#link-to-include-files").hide();
 
-  $("#<%= @final_files_list %>").click(function(){
+  $("#<%= @final_files_list %>").click(function(event){
     $("#link-to-include-files").trigger('click');
-    return false;
+    event.preventDefault();
   });
 }else{
   $("#<%= @final_files_list %>").parent().find("#link-to-include-files").show();

@@ -27,9 +27,18 @@ place.dialog({
     class: 'red-button',
     text: "<%= t('cancel') %>",
             click: function(){
-              $(this).dialog('close');
+              // Remove é necessário para remover os eventos.
+              // Sem o remove não funciona na segunda vez que abre o dialog
+              $(this).dialog('close').remove();
             }
-  }]
+  }],
+  open: function(event, ui){
+    $('body').css('overflow','hidden');
+    $('.ui-widget-overlay').css('width','100%'); 
+  }, 
+  close: function(event, ui){
+    $('body').css('overflow','auto'); 
+  } 
 });
 
 set_jquery_ui();

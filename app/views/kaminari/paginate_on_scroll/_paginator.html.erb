@@ -1,4 +1,3 @@
-<%= hidden_field_tag 'scroll_place', scroll_place, id: 'scroll_place' %>
 <%= paginator.render do %>
   <%= next_link_tag %>
 <% end %>
@@ -6,7 +5,7 @@
 <script type="text/javascript" language="javascript" charset="utf-8">
   //<![CDATA[
 $(document).ready(function() {
-  var place = "#" + $("#scroll_place").val();
+  place = $("#" + "<%=j scroll_place %>");
   var loading = new Image();
   loading.src = '/images/loading.gif';
 
@@ -17,11 +16,9 @@ $(document).ready(function() {
     var client_height = $(this)[0].clientHeight;
     var scroll_top = $(this)[0].scrollTop;
     var position = (scroll_top / (scroll_height - client_height));
-    if(position >= 0.95 && scroll){
-      $(this).unbind('scroll', paginate);
-      $("#next_paginate_on_scroll").trigger('click');
+    if(position >= 0.75){
+      $("#next_paginate_on_scroll").trigger('click').remove();
     }
-
   }
 });
 //]]>
