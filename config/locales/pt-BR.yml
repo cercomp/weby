@@ -249,6 +249,7 @@ pt-BR:
   "no": "Não"
   not_found: "não encontrado!"
   no_more_i18ns: "Você não pode mais criar internacionalizações"
+  menu_name: "Nome do Menu"
 
 #---O---#
   of: "de"
@@ -285,6 +286,7 @@ pt-BR:
   publication: "Publicação"
   publish: "Publicar"
   publish_help: "Você deseja publicar essa página?"
+  publication_infinite: "Publicação infinita"
 
 #---Q---#
 

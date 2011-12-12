@@ -221,6 +221,7 @@ en:
   my_profile: "My profile"
   my_password: "My Password"
   my_css: "My Styles"
+  menu_name: "Name of Menu"
 
 #---N---#
   nacional: "Nacional"
@@ -284,6 +285,8 @@ en:
   publication: "Publication"
   publish: "Publish"
   publish_help: "You want to publish this page?"
+  publication_infinite: "Publication infinite"
+
 
 #---Q---#
 
