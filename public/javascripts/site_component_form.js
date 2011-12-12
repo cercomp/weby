@@ -60,7 +60,8 @@ function join_data(){
       var input = $(v2);
       
       // Caso o input não tenha o atributo "name"
-      if(input.attr('name') == '') return;
+      var name = input.attr('name');
+      if(name === '' || name === undefined) return;
       
       // Caso o input seja um checkbox e não esteja marcado
       if(input.is(':checkbox') && $(input + ':checked').val() === undefined) return;
@@ -95,6 +96,7 @@ function select_page() {
  * Ao selecionar a notícia, cria um input com o id da noticia selecionada
  */
 function selected (id, title) {
+  $('#settings .input p input').remove(); // caso já tenha selecionado algum, remove ele para adicionar o proximo
   $('#settings .input p').append('<input type="hidden" name="page" value="' + id + '" />');
   $('#settings a').before('<input type="text" disabled="disabled" value="'+ title +'" />');
   $('#page_list').dialog('close');
@@ -103,7 +105,7 @@ function selected (id, title) {
 /**
   * Funções para manipulação do mini Layout
   */
-
+// Remove a classe de selecionado dos elementos
 function clear_mini_layout(){
   $(".clicked").each(function(){
     $(this).removeClass("clicked");

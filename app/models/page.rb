@@ -40,7 +40,7 @@ class Page < ActiveRecord::Base
 
   # Find i18n based on locale_name
   # Example: locale_name = 'pt-BR'
-  def by_locale locale_name
+  def by_locale(locale_name)
     loc = Locale.find_by_name(locale_name)
     page_i18ns.by_locale(loc).first or page_i18ns.first
   end
