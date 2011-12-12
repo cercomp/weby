@@ -1,6 +1,6 @@
-<% @page = Page.where(['id = ?', settings[:page]]) %>
+<% @page = Page.where(['id = ?', settings[:page]]).first %>
 
-<% unless @page.empty? %>
+<% unless @page.nil? %>
   <% params[:type] = @page.type %>
   <%= render :template => 'pages/show' %>
 <% else %>
