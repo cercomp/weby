@@ -8,7 +8,7 @@ module SiteComponentsHelper
     places = {
       'weby' => ['left', 'right', 'top', 'bottom', 'home', 'first_place'],
       'this2' => ['first_place', 'top', 'left', 'home', 'right', 'bottom'],
-      'teachers' => ['left', 'top', 'bottom', 'home', 'first_place']
+      'teachers' => ['first_place', 'top', 'left', 'home', 'bottom']
     }
 
     places[@site.theme] || []
@@ -17,7 +17,8 @@ module SiteComponentsHelper
   #retorna as divs do mini layout
   def make_mini_layout
      divs = "<div id='mini_layout'>"  
-     places_holder.map { |position| divs += "<div id='mini_#{position}'>#{t("components.pos.#{position}")}  </div>"} 
+     places_holder.map { |position| divs += "<div id='mini_#{position}' class='hover'>
+                                            #{t("components.pos.#{position}")}  </div>"} 
      divs += "</div>" 
   end
 

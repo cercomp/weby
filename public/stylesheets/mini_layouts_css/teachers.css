@@ -15,25 +15,18 @@
 
 #mini_left{
   border-bottom: 1px dotted black;
-  width: 99px;
+  width: 89px;
   height: 200px;			
 }
 
 #mini_home{
-  border: 1px dotted black;
-  border-top: 0px;
-  width: 99px;
-  height: 200px;
-  margin-left: 99px;
-  margin-top: -201px;
-
-}
-
-#mini_right{
+  border-left: 1px dotted black;
   border-bottom: 1px dotted black;
+  width: 209px;
   height: 200px;
+  margin-left: 89px;
   margin-top: -201px;
-  margin-left: 202px;			
+
 }
 
 #mini_bottom{
