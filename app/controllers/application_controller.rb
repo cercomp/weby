@@ -75,8 +75,8 @@ class ApplicationController < ActionController::Base
 
   #Método utilizado para redirecionamento, quando endereçõ não existe
   def catcher
-    flash[:error] = t('redirect') 
     redirect_to root_url
+    flash[:error] = t('redirect') 
   end
 
 
