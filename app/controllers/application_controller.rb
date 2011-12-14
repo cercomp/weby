@@ -73,10 +73,9 @@ class ApplicationController < ActionController::Base
     redirect_back_or_default login_path
   end
 
-  #Método utilizado para redirecionamento, quando endereçõ não existe
+  # Método utilizado para redirecionamento, quando endereço não existe
   def catcher
-    redirect_to root_url
-    flash[:error] = t('redirect') 
+    render :file => "#{Rails.root}/public/404.html", :status => 404
   end
 
 

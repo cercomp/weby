@@ -1,26 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>The page you were looking for doesn't exist (404)</title>
+  <title>Essa Página Não Existe</title>
+  <meta charset="utf-8">
   <style type="text/css">
-    body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
-    div.dialog {
-      width: 25em;
-      padding: 0 4em;
-      margin: 4em auto 0 auto;
-      border: 1px solid #ccc;
-      border-right-color: #999;
-      border-bottom-color: #999;
-    }
-    h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
+  .dialog {
+    width: 600px;
+    margin: 30px auto 0;
+    text-align: center;
+  }
+  .dialog h1 {
+    font-size: 20px;
+  }
+  .red { color: red }
   </style>
 </head>
 
 <body>
   <!-- This file lives in public/404.html -->
   <div class="dialog">
-    <h1>The page you were looking for doesn't exist.</h1>
-    <p>You may have mistyped the address or the page may have moved.</p>
+    <%= image_tag 'weby-logo.png' %>
+    <h1>O endereço que você digitou parece <span class="red">não existir</span></h1>
+    <p>
+      Verifique se o endereço foi digitado corretamente.
+    </p>
+    <p>
+      <%= link_to 'Clique aqui para voltar à página inicial.', root_path %>
+    </p>
   </div>
 </body>
 </html>
