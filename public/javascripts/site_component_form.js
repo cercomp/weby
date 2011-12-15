@@ -7,16 +7,19 @@
 var settings;
 var old_settings;
 var settings_loc;
+var place_holder = "#mini_"
 
 window.onload = function(){
   settings     = $.parseJSON($("#components_settings").attr('meta-data'));
   settings_loc = $.parseJSON($("#components_settings_locales").attr('meta-data'));
   custom       = $.parseJSON($("#components_custom_fields").attr('meta-data'));
   old_settings = $.parseJSON($("#component_settings").attr('meta-data'));
+  place_holder += $("input[type=hidden][id=component_place_holder]").attr('meta-data');
   
   switch_settings();
   $('form[id*="site_component"]').submit( join_data );
   $('#site_component_component').change( switch_settings );
+  $(place_holder).addClass('clicked');
 };
 
 /**
