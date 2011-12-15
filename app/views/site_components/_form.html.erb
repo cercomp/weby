@@ -42,7 +42,7 @@
 
 
   <div class="actions">
-    <%= f.submit t("save") %>
-    <%= link_to t('back'), site_site_components_path %>
+    <%= f.submit t("add_param", :param => t("component.one")), class: 'green-button' %>
+    <%= link_to t('back'), site_site_components_path, class: 'red-button' %>
   </div>
 <% end %>
