@@ -208,6 +208,9 @@ en:
   menu:
     one: "Menu"
     other: "Menus"
+  item_menu:
+    one: "Menu Item"
+    other: "Menu Items"
   menus: "Menus"
   message: "Message"
   mini: "Mini"
@@ -346,6 +349,7 @@ en:
   subject: "Subject"
   submit: "Send"
   sub_menu: "Sub-menu"
+  sub_menu_of: "Sub-menu of"
   successfully_created: "Successfully created!"
   successfully_created_param: "%{param} successfully created!"
   successfully_updated: "Successfully updated!"
@@ -368,6 +372,9 @@ en:
   top_banner: "Banner"
   top_banner_width: "Top banner width"
   top_banner_height: "Top banner height"
+  translation:
+    one: "Translation"
+    other: "Translations"
   type: "Type"
   type_param: "Type a %{param}"
   try_login: "Try to login first!"

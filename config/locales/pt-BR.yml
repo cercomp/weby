@@ -208,6 +208,9 @@ pt-BR:
   menu:
     one: "Menu"
     other: "Menus"
+  item_menu:
+    one: "Item de Menu"
+    other: "Itens de Menu"
   menus: "Menus"
   message: "Mensagem"
   mini: "Miniatura"
@@ -350,6 +353,7 @@ pt-BR:
   subject: "Assunto"
   submit: "Enviar"
   sub_menu: "Sub-menu"
+  sub_menu_of: "Sub-menu de"
   successfully_created: "Criado com sucesso!"
   successfully_created_param: "%{param} criado com sucesso!"
   successfully_updated: "Atualizado com sucesso!"
@@ -372,6 +376,9 @@ pt-BR:
   top_banner: "Topo"
   top_banner_width: "Largura do banner principal"
   top_banner_height: "Altura do banner principal"
+  translation:
+    one: "Tradução"
+    other: "Traduções"
   type: "Tipo"
   type_param: "Digite a %{param}"
   try_login: "Tente logar primeiro!"
