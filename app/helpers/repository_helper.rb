@@ -50,11 +50,20 @@ module RepositoryHelper
   end
 
   def image_viewer
-    raw image_tag(@thumbnail,
+    width = @width.blank? ? nil : @width
+    height = @height.blank? ? nil : @height
+    image = image_tag(@thumbnail,
                   alt: @options[:alt] || @file.description,
-                  width: @width,
-                  height: @height,
                   title: @options[:title] || @file.description)
+    # Tratamento para IE8.
+    if width
+      image.gsub!("/>", " width='#{width}' />")
+    end
+    if height
+      image.gsub!("/>", " height='#{height}' />")
+    end
+
+    raw image
   end
 
   def mime_type
