@@ -4,7 +4,7 @@ class Banner < ActiveRecord::Base
   default_scope :conditions => { :hide => false }, :order => 'position,id DESC'
   
   scope :unhide, :conditions => { :hide => false }, :order => 'position,id DESC'
-  scope :published, where("publish = true AND (date_begin_at <= :time AND date_end_at > :time)",
+  scope :published, where("publish = true AND (date_begin_at <= :time AND (date_end_at = NULL OR date_end_at > :time))",
           { :time => Time.now })
 
   scope :titles_or_texts_like, lambda { |str|
@@ -14,5 +14,5 @@ class Banner < ActiveRecord::Base
   belongs_to :user, :foreign_key => "user_id"
 	belongs_to :site, :foreign_key => "site_id"
 
-  validates_presence_of :url, :title, :text, :user_id
+  validates_presence_of :url, :title, :user_id, :date_begin_at
 end

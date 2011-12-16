@@ -1,38 +1,64 @@
-  <div id="repo_styles">
+<fieldset class="left">
+  <div class="checkbox-button-set">
     <% repo_styles = Repository.attachment_definitions[:archive][:styles] %>
     <% unless repo_styles.nil? %>
-     <%= f.input :size, 
-       :label => t('size'),
-       :collection => repo_styles,
-       :collection_wrapper_tag => "div class='radio-group'",
-       :label_method => lambda { |u| "#{t(u[0])} #{u[1]}" }, 
-       :value_method => lambda { |u| u[0] },
-       :as => :radio %>
+      <%= f.input :size, 
+        label: t('size'),
+        collection: repo_styles,
+        label_method: lambda { |u| "#{t(u[0])} #{u[1]}" }, 
+        value_method: lambda { |u| u[0] },
+        as: :radio%>
     <% end %>
   </div>
 
-  <%= f.input :width, :label => t("width"), :input_html => {:size => 3} %> 
-  <%= f.input :height, :label => t("height"), :input_html => {:size => 3} %>
+<%= f.input :width, :label => t("width"), :input_html => {:size => 3} %> 
+<%= f.input :height, :label => t("height"), :input_html => {:size => 3} %>
+</fieldset>
 
-  <%= f.input :date_begin_at, :order => [:year, :month, :day], 
-    :use_month_numbers => true, 
-    :label =>  (t"date_param", 
-    :param => t("begin")), :as => :datetime %>
 
-  <%= f.input :date_end_at, :order => [:year, :month, :day], 
-    :use_month_numbers => true, 
-    :label => (t"date_param", 
-    :param => t("end")), 
-    :default => 1.month.from_now, :as => :datetime %>
 
-  <%= f.input :title, :label => t("title"), :hint => t("field_required") %>
-  <%= f.input :text, :label => t("text"),
-    :input_html => {:size => "44x6"}, 
-    :hint => t("field_required"), :as => :text %>
-  <%= f.input :url, :label => t("url"), :hint => t("field_required"), :as => :url %>
 
-  <%= f.input :category_list, :label => t('categories'), :hint => t('page_categories_help') %>
+<div class="tabs">
+  <%= f.input :title, label: "",
+    placeholder: t("title"),
+    input_html: {class: "title_banner_input"} %>
 
-  <%= f.input :publish, :label => t("publish"), :hint => t("publish_help"), :as => :boolean %>
-  <%= f.input :hide, :label => t("hide"), :hint => t("hide_help"), :as => :boolean %>
-  <%= f.input :user_id, :input_html => {:value => "#{@current_user.id}"}, :as => :hidden %>
+  <%= f.input :text, label: t("text"),
+    input_html: {class: "mceAdvance text_banner_input", size: "80x10" },
+    as: :text %>
+</div>
+
+<%= f.input :url, label: t("url"), hint: t("field_required"), as: :url %>
+
+
+<div class="period-dates left">
+  <label>Período do Banner:</label>
+  <div class="period-dates-inputs">
+    <%= f.input :date_begin_at, as: :string,
+      placeholder: t("begin"),
+      wrapper_html: {class: "period-date period-date-left"},
+      input_html: {class: "datetimepicker"} %>
+
+    <%= f.input :date_end_at, as: :string,
+      placeholder: t("publication_infinite"),
+      wrapper_html: {class: "period-date period-date-right"},
+      input_html: {class: "datetimepicker"} %>
+  </div>
+</div>
+
+<%= f.input :category_list, :label => t('categories'), :hint => t('page_categories_help') %>
+
+
+<div class="right">
+  <%= f.input :publish , :label => t("publish"),
+    wrapper_html: { class: "left no-clearfix" },
+    as: :boolean, input_html: { class: "check-button" } %>
+  <%= f.input :hide , label: t("hide"), 
+    wrapper_html: { class: "right no-clearfix" },
+    as: :boolean, input_html: { class: "check-button" } %>
+</div>
+<%= f.input :user_id, :input_html => {:value => "#{@current_user.id}"}, :as => :hidden %>
+
+
+<%= content_for :javascripts, javascript_include_tag("pages_new") %>
+<%= content_for :stylesheets, stylesheet_link_tag("banners_new") %>

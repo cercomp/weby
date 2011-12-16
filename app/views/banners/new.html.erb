@@ -31,11 +31,11 @@
       </div>
     <% end %>
 
-    <label>
-      <%= link_to t("show_hide_image_list"), "#",  
-        :remote => true, 
-        :onclick => "$('#repo_list').toggle(); $('#repo_new').toggle(); $('#search').toggle();"%>
-    </label>  
+    <div class="right" id="include_page_image">
+      <%= render_cell :repository, :include_file, "banner[repository_id]", 
+        "Imagem do Banner", file_types: "image", multiplicity: "one",
+        same_place: true %>
+    </div>
 
     <div id='repo_list' style="display:none">
       <%= render :partial => 'repositories/repo',
@@ -46,8 +46,9 @@
     <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
 
     <div class="actions">
-      <%= f.submit t"create" %> <%= link_to t('back'), :back %>
+      <%= f.submit t("create"), class: "green-button" %> <%= link_to t('back'), :back, class: "red-button" %>
     </div>
 
   <% end %>
 </fieldset>
+<%= content_for :javascripts, javascript_include_tag("pages_new") %>

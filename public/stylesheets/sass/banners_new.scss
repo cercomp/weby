@@ -1,0 +1,25 @@
+@import "form_utils";
+
+.title_banner_input{
+  @extend .title_page_input;
+}
+.text_banner_input{
+  height: 300px;
+  width: 500px;
+}
+
+label{
+  font:{
+    size: 14px;
+    familly: Verdana;
+  }
+  cursor: pointer;
+  float: left;
+  width:  125px;
+  text-align: right;
+  margin: 0 10px;
+  abbr{
+    color: red;
+  }
+}
+
