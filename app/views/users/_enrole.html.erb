@@ -45,7 +45,7 @@
 <%= content_for :javascripts do %>
   <%= javascript_tag do %>
     $(document).ready(function(){
-        $('#users_unroled').bind('keyup',function(){
+      $('#users_unroled').bind('keyup',function(){
         var pattern = new RegExp(".*" + $(this).val() + ".*", "gi");
         $('#users_list_roles li').each(function(index, element){
           if( $(element).text().match(pattern) ){
@@ -54,6 +54,7 @@
             $(element).hide();
           }
         });
+        preventDefault();
       });
     });
   <% end %>
