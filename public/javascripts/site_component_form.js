@@ -87,7 +87,8 @@ function select_page() {
     $('#settings').append('<div id="page_list" style="display: none;" title="Selecione uma notícia"><img src="/images/spinner.gif"></div>');
     
   $('#page_list').dialog({
-    width: '500px'
+    width: '700',
+    height: '400'
   });
   
   
