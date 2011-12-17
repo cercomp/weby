@@ -67,7 +67,10 @@
   <p> 
     <%= link_to t("button_check_all.fem"), nil, :onclick => "checkAll('#roles_form',true)", :remote => true %> | <%= link_to t("button_uncheck_all.fem"), nil, :onclick => "checkAll('#roles_form',false)", :remote => true %> 
   </p>
-  <%= submit_tag t("save") %>
+    <div class="actions">
+      <%= submit_tag t("save"), class: "green-button" %>
+      <%= link_to t("back"), :back, class: "red-button" %>
+    </div>
   <% end %>
 
   <p> <%= link_to (t"list_param", :param => (t"permission", :count => 2)), :controller => "rights", :action => "index" %> </p>

@@ -1,29 +1,6 @@
 <fieldset>
   <legend> <%= t"editing", :param => t("right.one") %> </legend>
-
-  <% simple_form_for [@site, @right] do |f| %>
-    <% if @right.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@right.errors.count, "error") %> prohibited this site from being saved:</h2>
-        <ul>
-        <% @right.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-    <%= f.input :name, :label => t("name"), :hint => t("field_required") %>
-    <%= f.input :controller, :label => t("controller"), :hint => t("field_required") %>
-    <%= f.input :action, :label => t("action"), :hint => t("field_required") %>
   
-		<div class = "actions">
-    	<%= link_to t('back'), :back %> <%= f.submit t("save") %> 
-		</div>
-  <% end %>
-</fieldset>
+  <%= render 'form' %>
 
-<style>
-<%# TODO: ver melhor maneira de ignorar o float right do formulario(simple_form) %>
-.right{ float: none !important;}
-</style>
+</fieldset>

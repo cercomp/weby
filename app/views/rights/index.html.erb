@@ -3,7 +3,7 @@
 
   <% if check_permission(RightsController, [:new]) %>
     <div class="contextual">
-      <p> <%= link_to (t"new_param.masc", :param => t('right.other')), new_right_path, :class => 'icon icon-add' %> </p>
+      <p> <%= link_to (t"new_param.masc", :param => t('right.one')), new_right_path, :class => 'icon icon-add' %> </p>
     </div>
   <% end %>
 
@@ -29,7 +29,7 @@
             <td><%= right.controller %></td>
             <td><%= right.action %></td>
             <td>
-              <%= raw make_menu(right) %>
+              <%= raw make_menu(right, :except => 'show') %>
             </td>
           </tr>
         <% end %>

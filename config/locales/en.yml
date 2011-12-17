@@ -88,7 +88,9 @@ en:
 
 #---E---#
   edit: "Edit"
-  edit_param: "Edit %{param}"
+  edit_param:
+    fem: "Edit %{param}"
+    masc: "Edit %{param}"
   edit_i18ns: "Edit Internationalizations"
   edit_yours_i18ns: "Edit the fields corresponding to their language"
   editing: "Editing %{param}"
