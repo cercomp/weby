@@ -1,12 +1,12 @@
-  <%= content_for :stylesheets do %>
-    <%= stylesheet_link_tag 'portal' %>
-  <% end %>
+<%= content_for :stylesheets do %>
+  <%= stylesheet_link_tag 'portal' %>
+<% end %>
 <fieldset>
   <legend><%= t"site.other" %></legend>
 
   <% if check_permission(SitesController, ["new"])  %>
-    <div class="left">
-      <p> <%= link_to (t"new_param.masc", :param => (t"site.one")), new_site_path, :class => 'icon icon-add' %> </p>
+    <div class="contextual">
+      <%= link_to (t"new_param.masc", :param => (t"site.one")), new_site_path, :class => 'icon icon-add' %> 
     </div>
   <% end %>
 
@@ -16,7 +16,6 @@
       <%= submit_tag t("search") %>
     <% end %>
   </center>
-  <br />
 
   <div id="list">
     <%= render "list" %>
