@@ -1,8 +1,8 @@
 # coding: utf-8
 class UsersController < ApplicationController
   layout :choose_layout
-  before_filter :require_user, :except => [:new, :create]
-  before_filter :check_authorization, :except => [:new, :create, :show, :edit]
+  before_filter :require_user, :except => [:new, :create, :activate]
+  before_filter :check_authorization, :except => [:new, :create, :show, :edit, :activate]
 	before_filter :get_theme
   respond_to :html, :xml
   helper_method :sort_column
