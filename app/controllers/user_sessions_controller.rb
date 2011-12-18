@@ -1,3 +1,4 @@
+# coding: utf-8
 class UserSessionsController < ApplicationController
   layout :choose_layout
   before_filter :require_no_user, :only => [:new, :create]
@@ -11,24 +12,26 @@ class UserSessionsController < ApplicationController
   def create
     @user_session = UserSession.new(params[:user_session])
     if @user_session.save
-#      if current_user.status #verifica se o usuário esta ativo  
+      if current_user and current_user.active? # Verifica se o usuário está ativo  
         flash.now[:notice] = t("login_success")
         redirect_back_or_default("#{params[:back_url]}")
-#      else  
-#        destroy  
-#      end  
+      else  
+        destroy  
+      end  
     else  
       render :action => :new
     end
   end
   
   def destroy
-    if !current_user.status
+    if current_user 
+    if  current_user.active?
       flash.now[:warning] = t('user_inactive')
     else
       flash.now[:notice] = t('logout_success')
     end
     current_user_session.destroy
-    redirect_to :back
+    end
+    redirect_back_or_default("#{params[:back_url]}")
   end
 end

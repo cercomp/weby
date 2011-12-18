@@ -1,4 +1,7 @@
 Webyge::Application.routes.draw do
+  # Para ativação de conta por email
+  match 'activate(/:activation_code)' => 'users#activate', :as => :activate_account
+  match 'send_activation(/:user_id)' => 'users#send_activation', :as => :send_activation
 
   match '/page/:page' => 'sites#index' # Paginate URL on sites
   match '/sites/:site_id/users/page/:page' => 'users#index' # Paginate URL on users

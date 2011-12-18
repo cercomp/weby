@@ -2,7 +2,7 @@
 class UsersController < ApplicationController
   layout :choose_layout
   before_filter :require_user, :except => [:new, :create]
-  before_filter :check_authorization, :except => [:new, :create, :show]
+  before_filter :check_authorization, :except => [:new, :create, :show, :edit]
 	before_filter :get_theme
   respond_to :html, :xml
   helper_method :sort_column
@@ -87,8 +87,22 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      flash[:notice] = "Conta registrada!"
+      @user.send_activation_instructions!(request.env["SERVER_NAME"])
+      flash[:notice] = t"create_account_successful"
       redirect_to @site ? site_users_path : users_path
+    else
+      flash[:notice] = t"problem_account_create"
+      render :action => :new
+    end
+  end
+
+  def activate
+    @user = User.find_using_perishable_token(params[:activation_code], 1.week) || (raise Exception)
+    raise Exception if @user.active?
+    if @user.activate!
+      UserSession.create(@user, false)
+      @user.send_activation_confirmation!(request.env["SERVER_NAME"])
+      redirect_to account_url
     else
       render :action => :new
     end

@@ -68,11 +68,14 @@ en:
   created_at:
     fem: "Created_at"
     masc: "Created_at"
-  create_param: "Create %{param}"
+  create_param:
+    fem: "Create %{param}"
+    masc: "Create %{param}"
   current_login: "Current login %{param}"
   css:
     one: "Style"
     other: "Styles"
+  create_account_successful: "Your account has been created. Please check your e-mail for your account activation instructions!"
 
 #---D---#
   date_param: "%{param} Date"
@@ -291,7 +294,7 @@ en:
   publish: "Publish"
   publish_help: "You want to publish this page?"
   publication_infinite: "Publication infinite"
-
+  problem_create_account: "Problem on create account!"
 
 #---Q---#
 

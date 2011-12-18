@@ -16,7 +16,8 @@
     <%= render :partial => "form", :object => f %>
 
     <div class="actions">
-       <%= f.submit t("submit") %>
+    <%= f.submit (t"#{self.action_name}_param.masc", :param => (t"user.one")), class: "green-button" %>
+    <%= link_to t("back"), :back, class: "red-button" %>
     </div>
    
   <% end %>

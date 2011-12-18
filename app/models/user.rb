@@ -1,8 +1,11 @@
+# coding: utf-8
 class User < ActiveRecord::Base
   acts_as_authentic
 
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
-  validates_presence_of :first_name#, :last_name
+  validates_presence_of :first_name, :login, :email#, :last_name
+  validates_presence_of :password, :on => :create
+
 
   has_and_belongs_to_many :roles
   has_and_belongs_to_many :groups
@@ -40,9 +43,36 @@ class User < ActiveRecord::Base
     self.first_name ? ("#{self.first_name} #{self.last_name}") : self.login
   end
 
+  def email_address_with_name
+    self.first_name ? "#{self.first_name} #{self.last_name} <#{self.email}>" : "#{self.login} <#{self.email}>"
+  end
+
+  def active?
+    self.status
+  end
+
+  def activate!
+    self.status = true
+    save
+  end
+
+  def deactivate!
+    self.status = false
+    save
+  end
+
   def password_reset!(host)
     reset_perishable_token!
     Notifier.password_reset_instructions(self, host).deliver
   end  
 
+  def send_activation_instructions!(host)
+    reset_perishable_token!
+    Notifier.activation_instructions(self, host).deliver
+  end
+
+  def send_activation_confirmation!(host)
+    reset_perishable_token!
+    Notifier.activation_confirmation(self, host).deliver
+  end
 end

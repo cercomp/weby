@@ -68,11 +68,14 @@ pt-BR:
   created_at:
     fem: "Criada em"
     masc: "Criado em"
-  create_param: "Criar %{param}"
+  create_param:
+    fem: "Criar %{param}"
+    masc: "Criar %{param}"
   current_login: "Entrada atual %{param}"
   css:
     one: "Estilo"
     other: "Estilos"
+  create_account_successful: "Sua conta foi criada. foi enviado para seu email instruções de ativação da sua conta!"
 
 #---D---#
   date_param: "Data de %{param}"
@@ -292,6 +295,7 @@ pt-BR:
   publish: "Publicar"
   publish_help: "Você deseja publicar essa página?"
   publication_infinite: "Publicação infinita"
+  problem_create_account: "Problemas ao criar uma conta!"
 
 #---Q---#
 
