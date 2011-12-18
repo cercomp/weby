@@ -89,7 +89,7 @@ class UsersController < ApplicationController
     if @user.save
       @user.send_activation_instructions!(request.env["SERVER_NAME"])
       flash[:notice] = t"create_account_successful"
-      redirect_to @site ? site_users_path : users_path
+      redirect_to login_path
     else
       flash[:notice] = t"problem_account_create"
       render :action => :new
@@ -102,7 +102,7 @@ class UsersController < ApplicationController
     if @user.activate!
       UserSession.create(@user, false)
       @user.send_activation_confirmation!(request.env["SERVER_NAME"])
-      redirect_to account_url
+      redirect_to user_path(@user)
     else
       render :action => :new
     end
