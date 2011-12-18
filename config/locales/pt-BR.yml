@@ -75,7 +75,7 @@ pt-BR:
   css:
     one: "Estilo"
     other: "Estilos"
-  create_account_successful: "Sua conta foi criada. foi enviado para seu email instruções de ativação da sua conta!"
+  create_account_successful: "Sua conta foi criada! Foi enviado para seu email instruções de como ativá-la."
 
 #---D---#
   date_param: "Data de %{param}"
