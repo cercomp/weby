@@ -235,12 +235,6 @@ div.flash.warning {
 .icon-del:before {
   content: url(../images/delete.png); }
 
-.icon-list:before {
-    content: url(../images/b_browse.png); }
-
-.icon-back:before {
-    content: url(../images/cancel.png); }
-
 .icon-move:before {
   content: url(../images/move.png); }
 
@@ -255,9 +249,6 @@ div.flash.warning {
 
 .icon-folder:before {
   content: url(../images/folder.png); }
-
-.icon-i18n:before {
-  content: url(../images/forms/i18n.png); }
 
 .open .icon-folder:before {
   content: url(../images/folder_open.png); }
@@ -552,12 +543,3 @@ label[for='users_unroled'] {
 
 .no-clearfix {
   clear: none !important; }
-
-.truncated_300px {
-  text-overflow: ellipsis;
-  display: inline-block;
-  width: 300px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-align: left;
-}

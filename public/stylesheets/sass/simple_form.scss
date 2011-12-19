@@ -185,7 +185,7 @@ label{
   }
 }
 .input label{
-  /*margin: 5px $label_horizontal_margin;*/
+  margin: 10px 0;
 }
 
 button, 
@@ -210,3 +210,11 @@ input[type=reset]{
 ::-webkit-input-placeholder { @include placeholders }
 input:-moz-placeholder { @include placeholders }
 
+
+.radio-group{
+  label{
+    width: 120px;
+    display: block;
+    margin-top: 5px;
+  }
+}

@@ -137,7 +137,7 @@ label {
     color: red; }
 
 .input label {
-  /*margin: 5px $label_horizontal_margin;*/ }
+  margin: 10px 0; }
 
 .ui-multiselect-checkboxes label {
   width: 98% !important;
@@ -149,3 +149,8 @@ label {
 
 input:-moz-placeholder {
   font-family: Verdana, Arial, sans !important; }
+
+.radio-group label {
+  width: 120px;
+  display: block;
+  margin-top: 5px; }

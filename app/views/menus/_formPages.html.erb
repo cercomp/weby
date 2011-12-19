@@ -10,8 +10,9 @@
       collection: @pages_on_menu,
       collection_wrapper_tag: "div class='radio-group'",
       as: :radio, 
+      input_html: { class: "check-button" },
       label_method: lambda {|u|
-        raw "<span class='truncated_300px'>#{u.by_locale(session[:locale]).title}</span><br />"
+        raw "<span class='radio-item-list'>#{u.by_locale(session[:locale]).title}</span><br />"
       },
       value_method: 'id',
       paginate: "#{paginate @pages}" %>
