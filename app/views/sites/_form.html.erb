@@ -21,6 +21,12 @@
 	<%= f.input :menu_dropdown, :label => t("use_menu_dropdown"), :hint => t("desc_use_menu_dropdown"), :as => :boolean %>
   <%= f.input :theme, :collection => @themes.collect{|p| [ p , p]}, :selected => "this2", :label => t('layout') %>
 
+  <%= f.association :locales,
+    :as => :check_boxes,
+    :collection => Locale.all.map{|l| [image_tag("flags/24/#{l.flag}", :title=>t(l.name)), l.id] },
+    :label => t('translation.other')
+  %>
+
   <div class="actions">
     <%= f.submit t("submit") %>
   </div>
