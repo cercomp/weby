@@ -24,7 +24,7 @@ div.input.image_list{
 .hint {
   color: #555;
   display: block;
-  margin-left: $label_width + (2 * $label_horizontal_margin);
+  /*margin-left: $label_width + (2 * $label_horizontal_margin);*/
   width: 200px;
   font:{
     size: 11px;
@@ -45,6 +45,9 @@ label.collection_radio {
 
 .radio-group-images{
   display: table;
+  label{
+    float: left;
+  }
   & > input[type=radio]{
     display: none;
     &:checked + label.collection_radio > img{
@@ -172,16 +175,17 @@ label{
     familly: Verdana;
   }
   cursor: pointer;
-  float: left;
-  width: $label_width;
-  text-align: right;
-  margin: 0 $label_horizontal_margin;
+  display: block;
+  /*float: left;*/
+  /*width: $label_width;*/
+  /*text-align: right;*/
+  /*margin: 0 $label_horizontal_margin;*/
   abbr{
     color: red;
   }
 }
 .input label{
-  margin: 5px $label_horizontal_margin;
+  /*margin: 5px $label_horizontal_margin;*/
 }
 
 button, 

@@ -15,7 +15,7 @@ div.input.image_list {
 .hint {
   color: #555;
   display: block;
-  margin-left: 140px;
+  /*margin-left: $label_width + (2 * $label_horizontal_margin);*/
   width: 200px;
   font-size: 11px;
   font-style: italic; }
@@ -30,6 +30,8 @@ label.collection_radio {
 
 .radio-group-images {
   display: table; }
+  .radio-group-images label {
+    float: left; }
   .radio-group-images > input[type=radio] {
     display: none; }
     .radio-group-images > input[type=radio] + label.collection_radio > img {
@@ -126,15 +128,16 @@ label {
   font-size: 14px;
   font-familly: Verdana;
   cursor: pointer;
-  float: left;
-  width: 120px;
-  text-align: right;
-  margin: 0 10px; }
+  display: block;
+  /*float: left;*/
+  /*width: $label_width;*/
+  /*text-align: right;*/
+  /*margin: 0 $label_horizontal_margin;*/ }
   label abbr {
     color: red; }
 
 .input label {
-  margin: 5px 10px; }
+  /*margin: 5px $label_horizontal_margin;*/ }
 
 .ui-multiselect-checkboxes label {
   width: 98% !important;
