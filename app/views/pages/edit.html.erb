@@ -84,9 +84,10 @@
 
     <label class="string"></label>
     
-		<div class="actions">
-		   <%= f.submit t("save") %> <%= link_to t("back"), :back %>
-  	</div>
+    <div class="actions">
+      <%= f.submit (t"save"), class: "green-button" %>
+      <%= link_to t("back"), :back, class: "red-button" %>
+    </div>
   	
   <% end %>
 </fieldset>

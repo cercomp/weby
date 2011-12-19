@@ -1,4 +1,4 @@
-<%= f.input(:locale_id, input_html: { value: locale }, as: :hidden) %>
+<%= locale == "" ? "" : f.input(:locale_id, input_html: { value: locale }, as: :hidden) %>
 <%= f.input :title, :label => "",
   placeholder: t("title"),
   input_html: {class: "title_page_input"} %>

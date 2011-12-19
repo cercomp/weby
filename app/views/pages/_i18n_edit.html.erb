@@ -5,7 +5,6 @@
 </ul>
 
 <%= f.fields_for :page_i18ns do |i18n| %>
-  <%= i18n.input :locale_id, :as => :hidden %>
   <div id="<%= i18n.object.locale.name  %>">
     <% unless Setting.get('default_locale') == i18n.object.locale.name %>
       <div class="remove-i18n">
@@ -13,7 +12,7 @@
         <%= i18n.check_box :_destroy %>
       </div>
     <% end %>
-    <%= render 'page_i18ns/form', :f => i18n %>
+    <%= render 'page_i18ns/form', :f => i18n, :locale => i18n.object.locale.id %>
   </div>
   <div ></div>
 <% end %>

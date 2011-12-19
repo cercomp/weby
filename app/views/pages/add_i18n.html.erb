@@ -2,7 +2,7 @@
   <legend><%= t"create_param.masc", :param => t("i18n") %></legend>
 
   <%# TODO: Internacionalizar campos %>
-  <p>Nóticia original<p>
+  <p>Not&iacute;cia original<p>
   <h2><%= @page.by_locale(@current_locale).title %></h2>
   <small><%= raw @page.by_locale(@current_locale).summary %></small>
   <p><%= raw @page.by_locale(@current_locale).text %></p>
@@ -12,10 +12,12 @@
     <%= f.input :page_id, :as => :hidden %>
     <%= f.association :locale, :label => t('locale'), :collection => @langs.map{ |l| [t(l.name), l.id] }, :include_blank => false %>
 
-    <%= render 'page_i18ns/form', :f => f %>
+    <%# passar locale como vazio para não imprimir o locale_id, já que ele será definido pelo select acima %>
+    <%= render 'page_i18ns/form', :f => f, :locale => "" %>
 
     <div class="actions">
-      <%= f.submit t("create") %> <%= link_to t("back"), :back %>
+      <%= f.submit (t"create"), class: "green-button" %>
+      <%= link_to t("back"), :back, class: "red-button" %>
     </div>
 
   <% end %>
