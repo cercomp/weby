@@ -11,7 +11,8 @@ div.barra_ufg {
     div.barra_ufg div.barra_ufg_box select {
       float: right;
       width: 150px;
-      height: 21px; }
+      height: 21px;
+      font-size: 12px; }
     div.barra_ufg div.barra_ufg_box a {
       text-decoration: none;
       color: #000; }

@@ -7,8 +7,8 @@ class Page < ActiveRecord::Base
   scope :published, where(:publish => true)
 
   scope :titles_like, lambda { |title|
-    joins('LEFT JOIN page_i18ns ON pages.id = page_i18ns.id 
-           LEFT JOIN locales ON page_i18ns.id = locales.id')
+    joins('LEFT JOIN page_i18ns ON pages.id = page_i18ns.page_id 
+           LEFT JOIN locales ON page_i18ns.locale_id = locales.id')
            .where(['LOWER(page_i18ns.title) like ?', "%#{title.try(:downcase)}%"])
   }
 
