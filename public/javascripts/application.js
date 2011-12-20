@@ -168,9 +168,11 @@ function add_check_icon(element){
 
 function remove_button_icons(elements){
    $(elements).each(function(index, element){
-      $(element).button({
-         icons: {}
-      });
+      if(!$(element).is(":checked")){
+         $(element).button({
+            icons: {}
+         });
+      }
    });
    return true;
 }

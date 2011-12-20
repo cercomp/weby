@@ -11,8 +11,7 @@
       float: none; }
 
 .period-dates {
-  float: left;
-  display: block; }
+  display: inline; }
   .period-dates .period-dates-inputs {
     float: right; }
     .period-dates .period-dates-inputs .period-date label {
