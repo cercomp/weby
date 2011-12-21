@@ -1,6 +1,8 @@
 #page_type {
   margin: 0 15px;
   margin-bottom: 10px; }
+  #page_type label {
+    display: inline; }
 
 #page-event {
   border: none; }
