@@ -2,8 +2,8 @@
   <legend><%= t"new_param.fem", :param => (t"page.one") %></legend>
 
   <%= simple_form_for [@site, @page],
-    #:url => site_pages_path(:type => params[:type]),
-   :html => { :multipart => true } do |f| %>
+    :url => site_pages_path(:type => params[:type]),
+    :html => { :multipart => true } do |f| %>
     <% if @page.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@page.errors.count,"") %><%= t"prohibited_being_saved", :count => @page.errors.count %>:</h2>
