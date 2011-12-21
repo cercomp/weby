@@ -89,7 +89,6 @@ class PagesController < ApplicationController
       else
         @page_files_unchecked = @site.repositories.page(1).per(params[:twitter_page].to_i*5)
       end
-      respond_with(@site, @page)
     end
   end
 
