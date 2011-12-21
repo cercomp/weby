@@ -1,12 +1,12 @@
+<%= debug @site.locales %>
 <fieldset>
-  <legend><%= t"new_param.fem", :param => (t"page.one") %></legend>
+  <legend><%= t"new_param.fem", param: (t"page.one") %></legend>
 
   <%= simple_form_for [@site, @page],
-    :url => site_pages_path(:type => params[:type]),
-    :html => { :multipart => true } do |f| %>
+    html: { multipart: true } do |f| %>
     <% if @page.errors.any? %>
       <div id="error_explanation">
-        <h2><%= pluralize(@page.errors.count,"") %><%= t"prohibited_being_saved", :count => @page.errors.count %>:</h2>
+        <h2><%= pluralize(@page.errors.count,"") %><%= t"prohibited_being_saved", count: @page.errors.count %>:</h2>
         <ul>
           <% @page.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
@@ -37,16 +37,12 @@
 
     <div class="tabs">
       <ul>
-        <% @site.locales.each do |locale| %>
-          <li>
-          <%= link_to t(locale.name), "##{locale.name}"  %>
-          </li>
+        <% @page.page_i18ns.each do |page_i18n| %>
+          <li> <%= link_to t(page_i18n.locale.name), "##{page_i18n.locale.name}" %> </li>
         <% end %>
       </ul>
-      <% @site.locales.each do |locale| %>
-        <div id="<%= locale.name %>">
-          <%= international_fields(locale.id, f) %>
-        </div>
+      <%= f.fields_for :page_i18ns do |i18nbuilder| %>
+        <%= render(partial: 'page_i18ns/page_i18n', locals: { i18nbuilder: i18nbuilder }) %>
       <% end %>
     </div>
 
@@ -75,22 +71,22 @@
       </div>
     </div>
 
-    <%= f.input :category_list, :label => t('categories'),
+    <%= f.input :category_list, label: t('categories'),
       placeholder: "UFG, Sports, Arts",
-      :hint => t('page_categories_help') %>
+      hint: t('page_categories_help') %>
 
-    <%= f.input :created_at, :order => [:year, :month, :day],
-      :use_month_numbers => true, :label => (t"date_param", :param => t("register")),
-      :start_year => Time.now.year, :as => :hidden %>
+    <%= f.input :created_at, order: [:year, :month, :day],
+      use_month_numbers: true, label: (t"date_param", param: t("register")),
+      start_year: Time.now.year, as: :hidden %>
 
-    <%#= f.input :position, :as => :hidden %>
-    <%#= f.input :status, :as => :hidden %>
-    <%= f.input :author_id, :input_html => {:value => "#{@current_user.id}"}, :as => :hidden %>
-    <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden  %>
+    <%#= f.input :position, as: :hidden %>
+    <%#= f.input :status, as: :hidden %>
+    <%= f.input :author_id, input_html: {value: "#{@current_user.id}"}, as: :hidden %>
+    <%= f.input :site_id, input_html: {value: @site.id}, as: :hidden  %>
 
     <%= f.simple_fields_for :sites_pages do |pages_form| %>
-      <%= pages_form.input :site_id, :input_html => {:value => @site.id}, :as => :hidden  %>
-      <%= pages_form.input :page_id, :input_html => {:value => @page.id}, :as => :hidden  %>
+      <%= pages_form.input :site_id, input_html: {value: @site.id}, as: :hidden  %>
+      <%= pages_form.input :page_id, input_html: {value: @page.id}, as: :hidden  %>
     <% end %>
 
 
@@ -101,17 +97,17 @@
       </div>
 
       <div class="right">
-        <%= f.input :publish , :label => t("publish"),
+        <%= f.input :publish , label: t("publish"),
           wrapper_html: { class: "left no-clearfix" },
           as: :boolean, input_html: { class: "check-button" } %>
-        <%= f.input :front , :label => t("cover"), 
+        <%= f.input :front , label: t("cover"), 
           wrapper_html: { class: "right no-clearfix" },
           as: :boolean, input_html: { class: "check-button" } %>
       </div>
     </div>
 
     <div class="actions">
-      <%= f.submit (t"create_param.masc", :param => (t"page.one")), class: "green-button" %>
+      <%= f.submit (t"create_param.masc", param: (t"page.one")), class: "green-button" %>
       <%= link_to t("back"), :back, class: "red-button" %>
     </div>
   <% end %>

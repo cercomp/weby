@@ -2,9 +2,9 @@ class Page < ActiveRecord::Base
   acts_as_taggable_on :categories
   acts_as_list
 
-  default_scope :order => 'pages.position,pages.id desc'
+  default_scope order: 'pages.position,pages.id desc'
 
-  scope :published, where(:publish => true)
+  scope :published, where(publish: true)
 
   scope :titles_like, proc { |title, locale|
     unless locale.blank?
@@ -20,30 +20,39 @@ class Page < ActiveRecord::Base
 
   scope :news, lambda { |front|
     where("front=:front AND date_begin_at <= :time AND( date_end_at is NULL OR date_end_at > :time)",
-          { :time => Time.now, :front => front }).
+          { time: Time.now, front: front }).
           published
   }
 
   validates_presence_of :author_id, :date_begin_at
 
-  belongs_to :user, :foreign_key => "author_id"
-	belongs_to :repository, :foreign_key => "repository_id"
+  belongs_to :user, foreign_key: "author_id"
+  belongs_to :repository, foreign_key: "repository_id"
 
   has_many :menus
   has_many :banners
 
   has_many :pages_repositories
-  has_many :repositories, :through => :pages_repositories
+  has_many :repositories, through: :pages_repositories
 
   has_many :sites_pages
-  has_many :sites, :through => :sites_pages
+  has_many :sites, through: :sites_pages
 
-  # Teste i18n
-  has_many :page_i18ns, :dependent => :destroy
+  has_many :page_i18ns, dependent: :destroy, validate: false
 
-  accepts_nested_attributes_for :page_i18ns, :allow_destroy => true
-  accepts_nested_attributes_for :sites_pages, :allow_destroy => true#, :reject_if => proc { |attributes| attributes['title'].blank? }
-  accepts_nested_attributes_for :pages_repositories, :allow_destroy => true
+  accepts_nested_attributes_for :page_i18ns,
+    allow_destroy: true,
+    reject_if: proc { |attributes| attributes['title'].blank?  }
+  accepts_nested_attributes_for :sites_pages, allow_destroy: true
+  accepts_nested_attributes_for :pages_repositories, allow_destroy: true
+
+  validate :at_leat_one_internationalization
+
+  def at_leat_one_internationalization
+    if self.page_i18ns.size <= 0
+      errors.add(:page, "need at least one internationalization")
+    end
+  end
 
   # Find i18n based on locale_name
   # Example: locale_name = 'pt-BR'
@@ -58,4 +67,16 @@ class Page < ActiveRecord::Base
     by_locale(session[:locale])
   end
 
+  # Necessário para o STI(News, Event)
+  # Classes filhas devem responder que são Pages
+  def self.model_name
+    name = "page"
+    name.instance_eval do
+      def plural;   pluralize;   end
+      def singular; singularize; end
+      def i18n_key; singularize; end
+      def human(*args); singularize; end
+    end
+    return name
+  end
 end

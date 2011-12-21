@@ -137,7 +137,7 @@ label {
     color: red; }
 
 .input label {
-  margin: 10px 0; }
+  margin-top: 10px; }
 
 .ui-multiselect-checkboxes label {
   width: 98% !important;
