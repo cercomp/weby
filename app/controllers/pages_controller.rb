@@ -9,8 +9,9 @@ class PagesController < ApplicationController
 
   def index 
     params[:type] ||= 'News'
-
-    @pages = @site.pages.titles_like(params[:search])
+    params[:locales] ||= session[:locale]
+    
+    @pages = @site.pages.titles_like(params[:search], params[:locales])
     if current_user
       @pages = @pages.except(:order).order(sort_column + " " + sort_direction).
         page(params[:page]).per(per_page)
@@ -161,7 +162,8 @@ class PagesController < ApplicationController
   # FIXEME método semelhante ao usado pelo 'index', verificar uma maneira de agrupa-los
   # Lista com paginação as notícias cadastradas
   def list_published
-    @pages = @site.pages.titles_like(params[:search]).except(:order).order(sort_column + " " + sort_direction).
+    params[:locales] ||= session[:locale]
+    @pages = @site.pages.titles_like(params[:search], params[:locales]).except(:order).order(sort_column + " " + sort_direction).
       page(params[:page]).per(per_page)
 
     @pages = @pages.published

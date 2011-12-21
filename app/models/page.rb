@@ -6,10 +6,16 @@ class Page < ActiveRecord::Base
 
   scope :published, where(:publish => true)
 
-  scope :titles_like, lambda { |title|
-    joins('LEFT JOIN page_i18ns ON pages.id = page_i18ns.page_id 
-           LEFT JOIN locales ON page_i18ns.locale_id = locales.id')
-           .where(['LOWER(page_i18ns.title) like ?', "%#{title.try(:downcase)}%"])
+  scope :titles_like, proc { |title, locale|
+    unless locale.blank?
+      joins('LEFT JOIN page_i18ns ON pages.id = page_i18ns.page_id 
+             LEFT JOIN locales ON page_i18ns.locale_id = locales.id')
+             .where(['LOWER(page_i18ns.title) like ? AND locales.name IN (?)', "%#{title.try(:downcase)}%", locale])
+    else
+      joins('LEFT JOIN page_i18ns ON pages.id = page_i18ns.page_id 
+             LEFT JOIN locales ON page_i18ns.locale_id = locales.id')
+             .where(['LOWER(page_i18ns.title) like ?', "%#{title.try(:downcase)}%"])
+    end
   }
 
   scope :news, lambda { |front|
