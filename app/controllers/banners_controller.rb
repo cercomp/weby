@@ -26,10 +26,17 @@ class BannersController < ApplicationController
 
   def new
     @banner = Banner.new
+    @pages = @site.pages.titles_like(params[:search]).page(params[:page]).per(params[:per_page])
+    @pages_on_banner = @pages.to_a 
   end
 
   def edit
     @banner = Banner.find(params[:id])
+    @pages = @site.pages.titles_like(params[:search]).page(params[:page]).per(params[:per_page])
+    @pages_on_banner = @pages.to_a 
+    unless @banner.page_id.nil?
+      @pages_on_banner = [Page.find(@banner.page_id)] + (@pages - [Page.find(@banner.page_id)])
+    end
   end
 
   def create
@@ -45,7 +52,6 @@ class BannersController < ApplicationController
 
   def update
     @banner = Banner.find(params[:id])
-
     if params[:submit_search]
       @banner.attributes = params[:banner]
       search_images

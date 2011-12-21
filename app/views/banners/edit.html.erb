@@ -28,18 +28,14 @@
       </div>
     <% end %>
     
-    <label>
-      <%= link_to t("show_hide_image_list"), "#",  
-        :remote => true, 
-        :onclick => "$('#repo_list').toggle(); $('#repo_new').toggle(); $('#search').toggle();"%>
-    </label>  
-  
-    <div id='repo_list' style="display:none">
-      <%= render :partial => 'repositories/repo', :locals => {:obj => @banner,
-          :field => :repository_id, :collection => @images, :hint => (t"help_image_banner") } %>
+    <div class="right" id="include_page_image">
+      <%= render_cell :repository, :include_file, "banner[repository_id]", 
+        t("banner_image"), file_types: "image", multiplicity: "one",
+        same_place: true %>
     </div>
 
-    <%= render :partial => 'form', :locals => {:f => f} %>
+
+    <%= render :partial => 'form', :locals => {:f => f, :action => 'edit'} %>
 
     <div class="actions">
       <%= f.submit t"save" %> <%= link_to t('back'), :back %>

@@ -1,22 +1,19 @@
-<fieldset class="left">
+<div class="teste">
   <div class="checkbox-button-set">
     <% repo_styles = Repository.attachment_definitions[:archive][:styles] %>
     <% unless repo_styles.nil? %>
       <%= f.input :size, 
         label: t('size'),
         collection: repo_styles,
-        label_method: lambda { |u| "#{t(u[0])} #{u[1]}" }, 
+        label_method: lambda { |u|"#{u[1]}" }, 
         value_method: lambda { |u| u[0] },
         as: :radio%>
     <% end %>
   </div>
 
-<%= f.input :width, :label => t("width"), :input_html => {:size => 3} %> 
-<%= f.input :height, :label => t("height"), :input_html => {:size => 3} %>
-</fieldset>
-
-
-
+  <%= f.input :width, :label => t("width"), :input_html => {:size => 3} %> 
+  <%= f.input :height, :label => t("height"), :input_html => {:size => 3} %>
+</div>
 
 <div class="tabs">
   <%= f.input :title, label: "",
@@ -28,11 +25,9 @@
     as: :text %>
 </div>
 
-<%= f.input :url, label: t("url"), hint: t("field_required"), as: :url %>
-
 
 <div class="period-dates left">
-  <label>Período do Banner:</label>
+  <label><%= t("period_banner") %> </label>
   <div class="period-dates-inputs">
     <%= f.input :date_begin_at, as: :string,
       placeholder: t("begin"),
@@ -48,6 +43,17 @@
 
 <%= f.input :category_list, :label => t('categories'), :hint => t('page_categories_help') %>
 
+<div class="link-field">
+  <label for="div_event"><%= t"type" %></label>
+  <div id="link_form_pages">
+    <% set_params_type_value %>
+    <%= links_to_banner_type(params[:type], action ||='new') %>
+  </div>
+</div>
+
+<div id="div_link">
+  <%= render :partial => 'formPages', :locals => {:f => f} %>
+</div>
 
 <div class="right">
   <%= f.input :publish , :label => t("publish"),
@@ -60,5 +66,4 @@
 <%= f.input :user_id, :input_html => {:value => "#{@current_user.id}"}, :as => :hidden %>
 
 
-<%= content_for :javascripts, javascript_include_tag("pages_new") %>
 <%= content_for :stylesheets, stylesheet_link_tag("banners_new") %>

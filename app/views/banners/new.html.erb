@@ -33,7 +33,7 @@
 
     <div class="right" id="include_page_image">
       <%= render_cell :repository, :include_file, "banner[repository_id]", 
-        "Imagem do Banner", file_types: "image", multiplicity: "one",
+        t("banner_image"), file_types: "image", multiplicity: "one",
         same_place: true %>
     </div>
 
@@ -42,7 +42,7 @@
         :locals => {:obj => @banner, :field => :repository_id, :collection => @images, :hint => (t"help_image_banner") } %>
     </div>
 
-    <%= render :partial => 'form', :locals => {:f => f} %>
+    <%= render :partial => 'form', :locals => {:f => f, :action => 'new'} %>
     <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
 
     <div class="actions">
@@ -51,4 +51,4 @@
 
   <% end %>
 </fieldset>
-<%= content_for :javascripts, javascript_include_tag("pages_new") %>
+<%= content_for :stylesheets, stylesheet_link_tag("banners_new") %>

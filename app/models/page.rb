@@ -24,6 +24,7 @@ class Page < ActiveRecord::Base
 	belongs_to :repository, :foreign_key => "repository_id"
 
   has_many :menus
+  has_many :banners
 
   has_many :pages_repositories
   has_many :repositories, :through => :pages_repositories

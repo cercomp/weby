@@ -1,0 +1,21 @@
+<%= simple_fields_for @banner do |extend| %>
+  <% if params[:type] == "external" %>
+    <%= extend.input :url,
+      label: t("url"),
+      hint: (t"type_param", param: t("url")),
+      as: :url %>
+  <% elsif @pages.try(:count) %>
+    <%= extend.input :page_id, 
+      label: t('url'),
+      collection: @pages_on_banner,
+      collection_wrapper_tag: "div class='radio-group'",
+      as: :radio, 
+      input_html: { class: "check-button" },
+      label_method: lambda {|u|
+      raw "<span class='radio-item-list'>#{u.by_locale(session[:locale]).title}</span><br />"
+    },
+      value_method: 'id',
+      paginate: "#{paginate @pages}" %>
+  <% end %>
+<% end %>
+

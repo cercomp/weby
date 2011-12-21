@@ -35,6 +35,7 @@ pt-BR:
   banner:
     one: "Banner"
     other: "Banners"
+  banner_image: "Imagem do Banner"
   base: "Base"
   begin: "Início"
   bottom: "Inferior"
@@ -276,6 +277,8 @@ pt-BR:
   password_confirmation: "Confirmação da senha"
   per_page_default: 'Quantidade padrão de itens por página'
   pdf: "PDF"
+  period_banner: "Período do Banner:"
+  period_page: "Período da Notícia:"
   permission:
     one: "Permissão"
     other: "Permissões"
