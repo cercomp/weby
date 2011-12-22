@@ -5,8 +5,8 @@
       <%= f.input :size, 
         label: t('size'),
         collection: repo_styles,
-        label_method: lambda { |u|"#{u[1]}" }, 
-        value_method: lambda { |u| u[0] },
+        label_method: lambda { |u| "#{u[1]}" }, 
+        value_method: lambda { |u|  t(u[0]) },
         as: :radio%>
     <% end %>
   </div>

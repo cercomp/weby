@@ -38,7 +38,7 @@ class Repository < ActiveRecord::Base
     mini: "95x70",
     little: "190x140",
     medium: "400x300",
-    original: ""
+    original: "Original"
   }
 
   has_attached_file :archive,
