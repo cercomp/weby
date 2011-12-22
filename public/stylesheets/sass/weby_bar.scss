@@ -14,28 +14,35 @@ $menu-border-ie: 1px solid opacify($border-color, 1);
   border-bottom: $menu-border; 
   height: $menu-line-height;
   @include background-opacity;
+
 }
 
-.left{float: left}
-.right{float: right}
+.left{
+  clear: left;
+  float: left
+}
+.right{
+  clear: right;
+  float: right
+}
 
 .top_menu {
   top: 0;
   line-height: $menu-line-height;
   color: $menu-text-color !important;
 
-.separator{
-  background:  darken($main-color, 5%);
-  font-weight: bold;
-  border:{
-    bottom: 1px solid #ccc;
-    top: 1px solid #ccc;
+  .separator{
+    background:  darken($main-color, 5%);
+    font-weight: bold;
+    border:{
+      bottom: 1px solid #ccc;
+      top: 1px solid #ccc;
+    }
+
+    &:hover{
+      background: darken($main-color, 5%);
+    }
   }
-  
-  &:hover{
-    background: darken($main-color, 5%);
-  }
-}
 
   menu { 
     padding: 0 2px;

@@ -11,9 +11,11 @@
   /* for IE */ }
 
 .left {
+  clear: left;
   float: left; }
 
 .right {
+  clear: right;
   float: right; }
 
 .top_menu {

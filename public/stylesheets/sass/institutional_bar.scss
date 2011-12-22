@@ -1,0 +1,50 @@
+$height: 26px;
+$text-color: black;
+$background-color: #ccc;
+$select-color: #f4f4f4;
+
+#institutional_bar {
+  height: $height;
+  line-height: $height;
+  color: $text-color;
+  width: 100%;
+  background: $background-color;
+
+  .content {
+    margin: 0 auto;
+    aside { width: auto; }
+    
+    .left{
+      clear: left;
+      float: left;
+      padding-left: 7px;
+
+      a { 
+        color: $text-color;
+        font-size: 16px;
+      }
+
+      img {
+        height: 20px;
+        padding: 3px;
+        vertical-align: top;
+      }
+
+      .name { padding: 5px 2px; }
+    }
+    
+    .right{
+      clear: right;
+      float: right;
+      text-align: right;
+      padding-right: 10px;
+      
+      select {
+        font-size: 11px;
+        margin: 3px 0;
+        padding: 1px;
+        background: $select-color;
+      }
+    }
+  }
+}

@@ -1,0 +1,90 @@
+#page_type {
+  margin: 0 15px;
+  margin-bottom: 10px; }
+  #page_type label {
+    display: inline; }
+
+#page-event {
+  border: none; }
+  #page-event legend {
+    border: none;
+    background: none; }
+    #page-event legend label {
+      float: none; }
+
+.period-dates {
+  display: inline; }
+  .period-dates .period-dates-inputs {
+    float: right; }
+    .period-dates .period-dates-inputs .period-date label {
+      display: none; }
+    .period-dates .period-dates-inputs .period-date input {
+      width: 140px; }
+    .period-dates .period-dates-inputs .period-date-left {
+      clear: none;
+      float: left;
+      margin-right: 5px; }
+    .period-dates .period-dates-inputs .period-date-right {
+      clear: none;
+      float: right; }
+
+#include_page_image {
+  margin: 10px 15px;
+  width: 113px;
+  height: 85px;
+  padding: 5px;
+  text-align: center;
+  z-index: 9999;
+  border: 3px dashed gray; }
+  #include_page_image a {
+    border: none;
+    background: none; }
+  #include_page_image ul, #include_page_image li {
+    text-align: center;
+    padding: 0;
+    margin: 0; }
+  #include_page_image li {
+    margin-top: 5px; }
+    #include_page_image li label {
+      border: none;
+      background: none; }
+
+.tabs {
+  clear: both;
+  margin-bottom: 30px; }
+
+.title_page_input, .title_banner_input {
+  height: 35px;
+  font-size: 34px !important;
+  font-family: "Times New Roman" !important;
+  padding: 5px !important;
+  width: 500px; }
+
+.title_page_input::-webkit-input-placeholder, .title_banner_input::-webkit-input-placeholder {
+  line-height: 35px; }
+
+input.title_page_input:-moz-placeholder, input.title_banner_input:-moz-placeholder {
+  line-height: 35px; }
+
+.text_page_input {
+  height: 500px;
+  width: 500px; }
+
+.summary_page_input {
+  height: 200px;
+  width: 500px; }
+
+.text_banner_input {
+  height: 300px;
+  width: 500px; }
+
+label {
+  font-size: 14px;
+  font-familly: Verdana;
+  cursor: pointer;
+  float: left;
+  width: 100px;
+  text-align: left;
+  margin: 0 10px; }
+  label abbr {
+    color: red; }
