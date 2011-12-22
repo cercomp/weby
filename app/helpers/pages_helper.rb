@@ -1,5 +1,12 @@
 module PagesHelper
 
+  def locale_with_name(page_i18n)
+    raw %{
+      #{image_tag("flags/24/#{page_i18n.locale.flag}", :title=>t(page_i18n.locale.name))} 
+      #{t(page_i18n.locale.name)}
+    }
+  end
+
   def thumbnail_on_show
     raw image_tag(page_image(format), align: "right", size: page_image_size)
   end

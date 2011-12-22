@@ -46,7 +46,6 @@ class PagesController < ApplicationController
     @page.pages_repositories.build
     build_site_locales
 
-
     @images = @site.repositories.content_file("image").
       page(params[:page]).per(params[:per_page])
 
@@ -61,7 +60,7 @@ class PagesController < ApplicationController
     params[:type] ||= @page.type
     params[:twitter_page] ||= 1
 
-    @locales = @page.page_i18ns.map{|i18n| Locale.find(i18n.locale_id).name}
+    build_site_locales
 
     @page.pages_repositories.build
 
@@ -93,14 +92,13 @@ class PagesController < ApplicationController
   end
 
   def update
+    params[:type] ||= 'News'
     @page = Page.find(params[:id])
-    # Se não houver nenhum checkbox marcado, remover todos.
-    params[@page.type.downcase.to_s][:repository_ids] ||= [] 
-    if @page.update_attributes(params[@page.type.downcase.to_s])
-      flash[:notice] = t"successfully_updated"
+    p @page.page_i18ns
+    unless @page.update_attributes(params[:page])
+      build_site_locales
     end
-    #respond_with(@page, location: site_pages_path(type: params[:type]))
-    redirect_to site_page_path(@site, @page)
+    respond_with(@site, @page)
   end
 
   def destroy
@@ -136,33 +134,15 @@ class PagesController < ApplicationController
     end
   end
 
-  # Actions referêntes ao gerenciamento de internacionalizações
-  def add_i18n
-    flash[:warning] = t("edit_yours_i18ns")
-    @page = Page.find(params[:id])
-    @page_i18n = PageI18n.new(page_id: @page.id)
-    # Available languages
-    @langs = Locale.all - @page.page_i18ns.map{|p| p.locale}
-  end
-
-  def create_i18n
-    @page_i18n = PageI18n.new(params[:page_i18n])
-    if @page_i18n.save
-      # TODO escrever 18n da frase 'Sucesso'
-      redirect_to site_page_url(@site, @page_i18n.page, page_loc: @page_i18n.locale.name), notice: 'Sucesso'
-    else
-      @page = @page_i18n.page
-      @langs = Locale.all - @page.page_i18ns.map{|p| p.locale}
-      render :add_i18n
-    end
-  end
-
   # TODO teste para listar páginas na criação do componente news_as_home
   # FIXEME método semelhante ao usado pelo 'index', verificar uma maneira de agrupa-los
   # Lista com paginação as notícias cadastradas
   def list_published
     params[:locales] ||= session[:locale]
-    @pages = @site.pages.titles_like(params[:search], params[:locales]).except(:order).order(sort_column + " " + sort_direction).
+    @pages = @site.pages.
+      titles_like(params[:search], params[:locales]).
+      except(:order).
+      order(sort_column + " " + sort_direction).
       page(params[:page]).per(per_page)
 
     @pages = @pages.published
@@ -190,7 +170,12 @@ class PagesController < ApplicationController
   end
 
   def build_site_locales
-    @site.locales.each do |locale|
+    locales = @site.locales
+    if @page.page_i18ns.size > 0
+      locales = locales.
+        where(["id not in (?)", @page.page_i18ns.map{|page_i18n| page_i18n.locale.id}])
+    end
+    locales.each do |locale|
       @page.page_i18ns.build(locale_id: locale.id)
     end
   end

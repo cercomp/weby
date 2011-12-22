@@ -68,7 +68,6 @@
     <% end %>
 
     <%= make_menu(@page, :except => "show") %>
-    <%= link_to_add_page_i18n(@page, @site) %>
     <%= link_to t("list_all.fem"), site_pages_path(@site), :class => 'icon-list' %>
     <%= link_to t("back"), :back , :class => 'icon icon-back' %>
   </article>

@@ -1,5 +1,8 @@
 <div id="<%= i18nbuilder.object.locale.name %>">
   <%= i18nbuilder.input(:locale_id, input_html: { value: i18nbuilder.object.locale.id }, as: :hidden) %>
+  <%= i18nbuilder.input :_destroy,
+    label: t("delete"),
+    as: :boolean %>
   <%= i18nbuilder.input :title, label: "",
     placeholder: t("title"),
     required: false,
