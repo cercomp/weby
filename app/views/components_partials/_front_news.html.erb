@@ -28,7 +28,6 @@
       <% if check_permission(PagesController, ["sort"]) %>
         <%= link_to t("move"), "#", :class => 'handle icon icon-drag' if @front_news.length > 1 %>
       <% end %>
-      <%= link_to_add_page_i18n(page, @site) %>
     </article>
   <% end %>
   </li>
