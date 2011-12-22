@@ -1,5 +1,6 @@
 <script>
   $(function() {
+    // TODO métodos para realizar a páginação manualmente
     $(".pages_paginator a[data-remote=true]").live("click", function() {
       $('table.list').html("<img src='/images/spinner.gif'>");
       $.get(this.href, {'tiny_mce': true }, null, 'script');
@@ -10,9 +11,20 @@
       $.get(this.href, {'tiny_mce': true }, null, "script");
       return false;
     });
+    
+    // Forma um link para a página da forma:
+    //  /sites/site_name/pages/page_id
     $("table.list > tbody > tr").live("click", function(){
       var page = tinyMCEPopup.editor.settings.plugin_preview_pageurl;
       $('#href').val("/sites/"+page+"/pages/"+$(this).find('td').first().text());
+    });
+    
+    // Para realizar a consulta por páginas
+    $('#search_button').live('click', function(e) {
+      var search = $('#search').val();
+      $.get(this.href, {'tiny_mce': true, 'search': search}, null, 'script');
+      e.preventDefault();
+      return false;
     });
   });
 </script>
@@ -24,6 +36,12 @@
     background: rgb(204, 204, 204);
   }
 </style>
+<div id="tinyMCE_search_area">
+  <%= text_field_tag 'search', params[:search], :placeholder => t('search') + " " + t('page.other') %>
+  <%= link_to t('search'), site_pages_path, :remote => true, :id => 'search_button' %>
+</div>
+<br/>
+
 <table class='list' style="width:100%" rules="all" >
   <thead>
     <th><%= sortable 'id' %></th>
