@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="<%= session[:locale].to_s %>">
-  <%= content_for :stylesheets do %>
-    <%= stylesheet_link_tag 'this2' %>
-  <% end %>
+  <%= content_for :stylesheets, stylesheet_link_tag('this2') %>
+  
   <%= render 'layouts/shared/head' %>
   <body>
     <div class='first_place'>

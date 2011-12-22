@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="<%= session[:locale].to_s %>">
-  <%= content_for :stylesheets do %>
-    <%= stylesheet_link_tag 'portal' %>
-  <% end %>
+  <%= content_for :stylesheets, stylesheet_link_tag('portal') %>
   
   <%= render 'layouts/shared/head', :contrast => 'contrast' %>
   
