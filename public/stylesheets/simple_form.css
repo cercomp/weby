@@ -154,3 +154,17 @@ input:-moz-placeholder {
   width: 120px;
   display: block;
   margin-top: 5px; }
+
+.input.check_boxes input.check_boxes + label {
+  width: auto;
+  float: left;
+  left: 10px; }
+
+.input.check_boxes input.check_boxes {
+  float: left;
+  clear: left;
+  display: inline;
+  margin-left: 0px; }
+
+.input.check_boxes {
+  overflow: auto; }

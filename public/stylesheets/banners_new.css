@@ -84,7 +84,15 @@ label {
   cursor: pointer;
   float: left;
   width: 100px;
-  text-align: left;
+  text-align: center;
   margin: 0 10px; }
   label abbr {
     color: red; }
+
+.hint {
+  color: #555;
+  display: block;
+  margin-left: 140px;
+  width: 200px;
+  font-size: 11px;
+  font-style: italic; }
