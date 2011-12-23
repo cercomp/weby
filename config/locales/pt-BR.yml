@@ -271,6 +271,7 @@ pt-BR:
     one: "Página"
     other: "Páginas"
     image: "Imagem da Página"
+  page_need_at_least_one_internationalization: "Necessita ao menos de uma internacionalização"
   page_categories_help: 'Categorias são separadas por vírgula, a categoria de uma página é relacionada ao seu conteúdo. Ex: Esporte, Notícia, UFG'
   password: "Senha"
   password_change: "Nova senha"

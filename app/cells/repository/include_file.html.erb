@@ -1,4 +1,4 @@
-<%= link_to @label, params.merge({
+<%= link_to @image_label || @label, params.merge({
   controller: 'repositories_search',
   action: 'open_file_search_box',
   name: @name,

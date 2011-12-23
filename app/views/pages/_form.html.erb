@@ -26,9 +26,14 @@
   <% end %>
 
   <div class="right" id="include_page_image">
-    <%= render_cell :repository, :include_file, "page[repository_id]", 
-      t("page.image"), file_types: "image", multiplicity: "one",
-      same_place: true %>
+    <%= render_cell :repository,
+      :include_file,
+      "page[repository_id]",
+      t("page.image"),
+      file_types: "image",
+      multiplicity: "one",
+      same_place: true,
+      object: @page.repository_id %>
   </div>
 
   <div class="tabs">

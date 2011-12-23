@@ -11,6 +11,7 @@ html("<%= escape_javascript(render "repositories_search/files_list",
 if('<%= @same_place %>' == 'true' && <%= @files.count %> > 0 ){
 
   $("#link-to-include-files").hide();
+  $("#<%= @final_files_list %>").find('input').hide();
 
   $("#<%= @final_files_list %>").click(function(event){
     $("#link-to-include-files").trigger('click');
