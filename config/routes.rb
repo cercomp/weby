@@ -40,7 +40,7 @@ Webyge::Application.routes.draw do
     resources :menus do 
       collection do 
         get :rm_menu, :change_position, :to_site
-        post :link_site, :unlink_site
+        post :link_site, :unlink_site, :sort
       end 
     end
     resources :banners do 

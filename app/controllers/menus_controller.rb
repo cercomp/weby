@@ -58,6 +58,21 @@ class MenusController < ApplicationController
     @menu.destroy
     respond_with(@menu)
   end
+
+  # Altera a ordenação do menu
+  def sort
+    @ch_pos = SitesMenu.find(params[:id])
+
+    SitesMenu.where({:category => @ch_pos.category, :site_id => @ch_pos.site_id}).update_all("position = position-1",["position > ? AND parent_id = ? ", @ch_pos.position, @ch_pos.parent_id])
+
+    @ch_pos.parent_id = params[:parent_id]
+    @ch_pos.position = params[:position]
+
+    SitesMenu.where({:category => @ch_pos.category, :site_id => @ch_pos.site_id}).update_all("position = position+1",["position >= ? AND parent_id = ? ", @ch_pos.position, @ch_pos.parent_id])
+
+    @ch_pos.save
+  end
+
   # Altera a ordenação do menu
   def change_position
     @ch_pos_new = SitesMenu.find(params[:id])

@@ -19,4 +19,39 @@
       <%= raw print_menu(@menus[params[:category]], 1) %>
     <% end %>
   </div>
+  <%= javascript_tag do %>
+    window.onload=function(){
+      $().ready(function() {
+         $('#main-tabs > menu').nestedSortable({
+          listType: 'menu',
+          handle: '.handle',
+          cursor: 'crosshair',
+          items: 'li',
+          opacity: 0.4,
+          scroll: true,
+          forcePlaceholderSize: true,
+          placeholder: 'drop-here',
+          tolerance: 'pointer',
+          toleranceElement: '> div',
+          update: function(event, ui){
+
+            id = ui.item.attr('id').replace('menu_','');
+            parent_id = ui.item.parents('li').attr('id') ? ui.item.parents('li').attr('id').replace('menu_','') : 0;
+            position = ui.item.index()+1;//A position no banco começa com 1
+
+            $.ajax({
+              type: 'post',
+              data: 'id='+id+'&parent_id='+parent_id+'&position='+position,
+              dataType: 'script',
+              complete: function(request){ $(ui.item).effect('highlight'); },
+              url: '<%= sort_site_menus_path %>'
+            })
+          }
+        })
+
+      })
+    }
+  <% end %>
 </fieldset>
+<%= content_for :javascripts, javascript_include_tag("jquery.ui.nestedSortable") %>
+<%= content_for :stylesheets, stylesheet_link_tag("jquery.sortable") %>

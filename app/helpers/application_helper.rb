@@ -46,7 +46,9 @@ module ApplicationHelper
     indent_space = " " * indent
     submenu = (not sons[entry.id].nil?) ? "class='sub'" : nil
 
-    "<li #{submenu}>".tap do |menus|
+    (view_ctrl == 1 ?
+      "<li id=\"menu_#{entry.id}\" #{submenu}><div>" :
+      "<li #{submenu}>").tap do |menus|
       #		if (entry.menu.try(:page_id).nil? and entry.menu.try(:link).empty?)
       #menus << "#{entry.menu.try(:title)}"
       #		else
@@ -70,9 +72,10 @@ module ApplicationHelper
         menus << indent_space + link_to(image_tag('subitem.gif', :border => 0, :alt => t("add_sub_menu")), new_site_menu_path(@site.name, :parent_id => entry.id), :title => t("add_sub_menu"))
         menus << indent_space + link_to(image_tag('setaup.gif', :border => 0, :alt => t("move_menu_up")), change_position_site_menus_path(:id => entry.id, :position => (entry.position.to_i - 1)), :title => t("move_menu_up")) if entry.position.to_i > 1
         menus << indent_space + link_to(image_tag('setadown.gif', :border => 0, :alt => t("move_menu_down")), change_position_site_menus_path(:id => entry.id, :position => (entry.position.to_i + 1)), :title => t("move_menu_down")) if (entry.position.to_i < sons[entry.parent_id].count.to_i)
+        menus << indent_space + link_to("","#", :class => 'handle icon icon-drag')
         menus << indent_space + link_to(image_tag('apagar.gif', :border => 0, :alt => t("destroy")), rm_menu_site_menus_path(:id => entry.id), :confirm => t('are_you_sure'), :title => t("destroy"))
       end
-      menus << "\n" + indent_space + " <menu>" unless submenu.nil?
+      menus << "\n" + indent_space + (view_ctrl == 1 ? "</div><menu>":"<menu>") unless submenu.nil?
       if sons[entry.id].class.to_s == "Array"
         sons[entry.id].each do |child|
           menus << print_menu_entry(sons, child, view_ctrl, indent+3)
@@ -80,7 +83,7 @@ module ApplicationHelper
       end
       menus << "\n" + indent_space + " </menu>" unless submenu.nil?
       menus << "\n" + indent_space + "</li>" unless submenu.nil?
-      menus << "</li>" if submenu.nil?
+      menus << (view_ctrl == 1 ? "</div></li>":"</li>") if submenu.nil?
     end
   end
 
