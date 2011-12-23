@@ -22,13 +22,15 @@ ul.attachment_list {
   padding:0;
 }
 ul.attachment_list li {
-  width: 50px;
   float: left;
   margin-right: 8px;
   margin-bottom:5px;
 }
 ul.attachment_list li img {
-  width: 50px;
+  border: 1px solid transparent;
+}
+ul.attachment_list li img:hover {
+  border: 1px solid black;
 }
 ul.attachment_list li a {		
   outline:none;
