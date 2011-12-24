@@ -58,7 +58,7 @@ class UsersController < ApplicationController
       end
       # NOTE Talvez seja melhor usar (user.role_ids += params[:role_ids]).uniq
       # assim removemos o each logo a cima
-      user.role_ids += params[:role_ids]
+      user.role_ids = params[:role_ids]
     end
     redirect_to :action => 'manage_roles'
   end

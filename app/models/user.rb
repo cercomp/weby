@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   scope :global_role, lambda { select("DISTINCT users.* ").
     joins('LEFT JOIN roles_users ON roles_users.user_id = users.id 
            LEFT JOIN roles ON roles.id = roles_users.role_id').
-    where(["roles.site_id IS NULL"])
+    where(["roles.site_id IS NULL and roles_users.user_id IS NOT NULL"])
   }
 
   scope :by_no_site, lambda { |site_id|
