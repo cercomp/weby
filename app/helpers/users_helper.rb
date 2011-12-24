@@ -4,8 +4,9 @@ module UsersHelper
   def sites_with_roles
     sites = {}
     @user.roles.order(:site_id).each do |r|
-      sites[r.site.name] = [] if sites[r.site.name] == nil
-      sites[r.site.name] << r
+      role_site_name = r.site.try(:name)
+      sites[role_site_name] = [] if sites[role_site_name] == nil
+      sites[role_site_name] << r
     end
     sites
   end
