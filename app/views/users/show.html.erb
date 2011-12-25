@@ -18,12 +18,12 @@
     <h1><%= t('user_current_sites') %></h1>
     <ul>
       <% sites_with_roles.each do |s, roles| %>
-        <li>
-          <% unless s.blank? %>
+        <% unless s.blank? %>
+          <li>
             <%= link_to s, roles.first.site %>
             (<%= t('role.other') %>: <%= roles.map{|r| r.name}.join(', ') %>)
-          <% end %>
-        </li>
+          </li>
+        <% end %>
       <% end %>
     </ul>
   </div>
