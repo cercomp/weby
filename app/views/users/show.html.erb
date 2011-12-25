@@ -19,7 +19,7 @@
     <ul>
       <% sites_with_roles.each do |s, roles| %>
         <li>
-          <%= link_to s, roles.first.site %>
+          <%= link_to s, roles.first.site unless s.blank? %>
           (<%= t('role.other') %>: <%= roles.map{|r| r.name}.join(', ') %>)
         </li>
       <% end %>
