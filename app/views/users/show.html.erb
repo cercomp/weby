@@ -6,7 +6,8 @@
         o nome em uppercase, será mostrado em camelcase.
         #NOTE procurei no ruby uma função para isso e não achei %>
     <h1><%= [@user.first_name, @user.last_name].join(' ').split.map{ |word| word.capitalize }.join(' ') %></h1>
-		<p> <b><%= t('id') %>:</b> <%= @user.id %> </p>
+    <p> <b><%= t('id') %>:</b> <%= @user.id %> </p>
+    <p> <b><%= t('username') %>:</b> <%= @user.login %> </p>
     <p> <b><%= t('email') %>:</b> <%= @user.email %> </p>
     <p> <b><%= t('phone') %>:</b> <%= @user.phone %> </p>
     <p> <b><%= t('mobile') %>:</b> <%= @user.mobile %> </p>
