@@ -142,14 +142,7 @@ module ApplicationHelper
     site ||= @site
     return false if user.nil? or user.blank?
     # Obtém todos os papéis globais
-    roles_assigned = current_user.roles.where(site_id: nil)
-    # Se não existir papéis globais
-    unless roles_assigned
-      # Obtém todos os papéis do usuário relacionados com site
-      roles_assigned = current_user.roles.where(site_id: site) if site
-    end 
-
-    return roles_assigned
+    roles_assigned = current_user.roles
   end
 
   # Verifica as permissões do usuário dado um controlador
@@ -159,10 +152,10 @@ module ApplicationHelper
     user ||= current_user
     # Se não está logado não existe permissões
     return [args[:except]] if user.nil?
-    ctr = args[:controller]
+    ctr = args[:controller] || controller
+    return ctr.class.instance_methods(false) if user.is_admin
     perms = []
     perms_user = []
-    return controller.class.instance_methods(false) if user.is_admin
     get_roles(user, @site).each do |role|
       role.rights.each do |right|
         if right.controller == ctr.controller_name
@@ -178,10 +171,10 @@ module ApplicationHelper
       elsif args[:only]
         perms = args[:only] & perms_user
       end
-      return perms
+      return perms.uniq!
     end
 
-    return perms_user
+    return perms_user.uniq!
   end
 
   # Monta o menu baseado nas permissões do usuário
