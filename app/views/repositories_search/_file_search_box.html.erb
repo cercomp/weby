@@ -4,7 +4,7 @@
   <%= hidden_field_tag "multiplicity", multiplicity %>
   <%= hidden_field_tag "name", name %>
   <%= hidden_field_tag "final_files_list", final_files_list %>
-  <%= search_field_tag "search[name]", nil, placeholder: 'filename_or_description' %>
+  <%= search_field_tag "search[name]", nil, placeholder: t('filename_or_description') %>
   <% if file_types.try(:any?) %>
     <% file_types.each do |file_type| %>
       <%= hidden_field_tag "search[type][]", file_type %>

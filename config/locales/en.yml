@@ -130,6 +130,7 @@ en:
   file:
     one: "File"
     other: "Files"
+  filename_or_description: "Filename or description"
   fill_email_form: "Fill out the form below to reset your password. It will be e-mailed to you"
   filter: "Filter"
   first_name: "First name"
