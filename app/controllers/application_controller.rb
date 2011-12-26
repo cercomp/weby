@@ -29,23 +29,19 @@ class ApplicationController < ActionController::Base
   end
 
   def check_authorization
-    if current_user
-      if current_user.is_admin
-        return true
-      end
-      unless current_user.roles.where(:site_id => @site).detect do |role|
-          #      unless current_user.roles.detect do |role|
-          role.rights.detect do |right|
-            right.action.split(' ').detect do |ri| 
-              right.controller == self.class.controller_path && ri == action_name
-            end
-          end
+    return false unless current_user
+    return true if current_user.is_admin
+    unless get_roles(current_user).detect do |role|
+      role.rights.detect do |right|
+        right.action.split(' ').detect do |ri| 
+          right.controller == self.class.controller_path && ri == action_name
         end
-        flash[:error] = t("access_denied")
-        #request.env["HTTP_REFERER" ] ? (redirect_to :back) : (render :template => 'admin/access_denied')
-        (render :template => 'admin/access_denied')
-        return false
       end
+    end
+    flash[:error] = t("access_denied")
+    #request.env["HTTP_REFERER" ] ? (redirect_to :back) : (render :template => 'admin/access_denied')
+    (render :template => 'admin/access_denied')
+    return false
     end
   end
 

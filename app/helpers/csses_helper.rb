@@ -1,7 +1,8 @@
 module CssesHelper
   def make_menu_css(cssrel, args={})
     menu = ''
-    get_permissions(current_user, '', args).each do |permission|
+    ctr = args[:controller].nil? ? controller : CssesController
+    get_permissions(current_user, :controller => ctr).each do |permission|
       if controller.class.instance_methods(false).include?(permission.to_sym)
         if @site.id == cssrel.site.id
           case permission.to_s

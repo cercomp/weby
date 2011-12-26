@@ -106,63 +106,75 @@ module ApplicationHelper
   def check_permission(ctrl, actions)
     # Se o argumento de ações for uma string, passa para array
     actions = [actions] unless actions.is_a? Array
-
+    # Se não estiver logado retorna falso
+    return false unless current_user 
     # Se o usuário for admin então dê todas as permissões
-    if current_user and current_user.is_admin
-      return true
-    elsif current_user and @site
-      # Obtem todos os papéis do usuário relacionados com site
-      current_user.roles.where(:site_id => @site).each do |role|
-        # Obtem qualquer papél do usuário
-        #current_user.roles.each do |role| 
-        # Obtem o campo multi-valorados contendo todos os direitos
-        role.rights.each do |right|
-          # Controlador do usuario (right.controller) = nome do controlador recebido como parâmetro (ctr.controller_name)
-          if right.controller == ctrl.controller_name
-            # Cria o vetor ri com todos os direitos do usuário
-            right.action.split(' ').each do |ri|
-              actions.each do |action|
-                # Verifica:
-                # 1. Se a ação existe no controlador (Caso o usuário tenha adicionado nome incorreto)
-                # 2. Direito do usuário (ri) = ação recebida como parâmetro (action)
-                if ctrl.instance_methods(false).include?(action.to_sym) and ri.to_s == action.to_s
-                  return true
-                end
+    return true if current_user.is_admin 
+    get_roles(current_user, @site).each do |role|
+      # Obtém o campo multi-valorados contendo todos os direitos
+      role.rights.each do |right|
+        # Controlador do usuario (right.controller) = nome do controlador recebido como parâmetro (ctr.controller_name)
+        if right.controller == ctrl.controller_name
+          # Cria o vetor ri com todos os direitos do usuário
+          right.action.split(' ').each do |ri|
+            actions.each do |action|
+              # Verifica:
+              # 1. Se a ação existe no controlador (Caso o usuário tenha adicionado nome incorreto)
+              # 2. Direito do usuário (ri) = ação recebida como parâmetro (action)
+              if ctrl.instance_methods(false).include?(action.to_sym) and ri.to_s == action.to_s
+                return true
               end
             end
           end
         end
       end
-      return false
     end
+
+    return false
+  end
+
+  # Obtém os papéis do usuário
+  # Obs.: Fluxo papéis globais para locais
+  # Parâmestros: user, site
+  # Retorna: vetor de papéis
+  def get_roles(user, site=nil)
+    user ||= current_user
+    site ||= @site
+    return false if user.nil? or user.blank?
+    # Obtém todos os papéis globais
+    roles_assigned = current_user.roles.where(site_id: nil)
+    # Se não existir papéis globais
+    unless roles_assigned
+      # Obtém todos os papéis do usuário relacionados com site
+      roles_assigned = current_user.roles.where(site_id: site) if site
+    end 
+
+    return roles_assigned
   end
 
   # Verifica as permissões do usuário dado um controlador
   # Parametros: (objeto) usuário, (string) controlador
   # Retorna: um vetor com as permissões
-  def get_permissions(user, ctr, args={})
+  def get_permissions(user, args={})
     user ||= current_user
     # Se não está logado não existe permissões
     return [args[:except]] if user.nil?
+    ctr = args[:controller]
     perms = []
     perms_user = []
-    ctr = ctr.empty? ? controller.controller_name : ctr
-    if user.is_admin
-      return controller.class.instance_methods(false)
-    else
-      user.roles.where(:site_id => @site).each do |role|
-        role.rights.each do |right|
-          if right.controller == ctr
-            right.action.split(' ').each{ |ri| perms_user << ri.to_sym }
-          end
+    return controller.class.instance_methods(false) if user.is_admin
+    get_roles(user, @site).each do |role|
+      role.rights.each do |right|
+        if right.controller == ctr.controller_name
+          right.action.split(' ').each{ |ri| perms_user << ri.to_sym }
         end
       end
     end
-    if args.length > 0
+    if args[:except] or args[:only]
       # Se o argumento de exceção for uma string, passa para array
       args[:except] = [args[:except]] if args[:except].is_a? String
       if args[:except]
-        perms = (controller.class.instance_methods(false) - args[:except]) & perms_user
+        perms = (ctr.class.instance_methods(false) - args[:except]) & perms_user
       elsif args[:only]
         perms = args[:only] & perms_user
       end
@@ -178,8 +190,7 @@ module ApplicationHelper
     raw("".tap do |menu|
       excepts = args[:except] || []
       # Trata os argumentos para excluir itens do menu
-
-      controller_name = args[:controller] || controller.controller_name
+      ctr = args[:controller].nil? ? controller : args[:controller]
 
       # Transforma o parâmetro em array caso não seja
       excepts = [excepts] unless excepts.is_a? Array
@@ -191,23 +202,23 @@ module ApplicationHelper
       # Os itens do menu serão as actions do controller menos os itens no parâmetro :except
       actions = controller.class.instance_methods(false) - excepts
 
-      get_permissions(current_user, '', args).each do |permission|
+      get_permissions(current_user, :controller => ctr).each do |permission|
         if permission and actions.include?(permission.to_sym)
           case permission.to_s
           when "show"
-            menu << link_to(t('show'), params.merge({:controller => controller_name,
+            menu << link_to(t('show'), params.merge({:controller => ctr.controller_name,
                                                      :action => 'show', :id => obj.id}),
                                                      :class => 'icon icon-show',
                                                      :alt => t('show'),
                                                      :title => t('show')) + " "
           when "edit"
-            menu << link_to(t("edit"), params.merge({:controller => controller_name,
+            menu << link_to(t("edit"), params.merge({:controller => ctr.controller_name,
                                                      :action => 'edit', :id => obj.id}),
                                                      :class => 'icon icon-edit',
                                                      :alt => t('edit'),
                                                      :title => t('edit')) + " "
           when "destroy"
-            menu << link_to(t("destroy"), params.merge({:controller => controller_name,
+            menu << link_to(t("destroy"), params.merge({:controller => ctr.controller_name,
                                                         :action => 'destroy',
                                                         :id => obj.id}),
                                                         :class => 'icon icon-del',

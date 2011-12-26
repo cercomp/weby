@@ -24,7 +24,7 @@
       </summary>
       <p> <%= link_to t("read_more"), site_page_path(@site, page) %> </p>
       <div class="clear"></div>
-      <%= make_menu(page, :controller => 'pages') %>
+      <%= make_menu(page, :controller => PagesController) %>
       <% if check_permission(PagesController, ["sort"]) %>
         <%= link_to t("move"), "#", :class => 'handle icon icon-drag' if @front_news.length > 1 %>
       <% end %>

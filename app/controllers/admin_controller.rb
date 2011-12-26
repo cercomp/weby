@@ -13,8 +13,6 @@ class AdminController < ApplicationController
   end
 
   def edit
-    @repository = Repository.new
-
     @images = @site.repositories.
       content_file(["image", "x-shockwave-flash"]).
       description_or_filename(params[:image_search]).
@@ -29,6 +27,10 @@ class AdminController < ApplicationController
   end
 
   def update
+    if @site.update_attributes(params[:site])
+      flash[:notice] = t"successfully_updated"
+    end
+    redirect_to edit_site_admin_path(@site, @site)
   end
 
   def destroy

@@ -30,7 +30,7 @@ class RightsController < ApplicationController
     @right = Right.find(params[:id])
     @right.update_attributes(params[:right])
     
-    redirect_to @site ? site_right_path : right_path
+    redirect_to @site ? site_rights_path : rights_path
   end
 
   def destroy
