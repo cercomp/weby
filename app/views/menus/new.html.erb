@@ -1,66 +1,6 @@
 <fieldset> 
   <legend> <%= params[:parent_id] == 0 ? (t"new_param.masc", :param => (t"menu.one")) : (t"new_param.masc", :param => t("sub_menu")) %> </legend>
 
-  <center>
-    <%= form_tag new_site_menu_path(@site, @menu), :method => 'get', :remote => true do %>
-      <%= text_field_tag :search %>
-      <%= submit_tag t("search") %>
-    <% end %>
-  </center>
-  <hr>
+	<%= render 'form' %>
 
-  <%= simple_form_for [@site, @menu] do |f| %>
-    <% if @menu.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@menu.errors.count, "") %> <%= t"prohibited_being_saved", :count => @menu.errors.count %>:</h2>
-        <ul>
-          <% @menu.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-    <div class="link-field">
-      <label for="div_event"><%= t"type" %></label>
-      <div id="link_form_pages">
-        <% set_params_type_value %>
-        <%= links_to_menu_type(params[:type], 'new') %>
-      </div>
-    </div>
-
-    <div id="div_link">
-      <%= render :partial => 'formPages', :locals => {:f => f} %>
-    </div>
-
-    <%= f.input :title, :label => t("title"),
-      placeholder: t("title"),
-      input_html: {class: "title_page_input"} %>
-
-    <%= f.input :description, :label => t("description"),
-      :input_html => {:size => "40x4" },
-      :as => :text %>
-
-    <% params[:parent_id] ||= 0 %>
-    <%= f.simple_fields_for :sites_menus do |menus_form| %>
-      <%= menus_form.input :parent_id, :input_html => {:value => params[:parent_id]}, :as => :hidden %>
-      <%= menus_form.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
-
-      <% if @menu_parent %>
-        <%= menus_form.input "category", :input_html => {:value => "#{@menu_parent.category}"}, :as => :hidden %>
-      <% else %>
-        <div class="input select">
-          <%= menus_form.label :category, t("group.one"), :class => "select", :for => "menu-category" %>
-          <%= menus_form.select :category, @site.menu_categories, {}, :id => "menu-category" %>
-          <%= link_to_function image_tag("add.png", :title => "Adicionar um acategoria"),
-            "addToSelect('#menu-category')", :title => "Adicionar um categoria" %>
-        </div>
-      <% end %>
-    <% end %>
-
-    <div class="actions">
-      <%= f.submit (t"create_param.masc", :param => (t"menu.one")), class: "green-button" %>
-      <%= link_to t("back"), :back, class: "red-button" %>
-    </div>
-  <% end %> 
 </fieldset>
