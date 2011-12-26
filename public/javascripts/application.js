@@ -8,7 +8,6 @@ $(document).ready(function() {
       Loading.show();
    }).ajaxComplete(function(){
       Loading.hide();
-      set_jquery_ui();
    });
 
    $('form').submit(function(){
