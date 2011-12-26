@@ -2,10 +2,7 @@
   <legend> <%= t('user.one') %> </legend>
 
   <div id="user_profile">
-    <%# Jeito de realizar um camel case do nome do usuário, assim mesmo que ele escreva
-        o nome em uppercase, será mostrado em camelcase.
-        #NOTE procurei no ruby uma função para isso e não achei %>
-    <h1><%= [@user.first_name, @user.last_name].join(' ').split.map{ |word| word.capitalize }.join(' ') %></h1>
+    <h1><%= captalize_name @user %></h1>
     <p> <b><%= t('id') %>:</b> <%= @user.id %> </p>
     <p> <b><%= t('username') %>:</b> <%= @user.login %> </p>
     <p> <b><%= t('email') %>:</b> <%= @user.email %> </p>
@@ -15,6 +12,13 @@
   </div>
 
   <div id="user_current_roles">
+    <% unless @user.global_roles.blank? %>
+      <h1><%= t('global_roles') %></h1>
+      <p><%= @user.global_roles.map{|r| r.name }.join(', ') %></p>
+    <% end %>
+    
+    <br/>
+    
     <h1><%= t('user_current_sites') %></h1>
     <ul>
       <% sites_with_roles.each do |s, roles| %>

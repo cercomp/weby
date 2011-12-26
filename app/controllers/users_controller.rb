@@ -88,10 +88,10 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       @user.send_activation_instructions!(request.env["SERVER_NAME"])
-      flash[:notice] = t"create_account_successful"
-      redirect_to login_path
+      flash[:notice] = t("create_account_successful")
+      redirect_to current_user ? user_path(@user) : login_path
     else
-      flash[:notice] = t"problem_account_create"
+      flash[:notice] = t("problem_account_create")
       render :action => :new
     end
   end

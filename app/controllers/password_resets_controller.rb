@@ -6,7 +6,7 @@ class PasswordResetsController < ApplicationController
   skip_before_filter :check_authorization
 
   def new
-    flash.now[:warning] = t"fill_email_form"
+    flash.now[:warning] = t("fill_email_form")
   end
 
   def create
@@ -28,7 +28,7 @@ class PasswordResetsController < ApplicationController
     @user.password = params[:user][:password]
     @user.password_confirmation = params[:user][:password_confirmation]
     if @user.save
-      flash[:notice] = t"successfully_updated", :param => t("password")
+      flash[:notice] = t("successfully_updated", :param => t("password"))
       redirect_to @user
     else
       render :action => :edit

@@ -25,7 +25,8 @@ class User < ActiveRecord::Base
     where(["roles.site_id = ?", site_id])           
   }
 
-  scope :global_role, lambda { select("DISTINCT users.* ").
+  scope :global_role, lambda { 
+    select("DISTINCT users.* ").
     joins('LEFT JOIN roles_users ON roles_users.user_id = users.id 
            LEFT JOIN roles ON roles.id = roles_users.role_id').
     where(["roles.site_id IS NULL and roles_users.user_id IS NOT NULL"])
@@ -74,5 +75,10 @@ class User < ActiveRecord::Base
   def send_activation_confirmation!(host)
     reset_perishable_token!
     Notifier.activation_confirmation(self, host).deliver
+  end
+  
+  # Pega os papeis globais do usuário
+  def global_roles
+    self.roles.where(site_id: nil)
   end
 end

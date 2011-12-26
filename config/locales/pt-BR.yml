@@ -147,6 +147,7 @@ pt-BR:
     one: "Grupo"
     other: "Grupos"
   group_explain: "Lista dos grupos que podem receber Fale Conosco."
+  global_roles: "Papéis Globais no Sistema"
 
 #---H---#
   height: "Altura"

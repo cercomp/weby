@@ -10,4 +10,11 @@ module UsersHelper
     end
     sites
   end
+  
+  # Maneira de realizar um camel case do nome do usuário, assim mesmo que ele escreva
+  # o nome em uppercase, será mostrado em camelcase.
+  # NOTE procurei no ruby uma função para isso e não achei
+  def captalize_name(user)
+    [user.first_name, user.last_name].join(' ').split.map{ |word| word.capitalize }.join(' ')
+  end
 end

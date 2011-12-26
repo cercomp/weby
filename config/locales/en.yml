@@ -147,6 +147,7 @@ en:
     one: "Group"
     other: "Groups"
   group_explain: "List of groups that can receive Feedback."
+  global_roles: "Global Roles on System"
 
 #---H---#
   height: "Height"
