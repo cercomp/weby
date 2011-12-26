@@ -3,7 +3,7 @@
     <thead>
       <tr>
         <th><%= t "enroled_user" %></th>
-        <th style="width: 40%">Papel</th>
+        <th style="width: 40%"><%= t('role.one') %></th>
         <th style="width: 15%"></th>
       </tr>
     </thead>
@@ -22,7 +22,7 @@
             </div>
           </td>
           <td>
-            <%= link_to "editar", { :action => 'manage_roles', :user_id => user.id },
+            <%= link_to t('edit'), { :action => 'manage_roles', :user_id => user.id },
                   :remote => 'true',
                   :class => 'role_edit icon icon-edit',
                   :user_id => user.id %>

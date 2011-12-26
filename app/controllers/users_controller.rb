@@ -34,10 +34,10 @@ class UsersController < ApplicationController
 			@user = User.no_admin
       # Usuários que possuem papel global e não são administradores
 			@site_users = User.global_role - User.admin
-      # Todos os usuários menos os que não são administradores
-			@users_unroled = User.all - User.admin
+      # Todos os usuários menos os que não são administradores e possuem papeis globais
+			@users_unroled = User.all - (User.admin + User.global_role)
       # Busca os papéis globais
-			@roles = Role.where("site_id IS NULL")
+			@roles = Role.globals
       # Quando a edição dos papeis é solicitada
       @user = User.find(params[:user_id]) if params[:user_id]
     end
@@ -56,6 +56,11 @@ class UsersController < ApplicationController
 					user.role_ids -= [role_id]
 				end
       end
+      
+      # Se for global, limpa os papeis globais
+      unless @site
+			  user.roles.where(site_id: nil).each{|r| user.role_ids -= [r.id] }
+		  end
       # NOTE Talvez seja melhor usar (user.role_ids += params[:role_ids]).uniq
       # assim removemos o each logo a cima
       user.role_ids += params[:role_ids]
