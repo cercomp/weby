@@ -171,10 +171,10 @@ module ApplicationHelper
       elsif args[:only]
         perms = args[:only] & perms_user
       end
-      return perms.uniq!
+      return perms.uniq
     end
 
-    return perms_user.uniq!
+    return perms_user.uniq
   end
 
   # Monta o menu baseado nas permissões do usuário
