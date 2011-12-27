@@ -141,8 +141,16 @@ module ApplicationHelper
     user ||= current_user
     site ||= @site
     return false if user.nil? or user.blank?
-    # Obtém todos os papéis globais
-    roles_assigned = current_user.roles
+    # Se site existir
+    if @site
+      # Obtém todos os papéis do usuário relacionados com site
+      roles_assigned = current_user.roles.where(['site_id IS NULL OR site_id = ?', site.id])
+    else
+      # Obtém os papéis globais
+      roles_assigned = current_user.roles.where(site_id: nil)
+    end
+    
+    return roles_assigned
   end
 
   # Verifica as permissões do usuário dado um controlador
