@@ -5,7 +5,7 @@
 
   <header>
     <h1>
-      <%= @page.by_locale(@current_locale).title %> 
+      <%#= @page.by_locale(@current_locale).title %> 
       <%# Bandeiras temporárias... %>
       <% i18ns = @page.page_i18ns - [@page.by_locale(@current_locale)] %>
       <% unless i18ns.empty? %>
