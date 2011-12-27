@@ -34,7 +34,8 @@
               //$.ajax({type: "GET", url: "/attachments/manage?media=print", dataType: "script"});
               //$.ajax({type: "GET", url: "/sites/"+tinyMCEPopup.getWindowArg('site_name')+"/repositories/manage?media=print", dataType: "script"});
             $.ajax({type: "GET",
-                    url: "/sites/"+tinyMCEPopup.editor.settings.plugin_preview_pageurl+"/repositories?template=tinymce&mime_type=image",
+                    //url: "/sites/"+tinyMCEPopup.editor.settings.plugin_preview_pageurl+"/repositories?template=tinymce&mime_type=image",
+                    url: "/sites/"+tinyMCEPopup.editor.settings.site_name+"/repositories?template=tinymce&mime_type=image",
                     dataType: "script"});
             //]]>
             </script>
