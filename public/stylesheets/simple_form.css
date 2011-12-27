@@ -152,7 +152,6 @@ input:-moz-placeholder {
 
 .radio-group label {
   width: 120px;
-  display: block;
   margin-top: 5px; }
 
 .input.check_boxes input.check_boxes + label {
