@@ -13,7 +13,7 @@ if('<%= @same_place %>' == 'true' && <%= @files.count %> > 0 ){
   $("#<%= @final_files_list %>").find('input').hide();
 
   $("#<%= @final_files_list %>").unbind('click').
-    live('click',function(event){
+    click('click',function(event){
       $("#link-to-include-files").trigger('click');
       event.preventDefault();
     });

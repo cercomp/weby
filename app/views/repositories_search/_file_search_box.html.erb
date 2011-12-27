@@ -18,7 +18,8 @@
 </p>
 
 <%= form_tag params.merge({controller: 'repositories_search', action: 'include_files'}),
-  remote: true do  %>
+  remote: true,
+  id: 'form_select_image' do  %>
   <ul class="files_list_search_result files_list checkbox-button-set">
   </ul>
 <% end %>

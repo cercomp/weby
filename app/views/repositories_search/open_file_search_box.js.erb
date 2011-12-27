@@ -20,17 +20,17 @@ place.dialog({
   buttons:[{
     class: 'green-button',
     text: "<%= t('save') %>",
-            click: function(){
-              $(this).find('form').submit();
-            }
+    click: function(){
+      $(this).find('#form_select_image').submit();
+    }
   },{
     class: 'red-button',
     text: "<%= t('cancel') %>",
-            click: function(){
-              // Remove é necessário para remover os eventos.
-              // Sem o remove não funciona na segunda vez que abre o dialog
-              $(this).dialog('close').remove();
-            }
+    click: function(){
+      // remove() é necessário para remover os eventos.
+      // Sem o remove não funciona na segunda vez que abre o dialog
+      $(this).dialog('close').remove();
+    }
   }],
   open: function(event, ui){
     $('body').css('overflow','hidden');

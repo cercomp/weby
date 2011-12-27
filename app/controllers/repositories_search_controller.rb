@@ -1,7 +1,6 @@
 class RepositoriesSearchController < ApplicationController
   layout :choose_layout
   before_filter :require_user
-  before_filter :check_authorization
   before_filter :load_data
 
   respond_to :html, :xml, :js
