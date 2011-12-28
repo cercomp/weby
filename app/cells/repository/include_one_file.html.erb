@@ -1,0 +1,15 @@
+<%= link_to @image_label || @label, params.merge({
+  controller: 'repositories_search',
+  action: 'open_file_search_box',
+  name: @name,
+  file_types: @file_types,
+  title: @label,
+  many: false,
+  final_files_list: @final_files_list }),
+  remote: true,
+  title: t("add_param", param: t("file.one")),
+  class: "add-button", 
+  id: "link-to-include-one-file" %>
+
+<div id="<%= @final_files_list %>">
+</div>

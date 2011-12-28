@@ -1,0 +1,13 @@
+<% @files.each do |file| %>
+  <li class='files_item'>
+  <%= file_selector(multiplicity, name, file.id,
+                    show_selected, class: "boolean optional", 
+                    id: "#{label}_#{file.id}") %>
+                  <label for="<%= "#{label}_#{file.id}" %>"
+                    title="<%= file.description %>"
+                    class="boolean optional">
+  </label>
+  </li>
+<% end %>
+<%= paginate @files, theme: 'paginate_on_scroll', remote: true,
+  scroll_place: 'file_search_box' if @files %> 

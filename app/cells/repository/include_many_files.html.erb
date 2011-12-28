@@ -1,0 +1,31 @@
+<%= link_to @image_label || @label, params.merge({
+  controller: 'repositories_search',
+  action: 'open_file_search_box',
+  name: @name,
+  file_types: @file_types,
+  title: @label,
+  final_files_list: @final_files_list,
+  many: true }),
+  remote: true,
+  title: t("add_param", param: t("file.#{@multiplicity}")),
+  class: "add-button",
+  id: "link-to-include-files" %>
+
+<div id="<%= @final_files_list %>">
+  <%# TODO: Retirar esse codigo duplicado %>
+  <% @files.each do |file| %>
+    <li class='files_item'>
+        <%= check_box_tag(@name, file.id, true,
+                          class: "boolean optional", id: "#{@label}_#{file.id}")  %>
+      <label for="<%= "#{@label}_#{file.id}" %>"
+        title="<%= file.description %>"
+        class="boolean optional">
+        <%= image_tag(file.archive.url(:mini)) %>
+      </label>
+    </li>
+  <% end %>
+</div>
+
+<% javascript_tag do %>
+   set_jquery_ui();
+<% end %>

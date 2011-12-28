@@ -1,0 +1,29 @@
+#link-to-include-one-file{
+  margin: 10px 15px;
+  width: 113px;
+  height: 85px;
+  padding: 5px;
+  text-align: center;
+  z-index: 9999;
+  border: 3px dashed gray !important;
+  background: none !important;
+
+  a {
+    border: none;
+    background: none;
+  }
+
+  ul, li{
+    text-align: center;
+    padding: 0;
+    margin: 0;
+  }
+  li{
+    margin-top: 5px;
+    label{
+      border: none;
+      background: none;
+    }
+  }
+}
+
