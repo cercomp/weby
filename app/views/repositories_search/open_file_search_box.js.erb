@@ -1,10 +1,11 @@
 var place = $(document.createElement("div"));
 place.attr('id', 'file_search_box');
+
 place.
 html('<%= escape_javascript(render "repositories_search/file_search_box",
                             name: @name,
                             final_files_list: @final_files_list,
-                            multiplicity: @multiplicity,
+                            many: @many,
                             file_types: @file_types ) %>');
 
 
@@ -20,10 +21,19 @@ place.dialog({
   buttons:[{
     class: 'green-button',
     text: "<%= t('save') %>",
-    click: function(){
-      $(this).find('#form_select_image').submit();
-    }
-  },{
+            click: function(){
+              $(this).find('form#include-files-to-form').submit();
+            }
+  },
+  {
+    class: 'blue-button',
+    text: "<%= t('remove', param: t('file.one')).capitalize %>",
+            click: function(){
+              $(this).find('input').removeAttr('checked');
+              $(this).find('form#include-files-to-form').submit();
+            }
+  },
+  {
     class: 'red-button',
     text: "<%= t('cancel') %>",
     click: function(){

@@ -27,12 +27,10 @@
 
   <div class="right" id="include_page_image">
     <%= render_cell :repository,
-      :include_file,
+      :include_one_file,
       "page[repository_id]",
       t("page.image"),
       file_types: "image",
-      multiplicity: "one",
-      same_place: true,
       object: @page.repository_id %>
   </div>
 
@@ -93,8 +91,11 @@
 
   <div style="margin-top: 30px">
     <div class="left">
-      <%= render_cell :repository, :include_file, "page[repository_ids][]",
-        t("add_param", param: t("related_files")) %>
+      <%= render_cell :repository,
+        :include_many_files,
+        "page[repository_ids][]",
+        t("add_param", param: t("related_files")),
+        object: @page.repository_ids %>
     </div>
 
     <div class="right">
@@ -114,5 +115,5 @@
 <% end %>
 
 <%= content_for :javascripts, javascript_include_tag("pages_new") %>
-<%#= content_for :javascripts, javascript_include_tag("paginate_on_scroll") %>
 <%= content_for :stylesheets, stylesheet_link_tag("pages_new") %>
+<%= content_for :stylesheets, stylesheet_link_tag("include_files") %>

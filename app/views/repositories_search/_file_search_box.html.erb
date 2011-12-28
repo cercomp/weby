@@ -1,7 +1,7 @@
 <p>
 <%= form_tag params.merge({controller: 'repositories_search', action: 'search'}),
   method: :get, remote: true  do %>
-  <%= hidden_field_tag "multiplicity", multiplicity %>
+  <%= hidden_field_tag "many", many %>
   <%= hidden_field_tag "name", name %>
   <%= hidden_field_tag "final_files_list", final_files_list %>
   <%= search_field_tag "search[name]", nil, placeholder: t('filename_or_description') %>
@@ -18,8 +18,7 @@
 </p>
 
 <%= form_tag params.merge({controller: 'repositories_search', action: 'include_files'}),
-  remote: true,
-  id: 'form_select_image' do  %>
+  remote: true, id: 'include-files-to-form' do  %>
   <ul class="files_list_search_result files_list checkbox-button-set">
   </ul>
 <% end %>
