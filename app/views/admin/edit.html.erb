@@ -3,19 +3,19 @@
 
   <label style="width:auto; float:right; font-size:10pt;">
     <%= link_to t("show_hide_image_list"), "#",
-        :remote => true,
-        :onclick => "$('#repo_list').toggle(); $('#repo_new').toggle(); $('#search').toggle();"%>
+      :remote => true,
+      :onclick => "$('#repo_list').toggle(); $('#repo_new').toggle(); $('#search').toggle();"%>
     <hr/>
   </label>
 
   <div id="search" style="display:none">
-   <center>
-     <%= form_tag request.path, :method => 'get', :remote => true do %>
-       <%= label_tag t("search") %>
-       <%= text_field_tag :image_search %>
-       <%= submit_tag t("search") %>
-     <% end %>
-   </center>
+    <center>
+      <%= form_tag request.path, :method => 'get', :remote => true do %>
+        <%= label_tag t("search") %>
+        <%= text_field_tag :image_search %>
+        <%= submit_tag t("search") %>
+      <% end %>
+    </center>
   </div>
 
   <div id="repo_new" style="display:none">
@@ -39,17 +39,19 @@
         </ul>
       </div>
     <% end %>
-  
+
     <div id='repo_list' style="display:none">
       <%= render :partial => 'repositories/repo', :locals => {:obj => @site, :field => :top_banner_id, :collection => @images, :hint => (t"help_image") }%>
     </div>
-    
+
     <%= f.input :body_width, :label => t("body_width"), :hint => (t"example_param", :param => "960") %>
     <% unless @site.repository.nil? %>
       <%= f.input :top_banner_width, :label => t("top_banner_width"), :hint => (t"example_param", :param => "960") %>
       <%= f.input :top_banner_height, :label => t("top_banner_height"), :hint => (t"example_param", :param => "101") %>
     <% end %>
-    <%= f.input :name, :label => t("name"), :hint => t("field_required") %>
+    <% if current_user.is_admin? %>
+      <%= f.input :name, :label => t("name"), :hint => t("field_required") %>
+    <% end %>
     <%= f.input :url, :label => "URL", :hint => (t("field_required") + " " + t("example_param", :param => "http://site.com")), :as => :url %>
     <%= f.input :per_page, :label => t("itens_per_page"), :hint => (t"example_param", :param => "15, 30, 50, 100, 250, 500") %>
     <%= f.input :per_page_default, :label => t("per_page_default") %>
@@ -62,13 +64,13 @@
     <%= f.association :locales,
       :as => :check_boxes,
       :collection => Locale.all.map{|l| [image_tag("flags/24/#{l.flag}", :title=>t(l.name)), l.id] },
-      :label => t('translation.other')
-    %>
+    :label => t('translation.other')
+  %>
 
-    <div class="actions">
-      <%= f.submit (t"save"), class: "green-button" %>
-      <%= link_to t("back"), :back, class: "red-button" %>
-    </div>
+<div class="actions">
+  <%= f.submit (t"save"), class: "green-button" %>
+  <%= link_to t("back"), :back, class: "red-button" %>
+</div>
 
   <% end %>
 
