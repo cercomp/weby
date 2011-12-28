@@ -13,10 +13,10 @@ class PagesController < ApplicationController
 
     @pages = @site.pages.titles_like(params[:search], params[:locales])
     if current_user
-      @pages = @pages.except(:order).order(sort_column + " " + sort_direction).
+      @pages = @pages.order(sort_column + " " + sort_direction).
         page(params[:page]).per(per_page)
     else
-      @pages = @pages.published.except(:order).order(sort_column + " " + sort_direction).
+      @pages = @pages.published.order(sort_column + " " + sort_direction).
         page(params[:page]).per(per_page)
     end
 
