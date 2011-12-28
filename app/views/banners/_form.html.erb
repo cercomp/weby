@@ -1,30 +1,27 @@
-<div class="teste">
-  <div class="checkbox-button-set">
-    <% repo_styles = Repository.attachment_definitions[:archive][:styles] %>
-    <% unless repo_styles.nil? %>
-      <%= f.input :size, 
-        label: t('size'),
-        collection: repo_styles,
-        label_method: lambda { |u| "#{u[1]}" }, 
-        value_method: lambda { |u| "#{u[0]}" },
-        as: :radio%>
-    <% end %>
-  </div>
-
-  <%= f.input :width, :label => t("width"), :input_html => {:size => 3} %> 
-  <%= f.input :height, :label => t("height"), :input_html => {:size => 3} %>
+<div class="checkbox-button-set">
+  <% repo_styles = Repository.attachment_definitions[:archive][:styles] %>
+  <% unless repo_styles.nil? %>
+    <%= f.input :size, 
+      label: t('size'),
+      collection: repo_styles,
+      label_method: lambda { |u| "#{u[1]}" }, 
+      value_method: lambda { |u| "#{u[0]}" },
+      as: :radio%>
+  <% end %>
 </div>
 
+<%= f.input :width, :label => t("width"), :input_html => {:size => 3} %> 
+<%= f.input :height, :label => t("height"), :input_html => {:size => 3} %>
+
 <div class="tabs">
-  <%= f.input :title, label: "",
+  <%= f.input :title, label: t("title"),
     placeholder: t("title"),
     input_html: {class: "title_banner_input"} %>
 
   <%= f.input :text, label: t("text"),
-    input_html: {class: "mceAdvance text_banner_input", size: "80x10" },
+    input_html: {class: "mceSimple", :size => "70x5"},
     as: :text %>
 </div>
-
 
 <div class="period-dates left">
   <label><%= t("period_banner") %> </label>
@@ -64,6 +61,5 @@
     as: :boolean, input_html: { class: "check-button" } %>
 </div>
 <%= f.input :user_id, :input_html => {:value => "#{@current_user.id}"}, :as => :hidden %>
-
 
 <%= content_for :stylesheets, stylesheet_link_tag("banners_new") %>

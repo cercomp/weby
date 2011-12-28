@@ -3,16 +3,16 @@
   <%= i18nbuilder.input :_destroy,
     label: t("delete"),
     as: :boolean %>
-  <%= i18nbuilder.input :title, label: "",
+  <%= i18nbuilder.input :title, label: t("title"),
     placeholder: t("title"),
     required: false,
     input_html: {class: "title_page_input"} %>
 
   <%= i18nbuilder.input :text, label: t("text"),
-    input_html: {class: "mceAdvance text_page_input", size: "56x16" },
+    input_html: {class: "mceAdvance", size: "70x5"},
     as: :text %>
 
   <%= i18nbuilder.input :summary, label: t("summary"),
-    input_html: {class: "mceSimple summary_page_input", size: "56x16" },
+    input_html: {class: "mceSimple", size: "70x5" },
     as: :text %>
 </div>

@@ -16,7 +16,6 @@
   </div>
 
   <%= simple_form_for [@site, @banner], :html => { :multipart => true } do |f| %>
-
     <% if @banner.errors.any? %>
       <div id="error_explanation">
         <h2>
@@ -50,5 +49,3 @@
 
   <% end %>
 </fieldset>
-<%= content_for :stylesheets, stylesheet_link_tag("banners_new") %>
-<%= content_for :stylesheets, stylesheet_link_tag("include_files") %>
