@@ -1,7 +1,7 @@
 
 <% quant = settings[:quant] || 5 %>
 <% front = settings[:front] || false %>
-<% @no_front_news = @site.pages.news(front).except(:order).page(params[:no_front_pages]).per(quant) %>
+<% @no_front_news = @site.pages.order('date_begin_at').news(front).page(params[:no_front_pages]).per(quant) %>
 
 <div id='no_front_news'>
   <%= info_page @no_front_news, 'width: 100%' %>
