@@ -29,9 +29,8 @@
     <% end %>
     
     <div class="right" id="include_page_image">
-      <%= render_cell :repository, :include_file, "banner[repository_id]", 
-        t("banner_image"), file_types: "image", multiplicity: "one",
-        same_place: true %>
+      <%= render_cell :repository, :include_one_file, "banner[repository_id]", 
+        t("banner_image"), file_types: "image", object: @banner.repository_id %>
     </div>
 
 
@@ -43,3 +42,5 @@
 
   <% end %>
 </fieldset>
+<%= content_for :stylesheets, stylesheet_link_tag("include_files") %>
+<%= content_for :stylesheets, stylesheet_link_tag("banners_new") %>
