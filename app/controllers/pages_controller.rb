@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   layout :choose_layout
   before_filter :require_user, only: [:new, :edit, :update, :destroy, :sort, :toggle_field]
-  before_filter :check_authorization, except: [:view, :show]
+  before_filter :check_authorization, except: [:view, :show, :list_published]
   before_filter :per_page, only: [:index]
   helper_method :sort_column
 
