@@ -1,65 +1,112 @@
-<div class="checkbox-button-set">
-  <% repo_styles = Repository.attachment_definitions[:archive][:styles] %>
-  <% unless repo_styles.nil? %>
-    <%= f.input :size, 
-      label: t('size'),
-      collection: repo_styles,
-      label_method: lambda { |u| "#{u[1]}" }, 
-      value_method: lambda { |u| "#{u[0]}" },
-      as: :radio%>
+<div id="search" style="display:none">
+  <%= render 'layouts/shared/search_form' %>
+</div>
+
+<div id="repo_new" style="display:none">
+  <div class="contextual">
+    <%= link_to (t"new_param.fem", :param => (t"image")), new_site_repository_path,
+      :remote => true,
+      :onclick => "$('#page').toggle();",
+      :class => 'icon icon-add' %>
+  </div>
+  <div id="page" style="display:none"> </div>
+</div>
+
+<%= simple_form_for [@site, @banner], :html => { :multipart => true } do |f| %>
+  <% if @banner.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@banner.errors.count,"") %>
+        <%= t"prohibited_being_saved", :count => @banner.errors.count %>:
+      </h2>
+      <ul>
+        <% @banner.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
-</div>
 
-<%= f.input :width, :label => t("width"), :input_html => {:size => 3} %> 
-<%= f.input :height, :label => t("height"), :input_html => {:size => 3} %>
-
-<div class="tabs">
-  <%= f.input :title, label: t("title"),
-    placeholder: t("title"),
-    input_html: {class: "title_input"} %>
-
-  <%= f.input :text, label: t("text"),
-    input_html: {class: "mceSimple", :size => "70x5"},
-    as: :text %>
-</div>
-
-<div class="period-dates left">
-  <label><%= t("period_banner") %> </label>
-  <div class="period-dates-inputs">
-    <%= f.input :date_begin_at, as: :string,
-      placeholder: t("begin"),
-      wrapper_html: {class: "period-date period-date-left"},
-      input_html: {class: "datetimepicker"} %>
-
-    <%= f.input :date_end_at, as: :string,
-      placeholder: t("publication_infinite"),
-      wrapper_html: {class: "period-date period-date-right"},
-      input_html: {class: "datetimepicker"} %>
+  <div class="right" id="include_page_image">
+    <%= render_cell :repository, :include_one_file, "banner[repository_id]", 
+      t("banner_image"), file_types: "image", object: @banner.repository_id %>
   </div>
-</div>
 
-<%= f.input :category_list, :label => t('categories'), :hint => t('page_categories_help') %>
-
-<div class="link-field">
-  <label for="div_event"><%= t"type" %></label>
-  <div id="link_form_pages">
-    <% set_params_type_value %>
-    <%= links_to_banner_type(params[:type], action ||='new') %>
+  <div id='repo_list' style="display:none">
+    <%= render :partial => 'repositories/repo',
+      :locals => {:obj => @banner, :field => :repository_id, :collection => @images, :hint => (t"help_image_banner") } %>
   </div>
-</div>
 
-<div id="div_link">
-  <%= render :partial => 'formPages', :locals => {:f => f} %>
-</div>
+  <div class="checkbox-button-set">
+    <% repo_styles = Repository.attachment_definitions[:archive][:styles] %>
+    <% unless repo_styles.nil? %>
+      <%= f.input :size, 
+        label: t('size'),
+        collection: repo_styles,
+        label_method: lambda { |u| "#{u[1]}" }, 
+        value_method: lambda { |u| "#{u[0]}" },
+        as: :radio%>
+    <% end %>
+  </div>
 
-<div class="right">
-  <%= f.input :publish , :label => t("publish"),
-    wrapper_html: { class: "left no-clearfix" },
-    as: :boolean, input_html: { class: "check-button" } %>
-  <%= f.input :hide , label: t("hide"), 
-    wrapper_html: { class: "right no-clearfix" },
-    as: :boolean, input_html: { class: "check-button" } %>
-</div>
-<%= f.input :user_id, :input_html => {:value => "#{@current_user.id}"}, :as => :hidden %>
+  <%= f.input :width, :label => t("width"), :input_html => {:size => 3} %> 
+  <%= f.input :height, :label => t("height"), :input_html => {:size => 3} %>
+
+  <div class="tabs">
+    <%= f.input :title, label: t("title"),
+      placeholder: t("title"),
+      input_html: {class: "title_input"} %>
+
+    <%= f.input :text, label: t("text"),
+      input_html: {class: "mceSimple", :size => "70x5"},
+      as: :text %>
+  </div>
+
+  <div class="period-dates left">
+    <label><%= t("period_banner") %> </label>
+    <div class="period-dates-inputs">
+      <%= f.input :date_begin_at, as: :string,
+        placeholder: t("begin"),
+        wrapper_html: {class: "period-date period-date-left"},
+        input_html: {class: "datetimepicker"} %>
+
+      <%= f.input :date_end_at, as: :string,
+        placeholder: t("publication_infinite"),
+        wrapper_html: {class: "period-date period-date-right"},
+        input_html: {class: "datetimepicker"} %>
+    </div>
+  </div>
+
+  <%= f.input :category_list, :label => t('categories'), :hint => t('page_categories_help') %>
+
+  <div class="link-field">
+    <label for="div_event"><%= t"type" %></label>
+    <div id="link_form_pages">
+      <% set_params_type_value %>
+      <%= links_to_banner_type(params[:type], action ||='new') %>
+    </div>
+  </div>
+
+  <div id="div_link">
+    <%= render :partial => 'formPages', :locals => {:f => f} %>
+  </div>
+
+  <div class="right">
+    <%= f.input :publish , :label => t("publish"),
+      wrapper_html: { class: "left no-clearfix" },
+      as: :boolean, input_html: { class: "check-button" } %>
+    <%= f.input :hide , label: t("hide"), 
+      wrapper_html: { class: "right no-clearfix" },
+      as: :boolean, input_html: { class: "check-button" } %>
+  </div>
+  <%= f.input :user_id, :input_html => {:value => "#{@current_user.id}"}, :as => :hidden %>
+  <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
+
+
+  <div class="actions">
+    <%= f.submit t("#{save}"),disable_with: t("saving"),class: "green-button" %> 
+    <%= link_to t('back'), :back, class: "red-button" %>
+  </div>
+<% end %>
 
 <%= content_for :stylesheets, stylesheet_link_tag("form_with_title") %>

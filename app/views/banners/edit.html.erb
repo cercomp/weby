@@ -1,44 +1,4 @@
 <fieldset>
   <legend><%= t"edit" %> <%= (t"banner.one") %></legend>
-
-  <div id="search" style="display:none">
-    <%= render 'layouts/shared/search_form' %>
-  </div>
-
-  <div id="repo_new" style="display:none">
-    <div class="contextual">
-      <%= link_to (t"new_param.fem", :param => (t"image")), new_site_repository_path,
-        :remote => true,
-        :onclick => "$('#page').toggle();",
-        :class => 'icon icon-add' %>
-    </div>
-    <div id="page" style="display:none"> </div>
-  </div>
-
-
-  <%= simple_form_for [@site, @banner], :html => { :multipart => true } do |f| %>
-    <% if @banner.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@banner.errors.count,"") %><%= t"prohibited_being_saved", :count => @banner.errors.count %>:</h2>
-        <ul>
-          <% @banner.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-    
-    <div class="right" id="include_page_image">
-      <%= render_cell :repository, :include_one_file, "banner[repository_id]", 
-        t("banner_image"), file_types: "image", object: @banner.repository_id %>
-    </div>
-
-
-    <%= render :partial => 'form', :locals => {:f => f, :action => 'edit'} %>
-
-    <div class="actions">
-      <%= f.submit t"save" %> <%= link_to t('back'), :back %>
-    </div>
-
-  <% end %>
+  <%= render partial: 'form', locals: {action: 'edit', save: 'save'} %>
 </fieldset>
