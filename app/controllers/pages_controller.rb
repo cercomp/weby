@@ -4,6 +4,7 @@ class PagesController < ApplicationController
   before_filter :check_authorization, except: [:view, :show, :list_published]
   before_filter :per_page, only: [:index]
   helper_method :sort_column
+  before_filter :search_images, only: [:new, :edit]
 
   respond_to :html, :xml, :js
 
@@ -46,9 +47,6 @@ class PagesController < ApplicationController
     @page.pages_repositories.build
     build_site_locales
 
-    @images = @site.repositories.content_file("image").
-      page(params[:page]).per(params[:per_page])
-
     # Objeto para pages_repositories (relacionamento muitos-para-muitos)
     # Criando objeto com os arquivos que não estão relacionados com a página
     @page_files_unchecked = @site.repositories.page(params[:twitter_page]).per(params[:per_page])
@@ -63,9 +61,6 @@ class PagesController < ApplicationController
     build_site_locales
 
     @page.pages_repositories.build
-
-    @images = @site.repositories.content_file("image").
-      page(params[:page]).per(params[:per_page])
 
     # Criando objeto com os arquivos que não estão relacionados com a página
     unless @page.repository_ids.empty?
@@ -178,5 +173,12 @@ class PagesController < ApplicationController
     locales.each do |locale|
       @page.page_i18ns.build(locale_id: locale.id)
     end
+  end
+
+  def search_images
+    @images = @site.repositories.
+      description_or_filename(params[:image_search]).
+      content_file(["image", "flash"]).
+      page(params[:page]).per(@site.per_page_default)
   end
 end

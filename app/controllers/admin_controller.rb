@@ -3,6 +3,7 @@ class AdminController < ApplicationController
 
   before_filter :require_user
   before_filter :check_authorization
+  before_filter :search_images, only: [:edit]
 
   respond_to :html, :xml, :js
 
@@ -22,7 +23,7 @@ class AdminController < ApplicationController
     @themes = []
     (Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*.erb")] - 
      Dir[File.join(Rails.root + "app/views/layouts/portal.html.erb")]).each do |file|
-      @themes << file.split("/")[-1].split(".")[0]
+       @themes << file.split("/")[-1].split(".")[0]
      end
   end
 
@@ -34,5 +35,13 @@ class AdminController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+  def search_images
+    @images = @site.repositories.
+      description_or_filename(params[:image_search]).
+      content_file(["image", "flash"]).
+      page(params[:page]).per(@site.per_page_default)
   end
 end
