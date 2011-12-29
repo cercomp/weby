@@ -16,7 +16,7 @@
 <div class="tabs">
   <%= f.input :title, label: t("title"),
     placeholder: t("title"),
-    input_html: {class: "title_banner_input"} %>
+    input_html: {class: "title_input"} %>
 
   <%= f.input :text, label: t("text"),
     input_html: {class: "mceSimple", :size => "70x5"},
@@ -62,4 +62,4 @@
 </div>
 <%= f.input :user_id, :input_html => {:value => "#{@current_user.id}"}, :as => :hidden %>
 
-<%= content_for :stylesheets, stylesheet_link_tag("banners_new") %>
+<%= content_for :stylesheets, stylesheet_link_tag("form_with_title") %>
