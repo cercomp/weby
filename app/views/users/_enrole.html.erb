@@ -23,7 +23,7 @@
           <div style="height: 500px; overflow: auto">
             <ul id="users_list_roles"> 
               <% @users_unroled.each do |user| %>
-                <li><%= check_box_tag 'user[id][]', user.id, user.id == params[:user].to_i %> <%= " #{user.first_name} #{user.last_name}" %> (<%= link_to user.login, user_path(user) %>)
+                <li><%= check_box_tag 'user[id][]', user.id, user.id == params[:user_id].to_i %> <%= " #{user.first_name} #{user.last_name}" %> (<%= link_to user.login, user_path(user) %>)
             <% end %>
           </ul>
         </div>
@@ -45,8 +45,8 @@
 <%= content_for :javascripts do %>
   <%= javascript_tag do %>
     $(document).ready(function(){
-      $('#users_unroled').bind('keyup',function(){
-        var pattern = new RegExp(".*" + $(this).val() + ".*", "gi");
+      var filter_user = function(input) {
+        var pattern = new RegExp(".*" + input + ".*", "gi");
         $('#users_list_roles li').each(function(index, element){
           if( $(element).text().match(pattern) ){
             $(element).show();
@@ -54,8 +54,17 @@
             $(element).hide();
           }
         });
-        preventDefault();
+      }
+
+      $('#users_unroled').bind('keyup',function(){
+        filter_user($(this).val());
       });
+
+      <% unless @user.blank? or not @users_unroled.include?(@user) %>
+        var name = '<%= @user.first_name %>';
+        $('#users_unroled').val(name);
+        filter_user(name);
+      <% end %>
     });
   <% end %>
 <% end %>

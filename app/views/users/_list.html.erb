@@ -32,7 +32,7 @@
             <% if @site %>
               <td><%= link_to link, manage_roles_site_users_path(:user_id => user.id ) %></td>
             <% else %>
-              <td><%= link_to link, manage_roles_users_path(:user => user.id ) %></td>
+              <td><%= link_to link, manage_roles_users_path(:user_id => user.id ) %></td>
             <% end %>
           <% end %>
           <td>
