@@ -1,32 +1,7 @@
 <fieldset>
   <legend><%= (t"editing", :param => (t"site.one")) %></legend>
 
-  <label style="width:auto; float:right; font-size:10pt;">
-    <%= link_to t("show_hide_image_list"), "#",
-      :remote => true,
-      :onclick => "$('#repo_list').toggle(); $('#repo_new').toggle(); $('#search').toggle();"%>
-    <hr/>
-  </label>
-
-  <div id="search" style="display:none">
-    <center>
-      <%= form_tag request.path, :method => 'get', :remote => true do %>
-        <%= label_tag t("search") %>
-        <%= text_field_tag :image_search %>
-        <%= submit_tag t("search") %>
-      <% end %>
-    </center>
-  </div>
-
-  <div id="repo_new" style="display:none">
-    <div class="contextual">
-      <%= link_to (t"new_param.fem", :param => (t"image")), new_site_repository_path,
-        :remote => true,
-        :onclick => "$('#page').toggle();",
-        :class => 'icon icon-add' %>
-    </div>
-    <div id="page" style="display:none"> </div>
-  </div>
+  <%= render 'repositories/search_and_new_file' %>
 
   <%= simple_form_for @site, :url => admin_path do |f| %>
     <% if @site.errors.any? %>
@@ -40,8 +15,12 @@
       </div>
     <% end %>
 
-    <div id='repo_list' style="display:none">
-      <%= render :partial => 'repositories/repo', :locals => {:obj => @site, :field => :top_banner_id, :collection => @images, :hint => (t"help_image") }%>
+    <div id='repo_list' >
+      <%= render 'repositories/repo',
+        :obj => @site,
+        :field => :top_banner_id,
+        :collection => @images,
+        :hint => t("help_image") %>
     </div>
 
     <%= f.input :body_width, :label => t("body_width"), :hint => (t"example_param", :param => "960") %>

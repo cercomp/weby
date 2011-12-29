@@ -1,16 +1,4 @@
-<div id="search" style="display:none">
-  <%= render 'layouts/shared/search_form' %>
-</div>
-
-<div id="repo_new" style="display:none">
-  <div class="contextual">
-    <%= link_to (t"new_param.fem", :param => (t"image")), new_site_repository_path,
-      :remote => true,
-      :onclick => "$('#page').toggle();",
-      :class => 'icon icon-add' %>
-  </div>
-  <div id="page" style="display:none"> </div>
-</div>
+<%= render 'repositories/search_and_new_file' %>
 
 <%= simple_form_for [@site, @banner], :html => { :multipart => true } do |f| %>
   <% if @banner.errors.any? %>
@@ -27,14 +15,11 @@
     </div>
   <% end %>
 
-  <div class="right" id="include_page_image">
-    <%= render_cell :repository, :include_one_file, "banner[repository_id]", 
-      t("banner_image"), file_types: "image", object: @banner.repository_id %>
-  </div>
-
-  <div id='repo_list' style="display:none">
-    <%= render :partial => 'repositories/repo',
-      :locals => {:obj => @banner, :field => :repository_id, :collection => @images, :hint => (t"help_image_banner") } %>
+  <div id='repo_list' >
+    <%= render 'repositories/repo',
+      :obj => @banner,
+      :field => :repository_id,
+      :collection => @images %>
   </div>
 
   <div class="checkbox-button-set">

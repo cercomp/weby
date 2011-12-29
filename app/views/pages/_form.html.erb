@@ -1,3 +1,5 @@
+<%= render 'repositories/search_and_new_file' %>
+
 <%= simple_form_for [@site, @page],
   html: { multipart: true } do |f| %>
   <% if @page.errors.any? %>
@@ -10,6 +12,14 @@
       </ul>
     </div>
   <% end %>
+
+  <div id='repo_list' >
+    <%= render 'repositories/repo',
+      :obj => @page,
+      :field => :repository_id,
+      :collection => @images,
+      :hint => t("help_image") %>
+  </div>
 
   <% unless self.controller.action_name == "edit" %>
 
@@ -24,15 +34,6 @@
     </fieldset>
 
   <% end %>
-
-  <div class="right" id="include_page_image">
-    <%= render_cell :repository,
-      :include_one_file,
-      "page[repository_id]",
-      t("page.image"),
-      file_types: "image",
-      object: @page.repository_id %>
-  </div>
 
   <div class="tabs">
     <ul>

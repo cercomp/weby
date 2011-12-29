@@ -1,8 +1,9 @@
-$('#repo_list').html('<%= escape_javascript(render(partial: 'repositories/repo', locals: { obj: @banner,
-                                                                                           field: :repository_id,
-                                                                                           collection: @images,
-                                                                                           :hint => t("help_image_banner")})) %>');
+$('#repo_list').html('<%=escape_javascript render(partial: 'repositories/repo',
+                                                  locals: { obj: @banner,
+                                                            field: :repository_id,
+                                                            collection: @images }) %>');
 
 $('#div_link').html('<%= escape_javascript(render(:partial => 'formPages')) %>')
 $('#link_form_pages').html('<%= escape_javascript(raw links_to_banner_type(params[:type], 'new')) %>')
 
+show_selected_image('banner', 'repository_id');
