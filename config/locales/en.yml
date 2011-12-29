@@ -338,6 +338,7 @@ en:
 
 #---S---#
   save: "Save"
+  saving: "Saving"
   search: "Search"
   searching: "Searching..."
   secondary: "Secondary"
