@@ -2,12 +2,10 @@
   <legend><%= t("component.other") %></legend>
 
   <div class="contextual">
-    <p>
-      <% if check_permission(SiteComponentsController, 'new') %>
-        <%= link_to t("new_param.masc", :param => t("component.one")),
-          new_site_site_component_path, :class => "icon icon-add" %>
-      <% end %>
-    </p>
+    <% if check_permission(SiteComponentsController, 'new') %>
+      <%= link_to t("new_param.masc", :param => t("component.one")),
+        new_site_site_component_path, :class => "icon icon-add" %>
+    <% end %>
   </div>
 
   <table id="list" class="list">

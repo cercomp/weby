@@ -43,14 +43,12 @@
     <%= f.association :locales,
       :as => :check_boxes,
       :collection => Locale.all.map{|l| [image_tag("flags/24/#{l.flag}", :title=>t(l.name)), l.id] },
-    :label => t('translation.other')
-  %>
+      :label => t('translation.other') %>
 
-<div class="actions">
-  <%= f.submit (t"save"), class: "green-button" %>
-  <%= link_to t("back"), :back, class: "red-button" %>
-</div>
-
+    <div class="actions">
+      <%= f.submit (t"save"), class: "green-button" %>
+      <%= link_to t("back"), :back, class: "red-button" %>
+    </div>
   <% end %>
 
 </fieldset>

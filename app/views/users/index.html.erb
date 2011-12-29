@@ -4,9 +4,9 @@
   <% if current_user.is_admin? %>
     <div class="contextual">
       <% if @site %>
-        <p> <%= link_to (t"enrole_user_site"), manage_roles_site_users_path, :class => 'icon icon-add' %> </p>
+        <%= link_to (t"enrole_user_site"), manage_roles_site_users_path, :class => 'icon icon-add' %>
       <% else %>
-        <p> <%= link_to (t"new_param.masc", :param => (t"user.one")), new_user_path, :class => 'icon icon-add' %> </p>
+        <%= link_to (t"new_param.masc", :param => (t"user.one")), new_user_path, :class => 'icon icon-add' %> 
       <% end %>
     </div>
   <% end %>

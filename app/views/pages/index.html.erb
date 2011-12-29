@@ -4,7 +4,7 @@
   <% if params[:type] %>
     <% if check_permission(PagesController, 'new') %>
       <div class="contextual">
-        <p> <%= link_to (t"new_param.fem", :param => (t"page.one")), new_site_page_path, :class => 'icon icon-add' %> </p>
+        <%= link_to (t"new_param.fem", :param => (t"page.one")), new_site_page_path, :class => 'icon icon-add' %>
       </div>
     <% end %>
   <% end %>

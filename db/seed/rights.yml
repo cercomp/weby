@@ -340,7 +340,7 @@
   id: 57
   name: "Editar configurações do site"
   controller: admin
-  action: edit
+  action: edit update
 
 58:
   id: 58

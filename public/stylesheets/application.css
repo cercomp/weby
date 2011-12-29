@@ -207,6 +207,7 @@ div.flash.warning {
 
 /***** Icons *****/
 .icon:before {
+  white-space: nowrap;
   position: relative;
   margin-right: 1px;
   top: 3px; }

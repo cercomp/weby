@@ -10,8 +10,10 @@ class GroupsController < ApplicationController
     @groups = @site.groups.order(sort_column + ' ' + sort_direction).
       page(params[:page]).per(params[:per_page])
 
-    unless @groups
-      flash.now[:warning] = (t"none_param", :param => t("group.one"))
+    if @groups.empty?
+      flash[:warning] = (t"none_param", :param => t("group.one"))
+    else
+      flash[:warning] = t('group_explain')
     end
 
     respond_with do |format|

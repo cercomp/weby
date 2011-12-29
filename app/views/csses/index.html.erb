@@ -5,7 +5,7 @@
 
   <% if check_permission(CssesController, 'new') %>
     <div class="contextual">
-      <p> <%= link_to (t"new_param.masc", :param => (t"css.one")), new_site_css_path, :class => 'icon icon-add' %> </p>
+      <%= link_to (t"new_param.masc", :param => (t"css.one")), new_site_css_path, :class => 'icon icon-add' %>
     </div>
   <% end %>
 

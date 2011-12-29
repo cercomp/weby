@@ -1,7 +1,7 @@
 <fieldset>
   <legend><%= t"archive.other" %></legend>
   <div class="contextual">
-    <p> <%= link_to (t"new_param.masc", :param => (t"archive.one")), new_site_repository_path, :class => 'icon icon-add' %> </p>
+    <%= link_to (t"new_param.masc", :param => (t"archive.one")), new_site_repository_path, :class => 'icon icon-add' %>
   </div>
   <center>
     <%= form_tag request.path, :method => 'get', :remote => true do %>

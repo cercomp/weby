@@ -2,7 +2,7 @@
   <legend><%= t"menu.other"  %></legend>
 
   <div class="contextual">
-    <p> <%= link_to (t"new_param.masc", :param => (t"menu.one")),  new_site_menu_path(:category => params[:category]), :class => 'icon icon-add'%> </p>
+    <%= link_to (t"new_param.masc", :param => (t"menu.one")),  new_site_menu_path(:category => params[:category]), :class => 'icon icon-add'%> 
   </div>
 
   <div id='tabs'>

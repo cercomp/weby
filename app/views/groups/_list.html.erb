@@ -1,5 +1,4 @@
 <% unless @groups.empty? %>
- <h3><%= t('group_explain') %></h3>
   <%= info_page @groups %>
   <%= paginate @groups, :remote => true %>
   <table class='list'>
