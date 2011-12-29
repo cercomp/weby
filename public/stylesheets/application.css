@@ -206,26 +206,10 @@ div.flash.warning {
   margin-top: 0; }
 
 /***** Icons *****/
-
-.icon-i18n:before {
-  content: url(../images/menus/i18n.png); 
-}
-
-.icon-back:before {
-  content: url(../images/menus/back.png); 
-}
-
 .icon:before {
-  white-space: nowrap;
   position: relative;
   margin-right: 1px;
   top: 3px; }
-
-.icon-list:before {
-  content: url(../images/menus/list.png); }
-
-.icon-show:before {
-  content: url(../images/menus/show.png); }
 
 .icon22 {
   background-position: 0% 40%;
@@ -343,6 +327,9 @@ div.flash.warning {
 
 .icon-up-get:before {
   content: url(../images/up-get.png); }
+
+.icon-show:before {
+  content: url(../images/show.png); }
 
 .icon-toggle-check:before {
   content: url(../images/toggle_check.png); }
@@ -556,3 +543,6 @@ label[for='users_unroled'] {
 
 .no-clearfix {
   clear: none !important; }
+
+.ui-dialog {
+  z-index: 9999 !important; }

@@ -255,3 +255,7 @@ label[for='users_unroled']{ font-weight: bold; font-family: Verdana, sans-serif;
 
 .clearfix{ clear: both !important; }
 .no-clearfix{ clear: none !important; }
+
+.ui-dialog{
+  z-index: 9999 !important;
+}
