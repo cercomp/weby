@@ -322,7 +322,7 @@
  id: 54
  name: "Editar Componente"
  controller: site_components
- action: edit update
+ action: edit update toggle_field
 
 55:
  id: 55
