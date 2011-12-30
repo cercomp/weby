@@ -64,6 +64,7 @@ class BannersController < ApplicationController
       @banner.attributes = params[:banner]
       search_images
     end
+    @banner.update_attributes(params[:banner])
     respond_with(@site, @banner)
   end
 
