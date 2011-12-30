@@ -2,7 +2,7 @@
   <div id="search">
     <center>
       <%= form_tag request.path, :method => 'get', :remote => true do %>
-        <%= label_tag t("search") %>
+        <%= label_tag '' %>
         <%= text_field_tag :image_search %>
         <%= submit_tag t("search") %>
       <% end %>

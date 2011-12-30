@@ -67,8 +67,7 @@
   <div class="link-field">
     <label for="div_event"><%= t"type" %></label>
     <div id="link_form_pages">
-      <% set_params_type_value %>
-      <%= links_to_banner_type(params[:type], action ||='new') %>
+      <%= links_to_banner_type(params[:type], action) %>
     </div>
   </div>
 
@@ -84,9 +83,9 @@
       wrapper_html: { class: "right no-clearfix" },
       as: :boolean, input_html: { class: "check-button" } %>
   </div>
+
   <%= f.input :user_id, :input_html => {:value => "#{@current_user.id}"}, :as => :hidden %>
   <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
-
 
   <div class="actions">
     <%= f.submit t("#{save}"),disable_with: t("saving"),class: "green-button" %> 

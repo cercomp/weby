@@ -1,12 +1,4 @@
 module BannersHelper
-  def set_params_type_value
-    if @banner.try(:url) and not @banner.url.try('empty?') 
-      params[:type] = "external " 
-    else 
-      params[:type] = "internal"
-    end 
-  end
-
   def link_to_banner_type(type, action)
     link_to t(type.to_s), {controller: 'banners', action: action.to_s, type: type.to_s},
       class: "box link",

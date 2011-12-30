@@ -31,6 +31,14 @@ class BannersController < ApplicationController
   end
 
   def edit
+    if params[:type].nil?
+      if @banner.try(:url) and not @banner.url.try('empty?')
+        params[:type] = "external " 
+      else 
+        params[:type] = "internal"
+      end
+    end
+
     @banner = Banner.find(params[:id])
     @pages = @site.pages.titles_like(params[:search]).page(params[:page]).per(params[:per_page])
     @pages_on_banner = @pages.to_a 
@@ -55,18 +63,8 @@ class BannersController < ApplicationController
     if params[:submit_search]
       @banner.attributes = params[:banner]
       search_images
-      render action: :edit
-    else
-      respond_to do |format|
-        if @banner.update_attributes(params[:banner])
-          format.html { redirect_to([@site, @banner], :notice => t("successfully_updated")) }
-          format.xml  { head :ok }
-        else
-          format.html { render :action => "edit" }
-          format.xml  { render :xml => @banner.errors, :status => :unprocessable_entity }
-        end
-      end
     end
+    respond_with(@site, @banner)
   end
 
   def destroy
