@@ -207,7 +207,6 @@ div.flash.warning {
 
 /***** Icons *****/
 .icon:before {
-  white-space: nowrap;
   position: relative;
   margin-right: 1px;
   top: 3px; }
@@ -547,3 +546,46 @@ label[for='users_unroled'] {
 
 .ui-dialog {
   z-index: 9999 !important; }
+
+.box {
+  background-color: #e6e6e6;
+  width: auto;
+  height: auto;
+  padding: 5px;
+  display: table-cell;
+  float: left;
+  border: 1px solid lightGrey;
+  background: #E6E6E6;
+  /* (begin) to border radius */
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  /* (end) */
+  /* (begint) to shadow */
+  border-bottom-width: 2px !important;
+  border-right-width: 2px !important;
+  /* (end) */ }
+  .box p {
+    margin: 0 0 2px 0; }
+  .box.file {
+    margin: 10px; }
+  .box.link {
+    margin: 3px; }
+  .box aside.left {
+    margin-right: 3px;
+    width: auto;
+    height: auto; }
+  .box aside.right {
+    margin-left: 3px;
+    width: auto;
+    height: auto; }
+  .box aside.file_view {
+    height: 64px;
+    overflow: hidden; }
+  .box aside.file_description {
+    height: 64px;
+    width: 100px;
+    overflow: hidden; }
+
+.bold {
+  font-weight: bold; }

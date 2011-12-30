@@ -1,23 +1,23 @@
 <%= info_page @repositories %>
 <%= paginate @repositories, :remote => true %>
 
-<div style="clear: both;">
+<div class="clear">
 <% @repositories.each do |repository| %>
-	<div style="background-color: #e6e6e6; width: 172px; height: auto; margin: 10px; padding: 5px; display: table-cell; float: left;-webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; border: 1px solid lightGrey; background: #E6E6E6 url(images/ui-bg_flat_75_e6e6e6_40x100.png) 50% 50% repeat-x; border-bottom-width: 2px !important; border-right-width: 2px !important;">
-		<span style="font-weight: bold;display: block; font-size: 14px; margin-bottom: 2px;"><%= repository.id %></span>
-		<div style="float: left; width: 64px; height: 64px;">
-			<%= weby_file_view(repository, :mini, "64", "64") %>
-		</div>
-		<div style="float: right; width: 101px; height: 64px; overflow: hidden;">
-			<%= repository.description %> <br />
-		</div>
-		<div style="clear: both; padding-top:2px;">
-			<%= raw make_menu(repository) %>
-		</div>
+	<div class="box file">
+		<p class="bold"> <%= repository.id %> </p>
+		<p>
+			<aside class="left file_view">
+				<%= weby_file_view(repository, :mini, "64", nil) %>
+			</aside>
+			<aside class="right file_description">
+				<%= repository.description %> <br />
+			</aside>
+		<p>
+		<p class="clear"> <%= raw make_menu(repository) %> </p>
 	</div>
 <% end %>
 </div>
-<div style="clear: both;"></div>
+<div class="clear"></div>
 
 <%= paginate @repositories, :remote => true %>
 <%= per_page_links @repositories, true %>
