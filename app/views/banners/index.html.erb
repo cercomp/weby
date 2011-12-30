@@ -6,12 +6,12 @@
   </div>
   
   <center>
-    <%= form_tag request.path, :method => 'get', :remote => true do %>
-      <%= text_field_tag :search %>
+    <%= form_tag request.path, method: 'get', autocapitalize: "off" do %>
+      <%= text_field_tag :search, params[:search] %>
       <%= submit_tag t("search"), class: "search-button" %>
     <% end %>
   </center>
-
+  
   <div id="list">
     <%= render :partial => "list" %>
   </div>

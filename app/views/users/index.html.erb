@@ -10,11 +10,11 @@
       <% end %>
     </div>
   <% end %>
-
+  
   <center>
     <%= form_tag request.path, :method => 'get' do %>
-      <%= text_field_tag :search %>
-      <%= submit_tag t("search") %>
+      <%= text_field_tag :search, params[:search] %>
+      <%= submit_tag t("search"), class: 'search-button' %>
     <% end %>
   </center>
 

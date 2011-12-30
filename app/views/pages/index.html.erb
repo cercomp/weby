@@ -15,7 +15,7 @@
       <%= select_tag("locales", options_for_select(@site.locales.map{|l| [t(l.name), l.name]}), {include_blank: t('all')} ) %>
       <%= hidden_field_tag 'page', 1 %>
       <%= hidden_field_tag 'per_page', "#{params[:per_page]}" %>
-      <%= submit_tag t("search") %>
+      <%= submit_tag t("search"), class: 'search-button' %>
     <% end %>
   </center>
 

@@ -8,9 +8,9 @@
   <% end %>
 
   <center>
-    <%= form_tag "/", :method => 'get', :autocapitalize => "off" do %>
-      <%= text_field_tag :search %>
-      <%= submit_tag t("search") %>
+    <%= form_tag request.path, method: 'get', autocapitalize: "off" do %>
+      <%= text_field_tag :search, params[:search] %>
+      <%= submit_tag t("search"), class: "search-button" %>
     <% end %>
   </center>
 
