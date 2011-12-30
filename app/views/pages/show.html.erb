@@ -1,6 +1,6 @@
 <article>
   <% unless @page.repository.nil? %>
-    <%= weby_file_view(@page.repository, :little, '128', '128') %>
+    <%= weby_file_view(@page.repository, :little, '128', nil) %>
   <% end %>
 
   <header>
