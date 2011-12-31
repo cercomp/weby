@@ -14,6 +14,8 @@
       <br />
     <% end %>
   </p>
-  <%= submit_tag 'Enviar' %>
-  <%= link_to t('cancel'), {:action => 'manage_roles'}, :onclick => "return hide_form(#{@user.id});", :id => "form_role_cancel" %>
+  <%= submit_tag (t"submit"), class: "green-button" %>
+  <%= link_to t('cancel'), {action: 'manage_roles'}, 
+    onclick: "return hide_form(#{@user.id});", 
+    id: "form_role_cancel", class: "red-button" %>
 </form>

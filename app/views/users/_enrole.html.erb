@@ -17,28 +17,32 @@
       <tr class="<%= cycle 'odd', 'even' %>">
         <td style="height: 500px; overflow: auto">
           <div>
-            <%= label_tag :users_unroled, 'Pesquisar por usuários' %><br />
-            <%= text_field_tag :users_unroled, params[:users_unroled] %>
+            <%= text_field_tag :users_unroled, params[:users_unroled], placeholder: t("search") %>
           </div>
           <div style="height: 500px; overflow: auto">
             <ul id="users_list_roles"> 
               <% @users_unroled.each do |user| %>
-                <li><%= check_box_tag 'user[id][]', user.id, user.id == params[:user_id].to_i %> <%= " #{user.first_name} #{user.last_name}" %> (<%= link_to user.login, user_path(user) %>)
+                <li>
+                  <%= check_box_tag 'user[id][]', user.id, user.id == params[:user_id].to_i %> <%= " #{user.first_name} #{user.last_name}" %> (<%= link_to user.login, user_path(user) %>)
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </td>
+        <td>
+          <ul> 
+            <% @roles.each do |role| %>
+              <li> <%= check_box_tag 'role_ids[]', role.id %> <%= role.name %> </li>
             <% end %>
           </ul>
-        </div>
-      </td>
-      <td>
-        <ul> 
-          <% @roles.each do |role| %>
-            <li><%= check_box_tag 'role_ids[]', role.id %><%= role.name %>
-        <% end %>
-      </ul>
-    </td>
-  </tr>
-</tbody>
+        </td>
+      </tr>
+    </tbody>
   </table>
-  <p><%=submit_tag t('enrole_user') %></p>
+  <div class="actions">
+    <%= submit_tag (t"save"), class: "green-button" %>
+    <%= link_to t("back"), :back, class: "red-button" %>
+  </div>
 </form>
 <% end %>
 
