@@ -178,7 +178,7 @@ class PagesController < ApplicationController
   def search_images
     @images = @site.repositories.
       description_or_filename(params[:image_search]).
-      content_file(["image", "flash"]).
+      content_file(["image"]).
       page(params[:page]).per(@site.per_page_default)
   end
 end

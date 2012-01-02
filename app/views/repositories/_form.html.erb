@@ -16,7 +16,9 @@
   <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
 
   <div class = "actions">
-    <%= f.submit t("save"), class: "green-button" %>
-    <%= link_to t("back"), :back, class: "red-button" %>
-  </div>
+    <%= f.submit t("save"),
+      disable_with: t("please_wait"),
+    class: "green-button" %>
+  <%= link_to t("back"), :back, class: "red-button" %>
+</div>
 <% end %>

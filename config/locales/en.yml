@@ -290,6 +290,7 @@ en:
   picture: "picture"
   picture_text: "Picture´s text"
   place: "place"
+  please_wait: 'Please wait...'
   position: "Position"
   prohibited_being_saved:
     one: " error, prevent you from proceeding"
