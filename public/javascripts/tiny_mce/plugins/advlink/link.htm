@@ -28,7 +28,7 @@
                         <script>
                             $().ready(function(){
                                 $("#page_list").html("<img src='/images/spinner.gif'>");
-                                var page_url = tinyMCEPopup.editor.settings.plugin_preview_pageurl;
+                                var page_url = tinyMCEPopup.editor.settings.site_name;
                                 $.ajax({
                                     type: "GET",
                                     url: "/sites/"+page_url+"/pages",
