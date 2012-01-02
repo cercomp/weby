@@ -2,7 +2,7 @@
 <% quant = settings[:quant] || 5 %>
 <% front = settings[:front] || false %>
 <% # Pega as noticias ordenadas por data de inicio decrescente %>
-<% @no_front_news = @site.pages.except(:order).order('date_begin_at desc')
+<% @no_front_news = @site.pages.except(:order).order('created_at desc')
                     .news(front).page(params[:no_front_pages]).per(quant) %>
 
 <div id='no_front_news'>
