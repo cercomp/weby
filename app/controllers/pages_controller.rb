@@ -12,13 +12,14 @@ class PagesController < ApplicationController
     params[:type] ||= 'News'
     params[:locales] ||= session[:locale]
 
-    @pages = @site.pages.titles_like(params[:search], params[:locales])
-    if current_user
-      @pages = @pages.order(sort_column + " " + sort_direction).
-        page(params[:page]).per(per_page)
-    else
-      @pages = @pages.published.order(sort_column + " " + sort_direction).
-        page(params[:page]).per(per_page)
+    @pages = @site.pages.
+      titles_like(params[:search], params[:locales]).
+      page(params[:page]).per(per_page).
+      except(:order).
+      order(sort_column + " " + sort_direction)
+
+    if !current_user
+      @pages = @pages.published
     end
 
     @tiny_mce = tiny_mce

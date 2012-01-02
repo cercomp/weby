@@ -1,7 +1,7 @@
 module DateHelper
-  def print_date_end(date)
+  def print_date_end(date, format = :short)
     return  t("infinite") if date.nil?
-    return date 
+    return l(date, format: format)
   end
 
   #Recebe um objeto page ou banner e verifica se a data de publicação está expirada ou não 

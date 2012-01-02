@@ -15,7 +15,7 @@
     <% @banners.each do |banner| %>
       <tr class="<%= cycle 'odd', 'even' %>">
         <td><%= banner.id %></td>
-        <td><%= banner.date_begin_at %></td>
+        <td><%=l banner.date_begin_at, format: :short %></td>
         <td><%= print_date_end(banner.date_end_at) %></td>
         <td><%= banner.title %></td>
         <td><%= banner.user.first_name ? ("#{banner.user.first_name} #{banner.user.last_name}") : banner.user.login %></td>
