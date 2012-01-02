@@ -27,7 +27,7 @@ class RepositoryCell < Cell::Rails
   def get_params(name, label, site, args = {})
     @name = name
     @label = label
-    @site = Site.find(site)
+    @site = Site.find(site).name
     @final_files_list = @label.parameterize("_")
 
     @file_types = [args[:file_types]].flatten.compact
