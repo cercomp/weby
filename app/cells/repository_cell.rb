@@ -4,8 +4,8 @@ class RepositoryCell < Cell::Rails
   cache :include_one_file
   cache :include_many_files
 
-  def include_one_file(name, label, args = {})
-    get_params(name, label, args)
+  def include_one_file(name, label, site, args = {})
+    get_params(name, label, site, args)
 
     @file = Repository.find(args[:object]) if args[:object]
     @image_label = tag("img", src: @file.archive.url(:mini)) if @file
@@ -13,8 +13,8 @@ class RepositoryCell < Cell::Rails
     render 
   end
 
-  def include_many_files(name, label, args = {})
-    get_params(name, label, args)
+  def include_many_files(name, label, site, args = {})
+    get_params(name, label, site, args)
 
     @files = Repository.
       where(id: [args[:object]].flatten.compact).
@@ -24,9 +24,10 @@ class RepositoryCell < Cell::Rails
   end
 
   private
-  def get_params(name, label, args = {})
+  def get_params(name, label, site, args = {})
     @name = name
     @label = label
+    @site = Site.find(site)
     @final_files_list = @label.parameterize("_")
 
     @file_types = [args[:file_types]].flatten.compact

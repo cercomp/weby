@@ -89,13 +89,13 @@
     <%= pages_form.input :page_id, input_html: {value: @page.id}, as: :hidden  %>
   <% end %>
 
-
   <div style="margin-top: 30px">
     <div class="left">
       <%= render_cell :repository,
         :include_many_files,
         "page[repository_ids][]",
         t("add_param", param: t("related_files")),
+        @site,
         object: @page.repository_ids %>
     </div>
 

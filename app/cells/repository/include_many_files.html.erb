@@ -1,11 +1,7 @@
-<%= link_to @image_label || @label, params.merge({
-  controller: 'repositories_search',
-  action: 'open_file_search_box',
-  name: @name,
-  file_types: @file_types,
-  title: @label,
-  final_files_list: @final_files_list,
-  many: true }),
+<%= link_to @image_label || @label, { 
+  controller: 'repositories_search', action: 'open_file_search_box',
+  site_id: @site, name: @name, file_types: @file_types, title: @label,
+  final_files_list: @final_files_list, many: true },
   remote: true,
   title: t("add_param", param: t("file.#{@multiplicity}")),
   class: "add-button",
