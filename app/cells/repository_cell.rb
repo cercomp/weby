@@ -1,9 +1,4 @@
 class RepositoryCell < Cell::Rails
-  include ActionView::Helpers::TagHelper
-
-  cache :include_one_file
-  cache :include_many_files
-
   def include_one_file(name, label, site, args = {})
     get_params(name, label, site, args)
 
