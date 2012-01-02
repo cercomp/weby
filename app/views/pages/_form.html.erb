@@ -95,7 +95,7 @@
         :include_many_files,
         "page[repository_ids][]",
         t("add_param", param: t("related_files")),
-        @site,
+        @site.id,
         object: @page.repository_ids %>
     </div>
 
