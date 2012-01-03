@@ -1,2 +1,16 @@
-.drop-here{background-color: #D6D7D5}
-li > menu{margin:3px 0px;}
+.drop-here{
+    background-color: #D7D7D7 !important; }
+
+li > menu{
+    margin:3px 0px; }
+
+#main-tabs menu{
+    list-style-type: none; }
+
+    #main-tabs menu li{
+        margin-bottom: 5px; }
+
+        #main-tabs menu li div{
+            border-left: 2px solid #D7D7D7;
+            padding: 0px 0px 1px 3px;
+            margin: 0; }

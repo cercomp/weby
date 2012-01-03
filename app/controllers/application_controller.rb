@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
       end
       flash[:error] = t("access_denied")
       #request.env["HTTP_REFERER" ] ? (redirect_to :back) : (render :template => 'admin/access_denied')
-      (render :template => 'admin/access_denied')
+      (render :template => 'admin/access_denied', :status => :forbidden)
       return false
     end
   end

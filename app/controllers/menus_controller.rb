@@ -60,7 +60,7 @@ class MenusController < ApplicationController
   end
 
   # Altera a ordenação do menu
-  def sort
+  def change_order
     @ch_pos = SitesMenu.find(params[:id])
 
     SitesMenu.where({:category => @ch_pos.category, :site_id => @ch_pos.site_id}).update_all("position = position-1",["position > ? AND parent_id = ? ", @ch_pos.position, @ch_pos.parent_id])
@@ -71,6 +71,29 @@ class MenusController < ApplicationController
     SitesMenu.where({:category => @ch_pos.category, :site_id => @ch_pos.site_id}).update_all("position = position+1",["position >= ? AND parent_id = ? ", @ch_pos.position, @ch_pos.parent_id])
 
     @ch_pos.save
+    render :nothing => true
+  end
+
+  # Altera a categoria de um item de menu, e todos seus descendentes
+  def change_category
+    @ch_cat = SitesMenu.find(params[:id])
+
+    SitesMenu.where({:category => @ch_cat.category, :site_id => @ch_cat.site_id}).update_all("position = position-1",["position > ? AND parent_id = ? ", @ch_cat.position, @ch_cat.parent_id])
+
+    if @ch_cat
+      ary_for_ch = del_deep(@menus[@ch_cat.category], @ch_cat.id)
+      ary_for_ch.each do |item|
+        item.category = params[:category]
+        item.save
+      end
+    end
+
+    @ch_cat.parent_id = 0
+    @ch_cat.category = params[:category]
+    @ch_cat.position = SitesMenu.maximum('position', :conditions=>{:category=>@ch_cat.category, :site_id=>@ch_cat.site_id, :parent_id=>@ch_cat.parent_id})+1
+
+    @ch_cat.save
+    render :nothing => true
   end
 
   # Altera a ordenação do menu

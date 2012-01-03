@@ -118,7 +118,7 @@
  id: 20
  name: "Ordernar Menus"
  controller: menus
- action: change_position
+ action: change_position change_order change_category
 
 21:
  id: 21
