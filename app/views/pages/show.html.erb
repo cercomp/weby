@@ -17,7 +17,9 @@
     <summary>
       <% if @site.view_desc_pages %>
         <p>
-        <%= @page.user.first_name ? ("#{@page.user.first_name} #{@page.user.last_name}") : @page.user.login %>
+        <% if @page.user %>
+          <%= @page.user.first_name ? ("#{@page.user.first_name} #{@page.user.last_name}") : @page.user.login %>
+        <% end %>
         <%= l @page.created_at, :format => :short  %>
         </p>
       <% end %>
