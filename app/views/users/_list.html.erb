@@ -3,6 +3,7 @@
   <table class="list">
     <thead>
       <tr>
+        <th><%= t("id") %></th>
         <th><%= sortable 'login', t("user", :count => 1) %></th>
         <th><%= sortable 'email', t("email") %></th>
         <th><%= t"active" %></th>
@@ -16,6 +17,7 @@
     <tbody>
       <% @users.each do |user| %>
         <tr class="<%= cycle 'odd', 'even' %>">
+          <td><%= user.id %></td>
           <td><%= link_to user.login, user_path(user) %></td>
           <td><%=h user.email %></td>
           <td align="center"><%= raw toggle_field(user, 'status') %></td>
