@@ -341,6 +341,7 @@ en:
   save: "Save"
   saving: "Saving"
   search: "Search"
+  search_param: "Search %{param}"
   searching: "Searching..."
   secondary: "Secondary"
   setting:

@@ -4,7 +4,7 @@ module RepositoryHelper
   def weby_file_view(file, format, width = nil, height = nil, options = {as: 'link'})
     @file, @format, @width, @height, @options = file, format, width, height, options
     make_thumbnail!
-    send("#{@options[:as]}_viewer")
+    send("#{@options[:as]}_viewer") # chama método http://ruby-doc.org/core-1.9.3/Object.html#method-i-send
   end
 
   # Retorna quais os tipos de arquivos existentes em um Site

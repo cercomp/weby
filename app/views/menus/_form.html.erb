@@ -1,5 +1,5 @@
 <center>
-	<%= form_tag new_site_menu_path(@site, @menu), :method => 'get', :remote => true do %>
+	<%= form_tag [@site, @menu], :remote => true do %>
 		<%= text_field_tag :search %>
 		<%= submit_tag t("search") %>
 	<% end %>

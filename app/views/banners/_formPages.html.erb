@@ -1,3 +1,5 @@
+<%= content_for :javascripts, javascript_include_tag('banners.js') %>
+
 <%= simple_fields_for @banner do |extend| %>
   <% if params[:type] == "external" %>
     <%= extend.input :url,
@@ -5,17 +7,33 @@
       hint: (t"type_param", param: t("url")),
       as: :url %>
   <% elsif @pages.try(:count) %>
-    <%= extend.input :page_id, 
-      label: t('url'),
-      collection: @pages_on_banner,
-      collection_wrapper_tag: "div class='radio-group'",
-      as: :radio, 
-      input_html: { class: "check-button" },
-      label_method: lambda {|u|
-      raw "<span class='radio-item-list'>#{u.by_locale(session[:locale]).title}</span><br />"
-    },
-      value_method: 'id',
-      paginate: "#{paginate @pages}" %>
+    <div style="clear:both; padding-top: 10px">
+      <% # FIXME Para selecionar a noticia, não é jeito correto de fazer isso, deve ser discutido %>
+      <%= link_to 'Clique aqui para selecionar uma página', list_published_site_pages_path, remote: true, onclick: 'show_dialog()', id: 'page_select' %>
+      <div style="padding-top: 5px">
+        Página selecionada: 
+        <div id="selected_page" style="display: inline">
+          <% if @banner.page %>
+            <%= @banner.page.by_locale(session[:locale]).title %>
+          <% else %>
+            Nenhuma página selecionada ainda
+          <% end %>
+        </div>
+      </div>
+      <input id="page_id" type="hidden" name="page_id" value="" />
+    </div>
+
+    <% # extend.input :page_id,
+       # label: t('page.other'),
+       # collection: @pages_on_banner,
+       # collection_wrapper_tag: "div class='radio-group'",
+       # as: :radio, 
+       # input_html: { class: "check-button" },
+       # label_method: lambda {|u|
+       #   raw "<span class='radio-item-list'>#{u.by_locale(session[:locale]).title}</span><br />"
+       # },
+       # value_method: 'id',
+       # paginate: "#{paginate @pages}" %>
   <% end %>
 <% end %>
 

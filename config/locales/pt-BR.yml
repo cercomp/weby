@@ -341,6 +341,7 @@ pt-BR:
   save: "Salvar"
   saving: "Salvando"
   search: "Buscar"
+  search_param: "Buscar %{param}"
   searching: "Buscando..."
   secondary: "Secundário"
   setting:
