@@ -5,7 +5,7 @@
 	<% end %>
 </center>
 
-<hr>
+<hr/>
 
 <%= simple_form_for [@site, @menu] do |f| %>
 	<% if @menu.errors.any? %>
@@ -39,9 +39,8 @@
 		:input_html => {:size => "40x4" },
 		:as => :text %>
 
-	<% params[:parent_id] ||= 0 %>
 	<%= f.simple_fields_for :sites_menus do |menus_form| %>
-		<%= menus_form.input :parent_id, :input_html => {:value => params[:parent_id]}, :as => :hidden %>
+		<%= menus_form.input :parent_id, :input_html => {:value => (params[:parent_id] ? params[:parent_id] : menus_form.object.parent_id) }, :as => :hidden %>
 		<%= menus_form.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
 
 		<% if @menu_parent %>

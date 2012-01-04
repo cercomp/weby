@@ -22,16 +22,25 @@
   <%= javascript_tag do %>
   window.onload=function(){
     $().ready(function() {
+
+      var dropped = false;
+
       $('#main-tabs > menu').nestedSortable({
         listType: 'menu',
-        dropOnEmpty:false,
         handle: '.handle',
         items: 'li',
+        opacity: 0.7,
         forcePlaceholderSize: true,
         placeholder: 'drop-here',
         tolerance: 'pointer',
         toleranceElement: '> div',
         update: function(event, ui){
+
+          if(dropped){
+            $(this).nestedSortable('cancel');
+            dropped = false;
+            return;
+          }
 
           id = ui.item.attr('id').replace('menu_','');
           parent_id = ui.item.parents('li').attr('id') ? ui.item.parents('li').attr('id').replace('menu_','') : 0;
@@ -58,7 +67,7 @@
           id = ui.draggable.attr('id').replace('menu_','');
           category = drop_li.find('a').text().toLowerCase();
 
-          $('#main-tabs > menu').nestedSortable('cancel');
+          dropped = true;
 
           ////Testa para não alterar pra a própria categoria
           if( !drop_li.find('a').hasClass('selected') ){

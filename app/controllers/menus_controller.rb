@@ -20,6 +20,7 @@ class MenusController < ApplicationController
     @menu_parent = SitesMenu.find(params[:parent_id]) if params[:parent_id]
     @menu = Menu.new
     @menu.sites_menus.build
+    @menu.sites_menus[0].category = params[:category] if params[:category]
     @pages = @site.pages.titles_like(params[:search]).page(params[:page]).per(params[:per_page])
     @pages_on_menu = @pages.to_a 
   end
@@ -45,7 +46,9 @@ class MenusController < ApplicationController
 
   def update
     @menu = Menu.find(params[:id])
+    old_menu_site = SitesMenu.find(@menu.sites_menus[0].id)
     if @menu.update_attributes(params[:menu])
+      update_category_deep(old_menu_site, @menu.sites_menus[0].category)
       flash[:notice] = t("successfully_updated")
       redirect_back_or_default site_menus_path(@site, :category => @menu.sites_menus[0].category)
     else
@@ -63,7 +66,7 @@ class MenusController < ApplicationController
   def change_order
     @ch_pos = SitesMenu.find(params[:id])
 
-    SitesMenu.where({:category => @ch_pos.category, :site_id => @ch_pos.site_id}).update_all("position = position-1",["position > ? AND parent_id = ? ", @ch_pos.position, @ch_pos.parent_id])
+    update_position_for_remove(@ch_pos)
 
     @ch_pos.parent_id = params[:parent_id]
     @ch_pos.position = params[:position]
@@ -78,21 +81,8 @@ class MenusController < ApplicationController
   def change_category
     @ch_cat = SitesMenu.find(params[:id])
 
-    SitesMenu.where({:category => @ch_cat.category, :site_id => @ch_cat.site_id}).update_all("position = position-1",["position > ? AND parent_id = ? ", @ch_cat.position, @ch_cat.parent_id])
-
-    if @ch_cat
-      ary_for_ch = del_deep(@menus[@ch_cat.category], @ch_cat.id)
-      ary_for_ch.each do |item|
-        item.category = params[:category]
-        item.save
-      end
-    end
-
-    @ch_cat.parent_id = 0
-    @ch_cat.category = params[:category]
-    @ch_cat.position = SitesMenu.maximum('position', :conditions=>{:category=>@ch_cat.category, :site_id=>@ch_cat.site_id, :parent_id=>@ch_cat.parent_id})+1
-
-    @ch_cat.save
+    update_category_deep(@ch_cat, params[:category])
+    
     render :nothing => true
   end
 
@@ -123,6 +113,7 @@ class MenusController < ApplicationController
           item.destroy
       end
     end
+    update_position_for_remove(@rm_menu)
     @rm_menu.destroy
     redirect_to :back, :notice => t("successfully_deleted")
   end
@@ -146,5 +137,24 @@ class MenusController < ApplicationController
       end
     end
     res
+  end
+  #Atualiza a position de todos os itens irmãos maior que obj, com position - 1
+  def update_position_for_remove(obj)
+    SitesMenu.where({:category => obj.category, :site_id => obj.site_id}).update_all("position = position-1",["position > ? AND parent_id = ? ", obj.position, obj.parent_id])
+  end
+  #obj tem que ter o atributo category, sua antiga category, seu antigo parent_id e antiga position
+  def update_category_deep(obj, new_category)
+    if (obj && obj.category!=new_category)
+      ary_for_up = del_deep(@menus[obj.category], obj.id)
+      ary_for_up.each do |item|
+        item.category = new_category
+        item.save
+      end
+      update_position_for_remove(obj)
+      parent_id = 0
+      position = SitesMenu.maximum('position', :conditions=> ['category = ? AND site_id = ? AND parent_id = ? AND id <> ?', new_category, obj.site_id, parent_id, obj.id])+1
+
+      obj.update_attributes({:parent_id => parent_id, :category => new_category, :position => position})
+    end
   end
 end

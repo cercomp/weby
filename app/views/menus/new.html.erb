@@ -1,5 +1,5 @@
 <fieldset> 
-  <legend> <%= params[:parent_id] == 0 ? (t"new_param.masc", :param => (t"menu.one")) : (t"new_param.masc", :param => t("sub_menu")) %> </legend>
+  <legend> <%= @menu_parent ? (t"new_param.masc", :param => t("sub_menu")) : (t"new_param.masc", :param => (t"menu.one")) %> </legend>
 
 	<%= render 'form' %>
 
