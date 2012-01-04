@@ -36,6 +36,7 @@ en:
     one: "Banner"
     other: "Banners"
   banner_image: "Banner Image"
+  banner_need_a_destination: "need a page or url"
   base: "Base"
   begin: "Begin"
   bottom: "Bottom"

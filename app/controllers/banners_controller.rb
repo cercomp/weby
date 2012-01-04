@@ -3,7 +3,7 @@ class BannersController < ApplicationController
   before_filter :require_user
   before_filter :check_authorization
   before_filter :repositories, :only => ['new', 'edit', 'create', 'update']
-  before_filter :search_images, only: [:new, :edit]
+  before_filter :search_images, only: [:new, :edit, :create, :update]
 
   helper_method :sort_column
 
@@ -52,10 +52,15 @@ class BannersController < ApplicationController
     if params[:submit_search]
       search_images
       render action: :edit
-    else
-      @banner.save
-      respond_with(@site, @banner)
     end
+    unless @banner.save
+      @pages = @site.pages.titles_like(params[:search]).page(params[:page]).per(params[:per_page])
+      @pages_on_banner = @pages.to_a 
+      unless @banner.page_id.nil?
+        @pages_on_banner = [Page.find(@banner.page_id)] + (@pages - [Page.find(@banner.page_id)])
+      end
+    end
+    respond_with(@site, @banner)
   end
 
   def update
@@ -64,7 +69,15 @@ class BannersController < ApplicationController
       @banner.attributes = params[:banner]
       search_images
     end
-    @banner.update_attributes(params[:banner])
+    begin
+      @banner.update_attributes(params[:banner])
+    rescue
+      @pages = @site.pages.titles_like(params[:search]).page(params[:page]).per(params[:per_page])
+      @pages_on_banner = @pages.to_a 
+      unless @banner.page_id.nil?
+        @pages_on_banner = [Page.find(@banner.page_id)] + (@pages - [Page.find(@banner.page_id)])
+      end
+    end
     respond_with(@site, @banner)
   end
 

@@ -17,4 +17,12 @@ class Banner < ActiveRecord::Base
   belongs_to :site, :foreign_key => "site_id"
 
   validates_presence_of :title, :user_id, :date_begin_at
+
+  validate :page_or_url
+
+  def page_or_url
+    if !url || !page_id
+      errors.add(:banner, I18n.t("banner_need_a_destination"))
+    end
+  end
 end

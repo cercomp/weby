@@ -36,6 +36,7 @@ pt-BR:
     one: "Banner"
     other: "Banners"
   banner_image: "Imagem do Banner"
+  banner_need_a_destination: "necessita de uma página ou uma url"
   base: "Base"
   begin: "Início"
   bottom: "Inferior"
