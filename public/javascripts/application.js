@@ -6,8 +6,9 @@ $(document).ready(function() {
    // Ajax indicator
    $('*').ajaxSend(function(){
       Loading.show();
-   }).ajaxComplete(function(){
+   }).ajaxComplete(function(evt,xhr){
       Loading.hide();
+      FlashMsg.notify(xhr.status);
    });
 
    $('form').submit(function(){
@@ -73,6 +74,27 @@ Loading = {
    }
 }
 
+// Mostrar mensagem para erros, no retorno do ajax
+FlashMsg = {
+   notify: function(status){
+       //TODO algumas requisições ajax, retornam 500, mesmo quando OK
+      //if([403,500].indexOf(status)>-1){
+      if([403].indexOf(status)>-1){
+
+          flash = $(document.createElement('div'));
+          $('#content').prepend(flash);
+          flash.addClass('flash error notify');
+          //flash.text(status==403 ?'Acesso Negado':status==500 ?'Erro no servidor':'');
+          flash.text(status==403 ?'Acesso Negado':'');
+          flash.append('<a href="#" style="float:right;">x</a>');
+          flash.find('a').click(function(){$(this).parent('div').remove();return false;});
+          flash.slideDown().delay(3000).slideUp(function(){
+              $(this).remove();
+          });
+      }
+   }
+}
+
 function toogle_select_multiple(select){
    if($(select).attr("multiple")){
       $(select).attr("multiple",null);
@@ -114,11 +136,11 @@ function set_jquery_ui(){
    $(".checkbox-button-set, .radio-button-set").buttonset();
 
    $(".search-button").button({
-      icons: { secondary: "ui-icon-search" }
+      icons: {secondary: "ui-icon-search"}
    });
 
    $(".add-button").button({
-      icons: { primary: "ui-icon-plusthick" }
+      icons: {primary: "ui-icon-plusthick"}
    });
 
    $(".check-button").button();
@@ -160,7 +182,7 @@ function set_jquery_ui(){
 
 function add_check_icon(element){
    element.button({
-      icons: { primary: 'ui-icon-check' }
+      icons: {primary: 'ui-icon-check'}
    });
    return true;
 }

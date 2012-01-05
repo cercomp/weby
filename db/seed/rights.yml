@@ -106,19 +106,19 @@
  id: 18
  name: "Editar Menu"
  controller: menus
- action: edit update
+ action: edit update change_category
 
 19:
  id: 19
  name: "Excluir Menu"
  controller: menus
- action: destroy rm_menu del_deep del_deep_entry
+ action: destroy rm_menu
 
 20:
  id: 20
  name: "Ordernar Menus"
  controller: menus
- action: change_position change_order change_category
+ action: change_position change_order
 
 21:
  id: 21

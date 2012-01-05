@@ -4,6 +4,9 @@
 li > menu{
     margin:3px 0px; }
 
+#main-tabs > menu{
+    padding-left: 20px; }
+
 #main-tabs menu{
     list-style-type: none; }
 

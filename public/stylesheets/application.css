@@ -179,6 +179,15 @@ div.flash.warning {
   color: #A6750C;
   text-align: left; }
 
+div.notify{
+    display:none;
+    position:fixed;
+    font-size: 16px;
+    top:0px;
+    left:43%;
+    width:160px;
+    z-index: 9999; }
+
 /***** Ajax indicator ******/
 .ajax-indicator {
   margin: 0 auto;
