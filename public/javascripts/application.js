@@ -4,7 +4,7 @@ $(document).ready(function() {
    ////////////////////////////////
 
    // Ajax indicator
-   $('*').ajaxSend(function(){
+   $('body').ajaxSend(function(){
       Loading.show();
    }).ajaxComplete(function(evt,xhr){
       Loading.hide();
