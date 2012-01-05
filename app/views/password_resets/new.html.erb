@@ -3,11 +3,11 @@
     
   <%= form_tag password_resets_path do %>
 
-    <p> <label><%= t"email"  %>:</label> <%= text_field_tag "email" %> </p>
+  <p> <label><%= t"email"  %>:</label> <%= text_field_tag "email", "#{params[:email]}" %> </p>
 
-		<div class="actions">
-		   <%= submit_tag t"reset_send_email" %>
-  	</div>
-  	
+  <div class="actions">
+    <%= submit_tag t"reset_send_email" %>
+  </div>
+
   <% end %>
 </fieldset>
