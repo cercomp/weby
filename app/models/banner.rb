@@ -21,7 +21,7 @@ class Banner < ActiveRecord::Base
   validate :page_or_url
 
   def page_or_url
-    if !url || !page_id
+    if (url.blank? && page_id.blank?)
       errors.add(:banner, I18n.t("banner_need_a_destination"))
     end
   end
