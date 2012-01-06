@@ -220,6 +220,7 @@ en:
   item_menu:
     one: "Menu Item"
     other: "Menu Items"
+  menu_name: "Name of Menu"
   menus: "Menus"
   message: "Message"
   mini: "Mini"
@@ -233,7 +234,6 @@ en:
   my_profile: "My profile"
   my_password: "My Password"
   my_css: "My Styles"
-  menu_name: "Name of Menu"
 
 #---N---#
   nacional: "Nacional"
@@ -254,6 +254,8 @@ en:
     masc: "New %{param}"
   no_need_to_login: "You should not be logged in to access this page."
   no_mail: "No user was found with that email address."
+  no_more_i18ns: "You can't more create internationalizations"
+  no_page_selected: "still no page selected"
   no_permission_to_action: "Yout don't have permission to execute this action"
   no_permission_to_activate_deactivate: "You don´t have permission to Activate/Deactivate"
   none_category: "No category"
@@ -261,7 +263,6 @@ en:
   none_param: "None %{param}"
   "no": "No"
   not_found: "not found!"
-  no_more_i18ns: "You can't more create internationalizations"
 
 #---O---#
   of: 'of'
@@ -350,6 +351,8 @@ en:
     other: "Settings"
   select_param: "Select %{param}"
   select_site: "Select a site"
+  selected_page: "Selected Page"
+  send_date: "Send Date"
   show: "Show"
   show_hide_image_list: "Show/Hide list of images"
   side: "Side"

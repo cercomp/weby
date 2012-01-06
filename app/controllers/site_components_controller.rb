@@ -6,29 +6,14 @@ class SiteComponentsController < ApplicationController
   respond_to :html, :xml, :js
   def index
     @site_components = @site.site_components
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @site_components }
-    end
   end
 
   def show
     @site_component = @site.site_components.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @site_component }
-    end
   end
 
   def new
     @site_component = SiteComponent.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @site_component }
-    end
   end
 
   def edit
@@ -38,30 +23,22 @@ class SiteComponentsController < ApplicationController
   def create
     @site_component = SiteComponent.new(params[:site_component])
 
-    respond_to do |format|
-      if @site_component.save
-        # TODO colocar tradução na mensagem de sucesso
-        format.html { redirect_to(site_site_components_url, :notice => 'Componente criado com sucesso.') }
-        format.xml  { render :xml => @site_component, :status => :created, :location => @site_component }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @site_component.errors, :status => :unprocessable_entity }
-      end
+    if @site_component.save
+      # TODO colocar tradução na mensagem de sucesso
+      redirect_to(site_site_components_url, :notice => 'Componente criado com sucesso.')
+    else
+      render :action => "new"
     end
   end
 
   def update
     @site_component = @site.site_components.find(params[:id])
 
-    respond_to do |format|
-      if @site_component.update_attributes(params[:site_component])
-        # TODO colocar tradução na mensagem de sucesso
-        format.html { redirect_to(site_site_components_url, :notice => 'Componente atualizado com sucesso.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @site_component.errors, :status => :unprocessable_entity }
-      end
+    if @site_component.update_attributes(params[:site_component])
+      # TODO colocar tradução na mensagem de sucesso
+      redirect_to(site_site_components_url, :notice => 'Componente atualizado com sucesso.')
+    else
+      render :action => "edit"
     end
   end
 
@@ -69,10 +46,7 @@ class SiteComponentsController < ApplicationController
     @site_component = SiteComponent.find(params[:id])
     @site_component.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(site_site_components_url) }
-      format.xml  { head :ok }
-    end
+    redirect_to(site_site_components_url)
   end
   
   def sort
