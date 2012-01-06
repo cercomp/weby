@@ -12,19 +12,7 @@
 
   <%= f.input :name, :label => t("name"), :hint => t("field_required") %>
 
-  <% unless @users.nil? %>
-    <div class="collection_check_boxes">
-      <label for="users_id_"><%= t "user.other" %>:</label>
-      <div class="check_boxes">
-        <% @users.each do |user| %>
-          <%= check_box_tag 'group[user_ids][]', user.id, @group.user_ids.include?(user.id) %>
-          <%= user.login %>
-          <br/>
-        <% end %>
-        <%= hidden_field_tag 'group[user_ids][]', '' %>
-      </div>
-    </div>
-  <% end %>
+  <%= f.input :emails, :hint => t('comma_separated_emails'), as: :text, input_html: { rows: 4 } %>
 
   <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
 

@@ -18,28 +18,17 @@ class GroupsController < ApplicationController
 
     respond_with do |format|
       format.js  
-      format.xml  { render :xml => @banners }
       format.html
     end
   end
 
   def show
     @group = Group.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @group }
-    end
   end
 
   def new
     @group = Group.new
     @users = User.by_site(@site)
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @group }
-    end
   end
 
   def edit
@@ -50,31 +39,21 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(params[:group])
 
-    respond_to do |format|
-      if @group.save
-        format.html {
-          redirect_to({:site_id => @group.site.name, :controller => 'groups'},
-                      :notice => t('successfully_created')) }
-                      format.xml  { render :xml => @group, :status => :created, :location => @group }
-      else
-        format.html { respond_with(@site, @group) }
-        format.xml  { render :xml => @group.errors, :status => :unprocessable_entity }
-      end
+    if @group.save
+      redirect_to({:site_id => @group.site.name, :controller => 'groups'},
+                  :notice => t('successfully_created'))
+    else
+      respond_with(@site, @group)
     end
   end
 
   def update
     @group = Group.find(params[:id])
-    respond_to do |format|
-      if @group.update_attributes(params[:group])
-        format.html {
-          redirect_to({:site_id => @group.site.name, :controller => 'groups', :action => 'index'},
-                      :notice => t('successfully_updated')) }
-                      format.xml  { head :ok }
-      else
-        format.html { redirect_to :back }
-        format.xml  { render :xml => @group.errors, :status => :unprocessable_entity }
-      end
+    if @group.update_attributes(params[:group])
+      redirect_to({:site_id => @group.site.name, :controller => 'groups', :action => 'index'},
+                  :notice => t('successfully_updated'))
+    else
+      redirect_to :back
     end
   end
 
@@ -82,10 +61,7 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
     @group.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(site_groups_url) }
-      format.xml  { head :ok }
-    end
+    redirect_to(site_groups_url)
   end
 
   private

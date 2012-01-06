@@ -1,16 +1,9 @@
-<fieldset>  
-  <p>
-    <b><%= t"name" %>:</b>
-    <%= @group.name %>
-  </p>
+<fieldset>
+  <legend><%= t('group.one') + " " + @group.name %></legend>
 
   <p>
-    <b><%= t"user.other" %>:</b>
-    <ul>
-      <% @group.users.each do |user| %>
-        <li><%= user.login %></li>
-      <% end %>
-    </ul>
+    <b>Email(s) :</b>
+    <%= @group.emails %>
   </p>
 
   <%= link_to t('edit'), edit_site_group_path(@site, @group) %> |  <%= link_to t("list_all.masc"), site_groups_path(@site) %> | <%= link_to t('back'), :back %>
