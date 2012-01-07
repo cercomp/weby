@@ -1,6 +1,7 @@
 <div  id="banners_right">
   <% @component_banners = @site.banners.published.tagged_with(settings[:category]) %>
   <% @component_banners.each do |banner| %>
+		<% banner_url = banner.url ? banner.url : url_for(site_page_url(@site, banner.page_id)) %>
     <% unless banner.repository.nil? %>
       <% #TODO: Trocar id para class %>
       <figure id='banner'>
@@ -13,12 +14,17 @@
                               as: 'link',
                               alt: banner.text,
                               title: banner.text,
-                              url: banner.url || url_for(site_page_url(@site.id, banner.page_id))
+                              url: banner_url
                            }) %>
       </figure>
       <% if check_permission(BannersController, ["toggle_field"]) %>
         <%= link_to t("unpublish"), toggle_field_site_banner_path(@site, banner, :field => 'publish') %>
       <% end %>
+    <% else %>
+			<div class='banner_textual'>
+				<h2><%= "#{banner.title}" %></h2>
+				<a href="<%= "#{banner_url}" %>"><p><%= "#{banner.text}" %></p></a>
+			</div>
     <% end %>
   <% end %>
 </div>
