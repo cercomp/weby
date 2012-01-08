@@ -1,7 +1,7 @@
 <div  id="banners_right">
   <% @component_banners = @site.banners.published.tagged_with(settings[:category]) %>
   <% @component_banners.each do |banner| %>
-		<% banner_url = (banner.url.nil? or banner.url.blank?) ? url_for(site_page_url(@site, banner.page_id)) : banner.url %>
+		<% banner_url = (banner.url.nil? or banner.url.blank?) ? site_page_path(@site, banner) : banner.url %>
     <% unless banner.repository.nil? %>
       <% #TODO: Trocar id para class %>
       <figure id='banner'>
