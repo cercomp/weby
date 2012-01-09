@@ -41,7 +41,7 @@ class FeedbacksController < ApplicationController
     @feedback = Feedback.new(params[:feedback])
 
     if @feedback.save
-      FeedbackMailer.send_feedback(@feedback)
+      FeedbackMailer.send_feedback(@feedback).deliver
       session[:feedback_id] = @feedback.id
       redirect_to :action => 'sent'
     else
