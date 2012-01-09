@@ -161,7 +161,7 @@ module ApplicationHelper
     # Se não está logado não existe permissões
     return [args[:except]] if user.nil?
     ctr = args[:controller] || controller
-    return ctr.instance_methods(false) if user.is_admin
+    return ctr.class.instance_methods(false) if user.is_admin
     perms = []
     perms_user = []
     get_roles(user, @site).each do |role|
