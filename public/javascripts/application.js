@@ -79,7 +79,7 @@ FlashMsg = {
    notify: function(status){
        //TODO algumas requisições ajax, retornam 500, mesmo quando OK
       //if([403,500].indexOf(status)>-1){
-      if([403].indexOf(status)>-1){
+      if(status == 403){
 
           flash = $(document.createElement('div'));
           $('#content').prepend(flash);
