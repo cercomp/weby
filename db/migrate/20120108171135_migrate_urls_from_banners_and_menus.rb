@@ -5,7 +5,7 @@ class MigrateUrlsFromBannersAndMenus < ActiveRecord::Migration
   # anteriormente o campo era nil
   def self.up
     Banner.where(url: nil).each do |banner|
-      next if menu.page_id == nil
+      next if banner.page_id == nil
       banner.url = url_for(
         controller: 'pages',
         action: 'show',
