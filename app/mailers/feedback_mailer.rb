@@ -1,5 +1,4 @@
 class FeedbackMailer < ActionMailer::Base
-  default :from => "web@cercomp.ufg.br"
 
   def send_feedback feedback
     @feedback = feedback
