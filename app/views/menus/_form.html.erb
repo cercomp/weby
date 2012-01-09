@@ -1,16 +1,9 @@
-<center>
-	<%= form_tag [@site, @menu], :remote => true do %>
-		<%= text_field_tag :search %>
-		<%= submit_tag t("search") %>
-	<% end %>
-</center>
-
-<hr/>
+<% content_for :javascripts, javascript_include_tag('menus') %>
 
 <%= simple_form_for [@site, @menu] do |f| %>
 	<% if @menu.errors.any? %>
 		<div id="error_explanation">
-			<h2><%= pluralize(@menu.errors.count, "") %> <%= t"prohibited_being_saved", :count => @menu.errors.count %>:</h2>
+			<h2><%= pluralize(@menu.errors.count, "") %> <%= t("prohibited_being_saved", :count => @menu.errors.count) %>:</h2>
 			<ul>
 				<% @menu.errors.full_messages.each do |msg| %>
 					<li><%= msg %></li>
@@ -19,16 +12,24 @@
 		</div>
 	<% end %>
 
-	<div class="link-field">
-		<label for="div_event"><%= t"type" %></label>
-		<div id="link_form_pages">
-			<% set_params_type_value %>
-			<%= links_to_menu_type(params[:type], controller.action_name) %>
-		</div>
-	</div>
-
 	<div id="div_link">
-		<%= render :partial => 'formPages', :locals => {:f => f} %>
+    <%= f.input :link,
+      label: t('url'),
+      hint: t('type_param', param: t('url')),
+      wrapper_html: { id: 'banner_url', style: 'float: left' },
+      as: :url %>
+
+    <%= link_to_function 'Clique aqui para selecionar uma página',
+      'show_dialog($(this))',
+      id: 'banner_page_select',
+      style: "float: left; margin: 30px; 0 0 10px",
+      class: "search-button",
+      'data-link' => list_published_site_pages_path
+    %>
+
+    <% # Ao selecionar um noticia deve ser montado a url para ela,
+       # então aqui guardamos o caminho para as páginas deste site %>
+    <%= hidden_field_tag 'url_to_pages', site_pages_url(@site) %>
 	</div>
 
 	<%= f.input :title, :label => t("title"),

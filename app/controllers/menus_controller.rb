@@ -21,17 +21,10 @@ class MenusController < ApplicationController
     @menu = Menu.new
     @menu.sites_menus.build
     @menu.sites_menus[0].category = params[:category] if params[:category]
-    @pages = @site.pages.titles_like(params[:search]).page(params[:page]).per(params[:per_page])
-    @pages_on_menu = @pages.to_a 
   end
 
   def edit
     @menu = Menu.find(params[:id])
-    @pages = @site.pages.titles_like(params[:search]).page(params[:page]).per(params[:per_page])
-    @pages_on_menu = @pages.to_a 
-    unless @menu.page_id.nil? 
-      @pages_on_menu = [Page.find(@menu.page_id)] + (@pages - [Page.find(@menu.page_id)])
-    end
   end
 
   def create
@@ -129,6 +122,7 @@ class MenusController < ApplicationController
     end
     res
   end
+
   def del_deep_entry(obj, child, res)
     res << child
     if obj[child.id].class.to_s == "Array"
@@ -138,10 +132,12 @@ class MenusController < ApplicationController
     end
     res
   end
+
   #Atualiza a position de todos os itens irmãos maior que obj, com position - 1
   def update_position_for_remove(obj)
     SitesMenu.where({:category => obj.category, :site_id => obj.site_id}).update_all("position = position-1",["position > ? AND parent_id = ? ", obj.position, obj.parent_id])
   end
+
   #obj tem que ter o atributo category, sua antiga category, seu antigo parent_id e antiga position
   def update_category_deep(obj, new_category)
     if (obj && obj.category!=new_category)

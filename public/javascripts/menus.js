@@ -20,12 +20,12 @@ function selected (id, title) {
   var url = $('#url_to_pages').val() + '/' + id;
 
   $('#page_list').dialog('close');
-  $('input#banner_url').val(url);
+  $('input#menu_link').val(url);
 
   // Adiciona a referencia para a página
   var page_reference = document.createElement('input');
   $(page_reference).attr('type', 'hidden')
     .attr('name', 'page_id')
     .val(id);
-  $('form[id$=banner]').append(page_reference);
+  $('form[id$=menu]').append(page_reference);
 }

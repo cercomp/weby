@@ -17,12 +17,7 @@
     <h2> <%= @banner.text %> </h2>
   </p>
   <p>
-    <% if @banner.url %>
-      <h3> <%= t("url") %> : <%= link_to h @banner.url %> </h3>
-    <% elsif @banner.page %>
-      <h3> <%= t("page.one") %> : <%= link_to @banner.page.by_locale(session[:locale]).title, site_page_path(@site, @banner.page) %> </h3>
-    <% end %>
-    <h3> <%= "#{t("categories")} : #{@banner.categories.join(', ')}" unless @banner.categories.empty? %> </h3>
+    <h3> <%= t("url") %>: <%= link_to @banner.url, @banner.url %> </h3>
   </p>
 
   <%= make_menu(@banner, :except => "show") %>

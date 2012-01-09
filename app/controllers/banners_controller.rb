@@ -26,25 +26,10 @@ class BannersController < ApplicationController
 
   def new
     @banner = Banner.new
-    @pages = @site.pages.titles_like(params[:search]).page(params[:page]).per(params[:per_page])
-    @pages_on_banner = @pages.to_a 
   end
 
   def edit
-    if params[:type].nil?
-      if @banner.try(:url) and not @banner.url.try('empty?')
-        params[:type] = "external " 
-      else 
-        params[:type] = "internal"
-      end
-    end
-
     @banner = Banner.find(params[:id])
-    @pages = @site.pages.titles_like(params[:search]).page(params[:page]).per(params[:per_page])
-    @pages_on_banner = @pages.to_a 
-    unless @banner.page_id.nil?
-      @pages_on_banner = [Page.find(@banner.page_id)] + (@pages - [Page.find(@banner.page_id)])
-    end
   end
 
   def create
@@ -53,13 +38,7 @@ class BannersController < ApplicationController
       search_images
       render action: :edit
     end
-    unless @banner.save
-      @pages = @site.pages.titles_like(params[:search]).page(params[:page]).per(params[:per_page])
-      @pages_on_banner = @pages.to_a 
-      unless @banner.page_id.nil?
-        @pages_on_banner = [Page.find(@banner.page_id)] + (@pages - [Page.find(@banner.page_id)])
-      end
-    end
+    @banner.save
     respond_with(@site, @banner)
   end
 
@@ -69,15 +48,7 @@ class BannersController < ApplicationController
       @banner.attributes = params[:banner]
       search_images
     end
-    begin
-      @banner.update_attributes(params[:banner])
-    rescue
-      @pages = @site.pages.titles_like(params[:search]).page(params[:page]).per(params[:per_page])
-      @pages_on_banner = @pages.to_a 
-      unless @banner.page_id.nil?
-        @pages_on_banner = [Page.find(@banner.page_id)] + (@pages - [Page.find(@banner.page_id)])
-      end
-    end
+    @banner.update_attributes(params[:banner])
     respond_with(@site, @banner)
   end
 
@@ -85,19 +56,17 @@ class BannersController < ApplicationController
     @banner = Banner.find(params[:id])
     @banner.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(site_banners_path(@site)) }
-      format.xml  { head :ok }
-    end
+    # TODO mensagem de banner removido com sucesso
+    redirect_to(site_banners_path(@site))
   end
 
   def toggle_field
     @banner = Banner.find(params[:id])
     if params[:field] 
       if @banner.update_attributes("#{params[:field]}" => (@banner[params[:field]] == 0 or not @banner[params[:field]] ? true : false))
-        flash[:notice] = t"successfully_updated"
+        flash[:notice] = t("successfully_updated")
       else
-        flash[:warning] = t"error_updating_object"
+        flash[:warning] = t("error_updating_object")
       end
     end
     redirect_to :back
