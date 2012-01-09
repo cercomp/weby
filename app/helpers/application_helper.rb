@@ -48,7 +48,7 @@ module ApplicationHelper
 
     (view_ctrl == 1 ?
       "<li id=\"menu_#{entry.id}\" #{submenu}><div>" :
-      "<li #{submenu}>").tap do |menus|
+      "<li id=\"m_#{entry.id}\" #{submenu}>").tap do |menus|
       #		if (entry.menu.try(:page_id).nil? and entry.menu.try(:link).empty?)
       #menus << "#{entry.menu.try(:title)}"
       #		else
