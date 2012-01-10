@@ -492,7 +492,7 @@ en:
     error_messages:
       login_blank: "Can't leave it blank"
       login_not_found: "Invalid"
-      login_invalid: "Should use letters, numbers, spaces, and .-_@ please."
+      login_invalid: "Should use letters, numbers, and .-_ please."
       consecutive_failed_logins_limit_exceeded: "You have exceeded the number of allowed login attempts"
       email_invalid: "Should look like an email address."
       not_active: "Account not active"

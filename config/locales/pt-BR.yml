@@ -495,7 +495,7 @@ pt-BR:
     error_messages:
       login_blank: "deve ser preenchido"
       login_not_found: "Inválido"
-      login_invalid: "Deveria usar letras, números, espaços e -_@, por favor."
+      login_invalid: "Deveria usar letras, números, ponto, - e  _, por favor."
       consecutive_failed_logins_limit_exceeded: "Você excedeu o número permitido de tentativas de login"
       email_invalid: "Não parece um email válido"
       not_active: "Conta não está ativa"

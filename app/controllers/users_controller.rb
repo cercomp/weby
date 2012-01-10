@@ -96,7 +96,7 @@ class UsersController < ApplicationController
       flash[:notice] = t("create_account_successful")
       redirect_to current_user ? user_path(@user) : login_path
     else
-      flash[:notice] = t("problem_account_create")
+      flash[:error] = t("problem_create_account")
       render :action => :new
     end
   end
