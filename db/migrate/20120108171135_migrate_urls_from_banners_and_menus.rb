@@ -17,7 +17,7 @@ class MigrateUrlsFromBannersAndMenus < ActiveRecord::Migration
     end
 
     Menu.where(link: nil).each do |menu|
-      next if menu.page_id == nil
+      next if (menu.page_id == nil or menu.sites.first == nil)
       menu.link = url_for(
         controller: 'pages',
         action: 'show',
