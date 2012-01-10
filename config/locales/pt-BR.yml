@@ -132,6 +132,7 @@ pt-BR:
   file: 
     one: "Arquivo"
     other: "Arquivos"
+  file_link: "Link para arquivo"
   filename_or_description: "Nome do arquivo ou descrição"
   fill_email_form: "Preencha o formulário para resgatar sua senha. Ela será enviada para seu e-mail"
   filter: "Filtrar"
