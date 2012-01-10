@@ -16,5 +16,5 @@ class Banner < ActiveRecord::Base
   belongs_to :user, :foreign_key => "user_id"
   belongs_to :site, :foreign_key => "site_id"
 
-  validates_presence_of :title, :user_id, :date_begin_at, :url
+  validates_presence_of :title, :user_id, :date_begin_at
 end
