@@ -108,8 +108,9 @@ function show_selected_image(object,field_name){
 
    place.click(function(){
       image = $(this).find('img');
-      input = $('input#'+image.attr('id'));
-      if(input.prop('checked')){
+      input_id = image.attr('id').replace('img_','');
+      input = $('input#'+input_id);
+      if(input.prop('checked') || $(this).find('input#'+input_id).length > 0){
          input.prop('checked', null);
          image.remove();
          place.before('');
@@ -119,7 +120,7 @@ function show_selected_image(object,field_name){
    $('input[name="'+object+'['+field_name+']"]').change(function(){
       var selected = $(this);
       var image = $('label[for="'+selected.attr('id')+'"] > img').clone();
-      image.attr('id',selected.attr('id'));
+      image.attr('id','img_'+selected.attr('id'));
       place.html(image); 
       selected.prop('checked', true);
    });

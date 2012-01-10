@@ -50,19 +50,14 @@ module RepositoryHelper
   end
 
   def image_viewer
-    width = @width.blank? ? nil : @width
-    height = @height.blank? ? nil : @height
-    image = image_tag(@thumbnail,
-                  alt: @options[:alt] || @file.description,
-                  title: @options[:title] || @file.description)
-    # Tratamento para IE8.
-    if width
-      image.gsub!("/>", " width='#{width}' />")
-    end
-    if height
-      image.gsub!("/>", " height='#{height}' />")
-    end
-
+    img_opt = {
+      alt: (@options[:alt] || @file.description),
+      title: (@options[:title] || @file.description) }
+    img_opt[:width] = @width unless @width.blank?
+    img_opt[:height] = @height unless @height.blank?
+    img_opt[:id] = @options[:id] if @options[:id]
+    image = image_tag(@thumbnail, img_opt)
+    
     raw image
   end
 
