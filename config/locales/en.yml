@@ -279,6 +279,7 @@ en:
     image: "Page Image"
   page_need_at_least_one_internationalization: "Need at least one internationalization"
   page_categories_help: "Categories are separated by commas, the page's category are related with your content. Ex:Sports, News, Policy"
+  page_not_found: "Page Not Found"
   password: "Password"
   password_change: "Change password "
   password_confirmation: "Password confirmation"

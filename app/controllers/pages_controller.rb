@@ -35,7 +35,12 @@ class PagesController < ApplicationController
   end
 
   def show
-    @page = Page.find(params[:id])
+    begin
+      @page = @site.pages.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      flash[:error] = t(:page_not_found)
+      redirect_to :action => 'index' and return
+    end
     params[:type] ||= @page.type
     @current_locale = params[:page_loc] || session[:locale]
     respond_with(@page)
