@@ -4,8 +4,7 @@ class MigrateUrlsFromBannersAndMenus < ActiveRecord::Migration
   # Cria url atravez da página cadastrada já que
   # anteriormente o campo era nil
   def self.up
-    Banner.where(url: nil).each do |banner|
-      next if banner.page_id == nil
+    Banner.where('page_id IS NOT NULL').each do |banner|
       banner.url = url_for(
         controller: 'pages',
         action: 'show',
@@ -16,8 +15,8 @@ class MigrateUrlsFromBannersAndMenus < ActiveRecord::Migration
       banner.save!
     end
 
-    Menu.where(link: nil).each do |menu|
-      next if (menu.page_id == nil or menu.sites.first == nil)
+    Menu.where('page_id IS NOT NULL').each do |menu|
+      next if menu.sites.first == nil
       menu.link = url_for(
         controller: 'pages',
         action: 'show',

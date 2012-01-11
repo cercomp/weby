@@ -25,7 +25,7 @@ function selected (id, title) {
   // Adiciona a referencia para a página
   var page_reference = document.createElement('input');
   $(page_reference).attr('type', 'hidden')
-    .attr('name', 'page_id')
+    .attr('name', 'banner[page_id]')
     .val(id);
   $('form[id$=banner]').append(page_reference);
 }
