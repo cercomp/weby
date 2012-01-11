@@ -38,7 +38,7 @@ class PagesController < ApplicationController
     begin
       @page = @site.pages.find(params[:id])
     rescue ActiveRecord::RecordNotFound
-      flash[:error] = t(:page_not_found)
+      flash[:error] = t(:page_not_found)+" [#{params[:id]}]"
       redirect_to :action => 'index' and return
     end
     params[:type] ||= @page.type
