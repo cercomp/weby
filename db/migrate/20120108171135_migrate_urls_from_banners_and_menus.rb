@@ -12,7 +12,7 @@ class MigrateUrlsFromBannersAndMenus < ActiveRecord::Migration
         id: banner.page_id,
         only_path: true
       )
-      banner.save!
+      banner.save
     end
 
     Menu.where('page_id IS NOT NULL').each do |menu|
@@ -24,7 +24,7 @@ class MigrateUrlsFromBannersAndMenus < ActiveRecord::Migration
         id: menu.page_id,
         only_path: true
       )
-      menu.save!
+      menu.save
     end
   end
 
