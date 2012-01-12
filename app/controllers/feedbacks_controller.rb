@@ -54,7 +54,7 @@ class FeedbacksController < ApplicationController
       if(@groups.length == 0)
         emails = User.by_site(@site.id).map(&:email).join(',')
       end
-      FeedbackMailer.send_feedback(@feedback,emails)
+      FeedbackMailer.create_send_feedback(@feedback,emails)
       session[:feedback_id] = @feedback.id
       redirect_to :action => 'sent'
     else
