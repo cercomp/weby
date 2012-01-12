@@ -49,12 +49,15 @@ class FeedbacksController < ApplicationController
     @feedback = Feedback.new(params[:feedback])
 
     if @feedback.save
-      emails = nil
       #Se não tiver nenhum grupo cadastrado no site, envia para todos os usuário do site
       if(@groups.length == 0)
         emails = User.by_site(@site.id).map(&:email).join(',')
+        FeedbackMailer.send_feedback(@feedback, emails).deliver
+      else
+        @feedback.groups.each do |group|
+          FeedbackMailer.send_feedback(@feedback,group.emails).deliver
+        end
       end
-      FeedbackMailer.create_send_feedback(@feedback,emails)
       session[:feedback_id] = @feedback.id
       redirect_to :action => 'sent'
     else
