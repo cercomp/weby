@@ -48,9 +48,9 @@ class Page < ActiveRecord::Base
   accepts_nested_attributes_for :sites_pages, allow_destroy: true
   accepts_nested_attributes_for :pages_repositories, allow_destroy: true
 
-  validate :at_leat_one_internationalization
+  validate :at_least_one_internationalization
 
-  def at_leat_one_internationalization
+  def at_least_one_internationalization
     page_i18n = self.page_i18ns.map{ |page_i18n| page_i18n unless page_i18n.marked_for_destruction? }.compact
     if page_i18n.size <= 0
       errors.add(:page, I18n.t("page_need_at_least_one_internationalization"))
