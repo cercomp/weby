@@ -14,7 +14,13 @@
     <%= @feedback.message %>
   </p>
   <p>
-    <b><%= t('send_date') %></b>
+    <b><%= t("group."+(@feedback.groups.length>1 ? "other" : "one")) %></b><br/>
+    <% @feedback.groups.each do |group| %>
+    <%= group.name %> (<%= group.emails %>)<br/>
+    <% end %>
+  </p>
+  <p>
+    <b><%= t('send_date') %>:</b>
     <%= l @feedback.created_at, format: :short %>
   </p>
 

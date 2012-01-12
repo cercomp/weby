@@ -127,6 +127,7 @@ pt-BR:
   feedback:
     one: "Fale Conosco"
     other: "Fale Conosco"
+  feedback_need_at_least_one_group: "Necesita pelo menos um grupo!"
   feedback_sent: "Feedback enviado com sucesso!"
   field_required: "Campo obrigatório!"
   file: 
@@ -254,6 +255,7 @@ pt-BR:
   new_param:
     fem: "Nova %{param}"
     masc: "Novo %{param}"
+  no_groups: "Nenhum grupo configurado para receber e-mails"
   no_need_to_login: "Você não deve estar logado para acessar essa página."
   no_mail: "Nenhum usuário com esse e-mail foi econtrado."
   no_more_i18ns: "Você não pode mais criar internacionalizações"

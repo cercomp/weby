@@ -127,6 +127,7 @@ en:
   feedback:
     one: "Feedback"
     other: "Feedback"
+  feedback_need_at_least_one_group: "Needs at least one group!"
   feedback_sent: "Feedback sent successfully!"
   field_required: "Field required!"
   file:
@@ -254,6 +255,7 @@ en:
   new_param:
     fem: "New %{param}"
     masc: "New %{param}"
+  no_groups: "No groups were set to receive e-mails"
   no_need_to_login: "You should not be logged in to access this page."
   no_mail: "No user was found with that email address."
   no_more_i18ns: "You can't more create internationalizations"
