@@ -1,3 +1,10 @@
+// TODO arquivo semelhante ao menus.js estudar maneira de mescla-los
+
+// Caso o usuário altere a url o page_id é zerado
+$('#banner_url').change(function(){
+  $('#banner_page_id').val(null);
+});
+
 /**
  * Coloca um countainer para a lista de paginas
  */
@@ -13,6 +20,11 @@ function show_dialog(ele) {
   });
 }
 
+// Caso o usuário altere a url o page_id é zerado
+$('#banner_link').change(function(){
+  $('#banner_page_id').val(null);
+});
+
 /**
  * Ao selecionar a notícia, cria um input com o id da noticia selecionada
  */
@@ -23,9 +35,16 @@ function selected (id, title) {
   $('input#banner_url').val(url);
 
   // Adiciona a referencia para a página
-  var page_reference = document.createElement('input');
-  $(page_reference).attr('type', 'hidden')
-    .attr('name', 'banner[page_id]')
-    .val(id);
-  $('form[id$=banner]').append(page_reference);
+  if ($('#banner_page_id').length == 0) {
+    var page_reference = document.createElement('input');
+    $(page_reference).attr('type', 'hidden')
+      .attr('name', 'banner[page_id]')
+      .attr('id', 'banner_page_id')
+      .val(id);
+    $('form[id*=banner]').append(page_reference);
+  }
+  // Ou se o campo já existir apenas muda o valor da página
+  else {
+    $('#banner_page_id').val(id);
+  }
 }

@@ -86,7 +86,8 @@
 
     <% # Ao selecionar um noticia deve ser montado a url para ela,
        # então aqui guardamos o caminho para as páginas deste site %>
-    <%= hidden_field_tag 'url_to_pages', site_pages_url(@site) %>
+    <%= hidden_field_tag 'url_to_pages', site_pages_url(@site, only_path: true) %>
+    <%= hidden_field_tag 'banner[page_id]', @banner.page_id %>
   </div>
   <div class="clear"></div>
 
