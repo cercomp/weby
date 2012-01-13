@@ -12,12 +12,13 @@
   <% end %>
 
   <%= f.input :name, :label => t("name"), :hint => t("field_required") %>
-  <span style="margin-left:300px;"> 
-    <%= link_to t("help_with_css"), "https://softifes.andifes.org.br/projects/weby/wiki/Working_with_css",
-      :target => "_blank" %>
-    <%= image_tag "help-icon.png" %>
-  </span>
-  <%= f.input :css, :label => t("css.one"), :as => :text %>
+
+	<div class="input">
+		<%= f.input :css, :label => t("css.one"), :as => :text, wrapper_html: { class: 'nostyle' } %>
+		<%= link_to t("help_with_css"), "https://softifes.andifes.org.br/projects/weby/wiki/Working_with_css",
+			:target => "_blank" %>
+		<%= image_tag "help-icon.png" %>
+	</div>
 
   <%= f.fields_for :sites_csses do |sc| %>
     <%= sc.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
@@ -26,8 +27,8 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit t("save") %>
-    <%= link_to t('back'), site_csses_path(@site) %>
+		<%= f.submit t("save"), :class => 'green-button' %>
+		<%= link_to t('back'), site_csses_path(@site), :class => 'red-button' %>
   </div>
 
 <% end %>

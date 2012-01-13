@@ -3,220 +3,341 @@
 $label_width: 120px;
 $label_horizontal_margin: 10px;
 
-.simple_form{
-  font-size: 14px;
-  .pages_paginator{float: none}
+.pages_paginator { float: none !important; }
+.image_list{ padding-bottom: 25px; }
+
+form
+{ 
+	*:focus { outline: none; }
+	font-size: 14px;
 }
 
-div.input {
-  clear: both;
-  margin-bottom: 15px;
-
-  &:hover label{
-    color: black;
-  }
+::-webkit-validation-bubble-message { padding: 1em; }
+.input
+{
+	position: relative;
+	clear: both;
+	padding: 12px;
+	border-bottom: 1px solid #e4e4e4;
+}
+select
+{
+	height: 33px; 
+	padding: 5px 8px;
+	width:200px;
+}
+input[type=checkbox]
+{
+	margin: 0;
+}
+label
+{
+	abbr{ color: red; }
+	&.collection_radio
+	{
+		margin:
+		{
+			right: 10px;
+			left:   2px;
+		}
+		float: none;
+		margin: 0;
+		padding: 0;
+		vertical-align: -2px;
+	}
+	width: auto;
+	display: block;
+	padding-bottom: 8px;
+	cursor: pointer;
 }
 
-div.input.image_list{
-  padding-bottom: 25px;
+input[type=url],
+input[type=number],
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=search],
+input[type=color],
+input[type=date],
+input[type=tel],
+input[type=month],
+input[type=week],
+input[type=time],
+input[type=datetime],
+input[type=datetime-local]
+{
+	-webkit-appearance: none;
+	height:20px;
+	width:200px;
+	padding:5px 8px;
 }
-
-.hint {
-  color: #555;
-  display: block;
-  /*margin-left: $label_width + (2 * $label_horizontal_margin);*/
-  width: 200px;
-  font:{
-    size: 11px;
-    style: italic;
-  }
+input[type=search]
+{
+	height: 32px;
+	width: 240px;
+	border:1px solid #aaa;
 }
-
-label.collection_radio {
-  float: none;
-  margin: 0;
-  padding: 0;
-  vertical-align: -2px;
-  margin:{
-    right: 10px;
-    left:   2px;
-  }
+textarea
+{
+	padding: 8px;
+	height:100px;
+	width: 416px;
 }
-
-.radio-group-images{
-  display: table;
-  label{
-    float: left;
-  }
-  & > input[type=radio]{
-    display: none;
-    &:checked + label.collection_radio > img{
-      @extend .radio-group-images-selected
-    }
-    & + label.collection_radio > img{
-      padding: 4px 2px;
-      margin: 5px;
-      &:hover{
-        @extend .radio-group-images-selected
-      }
-    }
-  }
+input[type=url],
+input[type=number],
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=color],
+input[type=date],
+input[type=tel],
+input[type=month],
+input[type=week],
+input[type=time],
+input[type=datetime],
+input[type=datetime-local],
+textarea
+{
+	&:focus
+	{
+		&:invalid
+		{
+			background: #fff url(../images/invalid.png) no-repeat 98% center;
+			box-shadow: 0 0 5px #d45252;
+			border-color: #b03535
+		}
+		background: #fff;
+		border:1px solid #555;
+		box-shadow: 0 0 3px #aaa;
+	}
+	&:required
+	{
+		&:valid
+		{
+			background: #fff url(../images/valid.png) no-repeat 98% center;
+			box-shadow: 0 0 5px #5cd053;
+			border-color: #28921f;
+		}
+		background: #fff url(../images/red_asterisk.png) no-repeat 98% center;
+	}
+	border:1px solid #aaa;
+	padding-right:30px;
 }
-
-.radio-group-images-selected{
-  margin: 4px 2px;
-  padding: 2px;
-  border: 3px solid red;
+.hint
+{
+	display: block;
+	font-size: 11px;
+	padding-top: 2px;
 }
-
-#selected-image-of-radio-group-images{
-  margin-top: 15px;
-  & input{
-    display: none;
-  }
-  &:hover::before{
-    content: url(../images/apagar.gif);
-    position: relative;
-    top: -50px;
-    right: 0;
-  }
+input[type=url],
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=search],
+input[type=color],
+input[type=date],
+input[type=tel],
+input[type=month],
+input[type=week],
+input[type=time],
+input[type=datetime],
+input[type=datetime-local]
+{
+	&:required:valid + .hint {background: #28921f;}
+	&:required:valid + .hint::before {color:#28921f;}
+	&:focus + .hint { display: inline; }
+	& + .hint
+	{
+		&::before
+		{
+			content: "\25C0";
+			color: #d45252;
+			position: absolute;
+			top:1px;
+			left:-6px;
+		}
+		font-size: 11px;
+		line-height: 24px;
+		background: #d45252;
+		color: white;
+		margin-left:8px;
+		padding: 1px 6px;
+		z-index: 999;
+		position: absolute;
+		display: none;
+	}
 }
-
-.field_with_errors {
-  background-color: #ff3333;
+.green-button
+{
+	@extend .button;
+	border: none !important;
+	color: white !important;
+	background-color: #3D9400 !important;
+	&:active
+	{
+		box-shadow: 0 0 10px 5px #356b0b inset !important;
+		-webkit-box-shadow:0 0 10px 5px #356b0b inset !important;
+		-moz-box-shadow: 0 0 10px 5px #356b0b inset !important;
+		-ms-box-shadow: 0 0 10px 5px #356b0b inset !important;
+		-o-box-shadow: 0 0 10px 5px #356b0b inset !important;
+	}
 }
-
-input.radio {
-  margin-right: 5px;
-  vertical-align: -3px;
+.red-button
+{
+	@extend .button;
+	border: none !important;
+	color: white !important;
+	background-color: #D14836 !important;
+	&:active
+	{
+		box-shadow: 0 0 10px 5px #A23727 inset !important;
+		-webkit-box-shadow:0 0 10px 5px #A23727 inset !important;
+		-moz-box-shadow: 0 0 10px 5px #A23727 inset !important;
+		-ms-box-shadow: 0 0 10px 5px #A23727 inset !important;
+		-o-box-shadow: 0 0 10px 5px #A23727 inset !important;
+	}
 }
-
-.input.check_boxes{
-  input.check_boxes{
-    display: list-item;
-    margin-left: 0;
-    //vertical-align: -3px;
-    margin-left: $label_width + (2 * $label_horizontal_margin);
-    & + label{
-      position: relative;
-      left: $label_width + (4 * $label_horizontal_margin);
-      margin: 0;
-      float: none;
-    }
-  }
+.blue-button
+{
+	@extend .button;
+	border: none !important;
+	color: white !important;
+	background-color: #4D90FE !important;
+	&:active
+	{
+		box-shadow: 0 0 10px 5px #357AE8 inset !important;
+		-webkit-box-shadow:0 0 10px 5px #357AA2 inset !important;
+		-moz-box-shadow: 0 0 10px 5px #357AA2 inset !important;
+		-ms-box-shadow: 0 0 10px 5px #357AA2 inset !important;
+		-o-box-shadow: 0 0 10px 5px #357AA2 inset !important;
+	}
 }
-
-.actions{
-  float: right;
-  clear: both;
-  margin: 10px auto;
-  a{
-    color: black;
-    @extend .button;
-  }
+.search-button
+{
+	@extend .blue-button;
+	background:
+	{
+		image: url('../images/search_white.png') !important;
+		position: right center !important;
+		repeat: no-repeat !important;
+	}
+	padding-right: 35px !important;
 }
-
-.green-button{
-  background: rgb(189, 255, 187) !important;
-  @extend .button;
+.add-button
+{
+	@extend .blue-button;
+	background:
+	{
+		image: url('../images/search_white.png') !important;
+		position: right center !important;
+		repeat: no-repeat !important;
+	}
+	padding-right: 35px !important;
 }
-
-.red-button{
-  background: rgb(255, 197, 187) !important;
-  @extend .button;
+.actions
+{
+	float: right;
+	clear: both;
+	margin: 10px auto;
 }
-
-.blue-button{
-  background: rgb(187, 208, 255) !important;
-  @extend .button;
-}
-
-.button, .ui-button{
-  border-width: 1px !important;
-  border-bottom-width: 2px !important;
-  border-right-width: 2px !important;
-
-  line-height: 1.9 !important;
-  color: black;
-}
-
-input, select, textarea{
-  display: inline;
-  margin: 5px 0;
-  border: 1px solid gray;
-  border-right: 2px solid gray;
-  border-bottom: 2px solid gray;
-  padding: 3px;
-  line-height: 23px;
-  font-size: 14px;
-  @include border_radius(4px);
-
-  &:focus{
-    border: 1px solid black;
-    border-right: 2px solid black;
-    border-bottom: 2px solid black;
-    background-color: #faffbd;
-    outline: none;
-    @include box_shadow(0 0 28px 1px #aaa);
-  }
-}
-
-input[type=search]{
-  width: 250px;
-  -webkit-appearance: none;
-  &:focus{
-    -webkit-appearance: none;
-  }
-}
-
-label{
-  font:{
-    size: 14px;
-    familly: Verdana;
-  }
-  cursor: pointer;
-  display: block;
-  /*float: left;*/
-  /*width: $label_width;*/
-  /*text-align: right;*/
-  /*margin: 0 $label_horizontal_margin;*/
-  abbr{
-    color: red;
-  }
-}
-.input label{
-  margin-top: 10px;
-}
-
-button, 
 input[type=submit],
 input[type=button],
-input[type=reset]{
-  @extend .button;
+input[type=reset],
+button,
+.button
+{
+	display: inline-block;
+	margin: 0;
+	font-size: 13px;
+	line-height: 15px;
+	color: black;
+	font-weight: bold;
+	padding: 9px 20px;
+	text-align: center;
+	cursor: pointer;
+	@include border_radius(4px);
+	background-color: #F3F3F3;
+	border: 1px solid #DBDBDB;
+	&:active
+	{
+		box-shadow: 0 0 10px 5px #DDD inset;
+		-webkit-box-shadow:0 0 10px 5px #DDD inset ;
+		-moz-box-shadow: 0 0 10px 5px #DDD inset;
+		-ms-box-shadow: 0 0 10px 5px #DDD inset;
+		-o-box-shadow: 0 0 10px 5px #DDD inset;
+	}
+}
+.field_with_errors { background-color: #ff3333; }
+.error { padding-left: 20px; }
+.side
+{
+	border: none !important;
+	padding: 0;
+	float: left;
+	clear: none;
+	margin-right: 10px;
+}
+.nostyle 
+{
+	border: none !important;
+	padding: 0;
+}
+.element { margin-top: 8px; }
+.datetimepicker
+{
+	background-image: url('../images/icons/black16x16/ic_calendar.png') !important;
+	background-position: 98% center !important;
+	background-repeat: no-repeat !important;
 }
 
-.ui-multiselect-checkboxes{
-  label{
-    width: 98% !important;
-    margin: 0 !important;
-    text-align: left !important;
-  }
+/* old style */
+#page_type
+{
+  margin-bottom: 10px !important;
+  label { display: inline !important; }
 }
 
-@mixin placeholders{
-  font-family: Verdana, Arial, sans !important;
+/* ### legacy ### */
+.radio-group
+{
+	label{
+		width: 120px;
+		margin-top: 5px;
+	}
 }
-
-::-webkit-input-placeholder { @include placeholders }
-input:-moz-placeholder { @include placeholders }
-
-
-.radio-group{
-  label{
-    width: 120px;
-    margin-top: 5px;
-  }
+.radio-group-images
+{
+	display: table;
+	label{ float: left !important; }
+	& > input[type=radio] 
+	{
+		display: none;
+		&:checked + label.collection_radio > img{ @extend .radio-group-images-selected }
+		& + label.collection_radio > img
+		{
+			padding: 4px 2px;
+			margin: 5px;
+			&:hover { @extend .radio-group-images-selected }
+		}
+	}
 }
-.input.check_boxes input.check_boxes + label{width:auto;float:left;left:10px;}
-.input.check_boxes input.check_boxes{float:left; clear:left;display:inline;margin-left:0px;}
-.input.check_boxes{overflow:auto;}
+.radio-group-images-selected
+{
+	margin: 4px 2px;
+	padding: 2px;
+	border: 3px solid red;
+}
+#selected-image-of-radio-group-images
+{
+	margin-top: 15px;
+	& input{ display: none; }
+	&:hover::before
+	{
+		content: url(../images/apagar.gif);
+		position: relative;
+		top: -50px;
+		right: 0;
+	}
+}
+input.radio { margin-right: 5px; }
+.radio label.collection_radio { display: inline; }

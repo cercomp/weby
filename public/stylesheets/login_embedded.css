@@ -1,36 +1,56 @@
-fieldset.login_embedded {
+/*@import "utils";
+
+fieldset.login_embedded{
   margin: 5px !important;
   padding: 15px !important;
   line-height: normal;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  border-radius: 8px; }
-  fieldset.login_embedded:parent {
-    -webkit-border-radius: 0 0 8px 8px;
-    -moz-border-radius: 0 0 8px 8px;
-    border-radius: 0 0 8px 8px; }
-  fieldset.login_embedded div.text-field, fieldset.login_embedded div.password-field {
+  @include border_radius(8px);
+
+  &:parent{
+    @include border_radius(0 0 8px 8px);
+  }
+
+  div.text-field, div.password-field{
     border: 0;
-    margin: 0; }
-    fieldset.login_embedded div.text-field label, fieldset.login_embedded div.password-field label {
+    margin: 0;
+    label{
       display: inline !important;
-      width: 100% !important; }
-  fieldset.login_embedded .input.boolean input[type="checkbox"] {
+      width: 100% !important;
+    }
+  }
+
+  .input.boolean input[type="checkbox"]{
     float: left;
-    margin-right: 5px; }
-  fieldset.login_embedded label {
+    margin-right: 5px;
+  }
+
+  label {
     width: 100% !important;
     float: none !important;
     margin: 0 !important;
     color: #444444;
-    text-align: left !important;
-    font-size: 16px !important;
-    font-weight: bold !important;
-    font-family: Sans; }
-  fieldset.login_embedded legend {
-    display: none; }
-  fieldset.login_embedded .actions button, fieldset.login_embedded .actions input[type='submit'] {
-    line-height: 19px;
-    margin-left: 0px; }
-  fieldset.login_embedded .actions a {
-    line-height: 20px; }
+    text:{
+      align: left !important;
+    }
+    font:{
+      size: 16px !important;
+      weight: bold !important;
+      family: Sans;
+    }
+  }
+
+  legend{
+    display: none;
+  }
+
+  .actions{
+    button, input[type='submit'] {
+      line-height: 19px;
+      margin-left: 0px;
+    }
+    a{
+      line-height: 20px;
+    }
+  }
+
+}*/

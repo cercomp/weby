@@ -26,16 +26,16 @@
     </div>
   <% end %>
 
-  <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
-  <div class="field">
-    <%= f.input :component, :collection => components.collect{ |c| [t("components.#{c}"), c] }.sort{ |a,b| a[0].downcase <=> b[0].downcase }, :label => t("component.one") %>
-  </div>
-  <div class="field" id="settings">
+	<%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
+
+	<%= f.input :component, :collection => components.collect{ |c| [t("components.#{c}"), c] }.sort{ |a,b| a[0].downcase <=> b[0].downcase }, :label => t("component.one") %>
+
+  <div id="settings">
     <%= f.input :settings, :label => t("setting.other"), :as => :text %> 
-  </div>
-  <div class="field">
+	</div>
+
+  <div class="input">
     <label><%= t("place").capitalize  %></label>
-    <br/>
     <%= raw make_mini_layout %>
     <%= f.input :place_holder, :as => :hidden %>
   </div>

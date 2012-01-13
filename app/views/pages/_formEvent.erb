@@ -1,31 +1,40 @@
 <%= simple_fields_for @page do |f| %>
-  <% if params[:type] == "Event" %>
-    <% kind_list = [[t("regional"), "regional"], [t("nacional"), "nacional"], [t("internacional"), "internacional"]] %>
+	<% if params[:type] == "Event" %>
+		<%= f.input :type, :input_html => {:value => "Event"}, :as => :hidden %>
 
-    <%= f.input :local, :label => t("localization"), :required => true, :help => t("field_required") %>
-    <%= f.input :kind, :collection => kind_list.map{|p| [p[0], p[1]]}, :label => t("kind"), :label_html => {:include_blank => true} %>
+		<% kind_list =
+			[[t("regional"), "regional"],
+			[t("nacional"), "nacional"],
+			[t("internacional"), "internacional"]] %>
+			
+		<%= f.input :local,
+			:label => t("localization"),
+			:required => true,
+			:help => t("field_required") %>
+	
+		<%= f.input :kind,
+			:collection => kind_list.map{|p| [p[0], p[1]]},
+			:label => t("kind"),
+			:label_html => {:include_blank => true} %>
 
-    <div class="period-dates left">
-      <label>Período da Notícia: </label>
-      <div class="period-dates-inputs">
-        <%= f.input :event_begin, as: :string,
-          placeholder: t("begin"),
-          wrapper_html: {class: "period-date period-date-left"},
-          input_html: {class: "datetimepicker"} %>
+		<div class="input">
+			<label>Período da Notícia: </label>
+			<%= f.input :event_begin,
+				label: false,
+				as: :string,
+				placeholder: t("begin"),
+				wrapper_html: {class: 'side'},
+				input_html: {class: "datetimepicker"} %>
 
-        <%= f.input :event_end, as: :string,
-          placeholder: t("end"),
-          wrapper_html: {class: "period-date period-date-right"},
-          input_html: {class: "datetimepicker"} %>
-      </div>
-    </div>
-    <%= f.input :type, :input_html => {:value => "Event"}, :as => :hidden %>
-
-  <% else %>
-    <%= f.input :type, :input_html => {:value => "News"}, :as => :hidden %>
-  <% end %>
-<% end %>
-
-<%= javascript_tag do %>
-  set_jquery_ui();
+			<%= f.input :event_end,
+				label: false,
+				as: :string,
+				placeholder: t("end"),
+				wrapper_html: {class: 'side'},
+				input_html: {class: "datetimepicker"} %>
+			<div class='clear'></div>
+		</div>
+	<% else %>
+		<%= f.input :type, :input_html => {:value => "News"}, :as => :hidden %>
+	<% end %>
 <% end %>

@@ -1,10 +1,11 @@
 <div id="include_image">
   <div id="search">
     <center>
-      <%= form_tag request.path, :method => 'get', :remote => true do %>
-        <%= label_tag '' %>
-        <%= text_field_tag :image_search %>
-        <%= submit_tag t("search_param", param: t('image')) %>
+			<%= form_tag request.path, :method => 'get', :remote => true do %>
+				<div class="input">
+					<%= text_field_tag :image_search %>
+					<%= submit_tag t("search_param", param: t('image')) %>
+				</div>
       <% end %>
     </center>
   </div>

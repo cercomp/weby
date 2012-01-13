@@ -1,120 +1,119 @@
 <%= render 'repositories/search_and_new_file' %>
 
-<%= simple_form_for [@site, @page],
-  html: { multipart: true } do |f| %>
-  <% if @page.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@page.errors.count,"") %><%= t"prohibited_being_saved", count: @page.errors.count %>:</h2>
-      <ul>
-        <% @page.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= simple_form_for [@site, @page],	html: { multipart: true } do |f| %>
+	<% if @page.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@page.errors.count,"") %><%= t"prohibited_being_saved", count: @page.errors.count %>:</h2>
+			<ul>
+				<% @page.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
 
-  <div id='repo_list' >
-    <%= render 'repositories/repo',
-      :obj => @page,
-      :field => :repository_id,
-      :collection => @images,
-      :hint => t("help_image") %>
-  </div>
+	<div id='repo_list' >
+		<%= render 'repositories/repo',
+			:obj => @page,
+			:field => :repository_id,
+			:collection => @images,
+			:hint => t("help_image") %>
+	</div>
 
-  <% unless self.controller.action_name == "edit" %>
+	<% unless self.controller.action_name == "edit" %>
+		<div id="page_type" class="input">
+			<%= check_box_tag :type, :Event, params[:type] == 'Event' %>
+			<%= label_tag :type, "#{t("is")} #{t("event.one")}?" %>
+		</div>
+		<div id="event_fields">
+		</div>
+	<% end %>
 
-    <fieldset class="left" id="page-event" >
-      <legend>
-        <div id="page_type">
-          <%= check_box_tag :type, :Event, params[:type] == 'Event' %>
-          <%= label_tag :type, "#{t("is")} #{t("event.one")}?" %>
-        </div>
-      </legend>  
-      <div id="event_fields"></div>
-    </fieldset>
+	<div class="tabs">
+		<ul>
+			<% @page.page_i18ns.each do |page_i18n| %>
+				<li> <%= link_to locale_with_name(page_i18n), "##{page_i18n.locale.name}" %> </li>
+			<% end %>
+		</ul>
+		<%= f.fields_for :page_i18ns do |i18nbuilder| %>
+			<%= render(partial: 'page_i18ns/page_i18n', locals: { i18nbuilder: i18nbuilder }) %>
+		<% end %>
+	</div>
 
-  <% end %>
+	<div>
+		<div class="input">
+			<%= f.input :source,
+				wrapper_html: {class: 'side'},
+				label: t("source") %> 
+				
+			<%= f.input :url,
+				wrapper_html: {class: 'side'},
+				label: t("redirect_address"),
+				placeholder: "http://site.com" %>
+			<div class='clear'></div>
+		</div>
 
-  <div class="tabs">
-    <ul>
-      <% @page.page_i18ns.each do |page_i18n| %>
-        <li> <%= link_to locale_with_name(page_i18n), "##{page_i18n.locale.name}" %> </li>
-      <% end %>
-    </ul>
-    <%= f.fields_for :page_i18ns do |i18nbuilder| %>
-      <%= render(partial: 'page_i18ns/page_i18n', locals: { i18nbuilder: i18nbuilder }) %>
-    <% end %>
-  </div>
+		<div class="input">
+			<label>Período da Notícia: </label>
+			<%= f.input :date_begin_at,
+				label: false,
+				as: :string,
+				placeholder: t('begin'),
+				wrapper_html: {class: 'side'},
+				input_html: {class: 'datetimepicker'} %>
 
-  <div>
-    <div class="left">
-      <%= f.input :source, label: t("source") %> 
-    </div>
-    <div class="right">
-      <%= f.input :url, label: t("redirect_address"),
-        placeholder: "http://site.com" %>
-    </div>
-  </div>
+			<%= f.input :date_end_at,
+				label: false,
+				as: :string,
+				placeholder: t('publication_infinite'),
+				wrapper_html: {class: 'side'},
+				input_html: {class: 'datetimepicker'} %>
+			<div class='clear'></div>
+		</div>
 
-  <div class="input period-dates left">
-    <label>Período da Notícia: </label>
-    <div class="period-dates-inputs">
-      <%= f.input :date_begin_at, as: :string,
-        placeholder: t("begin"),
-        wrapper_html: {class: "period-date period-date-left"},
-        input_html: {class: "datetimepicker"} %>
+		<%= f.input :category_list, label: t('categories'),
+			placeholder: "UFG, Sports, Arts",
+			hint: t('page_categories_help') %>
 
-      <%= f.input :date_end_at, as: :string,
-        placeholder: t("publication_infinite"),
-        wrapper_html: {class: "period-date period-date-right"},
-        input_html: {class: "datetimepicker"} %>
-    </div>
-  </div>
+		<%= f.input :created_at, order: [:year, :month, :day],
+			use_month_numbers: true, label: (t"date_param", param: t("register")),
+			start_year: Time.now.year, as: :hidden %>
 
-  <%= f.input :category_list, label: t('categories'),
-    placeholder: "UFG, Sports, Arts",
-    hint: t('page_categories_help') %>
+		<%= f.input :author_id, input_html: {value: "#{@current_user.id}"}, as: :hidden %>
 
-  <%= f.input :created_at, order: [:year, :month, :day],
-    use_month_numbers: true, label: (t"date_param", param: t("register")),
-    start_year: Time.now.year, as: :hidden %>
+		<%= f.input :site_id, input_html: {value: @site.id}, as: :hidden  %>
 
-  <%#= f.input :position, as: :hidden %>
-  <%#= f.input :status, as: :hidden %>
-  <%= f.input :author_id, input_html: {value: "#{@current_user.id}"}, as: :hidden %>
-  <%= f.input :site_id, input_html: {value: @site.id}, as: :hidden  %>
+		<%= f.simple_fields_for :sites_pages do |pages_form| %>
+			<%= pages_form.input :site_id, input_html: {value: @site.id}, as: :hidden  %>
+			<%= pages_form.input :page_id, input_html: {value: @page.id}, as: :hidden  %>
+		<% end %>
+		
+		<div class='input'>
+			<%= f.input :publish , label: t("publish"),
+				wrapper_html: { class: "side" },
+				as: :boolean, input_html: { class: "check-button" } %>
+			<%= f.input :front , label: t("cover"), 
+				wrapper_html: { class: "side" },
+				as: :boolean, input_html: { class: "check-button" } %>
+			<div class='clear'></div>
+		</div>
+			
+		<div class='input'>
+			<%= render_cell :repository,
+				:include_many_files,
+				"page[repository_ids][]",
+				t("add_param", param: t("related_files")),
+				@site.id,
+				object: @page.repository_ids %>
+			<div class='clear'></div>
+		</div>
 
-  <%= f.simple_fields_for :sites_pages do |pages_form| %>
-    <%= pages_form.input :site_id, input_html: {value: @site.id}, as: :hidden  %>
-    <%= pages_form.input :page_id, input_html: {value: @page.id}, as: :hidden  %>
-  <% end %>
-
-  <div style="margin-top: 30px">
-    <div class="left">
-      <%= render_cell :repository,
-        :include_many_files,
-        "page[repository_ids][]",
-        t("add_param", param: t("related_files")),
-        @site.id,
-        object: @page.repository_ids %>
-    </div>
-
-    <div class="right">
-      <%= f.input :publish , label: t("publish"),
-        wrapper_html: { class: "left no-clearfix" },
-        as: :boolean, input_html: { class: "check-button" } %>
-      <%= f.input :front , label: t("cover"), 
-        wrapper_html: { class: "right no-clearfix" },
-        as: :boolean, input_html: { class: "check-button" } %>
-    </div>
-  </div>
-
-  <div class="actions">
-    <%= f.submit (t"save"), class: "green-button" %>
-    <%= link_to t("back"), :back, class: "red-button" %>
-  </div>
+		<div class="actions">
+			<%= f.submit (t"save"), class: "green-button" %>
+			<%= link_to t("back"), :back, class: "red-button" %>
+		</div>
+	</div>
 <% end %>
 
 <%= content_for :javascripts, javascript_include_tag("pages_new") %>
-<%= content_for :stylesheets, stylesheet_link_tag("form_with_title") %>
 <%= content_for :stylesheets, stylesheet_link_tag("include_files") %>
