@@ -15,7 +15,7 @@
     // Forma um link para a página da forma:
     //  /sites/site_name/pages/page_id
     $("table.list > tbody > tr").live("click", function(){
-      var page = tinyMCEPopup.editor.settings.plugin_preview_pageurl;
+      var page = tinyMCEPopup.editor.settings.site_name;
       $('#href').val("/sites/"+page+"/pages/"+$(this).find('td').first().text());
     });
     
