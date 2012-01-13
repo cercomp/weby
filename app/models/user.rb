@@ -26,6 +26,8 @@ class User < ActiveRecord::Base
     where(["roles.site_id = ?", site_id])           
   }
 
+  scope :actives, where(:status => true)
+
   scope :global_role, lambda { 
     select("DISTINCT users.* ").
     joins('INNER JOIN roles_users ON roles_users.user_id = users.id 

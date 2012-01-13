@@ -26,7 +26,7 @@ class FeedbacksController < ApplicationController
 
   def new
     if(@groups.length == 0)
-      users = User.by_site(@site.id)
+      users = User.by_site(@site.id).actives
       if (users.length == 0)
         flash[:error] = t("no_groups")
         redirect_back_or_default @site
@@ -51,7 +51,7 @@ class FeedbacksController < ApplicationController
     if @feedback.save
       #Se não tiver nenhum grupo cadastrado no site, envia para todos os usuário do site
       if(@groups.length == 0)
-        emails = User.by_site(@site.id).map(&:email).join(',')
+        emails = User.by_site(@site.id).actives.map(&:email).join(',')
         FeedbackMailer.send_feedback(@feedback, emails).deliver
       else
         @feedback.groups.each do |group|
