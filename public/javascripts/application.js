@@ -104,16 +104,16 @@ function toogle_select_multiple(select){
 }
 
 function show_selected_image(object,field_name){
-   place = $('#selected-image-of-radio-group-images');
+   select_place = $('#selected-image-of-radio-group-images');
 
-   place.click(function(){
+   select_place.click(function(){
       image = $(this).find('img');
       input_id = image.attr('id').replace('img_','');
       input = $('input#'+input_id);
       if(input.prop('checked') || $(this).find('input#'+input_id).length > 0){
          input.prop('checked', null);
          image.remove();
-         place.before('');
+         $(this).before('');
       } 
    });
 
@@ -121,7 +121,7 @@ function show_selected_image(object,field_name){
       var selected = $(this);
       var image = $('label[for="'+selected.attr('id')+'"] > img').clone();
       image.attr('id','img_'+selected.attr('id'));
-      place.html(image); 
+      select_place.html(image);
       selected.prop('checked', true);
    });
 }
