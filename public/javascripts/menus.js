@@ -5,20 +5,7 @@ $('#menu_link').change(function(){
   $('#menu_page_id').val(null);
 });
 
-/**
- * Coloca um countainer para a lista de paginas
- */
-function show_dialog(ele) {
-  if(!$('#page_list').length)
-    $('#div_link').append('<div id="page_list" style="display: none;" title="Selecione uma notícia"><img src="/images/spinner.gif"></div>');
-
-  $.get(ele.attr('data-link'));
-    
-  $('#page_list').dialog({
-    width: '700',
-    height: '400'
-  });
-}
+////!!!!! Função show_dialog movida para application.js
 
 /**
  * Ao selecionar a notícia, cria um input com o id da noticia selecionada

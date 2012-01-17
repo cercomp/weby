@@ -92,7 +92,7 @@ function select_page() {
   });
   
   
-  $.get($('#list_published_site_pages_path').attr('meta-data'), function(){
+  $.get($('#list_published_site_pages_path').attr('meta-data'),{'published_only':false}, function(){
   }, 'script');
 }
 

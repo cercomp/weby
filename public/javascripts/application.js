@@ -165,4 +165,17 @@ function remove_button_icons(elements){
    return true;
 }
 
+/**
+ * Coloca um countainer para a lista de paginas
+ */
+function show_dialog(ele,published_only) {
+  if(!$('#page_list').length)
+    $('#div_link').append('<div id="page_list" style="display: none;" title="Selecione uma notícia"><img src="/images/spinner.gif"></div><input type="hidden" id="published_only" value="'+published_only+'"/>');
 
+  $.get(ele.attr('data-link'),{'published_only':published_only});
+
+  $('#page_list').dialog({
+    width: '700',
+    height: '400'
+  });
+}

@@ -25,7 +25,8 @@ class PagesController < ApplicationController
     end
 
     @tiny_mce = tiny_mce
-    @pages = @pages.published if @tiny_mce
+    #update : pode linkar todas as páginas dentro da notícia
+    #@pages = @pages.published if @tiny_mce
 
     if @pages
       respond_with @page
@@ -150,7 +151,7 @@ class PagesController < ApplicationController
       order(sort_column + " " + sort_direction).
       page(params[:page]).per(per_page)
 
-    @pages = @pages.published
+    @pages = @pages.published if params[:published_only]=='true'
   end
 
   private
