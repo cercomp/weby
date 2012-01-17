@@ -181,6 +181,7 @@ input[type=datetime-local]
 		-ms-box-shadow: 0 0 10px 5px #356b0b inset !important;
 		-o-box-shadow: 0 0 10px 5px #356b0b inset !important;
 	}
+	&:hover { background-color: darken(#3D9400, 5%)!important; }
 }
 .red-button
 {
@@ -196,6 +197,7 @@ input[type=datetime-local]
 		-ms-box-shadow: 0 0 10px 5px #A23727 inset !important;
 		-o-box-shadow: 0 0 10px 5px #A23727 inset !important;
 	}
+	&:hover { background-color: darken(#D14836, 5%)!important; }
 }
 .blue-button
 {
@@ -211,6 +213,7 @@ input[type=datetime-local]
 		-ms-box-shadow: 0 0 10px 5px #357AA2 inset !important;
 		-o-box-shadow: 0 0 10px 5px #357AA2 inset !important;
 	}
+	&:hover { background-color: darken(#4D90FE, 5%)!important; }
 }
 .search-button
 {
@@ -266,6 +269,7 @@ button,
 		-ms-box-shadow: 0 0 10px 5px #DDD inset;
 		-o-box-shadow: 0 0 10px 5px #DDD inset;
 	}
+	&:hover { background-color: darken(#F3F3F3, 5%); }
 }
 .field_with_errors { background-color: #ff3333; }
 .error { padding-left: 20px; }
