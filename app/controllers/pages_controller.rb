@@ -96,6 +96,8 @@ class PagesController < ApplicationController
 
   def update
     params[:type] ||= 'News'
+    params[:page][:repository_id] ||= nil
+    params[:page][:repository_ids] ||= []
     @page = Page.find(params[:id])
     p @page.page_i18ns
     unless @page.update_attributes(params[:page])
