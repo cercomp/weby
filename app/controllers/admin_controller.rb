@@ -28,6 +28,7 @@ class AdminController < ApplicationController
   end
 
   def update
+    params[:site][:top_banner_id] ||= nil
     if @site.update_attributes(params[:site])
       flash[:notice] = t"successfully_updated"
     end
