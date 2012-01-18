@@ -6,27 +6,19 @@ html('<%= escape_javascript(render "repositories_search/file_search_box",
                             name: @name,
                             final_files_list: @final_files_list,
                             many: @many,
-                            file_types: @file_types ) %>');
-
-
-place.show();
+                            file_types: @file_types ) %>').show();
 
 place.dialog({ 
-  width: '630px',
-  height: 500,
-  modal: true,
-  resizable: false,
-  position: ['center', 'top'],
   title: "<%= escape_javascript(params[:title]) %>",
   buttons:[{
-    class: 'green-button',
+    id: 'green-button',
     text: "<%= t('save') %>",
             click: function(){
               $(this).find('form#include-files-to-form').submit();
             }
   },
   {
-    class: 'blue-button',
+    id: 'blue-button',
     text: "<%= t('remove', param: t('file.one')).capitalize %>",
             click: function(){
               $(this).find('input').removeAttr('checked');
@@ -34,21 +26,14 @@ place.dialog({
             }
   },
   {
-    class: 'red-button',
+    id: 'red-button',
     text: "<%= t('cancel') %>",
     click: function(){
       // remove() é necessário para remover os eventos.
       // Sem o remove não funciona na segunda vez que abre o dialog
-      $(this).dialog('close').remove();
+      $(this).dialog('close').delay(1000).remove();
     }
   }],
-  open: function(event, ui){
-    $('body').css('overflow','hidden');
-    $('.ui-widget-overlay').css('width','100%'); 
-  }, 
-  close: function(event, ui){
-    $('body').css('overflow','auto'); 
-  } 
 });
 
 set_jquery_ui();

@@ -1,4 +1,6 @@
-<% if @repositorie.errors.any? %>
-$(function(){alert("Upload fails!")});
+<% if @repository.errors.any? %>
+  console.log("<%= @repository.errors.to_s %>");
+  $(function(){alert("Upload fails!")});
 <% end -%>
 $(function(){upload_callback()});
+

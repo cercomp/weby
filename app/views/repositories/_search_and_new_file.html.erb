@@ -4,7 +4,7 @@
 			<%= form_tag request.path, :method => 'get', :remote => true do %>
 				<div class="input">
 					<%= text_field_tag :image_search %>
-					<%= submit_tag t("search_param", param: t('image')) %>
+					<%= submit_tag t("search_param", param: t('image')), class: "search-button" %>
 				</div>
       <% end %>
     </center>

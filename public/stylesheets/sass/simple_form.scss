@@ -10,17 +10,17 @@ $label_horizontal_margin: 10px;
 
 form
 { 
-	*:focus { outline: none; }
-	font-size: 14px;
+  *:focus { outline: none; }
+  font-size: 14px;
 }
 
 ::-webkit-validation-bubble-message { padding: 1em; }
 .input
 {
-	position: relative;
-	clear: both;
-	padding: 12px;
-	border-bottom: 1px solid #e4e4e4;
+  position: relative;
+  clear: both;
+  padding: 12px;
+  border-bottom: 1px solid #e4e4e4;
 }
 select
 {
@@ -34,27 +34,27 @@ select
 }
 input[type=checkbox]
 {
-	margin: 0;
+  margin: 0;
 }
 label
 {
-	abbr{ color: red; }
-	&.collection_radio
-	{
-		margin:
-		{
-			right: 10px;
-			left:   2px;
-		}
-		float: none;
-		margin: 0;
-		padding: 0;
-		vertical-align: -2px;
-	}
-	width: auto;
-	display: block;
-	padding-bottom: 8px;
-	cursor: pointer;
+  abbr{ color: red; }
+  &.collection_radio
+  {
+    margin:
+    {
+      right: 10px;
+      left:   2px;
+    }
+    float: none;
+    margin: 0;
+    padding: 0;
+    vertical-align: -2px;
+  }
+  width: auto;
+  display: block;
+  padding-bottom: 8px;
+  cursor: pointer;
 }
 
 input[type=url],
@@ -133,9 +133,9 @@ textarea
 }
 .hint
 {
-	display: block;
-	font-size: 11px;
-	padding-top: 2px;
+  display: block;
+  font-size: 11px;
+  padding-top: 2px;
 }
 input[type=url],
 input[type=text],
@@ -245,11 +245,22 @@ input[type=datetime-local]
 	}
 	padding-left: 35px !important;
 }
+.folder-button
+{
+  @extend .blue-button;
+  background:
+  {
+    image: url('../images/icons/white16x16/ic_folder.png') !important;
+		position: 10px center !important;
+    repeat: no-repeat !important;
+  }
+	padding-left: 35px !important;
+}
 .actions
 {
-	float: right;
-	clear: both;
-	margin: 10px auto;
+  float: right;
+  clear: both;
+  margin: 10px auto;
 }
 input[type=submit],
 input[type=button],
@@ -288,23 +299,23 @@ button,
 .error { padding-left: 20px; }
 .side
 {
-	border: none !important;
-	padding: 0;
-	float: left;
-	clear: none;
-	margin-right: 10px;
+  border: none !important;
+  padding: 0;
+  float: left;
+  clear: none;
+  margin-right: 10px;
 }
 .nostyle 
 {
-	border: none !important;
-	padding: 0;
+  border: none !important;
+  padding: 0;
 }
 .element { margin-top: 8px; }
 .datetimepicker
 {
-	background-image: url('../images/icons/black16x16/ic_calendar.png') !important;
-	background-position: 98% center !important;
-	background-repeat: no-repeat !important;
+  background-image: url('../images/icons/black16x16/ic_calendar.png') !important;
+  background-position: 98% center !important;
+  background-repeat: no-repeat !important;
 }
 
 /* old style */
@@ -317,32 +328,32 @@ button,
 /* ### legacy ### */
 .radio-group
 {
-	label{
-		width: 120px;
-		margin-top: 5px;
-	}
+  label{
+    width: 120px;
+    margin-top: 5px;
+  }
 }
 .radio-group-images
 {
-	display: table;
-	label{ float: left !important; }
-	& > input[type=radio] 
-	{
-		display: none;
-		&:checked + label.collection_radio > img{ @extend .radio-group-images-selected }
-		& + label.collection_radio > img
-		{
-			padding: 4px 2px;
-			margin: 5px;
-			&:hover { @extend .radio-group-images-selected }
-		}
-	}
+  display: table;
+  label{ float: left !important; }
+  & > input[type=radio] 
+  {
+    display: none;
+    &:checked + label.collection_radio > img{ @extend .radio-group-images-selected }
+    & + label.collection_radio > img
+    {
+      padding: 4px 2px;
+      margin: 5px;
+      &:hover { @extend .radio-group-images-selected }
+    }
+  }
 }
 .radio-group-images-selected
 {
-	margin: 4px 2px;
-	padding: 2px;
-	border: 3px solid red;
+  margin: 4px 2px;
+  padding: 2px;
+  border: 3px solid red;
 }
 #selected-image-of-radio-group-images
 {

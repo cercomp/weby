@@ -2,13 +2,11 @@ class RepositoriesController < ApplicationController
   layout :choose_layout
   before_filter :require_user
   before_filter :check_authorization
-  # before_filter :load_images, :only => [:new, :edit]
 
   helper_method :sort_column
 
-  respond_to :html, :xml, :js
+  respond_to :html, :xml, :js, :json
   def index
-
     params[:mime_type].try(:delete, "")
 
     @repositories = @site.repositories.
@@ -27,6 +25,15 @@ class RepositoriesController < ApplicationController
     unless @repositories
       flash.now[:warning] = (t"none_param", :param => t("archive.one")) 
     end
+    respond_with(@repositories) do |format|
+      format.json do
+        render json: {
+          current_page: @repositories.current_page,
+          num_pages: @repositories.num_pages,
+          repositories: @repositories
+        }
+      end
+    end
   end
 
   def show
@@ -44,7 +51,7 @@ class RepositoriesController < ApplicationController
 
   def create
     @repository = Repository.new(params[:repository])
-    respond_to do |format|
+    respond_with(@repository) do |format|
       if @repository.save
         format.html { 
           if params[:from] != 'other'
@@ -53,11 +60,10 @@ class RepositoriesController < ApplicationController
             redirect_to :back
           end
         } 
-        format.xml  { render :xml => @repository, :status => :created, :location => @repository }
+        format.json { render json: { repositories: @repository, message: t("successfully_created") } }
       else
         format.html { redirect_to :back }
         flash[:error] = @repository.errors.full_messages 
-        format.xml  { render :xml => @repository.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -68,11 +74,9 @@ class RepositoriesController < ApplicationController
     respond_to do |format|
       if @repository.update_attributes(params[:repository]) 
         format.html { redirect_to(:site_id => @repository.site.name, :controller => 'repositories', :action => 'show', :id => @repository.id) }
-        format.xml  { head :ok }
         flash[:notice] = t("successfully_updated") 
       else
         format.html { redirect_to :back }
-        format.xml  { render :xml => @repository.errors, :status => :unprocessable_entity }
         flash[:error] = @repository.errors.full_messages
       end
     end

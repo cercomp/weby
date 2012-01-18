@@ -1,29 +1,75 @@
-#link-to-include-one-file{
-  margin: 10px 15px;
-  width: 113px;
-  height: 85px;
-  padding: 5px;
-  text-align: center;
-  z-index: 9999;
-  border: 3px dashed gray !important;
-  background: none !important;
+#repository-search-dialog {
+  padding: 10px;
+  overflow: hidden;
 
-  a {
-    border: none;
-    background: none;
+  .tabs {
+    height: 455px;
   }
 
-  ul, li{
-    text-align: center;
-    padding: 0;
-    margin: 0;
-  }
-  li{
-    margin-top: 5px;
-    label{
-      border: none;
-      background: none;
-    }
+  .tabs form {
+    overflow: hidden;
   }
 }
 
+#repositories-search-results, #files-added {
+  height: 290px;
+  list-style: none;
+  margin: 30px 0 10px 0;
+  overflow: auto;
+  padding: 0;
+
+  li {
+    border: 1px solid transparent;
+    border-width: 1px 0;
+
+    float: left;
+    height: 64px;
+    margin: 0 15px 15px 0;
+    overflow: hidden;
+    padding: 5px;
+    width: 250px;
+
+    &:hover {
+      @extend .backgrounded;
+    }
+  }
+
+  label {
+    float: right;
+    margin: 0 auto;
+    padding: 0;
+    width: 230px;
+  }
+
+  figure {
+    margin: 0;
+    padding: 0;
+  }
+
+  figure img{
+    float: left;
+    height: 64px;
+    margin-right: 5px;
+    width: 64px;
+  }
+
+  figcaption {
+    height: 64px;
+    margin-left: 3px;
+    overflow: hidden;
+    text-overflow: ellipsis-word;
+    white-space: wrap;
+  }
+
+  li input[type=checkbox]{
+    margin: 25px 0 0 0;
+  }
+}
+
+.backgrounded {
+  $bg-color: #EDEDED;
+  background: $bg-color;
+
+  border: 1px solid darken($bg-color, 20%);
+  border-width: 1px 0;
+}

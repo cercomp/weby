@@ -1,21 +1,49 @@
-#link-to-include-one-file {
-  margin: 10px 15px;
-  width: 113px;
-  height: 85px;
-  padding: 5px;
-  text-align: center;
-  z-index: 9999;
-  border: 3px dashed gray !important;
-  background: none !important; }
-  #link-to-include-one-file a {
-    border: none;
-    background: none; }
-  #link-to-include-one-file ul, #link-to-include-one-file li {
-    text-align: center;
+#repository-search-dialog {
+  padding: 10px;
+  overflow: hidden; }
+  #repository-search-dialog .tabs {
+    height: 455px; }
+  #repository-search-dialog .tabs form {
+    overflow: hidden; }
+
+#repositories-search-results, #files-added {
+  height: 290px;
+  list-style: none;
+  margin: 30px 0 10px 0;
+  overflow: auto;
+  padding: 0; }
+  #repositories-search-results li, #files-added li {
+    border: 1px solid transparent;
+    border-width: 1px 0;
+    float: left;
+    height: 64px;
+    margin: 0 15px 15px 0;
+    overflow: hidden;
+    padding: 5px;
+    width: 250px; }
+  #repositories-search-results label, #files-added label {
+    float: right;
+    margin: 0 auto;
     padding: 0;
-    margin: 0; }
-  #link-to-include-one-file li {
-    margin-top: 5px; }
-    #link-to-include-one-file li label {
-      border: none;
-      background: none; }
+    width: 230px; }
+  #repositories-search-results figure, #files-added figure {
+    margin: 0;
+    padding: 0; }
+  #repositories-search-results figure img, #files-added figure img {
+    float: left;
+    height: 64px;
+    margin-right: 5px;
+    width: 64px; }
+  #repositories-search-results figcaption, #files-added figcaption {
+    height: 64px;
+    margin-left: 3px;
+    overflow: hidden;
+    text-overflow: ellipsis-word;
+    white-space: wrap; }
+  #repositories-search-results li input[type=checkbox], #files-added li input[type=checkbox] {
+    margin: 25px 0 0 0; }
+
+.backgrounded, #repositories-search-results li:hover, #files-added li:hover {
+  background: #ededed;
+  border: 1px solid #bababa;
+  border-width: 1px 0; }

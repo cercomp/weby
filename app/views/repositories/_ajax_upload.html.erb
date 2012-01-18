@@ -1,0 +1,62 @@
+<%= form_tag "#", onsubmit: "ajaxUpload(); return false", id: "ajax-upload-form" do %>
+  <p>
+    <%= label_tag :description, t("description") %>
+    <%= text_field_tag "repository[description]", "", required: true,
+      id: "description", hint: t("field_required") %>
+  </p>
+  <p>
+    <%= label_tag :fileupload, t("file.one") %>
+    <span class="file-wrapper">
+      <%= file_field_tag "repository[archive]", required: true, id: "fileupload", onclick: "ajaxUpload();" %>
+      <span class="folder-button"><%= t("select_file") %></span>
+    </span>
+    <progress value="" max="100" id="upload-file-progress" style="display: none"></progress>
+  </p>
+  <p>
+  </p>
+  <%= hidden_field_tag "repository[site_id]", @site.id, id: "site_id" %>
+<% end %>
+<ul id="results"></ul>
+
+<style type="text/css" media="screen">
+  #results {
+    overflow-y: auto;
+    height: 220px;
+  }
+  .file-wrapper {
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+  }
+  .file-wrapper input {
+    cursor: pointer;
+    font-size: 100px;
+    height: 100%;
+    filter: alpha(opacity=1);
+    -moz-opacity: 0.01;
+    opacity: 0.01;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .file-wrapper .button {
+    background: #79130e;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: bold;
+    margin-right: 5px;
+    padding: 4px 18px;
+    text-transform: uppercase;
+  }
+</style>
+
+<%= content_for :javascripts, javascript_include_tag('fileupload/jquery.fileupload.js') %>
+<%= content_for :javascripts, javascript_include_tag('fileupload/jquery.iframe-transport.js') %>
+<%= content_for :javascripts, javascript_include_tag('fileupload/vendor/jquery.ui.widget.js') %>
+<%= content_for :javascripts, javascript_include_tag('repository_ajax_upload.js') %>

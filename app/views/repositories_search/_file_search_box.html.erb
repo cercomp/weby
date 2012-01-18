@@ -1,6 +1,6 @@
 <p>
-<%= form_tag params.merge({controller: 'repositories_search', action: 'search'}),
-  method: :get, remote: true  do %>
+<%= form_tag url_for({controller: 'repositories_search', action: 'search'}),
+  method: :get, remote: true, id: 'blahh'  do %>
   <%= hidden_field_tag "many", many %>
   <%= hidden_field_tag "name", name %>
   <%= hidden_field_tag "final_files_list", final_files_list %>
@@ -15,7 +15,7 @@
   <% end %>
   <%= submit_tag t("search"),
     class: "search-button",
-    onclick: "$('.files_list_search_result').html('')" %>
+    onclick: "$('.files_list_search_result').html('');" %>
 <% end %>
 </p>
 

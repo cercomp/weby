@@ -49,6 +49,22 @@ class Repository < ActiveRecord::Base
 
   before_post_process :image?, :normalize_file_name
 
+  # Metodo para incluir a url do arquivo no json
+  def archive_url(format = :original)
+    self.archive.url(format) 
+  end
+
+  alias :as_json_bkp :as_json
+
+  # json alterado para enviar os dados mínimos
+  def as_json(options = {})
+    self.as_json_bkp only: [:id,
+                            :archive_file_name,
+                            :description,
+                            :archive_content_type],
+                            methods: :archive_url
+  end
+
   def image?
     archive_content_type.include?("image") and not archive_content_type.include?("svg")
   end

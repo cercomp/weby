@@ -351,6 +351,7 @@ pt-BR:
   search_param: "Buscar %{param}"
   searching: "Buscando..."
   secondary: "Secundário"
+  select_file: "Selecione o arquivo"
   setting:
     one: "Configuração"
     other: "Configurações"

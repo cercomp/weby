@@ -1,4 +1,8 @@
-<%= simple_form_for [@site, @repository], :url => site_repositories_path(:from => 'other'), :html => { :multipart => true } do |f| %> 
+<% @repository = Repository.new %>
+<%= simple_form_for [@site, @repository],
+  url: site_repositories_path(from: 'other'),
+  remote: true,
+  html: { :multipart => true } do |f| %> 
   <% if @repository.errors.any? %>
     <div id="error_explanation">
       <h2> <%= pluralize(@repository.errors.count, "") %> <%= t"prohibited_being_saved", :count => @repository.errors.count %>: </h2>
