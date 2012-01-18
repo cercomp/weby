@@ -3,7 +3,7 @@
   <% banners.each do |banner| %> 
     <% unless banner.repository.nil? %>
       <% banner.repository.reprocess! %>
-      <figure id="banner">
+      <figure class="banner">
 
         <% format = banner.size ? banner.size : "little" %>
         <%= weby_file_view(banner.repository,
