@@ -1,3 +1,5 @@
+* { font-family: Verdana, sans-serif; }
+
 @import "utils";
 
 $label_width: 120px;
@@ -24,7 +26,11 @@ select
 {
 	height: 33px; 
 	padding: 5px 8px;
-	width:200px;
+	width: 200px;
+	&[multiple=multiple]
+	{
+		height: auto;
+	}
 }
 input[type=checkbox]
 {
@@ -66,21 +72,22 @@ input[type=time],
 input[type=datetime],
 input[type=datetime-local]
 {
+	line-height: 13px !important;
+	font-size: 13px;
+	appearance: normal;
+	-moz-appearance: none;
 	-webkit-appearance: none;
-	height:20px;
-	width:200px;
-	padding:5px 8px;
-}
-input[type=search]
-{
-	height: 32px;
-	width: 240px;
-	border:1px solid #aaa;
+	box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	height: 20px;
+	width: 200px;
+	padding: 5px 8px;
 }
 textarea
 {
 	padding: 8px;
-	height:100px;
+	height: 100px;
 	width: 416px;
 }
 input[type=url],
@@ -95,6 +102,7 @@ input[type=month],
 input[type=week],
 input[type=time],
 input[type=datetime],
+input[type=search],
 input[type=datetime-local],
 textarea
 {
@@ -107,7 +115,7 @@ textarea
 			border-color: #b03535
 		}
 		background: #fff;
-		border:1px solid #555;
+		border: 1px solid #555;
 		box-shadow: 0 0 3px #aaa;
 	}
 	&:required
@@ -120,8 +128,8 @@ textarea
 		}
 		background: #fff url(../images/red_asterisk.png) no-repeat 98% center;
 	}
-	border:1px solid #aaa;
-	padding-right:30px;
+	border: 1px solid #aaa;
+	padding-right: 30px;
 }
 .hint
 {
@@ -144,7 +152,7 @@ input[type=datetime],
 input[type=datetime-local]
 {
 	&:required:valid + .hint {background: #28921f;}
-	&:required:valid + .hint::before {color:#28921f;}
+	&:required:valid + .hint::before {color: #28921f;}
 	&:focus + .hint { display: inline; }
 	& + .hint
 	{
@@ -153,14 +161,14 @@ input[type=datetime-local]
 			content: "\25C0";
 			color: #d45252;
 			position: absolute;
-			top:1px;
-			left:-6px;
+			top: 1px;
+			left: -6px;
 		}
 		font-size: 11px;
 		line-height: 24px;
 		background: #d45252;
 		color: white;
-		margin-left:8px;
+		margin-left: 8px;
 		padding: 1px 6px;
 		z-index: 999;
 		position: absolute;
@@ -176,7 +184,7 @@ input[type=datetime-local]
 	&:active
 	{
 		box-shadow: 0 0 10px 5px #356b0b inset !important;
-		-webkit-box-shadow:0 0 10px 5px #356b0b inset !important;
+		-webkit-box-shadow: 0 0 10px 5px #356b0b inset !important;
 		-moz-box-shadow: 0 0 10px 5px #356b0b inset !important;
 		-ms-box-shadow: 0 0 10px 5px #356b0b inset !important;
 		-o-box-shadow: 0 0 10px 5px #356b0b inset !important;
@@ -192,7 +200,7 @@ input[type=datetime-local]
 	&:active
 	{
 		box-shadow: 0 0 10px 5px #A23727 inset !important;
-		-webkit-box-shadow:0 0 10px 5px #A23727 inset !important;
+		-webkit-box-shadow: 0 0 10px 5px #A23727 inset !important;
 		-moz-box-shadow: 0 0 10px 5px #A23727 inset !important;
 		-ms-box-shadow: 0 0 10px 5px #A23727 inset !important;
 		-o-box-shadow: 0 0 10px 5px #A23727 inset !important;
@@ -208,7 +216,7 @@ input[type=datetime-local]
 	&:active
 	{
 		box-shadow: 0 0 10px 5px #357AE8 inset !important;
-		-webkit-box-shadow:0 0 10px 5px #357AA2 inset !important;
+		-webkit-box-shadow: 0 0 10px 5px #357AA2 inset !important;
 		-moz-box-shadow: 0 0 10px 5px #357AA2 inset !important;
 		-ms-box-shadow: 0 0 10px 5px #357AA2 inset !important;
 		-o-box-shadow: 0 0 10px 5px #357AA2 inset !important;
@@ -220,22 +228,22 @@ input[type=datetime-local]
 	@extend .blue-button;
 	background:
 	{
-		image: url('../images/search_white.png') !important;
-		position: right center !important;
+		image: url('../images/icons/white16x16/ic_zoom.png ') !important;
+		position: 10px center !important;
 		repeat: no-repeat !important;
 	}
-	padding-right: 35px !important;
+	padding-left: 35px !important;
 }
 .add-button
 {
 	@extend .blue-button;
 	background:
 	{
-		image: url('../images/search_white.png') !important;
-		position: right center !important;
+		image: url('../images/icons/white16x16/ic_plus.png ') !important;
+		position: 10px center !important;
 		repeat: no-repeat !important;
 	}
-	padding-right: 35px !important;
+	padding-left: 35px !important;
 }
 .actions
 {
@@ -249,10 +257,15 @@ input[type=reset],
 button,
 .button
 {
+	font:99% arial, helvetica, clean, sans-serif;
+	box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	&::-moz-focus-inner { border: none; padding: 0; margin: 0; }
 	display: inline-block;
 	margin: 0;
 	font-size: 13px;
-	line-height: 15px;
+	line-height: 15px !important;
 	color: black;
 	font-weight: bold;
 	padding: 9px 20px;
@@ -264,7 +277,7 @@ button,
 	&:active
 	{
 		box-shadow: 0 0 10px 5px #DDD inset;
-		-webkit-box-shadow:0 0 10px 5px #DDD inset ;
+		-webkit-box-shadow: 0 0 10px 5px #DDD inset ;
 		-moz-box-shadow: 0 0 10px 5px #DDD inset;
 		-ms-box-shadow: 0 0 10px 5px #DDD inset;
 		-o-box-shadow: 0 0 10px 5px #DDD inset;
@@ -337,10 +350,11 @@ button,
 	& input{ display: none; }
 	&:hover::before
 	{
-		content: url(../images/apagar.gif);
+		content: url('../images/icons/black16x16/ic_cancel.png');
 		position: relative;
-		top: -50px;
+		top: -25px;
 		right: 0;
+		margin-right: 5px;
 	}
 }
 input.radio { margin-right: 5px; }

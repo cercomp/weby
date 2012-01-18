@@ -1,3 +1,6 @@
+* {
+  font-family: Verdana, sans-serif; }
+
 .pages_paginator {
   float: none !important; }
 
@@ -22,6 +25,8 @@ select {
   height: 33px;
   padding: 5px 8px;
   width: 200px; }
+  select[multiple=multiple] {
+    height: auto; }
 
 input[type=checkbox] {
   margin: 0; }
@@ -55,15 +60,17 @@ input[type=week],
 input[type=time],
 input[type=datetime],
 input[type=datetime-local] {
+  line-height: 13px !important;
+  font-size: 13px;
+  appearance: normal;
+  -moz-appearance: none;
   -webkit-appearance: none;
+  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
   height: 20px;
   width: 200px;
   padding: 5px 8px; }
-
-input[type=search] {
-  height: 32px;
-  width: 240px;
-  border: 1px solid #aaa; }
 
 textarea {
   padding: 8px;
@@ -82,6 +89,7 @@ input[type=month],
 input[type=week],
 input[type=time],
 input[type=datetime],
+input[type=search],
 input[type=datetime-local],
 textarea {
   border: 1px solid #aaa;
@@ -98,6 +106,7 @@ textarea {
   input[type=week]:focus,
   input[type=time]:focus,
   input[type=datetime]:focus,
+  input[type=search]:focus,
   input[type=datetime-local]:focus,
   textarea:focus {
     background: #fff;
@@ -115,6 +124,7 @@ textarea {
     input[type=week]:focus:invalid,
     input[type=time]:focus:invalid,
     input[type=datetime]:focus:invalid,
+    input[type=search]:focus:invalid,
     input[type=datetime-local]:focus:invalid,
     textarea:focus:invalid {
       background: white url(../images/invalid.png) no-repeat 98% center;
@@ -132,6 +142,7 @@ textarea {
   input[type=week]:required,
   input[type=time]:required,
   input[type=datetime]:required,
+  input[type=search]:required,
   input[type=datetime-local]:required,
   textarea:required {
     background: white url(../images/red_asterisk.png) no-repeat 98% center; }
@@ -147,6 +158,7 @@ textarea {
     input[type=week]:required:valid,
     input[type=time]:required:valid,
     input[type=datetime]:required:valid,
+    input[type=search]:required:valid,
     input[type=datetime-local]:required:valid,
     textarea:required:valid {
       background: white url(../images/valid.png) no-repeat 98% center;
@@ -281,16 +293,16 @@ input[type=datetime-local] + .hint {
     background-color: #3480fe !important; }
 
 .search-button {
-  background-image: url("../images/search_white.png") !important;
-  background-position: right center !important;
+  background-image: url("../images/icons/white16x16/ic_zoom.png ") !important;
+  background-position: 10px center !important;
   background-repeat: no-repeat !important;
-  padding-right: 35px !important; }
+  padding-left: 35px !important; }
 
 .add-button {
-  background-image: url("../images/search_white.png") !important;
-  background-position: right center !important;
+  background-image: url("../images/icons/white16x16/ic_plus.png ") !important;
+  background-position: 10px center !important;
   background-repeat: no-repeat !important;
-  padding-right: 35px !important; }
+  padding-left: 35px !important; }
 
 .actions {
   float: right;
@@ -307,10 +319,14 @@ button,
 .blue-button,
 .search-button,
 .add-button {
+  font: 99% arial, helvetica, clean, sans-serif;
+  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
   display: inline-block;
   margin: 0;
   font-size: 13px;
-  line-height: 15px;
+  line-height: 15px !important;
   color: black;
   font-weight: bold;
   padding: 9px 20px;
@@ -323,6 +339,19 @@ button,
   border-radius: 4px;
   background-color: #F3F3F3;
   border: 1px solid #DBDBDB; }
+  input[type=submit]::-moz-focus-inner,
+  input[type=button]::-moz-focus-inner,
+  input[type=reset]::-moz-focus-inner,
+  button::-moz-focus-inner,
+  .button::-moz-focus-inner,
+  .green-button::-moz-focus-inner,
+  .red-button::-moz-focus-inner,
+  .blue-button::-moz-focus-inner,
+  .search-button::-moz-focus-inner,
+  .add-button::-moz-focus-inner {
+    border: none;
+    padding: 0;
+    margin: 0; }
   input[type=submit]:active,
   input[type=button]:active,
   input[type=reset]:active,
@@ -406,10 +435,11 @@ button,
   #selected-image-of-radio-group-images input {
     display: none; }
   #selected-image-of-radio-group-images:hover::before {
-    content: url(../images/apagar.gif);
+    content: url("../images/icons/black16x16/ic_cancel.png");
     position: relative;
-    top: -50px;
-    right: 0; }
+    top: -25px;
+    right: 0;
+    margin-right: 5px; }
 
 input.radio {
   margin-right: 5px; }
