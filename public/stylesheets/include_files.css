@@ -50,3 +50,6 @@
 
 #files-added {
   height: auto; }
+  #files-added img {
+    height: 64px !important;
+    width: 64px !important; }

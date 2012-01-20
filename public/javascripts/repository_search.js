@@ -100,7 +100,7 @@ function append_data(data){
 
 function createItem(repository) {
    var item = $(document.createElement('li'));
-   var selector = $(document.createElement('input'));
+       selector = $(document.createElement('input'));
    var label = $(document.createElement('label'));
    var figure = $(document.createElement('figure'));
    var figcaption = $(document.createElement('figcaption'));
@@ -113,8 +113,6 @@ function createItem(repository) {
       "/images/mime_list/" + repository.archive_content_type.split('/').pop() + ".png";
 
    thumbnail
-      .attr('width', '64px')
-      .attr('height', '64px')
       .attr('alt', repository.archive_file_name)
       .attr('src', image);
 
@@ -124,10 +122,11 @@ function createItem(repository) {
 
    selector
       .attr('name', 'page[repository_ids][]')
-      .val(repository.id)
       .attr('type', 'checkbox')
       .attr('id', 'result_repository_'+repository.id)
       .attr('checked', $("#files-added").find("#repository_"+repository.id).attr('checked'));
+
+   selector.val(repository.id)
 
    selector.change(function() {
       toggleBackground($(this));
@@ -153,6 +152,20 @@ function createItem(repository) {
    return item;
 }
 
+function save(element) {
+   clearUnselectedResults();
+   newElement = $(element).parent().clone();
+   newElement.find("input")
+      .attr('id', function(){
+         return $(this).attr('id').match(/repository.*/) 
+      });
+   newElement.find("label")
+      .attr('for', function(){
+         return $(this).attr('for').match(/repository.*/) 
+      });
+   $("#files-added").append(newElement);
+}
+
 function paginate(element, current_page, num_pages){
    var scroll_height = element[0].scrollHeight;
    var client_height = element[0].clientHeight;
@@ -167,39 +180,6 @@ function paginate(element, current_page, num_pages){
          get_and_append_data();
       }
    }
-}
-
-//function save() {
-//   $("#files-added").html('');
-//   $("#repositories-search-results").
-//      find("input:checked").
-//      each(function(index, element){
-//         newElement = $(element).parent().clone();
-//         newElement.find("input")
-//         .attr('id', function(){
-//            return $(this).attr('id').match(/repository.*/) 
-//         });
-//      newElement.find("label")
-//         .attr('for', function(){
-//            return $(this).attr('for').match(/repository.*/) 
-//         });
-//      $("#files-added").append(newElement);
-//      })
-//   $("#repository-search-dialog").dialog("close").remove();
-//}
-
-function save(element) {
-   clearUnselectedResults();
-   newElement = $(element).parent().clone();
-   newElement.find("input")
-      .attr('id', function(){
-         return $(this).attr('id').match(/repository.*/) 
-      });
-   newElement.find("label")
-      .attr('for', function(){
-         return $(this).attr('for').match(/repository.*/) 
-      });
-   $("#files-added").append(newElement);
 }
 
 function remove(element) {
