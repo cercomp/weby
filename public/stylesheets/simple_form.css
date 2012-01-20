@@ -16,10 +16,17 @@ form {
   padding: 1em; }
 
 .input {
-  position: relative;
   clear: both;
   padding: 12px;
   border-bottom: 1px solid #e4e4e4; }
+  .input.boolean, .input.check_boxes {
+    position: relative;
+    overflow: hidden; }
+    .input.boolean label, .input.check_boxes label {
+      margin-left: 20px; }
+    .input.boolean input[type="checkbox"], .input.check_boxes input[type="checkbox"] {
+      position: absolute;
+      top: 2px; }
 
 select {
   height: 33px;

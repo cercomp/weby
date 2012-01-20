@@ -1,5 +1,5 @@
 /*
- * jQuery File Upload Plugin 5.5.4
+ * jQuery File Upload Plugin 5.6
  * https://github.com/blueimp/jQuery-File-Upload
  *
  * Copyright 2010, Sebastian Tschan
@@ -10,9 +10,18 @@
  */
 
 /*jslint nomen: true, unparam: true, regexp: true */
-/*global document, XMLHttpRequestUpload, Blob, File, FormData, location, jQuery */
+/*global define, window, document, XMLHttpRequestUpload, Blob, File, FormData, location */
 
-(function ($) {
+(function (factory) {
+    'use strict';
+    if (typeof define === 'function' && define.amd) {
+        // Register as an anonymous AMD module:
+        define(['jquery', './vendor/jquery.ui.widget', './jquery.iframe-transport'], factory);
+    } else {
+        // Browser globals:
+        factory(window.jQuery);
+    }
+}(function ($) {
     'use strict';
 
     // The fileupload widget listens for change events on file input fields defined
@@ -828,4 +837,4 @@
 
     });
 
-}(jQuery));
+}));

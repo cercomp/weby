@@ -60,10 +60,18 @@ class RepositoriesController < ApplicationController
             redirect_to :back
           end
         } 
-        format.json { render json: { repositories: @repository, message: t("successfully_created") } }
+        format.json do
+          render json: { repositories: @repository, message: t("successfully_created") },
+            content_type: check_accept_json
+        end
       else
         format.html { redirect_to :back }
-        flash[:error] = @repository.errors.full_messages 
+        format.json do
+          #render :json => { result: @repository.errors.full_messages },
+          #  :content_type => 'text/html', status: 500
+          render json: { error: @repository.errors.full_messages }, content_type: check_accept_json#, status: 500
+        end
+        #flash[:error] = @repository.errors.full_messages 
       end
     end
   end
@@ -95,5 +103,11 @@ class RepositoriesController < ApplicationController
   private
   def sort_column
     Repository.column_names.include?(params[:sort]) ? params[:sort] : 'id'
+  end
+
+  def check_accept_json
+    request.env['HTTP_ACCEPT'].include?('application/json') ?
+      'application/json' :
+      'text/plain'
   end
 end

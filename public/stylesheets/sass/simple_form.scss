@@ -17,10 +17,26 @@ form
 ::-webkit-validation-bubble-message { padding: 1em; }
 .input
 {
-  position: relative;
   clear: both;
   padding: 12px;
   border-bottom: 1px solid #e4e4e4;
+  
+  &.boolean, &.check_boxes
+  {
+    position: relative;
+    overflow: hidden;
+
+    label
+    {
+      margin-left: 20px;
+    }
+
+    input[type="checkbox"]
+    {
+      position: absolute;
+      top: 2px;
+    }
+  }
 }
 select
 {

@@ -47,3 +47,6 @@
   background: #ededed;
   border: 1px solid #bababa;
   border-width: 1px 0; }
+
+#files-added {
+  height: auto; }

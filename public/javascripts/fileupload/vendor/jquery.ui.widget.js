@@ -1,5 +1,6 @@
 /*!
- * jQuery UI Widget 1.8.17
+ * jQuery UI Widget 1.8.17+amd
+ * https://github.com/blueimp/jQuery-File-Upload
  *
  * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.
@@ -7,7 +8,16 @@
  *
  * http://docs.jquery.com/UI/Widget
  */
-(function( $, undefined ) {
+
+(function (factory) {
+    if (typeof define === "function" && define.amd) {
+        // Register as an anonymous AMD module:
+        define(["jquery"], factory);
+    } else {
+        // Browser globals:
+        factory(jQuery);
+    }
+}(function( $, undefined ) {
 
 // jQuery 1.4+
 if ( $.cleanData ) {
@@ -269,4 +279,4 @@ $.Widget.prototype = {
 	}
 };
 
-})( jQuery );
+}));
