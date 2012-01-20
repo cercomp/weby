@@ -14,7 +14,7 @@
   <%= f.input :name, :label => t("name"), :hint => t("field_required") %>
 
 	<div class="input">
-		<%= f.input :css, :label => t("css.one"), :as => :text, wrapper_html: { class: 'nostyle' } %>
+		<%= f.input :css, :label => t("css.one"), :as => :text, wrapper_html: { class: 'nostyle' },:input_html => {class:'css-editor'} %>
 		<%= link_to t("help_with_css"), "https://softifes.andifes.org.br/projects/weby/wiki/Working_with_css",
 			:target => "_blank" %>
 		<%= image_tag "help-icon.png" %>
