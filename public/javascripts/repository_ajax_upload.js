@@ -6,7 +6,7 @@ function ajaxUpload(){
    {name: "repository[description]", value: $("#description").val()},
    {name: "repository[site_id]", value: $("#site_id").val()},
    ],
-   // FIXME: fix this pog!!
+   // FIXME: fix this (light)pog!!
    // O erro está sendo tratado dentro do evento done
    // pois o IE8 não recupera o HTTPstatus de erro do IFrame
    // Para resolver isso quando da erro o HTTP passa 200
@@ -14,22 +14,22 @@ function ajaxUpload(){
    // error que carrega a mensagem de erro.
    done: function (e, data) {
       if(data.result.error){
-         $(data.result.error).each(function(index, error){
-            var response = $(document.createElement('li'));
-            response.text(error);
-            $("#results").prepend(response);
-         });
+         handleFail(data.result.error);
       }else{
          resetFields();
          var repository = data.result.repositories.repository;
          var message = data.result.message;
          var response = $(document.createElement('li'));
          response.text([repository.description,
-            " (", repository.archive_file_name, ")",
-            " - ", message].join(''));
+               " (", repository.archive_file_name, ")",
+               " - ", message].join(''));
 
          $("#results").prepend(response);
       }
+   },
+   fail: function(e, data) {
+      var error = JSON.parse(data.jqXHR.responseText).error;
+      handleFail(error);
    },
    progress: function (e, data) {
       var progress = parseInt(data.loaded / data.total * 100, 10);
@@ -39,6 +39,14 @@ function ajaxUpload(){
       c = data;
       $("#upload-file-progress").hide();
    }
+   });
+}
+
+function handleFail(respondError) {
+   $(respondError).each(function(index, error){
+      var response = $(document.createElement('li'));
+      response.text(error);
+      $("#results").prepend(response);
    });
 }
 
