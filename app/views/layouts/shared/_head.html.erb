@@ -9,6 +9,13 @@
   <title> <%= @site.try(:description) || 'Weby' %> </title>
   <meta charset="utf-8">
   <%= csrf_meta_tag %>
+  <!-- Css do tema personalizado do jquery-ui -->
+  <%= stylesheet_link_tag 'jquery-ui/jquery-ui-1.8.16.custom.css' %>
+
+  <%= stylesheet_link_tag 'jquery.multiselect.css' %>
+	<%= stylesheet_link_tag 'jquery-ui-timepicker-addon' %>
+
+	<!-- Weby styles -->
   <%= stylesheet_link_tag 'scaffold' %>
   <%= stylesheet_link_tag 'application' %>
   <%= stylesheet_link_tag 'simple_form' %>
@@ -18,13 +25,8 @@
   deve ser carregados apenas com os componentes -->
   <%= stylesheet_link_tag 'institutional_bar' %>
   <%= stylesheet_link_tag 'weby_bar' %>
-<%= stylesheet_link_tag 'gov' %>
+	<%= stylesheet_link_tag 'gov' %>
 
-  <!-- Css do tema personalizado do jquery-ui -->
-  <%= stylesheet_link_tag 'jquery-ui/jquery-ui-1.8.16.custom.css' %>
-
-  <%= stylesheet_link_tag 'jquery.multiselect.css' %>
-  <%= stylesheet_link_tag 'jquery-ui-timepicker-addon' %>
 
   <!--[if lt IE 9]>
   <%= javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js" %>

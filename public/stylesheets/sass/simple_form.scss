@@ -1,6 +1,6 @@
-* { font-family: Verdana, sans-serif; }
-
 @import "utils";
+
+* { font-family: Verdana, sans-serif; }
 
 $label_width: 120px;
 $label_horizontal_margin: 10px;
@@ -20,9 +20,9 @@ form
   clear: both;
   padding: 12px;
   border-bottom: 1px solid #e4e4e4;
-  
-  &.boolean, &.check_boxes
-  {
+
+	&.boolean, &.boolean.side, &.check_boxes
+	{
     position: relative;
     overflow: hidden;
 
@@ -31,10 +31,32 @@ form
       margin-left: 20px;
     }
 
+	}
+  
+	&.boolean
+	{
+    input[type="checkbox"]
+    {
+      position: absolute;
+      top: 13px;
+    }
+	}
+
+  &.boolean.side
+  {
     input[type="checkbox"]
     {
       position: absolute;
       top: 2px;
+    }
+  }
+
+  &.check_boxes
+  {
+    input[type="checkbox"]
+    {
+      float: left;
+			margin: 6px 6px 0 0;
     }
   }
 }
@@ -67,6 +89,7 @@ label
     padding: 0;
     vertical-align: -2px;
   }
+	font-size: 14px;
   width: auto;
   display: block;
   padding-bottom: 8px;
@@ -191,6 +214,7 @@ input[type=datetime-local]
 		display: none;
 	}
 }
+input[type=search] { padding-right: 5px; }
 .green-button
 {
 	@extend .button;

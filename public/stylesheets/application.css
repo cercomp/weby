@@ -209,8 +209,8 @@ div.flash.warning {
 /***** Icons *****/
 .icon:before {
   position: relative;
-  margin-right: 1px;
-  top: 3px; }
+  margin-right: 3px;
+  top: 4px; }
 
 .icon22 {
   background-position: 0% 40%;
@@ -225,28 +225,37 @@ div.flash.warning {
   text-decoration: none; }
 
 .icon-add:before {
-  content: url(../images/add.png); }
+  content: url(../images/icons/black16x16/ic_plus.png); }
+
+.icon-back:before {
+  content: url(../images/icons/black16x16/ic_left.png); }
+
+.icon-list:before {
+  content: url(../images/icons/black16x16/ic_list.png); }
+
+.icon-mail:before {
+  content: url(../images/icons/black16x16/ic_mail.png); }
 
 .icon-edit:before {
-  content: url(../images/edit.png); }
+  content: url(../images/icons/black16x16/ic_edit.png); }
 
 .icon-copy:before {
   content: url(../images/copy.png); }
 
 .icon-del:before {
-  content: url(../images/delete.png); }
+  content: url(../images/icons/black16x16/ic_delete.png); }
 
 .icon-move:before {
   content: url(../images/move.png); }
 
 .icon-drag:before {
-  content: url(../images/drag.png); }
+  content: url(../images/icons/black16x16/ic_drag.png); }
 
 .icon-save:before {
   content: url(../images/save.png); }
 
 .icon-cancel:before {
-  content: url(../images/cancel.png); }
+  content: url(../images/icons/black16x16/ic_left.png); }
 
 .icon-folder:before {
   content: url(../images/folder.png); }
@@ -330,7 +339,7 @@ div.flash.warning {
   content: url(../images/up-get.png); }
 
 .icon-show:before {
-  content: url(../images/show.png); }
+  content: url(../images/icons/black16x16/ic_text_document.png); }
 
 .icon-toggle-check:before {
   content: url(../images/toggle_check.png); }
