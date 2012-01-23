@@ -8,7 +8,7 @@
       <%= text_field_tag :search %>
       <%= select_tag( "mime_type[]", grouped_options_for_select(load_mime_types(@site)), {include_blank: t('all')} ) %>
       <%= link_to_function(image_tag("add_off.png"), "toogle_select_multiple($('#mime_type_'));") %>
-      <%= submit_tag t("search") %>
+			<%= submit_tag t("search"), :class => 'search-button' %>
     <% end %>
   </center>
 
