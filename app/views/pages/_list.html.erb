@@ -9,7 +9,7 @@
     <th><%= sortable 'category', t("category") %></th>
     <th><%= sortable 'type', t("type") %></th>
     <% if check_permission(PagesController, 'toggle_field') %>
-      <th><%= t"cover" %></th>
+      <th><%= sortable 'front', t("cover") %></th>
       <th><%= t"publish" %></th>
     <% end %>
     <th></th>
@@ -33,9 +33,6 @@
         <% end %>
         <td>
           <%= make_menu(page, :except => "show") %>
-          <% if check_permission(PagesController, 'sort') %>
-            <span class='handle icon icon-drag'><%= t("move") %></span>
-          <% end %>
         </td>
       </tr>
     <% end %>

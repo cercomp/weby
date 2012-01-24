@@ -57,7 +57,7 @@ Webyge::Application.routes.draw do
       end 
       collection do
         post :sort
-        get :list_published
+        get :list_published, :list_front
       end
     end
     resources :site_components do

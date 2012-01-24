@@ -61,6 +61,7 @@ en:
   controller: "Controller"
   copy: "Copy"
   cover: "Cover"
+  covers: "Covers"
   cover_size: "Quantity items on cover"
   cover_help: "This pages will apear in site front."
   comma_separated_emails: "Comma Separated Emails"

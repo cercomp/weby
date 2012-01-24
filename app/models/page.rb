@@ -1,10 +1,11 @@
 class Page < ActiveRecord::Base
   acts_as_taggable_on :categories
-  acts_as_list
-
-  default_scope order: 'pages.position,pages.id desc'
+  
+  default_scope order: 'pages.id desc'
 
   scope :published, where(publish: true)
+
+  scope :front, where(front: true)
 
   scope :titles_like, proc { |title, locale|
     unless locale.blank?

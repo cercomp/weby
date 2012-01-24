@@ -13,6 +13,7 @@ class PagesController < ApplicationController
   def index 
     params[:type] ||= 'News'
     params[:locales] ||= session[:locale]
+    params[:direction] ||= 'desc'
 
     @pages = @site.pages.
       titles_like(params[:search], params[:locales]).
@@ -81,6 +82,7 @@ class PagesController < ApplicationController
 
   def create
     params[:page][:type] ||= 'News'
+    params[:page][:position] = (params[:page][:front]=="0" ? 0 : max_position)
     @page = params[:page][:type].constantize.new params[:page] 
     unless @page.save
       # Recarrega variáveis para formulário
@@ -101,6 +103,12 @@ class PagesController < ApplicationController
     params[:page][:repository_ids] ||= []
     @page = Page.find(params[:id])
     p @page.page_i18ns
+    if (params[:page][:front]=="1" && !@page.front)
+      @page.position = max_position 
+    elsif (params[:page][:front]=="0" && @page.front)
+      position_down_from @page.position
+      @page.position = 0
+    end
     unless @page.update_attributes(params[:page])
       build_site_locales
     end
@@ -111,14 +119,22 @@ class PagesController < ApplicationController
     @page = Page.find(params[:id])
     # deleta todas as relacoes da pagina com os sites
     SitesPage.find(@page.sites_pages).each{ |p| p.destroy }
+    position_down_from @page.position if @page.front?
     @page.destroy
     redirect_to(:back)
   end
 
   def toggle_field
     @page = Page.find(params[:id])
-    if params[:field] 
-      if @page.update_attributes("#{params[:field]}" => (@page[params[:field]] == 0 or not @page[params[:field]] ? true : false))
+    if params[:field]
+      new_value = (@page[params[:field]] == 0 or not @page[params[:field]] ? true : false)
+      if (params[:field]=='front' && new_value)
+        @page.position = max_position 
+      elsif (params[:field]=='front' && !new_value)
+        position_down_from @page.position
+        @page.position = 0
+      end
+      if @page.update_attributes("#{params[:field]}" => new_value)
         flash[:notice] = t"successfully_updated"
       else
         flash[:notice] = t"error_updating_object"
@@ -128,16 +144,35 @@ class PagesController < ApplicationController
   end
 
   def sort
-    @pages = @site.pages.page(params[:page]).per(10)
-    @front_news = @site.pages.news(true)
-    @no_front_news = @site.pages.news(false).page(params[:page]).per(5)
-
-    params['sort_page'] ||= []
-    params['sort_page'].to_a.each do |p|
-      page = Page.find(p)
-      page.position = (params['sort_page'].index(p) + 1)
-      page.save
+    @ch_pos = @site.pages.find(params[:id_moved], :readonly => false)
+    increment = 1
+    #Caso foi movido para o fim da lista ou o fim de uma pagina(quando paginado)
+    if(params[:id_after] == '0')
+      @before = @site.pages.find(params[:id_before])
+      condition = "position < #{@ch_pos.position} AND position >= #{@before.position}"
+      new_pos = @before.position
+    else
+      @after = @site.pages.find(params[:id_after])
+      other_pos = @after.position
+      #Caso foi movido de cima pra baixo
+      if(@ch_pos.position > @after.position)
+        condition = "position < #{@ch_pos.position} AND position > #{other_pos}"
+        new_pos = @after.position+1
+      #Caso foi movido de baixo pra cima
+      else
+        increment = -1
+        condition = "position > #{@ch_pos.position} AND position <= #{other_pos}"
+        new_pos = @after.position
+      end
     end
+    #FIXME Um update_all seria mais eficiente, porém o rails tem problemas com upate_all e joins
+    #no postgres, testar no 3.2
+    #Ex. @site.pages.front.where(condition).update_all("position = position +/- 1")
+    @site.pages.front.where(condition).each do |page|
+      page.increment(:position, increment).save
+    end
+    @ch_pos.update_attribute(:position, new_pos)
+    render :nothing => true
   end
 
   # TODO teste para listar páginas na criação do componente news_as_home
@@ -154,9 +189,32 @@ class PagesController < ApplicationController
     @pages = @pages.published if params[:published_only]=='true'
   end
 
+  def list_front
+    @pages = @site.pages.
+      except(:order).
+      order("position desc")
+
+    @pages = @pages.front
+  end
+
   private
   def sort_column
-    Page.column_names.include?(params[:sort]) ? params[:sort] : 'position, id'
+    Page.column_names.include?(params[:sort]) ? params[:sort] : 'id'
+  end
+
+  def max_position
+    max = @site.pages.front.maximum('position')
+    return max ? max+1 : 1
+  end
+
+  #FIXME Um update_all seria mais eficiente, porém o rails tem problemas com upate_all e joins
+  #no postgres, testar no 3.2
+  #quando tira um item da ordem, decrementa a position das pages acima dela
+  def position_down_from old_position
+    #@site.pages.front.update_all("position = position-1",["position > ?", old_position])
+    @site.pages.front.where("position > #{old_position}").each do |page|
+      page.increment(:position, -1).save
+    end
   end
 
   def tiny_mce

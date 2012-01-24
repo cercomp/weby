@@ -341,6 +341,9 @@ div.flash.warning {
 .icon-show:before {
   content: url(../images/icons/black16x16/ic_text_document.png); }
 
+.icon-newspaper:before {
+  content: url(../images/icons/black16x16/ic_grid.png); }
+
 .icon-toggle-check:before {
   content: url(../images/toggle_check.png); }
 

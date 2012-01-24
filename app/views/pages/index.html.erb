@@ -1,13 +1,14 @@
 <fieldset>
   <legend><%= t"page.other"  %></legend>
 
+  <div class="contextual">
   <% if params[:type] %>
     <% if check_permission(PagesController, 'new') %>
-      <div class="contextual">
-        <%= link_to (t"new_param.fem", :param => (t"page.one")), new_site_page_path, :class => 'icon icon-add' %>
-      </div>
+        <%= link_to (t"new_param.fem", :param => (t"page.one")), new_site_page_path, :class => 'icon icon-add' %>&nbsp;|
     <% end %>
   <% end %>
+  <%= link_to (t"covers"), list_front_site_pages_path(@site), :class => 'icon icon-newspaper' %>
+  </div>
 
   <center>
     <%= form_tag request.path, :method => 'get', :remote => true do %>
@@ -22,29 +23,4 @@
   <div id="page_list">
     <%= render :partial => ( @tiny_mce ? 'list_popup' : 'list' ) %>
   </div>
-
-  <%= javascript_tag do %>
-    window.onload=function(){
-      $().ready(function() {
-        $('#list').sortable({
-          axis: 'y', 
-          dropOnEmpty:false, 
-          handle: '.handle', 
-          cursor: 'crosshair',
-          items: 'tr',
-          opacity: 0.4,
-          scroll: true,
-          update: function(){
-            $.ajax({
-              type: 'post', 
-              data: $('#list').sortable('serialize'),
-              dataType: 'script', 
-              complete: function(request){ $('#list tr').effect('highlight'); },
-              url: '<%= sort_site_pages_path %>'
-            })
-          }
-        })
-      })
-    }
-  <% end %>
 </fieldset>
