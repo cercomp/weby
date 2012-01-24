@@ -1,7 +1,7 @@
 <% @repository = Repository.new %>
 <%= simple_form_for [@site, @repository],
   url: site_repositories_path(from: 'other'),
-  remote: true,
+  remote: false,
   html: { :multipart => true } do |f| %> 
   <% if @repository.errors.any? %>
     <div id="error_explanation">
