@@ -14,12 +14,13 @@ class PagesController < ApplicationController
     params[:type] ||= 'News'
     params[:locales] ||= session[:locale]
     params[:direction] ||= 'desc'
+    extra_order = params[:sort]=='front' ? ',position desc' : ''
 
     @pages = @site.pages.
       titles_like(params[:search], params[:locales]).
       page(params[:page]).per(per_page).
       except(:order).
-      order(sort_column + " " + sort_direction)
+      order(sort_column + " " + sort_direction+ extra_order)
 
     if !current_user
       @pages = @pages.published
