@@ -288,8 +288,9 @@ en:
   password_confirmation: "Password confirmation"
   per_page_default: 'Default quantity of items per page'
   pdf: "PDF"
-  period_banner: "Period of Banner:"
-  period_page: "Period of Page:"
+  period_banner: "Period of Banner"
+  period_event: "Period of Event"
+  period_page: "Period of Page"
 
   permission:
     one: "Permission"

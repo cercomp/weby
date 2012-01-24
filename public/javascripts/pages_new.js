@@ -8,6 +8,6 @@ $("input[name=type]").change(function(){
       null,
       'script');
    }else{
-      $('#event_fields').hide("fade");
+      $('#event_fields').fadeOut(500, function(){$(this).html('')});
    }
-   });
+});

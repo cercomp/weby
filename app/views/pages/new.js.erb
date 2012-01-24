@@ -10,6 +10,7 @@ console.dir("<%=j params[:type] %>")
   $('#event_fields').
   html('<%= escape_javascript(render(:partial => 'formEvent')) %>').
   show("fade");
+  set_jquery_ui();
 <% end %>
 
 show_selected_image('page', 'repository_id');

@@ -288,8 +288,9 @@ pt-BR:
   password_confirmation: "Confirmação da senha"
   per_page_default: 'Quantidade padrão de itens por página'
   pdf: "PDF"
-  period_banner: "Período do Banner:"
-  period_page: "Período da Notícia:"
+  period_banner: "Período do Banner"
+  period_event: "Período do Evento"
+  period_page: "Período da Notícia"
   permission:
     one: "Permissão"
     other: "Permissões"
