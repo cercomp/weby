@@ -54,7 +54,7 @@
     </div>
 
     <div class="input">
-      <label>Período da Notícia: </label>
+      <label><%= t"period_page"  %> </label>
       <%= f.input :date_begin_at,
         label: false,
         as: :string,
@@ -78,8 +78,6 @@
     <%= f.input :created_at, order: [:year, :month, :day],
       use_month_numbers: true, label: (t"date_param", param: t("register")),
       start_year: Time.now.year, as: :hidden %>
-
-    <%= f.input :author_id, input_html: {value: "#{@current_user.id}"}, as: :hidden %>
 
     <%= f.input :site_id, input_html: {value: @site.id}, as: :hidden  %>
 

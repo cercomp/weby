@@ -84,7 +84,8 @@ class PagesController < ApplicationController
   def create
     params[:page][:type] ||= 'News'
     params[:page][:position] = (params[:page][:front]=="0" ? 0 : max_position)
-    @page = params[:page][:type].constantize.new params[:page] 
+    @page = params[:page][:type].constantize.new params[:page]
+    @page.author_id = @current_user.id
     unless @page.save
       # Recarrega variáveis para formulário
       @repository = Repository.new

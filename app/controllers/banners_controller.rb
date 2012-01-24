@@ -34,6 +34,7 @@ class BannersController < ApplicationController
 
   def create
     @banner = Banner.new(params[:banner])
+    @banner.user_id = @current_user.id
     if params[:submit_search]
       search_images
       render action: :edit
