@@ -604,3 +604,8 @@ label[for='users_unroled'] {
 
 .bold {
   font-weight: bold; }
+
+span.label{
+    font-size: 80%;
+    font-weight: normal;
+    font-style: italic; }

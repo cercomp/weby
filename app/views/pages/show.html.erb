@@ -40,7 +40,7 @@
 
   <%= raw @page.by_locale(@current_locale).text %>
   <p>
-  <h3> <%= @page.url.try(:empty?) ? @page.source : link_to(@page.source, @page.url) %> </h3>
+    <h3><span class="label"><%= t("source")+":" unless @page.source.try(:empty?) %></span> <%= @page.url.try(:empty?) ? @page.source : link_to(@page.source, @page.url) %> </h3>
   </p>
 
   <% unless @page.category_list.empty? %>
