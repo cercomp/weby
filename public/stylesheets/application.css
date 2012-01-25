@@ -251,11 +251,20 @@ div.flash.warning {
 .icon-drag:before {
   content: url(../images/icons/black16x16/ic_drag.png); }
 
+.icon-up:before {
+  content: url(../images/icons/black16x16/ic_up.png); }
+
+.icon-down:before {
+  content: url(../images/icons/black16x16/ic_down.png); }
+
 .icon-save:before {
   content: url(../images/save.png); }
 
 .icon-cancel:before {
-  content: url(../images/icons/black16x16/ic_left.png); }
+  content: url(../images/icons/black16x16/ic_cancel.png); }
+
+.icon-ok:before {
+  content: url(../images/icons/black16x16/ic_ok.png); }
 
 .icon-folder:before {
   content: url(../images/folder.png); }
@@ -343,6 +352,9 @@ div.flash.warning {
 
 .icon-newspaper:before {
   content: url(../images/icons/black16x16/ic_grid.png); }
+
+.icon-new:before {
+  content: url(../images/icons/black16x16/ic_empty_document.png); }
 
 .icon-toggle-check:before {
   content: url(../images/toggle_check.png); }
@@ -583,7 +595,7 @@ label[for='users_unroled'] {
   .box p {
     margin: 0 0 2px 0; }
   .box.file {
-    margin: 10px; }
+    margin: 7px/*10px;*/ }
   .box.link {
     margin: 3px; }
   .box aside.left {

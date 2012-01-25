@@ -65,13 +65,13 @@
 
   <div class="input select">
     <%= f.label :category,
-        t("group.one"), :class => "select",
+        t("category"), :class => "select",
         :for => "category" %>
       <%= f.select :category_list,
           @site.banners.category_counts, {},
           :id => "category" %>
        	<%= link_to_function image_tag("icons/black16x16/ic_plus.png ",:title => "Adicionar um acategoria"),
-					"addToSelect('#category')", :title => "Adicionar um categoria" %>
+					"addToSelect('#category','#{t("new.fem")+" "+t("category")}')", :title => "Adicionar um categoria" %>
  
   </div>
 

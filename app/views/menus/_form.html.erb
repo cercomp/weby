@@ -35,13 +35,13 @@
 		<% else %>
 			<div class="input select">
 				<%= menus_form.label :category,
-					t("group.one"), :class => "select",
+					t("category"), :class => "select",
 					:for => "menu-category" %>
 				<%= menus_form.select :category,
 					@site.menu_categories, {},
 					:id => "menu-category" %>
 				<%= link_to_function image_tag("icons/black16x16/ic_plus.png ",:title => "Adicionar um acategoria"),
-					"addToSelect('#menu-category')", :title => "Adicionar um categoria" %>
+					"addToSelect('#menu-category','#{t("new.fem")+" "+t("category")}')", :title => "Adicionar um categoria" %>
 			</div>
 		<% end %>
 	<% end %>

@@ -142,7 +142,7 @@ class PagesController < ApplicationController
         flash[:notice] = t"error_updating_object"
       end
     end
-    redirect_back_or_default site_pages_path(@site)
+    redirect_to :back
   end
 
   def sort

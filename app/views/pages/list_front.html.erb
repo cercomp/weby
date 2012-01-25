@@ -9,39 +9,44 @@
   </div>
 
   <div id="page_list">
+    <div class="page_info_paginator"><%= t"views.pagination.total" %>&nbsp;<%= @pages.length %></div>
     <table id='list' class="list">
-  <thead>
-    <th><%= t('id') %></th>
-    <th><%= t("date_param", :param => t("register")) %></th>
-    <th><%= t("title") %></th>
-    <th><%= t("author") %></th>
-    <th><%= t("category") %></th>
-    <th><%= t("type") %></th>
-    <th></th>
-  </thead>
-  <tbody>
-    <% @pages.each do |page| %>
-      <tr id="sort_page_<%= page.id %>">
-        <td><%= page.id %></td>
-        <td><%=l page.created_at, :format => :short %></td>
-        <td><%= link_to page.by_locale(session[:locale]).title, site_page_path(@site,page) %></td>
-        <% if page.user %>
-          <td><%= page.user.first_name ? ("#{page.user.first_name} #{page.user.last_name}") : page.user.login %></td>
-        <% else %>
-          <td></td>
+      <thead>
+        <th><%= t('id') %></th>
+        <th><%= t("date_param", :param => t("register")) %></th>
+        <th><%= t("title") %></th>
+        <th><%= t("author") %></th>
+        <th><%= t("category") %></th>
+        <th><%= t("type") %></th>
+        <th><%= t"publish" %></th>
+        <th></th>
+      </thead>
+      <tbody>
+        <% @pages.each do |page| %>
+          <tr id="sort_page_<%= page.id %>">
+            <td><%= page.id %></td>
+            <td><%=l page.created_at, :format => :short %></td>
+            <td><%= link_to page.by_locale(session[:locale]).title, site_page_path(@site,page) %></td>
+            <% if page.user %>
+              <td><%= page.user.first_name ? ("#{page.user.first_name} #{page.user.last_name}") : page.user.login %></td>
+            <% else %>
+              <td></td>
+            <% end %>
+            <td><%= page.category_list.join ', ' %></td>
+            <td><%= t"#{page.type.downcase}.one" %></td>
+            <% if check_permission(PagesController, [:toggle_field]) %>
+              <td><%= publication_status(page) %></td>
+            <% end %>
+            <td>
+              <%= make_menu(page, :except => "show") %>
+              <% if check_permission(PagesController, 'sort') %>
+                <span class='handle icon icon-drag'><%= t("move") %></span>
+              <% end %>
+            </td>
+          </tr>
         <% end %>
-        <td><%= page.category_list.join ', ' %></td>
-        <td><%= t"#{page.type.downcase}.one" %></td>
-        <td>
-          <%= make_menu(page, :except => "show") %>
-          <% if check_permission(PagesController, 'sort') %>
-            <span class='handle icon icon-drag'><%= t("move") %></span>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      </tbody>
+    </table>
   </div>
 
   <%= javascript_tag do %>

@@ -17,14 +17,14 @@
                               url: banner_url
                            }) %>
       </figure>
-      <% if check_permission(BannersController, ["toggle_field"]) %>
-        <%= link_to t("unpublish"), toggle_field_site_banner_path(@site, banner, :field => 'publish') %>
-      <% end %>
     <% else %>
-			<div class='banner_textual'>
-				<h2><%= "#{banner.title}" %></h2>
-				<a href="<%= "#{banner_url}" %>"><p><%= "#{banner.text}" %></p></a>
-			</div>
+        <div class='banner_textual'>
+            <h2><%= "#{banner.title}" %></h2>
+            <a href="<%= "#{banner_url}" %>"><p><%= "#{banner.text}" %></p></a>
+        </div>
+    <% end %>
+    <% if check_permission(BannersController, ["toggle_field"]) %>
+      <%= link_to t("unpublish"), toggle_field_site_banner_path(@site, banner, :field => 'publish') %>
     <% end %>
   <% end %>
 </div>
