@@ -16,12 +16,6 @@ class RepositoriesController < ApplicationController
 
     @repositories = @repositories.content_file(params[:mime_type]) if params[:mime_type]
 
-    request_type = request.env["HTTP_X_REQUESTED_WITH"] == "XMLHttpRequest" ? 'js' : 'html'
-
-    if params[:template] 
-      render :template => "repositories/#{params[:template]}.#{request_type}.erb"
-    end
-
     unless @repositories
       flash.now[:warning] = (t"none_param", :param => t("archive.one")) 
     end
@@ -32,6 +26,10 @@ class RepositoriesController < ApplicationController
           num_pages: @repositories.num_pages,
           repositories: @repositories
         }
+      end
+      if params[:template] 
+        format.html { render template: "repositories/#{params[:template]}.html.erb" }
+        format.js { render template: "repositories/#{params[:template]}.js.erb" }
       end
     end
   end
