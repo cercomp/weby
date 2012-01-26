@@ -10,7 +10,7 @@
       <% links = @site.menu_categories %>
       <% for link in links do %>
         <% selected = params[:category] == link ? "selected" : "" %>
-        <li><%= link_to(link.try(:titleize), site_menus_path(@site, :category => link), :class => "#{selected}") %></li>
+        <li><%= link_to(link.try(:titleize), site_menus_path(@site, :category => link), :rel => link, :class => "#{selected}") %></li>
       <% end %>
     </ul>
   </div>
@@ -65,7 +65,7 @@
         drop: function( event, ui ) {
           drop_li = $(this)
           id = ui.draggable.attr('id').replace('menu_','');
-          category = drop_li.find('a').text().toLowerCase();
+          category = drop_li.find('a').attr('rel');
 
           dropped = true;
 
