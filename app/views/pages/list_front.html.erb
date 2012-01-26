@@ -18,7 +18,9 @@
         <th><%= t("author") %></th>
         <th><%= t("category") %></th>
         <th><%= t("type") %></th>
-        <th><%= t"publish" %></th>
+        <% if check_permission(PagesController, [:toggle_field]) %>
+          <th><%= t"publish" %></th>
+        <% end %>
         <th></th>
       </thead>
       <tbody>
