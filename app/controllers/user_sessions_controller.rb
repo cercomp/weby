@@ -25,12 +25,12 @@ class UserSessionsController < ApplicationController
   
   def destroy
     if current_user 
-    if  current_user.active?
-      flash.now[:warning] = t('user_inactive')
-    else
-      flash.now[:notice] = t('logout_success')
-    end
-    current_user_session.destroy
+      if  current_user.active?
+        flash.now[:warning] = t('user_inactive')
+      else
+        flash.now[:notice] = t('logout_success')
+      end
+      current_user_session.destroy
     end
     redirect_back_or_default("#{params[:back_url]}")
   end

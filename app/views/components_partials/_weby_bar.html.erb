@@ -173,7 +173,7 @@
     </menu>
   </nav>
 
-  <nav  class="top_menu right">
+  <nav class="top_menu right">
     <menu>
       <% if(@site.try(:id) and current_user) %>
         <li> <%= link_to(current_user.first_name.titleize, site_user_path(@site, current_user)) %> </li>
@@ -184,18 +184,11 @@
       <% end %>
 
       <% if current_user %>
-        <li> <%= link_to( t("logout"), logout_path, :confirm => t("are_you_sure") ) %> </li>
+        <li> <%= link_to( t("logout"), logout_path(:back_url => "#{request.fullpath}"), :confirm => t("are_you_sure") ) %> </li>
       <% end %>
 
       <% if not(current_user) %>
-        <li class='sub to_left'> <%= link_to( t("login"), login_path(:back_url => "#{request.fullpath}")) %>
-        <menu>
-          <li>
-          <% @user_session = UserSession.new %>
-          <%= render :file => 'user_sessions/new.html.erb', :locals => { :class_for_login => 'login_embedded' } %>
-          </li>
-        </menu>
-        </li>
+        <li class='to_left'> <%= link_to( t("login"), login_path(:back_url => "#{request.fullpath}")) %> </li>
         <li> <%= link_to( t("register"), new_user_path ) %> </li>
       <% end %>
 
