@@ -148,7 +148,8 @@ class MenusController < ApplicationController
       end
       update_position_for_remove(obj)
       parent_id = 0
-      position = SitesMenu.maximum('position', :conditions=> ['category = ? AND site_id = ? AND parent_id = ? AND id <> ?', new_category, obj.site_id, parent_id, obj.id])+1
+      max = SitesMenu.maximum('position', :conditions=> ['category = ? AND site_id = ? AND parent_id = ? AND id <> ?', new_category, obj.site_id, parent_id, obj.id])
+      position = max ? max+1 : 1
 
       obj.update_attributes({:parent_id => parent_id, :category => new_category, :position => position})
     end
