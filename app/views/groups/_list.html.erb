@@ -17,6 +17,6 @@
     <% end %>
     </tbody>
   </table>
-  <%= paginate @groups, :remote => true %>
   <%= per_page_links @groups %>
+  <%= paginate @groups, :remote => true %>
 <% end %>
