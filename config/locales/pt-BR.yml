@@ -327,7 +327,7 @@ pt-BR:
   registered_menu:
     one: "Menu Cadastrado"
     other: "Menus Cadastrados"
-  related_files: "arquivos relacionados"
+  related_files: "Arquivos relacionados"
   related_files_help: "Serão relacionados na listagem da página"
   remember_me: "Lembrar-me"
   remove: "remover %{param}"
