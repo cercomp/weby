@@ -13,6 +13,11 @@ gem "acts-as-taggable-on"
 gem 'mongrel', '>= 1.2.0.pre2'
 gem 'cells'
 
+# Needs for thin cluster in production
+group :production do
+  gem 'dispatcher'
+end
+
 group :development do
   gem 'pry-rails'
 end
