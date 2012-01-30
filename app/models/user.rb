@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   acts_as_authentic
 
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
-  validates_format_of :login, :with => /^[a-z\d_\-\.]+$/i
+  validates_format_of :login, :with => /^[a-z\d_\-\.@]+$/i
   validates_presence_of :email, :login, :first_name, :last_name
   validates_presence_of :password, :on => :create
 
