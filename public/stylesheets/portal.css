@@ -10,9 +10,8 @@ html { background-color: #F9F9F9; }
 
 header {
   padding: 10px 10px 0 0;
-  height: 100px;
+  height: 150px;
   background: url(../images/weby-logo.png) no-repeat 20px 50%; }
-
 
 section#content { padding: 10px; }
 
