@@ -14,7 +14,7 @@ module SiteComponentsHelper
     places[@site.theme] || []
   end
 
-  #retorna as divs do mini layout
+  #retorna as divs do mini layout ---  menu de adicionar componente
   def make_mini_layout
      divs = "<div id='mini_layout'>"  
      places_holder.map { |position| divs += "<div id='mini_#{position}' class='hover'>
@@ -37,6 +37,7 @@ module SiteComponentsHelper
      'institutional_bar',
      'weby_bar',
      'news_as_home',
+     'teacher_photo', 
      'gov_bar']
   end
 
@@ -48,7 +49,8 @@ module SiteComponentsHelper
       'front_news'        => ['quant'],
       'menu_side'         => ['category'],
       'news_as_home'      => ['page'],
-      'gov_bar'           => ['background']
+      'gov_bar'           => ['background'],
+      'teacher_photo'     => ['image', 'height', 'width']
     }
   end
   
@@ -76,9 +78,11 @@ module SiteComponentsHelper
       'news_as_home' => {
         'page' => ['<a onclick="select_page(); return false;">', t('select_param', :param => t('news.one')), '</a>'].join
       },
+
       'gov_bar' => {
         'background' => ['<select name="background">', options_for_select([["Azul","#004b82"],["Verde","#00500f"],["Cinza","#7f7f7f"],["Preto","#000000"]], cur_setting[:background]), '</select>'].join
       }
+
     }
   end
   
@@ -89,7 +93,7 @@ module SiteComponentsHelper
     self.components_settings.each do |component, array|
       locales[component] = []
       array.each do |v|
-        locales[component] << t("components." + v);
+        locales[component] << t("components.config." + v);
       end
     end
     locales

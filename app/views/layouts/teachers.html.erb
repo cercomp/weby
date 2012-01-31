@@ -1,26 +1,20 @@
 <!DOCTYPE html>
 <html lang="<%= session[:locale].to_s %>">
-	<%= content_for :stylesheets do %>
-    <%= stylesheet_link_tag 'teachers' %>
-  <% end %>
-	<%= render 'layouts/shared/head', :contrast => 'teachers_contrast' %>
+	<%= content_for :stylesheets, stylesheet_link_tag('teachers')%>
+  
+  <%= render 'layouts/shared/head', :contrast => 'teachers_contrast' %>
+  
   <body>
   	<div class='first_place'>
       <%= load_components 'first_place' %>
     </div>
     <div id="wrapper" <%= "style='width: #{ @main_width }px'" if @main_width %>>
+      
       <header>
-        <% unless @site.repository.nil? %>
-          <figure id="top_figure">
-            <% size = 155 %>
-            <%= link_to image_tag(@site.repository.archive.url, :alt => @site.repository.description, :title => @site.repository.description, :size => size.to_s), @site %>
-          </figure>
-        <% end %>
+        <%= load_components 'top' %>
         <section id="description">
           <spam><%= raw @site.description %></spam>
         </section>
-        
-        <%= load_components 'top' %>
         <div class="clear"> </div>
       </header>
 
@@ -32,7 +26,7 @@
         <%= raw flash_message %>
         <%= yield %>
       </section>
-
+      
       <footer>
         <%= load_components 'bottom' %>
       </footer>
