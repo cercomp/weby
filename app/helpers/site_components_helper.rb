@@ -50,7 +50,8 @@ module SiteComponentsHelper
       'menu_side'         => ['category'],
       'news_as_home'      => ['page'],
       'gov_bar'           => ['background'],
-      'teacher_photo'     => ['image', 'height', 'width']
+      'teacher_photo'     => ['image', 'height', 'width'],
+      'feedback'          => ['label']
     }
   end
   

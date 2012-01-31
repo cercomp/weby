@@ -23,6 +23,7 @@ pt-BR:
       front: "Apenas notícias de capa?"
       height: "Altura"
       image: "Imagem"
+      label: "Rótulo"
       page: "Notícia"
       quant: "Quantidade de itens"
       settings: "Configurações"
