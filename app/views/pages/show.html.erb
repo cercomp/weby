@@ -53,15 +53,15 @@
     <table class="list">
       <thead bgcolor = white>
         <th><%= t"related_files" %></th>
-        <th><%= t"size" %></th>
-        <th> MD5 </th>
+        <th width="15%"><%= t"size" %></th>
+        <!--<th> MD5 </th>-->
       </thead>
       <tbody>    
         <% @page.repositories.each do |repository| %>
           <tr class="<%= cycle 'odd', 'even' %>">
             <td><%= link_to repository.description, repository.archive.url %></td>
             <td><%= repository.archive_file_size.to_i/1024 %> KB</td>
-            <td><%= Digest::MD5.file(repository.archive.path) %></td>
+            <!--<td><%# Digest::MD5.file(repository.archive.path) %></td>-->
           </tr>
           <% end; reset_cycle %>
         </tbody>
