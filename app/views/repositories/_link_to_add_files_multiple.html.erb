@@ -1,0 +1,22 @@
+<div class="input add-multiple-files">
+  <%= link_to_function link_title,
+    "repositorySearch(this);",
+    "data-place-name" => place_name,
+    "data-field-name" => field_name,
+    "data-multiple" =>   multiple,
+    "data-file-types" => file_types.to_s,
+    class: 'add-button' %>
+  <ul id="<%= place_name %>">
+    <% selected.each do |repository|  %>
+      <li class="backgrounded">
+        <%= label_tag "repository_#{repository.id}" do %>
+          <figure>
+            <%= weby_file_view(repository, :mini, 64, 64, {as: 'image'}) %>
+            <figcaption><%= repository.description %> </figcaption>
+          </figure>
+        <% end %>
+        <%= check_box_tag field_name, repository.id, true, id: "repository_#{repository.id}" %>
+      </li>
+    <% end %>
+  </ul>
+</div>

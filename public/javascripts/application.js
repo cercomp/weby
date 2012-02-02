@@ -1,3 +1,17 @@
+/**
+ * FIXME: POG-MASTER!!
+ * Para corrigir o erro de console no IE8
+ * O IE8 não cria o objeto console enquanto não abrir a 
+ * janela do console, por isso algumas coisas com tratamento
+ * de exceção usando o console para logar o erro
+ * falham totalmente.
+ */
+if (!window.console) {
+   window.console = new Object();
+   window.console.warn = function () { };
+   window.console.error = function () { }; 
+}
+
 $(document).ready(function() {
    //////////////////////////////////
    set_jquery_ui();
@@ -38,6 +52,8 @@ $(document).ready(function() {
 
 });
 
+var WEBY = {};
+
 function hide_enroled_option() {
    $('form[id^=\"form_user\"]').each(function (e){ $(this).hide(); })
 }
@@ -77,105 +93,105 @@ Loading = {
 // Mostrar mensagem para erros, no retorno do ajax
 FlashMsg = {
    notify: function(status){
-       //TODO algumas requisições ajax, retornam 500, mesmo quando OK
+      //TODO algumas requisições ajax, retornam 500, mesmo quando OK
       //if([403,500].indexOf(status)>-1){
       if(status == 403){
 
-          flash = $(document.createElement('div'));
-          $('#content').prepend(flash);
-          flash.addClass('flash error notify');
-          //flash.text(status==403 ?'Acesso Negado':status==500 ?'Erro no servidor':'');
-          flash.text(status==403 ?'Acesso Negado':'');
-          flash.append('<a href="#" style="float:right;">x</a>');
-          flash.find('a').click(function(){$(this).parent('div').remove();return false;});
-          flash.slideDown().delay(3000).slideUp(function(){
-              $(this).remove();
-          });
-      }
-   }
-}
-
-function toogle_select_multiple(select){
-   if($(select).attr("multiple")){
-      $(select).attr("multiple",null);
-   }else{
-      $(select).attr("multiple","multiple");
-   }
-}
-
-function show_selected_image(object,field_name){
-   select_place = $('#selected-image-of-radio-group-images');
-
-   select_place.click(function(){
-      image = $(this).find('img');
-      input_id = image.attr('id').replace('img_','');
-      input = $('input#'+input_id);
-      if(input.prop('checked') || $(this).find('input#'+input_id).length > 0){
-         input.prop('checked', null);
-         image.remove();
-         $(this).before('');
-      } 
-   });
-
-   $('input[name="'+object+'['+field_name+']"]').change(function(){
-      var selected = $(this);
-      var image = $('label[for="'+selected.attr('id')+'"] > img').clone();
-      image.attr('id','img_'+selected.attr('id'));
-      select_place.html(image);
-      selected.prop('checked', true);
-   });
-}
-
-function set_jquery_ui(){
-   $('.datepicker').datepicker({
-      dateFormat: "yy-mm-dd",
-      changeMonth: true,
-      changeYear: true,
-      showOn: "both",
-      buttonImage: "/images/calendar-icon.gif",
-      buttonImageOnly: false
-   });
-
-   $('.datetimepicker').datetimepicker({
-      dateFormat: "yy-mm-dd",
-      changeMonth: true,
-      changeYear: true,
-   });
-
-   $(".tabs").tabs();
-
-   return true;
-}
-
-function add_check_icon(element){
-   element.button({
-      icons: {primary: 'ui-icon-check'}
-   });
-   return true;
-}
-
-function remove_button_icons(elements){
-   $(elements).each(function(index, element){
-      if(!$(element).is(":checked")){
-         $(element).button({
-            icons: {}
+         flash = $(document.createElement('div'));
+         $('#content').prepend(flash);
+         flash.addClass('flash error notify');
+         //flash.text(status==403 ?'Acesso Negado':status==500 ?'Erro no servidor':'');
+         flash.text(status==403 ?'Acesso Negado':'');
+         flash.append('<a href="#" style="float:right;">x</a>');
+         flash.find('a').click(function(){$(this).parent('div').remove();return false;});
+         flash.slideDown().delay(3000).slideUp(function(){
+            $(this).remove();
          });
       }
-   });
-   return true;
-}
+   }
+   }
 
-/**
- * Coloca um countainer para a lista de paginas
- */
-function show_dialog(ele,published_only) {
-  if(!$('#page_list').length)
-    $('#div_link').append('<div id="page_list" style="display: none;" title="Selecione uma notícia"><img src="/images/spinner.gif"></div><input type="hidden" id="published_only" value="'+published_only+'"/>');
+           function toogle_select_multiple(select){
+              if($(select).attr("multiple")){
+                 $(select).attr("multiple",null);
+              }else{
+                 $(select).attr("multiple","multiple");
+              }
+           }
 
-  $.get(ele.attr('data-link'),{'published_only':published_only});
+           function show_selected_image(object,field_name){
+              select_place = $('#selected-image-of-radio-group-images');
 
-  $('#page_list').dialog({
-    width: '700',
-    height: '400'
-  });
-}
+              select_place.click(function(){
+                 image = $(this).find('img');
+                 input_id = image.attr('id').replace('img_','');
+                 input = $('input#'+input_id);
+                 if(input.prop('checked') || $(this).find('input#'+input_id).length > 0){
+                    input.prop('checked', null);
+                    image.remove();
+                    $(this).before('');
+                 } 
+              });
+
+              $('input[name="'+object+'['+field_name+']"]').change(function(){
+                 var selected = $(this);
+                 var image = $('label[for="'+selected.attr('id')+'"] > img').clone();
+                 image.attr('id','img_'+selected.attr('id'));
+                 select_place.html(image);
+                 selected.prop('checked', true);
+              });
+           }
+
+           function set_jquery_ui(){
+              $('.datepicker').datepicker({
+                 dateFormat: "yy-mm-dd",
+              changeMonth: true,
+              changeYear: true,
+              showOn: "both",
+              buttonImage: "/images/calendar-icon.gif",
+              buttonImageOnly: false
+              });
+
+              $('.datetimepicker').datetimepicker({
+                 dateFormat: "yy-mm-dd",
+                 changeMonth: true,
+                 changeYear: true,
+              });
+
+              $(".tabs").tabs();
+
+              return true;
+           }
+
+           function add_check_icon(element){
+              element.button({
+                 icons: {primary: 'ui-icon-check'}
+              });
+              return true;
+           }
+
+           function remove_button_icons(elements){
+              $(elements).each(function(index, element){
+                 if(!$(element).is(":checked")){
+                    $(element).button({
+                       icons: {}
+                    });
+                 }
+              });
+              return true;
+           }
+
+           /**
+            * Coloca um countainer para a lista de paginas
+            */
+           function show_dialog(ele,published_only) {
+              if(!$('#page_list').length)
+                 $('#div_link').append('<div id="page_list" style="display: none;" title="Selecione uma notícia"><img src="/images/spinner.gif"></div><input type="hidden" id="published_only" value="'+published_only+'"/>');
+
+              $.get(ele.attr('data-link'),{'published_only':published_only});
+
+              $('#page_list').dialog({
+                 width: '700',
+                 height: '400'
+              });
+           }

@@ -14,6 +14,5 @@ $.extend($.ui.dialog.prototype.options, {
    }, 
    close: function(event, ui){
       $('body').css('overflow','auto'); 
-      $(this).remove();
    } 
 });

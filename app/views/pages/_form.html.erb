@@ -1,5 +1,3 @@
-<%= render 'repositories/search_and_new_file' %>
-
 <%= simple_form_for [@site, @page],	html: { multipart: true } do |f| %>
   <% if @page.errors.any? %>
     <div id="error_explanation">
@@ -12,13 +10,9 @@
     </div>
   <% end %>
 
-  <div id='repo_list' >
-    <%= render 'repositories/repo',
-      :obj => @page,
-      :field => :repository_id,
-      :collection => @images,
-      :hint => t("help_image") %>
-  </div>
+  <%= repository_search t("page.image"), "page_image",
+    "page[repository_id]", @page.repository,
+    multiple: false, file_types: 'image' %>
 
   <% unless self.controller.action_name == "edit" %>
     <div id="page_type" class="input">
@@ -95,25 +89,10 @@
         as: :boolean, input_html: { class: "check-button" } %>
       <div class='clear'></div>
     </div>
-    <div class="input" id="link-to-add-related-files" >
 
-      <%= link_to_function t("add_param", param: t("related_files")),
-        "repository_search();",
-        class: 'add-button' %>
-      <ul id="files-added">
-        <% @page.repositories.each do |repository|  %>
-          <li class="backgrounded">
-            <%= label_tag "repository_#{repository.id}" do %>
-              <figure>
-                <%= weby_file_view(repository, :mini, 64, 64, {as: 'link'}) %>
-                <figcaption><%= repository.description %></figcaption>
-              </figure>
-            <% end %>
-            <%= check_box_tag "page[repository_ids][]", repository.id, true, id: "repository_#{repository.id}" %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
+    <%= repository_search t("add_param", param: t("related_files")),
+      "related_files", "page[repository_ids][]", @page.repositories,
+      multiple: true, file_types: false %>
 
     <div class="actions">
       <%= f.submit (t"save"), class: "green-button" %>
@@ -122,17 +101,8 @@
   </div>
 <% end %>
 
-<%= content_for :javascripts, javascript_include_tag("pages_new") %>
-<%= content_for :javascripts, javascript_include_tag("repository_search") %>
-<%= content_for :stylesheets, stylesheet_link_tag("include_files") %>
+<div id="dialog-repository-search">
+  <%= render('repositories/repository_search') %>
+</div>
 
-<%= content_for :javascripts do %>
-  <%= javascript_tag do %>
-    function repository_search(){
-    var dialog = $(document.createElement("div")).
-    attr('id', 'repository-search-dialog').
-    html('<%=escape_javascript render("repositories/repository_search") %>').
-    dialog();
-    }
-  <% end %>
-<% end %>
+<%= content_for :javascripts, javascript_include_tag("pages_new") %>

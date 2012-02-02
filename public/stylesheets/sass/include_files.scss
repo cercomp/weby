@@ -1,17 +1,74 @@
-#repository-search-dialog {
-  padding: 10px;
-  overflow: hidden;
+#dialog-repository-search {
+  display: none;
+}
 
-  .tabs {
-    height: 455px;
+.add-uniq-file {
+  position: relative;
+  width: 100px;
+  margin: 20px 0;
+  cursor: pointer;
+
+  span {
+    background: #FFFFFF;
+    color: #000000;
+    display: none;
+    font: bold 10px/1 sans;
+    left: 0;
+    margin: 0;
+    padding: 3px;
+    position: absolute;
+    text-align: center;
+    text-transform: uppercase;
+    top: 40px;
+    width: 94px;
   }
 
-  .tabs form {
-    overflow: hidden;
+  &:hover span,
+  &.without-image span{
+    display: block; 
+  }
+
+  figure {
+    height: 100px;
+    margin: 0;
+    text-align: center;
+    width: 100px;
+  }
+
+  figure img {
+    height: 64px;
+    width: 64px;
+  }
+
+  &:hover figure,
+  &.without-image figure {
+    outline: 2px solid rgb(148, 148, 148);
+  }
+
+  input {
+    display: none;
   }
 }
 
-#repositories-search-results, #files-added {
+#dialog-repository-search {
+  padding: 10px;
+  overflow: hidden !important;
+
+  .tabs {
+    height: 450px;
+  }
+
+  form {
+    overflow: hidden !important;
+  }
+
+  .actions {
+    margin: 0 !important;
+  }
+}
+
+
+#repositories-search-results, .add-multiple-files ul {
   height: 290px;
   list-style: none;
   margin: 30px 0 10px 0;
@@ -61,7 +118,8 @@
     white-space: wrap;
   }
 
-  li input[type=checkbox]{
+  li input[type=checkbox],
+  li input[type=radio]{
     margin: 25px 0 0 0;
   }
 }
@@ -74,7 +132,7 @@
   border-width: 1px 0;
 }
 
-#files-added {
+.add-multiple-files ul {
   height: auto;
 
   img {

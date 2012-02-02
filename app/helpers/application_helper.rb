@@ -47,13 +47,13 @@ module ApplicationHelper
     submenu = (not sons[entry.id].nil?) ? "class='sub'" : nil
 
     (view_ctrl == 1 ?
-      "<li id=\"menu_#{entry.id}\" #{submenu}><div>" :
-      "<li id=\"m_#{entry.id}\" #{submenu}>").tap do |menus|
-      #		if (entry.menu.try(:page_id).nil? and entry.menu.try(:link).empty?)
-      #menus << "#{entry.menu.try(:title)}"
-      #		else
-      menus << link_to(entry.menu.title, entry.menu.page_id ? site_page_path(@site, entry.menu.page_id) : entry.menu.link, :alt => entry.menu.title,:title => entry.menu.description)
-      #		end
+     "<li id=\"menu_#{entry.id}\" #{submenu}><div>" :
+     "<li id=\"m_#{entry.id}\" #{submenu}>").tap do |menus|
+       #		if (entry.menu.try(:page_id).nil? and entry.menu.try(:link).empty?)
+       #menus << "#{entry.menu.try(:title)}"
+       #		else
+       menus << link_to(entry.menu.title, entry.menu.page_id ? site_page_path(@site, entry.menu.page_id) : entry.menu.link, :alt => entry.menu.title,:title => entry.menu.description)
+       #		end
 
       if view_ctrl == 1
         # Se existir um position nulo ele será organizado e todos do seu nível
@@ -149,7 +149,7 @@ module ApplicationHelper
       # Obtém os papéis globais
       roles_assigned = current_user.roles.where(site_id: nil)
     end
-    
+
     return roles_assigned
   end
 
@@ -318,6 +318,4 @@ module ApplicationHelper
       end
     end.join)
   end
-
-
 end

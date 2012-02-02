@@ -65,12 +65,10 @@ class RepositoriesController < ApplicationController
       else
         format.html { redirect_to :back }
         format.json do
-          #render :json => { result: @repository.errors.full_messages },
-          #  :content_type => 'text/html', status: 500
           render json: { error: @repository.errors.full_messages },
             content_type: check_accept_json, status: 412
         end
-        #flash[:error] = @repository.errors.full_messages 
+        flash[:error] = @repository.errors.full_messages 
       end
     end
   end

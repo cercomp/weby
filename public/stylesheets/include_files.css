@@ -1,18 +1,56 @@
-#repository-search-dialog {
-  padding: 10px;
-  overflow: hidden; }
-  #repository-search-dialog .tabs {
-    height: 455px; }
-  #repository-search-dialog .tabs form {
-    overflow: hidden; }
+#dialog-repository-search {
+  display: none; }
 
-#repositories-search-results, #files-added {
+.add-uniq-file {
+  position: relative;
+  width: 100px;
+  margin: 20px 0;
+  cursor: pointer; }
+  .add-uniq-file span {
+    background: #FFFFFF;
+    color: #000000;
+    display: none;
+    font: bold 10px/1 sans;
+    left: 0;
+    margin: 0;
+    padding: 3px;
+    position: absolute;
+    text-align: center;
+    text-transform: uppercase;
+    top: 40px;
+    width: 94px; }
+  .add-uniq-file:hover span, .add-uniq-file.without-image span {
+    display: block; }
+  .add-uniq-file figure {
+    height: 100px;
+    margin: 0;
+    text-align: center;
+    width: 100px; }
+  .add-uniq-file figure img {
+    height: 64px;
+    width: 64px; }
+  .add-uniq-file:hover figure, .add-uniq-file.without-image figure {
+    outline: 2px solid #949494; }
+  .add-uniq-file input {
+    display: none; }
+
+#dialog-repository-search {
+  padding: 10px;
+  overflow: hidden !important; }
+  #dialog-repository-search .tabs {
+    height: 450px; }
+  #dialog-repository-search form {
+    overflow: hidden !important; }
+  #dialog-repository-search .actions {
+    margin: 0 !important; }
+
+#repositories-search-results, .add-multiple-files ul {
   height: 290px;
   list-style: none;
   margin: 30px 0 10px 0;
   overflow: auto;
   padding: 0; }
-  #repositories-search-results li, #files-added li {
+  #repositories-search-results li, .add-multiple-files ul li {
     border: 1px solid transparent;
     border-width: 1px 0;
     float: left;
@@ -21,35 +59,36 @@
     overflow: hidden;
     padding: 5px;
     width: 250px; }
-  #repositories-search-results label, #files-added label {
+  #repositories-search-results label, .add-multiple-files ul label {
     float: right;
     margin: 0 auto;
     padding: 0;
     width: 230px; }
-  #repositories-search-results figure, #files-added figure {
+  #repositories-search-results figure, .add-multiple-files ul figure {
     margin: 0;
     padding: 0; }
-  #repositories-search-results figure img, #files-added figure img {
+  #repositories-search-results figure img, .add-multiple-files ul figure img {
     float: left;
     height: 64px;
     margin-right: 5px;
     width: 64px; }
-  #repositories-search-results figcaption, #files-added figcaption {
+  #repositories-search-results figcaption, .add-multiple-files ul figcaption {
     height: 64px;
     margin-left: 3px;
     overflow: hidden;
     text-overflow: ellipsis-word;
     white-space: wrap; }
-  #repositories-search-results li input[type=checkbox], #files-added li input[type=checkbox] {
+  #repositories-search-results li input[type=checkbox],
+  #repositories-search-results li input[type=radio], .add-multiple-files ul li input[type=checkbox], .add-multiple-files ul li input[type=radio] {
     margin: 25px 0 0 0; }
 
-.backgrounded, #repositories-search-results li:hover, #files-added li:hover {
+.backgrounded, #repositories-search-results li:hover, .add-multiple-files ul li:hover {
   background: #ededed;
   border: 1px solid #bababa;
   border-width: 1px 0; }
 
-#files-added {
+.add-multiple-files ul {
   height: auto; }
-  #files-added img {
+  .add-multiple-files ul img {
     height: 64px !important;
     width: 64px !important; }
