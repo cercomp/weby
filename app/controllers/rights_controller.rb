@@ -1,6 +1,8 @@
+# encoding: UTF-8
 class RightsController < ApplicationController
   layout :choose_layout
   before_filter :require_user
+  before_filter :is_admin, :except => [:index, :show]
   before_filter :check_authorization
   respond_to :html, :xml
 
@@ -42,4 +44,5 @@ class RightsController < ApplicationController
   def show
     @right = Right.find(params[:id])
   end
+  
 end

@@ -277,6 +277,7 @@ pt-BR:
   original: "Original"
   other_css: "Outros Estilos"
   owner: "Dono"
+  only_admin: "Somente administradores tem acesso!"
 
 #---P---#
   page:

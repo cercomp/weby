@@ -74,8 +74,17 @@ class ApplicationController < ActionController::Base
     render :file => "#{Rails.root}/public/404.html", :status => 404
   end
 
-
   private
+  
+  def is_admin
+    unless current_user.is_admin
+      flash[:error] = t"only_admin"
+      redirect_to :back
+    else 
+      return true
+    end
+  end
+
   def current_user_session
     return @current_user_session if defined?(@current_user_session)
     @current_user_session = UserSession.find

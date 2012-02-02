@@ -276,6 +276,7 @@ en:
   original: "Original"
   other_css: "Other Styles"
   owner: "Owner"
+  only_admin: "It is allowed only to administrators!"
 
 #---P---#
   page:
