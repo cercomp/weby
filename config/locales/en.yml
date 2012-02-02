@@ -213,6 +213,7 @@ en:
   logout_success: "Logged out successfully!"
   login_count: "Login Count"
   look_changed: "Appearence was changed."
+  lower_numbers_come_first: "Lower numbers come first"
 
 #---M---#
   main: "Main"

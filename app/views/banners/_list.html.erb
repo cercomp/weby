@@ -7,7 +7,8 @@
     <th><%= sortable 'date_end_at', t("date_param", :param => t("publication"))%></th>
     <th><%= sortable 'title', t("title") %></th>
     <th><%= sortable 'user_id', t("author") %></th>
-    <th><%= sortable 'categories', t("category") %></th>
+    <th><%= sortable 'position', t("position") %></th>
+    <th><%= t("category") %></th>
     <th><%= t"publish" %></th>
     <th></th>
   </thead>
@@ -20,6 +21,7 @@
         <td><%= banner.title %></td>
         <td><%= banner.user.first_name ? ("#{banner.user.first_name} #{banner.user.last_name}") : banner.user.login %></td>
         <td><%= banner.categories.join(", ") || t('none_category') %></td>
+        <td><%= banner.position %></td>
         <td align="center">
         <%= publication_status(banner) %>
         </td>

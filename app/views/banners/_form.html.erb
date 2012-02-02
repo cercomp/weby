@@ -39,41 +39,43 @@
   <%= f.input :width, :label => t("width"), :input_html => {:size => 3} %> 
   <%= f.input :height, :label => t("height"), :input_html => {:size => 3} %>
 
-	<%= f.input :title, label: t("title"),
-		placeholder: t("title"),
-		input_html: {class: "title_input"} %>
+  <%= f.input :title, label: t("title"),
+    placeholder: t("title"),
+    input_html: {class: "title_input"} %>
 
-	<%= f.input :text, label: t("description"),
-		input_html: {:size => "70x5"},
-		as: :text %>
+  <%= f.input :text, label: t("description"),
+    input_html: {:size => "70x5"},
+    as: :text %>
 
   <div class="input">
     <label><%= t("period_banner") %> </label>
-		<%= f.input :date_begin_at, as: :string,
-			label: false,
-			placeholder: t("begin"),
-			wrapper_html: {class: "side"},
-			input_html: {class: "datetimepicker"} %>
+    <%= f.input :date_begin_at, as: :string,
+      label: false,
+      placeholder: t("begin"),
+      wrapper_html: {class: "side"},
+      input_html: {class: "datetimepicker"} %>
 
-		<%= f.input :date_end_at, as: :string,
-			label: false,
-			placeholder: t("publication_infinite"),
-			wrapper_html: {class: "side"},
-			input_html: {class: "datetimepicker"} %>
-		<div class="clear"></div>
+    <%= f.input :date_end_at, as: :string,
+      label: false,
+      placeholder: t("publication_infinite"),
+      wrapper_html: {class: "side"},
+      input_html: {class: "datetimepicker"} %>
+    <div class="clear"></div>
   </div>
 
   <div class="input select">
     <%= f.label :category,
-        t("category"), :class => "select",
-        :for => "category" %>
-      <%= f.select :category_list,
-          @site.banners.category_counts, {},
-          :id => "category" %>
-       	<%= link_to_function image_tag("icons/black16x16/ic_plus.png ",:title => "Adicionar um acategoria"),
-					"addToSelect('#category','#{t("new.fem")+" "+t("category")}')", :title => "Adicionar um categoria" %>
- 
+      t("category"), :class => "select",
+      :for => "category" %>
+    <%= f.select :category_list,
+      @site.banners.category_counts, {},
+      :id => "category" %>
+    <%= link_to_function image_tag("icons/black16x16/ic_plus.png ",:title => "Adicionar um acategoria"),
+      "addToSelect('#category','#{t("new.fem")+" "+t("category")}')", :title => "Adicionar um categoria" %>
+
   </div>
+
+  <%= f.input :position, hint: t("lower_numbers_come_first") %>
 
   <% # URL Input %>
   <div class="input" id="div_link">
@@ -90,20 +92,20 @@
       'data-link' => list_published_site_pages_path %>
 
     <% # Ao selecionar um noticia deve ser montado a url para ela,
-       # então aqui guardamos o caminho para as páginas deste site %>
+      # então aqui guardamos o caminho para as páginas deste site %>
     <%= hidden_field_tag 'url_to_pages', site_pages_url(@site, only_path: true) %>
     <%= hidden_field_tag 'banner[page_id]', @banner.page_id %>
   </div>
 
-	<div class='input'>
+  <div class='input'>
     <%= f.input :publish , :label => t("publish"),
       wrapper_html: { class: "side" },
-			as: :boolean, input_html: { class: "check-button" } %>
+      as: :boolean, input_html: { class: "check-button" } %>
 
     <%= f.input :hide , label: t("hide"), 
       wrapper_html: { class: "side" },
       as: :boolean, input_html: { class: "check-button" } %>
-		<div class="clear"></div>
+    <div class="clear"></div>
   </div>
 
   <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>

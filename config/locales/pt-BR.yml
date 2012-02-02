@@ -214,6 +214,7 @@ pt-BR:
   logout_success: "Logout com sucesso!"
   login_count: "Login Count"
   look_changed: "Aparência alterada!"
+  lower_numbers_come_first: "Menores números aparecem primeiro"
 
 #---M---#
   main: "Principal"
@@ -528,6 +529,7 @@ pt-BR:
         title: "Título"
         text: "Texto"
         url: "Url"
+        position: 'Posição'
       event:
         title: "Título"
         local: "Local"
