@@ -1,4 +1,4 @@
 <fieldset>
-  <legend><%= t"editing", :param => t("#{params[:type].downcase}.one") %></legend>
+  <legend><%= t"editing", :param => t("#{@page.type.downcase}.one") %></legend>
   <%= render "form" %>
 </fieldset>

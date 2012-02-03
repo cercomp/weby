@@ -2,10 +2,8 @@
   <legend><%= t"page.other"  %></legend>
 
   <div class="contextual">
-  <% if params[:type] %>
-    <% if check_permission(PagesController, 'new') %>
-        <%= link_to (t"new_param.fem", :param => (t"page.one")), new_site_page_path, :class => 'icon icon-add' %>&nbsp;|
-    <% end %>
+  <% if check_permission(PagesController, 'new') %>
+      <%= link_to (t"new_param.fem", :param => (t"page.one")), new_site_page_path, :class => 'icon icon-add' %>&nbsp;|
   <% end %>
   <%= link_to (t"covers"), list_front_site_pages_path(@site), :class => 'icon icon-newspaper' %>
   </div>

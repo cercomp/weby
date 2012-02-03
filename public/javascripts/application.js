@@ -109,89 +109,89 @@ FlashMsg = {
          });
       }
    }
-   }
+}
 
-           function toogle_select_multiple(select){
-              if($(select).attr("multiple")){
-                 $(select).attr("multiple",null);
-              }else{
-                 $(select).attr("multiple","multiple");
-              }
-           }
+function toogle_select_multiple(select){
+  if($(select).attr("multiple")){
+     $(select).attr("multiple",null);
+  }else{
+     $(select).attr("multiple","multiple");
+  }
+}
 
-           function show_selected_image(object,field_name){
-              select_place = $('#selected-image-of-radio-group-images');
+function show_selected_image(object,field_name){
+  select_place = $('#selected-image-of-radio-group-images');
 
-              select_place.click(function(){
-                 image = $(this).find('img');
-                 input_id = image.attr('id').replace('img_','');
-                 input = $('input#'+input_id);
-                 if(input.prop('checked') || $(this).find('input#'+input_id).length > 0){
-                    input.prop('checked', null);
-                    image.remove();
-                    $(this).before('');
-                 } 
-              });
+  select_place.click(function(){
+     image = $(this).find('img');
+     input_id = image.attr('id').replace('img_','');
+     input = $('input#'+input_id);
+     if(input.prop('checked') || $(this).find('input#'+input_id).length > 0){
+        input.prop('checked', null);
+        image.remove();
+        $(this).before('');
+     }
+  });
 
-              $('input[name="'+object+'['+field_name+']"]').change(function(){
-                 var selected = $(this);
-                 var image = $('label[for="'+selected.attr('id')+'"] > img').clone();
-                 image.attr('id','img_'+selected.attr('id'));
-                 select_place.html(image);
-                 selected.prop('checked', true);
-              });
-           }
+  $('input[name="'+object+'['+field_name+']"]').change(function(){
+     var selected = $(this);
+     var image = $('label[for="'+selected.attr('id')+'"] > img').clone();
+     image.attr('id','img_'+selected.attr('id'));
+     select_place.html(image);
+     selected.prop('checked', true);
+  });
+}
 
-           function set_jquery_ui(){
-              $('.datepicker').datepicker({
-                 dateFormat: "yy-mm-dd",
-              changeMonth: true,
-              changeYear: true,
-              showOn: "both",
-              buttonImage: "/images/calendar-icon.gif",
-              buttonImageOnly: false
-              });
+function set_jquery_ui(){
+  $('.datepicker').datepicker({
+     dateFormat: "yy-mm-dd",
+      changeMonth: true,
+      changeYear: true,
+      showOn: "both",
+      buttonImage: "/images/calendar-icon.gif",
+      buttonImageOnly: false
+  });
 
-              $('.datetimepicker').datetimepicker({
-                 dateFormat: "yy-mm-dd",
-                 changeMonth: true,
-                 changeYear: true,
-              });
+  $('.datetimepicker').datetimepicker({
+     dateFormat: "yy-mm-dd",
+     changeMonth: true,
+     changeYear: true
+  });
 
-              $(".tabs").tabs();
+  $(".tabs").tabs();
 
-              return true;
-           }
+  return true;
+}
 
-           function add_check_icon(element){
-              element.button({
-                 icons: {primary: 'ui-icon-check'}
-              });
-              return true;
-           }
+function add_check_icon(element){
+  element.button({
+     icons: {primary: 'ui-icon-check'}
+  });
+  return true;
+}
 
-           function remove_button_icons(elements){
-              $(elements).each(function(index, element){
-                 if(!$(element).is(":checked")){
-                    $(element).button({
-                       icons: {}
-                    });
-                 }
-              });
-              return true;
-           }
+function remove_button_icons(elements){
+  $(elements).each(function(index, element){
+     if(!$(element).is(":checked")){
+        $(element).button({
+           icons: {}
+        });
+     }
+  });
+  return true;
+}
 
-           /**
-            * Coloca um countainer para a lista de paginas
-            */
-           function show_dialog(ele,published_only) {
-              if(!$('#page_list').length)
-                 $('#div_link').append('<div id="page_list" style="display: none;" title="Selecione uma notícia"><img src="/images/spinner.gif"></div><input type="hidden" id="published_only" value="'+published_only+'"/>');
+/**
+* Coloca um countainer para a lista de paginas
+*/
+function show_dialog(ele,published_only) {
+  if(!$('#page_list').length)
+     $('#div_link').append('<div id="page_list" style="display: none;" title="Selecione uma notícia"><img src="/images/spinner.gif"></div><input type="hidden" id="published_only" value="'+published_only+'"/>');
 
-              $.get(ele.attr('data-link'),{'published_only':published_only});
+  $.get(ele.attr('data-link'),{'published_only':published_only});
 
-              $('#page_list').dialog({
-                 width: '700',
-                 height: '400'
-              });
-           }
+  $('#page_list').dialog({
+     width: '700',
+     height: '400'
+  });
+}

@@ -4,13 +4,4 @@ $('#repo_list').html('<%= escape_javascript(render(partial: 'repositories/repo',
                                                              collection: @images,
                                                              hint: t("help_image_page") } )) %>')
 
-$('#event_fields').hide("fast");
-console.dir("<%=j params[:type] %>")
-<% if params[:type] == 'Event' %>
-  $('#event_fields').
-  html('<%= escape_javascript(render(:partial => 'formEvent')) %>').
-  show("fade");
-  set_jquery_ui();
-<% end %>
-
 show_selected_image('page', 'repository_id');

@@ -436,10 +436,13 @@ button,
   background-repeat: no-repeat !important; }
 
 /* old style */
-#page_type {
+div.page_type {
   margin-bottom: 10px !important; }
-  #page_type label {
+  div.page_type label {
     display: inline !important; }
+
+div#form_event {
+  margin-bottom: 10px; }
 
 /* ### legacy ### */
 .radio-group label {

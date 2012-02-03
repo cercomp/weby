@@ -1,7 +1,6 @@
 <% @page = Page.where(['id = ?', settings[:page]]).first %>
 
 <% unless @page.nil? %>
-  <% params[:type] = @page.type %>
   <%= render :template => 'pages/show' %>
 <% else %>
   <%# TODO arrumar mensagem de componente mal configurado %>

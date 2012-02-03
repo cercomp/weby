@@ -364,10 +364,15 @@ button,
 }
 
 /* old style */
-#page_type
+div.page_type
 {
   margin-bottom: 10px !important;
   label { display: inline !important; }
+}
+
+div#form_event
+{
+    margin-bottom:10px;
 }
 
 /* ### legacy ### */

@@ -11,7 +11,6 @@ class PagesController < ApplicationController
   respond_to :html, :xml, :js
 
   def index 
-    params[:type] ||= 'News'
     params[:locales] ||= session[:locale]
     params[:direction] ||= 'desc'
     extra_order = params[:sort]=='front' ? ',position desc' : ''
@@ -44,13 +43,11 @@ class PagesController < ApplicationController
       flash[:error] = t(:page_not_found)+" [#{params[:id]}]"
       redirect_to :action => 'index' and return
     end
-    params[:type] ||= @page.type
     @current_locale = params[:page_loc] || session[:locale]
     respond_with(@page)
   end
 
   def new
-    params[:type] ||= 'News'
     params[:twitter_page] ||= 1
 
     @page = Page.new
@@ -66,7 +63,6 @@ class PagesController < ApplicationController
   def edit
     @page = Page.find(params[:id])
     # Automaticamente define o tipo da pagina, se não for passado como parâmetro
-    params[:type] ||= @page.type
     params[:twitter_page] ||= 1
 
     build_site_locales
@@ -100,7 +96,6 @@ class PagesController < ApplicationController
   end
 
   def update
-    params[:type] ||= 'News'
     params[:page][:repository_id] ||= nil
     params[:page][:repository_ids] ||= []
     @page = Page.find(params[:id])

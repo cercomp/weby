@@ -1,13 +1,24 @@
+var event_fields;
 // Alterna o tipo da página entre evento e notícia
-$("input[name=type]").change(function(){
+$("input#is_event").change(function(){
+   $("input#page_type").val($(this).is(":checked")? 'Event':'News' );
    if($(this).is(":checked")){
-      Loading.show(true);
-      $.get(this.baseURI, {
-         type: $(this).val()
-      },
-      null,
-      'script');
+      event_fields.appendTo('#form_event');
+      $('#event_fields').slideDown(300);
    }else{
-      $('#event_fields').fadeOut(500, function(){$(this).html('')});
+      $('#event_fields').slideUp(300, function(){
+          event_fields = $('#event_fields').detach();
+      });
    }
+});
+
+$(document).ready(function(){
+  $("input#page_type").val($("input#is_event").is(":checked")? 'Event':'News' );
+  if($("input#is_event").is(":checked")){
+      //event_fields.appendTo('#form_event');
+      $('#event_fields').show();
+  }else{
+      $('#event_fields').hide();
+      event_fields = $('#event_fields').detach();
+  }
 });

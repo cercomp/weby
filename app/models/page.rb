@@ -52,7 +52,7 @@ class Page < ActiveRecord::Base
   validate :at_least_one_internationalization
 
   def at_least_one_internationalization
-    page_i18n = self.page_i18ns.map{ |page_i18n| page_i18n unless page_i18n.marked_for_destruction? }.compact
+    page_i18n = self.page_i18ns.map{ |page_i18n| page_i18n unless page_i18n.marked_for_destruction? || page_i18n.title.blank? }.compact
     if page_i18n.size <= 0
       errors.add(:page, I18n.t("page_need_at_least_one_internationalization"))
     end

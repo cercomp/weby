@@ -46,7 +46,7 @@
 
                   <%= link_to image_tag("#{page.repository.archive.url(:mini)}",
                                         :alt => page.repository.description),
-                                        site_page_path(@site, page, :type => params[:type]),
+                                        site_page_path(@site, page),
                                         :title => page.repository.description %>
                                     <% end %>
 

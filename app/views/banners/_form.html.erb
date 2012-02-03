@@ -46,18 +46,15 @@
 
   <div class="input">
     <label><%= t("period_banner") %> </label>
-    <%= f.input :date_begin_at, as: :string,
-      label: false,
-      placeholder: t("begin"),
-      wrapper_html: {class: "side"},
-      input_html: {class: "datetimepicker"} %>
-
-    <%= f.input :date_end_at, as: :string,
-      label: false,
-      placeholder: t("publication_infinite"),
-      wrapper_html: {class: "side"},
-      input_html: {class: "datetimepicker"} %>
-    <div class="clear"></div>
+		<%= f.input :date_begin_at, as: :string_date,
+                        label: false,
+                        placeholder: t("begin")
+                        wrapper_html: {class: "side"} %>
+		<%= f.input :date_end_at, as: :string_date,
+			label: false,
+			placeholder: t("publication_infinite"),
+			wrapper_html: {class: "side"} %>
+		<div class="clear"></div>
   </div>
 
   <div class="input select">
