@@ -36,6 +36,7 @@ pt-BR:
   banner:
     one: "Banner"
     other: "Banners"
+    image: "Imagem do banner"
   banner_image: "Imagem do Banner"
   banner_need_a_destination: "necessita de uma página ou uma url"
   base: "Base"
@@ -371,6 +372,7 @@ pt-BR:
   site:
     one: "Sítio"
     other: "Sítios"
+    image: "Imagem do Site"
   site_comments: "Comentário sobre os objetivos do site."
   site_components: "Componentes"
   site_component:

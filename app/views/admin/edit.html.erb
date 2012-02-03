@@ -1,8 +1,6 @@
 <fieldset>
   <legend><%= (t"editing", :param => (t"site.one")) %></legend>
 
-  <%= render 'repositories/search_and_new_file' %>
-
   <%= simple_form_for @site, :url => admin_path do |f| %>
     <% if @site.errors.any? %>
       <div id="error_explanation">
@@ -15,13 +13,9 @@
       </div>
     <% end %>
 
-    <div id='repo_list' >
-      <%= render 'repositories/repo',
-        :obj => @site,
-        :field => :top_banner_id,
-        :collection => @images,
-        :hint => t("help_image") %>
-    </div>
+  <%= repository_search t("site.image"), "site_image",
+    "site[top_banner_id]", @site.repository,
+    multiple: false, file_types: 'image' %>
 
     <%= f.input :body_width, :label => t("body_width"), :hint => (t"example_param", :param => "960") %>
     <% unless @site.repository.nil? %>
@@ -52,4 +46,8 @@
   <% end %>
 
 </fieldset>
+
+<div id="dialog-repository-search">
+  <%= render('repositories/repository_search') %>
+</div>
 

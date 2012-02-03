@@ -36,6 +36,7 @@ en:
   banner:
     one: "Banner"
     other: "Banners"
+    image: "Banner image"
   banner_image: "Banner Image"
   banner_need_a_destination: "need a page or url"
   base: "Base"
@@ -369,6 +370,7 @@ en:
   site:
     one: "Site"
     other: "Sites"
+    image: "Site image"
   site_comments: "Comments about goals site."
   site_components: "Components"
   site_id: "Site ID"

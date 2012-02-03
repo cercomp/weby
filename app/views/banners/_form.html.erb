@@ -1,6 +1,5 @@
 <% # Funções js para selecionar pagina %>
 <%= content_for :javascripts, javascript_include_tag('banners.js') %>
-<%= render 'repositories/search_and_new_file' %>
 
 <%= simple_form_for [@site, @banner], :html => { :multipart => true } do |f| %>
   <% if @banner.errors.any? %>
@@ -17,12 +16,10 @@
     </div>
   <% end %>
 
-  <div id='repo_list' >
-    <%= render 'repositories/repo',
-      :obj => @banner,
-      :field => :repository_id,
-      :collection => @images %>
-  </div>
+
+  <%= repository_search t("banner.image"), "banner_image",
+    "banner[repository_id]", @banner.repository,
+    multiple: false, file_types: 'image' %>
 
   <div class="checkbox-button-set">
     <% repo_styles = Repository.attachment_definitions[:archive][:styles] %>
@@ -115,3 +112,7 @@
     <%= link_to t('back'), :back, class: "red-button" %>
   </div>
 <% end %>
+
+<div id="dialog-repository-search">
+  <%= render('repositories/repository_search') %>
+</div>
