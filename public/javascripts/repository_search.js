@@ -53,6 +53,10 @@ WEBY.Repository.UniqTemplate = function (repository, fieldName, checked) {
       replace(/<li[^>]*>|<\/li>/gi,'');
 }
 
+
+/**
+ * Objeto para controlar o dialogo da busca de repositorios
+ */
 WEBY.Repository.Dialog = function(link) {
 
    var getLinkDataSet = function (link) {
@@ -137,7 +141,9 @@ WEBY.Repository.Dialog = function(link) {
    this.openDialog(link);
 }
 
-// Objeto para tratar a busca de repositórios
+/**
+ * Objeto para tratar a busca de repositórios
+ */
 WEBY.Repository.Dialog.Search = function (dialog, includeOnForm) {
    var that = this;
    var form = $("#repository-search-form");
@@ -205,8 +211,10 @@ WEBY.Repository.Dialog.Search = function (dialog, includeOnForm) {
    };
 }
 
-// Objeto para tratar a inclusão dos repositorios selecionados
-// no formulário principal
+/**
+ * Objeto para tratar a inclusão dos repositorios selecionados
+ * no formulário principal
+ */
 WEBY.Repository.Dialog.IncludeOnForm = function (dialog) {
    var that = this;
    this.form = $("#repository-include-form"); 
@@ -299,32 +307,15 @@ WEBY.Repository.Dialog.IncludeOnForm = function (dialog) {
    $("#repository-include-link").on('click', include);
 }
 
-// Adcionando metodo em String para trabalhar com templates
-// usar chaves em strings para indicar um campo
-String.prototype.supplant = function (o) { 
-   return this.replace(/{([^{}]*)}/g, function (a, b) {  
-      var r = o[b];
-      return typeof r === 'string' ?  r : String(r); 
-   }); 
-}; 
 
-// Adcionando metodo em String para escapar caracteres 
-// especiais para os seletores do JQuery
-String.prototype.escapeForJQuerySelector = function () {
-   try {
-      return this.
-         replace(/([#$%&'()*+,./:;<=>?@\[\]\\^`{|}~])/g, '\\\\$1');
-   } catch (error) {
-      console.warn(error.message);
-      return this
-   }
-}
-
+/**
+ * Interface chamada para criar o objeto que controla o dialogo.
+ * Caso objeto já exista será reutilizado.
+ */
 function repositorySearch (link) {
-   try {
+   if(WEBY.Repository.repositorySearch) {
       WEBY.Repository.repositorySearch.openDialog(link);
-   } catch(error) {
-      console.warn("Objeto não criado\n" + error.message);
+   } else {
       WEBY.Repository.repositorySearch = new WEBY.Repository.Dialog(link); 
    }
 }
