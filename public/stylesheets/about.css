@@ -7,7 +7,7 @@
 
 header {
   width: 100%;
-  margin: 50px 0 50px;
+  margin: 40px 0 40px;
   text-align: center; }
 
 section#about {
@@ -38,6 +38,12 @@ a {
   text-decoration: none;
   color: #C11303; }
 
+li {
+  list-style: circle outside; 
+  color:blue; }
+
+ul { padding-left: 20px; }
+
 .right {
   float: right; }
 
@@ -46,3 +52,6 @@ a {
 
 .clear {
   clear: both; }
+
+.footnote {
+  font-size: 8pt; }
