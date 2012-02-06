@@ -11,7 +11,6 @@ gem "sass"
 gem "jquery-rails"
 gem "acts-as-taggable-on"
 gem 'mongrel', '>= 1.2.0.pre2'
-gem 'cells'
 
 # Needs for thin cluster in production
 group :production do

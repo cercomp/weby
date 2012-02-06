@@ -30,13 +30,6 @@ Webyge::Application.routes.draw do
         get :manage
       end
     end
-    resources :repositories_search do
-      collection do 
-        get :open_file_search_box
-        get :search
-        post :include_files
-      end
-    end
     resources :menus do 
       collection do 
         get :rm_menu, :change_position, :to_site
