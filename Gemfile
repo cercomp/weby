@@ -2,8 +2,8 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.0.11'
 gem 'pg'
-gem "authlogic", :git => "git://github.com/odorcicd/authlogic.git", :branch => "rails3"
-gem 'kaminari', :git => "git://github.com/tmilewski/kaminari.git"
+gem "authlogic", :git => "http://github.com/odorcicd/authlogic.git", :branch => "rails3"
+gem 'kaminari', :git => "http://github.com/tmilewski/kaminari.git"
 gem "paperclip", :git => "http://github.com/thoughtbot/paperclip.git" 
 gem "acts_as_list"
 gem "simple_form"

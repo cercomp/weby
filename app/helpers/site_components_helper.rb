@@ -82,6 +82,14 @@ module SiteComponentsHelper
 
       'gov_bar' => {
         'background' => ['<select name="background">', options_for_select([["Azul","#004b82"],["Verde","#00500f"],["Cinza","#7f7f7f"],["Preto","#000000"]], cur_setting[:background]), '</select>'].join
+      },
+
+      # FIXME implementar novo modelo de componentes
+      'teacher_photo' => {
+        'image' => [repository_search( t("page.image"), "page_image", "teacher_photo", nil, multiple: false, file_types: 'image'),
+                    '<div id="dialog-repository-search">',
+                    render('repositories/repository_search'),
+                    '</div>'].join
       }
 
     }

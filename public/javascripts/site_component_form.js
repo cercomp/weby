@@ -59,7 +59,7 @@ function join_data(){
   var result = [];
 
   $('#settings .input p').each(function(i, v){
-    $(v).children('input, select').each(function(i2, v2){
+    $(v).children('* input, select').each(function(i2, v2){
       var input = $(v2);
       
       // Caso o input não tenha o atributo "name"
@@ -73,6 +73,14 @@ function join_data(){
       
     });
   });
+
+  // FIXME hack para pegar foto selecionada no componente professor
+  var input = $('input[id^=repository]');
+  if(input.length === 1) {
+    result.push([':', input.attr('name'), ' => "', input.val(), '"'].join(''));
+  }
+  alert(result);
+  // FIM-Hack
 
   $('#settings .input').append(['<textarea name="site_component[settings]" style="display:none">{',
     result.join(', '), '}</textarea>'].join(''));
