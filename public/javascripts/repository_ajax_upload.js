@@ -1,6 +1,6 @@
 function ajaxUpload(){
    $('#fileupload').fileupload({
-      url: "/sites/pessoal/repositories.json",
+      url: $("#ajax-upload-form").attr('action'),
    dataType: "json",
    formData: [
    {name: "repository[description]", value: $("#description").val()},

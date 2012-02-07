@@ -1,8 +1,0 @@
-$(".files_list_search_result").
-append("<%= escape_javascript(render "repositories_search/files_list",
-                            name: "selected_files[]",
-                            label: "selected_files_",
-                            show_selected: false,
-                            many: @many) %>");
-
-set_jquery_ui();
