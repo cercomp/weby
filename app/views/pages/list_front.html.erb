@@ -19,7 +19,7 @@
         <th><%= t("category") %></th>
         <th><%= t("type") %></th>
         <% if check_permission(PagesController, [:toggle_field]) %>
-          <th><%= t"publish" %></th>
+          <th><%= link_to (t"publish"), list_front_site_pages_path(@site, published: params[:published]=='true' ? 'false':'true' ) %></th>
         <% end %>
         <th></th>
       </thead>

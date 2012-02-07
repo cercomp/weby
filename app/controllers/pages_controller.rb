@@ -187,11 +187,14 @@ class PagesController < ApplicationController
   end
 
   def list_front
-    @pages = @site.pages.
-      except(:order).
-      order("position desc")
+    params[:published] ||= 'false'
+    @pages = @site.pages.except(:order).order("position desc")
 
-    @pages = @pages.front
+    if(params[:published]=='false')
+      @pages = @pages.news(true)
+    else
+      @pages = @pages.front
+    end
   end
 
   private

@@ -174,7 +174,7 @@ section#content {
   width: auto;
   padding: 5px;
   padding-top: 0;
-  overflow: auto; }
+  overflow: hidden; }
 
 section#content > article {
   padding: 9px;
