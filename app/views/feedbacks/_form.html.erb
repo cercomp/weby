@@ -11,17 +11,9 @@
   <% end %>
 
   <% unless @groups.empty? %>
-    <div class="collection_check_boxes">
-      <label for="group_ids"><%= t("group.one") %></label>
-      <div class="check_boxes">
-        <% @groups.each do |group| %>
-          <%= check_box_tag 'feedback[group_ids][]', group.id %>
-          <%= group.name %>
-          <br />
-        <% end %>
-        <span class="hint"> <%= t("group_explain") %> </span>
-      </div>
-    </div>
+    <%= f.association :groups, label: "<font color='red'>*</font> #{t('group.one')}",
+          collection: @groups.collect{ |p| [p.name, p.id]},
+          as: :check_boxes, hint: t("group_explain") %>
   <% end %>
 
   <%= f.input :name, :label => t("name") %>
@@ -29,11 +21,10 @@
   <%= f.input :subject, :label => t("subject") %>
   <%= f.input :message, :label => t("message"), as: :text, input_html: { size: '60x8'} %>
 
-  <%=  f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
+  <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
 
-	<div class="actions">
+  <div class="actions">
     <%= f.submit t("submit"), class: "green-button" %>
     <%= link_to t("back"), :back, class: "red-button" %>
-	</div>
-	
+  </div>
 <% end %>

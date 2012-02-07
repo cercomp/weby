@@ -22,7 +22,7 @@ form {
   .input.boolean, .input.boolean.side, .input.check_boxes {
     position: relative;
     overflow: hidden; }
-    .input.boolean label, .input.boolean.side label, .input.check_boxes label {
+    .input.boolean label, .input.boolean.side label {
       margin-left: 20px; }
   .input.boolean input[type="checkbox"] {
     position: absolute;
@@ -32,7 +32,7 @@ form {
     top: 2px; }
   .input.check_boxes input[type="checkbox"] {
     float: left;
-    margin: 6px 6px 0 0; }
+    margin: 2px 6px 0 0; }
 
 select {
   height: 33px;
