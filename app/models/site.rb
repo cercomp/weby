@@ -28,7 +28,7 @@ class Site < ActiveRecord::Base
   end
 
   def menu_categories
-    self.sites_menus.except(:order, :select).find(:all, :select => 'DISTINCT category').map{ |m| m.category }
+    self.sites_menus.except(:order, :select).find(:all, :select => 'DISTINCT category, position').map{ |m| m.category }
   end
 
   validates_presence_of :name, :url, :per_page
