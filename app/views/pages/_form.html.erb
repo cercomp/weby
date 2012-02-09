@@ -42,13 +42,11 @@
                 <label><%= t"period_event"  %></label>
                 <%= f.input :event_begin,
                         label: false,
-                        as: :string_date,
                         placeholder: t("begin"),
                         wrapper_html: {class: 'side'} %>
 
                 <%= f.input :event_end,
                         label: false,
-                        as: :string_date,
                         placeholder: t("end"),
                         wrapper_html: {class: 'side'} %>
                 <div class='clear'></div>
@@ -85,13 +83,11 @@
       <label><%= t"period_page"  %> </label>
       <%= f.input :date_begin_at,
         label: false,
-        as: :string_date,
         placeholder: t('begin'),
         wrapper_html: {class: 'side'} %>
 
       <%= f.input :date_end_at,
         label: false,
-        as: :string_date,
         placeholder: t('publication_infinite'),
         wrapper_html: {class: 'side'} %>
       <div class='clear'></div>
