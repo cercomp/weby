@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="261"
+   height="69"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.1 r9760"
+   sodipodi:docname="weby.svg"
+   inkscape:export-filename="/home/nicolas/Rails/weby/public/images/weby-logo_big.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.9983453"
+     inkscape:cx="242.736"
+     inkscape:cy="93.01211"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1280"
+     inkscape:window-height="931"
+     inkscape:window-x="0"
+     inkscape:window-y="30"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Camada 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-983.36218)">
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot2995"
+       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono"
+       transform="matrix(2.8926741,0,0,2.8926741,-823.78796,-1222.2033)"><flowRegion
+         id="flowRegion2997"><rect
+           id="rect2999"
+           width="329.30972"
+           height="184.85791"
+           x="428.30469"
+           y="651.3316" /></flowRegion><flowPara
+         id="flowPara3001"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Ecliptic BRK;-inkscape-font-specification:Ecliptic BRK" /></flowRoot>    <g
+       id="g3005"
+       transform="matrix(1.4194674,0,0,1.4194674,1.9903782e-7,-399.48491)">
+      <g
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/nicolas/Rails/weby/public/images/weby-logo.png"
+         transform="matrix(0.60944594,0,0,0.60944594,-106.19855,480.72744)"
+         id="g3779">
+        <rect
+           transform="matrix(-0.98150771,0.19142261,-0.19142261,-0.98150771,0,0)"
+           y="-733.51569"
+           x="-112.68758"
+           height="4.7826519"
+           width="63.278164"
+           id="rect3861"
+           style="fill:#0077be;fill-opacity:1;fill-rule:evenodd;stroke:none"
+           inkscape:export-filename="/home/nicolas/text3003.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+        <rect
+           style="fill:#0077be;fill-opacity:1;fill-rule:evenodd;stroke:none"
+           id="rect3848"
+           width="63.278164"
+           height="4.7826519"
+           x="-460.80789"
+           y="-625.35718"
+           transform="matrix(-0.97552377,-0.21989399,0.21989399,-0.97552377,0,0)"
+           inkscape:export-filename="/home/nicolas/text3003.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+        <rect
+           transform="matrix(-0.37423766,-0.92733283,0.92733283,-0.37423766,0,0)"
+           y="-24.312304"
+           x="-817.98462"
+           height="4.7826519"
+           width="63.278164"
+           id="rect3846"
+           style="fill:#0077be;fill-opacity:1;fill-rule:evenodd;stroke:none"
+           inkscape:export-filename="/home/nicolas/text3003.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+        <rect
+           style="fill:#0077be;fill-opacity:1;fill-rule:evenodd;stroke:none"
+           id="rect3844"
+           width="63.278164"
+           height="4.7826519"
+           x="-649.36755"
+           y="-341.18069"
+           transform="matrix(-0.73609709,-0.67687597,0.67687597,-0.73609709,0,0)"
+           inkscape:export-filename="/home/nicolas/text3003.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+        <rect
+           transform="matrix(0.54420287,-0.83895366,0.83895366,0.54420287,0,0)"
+           y="594.45605"
+           x="-517.30487"
+           height="4.7826519"
+           width="63.278164"
+           id="rect3842"
+           style="fill:#0077be;fill-opacity:1;fill-rule:evenodd;stroke:none"
+           inkscape:export-filename="/home/nicolas/text3003.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+        <rect
+           style="fill:#0077be;fill-opacity:1;fill-rule:evenodd;stroke:none"
+           id="rect3840"
+           width="63.278164"
+           height="4.7826519"
+           x="-485.51791"
+           y="562.78595"
+           transform="matrix(0.48666134,-0.87359072,0.87359072,0.48666134,0,0)"
+           inkscape:export-filename="/home/nicolas/text3003.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+        <path
+           sodipodi:type="arc"
+           style="fill:#0077be;fill-opacity:1;fill-rule:evenodd;stroke:none"
+           id="path3763"
+           sodipodi:cx="92.934036"
+           sodipodi:cy="232.11832"
+           sodipodi:rx="38.385796"
+           sodipodi:ry="38.385796"
+           d="m 131.31983,232.11832 c 0,21.19989 -17.1859,38.38579 -38.385794,38.38579 -21.199889,0 -38.385795,-17.1859 -38.385795,-38.38579 0,-21.19989 17.185906,-38.3858 38.385795,-38.3858 21.199894,0 38.385794,17.18591 38.385794,38.3858 z"
+           transform="matrix(0.21767944,0.52196203,0.52196203,-0.21767944,54.581613,707.83973)"
+           inkscape:export-filename="/home/nicolas/text3003.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+        <path
+           sodipodi:type="arc"
+           style="fill:#0077be;fill-opacity:1;fill-rule:evenodd;stroke:none"
+           id="path3789"
+           sodipodi:cx="92.934036"
+           sodipodi:cy="232.11832"
+           sodipodi:rx="38.385796"
+           sodipodi:ry="38.385796"
+           d="m 131.31983,232.11832 c 0,21.19989 -17.1859,38.38579 -38.385794,38.38579 -21.199889,0 -38.385795,-17.1859 -38.385795,-38.38579 0,-21.19989 17.185906,-38.3858 38.385795,-38.3858 21.199894,0 38.385794,17.18591 38.385794,38.3858 z"
+           transform="matrix(0.26378045,0.63250519,0.63250519,-0.26378045,56.461549,750.00878)"
+           inkscape:export-filename="/home/nicolas/text3003.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+        <path
+           transform="matrix(0.22874369,0.54849239,0.54849239,-0.22874369,108.28663,699.8505)"
+           d="m 131.31983,232.11832 c 0,21.19989 -17.1859,38.38579 -38.385794,38.38579 -21.199889,0 -38.385795,-17.1859 -38.385795,-38.38579 0,-21.19989 17.185906,-38.3858 38.385795,-38.3858 21.199894,0 38.385794,17.18591 38.385794,38.3858 z"
+           sodipodi:ry="38.385796"
+           sodipodi:rx="38.385796"
+           sodipodi:cy="232.11832"
+           sodipodi:cx="92.934036"
+           id="path3803"
+           style="fill:#c11303;fill-opacity:1;fill-rule:evenodd;stroke:none"
+           sodipodi:type="arc"
+           inkscape:export-filename="/home/nicolas/text3003.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+        <path
+           transform="matrix(0.20108308,0.48216649,0.48216649,-0.20108308,148.87867,755.31535)"
+           d="m 131.31983,232.11832 c 0,21.19989 -17.1859,38.38579 -38.385794,38.38579 -21.199889,0 -38.385795,-17.1859 -38.385795,-38.38579 0,-21.19989 17.185906,-38.3858 38.385795,-38.3858 21.199894,0 38.385794,17.18591 38.385794,38.3858 z"
+           sodipodi:ry="38.385796"
+           sodipodi:rx="38.385796"
+           sodipodi:cy="232.11832"
+           sodipodi:cx="92.934036"
+           id="path3805"
+           style="fill:#0077be;fill-opacity:1;fill-rule:evenodd;stroke:none"
+           sodipodi:type="arc"
+           inkscape:export-filename="/home/nicolas/text3003.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+        <path
+           transform="matrix(0.26378045,0.63250519,0.63250519,-0.26378045,47.263791,659.15325)"
+           d="m 131.31983,232.11832 c 0,21.19989 -17.1859,38.38579 -38.385794,38.38579 -21.199889,0 -38.385795,-17.1859 -38.385795,-38.38579 0,-21.19989 17.185906,-38.3858 38.385795,-38.3858 21.199894,0 38.385794,17.18591 38.385794,38.3858 z"
+           sodipodi:ry="38.385796"
+           sodipodi:rx="38.385796"
+           sodipodi:cy="232.11832"
+           sodipodi:cx="92.934036"
+           id="path3834"
+           style="fill:#0077be;fill-opacity:1;fill-rule:evenodd;stroke:none"
+           sodipodi:type="arc"
+           inkscape:export-filename="/home/nicolas/text3003.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+        <path
+           sodipodi:type="arc"
+           style="fill:#0077be;fill-opacity:1;fill-rule:evenodd;stroke:none"
+           id="path3836"
+           sodipodi:cx="92.934036"
+           sodipodi:cy="232.11832"
+           sodipodi:rx="38.385796"
+           sodipodi:ry="38.385796"
+           d="m 131.31983,232.11832 c 0,21.19989 -17.1859,38.38579 -38.385794,38.38579 -21.199889,0 -38.385795,-17.1859 -38.385795,-38.38579 0,-21.19989 17.185906,-38.3858 38.385795,-38.3858 21.199894,0 38.385794,17.18591 38.385794,38.3858 z"
+           transform="matrix(0.26378045,-0.63250519,0.63250519,0.26378045,140.69466,705.74986)"
+           inkscape:export-filename="/home/nicolas/text3003.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+        <path
+           transform="matrix(0.39839539,0.95529127,0.95529127,-0.39839539,32.856353,638.5122)"
+           d="m 131.31983,232.11832 c 0,21.19989 -17.1859,38.38579 -38.385794,38.38579 -21.199889,0 -38.385795,-17.1859 -38.385795,-38.38579 0,-21.19989 17.185906,-38.3858 38.385795,-38.3858 21.199894,0 38.385794,17.18591 38.385794,38.3858 z"
+           sodipodi:ry="38.385796"
+           sodipodi:rx="38.385796"
+           sodipodi:cy="232.11832"
+           sodipodi:cx="92.934036"
+           id="path3838"
+           style="fill:#0077be;fill-opacity:1;fill-rule:evenodd;stroke:none"
+           sodipodi:type="arc"
+           inkscape:export-filename="/home/nicolas/text3003.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+      </g>
+      <text
+         inkscape:export-filename="/home/nicolas/Rails/weby/public/images/weby-logo.png"
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         sodipodi:linespacing="125%"
+         id="text3003"
+         y="939.22247"
+         x="108.00049"
+         style="font-size:57.12900162px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#c11303;fill-opacity:1;stroke:none;font-family:Syncopate;-inkscape-font-specification:Syncopate"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#c11303;fill-opacity:1;font-family:Orbitron;-inkscape-font-specification:Orbitron"
+           y="939.22247"
+           x="108.00049"
+           id="tspan3005"
+           sodipodi:role="line"><tspan
+   id="tspan3794"
+   style="fill:#000000">web</tspan>y</tspan></text>
+    </g>
+  </g>
+</svg>

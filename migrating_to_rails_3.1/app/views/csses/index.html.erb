@@ -1,0 +1,43 @@
+<%= content_for :javascripts, javascript_include_tag("csses_index") %>
+
+<fieldset>
+  <legend><%= t("css.other") %></legend>
+
+  <% if check_permission(CssesController, 'new') %>
+    <div class="contextual">
+      <%= link_to (t"new_param.masc", :param => (t"css.one")), new_site_css_path, :class => 'icon icon-add' %>
+    </div>
+  <% end %>
+
+  <div>
+    <details open id="csses">
+      <summary id="csses"><%= t("my_css") %></summary>
+      <center>
+        <%= form_tag site_csses_path, :method => 'get', :name => 'my_css_search', :remote => true do %>
+          <%= text_field_tag :my_css_name %>
+          <%= hidden_field_tag :other_css_name %>
+          <%= hidden_field_tag 'page_my_csses', 1 %>
+          <%= submit_tag t("search"), class: 'search-button' %>
+        <% end %>
+
+      </center>
+      <div id="my_csses">
+        <%= render 'my_csses', :my_csses => @my_csses %>
+      </div>
+    </details>
+    <details open id="csses">
+      <summary id="csses"><%= t('other_css') %></summary>
+      <center>
+        <%= form_tag site_csses_path, :method => 'get', :name => 'other_css_search', :remote => true do %>
+          <%= text_field_tag :other_css_name %>
+          <%= hidden_field_tag :my_css_name %>
+          <%= hidden_field_tag 'page_other_csses', 1 %>
+          <%= submit_tag t("search"), class: 'search-button' %>
+        <% end %>
+      </center>
+      <div id="other_csses">
+        <%= render 'other_csses', :other_csses => @other_csses %>
+      </div>
+    </details>
+  </div>
+</fieldset>

@@ -1,0 +1,24 @@
+<fieldset>
+  <legend><%= t"page.other"  %></legend>
+
+  <div class="contextual">
+  <% if check_permission(PagesController, 'new') %>
+      <%= link_to (t"new_param.fem", :param => (t"page.one")), new_site_page_path, :class => 'icon icon-add' %>&nbsp;|
+  <% end %>
+  <%= link_to (t"covers"), list_front_site_pages_path(@site), :class => 'icon icon-newspaper' %>
+  </div>
+
+  <center>
+    <%= form_tag request.path, :method => 'get', :remote => true do %>
+      <%= text_field_tag :search %>
+      <%= select_tag("locales", options_for_select(@site.locales.map{|l| [t(l.name), l.name]}), {include_blank: t('all')} ) %>
+      <%= hidden_field_tag 'page', 1 %>
+      <%= hidden_field_tag 'per_page', "#{params[:per_page]}" %>
+      <%= submit_tag t("search"), class: 'search-button' %>
+    <% end %>
+  </center>
+
+  <div id="page_list">
+    <%= render :partial => ( @tiny_mce ? 'list_popup' : 'list' ) %>
+  </div>
+</fieldset>

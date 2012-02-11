@@ -1,0 +1,5 @@
+$('#my_csses').html("<%= escape_javascript render('my_csses', :my_csses => @my_csses) %>")
+$('#other_css_name[type="hidden"]').val("<%= escape_javascript(@other_css_name) %>")
+
+$('#other_csses').html("<%= escape_javascript render('other_csses', :other_csses => @other_csses) %>")
+$('#my_css_name[type="hidden"]').val("<%= escape_javascript(@my_css_name) %>")

@@ -1,0 +1,9 @@
+//= require jquery-ui.min 
+//= require dialog
+//= require tabs
+//= require string
+//= require fileupload/vendor/jquery.ui.widget
+//= require fileupload/jquery.fileupload
+//= require fileupload/jquery.iframe-transport
+//= require repository.dialog.search
+//= require repository.dialog.upload 

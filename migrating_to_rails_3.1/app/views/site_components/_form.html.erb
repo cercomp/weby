@@ -1,0 +1,47 @@
+<% #hack para criar um hash vazio caso as configurações sejam nulas %>
+<% @site_component.settings ||= "{}" %>
+
+<% #TODO Traduzir componentes para o ingles; Transformar componentes em pacotes (estilo redmine) %>
+
+<!-- VARIAVEIS PARA O JS -->
+<input id="components_settings"         type="hidden" meta-data="<%= components_settings.to_json %>" />
+<input id="component_settings"          type="hidden" meta-data="<%= eval(@site_component.settings).to_json %>" />
+<input id="components_settings_locales" type="hidden" meta-data="<%= components_settings_locales.to_json %>" />
+<input id="components_custom_fields"    type="hidden" meta-data="<%= components_settings_custom_field.to_json %>" />
+<input id="list_published_site_pages_path" type="hidden" meta-data="<%= list_published_site_pages_path %>" />
+
+<%= content_for :javascripts, javascript_include_tag('site_component_form') %>
+<%= content_for :stylesheets, stylesheet_link_tag('site_component_form') %>
+<%= content_for :stylesheets, stylesheet_link_tag("mini_layouts_css/#{@site.theme}") %>
+
+<%= simple_form_for [@site,@site_component] do |f| %>
+  <% if @site_component.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@site_component.errors.count, "error") %> <%= t "prohibited_being_saved", :count => @site_component.errors.count %>:</h2>
+      <ul>
+        <% @site_component.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	<%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
+
+	<%= f.input :component, :collection => components.collect{ |c| [t("components.#{c}"), c] }.sort{ |a,b| a[0].downcase <=> b[0].downcase }, :label => t("component.one") %>
+
+  <div id="settings">
+    <%= f.input :settings, :label => t("setting.other"), :as => :text %> 
+	</div>
+
+  <div class="input">
+    <label><%= t("place").capitalize  %></label>
+    <%= raw make_mini_layout %>
+    <%= f.input :place_holder, :as => :hidden %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit t("save"), class: 'green-button' %>
+    <%= link_to t('back'), site_site_components_path, class: 'red-button' %>
+  </div>
+<% end %>

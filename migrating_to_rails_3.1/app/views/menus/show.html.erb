@@ -1,0 +1,21 @@
+<fieldset>
+  <legend><%= t"show" %></legend>
+
+  <p>
+    <b><%= t"title" %>:</b>
+    <%= @menu.title %>
+  </p>
+  <% unless @menu.link.empty? %>
+    <p>
+      <b><%= t"link" %>:</b>
+      <%= @menu.link %>
+    </p>
+  <% else %>
+    <p>
+      <b><%= t"page.one" %>:</b>
+      <%= "#{@menu.page_id} (#{@menu.page.title})" %>
+    </p>
+  <% end %>
+
+  <p> <%= link_to t("edit"), edit_menu_path(@menu) %> | <%= link_to t("list_all.masc"), site_menus_path(@site) %> | <%= link_to t("back"), :back %> </p>
+</fieldset>

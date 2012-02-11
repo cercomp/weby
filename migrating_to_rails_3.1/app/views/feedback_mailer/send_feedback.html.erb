@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h2>Mensagem enviada por <%= "#{@feedback.name} <#{@feedback.email}>" %> através do "Fale conosco"</h2>
+    Mensagem:
+    <pre style="font-size:10pt;">
+      <%= @feedback.message %>
+    </pre>
+  </body>
+</html>

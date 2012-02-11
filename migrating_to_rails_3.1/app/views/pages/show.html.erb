@@ -1,0 +1,76 @@
+<article>
+  <% unless @page.repository.nil? %>
+    <%= weby_file_view(@page.repository, :little, '128', nil) %>
+  <% end %>
+
+  <header>
+    <h1>
+      <%#= @page.by_locale(@current_locale).title %> 
+      <%# Bandeiras temporárias... %>
+      <% i18ns = @page.page_i18ns - [@page.by_locale(@current_locale)] %>
+      <% unless i18ns.empty? %>
+        <% i18ns.each do |i18n| %>
+          <%= link_to image_tag("flags/16/#{i18n.locale.flag}", :title => t(i18n.locale.name)), {:page_loc => i18n.locale.name}  %>
+        <% end %>
+      <% end %>
+    </h1>
+    <summary>
+      <% if @site.view_desc_pages %>
+        <p>
+        <% if @page.user %>
+          <%= @page.user.first_name ? ("#{@page.user.first_name} #{@page.user.last_name}") : @page.user.login %>
+        <% end %>
+        <%= l @page.created_at, :format => :short  %>
+        </p>
+      <% end %>
+      <p> <%= raw @page.by_locale(@current_locale).summary %> </p>
+    </summary>
+
+    <%# TODO: Páginas poderão ser vistas por i18n %>
+    <% i18ns = @page.page_i18ns - [@page.by_locale(@current_locale)] %>
+    <% unless i18ns.empty? %>
+      <!--p id="available-i18n">
+      <%= t("see_notice_too") %>: 
+      <% i18ns.each do |i18n| %>
+        <%= link_to image_tag("flags/16/#{i18n.locale.flag}", :title => t(i18n.locale.name)), {:page_loc => i18n.locale.name}  %>
+      <% end %>
+      </p-->
+    <% end %>
+  </header>
+
+  <%= raw @page.by_locale(@current_locale).text %>
+  <p>
+    <h3><span class="label"><%= t("source")+":" unless @page.source.try(:empty?) %></span> <%= @page.url.try(:empty?) ? @page.source : link_to(@page.source, @page.url) %> </h3>
+  </p>
+
+  <% unless @page.category_list.empty? %>
+    <p>
+    <h3><%= t('categories') %>: <%= @page.category_list.join ', ' %></h3>
+    </p>
+  <% end %>
+
+  <% unless @page.repositories.empty? %>
+    <table class="list">
+      <thead bgcolor = white>
+        <th><%= t"related_files" %></th>
+        <th width="15%"><%= t"size" %></th>
+        <!--<th> MD5 </th>-->
+      </thead>
+      <tbody>    
+        <% @page.repositories.each do |repository| %>
+          <tr class="<%= cycle 'odd', 'even' %>">
+            <td><%= link_to repository.description, repository.archive.url %></td>
+            <td><%= repository.archive_file_size.to_i/1024 %> KB</td>
+            <!--<td><%# Digest::MD5.file(repository.archive.path) %></td>-->
+          </tr>
+          <% end; reset_cycle %>
+        </tbody>
+      </table>
+      <br />
+    <% end %>
+
+    <%= make_menu(@page, :except => "show") %>
+    <%= link_to t("list_all.fem"), site_pages_path(@site), :class => 'icon icon-list' %>
+    <%= link_to t("back"), :back , :class => 'icon icon-back' %>
+    <div class="clear"></div>
+  </article>

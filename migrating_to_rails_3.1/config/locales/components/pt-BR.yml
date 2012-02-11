@@ -1,0 +1,40 @@
+pt-BR:  
+  this_file_language: "Português Brasileiro"
+
+  components:
+    banner_horizontal: "Banner Horizontal"
+    banner_side: "Banner Lateral"
+    feedback: "Feedback"
+    front_news: "Notícias Capas"
+    gov_bar: "Barra do Governo"
+    header: "Cabeçalho (Topo)"
+    info_footer: "Informação de Rodapé"
+    institutional_bar: "Barra Institucional (UFG)"
+    menu_accessibility: "Menu de acessibilidade"
+    menu_side: "Menu"
+    news_as_home: "Notícia como página inicial"
+    no_front_news: "Lista de Notícias"
+    teacher_photo: "Foto do Professor"
+    weby_bar: "Barra de Administração do Sistema"
+   
+    config:
+      background: "Cor de fundo"
+      category: "Categoria"
+      front: "Apenas notícias de capa?"
+      height: "Altura"
+      image: "Imagem"
+      label: "Rótulo"
+      page: "Notícia"
+      quant: "Quantidade de itens"
+      settings: "Configurações"
+      width: "Largura"
+
+    pos:
+      bottom: "Inferior"
+      content: "Conteúdo"
+      first_place: "Primeiro carregamento"
+      home: "Página Inicial"
+      left: "Esquerda"
+      right: "Direita"
+      top: "Topo"
+

@@ -1,0 +1,25 @@
+<fieldset>
+  <legend><%= t('feedback.one') %></legend>
+  <% unless @feedbacks.empty? %>
+    <table class='list'>
+      <thead>
+        <th><%= t 'name' %></th>
+        <th><%= t 'email' %></th>
+        <th><%= t 'subject' %></th>
+        <th></th>
+      </thead>
+      <tbody>
+      <% @feedbacks.each do |feedback| %>
+        <tr class="<%= cycle 'odd', 'even' %>">
+          <td><%= feedback.name %></td>
+          <td><%= feedback.email %></td>
+          <td><%= feedback.subject %></td>
+          <td>
+            <%= raw make_menu(feedback) %> 
+          </td>
+        </tr>
+      <% end; reset_cycle %>
+      </tbody>
+    </table>
+  <% end %>
+</fieldset>

@@ -1,0 +1,30 @@
+<%= simple_form_for [@site, @feedback] do |f| %>
+  <% if @feedback.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@feedback.errors.count,"") %> <%= t"prohibited_being_saved", :count => @feedback.errors.count %>:</h2>
+      <ul>
+      <% @feedback.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% unless @groups.empty? %>
+    <%= f.association :groups, label: "<font color='red'>*</font> #{t('group.one')}",
+          collection: @groups.collect{ |p| [p.name, p.id]},
+          as: :check_boxes, hint: t("group_explain") %>
+  <% end %>
+
+  <%= f.input :name, :label => t("name") %>
+  <%= f.input :email, :label => t("email") %>
+  <%= f.input :subject, :label => t("subject") %>
+  <%= f.input :message, :label => t("message"), as: :text, input_html: { size: '60x8'} %>
+
+  <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
+
+  <div class="actions">
+    <%= f.submit t("submit"), class: "green-button" %>
+    <%= link_to t("back"), :back, class: "red-button" %>
+  </div>
+<% end %>

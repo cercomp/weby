@@ -1,0 +1,48 @@
+<%= info_page @users %>
+<%= paginate @users, :remote => true %>
+<table class="list">
+  <thead>
+    <tr>
+      <th><%= t("id") %></th>
+      <th><%= sortable 'login', t("user", :count => 1) %></th>
+      <th><%= sortable 'email', t("email") %></th>
+      <th><%= t"active" %></th>
+      <th><%= t"is_admin" %></th>
+      <% if check_permission(UsersController, :change_roles) %>
+        <th><%= t"role.other" %></th>
+      <% end %>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr class="<%= cycle 'odd', 'even' %>">
+        <td><%= user.id %></td>
+        <td><%= link_to user.login, user_path(user) %></td>
+        <td><%=h user.email %></td>
+        <td align="center"><%= raw toggle_field(user, 'status') %></td>
+        <td align="center"><%= raw toggle_field(user, 'is_admin', 'set_admin') %></td>
+        <% if check_permission(UsersController, :change_roles) %>
+          <%# Regra para pegar o papel do usuário:
+              1. Usuário pertence ao site corrente e possui papeis?
+              2. Usuário é administrador?
+              3. Usuário não é nada
+          %>
+          <% link = @site && !user.roles.empty? ?
+                    user.roles.select{ |r| r.site_id == @site.id }.map{ |r| r.name }.join(', ') :
+                    user.is_admin? ? t('admin.one') : t('manage_roles') %>
+          <% if @site %>
+            <td><%= link_to link, manage_roles_site_users_path(:user_id => user.id ) %></td>
+          <% else %>
+            <td><%= link_to link, manage_roles_users_path(:user_id => user.id ) %></td>
+          <% end %>
+        <% end %>
+        <td>
+          <%= raw make_menu(user) %> 
+        </td>
+      </tr>
+      <% end; reset_cycle %>
+    </tbody>
+  </table>
+<%= per_page_links @users %>
+<%= paginate @users, :remote => true %>

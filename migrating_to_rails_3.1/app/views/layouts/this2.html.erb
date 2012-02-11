@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="<%= session[:locale].to_s %>">
+  <%= render 'layouts/shared/head', theme: 'this2' %>
+  
+  <body>
+    <div class='first_place'>
+      <%= load_components 'first_place' %>
+    </div>
+    <div id="wrapper" <%= "style='width: #{ @main_width }px'" if @main_width %>>
+      <header>
+        <%= load_components 'top' %>
+        <div class="clear"> </div>
+      </header>
+
+      <aside class="left">
+        <%= load_components 'left' %>
+      </aside>
+
+      <aside class="right">
+        <%= load_components 'right' %>
+      </aside>
+
+      <section id="content">
+        <%#= debug params %>
+        <%= raw flash_message %>
+        <%= yield %>
+      </section>
+
+      <footer>
+        <%= load_components 'bottom' %>
+      </footer>
+    </div>
+    <%= render 'layouts/shared/javascripts' %>
+  </body>
+</html>
