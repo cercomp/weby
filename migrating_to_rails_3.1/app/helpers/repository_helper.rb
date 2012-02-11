@@ -11,7 +11,7 @@ module RepositoryHelper
   # Recebe um objeto do tipo Site
   def load_mime_types(site, only = [])
 
-    mime_types = site.repositories.except(:order).
+    mime_types = site.repositories.
       content_file(only).
       map{|t| t.archive_content_type }.
       tap{|mime_type| mime_type.uniq!}.

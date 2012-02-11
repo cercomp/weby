@@ -1,7 +1,5 @@
 class Page < ActiveRecord::Base
   acts_as_taggable_on :categories
-  
-  default_scope order: 'pages.id desc'
 
   scope :published, where(publish: true)
 

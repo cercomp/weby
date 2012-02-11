@@ -1,6 +1,7 @@
 //= require jquery-ui.min 
 //= require tabs
 //= require datetime
+//= require tinymce
 //= require repository.dialog
 //= require tiny_mce/jquery.tinymce.js
   

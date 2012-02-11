@@ -1,5 +1,5 @@
 <% quant = settings[:quant] || 5 %>
-<% @front_news = @site.pages.except(:order).order('position desc')
+<% @front_news = @site.pages.order('position desc')
                   .news(true).page(params[:front_pages]).per(quant) %>
 
 <section id="pages">
