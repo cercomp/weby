@@ -8,9 +8,9 @@ GIT
 
 GIT
   remote: http://github.com/thoughtbot/paperclip.git
-  revision: 772c8e96d8fdd8293e3745138287e3a4e9181e20
+  revision: f19393cfff75d083f51ef6f09d33ff3473244cd4
   specs:
-    paperclip (2.5.2)
+    paperclip (2.6.0)
       activerecord (>= 2.3.0)
       activesupport (>= 2.3.2)
       cocaine (>= 0.0.2)
@@ -81,7 +81,7 @@ GEM
       daemons (~> 1.0.10)
       gem_plugin (~> 0.2.3)
     multi_json (1.0.4)
-    pg (0.12.2)
+    pg (0.13.1)
     polyglot (0.3.3)
     pry (0.9.8.2)
       coderay (~> 1.0.5)
@@ -116,7 +116,7 @@ GEM
     rake (0.9.2.2)
     rdoc (3.12)
       json (~> 1.4)
-    sass (3.1.14)
+    sass (3.1.15)
     sass-rails (3.1.5)
       actionpack (~> 3.1.0)
       railties (~> 3.1.0)

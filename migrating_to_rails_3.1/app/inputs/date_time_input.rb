@@ -13,10 +13,14 @@
 #            placeholder: t("begin")
 #
 class DateTimeInput < SimpleForm::Inputs::DateTimeInput
+  enable :placeholder
   def input
     input_html_options[:class] << " datetimepicker"
     input_html_options[:value] = @builder.object[@attribute_name] ? @builder.object[@attribute_name].strftime('%Y-%m-%d %H:%M') : ''
     input_html_options[:placeholder] = options[:placeholder] if options[:placeholder]
     @builder.text_field(attribute_name, input_html_options).html_safe
+  end
+  def has_required?
+    @required
   end
 end

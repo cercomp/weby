@@ -16,6 +16,9 @@ if (!window.console) {
    window.console.error = function () { }; 
 }
 
+/**
+ * Eventos genéricos para qualquer documento do WEBY
+ */
 $(document).ready(function() {
    // Ajax indicator
    $('body').ajaxSend(function(){
@@ -30,7 +33,6 @@ $(document).ready(function() {
    })
 
    /////////////////////////////////////////////////////////////////////////////
-
    // ManageRoles limpa area do formulário
    $('.role_edit').each(function (link) {
       $(this).bind("ajax:success", function(data, status, xhr) {
@@ -117,47 +119,6 @@ function toogle_select_multiple(select){
   }else{
      $(select).attr("multiple","multiple");
   }
-}
-
-function show_selected_image(object,field_name){
-  select_place = $('#selected-image-of-radio-group-images');
-
-  select_place.click(function(){
-     image = $(this).find('img');
-     input_id = image.attr('id').replace('img_','');
-     input = $('input#'+input_id);
-     if(input.prop('checked') || $(this).find('input#'+input_id).length > 0){
-        input.prop('checked', null);
-        image.remove();
-        $(this).before('');
-     }
-  });
-
-  $('input[name="'+object+'['+field_name+']"]').change(function(){
-     var selected = $(this);
-     var image = $('label[for="'+selected.attr('id')+'"] > img').clone();
-     image.attr('id','img_'+selected.attr('id'));
-     select_place.html(image);
-     selected.prop('checked', true);
-  });
-}
-
-function add_check_icon(element){
-  element.button({
-     icons: {primary: 'ui-icon-check'}
-  });
-  return true;
-}
-
-function remove_button_icons(elements){
-  $(elements).each(function(index, element){
-     if(!$(element).is(":checked")){
-        $(element).button({
-           icons: {}
-        });
-     }
-  });
-  return true;
 }
 
 /**
