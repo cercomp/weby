@@ -16,7 +16,7 @@ $().ready(function() {
    theme_advanced_buttons3 : "tablecontrols,|,charmap,help,code,preview,fullscreen",
    relative_urls : false,
    language : $("html").attr("lang"),
-   site_name : WEBY.site_name
+   site_name : WEBY.current_site
    });
 
    $('textarea.mceSimple').tinymce({

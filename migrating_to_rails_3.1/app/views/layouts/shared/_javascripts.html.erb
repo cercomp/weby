@@ -2,5 +2,5 @@
 
 <%= yield :javascripts %>
 <%= javascript_tag do %>
-  WEBY.site_same = "<%= @site.name if @site %>"
+  WEBY.current_site = "<%= @site.name if @site %>"
 <% end %>

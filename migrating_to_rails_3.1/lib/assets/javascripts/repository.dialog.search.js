@@ -148,7 +148,7 @@ WEBY.Repository.Dialog.Search = function (dialog, includeOnForm) {
    var that = this;
    var form = $("#repository-search-form");
    this.getting = false;
-
+a = form;
    form.unbind().bind('submit', function () {
       form.find('#page').val(1);
       includeOnForm.clear();

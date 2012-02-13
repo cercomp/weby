@@ -3,8 +3,9 @@
 //= require datetime
 //= require tinymce
 //= require repository.dialog
-//= require tiny_mce/jquery.tinymce.js
-  
+//= require tiny_mce/jquery.tinymce 
+//= require_self
+
 var event_fields;
 // Alterna o tipo da página entre evento e notícia
 $("input#is_event").change(function(){

@@ -1,3 +1,8 @@
+//= require fileupload/vendor/jquery.ui.widget
+//= require fileupload/jquery.fileupload
+//= require fileupload/jquery.iframe-transport
+//= require_self
+
 function ajaxUpload(){
    $('#fileupload').fileupload({
       url: $("#ajax-upload-form").attr('action'),
