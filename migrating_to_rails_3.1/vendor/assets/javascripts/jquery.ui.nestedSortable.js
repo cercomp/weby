@@ -1,3 +1,4 @@
+//= require jquery-ui.min
 /*
  * jQuery UI Nested Sortable
  * v 1.3.4 / 28 apr 2011
