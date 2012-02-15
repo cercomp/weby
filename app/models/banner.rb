@@ -1,8 +1,6 @@
 class Banner < ActiveRecord::Base
   acts_as_taggable_on :categories
 
-  default_scope :conditions => { :hide => false }, :order => 'position,id DESC'
-
   scope :unhide, :conditions => { :hide => false }, :order => 'position,id DESC'
   scope :published, where("publish = true AND (date_begin_at <= :time AND
                           (date_end_at is NULL OR date_end_at > :time))",

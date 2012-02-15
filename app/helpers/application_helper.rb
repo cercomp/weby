@@ -249,7 +249,7 @@ module ApplicationHelper
     if collection.page(1).count > 0
       html = "#{t('views.pagination.displaying')} #{collection.offset_value + 1} - 
       #{collection.offset_value + collection.length}"
-      html << " #{t('of')} #{collection.total_count} #{t('views.pagination.total')}" 
+      html << " #{t('of')} #{collection.page(1).count} #{t('views.pagination.total')}" 
 
       content_tag :div, html, :class => "page_info_paginator", :style => style
     end

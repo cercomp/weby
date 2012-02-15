@@ -13,9 +13,9 @@
       </div>
     <% end %>
 
-  <%= repository_search t("site.image"), "site_image",
-    "site[top_banner_id]", @site.repository,
-    multiple: false, file_types: 'image' %>
+    <%= repository_search t("site.image"), "site_image",
+      "site[top_banner_id]", @site.repository,
+      multiple: false, file_types: 'image' %>
 
     <%= f.input :body_width, :label => t("body_width"), :hint => (t"example_param", :param => "960") %>
     <% unless @site.repository.nil? %>
@@ -37,13 +37,13 @@
     <%= f.association :locales,
       :as => :check_boxes,
       :collection => Locale.all.map{|l| [image_tag("flags/24/#{l.flag}", :title=>t(l.name)), l.id] },
-      :label => t('translation.other') %>
+    :label => t('translation.other') %>
 
-    <div class="actions">
-      <%= f.submit (t"save"), class: "green-button" %>
-      <%= link_to t("back"), :back, class: "red-button" %>
-    </div>
-  <% end %>
+  <div class="actions">
+    <%= f.submit (t"save"), class: "green-button" %>
+    <%= link_to t("back"), :back, class: "red-button" %>
+  </div>
+<% end %>
 
 </fieldset>
 
@@ -51,3 +51,4 @@
   <%= render('repositories/repository_search') %>
 </div>
 
+<%= content_for :javascripts, javascript_include_tag("admin.edit") %>

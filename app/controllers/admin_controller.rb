@@ -22,7 +22,7 @@ class AdminController < ApplicationController
 
     @themes = []
     (Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*.erb")] - 
-     Dir[File.join(Rails.root + "app/views/layouts/portal.html.erb")]).each do |file|
+     Dir[File.join(Rails.root + "app/views/layouts/application.html.erb")]).each do |file|
        @themes << file.split("/")[-1].split(".")[0]
      end
   end

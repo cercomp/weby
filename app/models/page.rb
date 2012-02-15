@@ -1,7 +1,5 @@
 class Page < ActiveRecord::Base
   acts_as_taggable_on :categories
-  
-  default_scope order: 'pages.id desc'
 
   scope :published, where(publish: true)
 
@@ -74,13 +72,6 @@ class Page < ActiveRecord::Base
   # Necessário para o STI(News, Event)
   # Classes filhas devem responder que são Pages
   def self.model_name
-    name = "page"
-    name.instance_eval do
-      def plural;   pluralize;   end
-      def singular; singularize; end
-      def i18n_key; singularize; end
-      def human(*args); singularize; end
-    end
-    return name
+    ActiveModel::Name.new(Page)
   end
 end

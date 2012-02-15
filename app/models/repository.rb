@@ -1,6 +1,4 @@
 class Repository < ActiveRecord::Base
-  default_scope :order => 'updated_at DESC'
-
   belongs_to :site
   has_one :page
   has_one :banner

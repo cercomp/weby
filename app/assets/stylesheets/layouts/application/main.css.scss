@@ -1,0 +1,42 @@
+/* 
+ *= require_tree ../../shared 
+ *= require_tree ../../legacy 
+ *= require_tree ../../extensions 
+ *= require_self 
+ */  
+
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary {
+  display: block;
+}
+
+html { background-color: #F9F9F9; }
+
+#wrapper {
+  background: #FFF;
+  margin: 1em auto;
+  width: 900px;
+border: 1px solid #E4E4E4; }
+
+header {
+  padding: 10px 10px 0 0;
+  height: 150px;
+background: url("/assets/weby-logo.png") no-repeat 20px 50%; }
+
+section#content { padding: 10px; }
+
+footer {
+  padding-bottom: 10px;
+  text-align: center;
+font-weight: bold; }

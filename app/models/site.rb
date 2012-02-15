@@ -1,8 +1,6 @@
 class Site < ActiveRecord::Base
   before_save :clear_per_page
 
-  default_scope :order => 'sites.id DESC'
-
   def to_param
     "#{name}"
   end
@@ -28,7 +26,7 @@ class Site < ActiveRecord::Base
   end
 
   def menu_categories
-    self.sites_menus.except(:order, :select).order('category').find(:all, :select => 'DISTINCT category').map{ |m| m.category }
+    self.sites_menus.except(:select).order('category').find(:all, :select => 'DISTINCT category').map{ |m| m.category }
   end
 
   validates_presence_of :name, :url, :per_page

@@ -1,0 +1,426 @@
+@import "../utils.css.scss";
+
+* { font-family: Verdana, sans-serif; }
+
+$label_width: 120px;
+$label_horizontal_margin: 10px;
+
+.pages_paginator { float: none !important; }
+.image_list{ padding-bottom: 25px; }
+
+form
+{ 
+  *:focus { outline: none; }
+  font-size: 14px;
+}
+
+::-webkit-validation-bubble-message { padding: 1em; }
+.input
+{
+  clear: both;
+  padding: 12px;
+  border-bottom: 1px solid #e4e4e4;
+
+	&.boolean, &.boolean.side, &.check_boxes
+	{
+    position: relative;
+    overflow: hidden;
+	}
+
+	&.boolean label, &.boolean.side label
+  {
+    margin-left: 20px;
+  }
+
+  
+	&.boolean
+	{
+    input[type="checkbox"]
+    {
+      position: absolute;
+      top: 13px;
+    }
+	}
+
+  &.boolean.side
+  {
+    input[type="checkbox"]
+    {
+      position: absolute;
+      top: 2px;
+    }
+  }
+
+  &.check_boxes
+  {
+    input[type="checkbox"]
+    {
+      float: left;
+			margin: 2px 6px 0 0;
+    }
+  }
+}
+select
+{
+	height: 33px; 
+	padding: 5px 8px;
+	width: 200px;
+	&[multiple=multiple]
+	{
+		height: auto;
+	}
+}
+input[type=checkbox]
+{
+  margin: 0;
+}
+label
+{
+  abbr{ color: red; }
+  &.collection_radio
+  {
+    margin:
+    {
+      right: 10px;
+      left:   2px;
+    }
+    float: none;
+    margin: 0;
+    padding: 0;
+    vertical-align: -2px;
+  }
+	font-size: 14px;
+  width: auto;
+  display: block;
+  padding-bottom: 8px;
+  cursor: pointer;
+}
+
+input[type=url],
+input[type=number],
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=search],
+input[type=color],
+input[type=date],
+input[type=tel],
+input[type=month],
+input[type=week],
+input[type=time],
+input[type=datetime],
+input[type=datetime-local]
+{
+	line-height: 13px !important;
+	font-size: 13px;
+	appearance: normal;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	height: 20px;
+	width: 200px;
+	padding: 5px 8px;
+}
+textarea
+{
+	padding: 8px;
+	height: 100px;
+	width: 416px;
+}
+textarea.css-editor
+{
+    height: 400px;
+    width: 95%;
+}
+input[type=url],
+input[type=number],
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=color],
+input[type=date],
+input[type=tel],
+input[type=month],
+input[type=week],
+input[type=time],
+input[type=datetime],
+input[type=search],
+input[type=datetime-local],
+textarea
+{
+	&:focus
+	{
+		&:invalid
+		{
+			background: #fff url(/assets/invalid.png) no-repeat 98% center;
+			box-shadow: 0 0 5px #d45252;
+			border-color: #b03535
+		}
+		background: #fff;
+		border: 1px solid #555;
+		box-shadow: 0 0 3px #aaa;
+	}
+	&:required
+	{
+		&:valid
+		{
+			background: #fff url(/assets/valid.png) no-repeat 98% center;
+			box-shadow: 0 0 5px #5cd053;
+			border-color: #28921f;
+		}
+		background: #fff url(/assets/red_asterisk.png) no-repeat 98% center;
+	}
+	border: 1px solid #aaa;
+	padding-right: 30px;
+}
+.hint
+{
+  display: block;
+  font-size: 11px;
+  padding-top: 2px;
+}
+input[type=url],
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=search],
+input[type=color],
+input[type=date],
+input[type=tel],
+input[type=month],
+input[type=week],
+input[type=time],
+input[type=datetime],
+input[type=datetime-local]
+{
+	&:required:valid + .hint {background: #28921f;}
+	&:required:valid + .hint::before {color: #28921f;}
+	&:focus + .hint { display: inline; }
+	& + .hint
+	{
+		&::before
+		{
+			content: "\25C0";
+			color: #d45252;
+			position: absolute;
+			top: 1px;
+			left: -6px;
+		}
+		font-size: 11px;
+		line-height: 24px;
+		background: #d45252;
+		color: white;
+		margin-left: 8px;
+		padding: 1px 6px;
+		z-index: 999;
+		position: absolute;
+		display: none;
+	}
+}
+input[type=search] { padding-right: 5px; }
+.green-button
+{
+	@extend .button;
+	border: none !important;
+	color: white !important;
+	background-color: #3D9400 !important;
+	&:active
+	{
+		box-shadow: 0 0 10px 5px #356b0b inset !important;
+		-webkit-box-shadow: 0 0 10px 5px #356b0b inset !important;
+		-moz-box-shadow: 0 0 10px 5px #356b0b inset !important;
+		-ms-box-shadow: 0 0 10px 5px #356b0b inset !important;
+		-o-box-shadow: 0 0 10px 5px #356b0b inset !important;
+	}
+	&:hover { background-color: darken(#3D9400, 5%)!important; }
+}
+.red-button
+{
+	@extend .button;
+	border: none !important;
+	color: white !important;
+	background-color: #D14836 !important;
+	&:active
+	{
+		box-shadow: 0 0 10px 5px #A23727 inset !important;
+		-webkit-box-shadow: 0 0 10px 5px #A23727 inset !important;
+		-moz-box-shadow: 0 0 10px 5px #A23727 inset !important;
+		-ms-box-shadow: 0 0 10px 5px #A23727 inset !important;
+		-o-box-shadow: 0 0 10px 5px #A23727 inset !important;
+	}
+	&:hover { background-color: darken(#D14836, 5%)!important; }
+}
+.blue-button
+{
+	@extend .button;
+	border: none !important;
+	color: white !important;
+	background-color: #4D90FE !important;
+	&:active
+	{
+		box-shadow: 0 0 10px 5px #357AE8 inset !important;
+		-webkit-box-shadow: 0 0 10px 5px #357AA2 inset !important;
+		-moz-box-shadow: 0 0 10px 5px #357AA2 inset !important;
+		-ms-box-shadow: 0 0 10px 5px #357AA2 inset !important;
+		-o-box-shadow: 0 0 10px 5px #357AA2 inset !important;
+	}
+	&:hover { background-color: darken(#4D90FE, 5%)!important; }
+}
+.search-button
+{
+	@extend .blue-button;
+	background:
+	{
+		image: url('/assets/icons/white16x16/ic_zoom.png ') !important;
+		position: 10px center !important;
+		repeat: no-repeat !important;
+	}
+	padding-left: 35px !important;
+}
+.add-button
+{
+	@extend .blue-button;
+	background:
+	{
+		image: url('/assets/icons/white16x16/ic_plus.png ') !important;
+		position: 10px center !important;
+		repeat: no-repeat !important;
+	}
+	padding-left: 35px !important;
+}
+.folder-button
+{
+  @extend .blue-button;
+  background:
+  {
+    image: url('/assets/icons/white16x16/ic_folder.png') !important;
+		position: 10px center !important;
+    repeat: no-repeat !important;
+  }
+	padding-left: 35px !important;
+}
+.actions
+{
+  float: right;
+  clear: both;
+  margin: 10px auto;
+}
+input[type=submit],
+input[type=button],
+input[type=reset],
+button,
+.button
+{
+	font:99% arial, helvetica, clean, sans-serif;
+	box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	&::-moz-focus-inner { border: none; padding: 0; margin: 0; }
+	display: inline-block;
+	margin: 0;
+	font-size: 13px;
+	line-height: 15px !important;
+	color: black;
+	font-weight: bold;
+	padding: 9px 20px;
+	text-align: center;
+	cursor: pointer;
+	@include border_radius(4px);
+	background-color: #F3F3F3;
+	border: 1px solid #DBDBDB;
+	&:active
+	{
+		box-shadow: 0 0 10px 5px #DDD inset;
+		-webkit-box-shadow: 0 0 10px 5px #DDD inset ;
+		-moz-box-shadow: 0 0 10px 5px #DDD inset;
+		-ms-box-shadow: 0 0 10px 5px #DDD inset;
+		-o-box-shadow: 0 0 10px 5px #DDD inset;
+	}
+	&:hover { background-color: darken(#F3F3F3, 5%); }
+}
+.field_with_errors { background-color: #ff3333; }
+.error { padding-left: 20px; }
+.side
+{
+  border: none !important;
+  padding: 0;
+  float: left;
+  clear: none;
+  margin-right: 10px;
+}
+.nostyle 
+{
+  border: none !important;
+  padding: 0;
+}
+.element { margin-top: 8px; }
+.datetimepicker
+{
+  background-image: url('/assets/icons/black16x16/ic_calendar.png') !important;
+  background-position: 98% center !important;
+  background-repeat: no-repeat !important;
+}
+
+/* old style */
+div.page_type
+{
+  margin-bottom: 10px !important;
+  label { display: inline !important; }
+}
+
+div#form_event
+{
+    margin-bottom:10px;
+}
+
+/* ### legacy ### */
+.radio-group
+{
+  label{
+    width: 120px;
+    margin-top: 5px;
+  }
+}
+.radio-group-images
+{
+  display: table;
+  label{ float: left !important; }
+  & > input[type=radio] 
+  {
+    display: none;
+    &:checked + label.collection_radio > img{ @extend .radio-group-images-selected }
+    & + label.collection_radio > img
+    {
+      padding: 4px 2px;
+      margin: 5px;
+      &:hover { @extend .radio-group-images-selected }
+    }
+  }
+}
+.radio-group-images-selected
+{
+  margin: 4px 2px;
+  padding: 2px;
+  border: 3px solid red;
+}
+#selected-image-of-radio-group-images
+{
+	margin-top: 15px;
+	& input{ display: none; }
+	&:hover::before
+	{
+		content: url('/assets/icons/black16x16/ic_cancel.png');
+		position: relative;
+		top: -25px;
+		right: 0;
+		margin-right: 5px;
+	}
+}
+input.radio { margin-right: 5px; }
+.radio label.collection_radio { display: inline; }
+
+#settings a {
+  cursor: pointer;
+}

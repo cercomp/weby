@@ -1,0 +1,50 @@
+#mini_layout{
+  border: 1px dotted black;
+  background-color: #E6E6E6;	
+  width:  300px;
+}
+#mini_first_place{
+  border-bottom: 1px dotted black;
+  height: 25px;
+}
+#mini_top{
+  border-bottom: 1px dotted black;
+  height: 30px;
+}
+
+#mini_left{
+  border-bottom: 1px dotted black;
+  width: 99px;
+  height: 200px;			
+}
+
+#mini_home{
+  border: 1px dotted black;
+  border-top: 0px;
+  width: 99px;
+  height: 200px;
+  margin-left: 99px;
+  margin-top: -201px;
+
+}
+
+#mini_right{
+  border-bottom: 1px dotted black;
+  height: 200px;
+  margin-top: -201px;
+  margin-left: 202px;			
+}
+
+#mini_bottom{
+  height: 30px;
+}
+
+.clicked {
+    background: #f7f6d9 url(/assets/clicked.png) 50% 50% repeat;
+}
+
+.hover:hover {
+  background-color: #dadada;
+}
+
+

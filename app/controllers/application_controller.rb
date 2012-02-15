@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   def choose_layout
     if @site.nil? or @site.id.nil? 
-      return "portal"
+      return "application"
     else
       if @site.theme
         return @site.theme

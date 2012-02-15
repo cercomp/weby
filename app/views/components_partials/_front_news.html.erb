@@ -1,5 +1,5 @@
 <% quant = settings[:quant] || 5 %>
-<% @front_news = @site.pages.except(:order).order('position desc')
+<% @front_news = @site.pages.order('position desc')
                   .news(true).page(params[:front_pages]).per(quant) %>
 
 <section id="pages">
@@ -65,4 +65,6 @@
     });
   }
 <% end %>
+
 <%= content_for :stylesheets, stylesheet_link_tag("jquery.sortable") %>
+<%= content_for :javascripts, javascript_include_tag("jquery-ui.min") %>

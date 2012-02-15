@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="<%= session[:locale].to_s %>">
-  <%= content_for :stylesheets do %>
-    <%= stylesheet_link_tag 'weby' %>
-    <%= stylesheet_link_tag 'nivo-slider' %>
-  <% end %>
-  <%= render 'layouts/shared/head', :contrast => 'weby_contrast' %>
+  <%= render 'layouts/shared/head', theme: 'weby' %>
   <body>
     <%= load_components 'first_place' %>
     <div id="wrapper" <%= "style='width: #{ @main_width }px'" if @main_width %>>

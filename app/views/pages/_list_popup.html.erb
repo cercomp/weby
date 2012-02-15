@@ -2,12 +2,12 @@
   $(function() {
     // TODO métodos para realizar a páginação manualmente
     $(".pages_paginator a[data-remote=true]").live("click", function() {
-      $('table.list').html("<img src='/images/spinner.gif'>");
+      $('table.list').html("<img src='/assets/spinner.gif'>");
       $.get(this.href, {'tiny_mce': true }, null, 'script');
       return false;
     });
     $("table.list > thead > tr > th > a").live("click", function() {
-      $('table.list').html("<img src='/images/spinner.gif'>");
+      $('table.list').html("<img src='/assets/spinner.gif'>");
       $.get(this.href, {'tiny_mce': true }, null, "script");
       return false;
     });

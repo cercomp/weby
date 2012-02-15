@@ -1,41 +1,22 @@
 <head>
-  <noscript>
-    <div style="width: 22em; position: absolute; left: 50%; margin-left: -11em;
-      color: red; background-color: white; border: 1px solid red; padding: 4px;
-      font-family: Tahoma, Verdana, sans-serif;font-size: 11px">
-      <%= t("need_javascript") %>		 
-    </div>
-  </noscript>
   <title> <%= @site.try(:description) || 'Weby' %> </title>
   <meta charset="utf-8">
   <%= csrf_meta_tag %>
-  <!-- Css do tema personalizado do jquery-ui -->
-  <%= stylesheet_link_tag 'jquery-ui/jquery-ui-1.8.16.custom.css' %>
-
-  <%= stylesheet_link_tag 'jquery.multiselect.css' %>
-	<%= stylesheet_link_tag 'jquery-ui-timepicker-addon' %>
-
-	<!-- Weby styles -->
-  <%= stylesheet_link_tag 'scaffold' %>
-  <%= stylesheet_link_tag 'application' %>
-  <%= stylesheet_link_tag 'simple_form' %>
-  <%= stylesheet_link_tag 'paginate' %>
-
-  <!-- Css dos componentes, está sendo carregado em todas as páginas mas
-  deve ser carregados apenas com os componentes -->
-  <%= stylesheet_link_tag 'institutional_bar' %>
-  <%= stylesheet_link_tag 'weby_bar' %>
-	<%= stylesheet_link_tag 'gov' %>
-
-
-  <!--[if lt IE 9]>
-  <%= javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js" %>
-  <%#= javascript_include_tag "http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js" %>
-  <![endif]-->
-
-  <%= yield :stylesheets %>
-
+  <%= load_layout_stylesheets(theme) %>
   <%= stylesheet_link_tag 'menu_dropdown' if @site.try(:menu_dropdown) %>
   <%= render 'sites/viewCsses' if @site %>
-  <%= stylesheet_link_tag 'contrast' if session[:contrast] == 'yes'%>
+  <%= yield :stylesheets %>
+
+  <%#= javascript_include_tag "application" %>
+  <!--[if lt IE 9]>
+  <%#= javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js" %>
+  <%#= javascript_include_tag "http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js" %>
+  <![endif]-->
 </head>
+<noscript>
+  <div style="width: 22em; position: absolute; left: 50%; margin-left: -11em;
+    color: red; background-color: white; border: 1px solid red; padding: 4px;
+    font-family: Tahoma, Verdana, sans-serif;font-size: 11px">
+    <%= t("need_javascript") %>		 
+  </div>
+</noscript>

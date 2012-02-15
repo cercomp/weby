@@ -18,7 +18,6 @@ class PagesController < ApplicationController
     @pages = @site.pages.
       titles_like(params[:search], params[:locales]).
       page(params[:page]).per(per_page).
-      except(:order).
       order(sort_column + " " + sort_direction+ extra_order)
 
     if !current_user
@@ -179,7 +178,6 @@ class PagesController < ApplicationController
     params[:locales] ||= session[:locale]
     @pages = @site.pages.
       titles_like(params[:search], params[:locales]).
-      except(:order).
       order(sort_column + " " + sort_direction).
       page(params[:page]).per(per_page)
 
@@ -188,7 +186,7 @@ class PagesController < ApplicationController
 
   def list_front
     params[:published] ||= 'false'
-    @pages = @site.pages.except(:order).order("position desc")
+    @pages = @site.pages.order("position desc")
 
     if(params[:published]=='false')
       @pages = @pages.news(true)
