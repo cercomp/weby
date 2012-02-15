@@ -15,11 +15,7 @@ class GroupsController < ApplicationController
     else
       flash[:warning] = t('group_explain')
     end
-
-    respond_with do |format|
-      format.js  
-      format.html
-    end
+    
   end
 
   def show

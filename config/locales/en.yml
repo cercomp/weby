@@ -230,6 +230,7 @@ en:
   menu_name: "Name of Menu"
   menus: "Menus"
   message: "Message"
+  messages: "Messages"
   mini: "Mini"
   missing_account: "We're sorry, but we could not locate your account. If you are having issues try copying and pasting the URL from your email into your browser or restarting the reset password process."
   mobile: "Mobile"

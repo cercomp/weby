@@ -239,7 +239,8 @@ module ApplicationHelper
     css_class = column == sort_column ? "current #{sort_direction}" : nil
     direction = (column == sort_column && sort_direction == "asc") ? "desc" : "asc"
     link_to title,
-      params.merge({sort: column, direction: direction}),
+      #quando uma lista é reordenada, ela volta para a página 1
+      params.merge({sort: column, direction: direction, page: 1}),
       remote: true,
       class: css_class
   end
@@ -249,7 +250,7 @@ module ApplicationHelper
     if collection.page(1).count > 0
       html = "#{t('views.pagination.displaying')} #{collection.offset_value + 1} - 
       #{collection.offset_value + collection.length}"
-      html << " #{t('of')} #{collection.page(1).count} #{t('views.pagination.total')}" 
+      html << " #{t('of')} #{collection.total_count} #{t('views.pagination.total')}" 
 
       content_tag :div, html, :class => "page_info_paginator", :style => style
     end
