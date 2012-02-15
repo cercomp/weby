@@ -1,6 +1,0 @@
-<%= javascript_include_tag "application" %>
-
-<%= yield :javascripts %>
-<%= javascript_tag do %>
-  WEBY.current_site = "<%= @site.name if @site %>"
-<% end %>
