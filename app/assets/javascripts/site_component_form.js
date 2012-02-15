@@ -78,7 +78,6 @@ function join_data(){
   if(input.length === 1) {
     result.push([':', input.attr('name'), ' => "', input.val(), '"'].join(''));
   }
-  alert(result);
   // FIM-Hack
 
   $('#settings .input').append(['<textarea name="site_component[settings]" style="display:none">{',

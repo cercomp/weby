@@ -11,8 +11,6 @@
 <input id="list_published_site_pages_path" type="hidden" meta-data="<%= list_published_site_pages_path %>" />
 
 <%= content_for :javascripts, javascript_include_tag('site_component_form') %>
-<%= content_for :stylesheets, stylesheet_link_tag('site_component_form') %>
-<%= content_for :stylesheets, stylesheet_link_tag("mini_layouts_css/#{@site.theme}") %>
 
 <%= simple_form_for [@site,@site_component] do |f| %>
   <% if @site_component.errors.any? %>

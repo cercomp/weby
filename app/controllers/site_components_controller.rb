@@ -58,6 +58,8 @@ class SiteComponentsController < ApplicationController
       site_component.position = (params['sort_sites_component'].index(p) + 1)
       site_component.save
     end
+
+    render :nothing => true
   end
   
   def toggle_field
