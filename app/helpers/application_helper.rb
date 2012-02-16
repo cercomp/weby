@@ -312,7 +312,7 @@ module ApplicationHelper
   #
   def load_components(component_place)
     raw([].tap do |components|
-      @site.site_components.where(["publish = true AND place_holder = ?", component_place]).each do |comp|
+      @site.site_components.where(["publish = true AND place_holder = ?", component_place]).order('position asc').each do |comp|
         comp.settings ||= "{}"
         settings = eval(comp.settings)
         components << render(:partial => "components_partials/#{comp.component}", :locals => { :settings => settings })

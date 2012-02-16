@@ -1,3 +1,5 @@
+//= require jquery-ui.min
+
 // TODO arquivo semelhante ao banners.js estudar maneira de mescla-los
 
 // Caso o usuário altere a url o page_id é zerado

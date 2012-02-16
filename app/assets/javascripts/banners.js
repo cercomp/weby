@@ -1,3 +1,7 @@
+//= require jquery-ui.min
+//= require datetime
+//= require repository.dialog
+
 // TODO arquivo semelhante ao menus.js estudar maneira de mescla-los
 
 // Caso o usuário altere a url o page_id é zerado

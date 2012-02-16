@@ -5,7 +5,7 @@ class SiteComponentsController < ApplicationController
 
   respond_to :html, :xml, :js
   def index
-    @site_components = @site.site_components
+    @site_components = @site.site_components.order('position asc')
   end
 
   def show
