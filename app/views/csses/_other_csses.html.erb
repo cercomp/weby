@@ -12,7 +12,7 @@
       <% other_csses.each do |site_css| %>
         <tr>
           <td> <%= site_css.css.name %> </td>
-          <td> <%= site_css.css.owner.try(:name) %> </td>
+          <td> <%= link_to site_css.css.owner.try(:name), site_css.site %> </td>
           <td align="center"> <%= follow(site_css) %> </td>
           <td> <%= make_menu_css(site_css) %> </td>
         </tr>
