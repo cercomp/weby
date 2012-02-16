@@ -215,7 +215,7 @@ en:
   login_count: "Login Count"
   look_changed: "Appearence was changed."
   lower_numbers_come_first: "Lower numbers come first"
-	lower_upper_number_chars: "Must have at least one upper case char, one lower case char and one digit"
+  lower_upper_number_chars: "Must have at least one upper case char, one lower case char and one digit"
 
 #---M---#
   main: "Main"
@@ -285,8 +285,8 @@ en:
   page:
     one: "Page"
     other: "Pages"
-    image: "Page Image"
-	page_need_at_least_one_internationalization: "A page needs content in at least one language"
+  image: "Page Image"
+  page_need_at_least_one_internationalization: "A page needs content in at least one language"
   page_categories_help: "Categories are separated by commas, the page's category are related with your content. Ex:Sports, News, Policy"
   page_not_found: "Page Not Found"
   password: "Password"
