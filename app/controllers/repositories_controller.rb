@@ -8,6 +8,7 @@ class RepositoriesController < ApplicationController
   respond_to :html, :xml, :js, :json
   def index
     params[:mime_type].try(:delete, "")
+    params[:direction] ||= 'desc'
 
     @repositories = @site.repositories.
       description_or_filename(params[:search]).
