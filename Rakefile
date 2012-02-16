@@ -4,4 +4,4 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
-Webyge::Application.load_tasks
+Weby::Application.load_tasks

@@ -15,7 +15,6 @@ class GroupsController < ApplicationController
     else
       flash[:warning] = t('group_explain')
     end
-    
   end
 
   def show

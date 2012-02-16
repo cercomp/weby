@@ -84,7 +84,7 @@
 
             <% if check_permission(UsersController, [:index]) %>
               <li> <%= link_to (t"user.other"), @site ? site_users_path(@site) : users_path %> </li>
-            <% end %>            
+            <% end %>
 
             <% if check_permission(RightsController, [:index]) %>
               <li> <%= link_to (t"permission.other"), rights_path %>
@@ -99,20 +99,20 @@
             <% if check_permission(RolesController, [:index]) %>
               <li> <%= link_to (t"roles_permissions"), site_roles_path(@site) %> </li>
             <% end %>
-
+      
             <% if check_permission(FeedbacksController, [:index]) %>
 
-            <li class="separator"> <%= t("feedback.one") %> </li>
+              <li class="separator"> <%= t("feedback.one") %> </li>
 
-              <% if check_permission(GroupsController, [:index]) %>
-                <li> <%= link_to (t"group.other"), site_groups_path(@site) %>
-                  <menu>
-                    <% if check_permission(GroupsController, [:new]) %>
+                <% if check_permission(GroupsController, [:index]) %>
+                  <li> <%= link_to (t"group.other"), site_groups_path(@site) %>
+                    <menu>
+                      <% if check_permission(GroupsController, [:new]) %>
                         <li> <%= link_to t("new.masc"), new_site_group_path(@site), :class => 'icon icon-add' %> </li>
-                    <% end %>
+                      <% end %>
                    </menu>
                  </li>
-              <% end %>
+                <% end %>
 
               <li> <%= link_to (t"messages"), site_feedbacks_path(@site) %> </li>
 

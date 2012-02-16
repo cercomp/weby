@@ -1,4 +1,4 @@
-Webyge::Application.routes.draw do
+Weby::Application.routes.draw do
   # Para ativação de conta por email
   match 'activate(/:activation_code)' => 'users#activate', :as => :activate_account
   match 'send_activation(/:user_id)' => 'users#send_activation', :as => :send_activation
