@@ -1,8 +1,15 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.0'
-
 gem 'mongrel', '>= 1.2.0.pre2'
+gem "jquery-rails"
+gem 'pg'
+gem 'authlogic'
+gem 'kaminari'
+gem "paperclip", :git => "http://github.com/thoughtbot/paperclip.git" 
+gem "acts_as_list"
+gem "simple_form"
+gem "acts-as-taggable-on"
 
 group :assets do
 	gem 'sass-rails',   '~> 3.2.3'
@@ -18,15 +25,6 @@ end
 group :development do
   gem 'pry-rails'
 end
-
-gem "jquery-rails"
-gem 'pg'
-gem 'authlogic'#, git: "http://github.com/odorcicd/authlogic.git", branch: "rails3"
-gem 'kaminari'
-gem "paperclip", :git => "http://github.com/thoughtbot/paperclip.git" 
-gem "acts_as_list"
-gem "simple_form"
-gem "acts-as-taggable-on"
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
