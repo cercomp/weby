@@ -286,7 +286,7 @@ pt-BR:
   page:
     one: "Página"
     other: "Páginas"
-  image: "Imagem da Página"
+    image: "Imagem da Página"
   page_need_at_least_one_internationalization: "Uma página necessita ter conteúdo em pelo menos um idioma"
   page_categories_help: 'Categorias são separadas por vírgula, a categoria de uma página é relacionada ao seu conteúdo. Ex: Esporte, Notícia, UFG'
   page_not_found: "Página não encontrada"
