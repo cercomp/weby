@@ -18,7 +18,7 @@ group :assets do
 end
 
 group :production do
-  gem 'dispatcher'
+	gem 'dispatcher'
   gem 'thin' # Optional, needs for thin cluster in production
 end
 

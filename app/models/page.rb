@@ -1,7 +1,5 @@
 class Page < ActiveRecord::Base
   acts_as_taggable_on :categories
-  
-  default_scope order: 'pages.id desc'
 
   scope :published, where(publish: true)
 
@@ -54,7 +52,7 @@ class Page < ActiveRecord::Base
   def at_least_one_internationalization
     page_i18n = self.page_i18ns.map{ |page_i18n| page_i18n unless page_i18n.marked_for_destruction? || page_i18n.title.blank? }.compact
     if page_i18n.size <= 0
-      errors.add('', I18n.t("page_need_at_least_one_internationalization"))
+			errors.add('', I18n.t("page_need_at_least_one_internationalization"))
     end
   end
 
@@ -74,13 +72,6 @@ class Page < ActiveRecord::Base
   # Necessário para o STI(News, Event)
   # Classes filhas devem responder que são Pages
   def self.model_name
-    name = "page"
-    name.instance_eval do
-      def plural;   pluralize;   end
-      def singular; singularize; end
-      def i18n_key; singularize; end
-      def human(*args); singularize; end
-    end
-    return name
+    ActiveModel::Name.new(Page)
   end
 end
