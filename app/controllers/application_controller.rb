@@ -179,9 +179,7 @@ class ApplicationController < ActionController::Base
 
   # Metodo usado na ordenação de tabelas por alguma coluna
   def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
-  end
-
-  
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : 'desc'
+  end 
 
 end
