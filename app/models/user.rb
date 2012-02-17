@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   validates_format_of :login, :with => /^[a-z\d_\-\.@]+$/i
   validates_presence_of :email, :login, :first_name, :last_name
   validates_presence_of :password, :on => :create
-	validates_format_of :password, :with => /(?=.*\d)(?=.*[A-Z])(?=.*[a-z])^.{4,}$/
+	validates_format_of :password, :with => /(?=.*\d)(?=.*[A-Z])(?=.*[a-z])^.{4,}$/, :allow_blank => true
 
   has_and_belongs_to_many :roles
   has_and_belongs_to_many :groups
