@@ -6,7 +6,7 @@ class FeedbacksController < ApplicationController
   respond_to :html, :xml, :js
 
   def index
-    @feedbacks = Feedback.where(:site_id => @site.id)
+    @feedbacks = Feedback.where(:site_id => @site.id).order('id desc')
     #Group.find(:all, :select => 'name')
 
     respond_to do |format|

@@ -11,7 +11,7 @@ production:
 development:
   delivery_method: :smtp
   smtp_settings:
-     address: localhost
-     port: 25
-     authentication: :none
-     enable_starttls_auto: false
+    address: localhost
+    port: 25
+    authentication: :none
+    enable_starttls_auto: false

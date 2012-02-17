@@ -2,7 +2,8 @@ class FeedbackMailer < ActionMailer::Base
 
   def send_feedback (feedback,destination)
     @feedback = feedback
-    mail :from => feedback.email, :to => destination, :subject => feedback.subject
+    from = "web@cercomp.ufg.br"
+    mail(:from => from, :to => destination, :subject => feedback.subject)
   end
 
 end
