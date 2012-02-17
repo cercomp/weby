@@ -64,7 +64,16 @@ class MenusController < ApplicationController
     @ch_pos.parent_id = params[:parent_id]
     @ch_pos.position = params[:position]
 
-    SitesMenu.where({:category => @ch_pos.category, :site_id => @ch_pos.site_id}).update_all("position = position+1",["position >= ? AND parent_id = ? ", @ch_pos.position, @ch_pos.parent_id])
+    idx = 1
+    SitesMenu.where({:category => @ch_pos.category, :site_id => @ch_pos.site_id, :parent_id => @ch_pos.parent_id}).order('position').each { |smenu|
+      if(smenu.id != @ch_pos.id)
+        if(idx == @ch_pos.position)
+          idx += 1
+        end
+        smenu.update_attribute(:position, idx)
+        idx += 1
+      end
+    }
 
     @ch_pos.save
     render :nothing => true
@@ -133,9 +142,15 @@ class MenusController < ApplicationController
     res
   end
 
-  #Atualiza a position de todos os itens irmãos maior que obj, com position - 1
+  #Atualiza a position de todos os itens menos o do obj, assumindo que ele irá para outro parent_id
   def update_position_for_remove(obj)
-    SitesMenu.where({:category => obj.category, :site_id => obj.site_id}).update_all("position = position-1",["position > ? AND parent_id = ? ", obj.position, obj.parent_id])
+    idx = 1
+    SitesMenu.where({:category => obj.category, :site_id => obj.site_id, :parent_id => obj.parent_id}).order('position').each { |smenu|
+      if smenu.id != obj.id
+        smenu.update_attribute(:position, idx)
+        idx += 1
+      end
+    }
   end
 
   #obj tem que ter o atributo category, sua antiga category, seu antigo parent_id e antiga position

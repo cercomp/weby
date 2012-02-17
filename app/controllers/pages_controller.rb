@@ -161,12 +161,10 @@ class PagesController < ApplicationController
         new_pos = @after.position
       end
     end
-    #FIXME Um update_all seria mais eficiente, porém o rails tem problemas com upate_all e joins
-    #no postgres, testar no 3.2
-    #Ex. @site.pages.front.where(condition).update_all("position = position +/- 1")
-    @site.pages.front.where(condition).each do |page|
-      page.increment(:position, increment).save
-    end
+    #@site.pages.front.where(condition).each do |page|
+    #  page.increment(:position, increment).save
+    #end
+    @site.pages.front.where(condition).update_all("position = position + (#{increment})")
     @ch_pos.update_attribute(:position, new_pos)
     render :nothing => true
   end
@@ -205,14 +203,11 @@ class PagesController < ApplicationController
     return max ? max+1 : 1
   end
 
-  #FIXME Um update_all seria mais eficiente, porém o rails tem problemas com upate_all e joins
-  #no postgres, testar no 3.2
-  #quando tira um item da ordem, decrementa a position das pages acima dela
   def position_down_from old_position
-    #@site.pages.front.update_all("position = position-1",["position > ?", old_position])
-    @site.pages.front.where("position > #{old_position}").each do |page|
-      page.increment(:position, -1).save
-    end
+    #@site.pages.front.where("position > #{old_position}").each do |page|
+    #  page.increment(:position, -1).save
+    #end
+    @site.pages.front.where("position > #{old_position}").update_all("position = position-1")
   end
 
   def tiny_mce
