@@ -216,7 +216,7 @@ pt-BR:
   login_count: "Login Count"
   look_changed: "Aparência alterada!"
   lower_numbers_come_first: "Menores números aparecem primeiro"
-  lower_upper_number_chars: "Deve conter pelo menos um caracter minúsculo, um maiúsculo e um número"
+  lower_upper_number_chars: "deve conter pelo menos uma letra maiúscula, uma minúscula, e um número"
 
 #---M---#
   main: "Principal"
