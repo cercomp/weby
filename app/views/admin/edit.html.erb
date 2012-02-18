@@ -32,7 +32,7 @@
     <%= f.input :footer, :label => t("footer"), :input_html => {:value => (@site.footer.nil? ? t("footer_text") : @site.footer), :class => "mceSimple", :size => "56x14"}, :as => :text %>
     <%= f.input :view_desc_pages, :label => t("view_desc_pages"), :hint => t("view_desc_pages_help"), :as => :boolean %>
     <%= f.input :menu_dropdown, :label => t("use_menu_dropdown"), :hint => t("desc_use_menu_dropdown"), :as => :boolean %>
-    <%= f.input :theme, :collection => @themes.collect{|p| [ p , p]}, :label => t('layout') %>
+    <%= f.input :theme, :collection => @themes.collect{|p| [p ,p]}, :prompt => "", :label => t('layout') %>
 
     <%= f.association :locales,
       :as => :check_boxes,
