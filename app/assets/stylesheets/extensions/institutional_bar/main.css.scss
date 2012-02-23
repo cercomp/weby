@@ -7,11 +7,14 @@ $background-color: #ccc;
   line-height: $height;
   color: $text-color;
   width: 100%;
+	margin:0;
   background: $background-color;
 
   .content {
     margin: 0 auto;
-    aside { width: auto; }
+    aside {
+			margin: 0;
+			width: auto; }
     
     .left{
       clear: left;

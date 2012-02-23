@@ -1,5 +1,9 @@
 @import "../../utils.css.scss";
 
+#weby_bar { 
+	margin: 0;
+	padding: 0;}
+
 /*Variables*/
 $main-opacity: 0.85;
 $main-color: rgba(255, 255, 255, $main-opacity);
@@ -27,6 +31,7 @@ $menu-border-ie: 1px solid opacify($border-color, 1);
 }
 
 .top_menu {
+	margin: 0;
   top: 0;
   line-height: $menu-line-height;
   color: $menu-text-color !important;
