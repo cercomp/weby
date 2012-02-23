@@ -1,3 +1,6 @@
+//= require jquery.cookie
+//= require_self
+
 $(document).ready(function(){
     $.cookie("font_size_original", $('html').css('font-size'), { path: '/' })
 		
