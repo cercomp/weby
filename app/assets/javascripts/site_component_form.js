@@ -1,3 +1,7 @@
+//= require jquery-ui.min 
+//= require tabs
+//= require repository.dialog
+
 /**
  * Script para páginas com formulário de componentes
  */
@@ -48,6 +52,8 @@ function switch_settings() {
 
     $('#settings .input').append(field);
   });
+
+  $(".tabs").tabs();
 }
 
 /**

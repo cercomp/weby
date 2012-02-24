@@ -59,6 +59,12 @@ module SiteComponentsHelper
   #
   def components_settings_custom_field
     cur_setting = eval(@site_component.settings);
+    if(cur_setting[:page])
+      cur_page = @site.pages.find(cur_setting[:page])
+    end
+    if(cur_setting[:image])
+      cur_image = Repository.find(cur_setting[:image])
+    end
     {
       'banner_horizontal' => {
         'category' => ['<select name="category">', options_for_select(@site.banners.category_counts.map{|b| b.name}, cur_setting[:category]), '</select>'].join
@@ -75,9 +81,9 @@ module SiteComponentsHelper
       'no_front_news' => {
         'front' => '<input type="checkbox" name="front" value="true" />'
       },
-      
+
       'news_as_home' => {
-        'page' => ['<a onclick="select_page(); return false;">', t('select_param', :param => t('news.one')), '</a>'].join
+        'page' => [ (cur_page ? '<input type="text" disabled="disabled" value="'+cur_page.by_locale(@current_locale).title+'"><input type="hidden" name="page" value="'+cur_page.id.to_s+'">' : '' )+ '<a onclick="select_page(); return false;">', t('select_param', :param => t('news.one')), '</a>'].join
       },
 
       'gov_bar' => {
@@ -86,7 +92,7 @@ module SiteComponentsHelper
 
       # FIXME implementar novo modelo de componentes
       'teacher_photo' => {
-        'image' => [repository_search( t("page.image"), "page_image", "teacher_photo", nil, multiple: false, file_types: 'image'),
+        'image' => [repository_search( t("page.image"), "page_image", "image", cur_image, multiple: false, file_types: 'image'),
                     '<div id="dialog-repository-search">',
                     render('repositories/repository_search'),
                     '</div>'].join

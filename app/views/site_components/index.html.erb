@@ -22,7 +22,7 @@
           <td colspan="99" class="dark"><%= t("components.pos.#{place_holder}") %></td>
         </tr>
         <% i.each do |site_component| %>
-          <tr id="sort_sites_component_<%= site_component.id %>">
+          <tr id="sort_sites_component_<%= site_component.id %>" class="place-<%=  "#{place_holder}" -%>">
             <td><%= site_component.id %></td>
             <td><%= t("components.#{site_component.component}") %></td>
             <td><%= components_settings_category(site_component) %></td>
