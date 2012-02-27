@@ -15,7 +15,7 @@ pt-BR:
   active: "Ativo?"
   add_param: "Adicionar %{param}"
   add_selected_menus: "Incluir os menus selecionados"
-  add_sub_menu: "Adiciona um menu filho"
+  add_sub_menu: "Adiciona um item de menu filho"
   admin:
     one: "Admin"
     other: "Admins"
@@ -226,7 +226,7 @@ pt-BR:
   menu:
     one: "Menu"
     other: "Menus"
-  item_menu:
+  menu_item:
     one: "Item de Menu"
     other: "Itens de Menu"
   menus: "Menus"
@@ -237,8 +237,8 @@ pt-BR:
   missing_account: "Desculpe-nos, mas não conseguimos localizar sua conta. Se você está tentando copiar e colar a URL de um email dentro do seu navegador ou reiniciando o processo de recuperar senha."
   mobile: "Celular"
   move: "Mover"
-  move_menu_up: "Move o menu para cima"
-  move_menu_down: "Move o menu para baixo"
+  move_menu_up: "Move o item de menu para cima"
+  move_menu_down: "Move o item de menu para baixo"
   more: "Mais"
   my_account: "Minha Conta"
   my_profile: "Meu Perfil"
@@ -388,6 +388,7 @@ pt-BR:
   subject: "Assunto"
   submit: "Enviar"
   sub_menu: "Sub-menu"
+  sub_menu_item: "Sub-item de menu"
   sub_menu_of: "Sub-menu de"
   successfully_created: "Criado com sucesso!"
   successfully_created_param: "%{param} criado com sucesso!"
@@ -549,7 +550,7 @@ pt-BR:
         title: "Título"
         content: "Conteúdo"
       menu:
-        title: "Texto"
+        title: "Rótulo"
       news:
         title: "Título"
         source: "Fonte"

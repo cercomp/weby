@@ -15,7 +15,7 @@ en:
   active: "Active?"
   add_param: "Add %{param}"
   add_selected_menus: "Add selected menus"
-  add_sub_menu: "Add sub menu"
+  add_sub_menu: "Add sub menu item"
   admin:
     one: "Admin"
     other: "Admins"
@@ -225,7 +225,7 @@ en:
   menu:
     one: "Menu"
     other: "Menus"
-  item_menu:
+  menu_item:
     one: "Menu Item"
     other: "Menu Items"
   menu_name: "Name of Menu"
@@ -236,8 +236,8 @@ en:
   missing_account: "We're sorry, but we could not locate your account. If you are having issues try copying and pasting the URL from your email into your browser or restarting the reset password process."
   mobile: "Mobile"
   move: "Move"
-  move_menu_up: "Move menu up"
-  move_menu_down: "Move menu down"
+  move_menu_up: "Move menu item up"
+  move_menu_down: "Move menu item down"
   more: "More"
   my_account: "My account"
   my_profile: "My profile"
@@ -382,7 +382,8 @@ en:
   status: "Status"
   subject: "Subject"
   submit: "Send"
-  sub_menu: "Sub-menu"
+  sub_menu: "Sub-menu item"
+  sub_menu_item: "Sub-menu"
   sub_menu_of: "Sub-menu of"
   successfully_created: "Successfully created!"
   successfully_created_param: "%{param} successfully created!"

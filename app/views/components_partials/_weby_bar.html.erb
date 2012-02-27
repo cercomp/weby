@@ -34,7 +34,7 @@
               <li> <%= link_to (t"menu.other"), site_menus_path(@site) %>
                 <menu>
                 <% if check_permission(MenusController, [:new]) %>
-                  <li> <%= link_to t("new.masc"), new_site_menu_path(@site), :class => 'icon icon-add' %> </li>
+                  <li> <%= link_to (t"new_param.masc", :param => (t"menu_item.one")), new_site_menu_path(@site), :class => 'icon icon-add' %> </li>
                 <% end %>
                 </menu>
               </li>
