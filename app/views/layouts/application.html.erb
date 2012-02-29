@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="<%= session[:locale].to_s %>">
+  <%= render 'layouts/shared/head', theme: 'application' %>
+
+  <body>
+    <div class='first_place'>
+      <%= render :partial => 'components_partials/weby_bar' %>
+    </div>
+
+    <div id="wrapper">
+      <header>
+        <nav class="right">
+          <%= render "layouts/shared/menu_locale" %>
+        </nav>
+      </header>
+
+      <section id="content">
+        <%= raw flash_message %>
+        <%= yield %>
+      </section>
+
+      <footer>
+        <%= Time.now.year %><%=t'licence' %>
+      </footer>
+
+      <%= render 'layouts/shared/javascripts' %>
+    </div>
+  </body>
+</html>
+
