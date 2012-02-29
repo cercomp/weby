@@ -8,7 +8,7 @@ gem 'authlogic'
 gem 'kaminari'
 gem "paperclip", :git => "http://github.com/thoughtbot/paperclip.git" 
 gem "acts_as_list"
-gem "simple_form"
+gem "simple_form", '2.0.1'
 gem "acts-as-taggable-on"
 
 group :assets do

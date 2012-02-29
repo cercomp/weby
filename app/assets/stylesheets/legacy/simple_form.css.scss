@@ -21,6 +21,10 @@ form
   padding: 12px;
   border-bottom: 1px solid #e4e4e4;
 
+  &.hidden {
+    display: none; 
+  }
+
 	&.boolean, &.boolean.side, &.check_boxes
 	{
     position: relative;

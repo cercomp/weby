@@ -97,9 +97,9 @@
        placeholder: "UFG, Sports, Arts",
        hint: t('page_categories_help') %>
 
-     <%= f.input :created_at, order: [:year, :month, :day],
-       use_month_numbers: true, label: (t"date_param", param: t("register")),
-       start_year: Time.now.year, as: :hidden %>
+
+     <%# TODO: realmente precisa destes campos ocultos?! %>
+     <%= f.input :created_at, as: :hidden %>
 
      <%= f.input :site_id, input_html: {value: @site.id}, as: :hidden  %>
 
