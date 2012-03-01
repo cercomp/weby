@@ -50,11 +50,25 @@ class Page < ActiveRecord::Base
   validate :at_least_one_internationalization
 
   def at_least_one_internationalization
-    page_i18n = self.page_i18ns.map{ |page_i18n| page_i18n unless page_i18n.marked_for_destruction? || page_i18n.title.blank? }.compact
-    if page_i18n.size <= 0
-			errors.add('', I18n.t("page_need_at_least_one_internationalization"))
-    end
+    error_message = I18n.t("page_need_at_least_one_internationalization") 
+    errors.add(:base, error_message) if has_valid_internationalizations?
   end
+
+  def has_valid_internationalizations?
+    valid_internationalizations.size <= 0
+  end
+  private :has_valid_internationalizations?
+
+  def valid_internationalizations
+    self.page_i18ns.
+      map{ |page_i18n| page_i18n if valid_internationalization? }.compact
+  end
+  private :valid_internationalizations
+
+  def valid_internationalization?
+    not page_i18n.marked_for_destruction? and not page_i18n.title.blank?
+  end
+  private :valid_internationalization?
 
   # Find i18n based on locale_name
   # Example: locale_name = 'pt-BR'

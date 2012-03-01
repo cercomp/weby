@@ -53,10 +53,6 @@ class PagesController < ApplicationController
     @page.sites_pages.build
     @page.pages_repositories.build
     build_site_locales
-
-    # Objeto para pages_repositories (relacionamento muitos-para-muitos)
-    # Criando objeto com os arquivos que não estão relacionados com a página
-    @page_files_unchecked = @site.repositories.page(params[:twitter_page]).per(params[:per_page])
   end
 
   def edit
@@ -77,18 +73,21 @@ class PagesController < ApplicationController
   end
 
   def create
+    # Remove type of params because type can't be setted on create
+    type = params[:page].delete(:type)
+    type ||= 'News'
+
+    @page = Page.new(params[:page])
+
+    # Set type of page, this can't be setted on create
+    @page.type = type
     params[:page][:type] ||= 'News'
-    params[:page][:position] = (params[:page][:front]=="0" ? 0 : max_position)
-    @page = params[:page][:type].constantize.new params[:page]
+
     @page.author_id = @current_user.id
+
     unless @page.save
-      # Recarrega variáveis para formulário
-      @repository = Repository.new
-      if not @page.repository_ids
-        @page_files_unchecked = @site.repositories.where("id NOT IN (?)", @page.repository_ids.to_s.delete('[]')).page(1).per(params[:twitter_page].to_i*5) 
-      else
-        @page_files_unchecked = @site.repositories.page(1).per(params[:twitter_page].to_i*5)
-      end
+      @page.pages_repositories.build
+      @page.sites_pages.build
       build_site_locales
     end
     respond_with(@site, @page)
@@ -131,9 +130,9 @@ class PagesController < ApplicationController
         @page.position = 0
       end
       if @page.update_attributes("#{params[:field]}" => new_value)
-        flash[:notice] = t"successfully_updated"
+        flash[:notice] = t("successfully_updated")
       else
-        flash[:notice] = t"error_updating_object"
+        flash[:notice] = t("error_updating_object")
       end
     end
     redirect_to :back
@@ -154,7 +153,7 @@ class PagesController < ApplicationController
       if(@ch_pos.position > @after.position)
         condition = "position < #{@ch_pos.position} AND position > #{other_pos}"
         new_pos = @after.position+1
-      #Caso foi movido de baixo pra cima
+        #Caso foi movido de baixo pra cima
       else
         increment = -1
         condition = "position > #{@ch_pos.position} AND position <= #{other_pos}"
