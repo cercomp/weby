@@ -25,8 +25,6 @@ class PagesController < ApplicationController
     end
 
     @tiny_mce = tiny_mce
-    #update : pode linkar todas as páginas dentro da notícia
-    #@pages = @pages.published if @tiny_mce
 
     if @pages
       respond_with @page
@@ -47,29 +45,16 @@ class PagesController < ApplicationController
   end
 
   def new
-    params[:twitter_page] ||= 1
-
     @page = Page.new
     @page.sites_pages.build
-    @page.pages_repositories.build
     build_site_locales
+    @page.pages_repositories.build
   end
 
   def edit
     @page = Page.find(params[:id])
-    # Automaticamente define o tipo da pagina, se não for passado como parâmetro
-    params[:twitter_page] ||= 1
-
     build_site_locales
-
     @page.pages_repositories.build
-
-    # Criando objeto com os arquivos que não estão relacionados com a página
-    unless @page.repository_ids.empty?
-      @page_files_unchecked = @site.repositories.where("id NOT IN (?)", @page.repository_ids).page(params[:twitter_page]).per(params[:per_page]) 
-    else
-      @page_files_unchecked = @site.repositories.page(params[:twitter_page]).per(params[:per_page])
-    end
   end
 
   def create
@@ -94,16 +79,13 @@ class PagesController < ApplicationController
   end
 
   def update
-    params[:page][:repository_id] ||= nil
-    params[:page][:repository_ids] ||= []
+    # Remove type of params because type can't be setted on update_attributes
+    params[:page].delete(:type)
+
     @page = Page.find(params[:id])
-    p @page.page_i18ns
-    if (params[:page][:front]=="1" && !@page.front)
-      @page.position = max_position 
-    elsif (params[:page][:front]=="0" && @page.front)
-      position_down_from @page.position
-      @page.position = 0
-    end
+
+    fix_position_of @page
+
     unless @page.update_attributes(params[:page])
       build_site_locales
     end
@@ -160,16 +142,13 @@ class PagesController < ApplicationController
         new_pos = @after.position
       end
     end
-    #@site.pages.front.where(condition).each do |page|
-    #  page.increment(:position, increment).save
-    #end
     @site.pages.front.where(condition).update_all("position = position + (#{increment})")
     @ch_pos.update_attribute(:position, new_pos)
     render :nothing => true
   end
 
   # TODO teste para listar páginas na criação do componente news_as_home
-  # FIXEME método semelhante ao usado pelo 'index', verificar uma maneira de agrupa-los
+  # FIXME método semelhante ao usado pelo 'index', verificar uma maneira de agrupa-los
   # Lista com paginação as notícias cadastradas
   def list_published
     params[:locales] ||= session[:locale]
@@ -199,14 +178,22 @@ class PagesController < ApplicationController
 
   def max_position
     max = @site.pages.front.maximum('position')
-    return max ? max+1 : 1
+
+    max.to_i + 1
+  end
+
+  def fix_position_of(page)
+    if (params[:page][:front]=="1" && !page.front)
+      page.position = max_position 
+    elsif (params[:page][:front]=="0" && page.front)
+      position_down_from page.position
+      page.position = 0
+    end
   end
 
   def position_down_from old_position
-    #@site.pages.front.where("position > #{old_position}").each do |page|
-    #  page.increment(:position, -1).save
-    #end
-    @site.pages.front.where("position > #{old_position}").update_all("position = position-1")
+    @site.pages.front.where("position > #{old_position}").
+      update_all("position = position-1")
   end
 
   def tiny_mce
@@ -226,14 +213,20 @@ class PagesController < ApplicationController
   end
 
   def build_site_locales
+    available_locales.each do |locale|
+      @page.page_i18ns.build(locale_id: locale.id)
+    end
+  end
+
+  def available_locales
     locales = @site.locales
     if @page.page_i18ns.size > 0
       locales = locales.
-        where(["id not in (?)", @page.page_i18ns.map{|page_i18n| page_i18n.locale.id}])
+        where(["id not in (?)", @page.page_i18ns.
+               map{|page_i18n| page_i18n.locale.id}])
     end
-    locales.each do |locale|
-      @page.page_i18ns.build(locale_id: locale.id)
-    end
+
+    locales
   end
 
   def search_images

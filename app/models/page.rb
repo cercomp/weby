@@ -47,9 +47,17 @@ class Page < ActiveRecord::Base
   accepts_nested_attributes_for :sites_pages, allow_destroy: true
   accepts_nested_attributes_for :pages_repositories, allow_destroy: true
 
-  validate :at_least_one_internationalization
+  validate :presence_of_internationalization
+  validate :page_i18ns, presence: true, associated: true
 
-  def at_least_one_internationalization
+  def presence_of_internationalization
+    p "================================================================================"
+    p "================================================================================"
+    p "================================================================================"
+    p self.page_i18ns
+    p "================================================================================"
+    p "================================================================================"
+    p "================================================================================"
     error_message = I18n.t("page_need_at_least_one_internationalization") 
     errors.add(:base, error_message) if has_valid_internationalizations?
   end
@@ -60,13 +68,14 @@ class Page < ActiveRecord::Base
   private :has_valid_internationalizations?
 
   def valid_internationalizations
-    self.page_i18ns.
-      map{ |page_i18n| page_i18n if valid_internationalization? }.compact
+    self.page_i18ns.map do |internationalization| 
+      internationalization if valid_internationalization?(internationalization)
+    end.compact
   end
   private :valid_internationalizations
 
-  def valid_internationalization?
-    not page_i18n.marked_for_destruction? and not page_i18n.title.blank?
+  def valid_internationalization?(internationalization)
+    !internationalization.marked_for_destruction? || !internationalization.title.blank?
   end
   private :valid_internationalization?
 
