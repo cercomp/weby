@@ -6,5 +6,6 @@ class PageI18n < ActiveRecord::Base
   belongs_to :page
   belongs_to :locale
 
-  validates_presence_of :title
+  validate :title, presence: true
+  validate :locale_id, presence: true
 end
