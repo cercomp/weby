@@ -1,7 +1,8 @@
 <fieldset>
   <legend><%=  t"user.other" %></legend>
 
-  <% if current_user.is_admin? %>
+  <%# if current_user.is_admin? %>
+  <% if check_permission(UsersController, 'manage_roles') %>
     <div class="contextual">
       <% if @site %>
         <%= link_to (t"enrole_user_site"), manage_roles_site_users_path, :class => 'icon icon-add' %>

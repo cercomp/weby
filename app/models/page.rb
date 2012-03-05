@@ -75,6 +75,13 @@ class Page < ActiveRecord::Base
 
   def valid_internationalization?(internationalization)
     not(internationalization.marked_for_destruction? or internationalization.title.blank?)
+    self.page_i18ns.
+      map{ |page_i18n| page_i18n if valid_internationalization?(page_i18n) }.compact
+  end
+  private :valid_internationalizations
+
+  def valid_internationalization?(page_i18n)
+    not page_i18n.marked_for_destruction? and not page_i18n.title.blank?
   end
   private :valid_internationalization?
 
@@ -87,9 +94,9 @@ class Page < ActiveRecord::Base
 
   # Find current i18n page
   # Try use session[:locale] to find actual i18n
-  def page_i18n
-    by_locale(session[:locale])
-  end
+  #def page_i18n(session)
+  #  by_locale(session[:locale])
+  #end
 
   # Necessário para o STI(News, Event)
   # Classes filhas devem responder que são Pages

@@ -14,8 +14,19 @@
       <br />
     <% end %>
   </p>
-  <%= submit_tag (t"submit"), class: "green-button" %>
+  <%= submit_tag (t"submit"), class: "green-button", onclick: current_user.id == @user.id ? "return test_unrole('form_user_#{@user.id}');" : "" %>
   <%= link_to t('cancel'), {action: 'manage_roles'}, 
     onclick: "return hide_form(#{@user.id});", 
     id: "form_role_cancel", class: "red-button" %>
 </form>
+<%= javascript_tag do %>
+  function test_unrole(form_id){
+    if( $('#'+form_id+' input:checked').length == 0 ){
+      if(!confirm('<%= t("confirm_unrole") -%>')){
+        return false;
+      }
+    }
+    return true;
+  }
+<% end %>
+
