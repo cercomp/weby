@@ -57,6 +57,7 @@ pt-BR:
   categories: "Categorias"
   change_file: "Alterar arquivo"
   chief_editor: "Editor chefe"
+  confirm_unrole: "Deseja realmente se desrelacionar deste sítio?\\n\\nAtenção! Após se desrelacionar, somente usuários com a devida permissão poderão relacioná-lo novamente!"
   component:
     one: "Componente"
     other: "Componentes"

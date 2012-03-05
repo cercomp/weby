@@ -56,6 +56,7 @@ en:
   category: "Category"
   categories: "Categories"
   chief_editor: "Chief Editor"
+  confirm_unrole: "Do you really wish to withdraw yourself from this site?\\n\\nAtention! After withdrawing, only users with the proper rights will be able to enrole you again!"
   component:
     one: "Component"
     other: "Components"
