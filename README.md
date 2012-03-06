@@ -30,6 +30,15 @@ It was developed using [Ruby on Rails](http://rubyonrails.org/) (an open source 
 
 ## Instalação/Installation
 
+__Para sistemas baseados em Debian__
+
+    # aptitude install curl build-essential libssl-dev libreadline6 libreadline6-dev zlib1g-dev zlib1g libpq-dev
+
+
+
+
+
+
 
 
 
