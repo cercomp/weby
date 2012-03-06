@@ -85,7 +85,7 @@ class PagesController < ApplicationController
 
     @page = Page.find(params[:id])
 
-    fix_position_of @page
+    update_position_of @page
 
     unless @page.update_attributes(params[:page])
       build_site_locales
@@ -97,8 +97,8 @@ class PagesController < ApplicationController
     @page = Page.find(params[:id])
     # deleta todas as relacoes da pagina com os sites
     SitesPage.find(@page.sites_pages).each{ |p| p.destroy }
-    position_down_from @page.position if @page.front?
     @page.destroy
+    position_down_from @page.position if @page.front?
     redirect_to(:back)
   end
 
@@ -183,7 +183,7 @@ class PagesController < ApplicationController
     max.to_i + 1
   end
 
-  def fix_position_of(page)
+  def update_position_of(page)
     if (params[:page][:front]=="1" && !page.front)
       page.position = max_position 
     elsif (params[:page][:front]=="0" && page.front)
@@ -194,7 +194,7 @@ class PagesController < ApplicationController
 
   def position_down_from old_position
     @site.pages.front.where("position > #{old_position}").
-      update_all("position = position-1")
+      update_all("position = position-1") if old_position
   end
 
   def tiny_mce
