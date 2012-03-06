@@ -158,6 +158,7 @@ GEM
     uglifier (1.2.3)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
+    valid_attribute (1.2.0)
 
 PLATFORMS
   ruby
@@ -174,9 +175,10 @@ DEPENDENCIES
   pg
   pry-rails
   rails (= 3.2.1)
-  rspec-rails
+  rspec-rails (= 2.8.1)
   sass-rails (~> 3.2.3)
   simple_form!
   therubyracer
   thin
   uglifier (>= 1.0.3)
+  valid_attribute (= 1.2.0)

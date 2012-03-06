@@ -12,13 +12,13 @@ gem "simple_form", :tag => 'v2.0.1', :git => "http://github.com/plataformatec/si
 gem "acts-as-taggable-on"
 
 group :assets do
-	gem 'sass-rails',   '~> 3.2.3'
-	gem 'therubyracer'
-	gem 'uglifier', '>= 1.0.3'
+  gem 'sass-rails',   '~> 3.2.3'
+  gem 'therubyracer'
+  gem 'uglifier', '>= 1.0.3'
 end
 
 group :production do
-	gem 'dispatcher'
+  gem 'dispatcher'
   gem 'thin' # Optional, needs for thin cluster in production
 end
 
@@ -27,5 +27,6 @@ group :development do
 end
 
 group :development, :test do
-  gem 'rspec-rails'
+  gem 'rspec-rails', '2.8.1'
+  gem 'valid_attribute', '1.2.0'
 end
