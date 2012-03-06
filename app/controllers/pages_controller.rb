@@ -61,6 +61,7 @@ class PagesController < ApplicationController
     # Remove type of params because type can't be setted on create
     type = params[:page].delete(:type)
     type ||= 'News'
+    params[:page][:position] = (params[:page][:front]=="0" ? 0 : max_position)
 
     @page = Page.new(params[:page])
 
