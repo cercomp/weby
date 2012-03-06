@@ -1,4 +1,13 @@
 GIT
+  remote: http://github.com/plataformatec/simple_form.git
+  revision: 6f8a02452484060b6df6403c477d389d1de78fd5
+  tag: v2.0.1
+  specs:
+    simple_form (2.0.1)
+      actionpack (~> 3.0)
+      activemodel (~> 3.0)
+
+GIT
   remote: http://github.com/thoughtbot/paperclip.git
   revision: 9e389588740c04bd682704cfc835f428f624b7cf
   specs:
@@ -129,9 +138,6 @@ GEM
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
-    simple_form (2.0.1)
-      actionpack (~> 3.0)
-      activemodel (~> 3.0)
     slop (2.4.4)
     sprockets (2.1.2)
       hike (~> 1.2)
@@ -170,7 +176,7 @@ DEPENDENCIES
   rails (= 3.2.0)
   rspec-rails
   sass-rails (~> 3.2.3)
-  simple_form (= 2.0.1)
+  simple_form!
   therubyracer
   thin
   uglifier (>= 1.0.3)
