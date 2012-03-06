@@ -10,7 +10,7 @@
       <% links = @site.menu_categories %>
       <% for link in links do %>
         <% selected = params[:category] == link ? "selected" : "" %>
-        <li><%= link_to(link.try(:titleize), site_menus_path(@site, :category => link), :rel => link, :class => "#{selected}") %></li>
+        <li><%= link_to(link.try(:titleize), params[:category] == link ? '#' : site_menus_path(@site, :category => link), :rel => link, :class => "#{selected}") %></li>
       <% end %>
     </ul>
   </div>
@@ -23,8 +23,10 @@
   window.onload=function(){
     $().ready(function() {
 
-      var dropped = false;
+      ////FIX-ME
+      $('#content').css({'overflow':'hidden'});
 
+      var dropped = false;
       $('#main-tabs > menu').nestedSortable({
         listType: 'menu',
         handle: '.handle',
@@ -89,7 +91,59 @@
         }
       });
 
+      $("a.selected").click(function(){
+        return false;
+      });
+
+      var cur_anchor;
+      $("a.selected").dblclick(function(){
+        cont = $(this).parent();
+        cur_anchor = $(this).detach();
+        cat_edit = $(document.createElement('input'));
+        cat_edit.attr('type','text');
+        cat_edit.val(this.rel);
+        cat_edit.blur(function(){
+          cat_edit.val(trim(cat_edit.val()));
+          if(cat_edit.val() != cur_anchor.attr('rel')){
+            $.ajax({
+              type: 'post',
+              data: 'category='+cat_edit.val()+'&old_category='+cur_anchor.attr('rel'),
+              dataType: 'script',
+              complete: function(request,text){
+                if(text=='success'){
+                  cur_anchor.attr('rel',cat_edit.val());
+                  cur_anchor.text(titleize(cat_edit.val()));
+                }
+                cat_edit.remove();
+                cont.append(cur_anchor);
+                location = cur_anchor.attr('href');
+              },
+              url: '<%= change_category_site_menus_path %>'
+            });
+            cat_edit.attr('disabled', true);
+          }else{
+            cat_edit.remove();
+            cont.append(cur_anchor);
+          }
+        });
+        cat_edit.keypress(function(event) {
+          if ( event.which == 13 ) {
+             event.preventDefault();
+             $(this).blur();
+           }
+        });
+        cont.append(cat_edit);
+        cat_edit.focus();
+      });
+
     })
+  }
+
+  function titleize(string){
+      return string[0].toUpperCase() + string.slice(1);
+  }
+  function trim(str){
+      return str.replace(/^\s+|\s+$/g,"");
   }
   <% end %>
 </fieldset>
