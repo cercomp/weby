@@ -53,6 +53,7 @@ class CssesController < ApplicationController
   end
 
   def edit
+    @css = Css.find(params[:id])
   end
 
   def create
@@ -70,12 +71,14 @@ class CssesController < ApplicationController
   end
 
   def update
+    @css = Css.find(params[:id])
+
     respond_to do |format|
       if @css.update_attributes(params[:css])
-        format.html { redirect_to(site_csses_path, :notice => t('successfully_updated')) }
+        format.html { redirect_to(site_csses_path, :notice => params[:css] ) }
         format.xml  { head :ok }
       else
-        format.html { redirect_to :back }
+        format.html { redirect_to :back, :notice => params[:css] }
         format.xml  { render :xml => @css.errors, :status => :unprocessable_entity }
       end
     end
