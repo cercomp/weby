@@ -20,12 +20,6 @@
 		<%= image_tag "help-icon.png" %>
 	</div>
 
-  <%= f.fields_for :sites_csses do |sc| %>
-    <%= sc.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
-    <%= sc.input :owner, :input_html => {:value => true}, :as => :hidden %>
-    <%= sc.input :publish, :input_html => {:value => true}, :as => :hidden %>
-  <% end %>
-
   <div class="actions">
 		<%= f.submit t("save"), :class => 'green-button' %>
 		<%= link_to t('back'), site_csses_path(@site), :class => 'red-button' %>
