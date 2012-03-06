@@ -287,7 +287,7 @@ en:
     one: "Page"
     other: "Pages"
     image: "Page Image"
-  page_need_at_least_one_internationalization: "needs content in at least one language"
+  page_need_at_least_one_internationalization: "Page needs content in at least a language"
   page_categories_help: "Categories are separated by commas, the page's category are related with your content. Ex:Sports, News, Policy"
   page_not_found: "Page Not Found"
   password: "Password"

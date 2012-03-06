@@ -35,24 +35,31 @@ class Page < ActiveRecord::Base
 
   has_many :pages_repositories
   has_many :repositories, through: :pages_repositories
+  accepts_nested_attributes_for :pages_repositories, allow_destroy: true
 
   has_many :sites_pages
   has_many :sites, through: :sites_pages
-
-  has_many :page_i18ns, dependent: :destroy, validate: false
-
-  accepts_nested_attributes_for :page_i18ns,
-    allow_destroy: true,
-    reject_if: proc { |attributes| attributes['title'].blank? }
   accepts_nested_attributes_for :sites_pages, allow_destroy: true
-  accepts_nested_attributes_for :pages_repositories, allow_destroy: true
 
-  validate :at_least_one_internationalization
+  # Internationalization
+  has_many :page_i18ns, dependent: :destroy
+  accepts_nested_attributes_for :page_i18ns, allow_destroy: true
+  validates_associated :page_i18ns
 
-  def at_least_one_internationalization
+  before_save :reject_blank_internationalizations
+  def reject_blank_internationalizations
+    page_i18ns.each do |internationalization|
+      internationalization.delete unless valid_internationalization?(internationalization)
+    end
+  end
+  private :reject_blank_internationalizations
+
+  validate :presence_of_internationalization
+  def presence_of_internationalization
     error_message = I18n.t("page_need_at_least_one_internationalization") 
     errors.add(:base, error_message) if has_valid_internationalizations?
   end
+  private :presence_of_internationalization
 
   def has_valid_internationalizations?
     valid_internationalizations.size <= 0
@@ -60,6 +67,14 @@ class Page < ActiveRecord::Base
   private :has_valid_internationalizations?
 
   def valid_internationalizations
+    page_i18ns.map do |internationalization| 
+      internationalization if valid_internationalization?(internationalization)
+    end.compact
+  end
+  private :valid_internationalizations
+
+  def valid_internationalization?(internationalization)
+    not(internationalization.marked_for_destruction? or internationalization.title.blank?)
     self.page_i18ns.
       map{ |page_i18n| page_i18n if valid_internationalization?(page_i18n) }.compact
   end
