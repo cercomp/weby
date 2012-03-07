@@ -79,7 +79,7 @@ en:
     fem: "Create %{param}"
     masc: "Create %{param}"
   current_login: "Current login %{param}"
-  css:
+  style:
     one: "Style"
     other: "Styles"
   create_account_successful: "Your account has been created. Please check your e-mail for your account activation instructions!"
@@ -167,7 +167,7 @@ en:
   help_image: "This image will be the site header!"
   help_image_page: "This image will be set as the main image of the page!"
   help_image_banner: "This image will be set as the main image of the baner!"
-  help_with_css: "Need Help with the Css"
+  help_with_style: "Need Help with the style"
 
 #---I---#
   i18n: 'Internationalization'
@@ -243,7 +243,7 @@ en:
   my_account: "My account"
   my_profile: "My profile"
   my_password: "My Password"
-  my_css: "My Styles"
+  my_style: "My Styles"
 
 #---N---#
   nacional: "Nacional"
@@ -278,7 +278,7 @@ en:
 #---O---#
   of: 'of'
   original: "Original"
-  other_css: "Other Styles"
+  other_style: "Other Styles"
   owner: "Owner"
   only_admin: "It is allowed only to administrators!"
 

@@ -80,7 +80,7 @@ pt-BR:
     fem: "Criar %{param}"
     masc: "Criar %{param}"
   current_login: "Entrada atual %{param}"
-  css:
+  style:
     one: "Estilo"
     other: "Estilos"
   create_account_successful: "Sua conta foi criada! Foi enviado para seu email instruções de como ativá-la."
@@ -168,7 +168,7 @@ pt-BR:
   help_image: "Essa imagem será o topo do site"
   help_image_page: "Essa imagem será a imagem principal da página!"
   help_image_banner: "Essa imagem será utilizada como banner!"
-  help_with_css: "Precisa de ajuda com o Css"
+  help_with_style: "Precisa de ajuda com o estilo"
 
 #---I---#
   i18n: 'Internacionalização'
@@ -244,7 +244,7 @@ pt-BR:
   my_account: "Minha Conta"
   my_profile: "Meu Perfil"
   my_password: "Minha Senha"
-  my_css: "Meus Estilos"
+  my_style: "Meus Estilos"
 
 #---N---#
   nacional: "Nacional"
@@ -279,7 +279,7 @@ pt-BR:
 #---O---#
   of: "de"
   original: "Original"
-  other_css: "Outros Estilos"
+  other_style: "Outros Estilos"
   owner: "Dono"
   only_admin: "Somente administradores tem acesso!"
 

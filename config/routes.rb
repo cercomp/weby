@@ -66,7 +66,7 @@ Weby::Application.routes.draw do
         get :sent
       end
     end
-    resources :csses do
+    resources :styles do
       member do
         get :copy, :follow, :toggle_field
       end
