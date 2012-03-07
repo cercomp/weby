@@ -52,7 +52,7 @@ class PagesController < ApplicationController
   end
 
   def edit
-    @page = Page.find(params[:id])
+    @page = @site.pages.find(params[:id])
     build_site_locales
     @page.pages_repositories.build
   end
@@ -83,7 +83,7 @@ class PagesController < ApplicationController
     # Remove type of params because type can't be setted on update_attributes
     params[:page].delete(:type)
 
-    @page = Page.find(params[:id])
+    @page = @site.pages.find(params[:id])
 
     update_position_of @page
 
@@ -94,7 +94,7 @@ class PagesController < ApplicationController
   end
 
   def destroy
-    @page = Page.find(params[:id])
+    @page = @site.pages.find(params[:id])
     # deleta todas as relacoes da pagina com os sites
     SitesPage.find(@page.sites_pages).each{ |p| p.destroy }
     @page.destroy
@@ -103,7 +103,7 @@ class PagesController < ApplicationController
   end
 
   def toggle_field
-    @page = Page.find(params[:id])
+    @page = @site.pages.find(params[:id])
     if params[:field]
       new_value = (@page[params[:field]] == 0 or not @page[params[:field]] ? true : false)
       if (params[:field]=='front' && new_value)
@@ -179,7 +179,6 @@ class PagesController < ApplicationController
 
   def max_position
     max = @site.pages.front.maximum('position')
-
     max.to_i + 1
   end
 
