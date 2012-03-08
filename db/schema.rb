@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120123152804) do
+ActiveRecord::Schema.define(:version => 20120307180528) do
 
   create_table "banners", :force => true do |t|
     t.datetime "date_begin_at"
@@ -31,13 +31,6 @@ ActiveRecord::Schema.define(:version => 20120123152804) do
     t.integer  "site_id"
     t.integer  "position"
     t.integer  "page_id"
-  end
-
-  create_table "csses", :force => true do |t|
-    t.string   "name"
-    t.text     "css"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "feedbacks", :force => true do |t|
@@ -215,15 +208,6 @@ ActiveRecord::Schema.define(:version => 20120123152804) do
     t.boolean  "menu_dropdown"
   end
 
-  create_table "sites_csses", :force => true do |t|
-    t.integer  "site_id",    :null => false
-    t.integer  "css_id",     :null => false
-    t.boolean  "publish"
-    t.boolean  "owner"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "sites_menus", :force => true do |t|
     t.integer  "site_id"
     t.integer  "menu_id"
@@ -237,6 +221,22 @@ ActiveRecord::Schema.define(:version => 20120123152804) do
   create_table "sites_pages", :force => true do |t|
     t.integer  "site_id"
     t.integer  "page_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "sites_styles", :force => true do |t|
+    t.integer  "site_id",    :null => false
+    t.integer  "style_id",   :null => false
+    t.boolean  "publish"
+    t.boolean  "owner"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "styles", :force => true do |t|
+    t.string   "name"
+    t.text     "css"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

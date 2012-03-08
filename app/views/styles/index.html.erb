@@ -1,0 +1,43 @@
+<%= content_for :javascripts, javascript_include_tag("styles_index") %>
+
+<fieldset>
+  <legend><%= t("style.other") %></legend>
+
+  <% if check_permission(StylesController, 'new') %>
+    <div class="contextual">
+      <%= link_to (t"new_param.masc", :param => (t"style.one")), new_site_style_path, :class => 'icon icon-add' %>
+    </div>
+  <% end %>
+
+  <div>
+    <details open id="styles">
+      <summary id="styles"><%= t("my_style") %></summary>
+      <center>
+        <%= form_tag site_styles_path, :method => 'get', :name => 'my_style_search', :remote => true do %>
+          <%= text_field_tag :my_style_name %>
+          <%= hidden_field_tag :other_style_name %>
+          <%= hidden_field_tag 'page_my_styles', 1 %>
+          <%= submit_tag t("search"), class: 'search-button' %>
+        <% end %>
+
+      </center>
+      <div id="my_styles">
+        <%= render 'my_styles', :my_styles => @my_styles %>
+      </div>
+    </details>
+    <details open id="styles">
+      <summary id="styles"><%= t('other_style') %></summary>
+      <center>
+        <%= form_tag site_styles_path, :method => 'get', :name => 'other_style_search', :remote => true do %>
+          <%= text_field_tag :other_style_name %>
+          <%= hidden_field_tag :my_style_name %>
+          <%= hidden_field_tag 'page_other_styles', 1 %>
+          <%= submit_tag t("search"), class: 'search-button' %>
+        <% end %>
+      </center>
+      <div id="other_styles">
+        <%= render 'other_styles', :other_styles => @other_styles %>
+      </div>
+    </details>
+  </div>
+</fieldset>
