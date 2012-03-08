@@ -18,6 +18,4 @@ tmp/*
 # Ignore uploads
 public/uploads/
 
-#Ignore Netbeans project files
-nbproject/
 .sass-cache
