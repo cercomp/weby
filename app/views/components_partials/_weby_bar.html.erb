@@ -70,11 +70,11 @@
               </li>
             <% end %>
       
-            <% if check_permission(CssesController, [:index]) %>
-              <li> <%= link_to (t"css.other"), site_csses_path(@site) %>
+            <% if check_permission(StylesController, [:index]) %>
+              <li> <%= link_to (t"style.other"), site_styles_path(@site) %>
                 <menu>
-                <% if check_permission(CssesController, [:new]) %>
-                  <li> <%= link_to t("new.masc"), new_site_css_path(@site), :class => 'icon icon-add' %> </li>
+                <% if check_permission(StylesController, [:new]) %>
+                  <li> <%= link_to t("new.masc"), new_site_style_path(@site), :class => 'icon icon-add' %> </li>
                 <% end %>
                 </menu>
               </li>

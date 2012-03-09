@@ -116,7 +116,7 @@
                 }
                 cat_edit.remove();
                 cont.append(cur_anchor);
-                location = cur_anchor.attr('href');
+                location = '<%=site_menus_path(@site, :category => 'NEWCAT')%>'.replace('NEWCAT',cat_edit.val());
               },
               url: '<%= change_category_site_menus_path %>'
             });

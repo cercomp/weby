@@ -1,0 +1,7 @@
+<% unless @site.styles.blank? %>
+  <% @site.sites_styles.where(:publish => :true).each do |c| %>
+    <style type="text/css">
+      <%= raw c.style.css %>
+    </style>
+  <% end %>
+<% end %>

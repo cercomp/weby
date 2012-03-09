@@ -1,0 +1,24 @@
+<%= info_page other_styles %>
+<%= paginate other_styles, :param_name => :page_other_styles, :window => 1 %>
+<table class='list'>
+  <thead>
+    <th><%= t('name') %></th>
+    <th><%= t('owner') %></th>
+    <th><%= t('follow') %></th>
+    <th></th>
+  </thead>
+  <tbody>
+    <% unless other_styles.empty? %>
+      <% other_styles.each do |site_style| %>
+        <tr>
+          <td> <%= site_style.style.name %> </td>
+          <td> <%= link_to site_style.style.owner.try(:name), site_style.site %> </td>
+          <td align="center"> <%= follow(site_style) %> </td>
+          <td> <%= make_menu_style(site_style) %> </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+<%#= per_page_links other_styles %>
+<%= paginate other_styles, :param_name => :page_other_styles, :window => 1 %>

@@ -1,0 +1,17 @@
+<fieldset>
+  <p>
+    <b>Name:</b>
+    <%= @style.name %>
+  </p>
+
+  <p>
+    <b>Style:</b>
+    <pre class="brush: style"><%= @style.css %></pre>
+  </p>
+
+  <% if @site.id == @style.owner.id %>
+    <%= link_to t('edit'), edit_site_style_path(@site, @style) %> |
+  <% end %>
+
+  <%= link_to t('back'), :back %>
+</fieldset>

@@ -4,15 +4,15 @@ describe Site do
 
   subject { Site.new }
 
-  %w{name url}.each do |attribute|
-    it "not be valid without #{attribute}" do
-      subject.should have_at_least(1).error_on(attribute)
-    end
-  end
+  it { should have_valid(:name).when('Teste') }
+  it { should_not have_valid(:name) }
+
+  it { should have_valid(:url).when('http://localhost.com', 'http://www.teste.com.br') }
+  it { should_not have_valid(:url).when(nil, '', 'asdf', 'user@gmail.com', 'localhost.com') }
 
   it "Site#name should be unique" do
     Site.new.tap do |site|
-      2.times { site = Site.create name: 'One', url: 'http://localhost' }
+      2.times { site = Site.create name: 'One', url: 'http://localhost.com' }
       site.should have_at_least(1).error_on(:name)
     end
   end

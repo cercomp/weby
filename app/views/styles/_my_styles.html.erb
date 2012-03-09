@@ -1,0 +1,22 @@
+<%= info_page my_styles %>
+<%= paginate my_styles, :param_name => :page_my_styles, :window => 1 %>
+<table class='list'>
+  <thead>
+    <th><%= t("name") %></th>
+    <th><%= t("publish") %></th>
+    <th><%= t("sites_followers") %></th>
+    <th><%= t("actions") %></th>
+  </thead>
+  <tbody>
+    <% my_styles.each do |site_style| %>
+      <tr>
+        <td> <%= site_style.style.name %> </td>
+        <td align="center"> <%= raw toggle_field(site_style, "publish") %> </td>
+        <td> <%= list_style_sites(site_style) %> </td>
+        <td> <%= raw make_menu_style(site_style) %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%#= per_page_links my_styles, true %>
+<%= paginate my_styles, :param_name => :page_my_styles, :window => 1 %>

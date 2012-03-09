@@ -10,28 +10,37 @@ class Site < ActiveRecord::Base
           { :text => "%#{text}%" })
   }
 
-  def my_csses
-    sites_csses.where(:owner => true)
+  def my_styles
+    sites_styles.where(:owner => true)
   end
 
-  def other_csses
-    SitesCss.where(['(
+  def other_styles
+    SitesStyle.where(['(
                         site_id = :site_id AND owner = false
                      ) OR (
-                        site_id <> :site_id AND css_id NOT IN (
-                          SELECT css_id FROM sites_csses WHERE site_id = :site_id
+                        site_id <> :site_id AND style_id NOT IN (
+                          SELECT style_id FROM sites_styles WHERE site_id = :site_id
                         )
                      )',
-             {:site_id => self.id}]).order(:owner, :site_id, :css_id)
+                     {:site_id => self.id}]).order(:owner, :site_id, :style_id)
   end
 
   def menu_categories
-    self.sites_menus.except(:order, :select).find(:all, :select => 'DISTINCT category').map{ |m| m.category }
+    self.sites_menus.except(:order, :select).
+      find(:all, :select => 'DISTINCT category').map{ |m| m.category }
   end
 
-  validates_presence_of :name, :url, :per_page
-  validates_uniqueness_of :name
-  validates_format_of :per_page, :with => /([0-9]+[,\s]*)+[0-9]*/
+  validates :url,
+    presence: true,
+    format: { with: /^http[s]{,1}:\/\/[\w\.\-\%\#\=\?\&]+\.([\w\.\-\%\#\=\?\&]+\/{,1})*/i }
+
+  validates :name,
+    presence: true,
+    uniqueness: true
+
+  validates :per_page,
+    presence: true,
+    format: { with: /([0-9]+[,\s]*)+[0-9]*/ }
 
   has_many :roles
 
@@ -47,8 +56,8 @@ class Site < ActiveRecord::Base
   has_many :feedbacks
   has_many :banners
 
-  has_many :sites_csses, :dependent => :destroy
-  has_many :csses, :through => :sites_csses
+  has_many :sites_styles, :dependent => :destroy
+  has_many :styles, :through => :sites_styles
 
   # FIXME testando relação de componentes
   has_many :site_components

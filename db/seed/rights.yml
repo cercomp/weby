@@ -261,49 +261,49 @@
 44:
  id: 44
  name: "Listar Estilo"
- controller: csses
+ controller: styles
  action: index
 
 45:
  id: 45
  name: "Ver Estilo"
- controller: csses
+ controller: styles
  action: show
 
 46:
  id: 46
  name: "Editar Estilo"
- controller: csses
+ controller: styles
  action: edit update
 
 47:
  id: 47
  name: "Excluir Estilo"
- controller: csses
+ controller: styles
  action: destroy
 
 48:
  id: 48
  name: "Criar Estilo"
- controller: csses
+ controller: styles
  action: new create
 
 49:
  id: 49
  name: "Publicar Estilo"
- controller: csses
+ controller: styles
  action: toggle_field
 
 50:
  id: 50
  name: "Usar Estilo"
- controller: csses
+ controller: styles
  action: follow
 
 51:
  id: 51
  name: "Copiar Estilo"
- controller: csses
+ controller: styles
  action: copy
 
 52:
