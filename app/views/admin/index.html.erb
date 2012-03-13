@@ -64,13 +64,13 @@
     </p>
     <p>
       <%= link_to (t"group.other"), site_groups_path %>
-      <% if check_permission(GroupsController, ["new"]) %>
+      <% if check_permission(Sites::GroupsController, ["new"]) %>
        | <%= link_to t("new.masc"), new_site_group_path, :class => 'icon icon-add' %>
       <% end %>
     </p>
     <p>
       <%= link_to (t"messages") +" "+ (t"feedback.one"), site_feedbacks_path %>
-      <% if check_permission(FeedbacksController, ["new"]) %>
+      <% if check_permission(Sites::FeedbacksController, ["new"]) %>
       <% end %>
     </p>
     <p>

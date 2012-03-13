@@ -61,7 +61,7 @@ Weby::Application.routes.draw do
         post :sort
       end
     end
-    resources :feedbacks do
+    resources :feedbacks, :controller => 'sites/feedbacks' do
       collection do
         get :sent
       end
@@ -77,7 +77,9 @@ Weby::Application.routes.draw do
       end
     end
 
-    resources :groups, :chats, :rights, :archives, :admin
+    resources :groups, :controller => 'sites/groups'
+
+    resources :chats, :rights, :archives, :admin
   end
 
   resources :groups, :chats, :rights, :archives, :user_sessions, :admin, :settings
