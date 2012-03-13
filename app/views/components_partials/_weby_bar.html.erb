@@ -100,14 +100,14 @@
               <li> <%= link_to (t"roles_permissions"), site_roles_path(@site) %> </li>
             <% end %>
       
-            <% if check_permission(FeedbacksController, [:index]) %>
+            <% if check_permission(Sites::FeedbacksController, [:index]) %>
 
               <li class="separator"> <%= t("feedback.one") %> </li>
 
-                <% if check_permission(GroupsController, [:index]) %>
+                <% if check_permission(Sites::GroupsController, [:index]) %>
                   <li> <%= link_to (t"group.other"), site_groups_path(@site) %>
                     <menu>
-                      <% if check_permission(GroupsController, [:new]) %>
+                      <% if check_permission(Sites::GroupsController, [:new]) %>
                         <li> <%= link_to t("new.masc"), new_site_group_path(@site), :class => 'icon icon-add' %> </li>
                       <% end %>
                    </menu>
