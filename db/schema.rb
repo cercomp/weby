@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120307180528) do
+ActiveRecord::Schema.define(:version => 20120309162635) do
 
   create_table "banners", :force => true do |t|
     t.datetime "date_begin_at"
@@ -229,7 +229,6 @@ ActiveRecord::Schema.define(:version => 20120307180528) do
     t.integer  "site_id",    :null => false
     t.integer  "style_id",   :null => false
     t.boolean  "publish"
-    t.boolean  "owner"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -239,6 +238,8 @@ ActiveRecord::Schema.define(:version => 20120307180528) do
     t.text     "css"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "owner_id"
+    t.boolean  "publish"
   end
 
   create_table "taggings", :force => true do |t|

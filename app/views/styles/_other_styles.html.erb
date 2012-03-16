@@ -1,24 +1,25 @@
 <%= info_page other_styles %>
-<%= paginate other_styles, :param_name => :page_other_styles, :window => 1 %>
+<%= paginate other_styles, param_name: :page_other_styles, window: 1 %>
+
 <table class='list'>
   <thead>
-    <th><%= t('name') %></th>
-    <th><%= t('owner') %></th>
-    <th><%= t('follow') %></th>
-    <th></th>
+    <th> <%= t('name') %> </th>
+    <th> <%= t('owner') %> </th>
+    <th> <%= t('actions') %> </th>
   </thead>
   <tbody>
-    <% unless other_styles.empty? %>
-      <% other_styles.each do |site_style| %>
-        <tr>
-          <td> <%= site_style.style.name %> </td>
-          <td> <%= link_to site_style.style.owner.try(:name), site_style.site %> </td>
-          <td align="center"> <%= follow(site_style) %> </td>
-          <td> <%= make_menu_style(site_style) %> </td>
-        </tr>
-      <% end %>
+  <% unless other_styles.empty? %>
+    <% other_styles.each do |style| %>
+      <tr>
+        <td> <%= style.name %> </td>
+        <td> <%= style.owner.name %> </td>
+        <td class="style-action">
+          <%= raw style_actions style, others: true %>
+        </td>
+      </tr>
     <% end %>
+  <% end %>
   </tbody>
 </table>
-<%#= per_page_links other_styles %>
-<%= paginate other_styles, :param_name => :page_other_styles, :window => 1 %>
+
+<%= paginate other_styles, param_name: :page_other_styles, window: 1 %>

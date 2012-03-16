@@ -1,5 +1,11 @@
-$('#my_styles').html("<%= escape_javascript render('my_styles', :my_styles => @my_styles) %>")
+$('#own_styles').html("<%= escape_javascript render('my_styles', :my_styles => @own_styles) %>")
 $('#other_style_name[type="hidden"]').val("<%= escape_javascript(@other_style_name) %>")
+$('#follow_style_name[type="hidden"]').val("<%= escape_javascript(@follow_style_name) %>")
+
+$('#follow_styles').html("<%= escape_javascript render('other_styles', :other_styles => @follow_styles) %>")
+$('#other_style_name[type="hidden"]').val("<%= escape_javascript(@other_style_name) %>")
+$('#own_style_name[type="hidden"]').val("<%= escape_javascript(@own_style_name) %>")
 
 $('#other_styles').html("<%= escape_javascript render('other_styles', :other_styles => @other_styles) %>")
-$('#my_style_name[type="hidden"]').val("<%= escape_javascript(@my_style_name) %>")
+$('#own_style_name[type="hidden"]').val("<%= escape_javascript(@own_style_name) %>")
+$('#follow_style_name[type="hidden"]').val("<%= escape_javascript(@follow_style_name) %>")
