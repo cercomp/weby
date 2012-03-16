@@ -262,6 +262,9 @@ en:
   new_param:
     fem: "New %{param}"
     masc: "New %{param}"
+  no_follow_styles: "Not following other styles"
+  no_other_styles: "There are no other styles"
+  no_own_styles: "Not have own styles"
   no_groups: "No groups were set to receive e-mails"
   no_need_to_login: "You should not be logged in to access this page."
   no_mail: "No user was found with that email address."
@@ -416,6 +419,7 @@ en:
   try_login: "Try to login first!"
 
 #---U---#
+  unfollow: "Unfollow"
   unpublish: "Unpublish"
   update: "Update %{param}"
   updated: "%{param} updated."
