@@ -47,7 +47,7 @@ class StylesController < ApplicationController
     @style = Style.new(params[:style])
 
     if @style.save
-      flas[:notice] = t('successfully_created')
+      flash[:notice] = t('successfully_created')
       redirect_to site_styles_path
     else
       render site_id: @site.id, controller: 'styles', action: 'new'
