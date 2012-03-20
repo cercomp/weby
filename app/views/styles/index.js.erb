@@ -1,11 +1,8 @@
-$('#own_styles').html("<%= escape_javascript render('my_styles', :my_styles => @own_styles) %>")
-$('#other_style_name[type="hidden"]').val("<%= escape_javascript(@other_style_name) %>")
-$('#follow_style_name[type="hidden"]').val("<%= escape_javascript(@follow_style_name) %>")
-
-$('#follow_styles').html("<%= escape_javascript render('other_styles', :other_styles => @follow_styles) %>")
-$('#other_style_name[type="hidden"]').val("<%= escape_javascript(@other_style_name) %>")
-$('#own_style_name[type="hidden"]').val("<%= escape_javascript(@own_style_name) %>")
-
-$('#other_styles').html("<%= escape_javascript render('other_styles', :other_styles => @other_styles) %>")
-$('#own_style_name[type="hidden"]').val("<%= escape_javascript(@own_style_name) %>")
-$('#follow_style_name[type="hidden"]').val("<%= escape_javascript(@follow_style_name) %>")
+<% case @style_type %>
+<% when 'own' %>
+  $('#own_styles').html("<%= escape_javascript render('own_styles', own_styles: @own_styles) %>")
+<% when 'follow' %>
+  $('#follow_styles').html("<%= escape_javascript render('follow_styles', follow_styles: @follow_styles) %>")
+<% when 'other' %>
+  $('#other_styles').html("<%= escape_javascript render('other_styles', other_styles: @other_styles) %>")
+<% end %>
