@@ -68,7 +68,7 @@ Weby::Application.routes.draw do
     end
     resources :styles do
       member do
-        get :copy, :follow, :toggle_field
+        get :copy, :follow, :unfollow, :publish, :unpublish
       end
     end
     resources :roles do

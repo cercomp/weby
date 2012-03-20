@@ -1,7 +1,17 @@
-<% unless @site.styles.blank? %>
-  <% @site.sites_styles.where(:publish => :true).each do |c| %>
+<% unless @site.own_styles.blank? %>
+  <% @site.own_styles.where(:publish => :true).each do |style| %>
+    <!-- Meu estilos -->
     <style type="text/css">
-      <%= raw c.style.css %>
+      <%= raw style.css %>
+    </style>
+  <% end %>
+<% end %>
+
+<% unless @site.follow_styles.blank? %>
+  <% @site.sites_styles.where(:publish => :true).each do |relstyle| %>
+    <!-- Estilo seguido -->
+    <style type="text/css">
+      <%= raw relstyle.style.css %>
     </style>
   <% end %>
 <% end %>
