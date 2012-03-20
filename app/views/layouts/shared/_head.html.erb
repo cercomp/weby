@@ -4,7 +4,7 @@
   <%= csrf_meta_tag %>
   <%= load_layout_stylesheets(theme) %>
   <%= stylesheet_link_tag 'menu_dropdown' if @site.try(:menu_dropdown) %>
-  <%= render 'sites/viewStyles' if @site %>
+  <%= render 'styles/load' if @site %>
   <%= yield :stylesheets %>
 
   <%#= javascript_include_tag "application" %>
