@@ -114,12 +114,14 @@ div.flash.warning {
 }
 .handle { cursor: move; color: #1A417E; text-decoration: none; }
 
+.icon-follow:before   { content: url(/assets/icons/black16x16/ic_tag.png ); }
+.icon-publish:before   { content: url(/assets/icons/black16x16/ic_chat.png ); }
 .icon-add:before		{ content: url(/assets/icons/black16x16/ic_plus.png ); }
 .icon-back:before		{ content: url(/assets/icons/black16x16/ic_left.png ); }
 .icon-list:before		{ content: url(/assets/icons/black16x16/ic_list.png ); }
 .icon-mail:before		{ content: url(/assets/icons/black16x16/ic_mail.png ); }
 .icon-edit:before		{ content: url(/assets/icons/black16x16/ic_edit.png ); }
-.icon-copy:before		{ content: url(/assets/copy.png); }
+.icon-copy:before		{ content: url(/assets/icons/black16x16/ic_documents.png ); }
 .icon-del:before		{ content: url(/assets/icons/black16x16/ic_delete.png ); }
 .icon-move:before		{ content: url(/assets/move.png); }
 .icon-drag:before   { content: url(/assets/icons/black16x16/ic_drag.png ); }
@@ -404,3 +406,25 @@ tr.even.priority-1, table.list tbody tr.even.priority-1:hover { color: #559; }
 tr.even.priority-1 { background: #f2faff; }
 tr.priority-1 a { color: #559; }
 tr.odd.priority-1 td, tr.even.priority-1 td { border-color: #add7f3; }
+
+#styles .empty,
+{
+  margin: 0px;
+  background: #FAF6D4;
+  padding: 40px 0;
+  text-align: center;
+  color: #BE8007;
+}
+
+pre.style
+{
+  background: #e9e9e9;
+  margin: 0;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.style-action
+{
+  width: 350px;
+}

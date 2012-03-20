@@ -1,0 +1,31 @@
+<% unless @own_styles.empty? %>
+  <%= info_page own_styles %>
+  <%= paginate own_styles, param_name: :page_own_styles, window: 1 %>
+
+  <table class='list'>
+    <thead>
+      <th> <%= t('name') %> </th>
+      <th> <%= t('sites_followers') %> </th>
+      <th> <%= t('actions') %> </th>
+    </thead>
+    <tbody>
+    <% @own_styles.each do |style| %>
+      <tr>
+        <td> <%= style.name %> </td>
+        <td> 
+          <% style.followers.each do |site| %>
+            <%= site.name %>
+          <% end %>
+        </td>
+        <td class="style-action">
+          <%= raw style_actions style %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <%= paginate own_styles, param_name: :page_own_styles, window: 1 %>
+<% else %>
+  <p class="empty"> <%= t('no_own_styles') %> </p>
+<% end %>
