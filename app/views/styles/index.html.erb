@@ -40,7 +40,7 @@
     </center>-->
   
     <details open id="styles">
-      <summary id="styles"><%= t("own_style") %></summary>
+      <summary id="styles"><%= t("own_styles") %></summary>
       <% unless @own_styles.empty? %>
         <%= render 'own_styles', own_styles: @own_styles %>
       <% else %>
@@ -49,7 +49,7 @@
     </details>
     
     <details open id="styles">
-      <summary id="styles"><%= t("follow_style") %></summary>
+      <summary id="styles"><%= t("follow_styles") %></summary>
       <% unless @follow_styles.empty? %>
         <%= render 'follow_styles', follow_styles: @follow_styles %>
       <% else %>
@@ -58,7 +58,7 @@
     </details>
 
     <details open id="styles">
-      <summary id="styles"><%= t('other_style') %></summary>
+      <summary id="styles"><%= t('other_styles') %></summary>
       <% unless @other_styles.empty? %>
         <%= render 'other_styles', other_styles: @other_styles %>
       <% else %>
