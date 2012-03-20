@@ -23,7 +23,9 @@
       <summary>
         <%= raw page.by_locale(session[:locale]).summary %>
       </summary>
+      <% unless page.by_locale(session[:locale]).text.blank? %>
       <p> <%= link_to t("read_more"), site_page_path(@site, page) %> </p>
+      <% end %>
       <div class="clear"></div>
       <%= make_menu(page, :controller => PagesController) %>
       <% if check_permission(PagesController, ["sort"]) %>
