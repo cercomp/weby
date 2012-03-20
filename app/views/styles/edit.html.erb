@@ -1,7 +1,4 @@
 <fieldset>
-  <legend><%= t 'editing', :param => t('style.one') %></legend>
-
+  <legend> <%= t('editing', param: t('style.one')) %> </legend>
   <%= render 'form' %>
-
-  <%= link_to t('show'), site_style_path(@site, @style) %> 
 </fieldset>

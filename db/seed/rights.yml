@@ -292,7 +292,7 @@
  id: 49
  name: "Publicar Estilo"
  controller: styles
- action: toggle_field
+ action: publish
 
 50:
  id: 50

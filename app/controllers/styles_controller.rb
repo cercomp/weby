@@ -3,52 +3,42 @@ class StylesController < ApplicationController
 
   before_filter :require_user
   before_filter :check_authorization
-
-  # Verify if current site is owner of the edited/updated style
-  before_filter :verify_ownership, :only => [:edit, :update, :destroy]
+  before_filter :verify_ownership, only: [:edit, :update, :destroy]
 
   respond_to :html, :xml, :js
 
   def index
-    @my_style_name = params[:my_style_name]
-    @other_style_name = params[:other_style_name]
+    @style_type = params[:style_type]
+    @style_name = params[:style_name]
 
-    @my_styles = @site.my_styles.
-      joins(:style).
-      where(['styles.name like ?', "%#{params[:my_style_name]}%"]).
-      order(:id).
-      page(params[:page_my_styles] || 1).
-      per(15)
-
-    @other_styles = @site.other_styles.
-      joins(:style).where(['styles.name like ?', "%#{params[:other_style_name]}%"]).
-      order(:id).
-      page(params[:page_other_styles] || 1).
-      per(15)
-
-    respond_to do |format|
-      format.html 
-      format.js
-      format.xml  { render :xml => @styles }
+    case @style_type
+    when 'own'
+      @own_style_name = @style_name 
+    when 'follow'
+      @follow_style_name = @style_name 
+    when 'other'
+      @other_style_name = @style_name 
     end
+
+    @own_styles = @site.own_styles.scoped.
+      by_name(@own_style_name).
+      order(:id).page(1).per(15)
+
+    @follow_styles = @site.follow_styles.scoped.
+      by_name(@follow_style_name).
+      order(:id).page(1).per(15)
+
+    @other_styles = Style.not_followed_by(@site).
+      by_name(@other_style_name).
+      order(:id).page(1).per(15)
   end
 
   def show
     @style = Style.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @style }
-    end
   end
 
   def new
     @style = Style.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @style }
-    end
   end
 
   def edit
@@ -57,98 +47,78 @@ class StylesController < ApplicationController
 
   def create
     @style = Style.new(params[:style])
-    @style.sites_styles.build(:site_id => @site.id, :owner => true, :publish => true)
 
-    respond_to do |format|
-      if @style.save
-        format.html { redirect_to(site_styles_path, :notice => t('successfully_created')) }
-        format.xml  { render :xml => @style, :status => :created, :location => @style }
-      else
-        format.html { render :site_id => @site.id, :controller => 'styles', :action => 'new' }
-        format.xml  { render :xml => @style.errors, :status => :unprocessable_entity }
-      end
+    if @style.save
+      flash[:notice] = t('successfully_created')
+      redirect_to site_styles_path
+    else
+      render site_id: @site.id, controller: 'styles', action: 'new'
     end
   end
 
   def update
     @style = Style.find(params[:id])
 
-    respond_to do |format|
-      if @style.update_attributes(params[:style])
-        format.html { redirect_to(site_styles_path, :notice => "Atualizado com sucesso" ) }
-        format.xml  { head :ok }
-      else
-        format.html { redirect_to :back }
-        format.xml  { render :xml => @style.errors, :status => :unprocessable_entity }
-      end
+    if @style.update_attributes(params[:style])
+      flash[:notice] = t('successfully_updated')
+      redirect_to site_styles_path 
+    else
+      render site_id: @site.id, controller: 'styles', action: 'edit'
     end
   end
 
   def destroy
     @style = Style.find(params[:id])
 
-    # Verify if this style has more that one site
-    if @style.sites.count > 1
-      flash[:warning] = t("no_permission_to_action")
-      redirect_to site_styles_url
-
+    if @style.destroy
+      flash[:notice] = t('destroyed_param', param: t('style.one'))
     else
-      if @style.destroy
-        flash[:notice] = t("destroyed_param", :param => t("style.one"))
-      else
-        flash[:alert] = t("destroyed_param_error", :param => t("style.one"))
-      end
-
-      redirect_to site_styles_path(@site)
+      flash[:alert] = t('destroyed_param_error', param: t('style.one'))
     end
+
+    redirect_to site_styles_path(@site)
   end
 
-  def toggle_field
-    @style = SitesStyle.find(params[:id])
-
-    if params[:field]
-      if @style.update_attributes("#{params[:field]}" => (@style[params[:field]] == 0 or not @style[params[:field]] ? true : false))
-        flash[:notice] = t"successfully_updated"
-      else
-        flash[:notice] = t"error_updating_object"
-      end
-    end
+  def follow
+    @style = Style.find(params[:id])
+    @site.follow_styles << @style
 
     redirect_back_or_default site_styles_path(@site)
   end
 
-  def follow
-    @stylerel = SitesStyle.find(params[:id])
+  def unfollow
+    @style = Style.find(params[:id])
+    @site_style = @style.sites_styles.where(site_id: @site.id).first
+    @site_style.destroy
 
-    if params[:following] == "true"
-      @style = @stylerel.style.sites_styles.where(:site_id => @site.id).first
-      @style.destroy
-    else
-      @style = @stylerel.style
-      @style.sites_styles.create(:site_id => @site.id, :publish => "true", :owner => "false" )
+    redirect_back_or_default site_styles_path(@site)
+  end
 
-      if @style.save
-        flash[:notice] = t"successfully_updated"
-      else
-       flash[:notice] = t"error_updating_object"
-      end
-    end
+  def publish
+    @style = Style.find(params[:id])
+    @style = @style.sites_styles.where(site_id: @site.id).first if @style.owner != @site
+    @style.update_attributes(publish: true)
+    
+    redirect_back_or_default site_styles_path(@site)
+  end
 
+  def unpublish
+    @style = Style.find(params[:id])
+    @style = @style.sites_styles.where(site_id: @site.id).first if @style.owner != @site
+    @style.update_attributes(publish: false)
+    
     redirect_back_or_default site_styles_path(@site)
   end
 
   def copy
-    @style = Style.find(params[:id]).clone
+    @style = Style.find(params[:id]).dup
+    @style.owner = @site
+    @style.publish = false
 
     if @style.save
-      @style.sites_styles.create(:site_id => @site.id, :publish => "true", :owner => "true" )
-      if @style.save
-        flash[:notice] = t"successfully_created"
-      else
-        flash[:notice] = t"error_creating_object"
-      end
+      flash[:notice] = t('successfully_created')
     else
-      flash[:notice] = t"error_creating_object"
+      flash[:notice] = t('error_creating_object')
     end
 
     redirect_back_or_default site_styles_path(@site)
@@ -158,10 +128,8 @@ class StylesController < ApplicationController
   def verify_ownership
     @style = Style.find(params[:id])
 
-    logger.debug @style.owner
-
-    unless @site.id == @style.owner.id
-      flash[:warning] = t("no_permission_to_action")
+    unless @style.owner == @site
+      flash[:warning] = t('no_permission_to_action')
       redirect_to site_style_url
     end
   end

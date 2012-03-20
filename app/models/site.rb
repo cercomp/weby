@@ -10,21 +10,6 @@ class Site < ActiveRecord::Base
           { :text => "%#{text}%" })
   }
 
-  def my_styles
-    sites_styles.where(:owner => true)
-  end
-
-  def other_styles
-    SitesStyle.where(['(
-                        site_id = :site_id AND owner = false
-                     ) OR (
-                        site_id <> :site_id AND style_id NOT IN (
-                          SELECT style_id FROM sites_styles WHERE site_id = :site_id
-                        )
-                     )',
-                     {:site_id => self.id}]).order(:owner, :site_id, :style_id)
-  end
-
   def menu_categories
     self.sites_menus.except(:order, :select).
       find(:all, :select => 'DISTINCT category').map{ |m| m.category }
@@ -57,7 +42,9 @@ class Site < ActiveRecord::Base
   has_many :banners
 
   has_many :sites_styles, :dependent => :destroy
-  has_many :styles, :through => :sites_styles
+  has_many :follow_styles, through: :sites_styles, source: :style
+  
+  has_many :own_styles, foreign_key: :owner_id, dependent: :destroy, class_name: "Style"
 
   # FIXME testando relação de componentes
   has_many :site_components
