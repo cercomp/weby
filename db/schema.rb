@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120309162635) do
+ActiveRecord::Schema.define(:version => 20120316143218) do
 
   create_table "banners", :force => true do |t|
     t.datetime "date_begin_at"
@@ -234,11 +234,11 @@ ActiveRecord::Schema.define(:version => 20120309162635) do
   end
 
   create_table "styles", :force => true do |t|
-    t.string   "name"
+    t.string   "name",       :null => false
     t.text     "css"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "owner_id"
+    t.integer  "owner_id",   :null => false
     t.boolean  "publish"
   end
 
