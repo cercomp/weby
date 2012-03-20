@@ -40,6 +40,13 @@ class AlterTableStylesDefineForeignKeys < ActiveRecord::Migration
 
     ALTER TABLE sites_styles
     DROP CONSTRAINT fk_sites;
+
+    ALTER TABLE styles
+    ALTER COLUMN name drop NOT NULL;
+
+    ALTER TABLE styles
+    ALTER COLUMN owner_id drop NOT NULL;
+
     SQL
   end
 end
