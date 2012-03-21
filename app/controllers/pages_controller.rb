@@ -80,6 +80,7 @@ class PagesController < ApplicationController
   end
 
   def update
+    params[:page][:repository_ids] ||= []
     # Remove type of params because type can't be setted on update_attributes
     params[:page].delete(:type)
 
