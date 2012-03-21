@@ -12,6 +12,9 @@ class MigrateOwnerFromSitesStylesToStyles < ActiveRecord::Migration
         end
       end
     end
+    Style.where(owner_id: nil).each do |style|
+      style.delete
+    end
   end
 
   def down
