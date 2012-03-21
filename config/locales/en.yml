@@ -293,6 +293,7 @@ en:
   page_need_at_least_one_internationalization: "Page needs content in at least a language"
   page_categories_help: "Categories are separated by commas, the page's category are related with your content. Ex:Sports, News, Policy"
   page_not_found: "Page Not Found"
+  parent_menu_item: "Parent menu item"
   password: "Password"
   password_change: "Change password "
   password_confirmation: "Password confirmation"
@@ -558,6 +559,8 @@ en:
         archive: "Archive"
       site:
         name: "Name"
+      site_component:
+        place_holder: "Place"
       user:
         login: "User name"
         password: "Password"

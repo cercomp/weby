@@ -39,7 +39,7 @@
   height: 30px;
 }
 
-.clicked {
+.clicked, .clicked.hover:hover {
     background: #f7f6d9 url(/assets/clicked.png) 50% 50% repeat;
 }
 

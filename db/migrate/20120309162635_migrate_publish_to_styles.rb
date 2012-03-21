@@ -1,17 +1,17 @@
 class MigratePublishToStyles < ActiveRecord::Migration
   def up
-    Style.where(publish: nil).each do |style|
-      style.publish = style.sites_styles.where(site_id: style.owner_id).first.publish
-      style.save
-      style.sites_styles.where(site_id: style.owner_id).first.delete
+    Style.all.each do |style|
+      site_style = SitesStyle.where(site_id: style.owner_id, style_id: style.id).first
+      publish = style.sites_styles.where(site_id: style.owner_id).first.publish
+      style.update_attributes(publish: site_style.publish)
+      site_style.delete
     end
   end
 
   def down
-    Style.where('publish is not null').each do |style|
-      style.sites_styles.build(:site_id => style.owner_id, :publish => style.publish)
-      style.publish = nil
-      style.save
+    Style.all.each do |style|
+      site_style = SitesStyle.new(site_id: style.owner_id, style_id: style.id, publish: style.publish)
+      site_style.save
     end
   end
 end

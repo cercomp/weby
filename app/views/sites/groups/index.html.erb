@@ -2,10 +2,10 @@
   <legend><%= t("group.other") %> - <%= t("feedback.one") %></legend>
 
   <div class="contextual">
-    <% if check_permission(GroupsController, [:new]) %>
+    <% if check_permission(Sites::GroupsController, [:new]) %>
       <%= link_to (t"new_param.masc", :param => (t"group.one")), new_site_group_path, :class => 'icon icon-add' -%>
     <% end %>
-    <% if check_permission(FeedbacksController, [:index]) %>
+    <% if check_permission(Sites::FeedbacksController, [:index]) %>
       | <%= link_to (t"messages"), site_feedbacks_path(@site), :class => 'icon icon-list' -%>
     <% end %>
   </div>

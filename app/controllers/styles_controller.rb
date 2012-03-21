@@ -8,27 +8,29 @@ class StylesController < ApplicationController
   respond_to :html, :xml, :js
 
   def index
-    @own_style_name = params[:my_style_name]
-    @follow_style_name = params[:my_style_name]
-    @other_style_name = params[:other_style_name]
+    @style_type = params[:style_type]
+    @style_name = params[:style_name]
+
+    case @style_type
+    when 'own'
+      @own_style_name = @style_name 
+    when 'follow'
+      @follow_style_name = @style_name 
+    when 'other'
+      @other_style_name = @style_name 
+    end
 
     @own_styles = @site.own_styles.scoped.
-      by_name(params[:other_style_name]).
-      order(:id).
-      page(params[:page_my_styles] || 1).
-      per(15)
+      by_name(@own_style_name).
+      order(:id).page(1).per(15)
 
     @follow_styles = @site.follow_styles.scoped.
-      by_name(params[:other_style_name]).
-      order(:id).
-      page(params[:page_other_styles] || 1).
-      per(15)
+      by_name(@follow_style_name).
+      order(:id).page(1).per(15)
 
     @other_styles = Style.not_followed_by(@site).
-      by_name(params[:other_style_name]).
-      order(:id).
-      page(params[:page_other_styles] || 1).
-      per(15)
+      by_name(@other_style_name).
+      order(:id).page(1).per(15)
   end
 
   def show

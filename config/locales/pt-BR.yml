@@ -294,6 +294,7 @@ pt-BR:
   page_need_at_least_one_internationalization: "Página necessita conteúdo em pelo menos um idioma"
   page_categories_help: 'Categorias são separadas por vírgula, a categoria de uma página é relacionada ao seu conteúdo. Ex: Esporte, Notícia, UFG'
   page_not_found: "Página não encontrada"
+  parent_menu_item: "Item de menu pai"
   password: "Senha"
   password_change: "Nova senha"
   password_confirmation: "Confirmação da senha"
@@ -564,6 +565,8 @@ pt-BR:
         archive: "Arquivo"
       site:
         name: "Nome"
+      site_component:
+        place_holder: "Local"
       user:
         login: "Nome do usuário"
         password: "Senha"

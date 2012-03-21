@@ -3,68 +3,43 @@
 
   <% if check_permission(StylesController, 'new') %>
   <div class="contextual">
-    <%= link_to t('new_param.masc', param: t('style.one')), new_site_style_path, class: 'icon icon-add' %>
+    <%= link_to t('new_param.masc', param: t('style.one')),
+      new_site_style_path, class: 'icon icon-add' %>
   </div>
   <% end %>
   
   <div>
-    <% # TODO: fix search styles %>
-    <!-- <center>
-      <%= form_tag site_styles_path, :method => 'get', :name => 'own_style_search', :remote => true do %>
-        <%= text_field_tag :own_style_name %>
-        <%= hidden_field_tag :other_style_name %>
-        <%= hidden_field_tag :follow_style_name %>
-        <%= hidden_field_tag 'page_own_styles', 1 %>
+    <div id="search">
+      <%= form_tag site_styles_path, method: 'get', 
+        name: 'style_search', remote: true do %>
+        <%= text_field_tag :style_name, @style_name %>
+        <%= select_tag :style_type, options_for_select([
+              [t('own_styles'), 'own'],
+              [t('follow_styles'), 'follow'],
+              [t('other_styles'), 'other']], @style_type) %>
         <%= submit_tag t("search"), class: 'search-button' %>
       <% end %>
-    </center>
+    </div>
 
-    <center>
-      <%= form_tag site_styles_path, :method => 'get', :name => 'follow_style_search', :remote => true do %>
-        <%= text_field_tag :follow_style_name %>
-        <%= hidden_field_tag :own_style_name %>
-        <%= hidden_field_tag :other_style_name %>
-        <%= hidden_field_tag 'page_follow_styles', 1 %>
-        <%= submit_tag t("search"), class: 'search-button' %>
-      <% end %>
-    </center>
-
-    <center>
-      <%= form_tag site_styles_path, :method => 'get', :name => 'other_style_search', :remote => true do %>
-        <%= text_field_tag :other_style_name %>
-        <%= hidden_field_tag :own_style_name %>
-        <%= hidden_field_tag :follow_style_name %>
-        <%= hidden_field_tag 'page_other_styles', 1 %>
-        <%= submit_tag t("search"), class: 'search-button' %>
-      <% end %>
-    </center>-->
-  
     <details open id="styles">
       <summary id="styles"><%= t("own_styles") %></summary>
-      <% unless @own_styles.empty? %>
+      <div id="own_styles">
         <%= render 'own_styles', own_styles: @own_styles %>
-      <% else %>
-        <p class="empty"> <%= t('no_own_styles') %> </p>
-      <% end %>
+      </div>
     </details>
     
     <details open id="styles">
       <summary id="styles"><%= t("follow_styles") %></summary>
-      <% unless @follow_styles.empty? %>
+      <div id="follow_styles">
         <%= render 'follow_styles', follow_styles: @follow_styles %>
-      <% else %>
-        <p class="empty"> <%= t('no_follow_styles') %> </p>
-      <% end %>
+      </div>
     </details>
 
     <details open id="styles">
       <summary id="styles"><%= t('other_styles') %></summary>
-      <% unless @other_styles.empty? %>
+      <div id="other_styles">
         <%= render 'other_styles', other_styles: @other_styles %>
-      <% else %>
-        <p class="empty"> <%= t('no_other_styles') %> </p>
-      <% end %>
+      </div>
     </details>
   </div>
-
 </fieldset>
