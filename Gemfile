@@ -29,4 +29,5 @@ end
 group :development, :test do
   gem 'rspec-rails', '2.8.1'
   gem 'valid_attribute', '1.2.0'
+  gem 'factory_girl_rails'
 end
