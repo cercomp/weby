@@ -55,6 +55,7 @@ en:
   cancel: "Cancel"
   category: "Category"
   categories: "Categories"
+  change_file: "Change file"
   chief_editor: "Chief Editor"
   confirm_unrole: "Do you really wish to withdraw yourself from this site?\\n\\nAtention! After withdrawing, only users with the proper rights will be able to enrole you again!"
   component:
@@ -248,6 +249,7 @@ en:
 #---N---#
   nacional: "Nacional"
   name: "Name"
+  need_at_least_one_i18n: "Needs at least one language"
   need_login: "You need to be logged in to access this page."
   need_javascript: "Your web browser must have JavaScript enabled in order for this application to display correctly."
   new:
@@ -536,6 +538,8 @@ en:
         title: "Title"
         text: "Text"
         url: "Url"
+        position: 'Position'
+        new_tab: "Open in a new window"
       event:
         title: "Title"
         local: "Local"
@@ -549,8 +553,12 @@ en:
       history:
         title: "Title"
         content: "Content"
+      i18ns:
+        title: "Title"
       menu:
         title: "Title"
+      menu_item:
+        new_tab: "Open in a new window"
       news:
         title: "Title"
         source: "Source"

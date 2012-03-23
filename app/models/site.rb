@@ -10,11 +10,6 @@ class Site < ActiveRecord::Base
           { :text => "%#{text}%" })
   }
 
-  def menu_categories
-    self.sites_menus.except(:order, :select).
-      find(:all, :select => 'DISTINCT category').map{ |m| m.category }
-  end
-
   validates :url,
     presence: true,
     format: { with: /^http[s]{,1}:\/\/[\w\.\-\%\#\=\?\&]+\.([\w\.\-\%\#\=\?\&]+\/{,1})*/i }
@@ -31,8 +26,8 @@ class Site < ActiveRecord::Base
 
   has_one :repository
 
-  has_many :sites_menus
-  has_many :menus, :through => :sites_menus
+  has_many :menus, dependent: :delete_all, order: :id
+  has_many :menu_items, :through => :menus, dependent: :delete_all
 
   has_many :sites_pages
   has_many :pages, :through => :sites_pages
@@ -49,7 +44,6 @@ class Site < ActiveRecord::Base
   # FIXME testando relação de componentes
   has_many :site_components
 
-  accepts_nested_attributes_for :sites_menus, :allow_destroy => true
   accepts_nested_attributes_for :sites_pages, :allow_destroy => true
 
   belongs_to :repository, :foreign_key => "top_banner_id"

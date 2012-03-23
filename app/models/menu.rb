@@ -1,10 +1,11 @@
 class Menu < ActiveRecord::Base
-  validates_presence_of :title
- 
-  has_many :sites_menus
-  has_many :sites, :through => :sites_menus
+  has_many :menu_items, dependent: :delete_all
+  
+  validates :name, presence: true
 
-  belongs_to :page, :foreign_key => "page_id"
-
-  accepts_nested_attributes_for :sites_menus, :allow_destroy => true #, :reject_if => proc { |attributes| attributes['title'].blank? }
+  belongs_to :site
+  #validates_associated :site
+  validates :site_id,
+    presence: true,
+    numericality: true
 end

@@ -249,6 +249,7 @@ pt-BR:
 #---N---#
   nacional: "Nacional"
   name: "Nome"
+  need_at_least_one_i18n: "Necessita de pelo menos um idioma"
   need_login: "Você deve estar logado para acessar acessar essa página."
   need_javascript: "Seu browser precisa ter o JavaScript habilitado para que essa aplicação funcione corretamente."
   new:
@@ -542,6 +543,7 @@ pt-BR:
         text: "Texto"
         url: "Url"
         position: 'Posição'
+        new_tab: "Abrir em uma nova janela"
       event:
         title: "Título"
         local: "Local"
@@ -555,8 +557,12 @@ pt-BR:
       history:
         title: "Título"
         content: "Conteúdo"
+      i18ns:
+        title: "Título"
       menu:
         title: "Rótulo"
+      menu_item:
+        new_tab: "Abrir em uma nova janela"
       news:
         title: "Título"
         source: "Fonte"

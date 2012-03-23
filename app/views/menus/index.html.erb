@@ -1,25 +1,39 @@
 <fieldset>
   <legend><%= t"menu.other"  %></legend>
 
-  <div class="contextual">
-    <%= link_to (t"new_param.masc", :param => (t"menu_item.one")),  new_site_menu_path(:category => params[:category]), :class => 'icon icon-add'%>
-  </div>
+  <% if check_permission(MenusController, [:new]) %>
+    <div class="contextual">
+      <%= link_to (t"new_param.masc", :param => (t"menu.one")),  new_site_menu_path(@site), :class => 'icon icon-add'%>
+    </div>
+  <% end %>
 
   <div id='tabs'>
     <ul>
-      <% links = @site.menu_categories %>
-      <% for link in links do %>
-        <% selected = params[:category] == link ? "selected" : "" %>
-        <li><%= link_to(link.try(:titleize), params[:category] == link ? '#' : site_menus_path(@site, :category => link), :rel => link, :class => "#{selected}") %></li>
+      <% @menus.each do |menu| %>
+        <% selected = (menu==@menu ? "selected" : "") %>
+        <li><%= link_to(menu.name.try(:titleize), menu==@menu ? '#' : site_menus_path(@site, :menu => menu.id), :rel => menu.id, :class => "#{selected}") %></li>
       <% end %>
     </ul>
   </div>
   <div id='main-tabs'>
-    <% unless @menus[params[:category]].blank? %>
-      <%= raw print_menu(@menus[params[:category]], 1) %>
+    <% if @menu %>
+      <div class="contextual">
+        <% if check_permission(MenuItemsController, [:new]) %>
+        <%= link_to (t"new_param.masc", :param => (t"menu_item.one")),  new_site_menu_menu_item_path(@site, @menu), :class => 'icon icon-add'%>
+        <% end %>
+        <% if check_permission(MenusController, [:edit]) %>
+        |&nbsp;<%= link_to (t"edit", :param => (t"menu.one")),  edit_site_menu_path(@site, @menu), :class => 'icon icon-edit'%>
+        <% end %>
+        <% if check_permission(MenusController, [:destroy]) %>
+        |&nbsp;<%= link_to t("destroy"), site_menu_path(@site, @menu), :method=>:delete, :confirm => t('are_you_sure'),:class=>'icon icon-del', :title => t("destroy") %>
+        <% end %>
+        &nbsp;
+      </div>
+      <%= raw print_menu(@global_menus[@menu.id], 1) %>
     <% end %>
   </div>
-  <%= javascript_tag do %>
+
+<%= javascript_tag do %>
   window.onload=function(){
     $().ready(function() {
 
@@ -44,8 +58,8 @@
             return;
           }
 
-          id = ui.item.attr('id').replace('menu_','');
-          parent_id = ui.item.parents('li').attr('id') ? ui.item.parents('li').attr('id').replace('menu_','') : 0;
+          id = ui.item.attr('id').replace('menu_item_','');
+          parent_id = ui.item.parents('li').attr('id') ? ui.item.parents('li').attr('id').replace('menu_item_','') : 0;
           position = ui.item.index()+1;//A position no banco começa com 1
 
           $.ajax({
@@ -56,7 +70,7 @@
               if(text=='success') $(ui.item).effect('highlight');
               else $('#main-tabs > menu').nestedSortable('cancel');
             },
-            url: '<%= change_order_site_menus_path %>'
+            url: '<%= change_order_site_menu_menu_items_path(@site, @menu) if @menu %>'
           });
         }
       });
@@ -66,17 +80,17 @@
         tolerance: "pointer",
         drop: function( event, ui ) {
           drop_li = $(this)
-          id = ui.draggable.attr('id').replace('menu_','');
-          category = drop_li.find('a').attr('rel');
+          id = ui.draggable.attr('id').replace('menu_item_','');
+          menu_id = drop_li.find('a').attr('rel');
 
           dropped = true;
 
-          ////Testa para não alterar pra a própria categoria
+          ////Testa para não alterar pra o proprio menu
           if( !drop_li.find('a').hasClass('selected') ){
 
             $.ajax({
               type: 'post',
-              data: 'id='+id+'&category='+category,
+              data: 'id='+id+'&new_menu_id='+menu_id,
               dataType: 'script',
               complete: function(request,text){
                 if(text=='success'){
@@ -84,66 +98,14 @@
                   location = drop_li.find('a').attr('href');
                 }
               },
-              url: '<%= change_category_site_menus_path %>'
+              url: '<%= change_menu_site_menu_menu_items_path(@site, @menu) if @menu%>'
             });
 
           }
         }
       });
 
-      $("a.selected").click(function(){
-        return false;
-      });
-
-      var cur_anchor;
-      $("a.selected").dblclick(function(){
-        cont = $(this).parent();
-        cur_anchor = $(this).detach();
-        cat_edit = $(document.createElement('input'));
-        cat_edit.attr('type','text');
-        cat_edit.val(this.rel);
-        cat_edit.blur(function(){
-          cat_edit.val(trim(cat_edit.val()));
-          if(cat_edit.val() != cur_anchor.attr('rel')){
-            $.ajax({
-              type: 'post',
-              data: 'category='+cat_edit.val()+'&old_category='+cur_anchor.attr('rel'),
-              dataType: 'script',
-              complete: function(request,text){
-                if(text=='success'){
-                  cur_anchor.attr('rel',cat_edit.val());
-                  cur_anchor.text(titleize(cat_edit.val()));
-                }
-                cat_edit.remove();
-                cont.append(cur_anchor);
-                location = '<%=site_menus_path(@site, :category => 'NEWCAT')%>'.replace('NEWCAT',cat_edit.val());
-              },
-              url: '<%= change_category_site_menus_path %>'
-            });
-            cat_edit.attr('disabled', true);
-          }else{
-            cat_edit.remove();
-            cont.append(cur_anchor);
-          }
-        });
-        cat_edit.keypress(function(event) {
-          if ( event.which == 13 ) {
-             event.preventDefault();
-             $(this).blur();
-           }
-        });
-        cont.append(cat_edit);
-        cat_edit.focus();
-      });
-
     })
-  }
-
-  function titleize(string){
-      return string[0].toUpperCase() + string.slice(1);
-  }
-  function trim(str){
-      return str.replace(/^\s+|\s+$/g,"");
   }
   <% end %>
 </fieldset>

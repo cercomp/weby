@@ -106,7 +106,7 @@
  id: 18
  name: "Editar Menu"
  controller: menus
- action: edit update change_category
+ action: edit update
 
 19:
  id: 19
@@ -116,9 +116,9 @@
 
 20:
  id: 20
- name: "Ordernar Menus"
- controller: menus
- action: change_position change_order
+ name: "Ordernar Itens de Menu"
+ controller: menu_items
+ action: change_position change_order change_menu
 
 21:
  id: 21
@@ -353,3 +353,33 @@
   name: "Ordenar Componentes"
   controller: site_components
   action: sort
+
+60:
+ id: 60
+ name: "Listar Itens de Menu"
+ controller: menu_items
+ action: index
+
+61:
+ id: 61
+ name: "Ver Item de Menu"
+ controller: menu_items
+ action: show
+
+62:
+ id: 62
+ name: "Editar Item de Menu"
+ controller: menu_items
+ action: edit update
+
+63:
+ id: 63
+ name: "Excluir Item de Menu"
+ controller: menu_items
+ action: destroy rm_menu
+
+64:
+ id: 64
+ name: "Criar Item de Menu"
+ controller: menu_items
+ action: new create

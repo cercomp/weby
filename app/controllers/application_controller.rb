@@ -159,12 +159,10 @@ class ApplicationController < ActionController::Base
     if @site
       params[:per_page] ||= per_page_default
 
-      # Agrupa todos os menus do site pelo "category" definido
-      @menus = @site.sites_menus.order('position').group_by(&:category)
-
-      # Agrupa os menu afi de deixar os submenus organizados.
+      @global_menus = {}
+      # Agrupa os itens de menus afim de deixar os submenus organizados.
       #   Exemplo: menu['principal'] = { 0 => [menu1, menu2], 1 => [menu3, menu4] }
-      @menus.each{ |key,value| @menus[key] = value.group_by(&:parent_id) || "" }
+      @site.menus.each{ |menu| @global_menus[menu.id] = menu.menu_items.order(:position).group_by(&:parent_id) }
 
       if not @site.repository.nil? and File.file?(@site.repository.archive.path) and @site.repository.image?
         @top_banner_width,@top_banner_height = Paperclip::Geometry.from_file(@site.repository.archive).to_s.split('x')

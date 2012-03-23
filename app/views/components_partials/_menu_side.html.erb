@@ -1,3 +1,3 @@
   <nav>
-    <%= raw print_menu(@menus[settings[:category]]) %>
+    <%= raw print_menu(@global_menus[settings[:menu_id].to_i]) %>
   </nav>  

@@ -29,7 +29,7 @@ class Page < ActiveRecord::Base
   belongs_to :repository, foreign_key: "repository_id"
 
 
-  has_many :menus, dependent: :nullify
+  has_many :menu_items, as: :target, dependent: :nullify
 
   has_many :banners, dependent: :nullify
 

@@ -47,12 +47,12 @@ module ApplicationHelper
     submenu = (not sons[entry.id].nil?) ? "class='sub'" : nil
 
     (view_ctrl == 1 ?
-     "<li id=\"menu_#{entry.id}\" #{submenu}><div>" :
-     "<li id=\"m_#{entry.id}\" #{submenu}>").tap do |menus|
+     "<li id=\"menu_item_#{entry.id}\" #{submenu}><div>" :
+     "<li #{submenu}>").tap do |menus|
        #		if (entry.menu.try(:page_id).nil? and entry.menu.try(:link).empty?)
        #menus << "#{entry.menu.try(:title)}"
        #		else
-       menus << link_to(entry.menu.title, entry.menu.page_id ? site_page_path(@site, entry.menu.page_id) : entry.menu.link, :alt => entry.menu.title,:title => entry.menu.description)
+       menus << link_to(entry.i18n(session[:locale]).title, entry.target_id.to_i > 0 ? site_page_path(@site, entry.target_id) : entry.url, :alt => entry.i18n(session[:locale]).title,:title => entry.i18n(session[:locale]).description, :target => entry.new_tab ? "_blank":"")
        #		end
 
       if view_ctrl == 1
@@ -67,13 +67,13 @@ module ApplicationHelper
           end
         end
         #menus << " [ id:#{entry.id} pos:#{entry.position} ]" # Para debug
-        menus << ( (entry.menu and entry.menu.page) ? " [ #{entry.menu.page.id} ] " : " [ #{entry.menu.link if not entry.menu.link.blank?} ] " )
-        menus << link_to("", edit_site_menu_path(@site.name, entry.menu_id),:class=>'icon icon-edit', :title => t("edit"))
-        menus << indent_space + link_to("", new_site_menu_path(@site.name, :parent_id => entry.id),:class=>'icon icon-add', :title => t("add_sub_menu"))
-        menus << indent_space + link_to("", change_position_site_menus_path(:id => entry.id, :position => (entry.position.to_i - 1)),:class=>'icon icon-up', :title => t("move_menu_up")) if entry.position.to_i > 1
-        menus << indent_space + link_to("", change_position_site_menus_path(:id => entry.id, :position => (entry.position.to_i + 1)),:class=>'icon icon-down', :title => t("move_menu_down")) if (entry.position.to_i < sons[entry.parent_id].count.to_i)
+        menus << ( (entry and entry.target) ? " [ #{entry.target.id} ] " : " [ #{entry.url if not entry.url.blank?} ] " )
+        menus << link_to("", edit_site_menu_menu_item_path(@site.name, entry.menu_id, entry.id),:class=>'icon icon-edit', :title => t("edit"))
+        menus << indent_space + link_to("", new_site_menu_menu_item_path(@site.name, entry.menu_id, :parent_id => entry.id),:class=>'icon icon-add', :title => t("add_sub_menu"))
+        #menus << indent_space + link_to("", change_position_site_menu_menu_items_path(:id => entry.id, :position => (entry.position.to_i - 1)),:class=>'icon icon-up', :title => t("move_menu_up")) if entry.position.to_i > 1
+        #menus << indent_space + link_to("", change_position_site_menu_menu_items_path(:id => entry.id, :position => (entry.position.to_i + 1)),:class=>'icon icon-down', :title => t("move_menu_down")) if (entry.position.to_i < sons[entry.parent_id].count.to_i)
         menus << indent_space + link_to("","#", :class => 'handle icon icon-drag', :title => t("move"))
-        menus << indent_space + link_to("", rm_menu_site_menus_path(:id => entry.id), :confirm => t('are_you_sure'),:class=>'icon icon-del', :title => t("destroy"))
+        menus << indent_space + link_to("", rm_menu_site_menu_menu_items_path(@site.name, entry.menu_id, :id => entry.id), :confirm => t('are_you_sure'),:class=>'icon icon-del', :title => t("destroy"))
       end
       menus << "\n" + indent_space + (view_ctrl == 1 ? "</div><menu>":"<menu>") unless submenu.nil?
       if sons[entry.id].class.to_s == "Array"

@@ -30,11 +30,13 @@ Weby::Application.routes.draw do
         get :manage
       end
     end
-    resources :menus do 
-      collection do 
-        get :rm_menu, :change_position, :to_site
-        post :link_site, :unlink_site, :change_order, :change_category
-      end 
+    resources :menus do
+      resources :menu_items do
+        collection do
+          get :rm_menu, :change_position
+          post :change_order, :change_menu
+        end
+      end
     end
     resources :banners do 
       member do 

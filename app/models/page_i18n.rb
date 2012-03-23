@@ -8,4 +8,8 @@ class PageI18n < ActiveRecord::Base
 
   validate :title, presence: true
   validate :locale_id, presence: true
+
+  def title
+    super.gsub("'","´") if super
+  end
 end
