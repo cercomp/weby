@@ -33,8 +33,10 @@ class ApplicationController < ActionController::Base
     return true if current_user.is_admin
     unless get_roles(current_user).detect do |role|
         role.rights.detect do |right|
-          right.action.split(' ').detect do |ri| 
-            right.controller == self.class.controller_path && ri == action_name
+          right.action.split(' ').detect do |ri|
+            # devido aos scopo dos controllers devemos fazer um split e pegar a ultima parte
+            # ex: 'sites/feedbacks'.split('/').last => feedbacks
+            right.controller == self.class.controller_path.split('/').last && ri == action_name
           end
         end
       end
@@ -180,6 +182,6 @@ class ApplicationController < ActionController::Base
   # Metodo usado na ordenação de tabelas por alguma coluna
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
-  end 
+  end
 
 end
