@@ -36,7 +36,7 @@ class RefactoringMenus < ActiveRecord::Migration
       t.references :menu_item, null: false
       t.references :locale, null: false
       t.string :title, null: false
-      t.string :description
+      t.text :description
 
       t.timestamps
     end
