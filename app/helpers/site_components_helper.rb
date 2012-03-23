@@ -37,8 +37,7 @@ module SiteComponentsHelper
      'institutional_bar',
      'weby_bar',
      'news_as_home',
-     'teacher_photo', 
-     'gov_bar']
+     'teacher_photo']
   end
 
   def components_settings
@@ -49,7 +48,6 @@ module SiteComponentsHelper
       'front_news'        => ['quant'],
       'menu_side'         => ['category'],
       'news_as_home'      => ['page'],
-      'gov_bar'           => ['background'],
       'teacher_photo'     => ['image', 'height', 'width'],
       'feedback'          => ['label']
     }
@@ -84,10 +82,6 @@ module SiteComponentsHelper
 
       'news_as_home' => {
         'page' => [ (cur_page ? '<input type="text" disabled="disabled" value="'+cur_page.by_locale(@current_locale).title+'"><input type="hidden" name="page" value="'+cur_page.id.to_s+'">' : '' )+ '<a onclick="select_page(); return false;">', t('select_param', :param => t('news.one')), '</a>'].join
-      },
-
-      'gov_bar' => {
-        'background' => ['<select name="background">', options_for_select([["Azul","#004b82"],["Verde","#00500f"],["Cinza","#7f7f7f"],["Preto","#000000"]], cur_setting[:background]), '</select>'].join
       },
 
       # FIXME implementar novo modelo de componentes

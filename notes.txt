@@ -1,0 +1,9 @@
+registra componentes
+- adiciona path das views
+
+---
+criar helper "render @component [, view = 'index']"
+- renderiza index do component por padrão
+
+---
+http://www.axehomeyg.com/2009/06/10/view-path-manipulation-for-rails-with-aop/

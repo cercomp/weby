@@ -1,0 +1,9 @@
+<p>
+  <label><%= t('components.gov_bar.background') %></label>
+  <select name="background">
+    <%= options_for_select
+      [["Azul","#004b82"],["Verde","#00500f"],["Cinza","#7f7f7f"],["Preto","#000000"]],
+      component.background
+    %>
+  </select>
+</p>
