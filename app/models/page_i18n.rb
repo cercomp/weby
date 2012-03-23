@@ -1,3 +1,4 @@
+# coding: utf-8
 class PageI18n < ActiveRecord::Base
   scope :by_locale, lambda { |locale|
     where(["locale_id = ?", locale.id])
