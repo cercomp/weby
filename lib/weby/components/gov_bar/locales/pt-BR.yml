@@ -1,4 +1,5 @@
 pt-BR:
   components:
     gov_bar:
+      name: Barra do Governo
       background: "Cor de fundo"

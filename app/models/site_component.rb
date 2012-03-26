@@ -7,15 +7,11 @@ class SiteComponent < ActiveRecord::Base
     where("settings LIKE '%:#{setting} => \"#{value}\"%'")
   }
 
-  protected
-  def settings_map
-    @settings_map = self.settings ? eval(self.settings) : {} if @settings_map.nil?
-    @settings_map
-  end
-
   class << self
-    def component_name(name = nil)
-      @component_name ||= !name.nil? ? name.to_s : self.name.tableize
+    def component_name
+      # Por padrão todo componente terá o "Component" no fim do nome, então retiramos
+      # ex: GovBarComponent.tableize # => gov_bar_component.gsub(...) => gov_bar
+      @component_name ||= self.name.tableize.gsub(/_components$/, '')
     end
 
     def register_settings(*settings)
@@ -31,15 +27,21 @@ class SiteComponent < ActiveRecord::Base
             settings_map[:#{setting}]
           end
         METHOD
+
+        ActionController::Base.view_paths << Rails.root.join('lib', 'weby', 'components', self.component_name, 'views')
       end
-      # TODO criar um components_path lá nas configs
-      ActionController::Base.view_paths << Rails.root.join('lib', 'weby', 'components', component_name, 'views')
     end
   end
 
-  private
+  def settings_map
+    @settings_map = self.settings ? eval(self.settings) : {} if @settings_map.nil?
+    @settings_map
+  end
+  protected :settings_map
+
   def prepare_variables
     self.publish ||= true
     self.settings = settings_map.to_s
   end
+  private :prepare_variables
 end

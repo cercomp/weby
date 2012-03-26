@@ -53,6 +53,7 @@ Weby::Application.routes.draw do
         get :list_published, :list_front
       end
     end
+    resources :components
     resources :site_components do
       member do
         get :toggle_field

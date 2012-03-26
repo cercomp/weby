@@ -1,9 +1,12 @@
-registra componentes
-- adiciona path das views
+Novo roteamento: /components ao invez de /site_components
 
 ---
-criar helper "render @component [, view = 'index']"
-- renderiza index do component por padrão
+X registra componentes
+X - adiciona path das views
 
 ---
+X criar helper "render @component [, view = 'show']"
+X - renderiza show do component por padrão
+
+--- Referências
 http://www.axehomeyg.com/2009/06/10/view-path-manipulation-for-rails-with-aop/

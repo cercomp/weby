@@ -1,0 +1,2 @@
+class WebyBarComponent < SiteComponent
+end
