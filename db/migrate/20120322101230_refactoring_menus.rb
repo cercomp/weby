@@ -103,35 +103,35 @@ class RefactoringMenus < ActiveRecord::Migration
     end
     
     #menu -> index id=16
-    if(Right.where(controller: 'menu_items', action: 'index').length == 0)
+    if(Right.find_by_id(16))
       r_index = Right.create({name: 'Listar Itens de Menu', controller: 'menu_items', action: 'index'})
       RightsRole.where(right_id: 16).each do |rightrole|
         RightsRole.create({right_id: r_index.id, role_id: rightrole.role_id})
       end
     end
     #menu -> show id=17
-    if(Right.where(controller: 'menu_items', action: 'show').length == 0)
+    if(Right.find_by_id(17))
       r_show = Right.create({name: 'Ver Item de Menu', controller: 'menu_items', action: 'show'})
       RightsRole.where(right_id: 17).each do |rightrole|
         RightsRole.create({right_id: r_show.id, role_id: rightrole.role_id})
       end
     end
     #menu -> edit id=18
-    if(Right.where(controller: 'menu_items', action: 'edit update').length == 0)
+    if(Right.find_by_id(18))
       r_edit = Right.create({name: 'Editar Item de Menu', controller: 'menu_items', action: 'edit update'})
       RightsRole.where(right_id: 18).each do |rightrole|
         RightsRole.create({right_id: r_edit.id, role_id: rightrole.role_id})
       end
     end
     #menu -> destroy id=19
-    if(Right.where(controller: 'menu_items', action: 'destroy rm_menu').length == 0)
+    if(Right.find_by_id(19))
       r_destroy = Right.create({name: 'Excluir Item de Menu', controller: 'menu_items', action: 'destroy rm_menu'})
       RightsRole.where(right_id: 19).each do |rightrole|
         RightsRole.create({right_id: r_destroy.id, role_id: rightrole.role_id})
       end
     end
     #menu -> new id=21
-    if(Right.where(controller: 'menu_items', action: 'new create').length == 0)
+    if(Right.find_by_id(21))
       r_new = Right.create({name: 'Criar Item de Menu', controller: 'menu_items', action: 'new create'})
       RightsRole.where(right_id: 21).each do |rightrole|
         RightsRole.create({right_id: r_new.id, role_id: rightrole.role_id})
