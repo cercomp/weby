@@ -9,11 +9,14 @@ describe Page do
 
   subject { Page.new }
 
-  it { should have_valid(:author_id).when(1) }
-  it { should_not have_valid(:author_id) }
+  context 'Page#author_id' do
+    it { should validate_presence_of(:author_id) }
+  end
 
-  it { should have_valid(:date_begin_at).when(Time.now) }
-  it { should_not have_valid(:date_begin_at) }
+  context "Page#date_begin_at" do
+    it { should validate_presence_of(:date_begin_at) }
+    it { should allow_value(Time.now).for(:date_begin_at) }
+  end
 
   context "Internationalizations" do
     it "should have association with page_i18n" do
