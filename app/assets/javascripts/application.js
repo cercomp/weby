@@ -126,7 +126,7 @@ function toogle_select_multiple(select){
 */
 function show_dialog(ele,published_only) {
   if(!$('#page_list').length)
-     $('#div_link').append('<div id="page_list" style="display: none;" title="Selecione uma notícia"><img src="/images/spinner.gif"></div><input type="hidden" id="published_only" value="'+published_only+'"/>');
+     $('#div_link').append('<div id="page_list" style="display: none;" title="Selecione uma notícia"><img src="/assets/spinner.gif"></div><input type="hidden" id="published_only" value="'+published_only+'"/>');
 
   $.get(ele.attr('data-link'),{'published_only':published_only});
 

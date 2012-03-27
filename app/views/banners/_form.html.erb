@@ -102,6 +102,14 @@
     <div class="clear"></div>
   </div>
 
+    <div class='input'>
+        <%= f.input :new_tab ,
+          wrapper_html: { class: "side" },
+          as: :boolean, input_html: { class: "check-button" } %>
+
+        <div class="clear"></div>
+      </div>
+
   <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
 
   <div class="actions">

@@ -2,7 +2,7 @@
   <%= i18nbuilder.input(:locale_id, input_html: { value: i18nbuilder.object.locale.id }, as: :hidden) %>
   <% if controller.action_name != 'new' %>
     <%= i18nbuilder.input :_destroy,
-      label: t("delete"),
+      label: t("destroy"),
       as: :boolean %>
   <% end %>
   <%= i18nbuilder.input :title, label: t("title"),

@@ -3,6 +3,9 @@
 *= require_tree ../../legacy 
 *= require_tree ../../extensions 
 *= require ./mini
+*= require jquery-ui.css
+*= require jquery-ui-timepicker-addon.css
+*= require jquery.sortable.css
 *= require_self 
 */  
 

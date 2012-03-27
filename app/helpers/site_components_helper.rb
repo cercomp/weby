@@ -47,7 +47,7 @@ module SiteComponentsHelper
       'no_front_news'     => ['quant', 'front'],
       'banner_side'       => ['category'],
       'front_news'        => ['quant'],
-      'menu_side'         => ['category'],
+      'menu_side'         => ['menu_id'],
       'news_as_home'      => ['page'],
       'gov_bar'           => ['background'],
       'teacher_photo'     => ['image', 'height', 'width'],
@@ -75,7 +75,7 @@ module SiteComponentsHelper
       },
       
       'menu_side' => {
-        'category' => ['<select name="category">', options_for_select(@site.menu_categories, cur_setting[:category]), '</select>'].join
+        'menu_id' => ['<select name="menu_id">', options_for_select([['','']] + @site.menus.map{|menu| [menu.name, menu.id]}, cur_setting[:menu_id]), '</select>'].join
       },
       
       'no_front_news' => {
@@ -119,7 +119,11 @@ module SiteComponentsHelper
     if site_component.settings and site_component.settings.include? "category" 
       ini = site_component.settings.index('"')  
       fim = site_component.settings.rindex('"')  
-      site_component.settings[ini+1..fim-1] 
+      site_component.settings[ini+1..fim-1]
+    elsif site_component.settings and site_component.settings.include? "menu_id"
+      settings = eval(site_component.settings)
+      menu = @site.menus.find_by_id(settings[:menu_id].to_i)
+      return menu.name if menu
     end 
   end
 end

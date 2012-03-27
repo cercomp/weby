@@ -1,4 +1,3 @@
-
 <% quant = settings[:quant] || 5 %>
 <% front = settings[:front] || false %>
 <% # Pega as noticias ordenadas por data de inicio decrescente %>
@@ -24,6 +23,3 @@
   </table>
   <%= paginate @no_front_news, :param_name => 'no_front_pages' %>
 </div>
-
-<%= content_for :stylesheets, stylesheet_link_tag("jquery.sortable") %>
-<%= content_for :javascripts, javascript_include_tag("jquery-ui.min") %>

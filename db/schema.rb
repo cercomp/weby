@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120316143218) do
+ActiveRecord::Schema.define(:version => 20120322101230) do
 
   create_table "banners", :force => true do |t|
     t.datetime "date_begin_at"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20120316143218) do
     t.integer  "site_id"
     t.integer  "position"
     t.integer  "page_id"
+    t.boolean  "new_tab",       :default => false
   end
 
   create_table "feedbacks", :force => true do |t|
@@ -79,7 +80,37 @@ ActiveRecord::Schema.define(:version => 20120316143218) do
 
   add_index "locales_sites", ["locale_id", "site_id"], :name => "index_locales_sites_on_locale_id_and_site_id", :unique => true
 
+  create_table "menu_item_i18ns", :force => true do |t|
+    t.integer  "menu_item_id", :null => false
+    t.integer  "locale_id",    :null => false
+    t.string   "title",        :null => false
+    t.string   "description"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "menu_items", :force => true do |t|
+    t.integer  "menu_id",                        :null => false
+    t.boolean  "separator",   :default => false
+    t.integer  "target_id"
+    t.string   "target_type"
+    t.string   "url"
+    t.integer  "parent_id",   :default => 0,     :null => false
+    t.integer  "position",    :default => 0,     :null => false
+    t.boolean  "new_tab",     :default => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+  end
+
   create_table "menus", :force => true do |t|
+    t.integer  "site_id",    :null => false
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "old_menus", :id => false, :force => true do |t|
+    t.integer  "id",          :null => false
     t.string   "title"
     t.string   "link"
     t.datetime "created_at"
@@ -231,14 +262,15 @@ ActiveRecord::Schema.define(:version => 20120316143218) do
     t.boolean  "publish"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "owner"
   end
 
   create_table "styles", :force => true do |t|
-    t.string   "name"
+    t.string   "name",       :null => false
     t.text     "css"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "owner_id",   :null => false
+    t.boolean  "publish"
   end
 
   create_table "taggings", :force => true do |t|

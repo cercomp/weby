@@ -24,6 +24,7 @@ pt-BR:
       height: "Altura"
       image: "Imagem"
       label: "Rótulo"
+      menu_id: "Menu"
       page: "Notícia"
       quant: "Quantidade de itens"
       settings: "Configurações"

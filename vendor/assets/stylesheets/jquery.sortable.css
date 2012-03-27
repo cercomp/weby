@@ -1,5 +1,6 @@
 .drop-here{
-    background-color: #D7D7D7 !important; }
+    background-color: #DDD !important;
+    border: 1px dashed #BBB; }
 
 li.drop-here{
     list-style-type: none; }

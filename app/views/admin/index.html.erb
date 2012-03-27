@@ -23,7 +23,7 @@
     <p>
       <%= link_to (t"menu.other"), site_menus_path %>
       <% if check_permission(MenusController, ["new"]) %>
-       | <%= link_to (t"new_param.masc", :param => (t"menu_item.one")), new_site_menu_path, :class => 'icon icon-add' %>
+       | <%= link_to (t"new_param.masc", :param => (t"menu.one")), new_site_menu_path, :class => 'icon icon-add' %>
       <% end %>
     </p>
     <p>
