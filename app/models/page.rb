@@ -23,27 +23,41 @@ class Page < ActiveRecord::Base
           published
   }
 
-  validates_presence_of :author_id, :date_begin_at
+  validates :date_begin_at, 
+    presence: true
 
-  belongs_to :user, foreign_key: "author_id"
-  belongs_to :repository, foreign_key: "repository_id"
+  belongs_to :site
+  validates :site_id,
+    presence: true
 
+  belongs_to :author,
+    class_name: "User"
+  validates :author_id,
+    presence: true
 
-  has_many :menu_items, as: :target, dependent: :nullify
+  belongs_to :repository,
+    foreign_key: "repository_id"
 
-  has_many :banners, dependent: :nullify
+  has_many :menu_items,
+    as: :target,
+    dependent: :nullify
+
+  has_many :banners,
+    dependent: :nullify
 
   has_many :pages_repositories
   has_many :repositories, through: :pages_repositories
-  accepts_nested_attributes_for :pages_repositories, allow_destroy: true
+  #accepts_nested_attributes_for :pages_repositories, allow_destroy: true
 
-  has_many :sites_pages
-  has_many :sites, through: :sites_pages
-  accepts_nested_attributes_for :sites_pages, allow_destroy: true
+  #has_many :sites_pages
+  #has_many :sites, through: :sites_pages
+  #accepts_nested_attributes_for :sites_pages, allow_destroy: true
 
   # Internationalization
-  has_many :page_i18ns, dependent: :destroy
-  accepts_nested_attributes_for :page_i18ns, allow_destroy: true
+  has_many :page_i18ns,
+    dependent: :destroy
+  accepts_nested_attributes_for :page_i18ns,
+    allow_destroy: true
   validates_associated :page_i18ns
 
   before_save :reject_blank_internationalizations
