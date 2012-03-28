@@ -1,6 +1,5 @@
 class MenuItem < ActiveRecord::Base
   has_many :i18ns, class_name: "MenuItem::I18n", dependent: :delete_all
-  #validates_associated :i18ns
   accepts_nested_attributes_for :i18ns, allow_destroy: true,
     reject_if: proc { |attr| attr['id'].blank? and attr['title'].blank? }
 
@@ -17,17 +16,12 @@ class MenuItem < ActiveRecord::Base
 
   validates_with WebyI18nContentValidator
   
-  # Find i18n based on locale_name
-  # Example: locale_name = 'pt-BR'
-  def i18n(locale_name)
-    loc = Locale.find_by_name(locale_name)
-    if loc
-      i18nitem = self.i18ns.where({locale_id: loc.id}).first
-      unless i18nitem
-        i18nitem = self.i18ns.first
-      end
-    end
-    i18nitem
+  # Find i18n based on locale
+  def i18n(locale)
+    selected_locale = self.i18ns.select{|i18n| i18n.locale_id == locale.id }
+    return selected_locale.first if selected_locale.any?
+
+    self.i18ns.first
   end
   
 end

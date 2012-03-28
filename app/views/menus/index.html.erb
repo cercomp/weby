@@ -29,16 +29,13 @@
         <% end %>
         &nbsp;
       </div>
-      <%= raw print_menu(@global_menus[@menu.id], 1) %>
+      <%= raw print_menu(@menu, 1) %>
     <% end %>
   </div>
 
 <%= javascript_tag do %>
   window.onload=function(){
     $().ready(function() {
-
-      ////FIX-ME
-      $('#content').css({'overflow':'hidden'});
 
       var dropped = false;
       $('#main-tabs > menu').nestedSortable({
@@ -104,6 +101,10 @@
           }
         }
       });
+
+      ////FIX-ME
+      $('#content').css({'overflow':'hidden'});
+      $('#main-tabs').css({'height':$('#main-tabs').height()});
 
     })
   }
