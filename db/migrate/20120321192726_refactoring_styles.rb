@@ -28,56 +28,56 @@ class RefactoringStyles < ActiveRecord::Migration
     
     remove_column :sites_styles, :owner
 
-    say "Creating foreign keys in styles and sites_styles"
-    execute <<-SQL
-    ALTER TABLE styles
-    ADD CONSTRAINT fk_owner
-    FOREIGN KEY (owner_id)
-    REFERENCES sites(id)
-    ON DELETE CASCADE; 
+    #say "Creating foreign keys in styles and sites_styles"
+    #execute <<-SQL
+    #ALTER TABLE styles
+    #ADD CONSTRAINT fk_owner
+    #FOREIGN KEY (owner_id)
+    #REFERENCES sites(id)
+    #ON DELETE CASCADE; 
 
-    ALTER TABLE sites_styles
-    ADD CONSTRAINT fk_styles
-    FOREIGN KEY (style_id)
-    REFERENCES styles(id)
-    ON DELETE CASCADE; 
+    #ALTER TABLE sites_styles
+    #ADD CONSTRAINT fk_styles
+    #FOREIGN KEY (style_id)
+    #REFERENCES styles(id)
+    #ON DELETE CASCADE; 
 
-    ALTER TABLE sites_styles
-    ADD CONSTRAINT fk_sites
-    FOREIGN KEY (site_id)
-    REFERENCES sites(id)
-    ON DELETE CASCADE;
+    #ALTER TABLE sites_styles
+    #ADD CONSTRAINT fk_sites
+    #FOREIGN KEY (site_id)
+    #REFERENCES sites(id)
+    #ON DELETE CASCADE;
 
-    ALTER TABLE styles
-    ALTER COLUMN name set NOT NULL;
+    #ALTER TABLE styles
+    #ALTER COLUMN name set NOT NULL;
 
-    ALTER TABLE styles
-    ALTER COLUMN owner_id set NOT NULL;
+    #ALTER TABLE styles
+    #ALTER COLUMN owner_id set NOT NULL;
 
-    SQL
+    #SQL
   end
 
   def down
     add_column :sites_styles, :owner, :boolean
 
-    say "Removing foreign keys in styles and sites_styles"
-    execute <<-SQL
-    ALTER TABLE styles
-    DROP CONSTRAINT fk_owner;
+    #say "Removing foreign keys in styles and sites_styles"
+    #execute <<-SQL
+    #ALTER TABLE styles
+    #DROP CONSTRAINT fk_owner;
 
-    ALTER TABLE sites_styles
-    DROP CONSTRAINT fk_styles;
+    #ALTER TABLE sites_styles
+    #DROP CONSTRAINT fk_styles;
 
-    ALTER TABLE sites_styles
-    DROP CONSTRAINT fk_sites;
+    #ALTER TABLE sites_styles
+    #DROP CONSTRAINT fk_sites;
 
-    ALTER TABLE styles
-    ALTER COLUMN name drop NOT NULL;
+    #ALTER TABLE styles
+    #ALTER COLUMN name drop NOT NULL;
 
-    ALTER TABLE styles
-    ALTER COLUMN owner_id drop NOT NULL;
+    #ALTER TABLE styles
+    #ALTER COLUMN owner_id drop NOT NULL;
 
-    SQL
+    #SQL
 
     Style.all.each do |style|
       site_style = SitesStyle.new(site_id: style.owner_id, style_id: style.id, publish: style.publish)

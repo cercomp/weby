@@ -28,5 +28,6 @@ end
 
 group :development, :test do
   gem 'rspec-rails', '2.8.1'
-  gem 'valid_attribute', '1.2.0'
+  gem 'factory_girl_rails', '1.7.0'
+  gem 'shoulda-matchers', '1.0.0'
 end

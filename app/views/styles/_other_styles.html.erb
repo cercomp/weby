@@ -12,7 +12,7 @@
     <% @other_styles.each do |style| %>
       <tr>
         <td> <%= style.name %> </td>
-        <td> <%= style.owner.name %> </td>
+        <td> <%= link_to style.owner.name, style.owner %>  </td>
         <td class="style-action">
           <%= raw style_actions style, others: true %>
         </td>
