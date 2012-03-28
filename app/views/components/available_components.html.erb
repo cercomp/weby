@@ -1,7 +1,7 @@
 <fieldset>
-  <legend><%= t('.select_component', :default => 'X Selecionr um Componente') %></legend>
+  <legend><%= t('.select_component', :default => 'X Selecionar um Componente') %></legend>
 
-  <% SiteComponent.subclasses.each do |component| %>
+  <% Weby::Components.available_components.each do |component| %>
     <p><%= link_to component.name, new_site_component_path(:component => component.component_name) %></p>
   <% end %>
 </fieldset>

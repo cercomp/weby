@@ -1,5 +1,5 @@
 <fieldset>
   <legend><%= t('new_param.masc', :param => t('component.one')) %></legend>
 
-  <%= render 'form' %>
+  <%= render :partial => 'form', :locals => { :url => site_components_path, :method => :post } %>
 </fieldset>

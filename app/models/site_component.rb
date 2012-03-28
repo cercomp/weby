@@ -18,17 +18,13 @@ class SiteComponent < ActiveRecord::Base
       settings.each do |setting|
         class_eval <<-METHOD
           default_scope where(:component => self.component_name)
-
-          def #{setting}=(value)
-            settings_map[:#{setting}] = value
-          end
-          
-          def #{setting}
-            settings_map[:#{setting}]
-          end
+          attr_accessor :#{setting}
         METHOD
 
         ActionController::Base.view_paths << Rails.root.join('lib', 'weby', 'components', self.component_name, 'views')
+        Weby::Application.config.i18n.load_path += Dir[
+          Rails.root.join('lib', 'weby', 'components', self.component_name, 'locales', '*.{rb,yml}').to_s
+        ]
       end
     end
   end

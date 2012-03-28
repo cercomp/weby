@@ -14,7 +14,7 @@ class ComponentsController < ApplicationController
 
   def new
     if (comp = params[:component])
-      ## verifica se o componente existe
+      ## FIXME verifica se o componente existe
       @component = eval("#{comp.classify}Component").new # cria uma nova instância do componente selecionado
     else
       render :available_components
@@ -26,13 +26,25 @@ class ComponentsController < ApplicationController
   end
 
   def create
-    @site_component = SiteComponent.new(params[:site_component])
+    if (comp = params[:component])
+      ## FIXME verifica se o componente existe
+      # cria uma nova instância do componente selecionado
+      @component = eval("#{comp.classify}Component").new(params[:site_component])
+      @component.valid?
+      #render :text => @component.errors.messages.to_s
+      render :text => params.to_s
+      return
 
-    if @site_component.save
-      # TODO colocar tradução na mensagem de sucesso
-      redirect_to(site_site_components_url, :notice => 'Componente criado com sucesso.')
+      if @site_component.save
+        render :text => 'funcionou'
+        return
+        # TODO colocar tradução na mensagem de sucesso
+        redirect_to(site_site_components_url, :notice => 'Componente criado com sucesso.')
+      else
+        render :action => "new"
+      end
     else
-      render :action => "new"
+      render :available_components
     end
   end
 
