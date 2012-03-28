@@ -5,6 +5,9 @@ class Style < ActiveRecord::Base
   has_many :followers, through: :sites_styles, source: :site
 
   belongs_to :owner, foreign_key: :owner_id, class_name: "Site"
+  validates :owner_id,
+    presence: true,
+    numericality: true
 
   accepts_nested_attributes_for :sites_styles, :allow_destroy => true
   validates_presence_of :name

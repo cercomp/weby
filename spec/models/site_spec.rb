@@ -4,17 +4,38 @@ describe Site do
 
   subject { Site.new }
 
-  it { should have_valid(:name).when('Teste') }
-  it { should_not have_valid(:name) }
+  context "Site#name" do
+    it { should validate_presence_of(:name) }
+    it { should allow_value('Teste').for(:name) }
 
-  it { should have_valid(:url).when('http://localhost.com', 'http://www.teste.com.br') }
-  it { should_not have_valid(:url).when(nil, '', 'asdf', 'user@gmail.com', 'localhost.com') }
-
-  it "Site#name should be unique" do
-    Site.new.tap do |site|
-      2.times { site = Site.create name: 'One', url: 'http://localhost.com' }
-      site.should have_at_least(1).error_on(:name)
+    it "should be unique" do
+      Site.new.tap do |site|
+        2.times { site = Site.create name: 'One', url: 'http://localhost.com' }
+        site.should have_at_least(1).error_on(:name)
+      end
     end
+  end
+
+  context "Site#url" do
+    ['http://localhost.com', 'http://www.teste.com.br'].each do |value|
+      it { should allow_value(value).for(:url) }
+    end
+
+    [nil, '', 'asdf', 'user@gmail.com', 'localhost.com'].each do |value|
+      it { should_not allow_value(value).for(:url) }
+    end
+  end
+
+  it "may have many relations with the table sites_styles " do
+    subject.should have_many(:sites_styles)
+  end
+
+  it "may follow many styles" do
+    subject.should have_many(:follow_styles).through(:sites_styles)
+  end
+
+  it "may have many own styles" do
+    subject.should have_many(:own_styles)
   end
 
   describe "Per page" do
