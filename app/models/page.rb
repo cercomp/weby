@@ -1,4 +1,5 @@
 class Page < ActiveRecord::Base
+
   acts_as_taggable_on :categories
 
   scope :published, where(publish: true)
@@ -23,8 +24,20 @@ class Page < ActiveRecord::Base
           published
   }
 
+  validates :type,
+    presence: true,
+    inclusion: %w[News Event]
+
+  validates :kind,
+    inclusion: %w[international national regional],
+    allow_nil: true,
+    allow_blank: true
+
   validates :date_begin_at, 
     presence: true
+
+  validates :local,
+    presence: { if: proc { self.type == 'Event' } }
 
   belongs_to :site
   validates :site_id,
@@ -35,8 +48,9 @@ class Page < ActiveRecord::Base
   validates :author_id,
     presence: true
 
-  belongs_to :repository,
-    foreign_key: "repository_id"
+  has_one :image,
+    class_name: 'Repository',
+    conditions: { page?: true }
 
   has_many :menu_items,
     as: :target,
@@ -54,50 +68,28 @@ class Page < ActiveRecord::Base
   #accepts_nested_attributes_for :sites_pages, allow_destroy: true
 
   # Internationalization
-  has_many :page_i18ns,
-    dependent: :destroy
-  accepts_nested_attributes_for :page_i18ns,
-    allow_destroy: true
-  validates_associated :page_i18ns
+  has_many :i18ns,
+    class_name: "Page::I18ns",
+    dependent: :delete_all
+  accepts_nested_attributes_for :i18ns,
+    allow_destroy: true,
+    reject_if: :reject_i18ns
 
-  before_save :reject_blank_internationalizations
-  def reject_blank_internationalizations
-    page_i18ns.each do |internationalization|
-      internationalization.delete unless valid_internationalization?(internationalization)
-    end
-  end
-  private :reject_blank_internationalizations
+  before_validation :initialize_i18n
 
-  validate :presence_of_internationalization
-  def presence_of_internationalization
-    error_message = I18n.t("page_need_at_least_one_internationalization") 
-    errors.add(:base, error_message) if has_valid_internationalizations?
+  def initialize_i18n
+    i18ns.each { |i18n| i18n.page = self }
   end
-  private :presence_of_internationalization
+  private :initialize_i18n
 
-  def has_valid_internationalizations?
-    valid_internationalizations.size <= 0
-  end
-  private :has_valid_internationalizations?
+  validates_with WebyI18nContentValidator
+  validates_associated :i18ns
 
-  def valid_internationalizations
-    page_i18ns.map do |internationalization| 
-      internationalization if valid_internationalization?(internationalization)
-    end.compact
+  def reject_i18ns(attributed)
+    attributed['id'].blank? and
+      attributed['title'].blank?
   end
-  private :valid_internationalizations
-
-  def valid_internationalization?(internationalization)
-    not(internationalization.marked_for_destruction? or internationalization.title.blank?)
-    self.page_i18ns.
-      map{ |page_i18n| page_i18n if valid_internationalization?(page_i18n) }.compact
-  end
-  private :valid_internationalizations
-
-  def valid_internationalization?(page_i18n)
-    not page_i18n.marked_for_destruction? and not page_i18n.title.blank?
-  end
-  private :valid_internationalization?
+  private :reject_i18ns
 
   # Find i18n based on locale_name
   # Example: locale_name = 'pt-BR'

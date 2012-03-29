@@ -1,13 +1,15 @@
 require 'spec_helper'
 
 describe Page do
-
   before :each do
-    @page = Page.new author_id: 1, date_begin_at: Time.now
-    @page.type = 'News'
+    @locale = Factory(:locale)
+    @page = Factory.build(:page, type: 'News')
   end
 
-  subject { Page.new }
+  it { should validate_presence_of(:type) }
+  it { should allow_value('News').for(:type) }
+  it { should allow_value('Event').for(:type) }
+  it { should_not allow_value('Page').for(:type) }
 
   it { should belong_to(:author) }
   it { should validate_presence_of(:author_id) }
@@ -17,35 +19,62 @@ describe Page do
 
   it { should validate_presence_of(:date_begin_at) }
   it { should allow_value(Time.now).for(:date_begin_at) }
-  [nil, '', 'asdf'].each do |value|
-    it { should_not allow_value(value).for(:date_begin_at) }
+
+  context 'Event' do
+    [nil, '', 'international', 'national', 'regional'].each do |value|
+      it { should allow_value(value).for(:kind) }
+    end
+    it { should_not allow_value('other').for(:kind) }
+
+    it "should require local(only if page is an event)" do
+      @page.type = 'Event' 
+      @page.should_not be_valid
+      @page.should have(1).error_on(:local)
+    end
   end
 
+  context "Image" do
+    it "may have one image" do
+      should have_one(:image)
+    end
+    it "should accept only images" do
+      pending
+    end
+  end
+
+  context "Related Files" do
+    it "may have many related files" do
+      should have_many(:related_files) 
+    end
+    it "should accept only its own files" do
+      pending 
+    end
+  end
 
   context "i18ns" do
-    it { should has_many(:i18ns) }
-
-    it "should accept i18ns attributes" do
-      subject.update_attributes i18ns_attributes: [
-        { title: 'title' } 
-      ]
-      subject.i18ns.should have(1).elements
+    it "may have many i18ns" do
+      @page.should have_many(:i18ns)
     end
 
-    it "should reject page_i18n without title or marked to destruction" do
-      @page.update_attributes i18ns_attributes: [ { title: '' } ]
-      @page.i18ns.count.should == 0
+    it "should validates with Weby i18n content validator" do
+      Page.validators.map(&:class).should include(WebyI18nContentValidator)
     end
 
     it "should have at least one page_i18n" do
       @page.should_not be_valid
       @page.should have_at_least(1).error_on(:base)
-      @page.update_attributes page_i18ns_attributes: [
-        { title: 'title' },
-        { title: 'title1' },
-        { title: '' }
+    end
+
+    it "should accept i18ns attributes" do
+      @page.update_attributes i18ns_attributes: [
+        { title: 'title', locale: @locale } 
       ]
-      @page.page_i18ns.count.should == 2
+      @page.i18ns.count.should == 1
+    end
+
+    it "should reject i18n without title" do
+      @page.update_attributes i18ns_attributes: [ { title: '', locale: @locale } ]
+      @page.i18ns.count.should == 0
     end
   end
 

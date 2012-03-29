@@ -1,6 +1,6 @@
 class Repository < ActiveRecord::Base
   belongs_to :site
-  has_one :page
+  belongs_to :page
   has_one :banner
 
   has_many :pages_repositories
