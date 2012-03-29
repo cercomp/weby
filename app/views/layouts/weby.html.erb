@@ -87,7 +87,7 @@
  	<%= content_for :javascripts do %>
 		<%= javascript_include_tag "jquery.nivo.slider.pack.js" %>
     <%= javascript_tag do %>
-      $().ready(function() {
+      $(document).ready(function() {
         $('#slider').nivoSlider({
           controlNav:false,
           directionNavHide:false,
