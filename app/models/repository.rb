@@ -1,6 +1,8 @@
 class Repository < ActiveRecord::Base
+  has_many :page, 
+    foreign_key: 'repository_id'
+
   belongs_to :site
-  belongs_to :page
   has_one :banner
 
   has_many :pages_repositories

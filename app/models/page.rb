@@ -1,5 +1,5 @@
 class Page < ActiveRecord::Base
-
+  self.inheritance_column = nil
   acts_as_taggable_on :categories
 
   scope :published, where(publish: true)
@@ -48,9 +48,22 @@ class Page < ActiveRecord::Base
   validates :author_id,
     presence: true
 
-  has_one :image,
+  belongs_to :image,
     class_name: 'Repository',
-    conditions: { page?: true }
+    foreign_key: 'repository_id'
+  validate :should_be_image
+
+  def should_be_image
+    error_message = I18n.t("should_be_image")
+    errors.add(:image, error_message) unless image?
+  end
+  private :should_be_image
+
+  def image?
+    return true if image.blank?
+    image.archive_content_type =~ /image/ 
+  end
+  private :image?
 
   has_many :menu_items,
     as: :target,

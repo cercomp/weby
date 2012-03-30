@@ -29,16 +29,22 @@ describe Page do
     it "should require local(only if page is an event)" do
       @page.type = 'Event' 
       @page.should_not be_valid
-      @page.should have(1).error_on(:local)
+      @page.should have_at_least(1).error_on(:local)
     end
   end
 
   context "Image" do
     it "may have one image" do
-      should have_one(:image)
+      should belong_to(:image)
+    end
+    it "should accept only its own images" do
+      pending 
     end
     it "should accept only images" do
-      pending
+      @page.image = Factory(:image_repository)
+      @page.errors.should_not include(:image)
+      @page.image = Factory(:pdf_repository)
+      @page.should have_at_least(1).error_on(:image)
     end
   end
 
