@@ -37,9 +37,6 @@
   window.onload=function(){
     $(document).ready(function() {
 
-      ////FIX-ME
-      $('#content').css({'overflow':'hidden'});
-
       var dropped = false;
       $('#main-tabs > menu').nestedSortable({
         listType: 'menu',
@@ -105,7 +102,11 @@
         }
       });
 
-    })
+      ////FIX-ME
+      $('#content').css({'overflow':'hidden'});
+      $('#main-tabs').css({'height':$('#main-tabs').height()});
+
+    });
   }
   <% end %>
 </fieldset>

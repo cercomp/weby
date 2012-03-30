@@ -504,5 +504,13 @@ var ImageDialog = {
     }
 };
 
+function enter_to_click(ev, id){
+    if(ev.keyCode == 13){
+        $('#'+id).click();
+        return false;
+    }
+    return true;
+}
+
 ImageDialog.preInit();
 tinyMCEPopup.onInit.add(ImageDialog.init, ImageDialog);

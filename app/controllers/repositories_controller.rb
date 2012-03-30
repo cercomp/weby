@@ -13,7 +13,7 @@ class RepositoriesController < ApplicationController
     @repositories = @site.repositories.
       description_or_filename(params[:search]).
       order(sort_column + ' ' + sort_direction).
-      page(params[:page]).per(params[:per_page])
+      page(params[:page]).per(per_page)
 
     @repositories = @repositories.content_file(params[:mime_type]) if params[:mime_type]
 
@@ -107,5 +107,17 @@ class RepositoriesController < ApplicationController
     request.env['HTTP_ACCEPT'].include?('application/json') ?
       'application/json' :
       'text/plain'
+  end
+
+  def per_page
+    if params[:template]
+      if params[:template]=='tinymce_link'
+        12
+      elsif params[:template]=='tinymce'
+        18
+      else
+        params[:per_page] || per_page_default
+      end
+    end
   end
 end

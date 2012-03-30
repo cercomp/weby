@@ -48,5 +48,8 @@ tabindex:"Tabindex",
 accesskey:"Chave de acesso",
 ltr:"Da esquerda para a direita",
 rtl:"Da direita para a esquerda",
-link_list:"Lista de hyperlinks"
+link_list:"Lista de hyperlinks",
+files_tab:"Arquivos",
+pages:"Páginas",
+repository:"Repositório"
 });

@@ -166,9 +166,8 @@ class ApplicationController < ActionController::Base
       params[:per_page] ||= per_page_default
 
       @global_menus = {}
-      # Agrupa os itens de menus afim de deixar os submenus organizados.
-      #   Exemplo: menu['principal'] = { 0 => [menu1, menu2], 1 => [menu3, menu4] }
-      @site.menus.each{ |menu| @global_menus[menu.id] = menu.menu_items.order(:position).group_by(&:parent_id) }
+      # Carrega os menus, para auemntar a eficiência, já que menus são carregados em todas as requisições
+      @site.menus.with_items.each{ |menu| @global_menus[menu.id] = menu }
 
       if not @site.repository.nil? and File.file?(@site.repository.archive.path) and @site.repository.image?
         @top_banner_width,@top_banner_height = Paperclip::Geometry.from_file(@site.repository.archive).to_s.split('x')

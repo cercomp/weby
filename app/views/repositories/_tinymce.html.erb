@@ -11,8 +11,8 @@
   });
 </script>
 <div id="tinyMCE_search_area">
-  <%= text_field_tag 'search', params[:search], :placeholder => t('search') + " " + t('page.other') %>
-  <%= link_to t('search'), site_repositories_path, :remote => true, :id => 'search_button' %>
+  <%= text_field_tag 'search', params[:search], placeholder: t('search') + " " + t('image'), onkeypress: "return enter_to_click(event,'search_button');" %>
+  <%= link_to t('search'), site_repositories_path(mime_type: params[:mime_type]), remote: true, id: 'search_button' %>
 </div>
 <br/>
 
@@ -24,7 +24,7 @@
               repository.archive.url(),
               :alt => repository.description,
               :width => '64px',
-              :height => '64px',
+              :height => '64px'
             ),
             repository.archive.url( :original ),
             :title => repository.description,
@@ -33,6 +33,6 @@
   <% end %>
 </ul>
 
-<div style="clear: both">
-  <%= paginate @repositories, :remote => true %>
+<div style="clear: both;float: right;">
+  <%= paginate @repositories, remote: true %>
 </div>
