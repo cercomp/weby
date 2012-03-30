@@ -9,6 +9,8 @@ class Menu < ActiveRecord::Base
     presence: true,
     numericality: true
 
+  scope :with_items, includes(:menu_items)
+
   #Returns a hash, with the parent_id and a array as the value
   # ie. {0 => [menuitem1, menuitem2}, 1 => [menuitem3,menuitem4] }
   def items_by_parent

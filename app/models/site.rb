@@ -26,8 +26,8 @@ class Site < ActiveRecord::Base
 
   has_one :repository
 
-  has_many :menus, dependent: :delete_all, order: :id, include: :menu_items
-  has_many :menu_items, :through => :menus, dependent: :delete_all
+  has_many :menus, dependent: :delete_all, order: :id
+  has_many :menu_items, :through => :menus
 
   has_many :sites_pages
   has_many :pages, :through => :sites_pages

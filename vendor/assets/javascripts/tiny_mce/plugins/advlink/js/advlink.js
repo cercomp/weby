@@ -534,6 +534,22 @@ function getTargetListHTML(elm_id, target_form_element) {
 	return html;
 }
 
+function change_fieldset(id){
+    $('div.toggeable').each(function(){
+        if($(this).attr('id') == id) $(this).show();
+        else $(this).hide();
+    });
+    return false;
+}
+
+function enter_to_click(ev, id){
+    if(ev.keyCode == 13){
+        $('#'+id).click();
+        return false;
+    }
+    return true;
+}
+
 // While loading
 preinit();
 tinyMCEPopup.onInit.add(init);

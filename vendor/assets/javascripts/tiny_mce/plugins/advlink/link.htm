@@ -3,6 +3,7 @@
 <head>
 	<title>{#advlink_dlg.title}</title>
         <script type="text/javascript" src="../../../jquery.js"></script>
+        <script type="text/javascript" src="../../../jquery_ujs.js"></script>
 	<script type="text/javascript" src="../../tiny_mce_popup.js"></script>
 	<script type="text/javascript" src="../../utils/mctabs.js"></script>
 	<script type="text/javascript" src="../../utils/form_utils.js"></script>
@@ -24,25 +25,42 @@
 
 		<div class="panel_wrapper" role="presentation">
 			<div id="general_panel" class="panel current">
-                            <fieldset>
-                                <legend>Páginas</legend>
-                                <script type="text/javascript">
-                                    $(document).ready(function(){
-                                        $("#page_list").html("<img src='/assets/loading.gif'>");
-                                        var page_url = tinyMCEPopup.editor.settings.site_name;
-                                        $.ajax({
-                                            type: "GET",
-                                            url: "/sites/"+page_url+"/pages",
-                                            data: { 'tiny_mce': true },
-                                            dataType: "script"
+                            <fieldset class="list">
+                                <legend><input type="radio" name="search" onclick="change_fieldset('pages_fieldset');" id="pages_radio" checked /><label for="pages_radio" class="linkable">{#advlink_dlg.pages}</label> <input type="radio" name="search" onclick="change_fieldset('repo_fieldset');" id="repo_radio" /><label for="repo_radio" class="linkable">{#advlink_dlg.repository}</label></legend>
+                                <div id="pages_fieldset" class="toggeable">
+                                    <script type="text/javascript">
+                                        $(document).ready(function(){
+                                            var page_url = tinyMCEPopup.editor.settings.site_name;
+                                            $.ajax({
+                                                type: "GET",
+                                                url: "/sites/"+page_url+"/pages",
+                                                data: { 'tiny_mce': true },
+                                                dataType: "script"
+                                            });
                                         });
-                                    });
-                                </script>
-                                <div id="page_list">
+                                    </script>
+                                    <div id="page_list">
+                                        <img src="/assets/loading.gif" alt=""/>
+                                    </div>
+                                </div>
 
+                                <div id="repo_fieldset" class="toggeable" style="display:none;">
+                                    <script type="text/javascript">
+                                        $(document).ready(function(){
+                                            $.ajax({type: "GET",
+                                                    //url: "/sites/"+tinyMCEPopup.editor.settings.plugin_preview_pageurl+"/repositories?template=tinymce&mime_type=image",
+                                                    url: "/sites/"+tinyMCEPopup.editor.settings.site_name+"/repositories?template=tinymce_link",
+                                                    dataType: "script"});
+                                        });
+                                    </script>
+                                    <div id="repo_list">
+                                      <img src='/assets/loading.gif' alt=""/>
+                                    </div>
+                                    <div style="clear:both;">&nbsp;</div>
                                 </div>
                             </fieldset>
-				<fieldset>
+
+                            <fieldset>
 					<legend>{#advlink_dlg.general_props}</legend>
 
 					<table border="0" cellpadding="4" cellspacing="0" role="presentation">
@@ -83,7 +101,7 @@
 				</fieldset>
 			</div>
 
-			<div id="popup_panel" class="panel">
+                        <div id="popup_panel" class="panel">
 				<fieldset>
 					<legend>{#advlink_dlg.popup_props}</legend>
 

@@ -2,7 +2,7 @@
 .mceActionPanel {margin-top:7px;}
 .alignPreview {border:1px solid #000; width:140px; height:140px; overflow:hidden; padding:5px;}
 .checkbox {border:0;}
-.panel_wrapper div.current {height:245px;}
+.panel_wrapper div.current {height:300px;}
 #prev {margin:0; border:1px solid #000; width:95%; height:120px; overflow:auto;}
 #align, #classlist {width:150px;}
 #width, #height {vertical-align:middle; width:50px; text-align:center;}
@@ -15,6 +15,7 @@ input.submit {
 }
 #constrain, #onmousemovecheck {width:auto;}
 #id, #dir, #lang, #usemap, #longdesc {width:200px;}
+#search{width: 200px;}
 
 ul.attachment_list {
   list-style: none;
@@ -23,7 +24,7 @@ ul.attachment_list {
 }
 ul.attachment_list li {
   float: left;
-  margin-right: 8px;
+  margin-right: 5px;
   margin-bottom:5px;
 }
 ul.attachment_list li img {

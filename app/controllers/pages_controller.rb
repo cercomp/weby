@@ -17,8 +17,8 @@ class PagesController < ApplicationController
 
     @pages = @site.pages.
       titles_like(params[:search], params[:locales]).
-      page(params[:page]).per(per_page).
-      order(sort_column + " " + sort_direction+ extra_order)
+      order(sort_column + " " + sort_direction+ extra_order).
+      page(params[:page]).per(per_page)
 
     if !current_user
       @pages = @pages.published
@@ -27,7 +27,7 @@ class PagesController < ApplicationController
     @tiny_mce = tiny_mce
 
     if @pages
-      respond_with @page
+      respond_with @pages
     else
       flash[:warning] = (t"none_param", param: t("page.one"))
     end
@@ -154,6 +154,7 @@ class PagesController < ApplicationController
   # Lista com paginação as notícias cadastradas
   def list_published
     params[:locales] ||= session[:locale]
+    params[:direction] = 'desc'
     @pages = @site.pages.
       titles_like(params[:search], params[:locales]).
       order(sort_column + " " + sort_direction).
@@ -207,7 +208,7 @@ class PagesController < ApplicationController
 
   def per_page
     if tiny_mce
-      5
+      7
     else
       params[:per_page] || per_page_default
     end

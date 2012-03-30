@@ -4,6 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <title>{#advimage_dlg.dialog_title}</title>
     <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../jquery_ujs.js"></script>
     <script type="text/javascript" src="../../tiny_mce_popup.js"></script>
     <script type="text/javascript" src="../../utils/mctabs.js"></script>
     <script type="text/javascript" src="../../utils/form_utils.js"></script>
@@ -27,7 +28,7 @@
       <div class="panel_wrapper">
 
         <div id="dynamic_select_panel" class="panel current" style='overflow:auto'>
-          <fieldset>
+          <fieldset class="image_list">
             <legend>{#advimage_dlg.available_images}</legend>
             <script type="text/javascript">//<![CDATA[
               //$.ajax({type: "GET", url: "/attachments/manage?media=print", dataType: "script"});
