@@ -1,5 +1,5 @@
 class GovBarComponent < SiteComponent
-  register_settings :background
+  initialize_component :background
 
   validates :background, :presence => true
 end

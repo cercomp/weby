@@ -3,7 +3,6 @@ class ComponentsController < ApplicationController
   before_filter :require_user
   before_filter :check_authorization
 
-  respond_to :html, :xml, :js
   def index
     @site_components = @site.site_components.order('position asc')
   end
@@ -14,32 +13,28 @@ class ComponentsController < ApplicationController
 
   def new
     if (comp = params[:component])
-      ## FIXME verifica se o componente existe
-      @component = eval("#{comp.classify}Component").new # cria uma nova instância do componente selecionado
+      @component = Weby::Components.factory(comp)
     else
       render :available_components
     end
   end
 
   def edit
-    @site_component = @site.site_components.find(params[:id])
+    @component = Weby::Components.factory(@site.site_components.find(params[:id]))
   end
 
   def create
     if (comp = params[:component])
-      ## FIXME verifica se o componente existe
       # cria uma nova instância do componente selecionado
-      @component = eval("#{comp.classify}Component").new(params[:site_component])
-      @component.valid?
-      #render :text => @component.errors.messages.to_s
-      render :text => params.to_s
+      @component = Weby::Components.factory(comp)
+      @component.attributes = params["#{comp}_component"]
+
+      render :text => [@component.attributes, params.to_s].join('<br>')
       return
 
-      if @site_component.save
-        render :text => 'funcionou'
-        return
+      if @component.save
         # TODO colocar tradução na mensagem de sucesso
-        redirect_to(site_site_components_url, :notice => 'Componente criado com sucesso.')
+        redirect_to(site_components_url, :notice => 'Componente criado com sucesso.')
       else
         render :action => "new"
       end
@@ -49,21 +44,23 @@ class ComponentsController < ApplicationController
   end
 
   def update
-    @site_component = @site.site_components.find(params[:id])
+    @component = Weby::Components.factory(@site.site_components.find(params[:id]))
 
-    if @site_component.update_attributes(params[:site_component])
+    comp = params[:component]
+    if @component.update_attributes(params["#{comp}_component"])
       # TODO colocar tradução na mensagem de sucesso
-      redirect_to(site_site_components_url, :notice => 'Componente atualizado com sucesso.')
+      redirect_to(site_components_url, :notice => 'Componente atualizado com sucesso.')
     else
       render :action => "edit"
     end
   end
 
   def destroy
-    @site_component = SiteComponent.find(params[:id])
-    @site_component.destroy
+    @component = SiteComponent.find(params[:id])
+    @component.destroy
 
-    redirect_to(site_site_components_url)
+    # TODO tradução
+    redirect_to site_components_url, :notice => 'Componente removido com sucesso'
   end
   
   def sort

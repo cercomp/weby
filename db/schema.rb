@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120307180528) do
+ActiveRecord::Schema.define(:version => 20120330154626) do
 
   create_table "banners", :force => true do |t|
     t.datetime "date_begin_at"
@@ -183,9 +183,9 @@ ActiveRecord::Schema.define(:version => 20120307180528) do
     t.integer  "site_id"
     t.string   "place_holder"
     t.text     "settings"
-    t.string   "component"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.string   "component_name"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.integer  "position"
     t.boolean  "publish"
   end

@@ -1,8 +1,8 @@
 <fieldset>
-  <input id="component_place_holder" type="hidden" meta-data="<%= @site_component.place_holder %>">
+  <input id="component_place_holder" type="hidden" meta-data="<%= @component.place_holder %>">
   
   <legend><%= t('editing', :param => t('component.one')) %></legend>
 
-  <%= render 'form' %>
+  <%= render :partial => 'form', :locals => { :url => site_component_path, :method => :put } %>
 
 </fieldset>
