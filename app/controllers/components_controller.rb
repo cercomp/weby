@@ -29,9 +29,6 @@ class ComponentsController < ApplicationController
       @component = Weby::Components.factory(comp)
       @component.attributes = params["#{comp}_component"]
 
-      render :text => [@component.attributes, params.to_s].join('<br>')
-      return
-
       if @component.save
         # TODO colocar tradução na mensagem de sucesso
         redirect_to(site_components_url, :notice => 'Componente criado com sucesso.')

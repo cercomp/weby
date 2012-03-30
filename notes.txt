@@ -1,6 +1,11 @@
 Novo roteamento: /components ao invez de /site_components
 
 ---
+Mudar o nome da tabela no banco para apenas components
+Implementar a verificação se um determinado componente existe
+No initializer carregando os componentes, verificar a possibilidade de usar autoload
+
+---
 X registra componentes
 X - adiciona path das views
 

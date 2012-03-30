@@ -1,0 +1,6 @@
+pt-BR:
+  components:
+    menu_side:
+      name: "Menu Lateral"
+      form:
+        category: "Categoria"
