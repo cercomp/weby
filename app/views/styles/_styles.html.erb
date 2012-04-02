@@ -26,7 +26,7 @@
 
       <%= paginate styles, param_name: "page_#{type}_styles", remote: true, params: { style_type: type.to_s } %>
     <% else %>
-      <p class="empty"> <%= t('no_own_styles') %> </p>
+      <p class="empty"> <%= t("no_#{type}_styles") %> </p>
     <% end %>
   </div>
 </details>
