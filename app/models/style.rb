@@ -13,7 +13,7 @@ class Style < ActiveRecord::Base
   validates_presence_of :name
 
   scope :by_name, lambda { |name|
-    where(['name like :name', { name: "%#{name}%" } ])
+    where(['lower(name) like :name', { name: "%#{name.downcase}%" } ])
   }
 
   scope :by, lambda { |site_id|
