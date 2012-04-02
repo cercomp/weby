@@ -1,27 +1,28 @@
 class Page < ActiveRecord::Base
   self.inheritance_column = nil
+
   acts_as_taggable_on :categories
 
   scope :published, where(publish: true)
+  scope :news, where(type: 'News')
+  scope :events, where(type: 'Event')
 
   scope :front, where(front: true)
 
   scope :titles_like, proc { |title, locale|
-    unless locale.blank?
+    if locale.blank?
       joins('LEFT JOIN page_i18ns ON pages.id = page_i18ns.page_id 
              LEFT JOIN locales ON page_i18ns.locale_id = locales.id')
-             .where(['LOWER(page_i18ns.title) like ? AND locales.name IN (?)', "%#{title.try(:downcase)}%", locale])
+             .where(['LOWER(page_i18ns.title) like :title',
+                     { title: "%#{title.try(:downcase)}%" }
+             ])
     else
       joins('LEFT JOIN page_i18ns ON pages.id = page_i18ns.page_id 
              LEFT JOIN locales ON page_i18ns.locale_id = locales.id')
-             .where(['LOWER(page_i18ns.title) like ?', "%#{title.try(:downcase)}%"])
+             .where(['LOWER(page_i18ns.title) like :title AND locales.name IN (:locale)',
+                     { title: "%#{title.try(:downcase)}%", locale: locale} 
+             ])
     end
-  }
-
-  scope :news, lambda { |front|
-    where("front=:front AND date_begin_at <= :time AND( date_end_at is NULL OR date_end_at > :time)",
-          { time: Time.now, front: front }).
-          published
   }
 
   validates :type,
@@ -39,7 +40,9 @@ class Page < ActiveRecord::Base
   validates :local,
     presence: { if: proc { self.type == 'Event' } }
 
-  belongs_to :site
+  belongs_to :owner,
+    class_name: "Site",
+    foreign_key: :site_id
   validates :site_id,
     presence: true
 
@@ -52,18 +55,36 @@ class Page < ActiveRecord::Base
     class_name: 'Repository',
     foreign_key: 'repository_id'
   validate :should_be_image
+  validate :should_be_own_image
 
   def should_be_image
+    return unless have_image?
     error_message = I18n.t("should_be_image")
     errors.add(:image, error_message) unless image?
   end
   private :should_be_image
 
   def image?
-    return true if image.blank?
     image.archive_content_type =~ /image/ 
   end
   private :image?
+
+  def should_be_own_image
+    return unless have_image?
+    error_message = I18n.t("should_be_own_image")
+    errors.add(:image, error_message) unless own_image?
+  end
+  private :should_be_own_image
+
+  def own_image?
+    image.site_id == owner.id 
+  end
+  private :own_image?
+
+  def have_image?
+    not image.blank?
+  end
+  #private :have_image?
 
   has_many :menu_items,
     as: :target,
@@ -73,14 +94,23 @@ class Page < ActiveRecord::Base
     dependent: :nullify
 
   has_many :pages_repositories
-  has_many :repositories, through: :pages_repositories
-  #accepts_nested_attributes_for :pages_repositories, allow_destroy: true
+  has_many :related_files, through: :pages_repositories, source: :repository
+  validate :should_be_own_files
 
-  #has_many :sites_pages
-  #has_many :sites, through: :sites_pages
-  #accepts_nested_attributes_for :sites_pages, allow_destroy: true
+  def should_be_own_files
+    error_message = I18n.t("should_be_own_files")
+    errors.add(:related_files, error_message) unless own_files?
+  end
+  private :should_be_own_image
 
-  # Internationalization
+  def own_files?
+    related_files.each do |file|
+      return false if file.site_id != owner.id
+    end
+    return true
+  end
+  private :own_files?
+
   has_many :i18ns,
     class_name: "Page::I18ns",
     dependent: :delete_all
@@ -89,37 +119,17 @@ class Page < ActiveRecord::Base
     reject_if: :reject_i18ns
 
   before_validation :initialize_i18n
+  validates_with WebyI18nContentValidator
+  validates_associated :i18ns
 
   def initialize_i18n
     i18ns.each { |i18n| i18n.page = self }
   end
   private :initialize_i18n
 
-  validates_with WebyI18nContentValidator
-  validates_associated :i18ns
-
   def reject_i18ns(attributed)
     attributed['id'].blank? and
       attributed['title'].blank?
   end
   private :reject_i18ns
-
-  # Find i18n based on locale_name
-  # Example: locale_name = 'pt-BR'
-  def by_locale(locale_name)
-    loc = Locale.find_by_name(locale_name)
-    page_i18ns.by_locale(loc).first or page_i18ns.first
-  end
-
-  # Find current i18n page
-  # Try use session[:locale] to find actual i18n
-  #def page_i18n(session)
-  #  by_locale(session[:locale])
-  #end
-
-  # Necessário para o STI(News, Event)
-  # Classes filhas devem responder que são Pages
-  def self.model_name
-    ActiveModel::Name.new(Page)
-  end
 end

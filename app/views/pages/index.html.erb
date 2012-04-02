@@ -1,11 +1,11 @@
 <fieldset>
-  <legend><%= t"page.other"  %></legend>
+  <legend><%= t("page.other") %></legend>
 
   <div class="contextual">
-  <% if check_permission(PagesController, 'new') %>
+    <% if check_permission(PagesController, 'new') %>
       <%= link_to (t"new_param.fem", :param => (t"page.one")), new_site_page_path, :class => 'icon icon-add' %>&nbsp;|
-  <% end %>
-  <%= link_to (t"covers"), list_front_site_pages_path(@site), :class => 'icon icon-newspaper' %>
+    <% end %>
+    <%= link_to (t"covers"), list_front_site_pages_path(@site), :class => 'icon icon-newspaper' %>
   </div>
 
   <center>
@@ -18,7 +18,31 @@
     <% end %>
   </center>
 
+
+  <%= info_page @pages %>
+  <%= paginate @pages, :remote => true %>
   <div id="page_list">
-    <%= render :partial => ( @tiny_mce ? 'list_popup' : 'list' ) %>
+    <table class="list">
+      <thead>
+        <tr>
+          <th><%= sortable 'id' %></th>
+          <th><%= sortable 'created_at', t("date_param", :param => t("register"))%></th>
+          <th><%= sortable 'title', t("title") %></th>
+          <th><%= sortable 'author_id', t("author") %></th>
+          <th><%= sortable 'category', t("category") %></th>
+          <th><%= sortable 'type', t("type") %></th>
+          <% if check_permission(PagesController, 'toggle_field') %>
+            <th><%= sortable 'front', t("cover") %></th>
+            <th><%= t"publish" %></th>
+          <% end %>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: 'page', collection: @pages %>
+      </tbody>
+    </table>
+    <%= per_page_links @pages %>
+    <%= paginate @pages, :remote => true %>
   </div>
 </fieldset>

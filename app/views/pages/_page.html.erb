@@ -1,0 +1,15 @@
+<tr>
+  <td><%= page.id %></td>
+  <td><%= l(page.created_at, :format => :short) %></td>
+  <td><%=  %></td>
+  <td><%= page.author %></td>
+  <td><%= page.category_list.join ', ' %></td>
+  <td><%= t"#{page.type.downcase}.one" %></td>
+  <% if check_permission(PagesController, [:toggle_field]) %>
+    <td align="center"><%= raw toggle_field(page, "front") %></td>
+    <td align="center"><%= publication_status(page) %></td>
+  <% end %>
+  <td>
+    <%= make_menu(page, :except => "show") %>
+  </td>
+</tr>

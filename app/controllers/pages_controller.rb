@@ -8,29 +8,11 @@ class PagesController < ApplicationController
 
   helper_method :sort_column
 
-  respond_to :html, :xml, :js
+  respond_to :html, :js
 
   def index 
-    params[:locales] ||= session[:locale]
-    params[:direction] ||= 'desc'
-    extra_order = params[:sort]=='front' ? ',position desc' : ''
-
     @pages = @site.pages.
-      titles_like(params[:search], params[:locales]).
-      page(params[:page]).per(per_page).
-      order(sort_column + " " + sort_direction+ extra_order)
-
-    if !current_user
-      @pages = @pages.published
-    end
-
-    @tiny_mce = tiny_mce
-
-    if @pages
-      respond_with @page
-    else
-      flash[:warning] = (t"none_param", param: t("page.one"))
-    end
+      page(params[:page]).per(params[:per_page])
   end
 
   def show

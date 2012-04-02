@@ -32,6 +32,8 @@ class Site < ActiveRecord::Base
   has_many :pages,
     dependent: :delete_all
 
+  has_many :pages_i18ns, through: :pages, source: :i18ns
+
   has_many :groups
   has_many :feedbacks
   has_many :banners

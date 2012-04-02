@@ -44,6 +44,10 @@ class User < ActiveRecord::Base
     })" 
   }
 
+  def to_s
+   name_or_login
+  end
+
   def name_or_login
     self.first_name ? ("#{self.first_name} #{self.last_name}") : self.login
   end

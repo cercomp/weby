@@ -14,7 +14,7 @@ describe Page do
   it { should belong_to(:author) }
   it { should validate_presence_of(:author_id) }
 
-  it { should belong_to(:site) }
+  it { should belong_to(:owner) }
   it { should validate_presence_of(:site_id) }
 
   it { should validate_presence_of(:date_begin_at) }
@@ -38,12 +38,16 @@ describe Page do
       should belong_to(:image)
     end
     it "should accept only its own images" do
-      pending 
+      @page.image = Factory(:image_repository, site: Factory(:site))
+      @page.valid?
+      @page.errors.should include(:image)
     end
     it "should accept only images" do
-      @page.image = Factory(:image_repository)
+      @page.image = Factory(:image_repository, site: @page.owner)
+      @page.valid?
       @page.errors.should_not include(:image)
       @page.image = Factory(:pdf_repository)
+      @page.valid?
       @page.should have_at_least(1).error_on(:image)
     end
   end
@@ -53,7 +57,12 @@ describe Page do
       should have_many(:related_files) 
     end
     it "should accept only its own files" do
-      pending 
+      @page.update_attributes related_files: [
+        Factory(:image_repository, site: Factory(:site)),
+        Factory(:pdf_repository, site: Factory(:site)),
+      ]
+      @page.valid?
+      @page.should have_at_least(1).error_on(:related_files)
     end
   end
 
