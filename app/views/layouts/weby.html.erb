@@ -7,8 +7,8 @@
 
       <header>
       	<nav>
-                <% #TODO FIXME global_menus está agrupado pelo menu_id %>
-      		<%= raw print_menu(@global_menus['superior'])  %>
+                <% #TODO FIXME vai deixar o name fixo assim mesmo? %>
+      		<%= raw print_menu(@site.menus.find_by_name('superior'))  %>
       		<nav class="right">
 						<%= render "layouts/shared/menu_acessibility" %>
             <%= render "layouts/shared/menu_locale" %>
@@ -87,7 +87,7 @@
  	<%= content_for :javascripts do %>
 		<%= javascript_include_tag "jquery.nivo.slider.pack.js" %>
     <%= javascript_tag do %>
-      $().ready(function() {
+      $(document).ready(function() {
         $('#slider').nivoSlider({
           controlNav:false,
           directionNavHide:false,

@@ -28,13 +28,15 @@ module ApplicationHelper
   # Define os menus
   # Parâmetros: Lista de menu (sons, view_ctrl=0)
   # Retorna: O menu com seus controles
-  def print_menu(sons, view_ctrl=0)
-    sons ||= ""
+  def print_menu(menu, view_ctrl=0)
     ''.tap do |menus|
-      unless sons[0].blank?
+      if menu
+        menuitems = menu.items_by_parent
         menus << "\n<menu>"
-        sons[0].each do |child|
-          menus << print_menu_entry(sons, child, view_ctrl, 1)
+        if menuitems[0]
+          menuitems[0].each do |child|
+            menus << print_menu_entry(menuitems, child, view_ctrl, 1)
+          end
         end
         menus << "\n</menu>\n"
       end
@@ -52,7 +54,7 @@ module ApplicationHelper
        #		if (entry.menu.try(:page_id).nil? and entry.menu.try(:link).empty?)
        #menus << "#{entry.menu.try(:title)}"
        #		else
-       menus << link_to(entry.i18n(session[:locale]).title, entry.target_id.to_i > 0 ? site_page_path(@site, entry.target_id) : entry.url, :alt => entry.i18n(session[:locale]).title,:title => entry.i18n(session[:locale]).description, :target => entry.new_tab ? "_blank":"")
+       menus << link_to(entry.i18n(current_locale).title, entry.target_id.to_i > 0 ? site_page_path(@site, entry.target_id) : entry.url, :alt => entry.i18n(current_locale).title,:title => entry.i18n(current_locale).description, :target => entry.new_tab ? "_blank":"")
        #		end
 
       if view_ctrl == 1

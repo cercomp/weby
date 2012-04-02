@@ -154,11 +154,12 @@ class RefactoringMenus < ActiveRecord::Migration
       right.delete
     end
 
+    loc = Locale.find_by_name('pt-BR')
     Menu.all.each{ |menu|
       menu.menu_items.each{ |menu_item|
         execute <<-SQL
           INSERT INTO old_menus(title,link,created_at,updated_at,page_id,description)
-          VALUES('#{menu_item.i18n('pt-BR').title}','#{menu_item.url}','#{menu_item.created_at}','#{menu_item.updated_at}',#{menu_item.target_id.to_i},'#{menu_item.i18n('pt-BR').description}');
+          VALUES('#{menu_item.i18n(loc).title}','#{menu_item.url}','#{menu_item.created_at}','#{menu_item.updated_at}',#{menu_item.target_id.to_i},'#{menu_item.i18n(loc).description}');
         SQL
         
         execute <<-SQL

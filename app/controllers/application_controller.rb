@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_contrast, :set_locale, :set_global_vars
 
   helper :all
-  helper_method :current_user_session, :current_user, :user_not_authorized, :sort_direction
+  helper_method :current_user_session, :current_user, :user_not_authorized, :sort_direction, :current_locale
 
   def choose_layout
     if @site.nil? or @site.id.nil? 
@@ -56,6 +56,11 @@ class ApplicationController < ActionController::Base
     # I18n.load_path += Dir[ File.join(Rails.root, 'lib', 'locale', '*.{rb,yml}') ]
     locale = params[:locale] || session[:locale] || I18n.default_locale
     @current_locale = session[:locale] = I18n.locale = locale
+  end
+
+  def current_locale
+    return @current_locale_object if defined?(@current_locale_object)
+    @current_locale_object = Locale.find_by_name(@current_locale)
   end
 
   def set_contrast
@@ -160,9 +165,8 @@ class ApplicationController < ActionController::Base
       params[:per_page] ||= per_page_default
 
       @global_menus = {}
-      # Agrupa os itens de menus afim de deixar os submenus organizados.
-      #   Exemplo: menu['principal'] = { 0 => [menu1, menu2], 1 => [menu3, menu4] }
-      @site.menus.each{ |menu| @global_menus[menu.id] = menu.menu_items.order(:position).group_by(&:parent_id) }
+      # Carrega os menus, para auemntar a eficiência, já que menus são carregados em todas as requisições
+      @site.menus.with_items.each{ |menu| @global_menus[menu.id] = menu }
 
       if not @site.repository.nil? and File.file?(@site.repository.archive.path) and @site.repository.image?
         @top_banner_width,@top_banner_height = Paperclip::Geometry.from_file(@site.repository.archive).to_s.split('x')

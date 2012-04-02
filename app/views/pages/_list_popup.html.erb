@@ -1,26 +1,14 @@
-<script>
+<script type="text/javascript">
   $(function() {
-    // TODO métodos para realizar a páginação manualmente
-    $(".pages_paginator a[data-remote=true]").live("click", function() {
-      $('table.list').html("<img src='/assets/spinner.gif'>");
-      $.get(this.href, {'tiny_mce': true }, null, 'script');
-      return false;
-    });
-    $("table.list > thead > tr > th > a").live("click", function() {
-      $('table.list').html("<img src='/assets/spinner.gif'>");
-      $.get(this.href, {'tiny_mce': true }, null, "script");
-      return false;
-    });
-    
     // Forma um link para a página da forma:
     //  /sites/site_name/pages/page_id
-    $("table.list > tbody > tr").live("click", function(){
-      var page = tinyMCEPopup.editor.settings.site_name;
-      $('#href').val("/sites/"+page+"/pages/"+$(this).find('td').first().text());
+    $("table.list > tbody > tr").click(function(){
+      var site = tinyMCEPopup.editor.settings.site_name;
+      $('#href').val("/sites/"+site+"/pages/"+$(this).find('td').first().text());
     });
     
     // Para realizar a consulta por páginas
-    $('#search_button').live('click', function(e) {
+    $('#search_button').click(function(e) {
       var search = $('#search').val();
       $.get(this.href, {'tiny_mce': true, 'search': search}, null, 'script');
       e.preventDefault();
@@ -37,8 +25,8 @@
   }
 </style>
 <div id="tinyMCE_search_area">
-  <%= text_field_tag 'search', params[:search], :placeholder => t('search') + " " + t('page.other') %>
-  <%= link_to t('search'), site_pages_path, :remote => true, :id => 'search_button' %>
+  <%= text_field_tag 'search', params[:search], placeholder: t('search') + " " + t('page.other'), onkeypress: "return enter_to_click(event,'search_button');" %>
+  <%= link_to t('search'), site_pages_path, remote: true, id: 'search_button' %>
 </div>
 <br/>
 
@@ -59,10 +47,6 @@
   </tbody>
 </table>
 <br style="clear:both;" />
-<div style="float:right;margin-bottom:10px;">
-  <%# 
-      FIXME Remote true não está funcionando aqui,
-      ajax está sendo realizado por javascript manual
-    %>
-  <%= paginate @pages, :remote => true %>
+<div style="float:right;margin-bottom:2px;">
+  <%= paginate @pages, remote: true %>
 </div>

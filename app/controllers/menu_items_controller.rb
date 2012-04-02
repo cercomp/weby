@@ -15,21 +15,16 @@ class MenuItemsController < ApplicationController
 
   def new
     get_parent_menu_item params[:parent_id]
-    @menu_item = @menu.menu_items.new
-    build_locales
-  end
-
-  def edit
-    @menu_item = @menu.menu_items.find(params[:id])
+    @menu_item = MenuItem.new
     build_locales
   end
 
   def create
-    @menu_item = @menu.menu_items.new(params[:menu_item])
+    @menu_item = @site.menu_items.new(params[:menu_item])
     @menu_item.position = @menu.menu_items.maximum('position', :conditions=> ['parent_id = ?', @menu_item.parent_id]).to_i + 1
     if @menu_item.save
       flash[:notice] = t("successfully_created")
-      redirect_back_or_default site_menus_path(@site, :menu => @menu.id)
+      redirect_to site_menus_path(@site, :menu => @menu.id)
     else
       get_parent_menu_item params[:menu_item][:parent_id]
       build_locales
@@ -37,11 +32,16 @@ class MenuItemsController < ApplicationController
     end
   end
 
+  def edit
+    @menu_item = @menu.menu_items.find(params[:id])
+    build_locales
+  end
+
   def update
     @menu_item = @menu.menu_items.find(params[:id])
     if @menu_item.update_attributes(params[:menu_item])
       flash[:notice] = t("successfully_updated")
-      redirect_back_or_default site_menus_path(@site, :menu => @menu.id)
+      redirect_to site_menus_path(@site, :menu => @menu.id)
     else
       build_locales
       respond_with(@site, @menu, @menu_item)
@@ -55,7 +55,7 @@ class MenuItemsController < ApplicationController
    # Remove iten(s) do menu
   def rm_menu
     @menu_item = @menu.menu_items.find(params[:id])
-    ary_for_del = del_deep(@global_menus[@menu.id], @menu_item.id)
+    ary_for_del = items_deep(@menu, @menu_item)
     ary_for_del.each do |item|
        item.destroy
     end
@@ -74,7 +74,8 @@ class MenuItemsController < ApplicationController
     @ch_pos.position = params[:position]
 
     idx = 1
-    @menu.menu_items.where({:parent_id => @ch_pos.parent_id}).order('position').each { |smenu|
+    items = @menu.items_by_parent;
+    items[@ch_pos.parent_id].each { |smenu|
       if(smenu.id != @ch_pos.id)
         if(idx == @ch_pos.position)
           idx += 1
@@ -82,8 +83,8 @@ class MenuItemsController < ApplicationController
         smenu.update_attribute(:position, idx)
         idx += 1
       end
-    }
-
+    } if items[@ch_pos.parent_id]
+    
     @ch_pos.save
     render :nothing => true
   end
@@ -96,34 +97,15 @@ class MenuItemsController < ApplicationController
     render :nothing => true
   end
 
-  # Altera a ordenação do menu
-  #def change_position
-  #  @ch_pos_new = @menu.menu_items.find(params[:id])
-  #  @ch_pos_old = @menu.menu_items.find(:first, :conditions => ["parent_id = ? and position = ?", @ch_pos_new.parent_id, params[:position]])
-  #  if @ch_pos_old
-  #    @ch_pos_new.position,@ch_pos_old.position = @ch_pos_old.position,@ch_pos_new.position
-  #    @ch_pos_new.save
-  #    @ch_pos_old.save
-  #    flash[:notice] = t"successfully_updated"
-  #  elsif params[:position]
-  #    @ch_pos_new.position = params[:position]
-  #    @ch_pos_new.save
-  #  else
-  #    flash[:error] = t"error_updating_object"
-  #  end
-  #  redirect_to :back, :notice => t("successfully_deleted")
-  #end
- 
-
   private
   def get_current_menu
-    @menu = @site.menus.find(params[:menu_id])
+    @menu = @global_menus[params[:menu_id].to_i] #@site.menus.find(params[:menu_id])
   end
 
   def get_parent_menu_item parent_id
     if parent_id
       @menu_item_parent = @menu.menu_items.find(parent_id)
-      @parent_i18n = @menu_item_parent.i18n(session[:locale])
+      @parent_i18n = @menu_item_parent.i18n(current_locale)
     end
   end
 
@@ -144,22 +126,22 @@ class MenuItemsController < ApplicationController
     locales
   end
 
-  def del_deep(obj, pos)
+  def items_deep(menu, menuitem)
     res ||= []
-    unless obj[pos].nil?
-      obj[pos].each do |child|
-        del_deep_entry(obj, child, res)
+    menuitems = menu.items_by_parent
+    if menuitems[menuitem.id]
+      menuitems[menuitem.id].each do |child|
+        items_deep_entry(menuitems, child, res)
       end
-      res.flatten
     end
-    res
+    res.flatten
   end
 
-  def del_deep_entry(obj, child, res)
+  def items_deep_entry(menuitems, child, res)
     res << child
-    if obj[child.id].class.to_s == "Array"
-      obj[child.id].each do |sub_child|
-        del_deep_entry(obj, sub_child, res)
+    if menuitems[child.id].class.to_s == "Array"
+      menuitems[child.id].each do |sub_child|
+        items_deep_entry(menuitems, sub_child, res)
       end
     end
     res
@@ -168,25 +150,26 @@ class MenuItemsController < ApplicationController
   #Atualiza a position de todos os itens menos o do obj, assumindo que ele irá para outro parent_id
   def update_position_for_remove(obj)
     idx = 1
-    @menu.menu_items.where({:parent_id => obj.parent_id}).order('position').each { |menuis|
+    items = @menu.items_by_parent;
+    items[obj.parent_id].each { |menuis|
       if menuis.id != obj.id
         menuis.update_attribute(:position, idx)
         idx += 1
       end
-    }
+    } if items[obj.parent_id]
   end
 
   #obj tem que ter o atributo menu_id, seu antigo menu_id, seu antigo parent_id e antiga position
   def change_menu_deep(obj, new_menu_id)
     if (obj && obj.menu_id!=new_menu_id)
-      ary_for_up = del_deep(@global_menus[@menu.id], obj.id)
+      ary_for_up = items_deep(@menu, obj)
       ary_for_up.each do |item|
         item.menu_id = new_menu_id
         item.save
       end
       update_position_for_remove(obj)
       parent_id = 0
-      max = @site.menu_items.maximum('position', :conditions=> ['menu_id = ? AND parent_id = ? AND menu_items.id <> ?', new_menu_id, parent_id, obj.id])
+      max = @global_menus[new_menu_id.to_i].menu_items.maximum('position', :conditions=> [' parent_id = ? AND menu_items.id <> ?', parent_id, obj.id])
       position = max ? max+1 : 1
 
       obj.update_attributes({:parent_id => parent_id, :menu_id => new_menu_id, :position => position})
