@@ -43,7 +43,7 @@ class StylesController < ApplicationController
   # FIXME: duplicated code
   def other_styles
     styles = Style.not_followed_by(@site).
-      order(:id).page(params[:page_other_styles]).per(2)
+      order(:id).page(params[:page_other_styles]).per(5)
 
     search(styles, :other) || styles
   end
@@ -53,27 +53,6 @@ class StylesController < ApplicationController
     styles.by_name(params[:style_name]) if params[:style_type] == type.to_s
   end
   private :search
-
-  #def index
-    #@style_type = params[:style_type]
-    #p @style_type
-    #p params[:page_other_style]
-
-    #@follow_styles = @site.follow_styles.scoped.
-      #order(:id).page(params[:page_follow_style]).per(5)
-
-    #@other_styles = Style.not_followed_by(@site).
-      #order(:id).page(params[:page_other_style]).per(2)
-
-    #case @style_type
-    #when 'own'
-      #@own_styles = @own_styles.by_name(params[:style_name])
-    #when 'follow'
-      #@follow_styles = @follow_styles.by_name(params[:style_name])
-    #when 'other'
-      #@other_styles = @other_styles.by_name(params[:style_name])
-    #end
-  #end
 
   def show
     @style = Style.find(params[:id])
@@ -125,7 +104,7 @@ class StylesController < ApplicationController
     @style = Style.find(params[:id])
     @site.follow_styles << @style
 
-    redirect_back_or_default site_styles_path(@site)
+    redirect_to site_styles_path(@site)
   end
 
   def unfollow
@@ -133,7 +112,7 @@ class StylesController < ApplicationController
     @site_style = @style.sites_styles.where(site_id: @site.id).first
     @site_style.destroy
 
-    redirect_back_or_default site_styles_path(@site)
+    redirect_to site_styles_path(@site)
   end
 
   def publish
@@ -141,7 +120,7 @@ class StylesController < ApplicationController
     @style = @style.sites_styles.where(site_id: @site.id).first if @style.owner != @site
     @style.update_attributes(publish: true)
 
-    redirect_back_or_default site_styles_path(@site)
+    redirect_to site_styles_path(@site)
   end
 
   def unpublish
@@ -149,7 +128,7 @@ class StylesController < ApplicationController
     @style = @style.sites_styles.where(site_id: @site.id).first if @style.owner != @site
     @style.update_attributes(publish: false)
 
-    redirect_back_or_default site_styles_path(@site)
+    redirect_to site_styles_path(@site)
   end
 
   def copy
@@ -163,7 +142,7 @@ class StylesController < ApplicationController
       flash[:notice] = t('error_creating_object')
     end
 
-    redirect_back_or_default site_styles_path(@site)
+    redirect_to site_styles_path(@site)
   end
 
   private
