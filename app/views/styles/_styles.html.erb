@@ -1,13 +1,12 @@
 <details open id="styles">
-  <summary id="styles"><%= t("own_styles") %></summary>
-  <div id="<%= "own_styles" %>">
-    <% unless styles.empty? %>
+  <summary id="styles"><%= t("#{type}_styles") %></summary>
+  <div id="<%= "#{type}_styles" %>">
+    <% unless styles.blank? %>
       <%= info_page styles %>
-
       <table class='list'>
         <thead>
           <th> <%= t('name') %> </th>
-          <th> <%= t('sites_followers') %> </th>
+          <th> <%= t('owner') %> </th>
           <th> <%= t('actions') %> </th>
         </thead>
         <tbody>
@@ -20,14 +19,14 @@
                 <% end %>
               </td>
               <td class="style-action">
-                <%= raw style_actions style %>
+                <%= raw style_actions style, { others: true, type.to_sym => true } %>
               </td>
             </tr>
           <% end %>
         </tbody>
       </table>
 
-      <%= paginate styles, param_name: :page_own_styles, remote: true, params: { style_type: 'own' } %>
+      <%= paginate styles, param_name: "page_#{type}_styles", remote: true, params: { style_type: type.to_s } %>
     <% else %>
       <p class="empty"> <%= t('no_own_styles') %> </p>
     <% end %>

@@ -7,31 +7,67 @@ class StylesController < ApplicationController
 
   respond_to :html, :xml, :js
 
+  # FIXME: always execute all methods
   def index
-    @style_type = params[:style_type]
-    @style_name = params[:style_name]
-
-    case @style_type
-    when 'own'
-      @own_style_name = @style_name 
-    when 'follow'
-      @follow_style_name = @style_name 
-    when 'other'
-      @other_style_name = @style_name 
-    end
-
-    @own_styles = @site.own_styles.scoped.
-      by_name(@own_style_name).
-      order(:id).page(1).per(15)
-
-    @follow_styles = @site.follow_styles.scoped.
-      by_name(@follow_style_name).
-      order(:id).page(1).per(15)
-
-    @other_styles = Style.not_followed_by(@site).
-      by_name(@other_style_name).
-      order(:id).page(1).per(15)
+    @styles = {
+      own: own_styles,
+      follow: follow_styles,
+      other: other_styles
+    }    
   end
+
+  # FIXME: duplicated code
+  def own_styles
+    styles = @site.own_styles.scoped.
+      order(:id).page(params[:page_own_styles]).per(5)
+
+    search(styles, :own) || styles
+  end
+  private :own_styles
+
+  # FIXME: duplicated code
+  def follow_styles
+    styles = @site.follow_styles.scoped.
+      order(:id).page(params[:page_follow_styles]).per(5)
+
+    search(styles, :follow) || styles
+  end
+  private :follow_styles
+
+  # FIXME: duplicated code
+  def other_styles
+    styles = Style.not_followed_by(@site).
+      order(:id).page(params[:page_other_styles]).per(2)
+
+    search(styles, :other) || styles
+  end
+  private :other_styles
+
+  def search(styles, type)
+    styles.by_name(params[:style_name]) if params[:style_type] == type.to_s
+  end
+  private :search
+
+  #def index
+    #@style_type = params[:style_type]
+    #p @style_type
+    #p params[:page_other_style]
+
+    #@follow_styles = @site.follow_styles.scoped.
+      #order(:id).page(params[:page_follow_style]).per(5)
+
+    #@other_styles = Style.not_followed_by(@site).
+      #order(:id).page(params[:page_other_style]).per(2)
+
+    #case @style_type
+    #when 'own'
+      #@own_styles = @own_styles.by_name(params[:style_name])
+    #when 'follow'
+      #@follow_styles = @follow_styles.by_name(params[:style_name])
+    #when 'other'
+      #@other_styles = @other_styles.by_name(params[:style_name])
+    #end
+  #end
 
   def show
     @style = Style.find(params[:id])
@@ -98,7 +134,7 @@ class StylesController < ApplicationController
     @style = Style.find(params[:id])
     @style = @style.sites_styles.where(site_id: @site.id).first if @style.owner != @site
     @style.update_attributes(publish: true)
-    
+
     redirect_back_or_default site_styles_path(@site)
   end
 
@@ -106,7 +142,7 @@ class StylesController < ApplicationController
     @style = Style.find(params[:id])
     @style = @style.sites_styles.where(site_id: @site.id).first if @style.owner != @site
     @style.update_attributes(publish: false)
-    
+
     redirect_back_or_default site_styles_path(@site)
   end
 

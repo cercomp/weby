@@ -2,44 +2,29 @@
   <legend> <%= t("style.other") %> </legend>
 
   <% if check_permission(StylesController, 'new') %>
-  <div class="contextual">
-    <%= link_to t('new_param.masc', param: t('style.one')),
-      new_site_style_path, class: 'icon icon-add' %>
-  </div>
+    <div class="contextual">
+      <%= link_to t('new_param.masc', param: t('style.one')),
+        new_site_style_path, class: 'icon icon-add' %>
+    </div>
   <% end %>
-  
+
   <div>
     <div id="search">
       <%= form_tag site_styles_path, method: 'get', 
         name: 'style_search', remote: true do %>
         <%= text_field_tag :style_name, @style_name %>
         <%= select_tag :style_type, options_for_select([
-              [t('own_styles'), 'own'],
-              [t('follow_styles'), 'follow'],
-              [t('other_styles'), 'other']], @style_type) %>
+          [t('own_styles'), 'own'],
+          [t('follow_styles'), 'follow'],
+          [t('other_styles'), 'other']], @style_type) %>
         <%= submit_tag t("search"), class: 'search-button' %>
       <% end %>
     </div>
 
-    <details open id="styles">
-      <summary id="styles"><%= t("own_styles") %></summary>
-      <div id="own_styles">
-        <%= render 'own_styles', own_styles: @own_styles %>
-      </div>
-    </details>
-    
-    <details open id="styles">
-      <summary id="styles"><%= t("follow_styles") %></summary>
-      <div id="follow_styles">
-        <%= render 'follow_styles', follow_styles: @follow_styles %>
-      </div>
-    </details>
+    <%= render partial: 'own_styles', locals: { styles: @styles.delete(:own) } %>
 
-    <details open id="styles">
-      <summary id="styles"><%= t('other_styles') %></summary>
-      <div id="other_styles">
-        <%= render 'other_styles', other_styles: @other_styles %>
-      </div>
-    </details>
+    <% @styles.each do |type, styles| %>
+      <%= render partial: "styles", locals: { styles: styles, type: type } %>
+    <% end %>
   </div>
 </fieldset>

@@ -1,6 +1,5 @@
 <% unless @other_styles.empty? %>
   <%= info_page other_styles %>
-  <%= paginate other_styles, param_name: :page_other_styles, window: 1 %>
 
   <table class='list'>
     <thead>
@@ -21,7 +20,7 @@
     </tbody>
   </table>
 
-  <%= paginate other_styles, param_name: :page_other_styles, window: 1 %>
+    <%= paginate @other_styles, param_name: :page_other_styles, remote: true, params: { style_type: 'other' } %>
 <% else %>
   <p class="empty"> <%= t('no_other_styles') %> </p>
 <% end %>

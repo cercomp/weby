@@ -1,8 +1,12 @@
-<% case @style_type %>
+<%# FIXME %>
+<% case params[:style_type] %>
 <% when 'own' %>
-  $('#own_styles').html("<%= escape_javascript render('own_styles', own_styles: @own_styles) %>")
+  $('#own_styles').
+  html("<%= escape_javascript render(partial: 'own_styles', locals: { styles: @styles.delete(:own) }) %>")
 <% when 'follow' %>
-  $('#follow_styles').html("<%= escape_javascript render('follow_styles', follow_styles: @follow_styles) %>")
+  $('#follow_styles').
+  html("<%=escape_javascript render(partial: "styles", locals: { styles: @styles[:follow], type: :follow }) %>")
 <% when 'other' %>
-  $('#other_styles').html("<%= escape_javascript render('other_styles', other_styles: @other_styles) %>")
+  $('#other_styles').
+  html("<%=escape_javascript render(partial: "styles", locals: { styles: @styles[:other], type: :other }) %>")
 <% end %>

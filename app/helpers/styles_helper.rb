@@ -1,5 +1,5 @@
 module StylesHelper
-  def style_actions(style, args={others: false, followed: false})
+  def style_actions(style, args={others: false, follow: false})
     ''.tap do |actions|
       get_permissions( current_user, controller: controller ).each do |permission|
         if controller.class.instance_methods(false).include?(permission.to_sym)
@@ -8,9 +8,9 @@ module StylesHelper
             when 'show'
               actions << link_to( t('show'), site_style_path(@site, style), class: 'icon icon-show' ) + ' '
             when 'publish'
-              actions << style_action_publish(style) + ' ' if args[:followed]
+              actions << style_action_publish(style) + ' ' if args[:follow]
             when 'follow'
-              if args[:followed]
+              if args[:follow]
                 actions << link_to( t('unfollow'), unfollow_site_style_path(@site, style ), class: 'icon icon-follow' ) + ' '
               else
                 actions << link_to( t('follow'), follow_site_style_path(@site, style), class: 'icon icon-follow' ) + ' '
