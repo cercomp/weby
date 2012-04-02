@@ -7,13 +7,19 @@ class StylesController < ApplicationController
 
   respond_to :html, :xml, :js
 
-  # FIXME: always execute all methods
   def index
+    return only_selected_style if params[:style_type]
     @styles = {
       own: own_styles,
       follow: follow_styles,
       other: other_styles
     }    
+  end
+
+  def only_selected_style
+    @styles = {
+      params[:style_type].to_sym => send("#{params[:style_type]}_styles")
+    }
   end
 
   # FIXME: duplicated code

@@ -1,6 +1,6 @@
-<details open id="styles">
-  <summary id="styles"><%= t("#{type}_styles") %></summary>
-  <div id="<%= "#{type}_styles" %>">
+<details open class="styles" id="<%= "#{type}_styles" %>">
+  <summary><%= t("#{type}_styles") %></summary>
+  <div>
     <% unless styles.blank? %>
       <%= info_page styles %>
       <table class='list'>
@@ -14,9 +14,7 @@
             <tr>
               <td> <%= style.name %> </td>
               <td> 
-                <% style.followers.each do |site| %>
-                  <%= site.name %>
-                <% end %>
+                <%= link_to style.owner.name, style.owner %>
               </td>
               <td class="style-action">
                 <%= raw style_actions style, { others: true, type.to_sym => true } %>
