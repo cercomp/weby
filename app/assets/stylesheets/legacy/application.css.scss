@@ -15,8 +15,8 @@ a img{ border: 0; text-decoration: none;}
 fieldset { border: 1px solid #e4e4e4; background-color: #EAF3FA; width: auto; min-height: 50px;}
 legend { color: #000; font-weight: bold; font-size: 130%; background-color: #FFF; border: 1px solid #e4e4e4; padding: 5px; }
 
-details#styles { border: 1px solid #e4e4e4; background-color: #eff8f9; width: auto; margin: 10px 0;}
-summary#styles { color: #000; font-weight: bold; font-size: 130%; background-color: #FFF; border: 1px solid #e4e4e4; padding: 5px; }
+details.styles { border: 1px solid #e4e4e4; background-color: #eff8f9; width: auto; margin: 10px 0;}
+details.styles summary { color: #000; font-weight: bold; font-size: 130%; background-color: #FFF; border: 1px solid #e4e4e4; padding: 5px; }
 
 /***** Tables *****/
 table.list { border: 1px solid #e4e4e4;  border-collapse: collapse; width: 100%; margin-bottom: 0px; clear: both; }
@@ -407,7 +407,7 @@ tr.even.priority-1 { background: #f2faff; }
 tr.priority-1 a { color: #559; }
 tr.odd.priority-1 td, tr.even.priority-1 td { border-color: #add7f3; }
 
-#styles .empty,
+.styles .empty,
 {
   margin: 0px;
   background: #FAF6D4;

@@ -36,10 +36,16 @@ class Site < ActiveRecord::Base
   has_many :feedbacks
   has_many :banners
 
-  has_many :sites_styles, :dependent => :destroy
-  has_many :follow_styles, through: :sites_styles, source: :style
+  has_many :sites_styles,
+    dependent: :destroy
+  has_many :follow_styles,
+    through: :sites_styles,
+    source: :style
   
-  has_many :own_styles, foreign_key: :owner_id, dependent: :destroy, class_name: "Style"
+  has_many :own_styles,
+    foreign_key: :owner_id,
+    dependent: :destroy,
+    class_name: "Style"
 
   # FIXME testando relação de componentes
   has_many :site_components

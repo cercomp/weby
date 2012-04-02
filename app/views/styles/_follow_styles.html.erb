@@ -1,6 +1,5 @@
 <% unless @follow_styles.empty? %>
   <%= info_page follow_styles %>
-  <%= paginate follow_styles, param_name: :page_follow_styles, window: 1 %>
 
   <table class='list'>
     <thead>
@@ -21,7 +20,7 @@
     </tbody>
   </table>
 
-  <%= paginate follow_styles, param_name: :page_follow_styles, window: 1 %>
+  <%= paginate @follow_styles, param_name: :page_follow_styles, remote: true, param: { style_type: 'follow' } %>
 <% else %>
   <p class="empty"> <%= t('no_follow_styles') %> </p>
 <% end %>
