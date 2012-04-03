@@ -3,7 +3,6 @@ class PagesController < ApplicationController
 
   before_filter :require_user, only: [:new, :edit, :update, :destroy, :sort, :toggle_field]
   before_filter :check_authorization, except: [:view, :show, :list_published]
-  before_filter :per_page, only: [:index]
   before_filter :search_images, only: [:new, :edit]
 
   helper_method :sort_column
@@ -11,8 +10,16 @@ class PagesController < ApplicationController
   respond_to :html, :js
 
   def index 
+    # FIXME: está indo ao banco para cada page
+    # para realizar a busca das tags
+    # não consegui incluir as tags pelo 'includes'
     @pages = @site.pages.
-      page(params[:page]).per(params[:per_page])
+      joins(:i18ns).
+      includes(:i18ns, :author, :locales).
+      page(params[:page]).per(params[:per_page]).
+      order(sort_column + " " + sort_direction)
+
+    flash[:warning] = t("none_param", param: t("page.one")) unless @pages
   end
 
   def show
@@ -157,7 +164,7 @@ class PagesController < ApplicationController
 
   private
   def sort_column
-    Page.column_names.include?(params[:sort]) ? params[:sort] : 'id'
+    Page.column_names.include?(params[:sort]) ? params[:sort] : 'pages.id'
   end
 
   def max_position

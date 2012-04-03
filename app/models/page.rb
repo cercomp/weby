@@ -9,6 +9,10 @@ class Page < ActiveRecord::Base
 
   scope :front, where(front: true)
 
+
+  scope :search, proc { |title, locale|
+  }
+
   scope :titles_like, proc { |title, locale|
     if locale.blank?
       joins('LEFT JOIN page_i18ns ON pages.id = page_i18ns.page_id 
@@ -42,7 +46,7 @@ class Page < ActiveRecord::Base
 
   belongs_to :owner,
     class_name: "Site",
-    foreign_key: :site_id
+    foreign_key: "site_id"
   validates :site_id,
     presence: true
 
@@ -114,6 +118,8 @@ class Page < ActiveRecord::Base
   has_many :i18ns,
     class_name: "Page::I18ns",
     dependent: :delete_all
+
+  has_many :locales, through: :i18ns
   accepts_nested_attributes_for :i18ns,
     allow_destroy: true,
     reject_if: :reject_i18ns
@@ -132,4 +138,13 @@ class Page < ActiveRecord::Base
       attributed['title'].blank?
   end
   private :reject_i18ns
+
+  # Find i18n based on locale
+  # Or return first i18n
+  def i18n(locale)
+    selected_locale = self.i18ns.select{|i18n| i18n.locale_id == locale.id }
+    return selected_locale.first if selected_locale.any?
+
+    self.i18ns.first
+  end
 end

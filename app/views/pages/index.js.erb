@@ -1,1 +1,2 @@
-$('#page_list').html("<%= escape_javascript(render(:partial => (@tiny_mce ? 'list_popup' : 'list'))) %>");
+$("#pages tbody").
+html("<%= escape_javascript(render partial: 'page', collection: @pages) %>")

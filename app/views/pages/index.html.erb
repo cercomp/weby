@@ -9,9 +9,8 @@
   </div>
 
   <center>
-    <%= form_tag request.path, :method => 'get', :remote => true do %>
+    <%= form_tag site_pages_path(@site), :method => 'get', :remote => true do %>
       <%= text_field_tag :search %>
-      <%= select_tag("locales", options_for_select(@site.locales.map{|l| [t(l.name), l.name]}), {include_blank: t('all')} ) %>
       <%= hidden_field_tag 'page', 1 %>
       <%= hidden_field_tag 'per_page', "#{params[:per_page]}" %>
       <%= submit_tag t("search"), class: 'search-button' %>
@@ -21,7 +20,7 @@
 
   <%= info_page @pages %>
   <%= paginate @pages, :remote => true %>
-  <div id="page_list">
+  <div id="pages">
     <table class="list">
       <thead>
         <tr>
