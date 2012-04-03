@@ -34,7 +34,7 @@ class Site < ActiveRecord::Base
 
   has_many :groups
   has_many :feedbacks
-  has_many :banners
+  has_many :banners, order: :position
 
   has_many :sites_styles,
     dependent: :destroy
