@@ -16,13 +16,21 @@
       <th><%= t"active" %></th>
       <th></th>
     </thead>
-    <tbody>
-      <% @site_components.group_by(&:place_holder).sort.each do |place_holder, i| %>
+    <% places_holder.each do |place_holder| %>
+    <thead>
+      <tr>
+        <td colspan="99" class="dark"><%= t("components.pos.#{place_holder}") %></td>
+      </tr>
+    </thead>
+      <% components_per_holder = @site_components.select{|component| component.place_holder == place_holder} %>
+      <%  if components_per_holder.empty? %>
         <tr>
-          <td colspan="99" class="dark"><%= t("components.pos.#{place_holder}") %></td>
+          <td colspan="99"><i><%= t("empty_placeholder") %></i></td>
         </tr>
-        <% i.each do |site_component| %>
-          <tr id="sort_sites_component_<%= site_component.id %>" class="place-<%=  "#{place_holder}" -%>">
+      <% else %>
+        <tbody class="placeholder-group">
+        <% components_per_holder.each do |site_component| %>
+            <tr id="sort_sites_component_<%= site_component.id %>" class="place-<%=  "#{place_holder}" -%>">
             <td><%= site_component.id %></td>
             <td><%= t("components.#{site_component.component}") %></td>
             <td><%= components_settings_category(site_component) %></td>
@@ -35,13 +43,17 @@
             </td>
           </tr>
         <% end %>
+        </tbody>
       <% end %>
-    </tbody>
+    <% end %>
   </table>
   <%= javascript_tag do %>
    window.onload=function(){
     $(document).ready(function() {
-      $('#list').sortable({
+
+    $('.placeholder-group').each(function(){
+
+      $(this).sortable({
         axis: 'y',
         dropOnEmpty:false,
         handle: '.handle',
@@ -52,14 +64,20 @@
         update: function(){
           $.ajax({
             type: 'post',
-            data: $('#list').sortable('serialize'),
+            data: $(this).sortable('serialize'),
             dataType: 'script',
             complete: function(request){ $('#list tr').effect('highlight'); },
             url: '<%= sort_site_site_components_path %>'
           })
         }
       })
-    })
+    });
+
+    ////FIX-ME
+      $('#content').css({'overflow':'hidden'});
+      $('#list').css({'height':$('#list').height()});
+      
+    });
    }
   <% end %>
 </fieldset>

@@ -109,6 +109,7 @@ en:
     fem: "Editor"
     masc: "Editor"
   email: "E-mail"
+  empty_placeholder: "No components in this place"
   enable:
     fem: "Enable"
     masc: "Enable"

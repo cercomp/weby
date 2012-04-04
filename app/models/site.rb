@@ -48,7 +48,7 @@ class Site < ActiveRecord::Base
     class_name: "Style"
 
   # FIXME testando relação de componentes
-  has_many :site_components
+  has_many :site_components, order: 'place_holder, position asc'
 
   accepts_nested_attributes_for :sites_pages, :allow_destroy => true
 

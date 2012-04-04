@@ -109,6 +109,7 @@ pt-BR:
     fem: "Editora"
     masc: "Editor"
   email: "E-mail"
+  empty_placeholder: "Nenhum componente neste local"
   enable:
     fem: "Habilitada"
     masc: "Habilitado"
