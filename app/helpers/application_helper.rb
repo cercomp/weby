@@ -241,8 +241,10 @@ module ApplicationHelper
     link_to title,
       #quando uma lista é reordenada, ela volta para a página 1
       params.merge({sort: column, direction: direction, page: 1}),
+      "data-title" => title,
+      "data-column" => column,
       remote: true,
-      class: css_class
+      class: "sortable #{css_class}"
   end
 
   # Informações sobre paginação
@@ -318,5 +320,13 @@ module ApplicationHelper
         components << render(:partial => "components_partials/#{comp.component}", :locals => { :settings => settings })
       end
     end.join)
+  end
+
+  def with_permission(args = {}, &block)
+    args.reverse_merge!({
+      controller: controller,
+      action: controller.action_name
+    })
+    block.call if check_permission(args[:controller], args[:action])
   end
 end

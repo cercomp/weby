@@ -6,16 +6,14 @@
     <%# FIXME: Retirar esse loop ridículo daki! %>
     <% page.locales.each do |locale| %>
       <%= image_tag "flags/24/#{locale.flag}" %>
-      <% end %>
+    <% end %>
   </td>
   <td><%= page.author %></td>
   <td><%= page.category_list.join ', ' %></td>
   <td><%= t"#{page.type.downcase}.one" %></td>
-  <% if check_permission(PagesController, [:toggle_field]) %>
+  <% with_permission(action: :toggle_field) do %>
     <td align="center"><%= raw toggle_field(page, "front") %></td>
     <td align="center"><%= publication_status(page) %></td>
+    <td><%= make_menu(page, :except => "show") %></td>
   <% end %>
-  <td>
-    <%= make_menu(page, :except => "show") %>
-  </td>
 </tr>

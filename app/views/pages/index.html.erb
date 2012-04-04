@@ -2,14 +2,14 @@
   <legend><%= t("page.other") %></legend>
 
   <div class="contextual">
-    <% if check_permission(PagesController, 'new') %>
-      <%= link_to (t"new_param.fem", :param => (t"page.one")), new_site_page_path, :class => 'icon icon-add' %>&nbsp;|
+    <% with_permission do %>
+      <%= link_to (t"new_param.fem", param: (t"page.one")), new_site_page_path, class: 'icon icon-add' %>&nbsp;|
     <% end %>
-    <%= link_to (t"covers"), list_front_site_pages_path(@site), :class => 'icon icon-newspaper' %>
+    <%= link_to (t"covers"), list_front_site_pages_path(@site), class: 'icon icon-newspaper' %>
   </div>
 
   <center>
-    <%= form_tag site_pages_path(@site), :method => 'get', :remote => true do %>
+    <%= form_tag site_pages_path(@site), method: 'get', remote: true do %>
       <%= text_field_tag :search %>
       <%= hidden_field_tag 'page', 1 %>
       <%= hidden_field_tag 'per_page', "#{params[:per_page]}" %>
@@ -17,31 +17,30 @@
     <% end %>
   </center>
 
-
   <%= info_page @pages %>
-  <%= paginate @pages, :remote => true %>
+  <%= paginate @pages, remote: true %>
   <div id="pages">
     <table class="list">
       <thead>
         <tr>
-          <th><%= sortable 'id' %></th>
-          <th><%= sortable 'created_at', t("date_param", :param => t("register"))%></th>
-          <th><%= sortable 'title', t("title") %></th>
-          <th><%= sortable 'author_id', t("author") %></th>
+          <th><%= sortable 'pages.id', 'id' %></th>
+          <th><%= sortable 'pages.created_at', t("date_param", param: t("register"))%></th>
+          <th><%= sortable 'page_i18ns.title', t("title") %></th>
+          <th><%= sortable 'users.firstname', t("author") %></th>
           <th><%= sortable 'category', t("category") %></th>
           <th><%= sortable 'type', t("type") %></th>
-          <% if check_permission(PagesController, 'toggle_field') %>
+          <% with_permission(action: 'toggle_field') do %>
             <th><%= sortable 'front', t("cover") %></th>
             <th><%= t"publish" %></th>
+            <th></th>
           <% end %>
-          <th></th>
         </tr>
       </thead>
       <tbody>
         <%= render partial: 'page', collection: @pages %>
       </tbody>
     </table>
-    <%= per_page_links @pages %>
-    <%= paginate @pages, :remote => true %>
+    <%= per_page_links @pages, remote: true %>
+    <%= paginate @pages, remote: true %>
   </div>
 </fieldset>
