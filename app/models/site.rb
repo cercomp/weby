@@ -44,7 +44,7 @@ class Site < ActiveRecord::Base
   has_many :own_styles, foreign_key: :owner_id, dependent: :destroy, class_name: "Style"
 
   # FIXME testando relação de componentes
-  has_many :site_components
+  has_many :site_components, order: 'place_holder, position asc'
 
   belongs_to :repository, :foreign_key => "top_banner_id"
   has_many :repositories
