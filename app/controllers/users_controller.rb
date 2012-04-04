@@ -90,7 +90,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
+    @user = User.new(user_params)
     if @user.save
       @user.send_activation_instructions!(request.env["SERVER_NAME"])
       flash[:notice] = t("create_account_successful")
@@ -128,7 +128,7 @@ class UsersController < ApplicationController
       params[:id] = current_user.id
     end
     @user = User.find(params[:id])
-    @user.update_attributes(params[:user])
+    @user.update_attributes(user_params)
     flash[:notice] = t"updated", :param => t("account")
     respond_with(@user)
   end
@@ -176,4 +176,8 @@ class UsersController < ApplicationController
     end
     @themes = files
 	end
+
+  def user_params
+    params[:user].slice(:login, :email, :password, :first_name, :last_name, :phone, :mobile, :theme)
+  end
 end

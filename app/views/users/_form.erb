@@ -7,11 +7,3 @@
 <%= form.input :phone, :label => t('phone'), :input_html => {:size => 20, :maxlength => 20} %>
 <%= form.input :mobile, :label => t('mobile'), :input_html => {:size => 20, :maxlength => 20}, :as => :tel %>
 <%#= form.input :theme, :collection => @themes.collect{|p| [ p , p]}, :label => t('layout') %>
-
-<% if @site %>
-  <%= form.input :role_ids, 
-    :collection => @site.roles.collect{|r| [r.name, r.id]}, 
-    :label => t('role.one'), 
-    :input_html => {:multiple => "multiple"} 
-  %>
-<% end %>
