@@ -61,12 +61,12 @@
         items: 'tr',
         opacity: 0.4,
         scroll: true,
-        update: function(){
+        update: function(evt, ui){
           $.ajax({
             type: 'post',
             data: $(this).sortable('serialize'),
             dataType: 'script',
-            complete: function(request){ $('#list tr').effect('highlight'); },
+            complete: function(request){ $(ui.item).effect('highlight'); },
             url: '<%= sort_site_site_components_path %>'
           })
         }
