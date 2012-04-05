@@ -95,7 +95,7 @@ class PagesController < ApplicationController
     @page = @site.pages.find(params[:id])
     if params[:field]
       new_value = (@page[params[:field]] == 0 or not @page[params[:field]] ? true : false)
-      
+
       if (params[:field]=='front')
         update_position_of @page, @page.front, new_value
       end
@@ -162,7 +162,8 @@ class PagesController < ApplicationController
 
   private
   def sort_column
-    Page.column_names.include?(params[:sort]) ? params[:sort] : 'pages.id'
+    [Page.column_names, Page::I18ns.column_names, User.column_names].
+      flatten.include?(params[:sort]) ? params[:sort] : 'pages.id'
   end
 
   def max_position

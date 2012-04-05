@@ -241,7 +241,6 @@ module ApplicationHelper
     link_to title,
       #quando uma lista é reordenada, ela volta para a página 1
       params.merge({sort: column, direction: direction, page: 1}),
-      "data-title" => title,
       "data-column" => column,
       remote: true,
       class: "sortable #{css_class}"
