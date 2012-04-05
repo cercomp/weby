@@ -14,7 +14,6 @@ class PagesController < ApplicationController
     # para realizar a busca das tags
     # não consegui incluir as tags pelo 'includes'
     @pages = @site.pages.
-      joins(:i18ns).
       includes(:i18ns, :author, :locales).
       page(params[:page]).per(params[:per_page]).
       order(sort_column + " " + sort_direction)
@@ -75,7 +74,7 @@ class PagesController < ApplicationController
 
     @page = @site.pages.find(params[:id])
 
-    update_position_of @page
+    update_position_of @page, @page.front, params[:page][:front]
 
     unless @page.update_attributes(params[:page])
       build_site_locales
@@ -96,12 +95,11 @@ class PagesController < ApplicationController
     @page = @site.pages.find(params[:id])
     if params[:field]
       new_value = (@page[params[:field]] == 0 or not @page[params[:field]] ? true : false)
-      if (params[:field]=='front' && new_value)
-        @page.position = max_position 
-      elsif (params[:field]=='front' && !new_value)
-        position_down_from @page.position
-        @page.position = 0
+      
+      if (params[:field]=='front')
+        update_position_of @page, @page.front, new_value
       end
+
       if @page.update_attributes("#{params[:field]}" => new_value)
         flash[:notice] = t("successfully_updated")
       else
@@ -172,10 +170,11 @@ class PagesController < ApplicationController
     max.to_i + 1
   end
 
-  def update_position_of(page)
-    if (params[:page][:front]=="1" && !page.front)
+  #Se a pagina está deixando de ser capa ou passando a ser capa, atualiza o position de acordo
+  def update_position_of(page, old_front_value, new_front_value)
+    if ((not old_front_value or old_front_value=='0') and (new_front_value or new_front_value=='1'))
       page.position = max_position 
-    elsif (params[:page][:front]=="0" && page.front)
+    elsif ((old_front_value or old_front_value=='1') and (not new_front_value or new_front_value=='0'))
       position_down_from page.position
       page.position = 0
     end
