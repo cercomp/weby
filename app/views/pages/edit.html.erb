@@ -1,4 +1,6 @@
-<fieldset>
-  <legend><%= t"editing", :param => t("#{@page.type.downcase}.one") %></legend>
-  <%= render "form" %>
-</fieldset>
+<h1>Editing page</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', [@site, @page] %> |
+<%= link_to 'Back', site_pages_path(@site) %>

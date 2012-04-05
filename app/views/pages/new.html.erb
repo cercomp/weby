@@ -1,5 +1,5 @@
-<fieldset>
-  <legend><%= t"new_param.fem", param: (t"page.one") %></legend>
-  <%= render "form" %>
-</fieldset>
+<h1>New page</h1>
 
+<%= render 'form' %>
+
+<%= link_to 'Back', site_pages_path(@site) %>

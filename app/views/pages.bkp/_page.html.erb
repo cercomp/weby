@@ -3,13 +3,13 @@
   <td><%= l(page.created_at, :format => :short) %></td>
   <td>
     <%= page.title %>
-    <%#<% page.locales.select {|locale| locale != current_locale }.each do |locale| %>%>
-      <%#<%= image_tag "flags/24/#{locale.flag}" %>%>
-    <%#<% end %>%>
+    <% page.locales.select {|locale| locale != current_locale }.each do |locale| %>
+      <%= image_tag "flags/24/#{locale.flag}" %>
+    <% end %>
   </td>
-  <td><%#= page.author %></td>
-  <td><%#= page.category_list.join ', ' %></td>
-  <td><%#= t"#{page.type.downcase}.one" %></td>
+  <td><%= page.author %></td>
+  <td><%= page.category_list.join ', ' %></td>
+  <td><%= t"#{page.type.downcase}.one" %></td>
   <% with_permission(action: :toggle_field) do %>
     <td align="center"><%= raw toggle_field(page, "front") %></td>
     <td align="center"><%= publication_status(page) %></td>
