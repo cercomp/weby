@@ -2,9 +2,8 @@
   <td><%= page.id %></td>
   <td><%= l(page.created_at, :format => :short) %></td>
   <td>
-    <%= page.i18n(current_locale).title %>
-    <%# FIXME: Retirar esse loop ridículo daki! %>
-    <% page.locales.each do |locale| %>
+    <%= page.title %>
+    <% page.locales.select {|locale| locale != current_locale }.each do |locale| %>
       <%= image_tag "flags/24/#{locale.flag}" %>
     <% end %>
   </td>

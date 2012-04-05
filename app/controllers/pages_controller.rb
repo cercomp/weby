@@ -13,8 +13,7 @@ class PagesController < ApplicationController
     # FIXME: está indo ao banco para cada page
     # para realizar a busca das tags
     # não consegui incluir as tags pelo 'includes'
-    @pages = @site.pages.
-      includes(:i18ns, :author, :locales).
+    @pages = @site.pages.includes(:author).
       page(params[:page]).per(params[:per_page]).
       order(sort_column + " " + sort_direction)
 

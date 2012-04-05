@@ -70,6 +70,10 @@ GEM
       factory_girl (~> 2.6.0)
       railties (>= 3.0.0)
     gem_plugin (0.2.3)
+    globalize3 (0.2.0)
+      activemodel (>= 3.0.0)
+      activerecord (>= 3.0.0)
+      paper_trail (~> 2)
     hike (1.2.1)
     i18n (0.6.0)
     journey (1.0.3)
@@ -92,6 +96,9 @@ GEM
       daemons (~> 1.0.10)
       gem_plugin (~> 0.2.3)
     multi_json (1.1.0)
+    paper_trail (2.6.3)
+      activerecord (~> 3.0)
+      railties (~> 3.0)
     pg (0.13.2)
     polyglot (0.3.3)
     pry (0.9.8.2)
@@ -174,6 +181,7 @@ DEPENDENCIES
   authlogic
   dispatcher
   factory_girl_rails (= 1.7.0)
+  globalize3
   jquery-rails
   kaminari
   mongrel (>= 1.2.0.pre2)

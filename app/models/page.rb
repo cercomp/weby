@@ -1,6 +1,8 @@
 class Page < ActiveRecord::Base
   self.inheritance_column = nil
 
+  translates :title, :summary, :text
+
   acts_as_taggable_on :categories
 
   scope :published, where(publish: true)
