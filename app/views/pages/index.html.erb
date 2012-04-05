@@ -25,9 +25,9 @@
         <tr>
           <th><%= sortable 'pages.id', 'id' %></th>
           <th><%= sortable 'pages.created_at', t("date_param", param: t("register"))%></th>
-          <th><%= sortable 'page_i18ns.title', t("title") %></th>
+          <th><%= t("title") %></th>
           <th><%= sortable 'users.firstname', t("author") %></th>
-          <th><%= sortable 'category', t("category") %></th>
+          <th><%= t("category") %></th>
           <th><%= sortable 'type', t("type") %></th>
           <% with_permission(action: 'toggle_field') do %>
             <th><%= sortable 'front', t("cover") %></th>

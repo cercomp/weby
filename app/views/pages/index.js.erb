@@ -10,6 +10,12 @@ replaceWith("<%= escape_javascript(per_page_links @pages, remote: true) %>")
 $(".paginator").
 replaceWith("<%= escape_javascript(paginate @pages, remote: true) %>")
 
+$('th').each(function(index, element){
+  $(element).find('a').attr('href', function(index, value){
+    return value.
+    replace(/per_page=[^&]*/i, 'per_page=<%= params[:per_page] %>');
+  });
+});
 
 $('th a.current').removeClass('current asc desc');
 
@@ -22,7 +28,9 @@ var invertDirections = {
 var atualDirection = tableColumn.attr('href').match(/direction=([^&]*)/i)[1];
 
 tableColumn.attr('href', function(index, value){
-  return value.replace(/direction=[^&]*/i, 'direction='+invertDirections[atualDirection]);
+  return value.
+  replace(/direction=[^&]*/i, 'direction='+invertDirections[atualDirection]).
+  replace(/per_page=[^&]*/i, 'per_page=<%= params[:per_page] %>');
 });
 
 tableColumn.

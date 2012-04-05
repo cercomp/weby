@@ -162,7 +162,7 @@ class PagesController < ApplicationController
 
   private
   def sort_column
-    [Page.column_names, Page::I18ns.column_names, User.column_names].
+    [Page.column_names, User.column_names].
       flatten.include?(params[:sort]) ? params[:sort] : 'pages.id'
   end
 
