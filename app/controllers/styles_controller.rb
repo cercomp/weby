@@ -51,7 +51,8 @@ class StylesController < ApplicationController
 
   def search(styles, type)
     if params[:style_type] == type.to_s && params[:style_name]
-    styles.by_name(params[:style_name]) if params[:style_type] == type.to_s
+      styles.by_name(params[:style_name]) if params[:style_type] == type.to_s
+    end
   end
   private :search
 
