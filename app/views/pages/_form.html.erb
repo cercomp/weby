@@ -1,5 +1,14 @@
 <%= simple_form_for([@site,@page]) do |f| %>
-  <%= f.error_notification %>
+  <% if @page.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@page.errors.count,"") %><%= t"prohibited_being_saved", count: @page.errors.count %>:</h2>
+      <ul>
+        <% @page.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
   <div class="input">
     <%= f.input :title %>
@@ -9,6 +18,10 @@
   </div>
   <div class="input">
     <%= f.input :text %>
+  </div>
+
+  <div class="input">
+    <%= f.input :date_begin_at %>
   </div>
 
   <div class="input">

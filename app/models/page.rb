@@ -117,36 +117,44 @@ class Page < ActiveRecord::Base
   end
   private :own_files?
 
+  # FIXME: POG MASTER SUPREMO RIDICULO
+  # NÃO DEVE HAVER CHAMADA DE LOCALE 
+  # NÃO DEVE HAVER ESSE SORT DESTA MANEIRA
+  def locales
+    translations.select(:locale).
+      map {|t| t.locale.to_s }.sort 
+  end
+
   #has_many :i18ns,
-    #class_name: "Page::I18ns",
-    #dependent: :delete_all
+  #class_name: "Page::I18ns",
+  #dependent: :delete_all
 
   #has_many :locales, through: :i18ns
   #accepts_nested_attributes_for :i18ns,
-    #allow_destroy: true,
-    #reject_if: :reject_i18ns
+  #allow_destroy: true,
+  #reject_if: :reject_i18ns
 
   #before_validation :initialize_i18n
   #validates_with WebyI18nContentValidator
   #validates_associated :i18ns
 
   #def initialize_i18n
-    #i18ns.each { |i18n| i18n.page = self }
+  #i18ns.each { |i18n| i18n.page = self }
   #end
   #private :initialize_i18n
 
   #def reject_i18ns(attributed)
-    #attributed['id'].blank? and
-      #attributed['title'].blank?
+  #attributed['id'].blank? and
+  #attributed['title'].blank?
   #end
   #private :reject_i18ns
 
   ## Find i18n based on locale
   ## Or return first i18n
   #def i18n(locale)
-    #selected_locale = self.i18ns.select{|i18n| i18n.locale_id == locale.id }
-    #return selected_locale.first if selected_locale.any?
+  #selected_locale = self.i18ns.select{|i18n| i18n.locale_id == locale.id }
+  #return selected_locale.first if selected_locale.any?
 
-    #self.i18ns.first
+  #self.i18ns.first
   #end
 end

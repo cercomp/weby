@@ -2,19 +2,15 @@ class PagesController < ApplicationController
 
   helper_method :sort_column
 
+  respond_to :html, :js, :json
+
   # GET /pages
   # GET /pages.json
   def index
     @pages = @site.pages.
-      joins("inner join page_translations on page_translations.page_id = pages.id").
-      includes(:translations).
+      includes(:translations, :author, :categories).
       page(params[:page]).per(params[:per_page]).
       order(sort_column + " " + sort_direction)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @pages }
-    end
   end
 
   # GET /pages/1
@@ -48,6 +44,7 @@ class PagesController < ApplicationController
   # POST /pages.json
   def create
     @page = @site.pages.new(params[:page])
+    @page.author = current_user
 
     respond_to do |format|
       if @page.save
@@ -90,7 +87,6 @@ class PagesController < ApplicationController
 
   private
   def sort_column
-    [Page.column_names, User.column_names].
-      flatten.include?(params[:sort]) ? params[:sort] : 'pages.id'
+    params[:sort] || 'id'
   end
 end
