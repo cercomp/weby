@@ -178,6 +178,6 @@ class UsersController < ApplicationController
 	end
 
   def user_params
-    params[:user].slice(:login, :email, :password, :first_name, :last_name, :phone, :mobile, :theme)
+    params[:user].slice(:login, :email, :password, :password_confirmation, :first_name, :last_name, :phone, :mobile, :theme)
   end
 end
