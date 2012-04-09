@@ -9,26 +9,38 @@
       </ul>
     </div>
   <% end %>
+  <div class="tabs">
+    <ul>
+      <% @page.translations.each do |translation| %>
+        <li><%= link_to locale_with_name(translation.locale), "##{translation.locale}" %></li>
+      <% end %>
+    </ul>
+    <%= f.fields_for :translations do |translate_form| %>
+      <div id="<%= translate_form.object.locale %>">
+        <%= translate_form.input :locale,
+          input_html: { value: translate_form.object.locale },
+          as: :hidden%>
+        <%= translate_form.input :title %>
 
-  <div class="input">
-    <%= f.input :title %>
-  </div>
-  <div class="input">
-    <%= f.input :summary %>
-  </div>
-  <div class="input">
-    <%= f.input :text %>
+        <%= translate_form.input :summary,
+          input_html: {class: "mceSimple", style: "width: 550px; height: 180px;"},
+          as: :text %>
+
+        <%= translate_form.input :text,
+          input_html: {class: "mceAdvance", style: "width: 550px; height: 320px;"},
+          as: :text %>
+      </div>
+    <% end %>
   </div>
 
-  <div class="input">
-    <%= f.input :date_begin_at %>
-  </div>
+  <%= f.input :date_begin_at %>
 
-  <div class="input">
-    <%= f.input :type %>
-  </div>
+  <%= f.input :type %>
 
   <div class="actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, t('save'), class: 'green-button' %>
+    <%= link_to t('back'), site_pages_path(@site), class: 'red-button' %>
   </div>
 <% end %>
+
+<%= content_for :javascripts, javascript_include_tag("pages.form") %>
