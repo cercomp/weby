@@ -13,13 +13,16 @@ class PagesController < ApplicationController
   # GET /pages
   # GET /pages.json
   def index
-    return published unless current_user
+    (redirect_to published_site_pages_path(@site) unless current_user) and return
     @pages = get_pages 
+    respond_with(@site, @page)
   end
 
   def published
     @pages = get_pages.published
-    render template: 'pages/index'
+    respond_with(@site, @page) do |format|
+      format.html { render template: 'pages/index' }
+    end
   end
 
   def get_pages
@@ -41,7 +44,7 @@ class PagesController < ApplicationController
   # GET /pages/1.json
   def show
     @page = @site.pages.find(params[:id])
-    respond_with @page
+    respond_with(@site, @page)
   end
 
   # GET /pages/new
@@ -49,12 +52,13 @@ class PagesController < ApplicationController
   def new
     @page = @site.pages.new
     @site.locales.each { |locale| @page.translations.build(locale: locale.name) }
-    respond_with @page
+    respond_with(@site, @page)
   end
 
   # GET /pages/1/edit
   def edit
     @page = @site.pages.find(params[:id])
+    respond_with(@site, @page)
   end
 
   # POST /pages
@@ -62,32 +66,17 @@ class PagesController < ApplicationController
   def create
     @page = @site.pages.new(params[:page])
     @page.author = current_user
-
-    respond_to do |format|
-      if @page.save
-        format.html { redirect_to [@site, @page], notice: 'Page was successfully created.' }
-        format.json { render json: @page, status: :created, location: @page }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @page.errors, status: :unprocessable_entity }
-      end
-    end
+    @page.save
+    @site.locales.each { |locale| @page.translations.build(locale: locale.name) } if @page.errors
+    respond_with(@site, @page)
   end
 
   # PUT /pages/1
   # PUT /pages/1.json
   def update
     @page = @site.pages.find(params[:id])
-
-    respond_to do |format|
-      if @page.update_attributes(params[:page])
-        format.html { redirect_to [@site, @page], notice: 'Page was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @page.errors, status: :unprocessable_entity }
-      end
-    end
+    @page.update_attributes(params[:page])
+    respond_with(@site, @page)
   end
 
   # DELETE /pages/1
@@ -95,8 +84,7 @@ class PagesController < ApplicationController
   def destroy
     @page = @site.pages.find(params[:id])
     @page.destroy
-
-    respond_with @page
+    respond_with(@site, @page)
   end
 
 end

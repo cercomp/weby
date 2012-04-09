@@ -1,15 +1,12 @@
 $("#pages tbody").
 html("<%= escape_javascript(render partial: 'page', collection: @pages) %>")
 
-$(".page_info_paginator").
-replaceWith("<%= escape_javascript(info_page @pages) %>")
+$(".pagination.top").
+html("<%= escape_javascript(raw "#{paginate @pages, remote: true} #{info_page @pages}") %>")
 
-$(".paginator").
-replaceWith("<%= escape_javascript(paginate @pages, remote: true) %>").
-show()
+$(".pagination.bottom").
+html("<%= escape_javascript(raw "#{paginate @pages, remote: true} #{per_page_links @pages, remote: true}") %>")
 
-$(".per_page_paginator").
-replaceWith("<%= escape_javascript(per_page_links @pages, remote: true) %>")
 
 $('th').each(function(index, element){
   $(element).find('a').attr('href', function(index, value){

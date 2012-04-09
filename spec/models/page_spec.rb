@@ -66,9 +66,9 @@ describe Page do
     end
   end
 
-  context "i18ns" do
-    it "may have many i18ns" do
-      @page.should have_many(:i18ns)
+  context "Translations" do
+    it "may have many translations" do
+      @page.should have_many(:translations)
     end
 
     it "should validates with Weby i18n content validator" do
