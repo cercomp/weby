@@ -55,36 +55,36 @@ module ApplicationHelper
        menus << link_to(entry.i18n(session[:locale]).title, entry.target_id.to_i > 0 ? site_page_path(@site, entry.target_id) : entry.url, :alt => entry.i18n(session[:locale]).title,:title => entry.i18n(session[:locale]).description, :target => entry.new_tab ? "_blank":"")
        #		end
 
-      if view_ctrl == 1
-        # Se existir um position nulo ele será organizado e todos do seu nível
-        if entry.position.nil? or entry.position.to_i < 1 or entry.position.to_i > 2000
-          sons[entry.parent_id].each_with_index do |item, idx|
-            #menus << " (item.id:#{item.id} entry.id:#{entry.id} idx:#{idx+1}) " # Para debug
-            if item.id == entry.id
-              entry.update_attribute(:position, idx + 1)
-              entry.position = idx + 1
-            end
-          end
-        end
-        #menus << " [ id:#{entry.id} pos:#{entry.position} ]" # Para debug
-        menus << ( (entry and entry.target) ? " [ #{entry.target.id} ] " : " [ #{entry.url if not entry.url.blank?} ] " )
-        menus << link_to("", edit_site_menu_menu_item_path(@site.name, entry.menu_id, entry.id),:class=>'icon icon-edit', :title => t("edit"))
-        menus << indent_space + link_to("", new_site_menu_menu_item_path(@site.name, entry.menu_id, :parent_id => entry.id),:class=>'icon icon-add', :title => t("add_sub_menu"))
-        #menus << indent_space + link_to("", change_position_site_menu_menu_items_path(:id => entry.id, :position => (entry.position.to_i - 1)),:class=>'icon icon-up', :title => t("move_menu_up")) if entry.position.to_i > 1
-        #menus << indent_space + link_to("", change_position_site_menu_menu_items_path(:id => entry.id, :position => (entry.position.to_i + 1)),:class=>'icon icon-down', :title => t("move_menu_down")) if (entry.position.to_i < sons[entry.parent_id].count.to_i)
-        menus << indent_space + link_to("","#", :class => 'handle icon icon-drag', :title => t("move"))
-        menus << indent_space + link_to("", rm_menu_site_menu_menu_items_path(@site.name, entry.menu_id, :id => entry.id), :confirm => t('are_you_sure'),:class=>'icon icon-del', :title => t("destroy"))
-      end
-      menus << "\n" + indent_space + (view_ctrl == 1 ? "</div><menu>":"<menu>") unless submenu.nil?
-      if sons[entry.id].class.to_s == "Array"
-        sons[entry.id].each do |child|
-          menus << print_menu_entry(sons, child, view_ctrl, indent+3)
-        end
-      end
-      menus << "\n" + indent_space + " </menu>" unless submenu.nil?
-      menus << "\n" + indent_space + "</li>" unless submenu.nil?
-      menus << (view_ctrl == 1 ? "</div></li>":"</li>") if submenu.nil?
-    end
+       if view_ctrl == 1
+         # Se existir um position nulo ele será organizado e todos do seu nível
+         if entry.position.nil? or entry.position.to_i < 1 or entry.position.to_i > 2000
+           sons[entry.parent_id].each_with_index do |item, idx|
+             #menus << " (item.id:#{item.id} entry.id:#{entry.id} idx:#{idx+1}) " # Para debug
+             if item.id == entry.id
+               entry.update_attribute(:position, idx + 1)
+               entry.position = idx + 1
+             end
+           end
+         end
+         #menus << " [ id:#{entry.id} pos:#{entry.position} ]" # Para debug
+         menus << ( (entry and entry.target) ? " [ #{entry.target.id} ] " : " [ #{entry.url if not entry.url.blank?} ] " )
+         menus << link_to("", edit_site_menu_menu_item_path(@site.name, entry.menu_id, entry.id),:class=>'icon icon-edit', :title => t("edit"))
+         menus << indent_space + link_to("", new_site_menu_menu_item_path(@site.name, entry.menu_id, :parent_id => entry.id),:class=>'icon icon-add', :title => t("add_sub_menu"))
+         #menus << indent_space + link_to("", change_position_site_menu_menu_items_path(:id => entry.id, :position => (entry.position.to_i - 1)),:class=>'icon icon-up', :title => t("move_menu_up")) if entry.position.to_i > 1
+         #menus << indent_space + link_to("", change_position_site_menu_menu_items_path(:id => entry.id, :position => (entry.position.to_i + 1)),:class=>'icon icon-down', :title => t("move_menu_down")) if (entry.position.to_i < sons[entry.parent_id].count.to_i)
+         menus << indent_space + link_to("","#", :class => 'handle icon icon-drag', :title => t("move"))
+         menus << indent_space + link_to("", rm_menu_site_menu_menu_items_path(@site.name, entry.menu_id, :id => entry.id), :confirm => t('are_you_sure'),:class=>'icon icon-del', :title => t("destroy"))
+       end
+       menus << "\n" + indent_space + (view_ctrl == 1 ? "</div><menu>":"<menu>") unless submenu.nil?
+       if sons[entry.id].class.to_s == "Array"
+         sons[entry.id].each do |child|
+           menus << print_menu_entry(sons, child, view_ctrl, indent+3)
+         end
+       end
+       menus << "\n" + indent_space + " </menu>" unless submenu.nil?
+       menus << "\n" + indent_space + "</li>" unless submenu.nil?
+       menus << (view_ctrl == 1 ? "</div></li>":"</li>") if submenu.nil?
+     end
   end
 
   # Define mensagens personalizadas
@@ -104,12 +104,12 @@ module ApplicationHelper
   # Parâmetros: (Objeto) ctrl, (array) actions
   # Retorna: verdadeiro ou falso
   def check_permission(ctrl, actions)
-    # Se o argumento de ações for uma string, passa para array
-    actions = [actions] unless actions.is_a? Array
     # Se não estiver logado retorna falso
     return false unless current_user 
     # Se o usuário for admin então dê todas as permissões
     return true if current_user.is_admin 
+    # Se o argumento de ações for uma string, passa para array
+    actions = [actions] unless actions.is_a? Array
     get_roles(current_user, @site).each do |role|
       # Obtém o campo multi-valorados contendo todos os direitos
       role.rights.each do |right|
@@ -121,9 +121,7 @@ module ApplicationHelper
               # Verifica:
               # 1. Se a ação existe no controlador (Caso o usuário tenha adicionado nome incorreto)
               # 2. Direito do usuário (ri) = ação recebida como parâmetro (action)
-              if ctrl.instance_methods(false).include?(action.to_sym) and ri.to_s == action.to_s
-                return true
-              end
+              return true if ctrl.instance_methods(false).include?(action.to_sym) and ri.to_s == action.to_s
             end
           end
         end

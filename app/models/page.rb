@@ -3,6 +3,8 @@ class Page < ActiveRecord::Base
 
   translates :title, :summary, :text
 
+  accepts_nested_attributes_for :translations
+
   acts_as_taggable_on :categories
 
   scope :published, where(publish: true)
@@ -157,4 +159,6 @@ class Page < ActiveRecord::Base
 
   #self.i18ns.first
   #end
+  class Translations
+  end
 end

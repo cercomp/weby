@@ -1,20 +1,20 @@
-<div id="<%= i18nbuilder.object.locale.name %>">
-  <%= i18nbuilder.input(:locale_id, input_html: { value: i18nbuilder.object.locale.id }, as: :hidden) %>
+<div id="<%= locale.name %>">
+  <%= builder.input(:locale_id, input_html: { value: locale.id }, as: :hidden) %>
   <% if controller.action_name != 'new' %>
-    <%= i18nbuilder.input :_destroy,
+    <%= builder.input :_destroy,
       label: t("destroy"),
       as: :boolean %>
   <% end %>
-  <%= i18nbuilder.input :title, label: t("title"),
+  <%= builder.input :title, label: t("title"),
     placeholder: t("title"),
     required: false,
     input_html: {class: "title_input"} %>
 
-  <%= i18nbuilder.input :text, label: t("text"),
+  <%= builder.input :text, label: t("text"),
     input_html: {class: "mceAdvance", style: "width: 550px; height: 320px;"},
     as: :text %>
 
-  <%= i18nbuilder.input :summary, label: t("summary"),
+  <%= builder.input :summary, label: t("summary"),
     input_html: {class: "mceSimple", style: "width: 550px; height: 180px;"},
     as: :text %>
 </div>

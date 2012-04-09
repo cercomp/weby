@@ -58,6 +58,7 @@
    <div class="tabs">
      <ul>
        <% @page.page_i18ns.each do |page_i18n| %>
+      #{image_tag("flags/24/#{page_i18n.locale.flag}", :title=>t(page_i18n.locale.name))} 
          <li> <%= link_to locale_with_name(page_i18n), "##{page_i18n.locale.name}" %> </li>
        <% end %>
      </ul>

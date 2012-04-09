@@ -1,4 +1,8 @@
 class PagesController < ApplicationController
+  layout :choose_layout
+
+  before_filter :require_user, only: [:new, :edit, :update, :destroy, :sort, :toggle_field]
+  before_filter :check_authorization, except: [:view, :show, :list_published]
 
   helper_method :sort_column
 
@@ -7,32 +11,32 @@ class PagesController < ApplicationController
   # GET /pages
   # GET /pages.json
   def index
+    # Vai ao banco por linha para recuperar
+    # tags e locales
     @pages = @site.pages.
       includes(:translations, :author, :categories).
       page(params[:page]).per(params[:per_page]).
-      order(sort_column + " " + sort_direction)
+      order("page_translations.locale asc," + sort_column + " " + sort_direction)
   end
+
+  def sort_column
+    params[:sort] || 'pages.id'
+  end
+  private :sort_column
 
   # GET /pages/1
   # GET /pages/1.json
   def show
     @page = @site.pages.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @page }
-    end
+    respond_with @page
   end
 
   # GET /pages/new
   # GET /pages/new.json
   def new
     @page = @site.pages.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @page }
-    end
+    @site.locales.each { |locale| @page.translations.build(locale: locale.name) }
+    respond_with @page
   end
 
   # GET /pages/1/edit
@@ -79,14 +83,7 @@ class PagesController < ApplicationController
     @page = @site.pages.find(params[:id])
     @page.destroy
 
-    respond_to do |format|
-      format.html { redirect_to pages_url }
-      format.json { head :no_content }
-    end
+    respond_with @page
   end
 
-  private
-  def sort_column
-    params[:sort] || 'id'
-  end
 end

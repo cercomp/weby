@@ -1,5 +1,13 @@
-<p id="notice"><%= notice %></p>
+<h2><%= @page.title %></h2>
+
+<p>
+  <%= @page.date_begin_at %>
+</p>
 
 
-<%= link_to 'Edit', edit_site_page_path(@site, @page) %> |
-<%= link_to 'Back', site_pages_path(@site) %>
+<div class="actions">
+  <% with_permission(action: :edit) do %>
+    <%= link_to 'Edit', edit_site_page_path(@site, @page), class: 'red-button' %>
+  <% end %>
+  <%= link_to t('back'), site_pages_path(@site), class: 'red-button' %>
+</div>
