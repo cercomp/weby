@@ -4,14 +4,27 @@ class PagesController < ApplicationController
 
   respond_to :html, :js, :json
 
+  before_filter :get_pages, only: [:index, :published]
+
   # GET /pages
   # GET /pages.json
   def index
-    @pages = @site.pages.
+    return published unless current_user
+    @pages = get_pages 
+  end
+
+  def published
+    @pages = get_pages.published
+    render template: 'pages/index'
+  end
+
+  def get_pages
+    @site.pages.
       includes(:translations, :author, :categories).
       page(params[:page]).per(params[:per_page]).
       order(sort_column + " " + sort_direction)
   end
+  private :get_pages
 
   # GET /pages/1
   # GET /pages/1.json

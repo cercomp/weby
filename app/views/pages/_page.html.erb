@@ -1,8 +1,7 @@
 <tr>
-  <td><%= page.id %></td>
   <td><%= l(page.created_at, :format => :short) %></td>
-  <td><%= page.title %></td>
   <td>
+    <%= page.title %>
     <% page.locales.each do |locale| %>
       <%= image_tag "flags/24/#{Locale.find_by_name(locale).flag}" %>
     <% end %>

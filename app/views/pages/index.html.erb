@@ -19,16 +19,13 @@
 
   <%= info_page @pages %>
   <%= paginate @pages, remote: true %>
-<%= I18n.locale %>
   <div id="pages">
     <table class="list">
       <thead>
         <tr>
-          <th><%= sortable 'id', 'id' %></th>
           <th><%= sortable 'created_at', t("date_param", param: t("register"))%></th>
-          <th><%= sortable 'page_translations.title', t("title") %></th>
-          <th>Idiomas Cadastrados</th>
-          <th><%= sortable 'users.firstname', t("author") %></th>
+          <th><%= t("title") %></th>
+          <th><%= sortable 'users.first_name', t("author") %></th>
           <th><%= t("category") %></th>
           <th><%= sortable 'type', t("type") %></th>
           <% with_permission(action: 'toggle_field') do %>
