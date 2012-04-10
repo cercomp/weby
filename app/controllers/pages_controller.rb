@@ -51,7 +51,7 @@ class PagesController < ApplicationController
   # GET /pages/new.json
   def new
     @page = @site.pages.new
-    @site.locales.each { |locale| @page.translations.build(locale: locale.name) }
+    @site.locales.each {|locale| @page.translations.build(locale: locale.name)}
     respond_with(@site, @page)
   end
 
@@ -67,7 +67,6 @@ class PagesController < ApplicationController
     @page = @site.pages.new(params[:page])
     @page.author = current_user
     @page.save
-    @site.locales.each { |locale| @page.translations.build(locale: locale.name) } if @page.errors
     respond_with(@site, @page)
   end
 

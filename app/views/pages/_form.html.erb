@@ -9,31 +9,31 @@
       </ul>
     </div>
   <% end %>
+
   <div class="tabs">
     <ul>
-      <% @page.translations.each do |translation| %>
-        <li><%= link_to locale_with_name(translation.locale), "##{translation.locale}" %></li>
+      <% @site.locales.each do |locale| %>
+        <li><%= link_to locale_with_name(locale), "##{locale}" %></li>
       <% end %>
     </ul>
-    <%= f.fields_for :translations do |translate_form| %>
-      <% if @page.id %>
-        <%= translate_form.input :_destroy,
-          label: t("destroy"),
-          as: :boolean %>
-      <% end %>
-      <div id="<%= translate_form.object.locale %>">
-        <%= translate_form.input :locale,
-          input_html: { value: translate_form.object.locale },
-          as: :hidden%>
-        <%= translate_form.input :title %>
+    <% @site.locales.each do |locale| %>
+      <div id="<%= locale.name %>">
+        <%= f.globalize_fields_for(locale.name) do|g| %>
+          <% if g.object.try(:id) %>
+            <%= g.input :_destroy,
+              label: t("destroy"),
+              as: :boolean %>
+          <% end %>
+          <%= g.input :title %>
 
-        <%= translate_form.input :summary,
-          input_html: {class: "mceSimple", style: "width: 550px; height: 180px;"},
-          as: :text %>
+          <%= g.input :summary,
+            input_html: {class: "mceSimple", style: "width: 550px; height: 180px;"},
+            as: :text %>
 
-        <%= translate_form.input :text,
-          input_html: {class: "mceAdvance", style: "width: 550px; height: 320px;"},
-          as: :text %>
+          <%= g.input :text,
+            input_html: {class: "mceAdvance", style: "width: 550px; height: 320px;"},
+            as: :text %>
+        <% end %>
       </div>
     <% end %>
   </div>

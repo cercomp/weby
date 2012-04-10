@@ -119,8 +119,28 @@ class Page < ActiveRecord::Base
   # Content translate
   translates :title, :summary, :text
 
-  validates :title,
-    presence: true
+  #
+  # Passar para uma lib!
+  #
+  validate :validate_translations
+
+  def validate_translations
+    errors.add(:translations, I18n.t(:need_at_least_one_i18n)) if valid_translations.length <= 0 
+  end
+  private :validate_translations
+
+  def valid_translations
+    translations.select { |translation| valid_translation(translation) }
+  end
+  private :valid_translations
+
+  def valid_translation(translation)
+    not translation.title.blank? and not translation.marked_for_destruction?  
+  end
+  private :valid_translation
+  #
+  # Passar para uma lib!
+  #
 
   accepts_nested_attributes_for :translations,
     allow_destroy: true,
