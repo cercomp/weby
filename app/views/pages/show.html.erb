@@ -1,9 +1,8 @@
-<h2><%= @page.title %></h2>
-
+<% @page.attributes.each do |attribute, value| %>
 <p>
-  <%= @page.date_begin_at %>
+  <b><%= attribute %></b>: <%= value %>
 </p>
-
+<% end %>
 
 <div class="actions">
   <% with_permission(action: :edit) do %>

@@ -57,6 +57,7 @@ class PagesController < ApplicationController
   # GET /pages/new.json
   def new
     @page = @site.pages.new
+    @event_types = Page::EVENT_TYPES
     @site.locales.each {|locale| @page.translations.build(locale: locale.name)}
     respond_with(@site, @page)
   end

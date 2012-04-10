@@ -10,6 +10,44 @@
     </div>
   <% end %>
 
+  <%= repository_search t("page.image"), "page_image",
+    "page[image]", @page.image,
+    multiple: false, file_types: 'image' %>
+
+  <% if @page.id.blank? || @page.type == 'Event' %>
+    <div class="input page_type">
+      <%= check_box_tag :is_event, :Event, @page.type == 'Event', disabled: !@page.id.blank? %>
+      <%= label_tag :is_event, "#{t("is")} #{t("event.one")}?" %>
+      <%= f.input :type, :as => :hidden %>
+      <div class='clear'></div>
+    </div>
+    <div id="form_event">
+      <div id="event_fields">
+        <%= f.input :local,
+          :required => true,
+          :help => t("field_required") %>
+
+        <%= f.input :kind %>
+
+        <%= f.input :event_email %>
+
+        <div class="input">
+          <%= label_tag t(".period_event") %>
+          <%= f.input :event_begin,
+            label: false,
+            placeholder: t("begin"),
+            wrapper_html: {class: 'side'} %>
+
+          <%= f.input :event_end,
+            label: false,
+            placeholder: t("end"),
+            wrapper_html: {class: 'side'} %>
+          <div class='clear'></div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
   <div class="tabs">
     <ul>
       <% @site.locales.each do |locale| %>
@@ -21,7 +59,6 @@
         <%= f.globalize_fields_for(locale.name) do|g| %>
           <% if g.object.try(:id) %>
             <%= g.input :_destroy,
-              label: t("destroy"),
               as: :boolean %>
           <% end %>
           <%= g.input :title %>
@@ -38,14 +75,46 @@
     <% end %>
   </div>
 
-  <%= f.input :date_begin_at %>
+  <div class="clearfix">
+    <%= f.input :source, wrapper_html: {class: 'side'} %> 
 
-  <%= f.input :type %>
+    <%= f.input :url, wrapper_html: {class: 'side'}, placeholder: "http://site.com" %>
+  </div>
+
+  <div class="clearfix">
+    <%= label_tag t(".period_page") %>
+    <%= f.input :date_begin_at,
+      label: false,
+      placeholder: t('begin'),
+      wrapper_html: {class: 'side'} %>
+
+    <%= f.input :date_end_at,
+      label: false,
+      placeholder: t('publication_infinite'),
+      wrapper_html: {class: 'side'} %>
+  </div>
+
+  <div class="clearfix">
+    <%= f.input :category_list, placeholder: "UFG, Sports, Arts", hint: t('page_categories_help') %>
+  </div>
+
+  <div class="clearfix">
+    <%= f.input :publish , wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" } %>
+    <%= f.input :front , wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" } %>
+  </div>
+
+  <%= repository_search t("add_param", param: t("related_files")),
+    "related_file_ids", "page[related_file_ids][]", @page.related_files,
+    multiple: true, file_types: false %>
 
   <div class="actions">
-    <%= f.button :submit, t('save'), class: 'green-button' %>
-    <%= link_to t('back'), site_pages_path(@site), class: 'red-button' %>
+    <%= f.submit (t"save"), class: "green-button" %>
+    <%= link_to t("back"), :back, class: "red-button" %>
   </div>
 <% end %>
+
+<div id="dialog-repository-search">
+  <%= render('repositories/repository_search') %>
+</div>
 
 <%= content_for :javascripts, javascript_include_tag("pages.form") %>

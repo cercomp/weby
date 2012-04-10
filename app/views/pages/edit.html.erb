@@ -1,6 +1,3 @@
-<h1>Editing page</h1>
+<h1><%= "#{t('edit')} #{t('page.one')}" %></h1>
 
 <%= render 'form' %>
-
-<%= link_to 'Show', [@site, @page] %> |
-<%= link_to 'Back', site_pages_path(@site) %>

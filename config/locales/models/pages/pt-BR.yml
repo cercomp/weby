@@ -1,0 +1,31 @@
+# encoding: UTF-8
+pt-BR:
+  activerecord:
+    models:
+      page: 'Página'
+    attributes:
+      page:
+        author:        'Autor'
+        category_list: 'Categorias'
+        date_begin_at: 'Data de início'
+        date_end_at:   'Data de fim'
+        event_begin:   'Início do evento'
+        event_email:   'e-mail do evento'
+        event_end:     'Início do evento'
+        front:         'Capa'
+        image:         'Imagem'
+        kind:          'Tipo do Evento'
+        local:         'Local'
+        owner:         'Dono'
+        position:      'Posição'
+        publish:       'Publicada'
+        source:        'Fonte'
+        summary:       'Resumo'
+        text:          'Texto'
+        title:         'Título'
+        type:          'Tipo da página'
+        url:           'URL'
+  pages:
+    form:
+      period_event:  'Período do Evento'
+      period_page:   'Período do Evento'

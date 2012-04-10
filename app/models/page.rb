@@ -1,17 +1,16 @@
 class Page < ActiveRecord::Base
+  EVENT_TYPES = %w[regional national international]
+
   self.inheritance_column = nil
 
   acts_as_taggable_on :categories
 
   scope :published, where(publish: true)
+
   scope :news, where(type: 'News')
   scope :events, where(type: 'Event')
 
   scope :front, where(front: true)
-
-
-  scope :search, proc { |title, locale|
-  }
 
   scope :titles_like, proc { |title, locale|
     if locale.blank?
@@ -34,7 +33,7 @@ class Page < ActiveRecord::Base
     inclusion: %w[News Event]
 
   validates :kind,
-    inclusion: %w[international national regional],
+    inclusion: EVENT_TYPES,
     allow_nil: true,
     allow_blank: true
 
@@ -88,7 +87,13 @@ class Page < ActiveRecord::Base
   def have_image?
     not image.blank?
   end
-  #private :have_image?
+  private :have_image?
+
+  def image=(file)
+    return self.repository_id = file.id if file.is_a?(Repository) 
+
+    self.repository_id = file
+  end
 
   has_many :menu_items,
     as: :target,
@@ -138,9 +143,6 @@ class Page < ActiveRecord::Base
     not translation.title.blank? and not translation.marked_for_destruction?  
   end
   private :valid_translation
-  #
-  # Passar para uma lib!
-  #
 
   accepts_nested_attributes_for :translations,
     allow_destroy: true,
@@ -153,7 +155,9 @@ class Page < ActiveRecord::Base
   private :reject_translations
 
   def locales
-    translations.select(:locale).
-      map {|t| t.locale.to_s }.sort 
+    translations.map {|t| t.locale.to_s }.sort 
   end
+  #
+  # Passar para uma lib!
+  #
 end
