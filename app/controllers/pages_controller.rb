@@ -25,6 +25,12 @@ class PagesController < ApplicationController
     end
   end
 
+  def tiny_mce
+    params[:per_page] = 7
+    @pages = get_pages
+    respond_with(@site, @page)
+  end
+
   def get_pages
     # Vai ao banco por linha para recuperar
     # tags e locales

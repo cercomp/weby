@@ -33,7 +33,7 @@
                                             var page_url = tinyMCEPopup.editor.settings.site_name;
                                             $.ajax({
                                                 type: "GET",
-                                                url: "/sites/"+page_url+"/pages",
+                                                url: "/sites/"+page_url+"/pages/tiny_mce",
                                                 data: { 'tiny_mce': true },
                                                 dataType: "script"
                                             });

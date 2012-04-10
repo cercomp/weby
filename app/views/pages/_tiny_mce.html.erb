@@ -26,15 +26,15 @@
 </style>
 <div id="tinyMCE_search_area">
   <%= text_field_tag 'search', params[:search], placeholder: t('search') + " " + t('page.other'), onkeypress: "return enter_to_click(event,'search_button');" %>
-  <%= link_to t('search'), site_pages_path, remote: true, id: 'search_button' %>
+  <%= link_to t('search'), tiny_mce_site_pages_path, remote: true, id: 'search_button' %>
 </div>
 <br/>
 
 <table class='list' style="width:100%" rules="all">
   <thead>
-    <th><%= sortable 'id' %></th>
+    <th><%= sortable 'pages.id', t("id") %></th>
     <th><%= sortable 'title', t("title") %></th>
-    <th><%= sortable 'author_id', t("author") %></th>
+    <th><%= sortable 'users.first_name', t("author") %></th>
   </thead>
   <tbody>
     <% @pages.each do |page| %>
