@@ -54,9 +54,10 @@
         <li><%= link_to locale_with_name(locale), "##{locale}" %></li>
       <% end %>
     </ul>
+    <%= f.input :title %>
     <% @site.locales.each do |locale| %>
       <div id="<%= locale.name %>">
-        <%= f.globalize_fields_for(locale.name) do|g| %>
+        <%= f.globalize_fields_for(locale.name) do |g| %>
           <% if g.object.try(:id) %>
             <%= g.input :_destroy,
               as: :boolean %>

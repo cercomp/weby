@@ -35,9 +35,9 @@ class PagesController < ApplicationController
     # Vai ao banco por linha para recuperar
     # tags e locales
     @site.pages.
-      includes(:translations, :author, :categories).
+      includes(:author, :categories).
       page(params[:page]).per(params[:per_page]).
-      order("page_translations.locale asc," + sort_column + " " + sort_direction)
+      order(sort_column + " " + sort_direction)
   end
   private :get_pages
 

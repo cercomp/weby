@@ -3,7 +3,7 @@ module ActionView
     class FormBuilder
       def globalize_fields_for(locale, *args, &proc)
         raise ArgumentError, "Missing block" unless block_given?
-        @index = @index ? @index + 1 : 1
+        @index = @index ? @index + 1 : 0
         object_name = "#{@object_name}[translations_attributes][#{@index}]"
         object = @object.translations.find_by_locale locale.to_s
         @template.concat @template.hidden_field_tag("#{object_name}[id]", object ? object.id : "")
