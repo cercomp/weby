@@ -1,7 +1,7 @@
 <%= simple_form_for([@site,@page]) do |f| %>
   <% if @page.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@page.errors.count,"") %><%= t"prohibited_being_saved", count: @page.errors.count %>:</h2>
+      <h2><%= pluralize(@page.errors.count,"") %><%= t("prohibited_being_saved", count: @page.errors.count) %>:</h2>
       <ul>
         <% @page.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
@@ -10,14 +10,16 @@
     </div>
   <% end %>
 
-  <%= repository_search t("page.image"), "page_image",
+<%= f.input :created_at %>
+
+  <%= repository_search t(".image"), "page_image",
     "page[image]", @page.image,
     multiple: false, file_types: 'image' %>
 
   <% if @page.id.blank? || @page.type == 'Event' %>
     <div class="input page_type">
       <%= check_box_tag :is_event, :Event, @page.type == 'Event', disabled: !@page.id.blank? %>
-      <%= label_tag :is_event, "#{t("is")} #{t("event.one")}?" %>
+      <%= label_tag :is_event, t(".is_event") %>
       <%= f.input :type, :as => :hidden %>
       <div class='clear'></div>
     </div>
@@ -54,7 +56,6 @@
         <li><%= link_to locale_with_name(locale), "##{locale}" %></li>
       <% end %>
     </ul>
-    <%= f.input :title %>
     <% @site.locales.each do |locale| %>
       <div id="<%= locale.name %>">
         <%= f.globalize_fields_for(locale.name) do |g| %>
@@ -104,12 +105,12 @@
     <%= f.input :front , wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" } %>
   </div>
 
-  <%= repository_search t("add_param", param: t("related_files")),
+  <%= repository_search t(".related_files"),
     "related_file_ids", "page[related_file_ids][]", @page.related_files,
     multiple: true, file_types: false %>
 
   <div class="actions">
-    <%= f.submit (t"save"), class: "green-button" %>
+    <%= f.submit class: "green-button" %>
     <%= link_to t("back"), :back, class: "red-button" %>
   </div>
 <% end %>

@@ -508,9 +508,8 @@ pt-BR:
 
   helpers:
     submit:
-      create: "Criar %{model}"
-      update: "Confirmar mudanças para %{model}"
-    save: "Salvar"
+      create: "Salvar"
+      update: "Salvar"
     cancel: "Cancelar"
 
   authlogic:

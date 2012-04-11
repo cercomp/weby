@@ -1,8 +1,10 @@
 <% @page.attributes.each do |attribute, value| %>
 <p>
-  <b><%= attribute %></b>: <%= value %>
+  <%= label :page, attribute.to_sym %>: <%= value %>
 </p>
 <% end %>
+
+<%= t(".created_at") %>
 
 <div class="actions">
   <% with_permission(action: :edit) do %>
