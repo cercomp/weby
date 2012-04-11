@@ -10,8 +10,6 @@
     </div>
   <% end %>
 
-<%= f.input :created_at %>
-
   <%= repository_search t(".image"), "page_image",
     "page[image]", @page.image,
     multiple: false, file_types: 'image' %>
