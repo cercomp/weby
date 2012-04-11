@@ -1,14 +1,9 @@
 require 'weby/components'
 
-# FIXME mudar para autoload
-require 'weby/components/gov_bar/gov_bar_component'
-require 'weby/components/weby_bar/weby_bar_component'
-require 'weby/components/menu_side/menu_side_component'
-
 Weby::Components.setup do |setup|
-  setup.available_components = [
-    GovBarComponent,
-    WebyBarComponent,
-    MenuSideComponent
-  ]
+  setup.available_components = Dir.glob(Rails.root.join('lib', 'weby', 'components', '*/*_component\.rb')).map do |i|
+    # Pega o nome do arquivo sem a extensão
+    # gov_bar_component.rb  # => gov_bar_component
+    Object::const_get(i.split('/').last[0...-3].classify)
+  end
 end

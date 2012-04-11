@@ -1,9 +1,9 @@
 module Weby
 
   module Components
+    
     # Array de componentes disponíveis
     mattr_accessor :available_components
-    @available_components ||= []
 
     def self.setup
       yield self
@@ -39,7 +39,7 @@ module Weby
     def initialize_component(*settings)
 
       class_eval do
-        # Método statico para pegar o nome do componente
+        # Método estatico para pegar o nome do componente
         def self.component_name
           # Por padrão todo componente terá o "Component" no fim do nome, ele será retirado
           # ex: GovBarComponent.tableize # => gov_bar_component.gsub(...) => gov_bar
