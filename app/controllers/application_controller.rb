@@ -5,8 +5,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_contrast, :set_locale, :set_global_vars
 
   helper :all
-  helper_method :current_user_session, :current_user,
-    :user_not_authorized, :sort_direction, :current_locale
+  helper_method :current_user_session, :current_user, :user_not_authorized, :sort_direction, :current_locale
 
   def choose_layout
     if @site.nil? or @site.id.nil? 

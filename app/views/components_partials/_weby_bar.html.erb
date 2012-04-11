@@ -36,7 +36,7 @@
                 <% if check_permission(MenusController, [:new]) %>
                   <li> <%= link_to (t"new_param.masc", :param => (t"menu.one")), new_site_menu_path(@site), :class => 'icon icon-add' %> </li>
                 <% end %>
-                  <% @site.menus.each do |menu| %>
+                  <% @global_menus.each do |k, menu| %>
                   <% if check_permission(MenuItemsController, [:index]) %>
                       <li> <%= link_to menu.name.try(:titleize), site_menus_path(@site, :menu => menu.id), :class => 'icon icon-list' %>
                       <% if check_permission(MenuItemsController, [:new]) %>
