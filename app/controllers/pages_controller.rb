@@ -25,6 +25,7 @@ class PagesController < ApplicationController
     end
   end
 
+  # FIXME não devia pegar só os publicos tb?!
   def tiny_mce
     params[:per_page] = 7
     @pages = get_pages
@@ -57,7 +58,8 @@ class PagesController < ApplicationController
   # GET /pages/new.json
   def new
     @page = @site.pages.new
-    @event_types = Page::EVENT_TYPES
+    # FIXME
+    @event_types = Page::EVENT_TYPES.zip(Page::EVENT_TYPES.map {|el| t(el)})
     @site.locales.each {|locale| @page.translations.build(locale: locale.name)}
     respond_with(@site, @page)
   end

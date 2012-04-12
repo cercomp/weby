@@ -1,52 +1,11 @@
 <%= simple_form_for([@site,@page]) do |f| %>
-  <% if @page.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@page.errors.count,"") %><%= t("prohibited_being_saved", count: @page.errors.count) %>:</h2>
-      <ul>
-        <% @page.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= f.show_errors %>
 
   <%= repository_search t(".image"), "page_image",
     "page[image]", @page.image,
     multiple: false, file_types: 'image' %>
 
-  <% if @page.id.blank? || @page.type == 'Event' %>
-    <div class="input page_type">
-      <%= check_box_tag :is_event, :Event, @page.type == 'Event', disabled: !@page.id.blank? %>
-      <%= label_tag :is_event, t(".is_event") %>
-      <%= f.input :type, :as => :hidden %>
-      <div class='clear'></div>
-    </div>
-    <div id="form_event">
-      <div id="event_fields">
-        <%= f.input :local,
-          :required => true,
-          :help => t("field_required") %>
-
-        <%= f.input :kind %>
-
-        <%= f.input :event_email %>
-
-        <div class="input">
-          <%= label_tag t(".period_event") %>
-          <%= f.input :event_begin,
-            label: false,
-            placeholder: t("begin"),
-            wrapper_html: {class: 'side'} %>
-
-          <%= f.input :event_end,
-            label: false,
-            placeholder: t("end"),
-            wrapper_html: {class: 'side'} %>
-          <div class='clear'></div>
-        </div>
-      </div>
-    </div>
-  <% end %>
+  <%= render('event_form', f: f) if @page.id.blank? || @page.type == 'Event' %>
 
   <div class="tabs">
     <ul>

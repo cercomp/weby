@@ -130,7 +130,7 @@ class Page < ActiveRecord::Base
   validate :validate_translations
 
   def validate_translations
-    errors.add(:translations, I18n.t(:need_at_least_one_i18n)) if valid_translations.length <= 0 
+    errors.add(:base, I18n.t(:need_at_least_one_i18n)) if valid_translations.length <= 0 
   end
   private :validate_translations
 

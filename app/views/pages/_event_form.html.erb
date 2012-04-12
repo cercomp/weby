@@ -1,0 +1,33 @@
+<div class="input page_type">
+  <%= check_box_tag :is_event, :Event, @page.type == 'Event', disabled: !@page.id.blank? %>
+  <%= label_tag :is_event, t(".is_event") %>
+  <%= f.input :type, :as => :hidden %>
+  <div class='clear'></div>
+</div>
+<div id="form_event">
+  <div id="event_fields">
+    <%= f.input :local,
+      :required => true,
+      :help => t("field_required") %>
+
+    <%= f.input :kind, 
+      collection: @event_types,
+      as: :select %>
+
+    <%= f.input :event_email %>
+
+    <div class="input">
+      <%= label_tag t(".period_event") %>
+      <%= f.input :event_begin,
+        label: false,
+        placeholder: t("begin"),
+        wrapper_html: {class: 'side'} %>
+
+      <%= f.input :event_end,
+        label: false,
+        placeholder: t("end"),
+        wrapper_html: {class: 'side'} %>
+      <div class='clear'></div>
+    </div>
+  </div>
+</div>

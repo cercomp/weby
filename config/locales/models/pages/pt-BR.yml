@@ -22,6 +22,9 @@ pt-BR:
         source:          'Fonte'
         type:            'Tipo da página'
         url:             'URL'
+        summary:         'Resumo'
+        text:            'Texto'
+        title:           'Título'
       "page/translation":
         summary:         'Resumo'
         text:            'Texto'
@@ -34,7 +37,8 @@ pt-BR:
       title:             'Editar Página'
     form:
       image:             'Imagem da página'
-      is_event:          'É Evento?'
-      period_event:      'Período do Evento'
       period_page:       'Período da Página'
       related_files:     'Arquivos relacionados'
+    event_form:
+      is_event:          'É Evento?'
+      period_event:      'Período do Evento'
