@@ -31,6 +31,10 @@ class Page < ActiveRecord::Base
     end
   }
 
+  def event?
+    type == 'Event'
+  end
+
   validates :type,
     presence: true,
     inclusion: %w[News Event]

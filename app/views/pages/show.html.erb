@@ -1,18 +1,61 @@
 <article class="page-show">
   <%= weby_file_view(@page.image, :little, '128', nil) %>
+
   <header>
-    <h1>
+    <div class="page-langs">
       <% @page.translations.each do |translation| %>
         <%= flag_link(Locale.find_by_name(translation.locale.to_s), {page_loc: translation.locale}, '16') %>
       <% end %>
-    </h1>
-    <summary>
-      <p>
-        <%= "#{@page.author} #{l(@page.created_at, format: :short)}" if @site.view_desc_pages %>
-      </p>
-      <p>
-        <%= raw @page.summary %>
-      </p>
-    </summary>
+    </div>
+    <h1><%= @page.title %></h1>
   </header>
+
+  <%= content_tag_if @page.event?, :fieldset, class: 'event' do %>
+    <legend><%= t('.event') %></legend>
+    <p class="local">
+      <%= label(:page, :local) %>
+      <%= @page.local %>
+    </p>
+    <p class="event-type">
+      <%= label(:page, :kind) %>
+      <%= t(".#{@page.kind}") %>
+    </p>
+    <p class="event-email">
+      <%= label(:page, :event_email) %>
+      <%= @page.event_email %>
+    </p>
+    <p class="event-period">
+      <%= label(:page, :event_period) %>
+      <span class="event-begin"><%= l(@page.event_begin, format: :long) %></span> -
+      <span class="event-end"><%= l(@page.event_end, format: :long) if @page.event_end %></span>
+    </p>
+  <% end %>
+
+  <summary>
+    <p>
+      <%= "#{@page.author} #{l(@page.created_at, format: :short)}" if @site.view_desc_pages %>
+    </p>
+    <p>
+      <%= raw @page.summary %>
+    </p>
+  </summary>
+
+  <div class="body">
+    <%= raw @page.text %>
+  </div>
+
+  <%= content_tag_if @page.source.present?, :p, class: 'source' do %>
+    <%= "#{label(:page, :source)} #{link_to(@page.source, @page.url)}".html_safe %>
+  <% end %>
+
+  <%= content_tag_if @page.category_list.any?, :p, class: 'categories' do %>
+    <%= "#{label(:page, :categories)} #{@page.category_list.sort * ', '}".html_safe %>
+  <% end %>
+
+  <%= render 'related_files' if @page.related_files.any? %>
+
+  <%= make_menu(@page, :except => "show") %>
+  <%= link_to t("list_all.fem"), site_pages_path(@site), :class => 'icon icon-list' %>
+  <%= link_to t("back"), :back , :class => 'icon icon-back' %>
+
 </article>

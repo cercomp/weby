@@ -328,4 +328,8 @@ module ApplicationHelper
     })
     block.call if check_permission(args[:controller], args[:action])
   end
+
+  def content_tag_if(condition, tag_name, options = {}, &block)
+    content_tag(tag_name, options, &block) if condition 
+  end
 end
