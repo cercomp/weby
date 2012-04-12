@@ -153,10 +153,6 @@ class Page < ActiveRecord::Base
       attributed['title'].blank?
   end
   private :reject_translations
-
-  def locales
-    translations.map {|t| t.locale.to_s }.sort 
-  end
   #
   # Passar para uma lib!
   #
