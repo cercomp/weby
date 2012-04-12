@@ -2,7 +2,7 @@
   <td><%= l(page.created_at, :format => :short) %></td>
   <td>
     <%= page.title %>
-    <% page.locales.each do |locale| %>
+    <% page.translated_locales.each do |locale| %>
       <%= link_to image_tag("flags/24/#{Locale.find_by_name(locale.to_s).flag}"), site_page_path(@site, page) %>
     <% end %>
   </td>
