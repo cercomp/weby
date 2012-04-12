@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+  <title>Weby</title>
+  <meta charset="utf-8">
+  <%= csrf_meta_tag %>
+  <%= stylesheet_link_tag 'sites/sites' %>
+</head>
+<body>
+  <%= render 'layouts/shared/navbar' %>
+
+  <header class="cf">
+    <%= image_tag 'weby.png', class: 'pull-right' %>
+  </header>
+
+  <section id="content">
+    <div class="container">
+      <%= raw flash_message_NEW %>
+      <%= yield %>
+    </div>
+  </section>
+
+  <footer>
+    <p> <%= t('licence') %> </p>
+  </footer>
+
+  <%= javascript_include_tag 'sites/sites' %>
+</body>
+</html>
+

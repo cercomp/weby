@@ -102,6 +102,19 @@ module ApplicationHelper
     end
   end
 
+  # Define mensagens personalizadas
+  def flash_message_NEW
+    "".tap do |messages|
+      [:success, :info, :warning, :error].each do |type|
+        if flash[type]
+          messages << content_tag('div', flash.now[type], :class => "alert alert-#{type}")
+          # Limpa a mensagem
+          flash[type] = nil
+        end
+      end
+    end
+  end
+
   # Verifica se o usuário tem permissão no controlador e na ação passada como parâmetro
   # Parâmetros: (Objeto) ctrl, (array) actions
   # Retorna: verdadeiro ou falso

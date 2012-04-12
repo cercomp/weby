@@ -1,20 +1,22 @@
-<fieldset>
-  <legend><%= t"site.other" %></legend>
+<% if @sites %>
+  
+<%= form_tag request.path, method: 'get', autocapitalize: "off", class: 'search' do %>
+<%= content_tag :div, class: 'input-append' do %>
+<%= search_field_tag :search, params[:search], class: 'input-search' -%>
+<%= submit_tag t("search"), class: 'btn btn-large btn-primary btn-search' %>
+<% end %>
+<% end %>
 
-  <% if check_permission(SitesController, ["new"])  %>
-    <div class="contextual">
-      <%= link_to (t"new_param.masc", :param => (t"site.one")), new_site_path, :class => 'icon icon-add' %> 
-    </div>
+<%= content_tag :div, render('list'), class: 'list' %>
+
+<% end %>
+
+<% if check_permission(SitesController, ["new"]) %>
+  <p class="pull-right">
+  <%= link_to new_site_path do %>
+    <button class="btn btn-success btn-large">
+      <%= t('new_param.masc', param: t('site.one'))%>
+    </button>
   <% end %>
-
-  <center>
-    <%= form_tag request.path, method: 'get', autocapitalize: "off" do %>
-      <%= search_field_tag :search, params[:search] %>
-      <%= submit_tag t("search"), class: "search-button" %>
-    <% end %>
-  </center>
-
-  <div id="list">
-    <%= render "list" %>
-  </div>
-</fieldset>
+  </p>
+<% end %>

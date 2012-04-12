@@ -8,6 +8,15 @@ GIT
       activemodel (~> 3.0)
 
 GIT
+  remote: http://github.com/seyhunak/twitter-bootstrap-rails.git
+  revision: b45db04cd67b2b5222cff775b49c4054a2e1ae9b
+  branch: static
+  specs:
+    twitter-bootstrap-rails (2.0.4)
+      actionpack (>= 3.1)
+      railties (>= 3.1)
+
+GIT
   remote: http://github.com/thoughtbot/paperclip.git
   revision: 9e389588740c04bd682704cfc835f428f624b7cf
   specs:
@@ -187,4 +196,5 @@ DEPENDENCIES
   simple_form!
   therubyracer
   thin
+  twitter-bootstrap-rails!
   uglifier (>= 1.0.3)

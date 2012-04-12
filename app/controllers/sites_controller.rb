@@ -1,5 +1,5 @@
 class SitesController < ApplicationController
-  layout :choose_layout
+  layout :choose_layout, except: :index
   before_filter :require_user, :only => [:new, :create, :edit, :update, :destroy]
   before_filter :check_authorization, :except => [:show, :index]
   respond_to :html, :xml, :js
@@ -14,9 +14,7 @@ class SitesController < ApplicationController
       order(sort_column + " " + sort_direction).
       page(params[:page]).
       per(params[:per_page])
-    unless @sites
-      flash[:warning] = (t"none_param", :param => t("page.one"))
-    end
+      flash[:warning] = (t"none_param", :param => t("page.one")) unless @sites
   end
 
   def show
