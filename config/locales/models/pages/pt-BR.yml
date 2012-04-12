@@ -25,6 +25,8 @@ pt-BR:
         summary:         'Resumo'
         text:            'Texto'
         title:           'Título'
+        created_at:      'Criado em'
+        updated_at:      'Atualizado em'
       "page/translation":
         summary:         'Resumo'
         text:            'Texto'
@@ -42,3 +44,6 @@ pt-BR:
     event_form:
       is_event:          'É Evento?'
       period_event:      'Período do Evento'
+      regional:          'Regional'
+      national:          'Nacional'
+      international:     'Internacional'

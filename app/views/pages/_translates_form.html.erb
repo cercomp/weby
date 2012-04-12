@@ -1,0 +1,24 @@
+<div class="tabs">
+  <ul>
+    <% @site.locales.each do |locale| %>
+      <li><%= link_to locale_with_name(locale), "##{locale}" %></li>
+    <% end %>
+  </ul>
+  <% @site.locales.each do |locale| %>
+    <div id="<%= locale.name %>">
+      <%= f.globalize_fields_for(locale.name) do |g| %>
+          <%= g.input :_destroy,
+            as: :boolean if g.object.try(:id) %>
+        <%= g.input :title %>
+
+        <%= g.input :summary,
+          input_html: {class: "mceSimple", style: "width: 550px; height: 180px;"},
+          as: :text %>
+
+        <%= g.input :text,
+          input_html: {class: "mceAdvance", style: "width: 550px; height: 320px;"},
+          as: :text %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

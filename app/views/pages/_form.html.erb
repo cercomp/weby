@@ -5,38 +5,12 @@
     "page[image]", @page.image,
     multiple: false, file_types: 'image' %>
 
-  <%= render('event_form', f: f) if @page.id.blank? || @page.type == 'Event' %>
+  <%= render('event_form', f: f) if @page.new_record? || @page.type == 'Event' %>
 
-  <div class="tabs">
-    <ul>
-      <% @site.locales.each do |locale| %>
-        <li><%= link_to locale_with_name(locale), "##{locale}" %></li>
-      <% end %>
-    </ul>
-    <% @site.locales.each do |locale| %>
-      <div id="<%= locale.name %>">
-        <%= f.globalize_fields_for(locale.name) do |g| %>
-          <% if g.object.try(:id) %>
-            <%= g.input :_destroy,
-              as: :boolean %>
-          <% end %>
-          <%= g.input :title %>
-
-          <%= g.input :summary,
-            input_html: {class: "mceSimple", style: "width: 550px; height: 180px;"},
-            as: :text %>
-
-          <%= g.input :text,
-            input_html: {class: "mceAdvance", style: "width: 550px; height: 320px;"},
-            as: :text %>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
+  <%= render('translates_form', f: f) %>
 
   <div class="clearfix">
     <%= f.input :source, wrapper_html: {class: 'side'} %> 
-
     <%= f.input :url, wrapper_html: {class: 'side'}, placeholder: "http://site.com" %>
   </div>
 

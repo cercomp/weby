@@ -1,14 +1,18 @@
-<% @page.attributes.each do |attribute, value| %>
-<p>
-  <%= label :page, attribute.to_sym %>: <%= value %>
-</p>
-<% end %>
-
-<%= t(".created_at") %>
-
-<div class="actions">
-  <% with_permission(action: :edit) do %>
-    <%= link_to 'Edit', edit_site_page_path(@site, @page), class: 'red-button' %>
-  <% end %>
-  <%= link_to t('back'), site_pages_path(@site), class: 'red-button' %>
-</div>
+<article class="page-show">
+  <%= weby_file_view(@page.image, :little, '128', nil) %>
+  <header>
+    <h1>
+      <% @page.translations.each do |translation| %>
+        <%= flag_link(Locale.find_by_name(translation.locale.to_s), {page_loc: translation.locale}, '16') %>
+      <% end %>
+    </h1>
+    <summary>
+      <p>
+        <%= "#{@page.author} #{l(@page.created_at, format: :short)}" if @site.view_desc_pages %>
+      </p>
+      <p>
+        <%= raw @page.summary %>
+      </p>
+    </summary>
+  </header>
+</article>

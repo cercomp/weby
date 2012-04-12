@@ -4,6 +4,8 @@ class PagesController < ApplicationController
   before_filter :require_user, only: [:new, :edit, :update, :destroy, :sort, :toggle_field]
   before_filter :check_authorization, except: [:view, :show, :list_published]
 
+  before_filter :event_types, only: [:new, :edit]
+
   helper_method :sort_column
 
   respond_to :html, :js, :json
@@ -25,7 +27,6 @@ class PagesController < ApplicationController
     end
   end
 
-  # FIXME não devia pegar só os publicos tb?!
   def tiny_mce
     params[:per_page] = 7
     @pages = get_pages
@@ -58,8 +59,6 @@ class PagesController < ApplicationController
   # GET /pages/new.json
   def new
     @page = @site.pages.new
-    # FIXME
-    @event_types = Page::EVENT_TYPES.zip(Page::EVENT_TYPES.map {|el| t(el)})
     @site.locales.each {|locale| @page.translations.build(locale: locale.name)}
     respond_with(@site, @page)
   end
@@ -69,6 +68,12 @@ class PagesController < ApplicationController
     @page = @site.pages.find(params[:id])
     respond_with(@site, @page)
   end
+
+  def event_types
+    @event_types = Page::EVENT_TYPES.map {|el| t("pages.event_form.#{el}")}.zip(Page::EVENT_TYPES)
+  end
+  private :event_types
+
 
   # POST /pages
   # POST /pages.json

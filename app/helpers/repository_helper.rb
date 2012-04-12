@@ -1,10 +1,16 @@
 module RepositoryHelper
   attr_accessor :file, :format, :options, :size, :thumbnail
 
+  def flag_link(locale, target, size = '24')
+    link_to image_tag("flags/#{size}/#{locale.flag}", title: t(locale.name)), target 
+  end
+
   def weby_file_view(file, format, width = nil, height = nil, options = {as: 'link'})
     @file, @format, @width, @height, @options = file, format, width, height, options
-    make_thumbnail!
-    send("#{@options[:as]}_viewer") # chama método http://ruby-doc.org/core-1.9.3/Object.html#method-i-send
+    if @file
+      make_thumbnail!
+      send("#{@options[:as]}_viewer") # chama método http://ruby-doc.org/core-1.9.3/Object.html#method-i-send
+    end
   end
 
   # Retorna quais os tipos de arquivos existentes em um Site
@@ -31,9 +37,9 @@ module RepositoryHelper
     options[:file_types] = [options[:file_types]].flatten
 
     options.merge!({ link_title: link_title,
-                    place_name: place_name,
-                    field_name: field_name,
-                    selected: selected })
+                     place_name: place_name,
+                     field_name: field_name,
+                     selected: selected })
 
 
     render 'repositories/link_to_add_files', options

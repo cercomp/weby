@@ -16,6 +16,7 @@
     });
   });
 </script>
+
 <style type="text/css">
   table.list tr{
     cursor: pointer;
@@ -24,6 +25,7 @@
     background: rgb(204, 204, 204);
   }
 </style>
+
 <div id="tinyMCE_search_area">
   <%= text_field_tag 'search', params[:search], placeholder: t('search') + " " + t('page.other'), onkeypress: "return enter_to_click(event,'search_button');" %>
   <%= link_to t('search'), tiny_mce_site_pages_path, remote: true, id: 'search_button' %>
