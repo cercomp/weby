@@ -12,6 +12,9 @@ class Page < ActiveRecord::Base
 
   scope :front, where(front: true)
 
+  scope :valid, where("date_begin_at <= :time AND ( date_end_at is NULL OR date_end_at > :time)",
+          { time: Time.now }).published
+
   scope :titles_like, proc { |title, locale|
     if locale.blank?
       joins('LEFT JOIN page_i18ns ON pages.id = page_i18ns.page_id 

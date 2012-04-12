@@ -51,8 +51,8 @@ Weby::Application.routes.draw do
         #post :create_i18n
       #end 
       collection do
-        get :published, :tiny_mce
-        #post :sort
+        get :published, :tiny_mce, :list_front
+        post :sort
         #get :list_published, :list_front
       end
     end

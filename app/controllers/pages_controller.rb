@@ -33,6 +33,14 @@ class PagesController < ApplicationController
     respond_with(@site, @page)
   end
 
+  def list_front
+    params[:published] ||= 'true'
+    @pages = @site.pages.front.order('position desc')
+    if(params[:published]=='true')
+      @pages = @pages.valid
+    end
+  end
+
   def get_pages
     # Vai ao banco por linha para recuperar
     # tags e locales
@@ -100,4 +108,30 @@ class PagesController < ApplicationController
     respond_with(@site, @page)
   end
 
+  def sort
+    @ch_pos = @site.pages.find(params[:id_moved], :readonly => false)
+    increment = 1
+    #Caso foi movido para o fim da lista ou o fim de uma pagina(quando paginado)
+    if(params[:id_after] == '0')
+      @before = @site.pages.find(params[:id_before])
+      condition = "position < #{@ch_pos.position} AND position >= #{@before.position}"
+      new_pos = @before.position
+    else
+      @after = @site.pages.find(params[:id_after])
+      other_pos = @after.position
+      #Caso foi movido de cima pra baixo
+      if(@ch_pos.position > @after.position)
+        condition = "position < #{@ch_pos.position} AND position > #{other_pos}"
+        new_pos = @after.position+1
+        #Caso foi movido de baixo pra cima
+      else
+        increment = -1
+        condition = "position > #{@ch_pos.position} AND position <= #{other_pos}"
+        new_pos = @after.position
+      end
+    end
+    @site.pages.front.where(condition).update_all("position = position + (#{increment})")
+    @ch_pos.update_attribute(:position, new_pos)
+    render :nothing => true
+  end
 end
