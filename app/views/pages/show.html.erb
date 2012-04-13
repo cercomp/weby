@@ -3,8 +3,8 @@
 
   <header>
     <div class="page-langs">
-      <% @page.translations.each do |translation| %>
-        <%= flag_link(Locale.find_by_name(translation.locale.to_s), {page_loc: translation.locale}, '16') %>
+      <% @page.translated_locales.each do |locale| %>
+        <%= flag_link(Locale.find_by_name(locale.to_s), {page_locale: locale}, '16') %>
       <% end %>
     </div>
     <h1><%= @page.title %></h1>
@@ -18,14 +18,14 @@
     </p>
     <p class="event-type">
       <%= label(:page, :kind) %>
-      <%= t(".#{@page.kind}") %>
+      <%= t("pages.event_form.#{@page.kind}") %>
     </p>
     <p class="event-email">
       <%= label(:page, :event_email) %>
       <%= @page.event_email %>
     </p>
     <p class="event-period">
-      <%= label(:page, :event_period) %>
+      <%= label(:page, :event_period, t("pages.event_form.period_event")) %>
       <span class="event-begin"><%= l(@page.event_begin, format: :long) %></span> -
       <span class="event-end"><%= l(@page.event_end, format: :long) if @page.event_end %></span>
     </p>

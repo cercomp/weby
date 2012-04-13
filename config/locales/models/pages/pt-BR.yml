@@ -33,6 +33,8 @@ pt-BR:
         title:           'Título'
         _destroy:        'Remover'
   pages:
+    event:               'Evento'
+    news:                'Notícia'
     new:
       title:             'Nova Página'
     edit:
