@@ -13,7 +13,7 @@
   <% with_permission do %>
     <%= link_to (t"new_param.fem", param: (t"page.one")), new_site_page_path, class: 'icon icon-add' %>
   <% end %>
-  <%= link_to (t"covers"), list_front_site_pages_path(@site), class: 'icon icon-newspaper' %>
+  <%= link_to (t"covers"), fronts_site_pages_path(@site), class: 'icon icon-newspaper' %>
 </div>
 
 <div class="pagination top">
