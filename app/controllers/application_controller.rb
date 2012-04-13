@@ -184,9 +184,4 @@ class ApplicationController < ActionController::Base
     %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
   end
 
-  def debug2file(msg)
-    File.open(Rails.root.join('tmp', 'mylogger.txt'), 'a+'){|f| f.puts msg}
-  end
-  helper_method :debug2file
-
 end

@@ -8,7 +8,7 @@ class ComponentsController < ApplicationController
   end
 
   def show
-    @component = @site.components.find(params[:id])
+    @component = Weby::Components.factory(@site.components.find(params[:id]))
   end
 
   def new

@@ -308,14 +308,12 @@ module ApplicationHelper
     end
   end
 
-  #
+  # TODO passar isso para a lib
   #
   def load_components(component_place)
     raw([].tap do |components|
       @site.components.where(["publish = true AND place_holder = ?", component_place]).order('position asc').each do |comp|
-        comp.settings ||= "{}"
-        settings = eval(comp.settings)
-        components << render(:partial => "components_partials/#{comp.component_name}", :locals => { :settings => settings })
+        components << render_component(Weby::Components.factory(comp))
       end
     end.join)
   end
