@@ -67,7 +67,7 @@ class PagesController < ApplicationController
   # GET /pages/new.json
   def new
     @page = @site.pages.new
-    @site.locales.each {|locale| @page.translations.build(locale: locale.name)}
+    @site.locales.each {|locale| @page.i18ns.build(locale_id: locale.id)}
     respond_with(@site, @page)
   end
 
@@ -86,6 +86,7 @@ class PagesController < ApplicationController
   # POST /pages
   # POST /pages.json
   def create
+    params[:page][:position] = (params[:page][:front]=="0" ? 0 : max_position)
     @page = @site.pages.new(params[:page])
     @page.author = current_user
     @page.save
@@ -97,6 +98,7 @@ class PagesController < ApplicationController
   def update
     params[:page][:related_file_ids] ||= []
     @page = @site.pages.find(params[:id])
+    update_position_of @page, @page.front, params[:page][:front]
     @page.update_attributes(params[:page])
     respond_with(@site, @page)
   end
@@ -106,6 +108,7 @@ class PagesController < ApplicationController
   def destroy
     @page = @site.pages.find(params[:id])
     @page.destroy
+    position_down_from @page.position if @page.front?
     respond_with(@site, @page)
   end
 

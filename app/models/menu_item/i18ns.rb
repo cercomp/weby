@@ -1,4 +1,4 @@
-class MenuItem::I18n < ActiveRecord::Base
+class MenuItem::I18ns < ActiveRecord::Base
   belongs_to :menu_item
   
   belongs_to :locale

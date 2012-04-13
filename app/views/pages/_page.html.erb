@@ -2,8 +2,8 @@
   <td><%= l(page.created_at, :format => :short) %></td>
   <td>
     <%= page.title %>
-    <% page.translated_locales.each do |locale| %>
-      <%= flag_link(Locale.find_by_name(locale.to_s), site_page_path(@site, page, page_locale: locale), '24') %>
+    <% page.i18ns.each do |i18n| %>
+      <%= flag_link(Locale.find_by_id(i18n.locale_id), site_page_path(@site, page, page_locale: i18n.locale.name), '24') %>
     <% end %>
   </td>
   <td><%= page.author.first_name %></td>

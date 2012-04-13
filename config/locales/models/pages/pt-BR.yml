@@ -27,7 +27,7 @@ pt-BR:
         title:           'Título'
         created_at:      'Criado em'
         updated_at:      'Atualizado em'
-      "page/translation":
+      "page/i18ns":
         summary:         'Resumo'
         text:            'Texto'
         title:           'Título'

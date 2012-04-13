@@ -6,10 +6,10 @@
   </ul>
   <% @site.locales.each do |locale| %>
     <div id="<%= locale.name %>">
-      <%= f.globalize_fields_for(locale.name) do |g| %>
+      <%= f.i18ns_fields_for(locale) do |g| %>
           <%= g.input :_destroy,
             as: :boolean if g.object.try(:id) %>
-        <%= g.input :title %>
+        <%= g.input :title, required: false %>
 
         <%= g.input :summary,
           input_html: {class: "mceSimple", style: "width: 550px; height: 180px;"},

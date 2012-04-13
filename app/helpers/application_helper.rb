@@ -54,7 +54,7 @@ module ApplicationHelper
        #		if (entry.menu.try(:page_id).nil? and entry.menu.try(:link).empty?)
        #menus << "#{entry.menu.try(:title)}"
        #		else
-       menus << link_to(entry.i18n(current_locale).title, entry.target_id.to_i > 0 ? site_page_path(@site, entry.target_id) : entry.url, :alt => entry.i18n(current_locale).title,:title => entry.i18n(current_locale).description, :target => entry.new_tab ? "_blank":"")
+       menus << link_to(entry.title, entry.target_id.to_i > 0 ? site_page_path(@site, entry.target_id) : entry.url, :alt => entry.title,:title => entry.description, :target => entry.new_tab ? "_blank":"")
        #		end
 
        if view_ctrl == 1
