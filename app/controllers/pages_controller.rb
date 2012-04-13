@@ -33,14 +33,6 @@ class PagesController < ApplicationController
     respond_with(@site, @page)
   end
 
-  def list_front
-    params[:published] ||= 'true'
-    @pages = @site.pages.front.order('position desc')
-    if(params[:published]=='true')
-      @pages = @pages.valid
-    end
-  end
-
   def get_pages
     # Vai ao banco por linha para recuperar
     # tags e locales
@@ -55,6 +47,14 @@ class PagesController < ApplicationController
     params[:sort] || 'pages.id'
   end
   private :sort_column
+
+  def fronts
+    params[:published] ||= 'true'
+    @pages = @site.pages.front.order('position desc')
+    if(params[:published]=='true')
+      @pages = @pages.valid
+    end
+  end
 
   # GET /pages/1
   # GET /pages/1.json
@@ -109,7 +109,7 @@ class PagesController < ApplicationController
     respond_with(@site, @page)
   end
 
-  def sort
+   def sort
     @ch_pos = @site.pages.find(params[:id_moved], :readonly => false)
     increment = 1
     #Caso foi movido para o fim da lista ou o fim de uma pagina(quando paginado)
@@ -119,15 +119,14 @@ class PagesController < ApplicationController
       new_pos = @before.position
     else
       @after = @site.pages.find(params[:id_after])
-      other_pos = @after.position
       #Caso foi movido de cima pra baixo
       if(@ch_pos.position > @after.position)
-        condition = "position < #{@ch_pos.position} AND position > #{other_pos}"
+        condition = "position < #{@ch_pos.position} AND position > #{@after.position}"
         new_pos = @after.position+1
-        #Caso foi movido de baixo pra cima
+      #Caso foi movido de baixo pra cima
       else
         increment = -1
-        condition = "position > #{@ch_pos.position} AND position <= #{other_pos}"
+        condition = "position > #{@ch_pos.position} AND position <= #{@after.position}"
         new_pos = @after.position
       end
     end
@@ -135,4 +134,45 @@ class PagesController < ApplicationController
     @ch_pos.update_attribute(:position, new_pos)
     render :nothing => true
   end
+
+  def toggle_field
+    @page = @site.pages.find(params[:id])
+    if params[:field]
+      new_value = (@page[params[:field]] == 0 or not @page[params[:field]] ? true : false)
+
+      if (params[:field]=='front')
+        update_position_of @page, @page.front, new_value
+      end
+
+      if @page.update_attributes!("#{params[:field]}" => new_value)
+        flash[:notice] = t("successfully_updated")
+      else
+        flash[:notice] = t("error_updating_object")
+      end
+    end
+    redirect_to :back
+  end
+
+  #Se a pagina está deixando de ser capa ou passando a ser capa, atualiza o position de acordo
+  def update_position_of(page, old_front_value, new_front_value)
+    if ((not old_front_value or old_front_value=='0') and (new_front_value or new_front_value=='1'))
+      page.position = max_position
+    elsif ((old_front_value or old_front_value=='1') and (not new_front_value or new_front_value=='0'))
+      position_down_from page.position
+      page.position = 0
+    end
+  end
+  private :update_position_of
+
+  def max_position
+    @site.pages.front.maximum('position').to_i + 1
+  end
+  private :max_position
+
+  def position_down_from old_position
+    @site.pages.front.where("position > #{old_position}").
+      update_all("position = position-1") if old_position
+  end
+  private :position_down_from
+
 end

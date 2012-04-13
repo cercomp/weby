@@ -21,7 +21,7 @@ Weby::Application.routes.draw do
         post :change_roles
       end
       member do 
-        get :toggle_field
+        put :toggle_field
         get :set_admin
       end 
     end
@@ -40,25 +40,25 @@ Weby::Application.routes.draw do
     end
     resources :banners do 
       member do 
-        get :toggle_field
+        put :toggle_field
       end 
     end
     resources :pages do 
-      #member do 
+      member do 
         #get :toggle_field
         #get :add_i18n
         #get :add_related_files
-        #post :create_i18n
-      #end 
+        put :toggle_field
+      end 
       collection do
-        get :published, :tiny_mce, :list_front
+        get :published, :tiny_mce, :fronts
         post :sort
         #get :list_published, :list_front
       end
     end
     resources :site_components do
       member do
-        get :toggle_field
+        put :toggle_field
       end
       collection do
         post :sort
@@ -94,7 +94,7 @@ Weby::Application.routes.draw do
       post :change_roles
     end
     member do 
-      get :toggle_field
+      put :toggle_field
       get :set_admin
     end 
   end
