@@ -50,11 +50,11 @@
               </li>
             <% end %>
 
-            <% if check_permission(SiteComponentsController, [:index]) %>
-              <li> <%= link_to t("component.other"), site_site_components_path(@site) %>
+            <% if check_permission(ComponentsController, [:index]) %>
+              <li> <%= link_to t("component.other"), site_components_path(@site) %>
                 <menu>
-                <% if check_permission(SiteComponentsController, [:new]) %>
-                  <li> <%= link_to t("new.masc"), new_site_site_component_path(@site), :class => 'icon icon-add' %> </li>
+                <% if check_permission(ComponentsController, [:new]) %>
+                  <li> <%= link_to t("new.masc"), new_site_component_path(@site), :class => 'icon icon-add' %> </li>
                 <% end %>
                 </menu>
               </li>

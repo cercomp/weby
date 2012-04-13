@@ -1,4 +1,7 @@
-class SiteComponent < ActiveRecord::Base
+class Component < ActiveRecord::Base
+  # TODO criar migrate para mudar o nome da coluna
+  self.table_name = 'site_components'
+
   extend Weby::ComponentInstance
 
   before_save :prepare_variables

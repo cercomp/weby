@@ -2,7 +2,7 @@
   <legend><%= t("component.other") %></legend>
 
   <div class="contextual">
-    <% if check_permission(SiteComponentsController, 'new') %>
+    <% if check_permission(ComponentsController, 'new') %>
       <%= link_to t("new_param.masc", :param => t("component.one")),
         new_site_component_path, :class => "icon icon-add" %>
     <% end %>
@@ -17,7 +17,7 @@
       <th></th>
     </thead>
     <tbody>
-      <% @site_components.group_by(&:place_holder).sort.each do |place_holder, i| %>
+      <% @components.group_by(&:place_holder).sort.each do |place_holder, i| %>
         <tr>
           <td colspan="99" class="dark"><%= t("components.pos.#{place_holder}") %></td>
         </tr>
@@ -29,7 +29,7 @@
             <td align="center"><%= raw toggle_field(site_component, "publish") %></td>
             <td>
               <%= raw make_menu(site_component, :except => "show") %>
-              <% if check_permission(SiteComponentsController, 'sort') %>
+              <% if check_permission(ComponentsController, 'sort') %>
                 <span class='handle icon icon-drag'><%= t("move") %></span>
               <% end %>
             </td>
@@ -55,7 +55,7 @@
               data: $('#list').sortable('serialize'),
               dataType: 'script', 
               complete: function(request){ $('#list tr').effect('highlight'); },
-              url: '<%= sort_site_site_components_path %>'
+              url: '<%= sort_site_components_path %>'
             })
           }
         })

@@ -4,11 +4,11 @@ class ComponentsController < ApplicationController
   before_filter :check_authorization
 
   def index
-    @site_components = @site.site_components.order('position asc')
+    @components = @site.components.order('position asc')
   end
 
   def show
-    @site_component = @site.site_components.find(params[:id])
+    @component = @site.components.find(params[:id])
   end
 
   def new
@@ -20,7 +20,7 @@ class ComponentsController < ApplicationController
   end
 
   def edit
-    @component = Weby::Components.factory(@site.site_components.find(params[:id]))
+    @component = Weby::Components.factory(@site.components.find(params[:id]))
   end
 
   def create
@@ -41,7 +41,7 @@ class ComponentsController < ApplicationController
   end
 
   def update
-    @component = Weby::Components.factory(@site.site_components.find(params[:id]))
+    @component = Weby::Components.factory(@site.components.find(params[:id]))
 
     comp = params[:component]
     if @component.update_attributes(params["#{comp}_component"])
@@ -53,7 +53,7 @@ class ComponentsController < ApplicationController
   end
 
   def destroy
-    @component = SiteComponent.find(params[:id])
+    @component = Component.find(params[:id])
     @component.destroy
 
     # TODO tradução
@@ -61,11 +61,11 @@ class ComponentsController < ApplicationController
   end
   
   def sort
-    @site_components = @site.site_components
+    @components = @site.components
 
     params['sort_sites_component'] ||= []
     params['sort_sites_component'].to_a.each do |p|
-      site_component = SiteComponent.find(p)
+      site_component = Component.find(p)
       site_component.position = (params['sort_sites_component'].index(p) + 1)
       site_component.save
     end
@@ -74,14 +74,14 @@ class ComponentsController < ApplicationController
   end
   
   def toggle_field
-    @site_component = SiteComponent.find(params[:id])
+    @component = Component.find(params[:id])
     if params[:field] 
-      if @site_component.update_attributes("#{params[:field]}" => (@site_component[params[:field]] == 0 or not @site_component[params[:field]] ? true : false))
+      if @component.update_attributes("#{params[:field]}" => (@component[params[:field]] == 0 or not @component[params[:field]] ? true : false))
         flash[:notice] = t"successfully_updated"
       else
         flash[:notice] = t"error_updating_object"
       end
     end
-    redirect_back_or_default site_site_components_path(@site)
+    redirect_back_or_default site_components_path(@site)
   end
 end

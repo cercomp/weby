@@ -10,9 +10,9 @@ module Weby
     end
 
     def self.factory(component)
-      # A idéia é pegar um componente definido com a classe "SiteComponent" e passar
+      # A idéia é pegar um componente definido com a classe "Component" e passar
       # para a classe filha
-      if component.class == SiteComponent
+      if component.class == Component
         build = Object::const_get("#{component.component_name.classify}Component").find(component.id)
       else
         ## FIXME verifica se o componente existe

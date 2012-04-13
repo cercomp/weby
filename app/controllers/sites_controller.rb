@@ -45,26 +45,27 @@ class SitesController < ApplicationController
   def create
     @site = Site.new(params[:site])
     if @site.theme == 'this2'
+      # TODO mover o código a seguir para um lugar melhor (um yml talvez)
       @site.site_components << [
-      SiteComponent.new({:place_holder=>'first_place',:settings=>'{:background => "#7F7F7F"}',:component=>'gov_bar', :position=>1, :publish=>true}),
-      SiteComponent.new({:place_holder=>'first_place',:settings=>'{}', :component=>'weby_bar', :position=>2, :publish=>true}),
-      SiteComponent.new({:place_holder=>'first_place',:settings=>'{}', :component=>'institutional_bar', :position=>3, :publish=>true}),
-      SiteComponent.new({:place_holder=>'top', :settings=>'{}', :component=>'header', :position=>4, :publish=>true}),
-      SiteComponent.new({:place_holder=>'top', :settings=>'{:category => "menu1"}', :component=>'menu_side', :position=>5, :publish=>true}),
-      SiteComponent.new({:place_holder=>'top', :settings=>'{}', :component=>'menu_accessibility',:position=>6, :publish=>true}),
-      SiteComponent.new({:place_holder=>'right', :settings=>'{:category => "menu4"}', :component=>'menu_side', :position=>7, :publish=>true}),
-      SiteComponent.new({:place_holder=>'right', :settings=>'{:category => "dir"}', :component=>'banner_side', :position=>8, :publish=>true}),
-      SiteComponent.new({:place_holder=>'bottom', :settings=>'{:category => "menu3"}', :component=>'menu_side', :position=>9, :publish=>true}),
-      SiteComponent.new({:place_holder=>'bottom', :settings=>'{}', :component=>'info_footer', :position=>10,:publish=>true}),
-      SiteComponent.new({:place_holder=>'bottom', :settings=>'{}', :component=>'feedback', :position=>11,:publish=>true}),
-      SiteComponent.new({:place_holder=>'left', :settings=>'{:category => "menu2"}', :component=>'menu_side', :position=>12,:publish=>true}),
-      SiteComponent.new({:place_holder=>'left', :settings=>'{:category => "esq"}', :component=>'banner_side', :position=>13,:publish=>true}),
-      SiteComponent.new({:place_holder=>'home', :settings=>'{:quant => "5"}', :component=>'front_news', :position=>14,:publish=>true}),
-      SiteComponent.new({:place_holder=>'home', :settings=>'{:quant => "5"}', :component=>'no_front_news', :position=>15,:publish=>true})
+      Component.new({:place_holder=>'first_place',:settings=>'{:background => "#7F7F7F"}',:component=>'gov_bar', :position=>1, :publish=>true}),
+      Component.new({:place_holder=>'first_place',:settings=>'{}', :component=>'weby_bar', :position=>2, :publish=>true}),
+      Component.new({:place_holder=>'first_place',:settings=>'{}', :component=>'institutional_bar', :position=>3, :publish=>true}),
+      Component.new({:place_holder=>'top', :settings=>'{}', :component=>'header', :position=>4, :publish=>true}),
+      Component.new({:place_holder=>'top', :settings=>'{:category => "menu1"}', :component=>'menu_side', :position=>5, :publish=>true}),
+      Component.new({:place_holder=>'top', :settings=>'{}', :component=>'menu_accessibility',:position=>6, :publish=>true}),
+      Component.new({:place_holder=>'right', :settings=>'{:category => "menu4"}', :component=>'menu_side', :position=>7, :publish=>true}),
+      Component.new({:place_holder=>'right', :settings=>'{:category => "dir"}', :component=>'banner_side', :position=>8, :publish=>true}),
+      Component.new({:place_holder=>'bottom', :settings=>'{:category => "menu3"}', :component=>'menu_side', :position=>9, :publish=>true}),
+      Component.new({:place_holder=>'bottom', :settings=>'{}', :component=>'info_footer', :position=>10,:publish=>true}),
+      Component.new({:place_holder=>'bottom', :settings=>'{}', :component=>'feedback', :position=>11,:publish=>true}),
+      Component.new({:place_holder=>'left', :settings=>'{:category => "menu2"}', :component=>'menu_side', :position=>12,:publish=>true}),
+      Component.new({:place_holder=>'left', :settings=>'{:category => "esq"}', :component=>'banner_side', :position=>13,:publish=>true}),
+      Component.new({:place_holder=>'home', :settings=>'{:quant => "5"}', :component=>'front_news', :position=>14,:publish=>true}),
+      Component.new({:place_holder=>'home', :settings=>'{:quant => "5"}', :component=>'no_front_news', :position=>15,:publish=>true})
       ]
     end
     if @site.save
-      redirect_to site_site_components_path(@site)
+      redirect_to site_components_path(@site)
     else
       @themes = []
       (Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*.erb")] - Dir[File.join(Rails.root + "app/views/layouts/application.html.erb")]).each do |file|

@@ -1,3 +1,3 @@
-class WebyBarComponent < SiteComponent
+class WebyBarComponent < Component
   initialize_component
 end

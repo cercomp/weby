@@ -33,9 +33,9 @@
       <% end %>
     </p>
     <p>
-      <%= link_to t("component.other"), site_site_components_path %>
-      <% if check_permission(SiteComponentsController, ["new"]) %>
-       | <%= link_to t("new.masc"), new_site_site_component_path, :class => 'icon icon-add' %>
+      <%= link_to t("component.other"), site_components_path %>
+      <% if check_permission(ComponentsController, ["new"]) %>
+       | <%= link_to t("new.masc"), new_site_component_path, :class => 'icon icon-add' %>
       <% end %>
     </p>
     <p>

@@ -1,4 +1,4 @@
-module SiteComponentsHelper
+module ComponentsHelper
   # FIXME melhorar a forma de representar os hash e array de configurações
   # Ver o uso de arquivos .yml
 
@@ -56,7 +56,7 @@ module SiteComponentsHelper
   #TODO -> Documentar
   #
   def components_settings_custom_field
-    cur_setting = eval(@site_component.settings);
+    cur_setting = eval(@component.settings);
     if(cur_setting[:page])
       cur_page = @site.pages.find(cur_setting[:page])
     end
@@ -109,11 +109,11 @@ module SiteComponentsHelper
   end
   
   #Método que retorna a categoria que um dados componente está relacionado
-  def components_settings_category(site_component)
-    if site_component.settings and site_component.settings.include? "category" 
-      ini = site_component.settings.index('"')  
-      fim = site_component.settings.rindex('"')  
-      site_component.settings[ini+1..fim-1] 
+  def components_settings_category(component)
+    if component.settings and component.settings.include? "category" 
+      ini = component.settings.index('"')  
+      fim = component.settings.rindex('"')  
+      component.settings[ini+1..fim-1] 
     end 
   end
 end

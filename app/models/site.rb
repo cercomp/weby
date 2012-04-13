@@ -59,8 +59,7 @@ class Site < ActiveRecord::Base
   has_many :sites_styles, :dependent => :destroy
   has_many :styles, :through => :sites_styles
 
-  # FIXME testando relação de componentes
-  has_many :site_components
+  has_many :components
 
   accepts_nested_attributes_for :sites_menus, :allow_destroy => true
   accepts_nested_attributes_for :sites_pages, :allow_destroy => true
