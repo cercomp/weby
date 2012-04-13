@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_contrast, :set_locale, :set_global_vars
 
   helper :all
-  helper_method :current_user_session, :current_user, :user_not_authorized, :sort_direction, :current_locale
+  helper_method :current_user_session, :current_user, :user_not_authorized, :sort_direction, :current_locale, :current_site
 
   def choose_layout
     if @site.nil? or @site.id.nil? 
@@ -50,6 +50,12 @@ class ApplicationController < ActionController::Base
   def set_contraste
     contraste = params[:contraste] || session[:contraste]
     session[:contraste] = 'no'
+  end
+
+  def current_site
+    return @current_site if defined? @current_site
+    return Site.find_by_name(params[:site_id]) if params[:site_id]
+    return Site.find_by_name(params[:id]) if params[:id] and controller === SitesController
   end
 
   def set_locale
