@@ -95,6 +95,7 @@ class PagesController < ApplicationController
   # PUT /pages/1
   # PUT /pages/1.json
   def update
+    params[:page][:related_file_ids] ||= []
     @page = @site.pages.find(params[:id])
     @page.update_attributes(params[:page])
     respond_with(@site, @page)
