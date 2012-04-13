@@ -59,7 +59,7 @@ class PagesController < ApplicationController
   # GET /pages/1
   # GET /pages/1.json
   def show
-    @page = @site.pages.find(params[:id])
+    @page = @site.pages.find(params[:id]).in(params[:page_locale])
     respond_with(@site, @page)
   end
 

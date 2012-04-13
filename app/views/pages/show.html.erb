@@ -7,7 +7,7 @@
         <%= flag_link(Locale.find_by_id(i18n.locale_id), {page_locale: i18n.locale.name}, '16') %>
       <% end %>
     </div>
-    <h1><%= @page.title(locale: params[:page_locale]) %></h1>
+    <h1><%= @page.title %></h1>
   </header>
 
   <%= content_tag_if @page.event?, :fieldset, class: 'event' do %>

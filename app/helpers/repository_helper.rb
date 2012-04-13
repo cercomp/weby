@@ -1,8 +1,8 @@
 module RepositoryHelper
   attr_accessor :file, :format, :options, :size, :thumbnail
 
-  def flag_link(locale, target, size = '24')
-    link_to image_tag("flags/#{size}/#{locale.flag}", title: t(locale.name)), target 
+  def flag_link(locale, target, size = '24', options = {})
+    link_to image_tag("flags/#{size}/#{locale.flag}", title: t(locale.name)), target, options 
   end
 
   def weby_file_view(file, format, width = nil, height = nil, options = {as: 'link'})

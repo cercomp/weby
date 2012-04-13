@@ -1,7 +1,7 @@
 # Load the rails application
 require File.expand_path('../application', __FILE__)
-require 'weby_i18ns_form'
-require 'simple_form_error'
+require 'weby/content_i18n/base'
+require 'weby/form/show_errors'
 
 # Initialize the rails application
 Weby::Application.initialize!
