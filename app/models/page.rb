@@ -37,6 +37,37 @@ class Page < ActiveRecord::Base
     type == 'Event'
   end
 
+  def toggle_publish
+    self.publish = publish? ? false : true 
+  end
+
+  def toggle_front
+    return turn_out_front if front?
+
+    turn_in_front
+  end
+
+  def turn_out_front
+    self.front = false
+    update_fronts_up_me
+    self.position = 0
+  end
+
+  def update_fronts_up_me
+    owner.pages.front.where("position > #{position}").
+      update_all("position = position - 1")
+  end
+  private :update_fronts_up_me
+
+  def turn_in_front
+    self.front = true
+    self.position = last_front_position + 1
+  end
+
+  def last_front_position
+    owner.pages.front.maximum('position').to_i
+  end
+
   validates :type,
     presence: true,
     inclusion: %w[News Event]

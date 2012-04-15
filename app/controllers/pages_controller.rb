@@ -23,7 +23,7 @@ class PagesController < ApplicationController
   def published
     @pages = get_pages.published
     respond_with(@site, @page) do |format|
-      format.html { render template: 'pages/index' }
+      format.any { render template: 'pages/index' }
     end
   end
 
@@ -112,7 +112,7 @@ class PagesController < ApplicationController
     respond_with(@site, @page)
   end
 
-   def sort
+  def sort
     @ch_pos = @site.pages.find(params[:id_moved], :readonly => false)
     increment = 1
     #Caso foi movido para o fim da lista ou o fim de uma pagina(quando paginado)
@@ -126,7 +126,7 @@ class PagesController < ApplicationController
       if(@ch_pos.position > @after.position)
         condition = "position < #{@ch_pos.position} AND position > #{@after.position}"
         new_pos = @after.position+1
-      #Caso foi movido de baixo pra cima
+        #Caso foi movido de baixo pra cima
       else
         increment = -1
         condition = "position > #{@ch_pos.position} AND position <= #{@after.position}"
@@ -140,20 +140,14 @@ class PagesController < ApplicationController
 
   def toggle_field
     @page = @site.pages.find(params[:id])
-    if params[:field]
-      new_value = (@page[params[:field]] == 0 or not @page[params[:field]] ? true : false)
 
-      if (params[:field]=='front')
-        update_position_of @page, @page.front, new_value
-      end
+    params[:field] == 'front' ? @page.toggle_front : @page.toggle_publish
 
-      if @page.update_attributes!("#{params[:field]}" => new_value)
-        flash[:notice] = t("successfully_updated")
-      else
-        flash[:notice] = t("error_updating_object")
-      end
+    @page.save
+
+    respond_with(@site, @page) do |format|
+      format.any {redirect_to site_pages_path(@site)}
     end
-    redirect_to :back
   end
 
   #Se a pagina está deixando de ser capa ou passando a ser capa, atualiza o position de acordo
