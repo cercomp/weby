@@ -3,8 +3,8 @@
 
   <header>
     <div class="page-langs">
-      <% @page.i18ns.each do |i18n| %>
-        <%= flag_link(Locale.find_by_id(i18n.locale_id), {page_locale: i18n.locale.name}, '16') %>
+      <% @page.locales.each do |locale| %>
+        <%= flag_link(locale, site_page_path(@site, @page, page_locale: locale.name), '16') %>
       <% end %>
     </div>
     <h1><%= @page.title %></h1>
