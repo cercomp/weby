@@ -328,7 +328,7 @@ module ApplicationHelper
   def with_permission(args = {}, &block)
     args.reverse_merge!({
       controller: controller,
-      action: controller.action_name
+      action: [controller.action_name]
     })
     block.call if check_permission(args[:controller], args[:action])
   end

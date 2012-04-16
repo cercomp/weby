@@ -3,6 +3,8 @@ class Page < ActiveRecord::Base
 
   include Weby::ContentI18n::Base
 
+  required_i18n_fields :title
+
   EVENT_TYPES = %w[regional national international]
 
   acts_as_taggable_on :categories
@@ -132,29 +134,5 @@ class Page < ActiveRecord::Base
     return true
   end
   private :own_files?
-
-  has_many :i18ns,
-    class_name: "Page::I18ns",
-    include: :locale,
-    dependent: :delete_all
-
-  has_many :locales, through: :i18ns
-  accepts_nested_attributes_for :i18ns,
-    allow_destroy: true,
-    reject_if: :reject_i18ns
-
-  before_validation :initialize_i18n
-  #validates_associated :i18ns
-
-  def initialize_i18n
-    i18ns.each { |i18n| i18n.page = self }
-  end
-  private :initialize_i18n
-
-  def reject_i18ns(attributed)
-    attributed['id'].blank? and
-      attributed['title'].blank?
-  end
-  private :reject_i18ns
 
 end

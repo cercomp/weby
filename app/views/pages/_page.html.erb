@@ -1,7 +1,6 @@
-<tr>
+<tr id="<%= page.id %>">
   <td><%= l(page.created_at, :format => :short) %></td>
   <td>
-    <%= page.position %>
     <% page.locales.each do |locale| %>
       <%= flag_link(locale, site_page_path(@site, page, page_locale: locale.name), '16') %>
     <% end %>
@@ -11,9 +10,9 @@
   <td><%= page.category_list * ', ' %></td>
   <td><%= t"#{page.type.downcase}.one" %></td>
   <% with_permission(action: :toggle_field) do %>
-    <td align="center">
+    <td align="center" class="front">
       <%= raw toggle_field(page, "front") %></td>
-    <td align="center">
+    <td align="center" class="publish">
       <%= publication_status(page) %></td>
     <td><%= make_menu(page, :except => "show") %></td>
   <% end %>

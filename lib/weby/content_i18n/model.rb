@@ -1,7 +1,7 @@
 module Weby
   module ContentI18n
     module Model
-      attr_accessor :model_locale
+      attr_reader :model_locale
 
       def method_missing(method, *args, &block)
         if self.class::I18ns.column_names.include?(method.to_s)
