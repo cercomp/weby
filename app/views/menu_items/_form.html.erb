@@ -11,7 +11,7 @@
             <div class="input">
               <%= f.input :parent,
                 label: t("parent_menu_item"),
-                :input_html => {:value => @parent_i18n.title, :disabled => 'disabled' },
+                :input_html => {:value => @menu_item_parent.title, :disabled => 'disabled' },
                 :as => :string %>
               <%= f.input :parent_id,
                 :input_html => {:value => @menu_item_parent.id },

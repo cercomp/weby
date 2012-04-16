@@ -16,7 +16,6 @@ class MenuItemsController < ApplicationController
   def new
     get_parent_menu_item params[:parent_id]
     @menu_item = MenuItem.new
-    build_locales
   end
 
   def create
@@ -27,14 +26,12 @@ class MenuItemsController < ApplicationController
       redirect_to site_menus_path(@site, :menu => @menu.id)
     else
       get_parent_menu_item params[:menu_item][:parent_id]
-      build_locales
       respond_with(@site, @menu, @menu_item)
     end
   end
 
   def edit
     @menu_item = @menu.menu_items.find(params[:id])
-    build_locales
   end
 
   def update
@@ -43,7 +40,6 @@ class MenuItemsController < ApplicationController
       flash[:notice] = t("successfully_updated")
       redirect_to site_menus_path(@site, :menu => @menu.id)
     else
-      build_locales
       respond_with(@site, @menu, @menu_item)
     end
   end
@@ -105,25 +101,7 @@ class MenuItemsController < ApplicationController
   def get_parent_menu_item parent_id
     if parent_id
       @menu_item_parent = @menu.menu_items.find(parent_id)
-      @parent_i18n = @menu_item_parent.i18n(current_locale)
     end
-  end
-
-  def build_locales
-    available_locales.each do |locale|
-      @menu_item.i18ns.build(locale_id: locale.id)
-    end
-  end
-
-  def available_locales
-    locales = @site.locales
-    if @menu_item.i18ns.size > 0
-      locales = locales.
-        where(["id not in (?)", @menu_item.i18ns.
-               map{|menu_item_i18n| menu_item_i18n.locale.id}])
-    end
-
-    locales
   end
 
   def items_deep(menu, menuitem)
