@@ -1,5 +1,5 @@
 class MenuItem < ActiveRecord::Base
-  include WebyI18ns
+  include Weby::ContentI18n::Base
 
   has_many :i18ns, class_name: "MenuItem::I18ns", dependent: :delete_all
   accepts_nested_attributes_for :i18ns, allow_destroy: true,
@@ -15,7 +15,5 @@ class MenuItem < ActiveRecord::Base
 
   validates :parent_id, numericality: true, allow_nil: false
   validates :position, numericality: true, allow_nil: false
-
-  validates_with WebyI18nContentValidator
   
 end

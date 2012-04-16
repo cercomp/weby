@@ -28,7 +28,7 @@
           <td>
             <%= page.title %>
             <% page.i18ns.each do |i18n| %>
-              <%= flag_link(Locale.find_by_id(i18n.locale_id), site_page_path(@site, page, page_locale: i18n.locale.name), '24') %>
+              <%= flag_link(Locale.find_by_id(i18n.locale_id), site_page_path(@site, page, page_locale: i18n.locale.name), '16') %>
             <% end %>
           </td>
           <td><%= page.author.first_name %></td>
