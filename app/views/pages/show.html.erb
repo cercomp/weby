@@ -16,10 +16,10 @@
       <%= label(:page, :local) %>
       <%= @page.local %>
     </p>
-    <p class="event-type">
+    <%= content_tag_if @page.kind?, :p, class: 'event-type' do %>
       <%= label(:page, :kind) %>
       <%= t("pages.event_form.#{@page.kind}") %>
-    </p>
+    <% end %>
     <p class="event-email">
       <%= label(:page, :event_email) %>
       <%= @page.event_email %>

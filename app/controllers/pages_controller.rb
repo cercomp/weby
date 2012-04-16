@@ -82,11 +82,9 @@ class PagesController < ApplicationController
   end
   private :event_types
 
-
   # POST /pages
   # POST /pages.json
   def create
-    params[:page][:position] = (params[:page][:front]=="0" ? 0 : max_position)
     @page = @site.pages.new(params[:page])
     @page.author = current_user
     @page.save
@@ -98,7 +96,6 @@ class PagesController < ApplicationController
   def update
     params[:page][:related_file_ids] ||= []
     @page = @site.pages.find(params[:id])
-    update_position_of @page, @page.front, params[:page][:front]
     @page.update_attributes(params[:page])
     respond_with(@site, @page)
   end
@@ -108,8 +105,15 @@ class PagesController < ApplicationController
   def destroy
     @page = @site.pages.find(params[:id])
     @page.destroy
-    position_down_from @page.position if @page.front?
     respond_with(@site, @page)
+  end
+
+  def toggle_field
+    @page = @site.pages.find(params[:id])
+    @page.toggle!(params[:field])
+    respond_with(@page) do |format|
+      format.any { redirect_to site_pages_path(@site) }
+    end
   end
 
   def sort
@@ -137,39 +141,4 @@ class PagesController < ApplicationController
     @ch_pos.update_attribute(:position, new_pos)
     render :nothing => true
   end
-
-  def toggle_field
-    @page = @site.pages.find(params[:id])
-
-    params[:field] == 'front' ? @page.toggle_front : @page.toggle_publish
-
-    @page.save
-
-    respond_with(@site, @page) do |format|
-      format.any {redirect_to site_pages_path(@site)}
-    end
-  end
-
-  #Se a pagina está deixando de ser capa ou passando a ser capa, atualiza o position de acordo
-  def update_position_of(page, old_front_value, new_front_value)
-    if ((not old_front_value or old_front_value=='0') and (new_front_value or new_front_value=='1'))
-      page.position = max_position
-    elsif ((old_front_value or old_front_value=='1') and (not new_front_value or new_front_value=='0'))
-      position_down_from page.position
-      page.position = 0
-    end
-  end
-  private :update_position_of
-
-  def max_position
-    @site.pages.front.maximum('position').to_i + 1
-  end
-  private :max_position
-
-  def position_down_from old_position
-    @site.pages.front.where("position > #{old_position}").
-      update_all("position = position-1") if old_position
-  end
-  private :position_down_from
-
 end
