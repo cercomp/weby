@@ -1,0 +1,5 @@
+<%= f.input :category,
+  :collection => @site.banners.category_counts.map{|b| b.name},
+  :priority => component.category,
+  :include_blank => false
+%>

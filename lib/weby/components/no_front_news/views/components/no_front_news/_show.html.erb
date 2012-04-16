@@ -1,0 +1,29 @@
+
+<% quant = component.quant || 5 %>
+<% front = component.front || false %>
+<% # Pega as noticias ordenadas por data de inicio decrescente %>
+<% @no_front_news = @site.pages.order('created_at desc')
+                    .news(front).page(params[:no_front_pages]).per(quant) %>
+
+<div id='no_front_news'>
+  <%= info_page @no_front_news, 'width: 100%' %>
+    <table class="list border fullwidth zebra">
+    <tr>
+      <th> <%= link_to t("last_news"), site_pages_path(@site, direction: 'desc', sort: 'created_at') %> </th>
+    </tr>
+    <% @no_front_news.try(:each) do |page| %>
+      <tr>
+        <td>
+          <p>
+          <%= link_to page.by_locale(session[:locale]).title, site_page_path(@site, page) %>
+          <%= raw page.by_locale(session[:locale]).summary %>
+          </p>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <%= paginate @no_front_news, :param_name => 'no_front_pages' %>
+</div>
+
+<%= content_for :stylesheets, stylesheet_link_tag("jquery.sortable") %>
+<%= content_for :javascripts, javascript_include_tag("jquery-ui.min") %>

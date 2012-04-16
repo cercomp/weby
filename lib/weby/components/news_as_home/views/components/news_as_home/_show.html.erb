@@ -1,0 +1,8 @@
+<% @page = Page.where(['id = ?', component.page]).first %>
+
+<% unless @page.nil? %>
+  <%= render :template => 'pages/show' %>
+<% else %>
+  <%# TODO arrumar mensagem de componente mal configurado %>
+  <h1>Página não encontrada, por favor verifique a configuração do componente</h1>
+<% end %>

@@ -4,3 +4,7 @@ pt-BR:
       name: "Menu Lateral"
       form:
         category: "Categoria"
+  activerecord:
+    attributes:
+      menu_side_component:
+        category: "Categoria"

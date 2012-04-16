@@ -1,0 +1,9 @@
+pt-BR:
+  components:
+    news_as_home:
+      name: "Notícia como página inicial"
+      page: "Notícia"
+  activerecord:
+    attributes:
+      news_as_home_component:
+        page: "Notícia"

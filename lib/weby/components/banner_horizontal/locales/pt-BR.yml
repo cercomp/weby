@@ -1,0 +1,9 @@
+pt-BR:
+  components:
+    banner_horizontal:
+      name: "Banner Horizontal"
+      category: "Categoria"
+  activerecord:
+    attributes:
+      banner_horizontal_component:
+        category: "Categoria"

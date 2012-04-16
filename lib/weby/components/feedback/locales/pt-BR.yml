@@ -5,5 +5,5 @@ pt-BR:
       label: "Rótulo"
   activerecord:
     attributes:
-      feedback:
+      feedback_component:
         label: "Rótulo"
