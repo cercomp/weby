@@ -61,7 +61,10 @@ module Weby
     end
 
     module I18nInterface
-      def weby_content_i18n(fields, options = {})
+      def weby_content_i18n(*data)
+        fields = data.select { |item| item.is_a?(Symbol) }
+        options = data.select { |item| item.is_a?(Hash) }[0] || {}
+
         self.extend I18nRelation
         self.i18n_fields = [fields].flatten
         self.required_i18n_fields = [options[:required]].flatten
