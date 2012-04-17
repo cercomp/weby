@@ -1,6 +1,6 @@
-module ActionView
-  module Helpers
-    class FormBuilder
+module Weby
+  module ContentI18n
+    module Form
       def i18ns_fields_for(locale, *args, &proc)
         raise ArgumentError, "Missing block" unless block_given?
         @index = @index ? @index + 1 : 0
@@ -17,3 +17,5 @@ module ActionView
     end
   end
 end
+
+ActionView::Helpers::FormBuilder.send(:include, Weby::ContentI18n::Form)

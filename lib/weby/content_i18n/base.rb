@@ -7,9 +7,12 @@ module Weby
   module ContentI18n
     module Base
       include Model
+
       def self.included(base)
         base.extend RequiredFields
       end
     end
   end
 end
+
+ActiveRecord::Base.send(:include, Weby::ContentI18n::Base)

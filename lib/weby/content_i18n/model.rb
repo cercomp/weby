@@ -1,6 +1,7 @@
 module Weby
   module ContentI18n
     module Model
+
       attr_reader :model_locale
 
       def method_missing(method, *args, &block)
@@ -30,6 +31,7 @@ module Weby
         @model_locale = locale
         self
       end
+
     end
   end
 end

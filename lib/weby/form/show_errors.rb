@@ -1,6 +1,6 @@
-module ActionView
-  module Helpers
-    class FormBuilder
+module Weby
+  module Form
+    module ShowErrors
       include ActionView::Helpers::TagHelper
       include ActionView::Helpers::TextHelper
       def show_errors
@@ -30,3 +30,5 @@ module ActionView
     end
   end
 end
+
+ActionView::Helpers::FormBuilder.send(:include, Weby::Form::ShowErrors)
