@@ -1,7 +1,7 @@
 class Page < ActiveRecord::Base
   self.inheritance_column = nil
 
-  required_i18n_fields :title
+  weby_content_i18n %w[title summary text], required: :title
 
   EVENT_TYPES = %w[regional national international]
 
