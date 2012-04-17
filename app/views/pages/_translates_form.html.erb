@@ -1,21 +1,24 @@
 <div class="tabs">
   <ul>
-    <% @site.locales.each do |locale| %>
+    <% @available_locales.each do |locale| %>
       <li><%= link_to locale_with_name(locale), "##{locale}" %></li>
     <% end %>
   </ul>
-  <% @site.locales.each do |locale| %>
+  <% @available_locales.each do |locale| %>
     <div id="<%= locale.name %>">
       <%= f.i18ns_fields_for(locale) do |g| %>
-          <%= g.input :_destroy,
-            as: :boolean if g.object.try(:id) %>
-        <%= g.input :title, required: false %>
+        <%= g.input :_destroy,
+          label: t("activerecord.attributes.page/i18ns._destroy", locale: locale.name.to_sym),
+          as: :boolean if g.object.try(:id) %>
+        <%= g.input :title,
+          label: t("activerecord.attributes.page/i18ns.title", locale: locale.name.to_sym) %>
 
         <%= g.input :summary,
+          label: t("activerecord.attributes.page/i18ns.summary", locale: locale.name),
           input_html: {class: "mceSimple", style: "width: 550px; height: 180px;"},
           as: :text %>
-
         <%= g.input :text,
+          label: t(".activerecord.attributes.page/i18ns.text", locale: locale.name.to_sym),
           input_html: {class: "mceAdvance", style: "width: 550px; height: 320px;"},
           as: :text %>
       <% end %>

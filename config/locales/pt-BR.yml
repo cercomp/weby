@@ -53,6 +53,7 @@ pt-BR:
 
 #---C---#
   cancel: "Cancelar"
+  cant_have_i18ns_with_same_locale: 'Não pode haver mais de uma internacionalização para no mesmo idioma'
   category: "Categoria"
   categories: "Categorias"
   change_file: "Alterar arquivo"
@@ -348,6 +349,7 @@ pt-BR:
   repository:
     one: "Repositório"
     other: "Repositório"
+  required: 'Obrigatório'
   reset_mail: "Instruções de como modificar sua senha foram enviada. Cheque seu e-mail."
   reset_my_password: "Alterar minha senha"
   reset_send_email: "Enviar senha por email"

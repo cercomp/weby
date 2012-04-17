@@ -24,7 +24,37 @@ module Weby
 
           has_many :locales, through: :i18ns
 
-          validates_with Weby::ContentI18n::Validator
+          validate :validate_i18ns
+
+          def validate_i18ns
+            self.errors.add(:base, I18n.t('need_at_least_one_i18n')) if active_i18ns.none? 
+
+            self.errors.add(:base, I18n.t('cant_have_i18ns_with_same_locale')) if has_duplicated_locales?
+
+            self.class.required_i18n_fields.each do |field|
+              self.errors.add(field.to_sym, I18n.t("required")) if !has_valid?(field)
+            end
+          end
+          private :validate_i18ns
+
+          def active_i18ns
+            self.i18ns.select { |i18n| !i18n.marked_for_destruction? } 
+          end
+          private :active_i18ns
+
+          def has_duplicated_locales?
+            locales = self.i18ns.map {|i18n| i18n.locale_id}
+            locales.length > locales.uniq.length 
+          end
+          private :has_duplicated_locales?
+
+          def has_valid?(field)
+            self.i18ns.each do |i18n|
+              return false unless i18n.send("#{field}?")
+            end
+            true
+          end
+          private :has_valid?
 
           accepts_nested_attributes_for :i18ns,
             allow_destroy: true,

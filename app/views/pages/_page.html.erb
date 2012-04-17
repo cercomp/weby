@@ -1,10 +1,7 @@
 <tr id="<%= page.id %>">
   <td><%= l(page.created_at, :format => :short) %></td>
   <td>
-    <% page.locales.each do |locale| %>
-      <%= flag_link(locale, site_page_path(@site, page, page_locale: locale.name), '16') %>
-    <% end %>
-    <p><%= page.title %></p>
+    <%= title_with_flags(page) %>
   </td>
   <td><%= page.author.first_name %></td>
   <td><%= page.category_list * ', ' %></td>

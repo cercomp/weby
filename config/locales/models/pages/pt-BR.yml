@@ -11,7 +11,7 @@ pt-BR:
         date_end_at:     'Data de fim'
         event_begin:     'Início do evento'
         event_email:     'e-mail do evento'
-        event_end:       'Início do evento'
+        event_end:       'Fim do evento'
         front:           'Capa'
         image:           'Imagem'
         kind:            'Tipo do Evento'
