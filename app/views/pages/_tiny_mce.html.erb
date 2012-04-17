@@ -32,18 +32,18 @@
 </div>
 <br/>
 
-<table class='list' style="width:100%" rules="all">
+<table class='list' style="width:100%;table-layout: fixed;white-space:nowrap;" rules="all">
   <thead>
-    <th><%= sortable 'pages.id', t("id") %></th>
-    <th><%= sortable 'title', t("title") %></th>
-    <th><%= sortable 'users.first_name', t("author") %></th>
+    <th width="7%"><%= sortable 'pages.id', t("id") %></th>
+    <th width="58%"><%= sortable 'title', t("title") %></th>
+    <th width="35%"><%= sortable 'users.first_name', t("author") %></th>
   </thead>
   <tbody>
     <% @pages.each do |page| %>
       <tr>
         <td><%= page.id %></td>
-        <td><%= page.title %></td>
-        <td><%= page.author.first_name ? ("#{page.author.first_name} #{page.author.last_name}") : page.author.login %></td>
+        <td style="overflow:hidden;"><%= page.title %></td>
+        <td style="overflow:hidden;"><%= page.author.first_name ? ("#{page.author.first_name} #{page.author.last_name}") : page.author.login %></td>
       </tr>
     <% end %>
   </tbody>

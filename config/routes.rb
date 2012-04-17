@@ -48,7 +48,7 @@ Weby::Application.routes.draw do
         put :toggle_field
       end 
       collection do
-        get :published, :popup, :fronts
+        get :published, :fronts
         post :sort
       end
     end
