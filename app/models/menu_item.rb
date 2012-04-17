@@ -1,5 +1,5 @@
 class MenuItem < ActiveRecord::Base
-  include Weby::ContentI18n::Base
+  weby_content_i18n :title, :description, required: :title
 
   has_many :i18ns, class_name: "MenuItem::I18ns", dependent: :delete_all
   accepts_nested_attributes_for :i18ns, allow_destroy: true,

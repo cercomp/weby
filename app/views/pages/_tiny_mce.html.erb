@@ -10,7 +10,7 @@
     // Para realizar a consulta por páginas
     $('#search_button').click(function(e) {
       var search = $('#search').val();
-      $.get(this.href, {'tiny_mce': true, 'search': search}, null, 'script');
+      $.get(this.href, {'template': "tiny_mce", 'search': search}, null, 'script');
       e.preventDefault();
       return false;
     });
@@ -28,7 +28,7 @@
 
 <div id="tinyMCE_search_area">
   <%= text_field_tag 'search', params[:search], placeholder: t('search') + " " + t('page.other'), onkeypress: "return enter_to_click(event,'search_button');" %>
-  <%= link_to t('search'), tiny_mce_site_pages_path, remote: true, id: 'search_button' %>
+  <%= link_to t('search'), site_pages_path, remote: true, id: 'search_button' %>
 </div>
 <br/>
 

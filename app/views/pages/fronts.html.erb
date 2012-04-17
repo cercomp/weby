@@ -7,7 +7,7 @@
   <%= link_to (t"list_param", :param=>t("page.other") ), site_pages_path(@site), :class => 'icon icon-list' %>
 </div>
 
-<div id="page_list">
+<div id="pages">
   <div class="page_info_paginator"><%= t"views.pagination.total" %>&nbsp;<%= @pages.length %></div>
   <table id='list' class="list">
     <thead>
@@ -26,16 +26,16 @@
         <tr id="sort_page_<%= page.id %>">
           <td><%=l page.created_at, :format => :short %></td>
           <td>
-            <%= page.title %>
-            <% page.i18ns.each do |i18n| %>
-              <%= flag_link(Locale.find_by_id(i18n.locale_id), site_page_path(@site, page, page_locale: i18n.locale.name), '16') %>
+            <% page.locales.each do |locale| %>
+              <%= flag_link(locale, site_page_path(@site, page, page_locale: locale.name), '16') %>
             <% end %>
+            <p><%= page.title %></p>
           </td>
           <td><%= page.author.first_name %></td>
           <td><%= page.category_list.join ', ' %></td>
           <td><%= t"#{page.type.downcase}.one" %></td>
           <% with_permission(action: :toggle_field) do %>
-            <td alig="center"><%= publication_status(page) %></td>
+            <td align="center" class="publish"><%= publication_status(page) %></td>
           <% end %>
           <td>
             <%= make_menu(page, :except => "show") %>

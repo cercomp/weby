@@ -124,11 +124,11 @@ function toogle_select_multiple(select){
 /**
 * Coloca um countainer para a lista de paginas
 */
-function show_dialog(ele,published_only) {
+function show_dialog(ele) {
   if(!$('#page_list').length)
-     $('#div_link').append('<div id="page_list" style="display: none;" title="Selecione uma notícia"><img src="/assets/spinner.gif"></div><input type="hidden" id="published_only" value="'+published_only+'"/>');
+     $('.page_select').append('<div id="page_list" style="display: none;" title="Selecione uma notícia"><img src="/assets/spinner.gif"></div>');
 
-  $.get(ele.attr('data-link'),{'published_only':published_only});
+  $.get(ele.attr('data-link'),{'template' : 'list_popup'}, null, 'script');
 
   $('#page_list').dialog({
      width: '700',

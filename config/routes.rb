@@ -45,15 +45,11 @@ Weby::Application.routes.draw do
     end
     resources :pages do 
       member do 
-        #get :toggle_field
-        #get :add_i18n
-        #get :add_related_files
         put :toggle_field
       end 
       collection do
-        get :published, :tiny_mce, :fronts
+        get :published, :popup, :fronts
         post :sort
-        #get :list_published, :list_front
       end
     end
     resources :site_components do

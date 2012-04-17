@@ -28,7 +28,7 @@
 
 	<%= f.input :component, :collection => components.collect{ |c| [t("components.#{c}"), c] }.sort{ |a,b| a[0].downcase <=> b[0].downcase }, :label => t("component.one") %>
 
-  <div id="settings">
+  <div class="page_select" id="settings">
     <%= f.input :settings, :label => t("setting.other"), :as => :text %> 
 	</div>
 

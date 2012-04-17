@@ -72,18 +72,18 @@
   <%= f.input :position, hint: t("lower_numbers_come_first") %>
 
   <% # URL Input %>
-  <div class="input" id="div_link">
+  <div class="input page_select" id="div_link">
     <%= f.input :url,
       label: t("url"),
       hint: (t"type_param", param: t("url")),
       wrapper_html: { class: "nostyle" },
       as: :string %>
 
-    <%#= link_to_function 'Clique aqui para selecionar uma página',
-      'show_dialog($(this),false)',
+    <%= link_to_function 'Clique aqui para selecionar uma página',
+      'show_dialog($(this))',
       id: 'banner_page_select',
       class: "search-button element",
-      'data-link' => list_published_site_pages_path %>
+      'data-link' => site_pages_path %>
 
     <% # Ao selecionar um noticia deve ser montado a url para ela,
       # então aqui guardamos o caminho para as páginas deste site %>

@@ -83,7 +83,7 @@ module SiteComponentsHelper
       },
 
       'news_as_home' => {
-        'page' => [ (cur_page ? '<input type="text" disabled="disabled" value="'+cur_page.by_locale(@current_locale).title+'"><input type="hidden" name="page" value="'+cur_page.id.to_s+'">' : '' )+ '<a onclick="select_page(); return false;">', t('select_param', :param => t('news.one')), '</a>'].join
+        'page' => [ (cur_page ? '<input type="text" disabled="disabled" value="'+cur_page.title+'"><input type="hidden" name="page" value="'+cur_page.id.to_s+'">' : '' )+ '<a onclick="show_dialog($(this)); return false;" data-link="'+site_pages_path+'">', t('select_param', :param => t('news.one')), '</a>'].join
       },
 
       'gov_bar' => {

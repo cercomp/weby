@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   layout :choose_layout
 
   before_filter :require_user, only: [:new, :edit, :update, :destroy, :sort, :toggle_field]
-  before_filter :check_authorization, except: [:view, :show, :list_published]
+  before_filter :check_authorization, except: [:view, :show, :published]
 
   before_filter :event_types, only: [:new, :edit]
 
@@ -10,14 +10,16 @@ class PagesController < ApplicationController
 
   respond_to :html, :js, :json
 
-  before_filter :get_pages, only: [:index, :published]
-
   # GET /pages
   # GET /pages.json
   def index
     (redirect_to published_site_pages_path(@site) unless current_user) and return
     @pages = get_pages 
-    respond_with(@site, @page)
+    respond_with(@site, @page) do |format|
+      if(params[:template])
+        format.js { render template: "pages/#{params[:template]}" }
+      end
+    end
   end
 
   def published
@@ -27,13 +29,11 @@ class PagesController < ApplicationController
     end
   end
 
-  def tiny_mce
-    params[:per_page] = 7
-    @pages = get_pages
-    respond_with(@site, @page)
-  end
-
   def get_pages
+    case params[:template]
+    when "tiny_mce"
+      params[:per_page] = 7
+    end
     # Vai ao banco por linha para recuperar
     # tags e locales
     @site.pages.
@@ -48,6 +48,7 @@ class PagesController < ApplicationController
   end
   private :sort_column
 
+  #Essa action não chama o get_pages pois não faz paginação
   def fronts
     params[:published] ||= 'true'
     @pages = @site.pages.front.order('position desc')
@@ -68,7 +69,6 @@ class PagesController < ApplicationController
   def new
     @page = @site.pages.new
     @available_locales = available_locales
-    @site.locales.each {|locale| @page.i18ns.build(locale_id: locale.id)}
     respond_with(@site, @page)
   end
 
