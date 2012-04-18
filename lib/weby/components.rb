@@ -54,6 +54,7 @@ module Weby
 
       settings.each do |setting|
         class_eval <<-METHOD
+          @#{setting}
           def #{setting}=(value)
             settings_map[:#{setting}] = value
           end

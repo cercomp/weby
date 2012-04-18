@@ -1,4 +1,4 @@
 pt-BR:
   components:
-    gov_bar:
-      menu_accessibility: "Menu de acessibilidade"
+    menu_accessibility:
+      name: "Menu de acessibilidade"

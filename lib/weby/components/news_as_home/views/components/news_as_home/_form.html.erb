@@ -1,42 +1,44 @@
-<div id="settings">
-  <% if component.page %>
-    <input type="text" disabled="disabled" value="<%= Page.find(component.page).by_locale(@current_locale).title %>">
-    <input id="component_page" type="hidden" name="page" value="<%= cur_page.id.to_s %>">
-  <% end %>
+<%= text_field_tag :page_title, page_title_for(component), disabled: true, id: 'page_title_for_component' %>
+<%= content_tag :button, t('.select'), id: 'btn_select_news', onclick: 'select_page(); return false' %>
+<%= content_tag :div, '', id: 'page_list', title: t('.select') %>
 
-  <a href="javascript:select_page(); return false;">
-    <%= t('select_param', :param => t('news.one')) %>
-  </a>
-</div>
+<%= f.input :page_id, as: :hidden %>
 
-<input id="list_published_site_pages_path"
-  type="hidden" meta-data="<%= list_published_site_pages_path %>" />
 
+<%# ======================================== %>
 <%= javascript_tag do %>
   /**
    * Abre um popup para seleção de páginas
    */
   function select_page() {
-    if(!$('#page_list').length)
-      $('#settings').append('<div id="page_list" style="display: none;" title="Selecione uma notícia"><img src="/images/spinner.gif"></div>');
-      
     $('#page_list').dialog({
       width: '700',
       height: '400'
     });
     
-
-    $.get("<%= list_published_site_pages_path %>", {'published_only':false}, '', 'script');
+    $.get("<%= list_published_site_pages_path %>", {'published_only':false}, function(){}, 'script');
   }
 
   /**
    * Ao selecionar a notícia, cria um input com o id da noticia selecionada
    */
   function selected (id, title) {
-    $('#component_page').remove(); // caso já tenha selecionado algum, remove ele para adicionar o proximo
-    $('#settings').append('<input id="component_page" type="hidden" name="page" value="' + id + '" />');
-    $('#settings a').before('<input type="text" disabled="disabled" value="'+ title +'" />');
+    $('#news_as_home_component_page_id').val(id);
+    $('#page_title_for_component').val(title);
     $('#page_list').dialog('close');
   }
 
 <% end %>
+
+
+
+<%# ======================================== %>
+<%
+def page_title_for(comp)
+  if comp.page
+    return comp.page.by_locale(@current_locale).title
+  else
+    return t('.none_selected')
+  end
+end
+%>

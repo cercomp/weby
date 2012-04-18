@@ -1,7 +1,33 @@
 <fieldset>
-  <legend><%= t('.select_component', :default => 'X Selecionar um Componente') %></legend>
+  <legend><%= t('.select_component') %></legend>
 
-  <% Weby::Components.available_components.each do |component| %>
-    <p><%= link_to component.name, new_site_component_path(:component => component.component_name) %></p>
-  <% end %>
+  <form action="<%= new_site_component_path %>" method="get">
+    <div id="available_components">
+      <select id="component_select" name="component" size="11">
+        <% available_components_sorted.each do |component| %>
+          <option value="<%= component[:name] %>">
+            <%= component[:i18n] %>
+          </option>
+        <% end %>
+      </select>
+
+      <img id="component_image" src="/assets/plugin.png">
+    </div>
+
+    <button>Próxima etapa</button>
+
+  </form>
 </fieldset>
+
+<style type="text/css">
+select#component_select {
+  height: 200px;
+  width: 250px;
+}
+
+img#component_image {
+  height: 180px;
+  width: 230px;
+  margin: 10px;
+}
+</style>

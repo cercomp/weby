@@ -1,4 +1,4 @@
 pt-BR:
   components:
     header:
-      header: "Cabeçalho (Topo)"
+      name: "Cabeçalho (Topo)"

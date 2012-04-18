@@ -4,3 +4,5 @@ pt-BR:
       new_component: "Novo %{param}"
     edit:
       edit_component: "Editando %{param}"
+    available_components:
+      select_component: "Selecione um Componente"
