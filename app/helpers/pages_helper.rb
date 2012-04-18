@@ -1,7 +1,7 @@
 module PagesHelper
   def locale_with_name(locale)
     raw %{
-      #{image_tag("flags/24/#{locale.flag}", :title=>t(locale.name))} 
+      #{flag(locale)}
       #{t(locale.name)}
     } if locale
   end
@@ -13,11 +13,19 @@ module PagesHelper
     }.html_safe
   end
 
-  def available_flags(page)
+  def available_flags(page, size = '16')
     if @site.locales.many?
-      page.locales.map do |locale|
-        flag_link(locale, site_page_path(@site, page, page_locale: locale.name), '16')
-      end.join(' ')
+      "#{main_flag(page, size)}#{other_flags(page, size)}"
     end
+  end
+
+  def main_flag(page, size = '16')
+    flag(page.which_locale, size, style: 'padding-right: 10px')
+  end
+
+  def other_flags(page, size = '16')
+    page.other_locales.map do |locale|
+      link_to(flag(locale, size), site_page_path(@site, page, page_locale: locale.name))
+    end.join(' ')
   end
 end

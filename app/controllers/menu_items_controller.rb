@@ -1,12 +1,12 @@
 class MenuItemsController < ApplicationController
   layout :choose_layout
-  before_filter :get_current_menu
+  before_filter :get_current_menu, except: [:new, :create]
   before_filter :require_user
   before_filter :check_authorization
 
   respond_to :html, :xml, :js
   def index
-    #
+    redirect_to site_menus_path(@site, :menu => @menu.id)
   end
 
   def show
@@ -14,35 +14,46 @@ class MenuItemsController < ApplicationController
   end
 
   def new
+    @menu = @site.menus.find(params[:menu_id])
     get_parent_menu_item params[:parent_id]
-    @menu_item = MenuItem.new
+    @menu_item = @menu.menu_items.new
+    @available_locales = available_locales
   end
 
   def create
-    @menu_item = @site.menu_items.new(params[:menu_item])
+    @menu = @site.menus.find(params[:menu_id])
+    @menu_item = @menu.menu_items.new(params[:menu_item])
     @menu_item.position = @menu.menu_items.maximum('position', :conditions=> ['parent_id = ?', @menu_item.parent_id]).to_i + 1
     if @menu_item.save
       flash[:notice] = t("successfully_created")
       redirect_to site_menus_path(@site, :menu => @menu.id)
     else
-      get_parent_menu_item params[:menu_item][:parent_id]
+      get_parent_menu_item @menu_item.parent_id
+      @available_locales = available_locales
       respond_with(@site, @menu, @menu_item)
     end
   end
 
   def edit
     @menu_item = @menu.menu_items.find(params[:id])
+    @available_locales = available_locales
   end
 
   def update
     @menu_item = @menu.menu_items.find(params[:id])
     if @menu_item.update_attributes(params[:menu_item])
       flash[:notice] = t("successfully_updated")
+      @available_locales = available_locales
       redirect_to site_menus_path(@site, :menu => @menu.id)
     else
       respond_with(@site, @menu, @menu_item)
     end
   end
+
+  def available_locales
+    @menu_item.locales | @site.locales
+  end
+  private :available_locales
 
   def destroy
     #
@@ -99,9 +110,7 @@ class MenuItemsController < ApplicationController
   end
 
   def get_parent_menu_item parent_id
-    if parent_id
-      @menu_item_parent = @menu.menu_items.find(parent_id)
-    end
+    @menu_item_parent = @menu.menu_items.find(parent_id) if parent_id
   end
 
   def items_deep(menu, menuitem)
@@ -147,8 +156,7 @@ class MenuItemsController < ApplicationController
       end
       update_position_for_remove(obj)
       parent_id = 0
-      max = @global_menus[new_menu_id.to_i].menu_items.maximum('position', :conditions=> [' parent_id = ? AND menu_items.id <> ?', parent_id, obj.id])
-      position = max ? max+1 : 1
+      position = @global_menus[new_menu_id.to_i].menu_items.maximum('position', :conditions=> [' parent_id = ? AND menu_items.id <> ?', parent_id, obj.id]).to_i + 1
 
       obj.update_attributes({:parent_id => parent_id, :menu_id => new_menu_id, :position => position})
     end

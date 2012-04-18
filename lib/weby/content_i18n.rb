@@ -1,4 +1,5 @@
 require 'weby/content_i18n/form'
+require 'weby/content_i18n/i18ns'
 
 module Weby
   module ContentI18n
@@ -8,15 +9,13 @@ module Weby
 
     module I18nRelation
       attr_accessor :i18n_fields, :required_i18n_fields
-
       def self.extended(base)
-        base.class_eval do
-          attr_reader :wanted_locale
-          def in(locale = nil)
-            @wanted_locale = locale 
-            self
-          end
+        klass = base.const_set(:I18ns, Class.new(Weby::I18ns))
 
+        klass.set_table_name "#{base.name.underscore.gsub('/', '_')}_i18ns"
+        klass.belongs_to base.name.underscore.gsub('/', '_')
+        
+        base.class_eval do
           has_many :i18ns,
             class_name: "#{name}::I18ns",
             include: :locale,
@@ -59,31 +58,50 @@ module Weby
           accepts_nested_attributes_for :i18ns,
             allow_destroy: true,
             reject_if: proc { |i18ns|
-              i18ns['id'].blank? && 
-                required_i18n_fields.reduce(true) do |mem, element|
-                  i18ns[mem].blank? && i18ns[element].blank?
-                end
-            }
+            i18ns['id'].blank? &&
+              required_i18n_fields.reduce(true) do |mem, element|
+              i18ns[mem].blank? && i18ns[element].blank?
+            end
+          }
         end
       end
 
       def build_i18n_fields
-        i18n_fields.each do |field|
-          self.class_eval do 
-            self.send(:define_method, field.to_sym) do
-              return nil if self.i18ns.empty?
+        self.class_eval do
+          def select_locale(locale=nil)
+            case
+            when !locale.blank?
+              @selected_i18n = self.i18ns.select{|i18n| i18n.locale.name == locale.to_s }.first
+            when !(@selected_i18n = self.i18ns.select{|i18n| i18n.locale.name == I18n.locale.to_s }.first).blank?
+            when !(@selected_i18n = self.i18ns.select{|i18n| i18n.locale.name == I18n.default_locale.to_s }.first).blank?
+            else
+              @selected_i18n = self.i18ns.first
+            end
+            #se for nil, raise notfound
 
-              case
-              when @wanted_locale.present?
-                selected_i18n = self.i18ns.select{|i18n| i18n.locale.name == @wanted_locale }
-              when
-                (selected_i18n = self.i18ns.select{|i18n| i18n.locale.name == I18n.locale.to_s }).any?
-              when 
-                (selected_i18n = self.i18ns.select{|i18n| i18n.locale.name == I18n.default_locale.to_s }).any?
-              else
-                selected_i18n = self.i18ns
-              end
-              selected_i18n.first.send(field.to_sym)
+          end
+          private :select_locale
+
+          def which_locale
+            return '' if self.i18ns.empty?
+            select_locale unless @selected_i18n
+            @selected_i18n.locale
+          end
+
+          def other_locales
+            self.locales.reject{|locale| locale.name == self.which_locale.name }
+          end
+
+          def in(locale = nil)
+            select_locale(locale)
+            self
+          end
+     
+          i18n_fields.each do |field|
+            self.send(:define_method, field.to_sym) do
+              return '' if self.i18ns.empty?
+              select_locale unless @selected_i18n
+              @selected_i18n.send(field.to_sym)
             end
           end
         end
