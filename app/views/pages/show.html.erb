@@ -22,7 +22,7 @@
         </p>
         <p class="event-period">
           <%= label(:page, :event_period, t("pages.event_form.period_event")) %>
-          <span class="event-begin"><%= l(@page.event_begin, format: :long) %></span> -
+          <span class="event-begin"><%= l(@page.event_begin, format: :long) if @page.event_begin %></span> -
           <span class="event-end"><%= l(@page.event_end, format: :long) if @page.event_end %></span>
         </p>
       <% end %>

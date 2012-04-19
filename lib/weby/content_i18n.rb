@@ -10,14 +10,15 @@ module Weby
     module I18nRelation
       attr_accessor :i18n_fields, :required_i18n_fields
       def self.extended(base)
-        klass = base.const_set(:I18ns, Class.new(Weby::I18ns))
+        # Build i18ns related class
+        i18n_class = base.const_set(:I18ns, Class.new(Weby::I18ns))
 
-        klass.set_table_name "#{base.name.underscore.gsub('/', '_')}_i18ns"
-        klass.belongs_to base.name.underscore.gsub('/', '_')
-        
+        i18n_class.set_table_name("#{base.name.underscore.gsub('/', '_')}_i18ns")
+        i18n_class.belongs_to(base.name.underscore.gsub('/', '_'))
+
         base.class_eval do
           has_many :i18ns,
-            class_name: "#{name}::I18ns",
+            class_name: i18n_class.name,
             include: :locale,
             dependent: :delete_all
 

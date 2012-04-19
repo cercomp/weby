@@ -37,7 +37,7 @@ class PagesController < ApplicationController
     # Vai ao banco por linha para recuperar
     # tags e locales
     @site.pages.
-      includes(:author, :categories, :i18ns, :locales).
+      search(params[:search]).
       page(params[:page]).per(params[:per_page]).
       order(sort_column + " " + sort_direction)
   end
