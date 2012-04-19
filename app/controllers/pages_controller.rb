@@ -80,7 +80,7 @@ class PagesController < ApplicationController
   end
 
   def available_locales
-    @page.locales | @site.locales
+    (@page.locales | @site.locales).sort
   end
   private :available_locales
 
