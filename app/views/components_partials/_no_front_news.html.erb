@@ -1,12 +1,15 @@
 <% quant = settings[:quant] || 5 %>
 <% front = settings[:front] || false %>
 <% # Pega as noticias ordenadas por data de inicio decrescente %>
-<% @no_front_news = @site.pages.order('created_at desc')
-                    .valid.page(params[:no_front_pages]).per(quant) %>
+<%
+@no_front_news = @site.pages.order('created_at desc').
+  available.send("#{front ? 'front' : 'no_front'}").
+  page(params[:no_front_pages]).per(quant)
+%>
 
-<div id='no_front_news'>
+<div id="no_front_news">
   <%= info_page @no_front_news, 'width: 100%' %>
-    <table class="list border fullwidth zebra">
+  <table class="list border fullwidth zebra">
     <tr>
       <th> <%= link_to t("last_news"), site_pages_path(@site, direction: 'desc', sort: 'pages.created_at') %> </th>
     </tr>
@@ -14,8 +17,8 @@
       <tr>
         <td>
           <p>
-          <%= link_to page.title, site_page_path(@site, page) %>
-          <%= raw page.summary %>
+            <%= link_to page.title, site_page_path(@site, page) %>
+            <%= raw page.summary %>
           </p>
         </td>
       </tr>

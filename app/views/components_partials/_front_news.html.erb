@@ -1,6 +1,6 @@
 <% quant = settings[:quant] || 5 %>
 <% @front_news = @site.pages.order('position desc')
-                  .front.valid.page(params[:front_pages]).per(quant) %>
+                  .front.available.page(params[:front_pages]).per(quant) %>
 
 <section id="pages">
   <% @front_news.try(:each) do |page| %>

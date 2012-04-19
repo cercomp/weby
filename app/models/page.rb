@@ -13,8 +13,9 @@ class Page < ActiveRecord::Base
   scope :events, where(type: 'Event')
 
   scope :front, where(front: true)
+  scope :no_front, where(front: false)
 
-  scope :valid, where("date_begin_at <= :time AND ( date_end_at is NULL OR date_end_at > :time)",
+  scope :available, where("date_begin_at <= :time AND ( date_end_at is NULL OR date_end_at > :time)",
                       { time: Time.now }).published
 
   scope :search, lambda { |params|

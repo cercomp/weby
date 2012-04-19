@@ -53,7 +53,7 @@ class PagesController < ApplicationController
     params[:published] ||= 'true'
     @pages = @site.pages.front.order('position desc')
     if(params[:published]=='true')
-      @pages = @pages.valid
+      @pages = @pages.available
     end
   end
 
