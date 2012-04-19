@@ -1,7 +1,0 @@
-$('#repo_list').html('<%= escape_javascript(render(partial: 'repositories/repo',
-                                                   locals: { obj: @page,
-                                                             field: :repository_id,
-                                                             collection: @images,
-                                                             hint: t("help_image_page") } )) %>')
-
-show_selected_image('page', 'repository_id');
