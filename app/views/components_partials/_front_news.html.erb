@@ -1,29 +1,29 @@
 <% quant = settings[:quant] || 5 %>
 <% @front_news = @site.pages.order('position desc')
-                  .news(true).page(params[:front_pages]).per(quant) %>
+                  .front.valid.page(params[:front_pages]).per(quant) %>
 
 <section id="pages">
   <% @front_news.try(:each) do |page| %>
     <li id="sort_page_<%= "#{page.id}" %>" style="list-style-type:none;">
     <article>
-      <% unless page.repository.nil? %>
-        <%= weby_file_view(page.repository, :little, "128", nil, {as: "link", url: link_on_title(@site, page), target: '_self'}) %>
+      <% unless page.image.nil? %>
+        <%= weby_file_view(page.image, :little, "128", nil, {as: "link", url: link_on_title(@site, page), target: '_self'}) %>
       <% end %>
       <header>
-        <h2> <%= link_to page.by_locale(session[:locale]).title, link_on_title(@site, page) %> </h2>
+        <h2> <%= link_to page.title, link_on_title(@site, page) %> </h2>
         <% if @site.view_desc_pages %>
           <p>
           <i>
-            <%= page.user.name_or_login %>
+            <%= page.author.name_or_login %>
             <%= localize page.created_at, :format => :short  %>
           </i>
           </p>
         <% end %>
       </header>
       <summary>
-        <%= raw page.by_locale(session[:locale]).summary %>
+        <%= raw page.summary %>
       </summary>
-      <% unless page.by_locale(session[:locale]).text.blank? %>
+      <% unless page.text.blank? %>
       <p> <%= link_to t("read_more"), site_page_path(@site, page) %> </p>
       <% end %>
       <div class="clear"></div>

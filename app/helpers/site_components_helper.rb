@@ -60,7 +60,7 @@ module SiteComponentsHelper
   def components_settings_custom_field
     cur_setting = eval(@site_component.settings);
     if(cur_setting[:page])
-      cur_page = @site.pages.find(cur_setting[:page])
+      cur_page = @site.pages.find_by_id(cur_setting[:page])
     end
     if(cur_setting[:image])
       cur_image = Repository.find(cur_setting[:image])

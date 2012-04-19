@@ -106,6 +106,14 @@ module ApplicationHelper
     end
   end
 
+  def with_permission(args = {}, &block)
+    args.reverse_merge!({
+      controller: controller.class,
+      action: controller.action_name
+    })
+    block.call if check_permission(args[:controller], args[:action])
+  end
+
   # Verifica se o usuário tem permissão no controlador e na ação passada como parâmetro
   # Parâmetros: (Objeto) ctrl, (array) actions
   # Retorna: verdadeiro ou falso
@@ -323,14 +331,6 @@ module ApplicationHelper
         components << render(:partial => "components_partials/#{comp.component}", :locals => { :settings => settings })
       end
     end.join)
-  end
-
-  def with_permission(args = {}, &block)
-    args.reverse_merge!({
-      controller: controller.class,
-      action: controller.action_name
-    })
-    block.call if check_permission(args[:controller], args[:action])
   end
 
   def content_tag_if(condition, tag_name, options = {}, &block)

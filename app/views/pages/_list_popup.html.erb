@@ -1,7 +1,6 @@
 <center>
   <%= form_tag site_pages_path(template: 'list_popup'), :method => 'get', :remote => true do %>
     <%= text_field_tag :search %>
-    <%= select_tag("locales", options_for_select(@site.locales.map{|l| [t(l.name), l.name]}), {include_blank: t('all')} ) %>
     <%= hidden_field_tag 'page', 1 %>
     <%= hidden_field_tag 'per_page', "#{params[:per_page]}" %>
     <%= submit_tag t("search") %>
@@ -13,8 +12,8 @@
 <table id='list' class="list">
   <thead>
     <th><%= sortable 'date_begin_at', t("date_param", :param => t("register"))%></th>
-    <th><%= sortable 'title', t("title") %></th>
-    <th><%= sortable 'category', t("category") %></th>
+    <th><%= t("title") %></th>
+    <th><%= sortable 'tags.name', t("category") %></th>
     <th><%= sortable 'type', t("type") %></th>
   </thead>
 
