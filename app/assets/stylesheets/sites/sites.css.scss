@@ -13,7 +13,8 @@ ul.webybar-dropdown
   & > li
   {
     position: relative; 
-    &:hover > a
+    &:hover > a,
+    &:hover > a .white
     {
       color: #333;
       background: white;
@@ -164,7 +165,10 @@ form.search
   background-repeat: no-repeat;
   background-position: 20px 13px;
 }
-
+.navbar .nav > li > a.brand {
+  padding-right: 10px;
+  padding-left: 20px;
+}
 .navbar .brand,
 .navbar .nav > li > a 
 {
@@ -179,6 +183,7 @@ form.search
 .navbar .nav .active > a:hover { background: none; }
 
 .red { color: #C11303; }
+.white { color: white; }
 
 .paginator,
 .page_info_paginator
