@@ -2,7 +2,9 @@
   <% if @site.body_width.nil? %>
     <% size = "#{@top_banner_width}x#{@top_banner_height}" %>
   <% else %>
-    <% size = (@site.top_banner_width and @site.top_banner_height) ? "#{@site.top_banner_width}x#{@site.top_banner_height}" : "#{@site.body_width}x#{@top_banner_height}" %>
+    <% size = (@site.top_banner_width and @site.top_banner_height) ?
+      "#{@site.top_banner_width}x#{@site.top_banner_height}" :
+      "#{@site.body_width}x#{@top_banner_height}" %>
   <% end %>
   <% width = @site.top_banner_width ? @site.top_banner_width : @site.body_width %>
   <% height = @site.top_banner_height %>

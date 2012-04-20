@@ -65,9 +65,9 @@ class ComponentsController < ApplicationController
 
     params['sort_sites_component'] ||= []
     params['sort_sites_component'].to_a.each do |p|
-      site_component = Component.find(p)
-      site_component.position = (params['sort_sites_component'].index(p) + 1)
-      site_component.save
+      component = Component.find(p)
+      component.position = (params['sort_sites_component'].index(p) + 1)
+      component.save
     end
 
     render :nothing => true

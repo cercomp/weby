@@ -46,7 +46,7 @@ class SitesController < ApplicationController
     @site = Site.new(params[:site])
     if @site.theme == 'this2'
       # TODO mover o código a seguir para um lugar melhor (um yml talvez)
-      @site.site_components << [
+      @site.components << [
       Component.new({:place_holder=>'first_place',:settings=>'{:background => "#7F7F7F"}',:component=>'gov_bar', :position=>1, :publish=>true}),
       Component.new({:place_holder=>'first_place',:settings=>'{}', :component=>'weby_bar', :position=>2, :publish=>true}),
       Component.new({:place_holder=>'first_place',:settings=>'{}', :component=>'institutional_bar', :position=>3, :publish=>true}),

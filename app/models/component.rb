@@ -17,13 +17,13 @@ class Component < ActiveRecord::Base
     where("settings LIKE '%:#{setting} => \"#{value}\"%'")
   }
 
-protected
+  protected
   def settings_map
     @settings_map = self.settings ? eval(self.settings) : {} if @settings_map.nil?
     @settings_map
   end
 
-private
+  private
   def prepare_variables
     self.publish ||= true
     self.settings = settings_map.to_s

@@ -49,8 +49,9 @@
 
       $('#component_select').change(function() {
         var selected = $('#component_select :selected').val();
-        if (img_cache) {
-          $('#component_image').attr('src', default_image);
+
+        if (img_cache[selected]) {
+          $('#component_image').attr('src', img_cache[selected]);
           return;
         }
 
@@ -58,6 +59,7 @@
         $.get(url, function() {
           $('#component_image').attr('src', url);
           img_cache[selected] = url;
+          
         }).error(function(){
           $('#component_image').attr('src', default_image);
         });
