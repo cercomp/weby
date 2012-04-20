@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120322101230) do
+ActiveRecord::Schema.define(:version => 20120405180610) do
 
   create_table "banners", :force => true do |t|
     t.datetime "date_begin_at"
@@ -127,6 +127,19 @@ ActiveRecord::Schema.define(:version => 20120322101230) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "page_translations", :force => true do |t|
+    t.integer  "page_id"
+    t.string   "locale"
+    t.string   "title"
+    t.text     "summary"
+    t.text     "text"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "page_translations", ["locale"], :name => "index_page_translations_on_locale"
+  add_index "page_translations", ["page_id"], :name => "index_page_translations_on_page_id"
 
   create_table "pages", :force => true do |t|
     t.datetime "date_begin_at"

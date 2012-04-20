@@ -8,7 +8,7 @@
 <input id="component_settings"          type="hidden" meta-data="<%= eval(@site_component.settings).to_json %>" />
 <input id="components_settings_locales" type="hidden" meta-data="<%= components_settings_locales.to_json %>" />
 <input id="components_custom_fields"    type="hidden" meta-data="<%= components_settings_custom_field.to_json %>" />
-<input id="list_published_site_pages_path" type="hidden" meta-data="<%= list_published_site_pages_path %>" />
+<input id="list_published_site_pages_path" type="hidden" meta-data="<%#= list_published_site_pages_path %>" />
 
 <%= content_for :javascripts, javascript_include_tag('site_component_form') %>
 
@@ -28,7 +28,7 @@
 
 	<%= f.input :component, :collection => components.collect{ |c| [t("components.#{c}"), c] }.sort{ |a,b| a[0].downcase <=> b[0].downcase }, :label => t("component.one") %>
 
-  <div id="settings">
+  <div class="page_select" id="settings">
     <%= f.input :settings, :label => t("setting.other"), :as => :text %> 
 	</div>
 

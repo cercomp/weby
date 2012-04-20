@@ -11,8 +11,7 @@ class MenusController < ApplicationController
 
   def show
     @menu = @global_menus[params[:id].to_i] #@site.menus.find(params[:id])
-    @menus = [@menu]
-    render action: :index
+    redirect_to site_menus_path(@site, :menu => @menu.id)
   end
 
   def new

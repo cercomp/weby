@@ -53,6 +53,7 @@ pt-BR:
 
 #---C---#
   cancel: "Cancelar"
+  cant_have_i18ns_with_same_locale: 'Não pode haver mais de uma internacionalização para no mesmo idioma'
   category: "Categoria"
   categories: "Categorias"
   change_file: "Alterar arquivo"
@@ -349,6 +350,7 @@ pt-BR:
   repository:
     one: "Repositório"
     other: "Repositório"
+  required: 'Obrigatório'
   reset_mail: "Instruções de como modificar sua senha foram enviada. Cheque seu e-mail."
   reset_my_password: "Alterar minha senha"
   reset_send_email: "Enviar senha por email"
@@ -509,9 +511,8 @@ pt-BR:
 
   helpers:
     submit:
-      create: "Criar %{model}"
-      update: "Confirmar mudanças para %{model}"
-    save: "Salvar"
+      create: "Salvar"
+      update: "Salvar"
     cancel: "Cancelar"
 
   authlogic:
@@ -582,13 +583,13 @@ pt-BR:
         first_name: "Nome"
         last_name: "Sobrenome"
 
-    errors:
+    errors: &errors
       template:
         header:
           one: "não foi possivel atualizar o modelo: 1 erro"
           other: "não foi possivel atualizar o modelo: %{count} erros."
         body: "Por favor cheque os seguintes campos:"
-      messages:
+      messages: 
         accepted: "acception required"
         attachment_presence: "deve ser anexado"
         blank: "deve ser preenchido"
@@ -605,6 +606,7 @@ pt-BR:
         less_than_or_equal_to: "Requerido menor que ou igual a %{count}"
         not_a_number: "não é um número"
         odd: "ímpar requerido"
+        record_invalid: ! 'A validação falhou: %{errors}'
         taken: "indisponível"
         too_long: "muito longo (não é possível usar mais de %{count} characteres)"
         too_short: "muito curto (não é possível usar menos de %{count} characteres)"

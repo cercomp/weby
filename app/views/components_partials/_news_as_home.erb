@@ -1,4 +1,4 @@
-<% @page = Page.where(['id = ?', settings[:page]]).first %>
+<% @page = Page.find_by_id(settings[:page]) %>
 
 <% unless @page.nil? %>
   <%= render :template => 'pages/show' %>

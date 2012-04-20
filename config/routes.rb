@@ -5,7 +5,7 @@ Weby::Application.routes.draw do
 
   #match '/page/:page' => 'sites#index' # Paginate URL on sites
   match '/sites/:site_id/users/page/:page' => 'users#index' # Paginate URL on users
-  match '/sites/:site_id/pages/paginate/:paginate' => 'pages#index' # Paginate URL on pages
+  #match '/sites/:site_id/pages/paginate/:paginate' => 'pages#index' # Paginate URL on pages
   match '/sites/:site_id/banners/page/:page' => 'banners#index' # Paginate URL on banners
   match '/sites/:site_id/repositories/page/:page' => 'repositories#index' # Paginate URL on repositories
   match '/sites/:site_id/groups/page/:page' => 'groups#index' # Paginate URL on groups
@@ -21,7 +21,7 @@ Weby::Application.routes.draw do
         post :change_roles
       end
       member do 
-        get :toggle_field
+        put :toggle_field
         get :set_admin
       end 
     end
@@ -31,7 +31,7 @@ Weby::Application.routes.draw do
       end
     end
     resources :menus do
-      resources :menu_items do
+      resources :menu_items, except: :show do
         collection do
           get :rm_menu, :change_position
           post :change_order, :change_menu
@@ -40,24 +40,21 @@ Weby::Application.routes.draw do
     end
     resources :banners do 
       member do 
-        get :toggle_field
+        put :toggle_field
       end 
     end
     resources :pages do 
       member do 
-        get :toggle_field
-        get :add_i18n
-        get :add_related_files
-        post :create_i18n
+        put :toggle_field
       end 
       collection do
+        get :published, :fronts
         post :sort
-        get :list_published, :list_front
       end
     end
     resources :site_components do
       member do
-        get :toggle_field
+        put :toggle_field
       end
       collection do
         post :sort
@@ -93,7 +90,7 @@ Weby::Application.routes.draw do
       post :change_roles
     end
     member do 
-      get :toggle_field
+      put :toggle_field
       get :set_admin
     end 
   end

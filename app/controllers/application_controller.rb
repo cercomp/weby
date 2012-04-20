@@ -32,18 +32,18 @@ class ApplicationController < ActionController::Base
     return false unless current_user
     return true if current_user.is_admin
     unless get_roles(current_user).detect do |role|
-        role.rights.detect do |right|
-          right.action.split(' ').detect do |ri|
-            # devido aos scopo dos controllers devemos fazer um split e pegar a ultima parte
-            # ex: 'sites/feedbacks'.split('/').last => feedbacks
-            right.controller == self.class.controller_path.split('/').last && ri == action_name
-          end
+      role.rights.detect do |right|
+        right.action.split(' ').detect do |ri|
+          # devido aos scopo dos controllers devemos fazer um split e pegar a ultima parte
+          # ex: 'sites/feedbacks'.split('/').last => feedbacks
+          right.controller == self.class.controller_path.split('/').last && ri == action_name
         end
       end
-      flash[:error] = t("access_denied")
-      #request.env["HTTP_REFERER" ] ? (redirect_to :back) : (render :template => 'admin/access_denied')
-      (render :template => 'admin/access_denied', :status => :forbidden)
-      return false
+    end
+    flash[:error] = t("access_denied")
+    #request.env["HTTP_REFERER" ] ? (redirect_to :back) : (render :template => 'admin/access_denied')
+    (render :template => 'admin/access_denied', :status => :forbidden)
+    return false
     end
   end
 
@@ -88,7 +88,7 @@ class ApplicationController < ActionController::Base
   end
 
   private
-  
+
   def is_admin
     unless current_user.is_admin
       flash[:error] = t"only_admin"
