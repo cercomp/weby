@@ -13,7 +13,9 @@
     <% with_permission do %>
       <%= link_to (t"new_param.fem", param: (t"page.one")), new_site_page_path, class: 'icon icon-add' %>
     <% end %>
-    <%= link_to (t"covers"), fronts_site_pages_path(@site), class: 'icon icon-newspaper' %>
+    <% with_permission(action: :fronts) do %>
+      <%= link_to (t"covers"), fronts_site_pages_path(@site), class: 'icon icon-newspaper' %>
+    <% end %>
   </div>
   
   <div class="pagination top">
@@ -29,7 +31,7 @@
           <th><%= sortable 'users.first_name', t("author") %></th>
           <th><%= sortable 'tags.name', t("category") %></th>
           <th><%= sortable 'pages.type', t("type") %></th>
-          <% with_permission(action: 'toggle_field') do %>
+          <% with_permission(action: :toggle_field) do %>
             <th><%= sortable 'pages.front', t("cover") %></th>
             <th><%= sortable 'pages.publish', t("publish") %></th>
             <th></th>
