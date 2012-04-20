@@ -60,7 +60,7 @@ module SiteComponentsHelper
   def components_settings_custom_field
     cur_setting = eval(@site_component.settings);
     if(cur_setting[:page])
-      cur_page = @site.pages.find(cur_setting[:page])
+      cur_page = @site.pages.find_by_id(cur_setting[:page])
     end
     if(cur_setting[:image])
       cur_image = Repository.find(cur_setting[:image])
@@ -83,7 +83,7 @@ module SiteComponentsHelper
       },
 
       'news_as_home' => {
-        'page' => [ (cur_page ? '<input type="text" disabled="disabled" value="'+cur_page.by_locale(@current_locale).title+'"><input type="hidden" name="page" value="'+cur_page.id.to_s+'">' : '' )+ '<a onclick="select_page(); return false;">', t('select_param', :param => t('news.one')), '</a>'].join
+        'page' => [ (cur_page ? '<input type="text" disabled="disabled" value="'+cur_page.title+'"><input type="hidden" name="page" value="'+cur_page.id.to_s+'">' : '' )+ '<a onclick="show_dialog($(this)); return false;" data-link="'+site_pages_path+'">', t('select_param', :param => t('news.one')), '</a>'].join
       },
 
       'gov_bar' => {

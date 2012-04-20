@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   validates_format_of :login, :with => /^[a-z\d_\-\.@]+$/i
   validates_presence_of :email, :login, :first_name, :last_name
   validates_presence_of :password, :on => :create
-	validates_format_of :password, :with => /(?=.*\d)(?=.*[A-Z])(?=.*[a-z])^.{4,}$/, :allow_blank => true, :message => I18n.t("lower_upper_number_chars")
+	validates_format_of :password, :with => /(?=.*\d+)(?=.*[A-Z]+)(?=.*[a-z]+)^.{4,}$/, :allow_blank => true, :message => I18n.t("lower_upper_number_chars")
 
   has_and_belongs_to_many :roles
   has_and_belongs_to_many :groups
@@ -43,6 +43,10 @@ class User < ActiveRecord::Base
       where(:site_id => site_id).to_sql
     })" 
   }
+
+  def to_s
+   name_or_login
+  end
 
   def name_or_login
     self.first_name ? ("#{self.first_name} #{self.last_name}") : self.login

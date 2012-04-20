@@ -1,0 +1,16 @@
+<table class="list related-files">
+  <thread>
+  <tr>
+    <th><%= t(".realted_files") %></th>
+    <th><%= t(".size") %></th>
+  </tr>
+  </thread>
+  <tbody>
+    <% @page.related_files.each do |file| %>
+      <tr>
+        <td><%= link_to file.description, file.archive.url %></td>
+        <td><%= file.archive_file_size.to_i/1024 %> Kb</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

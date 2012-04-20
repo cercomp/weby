@@ -15,7 +15,7 @@
   <% if @site %>
     <p>
       <%= link_to (t"page.other"), site_pages_path %>
-       | <%= link_to t("covers"), list_front_site_pages_path(@site), :class => 'icon icon-newspaper' %>
+       | <%= link_to t("covers"), fronts_site_pages_path(@site), :class => 'icon icon-newspaper' %>
       <% if check_permission(PagesController, ["new"]) %>
        | <%= link_to t("new.fem"), new_site_page_path, :class => 'icon icon-add' %>
       <% end %>    

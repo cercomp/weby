@@ -29,8 +29,10 @@ class Site < ActiveRecord::Base
   has_many :menus, dependent: :delete_all, order: :id
   has_many :menu_items, :through => :menus
 
-  has_many :sites_pages
-  has_many :pages, :through => :sites_pages
+  has_many :pages,
+    dependent: :delete_all
+
+  has_many :pages_i18ns, through: :pages, source: :i18ns
 
   has_many :groups
   has_many :feedbacks
@@ -49,8 +51,6 @@ class Site < ActiveRecord::Base
 
   # FIXME testando relação de componentes
   has_many :site_components, order: 'place_holder, position asc'
-
-  accepts_nested_attributes_for :sites_pages, :allow_destroy => true
 
   belongs_to :repository, :foreign_key => "top_banner_id"
   has_many :repositories
