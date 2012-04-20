@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120405180610) do
+ActiveRecord::Schema.define(:version => 20120420170403) do
 
   create_table "banners", :force => true do |t|
     t.datetime "date_begin_at"
@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(:version => 20120405180610) do
     t.boolean  "hide"
     t.integer  "repository_id"
     t.integer  "user_id"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "size"
     t.boolean  "publish"
     t.integer  "site_id"
@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(:version => 20120405180610) do
     t.string   "subject"
     t.text     "message"
     t.integer  "site_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "feedbacks_groups", :id => false, :force => true do |t|
@@ -53,8 +53,8 @@ ActiveRecord::Schema.define(:version => 20120405180610) do
 
   create_table "groups", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "site_id"
     t.text     "emails"
   end
@@ -69,8 +69,8 @@ ActiveRecord::Schema.define(:version => 20120405180610) do
   create_table "locales", :force => true do |t|
     t.string   "name"
     t.string   "flag"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "locales_sites", :id => false, :force => true do |t|
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(:version => 20120405180610) do
     t.integer  "menu_item_id", :null => false
     t.integer  "locale_id",    :null => false
     t.string   "title",        :null => false
-    t.text     "description"
+    t.string   "description"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
@@ -109,11 +109,12 @@ ActiveRecord::Schema.define(:version => 20120405180610) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "old_menus", :force => true do |t|
+  create_table "old_menus", :id => false, :force => true do |t|
+    t.integer  "id",          :null => false
     t.string   "title"
     t.string   "link"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "page_id"
     t.text     "description"
   end
@@ -124,22 +125,9 @@ ActiveRecord::Schema.define(:version => 20120405180610) do
     t.string   "title"
     t.text     "summary"
     t.text     "text"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
-
-  create_table "page_translations", :force => true do |t|
-    t.integer  "page_id"
-    t.string   "locale"
-    t.string   "title"
-    t.text     "summary"
-    t.text     "text"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "page_translations", ["locale"], :name => "index_page_translations_on_locale"
-  add_index "page_translations", ["page_id"], :name => "index_page_translations_on_page_id"
 
   create_table "pages", :force => true do |t|
     t.datetime "date_begin_at"
@@ -157,8 +145,8 @@ ActiveRecord::Schema.define(:version => 20120405180610) do
     t.string   "subject"
     t.string   "align"
     t.string   "type",          :null => false
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "repository_id"
     t.string   "size"
     t.boolean  "publish"
@@ -173,8 +161,8 @@ ActiveRecord::Schema.define(:version => 20120405180610) do
 
   create_table "repositories", :force => true do |t|
     t.integer  "site_id"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "archive_file_name"
     t.string   "archive_content_type"
     t.integer  "archive_file_size"
@@ -186,23 +174,23 @@ ActiveRecord::Schema.define(:version => 20120405180610) do
     t.string   "name"
     t.string   "controller"
     t.string   "action"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "rights_roles", :force => true do |t|
     t.integer  "right_id"
     t.integer  "role_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "rights_roles", ["role_id", "right_id"], :name => "index_rights_roles_on_role_id_and_right_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "theme"
     t.integer  "site_id"
   end
@@ -218,8 +206,8 @@ ActiveRecord::Schema.define(:version => 20120405180610) do
     t.string   "name"
     t.string   "value"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "site_components", :force => true do |t|
@@ -227,16 +215,16 @@ ActiveRecord::Schema.define(:version => 20120405180610) do
     t.string   "place_holder"
     t.text     "settings"
     t.string   "component"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "position"
     t.boolean  "publish"
   end
 
   create_table "sites", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",                                          :null => false
-    t.datetime "updated_at",                                          :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "url"
     t.text     "description"
     t.integer  "top_banner_id"
@@ -254,8 +242,8 @@ ActiveRecord::Schema.define(:version => 20120405180610) do
   create_table "sites_menus", :force => true do |t|
     t.integer  "site_id"
     t.integer  "menu_id"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "parent_id",  :default => 0
     t.string   "category"
     t.integer  "position"
@@ -264,25 +252,25 @@ ActiveRecord::Schema.define(:version => 20120405180610) do
   create_table "sites_pages", :force => true do |t|
     t.integer  "site_id"
     t.integer  "page_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "sites_styles", :force => true do |t|
     t.integer  "site_id",    :null => false
     t.integer  "style_id",   :null => false
     t.boolean  "publish"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "styles", :force => true do |t|
-    t.string   "name"
+    t.string   "name",       :null => false
     t.text     "css"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "owner_id",   :null => false
     t.boolean  "publish"
-    t.integer  "owner_id"
   end
 
   create_table "taggings", :force => true do |t|
@@ -325,8 +313,8 @@ ActiveRecord::Schema.define(:version => 20120405180610) do
     t.string   "phone"
     t.string   "mobile"
     t.string   "register"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
