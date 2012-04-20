@@ -7,7 +7,7 @@
   </header>
 
   <%= content_tag_if @page.event?, :fieldset, class: 'event' do %>
-      <legend><%= t('.event') %></legend>
+      <legend><%= t('event.one') %></legend>
       <p class="local">
         <%= label(:page, :local) %>
         <%= @page.local %>

@@ -33,7 +33,6 @@ Weby::Application.routes.draw do
     resources :menus do
       resources :menu_items, except: :show do
         collection do
-          get :rm_menu, :change_position
           post :change_order, :change_menu
         end
       end

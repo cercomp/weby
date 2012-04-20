@@ -53,12 +53,6 @@ class MenuItemsController < ApplicationController
   private :available_locales
 
   def destroy
-    #
-  end
-
-  # Remove iten(s) do menu
-  # FIXME: passar para method destroy
-  def rm_menu
     @menu_item = @menu.menu_items.find(params[:id])
     ary_for_del = items_deep(@menu, @menu_item)
     ary_for_del.each do |item|

@@ -79,8 +79,8 @@ module ApplicationHelper
          #menus << indent_space + link_to("", change_position_site_menu_menu_items_path(:id => entry.id, :position => (entry.position.to_i - 1)),:class=>'icon icon-up', :title => t("move_menu_up")) if entry.position.to_i > 1
          #menus << indent_space + link_to("", change_position_site_menu_menu_items_path(:id => entry.id, :position => (entry.position.to_i + 1)),:class=>'icon icon-down', :title => t("move_menu_down")) if (entry.position.to_i < sons[entry.parent_id].count.to_i)
          menus << indent_space + link_to("","#", :class => 'handle icon icon-drag', :title => t("move"))
-         menus << indent_space + link_to("", rm_menu_site_menu_menu_items_path(@site.name, entry.menu_id, :id => entry.id), :confirm => t('are_you_sure'),:class=>'icon icon-del', :title => t("destroy"))
-       end
+         menus << indent_space + link_to("", site_menu_menu_item_path(@site.name, entry.menu_id, entry.id), :method=>:delete, :confirm => t('are_you_sure'),:class=>'icon icon-del', :title => t("destroy"))
+      end
        menus << "\n" + indent_space + (view_ctrl == 1 ? "</div><menu>":"<menu>") unless submenu.nil?
        if sons[entry.id].class.to_s == "Array"
          sons[entry.id].each do |child|
