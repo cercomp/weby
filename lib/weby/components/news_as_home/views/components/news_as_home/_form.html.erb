@@ -1,3 +1,12 @@
+<%# ======================================== %>
+<% def page_title_for(comp)
+  if comp.page
+    return comp.page.by_locale(@current_locale).title
+  else
+    return t('.none_selected')
+  end
+end %>
+
 <%= text_field_tag :page_title, page_title_for(component), disabled: true, id: 'page_title_for_component' %>
 <%= content_tag :button, t('.select'), id: 'btn_select_news', onclick: 'select_page(); return false' %>
 <%= content_tag :div, '', id: 'page_list', title: t('.select') %>
@@ -29,16 +38,3 @@
   }
 
 <% end %>
-
-
-
-<%# ======================================== %>
-<%
-def page_title_for(comp)
-  if comp.page
-    return comp.page.by_locale(@current_locale).title
-  else
-    return t('.none_selected')
-  end
-end
-%>

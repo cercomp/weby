@@ -30,6 +30,7 @@ module Weby
         args[:locals].merge!({ :component => component })
 
         # Caso a partial não exista, não mostra nada
+        # FIXME devido ao "rescue" os erros que ocorrem na view então se perdendo
         render args rescue ''
       end
     end
