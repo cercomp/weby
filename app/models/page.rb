@@ -15,8 +15,8 @@ class Page < ActiveRecord::Base
   scope :front, where(front: true)
   scope :no_front, where(front: false)
 
-  scope :available, where("date_begin_at <= :time AND ( date_end_at is NULL OR date_end_at > :time)",
-                      { time: Time.now }).published
+  scope :available, proc { where("date_begin_at <= :time AND ( date_end_at is NULL OR date_end_at > :time)",
+                      { time: Time.now }).published }
 
   scope :search, lambda { |params|
     includes(:author, :categories, :i18ns, :locales).
