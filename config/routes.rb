@@ -51,7 +51,7 @@ Weby::Application.routes.draw do
         post :sort
       end
     end
-    resources :site_components do
+    resources :components do
       member do
         put :toggle_field
       end

@@ -1,0 +1,11 @@
+pt-BR:
+  components:
+    no_front_news:
+      name: "Lista de Notícias"
+      quant: "Quantidade de notícias na página inicial"
+      front: "Apenas notícias de capa?"
+  activerecord:
+    attributes:
+      no_front_news_component:
+        quant: "Quantidade de notícias na página inicial"
+        front: "Apenas notícias de capa?"
