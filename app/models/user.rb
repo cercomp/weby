@@ -49,7 +49,11 @@ class User < ActiveRecord::Base
   end
 
   def name_or_login
-    self.first_name ? ("#{self.first_name} #{self.last_name}") : self.login
+    self.first_name ? self.fullname : self.login
+  end
+
+  def fullname
+    self.first_name ? ("#{self.first_name} #{self.last_name}") : ""
   end
 
   def email_address_with_name

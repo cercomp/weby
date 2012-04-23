@@ -30,6 +30,7 @@ class Site < ActiveRecord::Base
   has_many :menu_items, :through => :menus
 
   has_many :pages,
+    include: :i18ns,
     dependent: :delete_all
 
   has_many :pages_i18ns, through: :pages, source: :i18ns

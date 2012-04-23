@@ -43,7 +43,7 @@
       <tr>
         <td><%= page.id %></td>
         <td style="overflow:hidden;"><%= page.title %></td>
-        <td style="overflow:hidden;"><%= page.author.first_name ? ("#{page.author.first_name} #{page.author.last_name}") : page.author.login %></td>
+        <td style="overflow:hidden;"><%= page.author.name_or_login %></td>
       </tr>
     <% end %>
   </tbody>
