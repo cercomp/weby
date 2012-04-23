@@ -20,6 +20,7 @@ pt-BR:
         position:        'Posição'
         publish:         'Publicada'
         source:          'Fonte'
+        categories:      'Categorias'
         type:            'Tipo da página'
         url:             'URL'
         summary:         'Resumo'
