@@ -39,6 +39,9 @@ en:
       title:             'New page'
     edit:
       title:             'Update page'
+    related_files:
+      size:              'Size'
+      related_files:     'Related Files'
     form:
       image:             'Page image'
       period_page:       'Page period'
