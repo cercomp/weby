@@ -92,23 +92,6 @@ function join_data(){
 }
 
 /**
- * Abre um popup para seleção de páginas
- */
-function select_page() {
-  if(!$('#page_list').length)
-    $('#settings').append('<div id="page_list" style="display: none;" title="Selecione uma notícia"><img src="/images/spinner.gif"></div>');
-    
-  $('#page_list').dialog({
-    width: '700',
-    height: '400'
-  });
-  
-  
-  $.get($('#list_published_site_pages_path').attr('meta-data'),{'published_only':false}, function(){
-  }, 'script');
-}
-
-/**
  * Ao selecionar a notícia, cria um input com o id da noticia selecionada
  */
 function selected (id, title) {

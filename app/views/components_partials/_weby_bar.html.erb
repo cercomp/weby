@@ -25,7 +25,7 @@
                 <% if check_permission(PagesController, [:new]) %>
                   <li> <%= link_to t("new.fem"), new_site_page_path(@site), :class => 'icon icon-add' %> </li>
                 <% end %>
-                <li> <%= link_to t("covers"), list_front_site_pages_path(@site), :class => 'icon icon-newspaper' %> </li>
+                <li> <%= link_to t("covers"), fronts_site_pages_path(@site), :class => 'icon icon-newspaper' %> </li>
                 </menu>
               </li>
             <% end %>

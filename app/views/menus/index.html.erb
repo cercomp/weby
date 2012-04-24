@@ -1,7 +1,7 @@
 <fieldset>
   <legend><%= t"menu.other"  %></legend>
 
-  <% if check_permission(MenusController, [:new]) %>
+  <% with_permission action: :new do %>
     <div class="contextual">
       <%= link_to (t"new_param.masc", :param => (t"menu.one")),  new_site_menu_path(@site), :class => 'icon icon-add'%>
     </div>
@@ -18,14 +18,14 @@
   <div id='main-tabs'>
     <% if @menu %>
       <div class="contextual">
-        <% if check_permission(MenuItemsController, [:new]) %>
-        <%= link_to (t"new_param.masc", :param => (t"menu_item.one")),  new_site_menu_menu_item_path(@site, @menu), :class => 'icon icon-add'%>
+        <% with_permission controller: MenuItemsController, action: :new do %>
+          <%= link_to (t"new_param.masc", :param => (t"menu_item.one")),  new_site_menu_menu_item_path(@site, @menu), :class => 'icon icon-add'%>
         <% end %>
-        <% if check_permission(MenusController, [:edit]) %>
-        |&nbsp;<%= link_to (t"edit", :param => (t"menu.one")),  edit_site_menu_path(@site, @menu), :class => 'icon icon-edit'%>
+        <% with_permission action: :edit do %>
+          |&nbsp;<%= link_to (t"edit", :param => (t"menu.one")),  edit_site_menu_path(@site, @menu), :class => 'icon icon-edit'%>
         <% end %>
-        <% if check_permission(MenusController, [:destroy]) %>
-        |&nbsp;<%= link_to t("destroy"), site_menu_path(@site, @menu), :method=>:delete, :confirm => t('are_you_sure'),:class=>'icon icon-del', :title => t("destroy") %>
+        <% with_permission action: :destroy do %>
+          |&nbsp;<%= link_to t("destroy"), site_menu_path(@site, @menu), :method=>:delete, :confirm => t('are_you_sure'),:class=>'icon icon-del', :title => t("destroy") %>
         <% end %>
         &nbsp;
       </div>

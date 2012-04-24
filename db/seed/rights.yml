@@ -51,7 +51,7 @@
  id: 9
  name: "Listar Páginas"
  controller: pages
- action: index
+ action: index fronts
 
 10:
  id: 10
@@ -112,7 +112,7 @@
  id: 19
  name: "Excluir Menu"
  controller: menus
- action: destroy rm_menu
+ action: destroy
 
 20:
  id: 20
@@ -376,7 +376,7 @@
  id: 63
  name: "Excluir Item de Menu"
  controller: menu_items
- action: destroy rm_menu
+ action: destroy
 
 64:
  id: 64
