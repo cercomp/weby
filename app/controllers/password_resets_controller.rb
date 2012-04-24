@@ -1,22 +1,21 @@
 # coding: utf-8
 class PasswordResetsController < ApplicationController
-  layout :choose_layout
+  layout 'user_sessions'
   before_filter :load_user_using_perishable_token, :only => [:edit, :update]
   before_filter :require_no_user
   skip_before_filter :check_authorization
 
   def new
-    flash.now[:warning] = t("fill_email_form")
   end
 
   def create
     @user = User.find_by_email(params[:email])
     if @user
       @user.password_reset!(request.env["SERVER_NAME"])
-      flash[:notice] = t("reset_mail")
-      redirect_to :back
+      flash[:success] = t("reset_mail")
+      render :action => :new
     else
-      flash[:warning] = t("no_mail")
+      flash[:error] = t("no_mail")
       render :action => :new
     end
   end
@@ -28,7 +27,7 @@ class PasswordResetsController < ApplicationController
     @user.password = params[:user][:password]
     @user.password_confirmation = params[:user][:password_confirmation]
     if @user.save
-      flash[:notice] = t("successfully_updated", :param => t("password"))
+      flash[:success] = t("successfully_updated", :param => t("password"))
       redirect_to @user
     else
       render :action => :edit

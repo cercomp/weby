@@ -5,10 +5,8 @@ SimpleForm.setup do |config|
   # wrapper, change the order or even add your own to the
   # stack. The options given below are used to wrap the
   # whole input.
-  config.wrappers :default,
-									:class => :input,
-							    :hint_class => :field_with_hint,
-									:error_class => :field_with_errors do |b|
+  config.wrappers :default, :class => :input,
+	  :hint_class => :field_with_hint, :error_class => :field_with_errors do |b|
     ## Extensions enabled by default
     # Any of these extensions can be disabled for a
     # given input by passing: `f.input EXTENSION_NAME => false`.
@@ -49,17 +47,58 @@ SimpleForm.setup do |config|
     b.use :error, :wrap_with => { :tag => :span, :class => :error }
   end
 
-  # The default wrapper to be used by the FormBuilder.
-  config.default_wrapper = :default
+  config.wrappers :bootstrap, :tag => 'div', :class => 'control-group', :error_class => 'error' do |b|
+    b.use :html5
+    b.use :placeholder
+    b.use :label
+    b.wrapper :tag => 'div', :class => 'controls' do |ba|
+      ba.use :input
+      ba.use :error, :wrap_with => { :tag => 'span', :class => 'help-inline' }
+      ba.use :hint,  :wrap_with => { :tag => 'p', :class => 'help-block' }
+    end
+  end
+
+  config.wrappers :prepend, :tag => 'div', :class => "control-group", :error_class => 'error' do |b|
+    b.use :html5
+    b.use :placeholder
+    b.use :label
+    b.wrapper :tag => 'div', :class => 'controls' do |input|
+      input.wrapper :tag => 'div', :class => 'input-prepend' do |prepend|
+        prepend.use :input
+      end
+      input.use :hint,  :wrap_with => { :tag => 'span', :class => 'help-block' }
+      input.use :error, :wrap_with => { :tag => 'span', :class => 'help-inline' }
+    end
+  end
+
+  config.wrappers :append, :tag => 'div', :class => "control-group", :error_class => 'error' do |b|
+    b.use :html5
+    b.use :placeholder
+    b.use :label
+    b.wrapper :tag => 'div', :class => 'controls' do |input|
+      input.wrapper :tag => 'div', :class => 'input-append' do |append|
+        append.use :input
+      end
+      input.use :hint,  :wrap_with => { :tag => 'span', :class => 'help-block' }
+      input.use :error, :wrap_with => { :tag => 'span', :class => 'help-inline' }
+    end
+  end
+
+  # Wrappers for forms and inputs using the Twitter Bootstrap toolkit.
+  # Check the Bootstrap docs (http://twitter.github.com/bootstrap)
+  # to learn about the different styles for forms and inputs,
+  # buttons and other elements.
+  config.default_wrapper = :bootstrap
+
 
   # Define the way to render check boxes / radio buttons with labels.
   # Defaults to :nested for bootstrap config.
   #   :inline => input + label
-	#   :nested => label > input
+  #   :nested => label > input
   config.boolean_style = :inline
 
   # Default class for buttons
-  # config.button_class = 'btn'
+  config.button_class = 'btn'
 
   # Method used to tidy up errors.
   # config.error_method = :first
@@ -80,15 +119,15 @@ SimpleForm.setup do |config|
   # config.collection_value_methods = [ :id, :to_s ]
 
   # You can wrap a collection of radio/check boxes in a pre-defined tag, defaulting to none.
-  config.collection_wrapper_tag = nil
+  # config.collection_wrapper_tag = nil
 
   # You can define the class to use on all collection wrappers. Defaulting to none.
-  #config.collection_wrapper_class = nil
+  # config.collection_wrapper_class = nil
 
   # You can wrap each item in a collection of radio/check boxes with a tag,
   # defaulting to :span. Please note that when using :boolean_style = :nested,
   # SimpleForm will force this option to be a label.
-  config.item_wrapper_tag = nil
+  # config.item_wrapper_tag = nil
 
   # You can define a class to use in all item wrappers. Defaulting to none.
   # config.item_wrapper_class = nil
@@ -97,7 +136,7 @@ SimpleForm.setup do |config|
   # config.label_text = lambda { |label, required| "#{required} #{label}" }
 
   # You can define the class to use on all labels. Default is nil.
-  # config.label_class = 'control-label'
+  config.label_class = 'control-label'
 
   # You can define the class to use on all forms. Default is simple_form.
   # config.form_class = :simple_form
@@ -106,7 +145,7 @@ SimpleForm.setup do |config|
   # config.generate_additional_classes_for = [:wrapper, :label, :input]
 
   # Whether attributes are required by default (or not). Default is true.
-  config.required_by_default = true
+  # config.required_by_default = true
 
   # Tell browsers whether to use default HTML5 validations (novalidate option).
   # Default is enabled.

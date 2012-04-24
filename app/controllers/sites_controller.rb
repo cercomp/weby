@@ -14,7 +14,7 @@ class SitesController < ApplicationController
       order(sort_column + " " + sort_direction).
       page(params[:page]).
       per(params[:per_page])
-      flash[:warning] = (t"none_param", :param => t("page.one")) unless @sites
+    flash[:warning] = (t"none_param", :param => t("page.one")) unless @sites
   end
 
   def show
@@ -30,7 +30,7 @@ class SitesController < ApplicationController
   def new
     @site = Site.new
     @themes = []
-    (Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*.erb")] - Dir[File.join(Rails.root + "app/views/layouts/application.html.erb")]).each do |file|
+    (Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*.erb")] - Dir[File.join(Rails.root + "app/views/layouts/application.html.erb")] - Dir[File.join(Rails.root + "app/views/layouts/sites.html.erb")] - Dir[File.join(Rails.root + "app/views/layouts/user_sessions.html.erb")]).each do |file|
       @themes << file.split("/")[-1].split(".")[0]
     end
   end
