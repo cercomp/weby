@@ -1,17 +1,5 @@
 module PagesHelper
-
-  def locale_with_name(page_i18n)
-    raw %{
-      #{image_tag("flags/24/#{page_i18n.locale.flag}", :title=>t(page_i18n.locale.name))} 
-      #{t(page_i18n.locale.name)}
-    }
-  end
-
-  def thumbnail_on_show
-    raw image_tag(page_image(format), align: "right", size: page_image_size)
-  end
-
-  # Retorna um link externo quando existente ou um link interno da página. 
+  # Retorna um link externo quando existente ou um link interno da página.
   # Recebe uma página e o site.
   def link_on_title(site, page)
     if page.url.nil? or page.url.empty?
@@ -21,18 +9,33 @@ module PagesHelper
     end
   end
 
-  private
-  def page_image(format)
-    page_image? ? 
-      @page.repository.archive.url(format) :
-      @page.repository.archive.url(:original)
+  def locale_with_name(locale)
+    raw %{
+      #{flag(locale)}
+      #{t(locale.name)}
+    } if locale
   end
 
-  def page_image_size
-    '128x128' unless page_image?
+  def title_with_flags(page)
+    %{
+      #{available_flags(page)}
+      #{content_tag(:p, link_to(page.title, site_page_path(@site, page)))}
+    }.html_safe
   end
 
-  def page_image?
-    @page.repository.image?
+  def available_flags(page, size = '16')
+    if @site.locales.many?
+      "#{main_flag(page, size)}#{other_flags(page, size)}"
+    end
+  end
+
+  def main_flag(page, size = '16')
+    flag(page.which_locale, size, style: 'padding-right: 10px')
+  end
+
+  def other_flags(page, size = '16')
+    page.other_locales.map do |locale|
+      link_to(flag(locale, size), site_page_path(@site, page, page_locale: locale.name))
+    end.join(' ')
   end
 end

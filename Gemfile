@@ -10,6 +10,7 @@ gem "paperclip", :git => "http://github.com/thoughtbot/paperclip.git"
 gem "acts_as_list"
 gem "simple_form", :tag => 'v2.0.1', :git => "http://github.com/plataformatec/simple_form.git"
 gem "acts-as-taggable-on"
+gem "globalize3"
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -27,7 +28,7 @@ group :development do
 end
 
 group :development, :test do
-  gem 'rspec-rails', '2.8.1'
+  gem 'rspec-rails', '2.9.0'
   gem 'factory_girl_rails', '1.7.0'
   gem 'shoulda-matchers', '1.0.0'
 end

@@ -1,40 +1,39 @@
 class MenuItemsController < ApplicationController
   layout :choose_layout
-  before_filter :get_current_menu
+  before_filter :get_current_menu, except: [:new, :create]
   before_filter :require_user
   before_filter :check_authorization
 
   respond_to :html, :xml, :js
   def index
-    #
-  end
-
-  def show
-    #
+    redirect_to site_menus_path(@site, :menu => @menu.id)
   end
 
   def new
+    @menu = @site.menus.find(params[:menu_id])
     get_parent_menu_item params[:parent_id]
-    @menu_item = MenuItem.new
-    build_locales
+    @menu_item = @menu.menu_items.new
+    @available_locales = available_locales
   end
 
   def create
-    @menu_item = @site.menu_items.new(params[:menu_item])
+    @menu = @site.menus.find(params[:menu_id])
+    @menu_item = @menu.menu_items.new(params[:menu_item])
     @menu_item.position = @menu.menu_items.maximum('position', :conditions=> ['parent_id = ?', @menu_item.parent_id]).to_i + 1
+
     if @menu_item.save
       flash[:notice] = t("successfully_created")
-      redirect_to site_menus_path(@site, :menu => @menu.id)
+      redirect_to site_menus_path(@site, :menu => @menu.id) 
     else
       get_parent_menu_item params[:menu_item][:parent_id]
-      build_locales
-      respond_with(@site, @menu, @menu_item)
+      @available_locales = available_locales
+      render action: :new
     end
   end
 
   def edit
     @menu_item = @menu.menu_items.find(params[:id])
-    build_locales
+    @available_locales = available_locales
   end
 
   def update
@@ -43,21 +42,21 @@ class MenuItemsController < ApplicationController
       flash[:notice] = t("successfully_updated")
       redirect_to site_menus_path(@site, :menu => @menu.id)
     else
-      build_locales
-      respond_with(@site, @menu, @menu_item)
+      @available_locales = available_locales
+      render action: :edit
     end
   end
 
-  def destroy
-    #
+  def available_locales
+    @menu_item.locales | @site.locales
   end
+  private :available_locales
 
-   # Remove iten(s) do menu
-  def rm_menu
+  def destroy
     @menu_item = @menu.menu_items.find(params[:id])
     ary_for_del = items_deep(@menu, @menu_item)
     ary_for_del.each do |item|
-       item.destroy
+      item.destroy
     end
     update_position_for_remove(@menu_item)
     @menu_item.destroy
@@ -84,7 +83,7 @@ class MenuItemsController < ApplicationController
         idx += 1
       end
     } if items[@ch_pos.parent_id]
-    
+
     @ch_pos.save
     render :nothing => true
   end
@@ -93,7 +92,7 @@ class MenuItemsController < ApplicationController
   def change_menu
     @ch_menu = @menu.menu_items.find(params[:id])
     change_menu_deep(@ch_menu, params[:new_menu_id])
-    
+
     render :nothing => true
   end
 
@@ -102,28 +101,8 @@ class MenuItemsController < ApplicationController
     @menu = @global_menus[params[:menu_id].to_i] #@site.menus.find(params[:menu_id])
   end
 
-  def get_parent_menu_item parent_id
-    if parent_id
-      @menu_item_parent = @menu.menu_items.find(parent_id)
-      @parent_i18n = @menu_item_parent.i18n(current_locale)
-    end
-  end
-
-  def build_locales
-    available_locales.each do |locale|
-      @menu_item.i18ns.build(locale_id: locale.id)
-    end
-  end
-
-  def available_locales
-    locales = @site.locales
-    if @menu_item.i18ns.size > 0
-      locales = locales.
-        where(["id not in (?)", @menu_item.i18ns.
-               map{|menu_item_i18n| menu_item_i18n.locale.id}])
-    end
-
-    locales
+  def get_parent_menu_item(parent_id)
+    @menu_item_parent = @menu.menu_items.find(parent_id) if parent_id
   end
 
   def items_deep(menu, menuitem)
@@ -169,8 +148,7 @@ class MenuItemsController < ApplicationController
       end
       update_position_for_remove(obj)
       parent_id = 0
-      max = @global_menus[new_menu_id.to_i].menu_items.maximum('position', :conditions=> [' parent_id = ? AND menu_items.id <> ?', parent_id, obj.id])
-      position = max ? max+1 : 1
+      position = @global_menus[new_menu_id.to_i].menu_items.maximum('position', :conditions=> [' parent_id = ? AND menu_items.id <> ?', parent_id, obj.id]).to_i + 1
 
       obj.update_attributes({:parent_id => parent_id, :menu_id => new_menu_id, :position => position})
     end

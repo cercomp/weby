@@ -1,91 +1,79 @@
 <% content_for :javascripts, javascript_include_tag('menus') %>
 
 <%= simple_form_for [@site, @menu, @menu_item] do |f| %>
-	<% if @menu_item.errors.any? %>
-		<div id="error_explanation">
-			<h2><%= pluralize(@menu_item.errors.count, "") %> <%= t("prohibited_being_saved", :count => @menu_item.errors.count) %>:</h2>
-			<ul>
-				<% @menu_item.errors.full_messages.each do |msg| %>
-					<li><%= msg %></li>
-				<% end %>
-			</ul>
-		</div>
-	<% end %>
+  <%= f.show_errors %>
 
-          <%= f.input :menu_id,
-               :input_html => {:value => params[:menu_id]},
-               :as => :hidden %>
-	
-          <% if @menu_item_parent %>
-            <div class="input">
-              <%= f.input :parent,
-                label: t("parent_menu_item"),
-                :input_html => {:value => @parent_i18n.title, :disabled => 'disabled' },
-                :as => :string %>
-              <%= f.input :parent_id,
-                :input_html => {:value => @menu_item_parent.id },
-                :as => :hidden %>
-            </div>
+  <% if @menu_item_parent %>
+    <div class="input">
+      <%= f.input :parent,
+          label: t("parent_menu_item"),
+          :input_html => {:value => @menu_item_parent.title, :disabled => 'disabled' },
+          :as => :string %>
+      <%= f.input :parent_id,
+          :input_html => {:value => @menu_item_parent.id },
+          :as => :hidden %>
+    </div>
+  <% end %>
+  <div class="tabs">
+    <ul>
+      <% @available_locales.each do |locale| %>
+        <li><%= link_to locale_with_name(locale), "##{locale}" %></li>
+      <% end %>
+    </ul>
+    <% @available_locales.each do |locale| %>
+      <div id="<%= locale.name %>">
+        <%= f.i18ns_fields_for(locale) do |g| %>
             
+          <% unless g.object.id.blank? %>
+            <%= g.input :_destroy,
+                label: t("activerecord.attributes.menu_item/i18ns._destroy", locale: locale.name.to_sym),
+                as: :boolean %>
           <% end %>
 
-        <div class="tabs">
-         <ul>
-           <% @menu_item.i18ns.each do |menu_item_i18n| %>
-             <li> <%= link_to locale_with_name(menu_item_i18n), "##{menu_item_i18n.locale.name}" %> </li>
-           <% end %>
-         </ul>
-         <%= f.simple_fields_for :i18ns do |sf| %>
-          <div id="<%= sf.object.locale.name %>">
-            <%= sf.input(:locale_id, input_html: { value: sf.object.locale.id }, as: :hidden) %>
-            <% unless sf.object.id.blank? %>
-              <%= sf.input :_destroy,
-                label: t("destroy"),
-                as: :boolean %>
-            <% end %>
-           <%= sf.input :title, :label => t("title"),
-            placeholder: t("title"),
-            required: false,
-            input_html: {class: "title_input"} %>
+          <%= g.input :title, :label => t("title"),
+              label: t("activerecord.attributes.menu_item/i18ns.title", locale: locale.name.to_sym),
+              placeholder: t("title"),
+              input_html: {class: "title_input"} %>
 
-            <%= sf.input :description, :label => t("description"),
-                    :input_html => {:size => "40x2", :style => "height:50px;" },
-                    :as => :text %>
-          </div>
-         <% end %>
-       </div>
+          <%= g.input :description, :label => t("description"),
+              label: t("activerecord.attributes.menu_item/i18ns.description", locale: locale.name.to_sym),
+              :input_html => {:size => "40x2", :style => "height:50px;" },
+              :as => :text %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 	
-	<div class="input" id="div_link">
-		<%= f.input :url,
-			label: t('url'),
-			hint: t('type_param', param: t('url')),
-			wrapper_html: { class: 'nostyle' },
-			as: :string %>
+  <div class="input page_select" id="div_link">
+    <%= f.input :url,
+	label: t('url'),
+	hint: t('type_param', param: t('url')),
+	wrapper_html: { class: 'nostyle' },
+        as: :string %>
 
-		<%= link_to_function 'Clique aqui para selecionar uma página',
-			'show_dialog($(this),false)',
-			id: 'banner_page_select',
-			class: 'search-button element',
-			'data-link' => list_published_site_pages_path %>
+    <%= link_to_function 'Clique aqui para selecionar uma página',
+        'show_dialog($(this))',
+	id: 'banner_page_select',
+	class: 'search-button element',
+	'data-link' => site_pages_path %>
 
-		<%# Ao selecionar um noticia deve ser montado a url para ela,
-			# então aqui guardamos o caminho para as páginas deste site %>
-		<%= hidden_field_tag 'url_to_pages', site_pages_url(@site, only_path: true) %>
-		<%= hidden_field_tag 'menu_item[target_id]', @menu_item.target_id %>
-                <%= hidden_field_tag 'menu_item[target_type]', @menu_item.target_type %>
-	</div>
+	<%# Ao selecionar um noticia deve ser montado a url para ela,
+          # então aqui guardamos o caminho para as páginas deste site %>
+	<%= hidden_field_tag 'url_to_pages', site_pages_url(@site, only_path: true) %>
+	<%= hidden_field_tag 'menu_item[target_id]', @menu_item.target_id %>
+        <%= hidden_field_tag 'menu_item[target_type]', @menu_item.target_type %>
+  </div>
 
-        <div class='input'>
-          <%= f.input :new_tab ,
-            wrapper_html: { class: "side" },
-            as: :boolean, input_html: { class: "check-button" } %>
+  <div class='input'>
+     <%= f.input :new_tab ,
+         wrapper_html: { class: "side" },
+         as: :boolean, input_html: { class: "check-button" } %>
 
-          <div class="clear"></div>
-        </div>
+    <div class="clear"></div>
+  </div>
 
-
-	<div class="actions">
-		<%= f.submit t("save"), class: "green-button" %>
-		<%= link_to t("back"), :back, class: "red-button" %>
-	</div>
+  <div class="actions">
+    <%= f.submit t("save"), class: "green-button" %>
+    <%= link_to t("back"), :back, class: "red-button" %>
+  </div>
 <% end %> 
