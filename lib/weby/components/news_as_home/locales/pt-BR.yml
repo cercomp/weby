@@ -1,0 +1,14 @@
+pt-BR:
+  components:
+    news_as_home:
+      name: "Notícia como página inicial"
+      page_id: "Notícia"
+      form:
+        none_selected: "Nenhuma notícia selecionada"
+        select: "Selecione uma notícia"
+      show:
+        page_not_found: "Página não encontrada, por favor verifique a configuração do componente"
+  activerecord:
+    attributes:
+      news_as_home_component:
+        page_id: "Notícia"

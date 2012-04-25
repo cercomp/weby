@@ -44,36 +44,37 @@ class SitesController < ApplicationController
     @site = Site.new(params[:site])
     if @site.save
 
+      # TODO mover o código a seguir para um lugar melhor (um yml talvez)
       if @site.theme == 'this2' or @site.theme == 'teacher'
 
         menu_top    = @site.menus.create({:name => 'menu superior'})
         menu_left   = @site.menus.create({:name => 'menu esquerdo'})
         menu_bottom = @site.menus.create({:name => 'menu inferior'})
 
-        @site.site_components.create({:place_holder=>'first_place',:settings=>'{:background => "#7F7F7F"}',:component=>'gov_bar', :position=>1, :publish=>true})
-        @site.site_components.create({:place_holder=>'first_place',:settings=>'{}', :component=>'weby_bar', :position=>2, :publish=>true})
-        @site.site_components.create({:place_holder=>'first_place',:settings=>'{}', :component=>'institutional_bar', :position=>3, :publish=>true})
-        @site.site_components.create({:place_holder=>'top', :settings=>'{}', :component=>'header', :position=>4, :publish=>true})
-        @site.site_components.create({:place_holder=>'top', :settings=>"{:menu_id => \"#{menu_top.id}\"}", :component=>'menu_side', :position=>5, :publish=>true})
-        @site.site_components.create({:place_holder=>'top', :settings=>'{}', :component=>'menu_accessibility',:position=>6, :publish=>true})
-        @site.site_components.create({:place_holder=>'bottom', :settings=>"{:menu_id => \"#{menu_bottom.id}\"}", :component=>'menu_side', :position=>9, :publish=>true})
-        @site.site_components.create({:place_holder=>'bottom', :settings=>'{}', :component=>'info_footer', :position=>10,:publish=>true})
-        @site.site_components.create({:place_holder=>'bottom', :settings=>'{}', :component=>'feedback', :position=>11,:publish=>true})
-        @site.site_components.create({:place_holder=>'left', :settings=>"{:menu_id => \"#{menu_left.id}\"}", :component=>'menu_side', :position=>12,:publish=>true})
-        @site.site_components.create({:place_holder=>'left', :settings=>'{:category => "esq"}', :component=>'banner_side', :position=>13,:publish=>true})
-        @site.site_components.create({:place_holder=>'home', :settings=>'{:quant => "5"}', :component=>'front_news', :position=>14,:publish=>true})
-        @site.site_components.create({:place_holder=>'home', :settings=>'{:quant => "5"}', :component=>'no_front_news', :position=>15,:publish=>true})
+        @site.components.create({:place_holder=>'first_place',:settings=>'{:background => "#7F7F7F"}',:name=>'gov_bar', :position=>1, :publish=>true})
+        @site.components.create({:place_holder=>'first_place',:settings=>'{}', :name=>'weby_bar', :position=>2, :publish=>true})
+        @site.components.create({:place_holder=>'first_place',:settings=>'{}', :name=>'institutional_bar', :position=>3, :publish=>true})
+        @site.components.create({:place_holder=>'top', :settings=>'{}', :name=>'header', :position=>4, :publish=>true})
+        @site.components.create({:place_holder=>'top', :settings=>"{:menu_id => \"#{menu_top.id}\"}", :name=>'menu_side', :position=>5, :publish=>true})
+        @site.components.create({:place_holder=>'top', :settings=>'{}', :name=>'menu_accessibility',:position=>6, :publish=>true})
+        @site.components.create({:place_holder=>'bottom', :settings=>"{:menu_id => \"#{menu_bottom.id}\"}", :name=>'menu_side', :position=>9, :publish=>true})
+        @site.components.create({:place_holder=>'bottom', :settings=>'{}', :name=>'info_footer', :position=>10,:publish=>true})
+        @site.components.create({:place_holder=>'bottom', :settings=>'{}', :name=>'feedback', :position=>11,:publish=>true})
+        @site.components.create({:place_holder=>'left', :settings=>"{:menu_id => \"#{menu_left.id}\"}", :name=>'menu_side', :position=>12,:publish=>true})
+        @site.components.create({:place_holder=>'left', :settings=>'{:category => "esq"}', :name=>'banner_side', :position=>13,:publish=>true})
+        @site.components.create({:place_holder=>'home', :settings=>'{:quant => "5"}', :name=>'front_news', :position=>14,:publish=>true})
+        @site.components.create({:place_holder=>'home', :settings=>'{:quant => "5"}', :name=>'no_front_news', :position=>15,:publish=>true})
 
         if @site.theme == 'this2'
 
           menu_right   = @site.menus.create({:name => 'menu direito'})
 
-          @site.site_components.create({:place_holder=>'right', :settings=>"{:menu_id => \"#{menu_right.id}\"}", :component=>'menu_side', :position=>7, :publish=>true})
-          @site.site_components.create({:place_holder=>'right', :settings=>'{:category => "dir"}', :component=>'banner_side', :position=>8, :publish=>true})
+          @site.components.create({:place_holder=>'right', :settings=>"{:menu_id => \"#{menu_right.id}\"}", :name=>'menu_side', :position=>7, :publish=>true})
+          @site.components.create({:place_holder=>'right', :settings=>'{:category => "dir"}', :name=>'banner_side', :position=>8, :publish=>true})
         end
       end
 
-      redirect_to site_site_components_path(@site)
+      redirect_to site_components_path(@site)
     else
       @themes = []
       (Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*.erb")] - Dir[File.join(Rails.root + "app/views/layouts/application.html.erb")]).each do |file|

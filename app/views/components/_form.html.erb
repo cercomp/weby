@@ -1,0 +1,30 @@
+<% content_for :javascripts, javascript_include_tag('site_component_form') %>
+
+<%= simple_form_for @component, :url => url, :method => method do |f| %>
+  <% if @component.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@component.errors.count, "error") %> <%= t "prohibited_being_saved", :count => @component.errors.count %>:</h2>
+      <ul>
+        <% @component.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
+  <%= hidden_field_tag :component, @component.name %>
+
+  <%= render_component @component, 'form', :locals => { :f => f } %>
+
+  <div class="input">
+    <label><%= t("place").capitalize  %></label>
+    <%= raw make_mini_layout %>
+    <%= f.input :place_holder, :as => :hidden %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit t("save"), class: 'green-button' %>
+    <%= link_to t('back'), site_components_path, class: 'red-button' %>
+  </div>
+<% end %>

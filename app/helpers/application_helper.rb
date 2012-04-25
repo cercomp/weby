@@ -179,14 +179,14 @@ module ApplicationHelper
   end
 
   # Verifica as permissões do usuário dado um controlador
-  # Parametros: (objeto) usuário, (string) controlador
+  # Parametros: (objeto) usuário, :controller = Uma class de controler (não a instância)
   # Retorna: um vetor com as permissões
   def get_permissions(user, args={})
     user ||= current_user
     # Se não está logado não existe permissões
     return [args[:except]] if user.nil?
-    ctr = args[:controller] || controller
-    return ctr.class.instance_methods(false) if user.is_admin
+    ctr = args[:controller] || controller.class
+    return ctr.instance_methods(false) if user.is_admin
     perms = []
     perms_user = []
     get_roles(user, @site).each do |role|
@@ -200,7 +200,7 @@ module ApplicationHelper
       # Se o argumento de exceção for uma string, passa para array
       args[:except] = [args[:except]] if args[:except].is_a? String
       if args[:except]
-        perms = (ctr.class.instance_methods(false) - args[:except]) & perms_user
+        perms = (ctr.instance_methods(false) - args[:except]) & perms_user
       elsif args[:only]
         perms = args[:only] & perms_user
       end
@@ -216,7 +216,7 @@ module ApplicationHelper
     raw("".tap do |menu|
       excepts = args[:except] || []
       # Trata os argumentos para excluir itens do menu
-      ctr = args[:controller].nil? ? controller : args[:controller]
+      ctr = args[:controller].nil? ? controller.class : args[:controller]
 
       # Transforma o parâmetro em array caso não seja
       excepts = [excepts] unless excepts.is_a? Array
@@ -226,7 +226,7 @@ module ApplicationHelper
       end
 
       # Os itens do menu serão as actions do controller menos os itens no parâmetro :except
-      actions = controller.class.instance_methods(false) - excepts
+      actions = ctr.instance_methods(false) - excepts
 
       get_permissions(current_user, :controller => ctr).each do |permission|
         if permission and actions.include?(permission.to_sym)
@@ -334,14 +334,12 @@ module ApplicationHelper
     end
   end
 
-  #
+  # TODO passar isso para a lib
   #
   def load_components(component_place)
     raw([].tap do |components|
-      @site.site_components.where(["publish = true AND place_holder = ?", component_place]).order('position asc').each do |comp|
-        comp.settings ||= "{}"
-        settings = eval(comp.settings)
-        components << render(:partial => "components_partials/#{comp.component}", :locals => { :settings => settings })
+      @site.components.where(["publish = true AND place_holder = ?", component_place]).order('position asc').each do |comp|
+        components << render_component(Weby::Components.factory(comp))
       end
     end.join)
   end

@@ -25,9 +25,9 @@ class PagesController < ApplicationController
   def published
     @pages = get_pages.published
     respond_with(@site, @page) do |format|
-      format.any { render template: 'pages/index' }
       format.rss { render :layout => false, :content_type => Mime::XML } #published.rss.builder
       format.atom { render :layout => false, :content_type => Mime::XML } #ublished.atom.builder
+      format.any { render template: 'pages/index' }
     end
   end
 
