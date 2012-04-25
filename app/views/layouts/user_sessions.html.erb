@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+<head>
+  <title>Weby</title>
+  <meta charset="utf-8">
+  <%= csrf_meta_tag %>
+  <%= stylesheet_link_tag 'user_sessions' %>
+</head>
+<body>
+  <div class='login-box'>
+    <%= link_to root_path do %> 
+      <%= image_tag 'weby-dashboard.png', class: 'logo' %>
+    <% end %>
+    <%= yield %>
+  </div>
+</body>
+</html>

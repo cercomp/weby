@@ -15,10 +15,12 @@ form
 }
 
 ::-webkit-validation-bubble-message { padding: 1em; }
-.input
+.input,
+.control-group.boolean.optional
 {
   clear: both;
   padding: 12px;
+  padding-left: 0;
   border-bottom: 1px solid #e4e4e4;
 
   &.hidden {
@@ -179,7 +181,7 @@ textarea
 	border: 1px solid #aaa;
 	padding-right: 30px;
 }
-.hint
+.hint, .help-block
 {
   display: block;
   font-size: 11px;
@@ -432,4 +434,13 @@ input.radio { margin-right: 5px; }
 #search
 {
   text-align: center;
+  }
+
+.boolean.optional.control-label
+{
+  padding-bottom: 0;
+}
+.control-group.boolean.optional.side
+{
+  padding: 0;
 }

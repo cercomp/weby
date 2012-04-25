@@ -106,6 +106,19 @@ module ApplicationHelper
     end
   end
 
+  # Define mensagens personalizadas
+  def flash_message_NEW
+    "".tap do |messages|
+      [:success, :info, :warning, :error].each do |type|
+        if flash[type]
+          messages << content_tag('div', flash.now[type], :class => "alert alert-#{type}")
+          # Limpa a mensagem
+          flash[type] = nil
+        end
+      end
+    end
+  end
+
   def with_permission(args = {}, &block)
     args.reverse_merge!({
       controller: controller.class,

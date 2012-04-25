@@ -71,23 +71,15 @@ class StylesController < ApplicationController
   def create
     @style = Style.new(params[:style])
 
-    if @style.save
-      flash[:notice] = t('successfully_created')
-      redirect_to site_styles_path
-    else
-      render site_id: @site.id, controller: 'styles', action: 'new'
-    end
+    flash[:notice] = t('successfully_created') if @style.save
+    respond_with(@style, location:  site_styles_path(@site))
   end
 
   def update
     @style = Style.find(params[:id])
 
-    if @style.update_attributes(params[:style])
-      flash[:notice] = t('successfully_updated')
-      redirect_to site_styles_path 
-    else
-      render site_id: @site.id, controller: 'styles', action: 'edit'
-    end
+    flash[:notice] = t('successfully_updated') if @style.update_attributes(params[:style])
+    respond_with(@style, location: site_styles_path(@site))
   end
 
   def destroy
@@ -98,8 +90,8 @@ class StylesController < ApplicationController
     else
       flash[:alert] = t('destroyed_param_error', param: t('style.one'))
     end
-
-    redirect_to site_styles_path(@site)
+    
+    respond_with(@style, location: site_styles_path(@site))
   end
 
   def follow

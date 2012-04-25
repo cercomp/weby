@@ -1,0 +1,31 @@
+/* 
+ *= require google/droidsans 
+ *= require google/orbitron 
+ *= require bootstrap
+ *= require_self 
+ */ 
+
+.login-box
+{
+  margin: 100px auto 0;
+  width: 450px;
+}
+
+.logo { margin-bottom: 20px; }
+
+.well 
+{
+  background: white;
+  padding: 30px 0 0;
+  margin-bottom: 10px;
+}
+
+body { background: #F8F9FA; }
+
+.form-horizontal .form-actions { margin: 0; }
+
+form { margin: 0; }
+
+.login-links { text-align: right; }
+
+.padding-box { padding: 0 10px; }

@@ -1,0 +1,47 @@
+<div class='navbar'>
+<div class='navbar-inner'>
+<div class='conteiner cf'>
+
+<%= content_tag :ul,
+  class: "#{(current_user and user_sites and not(current_user.is_admin)) ? 'webybar-dropdown' : 'nav'}
+  pull-left" do %>
+  <li>
+    <%= link_to root_path, class: 'brand' do %>
+      <span class='white'>web</span><span class='red'>y<span>
+    <% end %>
+    <%= content_tag :ul, user_sites,
+      class: 'right' if current_user and user_sites and not(current_user.is_admin) %> 
+  </li>
+<% end %>
+
+<div class='nav-colapse cf'>
+  <ul class='nav'>
+    <li class='divider-vertical'></li>
+    <li><%= link_to t("dashboard"), admin_index_path() if check_permission(AdminController, [:index]) %></li>
+    <li>
+      <%= link_to t('help'),
+        'https://softifes.andifes.org.br/projects/weby/wiki/Documenta%C3%A7%C3%A3o_para_usu%C3%A1rios',
+        target: '_blank' %>
+    </li>
+    <li><%= link_to t('about'), '/about', target: '_blank' %></li>
+  </ul>
+
+  <%= content_tag :ul, class: "#{current_user ? 'webybar-dropdown' : 'nav'} pull-right" do %> 
+    <% if current_user %>
+      <li>
+        <%= link_to current_user.first_name, user_path(current_user), class: 'brand avatar',
+          style: "background-image: url(http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(current_user.email)}?s=30);" %>
+        <ul class='left'>
+          <li><%= link_to t("logout"), logout_path(back_url: "#{request.fullpath}") %></li>
+        </ul>
+      </li>
+    <% else %>
+      <li><%= link_to t('login'), login_path(back_url: "#{request.fullpath}") %></li>
+      <li><%= link_to t('register'), new_user_path %></li>
+    <% end %>
+  <% end %>
+</div>
+
+</div>
+</div>
+</div>

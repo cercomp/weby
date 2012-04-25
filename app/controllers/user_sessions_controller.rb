@@ -1,6 +1,5 @@
 # coding: utf-8
 class UserSessionsController < ApplicationController
-  layout :choose_layout
   before_filter :require_no_user, :only => [:new, :create]
   before_filter :require_user, :only => :destroy
   before_filter :check_authorization, :except => [:destroy]
