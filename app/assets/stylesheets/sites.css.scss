@@ -44,10 +44,10 @@ ul.webybar-dropdown
         }
       }
     }
-    & ul.left { right: -9999px; }
+    & ul.left { right: -9999px; display: none; }
     & ul.right { left: -9999px; }
     &:hover ul.right { left: -1px; }
-    &:hover ul.left { right: -1px; }
+    &:hover ul.left { right: -1px; display: block }
   }
 }
 
@@ -110,8 +110,8 @@ footer
 // style to search form
 form.search
 {
-  width: 500px;
-  margin: 0 auto;
+  //width: 500px;
+  margin: 40px auto 0;
   padding-bottom: 10px;
 
   .input-search

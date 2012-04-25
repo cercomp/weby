@@ -1,16 +1,3 @@
-<% if @sites %>
-  
-<%= form_tag request.path, method: 'get', autocapitalize: "off", class: 'search' do %>
-<%= content_tag :div, class: 'input-append' do %>
-<%= search_field_tag :search, params[:search], class: 'input-search' -%>
-<%= submit_tag t("search"), class: 'btn btn-large btn-primary btn-search' %>
-<% end %>
-<% end %>
-
-<%= content_tag :div, render('list'), class: 'list' %>
-
-<% end %>
-
 <% if check_permission(SitesController, ["new"]) %>
   <p class="pull-right">
   <%= link_to new_site_path do %>
@@ -20,3 +7,6 @@
   <% end %>
   </p>
 <% end %>
+<div style="clear: both;"></div>
+
+<%= content_tag :div, render('list'), class: 'list' if @sites %>
