@@ -1,0 +1,16 @@
+<% unless @site.repositories.nil? %>
+  <% image  = @site.repositories.find(component.image)  %>
+  <% height = component.height  || 200 %>
+  <% width  = component.width   || 150 %>
+
+  <%# if image.image? %>
+    <%= image_tag(image.archive.url,
+        :alt => image.description,
+        :title => image.description,
+        :size => "#{width}x#{height}") %>
+  <%# end %>
+
+  <div id="clear"></div>
+  <br/>
+<% end %>
+

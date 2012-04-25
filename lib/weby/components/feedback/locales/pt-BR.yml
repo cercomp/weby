@@ -1,0 +1,9 @@
+pt-BR:
+  components:
+    feedback:
+      name: "Feedback"
+      label: "Rótulo"
+  activerecord:
+    attributes:
+      feedback_component:
+        label: "Rótulo"

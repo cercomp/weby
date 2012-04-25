@@ -1,4 +1,7 @@
 class RefactoringMenus < ActiveRecord::Migration
+  # FIX o nome do modelo SiteComponent foi altereado apenas para Component
+  class SiteComponent < ActiveRecord::Base; end
+
   def up
     rename_table :menus, :old_menus
     execute <<-SQL
