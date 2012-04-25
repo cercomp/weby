@@ -26,7 +26,7 @@ class Component < ActiveRecord::Base
 
   private
   def prepare_variables
-    self.publish ||= true
+    self.publish = true if self.publish.nil?
     self.settings = settings_map.to_s
   end
 end

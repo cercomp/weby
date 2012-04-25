@@ -1,7 +1,7 @@
 pt-BR:
   components:
     menu_side:
-      name: "Menu Lateral"
+      name: "Menu"
       form:
         menu_id: "Menu"
   activerecord:
