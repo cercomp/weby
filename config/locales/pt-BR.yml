@@ -87,6 +87,7 @@ pt-BR:
   create_account_successful: "Sua conta foi criada! Foi enviado para seu email instruções de como ativá-la."
 
 #---D---#
+  dashboard: "Administração"
   date_param: "Data de %{param}"
   description: "Descrição"
   destroy: "Excluir"

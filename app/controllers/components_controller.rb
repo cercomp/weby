@@ -76,7 +76,7 @@ class ComponentsController < ApplicationController
   def toggle_field
     @component = Component.find(params[:id])
     if params[:field] 
-      if @component.update_attributes("#{params[:field]}" => (@component[params[:field]] == 0 or not @component[params[:field]] ? true : false))
+      if @component.toggle!(params[:field])
         flash[:notice] = t"successfully_updated"
       else
         flash[:notice] = t"error_updating_object"

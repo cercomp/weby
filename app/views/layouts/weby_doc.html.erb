@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+  <title>Weby Documentation</title>
+  <meta charset="utf-8">
+  <%= csrf_meta_tag %>
+  <%= stylesheet_link_tag 'weby_doc' %>
+  <%= render 'styles/load' if @site %>
+  <%= yield :stylesheets %>
+</head>
+<body>
+
+  <header class="cf">
+    <%= link_to image_tag('weby.png', class: 'pull-left'), current_site %>
+    <div class="orbitron title pull-right">Documentação</div>
+  </header>
+
+  <section id="content">
+    <div class="container">
+      <%= raw flash_message_NEW %>
+      <%= yield %>
+    </div>
+  </section>
+
+  <footer>
+    <p> <%= t('licence') %> </p>
+  </footer>
+
+  <%= javascript_include_tag 'application' %>
+  <%= yield :javascripts %>
+</body>
+</html>
+

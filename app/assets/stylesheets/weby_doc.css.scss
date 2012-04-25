@@ -1,4 +1,10 @@
 /* 
+ *= require_tree ./shared 
+ *= require_tree ./legacy 
+ *= require_tree ./extensions 
+ *= require jquery-ui.css
+ *= require jquery-ui-timepicker-addon.css
+ *= require jquery.sortable.css
  *= require google/droidsans 
  *= require google/orbitron 
  *= require bootstrap
@@ -44,10 +50,10 @@ ul.webybar-dropdown
         }
       }
     }
-    & ul.left { right: -9999px; display: none; }
+    & ul.left { right: -9999px; }
     & ul.right { left: -9999px; }
     &:hover ul.right { left: -1px; }
-    &:hover ul.left { right: -1px; display: block }
+    &:hover ul.left { right: -1px; }
   }
 }
 
@@ -110,8 +116,8 @@ footer
 // style to search form
 form.search
 {
-  //width: 500px;
-  margin: 40px auto 0;
+  width: 700px;
+  margin: 0 auto;
   padding-bottom: 10px;
 
   .input-search
@@ -119,11 +125,11 @@ form.search
     padding: 1em 0.625em;
     line-height: normal;
     height: auto;
-    width: 380px;
+    width: 80.5%;
   }
   .btn-search
   {
-    width: 99px !important;
+    width: 17% !important;
     margin-bottom: 9px;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -174,6 +180,11 @@ form.search
   padding-bottom: 20px;
 }
 
+.orbitron
+{
+  font-family: "Orbitron", "Droid Sans", Helvetica, Arial, sans-serif;
+}
+
 
 .navbar { margin-bottom: 0; }
 .navbar .divider-vertical { height: 60px; }
@@ -191,51 +202,14 @@ form.search
 
 .item_per_page_paginator { padding-right: 3px; }
 
-/* TYPOGRAPHY */
-body { font-size: 1em; } 
+.site-name { width: 250px; }
 
-body,
-form
-{
-  font-family: "Droid Sans", Helvetica, Arial, sans-serif;
-  line-height: 1.125em;
+[class^="icon-"], [class*=" icon-"] {
+  display: inline;
+  background-image: none;
 }
 
-p,
-.per_page_paginator,
-.paginator,
-.page_info_paginator,
-.button,
-ul.nav,
-form input,
-.navbar ul li ul,
-ul#tabs,
-div.side-menu ul li a,
-table,
-.information-box,
-.confirmation-box,
-.error-box,
-.warning-box,
-.avatar,
-ol,
-.regular-ul,
-.custom-ul,
-blockquote,
-cite { font-size: 0.75em; }
-
-div.content-module-heading span { font-size: 0.625em;}
-
-form p input[type="text"],
-form p input[type="password"],
-form p input[type="checkbox"],
-form p input[type="radio"] { font-size: 1em; }
-
-h1 { font-size: 1.125em; }
-h2 { font-size: 0.875em; }
-h3 { font-size: 0.75em; }
-h4 { font-size: 0.685em; }
-h5 { font-size: 0.625em; }
-
-.alert { font-size: 13px; }
-
-.site-name { width: 250px; }
+.title 
+{
+  padding-top: 40px;
+  font-size: 28px; }

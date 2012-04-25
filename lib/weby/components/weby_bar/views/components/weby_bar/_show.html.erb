@@ -34,8 +34,19 @@
               <li> <%= link_to (t"menu.other"), site_menus_path(@site) %>
                 <menu>
                 <% if check_permission(MenusController, [:new]) %>
-                  <li> <%= link_to (t"new_param.masc", :param => (t"menu_item.one")), new_site_menu_path(@site), :class => 'icon icon-add' %> </li>
+                  <li> <%= link_to (t"new_param.masc", :param => (t"menu.one")), new_site_menu_path(@site), :class => 'icon icon-add' %> </li>
                 <% end %>
+                  <% @global_menus.each do |k, menu| %>
+                  <% if check_permission(MenuItemsController, [:index]) %>
+                      <li> <%= link_to menu.name.try(:titleize), site_menus_path(@site, :menu => menu.id), :class => 'icon icon-list' %>
+                      <% if check_permission(MenuItemsController, [:new]) %>
+                        <menu>
+                          <li> <%= link_to (t"new_param.masc", :param => (t"menu_item.one")), new_site_menu_menu_item_path(@site, menu), :class => 'icon icon-add' %> </li>
+                        </menu>
+                      <% end %>
+                      </li>
+                      <%  end %>
+                  <% end %>
                 </menu>
               </li>
             <% end %>
@@ -171,5 +182,26 @@
   </nav>
 
   <nav class="top_menu right">
+    <menu>
+      <% if(@site.try(:id) and current_user) %>
+        <li> <%= link_to(current_user.first_name.titleize, site_user_path(@site, current_user)) %> </li>
+      <% end %>
+
+      <% if(not(@site) and current_user) %>
+        <li> <%= link_to(current_user.first_name.titleize, user_path(current_user)) %> </li>
+      <% end %>
+
+      <% if current_user %>
+        <li> <%= link_to( t("logout"), logout_path(:back_url => "#{request.fullpath}"), :confirm => t("are_you_sure") ) %> </li>
+      <% end %>
+
+      <% if not(current_user) %>
+        <li class='to_left'> <%= link_to( t("login"), login_path(:back_url => "#{request.fullpath}")) %> </li>
+        <li> <%= link_to( t("register"), new_user_path ) %> </li>
+      <% end %>
+
+      <% # FIXME Contador de usuários não está funcionando ao realizar logoff. %>
+      <%# User.logged_in.count.to_s + ' ' + t('logged', :count => User.logged_in.count) %>
+    </menu>
   </nav>
 </section>

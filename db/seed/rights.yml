@@ -309,31 +309,31 @@
 52:
  id: 52
  name: "Listar Componentes"
- controller: site_components
+ controller: components
  action: index
 
 53:
  id: 53
  name: "Ver Componentes"
- controller: site_components
+ controller: components
  action: show
 
 54:
  id: 54
  name: "Editar Componente"
- controller: site_components
+ controller: components
  action: edit update toggle_field
 
 55:
  id: 55
  name: "Excluir Componente"
- controller: site_components
+ controller: components
  action: destroy
 
 56:
  id: 56
  name: "Criar Componente"
- controller: site_components
+ controller: components
  action: new create
 
 57:
@@ -351,7 +351,7 @@
 59:
   id: 59
   name: "Ordenar Componentes"
-  controller: site_components
+  controller: components
   action: sort
 
 60:
