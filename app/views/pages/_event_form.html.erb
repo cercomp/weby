@@ -1,5 +1,5 @@
 <div class="input page_type">
-  <%= check_box_tag :is_event, :Event, @page.type == 'Event', disabled: !@page.id.blank? %>
+  <%= check_box_tag :is_event, :Event, @page.type == 'Event' %>
   <%= label_tag :is_event, t(".is_event") %>
   <%= f.input :type, :as => :hidden %>
   <div class='clear'></div>

@@ -13,7 +13,7 @@ module Weby
         # Build i18ns related class
         i18n_class = base.const_set(:I18ns, Class.new(Weby::I18ns))
 
-        i18n_class.set_table_name("#{base.name.underscore.gsub('/', '_')}_i18ns")
+        i18n_class.table_name = ("#{base.name.underscore.gsub('/', '_')}_i18ns")
         i18n_class.belongs_to(base.name.underscore.gsub('/', '_'))
 
         base.class_eval do
@@ -72,7 +72,7 @@ module Weby
         self.class_eval do
           def select_locale(locale=nil)
             case
-            when !locale.blank?
+            when locale
               @selected_i18n = self.i18ns.select{|i18n| i18n.locale.name == locale.to_s }.first
             when !(@selected_i18n = self.i18ns.select{|i18n| i18n.locale.name == I18n.locale.to_s }.first).blank?
             when !(@selected_i18n = self.i18ns.select{|i18n| i18n.locale.name == I18n.default_locale.to_s }.first).blank?

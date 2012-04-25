@@ -5,7 +5,7 @@
     "page[image]", @page.image,
     multiple: false, file_types: 'image' %>
 
-  <%= render('event_form', f: f) if @page.new_record? || @page.type == 'Event' %>
+  <%= render('event_form', f: f) %>
 
   <%= render('translates_form', f: f) %>
 

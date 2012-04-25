@@ -8,7 +8,7 @@ class PagesController < ApplicationController
 
   helper_method :sort_column
 
-  respond_to :html, :js, :json
+  respond_to :html, :js, :json, :rss
 
   # GET /pages
   # GET /pages.json
@@ -25,6 +25,8 @@ class PagesController < ApplicationController
   def published
     @pages = get_pages.published
     respond_with(@site, @page) do |format|
+      format.rss { render :layout => false, :content_type => Mime::XML } #published.rss.builder
+      format.atom { render :layout => false, :content_type => Mime::XML } #ublished.atom.builder
       format.any { render template: 'pages/index' }
     end
   end
@@ -34,6 +36,7 @@ class PagesController < ApplicationController
     when "tiny_mce"
       params[:per_page] = 7
     end
+    params[:direction] ||= 'desc'
     # Vai ao banco por linha para recuperar
     # tags e locales
     @site.pages.

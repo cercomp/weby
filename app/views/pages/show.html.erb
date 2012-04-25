@@ -6,24 +6,24 @@
     <h1><%= @page.title %></h1>
   </header>
 
-  <%= content_tag_if @page.event?, :fieldset, class: 'event' do %>
-      <legend><%= t('event.one') %></legend>
+  <%= content_tag_if @page.event?, :div, class: 'event' do %>
+      <h3><%= t('event.one') %></h3>
       <p class="local">
         <%= label(:page, :local) %>
         <%= @page.local %>
       </p>
-      <%= content_tag_if @page.kind?, :p, class: 'event-type' do %>
+       <%= content_tag_if @page.kind?, :p, class: 'event-type' do %>
           <%= label(:page, :kind) %>
           <%= t("pages.event_form.#{@page.kind}") %>
         <% end %>
-        <p class="event-email">
+        <%= content_tag_if @page.event_email?, :p, class: 'event-email' do %>
           <%= label(:page, :event_email) %>
           <%= @page.event_email %>
-        </p>
+        <% end %>
         <p class="event-period">
           <%= label(:page, :event_period, t("pages.event_form.period_event")) %>
-          <span class="event-begin"><%= l(@page.event_begin, format: :long) if @page.event_begin %></span> -
-          <span class="event-end"><%= l(@page.event_end, format: :long) if @page.event_end %></span>
+          <span class="event-begin"><%= l(@page.event_begin, format: :long) if @page.event_begin %></span>
+          <span class="event-end"><%= " - "+l(@page.event_end, format: :long) if @page.event_end %></span>
         </p>
       <% end %>
 
@@ -41,14 +41,14 @@
       </div>
 
       <%= content_tag_if @page.source.present?, :p, class: 'source' do %>
-          <%= "#{label(:page, :source)} #{link_to(@page.source, @page.url)}".html_safe %>
+          <%= "#{label(:page, :source)} #{@page.url.blank? ? @page.source : link_to(@page.source, @page.url)}".html_safe %>
         <% end %>
 
         <%= content_tag_if @page.category_list.any?, :p, class: 'categories' do %>
             <%= "#{label(:page, :categories)} #{@page.category_list.sort * ', '}".html_safe %>
           <% end %>
 
-          <%= render 'related_files' if @page.related_files.any? %>
+          <%= render 'pages/related_files' if @page.related_files.any? %>
 
           <%= make_menu(@page, :except => "show") %>
           <%= link_to t("list_all.fem"), site_pages_path(@site), :class => 'icon icon-list' %>

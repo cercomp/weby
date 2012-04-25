@@ -20,6 +20,7 @@ pt-BR:
         position:        'Posição'
         publish:         'Publicada'
         source:          'Fonte'
+        categories:      'Categorias'
         type:            'Tipo da página'
         url:             'URL'
         summary:         'Resumo'
@@ -41,6 +42,9 @@ pt-BR:
       title:             'Nova Página'
     edit:
       title:             'Editar Página'
+    related_files:
+      size:              'Tamanho'
+      related_files:     'Arquivos Relacionados'
     form:
       image:             'Imagem da página'
       period_page:       'Período da Página'
