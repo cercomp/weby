@@ -4,7 +4,7 @@ class ComponentsController < ApplicationController
   before_filter :check_authorization
 
   def index
-    @components = @site.components.order('position asc')
+    @components = @site.components
   end
 
   def show

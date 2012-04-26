@@ -8,9 +8,9 @@ class Component < ActiveRecord::Base
 
   belongs_to :site
 
-  # TODO validar também se a posição é válida quanto ao layout
-  # ex: Um componente pode existe na posição X em um layout, mas em outro
-  # layout essa posição pode não existir
+  # TODO validar também se a área é válida quanto ao layout
+  # ex: Um componente pode existe na área X em um layout, mas em outro
+  # layout essa área pode não existir
   validates :place_holder, presence: true
   validates :name, presence: true
 
@@ -28,5 +28,6 @@ class Component < ActiveRecord::Base
   def prepare_variables
     self.publish = true if self.publish.nil?
     self.settings = settings_map.to_s
+    self.position = Component.maximum('position', :conditions=> ["site_id = ? AND place_holder = ?", self.site_id, self.place_holder]).to_i + 1 if self.position.blank?
   end
 end
