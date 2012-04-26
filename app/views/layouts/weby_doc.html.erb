@@ -10,6 +10,10 @@
 </head>
 <body>
 
+  <div class="first_place">
+    <%= load_components 'first_place' %>
+  </div>
+  
   <header class="cf">
     <%= link_to image_tag('weby.png', class: 'pull-left'), current_site %>
     <div class="orbitron title pull-right">Documentação</div>
@@ -23,7 +27,7 @@
   </section>
 
   <footer>
-    <p> <%= t('licence') %> </p>
+    <%= load_components 'bottom' %>
   </footer>
 
   <%= javascript_include_tag 'application' %>
