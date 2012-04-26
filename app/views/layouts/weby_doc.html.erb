@@ -30,8 +30,7 @@
     <%= load_components 'bottom' %>
   </footer>
 
-  <%= javascript_include_tag 'application' %>
-  <%= yield :javascripts %>
+  <%= render 'layouts/shared/javascripts' %>
 </body>
 </html>
 
