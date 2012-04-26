@@ -98,6 +98,7 @@ pt-BR:
     fem: "Desabilitada"
     masc: "Desabilitada"
   desc_use_menu_dropdown: "Deseja que os menus sejam desdobráveis?"
+  documentation: "Documentação"
 
 #---E---#
   edit: "Editar"

@@ -16,7 +16,14 @@
   
   <header class="cf">
     <%= link_to image_tag('weby.png', class: 'pull-left'), current_site %>
-    <div class="orbitron title pull-right">Documentação</div>
+    <div class="orbitron title pull-right">
+      <% if @page %>
+        <%= raw @page.title %>
+        <%= raw @page.summary %>
+      <% else %>
+       <%= t('documentation') %>
+      <% end %>
+    </div>
   </header>
 
   <section id="content">
