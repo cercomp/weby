@@ -9,7 +9,7 @@ module ComponentsHelper
       'weby' => ['left', 'right', 'top', 'bottom', 'home', 'first_place'],
       'this2' => ['first_place', 'top', 'left', 'home', 'right', 'bottom'],
       'teachers' => ['first_place', 'top', 'left', 'home', 'bottom'],
-      'weby_doc' => ['home']
+      'weby_doc' => ['first_place','home','bottom']
     }
 
     places[@site.theme] || []
