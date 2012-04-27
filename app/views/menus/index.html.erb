@@ -72,7 +72,7 @@
         }
       });
 
-      $( "#tabs li" ).droppable({
+      $( "#tabs li > a" ).not('.selected').parent('li').droppable({
         hoverClass: "drop-here",
         tolerance: "pointer",
         drop: function( event, ui ) {

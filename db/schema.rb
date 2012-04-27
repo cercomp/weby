@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(:version => 20120422154626) do
     t.integer  "menu_item_id", :null => false
     t.integer  "locale_id",    :null => false
     t.string   "title",        :null => false
-    t.string   "description"
+    t.text     "description"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
@@ -109,8 +109,7 @@ ActiveRecord::Schema.define(:version => 20120422154626) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "old_menus", :id => false, :force => true do |t|
-    t.integer  "id",          :null => false
+  create_table "old_menus", :force => true do |t|
     t.string   "title"
     t.string   "link"
     t.datetime "created_at"
@@ -237,7 +236,6 @@ ActiveRecord::Schema.define(:version => 20120422154626) do
     t.string   "per_page",          :default => "5, 15, 30, 50, 100"
     t.integer  "per_page_default",  :default => 25
     t.boolean  "menu_dropdown"
-    t.integer  "parent_id"
   end
 
   create_table "sites_menus", :force => true do |t|
@@ -266,12 +264,12 @@ ActiveRecord::Schema.define(:version => 20120422154626) do
   end
 
   create_table "styles", :force => true do |t|
-    t.string   "name",       :null => false
+    t.string   "name"
     t.text     "css"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "owner_id",   :null => false
     t.boolean  "publish"
+    t.integer  "owner_id"
   end
 
   create_table "taggings", :force => true do |t|

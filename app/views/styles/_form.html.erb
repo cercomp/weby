@@ -21,7 +21,7 @@
     input_html: {value: @site.id}, 
     as: :hidden %>
 
-	<div class="input">
+  <div class="input">
     <%= f.input :css, 
       label: t("style.one"), 
       as: :text, 
@@ -29,8 +29,8 @@
       input_html: { class: 'style-editor' } %>
 
     <%= link_to t("help_with_style"),
-      "https://softifes.andifes.org.br/projects/weby/wiki/Working_with_style",
-			target: "_blank" %>
+      (Setting.get(:help_site) || "/help"),
+      target: "_blank" %>
       
     <%= image_tag "help-icon.png" %>
   </div>

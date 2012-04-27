@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="<%= session[:locale].to_s %>">
 <head>
   <title>Weby Documentation</title>
   <meta charset="utf-8">
@@ -9,8 +9,8 @@
   <%= render 'styles/load' if @site %>
   <%= yield :stylesheets %>
 </head>
-<body>
 
+<body>
   <div class="first_place">
     <%= load_components 'first_place' %>
   </div>
@@ -19,8 +19,12 @@
     <%= link_to image_tag('weby.png', class: 'pull-left'), current_site %>
     <div class="orbitron title pull-right">
       <% if @page %>
-        <%= raw @page.title %>
-        <%= raw @page.summary %>
+        <div class='title'>
+          <%= raw @page.title %>
+        </div>
+        <div class='summary'>
+          <%= raw @page.summary %>
+        </div>
       <% else %>
        <%= t('documentation') %>
       <% end %>

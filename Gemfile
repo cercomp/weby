@@ -23,11 +23,8 @@ group :production do
   gem 'thin' # Optional, needs for thin cluster in production
 end
 
-group :development do
-  gem 'pry-rails'
-end
-
 group :development, :test do
+  gem 'pry-rails'
   gem 'rspec-rails', '2.9.0'
   gem 'factory_girl_rails', '1.7.0'
   gem 'shoulda-matchers', '1.0.0'
