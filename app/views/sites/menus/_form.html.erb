@@ -1,0 +1,14 @@
+<% content_for :javascripts, javascript_include_tag('menus') %>
+
+<%= simple_form_for [@site, @menu] do |f| %>
+    <%= f.show_errors %>
+
+    <%= f.input :name, :label => t("name"),
+    placeholder: t("name"),
+    input_html: {class: "name_input"} %>
+
+    <div class="actions">
+            <%= f.submit t("save"), class: "green-button" %>
+            <%= link_to t("back"), :back, class: "red-button" %>
+    </div>
+<% end %> 

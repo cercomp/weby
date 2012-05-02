@@ -1,0 +1,26 @@
+<% unless @other_styles.empty? %>
+  <%= info_page other_styles %>
+
+  <table class='list'>
+    <thead>
+      <th> <%= t('name') %> </th>
+      <th> <%= t('owner') %> </th>
+      <th> <%= t('actions') %> </th>
+    </thead>
+    <tbody>
+    <% @other_styles.each do |style| %>
+      <tr>
+        <td> <%= style.name %> </td>
+        <td> <%= link_to style.owner.name, style.owner %>  </td>
+        <td class="style-action">
+          <%= raw style_actions style, others: true %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+    <%= paginate @other_styles, param_name: :page_other_styles, remote: true, params: { style_type: 'other' } %>
+<% else %>
+  <p class="empty"> <%= t('no_other_styles') %> </p>
+<% end %>

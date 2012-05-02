@@ -1,0 +1,26 @@
+<% unless @follow_styles.empty? %>
+  <%= info_page follow_styles %>
+
+  <table class='list'>
+    <thead>
+      <th> <%= t('name') %> </th>
+      <th> <%= t('owner') %> </th>
+      <th> <%= t('actions') %> </th>
+    </thead>
+    <tbody>
+    <% @follow_styles.each do |style| %>
+      <tr>
+        <td> <%= style.name %> </td>
+        <td> <%= link_to style.owner.name, style.owner %> </td>
+        <td class="style-action">
+          <%= raw style_actions style, others: true, followed: true  %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <%= paginate @follow_styles, param_name: :page_follow_styles, remote: true, param: { style_type: 'follow' } %>
+<% else %>
+  <p class="empty"> <%= t('no_follow_styles') %> </p>
+<% end %>

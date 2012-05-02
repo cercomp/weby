@@ -1,0 +1,23 @@
+<%= info_page @repositories %>
+<%= paginate @repositories, :remote => true %>
+
+<div class="clear">
+<% @repositories.each do |repository| %>
+	<div class="box file">
+		<p class="bold"> <%= repository.id %> </p>
+		<p>
+			<aside class="left file_view">
+				<%= weby_file_view(repository, :mini, "64", nil) %>
+			</aside>
+			<aside class="right file_description">
+				<%= repository.description %> <br />
+			</aside>
+		<p>
+		<p class="clear"> <%= raw make_menu(repository) %> </p>
+	</div>
+<% end %>
+</div>
+<div class="clear"></div>
+
+<%= per_page_links @repositories, true %>
+<%= paginate @repositories, :remote => true %>

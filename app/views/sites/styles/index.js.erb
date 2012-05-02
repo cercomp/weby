@@ -1,0 +1,9 @@
+<% if params[:style_type] == 'own' %>
+  $('#own_styles').
+  replaceWith("<%= escape_javascript render(partial: 'own_styles', locals: { styles: @styles.delete(:own) }) %>")
+<% else %>
+  $('#<%= "#{params[:style_type]}_styles" %>').
+  replaceWith("<%=escape_javascript render(partial: "styles",
+                                    locals: { styles: @styles[params[:style_type].to_sym],
+                                              type: params[:style_type].to_sym }) %>")
+<% end %>

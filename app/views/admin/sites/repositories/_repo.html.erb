@@ -1,0 +1,38 @@
+<% object_name = obj.class.to_s.constantize.model_name.to_s.downcase %>
+<% if repository_id = obj.send(field.to_s) %>
+	<% #TODO: Após adicionar os relacionamentos de chave estrangeira no banco e nos modelos do rails remover checagem abaixo %>
+	<% if Repository.where(id: repository_id).exists? %>
+		<% selected_image =  weby_file_view(Repository.find(repository_id), :mini, "64", "64", as: 'image',id: "img_#{object_name}_#{field}_#{repository_id}") %>
+    <% selected_image << raw(radio_button_tag("#{object_name}[#{field}]",
+                                              repository_id, true,
+                                              id: "#{object_name}_#{field}_#{repository_id}" )) %>
+	<% end %>
+<% else %>
+  <%= selected_image = nil %>
+<% end %>
+
+<div id="form">
+  <%= simple_fields_for obj do |f| %>
+    <%= f.input field, 
+      :label => %{
+        #{t('picture')}
+        <div id='selected-image-of-radio-group-images'>
+          #{selected_image}
+        </div>
+      },
+      :collection => collection,
+      :collection_wrapper_tag => "div class='radio-group-images'",
+      :as => :radio, 
+      :label_method => lambda { |context|
+        weby_file_view(context, :mini, "64", "64", as: 'image') 
+      },
+      :value_method => 'id',
+      :paginate => "#{paginate collection, :remote => true}" %>   
+  <% end %>
+</div>
+
+<%= content_for :javascripts do %>
+  <%= javascript_tag do %>
+    show_selected_image('<%= object_name %>', '<%= field.to_s %>');
+  <% end %>
+<% end %>

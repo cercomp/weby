@@ -1,0 +1,7 @@
+$('#repo_list').html('<%=escape_javascript render(partial: 'repositories/repo',
+                                                  locals: { obj: @banner,
+                                                            field: :repository_id,
+                                                            collection: @images }) %>');
+
+show_selected_image('banner', 'repository_id');
+set_jquery_ui();

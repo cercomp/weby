@@ -1,0 +1,82 @@
+<fieldset>
+  <legend><%= t("component.other") %></legend>
+
+  <div class="contextual">
+    <% if check_permission(ComponentsController, 'new') %>
+      <%= link_to t("new_param.masc", :param => t("component.one")),
+        new_site_component_path, :class => "icon icon-add" %>
+    <% end %>
+  </div>
+
+  <table id="list" class="list">
+    <thead>
+      <th>id</th>
+      <th><%= t("component.one") %></th>
+      <th><%= t("category") %></th>
+      <th><%= t"active" %></th>
+      <th></th>
+    </thead>
+
+    <% @components.group_by(&:place_holder).sort.each do |place_holder, components| %>
+      <thead>
+        <tr>
+          <td colspan="99"><i><%= t(place_holder, scope: 'components.pos') %></i></td>
+        </tr>
+      </thead>
+
+      <tbody class="placeholder-group">
+      <% components.each do |component| %>
+        <% component = Weby::Components.factory(component) %>
+        <tr id="sort_sites_component_<%= component.id %>" class="place-<%=  "#{place_holder}" -%>">
+          <td><%= component.id %></td>
+          <td><%= t("components.#{component.name}.name") %></td>
+          <td><%= component.category rescue '--' %></td>
+          <td align="center"><%= raw toggle_field(component, "publish") %></td>
+          <td>
+            <%= raw make_menu(component, :except => "show") %>
+            <% if check_permission(ComponentsController, 'sort') %>
+              <span class='handle icon icon-drag'><%= t("move") %></span>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+
+    <% end %>
+  </table>
+  <%= javascript_tag do %>
+   window.onload=function(){
+    $(document).ready(function() {
+
+    $('.placeholder-group').each(function(){
+
+      $(this).sortable({
+        axis: 'y',
+        dropOnEmpty:false,
+        handle: '.handle',
+        cursor: 'crosshair',
+        items: 'tr',
+        opacity: 0.4,
+        scroll: true,
+        update: function(evt, ui){
+          $.ajax({
+            type: 'post',
+            data: $(this).sortable('serialize'),
+            dataType: 'script',
+            complete: function(request){ $(ui.item).effect('highlight'); },
+            url: '<%= sort_site_components_path %>'
+          })
+        }
+      })
+    });
+
+    ////FIX-ME
+      $('#content').css({'overflow':'hidden'});
+      $('#list').css({'height':$('#list').height()});
+      
+    });
+   }
+  <% end %>
+</fieldset>
+<%= content_for :javascripts, javascript_include_tag("jquery.ui.nestedSortable") %>
+<%= content_for :stylesheets, stylesheet_link_tag("jquery.sortable") %>

@@ -1,0 +1,21 @@
+  <%= simple_form_for @setting do |f| %>
+    <% if @setting.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@setting.errors.count, "error") %> prohibited this setting from being saved:</h2>
+        <ul>
+          <% @setting.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= f.input :name, :label => t('name') %>
+    <%= f.input :value, :label => t('value') %>
+    <%= f.input :description, :label => t('description'), :as => :text %>
+
+		<div class="actions">
+		   <%= link_to t("back"), settings_path %> <%= f.submit t("submit") %>
+  	</div>
+  	
+  <% end %>

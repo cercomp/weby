@@ -1,0 +1,21 @@
+<% banners = @site.banners.where(["publish='true' AND date_begin_at <= ? AND date_end_at > ?", Time.now, Time.now]) %>
+<% unless banners.empty? %>
+  <% banners.each do |banner| %> 
+    <% unless banner.repository.nil? %>
+      <% banner.repository.reprocess! %>
+      <figure class="banner">
+
+        <% format = banner.size ? banner.size : "little" %>
+        <%= weby_file_view(banner.repository,
+                           format,
+                           "#{banner.width}",
+                           "#{banner.height}",
+                           {as: 'link', alt: banner.text, title: banner.text }) %>
+
+        <% if check_permission(BannersController, ["toggle_field"]) %>
+          <%= link_to t("unpublish"), toggle_field_site_banner_path(@site, banner, :field => 'publish') %>
+        <% end %>
+      </figure>
+    <% end %>
+  <% end %>
+<% end %>

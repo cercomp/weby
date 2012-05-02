@@ -1,0 +1,27 @@
+<div class="content-module">
+  <section class="main cf">
+    <div class="pull-left"> <%= info_page @sites %> </div>
+    <div class="pull-right"> <%= paginate @sites %> </div>
+
+    <table class='table table-striped'>
+      <thead>
+        <tr>
+          <th class='site-name'><%= sortable 'name', t("name") %></th>
+          <th><%= t"description" %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @sites.each do |site| %>
+          <tr>
+            <td> <%= link_to site.name, site_path(site) %> </td>
+            <td> <%= site.description %> </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <div class="pull-left"> <%= per_page_links @sites %> </div>
+    <div class="pull-right"> <%= paginate @sites %> </div>
+  </section>
+</div>
+

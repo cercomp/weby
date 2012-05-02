@@ -1,0 +1,31 @@
+<div class='well'>
+  <div class='padding-box'>
+    <%= raw flash_message_NEW %>
+    <% if @user.errors.any? %>
+      <div class="alert alert-error">
+        <%= pluralize(@user.errors.count, "") %>
+        <%= t('prohibited_being_saved', count: @user.errors.count) %>:
+        <ul>
+          <% @user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+
+  <%= simple_form_for @user, url: password_reset_path, html: { class: 'form-horizontal' }, method: :put do |f| %>
+    <%= f.input :password, label: t("password_change"), required: true, as: :password %>
+    <%= f.input :password_confirmation, as:  :password %>
+    <div class="form-actions">
+		   <%= f.button :submit, t('submit'), class: 'btn-primary btn-large' %>
+  	</div>
+  <% end %>
+</div>
+
+<div class="login-links">
+  <%= link_to t('help'),
+    'https://softifes.andifes.org.br/projects/weby/wiki/Documenta%C3%A7%C3%A3o_para_usu%C3%A1rios',
+    target: '_blank' %> |
+    <%= link_to t('portal.other'), root_path %> 
+</div>

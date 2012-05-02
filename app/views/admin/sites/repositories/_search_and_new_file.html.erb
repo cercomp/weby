@@ -1,0 +1,22 @@
+<div id="include_image">
+  <div id="search">
+    <center>
+			<%= form_tag request.path, :method => 'get', :remote => true do %>
+				<div class="input">
+					<%= text_field_tag :image_search %>
+					<%= submit_tag t("search_param", param: t('image')), class: "search-button" %>
+				</div>
+      <% end %>
+    </center>
+  </div>
+
+  <div id="repo_new">
+    <div class="contextual">
+      <%= link_to (t"new_param.fem", :param => (t"image")), new_site_repository_path,
+        :remote => true,
+        :class => 'icon icon-add' %>
+    </div>
+    <div id="page">
+    </div>
+  </div>
+</div>
