@@ -24,7 +24,7 @@ module Weby
     
     ActionView::Helpers::RenderingHelper.module_eval do
       def render_component(component, view = 'show', args = {})
-        args[:partial] = "components/#{component.name}/#{view.to_s}"
+        args[:partial] = "#{component.name}/views/#{view.to_s}"
         
         args[:locals] ||= {}
         args[:locals].merge!({ :component => component })
