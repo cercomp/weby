@@ -70,6 +70,7 @@ class StylesController < ApplicationController
 
   def create
     @style = Style.new(params[:style])
+    @style.publish = true
 
     flash[:notice] = t('successfully_created') if @style.save
     respond_with(@style, location:  site_styles_path(@site))
@@ -97,9 +98,10 @@ class StylesController < ApplicationController
   def follow
     @style = Style.find(params[:id])
     @site.follow_styles << @style
-
-    redirect_to site_styles_path(@site)
+    
+    publish
   end
+
 
   def unfollow
     @style = Style.find(params[:id])
