@@ -1,4 +1,4 @@
-class MenuItemsController < ApplicationController
+class Admin::Sites::Menus::MenuItemsController < ApplicationController
   layout :choose_layout
   before_filter :get_current_menu, except: [:new, :create]
   before_filter :require_user

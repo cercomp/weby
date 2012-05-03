@@ -1,5 +1,5 @@
 # coding: utf-8
-class UsersController < ApplicationController
+class Sites::UsersController < ApplicationController
   layout :choose_layout
   before_filter :require_user, :except => [:new, :create, :activate]
   before_filter :check_authorization, :except => [:new, :create, :show, :edit, :update, :activate]

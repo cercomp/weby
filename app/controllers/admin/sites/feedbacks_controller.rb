@@ -1,4 +1,4 @@
-class Sites::FeedbacksController < ApplicationController
+class Admin::Sites::FeedbacksController < ApplicationController
   layout :choose_layout
   before_filter :require_user, :except => [:new, :create, :sent, :get_groups]
   before_filter :check_authorization, :except => [:new, :create, :sent, :get_groups]

@@ -1,4 +1,4 @@
-class BannersController < ApplicationController
+class Admin::Sites::BannersController < ApplicationController
   layout :choose_layout
   before_filter :require_user
   before_filter :check_authorization

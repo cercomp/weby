@@ -1,5 +1,5 @@
 # coding: utf-8
-class PasswordResetsController < ApplicationController
+class Admin::PasswordResetsController < ApplicationController
   layout 'user_sessions'
   before_filter :load_user_using_perishable_token, :only => [:edit, :update]
   before_filter :require_no_user

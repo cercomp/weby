@@ -1,4 +1,4 @@
-class PagesController < ApplicationController
+class Sites::PagesController < ApplicationController
   layout :choose_layout
 
   before_filter :require_user, only: [:new, :edit, :update, :destroy, :sort, :toggle_field]

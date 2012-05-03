@@ -1,4 +1,4 @@
-class ComponentsController < ApplicationController
+class Admin::Sites::ComponentsController < ApplicationController
   layout :choose_layout
   before_filter :require_user
   before_filter :check_authorization

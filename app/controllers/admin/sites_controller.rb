@@ -1,4 +1,4 @@
-class SitesController < ApplicationController
+class Admin::SitesController < ApplicationController
   layout :choose_layout, except: :index
   before_filter :require_user, :only => [:new, :create, :edit, :update, :destroy]
   before_filter :check_authorization, :except => [:show, :index]

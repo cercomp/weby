@@ -107,7 +107,7 @@
               </li>
             <% end %>
       
-            <% if check_permission(RolesController, [:index]) %>
+            <% if check_permission(Admin::Sites::RolesController, [:index]) %>
               <li> <%= link_to (t"roles_permissions"), site_roles_path(@site) %> </li>
             <% end %>
       
@@ -136,32 +136,32 @@
       <% if(not(@site) and current_user) %>
         <% if check_permission(AdminController, [:index]) %>
           <li class='sub'>
-            <%= link_to t("admin.one"), admin_index_path() %>
+            <%= link_to t("admin.one"), admin_site_path() %>
             <menu>
               <li> <%= link_to (t"site.other"), sites_path %>
                 <% if check_permission(SitesController, ["new"]) %>
                   <menu>
                     <li>
-                      <%= link_to t("new.masc"), new_site_path, :class => 'icon icon-add' %>
+                      <%= link_to t("new.masc"), new_admin_site_path, :class => 'icon icon-add' %>
                     </li>
                   </menu>
                 <% end %>
               </li>
             
-              <% if check_permission(UsersController, ['index']) %>
-                <li> <%= link_to (t"user.other"), @site ? site_users_path : users_path %>
-                  <% if check_permission(UsersController, ["new"]) %>
+              <% if check_permission(Admin::Sites::UsersController, ['index']) %>
+                <li> <%= link_to (t"user.other"), @site ? admin_sites_users_path : admin_users_path %>
+                  <% if check_permission(Admin::Sites::UsersController, ["new"]) %>
                     <menu>
                       <li>
-                        <%= link_to t("new.masc"), new_user_path, :class => 'icon icon-add' %>
+                        <%= link_to t("new.masc"), new_admin_user_path, :class => 'icon icon-add' %>
                       </li>
                     </menu>
                   <% end %>
                 </li>
               <% end %>
             
-              <% if check_permission(RolesController, [:index]) %>
-                <li> <%= link_to (t"roles_permissions"), roles_path %> </li>
+              <% if check_permission(Admin::RolesController, [:index]) %>
+                <li> <%= link_to (t"roles_permissions"), admin_roles_path %> </li>
               <% end %>
             </menu>
           </li>
@@ -184,11 +184,11 @@
   <nav class="top_menu right">
     <menu>
       <% if(@site.try(:id) and current_user) %>
-        <li> <%= link_to(current_user.first_name.titleize, site_user_path(@site, current_user)) %> </li>
+        <li> <%= link_to(current_user.first_name.titleize, admin_site_user_path(@site, current_user)) %> </li>
       <% end %>
 
       <% if(not(@site) and current_user) %>
-        <li> <%= link_to(current_user.first_name.titleize, user_path(current_user)) %> </li>
+        <li> <%= link_to(current_user.first_name.titleize, admin_user_path(current_user)) %> </li>
       <% end %>
 
       <% if current_user %>
