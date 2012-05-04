@@ -337,7 +337,7 @@ pt-BR:
   read_more: "Leia mais..."
   redirect: "Página Inexistente."
   regional: "Regional"
-  register: "Cadastro"
+  register: "Cadastrar"
   registered:
     fem: "Cadastrada"
     masc: "Cadastrado"

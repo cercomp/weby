@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   layout :choose_layout
   before_filter :require_user, :except => [:new, :create, :activate]
   before_filter :check_authorization, :except => [:new, :create, :show, :edit, :update, :activate]
-	before_filter :get_theme
+  before_filter :get_theme
   respond_to :html, :xml
   helper_method :sort_column
 
@@ -31,13 +31,13 @@ class UsersController < ApplicationController
       @user = User.find(params[:user_id]) if params[:user_id]
     else
       # Seleciona os todos os usuários que não são administradores
-			@user = User.no_admin
+      @user = User.no_admin
       # Usuários que possuem papel global e não são administradores
-			@site_users = User.global_role - User.admin
+      @site_users = User.global_role - User.admin
       # Todos os usuários menos os que não são administradores e possuem papeis globais
-			@users_unroled = User.all - (User.admin + User.global_role)
+      @users_unroled = User.all - (User.admin + User.global_role)
       # Busca os papéis globais
-			@roles = Role.globals
+      @roles = Role.globals
       # Quando a edição dos papeis é solicitada
       @user = User.find(params[:user_id]) if params[:user_id]
     end
@@ -52,15 +52,15 @@ class UsersController < ApplicationController
       user = User.find(user_id)
       # Limpa os papeis do usuário no site
       user.role_ids.each do |role_id|
-				if @site and @site.roles.map{|r| r.id }.index(role_id)
-					user.role_ids -= [role_id]
-				end
+        if @site and @site.roles.map{|r| r.id }.index(role_id)
+          user.role_ids -= [role_id]
+        end
       end
       
       # Se for global, limpa os papeis globais
       unless @site
-			  user.roles.where(site_id: nil).each{|r| user.role_ids -= [r.id] }
-		  end
+        user.roles.where(site_id: nil).each{|r| user.role_ids -= [r.id] }
+      end
       # NOTE Talvez seja melhor usar (user.role_ids += params[:role_ids]).uniq
       # assim removemos o each logo a cima
       user.role_ids += params[:role_ids]
@@ -93,7 +93,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       @user.send_activation_instructions!(request.env["SERVER_NAME"])
-      flash[:notice] = t("create_account_successful")
+      flash[:success] = t("create_account_successful")
       redirect_to current_user ? user_path(@user) : login_path
     else
       flash[:error] = t("problem_create_account")
@@ -168,14 +168,14 @@ class UsersController < ApplicationController
   def sort_column
     User.column_names.include?(params[:sort]) ? params[:sort] : 'id'
   end
-	# Cria uma variável themes com base nos temas disponíveis
-	def get_theme
+  # Cria uma variável themes com base nos temas disponíveis
+  def get_theme
     files = []
     for file in Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*")]
       files << file.split("/")[-1].split(".")[0]
     end
     @themes = files
-	end
+  end
 
   def user_params
     params[:user].slice(:login, :email, :password, :password_confirmation, :first_name, :last_name, :phone, :mobile, :theme)
