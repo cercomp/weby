@@ -98,6 +98,7 @@ pt-BR:
     fem: "Desabilitada"
     masc: "Desabilitada"
   desc_use_menu_dropdown: "Deseja que os menus sejam desdobráveis?"
+  documentation: "Documentação"
 
 #---E---#
   edit: "Editar"
@@ -336,7 +337,7 @@ pt-BR:
   read_more: "Leia mais..."
   redirect: "Página Inexistente."
   regional: "Regional"
-  register: "Cadastro"
+  register: "Cadastrar"
   registered:
     fem: "Cadastrada"
     masc: "Cadastrado"

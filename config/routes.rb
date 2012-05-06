@@ -3,54 +3,33 @@ Weby::Application.routes.draw do
   # TODO: mudar de onde era o admin para seu respectivo controller, mudou para namespace
   # TODO: Verificar se attachments é necessário para o tinymce, se não remover
   
-  # refactored
   root :to => "sites#index"
   
   resources :user_sessions
   
   resources :sites,
     only: [:index, :show] do
-    resources :banners,
-      controller: 'sites/banners', 
-      only: [:index, :show]
-    resources :components, 
-      controller: 'sites/components', 
-      only: [:index, :show]
-    resources :groups, 
-      controller: 'sites/groups', 
-      only: [:index, :show]
+
     resources :pages, 
       controller: 'sites/pages', 
-      only: [:index, :show]
-    resources :repositories, 
-      controller: 'sites/repositories', 
-      only: [:index, :show]
-    resources :rights, 
-      controller: 'sites/rights', 
-      only: [:index, :show]
-    resources :roles, 
-      controller: 'sites/roles', 
-      only: [:index, :show]
-    resources :styles, 
-      controller: 'sites/styles', 
-      only: [:index, :show]
-    resources :users, 
-      controller: 'sites/users', 
-      only: [:index, :show]
+      only: [:index, :show] do
+      member do 
+        put :toggle_field
+      end 
+      collection do
+        get :published, :fronts
+        post :sort
+      end
+    end
+
     resources :feedbacks, 
       controller: 'sites/feedbacks', 
-      only: [:index, :show] do
+      only: [:new, :create] do
       collection do
         get :sent
       end
     end
-    resources :menus, 
-      controller: 'sites/menus', 
-      only: [:index, :show] do
-      resources :menu_items, 
-        controller: 'sites/menus/menu_items', 
-        only: [:index, :show]
-    end
+
     namespace :admin, module: 'sites/admin' do
       resources :rights
       resources :feedbacks
@@ -137,75 +116,6 @@ Weby::Application.routes.draw do
       collection do
         post :sort
       end
-      #resources :rights, 
-      #  controller: 'sites/rights'
-      #resources :feedbacks, 
-      #  controller: 'sites/feedbacks'
-      #resources :groups, 
-      #  controller: 'sites/groups'
-      #resources :banners,
-      #  controller: 'sites/banners' do
-      #  member do 
-      #    put :toggle_field
-      #  end 
-      #end
-      #resources :components,
-      #  controller: 'sites/components' do
-      #  member do
-      #    put :toggle_field
-      #  end
-      #  collection do
-      #    post :sort
-      #  end
-      #end
-      #resources :menus,
-      #  controller: 'sites/menus' do
-      #  resources :menu_items,
-      #    controller: 'sites/menus/menu_items',
-      #    except: :show do
-      #    collection do
-      #      post :change_order, :change_menu
-      #    end
-      #  end
-      #end
-      #resources :pages, 
-      #  controller: 'sites/pages' do
-      #  member do 
-      #    put :toggle_field
-      #  end 
-      #  collection do
-      #    get :published, :fronts
-      #    post :sort
-      #  end
-      #end
-      #resources :repositories, 
-      #  controller: 'sites/repositories' do
-      #  collection do
-      #    get :manage
-      #  end
-      #end
-      #resources :roles, 
-      #  controller: 'sites/roles' do
-      #  collection do
-      #    put :index
-      #  end
-      #end
-      #resources :styles, 
-      #  controller: 'sites/styles' do
-      #  member do
-      #    get :copy, :follow, :unfollow, :publish, :unpublish
-      #  end
-      #end
-      #resources :users, 
-      #  controller: 'sites/users' do
-      #  collection do
-      #    get :manage_roles
-      #    post :change_roles
-      #  end
-      #  member do 
-      #    put :toggle_field
-      #  end 
-      #end
     end
   end
 

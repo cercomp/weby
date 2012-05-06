@@ -20,7 +20,7 @@
     <li><%= link_to t("dashboard"), admin_sites_path() if check_permission(AdminController, [:index]) %></li>
     <li>
       <%= link_to t('help'),
-        'https://softifes.andifes.org.br/projects/weby/wiki/Documenta%C3%A7%C3%A3o_para_usu%C3%A1rios',
+        (Setting.get(:help_site) || "/help"),
         target: '_blank' %>
     </li>
     <li><%= link_to t('about'), '/about', target: '_blank' %></li>

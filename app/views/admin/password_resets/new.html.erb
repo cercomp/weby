@@ -1,6 +1,6 @@
 <div class='well'>
   <div class='padding-box'>
-    <%= raw flash_message_NEW %>
+    <%= raw flash_message("alert alert-") %>
     <div class="alert alert-info">
       <%= t("fill_email_form") %>
     </div>
@@ -23,7 +23,7 @@
 
 <div class="login-links">
   <%= link_to t('help'),
-    'https://softifes.andifes.org.br/projects/weby/wiki/Documenta%C3%A7%C3%A3o_para_usu%C3%A1rios',
+    (Setting.get(:help_site) || "/help"),
     target: '_blank' %> |
   <%= link_to t('portal.other'), root_path %> 
 </div>

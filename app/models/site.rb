@@ -50,7 +50,7 @@ class Site < ActiveRecord::Base
     dependent: :destroy,
     class_name: "Style"
 
-  has_many :components
+  has_many :components, order: 'place_holder, position asc'
 
   belongs_to :repository, :foreign_key => "top_banner_id"
   has_many :repositories

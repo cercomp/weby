@@ -17,31 +17,15 @@
       <th></th>
     </thead>
 
+    <% places_holder.each do |place_holder| %>
+      <% components_per_holder = @components.select{|component| component.place_holder == place_holder} %>
+      <%= render partial: 'components', locals: {present: true, place_holder: place_holder, components_per_holder: components_per_holder} %>
+      <% @components = @components - components_per_holder %>
+    <% end %>
+
+    <%# Se sobrou algum component com placeholder que não está no layout atual %>
     <% @components.group_by(&:place_holder).sort.each do |place_holder, components| %>
-      <thead>
-        <tr>
-          <td colspan="99"><i><%= t(place_holder, scope: 'components.pos') %></i></td>
-        </tr>
-      </thead>
-
-      <tbody class="placeholder-group">
-      <% components.each do |component| %>
-        <% component = Weby::Components.factory(component) %>
-        <tr id="sort_sites_component_<%= component.id %>" class="place-<%=  "#{place_holder}" -%>">
-          <td><%= component.id %></td>
-          <td><%= t("components.#{component.name}.name") %></td>
-          <td><%= component.category rescue '--' %></td>
-          <td align="center"><%= raw toggle_field(component, "publish") %></td>
-          <td>
-            <%= raw make_menu(component, :except => "show") %>
-            <% if check_permission(ComponentsController, 'sort') %>
-              <span class='handle icon icon-drag'><%= t("move") %></span>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-      </tbody>
-
+      <%= render partial: 'components', locals: {present: false, place_holder: place_holder, components_per_holder: components} %>
     <% end %>
   </table>
   <%= javascript_tag do %>

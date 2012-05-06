@@ -6,10 +6,10 @@ module ComponentsHelper
   #
   def places_holder
     places = {
-      'weby' => ['left', 'right', 'top', 'bottom', 'home', 'first_place'],
+      'weby' => ['first_place', 'top', 'left', 'right', 'home', 'bottom'],
       'this2' => ['first_place', 'top', 'left', 'home', 'right', 'bottom'],
-      'teachers' => ['first_place', 'top', 'left', 'home', 'bottom'],
-      'weby_doc' => ['home']
+      'teacher' => ['first_place', 'top', 'left', 'home', 'bottom'],
+      'weby_doc' => ['first_place', 'top' ,'home','bottom']
     }
 
     places[@site.theme] || []

@@ -1,6 +1,6 @@
 <div class='well'>
   <div class='padding-box'>
-    <%= raw flash_message_NEW %>
+    <%= raw flash_message("alert alert-") %>
     <% if @user.errors.any? %>
       <div class="alert alert-error">
         <%= pluralize(@user.errors.count, "") %>
@@ -25,7 +25,7 @@
 
 <div class="login-links">
   <%= link_to t('help'),
-    'https://softifes.andifes.org.br/projects/weby/wiki/Documenta%C3%A7%C3%A3o_para_usu%C3%A1rios',
+    (Setting.get(:help_site) || "/help"),
     target: '_blank' %> |
     <%= link_to t('portal.other'), root_path %> 
 </div>

@@ -2,7 +2,7 @@ require 'weby/components'
 
 # Adiciona views dos componentes no path de views da aplicação
 ActionController::Base.view_paths +=
-  Dir[Rails.root.join('lib', 'weby', 'components', '**', 'views')]
+  Dir[Rails.root.join('lib', 'weby', 'components')]
 
 # Adiciona locales dos componentes no path de locales
 Weby::Application.config.i18n.load_path +=

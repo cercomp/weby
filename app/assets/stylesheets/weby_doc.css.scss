@@ -209,7 +209,14 @@ form.search
   background-image: none;
 }
 
-.title 
+header .title 
 {
   padding-top: 40px;
   font-size: 28px; }
+
+.top_menu menu > li > menu { top: 0; }
+[class^="icon-"], [class*=" icon-"] { width: auto; height: auto; line-height: 18px; }
+
+article.page-show > header, article.page-show > summary {
+  display: none;
+}
