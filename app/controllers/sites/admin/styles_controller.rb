@@ -1,4 +1,4 @@
-class Admin::Sites::StylesController < ApplicationController
+class Sites::Admin::StylesController < ApplicationController
   layout :choose_layout
 
   before_filter :require_user

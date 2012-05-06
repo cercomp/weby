@@ -51,6 +51,66 @@ Weby::Application.routes.draw do
         controller: 'sites/menus/menu_items', 
         only: [:index, :show]
     end
+    namespace :admin, module: 'sites/admin' do
+      resources :rights
+      resources :feedbacks
+      resources :groups
+      resources :banners do
+        member do 
+          put :toggle_field
+        end 
+      end
+      resources :components do
+        member do
+          put :toggle_field
+        end
+        collection do
+          post :sort
+        end
+      end
+      resources :menus do
+        resources :menu_items,
+          controller: 'menus/menu_items', 
+          except: :show do
+          collection do
+            post :change_order, :change_menu
+          end
+        end
+      end
+      resources :pages do
+        member do 
+          put :toggle_field
+        end 
+        collection do
+          get :published, :fronts
+          post :sort
+        end
+      end
+      resources :repositories do
+        collection do
+          get :manage
+        end
+      end
+      resources :roles do
+        collection do
+          put :index
+        end
+      end
+      resources :styles do
+        member do
+          get :copy, :follow, :unfollow, :publish, :unpublish
+        end
+      end
+      resources :users do 
+        collection do
+          get :manage_roles
+          post :change_roles
+        end
+        member do 
+          put :toggle_field
+        end 
+      end
+    end
   end
   
   namespace :admin do
@@ -77,75 +137,75 @@ Weby::Application.routes.draw do
       collection do
         post :sort
       end
-      resources :rights, 
-        controller: 'sites/rights'
-      resources :feedbacks, 
-        controller: 'sites/feedbacks'
-      resources :groups, 
-        controller: 'sites/groups'
-      resources :banners,
-        controller: 'sites/banners' do
-        member do 
-          put :toggle_field
-        end 
-      end
-      resources :components,
-        controller: 'sites/components' do
-        member do
-          put :toggle_field
-        end
-        collection do
-          post :sort
-        end
-      end
-      resources :menus,
-        controller: 'sites/menus' do
-        resources :menu_items,
-          controller: 'sites/menus/menu_items',
-          except: :show do
-          collection do
-            post :change_order, :change_menu
-          end
-        end
-      end
-      resources :pages, 
-        controller: 'sites/pages' do
-        member do 
-          put :toggle_field
-        end 
-        collection do
-          get :published, :fronts
-          post :sort
-        end
-      end
-      resources :repositories, 
-        controller: 'sites/repositories' do
-        collection do
-          get :manage
-        end
-      end
-      resources :roles, 
-        controller: 'sites/roles' do
-        collection do
-          put :index
-        end
-      end
-      resources :styles, 
-        controller: 'sites/styles' do
-        member do
-          get :copy, :follow, :unfollow, :publish, :unpublish
-        end
-      end
-      resources :users, 
-        controller: 'sites/users' do
-        collection do
-          get :manage_roles
-          post :change_roles
-        end
-        member do 
-          put :toggle_field
-        end 
-      end
+      #resources :rights, 
+      #  controller: 'sites/rights'
+      #resources :feedbacks, 
+      #  controller: 'sites/feedbacks'
+      #resources :groups, 
+      #  controller: 'sites/groups'
+      #resources :banners,
+      #  controller: 'sites/banners' do
+      #  member do 
+      #    put :toggle_field
+      #  end 
+      #end
+      #resources :components,
+      #  controller: 'sites/components' do
+      #  member do
+      #    put :toggle_field
+      #  end
+      #  collection do
+      #    post :sort
+      #  end
+      #end
+      #resources :menus,
+      #  controller: 'sites/menus' do
+      #  resources :menu_items,
+      #    controller: 'sites/menus/menu_items',
+      #    except: :show do
+      #    collection do
+      #      post :change_order, :change_menu
+      #    end
+      #  end
+      #end
+      #resources :pages, 
+      #  controller: 'sites/pages' do
+      #  member do 
+      #    put :toggle_field
+      #  end 
+      #  collection do
+      #    get :published, :fronts
+      #    post :sort
+      #  end
+      #end
+      #resources :repositories, 
+      #  controller: 'sites/repositories' do
+      #  collection do
+      #    get :manage
+      #  end
+      #end
+      #resources :roles, 
+      #  controller: 'sites/roles' do
+      #  collection do
+      #    put :index
+      #  end
+      #end
+      #resources :styles, 
+      #  controller: 'sites/styles' do
+      #  member do
+      #    get :copy, :follow, :unfollow, :publish, :unpublish
+      #  end
+      #end
+      #resources :users, 
+      #  controller: 'sites/users' do
+      #  collection do
+      #    get :manage_roles
+      #    post :change_roles
+      #  end
+      #  member do 
+      #    put :toggle_field
+      #  end 
+      #end
     end
   end
 

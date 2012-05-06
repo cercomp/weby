@@ -1,5 +1,5 @@
 # encoding: UTF-8
-class Admin::Sites::RightsController < ApplicationController
+class Sites::Admin::RightsController < ApplicationController
   layout :choose_layout
   before_filter :require_user
   before_filter :is_admin, :except => [:index, :show]
