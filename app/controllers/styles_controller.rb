@@ -25,7 +25,7 @@ class StylesController < ApplicationController
   # FIXME: duplicated code
   def own_styles
     styles = @site.own_styles.scoped.
-      order(:id).page(params[:page_own_styles]).per(5)
+      order(:position).page(params[:page_own_styles]).per(5)
 
     search(styles, :own) || styles
   end
@@ -139,6 +139,33 @@ class StylesController < ApplicationController
     end
 
     redirect_to site_styles_path(@site)
+  end
+  
+  def sort
+    @ch_pos = @site.own_styles.find(params[:id_moved], :readonly => false)
+    increment = 1
+    #Caso foi movido para o fim da lista ou o fim de uma pagina(quando paginado)
+    if(params[:id_after] == '0')
+      @before = @site.own_styles.find(params[:id_before])
+      condition = "position < #{@ch_pos.position} AND position >= #{@before.position}"
+      new_pos = @before.position
+    else
+      @after = @site.own_styles.find(params[:id_after])
+      #Caso foi movido de cima pra baixo
+      if(@ch_pos.position > @after.position)
+        condition = "position < #{@ch_pos.position} AND position > #{@after.position}"
+        new_pos = @after.position+1
+        #Caso foi movido de baixo pra cima
+      else
+        increment = -1
+        condition = "position > #{@ch_pos.position} AND position <= #{@after.position}"
+        new_pos = @after.position
+      end
+    end
+    @site.own_styles.where(condition).update_all("position = position + (#{increment})")
+    @ch_pos.update_attribute(:position, new_pos)
+    p @ch_pos.attributes
+    render :nothing => true
   end
 
   private
