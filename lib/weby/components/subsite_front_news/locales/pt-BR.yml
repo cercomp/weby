@@ -1,7 +1,7 @@
 pt-BR:
   components:
     subsite_front_news:
-      name: "Notícias Capas de Sites Relacionados"
+      name: "Notícias Capas de Subsites"
       quant: "Quantidade de notícias na página inicial"
   activerecord:
     attributes:
