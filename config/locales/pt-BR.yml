@@ -226,6 +226,7 @@ pt-BR:
 
 #---M---#
   main: "Principal"
+  main_site: "Site Principal"
   manage_roles: "Gerenciar Papéis"
   mark_to_destroy: "Marcar para Remoção"
   medium: "Médio"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120507131351) do
+ActiveRecord::Schema.define(:version => 20120422154626) do
 
   create_table "banners", :force => true do |t|
     t.datetime "date_begin_at"
@@ -222,8 +222,8 @@ ActiveRecord::Schema.define(:version => 20120507131351) do
 
   create_table "sites", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",                                          :null => false
-    t.datetime "updated_at",                                          :null => false
+    t.datetime "created_at",                                                        :null => false
+    t.datetime "updated_at",                                                        :null => false
     t.string   "url"
     t.text     "description"
     t.integer  "top_banner_id"
@@ -232,10 +232,12 @@ ActiveRecord::Schema.define(:version => 20120507131351) do
     t.integer  "body_width"
     t.text     "footer"
     t.string   "theme"
-    t.boolean  "view_desc_pages",   :default => false
-    t.string   "per_page",          :default => "5, 15, 30, 50, 100"
-    t.integer  "per_page_default",  :default => 25
+    t.boolean  "view_desc_pages",                 :default => false
+    t.string   "per_page",                        :default => "5, 15, 30, 50, 100"
+    t.integer  "per_page_default",                :default => 25
     t.boolean  "menu_dropdown"
+    t.string   "title",             :limit => 50
+    t.integer  "parent_id"
   end
 
   create_table "sites_menus", :force => true do |t|

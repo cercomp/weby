@@ -224,6 +224,7 @@ en:
 
 #---M---#
   main: "Main"
+  main_site: "Main Site"
   manage_roles: "Manage Roles"
   mark_to_destroy: "Mark to Destroy"
   medium: "Medium"

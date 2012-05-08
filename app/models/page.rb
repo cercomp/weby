@@ -1,6 +1,8 @@
 class Page < ActiveRecord::Base
   self.inheritance_column = nil
 
+  acts_as_multisite
+
   weby_content_i18n :title, :summary, :text, required: :title
 
   EVENT_TYPES = %w[regional national international]

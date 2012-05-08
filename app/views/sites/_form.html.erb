@@ -1,26 +1,19 @@
 <%= simple_form_for @site do |f| %>
-  <% if @site.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@site.errors.count, "") %> <%= t"prohibited_being_saved", :count => @site.errors.count %>:</h2>
-      <ul>
-        <% @site.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= f.show_errors %>
 
   <%= f.input :body_width, :label => t("body_width"), :hint => (t"example_param", :param => "960") %>
   <%= f.input :name, :label => t("name"), :hint => t("field_required") %>
   <%= f.input :url, :label => t("url"), :hint =>  (t("field_required") + " " + t("example_param", :param => "http://site.com")), :placeholder => "http://"%>
+  <%= f.input :parent_id, :collection => main_sites_list.collect{|s| [s.name ,s.id]}, :label => t('main_site') %>
   <%= f.input :per_page, :label => t("itens_per_page"), :hint => (t"example_param", :param => "15, 30, 50, 100, 250, 500") %>
   <%= f.input :per_page_default, :label => t("per_page_default"), :required => true %>
+  <%= f.input :title, :label => t("title") %>
   <%= f.input :description, :label => t("description"), :input_html => {:rows => 8}, :hint => t("site_comments"), :as => :text %>
   <%= f.input :footer, :label => t("footer"), :input_html => {:class => :mceSimple, :value => t("footer_text"), :rows =>8}, :as => :text%>
   <%= f.input :view_desc_pages, :label => t("view_desc_pages"), :hint => t("view_desc_pages_help"), :as => :boolean %>
   <%= f.input :menu_dropdown, :label => t("use_menu_dropdown"), :hint => t("desc_use_menu_dropdown"), :as => :boolean %>
   <%= f.input :theme, :collection => @themes.collect{|p| [ p , p]}, :selected => "this2", :label => t('layout') %>
-
+  
   <%= f.association :locales,
     :as => :check_boxes,
     :collection => Locale.all.map{|l| [image_tag("flags/24/#{l.flag}", :title=>t(l.name)), l.id] },

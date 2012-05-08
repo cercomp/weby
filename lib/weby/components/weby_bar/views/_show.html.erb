@@ -187,7 +187,7 @@
         <li> <%= link_to(current_user.first_name.titleize, site_user_path(@site, current_user)) %> </li>
       <% end %>
 
-      <% if(not(@site) and current_user) %>
+      <% if((not(@site) or @site.new_record?) and current_user) %>
         <li> <%= link_to(current_user.first_name.titleize, user_path(current_user)) %> </li>
       <% end %>
 
