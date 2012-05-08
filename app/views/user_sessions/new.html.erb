@@ -1,6 +1,6 @@
 <div class='well'>
   <div class='padding-box'>
-    <%= raw flash_message_NEW %>
+    <%= raw flash_message("alert alert-") %>
     <% if @user_session.errors.any? %>
       <div class="alert alert-error">
         <%= pluralize(@user_session.errors.count,"") %>
@@ -27,6 +27,7 @@
 
 <div class="login-links">
   <%= link_to t('forgot_password'), new_password_reset_path %> |
+  <%= link_to( t("register"), new_user_path ) %>  |
   <%= link_to t('help'),
     (Setting.get(:help_site) || "/help"),
     target: '_blank' %> |
