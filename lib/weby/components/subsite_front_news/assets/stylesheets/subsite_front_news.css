@@ -15,12 +15,14 @@ section.subsites_pages > h2{
 section.subsites_pages > li{
     border-bottom: 1px dotted #DDD;
     padding-left: 5px;
+    text-align: left;
 }
 
 section.subsites_pages > li h2{
     margin: 10px 0px;
     line-height: 100%;
     font-size: 140%;
+    text-align: left;
 }
 
 section.subsites_pages a img {
