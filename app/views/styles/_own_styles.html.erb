@@ -30,7 +30,6 @@
         </tbody>
       </table>
 
-      <%= paginate styles, param_name: :page_own_styles, remote: true, params: { style_type: 'own' } %>
     <% else %>
       <p class="empty"> <%= t('no_own_styles') %> </p>
     <% end %>

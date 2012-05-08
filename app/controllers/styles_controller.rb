@@ -6,6 +6,8 @@ class StylesController < ApplicationController
   before_filter :verify_ownership, only: [:edit, :update, :destroy]
 
   respond_to :html, :xml, :js
+  
+  helper_method :sort_column, :sort_direction
 
   def index
     return only_selected_style if params[:style_type]
@@ -25,7 +27,7 @@ class StylesController < ApplicationController
   # FIXME: duplicated code
   def own_styles
     styles = @site.own_styles.scoped.
-      order(:position).page(params[:page_own_styles]).per(5)
+      order('position desc').page(params[:page_own_styles])
 
     search(styles, :own) || styles
   end
@@ -33,8 +35,9 @@ class StylesController < ApplicationController
 
   # FIXME: duplicated code
   def follow_styles
+    params[:style_type] = 'follow'
     styles = @site.follow_styles.scoped.
-      order(:id).page(params[:page_follow_styles]).per(5)
+      order(sort_column + " " + sort_direction).page(params[:page_follow_styles]).per(5)
 
     search(styles, :follow) || styles
   end
@@ -55,6 +58,16 @@ class StylesController < ApplicationController
     end
   end
   private :search
+  
+  def sort_column
+    params[:sort] || 'styles.name'
+  end
+  private :sort_column
+  
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
+  private :sort_direction
 
   def show
     @style = Style.find(params[:id])
@@ -71,6 +84,7 @@ class StylesController < ApplicationController
   def create
     @style = Style.new(params[:style])
     @style.publish = true
+    @style.position = @site.own_styles.count + 1
 
     flash[:notice] = t('successfully_created') if @style.save
     respond_with(@style, location:  site_styles_path(@site))
@@ -145,6 +159,7 @@ class StylesController < ApplicationController
     @ch_pos = @site.own_styles.find(params[:id_moved], :readonly => false)
     increment = 1
     #Caso foi movido para o fim da lista ou o fim de uma pagina(quando paginado)
+    p params
     if(params[:id_after] == '0')
       @before = @site.own_styles.find(params[:id_before])
       condition = "position < #{@ch_pos.position} AND position >= #{@before.position}"
@@ -164,7 +179,6 @@ class StylesController < ApplicationController
     end
     @site.own_styles.where(condition).update_all("position = position + (#{increment})")
     @ch_pos.update_attribute(:position, new_pos)
-    p @ch_pos.attributes
     render :nothing => true
   end
 
