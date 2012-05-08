@@ -96,6 +96,11 @@ section#content {
     & > a:first-child {
       float: right;
     }
+
+    .event {
+      padding-left: 5px;
+      border-left: 1px solid #CCC;
+    }
   }
 
 

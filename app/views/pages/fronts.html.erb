@@ -1,4 +1,5 @@
-<h2><%= t"covers"  %></h2>
+<fieldset>
+  <legend><%= t"covers"  %></legend>
 
 <div class="contextual">
   <% with_permission(action: :new) do %>
@@ -45,7 +46,7 @@
     </tbody>
   </table>
 </div>
-
+</fieldset>
 <%= javascript_tag do %>
   window.onload=function(){
     $(document).ready(function() {

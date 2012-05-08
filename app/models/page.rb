@@ -14,6 +14,8 @@ class Page < ActiveRecord::Base
   scope :news, where(type: 'News')
   scope :events, where(type: 'Event')
 
+  scope :upcoming_events, proc{ where(" (event_begin >= :time OR event_end >= :time)", time: Time.now).events }
+
   scope :front, where(front: true)
   scope :no_front, where(front: false)
 

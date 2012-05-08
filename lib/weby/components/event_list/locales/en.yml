@@ -1,0 +1,9 @@
+en:
+  components:
+    event_list:
+      name: "Event List"
+      quant: "Number of events to show on front page"
+  activerecord:
+    attributes:
+      event_list_component:
+        quant: "Number of events to show on front page"

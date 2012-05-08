@@ -339,7 +339,7 @@ pt-BR:
   read_more: "Leia mais..."
   redirect: "Página Inexistente."
   regional: "Regional"
-  register: "Cadastrar"
+  register: "Cadastro"
   registered:
     fem: "Cadastrada"
     masc: "Cadastrado"
@@ -383,6 +383,7 @@ pt-BR:
   send_date: "Data de envio"
   show: "Mostrar"
   show_hide_image_list: "Mostrar/Esconder lista de Imagens"
+  sign_up: "Cadastrar"
   side: "Lado"
   site:
     one: "Sítio"
@@ -503,6 +504,12 @@ pt-BR:
       default: "%a, %d-%m-%Y %H:%M:%S %z"
       short: "%d-%m-%Y %H:%M"
       long: "%d de %B de %Y às %H:%M"
+      event_date_short: "%d %B"
+      event_date_full: "%d %B %Y"
+      event_period_short: "%{iniday} a %{finday} %B"
+      event_period_full: "%{iniday} a %{finday} %B %Y"
+      event_hour: "às %kh"
+    period_separator: "a"
     am: "am"
     pm: "pm"
 
