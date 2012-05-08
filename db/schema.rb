@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120422154626) do
+ActiveRecord::Schema.define(:version => 20120507131351) do
 
   create_table "banners", :force => true do |t|
     t.datetime "date_begin_at"
@@ -270,6 +270,7 @@ ActiveRecord::Schema.define(:version => 20120422154626) do
     t.datetime "updated_at", :null => false
     t.boolean  "publish"
     t.integer  "owner_id"
+    t.integer  "position"
   end
 
   create_table "taggings", :force => true do |t|

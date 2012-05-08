@@ -70,6 +70,9 @@ Weby::Application.routes.draw do
       member do
         get :copy, :follow, :unfollow, :publish, :unpublish
       end
+      collection do
+        post :sort
+      end
     end
     resources :roles do
       collection do
