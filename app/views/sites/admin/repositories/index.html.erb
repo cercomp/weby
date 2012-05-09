@@ -1,0 +1,18 @@
+<fieldset>
+  <legend><%= t"archive.other" %></legend>
+  <div class="contextual">
+    <%= link_to (t"new_param.masc", :param => (t"archive.one")), new_site_admin_repository_path, :class => 'icon icon-add' %>
+  </div>
+  <center>
+    <%= form_tag request.path, :method => 'get', :remote => true do %>
+      <%= text_field_tag :search %>
+      <%= select_tag( "mime_type[]", grouped_options_for_select(load_mime_types(@site)), {include_blank: t('all')} ) %>
+      <%= link_to_function(image_tag("add_off.png"), "toogle_select_multiple($('#mime_type_'));") %>
+			<%= submit_tag t("search"), :class => 'search-button' %>
+    <% end %>
+  </center>
+
+  <div id="repo_list">
+    <%= render :partial => 'repositories_as_boxes' %>
+  </div>
+</fieldset>

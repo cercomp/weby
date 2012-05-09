@@ -1,6 +1,5 @@
 # coding: utf-8
 class Notifier < ActionMailer::Base
-
  def password_reset_instructions(user, host)
     default_url_options[:host] = host
     subject = "[Weby] Instruções de Recuperação de Senha"

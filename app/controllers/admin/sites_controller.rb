@@ -1,5 +1,4 @@
 class Admin::SitesController < ApplicationController
-  layout :choose_layout, except: :index
   before_filter :require_user, :only => [:new, :create, :edit, :update, :destroy]
   before_filter :check_authorization, :except => [:show, :index]
   respond_to :html, :xml, :js
@@ -74,7 +73,7 @@ class Admin::SitesController < ApplicationController
         end
       end
 
-      redirect_to site_components_path(@site)
+      redirect_to site_admin_components_path(@site)
     else
       @themes = []
       (Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*.erb")] - Dir[File.join(Rails.root + "app/views/layouts/application.html.erb")]).each do |file|
@@ -89,7 +88,7 @@ class Admin::SitesController < ApplicationController
     if @site.update_attributes(params[:site])
       flash[:notice] = t"successfully_updated"
     end
-    redirect_to edit_site_admin_path(@site, @site)
+    redirect_to edit_admin_site_path(@site)
   end
 
   def destroy

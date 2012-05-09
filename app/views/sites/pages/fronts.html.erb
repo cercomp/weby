@@ -2,7 +2,7 @@
 
 <div class="contextual">
   <% with_permission(action: :new) do %>
-    <%= link_to (t"new_param.fem", :param => (t"page.one")), new_site_page_path, :class => 'icon icon-add' %>&nbsp;|
+    <%= link_to (t"new_param.fem", :param => (t"page.one")), new_site_admin_page_path, :class => 'icon icon-add' %>&nbsp;|
   <% end %>
   <%= link_to (t"list_param", :param=>t("page.other") ), site_pages_path(@site), :class => 'icon icon-list' %>
 </div>
@@ -17,7 +17,7 @@
       <th><%= t("category") %></th>
       <th><%= t("type") %></th>
       <% with_permission(action: 'toggle_field') do %>
-        <th><%= link_to (t"publish"), fronts_site_pages_path(@site, published: params[:published]=='true' ? 'false':'true' ) %></th>
+        <th><%= link_to (t"publish"), fronts_site_admin_pages_path(@site, published: params[:published]=='true' ? 'false':'true' ) %></th>
       <% end %>
       <th></th>
     </thead>

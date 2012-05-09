@@ -1,7 +1,0 @@
-<fieldset>
-  <legend>
-    <%= t('.new_component', :param => t("components.#{params['component']}.name")) %>
-  </legend>
-
-  <%= render :partial => 'form', :locals => { :url => site_components_path, :method => :post } %>
-</fieldset>

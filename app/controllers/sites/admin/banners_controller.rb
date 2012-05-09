@@ -1,5 +1,4 @@
 class Sites::Admin::BannersController < ApplicationController
-  layout :choose_layout
   before_filter :require_user
   before_filter :check_authorization
   before_filter :repositories, :only => ['new', 'edit', 'create', 'update']
@@ -60,7 +59,7 @@ class Sites::Admin::BannersController < ApplicationController
     @banner.destroy
 
     # TODO mensagem de banner removido com sucesso
-    redirect_to(site_banners_path(@site))
+    redirect_to(site_admin_banners_path(@site))
   end
 
   def toggle_field

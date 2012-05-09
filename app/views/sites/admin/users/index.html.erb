@@ -1,0 +1,25 @@
+<fieldset>
+  <legend><%=  t"user.other" %></legend>
+
+  <%# if current_user.is_admin? %>
+  <% if check_permission(UsersController, 'manage_roles') %>
+    <div class="contextual">
+      <% if @site %>
+        <%= link_to (t"enrole_user_site"), manage_roles_site_admin_users_path, :class => 'icon icon-add' %>
+      <% else %>
+        <%= link_to (t"new_param.masc", :param => (t"user.one")), new_admin_user_path, :class => 'icon icon-add' %> 
+      <% end %>
+    </div>
+  <% end %>
+  
+  <center>
+    <%= form_tag request.path, :method => 'get' do %>
+      <%= text_field_tag :search, params[:search] %>
+      <%= submit_tag t("search"), class: 'search-button' %>
+    <% end %>
+  </center>
+
+  <div id="list">
+    <%= render :partial => "list" %>
+  </div>
+</fieldset>

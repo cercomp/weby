@@ -7,6 +7,9 @@ class ApplicationController < ActionController::Base
   helper :all
   helper_method :current_user_session, :current_user, :user_not_authorized, :sort_direction, :current_locale, :current_site
 
+  def admin
+  end
+
   def choose_layout
     if @site.nil? or @site.id.nil? 
       return "application"

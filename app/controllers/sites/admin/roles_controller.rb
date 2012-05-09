@@ -1,5 +1,4 @@
 class Sites::Admin::RolesController < ApplicationController
-  layout :choose_layout
   before_filter :require_user
   before_filter :check_authorization
   before_filter :load_themes, :only => [:new, :edit]
@@ -20,7 +19,7 @@ class Sites::Admin::RolesController < ApplicationController
       params[:role].each do |role, right|
         Role.find(role).update_attributes(right)
       end
-      redirect_to @site ? site_roles_path : roles_path
+      redirect_to @site ? site_admin_roles_path : roles_path
     end
   end
 
@@ -44,13 +43,13 @@ class Sites::Admin::RolesController < ApplicationController
     @role = Role.new(params[:role])
     @role.save
 
-    redirect_to @site ? site_roles_path : roles_path
+    redirect_to @site ? site_admin_roles_path : roles_path
   end
 
   def update
     @role = Role.find(params[:id])
     @role.update_attributes(params[:role])
-    redirect_to @site ? site_roles_path : roles_path
+    redirect_to @site ? site_admin_roles_path : roles_path
   end
 
   def destroy

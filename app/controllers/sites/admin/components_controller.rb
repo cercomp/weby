@@ -1,5 +1,4 @@
 class Sites::Admin::ComponentsController < ApplicationController
-  layout :choose_layout
   before_filter :require_user
   before_filter :check_authorization
 
@@ -82,6 +81,6 @@ class Sites::Admin::ComponentsController < ApplicationController
         flash[:notice] = t"error_updating_object"
       end
     end
-    redirect_back_or_default site_components_path(@site)
+    redirect_back_or_default site_admin_components_path(@site)
   end
 end

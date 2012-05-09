@@ -1,0 +1,30 @@
+<fieldset>
+  <legend> <%= t("style.other") %> </legend>
+
+  <% if check_permission(StylesController, 'new') %>
+    <div class="contextual">
+      <%= link_to t('new_param.masc', param: t('style.one')),
+        new_site_admin_style_path, class: 'icon icon-add' %>
+    </div>
+  <% end %>
+
+  <div>
+    <div id="search">
+      <%= form_tag site_admin_styles_path, method: 'get', 
+        name: 'style_search', remote: true do %>
+        <%= text_field_tag :style_name, @style_name %>
+        <%= select_tag :style_type, options_for_select([
+          [t('own_styles'), 'own'],
+          [t('follow_styles'), 'follow'],
+          [t('other_styles'), 'other']], @style_type) %>
+        <%= submit_tag t("search"), class: 'search-button' %>
+      <% end %>
+    </div>
+
+    <%= render partial: 'own_styles', locals: { styles: @styles.delete(:own) } %>
+
+    <% @styles.each do |type, styles| %>
+      <%= render partial: "styles", locals: { styles: styles, type: type } %>
+    <% end %>
+  </div>
+</fieldset>

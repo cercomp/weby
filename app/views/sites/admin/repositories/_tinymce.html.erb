@@ -1,0 +1,38 @@
+<script type="text/javascript">
+  $(function() {
+    // Para realizar a consulta por páginas
+    $('#search_button').live('click', function(e) {
+      var search = $('#search').val();
+      console.log(search);
+      $.get(this.href, {'template': 'tinymce', 'search': search}, null, 'script');
+      e.preventDefault();
+      return false;
+    });
+  });
+</script>
+<div id="tinyMCE_search_area">
+  <%= text_field_tag 'search', params[:search], placeholder: t('search') + " " + t('image'), onkeypress: "return enter_to_click(event,'search_button');" %>
+  <%= link_to t('search'), site_admin_repositories_path(mime_type: params[:mime_type]), remote: true, id: 'search_button' %>
+</div>
+<br/>
+
+<ul class="attachment_list">
+  <% @repositories.each do |repository| %>
+    <li id="<%= repository.id %>" class="attachment_list">
+      <%= link_to(
+            image_tag(
+              repository.archive.url(),
+              :alt => repository.description,
+              :width => '64px',
+              :height => '64px'
+            ),
+            repository.archive.url( :original ),
+            :title => repository.description,
+            :onclick => "select_thumb(this); return false;" ) %>
+    </li>
+  <% end %>
+</ul>
+
+<div style="clear: both;float: right;">
+  <%= paginate @repositories, remote: true %>
+</div>

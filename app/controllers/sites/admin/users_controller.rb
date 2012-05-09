@@ -1,6 +1,5 @@
 # coding: utf-8
 class Sites::Admin::UsersController < ApplicationController
-  layout :choose_layout
   before_filter :require_user, :except => [:new, :create, :activate]
   before_filter :check_authorization, :except => [:new, :create, :show, :edit, :update, :activate]
 	before_filter :get_theme
@@ -137,7 +136,7 @@ class Sites::Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
 
-    redirect_to @site ? site_users_path : users_path, :notice => t('destroyed_param', :param => @user.first_name)
+    redirect_to @site ? site_admin_users_path : users_path, :notice => t('destroyed_param', :param => @user.first_name)
   end
 
   def toggle_field
@@ -149,7 +148,7 @@ class Sites::Admin::UsersController < ApplicationController
         flash[:notice] = t"error_updating_object"
       end
     end
-    redirect_to @site ? site_users_path : users_path
+    redirect_to @site ? site_admin_users_path : users_path
   end
   
   def set_admin
@@ -161,7 +160,7 @@ class Sites::Admin::UsersController < ApplicationController
         flash[:notice] = t"error_updating_object"
       end
     end
-    redirect_to @site ? site_users_path : users_path
+    redirect_to @site ? site_admin_users_path : users_path
   end
 
   private

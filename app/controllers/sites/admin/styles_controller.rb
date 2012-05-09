@@ -1,5 +1,4 @@
 class Sites::Admin::StylesController < ApplicationController
-  layout :choose_layout
 
   before_filter :require_user
   before_filter :check_authorization
@@ -72,14 +71,14 @@ class Sites::Admin::StylesController < ApplicationController
     @style = Style.new(params[:style])
 
     flash[:notice] = t('successfully_created') if @style.save
-    respond_with(@style, location:  site_styles_path(@site))
+    respond_with(@style, location:  site_admin_styles_path(@site))
   end
 
   def update
     @style = Style.find(params[:id])
 
     flash[:notice] = t('successfully_updated') if @style.update_attributes(params[:style])
-    respond_with(@style, location: site_styles_path(@site))
+    respond_with(@style, location: site_admin_styles_path(@site))
   end
 
   def destroy
@@ -91,14 +90,14 @@ class Sites::Admin::StylesController < ApplicationController
       flash[:alert] = t('destroyed_param_error', param: t('style.one'))
     end
     
-    respond_with(@style, location: site_styles_path(@site))
+    respond_with(@style, location: site_admin_styles_path(@site))
   end
 
   def follow
     @style = Style.find(params[:id])
     @site.follow_styles << @style
 
-    redirect_to site_styles_path(@site)
+    redirect_to site_admin_styles_path(@site)
   end
 
   def unfollow
@@ -106,7 +105,7 @@ class Sites::Admin::StylesController < ApplicationController
     @site_style = @style.sites_styles.where(site_id: @site.id).first
     @site_style.destroy
 
-    redirect_to site_styles_path(@site)
+    redirect_to site_admin_styles_path(@site)
   end
 
   def publish
@@ -114,7 +113,7 @@ class Sites::Admin::StylesController < ApplicationController
     @style = @style.sites_styles.where(site_id: @site.id).first if @style.owner != @site
     @style.update_attributes(publish: true)
 
-    redirect_to site_styles_path(@site)
+    redirect_to site_admin_styles_path(@site)
   end
 
   def unpublish
@@ -122,7 +121,7 @@ class Sites::Admin::StylesController < ApplicationController
     @style = @style.sites_styles.where(site_id: @site.id).first if @style.owner != @site
     @style.update_attributes(publish: false)
 
-    redirect_to site_styles_path(@site)
+    redirect_to site_admin_styles_path(@site)
   end
 
   def copy
@@ -136,7 +135,7 @@ class Sites::Admin::StylesController < ApplicationController
       flash[:notice] = t('error_creating_object')
     end
 
-    redirect_to site_styles_path(@site)
+    redirect_to site_admin_styles_path(@site)
   end
 
   private

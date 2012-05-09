@@ -1,5 +1,4 @@
 class Sites::Admin::MenusController < ApplicationController
-  layout :choose_layout
   before_filter :require_user
   before_filter :check_authorization
 
@@ -11,7 +10,7 @@ class Sites::Admin::MenusController < ApplicationController
 
   def show
     @menu = @global_menus[params[:id].to_i] #@site.menus.find(params[:id])
-    redirect_to site_menus_path(@site, :menu => @menu.id)
+    redirect_to site_admin_menus_path(@site, :menu => @menu.id)
   end
 
   def new
@@ -22,7 +21,7 @@ class Sites::Admin::MenusController < ApplicationController
     @menu = @site.menus.new(params[:menu])
     if @menu.save
       flash[:notice] = t("successfully_created")
-      redirect_to site_menus_path(@site, :menu => @menu.id)
+      redirect_to site_admin_menus_path(@site, :menu => @menu.id)
     else
       respond_with(@site, @menu)
     end
@@ -36,7 +35,7 @@ class Sites::Admin::MenusController < ApplicationController
     @menu = @global_menus[params[:id].to_i] #@site.menus.find(params[:id])
     if @menu.update_attributes(params[:menu])
       flash[:notice] = t("successfully_updated")
-      redirect_to site_menus_path(@site, :menu => @menu.id)
+      redirect_to site_admin_menus_path(@site, :menu => @menu.id)
     else
       respond_with(@site, @menu)
     end
@@ -46,7 +45,7 @@ class Sites::Admin::MenusController < ApplicationController
     @menu = @global_menus[params[:id].to_i] #@site.menus.find(params[:id])
     @menu.destroy
     flash[:notice] = t("successfully_deleted")
-    redirect_to site_menus_path(@site)
+    redirect_to site_admin_menus_path(@site)
   end
 
 end

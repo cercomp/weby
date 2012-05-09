@@ -1,0 +1,123 @@
+<% # Funções js para selecionar pagina %>
+<%= content_for :javascripts, javascript_include_tag('banners.js') %>
+
+<%= simple_form_for [@site, @banner], :html => { :multipart => true } do |f| %>
+  <% if @banner.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@banner.errors.count,"") %>
+        <%= t"prohibited_being_saved", :count => @banner.errors.count %>:
+      </h2>
+      <ul>
+        <% @banner.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <%= repository_search t("banner.image"), "banner_image",
+    "banner[repository_id]", @banner.repository,
+    multiple: false, file_types: 'image' %>
+
+  <div class="checkbox-button-set">
+    <% repo_styles = Repository.attachment_definitions[:archive][:styles] %>
+    <% unless repo_styles.nil? %>
+      <%= f.input :size, 
+        label: t('size'),
+        collection: repo_styles,
+        label_method: lambda { |u| "#{u[1]}" }, 
+        value_method: lambda { |u| "#{u[0]}" },
+        as: :radio%>
+    <% end %>
+  </div>
+
+  <%= f.input :width, :label => t("width"), :input_html => {:size => 3} %> 
+  <%= f.input :height, :label => t("height"), :input_html => {:size => 3} %>
+
+  <%= f.input :title, label: t("title"),
+    placeholder: t("title"),
+    input_html: {class: "title_input"} %>
+
+  <%= f.input :text, label: t("description"),
+    input_html: {:size => "70x5"},
+    as: :text %>
+
+  <div class="input">
+    <label><%= t("period_banner") %> </label>
+    <%= f.input :date_begin_at,
+      label: false,
+      placeholder: t("begin"),
+      wrapper_html: {class: "side"} %>
+    <%= f.input :date_end_at,
+      label: false,
+      placeholder: t("publication_infinite"),
+      wrapper_html: {class: "side"} %>
+    <div class="clear"></div>
+  </div>
+
+  <div class="input select">
+    <%= f.label :category,
+      t("category"), :class => "select",
+      :for => "category" %>
+    <%= f.select :category_list,
+      @site.banners.category_counts, {},
+      :id => "category" %>
+    <%= link_to_function image_tag("icons/black16x16/ic_plus.png ",:title => "Adicionar um acategoria"),
+      "addToSelect('#category','#{t("new.fem")+" "+t("category")}')", :title => "Adicionar um categoria" %>
+
+  </div>
+
+  <%= f.input :position, hint: t("lower_numbers_come_first") %>
+
+  <% # URL Input %>
+  <div class="input page_select" id="div_link">
+    <%= f.input :url,
+      label: t("url"),
+      hint: (t"type_param", param: t("url")),
+      wrapper_html: { class: "nostyle" },
+      as: :string %>
+
+    <%= link_to_function 'Clique aqui para selecionar uma página',
+      'show_dialog($(this))',
+      id: 'banner_page_select',
+      class: "search-button element",
+      'data-link' => site_admin_pages_path %>
+
+    <% # Ao selecionar um noticia deve ser montado a url para ela,
+      # então aqui guardamos o caminho para as páginas deste site %>
+    <%= hidden_field_tag 'url_to_pages', site_pages_url(@site, only_path: true) %>
+    <%= hidden_field_tag 'banner[page_id]', @banner.page_id %>
+  </div>
+
+  <div class='input'>
+    <%= f.input :publish , :label => t("publish"),
+      wrapper_html: { class: "side" },
+      as: :boolean, input_html: { class: "check-button" } %>
+
+    <%= f.input :hide , label: t("hide"), 
+      wrapper_html: { class: "side" },
+      as: :boolean, input_html: { class: "check-button" } %>
+    <div class="clear"></div>
+  </div>
+
+    <div class='input'>
+        <%= f.input :new_tab ,
+          wrapper_html: { class: "side" },
+          as: :boolean, input_html: { class: "check-button" } %>
+
+        <div class="clear"></div>
+      </div>
+
+  <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
+
+  <div class="actions">
+    <%= f.submit t("#{save}"),disable_with: t("saving"),class: "green-button" %> 
+    <%= link_to t('back'), :back, class: "red-button" %>
+  </div>
+<% end %>
+
+<div id="dialog-repository-search">
+  <%= render('repositories/repository_search') %>
+</div>

@@ -1,5 +1,4 @@
 class Sites::Admin::PagesController < ApplicationController
-  layout :choose_layout
 
   before_filter :require_user, only: [:new, :edit, :update, :destroy, :sort, :toggle_field]
   before_filter :check_authorization, except: [:view, :show, :published]
@@ -122,7 +121,7 @@ class Sites::Admin::PagesController < ApplicationController
     @page = @site.pages.find(params[:id])
     @page.toggle!(params[:field])
     respond_with(@page) do |format|
-      format.any { redirect_to site_pages_path(@site) }
+      format.any { redirect_to site_admin_pages_path(@site) }
     end
   end
 

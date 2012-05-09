@@ -1,0 +1,37 @@
+<div class="tabs">
+  <ul>
+    <li>
+      <%= link_to t("repository.one"), "#repository" %>
+    </li>
+    <li>
+      <%= link_to t("new_param.masc", param: t("file.one")), "#new_file" %>
+    </li>
+  </ul>
+
+  <div id="repository">
+    <%= form_tag site_admin_repositories_path(format: :json),
+      method: 'get',
+      id: 'repository-search-form',
+      remote: true do %>
+      <%= select_tag "mime_type[]",
+        grouped_options_for_select(load_mime_types(@site), ),
+        include_blank: t('all') %>
+      <%= search_field_tag :search %>
+      <%= hidden_field_tag 'page', "1" %>
+      <%= hidden_field_tag 'per_page', "#{params[:per_page]}" %>
+      <%= submit_tag t("search"), class: 'search-button' %>
+    <% end %>
+
+    <%= form_tag "#", id: 'repository-include-form' do %>
+      <ul id="repositories-search-results">
+      </ul>
+      <div class="actions">
+        <%= link_to_function t("save"), '', id: 'repository-include-link', class: "green-button" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div id='new_file'>
+    <%= render "sites/admin/repositories/ajax_upload" %>
+  </div>
+</div>

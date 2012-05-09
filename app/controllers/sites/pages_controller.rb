@@ -1,11 +1,6 @@
 class Sites::PagesController < ApplicationController
   layout :choose_layout
 
-  before_filter :require_user, only: [:new, :edit, :update, :destroy, :sort, :toggle_field]
-  before_filter :check_authorization, except: [:view, :show, :published]
-
-  before_filter :event_types, only: [:new, :edit]
-
   helper_method :sort_column
 
   respond_to :html, :js, :json, :rss
@@ -63,67 +58,6 @@ class Sites::PagesController < ApplicationController
   def show
     @page = @site.pages.find(params[:id]).in(params[:page_locale])
     respond_with(@site, @page)
-  end
-
-  # GET /pages/new
-  # GET /pages/new.json
-  def new
-    @page = @site.pages.new
-    @available_locales = available_locales
-    respond_with(@site, @page)
-  end
-
-  # GET /pages/1/edit
-  def edit
-    @page = @site.pages.find(params[:id])
-    @available_locales = available_locales
-    respond_with(@site, @page)
-  end
-
-  def available_locales
-    (@page.locales | @site.locales).sort
-  end
-  private :available_locales
-
-  def event_types
-    @event_types = Page::EVENT_TYPES.map {|el| t("pages.event_form.#{el}")}.zip(Page::EVENT_TYPES)
-  end
-  private :event_types
-
-  # POST /pages
-  # POST /pages.json
-  def create
-    @page = @site.pages.new(params[:page])
-    @available_locales = available_locales
-    @page.author = current_user
-    @page.save
-    respond_with(@site, @page)
-  end
-
-  # PUT /pages/1
-  # PUT /pages/1.json
-  def update
-    params[:page][:related_file_ids] ||= []
-    @page = @site.pages.find(params[:id])
-    @available_locales = available_locales
-    @page.update_attributes(params[:page])
-    respond_with(@site, @page)
-  end
-
-  # DELETE /pages/1
-  # DELETE /pages/1.json
-  def destroy
-    @page = @site.pages.find(params[:id])
-    @page.destroy
-    respond_with(@site, @page)
-  end
-
-  def toggle_field
-    @page = @site.pages.find(params[:id])
-    @page.toggle!(params[:field])
-    respond_with(@page) do |format|
-      format.any { redirect_to site_pages_path(@site) }
-    end
   end
 
   def sort

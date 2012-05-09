@@ -1,9 +1,0 @@
-<fieldset> 
-    <legend>
-      <%= @menu_item_parent ? (t"new_param.masc", :param => t("sub_menu_item")) : (t"new_param.masc", :param => (t"menu_item.one")) %>
-      <%= "| "+@menu.name.try(:titleize) %>
-    </legend>
-
-	<%= render 'form' %>
-
-</fieldset>

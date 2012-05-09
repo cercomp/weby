@@ -1,0 +1,22 @@
+<% unless @groups.empty? %>
+  <%= info_page @groups %>
+  <%= paginate @groups, :remote => true %>
+  <table class='list'>
+    <thead>
+      <th><%= sortable 'name', t('name') %></th>
+      <th></th>
+    </thead>
+    <tbody>
+    <% @groups.each do |group| %>
+      <tr>
+        <td><%= link_to group.name, site_admin_group_path(@site, group) %></td>
+        <td>
+          <%= raw make_menu(group) %> 
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <%= per_page_links @groups %>
+  <%= paginate @groups, :remote => true %>
+<% end %>

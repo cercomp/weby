@@ -38,14 +38,14 @@ module RepositoryHelper
                      selected: selected })
 
 
-    render 'repositories/link_to_add_files', options
+    render 'sites/admin/repositories/link_to_add_files', options
   end
 
   def link_to_add_files(local_assigns)
     if  local_assigns[:multiple]
-      render 'repositories/link_to_add_files_multiple', local_assigns 
+      render 'sites/admin/repositories/link_to_add_files_multiple', local_assigns 
     else 
-      render 'repositories/link_to_add_files_uniq', local_assigns 
+      render 'sites/admin/repositories/link_to_add_files_uniq', local_assigns 
     end 
   end
 

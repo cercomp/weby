@@ -9,13 +9,13 @@ Weby::Application.routes.draw do
   
   resources :sites,
     only: [:index, :show] do
+    member do
+      get :admin
+    end
 
     resources :pages, 
       controller: 'sites/pages', 
       only: [:index, :show] do
-      member do 
-        put :toggle_field
-      end 
       collection do
         get :published, :fronts
         post :sort
@@ -91,7 +91,8 @@ Weby::Application.routes.draw do
       end
     end
   end
-  
+ 
+  match 'admin' => 'application#admin'
   namespace :admin do
     resources :rights
     resources :settings
