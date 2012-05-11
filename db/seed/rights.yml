@@ -383,3 +383,9 @@
  name: "Criar Item de Menu"
  controller: menu_items
  action: new create
+ 
+65:
+ id: 65
+ name: "Ordenar Estilos"
+ controller: styles
+ action: sort
