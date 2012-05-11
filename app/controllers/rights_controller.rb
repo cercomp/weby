@@ -25,14 +25,14 @@ class RightsController < ApplicationController
     @right = Right.new(params[:right])
     @right.save
 
-    redirect_to @site ? site_right_path(@right) : right_path(@right)
+    redirect_to rights_path
   end
 
   def update
     @right = Right.find(params[:id])
     @right.update_attributes(params[:right])
     
-    redirect_to @site ? site_rights_path : rights_path
+    redirect_to rights_path
   end
 
   def destroy

@@ -54,8 +54,7 @@ class ApplicationController < ActionController::Base
 
   def current_site
     return @current_site if defined? @current_site
-    return Site.find_by_name(params[:site_id]) if params[:site_id]
-    return Site.find_by_name(params[:id]) if params[:id] and controller === SitesController
+    @current_site = Site.find_by_name(params[:site_id] ? params[:site_id] : (params[:id] and params[:controller] == 'sites') ? params[:id] : nil)
   end
 
   def set_locale
@@ -161,12 +160,8 @@ class ApplicationController < ActionController::Base
 
   # Defini variáveis globais
   def set_global_vars
-    if params[:site_id]
-      @site = Site.find_by_name(params[:site_id])
-    elsif params[:id]
-      @site = Site.find_by_name(params[:id])
-    end
-
+    @site = current_site
+    
     if @site
       params[:per_page] ||= per_page_default
 

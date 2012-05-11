@@ -1,0 +1,36 @@
+section.subsites_pages{
+    clear: both;
+    border-top: 1px dotted #DDD;
+    /*background-color: #F6F7F8;*/
+}
+
+section.subsites_pages > h2{
+    background-color: #EEE;
+    margin: 0px;
+    border-bottom: 1px solid silver;
+    height: 30px;
+    text-align: center;
+}
+
+section.subsites_pages > li{
+    border-bottom: 1px dotted #DDD;
+    padding-left: 5px;
+    text-align: left;
+}
+
+section.subsites_pages > li h2{
+    margin: 10px 0px;
+    line-height: 100%;
+    font-size: 140%;
+    text-align: left;
+}
+
+section.subsites_pages a img {
+    float: right;
+    padding: 5px;
+    clear:right;
+}
+
+section.subsites_pages .page_origin{
+    float:right;
+}

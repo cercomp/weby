@@ -8,7 +8,7 @@
 %>
 
 <div id="no_front_news">
-  <%= info_page @no_front_news, 'width: 100%' %>
+  <%#= info_page @no_front_news, 'width: 100%' %>
   <table class="list border fullwidth zebra">
     <tr>
       <th> <%= link_to t("last_news"), site_pages_path(@site, direction: 'desc', sort: 'pages.created_at') %> </th>

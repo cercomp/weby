@@ -48,7 +48,7 @@ en:
       related_files:     'Related files'
     event_form:
       is_event:          'Is event?'
-      period_event:      'Event period'
+      period_event:      'Event date'
       regional:          'Regional'
       national:          'National'
       international:     'International'

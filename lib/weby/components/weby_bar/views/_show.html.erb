@@ -187,7 +187,7 @@
         <li> <%= link_to(current_user.first_name.titleize, site_user_path(@site, current_user)) %> </li>
       <% end %>
 
-      <% if(not(@site) and current_user) %>
+      <% if((not(@site) or @site.new_record?) and current_user) %>
         <li> <%= link_to(current_user.first_name.titleize, user_path(current_user)) %> </li>
       <% end %>
 
@@ -197,7 +197,7 @@
 
       <% if not(current_user) %>
         <li class='to_left'> <%= link_to( t("login"), login_path(:back_url => "#{request.fullpath}")) %> </li>
-        <li> <%= link_to( t("register"), new_user_path ) %> </li>
+        <li> <%= link_to( t("sign_up"), new_user_path ) %> </li>
       <% end %>
 
       <% # FIXME Contador de usuários não está funcionando ao realizar logoff. %>

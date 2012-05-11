@@ -224,6 +224,7 @@ en:
 
 #---M---#
   main: "Main"
+  main_site: "Main Site"
   manage_roles: "Manage Roles"
   mark_to_destroy: "Mark to Destroy"
   medium: "Medium"
@@ -378,6 +379,7 @@ en:
   send_date: "Send Date"
   show: "Show"
   show_hide_image_list: "Show/Hide list of images"
+  sign_up: "Sign up"
   side: "Side"
   site:
     one: "Site"
@@ -495,6 +497,12 @@ en:
       default: "%a, %d %b %Y %H:%M:%S %z"
       short: "%d %b %H:%M"
       long: "%B %d, %Y %H:%M"
+      event_date_short: "%B %d"
+      event_date_full: "%B %d, %Y"
+      event_period_short: "%B %{iniday} - %{finday}"
+      event_period_full: "%B %{iniday} - %{finday}, %Y"
+      event_hour: "at %l%P"
+    period_separator: "-"
     am: "am"
     pm: "pm"
 

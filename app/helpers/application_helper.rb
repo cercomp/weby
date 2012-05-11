@@ -200,6 +200,10 @@ module ApplicationHelper
   # Monta o menu baseado nas permissões do usuário
   # Parametros: objeto
   def make_menu(obj, args={})
+    if(obj.respond_to?(:site_id))
+      return "" if obj.site_id != current_site.id
+    end
+
     raw("".tap do |menu|
       excepts = args[:except] || []
       # Trata os argumentos para excluir itens do menu
@@ -321,12 +325,17 @@ module ApplicationHelper
     end
   end
 
+  def main_sites_list
+    Site.where(parent_id: nil).order('name') - [current_site]
+  end
+
   # TODO passar isso para a lib
   #
   def load_components(component_place)
     raw([].tap do |components|
       @site.components.where(["publish = true AND place_holder = ?", component_place]).order('position asc').each do |comp|
         components << render_component(Weby::Components.factory(comp))
+        content_for :stylesheets, stylesheet_link_tag("#{comp.name}") if Weby::Application.assets.find_asset("#{comp.name}.css")
       end
     end.join)
   end
@@ -334,4 +343,31 @@ module ApplicationHelper
   def content_tag_if(condition, tag_name, options = {}, &block)
     content_tag(tag_name, options, &block) if condition 
   end
+
+  def period_dates(inidate, findate, force_show_year = true)
+    html = ""
+    unless(findate)
+      html << period_date_and_hour(inidate, force_show_year)
+    else
+      if(inidate.month == findate.month)
+        html << "#{l(inidate, format: (force_show_year || inidate.year!=Time.now.year) ? :event_period_full : :event_period_short, iniday: inidate.strftime('%d'), finday: findate.strftime('%d'))}"
+      else
+        html << period_date_and_hour(inidate, force_show_year)
+        html << " #{t('time.period_separator')} "
+        html << period_date_and_hour(findate, force_show_year)
+      end
+    end
+    raw html
+  end
+
+  def period_date_and_hour(date, force_show_year = true)
+    html = ""
+    html << "#{l(date, format: (force_show_year || date.year!=Time.now.year) ? :event_date_full : :event_date_short)}"
+    if(date.hour != 0)
+      html << " #{l(date, format: :event_hour)}"
+    end
+    html
+  end
+  private :period_date_and_hour
+
 end

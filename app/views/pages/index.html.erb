@@ -1,5 +1,5 @@
 <fieldset>
-  <legend><%= t("page.other") %></legend>
+  <legend><%= controller.action_name == 'events' ? t("event.other") : t("page.other") %></legend>
   <center>
     <%= form_tag nil, method: 'get', remote: true do %>
       <%= text_field_tag :search, nil, title: t('.search_helper') %>
