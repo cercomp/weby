@@ -1,9 +1,9 @@
 <% quant = component.quant || 5 %>
-<% front = component.front || '0' %>
+<% front = as_boolean(component.front || '0') %>
 <% # Pega as noticias ordenadas por data de inicio decrescente %>
 <%
 @no_front_news = @site.pages.order('created_at desc').
-  available.send("#{front == '1' ? 'front' : 'no_front'}").
+  available.send("#{front ? 'front' : 'no_front'}").
   page(params[:no_front_pages]).per(quant)
 %>
 

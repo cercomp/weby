@@ -370,4 +370,9 @@ module ApplicationHelper
   end
   private :period_date_and_hour
 
+  def as_boolean obj
+    str = obj.to_s
+    return true if ['1','true'].include? str
+    return false
+  end
 end
