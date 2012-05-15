@@ -3,7 +3,7 @@
 <% # Pega as noticias ordenadas por data de inicio decrescente %>
 <%
 @no_front_news = @site.pages.order('created_at desc').
-  available.send("#{front ? 'front' : 'no_front'}").
+  news.available.send("#{front ? 'front' : 'no_front'}").
   page(params[:no_front_pages]).per(quant)
 %>
 
