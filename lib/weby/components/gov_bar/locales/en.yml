@@ -1,0 +1,9 @@
+en:
+  components:
+    gov_bar:
+      name: Government Bar
+      background: "Background Color"
+  activerecord:
+    attributes:
+      gov_bar_component:
+        background: "Background Color"
