@@ -7,3 +7,10 @@ pt-BR:
     attributes:
       gov_bar_component:
         background: "Cor de Fundo"
+  gov_bar:
+    views:
+      form:
+        blue: "Azul"
+        green: "Verde"
+        gray: "Cinza"
+        black: "Preto"

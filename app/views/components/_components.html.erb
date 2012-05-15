@@ -9,8 +9,8 @@
   </tr>
 <% else %>
   <tbody class="placeholder-group">
-    <% components_per_holder.each do |component| %>
-      <% component = Weby::Components.factory(component) %>
+    <% components_per_holder.each do |comp| %>
+      <% component = Weby::Components.factory(comp) %>
       <tr id="sort_sites_component_<%= component.id %>" class="place-<%=  "#{place_holder}" -%>">
         <td><%= component.id %></td>
         <td><%= t("components.#{component.name}.name") %></td>
