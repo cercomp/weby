@@ -1,0 +1,33 @@
+<% @icons = Weby::Application.assets.entries('lib/weby/components/feed/assets/images/feed') %>
+<%= f.input :rss_icon,
+    as: :radio_buttons,
+    collection: @icons.map{|icon|
+      [image_tag("feed/#{icon}", title: icon), icon] if icon.to_s.include?('rss')
+    }.compact << [image_tag("false.png", title: t(".dont_show")), ""],
+    item_wrapper_class: 'item-box'
+ %>
+ <%=  repository_search( t(".select_from_repo"), "rss_icon", "feed_component[rss_icon]", (Repository.find(component.rss_icon) rescue nil), multiple: false, file_types: 'image') %>
+
+<%= f.input :atom_icon,
+    as: :radio_buttons,
+    collection: @icons.map{|icon|
+      [image_tag("feed/#{icon}", title: icon), icon] if icon.to_s.include?('atom')
+    }.compact << [image_tag("false.png", title: t(".dont_show")), ""],
+    item_wrapper_class: 'item-box'
+ %>
+ <%= repository_search( t(".select_from_repo"), "atom_icon", "feed_component[atom_icon]", (Repository.find(component.atom_icon) rescue nil), multiple: false, file_types: 'image') %>
+
+<%= f.input :align, :collection => [
+    [t(".center"),"none"],
+    [t(".right"),"right"],
+    [t(".left"),"left"]
+  ],
+  :priority => component.align,
+  :include_blank => false
+%>
+
+<% content_for :bottom do %>
+  <div id="dialog-repository-search">
+    <%= render('repositories/repository_search') %>
+  </div>
+<% end %>
