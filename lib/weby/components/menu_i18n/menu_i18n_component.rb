@@ -1,3 +1,3 @@
 class MenuI18nComponent < Component
-  initialize_component
+  component_settings
 end

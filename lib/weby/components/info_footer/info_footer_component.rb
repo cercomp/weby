@@ -1,3 +1,3 @@
 class InfoFooterComponent < Component
-  initialize_component
+  component_settings
 end

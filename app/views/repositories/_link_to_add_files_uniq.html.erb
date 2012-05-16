@@ -15,6 +15,6 @@
         <% end %>
       </figure>
     </label>
-    <%= hidden_field_tag field_name, selected.id, id: "repository_id_#{selected.id}" if selected %>
+    <%= radio_button_tag field_name, selected.id, id: "repository_id_#{selected.id}", style: "display: none;" if selected %>
   </div>
 </div>

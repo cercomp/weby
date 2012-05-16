@@ -2,9 +2,8 @@ Weby::Application.routes.draw do
   # Para ativação de conta por email
   match 'activate(/:activation_code)' => 'users#activate', :as => :activate_account
   match 'send_activation(/:user_id)' => 'users#send_activation', :as => :send_activation
-  match '/sites/:site_id/feed' => 'pages#published', :as => :feed, :defaults => { :format => 'rss', :per_page => 10, :page => 1 }
-  match '/sites/:site_id/atom' => 'pages#published', :as => :atom, :defaults => { :format => 'atom', :per_page => 10, :page => 1 }
-
+  match '/sites/:site_id/feed' => 'pages#published', :as => :feed, :defaults => {:format => 'rss', :per_page => 10, :page => 1}
+  
   #match '/page/:page' => 'sites#index' # Paginate URL on sites
   match '/sites/:site_id/users/page/:page' => 'users#index' # Paginate URL on users
   #match '/sites/:site_id/pages/paginate/:paginate' => 'pages#index' # Paginate URL on pages

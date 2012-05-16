@@ -1,5 +1,5 @@
 class MenuSideComponent < Component
-  initialize_component :menu_id
+  component_settings :menu_id
 
   validates :menu_id, :presence => true
 end

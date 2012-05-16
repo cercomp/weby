@@ -334,8 +334,9 @@ module ApplicationHelper
   def load_components(component_place)
     raw([].tap do |components|
       @site.components.where(["publish = true AND place_holder = ?", component_place]).order('position asc').each do |comp|
-        components << render_component(Weby::Components.factory(comp))
-        components << stylesheet_link_tag("#{comp.name}") if Weby::Application.assets.find_asset("#{comp.name}")
+        if Weby::Components.is_available?(comp.name)
+          components << render_component(Weby::Components.factory(comp))
+        end
       end
     end.join)
   end

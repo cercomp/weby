@@ -12,8 +12,8 @@ class ComponentsController < ApplicationController
   end
 
   def new
-    if (comp = params[:component])
-      @component = Weby::Components.factory(comp)
+    if (params[:component] and Weby::Components.is_available?(params[:component]))
+      @component = Weby::Components.factory(params[:component])
     else
       render :available_components
     end
@@ -21,6 +21,10 @@ class ComponentsController < ApplicationController
 
   def edit
     @component = Weby::Components.factory(@site.components.find(params[:id]))
+    unless(Weby::Components.is_available?(@component.name))
+      flash[:warning] = "Componente indisponível"
+      redirect_to site_components_url
+    end
   end
 
   def create

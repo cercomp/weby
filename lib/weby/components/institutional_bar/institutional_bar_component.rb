@@ -1,3 +1,3 @@
 class InstitutionalBarComponent < Component
-  initialize_component
+  component_settings
 end

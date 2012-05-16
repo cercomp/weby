@@ -1,5 +1,5 @@
 class FeedbackComponent < Component
-  initialize_component :label
+  component_settings :label
 
   validates :label, :presence => true
 end

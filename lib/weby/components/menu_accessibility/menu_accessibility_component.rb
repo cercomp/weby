@@ -1,3 +1,3 @@
 class MenuAccessibilityComponent < Component
-  initialize_component
+  component_settings
 end
