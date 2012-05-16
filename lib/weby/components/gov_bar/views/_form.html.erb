@@ -1,8 +1,8 @@
 <%= f.input :background, :collection => [
-    ["Azul","#004b82"],
-    ["Verde","#00500f"],
-    ["Cinza","#7f7f7f"],
-    ["Preto","#000000"]
+    [t(".blue"),"#004b82"],
+    [t(".green"),"#00500f"],
+    [t(".gray"),"#7f7f7f"],
+    [t(".black"),"#000000"]
   ],
   :priority => component.background,
   :include_blank => false

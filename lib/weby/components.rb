@@ -13,7 +13,7 @@ module Weby
       # A idéia é pegar um componente definido com a classe "Component" e passar
       # para a classe filha
       if component.class == Component
-        build = Object::const_get("#{component.name.classify}Component").find(component.id)
+        build = Object::const_get("#{component.name.classify}Component").instantiate(component.attributes)
       else
         ## FIXME verifica se o componente existe
         build = Object::const_get("#{component.classify}Component").new

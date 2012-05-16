@@ -9,7 +9,7 @@
   <%#= info_page @page_events, 'width: 100%' %>
   <table class="list border fullwidth zebra">
     <tr>
-      <th><%= link_to t("event.other"), events_site_pages_path(@site, direction: 'asc', sort: 'pages.event_begin') %></th>
+      <th><%= link_to t("event.other"), events_site_pages_path(@site, direction: 'desc', sort: 'pages.event_begin') %></th>
     </tr>
     <% @page_events.try(:each) do |page| %>
       <tr>
