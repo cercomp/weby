@@ -14,7 +14,7 @@
   <%#= info_page @no_front_news, 'width: 100%' %>
   <table class="list border fullwidth zebra">
     <tr>
-      <th> <%= link_to t("last_news"), site_pages_path(@site, direction: 'desc', sort: 'pages.created_at') %> </th>
+      <th> <%= link_to t('last_news'), site_pages_path(@site, direction: 'desc', sort: 'pages.created_at') %> </th>
     </tr>
     <% @no_front_news.try(:each) do |page| %>
       <tr>

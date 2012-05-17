@@ -1,0 +1,18 @@
+en:
+  components:
+    teacher_photo:
+      name: "Teacher photo"
+      image: "Image"
+      width: "Width"
+      height: "Height"
+      form:
+        none_selected: "No news selected"
+        select: "Select a news"
+      show:
+        page_not_found: "Page not found, please check the component configuration"
+  activerecord:
+    attributes:
+      teacher_photo_component:
+        image: "Image"
+        width: "Width"
+        height: "Height"

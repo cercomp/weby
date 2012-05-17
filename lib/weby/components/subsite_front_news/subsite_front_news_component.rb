@@ -1,5 +1,5 @@
 class SubsiteFrontNewsComponent < Component
-  initialize_component :quant
+  component_settings :quant
 
   validates :quant, :presence => true
 end

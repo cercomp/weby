@@ -16,7 +16,7 @@
             <li class="separator"> <%= t("site", :count => 1) %> </li>
 
             <% if check_permission(AdminController, [:edit]) %>
-              <li> <%= link_to (t"setting.other"), edit_site_admin_path(@site, @site) %> </li>
+              <li> <%= link_to t("setting.other"), edit_site_admin_path(@site, @site) %> </li>
             <% end %>
 
             <% if check_permission(PagesController, [:index]) %>

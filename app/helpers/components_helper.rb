@@ -26,8 +26,8 @@ module ComponentsHelper
 
   # Busca os componentes existentes no sistema de forma ordenada pelo i18n
   def available_components_sorted
-    components = Weby::Components.available_components.map do |c|
-      c = Object::const_get(c)
+    components = Weby::Components.available_components.map do |comp|
+      c = Object::const_get("#{comp.to_s}_component".classify)
       {name: c.cname, i18n: t("components.#{c.cname}.name")}
     end
     components.sort! {|a,b| a[:i18n] <=> b[:i18n]}

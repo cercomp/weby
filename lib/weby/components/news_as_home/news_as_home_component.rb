@@ -2,7 +2,7 @@
 # FIXME mudar o atributo "page" para "page_id" para simular 
 # (ou implementar) o comportamento do belongs_to
 class NewsAsHomeComponent < Component
-  initialize_component :page
+  component_settings :page
 
   validates :page, :presence => true
 

@@ -1,0 +1,13 @@
+en:
+  components:
+    no_front_news:
+      name: "News List"
+      quant: "Amount of news on the home page"
+      front: "Only front news?"
+      show:
+        last_news: "Latest news"
+  activerecord:
+    attributes:
+      no_front_news_component:
+        quant: "Amount of news on the home page"
+        front: "Only front news?"

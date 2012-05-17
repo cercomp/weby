@@ -1,5 +1,4 @@
 module Weby
-
   module Components
     
     # Array de componentes disponíveis
@@ -7,6 +6,30 @@ module Weby
 
     def self.setup
       yield self
+    end
+
+    # Plugin constructor
+    def self.register_component(comp_name, config={})
+
+      require "weby/components/#{comp_name.to_s}/#{comp_name.to_s}_component"
+
+      # Adiciona locales do componente no path de locales
+      Weby::Application.config.i18n.load_path +=
+        Dir[Rails.root.join('lib', 'weby', 'components', comp_name.to_s, 'locales', '*.{rb,yml}').to_s]
+
+      unless config[:enabled]==false
+        # Adiciona assets do componente no path de assets
+        Weby::Application.config.assets.paths +=
+          Dir[Rails.root.join('lib', 'weby', 'components', comp_name.to_s, 'assets', '**')]
+
+        self.available_components ||= []
+        self.available_components << comp_name
+      end
+
+    end
+
+    def self.is_available?(comp_name)
+      return self.available_components.include?(comp_name.to_sym)
     end
 
     def self.factory(component)
@@ -31,16 +54,25 @@ module Weby
 
         # Caso a partial não exista, não mostra nada
         begin
-          render args
+          output = render args
+          if Weby::Application.assets.find_asset("#{component.name}")
+            @styesheets_loaded ||= []
+            #Incluir o css do componente somente uma vez, mesmo se existirem mais de um sendo exibido
+            unless(@styesheets_loaded.include?(component.name))
+              output += stylesheet_link_tag("#{component.name}")
+              @styesheets_loaded << component.name
+            end
+          end
         rescue ActionView::MissingTemplate
-          ''
+          output = ''
         end
+        output
       end
     end
   end
 
   module ComponentInstance
-    def initialize_component(*settings)
+    def component_settings(*settings)
       class_eval do
         # Como do componente que será usando em algumas partes do sistema
         def self.cname

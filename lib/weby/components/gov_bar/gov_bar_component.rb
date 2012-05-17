@@ -1,5 +1,5 @@
 class GovBarComponent < Component
-  initialize_component :background
+  component_settings :background
 
   validates :background, :presence => true
 end
