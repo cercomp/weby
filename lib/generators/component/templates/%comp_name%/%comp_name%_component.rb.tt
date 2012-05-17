@@ -1,0 +1,3 @@
+class <%= comp_name.classify %>Component < Component
+  <%= settings_names %>
+end

@@ -1,0 +1,8 @@
+en:
+  components:
+    <%=comp_name%>:
+      name: "Component name"
+  activerecord:
+    attributes:
+      <%=comp_name%>_component:
+<%= settings_locales %>
