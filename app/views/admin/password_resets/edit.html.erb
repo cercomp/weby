@@ -14,7 +14,7 @@
     <% end %>
   </div>
 
-  <%= simple_form_for @user, url: password_reset_path, html: { class: 'form-horizontal' }, method: :put do |f| %>
+  <%= simple_form_for [:admin, @user], url: admin_password_reset_path, html: { class: 'form-horizontal' }, method: :put do |f| %>
     <%= f.input :password, label: t("password_change"), required: true, as: :password %>
     <%= f.input :password_confirmation, as:  :password %>
     <div class="form-actions">

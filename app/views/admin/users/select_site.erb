@@ -11,8 +11,8 @@
     <tbody>
     <% @sites.each do |site| %>
       <tr class="<%= cycle 'odd', 'even' %>">
-        <td> <%= link_to site.name, manage_roles_site_users_path(site) %> </td>
-        <td> <%= link_to t('select_param', :param => ''), manage_roles_site_users_path(site, :user => params[:user]) %> </td>
+        <td> <%= link_to site.name, manage_roles_site_admin_users_path(site) %> </td>
+        <td> <%= link_to t('select_param', :param => ''), manage_roles_site_admin_users_path(site, :user => params[:user]) %> </td>
       </tr>
     <% end; reset_cycle %>
     </tbody>

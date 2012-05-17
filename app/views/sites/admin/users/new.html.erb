@@ -1,7 +1,7 @@
 <fieldset>
   <legend><%= t"new_param.masc", :param => (t"user.one") %></legend>
 
-  <%= simple_form_for [@site, @user] do |f| %>
+  <%= simple_form_for [@site, :edit, @user] do |f| %>
     <% if @user.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@user.errors.count, "") %> <%= t"prohibited_being_saved", :count => @user.errors.count %>:</h2>

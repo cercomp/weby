@@ -18,7 +18,7 @@
   <div id='main-tabs'>
     <% if @menu %>
       <div class="contextual">
-        <% with_permission controller: MenuItemsController, action: :new do %>
+        <% with_permission controller: Sites::Admin::Menus::MenuItemsController, action: :new do %>
           <%= link_to (t"new_param.masc", :param => (t"menu_item.one")),  new_site_admin_menu_menu_item_path(@site, @menu), :class => 'icon icon-add'%>
         <% end %>
         <% with_permission action: :edit do %>

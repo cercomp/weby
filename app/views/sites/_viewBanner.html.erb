@@ -4,7 +4,6 @@
     <% unless banner.repository.nil? %>
       <% banner.repository.reprocess! %>
       <figure class="banner">
-
         <% format = banner.size ? banner.size : "little" %>
         <%= weby_file_view(banner.repository,
                            format,
@@ -12,9 +11,6 @@
                            "#{banner.height}",
                            {as: 'link', alt: banner.text, title: banner.text }) %>
 
-        <% if check_permission(BannersController, ["toggle_field"]) %>
-          <%= link_to t("unpublish"), toggle_field_site_admin_banner_path(@site, banner, :field => 'publish') %>
-        <% end %>
       </figure>
     <% end %>
   <% end %>

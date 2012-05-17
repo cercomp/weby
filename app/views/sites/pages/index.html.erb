@@ -9,15 +9,6 @@
     <% end %>
   </center>
   
-  <div class="contextual">
-    <% with_permission do %>
-      <%= link_to (t"new_param.fem", param: (t"page.one")), new_site_admin_page_path, class: 'icon icon-add' %>
-    <% end %>
-    <% with_permission(action: :fronts) do %>
-      <%= link_to (t"covers"), fronts_site_admin_pages_path(@site), class: 'icon icon-newspaper' %>
-    <% end %>
-  </div>
-  
   <div class="pagination top">
     <%= info_page @pages %>
     <%= paginate @pages, remote: true %>
@@ -31,11 +22,6 @@
           <th><%= sortable 'users.first_name', t("author") %></th>
           <th><%= sortable 'tags.name', t("category") %></th>
           <th><%= sortable 'pages.type', t("type") %></th>
-          <% with_permission(action: :toggle_field) do %>
-            <th><%= sortable 'pages.front', t("cover") %></th>
-            <th><%= sortable 'pages.publish', t("publish") %></th>
-            <th></th>
-          <% end %>
         </tr>
       </thead>
       <tbody>

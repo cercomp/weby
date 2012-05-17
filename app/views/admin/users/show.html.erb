@@ -38,8 +38,8 @@
   <div style="clear:both;"></div>
 
   <div class="actions">
-    <% if @user.id == @current_user.id or check_permission(UsersController, 'edit') %>
-      <%= link_to t('edit'), {:controller => 'users', :action => "edit", :id => @user.id}, :class => "green-button" %>
+    <% if @user.id == @current_user.id or check_permission(Admin::UsersController, 'edit') %>
+      <%= link_to t('edit'), admin_user(@user.id), :class => "green-button" %>
     <% end %>
     <%= link_to t("back"), :back, class: "red-button" %>
   </div>

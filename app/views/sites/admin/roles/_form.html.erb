@@ -1,4 +1,4 @@
-<%= simple_form_for (@site ? [@site, @role] : @role) do |f| %>
+<%= simple_form_for [@site, :admin, @role] do |f| %>
   <% if @role.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@role.errors.count,"") %> <%= t"prohibited_being_saved", :count => @role.errors.count %>:</h2>

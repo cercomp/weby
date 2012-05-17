@@ -29,6 +29,7 @@ class SitesController < ApplicationController
   end
 
   def admin
+    render layout: false
   end
 
   private

@@ -2,7 +2,7 @@
   <legend><%= t"setting.other" %></legend>
 
     <div class="contextual">
-      <p> <%= link_to t("new_param.fem", :param => (t"setting.one")), new_setting_path, :class => 'icon icon-add' %> </p>
+      <p> <%= link_to t("new_param.fem", :param => (t"setting.one")), new_admin_setting_path, :class => 'icon icon-add' %> </p>
     </div>
 
   <table class="list">
@@ -10,7 +10,7 @@
       <tr>
         <th><%= sortable 'name', t('name') %></th>
         <th><%= sortable 'value', t('value') %></th>
-        <% if check_permission(SettingsController, ["delete"]) %>
+        <% if check_permission(Admin::SettingsController, ["delete"]) %>
           <th></th>
         <% end %>
       </tr>

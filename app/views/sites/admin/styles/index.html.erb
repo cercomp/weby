@@ -1,7 +1,7 @@
 <fieldset>
   <legend> <%= t("style.other") %> </legend>
 
-  <% if check_permission(StylesController, 'new') %>
+  <% if check_permission(Sites::Admin::StylesController, 'new') %>
     <div class="contextual">
       <%= link_to t('new_param.masc', param: t('style.one')),
         new_site_admin_style_path, class: 'icon icon-add' %>

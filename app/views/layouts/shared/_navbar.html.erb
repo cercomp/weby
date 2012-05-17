@@ -17,7 +17,7 @@
 <div class='nav-colapse cf'>
   <ul class='nav'>
     <li class='divider-vertical'></li>
-    <li><%= link_to t("dashboard"), admin_sites_path() if check_permission(AdminController, [:index]) %></li>
+    <li><%= link_to t("dashboard"), admin_path %></li>
     <li>
       <%= link_to t('help'),
         (Setting.get(:help_site) || "/help"),

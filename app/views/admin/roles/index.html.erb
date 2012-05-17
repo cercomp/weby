@@ -4,15 +4,13 @@
 <fieldset>
   <legend><%= t('roles_permissions') %></legend>
 
-  <% if check_permission(RolesController, [:new]) %>
+  <% if check_permission(Admin::RolesController, [:new]) %>
     <div class="contextual">
-      <%= link_to (t"create_param.masc", :param => t("role.one")),
-        @site ? new_site_role_path : new_admin_role_path,
-        :class => 'icon icon-add' %>
+      <%= link_to (t"create_param.masc", param: t("role.one")), new_admin_role_path, class: 'icon icon-add' %>
     </div>
   <% end %>
 
-	<%= form_tag @site ? site_roles_path : admin_roles_path, :method => :put, :id => 'roles_form' do %>
+	<%= form_tag admin_roles_path, :method => :put, :id => 'roles_form' do %>
   <table class="list">
     <thead>
      <tr>
@@ -22,11 +20,11 @@
           <%= link_to '', nil, :title => "#{t("button_check_all.fem")}/#{t("button_uncheck_all.fem")}", :class => 'icon icon-toggle-check', :onclick => "toggleCheckboxesBySelector('input.column-#{role.id}')", :remote => true %>
           <%= role.name %> 
           <p> 
-  					<% if check_permission(RolesController, [:edit]) %>
-							<%= link_to t('edit'), (@site ? edit_site_role_path(@site, role) : edit_admin_role_path(role)), :class => "icon icon-edit" %>
+  					<% if check_permission(Admin::RolesController, [:edit]) %>
+							<%= link_to t('edit'), edit_admin_role_path(role), :class => "icon icon-edit" %>
 						<% end %>
-  					<% if check_permission(RolesController, [:destroy]) %>
-							<%= link_to t('destroy'), role, :confirm => t('are_you_sure'), :method => :delete, :class => "icon icon-del" %> 
+  					<% if check_permission(Admin::RolesController, [:destroy]) %>
+							<%= link_to t('destroy'), admin_role, :confirm => t('are_you_sure'), :method => :delete, :class => "icon icon-del" %> 
 						<% end %>
 					</p>
         </th>

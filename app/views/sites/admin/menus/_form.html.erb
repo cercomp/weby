@@ -1,6 +1,6 @@
 <% content_for :javascripts, javascript_include_tag('menus') %>
 
-<%= simple_form_for [@site, @menu] do |f| %>
+<%= simple_form_for [@site, :admin, @menu] do |f| %>
     <%= f.show_errors %>
 
     <%= f.input :name, :label => t("name"),

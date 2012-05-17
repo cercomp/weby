@@ -1,7 +1,7 @@
 <% # Funções js para selecionar pagina %>
 <%= content_for :javascripts, javascript_include_tag('banners.js') %>
 
-<%= simple_form_for [@site, @banner], :html => { :multipart => true } do |f| %>
+<%= simple_form_for [@site, :admin, @banner], :html => { :multipart => true } do |f| %>
   <% if @banner.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -119,5 +119,5 @@
 <% end %>
 
 <div id="dialog-repository-search">
-  <%= render('repositories/repository_search') %>
+  <%= render 'sites/admin/repositories/repository_search' %>
 </div>

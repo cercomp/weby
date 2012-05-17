@@ -31,7 +31,6 @@ Weby::Application.routes.draw do
     end
 
     namespace :admin, module: 'sites/admin' do
-      resources :rights
       resources :feedbacks
       resources :groups
       resources :banners do
