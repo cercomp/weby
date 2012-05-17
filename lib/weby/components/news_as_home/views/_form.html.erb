@@ -1,9 +1,12 @@
-<% def page_title_for(comp) if comp.page
-    return comp.page.title
+<% 
+  def page_title_for(comp)
+    if comp.page
+      return comp.page.title
     else
-    return t('components.news_as_home.form.none_selected')
-  end
-end %>
+      return t('components.news_as_home.form.none_selected')
+    end
+  end 
+%>
 <%# ======================================== %>
 <%= text_field_tag :page_title, page_title_for(component), disabled: true, id: 'page_title_for_component' %>
 
@@ -12,8 +15,6 @@ end %>
 <%= content_tag :div, '', id: 'page_list', title: t('components.news_as_home.form.select') %>
 
 <%= f.input :page, as: :hidden %>
-
-
 <%# ======================================== %>
 <%= javascript_tag do %>
   /**
@@ -24,5 +25,4 @@ end %>
     $('#page_title_for_component').val(title);
     $('#page_list').dialog('close');
   }
-
 <% end %>
