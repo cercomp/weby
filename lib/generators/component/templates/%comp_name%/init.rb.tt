@@ -1,0 +1,4 @@
+Weby::Components.register_component :<%= comp_name %>,
+  author: "Author",
+  site: "www.site.com",
+  email: "author@site.com"
