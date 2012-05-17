@@ -1,9 +1,9 @@
-pt-BR:
+en:
   components:
     feedback:
-      name: "Fale Conosco"
-      label: "Rótulo"
+      name: "Feedback"
+      label: "Label"
   activerecord:
     attributes:
       feedback_component:
-        label: "Rótulo"
+        label: "Label"
