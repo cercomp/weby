@@ -1,15 +1,13 @@
 module Weby
   module Components
     
-    # Array de componentes disponíveis
-    mattr_accessor :available_components
-
     def self.setup
       yield self
     end
 
     # Plugin constructor
     def self.register_component(comp_name, config={})
+      config[:enabled] = true if config[:enabled].nil?
 
       require "weby/components/#{comp_name.to_s}/#{comp_name.to_s}_component"
 
@@ -17,19 +15,24 @@ module Weby
       Weby::Application.config.i18n.load_path +=
         Dir[Rails.root.join('lib', 'weby', 'components', comp_name.to_s, 'locales', '*.{rb,yml}').to_s]
 
-      unless config[:enabled]==false
-        # Adiciona assets do componente no path de assets
-        Weby::Application.config.assets.paths +=
-          Dir[Rails.root.join('lib', 'weby', 'components', comp_name.to_s, 'assets', '**')]
+      # Adiciona assets do componente no path de assets
+      Weby::Application.config.assets.paths +=
+        Dir[Rails.root.join('lib', 'weby', 'components', comp_name.to_s, 'assets', '**')]
 
-        self.available_components ||= []
-        self.available_components << comp_name
-      end
-
+      @components ||= {}
+      @components[comp_name.to_sym] = config
     end
 
-    def self.is_available?(comp_name)
-      return self.available_components.include?(comp_name.to_sym)
+    def self.components
+      @components
+    end
+
+    def self.component(comp_name)
+      @components[comp_name.to_sym]
+    end
+
+    def self.is_enabled?(comp_name)
+      @components[comp_name.to_sym][:enabled] if (defined? @components and @components[comp_name.to_sym])
     end
 
     def self.factory(component)
@@ -55,11 +58,11 @@ module Weby
         # Caso a partial não exista, não mostra nada
         begin
           output = render args
-          if Weby::Application.assets.find_asset("#{component.name}")
+          if Weby::Application.assets.find_asset("#{component.name}.css")
             @styesheets_loaded ||= []
             #Incluir o css do componente somente uma vez, mesmo se existirem mais de um sendo exibido
             unless(@styesheets_loaded.include?(component.name))
-              output += stylesheet_link_tag("#{component.name}")
+              output += stylesheet_link_tag("#{component.name}.css")
               @styesheets_loaded << component.name
             end
           end
@@ -103,5 +106,17 @@ module Weby
 
       default_scope where(:name => self.cname)
     end
+  end
+end
+
+module ApplicationHelper
+  def load_components(component_place)
+    raw([].tap do |components|
+      @site.components.where(["publish = true AND place_holder = ?", component_place]).order('position asc').each do |comp|
+        if Weby::Components.is_enabled?(comp.name)
+          components << render_component(Weby::Components.factory(comp))
+        end
+      end
+    end.join)
   end
 end

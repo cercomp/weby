@@ -4,6 +4,7 @@ en:
       name: "News List"
       quant: "Amount of news on the home page"
       front: "Only front news?"
+      events: "Show events?"
       show:
         last_news: "Latest news"
   activerecord:
@@ -11,3 +12,4 @@ en:
       no_front_news_component:
         quant: "Amount of news on the home page"
         front: "Only front news?"
+        events: "Show events?"

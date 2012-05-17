@@ -8,11 +8,13 @@ en:
       select_component: "Select a Component"
       next_step: "Next Step"
     pos:
-      bottom: "Botton"
+      bottom: "Bottom"
       content: "Content"
       first_place: "First Place"
       home: "Home Page"
       left: "Left"
       right: "Right"
       top: "Top"
+  disabled_component: "Component not enabled!"
+  
 
