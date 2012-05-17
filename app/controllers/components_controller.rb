@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class ComponentsController < ApplicationController
   layout :choose_layout
   before_filter :require_user
