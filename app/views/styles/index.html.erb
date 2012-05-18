@@ -14,9 +14,9 @@
         name: 'style_search', remote: true do %>
         <%= text_field_tag :style_name, @style_name %>
         <%= select_tag :style_type, options_for_select([
+          [t('other_styles'), 'other'],
           [t('own_styles'), 'own'],
-          [t('follow_styles'), 'follow'],
-          [t('other_styles'), 'other']], @style_type) %>
+          [t('follow_styles'), 'follow']], @style_type) %>
         <%= submit_tag t("search"), class: 'search-button' %>
       <% end %>
     </div>
