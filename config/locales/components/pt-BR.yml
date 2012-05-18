@@ -15,4 +15,6 @@ pt-BR:
       left: "Esquerda"
       right: "Direita"
       top: "Topo"
+  disabled_component: "Componente desabilitado!"
+  
 

@@ -329,18 +329,6 @@ module ApplicationHelper
     Site.where(parent_id: nil).order('name') - [current_site]
   end
 
-  # TODO passar isso para a lib
-  #
-  def load_components(component_place)
-    raw([].tap do |components|
-      @site.components.where(["publish = true AND place_holder = ?", component_place]).order('position asc').each do |comp|
-        if Weby::Components.is_available?(comp.name)
-          components << render_component(Weby::Components.factory(comp))
-        end
-      end
-    end.join)
-  end
-
   def content_tag_if(condition, tag_name, options = {}, &block)
     content_tag(tag_name, options, &block) if condition 
   end

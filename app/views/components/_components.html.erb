@@ -13,7 +13,7 @@
       <% component = Weby::Components.factory(comp) %>
       <tr id="sort_sites_component_<%= component.id %>" class="place-<%=  "#{place_holder}" -%>">
         <td><%= component.id %></td>
-        <td><%= "*" unless Weby::Components.is_available?(component.name) %><%= t("components.#{component.name}.name") %></td>
+        <td><%= "*" unless Weby::Components.is_enabled?(component.name) %><%= t("components.#{component.name}.name") %></td>
         <td><%= component.category rescue '--' %></td>
         <td align="center"><%= raw toggle_field(component, "publish") %></td>
         <td>

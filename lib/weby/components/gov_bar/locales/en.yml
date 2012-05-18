@@ -7,3 +7,10 @@ en:
     attributes:
       gov_bar_component:
         background: "Background Color"
+  gov_bar:
+    views:
+      form:
+        blue: "Blue"
+        green: "Green"
+        gray: "Gray"
+        black: "Black"
