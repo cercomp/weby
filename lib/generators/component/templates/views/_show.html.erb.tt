@@ -1,0 +1,3 @@
+<div class="<%=comp_name%>_component">
+  <%%= component.name %>
+</div>

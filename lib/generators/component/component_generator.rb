@@ -16,7 +16,7 @@ class ComponentGenerator < Rails::Generators::Base
   def settings_names
     "component_settings " << settings.map do |name,type|
         ":#{name}"
-    end.join(',') if (settings and settings.any?)
+    end.join(', ') if (settings and settings.any?)
   end
 
   def settings_inputs

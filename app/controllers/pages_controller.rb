@@ -13,7 +13,7 @@ class PagesController < ApplicationController
   # GET /pages
   # GET /pages.json
   def index
-    (redirect_to published_site_pages_path(@site) unless current_user) and return
+    (redirect_to published_site_pages_path(@site, search: params[:search]) unless current_user) and return
     @pages = get_pages 
     respond_with(@site, @pages) do |format|
       if(params[:template])
