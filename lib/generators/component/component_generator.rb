@@ -6,7 +6,7 @@ class ComponentGenerator < Rails::Generators::Base
   argument :settings, :type => :hash, :required => false, :desc => "Configurações do componente. Ex.: quant:integer show:boolean text:string "
   
   def generate_component
-    directory("%comp_name%", "lib/weby/components/#{comp_name}/")
+    directory(".", "lib/weby/components/#{comp_name}/")
   end
 
   def comp_name
@@ -27,7 +27,7 @@ class ComponentGenerator < Rails::Generators::Base
 
   def settings_locales
     settings.map do |name,type|
-        "        #{name}: \"\""
+        "        #{name}: \"#{name.titleize}\""
     end.join("\n") if (settings and settings.any?)
   end
 end
