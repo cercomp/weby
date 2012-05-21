@@ -7,6 +7,14 @@ class ApplicationController < ActionController::Base
   helper :all
   helper_method :current_user_session, :current_user, :user_not_authorized, :sort_direction, :current_locale, :current_site
 
+  rescue_from Exception, :with => :error_render_method
+
+  def error_render_method(error)
+    @error = error
+    render "errors/500", layout: 'application', :status => 500
+    true
+  end
+
   def choose_layout
     if @site.nil? or @site.id.nil? 
       return "application"
@@ -83,7 +91,7 @@ class ApplicationController < ActionController::Base
 
   # Método utilizado para redirecionamento, quando endereço não existe
   def catcher
-    render :file => "#{Rails.root}/public/404.html", :status => 404
+    render "errors/404", layout: 'application', :status => 404
   end
 
   private
