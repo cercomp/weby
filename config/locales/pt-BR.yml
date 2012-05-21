@@ -272,7 +272,7 @@ pt-BR:
     masc: "Novo %{param}"
   no_follow_styles: "Nenhum estilo seguido"
   no_other_styles: "Não existem outros estilos"
-  no_own_styles: "Não possue estilo próprio"
+  no_own_styles: "Não possui estilo próprio"
   no_groups: "Nenhum grupo configurado para receber e-mails"
   no_need_to_login: "Você não deve estar logado para acessar essa página."
   no_mail: "Nenhum usuário com esse e-mail foi econtrado."
