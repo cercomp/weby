@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   helper :all
   helper_method :current_user_session, :current_user, :user_not_authorized, :sort_direction, :current_locale, :current_site
 
-  rescue_from Exception, :with => :error_render_method
+  rescue_from Exception, :with => :error_render_method if %w[production].include?(Rails.env)
 
   def error_render_method(error)
     @error = error
