@@ -5,17 +5,15 @@
     margin: 30px auto 0;
     text-align: center;
   }
-  .dialog h1 {
-    font-size: 20px;
-  }
   .red { color: red }
   </style>
 <% end %>
 
 <div class="dialog">
-  <%= image_tag 'weby-logo.png' %>
-  <h1><span class="red"><%= @error %></span></h1>
+  <%#= image_tag 'weby-logo.png' %>
+  <h1>Ocorreu um erro no servidor</h1>
+  <h3><span class="red"><%= @error %></span></h3>
   <p>
-    <%= link_to 'Clique aqui para voltar à página inicial.', root_path %>
+    <%#= link_to 'Clique aqui para voltar à página inicial.', root_path %>
   </p>
 </div>
