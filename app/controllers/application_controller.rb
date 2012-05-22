@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   rescue_from Exception, :with => :error_render_method if %w[production].include?(Rails.env)
 
   def error_render_method(error)
-    @error = error
+    @error = error unless error.is_a?(ActiveRecord::StatementInvalid)
     render "errors/500", layout: 'application', :status => 500
     true
   end
