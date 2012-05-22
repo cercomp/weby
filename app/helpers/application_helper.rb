@@ -219,20 +219,17 @@ module ApplicationHelper
           when "show"
             menu << link_to(t('show'), params.merge({:controller => ctr.controller_name,
                                                      :action => 'show', :id => obj.id}),
-                                                     :class => 'icon icon-show',
                                                      :alt => t('show'),
                                                      :title => t('show')) + " "
           when "edit"
             menu << link_to(t("edit"), params.merge({:controller => ctr.controller_name,
                                                      :action => 'edit', :id => obj.id}),
-                                                     :class => 'icon icon-edit',
                                                      :alt => t('edit'),
                                                      :title => t('edit')) + " "
           when "destroy"
             menu << link_to(t("destroy"), params.merge({:controller => ctr.controller_name,
                                                         :action => 'destroy',
                                                         :id => obj.id}),
-                                                        :class => 'icon icon-del',
                                                         :confirm => t('are_you_sure'),
                                                         :method => :delete, 
                                                         :alt => t('destroy'), 

@@ -17,17 +17,6 @@ class Admin::SettingsController < ApplicationController
     end
   end
 
-  # GET /settings/1
-  # GET /settings/1.xml
-  def show
-    @setting = Setting.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @setting }
-    end
-  end
-
   # GET /settings/new
   # GET /settings/new.xml
   def new

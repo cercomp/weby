@@ -94,7 +94,8 @@ Weby::Application.routes.draw do
   match 'admin' => 'application#admin'
   namespace :admin do
     resources :rights
-    resources :settings
+    resources :settings,
+      except: :show
     resources :password_resets, 
       only: [ :new, :create, :edit, :update ]
     resources :users do
