@@ -1,47 +1,49 @@
-<div class='navbar'>
-<div class='navbar-inner'>
-<div class='conteiner cf'>
-
-<%= content_tag :ul,
-  class: "#{(current_user and user_sites and not(current_user.is_admin)) ? 'webybar-dropdown' : 'nav'}
-  pull-left" do %>
-  <li>
-    <%= link_to root_path, class: 'brand' do %>
-      <span class='white'>web</span><span class='red'>y<span>
-    <% end %>
-    <%= content_tag :ul, user_sites,
-      class: 'right' if current_user and user_sites and not(current_user.is_admin) %> 
-  </li>
-<% end %>
-
-<div class='nav-colapse cf'>
-  <ul class='nav'>
-    <li class='divider-vertical'></li>
-    <li><%= link_to t("dashboard"), admin_path %></li>
-    <li>
-      <%= link_to t('help'),
-        (Setting.get(:help_site) || "/help"),
-        target: '_blank' %>
-    </li>
-    <li><%= link_to t('about'), '/about', target: '_blank' %></li>
-  </ul>
-
-  <%= content_tag :ul, class: "#{current_user ? 'webybar-dropdown' : 'nav'} pull-right" do %> 
-    <% if current_user %>
-      <li>
-        <%= link_to current_user.first_name, admin_user_path(current_user), class: 'brand avatar',
-          style: "background-image: url(http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(current_user.email)}?s=30);" %>
-        <ul class='left'>
-          <li><%= link_to t("logout"), logout_path(back_url: "#{request.fullpath}") %></li>
+<div class='navbar navbar-fixed-top'>
+  <div class='navbar-inner'>
+    <div class='container'>
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <%= link_to root_path, class: 'brand orbitron logo' do %>
+        web<span class="red">y</span>
+      <% end %>
+      <% if current_user %>
+        <div class="btn-group pull-right">
+          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="icon-user"></i> <%= current_user.first_name -%>
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li> <%= link_to t('profile'), admin_user_path(current_user) -%> </li>
+            <li class="divider"></li>
+            <li> <%= link_to t("logout"), logout_path(back_url: "#{request.fullpath}") -%> </li>
+          </ul>
+        </div>
+      <% else %>
+        <ul class="nav pull-right">
+          <li> <%= link_to t('login'), login_path(back_url: "#{request.fullpath}") %> </li>
+          <li> <%= link_to t('register'), new_admin_user_path %> </li>
         </ul>
-      </li>
-    <% else %>
-      <li><%= link_to t('login'), login_path(back_url: "#{request.fullpath}") %></li>
-      <li><%= link_to t('register'), new_admin_user_path %></li>
-    <% end %>
-  <% end %>
-</div>
-
-</div>
-</div>
+      <% end %>
+      <div class="nav-collapse">
+        <ul class="nav">
+          <% if current_user %>
+            <% if not(current_user.is_admin) and not(user_sites.empty?) %>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <%= t("portals") %><b class="caret"></b>
+                </a>
+                <%= content_tag :ul, user_sites, class: 'dropdown-menu' %> 
+              </li>
+            <% end %>
+            <li> <%= link_to t("dashboard"), admin_path %> </li>
+          <% end %>
+          <li> <%= link_to t('help'), (Setting.get(:help_site) || "/help"), target: '_blank' %> </li>
+          <li> <%= link_to t('about'), '/about', target: '_blank' %> </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>

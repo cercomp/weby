@@ -1,10 +1,10 @@
-<fieldset>
-  <legend><%= (t"editing", :param => (t"site.one")) %></legend>
+<%- title 'site.other' %>
 
-  <%= render 'form' %>
-
-  <div class="actions">
+<div class="span9">
+  <div class="well">
+    <%= render 'form' %>
+    <div class="actions">
       <%= link_to t('back'), :back %>
+    </div>
   </div>
-  
-</fieldset>
+</div>

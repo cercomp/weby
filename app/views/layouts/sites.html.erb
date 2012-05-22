@@ -5,31 +5,36 @@
   <meta charset="utf-8">
   <%= csrf_meta_tag %>
   <%= stylesheet_link_tag 'sites' %>
+  <%= javascript_include_tag 'sites/sites' %>
 </head>
 <body>
   <%= render 'layouts/shared/navbar' %>
-
-  <header class="cf">
-    <%= image_tag 'weby.png', class: 'pull-left' %>
-    <%= form_tag request.path, method: 'get', autocapitalize: "off", class: 'search pull-right' do %>
-      <%= content_tag :div, class: 'input-append' do %>
-        <%= search_field_tag :search, params[:search], class: 'input-search' %><%= submit_tag t("search"), class: 'btn btn-large btn-primary btn-search' %>
-      <% end %>
-    <% end %>
-  </header>
-
-  <section id="content">
-    <div class="container">
-      <%= raw flash_message %>
-      <%= yield %>
+  <header class="container">
+    <div class="row">
+      <div class="span3">
+        <%= image_tag 'weby.png' %>
+      </div>
+      <div class="span9">
+        <%= form_tag request.path, method: 'get', autocapitalize: "off", class: 'search pull-right' do %>
+          <%= content_tag :div, class: 'input-append' do %>
+            <%= search_field_tag :search, params[:search], class: 'input-search' %><%= submit_tag t("search"), class: 'btn btn-large btn-primary btn-search' %>
+          <% end %>
+        <% end %>
+      </div>
     </div>
-  </section>
-
-  <footer>
+  </header>
+  <div class="bluezone">
+    <section class="container">
+      <div class="row">
+        <div class="span12">
+          <%= raw flash_message %>
+          <%= yield %>
+        </div>
+      </div>
+    </section>
+  </div>
+  <footer class="container">
     <p> <%= t('licence') %> </p>
   </footer>
-
-  <%= javascript_include_tag 'sites/sites' %>
 </body>
 </html>
-

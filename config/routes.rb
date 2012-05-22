@@ -124,7 +124,7 @@ Weby::Application.routes.draw do
   # routes to login, logout and denied access
   match 'logout' => 'user_sessions#destroy', :as => "logout"
   match 'login' => 'user_sessions#new', :as => 'login'
-  match 'denied' => "admin#access_denied", :as => 'denied'
+  match 'denied' => 'user_session#access_denied', :as => 'denied'
 
   # WTF???
   match '*a', :to => 'application#catcher'

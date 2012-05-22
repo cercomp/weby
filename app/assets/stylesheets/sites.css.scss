@@ -1,241 +1,56 @@
-/* 
- *= require google/droidsans 
- *= require google/orbitron 
- *= require bootstrap
+/*
+ *= require google/droidsans
+ *= require google/orbitron
+ *= require _bootstrap
  *= require_self 
+ *= require _bootstrap-responsive
  */ 
 
-// style to create menu dropdown in webybar
-ul.webybar-dropdown
-{
-  margin: 0;
-  list-style-type: none;
-  & > li
-  {
-    position: relative; 
-    &:hover > a,
-    &:hover > a .white
-    {
-      color: #333;
-      background: white;
-    }
-  }
-  & li
-  {
-    & ul
-    {
-      list-style: none;
-      position: absolute;
-      z-index: 999;
-      background-color: white;
-      border: 1px solid #DDD;
-      border-top: none;
-      margin: 0;
-      padding: 0;
-      & li a {
-        display: block;
-        color: #333;
-        padding: 10px 20px;
-        width: 160px;
-        &:hover
-        {
-          text-decoration: none;
-          color: #999;
-        }
-      }
-    }
-    & ul.left { right: -9999px; display: none; }
-    & ul.right { left: -9999px; }
-    &:hover ul.right { left: -1px; }
-    &:hover ul.left { right: -1px; display: block }
-  }
+// overide bootstrap to use navbar
+body { padding-top: 60px; }
+.navbar .btn { margin: 5px 5px 6px; }
+.navbar .brand.logo { color: white; }
+
+// style definitions
+.orbitron { font-family: "Orbitron"; }
+.red { color: #C11303; }
+
+// style to components
+header.container,
+section.container,
+footer.container { padding: 24px 0; }
+footer { text-align: center; }
+
+.bluezone { 
+  border: 1px solid #EEEFEF;
+  background: #F8F9FA;
 }
 
 // style to create modules in layout
 div.content-module
 {
   background: white;
-  margin-bottom: 1em;
+  margin-bottom: 13px;
   border: 1px solid #eeefef;
-  header
-  {
-    background: #3f4551;
-    cursor: pointer;
-    h3
-    {
-      text-transform: uppercase;
-      color: white;
-      font-weight: bold;
-      margin: 1.25em;
-    }
-  }
   section.main { padding: 1em; }
 }
 
-// style for this layout
-header
-{
-  width: 940px;
-  margin: 0 auto;
-  padding: 1.25em 1.875em;
-}
-
-section#content
-{
-  background: #F8F9FA;
-  border: 1px solid #EEEFEF;
-  padding: 1.875em 0;
-}
-
-footer
-{
-  color: #9498a1;
-  text-align: center;
-  padding: 1.875em 0;
-}
-
-// clearfix
-.cf
-{
-  zoom: 1; // for ie6/7
-  &:after { clear: both; }
-  &:after,
-  &:before,
-  {
-    content: "";
-    display: table;
-  }
-}
-    
 // style to search form
 form.search
 {
-  //width: 500px;
   margin: 40px auto 0;
-  padding-bottom: 10px;
-
   .input-search
   {
-    padding: 1em 0.625em;
-    line-height: normal;
-    height: auto;
+    padding: 8px 8px 9px;
     width: 380px;
   }
-  .btn-search
-  {
-    width: 99px !important;
-    margin-bottom: 9px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    line-height: 18px;
-    -webkit-border-radius: 0 3px 3px 0 !important;
-       -moz-border-radius: 0 3px 3px 0 !important;
-            border-radius: 0 3px 3px 0 !important;
-  }
 }
 
-// style to navbar
-
-/**/
-
-.navbar-inner
-{
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-  background: #2a2e36;
-  padding-left: 5px;
-}
-
-.navbar .brand {
-  font-family: "Orbitron", "Droid Sans", Helvetica, Arial, sans-serif;
-  padding-left: 20px;
-  margin-left: 0px;
-  float: none;
-}
-.navbar .brand.avatar {
-  font-family: inherit;
-  padding-left: 58px;
-  font-size: 13px;
-  line-height: 20px;
-  margin-left: 0px;
-  float: none;
-  background-repeat: no-repeat;
-  background-position: 20px 13px;
-}
-.navbar .nav > li > a.brand {
-  padding-right: 10px;
-  padding-left: 20px;
-}
-.navbar .brand,
-.navbar .nav > li > a 
-{
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
-
-.navbar { margin-bottom: 0; }
-.navbar .divider-vertical { height: 60px; }
-.navbar .nav .active > a,
-.navbar .nav .active > a:hover { background: none; }
-
-.red { color: #C11303; }
-.white { color: white; }
-
-.paginator,
-.page_info_paginator
-{
-  padding-bottom: 9px;
-}
-
-.item_per_page_paginator { padding-right: 3px; }
-
-/* TYPOGRAPHY */
-body { font-size: 1em; } 
-
-body,
-form
-{
-  font-family: "Droid Sans", Helvetica, Arial, sans-serif;
-  line-height: 1.125em;
-}
-
-p,
-.per_page_paginator,
-.paginator,
-.page_info_paginator,
-.button,
-ul.nav,
-form input,
-.navbar ul li ul,
-ul#tabs,
-div.side-menu ul li a,
-table,
-.information-box,
-.confirmation-box,
-.error-box,
-.warning-box,
-.avatar,
-ol,
-.regular-ul,
-.custom-ul,
-blockquote,
-cite { font-size: 0.75em; }
-
-div.content-module-heading span { font-size: 0.625em;}
-
-form p input[type="text"],
-form p input[type="password"],
-form p input[type="checkbox"],
-form p input[type="radio"] { font-size: 1em; }
-
-h1 { font-size: 1.125em; }
-h2 { font-size: 0.875em; }
-h3 { font-size: 0.75em; }
-h4 { font-size: 0.685em; }
-h5 { font-size: 0.625em; }
-
-.alert { font-size: 13px; }
-
+// uniq
 .site-name { width: 250px; }
+
+// to paginate 
+// TODO: Fix them to use bootstrap's style
+.paginator,
+.page_info_paginator { padding-bottom: 9px; }
+.item_per_page_paginator { padding-right: 3px; }

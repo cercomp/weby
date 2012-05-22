@@ -332,4 +332,8 @@ module ApplicationHelper
   def content_tag_if(condition, tag_name, options = {}, &block)
     content_tag(tag_name, options, &block) if condition 
   end
+
+  def title title
+    content_for :title, t(title)
+  end
 end

@@ -1,0 +1,22 @@
+<div class="well">
+  <ul class="nav nav-pills nav-stacked">
+  <% if @site %>
+    <li> <%= link_to (t"setting.other"), admin_site_path(@site) %> </li>
+    <li> <%= link_to (t"user.other"), site_admin_users_path(@site) %> </li>
+    <li> <%= link_to (t"page.other"), site_admin_pages_path(@site) %> </li>
+    <li> <%= link_to t("covers"), fronts_site_admin_pages_path(@site) %> </li>
+    <li> <%= link_to (t"menu.other"), site_admin_menus_path(@site) %> </li>
+    <li> <%= link_to (t"banner.other"), site_admin_banners_path(@site) %> </li>
+    <li> <%= link_to t("component.other"), site_admin_components_path(@site) %> </li>
+    <li> <%= link_to (t"archive.other"), site_admin_repositories_path(@site) %> </li>
+    <li> <%= link_to (t"style.other"), site_admin_styles_path(@site) %> </li>
+    <li> <%= link_to (t"roles_permissions"), site_admin_roles_path(@site) %> </li>
+  <% else %>
+    <li> <%= link_to t("site.other"), admin_sites_path %> </li>
+    <li> <%= link_to t("user.other"), admin_users_path %> </li>
+    <li> <%= link_to t("roles_permissions"), admin_roles_path %> </li>
+    <li> <%= link_to t("rights"), admin_rights_path %> </li>
+    <li> <%= link_to t("setting.other"), admin_settings_path %> </li>
+  <% end %>
+  </ul>
+</div>

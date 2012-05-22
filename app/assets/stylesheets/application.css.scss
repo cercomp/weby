@@ -1,10 +1,34 @@
 /*
- *= require bootstrap
+ *= require google/droidsans
+ *= require google/orbitron
+ *= require _bootstrap
  *= require_self 
- *= require bootstrap-responsive
+ *= require _bootstrap-responsive
  */ 
 
+// overide bootstrap to use navbar
 body { padding-top: 60px; }
+.navbar .btn { margin: 5px 5px 6px; }
+.navbar .brand.logo { color: white; }
 
-/*
- */
+// style definitions
+.orbitron { font-family: "Orbitron"; }
+.red { color: #C11303; }
+
+// style to components
+header.container,
+section.container,
+footer.container { padding: 24px 0; }
+footer { text-align: center; }
+
+.bluezone { 
+  border: 1px solid #EEEFEF;
+  background: #F8F9FA;
+}
+
+// uniq
+.title { 
+  padding: 27px 0;
+}
+
+.well { background: white; }

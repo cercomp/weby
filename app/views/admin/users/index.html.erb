@@ -1,19 +1,21 @@
-<fieldset>
-  <legend><%=  t"user.other" %></legend>
+<%- title 'user.other' %>
 
-  <%# if current_user.is_admin? %>
-  <div class="contextual">
-    <%= link_to (t"new_param.masc", param: (t"user.one")), new_admin_user_path, class: 'icon icon-add' %> 
-  </div>
-  
-  <center>
-    <%= form_tag request.path, :method => 'get' do %>
-      <%= text_field_tag :search, params[:search] %>
-      <%= submit_tag t("search"), class: 'search-button' %>
-    <% end %>
-  </center>
+<div class="span9">
+  <div class="well">
+    <div class="contextual">
+      <%= link_to (t"new_param.masc", param: (t"user.one")), new_admin_user_path, class: 'icon icon-add' %> 
+    </div>
 
-  <div id="list">
-    <%= render :partial => "list" %>
+    <%# TODO: criar função para gerar o search %>
+    <center>
+      <%= form_tag request.path, :method => 'get' do %>
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag t("search"), class: 'search-button' %>
+      <% end %>
+    </center>
+
+    <div id="list">
+      <%= render :partial => "list" %>
+    </div>
   </div>
-</fieldset>
+</div>

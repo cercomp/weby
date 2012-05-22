@@ -1,12 +1,18 @@
-<% if check_permission(Admin::SitesController, ["new"]) %>
-  <p class="pull-right">
-  <%= link_to new_admin_site_path do %>
-    <button class="btn btn-success btn-large">
-      <%= t('new_param.masc', param: t('site.one'))%>
-    </button>
-  <% end %>
-  </p>
-<% end %>
-<div style="clear: both;"></div>
+<%- title 'site.other' %>
 
-<%= content_tag :div, render('list'), class: 'list' if @sites %>
+<div class="span9">
+  <div class="well">
+    <% if check_permission(Admin::SitesController, ["new"]) %>
+      <p class="pull-right">
+      <%= link_to new_admin_site_path do %>
+        <button class="btn btn-success btn-large">
+          <%= t('new_param.masc', param: t('site.one'))%>
+        </button>
+      <% end %>
+      </p>
+    <% end %>
+    <div style="clear: both;"></div>
+
+    <%= content_tag :div, render('list'), class: 'list' if @sites %>
+  </div>
+</div>
