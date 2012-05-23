@@ -136,8 +136,11 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-
-    redirect_to @site ? site_users_path : users_path, :notice => t('destroyed_param', :param => @user.first_name)
+    flash[:notice] = t('destroyed_param', :param => @user.first_name)
+  rescue ActiveRecord::DeleteRestrictionError
+    flash[:warning] = t("user_cant_be_deleted")
+  ensure
+    redirect_to @site ? site_users_path : users_path
   end
 
   def toggle_field

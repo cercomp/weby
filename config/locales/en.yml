@@ -438,6 +438,7 @@ en:
   user:
     one: "User"
     other: "Users"
+  user_cant_be_deleted: "This user can't be deleted"
   user_current_sites: "Current Sites"
   user_inactive: "User was not activated."
   username: "User name"

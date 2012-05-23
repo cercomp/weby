@@ -7,14 +7,6 @@ class ApplicationController < ActionController::Base
   helper :all
   helper_method :current_user_session, :current_user, :user_not_authorized, :sort_direction, :current_locale, :current_site
 
-  rescue_from Exception, :with => :error_render_method if %w[production].include?(Rails.env)
-
-  def error_render_method(error)
-    @error = error unless error.is_a?(ActiveRecord::StatementInvalid)
-    render "errors/500", layout: 'application', :status => 500
-    true
-  end
-
   def choose_layout
     if @site.nil? or @site.id.nil? 
       return "application"
@@ -89,12 +81,51 @@ class ApplicationController < ActionController::Base
     redirect_back_or_default login_path
   end
 
+  unless Rails.application.config.consider_all_requests_local
+    rescue_from Exception, with: :render_500
+    rescue_from ActionController::RoutingError, with: :render_404
+    rescue_from ActionController::UnknownController, with: :render_404
+    rescue_from ActionController::UnknownAction, with: :render_404
+    rescue_from ActiveRecord::RecordNotFound, with: :render_404
+  end
+
+  @@weby_error_logger = Logger.new("#{Rails.root}/log/error.log")
+
   # Método utilizado para redirecionamento, quando endereço não existe
-  def catcher
-    render "errors/404", layout: 'application', :status => 404
+  def render_404(exception=nil)
+    @not_found_path = request.path
+    @error = exception
+    respond_to do |format|
+      format.html { render template: 'errors/404', layout: 'application', status: 404 }
+      format.all { render nothing: true, status: 404 }
+    end
+  end
+
+  def render_500(exception)
+    @error = exception
+    @error_code = (Time.now.to_f*10).to_i
+    @@weby_error_logger.error("{#{@error_code}:#{Time.now}\n"+
+        "#{exception.class}\n"+
+        "#{exception.message}\n"+
+        "#{clean_backtrace(exception).join("\n")}\n"+
+        "}")
+    respond_to do |format|
+      format.html { render template: 'errors/500', layout: 'application', status: 500 }
+      format.all { render nothing: true, status: 500}
+    end
   end
 
   private
+
+  def clean_backtrace(exception)
+     if backtrace = exception.backtrace
+       if defined?(Rails.root)
+         backtrace.map { |line| line.include?(Rails.root.to_s) ? line.sub(Rails.root.to_s, '') : nil }.compact
+       else
+         backtrace
+       end
+     end
+   end
 
   def is_admin
     unless current_user.is_admin

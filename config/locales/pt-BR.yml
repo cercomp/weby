@@ -445,6 +445,7 @@ pt-BR:
   user:
     one: "Usuário"
     other: "Usuários"
+  user_cant_be_deleted: "Este usuário não pode ser excluído"
   user_current_sites: "Sites Cadastrados"
   user_inactive: "Seu usuário ainda não está ativo."
   username: "Nome de usuário"

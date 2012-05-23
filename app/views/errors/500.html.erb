@@ -11,9 +11,8 @@
 
 <div class="dialog">
   <%#= image_tag 'weby-logo.png' %>
-  <h1>Ocorreu um erro no servidor</h1>
-  <h3><span class="red"><%= @error %></span></h3>
-  <p>
-    <%#= link_to 'Clique aqui para voltar à página inicial.', root_path %>
-  </p>
+  <h1>[500]</h1>
+  <h1>Ocorreu um erro interno no servidor</h1>
+  <h3><span class="red"><%#= @error %></span></h3>
+  <p><%= @error_code %></p>
 </div>
