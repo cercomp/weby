@@ -118,7 +118,7 @@ Weby::Application.routes.draw do
   match 'denied' => "admin#access_denied", :as => 'denied'
 
   root :to => "sites#index" # Página agregadora dos sites
-  match '*a', :to => 'application#catcher'
+  match '*not_found', :to => 'application#render_404'
 
 end
 
