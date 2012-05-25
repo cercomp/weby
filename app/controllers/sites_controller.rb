@@ -22,8 +22,6 @@ class SitesController < ApplicationController
       params[:site_id] = @site.name
       params[:id] = @site.id
       params[:per_page] = nil
-    else
-      catcher
     end
   end
 
