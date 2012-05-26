@@ -1,0 +1,14 @@
+<% content_for :javascripts, javascript_include_tag('weby_news_slider') %>
+
+<div class="weby_news_slider_component">
+  <div class="flexslider" style="width: 400px">
+    <ul class="slides">
+      <% current_site.pages.tagged_with(component.news_category).each do |page| %>
+        <li>
+          <%= weby_file_view(page.image, :medium, nil, nil, {as: "link", url: link_on_title(@site, page), target: '_self', :height => '300px'}) %>
+          <%= content_tag :p, strip_tags(page.summary.truncate(100)), :class => 'flex-caption' %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

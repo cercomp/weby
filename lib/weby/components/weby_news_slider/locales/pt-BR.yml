@@ -1,0 +1,12 @@
+pt-BR:
+  components:
+    weby_news_slider:
+      name: "Slider de Notícias"
+  activerecord:
+    attributes:
+      weby_news_slider_component:
+        news_category: "Categoria das Notícias"
+  weby_news_slider:
+    views:
+      show:
+      form:

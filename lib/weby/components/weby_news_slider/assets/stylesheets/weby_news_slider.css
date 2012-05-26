@@ -1,0 +1,5 @@
+/*
+ *= require flexslider
+ */
+ul.slides li { height: 300px; overflow: hidden; position: relative; }
+ul.slides img { position: absolute; bottom: 0; }
