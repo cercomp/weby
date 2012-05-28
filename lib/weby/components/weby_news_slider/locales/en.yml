@@ -10,3 +10,4 @@ en:
     views:
       show:
       form:
+        news_category_hint: 'It is preferable that the reports contain images cover a proportion of 400 wide by 300 high'

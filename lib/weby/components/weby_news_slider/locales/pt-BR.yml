@@ -10,3 +10,4 @@ pt-BR:
     views:
       show:
       form:
+        news_category_hint: 'É preferível que as notícias possuam imagens de capa com proporções de 400 de largura por 300 de altura'
