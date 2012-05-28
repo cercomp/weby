@@ -1,0 +1,13 @@
+pt-BR:
+  components:
+    weby_news_slider:
+      name: "Slider de Notícias"
+  activerecord:
+    attributes:
+      weby_news_slider_component:
+        news_category: "Categoria das Notícias"
+  weby_news_slider:
+    views:
+      show:
+      form:
+        news_category_hint: 'É preferível que as notícias possuam imagens de capa com proporções de 400 de largura por 300 de altura'

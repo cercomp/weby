@@ -1,0 +1,5 @@
+<%= f.input :news_category, :collection => current_site.pages.category_counts.map(&:name),
+  :priority => component.news_category,
+  :include_blank => false,
+  :hint => t('.news_category_hint')
+%>

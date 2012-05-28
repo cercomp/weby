@@ -1,0 +1,16 @@
+/*
+ *= require flexslider
+ */
+.weby_news_slider_component {
+  width: 400px;
+  margin: 0 auto;
+}
+ul.slides li {
+  height: 300px;
+  overflow: hidden;
+  position: relative;
+}
+ul.slides img {
+  position: absolute;
+  bottom: 0;
+}
