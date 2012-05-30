@@ -22,6 +22,9 @@ class Site < ActiveRecord::Base
     presence: true,
     format: { with: /([0-9]+[,\s]*)+[0-9]*/ }
 
+  validates :title,
+    :length => { :maximum => 50 }
+
   has_many :subsites,
     foreign_key: :parent_id,
     class_name: "Site"
