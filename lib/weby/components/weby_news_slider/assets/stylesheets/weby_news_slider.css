@@ -1,16 +1,30 @@
 /*
  *= require flexslider
  */
+
 .weby_news_slider_component {
-  width: 400px;
+  width: 400px;  /* default */
   margin: 0 auto;
 }
 ul.slides li {
-  height: 300px;
+  height: 300px; /* default */
   overflow: hidden;
   position: relative;
 }
+
+/** Referência para escalar a imagem no slider                *
+  * http://css-tricks.com/perfect-full-page-background-image/ */
 ul.slides img {
+  /* Set rules to fill background */
+  min-height: 100%;
+  min-width: 400px;  /* default */
+
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+
+  /* Set up positioning */
   position: absolute;
-  bottom: 0;
+  top: 0;
+  left: 0;
 }
