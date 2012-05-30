@@ -1,7 +1,7 @@
 <% if @users_unroled.empty? %>
   <h2>Nenhum usuário para cadastrar</h2>
 <% else %>
-  <%= form_tag change_admin_roles_users_path,
+  <%= form_tag change_roles_admin_users_path,
     :method => "post",
     :id => "subscribe_users",
     :remote => 'true',
@@ -23,7 +23,7 @@
             <ul id="users_list_roles"> 
               <% @users_unroled.each do |user| %>
                 <li>
-                  <%= check_box_tag 'user[id][]', user.id, user.id == params[:user_id].to_i %> <%= " #{user.first_name} #{user.last_name}" %> (<%= link_to user.login, user_path(user) %>)
+                  <%= check_box_tag 'user[id][]', user.id, user.id == params[:user_id].to_i %> <%= " #{user.first_name} #{user.last_name}" %> (<%= link_to user.login, admin_user_path(user) %>)
                 </li>
               <% end %>
             </ul>

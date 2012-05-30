@@ -29,8 +29,8 @@
       <div class="clear"></div>
     </article>
     <div class="control">
-        <%= make_menu(page, :controller => PagesController) %>
-        <% if check_permission(PagesController, ["sort"]) %>
+        <%= make_menu(page, :controller => Sites::PagesController) %>
+        <% if check_permission(Sites::PagesController, ["sort"]) %>
           <%= link_to t("move"), "#", :class => 'handle icon icon-drag' if @front_news.length > 1 %>
         <% end %>
       </div>

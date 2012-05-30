@@ -18,7 +18,7 @@
     <% @users.each do |user| %>
       <tr class="<%= cycle 'odd', 'even' %>">
         <td><%= user.id %></td>
-        <td><%= link_to user.login, admin_user_path(user) %></td>
+        <td><%= link_to user.login, site_admin_user_path(@site, user) %></td>
         <td><%=h user.email %></td>
         <td align="center"><%= raw toggle_field(user, 'status') %></td>
         <td align="center"><%= raw toggle_field(user, 'is_admin', 'set_admin') %></td>

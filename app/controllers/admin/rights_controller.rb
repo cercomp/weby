@@ -7,37 +7,37 @@ class Admin::RightsController < ApplicationController
 
   def index
     @rights = Right.order("controller,name")
-    respond_with(@rights)
+    respond_with(:admin, @rights)
   end
 
   def new
     @right = Right.new
-    respond_with(@right)
+    respond_with(:admin, @right)
   end
 
   def edit
     @right = Right.find(params[:id])
-    respond_with(@right)
+    respond_with(:admin, @right)
   end
 
   def create
     @right = Right.new(params[:right])
     @right.save
 
-    redirect_to @site ? site_right_path(@right) : right_path(@right)
+    redirect_to @site ? site_admin_rights_path : admin_rights_path
   end
 
   def update
     @right = Right.find(params[:id])
     @right.update_attributes(params[:right])
     
-    redirect_to @site ? site_rights_path : rights_path
+    redirect_to @site ? site_admin_rights_path : admin_rights_path
   end
 
   def destroy
     @right = Right.find(params[:id])
     @right.destroy
-    respond_with(@right)
+    respond_with(:admin, @right)
   end
 
   def show

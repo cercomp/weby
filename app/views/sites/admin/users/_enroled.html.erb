@@ -10,7 +10,7 @@
     <tbody>
       <% @site_users.uniq.each do |user| %>
         <tr class="<%= cycle 'odd', 'even' %>">
-          <td><%= link_to user.login, user %></td>
+          <td><%= link_to user.login, site_admin_user_path(@site, user) %></td>
           <td>
             <span id="user_<%= user.id %>">
               <%= user.roles.map{ |r| r.name if r.site_id == @site.try(:id) }.compact.join(', ') %>

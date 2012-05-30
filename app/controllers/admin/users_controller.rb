@@ -93,7 +93,7 @@ class Admin::UsersController < ApplicationController
     if @user.save
       @user.send_activation_instructions!(request.env["SERVER_NAME"])
       flash[:success] = t("create_account_successful")
-      redirect_to current_user ? user_path(@user) : login_path
+      redirect_to current_user ? admin_user_path(@user) : login_path
     else
       flash[:error] = t("problem_create_account")
       render :action => :new
@@ -106,7 +106,7 @@ class Admin::UsersController < ApplicationController
     if @user.activate!
       UserSession.create(@user, false)
       @user.send_activation_confirmation!(request.env["SERVER_NAME"])
-      redirect_to user_path(@user)
+      redirect_to admin_user_path(@user)
     else
       render :action => :new
     end
@@ -114,12 +114,12 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    respond_with(@user)
+    respond_with(:admin, @user)
   end
 
   def edit
     @user = User.find(params[:id])
-    respond_with(@user)
+    respond_with(:admin, @user)
   end
 
   def update
@@ -129,14 +129,14 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update_attributes(user_params)
     flash[:notice] = t"updated", :param => t("account")
-    respond_with(@user)
+    respond_with(:admin, @user)
   end
 
   def destroy
     @user = User.find(params[:id])
     @user.destroy
 
-    redirect_to @site ? site_users_path : users_path, :notice => t('destroyed_param', :param => @user.first_name)
+    redirect_to @site ? site_admin_users_path : admin_users_path, :notice => t('destroyed_param', :param => @user.first_name)
   end
 
   def toggle_field
@@ -148,7 +148,7 @@ class Admin::UsersController < ApplicationController
         flash[:notice] = t"error_updating_object"
       end
     end
-    redirect_to @site ? site_users_path : users_path
+    redirect_to @site ? site_admin_users_path : admin_users_path
   end
   
   def set_admin
@@ -160,7 +160,7 @@ class Admin::UsersController < ApplicationController
         flash[:notice] = t"error_updating_object"
       end
     end
-    redirect_to @site ? site_users_path : users_path
+    redirect_to @site ? site_admin_users_path : admin_users_path
   end
 
   private

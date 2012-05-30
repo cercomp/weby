@@ -1,9 +1,9 @@
-<%- title "editing", :param => t("my_account") %>
+<%- title t("editing", :param => t("my_account")) %>
 
 <div class="span9">
   <div class="well">
 
-    <%= simple_form_for [:admin, @user], :url => account_path do |f| %>
+    <%= simple_form_for [:admin, @user], :url => admin_user_path do |f| %>
       <% if @user.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@user.errors.count, "") %> <%= t"prohibited_being_saved", :count => @user.errors.count %>:</h2>
@@ -19,7 +19,7 @@
 
       <div class="actions">
         <%= f.submit t("save"), class: "green-button" %>
-        <%= link_to t("my_profile"), user_path %>
+        <%= link_to t("my_profile"), admin_user_path %>
         <%= link_to t("back"), :back, class: "red-button" %>
       </div>
 
