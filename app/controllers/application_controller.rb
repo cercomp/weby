@@ -108,6 +108,7 @@ class ApplicationController < ActionController::Base
         "#{exception.class}\n"+
         "#{exception.message}\n"+
         "#{clean_backtrace(exception).join("\n")}\n"+
+        "#{params}\n"+
         "}")
     respond_to do |format|
       format.html { render template: 'errors/500', layout: 'application', status: 500 }

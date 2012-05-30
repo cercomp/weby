@@ -93,8 +93,8 @@
 
             <li class="separator"> <%= t("user", :count => 2) %> </li>
 
-            <% if check_permission(UsersController, [:index]) %>
-              <li> <%= link_to (t"user.other"), @site ? site_users_path(@site) : users_path %> </li>
+            <% if check_permission(UsersController, [:manage_roles]) %>
+              <li> <%= link_to (t"user.other"), @site ? manage_roles_site_users_path(@site) : users_path %> </li>
             <% end %>
 
             <% if check_permission(RightsController, [:index]) %>
