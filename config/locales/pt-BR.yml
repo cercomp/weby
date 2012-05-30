@@ -585,6 +585,7 @@ pt-BR:
         archive: "Arquivo"
       site:
         name: "Nome"
+        title: "Título"
       site_component:
         place_holder: "Local"
       user:
@@ -620,8 +621,8 @@ pt-BR:
         odd: "ímpar requerido"
         record_invalid: ! 'A validação falhou: %{errors}'
         taken: "indisponível"
-        too_long: "muito longo (não é possível usar mais de %{count} characteres)"
-        too_short: "muito curto (não é possível usar menos de %{count} characteres)"
+        too_long: "muito longo (não é possível usar mais de %{count} caracteres)"
+        too_short: "muito curto (não é possível usar menos de %{count} caracteres)"
         wrong_length: "Tamanho errado (%{count} são requeridos)"
 
 #  will_paginate:

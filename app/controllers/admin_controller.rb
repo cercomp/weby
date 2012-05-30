@@ -14,27 +14,19 @@ class AdminController < ApplicationController
   end
 
   def edit
-    @images = @site.repositories.
-      content_file(["image", "x-shockwave-flash"]).
-      description_or_filename(params[:image_search]).
-      page(params[:page]).
-      per(params[:per_page])
-
-    @themes = []
-    (Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*.erb")] -
-     Dir[File.join(Rails.root + "app/views/layouts/application.html.erb")] - 
-     Dir[File.join(Rails.root + "app/views/layouts/sites.html.erb")] - 
-     Dir[File.join(Rails.root + "app/views/layouts/user_sessions.html.erb")]).each do |file|
-       @themes << file.split("/")[-1].split(".")[0]
-     end
+    load_images_themes
   end
 
   def update
     params[:site][:top_banner_id] ||= nil
     if @site.update_attributes(params[:site])
       flash[:notice] = t"successfully_updated"
+      redirect_to edit_site_admin_path(@site, @site)
+    else
+      load_images_themes
+      render :edit
     end
-    redirect_to edit_site_admin_path(@site, @site)
+    
   end
 
   def destroy
@@ -46,5 +38,21 @@ class AdminController < ApplicationController
       description_or_filename(params[:image_search]).
       content_file(["image", "flash"]).
       page(params[:page]).per(@site.per_page_default)
+  end
+
+  def load_images_themes
+    @images = @site.repositories.
+      content_file(["image", "x-shockwave-flash"]).
+      description_or_filename(params[:image_search]).
+      page(params[:page]).
+      per(params[:per_page])
+
+    @themes = []
+    (Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*.erb")] -
+     Dir[File.join(Rails.root + "app/views/layouts/application.html.erb")] -
+     Dir[File.join(Rails.root + "app/views/layouts/sites.html.erb")] -
+     Dir[File.join(Rails.root + "app/views/layouts/user_sessions.html.erb")]).each do |file|
+       @themes << file.split("/")[-1].split(".")[0]
+     end
   end
 end
