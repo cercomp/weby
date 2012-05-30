@@ -23,7 +23,7 @@
         (Setting.get(:help_site) || "/help"),
         target: '_blank' %>
     </li>
-    <li><%= link_to t('about'), '/about', target: '_blank' %></li>
+    <li><%= link_to t('about'), '/about.html', target: '_blank' %></li>
   </ul>
 
   <%= content_tag :ul, class: "#{current_user ? 'webybar-dropdown' : 'nav'} pull-right" do %> 
