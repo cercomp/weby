@@ -108,7 +108,8 @@ Weby::Application.routes.draw do
         get :set_admin
       end 
     end
-    resources :roles do
+    resources :roles,
+      except: :show do
       collection do
         put :index
       end

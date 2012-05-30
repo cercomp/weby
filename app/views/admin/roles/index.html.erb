@@ -1,73 +1,82 @@
 <% content_for :javascripts do %>
   <%= javascript_include_tag "roles_index" %>
 <% end %>
-<fieldset>
-  <legend><%= t('roles_permissions') %></legend>
 
-  <% if check_permission(Admin::RolesController, [:new]) %>
-    <div class="contextual">
-      <%= link_to (t"create_param.masc", param: t("role.one")), new_admin_role_path, class: 'icon icon-add' %>
+<%- title 'roles_permissions' %>
+
+<div class="span9">
+  <div class="well">
+
+    <% if check_permission(Admin::RolesController, [:new]) %>
+      <div class="pull-right">
+        <%= link_to t("create_param.masc", param: t("role.one")),
+          new_admin_role_path,
+          class: "btn btn-success btn-large" %>
+      </div>
+    <% end %>
+
+    <div class="pull-left">
+    <%= link_to (t"list_param", :param => (t"permission", :count => 2)),
+      admin_rights_path,
+      class: 'btn btn-info btn-large' %>
     </div>
-  <% end %>
+    <div class="clearfix"></div>
 
-	<%= form_tag admin_roles_path, :method => :put, :id => 'roles_form' do %>
-  <table class="list">
-    <thead>
-     <tr>
-      <th><%= t"roles_permissions", :count => 2%></th>
-      <% @roles.each do |role| %>
-        <th>
-          <%= link_to '', nil, :title => "#{t("button_check_all.fem")}/#{t("button_uncheck_all.fem")}", :class => 'icon icon-toggle-check', :onclick => "toggleCheckboxesBySelector('input.column-#{role.id}')", :remote => true %>
-          <%= role.name %> 
-          <p> 
-  					<% if check_permission(Admin::RolesController, [:edit]) %>
-							<%= link_to t('edit'), edit_admin_role_path(role), :class => "icon icon-edit" %>
-						<% end %>
-  					<% if check_permission(Admin::RolesController, [:destroy]) %>
-							<%= link_to t('destroy'), admin_role, :confirm => t('are_you_sure'), :method => :delete, :class => "icon icon-del" %> 
-						<% end %>
-					</p>
-        </th>
-      <% end %>
-    </tr>
-    </thead>
-    <tbody>
-      <% @rights.group_by(&:controller).sort.each do |p, i| %>
-        <tr class="<%= cycle 'odd', 'even' %>">
-          <td colspan="<%= @roles.length + 1%>">
-           <b><%= t("#{p.singularize}.other") %></b>
-          </td>
-        </tr>
-        <% i.each do |right| %>
-          <tr class="<%= cycle 'odd', 'even' %> right-<%= right.id %>">
-            <td>
-              <%= link_to '', nil, :title => "#{t("button_check_all.fem")}/#{t("button_uncheck_all.fem")}", :class => 'icon icon-toggle-check', :onclick => "toggleCheckboxesBySelector('.right-#{right.id} input')", :remote => true %>
-              <%= right.name %>
-            </td>
+    <%= form_tag admin_roles_path, :method => :put, :id => 'roles_form' do %>
+      <table class='table table-striped'>
+        <thead>
+          <tr>
+            <th><%= t"roles_permissions", :count => 2%></th>
             <% @roles.each do |role| %>
-              <td>
-                <%= check_box_tag "role[#{role.id}][right_ids][]", right.id, role.rights.include?(right), :id => nil, :class => "column-#{role.id}" %>
-              </td>
+              <th>
+                <%= role.name %> 
+                <p> 
+                  <%= link_to t('check'), nil, :onclick => "toggleCheckboxesBySelector('input.column-#{role.id}')", :remote => true %>
+                  <% if check_permission(Admin::RolesController, [:edit]) %>
+                    <%= link_to t('edit'), edit_admin_role_path(role) %>
+                  <% end %>
+                  <% if check_permission(Admin::RolesController, [:destroy]) %>
+                    <%= link_to t('destroy'), admin_role_path(role), :confirm => t('are_you_sure'), :method => :delete %> 
+                  <% end %>
+                </p>
+              </th>
             <% end %>
           </tr>
+        </thead>
+        <tbody>
+          <% @rights.group_by(&:controller).sort.each do |p, i| %>
+            <tr class="<%= cycle 'odd', 'even' %>">
+              <td colspan="<%= @roles.length + 1%>">
+                <b><%= t("#{p.singularize}.other") %></b>
+              </td>
+            </tr>
+            <% i.each do |right| %>
+              <tr class="<%= cycle 'odd', 'even' %> right-<%= right.id %>">
+                <td>
+                  <%= link_to t('check'), nil, :onclick => "toggleCheckboxesBySelector('.right-#{right.id} input')", :remote => true %>
+                  <%= right.name %>
+                </td>
+                <% @roles.each do |role| %>
+                  <td>
+                    <%= check_box_tag "role[#{role.id}][right_ids][]", right.id, role.rights.include?(right), :id => nil, :class => "column-#{role.id}" %>
+                  </td>
+                <% end %>
+              </tr>
+            <% end %>
+            <% end; reset_cycle %>
+          </tbody>
+        </table>
+
+        <% # Campos identificar que o formulário foi enviado sem nenhuma permissão marcada %>
+        <% @roles.each do |role| %>
+          <%= hidden_field_tag "role[#{role.id}][right_ids][]", "" %>
         <% end %>
-      <% end; reset_cycle %>
-    </tbody>
-  </table>
 
-  <% # Campos identificar que o formulário foi enviado sem nenhuma permissão marcada %>
-  <% @roles.each do |role| %>
-    <%= hidden_field_tag "role[#{role.id}][right_ids][]", "" %>
-  <% end %>
-  
-  <p> 
-    <%= link_to t("button_check_all.fem"), nil, :onclick => "checkAll('#roles_form',true)", :remote => true %> | <%= link_to t("button_uncheck_all.fem"), nil, :onclick => "checkAll('#roles_form',false)", :remote => true %> 
-  </p>
-    <div class="actions">
-      <%= submit_tag t("save"), class: "green-button" %>
-      <%= link_to t("back"), :back, class: "red-button" %>
+        <div class="form-actions">
+          <%= button_tag t("save"), class: 'btn btn-primary' %>
+          <%= link_to t("back"), :back, class: "btn btn-danger" %>
+        </div>
+      <% end %>
+
     </div>
-  <% end %>
-
-  <p> <%= link_to (t"list_param", :param => (t"permission", :count => 2)), :controller => "rights", :action => "index" %> </p>
-</fieldset>
+  </div>

@@ -1,41 +1,45 @@
-<fieldset>
-  <legend><%= t"permission.other" %></legend>
+<%- title "right.other"  %>
 
-  <% if check_permission(Admin::RightsController, [:new]) %>
-    <div class="contextual">
-      <p> <%= link_to (t"new_param.masc", :param => t('right.one')), new_admin_right_path, :class => 'icon icon-add' %> </p>
+<div class="span9">
+  <div class="well">
+    <% if check_permission(Admin::RightsController, [:new]) %>
+      <div class="pull-right">
+        <%= link_to t("new_param.masc", param: t('right.one')),
+          new_admin_right_path,
+          class: 'btn btn-success btn-large' %>
+      </div>
+    <% end %>
+    
+    <div class="pull-left">
+    <%= link_to t("list_param", :param => t("roles_permissions")),
+      admin_roles_path,
+      class: 'btn btn-info btn-large' %>
     </div>
-  <% end %>
 
-  <table class="list">
-    <thead>
-      <tr>
-        <th><%= t"name" %></th>
-        <th><%= t"controller" %></th>
-        <th><%= t"action" %></th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @rights.group_by(&:controller).sort.each do |p, i| %>
-        <tr class="<%= cycle 'odd', 'even' %>">
-          <td colspan="<%= @rights.length + 1%>">
-           <b><%= t("#{p.singularize}.other") %></b>
-          </td>
+    <table class='table table-striped'>
+      <thead>
+        <tr>
+          <th><%= t"name" %></th>
+          <th><%= t"controller" %></th>
+          <th><%= t"action" %></th>
+          <th></th>
         </tr>
-        <% i.each do |right| %>
-          <tr class="<%= cycle 'odd', 'even' %>">
-            <td><%= right.name %></td>
-            <td><%= right.controller %></td>
-            <td><%= right.action %></td>
-            <td>
-              <%= raw make_menu(right, :except => 'show') %>
-            </td>
+      </thead>
+      <tbody>
+        <% @rights.group_by(&:controller).sort.each do |p, i| %>
+          <tr>
+            <th colspan="4"><%= t("#{p.singularize}.other") %></th>
           </tr>
+          <% i.each do |right| %>
+            <tr>
+              <td><%= right.name %></td>
+              <td><%= right.controller %></td>
+              <td><%= right.action %></td>
+              <td><%= raw make_menu(right, :except => 'show') %></td>
+            </tr>
+          <% end %>
         <% end %>
-      <% end; reset_cycle %>
-    </tbody>
-  </table>
-
-  <p> <%= link_to (t"list_param", :param => t("roles_permissions")), :controller => "roles", :action => "index" %> </p>
-</fieldset>
+      </tbody>
+    </table>
+  </div>
+</div>

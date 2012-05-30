@@ -97,17 +97,6 @@
               <li> <%= link_to (t"user.other"), site_admin_users_path(@site) %> </li>
             <% end %>
 
-            <% if check_permission(Sites::Admin::RightsController, [:index]) %>
-              <li>
-                <%= link_to (t"permission.other"), site_admin_rights_path(@site) %>
-                <menu>
-                <% if check_permission(Sites::Admin::RightsController, [:new]) %>
-                  <li> <%= link_to t("new.fem"), new_site_admin_right_path(@site), :class => 'icon icon-add' %> </li>
-                <% end %>
-                </menu>
-              </li>
-            <% end %>
-      
             <% if check_permission(Sites::Admin::RolesController, [:index]) %>
               <li> <%= link_to (t"roles_permissions"), site_admin_roles_path(@site) %> </li>
             <% end %>

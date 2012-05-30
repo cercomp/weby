@@ -1,6 +1,7 @@
-<%= info_page @users %>
-<%= paginate @users, :remote => true %>
-<table class="list">
+<div class="pull-left"> <%= info_page @users %> </div>
+<div class="pull-right"> <%= paginate @users %> </div>
+
+<table class='table table-striped'>
   <thead>
     <tr>
       <th><%= t("id") %></th>
@@ -16,7 +17,7 @@
   </thead>
   <tbody>
     <% @users.each do |user| %>
-      <tr class="<%= cycle 'odd', 'even' %>">
+      <tr>
         <td><%= user.id %></td>
         <td><%= link_to user.login, admin_user_path(user) %></td>
         <td><%=h user.email %></td>
@@ -24,14 +25,13 @@
         <td align="center"><%= raw toggle_field(user, 'is_admin', 'set_admin') %></td>
         <% if check_permission(Admin::UsersController, :change_roles) %>
           <% link = user.is_admin? ? t('admin.one') : t('manage_roles') %>
-          <td><%= link_to link, manage_roles_admin_users_path(:user_id => user.id ) %></td>
+          <td> <%= link_to link, manage_roles_admin_users_path(:user_id => user.id ) %> </td>
         <% end %>
-        <td>
-          <%= raw make_menu(user) %> 
-        </td>
+        <td> <%= raw make_menu(user) %> </td>
       </tr>
-      <% end; reset_cycle %>
-    </tbody>
-  </table>
-<%= per_page_links @users %>
-<%= paginate @users, :remote => true %>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="pull-left"> <%= per_page_links @users %> </div>
+<div class="pull-right"> <%= paginate @users %> </div>

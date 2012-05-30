@@ -1,14 +1,17 @@
-<fieldset>
-<legend><%= t "manage_roles" %></legend>
+<%- title  "manage_roles"  %>
 
-<div id="enroled">
-	<%= render 'enroled' %>
+<div class="span9">
+  <div class="well">
+
+    <div id="enroled">
+      <%= render 'enroled' %>
+    </div>
+
+    <br/>
+
+    <div id="enrole">
+      <%= render 'enrole' %>
+    </div>
+  </div>
 </div>
-
-<br/>
-
-<div id="enrole">
-	<%= render 'enrole' %>
-</div>
-</fieldset>
 

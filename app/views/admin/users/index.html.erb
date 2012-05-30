@@ -2,17 +2,22 @@
 
 <div class="span9">
   <div class="well">
-    <div class="contextual">
-      <%= link_to (t"new_param.masc", param: (t"user.one")), new_admin_user_path, class: 'icon icon-add' %> 
-    </div>
-
-    <%# TODO: criar função para gerar o search %>
-    <center>
-      <%= form_tag request.path, :method => 'get' do %>
-        <%= text_field_tag :search, params[:search] %>
-        <%= submit_tag t("search"), class: 'search-button' %>
+    <%= form_tag request.path, method: 'get', autocapitalize: "off", class: 'pull-left' do %>
+      <%= content_tag :div, class: 'input-append' do %>
+        <%= search_field_tag :search, params[:search], class: 'input-search' %><%= submit_tag t("search"), class: 'btn btn-large btn-primary btn-search' %>
       <% end %>
-    </center>
+    <% end %>
+
+    <% if check_permission(Admin::SitesController, ["new"]) %>
+      <p class="pull-right">
+      <%= link_to new_admin_user_path do %> 
+        <button class="btn btn-success btn-large">
+          <%= t('new_param.masc', param: t('user.one'))%> 
+        </button>
+      <% end %>
+      </p>
+    <% end %>
+    <div class="clearfix"></div>
 
     <div id="list">
       <%= render :partial => "list" %>

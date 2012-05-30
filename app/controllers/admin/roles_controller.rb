@@ -27,13 +27,6 @@ class Admin::RolesController < ApplicationController
     @role = Role.find(params[:id])
   end
 
-  def show
-    @role = Role.new
-    @roles = Role.order("id")
-    @rights = Right.order("id")
-    respond_with(@roles)
-  end
-
   def new
     @role = Role.new
     respond_with(@role)
@@ -42,7 +35,6 @@ class Admin::RolesController < ApplicationController
   def create
     @role = Role.new(params[:role])
     @role.save
-
     redirect_to @site ? site_roles_path : roles_path
   end
 

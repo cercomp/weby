@@ -1,5 +1,4 @@
 class SitesController < ApplicationController
-  layout 'application', only: :admin
   layout :choose_layout, only: :show
   
   before_filter :require_user, :only => :admin
@@ -30,6 +29,7 @@ class SitesController < ApplicationController
   end
 
   def admin
+    render layout: 'application'
   end
 
   private
