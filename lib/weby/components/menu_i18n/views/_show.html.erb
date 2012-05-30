@@ -1,3 +1,5 @@
 <nav class="component_menu_i18n right">
-  <%= render "layouts/shared/menu_locale" %>
+  <% @site.locales.each do |locale| %>
+    <%= link_to flag(locale), params.merge(:locale => locale.name ) %>
+  <% end %>
 </nav>
