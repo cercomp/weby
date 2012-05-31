@@ -6,6 +6,9 @@ en:
     attributes:
       weby_news_slider_component:
         news_category: "News Category"
+        width: Width
+        height: Height
+        quantity: Quantity
   weby_news_slider:
     views:
       show:

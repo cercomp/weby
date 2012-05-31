@@ -6,9 +6,12 @@ pt-BR:
     attributes:
       weby_news_slider_component:
         news_category: "Categoria das Notícias"
+        width: Largura
+        height: Altura
+        quantity: Quantidade
   weby_news_slider:
     views:
       show:
       form:
-        news_category_hint: 'Apenas notícias possuam imagens de capa, é sugerido que a imagem tenha proporções de 400 de largura por 300 de altura'
-        no_category: 'Nenhuma categoria, usa 5 últimas notícias'
+        news_category_hint: 'Apenas notícias que possuam imagens de capa; É sugerido que a imagem tenha proporções iguais as especificadas'
+        no_category: 'Nenhuma categoria'

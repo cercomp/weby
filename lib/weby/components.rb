@@ -10,7 +10,7 @@ module Weby
     def self.register_component(comp_name, config={})
       config[:enabled] = true if config[:enabled].nil?
 
-      require "weby/components/#{comp_name.to_s}/#{comp_name.to_s}_component"
+      #require "weby/components/#{comp_name.to_s}/#{comp_name.to_s}_component"
 
       # Adiciona locales do componente no path de locales
       Weby::Application.config.i18n.load_path +=
@@ -92,6 +92,7 @@ module Weby
              inherited_without_weby cbase
              cbase.class_eval do
               # Como do componente que será usando em algumas partes do sistema
+              # TODO 
               def self.cname
                 # Por padrão toda classe componente terá o "Component" no fim do nome, o come do
                 # componente não precisa ter esse final

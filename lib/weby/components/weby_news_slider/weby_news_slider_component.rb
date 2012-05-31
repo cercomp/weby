@@ -1,10 +1,24 @@
 class WebyNewsSliderComponent < Component
-  component_settings :news_category
+  component_settings :news_category, :width, :height, :quantity
 
   def pages(site)
-    pages = news_category.blank? ? site.pages.limit(5) :
-      site.pages.tagged_with(news_category)
+    news_category.blank? ?
+      site.pages.where('repository_id is not null').limit(5) :
+      site.pages.tagged_with(news_category).where('repository_id is not null')
+  end
 
-    pages.find_all{|i| !i.image.nil? }
+  alias :_width :width
+  def width
+    _width.blank? ? '400' : _width
+  end
+
+  alias :_height :height
+  def height
+    _height.blank? ? '300' : _height
+  end
+
+  alias :_quantity :quantity
+  def quantity
+    _quantity.blank? ? '5' : _quantity
   end
 end
