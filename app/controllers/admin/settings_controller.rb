@@ -72,7 +72,7 @@ class Admin::SettingsController < ApplicationController
     @setting.destroy
 
     respond_to do |format|
-      format.html { redirect_to(settings_url) }
+      format.html { redirect_to(admin_settings_url) }
       format.xml  { head :ok }
     end
   end

@@ -1,13 +1,33 @@
-/* 
-*= require_tree ../../shared 
-*= require_tree ../../legacy 
-*= require_tree ../../extensions 
-*= require ./mini
-*= require jquery-ui.css
-*= require jquery-ui-timepicker-addon.css
-*= require jquery.sortable.css
-*= require_self 
-*/  
+/*
+ *= require bootstrap/_variables
+ *= require_tree ../../shared 
+ *= require_tree ../../legacy 
+ *= require_tree ../../extensions 
+ *= require google/orbitron
+ *= require ./mini
+ *= require jquery-ui.css
+ *= require jquery-ui-timepicker-addon.css
+ *= require jquery.sortable.css
+ *= require_self 
+ *= require _bootstrap-responsive
+ */  
+
+@import 'bootstrap/_variables';
+@import 'bootstrap/_mixins';
+@import 'bootstrap/_layouts';
+@import 'bootstrap/_navs';
+@import 'bootstrap/_sprites';
+@import 'bootstrap/_utilities';
+@import 'bootstrap/_dropdowns';
+@import 'bootstrap/_buttons';
+@import 'bootstrap/_button-groups';
+@import 'bootstrap/_type';
+@import 'bootstrap/_navbar';
+
+.navbar .btn { margin: 5px 5px 6px; }
+.navbar .brand.logo { color: white; }
+.orbitron { font-family: "Orbitron"; }
+.red { color: #C11303; font-family:inherit; }
 
 /* To work with HTML5 more easy */
 article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary { display: block; }

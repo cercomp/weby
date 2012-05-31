@@ -105,7 +105,7 @@ Weby::Application.routes.draw do
       end
       member do 
         put :toggle_field
-        get :set_admin
+        put :set_admin
       end 
     end
     resources :roles,

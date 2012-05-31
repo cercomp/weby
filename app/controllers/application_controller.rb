@@ -58,8 +58,7 @@ class ApplicationController < ActionController::Base
 
   def current_site
     return @current_site if defined? @current_site
-    return Site.find_by_name(params[:site_id]) if params[:site_id]
-    return Site.find_by_name(params[:id]) if params[:id] and controller === SitesController
+    @current_site = Site.find_by_name(params[:site_id] ? params[:site_id] : (params[:id] and params[:controller] == 'sites') ? params[:id] : nil)
   end
 
   def set_locale

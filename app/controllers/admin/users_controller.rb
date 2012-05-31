@@ -148,7 +148,7 @@ class Admin::UsersController < ApplicationController
         flash[:notice] = t"error_updating_object"
       end
     end
-    redirect_to @site ? site_admin_users_path : admin_users_path
+    redirect_to admin_users_path
   end
   
   def set_admin
@@ -160,7 +160,7 @@ class Admin::UsersController < ApplicationController
         flash[:notice] = t"error_updating_object"
       end
     end
-    redirect_to @site ? site_admin_users_path : admin_users_path
+    redirect_to admin_users_path
   end
 
   private

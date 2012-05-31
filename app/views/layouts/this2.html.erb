@@ -3,7 +3,8 @@
 <html lang="<%= session[:locale].to_s %>">
   <%= render 'layouts/shared/head', theme: 'this2' %>
   
-  <body>
+  <body <%= raw 'style="padding-top: 40px;"' if current_user %>>
+  <%= render 'layouts/shared/navbar' if current_user %>
     <div class='first_place'>
       <%= load_components 'first_place' %>
     </div>

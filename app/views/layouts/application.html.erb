@@ -5,10 +5,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <%= javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js" %>
   <![endif]-->
   <%= stylesheet_link_tag 'application' %>
-  <%= javascript_include_tag "application-new" %>
   <%= csrf_meta_tag %>
 </head>
 <body>
@@ -40,5 +39,7 @@
   <footer class="container">
     <p> <%= t('licence') %> </p>
   </footer>
+  <%= javascript_include_tag "application-new" %>
+  <%= yield :javascripts %>
 </body>
 </html>

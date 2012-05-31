@@ -1,6 +1,6 @@
 <div class="well">
   <ul class="nav nav-pills nav-stacked">
-  <% if @site && !@site.new_record? %>
+  <% if current_site %>
     <li> <%= link_to (t"setting.other"), admin_site_path(@site) %> </li>
     <li> <%= link_to (t"user.other"), site_admin_users_path(@site) %> </li>
     <li> <%= link_to (t"page.other"), site_admin_pages_path(@site) %> </li>

@@ -38,7 +38,10 @@
                 <%= content_tag :ul, user_sites, class: 'dropdown-menu' %> 
               </li>
             <% end %>
-            <li> <%= link_to t("dashboard"), admin_path %> </li>
+            <li>
+              <%= link_to(t("dashboard"), admin_path) if not(current_site) %>
+              <%= link_to(t("dashboard"), admin_site_path(current_site)) if current_site %>
+            </li>
           <% end %>
           <li> <%= link_to t('help'), (Setting.get(:help_site) || "/help"), target: '_blank' %> </li>
           <li> <%= link_to t('about'), '/about', target: '_blank' %> </li>
