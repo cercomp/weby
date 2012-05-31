@@ -52,10 +52,10 @@ class Sites::FeedbacksController < ApplicationController
       #Se não tiver nenhum grupo cadastrado no site, envia para todos os usuário do site
       if(@groups.length == 0)
         emails = User.by_site(@site.id).actives.map(&:email).join(',')
-        FeedbackMailer.send_feedback(@feedback, emails).deliver
+        FeedbackMailer.send_feedback(@feedback, emails, current_site).deliver
       else
         @feedback.groups.each do |group|
-          FeedbackMailer.send_feedback(@feedback,group.emails).deliver
+          FeedbackMailer.send_feedback(@feedback, group.emails, current_site).deliver
         end
       end
       session[:feedback_id] = @feedback.id

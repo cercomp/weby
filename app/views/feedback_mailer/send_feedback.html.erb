@@ -4,7 +4,8 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
   </head>
   <body>
-    <h2>Mensagem enviada por <%= "#{@feedback.name} <#{@feedback.email}>" %> através do "Fale conosco"</h2>
+    <h2>Mensagem enviada por <%= "#{@feedback.name} <#{@feedback.email}>" %> através do "Fale conosco"<br/>
+    do site <%= @site_title %></h2>
     Mensagem:
     <pre style="font-size:10pt;">
       <%= @feedback.message %>
