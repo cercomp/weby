@@ -7,11 +7,17 @@
   <div class="well">
 
     <div class="pull-right">
-    <% if check_permission(Sites::Admin::RolesController, [:new]) %>
-      <%= link_to t('new_param.masc', param: t('role.one')),
-        new_site_admin_role_path,
-        class: "btn btn-success btn-large" %>
-    <% end %>
+      <% if check_permission(Sites::Admin::RolesController, [:new]) %>
+        <%= link_to t('new_param.masc', param: t('role.one')),
+          new_site_admin_role_path,
+          class: "btn btn-success btn-large" %>
+      <% end %>
+    </div>
+
+    <div class="pull-left">
+    <%= link_to (t"list_param", :param => (t"permission", :count => 2)),
+      admin_rights_path,
+      class: 'btn btn-info btn-large' %>
     </div>
     <div class="clearfix"></div>
 
@@ -22,9 +28,9 @@
             <th><%= t"roles_permissions", :count => 2%></th>
             <% @roles.each do |role| %>
               <th>
-                <%= link_to '', nil, :title => "#{t("button_check_all.fem")}/#{t("button_uncheck_all.fem")}", :class => 'icon icon-toggle-check', :onclick => "toggleCheckboxesBySelector('input.column-#{role.id}')", :remote => true %>
                 <%= role.name %> 
                 <p> 
+                <%= link_to 'Check', nil, :onclick => "toggleCheckboxesBySelector('input.column-#{role.id}')", :remote => true %>
                 <% if check_permission(Sites::Admin::RolesController, [:edit]) %>
                   <%= link_to t('edit'), edit_site_admin_role_path(@site, role)  %>
                 <% end %>
@@ -46,7 +52,7 @@
             <% i.each do |right| %>
               <tr class="<%= cycle 'odd', 'even' %> right-<%= right.id %>">
                 <td>
-                  <%= link_to '', nil, :title => "#{t("button_check_all.fem")}/#{t("button_uncheck_all.fem")}", :class => 'icon icon-toggle-check', :onclick => "toggleCheckboxesBySelector('.right-#{right.id} input')", :remote => true %>
+                  <%= link_to 'Check', nil, :onclick => "toggleCheckboxesBySelector('.right-#{right.id} input')", :remote => true %>
                   <%= right.name %>
                 </td>
                 <% @roles.each do |role| %>
@@ -65,15 +71,11 @@
           <%= hidden_field_tag "role[#{role.id}][right_ids][]", "" %>
         <% end %>
 
-        <p> 
-        <%= link_to t("button_check_all.fem"), nil, :onclick => "checkAll('#roles_form',true)", :remote => true %> | <%= link_to t("button_uncheck_all.fem"), nil, :onclick => "checkAll('#roles_form',false)", :remote => true %> 
-        </p>
-        <div class="actions">
-          <%= submit_tag t("save"), class: "green-button" %>
-          <%= link_to t("back"), :back, class: "red-button" %>
+        <div class="form-actions">
+          <%= button_tag t("save"), class: 'btn btn-primary' %>
+          <%= link_to t("back"), :back, class: "btn btn-danger" %>
         </div>
       <% end %>
 
-      <p> <%= link_to (t"list_param", :param => (t"permission", :count => 2)), admin_rights_path %> </p>
     </div>
   </div>
