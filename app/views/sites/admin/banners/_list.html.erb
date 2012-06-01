@@ -1,6 +1,8 @@
-<%= info_page @banners %>
-<%= paginate @banners, :remote => true %>
-<table class='list'>
+<div class="pull-left"> <%= info_page @banners %> </div>
+<div class="pull-right"> <%= paginate @banners %> </div>
+<div class="clearfix"></div>
+
+<table class='table table-striped'>
   <thead>
     <th><%= sortable "id" %></th>
     <th><%= sortable 'created_at', t("date_param", :param => t("register"))%></th>
@@ -14,7 +16,7 @@
   </thead>
   <tbody>
     <% @banners.each do |banner| %>
-      <tr class="<%= cycle 'odd', 'even' %>">
+      <tr>
         <td><%= banner.id %></td>
         <td><%=l banner.created_at, format: :short %></td>
         <td><%=l banner.date_begin_at, format: :short %></td>
@@ -24,14 +26,16 @@
         <td><%= banner.position %></td>
         <td><%= banner.categories.join(", ") || t('none_category') %></td>
         <td align="center">
-        <%= publication_status(banner) %>
+          <%= publication_status(banner) %>
         </td>
         <td>
           <%= raw make_menu(banner) %> 
         </td>
       </tr>
-      <% end; reset_cycle %>
-    </tbody>
-  </table>
-  <%= per_page_links @banners, true %>
-  <%= paginate @banners, :remote => true %>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="pull-left"> <%= per_page_links @banners %> </div>
+<div class="pull-right"> <%= paginate @banners %> </div>
+<div class="clearfix"></div>
