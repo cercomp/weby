@@ -81,12 +81,8 @@ Weby::Application.routes.draw do
       end
       resources :users do 
         collection do
-          get :manage_roles
           post :change_roles
         end
-        member do 
-          put :toggle_field
-        end 
       end
     end
   end

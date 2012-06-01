@@ -1,24 +1,32 @@
 <%= form_tag change_roles_site_admin_users_path(@site),
-      :method => "post",
-      :id => "form_user_#{@user.id}",
-      :remote => 'true',
-      :update => 'enroled' %> 
+  :method => "post",
+  :id => "form_user_#{@user.id}",
+  :remote => 'true',
+  :update => 'enroled' %> 
+
   <%= hidden_field_tag 'user[id]', @user.id %>
+  
   <p>
     <% @roles.each do |role| %>
-      <label>
-        <%= check_box_tag 'role_ids[]', role.id,
-              @user.roles.any?{ |r| r.site_id == @site.try(:id) && r.id == role.id} %>
+      <label class="checkbox">
+        <%= check_box_tag 'role_ids[]', 
+          role.id, 
+          @user.roles.any?{ |r| r.site_id == @site.try(:id) && r.id == role.id} %>
         <%= role.name %>
       </label>
-      <br />
     <% end %>
   </p>
-  <%= submit_tag (t"submit"), class: "green-button", onclick: current_user.id == @user.id ? "return test_unrole('form_user_#{@user.id}');" : "" %>
-  <%= link_to t('cancel'), {action: 'manage_roles'}, 
+
+  <%= submit_tag (t"submit"),
+    class: "btn btn-primary", 
+    onclick: current_user.id == @user.id ? "return test_unrole('form_user_#{@user.id}');" : "" %>
+
+  <%= link_to t('cancel'), {action: 'index'}, 
     onclick: "return hide_form(#{@user.id});", 
-    id: "form_role_cancel", class: "red-button" %>
+    id: "form_role_cancel",
+    class: "btn btn-danger" %>
 </form>
+
 <%= javascript_tag do %>
   function test_unrole(form_id){
     if( $('#'+form_id+' input:checked').length == 0 ){
@@ -29,4 +37,3 @@
     return true;
   }
 <% end %>
-
