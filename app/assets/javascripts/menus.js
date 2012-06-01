@@ -1,6 +1,5 @@
 //= require jquery-ui.min
 //= require dialog
-//= require tabs
 
 // TODO arquivo semelhante ao banners.js estudar maneira de mescla-los
 

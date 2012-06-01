@@ -14,34 +14,36 @@
           :as => :hidden %>
     </div>
   <% end %>
-  <div class="tabs">
-    <ul>
-      <% @available_locales.each do |locale| %>
-        <li><%= link_to locale_with_name(locale), "##{locale}" %></li>
+  <div class="tabbable">
+    <ul class="nav nav-tabs">
+      <% @available_locales.each_with_index do |locale, index| %>
+        <li class="<%= index == 0 ? "active" : "" %>"><%= link_to locale_with_name(locale), "#tab_#{locale}", 'data-toggle' => 'tab' %></li>
       <% end %>
     </ul>
-    <% @available_locales.each do |locale| %>
-      <div id="<%= locale.name %>">
-        <%= f.i18ns_fields_for(locale) do |g| %>
-            
-          <% unless g.object.id.blank? %>
-            <%= g.input :_destroy,
-                label: t("activerecord.attributes.menu_item/i18ns._destroy", locale: locale.name.to_sym),
-                as: :boolean %>
+    <div class="tab-content">
+      <% @available_locales.each_with_index do |locale, index| %>
+        <div id="tab_<%= locale.name %>" class="tab-pane<%= index == 0 ? " active" : "" %>">
+          <%= f.i18ns_fields_for(locale) do |g| %>
+
+            <% unless g.object.id.blank? %>
+              <%= g.input :_destroy,
+                  label: t("activerecord.attributes.menu_item/i18ns._destroy", locale: locale.name.to_sym),
+                  as: :boolean %>
+            <% end %>
+
+            <%= g.input :title, :label => t("title"),
+                label: t("activerecord.attributes.menu_item/i18ns.title", locale: locale.name.to_sym),
+                placeholder: t("title"),
+                input_html: {class: "title_input"} %>
+
+            <%= g.input :description, :label => t("description"),
+                label: t("activerecord.attributes.menu_item/i18ns.description", locale: locale.name.to_sym),
+                :input_html => {:size => "40x2", :style => "height:50px;" },
+                :as => :text %>
           <% end %>
-
-          <%= g.input :title, :label => t("title"),
-              label: t("activerecord.attributes.menu_item/i18ns.title", locale: locale.name.to_sym),
-              placeholder: t("title"),
-              input_html: {class: "title_input"} %>
-
-          <%= g.input :description, :label => t("description"),
-              label: t("activerecord.attributes.menu_item/i18ns.description", locale: locale.name.to_sym),
-              :input_html => {:size => "40x2", :style => "height:50px;" },
-              :as => :text %>
-        <% end %>
-      </div>
-    <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
 	
   <div class="input page_select" id="div_link">

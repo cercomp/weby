@@ -1,5 +1,4 @@
 //= require jquery-ui.min 
-//= require tabs
 //= require repository.dialog
 
 /**
