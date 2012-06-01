@@ -1,6 +1,8 @@
-<%= info_page @users %>
-<%= paginate @users, :remote => true %>
-<table class="list">
+<div class="pull-left"> <%= info_page @users %> </div>
+<div class="pull-right"> <%= paginate @users %> </div>
+<div class="clearfix"></div>
+
+<table class="table table-striped">
   <thead>
     <tr>
       <th><%= t("id") %></th>
@@ -40,5 +42,6 @@
       <% end; reset_cycle %>
     </tbody>
   </table>
-<%= per_page_links @users %>
-<%= paginate @users, :remote => true %>
+<div class="pull-left"> <%= per_page_links @users %> </div>
+<div class="pull-right"> <%= paginate @users %> </div>
+<div class="clearfix"></div>

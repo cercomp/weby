@@ -1,23 +1,28 @@
 <%- title "user.other" %>
 
-<fieldset>
-  <legend><%=  t"user.other" %></legend>
+<div class="span9">
+  <div class="well">
 
-  <%# if current_user.is_admin? %>
-  <% if check_permission(Sites::Admin::UsersController, 'manage_roles') %>
-    <div class="contextual">
-      <%= link_to (t"enrole_user_site"), manage_roles_site_admin_users_path(@site), :class => 'icon icon-add' %>
+
+    <div class="pull-left">
+      <%= form_tag request.path, method: 'get', autocapitalize: "off", class: 'search pull-right' do %>
+        <%= content_tag :div, class: 'input-append' do %>
+          <%= search_field_tag :search, params[:search], class: 'input-search' %><%= submit_tag t("search"), class: 'btn btn-large btn-primary btn-search' %>
+        <% end %>
+      <% end %>
     </div>
-  <% end %>
-  
-  <center>
-    <%= form_tag request.path, :method => 'get' do %>
-      <%= text_field_tag :search, params[:search] %>
-      <%= submit_tag t("search"), class: 'search-button' %>
-    <% end %>
-  </center>
 
-  <div id="list">
-    <%= render :partial => "list" %>
+    <% if check_permission(Sites::Admin::UsersController, 'manage_roles') %>
+      <div class="pull-right">
+        <%= link_to t('enrole_user_site'),
+          manage_roles_site_admin_users_path(@path),
+          class: "btn btn-success btn-large" %>
+      </div>
+      <div class="clearfix"></div>
+    <% end %>
+
+    <div id="list">
+      <%= render :partial => "list" %>
+    </div>
   </div>
-</fieldset>
+</div>
