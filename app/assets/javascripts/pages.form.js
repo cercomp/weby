@@ -6,7 +6,6 @@
 //= require_self
 
 $(document).ready(function(){
-  alert('here');
   $("input#page_type").val($("input#is_event").is(":checked")? 'Event':'News' );
   if($("input#is_event").is(":checked")){
       //event_fields.appendTo('#form_event');

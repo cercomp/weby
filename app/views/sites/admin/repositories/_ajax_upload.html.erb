@@ -10,7 +10,7 @@
     <%= label_tag :fileupload, t("file.one") %>
     <span class="file-wrapper">
       <%= file_field_tag "repository[archive]", required: true, id: "fileupload", onclick: "ajaxUpload();" %>
-      <span class="folder-button"><%= t("select_file") %></span>
+      <span class="folder-button btn btn-info"><%= t("select_file") %></span>
     </span>
     <progress value="" max="100" id="upload-file-progress" style="display: none"></progress>
   </p>
@@ -23,7 +23,10 @@
 <style type="text/css" media="screen">
   #results {
     overflow-y: auto;
-    height: 220px;
+    /*height: 220px;*/
+  }
+  .folder-button{
+    cursor: pointer;
   }
   .file-wrapper {
     cursor: pointer;

@@ -16,7 +16,7 @@ class Sites::Admin::PagesController < ApplicationController
     @pages = get_pages 
     respond_with(@site, @page) do |format|
       if(params[:template])
-        format.js { render template: "pages/#{params[:template]}" }
+        format.js { render "#{params[:template]}" }
       end
     end
   end

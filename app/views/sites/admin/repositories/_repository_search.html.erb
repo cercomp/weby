@@ -1,32 +1,39 @@
+<div class="modal-header"><h3><%= t('archive.other') %></h3></div>
+<div class="modal-body">
 <div class="tabbable">
   <ul class="nav nav-tabs">
     <li class="active">
-      <%= link_to t("repository.one"), "#tab_repository", 'data-toggle' => 'tab' %>
+      <%= link_to t("repository.one"), "#tab_repository", data: {toggle: 'tab'} %>
     </li>
     <li>
-      <%= link_to t("new_param.masc", param: t("file.one")), "#tab_new_file", 'data-toggle' => 'tab' %>
+      <%= link_to t("new_param.masc", param: t("file.one")), "#tab_new_file", data: {toggle: 'tab'} %>
     </li>
   </ul>
   <div class="tab-content">
     <div id="tab_repository" class="tab-pane active">
-      <%= form_tag site_admin_repositories_path(format: :json),
-        method: 'get',
-        id: 'repository-search-form',
-        remote: true do %>
-        <%= select_tag "mime_type[]",
-          grouped_options_for_select(load_mime_types(@site), ),
-          include_blank: t('all') %>
-        <%= search_field_tag :search %>
-        <%= hidden_field_tag 'page', "1" %>
-        <%= hidden_field_tag 'per_page', "#{params[:per_page]}" %>
-        <%= submit_tag t("search"), class: 'search-button' %>
-      <% end %>
+      <div class="pull-left">
+        <%= form_tag site_admin_repositories_path(format: :json),
+          method: 'get',
+          autocapitalize: "off",
+          class: 'search pull-right',
+          id: 'repository-search-form',
+          remote: true do %>
+          <%= content_tag :div, class: 'input-append' do %>
+            <%= select_tag "mime_type[]",
+            grouped_options_for_select(load_mime_types(@site), ),
+            include_blank: t('all') %>
+            <%= search_field_tag :search, params[:search] %><%= submit_tag t("search"), class: 'btn btn-primary btn-search' %>
+          <%= hidden_field_tag 'page', "1" %>
+          <%= hidden_field_tag 'per_page', "#{params[:per_page]}" %>
+          <% end %>
+        <% end %>
+      </div>
 
       <%= form_tag "#", id: 'repository-include-form' do %>
         <ul id="repositories-search-results">
         </ul>
-        <div class="actions">
-          <%= link_to_function t("save"), '', id: 'repository-include-link', class: "green-button" %>
+        <div class="actions pull-right">
+          <%= link_to_function t("save"), '', id: 'repository-include-link', class: "btn btn-primary" %>
         </div>
       <% end %>
     </div>
@@ -35,4 +42,8 @@
       <%= render "sites/admin/repositories/ajax_upload" %>
     </div>
   </div>
+</div>
+</div>
+<div class="modal-footer">
+  <a href="#" class="btn" data-dismiss="modal"><%=t('close')%></a>
 </div>

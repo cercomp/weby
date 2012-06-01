@@ -17,7 +17,7 @@ $('#menu_item_url').change(function(){
 function selected (id, title, type) {
   var url = $('#url_to_pages').val() + '/' + id;
 
-  $('#page_list').dialog('close');
+  $('#modal_page_list').modal('hide');
   $('input#menu_item_url').val(url);
 
   // Adiciona a referencia para a página

@@ -1,25 +1,27 @@
-<center>
-  <%= form_tag site_admin_pages_path(template: 'list_popup'), :method => 'get', :remote => true do %>
-    <%= text_field_tag :search %>
+<div>
+  <%= form_tag site_admin_pages_path(template: 'list_popup'), method: 'get', autocapitalize: "off", class: 'search pull-right', remote: true do %>
+    <%= content_tag :div, class: 'input-append' do %>
+      <%= search_field_tag :search, params[:search], class: 'input-search' %><%= submit_tag t("search"), class: 'btn btn-large btn-primary btn-search' %>
+    <% end %>
     <%= hidden_field_tag 'page', 1 %>
     <%= hidden_field_tag 'per_page', "#{params[:per_page]}" %>
-    <%= submit_tag t("search") %>
   <% end %>
-</center>
+</div>
 
-<%= paginate @pages, :remote => true %>
-<%= info_page @pages %>
-<table id='list' class="list">
+<div class="pull-left"> <%= info_page @pages %> </div>
+<!--<div class="pull-right"> <%#= paginate @pages, remote: true %> </div>-->
+<div class="clearfix"></div>
+
+<table id='list' class="list table table-striped">
   <thead>
     <th><%= sortable 'date_begin_at', t("date_param", :param => t("register"))%></th>
     <th><%= t("title") %></th>
     <th><%= sortable 'tags.name', t("category") %></th>
     <th><%= sortable 'type', t("type") %></th>
   </thead>
-
   <tbody>
     <% @pages.each do |page| %>
-      <%= content_tag :tr, id: "sort_page_#{page.id}", onclick: "selected(#{page.id}, '#{page.title}', 'Page')", style: 'cursor: pointer' do %>
+      <%= content_tag :tr, id: "sort_page_#{page.id}", onclick: "selected(#{page.id}, '#{escape_javascript(page.title)}', 'Page')", style: 'cursor: pointer' do %>
         <td><%= page.created_at.strftime('%d/%m/%y') %></td>
         <td><%= page.title %></td>
         <td><%= page.category_list %></td>
@@ -28,5 +30,7 @@
     <% end %>
   </tbody>
 </table>
-<%= per_page_links @pages, true %>
-<%= paginate @pages, :remote => true %>
+
+<div class="pull-left"> <%= per_page_links @pages %> </div>
+<div class="pull-right"> <%= paginate @pages, remote: true %> </div>
+<div class="clearfix"></div>

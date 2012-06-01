@@ -2,19 +2,7 @@
 <%= content_for :javascripts, javascript_include_tag('banners.js') %>
 
 <%= simple_form_for [@site, :admin, @banner], :html => { :multipart => true } do |f| %>
-  <% if @banner.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@banner.errors.count,"") %>
-        <%= t"prohibited_being_saved", :count => @banner.errors.count %>:
-      </h2>
-      <ul>
-        <% @banner.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= f.show_errors %>
 
 
   <%= repository_search t("banner.image"), "banner_image",
@@ -73,17 +61,9 @@
 
   <% # URL Input %>
   <div class="input page_select" id="div_link">
-    <%= f.input :url,
-      label: t("url"),
-      hint: (t"type_param", param: t("url")),
-      wrapper_html: { class: "nostyle" },
-      as: :string %>
-
-    <%= link_to_function 'Clique aqui para selecionar uma página',
-      'show_dialog($(this))',
-      id: 'banner_page_select',
-      class: "search-button element",
-      'data-link' => site_admin_pages_path %>
+    <%= f.input :url, :wrapper => :append, :hint => t('type_param', param: t('url')) do %>
+       <%= f.input_field :url, as: :string %><%= link_to_function 'Selecione uma página', 'show_dialog($(this))', :class => 'btn btn-info', data: { link: site_admin_pages_path} %>
+    <%  end %>
 
     <% # Ao selecionar um noticia deve ser montado a url para ela,
       # então aqui guardamos o caminho para as páginas deste site %>
