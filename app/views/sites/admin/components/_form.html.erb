@@ -14,8 +14,8 @@
     <%= f.input :place_holder, :as => :hidden %>
   </div>
 
-  <div class="actions">
-    <%= f.submit t("save"), class: 'green-button' %>
-    <%= link_to t('back'), site_admin_components_path, class: 'red-button' %>
+  <div class="form-actions">
+    <%= f.button :submit, class: 'btn-primary' %>
+    <%= link_to t("back"), :back, class: "btn btn-danger" %>
   </div>
 <% end %>
