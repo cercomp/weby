@@ -1,16 +1,24 @@
-<fieldset>
-  <legend><%= t("group.other") %> - <%= t("feedback.one") %></legend>
+<%- title  'group.other' %>
 
-  <div class="contextual">
-    <% if check_permission(Sites::Admin::GroupsController, [:new]) %>
-      <%= link_to (t"new_param.masc", :param => (t"group.one")), new_site_admin_group_path, :class => 'icon icon-add' -%>
-    <% end %>
-    <% if check_permission(Sites::Admin::FeedbacksController, [:index]) %>
-      | <%= link_to (t"messages"), site_admin_feedbacks_path(@site), :class => 'icon icon-list' -%>
-    <% end %>
-  </div>
+<div class="span9">
+  <div class="well">
 
-  <div id="list">
-    <%= render :partial => "list" %>
+    <div class="pull-right">
+      <% if check_permission(Sites::Admin::GroupsController, [:new]) %>
+        <%= link_to t('new_param.masc', param: t('group.one')),
+          new_site_admin_group_path,
+          class: "btn btn-success btn-large" %>
+      <% end %>
+      <% if check_permission(Sites::Admin::FeedbacksController, [:index]) %>
+        <%= link_to  t('messages'),
+          site_admin_feedbacks_path,
+          class: "btn btn-success btn-large" %>
+      <% end %>
+    </div>
+    <div class="clearfix"></div>
+
+    <div id="list">
+      <%= render :partial => "list" %>
+    </div>
   </div>
-</fieldset>
+</div>

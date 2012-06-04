@@ -1,7 +1,8 @@
 <% unless @groups.empty? %>
-  <%= info_page @groups %>
-  <%= paginate @groups, :remote => true %>
-  <table class='list'>
+<div class="pull-left"> <%= info_page @groups %> </div>
+<div class="pull-right"> <%= paginate @groups %> </div>
+<div class="clearfix"></div>
+  <table class='table table-striped'>
     <thead>
       <th><%= sortable 'name', t('name') %></th>
       <th></th>
@@ -17,6 +18,7 @@
     <% end %>
     </tbody>
   </table>
-  <%= per_page_links @groups %>
-  <%= paginate @groups, :remote => true %>
+<div class="pull-left"> <%= per_page_links @groups %> </div>
+<div class="pull-right"> <%= paginate @groups %> </div>
+<div class="clearfix"></div>
 <% end %>
