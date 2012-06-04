@@ -40,7 +40,7 @@ class Sites::Admin::BannersController < ApplicationController
       render action: :edit
     end
     @banner.save
-    respond_with(@site, @banner)
+    respond_with(@site, :admin, @banner)
   end
 
   def update
@@ -51,7 +51,7 @@ class Sites::Admin::BannersController < ApplicationController
       search_images
     end
     @banner.update_attributes(params[:banner])
-    respond_with(@site, @banner)
+    respond_with(@site, :admin, @banner)
   end
 
   def destroy

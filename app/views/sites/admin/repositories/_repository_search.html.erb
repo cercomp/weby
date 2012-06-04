@@ -1,40 +1,38 @@
-<div class="modal-header"><h3><%= t('archive.other') %></h3></div>
-<div class="modal-body">
-<div class="tabbable">
-  <ul class="nav nav-tabs">
+<div class="modal-header">
+  <h3 class="pull-left"><%= t('archive.other') %></h3>
+  <ul class="nav nav-pills pull-right">
     <li class="active">
-      <%= link_to t("repository.one"), "#tab_repository", data: {toggle: 'tab'} %>
+      <%= link_to t("repository.one"), "#tab_repository", data: {toggle: 'pill'} %>
     </li>
     <li>
-      <%= link_to t("new_param.masc", param: t("file.one")), "#tab_new_file", data: {toggle: 'tab'} %>
+      <%= link_to t("new_param.masc", param: t("file.one")), "#tab_new_file", data: {toggle: 'pill'} %>
     </li>
   </ul>
+  <div class="clearfix"></div>
+</div>
+<div class="modal-body">
   <div class="tab-content">
     <div id="tab_repository" class="tab-pane active">
-      <div class="pull-left">
-        <%= form_tag site_admin_repositories_path(format: :json),
-          method: 'get',
-          autocapitalize: "off",
-          class: 'search pull-right',
-          id: 'repository-search-form',
-          remote: true do %>
-          <%= content_tag :div, class: 'input-append' do %>
-            <%= select_tag "mime_type[]",
-            grouped_options_for_select(load_mime_types(@site), ),
-            include_blank: t('all') %>
-            <%= search_field_tag :search, params[:search] %><%= submit_tag t("search"), class: 'btn btn-primary btn-search' %>
+      <%= form_tag site_admin_repositories_path(format: :json),
+        method: 'get',
+        autocapitalize: "off",
+        class: 'search',
+        id: 'repository-search-form',
+        remote: true do %>
+        <%= content_tag :div, class: 'input-append pull-right' do %>
+          <%= select_tag "mime_type[]",
+          grouped_options_for_select(load_mime_types(@site), ),
+          include_blank: t('all') %>
+          <%= search_field_tag :search, params[:search] %><%= submit_tag t("search"), class: 'btn btn-primary btn-search' %>
           <%= hidden_field_tag 'page', "1" %>
           <%= hidden_field_tag 'per_page', "#{params[:per_page]}" %>
-          <% end %>
         <% end %>
-      </div>
-
+        <div class="clearfix"></div>
+      <% end %>
+      
       <%= form_tag "#", id: 'repository-include-form' do %>
         <ul id="repositories-search-results">
         </ul>
-        <div class="actions pull-right">
-          <%= link_to_function t("save"), '', id: 'repository-include-link', class: "btn btn-primary" %>
-        </div>
       <% end %>
     </div>
 
@@ -43,7 +41,7 @@
     </div>
   </div>
 </div>
-</div>
 <div class="modal-footer">
+  <%= link_to_function t("save"), '', id: 'repository-include-link', class: "btn btn-primary" %>
   <a href="#" class="btn" data-dismiss="modal"><%=t('close')%></a>
 </div>

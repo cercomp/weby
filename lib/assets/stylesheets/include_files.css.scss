@@ -53,17 +53,24 @@
 #dialog-repository-search {
   padding: 10px;
   overflow: hidden !important;
-
+  
   .tabs {
     height: 450px;
   }
 
   form {
     overflow: hidden !important;
+    width: 100%;
+    margin-bottom: 0px;
   }
 
   .actions {
     margin: 0 !important;
+  }
+
+  .modal-body {
+     height: 340px;
+     overflow: hidden;
   }
 }
 
@@ -71,7 +78,7 @@
 #repositories-search-results, .add-multiple-files ul {
   height: 290px;
   list-style: none;
-  margin: 30px 0 10px 0;
+  margin: 10px 0 10px 0;
   overflow: auto;
   padding: 0;
 
@@ -81,10 +88,10 @@
 
     float: left;
     height: 64px;
-    margin: 0 15px 15px 0;
+    margin: 0 10px 15px 0;
     overflow: hidden;
     padding: 5px;
-    width: 250px;
+    width: 230px;
 
     &:hover {
       @extend .backgrounded;
@@ -95,7 +102,7 @@
     float: right;
     margin: 0 auto;
     padding: 0;
-    width: 230px;
+    width: 210px;
   }
 
   figure {
@@ -139,4 +146,50 @@
     height: 64px !important;
     width: 64px !important;
   }
+}
+
+#results {
+  overflow-y: auto;
+
+  li{
+    height: 20px;
+  }
+}
+
+.folder-button{
+    cursor: pointer;
+}
+
+.file-wrapper {
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+
+    input {
+      cursor: pointer;
+      font-size: 100px;
+      height: 100%;
+      filter: alpha(opacity=1);
+      -moz-opacity: 0.01;
+      opacity: 0.01;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    .button {
+      background: #79130e;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      border-radius: 5px;
+      color: #fff;
+      cursor: pointer;
+      display: inline-block;
+      font-size: 11px;
+      font-weight: bold;
+      margin-right: 5px;
+      padding: 4px 18px;
+      text-transform: uppercase;
+    }
 }
