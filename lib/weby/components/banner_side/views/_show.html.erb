@@ -13,13 +13,14 @@
                               as: 'link',
                               alt: banner.text,
                               title: banner.text,
-                              url: banner_url
+                              url: banner_url,
+                              target: (banner.new_tab ? '_blank' : '')
                            }) %>
       </figure>
     <% else %>
         <div class='banner_textual'>
             <h2><%= "#{banner.title}" %></h2>
-            <a href="<%= "#{banner_url}" %>"><p><%= "#{banner.text}" %></p></a>
+            <a href="<%= "#{banner_url}" %>" target="<%= banner.new_tab ? "_blank":"" %>"><p><%= "#{banner.text}" %></p></a>
         </div>
     <% end %>
     <% if check_permission(BannersController, ["toggle_field"]) %>
