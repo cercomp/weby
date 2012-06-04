@@ -79,7 +79,8 @@ Weby::Application.routes.draw do
           get :copy, :follow, :unfollow, :publish, :unpublish
         end
       end
-      resources :users do 
+      resources :users,
+        only: :index do 
         collection do
           post :change_roles
         end
