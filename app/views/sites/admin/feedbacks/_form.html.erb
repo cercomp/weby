@@ -1,14 +1,5 @@
 <%= simple_form_for [@site, :admin, @feedback], html: { class: 'form-horizontal' } do |f| %>
-  <% if @feedback.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@feedback.errors.count,"") %> <%= t"prohibited_being_saved", :count => @feedback.errors.count %>:</h2>
-      <ul>
-      <% @feedback.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= f.show_errors %>
 
   <% unless @groups.empty? %>
     <%= f.association :groups, label: "<font color='red'>*</font> #{t('group.one')}",

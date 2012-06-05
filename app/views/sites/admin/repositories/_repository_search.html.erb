@@ -13,7 +13,7 @@
 <div class="modal-body">
   <div class="tab-content">
     <div id="tab_repository" class="tab-pane active">
-      <%= form_tag site_admin_repositories_path(format: :json),
+      <%= form_tag site_admin_repositories_path(current_site, format: :json),
         method: 'get',
         autocapitalize: "off",
         class: 'search',

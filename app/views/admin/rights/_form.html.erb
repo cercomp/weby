@@ -1,14 +1,5 @@
 <%= simple_form_for [:admin, @right], html: { class: 'form-horizontal' } do |f| %>
-  <% if @right.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@right.errors.count, "error") %> prohibited this site from being saved:</h2>
-      <ul>
-        <% @right.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= f.show_errors %>
 
   <%= f.input :name, :label => t("name"), :hint => t("field_required") %>
   <%= f.input :controller, :label => t("controller"), :hint => t("field_required") %>

@@ -70,6 +70,7 @@ pt-BR:
   cover_size: "Quantidade de itens na capa"
   cover_help: "Deseja que esta notícia apareça na frente do site?"
   comma_separated_emails: "Emails Separados por Vírgula"
+  close: "Fechar"
   create: "Criar"
   created:
     fem: "Criada"

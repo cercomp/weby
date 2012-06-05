@@ -69,6 +69,7 @@ en:
   cover_size: "Quantity items on cover"
   cover_help: "This pages will apear in site front."
   comma_separated_emails: "Comma Separated Emails"
+  close: "Close"
   create: "Create"
   created:
     fem: "Created"
