@@ -1,0 +1,28 @@
+.drop-here{
+    background-color: #DDD !important;
+    border: 1px dashed #BBB !important; }
+
+li.drop-here{
+    list-style-type: none; }
+
+li > menu{
+    margin:3px 0px; }
+
+#main-menu menu{
+    list-style-type: none;
+}
+
+#main-menu > menu{
+    padding-left: 20px;
+    
+    li{
+        margin-bottom: 5px;
+        border: 1px solid transparent;
+    }
+
+    li div{
+        border-left: 2px solid #BBB;
+        padding: 0px 0px 1px 3px;
+        margin: 0;
+    }
+}

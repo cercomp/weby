@@ -1,0 +1,44 @@
+<div class="pull-left"> <%= info_page @pages %> </div>
+<div class="pull-right"> <%= paginate @pages, remote: true %> </div>
+<div class="clearfix"></div>
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= sortable 'pages.created_at', t("date_param", param: t("register"))%></th>
+        <th><%= t("title") %></th>
+        <th><%= sortable 'users.first_name', t("author") %></th>
+        <th><%= sortable 'tags.name', t("category") %></th>
+        <th><%= sortable 'pages.type', t("type") %></th>
+        <% with_permission(action: :toggle_field) do %>
+          <th><%= sortable 'pages.front', t("cover") %></th>
+          <th><%= sortable 'pages.publish', t("publish") %></th>
+          <th></th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @pages.each do |page| %>
+      <tr id="<%= page.id %>">
+        <td><%= l(page.created_at, :format => :short) %></td>
+        <td>
+          <%= title_with_flags(page) %>
+        </td>
+        <td><%= page.author.first_name %></td>
+        <td><%= page.category_list * ', ' %></td>
+        <td><%= t"#{page.type.downcase}.one" %></td>
+        <% with_permission(action: :toggle_field) do %>
+          <td align="center" class="front">
+            <%= raw toggle_field(page, "front") %></td>
+          <td align="center" class="publish">
+            <%= publication_status(page) %></td>
+          <td><%= make_menu(page, :except => "show") %></td>
+        <% end %>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+<div class="pull-left"> <%= per_page_links @pages, true %> </div>
+<div class="pull-right"> <%= paginate @pages, remote: true %> </div>
+<div class="clearfix"></div>

@@ -22,34 +22,9 @@
     </div>
     <div class="clearfix"></div>
 
-    <div class="pull-left"> <%= info_page @pages %> </div>
-    <div class="pull-right"> <%= paginate @pages %> </div>
-    <div class="clearfix"></div>
-
     <div id="pages">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th><%= sortable 'pages.created_at', t("date_param", param: t("register"))%></th>
-            <th><%= t("title") %></th>
-            <th><%= sortable 'users.first_name', t("author") %></th>
-            <th><%= sortable 'tags.name', t("category") %></th>
-            <th><%= sortable 'pages.type', t("type") %></th>
-            <% with_permission(action: :toggle_field) do %>
-              <th><%= sortable 'pages.front', t("cover") %></th>
-              <th><%= sortable 'pages.publish', t("publish") %></th>
-              <th></th>
-            <% end %>
-          </tr>
-        </thead>
-        <tbody>
-          <%= render partial: 'page', collection: @pages %>
-        </tbody>
-      </table>
+      <%= render :partial => "list" %>
     </div>
 
-    <div class="pull-left"> <%= info_page @pages %> </div>
-    <div class="pull-right"> <%= paginate @pages %> </div>
-    <div class="clearfix"></div>
   </div>
 </div>

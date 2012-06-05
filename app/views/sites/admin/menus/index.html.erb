@@ -40,8 +40,10 @@
             <% end %>
             &nbsp;
           </div>
-          <div class="clearfix"></div>
-          <%= raw print_menu(@menu, 1) %>
+          <div class="clearfix control-group"></div>
+          <div class="well" id="main-menu">
+            <%= raw print_menu(@menu, 1) %>
+          </div>
         <% end %>
       </div>
     </div>
@@ -53,7 +55,7 @@
   $(document).ready(function() {
 
   var dropped = false;
-  $('#main-tabs > menu').nestedSortable({
+  $('#main-menu > menu').nestedSortable({
   listType: 'menu',
   handle: '.handle',
   items: 'li',
@@ -80,7 +82,7 @@
   dataType: 'script',
   complete: function(request,text){
   if(text=='success') $(ui.item).effect('highlight');
-  else $('#main-tabs > menu').nestedSortable('cancel');
+  else $('#main-menu > menu').nestedSortable('cancel');
   },
   url: '<%= change_order_site_admin_menu_menu_items_path(@site, @menu) if @menu %>'
   });
@@ -119,11 +121,11 @@
 
   ////FIX-ME
   $('#content').css({'overflow':'hidden'});
-  $('#main-tabs').css({'height':$('#main-tabs').height()});
+  $('#main-menu').css({'height':$('#main-menu').height()});
 
   });
   }
 <% end %>
 <%= content_for :javascripts, javascript_include_tag("jquery-ui.min") %>
 <%= content_for :javascripts, javascript_include_tag("jquery.ui.nestedSortable") %>
-<%= content_for :stylesheets, stylesheet_link_tag("jquery.sortable") %>
+<%= content_for :stylesheets, stylesheet_link_tag("sortable") %>

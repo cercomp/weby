@@ -11,7 +11,7 @@
       <% end %>
       <%= link_to (t"list_param", :param=>t("page.other") ), site_admin_pages_path(@site), :class => 'btn btn-primary btn-large' %>
     </div>
-    <div class="clearfix"></div>
+    <div class="clearfix control-group"></div>
 
       <table  class="table table-striped">
         <thead>
@@ -79,6 +79,6 @@
       }
     <% end %>
     <%= content_for :javascripts, javascript_include_tag("jquery-ui.min") %>
-    <%= content_for :stylesheets, stylesheet_link_tag("jquery.sortable") %>
+    <%= content_for :stylesheets, stylesheet_link_tag("sortable") %>
   </div>
 </div>
