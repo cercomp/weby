@@ -8,7 +8,7 @@ Weby::Application.routes.draw do
   resources :user_sessions
   
   resources :sites,
-    only: [:index, :show] do
+    only: [:index, :show, :edit, :update] do
     member do
       get :admin
     end

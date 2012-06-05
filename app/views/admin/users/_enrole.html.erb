@@ -1,29 +1,33 @@
 <% if @users_unroled.empty? %>
-  <h2>Nenhum usuário para cadastrar</h2>
+  <div class="alert">
+    <%= (t"none_param", param: t("user.one")) %>
+  </div>
 <% else %>
   <%= form_tag change_roles_admin_users_path,
-    :method => "post",
-    :id => "subscribe_users",
-    :remote => 'true',
-    :update => 'enrole' %>
-  <table class="list">
+    method: "post",
+    id: "subscribe_users",
+    remote: 'true',
+    update: 'enrole' %>
+
+  <table class="table">
     <thead>
       <tr>
-        <th><%= t "enrole_user" %></th>
-        <th style="width: 40%"><%= t('role.one') %></th>
+        <th><%= t("enrole_user") %></th>
+        <th style="width: 55%"><%= t('role.one') %></th>
       </tr>
     </thead>
     <tbody>
-      <tr class="<%= cycle 'odd', 'even' %>">
-        <td style="height: 500px; overflow: auto">
+      <tr>
+        <td style="height: 300px; overflow: auto">
           <div>
             <%= text_field_tag :users_unroled, params[:users_unroled], placeholder: t("search") %>
           </div>
-          <div style="height: 500px; overflow: auto">
+          <div style="height: 300px; overflow: auto">
             <ul id="users_list_roles"> 
               <% @users_unroled.each do |user| %>
                 <li>
-                  <%= check_box_tag 'user[id][]', user.id, user.id == params[:user_id].to_i %> <%= " #{user.first_name} #{user.last_name}" %> (<%= link_to user.login, admin_user_path(user) %>)
+                  <%= check_box_tag 'user[id][]', user.id, user.id == params[:user_id].to_i %>
+                  <%= "#{user} (#{user.login})" %>
                 </li>
               <% end %>
             </ul>
@@ -39,9 +43,10 @@
       </tr>
     </tbody>
   </table>
-  <div class="actions">
-    <%= submit_tag (t"save"), class: "green-button" %>
-    <%= link_to t("back"), :back, class: "red-button" %>
+
+  <div class="form-actions">
+    <%= button_tag t("save"), class: 'btn btn-primary' %>
+    <%= link_to t("back"), :back, class: "btn btn-danger" %>
   </div>
 </form>
 <% end %>

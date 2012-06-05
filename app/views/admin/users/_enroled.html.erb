@@ -1,5 +1,5 @@
 <% unless @site_users.empty? %>
-  <table class="list">
+  <table class="table table-striped">
     <thead>
       <tr>
         <th><%= t "enroled_user" %></th>
@@ -9,8 +9,8 @@
     </thead>
     <tbody>
       <% @site_users.uniq.each do |user| %>
-        <tr class="<%= cycle 'odd', 'even' %>">
-          <td><%= link_to user.login, admin_user_path(user) %></td>
+        <tr>
+          <td><%= "#{user} (#{user.login})" %></td>
           <td>
             <span id="user_<%= user.id %>">
               <%= user.roles.map{ |r| r.name if r.site_id == @site.try(:id) }.compact.join(', ') %>
@@ -22,15 +22,16 @@
             </div>
           </td>
           <td>
-            <%= link_to t('edit'), { :action => 'manage_roles', :user_id => user.id },
-                  :remote => 'true',
-                  :class => 'role_edit icon icon-edit',
-                  :user_id => user.id %>
+            <%= link_to t('edit'), { action: 'manage_roles', user_id: user.id },
+              remote: 'true',
+              user_id: user.id %>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
 <% else %>
-  <h2><%= (t"none_param", param: t("user.one")) %></h2>
+  <div class="alert">
+    <%= (t"none_param", param: t("user.one")) %>
+  </div>
 <% end %>

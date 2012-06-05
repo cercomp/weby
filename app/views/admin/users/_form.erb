@@ -6,4 +6,8 @@
 <%= form.input :last_name, :label => t('last_name') %>
 <%= form.input :phone, :label => t('phone'), :input_html => {:size => 20, :maxlength => 20} %>
 <%= form.input :mobile, :label => t('mobile'), :input_html => {:size => 20, :maxlength => 20}, :as => :tel %>
-<%#= form.input :theme, :collection => @themes.collect{|p| [ p , p]}, :label => t('layout') %>
+
+<div class="form-actions">
+  <%= form.button :submit, class: 'btn-primary' %>
+  <%= link_to t("back"), :back, class: "btn btn-danger" %>
+</div>
