@@ -1,7 +1,7 @@
 <tr id="<%= page.id %>">
   <td><%= l(page.created_at, :format => :short) %></td>
   <td>
-    <%= title_with_flags(page) %>
+    <%= link_to page.title, site_page_path(current_site,page) %>
   </td>
   <td><%= page.author.first_name %></td>
   <td><%= page.category_list * ', ' %></td>

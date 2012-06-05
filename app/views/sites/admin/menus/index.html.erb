@@ -36,7 +36,7 @@
               <%= link_to t('destroy'),
                 site_admin_menu_path(@site, @menu),
                 method: :delete, confirm: t('are_you_sure'),
-                class: "btn btn-danger" %>
+                class: "btn btn-primary" %>
             <% end %>
             &nbsp;
           </div>
@@ -124,5 +124,6 @@
   });
   }
 <% end %>
+<%= content_for :javascripts, javascript_include_tag("jquery-ui.min") %>
 <%= content_for :javascripts, javascript_include_tag("jquery.ui.nestedSortable") %>
 <%= content_for :stylesheets, stylesheet_link_tag("jquery.sortable") %>

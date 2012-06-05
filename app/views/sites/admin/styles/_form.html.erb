@@ -1,17 +1,5 @@
-<%= simple_form_for [@site, :admin, @style] do |f| %>
-  <% if @style.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@style.errors.count,"") %>
-        <%= t('prohibited_being_saved', count: @style.errors.count) %>:
-      </h2>
-      <ul>
-        <% @style.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= simple_form_for [@site, :admin, @style], html: {class: 'form-horizontal'} do |f| %>
+  <%= f.show_errors %>
 
   <%= f.input :name,
     label: t("name"), 

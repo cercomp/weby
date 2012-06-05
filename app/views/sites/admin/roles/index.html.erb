@@ -13,12 +13,6 @@
           class: "btn btn-success btn-large" %>
       <% end %>
     </div>
-
-    <div class="pull-left">
-    <%= link_to (t"list_param", :param => (t"permission", :count => 2)),
-      admin_rights_path,
-      class: 'btn btn-info btn-large' %>
-    </div>
     <div class="clearfix"></div>
 
     <%= form_tag site_admin_roles_path, :method => :put, :id => 'roles_form' do %>

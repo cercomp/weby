@@ -75,9 +75,9 @@ module ApplicationHelper
          #menus << " [ id:#{entry.id} pos:#{entry.position} ]" # Para debug
          menus << ( (entry and entry.target) ? " [ #{entry.target.id} ] " : " [ #{entry.url if not entry.url.blank?} ] " )
          menus << link_to("", edit_site_admin_menu_menu_item_path(@site.name, entry.menu_id, entry.id),:class=>'icon icon-edit', :title => t("edit"))
-         menus << indent_space + link_to("", new_site_admin_menu_menu_item_path(@site.name, entry.menu_id, :parent_id => entry.id),:class=>'icon icon-add', :title => t("add_sub_menu"))
-         menus << indent_space + link_to("","#", :class => 'handle icon icon-drag', :title => t("move"))
-         menus << indent_space + link_to("", site_admin_menu_menu_item_path(@site.name, entry.menu_id, entry.id), :method=>:delete, :confirm => t('are_you_sure'),:class=>'icon icon-del', :title => t("destroy"))
+         menus << indent_space + link_to("", new_site_admin_menu_menu_item_path(@site.name, entry.menu_id, :parent_id => entry.id),:class=>'icon icon-plus', :title => t("add_sub_menu"))
+         menus << indent_space + link_to("","#", :class => 'handle icon icon-move', :title => t("move"))
+         menus << indent_space + link_to("", site_admin_menu_menu_item_path(@site.name, entry.menu_id, entry.id), :method=>:delete, :confirm => t('are_you_sure'),:class=>'icon icon-remove', :title => t("destroy"))
       end
        menus << "\n" + indent_space + (view_ctrl == 1 ? "</div><menu>":"<menu>") unless submenu.nil?
        if sons[entry.id].class.to_s == "Array"

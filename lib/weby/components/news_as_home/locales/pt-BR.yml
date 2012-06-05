@@ -2,7 +2,7 @@ pt-BR:
   components:
     news_as_home:
       name: "Notícia como página inicial"
-      page_id: "Notícia"
+      page: "Notícia"
       form:
         none_selected: "Nenhuma notícia selecionada"
         select: "Selecione uma notícia"
@@ -11,4 +11,4 @@ pt-BR:
   activerecord:
     attributes:
       news_as_home_component:
-        page_id: "Notícia"
+        page: "Notícia"

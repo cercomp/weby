@@ -1,14 +1,5 @@
 <%= simple_form_for [:admin, @setting], html: { class: 'form-horizontal' } do |f| %>
-  <% if @setting.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@setting.errors.count, "error") %> prohibited this setting from being saved:</h2>
-      <ul>
-        <% @setting.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= f.show_errors %>
 
   <%= f.input :name, :label => t('name') %>
   <%= f.input :value, :label => t('value') %>
