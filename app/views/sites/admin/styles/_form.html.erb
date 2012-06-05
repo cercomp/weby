@@ -1,4 +1,4 @@
-<%= simple_form_for [@site, :admin, @style] do |f| %>
+<%= simple_form_for [@site, :admin, @style], html: {class: 'form-horizontal'} do |f| %>
   <% if @style.errors.any? %>
     <div id="error_explanation">
       <h2>
