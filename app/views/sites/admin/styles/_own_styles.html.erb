@@ -4,7 +4,7 @@
     <% unless styles.empty? %>
       <%= info_page styles %>
 
-      <table class='list' id='style_list'>
+      <table class='table table-striped' id='style_list'>
         <thead>
           <th> <%= t('name') %> </th>
           <th> <%= t('sites_followers') %> </th>
@@ -58,7 +58,7 @@
             dataType: 'script',
             complete: function(request){ ui.item.effect('highlight'); },
             error: function(){$('#list').sortable('cancel');},
-            url: '<%= sort_site_styles_path %>'
+            url: '<%= sort_site_admin_style_path(current_site, @style) %>'
           });
         }
       });
