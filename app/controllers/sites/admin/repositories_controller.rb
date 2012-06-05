@@ -79,7 +79,7 @@ class Sites::Admin::RepositoriesController < ApplicationController
     respond_to do |format|
       if @repository.update_attributes(params[:repository]) 
         format.html { redirect_to(:site_id => @repository.site.name, :controller => 'repositories', :action => 'show', :id => @repository.id) }
-        flash[:notice] = t("successfully_updated") 
+        flash[:success] = t("successfully_updated") 
       else
         format.html { redirect_to :back }
         flash[:error] = @repository.errors.full_messages

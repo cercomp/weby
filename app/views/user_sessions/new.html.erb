@@ -1,6 +1,6 @@
 <div class='well'>
   <div class='padding-box'>
-    <%= raw flash_message("alert alert-") %>
+    <%= raw flash_message %>
     <% if @user_session.errors.any? %>
       <div class="alert alert-error">
         <%= pluralize(@user_session.errors.count,"") %>

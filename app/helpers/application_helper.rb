@@ -92,11 +92,16 @@ module ApplicationHelper
   end
 
   # Define mensagens personalizadas
-  def flash_message(style=nil)
+  def flash_message
     "".tap do |messages|
-      [:notice, :info, :warning, :error, :alert, :success].each do |type|
+      [:info, :warning, :error, :success].each do |type|
         if flash[type]
-          messages << content_tag('div', flash.now[type], :class => style.nil? ? "flash #{type}" : "#{style.to_s}#{type}")
+          messages << content_tag('div', :class => "alert alert-#{type}") do
+            raw %{
+              #{link_to('x', '#', class: 'close', data: {dismiss: "alert"})}
+              #{flash.now[type]}
+            }
+          end
           # Limpa a mensagem
           flash[type] = nil
         end

@@ -21,7 +21,7 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
     @menu_item.position = @menu.menu_items.maximum('position', :conditions=> ['parent_id = ?', @menu_item.parent_id]).to_i + 1
 
     if @menu_item.save
-      flash[:notice] = t("successfully_created")
+      flash[:success] = t("successfully_created")
       redirect_to site_admin_menus_path(@site, :menu => @menu.id) 
     else
       get_parent_menu_item params[:menu_item][:parent_id]
@@ -38,7 +38,7 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
   def update
     @menu_item = @menu.menu_items.find(params[:id])
     if @menu_item.update_attributes(params[:menu_item])
-      flash[:notice] = t("successfully_updated")
+      flash[:success] = t("successfully_updated")
       redirect_to site_admin_menus_path(@site, :menu => @menu.id)
     else
       @available_locales = available_locales
@@ -59,7 +59,7 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
     end
     update_position_for_remove(@menu_item)
     @menu_item.destroy
-    redirect_to :back, :notice => t("successfully_deleted")
+    redirect_to :back, flash: {success: t("successfully_deleted")}
   end
 
   # Altera a ordenação do menu

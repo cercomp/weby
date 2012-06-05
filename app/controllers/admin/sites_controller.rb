@@ -86,7 +86,7 @@ class Admin::SitesController < ApplicationController
   def update
     @site = Site.find_by_name(params[:id])
     if @site.update_attributes(params[:site])
-      flash[:notice] = t"successfully_updated"
+      flash[:success] = t"successfully_updated"
     end
     redirect_to edit_admin_site_path(@site)
   end

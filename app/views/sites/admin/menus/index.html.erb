@@ -25,18 +25,18 @@
             <% with_permission controller: Sites::Admin::Menus::MenuItemsController, action: :new do %>
               <%= link_to t('new_param.masc', param: t('menu_item.one')),
                 new_site_admin_menu_menu_item_path(@site, @menu),
-                class: "btn btn-info btn-large" %>
+                class: "btn btn-success" %>
             <% end %>
             <% with_permission action: :edit do %>
               <%= link_to t('edit', param: t('menu.one')),
                 edit_site_admin_menu_path(@site, @menu),
-                class: "btn btn-info btn-large" %>
+                class: "btn btn-primary" %>
             <% end %>
             <% with_permission action: :destroy do %>
               <%= link_to t('destroy'),
                 site_admin_menu_path(@site, @menu),
                 method: :delete, confirm: t('are_you_sure'),
-                class: "btn btn-info btn-large" %>
+                class: "btn btn-danger" %>
             <% end %>
             &nbsp;
           </div>

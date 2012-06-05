@@ -66,7 +66,7 @@ class Sites::Admin::BannersController < ApplicationController
     @banner = Banner.find(params[:id])
     if params[:field] 
       if @banner.update_attributes("#{params[:field]}" => (@banner[params[:field]] == 0 or not @banner[params[:field]] ? true : false))
-        flash[:notice] = t("successfully_updated")
+        flash[:success] = t("successfully_updated")
       else
         flash[:warning] = t("error_updating_object")
       end

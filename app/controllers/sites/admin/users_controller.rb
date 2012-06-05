@@ -7,7 +7,7 @@ class Sites::Admin::UsersController < ApplicationController
   respond_to :html, :xml
   helper_method :sort_column
 
-  def index
+  def manage_roles
       # Seleciona os todos os usuários que não são administradores
       @users = User.no_admin
       # Usuários que possuem papel no site e não são administradores
@@ -42,6 +42,6 @@ class Sites::Admin::UsersController < ApplicationController
       # assim removemos o each logo a cima
       user.role_ids += params[:role_ids]
     end
-    redirect_to :action => 'index'
+    redirect_to :action => 'manage_roles'
   end
 end

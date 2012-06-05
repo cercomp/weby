@@ -35,7 +35,7 @@ class Sites::Admin::GroupsController < ApplicationController
 
     if @group.save
       redirect_to({:site_id => @group.site.name, :controller => 'groups'},
-                  :notice => t('successfully_created'))
+                  flash: {success: t('successfully_created')})
     else
       respond_with(@site, @group)
     end
@@ -45,7 +45,7 @@ class Sites::Admin::GroupsController < ApplicationController
     @group = Group.find(params[:id])
     if @group.update_attributes(params[:group])
       redirect_to({:site_id => @group.site.name, :controller => 'groups', :action => 'index'},
-                  :notice => t('successfully_updated'))
+                  flash: {success: t('successfully_updated')})
     else
       redirect_to :back
     end
