@@ -23,7 +23,7 @@ class Sites::Admin::ComponentsController < ApplicationController
     @component = Weby::Components.factory(@site.components.find(params[:id]))
     unless(Weby::Components.is_enabled?(@component.name))
       flash[:warning] = t("disabled_component")
-      redirect_to site_components_url
+      redirect_to site_admin_components_url
     end
   end
 
@@ -34,7 +34,7 @@ class Sites::Admin::ComponentsController < ApplicationController
       @component.attributes = params["#{comp}_component"]
 
       if @component.save
-        redirect_to(site_components_url, :notice => t('successfully_created_param', param: t('component.one')))
+        redirect_to(site_admin_components_url, :notice => t('successfully_created_param', param: t('component.one')))
       else
         render :action => "new"
       end
@@ -48,7 +48,7 @@ class Sites::Admin::ComponentsController < ApplicationController
 
     comp = params[:component]
     if @component.update_attributes(params["#{comp}_component"])
-      redirect_to(site_components_url, :notice => t('successfully_updated_param', param: t('component.one')))
+      redirect_to(site_admin_components_url, :notice => t('successfully_updated_param', param: t('component.one')))
     else
       render :action => "edit"
     end
@@ -58,7 +58,7 @@ class Sites::Admin::ComponentsController < ApplicationController
     @component = Component.find(params[:id])
     @component.destroy
 
-    redirect_to site_components_url, :notice => t('successfully_removed', param: t('component.one'))
+    redirect_to site_admin_components_url, :notice => t('successfully_removed', param: t('component.one'))
   end
   
   def sort

@@ -1,8 +1,7 @@
-<fieldset> 
-  <legend><%= t 'editing', :param => t('message') %> - <%= t('feedback.one') %></legend>
+<%- title 'messages' %>
 
-  <%= render 'form' %>
-
-  <%= link_to t('show'), site_admin_feedback_path(@site, @feedback) %> |
-  <%= link_to t('back'), site_admin_feedbacks_path %>
-</fieldset> 
+<div class="span9">
+  <div class="well">
+    <%= render 'form' %>
+  </div>
+</div>

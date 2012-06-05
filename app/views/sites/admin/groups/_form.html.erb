@@ -1,4 +1,4 @@
-<%= simple_form_for [@site, :admin, @group] do |f| %>
+<%= simple_form_for [@site, :admin, @group], html: { class: 'form-horizontal' } do |f| %>
   <% if @group.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@group.errors.count,"") %> <%= t"prohibited_being_saved", :count => @group.errors.count%>:</h2>

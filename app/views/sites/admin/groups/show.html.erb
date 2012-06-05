@@ -1,10 +1,13 @@
-<fieldset>
-  <legend><%= t('group.one') + " " + @group.name %> - <%= t("feedback.one") %></legend>
+<%- title 'group.other' %>
 
+<div class="span9">
+  <div class="well">
   <p>
     <b>Email(s) :</b>
     <%= @group.emails %>
   </p>
+    <%= link_to t("back"), :back, class: "btn btn-danger" %>
+  </div>
+</div>
 
-  <%= link_to t('edit'), edit_site_admin_group_path(@site, @group) %> |  <%= link_to t("list_all.masc"), site_admin_groups_path(@site) %> | <%= link_to t('back'), :back %>
-</fieldset>
+

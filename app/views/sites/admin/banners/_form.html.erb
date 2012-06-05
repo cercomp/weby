@@ -1,7 +1,7 @@
 <% # Funções js para selecionar pagina %>
 <%= content_for :javascripts, javascript_include_tag('banners.js') %>
 
-<%= simple_form_for [@site, :admin, @banner], :html => { :multipart => true } do |f| %>
+<%= simple_form_for [@site, :admin, @banner], html:  { class: 'form-horizontal' } do |f| %>
   <%= f.show_errors %>
 
 
@@ -45,17 +45,11 @@
     <div class="clear"></div>
   </div>
 
-  <div class="input select">
-    <%= f.label :category,
-      t("category"), :class => "select",
-      :for => "category" %>
+  <%= f.input t('category'), wrapper: :append do %>
     <%= f.select :category_list,
       @site.banners.category_counts, {},
-      :id => "category" %>
-    <%= link_to_function image_tag("icons/black16x16/ic_plus.png ",:title => "Adicionar um acategoria"),
-      "addToSelect('#category','#{t("new.fem")+" "+t("category")}')", :title => "Adicionar um categoria" %>
-
-  </div>
+      :id => "category" %><%= link_to_function "Adicionar Categoria", "addToSelect('#category','#{t("new.fem")+" "+t("category")}')", :class => 'btn btn-info' %>
+  <% end %>
 
   <%= f.input :position, hint: t("lower_numbers_come_first") %>
 

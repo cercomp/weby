@@ -1,4 +1,4 @@
-<%= simple_form_for([@site, :admin, @page]) do |f| %>
+<%= simple_form_for [@site, :admin, @page], html: { class: 'form-horizontal' } do |f| %>
   <%= f.show_errors %>
 
   <%= repository_search t(".image"), "page_image",
@@ -36,9 +36,11 @@
     <%= f.input :front , wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" } %>
   </div>
 
-  <%= repository_search t(".related_files"),
-    "related_file_ids", "page[related_file_ids][]", @page.related_files,
-    multiple: true, file_types: false %>
+  <div class = "controls">
+    <%= repository_search t(".related_files"),
+      "related_file_ids", "page[related_file_ids][]", @page.related_files,
+      multiple: true, file_types: false %>
+  </div>
 
   <div class="form-actions">
     <%= f.button :submit, class: 'btn-primary' %>

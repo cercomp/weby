@@ -1,6 +1,6 @@
 <% content_for :javascripts, javascript_include_tag('site_admin_component_form') %>
 
-<%= simple_form_for [@site, :admin, @component], :url => url, :method => method do |f| %>
+<%= simple_form_for [@site, :admin, @component], html: { class: 'form-horizontal'}, :url => url, :method => method do |f| %>
   <%= f.show_errors %>
 
   <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
@@ -8,7 +8,7 @@
 
   <%= render_component @component, 'form', :locals => { :f => f } %>
 
-  <div class="input">
+  <div class="controls">
     <label><%= t("place").capitalize  %></label>
     <%= raw make_mini_layout %>
     <%= f.input :place_holder, :as => :hidden %>

@@ -1,28 +1,30 @@
-<fieldset>
-	<legend><%= t("subject") %>: <%= @feedback.subject %></legend>
-	
-  <p>
+<%- title 'messages' %>
+
+<div class="span9">
+  <div class="well">
+
+    <p>
     <b><%= t("name") %>:</b>
     <%= @feedback.name %>
-  </p>
-  <p>
+    </p>
+    <p>
     <b><%= t("email") %>:</b>
     <%= @feedback.email %>
-  </p>
-  <p>
+    </p>
+    <p>
     <b><%= t("message") %>:</b>
     <%= @feedback.message %>
-  </p>
-  <p>
+    </p>
+    <p>
     <b><%= t("group."+(@feedback.groups.length>1 ? "other" : "one")) %></b><br/>
     <% @feedback.groups.each do |group| %>
-    <%= group.name %> (<%= group.emails %>)<br/>
+      <%= group.name %> (<%= group.emails %>)<br/>
     <% end %>
-  </p>
-  <p>
+    </p>
+    <p>
     <b><%= t('send_date') %>:</b>
     <%= l @feedback.created_at, format: :short %>
-  </p>
-
-  <%= link_to t('edit'), edit_site_admin_feedback_path(@site, @feedback) %> | <%= link_to t("list_all.masc"), site_admin_feedbacks_path(@site) %> | <%= link_to t('back'), :back %>  
-</fieldset>
+    </p>
+    <%= link_to t("back"), :back, class: "btn btn-danger" %>
+  </div>
+</div>

@@ -1,17 +1,17 @@
 <% content_for :javascripts, javascript_include_tag('menus') %>
 
-<%= simple_form_for [@site, :admin, @menu, @menu_item] do |f| %>
+<%= simple_form_for [@site, :admin, @menu, @menu_item], html: { class: 'form-horizontal' } do |f| %>
   <%= f.show_errors %>
 
   <% if @menu_item_parent %>
     <div class="input">
       <%= f.input :parent,
-          label: t("parent_menu_item"),
-          :input_html => {:value => @menu_item_parent.title, :disabled => 'disabled' },
-          :as => :string %>
+        label: t("parent_menu_item"),
+        :input_html => {:value => @menu_item_parent.title, :disabled => 'disabled' },
+        :as => :string %>
       <%= f.input :parent_id,
-          :input_html => {:value => @menu_item_parent.id },
-          :as => :hidden %>
+        :input_html => {:value => @menu_item_parent.id },
+        :as => :hidden %>
     </div>
   <% end %>
   <div class="tabbable">
@@ -27,44 +27,41 @@
 
             <% unless g.object.id.blank? %>
               <%= g.input :_destroy,
-                  label: t("activerecord.attributes.menu_item/i18ns._destroy", locale: locale.name.to_sym),
-                  as: :boolean %>
+                label: t("activerecord.attributes.menu_item/i18ns._destroy", locale: locale.name.to_sym),
+                as: :boolean %>
             <% end %>
 
             <%= g.input :title, :label => t("title"),
-                label: t("activerecord.attributes.menu_item/i18ns.title", locale: locale.name.to_sym),
-                placeholder: t("title"),
-                input_html: {class: "title_input"} %>
+              label: t("activerecord.attributes.menu_item/i18ns.title", locale: locale.name.to_sym),
+              placeholder: t("title"),
+              input_html: {class: "title_input"} %>
 
             <%= g.input :description, :label => t("description"),
-                label: t("activerecord.attributes.menu_item/i18ns.description", locale: locale.name.to_sym),
-                :input_html => {:size => "40x2", :style => "height:50px;" },
-                :as => :text %>
+              label: t("activerecord.attributes.menu_item/i18ns.description", locale: locale.name.to_sym),
+              :input_html => {:size => "40x2", :style => "height:50px;" },
+              :as => :text %>
           <% end %>
         </div>
       <% end %>
     </div>
   </div>
-	
+
   <div class="input page_select" id="div_link">
     <%= f.input :url, :wrapper => :append, :hint => t('type_param', param: t('url')) do %>
-       <%= f.input_field :url, as: :string %><%= link_to_function 'Selecione uma página', 'show_dialog($(this))', :class => 'btn btn-info', data: { link: site_admin_pages_path} %>
+      <%= f.input_field :url, as: :string %><%= link_to_function 'Selecione uma página', 'show_dialog($(this))', :class => 'btn btn-info', data: { link: site_admin_pages_path} %>
     <%  end %>
 
 
     <%# Ao selecionar um noticia deve ser montado a url para ela,
-     # então aqui guardamos o caminho para as páginas deste site %>
+      # então aqui guardamos o caminho para as páginas deste site %>
     <%= hidden_field_tag 'url_to_pages', site_pages_url(@site, only_path: true) %>
     <%= hidden_field_tag 'menu_item[target_id]', @menu_item.target_id %>
     <%= hidden_field_tag 'menu_item[target_type]', @menu_item.target_type %>
   </div>
 
   <div class='input'>
-     <%= f.input :new_tab ,
-         wrapper_html: { class: "side" },
-         as: :boolean, input_html: { class: "check-button" } %>
-
-    <div class="clear"></div>
+    <%= f.input :new_tab ,
+      as: :boolean, input_html: { class: "check-button" } %>
   </div>
 
   <div class="form-actions">
