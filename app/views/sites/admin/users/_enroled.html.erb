@@ -22,9 +22,9 @@
             </div>
           </td>
           <td>
-            <%= link_to t('edit'), { :action => 'index', :user_id => user.id },
-              :remote => 'true',
-              :user_id => user.id %>
+            <%= link_to t('edit'), { action: 'index', user_id: user.id },
+              remote: 'true',
+              user_id: user.id %>
           </td>
         </tr>
       <% end %>

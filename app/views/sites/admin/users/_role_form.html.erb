@@ -1,8 +1,8 @@
 <%= form_tag change_roles_site_admin_users_path(@site),
-  :method => "post",
-  :id => "form_user_#{@user.id}",
-  :remote => 'true',
-  :update => 'enroled' %> 
+  method: "post",
+  id: "form_user_#{@user.id}",
+  remote: 'true',
+  update: 'enroled' %> 
 
   <%= hidden_field_tag 'user[id]', @user.id %>
   
