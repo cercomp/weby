@@ -29,7 +29,8 @@
         <div class="span3">
           <%= render 'layouts/shared/menu_admin' %>
         </div>
-        <div class="span9">
+        <div class="span9" id="content">
+          <%= raw flash_message %>
           <div class="row">
             <%= yield %>
           </div>

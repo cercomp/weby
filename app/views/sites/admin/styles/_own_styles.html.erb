@@ -58,7 +58,7 @@
             dataType: 'script',
             complete: function(request){ ui.item.effect('highlight'); },
             error: function(){$('#list').sortable('cancel');},
-            url: '<%= sort_site_styles_path %>'
+            url: '<%= sort_site_admin_styles_path %>'
           });
         }
       });

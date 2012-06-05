@@ -20,7 +20,7 @@ class Sites::Admin::MenusController < ApplicationController
   def create
     @menu = @site.menus.new(params[:menu])
     if @menu.save
-      flash[:notice] = t("successfully_created")
+      flash[:success] = t("successfully_created")
       redirect_to site_admin_menus_path(@site, :menu => @menu.id)
     else
       respond_with(@site, @menu)
@@ -34,7 +34,7 @@ class Sites::Admin::MenusController < ApplicationController
   def update
     @menu = @global_menus[params[:id].to_i] #@site.menus.find(params[:id])
     if @menu.update_attributes(params[:menu])
-      flash[:notice] = t("successfully_updated")
+      flash[:success] = t("successfully_updated")
       redirect_to site_admin_menus_path(@site, :menu => @menu.id)
     else
       respond_with(@site, @menu)
@@ -44,7 +44,7 @@ class Sites::Admin::MenusController < ApplicationController
   def destroy
     @menu = @global_menus[params[:id].to_i] #@site.menus.find(params[:id])
     @menu.destroy
-    flash[:notice] = t("successfully_deleted")
+    flash[:success] = t("successfully_deleted")
     redirect_to site_admin_menus_path(@site)
   end
 

@@ -1,7 +1,7 @@
 <%= simple_form_for [@site, :admin, @page], html: { class: 'form-horizontal' } do |f| %>
   <%= f.show_errors %>
 
-  <%= repository_search t(".image"), "page_image",
+  <%= repository_search t("page.image"), "page_image",
     "page[image]", @page.image,
     multiple: false, file_types: 'image' %>
 

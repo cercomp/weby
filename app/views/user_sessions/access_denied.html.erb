@@ -1,3 +1,12 @@
-<p>
-<%= t("access_denied_page") %> 
-</p>
+<div class="span9">
+  <div class="well">
+    <div class="alert alert-error">
+    <h4 class="alert-heading"><%= t("access_denied") %></h4>
+    <%= t("access_denied_page") %>
+    </div>
+
+    <div class="form-actions">
+      <%= link_to t("back"), :back, class: "btn btn-danger" %>
+    </div>
+  </div>
+</div>

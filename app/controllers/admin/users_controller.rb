@@ -10,7 +10,7 @@ class Admin::UsersController < ApplicationController
     if params[:id] && current_user
       @user = current_user
       @user.update_attribute(:theme, params[:id])
-      flash[:notice] = t("look_changed")
+      flash[:success] = t("look_changed")
     end
     redirect_back_or_default root_path
   end
@@ -128,27 +128,27 @@ class Admin::UsersController < ApplicationController
     end
     @user = User.find(params[:id])
     @user.update_attributes(user_params)
-    flash[:notice] = t"updated", :param => t("account")
+    flash[:success] = t"updated", :param => t("account")
     respond_with(:admin, @user)
   end
 
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    flash[:notice] = t('destroyed_param', :param => @user.first_name)
+    flash[:success] = t('destroyed_param', :param => @user.first_name)
   rescue ActiveRecord::DeleteRestrictionError
     flash[:warning] = t("user_cant_be_deleted")
   ensure
-    redirect_to admin_users_path, :notice => t('destroyed_param', :param => @user.first_name)
+    redirect_to admin_users_path
   end
 
   def toggle_field
     @user = User.find(params[:id])
     if params[:field] 
       if @user.update_attributes(params[:field] => (@user[params[:field]] == 0 or not @user[params[:field]] ? true : false))
-        flash[:notice] = t"successfully_updated"
+        flash[:success] = t"successfully_updated"
       else
-        flash[:notice] = t"error_updating_object"
+        flash[:error] = t"error_updating_object"
       end
     end
     redirect_to admin_users_path
@@ -158,9 +158,9 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
     if params[:field] 
       if @user.update_attributes(params[:field] => (@user[params[:field]] == 0 or not @user[params[:field]] ? true : false))
-        flash[:notice] = t"successfully_updated"
+        flash[:success] = t"successfully_updated"
       else
-        flash[:notice] = t"error_updating_object"
+        flash[:error] = t"error_updating_object"
       end
     end
     redirect_to admin_users_path

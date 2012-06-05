@@ -85,14 +85,14 @@ class Sites::Admin::StylesController < ApplicationController
     @style.publish = true
     @style.position = @site.own_styles.count + 1
 
-    flash[:notice] = t('successfully_created') if @style.save
+    flash[:success] = t('successfully_created') if @style.save
     respond_with(@style, location:  site_admin_styles_path(@site))
   end
 
   def update
     @style = Style.find(params[:id])
 
-    flash[:notice] = t('successfully_updated') if @style.update_attributes(params[:style])
+    flash[:success] = t('successfully_updated') if @style.update_attributes(params[:style])
     respond_with(@style, location: site_admin_styles_path(@site))
   end
 
@@ -100,7 +100,7 @@ class Sites::Admin::StylesController < ApplicationController
     @style = Style.find(params[:id])
 
     if @style.destroy
-      flash[:notice] = t('destroyed_param', param: t('style.one'))
+      flash[:success] = t('destroyed_param', param: t('style.one'))
     else
       flash[:alert] = t('destroyed_param_error', param: t('style.one'))
     end
@@ -146,9 +146,9 @@ class Sites::Admin::StylesController < ApplicationController
     @style.publish = false
 
     if @style.save
-      flash[:notice] = t('successfully_created')
+      flash[:success] = t('successfully_created')
     else
-      flash[:notice] = t('error_creating_object')
+      flash[:error] = t('error_creating_object')
     end
 
     redirect_to site_admin_styles_path(@site)

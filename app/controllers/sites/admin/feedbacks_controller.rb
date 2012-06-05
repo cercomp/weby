@@ -82,7 +82,7 @@ class Sites::Admin::FeedbacksController < ApplicationController
     respond_to do |format|
       if @feedback.update_attributes(params[:feedback])
         format.html { redirect_to(site_feedback_url,
-                      :notice => t("successfully_updated")) }
+                      flash: {success: t("successfully_updated")}) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
