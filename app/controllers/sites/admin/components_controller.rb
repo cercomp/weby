@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class Sites::Admin::ComponentsController < ApplicationController
   before_filter :require_user
   before_filter :check_authorization
@@ -11,8 +12,8 @@ class Sites::Admin::ComponentsController < ApplicationController
   end
 
   def new
-    if (comp = params[:component])
-      @component = Weby::Components.factory(comp)
+    if (params[:component] and Weby::Components.is_enabled?(params[:component]))
+      @component = Weby::Components.factory(params[:component])
     else
       render :available_components
     end
@@ -20,6 +21,10 @@ class Sites::Admin::ComponentsController < ApplicationController
 
   def edit
     @component = Weby::Components.factory(@site.components.find(params[:id]))
+    unless(Weby::Components.is_enabled?(@component.name))
+      flash[:warning] = t("disabled_component")
+      redirect_to site_components_url
+    end
   end
 
   def create
@@ -29,8 +34,7 @@ class Sites::Admin::ComponentsController < ApplicationController
       @component.attributes = params["#{comp}_component"]
 
       if @component.save
-        # TODO colocar tradução na mensagem de sucesso
-        redirect_to(site_components_url, :notice => 'Componente criado com sucesso.')
+        redirect_to(site_components_url, :notice => t('successfully_created_param', param: t('component.one')))
       else
         render :action => "new"
       end
@@ -44,8 +48,7 @@ class Sites::Admin::ComponentsController < ApplicationController
 
     comp = params[:component]
     if @component.update_attributes(params["#{comp}_component"])
-      # TODO colocar tradução na mensagem de sucesso
-      redirect_to(site_components_url, :notice => 'Componente atualizado com sucesso.')
+      redirect_to(site_components_url, :notice => t('successfully_updated_param', param: t('component.one')))
     else
       render :action => "edit"
     end
@@ -55,8 +58,7 @@ class Sites::Admin::ComponentsController < ApplicationController
     @component = Component.find(params[:id])
     @component.destroy
 
-    # TODO tradução
-    redirect_to site_components_url, :notice => 'Componente removido com sucesso'
+    redirect_to site_components_url, :notice => t('successfully_removed', param: t('component.one'))
   end
   
   def sort
@@ -81,6 +83,6 @@ class Sites::Admin::ComponentsController < ApplicationController
         flash[:notice] = t"error_updating_object"
       end
     end
-    redirect_back_or_default site_admin_components_path(@site)
+    redirect_to :back
   end
 end

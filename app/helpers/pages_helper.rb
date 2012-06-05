@@ -18,7 +18,7 @@ module PagesHelper
 
   def title_with_flags(page)
     %{
-      #{available_flags(page)}
+      #{available_flags(page) if page.locales.many?}
       #{content_tag(:p, link_to(page.title, site_page_path(@site, page)))}
     }.html_safe
   end

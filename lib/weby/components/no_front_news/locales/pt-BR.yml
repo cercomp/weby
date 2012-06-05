@@ -4,8 +4,12 @@ pt-BR:
       name: "Lista de Notícias"
       quant: "Quantidade de notícias na página inicial"
       front: "Apenas notícias de capa?"
+      events: "Mostrar eventos?"
+      show:
+        last_news: "Últimas Notícias"
   activerecord:
     attributes:
       no_front_news_component:
         quant: "Quantidade de notícias na página inicial"
         front: "Apenas notícias de capa?"
+        events: "Mostrar eventos?"

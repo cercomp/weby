@@ -19,13 +19,10 @@ class SitesController < ApplicationController
   end
 
   def show
-    if(@site)
-      params[:site_id] = @site.name
-      params[:id] = @site.id
-      params[:per_page] = nil
-    else
-      catcher
-    end
+    raise ActiveRecord::RecordNotFound unless @site
+    params[:site_id] = @site.name
+    params[:id] = @site.id
+    params[:per_page] = nil
   end
 
   def admin

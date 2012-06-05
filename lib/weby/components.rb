@@ -1,19 +1,44 @@
 module Weby
-
   module Components
     
-    # Array de componentes disponíveis
-    mattr_accessor :available_components
-
     def self.setup
       yield self
+    end
+
+    @components = {}
+
+    def self.register_component(comp_name, config={})
+      config[:enabled] = true if config[:enabled].nil?
+
+      #require "weby/components/#{comp_name.to_s}/#{comp_name.to_s}_component"
+
+      # Adiciona locales do componente no path de locales
+      Weby::Application.config.i18n.load_path +=
+        Dir[Rails.root.join('lib', 'weby', 'components', comp_name.to_s, 'locales', '*.{rb,yml}').to_s]
+
+      # Adiciona assets do componente no path de assets
+      Weby::Application.config.assets.paths +=
+        Dir[Rails.root.join('lib', 'weby', 'components', comp_name.to_s, 'assets', '**')]
+      @components[comp_name.to_sym] = config
+    end
+
+    def self.components
+      @components
+    end
+
+    def self.component(comp_name)
+      @components[comp_name.to_sym]
+    end
+
+    def self.is_enabled?(comp_name)
+      @components[comp_name.to_sym][:enabled] if @components[comp_name.to_sym]
     end
 
     def self.factory(component)
       # A idéia é pegar um componente definido com a classe "Component" e passar
       # para a classe filha
       if component.class == Component
-        build = Object::const_get("#{component.name.classify}Component").find(component.id)
+        build = Object::const_get("#{component.name.classify}Component").instantiate(component.attributes)
       else
         ## FIXME verifica se o componente existe
         build = Object::const_get("#{component.classify}Component").new
@@ -23,6 +48,17 @@ module Weby
     end
     
     ActionView::Helpers::RenderingHelper.module_eval do
+
+      def load_components(component_place)
+        raw([].tap do |components|
+          current_site.components.where(["publish = true AND place_holder = ?", component_place]).order('position asc').each do |comp|
+            if Weby::Components.is_enabled?(comp.name)
+              components << render_component(Weby::Components.factory(comp))
+            end
+          end
+        end.join)
+      end
+
       def render_component(component, view = 'show', args = {})
         args[:partial] = "#{component.name}/views/#{view.to_s}"
         
@@ -31,31 +67,53 @@ module Weby
 
         # Caso a partial não exista, não mostra nada
         begin
-          render args
+          output = render args
+          if Weby::Application.assets.find_asset("#{component.name}.css")
+            @stylesheets_loaded ||= []
+            #Incluir o css do componente somente uma vez, mesmo se existirem mais de um sendo exibido
+            unless(@stylesheets_loaded.include?(component.name))
+              output += stylesheet_link_tag("#{component.name}.css")
+              @stylesheets_loaded << component.name
+            end
+          end
         rescue ActionView::MissingTemplate
-          ''
+          output = ''
         end
+        output
       end
     end
   end
 
   module ComponentInstance
-    def initialize_component(*settings)
-      class_eval do
-        # Como do componente que será usando em algumas partes do sistema
-        def self.cname
-          # Por padrão toda classe componente terá o "Component" no fim do nome, o come do
-          # componente não precisa ter esse final
-          # ex: GovBarComponent.tableize # => gov_bar_component.gsub(...) => gov_bar
-          self.name.tableize.gsub(/_components$/, '')
-        end
+    def self.extended(base)
+      base.class_eval do
+        class << self
+          def inherited_with_weby(cbase)
+             inherited_without_weby cbase
+             cbase.class_eval do
+              # Como do componente que será usando em algumas partes do sistema
+              # TODO 
+              def self.cname
+                # Por padrão toda classe componente terá o "Component" no fim do nome, o come do
+                # componente não precisa ter esse final
+                # ex: GovBarComponent.tableize # => gov_bar_component.gsub(...) => gov_bar
+                self.name.tableize.gsub(/_components$/, '')
+              end
 
-        # Inicializa o nome do componente quando ele é criado
-        after_initialize do
-          self.name = self.class.name.tableize.gsub(/_components$/, '')
+              # Inicializa o nome do componente quando ele é criado
+              after_initialize do
+                self.name = self.class.name.tableize.gsub(/_components$/, '')
+              end
+
+              default_scope where(:name => self.cname)
+             end
+          end
+          alias_method_chain :inherited, :weby
         end
       end
+    end
 
+    def component_settings(*settings)
       settings.each do |setting|
         class_eval <<-METHOD
           @#{setting}
@@ -68,8 +126,6 @@ module Weby
           end
         METHOD
       end
-
-      default_scope where(:name => self.cname)
     end
   end
 end

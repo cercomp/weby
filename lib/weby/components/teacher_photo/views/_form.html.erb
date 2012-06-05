@@ -1,7 +1,6 @@
 <%= repository_search( "Selecionar fotografia", "page_image", "teacher_photo_component[image]", (Repository.find(component.image) rescue nil), multiple: false, file_types: 'image') %>
 
-<%# FIXME mandei essa div para o final da página html, por isso com content_for :javascripts %>
-<%= content_for :javascripts do %>
+<% content_for :bottom do %>
   <div id="dialog-repository-search">
     <%= render('sites/admin/repositories/repository_search') %>
   </div>

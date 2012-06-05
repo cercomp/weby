@@ -1,0 +1,8 @@
+<%= f.input :width, as: :integer %>
+<%= f.input :align, :collection => [
+    [t(".right"),"right"],
+    [t(".left"),"left"]
+  ],
+  :priority => component.align,
+  :include_blank => false
+%>

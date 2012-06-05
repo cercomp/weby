@@ -1,3 +1,3 @@
 class HeaderComponent < Component
-  initialize_component
+  component_settings
 end

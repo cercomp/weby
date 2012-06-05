@@ -1,0 +1,12 @@
+en:
+  components:
+    <%=comp_name%>:
+      name: "<%=comp_name.titleize%>"
+  activerecord:
+    attributes:
+      <%=comp_name%>_component:
+<%= settings_locales %>
+  <%=comp_name%>:
+    views:
+      show:
+      form:

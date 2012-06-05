@@ -85,12 +85,52 @@ class ApplicationController < ActionController::Base
     redirect_back_or_default login_path
   end
 
+  unless Rails.application.config.consider_all_requests_local
+    rescue_from Exception, with: :render_500
+    rescue_from ActionController::RoutingError, with: :render_404
+    rescue_from ActionController::UnknownController, with: :render_404
+    rescue_from ActionController::UnknownAction, with: :render_404
+    rescue_from ActiveRecord::RecordNotFound, with: :render_404
+  end
+
+  @@weby_error_logger = Logger.new("#{Rails.root}/log/error.log")
+
   # Método utilizado para redirecionamento, quando endereço não existe
-  def catcher
-    render :file => "#{Rails.root}/public/404.html", :status => 404
+  def render_404(exception=nil)
+    @not_found_path = request.path
+    @error = exception
+    respond_to do |format|
+      format.html { render template: 'errors/404', layout: 'application', status: 404 }
+      format.all { render nothing: true, status: 404 }
+    end
+  end
+
+  def render_500(exception)
+    @error = exception
+    @error_code = (Time.now.to_f*10).to_i
+    @@weby_error_logger.error("{#{@error_code}:#{Time.now}\n"+
+        "#{exception.class}\n"+
+        "#{exception.message}\n"+
+        "#{clean_backtrace(exception).join("\n")}\n"+
+        "#{params}\n"+
+        "}")
+    respond_to do |format|
+      format.html { render template: 'errors/500', layout: 'application', status: 500 }
+      format.all { render nothing: true, status: 500}
+    end
   end
 
   private
+
+  def clean_backtrace(exception)
+     if backtrace = exception.backtrace
+       if defined?(Rails.root)
+         backtrace.map { |line| line.include?(Rails.root.to_s) ? line.sub(Rails.root.to_s, '') : nil }.compact
+       else
+         backtrace
+       end
+     end
+   end
 
   def is_admin
     unless current_user.is_admin
@@ -164,12 +204,8 @@ class ApplicationController < ActionController::Base
 
   # Defini variáveis globais
   def set_global_vars
-    if params[:site_id]
-      @site = Site.find_by_name(params[:site_id])
-    elsif params[:id]
-      @site = Site.find_by_name(params[:id])
-    end
-
+    @site = current_site
+    
     if @site
       params[:per_page] ||= per_page_default
 

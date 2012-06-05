@@ -197,6 +197,7 @@ pt-BR:
   last_name: "Sobrenome"
   last_news: "Últimas Notícias"
   last_request: "Última ação"
+  last_update: "Ultima Atualização"
   layout: "Leiaute"
   left: "Esquerdo"
   licence: "© Copyright 2012 UFG. Todos os direitos reservados."
@@ -225,6 +226,7 @@ pt-BR:
 
 #---M---#
   main: "Principal"
+  main_site: "Site Principal"
   manage_roles: "Gerenciar Papéis"
   mark_to_destroy: "Marcar para Remoção"
   medium: "Médio"
@@ -270,7 +272,7 @@ pt-BR:
     masc: "Novo %{param}"
   no_follow_styles: "Nenhum estilo seguido"
   no_other_styles: "Não existem outros estilos"
-  no_own_styles: "Não possue estilo próprio"
+  no_own_styles: "Não possui estilo próprio"
   no_groups: "Nenhum grupo configurado para receber e-mails"
   no_need_to_login: "Você não deve estar logado para acessar essa página."
   no_mail: "Nenhum usuário com esse e-mail foi econtrado."
@@ -337,7 +339,7 @@ pt-BR:
   read_more: "Leia mais..."
   redirect: "Página Inexistente."
   regional: "Regional"
-  register: "Cadastrar"
+  register: "Cadastro"
   registered:
     fem: "Cadastrada"
     masc: "Cadastrado"
@@ -381,6 +383,7 @@ pt-BR:
   send_date: "Data de envio"
   show: "Mostrar"
   show_hide_image_list: "Mostrar/Esconder lista de Imagens"
+  sign_up: "Cadastrar"
   side: "Lado"
   site:
     one: "Sítio"
@@ -442,6 +445,7 @@ pt-BR:
   user:
     one: "Usuário"
     other: "Usuários"
+  user_cant_be_deleted: "Este usuário não pode ser excluído"
   user_current_sites: "Sites Cadastrados"
   user_inactive: "Seu usuário ainda não está ativo."
   username: "Nome de usuário"
@@ -501,6 +505,12 @@ pt-BR:
       default: "%a, %d-%m-%Y %H:%M:%S %z"
       short: "%d-%m-%Y %H:%M"
       long: "%d de %B de %Y às %H:%M"
+      event_date_short: "%d %B"
+      event_date_full: "%d %B %Y"
+      event_period_short: "%{iniday} a %{finday} %B"
+      event_period_full: "%{iniday} a %{finday} %B %Y"
+      event_hour: "às %kh"
+    period_separator: "a"
     am: "am"
     pm: "pm"
 
@@ -575,6 +585,7 @@ pt-BR:
         archive: "Arquivo"
       site:
         name: "Nome"
+        title: "Título"
       site_component:
         place_holder: "Local"
       user:
@@ -610,8 +621,8 @@ pt-BR:
         odd: "ímpar requerido"
         record_invalid: ! 'A validação falhou: %{errors}'
         taken: "indisponível"
-        too_long: "muito longo (não é possível usar mais de %{count} characteres)"
-        too_short: "muito curto (não é possível usar menos de %{count} characteres)"
+        too_long: "muito longo (não é possível usar mais de %{count} caracteres)"
+        too_short: "muito curto (não é possível usar menos de %{count} caracteres)"
         wrong_length: "Tamanho errado (%{count} são requeridos)"
 
 #  will_paginate:

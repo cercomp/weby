@@ -1,5 +1,5 @@
 class BannerHorizontalComponent < Component
-  initialize_component :category
+  component_settings :category
 
   validates :category, :presence => true
 end

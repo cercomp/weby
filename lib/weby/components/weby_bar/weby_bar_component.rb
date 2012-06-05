@@ -1,3 +1,3 @@
 class WebyBarComponent < Component
-  initialize_component
+  component_settings
 end

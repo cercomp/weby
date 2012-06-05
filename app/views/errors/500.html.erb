@@ -1,0 +1,18 @@
+<% content_for :stylesheets do %>
+  <style type="text/css">
+  .dialog {
+    width: 600px;
+    margin: 30px auto 0;
+    text-align: center;
+  }
+  .red { color: red }
+  </style>
+<% end %>
+
+<div class="dialog">
+  <%#= image_tag 'weby-logo.png' %>
+  <h1>[500]</h1>
+  <h1>Ocorreu um erro interno no servidor</h1>
+  <h3><span class="red"><%#= @error %></span></h3>
+  <p><%= @error_code %></p>
+</div>

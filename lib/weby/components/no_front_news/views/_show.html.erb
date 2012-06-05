@@ -1,17 +1,20 @@
 <% quant = component.quant || 5 %>
-<% front = component.front || false %>
+<% front = as_boolean(component.front || '0') %>
+<% events = as_boolean(component.events || '0') %>
 <% # Pega as noticias ordenadas por data de inicio decrescente %>
 <%
-@no_front_news = @site.pages.order('created_at desc').
-  available.send("#{front ? 'front' : 'no_front'}").
-  page(params[:no_front_pages]).per(quant)
+  @no_front_news = @site.pages.order('created_at desc').
+    available.send(front ? 'front' : 'no_front')
+  @no_front_news = @no_front_news.news unless events
+
+  @no_front_news = @no_front_news.page(params[:no_front_pages]).per(quant)
 %>
 
 <div id="no_front_news">
-  <%= info_page @no_front_news, 'width: 100%' %>
+  <%#= info_page @no_front_news, 'width: 100%' %>
   <table class="list border fullwidth zebra">
     <tr>
-      <th> <%= link_to t("last_news"), site_pages_path(@site, direction: 'desc', sort: 'pages.created_at') %> </th>
+      <th> <%= link_to t('last_news'), site_pages_path(@site, direction: 'desc', sort: 'pages.created_at') %> </th>
     </tr>
     <% @no_front_news.try(:each) do |page| %>
       <tr>

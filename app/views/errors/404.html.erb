@@ -1,0 +1,28 @@
+<%content_for :stylesheets do%>
+  <style type="text/css">
+  .dialog {
+    width: 600px;
+    margin: 30px auto 0;
+    text-align: center;
+  }
+  .dialog h1 {
+    font-size: 20px;
+  }
+  .red { color: red }
+  </style>
+<% end %>
+
+<div class="dialog">
+  <%#= image_tag 'weby-logo.png' %>
+  <h1>[404]</h1>
+  <h1>O endereço que você digitou parece <span class="red">não existir</span></h1>
+  <p>
+    Verifique se o endereço foi digitado corretamente.
+  </p>
+  <p>
+    <%#= @not_found_path %>
+  </p>
+  <p>
+    <%= link_to 'Clique aqui para voltar à página inicial.', root_path %>
+  </p>
+</div>

@@ -195,6 +195,7 @@ en:
   last_name: "Last name"
   last_news: "Latest news"
   last_request: "Last action at"
+  last_update: "Last Update"
   layout: "Layout"
   left: "Left"
   licence: "© Copyright 2012 UFG. All rights reserved."
@@ -223,6 +224,7 @@ en:
 
 #---M---#
   main: "Main"
+  main_site: "Main Site"
   manage_roles: "Manage Roles"
   mark_to_destroy: "Mark to Destroy"
   medium: "Medium"
@@ -377,6 +379,7 @@ en:
   send_date: "Send Date"
   show: "Show"
   show_hide_image_list: "Show/Hide list of images"
+  sign_up: "Sign up"
   side: "Side"
   site:
     one: "Site"
@@ -435,6 +438,7 @@ en:
   user:
     one: "User"
     other: "Users"
+  user_cant_be_deleted: "This user can't be deleted"
   user_current_sites: "Current Sites"
   user_inactive: "User was not activated."
   username: "User name"
@@ -494,6 +498,12 @@ en:
       default: "%a, %d %b %Y %H:%M:%S %z"
       short: "%d %b %H:%M"
       long: "%B %d, %Y %H:%M"
+      event_date_short: "%B %d"
+      event_date_full: "%B %d, %Y"
+      event_period_short: "%B %{iniday} - %{finday}"
+      event_period_full: "%B %{iniday} - %{finday}, %Y"
+      event_hour: "at %l%P"
+    period_separator: "-"
     am: "am"
     pm: "pm"
 
@@ -569,6 +579,7 @@ en:
         archive: "Archive"
       site:
         name: "Name"
+        title: "Title"
       site_component:
         place_holder: "Place"
       user:

@@ -110,6 +110,9 @@ Weby::Application.routes.draw do
       collection do
         put :index
       end
+      collection do
+        post :sort
+      end
     end
     resources :sites do
       collection do
@@ -125,8 +128,7 @@ Weby::Application.routes.draw do
   match 'login' => 'user_sessions#new', :as => 'login'
   match 'denied' => 'user_session#access_denied', :as => 'denied'
 
-  # WTF???
-  match '*a', :to => 'application#catcher'
+  match '*not_found', :to => 'application#render_404'
 
   # Para ativação de conta por email
   match 'activate(/:activation_code)' => 'users#activate', 

@@ -1,7 +1,7 @@
 class Sites::Admin::PagesController < ApplicationController
 
   before_filter :require_user, only: [:new, :edit, :update, :destroy, :sort, :toggle_field]
-  before_filter :check_authorization, except: [:view, :show, :published]
+  before_filter :check_authorization, except: [:view, :show, :published, :events]
 
   before_filter :event_types, only: [:new, :edit]
 
@@ -12,9 +12,9 @@ class Sites::Admin::PagesController < ApplicationController
   # GET /pages
   # GET /pages.json
   def index
-    (redirect_to published_site_pages_path(@site) unless current_user) and return
+    (redirect_to published_site_pages_path(@site, search: params[:search]) unless current_user) and return
     @pages = get_pages 
-    respond_with(@site, @page) do |format|
+    respond_with(@site, @pages) do |format|
       if(params[:template])
         format.js { render "#{params[:template]}" }
       end
@@ -23,9 +23,16 @@ class Sites::Admin::PagesController < ApplicationController
 
   def published
     @pages = get_pages.published
-    respond_with(@site, @page) do |format|
+    respond_with(@site, @pages) do |format|
       format.rss { render :layout => false, :content_type => Mime::XML } #published.rss.builder
-      format.atom { render :layout => false, :content_type => Mime::XML } #ublished.atom.builder
+      format.atom { render :layout => false, :content_type => Mime::XML } #published.atom.builder
+      format.any { render template: 'pages/index' }
+    end
+  end
+
+  def events
+    @pages = get_pages.published.events
+    respond_with(@site, @pages) do |format|
       format.any { render template: 'pages/index' }
     end
   end

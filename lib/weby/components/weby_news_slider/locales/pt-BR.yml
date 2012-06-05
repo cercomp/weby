@@ -1,0 +1,17 @@
+pt-BR:
+  components:
+    weby_news_slider:
+      name: "Slider de Notícias"
+  activerecord:
+    attributes:
+      weby_news_slider_component:
+        news_category: "Categoria das Notícias"
+        width: Largura
+        height: Altura
+        quantity: Quantidade
+  weby_news_slider:
+    views:
+      show:
+      form:
+        news_category_hint: 'Apenas notícias que possuam imagens de capa; É sugerido que a imagem tenha proporções iguais as especificadas'
+        no_category: 'Nenhuma categoria'

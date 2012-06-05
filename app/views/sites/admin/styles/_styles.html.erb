@@ -7,6 +7,9 @@
         <thead>
           <th> <%= t('name') %> </th>
           <th> <%= t('owner') %> </th>
+          <%  if type.to_s == 'follow' %>
+             <th> <%= sortable 'styles.updated_at', t('last_update') %> </th>
+          <%  end %>
           <th> <%= t('actions') %> </th>
         </thead>
         <tbody>
@@ -16,6 +19,9 @@
               <td> 
                 <%= link_to style.owner.name, style.owner %>
               </td>
+              <%  if type.to_s == 'follow' %>
+                <td> <%=  l(style.updated_at, :format => :short) %> </td>
+              <%  end %>
               <td class="style-action">
                 <%= raw style_actions style, { others: true, type.to_sym => true } %>
               </td>

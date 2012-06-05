@@ -1,5 +1,5 @@
 class BlankComponent < Component
-  initialize_component :body
+  component_settings :body
 
   validates :body, :presence => true
 end
