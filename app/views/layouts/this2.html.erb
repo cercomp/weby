@@ -4,7 +4,8 @@
   <%= render 'layouts/shared/head', theme: 'this2' %>
   
   <body <%= raw 'style="padding-top: 40px;"' if current_user %>>
-  <%= render 'layouts/shared/navbar' if current_user %>
+    <%= render 'layouts/shared/navbar' if current_user %>
+    <%= link_to(image_tag('weby-icon.png'), login_path(), style: 'position:fixed; z-index: 1000') %>
     <div class='first_place'>
       <%= load_components 'first_place' %>
     </div>
