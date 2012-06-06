@@ -11,18 +11,23 @@
   .red { color: red }
   </style>
 <% end %>
+<%- title '404' %>
 
-<div class="dialog">
-  <%#= image_tag 'weby-logo.png' %>
-  <h1>[404]</h1>
-  <h1>O endereço que você digitou parece <span class="red">não existir</span></h1>
-  <p>
-    Verifique se o endereço foi digitado corretamente.
-  </p>
-  <p>
-    <%#= @not_found_path %>
-  </p>
-  <p>
-    <%= link_to 'Clique aqui para voltar à página inicial.', root_path %>
-  </p>
+<div class="span12">
+  <div class="well">
+    <div class="dialog alert alert-info">
+      <%#= image_tag 'weby-logo.png' %>
+      <h1></h1>
+      <h1>O endereço que você digitou parece <span class="red">não existir</span></h1>
+      <p>
+        Verifique se o endereço foi digitado corretamente.
+      </p>
+      <p>
+        <%#= @not_found_path %>
+      </p>
+      <p>
+        <%= link_to 'Clique aqui para voltar à página inicial.', root_url(subdomain: current_site) %>
+      </p>
+    </div>
+  </div>
 </div>

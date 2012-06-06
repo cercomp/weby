@@ -26,9 +26,11 @@
   <div class="bluezone">
     <section class="container">
       <div class="row">
+        <% if response.status == 200 %>
         <div class="span3">
           <%= render 'layouts/shared/menu_admin' %>
         </div>
+        <% end %>
         <div class="span9" id="content">
           <%= raw flash_message %>
           <div class="row">
