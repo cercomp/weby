@@ -6,6 +6,8 @@ Weby::Application.routes.draw do
   constraints(Weby::Subdomain) do
     get '/' => 'sites#show', as: :site
     get 'admin' => 'sites#admin', as: :site_admin
+    get 'admin/settings' => 'sites#edit', as: :site_admin_settings
+    post 'admin/settings' => 'sites#edit', as: :site_admin_settings
     # routes to feed and atom
     match '/feed' => 'sites/pages#published', as: :site_feed,
       defaults: { format: 'rss', per_page: 10, page: 1 }

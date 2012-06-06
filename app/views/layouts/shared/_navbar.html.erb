@@ -42,8 +42,13 @@
               <%= link_to(t("dashboard"), admin_path) if not(current_site) %>
               <%= link_to(t("dashboard"), site_admin_path) if current_site %>
             </li>
+            <li>
+              <%= link_to(t("show_site"), site_path) if (request.path.split('/').include?('admin') and current_site) %>
+            </li>
           <% end %>
-          <li> <%= link_to t('help'), (Setting.get(:help_site) || "/help"), target: '_blank' %> </li>
+          <li>
+            <%= link_to(t('help'), Setting.get(:help_site), target: '_blank') if Setting.get(:help_site) %>
+          </li>
           <li> <%= link_to t('about'), '/about.html', target: '_blank' %> </li>
         </ul>
       </div>
