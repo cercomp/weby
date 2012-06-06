@@ -162,8 +162,8 @@ class ApplicationController < ActionController::Base
   def require_no_user
     if current_user
       store_location
-      flash[:error] = t("no_need_to_login")
-      redirect_to users_url
+      #flash[:error] = t("no_need_to_login")
+      redirect_to admin_path
       return false
     end
   end

@@ -14,7 +14,7 @@ class UserSessionsController < ApplicationController
       if current_user and current_user.active? # Verifica se o usuário está ativo  
         flash.now[:success] = t("login_success")
         redirect_back_or_default("#{params[:back_url]}")
-      else  
+      else
         destroy  
       end  
     else  
