@@ -15,7 +15,7 @@
       <ul class="nav nav-tabs">
         <% @menus.each do |menu| %>
           <% active = (menu==@menu ? "active" : "") %>
-          <li class="<%= active %>"><%= link_to(menu.name.try(:titleize), menu==@menu ? '#' : site_admin_menus_path(@site, :menu => menu.id), :rel => menu.id) %></li>
+          <li class="<%= active %>"><%= link_to(menu.name.try(:titleize), menu==@menu ? '#' : site_admin_menus_path(:menu => menu.id), :rel => menu.id) %></li>
         <% end %>
       </ul>
 

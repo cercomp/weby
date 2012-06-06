@@ -6,7 +6,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <%= link_to root_path, class: 'brand orbitron logo' do %>
+      <%= link_to root_url(subdomain: nil), class: 'brand orbitron logo' do %>
         web<span class="red">y</span>
       <% end %>
       <% if current_user %>
@@ -40,7 +40,7 @@
             <% end %>
             <li>
               <%= link_to(t("dashboard"), admin_path) if not(current_site) %>
-              <%= link_to(t("dashboard"), admin_site_path(current_site)) if current_site %>
+              <%= link_to(t("dashboard"), site_admin_path) if current_site %>
             </li>
           <% end %>
           <li> <%= link_to t('help'), (Setting.get(:help_site) || "/help"), target: '_blank' %> </li>

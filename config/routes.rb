@@ -5,7 +5,7 @@ Weby::Application.routes.draw do
   
   constraints(Weby::Subdomain) do
     get '/' => 'sites#show', as: :site
-    get '/admin' => 'sites#admin', as: :site_admin
+    get 'admin' => 'sites#admin', as: :site_admin
     # routes to feed and atom
     match '/feed' => 'sites/pages#published', as: :site_feed,
       defaults: { format: 'rss', per_page: 10, page: 1 }
@@ -89,6 +89,7 @@ Weby::Application.routes.draw do
       resources :users,
         only: [] do
         collection do
+          get :manage_roles
           post :change_roles
         end
       end
