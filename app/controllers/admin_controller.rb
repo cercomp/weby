@@ -26,7 +26,7 @@ class AdminController < ApplicationController
       load_images_themes
       render :edit
     end
-    
+
   end
 
   def destroy

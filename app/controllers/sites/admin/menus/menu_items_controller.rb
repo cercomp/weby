@@ -5,7 +5,7 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
 
   respond_to :html, :xml, :js
   def index
-    redirect_to site_admin_menus_path(@site, :menu => @menu.id)
+    redirect_to site_admin_menus_path(:menu => @menu.id)
   end
 
   def new
@@ -22,7 +22,7 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
 
     if @menu_item.save
       flash[:success] = t("successfully_created")
-      redirect_to site_admin_menus_path(@site, :menu => @menu.id) 
+      redirect_to site_admin_menus_path(:menu => @menu.id) 
     else
       get_parent_menu_item params[:menu_item][:parent_id]
       @available_locales = available_locales
@@ -39,7 +39,7 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
     @menu_item = @menu.menu_items.find(params[:id])
     if @menu_item.update_attributes(params[:menu_item])
       flash[:success] = t("successfully_updated")
-      redirect_to site_admin_menus_path(@site, :menu => @menu.id)
+      redirect_to site_admin_menus_path(:menu => @menu.id)
     else
       @available_locales = available_locales
       render action: :edit

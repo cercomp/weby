@@ -40,7 +40,7 @@ class Sites::Admin::BannersController < ApplicationController
       render action: :edit
     end
     @banner.save
-    respond_with(@site, :admin, @banner)
+    respond_with(:site_admin, @banner)
   end
 
   def update
@@ -51,7 +51,7 @@ class Sites::Admin::BannersController < ApplicationController
       search_images
     end
     @banner.update_attributes(params[:banner])
-    respond_with(@site, :admin, @banner)
+    respond_with(:site_admin, @banner)
   end
 
   def destroy
@@ -59,7 +59,7 @@ class Sites::Admin::BannersController < ApplicationController
     @banner.destroy
 
     # TODO mensagem de banner removido com sucesso
-    redirect_to(site_admin_banners_path(@site))
+    redirect_to(site_admin_banners_path())
   end
 
   def toggle_field

@@ -3,7 +3,7 @@
     <%= (t"none_param", param: t("user.one")) %>
   </div>
 <% else %>
-  <%= form_tag change_roles_site_admin_users_path(@site),
+  <%= form_tag change_roles_site_admin_users_path,
     method: "post",
     id: "subscribe_users",
     remote: 'true',
@@ -49,6 +49,7 @@
     <%= link_to t("back"), :back, class: "btn btn-danger" %>
   </div>
 </form>
+
 <% end %>
 
 <%= content_for :javascripts do %>

@@ -17,7 +17,7 @@
             <tr>
               <td> <%= style.name %> </td>
               <td> 
-                <%= link_to style.owner.name, style.owner %>
+                <%= link_to style.owner.name, site_url(subdomain: style.owner) %>
               </td>
               <%  if type.to_s == 'follow' %>
                 <td> <%=  l(style.updated_at, :format => :short) %> </td>

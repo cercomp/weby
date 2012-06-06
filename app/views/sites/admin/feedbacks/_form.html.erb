@@ -1,4 +1,4 @@
-<%= simple_form_for [@site, :admin, @feedback], html: { class: 'form-horizontal' } do |f| %>
+<%= simple_form_for [:site_admin, @feedback], html: { class: 'form-horizontal' } do |f| %>
   <%= f.show_errors %>
 
   <% unless @groups.empty? %>

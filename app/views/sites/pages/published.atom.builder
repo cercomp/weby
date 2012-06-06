@@ -1,9 +1,9 @@
 atom_feed :language => I18n.locale do |feed|
   feed.title current_site.name
-  feed.updated @pages.first.created_at
+  feed.updated @pages.first.created_at if @pages.any?
 
   @pages.each do |page|
-    feed.entry page, url: site_page_url(current_site, page) do |entry|
+    feed.entry page, url: site_page_url(page) do |entry|
       entry.title page.title
       entry.summary page.summary
       entry.content page.text, :type => 'html'

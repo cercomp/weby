@@ -17,7 +17,7 @@
           class: "btn btn-success btn-large" %>
       <% end %>
       <% with_permission(action: :fronts) do %>
-        <%= link_to (t"covers"), fronts_site_admin_pages_path(@site), class: "btn btn-primary btn-large" %>
+        <%= link_to (t"covers"), fronts_site_admin_pages_path, class: "btn btn-primary btn-large" %>
       <% end %>
     </div>
     <div class="clearfix"></div>

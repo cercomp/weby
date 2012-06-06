@@ -1,6 +1,6 @@
 <% content_for :javascripts, javascript_include_tag('menus') %>
 
-<%= simple_form_for [@site, :admin, @menu, @menu_item], html: { class: 'form-horizontal' } do |f| %>
+<%= simple_form_for [:site_admin, @menu, @menu_item], html: { class: 'form-horizontal' } do |f| %>
   <%= f.show_errors %>
 
   <% if @menu_item_parent %>
@@ -53,8 +53,8 @@
 
 
     <%# Ao selecionar um noticia deve ser montado a url para ela,
-      # então aqui guardamos o caminho para as páginas deste site %>
-    <%= hidden_field_tag 'url_to_pages', site_pages_url(@site, only_path: true) %>
+     # então aqui guardamos o caminho para as páginas deste site %>
+    <%= hidden_field_tag 'url_to_pages', site_pages_url(only_path: true) %>
     <%= hidden_field_tag 'menu_item[target_id]', @menu_item.target_id %>
     <%= hidden_field_tag 'menu_item[target_type]', @menu_item.target_type %>
   </div>

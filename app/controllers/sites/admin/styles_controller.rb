@@ -86,14 +86,14 @@ class Sites::Admin::StylesController < ApplicationController
     @style.position = @site.own_styles.count + 1
 
     flash[:success] = t('successfully_created') if @style.save
-    respond_with(@style, location:  site_admin_styles_path(@site))
+    respond_with(:site_admin, @style, location:  site_admin_styles_path)
   end
 
   def update
     @style = Style.find(params[:id])
 
     flash[:success] = t('successfully_updated') if @style.update_attributes(params[:style])
-    respond_with(@style, location: site_admin_styles_path(@site))
+    respond_with(:site_admin, @style, location: site_admin_styles_path)
   end
 
   def destroy
@@ -105,7 +105,7 @@ class Sites::Admin::StylesController < ApplicationController
       flash[:alert] = t('destroyed_param_error', param: t('style.one'))
     end
     
-    respond_with(@style, location: site_admin_styles_path(@site))
+    respond_with(:site_admin, @style, location: site_admin_styles_path())
   end
 
   def follow
@@ -121,7 +121,7 @@ class Sites::Admin::StylesController < ApplicationController
     @site_style = @style.sites_styles.where(site_id: @site.id).first
     @site_style.destroy
 
-    redirect_to site_admin_styles_path(@site)
+    redirect_to site_admin_styles_path()
   end
 
   def publish
@@ -129,7 +129,7 @@ class Sites::Admin::StylesController < ApplicationController
     @style = @style.sites_styles.where(site_id: @site.id).first if @style.owner != @site
     @style.update_attributes(publish: true)
 
-    redirect_to site_admin_styles_path(@site)
+    redirect_to site_admin_styles_path()
   end
 
   def unpublish
@@ -137,7 +137,7 @@ class Sites::Admin::StylesController < ApplicationController
     @style = @style.sites_styles.where(site_id: @site.id).first if @style.owner != @site
     @style.update_attributes(publish: false)
 
-    redirect_to site_admin_styles_path(@site)
+    redirect_to site_admin_styles_path()
   end
 
   def copy
@@ -151,7 +151,7 @@ class Sites::Admin::StylesController < ApplicationController
       flash[:error] = t('error_creating_object')
     end
 
-    redirect_to site_admin_styles_path(@site)
+    redirect_to site_admin_styles_path()
   end
   
   def sort

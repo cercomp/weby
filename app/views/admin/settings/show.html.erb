@@ -1,0 +1,22 @@
+<fieldset>
+  <legend><%= t('setting.one') %></legend>
+  <p>
+    <p> <b><%= t('name') %></b> </p>
+    <%= @setting.name %>
+  </p>
+
+  <p>
+    <p> <b><%= t('value') %></b> </p>
+    <%= @setting.value %>
+  </p>
+
+  <p>
+    <p> <b><%= t('description') %><br> </p>
+    <%= @setting.description %>
+  </p>
+</fieldset>
+
+
+  <%= link_to t('edit'), edit_admin_setting_path(@setting) %> |
+  <%= link_to t('remove', :param => t('setting.one')).capitalize, admin_setting_path(@setting), :method => 'delete', :confirm => t('are_you_sure') %> |
+  <%= link_to t('back'), admin_settings_path %>

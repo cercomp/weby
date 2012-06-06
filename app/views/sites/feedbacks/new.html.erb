@@ -1,7 +1,7 @@
 <fieldset> 
   <legend><%= t"new_param.fem", :param => t('message') %> - <%= t('feedback.one') %></legend>
 
-  <%= simple_form_for [@site, @feedback] do |f| %>
+  <%= simple_form_for [:site, @feedback] do |f| %>
     <%= f.show_errors %>
 
     <% unless @groups.empty? %>

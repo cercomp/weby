@@ -5,7 +5,7 @@
     <% with_permission action: :new do %>
       <div class="pull-right">
         <%= link_to t('new_param.masc', param: t('menu.one')),
-          new_site_admin_menu_path(@site),
+          new_site_admin_menu_path,
           class: "btn btn-success btn-large" %>
       </div>
       <div class="clearfix"></div>
@@ -24,17 +24,17 @@
           <div class="pull-right">
             <% with_permission controller: Sites::Admin::Menus::MenuItemsController, action: :new do %>
               <%= link_to t('new_param.masc', param: t('menu_item.one')),
-                new_site_admin_menu_menu_item_path(@site, @menu),
+                new_site_admin_menu_menu_item_path(@menu),
                 class: "btn btn-success" %>
             <% end %>
             <% with_permission action: :edit do %>
               <%= link_to t('edit', param: t('menu.one')),
-                edit_site_admin_menu_path(@site, @menu),
+                edit_site_admin_menu_path(@menu),
                 class: "btn btn-primary" %>
             <% end %>
             <% with_permission action: :destroy do %>
               <%= link_to t('destroy'),
-                site_admin_menu_path(@site, @menu),
+                site_admin_menu_path(@menu),
                 method: :delete, confirm: t('are_you_sure'),
                 class: "btn btn-primary" %>
             <% end %>
@@ -76,18 +76,18 @@
   parent_id = ui.item.parents('li').attr('id') ? ui.item.parents('li').attr('id').replace('menu_item_','') : 0;
   position = ui.item.index()+1;//A position no banco começa com 1
 
-  $.ajax({
-  type: 'post',
-  data: 'id='+id+'&parent_id='+parent_id+'&position='+position,
-  dataType: 'script',
-  complete: function(request,text){
-  if(text=='success') $(ui.item).effect('highlight');
-  else $('#main-menu > menu').nestedSortable('cancel');
-  },
-  url: '<%= change_order_site_admin_menu_menu_items_path(@site, @menu) if @menu %>'
-  });
-  }
-  });
+          $.ajax({
+            type: 'post',
+            data: 'id='+id+'&parent_id='+parent_id+'&position='+position,
+            dataType: 'script',
+            complete: function(request,text){
+              if(text=='success') $(ui.item).effect('highlight');
+              else $('#main-menu > menu').nestedSortable('cancel');
+            },
+            url: '<%= change_order_site_admin_menu_menu_items_path(@menu) if @menu %>'
+          });
+        }
+      });
 
   $( "#tabs li > a" ).not('.selected').parent('li').droppable({
   hoverClass: "drop-here",
@@ -102,18 +102,18 @@
   ////Testa para não alterar pra o proprio menu
   if( !drop_li.find('a').hasClass('selected') ){
 
-  $.ajax({
-  type: 'post',
-  data: 'id='+id+'&new_menu_id='+menu_id,
-  dataType: 'script',
-  complete: function(request,text){
-  if(text=='success'){
-  ui.draggable.remove();
-  location = drop_li.find('a').attr('href');
-  }
-  },
-  url: '<%= change_menu_site_admin_menu_menu_items_path(@site, @menu) if @menu%>'
-  });
+            $.ajax({
+              type: 'post',
+              data: 'id='+id+'&new_menu_id='+menu_id,
+              dataType: 'script',
+              complete: function(request,text){
+                if(text=='success'){
+                  ui.draggable.remove();
+                  location = drop_li.find('a').attr('href');
+                }
+              },
+              url: '<%= change_menu_site_admin_menu_menu_items_path(@menu) if @menu%>'
+            });
 
   }
   }

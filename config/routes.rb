@@ -3,17 +3,20 @@ Weby::Application.routes.draw do
   # TODO: mudar de onde era o admin para seu respectivo controller, mudou para namespace
   # TODO: Verificar se attachments é necessário para o tinymce, se não remover
   
-  root :to => "sites#index"
-  
-  resources :user_sessions
-  
-  resources :sites,
-    only: [:index, :show, :edit, :update] do
-    member do
-      get :admin
-    end
+  constraints(Weby::Subdomain) do
+    get '/' => 'sites#show', as: :site
+    get '/admin' => 'sites#admin', as: :site_admin
+    # routes to feed and atom
+    match '/feed' => 'sites/pages#published', as: :site_feed,
+      defaults: { format: 'rss', per_page: 10, page: 1 }
+    # route to paginate
+    match '/users/page/:page' => 'admin/users#index'
+    match '/banners/page/:page' => 'sites/admin/banners#index'
+    match '/repositories/page/:page' => 'sites/admin/repositories#index'
+    match '/groups/page/:page' => 'sites/admin/groups#index'
 
-    resources :pages, 
+    resources :pages,
+      as: :site_pages, 
       controller: 'sites/pages', 
       only: [:index, :show] do
       collection do
@@ -22,7 +25,8 @@ Weby::Application.routes.draw do
       end
     end
 
-    resources :feedbacks, 
+    resources :feedbacks,
+      as: :site_feedbacks,
       controller: 'sites/feedbacks', 
       only: [:new, :create] do
       collection do
@@ -30,7 +34,7 @@ Weby::Application.routes.draw do
       end
     end
 
-    namespace :admin, module: 'sites/admin' do
+    namespace :admin, module: 'sites/admin', as: :site_admin do
       resources :feedbacks
       resources :groups
       resources :banners do
@@ -85,13 +89,16 @@ Weby::Application.routes.draw do
       resources :users,
         only: [] do
         collection do
-          get :manage_roles
           post :change_roles
         end
       end
     end
   end
- 
+
+  root :to => "sites#index"
+
+  resources :user_sessions
+  
   match 'admin' => 'application#admin'
   namespace :admin do
     resources :rights
@@ -118,11 +125,7 @@ Weby::Application.routes.draw do
         post :sort
       end
     end
-    resources :sites do
-      collection do
-        post :sort
-      end
-    end
+    resources :sites, except: :show
   end
 
   # legacy, verificar a possibilidade de refatoração
@@ -139,18 +142,6 @@ Weby::Application.routes.draw do
     as: :activate_account
   match 'send_activation(/:user_id)' => 'users#send_activation', 
     as: :send_activation
-
-  # routes to feed and atom
-  match '/sites/:site_id/feed' => 'pages#published', 
-    as: :feed, defaults: { format: 'rss', per_page: 10, page: 1 }
-  match '/sites/:site_id/atom' => 'pages#published', 
-    as: :atom, defaults: { format: 'atom', per_page: 10, page: 1 }
-
-  # route to paginate
-  match '/sites/:site_id/users/page/:page' => 'users#index'
-  match '/sites/:site_id/banners/page/:page' => 'banners#index'
-  match '/sites/:site_id/repositories/page/:page' => 'repositories#index'
-  match '/sites/:site_id/groups/page/:page' => 'groups#index'
 
   # TinyMCE??
   #resources :attachments do

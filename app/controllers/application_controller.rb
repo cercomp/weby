@@ -1,6 +1,7 @@
 # coding: utf-8
 class ApplicationController < ActionController::Base
   include ApplicationHelper # Para usar helper methods nos controllers
+  include UrlHelper
   protect_from_forgery
   before_filter :set_contrast, :set_locale, :set_global_vars
 
@@ -56,8 +57,18 @@ class ApplicationController < ActionController::Base
   end
 
   def current_site
-    return @current_site if defined? @current_site
-    @current_site = Site.find_by_name(params[:site_id] ? params[:site_id] : (params[:id] and params[:controller] == 'sites') ? params[:id] : nil)
+    case
+    when defined?(@current_site)
+      return @current_site
+    when Weby::Subdomain.matches?(request)
+      #search subsites
+      sites = Weby::Subdomain.site_id.split('.')
+      @current_site = Site.where(parent_id: nil).find_by_name(sites[-1])
+      if(sites.length == 2)
+        @current_site = @current_site.subsites.find_by_name(sites[-2]) if @current_site
+      end
+      @current_site if [1,2].include? sites.length
+    end
   end
 
   def set_locale

@@ -12,7 +12,7 @@
   <tbody>
     <% @sites.each do |site| %>
       <tr>
-        <td> <%= link_to site.name, site_path(site) %> </td>
+        <td> <%= link_to site.name, site_url(subdomain: site) %> </td>
         <td> <%= site.description %> </td>
       </tr>
     <% end %>

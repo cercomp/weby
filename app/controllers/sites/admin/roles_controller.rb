@@ -31,12 +31,12 @@ class Sites::Admin::RolesController < ApplicationController
     @role = Role.new
     @roles = Role.order("id")
     @rights = Right.order("id")
-    respond_with(@roles)
+    respond_with(:site_admin, @roles)
   end
 
   def new
     @role = Role.new
-    respond_with(@role)
+    respond_with(:site_admin, @role)
   end
 
   def create

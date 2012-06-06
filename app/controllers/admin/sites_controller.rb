@@ -16,16 +16,6 @@ class Admin::SitesController < ApplicationController
     flash[:warning] = (t"none_param", :param => t("page.one")) unless @sites
   end
 
-  def show
-    if(@site)
-      params[:site_id] = @site.name
-      params[:id] = @site.id
-      params[:per_page] = nil
-    else
-      catcher
-    end
-  end
-
   def new
     @site = Site.new
     @themes = []
@@ -73,7 +63,7 @@ class Admin::SitesController < ApplicationController
         end
       end
 
-      redirect_to site_admin_components_path(@site)
+      redirect_to site_admin_components_url(subdomain: @site)
     else
       @themes = []
       (Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*.erb")] - Dir[File.join(Rails.root + "app/views/layouts/application.html.erb")]).each do |file|
@@ -94,7 +84,7 @@ class Admin::SitesController < ApplicationController
   def destroy
     @site = Site.find_by_name(params[:id])
     @site.destroy
-    respond_with(@site)
+    respond_with(:admin, @site)
   end
 
   private

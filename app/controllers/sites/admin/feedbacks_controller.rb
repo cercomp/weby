@@ -1,6 +1,6 @@
 class Sites::Admin::FeedbacksController < ApplicationController
-  before_filter :require_user, :except => [:new, :create, :sent, :get_groups]
-  before_filter :check_authorization, :except => [:new, :create, :sent, :get_groups]
+  before_filter :require_user
+  before_filter :check_authorization
   before_filter :get_groups, :only => [:new, :edit, :create, :update]
   respond_to :html, :xml, :js
 

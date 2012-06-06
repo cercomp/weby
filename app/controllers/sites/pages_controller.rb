@@ -8,21 +8,21 @@ class Sites::PagesController < ApplicationController
   # GET /pages
   # GET /pages.json
   def index
-    (redirect_to published_site_pages_path(@site) unless current_user) and return
+    (redirect_to published_site_pages_path() unless current_user) and return
     @pages = get_pages 
-    respond_with(@site, @page) do |format|
+    respond_with(:site, @page) do |format|
       if(params[:template])
-        format.js { render template: "pages/#{params[:template]}" }
+        format.js { render template: "sites/pages/#{params[:template]}" }
       end
     end
   end
 
   def published
     @pages = get_pages.published
-    respond_with(@site, @page) do |format|
+    respond_with(:site, @page) do |format|
       format.rss { render :layout => false, :content_type => Mime::XML } #published.rss.builder
       format.atom { render :layout => false, :content_type => Mime::XML } #ublished.atom.builder
-      format.any { render template: 'pages/index' }
+      format.any { render template: 'sites/pages/index' }
     end
   end
 
@@ -57,7 +57,7 @@ class Sites::PagesController < ApplicationController
   # GET /pages/1.json
   def show
     @page = @site.pages.find(params[:id]).in(params[:page_locale])
-    respond_with(@site, @page)
+    respond_with(:site, @page)
   end
 
   def sort

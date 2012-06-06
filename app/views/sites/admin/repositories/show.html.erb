@@ -7,6 +7,6 @@
 	<p> <b><%= t("file_link") %>:</b> <%= @repository.archive.url(:original) %>  </p>	
 
   <%= make_menu(@repository, :except => "show") %> 
-  <%= link_to t("list_all.masc"), site_admin_repositories_path(@site), :class => 'icon icon-list' %> 
+  <%= link_to t("list_all.masc"), site_admin_repositories_path(), :class => 'icon icon-list' %> 
   <%= link_to t("back"), :back, :class => 'icon icon-back' %>
 </fieldset>

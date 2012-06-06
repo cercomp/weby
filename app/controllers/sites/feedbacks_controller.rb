@@ -37,7 +37,7 @@ class Sites::FeedbacksController < ApplicationController
         end
       end
       session[:feedback_id] = @feedback.id
-      redirect_to :action => 'sent'
+      redirect_to sent_site_feedbacks_path
     else
       render :action => "new"
     end
@@ -50,7 +50,7 @@ class Sites::FeedbacksController < ApplicationController
       session.delete :feedback_id
     else
       # Se o usuário já viu a mensagem, ele é redirecionado para a página inicial do site
-      redirect_to [@site]
+      redirect_to :site
     end
   end
 

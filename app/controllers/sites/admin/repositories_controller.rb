@@ -19,7 +19,7 @@ class Sites::Admin::RepositoriesController < ApplicationController
     unless @repositories
       flash.now[:warning] = (t"none_param", :param => t("archive.one")) 
     end
-    respond_with(@repositories) do |format|
+    respond_with(:site_admin, @repositories) do |format|
       format.json do
         render json: {
           current_page: @repositories.current_page,
@@ -36,7 +36,7 @@ class Sites::Admin::RepositoriesController < ApplicationController
 
   def show
     @repository = Repository.find(params[:id])
-    respond_with(@repository)
+    respond_with(:site_admin, @repository)
   end
 
   def new
@@ -49,7 +49,7 @@ class Sites::Admin::RepositoriesController < ApplicationController
 
   def create
     @repository = Repository.new(params[:repository])
-    respond_with(@repository) do |format|
+    respond_with(:site_admin, @repository) do |format|
       if @repository.save
         format.html { 
           if params[:from] != 'other'

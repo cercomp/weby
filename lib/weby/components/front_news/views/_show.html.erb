@@ -24,7 +24,7 @@
         <%= raw page.summary %>
       </summary>
       <% unless page.text.blank? %>
-      <p> <%= link_to t("read_more"), site_page_path(@site, page) %> </p>
+      <p> <%= link_to t("read_more"), site_page_path(page) %> </p>
       <% end %>
       <div class="clear"></div>
     </article>
@@ -61,7 +61,7 @@
           dataType: 'script',
           complete: function(request){ ui.item.effect('highlight'); },
           error: function(){$('section#pages').sortable('cancel');},
-          url: '<%= sort_site_pages_path(@site) %>'
+          url: '<%= sort_site_pages_path() %>'
         });
       }
     });

@@ -58,7 +58,7 @@ module ApplicationHelper
        #		if (entry.menu.try(:page_id).nil? and entry.menu.try(:link).empty?)
        #menus << "#{entry.menu.try(:title)}"
        #		else
-       menus << link_to(entry.title, entry.target_id.to_i > 0 ? site_page_path(@site, entry.target_id) : entry.url, :alt => entry.title,:title => entry.description, :target => entry.new_tab ? "_blank":"")
+       menus << link_to(entry.title, entry.target_id.to_i > 0 ? site_page_path(entry.target_id) : entry.url, :alt => entry.title,:title => entry.description, :target => entry.new_tab ? "_blank":"")
        #		end
 
        if view_ctrl == 1
@@ -74,10 +74,10 @@ module ApplicationHelper
          end
          #menus << " [ id:#{entry.id} pos:#{entry.position} ]" # Para debug
          menus << ( (entry and entry.target) ? " [ #{entry.target.id} ] " : " [ #{entry.url if not entry.url.blank?} ] " )
-         menus << link_to("", edit_site_admin_menu_menu_item_path(@site.name, entry.menu_id, entry.id),:class=>'icon icon-edit', :title => t("edit"))
-         menus << indent_space + link_to("", new_site_admin_menu_menu_item_path(@site.name, entry.menu_id, :parent_id => entry.id),:class=>'icon icon-plus', :title => t("add_sub_menu"))
+         menus << link_to("", edit_site_admin_menu_menu_item_path(entry.menu_id, entry.id),:class=>'icon icon-edit', :title => t("edit"))
+         menus << indent_space + link_to("", new_site_admin_menu_menu_item_path(entry.menu_id, :parent_id => entry.id),:class=>'icon icon-plus', :title => t("add_sub_menu"))
          menus << indent_space + link_to("","#", :class => 'handle icon icon-move', :title => t("move"))
-         menus << indent_space + link_to("", site_admin_menu_menu_item_path(@site.name, entry.menu_id, entry.id), :method=>:delete, :confirm => t('are_you_sure'),:class=>'icon icon-remove', :title => t("destroy"))
+         menus << indent_space + link_to("", site_admin_menu_menu_item_path(entry.menu_id, entry.id), :method=>:delete, :confirm => t('are_you_sure'),:class=>'icon icon-remove', :title => t("destroy"))
       end
        menus << "\n" + indent_space + (view_ctrl == 1 ? "</div><menu>":"<menu>") unless submenu.nil?
        if sons[entry.id].class.to_s == "Array"

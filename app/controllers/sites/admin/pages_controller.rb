@@ -1,7 +1,7 @@
 class Sites::Admin::PagesController < ApplicationController
 
-  before_filter :require_user, only: [:new, :edit, :update, :destroy, :sort, :toggle_field]
-  before_filter :check_authorization, except: [:view, :show, :published, :events]
+  before_filter :require_user
+  before_filter :check_authorization
 
   before_filter :event_types, only: [:new, :edit]
 
@@ -12,9 +12,9 @@ class Sites::Admin::PagesController < ApplicationController
   # GET /pages
   # GET /pages.json
   def index
-    (redirect_to published_site_pages_path(@site, search: params[:search]) unless current_user) and return
+    (redirect_to published_site_pages_path(search: params[:search]) unless current_user) and return
     @pages = get_pages 
-    respond_with(@site, @pages) do |format|
+    respond_with(:site_admin, @pages) do |format|
       if(params[:template])
         format.js { render "#{params[:template]}" }
       end
@@ -23,7 +23,7 @@ class Sites::Admin::PagesController < ApplicationController
 
   def published
     @pages = get_pages.published
-    respond_with(@site, @pages) do |format|
+    respond_with(:site_admin, @page) do |format|
       format.rss { render :layout => false, :content_type => Mime::XML } #published.rss.builder
       format.atom { render :layout => false, :content_type => Mime::XML } #published.atom.builder
       format.any { render template: 'pages/index' }
@@ -68,7 +68,7 @@ class Sites::Admin::PagesController < ApplicationController
   # GET /pages/1.json
   def show
     @page = @site.pages.find(params[:id]).in(params[:page_locale])
-    respond_with(@site, @page)
+    respond_with(:site_admin, @page)
   end
 
   # GET /pages/new
@@ -76,14 +76,14 @@ class Sites::Admin::PagesController < ApplicationController
   def new
     @page = @site.pages.new
     @available_locales = available_locales
-    respond_with(@site, @page)
+    respond_with(:site_admin, @page)
   end
 
   # GET /pages/1/edit
   def edit
     @page = @site.pages.find(params[:id])
     @available_locales = available_locales
-    respond_with(@site, @page)
+    respond_with(:site_admin, @page)
   end
 
   def available_locales
@@ -103,7 +103,7 @@ class Sites::Admin::PagesController < ApplicationController
     @available_locales = available_locales
     @page.author = current_user
     @page.save
-    respond_with(@site, @page)
+    respond_with(:site_admin, @page)
   end
 
   # PUT /pages/1
@@ -113,7 +113,7 @@ class Sites::Admin::PagesController < ApplicationController
     @page = @site.pages.find(params[:id])
     @available_locales = available_locales
     @page.update_attributes(params[:page])
-    respond_with(@site, @page)
+    respond_with(:site_admin, @page)
   end
 
   # DELETE /pages/1
@@ -121,14 +121,14 @@ class Sites::Admin::PagesController < ApplicationController
   def destroy
     @page = @site.pages.find(params[:id])
     @page.destroy
-    respond_with(@site, @page)
+    respond_with(:site_admin, @page)
   end
 
   def toggle_field
     @page = @site.pages.find(params[:id])
     @page.toggle!(params[:field])
-    respond_with(@page) do |format|
-      format.any { redirect_to site_admin_pages_path(@site) }
+    respond_with(:site_admin, @page) do |format|
+      format.any { puts "HEEEEREE"; redirect_to site_admin_pages_path() }
     end
   end
 

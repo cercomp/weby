@@ -10,7 +10,7 @@
     <tbody>
     <% @groups.each do |group| %>
       <tr>
-        <td><%= link_to group.name, site_admin_group_path(@site, group) %></td>
+        <td><%= link_to group.name, site_admin_group_path(group) %></td>
         <td>
           <%= raw make_menu(group) %> 
         </td>

@@ -50,7 +50,7 @@
           <%= render partial: 'related_files' if @page.related_files.any? %>
 
           <%= make_menu(@page, :except => "show") %>
-          <%= link_to t("list_all.fem"), site_pages_path(@site), :class => 'icon icon-list' %>
+          <%= link_to t("list_all.fem"), site_pages_path(), :class => 'icon icon-list' %>
           <%= link_to t("back"), :back , :class => 'icon icon-back' %>
 
         </article>

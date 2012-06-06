@@ -37,7 +37,7 @@ class Sites::Admin::GroupsController < ApplicationController
       redirect_to({:site_id => @group.site.name, :controller => 'groups'},
                   flash: {success: t('successfully_created')})
     else
-      respond_with(@site, @group)
+      respond_with(:site_admin, @group)
     end
   end
 
