@@ -3,6 +3,7 @@ module Weby
     include ActionDispatch::Http::URL
 
     def self.matches?(request)
+      #TODO deixar o acesso a Settings mais eficiente, aqui e no sistema inteiro
       settings = Setting.all
       root_site = settings.select{ |s| s.name == 'root_site'}[0]
       index_id   = settings.select{ |s| s.name == 'sites_index'}[0]
