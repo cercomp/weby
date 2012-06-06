@@ -1,7 +1,7 @@
 <div class="well">
   <ul class="nav nav-pills nav-stacked">
   <% if current_site %>
-    <li> <%= link_to (t"setting.other"), site_admin_settings_path if true or check_permission(Admin::SitesController, [:edit]) %> </li>
+    <li> <%= link_to (t"setting.other"), edit_site_admin_path if true or check_permission(Admin::SitesController, [:edit]) %> </li>
     <li> <%= link_to (t"user.other"), manage_roles_site_admin_users_path if check_permission(Sites::Admin::UsersController, [:manage_roles])%> </li>
     <li> <%= link_to (t"page.other"), site_admin_pages_path if check_permission(Sites::Admin::PagesController, [:index])%> </li>
     <li> <%= link_to t("covers"), fronts_site_admin_pages_path if check_permission(Sites::Admin::PagesController, [:index])%> </li>

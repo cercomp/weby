@@ -24,11 +24,6 @@ class Admin::SitesController < ApplicationController
     end
   end
 
-  def edit
-    @repositories = Repository.search(params[:search], params[:page],["archive_content_type LIKE ?","image%"])
-    @site = Site.find_by_name(params[:id])
-  end
-
   def create
     @site = Site.new(params[:site])
     if @site.save
@@ -71,14 +66,6 @@ class Admin::SitesController < ApplicationController
       end
       respond_with @site
     end
-  end
-
-  def update
-    @site = Site.find_by_name(params[:id])
-    if @site.update_attributes(params[:site])
-      flash[:success] = t"successfully_updated"
-    end
-    redirect_to edit_admin_site_path(@site)
   end
 
   def destroy

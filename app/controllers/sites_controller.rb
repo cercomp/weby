@@ -30,19 +30,19 @@ class SitesController < ApplicationController
   end
   
   def edit
-    @site = Site.find_by_name(params[:id])
-    load_images_themes
+    @site = current_site#Site.find_by_name(params[:id])
+    load_themes
     render layout: 'application'
   end
 
   def update
-    @site = Site.find_by_name(params[:id])
+    @site = current_site#Site.find_by_name(params[:id])
     params[:site][:top_banner_id] ||= nil
     if @site.update_attributes(params[:site])
-      flash[:notice] = t"successfully_updated"
-      redirect_to admin_site_path(@site)
+      flash[:success] = t"successfully_updated"
+      redirect_to edit_site_admin_path
     else
-      load_images_themes
+      load_themes
       render :edit
     end
   end
@@ -52,13 +52,7 @@ class SitesController < ApplicationController
     Site.column_names.include?(params[:sort]) ? params[:sort] : 'id'
   end
 
-  def load_images_themes
-    @images = @site.repositories.
-      content_file(["image", "x-shockwave-flash"]).
-      description_or_filename(params[:image_search]).
-      page(params[:page]).
-      per(params[:per_page])
-
+  def load_themes
     @themes = []
     (Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*.erb")] -
      Dir[File.join(Rails.root + "app/views/layouts/application.html.erb")] -
