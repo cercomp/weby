@@ -219,6 +219,7 @@ class ApplicationController < ActionController::Base
     if @site
       params[:per_page] ||= per_page_default
 
+      #TODO carregar essa variavel somente na visualização do site
       @global_menus = {}
       # Carrega os menus, para auemntar a eficiência, já que menus são carregados em todas as requisições
       @site.menus.with_items.each{ |menu| @global_menus[menu.id] = menu }

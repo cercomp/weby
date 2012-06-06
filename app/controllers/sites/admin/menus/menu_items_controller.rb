@@ -1,5 +1,5 @@
 class Sites::Admin::Menus::MenuItemsController < ApplicationController
-  before_filter :get_current_menu, except: [:new, :create]
+  before_filter :get_current_menu
   before_filter :require_user
   before_filter :check_authorization
 
@@ -9,14 +9,12 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
   end
 
   def new
-    @menu = @site.menus.find(params[:menu_id])
     get_parent_menu_item params[:parent_id]
     @menu_item = @menu.menu_items.new
     @available_locales = available_locales
   end
 
   def create
-    @menu = @site.menus.find(params[:menu_id])
     @menu_item = @menu.menu_items.new(params[:menu_item])
     @menu_item.position = @menu.menu_items.maximum('position', :conditions=> ['parent_id = ?', @menu_item.parent_id]).to_i + 1
 
@@ -97,7 +95,7 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
 
   private
   def get_current_menu
-    @menu = @global_menus[params[:menu_id].to_i] #@site.menus.find(params[:menu_id])
+    @menu = current_site.menus.find(params[:menu_id])
   end
 
   def get_parent_menu_item(parent_id)
@@ -147,7 +145,8 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
       end
       update_position_for_remove(obj)
       parent_id = 0
-      position = @global_menus[new_menu_id.to_i].menu_items.maximum('position', :conditions=> [' parent_id = ? AND menu_items.id <> ?', parent_id, obj.id]).to_i + 1
+      @new_menu = current_site.menus.find new_menu_id
+      position = @new_menu.menu_items.maximum('position', :conditions=> [' parent_id = ? AND menu_items.id <> ?', parent_id, obj.id]).to_i + 1
 
       obj.update_attributes({:parent_id => parent_id, :menu_id => new_menu_id, :position => position})
     end

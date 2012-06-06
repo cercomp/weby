@@ -12,7 +12,7 @@
     <% end %>
 
     <div class="tabbable">
-      <ul class="nav nav-tabs">
+      <ul class="nav nav-tabs" id="tabs">
         <% @menus.each do |menu| %>
           <% active = (menu==@menu ? "active" : "") %>
           <li class="<%= active %>"><%= link_to(menu.name.try(:titleize), menu==@menu ? '#' : site_admin_menus_path(:menu => menu.id), :rel => menu.id) %></li>
@@ -81,7 +81,7 @@
             data: 'id='+id+'&parent_id='+parent_id+'&position='+position,
             dataType: 'script',
             complete: function(request,text){
-              if(text=='success') $(ui.item).effect('highlight');
+              if(text=='success') ui.item.effect('pulsate', {times: 1}, 500);
               else $('#main-menu > menu').nestedSortable('cancel');
             },
             url: '<%= change_order_site_admin_menu_menu_items_path(@menu) if @menu %>'
@@ -89,7 +89,7 @@
         }
       });
 
-  $( "#tabs li > a" ).not('.selected').parent('li').droppable({
+  $( "#tabs li" ).not('.active').droppable({
   hoverClass: "drop-here",
   tolerance: "pointer",
   drop: function( event, ui ) {
@@ -100,7 +100,7 @@
   dropped = true;
 
   ////Testa para não alterar pra o proprio menu
-  if( !drop_li.find('a').hasClass('selected') ){
+  if( !drop_li.hasClass('active') ){
 
             $.ajax({
               type: 'post',

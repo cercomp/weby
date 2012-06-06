@@ -136,13 +136,13 @@ Weby::Application.routes.draw do
   match 'login' => 'user_sessions#new', :as => 'login'
   match 'denied' => 'user_session#access_denied', :as => 'denied'
 
-  match '*not_found', :to => 'application#render_404'
-
   # Para ativação de conta por email
   match 'activate(/:activation_code)' => 'users#activate', 
     as: :activate_account
   match 'send_activation(/:user_id)' => 'users#send_activation', 
     as: :send_activation
+
+  match '*not_found', :to => 'application#render_404'
 
   # TinyMCE??
   #resources :attachments do

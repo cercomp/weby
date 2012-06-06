@@ -59,7 +59,7 @@
           type: 'post',
           data: {'id_moved':id_moved,'id_after':id_after,'id_before':id_before},
           dataType: 'script',
-          complete: function(request){ ui.item.effect('highlight'); },
+          complete: function(request){ ui.item.effect('pulsate', {times: 1}, 500); },
           error: function(){$('section#pages').sortable('cancel');},
           url: '<%= sort_site_pages_path() %>'
         });

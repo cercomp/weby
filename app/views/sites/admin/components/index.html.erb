@@ -52,7 +52,7 @@
       type: 'post',
       data: $(this).sortable('serialize'),
       dataType: 'script',
-      complete: function(request){ $(ui.item).effect('highlight'); },
+      complete: function(request){ ui.item.effect('pulsate', {times: 1}, 500); },
       url: '<%= sort_site_admin_components_path %>'
       })
       }

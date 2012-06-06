@@ -14,7 +14,7 @@
     <li> <%= link_to (t"group.other"), site_admin_groups_path if check_permission(Sites::Admin::GroupsController, [:index])%> </li>
     <li> <%= link_to (t"messages") +" "+ (t"feedback.one"), site_admin_feedbacks_path if check_permission(Sites::Admin::FeedbacksController, [:index])%> </li>
   <% else %>
-    <li> <%= link_to t("site.other"), admin_sites_path if check_permission(Admin::SitesController, [:index])%> </li>
+    <li> <%= link_to t("site.other"), admin_sites_path if true or check_permission(Admin::SitesController, [:index])%> </li>
     <li> <%= link_to t("user.other"), admin_users_path if check_permission(Admin::UsersController, [:index])%> </li>
     <li> <%= link_to t("roles_permissions"), admin_roles_path if check_permission(Admin::RolesController, [:index])%> </li>
     <li> <%= link_to t("rights"), admin_rights_path if check_permission(Admin::RightsController, [:index])%> </li>
