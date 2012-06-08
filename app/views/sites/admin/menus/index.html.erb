@@ -81,7 +81,7 @@
             data: 'id='+id+'&parent_id='+parent_id+'&position='+position,
             dataType: 'script',
             complete: function(request,text){
-              if(text=='success') ui.item.effect('pulsate', {times: 1}, 500);
+              if(text=='success') ui.item.effect('pulsate', {times: 1}, 350);
               else $('#main-menu > menu').nestedSortable('cancel');
             },
             url: '<%= change_order_site_admin_menu_menu_items_path(@menu) if @menu %>'

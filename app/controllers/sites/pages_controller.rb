@@ -12,7 +12,7 @@ class Sites::PagesController < ApplicationController
     @pages = get_pages 
     respond_with(:site, @page) do |format|
       if(params[:template])
-        format.js { render template: "#{params[:template]}" }
+        format.js { render "#{params[:template]}" }
       end
     end
   end
@@ -22,7 +22,14 @@ class Sites::PagesController < ApplicationController
     respond_with(:site, @page) do |format|
       format.rss { render :layout => false, :content_type => Mime::XML } #published.rss.builder
       format.atom { render :layout => false, :content_type => Mime::XML } #ublished.atom.builder
-      format.any { render template: 'index' }
+      format.any { render 'index' }
+    end
+  end
+
+  def events
+    @pages = get_pages.published.events
+    respond_with(@site, @pages) do |format|
+      format.any { render 'index' }
     end
   end
 

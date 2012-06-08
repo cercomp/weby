@@ -22,7 +22,7 @@ Weby::Application.routes.draw do
       controller: 'sites/pages', 
       only: [:index, :show] do
       collection do
-        get :published, :fronts
+        get :published, :fronts, :events
         post :sort
       end
     end

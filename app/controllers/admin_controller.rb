@@ -21,7 +21,7 @@ class AdminController < ApplicationController
     params[:site][:top_banner_id] ||= nil
     if @site.update_attributes(params[:site])
       flash[:success] = t"successfully_updated"
-      redirect_to edit_site_admin_path(@site, @site)
+      redirect_to edit_site_admin_path(@site)
     else
       load_images_themes
       render :edit
