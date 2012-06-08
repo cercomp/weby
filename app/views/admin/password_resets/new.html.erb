@@ -20,10 +20,4 @@
     </div>
   <% end %>
 </div>
-
-<div class="login-links">
-  <%= link_to t('help'),
-    (Setting.get(:help_site) || "/help"),
-    target: '_blank' %> |
-  <%= link_to t('portal.other'), root_path %> 
-</div>
+<%= render partial: 'footer' %>

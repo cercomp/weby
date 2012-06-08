@@ -16,7 +16,7 @@ body { padding-top: 60px; }
 .red { color: #C11303; }
 
 // style to components
-header.container,
+header.container { padding: 0px 0px 15px; }
 section.container,
 footer.container { padding: 24px 0; }
 footer { text-align: center; }

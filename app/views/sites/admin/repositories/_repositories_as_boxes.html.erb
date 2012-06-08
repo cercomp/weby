@@ -2,19 +2,21 @@
 <div class="pull-right"><%= paginate @repositories, :remote => true %></div>
 <div class="clearfix"></div>
 
-<div class="clear">
+<ul class="clear thumbnails">
   <% @repositories.each do |repository| %>
-    <div class="span2">
+    <li class="span2">
       <div class="thumbnail">
-        <%= weby_file_view(repository, :mini, "100", '100') %>
+        <div style="width:160px; height:128px; overflow: hidden;">
+        <%= weby_file_view(repository, :little, nil, nil) %>
+        </div>
         <div class="caption">
-          <%= repository.description %> <br />
+          <p style="height: 55px; overflow: hidden;"><%= repository.description %></p>
           <%= raw make_menu(repository) %> 
         </div>
       </div>
-    </div>
+    </li>
   <% end %>
-</div>
+</ul>
 
 <div class="pull-left"><%= per_page_links @repositories, true %></div>
 <div class="pull-right"><%= paginate @repositories, :remote => true %></div>

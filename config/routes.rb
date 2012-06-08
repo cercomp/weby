@@ -5,9 +5,9 @@ Weby::Application.routes.draw do
   
   constraints(Weby::Subdomain) do
     get '/' => 'sites#show', as: :site
-    get 'admin' => 'sites#admin', as: :site_admin
-    get 'admin/edit' => 'sites#edit', as: :edit_site_admin
-    put 'admin/edit' => 'sites#update', as: :edit_site_admin
+    get '/admin' => 'sites#admin', as: :site_admin
+    get '/admin/edit' => 'sites#edit', as: :edit_site_admin
+    put '/admin/edit' => 'sites#update', as: :edit_site_admin
     # routes to feed and atom
     match '/feed' => 'sites/pages#published', as: :site_feed,
       defaults: { format: 'rss', per_page: 10, page: 1 }
@@ -103,7 +103,7 @@ Weby::Application.routes.draw do
   resources :user_sessions
 
   constraints(Weby::GlobalDomain) do
-    match 'admin' => 'application#admin'
+    match '/admin' => 'application#admin'
     namespace :admin do
       resources :rights
       resources :settings,
@@ -129,7 +129,7 @@ Weby::Application.routes.draw do
           post :sort
         end
       end
-      resources :sites, except: :show
+      resources :sites, except: [:show, :edit, :update]
     end
   end
 
@@ -141,11 +141,9 @@ Weby::Application.routes.draw do
   match 'denied' => 'user_session#access_denied', :as => 'denied'
 
   # Para ativação de conta por email
-  match 'activate(/:activation_code)' => 'users#activate', 
+  match 'activate(/:activation_code)' => 'admin/users#activate',
     as: :activate_account
-  match 'send_activation(/:user_id)' => 'users#send_activation', 
-    as: :send_activation
-
+  
   match '*not_found', :to => 'application#render_404'
 
   # TinyMCE??

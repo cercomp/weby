@@ -16,7 +16,9 @@ class Site < ActiveRecord::Base
 
   validates :name,
     presence: true,
-    uniqueness: true
+     uniqueness: {:scope => :parent_id},
+      format: { with: /^[a-z0-9_\-]+$/ }
+
 
   validates :per_page,
     presence: true,

@@ -1,20 +1,11 @@
 <div class='well'>
   <div class='padding-box'>
     <%= raw flash_message %>
-    <% if @user.errors.any? %>
-      <div class="alert alert-error">
-        <%= pluralize(@user.errors.count, "") %>
-        <%= t('prohibited_being_saved', count: @user.errors.count) %>:
-        <ul>
-          <% @user.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
   </div>
 
   <%= simple_form_for [:admin, @user], url: admin_password_reset_path, html: { class: 'form-horizontal' }, method: :put do |f| %>
+    <%= f.show_errors %>
+
     <%= f.input :password, label: t("password_change"), required: true, as: :password %>
     <%= f.input :password_confirmation, as:  :password %>
     <div class="form-actions">
@@ -22,10 +13,4 @@
   	</div>
   <% end %>
 </div>
-
-<div class="login-links">
-  <%= link_to t('help'),
-    (Setting.get(:help_site) || "/help"),
-    target: '_blank' %> |
-    <%= link_to t('portal.other'), root_path %> 
-</div>
+<%= render partial: 'footer' %>

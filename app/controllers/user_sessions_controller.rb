@@ -31,6 +31,6 @@ class UserSessionsController < ApplicationController
       end
       current_user_session.destroy
     end
-    redirect_back_or_default("#{params[:back_url]}")
+    redirect_to ("#{params[:back_url]}")
   end
 end

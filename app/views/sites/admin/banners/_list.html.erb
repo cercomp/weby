@@ -2,7 +2,7 @@
 <div class="pull-right"> <%= paginate @banners %> </div>
 <div class="clearfix"></div>
 
-<table class='table table-striped'>
+<table class='table table-striped table-condensed'>
   <thead>
     <th><%= sortable "id" %></th>
     <th><%= sortable 'created_at', t("date_param", :param => t("register"))%></th>
