@@ -19,6 +19,7 @@ module UrlHelper
       if options.has_key?(:subdomain)
         options[:host] = with_subdomain(options.delete(:subdomain))
       else
+        #puts options
         raise ActionController::RoutingError.new "Subdomain missing" if !options[:only_path] && ['site','site_page'].include?(options[:use_route])
       end
     end

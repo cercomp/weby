@@ -26,14 +26,14 @@ class Sites::Admin::PagesController < ApplicationController
     respond_with(:site_admin, @page) do |format|
       format.rss { render :layout => false, :content_type => Mime::XML } #published.rss.builder
       format.atom { render :layout => false, :content_type => Mime::XML } #published.atom.builder
-      format.any { render template: 'pages/index' }
+      format.any { render template: 'index' }
     end
   end
 
   def events
     @pages = get_pages.published.events
     respond_with(@site, @pages) do |format|
-      format.any { render template: 'pages/index' }
+      format.any { render template: 'index' }
     end
   end
 

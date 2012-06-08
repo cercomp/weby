@@ -9,8 +9,7 @@
       return false;
     });
 
-    // Forma um link para a página da forma:
-    //  /sites/site_name/pages/page_id
+    // Forma um link para o arquivo:
     $(".attachment_list > li").click(function(){
       $('#href').val($(this).data('url').replace(/\?\d*$/,''));
     });

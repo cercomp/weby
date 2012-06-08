@@ -7,6 +7,7 @@
   <span> <%= link_title %> </span>
 
   <div id="<%= escape_javascript(place_name) %>" >
+    <%= radio_button_tag field_name, selected.id, {id: "repository_id_#{selected.id}", style: "display: none;"} if selected %>
     <label>
       <figure>
         <% if selected %>
@@ -15,6 +16,5 @@
         <% end %>
       </figure>
     </label>
-    <%= radio_button_tag field_name, selected.id, id: "repository_id_#{selected.id}", style: "display: none;" if selected %>
   </div>
 </div>

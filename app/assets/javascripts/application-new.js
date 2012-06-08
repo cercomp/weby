@@ -71,4 +71,17 @@ $(document).ready(function() {
       FlashMsg.notify(xhr.status);
    });
 
+   //Fixar o menu admin quando o usuário rola a página
+   var menuadmintop = $('#menu-admin').position().top;
+   var menuadmin = $('#menu-admin');
+   var webynavbar = $('#weby-navbar');
+   $(window).scroll(function(){
+            //alert($(window).scrollTop());
+            dock = $(this).scrollTop() + webynavbar.height();
+            if(dock >= menuadmintop){
+                    menuadmin.css({'position':'fixed','top':webynavbar.height()+'px', 'width':menuadmin.width()+'px'});
+            }else{
+                    menuadmin.css({'position':'','top':'', 'width':''});
+            }
+    });
 });

@@ -1,10 +1,9 @@
 <script type="text/javascript">
   $(function() {
     // Forma um link para a página da forma:
-    //  /sites/site_name/pages/page_id
+    //  /pages/page_id
     $("table.list > tbody > tr").click(function(){
-      var site = tinyMCEPopup.editor.settings.site_name;
-      $('#href').val("/sites/"+site+"/pages/"+$(this).find('td').first().text());
+      $('#href').val("/pages/"+$(this).find('td').first().text());
     });
 
     // Para realizar a consulta por páginas

@@ -28,8 +28,8 @@ class Sites::Admin::RepositoriesController < ApplicationController
         }
       end
       if params[:template] 
-        format.html { render template: "repositories/#{params[:template]}.html.erb" }
-        format.js { render template: "repositories/#{params[:template]}.js.erb" }
+        format.html { render "#{params[:template]}" }
+        format.js { render "#{params[:template]}" }
       end
     end
   end

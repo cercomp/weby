@@ -30,10 +30,9 @@
                                 <div id="pages_fieldset" class="toggeable">
                                     <script type="text/javascript">
                                         $(document).ready(function(){
-                                            var page_url = tinyMCEPopup.editor.settings.site_name;
                                             $.ajax({
                                                 type: "GET",
-                                                url: "/sites/"+page_url+"/pages",
+                                                url: "/admin/pages",
                                                 data: { 'template': "tiny_mce" },
                                                 dataType: "script"
                                             });
@@ -49,7 +48,7 @@
                                         $(document).ready(function(){
                                             $.ajax({type: "GET",
                                                     //url: "/sites/"+tinyMCEPopup.editor.settings.plugin_preview_pageurl+"/repositories?template=tinymce&mime_type=image",
-                                                    url: "/sites/"+tinyMCEPopup.editor.settings.site_name+"/repositories?template=tinymce_link",
+                                                    url: "/admin/repositories?template=tinymce_link",
                                                     dataType: "script"});
                                         });
                                     </script>

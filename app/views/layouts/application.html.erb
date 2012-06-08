@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="<%= session[:locale].to_s %>">
 <head>
   <title>weby</title>
   <meta charset="utf-8">
@@ -29,6 +29,7 @@
         <% if response.status == 200 %>
         <div class="span3">
           <%= render 'layouts/shared/menu_admin' %>
+          &nbsp;
         </div>
         <% end %>
         <div class="span9" id="content">

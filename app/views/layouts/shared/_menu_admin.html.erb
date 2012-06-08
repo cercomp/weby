@@ -1,4 +1,4 @@
-<div class="well">
+<div class="well" id="menu-admin">
   <ul class="nav nav-pills nav-stacked">
   <% if current_site %>
     <li> <%= link_to (t"setting.other"), edit_site_admin_path if true or check_permission(Admin::SitesController, [:edit]) %> </li>

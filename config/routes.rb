@@ -40,9 +40,9 @@ Weby::Application.routes.draw do
       resources :feedbacks
       resources :groups
       resources :banners do
-        member do 
+        member do
           put :toggle_field
-        end 
+        end
       end
       resources :components do
         member do
@@ -54,7 +54,7 @@ Weby::Application.routes.draw do
       end
       resources :menus do
         resources :menu_items,
-          controller: 'menus/menu_items', 
+          controller: 'menus/menu_items',
           except: :show do
           collection do
             post :change_order, :change_menu
@@ -62,9 +62,9 @@ Weby::Application.routes.draw do
         end
       end
       resources :pages do
-        member do 
+        member do
           put :toggle_field
-        end 
+        end
         collection do
           get :published, :fronts
           post :sort
@@ -97,38 +97,40 @@ Weby::Application.routes.draw do
       end
     end
   end
-
+  
   root :to => "sites#index"
 
   resources :user_sessions
-  
-  match 'admin' => 'application#admin'
-  namespace :admin do
-    resources :rights
-    resources :settings,
-      except: :show
-    resources :password_resets, 
-      only: [ :new, :create, :edit, :update ]
-    resources :users do
-      collection do
-        get :manage_roles
-        post :change_roles
+
+  constraints(Weby::GlobalDomain) do
+    match 'admin' => 'application#admin'
+    namespace :admin do
+      resources :rights
+      resources :settings,
+        except: :show
+      resources :password_resets,
+        only: [ :new, :create, :edit, :update ]
+      resources :users do
+        collection do
+          get :manage_roles
+          post :change_roles
+        end
+        member do
+          put :toggle_field
+          put :set_admin
+        end
       end
-      member do 
-        put :toggle_field
-        put :set_admin
-      end 
+      resources :roles,
+        except: :show do
+        collection do
+          put :index
+        end
+        collection do
+          post :sort
+        end
+      end
+      resources :sites, except: :show
     end
-    resources :roles,
-      except: :show do
-      collection do
-        put :index
-      end
-      collection do
-        post :sort
-      end
-    end
-    resources :sites, except: :show
   end
 
   # legacy, verificar a possibilidade de refatoração
