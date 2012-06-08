@@ -6,4 +6,6 @@ en:
       banner:
         height: "Height"
         hide: "Hide?"
+        publish: "Publish"
+        url: "URL"
         width: "Width"

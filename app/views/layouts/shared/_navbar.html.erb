@@ -16,7 +16,7 @@
             <span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
-            <li> <%= link_to t('profile'), admin_user_url(current_user, subdomain: nil) -%> </li>
+            <li> <%= link_to t('my_profile'), admin_user_url(current_user, subdomain: nil) -%> </li>
             <li class="divider"></li>
             <li> <%= link_to t("logout"), logout_path(back_url: site_url(subdomain: current_site)) -%> </li>
           </ul>

@@ -12,9 +12,9 @@
   <div class="input">
     <%= f.input :css, 
       label: t("style.one"), 
-      as: :text, 
+      as: :text,
       wrapper_html: { class: 'nostyle' },
-      input_html: { class: 'style-editor' } %>
+      input_html: {class: 'style-editor' } %>
 
     <%= link_to t("help_with_style"),
       (Setting.get(:help_site) || "/help"),

@@ -38,6 +38,12 @@ footer { text-align: center; }
   padding: 8px 8px 9px;
 }
 
+textarea.style-editor
+{
+    height: 400px;
+    width: 95%;
+}
+
 .datetimepicker {
     background-image: url("/assets/icons/black16x16/ic_calendar.png") !important;
     background-position: 98% center !important;

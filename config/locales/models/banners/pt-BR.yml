@@ -6,4 +6,6 @@ pt-BR:
       banner:
         height: "Altura"
         hide: "Esconder?"
+        publish: "Publicar"
+        url: "URL"
         width: "Largura"

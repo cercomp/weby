@@ -17,7 +17,7 @@
     <li> <%= link_to t("site.other"), admin_sites_path if true or check_permission(Admin::SitesController, [:index])%> </li>
     <li> <%= link_to t("user.other"), admin_users_path if check_permission(Admin::UsersController, [:index])%> </li>
     <li> <%= link_to t("roles_permissions"), admin_roles_path if check_permission(Admin::RolesController, [:index])%> </li>
-    <li> <%= link_to t("rights"), admin_rights_path if check_permission(Admin::RightsController, [:index])%> </li>
+    <li> <%= link_to t("permission.other"), admin_rights_path if check_permission(Admin::RightsController, [:index])%> </li>
     <li> <%= link_to t("setting.other"), admin_settings_path if check_permission(Admin::SettingsController, [:index])%> </li>
   <% end %>
   </ul>

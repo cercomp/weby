@@ -4,7 +4,7 @@
   <div class="well">
     <% if check_permission(Admin::RightsController, [:new]) %>
       <div class="pull-right">
-        <%= link_to t("new_param.masc", param: t('right.one')),
+        <%= link_to t("new_param.fem", param: t('permission.one')),
           new_admin_right_path,
           class: 'btn btn-success btn-large' %>
       </div>

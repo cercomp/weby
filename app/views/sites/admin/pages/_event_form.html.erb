@@ -18,18 +18,10 @@
 
     <%= f.input :event_email %>
 
-    <div class="input">
-      <%= label_tag t(".period_event") %>
-      <%= f.input :event_begin,
-        label: false,
-        placeholder: t("begin"),
-        wrapper_html: {class: 'side'} %>
-
-      <%= f.input :event_end,
-        label: false,
-        placeholder: t("end"),
-        wrapper_html: {class: 'side'} %>
-      <div class='clear'></div>
-    </div>
+    <%= f.input :event_begin, label: t(".period_event"), :wrapper => :append do %>
+       <%= f.input_field :event_begin, placeholder: t("begin"), label: false %>
+       <%= f.input_field :event_end, placeholder: t("end"), label: false %>
+    <% end %>
+    <div class='clear'></div>
   </div>
 </div>
