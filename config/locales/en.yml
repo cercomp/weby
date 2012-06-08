@@ -87,6 +87,7 @@ en:
   create_account_successful: "Your account has been created. Please check your e-mail for your account activation instructions!"
 
 #---D---#
+  dashboard: "Administration"
   date_param: "%{param} Date"
   description: "Description"
   destroy: "Destroy"
@@ -164,8 +165,8 @@ en:
 #---H---#
   height: "Height"
   help: "Help"
-  hide: "Hidden?"
-  hide_help: "Want to hide? Only users with specific positions might retrieve them."
+  #hide: "Hidden?"
+  #hide_help: "Want to hide? Only users with specific positions might retrieve them."
   high_contrast: "High contrast"
   home: "Home"
   help_image: "This image will be the site header!"

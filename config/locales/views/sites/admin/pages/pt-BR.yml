@@ -1,0 +1,12 @@
+pt-BR:
+  sites:
+    admin:
+      pages:
+        form:
+          period_page: "Período da Página"
+          related_files: "Arquivos Relacionados"
+        event_form:
+          period_event: "Período do Evento"
+          is_event: 'É Evento?'
+          
+

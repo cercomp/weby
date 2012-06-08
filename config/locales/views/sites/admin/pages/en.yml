@@ -1,0 +1,11 @@
+en:
+  sites:
+    admin:
+      pages:
+        form:
+          period_page: "Page Period"
+          related_files: "Related Files"
+        event_form:
+          period_event: "Event Period"
+          is_event: 'Is event?'
+

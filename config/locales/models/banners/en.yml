@@ -1,0 +1,9 @@
+en:
+  activerecord:
+    models:
+      banner: "Banner"
+    attributes:
+      banner:
+        height: "Height"
+        hide: "Hide?"
+        width: "Width"

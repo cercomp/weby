@@ -1,4 +1,5 @@
-<%- title 'component.other' %>
+<fieldset id="available_components">
+  <legend><%= t('components.available_components.select_component') %></legend>
 
 <div class="span9">
   <div class="well" id="available_components">
@@ -15,7 +16,7 @@
         <img id="component_image" src="/assets/components/default.png"/>
       </div>
 
-      <button id="next_step" class="btn"><%= t('.next_step') %></button>
+    <button id="next_step"><%= t('components.available_components.next_step') %></button>
 
     <% end %>
   </div>
