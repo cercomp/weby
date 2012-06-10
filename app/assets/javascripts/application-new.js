@@ -72,6 +72,7 @@ $(document).ready(function() {
    });
 
    //Fixar o menu admin quando o usuário rola a página
+   /* FIX: Está quebrando o responsive design
    var menuadmintop = $('#menu-admin').position().top;
    var menuadmin = $('#menu-admin');
    var webynavbar = $('#weby-navbar');
@@ -84,4 +85,5 @@ $(document).ready(function() {
                     menuadmin.css({'position':'','top':'', 'width':''});
             }
     });
+    */
 });

@@ -368,4 +368,14 @@ module ApplicationHelper
     return true if ['1','true'].include? str
     return false
   end
+
+  def icon type, white = false
+    if type
+      icon_class = "icon-#{type}"
+      if white
+        icon_class = "#{icon_class} icon-white"
+      end
+      raw "<i class=\"#{icon_class}\"></i> "
+    end
+  end
 end

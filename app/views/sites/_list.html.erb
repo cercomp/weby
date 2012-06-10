@@ -1,7 +1,8 @@
 <div class="content-module">
-  <section class="main cf">
+  <section class="main">
     <div class="pull-left"> <%= info_page @sites %> </div>
     <div class="pull-right"> <%= paginate @sites %> </div>
+    <div class="clearfix"></div>
 
     <table class='table table-striped'>
       <thead>
@@ -22,6 +23,6 @@
 
     <div class="pull-left"> <%= per_page_links @sites %> </div>
     <div class="pull-right"> <%= paginate @sites %> </div>
+    <div class="clearfix"></div>
   </section>
 </div>
-

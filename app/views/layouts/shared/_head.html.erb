@@ -4,6 +4,7 @@
   <%= csrf_meta_tag %>
   <%= load_layout_stylesheets(theme) %>
   <%= stylesheet_link_tag 'menu_dropdown' if @site.try(:menu_dropdown) %>
+  <%= stylesheet_link_tag '_navbar' if current_user %>
   <%= render 'sites/shared/loadStyles' if @site and theme != 'application' %>
   <%= yield :stylesheets %>
 
