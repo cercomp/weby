@@ -33,7 +33,7 @@
             <% if not(current_user.is_admin) and not(user_sites.empty?) %>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <%= t("portals") %><b class="caret"></b>
+                  <%= t("site.other") %><b class="caret"></b>
                 </a>
                 <%= content_tag :ul, user_sites, class: 'dropdown-menu' %> 
               </li>

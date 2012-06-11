@@ -17,7 +17,7 @@
 
   <%= f.input :theme, :collection => @themes.collect{|p| [ p , p]}, :selected => "this2", :label => t('layout') %>
 
-  <%= f.association :locales,
+  <%= f.association :locales, label: t("translation.other"),
     :as => :check_boxes,
     :collection => Locale.all.map{|l| [image_tag("flags/24/#{l.flag}", :title=>t(l.name)), l.id] } %>
 
