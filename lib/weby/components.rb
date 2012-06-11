@@ -67,7 +67,7 @@ module Weby
 
         # Caso a partial não exista, não mostra nada
         begin
-          output = render args
+          output = ''
           if Weby::Application.assets.find_asset("#{component.name}")
             @stylesheets_loaded ||= []
             #Incluir o css do componente somente uma vez, mesmo se existirem mais de um sendo exibido
@@ -76,6 +76,7 @@ module Weby
               @stylesheets_loaded << component.name
             end
           end
+          output += render args
         rescue ActionView::MissingTemplate
           output = ''
         end

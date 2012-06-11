@@ -44,7 +44,13 @@ textarea.style-editor
     width: 95%;
 }
 
-.datetimepicker {
+.handle{
+  cursor: move;
+  color: #1A417E;
+  text-decoration: none;
+}
+
+.datetimepicker{
     background-image: url("/assets/ic_calendar.png") !important;
     background-position: 98% center !important;
     background-repeat: no-repeat !important;
