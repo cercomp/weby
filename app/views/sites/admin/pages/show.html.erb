@@ -25,9 +25,8 @@
           <%= @page.event_email %>
         <% end %>
         <p class="event-period">
-        <%= label(:page, :event_period, t("pages.event_form.period_event")) %>
-        <span class="event-begin"><%= l(@page.event_begin, format: :long) if @page.event_begin %></span>
-        <span class="event-end"><%= " - "+l(@page.event_end, format: :long) if @page.event_end %></span>
+          <%= label(:page, :event_period, t("pages.event_form.period_event"), style: 'display: inline-block;') %>:
+          <span class="event-dates"><%=  period_dates(@page.event_begin, @page.event_end) %></span>
         </p>
       <% end %>
 

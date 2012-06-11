@@ -72,18 +72,27 @@ $(document).ready(function() {
    });
 
    //Fixar o menu admin quando o usuário rola a página
-   /* FIX: Está quebrando o responsive design
-   var menuadmintop = $('#menu-admin').position().top;
+   //inclusive responsivo
    var menuadmin = $('#menu-admin');
    var webynavbar = $('#weby-navbar');
    $(window).scroll(function(){
-            //alert($(window).scrollTop());
-            dock = $(this).scrollTop() + webynavbar.height();
-            if(dock >= menuadmintop){
-                    menuadmin.css({'position':'fixed','top':webynavbar.height()+'px', 'width':menuadmin.width()+'px'});
-            }else{
-                    menuadmin.css({'position':'','top':'', 'width':''});
-            }
+       if($(window).width() >= 768){
+           maincontainer = $('#main-container');
+           webybarheight = webynavbar.css('position')=='fixed'? webynavbar.height() : 0;
+           windowtop = $(this).scrollTop() + webybarheight;
+           if(windowtop >= maincontainer.position().top){
+               if(menuadmin.css('position')!='fixed')
+                   menuadmin.css({'position':'fixed',
+                   'top':(webybarheight+parseInt(maincontainer.css("padding-top")))+'px',
+                   'width':menuadmin.width()+'px'});
+           }else{
+               if(menuadmin.css('position')=='fixed')
+                   menuadmin.css({'position':'','top':'', 'width':''});
+           }
+       }
     });
-    */
+    $(window).resize(function(){
+        menuadmin.css({'position':'','top':'', 'width':''});
+        $(window).scroll();
+    });
 });

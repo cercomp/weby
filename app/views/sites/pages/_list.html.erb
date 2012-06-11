@@ -4,23 +4,21 @@
 <table class="list">
   <thead>
     <tr>
-      <th><%= sortable 'pages.created_at', t("date_param", param: t("register"))%></th>
       <th><%= t("title") %></th>
-      <th><%= sortable 'users.first_name', t("author") %></th>
       <th><%= sortable 'tags.name', t("category") %></th>
-      <th><%= sortable 'pages.type', t("type") %></th>
+      <th><%= controller.action_name == 'events' ? sortable('pages.event_begin', t("period_event")) : sortable('pages.type', t("type")) %></th>
+      <th><%= sortable 'pages.created_at', t("date_param", param: t("register"))%></th>
     </tr>
   </thead>
   <tbody>
     <% @pages.each do |page| %>
       <tr id="<%= page.id %>">
-        <td><%= l(page.created_at, :format => :short) %></td>
         <td>
           <%= link_to page.title, site_page_path(current_site, page) %>
         </td>
-        <td><%= page.author.first_name %></td>
         <td><%= page.category_list * ', ' %></td>
-        <td><%= t"#{page.type.downcase}.one" %></td>
+        <td><%= controller.action_name == 'events' ? period_dates(page.event_begin, page.event_end) : t("#{page.type.downcase}.one") %></td>
+        <td><%= l(page.created_at.to_date, :format => :default) %></td>
       </tr>
     <% end %>
   </tbody>
