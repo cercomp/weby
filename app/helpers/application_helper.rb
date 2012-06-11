@@ -226,17 +226,17 @@ module ApplicationHelper
         if permission and actions.include?(permission.to_sym)
           case permission.to_s
           when "show"
-            menu << link_to(t('show'), params.merge({:controller => ctr.controller_name,
+            menu << link_to(icon('eye-open', text: t('show')), params.merge({:controller => ctr.controller_name,
                                                      :action => 'show', :id => obj.id}),
                                                      :alt => t('show'),
                                                      :title => t('show')) + " "
           when "edit"
-            menu << link_to(t("edit"), params.merge({:controller => ctr.controller_name,
+            menu << link_to(icon('edit', text: t("edit")), params.merge({:controller => ctr.controller_name,
                                                      :action => 'edit', :id => obj.id}),
                                                      :alt => t('edit'),
                                                      :title => t('edit')) + " "
           when "destroy"
-            menu << link_to(t("destroy"), params.merge({:controller => ctr.controller_name,
+            menu << link_to(icon('trash', text: t("destroy")), params.merge({:controller => ctr.controller_name,
                                                         :action => 'destroy',
                                                         :id => obj.id}),
                                                         :confirm => t('are_you_sure'),

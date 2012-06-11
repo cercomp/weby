@@ -24,7 +24,7 @@
               <th>
                 <%= role.name %> 
                 <p> 
-                <%= link_to 'Check', nil, :onclick => "toggleCheckboxesBySelector('input.column-#{role.id}')", :remote => true %>
+                <%= link_to icon('check'), nil, :onclick => "toggleCheckboxesBySelector('input.column-#{role.id}')", :remote => true %>
                 <% if check_permission(Sites::Admin::RolesController, [:edit]) %>
                   <%= link_to t('edit'), edit_site_admin_role_path(role)  %>
                 <% end %>
@@ -46,7 +46,7 @@
             <% i.each do |right| %>
               <tr class="<%= cycle 'odd', 'even' %> right-<%= right.id %>">
                 <td>
-                  <%= link_to 'Check', nil, :onclick => "toggleCheckboxesBySelector('.right-#{right.id} input')", :remote => true %>
+                  <%= link_to icon('check'), nil, :onclick => "toggleCheckboxesBySelector('.right-#{right.id} input')", :remote => true %>
                   <%= right.name %>
                 </td>
                 <% @roles.each do |role| %>

@@ -55,10 +55,10 @@
       <%= render partial: 'related_files' if @page.related_files.any? %>
 
       <div class="form-actions">
-        <%= link_to(t('show'), site_page_path(@page)) %>
+        <%= link_to icon('eye-open', text: t('show')), site_page_path(@page) %>
         <%= make_menu(@page, :except => "show") %>
-        <%= link_to t("list_all.fem"), site_admin_pages_path %>
-        <%= link_to t("back"), :back , :class => 'icon icon-back' %>
+        <%= link_to icon('list', text: t("list_all.fem")), site_admin_pages_path %>
+        <%= link_to icon('chevron-left', text: t("back")), :back %>
       </div>
     </article>
   </div>
