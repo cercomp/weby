@@ -18,7 +18,7 @@
 
     <%= f.input :event_email %>
 
-    <%= f.input :event_begin, label: t(".period_event"), :wrapper => :append do %>
+    <%= f.input :event_begin, label: t(".period_event") do %>
        <%= f.input_field :event_begin, placeholder: t("begin"), label: false %>
        <%= f.input_field :event_end, placeholder: t("end"), label: false %>
     <% end %>

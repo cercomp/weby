@@ -369,13 +369,19 @@ module ApplicationHelper
     return false
   end
 
-  def icon type, white = false
-    if type
+  def icon type, args={}
+    args[:white] = false if args[:white].nil?
+    args[:text] = "" if args[:text].nil?
+    unless type.nil?
       icon_class = "icon-#{type}"
-      if white
+      if args[:white]
         icon_class = "#{icon_class} icon-white"
       end
-      raw "<i class=\"#{icon_class}\"></i> "
+      if args[:right]
+        raw "#{args[:text]} <i class=\"#{icon_class}\"></i>"
+      else
+        raw "<i class=\"#{icon_class}\"></i> #{args[:text]}"
+      end
     end
   end
 end

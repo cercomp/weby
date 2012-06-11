@@ -279,32 +279,10 @@ input[type=search] { padding-right: 5px; }
 	@extend .blue-button;
 	background:
 	{
-		image: url('/assets/icons/white16x16/ic_zoom.png ') !important;
+		image: url('/assets/ic_zoom.png ') !important;
 		position: 10px center !important;
 		repeat: no-repeat !important;
 	}
-	padding-left: 35px !important;
-}
-.add-button
-{
-	@extend .blue-button;
-	background:
-	{
-		image: url('/assets/icons/white16x16/ic_plus.png ') !important;
-		position: 10px center !important;
-		repeat: no-repeat !important;
-	}
-	padding-left: 35px !important;
-}
-.folder-button
-{
-  @extend .blue-button;
-  background:
-  {
-    image: url('/assets/icons/white16x16/ic_folder.png') !important;
-		position: 10px center !important;
-    repeat: no-repeat !important;
-  }
 	padding-left: 35px !important;
 }
 .actions
@@ -362,13 +340,6 @@ button,
   padding: 0;
 }
 .element { margin-top: 8px; }
-.datetimepicker
-{
-  background-image: url('/assets/icons/black16x16/ic_calendar.png') !important;
-  background-position: 98% center !important;
-  background-repeat: no-repeat !important;
-}
-
 /* old style */
 div.page_type
 {
@@ -410,19 +381,6 @@ div#form_event
   margin: 4px 2px;
   padding: 2px;
   border: 3px solid red;
-}
-#selected-image-of-radio-group-images
-{
-	margin-top: 15px;
-	& input{ display: none; }
-	&:hover::before
-	{
-		content: url('/assets/icons/black16x16/ic_cancel.png');
-		position: relative;
-		top: -25px;
-		right: 0;
-		margin-right: 5px;
-	}
 }
 input.radio { margin-right: 5px; }
 .radio label.collection_radio { display: inline; }
