@@ -23,7 +23,7 @@
             <a href="<%= "#{banner_url}" %>" target="<%= banner.new_tab ? "_blank":"" %>"><p><%= "#{banner.text}" %></p></a>
         </div>
     <% end %>
-    <% if check_permission(BannersController, ["toggle_field"]) %>
+    <% if check_permission(Sites::Admin::BannersController, ["toggle_field"]) %>
       <%= link_to t("unpublish"), toggle_field_site_admin_banner_path(banner, :field => 'publish') %>
     <% end %>
   <% end %>
