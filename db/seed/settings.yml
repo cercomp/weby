@@ -17,3 +17,13 @@ help_site:
   id: 4
   name: 'help_site'
   value: '/help'
+
+tld_length:
+  id: 5
+  name: 'tld_length'
+  value: '1'
+
+sites_index:
+  id: 6
+  name: 'sites_index'
+  value: 'portais'
