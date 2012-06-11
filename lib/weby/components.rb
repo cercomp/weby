@@ -68,11 +68,11 @@ module Weby
         # Caso a partial não exista, não mostra nada
         begin
           output = render args
-          if Weby::Application.assets.find_asset("#{component.name}.css")
+          if Weby::Application.assets.find_asset("#{component.name}")
             @stylesheets_loaded ||= []
             #Incluir o css do componente somente uma vez, mesmo se existirem mais de um sendo exibido
             unless(@stylesheets_loaded.include?(component.name))
-              output += stylesheet_link_tag("#{component.name}.css")
+              output += stylesheet_link_tag("#{component.name}")
               @stylesheets_loaded << component.name
             end
           end
