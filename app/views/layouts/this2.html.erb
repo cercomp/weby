@@ -1,4 +1,3 @@
-<%#  ini =  Time.now %>
 <!DOCTYPE html>
 <html lang="<%= session[:locale].to_s %>">
   <%= render 'layouts/shared/head', theme: 'this2' %>
@@ -33,8 +32,6 @@
       </footer>
     </div>
     <%= render 'layouts/shared/javascripts' %>
-<%#  fin =  Time.now %>
-<%#= (fin - ini)*1000 -%>
   </body>
 </html>
 
