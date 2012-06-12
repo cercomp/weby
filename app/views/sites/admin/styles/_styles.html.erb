@@ -1,0 +1,38 @@
+<details open class="styles" id="<%= "#{type}_styles" %>">
+  <summary><%= t("#{type}_styles") %></summary>
+  <div>
+    <% unless styles.blank? %>
+      <%= info_page styles %>
+      <table class='table table-striped'>
+        <thead>
+          <th> <%= t('name') %> </th>
+          <th> <%= t('owner') %> </th>
+          <%  if type.to_s == 'follow' %>
+             <th> <%= sortable 'styles.updated_at', t('last_update') %> </th>
+          <%  end %>
+          <th> <%= t('actions') %> </th>
+        </thead>
+        <tbody>
+          <% styles.each do |style| %>
+            <tr>
+              <td> <%= style.name %> </td>
+              <td> 
+                <%= link_to style.owner.name, site_url(subdomain: style.owner) %>
+              </td>
+              <%  if type.to_s == 'follow' %>
+                <td> <%=  l(style.updated_at, :format => :short) %> </td>
+              <%  end %>
+              <td class="style-action">
+                <%= raw style_actions style, { others: true, type.to_sym => true } %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <%= paginate styles, param_name: "page_#{type}_styles", remote: true, params: { style_type: type.to_s } %>
+    <% else %>
+      <p class="empty"> <%= t("no_#{type}_styles") %> </p>
+    <% end %>
+  </div>
+</details>

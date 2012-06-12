@@ -1,0 +1,79 @@
+<% if @users_unroled.empty? %>
+  <div class="alert">
+    <%= (t"none_param", param: t("user.one")) %>
+  </div>
+<% else %>
+  <%= form_tag change_roles_admin_users_path,
+    method: "post",
+    id: "subscribe_users",
+    remote: 'true',
+    update: 'enrole' %>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th><%= t("enrole_user") %></th>
+        <th style="width: 55%"><%= t('role.one') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="height: 300px; overflow: auto">
+          <div>
+            <%= text_field_tag :users_unroled, params[:users_unroled], placeholder: t("search") %>
+          </div>
+          <div style="height: 300px; overflow: auto">
+            <ul id="users_list_roles"> 
+              <% @users_unroled.each do |user| %>
+                <li>
+                  <%= check_box_tag 'user[id][]', user.id, user.id == params[:user_id].to_i %>
+                  <%= "#{user} (#{user.login})" %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </td>
+        <td>
+          <ul> 
+            <% @roles.each do |role| %>
+              <li> <%= check_box_tag 'role_ids[]', role.id %> <%= role.name %> </li>
+            <% end %>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="form-actions">
+    <%= button_tag t("save"), class: 'btn btn-primary' %>
+    <%= link_to t("back"), :back, class: "btn btn-danger" %>
+  </div>
+</form>
+<% end %>
+
+<%= content_for :javascripts do %>
+  <%= javascript_tag do %>
+    $(document).ready(function(){
+      var filter_user = function(input) {
+        var pattern = new RegExp(".*" + input + ".*", "gi");
+        $('#users_list_roles li').each(function(index, element){
+          if( $(element).text().match(pattern) ){
+            $(element).show();
+          } else {
+            $(element).hide();
+          }
+        });
+      }
+
+      $('#users_unroled').live('keyup',function(){
+        filter_user($(this).val());
+      });
+
+      <% unless @user.blank? or not @users_unroled.include?(@user) %>
+        var name = '<%= @user.first_name %>';
+        $('#users_unroled').val(name);
+        filter_user(name);
+      <% end %>
+    });
+  <% end %>
+<% end %>

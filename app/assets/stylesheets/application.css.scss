@@ -1,0 +1,59 @@
+/*
+ *= require google/droidsans
+ *= require google/orbitron
+ *= require _bootstrap
+ *= require_self 
+ *= require _bootstrap-responsive
+ */ 
+
+// overide bootstrap to use navbar
+body { padding-top: 60px; }
+.navbar .btn { margin: 5px 5px 6px; }
+.navbar .brand.logo { color: white; }
+
+// style definitions
+.orbitron { font-family: "Orbitron"; }
+.red { color: #C11303; }
+
+// style to components
+header.container { padding: 0px 0px 15px; }
+section.container,
+footer.container { padding: 24px 0; }
+footer { text-align: center; }
+
+.bluezone { 
+  border: 1px solid #EEEFEF;
+  background: #F8F9FA;
+}
+
+// uniq
+.title { 
+  padding: 27px 0;
+}
+
+.well { background: white; }
+
+.input-search
+{
+  padding: 8px 8px 9px;
+}
+
+textarea.style-editor
+{
+    height: 400px;
+    width: 95%;
+}
+
+.handle{
+  cursor: move;
+  color: #1A417E;
+  text-decoration: none;
+}
+
+.datetimepicker{
+    background-image: url("/assets/ic_calendar.png") !important;
+    background-position: 98% center !important;
+    background-repeat: no-repeat !important;
+}
+
+label.required abbr { color: red; }

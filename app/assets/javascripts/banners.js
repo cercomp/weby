@@ -22,7 +22,7 @@ $('#banner_link').change(function(){
 function selected (id, title) {
   var url = $('#url_to_pages').val() + '/' + id;
 
-  $('#page_list').dialog('close');
+  $('#modal_page_list').modal('hide');
   $('input#banner_url').val(url);
 
   // Adiciona a referencia para a página

@@ -7,7 +7,7 @@ pt-BR:
   accessing_as: "Accessando como"
   access_denied: "Acesso negado!"
   access_denied_page: "Você não está autorizado a ver está página!"
-  acessibility_needs: "Necessário para que seu site se torne acessível."
+  accessibility_needs: "Necessário para que seu site se torne acessível."
   account: "Conta"
   action: "Ação"
   actions: "Ações"
@@ -70,6 +70,7 @@ pt-BR:
   cover_size: "Quantidade de itens na capa"
   cover_help: "Deseja que esta notícia apareça na frente do site?"
   comma_separated_emails: "Emails Separados por Vírgula"
+  close: "Fechar"
   create: "Criar"
   created:
     fem: "Criada"
@@ -165,8 +166,8 @@ pt-BR:
 #---H---#
   height: "Altura"
   help: "Ajuda"
-  hide: "Ocultar"
-  hide_help: "Deseja ocultar? Somente usuários com cargos específicos poderão recuperá-los."
+  #hide: "Ocultar"
+  #hide_help: "Deseja ocultar? Somente usuários com cargos específicos poderão recuperá-los."
   high_contrast: "Alto contraste"
   home: "Página inicial"
   help_image: "Essa imagem será o topo do site"
@@ -383,6 +384,7 @@ pt-BR:
   send_date: "Data de envio"
   show: "Mostrar"
   show_hide_image_list: "Mostrar/Esconder lista de Imagens"
+  show_site: "Mostrar sítio"
   sign_up: "Cadastrar"
   side: "Lado"
   site:

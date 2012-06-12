@@ -3,7 +3,7 @@ module PagesHelper
   # Recebe uma página e o site.
   def link_on_title(site, page)
     if page.url.nil? or page.url.empty?
-      site_page_path(site, page)
+      site_page_url(page, subdomain: site)
     else
       page.url
     end
@@ -18,8 +18,8 @@ module PagesHelper
 
   def title_with_flags(page)
     %{
-      #{available_flags(page) if page.locales.many?}
-      #{content_tag(:p, link_to(page.title, site_page_path(@site, page)))}
+      #{available_flags(page)}
+      #{content_tag(:p, link_to(page.title, site_admin_page_path(page)))}
     }.html_safe
   end
 
@@ -35,7 +35,7 @@ module PagesHelper
 
   def other_flags(page, size = '16')
     page.other_locales.map do |locale|
-      link_to(flag(locale, size), site_page_path(@site, page, page_locale: locale.name))
+      link_to(flag(locale, size), site_admin_page_path(page, page_locale: locale.name))
     end.join(' ')
   end
 end

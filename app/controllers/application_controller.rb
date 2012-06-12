@@ -1,11 +1,16 @@
 # coding: utf-8
 class ApplicationController < ActionController::Base
   include ApplicationHelper # Para usar helper methods nos controllers
+  include UrlHelper
   protect_from_forgery
   before_filter :set_contrast, :set_locale, :set_global_vars
 
   helper :all
   helper_method :current_user_session, :current_user, :user_not_authorized, :sort_direction, :current_locale, :current_site
+
+  def admin
+    render 'admin/admin'
+  end
 
   def choose_layout
     if @site.nil? or @site.id.nil? 
@@ -40,9 +45,8 @@ class ApplicationController < ActionController::Base
         end
       end
     end
-    flash[:error] = t("access_denied")
     #request.env["HTTP_REFERER" ] ? (redirect_to :back) : (render :template => 'admin/access_denied')
-    (render :template => 'admin/access_denied', :status => :forbidden)
+    (render :template => 'user_sessions/access_denied', :status => :forbidden)
     return false
     end
   end
@@ -53,8 +57,18 @@ class ApplicationController < ActionController::Base
   end
 
   def current_site
-    return @current_site if defined? @current_site
-    @current_site = Site.find_by_name(params[:site_id] ? params[:site_id] : (params[:id] and params[:controller] == 'sites') ? params[:id] : nil)
+    case
+    when defined?(@current_site)
+      return @current_site
+    when Weby::Subdomain.matches?(request)
+      #search subsites
+      sites = Weby::Subdomain.site_id.split('.')
+      @current_site = Site.where(parent_id: nil).find_by_name(sites[-1])
+      if(sites.length == 2)
+        @current_site = @current_site.subsites.find_by_name(sites[-2]) if @current_site
+      end
+      @current_site if [1,2].include? sites.length
+    end
   end
 
   def set_locale
@@ -159,8 +173,8 @@ class ApplicationController < ActionController::Base
   def require_no_user
     if current_user
       store_location
-      flash[:error] = t("no_need_to_login")
-      redirect_to users_url
+      #flash[:error] = t("no_need_to_login")
+      redirect_to admin_path
       return false
     end
   end
@@ -205,6 +219,7 @@ class ApplicationController < ActionController::Base
     if @site
       params[:per_page] ||= per_page_default
 
+      #TODO carregar essa variavel somente na visualização do site
       @global_menus = {}
       # Carrega os menus, para auemntar a eficiência, já que menus são carregados em todas as requisições
       @site.menus.with_items.each{ |menu| @global_menus[menu.id] = menu }

@@ -1,5 +1,25 @@
 <fieldset> 
   <legend><%= t"new_param.fem", :param => t('message') %> - <%= t('feedback.one') %></legend>
 
-  <%= render 'form' %>
+  <%= simple_form_for [:site, @feedback] do |f| %>
+    <%= f.show_errors %>
+
+    <% unless @groups.empty? %>
+      <%= f.association :groups, label: "<font color='red'>*</font> #{t('group.one')}",
+            collection: @groups.collect{ |p| [p.name, p.id]},
+            as: :check_boxes, hint: t("group_explain") %>
+    <% end %>
+
+    <%= f.input :name, :label => t("name") %>
+    <%= f.input :email, :label => t("email") %>
+    <%= f.input :subject, :label => t("subject") %>
+    <%= f.input :message, :label => t("message"), as: :text, input_html: { size: '60x8'} %>
+
+    <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
+
+    <div class="actions">
+      <%= f.submit t("submit"), class: "green-button" %>
+      <%= link_to t("back"), :back, class: "red-button" %>
+    </div>
+  <% end %>
 </fieldset> 

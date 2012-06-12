@@ -1,0 +1,37 @@
+<% unless @site_users.empty? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= t "enroled_user" %></th>
+        <th style="width: 40%"><%= t('role.one') %></th>
+        <th style="width: 15%"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @site_users.uniq.each do |user| %>
+        <tr>
+          <td><%= "#{user} (#{user.login})" %></td>
+          <td>
+            <span id="user_<%= user.id %>">
+              <%= user.roles.map{ |r| r.name if r.site_id == @site.try(:id) }.compact.join(', ') %>
+            </span>
+            <div id="role_form_<%= user.id %>">
+              <% if @user and @user == user %>
+                <%= render 'role_form' %>
+              <% end %>
+            </div>
+          </td>
+          <td>
+            <%= link_to t('edit'), { action: 'manage_roles', user_id: user.id },
+              remote: 'true',
+              user_id: user.id %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="alert">
+    <%= (t"none_param", param: t("user.one")) %>
+  </div>
+<% end %>

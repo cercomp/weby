@@ -8,11 +8,16 @@
   .red { color: red }
   </style>
 <% end %>
+<%- title '500' %>
 
-<div class="dialog">
-  <%#= image_tag 'weby-logo.png' %>
-  <h1>[500]</h1>
-  <h1>Ocorreu um erro interno no servidor</h1>
-  <h3><span class="red"><%#= @error %></span></h3>
-  <p><%= @error_code %></p>
+<div class="span12">
+  <div class="well">
+    <div class="dialog alert alert-error">
+      <%#= image_tag 'weby-logo.png' %>
+      <h1></h1>
+      <h1>Ocorreu um erro interno no servidor</h1>
+      <h3><span class="red"><%#= @error %></span></h3>
+      <p><%= @error_code %></p>
+    </div>
+  </div>
 </div>

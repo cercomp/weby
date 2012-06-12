@@ -1,0 +1,9 @@
+pt-BR:
+  sites:
+    admin:
+      banners:
+        form:
+          add_category: "Adicionar Categoria"
+          period_banner: "Período do Banner"
+          
+

@@ -1,0 +1,42 @@
+<script type="text/javascript">
+  $(function() {
+    // Para realizar a consulta por páginas
+    $('#search_button_repo').click(function(e) {
+      var search = $('#search_repo').val();
+      console.log(search);
+      $.get(this.href, {'template': 'tinymce_link', 'search': search}, null, 'script');
+      e.preventDefault();
+      return false;
+    });
+
+    // Forma um link para o arquivo:
+    $(".attachment_list > li").click(function(){
+      $('#href').val($(this).data('url').replace(/\?\d*$/,''));
+    });
+  });
+</script>
+<div id="tinyMCE_search_area_repo">
+  <%= text_field_tag 'search_repo', params[:search], placeholder: t('search') + " " + t('archive.one'), onkeypress: "return enter_to_click(event,'search_button_repo');" %>
+  <%= link_to t('search'), site_admin_repositories_path, remote: true, id: 'search_button_repo' %>
+</div>
+<br/>
+
+<ul class="attachment_list">
+  <% @repositories.each do |repository| %>
+    <li id="<%= repository.id %>" class="attachment_list" data-url="<%=repository.archive.url%>">
+      <%=   weby_file_view(
+              repository,
+              :mini,
+              '32px',
+              '32px',
+              as: 'image'
+            ) %>
+      
+      <div><%=repository.description%></div>
+    </li>
+  <% end %>
+</ul>
+
+<div style="clear: both;float:right;">
+  <%= paginate @repositories, remote: true %>
+</div>

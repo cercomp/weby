@@ -89,8 +89,6 @@ ActiveRecord::Schema.define(:version => 20120508152850) do
     t.datetime "updated_at",   :null => false
   end
 
-  add_index "menu_item_i18ns", ["menu_item_id", "locale_id"], :name => "menu_item_i18ns_menu_item_id_locale_id_key", :unique => true
-
   create_table "menu_items", :force => true do |t|
     t.integer  "menu_id",                        :null => false
     t.boolean  "separator",   :default => false
@@ -268,12 +266,12 @@ ActiveRecord::Schema.define(:version => 20120508152850) do
   end
 
   create_table "styles", :force => true do |t|
-    t.string   "name",       :null => false
+    t.string   "name"
     t.text     "css"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.boolean  "publish"
-    t.integer  "owner_id",   :null => false
+    t.integer  "owner_id"
     t.integer  "position"
   end
 

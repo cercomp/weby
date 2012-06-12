@@ -24,14 +24,14 @@
         <%= raw page.summary %>
       </summary>
       <% unless page.text.blank? %>
-      <p> <%= link_to t("read_more"), site_page_path(@site, page) %> </p>
+      <p> <%= link_to t("read_more"), site_page_path(page) %> </p>
       <% end %>
       <div class="clear"></div>
     </article>
     <div class="control">
-        <%= make_menu(page, :controller => PagesController) %>
-        <% if check_permission(PagesController, ["sort"]) %>
-          <%= link_to t("move"), "#", :class => 'handle icon icon-drag' if @front_news.length > 1 %>
+        <%= link_to(icon('edit', text: t('edit')), edit_site_admin_page_path(page)) if check_permission(Sites::Admin::PagesController, [:edit]) %>
+        <% if check_permission(Sites::PagesController, ["sort"]) %>
+          <%= link_to icon('move', text: t('move')), "#", :class => 'handle' if @front_news.length > 1 %>
         <% end %>
       </div>
   <% end %>
@@ -59,9 +59,9 @@
           type: 'post',
           data: {'id_moved':id_moved,'id_after':id_after,'id_before':id_before},
           dataType: 'script',
-          complete: function(request){ ui.item.effect('highlight'); },
+          complete: function(request){ ui.item.effect('pulsate', {times: 1}, 350); },
           error: function(){$('section#pages').sortable('cancel');},
-          url: '<%= sort_site_pages_path(@site) %>'
+          url: '<%= sort_site_pages_path() %>'
         });
       }
     });
@@ -69,5 +69,5 @@
  }
 <% end %>
 
-<%= content_for :stylesheets, stylesheet_link_tag("jquery.sortable") %>
+<%= content_for :stylesheets, stylesheet_link_tag("sortable") %>
 <%= content_for :javascripts, javascript_include_tag("jquery-ui.min") %>

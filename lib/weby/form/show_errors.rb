@@ -5,7 +5,7 @@ module Weby
       include ActionView::Helpers::TextHelper
       def show_errors
         if @object.errors.any?
-          @template.content_tag :div, id: 'error_explanation' do
+          @template.content_tag :div, id: 'error_explanation', class: 'alert alert-error' do
             "#{error_title} #{content_tag :ul, error_list}".html_safe
           end
         end

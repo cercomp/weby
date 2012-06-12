@@ -1,0 +1,41 @@
+$height: 26px;
+$text-color: black;
+$background-color: #ccc;
+
+#institutional_bar {
+  .content {
+    aside {
+      margin: 0;
+      width: auto; }
+    .left{
+      a { 
+        color: $text-color;
+        font-size: 16px; }
+      img {
+        height: 20px;
+        padding: 3px;
+        vertical-align: top; }
+      .name { padding: 5px 2px; }
+
+      clear: left;
+      float: left;
+      padding-left: 7px; }
+    .right{
+      select {
+        font-size: 11px;
+        margin: 3px 0;
+        padding: 1px;
+        height: 21px;
+        width: 135px; }
+      clear: right;
+      float: right;
+      text-align: right;
+      padding-right: 10px; }
+    width: 964px;
+    margin: 0 auto; }
+  height: $height;
+  line-height: $height;
+  color: $text-color;
+  width: 100%;
+  margin:0;
+  background: $background-color; }

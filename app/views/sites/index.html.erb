@@ -1,6 +1,6 @@
-<% if check_permission(SitesController, ["new"]) %>
+<% if check_permission(Admin::SitesController, ["new"]) %>
   <p class="pull-right">
-  <%= link_to new_site_path do %>
+  <%= link_to new_admin_site_path do %>
     <button class="btn btn-success btn-large">
       <%= t('new_param.masc', param: t('site.one'))%>
     </button>

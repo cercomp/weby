@@ -1,0 +1,51 @@
+<%= simple_form_for [:site_admin, @page], html: { class: 'form-horizontal' } do |f| %>
+  <%= f.show_errors %>
+
+  <%= repository_search t("page.image"), "page_image",
+    "page[image]", @page.image,
+    multiple: false, file_types: 'image' %>
+
+  <%= render('event_form', f: f) %>
+
+  <%= render('translates_form', f: f) %>
+
+  <div class="clearfix">
+    <%= f.input :source, wrapper_html: {class: 'side'} %> 
+    <%= f.input :url, wrapper_html: {class: 'side'}, placeholder: "http://site.com" %>
+  </div>
+
+  <div class="clearfix">
+    <%= f.input :date_begin_at, label: t(".period_page") do %>
+       <%= f.input_field :date_begin_at, placeholder: t("begin"), label: false %>
+       <%= f.input_field :date_end_at, placeholder: t("publication_infinite"), label: false %>
+    <% end %>
+  </div>
+
+  <div class="clearfix">
+    <%= f.input :category_list, placeholder: "UFG, Sports, Arts", hint: t('page_categories_help') %>
+  </div>
+
+  <div class="clearfix">
+    <%= f.input :publish , wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" } %>
+    <%= f.input :front , wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" } %>
+  </div>
+
+  <div class = "controls">
+    <%= repository_search t(".related_files"),
+      "related_file_ids", "page[related_file_ids][]", @page.related_files,
+      multiple: true, file_types: false %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: 'btn-primary', disable_with: t("please_wait") %>
+    <%= link_to t("back"), :back, class: "btn btn-danger" %>
+  </div>
+<% end %>
+
+<div id="dialog-repository-search">
+  <%= render('sites/admin/repositories/repository_search') %>
+</div>
+<%= content_for :stylesheets, stylesheet_link_tag("jquery-ui") %>
+<%= content_for :stylesheets, stylesheet_link_tag("jquery-ui-timepicker-addon") %>
+<%= content_for :stylesheets, stylesheet_link_tag("include_files") %>
+<%= content_for :javascripts, javascript_include_tag("pages.form") %>

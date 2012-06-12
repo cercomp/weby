@@ -1,10 +1,20 @@
 //= require jquery-ui.min 
-//= require tabs
 //= require datetime
 //= require tinymce
 //= require repository.dialog
 //= require tiny_mce/jquery.tinymce 
 //= require_self
+
+$(document).ready(function(){
+  $("input#page_type").val($("input#is_event").is(":checked")? 'Event':'News' );
+  if($("input#is_event").is(":checked")){
+      //event_fields.appendTo('#form_event');
+      $('#event_fields').show();
+  }else{
+      $('#event_fields').hide();
+      event_fields = $('#event_fields').detach();
+  }
+});
 
 var event_fields;
 // Alterna o tipo da página entre evento e notícia
@@ -20,13 +30,4 @@ $("input#is_event").change(function(){
    }
 });
 
-$(document).ready(function(){
-  $("input#page_type").val($("input#is_event").is(":checked")? 'Event':'News' );
-  if($("input#is_event").is(":checked")){
-      //event_fields.appendTo('#form_event');
-      $('#event_fields').show();
-  }else{
-      $('#event_fields').hide();
-      event_fields = $('#event_fields').detach();
-  }
-});
+

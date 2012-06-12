@@ -8,10 +8,11 @@
   end 
 %>
 <%# ======================================== %>
-<%= text_field_tag :page_title, page_title_for(component), disabled: true, id: 'page_title_for_component' %>
-
-<%= content_tag :button, t('components.news_as_home.form.select'), id: 'btn_select_news',
-  onclick: 'show_dialog($(this)); return false', data: { link: site_pages_path } %>
+<%= f.input :page, :wrapper => :append do %>
+  <%= text_field_tag :page_title, page_title_for(component), disabled: true, id: 'page_title_for_component' %><%=
+   link_to_function t('components.news_as_home.form.select'), 'show_dialog($(this))',
+   id: 'btn_select_news', class: 'btn btn-info',  data: { link: site_admin_pages_path } %>
+<%  end %>
 <%= content_tag :div, '', id: 'page_list', title: t('components.news_as_home.form.select') %>
 
 <%= f.input :page, as: :hidden %>
@@ -23,6 +24,6 @@
   function selected (id, title) {
     $('#news_as_home_component_page').val(id);
     $('#page_title_for_component').val(title);
-    $('#page_list').dialog('close');
+    $('#modal_page_list').modal('hide');
   }
 <% end %>

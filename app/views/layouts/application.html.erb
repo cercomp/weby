@@ -1,30 +1,50 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="<%= session[:locale].to_s %>">
-  <%= render 'layouts/shared/head', theme: 'application' %>
-
-  <body>
-    <div class='first_place'>
-      <%= render :partial => 'weby_bar/views/show' %>
+<head>
+  <title>weby</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--[if lt IE 9]>
+    <%= javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js" %>
+  <![endif]-->
+  <%= yield :stylesheets %>
+  <%= stylesheet_link_tag 'application' %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+  <%= render 'layouts/shared/navbar' %>
+  <header class="container">
+    <div class="row header">
+      <div class="span9">
+        <h1 class="title"><%= content_for?(:title) ? content_for(:title) : t("dashboard") %> </h1>
+      </div>
+      <div class="span3">
+        <%= image_tag 'weby-dashboard.png' %>
+      </div>
     </div>
-
-    <div id="wrapper">
-      <header>
-        <nav class="right">
-          <%= render "layouts/shared/menu_locale" %>
-        </nav>
-      </header>
-
-      <section id="content">
-        <%= raw flash_message %>
-        <%= yield %>
-      </section>
-
-      <footer>
-        <%= Time.now.year %><%=t'licence' %>
-      </footer>
-
-      <%= render 'layouts/shared/javascripts' %>
-    </div>
-  </body>
+  </header>
+  <div class="bluezone">
+    <section class="container" id="main-container">
+      <div class="row">
+        <% if response.status == 200 %>
+        <div class="span3">
+          <%= render 'layouts/shared/menu_admin' %>
+          &nbsp;
+        </div>
+        <% end %>
+        <div class="span9" id="content">
+          <%= raw flash_message %>
+          <div class="row">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <footer class="container">
+    <p> <%= t('licence') %> </p>
+  </footer>
+  <%= javascript_include_tag "application-new" %>
+  <%= yield :javascripts %>
+</body>
 </html>
-

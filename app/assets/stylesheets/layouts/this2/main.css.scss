@@ -1,13 +1,12 @@
-/* 
-*= require_tree ../../shared 
-*= require_tree ../../legacy 
-*= require_tree ../../extensions 
-*= require ./mini
-*= require jquery-ui.css
-*= require jquery-ui-timepicker-addon.css
-*= require jquery.sortable.css
-*= require_self 
-*/  
+/*
+ *= require _base
+ *= require_tree ../../shared 
+ *= require_tree ../../legacy 
+ *= require ./mini
+ *= require jquery-ui.css
+ *= require jquery-ui-timepicker-addon.css
+ *= require_self 
+ */  
 
 /* To work with HTML5 more easy */
 article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary { display: block; }

@@ -69,6 +69,7 @@ en:
   cover_size: "Quantity items on cover"
   cover_help: "This pages will apear in site front."
   comma_separated_emails: "Comma Separated Emails"
+  close: "Close"
   create: "Create"
   created:
     fem: "Created"
@@ -86,6 +87,7 @@ en:
   create_account_successful: "Your account has been created. Please check your e-mail for your account activation instructions!"
 
 #---D---#
+  dashboard: "Administration"
   date_param: "%{param} Date"
   description: "Description"
   destroy: "Destroy"
@@ -163,8 +165,8 @@ en:
 #---H---#
   height: "Height"
   help: "Help"
-  hide: "Hidden?"
-  hide_help: "Want to hide? Only users with specific positions might retrieve them."
+  #hide: "Hidden?"
+  #hide_help: "Want to hide? Only users with specific positions might retrieve them."
   high_contrast: "High contrast"
   home: "Home"
   help_image: "This image will be the site header!"
@@ -379,6 +381,7 @@ en:
   send_date: "Send Date"
   show: "Show"
   show_hide_image_list: "Show/Hide list of images"
+  show_site: "Show site"
   sign_up: "Sign up"
   side: "Side"
   site:

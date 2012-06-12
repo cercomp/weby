@@ -1,0 +1,26 @@
+<% unless @groups.empty? %>
+<div class="pull-left"> <%= info_page @groups %> </div>
+<div class="pull-right"> <%= paginate @groups %> </div>
+<div class="clearfix"></div>
+
+
+  <table class='table table-striped'>
+    <thead>
+      <th><%= sortable 'name', t('name') %></th>
+      <th></th>
+    </thead>
+    <tbody>
+    <% @groups.each do |group| %>
+      <tr>
+        <td><%= link_to group.name, site_admin_group_path(group) %></td>
+        <td>
+          <%= raw make_menu(group) %> 
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<div class="pull-left"> <%= per_page_links @groups %> </div>
+<div class="pull-right"> <%= paginate @groups %> </div>
+<div class="clearfix"></div>
+<% end %>

@@ -4,9 +4,9 @@
   <title>Weby Documentation</title>
   <meta charset="utf-8">
   <%= csrf_meta_tag %>
-  <%= stylesheet_link_tag 'weby_doc' %>
-  <%= stylesheet_link_tag 'mini_weby_doc' %>
-  <%= render 'styles/load' if @site %>
+  <%= stylesheet_link_tag 'layouts/weby_doc/main' %>
+  <%= stylesheet_link_tag 'layouts/weby_doc/mini' %>
+  <%= render 'sites/shared/loadStyles' %>
   <%= yield :stylesheets %>
 </head>
 
@@ -16,7 +16,7 @@
   </div>
 
   <header class="cf">
-    <%= link_to image_tag('weby.png', class: 'pull-left'), current_site %>
+    <%= link_to image_tag('weby.png', class: 'pull-left'), site_path %>
     <div class="orbitron title pull-right">
       <% if @page %>
         <div class='title'>

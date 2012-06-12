@@ -1,0 +1,47 @@
+<div class="pull-left"> <%= info_page @banners %> </div>
+<div class="pull-right"> <%= paginate @banners %> </div>
+<div class="clearfix"></div>
+
+<% if @banners.empty? %>
+  <div class="alert">
+    <%= (t"none_param", param: t("banner.one")) %>
+  </div>
+<% end %>
+
+<table class='table table-striped table-condensed'>
+  <thead>
+    <th><%= sortable "id" %></th>
+    <th><%= sortable 'created_at', t("date_param", :param => t("register"))%></th>
+    <th><%= sortable 'date_begin_at', t("date_param", :param => t("publication"))%></th>
+    <th><%= sortable 'title', t("title") %></th>
+    <th><%= sortable 'user_id', t("author") %></th>
+    <th><%= sortable 'position', t("position") %></th>
+    <th><%= t("category") %></th>
+    <th><%= t("publish") %></th>
+    <th></th>
+  </thead>
+  <tbody>
+    <% @banners.each do |banner| %>
+      <tr>
+        <td><%= banner.id %></td>
+        <td><%=l banner.created_at, format: :short %></td>
+        <td><%=l banner.date_begin_at, format: :short %></td>
+        <%# Se for pra mostrar inicio e fim, assim é como se mostra a data de fim: print_date_end(banner.date_end_at) %>
+        <td><%= banner.title %></td>
+        <td><%= banner.user.first_name ? ("#{banner.user.first_name} #{banner.user.last_name}") : banner.user.login %></td>
+        <td><%= banner.position %></td>
+        <td><%= banner.categories.join(", ") || t('none_category') %></td>
+        <td align="center">
+          <%= publication_status(banner) %>
+        </td>
+        <td>
+          <%= raw make_menu(banner) %> 
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="pull-left"> <%= per_page_links @banners %> </div>
+<div class="pull-right"> <%= paginate @banners %> </div>
+<div class="clearfix"></div>

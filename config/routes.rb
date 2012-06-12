@@ -1,125 +1,155 @@
 Weby::Application.routes.draw do
-  # Para ativação de conta por email
-  match 'activate(/:activation_code)' => 'users#activate', :as => :activate_account
-  match 'send_activation(/:user_id)' => 'users#send_activation', :as => :send_activation
-  match '/sites/:site_id/feed' => 'pages#published', :as => :feed, :defaults => {:format => 'rss', :per_page => 10, :page => 1}
+  # TODO: desfazer o alias de account e passar tudo para users
+  # TODO: mudar de onde era o admin para seu respectivo controller, mudou para namespace
+  # TODO: Verificar se attachments é necessário para o tinymce, se não remover
   
-  #match '/page/:page' => 'sites#index' # Paginate URL on sites
-  match '/sites/:site_id/users/page/:page' => 'users#index' # Paginate URL on users
-  #match '/sites/:site_id/pages/paginate/:paginate' => 'pages#index' # Paginate URL on pages
-  match '/sites/:site_id/banners/page/:page' => 'banners#index' # Paginate URL on banners
-  match '/sites/:site_id/repositories/page/:page' => 'repositories#index' # Paginate URL on repositories
-  match '/sites/:site_id/groups/page/:page' => 'groups#index' # Paginate URL on groups
+  constraints(Weby::Subdomain) do
+    get '/' => 'sites#show', as: :site
+    get '/admin' => 'sites#admin', as: :site_admin
+    get '/admin/edit' => 'sites#edit', as: :edit_site_admin
+    put '/admin/edit' => 'sites#update', as: :edit_site_admin
+    # routes to feed and atom
+    match '/feed' => 'sites/pages#published', as: :site_feed,
+      defaults: { format: 'rss', per_page: 10, page: 1 }
+    # route to paginate
+    match '/users/page/:page' => 'admin/users#index'
+    match '/banners/page/:page' => 'sites/admin/banners#index'
+    match '/repositories/page/:page' => 'sites/admin/repositories#index'
+    match '/groups/page/:page' => 'sites/admin/groups#index'
 
-
-  resources :sites do
-    collection do
-      post :sort
-    end
-    resources :users do
-      collection do
-        get :manage_roles
-        post :change_roles
-      end
-      member do 
-        put :toggle_field
-        get :set_admin
-      end 
-    end
-    resources :repositories do
-      collection do
-        get :manage
-      end
-    end
-    resources :menus do
-      resources :menu_items, except: :show do
-        collection do
-          post :change_order, :change_menu
-        end
-      end
-    end
-    resources :banners do 
-      member do 
-        put :toggle_field
-      end 
-    end
-    resources :pages do 
-      member do 
-        put :toggle_field
-      end 
+    resources :pages,
+      as: :site_pages, 
+      controller: 'sites/pages', 
+      only: [:index, :show] do
       collection do
         get :published, :fronts, :events
         post :sort
       end
     end
-    resources :components do
-      member do
-        put :toggle_field
-      end
-      collection do
-        post :sort
-      end
-    end
-    resources :feedbacks, :controller => 'sites/feedbacks' do
+
+    resources :feedbacks,
+      as: :site_feedbacks,
+      controller: 'sites/feedbacks', 
+      only: [:new, :create] do
       collection do
         get :sent
       end
     end
-    resources :styles do
-      member do
-        get :copy, :follow, :unfollow, :publish, :unpublish
+
+    namespace :admin, module: 'sites/admin', as: :site_admin do
+      resources :feedbacks
+      resources :groups
+      resources :banners do
+        member do
+          put :toggle_field
+        end
       end
-      collection do
-        post :sort
+      resources :components do
+        member do
+          put :toggle_field
+        end
+        collection do
+          post :sort
+        end
+      end
+      resources :menus do
+        resources :menu_items,
+          controller: 'menus/menu_items',
+          except: :show do
+          collection do
+            post :change_order, :change_menu
+          end
+        end
+      end
+      resources :pages do
+        member do
+          put :toggle_field
+        end
+        collection do
+          get :published, :fronts
+          post :sort
+        end
+      end
+      resources :repositories do
+        collection do
+          get :manage
+        end
+      end
+      resources :roles do
+        collection do
+          put :index
+        end
+      end
+      resources :styles do
+        member do
+          get :copy, :follow, :unfollow, :publish, :unpublish
+        end
+        collection do
+          post :sort
+        end
+      end
+      resources :users,
+        only: [] do
+        collection do
+          get :manage_roles
+          post :change_roles
+        end
       end
     end
-    resources :roles do
-      collection do
-        put :index
+  end
+  
+  root :to => "sites#index"
+
+  resources :user_sessions
+
+  constraints(Weby::GlobalDomain) do
+    match '/admin' => 'application#admin'
+    namespace :admin do
+      resources :rights
+      resources :settings,
+        except: :show
+      resources :password_resets,
+        only: [ :new, :create, :edit, :update ]
+      resources :users do
+        collection do
+          get :manage_roles
+          post :change_roles
+        end
+        member do
+          put :toggle_field
+          put :set_admin
+        end
       end
-    end
-
-    resources :groups, :controller => 'sites/groups'
-
-    resources :chats, :rights, :archives, :admin
-  end
-
-  resources :groups, :chats, :rights, :archives, :user_sessions, :admin, :settings
-  resources :password_resets, :only => [ :new, :create, :edit, :update ]
-  resources :account, :controller => "users"
-  resources :users do
-    collection do
-      get :manage_roles
-      post :change_roles
-    end
-    member do 
-      put :toggle_field
-      get :set_admin
-    end 
-  end
-  resources :roles do
-    collection do
-      put :index
-    end
-  end
-  resources :repositories do
-    collection do
-      get :manage
-    end
-  end
-  resources :attachments do
-    collection do
-      get :manage
+      resources :roles,
+        except: :show do
+        collection do
+          put :index
+        end
+        collection do
+          post :sort
+        end
+      end
+      resources :sites, except: [:show, :edit, :update]
     end
   end
 
+  # legacy, verificar a possibilidade de refatoração
+
+  # routes to login, logout and denied access
   match 'logout' => 'user_sessions#destroy', :as => "logout"
   match 'login' => 'user_sessions#new', :as => 'login'
-  match 'denied' => "admin#access_denied", :as => 'denied'
+  match 'denied' => 'user_session#access_denied', :as => 'denied'
 
-  root :to => "sites#index" # Página agregadora dos sites
+  # Para ativação de conta por email
+  match 'activate(/:activation_code)' => 'admin/users#activate',
+    as: :activate_account
+  
   match '*not_found', :to => 'application#render_404'
 
+  # TinyMCE??
+  #resources :attachments do
+  #  collection do
+  #    get :manage
+  #  end
+  #end
 end
-
-

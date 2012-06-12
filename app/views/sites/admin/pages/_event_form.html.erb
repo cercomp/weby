@@ -1,0 +1,27 @@
+<div class="control-group boolean optional side">
+  <%= label_tag :is_event, t(".is_event"), class: 'boolean optional control-label', for: 'is_event' %>
+  <%= content_tag :div, class: 'controls' do %>
+    <%= check_box_tag :is_event, :Event, @page.type == 'Event' %>
+  <% end %>
+  <%= f.input :type, as: :hidden %>
+  <div class='clear'></div>
+</div>
+<div id="form_event">
+  <div id="event_fields">
+    <%= f.input :local,
+      :required => true,
+      :help => t("field_required") %>
+
+    <%= f.input :kind, 
+      collection: @event_types,
+      as: :select %>
+
+    <%= f.input :event_email %>
+
+    <%= f.input :event_begin, label: t(".period_event") do %>
+       <%= f.input_field :event_begin, placeholder: t("begin"), label: false %>
+       <%= f.input_field :event_end, placeholder: t("end"), label: false %>
+    <% end %>
+    <div class='clear'></div>
+  </div>
+</div>

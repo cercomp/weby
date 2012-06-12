@@ -58,17 +58,18 @@ ul.attachment_list li.selected a img {
 .clear {
   clear:both;
 }
-.pagination a {
-  border: 1px solid #7DA807;
-  color: #7DA807;
-  margin-right: .3em;
-padding: .3em; }
-.pagination a:hover {
-  background: #7DA807;
-  border: 1px solid #7DA807;
-color: #ffffff; }
-.pagination a.active {
-  background: #1EA2C1;
-  border: none;
-  color: #ffffff; }
+.pagination ul{
+  list-style-type: none;
+  margin: 0px;
+}
+.pagination ul li{
+  display: inline;
+}
+.pagination ul li.disabled{
+  color: #CCC !important;
+  display: none;
+}
+.pagination ul li.active{
+  font-weight: bold;
+}
 

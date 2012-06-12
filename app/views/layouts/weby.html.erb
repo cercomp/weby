@@ -10,8 +10,8 @@
                 <% #TODO FIXME vai deixar o name fixo assim mesmo? %>
       		<%= raw print_menu(@site.menus.find_by_name('superior'))  %>
       		<nav class="right">
-						<%= render "layouts/shared/menu_acessibility" %>
-            <%= render "layouts/shared/menu_locale" %>
+						<%#= render "layouts/shared/menu_acessibility" %>
+            <%#= render "layouts/shared/menu_locale" %>
       		</nav>
       	</nav>        
       <div class="clear"> </div>   
@@ -43,12 +43,12 @@
 
                   <%= link_to image_tag("#{page.repository.archive.url(:mini)}",
                                         :alt => page.repository.description),
-                                        site_page_path(@site, page),
+                                        site_page_path(page),
                                         :title => page.repository.description %>
                                     <% end %>
 
               <header>
-                <h2> <%= link_to page.title, site_page_path(@site, page) %> </h2>
+                <h2> <%= link_to page.title, site_page_path(page) %> </h2>
                 <% if @site.view_desc_pages %>
                   <p><i>
                     <%= page.user.first_name ?
@@ -61,7 +61,7 @@
               <summary>
                 <%= raw page.summary %>
               </summary>
-              <p> <%= link_to t("read_more"), site_page_path(@site, page) %> </p>
+              <p> <%= link_to t("read_more"), site_page_path(page) %> </p>
               <div class="clear"></div>
               <%= raw make_menu(page) %>
             </article>

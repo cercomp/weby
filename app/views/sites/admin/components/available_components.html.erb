@@ -1,0 +1,73 @@
+<%- title 'component.other' %>
+
+<div class="span9">
+  <div class="well" id="available_components">
+    <%= form_tag new_site_admin_component_path, :method => :get do %>
+      <div id="main">
+        <select id="component_select" name="component" size="11">
+          <% available_components_sorted.each do |component| %>
+            <option value="<%= component[:name] %>">
+              <%= component[:i18n] %>
+            </option>
+          <% end %>
+        </select>
+
+        <img id="component_image" src="/assets/components/default.png"/>
+      </div>
+
+    <button id="next_step"><%= t('components.available_components.next_step') %></button>
+
+    <% end %>
+  </div>
+</div>
+
+<style type="text/css">
+  #available_components select#component_select {
+    height: 180px;
+    width: 250px;
+    margin: 8px;
+    margin-left: 0px;
+  }
+
+  #available_components img#component_image {
+    height: 180px;
+    width: 230px;
+    margin: 8px;
+    border: 1px solid #888;
+  }
+
+  #available_components #next_step {
+    margin-top: 8px;
+  }
+
+  #available_components #main {
+    position: relative;
+  }
+</style>
+
+<%= content_for :javascripts do %>
+  <script type="text/javascript">
+    $(window).ready(function() {
+      var img_cache = {};
+      var default_image = $('#component_image').attr('src');
+
+      $('#component_select').change(function() {
+        var selected = $('#component_select :selected').val();
+
+        if (img_cache[selected]) {
+          $('#component_image').attr('src', img_cache[selected]);
+          return;
+        }
+
+        var url = '/assets/components/' + selected + '.png';
+        $.get(url, function() {
+          $('#component_image').attr('src', url);
+          img_cache[selected] = url;
+          
+        }).error(function(){
+          $('#component_image').attr('src', default_image);
+        });
+      });
+    });
+  </script>
+<% end %>

@@ -1,0 +1,32 @@
+<%- title 'setting.other' %>
+
+<div class="span9">
+  <div class="well">
+    <%= link_to new_admin_setting_path, class: 'pull-right' do %>
+      <button class="btn btn-success btn-large">
+        <%= t("new_param.fem", :param => (t"setting.one")) %>
+      </button>
+    <% end %>
+
+    <table class='table table-striped'>
+      <thead>
+        <tr>
+          <th> <%= sortable 'name', t('name') %> </th>
+          <th> <%= sortable 'value', t('value') %> </th>
+          <th> <%= t('description') %> </th>
+          <th> </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @settings.each do |setting| %>
+          <tr>
+            <td> <%= setting.name %> </td>
+            <td> <%= setting.value %> </td>
+            <td> <%= setting.description %> </td>
+            <td> <%= raw make_menu(setting, :except => "show") %> </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

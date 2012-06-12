@@ -58,7 +58,7 @@ module ApplicationHelper
        #		if (entry.menu.try(:page_id).nil? and entry.menu.try(:link).empty?)
        #menus << "#{entry.menu.try(:title)}"
        #		else
-       menus << link_to(entry.title, entry.target_id.to_i > 0 ? site_page_path(@site, entry.target_id) : entry.url, :alt => entry.title,:title => entry.description, :target => entry.new_tab ? "_blank":"")
+       menus << link_to(entry.title, entry.target_id.to_i > 0 ? site_page_path(entry.target_id) : entry.url, :alt => entry.title,:title => entry.description, :target => entry.new_tab ? "_blank":"")
        #		end
 
        if view_ctrl == 1
@@ -74,12 +74,10 @@ module ApplicationHelper
          end
          #menus << " [ id:#{entry.id} pos:#{entry.position} ]" # Para debug
          menus << ( (entry and entry.target) ? " [ #{entry.target.id} ] " : " [ #{entry.url if not entry.url.blank?} ] " )
-         menus << link_to("", edit_site_menu_menu_item_path(@site.name, entry.menu_id, entry.id),:class=>'icon icon-edit', :title => t("edit"))
-         menus << indent_space + link_to("", new_site_menu_menu_item_path(@site.name, entry.menu_id, :parent_id => entry.id),:class=>'icon icon-add', :title => t("add_sub_menu"))
-         #menus << indent_space + link_to("", change_position_site_menu_menu_items_path(:id => entry.id, :position => (entry.position.to_i - 1)),:class=>'icon icon-up', :title => t("move_menu_up")) if entry.position.to_i > 1
-         #menus << indent_space + link_to("", change_position_site_menu_menu_items_path(:id => entry.id, :position => (entry.position.to_i + 1)),:class=>'icon icon-down', :title => t("move_menu_down")) if (entry.position.to_i < sons[entry.parent_id].count.to_i)
-         menus << indent_space + link_to("","#", :class => 'handle icon icon-drag', :title => t("move"))
-         menus << indent_space + link_to("", site_menu_menu_item_path(@site.name, entry.menu_id, entry.id), :method=>:delete, :confirm => t('are_you_sure'),:class=>'icon icon-del', :title => t("destroy"))
+         menus << link_to("", edit_site_admin_menu_menu_item_path(entry.menu_id, entry.id),:class=>'icon icon-edit', :title => t("edit"))
+         menus << indent_space + link_to("", new_site_admin_menu_menu_item_path(entry.menu_id, :parent_id => entry.id),:class=>'icon icon-plus', :title => t("add_sub_menu"))
+         menus << indent_space + link_to("","#", :class => 'handle icon icon-move', :title => t("move"))
+         menus << indent_space + link_to("", site_admin_menu_menu_item_path(entry.menu_id, entry.id), :method=>:delete, :confirm => t('are_you_sure'),:class=>'icon icon-remove', :title => t("destroy"))
       end
        menus << "\n" + indent_space + (view_ctrl == 1 ? "</div><menu>":"<menu>") unless submenu.nil?
        if sons[entry.id].class.to_s == "Array"
@@ -94,11 +92,16 @@ module ApplicationHelper
   end
 
   # Define mensagens personalizadas
-  def flash_message(style=nil)
+  def flash_message
     "".tap do |messages|
-      [:notice, :info, :warning, :error, :alert, :success].each do |type|
+      [:info, :warning, :error, :success].each do |type|
         if flash[type]
-          messages << content_tag('div', flash.now[type], :class => style.nil? ? "flash #{type}" : "#{style.to_s}#{type}")
+          messages << content_tag('div', :class => "alert alert-#{type}") do
+            raw %{
+              #{link_to('x', '#', class: 'close', data: {dismiss: "alert"})}
+              #{flash.now[type]}
+            }
+          end
           # Limpa a mensagem
           flash[type] = nil
         end
@@ -223,22 +226,19 @@ module ApplicationHelper
         if permission and actions.include?(permission.to_sym)
           case permission.to_s
           when "show"
-            menu << link_to(t('show'), params.merge({:controller => ctr.controller_name,
+            menu << link_to(icon('eye-open', text: t('show')), params.merge({:controller => ctr.controller_name,
                                                      :action => 'show', :id => obj.id}),
-                                                     :class => 'icon icon-show',
                                                      :alt => t('show'),
                                                      :title => t('show')) + " "
           when "edit"
-            menu << link_to(t("edit"), params.merge({:controller => ctr.controller_name,
+            menu << link_to(icon('edit', text: t("edit")), params.merge({:controller => ctr.controller_name,
                                                      :action => 'edit', :id => obj.id}),
-                                                     :class => 'icon icon-edit',
                                                      :alt => t('edit'),
                                                      :title => t('edit')) + " "
           when "destroy"
-            menu << link_to(t("destroy"), params.merge({:controller => ctr.controller_name,
+            menu << link_to(icon('trash', text: t("destroy")), params.merge({:controller => ctr.controller_name,
                                                         :action => 'destroy',
                                                         :id => obj.id}),
-                                                        :class => 'icon icon-del',
                                                         :confirm => t('are_you_sure'),
                                                         :method => :delete, 
                                                         :alt => t('destroy'), 
@@ -257,7 +257,7 @@ module ApplicationHelper
     link_to title,
       #quando uma lista é reordenada, ela volta para a página 1
       params.merge({sort: column, direction: direction, page: 1}),
-      "data-column" => column,
+      data: { column: column},
       remote: true,
       class: "sortable #{css_class}"
   end
@@ -267,32 +267,35 @@ module ApplicationHelper
     if collection.page(1).count > 0
       html = "#{t('views.pagination.displaying')} #{collection.offset_value + 1} - 
       #{collection.offset_value + collection.length}"
-      html << " #{t('of')} #{collection.total_count} #{t('views.pagination.total')}"
+      html << " #{t('of')} #{collection.total_count}" 
 
-      content_tag :div, html, :class => "page_info_paginator", :style => style
+      content_tag :div, html, :class => "pagination"
     end
   end
 
   # Links para selecionar a quantidade de itens por página
   def per_page_links(collection, remote = false)
     if collection.page(1).count > per_page_array.first.to_i
-      html = "#{t('views.pagination.per_page')} "
+      html = "<li class=\"disabled\"><a href=\"#\">#{t('views.pagination.per_page')}</a></li>"
 
       params[:per_page] = per_page_default if params[:per_page].blank?
 
       per_page_array.each do |item|
         html << 
         if params[:per_page].to_i == item.to_i
-          content_tag :span, item, :class => 'item_per_page_paginator current'
+          content_tag :li, :class => 'page active' do
+            link_to item, params.merge({:per_page => item, :page => 1}), :remote => remote
+          end
         else
-          content_tag(:span, :class => 'item_per_page_paginator') do
+          content_tag(:li, :class => 'page') do
             link_to item, params.merge({:per_page => item, :page => 1}), :remote => remote
           end
         end
       end
 
-      content_tag :div, raw(html),
-        :class => "per_page_paginator"
+      content_tag :div, :class => "pagination" do
+        content_tag :ul, raw(html)
+      end
     end
   end
 
@@ -333,6 +336,10 @@ module ApplicationHelper
     content_tag(tag_name, options, &block) if condition 
   end
 
+  def title title
+    content_for :title, t(title)
+  end
+
   def period_dates(inidate, findate, force_show_year = true)
     html = ""
     unless(findate)
@@ -363,5 +370,21 @@ module ApplicationHelper
     str = obj.to_s
     return true if ['1','true'].include? str
     return false
+  end
+
+  def icon type, args={}
+    args[:white] = false if args[:white].nil?
+    args[:text] = "" if args[:text].nil?
+    unless type.nil?
+      icon_class = "icon-#{type}"
+      if args[:white]
+        icon_class = "#{icon_class} icon-white"
+      end
+      if args[:right]
+        raw "#{args[:text]} <i class=\"#{icon_class}\"></i>"
+      else
+        raw "<i class=\"#{icon_class}\"></i> #{args[:text]}"
+      end
+    end
   end
 end

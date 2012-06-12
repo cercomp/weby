@@ -12,9 +12,9 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.new(params[:user_session])
     if @user_session.save
       if current_user and current_user.active? # Verifica se o usuário está ativo  
-        flash.now[:notice] = t("login_success")
+        flash.now[:success] = t("login_success")
         redirect_back_or_default("#{params[:back_url]}")
-      else  
+      else
         destroy  
       end  
     else  
@@ -27,10 +27,10 @@ class UserSessionsController < ApplicationController
       if  current_user.active?
         flash.now[:warning] = t('user_inactive')
       else
-        flash.now[:notice] = t('logout_success')
+        flash.now[:success] = t('logout_success')
       end
       current_user_session.destroy
     end
-    redirect_back_or_default("#{params[:back_url]}")
+    redirect_to ("#{params[:back_url]}")
   end
 end

@@ -2,6 +2,7 @@
 
 <% content_for :bottom do %>
   <div id="dialog-repository-search">
-    <%= render('repositories/repository_search') %>
+    <%= render('sites/admin/repositories/repository_search') %>
   </div>
 <% end %>
+<%= content_for :stylesheets, stylesheet_link_tag("include_files") %>

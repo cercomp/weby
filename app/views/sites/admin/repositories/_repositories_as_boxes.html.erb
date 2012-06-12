@@ -1,0 +1,29 @@
+<div class="pull-left"><%= info_page @repositories %></div>
+<div class="pull-right"><%= paginate @repositories, :remote => true %></div>
+<div class="clearfix"></div>
+
+<% if @repositories.empty? %>
+  <div class="alert">
+    <%= (t"none_param", param: t("archive.one")) %>
+  </div>
+<% end %>
+
+<ul class="clear thumbnails">
+  <% @repositories.each do |repository| %>
+    <li class="span2">
+      <div class="thumbnail">
+        <div style="width:160px; height:128px; overflow: hidden;">
+        <%= weby_file_view(repository, :little, nil, nil) %>
+        </div>
+        <div class="caption">
+          <p style="height: 55px; overflow: hidden;"><%= repository.description %></p>
+          <%= raw make_menu(repository) %> 
+        </div>
+      </div>
+    </li>
+  <% end %>
+</ul>
+
+<div class="pull-left"><%= per_page_links @repositories, true %></div>
+<div class="pull-right"><%= paginate @repositories, :remote => true %></div>
+<div class="clearfix"></div>

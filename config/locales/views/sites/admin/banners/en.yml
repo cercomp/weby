@@ -1,0 +1,10 @@
+en:
+  sites:
+    admin:
+      banners:
+        form:
+          add_category: "Add Category"
+          period_banner: "Period Banner"
+          
+
+
