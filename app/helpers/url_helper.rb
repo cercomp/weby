@@ -5,14 +5,13 @@ module UrlHelper
       subdomain = setting ? setting.value : ""
     else
       if site.class == Site
-        subdomain = site.main_site ? "#{site.name}.#{site.main_site.name}" : site.name
+        subdomain = site.main_site ? "#{site.name}.#{site.main_site.name}" : "www.#{site.name}"
       else
         subdomain = site
       end
     end
     subdomain += "." unless subdomain.empty?
-    #TODO parametrizar o 'www.'
-    ['www.' ,subdomain ,request.domain].join
+    [subdomain ,request.domain].join
   end
 
   def url_for(options = nil)
