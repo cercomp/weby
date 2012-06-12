@@ -267,32 +267,35 @@ module ApplicationHelper
     if collection.page(1).count > 0
       html = "#{t('views.pagination.displaying')} #{collection.offset_value + 1} - 
       #{collection.offset_value + collection.length}"
-      html << " #{t('of')} #{collection.total_count} #{t('views.pagination.total')}"
+      html << " #{t('of')} #{collection.total_count}" 
 
-      content_tag :div, html, :class => "page_info_paginator", :style => style
+      content_tag :div, html, :class => "pagination"
     end
   end
 
   # Links para selecionar a quantidade de itens por página
   def per_page_links(collection, remote = false)
     if collection.page(1).count > per_page_array.first.to_i
-      html = "#{t('views.pagination.per_page')} "
+      html = "<li class=\"disabled\"><a href=\"#\">#{t('views.pagination.per_page')}</a></li>"
 
       params[:per_page] = per_page_default if params[:per_page].blank?
 
       per_page_array.each do |item|
         html << 
         if params[:per_page].to_i == item.to_i
-          content_tag :span, item, :class => 'item_per_page_paginator current'
+          content_tag :li, :class => 'page active' do
+            link_to item, params.merge({:per_page => item, :page => 1}), :remote => remote
+          end
         else
-          content_tag(:span, :class => 'item_per_page_paginator') do
+          content_tag(:li, :class => 'page') do
             link_to item, params.merge({:per_page => item, :page => 1}), :remote => remote
           end
         end
       end
 
-      content_tag :div, raw(html),
-        :class => "per_page_paginator"
+      content_tag :div, :class => "pagination" do
+        content_tag :ul, raw(html)
+      end
     end
   end
 
