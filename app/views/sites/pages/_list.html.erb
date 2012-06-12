@@ -14,7 +14,7 @@
     <% @pages.each do |page| %>
       <tr id="<%= page.id %>">
         <td>
-          <%= link_to page.title, site_page_path(current_site, page) %>
+          <%= link_to page.title, site_page_path(page) %>
         </td>
         <td><%= page.category_list * ', ' %></td>
         <td><%= controller.action_name == 'events' ? period_dates(page.event_begin, page.event_end) : t("#{page.type.downcase}.one") %></td>
