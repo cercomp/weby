@@ -36,8 +36,8 @@
       </div>
   <% end %>
   </li>
-  <%= paginate @front_news, :param_name => 'front_pages' %>
 </section>
+<%= paginate @front_news, :param_name => 'front_pages' %>
 
 <%= javascript_tag do %>
  window.onload = function(){

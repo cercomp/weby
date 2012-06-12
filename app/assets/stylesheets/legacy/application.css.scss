@@ -334,3 +334,24 @@ pre.style
 {
   width: 350px;
 }
+
+// paginação para não quebrar no layout
+.pagination ul {
+  padding-left: 0;
+  margin-left: 0;
+  display: inline; }
+
+.pagination ul li {
+  padding: 5px 6px 5px 8px; 
+  margin-left: 0;
+  margin-bottom: 0;
+  border: 1px solid #ccc;
+  list-style: none;
+  display: inline; }
+
+.pagination { 
+  font-size: 11px;
+  padding: 8px 0px; }
+
+.pagination ul li.disabled a,
+.pagination ul li.active a { color: #999; }
