@@ -276,7 +276,7 @@ module ApplicationHelper
   # Links para selecionar a quantidade de itens por página
   def per_page_links(collection, remote = false)
     if collection.page(1).count > per_page_array.first.to_i
-      html = "<li class=\"disabled\"><a href=\"#\">#{t('views.pagination.per_page')}</a></li>"
+      html = "<li class=\"disabled\"><a href=\"#\">#{t('views.pagination.per_page')} </a></li>"
 
       params[:per_page] = per_page_default if params[:per_page].blank?
 
@@ -284,11 +284,11 @@ module ApplicationHelper
         html << 
         if params[:per_page].to_i == item.to_i
           content_tag :li, :class => 'page active' do
-            link_to item, params.merge({:per_page => item, :page => 1}), :remote => remote
+            link_to "#{item} ", params.merge({:per_page => item, :page => 1}), :remote => remote
           end
         else
           content_tag(:li, :class => 'page') do
-            link_to item, params.merge({:per_page => item, :page => 1}), :remote => remote
+            link_to "#{item} ", params.merge({:per_page => item, :page => 1}), :remote => remote
           end
         end
       end
