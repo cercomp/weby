@@ -80,7 +80,7 @@ module Weby
         rescue ActionView::MissingTemplate
           output = ''
         end
-        output
+        raw output
       end
     end
   end
