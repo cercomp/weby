@@ -11,7 +11,8 @@ module UrlHelper
       end
     end
     subdomain += "." unless subdomain.empty?
-    [subdomain, request.domain].join
+    #TODO parametrizar o 'www.'
+    ['www.' ,subdomain ,request.domain].join
   end
 
   def url_for(options = nil)
