@@ -2,6 +2,14 @@
 
 <div class="span9">
   <div class="well">
+
+    
+<% if @menus.empty? %>
+  <div class="alert">
+    <%= (t"none_param", param: t("menu.one")) %>
+  </div>
+<% end %>
+
     <% with_permission action: :new do %>
       <div class="pull-right">
         <%= link_to t('new_param.masc', param: t('menu.one')),

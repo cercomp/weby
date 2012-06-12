@@ -2,6 +2,12 @@
 <div class="pull-right"> <%= paginate @pages, remote: true %> </div>
 <div class="clearfix"></div>
 
+<% if @pages.empty? %>
+  <div class="alert">
+    <%= (t"none_param", param: t("page.one")) %>
+  </div>
+<% end %>
+
 <table class="table table-striped table-condensed">
     <thead>
       <tr>

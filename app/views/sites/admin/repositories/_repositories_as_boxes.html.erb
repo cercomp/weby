@@ -2,6 +2,12 @@
 <div class="pull-right"><%= paginate @repositories, :remote => true %></div>
 <div class="clearfix"></div>
 
+<% if @repositories.empty? %>
+  <div class="alert">
+    <%= (t"none_param", param: t("archive.one")) %>
+  </div>
+<% end %>
+
 <ul class="clear thumbnails">
   <% @repositories.each do |repository| %>
     <li class="span2">

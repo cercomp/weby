@@ -6,6 +6,12 @@
 <div class="span9">
   <div class="well">
 
+<% if @roles.empty? %>
+  <div class="alert">
+    <%= (t"none_param", param: t("role.one")) %>
+  </div>
+<% end %>
+
     <div class="pull-right">
       <% if check_permission(Sites::Admin::RolesController, [:new]) %>
         <%= link_to t('new_param.masc', param: t('role.one')),

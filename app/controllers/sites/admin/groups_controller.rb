@@ -55,7 +55,7 @@ class Sites::Admin::GroupsController < ApplicationController
     @group = Group.find(params[:id])
     @group.destroy
 
-    redirect_to(site_groups_url)
+    redirect_to(site_admin_groups_url)
   end
 
   private

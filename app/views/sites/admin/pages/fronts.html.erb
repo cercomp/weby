@@ -3,6 +3,12 @@
 <div class="span9">
   <div class="well">
 
+<% if @pages.empty? %>
+  <div class="alert">
+    <%= (t"none_param", param: t("covers")) %>
+  </div>
+<% end %>
+
     <div class="pull-right">
       <% with_permission(action: :new) do %>
         <%= link_to t('new_param.masc', param: t('page.one')),

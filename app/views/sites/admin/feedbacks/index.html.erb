@@ -3,6 +3,12 @@
 <div class="span9">
   <div class="well">
 
+<% if @feedbacks.empty? %>
+  <div class="alert">
+    <%= (t"none_param", param: t("feedback.one")) %>
+  </div>
+<% end %>
+
     <div class="pull-right">
       <% if check_permission(Sites::Admin::GroupsController, [:new]) %>
         <%= link_to t('new_param.masc', param: t('group.one')),

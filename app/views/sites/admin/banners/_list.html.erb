@@ -2,6 +2,12 @@
 <div class="pull-right"> <%= paginate @banners %> </div>
 <div class="clearfix"></div>
 
+<% if @banners.empty? %>
+  <div class="alert">
+    <%= (t"none_param", param: t("banner.one")) %>
+  </div>
+<% end %>
+
 <table class='table table-striped table-condensed'>
   <thead>
     <th><%= sortable "id" %></th>
