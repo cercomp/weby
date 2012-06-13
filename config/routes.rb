@@ -37,7 +37,7 @@ Weby::Application.routes.draw do
     end
 
     namespace :admin, module: 'sites/admin', as: :site_admin do
-      resources :feedbacks
+      resources :feedbacks, except: [new, create]
       resources :groups
       resources :banners do
         member do
