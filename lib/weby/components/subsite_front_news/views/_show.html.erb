@@ -7,7 +7,7 @@
     <% @subsite_front_news.try(:each) do |page| %>
     <li style="list-style-type:none;">
     <article>
-      <span class="page_origin"><%= t(".news_from") %> <%= link_to page.owner.title, site_path(page.owner) %></span>
+      <span class="page_origin"><%= t(".news_from") %> <%= link_to page.owner.title, site_url(subdomain: page.owner) %></span>
       <% unless page.image.nil? %>
         <%= weby_file_view(page.image, :little, "128", nil, {as: "link", url: link_on_title(page.owner, page), target: '_self'}) %>
       <% end %>
@@ -26,7 +26,7 @@
         <%= raw page.summary %>
       </summary>
       <% unless page.text.blank? %>
-      <p> <%= link_to t("read_more"), site_page_path(page.owner, page) %> </p>
+      <p> <%= link_to t("read_more"), site_page_url(page, subdomain: page.owner) %> </p>
       <% end %>
       <div class="clear"></div>
     </article>
