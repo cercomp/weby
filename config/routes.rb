@@ -22,7 +22,7 @@ Weby::Application.routes.draw do
       controller: 'sites/pages', 
       only: [:index, :show] do
       collection do
-        get :published, :fronts, :events
+        get :published, :events
         post :sort
       end
     end
@@ -66,7 +66,7 @@ Weby::Application.routes.draw do
           put :toggle_field
         end
         collection do
-          get :published, :fronts
+          get :fronts
           post :sort
         end
       end

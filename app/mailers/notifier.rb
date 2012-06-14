@@ -7,7 +7,7 @@ class Notifier < ActionMailer::Base
     recipients = user.email  
     sent_on = Time.now
     @user = user
-    @content = edit_password_reset_url(user.perishable_token)
+    @content = edit_admin_password_reset_url(user.perishable_token)
     mail(:from => from, :to => recipients, :subject => subject)
   end
 

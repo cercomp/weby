@@ -12,21 +12,11 @@ class Sites::Admin::PagesController < ApplicationController
   # GET /pages
   # GET /pages.json
   def index
-    (redirect_to published_site_pages_path(search: params[:search]) unless current_user) and return
     @pages = get_pages 
     respond_with(:site_admin, @pages) do |format|
       if(params[:template])
         format.js { render "#{params[:template]}" }
       end
-    end
-  end
-
-  def published
-    @pages = get_pages.published
-    respond_with(:site_admin, @page) do |format|
-      format.rss { render :layout => false, :content_type => Mime::XML } #published.rss.builder
-      format.atom { render :layout => false, :content_type => Mime::XML } #published.atom.builder
-      format.any { render 'index' }
     end
   end
 
