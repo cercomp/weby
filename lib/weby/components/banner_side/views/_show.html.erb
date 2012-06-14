@@ -24,7 +24,7 @@
         </div>
     <% end %>
     <% if check_permission(Sites::Admin::BannersController, ["toggle_field"]) %>
-      <%= link_to t("unpublish"), toggle_field_site_admin_banner_path(banner, :field => 'publish') %>
+      <%= link_to t("unpublish"), toggle_field_site_admin_banner_path(banner, field: 'publish'), method: :put %>
     <% end %>
   <% end %>
 </div>
