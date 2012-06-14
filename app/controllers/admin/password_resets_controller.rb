@@ -28,7 +28,7 @@ class Admin::PasswordResetsController < ApplicationController
     @user.password_confirmation = params[:user][:password_confirmation]
     if @user.save
       flash[:success] = t("successfully_updated", :param => t("password"))
-      redirect_to @user
+      redirect_to admin_user_path(@user)
     else
       render :action => :edit
     end
