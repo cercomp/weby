@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.1'
+gem 'rails', '3.2.6'
 gem 'mongrel', '>= 1.2.0.pre2'
 gem "jquery-rails"
 gem 'pg'
