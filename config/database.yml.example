@@ -12,7 +12,7 @@ development:
   database: weby
   pool: 5
   username: weby
-  password: weby
+  password: weby 
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
