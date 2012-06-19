@@ -1,5 +1,8 @@
-<fieldset>
-  <% unless @banner.repository.nil? %>
+<%- title 'banner.other' %>
+
+<div class="span9">
+  <div class="well">
+    <% unless @banner.repository.nil? %>
     <% format = @banner.size ? @banner.size : "little" %>
     <%= weby_file_view(@banner.repository,
                        format,
@@ -21,6 +24,9 @@
   </p>
 
   <%= make_menu(@banner, :except => "show") %>
-  <%= link_to t("list_all.masc"), site_admin_banners_path(), :class => 'icon icon-list' %> 
-  <%= link_to t("back"), :back, :class => 'icon icon-back' %>
-</fieldset>
+  <%= link_to icon('list', text:t("list_all.masc")), site_admin_banners_path() %> 
+  <%= link_to t("back"), :back %>
+
+ </div>
+</div>
+
