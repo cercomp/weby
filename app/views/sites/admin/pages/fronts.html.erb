@@ -47,7 +47,7 @@
               <td>
                 <%= make_menu(page, :except => "show") %>
                 <% with_permission(action: :sort) do %>
-                  <a href='#' class='handle icon icon-drag'><%= icon 'move' %></a>
+                  <a href='#' class='handle'><%= icon('move', text:t("move"))%></a>
                 <% end %>
               </td>
             </tr>

@@ -19,7 +19,7 @@
         <td>
           <%= raw make_menu(component, :except => "show") %>
           <% if check_permission(Sites::Admin::ComponentsController, 'sort') %>
-            <span class='handle icon icon-drag'><%= t("move") %></span>
+            <span class='handle'><%= icon('move', text:t("move")) %></span>
           <% end %>
         </td>
       </tr>
