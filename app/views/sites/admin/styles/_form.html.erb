@@ -16,11 +16,11 @@
       wrapper_html: { class: 'nostyle' },
       input_html: {class: 'style-editor' } %>
 
-    <%= link_to t("help_with_style"),
+    <%= link_to icon('question-sign', text:t("help_with_style")),
       (Setting.get(:help_site) || "/help"),
-      target: "_blank" %>
+      target: "_blank"%>
 
-    <%= image_tag "help-icon.png" %>
+    
   </div>
 
   <div class="form-actions">
