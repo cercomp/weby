@@ -1,6 +1,5 @@
 /*
  *= require _base
- *= require_tree ../../legacy 
  *= require ./mini
  *= require_self 
  */  
@@ -143,3 +142,47 @@ table.border td {
 table th,
 table td { padding: 3px; }
 table th { font-size: 13px; }
+
+// to clean paginate
+.pagination {
+  height: auto;
+  margin: 0;
+  padding: 3px 0px;
+}
+
+.pagination ul {
+  -webkit-border-radius: none;
+  -moz-border-radius: none;
+  border-radius: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+.pagination a {
+  background: transparent !important;
+  float: none;
+  padding: 0;
+  line-height: 18px;
+  border: none;
+}
+
+// important
+* { font-family: Verdana, sans-serif; }
+
+html { font-size: 13px; }
+
+#wrapper{ margin: 0 auto; }
+
+a, a:link, a:visited {  text-decoration: none; }
+
+a:hover, a:active {  text-decoration: none;}
+
+a img{ border: 0; text-decoration: none;}
+
+p {
+margin: 0 0 9px;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 13px;
+line-height: 18px;
+}
