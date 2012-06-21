@@ -2,8 +2,6 @@
  *= require _base
  *= require_tree ../../legacy 
  *= require ./mini
- *= require jquery-ui.css
- *= require jquery-ui-timepicker-addon.css
  *= require_self 
  */  
 
@@ -52,11 +50,7 @@ footer { clear:both; bottom:0; }
     header nav menu li menu li menu,
     footer nav menu li menu li menu { margin-left: 0px; margin-top: 0px; }
     header nav menu li a,
-    footer nav menu li a { background: #fff; display: block; line-height: 25px; margin: 0; padding-left: 5px; width: 81px; padding-right: 14px; }
-    header nav menu li > a,
-    footer nav menu li > a { text-overflow: ellipsis; overflow: hidden; white-space:nowrap; }
-    header nav > menu > li:hover > a,
-    footer nav > menu > li:hover > a { min-width: 81px; width: auto;  }
+    footer nav menu li a { background: #fff; display: block; line-height: 25px; margin: 0; padding-left: 5px; padding-right: 14px; }
     header nav menu li.sub > a,
     footer nav menu li.sub > a { background: url("/assets/arrow_collapsed.png") no-repeat scroll #fff; background-position: right center; }
     header nav > menu > li.sub > a { background: url("/assets/arrow_expanded.png") no-repeat scroll #fff; background-position: right center; }
@@ -83,7 +77,7 @@ aside { width: 155px; position: relative; }
 /* Define content area */
 section#content {
   width: auto;
-  padding: 5px;
+  padding: 9px;
   padding-top: 0;
   overflow: auto; }
   section#content > article {
@@ -108,21 +102,21 @@ section#content {
     font-weight: Normal;
     padding-bottom:5px; }
     section#content section#pages h1 {
-      font-size: 160%;
+      font-size: 140%;
       color: #1C1C1C; }
     section#content section#pages h2 {
       line-height: 100%;
       color: #2F4F4F;
-      font-size: 140%; }
+      font-size: 120%; }
     section#content section#pages h3 {
-      font-size: 120%;
+      font-size: 100%;
       line-height: 100%;
       color: #696969; }
     section#content section#pages p { }
 
-    section#content section#pages li:nth-child(odd) { border-bottom: 1px dotted #DDD; padding: 0px 0 10px 0; text-align: left; }
+    section#content section#pages li:nth-child(odd) { border-bottom: 1px dotted #DDD; padding: 10px 0; text-align: left; }
     section#content section#pages li:nth-child(odd) a img { float: left; padding-right: 15px; }
-    section#content section#pages li:nth-child(even) { border-bottom: 1px dotted #DDD; padding: 0px 0 10px 0; text-align: right; }
+    section#content section#pages li:nth-child(even) { border-bottom: 1px dotted #DDD; padding: 10px 0; text-align: right; }
     section#content section#pages li:nth-child(even) a img { float: right; padding-left: 15px; }
 
 
