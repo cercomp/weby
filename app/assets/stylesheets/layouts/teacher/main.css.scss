@@ -1,20 +1,14 @@
 /* 
-*= require _base
-*= require_tree ../../legacy 
-*= require ./mini
-*= require jquery-ui.css
-*= require jquery-ui-timepicker-addon.css
-*= require_self 
-*/  
+ *= require _base
+ *= require ./mini
+ *= require_self 
+ */  
 
 /* To work with HTML5 more easy */
-article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
-  display: block; }
+article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary { display: block; }
 
 /* Define basic style to layout */
-html {
-  background: #EAF5FB; }
-
+html { background: #EAF5FB; }
 body {
   font-family: Verdana, sans-serif;
   color: #484848;
@@ -103,19 +97,7 @@ footer nav menu li a {
   line-height: 25px;
   margin: 0;
   padding-left: 5px;
-  width: 81px;
   padding-right: 14px; }
-
-header nav menu li > a,
-footer nav menu li > a {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap; }
-
-header nav > menu > li:hover > a,
-footer nav > menu > li:hover > a {
-  min-width: 81px;
-  width: auto; }
 
 header nav menu li.sub > a,
 footer nav menu li.sub > a {
@@ -181,16 +163,18 @@ aside menu li > a {
 /* Define content area */
 section#content {
   width: auto;
-  padding: 5px;
+  padding: 9px;
   padding-top: 0;
   overflow: auto; }
 
 section#content > article {
   padding: 9px;
   border: 1px solid #EEE;
-  margin: 0px 3px; }
-  section#content > article > a:first-child {
+  margin: 0px 3px; 
+  
+  & > a:first-child {
     float: right; }
+  }
 
 section#content section#pages {
   width: 99%;
@@ -199,22 +183,22 @@ section#content section#pages {
   padding-bottom: 5px; }
 
 section#content section#pages h1 {
-  font-size: 160%;
+  font-size: 140%;
   color: #1C1C1C; }
 
 section#content section#pages h2 {
   line-height: 100%;
   color: #2F4F4F;
-  font-size: 140%; }
+  font-size: 120%; }
 
 section#content section#pages h3 {
-  font-size: 120%;
+  font-size: 100%;
   line-height: 100%;
   color: #696969; }
 
 section#content section#pages li:nth-child(odd) {
   border-bottom: 1px dotted #DDD;
-  padding: 0px 0 10px 0;
+  padding: 10px 0;
   text-align: left; }
 
 section#content section#pages li:nth-child(odd) a img {
@@ -223,7 +207,7 @@ section#content section#pages li:nth-child(odd) a img {
 
 section#content section#pages li:nth-child(even) {
   border-bottom: 1px dotted #DDD;
-  padding: 0px 0 10px 0;
+  padding: 10px 0;
   text-align: right; }
 
 section#content section#pages li:nth-child(even) a img {
@@ -289,72 +273,103 @@ table td {
 table th {
   font-size: 13px; }
 
-
 /* Menu -- Color Scheme  */
-  /* Removendo distanciamento esquerdo de 5px */
-  aside menu li { padding-left: 0; }
-  /* Esquerdo  */
-    /* Menu  */
-      /* Cor */ 
-        aside.left menu li a { background-color: #F2F2F2; }
-        aside.left menu li { background-color: #F2F2F2; }
-      /* Cor Hover */ 
-        aside.left menu li:hover { background-color: #C5C5C5; }
-        aside.left menu li a:hover { background-color: #C5C5C5; }
-      /* Cor fonte */ 
-        aside.left menu li a { color: #444444; }
-      /* Cor fonte hover */ 
-        aside.left menu li a:hover { color: #FFF; }
+/* Removendo distanciamento esquerdo de 5px */
+aside menu li { padding-left: 0; }
+/* Esquerdo  */
+  /* Menu  */
+    /* Cor */ 
+      aside.left menu li a { background-color: #F2F2F2; }
+      aside.left menu li { background-color: #F2F2F2; }
+    /* Cor Hover */ 
+      aside.left menu li:hover { background-color: #C5C5C5; }
+      aside.left menu li a:hover { background-color: #C5C5C5; }
+    /* Cor fonte */ 
+      aside.left menu li a { color: #444444; }
+    /* Cor fonte hover */ 
+      aside.left menu li a:hover { color: #FFF; }
 aside menu li { border: 1px solid #C5C5C5;}
-    /* Submenu  */
-      /* Cor */ 
-        aside.left menu li.sub > a { background-color: #C5C5C5; }
-      /* Cor fonte */ 
-        aside.left menu li.sub > a { color: #FFFFFF; }
-    /* Menu  */
-      /* Cor */
-        aside.right menu li a { background-color: #F2F2F2; }
-        aside.right menu li { background-color: #F2F2F2; }        
-      /* Cor Hover */
-        aside.right menu li:hover { background-color: #C5C5C5; }
-        aside.right menu li a:hover { background-color: #C5C5C5; }
-      /* Cor fonte */
-        aside.right menu li a { color: #444444; }
-      /* Cor fonte hover */
-        aside.right menu li a:hover { color: #fff; }
-    /* Submenu  */
-      /* Cor */
-        aside.right menu li.sub > a { background-color: #C5C5C5; }
-      /* Cor Hover */
-        aside.right menu li.sub:hover > a { background-color: #C5C5C5; }
-      /* Cor fonte */
-        aside.right menu li.sub > a { color: #FFFFFF; }
-      /* Cor fonte hover */
-        aside.right menu li.sub > a:hover { color: #FFFFFF; }
-  /* Superior  */
-    /* Menu  */
-      /* Cor */
-        header nav menu li a { background-color: #F2F2F2; }
-        header nav menu li { background-color: #F2F2F2; }
-      /* Cor Hover */
-        header nav menu li:hover { background-color: #C5C5C5; }
-        header nav menu li a:hover { background-color: #C5C5C5; }
-      /* Cor fonte */
-        header nav menu li a { color: #444444; }
-      /* Cor fonte hover */
-        header nav menu li a:hover { color: #fff; }
-      /* Remover menu que expande sobre o mouse */
-        header nav menu li a { width: auto; }
-        header nav menu li a:hover { width: auto; }
-  /* Inferior  */
-    /* Menu  */
-      /* Cor */
-        footer nav menu li a { }
-        footer nav menu li { }
-      /* Cor Hover */
-        footer nav menu li:hover { }
-        footer nav menu li a:hover { }
-      /* Cor fonte */
-        footer nav menu li a { }
-      /* Cor fonte hover */
-        footer nav menu li a:hover { }
+  /* Submenu  */
+    /* Cor */ 
+      aside.left menu li.sub > a { background-color: #C5C5C5; }
+    /* Cor fonte */ 
+      aside.left menu li.sub > a { color: #FFFFFF; }
+  /* Menu  */
+    /* Cor */
+      aside.right menu li a { background-color: #F2F2F2; }
+      aside.right menu li { background-color: #F2F2F2; }        
+    /* Cor Hover */
+      aside.right menu li:hover { background-color: #C5C5C5; }
+      aside.right menu li a:hover { background-color: #C5C5C5; }
+    /* Cor fonte */
+      aside.right menu li a { color: #444444; }
+    /* Cor fonte hover */
+      aside.right menu li a:hover { color: #fff; }
+  /* Submenu  */
+    /* Cor */
+      aside.right menu li.sub > a { background-color: #C5C5C5; }
+    /* Cor Hover */
+      aside.right menu li.sub:hover > a { background-color: #C5C5C5; }
+    /* Cor fonte */
+      aside.right menu li.sub > a { color: #FFFFFF; }
+    /* Cor fonte hover */
+      aside.right menu li.sub > a:hover { color: #FFFFFF; }
+/* Superior  */
+  /* Menu  */
+    /* Cor */
+      header nav menu li a { background-color: #F2F2F2; }
+      header nav menu li { background-color: #F2F2F2; }
+    /* Cor Hover */
+      header nav menu li:hover { background-color: #C5C5C5; }
+      header nav menu li a:hover { background-color: #C5C5C5; }
+    /* Cor fonte */
+      header nav menu li a { color: #444444; }
+    /* Cor fonte hover */
+      header nav menu li a:hover { color: #fff; }
+    /* Remover menu que expande sobre o mouse */
+      header nav menu li a { width: auto; }
+      header nav menu li a:hover { width: auto; }
+
+// to clean paginate
+.pagination {
+  height: auto;
+  margin: 0;
+  padding: 3px 0px;
+}
+
+.pagination ul {
+  -webkit-border-radius: none;
+  -moz-border-radius: none;
+  border-radius: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+.pagination a {
+  background: transparent !important;
+  float: none;
+  padding: 0;
+  line-height: 18px;
+  border: none;
+}
+
+// important
+* { font-family: Verdana, sans-serif; }
+
+html { font-size: 13px; }
+
+#wrapper{ margin: 0 auto; }
+
+a, a:link, a:visited {  text-decoration: none; }
+
+a:hover, a:active {  text-decoration: none;}
+
+a img{ border: 0; text-decoration: none;}
+
+p {
+  margin: 0 0 9px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}

@@ -5,51 +5,44 @@
   <meta charset="utf-8">
   <%= csrf_meta_tag %>
   <%= stylesheet_link_tag 'layouts/weby_doc/main' %>
-  <%= stylesheet_link_tag 'layouts/weby_doc/mini' %>
   <%= stylesheet_link_tag '_navbar' if current_user %>
   <%= render 'sites/shared/loadStyles' %>
   <%= yield :stylesheets %>
 </head>
-
 <body>
   <%= current_user ? render('layouts/shared/navbar') : link_to(image_tag('weby-icon.png'), login_path(back_url: site_admin_path), style: 'position:fixed; z-index: 1000') %>
   <div class="first_place">
     <%= load_components 'first_place' %>
   </div>
-
-  <header class="cf">
-    <%= link_to image_tag('weby.png', class: 'pull-left'), site_path %>
-    <div class="orbitron title pull-right">
-      <% if @page %>
-        <div class='title'>
-          <%= raw @page.title %>
+  <div class="container">  
+    <header class="row">
+      <div class="span4">
+        <%= link_to image_tag('weby.png', class: 'pull-left'), site_path %>
+      </div>
+      <div class="span8">
+        <div class="orbitron title pull-right">
+          <% if @page %>
+            <div class='title'><%= raw @page.title %></div>
+            <div class='summary'><%= raw @page.summary %></div>
+          <% else %>
+            <%= t('documentation') %>
+          <% end %>
         </div>
-        <div class='summary'>
-          <%= raw @page.summary %>
-        </div>
-      <% else %>
-       <%= t('documentation') %>
-      <% end %>
-    </div>
-  </header>
-
-  <div class="top">
-    <%= load_components 'top'%>
-    <div style="clear: both"> </div>
+      </div>
+    </header>
   </div>
-
+  <div class="container">
+    <%= load_components 'top'%>
+  </div>
   <section id="content">
     <div class="container">
       <%= raw flash_message %>
       <%= yield %>
     </div>
   </section>
-
   <footer>
     <%= load_components 'bottom' %>
   </footer>
-
   <%= render 'layouts/shared/javascripts' %>
 </body>
 </html>
-

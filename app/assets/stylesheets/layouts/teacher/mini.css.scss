@@ -29,16 +29,8 @@
 
 }
 
-#mini_bottom{
-  height: 30px;
-}
+#mini_bottom{ height: 30px;}
 
-.clicked, .clicked.hover:hover {
-    background: #f7f6d9 url(/assets/clicked.png) 50% 50% repeat;
-}
+.clicked, .clicked.hover:hover { background: #f7f6d9; }
 
-.hover:hover {
-  background-color: #dadada;
-}
-
-
+.hover:hover { background-color: #dadada; }
