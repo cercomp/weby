@@ -1,4 +1,3 @@
-
 #mini_layout{
   border: 1px dotted black;
   background-color: #E6E6E6;	
@@ -26,12 +25,6 @@
   height: 30px;
 }
 
-.clicked, .clicked.hover:hover {
-    background: #f7f6d9 url(/assets/clicked.png) 50% 50% repeat;
-}
+.clicked, .clicked.hover:hover { background: #f7f6d9; }
 
-.hover:hover {
-  background-color: #dadada;
-}
-
-
+.hover:hover { background-color: #dadada; }
