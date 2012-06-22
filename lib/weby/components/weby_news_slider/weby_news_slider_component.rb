@@ -1,5 +1,5 @@
 class WebyNewsSliderComponent < Component
-  component_settings :news_category, :width, :height, :quantity
+  component_settings :news_category, :width, :height, :quantity, :timer
 
   def pages(site)
     news_category.blank? ?
@@ -20,5 +20,10 @@ class WebyNewsSliderComponent < Component
   alias :_quantity :quantity
   def quantity
     _quantity.blank? ? '5' : _quantity
+  end
+
+  alias :_timer :timer
+  def timer
+    _timer.blank? ? '7' : _timer
   end
 end
