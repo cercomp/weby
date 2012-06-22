@@ -1,4 +1,7 @@
-<fieldset>
+<%- title 'file.other' %>
+
+<div class="span9">
+  <div class="well">
 	<p> <%= weby_file_view(@repository, :original) %>  </p>	
   <p> <b><%= t("name") %>:</b> <%= @repository.archive_file_name %> </p>
   <p> <b><%= t("size") %>:</b> <%= @repository.archive_file_size %> </p>
@@ -7,6 +10,7 @@
 	<p> <b><%= t("file_link") %>:</b> <%= @repository.archive.url(:original) %>  </p>	
 
   <%= make_menu(@repository, :except => "show") %> 
-  <%= link_to t("list_all.masc"), site_admin_repositories_path(), :class => 'icon icon-list' %> 
-  <%= link_to t("back"), :back, :class => 'icon icon-back' %>
-</fieldset>
+  <%= link_to icon('list', text: t("list_all.masc")), site_admin_repositories_path() %> 
+  <%= link_to icon('chevron-left', text:t("back")), :back %>
+</div>
+</div>
