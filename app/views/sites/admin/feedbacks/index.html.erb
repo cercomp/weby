@@ -10,16 +10,16 @@
 <% end %>
 
     <div class="pull-right">
-      <% if check_permission(Sites::Admin::GroupsController, [:new]) %>
-        <%= link_to t('new_param.masc', param: t('group.one')),
-          new_site_admin_group_path,
-          class: "btn btn-success btn-large" %>
-      <% end %>
-      <% if check_permission(Sites::Admin::FeedbacksController, [:index]) %>
-        <%= link_to t('group.other'),
-          site_admin_groups_path,
-          class: "btn btn-primary btn-large" %>
-      <% end %>
+      <%# <% if check_permission(Sites::Admin::GroupsController, [:new]) %>
+      <%#   <%= link_to t('new_param.masc', param: t('group.one')),
+      <%#     new_site_admin_group_path,
+      <%#     class: "btn btn-success btn-large" %>
+      <%# <% end %>
+      <%# <% if check_permission(Sites::Admin::FeedbacksController, [:index]) %>
+      <%#   <%= link_to t('group.other'),
+      <%#     site_admin_groups_path,
+      <%#     class: "btn btn-primary btn-large" %>
+      <%# <% end %>
     </div>
     <div class="clearfix"></div>
 
