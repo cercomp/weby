@@ -57,3 +57,9 @@ textarea.style-editor
 }
 
 label.required abbr { color: red; }
+
+// Nowrap tables
+table.nowrap td > div {
+  overflow: hidden;
+  white-space: nowrap;
+}
