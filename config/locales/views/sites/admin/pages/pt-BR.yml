@@ -2,6 +2,8 @@ pt-BR:
   sites:
     admin:
       pages:
+        list:
+          created_at: Cadastrado em
         form:
           period_page: "Período da Página"
           related_files: "Arquivos Relacionados"

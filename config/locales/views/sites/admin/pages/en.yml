@@ -2,6 +2,8 @@ en:
   sites:
     admin:
       pages:
+        list:
+          created_at: Created at
         form:
           period_page: "Page Period"
           related_files: "Related Files"

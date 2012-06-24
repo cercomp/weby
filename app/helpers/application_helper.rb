@@ -212,6 +212,9 @@ module ApplicationHelper
       # Trata os argumentos para excluir itens do menu
       ctr = args[:controller].nil? ? controller.class : args[:controller]
 
+      # Texto nos ícones
+      args[:with_text] = true if args[:with_text].nil?
+
       # Transforma o parâmetro em array caso não seja
       excepts = [excepts] unless excepts.is_a? Array
       excepts.each_index do |i|
@@ -226,23 +229,38 @@ module ApplicationHelper
         if permission and actions.include?(permission.to_sym)
           case permission.to_s
           when "show"
-            menu << link_to(icon('eye-open', text: t('show')), params.merge({:controller => ctr.controller_name,
-                                                     :action => 'show', :id => obj.id}),
-                                                     :alt => t('show'),
-                                                     :title => t('show')) + " "
+            menu << link_to(
+              icon('eye-open', text: args[:with_text] ? t('show') : ''),
+              params.merge({
+                :controller => ctr.controller_name,
+                :action => 'show', :id => obj.id
+              }),
+              :alt => t('show'),
+              :title => t('show')
+            ) + " "
+
           when "edit"
-            menu << link_to(icon('edit', text: t("edit")), params.merge({:controller => ctr.controller_name,
-                                                     :action => 'edit', :id => obj.id}),
-                                                     :alt => t('edit'),
-                                                     :title => t('edit')) + " "
+            menu << link_to(
+              icon('edit', text: args[:with_text] ? t('edit') : ''),
+              params.merge({
+                :controller => ctr.controller_name,
+                :action => 'edit', :id => obj.id
+              }),
+              :alt => t('edit'),
+              :title => t('edit')) + " "
+
           when "destroy"
-            menu << link_to(icon('trash', text: t("destroy")), params.merge({:controller => ctr.controller_name,
-                                                        :action => 'destroy',
-                                                        :id => obj.id}),
-                                                        :confirm => t('are_you_sure'),
-                                                        :method => :delete, 
-                                                        :alt => t('destroy'), 
-                                                        :title => t('destroy')) + " "
+            menu << link_to(
+              icon('trash', text: args[:with_text] ? t('destroy') : ''),
+              params.merge({
+                :controller => ctr.controller_name,
+                :action => 'destroy',
+                :id => obj.id
+              }),
+              :confirm => t('are_you_sure'),
+              :method => :delete,
+              :alt => t('destroy'),
+              :title => t('destroy')) + " "
           end
         end
       end
@@ -372,18 +390,19 @@ module ApplicationHelper
     return false
   end
 
-  def icon type, args={}
-    args[:white] = false if args[:white].nil?
-    args[:text] = "" if args[:text].nil?
+  def icon(type, args={})
+    args.reverse_merge({
+      :white => false,
+      :text  => ''
+    })
+
     unless type.nil?
-      icon_class = "icon-#{type}"
-      if args[:white]
-        icon_class = "#{icon_class} icon-white"
-      end
+      icon_class = "icon-#{type}" + (args[:white] ? ' icon-white' : '')
+
       if args[:right]
-        raw "#{args[:text]} <i class=\"#{icon_class}\"></i>"
+        raw "#{args[:text]} <i class='#{icon_class}'></i>"
       else
-        raw "<i class=\"#{icon_class}\"></i> #{args[:text]}"
+        raw "<i class='#{icon_class}'></i> #{args[:text]}"
       end
     end
   end
