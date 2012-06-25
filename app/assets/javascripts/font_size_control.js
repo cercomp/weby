@@ -6,7 +6,7 @@ var font_original = new Array();
 var font_up = new Array();
 var font_down = new Array();
 
-
+//setando cookies das fontes
 tags.ready(function(){
   tags.each(function(){ font_original.push($(this).css('font-size'))})
   $.cookie("font_size_original", font_original, {path: '/' });
@@ -25,8 +25,7 @@ function font_size_up(){
     var newSizeTag = currentSizeTag + 2;
     
     font_up[cont] = newSizeTag.toString() + 'px';
-    
-    
+     
     $(this).css('font-size', font_up[cont++] );
   })
   
@@ -39,7 +38,6 @@ function font_size_down(){
     var newSizeTag = currentSizeTag -2;
     
     font_down[cont] = newSizeTag.toString() + 'px';
-    
     
     $(this).css('font-size', font_down[cont++] );
   })
