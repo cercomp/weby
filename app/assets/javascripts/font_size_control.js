@@ -1,32 +1,57 @@
 //= require jquery.cookie
 //= require_self
+var tags = $('*');
+var tags = tags.not(tags.find(".no_contrast").find("*"));
+var font_original = new Array();
+var font_up = new Array();
+var font_down = new Array();
 
-var rejectTag = 'a';
-var tags = $('#wrapper,th,input').not(rejectTag)
 
 tags.ready(function(){
-  $.cookie("font_size_original", tags.css('font-size'), {path: '/' });
+  tags.each(function(){ font_original.push($(this).css('font-size'))})
+  $.cookie("font_size_original", font_original, {path: '/' });
   tags.css('font-size', null + 'px');
+  for (var i = 0; i < font_original.length; i++) {
+    font_up[i] = font_original[i];
+    font_down[i] = font_original[i];
+  };
 })
 
-function font_size_up(){
-  var font = tags.css('font-size');
-  var currentSizeTag = parseInt(font.substr(0, font.length - 2));
-  var newSizeTag = currentSizeTag + 2;
 
-  if( newSizeTag < ( parseInt($.cookie("font_size_original").substr(0, font.length - 2)) + 10 ) )
-    tags.css('font-size', newSizeTag.toString() + 'px');
+function font_size_up(){
+ var cont = 0;
+  tags.each(function  () {
+    var currentSizeTag = parseInt(font_up[cont].substr(0, font_up[cont].length - 2));
+    var newSizeTag = currentSizeTag + 2;
+    
+    font_up[cont] = newSizeTag.toString() + 'px';
+    
+    
+    $(this).css('font-size', font_up[cont++] );
+  })
+  
 }
 
 function font_size_down(){
-  var font = tags.css('font-size');
-  var currentSizeTag = parseInt(font.substr(0, font.length - 2));
-  var newSizeTag = currentSizeTag - 1;
-
-  tags.css('font-size', newSizeTag.toString() + 'px');
+  var cont = 0;
+  tags.each(function  () {
+    var currentSizeTag = parseInt(font_down[cont].substr(0, font_down[cont].length - 2));
+    var newSizeTag = currentSizeTag -2;
+    
+    font_down[cont] = newSizeTag.toString() + 'px';
+    
+    
+    $(this).css('font-size', font_down[cont++] );
+  })
 }
 
-function font_size_original(){ 
-  tags.css('font-size', $.cookie("font_size_original"));
-  $.cookie("font_size", null, {path: '/'});
+function font_size_original(){
+var i=0; 
+  tags.each(function(){
+    $(this).css('font-size',font_original[i++]);
+  })
+  for (var i = 0; i < font_original.length; i++) {
+    font_up[i] = font_original[i];
+    font_down[i] = font_original[i];
+  };
 }
