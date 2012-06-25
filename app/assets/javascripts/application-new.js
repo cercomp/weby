@@ -1,6 +1,7 @@
 //= require jquery
 //= require jquery_ujs 
 //= require bootstrap
+//= require tables
 //= require_self
 var WEBY = {};
 

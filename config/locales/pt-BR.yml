@@ -505,7 +505,7 @@ pt-BR:
   time:
     formats:
       default: "%a, %d-%m-%Y %H:%M:%S %z"
-      short: "%d-%m-%Y %H:%M"
+      short: "%d/%m/%y %H:%M"
       long: "%d de %B de %Y às %H:%M"
       event_date_short: "%d %B"
       event_date_full: "%d %B %Y"
