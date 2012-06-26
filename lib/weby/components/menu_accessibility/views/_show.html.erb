@@ -1,9 +1,9 @@
 <nav class="component_menu_accessibility right">
-  <%= link_to icon('adjust'), "#", onclick: 'invertColors()'  %>
+  <%= link_to icon('adjust'), "#", onclick: 'Contrast()' %>
   <%= link_to icon('minus'), "#", onclick: 'font_size_down()'%>
   <%= link_to icon('font'), "#", onclick: 'font_size_original()'%>
   <%= link_to icon('plus'), "#", onclick: 'font_size_up()'%>
   <% content_for :javascripts, javascript_include_tag('font_size_control') %>
   <% content_for :javascripts, javascript_include_tag('rgbcolor') %>
-  <% content_for :javascripts, javascript_include_tag('invertColors') %>
+  <% content_for :javascripts, javascript_include_tag('contrast') %>
 </nav>
