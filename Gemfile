@@ -2,15 +2,16 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.6'
 gem 'mongrel', '>= 1.2.0.pre2'
-gem "jquery-rails"
+gem 'jquery-rails'
 gem 'pg'
 gem 'authlogic'
 gem 'kaminari'
-gem "paperclip", :git => "http://github.com/thoughtbot/paperclip.git" 
-gem "acts_as_list"
-gem "simple_form", :tag => 'v2.0.1', :git => "http://github.com/plataformatec/simple_form.git"
-gem "acts-as-taggable-on"
+gem 'paperclip', :git => 'http://github.com/thoughtbot/paperclip.git' 
+gem 'acts_as_list'
+gem 'simple_form', :tag => 'v2.0.1', :git => 'http://github.com/plataformatec/simple_form.git'
+gem 'acts-as-taggable-on'
 gem 'bootstrap-sass'
+gem 'breadcrumbs_on_rails'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
