@@ -1,0 +1,6 @@
+en:
+  activerecord:
+    models:
+      locale: ""
+    attributes:
+      locale:

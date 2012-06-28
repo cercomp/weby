@@ -1,7 +1,7 @@
-en:
+pt-BR:
   activerecord:
     models:
-      sites_menu: ""
+      sites_menu: "Banner"
     attributes:
       sites_menu:
 

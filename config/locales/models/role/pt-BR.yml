@@ -1,8 +1,7 @@
-en:
+pt-BR:
   activerecord:
     models:
-      styles: ""
+      role: ""
     attributes:
-      styles:
-
+      role:
 
