@@ -1,7 +1,10 @@
-en:
+pt-BR:
   activerecord:
     models:
       user_session: "Banner"
     attributes:
       user_session:
+        login: ""
+        password: ""
+        remember_me: ""
 

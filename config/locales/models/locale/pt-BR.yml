@@ -1,8 +1,7 @@
-en:
+pt-BR:
   activerecord:
     models:
-      styles: ""
+      locale: ""
     attributes:
-      styles:
-
+      locale:
 

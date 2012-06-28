@@ -1,0 +1,7 @@
+en:
+  activerecord:
+    models:
+      sites_menu: ""
+    attributes:
+      sites_menu:
+

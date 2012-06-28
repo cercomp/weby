@@ -1,8 +1,6 @@
-en:
+pt-BR:
   activerecord:
     models:
-      styles: ""
+      menus: ""
     attributes:
-      styles:
-
-
+      menus:

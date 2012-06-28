@@ -1,0 +1,8 @@
+en:
+  activerecord:
+    models:
+      groups: ""
+    attributes:
+      groups:
+
+

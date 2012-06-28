@@ -1,8 +1,7 @@
-en:
+pt-BR:
   activerecord:
     models:
-      styles: ""
+      feedback: ""
     attributes:
-      styles:
-
+      feedback:
 
