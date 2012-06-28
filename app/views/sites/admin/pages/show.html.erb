@@ -44,12 +44,16 @@
       </div>
 
       <%= content_tag_if @page.source.present?, :p, class: 'source' do %>
-        <%= "#{label(:page, :source)} #{@page.url.blank? ? @page.source : link_to(@page.source, @page.url)}".html_safe %>
-      <% end %>
+    <span class="source-label"><%= "#{t('source')}:" %></span>
+    <%= "#{@page.source}" %>
+  <% end %>
 
-      <%= content_tag_if @page.category_list.any?, :p, class: 'categories' do %>
-        <%= "#{label(:page, :categories)} #{@page.category_list.sort * ', '}".html_safe %>
-      <% end %>
+  <%= content_tag_if @page.category_list.any?, :p, class: 'categories' do %>
+    <span class="categories-label"><%= "#{t('categories')}:"  %></span>
+    <% @page.category_list.each do |category| %>
+      <span class="label label-info"><%= category %></span>
+    <% end %>
+  <% end %>
 
       <%= render partial: 'related_files' if @page.related_files.any? %>
 
