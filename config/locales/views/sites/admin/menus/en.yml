@@ -1,6 +1,7 @@
 en:
-  activerecord:
-    models:
-      repositories: ""
-    attributes:
-      repositories:
+  sites:
+    admin:
+      menus:
+        form:
+          name: "Name"
+      
