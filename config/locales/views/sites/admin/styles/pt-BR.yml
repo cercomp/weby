@@ -1,7 +1,22 @@
 pt-BR:
-  activerecord:
-    models:
-      styles: ""
-    attributes:
+  sites:
+    admin:
       styles:
+        styles:
+        index:
+        other_styles: "Outros Estilos"
+        follow_styles: "Estilos seguidos"
+        own_styles: "Estilos próprios"
+        styles:
+          other_styles: "Outros Estilos"
+          follow_styles: "Estilos seguidos"
+          no_other_styles: "Não existem outros estilos"
+          no_follow_styles: "Nenhum estilo seguido"
+        own_styles:
+          actions: "Ações"
+          own_styles: "Estilos próprios"
+          name: "Nome"
+          no_own_styles: "Não possui estilo próprio"
+          sites_followers: "Sites que seguem esse estilo"
+
 

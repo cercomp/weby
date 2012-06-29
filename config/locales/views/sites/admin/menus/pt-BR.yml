@@ -1,6 +1,6 @@
 pt-BR:
-  activerecord:
-    models:
-      menus: ""
-    attributes:
+  sites:
+    admin:
       menus:
+        form:
+          name: "Nome"
