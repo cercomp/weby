@@ -1,7 +1,11 @@
 en:
   activerecord:
     models:
-      right: ""
+      right: "Right"
     attributes:
       right:
-
+        name: "Name"
+        controller: "Controller"
+        action: "Action"
+        created_at: "Created at"
+        updated_at: "Updated at"

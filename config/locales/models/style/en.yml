@@ -1,7 +1,15 @@
 en:
   activerecord:
     models:
-      sites_menu: ""
+      style: "Style"
     attributes:
-      sites_menu:
+      style:
+        name: "Name"
+        css: "Css"
+        created_at: "Created at"
+        updated_at: "Updated at"
+        publish: "Publish"
+        position: "Position"
+        owner_id: "Owner id"
+
 
