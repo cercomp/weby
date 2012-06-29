@@ -1,7 +1,9 @@
 en:
   activerecord:
     models:
-      user_session: "Banner"
+      user_session: "User session"
     attributes:
       user_session:
-
+        login: "Login"
+        password: "Password"
+        remember_me: "Remember me"

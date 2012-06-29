@@ -1,10 +1,10 @@
 pt-BR:
   activerecord:
     models:
-      user_session: "Banner"
+      user_session: "User Session"
     attributes:
       user_session:
-        login: ""
-        password: ""
-        remember_me: ""
+        login: "Login"
+        password: "Password"
+        remember_me: "Lembrar"
 

@@ -1,7 +1,18 @@
 en:
   activerecord:
     models:
-      user: ""
+      user: "User"
     attributes:
       user:
-
+        login: "Login"
+        email: "E-mail"
+        theme: "Theme"
+        status: "Status"
+        is_admin: "Is admin?"
+        first_name: "First Name"
+        last_name: "Last Name"
+        phone: "Phone"
+        mobile: "Mobile"
+        created_at: "Created at"
+        updated_at: "Updated at"
+        password: "Password"

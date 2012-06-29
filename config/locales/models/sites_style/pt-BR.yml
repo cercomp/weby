@@ -1,7 +1,12 @@
 pt-BR:
   activerecord:
     models:
-      sites_style: ""
+      sites_style: "Estilos_Sites"
     attributes:
       sites_style:
+        site_id: "Site id"
+        sytle_id: "Estilo id"
+        publish: "Publicar"
+        created_at: "Criado em"
+        updated_at: "Atualizado em"
 
