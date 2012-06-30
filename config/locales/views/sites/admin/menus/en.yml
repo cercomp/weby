@@ -1,6 +1,6 @@
 en:
   activerecord:
     models:
-      repositories: ""
+      menus: ""
     attributes:
-      repositories:
+      menus:

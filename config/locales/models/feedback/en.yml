@@ -1,7 +1,14 @@
 en:
   activerecord:
     models:
-      feedback: ""
+      feedback: "Feedback"
     attributes:
       feedback:
+        name: ""
+        email: ""
+        subject: ""
+        message: ""
+        site_id: ""
+        created_at: ""
+        updated_at: ""
 
