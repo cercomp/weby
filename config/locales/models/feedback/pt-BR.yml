@@ -1,7 +1,14 @@
 pt-BR:
   activerecord:
     models:
-      feedback: ""
+      feedback: "Fale Conosco"
     attributes:
       feedback:
+        name: ""
+        email: ""
+        subject: ""
+        message: ""
+        site_id: ""
+        created_at: ""
+        updated_at: ""
 
