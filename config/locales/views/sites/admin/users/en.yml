@@ -1,8 +1,10 @@
 en:
-  activerecord:
-    models:
-      users: ""
-    attributes:
+  sites:
+    admin:
       users:
+        manage_roles:
+          manage_roles: "Manage Roles"
+        enrole:
+          enrole_user: "Enrole user"  
 
 

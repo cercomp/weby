@@ -1,7 +1,26 @@
 pt-BR:
   activerecord:
     models:
-      site: ""
+      site: "Site"
     attributes:
       site:
+        name: "Nome"
+        created_at:  "Criado em"
+        updated_at: "Atualizado em"
+        url: "Url"
+        description: "Descrição"
+        top_banner_id: "Topo do site"
+        top_banner_width: "Largura do topo do site"
+        top_banner_height: "Altura do topo do site"
+        body_width: "Larguda do site"
+        footer: "Rodapé"
+        theme: "Teme"
+        view_desc_pages: "Visualizar descrição"
+        per_page: "Por página"
+        per_page_default: "Quantidade padrão por página"
+        menu_dropdown: "Usar Menus Desdobraveis"
+        title: "Título"
+        parent_id: "Parent id"
+
+
 

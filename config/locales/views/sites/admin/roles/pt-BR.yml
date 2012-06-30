@@ -1,7 +1,14 @@
 pt-BR:
-  activerecord:
-    models:
-      roles: ""
-    attributes:
+  sites:
+    admin:
       roles:
+        index: 
+          roles_permissions: "Permissões e Papéis"
+        new: 
+          roles_permissions: "Permissões e Papéis"
+        edit: 
+          roles_permissions: "Permissões e Papéis"
+
+
+
 
