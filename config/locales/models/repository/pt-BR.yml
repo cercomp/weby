@@ -4,4 +4,11 @@ pt-BR:
       repository: ""
     attributes:
       repository:
-
+        archive_content_type: ""
+        archive_file_name: ""
+        archive_file_size: ""
+        archive_updated_at: ""
+        created_at: "Criado em"         
+        description: "Descrição"
+        site_id: "Id do site"
+        updated_at: "Atualizado em"         

@@ -2,12 +2,22 @@ en:
   sites:
     admin:
       pages:
-        list:
-          created_at: Created at
+        event:               'Event'
+        news:                'News'
+        new:
+          title:             'New page'
+        edit:
+          title:             'Update page'
+        related_files:
+          size:              'Size'
+          related_files:     'Related Files'
         form:
-          period_page: "Page Period"
-          related_files: "Related Files"
+          image:             'Page image'
+          period_page:       'Page period'
+          related_files:     'Related files'
         event_form:
-          period_event: "Event Period"
-          is_event: 'Is event?'
-
+          is_event:          'Is event?'
+          period_event:      'Event date'
+          regional:          'Regional'
+          national:          'National'
+          international:     'International'

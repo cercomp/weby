@@ -1,6 +1,10 @@
 en:
   activerecord:
     models:
-      locale: ""
+      locale: "Locale"
     attributes:
       locale:
+        created_at: "Created at"
+        flag: "Flag"
+        name: "Name"
+        updated_at: "Updated at"

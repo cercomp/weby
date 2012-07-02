@@ -2,8 +2,14 @@
 en:
   sites:
     admin:
-      menu_items:
-        new:
-          title:             'New Menu Item'
-        edit:
-          title:             'Edit Menu Item'
+      menu:
+        menu_items:
+          new:
+            title: "New Menu Item"
+          edit:
+            title: "Edit Menu Item"
+          form:
+            parent_menu_item: "Parent menu item"
+            type_url: "Type a URL"
+          edit:
+            menu_items: "Menu Items"

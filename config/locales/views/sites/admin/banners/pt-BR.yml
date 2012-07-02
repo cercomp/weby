@@ -4,6 +4,27 @@ pt-BR:
       banners:
         form:
           add_category: "Adicionar Categoria"
+          banner:
+            image: "Imagem do banner"
+          begin: "Início"
+          category: "Categoria"
+          enter_the_url: "Digite a URL"
+          lower_numbers_come_first: "Menores números aparecem primeiro"
           period_banner: "Período do Banner"
-          
-
+          publication_infinite: "Publicação infinita"
+          select_page: "Selecione uma página"
+        list:
+          author: "Autor"
+          category: "Categoria"
+          position: "Posição"
+          publication_date: "Data de Publicação"
+          publish: "Publicar"
+          register_date: "Data de Registro"
+          title: "Título"
+          none_param_banner: "Nenhum Banner" 
+        edit:
+          help_image_banner: "Essa imagem será utilizada como banner!"
+        index:
+          new_banner: "New Banner"
+        show:
+          banner: "Banner"
