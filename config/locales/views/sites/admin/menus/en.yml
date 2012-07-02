@@ -1,6 +1,19 @@
-en:
-  activerecord:
-    models:
-      menus: ""
-    attributes:
+pt-BR:
+  sites:
+    admin:
       menus:
+        form:
+          name: "Name"
+        edit:
+          menus: "Menus"
+        index:
+          menus: "Menus"
+          menu: "Menu"
+          none_menu: "None Menu"
+          new_menu: "New Menu"
+          new_menu_item: "New Menu Item"
+          edit_menu: "Edit Menu"
+          destroy: "Dkstroy"
+          are_you_sure: "Are you sure?"
+        new:
+          menus: "Menus"

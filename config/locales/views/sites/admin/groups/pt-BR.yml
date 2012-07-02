@@ -1,7 +1,14 @@
 pt-BR:
-  activerecord:
-    models:
-      groups: ""
-    attributes:
+  sites:
+    admin:
       groups:
-
+        form: 
+          field_required: "Campo obrigatório!"
+          comma_separated_emails: "Emails Separados por Vírgula"
+          please_wait: "Por favor, aguarde..."
+        list:
+          name: "Nome"
+        index:
+          groups: "Grupos"
+          new_group: "Novo Grupo"
+          messages: "Mensagens"

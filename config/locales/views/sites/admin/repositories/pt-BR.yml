@@ -1,7 +1,45 @@
 pt-BR:
-  activerecord:
-    models:
-      repositories: ""
-    attributes:
+  sites:
+    admin:
       repositories:
-
+        index:
+          search: "Buscar"
+          new_archive: "Novo Arquivo"
+        show:
+          name: "Nome"
+          size: "Tamanho"
+          type: "Tipo"
+          archive_description: "Descrição do arquivo"
+          file_link: "Link para arquivo"
+          list_all: "Listar todos"
+        new:
+          archives: "Arquivos"
+        edit:
+          archives: "Arquivos"
+        ajax_upload:
+          file: "Arquivo"
+          select_file: "Selecione o arquivo"
+        form:
+          field_required: "Campo obrigatório!"
+          archives: "Arquivos"
+          please_wait: "Por favor, aguarde..."
+        repo:
+          picture: "Imagem"
+        repositories_as_table:
+          archives: "Arquivos"
+        repository_search:
+          archives: "Arquivos"
+          repository: "Repositório"
+          new_file: "Novo Arquivo"
+        search_and_new_file:
+          search_image: "Buscar Imagem"
+        show_attachment_list:
+          insert: "Inserir"
+          details: "Detalhes"
+          cancel: "Cancelar"
+        tinymce:
+          search: "Buscar"
+          image: "Imagem"
+        tinymce_link:
+          search: "Buscar"
+          archive: "Arquivo"

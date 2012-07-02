@@ -4,11 +4,11 @@ pt-BR:
       feedback: "Fale Conosco"
     attributes:
       feedback:
-        name: ""
-        email: ""
-        subject: ""
-        message: ""
-        site_id: ""
-        created_at: ""
-        updated_at: ""
+        name: "Nome"
+        email: "Email"
+        subject: "Assunto"
+        message: "Mensagem"
+        site_id: "Id do site"
+        created_at: "Criado em"
+        updated_at: "Atualizado em"
 

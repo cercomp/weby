@@ -1,8 +1,14 @@
 en:
-  activerecord:
-    models:
-      groups: ""
-    attributes:
+  sites:
+    admin:
       groups:
-
-
+        form: 
+          field_required: "Field required!"
+          comma_separated_emails: "Comma Separated Emails"
+          please_wait: "Please wait..."
+        list:
+          name: "Name"
+        index:
+          groups: "Groups"
+          new_group: "New Group"
+          messages: "Messages"

@@ -4,11 +4,11 @@ en:
       feedback: "Feedback"
     attributes:
       feedback:
-        name: ""
-        email: ""
-        subject: ""
-        message: ""
-        site_id: ""
-        created_at: ""
-        updated_at: ""
+        name: "Name"
+        email: "Email"
+        subject: "Subject"
+        message: "Message"
+        site_id: "Site id"
+        created_at: "Created at"
+        updated_at: "Updated at"
 

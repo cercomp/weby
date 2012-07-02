@@ -1,8 +1,45 @@
 en:
-  activerecord:
-    models:
-      repositories: ""
-    attributes:
+  sites:
+    admin:
       repositories:
-
-
+        index:
+          search: "Search"
+          new_archive: "New Archive"
+        show:
+          name: "Name"
+          size: "Size"
+          type: "Type"
+          archive_description: "The archive description"
+          file_link: "Link to file"
+          list_all: "List All"
+        new:
+          archives: "Files"
+        edit:
+          archives: "Files"
+        ajax_upload:
+          file: "File"
+          select_file: "Select File"
+        form:
+          field_required: "Field required!"
+          archives: "Files"
+          please_wait: "Please wait..."
+        repo:
+          picture: "Picture"
+        repositories_as_table:
+          archives: "Files"
+        repository_search:
+          archives: "Files"
+          repository: "Repository"
+          new_file: "New File"
+        search_and_new_file:
+          search_image: "Search Image"
+        show_attachment_list:
+          insert: "Insert"
+          details: "Details"
+          cancel: "Cancel"
+        tinymce:
+          search: "Search"
+          image: "Image"
+        tinymce_link:
+          search: "Search"
+          archive: "File"

@@ -1,7 +1,12 @@
 en:
   activerecord:
     models:
-      group: ""
+      group: "Group"
     attributes:
       group:
+        created_at: "Created at"
+        emails: "Emails"
+        name: "Name"
+        site_id: "Site id"
+        updated_at: "Updated at"
 

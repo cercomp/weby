@@ -2,13 +2,27 @@ pt-BR:
   sites:
     admin:
       pages:
-        list:
-          created_at: Cadastrado em
+        event:               'Evento'
+        news:                'Notícia'
+        index:
+          search_helper:     'Pode-se buscar pelo título, resumo, conteúdo, primeiro nome do autor, tipo(news, event) e pelas categorias.'
+        new:
+          title:             'Nova Página'
+        edit:
+          title:             'Editar Página'
+        related_files:
+          size:              'Tamanho'
+          related_files:     'Arquivos Relacionados'
         form:
-          period_page: "Período da Página"
-          related_files: "Arquivos Relacionados"
+          image:             'Imagem da página'
+          period_page:       'Período da Página'
+          related_files:     'Arquivos relacionados'
         event_form:
-          period_event: "Período do Evento"
-          is_event: 'É Evento?'
+          is_event:          'É Evento?'
+          period_event:      'Período do Evento'
+          regional:          'Regional'
+          national:          'Nacional'
+          international:     'Internacional'
+
           
 
