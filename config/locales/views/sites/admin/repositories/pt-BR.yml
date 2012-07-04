@@ -3,7 +3,7 @@ pt-BR:
     admin:
       repositories:
         index:
-          search: "Buscar"
+          archives: "Arquivos"
           new_archive: "Novo Arquivo"
         show:
           name: "Nome"
@@ -19,20 +19,26 @@ pt-BR:
         ajax_upload:
           file: "Arquivo"
           select_file: "Selecione o arquivo"
+          field_required: "Campo obrigatório!"
         form:
           field_required: "Campo obrigatório!"
+          accessibility_needs: "Necessário para que seu site se torne acessível."
           archives: "Arquivos"
           please_wait: "Por favor, aguarde..."
         repo:
           picture: "Imagem"
         repositories_as_table:
           archives: "Arquivos"
+          description: "Descrição"
+        repository_as_boxes:
+          none_archive: "Nenhum Arquivo" 
         repository_search:
           archives: "Arquivos"
           repository: "Repositório"
           new_file: "Novo Arquivo"
         search_and_new_file:
           search_image: "Buscar Imagem"
+          new_image: "Nova imagem."
         show_attachment_list:
           insert: "Inserir"
           details: "Detalhes"

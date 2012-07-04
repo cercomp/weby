@@ -16,7 +16,7 @@
   });
 </script>
 <div id="tinyMCE_search_area_repo">
-  <%= text_field_tag 'search_repo', params[:search], placeholder: t('search') + " " + t('archive.one'), onkeypress: "return enter_to_click(event,'search_button_repo');" %>
+  <%= text_field_tag 'search_repo', params[:search], placeholder: t('search') + " " + t(".archive"), onkeypress: "return enter_to_click(event,'search_button_repo');" %>
   <%= link_to t('search'), site_admin_repositories_path, remote: true, id: 'search_button_repo' %>
 </div>
 <br/>
