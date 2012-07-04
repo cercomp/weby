@@ -19,20 +19,26 @@ en:
         ajax_upload:
           file: "File"
           select_file: "Select File"
+          field_required: "Field Required!"
         form:
           field_required: "Field required!"
-          archives: "Files"
+          accessibility_needs: "Needed for your site becomes accessible."
+          archives: "Archives"
           please_wait: "Please wait..."
         repo:
           picture: "Picture"
         repositories_as_table:
           archives: "Files"
+          description: "Description"
+        repository_as_boxes:
+          none_archive: "None archive" 
         repository_search:
           archives: "Files"
           repository: "Repository"
           new_file: "New File"
         search_and_new_file:
           search_image: "Search Image"
+          new_image: "New image"
         show_attachment_list:
           insert: "Insert"
           details: "Details"

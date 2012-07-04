@@ -2,10 +2,11 @@ en:
   activerecord:
     models:
       style: "Style"
+      styles: "Styles"
     attributes:
       style:
         name: "Name"
-        css: "Css"
+        css: "Style"
         created_at: "Created at"
         updated_at: "Updated at"
         publish: "Publish"

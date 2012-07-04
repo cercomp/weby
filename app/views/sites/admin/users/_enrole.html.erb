@@ -1,6 +1,6 @@
 <% if @users_unroled.empty? %>
   <div class="alert">
-    <%= (t"none_param", param: t("user.one")) %>
+    <%= t(".none_user") %>
   </div>
 <% else %>
   <%= form_tag change_roles_site_admin_users_path,
@@ -12,8 +12,8 @@
   <table class="table">
     <thead>
       <tr>
-        <th><%= t("enrole_user") %></th>
-        <th style="width: 55%"><%= t('role.one') %></th>
+        <th><%= t(".enrole_user") %></th>
+        <th style="width: 55%"><%= t(".role") %></th>
       </tr>
     </thead>
     <tbody>

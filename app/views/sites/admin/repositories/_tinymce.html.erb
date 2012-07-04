@@ -11,7 +11,7 @@
   });
 </script>
 <div id="tinyMCE_search_area">
-  <%= text_field_tag 'search', params[:search], placeholder: t('search') + " " + t('image'), onkeypress: "return enter_to_click(event,'search_button');" %>
+  <%= text_field_tag 'search', params[:search], placeholder: t('search') + " " + t('.image'), onkeypress: "return enter_to_click(event,'search_button');" %>
   <%= link_to t('search'), site_admin_repositories_path(mime_type: params[:mime_type]), remote: true, id: 'search_button' %>
 </div>
 <br/>

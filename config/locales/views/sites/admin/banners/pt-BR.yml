@@ -4,8 +4,7 @@ pt-BR:
       banners:
         form:
           add_category: "Adicionar Categoria"
-          banner:
-            image: "Imagem do banner"
+          image: "Imagem do banner"
           begin: "Início"
           category: "Categoria"
           enter_the_url: "Digite a URL"
