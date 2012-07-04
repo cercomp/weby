@@ -1,0 +1,14 @@
+pt-BR:
+  sites:
+    index:
+      new_site: "Novo Sítio"
+    edit:
+      sites: "Sites"
+    list:
+      description: "Descrição"
+      name: "Nome"
+    form:
+      view_desc_pages_help: "Deseja mostrar a data de criação e o autor das páginas?"
+      desc_use_menu_dropdown: "Deseja que os menus sejam desdobráveis?"
+      site_comments: "Comentário sobre os objetivos do site."
+    
