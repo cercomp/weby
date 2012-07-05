@@ -557,7 +557,6 @@ pt-BR:
       banner:
         title: "Título"
         text: "Texto"
-        url: "Url"
         position: 'Posição'
         new_tab: "Abrir em uma nova janela"
       event:
@@ -568,8 +567,6 @@ pt-BR:
         email: "Email"
         subject: "Assunto"
         message: "Mensagem"
-      group:
-        name: "Nome"
       history:
         title: "Título"
         content: "Conteúdo"

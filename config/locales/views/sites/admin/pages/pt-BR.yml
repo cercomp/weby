@@ -2,27 +2,73 @@ pt-BR:
   sites:
     admin:
       pages:
-        event:               'Evento'
-        news:                'Notícia'
+        event:                  " Evento "
+        news:                   " Notícia "
         index:
-          search_helper:     'Pode-se buscar pelo título, resumo, conteúdo, primeiro nome do autor, tipo(news, event) e pelas categorias.'
+          search_helper:        " Pode-se buscar pelo título, resumo, conteúdo, primeiro nome do autor, tipo(news, event) e pelas categorias. "
         new:
-          title:             'Nova Página'
+          title:                " Nova Página "
+          pages:                "Páginas"
         edit:
-          title:             'Editar Página'
+          title:                " Editar Página "
+          pages:                "Páginas"
+        index:
+          pages:                "Páginas"
+          new_page:             "Nova Página"
+          covers:               "Capas"
+        show:
+          pages:                "Páginas"
+          event:                "Evento"
+          period_event:         " Período do Evento "
+          list_all:             "Listar todas"
+        fronts:
+          covers:               "Capas"
+          none_cover:           "Nenhuma Capa"
+          new_page:             "Nova Página"
+          list_pages:           "Listar Páginas"
+          date_register:        "Data de Cadastro"
+          title:                "Título"
+          author:               "Autor"
+          category:             "Categoria"
+          type:                 "Tipo"
+          publish:              "Publicar"
+          news:                 "Notícia"
+          event:                "Evento"
+          move:                 "Mover"
+        list:
+          none_page:            " Nenhuma Página "
+          author:               " Autor "
+          type:                 "Tipo"
+          category:             "Categoria"
+          created_at:           "Criado em"
+          news:                 "Notícia"
+          event:                "Evento"
+        list_popup:
+          register_date:        "Data de Cadastro"
+          news:                 "Notícia"
+          event:                "Evento"
+          title:                "Título"
+          category:             "Categoria"
+          type:                 "Tipo"
         related_files:
-          size:              'Tamanho'
-          related_files:     'Arquivos Relacionados'
+          size:                 " Tamanho "
+          related_files:        " Arquivos Relacionados "
         form:
-          image:             'Imagem da página'
-          period_page:       'Período da Página'
-          related_files:     'Arquivos relacionados'
+          image:                " Imagem da página "
+          period_page:          " Período da Página "
+          related_files:        " Arquivos relacionados "
+          page_categories_help: " Categorias são separadas por vírgula, a categoria de uma página é relacionada ao seu conteúdo. Ex: Esporte, Notícia, UFG "
         event_form:
-          is_event:          'É Evento?'
-          period_event:      'Período do Evento'
-          regional:          'Regional'
-          national:          'Nacional'
-          international:     'Internacional'
+          is_event:             " É Evento? "
+          period_event:         " Período do Evento "
+          regional:             " Regional "
+          national:             " Nacional "
+          international:        " Internacional "
+        tiny_mce: 
+          pages:                "Páginas"
+          id:                   "Id"
+          title:                "Título"
+          author:               "Autor"
 
-          
+
 

@@ -4,7 +4,7 @@
 
 <% if @pages.empty? %>
   <div class="alert">
-    <%= (t"none_param", param: t("page.one")) %>
+    <%= t(".none_page") %>
   </div>
 <% end %>
 
@@ -13,9 +13,9 @@
       <tr>
         <th width="100px"><%= sortable 'pages.created_at', t(".created_at") %></th>
         <th width="300px"><%= t("title") %></th>
-        <th width="90px"><%= sortable 'users.first_name', t("author") %></th>
-        <th width="80px"><%= sortable 'tags.name', t("category") %></th>
-        <th width="50px"><%= sortable 'pages.type', t("type") %></th>
+        <th width="90px"><%= sortable 'users.first_name', t(".author") %></th>
+        <th width="80px"><%= sortable 'tags.name', t(".category") %></th>
+        <th width="50px"><%= sortable 'pages.type', t(".type") %></th>
         <% with_permission(action: :toggle_field) do %>
           <th><%= sortable 'pages.front', t("cover") %></th>
           <th><%= sortable 'pages.publish', t("publish") %></th>
@@ -32,7 +32,7 @@
         </td>
         <td><%= page.author.first_name %></td>
         <td><%= page.category_list * ', ' %></td>
-        <td><%= t"#{page.type.downcase}.one" %></td>
+        <td><%= t(".#{page.type.downcase}") %></td>
         <% with_permission(action: :toggle_field) do %>
           <td align="center" class="front">
             <%= raw toggle_field(page, "front") %></td>

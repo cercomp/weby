@@ -1,11 +1,11 @@
-# encoding: UTF-8
 en:
   sites:
     admin:
-      menu:
+      menus:
         menu_items:
           new:
             title: "New Menu Item"
+            menu_items: "Menu Items"
           edit:
             title: "Edit Menu Item"
           form:
