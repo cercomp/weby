@@ -1,3 +1,14 @@
 pt-BR:
   admin:
     rights:
+      index:
+        rights: "Direitos"
+        new_permission: "Nova Permissão"
+        list_roles_permissions: "Listar Permissões e Papéis"
+        name: "Nome"
+        controller: "Controle"
+        action: "Ação"
+      new:
+        rights: "Direitos"
+      edit:
+        rights: "Direitos"

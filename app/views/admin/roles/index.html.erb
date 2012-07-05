@@ -2,21 +2,21 @@
   <%= javascript_include_tag "roles_index" %>
 <% end %>
 
-<%- title 'roles_permissions' %>
+<%- title '.roles_permissions' %>
 
 <div class="span9">
   <div class="well">
 
     <% if check_permission(Admin::RolesController, [:new]) %>
       <div class="pull-right">
-        <%= link_to t("create_param.masc", param: t("role.one")),
+        <%= link_to t(".create_role"),
           new_admin_role_path,
           class: "btn btn-success btn-large" %>
       </div>
     <% end %>
 
     <div class="pull-left">
-    <%= link_to (t"list_param", :param => (t"permission", :count => 2)),
+    <%= link_to t(".list_permissions"),
       admin_rights_path,
       class: 'btn btn-info btn-large' %>
     </div>
@@ -26,7 +26,7 @@
       <table class='table table-striped'>
         <thead>
           <tr>
-            <th><%= t"roles_permissions", :count => 2%></th>
+            <th><%= t(".roles_permissions") %></th>
             <% @roles.each do |role| %>
               <th>
                 <%= role.name %> 

@@ -1,3 +1,11 @@
 pt-BR:
   admin:
     roles:
+      index:
+        roles_permissions: "Permissões e Pápeis"
+        create_role: "Criar Papel"
+        list_permissions: "Listar Permissões"
+      new:
+        roles: "Papéis"
+      edit:
+        roles: "Papéis"

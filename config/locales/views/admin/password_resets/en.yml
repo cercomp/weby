@@ -1,3 +1,8 @@
 en:
   admin:
     password_resets:
+      new:
+        fill_email_form: "Complete the form to recover your password. The password will be send to your e-mail"
+      footer:
+        help: "Help"
+        portals: "Portals"
