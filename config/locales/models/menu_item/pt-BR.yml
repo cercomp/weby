@@ -1,22 +1,14 @@
-# encoding: UTF-8
 pt-BR:
   activerecord:
     models:
-      menu_item:         'Item de Menu'
+      menu_item:         "Item de Menu"
     attributes:
       menu_item:
-        title:           'Título'
-        description:     'Descrição'
-        separator:       'Separador'
-        url:             'URL'
-        position:        'Posição'
-        new_tab:         'Abrir em uma nova janela'
+        separator:       "Separador"
+        url:             "URL"
+        position:        "Posição"
+        new_tab:         "Abrir em uma nova janela"
       "menu_item/i18ns":
-        title:           'Título'
-        description:     'Descrição'
-        _destroy:        'Remover'
-  menu_items:
-    new:
-      title:             'Novo Item de Menu'
-    edit:
-      title:             'Editar Item de Menu'
+        title:           "Título"
+        description:     "Descrição"
+        _destroy:        "Remover"

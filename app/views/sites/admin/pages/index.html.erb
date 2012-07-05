@@ -1,4 +1,4 @@
-<%- title 'page.other' %>
+<%- title ".pages" %>
 
 <div class="span9">
   <div class="well">
@@ -12,12 +12,12 @@
 
     <div class="pull-right">
       <% with_permission do %>
-        <%= link_to t('new_param.fem', param: t('page.one')),
+        <%= link_to t(".new_page"),
           new_site_admin_page_path,
           class: "btn btn-success btn-large" %>
       <% end %>
       <% with_permission(action: :fronts) do %>
-        <%= link_to (t"covers"), fronts_site_admin_pages_path, class: "btn btn-primary btn-large" %>
+        <%= link_to t(".covers"), fronts_site_admin_pages_path, class: "btn btn-primary btn-large" %>
       <% end %>
     </div>
     <div class="clearfix"></div>

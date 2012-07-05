@@ -1,4 +1,4 @@
-<%- title 'menu.other' %>
+<%- title t(".menus") %>
 
 <div class="span9">
   <div class="well">
@@ -6,13 +6,13 @@
     
 <% if @menus.empty? %>
   <div class="alert">
-    <%= (t"none_param", param: t("menu.one")) %>
+    <%= t(".none_menu") %>
   </div>
 <% end %>
 
     <% with_permission action: :new do %>
       <div class="pull-right">
-        <%= link_to t('new_param.masc', param: t('menu.one')),
+        <%= link_to t(".new_menu"),
           new_site_admin_menu_path,
           class: "btn btn-success btn-large" %>
       </div>
@@ -31,19 +31,19 @@
         <% if @menu %>
           <div class="pull-right">
             <% with_permission controller: Sites::Admin::Menus::MenuItemsController, action: :new do %>
-              <%= link_to t('new_param.masc', param: t('menu_item.one')),
+              <%= link_to t(".new_menu_item"),
                 new_site_admin_menu_menu_item_path(@menu),
                 class: "btn btn-success" %>
             <% end %>
             <% with_permission action: :edit do %>
-              <%= link_to t('edit', param: t('menu.one')),
+              <%= link_to t(".edit_menu"),
                 edit_site_admin_menu_path(@menu),
                 class: "btn btn-primary" %>
             <% end %>
             <% with_permission action: :destroy do %>
-              <%= link_to t('destroy'),
+              <%= link_to t("destroy"),
                 site_admin_menu_path(@menu),
-                method: :delete, confirm: t('are_you_sure'),
+                method: :delete, confirm: t(".are_you_sure"),
                 class: "btn btn-primary" %>
             <% end %>
             &nbsp;

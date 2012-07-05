@@ -8,7 +8,15 @@ pt-BR:
           please_wait: "Por favor, aguarde..."
         list:
           name: "Nome"
+          description: "Descrição"
         index:
           groups: "Grupos"
           new_group: "Novo Grupo"
           messages: "Mensagens"
+        edit:
+          groups: "Grupos"
+        new:
+          groups: "Grupos"
+        show:
+          groups: "Grupos"
+

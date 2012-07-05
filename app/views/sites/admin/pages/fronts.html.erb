@@ -1,33 +1,33 @@
-<%- title 'covers' %>
+<%- title ".covers" %>
 
 <div class="span9">
   <div class="well">
 
 <% if @pages.empty? %>
   <div class="alert">
-    <%= (t"none_param", param: t("covers")) %>
+    <%= t(".none_cover") %>
   </div>
 <% end %>
 
     <div class="pull-right">
       <% with_permission(action: :new) do %>
-        <%= link_to t('new_param.masc', param: t('page.one')),
+        <%= link_to t(".new_page"),
           new_site_admin_page_path,
           class: "btn btn-success btn-large" %>
       <% end %>
-      <%= link_to (t"list_param", :param=>t("page.other") ), site_admin_pages_path, :class => 'btn btn-primary btn-large' %>
+      <%= link_to t(".list_pages"), site_admin_pages_path, :class => 'btn btn-primary btn-large' %>
     </div>
     <div class="clearfix control-group"></div>
 
       <table  class="table table-striped table-condensed" id="list">
         <thead>
-          <th><%= t("date_param", :param => t("register")) %></th>
-          <th><%= t("title") %></th>
-          <th><%= t("author") %></th>
-          <th><%= t("category") %></th>
-          <th><%= t("type") %></th>
+          <th><%= t(".date_register") %></th>
+          <th><%= t(".title") %></th>
+          <th><%= t(".author") %></th>
+          <th><%= t(".category") %></th>
+          <th><%= t(".type") %></th>
           <% with_permission(action: 'toggle_field') do %>
-            <th><%= link_to (t"publish"), fronts_site_admin_pages_path(published: params[:published]=='true' ? 'false':'true' ) %></th>
+            <th><%= link_to t(".publish"), fronts_site_admin_pages_path(published: params[:published]=='true' ? 'false':'true' ) %></th>
           <% end %>
           <th></th>
         </thead>
@@ -40,14 +40,14 @@
               </td>
               <td><%= page.author.first_name %></td>
               <td><%= page.category_list.join ', ' %></td>
-              <td><%= t"#{page.type.downcase}.one" %></td>
+              <td><%= t(".#{page.type.downcase}") %></td>
               <% with_permission(action: :toggle_field) do %>
                 <td align="center" class="publish"><%= publication_status(page) %></td>
               <% end %>
               <td>
                 <%= make_menu(page, :except => "show") %>
                 <% with_permission(action: :sort) do %>
-                  <a href='#' class='handle'><%= icon('move', text:t("move"))%></a>
+                  <a href='#' class='handle'><%= icon('move', text:t(".move"))%></a>
                 <% end %>
               </td>
             </tr>

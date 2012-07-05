@@ -10,8 +10,11 @@ pt-BR:
           enter_the_url: "Digite a URL"
           lower_numbers_come_first: "Menores números aparecem primeiro"
           period_banner: "Período do Banner"
-          publication_infinite: "Publicação infinita"
-          select_page: "Selecione uma página"
+          publication_infinite: "Publicação Infinita"
+          select_page: "Selecione uma Página"
+          title: "Título"
+          description: "Descrição"
+          new_category: "Nova Categoria"
         list:
           author: "Autor"
           category: "Categoria"
@@ -20,10 +23,18 @@ pt-BR:
           publish: "Publicar"
           register_date: "Data de Registro"
           title: "Título"
-          none_param_banner: "Nenhum Banner" 
+          none_banner: "Nenhum Banner" 
+          none_category: "Nenhuma categoria"
         edit:
           help_image_banner: "Essa imagem será utilizada como banner!"
+          banners: "Banners"
         index:
-          new_banner: "New Banner"
+          new_banner: "Novo Banner"
+          banners: "Banners"
         show:
           banner: "Banner"
+          banners: "Banners"
+          list_all: "Listar todos"
+          url: "URL"
+        new:
+          banners: "Banners"

@@ -2,22 +2,68 @@ en:
   sites:
     admin:
       pages:
-        event:               'Event'
-        news:                'News'
+        event:                  " Event "
+        news:                   " News "
         new:
-          title:             'New page'
+          title:                " New page "
+          pages:                "Pages"
         edit:
-          title:             'Update page'
+          title:                " Update page "
+          pages:                "Pages"
+        index:
+          pages:                "Pages"
+          new_page:             "New Page"
+          covers:               "Covers"
+        show:
+          pages:                "Pages"
+          event:                "Event"
+          period_event:         " Event date "
+          list_all:             "List all"
+        fronts:
+          covers:               "Covers"
+          none_cover:           "None Cover"
+          new_page:             "New Page"
+          list_pages:           "List Pages"
+          date_register:        "Register Date"
+          title:                "Title"
+          author:               "Author"
+          category:             "Category"
+          type:                 "Type"
+          publish:              "Publish"
+          news:                 "News"
+          event:                "Event"
+          move:                 "Move"
+        list:
+          none_page:            " No Page "
+          author:               " Autor "
+          type:                 "Type"
+          category:             "Category"
+          created_at:           "Created at"
+          news:                 "News"
+          event:                "Event"
+        list_popup:
+          register_date:          "Register Date"
+          news:                 "News"
+          event:                "Event"
+          title:                "Title"
+          category:             "Category"
+          type:                 "Type"
         related_files:
-          size:              'Size'
-          related_files:     'Related Files'
+          size:                 " Size "
+          related_files:        " Related Files "
         form:
-          image:             'Page image'
-          period_page:       'Page period'
-          related_files:     'Related files'
+          image:                " Page image "
+          period_page:          " Page period "
+          related_files:        " Related files "
+          page_categories_help: " Categories are separated by commas, the page's category are related with your content. Ex:Sports, News, Policy "
         event_form:
-          is_event:          'Is event?'
-          period_event:      'Event date'
-          regional:          'Regional'
-          national:          'National'
-          international:     'International'
+          is_event:             " Is event?  "
+          period_event:         " Event date "
+          regional:             " Regional   "
+          national:             " National   "
+          international:        " International "  
+        tiny_mce: 
+          pages:                "Pages"
+          id:                   "Id"
+          title:                "Title"
+          author:               "Author"
