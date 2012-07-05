@@ -2,9 +2,9 @@
   <%= paginate @repositories, :remote => true %>
   <table class='list'>
     <thead>
-      <th><%= t("archive.other") %></th>
+      <th><%= t(".archives") %></th>
       <th><%= sortable 'id' %></th>
-      <th><%= sortable 'description', t("description") %></th>
+      <th><%= sortable 'description', t(".description") %></th>
       <th></th>
     </thead>
     <tbody>    

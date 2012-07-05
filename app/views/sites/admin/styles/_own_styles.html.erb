@@ -1,14 +1,14 @@
 <details open class="styles" id="own_styles">
-  <summary><%= t("own_styles") %></summary>
+  <summary><%= t(".own_styles") %></summary>
   <div>
     <% unless styles.empty? %>
       <%= info_page styles %>
 
       <table class='table table-striped' id='style_list'>
         <thead>
-          <th> <%= t('name') %> </th>
-          <th> <%= t('sites_followers') %> </th>
-          <th> <%= t('actions') %> </th>
+          <th> <%= t('.name') %> </th>
+          <th> <%= t('.sites_followers') %> </th>
+          <th> <%= t('.actions') %> </th>
         </thead>
         <tbody>
           <% styles.each do |style| %>
@@ -31,7 +31,7 @@
       </table>
 
     <% else %>
-      <p class="empty"> <%= t('no_own_styles') %> </p>
+      <p class="empty"> <%= t('.no_own_styles') %> </p>
     <% end %>
   </div>
 </details>

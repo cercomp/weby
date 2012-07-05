@@ -4,6 +4,8 @@ en:
       roles:
         index: 
           roles_permissions: "Roles and Permissions"
+          none_role: "None Role"
+          new_role: "New Role"
         new: 
           roles_permissions: "Roles and Permissions"
         edit: 
