@@ -1,3 +1,8 @@
 pt-BR:
   admin:
     password_resets:
+      new:
+        fill_email_form: "Preencha o formulário para resgatar sua senha. Ela será enviada para seu e-mail"
+      footer:
+        help: "Ajuda"
+        portals: "Portais"

@@ -1,3 +1,14 @@
 en:
   admin:
     rights:
+      index:
+        rights: "Rights"
+        new_permission: "New Permission"
+        list_roles_permissions: "List Roles and Permissions"
+        name: "Name"
+        controller: "Controller"
+        action: "Action"
+      new:
+        rights: "Rights"
+      edit:
+        rights: "Rights"

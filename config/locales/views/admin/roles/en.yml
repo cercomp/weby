@@ -1,3 +1,11 @@
 en:
   admin:
     roles:
+      index:
+        roles_permissions: "Rights and Roles"
+        create_role: "Create Role"
+        list_permissions: "List Permissions"
+      new:
+        roles: "Roles"
+      edit:
+        roles: "Roles"
