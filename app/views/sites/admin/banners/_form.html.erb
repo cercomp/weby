@@ -5,7 +5,7 @@
   <%= f.show_errors %>
 
 
-  <%= repository_search t("banner.image"), "banner_image",
+  <%= repository_search t(".image"), "banner_image",
     "banner[repository_id]", @banner.repository,
     multiple: false, file_types: 'image' %>
 
@@ -13,7 +13,6 @@
     <% repo_styles = Repository.attachment_definitions[:archive][:styles] %>
     <% unless repo_styles.nil? %>
       <%= f.input :size, 
-        label: t('size'),
         collection: repo_styles,
         label_method: lambda { |u| "#{u[1]}" }, 
         value_method: lambda { |u| "#{u[0]}" },
@@ -24,31 +23,31 @@
   <%= f.input :width, :input_html => {:size => 3} %> 
   <%= f.input :height, :input_html => {:size => 3} %>
 
-  <%= f.input :title, label: t("title"),
-    placeholder: t("title"),
+  <%= f.input :title,
+    placeholder: t(".title"),
     input_html: {class: "title_input"} %>
 
-  <%= f.input :text, label: t("description"),
+  <%= f.input :text, label: t(".description"),
     input_html: {:size => "70x5"},
     as: :text %>
 
   <%= f.input :date_begin_at, label: t(".period_banner"), :wrapper => :append do %>
-     <%= f.input_field :date_begin_at, placeholder: t("begin"), label: false %>
-     <%= f.input_field :date_end_at, placeholder: t("publication_infinite"), label: false %>
+     <%= f.input_field :date_begin_at, placeholder: t(".begin"), label: false %>
+     <%= f.input_field :date_end_at, placeholder: t(".publication_infinite"), label: false %>
   <% end %>
 
-  <%= f.input t('category'), wrapper: :append do %>
+  <%= f.input t(".category"), wrapper: :append do %>
     <%= f.select :category_list,
       @site.banners.category_counts, {},
-      :id => "category" %><%= link_to_function t(".add_category"), "addToSelect('#category','#{t("new.fem")+" "+t("category")}')", :class => 'btn btn-info' %>
+      :id => "category" %><%= link_to_function t(".add_category"), "addToSelect('#category','#{t(".new_category")}')", :class => 'btn btn-info' %>
   <% end %>
 
-  <%= f.input :position, hint: t("lower_numbers_come_first") %>
+  <%= f.input :position, hint: t(".lower_numbers_come_first") %>
 
   <% # URL Input %>
   <div class="input page_select" id="div_link">
-    <%= f.input :url, :wrapper => :append, :hint => t('type_param', param: t('url')) do %>
-       <%= f.input_field :url, as: :string %><%= link_to_function t("select_page"), 'show_dialog($(this))', :class => 'btn btn-info', data: { link: site_admin_pages_path} %>
+    <%= f.input :url, :wrapper => :append, :hint => t(".enter_the_url") do %>
+       <%= f.input_field :url, as: :string %><%= link_to_function t(".select_page"), 'show_dialog($(this))', :class => 'btn btn-info', data: { link: site_admin_pages_path} %>
     <%  end %>
 
     <% # Ao selecionar um noticia deve ser montado a url para ela,
@@ -58,7 +57,7 @@
   </div>
 
   <div class='input'>
-    <%= f.input :publish , 
+    <%= f.input :publish, 
       wrapper_html: { class: "side" },
       as: :boolean, input_html: { class: "check-button" } %>
 

@@ -1,16 +1,16 @@
-<%- title  'group.other' %>
+<%- title  t(".groups") %>
 
 <div class="span9">
   <div class="well">
 
     <div class="pull-right">
       <% if check_permission(Sites::Admin::GroupsController, [:new]) %>
-        <%= link_to t('new_param.masc', param: t('group.one')),
+        <%= link_to t(".new_group"),
           new_site_admin_group_path,
           class: "btn btn-success btn-large" %>
       <% end %>
       <% if check_permission(Sites::Admin::FeedbacksController, [:index]) %>
-        <%= link_to  t('messages'),
+        <%= link_to  t(".messages"),
           site_admin_feedbacks_path,
           class: "btn btn-primary btn-large" %>
       <% end %>

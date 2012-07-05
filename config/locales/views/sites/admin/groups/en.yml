@@ -8,7 +8,14 @@ en:
           please_wait: "Please wait..."
         list:
           name: "Name"
+          description: "Description"
         index:
           groups: "Groups"
           new_group: "New Group"
           messages: "Messages"
+        edit:
+          groups: "Groups"
+        new:
+          groups: "Groups"
+        show:
+          groups: "Groups"

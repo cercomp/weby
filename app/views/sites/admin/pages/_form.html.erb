@@ -1,7 +1,7 @@
 <%= simple_form_for [:site_admin, @page], html: { class: 'form-horizontal' } do |f| %>
   <%= f.show_errors %>
 
-  <%= repository_search t("page.image"), "page_image",
+  <%= repository_search t(".image"), "page_image",
     "page[image]", @page.image,
     multiple: false, file_types: 'image' %>
 
@@ -22,7 +22,7 @@
   </div>
 
   <div class="clearfix">
-    <%= f.input :category_list, placeholder: "UFG, Sports, Arts", hint: t('page_categories_help') %>
+    <%= f.input :category_list, placeholder: "UFG, Sports, Arts", hint: t(".page_categories_help") %>
   </div>
 
   <div class="clearfix">

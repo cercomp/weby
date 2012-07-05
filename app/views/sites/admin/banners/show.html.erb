@@ -1,4 +1,4 @@
-<%- title 'banner.other' %>
+<%- title t(".banners") %>
 
 <div class="span9">
   <div class="well">
@@ -11,7 +11,7 @@
                        {as: 'link', alt: @banner.text, title: @banner.text }) %>
   <% end %>
   <p> 
-    <h1> <%= t("banner.one") %> </h1>
+    <h1> <%= t(".banner") %> </h1>
   </p>
 
   <i><%= @banner.user.login %>, <%= l @banner.created_at, :format => :short %></i>
@@ -20,11 +20,11 @@
     <h2> <%= @banner.text %> </h2>
   </p>
   <p>
-    <h3> <%= t("url") %>: <%= link_to @banner.url, @banner.url %> </h3>
+    <h3> <%= t(".url") %>: <%= link_to @banner.url, @banner.url %> </h3>
   </p>
 
   <%= make_menu(@banner, :except => "show") %>
-  <%= link_to icon('list', text:t("list_all.masc")), site_admin_banners_path() %> 
+  <%= link_to icon('list', text:t(".list_all")), site_admin_banners_path() %> 
   <%= link_to icon('chevron-left', text:t("back")), :back %>
 
  </div>
