@@ -5,13 +5,13 @@
 <table class='table table-striped'>
   <thead>
     <tr>
-      <th><%= t("id") %></th>
-      <th><%= sortable 'login', t("user", :count => 1) %></th>
-      <th><%= sortable 'email', t("email") %></th>
-      <th><%= t"active" %></th>
-      <th><%= t"is_admin" %></th>
+      <th><%= t(".id") %></th>
+      <th><%= sortable 'login', t(".user") %></th>
+      <th><%= sortable 'email', t(".email") %></th>
+      <th><%= t(".active") %></th>
+      <th><%= t(".is_admin") %></th>
       <% if check_permission(Admin::UsersController, :change_roles) %>
-        <th><%= t"role.other" %></th>
+        <th><%= t(".roles") %></th>
       <% end %>
       <th></th>
     </tr>
@@ -25,7 +25,7 @@
         <td align="center"><%= raw toggle_field(user, 'status') %></td>
         <td align="center"><%= raw toggle_field(user, 'is_admin', 'set_admin') %></td>
         <% if check_permission(Admin::UsersController, :change_roles) %>
-          <% link = user.is_admin? ? t('admin.one') : t('manage_roles') %>
+          <% link = user.is_admin? ? t('.admin') : t('.manage_roles') %>
           <td> <%= link_to link, manage_roles_admin_users_path(:user_id => user.id ) %> </td>
         <% end %>
         <td> <%= raw make_menu(user) %> </td>

@@ -1,11 +1,11 @@
-<%= form.input :login, :label => t('username'), :hint => t("field_required") %>
-<%= form.input :email, :label => t('email'), :hint => t("field_required"), :as => :email %>
+<%= form.input :login, :label => t(".username"), :hint => t("field_required") %>
+<%= form.input :email, :hint => t("field_required"), :as => :email %>
 <%= form.input :password, :label => form.object.new_record? ?  t('password') : t("password_change"), :hint => t("field_required")+" - "+t("lower_upper_number_chars"), :as => :password, :input_html => {:pattern => '(?=.*\d)(?=.*[A-Z])(?=.*[a-z])^.{4,}$'} %>
-<%= form.input :password_confirmation, :label => t('password_confirmation'), :hint => t("field_required"), :as => :password %>
-<%= form.input :first_name, :label => t('first_name'), :hint => t("field_required") %>
-<%= form.input :last_name, :label => t('last_name') %>
-<%= form.input :phone, :label => t('phone'), :input_html => {:size => 20, :maxlength => 20} %>
-<%= form.input :mobile, :label => t('mobile'), :input_html => {:size => 20, :maxlength => 20}, :as => :tel %>
+<%= form.input :password_confirmation, :hint => t("field_required"), :as => :password %>
+<%= form.input :first_name, :hint => t("field_required") %>
+<%= form.input :last_name %>
+<%= form.input :phone, :input_html => {:size => 20, :maxlength => 20} %>
+<%= form.input :mobile, :input_html => {:size => 20, :maxlength => 20}, :as => :tel %>
 
 <div class="form-actions">
   <%= form.button :submit, class: 'btn-primary' %>

@@ -1,3 +1,15 @@
 en:
   admin:
     sites:
+      show:
+        sites: "Sites"
+      new:
+        sites: "Sites"
+      index:
+        sites: "Sites"
+        new_site: "New Site"
+      edit:
+        sites: "Site"
+      list:
+        name: "Name"
+        description: "Description"
