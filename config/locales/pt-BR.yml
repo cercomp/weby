@@ -138,7 +138,7 @@ pt-BR:
   feedback:
     one: "Fale Conosco"
     other: "Fale Conosco"
-  feedback_need_at_least_one_group: "Necesita pelo menos um grupo!"
+  feedback_need_at_least_one_group: "Necessita pelo menos um grupo!"
   feedback_sent: "Feedback enviado com sucesso!"
   field_required: "Campo obrigatório!"
   file: 
@@ -258,7 +258,7 @@ pt-BR:
   nacional: "Nacional"
   name: "Nome"
   need_at_least_one_i18n: "Necessita de pelo menos um idioma"
-  need_login: "Você deve estar logado para acessar acessar essa página."
+  need_login: "Você deve estar logado para  acessar essa página."
   need_javascript: "Seu browser precisa ter o JavaScript habilitado para que essa aplicação funcione corretamente."
   new:
     fem: "Nova"
