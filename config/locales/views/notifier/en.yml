@@ -1,0 +1,8 @@
+en:
+  notifier:
+    activation_confirmation:
+      welcome:                   " Welcome "
+    activation_instructions:
+      welcome:                   " Welcome "
+    password_reset_instructions:
+      welcome:                   " Welcome "

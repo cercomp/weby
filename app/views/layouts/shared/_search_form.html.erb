@@ -1,10 +1,10 @@
 <center>
   <%= form_tag request.path, :method => 'get', :remote => true do %>
     <%= search_field_tag :search %>
-    <%= submit_tag t('search'),
+    <%= submit_tag t(".search"),
       name: 'submit_search',
       formnovalidate: "true",
       data_remote: true,
-      disable_with: t('searching') %>
+      disable_with: t(".searching") %>
   <% end %>
 </center>

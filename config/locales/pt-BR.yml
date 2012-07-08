@@ -262,6 +262,7 @@ pt-BR:
   new:
     fem: "Nova"
     masc: "Novo"
+    forgot_password: "dadf"
   news:
     one: "Notícia"
     other: "Notícias"

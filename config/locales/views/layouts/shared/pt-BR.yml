@@ -1,0 +1,34 @@
+pt-BR:
+  layouts:
+    shared:
+      head:
+      javascripts:
+      menu_admin:
+        settings:          " Configurações "
+        users:             " Usuários "
+        pages:             " Páginas "
+        covers:            " Capas "
+        menus:             " Menus "
+        banners:           " Banners "
+        components:        " Componentes "
+        archives:          " Arquivos "
+        styles:            " Estilos "
+        roles_permissions: " Permissões e Papéis "
+        groups:            " Grupos "
+        messages:          " Mensagens "
+        sites:             " Sítios "
+        permissions:       " Permissões "
+        feedback:          " Fale Conosco "
+      navbar:
+        my_profile:        " Meu Perfil "
+        logout:            " Sair "
+        login:             " Entrar "
+        register:          " Cadastro "
+        sites:             " Sítios "
+        dashboard:         " Administração "
+        show_site:         " Mostrar sítio "
+        help:              " Ajuda "
+        about:             " Sobre "
+      search_form:
+        search:            " Buscar "
+        searching:         " Buscando... "

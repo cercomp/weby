@@ -1,0 +1,36 @@
+en:
+  layouts:
+    shared:
+      head:
+      javascripts:
+      menu_admin:
+        settings:          " Settings "
+        users:             " Users "
+        pages:             " Pages "
+        covers:            " Covers "
+        menus:             " Menus "
+        banners:           " Banners "
+        components:        " Components "
+        archives:          " Files "
+        styles:            " Styles "
+        roles_permissions: " Roles and Permissions "
+        groups:            " Groups "
+        messages:          " Messages "
+        sites:             " Sites "
+        users:             " Users "
+        permissions:       " Permissions "
+        settings:          " Settings "
+        feedback:          " Feedback "
+      navbar:
+        my_profile:        " My profile "
+        logout:            " Logout "
+        login:             " Login "
+        register:          " Register "
+        sites:             " Sites "
+        dashboard:         " Administration "
+        show_site:         " Show site "
+        help:              " Help "
+        about:             " About "
+      search_form:
+        search:            "Search "
+        searching:         "Searching... "
