@@ -1,3 +1,45 @@
 pt-BR:
   admin:
     users:
+      show:
+        user: "Usuário"
+        id: "Id"
+        username: "Nome do usuário"
+        email: "E-mail"
+        phone: "Telefone"
+        mobile: "Celular"
+        register: "Cadastro"
+        last_request: "Última ação"
+        global_roles: "Papéis Globais"
+        user_current_sites: "Sites Cadastrados"
+        roles: "Papéis"
+      new:
+        new_user: "Novo Usuário"
+      form:
+        username: "Nome do Usuário"
+      index:
+        users: "Usuários"
+        new_user: "Novo Usuário"
+      list:
+        id: "Id"
+        user: "Usuário"
+        email: "E-mail"
+        active: "Ativo?"
+        is_admin: "Admin?"
+        roles: "Papéis"
+        admin: "Admin"
+        manage_roles: "Gerenciar Papéis"
+      edit:
+        editing_my_account: "Editando Minha Conta"
+      manage_roles:
+        manage_roles: "Gerenciar Papéis"
+      enrole:
+        none_user: "Nenhum Usuário"
+        enrole_user: "Relacionar Usuário"
+        role: "Papéis"
+      enroled:
+        enroled_user: "Usuários Relacionados"
+        role: "Papel"
+        none_user: "Nenhum Usuário"
+      role_form:
+        confirm_unrole: "Desligar este usuário do site?"

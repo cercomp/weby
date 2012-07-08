@@ -1,4 +1,4 @@
-<%- title 'site.other' %>
+<%- title '.sites' %>
 
 <div class="span9">
   <div class="well">
@@ -12,7 +12,7 @@
 
     <% if check_permission(Admin::SitesController, ["new"]) %>
     <div class="pull-right">
-      <%= link_to t('new_param.masc', param: t('site.one')),
+      <%= link_to t(".new_site"),
         new_admin_site_path,
         class: "btn btn-success btn-large" %>
     </div>

@@ -2,8 +2,8 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th><%= t "enroled_user" %></th>
-        <th style="width: 40%"><%= t('role.one') %></th>
+        <th><%= t ".enroled_user" %></th>
+        <th style="width: 40%"><%= t('.role') %></th>
         <th style="width: 15%"></th>
       </tr>
     </thead>
@@ -32,6 +32,6 @@
   </table>
 <% else %>
   <div class="alert">
-    <%= (t"none_param", param: t("user.one")) %>
+    <%= t(".none_user") %>
   </div>
 <% end %>

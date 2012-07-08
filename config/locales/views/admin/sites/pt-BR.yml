@@ -1,3 +1,15 @@
 pt-BR:
   admin:
     sites:
+      show:
+        sites: "Sítios"
+      new:
+        sites: "Sítios"
+      index:
+        sites: "Sítios"
+        new_site: "Novo Sítio"
+      edit:
+        sites: "Sítios"
+      list:
+        name: "Nome"
+        description: "Descrição"
