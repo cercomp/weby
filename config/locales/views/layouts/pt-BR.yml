@@ -1,0 +1,11 @@
+pt-BR:
+  application:
+    dashboard:     " Administração "
+    licence:       " © Copyright 2012 UFG. Todos os direitos reservados. "
+  sites:
+    licence:       " © Copyright 2012 UFG. Todos os direitos reservados. "
+  teacher:
+  this2:
+  user_sessions:
+  weby_doc:
+    documentation: " Documentação "
