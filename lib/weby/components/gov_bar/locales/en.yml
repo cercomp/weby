@@ -1,7 +1,7 @@
 en:
   components:
     gov_bar:
-      name: Government Bar
+      name: "Government Bar"
       background: "Background Color"
   activerecord:
     attributes:

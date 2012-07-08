@@ -99,6 +99,7 @@ en:
     masc: "Disable"
   desc_use_menu_dropdown: "Do you want dropdown menu use?"
   documentatio: "Documentation"
+  disabled_component: "Disabled Component!"
 
 #---E---#
   edit: "Edit"

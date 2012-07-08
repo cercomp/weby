@@ -1,7 +1,7 @@
 pt-BR:
   components:
     gov_bar:
-      name: Barra do Governo
+      name: "Barra do Governo"
       background: "Cor de fundo"
   activerecord:
     attributes:

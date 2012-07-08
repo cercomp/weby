@@ -1,4 +1,4 @@
-<%- title 'component.other' %>
+<%- title ".components" %>
 
 <div class="span9">
   <div class="well">
@@ -6,7 +6,7 @@
 
     <div class="pull-right">
       <% if check_permission(Sites::Admin::ComponentsController, 'new') %>
-      <%= link_to t('new_param.masc', param: t('component.one')),
+      <%= link_to t(".new_component"),
         new_site_admin_component_path,
         class: "btn btn-success btn-large" %>
       <% end %>
@@ -16,9 +16,9 @@
     <table class="table table-striped">
       <thead>
         <th>id</th>
-        <th><%= t("component.one") %></th>
-        <th><%= t("category") %></th>
-        <th><%= t("active") %></th>
+        <th><%= t(".component") %></th>
+        <th><%= t(".category") %></th>
+        <th><%= t(".active") %></th>
         <th></th>
       </thead>
 
