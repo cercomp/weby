@@ -9,11 +9,6 @@ class Sites::Admin::GroupsController < ApplicationController
     @groups = @site.groups.order(sort_column + ' ' + sort_direction).
       page(params[:page]).per(params[:per_page])
 
-    if @groups.empty?
-      flash[:warning] = (t"none_param", :param => t("group.one"))
-    else
-      flash[:warning] = t('group_explain')
-    end
   end
 
   def show

@@ -1,28 +1,28 @@
-<%- title 'messages' %>
+<%- title '.feedback' %>
 
 <div class="span9">
   <div class="well">
 
     <p>
-    <b><%= t("name") %>:</b>
+    <b><%= t(".name") %>:</b>
     <%= @feedback.name %>
     </p>
     <p>
-    <b><%= t("email") %>:</b>
+    <b><%= t(".email") %>:</b>
     <%= @feedback.email %>
     </p>
     <p>
-    <b><%= t("message") %>:</b>
+    <b><%= t(".message") %>:</b>
     <%= @feedback.message %>
     </p>
     <p>
-    <b><%= t("group."+(@feedback.groups.length>1 ? "other" : "one")) %></b><br/>
+    <b><%= t((@feedback.groups.length>1 ? ".groups" : ".group")) %>:</b><br/>
     <% @feedback.groups.each do |group| %>
       <%= group.name %> (<%= group.emails %>)<br/>
     <% end %>
     </p>
     <p>
-    <b><%= t('send_date') %>:</b>
+    <b><%= t('.send_date') %>:</b>
     <%= l @feedback.created_at, format: :short %>
     </p>
     <%= link_to t("back"), :back, class: "btn btn-danger" %>

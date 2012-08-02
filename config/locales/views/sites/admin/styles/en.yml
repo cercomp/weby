@@ -2,7 +2,6 @@ en:
   sites:
     admin:
       styles:
-        styles:
         index:
           other_styles: "Other Styles"
           follow_styles: "Follow Styles"

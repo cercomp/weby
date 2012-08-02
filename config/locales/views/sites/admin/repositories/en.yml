@@ -3,8 +3,9 @@ en:
     admin:
       repositories:
         index:
+          archives: "Files"
           search: "Search"
-          new_archive: "New Archive"
+          new_archive: "New file"
         show:
           name: "Name"
           size: "Size"

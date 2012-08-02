@@ -10,7 +10,7 @@
 	<p> <b><%= t(".file_link") %>:</b> <%= @repository.archive.url(:original) %>  </p>	
 
   <%= make_menu(@repository, :except => "show") %> 
-  <%= link_to icon('list', text: t("list_all.masc")), site_admin_repositories_path() %> 
+  <%= link_to icon('list', text: t("list_all")), site_admin_repositories_path() %> 
   <%= link_to icon('chevron-left', text:t("back")), :back %>
 </div>
 </div>
