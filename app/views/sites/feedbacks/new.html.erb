@@ -1,18 +1,18 @@
-<h2><%= t"new_param.fem", :param => t('message') %> - <%= t('feedback.one') %></h2>
+<h2><%= t('.new_message') %> - <%= t('.feedback') %></h2>
 <br />
 <%= simple_form_for [:site, @feedback], html: {class: 'form-vertical'} do |f| %>
   <%= f.show_errors %>
 
   <% unless @groups.empty? %>
-    <%= f.association :groups, label: "<font color='red'>*</font> #{t('group.one')} (#{t("group_explain")})",
+    <%= f.association :groups, label: "<font color='red'>*</font> #{t('.group')} (#{t(".group_explain")})",
           collection: @groups.collect{ |p| [p.name, p.id]},
           as: :check_boxes %>
   <% end %>
 
-  <%= f.input :name, :label => t("name") %>
-  <%= f.input :email, :label => t("email") %>
-  <%= f.input :subject, :label => t("subject") %>
-  <%= f.input :message, :label => t("message"), as: :text, input_html: { size: '60x8'} %>
+  <%= f.input :name  %>
+  <%= f.input :email%>
+  <%= f.input :subject %>
+  <%= f.input :message, as: :text, input_html: { size: '60x8'} %>
   <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
 
   <div class="form-actions">

@@ -14,15 +14,15 @@ en:
           right: "Right"
           top: "Top"
         available_components:
-          next_step: "Próximo Passo"
-          components: "Componentes"
+          next_step: "Next Step"
+          components: "Components"
         edit:
           components: "Componentes"
         index:
           components: "Componentes"
-          new_component: "Novo Componente"
-          component: "Componente"
-          category: "Categoria"
-          active: "Ativo?"
+          new_component: "New Component"
+          component: "Component"
+          category: "Category"
+          active: "Active?"
         new:
-          components: "Componentes"
+          components: "Components"
