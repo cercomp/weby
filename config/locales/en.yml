@@ -1,4 +1,111 @@
 en:
+  this_file_language: "Português Brasileiro"
+
+#--- Other locales ---#
+  # Locales translation
+  pt-BR: "Português (Brasil)"
+  en: "Inglês"
+  es: "Espanhol"
+
+  date:
+    formats:
+      # Use the strftime parameters for formats.
+      # When no format has been given, it uses default.
+      # You can provide other formats here if you like!
+      default: "%m-%d-%Y"
+      short: "%b %d"
+      long: "%d de %B de %Y"
+
+    day_names: [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday]
+    abbr_day_names: [Sun, Mon, Tue, Wed, Thur, Fri, Sat]
+
+    # Don't forget the nil at the beginning; there's no such thing as a 0th month
+    month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]
+    abbr_month_names: [~, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+    # Used in date_select and datetime_select.
+    order:
+      - :day
+      - :month
+      - :year
+
+  time:
+    formats:
+      default: "%a, %m-%d-%Y %H:%M:%S %z"
+      short: "%m/%d/%y %H:%M"
+      long: "%d de %B de %Y às %H:%M"
+      event_date_short: "%d %B"
+      event_date_full: "%d %B %Y"
+      event_period_short: "%{iniday} a %{finday} %B"
+      event_period_full: "%{iniday} a %{finday} %B %Y"
+      event_hour: "at %kh"
+    period_separator: "to"
+    am: "am"
+    pm: "pm"
+
+# Used in array.to_sentence.
+  support:
+    array:
+      words_connector: ", "
+      two_words_connector: " e "
+      last_word_connector: ", e "
+
+  helpers:
+    submit:
+      create: "Save"
+      update: "Save"
+    cancel: "Cancel"
+
+  authlogic:
+    error_messages:
+      login_blank: "must be filled"
+      login_not_found: "Not valid"
+      login_invalid: "Should use letters, numbers, period, - and _ please."
+      consecutive_failed_logins_limit_exceeded: "You have exceeded the allowed number of login attempts."
+      email_invalid: "It does not seem a valid email address."
+      not_active: "Account is not active"
+      not_confirmed: "The account has not been confirmed"
+      not_approved: "The account was not approved"
+      no_authentication_details: "There is no authentication details"
+      password_blank: "must be filled"
+      password_invalid: "Not valed"
+    attributes:
+      user_session:
+        login: "User name"
+        email: "E-mail"
+        password: "Password"
+        remember_me: "Remember me"
+
+
+
+    errors: &errors
+      template:
+        header:
+          one: "unable to update the model: 1 error"
+          other: "unable to update the model: %{count} errors."
+        body: "Please check the following fields:"
+      messages: 
+        accepted: "acception required"
+        attachment_presence: "should be attached"
+        blank: "must be filled"
+        confirmation: "confirmation does not equal"
+        empty: "must be filled"
+        equal_to: "Required equal to %{count}"
+        even: "par requerido"
+        exclusion: "unavailable"
+        greater_than: "Required greater than %{count}"
+        greater_than_or_equal_to: "Required greater or equal to %{count}"
+        inclusion: " is not included in the list"
+        invalid: "unavailable"
+        less_than: "Required shorter than  %{count}"
+        less_than_or_equal_to: "Required shorter or equal to %{count}"
+        not_a_number: "it's not a number"
+        odd: "ímpar requerido"
+        record_invalid: ! 'Validation failed: %{errors}'
+        taken: "unavaible"
+        too_long: "too long (you can not use more than %{count} characters)"
+        too_short: "too short (you can not use less than %{count} characters) "
+        wrong_length: "Wrong size (%{count} is required) "
+
   views:
      pagination:
        first: 'First'
@@ -28,6 +135,15 @@ en:
   field_required: 'Field Required!'
   please_wait: 'Please Wait!'
   submit: 'Submit'
+  are_you_sure: 'Are you sure?'
+  disable: 'Disable'
+  enable: 'Enable'
+  active_deactive: 'Active Deactive'
+  no_permission_to_activate_deactivate: 'No permission to activate or deacticate'
+  lower_upper_number_chars: "Must contain at least one uppercase letter, one lowercase and one number!"
+  successfully_created: "Successfully created."
+
+
 #  will_paginate:
 #    next: "Next"
 #    previous: "Previous"
