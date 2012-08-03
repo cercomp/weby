@@ -11,3 +11,4 @@ en:
       view_desc_pages_help: "Show the date of the creation anthe author of a page?"
       desc_use_menu_dropdown: "Use dropdown menus?"
       site_comments: "Comments about the goal of the site."
+      example_param: 'Example: 960'
