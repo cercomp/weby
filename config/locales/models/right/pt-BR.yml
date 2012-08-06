@@ -1,12 +1,12 @@
 pt-BR:
   activerecord:
     models:
-      right: "Permissão"
+      right:        " Permissão "
     attributes:
       right:
-        name: "Nome"
-        controller: "Controller"
-        action: "Ação"
-        created_at: "Criado em"
-        updated_at: "Atualizado em"
+        name:       " Nome "
+        controller: " Controller "
+        action:     " Ação "
+        created_at: " Criado em "
+        updated_at: " Atualizado em "
 

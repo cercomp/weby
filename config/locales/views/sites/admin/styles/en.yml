@@ -3,32 +3,32 @@ en:
     admin:
       styles:
         index:
-          other_styles: "Other Styles"
-          follow_styles: "Follow Styles"
-          own_styles: "Own Styles"
-          new_style: "New Style"
-          styles: "Styles"
+          other_styles:     " Other Styles "
+          follow_styles:    " Follow Styles "
+          own_styles:       " Own Styles "
+          new_style:        " New Style "
+          styles:           " Styles "
         styles:
-          other_styles: "Other Styles"
-          follow_styles: "Follow Styles"
-          no_other_styles: "There are no other styles"
-          no_follow_styles: "Not following other styles"
-          name: "Name"
-          owner: "Owner"
-          actions: "Actions"
+          other_styles:     " Other Styles "
+          follow_styles:    " Follow Styles "
+          no_other_styles:  " There are no other styles "
+          no_follow_styles: " Not following other styles "
+          name:             " Name "
+          owner:            " Owner "
+          actions:          " Actions "
         own_styles:
-          actions: "Actions"
-          own_styles: "Own Styles"
-          name: "Name"
-          no_own_styles: "Not have own styles"
-          sites_followers: "Sites followers"
+          actions:          " Actions "
+          own_styles:       " Own Styles "
+          name:             " Name "
+          no_own_styles:    " Not have own styles "
+          sites_followers:  " Sites followers "
         form:
-          help_with_style: "Need help with the style?"
+          help_with_style:  " Need help with the style "
         edit:
-          styles: "Styles"
+          styles:           " Styles "
         new:
-          styles: "Styles"
+          styles:           " Styles "
         show:
-          styles: "Styles"
-          style: "Style"
+          styles:           " Styles "
+          style:            " Style "
 

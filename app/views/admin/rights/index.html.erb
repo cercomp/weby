@@ -28,7 +28,7 @@
       <tbody>
         <% @rights.group_by(&:controller).sort.each do |p, i| %>
           <tr>
-            <th colspan="4"><%= t("#{p.singularize}.other") %></th>
+            <th colspan="4"><%= t(".#{p.singularize}s") %></th>
           </tr>
           <% i.each do |right| %>
             <tr>

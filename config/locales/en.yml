@@ -3,18 +3,18 @@ en:
 
 #--- Other locales ---#
   # Locales translation
-  pt-BR: "Português (Brasil)"
-  en: "Inglês"
-  es: "Espanhol"
+  pt-BR: " Português (Brasil) "
+  en:    " Inglês "
+  es:    " Espanhol"
 
   date:
     formats:
       # Use the strftime parameters for formats.
       # When no format has been given, it uses default.
       # You can provide other formats here if you like!
-      default: "%m-%d-%Y"
-      short: "%b %d"
-      long: "%d de %B de %Y"
+      default: " %m-%d-%Y"
+      short:   " %b %d "
+      long:    " %d de %B de %Y "
 
     day_names: [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday]
     abbr_day_names: [Sun, Mon, Tue, Wed, Thur, Fri, Sat]
@@ -30,24 +30,24 @@ en:
 
   time:
     formats:
-      default: "%a, %m-%d-%Y %H:%M:%S %z"
-      short: "%m/%d/%y %H:%M"
-      long: "%d de %B de %Y às %H:%M"
-      event_date_short: "%d %B"
-      event_date_full: "%d %B %Y"
-      event_period_short: "%{iniday} a %{finday} %B"
-      event_period_full: "%{iniday} a %{finday} %B %Y"
-      event_hour: "at %kh"
-    period_separator: "to"
-    am: "am"
-    pm: "pm"
+      default:            " %a, %m-%d-%Y %H:%M:%S %z "
+      short:              " %m/%d/%y %H:%M "
+      long:               " %d de %B de %Y às %H:%M  "
+      event_date_short:   " %d %B "
+      event_date_full:    " %d %B %Y "
+      event_period_short: " %{iniday} a %{finday} %B "
+      event_period_full:  " %{iniday} a %{finday} %B %Y "
+      event_hour:         " at %kh "
+    period_separator: " to "
+    am:               " am "
+    pm:               " pm "
 
 # Used in array.to_sentence.
   support:
     array:
-      words_connector: ", "
+      words_connector:     " , "
       two_words_connector: " e "
-      last_word_connector: ", e "
+      last_word_connector: " , e "
 
   helpers:
     submit:
@@ -57,91 +57,98 @@ en:
 
   authlogic:
     error_messages:
-      login_blank: "must be filled"
-      login_not_found: "Not valid"
-      login_invalid: "Should use letters, numbers, period, - and _ please."
-      consecutive_failed_logins_limit_exceeded: "You have exceeded the allowed number of login attempts."
-      email_invalid: "It does not seem a valid email address."
-      not_active: "Account is not active"
-      not_confirmed: "The account has not been confirmed"
-      not_approved: "The account was not approved"
-      no_authentication_details: "There is no authentication details"
-      password_blank: "must be filled"
-      password_invalid: "Not valed"
+      login_blank:                              " must be filled "
+      login_not_found:                          " Not valid  "
+      login_invalid:                            " Should use letters, numbers, period, - and _ please. "
+      consecutive_failed_logins_limit_exceeded: " You have exceeded the allowed number of login attempts. "
+      email_invalid:                            " It does not seem a valid email address. "
+      not_active:                               " Account is not active "
+      not_confirmed:                            " The account has not been confirmed "
+      not_approved:                             " The account was not approved "
+      no_authentication_details:                " There is no authentication details "
+      password_blank:                           " must be filled "
+      password_invalid:                         " Not valed "
     attributes:
       user_session:
-        login: "User name"
-        email: "E-mail"
-        password: "Password"
-        remember_me: "Remember me"
+        login:       " User name "
+        email:       " E-mail "
+        password:    " Password "
+        remember_me: " Remember me "
 
 
 
     errors: &errors
       template:
         header:
-          one: "unable to update the model: 1 error"
-          other: "unable to update the model: %{count} errors."
+          one:   " unable to update the model: 1 error "
+          other: " unable to update the model: %{count} errors. "
         body: "Please check the following fields:"
       messages: 
-        accepted: "acception required"
-        attachment_presence: "should be attached"
-        blank: "must be filled"
-        confirmation: "confirmation does not equal"
-        empty: "must be filled"
-        equal_to: "Required equal to %{count}"
-        even: "par requerido"
-        exclusion: "unavailable"
-        greater_than: "Required greater than %{count}"
-        greater_than_or_equal_to: "Required greater or equal to %{count}"
-        inclusion: " is not included in the list"
-        invalid: "unavailable"
-        less_than: "Required shorter than  %{count}"
-        less_than_or_equal_to: "Required shorter or equal to %{count}"
-        not_a_number: "it's not a number"
-        odd: "ímpar requerido"
-        record_invalid: ! 'Validation failed: %{errors}'
-        taken: "unavaible"
-        too_long: "too long (you can not use more than %{count} characters)"
-        too_short: "too short (you can not use less than %{count} characters) "
-        wrong_length: "Wrong size (%{count} is required) "
+        accepted:                 " acception required "
+        attachment_presence:      " should be attached "
+        blank:                    " must be filled "
+        confirmation:             " confirmation does not equal "
+        empty:                    " must be filled "
+        equal_to:                 " Required equal to %{count}  "
+        even:                     " par requerido "
+        exclusion:                " unavailable "
+        greater_than:             " Required greater than %{count} "
+        greater_than_or_equal_to: " Required greater or equal to %{count} "
+        inclusion:                " is not included in the list "
+        invalid:                  " unavailable "
+        less_than:                " Required shorter than  %{count} "
+        less_than_or_equal_to:    " Required shorter or equal to %{count} "
+        not_a_number:             " it's not a number "
+        odd:                      " ímpar requerido "
+        record_invalid: !         " Validation failed: %{errors} "
+        taken:                    " unavaible "
+        too_long:                 " too long (you can not use more than %{count} characters)  "
+        too_short:                " too short (you can not use less than %{count} characters) "
+        wrong_length:             " Wrong size (%{count} is required)                         "
 
   views:
      pagination:
-       first: 'First'
-       last: 'Last'
-       displaying: 'Showing'
-       more: 'More'
-       next: 'Next'
-       per_page: 'Per Page'
-       previous: 'Previus'
-       total: 'Total'
-       truncate: '...'
-  of: 'of'
-  show: 'Show'
-  edit: 'Edit'
-  destroy: 'Destroy'
-  publish: 'Publish'
-  unpublish: 'Unpubish'
-  move: 'Move'
-  follow: 'Follow'
-  unfollow: 'Unfollow'
-  copy: 'Copy'
-  back: 'Back'
-  search: "Search"
-  close: "Close"
-  save: "Save"
-  list_all: 'List all'
-  field_required: 'Field Required!'
-  please_wait: 'Please Wait!'
-  submit: 'Submit'
-  are_you_sure: 'Are you sure?'
-  disable: 'Disable'
-  enable: 'Enable'
-  active_deactive: 'Active Deactive'
-  no_permission_to_activate_deactivate: 'No permission to activate or deacticate'
-  lower_upper_number_chars: "Must contain at least one uppercase letter, one lowercase and one number!"
-  successfully_created: "Successfully created."
+       first:      " First "
+       last:       " Last "
+       displaying: " Showing "
+       more:       " More "
+       next:       " Next "
+       per_page:   " Per Page "
+       previous:   " Previus "
+       total:      " Total "
+       truncate:   " ... "
+  active_deactive:                      " Active Deactive  "
+  are_you_sure:                         " Are you sure?    "
+  back:                                 " Back "
+  close:                                " Close "
+  copy:                                 " Copy "
+  destroy:                              " Destroy "
+  disable:                              " Disable "
+  edit:                                 " Edit "
+  enable:                               " Enable "
+  field_required:                       " Field Required!  "
+  follow:                               " Follow "
+  layout:                               " Layout "
+  list_all:                             " List all "
+  lower_upper_number_chars:             " Must contain at least one uppercase letter, one lowercase and one number! "
+  move:                                 " Move "
+  no_permission_to_activate_deactivate: " No permission to activate or deacticate "
+  of:                                   " of "
+  please_wait:                          " Please Wait! "
+  publish:                              " Publish "
+  save:                                 " Save "
+  search:                               " Search "
+  show:                                 " Show "
+  submit:                               " Submit "
+  successfully_created:                 " Successfully created. "
+  unfollow:                             " Unfollow "
+  unpublish:                            " Unpubish "
+  login:                                " Login "
+  activate_deactivate:                  " Activate/Deactivate "
+  manage_roles:                         " Manage Roles "
+  begin:                                " Begin "
+  publication_infinite:                 " Publication infinite "
+  expired:                              " Expired "
 
 
 #  will_paginate:
@@ -156,14 +163,14 @@ en:
 #
 # -- SIMPLE FORM -- #
   simple_form:
-    "yes": 'Yes'
-    "no": 'No'
+    "yes": "Yes"
+    "no": "No"
     required:
-      text: 'required'
-      mark: '*'
+      text: "required"
+      mark: "*"
       # You can uncomment the line below if you need to overwrite the whole required html.
       # When using html, text and mark won't be used.
-      # html: '<abbr title="required">*</abbr>'
+      # html: "<abbr title="required">*</abbr>"
     error_notification:
       default_message: "Some errors were found, please take a look:"
 

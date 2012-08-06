@@ -4,12 +4,12 @@ en:
       menus:
         menu_items:
           new:
-            title: "New Menu Item"
-            menu_items: "Menu Items"
+            title:            " New Menu Item "
+            menu_items:       " Menu Items "
           edit:
-            title: "Edit Menu Item"
+            title:            " Edit Menu Item "
           form:
-            parent_menu_item: "Parent menu item"
-            type_url: "Type a URL"
+            parent_menu_item: " Parent menu item "
+            type_url:         " Type a URL "
           edit:
-            menu_items: "Menu Items"
+            menu_items:       " Menu Items "

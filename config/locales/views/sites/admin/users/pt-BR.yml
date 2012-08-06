@@ -3,16 +3,16 @@ pt-BR:
     admin:
       users:
         manage_roles:
-          manage_roles: "Gerenciar Papéis"
+          manage_roles:   " Gerenciar Papéis "
         enrole:
-          enrole_user: "Relacionar Usuários"
-          role: "Papel"
-          none_user: "Nenhum Usuário"
+          enrole_user:    " Relacionar Usuários "
+          role:           " Papel "
+          none_user:      " Nenhum Usuário "
         enroled:
-          enroled_user: "Usuário Relacionados"
-          role: "Papel"
-          none_user: "Nenhum Usuário"
+          enroled_user:   " Usuário Relacionados "
+          role:           " Papel "
+          none_user:      " Nenhum Usuário "
         role_form:
           confirm_unrole:
-          
+
 

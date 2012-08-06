@@ -3,7 +3,7 @@ en:
     first_page:
       pagination_first:    " First "
     gap:
-      pagination_truncate: " ... "
+      pagination_truncate: " ...      "
     last_page:
       pagination_last:     " Last "
     next_page:

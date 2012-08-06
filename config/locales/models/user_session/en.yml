@@ -1,9 +1,9 @@
 en:
   activerecord:
     models:
-      user_session: "User session"
+      user_session:  " User session "
     attributes:
       user_session:
-        login: "Login"
-        password: "Password"
-        remember_me: "Remember me"
+        login:       " Login "
+        password:    " Password "
+        remember_me: " Remember me "

@@ -1,9 +1,9 @@
 en:
   new:
-    forgot_password: "Forgot password"
-    register: "Register"
-    help: "Help"
-    portals: "Portals"
+    forgot_password:    " Forgot password "
+    register:           " Register "
+    help:               " Help "
+    portals:            " Portals "
   access_denied:
-    access_denied: "Access denied"
-    access_denied_page: "You are not allowed to see this page!"
+    access_denied:      " Access denied "
+    access_denied_page: " You are not allowed to see this page "

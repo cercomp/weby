@@ -1,14 +1,20 @@
 pt-BR:
   sites:
     index:
-      new_site: "Novo Sítio"
+      new_site:               " Novo Sítio "
     edit:
-      sites: "Sites"
+      sites:                  " Sites "
     list:
-      description: "Descrição"
-      name: "Nome"
+      description:            " Descrição "
+      name:                   " Nome "
     form:
-      view_desc_pages_help: "Deseja mostrar a data de criação e o autor das páginas?"
-      desc_use_menu_dropdown: "Deseja que os menus sejam desdobráveis?"
-      site_comments: "Comentário sobre os objetivos do site."
-      example_param: 'Exemplo: 960' 
+      view_desc_pages_help:   " Deseja mostrar a data de criação e o autor das páginas? "
+      desc_use_menu_dropdown: " Deseja que os menus sejam desdobráveis? "
+      site_comments:          " Comentário sobre os objetivos do site "
+      example_width:          " Exemplo "
+      example_url:            " Exemplo: http://site.com "
+      example_top_widht:      " Exemplo "
+      example_top_height:     " Exemplo "
+      example_per_page:       " Exemplo "
+      site_image:             " Imagem do Site "
+      main_site:              " Site Principal "

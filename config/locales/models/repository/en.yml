@@ -1,15 +1,15 @@
 en:
   activerecord:
     models:
-      repository: ""
+      repository:             ""
     attributes:
       repository:
         archive_content_type: ""
-        archive_file_name: ""
-        archive_file_size: ""
-        archive_updated_at: ""
-        created_at: "Created at"         
-        description: "Description"
-        site_id: "Site id"
-        updated_at: "Updated at"         
+        archive_file_name:    ""
+        archive_file_size:    ""
+        archive_updated_at:   ""
+        created_at:           " Created at "
+        description:          " Description "
+        site_id:              " Site id "
+        updated_at:           " Updated at "
 
