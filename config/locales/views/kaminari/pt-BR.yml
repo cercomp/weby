@@ -3,7 +3,7 @@ pt-BR:
     first_page:
       pagination_first:    " Primeira "
     gap:
-      pagination_truncate: " ... "
+      pagination_truncate: " ...      "
     last_page:
       pagination_last:     " Última "
     next_page:

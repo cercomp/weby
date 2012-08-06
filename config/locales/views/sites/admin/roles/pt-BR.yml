@@ -2,14 +2,14 @@ pt-BR:
   sites:
     admin:
       roles:
-        index: 
-          roles_permissions: "Permissões e Papéis"
-          none_role: "Nenhum Papel"
-          new_role: "Novo Papel"
-        new: 
-          roles_permissions: "Permissões e Papéis"
-        edit: 
-          roles_permissions: "Permissões e Papéis"
+        index:
+          roles_permissions: " Permissões e Papéis "
+          none_role:         " Nenhum Papel "
+          new_role:          " Novo Papel "
+        new:
+          roles_permissions: " Permissões e Papéis "
+        edit:
+          roles_permissions: " Permissões e Papéis "
 
 
 

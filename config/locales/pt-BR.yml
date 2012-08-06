@@ -3,18 +3,18 @@ pt-BR:
 
 #--- Other locales ---#
   # Locales translation
-  pt-BR: "Português (Brasil)"
-  en: "Inglês"
-  es: "Espanhol"
+  pt-BR: " Português (Brasil) "
+  en:    " Inglês "
+  es:    " Espanhol "
 
   date:
     formats:
       # Use the strftime parameters for formats.
       # When no format has been given, it uses default.
       # You can provide other formats here if you like!
-      default: "%d-%m-%Y"
-      short: "%b %d"
-      long: "%d de %B de %Y"
+      default: " %d-%m-%Y "
+      short:   " %b %d "
+      long:    " %d de %B de %Y "
 
     day_names: [Domingo, Segunda, Terça, Quarta, Quinta, Sexta, Sábado]
     abbr_day_names: [Dom, Seg, Ter, Qua, Qui, Sex, Sab]
@@ -30,14 +30,14 @@ pt-BR:
 
   time:
     formats:
-      default: "%a, %d-%m-%Y %H:%M:%S %z"
-      short: "%d/%m/%y %H:%M"
-      long: "%d de %B de %Y às %H:%M"
-      event_date_short: "%d %B"
-      event_date_full: "%d %B %Y"
-      event_period_short: "%{iniday} a %{finday} %B"
-      event_period_full: "%{iniday} a %{finday} %B %Y"
-      event_hour: "às %kh"
+      default:            " %a, %d-%m-%Y %H:%M:%S %z "
+      short:              " %d/%m/%y %H:%M "
+      long:               " %d de %B de %Y às %H:%M "
+      event_date_short:   " %d %B "
+      event_date_full:    " %d %B %Y "
+      event_period_short: " %{iniday} a %{finday} %B "
+      event_period_full:  " %{iniday} a %{finday} %B %Y "
+      event_hour:         " às %kh "
     period_separator: "a"
     am: "am"
     pm: "pm"
@@ -45,9 +45,9 @@ pt-BR:
 # Used in array.to_sentence.
   support:
     array:
-      words_connector: ", "
+      words_connector:     " ,"
       two_words_connector: " e "
-      last_word_connector: ", e "
+      last_word_connector: " , e "
 
   helpers:
     submit:
@@ -57,91 +57,98 @@ pt-BR:
 
   authlogic:
     error_messages:
-      login_blank: "deve ser preenchido"
-      login_not_found: "Inválido"
-      login_invalid: "Deveria usar letras, números, ponto, - e  _, por favor."
-      consecutive_failed_logins_limit_exceeded: "Você excedeu o número permitido de tentativas de login"
-      email_invalid: "Não parece um email válido"
-      not_active: "Conta não está ativa"
-      not_confirmed: "A conta não foi confirmada"
-      not_approved: "A conta não foi aprovada"
-      no_authentication_details: "Não há detalhes de autenticação"
-      password_blank: "deve ser preenchido"
-      password_invalid: "Inválido"
+      login_blank:                              " deve ser preenchido "
+      login_not_found:                          " Inválido "
+      login_invalid:                            " Deveria usar letras, números, ponto, - e  _, por favor. "
+      consecutive_failed_logins_limit_exceeded: " Você excedeu o número permitido de tentativas de login  "
+      email_invalid:                            " Não parece um email válido "
+      not_active:                               " Conta não está ativa "
+      not_confirmed:                            " A conta não foi confirmada "
+      not_approved:                             " A conta não foi aprovada "
+      no_authentication_details:                " Não há detalhes de autenticação "
+      password_blank:                           " deve ser preenchido "
+      password_invalid:                         " Inválido "
     attributes:
       user_session:
-        login: "Nome de usuário"
-        email: "E-mail"
-        password: "Senha"
-        remember_me: "Lembrar-me"
+        login:       " Nome de usuário "
+        email:       " E-mail "
+        password:    " Senha "
+        remember_me: " Lembrar-me "
 
 
 
     errors: &errors
       template:
         header:
-          one: "não foi possivel atualizar o modelo: 1 erro"
-          other: "não foi possivel atualizar o modelo: %{count} erros."
+          one:   " não foi possivel atualizar o modelo: 1 erro "
+          other: " não foi possivel atualizar o modelo: %{count} erros. "
         body: "Por favor cheque os seguintes campos:"
       messages: 
-        accepted: "acception required"
-        attachment_presence: "deve ser anexado"
-        blank: "deve ser preenchido"
-        confirmation: "confirmação não equivalente"
-        empty: "deve ser preenchido"
-        equal_to: "Requerido igual a %{count}"
-        even: "par requerido"
-        exclusion: "indisponível"
-        greater_than: "Requerido maior do que %{count}"
-        greater_than_or_equal_to: "Requerido maior que ou igual a %{count}"
-        inclusion: " não está incluido na lista"
-        invalid: "inválido"
-        less_than: "Requerido menor que %{count}"
-        less_than_or_equal_to: "Requerido menor que ou igual a %{count}"
-        not_a_number: "não é um número"
-        odd: "ímpar requerido"
-        record_invalid: ! 'A validação falhou: %{errors}'
-        taken: "indisponível"
-        too_long: "muito longo (não é possível usar mais de %{count} caracteres)"
-        too_short: "muito curto (não é possível usar menos de %{count} caracteres)"
-        wrong_length: "Tamanho errado (%{count} são requeridos)"
+        accepted:                 " acception required  "
+        attachment_presence:      " deve ser anexado "
+        blank:                    " deve ser preenchido "
+        confirmation:             " confirmação não equivalente "
+        empty:                    " deve ser preenchido "
+        equal_to:                 " Requerido igual a %{count} "
+        even:                     " par requerido "
+        exclusion:                " indisponível "
+        greater_than:             " Requerido maior do que %{count} "
+        greater_than_or_equal_to: " Requerido maior que ou igual a %{count} "
+        inclusion:                " não está incluido na lista "
+        invalid:                  " inválido  "
+        less_than:                " Requerido menor que %{count} "
+        less_than_or_equal_to:    " Requerido menor que ou igual a %{count} "
+        not_a_number:             " não é um número "
+        odd:                      " ímpar requerido "
+        record_invalid: !         " A validação falhou: %{errors} "
+        taken:                    " indisponível"
+        too_long:                 " muito longo (não é possível usar mais de %{count} caracteres)  "
+        too_short:                " muito curto (não é possível usar menos de %{count} caracteres) "
+        wrong_length:             " Tamanho errado (%{count} são requeridos) "
         
   views:
      pagination:
-       first: 'Primeiro'
-       last: 'Último'
-       displaying: 'Mostrando'
-       more: 'Mais'
-       next: 'Próximo'
-       per_page: 'Por Página'
-       previous: 'Anterior'
-       total: 'Total'
-       truncate: '...'
-  of: 'de'
-  show: 'Mostrar'
-  edit: 'Editar'
-  destroy: 'Excluir'
-  publish: 'Publicar'
-  unpublish: 'Despublicar'
-  move: 'Mover'
-  follow: 'Seguir'
-  unfollow: 'Deixar de Seguir'
-  copy: 'Copiar'
-  back: 'Voltar'
-  search: "Procurar"
-  close: "Fechar"
-  save: "Salvar"
-  list_all: 'Mostrar todos'
-  field_required: 'Campo Obrigatório!'
-  please_wait: 'Por favor espere!'
-  submit: 'Enviar'
-  are_you_sure: 'Você tem certeza?'
-  disable: 'Desativado'
-  enable: 'Ativado'
-  active_deactive: 'Ativar Desativar'
-  no_permission_to_activate_deactivate: 'Sem permissão para ativar ou desativar'
-  lower_upper_number_chars: "Deve conter pelo menos uma letra maiúscula, uma minúscula e um número!"
-  successfully_created: "Criado com sucesso."
+       first:      " Primeiro "
+       last:       " Último "
+       displaying: " Mostrando "
+       more:       " Mais "
+       next:       " Próximo "
+       per_page:   " Por Página "
+       previous:   " Anterior "
+       total:      " Total "
+       truncate:   " ... "
+  active_deactive:                      " Ativar Desativar "
+  are_you_sure:                         " Você tem certeza? "
+  back:                                 " Voltar "
+  close:                                " Fechar "
+  copy:                                 " Copiar "
+  destroy:                              " Excluir "
+  disable:                              " Desativado "
+  edit:                                 " Editar "
+  enable:                               " Ativado "
+  field_required:                       " Campo Obrigatório! "
+  follow:                               " Seguir "
+  layout:                               " Layout "
+  list_all:                             " Mostrar todos "
+  lower_upper_number_chars:             " Deve conter pelo menos uma letra maiúscula, uma minúscula e um número! "
+  move:                                 " Mover "
+  no_permission_to_activate_deactivate: " Sem permissão para ativar ou desativar "
+  of:                                   " de "
+  please_wait:                          " Por favor espere! "
+  publish:                              " Publicar "
+  save:                                 " Salvar "
+  search:                               " Procurar "
+  show:                                 " Mostrar "
+  submit:                               " Enviar "
+  successfully_created:                 " Criado com sucesso."
+  unfollow:                             " Deixar de Seguir "
+  unpublish:                            " Despublicar "
+  login:                                " Entrar "
+  activate_deactivate:                  " Ativar/Desativar "
+  manage_roles:                         " Gerenciar Papéis "
+  begin:                                " Início "
+  publication_infinite:                 " Publicação infinita "
+  expired:                              " Expirado "
 
 
 
@@ -157,11 +164,11 @@ pt-BR:
 
 # -- SIMPLE FORM -- #
   simple_form:
-    "yes": 'Sim'
-    "no": 'Não'
+    "yes": "Sim"
+    "no": "Não"
     required:
-      text: 'obrigatório'
-      mark: '*'
+      text: "obrigatório"
+      mark: "*"
       # You can uncomment the line below if you need to overwrite the whole required html.
       # When using html, text and mark won't be used.
       # html: '<abbr title="required">*</abbr>'

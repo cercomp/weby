@@ -2,22 +2,22 @@ en:
   sites:
     admin:
       groups:
-        form: 
-          field_required: "Field required!"
-          comma_separated_emails: "Comma Separated Emails"
-          please_wait: "Please wait..."
+        form:
+          field_required:         " Field required "
+          comma_separated_emails: " Comma Separated Emails "
+          please_wait:            " Please wait "
         list:
-          name: "Name"
-          description: "Description"
+          name:                   " Name "
+          description:            " Description "
         index:
-          groups: "Groups"
-          new_group: "New Group"
-          messages: "Messages"
-          none_group: "Exists no group"
-          group_explain: "List of groups that can receive feedback."
+          groups:                 " Groups "
+          new_group:              " New Group "
+          messages:               " Messages "
+          none_group:             " Exists no group "
+          group_explain:          " List of groups that can receive feedback "
         edit:
-          groups: "Groups"
+          groups:                 " Groups "
         new:
-          groups: "Groups"
+          groups:                 " Groups "
         show:
-          groups: "Groups"
+          groups:                 " Groups "

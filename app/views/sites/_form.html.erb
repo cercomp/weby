@@ -1,31 +1,31 @@
 <%= simple_form_for @site, url: edit_site_admin_path, html: { class: 'form-horizontal' } do |f| %>
   <%= f.show_errors %>
 
-  <%= repository_search t("site.image"), "site_image",
+  <%= repository_search t(".site_image"), "site_image",
     "site[top_banner_id]", @site.repository,
     multiple: false, file_types: 'image' %>
 
-  <%= f.input :body_width, :hint => (t".example_param") %>
+  <%= f.input :body_width, :hint => t(".example_width") %>
 
   <% unless @site.repository.nil? %>
-    <%= f.input :top_banner_width, :label => t("top_banner_width"), :hint => (t".example_param", :param => "960") %>
-    <%= f.input :top_banner_height, :label => t("top_banner_height"), :hint => (t"example_param", :param => "101") %>
+    <%= f.input :top_banner_width, :hint => t(".example_top_widht") %>
+    <%= f.input :top_banner_height,:hint => t(".example_top_height") %>
   <% end %>
 
   <% if current_user.is_admin? %>
     <%= f.input :name, :hint => t("field_required") %>
-    <%= f.input :parent_id, :collection => main_sites_list.collect{|s| [s.title || s.name ,s.id]}, :label => t('main_site') %>
+    <%= f.input :parent_id, :collection => main_sites_list.collect{|s| [s.title || s.name ,s.id]}, :label => t('.main_site') %>
   <% end %>
 
-  <%= f.input :url, :label => t("url"), :hint =>  (t("field_required") + " " + t("example_param", :param => "http://site.com")), :placeholder => "http://"%>
-  <%= f.input :per_page, :hint => (t"example_param", :param => "15, 30, 50, 100, 250, 500") %>
+  <%= f.input :url, :hint =>  (t("field_required") + " " + t(".example_url")), :placeholder => "http://"%>
+  <%= f.input :per_page, :hint => t(".example_per_page") %>
   <%= f.input :per_page_default, :required => true %>
   <%= f.input :title %>
   <%= f.input :description, :input_html => {:rows => 8}, :hint => t(".site_comments"), :as => :text %>
   <%= f.input :footer, :input_html => {:class => :mceSimple, :rows =>8}, :as => :text%>
   <%= f.input :view_desc_pages, :hint => t(".view_desc_pages_help"), :as => :boolean %>
   <%= f.input :menu_dropdown, :hint => t(".desc_use_menu_dropdown"), :as => :boolean %>
-  <%= f.input :theme, :collection => @themes.collect{|p| [ p , p]}, :label => t('layout') %>
+  <%= f.input :theme, :collection => @themes.collect{|p| [ p , p]}, :label => t("layout") %>
   <%= f.association :locales, 
     :as => :check_boxes,
     :collection => Locale.all.map{|l| [image_tag("flags/24/#{l.flag}", :title=>t(l.name)), l.id] } %>

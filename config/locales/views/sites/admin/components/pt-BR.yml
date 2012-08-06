@@ -3,26 +3,26 @@ pt-BR:
     admin:
       components:
         form:
-          place: "local"
+          place:              " local "
         components:
-          empty_placeholder: "Nenhum componente neste local"
-          bottom: "Inferior"
-          content: "Conteúdo"
-          first_place: "Primeiro Carregamento"
-          home: "Página Inicial"
-          left: "Esquerda"
-          right: "Direita"
-          top: "Topo"
+          empty_placeholder:  " Nenhum componente neste local "
+          bottom:             " Inferior "
+          content:            " Conteúdo "
+          first_place:        " Primeiro Carregamento "
+          home:               " Página Inicial "
+          left:               " Esquerda "
+          right:              " Direita "
+          top:                " Topo "
         available_components:
-          next_step: "Próximo Passo"
-          components: "Componentes"
+          next_step:          " Próximo Passo "
+          components:         " Componentes "
         edit:
-          components: "Componentes"
+          components:         " Componentes "
         index:
-          components: "Componentes"
-          new_component: "Novo Componente"
-          component: "Componente"
-          category: "Categoria"
-          active: "Ativo?"
+          components:         " Componentes "
+          new_component:      " Novo Componente "
+          component:          " Componente "
+          category:           " Categoria "
+          active:             " Ativo "
         new:
-          components: "Componentes"
+          components:         " Componentes "

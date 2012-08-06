@@ -1,20 +1,21 @@
 pt-BR:
   activerecord:
     models:
-      user: 
-        one: "Usuário"
-        other: "Usuários"
+      user:
+        one:                   " Usuário "
+        other:                 " Usuários "
     attributes:
       user:
-        login: "Login"
-        email: "Email"
-        theme: "Tema"
-        status: "Status"
-        is_admin: "É admin?"
-        first_name: "Nome"
-        last_name: "Sobrenome"
-        phone: "Telefone"
-        mobile: "Celular"
-        created_at: "Criado em"
-        updated_at: "Atualizado em"
-        password: "Senha"
+        login:                 " Login "
+        email:                 " Email "
+        theme:                 " Tema "
+        status:                " Status "
+        is_admin:              " É admin "
+        first_name:            " Nome "
+        last_name:             " Sobrenome "
+        phone:                 " Telefone "
+        mobile:                " Celular "
+        created_at:            " Criado em "
+        updated_at:            " Atualizado em "
+        password:              " Senha "
+        password_confirmation: " Confirmação da senha "

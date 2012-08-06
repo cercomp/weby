@@ -3,26 +3,26 @@ en:
     admin:
       components:
         form:
-          place: "Place"
+          place:              " Place "
         components:
-          empty_placeholder: "No components in this place"
-          bottom: "Bottom"
-          content: "Content"
-          first_place: "First Place"
-          home: "Home Page"
-          left: "Left"
-          right: "Right"
-          top: "Top"
+          empty_placeholder:  " No components in this place "
+          bottom:             " Bottom "
+          content:            " Content "
+          first_place:        " First Place "
+          home:               " Home Page "
+          left:               " Left "
+          right:              " Right "
+          top:                " Top "
         available_components:
-          next_step: "Next Step"
-          components: "Components"
+          next_step:          " Next Step "
+          components:         " Components "
         edit:
-          components: "Componentes"
+          components:         " Componentes "
         index:
-          components: "Componentes"
-          new_component: "New Component"
-          component: "Component"
-          category: "Category"
-          active: "Active?"
+          components:         " Componentes "
+          new_component:      " New Component "
+          component:          " Component "
+          category:           " Category "
+          active:             " Active "
         new:
-          components: "Components"
+          components:         " Components "

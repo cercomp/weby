@@ -1,11 +1,11 @@
 pt-BR:
   activerecord:
     models:
-      rights_role: "Permissões e Papeis"
+      rights_role:  " Permissões e Papeis "
     attributes:
       rights_role:
-        rigth_id: "Permissão id"
-        role_id: "Papel id"
-        created_at: "Criado em"
-        updated_at: "Atualizado em"
+        rigth_id:   " Permissão id "
+        role_id:    " Papel id "
+        created_at: " Criado em "
+        updated_at: " Atualizado em "
 

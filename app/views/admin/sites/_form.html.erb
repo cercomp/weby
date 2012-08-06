@@ -1,23 +1,23 @@
 <%= simple_form_for [:admin, @site], html: { class: 'form-horizontal' } do |f| %>
   <%= f.show_errors %>
 
-  <%= f.input :body_width, :hint => (t"example_param", :param => "960") %>
+  <%= f.input :body_width, :hint => t(".example_width") %>
   <%= f.input :name, :hint => t("field_required"), :input_html => {:pattern => '^[a-z0-9_\-]+$'}  %>
-  <%= f.input :url, :hint =>  (t("field_required") + " " + t("example_param", :param => "http://site.com")), :placeholder => "http://"%>
-  <%= f.input :parent_id, :collection => main_sites_list.collect{|s| [s.title || s.name ,s.id]}, :label => t('main_site') %>
-  <%= f.input :per_page,  :hint => (t"example_param", :param => "15, 30, 50, 100, 250, 500") %>
+  <%= f.input :url, :hint =>  (t("field_required") + " " + t(".example_url")), :placeholder => "http://"%>
+  <%= f.input :parent_id, :collection => main_sites_list.collect{|s| [s.title || s.name ,s.id]}, :label => t(".main_site") %>
+  <%= f.input :per_page,  :hint => t(".example_per_page") %>
   <%= f.input :per_page_default,  :required => true %>
   <%= f.input :title %>
-  <%= f.input :description, :input_html => {:rows => 8}, :hint => t("site_comments"), :as => :text %>
-  <%= f.input :footer,  :input_html => {:class => :mceSimple, :value => t("footer_text"), :rows =>8}, :as => :text%>
+  <%= f.input :description, :input_html => {:rows => 8}, :hint => t(".site_comments"), :as => :text %>
+  <%= f.input :footer,  :input_html => {:class => :mceSimple, :value => t(".footer_text"), :rows =>8}, :as => :text%>
 
-  <%= f.input :view_desc_pages, :hint => t("view_desc_pages_help"), :as => :boolean %>
+  <%= f.input :view_desc_pages, :hint => t(".view_desc_pages_help"), :as => :boolean %>
 
-  <%= f.input :menu_dropdown, :hint => t("desc_use_menu_dropdown"), :as => :boolean %>
+  <%= f.input :menu_dropdown, :hint => t(".desc_use_menu_dropdown"), :as => :boolean %>
 
-  <%= f.input :theme, :collection => @themes.collect{|p| [ p , p]}, :selected => "this2", :label => t('layout') %>
+  <%= f.input :theme, :collection => @themes.collect{|p| [ p , p]}, :selected => "this2", :label => t("layout") %>
 
-  <%= f.association :locales, label: t("translation.other"),
+  <%= f.association :locales, label: t(".translations"),
     :as => :check_boxes,
     :collection => Locale.all.map{|l| [image_tag("flags/24/#{l.flag}", :title=>t(l.name)), l.id] } %>
 

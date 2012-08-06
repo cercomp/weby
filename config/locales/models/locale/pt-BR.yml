@@ -1,10 +1,10 @@
 pt-BR:
   activerecord:
     models:
-      locale: "Locale"
+      locale:       " Locale "
     attributes:
       locale:
-        created_at: "Criado em"
-        flag: ""
-        name: "Nome"
-        updated_at: "Atualizado em"
+        created_at: " Criado em "
+        flag:       "               "
+        name:       " Nome "
+        updated_at: " Atualizado em "
