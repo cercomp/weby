@@ -85,14 +85,14 @@ class Sites::Admin::StylesController < ApplicationController
     @style.publish = true
     @style.position = @site.own_styles.count + 1
 
-    flash[:success] = t('successfully_created') if @style.save
+    flash[:success] = t("successfully_created") if @style.save
     respond_with(:site_admin, @style, location:  site_admin_styles_path)
   end
 
   def update
     @style = Style.find(params[:id])
 
-    flash[:success] = t('successfully_updated') if @style.update_attributes(params[:style])
+    flash[:success] = t("successfully_updated") if @style.update_attributes(params[:style])
     respond_with(:site_admin, @style, location: site_admin_styles_path)
   end
 
@@ -100,9 +100,9 @@ class Sites::Admin::StylesController < ApplicationController
     @style = Style.find(params[:id])
 
     if @style.destroy
-      flash[:success] = t('destroyed_param', param: t('style.one'))
+      flash[:success] = t("destroyed_style")
     else
-      flash[:alert] = t('destroyed_param_error', param: t('style.one'))
+      flash[:alert] = t("destroyed_style_error")
     end
     
     respond_with(:site_admin, @style, location: site_admin_styles_path())
@@ -146,9 +146,9 @@ class Sites::Admin::StylesController < ApplicationController
     @style.publish = false
 
     if @style.save
-      flash[:success] = t('successfully_created')
+      flash[:success] = t("successfully_created")
     else
-      flash[:error] = t('error_creating_object')
+      flash[:error] = t("error_creating_object")
     end
 
     redirect_to site_admin_styles_path()
@@ -186,7 +186,7 @@ class Sites::Admin::StylesController < ApplicationController
     @style = Style.find(params[:id])
 
     unless @style.owner == @site
-      flash[:warning] = t('no_permission_to_action')
+      flash[:warning] = t("no_permission_to_action")
       redirect_to site_style_url
     end
   end

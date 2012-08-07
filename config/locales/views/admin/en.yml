@@ -10,5 +10,5 @@ en:
   updated_account:               " Account updated "
   destroyed_param:               " %{param} destroyed "
   user_cant_be_deleted:          " This user can't be deleted "
-  successfully_updated:          " Successfully updated "
-  error_updating_object:         " Error updating object "
+  reset_mail:                    " Instructions to reset your password have been emailed to you. Please check your email "
+  no_mail:                       " No user was found with that email address "

@@ -40,7 +40,7 @@ class Sites::Admin::GroupsController < ApplicationController
     @group = Group.find(params[:id])
     if @group.update_attributes(params[:group])
       redirect_to({:site_id => @group.site.name, :controller => 'groups', :action => 'index'},
-                  flash: {success: t('successfully_updated')})
+                  flash: {success: t("successfully_updated")})
     else
       redirect_to :back
     end

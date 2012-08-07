@@ -149,18 +149,36 @@ pt-BR:
   begin:                                " Início "
   publication_infinite:                 " Publicação infinita "
   expired:                              " Expirado "
+  reset_mail:                           " Instruções de como modificar sua senha foram enviada. Cheque seu e-mail. "
+  no_mail:                              " Nenhum usuário com esse e-mail foi econtrado. "
+  successfully_updated:                 " Atualizado com sucesso "
+  error_updating_object:                " Erro ao atualizar objeto "
+  successfully_created_param:           " %{param} criado com sucesso! "
+  successfully_updated_param:           " %{param} atualizado com sucesso! "
+  successfully_removed:                 " %{param} foi excluído com sucesso! "
+  successfully_deleted:                 " Excluído com sucesso! "
+  component:                            " Componente "
+  none_archive:                         " Nenhum Arquivo "
+  destroyed_style:                      " Estilo removido "
+  destroyed_style_error:                " Erro ao remover Estilo "
+  error_creating_object:                " Erro ao criar objeto "
+  no_permission_to_action:              " Você não tem permissão para executar essa ação "
+  none_page:                            " Nenhuma Página "
+  login_success:                        " Logado com sucesso! "
+  user_inactive:                        " Seu usuário ainda não está ativo. "
+  logout_success:                       " Logout com sucesso! "
+  components:
+    pos:
+      bottom:             " Inferior "
+      content:            " Conteúdo "
+      first_place:        " Primeiro Carregamento "
+      home:               " Página Inicial "
+      left:               " Esquerda "
+      right:              " Direita "
+      top:                " Topo "
+  need_login:             " Você deve estar logado para acessar essa página. "
 
 
-
-#  will_paginate:
-#    next: "Posteriores"
-#    previous: "Anteriores"
-#    entry: "registos"
-#    found:
-#      zero: "Não existem {{entry_name}}"
-#      one: "<b>{{size}}</b> {{entry_name}}"
-#      other: "Todos os <b>{{size}}</b> {{entry_name}}"
-#    display: "{{entry_name}} de <b>{{from}}</b> a <b>{{to}}</b> de {{total}} no total"
 
 # -- SIMPLE FORM -- #
   simple_form:

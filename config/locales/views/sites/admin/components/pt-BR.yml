@@ -3,7 +3,7 @@ pt-BR:
     admin:
       components:
         form:
-          place:              " local "
+          place:              " Local "
         components:
           empty_placeholder:  " Nenhum componente neste local "
           bottom:             " Inferior "
