@@ -10,7 +10,7 @@
     <%= render_component @component, 'form', :locals => { :f => f } %>
   </div>
 
-  <label class="control-label"><%= t(".place").capitalize  %></label>
+  <label class="control-label"><%= t(".place")  %></label>
   <div class="controls">
     <%= raw make_mini_layout %>
     <%= f.input :place_holder, :as => :hidden %>

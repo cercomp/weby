@@ -34,7 +34,7 @@ class Sites::Admin::ComponentsController < ApplicationController
       @component.attributes = params["#{comp}_component"]
 
       if @component.save
-        redirect_to(site_admin_components_path, flash: {success: t('successfully_created_param', param: t('component.one'))})
+        redirect_to(site_admin_components_path, flash: {success: t("successfully_created_param", param: t("component"))})
       else
         render :action => "new"
       end
@@ -48,7 +48,7 @@ class Sites::Admin::ComponentsController < ApplicationController
 
     comp = params[:component]
     if @component.update_attributes(params["#{comp}_component"])
-      redirect_to(site_admin_components_path, flash: {success: t('successfully_updated_param', param: t('component.one'))})
+      redirect_to(site_admin_components_path, flash: {success: t("successfully_updated_param", param: t("component"))})
     else
       render :action => "edit"
     end
@@ -58,7 +58,7 @@ class Sites::Admin::ComponentsController < ApplicationController
     @component = Component.find(params[:id])
     @component.destroy
 
-    redirect_to site_admin_components_path, flash: {success: t('successfully_removed', param: t('component.one'))}
+    redirect_to site_admin_components_path, flash: {success: t("successfully_removed", param: t("component"))}
   end
   
   def sort
@@ -78,9 +78,9 @@ class Sites::Admin::ComponentsController < ApplicationController
     @component = Component.find(params[:id])
     if params[:field] 
       if @component.toggle!(params[:field])
-        flash[:success] = t"successfully_updated"
+        flash[:success] = t("successfully_updated")
       else
-        flash[:error] = t"error_updating_object"
+        flash[:error] = t("error_updating_object")
       end
     end
     redirect_to :back

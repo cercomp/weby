@@ -10,5 +10,5 @@ pt-BR:
   updated_account:               " Conta atualizada "
   destroyed_param:               " %{param} removído "
   user_cant_be_deleted:          " Este usuário não pode ser excluído "
-  successfully_updated:          " Atualizado com sucesso "
-  error_updating_object:         " Erro ao atualizar objeto "
+  reset_mail:                    " Instructions to reset your password have been emailed to you. Please check your email "
+  no_mail:                       " No user was found with that email address "

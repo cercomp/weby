@@ -149,18 +149,34 @@ en:
   begin:                                " Begin "
   publication_infinite:                 " Publication infinite "
   expired:                              " Expired "
+  successfully_updated:                 " Successfully updated "
+  error_updating_object:                " Error updating object "
+  successfully_created_param:           " %{param} successfully created! "
+  successfully_updated_param:           " %{param} successfully updated! "
+  successfully_removed:                 " %{param} successfully removed! "
+  successfully_deleted:                 " Successfully deleted! "
+  component:                            " Component "
+  none_archive:                         " None File "
+  destroyed_style:                      " Style destroyed "
+  destroyed_style_error:                " Error when remove Style "
+  error_creating_object:                " Error creating object "
+  no_permission_to_action:              " Yout don't have permission to execute this action"
+  none_page:                            " None Page "
+  login_success:                        " Logged in succesfully! "
+  user_inactive:                        " User was not activated. "
+  logout_success:                       " Logged out successfully! "
+  components:
+    pos:
+      bottom:                           " Bottom "
+      content:                          " Content "
+      first_place:                      " First Place "
+      home:                             " Home Page "
+      left:                             " Left "
+      right:                            " Right "
+      top:                              " Top "
+  need_login:                           " You need to be logged in to access this page. "
 
 
-#  will_paginate:
-#    next: "Next"
-#    previous: "Previous"
-#    entry: "registers"
-#    found:
-#      zero: "There aren't {{entry_name}}"
-#      one: "<b>{{size}}</b> {{entry_name}}"
-#      other: "All the <b>{{size}}</b> {{entry_name}}"
-#    display: "{{entry_name}} of <b>{{from}}</b> the <b>{{to}}</b> of {{total}} in total"
-#
 # -- SIMPLE FORM -- #
   simple_form:
     "yes": "Yes"
