@@ -1,9 +1,13 @@
 pt-BR:
   components:
     feedback:
-      name: "Fale Conosco"
-      label: "Rótulo"
+      name:               " Fale Conosco "
+      label:              " Rótulo "
   activerecord:
     attributes:
       feedback_component:
-        label: "Rótulo"
+        label:            " Rótulo "
+  feedback:
+    views:
+      show:
+        feedback:         " Fale Conosco "

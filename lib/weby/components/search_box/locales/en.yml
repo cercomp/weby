@@ -1,18 +1,18 @@
 en:
   components:
     search_box:
-      name: "Search Box"
+      name:                 " Search Box "
   activerecord:
     attributes:
       search_box_component:
-        width: "Width"
-        align: "Alignment"
+        width:              " Width "
+        align:              " Alignment "
   search_box:
     views:
       show:
-        search: "Search..."
+        search:             " Search "
       form:
-        left: "Left"
-        right: "Right"
-        center: "Center"
+        left:               " Left "
+        right:              " Right "
+        center:             " Center "
 

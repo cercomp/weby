@@ -1,0 +1,9 @@
+pt-BR:
+  sites:
+    pages:
+      index:
+        events: " Eventos "
+        pages:  " Páginas "
+      show:
+        event: " Evento"
+

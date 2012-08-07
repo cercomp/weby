@@ -175,6 +175,13 @@ en:
       right:                            " Right "
       top:                              " Top "
   need_login:                           " You need to be logged in to access this page. "
+  access_denied:                        " Access denied "
+  access_denied_page:                   " You are not allowed to see this page! "
+  prohibited_being_saved:
+    one:                " error, prevent you from proceeding "
+    other:              " errors, prevent you from proceeding "
+  need_at_least_one_i18n: " Needs at least one language "
+
 
 
 # -- SIMPLE FORM -- #

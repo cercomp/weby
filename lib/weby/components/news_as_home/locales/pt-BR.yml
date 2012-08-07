@@ -1,14 +1,16 @@
 pt-BR:
   components:
     news_as_home:
-      name: "Notícia como página inicial"
-      page: "Notícia"
-      form:
-        none_selected: "Nenhuma notícia selecionada"
-        select: "Selecione uma notícia"
-      show:
-        page_not_found: "Página não encontrada, por favor verifique a configuração do componente"
+      name:                   " Notícia como página inicial "
+      page:                   " Notícia "
   activerecord:
     attributes:
       news_as_home_component:
-        page: "Notícia"
+        page:                 " Notícia "
+  news_as_home:
+    views:
+      form:
+        none_selected:        " Nenhuma notícia selecionada "
+        select:               " Selecione uma notícia "
+      show:
+        page_not_found:       " Página não encontrada, por favor verifique a configuração do componente "

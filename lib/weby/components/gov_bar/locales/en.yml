@@ -1,16 +1,16 @@
 en:
   components:
     gov_bar:
-      name: "Government Bar"
-      background: "Background Color"
+      name:              " Government Bar "
+      background:        " Background Color "
   activerecord:
     attributes:
       gov_bar_component:
-        background: "Background Color"
+        background:      " Background Color "
   gov_bar:
     views:
       form:
-        blue: "Blue"
-        green: "Green"
-        gray: "Gray"
-        black: "Black"
+        blue:            " Blue "
+        green:           " Green "
+        gray:            " Gray "
+        black:           " Black "

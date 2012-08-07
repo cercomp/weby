@@ -7,7 +7,7 @@
   </header>
 
   <%= content_tag_if @page.event?, :div, class: 'event' do %>
-  <h3><%= t('event.one') %></h3>
+  <h3><%= t(".event") %></h3>
   <p class="local">
     <%= label(:page, :local, style: 'display: inline-block;') %>:
     <%= @page.local %>
