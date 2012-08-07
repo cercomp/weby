@@ -6,6 +6,8 @@ pt-BR:
         news:                   " Notícia "
         index:
           search_helper:        " Pode-se buscar pelo título, resumo, conteúdo, primeiro nome do autor, tipo(news, event) e pelas categorias. "
+          pages:                 " Páginas "
+          events:                " Eventos "
         new:
           title:                " Nova Página "
           pages:                "Páginas"

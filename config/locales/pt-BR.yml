@@ -177,6 +177,12 @@ pt-BR:
       right:              " Direita "
       top:                " Topo "
   need_login:             " Você deve estar logado para acessar essa página. "
+  access_denied:          " Acesso negado! "
+  access_denied_page:     " Você não está autorizado a ver está página! "
+  prohibited_being_saved:
+    one:          " erro, impede que você prossiga "
+    other:        " erros, impedem que você prossiga "
+  need_at_least_one_i18n: " Necessita de pelo menos um idioma "
 
 
 

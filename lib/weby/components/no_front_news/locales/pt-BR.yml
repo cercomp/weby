@@ -1,15 +1,17 @@
 pt-BR:
   components:
     no_front_news:
-      name: "Lista de Notícias"
-      quant: "Quantidade de notícias na página inicial"
-      front: "Apenas notícias de capa?"
-      events: "Mostrar eventos?"
-      show:
-        last_news: "Últimas Notícias"
+      name:                    " Lista de Notícias "
+      quant:                   " Quantidade de notícias na página inicial "
+      front:                   " Apenas notícias de capa "
+      events:                  " Mostrar eventos "
   activerecord:
     attributes:
       no_front_news_component:
-        quant: "Quantidade de notícias na página inicial"
-        front: "Apenas notícias de capa?"
-        events: "Mostrar eventos?"
+        quant:                 " Quantidade de notícias na página inicial "
+        front:                 " Apenas notícias de capa "
+        events:                " Mostrar eventos "
+  no_front_news:
+    views:
+      show:
+        last_news:             " Últimas Notícias "

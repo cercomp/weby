@@ -1,10 +1,10 @@
 en:
   components:
     menu_side:
-      name: "Menu"
+      name:                " Menu "
       form:
-        menu_id: "Menu"
+        menu_id:           " Menu "
   activerecord:
     attributes:
       menu_side_component:
-        menu_id: "Menu"
+        menu_id:           " Menu "

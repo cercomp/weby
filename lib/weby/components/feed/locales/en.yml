@@ -1,18 +1,18 @@
 en:
   components:
     feed:
-      name: "Feed Menu"
+      name:               " Feed Menu "
   activerecord:
     attributes:
       feed_component:
-        atom_icon: "ATOM feed icon"
-        rss_icon: "RSS feed icon"
-        align: "Alignment"
+        atom_icon:        " ATOM feed icon "
+        rss_icon:         " RSS feed icon "
+        align:            " Alignment "
   feed:
     views:
       form:
-        select_from_repo: "Select an icon from repository"
-        dont_show: "Don't show any icon"
-        left: "Left"
-        right: "Right"
-        center: "Center"
+        select_from_repo: " Select an icon from repository "
+        dont_show:        " Don't show any icon "
+        left:             " Left "
+        right:            " Right "
+        center:           " Center "

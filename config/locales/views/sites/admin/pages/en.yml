@@ -14,6 +14,7 @@ en:
           pages:                " Pages "
           new_page:             " New Page "
           covers:               " Covers "
+          events:               " Events"
         show:
           pages:                " Pages "
           event:                " Event "
