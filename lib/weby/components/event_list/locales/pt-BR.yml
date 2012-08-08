@@ -10,4 +10,4 @@ pt-BR:
   event_list:
     views:
       show:
-        event:              " Evento "
+        events:              " Eventos "

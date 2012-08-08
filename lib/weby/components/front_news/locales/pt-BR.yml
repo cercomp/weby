@@ -10,4 +10,4 @@ pt-BR:
   front_news:
     views:
       show:
-        read_more:          " Leia mais "
+        read_more:          " Leia mais... "

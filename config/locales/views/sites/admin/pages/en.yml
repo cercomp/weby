@@ -66,6 +66,8 @@ en:
           regional:             " Regional "
           national:             " National "
           international:        " International "  
+          begin:                " Begin "
+          end:                  " End "
         tiny_mce: 
           pages:                " Pages "
           id:                   " Id "

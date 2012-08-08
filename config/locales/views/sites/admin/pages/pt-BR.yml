@@ -69,6 +69,8 @@ pt-BR:
           regional:             " Regional "
           national:             " Nacional "
           international:        " Internacional "
+          begin:                " Início "
+          end:                  " Fim "
         tiny_mce: 
           pages:                "Páginas "
           id:                   "Id "

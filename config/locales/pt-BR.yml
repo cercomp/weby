@@ -182,7 +182,9 @@ pt-BR:
   prohibited_being_saved:
     one:          " erro, impede que você prossiga "
     other:        " erros, impedem que você prossiga "
-  need_at_least_one_i18n: " Necessita de pelo menos um idioma "
+  need_at_least_one_i18n:           " Necessita de pelo menos um idioma "
+  add_sub_menu:                     " Adiciona um item de menu filho "
+  feedback_need_at_least_one_group: " Necessita de pelo menos um grupo! "
 
 
 
