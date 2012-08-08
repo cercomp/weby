@@ -10,4 +10,4 @@ en:
   event_list:
     views:
       show:
-        event:              " Event "
+        events:              " Events "

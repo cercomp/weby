@@ -10,4 +10,4 @@ en:
   front_news:
     views:
       show:
-        read_more:          " Read more "
+        read_more:          " Read more... "
