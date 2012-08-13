@@ -3,13 +3,13 @@ pt-BR:
     admin:
       feedbacks:
         index:
-         feedback:      " Feedback "
+         feedback:      " Mensagens "
          none_feedback: " Nenhuma Mensagem "
          new_group:     " Novo Grupo "
          groups:        " Grupos "
          name:          " Nome "
          subject:       " Assunto "
-         email:         " Email "
+         email:         " E-mail "
         show:
          feedback:      " Feedback "
          name:          " Nome "

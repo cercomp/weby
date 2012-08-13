@@ -1,22 +1,22 @@
-<%- title  '.feedback' %>
+<%- title  ".feedback" %>
 
 <div class="span9">
   <div class="well">
 
     <% if @feedbacks.empty? %>
       <div class="alert">
-        <%= (t".none_feedback") %>
+        <%= t(".none_feedback") %>
       </div>
     <% end %>
 
     <div class="pull-right">
       <% if check_permission(Sites::Admin::GroupsController, [:new]) %>
-        <%= link_to t('.new_group'),
+        <%= link_to t(".new_group"),
           new_site_admin_group_path,
           class: "btn btn-success btn-large" %>
       <% end %>
       <% if check_permission(Sites::Admin::FeedbacksController, [:index]) %>
-        <%= link_to t('.groups'),
+        <%= link_to t(".groups"),
           site_admin_groups_path,
           class: "btn btn-primary btn-large" %>
       <% end %>
@@ -24,12 +24,12 @@
     <div class="clearfix"></div>
 
     <% unless @feedbacks.empty? %>
-      <div class="page_info_paginator"><%= t"views.pagination.total" %>&nbsp;<%= @feedbacks.length %></div>
+      <div class="page_info_paginator"><%= t("views.pagination.total") %>&nbsp;<%= @feedbacks.length %></div>
       <table class='table table-striped table-condensed'>
         <thead>
-          <th><%= t '.name' %></th>
-          <th><%= t '.email' %></th>
-          <th><%= t '.subject' %></th>
+          <th><%= t(".name") %></th>
+          <th><%= t(".email") %></th>
+          <th><%= t(".subject") %></th>
           <th></th>
         </thead>
         <tbody>

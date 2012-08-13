@@ -3,7 +3,7 @@ en:
     admin:
       groups:
         form:
-          field_required:         " Field required "
+          field_required:         " Field required! "
           comma_separated_emails: " Comma Separated Emails "
           please_wait:            " Please wait "
         list:

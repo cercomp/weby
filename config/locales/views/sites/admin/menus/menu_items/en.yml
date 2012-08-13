@@ -11,5 +11,6 @@ en:
           form:
             parent_menu_item: " Parent menu item "
             type_url:         " Type a URL "
+            title:            " Title "
           edit:
             menu_items:       " Menu Items "

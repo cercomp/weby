@@ -3,7 +3,7 @@ pt-BR:
     admin:
       groups:
         form:
-          field_required:         " Campo obrigatório "
+          field_required:         " Campo obrigatório! "
           comma_separated_emails: " Emails Separados por Vírgula "
           please_wait:            " Por favor, aguarde "
         list:

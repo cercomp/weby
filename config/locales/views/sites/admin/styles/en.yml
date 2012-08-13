@@ -16,6 +16,7 @@ en:
           name:             " Name "
           owner:            " Owner "
           actions:          " Actions "
+          last_update:      " Last update "
         own_styles:
           actions:          " Actions "
           own_styles:       " Own Styles "

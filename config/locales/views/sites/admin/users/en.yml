@@ -9,7 +9,7 @@ en:
           role:           " Role "
           none_user:      " None User "
         enroled:
-          enroled_user:   " Enrolled Users "
+          enroled_user:   " Enroled User "
           role:           " Role "
           none_user:      " None User "
         role_form:

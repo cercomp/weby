@@ -3,13 +3,13 @@ en:
     admin:
       feedbacks:
         index:
-         feedback:      " Feedback "
+         feedback:      " Messages "
          none_feedback: " None Feedback "
          new_group:     " New Group "
          groups:        " Groups "
          name:          " Name "
          subject:       " Subject "
-         email:         " Email "
+         email:         " E-mail "
         show:
          feedback:      " Feedback "
          name:          " Name "

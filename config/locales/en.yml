@@ -7,6 +7,112 @@ en:
   en:    " Inglês "
   es:    " Espanhol"
 
+#---A---#
+  active_deactive:                      " Active Deactive  "
+  are_you_sure:                         " Are you sure?    "
+  activate_deactivate:                  " Activate/Deactivate "
+  access_denied:                        " Access denied "
+  access_denied_page:                   " You are not allowed to see this page! "
+  add_sub_menu:                         " Add sub menu item "
+#---B---#
+  back:                                 " Back "
+  begin:                                " Begin "
+#---C---#
+  close:                                " Close "
+  copy:                                 " Copy "
+  component:                            " Component "
+  components:
+    pos:
+      bottom:                           " Bottom "
+      content:                          " Content "
+      first_place:                      " First Place "
+      home:                             " Home Page "
+      left:                             " Left "
+      right:                            " Right "
+      top:                              " Top "
+#---D---#
+  destroy:                              " Destroy "
+  disable:                              " Disable "
+  destroyed_style:                      " Style destroyed "
+  destroyed_style_error:                " Error when remove Style "
+#---E---#
+  edit:                                 " Edit "
+  enable:                               " Enable "
+  expired:                              " Expired "
+  error_updating_object:                " Error updating object "
+  error_creating_object:                " Error creating object "
+#---F---#
+  field_required:                       " Field Required!  "
+  follow:                               " Follow "
+  feedback_need_at_least_one_group:     " Needs at least one group! "
+#---G---#
+#---H---#
+#---I---#
+#---J---#
+#---K---#
+#---L---#
+  layout:                               " Layout "
+  list_all:                             " List all "
+  lower_upper_number_chars:             " Must contain at least one uppercase letter, one lowercase and one number! "
+  login:                                " Login "
+  login_success:                        " Logged in succesfully! "
+  logout_success:                       " Logged out successfully! "
+#---M---#
+  move:                                 " Move "
+  manage_roles:                         " Manage Roles "
+#---N---#
+  no_permission_to_activate_deactivate: " No permission to activate or deacticate "
+  no_mail:                              " No user was found with that email address. "
+  none_archive:                         " None File "
+  no_permission_to_action:              " Yout don't have permission to execute this action"
+  none_page:                            " None Page "
+  need_login:                           " You need to be logged in to access this page. "
+  need_at_least_one_i18n:               " Needs at least one language "
+#---O---#
+  of:                                   " of "
+#---P---#
+  please_wait:                          " Please Wait! "
+  publish:                              " Publish "
+  publication_infinite:                 " Publication infinite "
+  prohibited_being_saved:
+    one:                                " error, prevent you from proceeding "
+    other:                              " errors, prevent you from proceeding "
+#---Q---#
+#---R---#
+  reset_mail:                           " Instructions to reset your password have been emailed to you. Please check your email. "
+#---S---#
+  save:                                 " Save "
+  search:                               " Search "
+  show:                                 " Show "
+  submit:                               " Submit "
+  successfully_created:                 " Successfully created. "
+  successfully_updated:                 " Successfully updated "
+  successfully_created_param:           " %{param} successfully created! "
+  successfully_updated_param:           " %{param} successfully updated! "
+  successfully_removed:                 " %{param} successfully removed! "
+  successfully_deleted:                 " Successfully deleted! "
+#---T---#
+#---U---#
+  unfollow:                             " Unfollow "
+  unpublish:                            " Unpubish "
+  user_inactive:                        " User was not activated. "
+#---V---#
+  views:
+     pagination:
+       first:      " First "
+       last:       " Last "
+       displaying: " Showing "
+       more:       " More "
+       next:       " Next "
+       per_page:   " Per Page "
+       previous:   " Previus "
+       total:      " Total "
+       truncate:   " ... "
+#---Y---#
+#---W---#
+
+
+
   date:
     formats:
       # Use the strftime parameters for formats.
@@ -106,83 +212,6 @@ en:
         too_short:                " too short (you can not use less than %{count} characters) "
         wrong_length:             " Wrong size (%{count} is required)                         "
 
-  views:
-     pagination:
-       first:      " First "
-       last:       " Last "
-       displaying: " Showing "
-       more:       " More "
-       next:       " Next "
-       per_page:   " Per Page "
-       previous:   " Previus "
-       total:      " Total "
-       truncate:   " ... "
-  active_deactive:                      " Active Deactive  "
-  are_you_sure:                         " Are you sure?    "
-  back:                                 " Back "
-  close:                                " Close "
-  copy:                                 " Copy "
-  destroy:                              " Destroy "
-  disable:                              " Disable "
-  edit:                                 " Edit "
-  enable:                               " Enable "
-  field_required:                       " Field Required!  "
-  follow:                               " Follow "
-  layout:                               " Layout "
-  list_all:                             " List all "
-  lower_upper_number_chars:             " Must contain at least one uppercase letter, one lowercase and one number! "
-  move:                                 " Move "
-  no_permission_to_activate_deactivate: " No permission to activate or deacticate "
-  of:                                   " of "
-  please_wait:                          " Please Wait! "
-  publish:                              " Publish "
-  save:                                 " Save "
-  search:                               " Search "
-  show:                                 " Show "
-  submit:                               " Submit "
-  successfully_created:                 " Successfully created. "
-  unfollow:                             " Unfollow "
-  unpublish:                            " Unpubish "
-  login:                                " Login "
-  activate_deactivate:                  " Activate/Deactivate "
-  manage_roles:                         " Manage Roles "
-  begin:                                " Begin "
-  publication_infinite:                 " Publication infinite "
-  expired:                              " Expired "
-  successfully_updated:                 " Successfully updated "
-  error_updating_object:                " Error updating object "
-  successfully_created_param:           " %{param} successfully created! "
-  successfully_updated_param:           " %{param} successfully updated! "
-  successfully_removed:                 " %{param} successfully removed! "
-  successfully_deleted:                 " Successfully deleted! "
-  component:                            " Component "
-  none_archive:                         " None File "
-  destroyed_style:                      " Style destroyed "
-  destroyed_style_error:                " Error when remove Style "
-  error_creating_object:                " Error creating object "
-  no_permission_to_action:              " Yout don't have permission to execute this action"
-  none_page:                            " None Page "
-  login_success:                        " Logged in succesfully! "
-  user_inactive:                        " User was not activated. "
-  logout_success:                       " Logged out successfully! "
-  components:
-    pos:
-      bottom:                           " Bottom "
-      content:                          " Content "
-      first_place:                      " First Place "
-      home:                             " Home Page "
-      left:                             " Left "
-      right:                            " Right "
-      top:                              " Top "
-  need_login:                           " You need to be logged in to access this page. "
-  access_denied:                        " Access denied "
-  access_denied_page:                   " You are not allowed to see this page! "
-  prohibited_being_saved:
-    one:                " error, prevent you from proceeding "
-    other:              " errors, prevent you from proceeding "
-  need_at_least_one_i18n:               " Needs at least one language "
-  add_sub_menu:                         " Add sub menu item "
- feedback_need_at_least_one_group:      " Needs at least one group! "
 
 
 
