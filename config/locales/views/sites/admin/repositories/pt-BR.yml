@@ -19,10 +19,10 @@ pt-BR:
         ajax_upload:
           file:                " Arquivo "
           select_file:         " Selecione o arquivo "
-          field_required:      " Campo obrigatório "
+          field_required:      " Campo obrigatório! "
         form:
-          field_required:      " Campo obrigatório "
-          accessibility_needs: " Necessário para que seu site se torne acessível "
+          field_required:      " Campo obrigatório! "
+          accessibility_needs: " Necessário para que seu site se torne acessível. "
           archives:            " Arquivos "
           please_wait:         " Por favor, aguarde "
         repo:

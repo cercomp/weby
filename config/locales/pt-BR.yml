@@ -6,6 +6,112 @@ pt-BR:
   pt-BR: " Português (Brasil) "
   en:    " Inglês "
   es:    " Espanhol "
+  
+#---A---#
+  active_deactive:                      " Ativar Desativar "
+  are_you_sure:                         " Você tem certeza? "
+  activate_deactivate:                  " Ativar/Desativar "
+  access_denied:                        " Acesso negado! "
+  access_denied_page:                   " Você não está autorizado a ver está página! "
+  add_sub_menu:                         " Adiciona um item de menu filho "
+#---B---#
+  back:                                 " Voltar "
+  begin:                                " Início "
+#---C---#
+  close:                                " Fechar "
+  copy:                                 " Copiar "
+  component:                            " Componente "
+  components:
+    pos:
+      bottom:                           " Inferior "
+      content:                          " Conteúdo "
+      first_place:                      " Primeiro Carregamento "
+      home:                             " Página Inicial "
+      left:                             " Esquerda "
+      right:                            " Direita "
+      top:                              " Topo "
+#---D---#
+  destroy:                              " Excluir "
+  disable:                              " Desativado "
+  destroyed_style:                      " Estilo removido "
+  destroyed_style_error:                " Erro ao remover Estilo "
+#---E---#
+  edit:                                 " Editar "
+  enable:                               " Ativado "
+  expired:                              " Expirado "
+  error_updating_object:                " Erro ao atualizar objeto "
+  error_creating_object:                " Erro ao criar objeto "
+#---F---#
+  field_required:                       " Campo Obrigatório! "
+  follow:                               " Seguir "
+  feedback_need_at_least_one_group:     " Necessita de pelo menos um grupo! "
+#---G---#
+#---H---#
+#---I---#
+#---J---#
+#---K---#
+#---L---#
+  layout:                               " Layout "
+  list_all:                             " Mostrar todos "
+  lower_upper_number_chars:             " Deve conter pelo menos uma letra maiúscula, uma minúscula e um número! "
+  login:                                " Entrar "
+  login_success:                        " Logado com sucesso! "
+  logout_success:                       " Logout com sucesso! "
+#---M---#
+  move:                                 " Mover "
+  manage_roles:                         " Gerenciar Papéis "
+#---N---#
+  no_permission_to_activate_deactivate: " Sem permissão para ativar ou desativar "
+  no_mail:                              " Nenhum usuário com esse e-mail foi econtrado. "
+  none_archive:                         " Nenhum Arquivo "
+  no_permission_to_action:              " Você não tem permissão para executar essa ação "
+  none_page:                            " Nenhuma Página "
+  need_login:                           " Você deve estar logado para acessar essa página. "
+  need_at_least_one_i18n:               " Necessita de pelo menos um idioma "
+#---O---#
+  of:                                   " de "
+#---P---#
+  please_wait:                          " Por favor espere! "
+  publish:                              " Publicar "
+  publication_infinite:                 " Publicação infinita "
+  prohibited_being_saved:
+    one:                                " erro, impede que você prossiga "
+    other:                              " erros, impedem que você prossiga "
+#---Q---#
+#---R---#
+  reset_mail:                           " Instruções de como modificar sua senha foram enviada. Cheque seu e-mail. "
+#---S---#
+  save:                                 " Salvar "
+  search:                               " Buscar "
+  show:                                 " Mostrar "
+  submit:                               " Enviar "
+  successfully_created:                 " Criado com sucesso."
+  successfully_updated:                 " Atualizado com sucesso "
+  successfully_created_param:           " %{param} criado com sucesso! "
+  successfully_updated_param:           " %{param} atualizado com sucesso! "
+  successfully_removed:                 " %{param} foi excluído com sucesso! "
+  successfully_deleted:                 " Excluído com sucesso! "
+#---T---#
+#---U---#
+  unfollow:                             " Deixar de Seguir "
+  unpublish:                            " Despublicar "
+  user_inactive:                        " Seu usuário ainda não está ativo. "
+#---V---#
+  views:
+     pagination:
+       first:      " Primeiro "
+       last:       " Último "
+       displaying: " Mostrando "
+       more:       " Mais "
+       next:       " Próximo "
+       per_page:   " Por Página "
+       previous:   " Anterior "
+       total:      " Total "
+       truncate:   " ... "
+#---Y---#
+#---W---#
+
+
 
   date:
     formats:
@@ -106,85 +212,6 @@ pt-BR:
         too_short:                " muito curto (não é possível usar menos de %{count} caracteres) "
         wrong_length:             " Tamanho errado (%{count} são requeridos) "
         
-  views:
-     pagination:
-       first:      " Primeiro "
-       last:       " Último "
-       displaying: " Mostrando "
-       more:       " Mais "
-       next:       " Próximo "
-       per_page:   " Por Página "
-       previous:   " Anterior "
-       total:      " Total "
-       truncate:   " ... "
-  active_deactive:                      " Ativar Desativar "
-  are_you_sure:                         " Você tem certeza? "
-  back:                                 " Voltar "
-  close:                                " Fechar "
-  copy:                                 " Copiar "
-  destroy:                              " Excluir "
-  disable:                              " Desativado "
-  edit:                                 " Editar "
-  enable:                               " Ativado "
-  field_required:                       " Campo Obrigatório! "
-  follow:                               " Seguir "
-  layout:                               " Layout "
-  list_all:                             " Mostrar todos "
-  lower_upper_number_chars:             " Deve conter pelo menos uma letra maiúscula, uma minúscula e um número! "
-  move:                                 " Mover "
-  no_permission_to_activate_deactivate: " Sem permissão para ativar ou desativar "
-  of:                                   " de "
-  please_wait:                          " Por favor espere! "
-  publish:                              " Publicar "
-  save:                                 " Salvar "
-  search:                               " Procurar "
-  show:                                 " Mostrar "
-  submit:                               " Enviar "
-  successfully_created:                 " Criado com sucesso."
-  unfollow:                             " Deixar de Seguir "
-  unpublish:                            " Despublicar "
-  login:                                " Entrar "
-  activate_deactivate:                  " Ativar/Desativar "
-  manage_roles:                         " Gerenciar Papéis "
-  begin:                                " Início "
-  publication_infinite:                 " Publicação infinita "
-  expired:                              " Expirado "
-  reset_mail:                           " Instruções de como modificar sua senha foram enviada. Cheque seu e-mail. "
-  no_mail:                              " Nenhum usuário com esse e-mail foi econtrado. "
-  successfully_updated:                 " Atualizado com sucesso "
-  error_updating_object:                " Erro ao atualizar objeto "
-  successfully_created_param:           " %{param} criado com sucesso! "
-  successfully_updated_param:           " %{param} atualizado com sucesso! "
-  successfully_removed:                 " %{param} foi excluído com sucesso! "
-  successfully_deleted:                 " Excluído com sucesso! "
-  component:                            " Componente "
-  none_archive:                         " Nenhum Arquivo "
-  destroyed_style:                      " Estilo removido "
-  destroyed_style_error:                " Erro ao remover Estilo "
-  error_creating_object:                " Erro ao criar objeto "
-  no_permission_to_action:              " Você não tem permissão para executar essa ação "
-  none_page:                            " Nenhuma Página "
-  login_success:                        " Logado com sucesso! "
-  user_inactive:                        " Seu usuário ainda não está ativo. "
-  logout_success:                       " Logout com sucesso! "
-  components:
-    pos:
-      bottom:             " Inferior "
-      content:            " Conteúdo "
-      first_place:        " Primeiro Carregamento "
-      home:               " Página Inicial "
-      left:               " Esquerda "
-      right:              " Direita "
-      top:                " Topo "
-  need_login:             " Você deve estar logado para acessar essa página. "
-  access_denied:          " Acesso negado! "
-  access_denied_page:     " Você não está autorizado a ver está página! "
-  prohibited_being_saved:
-    one:          " erro, impede que você prossiga "
-    other:        " erros, impedem que você prossiga "
-  need_at_least_one_i18n:           " Necessita de pelo menos um idioma "
-  add_sub_menu:                     " Adiciona um item de menu filho "
-  feedback_need_at_least_one_group: " Necessita de pelo menos um grupo! "
 
 
 

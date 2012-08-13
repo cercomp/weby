@@ -23,6 +23,6 @@ en:
           new_component:      " New Component "
           component:          " Component "
           category:           " Category "
-          active:             " Active "
+          active:             " Active? "
         new:
           components:         " Components "

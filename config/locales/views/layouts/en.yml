@@ -1,9 +1,9 @@
 en:
   application:
     dashboard:     " Administration "
-    licence:       " © Copyright 2012 UFG. All rights reserved "
+    licence:       " © Copyright 2012 UFG. All rights reserved. "
   sites:
-    licence:       " © Copyright 2012 UFG. All rights reserved "
+    licence:       " © Copyright 2012 UFG. All rights reserved. "
   teacher:
   this2:
   user_sessions:

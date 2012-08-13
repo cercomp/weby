@@ -17,6 +17,7 @@ pt-BR:
           name:             " Nome "
           owner:            " Dono "
           actions:          " Ações "
+          last_update:      " Última Atualização "
         own_styles:
           actions:          " Ações "
           own_styles:       " Estilos próprios "

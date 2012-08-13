@@ -23,6 +23,6 @@ pt-BR:
           new_component:      " Novo Componente "
           component:          " Componente "
           category:           " Categoria "
-          active:             " Ativo "
+          active:             " Ativo? "
         new:
           components:         " Componentes "

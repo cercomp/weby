@@ -20,10 +20,10 @@ en:
         ajax_upload:
           file:                " File "
           select_file:         " Select File "
-          field_required:      " Field Required "
+          field_required:      " Field Required! "
         form:
-          field_required:      " Field required "
-          accessibility_needs: " Needed for your site becomes accessible "
+          field_required:      " Field required! "
+          accessibility_needs: " Needed for your site becomes accessible. "
           archives:            " Archives "
           please_wait:         " Please wait "
         repo:
