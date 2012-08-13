@@ -25,9 +25,9 @@ class UserSessionsController < ApplicationController
   def destroy
     if current_user 
       if  current_user.active?
-        flash.now[:warning] = t('user_inactive')
+        flash.now[:warning] = t("user_inactive")
       else
-        flash.now[:success] = t('logout_success')
+        flash.now[:success] = t("logout_success")
       end
       current_user_session.destroy
     end

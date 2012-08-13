@@ -1,0 +1,21 @@
+en:
+  sites:
+    pages:
+      index:
+        events:        " Events "
+        pages:         " Pages "
+      show:
+        event:         " Event "
+        period_event:  " Period of Event "
+        list_all:      " List all "
+      list:
+        title:         " Title "
+        category:      " Category "
+        period_event:  " Period of Event "
+        date_register: " Register Date "
+        type:          " Type "
+        news:          " News "
+        event:         " Event "
+      related_files:
+        related_files: " Related files "
+        size:          " Size "

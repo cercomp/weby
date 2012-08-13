@@ -14,10 +14,10 @@
 
 <table id='list' class="list table table-striped">
   <thead>
-    <th><%= sortable 'date_begin_at', t("date_param", :param => t("register"))%></th>
-    <th><%= t("title") %></th>
-    <th><%= sortable 'tags.name', t("category") %></th>
-    <th><%= sortable 'type', t("type") %></th>
+    <th><%= sortable 'date_begin_at', t(".register_date")%></th>
+    <th><%= t(".title") %></th>
+    <th><%= sortable 'tags.name', t(".category") %></th>
+    <th><%= sortable 'type', t(".type") %></th>
   </thead>
   <tbody>
     <% @pages.each do |page| %>
@@ -25,7 +25,7 @@
         <td><%= page.created_at.strftime('%d/%m/%y') %></td>
         <td><%= page.title %></td>
         <td><%= page.category_list %></td>
-        <td><%= t"#{page.type.downcase}.one" %></td>
+        <td><%= t(".#{page.type.downcase}") %></td>
       <% end %>
     <% end %>
   </tbody>

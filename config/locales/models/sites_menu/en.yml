@@ -1,0 +1,14 @@
+en:
+  activerecord:
+    models:
+      sites_menu:   " Sites menu "
+    attributes:
+      sites_menu:
+        site_id:    " Site id "
+        menu_id:    " Menu id "
+        created_at: " Created at "
+        updated_at: " Updated at "
+        parent_id:  " Parent id "
+        category:   " Category "
+        position:   " Position "
+

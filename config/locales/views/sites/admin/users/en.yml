@@ -1,0 +1,18 @@
+en:
+  sites:
+    admin:
+      users:
+        manage_roles:
+          manage_roles:   " Manage Roles "
+        enrole:
+          enrole_user:    " Enrole user "
+          role:           " Role "
+          none_user:      " None User "
+        enroled:
+          enroled_user:   " Enroled User "
+          role:           " Role "
+          none_user:      " None User "
+        role_form:
+          confirm_unrole:
+
+

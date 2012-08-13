@@ -3,8 +3,38 @@ en:
     admin:
       banners:
         form:
-          add_category: "Add Category"
-          period_banner: "Period Banner"
-          
-
-
+          add_category:             " Add Category "
+          image:                    " Banner image "
+          begin:                    " Begin "
+          category:                 " Category "
+          enter_the_url:            " Enter the URL "
+          lower_numbers_come_first: " Lower numbers come first "
+          period_banner:            " Period Banner "
+          publication_infinite:     " Publication Infinite "
+          select_page:              " Select Page "
+          title:                    " Title "
+          description:              " Description "
+          new_category:             " New Category "
+        list:
+          author:                   " Author "
+          category:                 " Category "
+          position:                 " Position "
+          publication_date:         " Publication Date "
+          publish:                  " Publish "
+          register_date:            " Date Register "
+          title:                    " Title "
+          none_banner:              " None Banner "
+          none_category:            " No category "
+        edit:
+          help_image_banner:        " This image will be set as the main image of the baner "
+          banners:                  " Banners "
+        index:
+          new_banner:               " New Banner "
+          banners:                  " Banners "
+        show:
+          banner:                   " Banner "
+          banners:                  " Banners "
+          list_all:                 " List All "
+          url:                      " URL "
+        new:
+          banners:                  " Banners "

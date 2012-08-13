@@ -1,0 +1,11 @@
+en:
+  activerecord:
+    models:
+      rights_role:  " Rights Roles "
+    attributes:
+      rights_role:
+        rigth_id:   " Right id "
+        role_id:    " Role id "
+        created_at: " Created at "
+        updated_at: " Updated at "
+

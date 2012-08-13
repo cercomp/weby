@@ -1,0 +1,19 @@
+pt-BR:
+  sites:
+    admin:
+      menus:
+        form:
+          name:          " Nome "
+        edit:
+          menus:         " Menus "
+        index:
+          menus:         " Menus "
+          menu:          " Menu "
+          none_menu:     " Nenhum Menu "
+          new_menu:      " Novo Menu "
+          new_menu_item: " Novo Item de Menu "
+          edit_menu:     " Editar "
+          destroy:       " Excluir "
+          are_you_sure:  " Você tem certeza "
+        new:
+          menus:         " Menus "

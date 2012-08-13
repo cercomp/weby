@@ -1,9 +1,9 @@
 en:
   components:
     banner_side:
-      name: "Side Banner"
-      category: "Category"
+      name:                  " Side Banner "
+      category:              " Category "
   activerecord:
     attributes:
       banner_side_component:
-        category: "Category"
+        category:            " Category "

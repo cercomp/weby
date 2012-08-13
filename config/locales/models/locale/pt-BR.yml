@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      locale:       " Locale "
+    attributes:
+      locale:
+        created_at: " Criado em "
+        flag:       "               "
+        name:       " Nome "
+        updated_at: " Atualizado em "

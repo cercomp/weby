@@ -1,0 +1,22 @@
+pt-BR:
+  sites:
+    pages:
+      index:
+        events:        " Eventos "
+        pages:         " Páginas "
+      show:
+        event:         " Evento "
+        period_event:  " Período do Evento "
+        list_all:      " Listar Todas "
+      list:
+        title:         " Título "
+        category:      " Categoria "
+        period_event:  " Período do Evento "
+        date_register: " Data de Cadastro "
+        type:          " Tipo "
+        news:          " Notícia "
+        event:         " Evento "
+      related_files:
+        related_files: " Arquivos relacionados "
+        size:          " Tamanho "
+

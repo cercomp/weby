@@ -1,0 +1,16 @@
+pt-BR:
+  sites:
+    admin:
+      menus:
+        menu_items:
+          new:
+            title:            " Novo Item de Menu "
+            menu_items:       " Itens de Menu "
+          edit:
+            title:            " Editar Item de Menu "
+          form:
+            parent_menu_item: " Item de menu pai "
+            type_url:         " Digite a URL "
+            title:            " Título "
+          edit:
+            menu_items:       " Itens de Menu "

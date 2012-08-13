@@ -1,0 +1,24 @@
+pt-BR:
+  sites:
+    admin:
+      groups:
+        form:
+          field_required:         " Campo obrigatório! "
+          comma_separated_emails: " Emails Separados por Vírgula "
+          please_wait:            " Por favor, aguarde "
+        list:
+          name:                   " Nome "
+          description:            " Descrição "
+        index:
+          groups:                 " Grupos "
+          new_group:              " Novo Grupo "
+          messages:               " Mensagens "
+          none_group:             " Não existe nenhum grupo "
+          group_explain:          " Lista dos grupos que podem receber Mensagens "
+        edit:
+          groups:                 " Grupos "
+        new:
+          groups:                 " Grupos "
+        show:
+          groups:                 " Grupos "
+

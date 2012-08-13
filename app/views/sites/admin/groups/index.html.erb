@@ -1,16 +1,28 @@
-<%- title  'group.other' %>
+<%- title  ".groups" %>
+
 
 <div class="span9">
+
+  <% if @groups.empty?  %>
+    <div class="alert">
+      <%=t(".none_group")%>
+    </div>  
+  <% else %>
+    <div class="alert alert-info">
+      <%=t(".group_explain")%>
+    </div>
+  <%end%>
+
   <div class="well">
 
     <div class="pull-right">
       <% if check_permission(Sites::Admin::GroupsController, [:new]) %>
-        <%= link_to t('new_param.masc', param: t('group.one')),
+        <%= link_to t(".new_group"),
           new_site_admin_group_path,
           class: "btn btn-success btn-large" %>
       <% end %>
       <% if check_permission(Sites::Admin::FeedbacksController, [:index]) %>
-        <%= link_to  t('messages'),
+        <%= link_to  t(".messages"),
           site_admin_feedbacks_path,
           class: "btn btn-primary btn-large" %>
       <% end %>

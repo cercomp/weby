@@ -1,10 +1,10 @@
-<%- title 'style.other' %>
+<%- title t(".styles") %>
 
 <div class="span9">
   <div class="well">
-  <h3> <%= t('style.one') %>: <%= @style.name %> </h3>
+  <h3> <%= t(".style") %>: <%= @style.name %> </h3>
 
-  <b> <%= t('style.one') %> </b>
+  <b> <%= t(".style") %> </b>
   <pre class="style"><%= @style.css %></pre>
 
   <%= link_to t("back"), :back, class: "btn btn-danger" %>

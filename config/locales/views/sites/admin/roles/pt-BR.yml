@@ -1,0 +1,30 @@
+pt-BR:
+  sites:
+    admin:
+      roles:
+        index:
+          roles_permissions:    " Permissões e Papéis "
+          none_role:            " Nenhum Papel "
+          new_role:             " Novo Papel "
+          admins:               " Admins "
+          banners:              " Banners "
+          components:           " Componentes "
+          feedbacks:            " Fale Conosco "
+          groups:               " Grupos "
+          menu_items:           " Itens de Menu "
+          menus:                " Menus "
+          pages:                " Páginas "
+          repositorys:          " Repositório "
+          repositories_searchs: " Buscas "
+          rights:               " Direitos "
+          roles:                " Papéis "
+          styles:               " Estilos "
+          users:                " Usuários "
+          new:
+          roles_permissions:    " Permissões e Papéis "
+        edit:
+          roles_permissions:    " Permissões e Papéis "
+
+
+
+

@@ -1,0 +1,16 @@
+en:
+  activerecord:
+    models:
+      style:        " Style "
+      styles:       " Styles "
+    attributes:
+      style:
+        name:       " Name "
+        css:        " Style "
+        created_at: " Created at "
+        updated_at: " Updated at "
+        publish:    " Publish "
+        position:   " Position "
+        owner_id:   " Owner id "
+
+

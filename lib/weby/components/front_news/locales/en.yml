@@ -1,9 +1,13 @@
 en:
   components:
     front_news:
-      name: "Front News"
-      quant: "Number of front news"
+      name:                 " Front News "
+      quant:                " Number of front news "
   activerecord:
     attributes:
       front_news_component:
-        quant: "Number of front news"
+        quant:              " Number of front news "
+  front_news:
+    views:
+      show:
+        read_more:          " Read more... "

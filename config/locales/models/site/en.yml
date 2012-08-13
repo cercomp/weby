@@ -1,0 +1,25 @@
+en:
+  activerecord:
+    models:
+      site:                " Site "
+    attributes:
+      site:
+        name:              " Name "
+        created_at:        " Created at "
+        updated_at:        " Updated at "
+        url:               " Url "
+        description:       " Description "
+        top_banner_id:     " Top banner "
+        top_banner_width:  " Top banner width "
+        top_banner_height: " Top banner height "
+        body_width:        " Site Width "
+        footer:            " Footer "
+        theme:             " Theme "
+        view_desc_pages:   " View description "
+        per_page:          " Per page "
+        per_page_default:  " Per page default quantity "
+        menu_dropdown:     " Use Dropdown Menus "
+        title:             " Title "
+        parent_id:         " Parent id "
+        locales:           " Translations "
+

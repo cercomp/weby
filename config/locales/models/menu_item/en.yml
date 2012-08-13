@@ -1,0 +1,15 @@
+# encoding: UTF-8
+en:
+  activerecord:
+    models:
+      menu_item:         "Menu Item"
+    attributes:
+      menu_item:
+        separator:       "Separator"
+        url:             "URL"
+        position:        "Position"
+        new_tab:         "Open in a new window"
+      "menu_item/i18ns":
+        title:           "Title"
+        description:     "Description"
+        _destroy:        "Delete"

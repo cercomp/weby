@@ -1,9 +1,9 @@
 pt-BR:
   components:
     blank:
-      name: Área (HTML) Livre
-      body: "Conteúdo"
+      name:            " Área (HTML) Livre "
+      body:            " Conteúdo "
   activerecord:
     attributes:
       blank_component:
-        body: 'Conteúdo'
+        body:          " Conteúdo "

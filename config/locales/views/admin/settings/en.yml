@@ -1,0 +1,19 @@
+en:
+  admin:
+    settings:
+      new:
+        settings:    " Settings "
+      index:
+        settings:    " Settings "
+        new_setting: " New Setting "
+        name:        " Name "
+        value:       " Value "
+        description: " Description "
+      edit:
+        settings:    " Settings "
+      show:
+        setting:     " Settings "
+        name:        " Name "
+        value:       " Value "
+        description: " Description "
+

@@ -1,0 +1,20 @@
+en:
+  sites:
+    index:
+      new_site:               " New Site "
+    edit:
+      sites:                  " Sites "
+    list:
+      description:            " Description "
+      name:                   " Name "
+    form:
+      view_desc_pages_help:   " Show the date of the creation anthe author of a page? "
+      desc_use_menu_dropdown: " Use dropdown menus? "
+      site_comments:          " Comments about the goal of the site "
+      example_width:          " Example "
+      example_url:            " Example: http://site.com "
+      example_top_widht:      " Example "
+      example_top_height:     " Example "
+      example_per_page:       " Example "
+      site_image:             " Site image "
+      main_site:              " Main Site "

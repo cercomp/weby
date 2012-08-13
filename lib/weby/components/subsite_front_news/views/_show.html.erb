@@ -26,7 +26,7 @@
         <%= raw page.summary %>
       </summary>
       <% unless page.text.blank? %>
-      <p> <%= link_to t("read_more"), site_page_url(page, subdomain: page.owner) %> </p>
+      <p> <%= link_to t(".read_more"), site_page_url(page, subdomain: page.owner) %> </p>
       <% end %>
       <div class="clear"></div>
     </article>

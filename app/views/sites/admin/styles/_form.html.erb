@@ -2,7 +2,6 @@
   <%= f.show_errors %>
 
   <%= f.input :name,
-    label: t("name"), 
     hint: t("field_required") %>
 
   <%= f.input :owner_id, 
@@ -11,12 +10,11 @@
 
   <div class="input">
     <%= f.input :css, 
-      label: t("style.one"), 
       as: :text,
       wrapper_html: { class: 'nostyle' },
       input_html: {class: 'style-editor' } %>
 
-    <%= link_to icon('question-sign', text:t("help_with_style")),
+    <%= link_to icon('question-sign', text:t(".help_with_style")),
       (Setting.get(:help_site) || "/help"),
       target: "_blank"%>
 

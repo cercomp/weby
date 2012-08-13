@@ -1,14 +1,16 @@
 en:
   components:
     news_as_home:
-      name: "News as Homepage"
-      page: "News"
-      form:
-        none_selected: "No news selected"
-        select: "Select a news"
-      show:
-        page_not_found: "Page not found, please check the component configuration"
+      name:                   " News as Homepage "
+      page:                   " News "
   activerecord:
     attributes:
       news_as_home_component:
-        page: "News"
+        page:                 " News "
+  news_as_home:
+    views:
+      form:
+        none_selected:        " No news selected "
+        select:               " Select a news "
+      show:
+        page_not_found:       " Page not found, please check the component configuration "

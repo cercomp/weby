@@ -1,4 +1,4 @@
 <div class="login-links">
-  <%= link_to(t('help')+" |", Setting.get(:help_site), target: '_blank') if Setting.get(:help_site) %>
-  <%= link_to t('portal.other'), root_url(subdomain: nil) %>
+  <%= link_to(t(".help")+" |", Setting.get(:help_site), target: '_blank') if Setting.get(:help_site) %>
+  <%= link_to t(".portals"), root_url(subdomain: nil) %>
 </div>

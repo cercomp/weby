@@ -1,0 +1,34 @@
+# encoding: UTF-8
+en:
+  activerecord:
+    models:
+      page:              "Page"
+    attributes:
+      page:
+        author:          "Author"
+        category_list:   "Categories"
+        date_begin_at:   "Start"
+        date_end_at:     "End"
+        event_begin:     "Event start"
+        event_email:     "Event e-mail"
+        event_end:       "Event end"
+        front:           "Cover"
+        image:           "Image"
+        kind:            "Event type"
+        local:           "Local"
+        owner:           "Owner"
+        position:        "Position"
+        publish:         "Published"
+        source:          "Source"
+        type:            "Page type"
+        url:             "URL"
+        summary:         "Summary"
+        text:            "Text"
+        title:           "Title"
+        created_at:      "Created at"
+        updated_at:      "Updated at"
+      "page/i18ns":
+        summary:         "Summary"
+        text:            "Text"
+        title:           "Title"
+        _destroy:        "Delete"

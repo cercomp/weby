@@ -1,0 +1,8 @@
+pt-BR:
+  notifier:
+    activation_confirmation:
+      welcome:                   " Bem vindo(a) "
+    activation_instructions:
+      welcome:                   " Bem vindo(a) "
+    password_reset_instructions:
+      welcome:                   " Bem vindo(a) "

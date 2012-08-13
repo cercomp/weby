@@ -1,0 +1,16 @@
+en:
+  sites:
+    admin:
+      menus:
+        menu_items:
+          new:
+            title:            " New Menu Item "
+            menu_items:       " Menu Items "
+          edit:
+            title:            " Edit Menu Item "
+          form:
+            parent_menu_item: " Parent menu item "
+            type_url:         " Type a URL "
+            title:            " Title "
+          edit:
+            menu_items:       " Menu Items "

@@ -1,16 +1,16 @@
 pt-BR:
   components:
     gov_bar:
-      name: Barra do Governo
-      background: "Cor de fundo"
+      name:              " Barra do Governo "
+      background:        " Cor de fundo "
   activerecord:
     attributes:
       gov_bar_component:
-        background: "Cor de Fundo"
+        background:      " Cor de Fundo "
   gov_bar:
     views:
       form:
-        blue: "Azul"
-        green: "Verde"
-        gray: "Cinza"
-        black: "Preto"
+        blue:            " Azul "
+        green:           " Verde "
+        gray:            " Cinza "
+        black:           " Preto "

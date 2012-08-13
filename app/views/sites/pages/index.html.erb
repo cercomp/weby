@@ -1,4 +1,4 @@
-<h2><%= controller.action_name == 'events' ? t("event.other") : t("page.other") %></h2>
+<h2><%= controller.action_name == 'events' ? t(".events") : t(".pages") %></h2>
 <center>
   <%= form_tag nil, method: 'get', remote: true do %>
     <%= text_field_tag :search, nil %>

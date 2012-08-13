@@ -1,4 +1,4 @@
-<%- title 'archive.other' %>
+<%- title t(".archives") %>
 
 <div class="span9">
   <div class="well">
@@ -13,7 +13,7 @@
       <% end %>
     </div>
     <div class="pull-right">
-      <%= link_to t('new_param.masc', param: t('archive.one')),
+      <%= link_to t(".new_archive"),
         new_site_admin_repository_path,
         class: "btn btn-success btn-large" %>
     </div>

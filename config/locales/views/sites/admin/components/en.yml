@@ -1,0 +1,28 @@
+en:
+  sites:
+    admin:
+      components:
+        form:
+          place:              " Place "
+        components:
+          empty_placeholder:  " No components in this place "
+          bottom:             " Bottom "
+          content:            " Content "
+          first_place:        " First Place "
+          home:               " Home Page "
+          left:               " Left "
+          right:              " Right "
+          top:                " Top "
+        available_components:
+          next_step:          " Next Step "
+          components:         " Components "
+        edit:
+          components:         " Componentes "
+        index:
+          components:         " Componentes "
+          new_component:      " New Component "
+          component:          " Component "
+          category:           " Category "
+          active:             " Active? "
+        new:
+          components:         " Components "

@@ -1,18 +1,19 @@
 pt-BR:
   components:
     teacher_photo:
-      name: "Foto do Professor"
-      image: "Imagem"
-      width: "Largura"
-      height: "Altura"
-      form:
-        none_selected: "Nenhuma notícia selecionada"
-        select: "Selecione uma notícia"
-      show:
-        page_not_found: "Página não encontrada, por favor verifique a configuração do componente"
+      name:                    " Foto do Professor "
+      image:                   " Imagem "
+      width:                   " Largura "
+      height:                  " Altura "
   activerecord:
     attributes:
       teacher_photo_component:
-        image: "Imagem"
-        width: "Largura"
-        height: "Altura"
+        image:                 " Imagem "
+        width:                 " Largura "
+        height:                " Altura "
+  teacher_photo:
+    views:
+      form:
+        select_picture:         " Selecionar fotografia "
+      show:
+        page_not_found:        " Página não encontrada, por favor verifique a configuração do componente "

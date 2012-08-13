@@ -15,7 +15,7 @@ class SitesController < ApplicationController
       order(sort_column + " " + sort_direction).
       page(params[:page]).
       per(params[:per_page])
-    flash[:warning] = (t"none_param", :param => t("page.one")) unless @sites
+    flash[:warning] = (t"none_page") unless @sites
   end
 
   def show
@@ -39,7 +39,7 @@ class SitesController < ApplicationController
     @site = current_site#Site.find_by_name(params[:id])
     params[:site][:top_banner_id] ||= nil
     if @site.update_attributes(params[:site])
-      flash[:success] = t"successfully_updated"
+      flash[:success] = t("successfully_updated")
       redirect_to edit_site_admin_path
     else
       load_themes

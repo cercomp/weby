@@ -1,0 +1,7 @@
+pt-BR:
+  activerecord:
+    models:
+      sites_user: " Sites user "
+    attributes:
+      sites_user:
+
