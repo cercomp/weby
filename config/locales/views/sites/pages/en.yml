@@ -8,6 +8,8 @@ en:
         event:         " Event "
         period_event:  " Period of Event "
         list_all:      " List all "
+        categories:    " Categories "
+        source:        " Source "
       list:
         title:         " Title "
         category:      " Category "

@@ -20,6 +20,8 @@ pt-BR:
           event:                " Evento "
           period_event:         " Período do Evento "
           list_all:             " Listar todas "
+          categories:           " Categorias "
+          source:               " Fonte "
         fronts:
           covers:               " Capas "
           none_cover:           " Nenhuma Capa "

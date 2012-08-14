@@ -44,12 +44,12 @@
       </div>
 
       <%= content_tag_if @page.source.present?, :p, class: 'source' do %>
-    <span class="source-label"><%= "#{t('source')}:" %></span>
+    <span class="source-label"><%= "#{t('.source')}:" %></span>
     <%= "#{@page.source}" %>
   <% end %>
 
   <%= content_tag_if @page.category_list.any?, :p, class: 'categories' do %>
-    <span class="categories-label"><%= "#{t('categories')}:"  %></span>
+    <span class="categories-label"><%= "#{t('.categories')}:"  %></span>
     <% @page.category_list.each do |category| %>
       <span class="label label-info"><%= category %></span>
     <% end %>

@@ -8,6 +8,8 @@ pt-BR:
         event:         " Evento "
         period_event:  " Período do Evento "
         list_all:      " Listar Todas "
+        categories:    " Categorias "
+        source:        " Fonte "
       list:
         title:         " Título "
         category:      " Categoria "

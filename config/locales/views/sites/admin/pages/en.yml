@@ -20,6 +20,8 @@ en:
           event:                " Event "
           period_event:         " Event date "
           list_all:             " List all "
+          categories:           " Categories "
+          source:               " Source "
         fronts:
           covers:               " Covers "
           none_cover:           " None Cover "
