@@ -212,8 +212,13 @@ pt-BR:
         too_short:                " muito curto (não é possível usar menos de %{count} caracteres) "
         wrong_length:             " Tamanho errado (%{count} são requeridos) "
         
+  activerecord:
+    errors:
+      <<: *errors
 
-
+  activemodel:
+    errors:
+      <<: *errors
 
 # -- SIMPLE FORM -- #
   simple_form:
