@@ -1,0 +1,18 @@
+pt-BR:
+  sites:
+    admin:
+      users:
+        manage_roles:
+          manage_roles:   " Gerenciar Papéis "
+        enrole:
+          enrole_user:    " Relacionar Usuários "
+          role:           " Papel "
+          none_user:      " Nenhum Usuário "
+        enroled:
+          enroled_user:   " Usuário Relacionado "
+          role:           " Papel "
+          none_user:      " Nenhum Usuário "
+        role_form:
+          confirm_unrole:
+
+

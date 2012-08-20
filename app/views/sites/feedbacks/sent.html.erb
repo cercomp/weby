@@ -1,11 +1,11 @@
 <div id="feedback_sent">
-  <h1>Mensagem Enviada com Sucesso</h1>
+  <h1><%= t('.success_sent') %></h1>
   <p>
-    Sua mensagem foi enviada com sucesso para o grupo :
+    <%= t('.group_sent') %>
     <%= @feedback.groups.collect{|g| g.name }.join(', ') %>
   </p>
 
   <p>
-    <button><%= link_to 'Clique aqui para voltar', site_path %></button>
+    <button><%= link_to t('.back_link'), site_path %></button>
   <p>
 </div>

@@ -1,0 +1,12 @@
+en:
+  activerecord:
+    models:
+      sites_style:  " Sites_Style "
+    attributes:
+      sites_style:
+        site_id:    " Site id "
+        sytle_id:   " Style id "
+        publish:    " Publish "
+        created_at: " Created at "
+        updated_at: " Updated at "
+

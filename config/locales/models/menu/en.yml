@@ -1,0 +1,11 @@
+en:
+  activerecord:
+    models:
+      menu:         " Menu "
+    attributes:
+      menu:
+        site_id:    " Site id "
+        name:       " Name "
+        created_at: " Created at "
+        updated_at: " Update dat "
+

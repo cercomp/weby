@@ -1,0 +1,38 @@
+pt-BR:
+  sites:
+    admin:
+      styles:
+        styles:
+        index:
+          other_styles:     " Outros Estilos "
+          follow_styles:    " Estilos seguidos "
+          own_styles:       " Estilos próprios "
+          new_style:        " Novo Estilo "
+          styles:           " Estilos "
+        styles:
+          other_styles:     " Outros Estilos "
+          follow_styles:    " Estilos seguidos "
+          no_other_styles:  " Não existem outros estilos "
+          no_follow_styles: " Nenhum estilo seguido "
+          name:             " Nome "
+          owner:            " Dono "
+          actions:          " Ações "
+          last_update:      " Última Atualização "
+        own_styles:
+          actions:          " Ações "
+          own_styles:       " Estilos próprios "
+          name:             " Nome "
+          no_own_styles:    " Não possui estilo próprio "
+          sites_followers:  " Sites que seguem esse estilo "
+        form:
+          help_with_style:  " Precisa de ajuda com o estilo "
+        edit:
+          styles:           " Estilos "
+        new:
+          styles:           " Estilos "
+        show:
+          styles:           " Estilos "
+          style:            " Estilo "
+
+
+

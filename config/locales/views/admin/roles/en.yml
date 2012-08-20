@@ -1,0 +1,25 @@
+en:
+  admin:
+    roles:
+      index:
+        roles_permissions:    " Rights and Roles "
+        create_role:          " Create Role "
+        list_permissions:     " List Permissions "
+        admins:               " Admins "
+        banners:              " Banners "
+        components:           " Components "
+        feedbacks:            " Feedbacks "
+        groups:               " Groups "
+        menu_items:           " Menu Items "
+        menus:                " Menus "
+        pages:                " Pages "
+        repositorys:          " Repositories "
+        repositories_searchs: " Searches "
+        rights:               " Rights "
+        roles:                " Roles "
+        styles:               " Styles "
+        users:                " Users "
+      new:
+        roles:                " Roles "
+      edit:
+        roles:                " Roles "

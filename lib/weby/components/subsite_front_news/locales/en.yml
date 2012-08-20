@@ -1,13 +1,15 @@
 en:
   components:
     subsite_front_news:
-      name: "Subsites Front News"
-      quant: "Number of front news"
+      name:                         " Subsites Front News "
+      quant:                        " Number of front news "
   activerecord:
     attributes:
       subsite_front_news_component:
-        quant: "Number of front news"
+        quant:                      " Number of front news "
   subsite_front_news:
     views:
       show:
-        news_from: "From the site"
+        news_from:                  " From the site "
+        read_more:                  " Read more... "
+

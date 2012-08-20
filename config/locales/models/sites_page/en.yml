@@ -1,0 +1,11 @@
+en:
+  activerecord:
+    models:
+      sites_page:   " Sites Page "
+    attributes:
+      sites_page:
+        site_id:    " Site id "
+        page_id:    " Page id "
+        created_at: " Created at "
+        updated_at: " Updated at "
+

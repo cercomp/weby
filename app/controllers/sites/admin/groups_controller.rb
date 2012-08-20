@@ -9,11 +9,6 @@ class Sites::Admin::GroupsController < ApplicationController
     @groups = @site.groups.order(sort_column + ' ' + sort_direction).
       page(params[:page]).per(params[:per_page])
 
-    if @groups.empty?
-      flash[:warning] = (t"none_param", :param => t("group.one"))
-    else
-      flash[:warning] = t('group_explain')
-    end
   end
 
   def show
@@ -45,7 +40,7 @@ class Sites::Admin::GroupsController < ApplicationController
     @group = Group.find(params[:id])
     if @group.update_attributes(params[:group])
       redirect_to({:site_id => @group.site.name, :controller => 'groups', :action => 'index'},
-                  flash: {success: t('successfully_updated')})
+                  flash: {success: t("successfully_updated")})
     else
       redirect_to :back
     end

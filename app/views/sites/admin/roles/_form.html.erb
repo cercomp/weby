@@ -2,7 +2,7 @@
   <%= f.show_errors %>
 
   <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden if @site %>
-  <%= f.input :name, :label => t("name") %>
+  <%= f.input :name  %>
   <%#= f.input :theme, :collection => @themes.collect{|p| [ p , p]}, :label => t("layout") %>
 
   <div class="form-actions">

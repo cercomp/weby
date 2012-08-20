@@ -1,0 +1,52 @@
+en:
+  sites:
+    admin:
+      repositories:
+        index:
+          archives:            " Files "
+          search:              " Search "
+          new_archive:         " New file "
+        show:
+          name:                " Name "
+          size:                " Size "
+          type:                " Type "
+          archive_description: " The archive description "
+          file_link:           " Link to file "
+          list_all:            " List All "
+        new:
+          archives:            " Files "
+        edit:
+          archives:            " Files "
+        ajax_upload:
+          file:                " File "
+          select_file:         " Select File "
+          field_required:      " Field Required! "
+        form:
+          field_required:      " Field required! "
+          accessibility_needs: " Needed for your site becomes accessible. "
+          archives:            " Archives "
+          please_wait:         " Please wait "
+        repo:
+          picture:             " Picture "
+        repositories_as_table:
+          archives:            " Files "
+          description:         " Description "
+        repository_as_boxes:
+          none_archive:        " None archive "
+        repository_search:
+          archives:            " Files "
+          repository:          " Repository "
+          new_file:            " New File "
+        search_and_new_file:
+          search_image:        " Search Image "
+          new_image:           " New image "
+        show_attachment_list:
+          insert:              " Insert "
+          details:             " Details "
+          cancel:              " Cancel "
+        tinymce:
+          search:              " Search "
+          image:               " Image "
+        tinymce_link:
+          search:              " Search "
+          archive:             " File "

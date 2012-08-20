@@ -1,0 +1,12 @@
+en:
+  kaminari:
+    first_page:
+      pagination_first:    " First "
+    gap:
+      pagination_truncate: " ...      "
+    last_page:
+      pagination_last:     " Last "
+    next_page:
+      pagination_next:     " Next "
+    prev_page:
+      pagination_previous: " Previous "

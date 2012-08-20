@@ -1,0 +1,15 @@
+pt-BR:
+  activerecord:
+    models:
+      style:        " Estilo "
+      styles:       " Estilos "
+    attributes:
+      style:
+        name:       " Nome "
+        css:        " Estilo "
+        created_at: " Criado em "
+        updated_at: " Atualizado em "
+        publish:    " Publicar "
+        position:   " Posição "
+        owner_id:   " Id do Dono "
+

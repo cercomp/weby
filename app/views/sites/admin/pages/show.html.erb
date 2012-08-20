@@ -1,4 +1,4 @@
-<%- title 'page.other' %>
+<%- title ".pages" %>
 
 <div class="span9">
   <div class="well">
@@ -11,7 +11,7 @@
       </header>
 
       <%= content_tag_if @page.event?, :div, class: 'event' do %>
-        <h3><%= t('event.one') %></h3>
+        <h3><%= t(".event") %></h3>
         <p class="local">
         <%= label(:page, :local) %>
         <%= @page.local %>
@@ -25,7 +25,7 @@
           <%= @page.event_email %>
         <% end %>
         <p class="event-period">
-          <%= label(:page, :event_period, t("pages.event_form.period_event"), style: 'display: inline-block;') %>:
+          <%= label(:page, :event_period, t(".period_event"), style: 'display: inline-block;') %>:
           <span class="event-dates"><%=  period_dates(@page.event_begin, @page.event_end) %></span>
         </p>
       <% end %>
@@ -44,12 +44,12 @@
       </div>
 
       <%= content_tag_if @page.source.present?, :p, class: 'source' do %>
-    <span class="source-label"><%= "#{t('source')}:" %></span>
+    <span class="source-label"><%= "#{t('.source')}:" %></span>
     <%= "#{@page.source}" %>
   <% end %>
 
   <%= content_tag_if @page.category_list.any?, :p, class: 'categories' do %>
-    <span class="categories-label"><%= "#{t('categories')}:"  %></span>
+    <span class="categories-label"><%= "#{t('.categories')}:"  %></span>
     <% @page.category_list.each do |category| %>
       <span class="label label-info"><%= category %></span>
     <% end %>
@@ -60,7 +60,7 @@
       <div class="form-actions">
         <%= link_to icon('eye-open', text: t('show')), site_page_path(@page) %>
         <%= make_menu(@page, :except => "show") %>
-        <%= link_to icon('list', text: t("list_all.fem")), site_admin_pages_path %>
+        <%= link_to icon('list', text: t(".list_all")), site_admin_pages_path %>
         <%= link_to icon('chevron-left', text: t("back")), :back %>
       </div>
     </article>

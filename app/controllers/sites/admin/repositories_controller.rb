@@ -17,7 +17,7 @@ class Sites::Admin::RepositoriesController < ApplicationController
     @repositories = @repositories.content_file(params[:mime_type]) if params[:mime_type]
 
     unless @repositories
-      flash.now[:warning] = (t"none_param", :param => t("archive.one")) 
+      flash.now[:warning] = (t"none_archive") 
     end
     respond_with(:site_admin, @repositories) do |format|
       format.json do

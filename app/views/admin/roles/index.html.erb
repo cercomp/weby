@@ -2,21 +2,21 @@
   <%= javascript_include_tag "roles_index" %>
 <% end %>
 
-<%- title 'roles_permissions' %>
+<%- title ".roles_permissions" %>
 
 <div class="span9">
   <div class="well">
 
     <% if check_permission(Admin::RolesController, [:new]) %>
       <div class="pull-right">
-        <%= link_to t("create_param.masc", param: t("role.one")),
+        <%= link_to t(".create_role"),
           new_admin_role_path,
           class: "btn btn-success btn-large" %>
       </div>
     <% end %>
 
     <div class="pull-left">
-    <%= link_to (t"list_param", :param => (t"permission", :count => 2)),
+    <%= link_to t(".list_permissions"),
       admin_rights_path,
       class: 'btn btn-info btn-large' %>
     </div>
@@ -26,17 +26,17 @@
       <table class='table table-striped'>
         <thead>
           <tr>
-            <th><%= t"roles_permissions", :count => 2%></th>
+            <th><%= t(".roles_permissions") %></th>
             <% @roles.each do |role| %>
               <th>
                 <%= role.name %> 
                 <p> 
                   <%= link_to icon('check'), nil, :onclick => "toggleCheckboxesBySelector('input.column-#{role.id}')", :remote => true %>
                   <% if check_permission(Admin::RolesController, [:edit]) %>
-                    <%= link_to icon('edit', text: t('edit')), edit_admin_role_path(role) %>
+                    <%= link_to icon('edit', text: t("edit")), edit_admin_role_path(role) %>
                   <% end %>
                   <% if check_permission(Admin::RolesController, [:destroy]) %>
-                    <%= link_to icon('trash', text: t('destroy')), admin_role_path(role), :confirm => t('are_you_sure'), :method => :delete %> 
+                    <%= link_to icon('trash', text: t("destroy")), admin_role_path(role), :confirm => t("are_you_sure"), :method => :delete %> 
                   <% end %>
                 </p>
               </th>
@@ -47,7 +47,7 @@
           <% @rights.group_by(&:controller).sort.each do |p, i| %>
             <tr class="<%= cycle 'odd', 'even' %>">
               <td colspan="<%= @roles.length + 1%>">
-                <b><%= t("#{p.singularize}.other") %></b>
+                <b><%= t(".#{p.singularize}s") %></b>
               </td>
             </tr>
             <% i.each do |right| %>

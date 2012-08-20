@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      user_session:  " User Session "
+    attributes:
+      user_session:
+        login:       " Login "
+        password:    " Password "
+        remember_me: " Lembrar "
+

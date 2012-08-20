@@ -1,9 +1,9 @@
 en:
   components:
     banner_horizontal:
-      name: "Horizontal Banner"
-      category: "Category"
+      name:                        " Horizontal Banner "
+      category:                    " Category "
   activerecord:
     attributes:
       banner_horizontal_component:
-        category: "Category"
+        category:                  " Category "

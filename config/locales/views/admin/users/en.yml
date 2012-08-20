@@ -1,0 +1,43 @@
+en:
+  admin:
+    users:
+      show:
+        user:               " User "
+        id:                 " Id "
+        username:           " Login "
+        email:              " E-mail "
+        phone:              " Phone "
+        mobile:             " Mobile "
+        register:           " Register "
+        last_request:       " Last Request "
+        global_roles:       " Global Roles "
+        user_current_sites: " Current Sites "
+        roles:              " Roles "
+      new:
+        new_user:           " New User "
+      form:
+        username:           " User Name "
+      index:
+        users:              " Users "
+        new_user:           " New User "
+      list:
+        id:                 " Id "
+        user:               " User "
+        email:              " E-mail "
+        active:             " Active "
+        is_admin:           " Admin "
+        roles:              " Roles "
+        admin:              " Admin "
+        manage_roles:       " Manage Roles "
+      edit:
+        editing_my_account: " Editting my account "
+      enrole:
+        none_user:          " None User "
+        enrole_user:        " Enrole User "
+        role:               " Roles "
+      enroled:
+        enroled_user:       " Enroled Users "
+        role:               " Role "
+        none_user:          " None User "
+      role_form:
+        confirm_unrole:     " Unrole this user of the site "

@@ -1,0 +1,51 @@
+pt-BR:
+  sites:
+    admin:
+      repositories:
+        index:
+          archives:            " Arquivos "
+          new_archive:         " Novo Arquivo "
+        show:
+          name:                " Nome "
+          size:                " Tamanho "
+          type:                " Tipo "
+          archive_description: " Descrição do arquivo "
+          file_link:           " Link para arquivo "
+          list_all:            " Listar todos "
+        new:
+          archives:            " Arquivos "
+        edit:
+          archives:            " Arquivos "
+        ajax_upload:
+          file:                " Arquivo "
+          select_file:         " Selecione o arquivo "
+          field_required:      " Campo obrigatório! "
+        form:
+          field_required:      " Campo obrigatório! "
+          accessibility_needs: " Necessário para que seu site se torne acessível. "
+          archives:            " Arquivos "
+          please_wait:         " Por favor, aguarde "
+        repo:
+          picture:             " Imagem "
+        repositories_as_table:
+          archives:            " Arquivos "
+          description:         " Descrição "
+        repository_as_boxes:
+          none_archive:        " Nenhum Arquivo "
+        repository_search:
+          archives:            " Arquivos "
+          repository:          " Repositório "
+          new_file:            " Novo Arquivo "
+        search_and_new_file:
+          search_image:        " Buscar Imagem "
+          new_image:           " Nova imagem "
+        show_attachment_list:
+          insert:              " Inserir "
+          details:             " Detalhes "
+          cancel:              " Cancelar "
+        tinymce:
+          search:              " Buscar "
+          image:               " Imagem "
+        tinymce_link:
+          search:              " Buscar "
+          archive:             " Arquivo "

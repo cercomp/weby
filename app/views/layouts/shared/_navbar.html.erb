@@ -16,15 +16,15 @@
             <span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
-            <li> <%= link_to t('my_profile'), admin_user_url(current_user, subdomain: nil) -%> </li>
+            <li> <%= link_to t(".my_profile"), admin_user_url(current_user, subdomain: nil) -%> </li>
             <li class="divider"></li>
-            <li> <%= link_to t("logout"), logout_path(back_url: site_url(subdomain: current_site)) -%> </li>
+            <li> <%= link_to t(".logout"), logout_path(back_url: site_url(subdomain: current_site)) -%> </li>
           </ul>
         </div>
       <% else %>
         <ul class="nav pull-right">
-          <li> <%= link_to t('login'), login_path(back_url: "#{request.fullpath}") %> </li>
-          <li> <%= link_to t('register'), new_admin_user_url(subdomain: nil) %> </li>
+          <li> <%= link_to t(".login"), login_path(back_url: "#{request.fullpath}") %> </li>
+          <li> <%= link_to t(".register"), new_admin_user_url(subdomain: nil) %> </li>
         </ul>
       <% end %>
       <div class="nav-collapse">
@@ -33,22 +33,22 @@
             <% if not(current_user.is_admin) and not(user_sites.empty?) %>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <%= t("site.other") %><b class="caret"></b>
+                  <%= t(".sites") %><b class="caret"></b>
                 </a>
                 <%= content_tag :ul, user_sites, class: 'dropdown-menu' %> 
               </li>
             <% end %>
             <li>
-              <%= link_to(t("dashboard"), current_site ? site_admin_path : admin_path) %>
+              <%= link_to(t(".dashboard"), current_site ? site_admin_path : admin_path) %>
             </li>
             <li>
-              <%= link_to(t("show_site"), site_path) if (request.path.split('/').include?('admin') and current_site) %>
+              <%= link_to(t(".show_site"), site_path) if (request.path.split('/').include?('admin') and current_site) %>
             </li>
           <% end %>
           <li>
-            <%= link_to(t('help'), Setting.get(:help_site), target: '_blank') if Setting.get(:help_site) %>
+            <%= link_to(t(".help"), Setting.get(:help_site), target: '_blank') if Setting.get(:help_site) %>
           </li>
-          <li> <%= link_to t('about'), '/about.html', target: '_blank' %> </li>
+          <li> <%= link_to t(".about"), '/about.html', target: '_blank' %> </li>
         </ul>
       </div>
     </div>

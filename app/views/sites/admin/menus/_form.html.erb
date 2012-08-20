@@ -3,8 +3,8 @@
 <%= simple_form_for [:site_admin, @menu], html: { class: 'form-horizontal' } do |f| %>
   <%= f.show_errors %>
 
-  <%= f.input :name, :label => t("name"),
-    placeholder: t("name"),
+  <%= f.input :name,
+    placeholder: t(".name"),
     input_html: {class: "name_input"} %>
 
   <div class="form-actions">

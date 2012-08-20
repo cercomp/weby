@@ -1,0 +1,9 @@
+en:
+  activerecord:
+    models:
+      settings:      " Settings "
+    attributes:
+      setting:
+        name:        " Name "
+        value:       " Value "
+        description: " Description "

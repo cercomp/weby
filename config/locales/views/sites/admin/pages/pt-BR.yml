@@ -2,13 +2,79 @@ pt-BR:
   sites:
     admin:
       pages:
+        event:                  " Evento "
+        news:                   " Notícia "
+        new:
+          title:                " Nova Página "
+          pages:                " Páginas "
+        edit:
+          title:                " Editar Página "
+          pages:                " Páginas "
+        index:
+          pages:                " Páginas "
+          new_page:             " Nova Página "
+          covers:               " Capas "
+          events:               " Eventos "
+        show:
+          pages:                " Páginas "
+          event:                " Evento "
+          period_event:         " Período do Evento "
+          list_all:             " Listar todas "
+          categories:           " Categorias "
+          source:               " Fonte "
+        fronts:
+          covers:               " Capas "
+          none_cover:           " Nenhuma Capa "
+          new_page:             " Nova Página "
+          list_pages:           " Listar Páginas "
+          date_register:        " Data de Cadastro "
+          title:                " Título "
+          author:               " Autor "
+          category:             " Categoria "
+          type:                 " Tipo "
+          publish:              " Publicar "
+          news:                 " Notícia "
+          event:                " Evento "
+          move:                 " Mover "
         list:
-          created_at: Cadastrado em
+          none_page:            " Nenhuma Página "
+          author:               " Autor "
+          type:                 " Tipo "
+          category:             " Categoria "
+          created_at:           " Criado em "
+          news:                 " Notícia"
+          event:                " Evento "
+          title:                " Título "
+          cover:                " Capa "
+          publish:              " Publicar "
+        list_popup:
+          register_date:        " Data de Cadastro "
+          news:                 " Notícia "
+          event:                " Evento "
+          title:                " Título "
+          category:             " Categoria "
+          type:                 " Tipo "
+        related_files:
+          size:                 " Tamanho "
+          related_files:        " Arquivos Relacionados "
         form:
-          period_page: "Período da Página"
-          related_files: "Arquivos Relacionados"
+          image:                " Imagem da página "
+          period_page:          " Período da Página "
+          related_files:        " Arquivos relacionados "
+          page_categories_help: " Categorias são separadas por vírgula, a categoria de uma página é relacionada ao seu conteúdo. Ex: Esporte, Notícia, UFG "
         event_form:
-          period_event: "Período do Evento"
-          is_event: 'É Evento?'
-          
+          is_event:             " É Evento? "
+          period_event:         " Período do Evento "
+          regional:             " Regional "
+          national:             " Nacional "
+          international:        " Internacional "
+          begin:                " Início "
+          end:                  " Fim "
+        tiny_mce: 
+          pages:                "Páginas "
+          id:                   "Id "
+          title:                "Título "
+          author:               "Autor "
+
+
 

@@ -80,7 +80,7 @@ class Admin::UsersController < ApplicationController
       group("id, name, theme").order("id")
 
     unless @users
-      flash.now[:warning] = (t"none_param", :param => t("user.one"))
+      flash.now[:warning] = (t"none_user")
     end
   end
 
@@ -128,14 +128,14 @@ class Admin::UsersController < ApplicationController
     end
     @user = User.find(params[:id])
     @user.update_attributes(user_params)
-    flash[:success] = t"updated", :param => t("account")
+    flash[:success] = t("updated_account")
     respond_with(:admin, @user)
   end
 
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    flash[:success] = t('destroyed_param', :param => @user.first_name)
+    flash[:success] = t("destroyed_param", :param => @user.first_name)
   rescue ActiveRecord::DeleteRestrictionError
     flash[:warning] = t("user_cant_be_deleted")
   ensure
@@ -146,9 +146,9 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
     if params[:field] 
       if @user.update_attributes(params[:field] => (@user[params[:field]] == 0 or not @user[params[:field]] ? true : false))
-        flash[:success] = t"successfully_updated"
+        flash[:success] = t("successfully_updated")
       else
-        flash[:error] = t"error_updating_object"
+        flash[:error] = t("error_updating_object")
       end
     end
     redirect_to admin_users_path
@@ -158,9 +158,9 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
     if params[:field] 
       if @user.update_attributes(params[:field] => (@user[params[:field]] == 0 or not @user[params[:field]] ? true : false))
-        flash[:success] = t"successfully_updated"
+        flash[:success] = t("successfully_updated")
       else
-        flash[:error] = t"error_updating_object"
+        flash[:error] = t("error_updating_object")
       end
     end
     redirect_to admin_users_path
