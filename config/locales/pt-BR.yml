@@ -30,11 +30,13 @@ pt-BR:
       left:                             " Esquerda "
       right:                            " Direita "
       top:                              " Topo "
+  create_account_successful:            " Sua conta foi criada! Foi enviado para seu email instruções de como ativá-la "
 #---D---#
   destroy:                              " Excluir "
   disable:                              " Desativado "
   destroyed_style:                      " Estilo removido "
   destroyed_style_error:                " Erro ao remover Estilo "
+  destroyed_param:                      " %{param} removído "
 #---E---#
   edit:                                 " Editar "
   enable:                               " Ativado "
@@ -57,9 +59,11 @@ pt-BR:
   login:                                " Entrar "
   login_success:                        " Logado com sucesso! "
   logout_success:                       " Logout com sucesso! "
+  look_changed:                         " Aparência alterada "
 #---M---#
   move:                                 " Mover "
   manage_roles:                         " Gerenciar Papéis "
+  missing_account:                      " Desculpe-nos, mas não conseguimos localizar sua conta. Se você está tentando copiar e colar a URL de um email dentro do seu navegador ou reiniciando o processo de recuperar senha "
 #---N---#
   no_permission_to_activate_deactivate: " Sem permissão para ativar ou desativar "
   no_mail:                              " Nenhum usuário com esse e-mail foi econtrado. "
@@ -68,6 +72,7 @@ pt-BR:
   none_page:                            " Nenhuma Página "
   need_login:                           " Você deve estar logado para acessar essa página. "
   need_at_least_one_i18n:               " Necessita de pelo menos um idioma "
+  none_user:                            " Nenhum Usuário "
 #---O---#
   of:                                   " de "
 #---P---#
@@ -77,9 +82,10 @@ pt-BR:
   prohibited_being_saved:
     one:                                " erro, impede que você prossiga "
     other:                              " erros, impedem que você prossiga "
+  problem_create_account:               " Problemas ao criar uma conta "
 #---Q---#
 #---R---#
-  reset_mail:                           " Instruções de como modificar sua senha foram enviada. Cheque seu e-mail. "
+  reset_mail:                           " Instruções de como modificar sua senha foram enviadas. Cheque seu e-mail. "
 #---S---#
   save:                                 " Salvar "
   search:                               " Buscar "
@@ -91,11 +97,14 @@ pt-BR:
   successfully_updated_param:           " %{param} atualizado com sucesso! "
   successfully_removed:                 " %{param} foi excluído com sucesso! "
   successfully_deleted:                 " Excluído com sucesso! "
+  successfully_updated_password:        " Senha atualizada com sucesso "
 #---T---#
 #---U---#
   unfollow:                             " Deixar de Seguir "
   unpublish:                            " Despublicar "
   user_inactive:                        " Seu usuário ainda não está ativo. "
+  updated_account:                      " Conta atualizada "
+  user_cant_be_deleted:                 " Este usuário não pode ser excluído "
 #---V---#
   views:
      pagination:

@@ -30,11 +30,13 @@ en:
       left:                             " Left "
       right:                            " Right "
       top:                              " Top "
+  create_account_successful:            " Your account has been created. Please check your e-mail for your account activation instructions "
 #---D---#
   destroy:                              " Destroy "
   disable:                              " Disable "
   destroyed_style:                      " Style destroyed "
   destroyed_style_error:                " Error when remove Style "
+  destroyed_param:                      " %{param} destroyed "
 #---E---#
   edit:                                 " Edit "
   enable:                               " Enable "
@@ -57,9 +59,11 @@ en:
   login:                                " Login "
   login_success:                        " Logged in succesfully! "
   logout_success:                       " Logged out successfully! "
+  look_changed:                         " Appearence was changed "
 #---M---#
   move:                                 " Move "
   manage_roles:                         " Manage Roles "
+  missing_account:                      " We're sorry, but we could not locate your account. If you are having issues try copying and pasting the URL from your email into your browser or restarting the reset password process "
 #---N---#
   no_permission_to_activate_deactivate: " No permission to activate or deacticate "
   no_mail:                              " No user was found with that email address. "
@@ -68,6 +72,7 @@ en:
   none_page:                            " None Page "
   need_login:                           " You need to be logged in to access this page. "
   need_at_least_one_i18n:               " Needs at least one language "
+  none_user:                            " None User "
 #---O---#
   of:                                   " of "
 #---P---#
@@ -77,6 +82,7 @@ en:
   prohibited_being_saved:
     one:                                " error, prevent you from proceeding "
     other:                              " errors, prevent you from proceeding "
+  problem_create_account:               " Problem on create account "
 #---Q---#
 #---R---#
   reset_mail:                           " Instructions to reset your password have been emailed to you. Please check your email. "
@@ -91,11 +97,14 @@ en:
   successfully_updated_param:           " %{param} successfully updated! "
   successfully_removed:                 " %{param} successfully removed! "
   successfully_deleted:                 " Successfully deleted! "
+  successfully_updated_password:        " Password successfully updated "
 #---T---#
 #---U---#
   unfollow:                             " Unfollow "
   unpublish:                            " Unpubish "
   user_inactive:                        " User was not activated. "
+  updated_account:                      " Account updated "
+  user_cant_be_deleted:                 " This user can't be deleted "
 #---V---#
   views:
      pagination:
