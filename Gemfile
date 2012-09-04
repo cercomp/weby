@@ -11,7 +11,6 @@ gem 'acts_as_list'
 gem 'simple_form', :tag => 'v2.0.1', :git => 'http://github.com/plataformatec/simple_form.git'
 gem 'acts-as-taggable-on'
 gem 'bootstrap-sass'
-gem 'breadcrumbs_on_rails'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

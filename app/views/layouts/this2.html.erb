@@ -1,37 +1,30 @@
-<!DOCTYPE html>
-<html lang="<%= session[:locale].to_s %>" >
-  <%= render 'layouts/shared/head', theme: 'this2' %>
-  
-  <body>
-    <%= current_user ? render('layouts/shared/navbar') : link_to(image_tag('weby-icon.png'), login_path(back_url: site_admin_path), style: 'position:fixed; z-index: 1000') %>
-    <div class='first_place'>
-      <%= load_components 'first_place' %>
-    </div>
-    <div id="wrapper"  <%= "style='width: #{ @main_width }px'" if @main_width %>>
-      <header>
-        <%= load_components 'top' %>
-        <div class="clear"> </div>
-      </header>
-
-      <aside class="left">
-        <%= load_components 'left' %>
-      </aside>
-
-      <aside class="right">
-        <%= load_components 'right' %>
-      </aside>
-
-      <section id="content">
-        <%#= debug params %>
-        <%= raw flash_message %>
-        <%= yield %>
-      </section>
-
-      <footer>
-        <%= load_components 'bottom' %>
-      </footer>
-    </div>
-    <%= render 'layouts/shared/javascripts' %>
-  </body>
+<!doctype html>
+<html lang="<%= session[:locale].to_s %>">
+<%= render 'layouts/shared/head', theme: 'this2' %>
+<body>
+  <%= render 'layouts/shared/webybar' %>
+  <div class='first_place'>
+    <%= load_components 'first_place' %>
+  </div>
+  <div id="wrapper" <%= "style='width: #{ @main_width }px'" if @main_width %>>
+    <header>
+      <%= load_components 'top' %>
+      <div class="clear"> </div>
+    </header>
+    <aside class="left">
+      <%= load_components 'left' %>
+    </aside>
+    <aside class="right">
+      <%= load_components 'right' %>
+    </aside>
+    <section id="content">
+      <%= raw flash_message %>
+      <%= yield %>
+    </section>
+    <footer>
+      <%= load_components 'bottom' %>
+    </footer>
+  </div>
+  <%= render 'layouts/shared/javascripts' %>
+</body>
 </html>
-

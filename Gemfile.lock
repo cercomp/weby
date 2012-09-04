@@ -56,7 +56,6 @@ GEM
       activerecord (>= 3.0.7)
       activerecord (>= 3.0.7)
     bootstrap-sass (2.0.3)
-    breadcrumbs_on_rails (2.1.0)
     builder (3.0.0)
     cocaine (0.2.1)
     coderay (1.0.6)
@@ -176,7 +175,6 @@ DEPENDENCIES
   acts_as_list
   authlogic
   bootstrap-sass
-  breadcrumbs_on_rails
   dispatcher
   factory_girl_rails (= 1.7.0)
   jquery-rails
