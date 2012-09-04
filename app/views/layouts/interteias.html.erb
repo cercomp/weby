@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="<%= session[:locale].to_s %>">
+<head>
+  <title><%= @site.try(:description) || 'Weby' %></title>
+  <meta charset="utf-8">
+  <%= csrf_meta_tag %>
+  <%= stylesheet_link_tag 'layout/interteias/main' %>
+  <!--[if lt IE 9]>
+    <%= javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js" %>
+    <%= javascript_include_tag "http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js" %>
+  <![endif]-->
+</head>
+<body>
+  <%= render 'layouts/shared/webybar' %>
+</body>
+</html>
