@@ -90,6 +90,7 @@ pt-BR:
   save:                                 " Salvar "
   search:                               " Buscar "
   show:                                 " Mostrar "
+  site_need_at_least_one_locale:        " Necessita de pelo menos um idioma "
   submit:                               " Enviar "
   successfully_created:                 " Criado com sucesso."
   successfully_updated:                 " Atualizado com sucesso "

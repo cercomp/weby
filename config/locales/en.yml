@@ -90,6 +90,7 @@ en:
   save:                                 " Save "
   search:                               " Search "
   show:                                 " Show "
+  site_need_at_least_one_locale:        " Needs at least one language "
   submit:                               " Submit "
   successfully_created:                 " Successfully created. "
   successfully_updated:                 " Successfully updated "

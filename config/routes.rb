@@ -129,8 +129,8 @@ Weby::Application.routes.draw do
           post :sort
         end
       end
-      resources :sites, except: [:show, :edit, :update]
-    end
+      resources :sites, except: [:show]
+    end 
   end
 
   # legacy, verificar a possibilidade de refatoração

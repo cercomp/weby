@@ -118,16 +118,16 @@ module ApplicationHelper
   end
 
   # Verifica se o usuário tem permissão no controlador e na ação passada como parâmetro
-  # Parâmetros: (Objeto) ctrl, (array) actions
+  # Parâmetros: (Objeto) ctrl, (array) actions, Objeto site (opcional)
   # Retorna: verdadeiro ou falso
-  def check_permission(ctrl, actions)
+  def check_permission(ctrl, actions, site = current_site)
     # Se não estiver logado retorna falso
     return false unless current_user 
     # Se o usuário for admin então dê todas as permissões
     return true if current_user.is_admin 
     # Se o argumento de ações for uma string, passa para array
     actions = [actions] unless actions.is_a? Array
-    get_roles(current_user, @site).each do |role|
+    get_roles(current_user, site).each do |role|
       # Obtém o campo multi-valorados contendo todos os direitos
       role.rights.each do |right|
         # Controlador do usuario (right.controller) = nome do controlador recebido como parâmetro (ctr.controller_name)
@@ -157,7 +157,7 @@ module ApplicationHelper
     site ||= @site
     return false if user.nil? or user.blank?
     # Se site existir
-    if @site
+    if site
       # Obtém todos os papéis do usuário relacionados com site
       roles_assigned = current_user.roles.where(['site_id IS NULL OR site_id = ?', site.id])
     else
@@ -346,8 +346,8 @@ module ApplicationHelper
     end
   end
 
-  def main_sites_list
-    Site.where(parent_id: nil).order('name') - [current_site]
+  def main_sites_list curr_site
+    Site.where(parent_id: nil).order('name') - [curr_site]
   end
 
   def content_tag_if(condition, tag_name, options = {}, &block)

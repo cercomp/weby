@@ -70,6 +70,14 @@ class Site < ActiveRecord::Base
 
   has_and_belongs_to_many :locales
 
+  validate :at_least_one_locale
+
+  def at_least_one_locale
+    if self.locales.length < 1
+      errors.add(:site, I18n.t("site_need_at_least_one_locale"))
+    end
+  end
+
   has_attached_file :top_banner, :url => "/uploads/:site_id/:style_:basename.:extension"
   private
   def clear_per_page

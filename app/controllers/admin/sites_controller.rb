@@ -18,6 +18,7 @@ class Admin::SitesController < ApplicationController
 
   def new
     @site = Site.new
+    @site.footer = t(".footer_text")
     @themes = []
     (Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*.erb")] - Dir[File.join(Rails.root + "app/views/layouts/application.html.erb")] - Dir[File.join(Rails.root + "app/views/layouts/sites.html.erb")] - Dir[File.join(Rails.root + "app/views/layouts/user_sessions.html.erb")]).each do |file|
       @themes << file.split("/")[-1].split(".")[0]
@@ -68,14 +69,40 @@ class Admin::SitesController < ApplicationController
     end
   end
 
-  def destroy
+  def edit
     @site = Site.find_by_name(params[:id])
-    @site.destroy
-    respond_with(:admin, @site)
+    load_themes
+  end
+
+  def update
+    @site = Site.find_by_name(params[:id])
+    if @site.update_attributes(params[:site])
+      flash[:success] = t"successfully_updated"
+      redirect_to admin_sites_path
+    else
+      load_themes
+      render :edit
+    end
+  end
+
+  def destroy
+    #@site = Site.find_by_name(params[:id])
+    #@site.destroy
+    #respond_with(:admin, @site)
   end
 
   private
   def sort_column
     Site.column_names.include?(params[:sort]) ? params[:sort] : 'id'
+  end
+
+  def load_themes
+    @themes = []
+    (Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*.erb")] -
+     Dir[File.join(Rails.root + "app/views/layouts/application.html.erb")] -
+     Dir[File.join(Rails.root + "app/views/layouts/sites.html.erb")] -
+     Dir[File.join(Rails.root + "app/views/layouts/user_sessions.html.erb")]).each do |file|
+       @themes << file.split("/")[-1].split(".")[0]
+     end
   end
 end
