@@ -1,7 +1,8 @@
 class SitesController < ApplicationController
   layout :choose_layout, only: :show
   
-  before_filter :require_user, :only => :admin
+  before_filter :require_user, only: [:admin, :edit, :update]
+  before_filter :check_authorization, only: [:edit, :update]
   
   respond_to :html, :xml, :js
 
@@ -30,20 +31,20 @@ class SitesController < ApplicationController
   end
   
   def edit
-    @site = current_site#Site.find_by_name(params[:id])
+    @site = current_site
     load_themes
     render layout: 'application'
   end
 
   def update
-    @site = current_site#Site.find_by_name(params[:id])
+    @site = current_site
     params[:site][:top_banner_id] ||= nil
     if @site.update_attributes(params[:site])
       flash[:success] = t("successfully_updated")
       redirect_to edit_site_admin_path
     else
       load_themes
-      render :edit
+      render :edit, layout: 'application'
     end
   end
 

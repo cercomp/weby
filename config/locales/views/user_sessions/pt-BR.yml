@@ -1,9 +1,10 @@
 pt-BR:
-  new:
-    forgot_password:   " Perdi minha senha "
-    register:          " Cadastro "
-    help:              " Ajuda "
-    portals:           " Portais "
   access_denied:
-    access_denied:     " Acesso negado "
-    ccess_denied_page: " Você não está autorizado a ver está página "
+    access_denied:      " Acesso negado "
+    access_denied_page: " Você não está autorizado a ver está página "
+  new:
+    forgot_password:    " Perdi minha senha "
+    register:           " Cadastro "
+    help:               " Ajuda "
+    portals:            " Portais "
+
