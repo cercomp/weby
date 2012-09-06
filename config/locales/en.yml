@@ -86,6 +86,7 @@ en:
 #---Q---#
 #---R---#
   reset_mail:                           " Instructions to reset your password have been emailed to you. Please check your email. "
+  required:                             " Required "
 #---S---#
   save:                                 " Save "
   search:                               " Search "

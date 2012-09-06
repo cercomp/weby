@@ -86,6 +86,7 @@ pt-BR:
 #---Q---#
 #---R---#
   reset_mail:                           " Instruções de como modificar sua senha foram enviadas. Cheque seu e-mail. "
+  required:                             " Necessário "
 #---S---#
   save:                                 " Salvar "
   search:                               " Buscar "

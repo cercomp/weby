@@ -26,7 +26,9 @@ module Weby
             self.errors.add(:base, I18n.t('cant_have_i18ns_with_same_locale')) if has_duplicated_locales?
 
             self.class.required_i18n_fields.each do |field|
-              self.errors.add(field.to_sym, I18n.t("required")) if !has_valid?(field)
+              i18ns_missing_required_field(field).each do |i18n|
+                self.errors.add(field.to_sym, "(#{I18n.t(i18n.locale.name)}) #{I18n.t("required")}")
+              end
             end
           end
           private :validate_i18ns
@@ -42,19 +44,21 @@ module Weby
           end
           private :has_duplicated_locales?
 
-          def has_valid?(field)
+          # Retorna um array com as i18ns que nao possuem o campo requerido
+          def i18ns_missing_required_field(field)
+            missing = []
             self.i18ns.each do |i18n|
-              return false unless i18n.send("#{field}?")
+              missing << i18n unless i18n.send("#{field}?")
             end
-            true
+            missing
           end
-          private :has_valid?
+          private :i18ns_missing_required_field
 
           accepts_nested_attributes_for :i18ns,
             allow_destroy: true,
             reject_if: proc { |i18ns|
               i18ns['id'].blank? &&
-                required_i18n_fields.reduce(true) do |mem, element|
+                i18n_fields.reduce(true) do |mem, element|
                 mem && i18ns[element].blank?
               end
             }
