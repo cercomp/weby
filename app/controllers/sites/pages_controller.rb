@@ -33,6 +33,14 @@ class Sites::PagesController < ApplicationController
     end
   end
 
+  def news
+    @pages = get_pages.published.news 
+    respond_with(@site, @pages) do |format|
+      format.any { render 'index'}
+    end
+  end
+
+
   def get_pages
     case params[:template]
     when "tiny_mce"
