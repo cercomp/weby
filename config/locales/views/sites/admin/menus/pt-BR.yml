@@ -3,17 +3,18 @@ pt-BR:
     admin:
       menus:
         form:
-          name:          " Nome "
+          name:           " Nome "
         edit:
-          menus:         " Menus "
+          menus:          " Menus "
         index:
-          menus:         " Menus "
-          menu:          " Menu "
-          none_menu:     " Nenhum Menu "
-          new_menu:      " Novo Menu "
-          new_menu_item: " Novo Item de Menu "
-          edit_menu:     " Editar "
-          destroy:       " Excluir "
-          are_you_sure:  " Você tem certeza "
+          menus:          " Menus "
+          menu:           " Menu "
+          none_menu:      " Nenhum Menu "
+          new_menu:       " Novo Menu "
+          new_menu_item:  " Novo Item de Menu "
+          edit_menu:      " Editar "
+          destroy:        " Excluir "
+          are_you_sure:   " Você tem certeza "
+          none_menu_item: " Nenhum item de menu "
         new:
-          menus:         " Menus "
+          menus:          " Menus "

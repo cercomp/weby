@@ -31,8 +31,8 @@ en:
         repositories_as_table:
           archives:            " Files "
           description:         " Description "
-        repository_as_boxes:
-          none_archive:        " None archive "
+        repositories_as_boxes:
+          none_archive:        " No Files "
         repository_search:
           archives:            " Files "
           repository:          " Repository "

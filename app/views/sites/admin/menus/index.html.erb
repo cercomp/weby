@@ -50,6 +50,11 @@
           </div>
           <div class="clearfix control-group"></div>
           <div class="well" id="main-menu">
+            <% if @menu.menu_items.empty? %>
+              <div class="alert">
+                <%= t(".none_menu_item") %>
+              </div>
+            <% end %>
             <%= raw print_menu(@menu, 1) %>
           </div>
         <% end %>
