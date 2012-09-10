@@ -55,7 +55,7 @@
     <% end %>
   <% end %>
 
-      <%= render partial: 'related_files' if @page.related_files.any? %>
+      <%= render partial: 'sites/admin/pages/related_files' if @page.related_files.any? %>
 
       <div class="form-actions">
         <%= link_to icon('eye-open', text: t('show')), site_page_path(@page) %>

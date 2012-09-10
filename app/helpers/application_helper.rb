@@ -4,6 +4,10 @@ module ApplicationHelper
     @session_user ||= User.find(:first, :conditions => ['id = ?', session[:user]])
   end
 
+  def is_in_admin_context?
+    request.path.split('/').include?('admin')
+  end
+
   # Alterna entre habilitar e desabilitar registro
   # Parâmetros: obj (Objeto), publish (Campo para alternar), action (Ação a ser executada no controller)
   # Campo com imagens V ou X para habilitar/desabilitar e degradê se não tiver permissão para alteração.
@@ -74,10 +78,10 @@ module ApplicationHelper
          end
          #menus << " [ id:#{entry.id} pos:#{entry.position} ]" # Para debug
          menus << ( (entry and entry.target) ? " [ #{entry.target.id} ] " : " [ #{entry.url if not entry.url.blank?} ] " )
-         menus << link_to("", edit_site_admin_menu_menu_item_path(entry.menu_id, entry.id),:class=>'icon icon-edit', :title => t("edit"))
-         menus << indent_space + link_to("", new_site_admin_menu_menu_item_path(entry.menu_id, :parent_id => entry.id),:class=>'icon icon-plus', :title => t("add_sub_menu"))
-         menus << indent_space + link_to("","#", :class => 'handle icon icon-move', :title => t("move"))
-         menus << indent_space + link_to("", site_admin_menu_menu_item_path(entry.menu_id, entry.id), :method=>:delete, :confirm => t('are_you_sure'),:class=>'icon icon-remove', :title => t("destroy"))
+         menus << link_to(icon('edit', text: ''), edit_site_admin_menu_menu_item_path(entry.menu_id, entry.id), :title => t("edit"))
+         menus << indent_space + link_to(icon('plus', text: ''), new_site_admin_menu_menu_item_path(entry.menu_id, :parent_id => entry.id), :title => t("add_sub_menu"))
+         menus << indent_space + link_to(icon('trash', text: ''), site_admin_menu_menu_item_path(entry.menu_id, entry.id), :method=>:delete, :data => {:confirm => t('are_you_sure')}, :title => t("destroy"))
+         menus << indent_space + link_to(icon('move', text: ''),"#", :class => 'handle', :title => t("move"))
       end
        menus << "\n" + indent_space + (view_ctrl == 1 ? "</div><menu>":"<menu>") unless submenu.nil?
        if sons[entry.id].class.to_s == "Array"
@@ -257,7 +261,7 @@ module ApplicationHelper
                 :action => 'destroy',
                 :id => obj.id
               }),
-              :confirm => t('are_you_sure'),
+              :data => {:confirm => t('are_you_sure')},
               :method => :delete,
               :alt => t('destroy'),
               :title => t('destroy')) + " "

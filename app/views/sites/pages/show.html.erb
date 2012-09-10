@@ -51,7 +51,7 @@
     <% end %>
   <% end %>
 
-  <%= render partial: 'related_files' if @page.related_files.any? %>
+  <%= render partial: 'sites/pages/related_files' if @page.related_files.any? %>
 
   <div style="margin-top: 8px;">
     <%= link_to(icon('edit', text: t("edit")), edit_site_admin_page_path(@page)) if check_permission(Sites::Admin::PagesController, [:edit]) %>

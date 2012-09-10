@@ -38,7 +38,9 @@
             <%= raw toggle_field(page, "front") %></td>
           <td align="center" class="publish">
             <%= publication_status(page) %></td>
-          <td><%= make_menu(page, :except => "show", :with_text => false) %></td>
+          <td><%= link_to icon('eye-open', text: ''), site_page_path(page) %>
+              <%= make_menu(page, :except => "show", :with_text => false) %>
+          </td>
         <% end %>
       </tr>
     <% end %>

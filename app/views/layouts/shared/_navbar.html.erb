@@ -42,7 +42,7 @@
               <%= link_to(t(".dashboard"), current_site ? site_admin_path : admin_path) %>
             </li>
             <li>
-              <%= link_to(t(".show_site"), site_path) if (request.path.split('/').include?('admin') and current_site) %>
+              <%= link_to(t(".show_site"), site_path) if (is_in_admin_context? and current_site) %>
             </li>
           <% end %>
           <li>

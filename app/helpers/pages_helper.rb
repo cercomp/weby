@@ -35,7 +35,7 @@ module PagesHelper
 
   def other_flags(page, size = '16')
     page.other_locales.map do |locale|
-      link_to(flag(locale, size), site_admin_page_path(page, page_locale: locale.name))
+      link_to(flag(locale, size), send((is_in_admin_context? ? :site_admin_page_path : :site_page_path) ,page, page_locale: locale.name) )
     end.join(' ')
   end
 end
