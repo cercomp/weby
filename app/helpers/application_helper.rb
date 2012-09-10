@@ -376,9 +376,13 @@ module ApplicationHelper
 
   def period_date_and_hour(date, force_show_year = true)
     html = ""
-    html << "#{l(date, format: (force_show_year || date.year!=Time.now.year) ? :event_date_full : :event_date_short)}"
-    if(date.hour != 0)
-      html << " #{l(date, format: :event_hour)}"
+    if(date.nil?)
+      html << "#{t('no_event_period')}"
+    else
+      html << "#{l(date, format: (force_show_year || date.year!=Time.now.year) ? :event_date_full : :event_date_short)}"
+      if(date.hour != 0)
+        html << " #{l(date, format: :event_hour)}"
+      end
     end
     html
   end

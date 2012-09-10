@@ -66,6 +66,7 @@ pt-BR:
   manage_roles:                         " Gerenciar Papéis "
   missing_account:                      " Desculpe-nos, mas não conseguimos localizar sua conta. Se você está tentando copiar e colar a URL de um email dentro do seu navegador ou reiniciando o processo de recuperar senha "
 #---N---#
+  no_event_period:                      " Periodo do evento não especificado "
   no_permission_to_activate_deactivate: " Sem permissão para ativar ou desativar "
   no_mail:                              " Nenhum usuário com esse e-mail foi econtrado. "
   none_archive:                         " Nenhum Arquivo "
