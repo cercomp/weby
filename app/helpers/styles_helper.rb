@@ -28,7 +28,7 @@ module StylesHelper
               actions << link_to( icon('edit', text: t('edit')), edit_site_admin_style_path(style)) + ' '
             when 'destroy'
               actions << (link_to( icon('trash', text: t('destroy')), site_admin_style_path(style),
-                                confirm: t('are_you_sure'), method: :delete ) + ' ') if style.followers.empty?
+                                data: {confirm: t('are_you_sure')}, method: :delete ) + ' ') if style.followers.empty?
             end
           end
         end

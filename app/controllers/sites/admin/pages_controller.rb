@@ -75,7 +75,7 @@ class Sites::Admin::PagesController < ApplicationController
   private :available_locales
 
   def event_types
-    @event_types = Page::EVENT_TYPES.map {|el| t("pages.event_form.#{el}")}.zip(Page::EVENT_TYPES)
+    @event_types = Page::EVENT_TYPES.map {|el| t("sites.admin.pages.event_form.#{el}")}.zip(Page::EVENT_TYPES)
   end
   private :event_types
 

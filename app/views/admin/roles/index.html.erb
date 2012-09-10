@@ -36,7 +36,7 @@
                     <%= link_to icon('edit', text: t("edit")), edit_admin_role_path(role) %>
                   <% end %>
                   <% if check_permission(Admin::RolesController, [:destroy]) %>
-                    <%= link_to icon('trash', text: t("destroy")), admin_role_path(role), :confirm => t("are_you_sure"), :method => :delete %> 
+                    <%= link_to icon('trash', text: t("destroy")), admin_role_path(role), :data => {:confirm => t("are_you_sure")}, :method => :delete %>
                   <% end %>
                 </p>
               </th>

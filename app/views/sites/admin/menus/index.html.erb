@@ -43,7 +43,7 @@
             <% with_permission action: :destroy do %>
               <%= link_to t("destroy"),
                 site_admin_menu_path(@menu),
-                method: :delete, confirm: t(".are_you_sure"),
+                method: :delete, data: {confirm: t(".are_you_sure")},
                 class: "btn btn-primary" %>
             <% end %>
             &nbsp;
