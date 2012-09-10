@@ -20,7 +20,7 @@ en:
           roles:                " Roles "
           styles:               " Styles "
           users:                " Users "
-          new:
+        new:
           roles_permissions:    " Roles and Permissions "
         edit:
           roles_permissions:    " Roles and Permissions "

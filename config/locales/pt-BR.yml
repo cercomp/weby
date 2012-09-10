@@ -34,6 +34,7 @@ pt-BR:
 #---D---#
   destroy:                              " Excluir "
   disable:                              " Desativado "
+  disabled_component:                   " Componente Desabilitado "
   destroyed_style:                      " Estilo removido "
   destroyed_style_error:                " Erro ao remover Estilo "
   destroyed_param:                      " %{param} removído "
@@ -75,6 +76,7 @@ pt-BR:
   none_user:                            " Nenhum Usuário "
 #---O---#
   of:                                   " de "
+  only_admin:                           " Somente para usuários administradores "
 #---P---#
   please_wait:                          " Por favor espere! "
   publish:                              " Publicar "
@@ -86,6 +88,7 @@ pt-BR:
 #---Q---#
 #---R---#
   reset_mail:                           " Instruções de como modificar sua senha foram enviadas. Cheque seu e-mail. "
+  required:                             " Necessário "
 #---S---#
   save:                                 " Salvar "
   search:                               " Buscar "

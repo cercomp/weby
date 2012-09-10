@@ -18,7 +18,7 @@ class Admin::SitesController < ApplicationController
 
   def new
     @site = Site.new
-    @site.footer = t(".footer_text")
+    @site.footer = t("admin.sites.form.footer_text")
     @themes = []
     (Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*.erb")] - Dir[File.join(Rails.root + "app/views/layouts/application.html.erb")] - Dir[File.join(Rails.root + "app/views/layouts/sites.html.erb")] - Dir[File.join(Rails.root + "app/views/layouts/user_sessions.html.erb")]).each do |file|
       @themes << file.split("/")[-1].split(".")[0]
@@ -37,7 +37,7 @@ class Admin::SitesController < ApplicationController
         menu_bottom = @site.menus.create({:name => 'menu inferior'})
 
         @site.components.create({:place_holder=>'first_place',:settings=>'{:background => "#7F7F7F"}',:name=>'gov_bar', :position=>1, :publish=>true})
-        @site.components.create({:place_holder=>'first_place',:settings=>'{}', :name=>'weby_bar', :position=>2, :publish=>true})
+        #@site.components.create({:place_holder=>'first_place',:settings=>'{}', :name=>'weby_bar', :position=>2, :publish=>true})
         @site.components.create({:place_holder=>'first_place',:settings=>'{}', :name=>'institutional_bar', :position=>3, :publish=>true})
         @site.components.create({:place_holder=>'top', :settings=>'{}', :name=>'header', :position=>4, :publish=>true})
         @site.components.create({:place_holder=>'top', :settings=>"{:menu_id => \"#{menu_top.id}\"}", :name=>'menu_side', :position=>5, :publish=>true})

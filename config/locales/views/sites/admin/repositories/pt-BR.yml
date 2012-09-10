@@ -30,7 +30,7 @@ pt-BR:
         repositories_as_table:
           archives:            " Arquivos "
           description:         " Descrição "
-        repository_as_boxes:
+        repositories_as_boxes:
           none_archive:        " Nenhum Arquivo "
         repository_search:
           archives:            " Arquivos "

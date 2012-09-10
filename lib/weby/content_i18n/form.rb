@@ -5,7 +5,7 @@ module Weby
         raise ArgumentError, "Missing block" unless block_given?
         @index = @index ? @index + 1 : 0
         object_name = "#{@object_name}[i18ns_attributes][#{@index}]"
-        object = @object.i18ns.find_by_locale_id(locale.id) || @object.i18ns.build(locale_id: locale.id)
+        object = @object.i18ns.select{|i18n| i18n.locale_id == locale.id}.first || @object.i18ns.build(locale_id: locale.id)
         @template.concat @template.hidden_field_tag("#{object_name}[id]", object ? object.id : "")
         @template.concat @template.hidden_field_tag("#{object_name}[locale_id]", locale.id)
         if @template.respond_to? :simple_fields_for

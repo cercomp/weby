@@ -34,6 +34,7 @@ en:
 #---D---#
   destroy:                              " Destroy "
   disable:                              " Disable "
+  disabled_component:                   " Disabled Component "
   destroyed_style:                      " Style destroyed "
   destroyed_style_error:                " Error when remove Style "
   destroyed_param:                      " %{param} destroyed "
@@ -75,6 +76,7 @@ en:
   none_user:                            " None User "
 #---O---#
   of:                                   " of "
+  only_admin:                           " Only for admin users "
 #---P---#
   please_wait:                          " Please Wait! "
   publish:                              " Publish "
@@ -86,6 +88,7 @@ en:
 #---Q---#
 #---R---#
   reset_mail:                           " Instructions to reset your password have been emailed to you. Please check your email. "
+  required:                             " Required "
 #---S---#
   save:                                 " Save "
   search:                               " Search "

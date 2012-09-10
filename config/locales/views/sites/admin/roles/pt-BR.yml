@@ -20,7 +20,7 @@ pt-BR:
           roles:                " Papéis "
           styles:               " Estilos "
           users:                " Usuários "
-          new:
+        new:
           roles_permissions:    " Permissões e Papéis "
         edit:
           roles_permissions:    " Permissões e Papéis "
