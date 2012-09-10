@@ -52,8 +52,8 @@ class Page < ActiveRecord::Base
 
   validates :date_begin_at, 
     presence: true
-
-  validates :local,
+  
+  validates :local, :event_begin,
     presence: { if: proc { self.type == 'Event' } }
 
   belongs_to :owner,
