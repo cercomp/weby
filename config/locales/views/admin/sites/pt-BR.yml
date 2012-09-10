@@ -10,9 +10,11 @@ pt-BR:
         new_site:               " Novo Sítio "
       edit:
         sites:                  " Sítios "
+        settings:               " Configurações "
       list:
         name:                   " Nome "
         description:            " Descrição "
+        settings:               " Configurações "
       form:
         example_width:          " Exemplo "
         example_url:            " Exemplo: http://site.com "

@@ -4,6 +4,7 @@ en:
       new_site:               " New Site "
     edit:
       sites:                  " Sites "
+      settings:               " Settings "
     list:
       description:            " Description "
       name:                   " Name "

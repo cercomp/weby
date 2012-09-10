@@ -12,10 +12,8 @@ Weby::Application.routes.draw do
     match '/feed' => 'sites/pages#published', as: :site_feed,
       defaults: { format: 'rss', per_page: 10, page: 1 }
     # route to paginate
-    match '/users/page/:page' => 'admin/users#index'
-    match '/banners/page/:page' => 'sites/admin/banners#index'
-    match '/repositories/page/:page' => 'sites/admin/repositories#index'
-    match '/groups/page/:page' => 'sites/admin/groups#index'
+    match 'admin/banners/page/:page' => 'sites/admin/banners#index'
+    match 'admin/groups/page/:page' => 'sites/admin/groups#index'
 
     resources :pages,
       as: :site_pages, 
@@ -130,6 +128,8 @@ Weby::Application.routes.draw do
         end
       end
       resources :sites, except: [:show]
+      # route to paginate
+      match 'admin/users/page/:page' => 'admin/users#index'
     end 
   end
 
