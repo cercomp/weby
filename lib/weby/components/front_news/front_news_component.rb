@@ -10,7 +10,7 @@ class FrontNewsComponent < Component
 
 	alias :_details :details
   def details
-    _details.blank? ? '1' : _details
+    _details.blank? ? '0' : _details
   end
 
   alias :_avatar_width :avatar_width
