@@ -1,5 +1,20 @@
 class FrontNewsComponent < Component
-  component_settings :quant
+  component_settings :quant, :avatar_height, :avatar_width, :read_more, :details
 
   validates :quant, :presence => true
+
+  alias :_read_more :read_more
+  def read_more
+    _read_more.blank? ? '1' : _read_more
+  end
+
+	alias :_details :details
+  def details
+    _details.blank? ? '1' : _details
+  end
+
+  alias :_avatar_width :avatar_width
+  def avatar_width
+    _avatar_width.blank? ? "128" : _avatar_width
+  end
 end

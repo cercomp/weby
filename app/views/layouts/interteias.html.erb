@@ -4,7 +4,7 @@
   <title><%= @site.try(:description) || 'Weby' %></title>
   <meta charset="utf-8">
   <%= csrf_meta_tag %>
-  <%= stylesheet_link_tag 'layout/interteias/main' %>
+  <%= stylesheet_link_tag 'layouts/interteias/main' %>
   <!--[if lt IE 9]>
     <%= javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js" %>
     <%= javascript_include_tag "http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js" %>
@@ -12,5 +12,21 @@
 </head>
 <body>
   <%= render 'layouts/shared/webybar' %>
+  <section id='first_place'>
+  	<%= load_components 'first_place' %>
+  	<div class="clearfix"> </div>
+  </section>
+  <div class="container">
+	  <header>
+	  	<%= load_components 'top' %>
+	  	<div class="clearfix"> </div>
+	  </header>
+	  <section id="content">
+	  	<%= yield %>
+	  </section>
+	  <footer>
+	  	<%= load_components 'bottom' %>
+	  </footer>
+	</div>
 </body>
 </html>
