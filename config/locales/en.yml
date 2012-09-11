@@ -66,6 +66,7 @@ en:
   manage_roles:                         " Manage Roles "
   missing_account:                      " We're sorry, but we could not locate your account. If you are having issues try copying and pasting the URL from your email into your browser or restarting the reset password process "
 #---N---#
+  no_event_period:                      " Event Period unspecified "
   no_permission_to_activate_deactivate: " No permission to activate or deacticate "
   no_mail:                              " No user was found with that email address. "
   none_archive:                         " None File "
