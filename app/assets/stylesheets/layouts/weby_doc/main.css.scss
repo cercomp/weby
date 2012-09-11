@@ -1,10 +1,15 @@
 /* 
- *= require _base
  *= require ./mini
  *= require google/droidsans 
  *= require google/orbitron
+ *= require _bootstrap
  *= require_self 
+ *= require _bootstrap-responsive
  */ 
+
+.orbitron { font-family: "Orbitron"; }
+
+body { background: transparent; }
 
 section#content {
   background: #F8F9FA;

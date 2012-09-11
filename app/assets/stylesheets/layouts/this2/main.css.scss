@@ -1,8 +1,11 @@
 /*
- *= require _base
  *= require ./mini
+ *= require _bootstrap
  *= require_self 
+ *= require _bootstrap-responsive
  */  
+
+body { background: transparent; }
 
 /* To work with HTML5 more easy */
 article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary { display: block; }

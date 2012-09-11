@@ -6,15 +6,6 @@
  *= require _bootstrap-responsive
  */ 
 
-// overide bootstrap to use navbar
-body { padding-top: 60px; }
-.navbar .btn { margin: 5px 5px 6px; }
-.navbar .brand.logo { color: white; }
-
-// style definitions
-.orbitron { font-family: "Orbitron"; }
-.red { color: #C11303; }
-
 // style to components
 header.container,
 section.container,
