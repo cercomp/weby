@@ -3,10 +3,18 @@ pt-BR:
     front_news:
       name:                 " Notícias Capas "
       quant:                " Quantidade de notícias na página inicial "
+      avatar_height:        " Altura da imagem da noticia "
+      avatar_width:         " Largura da imagem da noticia"
+      read_more:            " Exibir leia mais "
+      details:              " Exibir detalhes da noticia "
   activerecord:
     attributes:
       front_news_component:
         quant:              " Quantidade de notícias na página inicial "
+        avatar_height:        " Altura da imagem da noticia "
+        avatar_width:         " Largura da imagem da noticia"
+        read_more:            " Exibir leia mais "
+        details:              " Exibir detalhes da noticia "
   front_news:
     views:
       show:
