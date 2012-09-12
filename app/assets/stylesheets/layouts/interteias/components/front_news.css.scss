@@ -2,12 +2,21 @@
 {
 	article
 	{
-		width: 460px;
+		width: 458px;
 		margin-right: 10px;
 		float: left;
+		border: 1px solid #DDD;
+		background-color: #E8E8E8;
+
+    header
+    {
+      padding-left: 10px;
+      padding-top: 9px;
+    }
 
 		summary
 		{
+      padding-left: 10px;
 			p
 			{
 				width: 100%;
@@ -15,5 +24,7 @@
 				overflow: hidden;
 			}
 		}
+
+		.read_more { padding-left: 10px; }
 	}
 }
