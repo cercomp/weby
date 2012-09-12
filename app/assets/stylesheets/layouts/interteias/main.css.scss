@@ -40,7 +40,7 @@ header
 				a 
 				{
 					display: block;
-					font-size: 24px;
+					font-size: 18px;
 					height: 24px;
 					line-height: 24px;
 					padding: 8px 10px;
@@ -60,13 +60,18 @@ header
 }
 #content
 {
+  padding-bottom: 40px;
 	.title_front_news
 	{
-		font-size: 40px;
+		font-size: 25px;
 		line-height: 40px;
 		color: #A3A3A3;
 		padding-bottom: 30px;
 		font-weight: normal;	
 	}
 }
-footer { padding: 50px 0 50px 40px; }
+footer
+{ 
+  border-top: 1px solid #DDD;
+  padding: 20px 0 50px 40px;
+}
