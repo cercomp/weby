@@ -143,8 +143,9 @@ Weby::Application.routes.draw do
   # Para ativação de conta por email
   match 'activate(/:activation_code)' => 'admin/users#activate',
     as: :activate_account
-  
-  match '*not_found', :to => 'application#render_404'
+
+  match 'robots.txt' => 'sites#robots', :format => 'txt'
+  match '*not_found' => 'application#render_404'
 
   # TinyMCE??
   #resources :attachments do
