@@ -1,5 +1,5 @@
 <head>
-  <title><%= @site.try(:description) || 'Weby' %></title>
+  <title><%= @site.try(:description) || 'Weby' %><%= yield :title %></title>
   <meta charset="utf-8"/>
   <meta name="description" content="<%= @site.description %>"/>
   <%= csrf_meta_tag %>

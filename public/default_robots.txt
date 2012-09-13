@@ -2,3 +2,9 @@
 User-Agent: *
 Disallow: /admin/
 Disallow: /assets/
+Disallow: /login/
+Disallow: /logout/
+Disallow: /denied/
+Disallow: /activate/
+Disallow: /user_sessions/
+

@@ -1,5 +1,5 @@
 <div class="pull-left"> <%= info_page @sites %> </div>
-<div class="pull-right"> <%= paginate @sites %> </div>
+<div class="pull-right"> <%= paginate @sites, remote: true %> </div>
 <div class="clearfix"></div>
 
 <table class='table table-striped'>
@@ -21,6 +21,6 @@
   </tbody>
 </table>
 
-<div class="pull-left"> <%= per_page_links @sites %> </div>
-<div class="pull-right"> <%= paginate @sites %> </div>
+<div class="pull-left"> <%= per_page_links @sites, true %> </div>
+<div class="pull-right"> <%= paginate @sites, remote: true %> </div>
 <div class="clearfix"></div>

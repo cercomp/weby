@@ -70,7 +70,7 @@ class Admin::UsersController < ApplicationController
   def index
     @users = User.login_or_name_like(params[:search]).
       order(sort_column + " " + sort_direction).page(params[:page]).
-      per(params[:per_page]) 
+      per((params[:per_page] || per_page_default ))
 
     if @site 
       @users = @users.by_site(@site.id)
