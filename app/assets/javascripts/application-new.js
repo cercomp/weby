@@ -68,7 +68,11 @@ function show_dialog(ele) {
 
 $(document).ready(function() {
    // Ajax indicator
-   $('body').ajaxComplete(function(evt,xhr){
+   $('body').append($('<div class="modal hide" data-backdrop="false" style="width: 150px; margin: -30px 0 0 -75px; z-index: 1060;" id="loading-modal"><div class="modal-body"><img src="/assets/loading-bar.gif"/></div></div>'));
+   $('body').ajaxSend(function(){
+      $('#loading-modal').modal('show');
+   }).ajaxComplete(function(evt,xhr){
+      $('#loading-modal').modal('hide');
       FlashMsg.notify(xhr.status);
    });
 
