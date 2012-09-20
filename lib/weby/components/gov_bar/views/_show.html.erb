@@ -1,9 +1,12 @@
 <% width = @main_width ? "#{@main_width+4}px" : "100%" %>
-<div id="barra-brasil" style="background-color: <%= component.background %>">
-    <div class="barra" style="width: <%= raw width %>;">
-        <ul>
-            <li><a style="background-color: <%= component.background %>" href="http://www.acessoainformacao.gov.br" class="ai" target="_blank" title="Acesso à informação">www.sic.gov.br</a></li>
-            <li><a style="background-color: <%= component.background %>" href="http://www.brasil.gov.br" class="brasilgov" target="_blank" title="Portal de Estado do Brasil">www.brasil.gov.br</a></li>
-        </ul>
-    </div>
-</div>
+
+<section class="gov_bar_component">
+  <div id="barra-brasil" style="background-color: <%= component.background %>">
+      <div class="barra" style="width: <%= raw width %>;">
+          <ul>
+              <li><a style="background-color: <%= component.background %>" href="http://www.acessoainformacao.gov.br" class="ai" target="_blank" title="Acesso à informação">www.sic.gov.br</a></li>
+              <li><a style="background-color: <%= component.background %>" href="http://www.brasil.gov.br" class="brasilgov" target="_blank" title="Portal de Estado do Brasil">www.brasil.gov.br</a></li>
+          </ul>
+      </div>
+  </div>
+</section>

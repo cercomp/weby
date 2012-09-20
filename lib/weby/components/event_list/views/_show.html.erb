@@ -1,25 +1,26 @@
 <% quant = component.quant || 5 %>
 <%
-@page_events = @site.pages.order('event_begin asc').
+@events = @site.pages.order('event_begin asc').
   available.upcoming_events.
   page(params[:event_list_pages]).per(quant)
 %>
 
-<div id="event_list">
-  <%#= info_page @page_events, 'width: 100%' %>
+<section class="event_list_component">
   <table class="list border fullwidth zebra">
     <tr>
-      <th><%= link_to t(".events"), events_site_pages_path(direction: 'desc', sort: 'pages.event_begin') %></th>
+      <th>
+        <%= link_to t(".events"), events_site_pages_path(direction: 'desc', sort: 'pages.event_begin') %>
+      </th>
     </tr>
-    <% @page_events.try(:each) do |page| %>
+    <% @events.try(:each) do |page| %>
       <tr>
         <td>
           <p><%= link_to page.title, site_page_path(page) %></p>
-          <p class="event-dates"><%= period_dates(page.event_begin, page.event_end, false)  -%></p>
-            <%= raw page.summary %>
+          <p class="event-dates"><%= period_dates(page.event_begin, page.event_end, false) -%></p>
+          <%= raw page.summary %>
         </td>
       </tr>
     <% end %>
   </table>
-  <%= paginate @page_events, :param_name => :event_list_pages %>
-</div>
+  <%= paginate @page_events, param_name: :event_list_pages %>
+</section>

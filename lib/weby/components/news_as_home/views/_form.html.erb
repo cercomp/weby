@@ -7,16 +7,15 @@
     end
   end 
 %>
-<%# ======================================== %>
-<%= f.input :page, :wrapper => :append do %>
+
+<%= f.input :page, wrapper: :append do %>
   <%= text_field_tag :page_title, page_title_for(component), disabled: true, id: 'page_title_for_component' %><%=
    link_to_function t(".select"), 'show_dialog($(this))',
    id: 'btn_select_news', class: 'btn btn-info',  data: { link: site_admin_pages_path } %>
 <%  end %>
 <%= content_tag :div, '', id: 'page_list', title: t(".select") %>
-
 <%= f.input :page, as: :hidden %>
-<%# ======================================== %>
+
 <%= javascript_tag do %>
   /**
    * Ao selecionar a notícia, cria um input com o id da noticia selecionada

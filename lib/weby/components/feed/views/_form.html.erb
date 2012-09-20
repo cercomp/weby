@@ -22,13 +22,13 @@
  <%= repository_search( t(".select_from_repo"), "atom_icon", "feed_component[atom_icon]",
    (Repository.find(component.atom_icon) rescue nil), multiple: false, file_types: 'image') %>
 <% end %>
-<%= f.input :align, :collection => [
+<%= f.input :align, collection: [
     [t(".center"),"none"],
     [t(".right"),"right"],
     [t(".left"),"left"]
   ],
-  :priority => component.align,
-  :include_blank => false
+  priority: component.align,
+  include_blank: false
 %>
 
 <%= content_for :stylesheets, stylesheet_link_tag("include_files") %>

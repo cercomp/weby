@@ -1,4 +1,4 @@
-#event_list .event-dates{
+.event_list_component .event-dates{
     font-weight: bold;
     font-size: 9pt;
 }

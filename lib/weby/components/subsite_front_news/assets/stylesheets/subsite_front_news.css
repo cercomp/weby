@@ -1,10 +1,10 @@
-section.subsites_pages{
+.subsite_front_news_component{
     clear: both;
     border-top: 1px dotted #DDD;
     /*background-color: #F6F7F8;*/
 }
 
-section.subsites_pages > h2{
+.subsite_front_news_component > h2{
     background-color: #EEE;
     margin: 0px;
     border-bottom: 1px solid silver;
@@ -12,25 +12,25 @@ section.subsites_pages > h2{
     text-align: center;
 }
 
-section.subsites_pages > li{
+.subsite_front_news_component > li{
     border-bottom: 1px dotted #DDD;
     padding-left: 5px;
     text-align: left;
 }
 
-section.subsites_pages > li h2{
+.subsite_front_news_component > li h2{
     margin: 10px 0px;
     line-height: 100%;
     font-size: 140%;
     text-align: left;
 }
 
-section.subsites_pages a img {
+.subsite_front_news_component a img {
     float: right;
     padding: 5px;
     clear:right;
 }
 
-section.subsites_pages .page_origin{
+.subsite_front_news_component .page_origin{
     float:right;
 }

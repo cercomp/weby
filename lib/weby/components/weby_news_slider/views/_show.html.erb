@@ -1,14 +1,14 @@
 <% content_for :javascripts, javascript_include_tag('weby_news_slider') %>
 
-<%= content_tag :div, :class => "weby_news_slider_component",
-                :style => "width: #{component.width}px" do %>
+<%= content_tag :section, class: "weby_news_slider_component",
+                style: "width: #{component.width}px" do %>
   <% unless (pages = component.pages(current_site)).empty? %>
     <div class="flexslider" data-slideshowspeed="<%= component.timer.to_i * 1000 %>">
       <ul class="slides">
         <% pages.each do |page| %>
-          <%= content_tag :li, :style => "height: #{component.height}px" do %>
+          <%= content_tag :li, style: "height: #{component.height}px" do %>
             <%= weby_file_view(page.image, :medium, nil, nil, {as: "link", url: link_on_title(@site, page), target: '_self', :'min-width' => "#{component.width}px"}) %>
-            <%= content_tag :p, strip_tags(page.summary.truncate(100)), :class => 'flex-caption' %>
+            <%= content_tag :p, strip_tags(page.summary.truncate(100)), class: 'flex-caption' %>
           <% end %>
         <% end %>
       </ul>

@@ -9,7 +9,7 @@ form.edit_feed_component .add-uniq-file input, form.new_feed_component .add-uniq
   display: block;
 }
 
-.component_feed{
+.feed_component{
   text-align:center;
   margin: 5px;
   overflow: hidden;

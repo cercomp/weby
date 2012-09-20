@@ -1,7 +1,9 @@
-<% unless (@page = component.page).nil? %>
-  <%= render :template => 'sites/pages/show' %>
-<% else %>
-  <%# TODO construir uma visualização melhor para erro de página não
-    # encontrada pelo componente %>
-  <%= content_tag :h1, t(".page_not_found") %>
-<% end %>
+<section class="news_as_home_component">
+  <% unless (@page = component.page).nil? %>
+    <%= render template: 'sites/pages/show' %>
+  <% else %>
+    <%# TODO construir uma visualização melhor para erro de página não
+      # encontrada pelo componente %>
+    <%= content_tag :h1, t(".page_not_found") %>
+  <% end %>
+</section>

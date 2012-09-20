@@ -3,14 +3,10 @@
   <% height = component.height  || 200 %>
   <% width  = component.width   || 150 %>
 
-  <%# if image.image? %>
+  <section class="teacher_photo_component">
     <%= image_tag(image.archive.url,
-        :alt => image.description,
-        :title => image.description,
-        :size => "#{width}x#{height}") %>
-  <%# end %>
-
-  <div id="clear"></div>
-  <br/>
+                  alt: image.description,
+                  title: image.description,
+                  size: "#{width}x#{height}") %>
+  </section>
 <% end %>
-

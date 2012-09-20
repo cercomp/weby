@@ -3,7 +3,7 @@
 <% @subsite_front_news = Page.from_subsites(current_site).order('updated_at desc')
                   .front.available.limit(quant) #page(params[:subsite_front_pages]).per(quant) %>
 
-<section class="subsites_pages">
+<section class="subsite_front_news_component">
     <% @subsite_front_news.try(:each) do |page| %>
     <li style="list-style-type:none;">
     <article>
@@ -17,7 +17,7 @@
           <p>
           <i>
             <%= page.author.name_or_login %>
-            <%= localize page.created_at, :format => :short  %>
+            <%= localize page.created_at, format: :short  %>
           </i>
           </p>
         <% end %>
@@ -32,5 +32,4 @@
     </article>
   <% end %>
   </li>
-  <%#= paginate @subsite_front_news, :param_name => 'subsite_front_pages' %>
 </section>

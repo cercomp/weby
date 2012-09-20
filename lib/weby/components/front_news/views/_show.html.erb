@@ -2,7 +2,7 @@
 <% @front_news = @site.pages.order('position desc')
                   .front.available.page(params[:front_pages]).per(quant) %>
 
-<div id="component_front_news">
+<section class="front_news_component">
   <section id="pages">
     <% @front_news.try(:each) do |page| %>
       <li id="sort_page_<%= "#{page.id}" %>" style="list-style-type:none;">
@@ -15,7 +15,7 @@
             <% if component.details.to_i == 1 %>
               <p class="details">
                 <%= page.author.name_or_login %>
-                <%= localize page.created_at, :format => :short  %>
+                <%= localize page.created_at, format: :short  %>
               </p>
             <% end %>
           </header>
@@ -29,7 +29,7 @@
           <div class="control">
             <%= link_to icon('edit', text: t("edit")), edit_site_admin_page_path(page) if check_permission Sites::Admin::PagesController, [:edit] %>
             <% if check_permission(Sites::PagesController, ["sort"]) %>
-              <%= link_to icon('move', text: t("move")), "#", :class => 'handle' if @front_news.length > 1 %>
+              <%= link_to icon('move', text: t("move")), "#", class: 'handle' if @front_news.length > 1 %>
             <% end %>
           </div>
         </article>
@@ -37,8 +37,8 @@
     <% end %>
     <div class="clear clearfix"> </div>
   </section>
-  <%= paginate @front_news, :param_name => 'front_pages' %>
-</div>
+  <%= paginate @front_news, param_name: 'front_pages' %>
+</section>
 
 <%= javascript_tag do %>
  window.onload = function(){

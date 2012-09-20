@@ -1,6 +1,6 @@
-<div  id="banners_right">
-  <% @component_banners = @site.banners.published.tagged_with(component.category) %>
-  <% @component_banners.each do |banner| %>
+<section class="banner_side_component">
+  <% @banners = @site.banners.published.tagged_with(component.category) %>
+  <% @banners.each do |banner| %>
     <% banner_url = banner.page_id ? site_page_path(banner.page_id) : banner.url %>
     <% unless banner.repository.nil? %>
       <figure class='banner'>
@@ -18,13 +18,13 @@
                            }) %>
       </figure>
     <% else %>
-        <div class='banner_textual'>
-            <h2><%= "#{banner.title}" %></h2>
-            <a href="<%= "#{banner_url}" %>" target="<%= banner.new_tab ? "_blank":"" %>"><p><%= "#{banner.text}" %></p></a>
-        </div>
+      <div class='banner_textual'>
+        <h2><%= "#{banner.title}" %></h2>
+        <a href="<%= "#{banner_url}" %>" target="<%= banner.new_tab ? "_blank":"" %>"><p><%= "#{banner.text}" %></p></a>
+      </div>
     <% end %>
     <% if check_permission(Sites::Admin::BannersController, ["toggle_field"]) %>
       <%= link_to t("unpublish"), toggle_field_site_admin_banner_path(banner, field: 'publish'), method: :put %>
     <% end %>
   <% end %>
-</div>
+</section>

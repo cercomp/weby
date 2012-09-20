@@ -1,4 +1,4 @@
-<%= f.input :menu_id, :collection => @site.menus.map{|menu| [menu.name, menu.id]},
-  :priority => component.menu_id,
-  :include_blank => false
+<%= f.input :menu_id, collection: @site.menus.map{|menu| [menu.name, menu.id]},
+  priority: component.menu_id,
+  include_blank: false
 %>

@@ -1,7 +1,7 @@
 class FrontNewsComponent < Component
   component_settings :quant, :avatar_height, :avatar_width, :read_more, :details
 
-  validates :quant, :presence => true
+  validates :quant, presence: true
 
   alias :_read_more :read_more
   def read_more
