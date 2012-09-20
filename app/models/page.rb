@@ -33,6 +33,7 @@ class Page < ActiveRecord::Base
             { params: "%#{params.try(:downcase)}%" }])
   }
 
+
   def event?
     type == 'Event'
   end

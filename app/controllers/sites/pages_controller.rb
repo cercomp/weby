@@ -9,7 +9,11 @@ class Sites::PagesController < ApplicationController
   # GET /pages.json
   def index
     (redirect_to published_site_pages_path(search: params[:search]) unless current_user) and return
-    @pages = get_pages 
+    if params[:tags]
+      @pages = get_pages.tagged_with(tags, any: true)
+    else
+      @pages = get_pages 
+    end
     respond_with(:site, @page) do |format|
       if(params[:template])
         format.js { render "#{params[:template]}" }
@@ -18,7 +22,11 @@ class Sites::PagesController < ApplicationController
   end
 
   def published
-    @pages = get_pages.published
+    if params[:tags]
+      @pages = get_pages.published.tagged_with(tags, any: true)
+    else  
+      @pages = get_pages.published
+    end
     respond_with(:site, @page) do |format|
       format.rss { render :layout => false, :content_type => Mime::XML } #published.rss.builder
       format.atom { render :layout => false, :content_type => Mime::XML } #ublished.atom.builder
@@ -40,6 +48,10 @@ class Sites::PagesController < ApplicationController
     end
   end
 
+  def tags
+    params[:tags].split(',')
+  end
+  private :tags
 
   def get_pages
     case params[:template]
