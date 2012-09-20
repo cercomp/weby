@@ -3,10 +3,18 @@ en:
     front_news:
       name:                 " Front News "
       quant:                " Number of front news "
+      avatar_height:        " Height image of news "
+      avatar_width:         " Width image of news "
+      read_more:            " Show read more "
+      details:              " Show details of news "
   activerecord:
     attributes:
       front_news_component:
         quant:              " Number of front news "
+        avatar_height:        " Height image of news "
+        avatar_width:         " Width image of news "
+        read_more:            " Show read more "
+        details:              " Show details of news "
   front_news:
     views:
       show:

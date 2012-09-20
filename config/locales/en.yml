@@ -18,6 +18,7 @@ en:
   back:                                 " Back "
   begin:                                " Begin "
 #---C---#
+  cancel:                               " Cancel "
   close:                                " Close "
   copy:                                 " Copy "
   component:                            " Component "

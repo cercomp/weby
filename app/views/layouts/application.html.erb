@@ -16,7 +16,7 @@
   <header class="container">
     <div class="row header">
       <div class="span9">
-        <h1 class="title"><%= content_for?(:title) ? content_for(:title) : t("application.dashboard") %> </h1>
+        <h1 class="title"> <%= content_for?(:title) ? content_for(:title) : t("application.dashboard") %> </h1>
       </div>
       <div class="span3">
         <%= image_tag 'weby-dashboard.png' %>

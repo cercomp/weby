@@ -18,10 +18,10 @@
     </p>
 
   <%= submit_tag (t"submit"),
-    class: "btn btn-primary", 
+    class: "btn btn-primary", disable_with: t("please_wait"),
     onclick: current_user.id == @user.id ? "return test_unrole('form_user_#{@user.id}');" : "" %>
 
-  <%= link_to t('cancel'), {action: 'index'}, 
+  <%= link_to t('cancel'), {action: 'manage_roles'},
     onclick: "return hide_form(#{@user.id});", 
     id: "form_role_cancel",
     class: "btn btn-danger" %>

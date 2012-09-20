@@ -1,17 +1,16 @@
 <head>
-  <title> <%= @site.try(:description) || 'Weby' %> </title>
-  <meta charset="utf-8">
+  <title><%= @site.try(:description) || 'Weby' %><%= yield :title %></title>
+  <meta charset="utf-8"/>
+  <meta name="description" content="<%= @site.description %>"/>
   <%= csrf_meta_tag %>
   <%= load_layout_stylesheets(theme) %>
   <%= stylesheet_link_tag 'menu_dropdown' if @site.try(:menu_dropdown) %>
-  <%= stylesheet_link_tag '_navbar' if current_user %>
-  <%= render 'sites/shared/loadStyles' if @site and theme != 'application' %>
+  <%= stylesheet_link_tag '_webybar' %>
+  <%= render 'sites/shared/loadStyles' %>
   <%= yield :stylesheets %>
-
-  <%#= javascript_include_tag "application" %>
   <!--[if lt IE 9]>
-  <%= javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js" %>
-  <%= javascript_include_tag "http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js" %>
+    <%= javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js" %>
+    <%= javascript_include_tag "http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js" %>
   <![endif]-->
 </head>
 <noscript>

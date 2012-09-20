@@ -8,6 +8,6 @@
 <%= form.input :mobile, :input_html => {:size => 20, :maxlength => 20}, :as => :tel %>
 
 <div class="form-actions">
-  <%= form.button :submit, class: 'btn-primary' %>
+  <%= form.button :submit, class: 'btn-primary', disable_with: t("please_wait") %>
   <%= link_to t("back"), :back, class: "btn btn-danger" %>
 </div>

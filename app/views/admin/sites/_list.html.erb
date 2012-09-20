@@ -1,5 +1,5 @@
 <div class="pull-left"> <%= info_page @sites %> </div>
-<div class="pull-right"> <%= paginate @sites %> </div>
+<div class="pull-right"> <%= paginate @sites, remote: true %> </div>
 <div class="clearfix"></div>
 
 <table class='table table-striped'>
@@ -15,12 +15,15 @@
       <tr>
         <td> <%= link_to site.name, site_url(subdomain: site) %> </td>
         <td> <%= site.description %> </td>
-        <td> <%= link_to icon('edit', text: t("edit")), edit_admin_site_path(site) if current_user && current_user.is_admin %> </td>
+        <td>
+              <%= link_to icon('briefcase', text: t("application.dashboard")), site_admin_url(subdomain: site) %>
+              <%= link_to icon('edit', text: t(".settings")), edit_admin_site_path(site) if current_user && current_user.is_admin %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<div class="pull-left"> <%= per_page_links @sites %> </div>
-<div class="pull-right"> <%= paginate @sites %> </div>
+<div class="pull-left"> <%= per_page_links @sites, true %> </div>
+<div class="pull-right"> <%= paginate @sites, remote: true %> </div>
 <div class="clearfix"></div>

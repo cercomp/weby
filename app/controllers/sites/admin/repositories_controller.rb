@@ -111,12 +111,11 @@ class Sites::Admin::RepositoriesController < ApplicationController
   def per_page
     if params[:template]
       if params[:template]=='tinymce_link'
-        12
+        return 12
       elsif params[:template]=='tinymce'
-        18
-      else
-        params[:per_page] || per_page_default
+        return 18
       end
     end
+    params[:per_page] || per_page_default
   end
 end

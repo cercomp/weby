@@ -1,0 +1,64 @@
+/*
+ *= require google/orbitron
+ */
+
+html, body { margin: 0; }
+
+#webybar
+{
+  // reset css to other css not affect the webybar 
+  div, span, img, h1, h2, h3, h4, h5, h6, p, a, ol, ul, li
+  {
+    vertical-align: baseline;
+    font-family: inherit;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    outline: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    text-decoration: none;
+  }
+  :focus { outline: 0; }
+  ol, ul { list-style: none; }
+  .left { float: left; }
+  .right { float: right; }
+  .clear { clear: both; }
+  // (end)
+  
+  background: #2f2f2f;
+  font-size: 13px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+  #container
+  {
+    padding: 0 20px;
+    overflow: hidden;
+    height: 40px;
+  }
+
+  a
+  {
+    padding: 10px 10px;
+    display: block;
+    color: #999;
+    height: 19px;
+    
+    &:hover { color: white; }
+    &.logo 
+    {
+      font-size: 20px;
+      color: white;
+    }
+  }
+
+  .orbitron { font-family: "Orbitron"; }
+  .red { color: #C11303; font-family:inherit; }
+}
+
+#webyaccess
+{
+  position: fixed;
+  z-index: 1000;
+}

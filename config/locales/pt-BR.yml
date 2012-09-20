@@ -18,6 +18,7 @@ pt-BR:
   back:                                 " Voltar "
   begin:                                " Início "
 #---C---#
+  cancel:                               " Cancelar "
   close:                                " Fechar "
   copy:                                 " Copiar "
   component:                            " Componente "

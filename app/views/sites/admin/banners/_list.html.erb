@@ -1,5 +1,5 @@
 <div class="pull-left"> <%= info_page @banners %> </div>
-<div class="pull-right"> <%= paginate @banners %> </div>
+<div class="pull-right"> <%= paginate @banners, remote: true %> </div>
 <div class="clearfix"></div>
 
 <% if @banners.empty? %>
@@ -42,6 +42,6 @@
   </tbody>
 </table>
 
-<div class="pull-left"> <%= per_page_links @banners %> </div>
-<div class="pull-right"> <%= paginate @banners %> </div>
+<div class="pull-left"> <%= per_page_links @banners, true  %> </div>
+<div class="pull-right"> <%= paginate @banners, remote: true %> </div>
 <div class="clearfix"></div>

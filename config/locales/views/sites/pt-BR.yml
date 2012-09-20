@@ -4,6 +4,7 @@ pt-BR:
       new_site:               " Novo Sítio "
     edit:
       sites:                  " Sítios "
+      settings:               " Configurações "
     list:
       description:            " Descrição "
       name:                   " Nome "

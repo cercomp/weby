@@ -4,13 +4,13 @@
   <title>Weby Documentation</title>
   <meta charset="utf-8">
   <%= csrf_meta_tag %>
+  <%= stylesheet_link_tag '_webybar' %>
   <%= stylesheet_link_tag 'layouts/weby_doc/main' %>
-  <%= stylesheet_link_tag '_navbar' if current_user %>
   <%= render 'sites/shared/loadStyles' %>
   <%= yield :stylesheets %>
 </head>
 <body>
-  <%= current_user ? render('layouts/shared/navbar') : link_to(image_tag('weby-icon.png'), login_path(back_url: site_admin_path), style: 'position:fixed; z-index: 1000') %>
+  <%= render 'layouts/shared/webybar' %>
   <div class="first_place">
     <%= load_components 'first_place' %>
   </div>
