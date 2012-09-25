@@ -8,6 +8,7 @@ $background-color: #ccc;
       margin: 0;
       width: auto; }
     .left{
+      padding-left: 7px;
       a { 
         color: $text-color;
         font-size: 16px; }
@@ -15,11 +16,10 @@ $background-color: #ccc;
         height: 20px;
         padding: 3px;
         vertical-align: top; }
-      .name { padding: 5px 2px; }
-
       clear: left;
       float: left; }
     .right{
+      padding-left: 7px;
       height: $height;
       select {
         font-size: 11px;
