@@ -31,7 +31,7 @@ function select_position(){
 }
 
 //Controla o que acontence no momento em que a local e selecionado
-$("#[id*=mini_]").click(function(event){
+$("[id*=mini_]").click(function(event){
   clear_mini_layout();
   $(event.target).addClass('clicked');
   select_position();

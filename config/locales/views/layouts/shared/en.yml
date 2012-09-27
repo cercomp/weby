@@ -28,6 +28,7 @@ en:
         register:          " Register "
         sites:             " Sites "
         dashboard:         " Administration "
+        weby-dashboard:    " Weby administration "
         show_site:         " Show site "
         help:              " Help "
         about:             " About "

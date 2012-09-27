@@ -1,65 +1,104 @@
 /*
- *= require google/droidsans
  *= require google/orbitron
  *= require _bootstrap
  *= require_self 
  *= require _bootstrap-responsive
  */ 
 
-// overide bootstrap to use navbar
-body { padding-top: 60px; }
-.navbar .btn { margin: 5px 5px 6px; }
-.navbar .brand.logo { color: white; }
+// overide bootstrap to use navbar in responsive layout
+body { padding-top: 40px; }
 
-// style definitions
+// style to put logo in navbar
+.navbar .brand.logo { color: white; }
 .orbitron { font-family: "Orbitron"; }
 .red { color: #C11303; }
 
-// style to components
-header.container { padding: 0px 0px 15px; }
-section.container,
-footer.container { padding: 24px 0; }
-footer { text-align: center; }
+// style to layout
+#header,
+#main-container,
+#footer { padding: 20px 0; }
 
-.bluezone { 
-  border: 1px solid #EEEFEF;
-  background: #F8F9FA;
+.bg-zone 
+{ 
+  @media (max-width: 979px)
+  {
+    margin:
+    {
+      left: -20px;
+      right: -20px;
+    }
+  }
+
+  border: 1px solid #E3E3E3;
+  padding: 0 20px;
+  background: #F8F8F8;
+  border:
+  {
+    left: none;
+    right: none;
+  }
 }
 
-// uniq
-.title { 
-  padding: 27px 0;
-}
-
-.well { background: white; }
-
-.input-search
+// style to header
+#header
 {
-  padding: 8px 8px 9px;
+  @media (max-width: 979px) { padding-top: 0; }
+
+  .title 
+  {
+    @media (max-width: 979px)
+    {
+      font-size: 26px;
+      line-height: 63px;
+    }
+    
+    line-height: 84px;
+    font:
+    {
+      size: 30px;
+      weight: bold;
+    }
+  }
 }
 
-textarea.style-editor
+// style to main-container
+#main-container 
+{
+  .well { background: white; }
+}
+
+// style to footer
+#footer { text-align: center; }
+
+// big editor to styles
+.style-editor
 {
     height: 400px;
     width: 95%;
 }
 
-.handle{
+// turn icon in hand in sort elements
+.handle
+{
   cursor: move;
   color: #1A417E;
   text-decoration: none;
 }
 
-.datetimepicker{
+// icon on datetimepicker field
+.datetimepicker
+{
     background-image: url("/assets/ic_calendar.png") !important;
     background-position: 98% center !important;
     background-repeat: no-repeat !important;
 }
 
+// required is red!
 label.required abbr { color: red; }
 
-// Nowrap tables
-table.nowrap td > div {
+// nowrap tables
+table.nowrap td > div 
+{
   overflow: hidden;
   white-space: nowrap;
 }
