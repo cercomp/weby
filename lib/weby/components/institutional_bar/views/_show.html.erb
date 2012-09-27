@@ -1,5 +1,7 @@
+<% style = @main_width ? "style='width: #{@main_width+4}px'" : "" %>
+
 <section class="institutional_bar_component no_contrast">
-  <section class="content">
+  <section class="content" <%= style %>>
     <aside class="left">
       <a href="http://www.ufg.br">
         <%= image_tag('ufg.png', alt: 'UFG') %>
