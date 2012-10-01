@@ -1,24 +1,24 @@
 <div class="well" id="menu-admin">
   <ul class="nav nav-pills nav-stacked">
   <% if current_site %>
-    <li> <%= link_to t(".settings"), edit_site_admin_path if check_permission(SitesController, [:edit]) %> </li>
-    <li> <%= link_to t(".users"), manage_roles_site_admin_users_path if check_permission(Sites::Admin::UsersController, [:manage_roles])%> </li>
-    <li> <%= link_to t(".pages"), site_admin_pages_path if check_permission(Sites::Admin::PagesController, [:index])%> </li>
-    <li> <%= link_to t(".covers"), fronts_site_admin_pages_path if check_permission(Sites::Admin::PagesController, [:index])%> </li>
-    <li> <%= link_to t(".menus"), site_admin_menus_path if check_permission(Sites::Admin::MenusController, [:index])%> </li>
-    <li> <%= link_to t(".banners"), site_admin_banners_path if check_permission(Sites::Admin::BannersController, [:index])%> </li>
-    <li> <%= link_to t(".components"), site_admin_components_path if check_permission(Sites::Admin::ComponentsController, [:index])%> </li>
-    <li> <%= link_to t(".archives"), site_admin_repositories_path if check_permission(Sites::Admin::RepositoriesController, [:index])%> </li>
-    <li> <%= link_to t(".styles"), site_admin_styles_path if check_permission(Sites::Admin::StylesController, [:index])%> </li>
-    <li> <%= link_to t(".roles_permissions"), site_admin_roles_path if check_permission(Sites::Admin::RolesController, [:index])%> </li>
-    <li> <%= link_to t(".groups"), site_admin_groups_path if check_permission(Sites::Admin::GroupsController, [:index])%> </li>
-    <li> <%= link_to t(".messages") +" "+ t(".feedback"), site_admin_feedbacks_path if check_permission(Sites::Admin::FeedbacksController, [:index])%> </li>
+    <li> <%= link_to t(".settings"), main_app.edit_site_admin_path if check_permission(SitesController, [:edit]) %> </li>
+    <li> <%= link_to t(".users"), main_app.manage_roles_site_admin_users_path if check_permission(Sites::Admin::UsersController, [:manage_roles])%> </li>
+    <li> <%= link_to t(".pages"), main_app.site_admin_pages_path if check_permission(Sites::Admin::PagesController, [:index])%> </li>
+    <li> <%= link_to t(".covers"), main_app.fronts_site_admin_pages_path if check_permission(Sites::Admin::PagesController, [:index])%> </li>
+    <li> <%= link_to t(".menus"), main_app.site_admin_menus_path if check_permission(Sites::Admin::MenusController, [:index])%> </li>
+    <li> <%= link_to t(".banners"), main_app.site_admin_banners_path if check_permission(Sites::Admin::BannersController, [:index])%> </li>
+    <li> <%= link_to t(".components"), main_app.site_admin_components_path if check_permission(Sites::Admin::ComponentsController, [:index])%> </li>
+    <li> <%= link_to t(".archives"), main_app.site_admin_repositories_path if check_permission(Sites::Admin::RepositoriesController, [:index])%> </li>
+    <li> <%= link_to t(".styles"), main_app.site_admin_styles_path if check_permission(Sites::Admin::StylesController, [:index])%> </li>
+    <li> <%= link_to t(".roles_permissions"), main_app.site_admin_roles_path if check_permission(Sites::Admin::RolesController, [:index])%> </li>
+    <li> <%= link_to t(".groups"), main_app.site_admin_groups_path if check_permission(Sites::Admin::GroupsController, [:index])%> </li>
+    <li> <%= link_to t(".messages") +" "+ t(".feedback"), main_app.site_admin_feedbacks_path if check_permission(Sites::Admin::FeedbacksController, [:index])%> </li>
   <% else %>
-    <li> <%= link_to t(".sites"), admin_sites_path if true or check_permission(Admin::SitesController, [:index])%> </li>
-    <li> <%= link_to t(".users"), admin_users_path if check_permission(Admin::UsersController, [:index])%> </li>
-    <li> <%= link_to t(".roles_permissions"), admin_roles_path if check_permission(Admin::RolesController, [:index])%> </li>
-    <li> <%= link_to t(".permissions"), admin_rights_path if check_permission(Admin::RightsController, [:index])%> </li>
-    <li> <%= link_to t(".settings"), admin_settings_path if check_permission(Admin::SettingsController, [:index])%> </li>
+    <li> <%= link_to t(".sites"), main_app.admin_sites_path if true or check_permission(Admin::SitesController, [:index])%> </li>
+    <li> <%= link_to t(".users"), main_app.admin_users_path if check_permission(Admin::UsersController, [:index])%> </li>
+    <li> <%= link_to t(".roles_permissions"), main_app.admin_roles_path if check_permission(Admin::RolesController, [:index])%> </li>
+    <li> <%= link_to t(".permissions"), main_app.admin_rights_path if check_permission(Admin::RightsController, [:index])%> </li>
+    <li> <%= link_to t(".settings"), main_app.admin_settings_path if check_permission(Admin::SettingsController, [:index])%> </li>
   <% end %>
   </ul>
 </div>

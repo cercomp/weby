@@ -68,6 +68,8 @@ class Site < ActiveRecord::Base
   belongs_to :repository, :foreign_key => "top_banner_id"
   has_many :repositories
 
+  has_many :extensions, :class_name => 'ExtensionSite'
+
   has_and_belongs_to_many :locales
 
   validate :at_least_one_locale
@@ -76,6 +78,10 @@ class Site < ActiveRecord::Base
     if self.locales.length < 1
       errors.add(:site, I18n.t("site_need_at_least_one_locale"))
     end
+  end
+
+  def has_extension(extension)
+    extensions.include? ExtensionSite.find_by_name(mod.to_s)
   end
 
   has_attached_file :top_banner, :url => "/uploads/:site_id/:style_:basename.:extension"

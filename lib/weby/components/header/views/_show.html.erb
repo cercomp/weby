@@ -14,7 +14,7 @@
       <%= link_to image_tag(@site.repository.archive.url,
         alt: @site.repository.description,
         title: @site.description,
-        size: size.to_s), site_path %>
+        size: size.to_s), main_app.site_path %>
     <% else %>
       <object width='<%= width %>' height='<%= height %>'>
         <embed src='<%= @site.repository.archive.url %>' width='<%= width %>' height='<%= height %>' type='application/x-shockwave-flash' wmode="opaque"></embed> 

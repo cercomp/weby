@@ -6,7 +6,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <%= link_to root_url(subdomain: nil), class: 'brand orbitron logo' do %>
+      <%= link_to main_app.root_url(subdomain: nil), class: 'brand orbitron logo' do %>
         web<span class="red">y</span>
       <% end %>
       <% if current_user %>
@@ -16,15 +16,15 @@
             <span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
-            <li> <%= link_to t(".my_profile"), admin_user_url(current_user, subdomain: nil) -%> </li>
+            <li> <%= link_to t(".my_profile"), main_app.admin_user_url(current_user, subdomain: nil) -%> </li>
             <li class="divider"></li>
-            <li> <%= link_to t(".logout"), logout_path(back_url: site_url(subdomain: current_site)) -%> </li>
+            <li> <%= link_to t(".logout"), main_app.logout_path(back_url: main_app.site_url(subdomain: current_site)) -%> </li>
           </ul>
         </div>
       <% else %>
         <ul class="nav pull-right">
-          <li> <%= link_to t(".login"), login_path(back_url: "#{request.fullpath}") %> </li>
-          <li> <%= link_to t(".register"), new_admin_user_url(subdomain: nil) %> </li>
+          <li> <%= link_to t(".login"), main_app.login_path(back_url: "#{request.fullpath}") %> </li>
+          <li> <%= link_to t(".register"), main_app.new_admin_user_url(subdomain: nil) %> </li>
         </ul>
       <% end %>
       <div class="nav-collapse">
@@ -39,10 +39,10 @@
               </li>
             <% end %>
             <li>
-              <%= link_to(t(".dashboard"), current_site ? site_admin_path : admin_path) %>
+              <%= link_to(t(".dashboard"), current_site ? main_app.site_admin_path : main_app.admin_path) %>
             </li>
             <li>
-              <%= link_to(t(".show_site"), site_path) if (is_in_admin_context? and current_site) %>
+              <%= link_to(t(".show_site"), main_app.site_path) if (is_in_admin_context? and current_site) %>
             </li>
           <% end %>
           <li>

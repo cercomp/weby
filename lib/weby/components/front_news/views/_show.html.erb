@@ -23,11 +23,11 @@
             <%= raw page.summary %>
           </summary>
           <% if !(page.text.blank?) and component.read_more.to_i == 1 %>
-            <p class="read_more"><%= link_to t(".read_more"), site_page_path(page) %></p>
+            <p class="read_more"><%= link_to t(".read_more"), main_app.site_page_path(page) %></p>
           <% end %>
           <div class="clear clearfix"> </div>
           <div class="control">
-            <%= link_to icon('edit', text: t("edit")), edit_site_admin_page_path(page) if check_permission Sites::Admin::PagesController, [:edit] %>
+            <%= link_to icon('edit', text: t("edit")), main_app.edit_site_admin_page_path(page) if check_permission Sites::Admin::PagesController, [:edit] %>
             <% if check_permission(Sites::PagesController, ["sort"]) %>
               <%= link_to icon('move', text: t("move")), "#", class: 'handle' if @front_news.length > 1 %>
             <% end %>
@@ -62,7 +62,7 @@
           dataType: 'script',
           complete: function(request){ ui.item.effect('pulsate', {times: 1}, 350); },
           error: function(){$('section#pages').sortable('cancel');},
-          url: '<%= sort_site_pages_path() %>'
+          url: '<%= main_app.sort_site_pages_path() %>'
         });
       }
     });

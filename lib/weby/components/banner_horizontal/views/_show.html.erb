@@ -1,7 +1,7 @@
 <section class="banner_horizontal_component">
   <% @banners = @site.banners.published.tagged_with(component.category) %>
   <% @banners.each do |banner| %>
-    <% banner_url = banner.page_id ? site_page_path(banner.page_id) : banner.url %>
+    <% banner_url = banner.page_id ? main_app.site_page_path(banner.page_id) : banner.url %>
     <% unless banner.repository.nil? %>
       <figure>
         <% format = banner.size ? banner.size : "little" %>

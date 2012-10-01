@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120508152850) do
+ActiveRecord::Schema.define(:version => 20121001121259) do
 
   create_table "banners", :force => true do |t|
     t.datetime "date_begin_at"
@@ -33,6 +33,15 @@ ActiveRecord::Schema.define(:version => 20120508152850) do
     t.integer  "page_id"
     t.boolean  "new_tab",       :default => false
   end
+
+  create_table "extension_sites", :force => true do |t|
+    t.integer  "site_id"
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "extension_sites", ["site_id"], :name => "index_extension_sites_on_site_id"
 
   create_table "feedbacks", :force => true do |t|
     t.string   "name"
@@ -290,6 +299,14 @@ ActiveRecord::Schema.define(:version => 20120508152850) do
 
   create_table "tags", :force => true do |t|
     t.string "name"
+  end
+
+  create_table "teachers_teachers", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "website"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|

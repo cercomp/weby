@@ -1,16 +1,16 @@
 <% if current_user %>
   <div id="webybar">
     <div id='container'>
-      <%= link_to root_url(subdomain: nil), class: 'left orbitron logo' do %>
+      <%= link_to main_app.root_url(subdomain: nil), class: 'left orbitron logo' do %>
         web<span class="red">y</span>
       <% end %>
-      <%= link_to t(".dashboard"), site_admin_path, class: 'left' %>
-      <%= link_to t(".logout"), logout_path(back_url: site_url(subdomain: current_site)), class: 'right' %>
-      <%= link_to current_user.first_name, admin_user_url(current_user, subdomain: nil), class: 'right' %>
+      <%= link_to t(".dashboard"), main_app.site_admin_path, class: 'left' %>
+      <%= link_to t(".logout"), main_app.logout_path(back_url: main_app.site_url(subdomain: current_site)), class: 'right' %>
+      <%= link_to current_user.first_name, main_app.admin_user_url(current_user, subdomain: nil), class: 'right' %>
       <%= link_to(t(".help"), Setting.get(:help_site), target: '_blank', class: 'left') if Setting.get(:help_site) %>
       <%= link_to t(".about"), '/about.html', target: '_blank', class: 'left' %>
     </div>
   </div>
 <% else %>
-  <%= link_to image_tag('weby-icon.png'), login_path(back_url: site_admin_path), id: 'webyaccess' %>
+  <%= link_to image_tag('weby-icon.png'), main_app.login_path(back_url: main_app.site_admin_path), id: 'webyaccess' %>
 <% end %>

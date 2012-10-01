@@ -4,6 +4,10 @@ Weby::Application.routes.draw do
   # TODO: Verificar se attachments é necessário para o tinymce, se não remover
   
   constraints(Weby::Subdomain) do
+    constraints(Weby::Extensions) do
+      mount Teachers::Engine, :at => :teachers
+    end
+
     get '/' => 'sites#show', as: :site
     get '/admin' => 'sites#admin', as: :site_admin
     get '/admin/edit' => 'sites#edit', as: :edit_site_admin
