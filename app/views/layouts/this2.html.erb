@@ -6,7 +6,7 @@
   <div class='first_place'>
     <%= load_components 'first_place' %>
   </div>
-  <div id="wrapper" <%= "style='width: #{ @main_width }px'" if @main_width %>>
+  <div id="wrapper" <%= "style=\"width: #{ @main_width }px\"".html_safe if @main_width %>>
     <header>
       <%= load_components 'top' %>
       <div class="clear"> </div>
