@@ -6,7 +6,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <%= link_to (current_site ? site_admin_path : admin_path), class: 'brand orbitron logo' do %>
+      <%= link_to root_url(subdomain: nil), class: 'brand orbitron logo' do %>
         web<span class="red">y</span>
       <% end %>
       <div class="btn-group pull-right">
@@ -33,7 +33,7 @@
             <% end %>
           <% else %>
             <li>
-              <%= link_to t(".weby-dashboard"), admin_path %>
+              <%= link_to t(".weby-dashboard"), admin_url(subdomain: nil) %>
             </li>
           <% end %>
           <li>
