@@ -1,8 +1,10 @@
 <head>
   <title><%= @site.try(:description) || 'Weby' %><%= yield :title %></title>
   <meta charset="utf-8"/>
-  <meta name="description" content="<%= @site.description %>"/>
+  <meta name="description" content="<%= @site.try(:description) %>"/>
   <%= csrf_meta_tag %>
+  <%= auto_discovery_link_tag(:rss, site_feed_url(format: 'rss'),  {:title => "#{@site.try(:title)} - RSS"}) %>
+  <%= auto_discovery_link_tag(:atom, site_feed_url(format: 'atom'),  {:title => "#{@site.try(:title)} - ATOM"}) %>
   <%= load_layout_stylesheets(theme) %>
   <%= stylesheet_link_tag 'menu_dropdown' if @site.try(:menu_dropdown) %>
   <%= stylesheet_link_tag '_webybar' %>
