@@ -16,7 +16,7 @@
         <td> <%= link_to site.name, site_url(subdomain: site) %> </td>
         <td> <%= site.description %> </td>
         <td>
-              <%= link_to icon('briefcase', text: t("application.dashboard")), site_admin_url(subdomain: site) %>
+              <%= link_to icon('briefcase', text: t("application.dashboard")), site_admin_url(subdomain: site) if current_user %>
               <%= link_to icon('edit', text: t(".settings")), edit_admin_site_path(site) if current_user && current_user.is_admin %>
         </td>
       </tr>
