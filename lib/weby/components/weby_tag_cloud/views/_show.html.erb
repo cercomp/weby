@@ -4,15 +4,15 @@
   <script type="text/javascript">
     $(document).ready(function() {
         if(!$('#myCanvas').tagcanvas({
-          textColour: <%= "'#{component.color}'"%>,
+          textColour: <%= "'#{component.color}'".html_safe %>,
           outlineMethod: 'colour',
-          outlineColour: <%= "'#{component.hoover_color}'"%>, 
+          outlineColour: <%= "'#{component.hoover_color}'".html_safe %>, 
           textHeight: <%= component.font_size %>,
           reverse: true,
           depth: 0.8,
           maxSpeed: 0.05,
-          shape: <%= "'#{component.cloud_type}'" %>
-          <%= ",lock: 'x'" if ['hcylinder','hring'].include? component.cloud_type %> 
+          shape: <%= "'#{component.cloud_type}'".html_safe %>
+          <%= ",lock: 'x'".html_safe if ['hcylinder','hring'].include? component.cloud_type %> 
         },'tags')) {
         // something went wrong, hide the canvas container
         $('.tag_cloud').hide();
