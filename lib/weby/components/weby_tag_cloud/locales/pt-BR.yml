@@ -1,0 +1,20 @@
+pt-BR:
+  components:
+    weby_tag_cloud:
+      name: "Nuvem de Tags"
+  activerecord:
+    attributes:
+      weby_tag_cloud_component:
+        cloud_type: "Formato da Nuvem"
+        color: "Cor das Tags"
+        hoover_color: "Cor da Tag selecionada"
+        width: "Largura"
+        height: "Altura"
+  weby_tag_cloud:
+    views:
+      show:
+      form:
+        color_hint: "Valor da cor em hexadecimal. Ex: #ff9999."
+        sphere: "Esfera"
+        hcylinder: "Cilindro Horizontal"
+        hring: "Anel Vertical"
