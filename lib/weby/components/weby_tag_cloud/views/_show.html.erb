@@ -15,14 +15,15 @@
           <%= ",lock: 'x'".html_safe if ['hcylinder','hring'].include? component.cloud_type %> 
           },'tags')) {
         // something went wrong, hide the canvas container
-        $('.tag_cloud').hide();
+        $('.myCanvas').hide();
         }
         });
       </script>
     <% end %>
 
     <div class="weby_tag_cloud_component">
-      <canvas id="myCanvas" style=width:<%= component.width %>px;height:<%= component.height %>px >
+      <canvas id="myCanvas" width=<%= component.width %> height=<%= component.height %> >
+      </canvas>
         <div id="tags">
           <% unless (tags = component.tags(current_site)).empty? %>
             <% tags.each do |tag| %>
@@ -30,7 +31,6 @@
             <% end %>
           <% end %>
         </div>
-      </canvas>
     </div>
 
 
