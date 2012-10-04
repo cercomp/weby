@@ -61,6 +61,11 @@ module Weby
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    #config.assets.paths << Rails.root.join("app", "assets", "flash")
+    #paths_bkp = config.assets.paths
+    #config.assets.precompile = [/(?=.*weby)(?:\/|\\|\A)\w+\.(css|js)$/]
+    config.assets.precompile << Proc.new { |path| !path.match(/bootstrap/) }
+    #config.assets.paths = [/(?=.*weby)/]
     
     config.i18n.fallbacks = true
   end
