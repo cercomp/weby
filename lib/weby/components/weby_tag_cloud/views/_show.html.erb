@@ -1,0 +1,39 @@
+<% content_for :javascripts, javascript_include_tag('jquery.tagcanvas.min') %>
+
+<% content_for :javascripts do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+        if(!$('#myCanvas').tagcanvas({
+          textColour: <%= "'#{component.color}'"%>,
+          outlineMethod: 'colour',
+          outlineColour: <%= "'#{component.hoover_color}'"%>, 
+          textHeight: <%= component.font_size %>,
+          reverse: true,
+          depth: 0.8,
+          maxSpeed: 0.05,
+          shape: <%= "'#{component.cloud_type}'" %>
+          <%= ",lock: 'x'" if ['hcylinder','hring'].include? component.cloud_type %> 
+        },'tags')) {
+        // something went wrong, hide the canvas container
+        $('.tag_cloud').hide();
+        }
+    });
+</script>
+<% end %>
+
+<div class="weby_tag_cloud_component">
+  <div class="tag_cloud">
+    <%= content_tag :canvas, id: 'myCanvas', style: "width: #{component.width} height: #{component.height}" do %>
+      <%#se o navegador suportar a tag canvas a tag cloud sera gerada aqui%>
+    <% end %>
+  </div>
+  <div id="tags">
+    <% unless (tags = component.tags(current_site)).empty? %>
+      <% tags.each do |tag| %>
+        <li> <%= link_to tag, site_pages_path(tags: tag.to_s) %></li>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+

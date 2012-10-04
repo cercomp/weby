@@ -8,7 +8,7 @@ class Sites::PagesController < ApplicationController
   # GET /pages
   # GET /pages.json
   def index
-    (redirect_to published_site_pages_path(search: params[:search]) unless current_user) and return
+    (redirect_to published_site_pages_path(search: params[:search],tags: params[:tags]) unless current_user) and return
     if params[:tags]
       @pages = get_pages.tagged_with(tags, any: true)
     else

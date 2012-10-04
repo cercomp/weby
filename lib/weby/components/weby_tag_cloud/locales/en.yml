@@ -1,0 +1,20 @@
+en:
+  components:
+    weby_tag_cloud:
+      name: "Tag Cloud"
+  activerecord:
+    attributes:
+      weby_tag_cloud_component:
+        cloud_type: "Cloud Type"
+        color: "Color of the tags"
+        hoover_color: "Color of the selected tag"
+        width: "Width"
+        height: "Height"
+  weby_tag_cloud:
+    views:
+      show:
+      form:
+        color_hint: "Value of the color in hexadecimal. Ex: #ff9999"
+        sphere: "Sphere"
+        hcylinder: "Horizontal Cylinder"
+        hring: "Vertical Ring"

@@ -1,0 +1,7 @@
+<%= f.input :cloud_type, priority: [t('.sphere'),'sphere'], 
+  collection: [[t('.sphere'), 'sphere'],[t('.hring'), 'hring'],[t('.hcylinder'),'hcylinder']] %>
+<%= f.input :color, input_html: { type: 'color',style: "width: 50px" }, hint: t('.color_hint')  %>
+<%= f.input :hoover_color, input_html: {type: 'color', style: "width: 50px"}, hint: t('.color_hint') %>
+<%= f.input :font_size, :as => :integer %>
+<%= f.input :width, :as => :integer %>
+<%= f.input :height, :as => :integer %>
