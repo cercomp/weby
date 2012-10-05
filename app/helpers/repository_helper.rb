@@ -53,7 +53,7 @@ module RepositoryHelper
   def make_thumbnail!
     @file.reprocess!
     if file.archive_content_type.empty?
-      @thumbnail = "false.png"
+      @thumbnail = empty_mime
     else
       if mime_type.first == "image"
         if mime_type.last.include?("svg") 
@@ -80,7 +80,11 @@ module RepositoryHelper
       img_opt[:width] = @width unless @width.blank?
       img_opt[:height] = @height unless @height.blank?
       img_opt[:id] = @options[:id] if @options[:id]
-      image = image_tag(@thumbnail, img_opt)
+      begin
+        image = image_tag(@thumbnail, img_opt)
+      rescue
+        image = image_tag(empty_mime, img_opt)
+      end
 
       raw image
   end
@@ -91,6 +95,10 @@ module RepositoryHelper
 
   def mime_image
     "mime_list/#{CGI::escape(mime_type.last)}.png"
+  end
+
+  def empty_mime
+    "mime_list/VAZIO.png"
   end
 
   def clean_size!
