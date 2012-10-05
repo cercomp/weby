@@ -90,6 +90,9 @@ module RepositoryHelper
   end
 
   def mime_type
+    #FIX this FIX
+    return "application/pdf".split("/") if (@file.archive_file_name.match(/\.pdf$/) && @file.archive_content_type.match(/(\-download|save)$/))
+    return "application/msword".split("/") if (@file.archive_file_name.match(/\.doc$/) && @file.archive_content_type.match(/(\-download|save)$/))
     @file.archive_content_type.split('/')
   end
 
