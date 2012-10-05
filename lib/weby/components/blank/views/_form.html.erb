@@ -1,1 +1,9 @@
 <%= f.input :body, as: :text %>
+<%= f.input :visibility, collection: [
+    [t(".always"),"0"],
+    [t(".home_page"),"1"],
+    [t(".inner_page"),"2"]
+  ],
+  priority: component.visibility,
+  include_blank: false
+%>

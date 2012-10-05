@@ -1,3 +1,6 @@
-<section class="blank_component">
-  <%= raw component.body %>
-</section>
+<% visible = component.visibility == 1 ? request.path == site_path : component.visibility == 2 ? request.path != site_path : component.visibility == 0 %>
+<% if visible %>
+  <section class="blank_component">
+    <%= raw component.body %>
+  </section>
+<% end %>
