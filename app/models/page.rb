@@ -20,7 +20,7 @@ class Page < ActiveRecord::Base
   scope :no_front, where(front: false)
 
   scope :available, proc { where("date_begin_at <= :time AND ( date_end_at is NULL OR date_end_at > :time)",
-                      { time: Time.now }).published }
+                                 { time: Time.now }).published }
 
   scope :search, lambda { |params|
     includes(:author, :categories, :i18ns, :locales).
@@ -30,7 +30,7 @@ class Page < ActiveRecord::Base
                 LOWER(users.first_name) LIKE :params OR
                 LOWER(pages.type) LIKE :params OR
                 LOWER(tags.name) LIKE :params},
-            { params: "%#{params.try(:downcase)}%" }])
+                { params: "%#{params.try(:downcase)}%" }])
   }
 
 
@@ -51,9 +51,14 @@ class Page < ActiveRecord::Base
     allow_nil: true,
     allow_blank: true
 
-  validates :date_begin_at, 
-    presence: true
-  
+  validate :validate_date 
+  def validate_date 
+    if self.date_begin_at.blank?
+      self.date_begin_at = Time.now.to_s
+    end
+  end
+  private :validate_date
+
   validates :local, :event_begin,
     presence: { if: proc { self.type == 'Event' } }
 
