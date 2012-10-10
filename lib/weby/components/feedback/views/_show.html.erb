@@ -1,3 +1,9 @@
 <section class="feedback_component">
-  <%= link_to icon('envelope', text: (component.label || t(".feedback"))), new_site_feedback_path() %>
+  <% groups = component.parse_groups(current_site) %>
+  <% if groups.size > 1 %>
+    <%= link_to icon('envelope', text: (component.label || t(".feedback"))), new_site_feedback_path(groups: groups) %>
+  <% else %>
+    <%= link_to icon('envelope', text: (component.label || t(".feedback"))), new_site_feedback_path() %>
+  <% end %>
+
 </section>
