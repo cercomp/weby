@@ -3,15 +3,11 @@ pt-BR:
     blank:
       name:            " Área (HTML) Livre "
       body:            " Conteúdo "
-      visibility:      " Visibilidade "
   activerecord:
     attributes:
       blank_component:
         body:          " Conteúdo "
-        visibility:    " Visibilidade "
   blank:
     views:
       form:
-        always:        " Sempre mostrar "
-        home_page:     " Apenas na página inicial "
-        inner_page:    " Nas páginas internas "
+        

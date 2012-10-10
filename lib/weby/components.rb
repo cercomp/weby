@@ -60,6 +60,9 @@ module Weby
       end
 
       def render_component(component, view = 'show', args = {})
+        visible = component.visibility == 1 ? request.path == site_path : component.visibility == 2 ? request.path != site_path : component.visibility == 0
+        return if not visible
+
         args[:partial] = "#{component.name}/views/#{view.to_s}"
         
         args[:locals] ||= {}

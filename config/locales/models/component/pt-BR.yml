@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      component:      " Componente "
+    attributes:
+      component:
+        place_holder: " Local "
+        visibility:   " Visibilidade "
+        name:         " Nome "
