@@ -14,12 +14,12 @@
           <h2> <%= link_to page.title, link_on_title(@site, page) %> </h2>
           <% if component.details.to_i == 1 %>
             <p class="details">
-            <div id="author">
+            <span class="author">
               <%= page.author.name_or_login %>
-            </div>
-            <div id="date">
+            </span>
+            <span class="date">
               <%= localize page.created_at, format: :short  %>
-            </div>
+            </span>
             </p>
           <% end %>
         </header>
