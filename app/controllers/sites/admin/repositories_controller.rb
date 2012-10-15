@@ -116,6 +116,6 @@ class Sites::Admin::RepositoriesController < ApplicationController
         return 18
       end
     end
-    params[:per_page] || per_page_default
+    params[:format] == 'json' ? 50 : params[:per_page] || per_page_default
   end
 end
