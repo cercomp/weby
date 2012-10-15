@@ -23,10 +23,10 @@
             <%= text_field_tag :users_unroled, params[:users_unroled], placeholder: t("search") %>
           </div>
           <div style="height: 300px; overflow: auto">
-            <ul> 
+            <ul  id="users_list_roles" class="nav"> 
               <% @users_unroled.each do |user| %>
-                <li  style="list-style-type: none;">
-                <label class="checkbox">
+                <li>
+                <label class="checkbox cursor">
                   <%= check_box_tag 'user[id][]', user.id, user.id == params[:user_id].to_i %>
                   <%= "#{user} (#{user.login})" %>
                 </label>
@@ -36,10 +36,10 @@
           </div>
         </td>
         <td>
-          <ul> 
+          <ul class="nav"> 
             <% @roles.each do |role| %>
-              <li style="list-style-type: none;">
-              <label class="checkbox">
+              <li >
+              <label class="checkbox cursor">
                 <%= check_box_tag 'role_ids[]', role.id %>
                 <%= role.name %>
               </label>
