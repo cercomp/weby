@@ -21,6 +21,7 @@ end
 group :production do
   gem 'dispatcher'
   gem 'thin' # Optional, needs for thin cluster in production
+  gem 'turbo-sprockets-rails3'
 end
 
 group :development, :test do
