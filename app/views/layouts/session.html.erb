@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="<%= session[:locale].to_s %>">
+<head>
+  <title>Weby</title>
+  <meta charset="utf-8">
+  <%= csrf_meta_tag %>
+  <%= stylesheet_link_tag 'session' %>
+</head>
+<body>
+  <div class="container">
+    <div class="well session">
+      <%= link_to login_url(subdomain: nil) do %>
+        <%= image_tag 'weby.png', class: 'logo' %>
+      <% end %>
+      <div class="content">
+        <div class='padding-box'>
+          <%= raw flash_message %>
+        </div>
+        <%= yield %>
+      </div>
+      <div class="links">
+        <%= link_to t(".portals"), root_url(subdomain: nil) %>
+        <%= link_to(t(".help"), Setting.get(:help_site), target: '_blank') if Setting.get(:help_site) %>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</body>
+</html>

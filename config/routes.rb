@@ -1,23 +1,21 @@
 Weby::Application.routes.draw do
-  # TODO: desfazer o alias de account e passar tudo para users
-  # TODO: mudar de onde era o admin para seu respectivo controller, mudou para namespace
-  # TODO: Verificar se attachments é necessário para o tinymce, se não remover
-  
   constraints(Weby::Subdomain) do
-    get '/' => 'sites#show', as: :site
-    get '/admin' => 'sites#admin', as: :site_admin
-    get '/admin/edit' => 'sites#edit', as: :edit_site_admin
-    put '/admin/edit' => 'sites#update', as: :edit_site_admin
+    get "/" => "sites#show", as: :site
+    get "/admin" => "sites#admin", as: :site_admin
+    get "/admin/edit" => "sites#edit", as: :edit_site_admin
+    put "/admin/edit" => "sites#update", as: :edit_site_admin
+
     # routes to feed and atom
-    match '/feed' => 'sites/pages#published', as: :site_feed,
-      defaults: { format: 'rss', per_page: 10, page: 1 }
+    match "/feed" => "sites/pages#published", as: :site_feed,
+      defaults: { format: "rss", per_page: 10, page: 1 }
+  
     # route to paginate
-    match 'admin/banners/page/:page' => 'sites/admin/banners#index'
-    match 'admin/groups/page/:page' => 'sites/admin/groups#index'
+    match "admin/banners/page/:page" => "sites/admin/banners#index"
+    match "admin/groups/page/:page" => "sites/admin/groups#index"
 
     resources :pages,
       as: :site_pages, 
-      controller: 'sites/pages', 
+      controller: "sites/pages", 
       only: [:index, :show] do
       collection do
         get :published, :events, :news
@@ -27,14 +25,14 @@ Weby::Application.routes.draw do
 
     resources :feedbacks,
       as: :site_feedbacks,
-      controller: 'sites/feedbacks', 
+      controller: "sites/feedbacks", 
       only: [:new, :create] do
       collection do
         get :sent
       end
     end
 
-    namespace :admin, module: 'sites/admin', as: :site_admin do
+    namespace :admin, module: "sites/admin", as: :site_admin do
       resources :feedbacks, except: [:new, :create]
       resources :groups
       resources :banners do
@@ -52,7 +50,7 @@ Weby::Application.routes.draw do
       end
       resources :menus do
         resources :menu_items,
-          controller: 'menus/menu_items',
+          controller: "menus/menu_items",
           except: :show do
           collection do
             post :change_order, :change_menu
@@ -98,16 +96,12 @@ Weby::Application.routes.draw do
   
   root :to => "sites#index"
 
-  resources :user_sessions
-
   constraints(Weby::GlobalDomain) do
-    match '/admin' => 'application#admin'
+    match "/admin" => "application#admin"
     namespace :admin do
       resources :rights
       resources :settings,
         except: :show
-      resources :password_resets,
-        only: [ :new, :create, :edit, :update ]
       resources :users do
         collection do
           get :manage_roles
@@ -128,29 +122,27 @@ Weby::Application.routes.draw do
         end
       end
       resources :sites, except: [:show]
+      
       # route to paginate
-      match 'admin/users/page/:page' => 'admin/users#index'
+      match "admin/users/page/:page" => "admin/users#index"
     end 
   end
 
-  # legacy, verificar a possibilidade de refatoração
-
-  # routes to login, logout and denied access
-  match 'logout' => 'user_sessions#destroy', :as => "logout"
-  match 'login' => 'user_sessions#new', :as => 'login'
-  match 'denied' => 'user_session#access_denied', :as => 'denied'
+  # routes to session
+  get "login"   => "session#new"
+  post  "login" => "session#create"
+  match "logout"  => "session#destroy"
+  
+  # routes to forget password
+  match "forgot_password" => "session#forgot_password"
+  match "password_sent"   => "session#password_sent"
+  get "reset_password"  => "session#reset_password"
+  post  "update_password" => "session#update_password"
 
   # Para ativação de conta por email
-  match 'activate(/:activation_code)' => 'admin/users#activate',
+  match "activate(/:activation_code)" => "admin/users#activate",
     as: :activate_account
 
-  match 'robots.txt' => 'sites#robots', :format => 'txt'
-  match '*not_found' => 'application#render_404'
-
-  # TinyMCE??
-  #resources :attachments do
-  #  collection do
-  #    get :manage
-  #  end
-  #end
+  match "robots.txt" => "sites#robots", :format => "txt"
+  match "*not_found" => "application#render_404"
 end

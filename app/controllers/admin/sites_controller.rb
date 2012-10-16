@@ -20,7 +20,7 @@ class Admin::SitesController < ApplicationController
     @site = Site.new
     @site.footer = t("admin.sites.form.footer_text")
     @themes = []
-    (Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*.erb")] - Dir[File.join(Rails.root + "app/views/layouts/application.html.erb")] - Dir[File.join(Rails.root + "app/views/layouts/sites.html.erb")] - Dir[File.join(Rails.root + "app/views/layouts/user_sessions.html.erb")]).each do |file|
+    (Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*.erb")] - Dir[File.join(Rails.root + "app/views/layouts/application.html.erb")] - Dir[File.join(Rails.root + "app/views/layouts/sites.html.erb")] - Dir[File.join(Rails.root + "app/views/layouts/session.html.erb")]).each do |file|
       @themes << file.split("/")[-1].split(".")[0]
     end
   end
@@ -101,7 +101,7 @@ class Admin::SitesController < ApplicationController
     (Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*.erb")] -
      Dir[File.join(Rails.root + "app/views/layouts/application.html.erb")] -
      Dir[File.join(Rails.root + "app/views/layouts/sites.html.erb")] -
-     Dir[File.join(Rails.root + "app/views/layouts/user_sessions.html.erb")]).each do |file|
+     Dir[File.join(Rails.root + "app/views/layouts/session.html.erb")]).each do |file|
        @themes << file.split("/")[-1].split(".")[0]
      end
   end

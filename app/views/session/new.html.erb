@@ -1,0 +1,14 @@
+<h4>
+  <%= t(".login") %>
+</h4>
+<%= simple_form_for @session, url: login_path, method: :post do |f| %>
+  <%= f.show_errors %>
+  <%= hidden_field_tag :back_url, "#{params[:back_url].blank? ? request.fullpath : params[:back_url]}" %>
+  <%= f.input :login, required: true, autofocus: true, autocapitalize: "off" %>
+  <%= f.input :password, required: true %>
+  <%= f.input :remember_me, as: :boolean, wrapper_html: { class: "remember_me" } %>
+  <%= link_to t("new.forgot_password"), forgot_password_url, class: "pull-right" %>
+  <%= f.button :submit, t('login'), class: 'login btn btn-primary btn-large' %> 
+<% end %>
+<hr></hr>
+<%= link_to t("new.register"), new_admin_user_url(subdomain: nil), class: "btn btn-large btn-success" %>  

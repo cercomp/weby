@@ -1,0 +1,94 @@
+/* 
+ *= require google/orbitron 
+ *= require _bootstrap
+ *= require_self 
+ *= require _bootstrap-responsive
+ */ 
+
+body 
+{
+  @media (max-width: 480px) { padding: 0!important; }
+  background: #303235;
+  padding-top: 20px;
+}
+
+.required abbr { color: red; }
+
+.content { padding-top: 19px; }
+
+hr { border-top-color: #DDD; }
+
+.remember_me
+{
+  label.boolean 
+  {
+    float: left;
+    margin-right: 5px;
+  }
+  .controls { float: left; }
+}
+
+.login { margin-top: 10px; }
+
+.links { a { margin-right: 10px; } }
+
+.session 
+{
+  @media (max-width: 979px)
+  {
+    -moz-border-radius-topleft: 0px;
+    -moz-border-radius-topright: 0px;
+    -webkit-border-top-right-radius: 0px;
+    -webkit-border-top-left-radius: 0px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+  }
+  @media (max-width: 767px) { width: 350px; }
+  @media (max-width: 480px) { width: 260px; }
+  width: 500px;
+  margin: 0 auto;
+}
+
+input.string,
+input.password
+{
+  @media (min-width: 768px) and (max-width: 979px)
+  {
+    font-size: 15px;
+    line-height: 35px;
+    height: 35px;
+  }
+  @media (max-width: 767px)
+  {
+    font-size: inherit;
+    line-height: inherit;
+    height: inherit;
+    width: 336px !important;
+  }
+  @media (max-width: 480px) { width: 246px !important; }
+  font-size: 25px;
+  line-height: 45px;
+  height: 45px;
+  width: 486px !important;
+}
+
+.logo
+{
+  @media (min-width: 768px) and (max-width: 979px) { width: 200px; }
+  @media (max-width: 767px) { width: 150px; }
+}
+
+.btn
+{
+  @media (max-width: 767px) { width: 350px !important; }
+  @media (max-width: 480px) { width: 260px !important; }
+  width: 500px !important;
+}
+
+.btn-success 
+{
+  @media (max-width: 767px) { width: 320px !important; }
+  @media (max-width: 480px) { width: 230px !important; }
+  width: 470px !important;
+  margin-bottom: 19px;
+}

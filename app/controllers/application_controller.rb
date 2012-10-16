@@ -46,7 +46,7 @@ class ApplicationController < ActionController::Base
       end
     end
     #request.env["HTTP_REFERER" ] ? (redirect_to :back) : (render :template => 'admin/access_denied')
-    (render :template => 'user_sessions/access_denied', :status => :forbidden)
+    (render :template => 'session/access_denied', :status => :forbidden)
     return false
     end
   end
@@ -165,7 +165,7 @@ class ApplicationController < ActionController::Base
     unless current_user
       store_location
       flash[:error] = t("need_login")
-      redirect_to new_user_session_path(back_url: "#{request.path}")
+      redirect_to login_path(back_url: "#{request.path}")
       return false
     end
   end
