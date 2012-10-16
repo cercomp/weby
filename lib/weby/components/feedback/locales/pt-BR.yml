@@ -11,3 +11,5 @@ pt-BR:
     views:
       show:
         feedback:         " Fale Conosco "
+      form:
+        group_checked:    " Grupos selecionados por padrão "

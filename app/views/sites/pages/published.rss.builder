@@ -8,7 +8,14 @@ xml.rss :version => "2.0" do
     for page in @pages
       xml.item do
         xml.title page.title
-        page_image = "<img src=\"http://#{request.host}#{":"+request.port.to_s if request.port!=80}#{page.image.archive.url}\" width=\"200\"/>" if page.image
+        page_image = image_tag(
+          full_image_url(page.image),
+          {
+            width: 200,
+            alt: page.image.description,
+            title: page.image.description
+          }
+        ) if page.image
         xml.description "#{page_image}<br/>#{page.summary}<br/>#{page.text}"
         #xml.enclosure url: "http://#{request.host}#{":"+request.port.to_s if request.port!=80}#{page.image.archive.url}", length:page.image.archive_file_size, type: page.image.archive_content_type if page.image
         xml.pubDate page.created_at.to_s(:rfc822)

@@ -32,7 +32,12 @@ Weby::Application.routes.draw do
       end
     end
 
-    namespace :admin, module: "sites/admin", as: :site_admin do
+    resources :components,
+      as: :site_components,
+      controller: 'sites/components',
+      only: [:show]
+
+    namespace :admin, module: 'sites/admin', as: :site_admin do
       resources :feedbacks, except: [:new, :create]
       resources :groups
       resources :banners do

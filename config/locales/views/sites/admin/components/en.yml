@@ -4,6 +4,10 @@ en:
       components:
         form:
           place:              " Place "
+          visibility:         " Visibility "
+          always:             " Always Visible "
+          home_page:          " Only on the home page "
+          inner_page:         " Only on inner pages "
         components:
           empty_placeholder:  " No components in this place "
           bottom:             " Bottom "

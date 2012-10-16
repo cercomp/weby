@@ -2,7 +2,7 @@ class WebyTagCloudComponent < Component
   component_settings :cloud_type, :width, :height, :color, :hoover_color, :font_size
 
   def tags(site)
-    site.pages.tag_counts_on(:categories).map { |tag| tag.name }
+    site.pages.published.tag_counts_on(:categories).map { |tag| tag.name }
   end
 
   alias :_width :width

@@ -16,5 +16,14 @@ class Banner < ActiveRecord::Base
   belongs_to :user, :foreign_key => "user_id"
   belongs_to :site, :foreign_key => "site_id"
 
-  validates_presence_of :title, :user_id, :date_begin_at
+  validates_presence_of :title, :user_id
+
+  validate :validate_date 
+  def validate_date 
+    if self.date_begin_at.blank?
+      self.date_begin_at = Time.now.to_s
+    end
+  end
+  private :validate_date
+
 end

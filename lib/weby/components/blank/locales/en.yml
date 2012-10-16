@@ -3,15 +3,10 @@ en:
     blank:
       name:            " Free (HTML) Area "
       body:            " Content "
-      visibility:      " Visibility "
   activerecord:
     attributes:
       blank_component:
         body:          " Content "
-        visibility:      " Visibility "
   blank:
     views:
       form:
-        always:        " Always show "
-        home_page:     " Only on the home page "
-        inner_page:    " On the inner pages "

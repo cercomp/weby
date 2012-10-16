@@ -4,7 +4,7 @@
 
 <% # Pega as noticias ordenadas por data de inicio decrescente %>
 <%
-  @no_front_news = @site.pages.order('created_at desc').
+  @no_front_news = current_site.pages.order('created_at desc').
     available.send(front ? 'front' : 'no_front')
   @no_front_news = @no_front_news.news unless events
 
@@ -28,5 +28,5 @@
       </tr>
     <% end %>
   </table>
-  <%= paginate @no_front_news, param_name: 'no_front_pages' %>
+  <%= paginate @no_front_news, param_name: 'no_front_pages', remote: true, params: {controller: 'sites/components', action: 'show', id: component.id} %>
 </section>

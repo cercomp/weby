@@ -1,0 +1,9 @@
+en:
+  activerecord:
+    models:
+      component:      " Component "
+    attributes:
+      component:
+        place_holder: " Place "
+        visibility:   " Visibility "
+        name:         " Name "

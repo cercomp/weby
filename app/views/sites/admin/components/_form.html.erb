@@ -10,6 +10,14 @@
     <%= render_component @component, 'form', :locals => { :f => f } %>
   </div>
 
+  <%= f.input :visibility, collection: [
+    [t(".always"),"0"],
+    [t(".home_page"),"1"],
+    [t(".inner_page"),"2"]
+  ],
+  include_blank: false
+  %>
+
   <label class="control-label"><%= t(".place")  %></label>
   <div class="controls">
     <%= raw make_mini_layout %>
