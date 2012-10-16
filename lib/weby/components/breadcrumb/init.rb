@@ -1,4 +1,5 @@
 Weby::Components.register_component :breadcrumb,
-  author: "Author",
-  site: "www.site.com",
-  email: "author@site.com"
+  enabled: false,
+  author: "CERCOMP",
+  site: "www.cercomp.ufg.br",
+  email: "web@cercomp.ufg.br"

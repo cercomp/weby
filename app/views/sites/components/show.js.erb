@@ -1,3 +1,1 @@
-console.log($("<%= escape_javascript(render_component(@component, 'show.html')) %>"));
 $('#component_<%=@component.id%>').html($("<%= escape_javascript(render_component(@component, 'show.html')) %>").html());
-//eval($('#component_<%#=@component.id%> script').text());

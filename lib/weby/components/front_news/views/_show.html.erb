@@ -37,7 +37,7 @@
     <% end %>
     <div class="clear clearfix">&nbsp;</div>
   </section>
-  <%= paginate @front_news, param_name: 'front_pages', remote: true, params: {controller: 'sites/components', action: 'show', id: component.id}  %>
+  <%= paginate @front_news, param_name: 'front_pages' %>
 
   <%= javascript_tag do %>
     window.onload = function(){
