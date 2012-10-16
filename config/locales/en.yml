@@ -89,7 +89,6 @@ en:
   problem_create_account:               " Problem on create account "
 #---Q---#
 #---R---#
-  reset_mail:                           " Instructions to reset your password have been emailed to you. Please check your email. "
   required:                             " Required "
 #---S---#
   save:                                 " Save "

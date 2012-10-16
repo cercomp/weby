@@ -14,9 +14,9 @@ pt-BR:
     forgot_password:
       fill_email_form:    " Preencha o formulário para resgatar sua senha. Ela será enviada para seu e-mail. "
     password_sent:
-      sent_password:      " Senha atualizada com sucesso. "
+      sent_password:      " Instruções de como modificar sua senha foram enviadas para seu e-mail. "
     reset_password:
       reset_password:     " Nova senha "
       password_change:    " Nova senha "
     signup:
-      signup:             " Novo usuáio "
+      signup:             " Novo usuário "
