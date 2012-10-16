@@ -32,6 +32,12 @@ hr { border-top-color: #DDD; }
 
 .links { a { margin-right: 10px; } }
 
+.help-block
+{
+  color: #777;
+  font-size: 11px;
+}
+
 .session 
 {
   @media (max-width: 979px)
@@ -70,6 +76,20 @@ input.password
   line-height: 45px;
   height: 45px;
   width: 486px !important;
+}
+
+.new_user input.string,
+.new_user input.password
+{
+  font-size: inherit;
+  line-height: inherit;
+  height: inherit;
+}
+
+.logo-box
+{
+  display: block;
+  text-align: center;
 }
 
 .logo

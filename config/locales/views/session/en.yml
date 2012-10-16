@@ -1,10 +1,22 @@
 en:
+  layouts:
+    session:
+      portals:            " Portals "
+      help:               " Help "
   access_denied:
-    access_denied:      " Access denied "
-    access_denied_page: " You are not allowed to see this page "
-  new:
-    forgot_password:    " Forgot password "
-    register:           " Register "
-    help:               " Help "
-    portals:            " Portals "
-
+    access_denied:        " Access denied "
+    access_denied_page:   " You are not allowed to see this page. "
+  session:  
+    login:
+      login:              " Login "
+      forgot_password:    " Forgot password "
+      register:           " New user "
+    forgot_password:
+      fill_email_form:    " Complete the form to recover your password. The password will be send to your e-mail. "
+    password_sent:
+      sent_password:      " Password successfully updated. "
+    reset_password:
+      reset_password:     " New password "
+      password_change:    " New password "
+    signup:
+      signup:             " New user "

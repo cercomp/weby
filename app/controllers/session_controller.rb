@@ -1,26 +1,26 @@
 class SessionController < ApplicationController
-  before_filter :require_no_user, except: :destroy
-  before_filter :require_user, only: :destroy
+  before_filter :require_no_user, except: :logout
+  before_filter :require_user, only: :logout
   before_filter :load_user_using_perishable_token, only: :reset_password
 
-  def new
+  def login
     @session = UserSession.new
   end
 
-  def create
+  def create_session
     @session = UserSession.new(params[:user_session])
     if @session.save
       if current_user and current_user.active?
         redirect_back_or_default "#{params[:back_url]}"
       else
-        destroy  
+        logout  
       end  
     else
-      render action: :new
+      render action: :login
     end
   end
 
-  def destroy
+  def logout
     if current_user 
       flash.now[:success] = t("logout_success")
       current_user_session.destroy
@@ -53,6 +53,34 @@ class SessionController < ApplicationController
       redirect_to admin_user_path(@user)
     else
       render action: :reset_password
+    end
+  end
+
+  def signup
+    @user = User.new
+  end
+
+  def create_user
+    @user = User.new(params[:user])
+    if @user.save
+      @user.send_activation_instructions!(request.env["SERVER_NAME"])
+      flash[:success] = t("create_account_successful")
+      redirect_to login_path
+    else
+      flash[:error] = t("problem_create_account")
+      render :action => :signup
+    end
+  end
+
+  def activate_user
+    @user = User.find_using_perishable_token(params[:activation_code], 1.week) || (raise Exception)
+    raise Exception if @user.active?
+    if @user.activate!
+      UserSession.create(@user, false)
+      @user.send_activation_confirmation!(request.env["SERVER_NAME"])
+      redirect_to root_url(subdomain: nil)
+    else
+      render :action => :login
     end
   end
   

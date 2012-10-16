@@ -1,10 +1,22 @@
 pt-BR:
+  layouts:
+    session:
+      portals:            " Portais "
+      help:               " Ajuda "
   access_denied:
-    access_denied:      " Acesso negado "
-    access_denied_page: " Você não está autorizado a ver está página "
-  new:
-    forgot_password:    " Perdi minha senha "
-    register:           " Cadastro "
-    help:               " Ajuda "
-    portals:            " Portais "
-
+    access_denied:        " Acesso negado "
+    access_denied_page:   " Você não está autorizado a ver está página. "
+  session:  
+    login:
+      login:              " Entrar "
+      forgot_password:    " Perdi minha senha "
+      register:           " Cadastrar novo usuário "
+    forgot_password:
+      fill_email_form:    " Preencha o formulário para resgatar sua senha. Ela será enviada para seu e-mail. "
+    password_sent:
+      sent_password:      " Senha atualizada com sucesso. "
+    reset_password:
+      reset_password:     " Nova senha "
+      password_change:    " Nova senha "
+    signup:
+      signup:             " Novo usuáio "

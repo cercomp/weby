@@ -129,19 +129,20 @@ Weby::Application.routes.draw do
   end
 
   # routes to session
-  get "login"   => "session#new"
-  post  "login" => "session#create"
-  match "logout"  => "session#destroy"
+  match "logout"  => "session#logout"
+  get   "login"   => "session#login"
+  post  "login"   => "session#create_session"
+  get   "signup"  => "session#signup"
+  post  "signup"  => "session#create_user"
   
   # routes to forget password
   match "forgot_password" => "session#forgot_password"
   match "password_sent"   => "session#password_sent"
-  get "reset_password"  => "session#reset_password"
+  get   "reset_password"  => "session#reset_password"
   post  "update_password" => "session#update_password"
 
   # Para ativação de conta por email
-  match "activate(/:activation_code)" => "admin/users#activate",
-    as: :activate_account
+  match "activate(/:activation_code)" => "session#activate_user", as: :activate_account
 
   match "robots.txt" => "sites#robots", :format => "txt"
   match "*not_found" => "application#render_404"
