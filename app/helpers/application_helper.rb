@@ -364,7 +364,7 @@ module ApplicationHelper
 
   def period_dates(inidate, findate, force_show_year = true)
     html = ""
-    unless(findate)
+    if not findate
       html << period_date_and_hour(inidate, force_show_year)
     else
       if(inidate.month == findate.month)

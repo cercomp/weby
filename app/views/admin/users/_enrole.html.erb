@@ -23,20 +23,27 @@
             <%= text_field_tag :users_unroled, params[:users_unroled], placeholder: t("search") %>
           </div>
           <div style="height: 300px; overflow: auto">
-            <ul id="users_list_roles"> 
+            <ul id="users_list_roles" class="nav"> 
               <% @users_unroled.each do |user| %>
                 <li>
+                <label class="checkbox cursor">
                   <%= check_box_tag 'user[id][]', user.id, user.id == params[:user_id].to_i %>
                   <%= "#{user} (#{user.login})" %>
+                </label>
                 </li>
               <% end %>
             </ul>
           </div>
         </td>
         <td>
-          <ul> 
+          <ul class="nav"> 
             <% @roles.each do |role| %>
-              <li> <%= check_box_tag 'role_ids[]', role.id %> <%= role.name %> </li>
+              <li>
+                <label class="checkbox cursor">
+                  <%= check_box_tag 'role_ids[]', role.id %>
+                  <%= role.name %> 
+                </label>
+              </li>
             <% end %>
           </ul>
         </td>
@@ -54,26 +61,26 @@
 <%= content_for :javascripts do %>
   <%= javascript_tag do %>
     $(document).ready(function(){
-      var filter_user = function(input) {
-        var pattern = new RegExp(".*" + input + ".*", "gi");
-        $('#users_list_roles li').each(function(index, element){
-          if( $(element).text().match(pattern) ){
-            $(element).show();
-          } else {
-            $(element).hide();
-          }
-        });
-      }
+    var filter_user = function(input) {
+    var pattern = new RegExp(".*" + input + ".*", "gi");
+    $('#users_list_roles li').each(function(index, element){
+    if( $(element).text().match(pattern) ){
+    $(element).show();
+    } else {
+    $(element).hide();
+    }
+    });
+    }
 
-      $('#users_unroled').live('keyup',function(){
-        filter_user($(this).val());
-      });
+    $('#users_unroled').live('keyup',function(){
+    filter_user($(this).val());
+    });
 
-      <% unless @user.blank? or not @users_unroled.include?(@user) %>
-        var name = '<%= @user.first_name %>';
-        $('#users_unroled').val(name);
-        filter_user(name);
-      <% end %>
+    <% unless @user.blank? or not @users_unroled.include?(@user) %>
+      var name = '<%= @user.first_name %>';
+      $('#users_unroled').val(name);
+      filter_user(name);
+    <% end %>
     });
   <% end %>
 <% end %>

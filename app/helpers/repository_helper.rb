@@ -77,16 +77,16 @@ module RepositoryHelper
     img_opt = {
       alt: (@options[:alt] || @file.description),
       title: (@options[:title] || @file.description) }
-      img_opt[:width] = @width unless @width.blank?
-      img_opt[:height] = @height unless @height.blank?
-      img_opt[:id] = @options[:id] if @options[:id]
-      begin
-        image = image_tag(@thumbnail, img_opt)
-      rescue
-        image = image_tag(empty_mime, img_opt)
-      end
+    img_opt[:width] = @width unless @width.blank?
+    img_opt[:height] = @height unless @height.blank?
+    img_opt[:id] = @options[:id] if @options[:id]
+    begin
+      image = image_tag(@thumbnail, img_opt)
+    rescue
+      image = image_tag(empty_mime, img_opt)
+    end
 
-      raw image
+    raw image
   end
 
   def mime_type
@@ -102,6 +102,10 @@ module RepositoryHelper
 
   def empty_mime
     "mime_list/VAZIO.png"
+  end
+
+  def full_image_url repository
+    "http://#{request.host}#{":"+request.port.to_s if request.port!=80}#{repository.archive.url}"
   end
 
   def clean_size!

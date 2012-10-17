@@ -11,3 +11,5 @@ en:
     views:
       show:
         feedback:         " Feedback "
+      form:
+        group_checked:    " Default selected groups "

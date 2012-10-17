@@ -53,13 +53,17 @@ module Weby
         raw([].tap do |components|
           current_site.components.where(["publish = true AND place_holder = ?", component_place]).order('position asc').each do |comp|
             if Weby::Components.is_enabled?(comp.name)
-              components << render_component(Weby::Components.factory(comp))
+              visible = comp.visibility == 1 ? request.path == site_path : comp.visibility == 2 ? request.path != site_path : comp.visibility == 0
+              if visible
+                components << render_component(Weby::Components.factory(comp))
+              end
             end
           end
         end.join)
       end
 
       def render_component(component, view = 'show', args = {})
+
         args[:partial] = "#{component.name}/views/#{view.to_s}"
         
         args[:locals] ||= {}
@@ -77,6 +81,7 @@ module Weby
             end
           end
           output += render args
+          output = output.sub(/(class=\"[a-z_\-]+_component\s?[a-z0-9_\-]*\")/, "\\1 id=\"component_#{component.id}\"")
         rescue ActionView::MissingTemplate
           output = ''
         end

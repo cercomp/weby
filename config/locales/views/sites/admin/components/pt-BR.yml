@@ -4,6 +4,10 @@ pt-BR:
       components:
         form:
           place:              " Local "
+          visibility:         " Visibilidade "
+          always:             " Sempre mostrar "
+          home_page:          " Apenas na página inicial "
+          inner_page:         " Apenas nas páginas internas "
         components:
           empty_placeholder:  " Nenhum componente neste local "
           bottom:             " Inferior "
