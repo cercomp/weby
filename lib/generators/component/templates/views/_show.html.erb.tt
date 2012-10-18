@@ -1,3 +1,5 @@
 <div class="<%=comp_name%>_component">
-  <%%= component.name %>
+
+  <%= settings_names_show_view %>
+
 </div>
