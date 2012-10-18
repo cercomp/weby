@@ -1,9 +1,0 @@
-pt-BR:
-  components:
-    banner_side:
-      name:                  " Banner Lateral "
-      category:              " Categoria "
-  activerecord:
-    attributes:
-      banner_side_component:
-        category:            " Categoria "
