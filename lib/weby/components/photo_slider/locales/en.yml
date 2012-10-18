@@ -1,0 +1,18 @@
+en:
+  components:
+    photo_slider:
+      name:                   " Photo Slider      "
+  activerecord:
+    attributes:
+      photo_slider_component:
+        photos:               " Photos            "
+        width:                " Width             "
+        height:               " Height            "
+        timer:                " Transition time   "
+        description:          " Show description? "
+  photo_slider:
+    views:
+      show:
+      form:
+        add_photo:            " Add Photo         "
+        timer_hint:           " In seconds        "
