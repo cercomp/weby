@@ -1,31 +1,9 @@
 .banner_list_component {
-    display: inline-block;
-
+    
     .banner_image {
         margin: 0;
         text-align: center;
         padding-top: 5px;
-    }
-
-    .banner_text {
-        margin: 0px;
-        padding:0px;
-        border: 1px solid rgba(255,255,255,0.70);
-        text-align:center;
-    }
-    .banner_text h2 {
-        margin: 0px;
-        padding: 0px;
-        border-bottom: 1px solid rgba(255,255,255,0.70);
-        background-color: rgba(255, 255, 255, 0.70);
-        filter: alpha(opacity=70);
-        font-weight:bold;
-    }
-    .banner_text p {
-        margin: 0px;
-        padding: 7px;
-        background-color: rgba(255, 255, 255, 0.80);
-        filter: alpha(opacity=80);
     }
 
     .banner {
@@ -33,7 +11,7 @@
     }
 
     .banner.horizontal {
-        display: inline-block;
+        float: left;
     }
     
     .banner .unpublish{

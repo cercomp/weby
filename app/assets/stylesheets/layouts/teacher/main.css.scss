@@ -1,9 +1,9 @@
-/* 
+/*
  *= require ./mini
  *= require _bootstrap
- *= require_self 
+ *= require_self
  *= require _bootstrap-responsive
- */  
+ */
 
 body { background: transparent; }
 
@@ -173,8 +173,8 @@ section#content {
 section#content > article {
   padding: 9px;
   border: 1px solid #EEE;
-  margin: 0px 3px; 
-  
+  margin: 0px 3px;
+
   & > a:first-child {
     float: right; }
   }
@@ -217,6 +217,28 @@ section#content section#pages li:nth-child(even) a img {
   float: right;
   padding-left: 15px; }
 
+.banner_text {
+	margin: 0px;
+	padding:0px;
+	border: 1px solid rgba(255,255,255,0.70);
+	text-align:center;
+}
+.banner_text h2 {
+	margin: 0px;
+	padding: 0px;
+	border-bottom: 1px solid rgba(255,255,255,0.70);
+	background-color: rgba(255, 255, 255, 0.70);
+	filter: alpha(opacity=70);
+	font-weight:bold;
+}
+.banner_text p {
+	margin: 0px;
+	padding: 7px;
+	background-color: rgba(255, 255, 255, 0.80);
+	filter: alpha(opacity=80);
+}
+
+
 /* Classes to help build layout */
 .clear {
   clear: both; }
@@ -254,26 +276,26 @@ table th {
 aside menu li { padding-left: 0; }
 /* Esquerdo  */
   /* Menu  */
-    /* Cor */ 
+    /* Cor */
       aside.left menu li a { background-color: #F2F2F2; }
       aside.left menu li { background-color: #F2F2F2; }
-    /* Cor Hover */ 
+    /* Cor Hover */
       aside.left menu li:hover { background-color: #C5C5C5; }
       aside.left menu li a:hover { background-color: #C5C5C5; }
-    /* Cor fonte */ 
+    /* Cor fonte */
       aside.left menu li a { color: #444444; }
-    /* Cor fonte hover */ 
+    /* Cor fonte hover */
       aside.left menu li a:hover { color: #FFF; }
 aside menu li { border: 1px solid #C5C5C5;}
   /* Submenu  */
-    /* Cor */ 
+    /* Cor */
       aside.left menu li.sub > a { background-color: #C5C5C5; }
-    /* Cor fonte */ 
+    /* Cor fonte */
       aside.left menu li.sub > a { color: #FFFFFF; }
   /* Menu  */
     /* Cor */
       aside.right menu li a { background-color: #F2F2F2; }
-      aside.right menu li { background-color: #F2F2F2; }        
+      aside.right menu li { background-color: #F2F2F2; }
     /* Cor Hover */
       aside.right menu li:hover { background-color: #C5C5C5; }
       aside.right menu li a:hover { background-color: #C5C5C5; }
