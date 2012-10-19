@@ -1,0 +1,30 @@
+#mini_layout{
+  border: 1px dotted black;
+  background-color: #E6E6E6;	
+  width:  200px;
+}
+#mini_first_place{
+  border-bottom: 1px dotted black;
+  height: 25px;
+}
+
+#mini_top{
+  border-bottom: 1px dotted black;
+  height: 25px;
+}
+
+#mini_home{
+  border: 1px; 
+  border-top: 0px;
+  width: 200px;
+  height: 200px;
+}
+
+#mini_bottom{
+  border-top: 1px dotted black;
+  height: 30px;
+}
+
+.clicked, .clicked.hover:hover { background: #f7f6d9; }
+
+.hover:hover { background-color: #dadada; }
