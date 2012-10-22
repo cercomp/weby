@@ -5,6 +5,8 @@ pt-BR:
         form:
           place:              " Local "
           visibility:         " Visibilidade "
+          alias:              " Nome "
+          alias_hint:         " Apelido para o componente "
           always:             " Sempre mostrar "
           home_page:          " Apenas na página inicial "
           inner_page:         " Apenas nas páginas internas "
@@ -26,6 +28,7 @@ pt-BR:
           components:         " Componentes "
           new_component:      " Novo Componente "
           component:          " Componente "
+          alias:              " Nome "
           category:           " Categoria "
           active:             " Ativo? "
         new:

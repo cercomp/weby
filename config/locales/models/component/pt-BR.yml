@@ -6,4 +6,5 @@ pt-BR:
       component:
         place_holder: " Local "
         visibility:   " Visibilidade "
-        name:         " Nome "
+        alias:        " Nome "
+        name:         " Componente "
