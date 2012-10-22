@@ -6,4 +6,5 @@ en:
       component:
         place_holder: " Place "
         visibility:   " Visibility "
-        name:         " Name "
+        alias:        " Name "
+        name:         " Component "

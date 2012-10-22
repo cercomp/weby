@@ -1,0 +1,11 @@
+<ul class="nav">
+  <% current_site.pages.tag_counts_on(:categories).each do |tag| %>
+    <li>
+    <%= check_box_tag "category_id[]", tag.name  %>
+      <%= tag.name %>
+    </li>
+  <% end %>
+</ul>
+
+
+

@@ -21,4 +21,8 @@ class FeedbackComponent < Component
     groups_id.include? id.to_s
   end
 
+  def default_alias
+    self.label
+  end
+
 end

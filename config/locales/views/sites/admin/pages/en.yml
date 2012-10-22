@@ -62,6 +62,9 @@ en:
           period_page:          " Page period "
           related_files:        " Related files "
           page_categories_help: " Categories are separated by commas, the page's category are related with your content. Ex:Sports, News, Policy "
+          list_categories:      " List Categories "
+          categories:           " Categories "
+          save:                 " Save "
         event_form:
           is_event:             " Is event?  "
           period_event:         " Event date "

@@ -5,6 +5,8 @@ en:
         form:
           place:              " Place "
           visibility:         " Visibility "
+          alias:              " Name "
+          alias_hint:         " Identifier name for the component "
           always:             " Always Visible "
           home_page:          " Only on the home page "
           inner_page:         " Only on inner pages "
@@ -26,6 +28,7 @@ en:
           components:         " Componentes "
           new_component:      " New Component "
           component:          " Component "
+          alias:              " Name "
           category:           " Category "
           active:             " Active? "
         new:
