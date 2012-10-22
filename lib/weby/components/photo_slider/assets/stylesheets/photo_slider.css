@@ -2,7 +2,24 @@
  *= require flexslider
  *= require lightbox
  */
-#slider {margin: 0 0 10px!important;}
+
+/* jQuery Flex Slider plugin*/
+#slider {
+  margin: 10px;
+  overflow: hidden;
+  background-color: rgb(255, 255, 255);
+  box-shadow:0px 0px 10px #B3B3B3;
+  -webkit-box-shadow:0px 0px 10px #B3B3B3;
+  -moz-box-shadow:0px 0px 10px #B3B3B3;
+  -o-box-shadow:0px 0px 10px #B3B3B3;
+  -ms-box-shadow:0px 0px 10px #B3B3B3
+
+  -webkit-border-radius:5.0px;
+  -moz-border-radius:5.0px;
+  -o-border-radius:5.0px;
+  -ms-border-radius:5.0px;
+  border-radius:5.0px;
+}
 #carousel li {margin-right: 2px; width: 100px !important;}
 #carousel img {display: block; opacity: .5; cursor: pointer;}
 #carousel img:hover {opacity: 1;}
@@ -13,6 +30,8 @@
   line-height: 21px;
   text-align: center;
 }
+ul.flex-direction-nav li a.prev {left: 18px;}
+ul.flex-direction-nav li a.next {right: 18px;}
 
 /* jQuery lightBox plugin - Gallery style */
 .gallery {

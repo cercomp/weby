@@ -8,7 +8,7 @@
     <%= content_tag :h3, component.title, id: "photo_slider_title" %>
     <% if component.flex_slider_style? %>
 
-      <% content_for :javascripts, javascript_include_tag('photo_slider') %>
+      <% include_component_javascript :javascripts, 'photo_slider' %>
       <div class="flex-container">
         <div id="slider"  class="flexslider" data-slideshowspeed="<%= speed %>">
           <ul class="slides">
@@ -32,20 +32,20 @@
 
     <% else  %>
 
-      <% content_for :javascripts, javascript_include_tag('lightbox') %>
+      <% include_component_javascript :javascripts, 'lightbox' %>
       <%= content_tag :div, class: "gallery", style:"width: #{width}px; height: #{height}px;" do  %>
         <%= content_tag :ul, style:"width: #{width}px; height: #{height}px;" do  %>
           <% imagens.each do |image| %>
             <%= content_tag :li do %>
               <% if component.show_description? %>
-                <%= link_to image.archive.url, title: image.description, rel:"lightbox[roadtrip]" do %>
+                <%= link_to image.archive.url, title: image.description, rel:"lightbox[roadtrip#{component.id}]" do %>
                   <%= image_tag image.archive.url,
                     alt: image.description,
                     title: image.description,
                     style: "width: #{width}px; height: #{height}px;" %>
                 <% end %>
               <% else %>
-                <%= link_to image.archive.url, rel:"lightbox[roadtrip]" do %>
+                <%= link_to image.archive.url, rel:"lightbox[roadtrip#{component.id}]" do %>
                   <%= image_tag image.archive.url,
                     alt: image.description,
                     title: image.description,
