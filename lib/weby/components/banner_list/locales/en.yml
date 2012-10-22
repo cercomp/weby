@@ -1,0 +1,16 @@
+en:
+  components:
+    banner_list:
+      name:                  " Banners List "
+      category:              " Category "
+      orientation:           " Orientation "
+  activerecord:
+    attributes:
+      banner_list_component:
+        category:            " Category "
+        orientation:         " Orientation "
+  banner_list:
+    views:
+      form:
+        horizontal:          " Horizontal "
+        vertical:            " Vertical "

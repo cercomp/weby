@@ -19,6 +19,12 @@ class ComponentGenerator < Rails::Generators::Base
     end.join(', ') if (settings and settings.any?)
   end
 
+  def settings_names_show_view
+   " " << settings.map do |name,type|
+        "<%= component.#{name} %>\n"
+    end.join if (settings and settings.any?)
+  end
+
   def settings_inputs
     settings.map do |name,type|
         "<%= f.input :#{name}, :as => :#{type} %>"

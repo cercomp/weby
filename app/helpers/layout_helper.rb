@@ -5,6 +5,10 @@ module LayoutHelper
     })
   end
 
+  def menu_item_to title, url
+    content_tag :li, link_to(title, url), class: current_page?(url) ? 'active' : ''
+  end
+
   private
   def contrast?
     session[:contrast] and session[:contrast] == 'yes' 

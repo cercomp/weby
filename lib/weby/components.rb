@@ -81,6 +81,7 @@ module Weby
             end
           end
           output += render args
+          output = output.sub(/(class=\"[a-z_\-]+_component\s?[a-z0-9_\-]*\")/, "\\1 id=\"component_#{component.id}\"")
         rescue ActionView::MissingTemplate
           output = ''
         end

@@ -1,0 +1,16 @@
+<h4>
+  <%= t(".signup") %>
+</h4>
+<%= simple_form_for @user, url: signup_path, method: :post do |f| %>
+  <%= f.show_errors %>
+  <%= f.input :login %>
+  <%= f.input :email, as: :email %>
+  <%= f.input :password, hint: t("lower_upper_number_chars"), as: :password,
+    input_html: { pattern: '(?=.*\d)(?=.*[A-Z])(?=.*[a-z])^.{4,}$' } %>
+  <%= f.input :password_confirmation, as: :password, required: true %>
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
+  <%= f.input :phone,  input_html: {size: 20, maxlength: 20}, as: :tel %>
+  <%= f.input :mobile, input_html: {size: 20, maxlength: 20}, as: :tel %>
+  <%= f.button :submit, class: 'btn btn-primary btn-large', disable_with: t("please_wait") %>
+<% end %>

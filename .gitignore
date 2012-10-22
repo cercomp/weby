@@ -7,6 +7,7 @@
 # Ignore bundler config
 .bundle
 config/database.yml
+config/email.yml
 
 # Ignore the default SQLite database.
 db/*.sqlite3
@@ -17,5 +18,6 @@ tmp/*
 
 # Ignore uploads
 public/uploads/
+public/assets/
 
 .sass-cache

@@ -1,0 +1,12 @@
+en:
+  components:
+    breadcrumb:
+      name: "Breadcrumb"
+  activerecord:
+    attributes:
+      breadcrumb_component:
+        label: "Label"
+  breadcrumb:
+    views:
+      show:
+      form:

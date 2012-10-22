@@ -1,0 +1,9 @@
+/*
+ *= require flexslider
+ */
+#slider {margin: 0 0 10px!important;}
+#carousel li {margin-right: 2px; width: 100px !important;}
+#carousel img {display: block; opacity: .5; cursor: pointer;}
+#carousel img:hover {opacity: 1;}
+#carousel .flex-active-slide img {opacity: 1; cursor: default;}
+.photo_slider {padding-bottom: 20px;}

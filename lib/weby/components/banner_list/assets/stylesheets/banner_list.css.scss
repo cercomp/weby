@@ -1,0 +1,33 @@
+.banner_list_component {
+    
+    .banner_image {
+        margin: 0;
+        text-align: center;
+        padding-top: 5px;
+    }
+
+    .banner {
+        position: relative;
+    }
+
+    .banner.horizontal {
+        float: left;
+    }
+    
+    .banner .unpublish{
+        display: none;
+        background-color: white;
+        border: 1px solid rgba(100,100,100,0.10);
+    }
+
+    .banner .unpublish a{
+        /*color: red;*/
+    }
+
+    .banner:hover .unpublish{
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}

@@ -12,7 +12,7 @@
         </thead>
         <tbody>
           <% styles.each do |style| %>
-            <tr id = "sort_style_<%= style.id %>">
+            <tr id="sort_style_<%= style.id %>" class="<%= style.publish ? "success" : "error" %>">
               <td> <%= style.name %> </td>
               <td> 
                 <% style.followers.each do |site| %>

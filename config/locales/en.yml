@@ -89,7 +89,6 @@ en:
   problem_create_account:               " Problem on create account "
 #---Q---#
 #---R---#
-  reset_mail:                           " Instructions to reset your password have been emailed to you. Please check your email. "
   required:                             " Required "
 #---S---#
   save:                                 " Save "
@@ -135,7 +134,7 @@ en:
       # You can provide other formats here if you like!
       default: " %m-%d-%Y"
       short:   " %b %d "
-      long:    " %d de %B de %Y "
+      long:    " %B %d, %Y "
 
     day_names: [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday]
     abbr_day_names: [Sun, Mon, Tue, Wed, Thur, Fri, Sat]
@@ -153,13 +152,13 @@ en:
     formats:
       default:            " %a, %m-%d-%Y %H:%M:%S %z "
       short:              " %m/%d/%y %H:%M "
-      long:               " %d de %B de %Y às %H:%M  "
-      event_date_short:   " %d %B "
-      event_date_full:    " %d %B %Y "
-      event_period_short: " %{iniday} a %{finday} %B "
-      event_period_full:  " %{iniday} a %{finday} %B %Y "
+      long:               " %B %d, %Y %H:%M "
+      event_date_short:   " %B %d "
+      event_date_full:    " %B %d, %Y "
+      event_period_short: " %B %{iniday} - %{finday} "
+      event_period_full:  " %B %{iniday} - %{finday}, %Y "
       event_hour:         " at %kh "
-    period_separator: " to "
+    period_separator: " - "
     am:               " am "
     pm:               " pm "
 
@@ -167,8 +166,8 @@ en:
   support:
     array:
       words_connector:     " , "
-      two_words_connector: " e "
-      last_word_connector: " , e "
+      two_words_connector: " and "
+      last_word_connector: " , and "
 
   helpers:
     submit:

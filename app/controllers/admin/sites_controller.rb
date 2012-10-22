@@ -20,7 +20,7 @@ class Admin::SitesController < ApplicationController
     @site = Site.new
     @site.footer = t("admin.sites.form.footer_text")
     @themes = []
-    (Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*.erb")] - Dir[File.join(Rails.root + "app/views/layouts/application.html.erb")] - Dir[File.join(Rails.root + "app/views/layouts/sites.html.erb")] - Dir[File.join(Rails.root + "app/views/layouts/user_sessions.html.erb")]).each do |file|
+    (Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*.erb")] - Dir[File.join(Rails.root + "app/views/layouts/application.html.erb")] - Dir[File.join(Rails.root + "app/views/layouts/sites.html.erb")] - Dir[File.join(Rails.root + "app/views/layouts/session.html.erb")]).each do |file|
       @themes << file.split("/")[-1].split(".")[0]
     end
   end
@@ -37,25 +37,25 @@ class Admin::SitesController < ApplicationController
         menu_bottom = @site.menus.create({:name => 'menu inferior'})
 
         @site.components.create({:place_holder=>'first_place',:settings=>'{:background => "#7F7F7F"}',:name=>'gov_bar', :position=>1, :publish=>true})
-        #@site.components.create({:place_holder=>'first_place',:settings=>'{}', :name=>'weby_bar', :position=>2, :publish=>true})
-        @site.components.create({:place_holder=>'first_place',:settings=>'{}', :name=>'institutional_bar', :position=>3, :publish=>true})
-        @site.components.create({:place_holder=>'top', :settings=>'{}', :name=>'header', :position=>4, :publish=>true})
-        @site.components.create({:place_holder=>'top', :settings=>"{:menu_id => \"#{menu_top.id}\"}", :name=>'menu_side', :position=>5, :publish=>true})
-        @site.components.create({:place_holder=>'top', :settings=>'{}', :name=>'menu_accessibility',:position=>6, :publish=>true})
-        @site.components.create({:place_holder=>'bottom', :settings=>"{:menu_id => \"#{menu_bottom.id}\"}", :name=>'menu_side', :position=>9, :publish=>true})
-        @site.components.create({:place_holder=>'bottom', :settings=>'{}', :name=>'info_footer', :position=>10,:publish=>true})
-        @site.components.create({:place_holder=>'bottom', :settings=>'{}', :name=>'feedback', :position=>11,:publish=>true})
-        @site.components.create({:place_holder=>'left', :settings=>"{:menu_id => \"#{menu_left.id}\"}", :name=>'menu_side', :position=>12,:publish=>true})
-        @site.components.create({:place_holder=>'left', :settings=>'{:category => "esq"}', :name=>'banner_side', :position=>13,:publish=>true})
-        @site.components.create({:place_holder=>'home', :settings=>'{:quant => "5"}', :name=>'front_news', :position=>14,:publish=>true})
-        @site.components.create({:place_holder=>'home', :settings=>'{:quant => "5"}', :name=>'no_front_news', :position=>15,:publish=>true})
+        @site.components.create({:place_holder=>'first_place',:settings=>'{}', :name=>'institutional_bar', :position=>2, :publish=>true})
+        @site.components.create({:place_holder=>'top', :settings=>'{}', :name=>'header', :position=>1, :publish=>true})
+        @site.components.create({:place_holder=>'top', :settings=>"{:menu_id => \"#{menu_top.id}\"}", :name=>'menu_side', :position=>2, :publish=>true})
+        @site.components.create({:place_holder=>'top', :settings=>'{}', :name=>'menu_accessibility',:position=>3, :publish=>true})
+        @site.components.create({:place_holder=>'bottom', :settings=>"{:menu_id => \"#{menu_bottom.id}\"}", :name=>'menu_side', :position=>1, :publish=>true})
+        @site.components.create({:place_holder=>'bottom', :settings=>'{}', :name=>'info_footer', :position=>2,:publish=>true})
+        @site.components.create({:place_holder=>'bottom', :settings=>'{}', :name=>'feedback', :position=>3,:publish=>true})
+        @site.components.create({:place_holder=>'left', :settings=>"{:menu_id => \"#{menu_left.id}\"}", :name=>'menu_side', :position=>1,:publish=>true})
+        @site.components.create({:place_holder=>'left', :settings=>'{:category => "esq", :orientation => "vertical"}', :name=>'banner_list', :position=>2,:publish=>true})
+        @site.components.create({:place_holder=>'home', :settings=>'{:quant => "5"}', :name=>'front_news', :position=>1,:publish=>true})
+        @site.components.create({:place_holder=>'home', :settings=>'{:quant => "5"}', :name=>'no_front_news', :position=>2,:publish=>true})
 
         if @site.theme == 'this2'
 
           menu_right   = @site.menus.create({:name => 'menu direito'})
 
-          @site.components.create({:place_holder=>'right', :settings=>"{:menu_id => \"#{menu_right.id}\"}", :name=>'menu_side', :position=>7, :publish=>true})
-          @site.components.create({:place_holder=>'right', :settings=>'{:category => "dir"}', :name=>'banner_side', :position=>8, :publish=>true})
+          @site.components.create({:place_holder=>'right', :settings=>"{:width => \"\", :align => \"left\"}", :name=>'search_box', :position=>1, :publish=>true})
+          @site.components.create({:place_holder=>'right', :settings=>"{:menu_id => \"#{menu_right.id}\"}", :name=>'menu_side', :position=>2, :publish=>true})
+          @site.components.create({:place_holder=>'right', :settings=>'{:category => "dir", :orientation => "vertical"}', :name=>'banner_list', :position=>3, :publish=>true})
         end
       end
 
@@ -101,7 +101,7 @@ class Admin::SitesController < ApplicationController
     (Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*.erb")] -
      Dir[File.join(Rails.root + "app/views/layouts/application.html.erb")] -
      Dir[File.join(Rails.root + "app/views/layouts/sites.html.erb")] -
-     Dir[File.join(Rails.root + "app/views/layouts/user_sessions.html.erb")]).each do |file|
+     Dir[File.join(Rails.root + "app/views/layouts/session.html.erb")]).each do |file|
        @themes << file.split("/")[-1].split(".")[0]
      end
   end

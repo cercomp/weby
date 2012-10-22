@@ -1,0 +1,13 @@
+<%= f.input :category,
+  collection: current_site.banners.category_counts.map{|b| b.name},
+  priority: component.category,
+  include_blank: false
+%>
+<%= f.input :orientation, collection: [
+    [t(".vertical"),"vertical"],
+    [t(".horizontal"),"horizontal"]
+  ],
+  priority: component.orientation,
+  include_blank: false
+%>
+

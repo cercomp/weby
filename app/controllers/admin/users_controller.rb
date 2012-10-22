@@ -1,7 +1,7 @@
 # coding: utf-8
 class Admin::UsersController < ApplicationController
-  before_filter :require_user, :except => [:new, :create, :activate]
-  before_filter :check_authorization, :except => [:new, :create, :show, :edit, :update, :activate]
+  before_filter :require_user
+  before_filter :check_authorization, :except => [:new, :create, :show, :edit, :update]
   before_filter :get_theme
   respond_to :html, :xml
   helper_method :sort_column
@@ -90,24 +90,12 @@ class Admin::UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.status = true
     if @user.save
-      @user.send_activation_instructions!(request.env["SERVER_NAME"])
       flash[:success] = t("create_account_successful")
-      redirect_to current_user ? admin_user_path(@user) : login_path
-    else
-      flash[:error] = t("problem_create_account")
-      render :action => :new
-    end
-  end
-
-  def activate
-    @user = User.find_using_perishable_token(params[:activation_code], 1.week) || (raise Exception)
-    raise Exception if @user.active?
-    if @user.activate!
-      UserSession.create(@user, false)
-      @user.send_activation_confirmation!(request.env["SERVER_NAME"])
       redirect_to admin_user_path(@user)
     else
+      flash[:error] = t("problem_create_account")
       render :action => :new
     end
   end
