@@ -62,6 +62,9 @@ pt-BR:
           period_page:          " Período da Página "
           related_files:        " Arquivos relacionados "
           page_categories_help: " Categorias são separadas por vírgula, a categoria de uma página é relacionada ao seu conteúdo. Ex: Esporte, Notícia, UFG "
+          list_categories:      " Listar Categorias "
+          categories:           " Categorias "
+          save:                 " Salvar "
         event_form:
           is_event:             " É Evento? "
           period_event:         " Período do Evento "
