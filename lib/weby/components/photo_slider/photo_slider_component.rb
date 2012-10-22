@@ -1,5 +1,5 @@
 class PhotoSliderComponent < Component
-  component_settings :photo_ids, :width, :height, :timer, :description
+  component_settings :photo_ids, :width, :height, :timer, :description, :style, :title
 
   alias :_photo_ids :photo_ids
   def photo_ids
@@ -26,6 +26,11 @@ class PhotoSliderComponent < Component
     _description.nil? ? "1" : _description
   end
 
+  alias :_style :style
+  def style
+    _style.blank? ? "1" : _style
+  end
+
   def generate_vector_images
     [].tap do |images|
     photo_ids.each do |image|
@@ -37,6 +42,11 @@ class PhotoSliderComponent < Component
 
   def show_description?
     _description.eql?("1")    
+  end
+
+  def flex_slider_style?
+    flex_slider = "1"
+   _style.eql?(flex_slider) 
   end
 
 end
