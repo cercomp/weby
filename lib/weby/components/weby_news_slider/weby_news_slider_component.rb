@@ -26,4 +26,8 @@ class WebyNewsSliderComponent < Component
   def timer
     _timer.blank? ? '7' : _timer
   end
+
+  def default_alias
+    self.news_category
+  end
 end

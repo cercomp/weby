@@ -7,8 +7,10 @@ module Weby
 
     @components = {}
 
+    #O padrão das flags enabled e aliasable é true
     def self.register_component(comp_name, config={})
       config[:enabled] = true if config[:enabled].nil?
+      config[:aliasable] = true if config[:aliasable].nil?
 
       #require "weby/components/#{comp_name.to_s}/#{comp_name.to_s}_component"
 
@@ -32,6 +34,10 @@ module Weby
 
     def self.is_enabled?(comp_name)
       @components[comp_name.to_sym][:enabled] if @components[comp_name.to_sym]
+    end
+
+    def self.is_aliasable?(comp_name)
+      @components[comp_name.to_sym][:aliasable] if @components[comp_name.to_sym]
     end
 
     def self.factory(component)
@@ -86,6 +92,17 @@ module Weby
           output = ''
         end
         raw output
+      end
+
+      def include_component_javascript(content_for, javascript_name)
+        if Weby::Application.assets.find_asset(javascript_name)
+          @javascripts_loaded ||= []
+          #Incluir o js somente uma vez, mesmo se existirem mais de um componente sendo exibido
+          unless(@javascripts_loaded.include?(javascript_name))
+            content_for content_for, javascript_include_tag(javascript_name)
+            @javascripts_loaded << javascript_name
+          end
+        end
       end
     end
   end

@@ -18,6 +18,10 @@ class Component < ActiveRecord::Base
     where("settings LIKE '%:#{setting} => \"#{value}\"%'")
   }
 
+  def default_alias
+    ""
+  end
+
   protected
   def settings_map
     @settings_map = self.settings ? eval(self.settings) : {} if @settings_map.nil?
