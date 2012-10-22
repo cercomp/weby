@@ -10,6 +10,8 @@ pt-BR:
         height:               " Altura             "
         timer:                " Tempo de transição "
         description:          " Mostrar descrição? "
+        title:                " Título             "
+        style:                " Estilo             "
   photo_slider:
     views:
       show:
