@@ -38,4 +38,14 @@ module PagesHelper
       link_to(flag(locale, size), send((is_in_admin_context? ? :site_admin_page_path : :site_page_path) ,page, page_locale: locale.name) )
     end.join(' ')
   end
+
+  def categories_links(categories)
+    "".tap do |link|
+      categories.each do |category|
+        link << link_to(category, site_pages_path(tags: category)) + ",\n"
+      end
+      link.chomp!
+      link.chop!
+    end
+  end
 end

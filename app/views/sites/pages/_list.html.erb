@@ -16,7 +16,7 @@
       <td>
         <%= link_to page.title, site_page_path(page) %>
       </td>
-      <td><%= page.category_list * ', ' %></td>
+      <td><%= raw categories_links(page.category_list) %></td>
       <td><%= controller.action_name == 'events' ? period_dates(page.event_begin, page.event_end) : t(".#{page.type.downcase}") %></td>
       <td><%= l(page.created_at.to_date, :format => :default) %></td>
     </tr>
