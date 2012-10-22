@@ -6,7 +6,7 @@
     }.compact << [image_tag("false.png", title: t(".dont_show")), ""],
     item_wrapper_class: 'item-box'
  %>
-<%= f.input :rss_icon_custom, label: "&nbsp;"  do %>
+<%= f.input :rss_icon_custom, label: " "  do %>
  <%=  repository_search( t(".select_from_repo"), "rss_icon", "feed_component[rss_icon]",
    (Repository.find(component.rss_icon) rescue nil), multiple: false, file_types: 'image') %>
 <% end %>
@@ -18,7 +18,7 @@
     }.compact << [image_tag("false.png", title: t(".dont_show")), ""],
     item_wrapper_class: 'item-box'
  %>
-<%= f.input :atom_icon_custom, label: "&nbsp;" do %>
+<%= f.input :atom_icon_custom, label: " " do %>
  <%= repository_search( t(".select_from_repo"), "atom_icon", "feed_component[atom_icon]",
    (Repository.find(component.atom_icon) rescue nil), multiple: false, file_types: 'image') %>
 <% end %>
