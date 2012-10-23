@@ -8,6 +8,7 @@ pt-BR:
         cloud_type: "Formato da Nuvem"
         color: "Cor das Tags"
         hoover_color: "Cor da Tag selecionada"
+        hoover_type: " Modo da Tag selecionada"
         width: "Largura"
         height: "Altura"
   weby_tag_cloud:
@@ -18,3 +19,5 @@ pt-BR:
         sphere: "Esfera"
         hcylinder: "Cilindro Horizontal"
         hring: "Anel Vertical"
+        colour: "Cor da letra"
+        outline: "Contorno na Tag"

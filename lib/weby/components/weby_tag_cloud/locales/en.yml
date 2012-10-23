@@ -7,7 +7,8 @@ en:
       weby_tag_cloud_component:
         cloud_type: "Cloud Type"
         color: "Color of the tags"
-        hoover_color: "Color of the selected tag"
+        hoover_color: "Selected Tag color"
+        hoover_type: "Selected Tag mode"
         width: "Width"
         height: "Height"
   weby_tag_cloud:
@@ -18,3 +19,5 @@ en:
         sphere: "Sphere"
         hcylinder: "Horizontal Cylinder"
         hring: "Vertical Ring"
+        colour: "Link Color"
+        outline: "Outlined Tag"
