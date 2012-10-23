@@ -6,7 +6,7 @@ module LayoutHelper
   end
 
   def menu_item_to title, url
-    content_tag :li, link_to(title, url), class: current_page?(url) ? 'active' : ''
+    content_tag :li, link_to(title, url), class: request.path.match(url.match(/\/admin.*/).to_s) ? 'active' : ''
   end
 
   private

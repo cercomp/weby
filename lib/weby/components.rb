@@ -59,7 +59,7 @@ module Weby
         raw([].tap do |components|
           current_site.components.where(["publish = true AND place_holder = ?", component_place]).order('position asc').each do |comp|
             if Weby::Components.is_enabled?(comp.name)
-              visible = comp.visibility == 1 ? request.path == site_path : comp.visibility == 2 ? request.path != site_path : comp.visibility == 0
+              visible = comp.visibility == 1 ? current_page?(site_path) : comp.visibility == 2 ? !current_page?(site_path) : comp.visibility == 0
               if visible
                 components << render_component(Weby::Components.factory(comp))
               end

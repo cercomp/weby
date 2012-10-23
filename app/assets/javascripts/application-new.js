@@ -80,22 +80,24 @@ $(document).ready(function() {
    //inclusive responsivo
    var menuadmin = $('#menu-admin');
    var webynavbar = $('#weby-navbar');
-   $(window).scroll(function(){
-       if($(window).width() >= 768){
-           maincontainer = $('#main-container');
-           webybarheight = webynavbar.css('position')=='fixed'? webynavbar.height() : 0;
-           windowtop = $(this).scrollTop() + webybarheight;
-           if(windowtop >= maincontainer.position().top){
-               if(menuadmin.css('position')!='fixed')
-                   menuadmin.css({'position':'fixed',
-                   'top':(webybarheight+parseInt(maincontainer.css("padding-top")))+'px',
-                   'width':menuadmin.width()+'px'});
-           }else{
-               if(menuadmin.css('position')=='fixed')
-                   menuadmin.css({'position':'','top':'', 'width':''});
+   if(menuadmin.length>0){
+       $(window).scroll(function(){
+           if($(window).width() >= 768){
+               maincontainer = $('#main-container');
+               webybarheight = webynavbar.css('position')=='fixed'? webynavbar.height() : 0;
+               windowtop = $(this).scrollTop() + webybarheight;
+               if(windowtop >= maincontainer.position().top){
+                   if(menuadmin.css('position')!='fixed')
+                       menuadmin.css({'position':'fixed',
+                       'top':(webybarheight+parseInt(maincontainer.css("padding-top")))+'px',
+                       'width':menuadmin.width()+'px'});
+               }else{
+                   if(menuadmin.css('position')=='fixed')
+                       menuadmin.css({'position':'','top':'', 'width':''});
+               }
            }
-       }
-    });
+        });
+    }
     $(window).resize(function(){
         menuadmin.css({'position':'','top':'', 'width':''});
         $(window).scroll();

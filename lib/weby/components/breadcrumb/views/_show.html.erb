@@ -1,4 +1,4 @@
-<% if request.path != site_path && @page then  %>
+<% if !current_page?(site_path) && @page then  %>
 <div class="breadcrumb_component">
   <ul class="breadcrumb">
       <li><%= component.label %></li>
