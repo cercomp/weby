@@ -1,6 +1,6 @@
 <section class="news_as_home_component">
   <% unless (@page = component.page).nil? %>
-    <%= render template: 'sites/pages/show' %>
+    <%= render template: 'sites/pages/show', locals: { as_component: {show_title: component.show_title , show_info: component.show_info} } %>
   <% else %>
     <%# TODO construir uma visualização melhor para erro de página não
       # encontrada pelo componente %>

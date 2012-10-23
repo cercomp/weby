@@ -7,6 +7,9 @@ en:
     attributes:
       news_as_home_component:
         page:                 " News "
+        page_id:              " News "
+        show_title:           " Show title "
+        show_info:            " Show information "
   news_as_home:
     views:
       form:
