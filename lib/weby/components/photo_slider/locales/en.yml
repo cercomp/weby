@@ -10,6 +10,8 @@ en:
         height:               " Height            "
         timer:                " Transition time   "
         description:          " Show description? "
+        title:                " Title             "
+        style:                " Style             "
   photo_slider:
     views:
       show:
