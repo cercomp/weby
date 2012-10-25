@@ -7,6 +7,9 @@ pt-BR:
     attributes:
       news_as_home_component:
         page:                 " Notícia "
+        page_id:              " Notícia "
+        show_title:           " Exibir título "
+        show_info:            " Exibir informações "
   news_as_home:
     views:
       form:

@@ -8,6 +8,7 @@ class SessionController < ApplicationController
   end
 
   def create_session
+    request.session_options[:domain] = ".#{current_domain}"
     @session = UserSession.new(params[:user_session])
     if @session.save
       if current_user and current_user.active?
@@ -21,7 +22,8 @@ class SessionController < ApplicationController
   end
 
   def logout
-    if current_user 
+    if current_user
+      request.session_options[:domain] = ".#{current_domain}"
       flash.now[:success] = t("logout_success")
       current_user_session.destroy
     end
@@ -91,5 +93,9 @@ class SessionController < ApplicationController
       flash[:error] = t("missing_account")
       redirect_to login_url 
     end
+  end
+
+  def current_domain
+    request.host.split('.').last(request.session_options[:tld_length].to_i).join('.')
   end
 end

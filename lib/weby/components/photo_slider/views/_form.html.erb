@@ -1,5 +1,5 @@
 <%= f.input :title %>
-<%= f.input :style,:priority => [ ["FlexSlider",1] ], :collection => [ ["FlexSlider",1], ["LightBox",2]] %>
+<%= f.input :style, :include_blank => false, :priority => [ ["FlexSlider",1] ], :collection => [ ["FlexSlider",1], ["LightBox",2]] %>
 <%= f.input :width %>
 <%= f.input :height %>
 <%= f.input :timer, hint: t(".timer_hint") %> 

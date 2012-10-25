@@ -1,19 +1,24 @@
-# FIXME mudar o atributo "page" para "page_id" para simular 
-# (ou implementar) o comportamento do belongs_to
-
 class NewsAsHomeComponent < Component
-  component_settings :page
+  component_settings :page_id, :show_title, :show_info
 
-  validates :page, presence: true
+  validates :page_id, presence: true
 
-  alias :page_id :page
   def page
     Page.find(self.page_id) rescue nil
+  end
+
+  alias :_show_title :show_title
+  def show_title
+    _show_title.blank? ? false : _show_title.to_i == 1
+  end
+
+  alias :_show_info :show_info
+  def show_info
+    _show_info.blank? ? false : _show_info.to_i == 1
   end
 
   def default_alias
     page = Page.find self.page_id rescue nil
     page ? page.title : ""
   end
-
 end

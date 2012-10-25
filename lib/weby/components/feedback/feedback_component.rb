@@ -9,10 +9,14 @@ class FeedbackComponent < Component
   end
 
   def parse_groups(site)
-    groups_site = site.groups 
-    "".tap do |group_names|
-      groups_site.each do |group|
-        group_names << group.name + "," if groups_id.include? group.id.to_s
+    if groups_id.include? ""
+      ""
+    else
+      groups_site = site.groups 
+      "".tap do |group_names|
+        groups_site.each do |group|
+          group_names << group.name + "," if groups_id.include? group.id.to_s
+        end
       end
     end
   end
@@ -24,5 +28,4 @@ class FeedbackComponent < Component
   def default_alias
     self.label
   end
-
 end
