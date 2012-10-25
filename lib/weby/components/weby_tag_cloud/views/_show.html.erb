@@ -13,7 +13,7 @@
           textHeight: 15,
           reverse: true,
           depth: 0.8,
-          maxSpeed: 0.1,
+          maxSpeed: <%= component.speed.to_f/100 %> ,
           shape: <%= "'#{component.cloud_type}'".html_safe %>
           <%= ",lock: 'x'".html_safe if ['hcylinder','hring'].include? component.cloud_type %> 
           },'tags')) {
