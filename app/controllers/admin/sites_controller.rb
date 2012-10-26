@@ -18,7 +18,6 @@ class Admin::SitesController < ApplicationController
 
   def new
     @site = Site.new
-    @site.footer = t("admin.sites.form.footer_text")
     @themes = []
     (Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*.erb")] - Dir[File.join(Rails.root + "app/views/layouts/application.html.erb")] - Dir[File.join(Rails.root + "app/views/layouts/sites.html.erb")] - Dir[File.join(Rails.root + "app/views/layouts/session.html.erb")]).each do |file|
       @themes << file.split("/")[-1].split(".")[0]
@@ -42,7 +41,7 @@ class Admin::SitesController < ApplicationController
         @site.components.create({:place_holder=>'top', :settings=>"{:menu_id => \"#{menu_top.id}\"}", :name=>'menu_side', :position=>2, :publish=>true})
         @site.components.create({:place_holder=>'top', :settings=>'{}', :name=>'menu_accessibility',:position=>3, :publish=>true})
         @site.components.create({:place_holder=>'bottom', :settings=>"{:menu_id => \"#{menu_bottom.id}\"}", :name=>'menu_side', :position=>1, :publish=>true})
-        @site.components.create({:place_holder=>'bottom', :settings=>'{}', :name=>'info_footer', :position=>2,:publish=>true})
+        @site.components.create({:place_holder=>'bottom', :settings=>"{:body => \"#{t("admin.sites.form.footer_text")}\"}", :name=>'text', :position=>2, :alias=>'Rodapé', :publish=>true})
         @site.components.create({:place_holder=>'bottom', :settings=>'{}', :name=>'feedback', :position=>3,:publish=>true})
         @site.components.create({:place_holder=>'left', :settings=>"{:menu_id => \"#{menu_left.id}\"}", :name=>'menu_side', :position=>1,:publish=>true})
         @site.components.create({:place_holder=>'left', :settings=>'{:category => "esq", :orientation => "vertical"}', :name=>'banner_list', :position=>2,:publish=>true})
