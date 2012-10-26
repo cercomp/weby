@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class Admin::SitesController < ApplicationController
   before_filter :require_user, :only => [:new, :create, :edit, :update, :destroy]
   before_filter :check_authorization, :except => [:show, :index]
