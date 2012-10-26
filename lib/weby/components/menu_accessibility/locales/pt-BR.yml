@@ -1,4 +1,11 @@
 pt-BR:
   components:
     menu_accessibility:
-      name:             " Menu de acessibilidade "
+      name:                 " Menu de acessibilidade "
+  menu_accessibility:
+    views:
+      show:
+        increase_font_size: " Aumentar o tamanho da fonte "
+        decrease_font_size: " Diminuir o tamanho da fonte "
+        default_font_size:  " Tamanho padrão da fonte "
+        contrast:           " Alterar o contraste da página "

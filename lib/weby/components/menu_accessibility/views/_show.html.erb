@@ -1,8 +1,8 @@
 <nav class="menu_accessibility_component right">
-  <%= link_to icon('adjust'), "#", onclick: 'Contrast()' %>
-  <%= link_to icon('minus'), "#", onclick: 'font_size_down()'%>
-  <%= link_to icon('font'), "#", onclick: 'font_size_original()'%>
-  <%= link_to icon('plus'), "#", onclick: 'font_size_up()'%>
+  <%= link_to icon('adjust'), "#", onclick: 'Contrast()', title: t(".contrast") %>
+  <%= link_to icon('minus'), "#", onclick: 'font_size_down()', title: t(".decrease_font_size")%>
+  <%= link_to icon('font'), "#", onclick: 'font_size_original()', title: t(".default_font_size")%>
+  <%= link_to icon('plus'), "#", onclick: 'font_size_up()', title: t(".increase_font_size")%>
   <% content_for :javascripts, javascript_include_tag('font_size_control') %>
   <% content_for :javascripts, javascript_include_tag('rgbcolor') %>
   <% content_for :javascripts, javascript_include_tag('contrast') %>
