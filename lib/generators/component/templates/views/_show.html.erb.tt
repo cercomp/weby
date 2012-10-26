@@ -1,5 +1,5 @@
-<div class="<%=comp_name%>_component">
+<section class="<%=comp_name%>_component">
 
   <%= settings_names_show_view %>
 
-</div>
+</section>

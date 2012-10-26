@@ -1,0 +1,12 @@
+en:
+  components:
+    text:
+      name: "Text"
+  activerecord:
+    attributes:
+      text_component:
+        body: "Content"
+  text:
+    views:
+      show:
+      form:

@@ -1,0 +1,12 @@
+pt-BR:
+  components:
+    text:
+      name: "Texto"
+  activerecord:
+    attributes:
+      text_component:
+        body: "Conteúdo"
+  text:
+    views:
+      show:
+      form:
