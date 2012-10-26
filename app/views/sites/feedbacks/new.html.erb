@@ -4,7 +4,7 @@
   <%= f.show_errors %>
 
   <% unless @groups.empty? %>
-    <%= f.association :groups, label: "<font color='red'>*</font> #{t('.group')} (#{t(".group_explain")})",
+    <%= f.association :groups, label: "<abbr title='#{t("field_required")}'><font color='red'>*</font></abbr> #{t('.group')} (#{t(".group_explain")})",
           collection: @groups,
           as: :check_boxes,
           checked: params_groups %>
