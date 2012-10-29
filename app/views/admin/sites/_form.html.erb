@@ -12,8 +12,6 @@
   
   <%= f.input :view_desc_pages, :hint => t(".view_desc_pages_help"), :as => :boolean %>
 
-  <%= f.input :menu_dropdown, :hint => t(".desc_use_menu_dropdown"), :as => :boolean %>
-
   <%= f.input :theme, :collection => @themes.collect{|p| [ p , p]}, :selected => "this2", :label => t("layout") %>
 
   <%= f.association :locales,
