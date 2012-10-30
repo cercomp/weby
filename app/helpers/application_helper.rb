@@ -35,12 +35,13 @@ module ApplicationHelper
 
   # Define os menus
   # Parâmetros: Lista de menu (sons, view_ctrl=0)
+  # html_class: "dropdown" ou "expanded"
   # Retorna: O menu com seus controles
-  def print_menu(menu, view_ctrl=0)
+  def print_menu(menu, view_ctrl=0, html_class="expanded")
     ''.tap do |menus|
       if menu
         menuitems = menu.items_by_parent
-        menus << "\n<menu>"
+        menus << "\n<menu class=\"#{html_class}\">"
         if menuitems[0]
           menuitems[0].each do |child|
             menus << print_menu_entry(menuitems, child, view_ctrl, 1)

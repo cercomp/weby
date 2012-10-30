@@ -12,5 +12,5 @@
     </div>
   </div>
 <% else %>
-  <%= link_to image_tag('weby-icon.png'), login_path(back_url: site_admin_path), id: 'webyaccess' %>
+  <%= link_to image_tag('weby-icon.png'), login_path(back_url: site_admin_url(subdomain: current_site)), id: 'webyaccess' %>
 <% end %>

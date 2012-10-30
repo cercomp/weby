@@ -1,8 +1,8 @@
-<section class="banner_list_component">
+<section class="banner_list_component <%= component.orientation %>">
   <% @banners = current_site.banners.published.tagged_with(component.category) %>
   <% @banners.each do |banner| %>
     <% banner_url = banner.page_id ? site_page_path(banner.page_id) : banner.url %>
-    <div class="banner <%= component.orientation %>">
+    <div class="banner">
     <% if not banner.repository.nil? %>
       <figure class="banner_image">
         <% format = banner.size ? banner.size : "little" %>
