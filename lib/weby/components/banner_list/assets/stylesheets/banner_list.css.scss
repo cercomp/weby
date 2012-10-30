@@ -10,10 +10,6 @@
         position: relative;
     }
 
-    .banner.horizontal {
-        float: left;
-    }
-    
     .banner .unpublish{
         display: none;
         background-color: white;
@@ -29,5 +25,11 @@
         position: absolute;
         top: 0;
         left: 0;
+    }
+}
+
+.banner_list_component.horizontal {
+    .banner {
+        float: left;
     }
 }
