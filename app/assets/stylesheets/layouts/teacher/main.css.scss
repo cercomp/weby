@@ -132,36 +132,58 @@ aside {
   width: 155px;
   position: relative; }
 
-/* Define style to menu in side area */
+/* Define style to menu in side area, for expanded menus */
 aside menu {
   padding: 0;
-  margin: 0; }
-
+  margin: 0;
+}
 aside menu li {
   position: relative;
   margin: 0;
   list-style-type: none;
   padding-left: 5px;
-  z-index: 1; }
-
+  z-index: 1;
+}
 aside menu li:hover > menu {
   display: block;
-  top: -1px; }
-
+  top: -1px;
+}
 aside menu li menu {
   width: 100%;
   display: block;
-  border-width: 0px; }
-
+  border-width: 0px;
+}
 aside menu li a {
   display: block;
-  padding: 5px 7px; }
-
+  padding: 5px 7px;
+}
 aside menu li.sub > a {
-  font-weight: bold; }
-
+  font-weight: bold;
+}
 aside menu li > a {
-  text-align: left; }
+  text-align: left;
+}
+
+/* Define style to menu in side area, For Dropdown menus */
+aside menu.dropdown li { position: relative; margin: 0; list-style-type: none; border: 1px solid silver; }
+aside menu.dropdown li > a { background-color: #FFF; }
+aside menu.dropdown li:hover { background-color: #FF0000; }
+aside menu.dropdown li:hover > menu { display: block; position: absolute; top: -1px; }
+aside menu.dropdown li menu { width: 155px; display: none; border-width: 0px; }
+aside menu.dropdown li a { display: block; padding: 5px 7px; text-decoration: none; }
+aside menu.dropdown li.sub:hover { margin-right: 0px; border: 1px solid gray; }
+aside menu.dropdown li.sub > a { font-weight: bold; }
+
+aside.right menu.dropdown li { padding: 0 5px 0 0; }
+aside.right menu.dropdown li > a { text-align: right; }
+aside.right menu.dropdown li.sub > a { background: url("/assets/arrow_collapsed_right.png") no-repeat scroll transparent; background-position: left center; }
+aside.right menu.dropdown li.sub:hover > menu { left: -155px; z-index: 1; }
+
+aside.left menu.dropdown li { padding: 0 0 0 5px; z-index: 1;}
+aside.left menu.dropdown li > a { text-align: left; }
+aside.left menu.dropdown li.sub > a { background: url("/assets/arrow_collapsed.png") no-repeat scroll transparent; background-position: right center; }
+aside.left menu.dropdown li.sub:hover > menu { right: -155px; z-index: 1; }
+
 
 /* Define content area */
 section#content {
