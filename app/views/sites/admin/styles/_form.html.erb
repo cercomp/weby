@@ -12,17 +12,28 @@
     <%= f.input :css, 
       as: :text,
       wrapper_html: { class: 'nostyle' },
-      input_html: {class: 'style-editor' } %>
+      input_html: {class: 'style-editor', id: 'code' } %>
 
     <%= link_to icon('question-sign', text:t(".help_with_style")),
       (Setting.get(:help_site) || "/help"),
       target: "_blank"%>
 
-    
+
   </div>
 
   <div class="form-actions">
     <%= f.button :submit, class: 'btn-primary', disable_with: t("please_wait") %>
     <%= link_to t("back"), :back, class: "btn btn-danger" %>
   </div>
+<% end %>
+<%= content_for :stylesheets, stylesheet_link_tag("codeMirror/codemirror") %>
+<%= content_for :javascripts, javascript_include_tag("codeMirror/codemirror.min") %>
+<%= content_for :javascripts, javascript_include_tag("codeMirror/css.min") %>
+<%= content_for :javascripts do %>
+  <script type="text/javascript">
+      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        lineNumbers: true,
+        tabSize: 2
+      });
+  </script>
 <% end %>

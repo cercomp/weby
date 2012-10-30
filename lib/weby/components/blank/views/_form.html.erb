@@ -1,3 +1,21 @@
+<div class="input">
 <%= f.input :body,
       as: :text,
-      input_html: {class: 'style-editor' } %>
+      wrapper_html: { class: 'nostyle' },
+      input_html: { id: 'code' } %>
+</div>
+<%= content_for :stylesheets, stylesheet_link_tag("codeMirror/codemirror") %>
+<%= content_for :javascripts, javascript_include_tag("codeMirror/codemirror.min") %>
+<%= content_for :javascripts, javascript_include_tag("codeMirror/xml.min") %>
+<%= content_for :javascripts, javascript_include_tag("codeMirror/javascript.min") %>
+<%= content_for :javascripts, javascript_include_tag("codeMirror/css.min") %>
+<%= content_for :javascripts, javascript_include_tag("codeMirror/htmlmixed.min") %>
+<%= content_for :javascripts do %>
+  <script type="text/javascript">
+      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        mode: "text/html",
+        lineNumbers: true,
+        tabSize: 2
+      });
+  </script>
+<% end %>
