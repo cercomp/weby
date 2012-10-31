@@ -24,8 +24,8 @@
 #carousel img {display: block; opacity: .5; cursor: pointer;}
 #carousel img:hover {opacity: 1;}
 #carousel .flex-active-slide img {opacity: 1; cursor: default;}
-.photo_slider {padding-bottom: 10px; margin: 10px}
-#photo_slider_title {
+.photo_slider_component {padding-bottom: 10px; margin: 10px}
+.photo_slider_title {
   font-size: 18px;
   line-height: 21px;
   text-align: center;

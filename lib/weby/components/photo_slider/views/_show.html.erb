@@ -4,8 +4,8 @@
   <% imagens = component.generate_vector_images %>
   <% speed   = component.timer.to_i * 1000 %>
 
-  <%= content_tag :section, class: "photo_slider", style: " width: #{width}px;" do  %>
-    <%= content_tag :h3, component.title, id: "photo_slider_title" %>
+  <%= content_tag :section, class: "photo_slider_component", style: " width: #{width}px;" do  %>
+    <%= content_tag :h3, component.title, class: "photo_slider_title" %>
     <% if component.flex_slider_style? %>
 
       <% include_component_javascript :javascripts, 'photo_slider' %>
