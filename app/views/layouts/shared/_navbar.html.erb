@@ -23,7 +23,7 @@
         </div>
       <% else %>
         <ul class="nav pull-right">
-          <li> <%= link_to t(".login"), login_path(back_url: "#{request.fullpath}") %> </li>
+          <li> <%= link_to t(".login"), login_url(subdomain: nil, protocol: login_protocol, back_url: "#{request.fullpath}") %> </li>
           <li> <%= link_to t(".register"), new_admin_user_url(subdomain: nil) %> </li>
         </ul>
       <% end %>
@@ -49,7 +49,7 @@
             <%= link_to(t(".show_site"), site_path) if (is_in_admin_context? and current_site) %>
           </li>
           <li>
-            <%= link_to(t(".help"), Setting.get(:help_site), target: '_blank') if Setting.get(:help_site) %>
+            <%= link_to(t(".help"), weby_settings[:help_site], target: '_blank') if weby_settings[:help_site] %>
           </li>
           <li> <%= link_to t(".about"), '/about.html', target: '_blank' %> </li>
         </ul>

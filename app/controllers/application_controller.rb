@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_contrast, :set_locale, :set_global_vars
 
   helper :all
-  helper_method :current_user_session, :current_user, :user_not_authorized, :sort_direction, :current_locale, :current_site
+  helper_method :current_user_session, :current_user, :user_not_authorized, :sort_direction, :current_locale, :current_site, :weby_settings
 
   def admin
     render 'admin/admin'
@@ -71,6 +71,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # Return Settings as a Hash object
+  def weby_settings
+    @weby_settings ||= Hash[Setting.all.map{|st| [st.name.to_sym,st.value] }]
+  end
+
   def set_locale
     # I18n.load_path += Dir[ File.join(Rails.root, 'lib', 'locale', '*.{rb,yml}') ]
     locale = params[:locale] || session[:locale] || I18n.default_locale
@@ -92,7 +97,7 @@ class ApplicationController < ActionController::Base
     else
       flash.now[:error] = t("try_login")
     end
-    redirect_back_or_default login_path
+    redirect_back_or_default login_url(subdomain: nil, protocol: login_protocol)
   end
 
   unless Rails.application.config.consider_all_requests_local
@@ -166,7 +171,7 @@ class ApplicationController < ActionController::Base
     unless current_user
       store_location
       flash[:error] = t("need_login")
-      redirect_to login_path(back_url: "#{request.path}")
+      redirect_to login_url(subdomain: nil, protocol: login_protocol, back_url: "#{request.path}")
       return false
     end
   end

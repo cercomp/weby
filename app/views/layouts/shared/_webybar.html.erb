@@ -7,10 +7,10 @@
       <%= link_to t(".dashboard"), site_admin_path, class: 'left' %>
       <%= link_to t(".logout"), logout_path(back_url: site_path), class: 'right' %>
       <%= link_to current_user.first_name, admin_user_url(current_user, subdomain: nil), class: 'right' %>
-      <%= link_to(t(".help"), Setting.get(:help_site), target: '_blank', class: 'left') if Setting.get(:help_site) %>
+      <%= link_to(t(".help"), weby_settings[:help_site], target: '_blank', class: 'left') if weby_settings[:help_site] %>
       <%= link_to t(".about"), '/about.html', target: '_blank', class: 'left' %>
     </div>
   </div>
 <% else %>
-  <%= link_to image_tag('weby-icon.png'), login_path(back_url: site_admin_url(subdomain: current_site)), id: 'webyaccess' %>
+  <%= link_to image_tag('weby-icon.png'), login_url(subdomain: nil, protocol: login_protocol, back_url: site_admin_url(subdomain: current_site)), id: 'webyaccess' %>
 <% end %>

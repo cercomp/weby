@@ -1,7 +1,7 @@
 <h4>
   <%= t(".login") %>
 </h4>
-<%= simple_form_for @session, url: login_path, method: :post do |f| %>
+<%= simple_form_for @session, url: login_url(subdomain: nil, protocol: login_protocol), method: :post do |f| %>
   <%= f.show_errors %>
   <%= hidden_field_tag :back_url, "#{params[:back_url].blank? ? request.fullpath : params[:back_url]}" %>
   <%= f.input :login, required: true, autofocus: true, autocapitalize: "off" %>

@@ -335,7 +335,7 @@ module ApplicationHelper
       ( @site.try(:per_page_default) || 
        Site.columns_hash['per_page_default'].try(:default) ).to_i
     else
-      Setting.get(:per_page_default).try(:to_i) || 25
+      weby_settings[:per_page_default].try(:to_i) || 25
     end
   end
 
@@ -346,7 +346,7 @@ module ApplicationHelper
       ( @site.try(:per_page) || Site.columns_hash['per_page'].default ) << 
       ",#{per_page_default}"
     else
-      ( Setting.get(:per_page) || "5,15,30,60,100" ) << 
+      ( weby_settings[:per_page] || "5,15,30,60,100" ) <<
       ",#{per_page_default}"
     end
   end
@@ -414,5 +414,9 @@ module ApplicationHelper
         raw "<i class='#{icon_class}'></i> #{args[:text]}"
       end
     end
+  end
+
+  def login_protocol
+    weby_settings[:login_protocol] || "http"
   end
 end

@@ -9,7 +9,7 @@
 <body>
   <div class="container">
     <div class="well session">
-      <%= link_to login_url(subdomain: nil), class: "logo-box" do %>
+      <%= link_to login_url(subdomain: nil, protocol: login_protocol), class: "logo-box" do %>
         <%= image_tag 'weby.png', class: 'logo' %>
       <% end %>
       <div class="content">
@@ -20,7 +20,7 @@
       </div>
       <div class="links pull-right">
         <%= link_to t(".portals"), root_url(subdomain: nil) %>
-        <%= link_to(t(".help"), Setting.get(:help_site), target: '_blank') if Setting.get(:help_site) %>
+        <%= link_to(t(".help"), weby_settings[:help_site], target: '_blank') if weby_settings[:help_site] %>
       </div>
       <div class="clearfix"></div>
     </div>

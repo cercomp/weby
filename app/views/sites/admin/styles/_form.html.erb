@@ -15,7 +15,7 @@
       input_html: {class: 'style-editor', id: 'code' } %>
 
     <%= link_to icon('question-sign', text:t(".help_with_style")),
-      (Setting.get(:help_site) || "/help"),
+      (weby_settings[:help_site] || "/help"),
       target: "_blank"%>
 
 

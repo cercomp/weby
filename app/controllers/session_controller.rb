@@ -91,7 +91,7 @@ class SessionController < ApplicationController
     @user = User.find_using_perishable_token(params[:id], 1.week)
     unless @user
       flash[:error] = t("missing_account")
-      redirect_to login_url 
+      redirect_to login_url(subdomain: nil, protocol: login_protocol)
     end
   end
 

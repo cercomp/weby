@@ -3,23 +3,21 @@ module Weby
     include ActionDispatch::Http::URL
 
     def self.matches?(request)
-      #TODO deixar o acesso a Settings mais eficiente, aqui e no sistema inteiro
-      # menos acessos ao banco
-      settings = Setting.all
-      root_site = settings.select{ |s| s.name == 'root_site'}[0]
-      index_id   = settings.select{ |s| s.name == 'sites_index'}[0]
-      tld_length = settings.select{ |s| s.name == 'tld_length'}[0]
+      settings = Hash[Setting.all.map{|st| [st.name.to_sym,st.value] }]
+      root_site  = settings[:root_site]
+      index_id   = settings[:sites_index]
+      tld_length = settings[:tld_length]
       @site_id = nil
 
-      @@tld_length = (tld_length ? tld_length.value : '1').to_i
+      @@tld_length = (tld_length ? tld_length : '1').to_i
 
       if request.subdomain.present? && request.subdomain != "www"
         if index_id
-          return false if request.subdomain == index_id.value
+          return false if request.subdomain == index_id
         end
         @site_id = request.subdomain.gsub(/www\./, '') and return true
       else
-        @site_id = root_site.value and return true if root_site
+        @site_id = root_site and return true if root_site
       end
     end
 
