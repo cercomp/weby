@@ -51,8 +51,11 @@ class SitesController < ApplicationController
   def robots
     robots_file = Rails.root.join("public", "uploads", current_site.id.to_s, "original_robots.txt") if current_site
 
-    render file: (robots_file && FileTest.exist?(robots_file) ?
+    #render file: (robots_file && FileTest.exist?(robots_file) ?
+    #  robots_file : Rails.root.join("public","default_robots.txt")), :layout => false, :content_type => "text/plain"
+    render text: File.read(robots_file && FileTest.exist?(robots_file) ?
       robots_file : Rails.root.join("public","default_robots.txt")), :layout => false, :content_type => "text/plain"
+
   end
 
   private
