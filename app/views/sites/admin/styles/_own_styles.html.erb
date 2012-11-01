@@ -1,40 +1,36 @@
-<details open class="styles" id="own_styles">
-  <summary><%= t(".own_styles") %></summary>
-  <div>
-    <% unless styles.empty? %>
-      <%= info_page styles %>
-
-      <table class='table table-striped' id='style_list'>
-        <thead>
-          <th> <%= t('.name') %> </th>
-          <th> <%= t('.sites_followers') %> </th>
-          <th> <%= t('.actions') %> </th>
-        </thead>
-        <tbody>
-          <% styles.each do |style| %>
-            <tr id="sort_style_<%= style.id %>" class="<%= style.publish ? "success" : "error" %>">
-              <td> <%= style.name %> </td>
-              <td> 
-                <% style.followers.each do |site| %>
-                  <%= site.name %>
-                <% end %>
-              </td>
-              <td class="style-action">
-                <%= raw style_actions style %>
-                <% with_permission(action: :sort) do %>
-                  <span class='handle'><%= icon('move', text: t("move")) %></span>
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-
-    <% else %>
-      <p class="empty"> <%= t('.no_own_styles') %> </p>
-    <% end %>
+<% unless styles.empty? %>
+  <div class="styles" id="own_styles">
+    <table class='table table-striped' id='style_list'>
+      <thead>
+        <th> <%= t('.name') %> </th>
+        <th> <%= t('.sites_followers') %> </th>
+        <th> <%= t('.actions') %> </th>
+      </thead>
+      <tbody>
+        <% styles.each do |style| %>
+          <tr id="sort_style_<%= style.id %>" class="<%= style.publish ? "success" : "error" %>">
+            <td> <%= style.name %> </td>
+            <td> 
+              <% style.followers.each do |site| %>
+                <%= link_to site.name, site_url(subdomain: site) %>
+              <% end %>
+            </td>
+            <td class="style-action">
+              <% with_permission(action: :sort) do %>
+                <span class='handle'><%= icon('move', text: t("move")) %></span>
+              <% end %>
+              <%= raw style_actions style %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
-</details>
+<% else %>
+  <div class="alert">
+    <%= t('.no_own_styles') %>
+  </div>
+<% end %>
 
 <%= javascript_tag do %>
   window.onload=function(){

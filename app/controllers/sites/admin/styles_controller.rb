@@ -115,29 +115,30 @@ class Sites::Admin::StylesController < ApplicationController
     publish
   end
 
-
   def unfollow
     @style = Style.find(params[:id])
     @site_style = @style.sites_styles.where(site_id: @site.id).first
     @site_style.destroy
 
-    redirect_to site_admin_styles_path()
+    redirect_to site_admin_styles_path(others: true)
   end
 
   def publish
     @style = Style.find(params[:id])
-    @style = @style.sites_styles.where(site_id: @site.id).first if @style.owner != @site
+    own = @style.owner != current_site
+    @style = @style.sites_styles.where(site_id: @site.id).first if own
     @style.update_attributes(publish: true)
 
-    redirect_to site_admin_styles_path()
+    redirect_to site_admin_styles_path(others: own ? "true" : nil) 
   end
 
   def unpublish
     @style = Style.find(params[:id])
-    @style = @style.sites_styles.where(site_id: @site.id).first if @style.owner != @site
+    own = @style.owner != current_site
+    @style = @style.sites_styles.where(site_id: @site.id).first if own
     @style.update_attributes(publish: false)
 
-    redirect_to site_admin_styles_path()
+    redirect_to site_admin_styles_path(others: own ? "true" : nil)
   end
 
   def copy
