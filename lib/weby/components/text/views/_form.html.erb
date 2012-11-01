@@ -1,3 +1,4 @@
 <%= f.input :body, :input_html => {class: "mceSimple", style: "width: 550px; height: 280px;"}, :as => :text%>
+<%= f.input :html_class, :input_html => {:pattern => '^[A-Za-z0-9_\-]*$'} %>
 
 <%= content_for :javascripts, javascript_include_tag("text_component_form") %>

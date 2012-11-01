@@ -1,11 +1,12 @@
 pt-BR:
   components:
     text:
-      name: "Texto"
+      name:           "Texto"
   activerecord:
     attributes:
       text_component:
-        body: "Conteúdo"
+        body:         "Conteúdo"
+        html_class:   "Classe HTML"
   text:
     views:
       show:

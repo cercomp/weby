@@ -1,11 +1,12 @@
 en:
   components:
     text:
-      name: "Text"
+      name:           "Text"
   activerecord:
     attributes:
       text_component:
-        body: "Content"
+        body:         "Content"
+        html_class:   "HTML Class"
   text:
     views:
       show:
