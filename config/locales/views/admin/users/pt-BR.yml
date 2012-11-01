@@ -8,6 +8,7 @@ pt-BR:
         email:              " E-mail "
         phone:              " Telefone "
         mobile:             " Celular "
+        locale:             " Idioma "
         register:           " Cadastro "
         last_request:       " Última ação "
         global_roles:       " Papéis Globais "
@@ -19,6 +20,7 @@ pt-BR:
         username:           " Nome do Usuário "
         password:           " Senha "
         password_change:    " Nova senha "
+        locale_hint:        " Idioma a ser utilizado na área administrativa "
       index:
         users:              " Usuários "
         new_user:           " Novo Usuário "

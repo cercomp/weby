@@ -30,33 +30,29 @@ class Admin::SitesController < ApplicationController
     if @site.save
 
       # TODO mover o código a seguir para um lugar melhor (um yml talvez)
-      if @site.theme == 'this2' or @site.theme == 'teacher'
+      if @site.theme == 'this2'
 
-        menu_top    = @site.menus.create({:name => 'menu superior'})
-        menu_left   = @site.menus.create({:name => 'menu esquerdo'})
-        menu_bottom = @site.menus.create({:name => 'menu inferior'})
+        menu_top    = @site.menus.create({:name => 'Menu Superior'})
+        menu_left   = @site.menus.create({:name => 'Menu Esquerdo'})
+        menu_right   = @site.menus.create({:name => 'Menu Direito'})
+        menu_bottom = @site.menus.create({:name => 'Menu Inferior'})
 
         @site.components.create({:place_holder=>'first_place',:settings=>'{:background => "#7F7F7F"}',:name=>'gov_bar', :position=>1, :publish=>true})
         @site.components.create({:place_holder=>'first_place',:settings=>'{}', :name=>'institutional_bar', :position=>2, :publish=>true})
         @site.components.create({:place_holder=>'top', :settings=>'{}', :name=>'header', :position=>1, :publish=>true})
         @site.components.create({:place_holder=>'top', :settings=>"{:menu_id => \"#{menu_top.id}\"}", :name=>'menu', :position=>2, :publish=>true})
         @site.components.create({:place_holder=>'top', :settings=>'{}', :name=>'menu_accessibility',:position=>3, :publish=>true})
+        @site.components.create({:place_holder=>'left', :settings=>"{:menu_id => \"#{menu_left.id}\"}", :name=>'menu', :position=>1,:publish=>true})
+        @site.components.create({:place_holder=>'left', :settings=>'{:category => "esq", :orientation => "vertical"}', :name=>'banner_list', :position=>2,:publish=>true})
+        @site.components.create({:place_holder=>'right', :settings=>"{:width => \"\", :align => \"left\"}", :name=>'search_box', :position=>1, :publish=>true})
+        @site.components.create({:place_holder=>'right', :settings=>"{:menu_id => \"#{menu_right.id}\"}", :name=>'menu', :position=>2, :publish=>true})
+        @site.components.create({:place_holder=>'right', :settings=>'{:category => "dir", :orientation => "vertical"}', :name=>'banner_list', :position=>3, :publish=>true})
         @site.components.create({:place_holder=>'bottom', :settings=>"{:menu_id => \"#{menu_bottom.id}\"}", :name=>'menu', :position=>1, :publish=>true})
         @site.components.create({:place_holder=>'bottom', :settings=>"{:body => \"#{t("admin.sites.form.footer_text")}\"}", :name=>'text', :position=>2, :alias=>'Rodapé', :publish=>true})
         @site.components.create({:place_holder=>'bottom', :settings=>'{}', :name=>'feedback', :position=>3,:publish=>true})
-        @site.components.create({:place_holder=>'left', :settings=>"{:menu_id => \"#{menu_left.id}\"}", :name=>'menu', :position=>1,:publish=>true})
-        @site.components.create({:place_holder=>'left', :settings=>'{:category => "esq", :orientation => "vertical"}', :name=>'banner_list', :position=>2,:publish=>true})
         @site.components.create({:place_holder=>'home', :settings=>'{:quant => "5"}', :name=>'front_news', :position=>1,:publish=>true})
         @site.components.create({:place_holder=>'home', :settings=>'{:quant => "5"}', :name=>'no_front_news', :position=>2,:publish=>true})
-
-        if @site.theme == 'this2'
-
-          menu_right   = @site.menus.create({:name => 'menu direito'})
-
-          @site.components.create({:place_holder=>'right', :settings=>"{:width => \"\", :align => \"left\"}", :name=>'search_box', :position=>1, :publish=>true})
-          @site.components.create({:place_holder=>'right', :settings=>"{:menu_id => \"#{menu_right.id}\"}", :name=>'menu', :position=>2, :publish=>true})
-          @site.components.create({:place_holder=>'right', :settings=>'{:category => "dir", :orientation => "vertical"}', :name=>'banner_list', :position=>3, :publish=>true})
-        end
+         
       end
 
       redirect_to site_admin_components_url(subdomain: @site)

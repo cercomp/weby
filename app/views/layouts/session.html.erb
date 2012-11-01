@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="<%= session[:locale].to_s %>">
+<html lang="<%= current_locale %>">
 <head>
   <title>Weby</title>
   <meta charset="utf-8">
@@ -12,6 +12,11 @@
       <%= link_to login_url(subdomain: nil, protocol: login_protocol), class: "logo-box" do %>
         <%= image_tag 'weby.png', class: 'logo' %>
       <% end %>
+      <div class="i18n_menu pull-right">
+          <% admin_locales.each do |locale| %>
+            <%= link_to flag(locale), params.merge(locale: locale.name ) %>
+          <% end %>
+      </div>
       <div class="content">
         <div class='padding-box'>
           <%= raw flash_message %>

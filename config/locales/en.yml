@@ -3,9 +3,9 @@ en:
 
 #--- Other locales ---#
   # Locales translation
-  pt-BR: " Português (Brasil) "
-  en:    " Inglês "
-  es:    " Espanhol"
+  pt-BR: " Portuguese (Brazil) "
+  en:    " English "
+  es:    " Spanish"
 
 #---A---#
   active_deactive:                      " Active Deactive  "

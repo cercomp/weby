@@ -8,7 +8,6 @@ module ComponentsHelper
     places = {
       'weby' => ['first_place', 'top', 'left', 'right', 'home', 'bottom'],
       'this2' => ['first_place', 'top', 'left', 'home', 'right', 'bottom'],
-      'teacher' => ['first_place', 'top', 'left', 'home', 'bottom'],
       'weby_doc' => ['first_place', 'top' ,'home','bottom'],
       'interteias' => ['first_place', 'top', 'home', 'bottom']
     }

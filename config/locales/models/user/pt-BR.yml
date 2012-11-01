@@ -15,6 +15,7 @@ pt-BR:
         last_name:             " Sobrenome "
         phone:                 " Telefone "
         mobile:                " Celular "
+        locale_id:             " Idioma "
         created_at:            " Criado em "
         updated_at:            " Atualizado em "
         password:              " Senha "

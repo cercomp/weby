@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="<%= session[:locale].to_s %>">
+<html lang="<%= current_locale %>">
 <%= render 'layouts/shared/head', theme: 'this2' %>
 <body>
   <%= render 'layouts/shared/webybar' %>

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="<%= session[:locale].to_s %>">
+<html lang="<%= current_locale %>">
   <head>
     <title><%= @site.try(:description) || 'Weby' %></title>
     <meta charset="utf-8">

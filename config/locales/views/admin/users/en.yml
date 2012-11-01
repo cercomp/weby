@@ -8,6 +8,7 @@ en:
         email:              " E-mail "
         phone:              " Phone "
         mobile:             " Mobile "
+        locale:             " Language "
         register:           " Register "
         last_request:       " Last Request "
         global_roles:       " Global Roles "
@@ -16,7 +17,10 @@ en:
       new:
         new_user:           " New User "
       form:
-        username:           " User Name "
+        username:           " Username "
+        password:           " Password "
+        password_change:    " New Password "
+        locale_hint:        " Language for the admin interface "
       index:
         users:              " Users "
         new_user:           " New User "

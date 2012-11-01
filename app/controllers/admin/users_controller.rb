@@ -2,18 +2,8 @@
 class Admin::UsersController < ApplicationController
   before_filter :require_user
   before_filter :check_authorization, :except => [:new, :create, :show, :edit, :update]
-  before_filter :get_theme
   respond_to :html, :xml
   helper_method :sort_column
-
-  def change_theme
-    if params[:id] && current_user
-      @user = current_user
-      @user.update_attribute(:theme, params[:id])
-      flash[:success] = t("look_changed")
-    end
-    redirect_back_or_default root_path
-  end
 
   def manage_roles
     # Se a ação for selecionada para um site:
@@ -158,16 +148,8 @@ class Admin::UsersController < ApplicationController
   def sort_column
     User.column_names.include?(params[:sort]) ? params[:sort] : 'id'
   end
-  # Cria uma variável themes com base nos temas disponíveis
-  def get_theme
-    files = []
-    for file in Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*")]
-      files << file.split("/")[-1].split(".")[0]
-    end
-    @themes = files
-  end
-
+  
   def user_params
-    params[:user].slice(:login, :email, :password, :password_confirmation, :first_name, :last_name, :phone, :mobile, :theme)
+    params[:user].slice(:login, :email, :password, :password_confirmation, :first_name, :last_name, :phone, :mobile, :locale_id)
   end
 end

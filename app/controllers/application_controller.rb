@@ -76,15 +76,18 @@ class ApplicationController < ActionController::Base
     @weby_settings ||= Hash[Setting.all.map{|st| [st.name.to_sym,st.value] }]
   end
 
+  def locale_key
+    is_in_admin_context? ? :admin : current_site ? current_site.id : 0
+  end
+
   def set_locale
-    # I18n.load_path += Dir[ File.join(Rails.root, 'lib', 'locale', '*.{rb,yml}') ]
-    locale = params[:locale] || session[:locale] || I18n.default_locale
-    @current_locale = session[:locale] = I18n.locale = locale
+    session[:locales] ||= {}
+    locale = (is_in_admin_context? ? current_user.locale.try(:name) : params[:locale] || session[:locales][locale_key]) || I18n.default_locale
+    @current_locale = session[:locales][locale_key] = I18n.locale = locale if locale != @current_locale
   end
 
   def current_locale
-    return @current_locale_object if defined?(@current_locale_object)
-    @current_locale_object = Locale.find_by_name(@current_locale)
+    @current_locale
   end
 
   def set_contrast

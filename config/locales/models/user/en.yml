@@ -15,6 +15,7 @@ en:
         last_name:             " Last Name "
         phone:                 " Phone "
         mobile:                " Mobile "
+        locale_id:             " Language "
         created_at:            " Created at "
         updated_at:            " Updated at "
         password:              " Password "
