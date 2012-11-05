@@ -17,6 +17,7 @@ module ComponentsHelper
 
   #retorna as divs do mini layout ---  menu de adicionar componente
   def make_mini_layout
+    content_for :stylesheets, stylesheet_link_tag("layouts/#{current_site.theme}/mini")
     divs = "<div id='mini_layout'>"  
     places_holder.map do |position|
       divs += "<div id='mini_#{position}' class='hover'> #{t("components.pos.#{position}")}  </div>"
