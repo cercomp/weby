@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--[if lt IE 9]>
-      <%= javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js" %>
+      <%= javascript_include_tag "html5" %>
     <![endif]-->
     <%= yield :stylesheets %>
     <%= stylesheet_link_tag 'application' %>
@@ -44,7 +44,7 @@
     <footer id="footer" class="container">
       <p> <%= t("application.licence") %> </p>
     </footer>
-    <%= javascript_include_tag "application-new" %>
+    <%= javascript_include_tag "application" %>
     <%= yield :javascripts %>
   </body>
 </html>

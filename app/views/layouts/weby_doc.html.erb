@@ -1,14 +1,6 @@
 <!doctype html>
 <html lang="<%= current_locale %>">
-<head>
-  <title>Weby Documentation</title>
-  <meta charset="utf-8">
-  <%= csrf_meta_tag %>
-  <%= stylesheet_link_tag '_webybar' %>
-  <%= stylesheet_link_tag 'layouts/weby_doc/main' %>
-  <%= render 'sites/shared/loadStyles' %>
-  <%= yield :stylesheets %>
-</head>
+<%= render 'layouts/shared/head', layout: 'weby_doc' %>
 <body>
   <%= render_webybar %>
   <div class="first_place">
@@ -42,6 +34,6 @@
   <footer>
     <%= load_components 'bottom' %>
   </footer>
-  <%= render 'layouts/shared/javascripts' %>
+  <%= render 'layouts/shared/javascripts', layout: 'weby_doc' %>
 </body>
 </html>

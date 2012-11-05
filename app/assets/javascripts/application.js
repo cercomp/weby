@@ -1,71 +1,45 @@
-//= require jquery  
-//= require jquery_ujs  
+//= require jquery
+//= require jquery_ujs 
 //= require bootstrap
-//= require_self  
-
-/**
- * FIXME: POG-MASTER!!
- * Para corrigir o erro de console no IE8
- * O IE8 não cria o objeto console enquanto não abrir a 
- * janela do console, por isso algumas coisas com tratamento
- * de exceção usando o console para logar o erro
- * falham totalmente.
- */
-if (!window.console) {
-   window.console = new Object();
-   window.console.warn = function () { };
-   window.console.error = function () { }; 
-}
-
-/**
- * Eventos genéricos para qualquer documento do WEBY
- */
-$(document).ready(function() {
-   // Ajax indicator
-   $('body').ajaxSend(function(){
-      Loading.show();
-   }).ajaxComplete(function(evt,xhr){
-      Loading.hide();
-      FlashMsg.notify(xhr.status);
-   });
-
-   $('form').submit(function(){
-      Loading.show();
-   })
-
-   /////////////////////////////////////////////////////////////////////////////
-   // ManageRoles limpa area do formulário
-   $('.role_edit').each(function (link) {
-      $(this).bind("ajax:success", function(data, status, xhr) {
-         $('#user_'+$(this).attr('user_id')).hide();
-      });
-   });
-
-   // ManageRoles muda o cursor do ponteiro
-   $('.role_edit').each( function (link) {
-      $(this).bind("ajax:success", function (data, status, xhr) {
-         document.body.style.cursor = "default"
-         $('#user_'+$(this).attr('user_id')).hide()
-      })
-
-      $(this).click( function () {
-         document.body.style.cursor = "wait"
-      })
-   });
-
-});
-
+//= require tables
+//= require_self
 var WEBY = {};
 
-function hide_enroled_option() {
-   $('form[id^=\"form_user\"]').each(function (e){ $(this).hide(); })
+function show_dialog(ele) {
+  if(!$('#modal_page_list').length){
+     $('body').append('<div id="modal_page_list" class="modal fade" style="display: none;">'+
+    '<div class="modal-header"><h3>Selecione uma notícia</h3></div>'+
+    '<div class="modal-body"></div>'+
+    '<div class="modal-footer"><a href="#" class="btn" data-dismiss="modal">Fechar</a></div>'+
+    '</div>');
+  }
+  
+  $.get(ele.attr('data-link'),{'template' : 'list_popup'}, function(data){
+      $('#modal_page_list').modal('show');
+  }, 'script');
+
 }
 
-function hide_form(id) {
-   $('#user_' + id).show();
-   $('#form_user_' + id).hide();
-
-   return false;
+// Mostrar mensagem para erros, no retorno do ajax
+FlashMsg = {
+   notify: function(status){
+      //TODO algumas requisições ajax, retornam 500, mesmo quando OK
+      //if([403,500].indexOf(status)>-1){
+      if(status == 403){
+         //flash = $(document.createElement('div'));
+         //$('#content').prepend(flash);
+         //flash.addClass('alert alert-error notify');
+         //flash.text(status==403 ?'Acesso Negado':status==500 ?'Erro no servidor':'');
+         //flash.append('<a class="close" data-dismiss="alert" href="#">×</a>');
+         //flash.append(status==403 ?'Acesso Negado':'');
+         $('<div class="modal">'+
+             '<div class="modal-header"><h3>Acesso Negado</h3></div>'+
+             '<div class="modal-body">'+
+             '<div class="alert alert-error">Você não possui permissão para esta ação</div></div>'+
+             '<div class="modal-footer"><a class="btn btn-primary" data-dismiss="modal">OK</a></div>'+
+             '</div>').modal('show');
+      }
+   }
 }
 
 function addToSelect(selectId, text){
@@ -75,64 +49,57 @@ function addToSelect(selectId, text){
    $(option).attr('selected', true);
 }
 
-// Objeto para carregar gif
-Loading = {
-   place_holder: $(document.createElement('div')), 
-   image: new Image(),
-   show: function(isModal){
-      if($('#ajax-indicator').length <= 0){
-         this.image.src = '/assets/loading.gif';
-         this.place_holder.html(this.image).append(' Loading...');
-         this.place_holder.appendTo($('body'));
-         this.place_holder.addClass("ajax-indicator ui-state-highlight");
-      }
-      this.place_holder.slideDown();
-   },
-   hide: function(){
-      this.place_holder.slideUp();
-   }
-}
+var WEBY = {};
 
-// Mostrar mensagem para erros, no retorno do ajax
-FlashMsg = {
-   notify: function(status){
-      //TODO algumas requisições ajax, retornam 500, mesmo quando OK
-      //if([403,500].indexOf(status)>-1){
-      if(status == 403){
-
-         flash = $(document.createElement('div'));
-         $('#content').prepend(flash);
-         flash.addClass('flash error notify');
-         //flash.text(status==403 ?'Acesso Negado':status==500 ?'Erro no servidor':'');
-         flash.text(status==403 ?'Acesso Negado':'');
-         flash.append('<a href="#" style="float:right;">x</a>');
-         flash.find('a').click(function(){$(this).parent('div').remove();return false;});
-         flash.slideDown().delay(3000).slideUp(function(){
-            $(this).remove();
-         });
-      }
-   }
-}
-
-function toogle_select_multiple(select){
-  if($(select).attr("multiple")){
-     $(select).attr("multiple",null);
-  }else{
-     $(select).attr("multiple","multiple");
-  }
-}
-
-/**
-* Coloca um countainer para a lista de paginas
-*/
 function show_dialog(ele) {
-  if(!$('#page_list').length)
-     $('.page_select').append('<div id="page_list" style="display: none;" title="Selecione uma notícia"><img src="/assets/spinner.gif"></div>');
+  if(!$('#modal_page_list').length){
+     $('body').append('<div id="modal_page_list" class="modal fade" style="display: none;">'+
+'<div class="modal-header"><h3>Selecione uma notícia</h3></div>'+
+'<div class="modal-body"></div>'+
+'<div class="modal-footer"><a href="#" class="btn" data-dismiss="modal">Fechar</a></div>'+
+'</div>');
+  }
+  
+  $.get(ele.attr('data-link'),{'template' : 'list_popup'}, function(data){
+      $('#modal_page_list').modal('show');
+  }, 'script');
 
-  $.get(ele.attr('data-link'),{'template' : 'list_popup'}, null, 'script');
-
-  $('#page_list').dialog({
-     width: '700',
-     height: '400'
-  });
 }
+
+$(document).ready(function() {
+   // Ajax indicator
+   $('body').append($('<div class="modal hide" data-backdrop="false" style="width: 150px; margin: -30px 0 0 -75px; z-index: 1060;" id="loading-modal"><div class="modal-body"><img src="/assets/loading-bar.gif"/></div></div>'));
+   $('body').ajaxSend(function(){
+      $('#loading-modal').modal('show');
+   }).ajaxComplete(function(evt,xhr){
+      $('#loading-modal').modal('hide');
+      FlashMsg.notify(xhr.status);
+   });
+
+   //Fixar o menu admin quando o usuário rola a página
+   //inclusive responsivo
+   var menuadmin = $('#menu-admin');
+   var webynavbar = $('#weby-navbar');
+   if(menuadmin.length>0){
+       $(window).scroll(function(){
+           if($(window).width() >= 768){
+               maincontainer = $('#main-container');
+               webybarheight = webynavbar.css('position')=='fixed'? webynavbar.height() : 0;
+               windowtop = $(this).scrollTop() + webybarheight;
+               if(windowtop >= maincontainer.position().top){
+                   if(menuadmin.css('position')!='fixed')
+                       menuadmin.css({'position':'fixed',
+                       'top':(webybarheight+parseInt(maincontainer.css("padding-top")))+'px',
+                       'width':menuadmin.width()+'px'});
+               }else{
+                   if(menuadmin.css('position')=='fixed')
+                       menuadmin.css({'position':'','top':'', 'width':''});
+               }
+           }
+        });
+    }
+    $(window).resize(function(){
+        menuadmin.css({'position':'','top':'', 'width':''});
+        $(window).scroll();
+    });
+});

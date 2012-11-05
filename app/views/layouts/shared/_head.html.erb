@@ -5,13 +5,13 @@
   <%= csrf_meta_tag %>
   <%= auto_discovery_link_tag(:rss, site_feed_url(format: 'rss'),  {:title => "#{@site.try(:title)} - RSS"}) %>
   <%= auto_discovery_link_tag(:atom, site_feed_url(format: 'atom'),  {:title => "#{@site.try(:title)} - ATOM"}) %>
-  <%= load_layout_stylesheets(theme) %>
+  <%= load_layout_stylesheet(layout) %>
   <%= stylesheet_link_tag '_webybar' %>
-  <%= render 'sites/shared/loadStyles' %>
   <%= yield :stylesheets %>
+  <%= render 'sites/shared/loadStyles' %>
   <!--[if lt IE 9]>
-    <%= javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js" %>
-    <%= javascript_include_tag "http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js" %>
+    <%= javascript_include_tag "html5" %>
+    <%= javascript_include_tag "IE9" %>
   <![endif]-->
 </head>
 <noscript>

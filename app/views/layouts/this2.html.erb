@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="<%= current_locale %>">
-<%= render 'layouts/shared/head', theme: 'this2' %>
+<%= render 'layouts/shared/head', layout: 'this2' %>
 <body>
   <%= render_webybar %>
   <div class='first_place'>
@@ -24,6 +24,6 @@
       <%= load_components 'bottom' %>
     </footer>
   </div>
-  <%= render 'layouts/shared/javascripts' %>
+  <%= render 'layouts/shared/javascripts', layout: 'this2' %>
 </body>
 </html>
