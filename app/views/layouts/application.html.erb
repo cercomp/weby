@@ -1,7 +1,8 @@
+<% admin_title = content_for?(:title) ? content_for(:title) : t("application.dashboard") %>
 <!doctype html>
 <html lang="<%= current_locale %>">
   <head>
-    <title>Weby</title>
+    <title>Weby - <%= admin_title %></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--[if lt IE 9]>
@@ -16,7 +17,7 @@
     <header id="header" class="container">
       <div class="row">
         <div class="span9 title">
-          <%= content_for?(:title) ? content_for(:title) : t("application.dashboard") %>
+          <%= admin_title %>
         </div>
         <div class="span3 hidden-phone">
           <%= image_tag 'weby-dashboard.png' %>

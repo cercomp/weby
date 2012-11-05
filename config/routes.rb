@@ -9,10 +9,6 @@ Weby::Application.routes.draw do
     match "/feed" => "sites/pages#published", as: :site_feed,
       defaults: { format: "rss", per_page: 10, page: 1 }
   
-    # route to paginate
-    match "admin/banners/page/:page" => "sites/admin/banners#index"
-    match "admin/groups/page/:page" => "sites/admin/groups#index"
-
     resources :pages,
       as: :site_pages, 
       controller: "sites/pages", 
@@ -38,6 +34,13 @@ Weby::Application.routes.draw do
       only: [:show]
 
     namespace :admin, module: 'sites/admin', as: :site_admin do
+
+      # route to paginate
+      match "banners/page/:page" => "banners#index"
+      match "groups/page/:page" => "groups#index"
+      match "repositories/page/:page" => "repositories#index"
+      match "pages/page/:page" => "pages#index"
+      
       resources :feedbacks, except: [:new, :create]
       resources :groups
       resources :banners do
@@ -101,6 +104,9 @@ Weby::Application.routes.draw do
   
   root :to => "sites#index"
 
+  #rota para paginação
+  match "sites/page/:page" => "sites#index"
+  
   constraints(Weby::GlobalDomain) do
     match "/admin" => "application#admin"
     namespace :admin do
@@ -129,7 +135,8 @@ Weby::Application.routes.draw do
       resources :sites, except: [:show]
       
       # route to paginate
-      match "admin/users/page/:page" => "admin/users#index"
+      match "users/page/:page" => "users#index"
+      match "sites/page/:page" => "sites#index"
     end 
   end
 
