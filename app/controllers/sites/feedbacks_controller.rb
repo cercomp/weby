@@ -7,14 +7,6 @@ class Sites::FeedbacksController < ApplicationController
   respond_to :html, :xml, :js
 
   def new
-    if(@groups.length == 0)
-      users = User.by_site(@site.id).actives
-      if (users.length == 0)
-        flash[:error] = t("no_groups")
-        redirect_back_or_default @site
-        return
-      end
-    end
     @feedback = Feedback.new
 
     respond_to do |format|

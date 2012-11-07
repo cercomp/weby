@@ -3,11 +3,11 @@
 <%= simple_form_for [:site, @feedback], html: {class: 'form-vertical'} do |f| %>
   <%= f.show_errors %>
 
-  <% unless @groups.empty? %>
+  <% if @groups.size > 0 %>
     <%= f.association :groups, label: "<abbr title='#{t("field_required")}'><font color='red'>*</font></abbr> #{t('.group')} (#{t(".group_explain")})",
-          collection: @groups,
-          as: :check_boxes,
-          checked: params_groups %>
+      collection: @groups,
+      as: :check_boxes,
+      checked: params_groups %>
   <% end %>
 
   <%= f.input :name, input_html: { value: params['name'] }  %>
