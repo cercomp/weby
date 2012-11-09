@@ -7,12 +7,12 @@ header
     float: right;
     menu
     {
+      // general style independent dropdown setting
+      list-style: none;
       padding: 0;
       margin: 0;
-      display: block;
       li
       {
-        list-style: none;
         float: left;
         a
         {
@@ -21,10 +21,59 @@ header
           height: 24px;
           line-height: 24px;
           padding: 8px 10px;
-          text-align: left;
-          text-decoration: none;
         }
       }
+      // change here to style menu when dropdown is enable
+      &.dropdown
+      {
+        li
+        {
+          display: block;
+          position: relative;
+          a
+          {
+            float: left;
+            margin: 0;
+          }
+          &.sub menu
+          {
+            display: none;
+            float: none;
+            right: 0;
+            position: absolute;
+            top: 100%;
+            
+            li 
+            { 
+              float: none;
+              margin: 0;
+              &.sub menu
+              {
+                right: 100%;
+                top: 0; 
+              }
+            }
+            li a
+            {
+              float: none;
+              &:hover { float: none; }
+            }
+          }
+          &.sub:hover > menu
+          {
+            display: block;
+          }
+        }
+      }
+      // change here to style menu when dropdown is disable
+      &.expanded
+      {
+        li
+        {
+          a { }
+        }
+      }
+      // clarfix
       &::after, &::before
       {
         display: table;
@@ -35,3 +84,4 @@ header
     }
   }
 }
+
