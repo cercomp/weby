@@ -19,6 +19,12 @@ GIT
       mime-types
 
 PATH
+  remote: vendor/engines/feedback
+  specs:
+    feedback (0.0.1)
+      rails (~> 3.2.6)
+
+PATH
   remote: vendor/engines/teachers
   specs:
     teachers (0.0.1)
@@ -183,6 +189,7 @@ DEPENDENCIES
   bootstrap-sass
   dispatcher
   factory_girl_rails (= 1.7.0)
+  feedback!
   jquery-rails
   kaminari
   mongrel (>= 1.2.0.pre2)

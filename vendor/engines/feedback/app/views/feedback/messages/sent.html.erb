@@ -1,0 +1,11 @@
+<div id="feedback_sent">
+  <h1><%= t('.success_sent') %></h1>
+  <p>
+    <%= t('.group_sent') %>
+    <%= @feedback.groups.collect{|g| g.name }.join(', ') %>
+  </p>
+
+  <p>
+    <%= link_to icon('chevron-left', text: t('.back_link')), site_path %>
+  <p>
+</div>

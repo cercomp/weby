@@ -6,6 +6,7 @@ Weby::Application.routes.draw do
   constraints(Weby::Subdomain) do
     constraints(Weby::Extensions) do
       mount Teachers::Engine, :at => :teachers
+      mount Feedback::Engine, :at => 'feedback'
     end
 
     get '/' => 'sites#show', as: :site
@@ -17,7 +18,6 @@ Weby::Application.routes.draw do
       defaults: { format: 'rss', per_page: 10, page: 1 }
     # route to paginate
     match 'admin/banners/page/:page' => 'sites/admin/banners#index'
-    match 'admin/groups/page/:page' => 'sites/admin/groups#index'
 
     resources :pages,
       as: :site_pages, 
@@ -29,18 +29,7 @@ Weby::Application.routes.draw do
       end
     end
 
-    resources :feedbacks,
-      as: :site_feedbacks,
-      controller: 'sites/feedbacks', 
-      only: [:new, :create] do
-      collection do
-        get :sent
-      end
-    end
-
     namespace :admin, module: 'sites/admin', as: :site_admin do
-      resources :feedbacks, except: [:new, :create]
-      resources :groups
       resources :banners do
         member do
           put :toggle_field
@@ -54,6 +43,7 @@ Weby::Application.routes.draw do
           post :sort
         end
       end
+      resources :extensions
       resources :menus do
         resources :menu_items,
           controller: 'menus/menu_items',

@@ -48,7 +48,7 @@ class Site < ActiveRecord::Base
 
   has_many :pages_i18ns, through: :pages, source: :i18ns
 
-  has_many :groups
+  has_many :groups, class_name: 'Feedback::Group'
   has_many :feedbacks
   has_many :banners, order: :position
 
@@ -68,7 +68,7 @@ class Site < ActiveRecord::Base
   belongs_to :repository, :foreign_key => "top_banner_id"
   has_many :repositories
 
-  has_many :extensions, :class_name => 'ExtensionSite'
+  has_many :extensions
 
   has_and_belongs_to_many :locales
 
@@ -81,7 +81,7 @@ class Site < ActiveRecord::Base
   end
 
   def has_extension(extension)
-    extensions.include? ExtensionSite.find_by_name(mod.to_s)
+    extensions.include? Extension.find_by_name(extension.to_s)
   end
 
   has_attached_file :top_banner, :url => "/uploads/:site_id/:style_:basename.:extension"

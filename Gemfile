@@ -13,6 +13,7 @@ gem 'acts-as-taggable-on'
 gem 'bootstrap-sass'
 
 gem 'teachers', :path => '/media/dev-files/rails/weby/vendor/engines/teachers'
+gem 'feedback', :path => '/media/dev-files/rails/weby/vendor/engines/feedback'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
