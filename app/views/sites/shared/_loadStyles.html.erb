@@ -9,7 +9,7 @@
 
 <% unless @site.follow_styles.blank? %>
   <% @site.sites_styles.where(:publish => :true).each do |relstyle| %>
-    <!-- Estilo seguido <%= relstyle.name %> -->
+    <!-- Estilo seguido <%= relstyle.style.name %> -->
     <style type="text/css">
       <%= raw relstyle.style.css %>
     </style>
