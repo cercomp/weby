@@ -1,6 +1,6 @@
 <% unless @site.own_styles.blank? %>
-  <% @site.own_styles.where(:publish => :true).each do |style| %>
-    <!-- Meu estilos -->
+  <% @site.own_styles.where(:publish => :true).order('position asc').each do |style| %>
+    <!-- Meu estilos <%= style.name %>  -->
     <style type="text/css">
       <%= raw style.css %>
     </style>
@@ -9,7 +9,7 @@
 
 <% unless @site.follow_styles.blank? %>
   <% @site.sites_styles.where(:publish => :true).each do |relstyle| %>
-    <!-- Estilo seguido -->
+    <!-- Estilo seguido <%= relstyle.name %> -->
     <style type="text/css">
       <%= raw relstyle.style.css %>
     </style>
