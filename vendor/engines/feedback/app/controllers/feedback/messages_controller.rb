@@ -1,11 +1,11 @@
 module Feedback
   class MessagesController < ApplicationController
-
-    layout :choose_layout
     
     before_filter :get_groups, :only => [:new, :create]
     
     respond_to :html, :js
+
+    layout :choose_layout, only: [:new, :sent]
 
     def index
       @messages = Message.all
@@ -37,7 +37,7 @@ module Feedback
           end
         end
         session[:feedback_id] = @message.id
-        redirect_to sent_site_feedbacks_path
+        redirect_to sent_messages_path
       else
         render :action => "new"
       end

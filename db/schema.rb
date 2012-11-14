@@ -66,13 +66,6 @@ ActiveRecord::Schema.define(:version => 20121022122128) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "feedbacks_groups", :id => false, :force => true do |t|
-    t.integer "feedback_id", :null => false
-    t.integer "group_id",    :null => false
-  end
-
-  add_index "feedbacks_groups", ["feedback_id", "group_id"], :name => "index_feedbacks_groups_on_feedback_id_and_group_id", :unique => true
-
   create_table "groups", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -80,6 +73,13 @@ ActiveRecord::Schema.define(:version => 20121022122128) do
     t.integer  "site_id"
     t.text     "emails"
   end
+
+  create_table "groups_messages", :id => false, :force => true do |t|
+    t.integer "message_id", :null => false
+    t.integer "group_id",   :null => false
+  end
+
+  add_index "groups_messages", ["message_id", "group_id"], :name => "index_feedbacks_groups_on_feedback_id_and_group_id", :unique => true
 
   create_table "groups_users", :id => false, :force => true do |t|
     t.integer "group_id", :null => false

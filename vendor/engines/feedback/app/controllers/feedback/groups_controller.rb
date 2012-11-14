@@ -5,7 +5,6 @@ module Feedback
     respond_to :html, :js
 
     helper_method :sort_column
-    layout :choose_layout
 
     def index
       @groups = @site.groups.order(sort_column + ' ' + sort_direction).
