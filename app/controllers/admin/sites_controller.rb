@@ -39,7 +39,7 @@ class Admin::SitesController < ApplicationController
 
         @site.components.create({:place_holder=>'first_place',:settings=>'{:background => "#7F7F7F"}',:name=>'gov_bar', :position=>1, :publish=>true})
         @site.components.create({:place_holder=>'first_place',:settings=>'{}', :name=>'institutional_bar', :position=>2, :publish=>true})
-        @site.components.create({:place_holder=>'top', :settings=>'{}', :name=>'header', :position=>1, :publish=>true})
+        @site.components.create({:place_holder=>'top', :settings=>'{:size=>"original", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :repository_id=>"", :new_tab=>"0"}', :name=>'image', :position=>1, :alias=>"Cabeçalho(Topo)", :publish=>true})
         @site.components.create({:place_holder=>'top', :settings=>"{:menu_id => \"#{menu_top.id}\"}", :name=>'menu', :position=>2, :publish=>true})
         @site.components.create({:place_holder=>'top', :settings=>'{}', :name=>'menu_accessibility',:position=>3, :publish=>true})
         @site.components.create({:place_holder=>'left', :settings=>"{:menu_id => \"#{menu_left.id}\"}", :name=>'menu', :position=>1,:publish=>true})

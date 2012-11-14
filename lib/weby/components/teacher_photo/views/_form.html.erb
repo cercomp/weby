@@ -1,8 +1,0 @@
-<%= repository_search( t(".select_picture"), "page_image", "teacher_photo_component[image]", (Repository.find(component.image) rescue nil), multiple: false, file_types: 'image') %>
-
-<% content_for :bottom do %>
-  <div id="dialog-repository-search">
-    <%= render('sites/admin/repositories/repository_search') %>
-  </div>
-<% end %>
-<%= content_for :stylesheets, stylesheet_link_tag("include_files") %>

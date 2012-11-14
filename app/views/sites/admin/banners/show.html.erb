@@ -3,7 +3,7 @@
 <div class="span9">
   <div class="well">
     <% unless @banner.repository.nil? %>
-    <% format = @banner.size ? @banner.size : format_for_custom(@banner.width, @banner.height) %>
+    <% format = @banner.size.present? ? @banner.size : format_for_custom(@banner.width, @banner.height, @banner.repository) %>
     <%= weby_file_view(@banner.repository,
                        format,
                        "#{@banner.width}",
