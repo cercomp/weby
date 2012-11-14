@@ -13,7 +13,5 @@ en:
   news_as_home:
     views:
       form:
-        none_selected:        " No news selected "
-        select:               " Select a news "
       show:
         page_not_found:       " Page not found, please check the component configuration "

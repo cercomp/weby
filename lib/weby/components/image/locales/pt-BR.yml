@@ -1,0 +1,23 @@
+pt-BR:
+  components:
+    image:
+      name: "Imagem"
+  activerecord:
+    attributes:
+      image_component:
+        repository_id: "Imagem"
+        repository: "Imagem"
+        height: "Altura"
+        width: "Largura"
+        size: "Tamanho"
+        target_type: "Tipo do Link"
+        target_id: "Link"
+        target: "Link"
+        url: "URL"
+        new_tab: "Abrir em uma nova janela"
+  image:
+    views:
+      show:
+      form:
+        select_image: "Selecione a imagem"
+        

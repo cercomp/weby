@@ -7,6 +7,7 @@ en:
           search:              " Search "
           new_archive:         " New file "
         show:
+          archives:            " Files "
           name:                " Name "
           size:                " Size "
           type:                " Type "

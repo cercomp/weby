@@ -12,7 +12,7 @@
       <%= link_to login_url(subdomain: nil, protocol: login_protocol), class: "logo-box" do %>
         <%= image_tag 'weby.png', class: 'logo' %>
       <% end %>
-      <div class="i18n_menu pull-right">
+      <div class="i18n_menu">
           <% admin_locales.each do |locale| %>
             <%= link_to flag(locale), params.merge(locale: locale.name ) %>
           <% end %>

@@ -1,0 +1,62 @@
+<%# Não inclua essa partial diretamente, utilize a função helper 'target_dialog_input' %>
+<% content_for :javascripts, javascript_include_tag("target.dialog") %>
+<%= content_for :stylesheets, stylesheet_link_tag('target.dialog') %>
+<% field_name = editable_url ? :url : target_name %>
+
+<div class="input target_select" id="inputs-for-<%= field_name.to_s %>">
+   <%= f.input field_name, :wrapper => :append do %>
+      <%= f.input_field field_name, as: :string, 
+        disabled: !editable_url,
+        value: editable_url ? f.object.send(field_name) : f.object.send(field_name).try(:title),
+        placeholder: editable_url ? "" : t("target_dialog.none_selected"),
+        data: {target_content: true, prefix: "#{target_name}"} %><%=
+      link_to_function t("target_dialog.select_target"), "WEBY.TargetDialog.show('inputs-for-#{field_name.to_s}')",
+        class: 'btn btn-info',
+        data: {toggle: 'modal'} %>
+   <% end %>
+
+   <%= f.input "#{target_name}_id", as: :hidden, input_html: {data: {target_id: true, prefix: "#{target_name}"}} %>
+   <%= f.input "#{target_name}_type", as: :hidden, input_html: {data: {target_type: true, prefix: "#{target_name}"}} if polymorphic %>
+</div>
+
+<% content_for :javascripts do #Para appendar no fim do body e fora do form do modelo %>
+
+<div id="modal_target_list" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="<%= t("close") %>">&times;</button>
+    <h3><%=t("target_dialog.select_target")%></h3>
+  </div>
+  <div class="modal-body">
+    <ul class="nav nav-tabs <%= editable_url ? "" : "hide" %>" id="target_tabs">
+      <li class="active"><a href="#tab-pages" data-toggle="tab" data-link="<%= site_admin_pages_path %>"><%= t("activerecord.models.pages") %></a></li>
+      <% if editable_url %>
+      <li><a data-toggle="tab" href="#tab-weby"><%= t("target_dialog.common_pages") %></a></li>
+      <% end %>
+    </ul>
+
+    <div class="tab-content">
+      <div class="tab-pane active" id="tab-pages"></div>
+      <% if editable_url %>
+      <div class="tab-pane" id="tab-weby">
+        <table class="list table table-striped">
+          <thead>
+            <th><%= t("target_dialog.title") %></th>
+            <th><%= t("target_dialog.description") %></th>
+          </thead>
+          <tbody>
+              <% common_pages.each do |common_page| %>
+              <tr data-title="<%= common_page[:title] %>" data-url="<%= common_page[:url] %>" class="cursor highlight target-item">
+                <td><%= common_page[:title] %></td>
+                <td><%= common_page[:description] %></td>
+              </tr>
+              <% end %>
+          </tbody>
+        </table>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="modal-footer"></div>
+</div>
+
+<% end %>

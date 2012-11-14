@@ -3,6 +3,7 @@ pt-BR:
   activerecord:
     models:
       page:              "Página"
+      pages:             "Páginas"
     attributes:
       page:
         author:          "Autor"

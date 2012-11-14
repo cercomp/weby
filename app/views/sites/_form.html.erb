@@ -7,11 +7,6 @@
 
   <%= f.input :body_width, :hint => t(".example_width") %>
 
-  <% unless @site.repository.nil? %>
-    <%= f.input :top_banner_width, :hint => t(".example_top_widht") %>
-    <%= f.input :top_banner_height,:hint => t(".example_top_height") %>
-  <% end %>
-
   <% if current_user.is_admin? %>
     <%= f.input :name, :hint => t("field_required") %>
     <%= f.input :parent_id, :collection => main_sites_list(current_site).collect{|s| [s.title || s.name ,s.id]}, :label => t('.main_site') %>

@@ -1,5 +1,3 @@
-<% content_for :javascripts, javascript_include_tag('menus') %>
-
 <%= simple_form_for [:site_admin, @menu, @menu_item], html: { class: 'form-horizontal' } do |f| %>
   <%= f.show_errors %>
 
@@ -46,20 +44,8 @@
     </div>
   </div>
 
-  <div class="input page_select" id="div_link">
-    <%= f.input :url, :wrapper => :append, :hint => t(".type_url") do %>
-      <%= f.input_field :url, as: :string %><%= link_to_function 'Selecione uma página', 'show_dialog($(this))', :class => 'btn btn-info', data: { link: site_admin_pages_path} %>
-    <%  end %>
-
-   <% #f.input :url, label: "Redirecionamento", collection: [['Eventos',events_site_pages_path],['Notícias',news_site_pages_path]]%> 
-
-
-    <%# Ao selecionar um noticia deve ser montado a url para ela,
-      # então aqui guardamos o caminho para as páginas deste site %>
-    <%= hidden_field_tag 'url_to_pages', site_pages_url(only_path: true) %>
-    <%= hidden_field_tag 'menu_item[target_id]', @menu_item.target_id %>
-    <%= hidden_field_tag 'menu_item[target_type]', @menu_item.target_type %>
-  </div>
+  <% # URL Input %>
+  <%=  target_dialog_input(f, :target, true) %>
 
   <div class='input'>
     <%= f.input :new_tab,

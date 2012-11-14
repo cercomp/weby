@@ -16,6 +16,7 @@ class Sites::Admin::PagesController < ApplicationController
     respond_with(:site_admin, @pages) do |format|
       if(params[:template])
         format.js { render "#{params[:template]}" }
+        format.html{ render partial: "#{params[:template]}", layout: false }
       end
     end
   end

@@ -20,3 +20,7 @@ pt-BR:
       password_change:    " Nova senha "
     signup:
       signup:             " Novo usuário "
+    resend_activation:
+      resend:             " Reenviar e-mail de ativação "
+
+

@@ -5,7 +5,7 @@
     <div class="banner">
     <% if not banner.repository.nil? %>
       <figure class="banner_image">
-        <% format = banner.size ? banner.size : "little" %>
+        <% format = banner.size ? banner.size : format_for_custom(banner.width, banner.height) %>
         <%= weby_file_view(banner.repository,
                            format,
                            "#{banner.width}",

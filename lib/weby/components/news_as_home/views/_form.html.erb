@@ -1,26 +1,4 @@
-<% 
-  def page_title_for(comp)
-    comp.page ? comp.page.title : t(".none_selected")
-  end 
-%>
-
-<%= f.input :page, wrapper: :append do %>
-  <%= text_field_tag :page_title, page_title_for(component), disabled: true, id: 'page_title_for_component' %><%=
-   link_to_function t(".select"), 'show_dialog($(this))',
-   id: 'btn_select_news', class: 'btn btn-info',  data: { link: site_admin_pages_path } %>
-<%  end %>
-<%= f.input :page_id, as: :hidden %>
+<%= target_dialog_input(f, :page, false, false) %>
 
 <%= f.input :show_title, as: :boolean %>
 <%= f.input :show_info, as: :boolean %>
-
-<%= javascript_tag do %>
-  /**
-   * Ao selecionar a notícia, cria um input com o id da noticia selecionada
-   */
-  function selected (id, title) {
-    $('#news_as_home_component_page_id').val(id);
-    $('#page_title_for_component').val(title);
-    $('#modal_page_list').modal('hide');
-  }
-<% end %>

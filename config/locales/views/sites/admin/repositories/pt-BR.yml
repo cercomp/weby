@@ -6,6 +6,7 @@ pt-BR:
           archives:            " Arquivos "
           new_archive:         " Novo Arquivo "
         show:
+          archives:            " Arquivos "
           name:                " Nome "
           size:                " Tamanho "
           type:                " Tipo "

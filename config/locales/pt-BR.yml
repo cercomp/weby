@@ -31,7 +31,9 @@ pt-BR:
       left:                             " Esquerda "
       right:                            " Direita "
       top:                              " Topo "
+  custom:                               " Personalizado "
   create_account_successful:            " Sua conta foi criada! Foi enviado para seu email instruções de como ativá-la "
+  activation_sent_successful:           " Foi enviado para seu email instruções de como ativar sua conta "
 #---D---#
   destroy:                              " Excluir "
   disable:                              " Desativado "
@@ -52,6 +54,7 @@ pt-BR:
 #---G---#
 #---H---#
 #---I---#
+  invalid_activation_token:             " Link de ativação inválido ou expirado! "
 #---J---#
 #---K---#
 #---L---#
@@ -65,7 +68,7 @@ pt-BR:
 #---M---#
   move:                                 " Mover "
   manage_roles:                         " Gerenciar Papéis "
-  missing_account:                      " Desculpe-nos, mas não conseguimos localizar sua conta. Se você está tentando copiar e colar a URL de um email dentro do seu navegador ou reiniciando o processo de recuperar senha "
+  missing_account:                      " Desculpe-nos, mas não conseguimos localizar sua conta. Este link pode ser inválido ou estar expirado. Tente reiniciar o processo de recuperação de senha. "
 #---N---#
   no_event_period:                      " Periodo do evento não especificado "
   no_permission_to_activate_deactivate: " Sem permissão para ativar ou desativar "
@@ -107,7 +110,9 @@ pt-BR:
 #---U---#
   unfollow:                             " Deixar de Seguir "
   unpublish:                            " Despublicar "
+  user_already_active:                  " Usuário já está ativo. "
   user_inactive:                        " Seu usuário ainda não está ativo. "
+  user_not_found:                       " Usuário não encontrado "
   updated_account:                      " Conta atualizada "
   user_cant_be_deleted:                 " Este usuário não pode ser excluído "
 #---V---#

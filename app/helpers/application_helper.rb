@@ -78,7 +78,7 @@ module ApplicationHelper
            end
          end
          #menus << " [ id:#{entry.id} pos:#{entry.position} ]" # Para debug
-         menus << ( (entry and entry.target) ? " [ #{entry.target.id} ] " : " [ #{entry.url if not entry.url.blank?} ] " )
+         menus << ( (entry and entry.target) ? " [ #{entry.target.try(:title)} ] " : " [ #{entry.url if not entry.url.blank?} ] " )
          menus << link_to(icon('edit', text: ''), edit_site_admin_menu_menu_item_path(entry.menu_id, entry.id), :title => t("edit"))
          menus << indent_space + link_to(icon('plus', text: ''), new_site_admin_menu_menu_item_path(entry.menu_id, :parent_id => entry.id), :title => t("add_sub_menu"))
          menus << indent_space + link_to(icon('trash', text: ''), site_admin_menu_menu_item_path(entry.menu_id, entry.id), :method=>:delete, :data => {:confirm => t('are_you_sure')}, :title => t("destroy"))
@@ -359,8 +359,8 @@ module ApplicationHelper
     content_tag(tag_name, options, &block) if condition 
   end
 
-  def title title
-    content_for :title, t(title)
+  def title title, raw_text=false
+    content_for :title, raw_text ? title : t(title)
   end
 
   def period_dates(inidate, findate, force_show_year = true)

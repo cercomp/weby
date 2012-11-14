@@ -1,6 +1,3 @@
 <%= javascript_include_tag "base" %>
 <%= load_layout_javascript(layout) %>
 <%= yield :javascripts %>
-<%= javascript_tag do %>
-  WEBY.current_site = "<%= @site.name if @site %>"
-<% end %>

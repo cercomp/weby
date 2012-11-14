@@ -8,7 +8,7 @@
       <li id="sort_page_<%= "#{page.id}" %>" style="list-style-type:none;">
       <article>
         <% unless page.image.nil? %>
-          <%= weby_file_view(page.image, :original, component.avatar_width, component.avatar_height, {as: "link", url: link_on_title(@site, page), target: '_self'}) %>
+          <%= weby_file_view(page.image, :medium, component.avatar_width, component.avatar_height, {as: "link", url: link_on_title(@site, page), target: '_self'}) %>
         <% end %>
         <header>
           <h2> <%= link_to page.title, link_on_title(@site, page) %> </h2>

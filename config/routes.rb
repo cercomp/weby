@@ -152,9 +152,10 @@ Weby::Application.routes.draw do
   match "password_sent"   => "session#password_sent"
   get   "reset_password"  => "session#reset_password"
   post  "update_password" => "session#update_password"
-
+  
   # Para ativação de conta por email
   match "activate(/:activation_code)" => "session#activate_user", as: :activate_account
+  post  "resend_activation" => "session#resend_activation"
 
   match "robots.txt" => "sites#robots", :format => "txt"
   match "*not_found" => "application#render_404"

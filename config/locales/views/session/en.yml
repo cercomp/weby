@@ -20,3 +20,6 @@ en:
       password_change:    " New password "
     signup:
       signup:             " New user "
+    resend_activation:
+      resend:             " Resend activation e-mail "
+

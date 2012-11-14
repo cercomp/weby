@@ -1,0 +1,31 @@
+pt-BR:
+  target_dialog:
+    select_target: " Selecionar Página "
+    none_selected: " Nenhuma Selecionada "
+    common_pages: " Páginas predefinidas "
+    title: " Título "
+    description: "Descrição"
+  common_pages:
+    site_path:
+      title: "Página inicial"
+      description: "Página de início do sítio"
+    rss_feed_path:
+      title: "Feed RSS"
+      description: "Link para o feed de notícias no formato RSS"
+    atom_feed_path:
+      title: "Feed ATOM"
+      description: "Link para o feed de notícias no formato ATOM"
+    pages_path:
+      title: "Páginas"
+      description: "Lista de todas as páginas"
+    published_path:
+      title: "Páginas publicadas"
+      description: "Lista das páginas que estão publicadas (incluindo eventos)"
+    news_path:
+      title: "Notícias"
+      description: "Lista das página publicadas que não são eventos"
+    events_path:
+      title: "Eventos"
+      description: "Lista dos eventos publicados"
+
+

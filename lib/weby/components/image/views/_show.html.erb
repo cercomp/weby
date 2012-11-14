@@ -1,0 +1,24 @@
+<section class="image_component">
+  <% image_url = component.target_id.present? ? site_page_path(component.target_id) : component.url %>
+  <% repository = Repository.find(component.repository_id) rescue nil %>
+  <% if repository %>
+      <% 
+          format = component.size.present? ? component.size : format_for_custom(component.width, component.height)
+          width = component.width.present? ? component.width : false#current_site.body_width ? current_site.body_width : false
+          height = component.height.present? ? component.height : false
+          size = ""
+          size << "width:#{width}px; " if width
+          size << "height:#{height}px; " if height
+      %>
+      <%= weby_file_view(repository,
+                         format, nil, nil,
+                         {
+                            as: image_url.present? ? 'link' : 'image',
+                            style: size,
+                            alt: repository.description,
+                            title: repository.description,
+                            url: image_url,
+                            target: (component.new_tab ? '_blank' : '')
+                         }) %>
+  <% end %>
+</section>

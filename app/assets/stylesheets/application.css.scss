@@ -103,6 +103,14 @@ table.nowrap td > div
   white-space: nowrap;
 }
 
+body.modal-open {
+    overflow: hidden;
+}
+
+.highlight:hover td{
+   background-color: #EEE !important;
+}
+
 .cursor
 {
   cursor: pointer;

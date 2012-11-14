@@ -14,11 +14,7 @@ class Sites::PagesController < ApplicationController
     else
       @pages = get_pages 
     end
-    respond_with(:site, @page) do |format|
-      if(params[:template])
-        format.js { render "#{params[:template]}" }
-      end
-    end
+    respond_with(:site, @page)
   end
 
   def published
@@ -54,10 +50,6 @@ class Sites::PagesController < ApplicationController
   private :tags
 
   def get_pages
-    case params[:template]
-    when "tiny_mce"
-      params[:per_page] = 7
-    end
     params[:direction] ||= 'desc'
     # Vai ao banco por linha para recuperar
     # tags e locales

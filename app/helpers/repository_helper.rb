@@ -79,6 +79,7 @@ module RepositoryHelper
       title: (@options[:title] || @file.description) }
     img_opt[:width] = @width unless @width.blank?
     img_opt[:height] = @height unless @height.blank?
+    img_opt[:style] = @options[:style] if @options[:style]
     img_opt[:id] = @options[:id] if @options[:id]
     begin
       image = image_tag(@thumbnail, img_opt)
@@ -110,6 +111,22 @@ module RepositoryHelper
 
   def clean_size!
     @size.delete!('#') if @size
+  end
+
+  def image_size_picker form_builder
+    render partial: "sites/admin/repositories/image_size_picker", locals: {f: form_builder}
+  end
+
+  def format_for_custom width, height
+    Repository.attachment_definitions[:archive][:styles].each do |name, value|
+      size = value.split("x") if value.match(/^\d+x\d+$/)
+      if size
+        if width.to_i+height.to_i > 0 and width.to_i <= size[0].to_i && height.to_i <= size[1].to_i
+          return name
+        end
+      end
+    end
+    :original
   end
 
 end

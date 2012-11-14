@@ -1,0 +1,14 @@
+<%= repository_search( t(".select_image"), "page_image", "image_component[repository_id]", (Repository.find(component.repository_id) rescue nil), multiple: false, file_types: 'image') %>
+
+<%= image_size_picker f %>
+
+<%= target_dialog_input f, :target, true %>
+
+<%= f.input :new_tab, as: :boolean %>
+
+<% content_for :bottom do %>
+  <div id="dialog-repository-search">
+    <%= render('sites/admin/repositories/repository_search') %>
+  </div>
+<% end %>
+<%= content_for :stylesheets, stylesheet_link_tag("include_files") %>

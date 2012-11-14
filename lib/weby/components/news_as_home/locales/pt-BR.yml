@@ -13,7 +13,5 @@ pt-BR:
   news_as_home:
     views:
       form:
-        none_selected:        " Nenhuma notícia selecionada "
-        select:               " Selecione uma notícia "
       show:
         page_not_found:       " Página não encontrada, por favor verifique a configuração do componente "

@@ -1,0 +1,29 @@
+en:
+  target_dialog:
+    select_target: " Select Page "
+    none_selected: " None Selected "
+    common_pages: " Preset pages "
+    title: " Title "
+    description: "Description"
+  common_pages:
+    site_path:
+      title: "Home page"
+      description: "The site's front page"
+    rss_feed_path:
+      title: "RSS Feed"
+      description: "Link for the news feed, using RSS format"
+    atom_feed_path:
+      title: "ATOM Feed"
+      description: "Link for the news feed, using ATOM format"
+    pages_path:
+      title: "Pages"
+      description: "List of all pages"
+    published_path:
+      title: "Published pages"
+      description: "List of the published pages (including events)"
+    news_path:
+      title: "News"
+      description: "List of published pages that are not events"
+    events_path:
+      title: "Events"
+      description: "List of published events"
