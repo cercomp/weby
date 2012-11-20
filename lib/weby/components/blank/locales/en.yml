@@ -10,3 +10,6 @@ en:
   blank:
     views:
       form:
+        format:           " Format "
+        comment:          " Comment "
+        uncomment:        " Uncomment "

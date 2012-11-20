@@ -10,4 +10,7 @@ pt-BR:
   blank:
     views:
       form:
+        format:           " Formatar "
+        comment:          " Comentar "
+        uncomment:        " Descomentar "
         

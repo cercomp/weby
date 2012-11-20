@@ -1,4 +1,11 @@
 <div class="input">
+  <div class="btn-toolbar code-editor-menu">
+    <div class="btn-group">
+      <%= link_to t(".format"),"javascript:autoFormatSelection()", class: "btn" %>
+      <%= link_to t(".comment"),"javascript:commentSelection(true)", class: "btn" %>
+      <%= link_to t(".uncomment"),"javascript:commentSelection(false)", class: "btn" %>
+    </div>
+  </div>
 <%= f.input :body,
       as: :text,
       wrapper_html: { class: 'nostyle' },
@@ -6,6 +13,7 @@
 </div>
 <%= content_for :stylesheets, stylesheet_link_tag("codeMirror/codemirror") %>
 <%= content_for :javascripts, javascript_include_tag("codeMirror/codemirror.min") %>
+<%= content_for :javascripts, javascript_include_tag("codeMirror/formatting.min") %>
 <%= content_for :javascripts, javascript_include_tag("codeMirror/xml.min") %>
 <%= content_for :javascripts, javascript_include_tag("codeMirror/javascript.min") %>
 <%= content_for :javascripts, javascript_include_tag("codeMirror/css.min") %>
@@ -17,5 +25,22 @@
         lineNumbers: true,
         tabSize: 2
       });
+
+      var hlLine = editor.setLineClass(0, "activeline");
+      CodeMirror.commands["selectAll"](editor);
+      
+      function getSelectedRange() {
+        return { from: editor.getCursor(true), to: editor.getCursor(false) };
+      }
+      
+      function autoFormatSelection() {
+        var range = getSelectedRange();
+        editor.autoFormatRange(range.from, range.to);
+      }
+      
+      function commentSelection(isComment) {
+        var range = getSelectedRange();
+        editor.commentRange(isComment, range.from, range.to);
+      }      
   </script>
 <% end %>

@@ -26,6 +26,9 @@ pt-BR:
           sites_followers:  " Sites que seguem esse estilo "
         form:
           help_with_style:  " Precisa de ajuda com o estilo "
+          format:           " Formatar "
+          comment:          " Comentar "
+          uncomment:        " Descomentar "
         edit:
           styles:           " Estilos "
         new:

@@ -8,7 +8,15 @@
     input_html: {value: @site.id}, 
     as: :hidden %>
 
+  
   <div class="input">
+    <div class="btn-toolbar code-editor-menu">
+      <div class="btn-group">
+        <%= link_to t(".format"),"javascript:autoFormatSelection()", class: "btn" %>
+        <%= link_to t(".comment"),"javascript:commentSelection(true)", class: "btn" %>
+        <%= link_to t(".uncomment"),"javascript:commentSelection(false)", class: "btn" %>
+      </div>
+    </div>
     <%= f.input :css, 
       as: :text,
       wrapper_html: { class: 'nostyle' },
@@ -17,8 +25,6 @@
     <%= link_to icon('question-sign', text:t(".help_with_style")),
       (weby_settings[:help_site] || "/help"),
       target: "_blank"%>
-
-
   </div>
 
   <div class="form-actions">
@@ -28,12 +34,33 @@
 <% end %>
 <%= content_for :stylesheets, stylesheet_link_tag("codeMirror/codemirror") %>
 <%= content_for :javascripts, javascript_include_tag("codeMirror/codemirror.min") %>
+<%= content_for :javascripts, javascript_include_tag("codeMirror/formatting.min") %>
 <%= content_for :javascripts, javascript_include_tag("codeMirror/css.min") %>
 <%= content_for :javascripts do %>
   <script type="text/javascript">
       var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
         lineNumbers: true,
-        tabSize: 2
+        tabSize: 2,
+        onCursorActivity: function() {
+          editor.setLineClass(hlLine, null, null);
+          hlLine = editor.setLineClass(editor.getCursor().line, null, "activeline");
+        }
       });
+      var hlLine = editor.setLineClass(0, "activeline");
+      CodeMirror.commands["selectAll"](editor);
+      
+      function getSelectedRange() {
+        return { from: editor.getCursor(true), to: editor.getCursor(false) };
+      }
+      
+      function autoFormatSelection() {
+        var range = getSelectedRange();
+        editor.autoFormatRange(range.from, range.to);
+      }
+      
+      function commentSelection(isComment) {
+        var range = getSelectedRange();
+        editor.commentRange(isComment, range.from, range.to);
+      }      
   </script>
 <% end %>

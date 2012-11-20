@@ -25,6 +25,9 @@ en:
           sites_followers:  " Sites followers "
         form:
           help_with_style:  " Need help with the style "
+          format:           " Format "
+          comment:          " Comment "
+          uncomment:        " Uncomment "
         edit:
           styles:           " Styles "
         new:

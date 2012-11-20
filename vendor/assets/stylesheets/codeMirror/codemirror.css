@@ -1,3 +1,7 @@
+.code-editor-menu {
+  margin-left: 159px;
+}
+.activeline {background: #e8f2ff !important;}
 .CodeMirror {
   line-height: 1em;
   font-family: monospace;
