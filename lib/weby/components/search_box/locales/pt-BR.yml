@@ -1,7 +1,7 @@
 pt-BR:
   components:
     search_box:
-      name:                 " Pesquisa "
+      name:                 " Caixa de Pesquisa "
   activerecord:
     attributes:
       search_box_component:

@@ -1,17 +1,21 @@
 pt-BR:
   components:
-    no_front_news:
+    news_list:
       name:                    " Lista de Notícias "
-      quant:                   " Quantidade de notícias na página inicial "
+      quant:                   " Quantidade de notícias exibidas "
       front:                   " Apenas notícias de capa "
       events:                  " Mostrar eventos "
+      category:                " Categoria "
   activerecord:
     attributes:
-      no_front_news_component:
-        quant:                 " Quantidade de notícias na página inicial "
+      news_list_component:
+        quant:                 " Quantidade de notícias exibidas "
         front:                 " Apenas notícias de capa "
         events:                " Mostrar eventos "
-  no_front_news:
+        category:                " Categoria "
+  news_list:
     views:
       show:
         last_news:             " Últimas Notícias "
+      form:
+        no_category_filter:    " Não filtrar por categoria "

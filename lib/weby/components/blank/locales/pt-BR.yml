@@ -1,7 +1,7 @@
 pt-BR:
   components:
     blank:
-      name:            " Área (HTML) Livre "
+      name:            " HTML/Javascript "
       body:            " Conteúdo "
   activerecord:
     attributes:

@@ -51,7 +51,7 @@ class Admin::SitesController < ApplicationController
         @site.components.create({:place_holder=>'bottom', :settings=>"{:body => \"#{t("admin.sites.form.footer_text")}\", :html_class => \"footer\"}", :name=>'text', :position=>2, :alias=>'Rodapé', :publish=>true})
         @site.components.create({:place_holder=>'bottom', :settings=>'{}', :name=>'feedback', :position=>3,:publish=>true})
         @site.components.create({:place_holder=>'home', :settings=>'{:quant => "5"}', :name=>'front_news', :position=>1,:publish=>true})
-        @site.components.create({:place_holder=>'home', :settings=>'{:quant => "5"}', :name=>'no_front_news', :position=>2,:publish=>true})
+        @site.components.create({:place_holder=>'home', :settings=>'{:quant => "5"}', :name=>'news_list', :position=>2,:publish=>true})
          
       end
 

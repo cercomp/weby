@@ -1,17 +1,21 @@
 en:
   components:
-    no_front_news:
+    news_list:
       name:                    " News List "
-      quant:                   " Amount of news on the home page "
+      quant:                   " News per page "
       front:                   " Only front news "
       events:                  " Show events "
+      category:                " Category "
   activerecord:
     attributes:
-      no_front_news_component:
-        quant:                 " Amount of news on the home page "
+      news_list_component:
+        quant:                 " News per page "
         front:                 " Only front news "
         events:                " Show events "
-  no_front_news:
+        category:                " Category "
+  news_list:
     views:
       show:
         last_news:             " Latest news "
+      form:
+        no_category_filter:    " Don't filter category "

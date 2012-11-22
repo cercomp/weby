@@ -1,0 +1,23 @@
+<% include_component_javascript :javascripts, 'news_list' %>
+<% # Pega as noticias ordenadas por data de inicio decrescente %>
+<% @news_list = component.pages(current_site, params[:news_list_page]) %>
+<section class="news_list_component">
+  <table class="list border fullwidth zebra">
+    <tr>
+      <th> <%= component.category.present? ?
+  link_to(component.category.camelize, site_pages_path(direction: 'desc', sort: 'pages.created_at', tags: component.category)) :
+  link_to(t(".last_news"), site_pages_path(direction: 'desc', sort: 'pages.created_at')) %> </th>
+    </tr>
+    <% @news_list.try(:each) do |page| %>
+      <tr>
+        <td>
+          <p>
+            <%= link_to page.title, site_page_path(page) %>
+            <%= raw page.summary %>
+          </p>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <%= paginate @news_list, param_name: 'news_list_page', remote: true, params: {controller: 'sites/components', action: 'show', id: component.id} %>
+</section>

@@ -9,9 +9,11 @@ en:
         width:                    " Width "
         height:                   " Height "
         quantity:                 " Quantity "
+        timer:                    " Transition time "
   weby_news_slider:
     views:
       show:
       form:
         news_category_hint:       " It is preferable that the reports contain images cover a proportion of 400 wide by 300 high "
+        timer_hint:               " In seconds "
         no_category:              " No category, take 5 latest news "
