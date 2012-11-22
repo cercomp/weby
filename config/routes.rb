@@ -1,15 +1,20 @@
 Weby::Application.routes.draw do
   constraints(Weby::Subdomain) do
-    mount Feedback::Engine, at: 'feedback'
+    constraints(Weby::Extensions) do
+      # Mount all engines here
+      mount Teachers::Engine, :at => :teachers
+      mount Feedback::Engine, :at => 'feedback'
+    end
 
-    get "/" => "sites#show", as: :site
-    get "/admin" => "sites#admin", as: :site_admin
-    get "/admin/edit" => "sites#edit", as: :edit_site_admin
-    put "/admin/edit" => "sites#update", as: :edit_site_admin
-
+    get '/' => 'sites#show', as: :site
+    get '/admin' => 'sites#admin', as: :site_admin
+    get '/admin/edit' => 'sites#edit', as: :edit_site_admin
+    put '/admin/edit' => 'sites#update', as: :edit_site_admin
     # routes to feed and atom
-    match "/feed" => "sites/pages#published", as: :site_feed,
-      defaults: { format: "rss", per_page: 10, page: 1 }
+    match '/feed' => 'sites/pages#published', as: :site_feed,
+      defaults: { format: 'rss', per_page: 10, page: 1 }
+    # route to paginate
+    match 'admin/banners/page/:page' => 'sites/admin/banners#index'
   
     resources :pages,
       as: :site_pages, 
@@ -58,6 +63,7 @@ Weby::Application.routes.draw do
           post :sort
         end
       end
+      resources :extensions
       resources :menus do
         resources :menu_items,
           controller: "menus/menu_items",

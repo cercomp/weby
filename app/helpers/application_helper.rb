@@ -103,7 +103,7 @@ module ApplicationHelper
         if flash[type]
           messages << content_tag('div', :class => "alert alert-#{type}") do
             raw %{
-              #{link_to('x', '#', class: 'close', data: {dismiss: "alert"})}
+              #{link_to(raw('&times;'), '#', class: 'close', data: {dismiss: "alert"})}
               #{flash.now[type]}
             }
           end

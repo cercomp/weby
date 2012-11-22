@@ -11,7 +11,11 @@
       <%= link_to image_tag(@site.repository.archive.url,
         alt: @site.repository.description,
         title: @site.description,
+<<<<<<< HEAD
         style: size.to_s), site_path %>
+=======
+        size: size.to_s), main_app.site_path %>
+>>>>>>> engines
     <% else %>
       <% width = @site.top_banner_width ? @site.top_banner_width : @site.body_width %>
       <% height = @site.top_banner_height %>

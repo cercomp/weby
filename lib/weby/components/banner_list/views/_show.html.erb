@@ -1,10 +1,16 @@
 <section class="banner_list_component <%= component.orientation %>">
   <% @banners = current_site.banners.published.tagged_with(component.category) %>
   <% @banners.each do |banner| %>
+<<<<<<< HEAD:lib/weby/components/banner_list/views/_show.html.erb
     <% banner_url = banner.page_id ? site_page_path(banner.page_id) : banner.url %>
     <div class="banner">
     <% if not banner.repository.nil? %>
       <figure class="banner_image">
+=======
+    <% banner_url = banner.page_id ? main_app.site_page_path(banner.page_id) : banner.url %>
+    <% unless banner.repository.nil? %>
+      <figure class='banner'>
+>>>>>>> engines:lib/weby/components/banner_side/views/_show.html.erb
         <% format = banner.size ? banner.size : "little" %>
         <%= weby_file_view(banner.repository,
                            format,
@@ -25,7 +31,11 @@
       </div>
     <% end %>
     <% if check_permission(Sites::Admin::BannersController, ["toggle_field"]) %>
+<<<<<<< HEAD:lib/weby/components/banner_list/views/_show.html.erb
       <span class="unpublish"><%= link_to t("unpublish"), toggle_field_site_admin_banner_path(banner, field: 'publish'), method: :put %></span>
+=======
+      <%= link_to t("unpublish"), main_app.toggle_field_site_admin_banner_path(banner, field: 'publish'), method: :put %>
+>>>>>>> engines:lib/weby/components/banner_side/views/_show.html.erb
     <% end %>
     </div>
   <% end %>

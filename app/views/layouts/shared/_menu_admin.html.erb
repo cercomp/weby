@@ -9,6 +9,13 @@
       <%= menu_item_to t(".menus"), site_admin_menus_path if check_permission(Sites::Admin::MenusController, [:index])%> 
       <%= menu_item_to t(".banners"), site_admin_banners_path if check_permission(Sites::Admin::BannersController, [:index])%> 
       <%= menu_item_to t(".components"), site_admin_components_path if check_permission(Sites::Admin::ComponentsController, [:index])%> 
+
+      <li> <%= link_to 'Extensões', main_app.site_admin_extensions_path if check_permission(Sites::Admin::ExtensionsController, [:index])%> </li>
+
+      <% current_site.extensions.each do |extension| %>
+        <%= render "/#{extension.name}/admin_menu" rescue nil %>
+      <% end %>
+
       <%= menu_item_to t(".styles"), site_admin_styles_path if check_permission(Sites::Admin::StylesController, [:index])%> 
       <%= menu_item_to t(".roles_permissions"), site_admin_roles_path if check_permission(Sites::Admin::RolesController, [:index])%> 
       <li class="nav-header"><%= t(".feedback") %></li>
