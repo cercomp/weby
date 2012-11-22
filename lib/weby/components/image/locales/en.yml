@@ -15,6 +15,7 @@ en:
         target: "Target"
         url: "URL"
         new_tab: "Open link in a new tab"
+        html_class:   "HTML Class"
   image:
     views:
       show:

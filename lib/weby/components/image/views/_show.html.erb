@@ -1,4 +1,4 @@
-<section class="image_component">
+<section class="image_component <%= component.html_class %>">
   <% image_url = component.target_id.present? ? site_page_path(component.target_id) : component.url %>
   <% repository = Repository.find(component.repository_id) rescue nil %>
   <% if repository %>
