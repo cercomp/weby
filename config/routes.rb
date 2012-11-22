@@ -1,5 +1,7 @@
 Weby::Application.routes.draw do
   constraints(Weby::Subdomain) do
+    mount Feedback::Engine, at: 'feedback'
+
     get "/" => "sites#show", as: :site
     get "/admin" => "sites#admin", as: :site_admin
     get "/admin/edit" => "sites#edit", as: :edit_site_admin

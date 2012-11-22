@@ -25,6 +25,18 @@ GIT
     acts-as-taggable-on (2.3.3)
       rails (~> 3.0)
 
+PATH
+  remote: .
+  specs:
+    weby (0.3)
+
+PATH
+  remote: vendor/engines/feedback
+  specs:
+    feedback (0.0.1)
+      rails (~> 3.2.8)
+      weby (~> 0.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -155,6 +167,7 @@ GEM
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    sqlite3 (1.3.6)
     therubyracer (0.10.2)
       libv8 (~> 3.3.10)
     thin (1.4.1)
@@ -184,6 +197,7 @@ DEPENDENCIES
   bootstrap-sass
   dispatcher
   factory_girl_rails (= 1.7.0)
+  feedback!
   jquery-rails
   kaminari
   mongrel (>= 1.2.0.pre2)
@@ -195,7 +209,9 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   shoulda-matchers (= 1.0.0)
   simple_form!
+  sqlite3
   therubyracer
   thin
   turbo-sprockets-rails3
   uglifier (>= 1.0.3)
+  weby!
