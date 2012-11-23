@@ -2,7 +2,6 @@ Weby::Application.routes.draw do
   constraints(Weby::Subdomain) do
     constraints(Weby::Extensions) do
       # Mount all engines here
-      mount Teachers::Engine, :at => :teachers
       mount Feedback::Engine, :at => 'feedback'
     end
 

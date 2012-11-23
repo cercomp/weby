@@ -12,9 +12,6 @@ gem 'simple_form', :tag => 'v2.0.1', :git => 'http://github.com/plataformatec/si
 gem 'acts-as-taggable-on', :git => 'https://github.com/mbleigh/acts-as-taggable-on.git'
 gem 'bootstrap-sass'
 
-gem 'teachers', :path => '/media/dev-files/rails/weby/vendor/engines/teachers'
-gem 'feedback', :path => '/media/dev-files/rails/weby/vendor/engines/feedback'
-
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'therubyracer'
@@ -34,6 +31,7 @@ group :development, :test do
   gem 'shoulda-matchers', '1.0.0'
   gem 'weby', :path => '.'
   gem 'sqlite3'
+  gem 'debugger'
 end
 
 gem 'feedback', :path => 'vendor/engines/feedback'

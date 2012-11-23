@@ -1,5 +1,5 @@
 module Feedback
-  class MessagesController < ApplicationController
+  class MessagesController < ::ApplicationController
     
     before_filter :get_groups, :only => [:new, :create]
     

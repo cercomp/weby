@@ -34,6 +34,28 @@ ActiveRecord::Schema.define(:version => 20121031205028) do
     t.boolean  "new_tab",       :default => false
   end
 
+  create_table "extension_sites", :force => true do |t|
+    t.integer  "site_id"
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "extension_sites", ["site_id"], :name => "index_extension_sites_on_site_id"
+
+  create_table "feedback_messages", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "subject"
+    t.text     "message"
+    t.integer  "site_id"
+    t.string   "to"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "feedback_messages", ["site_id"], :name => "index_feedback_messages_on_site_id"
+
   create_table "feedbacks", :force => true do |t|
     t.string   "name"
     t.string   "email"
@@ -44,13 +66,6 @@ ActiveRecord::Schema.define(:version => 20121031205028) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "feedbacks_groups", :id => false, :force => true do |t|
-    t.integer "feedback_id", :null => false
-    t.integer "group_id",    :null => false
-  end
-
-  add_index "feedbacks_groups", ["feedback_id", "group_id"], :name => "index_feedbacks_groups_on_feedback_id_and_group_id", :unique => true
-
   create_table "groups", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -58,6 +73,13 @@ ActiveRecord::Schema.define(:version => 20121031205028) do
     t.integer  "site_id"
     t.text     "emails"
   end
+
+  create_table "groups_messages", :id => false, :force => true do |t|
+    t.integer "message_id", :null => false
+    t.integer "group_id",   :null => false
+  end
+
+  add_index "groups_messages", ["message_id", "group_id"], :name => "index_feedbacks_groups_on_feedback_id_and_group_id", :unique => true
 
   create_table "groups_users", :id => false, :force => true do |t|
     t.integer "group_id", :null => false
@@ -317,8 +339,8 @@ ActiveRecord::Schema.define(:version => 20121031205028) do
     t.string   "phone"
     t.string   "mobile"
     t.string   "register"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "locale_id"
   end
 
