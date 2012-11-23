@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
-gem 'mongrel', '>= 1.2.0.pre2'
+gem 'thin'
 gem 'jquery-rails'
 gem 'pg'
 gem 'authlogic'
@@ -20,7 +20,6 @@ end
 
 group :production do
   gem 'dispatcher'
-  gem 'thin' # Optional, needs for thin cluster in production
   gem 'turbo-sprockets-rails3'
 end
 
