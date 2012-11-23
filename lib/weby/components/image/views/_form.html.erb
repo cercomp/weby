@@ -1,4 +1,4 @@
-<%= repository_search( t(".select_image"), "page_image", "image_component[repository_id]", (Repository.find(component.repository_id) rescue nil), multiple: false, file_types: 'image') %>
+<%= repository_search( t(".select_image"), "page_image", "image_component[repository_id]", (Repository.find(component.repository_id) rescue nil), multiple: false, file_types: ['image','flash']) %>
 
 <%= image_size_picker f %>
 

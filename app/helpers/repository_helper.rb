@@ -106,7 +106,7 @@ module RepositoryHelper
   end
 
   def full_image_url repository
-    "http://#{request.host}#{":"+request.port.to_s if request.port!=80}#{repository.archive.url}"
+    "http://#{request.host_with_port}#{repository.archive.url}"
   end
 
   def clean_size!
@@ -135,6 +135,13 @@ module RepositoryHelper
       end
     end
     :original
+  end
+
+  def dimension_for_size size
+    dimension = Repository.attachment_definitions[:archive][:styles][size.to_sym]
+    if dimension and dimension.match(/^\d+x\d+$/)
+      return dimension.split('x')
+    end
   end
 
 end

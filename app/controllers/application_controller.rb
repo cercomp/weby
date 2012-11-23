@@ -127,11 +127,12 @@ class ApplicationController < ActionController::Base
     @error = exception
     @error_code = (Time.now.to_f*10).to_i
     @@weby_error_logger.error("{#{@error_code}:#{Time.now}\n"+
+        "#{current_site.title if current_site}\n"+
         "#{exception.class}\n"+
         "#{exception.message}\n"+
         "#{clean_backtrace(exception).join("\n")}\n"+
+        "#{request.host_with_port}#{request.fullpath}\n"+
         "#{params}\n"+
-        "#{current_site.title if current_site}\n"+
         "}")
     respond_to do |format|
       format.html { render template: 'errors/500', layout: 'application', status: 500 }
@@ -232,17 +233,11 @@ class ApplicationController < ActionController::Base
       @global_menus = {}
       # Carrega os menus, para auemntar a eficiência, já que menus são carregados em todas as requisições
       @site.menus.with_items.each{ |menu| @global_menus[menu.id] = menu }
-
-      if not @site.repository.nil? and File.file?(@site.repository.archive.path) and @site.repository.image?
-        @top_banner_width,@top_banner_height = Paperclip::Geometry.from_file(@site.repository.archive).to_s.split('x')
-      end
     end
 
     @main_width = nil
     if @site and @site.try(:body_width)
       @main_width = @site.body_width.to_i
-    elsif @site and @top_banner_width
-      @main_width = @top_banner_width.to_i
     end
   end
 
