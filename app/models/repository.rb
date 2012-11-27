@@ -42,7 +42,13 @@ class Repository < ActiveRecord::Base
   }
 
   has_attached_file :archive,
-    :styles => STYLES, url: "/uploads/:site_id/:style_:basename.:extension"
+    styles: STYLES,
+    url: "/uploads/:site_id/:style_:basename.:extension",
+    convert_options: {
+      mini: "-quality 90",
+      little: "-quality 90",
+      medium: "-quality 80",
+      original: "-quality 80"}
 
   validates_attachment_presence :archive,
     :message => I18n.t('activerecord.errors.messages.attachment_presence'), :on => :create

@@ -14,12 +14,12 @@
   <% end %>
   <div class="tabbable">
     <ul class="nav nav-tabs">
-      <% @available_locales.each_with_index do |locale, index| %>
+      <% available_locales(@menu_item).each_with_index do |locale, index| %>
         <li class="<%= index == 0 ? "active" : "" %>"><%= link_to locale_with_name(locale), "#tab_#{locale}", data: {toggle: 'tab'} %></li>
       <% end %>
     </ul>
     <div class="tab-content">
-      <% @available_locales.each_with_index do |locale, index| %>
+      <% available_locales(@menu_item).each_with_index do |locale, index| %>
         <div id="tab_<%= locale.name %>" class="tab-pane<%= index == 0 ? " active" : "" %>">
           <%= f.i18ns_fields_for(locale) do |g| %>
 
