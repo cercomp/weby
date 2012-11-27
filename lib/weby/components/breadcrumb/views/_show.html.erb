@@ -1,24 +1,35 @@
 <% if !current_page?(site_path) && @page then  %>
 <div class="breadcrumb_component">
-  <ul class="breadcrumb">
-      <li><%= component.label %></li>
-      <li><%= link_to "Home", site_path %><span class="divider">/</span></li>
-      <% item = MenuItem.where(target_type: "Page", target_id: @page.id)[0] %>
-      <% if item then %>
-        <%  arr = [] %>
-        <% begin %>
-          <% arr.prepend item %>
-          <% item = MenuItem.find_by_id(item.parent_id) %>
-        <% end while item %>
-        <% last = arr.pop %>
-        <% arr.each do |menu_item| %>
+  <ul>
+      <%= content_tag :li, class: "breadcrumb-label" do
+          component.label[I18n.locale.to_s]
+        end if component.label && component.label[I18n.locale.to_s].present? %>
+      <li class="breadcrumb-home"><%= link_to t(".home"), site_path %><span class="breadcrumb-divider"></span></li>
+      <% items = MenuItem.where(target_type: "Page", target_id: @page.id) #A pagina pode estar em varios menus, vamos usar o mais fundo %>
+      <% if items.empty? then
+          #verificar se nao existe um item de menu somente com a url da página
+          items = MenuItem.where(url: site_page_path(@page.id))
+        end
+      %>
+      <% unless items.empty? %>
+        <% deepest = [] %>
+        <% items.each do |item| %>
+          <%  arr = [] %>
+          <% begin %>
+            <% arr.prepend item %>
+            <% item = MenuItem.find_by_id(item.parent_id) %>
+          <% end while item %>
+          <% deepest = arr if arr.size > deepest.size %>
+        <% end %>
+        <% last = deepest.pop %>
+        <% deepest.each do |menu_item| %>
           <% item_link = (menu_item.target_id? && menu_item.target_type == "Page") ? site_page_path(menu_item.target_id) : menu_item.url.match(/^\/pages\/\d*/) ? menu_item.url : false %>
-          <li><%= link_to_if( item_link, menu_item.title, item_link) %><span class="divider">/</span></li>
+          <li><%= link_to_if( item_link, menu_item.title, item_link) %><span class="breadcrumb-divider"></span></li>
         <% end %>
       <% else %>
         <% last = @page %>
       <% end %>
-      <li class="active"><%= last.title %></li>
+      <li><%= last.title %></li>
    </ul>
 </div>
 <% end %>

@@ -9,4 +9,5 @@ en:
   breadcrumb:
     views:
       show:
+        home: "Home"
       form:

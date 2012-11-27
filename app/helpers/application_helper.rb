@@ -297,7 +297,7 @@ module ApplicationHelper
   end
 
   # Links para selecionar a quantidade de itens por página
-  def per_page_links(collection, remote = false)
+  def per_page_links(collection, remote = false, size = nil)
     if collection.page(1).count > per_page_array.first.to_i
       html = "<li class=\"disabled\"><a href=\"#\">#{t('views.pagination.per_page')} </a></li>"
 
@@ -316,7 +316,7 @@ module ApplicationHelper
         end
       end
 
-      content_tag :div, :class => "pagination" do
+      content_tag :div, :class => "pagination#{" pagination-#{size}" if size}" do
         content_tag :ul, raw(html)
       end
     end

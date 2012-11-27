@@ -1,0 +1,37 @@
+.breadcrumb_component{
+    ul{
+        padding: 8px;
+        margin: 0 0 8px;
+        list-style: none;
+        letter-spacing: -.31em;
+        word-spacing: -.43em;
+    }
+
+    li{
+        display: inline-block;
+        letter-spacing: normal;
+        word-spacing: normal;
+    }
+
+    li:last-child{
+        /*font-weight: bold;*/
+        color: #999;
+    }
+
+    li > a{
+    }
+
+    .breadcrumb-label{
+        margin-right: 8px;
+
+    }
+
+    .breadcrumb-divider{
+        padding: 0 8px;
+        color: #BBB;
+    }
+    .breadcrumb-divider:after{
+        content: '>';
+    }
+
+}

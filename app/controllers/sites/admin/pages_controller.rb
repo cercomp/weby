@@ -59,21 +59,14 @@ class Sites::Admin::PagesController < ApplicationController
   # GET /pages/new.json
   def new
     @page = @site.pages.new
-    @available_locales = available_locales
     respond_with(:site_admin, @page)
   end
 
   # GET /pages/1/edit
   def edit
     @page = @site.pages.find(params[:id])
-    @available_locales = available_locales
     respond_with(:site_admin, @page)
   end
-
-  def available_locales
-    (@page.locales | @site.locales).sort
-  end
-  private :available_locales
 
   def event_types
     @event_types = Page::EVENT_TYPES.map {|el| t("sites.admin.pages.event_form.#{el}")}.zip(Page::EVENT_TYPES)
@@ -84,7 +77,6 @@ class Sites::Admin::PagesController < ApplicationController
   # POST /pages.json
   def create
     @page = @site.pages.new(params[:page])
-    @available_locales = available_locales
     @page.author = current_user
     @page.save
     respond_with(:site_admin, @page)
@@ -95,7 +87,6 @@ class Sites::Admin::PagesController < ApplicationController
   def update
     params[:page][:related_file_ids] ||= []
     @page = @site.pages.find(params[:id])
-    @available_locales = available_locales
     @page.update_attributes(params[:page])
     respond_with(:site_admin, @page)
   end
