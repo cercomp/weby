@@ -1,9 +1,8 @@
 /*
  *= require_tree .
- *= require _bootstrap
  *= require_self 
- *= require _bootstrap-responsive
- */  
+ */ 
+@import "bootstrap";
 
 body { background: transparent; }
 
@@ -328,3 +327,4 @@ p {
 // required is red!
 label.required abbr { color: red; }
 
+@import "bootstrap-responsive";

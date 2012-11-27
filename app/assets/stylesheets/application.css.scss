@@ -1,10 +1,9 @@
 /*
  *= require google/orbitron
- *= require _bootstrap
  *= require_self 
- *= require _bootstrap-responsive
  */ 
 
+@import "bootstrap";
 // overide bootstrap to use navbar in responsive layout
 body { padding-top: 40px; }
 
@@ -115,3 +114,5 @@ body.modal-open {
 {
   cursor: pointer;
 }
+
+@import "bootstrap-responsive";

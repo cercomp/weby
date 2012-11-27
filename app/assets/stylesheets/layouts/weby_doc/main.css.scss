@@ -1,10 +1,9 @@
 /* 
  *= require_tree .
  *= require google/orbitron
- *= require _bootstrap
  *= require_self 
- *= require _bootstrap-responsive
  */ 
+@import "bootstrap";
 
 .orbitron { font-family: "Orbitron"; }
 
@@ -29,3 +28,5 @@ header .title {
   font-size: 28px; }
 
 article.page-show > header, article.page-show > summary { display: none; }
+
+@import "bootstrap-responsive";

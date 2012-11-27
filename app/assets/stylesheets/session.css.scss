@@ -1,9 +1,8 @@
 /* 
  *= require google/orbitron 
- *= require _bootstrap
  *= require_self 
- *= require _bootstrap-responsive
  */ 
+@import "bootstrap";
 
 body 
 {
@@ -117,3 +116,5 @@ input.password
   width: 470px !important;
   margin-bottom: 19px;
 }
+
+@import "bootstrap-responsive"

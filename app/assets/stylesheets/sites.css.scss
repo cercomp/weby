@@ -1,10 +1,9 @@
 /*
  *= require google/droidsans
  *= require google/orbitron
- *= require _bootstrap
  *= require_self 
- *= require _bootstrap-responsive
  */ 
+@import "bootstrap";
 
 // style to components
 header.container,
@@ -49,3 +48,5 @@ form.search
 .paginator,
 .page_info_paginator { padding-bottom: 9px; }
 .item_per_page_paginator { padding-right: 3px; }
+
+@import "bootstrap-responsive";
