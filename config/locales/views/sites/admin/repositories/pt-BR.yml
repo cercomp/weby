@@ -19,6 +19,8 @@ pt-BR:
           archives:            " Arquivos "
         ajax_upload:
           file:                " Arquivo "
+          description:         " Descrição "
+          send:                " Enviar "
           select_file:         " Selecione o arquivo "
           field_required:      " Campo obrigatório! "
         form:

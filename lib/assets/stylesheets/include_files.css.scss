@@ -149,10 +149,13 @@
 }
 
 #results {
-  overflow-y: auto;
+    height: 174px;
+    overflow-y: auto;
 
-  li{
-    height: 20px;
+  .label{
+    display: block;
+    white-space: normal;
+    margin-bottom: 6px;
   }
 }
 

@@ -175,7 +175,7 @@ class ApplicationController < ActionController::Base
     unless current_user
       store_location
       flash[:error] = t("need_login")
-      redirect_to login_url(subdomain: nil, protocol: login_protocol, back_url: "#{request.path}")
+      redirect_to login_url(subdomain: nil, protocol: login_protocol, back_url: "#{request.protocol}#{request.host_with_port}#{request.path}")
       return false
     end
   end

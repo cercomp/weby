@@ -45,6 +45,7 @@
     <footer id="footer" class="container">
       <p> <%= t("application.licence") %> </p>
     </footer>
+    <%= yield :body_end %>
     <%= javascript_include_tag "application" %>
     <%= yield :javascripts %>
   </body>

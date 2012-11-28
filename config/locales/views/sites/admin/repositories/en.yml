@@ -20,6 +20,8 @@ en:
           archives:            " Files "
         ajax_upload:
           file:                " File "
+          description:         " Description "
+          send:                " Send "
           select_file:         " Select File "
           field_required:      " Field Required! "
         form:

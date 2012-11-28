@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: http://github.com/thoughtbot/paperclip.git
-  revision: c0c1f1ed1bce2fffca8afaa662df00f6100ba69a
+  revision: 394ea1f69641343dc7acbf59fc5b4cae99559d5a
   specs:
     paperclip (3.3.1)
       activemodel (>= 3.0.0)

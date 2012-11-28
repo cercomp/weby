@@ -1,4 +1,3 @@
-//= require jquery-ui.min 
 //= require datetime
 //= require tinymce
 //= require repository.dialog

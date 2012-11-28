@@ -8,7 +8,7 @@ pt-BR:
         archive_file_name:    ""
         archive_file_size:    ""
         archive_updated_at:   ""
-        archive:              " Arquivos "
+        archive:              " Arquivo "
         created_at:           " Criado em "
         description:          " Descrição "
         site_id:              " Id do site "

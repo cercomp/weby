@@ -1,21 +1,24 @@
 <%= form_tag site_admin_repositories_path(Repository.new, format: :json),
-  method: :post, onsubmit: "ajaxUpload(); return false",
+  method: :post, onsubmit: "ajaxUpload(); return false;", remote: true,
   id: "ajax-upload-form" do %>
-  <p>
-    <%= label_tag :description %>
-    <%= text_field_tag "repository[description]", "", required: true,
-      id: "description", hint: t(".field_required") %>
-  </p>
   <p>
     <%= label_tag :fileupload, t(".file") %>
     <span class="file-wrapper">
-      <%= file_field_tag "repository[archive]", required: true, id: "fileupload", onclick: "ajaxUpload();" %>
+      <%= file_field_tag "repository[archive]", required: true, id: "fileupload", onchange: 'showFileName(this);' %>
       <span class="folder-button btn btn-info"><%= t(".select_file") %></span>
     </span>
-    <progress value="" max="100" id="upload-file-progress" style="display: none"></progress>
+    <span class="file-name"></span>
   </p>
   <p>
+    <%= label_tag :description, t(".description") %>
+    <%= text_field_tag "repository[description]", "", required: true,
+      id: "description", hint: t(".field_required") %>
   </p>
+  <%= button_tag t(".send"), class: 'btn btn-primary', type: :submit, data: {disabled_text: t('please_wait')} %>
   <%= hidden_field_tag "repository[site_id]", @site.id, id: "site_id" %>
+  <p>
+  </p>
+  
 <% end %>
-<ul id="results"></ul>
+<div id="results"></div>
+<progress value="0" max="100" id="upload-file-progress" style="display: none;"></progress>

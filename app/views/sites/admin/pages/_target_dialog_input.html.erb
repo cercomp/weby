@@ -19,7 +19,7 @@
    <%= f.input "#{target_name}_type", as: :hidden, input_html: {data: {target_type: true, prefix: "#{target_name}"}} if polymorphic %>
 </div>
 
-<% content_for :javascripts do #Para appendar no fim do body e fora do form do modelo %>
+<% content_for :body_end do #Para appendar no fim do body e fora do form do modelo %>
 
 <div id="modal_target_list" class="modal hide fade">
   <div class="modal-header">
