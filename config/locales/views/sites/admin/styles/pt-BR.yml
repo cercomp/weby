@@ -29,6 +29,7 @@ pt-BR:
           format:           " Formatar "
           comment:          " Comentar "
           uncomment:        " Descomentar "
+          apply:            " Aplicar "
         edit:
           styles:           " Estilos "
         new:

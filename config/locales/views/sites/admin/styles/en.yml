@@ -28,6 +28,7 @@ en:
           format:           " Format "
           comment:          " Comment "
           uncomment:        " Uncomment "
+          apply:            " Apply "
         edit:
           styles:           " Styles "
         new:

@@ -87,8 +87,8 @@ pt-BR:
   publish:                              " Publicar "
   publication_infinite:                 " Publicação infinita "
   prohibited_being_saved:
-    one:                                " erro, impede que você prossiga "
-    other:                              " erros, impedem que você prossiga "
+    one:                                " Um Erro impede que você prossiga "
+    other:                              " Erros impedem que você prossiga "
   problem_create_account:               " Problemas ao criar uma conta "
 #---Q---#
 #---R---#
