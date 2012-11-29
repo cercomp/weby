@@ -1,47 +1,52 @@
 <!doctype html>
 <html lang="<%= current_locale %>">
-<head>
-  <title>Weby</title>
-  <meta charset="utf-8">
-  <%= csrf_meta_tag %>
-  <%= stylesheet_link_tag 'sites' %>
-  <%= stylesheet_link_tag '_webybar' %>
-  <%= javascript_include_tag 'sites' %>
-</head>
-<body>
-  <%= render_webybar %>
-  <header class="container">
-    <div class="row">
-      <div class="span3">
-        <%= image_tag 'weby.png' %>
-      </div>
-      <div class="span9">
-        <div class="i18n_menu">
-          <% admin_locales.each do |locale| %>
-            <%= link_to flag(locale), params.merge(locale: locale.name ) %>
-          <% end %>
-        </div>
-        <%= form_tag request.path, method: 'get', autocapitalize: "off", class: 'search pull-right' do %>
-          <%= content_tag :div, class: 'input-append' do %>
-            <%= search_field_tag :search, params[:search], class: 'input-search' %><%= submit_tag t("search"), class: 'btn btn-primary btn-search' %>
-          <% end %>
-        <% end %>
-        
-      </div>
-    </div>
-  </header>
-  <div class="bluezone">
-    <section class="container">
+  <head>
+    <title>Weby</title>
+    <meta charset="utf-8">
+    <%= csrf_meta_tag %>
+    <%= stylesheet_link_tag 'sites' %>
+    <%= stylesheet_link_tag '_webybar' %>
+    <%= javascript_include_tag 'sites' %>
+  </head>
+  <body>
+    <% if current_user %>
+      <%= render_webybar %>
+    <% else %>
+      <%= render 'layouts/shared/navbar' %>
+    <% end %>
+    <header class="container">
       <div class="row">
-        <div class="span12">
-          <%= raw flash_message %>
-          <%= yield %>
+        <div class="span3">
+          <%= image_tag 'weby.png' %>
+        </div>
+        <div class="span9">
+          <div class="i18n_menu">
+            <% admin_locales.each do |locale| %>
+              <%= link_to flag(locale), params.merge(locale: locale.name ) %>
+            <% end %>
+          </div>
+          <%= form_tag request.path, method: 'get', autocapitalize: "off", class: 'search pull-right' do %>
+            <%= content_tag :div, class: 'input-append' do %>
+              <%= search_field_tag :search, params[:search], class: 'input-search' %><%= submit_tag t("search"), class: 'btn btn-primary btn-search' %>
+            <% end %>
+          <% end %>
+
         </div>
       </div>
-    </section>
-  </div>
-  <footer class="container">
-    <p> <%= t("sites.licence") %> </p>
-  </footer>
-</body>
+    </header>
+    <div class="bluezone">
+      <section class="container">
+        <div class="row">
+          <div class="span12">
+            <%= raw flash_message %>
+            <%= yield %>
+          </div>
+        </div>
+      </section>
+    </div>
+    <footer class="container">
+      <p> <%= t("sites.licence") %> </p>
+    </footer>
+    <%= yield :javascripts%>
+  </body>
 </html>
