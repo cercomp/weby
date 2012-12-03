@@ -9,5 +9,5 @@
   <%= f.input :last_name %>
   <%#= f.input :phone,  input_html: {size: 20, maxlength: 20}, as: :tel %>
   <%#= f.input :mobile, input_html: {size: 20, maxlength: 20}, as: :tel %>
-  <%= f.button :submit, class: 'btn btn-primary btn-large', disable_with: t("please_wait") %>
+  <%= f.button :submit, t('.register'), class: 'btn btn-primary btn-large', disable_with: t("please_wait") %>
 <% end %>

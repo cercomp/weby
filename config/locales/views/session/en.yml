@@ -10,7 +10,7 @@ en:
     login:
       login:              " Login "
       forgot_password:    " Forgot password "
-      register:           " New user "
+      register:           " Register "
     forgot_password:
       fill_email_form:    " Complete the form to recover your password. The password will be send to your e-mail. "
     password_sent:
@@ -20,6 +20,7 @@ en:
       password_change:    " New password "
     signup:
       signup:             " New user "
+      register:           " Register"
     resend_activation:
       resend:             " Resend activation e-mail "
 
