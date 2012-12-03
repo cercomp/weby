@@ -6,6 +6,7 @@ class SessionController < ApplicationController
 
   def login
     @session = UserSession.new
+    @user = User.new
   end
 
   def create_session
@@ -64,10 +65,6 @@ class SessionController < ApplicationController
     else
       render action: :reset_password
     end
-  end
-
-  def signup
-    @user = User.new
   end
 
   def create_user

@@ -144,7 +144,6 @@ Weby::Application.routes.draw do
   match "logout"  => "session#logout"
   get   "login"   => "session#login"
   post  "login"   => "session#create_session"
-  get   "signup"  => "session#signup"
   post  "signup"  => "session#create_user"
   
   # routes to forget password

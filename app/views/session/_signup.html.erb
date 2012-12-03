@@ -1,7 +1,4 @@
-<h4>
-  <%= t(".signup") %>
-</h4>
-<%= simple_form_for @user, url: signup_path, method: :post do |f| %>
+<%= simple_form_for @user, url: signup_url(subdomain: nil), method: :post do |f| %>
   <%= f.show_errors %>
   <%= f.input :login %>
   <%= f.input :email, as: :email %>
