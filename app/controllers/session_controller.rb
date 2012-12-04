@@ -18,6 +18,7 @@ class SessionController < ApplicationController
         logout  
       end  
     else
+      @user = User.new
       if @session.attempted_record && !@session.attempted_record.active? and !@session.invalid_password?
         render action: :resend_activation
       else
@@ -74,8 +75,9 @@ class SessionController < ApplicationController
       flash[:success] = t("create_account_successful")
       redirect_to login_url(subdomain: nil, protocol: login_protocol)
     else
+      @session = UserSession.new
       flash[:error] = t("problem_create_account")
-      render :action => :signup
+      render :action => :login
     end
   end
 
