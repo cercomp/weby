@@ -1,10 +1,10 @@
 <ul class="nav nav-tabs">
-  <li class="active" ><a href="#login" data-toggle="tab"><%= t(".login") %></a></li>
-  <li><a href="#signup" data-toggle="tab"><%= t(".register") %></a></li>
+  <li class="<%= active_tab("login") %>" ><a href="#login" data-toggle="tab"><%= t(".login") %></a></li>
+  <li class="<%= active_tab("signup") %>"><a href="#signup" data-toggle="tab"><%= t(".register") %></a></li>
 </ul>
 
 <div class="tab-content">
-  <div class="tab-pane active" id="login">
+  <div class="tab-pane <%= active_tab("login") %>" id="login">
     <%= simple_form_for @session, url: login_url(subdomain: nil, protocol: login_protocol), method: :post do |f| %>
       <%= f.show_errors %>
       <%= hidden_field_tag :back_url, "#{params[:back_url].blank? ? request.fullpath : params[:back_url]}" %>
@@ -15,7 +15,7 @@
       <%= f.button :submit, t('.login'), class: 'login btn btn-primary btn-large' %> 
     <% end %>
   </div>
-  <div class="tab-pane" id="signup">
+  <div class="tab-pane <%= active_tab("signup") %>" id="signup">
     <%= render 'signup' %>  
   </div>
 </div>

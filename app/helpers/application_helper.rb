@@ -413,4 +413,13 @@ module ApplicationHelper
   def login_protocol
     weby_settings[:login_protocol] || "http"
   end
+
+  #Método utilizado para ativar a aba de login ou de cadastro.
+  def active_tab(tab)
+    if request.path.include?(tab)
+      "active"
+    else
+      ""
+    end
+  end
 end
