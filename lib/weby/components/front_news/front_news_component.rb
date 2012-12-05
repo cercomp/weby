@@ -1,5 +1,5 @@
 class FrontNewsComponent < Component
-  component_settings :quant, :avatar_height, :avatar_width, :read_more, :details
+  component_settings :quant, :avatar_height, :avatar_width, :read_more, :details, :image_size
 
   validates :quant, presence: true
 
@@ -13,8 +13,17 @@ class FrontNewsComponent < Component
     _details.blank? ? '0' : _details
   end
 
+  alias :_image_size :image_size
+  def image_size
+    _image_size.blank? ? :medium : _image_size
+  end
+
   alias :_avatar_width :avatar_width
   def avatar_width
     _avatar_width.blank? ? "128" : _avatar_width
+  end
+
+  def image_sizes
+    [:medium, :little, :mini, :thumb]
   end
 end

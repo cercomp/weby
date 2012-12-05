@@ -15,7 +15,14 @@ en:
         avatar_width:         " Width image of news "
         read_more:            " Show read more "
         details:              " Show details of news "
+        image_size:           " Image version "
   front_news:
     views:
       show:
         read_more:          " Read more... "
+      form:
+        medium:               " Medium "
+        little:               " Little "
+        mini:                 " Miniature "
+        thumb:                " Thumbnail "
+        image_size_hint:      " A thumbnail is a smaller version of the image, with a square crop, so the original aspect ratio is preserved "

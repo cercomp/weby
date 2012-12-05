@@ -15,7 +15,14 @@ pt-BR:
         avatar_width:         " Largura da imagem da noticia"
         read_more:            " Exibir leia mais "
         details:              " Exibir detalhes da noticia "
+        image_size:           " Versão da imagem "
   front_news:
     views:
       show:
-        read_more:          " Leia mais... "
+        read_more:            " Leia mais... "
+      form:
+        medium:               " Média "
+        little:               " Pequena "
+        mini:                 " Miniatura "
+        thumb:                " Thumbnail "
+        image_size_hint:      " Thumbnail é uma versão reduzida da imagem, onde é feito um corte quadrado para que a proporção original não se perca "
