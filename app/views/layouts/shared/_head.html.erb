@@ -8,6 +8,7 @@
   <%= load_layout_stylesheet(layout) %>
   <%= stylesheet_link_tag '_webybar' %>
   <%= yield :stylesheets %>
+  <%= yield :components_stylesheets %>
   <%= render 'sites/shared/loadStyles' %>
   <!--[if lt IE 9]>
     <%= javascript_include_tag "html5" %>

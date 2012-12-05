@@ -1,27 +1,28 @@
+<% load_components -%>
 <!doctype html>
 <html lang="<%= current_locale %>">
 <%= render 'layouts/shared/head', layout: 'this2' %>
 <body>
   <%= render_webybar %>
   <div class='first_place'>
-    <%= load_components 'first_place' %>
+    <%= yield :layout_first_place %>
   </div>
   <div id="wrapper" <%= "style=\"width: #{ @main_width }px\"".html_safe if @main_width %>>
     <header>
-      <%= load_components 'top' %>
+      <%= yield :layout_top %>
       <div class="clear"> </div>
     </header>
     <aside class="left">
-      <%= load_components 'left' %>
+      <%= yield :layout_left %>
     </aside>
     <aside class="right">
-      <%= load_components 'right' %>
+      <%= yield :layout_right %>
     </aside>
     <section id="content">
       <%= yield %>
     </section>
     <footer>
-      <%= load_components 'bottom' %>
+      <%= yield :layout_bottom %>
     </footer>
   </div>
   <%= render 'layouts/shared/javascripts', layout: 'this2' %>

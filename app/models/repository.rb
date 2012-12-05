@@ -38,6 +38,7 @@ class Repository < ActiveRecord::Base
     mini: "95x70",
     little: "190x140",
     medium: "400x300",
+    thumb: "160x^",
     original: "original"
   }
 
@@ -48,6 +49,7 @@ class Repository < ActiveRecord::Base
       mini: "-quality 90",
       little: "-quality 90",
       medium: "-quality 80",
+      thumb: "-crop \"160x160+0+0\"",
       original: "-quality 80"}
 
   validates_attachment_presence :archive,
@@ -96,10 +98,6 @@ class Repository < ActiveRecord::Base
     image? and not has_all_formats?
   end
 
-  def exists_archive?(format=nil)
-    File.file?(archive.path(format))
-  end
-
   def has_all_formats?
     STYLES.each_key do |format|
       return false unless exists_archive?(format)
@@ -107,4 +105,9 @@ class Repository < ActiveRecord::Base
 
     true
   end
+
+  def exists_archive?(format=nil)
+    File.file?(archive.path(format))
+  end
+  
 end

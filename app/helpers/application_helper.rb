@@ -125,97 +125,27 @@ module ApplicationHelper
   # Verifica se o usuário tem permissão no controlador e na ação passada como parâmetro
   # Parâmetros: (Objeto) ctrl, (array) actions, Objeto site (opcional)
   # Retorna: verdadeiro ou falso
-  def check_permission(ctrl, actions, site = current_site)
-    # Se não estiver logado retorna falso
-    return false unless current_user 
-    # Se o usuário for admin então dê todas as permissões
-    return true if current_user.is_admin 
-    # Se o argumento de ações for uma string, passa para array
-    actions = [actions] unless actions.is_a? Array
-    get_roles(current_user, site).each do |role|
-      # Obtém o campo multi-valorados contendo todos os direitos
-      role.rights.each do |right|
-        # Controlador do usuario (right.controller) = nome do controlador recebido como parâmetro (ctr.controller_name)
-        if right.controller == ctrl.controller_name
-          # Cria o vetor ri com todos os direitos do usuário
-          right.action.split(' ').each do |ri|
-            actions.each do |action|
-              # Verifica:
-              # 1. Se a ação existe no controlador (Caso o usuário tenha adicionado nome incorreto)
-              # 2. Direito do usuário (ri) = ação recebida como parâmetro (action)
-              return true if ctrl.instance_methods(false).include?(action.to_sym) and ri.to_s == action.to_s
-            end
-          end
+  def check_permission(ctrl, actions)
+     actions = [actions] unless actions.is_a? Array
+     actions.each do |action|
+        if test_permission(ctrl.controller_name, action)
+          return true
         end
-      end
-    end
-
-    return false
-  end
-
-  # Obtém os papéis do usuário
-  # Obs.: Fluxo papéis globais para locais
-  # Parâmestros: user, site
-  # Retorna: vetor de papéis
-  def get_roles(user, site=nil)
-    user ||= current_user
-    site ||= @site
-    return false if user.nil? or user.blank?
-    # Se site existir
-    if site
-      # Obtém todos os papéis do usuário relacionados com site
-      roles_assigned = current_user.roles.where(['site_id IS NULL OR site_id = ?', site.id])
-    else
-      # Obtém os papéis globais
-      roles_assigned = current_user.roles.where(site_id: nil)
-    end
-
-    return roles_assigned
-  end
-
-  # Verifica as permissões do usuário dado um controlador
-  # Parametros: (objeto) usuário, :controller = Uma class de controler (não a instância)
-  # Retorna: um vetor com as permissões
-  def get_permissions(user, args={})
-    user ||= current_user
-    # Se não está logado não existe permissões
-    return [args[:except]] if user.nil?
-    ctr = args[:controller] || controller.class
-    return ctr.instance_methods(false) if user.is_admin
-    perms = []
-    perms_user = []
-    get_roles(user, @site).each do |role|
-      role.rights.each do |right|
-        if right.controller == ctr.controller_name
-          right.action.split(' ').each{ |ri| perms_user << ri.to_sym }
-        end
-      end
-    end
-    if args[:except] or args[:only]
-      # Se o argumento de exceção for uma string, passa para array
-      args[:except] = [args[:except]] if args[:except].is_a? String
-      if args[:except]
-        perms = (ctr.instance_methods(false) - args[:except]) & perms_user
-      elsif args[:only]
-        perms = args[:only] & perms_user
-      end
-      return perms.uniq
-    end
-
-    return perms_user.uniq
+     end
+     return false
   end
 
   # Monta o menu baseado nas permissões do usuário
   # Parametros: objeto
   def make_menu(obj, args={})
     if(obj.respond_to?(:site_id))
+      #não criar menu para objetos de outro site
       return "" if obj.site_id != current_site.id
     end
 
     raw("".tap do |menu|
       excepts = args[:except] || []
-      # Trata os argumentos para excluir itens do menu
-      ctr = args[:controller].nil? ? controller.class : args[:controller]
+      ctrl = args[:controller] || controller.class
 
       # Texto nos ícones
       args[:with_text] = true if args[:with_text].nil?
@@ -227,38 +157,36 @@ module ApplicationHelper
         excepts[i] = excepts[i].to_sym unless excepts[i].is_a? Symbol
       end
 
-      # Os itens do menu serão as actions do controller menos os itens no parâmetro :except
-      actions = ctr.instance_methods(false) - excepts
-
-      get_permissions(current_user, :controller => ctr).each do |permission|
-        if permission and actions.include?(permission.to_sym)
-          case permission.to_s
-          when "show"
+      (ctrl.instance_methods(false) - excepts).each do |action|
+        if test_permission(ctrl, action)
+          case action.to_sym
+          
+          when :show
             menu << link_to(
               icon('eye-open', text: args[:with_text] ? t('show') : ''),
               params.merge({
-                :controller => ctr.controller_name,
+                :controller => ctrl.controller_name,
                 :action => 'show', :id => obj.id
               }),
               :alt => t('show'),
               :title => t('show')
             ) + " "
 
-          when "edit"
+          when :edit
             menu << link_to(
               icon('edit', text: args[:with_text] ? t('edit') : ''),
               params.merge({
-                :controller => ctr.controller_name,
+                :controller => ctrl.controller_name,
                 :action => 'edit', :id => obj.id
               }),
               :alt => t('edit'),
               :title => t('edit')) + " "
 
-          when "destroy"
+          when :destroy
             menu << link_to(
               icon('trash', text: args[:with_text] ? t('destroy') : ''),
               params.merge({
-                :controller => ctr.controller_name,
+                :controller => ctrl.controller_name,
                 :action => 'destroy',
                 :id => obj.id
               }),
@@ -335,7 +263,7 @@ module ApplicationHelper
       ( @site.try(:per_page_default) || 
        Site.columns_hash['per_page_default'].try(:default) ).to_i
     else
-      weby_settings[:per_page_default].try(:to_i) || 25
+      current_settings[:per_page_default].try(:to_i) || 25
     end
   end
 
@@ -346,7 +274,7 @@ module ApplicationHelper
       ( @site.try(:per_page) || Site.columns_hash['per_page'].default ) << 
       ",#{per_page_default}"
     else
-      ( weby_settings[:per_page] || "5,15,30,60,100" ) <<
+      ( current_settings[:per_page] || "5,15,30,60,100" ) <<
       ",#{per_page_default}"
     end
   end
@@ -411,7 +339,7 @@ module ApplicationHelper
   end
 
   def login_protocol
-    weby_settings[:login_protocol] || "http"
+    current_settings[:login_protocol] || "http"
   end
 
   #Método utilizado para ativar a aba de login ou de cadastro.

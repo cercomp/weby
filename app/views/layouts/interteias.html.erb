@@ -1,22 +1,23 @@
+<% load_components -%>
 <!doctype html>
 <html lang="<%= current_locale %>">
 <%= render 'layouts/shared/head', layout: 'interteias' %>
 <body>
   <%= render_webybar %>
   <section id='first_place'>
-    <%= load_components 'first_place' %>
+    <%= yield :layout_first_place %>
     <div class="clearfix"> </div>
   </section>
   <div class="container">
     <header id="header">
-      <%= load_components 'top' %>
+      <%= yield :layout_top %>
       <div class="clearfix"> </div>
     </header>
     <section id="content">
       <%= yield %>
     </section>
     <footer id="footer">
-      <%= load_components 'bottom' %>
+      <%= yield :layout_bottom %>
     </footer>
   </div>
   <%= render 'layouts/shared/javascripts', layout: 'interteias' %>

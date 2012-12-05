@@ -9,14 +9,13 @@ function delete_attachment(element){
 }
 
 function select_image(element){
-  $('.attachment_list').removeClass("selected")
-    element = $(element);
-    element.parent().addClass("selected")
+  $('.attachment_list').removeClass("selected");
+  $(element).parent().addClass("selected");
 }
 
 function select_thumb(element) {
-  element = $(element).children();
-  curbly_insert_image(element.get(0)['src'], element.get(0)['alt']);
+  $img = $(element).find('img');
+  curbly_insert_image($(element).prop('href'), $img.prop('alt'));
 }
 
 function upload_callback(){

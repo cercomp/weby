@@ -12,11 +12,9 @@
   <% @repositories.each do |repository| %>
     <li class="span2">
       <div class="thumbnail">
-        <div style="width:160px; height:128px; overflow: hidden;">
-        <%= weby_file_view(repository, :little, nil, nil) %>
-        </div>
+        <%= weby_file_view(repository, :thumb, 160, nil) %>
         <div class="caption">
-          <p style="height: 55px; overflow: hidden;"><%= repository.description %></p>
+          <p style="overflow: hidden; white-space: nowrap; height: 20px; text-overflow: ellipsis;"><%= repository.description %></p>
           <%= raw make_menu(repository) %> 
         </div>
       </div>

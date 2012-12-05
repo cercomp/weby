@@ -63,7 +63,7 @@ onLoad: function() {
               <%= link_to(t(".show_site"), site_path) if (is_in_admin_context? and current_site) %>
               </li>
               <li>
-              <%= link_to(t(".help"), weby_settings[:help_site], target: '_blank') if weby_settings[:help_site] %>
+              <%= link_to(t(".help"), current_settings[:help_site], target: '_blank') if current_settings[:help_site] %>
               </li>
               <li> <%= link_to t(".about"), '#', target: '_blank', id: 'try-1' %> </li>
             </ul>

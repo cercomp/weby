@@ -1,12 +1,13 @@
 # coding: utf-8
 class ApplicationController < ActionController::Base
   include ApplicationHelper # Para usar helper methods nos controllers
-  include UrlHelper
   protect_from_forgery
   before_filter :set_contrast, :set_locale, :set_global_vars
+  after_filter :clear_weby_cache
 
   helper :all
-  helper_method :current_user_session, :current_user, :user_not_authorized, :sort_direction, :current_locale, :current_site, :weby_settings
+  helper_method :current_user_session, :current_user, :sort_direction, :test_permission,
+    :current_locale, :current_site, :current_settings, :current_roles_assigned
 
   def admin
     render 'admin/admin'
@@ -34,26 +35,23 @@ class ApplicationController < ActionController::Base
   end
 
   def check_authorization
-    return false unless current_user
-    return true if current_user.is_admin
-    unless get_roles(current_user).detect do |role|
-      role.rights.detect do |right|
-        right.action.split(' ').detect do |ri|
-          # devido aos scopo dos controllers devemos fazer um split e pegar a ultima parte
-          # ex: 'sites/feedbacks'.split('/').last => feedbacks
-          right.controller == self.class.controller_path.split('/').last && ri == action_name
-        end
+    unless test_permission(self, action_name)
+      respond_to do |format|
+        format.json { render json: {errors: [t("access_denied.access_denied")]}, :status => :forbidden }
+        format.any { render :template => 'session/access_denied', :status => :forbidden }
       end
-    end
-    #request.env["HTTP_REFERER" ] ? (redirect_to :back) : (render :template => 'admin/access_denied')
-    (render :template => 'session/access_denied', :status => :forbidden)
-    return false
     end
   end
 
-  def set_contraste
-    contraste = params[:contraste] || session[:contraste]
-    session[:contraste] = 'no'
+  def test_permission(ctrl, action)
+    return false unless current_user
+    return true if current_user.is_admin
+    ctrl = ctrl.controller_name if ctrl.respond_to? :controller_name
+    return @current_rights.fetch(ctrl.to_sym, {}).fetch(action.to_sym, false)
+  end
+
+  def set_contrast
+    session[:contrast] = params[:contrast] || session[:contrast] || 'no'
   end
 
   def current_site
@@ -72,8 +70,8 @@ class ApplicationController < ActionController::Base
   end
 
   # Return Settings as a Hash object
-  def weby_settings
-    @weby_settings ||= Hash[Setting.all.map{|st| [st.name.to_sym,st.value] }]
+  def current_settings
+    @current_settings ||= (Weby::Cache.request[:settings] ||= Hash[Setting.all.map{|st| [st.name.to_sym,st.value] }])
   end
 
   def locale_key
@@ -88,10 +86,6 @@ class ApplicationController < ActionController::Base
 
   def current_locale
     @current_locale
-  end
-
-  def set_contrast
-    session[:contrast] = params[:contrast] || session[:contrast] || 'no'
   end
 
   def access_denied
@@ -130,7 +124,7 @@ class ApplicationController < ActionController::Base
         "#{current_site.title if current_site}\n"+
         "#{exception.class}\n"+
         "#{exception.message}\n"+
-        "#{clean_backtrace(exception).join("\n")}\n"+
+        "#{filter_backtrace(exception).join("\n")}\n"+
         "#{request.host_with_port}#{request.fullpath}\n"+
         "#{params}\n"+
         "}")
@@ -142,15 +136,15 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def clean_backtrace(exception)
-     if backtrace = exception.backtrace
-       if defined?(Rails.root)
-         backtrace.map { |line| line.include?(Rails.root.to_s) ? line.sub(Rails.root.to_s, '') : nil }.compact
-       else
-         backtrace
-       end
-     end
-   end
+  def filter_backtrace(exception)
+    if backtrace = exception.backtrace
+      if defined?(Rails.root)
+        backtrace.map { |line| line.include?(Rails.root.to_s) ? line.sub(Rails.root.to_s, '') : nil }.compact
+      else
+        backtrace
+      end
+    end
+  end
 
   def is_admin
     unless current_user.is_admin
@@ -169,6 +163,17 @@ class ApplicationController < ActionController::Base
   def current_user
     return @current_user if defined?(@current_user)
     @current_user = current_user_session && current_user_session.record
+  end
+
+  def current_roles_assigned
+    return [] unless current_user
+    if @site
+      # Obtém todos os papéis do usuário relacionados com site
+      @current_roles_assigned ||= current_user.roles.where(['site_id IS NULL OR site_id = ?', @site.id])
+    else
+      # Obtém os papéis globais
+      @current_roles_assigned ||= current_user.roles.where(site_id: nil)
+    end
   end
 
   def require_user
@@ -225,20 +230,45 @@ class ApplicationController < ActionController::Base
   # Defini variáveis globais
   def set_global_vars
     @site = current_site
-    
-    if @site
-      params[:per_page] ||= per_page_default
 
-      #TODO carregar essa variavel somente na visualização do site
-      @global_menus = {}
-      # Carrega os menus, para auemntar a eficiência, já que menus são carregados em todas as requisições
-      @site.menus.with_items.each{ |menu| @global_menus[menu.id] = menu }
-    end
+    params[:per_page] ||= per_page_default
 
-    @main_width = nil
-    if @site and @site.try(:body_width)
-      @main_width = @site.body_width.to_i
+    @current_rights = {}
+    current_roles_assigned.each do |role|
+      role.rights.each do |right|
+        right.action.split(' ').each do |action|
+          (@current_rights[right.controller.to_sym] ||= {})[action.to_sym] = true
+        end
+      end
     end
+    #puts @my_rights
+
+    if is_in_admin_context?
+      #alguma var global exclusiva para o backend
+    else
+      if @site
+
+        @global_menus = {}
+        # Carrega os menus, para auemntar a eficiência, já que menus são carregados em todas as requisições
+        @site.menus.with_items.each do |menu|
+          @global_menus[menu.id] = menu
+        end
+
+        @global_components = {}
+        @site.components.where({publish: true}).order('position asc').each do |comp|
+          (@global_components[comp.place_holder.to_sym] ||= []) << comp
+        end
+        
+        @main_width = nil
+        if @site.try(:body_width)
+          @main_width = @site.body_width.to_i
+        end
+      end
+    end
+  end
+
+  def clear_weby_cache
+    Weby::Cache.request.clear
   end
 
   # Metodo usado na ordenação de tabelas por alguma coluna

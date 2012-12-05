@@ -12,9 +12,9 @@
   <div class="input">
     <div class="btn-toolbar code-editor-menu">
       <div class="btn-group">
-        <%= link_to t(".format"),"javascript:autoFormatSelection()", class: "btn" %>
-        <%= link_to t(".comment"),"javascript:commentSelection(true)", class: "btn" %>
-        <%= link_to t(".uncomment"),"javascript:commentSelection(false)", class: "btn" %>
+        <%= link_to t(".format"),"javascript:autoFormatSelection()", class: "btn btn-small" %>
+        <%= link_to t(".comment"),"javascript:commentSelection(true)", class: "btn btn-small" %>
+        <%= link_to t(".uncomment"),"javascript:commentSelection(false)", class: "btn btn-small" %>
       </div>
     </div>
     <%= f.input :css, 
@@ -23,7 +23,7 @@
       input_html: {class: 'style-editor', id: 'code' } %>
 
     <%= link_to icon('question-sign', text:t(".help_with_style")),
-      (weby_settings[:help_site] || "/help"),
+      (current_settings[:help_site] || "/help"),
       target: "_blank"%>
   </div>
 
@@ -66,14 +66,14 @@
               for (var e in data){
                 str += data[e]+"<br/>";
               }
-              flashMsgApply("Erro","<%=t("simple_form.error_notification.default_message")%> <br/>"+str);
+              flashMsgApply('<%=image_tag("false.png")%>',"<%=t("simple_form.error_notification.default_message")%> <br/>"+str);
               $('.btn-apply').prop('disabled',false);
             }else{
-              flashMsgApply("OK","<%=t("successfully_updated")%>");
+              flashMsgApply('<%=image_tag("true.png")%>',"<%=t("successfully_updated")%>");
             }
           },
           error: function(jqxhr, st, error){
-            flashMsgApply("Erro","<%=t("simple_form.error_notification.default_message")%> <br/>"+st);
+            flashMsgApply('<%=image_tag("false.png")%>',"<%=t("simple_form.error_notification.default_message")%> <br/>"+st);
             $('.btn-apply').prop('disabled',false);
           },
           beforeSend: function(){

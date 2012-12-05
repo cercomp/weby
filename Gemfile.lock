@@ -56,7 +56,7 @@ GEM
     activesupport (3.2.8)
       i18n (~> 0.6)
       multi_json (~> 1.0)
-    acts_as_list (0.1.8)
+    acts_as_list (0.1.9)
     arel (3.0.2)
     authlogic (3.1.3)
       activerecord (>= 3.0.0)
@@ -177,22 +177,22 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on!
-  acts_as_list
-  authlogic
-  bootstrap-sass
-  dispatcher
+  acts_as_list (= 0.1.9)
+  authlogic (= 3.1.3)
+  bootstrap-sass (= 2.2.1.1)
+  dispatcher (= 0.0.1)
   factory_girl_rails (= 1.7.0)
-  jquery-rails
-  kaminari
+  jquery-rails (= 2.1.4)
+  kaminari (= 0.14.1)
   paperclip!
-  pg
-  pry-rails
+  pg (= 0.14.1)
+  pry-rails (= 0.2.2)
   rails (= 3.2.8)
   rspec-rails (= 2.9.0)
   sass-rails (~> 3.2.3)
   shoulda-matchers (= 1.0.0)
   simple_form!
-  therubyracer
-  thin
-  turbo-sprockets-rails3
+  therubyracer (= 0.10.2)
+  thin (= 1.5.0)
+  turbo-sprockets-rails3 (= 0.2.12)
   uglifier (>= 1.0.3)

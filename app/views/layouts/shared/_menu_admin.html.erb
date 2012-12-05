@@ -6,14 +6,16 @@
       <%= menu_item_to t(".archives"), site_admin_repositories_path if check_permission(Sites::Admin::RepositoriesController, [:index])%>
       <%= menu_item_to t(".pages"), site_admin_pages_path if check_permission(Sites::Admin::PagesController, [:index])%>
       <%#= menu_item_to t(".covers"), fronts_site_admin_pages_path if check_permission(Sites::Admin::PagesController, [:index])%>
-      <%= menu_item_to t(".menus"), site_admin_menus_path if check_permission(Sites::Admin::MenusController, [:index])%> 
+      <%= menu_item_to t(".menus"), site_admin_menus_path if check_permission(Sites::Admin::MenusController, [:index])%>
       <%= menu_item_to t(".banners"), site_admin_banners_path if check_permission(Sites::Admin::BannersController, [:index])%> 
       <%= menu_item_to t(".components"), site_admin_components_path if check_permission(Sites::Admin::ComponentsController, [:index])%> 
       <%= menu_item_to t(".styles"), site_admin_styles_path if check_permission(Sites::Admin::StylesController, [:index])%> 
       <%= menu_item_to t(".roles_permissions"), site_admin_roles_path if check_permission(Sites::Admin::RolesController, [:index])%> 
-      <li class="nav-header"><%= t(".feedback") %></li>
-      <%= menu_item_to t(".messages"), site_admin_feedbacks_path if check_permission(Sites::Admin::FeedbacksController, [:index])%>
-      <%= menu_item_to t(".groups"), site_admin_groups_path if check_permission(Sites::Admin::GroupsController, [:index])%>
+      <% if check_permission(Sites::Admin::FeedbacksController, [:index]) || check_permission(Sites::Admin::GroupsController, [:index]) %>
+        <li class="nav-header"><%= t(".feedback") %></li>
+        <%= menu_item_to t(".messages"), site_admin_feedbacks_path if check_permission(Sites::Admin::FeedbacksController, [:index])%>
+        <%= menu_item_to t(".groups"), site_admin_groups_path if check_permission(Sites::Admin::GroupsController, [:index])%>
+      <% end %>
     <% else %>
       <%= menu_item_to t(".sites"), admin_sites_path if true or check_permission(Admin::SitesController, [:index])%> 
       <%= menu_item_to t(".users"), admin_users_path if check_permission(Admin::UsersController, [:index])%> 

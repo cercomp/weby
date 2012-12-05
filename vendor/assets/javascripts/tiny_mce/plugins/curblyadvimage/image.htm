@@ -36,7 +36,12 @@
             $.ajax({type: "GET",
                     //url: "/sites/"+tinyMCEPopup.editor.settings.plugin_preview_pageurl+"/repositories?template=tinymce&mime_type=image",
                     url: "/admin/repositories?template=tinymce&mime_type=image",
-                    dataType: "script"});
+                    dataType: "script",
+                    statusCode: {
+                        403: function() {
+                          $("#dynamic_images_list").text("Acesso Negado");
+                        }
+              }});
             //]]>
             </script>
             <div id="dynamic_images_list">

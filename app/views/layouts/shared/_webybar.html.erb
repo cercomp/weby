@@ -21,7 +21,7 @@ onLoad: function() {
             <%= link_to t(".dashboard"), site_admin_path, class: 'left' %>
             <%= link_to t(".logout"), logout_path(back_url: site_path), class: 'right' %>
             <%= link_to current_user.first_name, admin_user_url(current_user, subdomain: nil), class: 'right' %>
-            <%= link_to(t(".help"), weby_settings[:help_site], target: '_blank', class: 'left') if weby_settings[:help_site] %>
+            <%= link_to(t(".help"), current_settings[:help_site], target: '_blank', class: 'left') if current_settings[:help_site] %>
             <%= link_to t(".about"), '#', target: '_blank', class: 'left', id: 'try-1' %>
           </div>
         </div>

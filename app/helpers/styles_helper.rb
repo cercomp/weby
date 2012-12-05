@@ -1,8 +1,8 @@
 module StylesHelper
   def style_actions(style, args={others: false, follow: false})
     ''.tap do |actions|
-      get_permissions( current_user, controller: controller.class ).each do |permission|
-        if controller.class.instance_methods(false).include?(permission.to_sym)
+      controller.class.instance_methods(false).each do |action|
+        if test_permission(controller.class, action)
           if args[:others]
             case permission.to_s
             when 'show'

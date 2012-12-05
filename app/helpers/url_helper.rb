@@ -1,7 +1,7 @@
 module UrlHelper
   def with_subdomain(site)
     unless site
-      subdomain = weby_settings[:sites_index] || ""
+      subdomain = current_settings[:sites_index] || ""
     else
       if site.class == Site
         subdomain = site.main_site ? "#{site.name}.#{site.main_site.name}" : "www.#{site.name}"

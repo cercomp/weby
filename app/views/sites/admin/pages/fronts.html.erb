@@ -26,7 +26,7 @@
           <th><%= t(".author") %></th>
           <th><%= t(".category") %></th>
           <th><%= t(".type") %></th>
-          <% with_permission(action: 'toggle_field') do %>
+          <% with_permission(action: :toggle_field) do %>
             <th><%= link_to t(".publish"), fronts_site_admin_pages_path(published: params[:published]=='true' ? 'false':'true' ) %></th>
           <% end %>
           <th></th>

@@ -1,10 +1,11 @@
+<% load_components -%>
 <!doctype html>
 <html lang="<%= current_locale %>">
 <%= render 'layouts/shared/head', layout: 'weby_doc' %>
 <body>
   <%= render_webybar %>
   <div class="first_place">
-    <%= load_components 'first_place' %>
+    <%= yield :layout_first_place %>
   </div>
   <div class="container">  
     <header class="row">
@@ -24,7 +25,7 @@
     </header>
   </div>
   <div class="container">
-    <%= load_components 'top'%>
+    <%= yield :layout_top %>
   </div>
   <section id="content">
     <div class="container">
@@ -32,7 +33,7 @@
     </div>
   </section>
   <footer>
-    <%= load_components 'bottom' %>
+    <%= yield :layout_bottom %>
   </footer>
   <%= render 'layouts/shared/javascripts', layout: 'weby_doc' %>
 </body>

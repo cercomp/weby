@@ -65,7 +65,7 @@ class Sites::Admin::RepositoriesController < ApplicationController
       else
         format.html { redirect_to :back }
         format.json do
-          render json: { error: @repository.errors.full_messages },
+          render json: { errors: @repository.errors.full_messages },
             content_type: check_accept_json, status: 412
         end
         flash[:error] = @repository.errors.full_messages 

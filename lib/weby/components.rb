@@ -55,9 +55,36 @@ module Weby
     
     ActionView::Helpers::RenderingHelper.module_eval do
 
-      def load_components(component_place)
+#      def load_components(component_place)
+#        raw([].tap do |components|
+#          current_site.components.where(["publish = true AND place_holder = ?", component_place]).order('position asc').each do |comp|
+#            if Weby::Components.is_enabled?(comp.name)
+#              visible = comp.visibility == 1 ? current_page?(site_path) : comp.visibility == 2 ? !current_page?(site_path) : comp.visibility == 0
+#              if visible
+#                components << render_component(Weby::Components.factory(comp))
+#              end
+#            end
+#          end
+#        end.join)
+#      end
+
+      #chama 'content_for :layout_<place_holder>', use yield :layout_<place_holder> para mostrar
+      def load_components
+        @global_components.reject{|k,v| k == :home }.each do |place, comps|
+          comps.each do |comp|
+            if Weby::Components.is_enabled?(comp.name)
+              visible = comp.visibility == 1 ? current_page?(site_path) : comp.visibility == 2 ? !current_page?(site_path) : comp.visibility == 0
+              if visible
+                content_for "layout_#{place}".to_sym, render_component(Weby::Components.factory(comp))
+              end
+            end
+          end
+        end
+      end
+
+      def render_home_components
         raw([].tap do |components|
-          current_site.components.where(["publish = true AND place_holder = ?", component_place]).order('position asc').each do |comp|
+          @global_components[:home].each do |comp|
             if Weby::Components.is_enabled?(comp.name)
               visible = comp.visibility == 1 ? current_page?(site_path) : comp.visibility == 2 ? !current_page?(site_path) : comp.visibility == 0
               if visible
@@ -77,16 +104,15 @@ module Weby
 
         # Caso a partial não exista, não mostra nada
         begin
-          output = ''
           if Weby::Application.assets.find_asset("#{component.name}.css")
             @stylesheets_loaded ||= []
             #Incluir o css do componente somente uma vez, mesmo se existirem mais de um sendo exibido
             unless(@stylesheets_loaded.include?(component.name))
-              output += stylesheet_link_tag("#{component.name}")
+              content_for :components_stylesheets, stylesheet_link_tag("#{component.name}")
               @stylesheets_loaded << component.name
             end
           end
-          output += render args
+          output = render args
           output = output.sub(/(class=\"[a-z_\-]+_component\s?[a-z0-9_\-]*\")/, "\\1 id=\"component_#{component.id}\"")
         rescue ActionView::MissingTemplate
           output = ''
@@ -94,6 +120,8 @@ module Weby
         raw output
       end
 
+      #Inclui somente uma vez, mesmo se chamado várias vezes,
+      #por exemplo se o mesmo componente foi incluido mais de uma vez
       def include_component_javascript(content_for, javascript_name)
         if Weby::Application.assets.find_asset(javascript_name)
           @javascripts_loaded ||= []

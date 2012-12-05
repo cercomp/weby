@@ -25,7 +25,7 @@
       </div>
       <div class="links pull-right">
         <%= link_to t(".portals"), root_url(subdomain: nil) %>
-        <%= link_to(t(".help"), weby_settings[:help_site], target: '_blank') if weby_settings[:help_site] %>
+        <%= link_to(t(".help"), current_settings[:help_site], target: '_blank') if current_settings[:help_site] %>
       </div>
       <div class="clearfix"></div>
     </div>
