@@ -2,6 +2,7 @@ class Sites::PagesController < ApplicationController
   layout :choose_layout
 
   helper_method :sort_column
+  before_filter :check_current_site
 
   respond_to :html, :js, :json, :rss
 
@@ -32,14 +33,14 @@ class Sites::PagesController < ApplicationController
 
   def events
     @pages = get_pages.published.events
-    respond_with(@site, @pages) do |format|
+    respond_with(current_site, @pages) do |format|
       format.any { render 'index' }
     end
   end
 
   def news
     @pages = get_pages.published.news 
-    respond_with(@site, @pages) do |format|
+    respond_with(current_site, @pages) do |format|
       format.any { render 'index'}
     end
   end
@@ -53,7 +54,7 @@ class Sites::PagesController < ApplicationController
     params[:direction] ||= 'desc'
     # Vai ao banco por linha para recuperar
     # tags e locales
-    @site.pages.
+    current_site.pages.
       search(params[:search]).
       page(params[:page]).per(params[:per_page]).
       order(sort_column + " " + sort_direction)
@@ -68,27 +69,27 @@ class Sites::PagesController < ApplicationController
   #Essa action não chama o get_pages pois não faz paginação
   def fronts
     params[:published] ||= 'true'
-    @pages = @site.pages.front.order('position desc')
+    @pages = current_site.pages.front.order('position desc')
     @pages = @pages.available if params[:published] == 'true' 
   end
 
   # GET /pages/1
   # GET /pages/1.json
   def show
-    @page = @site.pages.find(params[:id]).in(params[:page_locale])
+    @page = current_site.pages.find(params[:id]).in(params[:page_locale])
     respond_with(:site, @page)
   end
 
   def sort
-    @ch_pos = @site.pages.find(params[:id_moved], :readonly => false)
+    @ch_pos = current_site.pages.find(params[:id_moved], :readonly => false)
     increment = 1
     #Caso foi movido para o fim da lista ou o fim de uma pagina(quando paginado)
     if(params[:id_after] == '0')
-      @before = @site.pages.find(params[:id_before])
+      @before = current_site.pages.find(params[:id_before])
       condition = "position < #{@ch_pos.position} AND position >= #{@before.position}"
       new_pos = @before.position
     else
-      @after = @site.pages.find(params[:id_after])
+      @after = current_site.pages.find(params[:id_after])
       #Caso foi movido de cima pra baixo
       if(@ch_pos.position > @after.position)
         condition = "position < #{@ch_pos.position} AND position > #{@after.position}"
@@ -100,8 +101,14 @@ class Sites::PagesController < ApplicationController
         new_pos = @after.position
       end
     end
-    @site.pages.front.where(condition).update_all("position = position + (#{increment})")
+    current_site.pages.front.where(condition).update_all("position = position + (#{increment})")
     @ch_pos.update_attribute(:position, new_pos)
     render :nothing => true
   end
+
+  private
+  def check_current_site
+    render_404 if not current_site
+  end
+
 end

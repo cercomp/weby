@@ -91,7 +91,7 @@ module Weby
                 components << render_component(Weby::Components.factory(comp))
               end
             end
-          end
+          end if @global_components[:home]
         end.join)
       end
 
