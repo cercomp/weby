@@ -49,6 +49,7 @@ pt-BR:
   error_creating_object:                " Erro ao criar objeto "
 #---F---#
   field_required:                       " Campo Obrigatório! "
+  file_already_exists:                  " Já existe outro arquivo com o nome: %{value} "
   follow:                               " Seguir "
   feedback_need_at_least_one_group:     " Necessita de pelo menos um grupo! "
 #---G---#
@@ -106,6 +107,7 @@ pt-BR:
   successfully_removed:                 " %{param} foi excluído com sucesso! "
   successfully_deleted:                 " Excluído com sucesso! "
   successfully_updated_password:        " Senha atualizada com sucesso "
+  should_be_image:                      " Deve ser uma imagem "
 #---T---#
 #---U---#
   unfollow:                             " Deixar de Seguir "

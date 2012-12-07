@@ -16,6 +16,7 @@ en:
         read_more:            " Show read more "
         details:              " Show details of news "
         image_size:           " Image version "
+        new_tab:              " Open links in a new tab "
   front_news:
     views:
       show:

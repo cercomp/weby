@@ -27,7 +27,7 @@
 
     // Forma um link para o arquivo:
     $(".attachment_list > li").click(function(){
-      $('#href').val($(this).data('url').replace(/\?\d*$/,''));
+      $('#href').val($(this).data('url'));
     });
   });
 </script>
@@ -39,7 +39,7 @@
 
 <ul class="attachment_list">
   <% @repositories.each do |repository| %>
-    <li id="<%= repository.id %>" class="attachment_list" data-url="<%=repository.archive.url%>">
+    <li id="<%= repository.id %>" class="attachment_list" data-url="<%=repository.archive.url(:original, false)%>">
       <%=   weby_file_view(
               repository,
               :mini,

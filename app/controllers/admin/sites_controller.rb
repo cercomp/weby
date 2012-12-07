@@ -54,7 +54,7 @@ class Admin::SitesController < ApplicationController
         @site.components.create({:place_holder=>'home', :settings=>'{:quant => "5"}', :name=>'news_list', :position=>2,:publish=>true})
          
       end
-
+      puts "site criado #{@site.inspect}"
       redirect_to site_admin_components_url(subdomain: @site)
     else
       @themes = []
@@ -68,6 +68,7 @@ class Admin::SitesController < ApplicationController
   def edit
     @site = Site.find_by_name(params[:id])
     load_themes
+    puts "HERE??"
   end
 
   def update

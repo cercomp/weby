@@ -63,12 +63,14 @@ class Sites::Admin::RepositoriesController < ApplicationController
             content_type: check_accept_json
         end
       else
-        format.html { redirect_to :back }
+        format.html do
+          #flash[:error] = @repository.errors.full_messages
+          render action: :new
+        end
         format.json do
           render json: { errors: @repository.errors.full_messages },
             content_type: check_accept_json, status: 412
         end
-        flash[:error] = @repository.errors.full_messages 
       end
     end
   end
@@ -81,8 +83,8 @@ class Sites::Admin::RepositoriesController < ApplicationController
         format.html { redirect_to(:site_id => @repository.site.name, :controller => 'repositories', :action => 'show', :id => @repository.id) }
         flash[:success] = t("successfully_updated") 
       else
-        format.html { redirect_to :back }
-        flash[:error] = @repository.errors.full_messages
+        format.html { render action: :edit }
+        #flash[:error] = @repository.errors.full_messages
       end
     end
   end

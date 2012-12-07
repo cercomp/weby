@@ -8,10 +8,10 @@
       <li id="sort_page_<%= "#{page.id}" %>" style="list-style-type:none;">
       <article>
         <% unless page.image.nil? %>
-          <%= weby_file_view(page.image, component.image_size, component.avatar_width, component.avatar_height, {as: "link", url: link_on_title(@site, page), target: '_self'}) %>
+          <%= weby_file_view(page.image, component.image_size, component.avatar_width, component.avatar_height, {as: "link", url: link_on_title(@site, page), target: (component.new_tab ? '_blank' : '_self')}) %>
         <% end %>
         <header>
-          <h2> <%= link_to page.title, link_on_title(@site, page) %> </h2>
+          <h2> <%= link_to page.title, link_on_title(@site, page), target: (component.new_tab ? '_blank' : '_self') %> </h2>
           <% if component.details.to_i == 1 %>
             <p class="details">
             <span class="author"><%= page.author.name_or_login %></span>

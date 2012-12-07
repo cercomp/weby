@@ -21,7 +21,7 @@
                             alt: repository.description,
                             title: repository.description,
                             url: link_url,
-                            target: (component.new_tab ? '_blank' : '')
+                            target: (component.new_tab ? '_blank' : '_self')
                          }) %>
     <% elsif repository.flash? %>
       <%

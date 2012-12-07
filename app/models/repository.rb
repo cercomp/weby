@@ -87,8 +87,10 @@ class Repository < ActiveRecord::Base
     archive.instance_write(:file_name, CGI.unescape(archive.original_filename))
   end
 
+  validates :archive_file_name, uniqueness: {:scope => :site_id, :message => I18n.t("file_already_exists")}
+
   # Reprocessamento de imagens para (re)gerar os thumbnails quando necessário
-  def reprocess!
+  def reprocess
     archive.reprocess! if need_reprocess?
   rescue Errno::ENOENT
   end
@@ -107,7 +109,7 @@ class Repository < ActiveRecord::Base
   end
 
   def exists_archive?(format=nil)
-    File.file?(archive.path(format))
+    FileTest.exist?(archive.path(format))
   end
   
 end

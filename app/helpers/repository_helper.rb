@@ -51,20 +51,18 @@ module RepositoryHelper
 
   private
   def make_thumbnail!
-    @file.reprocess!
+    @file.reprocess
     if file.archive_content_type.empty?
       @thumbnail = empty_mime
     else
       if mime_type.first == "image"
         if mime_type.last.include?("svg") 
           @format = :original 
-          clean_size!
         end
 
         @thumbnail = @file.archive.url(@format)
       else
         @thumbnail = mime_image
-        clean_size!
       end
     end
   end
@@ -107,10 +105,6 @@ module RepositoryHelper
 
   def full_image_url repository
     "http://#{request.host_with_port}#{repository.archive.url}"
-  end
-
-  def clean_size!
-    @size.delete!('#') if @size
   end
 
   def image_size_picker form_builder

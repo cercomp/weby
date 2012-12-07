@@ -49,6 +49,7 @@ en:
   error_creating_object:                " Error creating object "
 #---F---#
   field_required:                       " Field Required!  "
+  file_already_exists:                  " There is another file named '%{value}' "
   follow:                               " Follow "
   feedback_need_at_least_one_group:     " Needs at least one group! "
 #---G---#
@@ -106,6 +107,7 @@ en:
   successfully_removed:                 " %{param} successfully removed! "
   successfully_deleted:                 " Successfully deleted! "
   successfully_updated_password:        " Password successfully updated "
+  should_be_image:                      " Must be an image file "
 #---T---#
 #---U---#
   unfollow:                             " Unfollow "

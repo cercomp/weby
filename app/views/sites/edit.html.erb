@@ -1,6 +1,24 @@
 <%- title '.settings' %>                                                                                                               
 <div class="span9">                                                                                           
-  <div class="well">                                                                                          
-    <%= render 'sites/form' %>
+  <div class="well">
+    <div class="tabbable">
+      <ul class="nav nav-tabs" id="style-tab">
+        <li class="active" >
+          <a href="#tab-form" data-toggle="tab"><%= t(".own_styles") %></a>
+        </li>
+        <li>
+          <a href="#tab-subsites" data-toggle="tab"><%= t(".other_styles") %></a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="tab-form">
+          <%= render 'sites/form' %>
+        </div>
+        <div class="tab-pane" id="tab-subsites">
+          <%= content_tag :div, render('sites/list') if @sites %>
+        </div>
+      </div>
+    </div>
+    
   </div>                                                                                                      
 </div>  

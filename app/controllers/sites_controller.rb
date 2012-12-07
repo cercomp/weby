@@ -33,6 +33,12 @@ class SitesController < ApplicationController
   def edit
     @site = current_site
     load_themes
+    @sites = @site.subsites.
+      except(:order).
+      order(:title).
+      page(1).
+      per(100)
+    
     render layout: "application"
   end
 

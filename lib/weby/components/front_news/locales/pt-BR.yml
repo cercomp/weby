@@ -16,6 +16,7 @@ pt-BR:
         read_more:            " Exibir leia mais "
         details:              " Exibir detalhes da noticia "
         image_size:           " Versão da imagem "
+        new_tab:              " Abrir links em uma nova janela "
   front_news:
     views:
       show:
