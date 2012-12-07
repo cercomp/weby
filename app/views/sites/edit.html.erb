@@ -2,16 +2,19 @@
 <div class="span9">                                                                                           
   <div class="well">
     <div class="tabbable">
+      <% if @site.subsites.any? %>
       <ul class="nav nav-tabs" id="style-tab">
         <li class="active" >
-          <a href="#tab-form" data-toggle="tab"><%= t(".own_styles") %></a>
+          <a href="#tab-form" data-toggle="tab"><%= t(".main") %></a>
         </li>
         <li>
-          <a href="#tab-subsites" data-toggle="tab"><%= t(".other_styles") %></a>
+          <a href="#tab-subsites" data-toggle="tab"><%= t(".subsites") %></a>
         </li>
+        
       </ul>
+      <% end %>
       <div class="tab-content">
-        <div class="tab-pane active" id="tab-form">
+        <div class="tab-pane active" id="tab-form" style="padding-left: 5px;">
           <%= render 'sites/form' %>
         </div>
         <div class="tab-pane" id="tab-subsites">

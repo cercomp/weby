@@ -113,7 +113,7 @@ module RepositoryHelper
 
   def format_for_custom width, height, repository
     begin
-      file_width,file_height = Paperclip::Geometry.from_file(repository.archive).to_s.split('x') if repository
+      #file_width,file_height = Paperclip::Geometry.from_file(repository.archive).to_s.split('x') if repository
     rescue
       return :original
     end
@@ -121,9 +121,10 @@ module RepositoryHelper
       size = value.split("x") if value.match(/^\d+x\d+$/)
       if size
         if width.to_i+height.to_i > 0 and width.to_i <= size[0].to_i && height.to_i <= size[1].to_i
-          if file_width.to_i+file_height.to_i > 0 and file_width.to_i <= size[0].to_i && file_height.to_i <= size[1].to_i
-            return :original
-          end
+          #Se o original for menor que
+          #if file_width.to_i+file_height.to_i > 0 and file_width.to_i <= size[0].to_i && file_height.to_i <= size[1].to_i
+          #  return :original
+          #end
           return name
         end
       end

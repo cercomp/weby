@@ -5,6 +5,8 @@ pt-BR:
     edit:
       sites:                  " Sítios "
       settings:               " Configurações "
+      main:                   " Principal "
+      subsites:               " Subsites "
     list:
       description:            " Descrição "
       name:                   " Nome "
