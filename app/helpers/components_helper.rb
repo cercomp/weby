@@ -1,20 +1,23 @@
 module ComponentsHelper
-  # FIXME melhorar a forma de representar os hash e array de configurações
-  # Ver o uso de arquivos .yml
 
-  #TODO - Documentar
-  #
+  #returns the configuration of an specific layout
   def places_holder
     LAYOUTS[@site.theme] || []
   end
 
   #retorna as divs do mini layout ---  menu de adicionar componente
   def make_mini_layout
-    content_for :stylesheets, stylesheet_link_tag("layouts/#{current_site.theme}/mini")
+    content_for :stylesheets, stylesheet_link_tag("layouts/#{@site.theme}/mini")
     divs = "<div id='mini_layout'>"  
-    places_holder.map do |position|
-      divs += "<div id='mini_#{position}' class='hover'> #{t("components.pos.#{position}")}  </div>"
+    
+    places_holder.map do |level|
+      divs += "<div id='mini_level'>"
+      level.map do |position|
+        divs += "<div id='mini_#{position}' class='hover'> #{t("components.pos.#{position}")}  </div>"
+      end
+      divs += "</div>"
     end
+
     divs += "</div>" 
   end
 
