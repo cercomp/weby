@@ -5,14 +5,7 @@ module ComponentsHelper
   #TODO - Documentar
   #
   def places_holder
-    places = {
-      'weby' => ['first_place', 'top', 'left', 'right', 'home', 'bottom'],
-      'this2' => ['first_place', 'top', 'left', 'home', 'right', 'bottom'],
-      'weby_doc' => ['first_place', 'top' ,'home','bottom'],
-      'interteias' => ['first_place', 'top', 'home', 'bottom']
-    }
-
-    places[@site.theme] || []
+    LAYOUTS[@site.theme] || []
   end
 
   #retorna as divs do mini layout ---  menu de adicionar componente
