@@ -38,7 +38,7 @@ class Repository < ActiveRecord::Base
     mini: "95x70",
     little: "190x140",
     medium: "400x300",
-    thumb: "160x^",
+    thumb: "160x160^",
     original: "original"
   }
 
@@ -46,11 +46,11 @@ class Repository < ActiveRecord::Base
     styles: STYLES,
     url: "/uploads/:site_id/:style_:basename.:extension",
     convert_options: {
-      mini: "-quality 90",
-      little: "-quality 90",
-      medium: "-quality 80",
-      thumb: "-crop \"160x160+0+0\"",
-      original: "-quality 80"}
+      mini: "-quality 90 -strip",
+      little: "-quality 90 -strip",
+      medium: "-quality 80 -strip",
+      thumb: "-quality 90 -strip -crop 160x160+0+0 +repage",
+      original: "-quality 80 -strip"}
 
   validates_attachment_presence :archive,
     :message => I18n.t('activerecord.errors.messages.attachment_presence'), :on => :create
