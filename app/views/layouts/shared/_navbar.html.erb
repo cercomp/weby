@@ -24,7 +24,7 @@
       <% else %>
         <ul class="nav pull-right">
           <li> <%= link_to t(".login"), main_app.login_url(subdomain: nil, protocol: login_protocol, back_url: "#{request.fullpath}") %> </li>
-          <li> <%= link_to t(".register"), main_appnew_admin_user_url(subdomain: nil) %> </li>
+          <li> <%= link_to t(".register"), main_app.new_admin_user_url(subdomain: nil) %> </li>
         </ul>
       <% end %>
       <div class="nav-collapse">
