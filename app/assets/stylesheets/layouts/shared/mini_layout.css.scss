@@ -6,10 +6,14 @@
   width:  500px;
 }
 
-#mini_level{
+.mini_level{
   border-bottom: 1px dotted black;
   min-height: 25px;
 } 
+
+.mini_level > div{
+  float: left;
+}
 
 .clicked, .clicked.hover:hover { background: #f7f6d9; }
 
