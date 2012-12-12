@@ -1,12 +1,38 @@
 <h2><%= controller.action_name == 'events' ? t(".events") : t(".pages") %></h2>
-<center>
-  <%= form_tag nil, method: 'get', remote: true do %>
-    <%= text_field_tag :search, nil %>
-    <%= hidden_field_tag 'page', 1 %>
-    <%= hidden_field_tag 'per_page', "#{params[:per_page]}" %>
-    <%= submit_tag t("search"), class: 'search-button' %>
-  <% end %>
-</center>
+<%= form_tag nil, method: 'get' do %>
+  <div class="input-append">
+      <%= text_field_tag :search, params[:search] %>
+      <%= button_tag image_tag("/assets/components/icon_search.png"), class: 'btn', title: t("search") %>
+  </div>
+  <%= link_to t('.advanced'), '#', class: 'toggle-advanced-search', onclick: "return toggleAdvancedSearch()"%>
+  <span class="advanced-search<%= params[:search_type] ? "": " hide"%>">
+    &nbsp;<%= radio_button_tag :search_type, 0, params[:search_type]=='0' %><span><%= t('.match_search') %></span>
+    &nbsp;<%= radio_button_tag :search_type, 1, params[:search_type]=='1' %><span><%= t('.and_search') %></span>
+    &nbsp;<%= radio_button_tag :search_type, 2, params[:search_type]=='2' %><span><%= t('.or_search') %></span>
+  </span>
+  <%= hidden_field_tag 'page', 1 %>
+  <%= hidden_field_tag 'per_page', "#{params[:per_page]}" %>
+
+<% end %>
 <div id="pages">
   <%= render partial: 'list' %>
 </div>
+
+<script type="text/javascript">
+  function toggleAdvancedSearch(){
+      $(".advanced-search").fadeToggle(function(){
+        if(!$(this).is(':visible')){
+          $(".advanced-search input[type=radio]").prop('checked', false);
+        }
+      });
+      return false;
+  }
+</script>
+<style type="text/css">
+  .advanced-search input[type=radio]{
+    margin: 0px;
+  }
+  .advanced-search input[type=radio]:checked + span{
+    text-decoration: underline;
+  }
+</style>

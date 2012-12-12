@@ -4,6 +4,10 @@ en:
       index:
         events:        " Events "
         pages:         " Pages "
+        advanced:      " Advanced Options "
+        match_search:  "Exact sentence "
+        and_search:    "All the words "
+        or_search:     "Any of the words "
       show:
         event:         " Event "
         period_event:  " Period of Event "

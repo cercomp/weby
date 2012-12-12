@@ -4,6 +4,10 @@ pt-BR:
       index:
         events:        " Eventos "
         pages:         " Páginas "
+        advanced:      " Opções Avançadas "
+        match_search:  "Busca exata "
+        and_search:    "Todas as palavras "
+        or_search:     "Qualquer uma das palavras "
       show:
         event:         " Evento "
         period_event:  " Período do Evento "
