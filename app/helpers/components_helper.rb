@@ -12,11 +12,10 @@ module ComponentsHelper
     
     places_holder.map do |level|
       divs += "<div class='mini_level'>"
-
       level.map do |position|
-        divs += "<div id='mini_#{position}' class='hover'> #{t("components.pos.#{position}")}  </div>"
+        divs += "<div id='mini_#{position}' class='hover' style='width:#{500/level.size}px' >
+                 #{t("components.pos.#{position}")}  </div>"
       end
-
       divs += "</div>"
     end
 
