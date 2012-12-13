@@ -133,7 +133,21 @@ module Weby
         end
       end
     end
+
+    module Form
+      def component_i18n_input(locale, attribute_name, options={}, &block)
+        options[:input_html] = (options[:input_html] || {}).merge({
+            :value => @object.respond_to?("#{attribute_name}_i18n".to_sym) ? @object.send("#{attribute_name}_i18n".to_sym, locale.name) : "",
+            :name => "#{@object_name}[#{attribute_name}][#{locale.name}]",
+            :id => "#{@object_name}_#{attribute_name}_#{locale.name}"})
+
+        input attribute_name, options, &block
+      end
+    end
   end
+
+  SimpleForm::FormBuilder.send(:include, Weby::Components::Form)
+  #ActionView::Helpers::FormBuilder.send(:include, Weby::Components::Form)
 
   module ComponentInstance
     def self.extended(base)
@@ -174,6 +188,31 @@ module Weby
           
           def #{setting}
             settings_map[:#{setting}]
+          end
+        METHOD
+      end
+    end
+    #Este método deve ser chamado depois de component_settings, nunca antes
+    def i18n_settings(*settings)
+      settings.each do |setting|
+        raise ArgumentError, "Unknown setting for 'i18n_settings' in #{self.name}: #{setting}. A prior call to 'component_settings' is required" unless self.public_instance_methods.include? setting.to_sym
+        class_eval <<-METHOD
+          def #{setting}
+            val = settings_map[:#{setting}]
+            if val.is_a? Hash
+              return val[I18n.locale.to_s].present? ?
+                val[I18n.locale.to_s] : val[I18n.default_locale.to_s].present? ?
+                   val[I18n.default_locale.to_s] : val.values.sort.last
+            end
+            val
+          end
+
+          def #{setting}_i18n(locale)
+            val = settings_map[:#{setting}]
+            if val.is_a? Hash
+              return val[locale]
+            end
+            ""
           end
         METHOD
       end

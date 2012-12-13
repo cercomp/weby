@@ -21,16 +21,32 @@ class Page < ActiveRecord::Base
 
   scope :available, proc { where("date_begin_at <= :time AND ( date_end_at is NULL OR date_end_at > :time)",
                                  { time: Time.now }).published }
-
-  scope :search, lambda { |params|
-    includes(:author, :categories, :i18ns, :locales).
-      where([%{ LOWER(page_i18ns.title) LIKE :params OR
-                LOWER(page_i18ns.summary) LIKE :params OR
-                LOWER(page_i18ns.text) LIKE :params OR
-                LOWER(users.first_name) LIKE :params OR
-                LOWER(pages.type) LIKE :params OR
-                LOWER(tags.name) LIKE :params},
-                { params: "%#{params.try(:downcase)}%" }])
+  # tipos de busca
+  # 0 = "termo1 termo2"
+  # 1 = termo1 AND termo2
+  # 2 = termo1 OR termo2
+  scope :search, lambda { |param, search_type|
+      fields = ["page_i18ns.title", "page_i18ns.summary", "page_i18ns.text",
+        "users.first_name", "pages.type", "tags.name"]
+      query, values = "", {}
+      if param.present?
+        keys = param.split(' ')
+        fields.each_with_index do |field, findex|
+          query << " #{findex == 0 ? "" : "OR"} ("
+          if search_type > 0
+            keys.each_with_index { |key, kindex|
+              query << " #{kindex == 0 ? "" : search_type == 1 ? "AND" : "OR"} LOWER(#{field}) LIKE :key#{kindex} ";
+              values["key#{kindex}".to_sym] = "%#{key.try(:downcase)}%";
+            }
+          else
+            query << " LOWER(#{field}) LIKE :param "
+            values[:param] = "%#{param.try(:downcase)}%"
+          end
+          query << ") "
+        end
+      end
+      includes(:author, :categories, :i18ns, :locales).
+      where([query,values])
   }
 
 

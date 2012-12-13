@@ -2,11 +2,11 @@ pt-BR:
   components:
     subsite_front_news:
       name:                         " Notícias Capas de Subsites "
-      quant:                        " Quantidade de notícias na página inicial "
+      quant:                        " Quantidade de notícias exibidas "
   activerecord:
     attributes:
       subsite_front_news_component:
-        quant:                      " Quantidade de notícias na página inicial "
+        quant:                      " Quantidade de notícias exibidas "
   subsite_front_news:
     views:
       show:

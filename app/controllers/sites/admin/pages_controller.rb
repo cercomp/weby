@@ -30,7 +30,7 @@ class Sites::Admin::PagesController < ApplicationController
     # Vai ao banco por linha para recuperar
     # tags e locales
     @site.pages.
-      search(params[:search]).
+      search(params[:search], 1). # 1 = busca com AND entre termos
       page(params[:page]).per(params[:per_page]).
       order(sort_column + " " + sort_direction)
   end

@@ -8,6 +8,9 @@ pt-BR:
         atom_icon:        " Ícone para o feed ATOM "
         rss_icon:         " Ícone para o feed RSS "
         align:            " Alinhamento "
+        rss_icon_custom:  " Ícone personalizado RSS "
+        atom_icon_custom: " Ícone personalizado ATOM"
+
   feed:
     views:
       form:

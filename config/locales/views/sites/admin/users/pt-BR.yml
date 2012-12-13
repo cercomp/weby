@@ -3,7 +3,7 @@ pt-BR:
     admin:
       users:
         manage_roles:
-          manage_roles:   " Gerenciar Papéis "
+          manage_roles:   " Gerenciar Usuários "
         enrole:
           enrole_user:    " Relacionar Usuários "
           role:           " Papel "

@@ -3,8 +3,8 @@
   <%= weby_file_view(@page.image, :little, '128', nil) %>
 
   <header>
-    <%= raw available_flags(@page) if @page.locales.many? %>
     <% if (defined?(as_component) ? as_component[:show_title] : true) %>
+      <%= raw available_flags(@page) if @page.locales.many? %>
       <h2><%= @page.title %></h2>
     <% end %>
   </header>

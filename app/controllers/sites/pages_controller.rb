@@ -55,7 +55,7 @@ class Sites::PagesController < ApplicationController
     # Vai ao banco por linha para recuperar
     # tags e locales
     current_site.pages.
-      search(params[:search]).
+      search(params[:search], params.fetch(:search_type, 1).to_i).
       page(params[:page]).per(params[:per_page]).
       order(sort_column + " " + sort_direction)
   end
