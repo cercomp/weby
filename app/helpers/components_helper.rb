@@ -11,11 +11,8 @@ module ComponentsHelper
     divs = "<div id='mini_layout'>"  
     
     places_holder.map do |level|
-      divs += "<div class='mini_level'>"
-      level.map do |position|
-        divs += "<div id='mini_#{position}' class='hover' style='width:#{500/level.size}px' >
-                 #{t("components.pos.#{position}")}  </div>"
-      end
+      divs += "<div class='mini_level' style='height:#{level["height"] || 25}px'>"
+      divs += make_placeholders_divs(level)
       divs += "</div>"
     end
 
@@ -30,4 +27,17 @@ module ComponentsHelper
     end.compact
     components.sort! {|a,b| a[:i18n] <=> b[:i18n]}
   end
+
+  private
+
+  def make_placeholders_divs(level)
+    divs = ""
+    level["placeholders"].map do |position|
+      divs += "<div id='mini_#{position}' class='hover' 
+              style='width:#{500/level["placeholders"].size}px; height:#{level["height"] || 25}px' >
+              #{t("components.pos.#{position}")}  </div>"
+    end
+    return divs
+  end
+
 end

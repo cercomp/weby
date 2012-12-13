@@ -1,9 +1,8 @@
 #mini_layout{
   border-top: 1px dotted black;
-  border-right: 1px dotted black;
   border-left: 1px dotted black;
   background-color: #E6E6E6;	
-  width:  500px;
+  width:  502px;
 }
 
 .mini_level{
@@ -12,6 +11,7 @@
 } 
 
 .mini_level > div{
+  border-right: 1px dotted black;
   float: left;
 }
 
