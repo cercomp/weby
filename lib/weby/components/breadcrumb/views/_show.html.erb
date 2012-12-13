@@ -2,8 +2,8 @@
 <div class="breadcrumb_component">
   <ul>
       <%= content_tag :li, class: "breadcrumb-label" do
-          component.label[I18n.locale.to_s]
-        end if component.label && component.label[I18n.locale.to_s].present? %>
+          component.label
+        end if component.label.present? %>
       <li class="breadcrumb-home"><%= link_to t(".home"), site_path %><span class="breadcrumb-divider"></span></li>
       <% items = MenuItem.where(target_type: "Page", target_id: @page.id) #A pagina pode estar em varios menus, vamos usar o mais fundo %>
       <% if items.empty? then

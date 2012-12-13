@@ -2,11 +2,11 @@ pt-BR:
   components:
     event_list:
       name:                 " Lista de Eventos "
-      quant:                " Quantidade de eventos na página inicial "
+      quant:                " Quantidade de eventos exibidos "
   activerecord:
     attributes:
       event_list_component:
-        quant:              " Quantidade de eventos na página inicial "
+        quant:              " Quantidade de eventos exibidos "
   event_list:
     views:
       show:

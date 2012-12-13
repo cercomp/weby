@@ -1,6 +1,8 @@
 class PhotoSliderComponent < Component
   component_settings :photo_ids, :width, :height, :timer, :description, :style, :title
 
+  i18n_settings :title
+
   alias :_photo_ids :photo_ids
   def photo_ids
     _photo_ids.blank? ? [] : _photo_ids 

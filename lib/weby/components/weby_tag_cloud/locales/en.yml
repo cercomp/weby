@@ -11,6 +11,7 @@ en:
         hoover_type: "Selected Tag mode"
         width: "Width"
         height: "Height"
+        speed: "Speed"
   weby_tag_cloud:
     views:
       show:

@@ -14,10 +14,6 @@ class Component < ActiveRecord::Base
   validates :place_holder, presence: true
   validates :name, presence: true
 
-  scope :by_setting, lambda { |setting, value|
-    where("settings LIKE '%:#{setting} => \"#{value}\"%'")
-  }
-
   def default_alias
     ""
   end

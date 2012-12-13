@@ -8,10 +8,7 @@
       <% current_site.locales.each_with_index do |locale, index| %>
         <div id="tab_<%= locale.name %>" class="tab-pane<%= index == 0 ? " active" : "" %>">
 
-          <%= f.input :label, :as => :string, :input_html => {
-            :value => component.label ? component.label[locale.name] : "",
-            :name => "breadcrumb_component[label][#{locale.name}]",
-            :id => "breadcrumb_component_label_#{locale.name}"} %>
+          <%= f.component_i18n_input locale, :label, :as => :string %>
 
         </div>
       <% end %>
