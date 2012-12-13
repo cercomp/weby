@@ -204,7 +204,7 @@ module Weby
                 val[I18n.locale.to_s] : val[I18n.default_locale.to_s].present? ?
                    val[I18n.default_locale.to_s] : val.values.sort.last
             end
-            ""
+            val
           end
 
           def #{setting}_i18n(locale)
