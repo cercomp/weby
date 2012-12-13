@@ -1,0 +1,18 @@
+es:
+  components:
+    search_box:
+      name:                 " Cuadro de búsqueda "
+  activerecord:
+    attributes:
+      search_box_component:
+        width:              " Anchura "
+        align:              " Alineamiento "
+  search_box:
+    views:
+      show:
+        search:             " Buscar "
+      form:
+        left:               " Izquierda "
+        right:              " Derecha "
+        center:             " Centro "
+

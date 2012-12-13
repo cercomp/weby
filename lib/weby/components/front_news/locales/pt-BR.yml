@@ -5,7 +5,7 @@ pt-BR:
       quant:                " Quantidade de notícias exibidas "
       avatar_height:        " Altura da imagem da noticia "
       avatar_width:         " Largura da imagem da noticia"
-      read_more:            " Exibir leia mais "
+      read_more:            " Exibir 'leia mais' "
       details:              " Exibir detalhes da noticia "
   activerecord:
     attributes:
@@ -13,7 +13,7 @@ pt-BR:
         quant:              " Quantidade de notícias exibidas "
         avatar_height:        " Altura da imagem da noticia "
         avatar_width:         " Largura da imagem da noticia"
-        read_more:            " Exibir leia mais "
+        read_more:            " Exibir 'leia mais' "
         details:              " Exibir detalhes da noticia "
         image_size:           " Versão da imagem "
         new_tab:              " Abrir links em uma nova janela "

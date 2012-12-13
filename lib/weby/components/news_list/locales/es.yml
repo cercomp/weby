@@ -1,0 +1,21 @@
+es:
+  components:
+    news_list:
+      name:                    " Listado de noticias "
+      quant:                   " Noticias por página "
+      front:                   " Solo noticias de frente "
+      events:                  " Mostrar los eventos "
+      category:                " Categoría "
+  activerecord:
+    attributes:
+      news_list_component:
+        quant:                 " Noticias por página "
+        front:                 " Solo noticias de frente "
+        events:                " Mostrar los eventos "
+        category:              " Categoría "
+  news_list:
+    views:
+      show:
+        last_news:             " Últimas noticias "
+      form:
+        no_category_filter:    " No filtrar categorías "

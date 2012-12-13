@@ -1,0 +1,13 @@
+es:
+  components:
+    breadcrumb:
+      name: "Navegación (Breadcrumb)"
+  activerecord:
+    attributes:
+      breadcrumb_component:
+        label: "Rótulo"
+  breadcrumb:
+    views:
+      show:
+        home:   "Home page"
+      form:

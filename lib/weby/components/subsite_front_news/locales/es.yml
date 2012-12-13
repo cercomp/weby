@@ -1,0 +1,15 @@
+es:
+  components:
+    subsite_front_news:
+      name:                         " Noticias de frente de los subsitios "
+      quant:                        " Número de noticias de frente "
+  activerecord:
+    attributes:
+      subsite_front_news_component:
+        quant:                      " Número de noticias de frente "
+  subsite_front_news:
+    views:
+      show:
+        news_from:                  " Del sitio "
+        read_more:                  " Leer más... "
+
