@@ -1,7 +1,21 @@
 development:
-   this2:
-    - placeholders: ['first_place']
-    - placeholders: ['top']
-    - placeholders: ['left', 'home', 'right']
-      height: 190
-    - placeholders: ['bottom']
+  this2:
+    width: 500
+    placeholders:
+      - names: ['first_place']
+      - names: ['top']
+      - names: ['left', 'home', 'right']
+        height: 190
+      - names: ['bottom']
+  weby_doc:
+    placeholders:
+      - names: ['first_place']
+      - names: ['top'] 
+      - names: ['home']
+      - names: ['bottom']
+  interteias:
+    placeholders:
+      - names: ['first_place']
+      - names: ['top']
+      - names: [home']
+      - names: ['bottom']

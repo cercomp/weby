@@ -1,18 +1,19 @@
 module ComponentsHelper
 
   #returns the configuration of an specific layout
-  def places_holder
+  def layout_config
     LAYOUTS[@site.theme] || []
   end
 
   #retorna as divs do mini layout ---  menu de adicionar componente
   def make_mini_layout
     content_for :stylesheets, stylesheet_link_tag("layouts/shared/mini_layout")
-    divs = "<div id='mini_layout'>"  
+    config = layout_config
+    divs = "<div id='mini_layout' style='width: #{config["width"] || 500}px'>"  
     
-    places_holder.map do |level|
-      divs += "<div class='mini_level' style='height:#{level["height"] || 25}px'>"
-      divs += make_placeholders_divs(level)
+    config["placeholders"].map do |placeholders|
+      divs += "<div class='mini_level' style='height:#{placeholders["height"] || 25}px'>"
+      divs += make_placeholders_divs(placeholders, config["width"] || 500)
       divs += "</div>"
     end
 
@@ -30,12 +31,13 @@ module ComponentsHelper
 
   private
 
-  def make_placeholders_divs(level)
+  def make_placeholders_divs(placeholders,width)
     divs = ""
-    level["placeholders"].map do |position|
-      divs += "<div id='mini_#{position}' class='hover' 
-              style='width:#{500/level["placeholders"].size}px; height:#{level["height"] || 25}px' >
-              #{t("components.pos.#{position}")}  </div>"
+    placeholders["names"].map do |name|
+      divs += "<div id='mini_#{name}' class='hover' 
+               style='width:#{width/placeholders["names"].size - 1}px;
+               height:#{placeholders["height"] || 25}px' >
+               #{t("components.pos.#{name}")}  </div>"
     end
     return divs
   end
