@@ -21,10 +21,10 @@
         <th></th>
       </thead>
 
-      <% places_holder.each do |level| %>
-        <% level.each do |place_holder| %>
-          <% components_per_holder = @components.select{|component| component.place_holder == place_holder} %>
-          <%= render partial: 'components', locals: {present: true, place_holder: place_holder, components_per_holder: components_per_holder} %>
+      <% layout_config["placeholders"].each do |level| %>
+        <% level["names"].each do |name| %>
+          <% components_per_holder = @components.select{|component| component.place_holder == name} %>
+          <%= render partial: 'components', locals: {present: true, place_holder: name, components_per_holder: components_per_holder} %>
           <% @components = @components - components_per_holder %>
         <% end %>          
       <% end %>

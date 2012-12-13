@@ -34,9 +34,15 @@ module ComponentsHelper
   def make_placeholders_divs(placeholders,width)
     divs = ""
     placeholders["names"].map do |name|
-      divs += "<div id='mini_#{name}' class='hover' 
-               style='width:#{width/placeholders["names"].size - 1}px;
-               height:#{placeholders["height"] || 25}px' >
+      divs += "<div 
+                  id='mini_#{name}'
+                  class='hover' 
+                  style='width:#{ if placeholders["width"].nil? 
+                                    ((width/placeholders["names"].size).to_s + "px") 
+                                  else 
+                                    (placeholders["width"][placeholders["names"].index(name)].to_s + "%") 
+                                  end }; 
+                   height:#{placeholders["height"] || 25}px;'>
                #{t("components.pos.#{name}")}  </div>"
     end
     return divs

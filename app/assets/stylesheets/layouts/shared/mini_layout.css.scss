@@ -11,8 +11,12 @@
 
 .mini_level > div{
   border-right: 1px dotted black;
+  box-sizing: border-box;
+  -moz-box-sizing:border-box; /* Firefox */
+  -webkit-box-sizing:border-box; /* Safari */
   float: left;
 }
+
 
 .clicked, .clicked.hover:hover { background: #f7f6d9; }
 
