@@ -1,7 +1,7 @@
-<div class="tabbable">
+<div class="tabbable i18n">
   <ul class="nav nav-tabs">
     <% current_site.locales.each_with_index do |locale, index| %>
-      <li class="<%= index == 0 ? "active" : "" %>"><%= link_to locale_with_name(locale), "#tab_#{locale}", data: {toggle: 'tab'} %></li>
+      <li class="<%= index == 0 ? "active" : "" %>"><%= link_to locale_with_name(locale, '16'), "#tab_#{locale}", data: {toggle: 'tab'} %></li>
     <% end %>
   </ul>
   <div class="tab-content">

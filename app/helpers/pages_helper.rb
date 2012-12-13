@@ -9,9 +9,9 @@ module PagesHelper
     end
   end
 
-  def locale_with_name(locale)
+  def locale_with_name(locale, size = '24')
     raw %{
-      #{flag(locale)}
+      #{flag(locale, size)}
       #{t(locale.name)}
     } if locale
   end

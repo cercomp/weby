@@ -5,9 +5,9 @@ es:
         events:        " Eventos "
         pages:         " Páginas "
         advanced:      " Opciones avanzadas "
-        match_search:  "Coincidencia exacta "
-        and_search:    "Todas las palabras "
-        or_search:     "Cualquiera de las palabras "
+        match_search:  " Coincidencia exacta "
+        and_search:    " Todas las palabras "
+        or_search:     " Cualquiera de las palabras "
       show:
         event:         " Evento "
         period_event:  " Periodo del Evento "
