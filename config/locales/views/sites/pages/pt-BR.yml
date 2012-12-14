@@ -14,7 +14,7 @@ pt-BR:
         list_all:      " Listar Todas "
         categories:    " Categorias "
         source:        " Fonte "
-      list:
+      list_as_table:
         title:         " Título "
         category:      " Categoria "
         period_event:  " Período do Evento "
@@ -22,6 +22,7 @@ pt-BR:
         type:          " Tipo "
         news:          " Notícia "
         event:         " Evento "
+      list:
         read_more:     " Leia mais "
         no_pages:      " Nenhuma página encontrada "
         no_events:     " Nenhum evento encontrado "

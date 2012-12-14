@@ -14,7 +14,7 @@ en:
         list_all:      " List all "
         categories:    " Categories "
         source:        " Source "
-      list:
+      list_as_table:
         title:         " Title "
         category:      " Category "
         period_event:  " Period of Event "
@@ -22,6 +22,7 @@ en:
         type:          " Type "
         news:          " News "
         event:         " Event "
+      list:
         read_more:     " Read more "
         no_pages:      " No pages were found "
         no_events:     " No events were found "
