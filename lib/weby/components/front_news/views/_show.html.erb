@@ -8,10 +8,11 @@
       <li id="sort_page_<%= "#{page.id}" %>" style="list-style-type:none;">
       <article>
         <% unless page.image.nil? %>
-          <%= weby_file_view(page.image, component.image_size, component.avatar_width, component.avatar_height, {as: "link", url: link_on_title(@site, page), target: (component.new_tab and page.url.present? ? '_blank' : '_self')}) %>
+          <%= weby_file_view(page.image, component.image_size, component.avatar_width, component.avatar_height, {as: "link", url: link_on_title(@site, page), target: (component.new_tab && page.url.present? ? '_blank' : '_self')}) %>
         <% end %>
         <header>
-          <h2> <%= link_to page.title, link_on_title(@site, page), target: (component.new_tab and page.url.present? ? '_blank' : '_self') %> </h2>
+          <h2> <%= link_to page.title, link_on_title(@site, page), target: (component.new_tab && page.url.present? ? '_blank' : '_self') %> </h2>
+            <% if component.show_author || component.show_date %>
             <p class="page-details">
               <% if component.show_author %>
                 <span class="author"><%= t(".posted_by") %><%= page.author.name_or_login %></span>
@@ -20,6 +21,7 @@
                 <span class="date"><%= t(".posted_on") %><%= localize page.created_at, format: :medium %></span>
               <% end %>
             </p>
+            <% end %>
         </header>
         <summary>
           <%= raw page.summary %>
