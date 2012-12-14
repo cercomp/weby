@@ -220,7 +220,7 @@ module ApplicationHelper
       #{collection.offset_value + collection.length}"
       html << " #{t('of')} #{collection.total_count}" 
 
-      content_tag :div, html, :class => "pagination"
+      content_tag :div, html, :class => "pagination", :style => style
     end
   end
 

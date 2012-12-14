@@ -87,6 +87,8 @@ pt-BR:
   please_wait:                          " Por favor espere! "
   publish:                              " Publicar "
   publication_infinite:                 " Publicação infinita "
+  posted_by:                            " Por "
+  posted_on:                            " Em "
   prohibited_being_saved:
     one:                                " Um Erro impede que você prossiga "
     other:                              " Erros impedem que você prossiga "
@@ -159,6 +161,7 @@ pt-BR:
     formats:
       default:            " %a, %d-%m-%Y %H:%M:%S %z "
       short:              " %d/%m/%y %H:%M "
+      medium:             " %d/%m/%Y às %H:%M "
       long:               " %d de %B de %Y às %H:%M "
       event_date_short:   " %d %B "
       event_date_full:    " %d %B %Y "

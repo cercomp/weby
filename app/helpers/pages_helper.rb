@@ -2,7 +2,7 @@ module PagesHelper
   # Retorna um link externo quando existente ou um link interno da página.
   # Recebe uma página e o site.
   def link_on_title(site, page)
-    if page.url.nil? or page.url.empty?
+    if page.url.blank?
       site_page_url(page, subdomain: site)
     else
       page.url

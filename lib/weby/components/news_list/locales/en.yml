@@ -5,6 +5,8 @@ en:
       quant:                   " News per page "
       front:                   " Only front news "
       events:                  " Show events "
+      show_image:              " Show image "
+      image_size:              " Image size "
       category:                " Category "
   activerecord:
     attributes:
@@ -12,10 +14,12 @@ en:
         quant:                 " News per page "
         front:                 " Only front news "
         events:                " Show events "
-        category:                " Category "
+        show_image:            " Show image "
+        image_size:            " Image size "
+        category:              " Category "
   news_list:
     views:
       show:
         last_news:             " Latest news "
       form:
-        no_category_filter:    " Don't filter category "
+        no_category_filter:    " Don't filter by category "

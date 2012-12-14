@@ -22,6 +22,9 @@ en:
         type:          " Type "
         news:          " News "
         event:         " Event "
+        read_more:     " Read more "
+        no_pages:      " No pages were found "
+        no_events:     " No events were found "
       related_files:
         related_files: " Related files "
         size:          " Size "

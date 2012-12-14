@@ -89,6 +89,8 @@ es:
   please_wait:                          " Por favor espere! "
   publish:                              " Publicar "
   publication_infinite:                 " Publicação infinita "
+  posted_by:                            " Por "
+  posted_on:                            " En "
   prohibited_being_saved:
     one:                                " Un error impide que avance "
     other:                              " Errores a evitar que continúe "
@@ -161,6 +163,7 @@ es:
     formats:
       default:            " %a, %d-%m-%Y %H:%M:%S %z "
       short:              " %d/%m/%y %H:%M "
+      medium:             " %d/%m/%Y a las %H:%M "
       long:               " %d de %B de %Y a las %H:%M "
       event_date_short:   " %d %B "
       event_date_full:    " %d %B %Y "

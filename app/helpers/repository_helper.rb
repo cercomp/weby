@@ -68,7 +68,7 @@ module RepositoryHelper
   end
 
   def link_viewer
-    raw link_to(image_viewer, @options[:url] || @file.archive.url, target: @options[:target] || '_blank')
+    raw link_to(image_viewer, @options[:url] || @file.archive.url, target: @options[:target])
   end
 
   def image_viewer

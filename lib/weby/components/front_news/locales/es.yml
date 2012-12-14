@@ -5,24 +5,28 @@ es:
       quant:                " Número de noticias de frente "
       avatar_height:        " Altura de la imagen de noticias "
       avatar_width:         " Anchura de la imagen de noticias "
-      read_more:            " Mostrar 'leer más' "
-      details:              " Mostrar detalles de las noticias "
+      read_more:            " Mostrar 'Leer más' "
+      show_author:          " Mostrar el autor de la noticia "
+      show_date:            " Mostrar la fecha de la noticia "
       image_size:           " Versión de la imagen "
-      new_tab:              " Abrir link en una nueva ventana "
+      new_tab:              " Abrir noticias con URL en una nueva ventana "
   activerecord:
     attributes:
       front_news_component:
         quant:                " Número de noticias de frente "
         avatar_height:        " Altura de la imagen de noticias "
         avatar_width:         " Anchura de la imagen de noticias "
-        read_more:            " Mostrar 'leer más' "
-        details:              " Mostrar detalles de las noticias "
+        read_more:            " Mostrar 'Leer más' "
+        show_author:          " Mostrar el autor de la noticia "
+        show_date:            " Mostrar la fecha de la noticia "
         image_size:           " Versión de la imagen "
-        new_tab:              " Abrir link en una nueva ventana "
+        new_tab:              " Abrir noticias con URL en una nueva ventana "
   front_news:
     views:
       show:
-        read_more:          " Leer más... "
+        read_more:            " Leer más... "
+        posted_by:            " Por "
+        posted_on:            " En "
       form:
         medium:               " Media "
         little:               " Pequeña "

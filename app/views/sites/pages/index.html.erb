@@ -14,23 +14,11 @@
   <%= hidden_field_tag 'per_page', "#{params[:per_page]}" %>
 
 <% end %>
-<div id="pages">
+
+<div id="pages" class="pages-list">
   <%= render partial: 'list' %>
 </div>
 
-<script type="text/javascript">
-  function toggleAdvancedSearch(){
-      $(".advanced-search").fadeToggle(function(){
-        if(!$(this).is(':visible')){
-          $(".advanced-search input[type=radio]").prop('checked', false);
-        }else{
-          $('#search_type_1').prop('checked', true);
-        }
-      });
-      return false;
-  }
-</script>
-<style type="text/css">
-  .search-field-button{ clear: left; }
-  .advanced-search input[type=radio]{ margin: 0px; }
-</style>
+<% content_for :javascripts, javascript_include_tag("pages_index") %>
+<% content_for :stylesheets, stylesheet_link_tag("search_results") %>
+

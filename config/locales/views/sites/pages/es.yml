@@ -22,6 +22,9 @@ es:
         type:          " Tipo "
         news:          " Notícia "
         event:         " Evento "
+        read_more:     " Leer más "
+        no_pages:      " No se han encontrado páginas "
+        no_events:     " No se han encontrado eventos "
       related_files:
         related_files: " Archivos Relacionados "
         size:          " Tamaño "

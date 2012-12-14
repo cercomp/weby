@@ -87,6 +87,8 @@ en:
   please_wait:                          " Please Wait! "
   publish:                              " Publish "
   publication_infinite:                 " Publication infinite "
+  posted_by:                            " By "
+  posted_on:                            " On "
   prohibited_being_saved:
     one:                                " error, prevent you from proceeding "
     other:                              " errors, prevent you from proceeding "
@@ -159,7 +161,8 @@ en:
     formats:
       default:            " %a, %m-%d-%Y %H:%M:%S %z "
       short:              " %m/%d/%y %H:%M "
-      long:               " %B %d, %Y %H:%M "
+      medium:             " %m/%d/%Y at %H:%M "
+      long:               " %B %d, %Y at %H:%M "
       event_date_short:   " %B %d "
       event_date_full:    " %B %d, %Y "
       event_period_short: " %B %{iniday} - %{finday} "
