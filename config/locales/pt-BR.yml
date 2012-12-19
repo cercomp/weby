@@ -11,6 +11,7 @@ pt-BR:
   active_deactive:                      " Ativar Desativar "
   are_you_sure:                         " Você tem certeza? "
   activate_deactivate:                  " Ativar/Desativar "
+  activate:                             " Ativar "
   #access_denied:                        " Acesso negado! "
   #access_denied_page:                   " Você não está autorizado a ver está página! "
   add_sub_menu:                         " Adiciona um item de menu filho "
@@ -38,6 +39,7 @@ pt-BR:
   destroy:                              " Excluir "
   disable:                              " Desativado "
   disabled_component:                   " Componente Desabilitado "
+  deactivate:                           " Desativar "
   destroyed_style:                      " Estilo removido "
   destroyed_style_error:                " Erro ao remover Estilo "
   destroyed_param:                      " %{param} removído "
@@ -86,6 +88,7 @@ pt-BR:
 #---P---#
   please_wait:                          " Por favor espere! "
   publish:                              " Publicar "
+  published:                            " Publicado "
   publication_infinite:                 " Publicação infinita "
   posted_by:                            " Por "
   posted_on:                            " Em "
@@ -114,6 +117,7 @@ pt-BR:
 #---U---#
   unfollow:                             " Deixar de Seguir "
   unpublish:                            " Despublicar "
+  unpublished:                          " Despublicado "
   user_already_active:                  " Usuário já está ativo. "
   user_inactive:                        " Seu usuário ainda não está ativo. "
   user_not_found:                       " Usuário não encontrado "

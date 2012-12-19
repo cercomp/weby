@@ -20,5 +20,6 @@ pt-BR:
         new:
           groups:                 " Grupos "
         show:
+          name:                   " Nome "
           groups:                 " Grupos "
 

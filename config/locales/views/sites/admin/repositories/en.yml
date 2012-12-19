@@ -3,9 +3,11 @@ en:
     admin:
       repositories:
         index:
-          archives:            " Files "
-          search:              " Search "
-          new_archive:         " New file "
+          archives:             " Files "
+          search:               " Search "
+          new_archive:          " New file "
+          repository_as_thumbs: " Show repository as thumbnails "
+          repository_as_list:   " Show repository as list "
         show:
           archives:            " Files "
           name:                " Name "
@@ -31,10 +33,11 @@ en:
           please_wait:         " Please wait "
         repo:
           picture:             " Picture "
-        repositories_as_table:
-          archives:            " Files "
+        list:
+          archive:             " File "
           description:         " Description "
-        repositories_as_boxes:
+          type:                " Type "
+        thumbs:
           none_archive:        " No Files "
         repository_search:
           archives:            " Files "

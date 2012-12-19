@@ -3,8 +3,10 @@ pt-BR:
     admin:
       repositories:
         index:
-          archives:            " Arquivos "
-          new_archive:         " Novo Arquivo "
+          archives:             " Arquivos "
+          new_archive:          " Novo Arquivo "
+          repository_as_thumbs: " Exibir repositório como miniaturas "
+          repository_as_list:   " Exibir repositório como lista "
         show:
           archives:            " Arquivos "
           name:                " Nome "
@@ -30,10 +32,12 @@ pt-BR:
           please_wait:         " Por favor, aguarde "
         repo:
           picture:             " Imagem "
-        repositories_as_table:
-          archives:            " Arquivos "
+        list:
+          archive:             " Arquivo "
           description:         " Descrição "
-        repositories_as_boxes:
+          type:                " Tipo "
+          none_archive:        " Nenhum Arquivo "
+        thumbs:
           none_archive:        " Nenhum Arquivo "
         repository_search:
           archives:            " Arquivos "

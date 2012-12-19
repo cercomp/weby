@@ -4,6 +4,9 @@ en:
       show:
         user:               " User "
         id:                 " Id "
+        status:             " Status "
+        enabled:            " Enabled "
+        disabled:           " Disabled "
         username:           " Login "
         email:              " E-mail "
         phone:              " Phone "

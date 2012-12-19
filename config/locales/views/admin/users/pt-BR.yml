@@ -4,6 +4,9 @@ pt-BR:
       show:
         user:               " Usuário "
         id:                 " Id "
+        status:             " Status "
+        enabled:            " Ativo "
+        disabled:           " Desativado "
         username:           " Nome do usuário "
         email:              " E-mail "
         phone:              " Telefone "

@@ -4,10 +4,12 @@
   <div class="well">
   <h3> <%= t(".style") %>: <%= @style.name %> </h3>
 
-  <b> <%= t(".style") %> </b>
+  <b> <%= "CSS" %> </b>
   <textarea id="code"><%= @style.css %></textarea>
 
-  <%= link_to t("back"), :back, class: "btn btn-danger" %>
+  <div class="form-actions">
+    <%= link_to t("back"), :back, class: "btn btn-danger" %>
+  </div>
   </div>
 </div>
 <%= content_for :stylesheets, stylesheet_link_tag("codeMirror/codemirror") %>

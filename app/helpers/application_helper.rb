@@ -17,17 +17,21 @@ module ApplicationHelper
         if obj[field.to_s] == 0 or not obj[field.to_s]
           menu << link_to( image_tag("false.png", :alt => t("disable")),
             {:action => "#{action}", :id => obj.id, :field => "#{field}"},
-            options.merge({method: :put, :title => t("activate_deactivate")}))
+            options.merge({method: :put, :title => t("activate")}))
+          menu << " #{t('unpublished')}" if options[:show_label]
         else
           menu << link_to(image_tag("true.png", :alt => t("enable")),
                           {:action => "#{action}", :id=> obj.id, :field => "#{field}"},
-                          options.merge({method: :put, :title => t("activate_deactivate")}))
+                          options.merge({method: :put, :title => t("deactivate")}))
+          menu << " #{t('published')}" if options[:show_label]
         end
       else
         if obj[field.to_s] == 0 or not obj[field.to_s]
           menu << image_tag("false_off.png", :alt => t("enable"), :title => t("no_permission_to_activate_deactivate"))
+          menu << " #{t('unpublished')}" if options[:show_label]
         else
           menu << image_tag("true_off.png", :alt => t("disable"), :title => t("no_permission_to_activate_deactivate"))
+          menu << " #{t('published')}" if options[:show_label]
         end
       end
     end

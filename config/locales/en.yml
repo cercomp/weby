@@ -11,6 +11,7 @@ en:
   active_deactive:                      " Active Deactive  "
   are_you_sure:                         " Are you sure?    "
   activate_deactivate:                  " Activate/Deactivate "
+  activate:                             " Activate "
   access_denied:                        " Access denied "
   access_denied_page:                   " You are not allowed to see this page! "
   add_sub_menu:                         " Add sub menu item "
@@ -38,6 +39,7 @@ en:
   destroy:                              " Destroy "
   disable:                              " Disable "
   disabled_component:                   " Disabled Component "
+  deactivate:                           " Deactivate "
   destroyed_style:                      " Style destroyed "
   destroyed_style_error:                " Error when remove Style "
   destroyed_param:                      " %{param} destroyed "
@@ -86,6 +88,7 @@ en:
 #---P---#
   please_wait:                          " Please Wait! "
   publish:                              " Publish "
+  published:                            " Published "
   publication_infinite:                 " Publication infinite "
   posted_by:                            " By "
   posted_on:                            " On "
@@ -114,6 +117,7 @@ en:
 #---U---#
   unfollow:                             " Unfollow "
   unpublish:                            " Unpublish "
+  unpublished:                          " Unpublished "
   user_already_active:                  " User already activated. "
   user_inactive:                        " User was not activated. "
   user_not_found:                       " User not found "

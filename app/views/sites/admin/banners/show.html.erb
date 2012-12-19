@@ -3,30 +3,37 @@
 <div class="span9">
   <div class="well">
     <% unless @banner.repository.nil? %>
-    <% format = @banner.size.present? ? @banner.size : format_for_custom(@banner.width, @banner.height, @banner.repository) %>
-    <%= weby_file_view(@banner.repository,
-                       format,
-                       "#{@banner.width}",
-                       "#{@banner.height}",
-                       {as: 'link', alt: @banner.text, title: @banner.text }) %>
-  <% end %>
+      <% format = @banner.size.present? ? @banner.size : format_for_custom(@banner.width, @banner.height, @banner.repository) %>
+      <%= weby_file_view(@banner.repository,
+                         format,
+                         "#{@banner.width}",
+                         "#{@banner.height}",
+                         {target: '_blank'}) %>
+    <% end %>
   <p> 
-    <h1> <%= t(".banner") %> </h1>
+    <h2> <%= @banner.title %> </h2>
   </p>
-
-  <i><%= @banner.user.login %>, <%= l @banner.created_at, :format => :short %></i>
-
   <p> 
-    <h2> <%= @banner.text %> </h2>
+     <%= @banner.text %> 
   </p>
   <p>
-    <h3> <%= t(".url") %>: <%= link_to @banner.url, @banner.url %> </h3>
+    <span class="label label-info"><%= @banner.categories.join(", ") || t(".none_category") %></span>
+  </p>
+  <p>
+    <b> <%= t(".period_banner") %>: </b> <%= l @banner.date_begin_at, :format => :short %> - <%= l @banner.date_end_at, :format => :short if @banner.date_end_at  %>
+  </p>
+  <p>
+    <b> <%= t(".url") %>: </b> <%= link_to @banner.url, @banner.url, target: '_blank' %>
+  </p>
+  <p>
+    <i><%= @banner.user.name_or_login %>, <%= l @banner.created_at, :format => :short %></i>
   </p>
 
-  <%= make_menu(@banner, :except => "show") %>
-  <%= link_to icon('list', text:t(".list_all")), site_admin_banners_path() %> 
-  <%= link_to icon('chevron-left', text:t("back")), :back %>
-
+  <div class="form-actions">
+    <%= make_menu(@banner, :except => "show") %>
+    <%= link_to icon('list', text:t(".list_all")), site_admin_banners_path() %>
+    <%= link_to icon('chevron-left', text:t("back")), :back %>
+  </div>
  </div>
 </div>
 
