@@ -11,9 +11,8 @@ module RepositoryHelper
       img_opt = {}
       img_opt[:alt] = @options[:alt] if @options[:alt]
       img_opt[:title] = @options[:title] if @options[:title]
-      img_opt[:width] = @width unless @width.blank?
-      img_opt[:height] = @height unless @height.blank?
-      img_opt[:style] = @options[:style] if @options[:style]
+      size = style_for_dimension @width, @height
+      img_opt[:style] = @options[:style] ? "#{@options[:style]}#{size}" : size
       img_opt[:id] = @options[:id] if @options[:id]
       raw image_tag(empty_mime, img_opt)
     end
@@ -85,9 +84,8 @@ module RepositoryHelper
     img_opt = {
       alt: @file.description,
       title: (@options[:title] || @file.description) }
-    img_opt[:width] = @width unless @width.blank?
-    img_opt[:height] = @height unless @height.blank?
-    img_opt[:style] = @options[:style] if @options[:style]
+    size = style_for_dimension @width, @height
+    img_opt[:style] = @options[:style] ? "#{@options[:style]}#{size}" : size
     img_opt[:id] = @options[:id] if @options[:id]
     begin
       image = image_tag(@thumbnail, img_opt)
@@ -148,6 +146,13 @@ module RepositoryHelper
     if dimension and dimension.match(/^\d+x\d+$/)
       return dimension.split('x')
     end
+  end
+
+  def style_for_dimension width, height
+    size = ""
+    size << "width:#{width}px; " if width
+    size << "height:#{height}px; " if height
+    size
   end
 
 end

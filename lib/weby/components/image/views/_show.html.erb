@@ -9,9 +9,7 @@
             width = component.width.present? ? component.width : false#current_site.body_width ? current_site.body_width : false
             height = component.height.present? ? component.height : false
           end
-          size = ""
-          size << "width:#{width}px; " if width
-          size << "height:#{height}px; " if height
+          size = style_for_dimension width, height
       %>
       <%= weby_file_view(repository,
                          format, nil, nil,

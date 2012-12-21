@@ -1,7 +1,7 @@
 class Sites::Admin::RepositoriesController < ApplicationController
   before_filter :require_user
   before_filter :check_authorization
-
+  
   helper_method :sort_column
 
   respond_to :html, :xml, :js, :json
@@ -59,7 +59,7 @@ class Sites::Admin::RepositoriesController < ApplicationController
           end
         } 
         format.json do
-          render json: { repositories: @repository, message: t("successfully_created") },
+          render json: { :repositories => @repository, :message => t("successfully_created"), :url => site_admin_repository_path(@repository) },
             content_type: check_accept_json
         end
       else
@@ -68,8 +68,9 @@ class Sites::Admin::RepositoriesController < ApplicationController
           render action: :new
         end
         format.json do
-          render json: { errors: @repository.errors.full_messages },
-            content_type: check_accept_json, status: 412
+          render json: { :errors => @repository.errors.full_messages }, status: 412,
+            content_type: check_accept_json
+          
         end
       end
     end

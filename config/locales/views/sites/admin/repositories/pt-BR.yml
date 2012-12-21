@@ -17,19 +17,21 @@ pt-BR:
           list_all:            " Listar todos "
         new:
           archives:            " Arquivos "
+          field_required:      " Campo obrigatório! "
+          accessibility_needs: " Necessário para a acessibilidade de seu site. "
+          please_wait:         " Por favor, aguarde "
+          add_archives:        " Adicionar Arquivos "
         edit:
           archives:            " Arquivos "
+          field_required:      " Campo obrigatório! "
+          accessibility_needs: " Necessário para a acessibilidade de seu site. "
+          please_wait:         " Por favor, aguarde "
         ajax_upload:
           file:                " Arquivo "
           description:         " Descrição "
           send:                " Enviar "
           select_file:         " Selecione o arquivo "
           field_required:      " Campo obrigatório! "
-        form:
-          field_required:      " Campo obrigatório! "
-          accessibility_needs: " Necessário para que seu site se torne acessível. "
-          archives:            " Arquivos "
-          please_wait:         " Por favor, aguarde "
         repo:
           picture:             " Imagem "
         list:

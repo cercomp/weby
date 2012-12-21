@@ -18,19 +18,21 @@ en:
           list_all:            " List All "
         new:
           archives:            " Files "
+          field_required:      " Field required! "
+          accessibility_needs: " Needed for your site's accessibility. "
+          please_wait:         " Please wait "
+          add_archives:        " Add files "
         edit:
           archives:            " Files "
+          field_required:      " Field required! "
+          accessibility_needs: " Needed for your site's accessibility. "
+          please_wait:         " Please wait "
         ajax_upload:
           file:                " File "
           description:         " Description "
           send:                " Send "
           select_file:         " Select File "
           field_required:      " Field Required! "
-        form:
-          field_required:      " Field required! "
-          accessibility_needs: " Needed for your site becomes accessible. "
-          archives:            " Archives "
-          please_wait:         " Please wait "
         repo:
           picture:             " Picture "
         list:
