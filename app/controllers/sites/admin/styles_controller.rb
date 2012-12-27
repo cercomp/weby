@@ -93,7 +93,9 @@ class Sites::Admin::StylesController < ApplicationController
     @style = Style.find(params[:id])
 
     flash[:success] = t("successfully_updated") if @style.update_attributes(params[:style])
-    respond_with(:site_admin, @style, location: site_admin_styles_path)
+    respond_with(:site_admin, @style, location: site_admin_styles_path) do |format|
+      format.json{ render :text => @style.errors.full_messages.to_json }
+    end
   end
 
   def destroy

@@ -13,9 +13,9 @@
       <% with_permission(action: :new) do %>
         <%= link_to t(".new_page"),
           new_site_admin_page_path,
-          class: "btn btn-success btn-large" %>
+          class: "btn btn-success" %>
       <% end %>
-      <%= link_to t(".list_pages"), site_admin_pages_path, :class => 'btn btn-primary btn-large' %>
+      <%= link_to t(".list_pages"), site_admin_pages_path, :class => 'btn btn-primary' %>
     </div>
     <div class="clearfix control-group"></div>
 
@@ -26,7 +26,7 @@
           <th><%= t(".author") %></th>
           <th><%= t(".category") %></th>
           <th><%= t(".type") %></th>
-          <% with_permission(action: 'toggle_field') do %>
+          <% with_permission(action: :toggle_field) do %>
             <th><%= link_to t(".publish"), fronts_site_admin_pages_path(published: params[:published]=='true' ? 'false':'true' ) %></th>
           <% end %>
           <th></th>

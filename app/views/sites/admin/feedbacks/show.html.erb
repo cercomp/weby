@@ -25,6 +25,9 @@
     <b><%= t('.send_date') %>:</b>
     <%= l @feedback.created_at, format: :short %>
     </p>
-    <%= link_to t("back"), :back, class: "btn btn-danger" %>
+
+    <div class="form-actions">
+      <%= link_to t("back"), :back, class: "btn btn-danger" %>
+    </div>
   </div>
 </div>

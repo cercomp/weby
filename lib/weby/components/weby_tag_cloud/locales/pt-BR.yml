@@ -11,6 +11,7 @@ pt-BR:
         hoover_type: " Modo da Tag selecionada"
         width: "Largura"
         height: "Altura"
+        speed: "Velocidade"
   weby_tag_cloud:
     views:
       show:

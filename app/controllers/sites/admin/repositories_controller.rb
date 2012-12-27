@@ -1,7 +1,7 @@
 class Sites::Admin::RepositoriesController < ApplicationController
   before_filter :require_user
   before_filter :check_authorization
-
+  
   helper_method :sort_column
 
   respond_to :html, :xml, :js, :json
@@ -59,16 +59,19 @@ class Sites::Admin::RepositoriesController < ApplicationController
           end
         } 
         format.json do
-          render json: { repositories: @repository, message: t("successfully_created") },
+          render json: { :repositories => @repository, :message => t("successfully_created"), :url => site_admin_repository_path(@repository) },
             content_type: check_accept_json
         end
       else
-        format.html { redirect_to :back }
-        format.json do
-          render json: { error: @repository.errors.full_messages },
-            content_type: check_accept_json, status: 412
+        format.html do
+          #flash[:error] = @repository.errors.full_messages
+          render action: :new
         end
-        flash[:error] = @repository.errors.full_messages 
+        format.json do
+          render json: { :errors => @repository.errors.full_messages }, status: 412,
+            content_type: check_accept_json
+          
+        end
       end
     end
   end
@@ -81,8 +84,8 @@ class Sites::Admin::RepositoriesController < ApplicationController
         format.html { redirect_to(:site_id => @repository.site.name, :controller => 'repositories', :action => 'show', :id => @repository.id) }
         flash[:success] = t("successfully_updated") 
       else
-        format.html { redirect_to :back }
-        flash[:error] = @repository.errors.full_messages
+        format.html { render action: :edit }
+        #flash[:error] = @repository.errors.full_messages
       end
     end
   end

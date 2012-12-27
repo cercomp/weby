@@ -3,11 +3,19 @@
   <%= weby_file_view(@page.image, :little, '128', nil) %>
 
   <header>
-    <%= raw available_flags(@page) if @page.locales.many? %>
     <% if (defined?(as_component) ? as_component[:show_title] : true) %>
+      <%= raw available_flags(@page) if @page.locales.many? %>
       <h2><%= @page.title %></h2>
     <% end %>
   </header>
+  <% if !defined?(as_component) %>
+    <% if @site.view_desc_pages %>
+    <div class="page-details">
+       <span class="author"><%= t("posted_by") %><%= @page.author %></span>
+       <span class="date"><%= t("posted_on") %><%= l(@page.created_at, format: :short) %></span>
+    </div>
+    <% end %>
+  <% end %>
 
   <%= content_tag_if @page.event?, :div, class: 'event' do %>
     <h3><%= t(".event") %></h3>
@@ -30,14 +38,7 @@
   <% end %>
 
   <summary>
-    <% if !defined?(as_component) %>
-      <p>
-        <%= "#{@page.author} #{l(@page.created_at, format: :short)}" if @site.view_desc_pages %>
-      </p>
-    <% end %>
-    <p>
-      <%= raw @page.summary %>
-    </p>
+   <%= raw @page.summary %>
   </summary>
 
   <div class="body">

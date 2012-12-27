@@ -4,4 +4,8 @@ module LocalesHelper
     
     image_tag("flags/#{size}/#{locale.flag}", options)
   end
+
+  def available_locales obj
+    (obj.locales | current_site.locales).sort
+  end
 end

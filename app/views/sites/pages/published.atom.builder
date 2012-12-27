@@ -14,7 +14,9 @@ atom_feed :language => I18n.locale do |feed|
           title: page.image.description
         }
       ) if page.image
-      entry.content "#{page_image}<br/>#{page.summary}<br/>#{page.text}", :type => 'html'
+      body = "#{page_image}<br/>#{page.summary}<br/>#{page.text}"
+      body += "<br/>#{link_to 'Original', page.url, target: '_blank'}" if page.url.present?
+      entry.content body, :type => 'html'
 
       entry.author do |author|
         author.name page.author.fullname

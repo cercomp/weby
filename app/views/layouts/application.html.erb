@@ -9,6 +9,7 @@
       <%= javascript_include_tag "html5" %>
     <![endif]-->
     <%= yield :stylesheets %>
+    <%= yield :components_stylesheets %>
     <%= stylesheet_link_tag 'application' %>
     <%= csrf_meta_tag %>
   </head>
@@ -45,6 +46,7 @@
     <footer id="footer" class="container">
       <p> <%= t("application.licence") %> </p>
     </footer>
+    <%= yield :body_end %>
     <%= javascript_include_tag "application" %>
     <%= yield :javascripts %>
   </body>

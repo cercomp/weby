@@ -11,6 +11,7 @@ pt-BR:
   active_deactive:                      " Ativar Desativar "
   are_you_sure:                         " Você tem certeza? "
   activate_deactivate:                  " Ativar/Desativar "
+  activate:                             " Ativar "
   #access_denied:                        " Acesso negado! "
   #access_denied_page:                   " Você não está autorizado a ver está página! "
   add_sub_menu:                         " Adiciona um item de menu filho "
@@ -31,11 +32,14 @@ pt-BR:
       left:                             " Esquerda "
       right:                            " Direita "
       top:                              " Topo "
+  custom:                               " Personalizado "
   create_account_successful:            " Sua conta foi criada! Foi enviado para seu email instruções de como ativá-la "
+  activation_sent_successful:           " Foi enviado para seu email instruções de como ativar sua conta "
 #---D---#
   destroy:                              " Excluir "
   disable:                              " Desativado "
   disabled_component:                   " Componente Desabilitado "
+  deactivate:                           " Desativar "
   destroyed_style:                      " Estilo removido "
   destroyed_style_error:                " Erro ao remover Estilo "
   destroyed_param:                      " %{param} removído "
@@ -47,11 +51,13 @@ pt-BR:
   error_creating_object:                " Erro ao criar objeto "
 #---F---#
   field_required:                       " Campo Obrigatório! "
+  file_already_exists:                  " Já existe outro arquivo com o nome: %{value} "
   follow:                               " Seguir "
   feedback_need_at_least_one_group:     " Necessita de pelo menos um grupo! "
 #---G---#
 #---H---#
 #---I---#
+  invalid_activation_token:             " Link de ativação inválido ou expirado! "
 #---J---#
 #---K---#
 #---L---#
@@ -65,7 +71,7 @@ pt-BR:
 #---M---#
   move:                                 " Mover "
   manage_roles:                         " Gerenciar Papéis "
-  missing_account:                      " Desculpe-nos, mas não conseguimos localizar sua conta. Se você está tentando copiar e colar a URL de um email dentro do seu navegador ou reiniciando o processo de recuperar senha "
+  missing_account:                      " Desculpe-nos, mas não conseguimos localizar sua conta. Este link pode ser inválido ou estar expirado. Tente reiniciar o processo de recuperação de senha. "
 #---N---#
   no_event_period:                      " Periodo do evento não especificado "
   no_permission_to_activate_deactivate: " Sem permissão para ativar ou desativar "
@@ -82,10 +88,13 @@ pt-BR:
 #---P---#
   please_wait:                          " Por favor espere! "
   publish:                              " Publicar "
+  published:                            " Publicado "
   publication_infinite:                 " Publicação infinita "
+  posted_by:                            " Por "
+  posted_on:                            " Em "
   prohibited_being_saved:
-    one:                                " erro, impede que você prossiga "
-    other:                              " erros, impedem que você prossiga "
+    one:                                " Um Erro impede que você prossiga "
+    other:                              " Erros impedem que você prossiga "
   problem_create_account:               " Problemas ao criar uma conta "
 #---Q---#
 #---R---#
@@ -103,21 +112,25 @@ pt-BR:
   successfully_removed:                 " %{param} foi excluído com sucesso! "
   successfully_deleted:                 " Excluído com sucesso! "
   successfully_updated_password:        " Senha atualizada com sucesso "
+  should_be_image:                      " Deve ser uma imagem "
 #---T---#
 #---U---#
   unfollow:                             " Deixar de Seguir "
   unpublish:                            " Despublicar "
+  unpublished:                          " Despublicado "
+  user_already_active:                  " Usuário já está ativo. "
   user_inactive:                        " Seu usuário ainda não está ativo. "
+  user_not_found:                       " Usuário não encontrado "
   updated_account:                      " Conta atualizada "
   user_cant_be_deleted:                 " Este usuário não pode ser excluído "
 #---V---#
   views:
      pagination:
-       first:      " Primeiro "
-       last:       " Último "
+       first:      " Primeira "
+       last:       " Última "
        displaying: " Mostrando "
        more:       " Mais "
-       next:       " Próximo "
+       next:       " Próxima "
        per_page:   " Por Página "
        previous:   " Anterior "
        total:      " Total "
@@ -152,6 +165,7 @@ pt-BR:
     formats:
       default:            " %a, %d-%m-%Y %H:%M:%S %z "
       short:              " %d/%m/%y %H:%M "
+      medium:             " %d/%m/%Y às %H:%M "
       long:               " %d de %B de %Y às %H:%M "
       event_date_short:   " %d %B "
       event_date_full:    " %d %B %Y "
@@ -167,7 +181,7 @@ pt-BR:
     array:
       words_connector:     " ,"
       two_words_connector: " e "
-      last_word_connector: " , e "
+      last_word_connector: " e "
 
   helpers:
     submit:
@@ -179,7 +193,7 @@ pt-BR:
     error_messages:
       login_blank:                              " deve ser preenchido "
       login_not_found:                          " Inválido "
-      login_invalid:                            " Deveria usar letras, números, ponto, - e  _, por favor. "
+      login_invalid:                            " deve conter apenas letras, números, ponto, - e  _ "
       consecutive_failed_logins_limit_exceeded: " Você excedeu o número permitido de tentativas de login  "
       email_invalid:                            " Não parece um email válido "
       not_active:                               " Conta não está ativa "

@@ -8,7 +8,7 @@
       <ul class="slides">
         <% pages.each do |page| %>
           <%= content_tag :li, style: "height: #{component.height}px" do %>
-            <%= weby_file_view(page.image, :medium, nil, nil, {as: "link", url: link_on_title(@site, page), target: '_self', :'min-width' => "#{component.width}px"}) %>
+            <%= weby_file_view(page.image, format_for_custom(component.width, component.height, page.image), nil, nil, {as: "link", url: link_on_title(@site, page), target: '_self', :'min-width' => "#{component.width}px"}) %>
             <%= content_tag :p, raw(strip_tags(page.summary.truncate(100))), class: 'flex-caption' %>
           <% end %>
         <% end %>

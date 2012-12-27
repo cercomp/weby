@@ -1,27 +1,11 @@
-<% # Funções js para selecionar pagina %>
-<%= content_for :javascripts, javascript_include_tag('banners.js') %>
-
 <%= simple_form_for [:site_admin, @banner], html:  { class: 'form-horizontal' } do |f| %>
   <%= f.show_errors %>
-
 
   <%= repository_search t(".image"), "banner_image",
     "banner[repository_id]", @banner.repository,
     multiple: false, file_types: 'image' %>
 
-  <div class="checkbox-button-set">
-    <% repo_styles = Repository.attachment_definitions[:archive][:styles] %>
-    <% unless repo_styles.nil? %>
-      <%= f.input :size, 
-        collection: repo_styles,
-        label_method: lambda { |u| "#{u[1]}" }, 
-        value_method: lambda { |u| "#{u[0]}" },
-        as: :radio%>
-    <% end %>
-  </div>
-
-  <%= f.input :width, :input_html => {:size => 3} %> 
-  <%= f.input :height, :input_html => {:size => 3} %>
+<%= image_size_picker f %>
 
   <%= f.input :title, 
     placeholder: t(".title"),
@@ -45,23 +29,10 @@
   <%= f.input :position, hint: t(".lower_numbers_come_first") %>
 
   <% # URL Input %>
-  <div class="input page_select" id="div_link">
-    <%= f.input :url, :wrapper => :append, :hint => t(".enter_the_url") do %>
-       <%= f.input_field :url, as: :string %><%= link_to_function t(".select_page"), 'show_dialog($(this))', :class => 'btn btn-info', data: { link: site_admin_pages_path} %>
-    <%  end %>
-
-    <% # Ao selecionar um noticia deve ser montado a url para ela,
-      # então aqui guardamos o caminho para as páginas deste site %>
-    <%= hidden_field_tag 'url_to_pages', site_pages_url(only_path: true) %>
-    <%= hidden_field_tag 'banner[page_id]', @banner.page_id %>
-  </div>
+  <%=  target_dialog_input(f, :page) %>
 
   <div class='input'>
     <%= f.input :publish, 
-      wrapper_html: { class: "side" },
-      as: :boolean, input_html: { class: "check-button" } %>
-
-    <%= f.input :hide,  
       wrapper_html: { class: "side" },
       as: :boolean, input_html: { class: "check-button" } %>
     <div class="clear"></div>
@@ -89,3 +60,4 @@
 <%= content_for :stylesheets, stylesheet_link_tag("jquery-ui") %>
 <%= content_for :stylesheets, stylesheet_link_tag("jquery-ui-timepicker-addon") %>
 <%= content_for :stylesheets, stylesheet_link_tag("include_files") %>
+<%= content_for :javascripts, javascript_include_tag("banners") %>

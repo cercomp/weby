@@ -3,7 +3,7 @@ module Weby
     include ActionDispatch::Http::URL
 
     def self.matches?(request)
-      settings = Hash[Setting.all.map{|st| [st.name.to_sym,st.value] }]
+      settings = (Weby::Cache.request[:settings] ||= Hash[Setting.all.map{|st| [st.name.to_sym,st.value] }])
       root_site  = settings[:root_site]
       index_id   = settings[:sites_index]
       tld_length = settings[:tld_length]

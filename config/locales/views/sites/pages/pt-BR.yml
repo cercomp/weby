@@ -4,20 +4,28 @@ pt-BR:
       index:
         events:        " Eventos "
         pages:         " Páginas "
+        advanced:      " Opções Avançadas "
+        match_search:  " Busca exata "
+        and_search:    " Todas as palavras "
+        or_search:     " Qualquer uma das palavras "
       show:
         event:         " Evento "
         period_event:  " Período do Evento "
         list_all:      " Listar Todas "
         categories:    " Categorias "
         source:        " Fonte "
-      list:
+      list_as_table:
         title:         " Título "
         category:      " Categoria "
         period_event:  " Período do Evento "
-        date_register: " Data de Cadastro "
+        date_register: " Data "
         type:          " Tipo "
         news:          " Notícia "
         event:         " Evento "
+      list:
+        read_more:     " Leia mais "
+        no_pages:      " Nenhuma página encontrada "
+        no_events:     " Nenhum evento encontrado "
       related_files:
         related_files: " Arquivos relacionados "
         size:          " Tamanho "

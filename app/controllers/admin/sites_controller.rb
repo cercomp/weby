@@ -7,7 +7,7 @@ class Admin::SitesController < ApplicationController
   helper_method :sort_column
 
   def index
-    params[:per_page] ||= weby_settings[:per_page_default]
+    params[:per_page] ||= current_settings[:per_page_default]
 
     @sites = Site.name_or_description_like(params[:search]).
       except(:order).
@@ -39,7 +39,7 @@ class Admin::SitesController < ApplicationController
 
         @site.components.create({:place_holder=>'first_place',:settings=>'{:background => "#7F7F7F"}',:name=>'gov_bar', :position=>1, :publish=>true})
         @site.components.create({:place_holder=>'first_place',:settings=>'{}', :name=>'institutional_bar', :position=>2, :publish=>true})
-        @site.components.create({:place_holder=>'top', :settings=>'{}', :name=>'header', :position=>1, :publish=>true})
+        @site.components.create({:place_holder=>'top', :settings=>'{:size=>"original", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :repository_id=>"", :html_class => "header", :new_tab=>"0"}', :name=>'image', :position=>1, :alias=>"Cabeçalho(Topo)", :publish=>true})
         @site.components.create({:place_holder=>'top', :settings=>"{:menu_id => \"#{menu_top.id}\"}", :name=>'menu', :position=>2, :publish=>true})
         @site.components.create({:place_holder=>'top', :settings=>'{}', :name=>'menu_accessibility',:position=>3, :publish=>true})
         @site.components.create({:place_holder=>'left', :settings=>"{:menu_id => \"#{menu_left.id}\"}", :name=>'menu', :position=>1,:publish=>true})
@@ -48,13 +48,13 @@ class Admin::SitesController < ApplicationController
         @site.components.create({:place_holder=>'right', :settings=>"{:menu_id => \"#{menu_right.id}\"}", :name=>'menu', :position=>2, :publish=>true})
         @site.components.create({:place_holder=>'right', :settings=>'{:category => "dir", :orientation => "vertical"}', :name=>'banner_list', :position=>3, :publish=>true})
         @site.components.create({:place_holder=>'bottom', :settings=>"{:menu_id => \"#{menu_bottom.id}\"}", :name=>'menu', :position=>1, :publish=>true})
-        @site.components.create({:place_holder=>'bottom', :settings=>"{:body => \"#{t("admin.sites.form.footer_text")}\"}", :name=>'text', :position=>2, :alias=>'Rodapé', :publish=>true})
+        @site.components.create({:place_holder=>'bottom', :settings=>"{:body => \"#{t("admin.sites.form.footer_text")}\", :html_class => \"footer\"}", :name=>'text', :position=>2, :alias=>'Rodapé', :publish=>true})
         @site.components.create({:place_holder=>'bottom', :settings=>'{}', :name=>'feedback', :position=>3,:publish=>true})
         @site.components.create({:place_holder=>'home', :settings=>'{:quant => "5"}', :name=>'front_news', :position=>1,:publish=>true})
-        @site.components.create({:place_holder=>'home', :settings=>'{:quant => "5"}', :name=>'no_front_news', :position=>2,:publish=>true})
+        @site.components.create({:place_holder=>'home', :settings=>'{:quant => "5"}', :name=>'news_list', :position=>2,:publish=>true})
          
       end
-
+      puts "site criado #{@site.inspect}"
       redirect_to site_admin_components_url(subdomain: @site)
     else
       @themes = []
@@ -68,6 +68,7 @@ class Admin::SitesController < ApplicationController
   def edit
     @site = Site.find_by_name(params[:id])
     load_themes
+    puts "HERE??"
   end
 
   def update

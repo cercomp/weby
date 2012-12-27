@@ -1,0 +1,24 @@
+en:
+  components:
+    image:
+      name: "Image"
+  activerecord:
+    attributes:
+      image_component:
+        repository_id: "Image"
+        repository: "Image"
+        height: "Height"
+        width: "Width"
+        size: "Size"
+        target_type: "Target Type"
+        target_id: "Target"
+        target: "Target"
+        url: "URL"
+        new_tab: "Open link in a new tab"
+        html_class:   "HTML Class"
+  image:
+    views:
+      show:
+      form:
+        select_image: "Select image"
+        

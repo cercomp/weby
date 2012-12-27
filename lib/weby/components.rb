@@ -55,16 +55,43 @@ module Weby
     
     ActionView::Helpers::RenderingHelper.module_eval do
 
-      def load_components(component_place)
+#      def load_components(component_place)
+#        raw([].tap do |components|
+#          current_site.components.where(["publish = true AND place_holder = ?", component_place]).order('position asc').each do |comp|
+#            if Weby::Components.is_enabled?(comp.name)
+#              visible = comp.visibility == 1 ? current_page?(site_path) : comp.visibility == 2 ? !current_page?(site_path) : comp.visibility == 0
+#              if visible
+#                components << render_component(Weby::Components.factory(comp))
+#              end
+#            end
+#          end
+#        end.join)
+#      end
+
+      #chama 'content_for :layout_<place_holder>', use yield :layout_<place_holder> para mostrar
+      def load_components
+        @global_components.reject{|k,v| k == :home }.each do |place, comps|
+          comps.each do |comp|
+            if Weby::Components.is_enabled?(comp.name)
+              visible = comp.visibility == 1 ? current_page?(site_path) : comp.visibility == 2 ? !current_page?(site_path) : comp.visibility == 0
+              if visible
+                content_for "layout_#{place}".to_sym, render_component(Weby::Components.factory(comp))
+              end
+            end
+          end
+        end
+      end
+
+      def render_home_components
         raw([].tap do |components|
-          current_site.components.where(["publish = true AND place_holder = ?", component_place]).order('position asc').each do |comp|
+          @global_components[:home].each do |comp|
             if Weby::Components.is_enabled?(comp.name)
               visible = comp.visibility == 1 ? current_page?(site_path) : comp.visibility == 2 ? !current_page?(site_path) : comp.visibility == 0
               if visible
                 components << render_component(Weby::Components.factory(comp))
               end
             end
-          end
+          end if @global_components[:home]
         end.join)
       end
 
@@ -77,16 +104,15 @@ module Weby
 
         # Caso a partial não exista, não mostra nada
         begin
-          output = ''
-          if Weby::Application.assets.find_asset("#{component.name}")
+          if Weby::Application.assets.find_asset("#{component.name}.css")
             @stylesheets_loaded ||= []
             #Incluir o css do componente somente uma vez, mesmo se existirem mais de um sendo exibido
             unless(@stylesheets_loaded.include?(component.name))
-              output += stylesheet_link_tag("#{component.name}")
+              content_for :components_stylesheets, stylesheet_link_tag("#{component.name}")
               @stylesheets_loaded << component.name
             end
           end
-          output += render args
+          output = render args
           output = output.sub(/(class=\"[a-z_\-]+_component\s?[a-z0-9_\-]*\")/, "\\1 id=\"component_#{component.id}\"")
         rescue ActionView::MissingTemplate
           output = ''
@@ -94,6 +120,8 @@ module Weby
         raw output
       end
 
+      #Inclui somente uma vez, mesmo se chamado várias vezes,
+      #por exemplo se o mesmo componente foi incluido mais de uma vez
       def include_component_javascript(content_for, javascript_name)
         if Weby::Application.assets.find_asset(javascript_name)
           @javascripts_loaded ||= []
@@ -105,7 +133,21 @@ module Weby
         end
       end
     end
+
+    module Form
+      def component_i18n_input(locale, attribute_name, options={}, &block)
+        options[:input_html] = (options[:input_html] || {}).merge({
+            :value => @object.respond_to?("#{attribute_name}_i18n".to_sym) ? @object.send("#{attribute_name}_i18n".to_sym, locale.name) : "",
+            :name => "#{@object_name}[#{attribute_name}][#{locale.name}]",
+            :id => "#{@object_name}_#{attribute_name}_#{locale.name}"})
+
+        input attribute_name, options, &block
+      end
+    end
   end
+
+  SimpleForm::FormBuilder.send(:include, Weby::Components::Form)
+  #ActionView::Helpers::FormBuilder.send(:include, Weby::Components::Form)
 
   module ComponentInstance
     def self.extended(base)
@@ -146,6 +188,31 @@ module Weby
           
           def #{setting}
             settings_map[:#{setting}]
+          end
+        METHOD
+      end
+    end
+    #Este método deve ser chamado depois de component_settings, nunca antes
+    def i18n_settings(*settings)
+      settings.each do |setting|
+        raise ArgumentError, "Unknown setting for 'i18n_settings' in #{self.name}: #{setting}. A prior call to 'component_settings' is required" unless self.public_instance_methods.include? setting.to_sym
+        class_eval <<-METHOD
+          def #{setting}
+            val = settings_map[:#{setting}]
+            if val.is_a? Hash
+              return val[I18n.locale.to_s].present? ?
+                val[I18n.locale.to_s] : val[I18n.default_locale.to_s].present? ?
+                   val[I18n.default_locale.to_s] : val.values.sort.last
+            end
+            val
+          end
+
+          def #{setting}_i18n(locale)
+            val = settings_map[:#{setting}]
+            if val.is_a? Hash
+              return val[locale]
+            end
+            ""
           end
         METHOD
       end

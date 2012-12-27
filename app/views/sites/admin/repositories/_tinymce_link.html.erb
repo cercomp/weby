@@ -1,9 +1,25 @@
 <script type="text/javascript">
   $(function() {
+
+     $("#repo_list .pagination a,#repo_list a#search_button_repo").click(function(){
+        $comp = $(this).parents('#repo_list');
+        //alert($comp);
+        $comp.css('position', 'relative');
+        console.log($comp)
+        $comp.prepend($('<div class="loading-cloak"></div>').css({
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            height: $comp.outerHeight(),
+            width: $comp.outerWidth(),
+            textAlign: 'center',
+            background: 'rgba(255,255,255,.65) url(/assets/loading.gif) no-repeat center center'
+        }));
+    });
+
     // Para realizar a consulta por páginas
     $('#search_button_repo').click(function(e) {
       var search = $('#search_repo').val();
-      console.log(search);
       $.get(this.href, {'template': 'tinymce_link', 'search': search}, null, 'script');
       e.preventDefault();
       return false;
@@ -11,7 +27,7 @@
 
     // Forma um link para o arquivo:
     $(".attachment_list > li").click(function(){
-      $('#href').val($(this).data('url').replace(/\?\d*$/,''));
+      $('#href').val($(this).data('url'));
     });
   });
 </script>
@@ -23,7 +39,7 @@
 
 <ul class="attachment_list">
   <% @repositories.each do |repository| %>
-    <li id="<%= repository.id %>" class="attachment_list" data-url="<%=repository.archive.url%>">
+    <li id="<%= repository.id %>" class="attachment_list" data-url="<%=repository.archive.url(:original, false)%>">
       <%=   weby_file_view(
               repository,
               :mini,
@@ -40,3 +56,4 @@
 <div style="clear: both;float:right;">
   <%= paginate @repositories, remote: true %>
 </div>
+<div style="clear:both;"> </div>

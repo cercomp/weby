@@ -2,13 +2,14 @@ class SessionController < ApplicationController
   before_filter :require_no_user, except: :logout
   before_filter :require_user, only: :logout
   before_filter :load_user_using_perishable_token, only: :reset_password
+  before_filter :set_domain
 
   def login
     @session = UserSession.new
+    @user = User.new
   end
 
   def create_session
-    request.session_options[:domain] = ".#{current_domain}"
     @session = UserSession.new(params[:user_session])
     if @session.save
       if current_user and current_user.active?
@@ -17,13 +18,17 @@ class SessionController < ApplicationController
         logout  
       end  
     else
-      render action: :login
+      @user = User.new
+      if @session.attempted_record && !@session.attempted_record.active? and !@session.invalid_password?
+        render action: :resend_activation
+      else
+        render action: :login
+      end
     end
   end
 
   def logout
     if current_user
-      request.session_options[:domain] = ".#{current_domain}"
       flash.now[:success] = t("logout_success")
       current_user_session.destroy
     end
@@ -52,14 +57,15 @@ class SessionController < ApplicationController
     @user.password_confirmation = params[:user][:password_confirmation]
     if @user.save
       flash[:success] = t("successfully_updated_password")
-      redirect_to admin_user_path(@user)
+      if @user.active?
+        redirect_to admin_user_path(@user)
+      else
+        @session = UserSession.new
+        render :action => :login
+      end
     else
       render action: :reset_password
     end
-  end
-
-  def signup
-    @user = User.new
   end
 
   def create_user
@@ -67,23 +73,47 @@ class SessionController < ApplicationController
     if @user.save
       @user.send_activation_instructions!(request.env["SERVER_NAME"])
       flash[:success] = t("create_account_successful")
-      redirect_to login_path
+      redirect_to login_url(subdomain: nil, protocol: login_protocol)
     else
+      @session = UserSession.new
       flash[:error] = t("problem_create_account")
-      render :action => :signup
+      render :action => :login
     end
   end
 
   def activate_user
-    @user = User.find_using_perishable_token(params[:activation_code], 1.week) || (raise Exception)
-    raise Exception if @user.active?
-    if @user.activate!
-      UserSession.create(@user, false)
-      @user.send_activation_confirmation!(request.env["SERVER_NAME"])
-      redirect_to root_url(subdomain: nil)
+    @user = User.find_using_perishable_token(params[:activation_code], 1.week)
+    if not @user
+      flash[:error] = t("invalid_activation_token")
     else
-      render :action => :login
+      if @user.active?
+        flash[:error] = t("user_already_active")
+      else
+        if @user.activate!
+          UserSession.create(@user, false)
+          @user.send_activation_confirmation!(request.env["SERVER_NAME"])
+          redirect_to root_url(subdomain: nil) and return
+        end
+      end
     end
+    @session = UserSession.new
+    render :action => :login
+  end
+
+  def resend_activation
+    @user = User.find_by_login params[:user_session][:login]
+    if @user
+      if @user.active?
+        flash[:error] = t("user_already_active")
+      else
+        @user.send_activation_instructions!(request.env["SERVER_NAME"])
+        flash[:success] = t("activation_sent_successful")
+      end
+    else
+      flash[:error] = t("user_not_found")
+    end
+    @session = UserSession.new
+    render :action => :login
   end
   
   private
@@ -95,7 +125,9 @@ class SessionController < ApplicationController
     end
   end
 
-  def current_domain
-    request.host.split('.').last(request.session_options[:tld_length].to_i).join('.')
+  def set_domain
+    current_domain = request.host.split('.').last(request.session_options[:tld_length].to_i).join('.')
+    request.session_options[:domain] = ".#{current_domain}"
   end
+
 end

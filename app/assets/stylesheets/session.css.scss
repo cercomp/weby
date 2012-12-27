@@ -1,9 +1,8 @@
 /* 
  *= require google/orbitron 
- *= require _bootstrap
  *= require_self 
- *= require _bootstrap-responsive
  */ 
+@import "bootstrap";
 
 body 
 {
@@ -13,8 +12,6 @@ body
 }
 
 .required abbr { color: red; }
-
-.content { padding-top: 19px; }
 
 hr { border-top-color: #DDD; }
 
@@ -86,6 +83,11 @@ input.password
   height: inherit;
 }
 
+.i18n_menu
+{
+    text-align: right;
+}
+
 .logo-box
 {
   display: block;
@@ -109,6 +111,8 @@ input.password
 {
   @media (max-width: 767px) { width: 320px !important; }
   @media (max-width: 480px) { width: 230px !important; }
-  width: 470px !important;
+  width: 460px !important;
   margin-bottom: 19px;
 }
+
+@import "bootstrap-responsive"

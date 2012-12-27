@@ -1,0 +1,41 @@
+<section class="image_component <%= component.html_class %>">
+  <% link_url = component.target_id.present? ? site_page_path(component.target_id) : component.url %>
+  <% repository = Repository.find(component.repository_id) rescue nil %>
+  <% if repository %>
+    <% if repository.image? %>
+      <% 
+          format = component.size.present? ? component.size : format_for_custom(component.width, component.height, repository)
+          unless component.size.present?
+            width = component.width.present? ? component.width : false#current_site.body_width ? current_site.body_width : false
+            height = component.height.present? ? component.height : false
+          end
+          size = style_for_dimension width, height
+      %>
+      <%= weby_file_view(repository,
+                         format, nil, nil,
+                         {
+                            as: link_url.present? ? 'link' : 'image',
+                            style: size,
+                            alt: repository.description,
+                            title: repository.description,
+                            url: link_url,
+                            target: (component.new_tab ? '_blank' : '_self')
+                         }) %>
+    <% elsif repository.flash? %>
+      <%
+        if component.size.present?
+          width, height = dimension_for_size component.size
+        else
+          width = component.width.present? ? component.width : false#current_site.body_width ? current_site.body_width : false
+          height = component.height.present? ? component.height : false
+        end
+        size = ""
+        size << " width=#{width}" if width
+        size << " height=#{height}" if height
+      %>
+     <object<%= size %>>
+        <embed src="<%= repository.archive.url %>"<%=  size %> type="application/x-shockwave-flash" wmode="opaque"></embed>
+     </object>
+    <% end %>
+  <% end %>
+</section>

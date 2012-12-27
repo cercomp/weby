@@ -1,7 +1,14 @@
 class FeedbackComponent < Component
   component_settings :label, :groups_id 
 
-  validates :label, presence: true
+  i18n_settings :label
+
+  validate :label_present
+
+  def label_present
+    errors.add(:label, :blank) if label.blank?
+  end
+  private :label_present
 
   alias :_groups_id :groups_id
   def groups_id

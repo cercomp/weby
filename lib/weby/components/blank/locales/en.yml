@@ -1,7 +1,7 @@
 en:
   components:
     blank:
-      name:            " Free (HTML) Area "
+      name:            " HTML/Javascript "
       body:            " Content "
   activerecord:
     attributes:
@@ -10,3 +10,6 @@ en:
   blank:
     views:
       form:
+        format:           " Format "
+        comment:          " Comment "
+        uncomment:        " Uncomment "

@@ -1,10 +1,15 @@
 /*
  *= require google/droidsans
  *= require google/orbitron
- *= require _bootstrap
  *= require_self 
- *= require _bootstrap-responsive
  */ 
+@import "bootstrap";
+
+
+// style to put logo in navbar
+.navbar .brand.logo { color: white; }
+.orbitron { font-family: "Orbitron"; }
+.red { color: #C11303; }
 
 // style to components
 header.container,
@@ -16,6 +21,8 @@ footer { text-align: center; }
   border: 1px solid #EEEFEF;
   background: #F8F9FA;
 }
+
+header.container{ margin-top: 40px; }
 
 // style to create modules in layout
 div.content-module
@@ -41,6 +48,10 @@ form.search
     text-align: right;
 }
 
+.btn-search{
+    padding: 7px 12px;
+}
+
 // uniq
 .site-name { width: 250px; }
 
@@ -49,3 +60,5 @@ form.search
 .paginator,
 .page_info_paginator { padding-bottom: 9px; }
 .item_per_page_paginator { padding-right: 3px; }
+
+@import "bootstrap-responsive";

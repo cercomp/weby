@@ -3,6 +3,7 @@ en:
   activerecord:
     models:
       page:              "Page"
+      pages:             "Pages"
     attributes:
       page:
         author:          "Author"

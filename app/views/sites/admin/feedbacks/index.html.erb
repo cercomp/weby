@@ -13,12 +13,12 @@
       <% if check_permission(Sites::Admin::GroupsController, [:new]) %>
         <%= link_to t(".new_group"),
           new_site_admin_group_path,
-          class: "btn btn-success btn-large" %>
+          class: "btn btn-success" %>
       <% end %>
       <% if check_permission(Sites::Admin::FeedbacksController, [:index]) %>
         <%= link_to t(".groups"),
           site_admin_groups_path,
-          class: "btn btn-primary btn-large" %>
+          class: "btn btn-primary" %>
       <% end %>
     </div>
     <div class="clearfix"></div>

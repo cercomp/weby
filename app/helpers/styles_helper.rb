@@ -1,10 +1,10 @@
 module StylesHelper
   def style_actions(style, args={others: false, follow: false})
     ''.tap do |actions|
-      get_permissions( current_user, controller: controller.class ).each do |permission|
-        if controller.class.instance_methods(false).include?(permission.to_sym)
+      controller.class.instance_methods(false).each do |action|
+        if test_permission(controller.class, action)
           if args[:others]
-            case permission.to_s
+            case action.to_s
             when 'show'
               actions << link_to( icon('eye-open', text: t('show')), site_admin_style_path(style)) + ' '
             when 'publish'
@@ -19,7 +19,7 @@ module StylesHelper
               actions << link_to( icon('hdd', text: t('copy')), copy_site_admin_style_path(style)) + ' '
             end
           else
-            case permission.to_s
+            case action.to_s
             when 'publish'
               actions << style_action_publish(style) + ' '
             when 'show'

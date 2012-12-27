@@ -5,6 +5,21 @@
     $("table.list > tbody > tr").click(function(){
       $('#href').val("/pages/"+$(this).find('td').first().text());
     });
+                          
+    $("#page_list .pagination a,#page_list a#search_button").click(function(){
+        $comp = $(this).parents('#page_list');
+        //alert($comp);
+        $comp.css('position', 'relative');
+        $comp.prepend($('<div class="loading-cloak"></div>').css({
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            height: $comp.outerHeight(),
+            width: $comp.outerWidth(),
+            textAlign: 'center',
+            background: 'rgba(255,255,255,.65) url(/assets/loading.gif) no-repeat center center'
+        }));
+    });
 
     // Para realizar a consulta por páginas
     $('#search_button').click(function(e) {
@@ -13,6 +28,8 @@
       e.preventDefault();
       return false;
     });
+
+
   });
 </script>
 
@@ -51,3 +68,4 @@
 <div style="float:right;margin-bottom:2px;">
   <%= paginate @pages, remote: true %>
 </div>
+<div style="clear:both;"></div>

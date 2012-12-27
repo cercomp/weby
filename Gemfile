@@ -1,31 +1,30 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
-gem 'mongrel', '>= 1.2.0.pre2'
-gem 'jquery-rails'
-gem 'pg'
-gem 'authlogic'
-gem 'kaminari'
-gem 'paperclip', :git => 'http://github.com/thoughtbot/paperclip.git' 
-gem 'acts_as_list'
+gem 'thin', '1.5.0'
+gem 'jquery-rails', '2.1.4'
+gem 'pg', '0.14.1'
+gem 'authlogic', '3.1.3' 
+gem 'kaminari', '0.14.1'
+gem 'paperclip', :tag => 'v3.3.1', :git => 'http://github.com/thoughtbot/paperclip.git'
+gem 'acts_as_list', '0.1.9'
 gem 'simple_form', :tag => 'v2.0.1', :git => 'http://github.com/plataformatec/simple_form.git'
 gem 'acts-as-taggable-on', :git => 'https://github.com/mbleigh/acts-as-taggable-on.git'
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '2.2.1.1'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
-  gem 'therubyracer'
+  gem 'therubyracer', '0.10.2'
   gem 'uglifier', '>= 1.0.3'
 end
 
 group :production do
-  gem 'dispatcher'
-  gem 'thin' # Optional, needs for thin cluster in production
-  gem 'turbo-sprockets-rails3'
+  gem 'dispatcher', '0.0.1'
+  gem 'turbo-sprockets-rails3', '0.2.12'
 end
 
 group :development, :test do
-  gem 'pry-rails'
+  gem 'pry-rails', '0.2.2'
   gem 'rspec-rails', '2.9.0'
   gem 'factory_girl_rails', '1.7.0'
   gem 'shoulda-matchers', '1.0.0'

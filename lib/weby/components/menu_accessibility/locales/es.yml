@@ -1,0 +1,11 @@
+es:
+  components:
+    menu_accessibility:
+      name:                 " Menú de Accesibilidad "
+  menu_accessibility:
+    views:
+      show:
+        increase_font_size: " Aumentar tamaño de letra "
+        decrease_font_size: " Disminuir tamaño de letra "
+        default_font_size:  " Cambiar al tamaño de fuente predeterminado "
+        contrast:           " Cambiar el contraste de color "

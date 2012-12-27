@@ -38,11 +38,19 @@ class Repository < ActiveRecord::Base
     mini: "95x70",
     little: "190x140",
     medium: "400x300",
+    thumb: "160x160^",
     original: "original"
   }
 
   has_attached_file :archive,
-    :styles => STYLES, url: "/uploads/:site_id/:style_:basename.:extension"
+    styles: STYLES,
+    url: "/uploads/:site_id/:style_:basename.:extension",
+    convert_options: {
+      mini: "-quality 90 -strip",
+      little: "-quality 90 -strip",
+      medium: "-quality 80 -strip",
+      thumb: "-quality 90 -strip -crop '160x160+0+0' +repage",
+      original: "-quality 80 -strip"}
 
   validates_attachment_presence :archive,
     :message => I18n.t('activerecord.errors.messages.attachment_presence'), :on => :create
@@ -69,14 +77,20 @@ class Repository < ActiveRecord::Base
     archive_content_type.include?("image") and not archive_content_type.include?("svg")
   end
 
+  def flash?
+    archive_content_type.include?("flash") or archive_content_type.include?("shockwave")
+  end
+
   # Remoção de caracteres que causava erro no paperclip
   # TODO: Rever uma melhor implementação
   def normalize_file_name
     archive.instance_write(:file_name, CGI.unescape(archive.original_filename))
   end
 
+  validates :archive_file_name, uniqueness: {:scope => :site_id, :message => I18n.t("file_already_exists")}
+
   # Reprocessamento de imagens para (re)gerar os thumbnails quando necessário
-  def reprocess!
+  def reprocess
     archive.reprocess! if need_reprocess?
   rescue Errno::ENOENT
   end
@@ -86,15 +100,15 @@ class Repository < ActiveRecord::Base
     image? and not has_all_formats?
   end
 
-  def exists_archive?(format=nil)
-    File.file?(archive.path(format))
-  end
-
   def has_all_formats?
     STYLES.each_key do |format|
       return false unless exists_archive?(format)
     end 
-
     true
   end
+
+  def exists_archive?(format=nil)
+    FileTest.exist?(archive.path(format))
+  end
+  
 end

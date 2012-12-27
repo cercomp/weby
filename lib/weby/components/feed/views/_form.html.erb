@@ -6,7 +6,7 @@
     }.compact << [image_tag("false.png", title: t(".dont_show")), ""],
     item_wrapper_class: 'item-box'
  %>
-<%= f.input :rss_icon_custom, label: " "  do %>
+<%= f.input :rss_icon_custom, label: " " do %>
  <%=  repository_search( t(".select_from_repo"), "rss_icon", "feed_component[rss_icon]",
    (Repository.find(component.rss_icon) rescue nil), multiple: false, file_types: 'image') %>
 <% end %>

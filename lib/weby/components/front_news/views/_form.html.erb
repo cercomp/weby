@@ -1,5 +1,20 @@
+<style type="text/css">
+.help-block{
+  font-size: 10pt;
+}
+</style>
+
 <%= f.input :quant, as: :integer %>
+<%= f.input :image_size, collection: component.image_sizes.map{|size| [t(".#{size}"),size] },
+  priority: component.image_size,
+  include_blank: false,
+  hint: t(".image_size_hint")
+%>
 <%= f.input :avatar_width, as: :integer %>
 <%= f.input :avatar_height, as: :integer %>
+
 <%= f.input :read_more, as: :boolean %>
-<%= f.input :details, as: :boolean %>
+<%= f.input :show_author, as: :boolean %>
+<%= f.input :show_date, as: :boolean %>
+
+<%= f.input :new_tab, as: :boolean %>

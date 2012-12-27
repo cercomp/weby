@@ -8,7 +8,7 @@
         <%= link_to t("details"), p.archive.url( :original ), :onclick => "select_thumb(this);return false;"%><br/>
         <%= link_to t('cancel'), 'javascript:void(0)', :onclick => "cancel_image();return false;"%>
       </div>
-      <%= link_to_function( image_tag( p.archive.url(), :alt => p.description ), "select_image(this)" )%>
+      <%= link_to_function( image_tag( p.archive.url(:mini), :alt => p.description ), "select_image(this)" )%>
     <% else%>
       <%= link_to p.original_file_name, p.original.url, :onclick => "select_thumb(this);return false;"%>&nbsp;&nbsp;&nbsp;
     <% end%>

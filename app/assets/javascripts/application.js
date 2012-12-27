@@ -5,21 +5,6 @@
 //= require_self
 var WEBY = {};
 
-function show_dialog(ele) {
-  if(!$('#modal_page_list').length){
-     $('body').append('<div id="modal_page_list" class="modal fade" style="display: none;">'+
-    '<div class="modal-header"><h3>Selecione uma notícia</h3></div>'+
-    '<div class="modal-body"></div>'+
-    '<div class="modal-footer"><a href="#" class="btn" data-dismiss="modal">Fechar</a></div>'+
-    '</div>');
-  }
-  
-  $.get(ele.attr('data-link'),{'template' : 'list_popup'}, function(data){
-      $('#modal_page_list').modal('show');
-  }, 'script');
-
-}
-
 // Mostrar mensagem para erros, no retorno do ajax
 FlashMsg = {
    notify: function(status){
@@ -52,10 +37,14 @@ function addToSelect(selectId, text){
 $(document).ready(function() {
    // Ajax indicator
    $('body').append($('<div class="modal hide" data-backdrop="false" style="width: 150px; margin: -30px 0 0 -75px; z-index: 1060;" id="loading-modal"><div class="modal-body"><img src="/assets/loading-bar.gif"/></div></div>'));
-   $('body').ajaxSend(function(){
-      $('#loading-modal').modal('show');
+   $('body').ajaxSend(function(ev, jqXHR, options){
+       if(options.files){
+          return;
+       }
+      //Não use a função .modal() pois se a página tiver outro modal, gera comportamento não ideal
+      $('#loading-modal').removeClass('hide');
    }).ajaxComplete(function(evt,xhr){
-      $('#loading-modal').modal('hide');
+      $('#loading-modal').addClass('hide');
       FlashMsg.notify(xhr.status);
    });
 

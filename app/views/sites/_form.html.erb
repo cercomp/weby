@@ -7,17 +7,14 @@
 
   <%= f.input :body_width, :hint => t(".example_width") %>
 
-  <% unless @site.repository.nil? %>
-    <%= f.input :top_banner_width, :hint => t(".example_top_widht") %>
-    <%= f.input :top_banner_height,:hint => t(".example_top_height") %>
-  <% end %>
-
   <% if current_user.is_admin? %>
     <%= f.input :name, :hint => t("field_required") %>
     <%= f.input :parent_id, :collection => main_sites_list(current_site).collect{|s| [s.title || s.name ,s.id]}, :label => t('.main_site') %>
+    <%= f.input :url, :hint =>  (t("field_required") + " " + t(".example_url")), :placeholder => "http://"%>
+  <% else %>
+    <%= f.input :parent, :label => t('.main_site'), as: :string, input_html: {:value => @site.main_site.title, :disabled => "disabled" } if @site.main_site %>
   <% end %>
 
-  <%= f.input :url, :hint =>  (t("field_required") + " " + t(".example_url")), :placeholder => "http://"%>
   <%= f.input :per_page, :hint => t(".example_per_page") %>
   <%= f.input :per_page_default, :required => true %>
   <%= f.input :title %>

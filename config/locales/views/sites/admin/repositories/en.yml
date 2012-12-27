@@ -3,10 +3,13 @@ en:
     admin:
       repositories:
         index:
-          archives:            " Files "
-          search:              " Search "
-          new_archive:         " New file "
+          archives:             " Files "
+          search:               " Search "
+          new_archive:          " New file "
+          repository_as_thumbs: " Show repository as thumbnails "
+          repository_as_list:   " Show repository as list "
         show:
+          archives:            " Files "
           name:                " Name "
           size:                " Size "
           type:                " Type "
@@ -15,23 +18,28 @@ en:
           list_all:            " List All "
         new:
           archives:            " Files "
+          field_required:      " Field required! "
+          accessibility_needs: " Needed for your site's accessibility. "
+          please_wait:         " Please wait "
+          add_archives:        " Add files "
         edit:
           archives:            " Files "
+          field_required:      " Field required! "
+          accessibility_needs: " Needed for your site's accessibility. "
+          please_wait:         " Please wait "
         ajax_upload:
           file:                " File "
+          description:         " Description "
+          send:                " Send "
           select_file:         " Select File "
           field_required:      " Field Required! "
-        form:
-          field_required:      " Field required! "
-          accessibility_needs: " Needed for your site becomes accessible. "
-          archives:            " Archives "
-          please_wait:         " Please wait "
         repo:
           picture:             " Picture "
-        repositories_as_table:
-          archives:            " Files "
+        list:
+          archive:             " File "
           description:         " Description "
-        repositories_as_boxes:
+          type:                " Type "
+        thumbs:
           none_archive:        " No Files "
         repository_search:
           archives:            " Files "

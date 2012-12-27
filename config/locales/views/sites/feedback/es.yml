@@ -1,0 +1,12 @@
+es:
+  sites:
+    feedbacks:
+      new:
+        new_message:   " Nuevo Mensaje "
+        feedback:      " Contáctenos "
+        group:         " Grupo "
+        group_explain: " Lista de los grupos que pueden recibir mensajes "
+      sent:
+        success_sent:  " Mensaje enviado con éxito "
+        group_sent:    " Su mensaje ha sido enviado a los grupos "
+        back_link:     " Volver a la home page "

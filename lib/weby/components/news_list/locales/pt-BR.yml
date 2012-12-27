@@ -1,0 +1,25 @@
+pt-BR:
+  components:
+    news_list:
+      name:                    " Lista de Notícias "
+      quant:                   " Quantidade de notícias exibidas "
+      front:                   " Apenas notícias de capa "
+      events:                  " Mostrar eventos "
+      show_image:              " Mostrar imagem da notícia "
+      image_size:              " Tamanho da imagem "
+      category:                " Categoria "
+  activerecord:
+    attributes:
+      news_list_component:
+        quant:                 " Quantidade de notícias exibidas "
+        front:                 " Apenas notícias de capa "
+        events:                " Mostrar eventos "
+        show_image:            " Mostrar imagem da notícia "
+        image_size:            " Tamanho da imagem "
+        category:              " Categoria "
+  news_list:
+    views:
+      show:
+        last_news:             " Últimas Notícias "
+      form:
+        no_category_filter:    " Não filtrar por categoria "

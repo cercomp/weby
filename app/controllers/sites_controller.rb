@@ -9,7 +9,7 @@ class SitesController < ApplicationController
   helper_method :sort_column
 
   def index
-    params[:per_page] ||= weby_settings[:per_page_default]
+    params[:per_page] ||= current_settings[:per_page_default]
 
     @sites = Site.name_or_description_like(params[:search]).
       except(:order).
@@ -33,6 +33,12 @@ class SitesController < ApplicationController
   def edit
     @site = current_site
     load_themes
+    @sites = @site.subsites.
+      except(:order).
+      order(:title).
+      page(1).
+      per(100)
+    
     render layout: "application"
   end
 

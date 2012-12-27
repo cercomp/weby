@@ -2,11 +2,11 @@ en:
   components:
     event_list:
       name:                 " Event List "
-      quant:                " Number of events to show on front page "
+      quant:                " Number of events to show "
   activerecord:
     attributes:
       event_list_component:
-        quant:              " Number of events to show on front page "
+        quant:              " Number of events to show "
   event_list:
     views:
       show:

@@ -8,32 +8,99 @@
     input_html: {value: @site.id}, 
     as: :hidden %>
 
+  
   <div class="input">
+    <div class="btn-toolbar code-editor-menu">
+      <div class="btn-group">
+        <%= link_to t(".format"),"javascript:autoFormatSelection()", class: "btn btn-small" %>
+        <%= link_to t(".comment"),"javascript:commentSelection(true)", class: "btn btn-small" %>
+        <%= link_to t(".uncomment"),"javascript:commentSelection(false)", class: "btn btn-small" %>
+      </div>
+    </div>
     <%= f.input :css, 
       as: :text,
       wrapper_html: { class: 'nostyle' },
       input_html: {class: 'style-editor', id: 'code' } %>
 
     <%= link_to icon('question-sign', text:t(".help_with_style")),
-      (weby_settings[:help_site] || "/help"),
+      (current_settings[:help_site] || "/help"),
       target: "_blank"%>
-
-
   </div>
 
   <div class="form-actions">
+    <%= f.button :button, t(".apply"), type: :button, disabled: :disabled, class: "btn-apply btn btn-primary" if controller.action_name == "edit" %>
     <%= f.button :submit, class: 'btn-primary', disable_with: t("please_wait") %>
     <%= link_to t("back"), :back, class: "btn btn-danger" %>
   </div>
 <% end %>
 <%= content_for :stylesheets, stylesheet_link_tag("codeMirror/codemirror") %>
 <%= content_for :javascripts, javascript_include_tag("codeMirror/codemirror.min") %>
+<%= content_for :javascripts, javascript_include_tag("codeMirror/formatting.min") %>
 <%= content_for :javascripts, javascript_include_tag("codeMirror/css.min") %>
 <%= content_for :javascripts do %>
   <script type="text/javascript">
       var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
         lineNumbers: true,
-        tabSize: 2
+        tabSize: 2,
+        onCursorActivity: function() {
+          editor.setLineClass(hlLine, null, null);
+          hlLine = editor.setLineClass(editor.getCursor().line, null, "activeline");
+        },
+        onChange: function() {
+          $('.btn-apply').prop('disabled',false);
+        }
       });
+      var hlLine = editor.setLineClass(0, "activeline");
+      //CodeMirror.commands["selectAll"](editor);
+
+      $('.btn-apply').click(function(){
+        /////Retorna uma array dos erros, se tiver vazio = OK
+        $.ajax({
+          url: $(this).closest('form').prop('action'),
+          type: "PUT",
+          data: {'style[css]': editor.getValue()},
+          dataType: "json",
+          success: function(data, st, jqxhr){
+            if(data.length > 0){
+              var str = ""
+              for (var e in data){
+                str += data[e]+"<br/>";
+              }
+              flashMsgApply('<%=image_tag("false.png")%>',"<%=t("simple_form.error_notification.default_message")%> <br/>"+str);
+              $('.btn-apply').prop('disabled',false);
+            }else{
+              flashMsgApply('<%=image_tag("true.png")%>',"<%=t("successfully_updated")%>");
+            }
+          },
+          error: function(jqxhr, st, error){
+            flashMsgApply('<%=image_tag("false.png")%>',"<%=t("simple_form.error_notification.default_message")%> <br/>"+st);
+            $('.btn-apply').prop('disabled',false);
+          },
+          beforeSend: function(){
+            $('.btn-apply').prop('disabled',true);
+          }
+        })
+      });
+
+      function flashMsgApply(title, content){
+        $('.btn-apply').popover({title:title,content:content,animation:true, placement: "top", html: true, trigger: "manual"}).popover('show');
+        setTimeout(function(){
+          $('.btn-apply').popover('hide');
+        },2000);
+      }
+
+      function getSelectedRange() {
+        return { from: editor.getCursor(true), to: editor.getCursor(false) };
+      }
+      
+      function autoFormatSelection() {
+        var range = getSelectedRange();
+        editor.autoFormatRange(range.from, range.to);
+      }
+      
+      function commentSelection(isComment) {
+        var range = getSelectedRange();
+        editor.commentRange(isComment, range.from, range.to);
+      }      
   </script>
 <% end %>

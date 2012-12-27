@@ -5,6 +5,8 @@ en:
     edit:
       sites:                  " Sites "
       settings:               " Settings "
+      main:                   " Main "
+      subsites:               " Subsites "
     list:
       description:            " Description "
       name:                   " Name "

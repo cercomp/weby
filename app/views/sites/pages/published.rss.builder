@@ -16,7 +16,9 @@ xml.rss :version => "2.0" do
             title: page.image.description
           }
         ) if page.image
-        xml.description "#{page_image}<br/>#{page.summary}<br/>#{page.text}"
+        body = "#{page_image}<br/>#{page.summary}<br/>#{page.text}"
+        body += "<br/>#{link_to 'Original', page.url, target: '_blank'}" if page.url.present?
+        xml.description body
         #xml.enclosure url: "http://#{request.host}#{":"+request.port.to_s if request.port!=80}#{page.image.archive.url}", length:page.image.archive_file_size, type: page.image.archive_content_type if page.image
         xml.pubDate page.created_at.to_s(:rfc822)
         xml.link site_page_url(page, subdomain: current_site)

@@ -1,11 +1,20 @@
 module RepositoryHelper
   attr_accessor :file, :format, :options, :size, :thumbnail
 
-  def weby_file_view(file, format, width = nil, height = nil, options = {as: 'link'})
+  def weby_file_view(file, format, width = nil, height = nil, options = {}, fallback = false)
+    options[:as] ||= 'link'
     @file, @format, @width, @height, @options = file, format, width, height, options
     if @file
       make_thumbnail!
       send("#{@options[:as]}_viewer") # chama método http://ruby-doc.org/core-1.9.3/Object.html#method-i-send
+    elsif fallback
+      img_opt = {}
+      img_opt[:alt] = @options[:alt] if @options[:alt]
+      img_opt[:title] = @options[:title] if @options[:title]
+      size = style_for_dimension @width, @height
+      img_opt[:style] = @options[:style] ? "#{@options[:style]}#{size}" : size
+      img_opt[:id] = @options[:id] if @options[:id]
+      raw image_tag(empty_mime, img_opt)
     end
   end
 
@@ -51,34 +60,32 @@ module RepositoryHelper
 
   private
   def make_thumbnail!
-    @file.reprocess!
+    @file.reprocess
     if file.archive_content_type.empty?
       @thumbnail = empty_mime
     else
       if mime_type.first == "image"
         if mime_type.last.include?("svg") 
           @format = :original 
-          clean_size!
         end
 
         @thumbnail = @file.archive.url(@format)
       else
         @thumbnail = mime_image
-        clean_size!
       end
     end
   end
 
   def link_viewer
-    raw link_to(image_viewer, @options[:url] || @file.archive.url, target: @options[:target] || '_blank')
+    raw link_to(image_viewer, @options[:url] || @file.archive.url, target: @options[:target])
   end
 
   def image_viewer
     img_opt = {
-      alt: (@options[:alt] || @file.description),
+      alt: @file.description,
       title: (@options[:title] || @file.description) }
-    img_opt[:width] = @width unless @width.blank?
-    img_opt[:height] = @height unless @height.blank?
+    size = style_for_dimension @width, @height
+    img_opt[:style] = @options[:style] ? "#{@options[:style]}#{size}" : size
     img_opt[:id] = @options[:id] if @options[:id]
     begin
       image = image_tag(@thumbnail, img_opt)
@@ -105,11 +112,47 @@ module RepositoryHelper
   end
 
   def full_image_url repository
-    "http://#{request.host}#{":"+request.port.to_s if request.port!=80}#{repository.archive.url}"
+    "http://#{request.host_with_port}#{repository.archive.url}"
   end
 
-  def clean_size!
-    @size.delete!('#') if @size
+  def image_size_picker form_builder
+    render partial: "sites/admin/repositories/image_size_picker", locals: {f: form_builder}
+  end
+
+  def repository_partial
+    ['list','thumbs'].include?(session[:repository_view]) ?
+    session[:repository_view] : 'thumbs'
+  end
+
+  def banners_partial
+    ['list','thumbs'].include?(session[:banners_view]) ?
+    session[:banners_view] : 'list'
+  end
+
+  def format_for_custom width, height, repository
+    Repository.attachment_definitions[:archive][:styles].each do |name, value|
+      size = value.split("x") if value.match(/^\d+x\d+$/)
+      if size
+        if width.to_i+height.to_i > 0 and width.to_i <= size[0].to_i && height.to_i <= size[1].to_i
+          return name
+        end
+      end
+    end
+    :original
+  end
+
+  def dimension_for_size size
+    dimension = Repository.attachment_definitions[:archive][:styles][size.to_sym]
+    if dimension and dimension.match(/^\d+x\d+$/)
+      return dimension.split('x')
+    end
+  end
+
+  def style_for_dimension width, height
+    size = ""
+    size << "width:#{width}px; " if width
+    size << "height:#{height}px; " if height
+    size
   end
 
 end

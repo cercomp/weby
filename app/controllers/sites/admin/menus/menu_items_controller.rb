@@ -11,7 +11,6 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
   def new
     get_parent_menu_item params[:parent_id]
     @menu_item = @menu.menu_items.new
-    @available_locales = available_locales
   end
 
   def create
@@ -23,14 +22,12 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
       redirect_to site_admin_menus_path(:menu => @menu.id) 
     else
       get_parent_menu_item params[:menu_item][:parent_id]
-      @available_locales = available_locales
       render action: :new
     end
   end
 
   def edit
     @menu_item = @menu.menu_items.find(params[:id])
-    @available_locales = available_locales
   end
 
   def update
@@ -39,15 +36,9 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
       flash[:success] = t("successfully_updated")
       redirect_to site_admin_menus_path(:menu => @menu.id)
     else
-      @available_locales = available_locales
       render action: :edit
     end
   end
-
-  def available_locales
-    @menu_item.locales | @site.locales
-  end
-  private :available_locales
 
   def destroy
     @menu_item = @menu.menu_items.find(params[:id])

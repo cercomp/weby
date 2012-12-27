@@ -15,12 +15,20 @@
     <div class="pull-right">
       <%= link_to t(".new_archive"),
         new_site_admin_repository_path,
-        class: "btn btn-success btn-large" %>
+        class: "btn btn-success" %>
     </div>
     <div class="clearfix"></div>
-
+     <div class="btn-group">
+        <%= link_to url_for(repository_view: 'thumbs'), class: "btn", title: t(".repository_as_thumbs") do %>
+          <%= icon('th') %>
+        <% end %>
+        <%= link_to url_for(repository_view: 'list'), class: "btn", title: t(".repository_as_list") do %>
+          <%= icon('list') %>
+        <%  end %>
+      </div>
+    
     <div id="repo_list">
-      <%= render :partial => 'repositories_as_boxes' %>
+      <%= render :partial => repository_partial %>
     </div>
   </div>
 </div>

@@ -20,4 +20,5 @@ en:
         new:
           groups:                 " Groups "
         show:
+          name:                   " Name "
           groups:                 " Groups "

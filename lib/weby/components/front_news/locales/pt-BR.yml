@@ -2,20 +2,34 @@ pt-BR:
   components:
     front_news:
       name:                 " Notícias Capas "
-      quant:                " Quantidade de notícias na página inicial "
-      avatar_height:        " Altura da imagem da noticia "
-      avatar_width:         " Largura da imagem da noticia"
-      read_more:            " Exibir leia mais "
-      details:              " Exibir detalhes da noticia "
+      quant:                " Quantidade de notícias exibidas "
+      avatar_height:        " Altura da imagem da notícia "
+      avatar_width:         " Largura da imagem da notícia"
+      read_more:            " Exibir 'Leia mais' "
+      show_author:          " Exibir autor da notícia "
+      show_date:            " Exibir data da notícia "
+      image_size:           " Versão da imagem "
+      new_tab:              " Abrir páginas com URL em uma nova janela "
   activerecord:
     attributes:
       front_news_component:
-        quant:              " Quantidade de notícias na página inicial "
-        avatar_height:        " Altura da imagem da noticia "
-        avatar_width:         " Largura da imagem da noticia"
-        read_more:            " Exibir leia mais "
-        details:              " Exibir detalhes da noticia "
+        quant:              " Quantidade de notícias exibidas "
+        avatar_height:        " Altura da imagem da notícia "
+        avatar_width:         " Largura da imagem da notícia"
+        read_more:            " Exibir 'Leia mais' "
+        show_author:          " Exibir autor da notícia "
+        show_date:            " Exibir data da notícia "
+        image_size:           " Versão da imagem "
+        new_tab:              " Abrir páginas com URL em uma nova janela "
   front_news:
     views:
       show:
-        read_more:          " Leia mais... "
+        read_more:            " Leia mais... "
+        posted_by:            " Por "
+        posted_on:            " Em "
+      form:
+        medium:               " Média "
+        little:               " Pequena "
+        mini:                 " Miniatura "
+        thumb:                " Thumbnail "
+        image_size_hint:      " Thumbnail é uma versão reduzida da imagem, onde é feito um corte quadrado para que a proporção original não se perca "

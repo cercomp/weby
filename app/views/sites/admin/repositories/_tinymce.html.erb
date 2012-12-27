@@ -1,7 +1,24 @@
 <script type="text/javascript">
   $(function() {
+
+     $("#dynamic_images_list .pagination a,#dynamic_images_list a#search_button").click(function(){
+        $comp = $(this).parents('#dynamic_images_list');
+        //alert($comp);
+        $comp.css('position', 'relative');
+        console.log($comp)
+        $comp.prepend($('<div class="loading-cloak"></div>').css({
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            height: $comp.outerHeight(),
+            width: $comp.outerWidth(),
+            textAlign: 'center',
+            background: 'rgba(255,255,255,.65) url(/assets/loading.gif) no-repeat center center'
+        }));
+    });
+
     // Para realizar a consulta por páginas
-    $('#search_button').live('click', function(e) {
+    $('#search_button').click(function(e) {
       var search = $('#search').val();
       console.log(search);
       $.get(this.href, {'template': 'tinymce', 'search': search}, null, 'script');
@@ -21,7 +38,7 @@
     <li id="<%= repository.id %>" class="attachment_list">
       <%= link_to(
             image_tag(
-              repository.archive.url(),
+              repository.archive.url(:mini),
               :alt => repository.description,
               :width => '64px',
               :height => '64px'
@@ -36,3 +53,4 @@
 <div style="clear: both;float: right;">
   <%= paginate @repositories, remote: true %>
 </div>
+<div style="clear:both;"> </div>

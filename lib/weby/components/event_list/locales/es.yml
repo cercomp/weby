@@ -1,0 +1,13 @@
+es:
+  components:
+    event_list:
+      name:                 " Lista de Eventos "
+      quant:                " Número de eventos mostrados "
+  activerecord:
+    attributes:
+      event_list_component:
+        quant:              " Número de eventos mostrados "
+  event_list:
+    views:
+      show:
+        events:              " Eventos "

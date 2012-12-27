@@ -15,7 +15,7 @@ class Sites::Admin::BannersController < ApplicationController
       page(params[:page]).per(params[:per_page])
 
     unless @banners
-      flash.now[:warning] = (t"none_banner")
+      flash.now[:warning] = (t".none_banner")
     end
   end
 

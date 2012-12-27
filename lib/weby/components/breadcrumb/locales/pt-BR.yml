@@ -1,12 +1,13 @@
 pt-BR:
   components:
     breadcrumb:
-      name: "Breadcrumb"
+      name: "Navegação (Breadcrumb)"
   activerecord:
     attributes:
       breadcrumb_component:
-        label: "Label"
+        label: "Rótulo"
   breadcrumb:
     views:
       show:
+        home:   "Página Inicial"
       form:

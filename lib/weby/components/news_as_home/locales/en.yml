@@ -9,11 +9,9 @@ en:
         page:                 " News "
         page_id:              " News "
         show_title:           " Show title "
-        show_info:            " Show information "
+        show_info:            " Show informations "
   news_as_home:
     views:
       form:
-        none_selected:        " No news selected "
-        select:               " Select a news "
       show:
         page_not_found:       " Page not found, please check the component configuration "
