@@ -1,15 +1,11 @@
 module Feedback
-  class MessagesController < ::ApplicationController
+  class MessagesController < Feedback::ApplicationController
     
     before_filter :get_groups, :only => [:new, :create]
     
     respond_to :html, :js
 
-    layout :choose_layout, only: [:new, :sent]
-
-    def index
-      @messages = Message.all
-    end
+    layout :choose_layout
 
     def new
       if(@groups.length == 0)

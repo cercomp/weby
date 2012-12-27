@@ -49,7 +49,7 @@ class Site < ActiveRecord::Base
   has_many :pages_i18ns, through: :pages, source: :i18ns
 
   has_many :groups, class_name: 'Feedback::Group'
-  has_many :feedbacks
+  #has_many :feedbacks
   has_many :banners, order: :position
 
   has_many :sites_styles,

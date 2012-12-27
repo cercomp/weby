@@ -16,14 +16,14 @@
   <div class="well">
 
     <div class="pull-right">
-      <% if check_permission(Feedback::GroupsController, [:new]) %>
+      <% if check_permission(Feedback::Admin::GroupsController, [:new]) %>
         <%= link_to t(".new_group"),
-          new_group_path,
+          new_admin_group_path,
           class: "btn btn-success" %>
       <% end %>
-      <% if check_permission(Feedback::MessagesController, [:index]) %>
+      <% if check_permission(Feedback::Admin::MessagesController, [:index]) %>
         <%= link_to  t(".messages"),
-          messages_path,
+          admin_messages_path,
           class: "btn btn-primary" %>
       <% end %>
     </div>

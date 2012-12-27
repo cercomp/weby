@@ -73,7 +73,7 @@ module Weby
         @global_components.reject{|k,v| k == :home }.each do |place, comps|
           comps.each do |comp|
             if Weby::Components.is_enabled?(comp.name)
-              visible = comp.visibility == 1 ? current_page?(site_path) : comp.visibility == 2 ? !current_page?(site_path) : comp.visibility == 0
+              visible = comp.visibility == 1 ? current_page?(main_app.site_path) : comp.visibility == 2 ? !current_page?(main_app.site_path) : comp.visibility == 0
               if visible
                 content_for "layout_#{place}".to_sym, render_component(Weby::Components.factory(comp))
               end

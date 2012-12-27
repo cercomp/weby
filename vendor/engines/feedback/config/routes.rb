@@ -1,9 +1,18 @@
 Feedback::Engine.routes.draw do
-  resources :groups
   
-  resources :messages do
-    collection do
-      get :sent
+  constraints(Weby::Subdomain) do
+    
+    get "admin" => "admin/messages#index"
+
+    namespace :admin do
+      resources :groups
+      resources :messages, only: [:index, :show, :destroy]
+    end
+
+    resources :messages, only: [:new, :create] do
+      collection do
+        get :sent
+      end
     end
   end
 

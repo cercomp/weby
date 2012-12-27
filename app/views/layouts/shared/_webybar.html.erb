@@ -18,16 +18,16 @@ onLoad: function() {
             <%= link_to root_url(subdomain: nil), class: 'left orbitron logo' do %>
               web<span class="red">y</span>
             <% end %>
-            <%= link_to t(".dashboard"), site_admin_path, class: 'left' %>
-            <%= link_to t(".logout"), logout_path(back_url: site_path), class: 'right' %>
-            <%= link_to current_user.first_name, admin_user_url(current_user, subdomain: nil), class: 'right' %>
+            <%= link_to t(".dashboard"), main_app.site_admin_path, class: 'left' %>
+            <%= link_to t(".logout"), main_app.logout_path(back_url: main_app.site_path), class: 'right' %>
+            <%= link_to current_user.first_name, main_app.admin_user_url(current_user, subdomain: nil), class: 'right' %>
             <%= link_to(t(".help"), current_settings[:help_site], target: '_blank', class: 'left') if current_settings[:help_site] %>
             <%= link_to t(".about"), '#', target: '_blank', class: 'left', id: 'try-1' %>
           </div>
         </div>
       </div>
     <% else %>
-      <%= link_to image_tag('weby-icon.png'), login_url(subdomain: nil, protocol: login_protocol, back_url: site_admin_url(subdomain: current_site)), id: 'webyaccess' %>
+      <%= link_to image_tag('weby-icon.png'), main_app.login_url(subdomain: nil, protocol: login_protocol, back_url: site_admin_url(subdomain: current_site)), id: 'webyaccess' %>
     <% end %>
     <div id="about-modal" style="display:none; background-color:white;">
       <i class="icon-remove icon-black close"></i>

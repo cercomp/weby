@@ -10,15 +10,15 @@
     <% end %>
 
     <div class="pull-right">
-      <% if check_permission(Feedback::GroupsController, [:new]) %>
+      <% if check_permission(Feedback::Admin::GroupsController, [:new]) %>
         <%= link_to t(".new_group"),
-          new_group_path,
-          class: "btn btn-success btn-large" %>
+          new_admin_group_path,
+          class: "btn btn-success" %>
       <% end %>
-      <% if check_permission(Feedback::MessagesController, [:index]) %>
+      <% if check_permission(Feedback::Admin::MessagesController, [:index]) %>
         <%= link_to t(".groups"),
-          groups_path,
-          class: "btn btn-primary btn-large" %>
+          admin_groups_path,
+          class: "btn btn-primary" %>
       <% end %>
     </div>
     <div class="clearfix"></div>
@@ -33,13 +33,13 @@
           <th></th>
         </thead>
         <tbody>
-          <% @messages.each do |feedback| %>
+          <% @messages.each do |message| %>
             <tr class="<%= cycle 'odd', 'even' %>">
-              <td><%= feedback.name %></td>
-              <td><%= feedback.email %></td>
-              <td><%= feedback.subject %></td>
+              <td><%= message.name %></td>
+              <td><%= message.email %></td>
+              <td><%= message.subject %></td>
               <td>
-                <%= raw make_menu(feedback) %> 
+                <%= raw make_menu(message) %>
               </td>
             </tr>
             <% end; reset_cycle %>

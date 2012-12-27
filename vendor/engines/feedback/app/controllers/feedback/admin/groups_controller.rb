@@ -1,5 +1,5 @@
-module Feedback
-  class GroupsController < ApplicationController
+module Feedback::Admin
+  class GroupsController < Feedback::ApplicationController
     before_filter :require_user
     before_filter :check_authorization
     respond_to :html, :js
@@ -12,21 +12,21 @@ module Feedback
     end
 
     def show
-      @group = Group.find(params[:id])
+      @group = Feedback::Group.find(params[:id])
     end
 
     def new
-      @group = Group.new
-      @users = User.by_site(@site)
+      @group = Feedback::Group.new
+      #@users = User.by_site(@site)
     end
 
     def edit
-      @group = Group.find(params[:id])
-      @users = User.by_site(@site)
+      @group = Feedback::Group.find(params[:id])
+      #@users = User.by_site(@site)
     end
 
     def create
-      @group = Group.new(params[:group])
+      @group = Feedback::Group.new(params[:group])
 
       if @group.save
         redirect_to({:site_id => @group.site.name, :controller => 'groups'},
@@ -37,7 +37,7 @@ module Feedback
     end
 
     def update
-      @group = Group.find(params[:id])
+      @group = Feedback::Group.find(params[:id])
       if @group.update_attributes(params[:group])
         redirect_to({:site_id => @group.site.name, :controller => 'groups', :action => 'index'},
                     flash: {success: t("successfully_updated")})
@@ -47,15 +47,15 @@ module Feedback
     end
 
     def destroy
-      @group = Group.find(params[:id])
+      @group = Feedback::Group.find(params[:id])
       @group.destroy
 
-      redirect_to(site_admin_groups_url)
+      redirect_to(admin_groups_url)
     end
 
     private
     def sort_column
-      Group.column_names.include?(params[:sort]) ? params[:sort] : 'id'
+      Feedback::Group.column_names.include?(params[:sort]) ? params[:sort] : 'id'
     end
   end
 end

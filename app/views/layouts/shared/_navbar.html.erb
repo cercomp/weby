@@ -30,7 +30,7 @@
             <ul class="dropdown-menu">
               <li> <%= link_to t(".my_profile"), main_app.admin_user_url(current_user, subdomain: nil) -%> </li>
               <li class="divider"></li>
-              <li> <%= link_to t(".logout"), main_app.logout_path(back_url: site_path) -%> </li>
+              <li> <%= link_to t(".logout"), main_app.logout_path(back_url: main_app.site_path) -%> </li>
             </ul>
           </div>
         <% else %>

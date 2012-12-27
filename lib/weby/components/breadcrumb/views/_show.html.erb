@@ -1,4 +1,4 @@
-<% if !current_page?(site_path) && @page then  %>
+<% if !current_page?(main_app.site_path) && @page then  %>
 <div class="breadcrumb_component">
   <ul>
       <%= content_tag :li, class: "breadcrumb-label" do
