@@ -6,8 +6,7 @@ module Feedback::Admin
 
     def index
       @messages = Feedback::Message.where(:site_id => current_site.id).order('id desc')
-      #Group.find(:all, :select => 'name')
-
+      
       respond_to do |format|
         format.html # index.html.erb
         format.xml  { render :xml => @messages }

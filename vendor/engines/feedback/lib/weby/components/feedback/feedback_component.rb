@@ -17,7 +17,7 @@ class FeedbackComponent < Component
 
   def parse_groups(site)
     if groups_id.include? ""
-      ""
+      nil
     else
       groups_site = site.groups 
       "".tap do |group_names|

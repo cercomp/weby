@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
   helper :all
   helper_method :current_user_session, :current_user, :sort_direction, :test_permission,
-    :current_locale, :current_site, :current_settings, :current_roles_assigned
+    :current_locale, :current_site, :current_settings, :current_roles_assigned, :component_is_available
 
   def admin
     render 'admin/admin'
@@ -262,7 +262,7 @@ class ApplicationController < ActionController::Base
 
         @global_components = {}
         @site.components.where({publish: true}).order('position asc').each do |comp|
-          (@global_components[comp.place_holder.to_sym] ||= []) << comp
+          (@global_components[comp.place_holder.to_sym] ||= []) << comp if component_is_available comp.name
         end
         
         @main_width = nil
@@ -271,6 +271,15 @@ class ApplicationController < ActionController::Base
         end
       end
     end
+  end
+
+  def component_is_available comp_name
+    if (comp = Weby::Components.components[comp_name.to_sym])
+      if comp[:group] != :weby
+        return false unless current_site.extensions.select{|extension| extension.name == comp[:group].to_s }.any?
+      end
+    end
+    Weby::Components.is_enabled? comp_name
   end
 
   def clear_weby_cache

@@ -53,7 +53,6 @@ pt-BR:
   field_required:                       " Campo Obrigatório! "
   file_already_exists:                  " Já existe outro arquivo com o nome: %{value} "
   follow:                               " Seguir "
-  feedback_need_at_least_one_group:     " Necessita de pelo menos um grupo! "
 #---G---#
 #---H---#
 #---I---#

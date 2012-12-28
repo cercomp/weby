@@ -1,7 +1,7 @@
 pt-BR:
   components:
     feedback:
-      name:               " Fale Conosco "
+      name:               " Link para Fale Conosco "
       label:              " Rótulo "
   activerecord:
     attributes:

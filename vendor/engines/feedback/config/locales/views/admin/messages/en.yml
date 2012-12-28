@@ -1,7 +1,7 @@
 en:
-  sites:
+  feedback:
     admin:
-      feedbacks:
+      messages:
         index:
          feedback:      " Messages "
          none_feedback: " None Feedback "

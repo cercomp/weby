@@ -32,27 +32,14 @@ module Feedback
             #FeedbackMailer.send_feedback(@message, group.emails, current_site).deliver
           end
         end
-        session[:feedback_id] = @message.id
-        redirect_to sent_messages_path
       else
         render :action => "new"
       end
     end
 
-    def sent
-      # Mostra mensagem de feedback enviado apenas uma vez
-      unless session[:feedback_id].nil?
-        @message = Message.find(session[:feedback_id])
-        session.delete :feedback_id
-      else
-        # Se o usuário já viu a mensagem, ele é redirecionado para a página inicial do site
-        redirect_to current_site
-      end
-    end
-
     private
     def get_groups
-      @groups = current_site.groups
+      @groups = Feedback::Group.where(site_id: current_site.id)
     end
   end
 end

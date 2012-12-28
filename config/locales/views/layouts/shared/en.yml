@@ -13,6 +13,7 @@ en:
         components:        " Components "
         archives:          " Files "
         styles:            " Styles "
+        extensions:        " Extensions "
         roles_permissions: " Roles and Permissions "
         groups:            " Groups "
         messages:          " Messages "

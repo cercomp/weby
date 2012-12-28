@@ -1,9 +1,9 @@
 en:
   activerecord:
     models:
-      group:        " Group "
+      feedback/group:        " Group "
     attributes:
-      group:
+      feedback/group:
         created_at: " Created at "
         emails:     " Emails "
         name:       " Name "

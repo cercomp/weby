@@ -7,7 +7,7 @@ module Feedback::Admin
     helper_method :sort_column
 
     def index
-      @groups = @site.groups.order(sort_column + ' ' + sort_direction).
+      @groups = Feedback::Group.where(site_id: current_site.id).order(sort_column + ' ' + sort_direction).
         page(params[:page]).per(params[:per_page])
     end
 
@@ -42,7 +42,7 @@ module Feedback::Admin
         redirect_to({:site_id => @group.site.name, :controller => 'groups', :action => 'index'},
                     flash: {success: t("successfully_updated")})
       else
-        redirect_to :back
+        respond_with(:site_admin, @group)
       end
     end
 

@@ -15,11 +15,11 @@
   </div>
 </div>
 
-<% if current_site.groups %>
+<% if !(groups = Feedback::Group.where(site_id: current_site.id)).empty? %>
   <div class="control-group check_boxes optional">
     <label class="check_boxes optional control-label"> <%= t(".group_checked") %> </label>
     <div class="controls">
-      <% current_site.groups.each do |group| %>
+      <% groups.each do |group| %>
         <label class="checkbox">
           <%= check_box_tag 'feedback_component[groups_id][]', group.id, component.checked?(group.id), class: 'check_boxes optional'  %>
           <%= group.name %>

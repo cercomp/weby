@@ -25,15 +25,6 @@ Weby::Application.routes.draw do
       end
     end
 
-    resources :feedbacks,
-      as: :site_feedbacks,
-      controller: "sites/feedbacks", 
-      only: [:new, :create] do
-      collection do
-        get :sent
-      end
-    end
-
     resources :components,
       as: :site_components,
       controller: 'sites/components',
@@ -47,8 +38,6 @@ Weby::Application.routes.draw do
       match "repositories/page/:page" => "repositories#index"
       match "pages/page/:page" => "pages#index"
       
-      resources :feedbacks, except: [:new, :create]
-      resources :groups
       resources :banners do
         member do
           put :toggle_field

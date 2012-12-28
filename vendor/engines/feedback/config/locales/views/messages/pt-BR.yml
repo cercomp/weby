@@ -1,12 +1,12 @@
 pt-BR:
-  sites:
-    feedbacks:
+  feedback:
+    messages:
       new:
         new_message:   " Nova Mensagem "
         feedback:      " Fale Conosco "
         group:         " Grupo "
         group_explain: " Lista dos grupos que podem receber Fale Conosco "
-      sent:
+      create:
         success_sent:  " Mensagem enviada com sucesso "
-        group_sent:    " Sua mensagem foi enviada para os grupos "
+        group_sent:    " Sua mensagem foi enviada para os grupos: "
         back_link:     " Voltar para a página inicial "

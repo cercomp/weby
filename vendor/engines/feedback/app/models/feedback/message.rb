@@ -11,7 +11,7 @@ module Feedback
 
     def at_least_one_group
       if(Group.where(:site_id => self.site.id).length > 0 and self.groups.length < 1)
-        errors.add(:feedback, I18n.t("feedback_need_at_least_one_group"))
+        errors.add(:base, :need_at_least_one_group )
       end
     end
   end

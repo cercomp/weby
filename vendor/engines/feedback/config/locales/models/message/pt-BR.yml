@@ -1,15 +1,19 @@
 pt-BR:
   activerecord:
     models:
-      feedback:     " Fale Conosco "
+      feedback/message:     " Fale Conosco "
     attributes:
-      feedback:
+      feedback/message:
         name:       " Nome "
         email:      " Email "
         subject:    " Assunto "
         message:    " Mensagem "
-        site_id:    " Id do site "
+        site_id:    " Site "
         created_at: " Criado em "
         updated_at: " Atualizado em "
+    errors:
+      models:
+        feedback/message:
+          need_at_least_one_group: " É necessário selecionar pelo menos um grupo! "
 
 

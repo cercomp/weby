@@ -53,7 +53,6 @@ en:
   field_required:                       " Field Required!  "
   file_already_exists:                  " There is another file named '%{value}' "
   follow:                               " Follow "
-  feedback_need_at_least_one_group:     " Needs at least one group! "
 #---G---#
 #---H---#
 #---I---#

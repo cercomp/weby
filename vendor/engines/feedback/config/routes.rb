@@ -9,11 +9,7 @@ Feedback::Engine.routes.draw do
       resources :messages, only: [:index, :show, :destroy]
     end
 
-    resources :messages, only: [:new, :create] do
-      collection do
-        get :sent
-      end
-    end
+    resources :messages, only: [:new, :create]
   end
 
   root :to => 'messages#new'

@@ -4,13 +4,7 @@
   <div class="well" id="available_components">
     <%= form_tag new_site_admin_component_path, :method => :get do %>
       <div id="main">
-        <select id="component_select" name="component" size="11">
-          <% available_components_sorted.each do |component| %>
-            <option value="<%= component[:name] %>">
-              <%= component[:i18n] %>
-            </option>
-          <% end %>
-        </select>
+        <%= select_tag "component", grouped_options_for_select(available_components_sorted), size: '11', id: "component_select" %>
 
         <img id="component_image" src="/assets/components/default.png"/>
       </div>

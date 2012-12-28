@@ -12,7 +12,7 @@
   <tbody>
     <% @extensions.each do |extension| %>
       <tr>
-        <td> <%= extension.name %></td>
+        <td> <%= t("extensions.#{extension.name}.name") %></td>
         <td>
           <%= raw make_menu(extension) %>
           <% if check_permission(Sites::Admin::ExtensionsController, 'edit') %>

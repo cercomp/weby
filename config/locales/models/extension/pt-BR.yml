@@ -1,0 +1,7 @@
+pt-BR:
+  activerecord:
+    models:
+      extension:      " Extensão "
+    attributes:
+      extension:
+        name:         " Nome "

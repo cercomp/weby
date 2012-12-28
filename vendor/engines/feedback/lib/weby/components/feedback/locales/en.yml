@@ -1,7 +1,7 @@
 en:
   components:
     feedback:
-      name:               " Feedback "
+      name:               " Feedback link "
       label:              " Label "
   activerecord:
     attributes:

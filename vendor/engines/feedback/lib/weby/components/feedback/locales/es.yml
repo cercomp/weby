@@ -1,7 +1,7 @@
 es:
   components:
     feedback:
-      name:               " Contáctenos "
+      name:               " Link de Contáctenos "
       label:              " Rótulo "
   activerecord:
     attributes:
