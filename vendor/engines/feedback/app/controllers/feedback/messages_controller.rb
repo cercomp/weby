@@ -26,10 +26,10 @@ module Feedback
         #Se não tiver nenhum grupo cadastrado no site, envia para todos os usuário do site
         if(@groups.length == 0)
           emails = User.by_site(current_site.id).actives.map(&:email).join(',')
-          #FeedbackMailer.send_feedback(@message, emails, current_site).deliver
+          FeedbackMailer.send_feedback(@message, emails, current_site).deliver
         else
           @message.groups.each do |group|
-            #FeedbackMailer.send_feedback(@message, group.emails, current_site).deliver
+            FeedbackMailer.send_feedback(@message, group.emails, current_site).deliver
           end
         end
       else
