@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.11'
 gem 'thin', '1.5.0'
 gem 'jquery-rails', '2.1.4'
 gem 'pg', '0.14.1'
@@ -20,7 +20,7 @@ end
 
 group :production do
   gem 'dispatcher', '0.0.1'
-  gem 'turbo-sprockets-rails3', '0.2.12'
+  gem 'turbo-sprockets-rails3'
 end
 
 group :development, :test do
