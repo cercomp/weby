@@ -4,6 +4,8 @@
   data-multiple="<%= (multiple) %>"
   data-file-types="<%= (file_types.to_s) %>"
   onclick='repositorySearch(this);'>
+  <button type="button" class="close <%= " hide" unless selected %>" style="color:red;">×</button>
+  
   <span> <%= link_title %> </span>
 
   <div id="<%= escape_javascript(place_name) %>" >

@@ -37,6 +37,13 @@ class Admin::SitesController < ApplicationController
         menu_right   = @site.menus.create({:name => 'Menu Direito'})
         menu_bottom = @site.menus.create({:name => 'Menu Inferior'})
 
+        default_footer = {}
+        @site.locales.each do |locale|
+          I18n.with_locale(locale.name) do
+            default_footer[locale.name] = t("admin.sites.form.footer_text")
+          end
+        end
+
         @site.components.create({:place_holder=>'first_place',:settings=>'{:background => "#7F7F7F"}',:name=>'gov_bar', :position=>1, :publish=>true})
         @site.components.create({:place_holder=>'first_place',:settings=>'{}', :name=>'institutional_bar', :position=>2, :publish=>true})
         @site.components.create({:place_holder=>'top', :settings=>'{:size=>"original", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :repository_id=>"", :html_class => "header", :new_tab=>"0"}', :name=>'image', :position=>1, :alias=>"Cabeçalho(Topo)", :publish=>true})
@@ -48,7 +55,7 @@ class Admin::SitesController < ApplicationController
         @site.components.create({:place_holder=>'right', :settings=>"{:menu_id => \"#{menu_right.id}\"}", :name=>'menu', :position=>2, :publish=>true})
         @site.components.create({:place_holder=>'right', :settings=>'{:category => "dir", :orientation => "vertical"}', :name=>'banner_list', :position=>3, :publish=>true})
         @site.components.create({:place_holder=>'bottom', :settings=>"{:menu_id => \"#{menu_bottom.id}\"}", :name=>'menu', :position=>1, :publish=>true})
-        @site.components.create({:place_holder=>'bottom', :settings=>"{:body => \"#{t("admin.sites.form.footer_text")}\", :html_class => \"footer\"}", :name=>'text', :position=>2, :alias=>'Rodapé', :publish=>true})
+        @site.components.create({:place_holder=>'bottom', :settings=>"{:body => #{default_footer.to_s}, :html_class => \"footer\"}", :name=>'text', :position=>2, :alias=>'Rodapé', :publish=>true})
         @site.components.create({:place_holder=>'bottom', :settings=>'{}', :name=>'feedback', :position=>3,:publish=>true})
         @site.components.create({:place_holder=>'home', :settings=>'{:quant => "5"}', :name=>'front_news', :position=>1,:publish=>true})
         @site.components.create({:place_holder=>'home', :settings=>'{:quant => "5"}', :name=>'news_list', :position=>2,:publish=>true})
