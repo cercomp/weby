@@ -12,15 +12,16 @@
   <tbody>
     <% @extensions.each do |extension| %>
       <tr>
-        <td> <%= t("extensions.#{extension.name}.name") %></td>
+        <td>
+          <% if check_permission(Sites::Admin::ExtensionsController, 'edit') %>
+            <%= link_to t("extensions.#{extension.name}.name"), "/#{extension.name}/admin" %>
+          <% else %>
+            <%= t("extensions.#{extension.name}.name") %>
+          <% end %>
+          </td>
         <td>
           <%= raw make_menu(extension) %>
-          <% if check_permission(Sites::Admin::ExtensionsController, 'edit') %>
-            <%= link_to t(".edit_extension"),
-              "/#{extension.name}/admin",
-              class: "btn btn-success pull-right" %>
-          <% end %>
-        </td>
+       </td>
       </tr>
     <% end %>
   </tbody>

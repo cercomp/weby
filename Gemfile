@@ -24,6 +24,7 @@ group :production do
 end
 
 group :development, :test do
+  gem 'railroady'
   gem 'meta_request', '0.2.0'
   gem 'pry-rails', '0.2.2'
   gem 'rspec-rails', '2.9.0'
