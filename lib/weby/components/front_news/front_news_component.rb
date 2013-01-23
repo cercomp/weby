@@ -1,5 +1,5 @@
 class FrontNewsComponent < Component
-  component_settings :quant, :avatar_height, :avatar_width, :read_more, :show_author, :show_date, :image_size, :new_tab
+  component_settings :quant, :avatar_height, :avatar_width, :read_more, :show_author, :show_date, :image_size, :new_tab, :max_char
 
   validates :quant, presence: true
 
