@@ -6,11 +6,11 @@ class CreateViews < ActiveRecord::Migration
       t.string :viewable_type
       t.integer :user_id
       t.string :request_path
-      t.string :user_agent
+      t.text :user_agent
       t.string :session_hash
       t.string :ip_address
-      t.string :referer
-      t.string :query_string
+      t.text :referer
+      t.text :query_string
 
       t.timestamps
     end
