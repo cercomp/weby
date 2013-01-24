@@ -95,6 +95,8 @@ class Page < ActiveRecord::Base
   validate :should_be_image
   validate :should_be_own_image
 
+  has_many :views, as: :viewable
+
   def should_be_image
     return unless have_image?
     error_message = I18n.t("should_be_image")

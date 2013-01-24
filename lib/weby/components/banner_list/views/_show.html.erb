@@ -1,3 +1,4 @@
+<% include_component_javascript :javascripts, 'banner_list' %>
 <section class="banner_list_component <%= component.orientation %>">
   <% @banners = current_site.banners.published.tagged_with(component.category) %>
   <% @banners.each do |banner| %>
@@ -15,13 +16,14 @@
                               alt: banner.text,
                               title: banner.text,
                               url: banner_url,
-                              target: (banner.new_tab ? '_blank' : '')
+                              target: (banner.new_tab ? '_blank' : ''),
+                              data: {banner_id: banner.id}
                            }) %>
       </figure>
     <% else %>
       <div class="banner_text" style="<%= "width:#{banner.width}px;" if banner.width %>">
         <h2><%= "#{banner.title}" %></h2>
-        <a href="<%= "#{banner_url}" %>" target="<%= banner.new_tab ? "_blank":"" %>"><p><%= "#{banner.text}" %></p></a>
+        <a href="<%= "#{banner_url}" %>" data-banner-id="<%=  banner.id %>" target="<%= banner.new_tab ? "_blank":"" %>"><p><%= "#{banner.text}" %></p></a>
       </div>
     <% end %>
     <% if check_permission(Sites::Admin::BannersController, ["toggle_field"]) %>

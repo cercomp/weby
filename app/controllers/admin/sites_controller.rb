@@ -19,10 +19,7 @@ class Admin::SitesController < ApplicationController
 
   def new
     @site = Site.new
-    @themes = []
-    (Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*.erb")] - Dir[File.join(Rails.root + "app/views/layouts/application.html.erb")] - Dir[File.join(Rails.root + "app/views/layouts/sites.html.erb")] - Dir[File.join(Rails.root + "app/views/layouts/session.html.erb")]).each do |file|
-      @themes << file.split("/")[-1].split(".")[0]
-    end
+    load_themes
   end
 
   def create
@@ -64,10 +61,7 @@ class Admin::SitesController < ApplicationController
       puts "site criado #{@site.inspect}"
       redirect_to site_admin_components_url(subdomain: @site)
     else
-      @themes = []
-      (Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*.erb")] - Dir[File.join(Rails.root + "app/views/layouts/application.html.erb")]).each do |file|
-        @themes << file.split("/")[-1].split(".")[0]
-      end
+      load_themes
       respond_with @site
     end
   end
@@ -75,7 +69,6 @@ class Admin::SitesController < ApplicationController
   def edit
     @site = Site.find_by_name(params[:id])
     load_themes
-    puts "HERE??"
   end
 
   def update

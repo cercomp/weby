@@ -28,6 +28,9 @@
   <p>
     <i><%= @banner.user.name_or_login %>, <%= l @banner.created_at, :format => :short %></i>
   </p>
+  <p>
+    <b><%= @banner.click_count %></b> clicks
+  </p>
 
   <div class="form-actions">
     <%= make_menu(@banner, :except => "show") %>

@@ -12,4 +12,4 @@ Dir.glob('lib/weby/components/**/init.rb') do |rb_file|
   load rb_file
 end
 
-
+Weby::Bots.load_list

@@ -33,6 +33,8 @@ Weby::Application.routes.draw do
       controller: 'sites/components',
       only: [:show]
 
+    post "count/:model/:id" => "application#count_click", :as => :count_click
+
     namespace :admin, module: 'sites/admin', as: :site_admin do
 
       # route to paginate
