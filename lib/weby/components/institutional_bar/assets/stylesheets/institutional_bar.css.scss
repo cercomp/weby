@@ -27,11 +27,12 @@ $background-color: #ccc;
       clear: right;
       float: right;
       text-align: right; }
-    width: 964px;
+    min-width: 500px;
     margin: 0 auto; }
   height: 25px;
   line-height: 25px;
   color: $text-color;
   width: 100%;
   margin: 0;
+  overflow: hidden;
   background: $background-color; }

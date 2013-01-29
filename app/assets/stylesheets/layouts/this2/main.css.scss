@@ -332,3 +332,30 @@ p {
 label.required abbr { color: red; }
 
 @import "bootstrap-responsive";
+
+.mobile { display: none; }
+
+@media (min-width: 481px) and (max-width: 767px) 
+{
+  .first_place,
+  #wrapper
+  {
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+}
+ 
+@media (max-width: 480px) 
+{
+  .first_place
+  {
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+  aside
+  {
+    width: 100%;
+  }
+  .no-mobile { display: none; }
+  .mobile { display: block; }
+}

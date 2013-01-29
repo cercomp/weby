@@ -3,22 +3,25 @@
 <html lang="<%= current_locale %>">
 <%= render 'layouts/shared/head', layout: 'this2' %>
 <body>
-  <%= render_webybar %>
   <div class='first_place'>
+    <%= render_webybar %>
     <%= yield :layout_first_place %>
   </div>
-  <div id="wrapper" <%= "style=\"width: #{ @main_width }px\"".html_safe if @main_width %>>
+  <div id="wrapper" <%= "style=\"max-width: #{ @main_width }px\"".html_safe if @main_width %>>
     <header>
       <%= yield :layout_top %>
       <div class="clear"> </div>
     </header>
-    <aside class="left">
-      <%= yield :layout_left %>
-    </aside>
+    <section id="content" class="mobile">
+      <%= yield %>
+    </section>
     <aside class="right">
       <%= yield :layout_right %>
     </aside>
-    <section id="content">
+    <aside class="left">
+      <%= yield :layout_left %>
+    </aside>
+    <section id="content" class="no-mobile">
       <%= yield %>
     </section>
     <footer>
