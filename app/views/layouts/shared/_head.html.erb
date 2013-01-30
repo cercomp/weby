@@ -2,6 +2,7 @@
   <title><%= @site.try(:description) || 'Weby' %><%= yield :title %></title>
   <meta charset="utf-8"/>
   <meta name="description" content="<%= @site.try(:description) %>"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <%= csrf_meta_tag %>
   <%= auto_discovery_link_tag(:rss, site_feed_url(format: 'rss'),  {:title => "#{@site.try(:title)} - RSS"}) %>
   <%= auto_discovery_link_tag(:atom, site_feed_url(format: 'atom'),  {:title => "#{@site.try(:title)} - ATOM"}) %>
