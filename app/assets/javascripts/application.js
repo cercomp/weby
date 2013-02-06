@@ -74,4 +74,9 @@ $(document).ready(function() {
         menuadmin.css({'position':'','top':'', 'width':''});
         $(window).scroll();
     });
+
+    $(document).on('change', '.pagination select', function(){
+        //window.location = $(this).find('option:selected').data('url');
+        $.getScript($(this).find('option:selected').data('url'));
+    });
 });

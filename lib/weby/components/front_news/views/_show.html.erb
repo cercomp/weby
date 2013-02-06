@@ -46,7 +46,7 @@
     <% end %>
     <div class="clear clearfix"> </div>
   </section>
-  <%= paginate @front_news, param_name: 'front_pages' %>
+  <%= paginate @front_news, param_name: 'front_pages', page_links: true %>
 
   <%= javascript_tag do %>
     window.onload = function(){

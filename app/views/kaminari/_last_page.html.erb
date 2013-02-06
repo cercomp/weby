@@ -8,6 +8,10 @@
 -%>
 <% unless current_page.last? %>
   <li class="page">
-    <%= link_to_unless current_page.last?, raw(t ".pagination_last"), url, {:remote => remote} %>
+    <%= link_to raw(t ".pagination_last"), url, {:remote => remote} %>
+  </li>
+<% else %>
+  <li class="disabled">
+    <span><%= raw(t ".pagination_last") -%></span>
   </li>
 <% end %>

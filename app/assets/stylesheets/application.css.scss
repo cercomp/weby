@@ -99,6 +99,18 @@ body { padding-top: 40px; }
     margin: 10px 0;
 }
 
+.pagination select {
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  border-radius: 0;
+  float: left;
+  border-color: #DDD;
+}
+
+.pagination select.small{
+    height: 26px;
+}
+
 // required is red!
 label.required abbr { color: red; }
 
