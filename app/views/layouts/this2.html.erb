@@ -12,16 +12,13 @@
       <%= yield :layout_top %>
       <div class="clear"> </div>
     </header>
-    <section id="content" class="mobile">
-      <%= yield %>
-    </section>
     <aside class="right">
       <%= yield :layout_right %>
     </aside>
     <aside class="left">
       <%= yield :layout_left %>
     </aside>
-    <section id="content" class="no-mobile">
+    <section id="content">
       <%= yield %>
     </section>
     <footer>
