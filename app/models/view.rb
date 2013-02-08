@@ -7,7 +7,7 @@ class View < ActiveRecord::Base
   def self.parsed_json site_id=nil, period=[Time.now - 14.days, Time.now]
     ini_date, fin_date = period[0].to_date, period[1].to_date
 
-    filter = {created_at: ini_date..fin_date}
+    filter = {created_at: ini_date..fin_date + 1.day}
     filter[:site_id] = site_id if site_id.present?
 
     database = where(filter).group("date(created_at)").count

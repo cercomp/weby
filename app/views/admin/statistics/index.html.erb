@@ -47,6 +47,11 @@
 <% content_for :javascripts do %>
   <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
   <script type="text/javascript">
+  
+    var niceDate = function(date){
+      parts = date.split('-');
+      return parts[2]+"/"+parts[1]+"/"+parts[0];
+    }
 
     var parseDate = d3.time.format("%Y-%m-%d").parse;
 
@@ -116,7 +121,9 @@
               .attr('class', 'stats-label')
               .text(function(d) { return d.views; });
 
-              
+           
+           $('.stats').prepend('<div>Total de acessos para o período '+niceDate(data[0].date)+' a '+niceDate(data[data.length-1].date)+': <b>'+d3.sum(data, function(d){ return d.views; })+'</b></div>')
+
               
           });
           return false;
