@@ -21,6 +21,7 @@ en:
         permissions:       " Permissions "
         settings:          " Settings "
         feedback:          " Feedback "
+        statistics:        " Statistics "
       navbar:
         my_profile:        " My profile "
         logout:            " Logout "

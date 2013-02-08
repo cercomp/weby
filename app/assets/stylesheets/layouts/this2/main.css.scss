@@ -304,6 +304,10 @@ table th {
   border: none;
 }
 
+.pagination ul > li > span {
+  padding-right: 5px;
+}
+
 // important
 * { font-family: Verdana, sans-serif; }
 

@@ -135,7 +135,9 @@ Weby::Application.routes.draw do
         end
       end
       resources :sites, except: [:show]
-      
+
+      get "stats" => "statistics#index", :as => :stats
+
       # route to paginate
       match "users/page/:page" => "users#index"
       match "sites/page/:page" => "sites#index"
