@@ -122,7 +122,7 @@
               .text(function(d) { return d.views; });
 
            
-           $('.stats').prepend('<div>Total de acessos para o período '+niceDate(data[0].date)+' a '+niceDate(data[data.length-1].date)+': <b>'+d3.sum(data, function(d){ return d.views; })+'</b></div>')
+           $('.stats').prepend('<div>Total de acessos no período '+niceDate(data[0].date)+' a '+niceDate(data[data.length-1].date)+': <b>'+d3.sum(data, function(d){ return d.views; })+'</b></div>')
 
               
           });
