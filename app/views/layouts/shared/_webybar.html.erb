@@ -27,7 +27,7 @@ onLoad: function() {
         </div>
       </div>
     <% else %>
-      <%= link_to image_tag('weby-icon.png'), main_app.login_url(subdomain: nil, protocol: login_protocol, back_url: site_admin_url(subdomain: current_site)), id: 'webyaccess' %>
+      <%= link_to image_tag('weby-icon.png'), main_app.login_url(subdomain: nil, protocol: login_protocol, back_url: main_app.site_admin_url(subdomain: current_site)), id: 'webyaccess' %>
     <% end %>
     <div id="about-modal" style="display:none; background-color:white;">
       <i class="icon-remove icon-black close"></i>
