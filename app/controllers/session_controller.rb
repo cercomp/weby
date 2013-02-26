@@ -97,6 +97,7 @@ class SessionController < ApplicationController
       end
     end
     @session = UserSession.new
+    @user = User.new
     render :action => :login
   end
 
