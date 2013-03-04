@@ -44,7 +44,6 @@ class Sites::Admin::BannersController < ApplicationController
   end
 
   def update
-    params[:banner][:repository_id] ||= nil
     @banner = Banner.find(params[:id])
     if params[:submit_search]
       @banner.attributes = params[:banner]

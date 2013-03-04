@@ -15,8 +15,10 @@ class WebyTagCloudComponent < Component
     max_occurs = occurs.max
     tag_occurs = site.pages.published.tagged_with(tag).count
     tag_occurs = 1 if tag_occurs < 1
+    diff = Math.log(max_occurs)-Math.log(min_occurs)
+    diff = 1 if diff < 1
 
-    weight = (Math.log(tag_occurs)-Math.log(min_occurs))/(Math.log(max_occurs)-Math.log(min_occurs))
+    weight = (Math.log(tag_occurs)-Math.log(min_occurs))/diff
     min_font_size + ((max_font_size-min_font_size)*weight).round
   end
 

@@ -15,4 +15,4 @@ Dir.glob(File.join("**", "weby", "**", "components", "*", "init.rb")) do |rb_fil
   load rb_file
 end
 
-
+Weby::Bots.load_list

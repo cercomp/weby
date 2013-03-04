@@ -24,7 +24,12 @@
           <% end %>
         </header>
         <summary>
-          <%= raw page.summary %>
+          <% if component.max_char.present? %>
+            <%= raw(page.summary[0..component.max_char.to_i] + 
+                    (page.summary.size > component.max_char.to_i ? "..." : "")) %>
+          <% else  %>
+            <%= raw page.summary %>
+          <% end %>
         </summary>
         <% if !(page.text.blank?) and component.read_more %>
           <p class="read_more"><%= link_to t(".read_more"), site_page_path(page) %></p>
@@ -41,7 +46,7 @@
     <% end %>
     <div class="clear clearfix"> </div>
   </section>
-  <%= paginate @front_news, param_name: 'front_pages' %>
+  <%= paginate @front_news, param_name: 'front_pages', page_links: true %>
 
   <%= javascript_tag do %>
     window.onload = function(){

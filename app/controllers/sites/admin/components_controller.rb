@@ -46,9 +46,9 @@ class Sites::Admin::ComponentsController < ApplicationController
   def update
     @component = Weby::Components.factory(@site.components.find(params[:id]))
 
-    comp = params[:component]
-    update_feedback(comp)
-    if @component.update_attributes(params["#{comp}_component"])
+    update_params
+
+    if @component.update_attributes(params["#{params[:component]}_component"])
       redirect_to(site_admin_components_path, flash: {success: t("successfully_updated_param", param: t("component"))})
     else
       render :action => "edit"
@@ -87,18 +87,13 @@ class Sites::Admin::ComponentsController < ApplicationController
     redirect_to :back
   end
 
-  private
+  # TODO: método criado somente para colocar códigos específicos de componentes
+  #enquanto não há uma solução melhor, já que um componente não tem um controller
+  def update_params
 
-  # TODO: método criado somente para atualizar o atributo groups_id 
-  # do componente feedback(Fale-conosco),
-  # quando o Fale-conosco for migrado para engines, remover este método
-  # e onde ele é chamado no método update.
-  def update_feedback(comp)
-    if comp.eql? "feedback"
-      unless params[:feedback_component][:groups_id]
-        params[:feedback_component].store('groups_id','""')
-      end
-    end
+    params[:feedback_component][:groups_id] ||= nil if params[:feedback_component]
+    params[:photo_slider_component][:photo_ids] ||= [] if params[:photo_slider_component]
+    
   end
-
+  private :update_params
 end

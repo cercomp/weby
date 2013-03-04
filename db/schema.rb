@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121031205028) do
+ActiveRecord::Schema.define(:version => 20130117170537) do
 
   create_table "banners", :force => true do |t|
     t.datetime "date_begin_at"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(:version => 20121031205028) do
     t.integer  "position"
     t.integer  "page_id"
     t.boolean  "new_tab",       :default => false
+    t.integer  "click_count",   :default => 0
   end
 
   create_table "extension_sites", :force => true do |t|
@@ -165,14 +166,15 @@ ActiveRecord::Schema.define(:version => 20121031205028) do
     t.string   "event_email"
     t.string   "subject"
     t.string   "align"
-    t.string   "type",          :null => false
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.string   "type",                         :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
     t.integer  "repository_id"
     t.string   "size"
     t.boolean  "publish"
     t.boolean  "front"
     t.integer  "position"
+    t.integer  "view_count",    :default => 0
   end
 
   create_table "pages_repositories", :id => false, :force => true do |t|
@@ -262,6 +264,7 @@ ActiveRecord::Schema.define(:version => 20121031205028) do
     t.boolean  "menu_dropdown"
     t.string   "title",             :limit => 50
     t.integer  "parent_id"
+    t.integer  "view_count",                      :default => 0
   end
 
   create_table "sites_menus", :force => true do |t|
@@ -343,5 +346,23 @@ ActiveRecord::Schema.define(:version => 20121031205028) do
     t.datetime "updated_at"
     t.integer  "locale_id"
   end
+
+  create_table "views", :force => true do |t|
+    t.integer  "site_id"
+    t.integer  "viewable_id"
+    t.string   "viewable_type"
+    t.integer  "user_id"
+    t.string   "request_path"
+    t.string   "user_agent"
+    t.string   "session_hash"
+    t.string   "ip_address"
+    t.string   "referer"
+    t.string   "query_string"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "views", ["site_id"], :name => "index_views_on_site_id"
+  add_index "views", ["viewable_id"], :name => "index_views_on_viewable_id"
 
 end

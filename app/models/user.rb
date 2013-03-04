@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
     foreign_key: :author_id,
     dependent: :restrict
 
+  has_many :views
+
   scope :login_or_name_like, lambda { |text|
     where('LOWER(login) like :text OR LOWER(first_name) like :text OR LOWER(last_name) like :text OR LOWER(email) like :text',
           { :text => "%#{text.try(:downcase)}%" })

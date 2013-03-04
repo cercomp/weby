@@ -20,5 +20,5 @@
       </tr>
     <% end %>
   </table>
-  <%= paginate @news_list, param_name: 'news_list_page', remote: true, params: {controller: 'sites/components', action: 'show', id: component.id} %>
+  <%= paginate @news_list, param_name: 'news_list_page', remote: true, params: {controller: 'sites/components', action: 'show', id: component.id}, page_links: true %>
 </section>

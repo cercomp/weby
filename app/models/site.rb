@@ -6,7 +6,7 @@ class Site < ActiveRecord::Base
   end
 
   scope :name_or_description_like, lambda { |text|
-    where('lower(name) LIKE lower(:text) OR lower(description) LIKE lower(:text)',
+    where('lower(name) LIKE lower(:text) OR lower(description) LIKE lower(:text) OR lower(title) LIKE lower(:text)',
           { :text => "%#{text}%" })
   }
 
@@ -38,6 +38,7 @@ class Site < ActiveRecord::Base
   has_many :roles
 
   has_one :repository
+  has_many :views
 
   has_many :menus, dependent: :delete_all, order: :id
   has_many :menu_items, :through => :menus

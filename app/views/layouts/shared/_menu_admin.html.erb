@@ -18,7 +18,8 @@
       <%= menu_item_to t(".users"), main_app.admin_users_path if check_permission(Admin::UsersController, [:index])%> 
       <%= menu_item_to t(".roles_permissions"), main_app.admin_roles_path if check_permission(Admin::RolesController, [:index])%> 
       <%= menu_item_to t(".permissions"), main_app.admin_rights_path if check_permission(Admin::RightsController, [:index])%> 
-      <%= menu_item_to t(".settings"), main_app.admin_settings_path if check_permission(Admin::SettingsController, [:index])%> 
+      <%= menu_item_to t(".settings"), main_app.admin_settings_path if check_permission(Admin::SettingsController, [:index])%>
+      <%= menu_item_to t(".statistics"), main_app.admin_stats_path if check_permission(Admin::StatisticsController, [:index])%>
     <% end %>
   </ul>
 </div>

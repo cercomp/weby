@@ -3,7 +3,7 @@ class Sites::PagesController < ApplicationController
 
   helper_method :sort_column
   before_filter :check_current_site
-
+  
   respond_to :html, :js, :json, :rss
 
   # GET /pages
@@ -65,13 +65,6 @@ class Sites::PagesController < ApplicationController
     params[:sort] || 'pages.id'
   end
   private :sort_column
-
-  #Essa action não chama o get_pages pois não faz paginação
-  def fronts
-    params[:published] ||= 'true'
-    @pages = current_site.pages.front.order('position desc')
-    @pages = @pages.available if params[:published] == 'true' 
-  end
 
   # GET /pages/1
   # GET /pages/1.json

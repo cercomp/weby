@@ -61,4 +61,16 @@ form.search
 .page_info_paginator { padding-bottom: 9px; }
 .item_per_page_paginator { padding-right: 3px; }
 
+.pagination select {
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  border-radius: 0;
+  float: left;
+  border-color: #DDD;
+}
+
+.pagination select.small{
+    height: 26px;
+}
+
 @import "bootstrap-responsive";

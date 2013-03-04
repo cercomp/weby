@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   include UrlHelper #Para utilizar url_helper que trata o subdomínio para Sites
   protect_from_forgery
   before_filter :set_contrast, :set_locale, :set_global_vars, :set_view_types
-  after_filter :clear_weby_cache
+  after_filter :clear_weby_cache, :count_view
 
   helper :all
   helper_method :current_user_session, :current_user, :sort_direction, :test_permission,
@@ -138,6 +138,30 @@ class ApplicationController < ActionController::Base
       format.html { render template: 'errors/500', layout: 'application', status: 500 }
       format.all { render nothing: true, status: 500}
     end
+  end
+
+  def count_view
+    return if is_in_admin_context? or
+              !current_site or
+              request.format != 'html' or
+              response.status != 200 or
+              Weby::Bots.is_a_bot?(request.user_agent)
+
+    current_site.views.create(viewable: @page,
+                              ip_address: request.remote_ip,
+                              referer: request.referer,
+                              user: current_user,
+                              query_string: request.query_string,
+                              request_path: request.path,
+                              user_agent: request.user_agent,
+                              session_hash: request.session_options[:id])
+    Page.increment_counter :view_count, @page.id if @page
+    Site.increment_counter :view_count, current_site.id
+  end
+
+  def count_click
+    params[:model].titleize.constantize.increment_counter :click_count, params[:id]
+    render nothing: true
   end
 
   private

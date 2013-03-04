@@ -20,6 +20,7 @@ pt-BR:
         sites:             " Sítios "
         permissions:       " Permissões "
         feedback:          " Fale Conosco "
+        statistics:        " Estatísticas "
       navbar:
         my_profile:        " Meu Perfil "
         logout:            " Sair "

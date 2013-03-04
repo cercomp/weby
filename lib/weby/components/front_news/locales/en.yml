@@ -21,6 +21,7 @@ en:
         show_date:            " Show the date of the news "
         image_size:           " Image version "
         new_tab:              " Open news with URL in a new tab "
+        max_char:             " Maximum number of characters "
   front_news:
     views:
       show:
