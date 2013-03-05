@@ -35,4 +35,9 @@ group :development, :test do
   gem 'debugger'
 end
 
+group :development do
+  gem "binding_of_caller"
+  gem "better_errors"
+end
+
 gem 'feedback', :path => 'vendor/engines/feedback'
