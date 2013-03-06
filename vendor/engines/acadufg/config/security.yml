@@ -1,0 +1,5 @@
+development:
+  uri: "https://200.137.217.204/barramento/services/rest/docentes"
+  pem: "WEBYc.pem"
+  ca_file: "ca.pem"
+
