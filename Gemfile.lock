@@ -32,6 +32,13 @@ PATH
     weby (0.3)
 
 PATH
+  remote: vendor/engines/acadufg
+  specs:
+    acadufg (0.0.1)
+      rails (~> 3.2.8)
+      weby (~> 0.3)
+
+PATH
   remote: vendor/engines/feedback
   specs:
     feedback (0.0.1)
@@ -208,6 +215,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acadufg!
   acts-as-taggable-on!
   acts_as_list (= 0.1.9)
   authlogic (= 3.1.3)
