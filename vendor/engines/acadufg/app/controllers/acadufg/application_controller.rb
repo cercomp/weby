@@ -3,7 +3,7 @@ module Acadufg
     before_filter :set_connection
 
     def index
-       @configs = CONNECTION
+      @configs = CONNECTION
     end
 
     protected

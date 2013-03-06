@@ -3,6 +3,7 @@ Weby::Application.routes.draw do
     constraints(Weby::Extensions) do
       # Mount all engines here
       mount Feedback::Engine, :at => 'feedback'
+      mount Acadufg::Engine, :at => 'acadufg'
     end
 
     get '/' => 'sites#show', as: :site

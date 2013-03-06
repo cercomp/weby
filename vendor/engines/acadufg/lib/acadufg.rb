@@ -1,6 +1,6 @@
 require 'weby'
 require "acadufg/engine"
-#require "acadufg/extension"
+require "acadufg/extension"
 
 module Acadufg
 end
