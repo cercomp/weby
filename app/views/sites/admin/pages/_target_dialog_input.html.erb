@@ -84,7 +84,7 @@
             <tbody>
                 <% extensions.each do |extension|  %>
                   <% eval(extension.name).routes.routes.each do |route| %>
-                    <% if !route.defaults[:controller].match(/admin\//) && "GET".match(route.verb) && route.name != "root" %>
+                    <% if !route.defaults[:controller].match(/admin\//) && "GET".match(route.verb)# && route.name != "root" %>
                         <tr data-title="<%= route.name %>" data-url="<%= eval("#{extension.name}.#{route.name}_path") %>" class="cursor highlight target-item">
                         <td><%= t("extensions.#{extension.name}.name") %></td>
                         <td><%= route.name %></td>
