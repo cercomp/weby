@@ -7,8 +7,7 @@ module Acadufg
 
     #TODO: read http://ruby-doc.org/stdlib-2.0/libdoc/net/http/rdoc/Net/HTTP.html#method-i-request
     def index
-      request = Net::HTTP::Get.new(@uri.request_uri)
-      @response = @http.request(request)
+      @response = @http.request(Net::HTTP::Get.new(@uri.request_uri))
 
     end
 
@@ -16,11 +15,11 @@ module Acadufg
     def set_connection
       # Acessando serviço REST que retorna JSON
       @uri = URI.parse(CONNECTION["uri"])
-      @pem = File.read(Acadufg::Engine.root.join(CONNECTION["keys_folder"],CONNECTION["pem"]))
+      @pem = File.read(Acadufg::Engine.root.join(CONNECTION["keys_folder"],CONNECTION["pem"].to_s))
       
       @http = Net::HTTP.new(@uri.host, @uri.port)
       @http.use_ssl = true
-      @http.ca_file = Acadufg::Engine.root.join(CONNECTION["keys_folder"],CONNECTION["ca_file"])
+      @http.ca_file = Acadufg::Engine.root.join(CONNECTION["keys_folder"],CONNECTION["ca_file"]).to_s
 
       @http.cert = OpenSSL::X509::Certificate.new(@pem)
       @http.key = OpenSSL::PKey::RSA.new(@pem)
