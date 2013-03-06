@@ -6,12 +6,24 @@ module Acadufg
     respond_to :html, :js
 
     def index
-      @configs = CONNECTION
+      request = Net::HTTP::Get.new(@uri.request_uri)
+      @response = @http.request(request)
+
     end
 
     protected
     def set_connection
-      # TODO
+      # Acessando serviço REST que retorna JSON
+      @uri = URI.parse(CONNECTION["uri"])
+      @pem = File.read(Acadufg::Engine.root.join(CONNECTION["keys_folder"],CONNECTION["pem"]))
+      
+      @http = Net::HTTP.new(@uri.host, @uri.port)
+      @http.use_ssl = true
+      @http.ca_file = Acadufg::Engine.root.join(CONNECTION["keys_folder"],CONNECTION["ca_file"])
+
+      @http.cert = OpenSSL::X509::Certificate.new(@pem)
+      @http.key = OpenSSL::PKey::RSA.new(@pem)
+      @http.verify_mode = OpenSSL::SSL::VERIFY_PEER
     end
   end
 end

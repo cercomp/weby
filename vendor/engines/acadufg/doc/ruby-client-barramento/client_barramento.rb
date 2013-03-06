@@ -11,7 +11,11 @@ http.cert = OpenSSL::X509::Certificate.new(pem)
 http.key = OpenSSL::PKey::RSA.new(pem)
 http.verify_mode = OpenSSL::SSL::VERIFY_PEER
 
+puts "asdkajsdlkajdl asdasd  -->  #{Net::HTTP::Get.new(uri.request_uri)}"
+
 request = Net::HTTP::Get.new(uri.request_uri)
 response = http.request(request)
 
-puts response
+#puts  http.methods
+
+#puts response
