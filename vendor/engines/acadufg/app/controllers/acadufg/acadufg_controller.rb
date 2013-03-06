@@ -5,6 +5,7 @@ module Acadufg
     
     respond_to :html, :js
 
+    #TODO: read http://ruby-doc.org/stdlib-2.0/libdoc/net/http/rdoc/Net/HTTP.html#method-i-request
     def index
       request = Net::HTTP::Get.new(@uri.request_uri)
       @response = @http.request(request)
