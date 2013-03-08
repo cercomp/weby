@@ -11,7 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130117170537) do
+ActiveRecord::Schema.define(:version => 20130307201656) do
+
+  create_table "acadufg_configs", :force => true do |t|
+    t.integer  "site_id"
+    t.integer  "program_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "acadufg_settings", :force => true do |t|
+    t.integer  "site_id"
+    t.integer  "programa_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "banners", :force => true do |t|
     t.datetime "date_begin_at"

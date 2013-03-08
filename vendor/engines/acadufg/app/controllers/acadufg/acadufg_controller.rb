@@ -1,13 +1,11 @@
 #encoding utf-8
 module Acadufg
-  require 'iconv'
   class AcadufgController < Acadufg::ApplicationController
     layout :choose_layout
     before_filter :set_connection
     
     respond_to :html, :js
 
-    #TODO: read http://ruby-doc.org/stdlib-2.0/libdoc/net/http/rdoc/Net/HTTP.html#method-i-request
     def index
       @response = @http.request(Net::HTTP::Get.new(@uri.request_uri)).body
       @reponse =  @response.force_encoding('UTF-8')

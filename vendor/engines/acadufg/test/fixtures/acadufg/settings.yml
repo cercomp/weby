@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  site_id: 1
+  programa_id: 1
+
+two:
+  site_id: 1
+  programa_id: 1

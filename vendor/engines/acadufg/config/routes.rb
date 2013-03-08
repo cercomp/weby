@@ -4,6 +4,7 @@ Acadufg::Engine.routes.draw do
     
     namespace :admin do
       resource :acadufg
+      resource :settings
     end
   end
   root :to => 'acadufg#index'
