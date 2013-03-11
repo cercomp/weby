@@ -13,13 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20130307201656) do
 
-  create_table "acadufg_configs", :force => true do |t|
-    t.integer  "site_id"
-    t.integer  "program_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "acadufg_settings", :force => true do |t|
     t.integer  "site_id"
     t.integer  "programa_id"
