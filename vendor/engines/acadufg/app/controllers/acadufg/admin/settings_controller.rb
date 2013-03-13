@@ -7,7 +7,7 @@ module Acadufg::Admin
 
     def show
       @setting = Acadufg::Setting.find(:first, :conditions => ["site_id = ?", current_site])
-      @setting = @setting || Acadufg::Setting.new
+      @setting ||= Acadufg::Setting.create site_id: current_site.id
     end
     
     def create
