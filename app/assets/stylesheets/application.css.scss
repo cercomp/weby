@@ -13,7 +13,8 @@ body { padding-top: 40px; }
 .red { color: #C11303; }
 
 // style to layout
-#header,
+#header{ padding: 10px 0; }
+
 #main-container,
 #footer { padding: 20px 0; }
 
@@ -51,11 +52,21 @@ body { padding-top: 40px; }
       line-height: 63px;
     }
     
-    line-height: 84px;
+    line-height: 50px;
     font:
     {
       size: 30px;
       weight: bold;
+    }
+  }
+
+  .logo-dashboard
+  {
+    text-align: right;
+
+    img
+    {
+      height: 50px;
     }
   }
 }

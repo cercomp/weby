@@ -7,8 +7,7 @@ module Acadufg::Admin
 
     def show
       make_request 'uri_programas'
-      @programas = ActiveSupport::JSON.decode(@response_text)
-                  .map{|programa| [programa['nmPrograma'], programa['id']] }
+      @programas = ActiveSupport::JSON.decode(@response_text).map{|programa| [programa['nmPrograma'], programa['id']] }
       
       @setting = Acadufg::Setting.find(:first, :conditions => ["site_id = ?", current_site])
       @setting ||= Acadufg::Setting.create site_id: current_site.id
