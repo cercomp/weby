@@ -2,28 +2,14 @@
 module Acadufg
   class AcadufgController < Acadufg::ApplicationController
     layout :choose_layout
-    before_filter :set_connection
     
     respond_to :html, :js
 
     def index
-      @response = @http.request(Net::HTTP::Get.new(@uri.request_uri)).body
-      @reponse =  @response.force_encoding('UTF-8')
-    end
+      @setting = Acadufg::Setting.find(:first, :conditions => ["site_id = ?", current_site])
+      make_request 'uri_docentes', programa_id: @setting.programa_id
 
-    protected
-    def set_connection
-      # Acessando serviço REST que retorna JSON
-      @uri = URI.parse(CONNECTION["uri"])
-      @pem = File.read(Acadufg::Engine.root.join(CONNECTION["keys_folder"],CONNECTION["pem"].to_s))
-      
-      @http = Net::HTTP.new(@uri.host, @uri.port)
-      @http.use_ssl = true
-      @http.ca_file = Acadufg::Engine.root.join(CONNECTION["keys_folder"],CONNECTION["ca_file"]).to_s
-
-      @http.cert = OpenSSL::X509::Certificate.new(@pem)
-      @http.key = OpenSSL::PKey::RSA.new(@pem)
-      @http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      @docentes = ActiveSupport::JSON.decode(@response_text)
     end
   end
 end
