@@ -39,7 +39,7 @@ class SessionController < ApplicationController
   end
   
   def password_sent
-    @user = User.find_by_email(params[:email])
+    @user = User.where("lower(email) = :email", email: params[:email].downcase).first
     if @user
       @user.password_reset!(request.env["SERVER_NAME"])
     else
