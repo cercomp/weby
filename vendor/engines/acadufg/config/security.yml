@@ -1,5 +1,5 @@
 development:
-  uri_docentes: "https://200.137.217.204/barramento/services/rest/docentes?programa=%programa_id%"
+  uri_docentes: "https://200.137.217.204/barramento/services/rest/docentes?programas=%programa_id%"
   uri_programas: "https://200.137.217.204/barramento/services/rest/programas"
   keys_folder: "config/keys/"
   pem: "WEBYc.pem"
