@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   validates_presence_of :password, :on => :create
 	validates_format_of :password, :with => /(?=.*\d+)(?=.*[A-Z]+)(?=.*[a-z]+)^.{4,}$/, :allow_blank => true, :message => I18n.t("lower_upper_number_chars")
 
+  before_save { |user| user.email.downcase! }
+
   has_and_belongs_to_many :roles
   has_and_belongs_to_many :groups
   belongs_to :locale
