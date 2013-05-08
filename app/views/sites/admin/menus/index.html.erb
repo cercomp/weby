@@ -86,7 +86,7 @@
   }
 
   id = ui.item.attr('id').replace('menu_item_','');
-  parent_id = ui.item.parents('li').attr('id') ? ui.item.parents('li').attr('id').replace('menu_item_','') : 0;
+  parent_id = ui.item.parents('li').attr('id') ? ui.item.parents('li').attr('id').replace('menu_item_','') : '';
   position = ui.item.index()+1;//A position no banco começa com 1
 
           $.ajax({

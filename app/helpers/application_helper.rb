@@ -46,8 +46,8 @@ module ApplicationHelper
       if menu
         menuitems = menu.items_by_parent
         menus << "\n<menu class=\"#{html_class}\">"
-        if menuitems[0]
-          menuitems[0].each do |child|
+        if menuitems[nil]
+          menuitems[nil].each do |child|
             menus << print_menu_entry(menuitems, child, view_ctrl, 1)
           end
         end

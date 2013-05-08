@@ -135,7 +135,7 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
         item.save
       end
       update_position_for_remove(obj)
-      parent_id = 0
+      parent_id = nil
       @new_menu = current_site.menus.find new_menu_id
       position = @new_menu.menu_items.maximum('position', :conditions=> [' parent_id = ? AND menu_items.id <> ?', parent_id, obj.id]).to_i + 1
 
