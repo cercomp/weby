@@ -4,4 +4,10 @@ en:
       extension:      " Extension "
     attributes:
       extension:
-        name:         " Name "
+        name:         " Extension "
+    errors:
+      models:
+        extension:
+          attributes:
+            name:
+              already_installed:  " is already installed. "

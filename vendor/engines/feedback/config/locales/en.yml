@@ -2,3 +2,7 @@ en:
   extensions:
     feedback:
       name:          " Feedback "
+      routes:
+        root:
+          title:       "New Message"
+          description: "Form for sending a new message"

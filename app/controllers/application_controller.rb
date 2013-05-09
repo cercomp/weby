@@ -1,7 +1,7 @@
 # coding: utf-8
 class ApplicationController < ActionController::Base
   include ApplicationHelper # Para usar helper methods nos controllers
-  include UrlHelper #Para utilizar url_helper que trata o subdomínio para Sites
+  #include UrlHelper #Para utilizar url_helper que trata o subdomínio para Sites
   protect_from_forgery
   before_filter :set_contrast, :set_locale, :set_global_vars, :set_view_types
   after_filter :clear_weby_cache, :count_view
@@ -261,6 +261,7 @@ class ApplicationController < ActionController::Base
   def set_global_vars
     @site = current_site
 
+    Weby::Cache.request[:domain] = request.domain
     params[:per_page] ||= per_page_default
 
     @current_rights = {}

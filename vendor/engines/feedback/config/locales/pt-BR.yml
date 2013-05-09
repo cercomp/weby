@@ -1,5 +1,10 @@
 pt-BR:
   extensions:
     feedback:
-      name:          "Fale Conosco"
+      name:            "Fale Conosco"
+      routes:
+        root:
+          title:       "Nova Mensagem"
+          description: "Formulário de envio de mensagem"
+
 

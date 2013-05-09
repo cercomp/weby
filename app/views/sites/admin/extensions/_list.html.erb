@@ -7,10 +7,12 @@
 <table class='table table-striped table-condensed'>
   <thead>
     <th><%= t(".name") %></th>
+    <th><%= t(".version") %></th>
     <th></th>
   </thead>
   <tbody>
     <% @extensions.each do |extension| %>
+      <% raw_extension = Weby::extensions[extension.name.to_sym] %>
       <tr>
         <td>
           <% if check_permission(Sites::Admin::ExtensionsController, 'edit') %>
@@ -19,6 +21,9 @@
             <%= t("extensions.#{extension.name}.name") %>
           <% end %>
           </td>
+        <td>
+          <%= raw_extension.version %>
+        </td>
         <td>
           <%= raw make_menu(extension) %>
        </td>

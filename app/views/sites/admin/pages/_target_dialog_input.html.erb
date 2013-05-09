@@ -53,23 +53,7 @@
                   <td><%= common_page[:description] %></td>
                 </tr>
                 <% end %>
-
-                <% current_site.extensions.each do |extension|  %>
-
-                  <% eval(extension.name).routes.routes.each do |route| %>
-
-                    <% if !route.defaults[:controller].match(/admin\//) && "GET".match(route.verb) && route.name != "root" %>
-
-                        <tr data-title="<%= route.name %>" data-url="<%= eval("#{extension.name}.#{route.name}_path") %>" class="cursor highlight target-item">
-
-                        <td><%= route.name %></td><td><%= route.ast %></td>
-                        </tr>
-
-                    <% end %>
-
-                  <% end %>
-
-                <% end %>
+               
             </tbody>
           </table>
         </div>
@@ -87,8 +71,8 @@
                     <% if !route.defaults[:controller].match(/admin\//) && "GET".match(route.verb)# && route.name != "root" %>
                         <tr data-title="<%= route.name %>" data-url="<%= eval("#{extension.name}.#{route.name}_path") %>" class="cursor highlight target-item">
                         <td><%= t("extensions.#{extension.name}.name") %></td>
-                        <td><%= route.name %></td>
-                        <td><%= route.ast %></td>
+                        <td><%= t("extensions.#{extension.name}.routes.#{route.name}.title") %></td>
+                        <td><%= t("extensions.#{extension.name}.routes.#{route.name}.description") %></td>
                         </tr>
                     <% end %>
                   <% end %>

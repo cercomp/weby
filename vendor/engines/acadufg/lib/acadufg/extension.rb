@@ -1,5 +1,5 @@
 module Acadufg
   class Extension
-    ::Weby::extensions << ::Weby::Extension.new(:acadufg, 'Cercomp - Equipe Web')
+    #::Weby::register_extension(::Weby::Extension.new(:acadufg, 'Cercomp - Equipe Web'))
   end
 end

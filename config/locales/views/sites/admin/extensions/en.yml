@@ -5,6 +5,7 @@ en:
         list:
           none_extension:     " No extensions "
           name:               " Name "
+          version:            " Version "
           edit_extension:     " Configuration "
         index:
           extensions:         " Extensions "

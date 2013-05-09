@@ -2,6 +2,7 @@ require 'weby/content_i18n'
 require 'weby/multisites'
 require 'weby/form/show_errors'
 require 'weby/components'
+require 'weby/routing'
 
 # Adiciona views dos componentes no path de views da aplicação
 ActionController::Base.view_paths +=

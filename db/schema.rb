@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130307201656) do
+ActiveRecord::Schema.define(:version => 20130415173653) do
 
   create_table "acadufg_settings", :force => true do |t|
     t.integer  "site_id"
@@ -51,30 +51,7 @@ ActiveRecord::Schema.define(:version => 20130307201656) do
 
   add_index "extension_sites", ["site_id"], :name => "index_extension_sites_on_site_id"
 
-  create_table "feedback_messages", :force => true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "subject"
-    t.text     "message"
-    t.integer  "site_id"
-    t.string   "to"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "feedback_messages", ["site_id"], :name => "index_feedback_messages_on_site_id"
-
-  create_table "feedbacks", :force => true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "subject"
-    t.text     "message"
-    t.integer  "site_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "groups", :force => true do |t|
+  create_table "feedback_groups", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -82,12 +59,22 @@ ActiveRecord::Schema.define(:version => 20130307201656) do
     t.text     "emails"
   end
 
-  create_table "groups_messages", :id => false, :force => true do |t|
+  create_table "feedback_messages", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "subject"
+    t.text     "message"
+    t.integer  "site_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "feedback_messages_groups", :id => false, :force => true do |t|
     t.integer "message_id", :null => false
     t.integer "group_id",   :null => false
   end
 
-  add_index "groups_messages", ["message_id", "group_id"], :name => "index_feedbacks_groups_on_feedback_id_and_group_id", :unique => true
+  add_index "feedback_messages_groups", ["message_id", "group_id"], :name => "index_feedbacks_groups_on_feedback_id_and_group_id", :unique => true
 
   create_table "groups_users", :id => false, :force => true do |t|
     t.integer "group_id", :null => false
@@ -349,8 +336,8 @@ ActiveRecord::Schema.define(:version => 20130307201656) do
     t.string   "phone"
     t.string   "mobile"
     t.string   "register"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
     t.integer  "locale_id"
   end
 

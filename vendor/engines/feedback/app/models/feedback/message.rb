@@ -1,9 +1,9 @@
 module Feedback
   class Message < ActiveRecord::Base
     belongs_to :site
-    has_and_belongs_to_many :groups
+    has_and_belongs_to_many :groups, :join_table => :feedback_messages_groups
 
-    attr_accessible :email, :message, :name, :subject, :to, :group_ids, :site_id
+    attr_accessible :email, :message, :name, :subject, :group_ids, :site_id
 
     validates_presence_of :name, :email, :subject, :message
 

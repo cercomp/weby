@@ -12,7 +12,6 @@ class User < ActiveRecord::Base
   before_save { |user| user.email.downcase! }
 
   has_and_belongs_to_many :roles
-  has_and_belongs_to_many :groups
   belongs_to :locale
 
   has_many :pages,

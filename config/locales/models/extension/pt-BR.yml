@@ -4,4 +4,10 @@ pt-BR:
       extension:      " Extensão "
     attributes:
       extension:
-        name:         " Nome "
+        name:         " Extensão "
+    errors:
+      models:
+        extension:
+          attributes:
+            name:
+              already_installed:  " já instalada. "

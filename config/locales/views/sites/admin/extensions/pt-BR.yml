@@ -5,6 +5,7 @@ pt-BR:
         list:
           none_extension:     " Nenhuma Extensão "
           name:               " Nome "
+          version:            " Versão "
           edit_extension:     " Configuração "
         index:
           extensions:         " Extensões "

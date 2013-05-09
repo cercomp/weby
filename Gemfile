@@ -40,5 +40,6 @@ group :development do
   gem "better_errors"
 end
 
+#Extensions (engines)
 gem 'acadufg', :path => 'vendor/engines/acadufg'
 gem 'feedback', :path => 'vendor/engines/feedback'

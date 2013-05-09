@@ -1,9 +1,7 @@
 module Feedback
   class Group < ActiveRecord::Base
-    self.table_name = 'groups'
-
     belongs_to :site
-    has_and_belongs_to_many :messages
+    has_and_belongs_to_many :messages, :join_table => :feedback_messages_groups
 
     validates_presence_of :name, :emails
   end

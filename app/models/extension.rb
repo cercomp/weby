@@ -4,6 +4,6 @@ class Extension < ActiveRecord::Base
   belongs_to :site
   attr_accessible :name, :site_id
 
-  validates :name, :presence => true, :uniqueness => { :scope => :site_id }
+  validates :name, :presence => true, :uniqueness => { :scope => :site_id, :message => :already_installed }
   validates :site, :presence => true
 end
