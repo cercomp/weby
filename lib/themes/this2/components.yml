@@ -1,0 +1,92 @@
+-
+  place_holder: 'first_place'
+  settings: '{:background => "#7F7F7F"}'
+  name: 'gov_bar'
+  position: 1
+  publish: true
+-
+  place_holder: 'first_place'
+  settings: '{}'
+  name: 'institutional_bar'
+  position: 2
+  publish: true
+-
+  place_holder: 'top'
+  settings: '{:size=>"original", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :repository_id=>"", :html_class => "header", :new_tab=>"0"}'
+  name: 'image'
+  position: 1
+  alias: "Cabeçalho(Topo)"
+  publish: true
+-
+  place_holder: 'top'
+  settings: "{:menu_id => \"%{menu_top_id}\"}"
+  name: 'menu'
+  position: 2
+  publish: true
+-
+  place_holder: 'top'
+  settings: '{}'
+  name: 'menu_accessibility'
+  position: 3
+  publish: true
+-
+  place_holder: 'left'
+  settings: "{:menu_id => \"%{menu_left_id}\"}"
+  name: 'menu'
+  position: 1
+  publish: true
+-
+  place_holder: 'left'
+  settings: '{:category => "esq", :orientation => "vertical"}'
+  name: 'banner_list'
+  position: 2
+  publish: true
+-
+  place_holder: 'right'
+  settings: "{:width => \"\", :align => \"left\"}"
+  name: 'search_box'
+  position: 1
+  publish: true
+-
+  place_holder: 'right'
+  settings: "{:menu_id => \"%{menu_right_id}\"}"
+  name: 'menu'
+  position: 2
+  publish: true
+-
+  place_holder: 'right'
+  settings: '{:category => "dir", :orientation => "vertical"}'
+  name: 'banner_list'
+  position: 3
+  publish: true
+-
+  place_holder: 'bottom'
+  settings: "{:menu_id => \"%{menu_bottom_id}\"}"
+  name: 'menu'
+  position: 1
+  publish: true
+-
+  place_holder: 'bottom'
+  settings: "{:body => %{default_footer}, :html_class => \"footer\"}"
+  name: 'text'
+  position: 2
+  alias: 'Rodapé'
+  publish: true
+-
+  place_holder: 'bottom'
+  settings: '{}'
+  name: 'feedback'
+  position: 3
+  publish: true
+-
+  place_holder: 'home'
+  settings: '{:quant => "5"}'
+  name: 'front_news'
+  position: 1
+  publish: true
+-
+  place_holder: 'home'
+  settings: '{:quant => "5"}'
+  name: 'news_list'
+  position: 2
+  publish: true
