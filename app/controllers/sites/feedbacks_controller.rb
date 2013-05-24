@@ -8,11 +8,6 @@ class Sites::FeedbacksController < ApplicationController
 
   def new
     @feedback = Feedback.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @feedback }
-    end
   end
 
   def create
