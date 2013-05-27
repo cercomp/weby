@@ -6,5 +6,9 @@ class CreateAcadufgSettings < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :acadufg_settings, :site_id
+
+    add_foreign_key :acadufg_settings, :sites
   end
 end

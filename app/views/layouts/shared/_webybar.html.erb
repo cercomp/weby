@@ -15,7 +15,7 @@ onLoad: function() {
       <div class="no_contrast">
         <div id="webybar">
           <div id='container'>
-            <%= link_to root_url(subdomain: nil), class: 'left orbitron logo' do %>
+            <%= link_to main_app.root_url(subdomain: nil), class: 'left orbitron logo' do %>
               web<span class="red">y</span>
             <% end %>
             <%= link_to t(".dashboard"), main_app.site_admin_path, class: 'left' %>

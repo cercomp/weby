@@ -1,3 +1,4 @@
+# coding: UTF-8
 $:.push File.expand_path("../lib", __FILE__)
 
 # Maintain your gem's version:
@@ -7,11 +8,11 @@ require "acadufg/version"
 Gem::Specification.new do |s|
   s.name        = "acadufg"
   s.version     = Acadufg::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Acadufg."
-  s.description = "TODO: Description of Acadufg."
+  s.authors     = ["Cercomp - equipe web"]
+  s.email       = ["web@cercomp.ufg.br"]
+  s.homepage    = "http://weby.cercomp.ufg.br"
+  s.summary     = "Listagem de professores integrada"
+  s.description = "Cliente do webservice de listagem dos professores - UFG"
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]

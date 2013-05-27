@@ -15,7 +15,7 @@
           new_admin_group_path,
           class: "btn btn-success" %>
       <% end %>
-      <% if check_permission(Feedback::Admin::MessagesController, [:index]) %>
+      <% if check_permission(Feedback::Admin::GroupsController, [:index]) %>
         <%= link_to t(".groups"),
           admin_groups_path,
           class: "btn btn-primary" %>

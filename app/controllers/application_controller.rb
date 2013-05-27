@@ -266,13 +266,15 @@ class ApplicationController < ActionController::Base
 
     @current_rights = {}
     current_roles_assigned.each do |role|
-      role.rights.each do |right|
-        right.action.split(' ').each do |action|
-          (@current_rights[right.controller.to_sym] ||= {})[action.to_sym] = true
+      role.permissions_hash.each do |controller, rights|
+        rights.each do |right|
+          Weby::Rights.actions(controller, right).each do |action|
+            (@current_rights[controller.to_sym] ||= {})[action.to_sym] = true
+          end
         end
       end
     end
-    #puts @my_rights
+    #puts @current_rights
 
     if is_in_admin_context?
       #alguma var global exclusiva para o backend
