@@ -7,7 +7,8 @@ Gem::Specification.new do |gem|
   gem.summary       = %q{Write a gem summary}
   gem.homepage      = ""
 
-  gem.files         = `git ls-files`.split("\n")
+  #gem.files         = `git ls-files`.split("\n")
+  gem.files = Dir["{app,config,db,lib}/**/*"] + ["Rakefile", "README.md"]
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.name          = "weby"
