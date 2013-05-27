@@ -62,7 +62,7 @@ class Site < ActiveRecord::Base
     dependent: :destroy,
     class_name: "Style"
 
-  has_many :components, order: 'place_holder, position asc'
+  has_many :components, order: 'place_holder, position asc', dependent: :destroy
 
   belongs_to :repository, :foreign_key => "top_banner_id"
   has_many :repositories
@@ -75,7 +75,7 @@ class Site < ActiveRecord::Base
 
   def at_least_one_locale
     if self.locales.length < 1
-      errors.add(:site, I18n.t("site_need_at_least_one_locale"))
+      errors.add(:locales, I18n.t("site_need_at_least_one_locale"))
     end
   end
 

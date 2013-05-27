@@ -1,4 +1,12 @@
 require 'active_record/fixtures'
+
+# Fix foreigner gem problem with fixtures on postgres
+# read more: https://github.com/matthuhiggins/foreigner/issues/61
+class ActiveRecord::ConnectionAdapters::PostgreSQLAdapter
+  def supports_disable_referential_integrity?
+    false
+  end
+end
  
 Dir[File.join(Rails.root, "db/seed/*.yml")].each do |filename|
   table_name = File.basename(filename, ".yml")
@@ -16,8 +24,6 @@ User.create do |u|
 end
 
 load(Rails.root.join('db', 'seed', 'default_per_page.rb').to_s)
-#load(Rails.root.join('db', 'seed', 'default_settings.rb').to_s)
-#Fixtures.create_fixtures("#{Rails.root}/db/seed", "*.yml")  
 
 # Permissões Globais
 Role.create :name => 'Gerente',

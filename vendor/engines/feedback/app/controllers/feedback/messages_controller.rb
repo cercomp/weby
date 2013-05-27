@@ -3,17 +3,10 @@ module Feedback
     layout :choose_layout
     before_filter :get_groups, only: [:new, :create, :index]
 
-    respond_to :html, :js
+    respond_to :html, :xml, :js
 
     def new
-      if(@groups.length == 0)
-        users = User.by_site(current_site).actives
-        redirect_to main_app.site_path(subdomain: current_site),
-          error: t('no_groups') and return if (users.length == 0)
-      end
       @message = Message.new
-
-      respond_with @message
     end
 
     def create

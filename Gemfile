@@ -34,7 +34,7 @@ group :development, :test do
   gem 'shoulda-matchers', '1.0.0'
   gem 'weby', :path => '.'
   gem 'sqlite3'
-  gem 'debugger'
+  gem 'debugger', '1.6.0'
 end
 
 group :development do
