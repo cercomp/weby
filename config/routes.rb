@@ -109,7 +109,6 @@ Weby::Application.routes.draw do
   constraints(Weby::GlobalDomain) do
     match "/admin" => "application#admin"
     namespace :admin do
-      resources :rights
       resources :settings,
         except: :show
       resources :users do

@@ -43,5 +43,6 @@ group :development do
 end
 
 #Extensions (engines)
-gem 'acadufg', :path => 'vendor/engines/acadufg'
-gem 'feedback', :path => 'vendor/engines/feedback'
+Dir.glob(File.dirname(__FILE__) + '/vendor/engines/*/*.gemspec').each do |engine_gemspec|
+  gemspec :path => File.dirname(engine_gemspec)
+end
