@@ -20,6 +20,7 @@ module Weby
         config[:group] = :weby
       end
 
+      require "weby/components/#{comp_name}/#{comp_name}_component"
       @components[comp_name.to_sym] = config
     end
 
