@@ -1,10 +1,15 @@
 module Weby
   module Bots
 
-    def self.load_list
+    def self.read_xml
       uri = "http://www.user-agents.org/allagents.xml"
 
       source = open(uri).read
+      File.open("lib/weby/bots_list.xml", 'w') {|f| f.write(source) }
+    end
+
+    def self.load_list
+      source = File.new("lib/weby/bots_list.xml").read
       doc = Hash.from_xml(source)
 
       @list = []
