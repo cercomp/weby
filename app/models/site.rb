@@ -80,7 +80,7 @@ class Site < ActiveRecord::Base
   end
 
   def has_extension(extension)
-    extensions.include? Extension.find_by_name(extension.to_s)
+    extensions.select {|ext| ext.name = extension.to_s }.any?
   end
 
   has_attached_file :top_banner, :url => "/uploads/:site_id/:style_:basename.:extension"

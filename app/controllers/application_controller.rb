@@ -66,12 +66,7 @@ class ApplicationController < ActionController::Base
       return @current_site
     when Weby::Subdomain.matches?(request)
       #search subsites
-      sites = Weby::Subdomain.site_id.split('.')
-      @current_site = Site.where(parent_id: nil).find_by_name(sites[-1])
-      if(sites.length == 2)
-        @current_site = @current_site.subsites.find_by_name(sites[-2]) if @current_site
-      end
-      @current_site if [1,2].include? sites.length
+      @current_site = Weby::Subdomain.find_site
     end
   end
 
