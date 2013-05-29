@@ -17,4 +17,9 @@ Dir.glob(File.join("**", "weby", "**", "components", "*", "init.rb")) do |rb_fil
   load rb_file
 end
 
+# Inicializar as extensoes
+Dir.glob(File.join("vendor", "engines", "*", "init.rb")) do |rb_file|
+  load rb_file
+end
+
 Weby::Bots.load_list

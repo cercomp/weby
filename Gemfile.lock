@@ -27,23 +27,16 @@ GIT
       rails (>= 3, < 5)
 
 PATH
-  remote: .
-  specs:
-    weby (0.3)
-
-PATH
   remote: vendor/engines/acadufg
   specs:
     acadufg (0.0.1)
       rails (~> 3.2.8)
-      weby (~> 0.3)
 
 PATH
   remote: vendor/engines/feedback
   specs:
     feedback (0.0.1)
       rails (~> 3.2.8)
-      weby (~> 0.3)
 
 GEM
   remote: https://rubygems.org/
@@ -246,4 +239,3 @@ DEPENDENCIES
   thin (= 1.5.0)
   turbo-sprockets-rails3
   uglifier (>= 1.0.3)
-  weby!
