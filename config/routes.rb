@@ -5,11 +5,12 @@ Weby::Application.routes.draw do
       mount Feedback::Engine, :at => 'feedback'
       mount Acadufg::Engine, :at => 'acadufg'
     end
-
+    
     get '/' => 'sites#show', as: :site
     get '/admin' => 'sites#admin', as: :site_admin
     get '/admin/edit' => 'sites#edit', as: :edit_site_admin
     put '/admin/edit' => 'sites#update', as: :edit_site_admin
+    
     # routes to feed and atom
     match '/feed' => 'sites/pages#published', as: :site_feed,
       defaults: { format: 'rss', per_page: 10, page: 1 }
@@ -137,7 +138,8 @@ Weby::Application.routes.draw do
       # route to paginate
       match "users/page/:page" => "users#index"
       match "sites/page/:page" => "sites#index"
-    end 
+    end
+    get "/clipping" => "clipping#index", as: :clipping
   end
 
   # routes to session

@@ -1,0 +1,21 @@
+  <section style="" id="content">
+    <div style="" id="capa">
+        <section class="front_news_component" >
+          <section id="pages">            
+            <% @page.each do |p| %>            
+              <li>
+                <article>
+                  <a> <img> <%= weby_file_view(p.image, :thumb, 64, nil, {as: "link", url: site_page_url(p, subdomain: p.owner), style: "float: right; margin-left: 7px;"}) %> </img></a>
+                  <header><%= link_to p.title.truncate(100), site_page_url(p, subdomain: p.owner) %></header>
+                  <div>
+                    <summary><%= raw sanitize(p.summary, :tags=>[]).truncate(180) %></summary>
+                  </div>
+                </article>
+              </li>            
+              <% end %>
+              <div class="clear clearfix"> </div>
+              <div class="control"></div>
+          </section>
+        </section>
+    </div>
+  </section>

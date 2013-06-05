@@ -13,13 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20130514132403) do
 
-  create_table "acadufg_settings", :force => true do |t|
-    t.integer  "site_id"
-    t.integer  "programa_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
   create_table "banners", :force => true do |t|
     t.datetime "date_begin_at"
     t.datetime "date_end_at"
@@ -28,19 +21,24 @@ ActiveRecord::Schema.define(:version => 20130514132403) do
     t.string   "url"
     t.integer  "width"
     t.integer  "height"
-    t.boolean  "hide"
+    t.boolean  "hide",          :default => false
     t.integer  "repository_id"
     t.integer  "user_id"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "size"
-    t.boolean  "publish"
+    t.boolean  "publish",       :default => false
     t.integer  "site_id"
     t.integer  "position"
     t.integer  "page_id"
     t.boolean  "new_tab",       :default => false
     t.integer  "click_count",   :default => 0
   end
+
+  add_index "banners", ["page_id"], :name => "index_banners_on_page_id"
+  add_index "banners", ["repository_id"], :name => "index_banners_on_repository_id"
+  add_index "banners", ["site_id"], :name => "index_banners_on_site_id"
+  add_index "banners", ["user_id"], :name => "index_banners_on_user_id"
 
   create_table "extension_sites", :force => true do |t|
     t.integer  "site_id"
@@ -53,11 +51,13 @@ ActiveRecord::Schema.define(:version => 20130514132403) do
 
   create_table "feedback_groups", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "site_id"
     t.text     "emails"
   end
+
+  add_index "feedback_groups", ["site_id"], :name => "index_groups_on_site_id"
 
   create_table "feedback_messages", :force => true do |t|
     t.string   "name"
@@ -65,16 +65,20 @@ ActiveRecord::Schema.define(:version => 20130514132403) do
     t.string   "subject"
     t.text     "message"
     t.integer  "site_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
+
+  add_index "feedback_messages", ["site_id"], :name => "index_feedbacks_on_site_id"
 
   create_table "feedback_messages_groups", :id => false, :force => true do |t|
     t.integer "message_id", :null => false
     t.integer "group_id",   :null => false
   end
 
+  add_index "feedback_messages_groups", ["group_id"], :name => "index_feedbacks_groups_on_group_id"
   add_index "feedback_messages_groups", ["message_id", "group_id"], :name => "index_feedbacks_groups_on_feedback_id_and_group_id", :unique => true
+  add_index "feedback_messages_groups", ["message_id"], :name => "index_feedbacks_groups_on_feedback_id"
 
   create_table "groups_users", :id => false, :force => true do |t|
     t.integer "group_id", :null => false
@@ -82,12 +86,14 @@ ActiveRecord::Schema.define(:version => 20130514132403) do
   end
 
   add_index "groups_users", ["group_id", "user_id"], :name => "index_groups_users_on_group_id_and_user_id", :unique => true
+  add_index "groups_users", ["group_id"], :name => "index_groups_users_on_group_id"
+  add_index "groups_users", ["user_id"], :name => "index_groups_users_on_user_id"
 
   create_table "locales", :force => true do |t|
     t.string   "name"
     t.string   "flag"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "locales_sites", :id => false, :force => true do |t|
@@ -96,6 +102,8 @@ ActiveRecord::Schema.define(:version => 20130514132403) do
   end
 
   add_index "locales_sites", ["locale_id", "site_id"], :name => "index_locales_sites_on_locale_id_and_site_id", :unique => true
+  add_index "locales_sites", ["locale_id"], :name => "index_locales_sites_on_locale_id"
+  add_index "locales_sites", ["site_id"], :name => "index_locales_sites_on_site_id"
 
   create_table "menu_item_i18ns", :force => true do |t|
     t.integer  "menu_item_id", :null => false
@@ -105,6 +113,10 @@ ActiveRecord::Schema.define(:version => 20130514132403) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
+
+  add_index "menu_item_i18ns", ["locale_id"], :name => "index_menu_item_i18ns_on_locale_id"
+  add_index "menu_item_i18ns", ["menu_item_id", "locale_id"], :name => "menu_item_i18ns_menu_item_id_key", :unique => true
+  add_index "menu_item_i18ns", ["menu_item_id"], :name => "index_menu_item_i18ns_on_menu_item_id"
 
   create_table "menu_items", :force => true do |t|
     t.integer  "menu_id",                        :null => false
@@ -119,6 +131,10 @@ ActiveRecord::Schema.define(:version => 20130514132403) do
     t.datetime "updated_at",                     :null => false
   end
 
+  add_index "menu_items", ["menu_id"], :name => "index_menu_items_on_menu_id"
+  add_index "menu_items", ["parent_id"], :name => "index_menu_items_on_parent_id"
+  add_index "menu_items", ["target_id"], :name => "index_menu_items_on_target_id"
+
   create_table "menus", :force => true do |t|
     t.integer  "site_id",    :null => false
     t.string   "name"
@@ -126,14 +142,18 @@ ActiveRecord::Schema.define(:version => 20130514132403) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "menus", ["site_id"], :name => "index_menus_on_site_id"
+
   create_table "old_menus", :force => true do |t|
     t.string   "title"
     t.string   "link"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "page_id"
     t.text     "description"
   end
+
+  add_index "old_menus", ["page_id"], :name => "index_old_menus_on_page_id"
 
   create_table "page_i18ns", :force => true do |t|
     t.integer  "page_id"
@@ -141,9 +161,12 @@ ActiveRecord::Schema.define(:version => 20130514132403) do
     t.string   "title"
     t.text     "summary"
     t.text     "text"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
+
+  add_index "page_i18ns", ["locale_id"], :name => "index_page_i18ns_on_locale_id"
+  add_index "page_i18ns", ["page_id"], :name => "index_page_i18ns_on_page_id"
 
   create_table "pages", :force => true do |t|
     t.datetime "date_begin_at"
@@ -160,26 +183,33 @@ ActiveRecord::Schema.define(:version => 20130514132403) do
     t.string   "event_email"
     t.string   "subject"
     t.string   "align"
-    t.string   "type",                         :null => false
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+    t.string   "type",                             :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "repository_id"
     t.string   "size"
-    t.boolean  "publish"
-    t.boolean  "front"
+    t.boolean  "publish",       :default => false
+    t.boolean  "front",         :default => false
     t.integer  "position"
     t.integer  "view_count",    :default => 0
   end
+
+  add_index "pages", ["author_id"], :name => "index_pages_on_author_id"
+  add_index "pages", ["repository_id"], :name => "index_pages_on_repository_id"
+  add_index "pages", ["site_id"], :name => "index_pages_on_site_id"
 
   create_table "pages_repositories", :id => false, :force => true do |t|
     t.integer "page_id"
     t.integer "repository_id"
   end
 
+  add_index "pages_repositories", ["page_id"], :name => "index_pages_repositories_on_page_id"
+  add_index "pages_repositories", ["repository_id"], :name => "index_pages_repositories_on_repository_id"
+
   create_table "repositories", :force => true do |t|
     t.integer  "site_id"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "archive_file_name"
     t.string   "archive_content_type"
     t.integer  "archive_file_size"
@@ -187,31 +217,37 @@ ActiveRecord::Schema.define(:version => 20130514132403) do
     t.string   "description"
   end
 
+  add_index "repositories", ["site_id"], :name => "index_repositories_on_site_id"
+
   create_table "rights", :force => true do |t|
     t.string   "name"
     t.string   "controller"
     t.string   "action"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "rights_roles", :force => true do |t|
     t.integer  "right_id"
     t.integer  "role_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
+  add_index "rights_roles", ["right_id"], :name => "index_rights_roles_on_right_id"
   add_index "rights_roles", ["role_id", "right_id"], :name => "index_rights_roles_on_role_id_and_right_id"
+  add_index "rights_roles", ["role_id"], :name => "index_rights_roles_on_role_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "theme"
     t.integer  "site_id"
     t.text     "permissions"
   end
+
+  add_index "roles", ["site_id"], :name => "index_roles_on_site_id"
 
   create_table "roles_users", :id => false, :force => true do |t|
     t.integer "role_id", :null => false
@@ -219,13 +255,15 @@ ActiveRecord::Schema.define(:version => 20130514132403) do
   end
 
   add_index "roles_users", ["role_id", "user_id"], :name => "index_roles_users_on_role_id_and_user_id", :unique => true
+  add_index "roles_users", ["role_id"], :name => "index_roles_users_on_role_id"
+  add_index "roles_users", ["user_id"], :name => "index_roles_users_on_user_id"
 
   create_table "settings", :force => true do |t|
     t.string   "name"
     t.string   "value"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "site_components", :force => true do |t|
@@ -233,18 +271,31 @@ ActiveRecord::Schema.define(:version => 20130514132403) do
     t.string   "place_holder"
     t.text     "settings"
     t.string   "name"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "position"
-    t.boolean  "publish"
+    t.boolean  "publish",      :default => true
     t.integer  "visibility",   :default => 0
     t.string   "alias"
   end
 
+  add_index "site_components", ["site_id"], :name => "index_site_components_on_site_id"
+
+  create_table "site_components_bkp", :force => true do |t|
+    t.integer  "site_id"
+    t.string   "place_holder"
+    t.text     "settings"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "position"
+    t.boolean  "publish"
+  end
+
   create_table "sites", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",                                                        :null => false
-    t.datetime "updated_at",                                                        :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "url"
     t.text     "description"
     t.integer  "top_banner_id"
@@ -256,46 +307,60 @@ ActiveRecord::Schema.define(:version => 20130514132403) do
     t.boolean  "view_desc_pages",                 :default => false
     t.string   "per_page",                        :default => "5, 15, 30, 50, 100"
     t.integer  "per_page_default",                :default => 25
-    t.boolean  "menu_dropdown"
+    t.boolean  "menu_dropdown",                   :default => false
     t.string   "title",             :limit => 50
     t.integer  "parent_id"
     t.integer  "view_count",                      :default => 0
   end
 
+  add_index "sites", ["parent_id"], :name => "index_sites_on_parent_id"
+  add_index "sites", ["top_banner_id"], :name => "index_sites_on_top_banner_id"
+
   create_table "sites_menus", :force => true do |t|
     t.integer  "site_id"
     t.integer  "menu_id"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "parent_id",  :default => 0
     t.string   "category"
     t.integer  "position"
   end
 
+  add_index "sites_menus", ["menu_id"], :name => "index_sites_menus_on_menu_id"
+  add_index "sites_menus", ["site_id"], :name => "index_sites_menus_on_site_id"
+
   create_table "sites_pages", :force => true do |t|
     t.integer  "site_id"
     t.integer  "page_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
+
+  add_index "sites_pages", ["page_id"], :name => "index_sites_pages_on_page_id"
+  add_index "sites_pages", ["site_id"], :name => "index_sites_pages_on_site_id"
 
   create_table "sites_styles", :force => true do |t|
-    t.integer  "site_id",    :null => false
-    t.integer  "style_id",   :null => false
-    t.boolean  "publish"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "site_id",                      :null => false
+    t.integer  "style_id",                     :null => false
+    t.boolean  "publish",    :default => true
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
+  add_index "sites_styles", ["site_id"], :name => "index_sites_styles_on_site_id"
+  add_index "sites_styles", ["style_id"], :name => "index_sites_styles_on_style_id"
+
   create_table "styles", :force => true do |t|
-    t.string   "name"
+    t.string   "name",                         :null => false
     t.text     "css"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.boolean  "publish"
-    t.integer  "owner_id"
-    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "publish",    :default => true
+    t.integer  "owner_id",                     :null => false
+    t.integer  "position",   :default => 0
   end
+
+  add_index "styles", ["owner_id"], :name => "index_styles_on_owner_id"
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
@@ -337,10 +402,12 @@ ActiveRecord::Schema.define(:version => 20130514132403) do
     t.string   "phone"
     t.string   "mobile"
     t.string   "register"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "locale_id"
   end
+
+  add_index "users", ["locale_id"], :name => "index_users_on_locale_id"
 
   create_table "views", :force => true do |t|
     t.integer  "site_id"
@@ -359,5 +426,80 @@ ActiveRecord::Schema.define(:version => 20130514132403) do
 
   add_index "views", ["site_id"], :name => "index_views_on_site_id"
   add_index "views", ["viewable_id"], :name => "index_views_on_viewable_id"
+
+  add_foreign_key "banners", "pages", :name => "banners_page_id_fk"
+  add_foreign_key "banners", "repositories", :name => "banners_repository_id_fk"
+  add_foreign_key "banners", "sites", :name => "banners_site_id_fk"
+  add_foreign_key "banners", "users", :name => "banners_user_id_fk"
+
+  add_foreign_key "extension_sites", "sites", :name => "extension_sites_site_id_fk"
+
+  add_foreign_key "feedback_groups", "sites", :name => "groups_site_id_fk"
+
+  add_foreign_key "feedback_messages", "sites", :name => "feedbacks_site_id_fk"
+
+  add_foreign_key "feedback_messages_groups", "feedback_groups", :name => "feedbacks_groups_group_id_fk", :column => "group_id"
+  add_foreign_key "feedback_messages_groups", "feedback_messages", :name => "feedbacks_groups_feedback_id_fk", :column => "message_id"
+
+  add_foreign_key "groups_users", "feedback_groups", :name => "groups_users_group_id_fk", :column => "group_id"
+  add_foreign_key "groups_users", "users", :name => "groups_users_user_id_fk"
+
+  add_foreign_key "locales_sites", "locales", :name => "locales_sites_locale_id_fk"
+  add_foreign_key "locales_sites", "sites", :name => "locales_sites_site_id_fk"
+
+  add_foreign_key "menu_item_i18ns", "locales", :name => "locale_menu_item_i18ns", :dependent => :restrict
+  add_foreign_key "menu_item_i18ns", "locales", :name => "menu_item_i18ns_locale_id_fk"
+  add_foreign_key "menu_item_i18ns", "menu_items", :name => "menu_item_i18ns_menu_item_id_fk"
+  add_foreign_key "menu_item_i18ns", "menu_items", :name => "menu_item_menu_item_i18ns", :dependent => :delete
+
+  add_foreign_key "menu_items", "menu_items", :name => "menu_items_parent_id_fk", :column => "parent_id"
+  add_foreign_key "menu_items", "menus", :name => "menu_items_menu_id_fk"
+  add_foreign_key "menu_items", "menus", :name => "menu_menu_items", :dependent => :delete
+
+  add_foreign_key "menus", "sites", :name => "menus_site_id_fk"
+  add_foreign_key "menus", "sites", :name => "site_menus", :dependent => :delete
+
+  add_foreign_key "old_menus", "pages", :name => "old_menus_page_id_fk"
+
+  add_foreign_key "page_i18ns", "locales", :name => "page_i18ns_locale_id_fk"
+  add_foreign_key "page_i18ns", "pages", :name => "page_i18ns_page_id_fk"
+
+  add_foreign_key "pages", "repositories", :name => "pages_repository_id_fk"
+  add_foreign_key "pages", "sites", :name => "pages_site_id_fk"
+  add_foreign_key "pages", "users", :name => "pages_author_id_fk", :column => "author_id"
+
+  add_foreign_key "pages_repositories", "pages", :name => "pages_repositories_page_id_fk"
+  add_foreign_key "pages_repositories", "repositories", :name => "pages_repositories_repository_id_fk"
+
+  add_foreign_key "repositories", "sites", :name => "repositories_site_id_fk"
+
+  add_foreign_key "rights_roles", "rights", :name => "rights_roles_right_id_fk"
+  add_foreign_key "rights_roles", "roles", :name => "rights_roles_role_id_fk"
+
+  add_foreign_key "roles", "sites", :name => "roles_site_id_fk"
+
+  add_foreign_key "roles_users", "roles", :name => "roles_users_role_id_fk"
+  add_foreign_key "roles_users", "users", :name => "roles_users_user_id_fk"
+
+  add_foreign_key "site_components", "sites", :name => "site_components_site_id_fk"
+
+  add_foreign_key "sites", "repositories", :name => "sites_top_banner_id_fk", :column => "top_banner_id"
+  add_foreign_key "sites", "sites", :name => "sites_parent_id_fk", :column => "parent_id"
+
+  add_foreign_key "sites_menus", "menus", :name => "sites_menus_menu_id_fk"
+  add_foreign_key "sites_menus", "sites", :name => "sites_menus_site_id_fk"
+
+  add_foreign_key "sites_styles", "sites", :name => "fk_sites", :dependent => :delete
+  add_foreign_key "sites_styles", "sites", :name => "sites_styles_site_id_fk"
+  add_foreign_key "sites_styles", "styles", :name => "fk_styles", :dependent => :delete
+  add_foreign_key "sites_styles", "styles", :name => "sites_styles_style_id_fk"
+
+  add_foreign_key "styles", "sites", :name => "fk_owner", :column => "owner_id", :dependent => :delete
+  add_foreign_key "styles", "sites", :name => "styles_owner_id_fk", :column => "owner_id"
+
+  add_foreign_key "users", "locales", :name => "users_locale_id_fk"
+
+  add_foreign_key "views", "sites", :name => "views_site_id_fk"
+  add_foreign_key "views", "users", :name => "views_user_id_fk"
 
 end
