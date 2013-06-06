@@ -22,7 +22,7 @@ onLoad: function() {
             <%= link_to t(".logout"), main_app.logout_path(back_url: main_app.site_path), class: 'right' %>
             <%= link_to current_user.first_name, main_app.admin_user_url(current_user, subdomain: nil), class: 'right' %>
             <%= link_to(t(".help"), current_settings[:help_site], target: '_blank', class: 'left') if current_settings[:help_site] %>
-            <%= link_to(t(".clipping"), 'clipping', class: 'left') %>
+            <%= link_to(t(".clipping"), clipping_url(subdomain: nil), class: 'left') %>
             <%= link_to t(".about"), '#', target: '_blank', class: 'left', id: 'try-1' %>
           </div>
         </div>
