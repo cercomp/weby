@@ -7,6 +7,7 @@
 # tld_length:        tamanho do domínio onde o weby está rodando Ex: 'weby.com.br' tld_length=2, 'weby.br' tld_length=1(padrão)
 # sites_index:       site_id para mostrar a listagem dos sites, se não existir essa propriedade será o root do domínio
 # login_protocol:    protocolo da página de login (opções 'http' e 'https', padrão=http)
+# clipping_per_days: período em dias de notícias no clipping.
 #
 class Setting < ActiveRecord::Base
   validates_uniqueness_of :name
