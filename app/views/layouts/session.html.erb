@@ -1,35 +1,48 @@
 <!doctype html>
 <html lang="<%= current_locale %>">
-<head>
-  <title>Weby</title>
-  <meta charset="utf-8">
-  <%= csrf_meta_tag %>
-  <%= stylesheet_link_tag 'session' %>
-</head>
-<body>
-  <div class="container">
-    <div class="well session">
-      <%= link_to login_url(subdomain: nil, protocol: login_protocol), class: "logo-box" do %>
-        <%= image_tag 'weby.png', class: 'logo' %>
-      <% end %>
-      <div class="i18n_menu">
-          <% admin_locales.each do |locale| %>
-            <%= link_to flag(locale), params.merge(locale: locale.name ) %>
-          <% end %>
-      </div>
-      <div class="content">
-        <div class='padding-box'>
-          <%= raw flash_message %>
+  <head>
+    <title>Weby</title>
+    <%= stylesheet_link_tag 'session', media: "all" %>
+    <%= stylesheet_link_tag 'google/lato', media: "all" %>
+
+    <!--[if lt IE 9]>
+      <%= javascript_include_tag "html5shim/html5" %>
+    <![endif]-->
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= csrf_meta_tag %>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="span6 offset3">
+          <header class="logo">
+            <%= image_tag 'weby-logo-session.png' %>
+          </header>
         </div>
-        <%= yield %>
       </div>
-      <div class="links pull-right">
-        <%= link_to t(".portals"), root_url(subdomain: nil) %>
-        <%= link_to(t(".help"), current_settings[:help_site], target: '_blank') if current_settings[:help_site] %>
+      <div class="row">
+        <div class="span6 offset3">
+          <div class="box">
+            <div class="box_cont">
+              <%= raw flash_message %>
+              <nav class="locales-nav pull-right">
+                <% admin_locales.each do |locale| %>
+                  <%= link_to flag(locale), params.merge(locale: locale.name ) %>
+                <% end %>
+              </nav>
+              <%= yield %>
+            </div>
+          </div>
+          <nav class="help-nav">
+            <%= link_to t(".portals"), root_url(subdomain: nil) %>
+            <%= link_to(t(".help"), current_settings[:help_site],
+                        target: '_blank') if current_settings[:help_site] %>
+          </nav>
+        </div>
       </div>
-      <div class="clearfix"></div>
     </div>
-  </div>
-  <%= javascript_include_tag "application" %>
-</body>
+    <%= javascript_include_tag "session" %>
+  </body>
 </html>

@@ -1,6 +1,4 @@
 /*
- *= require google/droidsans
- *= require google/orbitron
  *= require_self
  */
 @import "bootstrap";
@@ -8,7 +6,6 @@
 
 // style to put logo in navbar
 .navbar .brand.logo { color: white; }
-.orbitron { font-family: "Orbitron"; }
 .red { color: #C11303; }
 
 // style to components

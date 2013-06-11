@@ -60,8 +60,7 @@ class SessionController < ApplicationController
       if @user.active?
         redirect_to admin_user_path(@user)
       else
-        @session = UserSession.new
-        render :action => :login
+        redirect_to login_path(subdomain: nil)
       end
     else
       render action: :reset_password

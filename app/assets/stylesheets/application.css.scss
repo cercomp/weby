@@ -1,7 +1,6 @@
 /*
- *= require google/orbitron
- *= require_self 
- */ 
+ *= require_self
+ */
 
 @import "bootstrap";
 // overide bootstrap to use navbar in responsive layout
@@ -9,7 +8,6 @@ body { padding-top: 40px; }
 
 // style to put logo in navbar
 .navbar .brand.logo { color: white; }
-.orbitron { font-family: "Orbitron"; }
 .red { color: #C11303; }
 
 // style to layout
