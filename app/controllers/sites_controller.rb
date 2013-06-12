@@ -38,6 +38,10 @@ class SitesController < ApplicationController
 
   end
 
+  def about
+    render partial: 'layouts/shared/about'
+  end
+
   #### BACK-END
 
   def admin
@@ -61,7 +65,7 @@ class SitesController < ApplicationController
     params[:site][:top_banner_id] ||= nil
     if @site.update_attributes(params[:site])
       flash[:success] = t("successfully_updated")
-      redirect_to edit_site_admin_path
+      redirect_to edit_site_admin_url(subdomain: @site)
     else
       load_themes
       render :edit, layout: "application"
