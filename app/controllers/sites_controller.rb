@@ -1,6 +1,5 @@
 class SitesController < ApplicationController
   layout :choose_layout, only: :show
-  layout 'weby_pages', only: :index
   
   before_filter :require_user, only: [:admin, :edit, :update]
   before_filter :check_authorization, only: [:edit, :update]
@@ -20,6 +19,8 @@ class SitesController < ApplicationController
       page(params[:page]).
       per(params[:per_page])
     flash[:warning] = (t"none_page") unless @sites
+
+    render layout: 'weby_pages'
   end
 
   def show
