@@ -75,3 +75,14 @@ body
   text-align: center;
   font-size: 11px;
 }
+
+// legacy
+.pagination select
+{
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  border-radius: 0;
+  float: left;
+  border-color: #DDD;
+  margin-bottom: 0;
+}
