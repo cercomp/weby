@@ -1,10 +1,19 @@
 en:
   application:
-    dashboard:     " Administration "
-    licence:       " © Copyright 2012 UFG. All rights reserved. "
-  sites:
-    licence:       " © Copyright 2012 UFG. All rights reserved. "
-  this2:
-  user_sessions:
+    dashboard: " Administration "
+    licence: " © Copyright 2012 UFG. All rights reserved. "
   weby_doc:
     documentation: " Documentation "
+  layouts:
+    weby_pages:
+      licence: "© Copyright 2012 UFG. All rights reserved."
+      logout: "LOGOUT"
+      register: "SIGNUP"
+      login: "LOGIN"
+      clipping: "CLIPPING"
+      help: "HELP"
+      about: "ABOUT"
+      sites: "SITES"
+    weby_sessions:
+      help: "HELP"
+      sites: "SITES"

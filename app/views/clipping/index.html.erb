@@ -1,21 +1,32 @@
-  <section style="" id="content">
-    <div style="" id="capa">
-        <section class="front_news_component" >
-          <section id="pages">            
-            <% @page.each do |p| %>            
-              <li>
-                <article>
-                  <a> <img> <%= weby_file_view(p.image, :thumb, 64, nil, {as: "link", url: site_page_url(p, subdomain: p.owner), style: "float: right; margin-left: 7px;"}) %> </img></a>
-                  <header><%= link_to p.title.truncate(70), site_page_url(p, subdomain: p.owner) %></header>
-                  <div>
-                    <summary><%= raw sanitize(p.summary, :tags=>[]).truncate(150) %></summary>
-                  </div>
-                </article>
-              </li>            
-              <% end %>
-              <div class="clear clearfix"> </div>
-              <div class="control"></div>
-          </section>
-        </section>
-    </div>
-  </section>
+<div class="row">
+  <div class="span12">
+    <h3 class="pull-left clipping-title"><%= t(".title") %></h3>
+    <%= form_tag request.path, method: 'get', autocapitalize: "off", class: 'form-inline pull-right search' do %>
+      <%= content_tag :div, class: 'input-append' do %>
+        <%= search_field_tag :search, params[:search], class: 'input-search' %><%= submit_tag t(".search"), class: 'btn btn-primary' %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row" id="clipping">
+  <div class="span12">
+    <ul class="thumbnails">
+      <% @pages.each do |page| %>
+        <li class="span4">
+          <div class="thumbnail">
+            <%= weby_file_view(page.image, :thumb, 64, nil, {as: "link", url: site_page_url(page, subdomain: page.owner)}) %>
+            <div class="caption">
+              <h3>
+                <%= link_to page.title.truncate(70), site_page_url(page, subdomain: page.owner) %>
+              </h3>
+              <p>
+              <%= raw sanitize(page.summary, :tags=>[]).truncate(150) %>
+              </p>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

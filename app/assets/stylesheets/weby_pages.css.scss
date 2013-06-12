@@ -6,9 +6,6 @@
 @import "weby/bootstrap";
 @import "bootstrap-responsive";
 
-body
-{
-}
 .zone { background: #F5F5F5; }
 
 #header
@@ -74,6 +71,25 @@ body
   text-transform: uppercase;
   text-align: center;
   font-size: 11px;
+}
+
+// clipping
+.clipping-title
+{
+  line-height: 25px;
+  margin-top: 0px;
+  margin-bottom: 17px;
+  color: #BC1625; 
+}
+
+#clipping
+{
+  .thumbnail
+  {
+    img { float: right; }
+    p { height: 60px; }
+    a { color: #BC1625; }
+  }
 }
 
 // legacy

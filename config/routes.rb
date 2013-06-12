@@ -139,8 +139,10 @@ Weby::Application.routes.draw do
       match "users/page/:page" => "users#index"
       match "sites/page/:page" => "sites#index"
     end
-    get "/clipping" => "clipping#index", as: :clipping
   end
+
+  # clipping
+  get "/clipping" => "clipping#index", as: :clipping
 
   # routes to session
   match "logout"  => "session#logout"

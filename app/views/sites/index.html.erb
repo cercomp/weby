@@ -11,7 +11,7 @@
     <% end %>
     <%= form_tag request.path, method: 'get', autocapitalize: "off", class: 'form-inline pull-right search' do %>
       <%= content_tag :div, class: 'input-append' do %>
-      <%= search_field_tag :search, params[:search], class: 'input-search' %><%= submit_tag t("search"), class: 'btn btn-primary' %>
+        <%= search_field_tag :search, params[:search], class: 'input-search' %><%= submit_tag t(".search"), class: 'btn btn-primary' %>
       <% end %>
     <% end %>
     <div class="clearfix"></div>
@@ -21,14 +21,7 @@
 <div class="content tabs">
   <div class="tab-content">
     <div class="tab-pane active" id="sites">
-      <% if @sites.empty? %>
-        <div class="alert">
-          <%# TODO: internacionalizar %>
-          Nenhum site cadastrado.
-        </div>
-      <% else %>
-        <%= render 'list' %>
-      <% end %>
+      <%= render 'list' %>
     </div>
     <div class="tab-pane active" id="my-sites">
     </div>
