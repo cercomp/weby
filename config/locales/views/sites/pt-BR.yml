@@ -3,6 +3,7 @@ pt-BR:
     index:
       new_site: "CRIAR PORTAL"
       sites: "PORTAIS"
+      clipping: "CLIPPING"
       my-sites: "MEUS PORTAIS"
       search: "BUSCAR"
     list:

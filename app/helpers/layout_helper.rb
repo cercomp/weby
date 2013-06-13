@@ -2,17 +2,13 @@ module LayoutHelper
   # loads the main stylesheet layout
   # eg: stylesheets/layouts/{name}/main.css 
   def load_layout_stylesheet(layout)
-    raw(%{
-      #{stylesheet_link_tag("layouts/#{layout}/main")}
-    })
+    raw stylesheet_link_tag("layouts/#{layout}/main")
   end
 
   # loads the main javascript layout
   # eg: javascripts/layouts/{name}/main.css 
   def load_layout_javascript(layout)
-    raw(%{
-      #{javascript_include_tag("layouts/#{layout}/main")}
-    })
+    raw javascript_include_tag("layouts/#{layout}/main")
   end
 
   # gera um item do menu admin com verificação de classe active

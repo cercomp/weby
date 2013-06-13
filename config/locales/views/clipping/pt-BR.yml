@@ -1,5 +1,7 @@
 pt-BR:
   clipping:
     index:
-      title: "/CLIPPING"
+      sites: "PORTAIS"
+      clipping: "CLIPPING"
+      my-sites: "MEUS PORTAIS"
       search: "BUSCAR"

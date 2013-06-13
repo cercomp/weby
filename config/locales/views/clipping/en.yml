@@ -1,5 +1,7 @@
 en:
   clipping:
     index:
-      title: "/CLIPPING"
+      sites: "SITES"
+      clipping: "CLIPPING"
+      my-sites: "MY SITES"
       search: "SEARCH"
