@@ -1,17 +1,6 @@
 <% if current_user %>
-  <%content_for :javascripts, javascript_include_tag('jquery.lightbox_me')%>
-  <%= content_for :javascripts do %>
-    <script type="text/javascript">
-      $('#try-1').click(function(e) {
-          $('#about-modal').lightbox_me({
-centered: true, 
-onLoad: function() { 
-}
-});
-          e.preventDefault();
-          });
-        </script>
-      <% end %>
+  <% content_for :javascripts, javascript_include_tag('jquery.lightbox_me') %>
+  <% content_for :javascripts, javascript_include_tag('navbar') %>
       <div class="no_contrast">
         <div id="webybar">
           <div id='container'>
@@ -23,16 +12,10 @@ onLoad: function() {
             <%= link_to current_user.first_name, main_app.admin_user_url(current_user, subdomain: nil), class: 'right' %>
             <%= link_to(t(".help"), current_settings[:help_site], target: '_blank', class: 'left') if current_settings[:help_site] %>
             <%= link_to(t(".clipping"), clipping_url(subdomain: nil), class: 'left') %>
-            <%= link_to t(".about"), '#', target: '_blank', class: 'left', id: 'try-1' %>
+            <%= link_to t(".about"), '#', target: '_blank', class: 'left', id: 'about-weby' %>
           </div>
         </div>
       </div>
     <% else %>
       <%= link_to image_tag('weby-icon.png'), main_app.login_url(subdomain: nil, protocol: login_protocol, back_url: main_app.site_admin_url(subdomain: current_site)), id: 'webyaccess' %>
     <% end %>
-    <div id="about-modal" style="display:none; background-color:white;">
-      <i class="icon-remove icon-black close"></i>
-      <div>
-        <%= render 'layouts/shared/about'  %>
-      </div>
-    </div>

@@ -159,6 +159,7 @@ Weby::Application.routes.draw do
   match "activate(/:activation_code)" => "session#activate_user", as: :activate_account
   post  "resend_activation" => "session#resend_activation"
 
+  get "about" => "sites#about"
   match "robots.txt" => "sites#robots", :format => "txt"
   match "*not_found" => "application#render_404"
 end

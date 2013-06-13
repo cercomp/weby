@@ -1,15 +1,5 @@
-<%content_for :javascripts, javascript_include_tag('jquery.lightbox_me')%>
-<%= content_for :javascripts do %>
-  <script type="text/javascript">
-    $('#try-1').click(function(e) {
-        $('#about-modal').lightbox_me({
-          centered: true,
-          onLoad: function() {}
-        });
-        e.preventDefault();
-    });
-  </script>
-<% end %>
+<% content_for :javascripts, javascript_include_tag('jquery.lightbox_me') %>
+<% content_for :javascripts, javascript_include_tag('navbar') %>
     <div class='navbar navbar-inverse navbar-fixed-top' id="weby-navbar">
       <div class='navbar-inner'>
         <div class='container'>
@@ -63,15 +53,9 @@
             <li>
             <%= link_to(t(".help"), current_settings[:help_site], target: '_blank') if current_settings[:help_site] %>
             </li>
-            <li> <%= link_to t(".about"), '#', target: '_blank', id: 'try-1' %> </li>
+            <li> <%= link_to t(".about"), '#', target: '_blank', id: 'about-weby' %> </li>
           </ul>
         </div>
       </div>
-    </div>
-  </div>
-  <div id="about-modal" style="display:none; background-color:white;">
-    <i class="icon-remove icon-black close"></i>
-    <div>
-      <%= render 'layouts/shared/about'  %>
     </div>
   </div>
