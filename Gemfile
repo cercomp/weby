@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby '2.0.0'
 
 gem 'rails', '3.2.13'
-gem 'thin', '1.5.0'
+gem 'thin', '1.5.1'
 gem 'jquery-rails', '2.1.4'
 gem 'pg', '0.14.1'
 gem 'authlogic', '3.1.3' 
