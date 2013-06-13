@@ -2,23 +2,21 @@
 <html lang="<%= current_locale %>">
   <head>
     <title>Weby</title>
-    <%= stylesheet_link_tag 'session', media: "all" %>
-    <%= stylesheet_link_tag 'google/lato', media: "all" %>
-
+    <%= stylesheet_link_tag 'weby_sessions', media: "all" %>
     <!--[if lt IE 9]>
       <%= javascript_include_tag "html5shim/html5" %>
     <![endif]-->
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= csrf_meta_tag %>
   </head>
+
   <body>
     <div class="container">
       <div class="row">
         <div class="span6 offset3">
           <header class="logo">
-            <%= image_tag 'weby-logo-session.png' %>
+            <%= image_tag 'weby-logo-60.png' %>
           </header>
         </div>
       </div>
@@ -36,13 +34,16 @@
             </div>
           </div>
           <nav class="help-nav">
-            <%= link_to t(".portals"), root_url(subdomain: nil) %>
+            <%= link_to t(".sites"), root_url(subdomain: nil) %>
             <%= link_to(t(".help"), current_settings[:help_site],
                         target: '_blank') if current_settings[:help_site] %>
           </nav>
         </div>
       </div>
     </div>
-    <%= javascript_include_tag "session" %>
+
+    <%= javascript_include_tag "weby_sessions" %>
   </body>
 </html>
+
+<%# TODO: link para navegação entre o login, voltar pro login %>

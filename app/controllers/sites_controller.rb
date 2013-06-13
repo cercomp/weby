@@ -19,6 +19,8 @@ class SitesController < ApplicationController
       page(params[:page]).
       per(params[:per_page])
     flash[:warning] = (t"none_page") unless @sites
+
+    render layout: 'weby_pages'
   end
 
   def show
