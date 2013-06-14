@@ -34,16 +34,12 @@ en:
         show_site:         " Show site "
         help:              " Help "
         about:             " About "
-      webybar:
-        my_profile:        " My profile "
-        logout:            " Logout "
-        login:             " Login "
-        register:          " Register "
-        sites:             " Sites "
-        dashboard:         " Administration "
-        show_site:         " Show site "
-        help:              " Help "
-        about:             " About "
       search_form:
         search:            "Search "
         searching:         "Searching... "
+      weby_bar:
+        logout: "LOGOUT"
+        dashboard: "DASHBOARD"
+        help: "HELP"
+        about: "ABOUT"
+        clipping: "CLIPPING"
