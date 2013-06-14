@@ -21,3 +21,5 @@ public/uploads/
 public/assets/
 
 .sass-cache
+
+*.swp
