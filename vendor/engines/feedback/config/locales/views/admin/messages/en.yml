@@ -18,9 +18,4 @@ en:
          send_date:     " Send Date "
          groups:        " Groups "
          group:         " Group "
-        edit:
-         feedback:      " Feedback "
-        form:
-         group:         " Group "
-         group_explain: " List of groups that can receive messages of feedback "
 

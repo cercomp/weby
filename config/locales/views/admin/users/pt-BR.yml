@@ -27,6 +27,7 @@ pt-BR:
       index:
         users:              " Usuários "
         new_user:           " Novo Usuário "
+        manage_roles:       " Gerenciar Papéis "
       list:
         id:                 " Id "
         user:               " Usuário "
@@ -48,3 +49,5 @@ pt-BR:
         none_user:          " Nenhum Usuário "
       role_form:
         confirm_unrole:     " Desligar este usuário do site "
+      manage_roles:
+        users:              " Usuários "

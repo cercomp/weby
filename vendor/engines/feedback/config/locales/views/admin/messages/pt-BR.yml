@@ -18,9 +18,4 @@ pt-BR:
          send_date:     " Data de Envio "
          groups:        " Grupos "
          group:         " Grupo "
-        edit:
-         feedback:      " Feedback "
-        form:
-         group:         " Grupo "
-         group_explain: " Lista dos grupos que podem receber mensagem do Fale Conosco "
 

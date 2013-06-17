@@ -5,16 +5,14 @@
     <% end %>
   <% end %>
 </div>
-
-<% if check_permission(Admin::SitesController, ["new"]) %>
-  <p class="pull-right">
-  <%= link_to new_admin_user_path do %> 
-    <button class="btn btn-success">
-      <%= t(".new_user")%> 
-    </button>
+<p class="pull-right">
+  <% if current_user.is_admin? %>
+    <%= link_to t(".new_user"), new_admin_user_path, class: "btn btn-success" %>
   <% end %>
-  </p>
-<% end %>
+  <% if check_permission(Admin::UsersController, :change_roles) %>
+    <%= link_to t('.manage_roles'), manage_roles_admin_users_path, class: "btn btn-primary" %>
+  <% end %>
+</p>
 <div class="clearfix"></div>
 
 <div id="list">

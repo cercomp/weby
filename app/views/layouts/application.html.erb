@@ -19,7 +19,7 @@
       <div id="header" class="container">
         <div class="row">
           <div class="span3">
-            <%= link_to main_app.root_url(subdomain: current_site) do %>
+            <%= link_to main_app.root_url(subdomain: nil) do %>
               <%= image_tag 'weby-logo-60.png' %>
             <% end %>
           </div>
@@ -33,7 +33,7 @@
                   <%= t(".site") %>: <%= current_site.title %>
                 </div>
                 <div class="info actions">
-                  <%= link_to t(".show-site"), site_url(subdomain: current_site) %>
+                  <%= link_to t(".show-site"), main_app.site_url(subdomain: current_site) %>
                 </div>
               </div>
             </div>
@@ -94,7 +94,7 @@
         <%= t(".licence") %>
         <br />
         <%= link_to t(".sites"), main_app.root_url(subdomain: nil) %>
-        <%= link_to t(".clipping"), clipping_url(subdomain: nil) %>
+        <%= link_to t(".clipping"), main_app.clipping_url(subdomain: nil) %>
         <%= link_to(t(".help"), current_settings[:help_site], target: '_blank') if current_settings[:help_site] %>
         <%= link_to t(".about"), '#', target: '_blank', id: 'about-weby' %>
         <br />
