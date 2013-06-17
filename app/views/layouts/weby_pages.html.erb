@@ -16,9 +16,7 @@
       <div id="header" class="container">
         <div class="row">
           <div class="span3">
-            <%= link_to main_app.root_url(subdomain: nil) do %>
-              <%= image_tag 'weby-logo-60.png' %>
-            <% end %>
+            <%= image_tag 'weby-logo-60.png' %>
           </div>
           <% if current_user %>
             <div class="span4 offset5 person">
@@ -79,12 +77,3 @@
     <%= javascript_include_tag "weby_pages" %>
   </body>
 </html>
-
-<%# TODO: meus portais %>
-<%# TODO: apenas weby admin %>
-<%# TODO: icone em vermelho %>
-<%# TODO: perfil, editar perfil %>
-<%# TODO: em clipping alert quando não houver noticias ou retorno nulo de busca, como feito em sites %>
-<%# TODO: discutir link de logo %>
-<%# TODO: em tabelas de sites, icone para th sorteables %>
-<%# TODO: limpar js desnecessário %>
