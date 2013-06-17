@@ -44,10 +44,7 @@ class Site < ActiveRecord::Base
   has_many :menus, dependent: :delete_all, order: :id
   has_many :menu_items, :through => :menus
 
-  has_many :sites_pages
-
   has_many :pages,
-    through: :sites_pages,
     include: :i18ns,
     dependent: :delete_all
 

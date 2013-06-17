@@ -63,12 +63,9 @@
 
   <div style="margin-top: 8px;">
     <%= link_to(icon('edit', text: t("edit")), edit_site_admin_page_path(@page)) if check_permission(Sites::Admin::PagesController, [:edit]) %>
-    <%= link_to(icon('share', text: t("share")), "#", class: "share_button", data: {url: share_prompt_site_admin_page_path(@page)}) if check_permission(Sites::Admin::PagesController, [:edit]) %>
     <% if !defined?(as_component) %>
       <%= link_to icon('list', text: t(".list_all")), site_pages_path() %>
       <%= link_to icon('chevron-left', text: t("back")), :back %>
     <% end %>
   </div>
 </article>
-
-<%= content_for :javascripts, javascript_include_tag("share") %>

@@ -97,7 +97,7 @@ pt-BR:
   problem_create_account:               " Problemas ao criar uma conta "
 #---Q---#
 #---R---#
-  required:                             " Necessário "  
+  required:                             " Necessário "
 #---S---#
   save:                                 " Salvar "
   search:                               " Buscar "
@@ -112,7 +112,6 @@ pt-BR:
   successfully_deleted:                 " Excluído com sucesso! "
   successfully_updated_password:        " Senha atualizada com sucesso "
   should_be_image:                      " Deve ser uma imagem "
-  share:                                " Compartilhar "
 #---T---#
 #---U---#
   unfollow:                             " Deixar de Seguir "

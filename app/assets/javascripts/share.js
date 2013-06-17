@@ -11,6 +11,8 @@ $(document).ready(function(){
 
 function save(){
 
-   $("input:checkbox").attr("checked",true); 
+   $("input:checkbox").attr("checked",true);
+
+   alert($("input:checkbox").prop("checked").id);
 
 }

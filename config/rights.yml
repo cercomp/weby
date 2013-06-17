@@ -41,7 +41,7 @@ rights:
       action: sort
     new:
       name: Criar Página
-      action: new create share_prompt share
+      action: new create
     toggle_field:
       name: Publicar Página
       action: toggle_field
