@@ -1,32 +1,26 @@
-<%- title ".settings" %>
+<%= link_to new_admin_setting_path, class: 'pull-right' do %>
+  <button class="btn btn-success">
+    <%= t(".new_setting") %>
+  </button>
+<% end %>
 
-<div class="span9">
-  <div class="well">
-    <%= link_to new_admin_setting_path, class: 'pull-right' do %>
-      <button class="btn btn-success">
-        <%= t(".new_setting") %>
-      </button>
+<table class='table table-striped'>
+  <thead>
+    <tr>
+      <th> <%= sortable 'name', t('.name') %> </th>
+      <th> <%= sortable 'value', t('.value') %> </th>
+      <th> <%= t('.description') %> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @settings.each do |setting| %>
+      <tr>
+        <td> <%= setting.name %> </td>
+        <td> <%= setting.value %> </td>
+        <td> <%= setting.description %> </td>
+        <td> <%= raw make_menu(setting, :except => "show") %> </td>
+      </tr>
     <% end %>
-
-    <table class='table table-striped'>
-      <thead>
-        <tr>
-          <th> <%= sortable 'name', t('.name') %> </th>
-          <th> <%= sortable 'value', t('.value') %> </th>
-          <th> <%= t('.description') %> </th>
-          <th> </th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @settings.each do |setting| %>
-          <tr>
-            <td> <%= setting.name %> </td>
-            <td> <%= setting.value %> </td>
-            <td> <%= setting.description %> </td>
-            <td> <%= raw make_menu(setting, :except => "show") %> </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-</div>
+  </tbody>
+</table>

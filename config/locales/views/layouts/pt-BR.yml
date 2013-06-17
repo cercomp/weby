@@ -1,12 +1,20 @@
 pt-BR:
-  application:
-    dashboard: " Administração "
-    licence: " © Copyright 2012 UFG. Todos os direitos reservados. "
   weby_doc:
     documentation: " Documentação "
   layouts:
+    application:
+      licence: "© Copyright 2013 UFG. Todos os direitos reservados."
+      logout: "LOGOUT"
+      register: "CADASTRAR"
+      login: "LOGIN"
+      clipping: "CLIPPING"
+      help: "AJUDA"
+      about: "SOBRE"
+      sites: "PORTAIS"
+      site: "PORTAL"
+      show-site: "ACESSAR PORTAL"
     weby_pages:
-      licence: "© Copyright 2012 UFG. Todos os direitos reservados."
+      licence: "© Copyright 2013 UFG. Todos os direitos reservados."
       logout: "LOGOUT"
       register: "CADASTRAR"
       login: "LOGIN"

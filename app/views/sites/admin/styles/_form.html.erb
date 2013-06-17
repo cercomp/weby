@@ -21,16 +21,16 @@
       as: :text,
       wrapper_html: { class: 'nostyle' },
       input_html: {class: 'style-editor', id: 'code' } %>
-
-    <%= link_to icon('question-sign', text:t(".help_with_style")),
-      (current_settings[:help_site] || "/help"),
-      target: "_blank"%>
   </div>
+
+  <%= link_to icon('question-sign', text:t(".help_with_style")),
+    (current_settings[:help_site] || "/help"),
+    target: "_blank"%>
 
   <div class="form-actions">
     <%= f.button :button, t(".apply"), type: :button, disabled: :disabled, class: "btn-apply btn btn-primary" if controller.action_name == "edit" %>
     <%= f.button :submit, class: 'btn-primary', disable_with: t("please_wait") %>
-    <%= link_to t("back"), :back, class: "btn btn-danger" %>
+    <%= link_to t("back"), :back, class: "btn" %>
   </div>
 <% end %>
 <%= content_for :stylesheets, stylesheet_link_tag("codeMirror/codemirror") %>

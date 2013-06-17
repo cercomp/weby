@@ -1,4 +1,4 @@
-<div class="well" id="menu-admin">
+<div id="menu-admin">
   <ul class="nav nav-pills nav-stacked">
     <% if current_site %>
       <%= menu_item_to t(".settings"), main_app.edit_site_admin_path if check_permission(SitesController, [:edit]) %>
@@ -18,7 +18,6 @@
             <%= menu_item_to t("extensions.#{extension.name}.name"), "/#{extension.name}/admin" %>
         <% end %>
       <% end %>
-        
     <% else %>
       <%= menu_item_to t(".sites"), main_app.admin_sites_path if true or check_permission(Admin::SitesController, [:index])%>
       <%= menu_item_to t(".users"), main_app.admin_users_path if check_permission(Admin::UsersController, [:index])%>

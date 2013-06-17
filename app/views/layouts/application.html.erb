@@ -1,53 +1,118 @@
-<% admin_title = content_for?(:title) ? content_for(:title) : t("application.dashboard") %>
 <!doctype html>
 <html lang="<%= current_locale %>">
   <head>
-    <title>Weby - <%= admin_title %></title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--[if lt IE 9]>
-      <%= javascript_include_tag "html5" %>
-    <![endif]-->
+    <title>weby</title>
+    <%= stylesheet_link_tag 'application', media: "all" %>
+    <%# NOTE: review here %>
     <%= yield :stylesheets %>
     <%= yield :components_stylesheets %>
-    <%= stylesheet_link_tag 'application' %>
+    <!--[if lt IE 9]>
+      <%= javascript_include_tag "html5shim/html5" %>
+    <![endif]-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= csrf_meta_tag %>
   </head>
+
   <body>
-    <%= render 'layouts/shared/navbar' %>
-    <header id="header" class="container">
-      <div class="row">
-        <div class="span9 title">
-          <%= admin_title %>
-        </div>
-        <div class="span3 hidden-phone logo-dashboard">
-          <%= image_tag 'weby-dashboard.png' %>
+    <div class="zone">
+      <div id="header" class="container">
+        <div class="row">
+          <div class="span3">
+            <%= link_to main_app.root_url(subdomain: nil) do %>
+              <%= image_tag 'weby-logo-60.png' %>
+            <% end %>
+          </div>
+          <% if current_site %>
+            <div class="span5 site">
+              <div class="avatar pull-left">
+                <%# TODO: change here, put site avatar %>
+                <img src="http://www.gravatar.com/avatar/<%= Digest::MD5.hexdigest(current_user.email) %>?s=32">
+              </div>
+              <div class="pull-left">
+                <div class="info name">
+                  <%= t(".site") %>: <%= current_site.title %>
+                </div>
+                <div class="info actions">
+                  <%= link_to t(".show-site"), site_path(subdomain: current_site) %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <%# NOTE: remover if, layout acessado apenas quando conectado %>
+          <% if current_user %>
+            <div class="span4 <%= current_site ? "" : "offset5 " %>person">
+              <div class="pull-right">
+                <div class="info name">
+                  <%= current_user %>
+                </div>
+                <div class="info actions">
+                  <%= link_to main_app.site_admin_path(subdomain: nil) do %>
+                    <i class="icon-cog"></i>
+                  <% end %>
+                  <%= link_to t(".logout"), main_app.logout_path(back_url: main_app.site_path) %>
+                </div>
+              </div>
+              <div class="avatar pull-right">
+                <img src="http://www.gravatar.com/avatar/<%= Digest::MD5.hexdigest(current_user.email) %>?s=32">
+              </div>
+              <div class="clearfix"></div>
+            </div>
+          <% else %>
+            <div class="span4 offset5 noperson">
+              <%= link_to t(".register"), main_app.signup_url(subdomain: nil, protocol: login_protocol,
+                back_url: "#{request.fullpath}"), class: 'btn' %>
+              <%= link_to t(".login"), main_app.login_url(subdomain: nil, protocol: login_protocol,
+                back_url: "#{request.fullpath}"), class: 'btn btn-primary' %>
+            </div>
+          <% end %>
         </div>
       </div>
-    </header>
-    <div class="bg-zone">
-      <section id="main-container" class="container">
+    </div>
+
+    <div id="main" class="container">
+      <% unless flash.empty? %>
         <div class="row">
-          <% if response.status == 200 %>
-          <div class="span3">
-            <%= render 'layouts/shared/menu_admin' %>
-            &nbsp;
-          </div>
-          <% end %>
-          <div class="span9" id="content">
+          <div class="span12">
             <%= raw flash_message %>
-            <div class="row">
-              <%= yield %>
-            </div>
           </div>
         </div>
-      </section>
+      <% end %>
+      <div class="row">
+        <div class="span3">
+          <%= render 'layouts/shared/menu_admin' %>
+          &nbsp;
+        </div>
+        <div class="container span9">
+          <div class="well">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
     </div>
-    <footer id="footer" class="container">
-      <p> <%= t("application.licence") %> </p>
-    </footer>
+
+    <div id="footer" class="container">
+      <p>
+        <%= t(".licence") %>
+        <br />
+        <%= link_to t(".sites"), main_app.root_url(subdomain: nil) %>
+        <%= link_to t(".clipping"), clipping_url(subdomain: nil) %>
+        <%= link_to(t(".help"), current_settings[:help_site], target: '_blank') if current_settings[:help_site] %>
+        <%= link_to t(".about"), '#', target: '_blank', id: 'about-weby' %>
+        <br />
+        <% admin_locales.each do |locale| %>
+          <%= link_to flag(locale), params.merge(locale: locale.name ) %>
+        <% end %>
+      </p>
+    </div>
+
+    <%# NOTE: review here %>
     <%= yield :body_end %>
     <%= javascript_include_tag "application" %>
     <%= yield :javascripts %>
   </body>
 </html>
+
+<%# TODO: implement this 'response == 200' in another layout %>
+<%# TODO: estudar e aplicar DRY em layouts %>
+<%# TODO: mudar controller de sites, fora de admin apenas show e index %>

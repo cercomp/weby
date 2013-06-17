@@ -51,35 +51,8 @@ $(document).ready(function() {
       FlashMsg.notify(xhr.status);
    });
 
-   //Fixar o menu admin quando o usuário rola a página
-   //inclusive responsivo
-   var menuadmin = $('#menu-admin');
-   var webynavbar = $('#weby-navbar');
-   if(menuadmin.length>0){
-       $(window).scroll(function(){
-           if($(window).width() >= 768){
-               maincontainer = $('#main-container');
-               webybarheight = webynavbar.css('position')=='fixed'? webynavbar.height() : 0;
-               windowtop = $(this).scrollTop() + webybarheight;
-               if(windowtop >= maincontainer.position().top){
-                   if(menuadmin.css('position')!='fixed')
-                       menuadmin.css({'position':'fixed',
-                       'top':(webybarheight+parseInt(maincontainer.css("padding-top")))+'px',
-                       'width':menuadmin.width()+'px'});
-               }else{
-                   if(menuadmin.css('position')=='fixed')
-                       menuadmin.css({'position':'','top':'', 'width':''});
-               }
-           }
-        });
-    }
-    $(window).resize(function(){
-        menuadmin.css({'position':'','top':'', 'width':''});
-        $(window).scroll();
-    });
-
-    $(document).on('change', '.pagination select', function(){
-        //window.location = $(this).find('option:selected').data('url');
-        $.getScript($(this).find('option:selected').data('url'));
-    });
+   $(document).on('change', '.pagination select', function(){
+     //window.location = $(this).find('option:selected').data('url');
+     $.getScript($(this).find('option:selected').data('url'));
+   });
 });
