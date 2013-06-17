@@ -14,7 +14,7 @@ en:
           new_group:              " New Group "
           messages:               " Messages "
           none_group:             " Exists no group "
-          group_explain:          " E-mail groups, recipients of messages "
+          group_explain:          " List of groups that can receive feedback "
         edit:
           groups:                 " Groups "
         new:

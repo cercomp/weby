@@ -5,7 +5,7 @@ en:
         new_message:   " New Message "
         feedback:      " Feedback "
         group:         " Group "
-        group_explain: " Recipient(s) of The Message "
+        group_explain: " List of groups that can receive Feedbacks "
       create:
         success_sent:  " Post Posted Success "
         group_sent:    " Your message was sent to the groups: "

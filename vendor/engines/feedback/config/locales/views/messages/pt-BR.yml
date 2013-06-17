@@ -5,7 +5,7 @@ pt-BR:
         new_message:   " Nova Mensagem "
         feedback:      " Fale Conosco "
         group:         " Grupo "
-        group_explain: " Destinatário(s) da Mensagem "
+        group_explain: " Lista dos grupos que podem receber Fale Conosco "
       create:
         success_sent:  " Mensagem enviada com sucesso "
         group_sent:    " Sua mensagem foi enviada para os grupos: "

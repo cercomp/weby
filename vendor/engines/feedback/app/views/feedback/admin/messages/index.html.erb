@@ -1,45 +1,50 @@
 <%- title  ".feedback" %>
 
-<% if @messages.empty? %>
-  <div class="alert">
-    <%= t(".none_feedback") %>
+<div class="span9">
+  <div class="well">
+
+    <% if @messages.empty? %>
+      <div class="alert">
+        <%= t(".none_feedback") %>
+      </div>
+    <% end %>
+
+    <div class="pull-right">
+      <% if check_permission(Feedback::Admin::GroupsController, [:new]) %>
+        <%= link_to t(".new_group"),
+          new_admin_group_path,
+          class: "btn btn-success" %>
+      <% end %>
+      <% if check_permission(Feedback::Admin::GroupsController, [:index]) %>
+        <%= link_to t(".groups"),
+          admin_groups_path,
+          class: "btn btn-primary" %>
+      <% end %>
+    </div>
+    <div class="clearfix"></div>
+
+    <% unless @messages.empty? %>
+      <div class="page_info_paginator"><%= t("views.pagination.total") %>&nbsp;<%= @messages.length %></div>
+      <table class='table table-striped table-condensed'>
+        <thead>
+          <th><%= t(".name") %></th>
+          <th><%= t(".email") %></th>
+          <th><%= t(".subject") %></th>
+          <th></th>
+        </thead>
+        <tbody>
+          <% @messages.each do |message| %>
+            <tr class="<%= cycle 'odd', 'even' %>">
+              <td><%= message.name %></td>
+              <td><%= message.email %></td>
+              <td><%= message.subject %></td>
+              <td>
+                <%= raw make_menu(message) %>
+              </td>
+            </tr>
+            <% end; reset_cycle %>
+          </tbody>
+        </table>
+      <% end %>
+    </div>
   </div>
-<% end %>
-
-<div class="pull-right">
-  <% if check_permission(Feedback::Admin::GroupsController, [:new]) %>
-    <%= link_to t(".new_group"),
-      new_admin_group_path,
-      class: "btn btn-success" %>
-  <% end %>
-  <% if check_permission(Feedback::Admin::GroupsController, [:index]) %>
-    <%= link_to t(".groups"),
-      admin_groups_path,
-      class: "btn btn-primary" %>
-  <% end %>
-</div>
-<div class="clearfix"></div>
-
-<% unless @messages.empty? %>
-  <div class="page_info_paginator"><%= t("views.pagination.total") %>&nbsp;<%= @messages.length %></div>
-  <table class='table table-striped table-condensed'>
-    <thead>
-      <th><%= t(".name") %></th>
-      <th><%= t(".email") %></th>
-      <th><%= t(".subject") %></th>
-      <th></th>
-    </thead>
-    <tbody>
-      <% @messages.each do |message| %>
-        <tr class="<%= cycle 'odd', 'even' %>">
-          <td><%= message.name %></td>
-          <td><%= message.email %></td>
-          <td><%= message.subject %></td>
-          <td>
-            <%= raw make_menu(message) %>
-          </td>
-        </tr>
-      <% end; reset_cycle %>
-    </tbody>
-  </table>
-<% end %>

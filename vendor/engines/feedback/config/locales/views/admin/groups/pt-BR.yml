@@ -14,7 +14,7 @@ pt-BR:
           new_group:              " Novo Grupo "
           messages:               " Mensagens "
           none_group:             " Não existe nenhum grupo "
-          group_explain:          " Grupos de e-mails que são destinatários das mensagens "
+          group_explain:          " Lista dos grupos que podem receber Mensagens "
         edit:
           groups:                 " Grupos "
         new:
