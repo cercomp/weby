@@ -33,7 +33,7 @@
                   <%= t(".site") %>: <%= current_site.title %>
                 </div>
                 <div class="info actions">
-                  <%= link_to t(".show-site"), site_path(subdomain: current_site) %>
+                  <%= link_to t(".show-site"), site_url(subdomain: current_site) %>
                 </div>
               </div>
             </div>
@@ -45,9 +45,9 @@
                   <%= current_user %>
                 </div>
                 <div class="info actions">
-                  <%= link_to main_app.site_admin_path(subdomain: nil) do %>
+                  <%= link_to main_app.site_admin_url(subdomain: nil) do %>
                     <i class="icon-cog"></i>
-                  <% end %>
+                  <% end if current_user.is_admin? %>
                   <%= link_to t(".logout"), main_app.logout_path(back_url: main_app.site_path) %>
                 </div>
               </div>
