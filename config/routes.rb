@@ -67,7 +67,8 @@ Weby::Application.routes.draw do
       end
       resources :pages do
         member do
-          put :toggle_field
+          put :toggle_field, :share
+          get :share_prompt
         end
         collection do
           get :fronts

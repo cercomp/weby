@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
   has_many :pages,
     foreign_key: :author_id,
     dependent: :restrict
+  
+  has_many :sites, through: :roles
 
   has_many :views
 

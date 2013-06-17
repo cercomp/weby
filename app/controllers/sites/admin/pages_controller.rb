@@ -68,6 +68,16 @@ class Sites::Admin::PagesController < ApplicationController
     respond_with(:site_admin, @page)
   end
 
+  # PUT /pages/1/share
+  def share
+    
+  end
+
+  # GET /pages/1/share_prompt
+  def share_prompt
+    render partial: "share", layout: false
+  end
+
   def event_types
     @event_types = Page::EVENT_TYPES.map {|el| t("sites.admin.pages.event_form.#{el}")}.zip(Page::EVENT_TYPES)
   end
