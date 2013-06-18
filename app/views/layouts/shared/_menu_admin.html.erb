@@ -11,6 +11,7 @@
       <%= menu_item_to t(".components"), site_admin_components_path if check_permission(Sites::Admin::ComponentsController, [:index])%> 
       <%= menu_item_to t(".styles"), site_admin_styles_path if check_permission(Sites::Admin::StylesController, [:index])%> 
       <%= menu_item_to t(".roles_permissions"), site_admin_roles_path if check_permission(Sites::Admin::RolesController, [:index])%> 
+      <%= menu_item_to t(".notifications"), site_admin_notifications_path if check_permission(Sites::Admin::NotificationsController, [:index]) %>
       <% if check_permission(Sites::Admin::FeedbacksController, [:index]) || check_permission(Sites::Admin::GroupsController, [:index]) %>
         <li class="nav-header"><%= t(".feedback") %></li>
         <%= menu_item_to t(".messages"), site_admin_feedbacks_path if check_permission(Sites::Admin::FeedbacksController, [:index])%>
@@ -23,6 +24,8 @@
       <%= menu_item_to t(".permissions"), admin_rights_path if check_permission(Admin::RightsController, [:index])%> 
       <%= menu_item_to t(".settings"), admin_settings_path if check_permission(Admin::SettingsController, [:index])%>
       <%= menu_item_to t(".statistics"), admin_stats_path if check_permission(Admin::StatisticsController, [:index])%>
+      <%= menu_item_to t(".notifications"), admin_notifications_path if check_permission(Admin::NotificationsController, [:index])%>
+
     <% end %>
   </ul>
 </div>

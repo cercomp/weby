@@ -1,0 +1,10 @@
+en:
+  admin:
+    notifications:
+      index:
+        notifications:      " Notifications "
+        new_notification:   " New Notification " 
+      edit:
+        notifications:      " Notifications "
+      new:
+        notifications:      " Notifications "

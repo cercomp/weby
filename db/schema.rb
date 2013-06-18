@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130428190023) do
+ActiveRecord::Schema.define(:version => 20130521180955) do
 
   create_table "banners", :force => true do |t|
     t.datetime "date_begin_at"
@@ -130,6 +130,14 @@ ActiveRecord::Schema.define(:version => 20130428190023) do
   end
 
   add_index "menus", ["site_id"], :name => "index_menus_on_site_id"
+
+  create_table "notifications", :force => true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "old_menus", :force => true do |t|
     t.string   "title"
@@ -421,8 +429,8 @@ ActiveRecord::Schema.define(:version => 20130428190023) do
   add_foreign_key "menu_item_i18ns", "locales", :name => "menu_item_i18ns_locale_id_fk"
   add_foreign_key "menu_item_i18ns", "menu_items", :name => "menu_item_i18ns_menu_item_id_fk"
 
-  add_foreign_key "menu_items", "menus", :name => "menu_items_menu_id_fk"
   add_foreign_key "menu_items", "menu_items", :name => "menu_items_parent_id_fk", :column => "parent_id"
+  add_foreign_key "menu_items", "menus", :name => "menu_items_menu_id_fk"
 
   add_foreign_key "menus", "sites", :name => "menus_site_id_fk"
 
