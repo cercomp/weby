@@ -1,71 +1,63 @@
-<%- title ".components" %>
-
-<div class="span9">
-  <div class="well">
-
-
-    <div class="pull-right">
-      <% if check_permission(Sites::Admin::ComponentsController, 'new') %>
-      <%= link_to t(".new_component"),
-        new_site_admin_component_path,
-        class: "btn btn-success" %>
-      <% end %>
-    </div>
-    <div class="clearfix"></div>
-
-    <table class="table table-striped">
-      <thead>
-        <th><%= t(".component") %></th>
-        <th><%= t(".alias") %></th>
-        <th><%= t(".active") %></th>
-        <th></th>
-      </thead>
-
-      <% places_holder.each do |place_holder| %>
-        <% components_per_holder = @components.select{|component| component.place_holder == place_holder} %>
-        <%= render partial: 'components', locals: {present: true, place_holder: place_holder, components_per_holder: components_per_holder} %>
-        <% @components = @components - components_per_holder %>
-      <% end %>
-
-      <%# Se sobrou algum component com placeholder que não está no layout atual %>
-      <% @components.group_by(&:place_holder).sort.each do |place_holder, components| %>
-        <%= render partial: 'components', locals: {present: false, place_holder: place_holder, components_per_holder: components} %>
-      <% end %>
-    </table>
-    <%= javascript_tag do %>
-      window.onload=function(){
-      $(document).ready(function() {
-
-      $('.placeholder-group').each(function(){
-
-      $(this).sortable({
-      axis: 'y',
-      dropOnEmpty:false,
-      handle: '.handle',
-      cursor: 'crosshair',
-      items: 'tr',
-      opacity: 0.4,
-      scroll: true,
-      update: function(evt, ui){
-      $.ajax({
-      type: 'post',
-      data: $(this).sortable('serialize'),
-      dataType: 'script',
-      complete: function(request){ ui.item.effect('pulsate', {times: 1}, 350); },
-      url: '<%= sort_site_admin_components_path %>'
-      })
-      }
-      })
-      });
-
-      ////FIX-ME
-      $('#content').css({'overflow':'hidden'});
-      $('#list').css({'height':$('#list').height()});
-
-      });
-      }
-    <% end %>
-  </div>
+<div class="pull-right">
+  <% if check_permission(Sites::Admin::ComponentsController, 'new') %>
+  <%= link_to t(".new_component"),
+    new_site_admin_component_path,
+    class: "btn btn-success" %>
+  <% end %>
 </div>
+<div class="clearfix"></div>
+
+<table class="table table-striped">
+  <thead>
+    <th><%= t(".component") %></th>
+    <th><%= t(".alias") %></th>
+    <th><%= t(".active") %></th>
+    <th></th>
+  </thead>
+
+  <% places_holder.each do |place_holder| %>
+    <% components_per_holder = @components.select{|component| component.place_holder == place_holder} %>
+    <%= render partial: 'components', locals: {present: true, place_holder: place_holder, components_per_holder: components_per_holder} %>
+    <% @components = @components - components_per_holder %>
+  <% end %>
+
+  <%# Se sobrou algum component com placeholder que não está no layout atual %>
+  <% @components.group_by(&:place_holder).sort.each do |place_holder, components| %>
+    <%= render partial: 'components', locals: {present: false, place_holder: place_holder, components_per_holder: components} %>
+  <% end %>
+</table>
+<%= javascript_tag do %>
+  window.onload=function(){
+  $(document).ready(function() {
+
+  $('.placeholder-group').each(function(){
+
+  $(this).sortable({
+  axis: 'y',
+  dropOnEmpty:false,
+  handle: '.handle',
+  cursor: 'crosshair',
+  items: 'tr',
+  opacity: 0.4,
+  scroll: true,
+  update: function(evt, ui){
+  $.ajax({
+  type: 'post',
+  data: $(this).sortable('serialize'),
+  dataType: 'script',
+  complete: function(request){ ui.item.effect('pulsate', {times: 1}, 350); },
+  url: '<%= sort_site_admin_components_path %>'
+  })
+  }
+  })
+  });
+
+  ////FIX-ME
+  $('#content').css({'overflow':'hidden'});
+  $('#list').css({'height':$('#list').height()});
+
+  });
+  }
+<% end %>
 <%= content_for :javascripts, javascript_include_tag("jquery-ui.min") %>
 <%= content_for :stylesheets, stylesheet_link_tag("sortable") %>

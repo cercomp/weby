@@ -1,15 +1,13 @@
-<div class="span9">
-  <div class="well form-horizontal">
-    <div class="control-group select optional">
-      <label class="select optional control-label" for="stats_site">  Site </label>
-      <div class="controls">
-        <%= select_tag :stats_site, options_for_select(Site.all.map{|site| [site.title  || site.name, site.id]}), include_blank: true %>
-        <%= link_to t('.generate'), "#", class: 'btn btn-primary generate'  %>
-      </div>
+<div class="form-horizontal">
+  <div class="control-group select optional">
+    <label class="select optional control-label" for="stats_site">  Site </label>
+    <div class="controls">
+      <%= select_tag :stats_site, options_for_select(Site.all.map{|site| [site.title  || site.name, site.id]}), include_blank: true %>
+      <%= link_to t('.generate'), "#", class: 'btn btn-primary generate'  %>
     </div>
-  
-    <div class="stats">
-    </div>
+  </div>
+
+  <div class="stats">
   </div>
 </div>
 
@@ -45,7 +43,7 @@
 <% end %>
 
 <% content_for :javascripts do %>
-  <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+  <script type="text/javascript" src="//d3js.org/d3.v3.min.js"></script>
   <script type="text/javascript">
   
     var niceDate = function(date){

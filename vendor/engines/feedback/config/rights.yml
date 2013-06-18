@@ -1,0 +1,34 @@
+rights:
+  messages:
+    index:
+      name: Listar Mensagens de Fale Conosco
+      action: index
+    show:
+      name: Ver Mensagem de Fale Conosco
+      action: show
+    edit:
+      name: Editar Mensagens de Fale Conosco
+      action: edit update get_groups
+    destroy:
+      name: Excluir Mensagens de Fale Conosco
+      action: destroy
+    new:
+      name: Criar Mensagens de Fale Conosco
+      action: new create get_groups
+  groups:
+    index:
+      name: Listar Grupos
+      action: index
+    show:
+      name: Ver Grupo
+      action: show
+    edit:
+      name: Editar Grupo
+      action: edit update
+    destroy:
+      name: Excluir Grupo
+      action: destroy
+    new:
+      name: Criar Grupo
+      action: new create
+      

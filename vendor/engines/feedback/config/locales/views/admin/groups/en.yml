@@ -1,0 +1,24 @@
+en:
+  feedback:
+    admin:
+      groups:
+        form:
+          field_required:         " Field required! "
+          comma_separated_emails: " Comma Separated Emails "
+          please_wait:            " Please wait "
+        list:
+          name:                   " Name "
+          description:            " Description "
+        index:
+          groups:                 " Groups "
+          new_group:              " New Group "
+          messages:               " Messages "
+          none_group:             " Exists no group "
+          group_explain:          " E-mail groups, recipients of messages "
+        edit:
+          groups:                 " Groups "
+        new:
+          groups:                 " Groups "
+        show:
+          name:                   " Name "
+          groups:                 " Groups "

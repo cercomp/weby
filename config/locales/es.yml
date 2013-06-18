@@ -55,7 +55,6 @@ es:
   field_required:                       " Campo Obrigatório! "
   file_already_exists:                  " Já existe outro arquivo com o nome: %{value} "
   follow:                               " Seguir "
-  feedback_need_at_least_one_group:     " Necesita al menos un grupo! "
 #---G---#
 #---H---#
 #---I---#
@@ -222,9 +221,9 @@ es:
       messages: 
         accepted:                 " acception required  "
         attachment_presence:      " deve ser anexado "
-        blank:                    " deve ser preenchido "
+        blank:                    " debe ser completado "
         confirmation:             " confirmação não equivalente "
-        empty:                    " deve ser preenchido "
+        empty:                    " debe ser completado "
         equal_to:                 " Requerido igual a %{count} "
         even:                     " par requerido "
         exclusion:                " indisponível "

@@ -1,0 +1,11 @@
+pt-BR:
+  activerecord:
+    models:
+      feedback/group:        " Grupo "
+    attributes:
+      feedback/group:
+          created_at: " Criado em "
+          emails:     " Emails "
+          name:       " Nome "
+          site_id:    " Site "
+          updated_at: " Atualizado em "

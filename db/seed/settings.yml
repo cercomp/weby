@@ -25,3 +25,8 @@ tld_length:
   id: 5
   name: 'tld_length'
   value: '1'
+
+clipping_per_days:
+  id: 6
+  name: 'clipping_per_days'
+  value: '7'

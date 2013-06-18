@@ -1,8 +1,11 @@
 //= require jquery
-//= require jquery_ujs 
+//= require jquery_ujs
 //= require bootstrap
 //= require tables
+//= require jquery.lightbox_me
+//= require about
 //= require_self
+
 var WEBY = {};
 
 // Mostrar mensagem para erros, no retorno do ajax
@@ -51,17 +54,15 @@ $(document).ready(function() {
    //Fixar o menu admin quando o usuário rola a página
    //inclusive responsivo
    var menuadmin = $('#menu-admin');
-   var webynavbar = $('#weby-navbar');
    if(menuadmin.length>0){
        $(window).scroll(function(){
            if($(window).width() >= 768){
-               maincontainer = $('#main-container');
-               webybarheight = webynavbar.css('position')=='fixed'? webynavbar.height() : 0;
-               windowtop = $(this).scrollTop() + webybarheight;
+               maincontainer = $('#main');
+               windowtop = $(this).scrollTop() + 10;
                if(windowtop >= maincontainer.position().top){
                    if(menuadmin.css('position')!='fixed')
                        menuadmin.css({'position':'fixed',
-                       'top':(webybarheight+parseInt(maincontainer.css("padding-top")))+'px',
+                       'top':(10+parseInt(maincontainer.css("padding-top")))+'px',
                        'width':menuadmin.width()+'px'});
                }else{
                    if(menuadmin.css('position')=='fixed')

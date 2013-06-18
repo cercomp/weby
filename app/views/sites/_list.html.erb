@@ -1,5 +1,9 @@
-<div class="content-module">
-  <section class="main">
+<div id="list">
+  <% if @sites.empty? %>
+    <div class="alert">
+      <%= t(".no-site-found") %>
+    </div>
+  <% else %>
     <div class="pull-left"> <%= info_page @sites %> </div>
     <div class="pull-right"> <%= paginate @sites, remote: true %> </div>
     <div class="clearfix"></div>
@@ -24,5 +28,5 @@
     <div class="pull-left"> <%= per_page_links @sites, true %> </div>
     <div class="pull-right"> <%= paginate @sites, remote: true %> </div>
     <div class="clearfix"></div>
-  </section>
+  <% end %>
 </div>

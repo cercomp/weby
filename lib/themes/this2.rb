@@ -8,6 +8,7 @@ class Themes::This2
 
   def populate
     menus
+    extensions
     components
   end
 
@@ -29,11 +30,21 @@ class Themes::This2
     end
 
     f = Rails.root.join('lib/themes/this2/components.yml').to_s
-    YAML.load_file(f).each do |component|
-      # interpolation string on yaml using I18n interpolation
-      # https://github.com/svenfuchs/i18n/blob/master/lib/i18n/interpolate/ruby.rb
-      component['settings'] = I18n.interpolate(component['settings'], opts(@menu, default_footer))
-      @site.components.create(component)
+    YAML.load_file(f).each do |place, comps|
+      comps.each do |component|
+        component['place_holder'] = place
+        # interpolation string on yaml using I18n interpolation
+        # https://github.com/svenfuchs/i18n/blob/master/lib/i18n/interpolate/ruby.rb
+        component['settings'] = I18n.interpolate(component['settings'], opts(@menu, default_footer))
+        @site.components.create(component)
+      end
+    end
+  end
+
+  def extensions
+    f = Rails.root.join('lib/themes/this2/extensions.yml').to_s
+    YAML.load_file(f).each do |extension|
+      @site.extensions.create(extension)
     end
   end
 

@@ -40,7 +40,26 @@ ActiveRecord::Schema.define(:version => 20130521180955) do
   add_index "banners", ["site_id"], :name => "index_banners_on_site_id"
   add_index "banners", ["user_id"], :name => "index_banners_on_user_id"
 
-  create_table "feedbacks", :force => true do |t|
+  create_table "extension_sites", :force => true do |t|
+    t.integer  "site_id"
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "extension_sites", ["site_id"], :name => "index_extension_sites_on_site_id"
+
+  create_table "feedback_groups", :force => true do |t|
+    t.string   "name"
+    t.integer  "site_id"
+    t.text     "emails"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "feedback_groups", ["site_id"], :name => "index_groups_on_site_id"
+
+  create_table "feedback_messages", :force => true do |t|
     t.string   "name"
     t.string   "email"
     t.string   "subject"
@@ -50,25 +69,15 @@ ActiveRecord::Schema.define(:version => 20130521180955) do
     t.datetime "updated_at", :null => false
   end
 
-  add_index "feedbacks", ["site_id"], :name => "index_feedbacks_on_site_id"
+  add_index "feedback_messages", ["site_id"], :name => "index_feedbacks_on_site_id"
 
-  create_table "feedbacks_groups", :id => false, :force => true do |t|
-    t.integer "feedback_id"
+  create_table "feedback_messages_groups", :id => false, :force => true do |t|
+    t.integer "message_id"
     t.integer "group_id"
   end
 
-  add_index "feedbacks_groups", ["feedback_id"], :name => "index_feedbacks_groups_on_feedback_id"
-  add_index "feedbacks_groups", ["group_id"], :name => "index_feedbacks_groups_on_group_id"
-
-  create_table "groups", :force => true do |t|
-    t.string   "name"
-    t.integer  "site_id"
-    t.text     "emails"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "groups", ["site_id"], :name => "index_groups_on_site_id"
+  add_index "feedback_messages_groups", ["group_id"], :name => "index_feedbacks_groups_on_group_id"
+  add_index "feedback_messages_groups", ["message_id"], :name => "index_feedbacks_groups_on_feedback_id"
 
   create_table "groups_users", :id => false, :force => true do |t|
     t.integer "group_id"
@@ -236,8 +245,9 @@ ActiveRecord::Schema.define(:version => 20130521180955) do
     t.string   "name"
     t.string   "theme"
     t.integer  "site_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.text     "permissions"
   end
 
   add_index "roles", ["site_id"], :name => "index_roles_on_site_id"
@@ -413,14 +423,16 @@ ActiveRecord::Schema.define(:version => 20130521180955) do
   add_foreign_key "banners", "sites", :name => "banners_site_id_fk"
   add_foreign_key "banners", "users", :name => "banners_user_id_fk"
 
-  add_foreign_key "feedbacks", "sites", :name => "feedbacks_site_id_fk"
+  add_foreign_key "extension_sites", "sites", :name => "extension_sites_site_id_fk"
 
-  add_foreign_key "feedbacks_groups", "feedbacks", :name => "feedbacks_groups_feedback_id_fk"
-  add_foreign_key "feedbacks_groups", "groups", :name => "feedbacks_groups_group_id_fk"
+  add_foreign_key "feedback_groups", "sites", :name => "groups_site_id_fk"
 
-  add_foreign_key "groups", "sites", :name => "groups_site_id_fk"
+  add_foreign_key "feedback_messages", "sites", :name => "feedbacks_site_id_fk"
 
-  add_foreign_key "groups_users", "groups", :name => "groups_users_group_id_fk"
+  add_foreign_key "feedback_messages_groups", "feedback_groups", :name => "feedbacks_groups_group_id_fk", :column => "group_id"
+  add_foreign_key "feedback_messages_groups", "feedback_messages", :name => "feedbacks_groups_feedback_id_fk", :column => "message_id"
+
+  add_foreign_key "groups_users", "feedback_groups", :name => "groups_users_group_id_fk", :column => "group_id"
   add_foreign_key "groups_users", "users", :name => "groups_users_user_id_fk"
 
   add_foreign_key "locales_sites", "locales", :name => "locales_sites_locale_id_fk"

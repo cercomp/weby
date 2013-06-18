@@ -1,32 +1,31 @@
 Weby::Application.routes.draw do
   constraints(Weby::Subdomain) do
-    get "/" => "sites#show", as: :site
-    get "/admin" => "sites#admin", as: :site_admin
-    get "/admin/edit" => "sites#edit", as: :edit_site_admin
-    put "/admin/edit" => "sites#update", as: :edit_site_admin
+    constraints(Weby::Extensions) do
+      # Mount all engines here
+      mount Feedback::Engine, :at => 'feedback'
+      mount Acadufg::Engine, :at => 'acadufg'
+    end
+
+    get '/' => 'sites#show', as: :site
+    get '/admin' => 'sites#admin', as: :site_admin
+    get '/admin/edit' => 'sites#edit', as: :edit_site_admin
+    put '/admin/edit' => 'sites#update', as: :edit_site_admin
 
     # routes to feed and atom
-    match "/feed" => "sites/pages#published", as: :site_feed,
-      defaults: { format: "rss", per_page: 10, page: 1 }
-  
+    match '/feed' => 'sites/pages#published', as: :site_feed,
+      defaults: { format: 'rss', per_page: 10, page: 1 }
+    # route to paginate
+    match 'admin/banners/page/:page' => 'sites/admin/banners#index'
+
     resources :pages,
       as: :site_pages, 
       controller: "sites/pages", 
       only: [:index, :show] do
-      collection do
-        get :published, :events, :news
-        post :sort
+        collection do
+          get :published, :events, :news
+          post :sort
+        end
       end
-    end
-
-    resources :feedbacks,
-      as: :site_feedbacks,
-      controller: "sites/feedbacks", 
-      only: [:new, :create] do
-      collection do
-        get :sent
-      end
-    end
 
     resources :components,
       as: :site_components,
@@ -45,9 +44,7 @@ Weby::Application.routes.draw do
 
       get "notifications" => "notifications#index"
       
-      resources :feedbacks, except: [:new, :create]
       resources :notifications, only: [:index, :show]
-      resources :groups
       resources :banners do
         member do
           put :toggle_field
@@ -61,14 +58,15 @@ Weby::Application.routes.draw do
           post :sort
         end
       end
+      resources :extensions
       resources :menus do
         resources :menu_items,
           controller: "menus/menu_items",
           except: :show do
-          collection do
-            post :change_order, :change_menu
+            collection do
+              post :change_order, :change_menu
+            end
           end
-        end
       end
       resources :pages do
         member do
@@ -97,8 +95,7 @@ Weby::Application.routes.draw do
           post :sort
         end
       end
-      resources :users,
-        only: [] do
+      resources :users, only: [] do
         collection do
           get :manage_roles
           post :change_roles
@@ -106,18 +103,17 @@ Weby::Application.routes.draw do
       end
     end
   end
-  
+
   root :to => "sites#index"
 
   #rota para paginação
   match "sites/page/:page" => "sites#index"
-  
+
   constraints(Weby::GlobalDomain) do
     match "/admin" => "application#admin"
+
     namespace :admin do
-      resources :rights
-      resources :settings,
-        except: :show
+      resources :settings, except: :show
       resources :users do
         collection do
           get :manage_roles
@@ -128,12 +124,9 @@ Weby::Application.routes.draw do
           put :set_admin
         end
       end
-      resources :roles,
-        except: :show do
+      resources :roles, except: :show do
         collection do
           put :index
-        end
-        collection do
           post :sort
         end
       end
@@ -146,7 +139,10 @@ Weby::Application.routes.draw do
       # route to paginate
       match "users/page/:page" => "users#index"
       match "sites/page/:page" => "sites#index"
-    end 
+    end
+
+    # clipping
+    get "/clipping" => "clipping#index", as: :clipping
   end
 
   # routes to session
@@ -155,17 +151,18 @@ Weby::Application.routes.draw do
   post  "login"   => "session#create_session"
   get   "signup"  => "session#login"
   post  "signup"  => "session#create_user"
-  
+
   # routes to forget password
   match "forgot_password" => "session#forgot_password"
   match "password_sent"   => "session#password_sent"
   get   "reset_password"  => "session#reset_password"
   post  "update_password" => "session#update_password"
-  
+
   # Para ativação de conta por email
   match "activate(/:activation_code)" => "session#activate_user", as: :activate_account
   post  "resend_activation" => "session#resend_activation"
 
+  get "about" => "sites#about"
   match "robots.txt" => "sites#robots", :format => "txt"
   match "*not_found" => "application#render_404"
 end

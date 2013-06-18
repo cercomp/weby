@@ -67,7 +67,7 @@ module ApplicationHelper
        #		if (entry.menu.try(:page_id).nil? and entry.menu.try(:link).empty?)
        #menus << "#{entry.menu.try(:title)}"
        #		else
-       menus << link_to(entry.title, entry.target_id.to_i > 0 ? site_page_path(entry.target_id) : entry.url, :alt => entry.title,:title => entry.description, :target => entry.new_tab ? "_blank":"")
+       menus << link_to(entry.title, entry.target_id.to_i > 0 ? main_app.site_page_path(entry.target_id) : entry.url, :alt => entry.title,:title => entry.description, :target => entry.new_tab ? "_blank":"")
        #		end
 
        if view_ctrl == 1
@@ -107,7 +107,7 @@ module ApplicationHelper
         if flash[type]
           messages << content_tag('div', :class => "alert alert-#{type}") do
             raw %{
-              #{link_to('x', '#', class: 'close', data: {dismiss: "alert"})}
+              #{link_to(raw('&times;'), '#', class: 'close', data: {dismiss: "alert"})}
               #{flash.now[type]}
             }
           end

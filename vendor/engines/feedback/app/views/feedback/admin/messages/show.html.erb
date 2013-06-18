@@ -1,0 +1,30 @@
+<%- title '.feedback' %>
+
+
+    <p>
+    <b><%= t(".name") %>:</b>
+    <%= @message.name %>
+    </p>
+    <p>
+    <b><%= t(".email") %>:</b>
+    <%= @message.email %>
+    </p>
+    <p>
+    <b><%= t(".message") %>:</b>
+    <%= @message.message %>
+    </p>
+    <p>
+    <b><%= t((@message.groups.length>1 ? ".groups" : ".group")) %>:</b><br/>
+    <% @message.groups.each do |group| %>
+      <%= group.name %> (<%= group.emails %>)<br/>
+    <% end %>
+    </p>
+    <p>
+    <b><%= t('.send_date') %>:</b>
+    <%= l @message.created_at, format: :short %>
+    </p>
+
+    <div class="form-actions">
+      <%= link_to t("back"), :back, class: "btn btn-danger" %>
+    </div>
+

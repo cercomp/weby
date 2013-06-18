@@ -27,6 +27,7 @@ en:
       index:
         users:              " Users "
         new_user:           " New User "
+        manage_roles:       " Manage Roles "
       list:
         id:                 " Id "
         user:               " User "
@@ -48,3 +49,5 @@ en:
         none_user:          " None User "
       role_form:
         confirm_unrole:     " Unrole this user of the site "
+      manage_roles:
+        users:              " Users "

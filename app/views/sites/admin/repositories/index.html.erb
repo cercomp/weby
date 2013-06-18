@@ -1,34 +1,28 @@
-<%- title ".archives" %>
-
-<div class="span9">
-  <div class="well">
-    <div class="pull-left">
-      <%= form_tag request.path, method: 'get', autocapitalize: "off", class: 'search pull-right' do %>
-        <%= content_tag :div, class: 'input-append' do %>
-          <%= search_field_tag :search, params[:search], class: 'input-search' %><%= submit_tag t("search"),
-            class: 'btn btn-primary btn-search' %><%= select_tag "mime_type[]",
-              grouped_options_for_select(load_mime_types(@site)), include_blank: true, style: 'height:
-              30px;', class: 'add-on'  %>
-        <% end %>
-      <% end %>
-    </div>
-    <div class="pull-right">
-      <%= link_to t(".new_archive"),
-        new_site_admin_repository_path,
-        class: "btn btn-success" %>
-    </div>
-    <div class="clearfix"></div>
-     <div class="btn-group">
-        <%= link_to url_for(repository_view: 'thumbs'), class: "btn", title: t(".repository_as_thumbs") do %>
-          <%= icon('th') %>
-        <% end %>
-        <%= link_to url_for(repository_view: 'list'), class: "btn", title: t(".repository_as_list") do %>
-          <%= icon('list') %>
-        <%  end %>
-      </div>
-    
-    <div id="repo_list">
-      <%= render :partial => repository_partial %>
-    </div>
+<div class="pull-left">
+  <%= form_tag request.path, method: 'get', autocapitalize: "off", class: 'search pull-right' do %>
+    <%= content_tag :div, class: 'input-append' do %>
+      <%= search_field_tag :search, params[:search], class: 'input-search' %><%= submit_tag t("search"),
+        class: 'btn btn-primary btn-search' %><%= select_tag "mime_type[]",
+          grouped_options_for_select(load_mime_types(@site)), include_blank: true, style: 'height:
+          32px;', class: 'add-on'  %>
+    <% end %>
+  <% end %>
+</div>
+<div class="pull-right">
+  <%= link_to t(".new_archive"),
+    new_site_admin_repository_path,
+    class: "btn btn-success" %>
+</div>
+<div class="clearfix"></div>
+  <div class="btn-group">
+    <%= link_to url_for(repository_view: 'thumbs'), class: "btn", title: t(".repository_as_thumbs") do %>
+      <%= icon('th', white: true) %>
+    <% end %>
+    <%= link_to url_for(repository_view: 'list'), class: "btn", title: t(".repository_as_list") do %>
+      <%= icon('list', white: true) %>
+    <%  end %>
   </div>
+
+<div id="repo_list">
+  <%= render :partial => repository_partial %>
 </div>

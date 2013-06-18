@@ -12,7 +12,7 @@ class Sites::Admin::ComponentsController < ApplicationController
   end
 
   def new
-    if (params[:component] and Weby::Components.is_enabled?(params[:component]))
+    if (params[:component] and component_is_available(params[:component]))
       @component = Weby::Components.factory(params[:component])
     else
       render :available_components
@@ -21,7 +21,7 @@ class Sites::Admin::ComponentsController < ApplicationController
 
   def edit
     @component = Weby::Components.factory(@site.components.find(params[:id]))
-    unless(Weby::Components.is_enabled?(@component.name))
+    unless(component_is_available(@component.name))
       flash[:warning] = t(".disabled_component")
       redirect_to site_admin_components_url
     end

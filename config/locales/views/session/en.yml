@@ -1,26 +1,37 @@
 en:
   layouts:
     session:
-      portals:            " Portals "
-      help:               " Help "
+      portals:             " Portals "
+      help:                " Help "
   access_denied:
-    access_denied:        " Access denied "
-    access_denied_page:   " You are not allowed to see this page. "
-  session:  
+    access_denied:         " Access denied "
+    access_denied_page:    " You are not allowed to see this page. "
+  session:
     login:
-      login:              " Login "
-      forgot_password:    " Forgot password "
-      register:           " Register "
+      login:               " Login "
+      forgot_password:     " Forgot password "
+      register:            " Register "
+      field_login:         "Login"
+      field_password:      "Password"
+      field_password_conf: "Password confirmation"
+      field_remember_me:   "Stay signed"
+      field_email:         "Email"
+      field_first_name:    "First name"
+      field_last_name:     "Last name"
     forgot_password:
-      fill_email_form:    " Complete the form to recover your password. The password will be send to your e-mail. "
+      fill_email_form:     " Complete the form to recover your password. The password will be send to your e-mail. "
+      recover_password:    " Recover password "
+      field_email:         "Email"
     password_sent:
-      sent_password:      " Instructions to reset your password have been sent to your e-mail. "
+      sent_password:       " Instructions to reset your password have been sent to your e-mail. "
+      recover_password:    " Recover password "  
     reset_password:
-      reset_password:     " New password "
-      password_change:    " New password "
+      change_password:     " Change password "
+      reset_password:      " New password "
+      password_change:     " New password "
+      password_confirmation_label: "Password confirmation"
     signup:
-      signup:             " New user "
-      register:           " Register"
+      signup:              " New user "
+      register:            " Register"
     resend_activation:
-      resend:             " Resend activation e-mail "
-
+      resend:              " Resend activation e-mail "

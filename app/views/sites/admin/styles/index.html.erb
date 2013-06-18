@@ -1,47 +1,40 @@
-<%- title ".styles" %>
+<div class="pull-left">
+  <%= form_tag site_admin_styles_path, method: 'get', name: 'style_search', remote: true, class: 'search pull-right' do %>
+    <%= content_tag :div, class: 'input-append' do %>
+      <%= search_field_tag :style_name, @style_name, class: 'input-search' %><%= submit_tag t("search"), class: 'btn btn-primary btn-search' %><%= select_tag :style_type, options_for_select([
+        [t('.other_styles'), 'other'],
+        [t('.own_styles'), 'own'],
+        [t('.follow_styles'), 'follow']], @style_type), style: 'height: 32px;', class: 'add-on' %>
+    <% end %>    
+  <% end %>
+</div>
 
-<div class="span9">
-  <div class="well">
+<% if check_permission(Sites::Admin::StylesController, 'new') %>
+  <div class="pull-right">
+    <%= link_to t(".new_style"),
+      new_site_admin_style_path,
+      class: "btn btn-success" %>
+  </div>
+<% end %>
+<div class="clearfix"></div>
 
-    <div class="pull-left">
-      <%= form_tag site_admin_styles_path, method: 'get', name: 'style_search', remote: true, class: 'search pull-right' do %>
-        <%= content_tag :div, class: 'input-append' do %>
-          <%= search_field_tag :style_name, @style_name, class: 'input-search' %><%= submit_tag t("search"), class: 'btn btn-primary btn-search' %><%= select_tag :style_type, options_for_select([
-            [t('.other_styles'), 'other'],
-            [t('.own_styles'), 'own'],
-            [t('.follow_styles'), 'follow']], @style_type), style: 'height: 30px;', class: 'add-on' %>
-        <% end %>    
-      <% end %>
+<div class="tabbable">
+  <ul class="nav nav-tabs" id="style-tab">
+    <li class="<%= params["others"] ? "" : "active" %>" >
+    <a href="#own" data-toggle="tab"><%= t(".own_styles") %></a>
+    </li>
+    <li class="<%= params["others"] ? "active" : "" %>" >
+    <a href="#others" data-toggle="tab"><%= t(".other_styles") %></a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane <%= params["others"] ? "" : "active" %>" id="own">
+      <%= render partial: 'own_styles', locals: { styles: @styles.delete(:own) } %>
     </div>
-
-    <% if check_permission(Sites::Admin::StylesController, 'new') %>
-      <div class="pull-right">
-        <%= link_to t(".new_style"),
-          new_site_admin_style_path,
-          class: "btn btn-success" %>
-      </div>
-    <% end %>
-    <div class="clearfix"></div>
-
-    <div class="tabbable">
-      <ul class="nav nav-tabs" id="style-tab">
-        <li class="<%= params["others"] ? "" : "active" %>" >
-          <a href="#own" data-toggle="tab"><%= t(".own_styles") %></a>
-        </li>
-        <li class="<%= params["others"] ? "active" : "" %>" >
-          <a href="#others" data-toggle="tab"><%= t(".other_styles") %></a>
-        </li>
-      </ul>
-      <div class="tab-content">
-        <div class="tab-pane <%= params["others"] ? "" : "active" %>" id="own">
-          <%= render partial: 'own_styles', locals: { styles: @styles.delete(:own) } %>
-        </div>
-        <div class="tab-pane <%= params["others"] ? "active" : "" %>" id="others">
-          <% @styles.each do |type, styles| %>
-            <%= render partial: "styles", locals: { styles: styles, type: type } %>
-          <% end %>
-        </div>
-      </div>
+    <div class="tab-pane <%= params["others"] ? "active" : "" %>" id="others">
+      <% @styles.each do |type, styles| %>
+        <%= render partial: "styles", locals: { styles: styles, type: type } %>
+      <% end %>
     </div>
   </div>
 </div>

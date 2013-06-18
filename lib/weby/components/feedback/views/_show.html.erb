@@ -1,8 +1,0 @@
-<section class="feedback_component">
-  <% groups = component.parse_groups(current_site) %>
-  <% if groups.empty? %>
-    <%= link_to icon('envelope', text: (component.label || t(".feedback"))), new_site_feedback_path() %>
-  <% else %>
-    <%= link_to icon('envelope', text: (component.label || t(".feedback"))), new_site_feedback_path(groups: groups) %>
-  <% end %>
-</section>

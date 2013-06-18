@@ -25,6 +25,7 @@ class Site < ActiveRecord::Base
     format: { with: /([0-9]+[,\s]*)+[0-9]*/ }
 
   validates :title,
+    presence: true,
     :length => { :maximum => 50 }
 
   has_many :subsites,
@@ -49,8 +50,6 @@ class Site < ActiveRecord::Base
 
   has_many :pages_i18ns, through: :pages, source: :i18ns
 
-  has_many :groups
-  has_many :feedbacks
   has_many :banners, order: :position
 
   has_many :sites_styles,
@@ -69,6 +68,8 @@ class Site < ActiveRecord::Base
   belongs_to :repository, :foreign_key => "top_banner_id"
   has_many :repositories
 
+  has_many :extensions
+
   has_and_belongs_to_many :locales
 
   validate :at_least_one_locale
@@ -77,6 +78,10 @@ class Site < ActiveRecord::Base
     if self.locales.length < 1
       errors.add(:locales, I18n.t("site_need_at_least_one_locale"))
     end
+  end
+
+  def has_extension(extension)
+    extensions.select {|ext| ext.name = extension.to_s }.any?
   end
 
   has_attached_file :top_banner, :url => "/uploads/:site_id/:style_:basename.:extension"

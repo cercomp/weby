@@ -1,0 +1,1 @@
+#::Weby::register_extension(::Weby::Extension.new(:acadufg, 'Cercomp - Equipe Web'))

@@ -1,21 +1,37 @@
-<ul class="nav nav-tabs">
+<ul class="nav nav-pills">
   <li class="<%= active_tab("login") %>" ><a href="#login" data-toggle="tab"><%= t(".login") %></a></li>
   <li class="<%= active_tab("signup") %>"><a href="#signup" data-toggle="tab"><%= t(".register") %></a></li>
 </ul>
 
-<div class="tab-content">
-  <div class="tab-pane <%= active_tab("login") %>" id="login">
-    <%= simple_form_for @session, url: login_url(subdomain: nil, protocol: login_protocol), method: :post do |f| %>
-      <%= f.show_errors %>
-      <%= hidden_field_tag :back_url, "#{params[:back_url].blank? ? request.fullpath : params[:back_url]}" %>
-      <%= f.input :login, required: true, autofocus: true, autocapitalize: "off" %>
-      <%= f.input :password, required: true %>
-      <%= f.input :remember_me, as: :boolean, wrapper_html: { class: "remember_me" } %>
-      <%= link_to t(".forgot_password"), forgot_password_url, class: "pull-right" %>
-      <%= f.button :submit, t('.login'), class: 'login btn btn-primary btn-large' %> 
-    <% end %>
-  </div>
-  <div class="tab-pane <%= active_tab("signup") %>" id="signup">
-    <%= render 'signup' %>  
+<div class="content tabs">
+  <div class="tab-content">
+    <div class="tab-pane <%= active_tab("login") %>" id="login">
+      <%= simple_form_for @session, url: login_url(subdomain: nil, protocol: login_protocol), method: :post do |f| %>
+        <%= f.show_errors %>
+        <%= hidden_field_tag :back_url, "#{params[:back_url].blank? ? request.fullpath : params[:back_url]}" %>
+        <%= f.input :login, placeholder: t(".field_login"), label: false %>
+        <%= f.input :password, placeholder: t(".field_password"), label: false %>
+        <%= f.input :remember_me, as: :boolean, wrapper_html: { class: "pull-left boolean-inline" },
+          label_html: { class: "pull-right" }, label: t(".field_remember_me") %>
+        <%= link_to t(".forgot_password"), forgot_password_url, class: "pull-right" %>
+        <div class="clearfix"></div>
+        <%= f.button :submit, t('.login'), class: 'btn-primary' %> 
+      <% end %>
+    </div>
+    <div class="tab-pane <%= active_tab("signup") %>" id="signup">
+      <%= simple_form_for @user, url: signup_url(subdomain: nil), method: :post do |f| %>
+        <%= f.show_errors %>
+        <%= f.input :login, placeholder: t(".field_login"), label: false %>
+        <%= f.input :email, as: :email, placeholder: t(".field_email"), label: false %>
+        <%= f.input :password, hint: t("lower_upper_number_chars"), as: :password,
+          input_html: { pattern: '(?=.*\d)(?=.*[A-Z])(?=.*[a-z])^.{4,}$' }, 
+          placeholder: t(".field_password"), label: false %>
+        <%= f.input :password_confirmation, as: :password, required: true, 
+          placeholder: t(".field_password_conf"), label: false %>
+        <%= f.input :first_name, placeholder: t(".field_first_name"), label: false %>
+        <%= f.input :last_name, placeholder: t(".field_last_name"), label: false %>
+        <%= f.button :submit, t('.register'), class: 'btn-primary', disable_with: t("please_wait") %>
+      <% end %>
+    </div>
   </div>
 </div>

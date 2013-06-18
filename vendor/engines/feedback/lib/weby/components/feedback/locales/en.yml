@@ -1,0 +1,15 @@
+en:
+  components:
+    feedback:
+      name:               " Feedback link "
+      label:              " Label "
+  activerecord:
+    attributes:
+      feedback_component:
+        label:            " Label "
+  feedback:
+    views:
+      show:
+        feedback:         " Feedback "
+      form:
+        group_checked:    " Default selected groups "

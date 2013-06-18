@@ -1,4 +1,6 @@
 class SessionController < ApplicationController
+  layout 'weby_sessions'
+
   before_filter :require_no_user, except: :logout
   before_filter :require_user, only: :logout
   before_filter :load_user_using_perishable_token, only: :reset_password
@@ -60,8 +62,7 @@ class SessionController < ApplicationController
       if @user.active?
         redirect_to admin_user_path(@user)
       else
-        @session = UserSession.new
-        render :action => :login
+        redirect_to login_path(subdomain: nil)
       end
     else
       render action: :reset_password

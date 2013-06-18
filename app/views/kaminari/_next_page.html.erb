@@ -8,6 +8,7 @@
 -%>
 <% unless current_page.last? %>
   <li class="page">
+    <% url = defined?(comp_url) ? url.gsub(/^[^\?]+\?/, "#{comp_url}?") : url %>
     <%= link_to raw(t ".pagination_next"), url, :rel => 'next', :remote => remote %>
   </li>
 <% else %>

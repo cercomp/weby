@@ -1,0 +1,86 @@
+/*
+ *= require_self
+ *= require google/lato
+ */
+
+@import "weby/bootstrap";
+@import "bootstrap-responsive";
+
+// responsible more friendly
+@media (min-width: 768px) and (max-width: 979px)
+{
+  .offset3 { margin-left: 152px; }
+  .span6 { width: 460px }
+}
+
+body { background: #FCFCFC url(sessions_bg.jpg) repeat left top; }
+.tab-content { overflow: visible; }
+.nav-pills { text-transform: uppercase; }
+
+.help-nav
+{
+  a { margin-right: 5px; }
+  padding: 10px 0 0;
+  width: 90%;
+  text-transform: uppercase;
+  text-align: right;
+  margin: 0 auto;
+  font-size: 11px;
+}
+.title-box
+{
+  font-size: 22px;
+  color: #344259;
+  margin-top: 0px;
+  line-height: 22px;
+  margin-bottom: 20px;
+}
+.logo
+{
+  width: 90%;
+  margin: 30px auto 0;
+  text-align: center;
+}
+.box
+{
+  box-shadow: 0 0 5px 0 rgb(238, 238, 238);
+  background: white;
+  border: 1px solid #DFDFDF;
+  border-radius: 5px;
+  width: 90%;
+  padding: 35px 0 30px;
+  margin: 20px auto 0;
+  .box_cont
+  {
+    margin: 0 auto;
+    width: 77%;
+  }
+}
+form {
+  margin-bottom: 0;
+  input[type="text"],
+  input[type="password"],
+  input[type="email"]
+  {
+    width: 96%;
+    margin-bottom: 5px;
+  }
+  .boolean-inline
+  {
+    label { margin: 0; }
+    .controls
+    {
+      float: right;
+      margin-right: 5px;
+      .boolean { margin: 0; }
+    }
+    .checkbox { padding-left: 0; }
+    .checkbox input { margin-top: 4px !important; }
+  }
+  .btn
+  {
+    margin: 0 auto;
+    margin-top: 10px;
+    display: block;
+  }
+}
