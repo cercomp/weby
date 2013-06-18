@@ -1,5 +1,5 @@
 <section class="image_component <%= component.html_class %>">
-  <% link_url = component.target_id.present? ? site_page_path(component.target_id) : component.url %>
+  <% link_url = component.target_id.present? ? main_app.site_page_path(component.target_id) : component.url %>
   <% repository = Repository.find(component.repository_id) rescue nil %>
   <% if repository %>
     <% if repository.image? %>
@@ -9,9 +9,7 @@
             width = component.width.present? ? component.width : false#current_site.body_width ? current_site.body_width : false
             height = component.height.present? ? component.height : false
           end
-          size = ""
-          size << "width:#{width}px; " if width
-          size << "height:#{height}px; " if height
+          size = style_for_dimension width, height
       %>
       <%= weby_file_view(repository,
                          format, nil, nil,

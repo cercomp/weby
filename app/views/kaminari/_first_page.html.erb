@@ -8,6 +8,11 @@
 -%>
 <% unless current_page.first? %>
   <li>
-    <%= link_to_unless current_page.first?, raw(t ".pagination_first"), url, :remote => remote %>
+    <% url = defined?(comp_url) ? url.gsub(/^[^\?]+\?/, "#{comp_url}?") : url %>
+    <%= link_to raw(t ".pagination_first"), url, :remote => remote %>
+  </li>
+<% else %>
+  <li class="disabled">
+    <span><%= raw(t ".pagination_first") -%></span>
   </li>
 <% end %>

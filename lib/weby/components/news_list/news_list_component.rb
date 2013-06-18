@@ -1,5 +1,5 @@
 class NewsListComponent < Component
-  component_settings :quant, :front, :events, :category
+  component_settings :quant, :front, :events, :category, :show_image, :image_size
 
   validates :quant, presence: true
 
@@ -28,7 +28,21 @@ class NewsListComponent < Component
     _events.blank? ? false : _events.to_i == 1
   end
 
+  alias :_show_image :show_image
+  def show_image
+    _show_image.blank? ? false : _show_image.to_i == 1
+  end
+
+  alias :_image_size :image_size
+  def image_size
+    _image_size.blank? ? '48' : _image_size
+  end
+
   def default_alias
     self.category
+  end
+
+  def image_sizes
+    ['32', '48', '64', '128']
   end
 end

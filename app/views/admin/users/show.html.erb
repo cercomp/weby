@@ -1,51 +1,45 @@
-<%- title '.user'  %>
+<div id="user_profile">
+  <br />
+  <img src="http://www.gravatar.com/avatar/<%= Digest::MD5.hexdigest(@user.email) %>?s=120"></img>
+  <h1><%= captalize_name @user %></h1>
+  <p> <b><%= t('.id') %>:</b> <%= @user.id %> </p>
+  <p> <b><%= t('.status') %>:</b> <%= @user.status ? t('.enabled') : t('.disabled') %> </p>
+  <p> <b><%= t('.username') %>:</b> <%= @user.login %> </p>
+  <p> <b><%= t('.email') %>:</b> <%= @user.email %> </p>
+  <p> <b><%= t('.phone') %>:</b> <%= @user.phone %> </p>
+  <p> <b><%= t('.mobile') %>:</b> <%= @user.mobile %> </p>
+  <p> <b><%= t('.locale') %>:</b> <%= t(@user.locale.name) if @user.locale %> </p>
+  <p> <b><%= t('.register') %>: <%= @user.created_at.to_s(:short) if @user.created_at %> </b> </p>
+  <p> <b><%= t('.last_request') %>:</b> <%= @user.last_request_at.to_s(:short) if @user.last_request_at %> </p>
+</div>
 
-<div class="span9">
-  <div class="well">
+<div id="user_current_roles">
+  <% unless @user.global_roles.blank? %>
+    <h1><%= t('.global_roles') %></h1>
+    <p><%= @user.global_roles.map{|r| r.name }.join(', ') %></p>
+  <% end %>
 
-    <div id="user_profile">
-      <br />
-      <img src="http://www.gravatar.com/avatar/<%= Digest::MD5.hexdigest(@user.email) %>?s=120"></img>
-      <h1><%= captalize_name @user %></h1>
-      <p> <b><%= t('.id') %>:</b> <%= @user.id %> </p>
-      <p> <b><%= t('.username') %>:</b> <%= @user.login %> </p>
-      <p> <b><%= t('.email') %>:</b> <%= @user.email %> </p>
-      <p> <b><%= t('.phone') %>:</b> <%= @user.phone %> </p>
-      <p> <b><%= t('.mobile') %>:</b> <%= @user.mobile %> </p>
-      <p> <b><%= t('.locale') %>:</b> <%= t(@user.locale.name) if @user.locale %> </p>
-      <p> <b><%= t('.register') %>: <%= @user.created_at.to_s(:short) if @user.created_at %> </b> </p>
-      <p> <b><%= t('.last_request') %>:</b> <%= @user.last_request_at.to_s(:short) if @user.last_request_at %> </p>
-    </div>
+  <br/>
 
-    <div id="user_current_roles">
-      <% unless @user.global_roles.blank? %>
-        <h1><%= t('.global_roles') %></h1>
-        <p><%= @user.global_roles.map{|r| r.name }.join(', ') %></p>
+  <h1><%= t('.user_current_sites') %></h1>
+  <ul>
+    <% sites_with_roles.each do |s, roles| %>
+      <% unless s.blank? %>
+        <li>
+        <%= link_to s, site_url(subdomain: roles.first.site) %>
+        (<%= t('.roles') %>: <%= roles.map{|r| r.name}.join(', ') %>)
+        </li>
       <% end %>
+    <% end %>
+  </ul>
+</div>
 
-      <br/>
-
-      <h1><%= t('.user_current_sites') %></h1>
-      <ul>
-        <% sites_with_roles.each do |s, roles| %>
-          <% unless s.blank? %>
-            <li>
-            <%= link_to s, site_url(subdomain: roles.first.site) %>
-            (<%= t('.roles') %>: <%= roles.map{|r| r.name}.join(', ') %>)
-            </li>
-          <% end %>
-        <% end %>
-      </ul>
-    </div>
-
-    <div style="clear:both;"></div>
+<div style="clear:both;"></div>
 
 
-    <div class="form-actions">
-      <% if @user.id == @current_user.id or check_permission(Admin::UsersController, 'edit') %>
-        <%= link_to t('edit'), edit_admin_user_path(@user), :class => "btn btn-primary" %>
-      <% end %>
-      <%= link_to t("back"), :back, class: "btn btn-danger" %>
-    </div>
-  </div>
+<div class="form-actions">
+  <% if @user.id == @current_user.id or check_permission(Admin::UsersController, 'edit') %>
+    <%= link_to t('edit'), edit_admin_user_path(@user), :class => "btn btn-primary" %>
+  <% end %>
+  <%= link_to t("back"), :back, class: "btn" %>
 </div>

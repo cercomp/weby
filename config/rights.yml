@@ -1,0 +1,184 @@
+rights:
+  admin:
+    index:
+      name: Ver página administrativa
+      action: index
+  roles:
+    manage:
+      name: Gerenciar papéis
+      action: create index edit new show update
+    destroy:
+      name: Excluir papéis
+      action: destroy
+  users:
+    edit:
+      name: Editar usuários
+      action: edit
+    index:
+      name: Ver usuários
+      action: index
+    change_roles:
+      name: Mudar papéis de usuários
+      action: change_roles manage_roles
+    toggle_field:
+      name: Ativar usuário
+      action: toggle_field
+  pages:
+    index:
+      name: Listar Páginas
+      action: index fronts
+    show:
+      name: Ver Página
+      action: show
+    edit:
+      name: Editar Página
+      action: edit update
+    destroy:
+      name: Excluir Página
+      action: destroy
+    sort:
+      name: Ordernar Páginas
+      action: sort
+    new:
+      name: Criar Página
+      action: new create
+    toggle_field:
+      name: Publicar Página
+      action: toggle_field
+  menus:
+    index:
+      name: Listar Menus
+      action: index
+    show:
+      name: Ver Menus
+      action: show
+    edit:
+      name: Editar Menu
+      action: edit update
+    destroy:
+      name: Excluir Menu
+      action: destroy
+    new:
+      name: Criar Menu
+      action: new create
+  menu_items:
+    change_position:
+      name: Ordernar Itens de Menu
+      action: change_position change_order change_menu
+    index:
+      name: Listar Itens de Menu
+      action: index
+    show:
+      name: Ver Item de Menu
+      action: show
+    edit:
+      name: Editar Item de Menu
+      action: edit update
+    destroy:
+      name: Excluir Item de Menu
+      action: destroy
+    new:
+      name: Criar Item de Menu
+      action: new create
+  banners:
+    index:
+      name: Listar Banners
+      action: index
+    show:
+      name: Ver Banner
+      action: show
+    edit:
+      name: Editar Banner
+      action: edit update
+    destroy:
+      name: Excluir Banner
+      action: destroy
+    change_position:
+      name: Ordernar Banners
+      action: change_position
+    new:
+      name: Criar Banner
+      action: new create
+    toggle_field:
+      name: Publicar Banner
+      action: toggle_field
+  repositories:
+    index:
+      name: Listar Repositório
+      action: index
+    show:
+      name: Ver Repositório
+      action: show
+    edit:
+      name: Editar Repositório
+      action: edit update
+    destroy:
+      name: Excluir Repositório
+      action: destroy
+    new:
+      name: Criar Repositório
+      action: new create
+  styles:
+    index:
+      name: Listar Estilo
+      action: index
+    show:
+      name: Ver Estilo
+      action: show
+    edit:
+      name: Editar Estilo
+      action: edit update
+    destroy:
+      name: Excluir Estilo
+      action: destroy
+    new:
+      name: Criar Estilo
+      action: new create
+    publish:
+      name: Publicar Estilo
+      action: publish unpublish
+    follow:
+      name: Usar Estilo
+      action: follow
+    copy:
+      name: Copiar Estilo
+      action: copy
+    sort:
+      name: Ordenar Estilos
+      action: sort
+  components:
+    index:
+      name: Listar Componentes
+      action: index
+    show:
+      name: Ver Componentes
+      action: show
+    edit:
+      name: Editar Componente
+      action: edit update toggle_field
+    destroy:
+      name: Excluir Componente
+      action: destroy
+    new:
+      name: Criar Componente
+      action: new create
+    sort:
+      name: Ordenar Componentes
+      action: sort
+  sites:
+    edit:
+      name: Editar configurações do site
+      action: edit update
+  extensions:
+    index:
+      name: Listar Extensões
+      action: index
+    edit:
+      name: Editar Extensões
+      action: edit update
+    new:
+      name: Instalar Extensões
+      action: new create
+    destroy:
+      name: Excluir Extensões
+      action: destroy

@@ -7,6 +7,5 @@ class MenuItem < ActiveRecord::Base
   validates :menu_id,
     presence: true
 
-  validates :parent_id, numericality: true, allow_nil: false
   validates :position, numericality: true, allow_nil: false
 end

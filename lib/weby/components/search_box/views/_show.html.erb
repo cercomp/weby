@@ -1,5 +1,5 @@
 <section class="search_box_component <%=  component.align %>" style="width: <%= component.width.to_i > 0 ? "#{component.width}px" : "100%" %>;">
-  <%= form_tag site_pages_path, method: 'get' do %>
+  <%= form_tag main_app.site_pages_path, method: 'get' do %>
     <%= text_field_tag :search, nil, placeholder: t('.search') %>
     <%= hidden_field_tag 'page', 1 %>
     <%#= submit_tag '', class: 'search_box_submit'  %>

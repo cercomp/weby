@@ -9,13 +9,13 @@
   <table class="list border fullwidth zebra">
     <tr>
       <th>
-        <%= link_to t(".events"), events_site_pages_path(direction: 'desc', sort: 'pages.event_begin') %>
+        <%= link_to t(".events"), main_app.events_site_pages_path(direction: 'desc', sort: 'pages.event_begin') %>
       </th>
     </tr>
     <% @events.try(:each) do |page| %>
       <tr>
         <td>
-          <p><%= link_to page.title, site_page_path(page) %></p>
+          <p><%= link_to page.title, main_app.site_page_path(page) %></p>
           <p class="event-dates"><%= period_dates(page.event_begin, page.event_end, false) -%></p>
           <%= raw page.summary %>
         </td>

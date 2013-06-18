@@ -1,0 +1,15 @@
+<%- title ".groups" %>
+<p>
+  <b><%= t('.name') %> :</b>
+  <%= @group.name %>
+</p>
+<p>
+  <b>Email(s) :</b>
+  <%= @group.emails %>
+</p>
+
+<div class="form-actions">
+    <%= link_to t("back"), :back, class: "btn btn-danger" %>
+</div>
+
+

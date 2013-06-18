@@ -1,0 +1,36 @@
+es:
+  components:
+    front_news:
+      name:                 " Noticias de frente "
+      quant:                " Número de noticias de frente "
+      avatar_height:        " Altura de la imagen de noticias "
+      avatar_width:         " Anchura de la imagen de noticias "
+      read_more:            " Mostrar 'Leer más' "
+      show_author:          " Mostrar el autor de la noticia "
+      show_date:            " Mostrar la fecha de la noticia "
+      image_size:           " Versión de la imagen "
+      new_tab:              " Abrir noticias con URL en una nueva ventana "
+  activerecord:
+    attributes:
+      front_news_component:
+        quant:                " Número de noticias de frente "
+        avatar_height:        " Altura de la imagen de noticias "
+        avatar_width:         " Anchura de la imagen de noticias "
+        read_more:            " Mostrar 'Leer más' "
+        show_author:          " Mostrar el autor de la noticia "
+        show_date:            " Mostrar la fecha de la noticia "
+        image_size:           " Versión de la imagen "
+        new_tab:              " Abrir noticias con URL en una nueva ventana "
+        max_char:             " Número máximo de caracteres en el resumen "
+  front_news:
+    views:
+      show:
+        read_more:            " Leer más... "
+        posted_by:            " Por "
+        posted_on:            " En "
+      form:
+        medium:               " Media "
+        little:               " Pequeña "
+        mini:                 " Miniatura "
+        thumb:                " Thumbnail "
+        image_size_hint:      " Un Thumbnail es una versión más pequeña de la imagen, con un recorte cuadrado, por lo que la relación de aspecto original se conserva "

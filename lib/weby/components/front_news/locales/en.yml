@@ -3,24 +3,31 @@ en:
     front_news:
       name:                 " Front News "
       quant:                " Number of front news "
-      avatar_height:        " Height image of news "
-      avatar_width:         " Width image of news "
-      read_more:            " Show read more "
-      details:              " Show details of news "
+      avatar_height:        " News image height "
+      avatar_width:         " News image width "
+      read_more:            " Show 'Read more' "
+      show_author:          " Show the author of the news "
+      show_date:            " Show the date of the news "
+      image_size:           " Image version "
+      new_tab:              " Open news with URL in a new tab "
   activerecord:
     attributes:
       front_news_component:
         quant:              " Number of front news "
         avatar_height:        " Height image of news "
         avatar_width:         " Width image of news "
-        read_more:            " Show read more "
-        details:              " Show details of news "
+        read_more:            " Show 'Read more' "
+        show_author:          " Show the author of the news "
+        show_date:            " Show the date of the news "
         image_size:           " Image version "
-        new_tab:              " Open links in a new tab "
+        new_tab:              " Open news with URL in a new tab "
+        max_char:             " Maximum number of characters "
   front_news:
     views:
       show:
-        read_more:          " Read more... "
+        read_more:            " Read more... "
+        posted_by:            " By "
+        posted_on:            " On "
       form:
         medium:               " Medium "
         little:               " Little "

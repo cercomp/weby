@@ -1,14 +1,14 @@
 # coding: utf-8
 class ApplicationController < ActionController::Base
   include ApplicationHelper # Para usar helper methods nos controllers
-  include UrlHelper #Para utilizar url_helper que trata o subdomínio para Sites
+  #include UrlHelper #Para utilizar url_helper que trata o subdomínio para Sites
   protect_from_forgery
-  before_filter :set_contrast, :set_locale, :set_global_vars
-  after_filter :clear_weby_cache
+  before_filter :set_contrast, :set_locale, :set_global_vars, :set_view_types
+  after_filter :clear_weby_cache, :count_view
 
   helper :all
   helper_method :current_user_session, :current_user, :sort_direction, :test_permission,
-    :current_locale, :current_site, :current_settings, :current_roles_assigned
+    :current_locale, :current_site, :current_settings, :current_roles_assigned, :component_is_available
 
   def admin
     render 'admin/admin'
@@ -55,18 +55,18 @@ class ApplicationController < ActionController::Base
     session[:contrast] = params[:contrast] || session[:contrast] || 'no'
   end
 
+  def set_view_types
+    session[:repository_view] = params[:repository_view] || session[:repository_view] || 'thumbs'
+    session[:banners_view] = params[:banners_view] || session[:banners_view] || 'list'
+  end
+
   def current_site
     case
     when defined?(@current_site)
       return @current_site
     when Weby::Subdomain.matches?(request)
       #search subsites
-      sites = Weby::Subdomain.site_id.split('.')
-      @current_site = Site.where(parent_id: nil).find_by_name(sites[-1])
-      if(sites.length == 2)
-        @current_site = @current_site.subsites.find_by_name(sites[-2]) if @current_site
-      end
-      @current_site if [1,2].include? sites.length
+      @current_site = Weby::Subdomain.find_site
     end
   end
 
@@ -133,6 +133,30 @@ class ApplicationController < ActionController::Base
       format.html { render template: 'errors/500', layout: 'application', status: 500 }
       format.all { render nothing: true, status: 500}
     end
+  end
+
+  def count_view
+    return if is_in_admin_context? or
+              !current_site or
+              request.format != 'html' or
+              response.status != 200 or
+              Weby::Bots.is_a_bot?(request.user_agent)
+
+    current_site.views.create(viewable: @page,
+                              ip_address: request.remote_ip,
+                              referer: request.referer,
+                              user: current_user,
+                              query_string: request.query_string,
+                              request_path: request.path,
+                              user_agent: request.user_agent,
+                              session_hash: request.session_options[:id])
+    Page.increment_counter :view_count, @page.id if @page
+    Site.increment_counter :view_count, current_site.id
+  end
+
+  def count_click
+    params[:model].titleize.constantize.increment_counter :click_count, params[:id]
+    render nothing: true
   end
 
   private
@@ -232,17 +256,22 @@ class ApplicationController < ActionController::Base
   def set_global_vars
     @site = current_site
 
+    Weby::Cache.request[:domain] = request.domain
+    Weby::Cache.request[:subdomain] = request.subdomain
+
     params[:per_page] ||= per_page_default
 
     @current_rights = {}
     current_roles_assigned.each do |role|
-      role.rights.each do |right|
-        right.action.split(' ').each do |action|
-          (@current_rights[right.controller.to_sym] ||= {})[action.to_sym] = true
+      role.permissions_hash.each do |controller, rights|
+        rights.each do |right|
+          Weby::Rights.actions(controller, right).each do |action|
+            (@current_rights[controller.to_sym] ||= {})[action.to_sym] = true
+          end
         end
       end
     end
-    #puts @my_rights
+    #puts @current_rights
 
     if is_in_admin_context?
       #alguma var global exclusiva para o backend
@@ -257,7 +286,7 @@ class ApplicationController < ActionController::Base
 
         @global_components = {}
         @site.components.where({publish: true}).order('position asc').each do |comp|
-          (@global_components[comp.place_holder.to_sym] ||= []) << comp
+          (@global_components[comp.place_holder.to_sym] ||= []) << comp if component_is_available comp.name
         end
         
         @main_width = nil
@@ -266,6 +295,15 @@ class ApplicationController < ActionController::Base
         end
       end
     end
+  end
+
+  def component_is_available comp_name
+    if (comp = Weby::Components.components[comp_name.to_sym])
+      if comp[:group] != :weby
+        return false unless current_site.extensions.select{|extension| extension.name == comp[:group].to_s }.any?
+      end
+    end
+    Weby::Components.is_enabled? comp_name
   end
 
   def clear_weby_cache

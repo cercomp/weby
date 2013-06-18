@@ -5,6 +5,8 @@ pt-BR:
       quant:                   " Quantidade de notícias exibidas "
       front:                   " Apenas notícias de capa "
       events:                  " Mostrar eventos "
+      show_image:              " Mostrar imagem da notícia "
+      image_size:              " Tamanho da imagem "
       category:                " Categoria "
   activerecord:
     attributes:
@@ -12,7 +14,9 @@ pt-BR:
         quant:                 " Quantidade de notícias exibidas "
         front:                 " Apenas notícias de capa "
         events:                " Mostrar eventos "
-        category:                " Categoria "
+        show_image:            " Mostrar imagem da notícia "
+        image_size:            " Tamanho da imagem "
+        category:              " Categoria "
   news_list:
     views:
       show:

@@ -8,5 +8,6 @@
     remote:        data-remote
 -%>
 <li class="page<%= ' active' if page.current? %>">
+  <% url = defined?(comp_url) ? url.gsub(/^[^\?]+\?/, "#{comp_url}?") : url %>
   <%= link_to page, url, opts = {:remote => remote, :rel => page.next? ? 'next' : page.prev? ? 'prev' : nil} %>
 </li>

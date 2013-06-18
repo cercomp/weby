@@ -1,0 +1,28 @@
+<%= info_page @pages %>
+<%= paginate @pages, remote: true, page_links: true %>
+
+<table class="table table-striped table-condensed table-bordered">
+  <thead>
+    <tr>
+      <th><%= t(".title") %></th>
+      <th><%= sortable 'tags.name', t(".category") %></th>
+      <th><%= controller.action_name == 'events' ? sortable('pages.event_begin', t(".period_event")) : sortable('pages.type', t(".type")) %></th>
+      <th><%= sortable 'pages.created_at', t(".date_register")%></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @pages.each do |page| %>
+    <tr id="<%= page.id %>">
+      <td>
+        <%= link_to page.title, site_page_path(page) %>
+      </td>
+      <td><%= raw categories_links(page.category_list) %></td>
+      <td><%= controller.action_name == 'events' ? period_dates(page.event_begin, page.event_end) : t(".#{page.type.downcase}") %></td>
+      <td><%= l(page.created_at.to_date, :format => :default) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= per_page_links @pages, true %>
+<%= paginate @pages, remote: true, page_links: true %>

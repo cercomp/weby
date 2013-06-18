@@ -1,74 +1,85 @@
 /*
- *= require google/orbitron
- *= require_self 
- */ 
+ *= require_self
+ *= require google/lato
+ */
 
-@import "bootstrap";
-// overide bootstrap to use navbar in responsive layout
-body { padding-top: 40px; }
+@import "weby/bootstrap";
+@import "bootstrap-responsive";
 
-// style to put logo in navbar
-.navbar .brand.logo { color: white; }
-.orbitron { font-family: "Orbitron"; }
-.red { color: #C11303; }
+body { background: #F5F5F5; }
 
-// style to layout
-#header,
-#main-container,
-#footer { padding: 20px 0; }
-
-.bg-zone 
-{ 
-  @media (max-width: 979px)
-  {
-    margin:
-    {
-      left: -20px;
-      right: -20px;
-    }
-  }
-
-  border: 1px solid #E3E3E3;
-  padding: 0 20px;
-  background: #F8F8F8;
-  border:
-  {
-    left: none;
-    right: none;
-  }
-}
-
-// style to header
 #header
 {
-  @media (max-width: 979px) { padding-top: 0; }
-
-  .title 
+  padding-top: 25px;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  font-size: 12px;
+  .noperson
   {
-    @media (max-width: 979px)
+    padding-top: 14px;
+    padding-bottom: 14px;
+    text-align: right;
+    .btn { margin-left: 5px; }
+  }
+  .person,
+  .site
+  {
+    padding-top: 14px;
+    padding-bottom: 14px;
+    .avatar
     {
-      font-size: 26px;
-      line-height: 63px;
+      margin-right: 10px;
     }
-    
-    line-height: 84px;
-    font:
+    .info
     {
-      size: 30px;
-      weight: bold;
+      line-height: 15px;
+    }
+    .info.name
+    {
+      font-weight: bold;
+      padding-bottom: 1px;
+    }
+    .info.actions
+    {
+      padding-top: 1px;
+      a
+      {
+        color: #BC1625;
+        margin-right: 5px;
+      }
     }
   }
 }
 
-// style to main-container
-#main-container 
+#main
 {
-  .well { background: white; }
+  .nav { margin-bottom: 10px; }
+  .pagination { margin: 10px 0 5px; }
+  .form { margin-bottom: 10px; }
+  .new-site { margin-left: 5px }
+  .search { margin-bottom: 10px; }
+
+  .container .well
+  {
+    background: white;
+  }
 }
 
-// style to footer
-#footer { text-align: center; }
+#footer
+{
+  a
+  {
+    margin-right: 5px;
+    font-weight: bold;
+  }
+  padding: 10px 0 0;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 11px;
+}
 
+// NOTE:legacy
+// TODO: revisar
 // big editor to styles
 .style-editor
 {
@@ -99,8 +110,20 @@ body { padding-top: 40px; }
     margin: 10px 0;
 }
 
+.pagination select {
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  border-radius: 0;
+  float: left;
+  border-color: #DDD;
+}
+
+.pagination select.small{
+    height: 26px;
+}
+
 // required is red!
-label.required abbr { color: red; }
+label.required abbr { color: #BC1625; }
 
 // nowrap tables
 table.nowrap td > div 
@@ -113,6 +136,23 @@ body.modal-open {
     overflow: hidden;
 }
 
+.tabbable.i18n .nav.nav-tabs {
+    margin-bottom: 0px !important;
+}
+
+.tabbable.i18n .tab-content {
+  padding-top: 20px;
+  border: 1px solid #DDD;
+  border-top: 0;
+  margin-bottom: 20px;
+  -moz-border-radius-bottomleft: 4px;
+  -moz-border-radius-bottomright: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  -webkit-border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
 .highlight:hover td{
    background-color: #EEE !important;
 }
@@ -122,4 +162,3 @@ body.modal-open {
   cursor: pointer;
 }
 
-@import "bootstrap-responsive";

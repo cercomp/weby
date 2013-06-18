@@ -7,7 +7,7 @@
   <%= f.input :parent_id, :collection => main_sites_list(@site).collect{|s| [s.title || s.name ,s.id]}, :label => t(".main_site") %>
   <%= f.input :per_page,  :hint => t(".example_per_page") %>
   <%= f.input :per_page_default,  :required => true %>
-  <%= f.input :title %>
+  <%= f.input :title, :required => true %>
   <%= f.input :description, :input_html => {:rows => 8}, :hint => t(".site_comments"), :as => :text %>
   
   <%= f.input :view_desc_pages, :hint => t(".view_desc_pages_help"), :as => :boolean %>
@@ -20,7 +20,7 @@
 
   <div class="form-actions">
     <%= f.button :submit, class: 'btn-primary', disable_with: t("please_wait") %>
-    <%= link_to t("back"), :back, class: "btn btn-danger" %>
+    <%= link_to t("back"), :back, class: "btn" %>
   </div>
 <% end %>
 <%= content_for :javascripts, javascript_include_tag("admin.edit") %>

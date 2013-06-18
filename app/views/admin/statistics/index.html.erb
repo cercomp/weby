@@ -1,0 +1,132 @@
+<div class="form-horizontal">
+  <div class="control-group select optional">
+    <label class="select optional control-label" for="stats_site">  Site </label>
+    <div class="controls">
+      <%= select_tag :stats_site, options_for_select(Site.all.map{|site| [site.title  || site.name, site.id]}), include_blank: true %>
+      <%= link_to t('.generate'), "#", class: 'btn btn-primary generate'  %>
+    </div>
+  </div>
+
+  <div class="stats">
+  </div>
+</div>
+
+<% content_for :stylesheets do %>
+  <style>
+    .stats {
+      font: 13px sans-serif;
+    }
+
+    .axis path,
+    .axis line {
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges;
+    }
+
+    .x.axis path {
+      display: none;
+    }
+
+    .line {
+      fill: none;
+      stroke: steelblue;
+      stroke-width: 1.5px;
+    }
+
+    .stats-label{
+      font-size: 15px;
+      border: 1px solid #DDD;
+    }
+
+  </style>
+<% end %>
+
+<% content_for :javascripts do %>
+  <script type="text/javascript" src="//d3js.org/d3.v3.min.js"></script>
+  <script type="text/javascript">
+  
+    var niceDate = function(date){
+      parts = date.split('-');
+      return parts[2]+"/"+parts[1]+"/"+parts[0];
+    }
+
+    var parseDate = d3.time.format("%Y-%m-%d").parse;
+
+    var margin = {top: 40, right: 40, bottom: 40, left:50},
+        width = 750,
+        height = 300;
+
+    $('.generate').click(function(){
+       $.getJSON('/admin/stats', {site_id: $('#stats_site').val()}, function(data){
+
+          var x = d3.time.scale()
+              .domain(d3.extent(data, function(d) { return parseDate(d.date); }))
+              .range([0, width]);
+
+          var y = d3.scale.linear()
+              .domain(d3.extent(data, function(d) { return d.views; }))
+              .range([height, 0]).nice();
+
+          var xAxis = d3.svg.axis()
+              .scale(x)
+              .orient("bottom")
+              .tickFormat(d3.time.format("%d/%m"));
+
+          var yAxis = d3.svg.axis()
+              .scale(y)
+              .orient("left");
+
+          var line = d3.svg.line()
+              .x(function(d) { return x(parseDate(d.date)); })
+              .y(function(d) { return y(d.views); });
+
+          var svg = d3.select(".stats").html(null).append("svg")
+              .attr("width", width + margin.left + margin.right)
+              .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+              .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+          svg.append("g")
+              .attr("class", "x axis")
+              .attr("transform", "translate(0," + height + ")")
+              .call(xAxis);
+
+          svg.append("g")
+              .attr("class", "y axis")
+              .call(yAxis)
+
+          svg.append("path")
+              .datum(data)
+              .attr("class", "line")
+              .attr("d", line);
+
+          var dots = svg.selectAll("dot")
+                .data(data)
+                .enter()
+              .append("g")
+                .attr('class', 'dot');
+
+           dots.append('circle')
+              .attr("fill", "steelblue")
+              .attr("r", 3)
+              .attr("cx", function(d) { return x(parseDate(d.date)); })
+              .attr("cy", function(d) { return y(d.views); })
+
+           dots.append("text")
+              .attr("x", function(d) { return x(parseDate(d.date)); })
+              .attr("y", function(d) { return y(d.views) - 10; })
+              .attr('class', 'stats-label')
+              .text(function(d) { return d.views; });
+
+           
+           $('.stats').prepend('<div>Total de acessos no período '+niceDate(data[0].date)+' a '+niceDate(data[data.length-1].date)+': <b>'+d3.sum(data, function(d){ return d.views; })+'</b></div>')
+
+              
+          });
+          return false;
+       });
+
+    </script>
+<% end %>
+

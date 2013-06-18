@@ -11,6 +11,7 @@ en:
   active_deactive:                      " Active Deactive  "
   are_you_sure:                         " Are you sure?    "
   activate_deactivate:                  " Activate/Deactivate "
+  activate:                             " Activate "
   access_denied:                        " Access denied "
   access_denied_page:                   " You are not allowed to see this page! "
   add_sub_menu:                         " Add sub menu item "
@@ -38,6 +39,7 @@ en:
   destroy:                              " Destroy "
   disable:                              " Disable "
   disabled_component:                   " Disabled Component "
+  deactivate:                           " Deactivate "
   destroyed_style:                      " Style destroyed "
   destroyed_style_error:                " Error when remove Style "
   destroyed_param:                      " %{param} destroyed "
@@ -51,7 +53,6 @@ en:
   field_required:                       " Field Required!  "
   file_already_exists:                  " There is another file named '%{value}' "
   follow:                               " Follow "
-  feedback_need_at_least_one_group:     " Needs at least one group! "
 #---G---#
 #---H---#
 #---I---#
@@ -86,7 +87,10 @@ en:
 #---P---#
   please_wait:                          " Please Wait! "
   publish:                              " Publish "
+  published:                            " Published "
   publication_infinite:                 " Publication infinite "
+  posted_by:                            " By "
+  posted_on:                            " On "
   prohibited_being_saved:
     one:                                " error, prevent you from proceeding "
     other:                              " errors, prevent you from proceeding "
@@ -112,6 +116,7 @@ en:
 #---U---#
   unfollow:                             " Unfollow "
   unpublish:                            " Unpublish "
+  unpublished:                          " Unpublished "
   user_already_active:                  " User already activated. "
   user_inactive:                        " User was not activated. "
   user_not_found:                       " User not found "
@@ -159,7 +164,8 @@ en:
     formats:
       default:            " %a, %m-%d-%Y %H:%M:%S %z "
       short:              " %m/%d/%y %H:%M "
-      long:               " %B %d, %Y %H:%M "
+      medium:             " %m/%d/%Y at %H:%M "
+      long:               " %B %d, %Y at %H:%M "
       event_date_short:   " %B %d "
       event_date_full:    " %B %d, %Y "
       event_period_short: " %B %{iniday} - %{finday} "

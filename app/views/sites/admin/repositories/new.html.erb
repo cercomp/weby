@@ -1,7 +1,29 @@
-<%- title ".archives" %>
+<%= simple_form_for [:site_admin, @repository], remote: true, :html => { class: 'form-horizontal', id: 'create-repository-form'} do |f| %>
+  <%= f.show_errors %>
 
-<div class="span9">
-  <div class="well">
-    <%= render 'form' %>
+  <%= f.input :archive, as: :file, label: t('.add_archives'), input_html: {multiple: true} %>
+  <div class="control-group string required">
+    <label class="string required control-label">
+      <abbr title="<%= t('simple_form.required.text') %>">*</abbr>
+    </label>
+    <div class="controls">
+      <p class="help-block"><%= "#{t(".field_required")} #{t(".accessibility_needs")}" %></p>
+    </div>
   </div>
-</div>
+  <%= f.input :site_id, input_html: {value: @site.id}, as: :hidden %>
+
+  <div id="upload-preview">
+    <div class="well repo-template closeable" style="display: none;">
+        <button type="button" class="close" data-dismiss="repo-item" tabindex="-1" title="<%= t("destroy") %>">&times;</button>
+        <%= f.input :archive, as: :string, input_html: {disabled: true, value: ""} %>
+        <%= f.input :description %>
+        <div class="status"></div>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: 'btn-primary send-files', disable_with: t("please_wait") %>
+    <%= link_to t("back"), :back, class: "btn" %>
+  </div>
+<% end %>
+<% content_for :javascripts, javascript_include_tag('repository_new') %>

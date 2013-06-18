@@ -49,7 +49,7 @@ class Repository < ActiveRecord::Base
       mini: "-quality 90 -strip",
       little: "-quality 90 -strip",
       medium: "-quality 80 -strip",
-      thumb: "-quality 90 -strip -crop 160x160+0+0 +repage",
+      thumb: "-crop 160x160+0+0 +repage -quality 90 -strip",
       original: "-quality 80 -strip"}
 
   validates_attachment_presence :archive,
@@ -104,7 +104,6 @@ class Repository < ActiveRecord::Base
     STYLES.each_key do |format|
       return false unless exists_archive?(format)
     end 
-
     true
   end
 

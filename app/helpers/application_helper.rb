@@ -17,17 +17,21 @@ module ApplicationHelper
         if obj[field.to_s] == 0 or not obj[field.to_s]
           menu << link_to( image_tag("false.png", :alt => t("disable")),
             {:action => "#{action}", :id => obj.id, :field => "#{field}"},
-            options.merge({method: :put, :title => t("activate_deactivate")}))
+            options.merge({method: :put, :title => t("activate")}))
+          menu << " #{t('unpublished')}" if options[:show_label]
         else
           menu << link_to(image_tag("true.png", :alt => t("enable")),
                           {:action => "#{action}", :id=> obj.id, :field => "#{field}"},
-                          options.merge({method: :put, :title => t("activate_deactivate")}))
+                          options.merge({method: :put, :title => t("deactivate")}))
+          menu << " #{t('published')}" if options[:show_label]
         end
       else
         if obj[field.to_s] == 0 or not obj[field.to_s]
           menu << image_tag("false_off.png", :alt => t("enable"), :title => t("no_permission_to_activate_deactivate"))
+          menu << " #{t('unpublished')}" if options[:show_label]
         else
           menu << image_tag("true_off.png", :alt => t("disable"), :title => t("no_permission_to_activate_deactivate"))
+          menu << " #{t('published')}" if options[:show_label]
         end
       end
     end
@@ -42,8 +46,8 @@ module ApplicationHelper
       if menu
         menuitems = menu.items_by_parent
         menus << "\n<menu class=\"#{html_class}\">"
-        if menuitems[0]
-          menuitems[0].each do |child|
+        if menuitems[nil]
+          menuitems[nil].each do |child|
             menus << print_menu_entry(menuitems, child, view_ctrl, 1)
           end
         end
@@ -63,7 +67,7 @@ module ApplicationHelper
        #		if (entry.menu.try(:page_id).nil? and entry.menu.try(:link).empty?)
        #menus << "#{entry.menu.try(:title)}"
        #		else
-       menus << link_to(entry.title, entry.target_id.to_i > 0 ? site_page_path(entry.target_id) : entry.url, :alt => entry.title,:title => entry.description, :target => entry.new_tab ? "_blank":"")
+       menus << link_to(entry.title, entry.target_id.to_i > 0 ? main_app.site_page_path(entry.target_id) : entry.url, :alt => entry.title,:title => entry.description, :target => entry.new_tab ? "_blank":"")
        #		end
 
        if view_ctrl == 1
@@ -103,7 +107,7 @@ module ApplicationHelper
         if flash[type]
           messages << content_tag('div', :class => "alert alert-#{type}") do
             raw %{
-              #{link_to('x', '#', class: 'close', data: {dismiss: "alert"})}
+              #{link_to(raw('&times;'), '#', class: 'close', data: {dismiss: "alert"})}
               #{flash.now[type]}
             }
           end
@@ -220,14 +224,14 @@ module ApplicationHelper
       #{collection.offset_value + collection.length}"
       html << " #{t('of')} #{collection.total_count}" 
 
-      content_tag :div, html, :class => "pagination"
+      content_tag :div, html, :class => "pagination", :style => style
     end
   end
 
   # Links para selecionar a quantidade de itens por página
   def per_page_links(collection, remote = false, size = nil)
     if collection.page(1).count > per_page_array.first.to_i
-      html = "<li class=\"disabled\"><a href=\"#\">#{t('views.pagination.per_page')} </a></li>"
+      html = "<li><span>#{t('views.pagination.per_page')} </span></li>"
 
       params[:per_page] = per_page_default if params[:per_page].blank?
 
@@ -235,7 +239,8 @@ module ApplicationHelper
         html << 
         if params[:per_page].to_i == item.to_i
           content_tag :li, :class => 'page active' do
-            link_to "#{item} ", params.merge({:per_page => item, :page => 1}), :remote => remote
+            #link_to "#{item} ", params.merge({:per_page => item, :page => 1}), :remote => remote
+            content_tag :span, item
           end
         else
           content_tag(:li, :class => 'page') do

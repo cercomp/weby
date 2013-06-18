@@ -1,24 +1,14 @@
-<%- title ".components" %>
+<div id="available_components">
+  <%= form_tag new_site_admin_component_path, :method => :get do %>
+    <div id="main">
+      <%= select_tag "component", grouped_options_for_select(available_components_sorted), size: '11', id: "component_select" %>
 
-<div class="span9">
-  <div class="well" id="available_components">
-    <%= form_tag new_site_admin_component_path, :method => :get do %>
-      <div id="main">
-        <select id="component_select" name="component" size="11">
-          <% available_components_sorted.each do |component| %>
-            <option value="<%= component[:name] %>">
-              <%= component[:i18n] %>
-            </option>
-          <% end %>
-        </select>
-
-        <img id="component_image" src="/assets/components/default.png"/>
-      </div>
-
-    <button id="next_step" class="btn btn-info"><%= t(".next_step") %></button>
-
-    <% end %>
-  </div>
+      <img id="component_image" src="/assets/components/default.png"/>
+    </div>
+    <div class="form-actions">
+        <button id="next_step" class="btn btn-info"><%= t(".next_step") %></button>
+    </div>
+  <% end %>
 </div>
 
 <style type="text/css">

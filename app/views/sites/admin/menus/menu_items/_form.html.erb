@@ -12,10 +12,10 @@
         :as => :hidden %>
     </div>
   <% end %>
-  <div class="tabbable">
+  <div class="tabbable i18n">
     <ul class="nav nav-tabs">
       <% available_locales(@menu_item).each_with_index do |locale, index| %>
-        <li class="<%= index == 0 ? "active" : "" %>"><%= link_to locale_with_name(locale), "#tab_#{locale}", data: {toggle: 'tab'} %></li>
+        <li class="<%= index == 0 ? "active" : "" %>"><%= link_to locale_with_name(locale, '16'), "#tab_#{locale}", data: {toggle: 'tab'} %></li>
       <% end %>
     </ul>
     <div class="tab-content">
@@ -54,6 +54,6 @@
 
   <div class="form-actions">
     <%= f.button :submit, class: 'btn-primary', disable_with: t("please_wait") %>
-    <%= link_to t("back"), :back, class: "btn btn-danger" %>
+    <%= link_to t("back"), :back, class: "btn" %>
   </div>
 <% end %> 

@@ -1,17 +1,15 @@
-<%- title "manage_roles" %>
-
-<div class="span9">
-  <div class="well">
-    <div id="enroled">
-      <%= render 'enroled' %>
-    </div>
+<% if check_permission(Admin::UsersController, [:index]) %>
+  <div class="pull-right">
+    <%= link_to t(".users"),
+      admin_users_path,
+      class: "btn btn-primary" %>
   </div>
+  <div class="clearfix"></div>
+<% end %>
+  
+<div id="enroled">
+  <%= render 'enroled' %>
 </div>
-
-<div class="span9">
-  <div class="well">
-    <div id="enrole">
-      <%= render 'enrole' %>
-    </div>
-  </div>
+<div id="enrole">
+  <%= render 'enrole' %>
 </div>

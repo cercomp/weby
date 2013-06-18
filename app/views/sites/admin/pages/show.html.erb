@@ -1,49 +1,45 @@
-<%- title ".pages" %>
+<article class="page-show">
+  <%= weby_file_view(@page.image, :little, '128', nil) %>
 
-<div class="span9">
-  <div class="well">
-    <article class="page-show">
-      <%= weby_file_view(@page.image, :little, '128', nil) %>
+  <header>
+    <%= raw available_flags(@page) if @page.locales.many? %>
+    <h1><%= @page.title %></h1>
+  </header>
 
-      <header>
-        <%= raw available_flags(@page) if @page.locales.many? %>
-        <h1><%= @page.title %></h1>
-      </header>
+  <%= content_tag_if @page.event?, :div, class: 'event' do %>
+    <h3><%= t(".event") %></h3>
+    <p class="local">
+      <%= label(:page, :local) %>
+      <%= @page.local %>
+    </p>
+    <%= content_tag_if @page.kind?, :p, class: 'event-type' do %>
+      <%= label(:page, :kind) %>
+      <%= t("pages.event_form.#{@page.kind}") %>
+    <% end %>
+    <%= content_tag_if @page.event_email?, :p, class: 'event-email' do %>
+      <%= label(:page, :event_email) %>
+      <%= @page.event_email %>
+    <% end %>
+    <p class="event-period">
+      <%= label(:page, :event_period, t(".period_event"), style: 'display: inline-block;') %>:
+      <span class="event-dates"><%=  period_dates(@page.event_begin, @page.event_end) %></span>
+    </p>
+  <% end %>
 
-      <%= content_tag_if @page.event?, :div, class: 'event' do %>
-        <h3><%= t(".event") %></h3>
-        <p class="local">
-        <%= label(:page, :local) %>
-        <%= @page.local %>
-        </p>
-        <%= content_tag_if @page.kind?, :p, class: 'event-type' do %>
-          <%= label(:page, :kind) %>
-          <%= t("pages.event_form.#{@page.kind}") %>
-        <% end %>
-        <%= content_tag_if @page.event_email?, :p, class: 'event-email' do %>
-          <%= label(:page, :event_email) %>
-          <%= @page.event_email %>
-        <% end %>
-        <p class="event-period">
-          <%= label(:page, :event_period, t(".period_event"), style: 'display: inline-block;') %>:
-          <span class="event-dates"><%=  period_dates(@page.event_begin, @page.event_end) %></span>
-        </p>
-      <% end %>
+  <summary>
+    <p>
+      <%= "#{@page.author} #{l(@page.created_at, format: :short)}" if @site.view_desc_pages %>
+    </p>
+    <p>
+      <%= raw @page.summary %>
+    </p>
+  </summary>
 
-      <summary>
-        <p>
-        <%= "#{@page.author} #{l(@page.created_at, format: :short)}" if @site.view_desc_pages %>
-        </p>
-        <p>
-        <%= raw @page.summary %>
-        </p>
-      </summary>
+  <div class="body">
+    <%= raw @page.text %>
+  </div>
 
-      <div class="body">
-        <%= raw @page.text %>
-      </div>
-
-      <%= content_tag_if @page.source.present?, :p, class: 'source' do %>
+  <%= content_tag_if @page.source.present?, :p, class: 'source' do %>
     <span class="source-label"><%= "#{t('.source')}:" %></span>
     <%= "#{@page.source}" %>
   <% end %>
@@ -55,14 +51,12 @@
     <% end %>
   <% end %>
 
-      <%= render partial: 'sites/admin/pages/related_files' if @page.related_files.any? %>
+  <%= render partial: 'sites/admin/pages/related_files' if @page.related_files.any? %>
 
-      <div class="form-actions">
-        <%= link_to icon('eye-open', text: t('show')), site_page_path(@page) %>
-        <%= make_menu(@page, :except => "show") %>
-        <%= link_to icon('list', text: t(".list_all")), site_admin_pages_path %>
-        <%= link_to icon('chevron-left', text: t("back")), :back %>
-      </div>
-    </article>
+  <div class="form-actions">
+    <%= link_to icon('eye-open', text: t('show')), site_page_path(@page) %>
+    <%= make_menu(@page, :except => "show") %>
+    <%= link_to icon('list', text: t(".list_all")), site_admin_pages_path %>
+    <%= link_to icon('chevron-left', text: t("back")), :back %>
   </div>
-</div>
+</article>

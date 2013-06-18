@@ -3,10 +3,12 @@ class SitesController < ApplicationController
   
   before_filter :require_user, only: [:admin, :edit, :update]
   before_filter :check_authorization, only: [:edit, :update]
-  
+
   respond_to :html, :xml, :js, :txt
 
   helper_method :sort_column
+
+  #### FRONT-END
 
   def index
     params[:per_page] ||= current_settings[:per_page_default]
@@ -17,6 +19,8 @@ class SitesController < ApplicationController
       page(params[:page]).
       per(params[:per_page])
     flash[:warning] = (t"none_page") unless @sites
+
+    render layout: 'weby_pages'
   end
 
   def show
@@ -25,35 +29,7 @@ class SitesController < ApplicationController
     params[:id] = @site.id
     params[:per_page] = nil
   end
-
-  def admin
-    render layout: "application"
-  end
   
-  def edit
-    @site = current_site
-    load_themes
-    @sites = @site.subsites.
-      except(:order).
-      order(:title).
-      page(1).
-      per(100)
-    
-    render layout: "application"
-  end
-
-  def update
-    @site = current_site
-    params[:site][:top_banner_id] ||= nil
-    if @site.update_attributes(params[:site])
-      flash[:success] = t("successfully_updated")
-      redirect_to edit_site_admin_path
-    else
-      load_themes
-      render :edit, layout: "application"
-    end
-  end
-
   def robots
     robots_file = Rails.root.join("public", "uploads", current_site.id.to_s, "original_robots.txt") if current_site
 
@@ -62,6 +38,40 @@ class SitesController < ApplicationController
     render text: File.read(robots_file && FileTest.exist?(robots_file) ?
       robots_file : Rails.root.join("public","default_robots.txt")), :layout => false, :content_type => "text/plain"
 
+  end
+
+  def about
+    render partial: 'layouts/shared/about'
+  end
+
+  #### BACK-END
+
+  def admin
+    render layout: "application"
+  end
+
+  def edit
+    @site = current_site
+    load_themes
+    @sites = @site.subsites.
+      except(:order).
+      order(:title).
+      page(1).
+      per(100)
+
+    render layout: "application"
+  end
+
+  def update
+    @site = current_site
+    params[:site][:top_banner_id] ||= nil
+    if @site.update_attributes(params[:site])
+      flash[:success] = t("successfully_updated")
+      redirect_to edit_site_admin_url(subdomain: @site)
+    else
+      load_themes
+      render :edit, layout: "application"
+    end
   end
 
   private

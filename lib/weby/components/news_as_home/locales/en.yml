@@ -9,7 +9,7 @@ en:
         page:                 " News "
         page_id:              " News "
         show_title:           " Show title "
-        show_info:            " Show information "
+        show_info:            " Show informations "
   news_as_home:
     views:
       form:

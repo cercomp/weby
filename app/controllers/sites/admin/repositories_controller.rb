@@ -1,7 +1,7 @@
 class Sites::Admin::RepositoriesController < ApplicationController
   before_filter :require_user
   before_filter :check_authorization
-
+  
   helper_method :sort_column
 
   respond_to :html, :xml, :js, :json
@@ -51,25 +51,24 @@ class Sites::Admin::RepositoriesController < ApplicationController
     @repository = Repository.new(params[:repository])
     respond_with(:site_admin, @repository) do |format|
       if @repository.save
-        format.html { 
+        format.html do
           if params[:from] != 'other'
-            redirect_to(:site_id => @repository.site.name, :controller => 'repositories', :action => 'show', :id => @repository.id) 
+            redirect_to([:site, :admin, @repository])
           else
             redirect_to :back
           end
-        } 
+        end
         format.json do
-          render json: { repositories: @repository, message: t("successfully_created") },
+          render json: { :repositories => @repository,
+                         :message => t("successfully_created"),
+                         :url => site_admin_repository_path(@repository) },
             content_type: check_accept_json
         end
       else
-        format.html do
-          #flash[:error] = @repository.errors.full_messages
-          render action: :new
-        end
+        format.html { render action: :new }
         format.json do
-          render json: { errors: @repository.errors.full_messages },
-            content_type: check_accept_json, status: 412
+          render json: { :errors => @repository.errors.full_messages }, status: 412,
+            content_type: check_accept_json
         end
       end
     end
@@ -78,14 +77,11 @@ class Sites::Admin::RepositoriesController < ApplicationController
   def update
     @repository = Repository.find(params[:id])
 
-    respond_to do |format|
-      if @repository.update_attributes(params[:repository]) 
-        format.html { redirect_to(:site_id => @repository.site.name, :controller => 'repositories', :action => 'show', :id => @repository.id) }
-        flash[:success] = t("successfully_updated") 
-      else
-        format.html { render action: :edit }
-        #flash[:error] = @repository.errors.full_messages
-      end
+    if @repository.update_attributes(params[:repository]) 
+      flash[:success] = t("successfully_updated") 
+      redirect_to [:site, :admin, @repository]
+    else
+      render action: :edit
     end
   end
 
@@ -93,10 +89,7 @@ class Sites::Admin::RepositoriesController < ApplicationController
     @repository = Repository.find(params[:id])
     @repository.destroy
 
-    respond_to do |format|
-      format.html { redirect_to({:site_id => @repository.site.name, :controller => 'repositories'}) }
-      format.xml  { head :ok }
-    end
+    redirect_to site_admin_repositories_url
   end
 
   private

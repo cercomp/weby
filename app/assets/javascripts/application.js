@@ -1,8 +1,11 @@
 //= require jquery
-//= require jquery_ujs 
+//= require jquery_ujs
 //= require bootstrap
 //= require tables
+//= require jquery.lightbox_me
+//= require about
 //= require_self
+
 var WEBY = {};
 
 // Mostrar mensagem para erros, no retorno do ajax
@@ -37,7 +40,10 @@ function addToSelect(selectId, text){
 $(document).ready(function() {
    // Ajax indicator
    $('body').append($('<div class="modal hide" data-backdrop="false" style="width: 150px; margin: -30px 0 0 -75px; z-index: 1060;" id="loading-modal"><div class="modal-body"><img src="/assets/loading-bar.gif"/></div></div>'));
-   $('body').ajaxSend(function(){
+   $('body').ajaxSend(function(ev, jqXHR, options){
+       if(options.files){
+          return;
+       }
       //Não use a função .modal() pois se a página tiver outro modal, gera comportamento não ideal
       $('#loading-modal').removeClass('hide');
    }).ajaxComplete(function(evt,xhr){
@@ -48,17 +54,15 @@ $(document).ready(function() {
    //Fixar o menu admin quando o usuário rola a página
    //inclusive responsivo
    var menuadmin = $('#menu-admin');
-   var webynavbar = $('#weby-navbar');
    if(menuadmin.length>0){
        $(window).scroll(function(){
            if($(window).width() >= 768){
-               maincontainer = $('#main-container');
-               webybarheight = webynavbar.css('position')=='fixed'? webynavbar.height() : 0;
-               windowtop = $(this).scrollTop() + webybarheight;
+               maincontainer = $('#main');
+               windowtop = $(this).scrollTop() + 10;
                if(windowtop >= maincontainer.position().top){
                    if(menuadmin.css('position')!='fixed')
                        menuadmin.css({'position':'fixed',
-                       'top':(webybarheight+parseInt(maincontainer.css("padding-top")))+'px',
+                       'top':(10+parseInt(maincontainer.css("padding-top")))+'px',
                        'width':menuadmin.width()+'px'});
                }else{
                    if(menuadmin.css('position')=='fixed')
@@ -70,5 +74,10 @@ $(document).ready(function() {
     $(window).resize(function(){
         menuadmin.css({'position':'','top':'', 'width':''});
         $(window).scroll();
+    });
+
+    $(document).on('change', '.pagination select', function(){
+        //window.location = $(this).find('option:selected').data('url');
+        $.getScript($(this).find('option:selected').data('url'));
     });
 });

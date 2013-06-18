@@ -43,8 +43,8 @@
       <%=   weby_file_view(
               repository,
               :mini,
-              '32px',
-              '32px',
+              32,
+              32,
               as: 'image'
             ) %>
       
@@ -54,6 +54,6 @@
 </ul>
 
 <div style="clear: both;float:right;">
-  <%= paginate @repositories, remote: true %>
+  <%= paginate @repositories, remote: true, page_links: true %>
 </div>
 <div style="clear:both;"> </div>

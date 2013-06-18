@@ -3,6 +3,8 @@ pt-BR:
     select_target: " Selecionar Página "
     none_selected: " Nenhuma Selecionada "
     common_pages: " Páginas predefinidas "
+    extensions:   " Extensões "
+    extension:    " Extensão "
     title: " Título "
     description: "Descrição"
   common_pages:

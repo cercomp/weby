@@ -1,0 +1,32 @@
+<div class="pull-left"> <%= info_page @repositories %> </div>
+<div class="pull-right"> <%= paginate @repositories, remote: true %> </div>
+<div class="clearfix"></div>
+
+<% if @repositories.empty? %>
+  <div class="alert">
+    <%= t(".none_archive") %>
+  </div>
+<% end %>
+
+<table class='table table-striped table-condensed'>
+  <thead>
+      <th><%= sortable 'id', t(".archive") %></th>
+      <th><%= sortable 'description', t(".description") %></th>
+      <th><%= sortable 'archive_content_type', t(".type") %></th>
+      <th></th>
+    </thead>
+  <tbody>
+    <% @repositories.each do |repository| %>
+      <tr class="<%= cycle 'odd', 'even' %>">
+        <td> <%= weby_file_view(repository, :thumb, "64", "64", target: '_blank') %> </td>
+        <td> <%= repository.description %> </td>
+        <td> <%= repository.archive_content_type %> </td>
+        <td> <%= raw make_menu(repository) %> </td>
+      </tr>
+    <% end; reset_cycle %>
+    </tbody>
+</table>
+
+<div class="pull-left"> <%= per_page_links @repositories, true  %> </div>
+<div class="pull-right"> <%= paginate @repositories, remote: true %> </div>
+<div class="clearfix"></div>

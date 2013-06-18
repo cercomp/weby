@@ -3,6 +3,8 @@ en:
     select_target: " Select Page "
     none_selected: " None Selected "
     common_pages: " Preset pages "
+    extensions:   " Extensions "
+    extension:    " Extension "
     title: " Title "
     description: "Description"
   common_pages:

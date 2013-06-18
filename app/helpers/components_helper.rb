@@ -22,11 +22,19 @@ module ComponentsHelper
 
   # Busca os componentes existentes no sistema de forma ordenada pelo i18n
   def available_components_sorted
-    components = Weby::Components.components.map do |comp,config|
-      c = Object::const_get("#{comp.to_s}_component".classify)
-      {name: c.cname, i18n: t("components.#{c.cname}.name")} if config[:enabled]
-    end.compact
-    components.sort! {|a,b| a[:i18n] <=> b[:i18n]}
+    options = {"Weby" => components_as_options(Weby::Components.components(:weby))}
+
+    current_site.extensions.each do |extension|
+      extension_components = components_as_options(Weby::Components.components(extension.name.to_sym))
+      options[t("extensions.#{extension.name}.name")] = extension_components if extension_components.any?
+    end
+    
+    options
+  end
+
+  private
+  def components_as_options components
+    components.map{|comp, opt| [t("components.#{comp.to_s}.name"), comp.to_s] }.sort!{|a,b| a[0] <=> b[0]}
   end
 
   private

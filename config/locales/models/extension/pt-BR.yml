@@ -1,0 +1,13 @@
+pt-BR:
+  activerecord:
+    models:
+      extension:      " Extensão "
+    attributes:
+      extension:
+        name:         " Extensão "
+    errors:
+      models:
+        extension:
+          attributes:
+            name:
+              already_installed:  " já instalada. "

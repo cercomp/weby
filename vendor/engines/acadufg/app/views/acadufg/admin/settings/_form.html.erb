@@ -1,0 +1,11 @@
+<%= simple_form_for [:admin, @setting], html: { class: 'form-horizontal' } do |f| %>
+  <%= f.show_errors %>
+
+  <%= f.input :programa_id, collection: @programas, hint: t(".field_required"), input_html: {class: 'input-block-level'} %>
+  <%= f.input :site_id, input_html: {value: @site.id}, as: :hidden %>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: 'btn-primary', disable_with: t("please_wait") %>
+    <%= link_to t("back"), :back, class: "btn btn-danger" %>
+  </div>
+<% end %>

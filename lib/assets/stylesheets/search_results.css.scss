@@ -1,0 +1,25 @@
+.search-results{
+    clear: both;
+
+    header{
+        font-size: 125%;
+    }
+
+    .item-search-result:first-child{
+        border-top: 1px dotted #DDD;
+    }
+
+    .item-search-result{
+        padding: 8px 0px;
+        border-bottom: 1px dotted #DDD;
+        overflow: hidden;
+    }
+
+    .category a {
+        color: #FFF;
+    }
+
+}
+
+.search-field-button{ clear: left; }
+.advanced-search input[type=radio]{ margin: 0px; }

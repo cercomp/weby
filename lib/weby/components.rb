@@ -12,29 +12,28 @@ module Weby
       config[:enabled] = true if config[:enabled].nil?
       config[:aliasable] = true if config[:aliasable].nil?
 
-      #require "weby/components/#{comp_name.to_s}/#{comp_name.to_s}_component"
+      #identificar se é componente de engine
+      match = caller.first.split(':')[0].match(/\/engines\/([^\/]+)\//)
+      if match
+        config[:group] = match[1].to_sym
+      else
+        config[:group] = :weby
+      end
 
-      # Adiciona locales do componente no path de locales
-      Weby::Application.config.i18n.load_path +=
-        Dir[Rails.root.join('lib', 'weby', 'components', comp_name.to_s, 'locales', '*.{rb,yml}').to_s]
-
-      # Adiciona assets do componente no path de assets
-      Weby::Application.config.assets.paths +=
-        Dir[Rails.root.join('lib', 'weby', 'components', comp_name.to_s, 'assets', '**')]
+      # TODO: Fix, está quebrando quando a tabela components não existe na base
+      require "weby/components/#{comp_name}/#{comp_name}_component"
       @components[comp_name.to_sym] = config
     end
 
-    def self.components
-      @components
-    end
-
-    def self.component(comp_name)
-      @components[comp_name.to_sym]
+    def self.components group=nil, include_disabled=false
+      comp = include_disabled ? @components : @components.select{|comp, opt| opt[:enabled]}
+      comp = comp.select{|comp, opt| opt[:group] == group } if group
+      comp
     end
 
     def self.is_enabled?(comp_name)
       @components[comp_name.to_sym][:enabled] if @components[comp_name.to_sym]
-    end
+        end
 
     def self.is_aliasable?(comp_name)
       @components[comp_name.to_sym][:aliasable] if @components[comp_name.to_sym]
@@ -55,25 +54,12 @@ module Weby
     
     ActionView::Helpers::RenderingHelper.module_eval do
 
-#      def load_components(component_place)
-#        raw([].tap do |components|
-#          current_site.components.where(["publish = true AND place_holder = ?", component_place]).order('position asc').each do |comp|
-#            if Weby::Components.is_enabled?(comp.name)
-#              visible = comp.visibility == 1 ? current_page?(site_path) : comp.visibility == 2 ? !current_page?(site_path) : comp.visibility == 0
-#              if visible
-#                components << render_component(Weby::Components.factory(comp))
-#              end
-#            end
-#          end
-#        end.join)
-#      end
-
-      #chama 'content_for :layout_<place_holder>', use yield :layout_<place_holder> para mostrar
+      #executa 'content_for :layout_<place_holder>', use yield :layout_<place_holder> para mostrar
       def load_components
         @global_components.reject{|k,v| k == :home }.each do |place, comps|
           comps.each do |comp|
             if Weby::Components.is_enabled?(comp.name)
-              visible = comp.visibility == 1 ? current_page?(site_path) : comp.visibility == 2 ? !current_page?(site_path) : comp.visibility == 0
+              visible = comp.visibility == 1 ? current_page?(main_app.site_path) : comp.visibility == 2 ? !current_page?(main_app.site_path) : comp.visibility == 0
               if visible
                 content_for "layout_#{place}".to_sym, render_component(Weby::Components.factory(comp))
               end

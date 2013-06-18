@@ -1,0 +1,15 @@
+Gerente:
+  id: 1
+  name: 'Gerente'
+  permissions: '{"admin"=>["index"], "banners"=>["index", "show", "edit", "destroy", "change_position", "new", "toggle_field"], "components"=>["index", "show", "edit", "destroy", "new", "sort"], "extensions"=>["index", "edit", "new", "destroy"], "groups"=>["index", "show", "edit", "destroy", "new"], "menu_items"=>["change_position", "index", "show", "edit", "destroy", "new"], "menus"=>["index", "show", "edit", "destroy", "new"], "messages"=>["index", "show", "edit", "destroy", "new"], "pages"=>["index", "show", "edit", "destroy", "sort", "new", "toggle_field"], "repositories"=>["index", "show", "edit", "destroy", "new"], "roles"=>["manage", "destroy"], "sites"=>["edit"], "styles"=>["index", "show", "edit", "destroy", "new", "publish", "follow", "copy", "sort"], "users"=>["edit", "index", "change_roles", "toggle_field"]}'
+
+Editor-Chefe:
+  id: 2
+  name: 'Editor-Chefe'
+  permissions: '{"banners"=>["index", "show", "edit", "destroy", "change_position", "new", "toggle_field"], "groups"=>["new"], "menu_items"=>["change_position", "index", "show", "edit", "destroy", "new"], "menus"=>["index", "show", "edit", "destroy", "new"], "pages"=>["index", "show", "edit", "destroy", "sort", "new", "toggle_field"], "repositories"=>["index", "show", "destroy"]}'
+
+Redator:
+  id: 3
+  name: 'Redator'
+  permissions: '{"pages"=>["index", "show", "edit", "new"]}'
+

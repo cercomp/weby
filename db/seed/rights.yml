@@ -389,3 +389,27 @@
  name: "Ordenar Estilos"
  controller: styles
  action: sort
+
+66:
+ id: 66
+ name: "Listar Extensões"
+ controller: extensions
+ action: index
+
+67:
+ id: 67
+ name: "Editar Extensões"
+ controller: extensions
+ action: edit update
+
+68:
+ id: 68
+ name: "Instalar Extensões"
+ controller: extensions
+ action: new create
+
+69:
+ id: 69
+ name: "Excluir Extensões"
+ controller: extensions
+ action: destroy

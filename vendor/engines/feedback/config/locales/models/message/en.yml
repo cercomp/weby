@@ -1,0 +1,17 @@
+en:
+  activerecord:
+    models:
+      feedback/message:     " Feedback "
+    attributes:
+      feedback/message:
+        name:       " Name "
+        email:      " Email "
+        subject:    " Subject "
+        message:    " Message "
+        site_id:    " Site "
+        created_at: " Created at "
+        updated_at: " Updated at "
+    errors:
+      models:
+        feedback/message:
+          need_at_least_one_group: " At least one group must be selected! "

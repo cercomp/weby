@@ -1,65 +1,57 @@
-<%- title ".menus" %>
-
-<div class="span9">
-  <div class="well">
-
-    
 <% if @menus.empty? %>
   <div class="alert">
     <%= t(".none_menu") %>
   </div>
 <% end %>
 
-    <% with_permission action: :new do %>
-      <div class="pull-right">
-        <%= link_to t(".new_menu"),
-          new_site_admin_menu_path,
-          class: "btn btn-success" %>
-      </div>
-      <div class="clearfix"></div>
+<% with_permission action: :new do %>
+  <div class="pull-right">
+    <%= link_to t(".new_menu"),
+      new_site_admin_menu_path,
+      class: "btn btn-success" %>
+  </div>
+  <div class="clearfix"></div>
+<% end %>
+
+<div class="tabbable">
+  <ul class="nav nav-tabs" id="tabs">
+    <% @menus.each do |menu| %>
+      <% active = (menu==@menu ? "active" : "") %>
+      <li class="<%= active %>"><%= link_to(menu.name.try(:titleize), menu==@menu ? '#' : site_admin_menus_path(:menu => menu.id), :rel => menu.id) %></li>
     <% end %>
+  </ul>
 
-    <div class="tabbable">
-      <ul class="nav nav-tabs" id="tabs">
-        <% @menus.each do |menu| %>
-          <% active = (menu==@menu ? "active" : "") %>
-          <li class="<%= active %>"><%= link_to(menu.name.try(:titleize), menu==@menu ? '#' : site_admin_menus_path(:menu => menu.id), :rel => menu.id) %></li>
+  <div class='tab-content'>
+    <% if @menu %>
+      <div class="pull-right">
+        <% with_permission controller: Sites::Admin::Menus::MenuItemsController, action: :new do %>
+          <%= link_to t(".new_menu_item"),
+            new_site_admin_menu_menu_item_path(@menu),
+            class: "btn btn-success" %>
         <% end %>
-      </ul>
-
-      <div class='tab-content'>
-        <% if @menu %>
-          <div class="pull-right">
-            <% with_permission controller: Sites::Admin::Menus::MenuItemsController, action: :new do %>
-              <%= link_to t(".new_menu_item"),
-                new_site_admin_menu_menu_item_path(@menu),
-                class: "btn btn-success" %>
-            <% end %>
-            <% with_permission action: :edit do %>
-              <%= link_to t(".edit_menu"),
-                edit_site_admin_menu_path(@menu),
-                class: "btn btn-primary" %>
-            <% end %>
-            <% with_permission action: :destroy do %>
-              <%= link_to t("destroy"),
-                site_admin_menu_path(@menu),
-                method: :delete, data: {confirm: t(".are_you_sure")},
-                class: "btn btn-primary" %>
-            <% end %>
-            &nbsp;
-          </div>
-          <div class="clearfix control-group"></div>
-          <div class="well" id="main-menu">
-            <% if @menu.menu_items.empty? %>
-              <div class="alert">
-                <%= t(".none_menu_item") %>
-              </div>
-            <% end %>
-            <%= raw print_menu(@menu, 1) %>
-          </div>
+        <% with_permission action: :edit do %>
+          <%= link_to t(".edit_menu"),
+            edit_site_admin_menu_path(@menu),
+            class: "btn btn-primary" %>
         <% end %>
+        <% with_permission action: :destroy do %>
+          <%= link_to t("destroy"),
+            site_admin_menu_path(@menu),
+            method: :delete, data: {confirm: t(".are_you_sure")},
+            class: "btn btn-primary" %>
+        <% end %>
+        &nbsp;
       </div>
-    </div>
+      <div class="clearfix control-group"></div>
+      <div class="well" id="main-menu">
+        <% if @menu.menu_items.empty? %>
+          <div class="alert">
+            <%= t(".none_menu_item") %>
+          </div>
+        <% end %>
+        <%= raw print_menu(@menu, 1) %>
+      </div>
+    <% end %>
   </div>
 </div>
 
@@ -86,7 +78,7 @@
   }
 
   id = ui.item.attr('id').replace('menu_item_','');
-  parent_id = ui.item.parents('li').attr('id') ? ui.item.parents('li').attr('id').replace('menu_item_','') : 0;
+  parent_id = ui.item.parents('li').attr('id') ? ui.item.parents('li').attr('id').replace('menu_item_','') : '';
   position = ui.item.index()+1;//A position no banco começa com 1
 
           $.ajax({

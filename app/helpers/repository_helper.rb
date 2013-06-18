@@ -1,11 +1,20 @@
 module RepositoryHelper
   attr_accessor :file, :format, :options, :size, :thumbnail
 
-  def weby_file_view(file, format, width = nil, height = nil, options = {as: 'link'})
+  def weby_file_view(file, format, width = nil, height = nil, options = {}, fallback = false)
+    options[:as] ||= 'link'
     @file, @format, @width, @height, @options = file, format, width, height, options
     if @file
       make_thumbnail!
       send("#{@options[:as]}_viewer") # chama método http://ruby-doc.org/core-1.9.3/Object.html#method-i-send
+    elsif fallback
+      img_opt = {}
+      img_opt[:alt] = @options[:alt] if @options[:alt]
+      img_opt[:title] = @options[:title] if @options[:title]
+      size = style_for_dimension @width, @height
+      img_opt[:style] = @options[:style] ? "#{@options[:style]}#{size}" : size
+      img_opt[:id] = @options[:id] if @options[:id]
+      raw image_tag(empty_mime, img_opt)
     end
   end
 
@@ -68,16 +77,15 @@ module RepositoryHelper
   end
 
   def link_viewer
-    raw link_to(image_viewer, @options[:url] || @file.archive.url, target: @options[:target] || '_blank')
+    raw link_to(image_viewer, @options[:url] || @file.archive.url, target: @options[:target], data: @options[:data])
   end
 
   def image_viewer
     img_opt = {
-      alt: (@options[:alt] || @file.description),
+      alt: @file.description,
       title: (@options[:title] || @file.description) }
-    img_opt[:width] = @width unless @width.blank?
-    img_opt[:height] = @height unless @height.blank?
-    img_opt[:style] = @options[:style] if @options[:style]
+    size = style_for_dimension @width, @height
+    img_opt[:style] = @options[:style] ? "#{@options[:style]}#{size}" : size
     img_opt[:id] = @options[:id] if @options[:id]
     begin
       image = image_tag(@thumbnail, img_opt)
@@ -111,20 +119,21 @@ module RepositoryHelper
     render partial: "sites/admin/repositories/image_size_picker", locals: {f: form_builder}
   end
 
+  def repository_partial
+    ['list','thumbs'].include?(session[:repository_view]) ?
+    session[:repository_view] : 'thumbs'
+  end
+
+  def banners_partial
+    ['list','thumbs'].include?(session[:banners_view]) ?
+    session[:banners_view] : 'list'
+  end
+
   def format_for_custom width, height, repository
-    begin
-      #file_width,file_height = Paperclip::Geometry.from_file(repository.archive).to_s.split('x') if repository
-    rescue
-      return :original
-    end
     Repository.attachment_definitions[:archive][:styles].each do |name, value|
       size = value.split("x") if value.match(/^\d+x\d+$/)
       if size
         if width.to_i+height.to_i > 0 and width.to_i <= size[0].to_i && height.to_i <= size[1].to_i
-          #Se o original for menor que
-          #if file_width.to_i+file_height.to_i > 0 and file_width.to_i <= size[0].to_i && file_height.to_i <= size[1].to_i
-          #  return :original
-          #end
           return name
         end
       end
@@ -137,6 +146,13 @@ module RepositoryHelper
     if dimension and dimension.match(/^\d+x\d+$/)
       return dimension.split('x')
     end
+  end
+
+  def style_for_dimension width, height
+    size = ""
+    size << "width:#{width}px; " if width
+    size << "height:#{height}px; " if height
+    size
   end
 
 end

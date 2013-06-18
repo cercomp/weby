@@ -1,28 +1,34 @@
 <%= info_page @pages %>
-<%= paginate @pages, remote: true %>
-
-<table class="table table-striped table-condensed table-bordered">
-  <thead>
-    <tr>
-      <th><%= t(".title") %></th>
-      <th><%= sortable 'tags.name', t(".category") %></th>
-      <th><%= controller.action_name == 'events' ? sortable('pages.event_begin', t(".period_event")) : sortable('pages.type', t(".type")) %></th>
-      <th><%= sortable 'pages.created_at', t(".date_register")%></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @pages.each do |page| %>
-    <tr id="<%= page.id %>">
-      <td>
-        <%= link_to page.title, site_page_path(page) %>
-      </td>
-      <td><%= raw categories_links(page.category_list) %></td>
-      <td><%= controller.action_name == 'events' ? period_dates(page.event_begin, page.event_end) : t(".#{page.type.downcase}") %></td>
-      <td><%= l(page.created_at.to_date, :format => :default) %></td>
-    </tr>
+<div class="search-results">
+<% if @pages.each do |page| %>
+  <div class="item-search-result">
+    <% if page.image %>
+      <%= weby_file_view(page.image, :thumb, 64, nil, {as: "link", url: site_page_path(page), style: "float: right; margin-left: 7px;"}) %>
     <% end %>
-  </tbody>
-</table>
-
+    <header><%= link_to page.title, site_page_path(page) %></header>
+    <div class="page-details">
+        <% if action_name == 'events' %>
+            <%= period_dates(page.event_begin, page.event_end) %>
+        <% else %>
+        <% if page.publish %>
+          <% if @site.view_desc_pages  %>
+             <span class="author"><%= t("posted_by") %><%= page.author.name_or_login %></span>
+          <% end %>
+             <span class="date"><%= t("posted_on") %><%= localize page.created_at, format: :medium %></span>
+        <% end %>
+       <% end %>
+    </div>
+    <summary>
+      <%= raw page.summary %>
+    </summary>
+    <% page.category_list.each do |category| %>
+      <span class="category label label-info"><%= link_to category , site_pages_path( tags: category.to_s )%></span>
+    <% end %>
+    <p class="read_more"><%#= link_to t(".read_more"), site_page_path(page) %></p>
+  </div>
+<% end.empty? %>
+  <div class="empty-result"><%= t(".no_#{action_name=='events' ? 'events' : 'pages' }") %></div>
+<% end %>
+</div>
 <%= per_page_links @pages, true %>
-<%= paginate @pages, remote: true %>
+<%= paginate @pages, remote: true, page_links: true %>

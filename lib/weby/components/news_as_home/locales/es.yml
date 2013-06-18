@@ -1,0 +1,17 @@
+es:
+  components:
+    news_as_home:
+      name:                   " Noticia como página de inicio "
+      page:                   " Noticia "
+  activerecord:
+    attributes:
+      news_as_home_component:
+        page:                 " Noticia "
+        page_id:              " Noticia "
+        show_title:           " Mostrar título "
+        show_info:            " Mostrar informaciones "
+  news_as_home:
+    views:
+      form:
+      show:
+        page_not_found:       " Página no encontrada, por favor verifique la configuración del componente "

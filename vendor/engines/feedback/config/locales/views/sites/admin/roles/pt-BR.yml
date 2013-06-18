@@ -1,0 +1,7 @@
+pt-BR:
+  sites:
+    admin:
+      roles:
+        index:
+          groups:       " Grupos "
+          messages:     " Mensagens "

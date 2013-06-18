@@ -11,13 +11,13 @@
   <tbody class="placeholder-group">
     <% components_per_holder.each do |comp| %>
       <% component = Weby::Components.factory(comp) %>
-      <tr id="sort_sites_component_<%= component.id %>" class="place-<%=  "#{place_holder}" -%>  <%= "error" unless Weby::Components.is_enabled?(component.name) %>">
+      <tr id="sort_sites_component_<%= component.id %>" class="place-<%=  "#{place_holder}" -%>  <%= "error" unless component_is_available(component.name) %>">
         <td><%= t("components.#{component.name}.name") %></td>
         <td><%= component.alias? ? component.alias : component.default_alias %></td>
         <td align="center"><%= raw toggle_field(component, "publish") %></td>
         <td>
           <% exceptions = ["show"] %>
-          <% exceptions << "edit" unless Weby::Components.is_enabled?(component.name)  %>
+          <% exceptions << "edit" unless component_is_available(component.name)  %>
           <%= raw make_menu(component, :except => exceptions) %>
           <% if check_permission(Sites::Admin::ComponentsController, 'sort') %>
             <span class='handle'><%= icon('move', text:t("move")) %></span>
