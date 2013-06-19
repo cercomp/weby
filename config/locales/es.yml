@@ -36,6 +36,7 @@ es:
       top:                              " Topo "
   custom:                               " Personalizado "
   create_account_successful:            " Su cuenta ha sido creada! Fue enviado a su e-mail las instrucciones sobre cómo activar "
+  create_notification_successful:       " Notificación creado con éxito! "
   activation_sent_successful:           " Fue enviado a su e-mail las instrucciones sobre cómo activar tu cuenta "
 #---D---#
   destroy:                              " Borrar "
@@ -97,6 +98,9 @@ es:
     one:                                " Un error impide que avance "
     other:                              " Errores a evitar que continúe "
   problem_create_account:               " Problemas al crear una cuenta "
+  problem_create_notification:          " Problemas al crear la notificación "
+  problem_update_notification:          " Problemas con la actualización de la notificación "
+  problem_destroy_notification:         " Dificultad para eliminar la notificación "
 #---Q---#
 #---R---#
   required:                             " Necesario "
@@ -123,6 +127,7 @@ es:
   user_inactive:                        " Su nombre de usuario aún no está activo. "
   user_not_found:                       " Usuario no encontrado "
   updated_account:                      " Conta atualizada "
+  update_notification_successful:       " Fecha de notificación "
   user_cant_be_deleted:                 " Este usuário não pode ser excluído "
 #---V---#
   views:

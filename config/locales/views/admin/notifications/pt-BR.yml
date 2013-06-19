@@ -4,7 +4,15 @@ pt-BR:
       index:
         notifications:            " Notificações "
         new_notification:         " Nova Notificação "
-      edit:
-        notifications:            " Notificações "
-      new:
-        notifications:            " Notificações "
+      list:
+        id:                       " ID "
+        title:                    " Título "
+        date:                     " Data "
+      form:
+        title:                    " Título "
+        body:                     " Mensagem "
+      show:
+        id:                       " ID "
+        title:                    " Título "
+        body:                     " Mensagem "
+        created_at:               " Criado em "

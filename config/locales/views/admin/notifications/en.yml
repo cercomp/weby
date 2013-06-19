@@ -4,7 +4,16 @@ en:
       index:
         notifications:      " Notifications "
         new_notification:   " New Notification " 
-      edit:
-        notifications:      " Notifications "
-      new:
-        notifications:      " Notifications "
+      list:
+        id:                 " ID "
+        title:              " Title "
+        date:               " Date "
+      form:
+        title:              " Title "
+        body:               " Message "
+      show:
+        id:                 " ID "
+        title:              " Title "
+        body:               " Message "
+        created_at:         " Created at "
+

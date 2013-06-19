@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      notification:         " Notification "
+    attributes:
+      notification:
+        title:              " Título "
+        body:               " Mensagem "
+        created_at:         " Criado em "
+        site_id:            " Site id "

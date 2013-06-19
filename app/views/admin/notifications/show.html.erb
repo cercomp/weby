@@ -1,19 +1,13 @@
-<%- title '.notifications' %>
-
-<div class="span9">
-  <div class="well">
-    <div class="user_profile">
-      <br />
-      <p><b><%= t('.id') %>: </b> <%= @notification.id %></p>
-      <p><b><%= t('.created_at') %>: </b><%= @notification.created_at.strftime("%d %b. %Y") %></p>
-      <p><b><%= t('.title') %>: </b> <%= @notification.title %></p>
-      <p><b><%= t('.body') %>: </b> <pre><%= @notification.body %></pre></p>
-    </div>
-    <div class="form-actions">
-      <% if check_permission(Admin::NotificationsController, 'edit') %>
-        <%= link_to t('edit'), edit_admin_notification_path(@notification), :class => "btn btn-primary" %>
-      <% end %>
-      <%= link_to t("back"), admin_notifications_path, class: "btn btn-danger" %>
-    </div>    
-  </div>
+<div class="user_profile">
+  <br />
+  <p><b><%= t('.id') %>: </b> <%= @notification.id %></p>
+  <p><b><%= t('.created_at') %>: </b><%= @notification.created_at.strftime("%d %b. %Y") %></p>
+  <p><b><%= t('.title') %>: </b> <%= @notification.title %></p>
+  <p><b><%= t('.body') %>: </b> <pre><%= @notification.body %></pre></p>
 </div>
+<div class="form-actions">
+  <% if check_permission(Admin::NotificationsController, 'edit') %>
+   <%= link_to t('edit'), edit_admin_notification_path(@notification), :class => "btn btn-primary" %>
+  <% end %>
+  <%= link_to t("back"), admin_notifications_path, class: "btn btn-danger" %>
+</div>    

@@ -56,7 +56,7 @@ class Admin::NotificationsController < ApplicationController
     @notification.destroy
     flash[:success] = t("destroyed_param", :param => @notification.title)
   rescue ActiveRecord::DeleteRestrictionError
-    flash[:warning] = t("user_cant_be_deleted")
+    flash[:warning] = t("problem_destroy_notification")
   ensure
     redirect_to admin_notification_path
   end
