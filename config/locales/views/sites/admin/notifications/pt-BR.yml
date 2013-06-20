@@ -1,0 +1,11 @@
+pt-BR:
+  sites:
+    admin:
+      notifications:
+        list:
+          title:                    " Título "
+          date:                     " Data "
+        show:
+          title:                    " Título "
+          body:                     " Mensagem "
+          created_at:               " Criado em "

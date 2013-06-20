@@ -23,6 +23,7 @@ en:
         settings:          " Settings "
         feedback:          " Feedback "
         statistics:        " Statistics "
+        notification:      " Notifications "
       navbar:
         my_profile:        " My profile "
         logout:            " Logout "

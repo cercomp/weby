@@ -14,6 +14,9 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :roles
   belongs_to :locale
 
+  has_many :notifications,
+    dependent: :nullify
+
   has_many :pages,
     foreign_key: :author_id,
     dependent: :restrict

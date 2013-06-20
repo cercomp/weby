@@ -42,6 +42,9 @@ Weby::Application.routes.draw do
       match "repositories/page/:page" => "repositories#index"
       match "pages/page/:page" => "pages#index"
 
+      get "notifications" => "notifications#index"
+      
+      resources :notifications, only: [:index, :show]
       resources :banners do
         member do
           put :toggle_field
@@ -128,8 +131,10 @@ Weby::Application.routes.draw do
         end
       end
       resources :sites, except: [:show]
+      resources :notifications
 
       get "stats" => "statistics#index", :as => :stats
+      get "notifications" => "notifications#index"
 
       # route to paginate
       match "users/page/:page" => "users#index"

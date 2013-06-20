@@ -21,6 +21,7 @@ pt-BR:
         permissions:       " Permissões "
         feedback:          " Fale Conosco "
         statistics:        " Estatísticas "
+        notifications:     " Notificações "
       navbar:
         my_profile:        " Meu Perfil "
         logout:            " Sair "

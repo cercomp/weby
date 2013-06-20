@@ -34,6 +34,7 @@ en:
       top:                              " Top "
   custom:                               " Custom "
   create_account_successful:            " Your account has been created. Please check your e-mail for your account activation instructions "
+  create_notification_successful:       " The notification has been created. "
   activation_sent_successful:           " Activation instructions were sent to your e-mail. "
 #---D---#
   destroy:                              " Destroy "
@@ -95,6 +96,9 @@ en:
     one:                                " error, prevent you from proceeding "
     other:                              " errors, prevent you from proceeding "
   problem_create_account:               " Problem on create account "
+  problem_create_notification:          " Problem on creating notification "
+  problem_update_notification:          " Problem updating the notification "
+  problem_destroy_notification:         " Error ocurred while deleting the notification "
 #---Q---#
 #---R---#
   required:                             " Required "
@@ -121,6 +125,7 @@ en:
   user_inactive:                        " User was not activated. "
   user_not_found:                       " User not found "
   updated_account:                      " Account updated "
+  update_notification_successful:       " The notification has been updated! "
   user_cant_be_deleted:                 " This user can't be deleted "
 #---V---#
   views:
