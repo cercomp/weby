@@ -36,7 +36,7 @@ class PhotoSliderComponent < Component
   def generate_vector_images
     [].tap do |images|
     photo_ids.each do |image|
-      images<<Repository.find(image)
+      images<<Repository.find_by_id(image)
     end
     images.compact!
     end

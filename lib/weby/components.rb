@@ -20,8 +20,6 @@ module Weby
         config[:group] = :weby
       end
 
-      # TODO: Fix, está quebrando quando a tabela components não existe na base
-      require "weby/components/#{comp_name}/#{comp_name}_component"
       @components[comp_name.to_sym] = config
     end
 
