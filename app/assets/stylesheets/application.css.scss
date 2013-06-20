@@ -51,7 +51,7 @@ body { background: #F5F5F5; }
   }
 }
 
-#main
+#main.container
 {
   .nav { margin-bottom: 10px; }
   .pagination { margin: 10px 0 5px; }
@@ -59,7 +59,7 @@ body { background: #F5F5F5; }
   .new-site { margin-left: 5px }
   .search { margin-bottom: 10px; }
 
-  .container .well
+  .well
   {
     background: white;
   }
