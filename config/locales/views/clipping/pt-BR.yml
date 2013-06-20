@@ -5,3 +5,6 @@ pt-BR:
       clipping: "CLIPPING"
       my-sites: "MEUS PORTAIS"
       search: "BUSCAR"
+    list:
+      none_page: " Nenhuma notícia "
+
