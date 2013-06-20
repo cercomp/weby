@@ -1,48 +1,52 @@
-#about-body.centerbox { 
-	margin-left: auto;
-	margin-right: auto;}
+/*
+ *= require_self
+ *= require google/lato
+ */
 
-#about-body header { 
-	width: 100%;
-	margin: 20px 0 5px;
-	text-align: center; }
+#about-body
+{
+  font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  background: #FCFCFC url(sessions_bg.jpg) repeat left top;
+  height: 100%;
 
-#about-body section#about { 
-	background: #EAF3FA;
-	width: 100%; }
+  .header
+  {
+    background: #FCFCFC url(sessions_bg.jpg) repeat left top;
+    text-align: center;
+    padding: 20px 0;
+    .description
+    {
+      width: 800px;
+      margin: 30px auto 0;
+    }
+  }
+  .container
+  {
+    width: 800px;
+    margin: 0 auto;
+    padding: 0 15px;
 
-#about-body section#description {
-	color: #484848;
-	padding: 20px 0 10px;
-	margin-bottom: 5px;
-	margin-left: 20px;
-	width: 860px; }
+    h1
+    {
+      color: #BC1625;
+      font-size: 20px;
+    }
 
-#about-body h1 {
-	color: #C11303;
-	font-size: 20px;
-	font-weight: bold;
-	margin-bottom: 10px; }
-
-#about-body p { margin-bottom: 10px; }
-#about-body p.copyright {
-	text-align: center;
-	font-size: 14px;
-	font-weight: bold; }
-
-#about-body a { 
-	text-decoration: none;
-	color: #C11303; }
-
-#about-body li {
-  list-style: circle outside; 
-  color:blue; }
-
-#about-body ul { padding-left: 20px; }	
-
- #about-body.footnote {
-  font-size: 8pt; } 
-
-#about-body.right { float: right; }
-#about-body.left	 { float: left; }
-#about-bod.clear { clear: both; }
+    a,
+    a:hover
+    {
+      color: #BC1625;
+      text-decoration: none;
+    }
+    ul { color: #344259; }
+    .footnote { color: #888; }
+  }
+  .footer
+  {
+    padding: 15px 0;
+    font-size: 11px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+}
