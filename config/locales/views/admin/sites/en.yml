@@ -13,6 +13,7 @@ en:
         settings:               " Settings "
       list:
         name:                   " Name "
+        dashboard:              " Dashboard "
         description:            " Description "
         settings:               " Settings "
       form:
