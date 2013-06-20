@@ -1,14 +1,8 @@
 module ComponentsHelper
-
-  #returns the configuration of an specific layout
-  def layout_config
-    LAYOUTS[@site.theme] || []
-  end
-
   #retorna as divs do mini layout ---  menu de adicionar componente
   def make_mini_layout
     content_for :stylesheets, stylesheet_link_tag("layouts/shared/mini_layout")
-    config = layout_config
+    config = Weby::Themes.layout current_site.theme
     divs = "<div id='mini_layout' style='width: #{config["width"] || 500}px'>"  
     
     config["placeholders"].map do |placeholders|

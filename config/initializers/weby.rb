@@ -4,6 +4,7 @@ require 'weby/form/show_errors'
 require 'weby/components'
 require 'weby/routing'
 require 'weby/rights'
+require 'weby/themes'
 
 # Adiciona views dos componentes no path de views da aplicação
 ActionController::Base.view_paths +=

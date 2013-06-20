@@ -80,12 +80,6 @@ class SitesController < ApplicationController
   end
 
   def load_themes
-    @themes = []
-    (Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*.erb")] -
-     Dir[File.join(Rails.root + "app/views/layouts/application.html.erb")] -
-     Dir[File.join(Rails.root + "app/views/layouts/sites.html.erb")] -
-     Dir[File.join(Rails.root + "app/views/layouts/session.html.erb")]).each do |file|
-       @themes << file.split("/")[-1].split(".")[0]
-     end
+    @themes = Weby::Themes.all
   end
 end

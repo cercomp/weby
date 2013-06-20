@@ -25,11 +25,9 @@ class Admin::SitesController < ApplicationController
   def create
     @site = Site.new(params[:site])
     if @site.save
-      if @site.theme == 'this2'
-        theme = ::Themes::This2.new(@site)
-        theme.populate
-      end
-
+      theme = ::Weby::Theme.new @site
+      theme.populate
+      
       redirect_to site_admin_components_url(subdomain: @site)
     else
       load_themes
@@ -65,12 +63,6 @@ class Admin::SitesController < ApplicationController
   end
 
   def load_themes
-    @themes = []
-    (Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*.erb")] -
-     Dir[File.join(Rails.root + "app/views/layouts/application.html.erb")] -
-     Dir[File.join(Rails.root + "app/views/layouts/weby-pages.html.erb")] -
-     Dir[File.join(Rails.root + "app/views/layouts/weby-sessions.html.erb")]).each do |file|
-       @themes << file.split("/")[-1].split(".")[0]
-     end
+    @themes = Weby::Themes.all
   end
 end

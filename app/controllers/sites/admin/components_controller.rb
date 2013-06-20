@@ -5,10 +5,11 @@ class Sites::Admin::ComponentsController < ApplicationController
 
   def index
     @components = @site.components.order('position asc')
+    @placeholders = Weby::Themes.layout(current_site.theme)['placeholders']
   end
 
   def show
-    @component = Weby::Components.factory(@site.components.find(params[:id]))
+    @component = Weby::Components.factory(current_site.components.find(params[:id]))
   end
 
   def new
@@ -20,7 +21,7 @@ class Sites::Admin::ComponentsController < ApplicationController
   end
 
   def edit
-    @component = Weby::Components.factory(@site.components.find(params[:id]))
+    @component = Weby::Components.factory(current_site.components.find(params[:id]))
     unless(component_is_available(@component.name))
       flash[:warning] = t(".disabled_component")
       redirect_to site_admin_components_url
@@ -44,7 +45,7 @@ class Sites::Admin::ComponentsController < ApplicationController
   end
 
   def update
-    @component = Weby::Components.factory(@site.components.find(params[:id]))
+    @component = Weby::Components.factory(current_site.components.find(params[:id]))
 
     update_params
 
