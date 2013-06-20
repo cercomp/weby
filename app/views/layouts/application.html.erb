@@ -38,32 +38,23 @@
               </div>
             </div>
           <% end %>
-          <% if current_user %>
-            <div class="span4 <%= current_site ? "" : "offset5 " %>person">
-              <div class="pull-right">
-                <div class="info name">
-                  <%= current_user %>
-                </div>
-                <div class="info actions">
-                  <%= link_to main_app.site_admin_url(subdomain: nil) do %>
-                    <i class="icon-cog"></i>
-                  <% end if current_user.is_admin? %>
-                  <%= link_to t(".logout"), main_app.logout_path(back_url: main_app.site_path) %>
-                </div>
+          <div class="span4 <%= current_site ? "" : "offset5 " %>person">
+            <div class="pull-right">
+              <div class="info name">
+                <%= current_user %>
               </div>
-              <div class="avatar pull-right">
-                <img src="http://www.gravatar.com/avatar/<%= Digest::MD5.hexdigest(current_user.email) %>?s=32">
+              <div class="info actions">
+                <%= link_to main_app.site_admin_url(subdomain: nil) do %>
+                  <i class="icon-cog"></i>
+                <% end if current_user.is_admin? %>
+                <%= link_to t(".logout"), main_app.logout_path(back_url: main_app.site_path) %>
               </div>
-              <div class="clearfix"></div>
             </div>
-          <% else %>
-            <div class="span4 offset5 noperson">
-              <%= link_to t(".register"), main_app.signup_url(subdomain: nil, protocol: login_protocol,
-                back_url: "#{request.fullpath}"), class: 'btn' %>
-              <%= link_to t(".login"), main_app.login_url(subdomain: nil, protocol: login_protocol,
-                back_url: "#{request.fullpath}"), class: 'btn btn-primary' %>
+            <div class="avatar pull-right">
+              <img src="http://www.gravatar.com/avatar/<%= Digest::MD5.hexdigest(current_user.email) %>?s=32">
             </div>
-          <% end %>
+            <div class="clearfix"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -97,10 +88,11 @@
         <%= link_to t(".clipping"), main_app.clipping_url(subdomain: nil) %>
         <%= link_to(t(".help"), current_settings[:help_site], target: '_blank') if current_settings[:help_site] %>
         <%= link_to t(".about"), '#', target: '_blank', id: 'about-weby' %>
-        <br />
-        <% admin_locales.each do |locale| %>
-          <%= link_to flag(locale), params.merge(locale: locale.name ) %>
-        <% end %>
+        <!--<br />-->
+        <%# O idioma do backend é definido no cadastro do usuário %>
+        <%# admin_locales.each do |locale| %>
+          <%#= link_to flag(locale), params.merge(locale: locale.name ) %>
+        <%# end %>
       </p>
     </div>
 
