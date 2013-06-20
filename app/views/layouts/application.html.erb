@@ -26,7 +26,7 @@
           <% if current_site %>
             <div class="span5 site">
               <div class="avatar pull-left">
-                <img src="http://www.gravatar.com/avatar/<%= Digest::MD5.hexdigest(current_user.email) %>?s=32">
+                <%= site_avatar_tag %>
               </div>
               <div class="pull-left">
                 <div class="info name">
