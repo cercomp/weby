@@ -24,6 +24,7 @@ en:
         feedback:          " Feedback "
         statistics:        " Statistics "
         notification:      " Notifications "
+        dashboard:         " Dashboard "
       navbar:
         my_profile:        " My profile "
         logout:            " Logout "
