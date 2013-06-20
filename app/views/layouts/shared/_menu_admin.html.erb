@@ -11,7 +11,6 @@
       <%= menu_item_to t(".components"), main_app.site_admin_components_path if check_permission(Sites::Admin::ComponentsController, [:index])%>
       <%= menu_item_to t(".extensions"), main_app.site_admin_extensions_path if check_permission(Sites::Admin::ExtensionsController, [:index])%>
       <%= menu_item_to t(".styles"), main_app.site_admin_styles_path if check_permission(Sites::Admin::StylesController, [:index])%>
-      <%= menu_item_to t(".roles_permissions"), main_app.site_admin_roles_path if check_permission(Sites::Admin::RolesController, [:index])%>
       <%= menu_item_to t(".notifications"), main_app.site_admin_notifications_path if check_permission(Sites::Admin::NotificationsController, [:index]) %>
       <% if check_permission(Sites::Admin::ExtensionsController, 'edit') %>
         <li class="nav-header"><%= t(".extensions") %></li>
@@ -22,7 +21,6 @@
     <% else %>
       <%= menu_item_to t(".sites"), main_app.admin_sites_path if true or check_permission(Admin::SitesController, [:index])%>
       <%= menu_item_to t(".users"), main_app.admin_users_path if check_permission(Admin::UsersController, [:index])%>
-      <%= menu_item_to t(".roles_permissions"), main_app.admin_roles_path if check_permission(Admin::RolesController, [:index])%>
       <%= menu_item_to t(".settings"), main_app.admin_settings_path if check_permission(Admin::SettingsController, [:index])%>
       <%= menu_item_to t(".notifications"), main_app.admin_notifications_path if check_permission(Admin::NotificationsController, [:index]) %>
       <%= menu_item_to t(".statistics"), main_app.admin_stats_path if check_permission(Admin::StatisticsController, [:index])%>

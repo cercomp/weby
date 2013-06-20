@@ -4,6 +4,7 @@ pt-BR:
       users:
         manage_roles:
           manage_roles:   " Gerenciar Usuários "
+          roles_permissions: " Permissões e Papéis"
         enrole:
           enrole_user:    " Relacionar Usuários "
           role:           " Papel "
@@ -14,5 +15,4 @@ pt-BR:
           none_user:      " Nenhum Usuário "
         role_form:
           confirm_unrole:
-
 
