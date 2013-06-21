@@ -3,8 +3,8 @@ en:
     admin:
       users:
         manage_roles:
-          manage_roles:   " Manage Users "
-          roles_permissions: " Roles and Permissions "
+          manage_roles:   " Manage Roles "
+          manage_users:   " Manage Users "
         enrole:
           enrole_user:    " Enrole user "
           role:           " Role "
