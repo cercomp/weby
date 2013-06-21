@@ -14,6 +14,11 @@
       new_admin_role_path,
       class: "btn btn-success" %>
   <% end %>
+  <% if check_permission(Admin::UsersController, [:index]) %>
+    <%= link_to t(".users"),
+      main_app.admin_users_path,
+      class: "btn btn-primary" %>
+  <% end %>
 </p>
 <div class="clearfix"></div>
 

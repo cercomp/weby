@@ -1,7 +1,7 @@
 
 <p class="pull-right">
   <% if check_permission(Admin::RolesController, [:index]) %>
-    <%= link_to t(".manage_roles"), 
+    <%= link_to t(".roles_permissions"),
       main_app.admin_roles_path,
       class: "btn btn-primary" %>
   <% end %>

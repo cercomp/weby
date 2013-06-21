@@ -3,16 +3,17 @@ en:
     admin:
       users:
         manage_roles:
-          manage_roles:   " Manage Roles "
-          manage_users:   " Manage Users "
+          manage_roles:      " Manage Roles "
+          roles_permissions: " Roles and Permissions "
+          manage_users:      " Manage Users "
         enrole:
-          enrole_user:    " Enrole user "
-          role:           " Role "
-          none_user:      " None User "
+          enrole_user:       " Enrole user "
+          role:              " Role "
+          none_user:         " None User "
         enroled:
-          enroled_user:   " Enroled User "
-          role:           " Role "
-          none_user:      " None User "
+          enroled_user:      " Enroled User "
+          role:              " Role "
+          none_user:         " None User "
         role_form:
           confirm_unrole:
 
