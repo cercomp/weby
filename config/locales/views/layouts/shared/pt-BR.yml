@@ -22,6 +22,7 @@ pt-BR:
         feedback:          " Fale Conosco "
         statistics:        " Estatísticas "
         notifications:     " Notificações "
+        dashboard:         " Painel de Controle "
       navbar:
         my_profile:        " Meu Perfil "
         logout:            " Sair "
