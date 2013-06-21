@@ -8,7 +8,7 @@
     input_html: {value: @site.id}, 
     as: :hidden %>
 
-  
+  <% unless @style.new_record? %>
   <div class="input">
     <div class="btn-toolbar code-editor-menu">
       <div class="btn-group">
@@ -21,17 +21,25 @@
       as: :text,
       wrapper_html: { class: 'nostyle' },
       input_html: {class: 'style-editor', id: 'code' } %>
-
+    
+    <br>
+  
     <%= link_to icon('question-sign', text:t(".help_with_style")),
       (current_settings[:help_site] || "/help"),
       target: "_blank"%>
   </div>
-
+  <% end %>
   <div class="form-actions">
-    <%= f.button :button, t(".apply"), type: :button, disabled: :disabled, class: "btn-apply btn btn-primary" if controller.action_name == "edit" %>
+    <%= f.button :button, t(".apply"), type: :button, disabled: :disabled, class: "btn-apply btn btn-primary" unless @style.new_record? %>
     <%= f.button :submit, class: 'btn-primary', disable_with: t("please_wait") %>
     <%= link_to t("back"), :back, class: "btn btn-danger" %>
   </div>
+  <% unless @style.new_record? %>
+  <div align="center" id="divPreviewcss" >                                                                                  
+    <label>Pré-visualização</label>                                                                                         
+    <iframe id="iframePreviewcss" src="<%= site_url(subdomain: current_site) %>"></iframe>                                  
+  </div> 
+  <% end %>
 <% end %>
 <%= content_for :stylesheets, stylesheet_link_tag("codeMirror/codemirror") %>
 <%= content_for :javascripts, javascript_include_tag("codeMirror/codemirror.min") %>
@@ -70,6 +78,7 @@
               $('.btn-apply').prop('disabled',false);
             }else{
               flashMsgApply('<%=image_tag("true.png")%>',"<%=t("successfully_updated")%>");
+              refreshIframe();
             }
           },
           error: function(jqxhr, st, error){
@@ -101,6 +110,11 @@
       function commentSelection(isComment) {
         var range = getSelectedRange();
         editor.commentRange(isComment, range.from, range.to);
-      }      
+      }
+     
+      function refreshIframe(){
+        var iframe = document.getElementById('iframePreviewcss');
+        iframe.src = iframe.src;  
+      }
   </script>
 <% end %>
