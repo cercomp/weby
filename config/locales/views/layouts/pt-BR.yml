@@ -4,9 +4,9 @@ pt-BR:
   layouts:
     application:
       licence: "© Copyright 2013 UFG. Todos os direitos reservados."
-      logout: "LOGOUT"
+      logout: "SAIR"
       register: "CADASTRAR"
-      login: "LOGIN"
+      login: "ENTRAR"
       clipping: "CLIPPING"
       help: "AJUDA"
       about: "SOBRE"
@@ -15,9 +15,9 @@ pt-BR:
       show-site: "ACESSAR PORTAL"
     weby_pages:
       licence: "© Copyright 2013 UFG. Todos os direitos reservados."
-      logout: "LOGOUT"
+      logout: "SAIR"
       register: "CADASTRAR"
-      login: "LOGIN"
+      login: "ENTRAR"
       clipping: "CLIPPING"
       help: "AJUDA"
       about: "SOBRE"
