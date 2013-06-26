@@ -9,7 +9,7 @@ pt-BR:
   session:
     login:
       login:               " Entrar "
-      forgot_password:     " Perdi minha senha "
+      forgot_password:     " Esqueci minha senha "
       register:            " Cadastrar "
       field_login:         "Login"
       field_password:      "Senha"
@@ -19,12 +19,12 @@ pt-BR:
       field_first_name:    "Nome"
       field_last_name:     "Sobrenome"
     forgot_password:
-      fill_email_form:     " Preencha o formulário para resgatar sua senha. Ela será enviada para seu e-mail. "
+      fill_email_form:     " Preencha o formulário para que sejam enviadas instruções de como mudar sua senha. "
       recover_password:    " Recuperar senha "
       field_email:         "Email"
     password_sent:
       sent_password:       " Instruções de como modificar sua senha foram enviadas para seu e-mail. "
-      recover_password:    " Recuperar senha "
+      recover_password:    " Mudar senha "
     reset_password:
       change_password:     " Mudar senha "
       reset_password:      " Nova senha "

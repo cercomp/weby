@@ -19,12 +19,12 @@ en:
       field_first_name:    "First name"
       field_last_name:     "Last name"
     forgot_password:
-      fill_email_form:     " Complete the form to recover your password. The password will be send to your e-mail. "
+      fill_email_form:     " Fill in the form so that instructions may be sent on how to change your password. "
       recover_password:    " Recover password "
       field_email:         "Email"
     password_sent:
       sent_password:       " Instructions to reset your password have been sent to your e-mail. "
-      recover_password:    " Recover password "  
+      recover_password:    " Change password "  
     reset_password:
       change_password:     " Change password "
       reset_password:      " New password "
