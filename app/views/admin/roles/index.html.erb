@@ -8,14 +8,19 @@
   </div>
 <% end %>
   
-<% if check_permission(Admin::RolesController, [:new]) %>
-  <div class="pull-right">
+<p class="pull-right">
+  <% if check_permission(Admin::RolesController, [:new]) %>
     <%= link_to t(".create_role"),
       new_admin_role_path,
       class: "btn btn-success" %>
-  </div>
-  <div class="clearfix"></div>
-<% end %>
+  <% end %>
+  <% if check_permission(Admin::UsersController, [:index]) %>
+    <%= link_to t(".users"),
+      main_app.admin_users_path,
+      class: "btn btn-primary" %>
+  <% end %>
+</p>
+<div class="clearfix"></div>
 
 <%= form_tag admin_roles_path, :method => :put, :id => 'roles_form' do %>
   <table class='table table-striped table-condensed'>

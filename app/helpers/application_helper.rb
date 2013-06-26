@@ -209,7 +209,8 @@ module ApplicationHelper
     title ||= column.titleize
     css_class = column == sort_column ? "current #{sort_direction}" : nil
     direction = (column == sort_column && sort_direction == "asc") ? "desc" : "asc"
-    link_to title,
+    icon_name = column == sort_column ? sort_direction == "asc" ? "chevron-up" : "chevron-down" : nil
+    link_to "#{title}#{icon(icon_name)}".html_safe,
       #quando uma lista é reordenada, ela volta para a página 1
       params.merge({sort: column, direction: direction, page: 1}),
       data: { column: column},

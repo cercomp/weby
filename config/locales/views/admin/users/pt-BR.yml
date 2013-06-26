@@ -28,6 +28,7 @@ pt-BR:
         users:              " Usuários "
         new_user:           " Novo Usuário "
         manage_roles:       " Gerenciar Papéis "
+        roles_permissions:  " Permissões e Papéis "
       list:
         id:                 " Id "
         user:               " Usuário "

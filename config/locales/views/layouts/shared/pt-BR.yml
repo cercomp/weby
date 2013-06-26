@@ -22,6 +22,8 @@ pt-BR:
         feedback:          " Fale Conosco "
         statistics:        " Estatísticas "
         notifications:     " Notificações "
+        dashboard:         " Painel de Controle "
+        contents:          " Conteúdos "
       navbar:
         my_profile:        " Meu Perfil "
         logout:            " Sair "
@@ -37,7 +39,7 @@ pt-BR:
         search:            " Buscar "
         searching:         " Buscando... "
       weby_bar:
-        logout: "LOGOUT"
+        logout: "SAIR"
         dashboard: "ADMINISTRAÇÃO"
         help: "AJUDA"
         about: "SOBRE"

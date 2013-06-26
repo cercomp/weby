@@ -5,3 +5,5 @@ en:
       clipping: "CLIPPING"
       my-sites: "MY SITES"
       search: "SEARCH"
+    list:
+      none_page: " No news "
