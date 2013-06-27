@@ -1,11 +1,7 @@
 class ClippingController < ApplicationController
-  layout "clipping"
-  def index    
+  layout 'weby_pages'
 
-    @page = Page.front.published.available.clipping.search(params[:search], 1)
-    
-  end
-
-  def show
+  def index
+    @pages = Page.front.published.available.clipping.search(params[:search], 1)
   end
 end

@@ -1,5 +1,4 @@
 module ClippingHelper
-
   def my_truncate(text, size = 100, omission = '...')
     result = ""
     text.split.each do |word|
@@ -8,5 +7,4 @@ module ClippingHelper
     end
     result + omission
   end
-  
 end

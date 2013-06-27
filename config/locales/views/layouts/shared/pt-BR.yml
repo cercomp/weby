@@ -21,6 +21,9 @@ pt-BR:
         permissions:       " Permissões "
         feedback:          " Fale Conosco "
         statistics:        " Estatísticas "
+        notifications:     " Notificações "
+        dashboard:         " Painel de Controle "
+        contents:          " Conteúdos "
       navbar:
         my_profile:        " Meu Perfil "
         logout:            " Sair "
@@ -32,16 +35,12 @@ pt-BR:
         show_site:         " Mostrar sítio "
         help:              " Ajuda "
         about:             " Sobre "
-      webybar:
-        my_profile:        " Meu Perfil "
-        logout:            " Sair "
-        login:             " Entrar "
-        register:          " Cadastro "
-        sites:             " Sítios "
-        dashboard:         " Administração "
-        show_site:         " Mostrar sítio "
-        help:              " Ajuda "
-        about:             " Sobre "
       search_form:
         search:            " Buscar "
         searching:         " Buscando... "
+      weby_bar:
+        logout: "SAIR"
+        dashboard: "ADMINISTRAÇÃO"
+        help: "AJUDA"
+        about: "SOBRE"
+        clipping: "CLIPPING"

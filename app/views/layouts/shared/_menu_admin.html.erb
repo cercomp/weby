@@ -1,30 +1,42 @@
-<div class="well" id="menu-admin">
+<div id="menu-admin">
   <ul class="nav nav-pills nav-stacked">
     <% if current_site %>
+      <div class="nav-header">
+        <%= menu_item_to t(".dashboard"), main_app.site_admin_path %>
+      </div>
+      <%#= menu_item_to t(".notifications"), main_app.site_admin_notifications_path if check_permission(Sites::Admin::NotificationsController, [:index]) %>
       <%= menu_item_to t(".settings"), main_app.edit_site_admin_path if check_permission(SitesController, [:edit]) %>
       <%= menu_item_to t(".users"), main_app.manage_roles_site_admin_users_path if check_permission(Sites::Admin::UsersController, [:manage_roles])%>
-      <%= menu_item_to t(".archives"), main_app.site_admin_repositories_path if check_permission(Sites::Admin::RepositoriesController, [:index])%>
-      <%= menu_item_to t(".pages"), main_app.site_admin_pages_path if check_permission(Sites::Admin::PagesController, [:index])%>
-      <%#= menu_item_to t(".covers"), main_app.fronts_site_admin_pages_path if check_permission(Sites::Admin::PagesController, [:index])%>
-      <%= menu_item_to t(".menus"), main_app.site_admin_menus_path if check_permission(Sites::Admin::MenusController, [:index])%>
-      <%= menu_item_to t(".banners"), main_app.site_admin_banners_path if check_permission(Sites::Admin::BannersController, [:index])%>
       <%= menu_item_to t(".components"), main_app.site_admin_components_path if check_permission(Sites::Admin::ComponentsController, [:index])%>
-      <%= menu_item_to t(".extensions"), main_app.site_admin_extensions_path if check_permission(Sites::Admin::ExtensionsController, [:index])%>
       <%= menu_item_to t(".styles"), main_app.site_admin_styles_path if check_permission(Sites::Admin::StylesController, [:index])%>
-      <%= menu_item_to t(".roles_permissions"), main_app.site_admin_roles_path if check_permission(Sites::Admin::RolesController, [:index])%>
-      <% if check_permission(Sites::Admin::ExtensionsController, 'edit') %>
-        <li class="nav-header"><%= t(".extensions") %></li>
+      <%#= menu_item_to t(".covers"), main_app.fronts_site_admin_pages_path if check_permission(Sites::Admin::PagesController, [:index])%>
+      <div class="nav-header">
+        <%= menu_item_to t(".contents"), main_app.site_admin_path %>
+      </div>
+      <%= menu_item_to t(".archives"), main_app.site_admin_repositories_path if check_permission(Sites::Admin::RepositoriesController, [:index])%>
+      <%= menu_item_to t(".menus"), main_app.site_admin_menus_path if check_permission(Sites::Admin::MenusController, [:index])%>
+      <%= menu_item_to t(".pages"), main_app.site_admin_pages_path if check_permission(Sites::Admin::PagesController, [:index])%>
+      <%= menu_item_to t(".banners"), main_app.site_admin_banners_path if check_permission(Sites::Admin::BannersController, [:index])%>
+      <% if check_permission(Sites::Admin::ExtensionsController, [:edit]) %>
+        <div class="nav-header">
+        <% if check_permission(Sites::Admin::ExtensionsController, [:index]) %>
+          <%= menu_item_to t(".extensions"), main_app.site_admin_extensions_path %>
+        <% end %>
+        </div>
         <% current_site.extensions.each do |extension| %>
-            <%= menu_item_to t("extensions.#{extension.name}.name"), "/#{extension.name}/admin" %>
+          <%= menu_item_to t("extensions.#{extension.name}.name"), "/#{extension.name}/admin" %>
         <% end %>
       <% end %>
-        
     <% else %>
+      <div class="nav-header">
+        <%= menu_item_to t(".dashboard"), main_app.admin_path %>
+      </div>
+      <%= menu_item_to t(".notifications"), main_app.admin_notifications_path if check_permission(Admin::NotificationsController, [:index]) %>
+      <%= menu_item_to t(".settings"), main_app.admin_settings_path if check_permission(Admin::SettingsController, [:index])%>
       <%= menu_item_to t(".sites"), main_app.admin_sites_path if true or check_permission(Admin::SitesController, [:index])%>
       <%= menu_item_to t(".users"), main_app.admin_users_path if check_permission(Admin::UsersController, [:index])%>
-      <%= menu_item_to t(".roles_permissions"), main_app.admin_roles_path if check_permission(Admin::RolesController, [:index])%>
-      <%= menu_item_to t(".settings"), main_app.admin_settings_path if check_permission(Admin::SettingsController, [:index])%>
       <%= menu_item_to t(".statistics"), main_app.admin_stats_path if check_permission(Admin::StatisticsController, [:index])%>
     <% end %>
   </ul>
 </div>
+

@@ -1,0 +1,104 @@
+/*
+ *= require_self
+ *= require google/lato
+ */
+
+@import "weby/bootstrap";
+@import "bootstrap-responsive";
+
+.zone { background: #F5F5F5; }
+
+#header
+{
+  padding-top: 25px;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  font-size: 12px;
+  .noperson
+  {
+    padding-top: 14px;
+    padding-bottom: 14px;
+    text-align: right;
+    .btn { margin-left: 5px; }
+  }
+  .person
+  {
+    padding-top: 14px;
+    padding-bottom: 14px;
+    .avatar
+    {
+      margin-right: 10px;
+    }
+    .info
+    {
+      line-height: 15px;
+    }
+    .info.name
+    {
+      font-weight: bold;
+      padding-bottom: 1px;
+    }
+    .info.actions
+    {
+      padding-top: 1px;
+      a
+      {
+        color: #BC1625;
+        margin-right: 5px;
+      }
+    }
+
+  }
+}
+
+#main
+{
+  .nav { margin-bottom: 10px; }
+  .pagination { margin: 10px 0 5px; }
+  .form { margin-bottom: 10px; }
+  .new-site { margin-left: 5px }
+  .search { margin-bottom: 10px; }
+}
+
+#footer
+{
+  a
+  {
+    margin-right: 5px;
+    font-weight: bold;
+  }
+  padding: 10px 0 0;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 11px;
+}
+
+// clipping
+.clipping-title
+{
+  line-height: 25px;
+  margin-top: 0px;
+  margin-bottom: 17px;
+  color: #BC1625; 
+}
+
+#clipping
+{
+  .thumbnail
+  {
+    img { float: right; }
+    p { height: 60px; }
+    a { color: #BC1625; }
+  }
+}
+
+// legacy
+.pagination select
+{
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  border-radius: 0;
+  float: left;
+  border-color: #DDD;
+  margin-bottom: 0;
+}

@@ -1,20 +1,12 @@
-<%- title ".archives" %>
+<%= simple_form_for [:site_admin, @repository], :html => { class: 'form-horizontal'} do |f| %>
+  <%= f.show_errors %>
 
-<div class="span9">
-  <div class="well">
-    <%= simple_form_for [:site_admin, @repository], :html => { class: 'form-horizontal'} do |f| %>
-      <%= f.show_errors %>
+  <%= f.input :archive, :as => :file %>
+  <%= f.input :description,  :hint => (t(".field_required") + " " + t(".accessibility_needs"))%>
+  <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
 
-      <%= f.input :archive, :as => :file %>
-      <%= f.input :description,  :hint => (t(".field_required") + " " + t(".accessibility_needs"))%>
-      <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
-
-      <div class="form-actions">
-	<%= f.button :submit, class: 'btn-primary', disable_with: t("please_wait") %>
-	<%= link_to t("back"), :back, class: "btn btn-danger" %>
-      </div>
-    <% end %>
-    <%#= link_to t("show"), site_admin_repository_path(@repository.id) %>
+  <div class="form-actions">
+    <%= f.button :submit, class: 'btn-primary', disable_with: t("please_wait") %>
+    <%= link_to t("back"), :back, class: "btn" %>
   </div>
-</div>
-
+<% end %>

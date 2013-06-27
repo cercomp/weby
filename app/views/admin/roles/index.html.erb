@@ -1,76 +1,74 @@
 <% content_for :javascripts do %>
   <%= javascript_include_tag "roles_index" %>
 <% end %>
-<%- title ".roles_permissions" %>
 
-<div class="span9">
-  <div class="well">
-
-  <% if @roles.empty? %>
-    <div class="alert">
-      <%= t(".none_role") %>
-    </div>
-  <% end %>
-    
+<% if @roles.empty? %>
+  <div class="alert">
+    <%= t(".none_role") %>
+  </div>
+<% end %>
+  
+<p class="pull-right">
   <% if check_permission(Admin::RolesController, [:new]) %>
-    <div class="pull-right">
-      <%= link_to t(".create_role"),
-        new_admin_role_path,
-        class: "btn btn-success" %>
-    </div>
-    <div class="clearfix"></div>
+    <%= link_to t(".create_role"),
+      new_admin_role_path,
+      class: "btn btn-success" %>
   <% end %>
+  <% if check_permission(Admin::UsersController, [:index]) %>
+    <%= link_to t(".users"),
+      main_app.admin_users_path,
+      class: "btn btn-primary" %>
+  <% end %>
+</p>
+<div class="clearfix"></div>
 
-    <%= form_tag admin_roles_path, :method => :put, :id => 'roles_form' do %>
-      <table class='table table-striped table-condensed'>
-        <thead>
-          <tr>
-            <th><%= t(".roles_permissions") %></th>
+<%= form_tag admin_roles_path, :method => :put, :id => 'roles_form' do %>
+  <table class='table table-striped table-condensed'>
+    <thead>
+      <tr>
+        <th><%= t(".roles_permissions") %></th>
+        <% @roles.each do |role| %>
+          <th>
+            <%= role.name %> 
+            <p> 
+              <%= link_to icon('check'), nil, :onclick => "toggleCheckboxesBySelector('input.column-#{role.id}')", :remote => true %>
+              <% if check_permission(Admin::RolesController, [:edit]) %>
+                <%= link_to icon('edit', text: t("edit")), edit_admin_role_path(role) %>
+              <% end %>
+              <% if check_permission(Admin::RolesController, [:destroy]) %>
+                <%= link_to icon('trash', text: t("destroy")), admin_role_path(role), :data => {:confirm => t("are_you_sure")}, :method => :delete %>
+              <% end %>
+            </p>
+          </th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @rights.each do |controller, permissions| %>
+        <tr class="<%= cycle 'odd', 'even' %>">
+          <td colspan="<%= @roles.length + 1%>">
+            <b><%= t(".#{controller}") %></b>
+          </td>
+        </tr>
+        <% permissions.each do |right, config| %>
+          <tr class="<%= cycle 'odd', 'even' %> right-<%= right %>">
+            <td>
+              <%= link_to icon('check'), nil, :onclick => "toggleCheckboxesBySelector('.right-#{right} input')", :remote => true %>
+              <%= config['name'] %>
+            </td>
             <% @roles.each do |role| %>
-              <th>
-                <%= role.name %> 
-                <p> 
-                  <%= link_to icon('check'), nil, :onclick => "toggleCheckboxesBySelector('input.column-#{role.id}')", :remote => true %>
-                  <% if check_permission(Admin::RolesController, [:edit]) %>
-                    <%= link_to icon('edit', text: t("edit")), edit_admin_role_path(role) %>
-                  <% end %>
-                  <% if check_permission(Admin::RolesController, [:destroy]) %>
-                    <%= link_to icon('trash', text: t("destroy")), admin_role_path(role), :data => {:confirm => t("are_you_sure")}, :method => :delete %>
-                  <% end %>
-                </p>
-              </th>
+              <td>
+                <%= check_box_tag "role[#{role.id}][permissions][#{controller}][]", right, role.permissions_hash.fetch(controller,[]).include?(right), :id => nil, :class => "column-#{role.id}" %>
+              </td>
             <% end %>
           </tr>
-        </thead>
-        <tbody>
-          <% @rights.each do |controller, permissions| %>
-            <tr class="<%= cycle 'odd', 'even' %>">
-              <td colspan="<%= @roles.length + 1%>">
-                <b><%= t(".#{controller}") %></b>
-              </td>
-            </tr>
-            <% permissions.each do |right, config| %>
-              <tr class="<%= cycle 'odd', 'even' %> right-<%= right %>">
-                <td>
-                  <%= link_to icon('check'), nil, :onclick => "toggleCheckboxesBySelector('.right-#{right} input')", :remote => true %>
-                  <%= config['name'] %>
-                </td>
-                <% @roles.each do |role| %>
-                  <td>
-                    <%= check_box_tag "role[#{role.id}][permissions][#{controller}][]", right, role.permissions_hash.fetch(controller,[]).include?(right), :id => nil, :class => "column-#{role.id}" %>
-                  </td>
-                <% end %>
-              </tr>
-            <% end %>
-            <% end; reset_cycle %>
-          </tbody>
-        </table>
+        <% end %>
+      <% end; reset_cycle %>
+    </tbody>
+  </table>
 
-        <div class="form-actions">
-          <%= button_tag t("save"), class: 'btn btn-primary', disable_with: t("please_wait") %>
-          <%= link_to t("back"), :back, class: "btn btn-danger" %>
-        </div>
-      <% end %>
-
-    </div>
+  <div class="form-actions">
+    <%= button_tag t("save"), class: 'btn btn-primary', disable_with: t("please_wait") %>
+    <%= link_to t("back"), :back, class: "btn" %>
   </div>
+<% end %>

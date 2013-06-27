@@ -1,11 +1,5 @@
-<%- title ".editing_my_account" %>
+<%= simple_form_for [:admin, @user], :url => admin_user_path, html: { class: 'form-horizontal' } do |f| %>
+  <%= f.show_errors %>
+  <%= render :partial => "form", :object => f %>
+<% end %>
 
-<div class="span9">
-  <div class="well">
-    <%= simple_form_for [:admin, @user], :url => admin_user_path, html: { class: 'form-horizontal' } do |f| %>
-      <%= f.show_errors %>
-
-      <%= render :partial => "form", :object => f %>
-    <% end %>
-  </div>
-</div>

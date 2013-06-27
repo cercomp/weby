@@ -136,7 +136,7 @@ rights:
       action: new create
     publish:
       name: Publicar Estilo
-      action: publish
+      action: publish unpublish
     follow:
       name: Usar Estilo
       action: follow
@@ -182,3 +182,10 @@ rights:
     destroy:
       name: Excluir Extensões
       action: destroy
+  notifications:
+    index:
+      name: Listar Notificações
+      action: index
+    show:
+      name: Ver Notificações
+      action: show

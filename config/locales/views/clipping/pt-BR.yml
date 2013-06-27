@@ -1,0 +1,10 @@
+pt-BR:
+  clipping:
+    index:
+      sites: "PORTAIS"
+      clipping: "CLIPPING"
+      my-sites: "MEUS PORTAIS"
+      search: "BUSCAR"
+    list:
+      none_page: " Nenhuma notícia "
+

@@ -1,21 +1,12 @@
-<%- title ".extensions" %>
+<div class="pull-right">
+  <% if check_permission(Sites::Admin::ExtensionsController, 'new') %>
+    <%= link_to t(".new_extension"),
+      new_site_admin_extension_path,
+      class: "btn btn-success" %>
+  <% end %>
+</div>
+<div class="clearfix"></div>
 
-<div class="span9">
-  <div class="well">
-
-
-    <div class="pull-right">
-      <% if check_permission(Sites::Admin::ExtensionsController, 'new') %>
-      <%= link_to t(".new_extension"),
-        new_site_admin_extension_path,
-        class: "btn btn-success" %>
-      <% end %>
-    </div>
-    <div class="clearfix"></div>
-
-    <div id="list">
-      <%= render :partial => 'list' %>
-    </div>
-
-  </div>
+<div id="list">
+  <%= render :partial => 'list' %>
 </div>

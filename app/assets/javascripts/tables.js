@@ -3,8 +3,8 @@ $(document).ready(function wrap_table() {
 
   var width;
   $('table.nowrap td').each(function(i, e) {
-    width = $('table.nowrap th')[$(e).index()].width;
-    $(e).html( '<div style="width:' + width + '">' + $(e).html() + '</div>' );
+    width = $(this).width(); //$('table.nowrap th')[$(e).index()].width;
+    $(e).html( '<div style="width:' + width + 'px">' + $(e).html() + '</div>' );
   });
 
   $('table.nowrap tr').hover(function() {

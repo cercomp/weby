@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :set_contrast, :set_locale, :set_global_vars, :set_view_types
   after_filter :clear_weby_cache, :count_view
+  before_filter :require_user, only: [:admin]
 
   helper :all
   helper_method :current_user_session, :current_user, :sort_direction, :test_permission,
@@ -113,7 +114,7 @@ class ApplicationController < ActionController::Base
     @not_found_path = request.path
     @error = exception
     respond_to do |format|
-      format.html { render template: 'errors/404', layout: 'application', status: 404 }
+      format.html { render template: 'errors/404', layout: 'weby_pages', status: 404 }
       format.all { render nothing: true, status: 404 }
     end
   end
@@ -130,7 +131,7 @@ class ApplicationController < ActionController::Base
         "#{params}\n"+
         "}")
     respond_to do |format|
-      format.html { render template: 'errors/500', layout: 'application', status: 500 }
+      format.html { render template: 'errors/500', layout: 'weby_pages', status: 500 }
       format.all { render nothing: true, status: 500}
     end
   end
@@ -257,6 +258,8 @@ class ApplicationController < ActionController::Base
     @site = current_site
 
     Weby::Cache.request[:domain] = request.domain
+    Weby::Cache.request[:subdomain] = request.subdomain
+
     params[:per_page] ||= per_page_default
 
     @current_rights = {}

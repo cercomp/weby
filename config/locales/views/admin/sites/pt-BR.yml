@@ -13,6 +13,7 @@ pt-BR:
         settings:               " Configurações "
       list:
         name:                   " Nome "
+        dashboard:              " Administração "
         description:            " Descrição "
         settings:               " Configurações "
       form:

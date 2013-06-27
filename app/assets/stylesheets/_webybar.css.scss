@@ -1,8 +1,21 @@
+/*
+ *= require_self
+ *= require google/lato
+ */
+
 html, body { margin: 0; }
 
-#webybar
+#weby_bar
 {
-  // reset css to other css not affect the webybar 
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  height: 42px;
+  background: #f5f5f5;
+  color: #333;
+  font-size: 12px;
+  line-height: 42px;
+  overflow: hidden;
+
+  // reset
   div, span, img, h1, h2, h3, h4, h5, h6, p, a, ol, ul, li
   {
     vertical-align: baseline;
@@ -16,43 +29,41 @@ html, body { margin: 0; }
     border: 0;
     text-decoration: none;
   }
-  :focus { outline: 0; }
-  ol, ul { list-style: none; }
-  .left { float: left; }
-  .right { float: right; }
-  .clear { clear: both; }
-  // (end)
-  
-  background: #181818;
-  font-size: 14px;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
-  #container
+  a 
   {
-    padding: 0 20px;
-    overflow: hidden;
-    height: 40px;
+    color: #bb1726;
+    text-transform: uppercase;
   }
 
-  a
+  .pull-right { float: right; }
+  .pull-left { float: left; }
+  .clearfix { clear: both; }
+
+  .user
   {
-    padding: 10px 10px;
-    display: block;
-    color: #999;
-    height: 19px;
-    
-    &:hover { color: white; }
-    &.logo 
+    line-height: 18px;
+    text-transform: uppercase;
+    .info
     {
-      font-size: 20px;
-      color: white;
+      text-align: right;
+      padding-top: 4px;
+      margin-right: 15px;
     }
   }
-
-  .red { color: #C11303; font-family:inherit; }
+  .logo
+  {
+    margin: 6px 10px;
+    line-height: 0;
+  }
+  .nav
+  {
+    margin-left: 10px;
+    a { margin-left: 7px; }
+  }
 }
 
-#webyaccess
+#weby_shortcut
 {
   position: fixed;
   z-index: 1000;

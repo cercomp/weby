@@ -209,7 +209,8 @@ module ApplicationHelper
     title ||= column.titleize
     css_class = column == sort_column ? "current #{sort_direction}" : nil
     direction = (column == sort_column && sort_direction == "asc") ? "desc" : "asc"
-    link_to title,
+    icon_name = column == sort_column ? sort_direction == "asc" ? "chevron-up" : "chevron-down" : nil
+    link_to "#{title}#{icon(icon_name)}".html_safe,
       #quando uma lista é reordenada, ela volta para a página 1
       params.merge({sort: column, direction: direction, page: 1}),
       data: { column: column},
@@ -353,6 +354,19 @@ module ApplicationHelper
       "active"
     else
       ""
+    end
+  end
+
+  def site_avatar_tag
+    repository = Repository.find_by_id(current_site.top_banner_id)
+    if repository
+      weby_file_view(repository, :mini, 32, 32,
+                      { as: 'link',
+                        title: current_site.description,
+                        url: main_app.site_url(subdomain: current_site)
+                      })
+    else
+      link_to image_tag('weby-shortcut.png', style: 'width: 32px; height: 32px;'), main_app.site_url(subdomain: current_site)
     end
   end
 end

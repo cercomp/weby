@@ -1,8 +1,2 @@
-<%- title ".components" %>
-
-<div class="span9">
-  <div class="well">
-    <%= render :partial => 'form', :locals => { :url => site_admin_component_path, :method => :put } %>
-    <input id="component_place_holder" type="hidden" meta-data="<%= @component.place_holder %>"/>
-  </div>
-</div>
+<%= render :partial => 'form', :locals => { :url => site_admin_component_path, :method => :put } %>
+<input id="component_place_holder" type="hidden" meta-data="<%= @component.place_holder %>"/>

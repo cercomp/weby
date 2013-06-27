@@ -19,6 +19,8 @@ class SitesController < ApplicationController
       page(params[:page]).
       per(params[:per_page])
     flash[:warning] = (t"none_page") unless @sites
+
+    render layout: 'weby_pages'
   end
 
   def show
@@ -36,6 +38,10 @@ class SitesController < ApplicationController
     render text: File.read(robots_file && FileTest.exist?(robots_file) ?
       robots_file : Rails.root.join("public","default_robots.txt")), :layout => false, :content_type => "text/plain"
 
+  end
+
+  def about
+    render partial: 'layouts/shared/about'
   end
 
   #### BACK-END
@@ -61,7 +67,7 @@ class SitesController < ApplicationController
     params[:site][:top_banner_id] ||= nil
     if @site.update_attributes(params[:site])
       flash[:success] = t("successfully_updated")
-      redirect_to edit_site_admin_path
+      redirect_to edit_site_admin_url(subdomain: @site)
     else
       load_themes
       render :edit, layout: "application"
