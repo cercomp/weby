@@ -31,18 +31,16 @@ module ComponentsHelper
     components.map{|comp, opt| [t("components.#{comp.to_s}.name"), comp.to_s] }.sort!{|a,b| a[0] <=> b[0]}
   end
 
-  private
-
   def make_placeholders_divs(placeholders,width)
     divs = ""
     placeholders["names"].map do |name|
       divs += "<div 
                   id='mini_#{name}'
                   class='hover' 
-                  style='width:#{ if placeholders["width"].nil? 
+                  style='width:#{ if placeholders["widths"].nil?
                                     ((width/placeholders["names"].size).to_s + "px") 
                                   else 
-                                    (placeholders["width"][placeholders["names"].index(name)].to_s + "%") 
+                                    (placeholders["widths"][placeholders["names"].index(name)].to_s + "%")
                                   end }; 
                    height:#{placeholders["height"] || 25}px;'>
                #{t("components.pos.#{name}")}  </div>"

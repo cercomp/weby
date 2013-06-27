@@ -4,6 +4,6 @@ placeholders:
   - names: ['top']
   - names: ['left', 'home', 'right']
     height: 190
-    width: [25,50,25]
+    widths: [25,50,25]
   - names: ['bottom']
 
