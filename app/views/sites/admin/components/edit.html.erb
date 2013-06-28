@@ -1,2 +1,1 @@
-<%= render :partial => 'form', :locals => { :url => site_admin_component_path, :method => :put } %>
-<input id="component_place_holder" type="hidden" meta-data="<%= @component.place_holder %>"/>
+<%= render :partial => 'form', :locals => { :url => site_admin_component_path(@component), :method => :put } %>

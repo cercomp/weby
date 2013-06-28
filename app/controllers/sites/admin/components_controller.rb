@@ -15,6 +15,7 @@ class Sites::Admin::ComponentsController < ApplicationController
   def new
     if (params[:component] and component_is_available(params[:component]))
       @component = Weby::Components.factory(params[:component])
+      @component.place_holder = params[:placeholder]
     else
       render :available_components
     end

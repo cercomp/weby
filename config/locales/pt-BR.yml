@@ -23,15 +23,6 @@ pt-BR:
   close:                                " Fechar "
   copy:                                 " Copiar "
   component:                            " Componente "
-  components:
-    pos:
-      bottom:                           " Inferior "
-      content:                          " Conteúdo "
-      first_place:                      " Primeiro Carregamento "
-      home:                             " Página Inicial "
-      left:                             " Esquerda "
-      right:                            " Direita "
-      top:                              " Topo "
   custom:                               " Personalizado "
   create_account_successful:            " Sua conta foi criada! Foi enviado para seu email instruções de como ativá-la "
   create_notification_successful:       " Notificação criada com sucesso! "

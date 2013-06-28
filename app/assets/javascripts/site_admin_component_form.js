@@ -9,7 +9,7 @@
 var place_holder = "#mini_"
 
 window.onload = function(){
-  place_holder += $("input[type=hidden][id=component_place_holder]").attr('meta-data');
+  place_holder += $("input#component_place_holder").val();
   $(place_holder).addClass('clicked');
 };
 

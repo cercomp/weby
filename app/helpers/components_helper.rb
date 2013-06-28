@@ -43,7 +43,7 @@ module ComponentsHelper
                                     (placeholders["widths"][placeholders["names"].index(name)].to_s + "%")
                                   end }; 
                    height:#{placeholders["height"] || 25}px;'>
-               #{t("components.pos.#{name}")}  </div>"
+               #{t("themes.#{current_site.theme}.#{name}")}  </div>"
     end
     return divs
   end

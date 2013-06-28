@@ -1,47 +1,52 @@
 #maxi_layout{
-  border-top: 1px solid #DDD;
-  border-left: 1px solid #DDD;
-  background-color: #EEE;
-  margin-top: 5px;
-
+  border-top: 1px solid #D2D2D2;
+  border-left: 1px solid #D2D2D2;
+  background-color: #F5F5F5;
+  margin-bottom: 10px;
+  
   .maxi_level{
-    border-bottom: 1px solid #DDD;
+    border-bottom: 1px solid #D2D2D2;
     min-height: 25px;
   }
 
   .maxi_level > .placeholder{
-    border-right: 1px solid #DDD;
+    border-right: 1px solid #D2D2D2;
     box-sizing: border-box;
     -moz-box-sizing:border-box; /* Firefox */
     -webkit-box-sizing:border-box; /* Safari */
     float: left;
-    padding: 5px;
+    padding: 5px 5px 30px 5px;
     height: 100%;
-  }
-
-  .maxi_level > .placeholder > ul{
-    margin: 0;
-  }
-
-  .maxi_level > .placeholder > ul > li{
-    margin-bottom: 5px;
+    position: relative;
   }
 
   .maxi_level > .placeholder > ul > li.disabled{
     background-color: #f2dede;
   }
 
-  .maxi_level > .placeholder .component{
-    display: block;
-    padding: 4px;
-    border: 1px solid #ddd;
-    background-color: #FFF;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.055);
-    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.055);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.055);
+  .maxi_level .add-btn{
+    position: absolute;
+    bottom: 5px;
   }
 }
 
+#maxi_layout .maxi_level > .placeholder > ul, #leftout ul{
+  margin: 0;
+}
+
+#maxi_layout .maxi_level > .placeholder > ul > li, #leftout ul > li{
+  margin-bottom: 5px;
+}
+
+#maxi_layout .maxi_level > .placeholder .component, #leftout .component{
+  display: block;
+  padding: 4px;
+  border: 1px solid #ddd;
+  background-color: #FFF;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.055);
+  -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.055);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.055);
+}

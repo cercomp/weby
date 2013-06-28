@@ -1,21 +1,19 @@
-<div class="pull-right">
-  <% if check_permission(Sites::Admin::ComponentsController, 'new') %>
-    <%= link_to t(".new_component"), new_site_admin_component_path, class: "btn btn-success" %>
-  <% end %>
-</div>
-<div class="clearfix"></div>
-
+<span><%= current_site.theme %></span>
 <div id="maxi_layout">
 <% @placeholders.each do |placeholder| %>
   <div class="maxi_level">
     <% placeholder["names"].each_with_index do |name, idx| %>
       <%= content_tag :div, class: "placeholder #{name}", style: "width: #{placeholder["widths"] ? placeholder["widths"][idx] : 100/placeholder["names"].size}%;" do %>
+        <span><%= t("themes.#{current_site.theme}.#{name}") %></span>
         <ul>
-          <%= t(".#{name}") %>
           <% components_per_holder = @components.select{|component| component.place_holder == name} %>
+          <% if components_per_holder.empty? %>
+            <div><i><%= t(".empty_placeholder") %></i></div>
+          <% end %>
+
           <% components_per_holder.each do |comp| %>
           <% component = Weby::Components.factory(comp) %>
-          <li class="component component-<%= component.name %> <%= "disabled" unless component_is_available(component.name) %>">
+          <li id="sort_sites_component_<%= component.id %>" class="component component-<%= component.name %> <%= "disabled" unless component_is_available(component.name) %>">
             <div>
               <%#= image_tag("/assets/components/#{component.name}.png", style: 'height: 64px;') %>
               <%= raw "#{toggle_field(component, "publish")} #{t("components.#{component.name}.name")} - #{component.alias || component.default_alias}" %>
@@ -33,6 +31,7 @@
           <% end %>
           <% @components = @components - components_per_holder %>
         </ul>
+        <%= link_to t(".new_component"), new_site_admin_component_path(placeholder: name), class: "add-btn btn btn-success btn-small" if check_permission(Sites::Admin::ComponentsController, 'new') %>
       <% end %>
     <% end %>
   <div class="clearfix"></div>
@@ -40,10 +39,26 @@
 <% end %>
 </div>
 
-<%# Se sobrou algum component com placeholder que não está no layout atual %>
-<% @components.group_by(&:place_holder).sort.each do |place_holder, components| %>
-  <%= render partial: 'components', locals: {present: false, place_holder: place_holder, components_per_holder: components} %>
-<% end %>
+<div id="leftout">
+  <ul>
+  <%# Se sobrou algum component com placeholder que não está no layout atual %>
+  <% @components.each do |comp| %>
+      <% component = Weby::Components.factory(comp) %>
+      <li class="component component-<%= component.name %>">
+        <div>
+          <%#= image_tag("/assets/components/#{component.name}.png", style: 'height: 64px;') %>
+          <%= raw "#{toggle_field(component, "publish")} #{t("components.#{component.name}.name")} - #{component.alias || component.default_alias}" %>
+          <% exceptions = ["show"] %>
+          <% exceptions << "edit" unless component_is_available(component.name)  %>
+          <div class="pull-right">
+            <%= raw make_menu(component, :except => exceptions) %>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </li>
+  <% end %>
+  </ul>
+</div>
 
 <%= javascript_tag do %>
   window.onload=function(){

@@ -1,0 +1,9 @@
+pt-BR:
+  themes:
+    weby_doc:
+      first_place:        " Primeiro Carregamento "
+      home:               " Página Inicial "
+      left:               " Esquerda "
+      right:              " Direita "
+      top:                " Topo "
+      bottom:             " Inferior "
