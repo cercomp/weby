@@ -9,24 +9,23 @@
     as: :hidden %>
 
   <% unless @style.new_record? %>
-  <div class="input">
-    <div class="btn-toolbar code-editor-menu">
-      <div class="btn-group">
-        <%= link_to t(".format"),"javascript:autoFormatSelection()", class: "btn btn-small" %>
-        <%= link_to t(".comment"),"javascript:commentSelection(true)", class: "btn btn-small" %>
-        <%= link_to t(".uncomment"),"javascript:commentSelection(false)", class: "btn btn-small" %>
+    <div class="input">
+      <div class="btn-toolbar code-editor-menu">
+        <div class="btn-group">
+          <%= link_to t(".format"),"javascript:autoFormatSelection()", class: "btn btn-small" %>
+          <%= link_to t(".comment"),"javascript:commentSelection(true)", class: "btn btn-small" %>
+          <%= link_to t(".uncomment"),"javascript:commentSelection(false)", class: "btn btn-small" %>
+        </div>
       </div>
+      <%= f.input :css,
+        as: :text,
+        wrapper_html: { class: 'nostyle' },
+        input_html: {class: 'style-editor', id: 'code' } %>
+
+      <%= link_to icon('question-sign', text:t(".help_with_style")),
+        (current_settings[:help_site] || "/help"),
+        target: "_blank"%>
     </div>
-    <%= f.input :css, 
-      as: :text,
-      wrapper_html: { class: 'nostyle' },
-      input_html: {class: 'style-editor', id: 'code' } %>
-    <br>
-  
-    <%= link_to icon('question-sign', text:t(".help_with_style")),
-      (current_settings[:help_site] || "/help"),
-      target: "_blank"%>
-  </div>
   <% end %>
   <div class="form-actions">
     <%= f.button :button, t(".apply"), type: :button, disabled: :disabled, class: "btn-apply btn btn-primary" unless @style.new_record? %>
@@ -34,10 +33,10 @@
     <%= link_to t("back"), :back, class: "btn" %>
   </div>
   <% unless @style.new_record? %>
-  <div align="center" id="divPreviewcss" >                                                                                  
-    <label>Pré-visualização</label>                                                                                         
-    <iframe id="iframePreviewcss" src="<%= site_url(subdomain: current_site) %>"></iframe>                                  
-  </div> 
+    <div id="preview-css-panel">
+      <span><%= t('.preview') %></span>
+      <iframe src="<%= site_url(subdomain: current_site) %>"></iframe>
+    </div>
   <% end %>
 <% end %>
 <%= content_for :stylesheets, stylesheet_link_tag("codeMirror/codemirror") %>
@@ -112,8 +111,9 @@
       }
      
       function refreshIframe(){
-        var iframe = document.getElementById('iframePreviewcss');
-        iframe.src = iframe.src;  
+        var iframe = $('#preview-css-panel iframe');
+        iframe[0].contentWindow.location.reload();
+        //iframe.attr('src', iframe.attr('src'));
       }
   </script>
 <% end %>

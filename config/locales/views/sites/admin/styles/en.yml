@@ -29,6 +29,7 @@ en:
           comment:          " Comment "
           uncomment:        " Uncomment "
           apply:            " Apply "
+          preview:          " Preview "
         edit:
           styles:           " Styles "
         new:
