@@ -162,3 +162,12 @@ body.modal-open {
   cursor: pointer;
 }
 
+#preview-css-panel{
+  text-align: center;
+
+  iframe{
+    width: 100%;
+    height: 450px;
+    border: 2px solid #DDD;
+  }
+}

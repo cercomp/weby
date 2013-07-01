@@ -8,30 +8,36 @@
     input_html: {value: @site.id}, 
     as: :hidden %>
 
-  
-  <div class="input">
-    <div class="btn-toolbar code-editor-menu">
-      <div class="btn-group">
-        <%= link_to t(".format"),"javascript:autoFormatSelection()", class: "btn btn-small" %>
-        <%= link_to t(".comment"),"javascript:commentSelection(true)", class: "btn btn-small" %>
-        <%= link_to t(".uncomment"),"javascript:commentSelection(false)", class: "btn btn-small" %>
+  <% unless @style.new_record? %>
+    <div class="input">
+      <div class="btn-toolbar code-editor-menu">
+        <div class="btn-group">
+          <%= link_to t(".format"),"javascript:autoFormatSelection()", class: "btn btn-small" %>
+          <%= link_to t(".comment"),"javascript:commentSelection(true)", class: "btn btn-small" %>
+          <%= link_to t(".uncomment"),"javascript:commentSelection(false)", class: "btn btn-small" %>
+        </div>
       </div>
+      <%= f.input :css,
+        as: :text,
+        wrapper_html: { class: 'nostyle' },
+        input_html: {class: 'style-editor', id: 'code' } %>
+
+      <%= link_to icon('question-sign', text:t(".help_with_style")),
+        (current_settings[:help_site] || "/help"),
+        target: "_blank"%>
     </div>
-    <%= f.input :css, 
-      as: :text,
-      wrapper_html: { class: 'nostyle' },
-      input_html: {class: 'style-editor', id: 'code' } %>
-  </div>
-
-  <%= link_to icon('question-sign', text:t(".help_with_style")),
-    (current_settings[:help_site] || "/help"),
-    target: "_blank"%>
-
+  <% end %>
   <div class="form-actions">
-    <%= f.button :button, t(".apply"), type: :button, disabled: :disabled, class: "btn-apply btn btn-primary" if controller.action_name == "edit" %>
+    <%= f.button :button, t(".apply"), type: :button, disabled: :disabled, class: "btn-apply btn btn-primary" unless @style.new_record? %>
     <%= f.button :submit, class: 'btn-primary', disable_with: t("please_wait") %>
     <%= link_to t("back"), :back, class: "btn" %>
   </div>
+  <% unless @style.new_record? %>
+    <div id="preview-css-panel">
+      <span><%= t('.preview') %></span>
+      <iframe src="<%= site_url(subdomain: current_site) %>"></iframe>
+    </div>
+  <% end %>
 <% end %>
 <%= content_for :stylesheets, stylesheet_link_tag("codeMirror/codemirror") %>
 <%= content_for :javascripts, javascript_include_tag("codeMirror/codemirror.min") %>
@@ -70,6 +76,7 @@
               $('.btn-apply').prop('disabled',false);
             }else{
               flashMsgApply('<%=image_tag("true.png")%>',"<%=t("successfully_updated")%>");
+              refreshIframe();
             }
           },
           error: function(jqxhr, st, error){
@@ -101,6 +108,12 @@
       function commentSelection(isComment) {
         var range = getSelectedRange();
         editor.commentRange(isComment, range.from, range.to);
-      }      
+      }
+     
+      function refreshIframe(){
+        var iframe = $('#preview-css-panel iframe');
+        iframe[0].contentWindow.location.reload();
+        //iframe.attr('src', iframe.attr('src'));
+      }
   </script>
 <% end %>

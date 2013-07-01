@@ -86,7 +86,7 @@ class Sites::Admin::StylesController < ApplicationController
     @style.position = @site.own_styles.count + 1
 
     flash[:success] = t("successfully_created") if @style.save
-    respond_with(:site_admin, @style, location:  site_admin_styles_path)
+    respond_with(:site_admin, @style, location:  edit_site_admin_style_path(@style))
   end
 
   def update

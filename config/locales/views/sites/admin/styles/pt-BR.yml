@@ -2,7 +2,6 @@ pt-BR:
   sites:
     admin:
       styles:
-        styles:
         index:
           other_styles:     " Outros Estilos "
           follow_styles:    " Estilos seguidos "
@@ -30,6 +29,7 @@ pt-BR:
           comment:          " Comentar "
           uncomment:        " Descomentar "
           apply:            " Aplicar "
+          preview:          " Pré-visualizar "
         edit:
           styles:           " Estilos "
         new:
