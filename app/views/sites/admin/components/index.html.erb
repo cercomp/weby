@@ -1,28 +1,31 @@
-<span><%= current_site.theme %></span>
+<span><%= t("themes.#{current_site.theme}.title") %></span>
 <div id="maxi_layout">
-<% @placeholders.each do |placeholder| %>
-  <div class="maxi_level">
-    <% placeholder["names"].each_with_index do |name, idx| %>
-      <%= content_tag :div, class: "placeholder #{name}", style: "width: #{placeholder["widths"] ? placeholder["widths"][idx] : 100/placeholder["names"].size}%;" do %>
-        <span><%= t("themes.#{current_site.theme}.#{name}") %></span>
+<% @placeholders.each do |row| %>
+  <%= content_tag :div, class: "maxi_level #{row["names"].many? ? "multi" : "single"}" do %>
+    <% row["names"].each_with_index do |name, idx| %>
+      <%= content_tag :div, class: "placeholder", data: {place: name}, style: "width: #{row["widths"] ? row["widths"][idx] : 100/row["names"].size}%;" do %>
+        <%= link_to '+', new_site_admin_component_path(placeholder: name), class: "add-btn btn btn-success btn-small", title: t(".new_component") if check_permission(Sites::Admin::ComponentsController, 'new') %>
+        <div class="placeholder-name"><%= t("themes.#{current_site.theme}.placeholders.#{name}") %></div>
         <ul>
           <% components_per_holder = @components.select{|component| component.place_holder == name} %>
           <% if components_per_holder.empty? %>
-            <div><i><%= t(".empty_placeholder") %></i></div>
+            <!--<div><i><%#= t(".empty_placeholder") %></i></div>-->
           <% end %>
 
           <% components_per_holder.each do |comp| %>
           <% component = Weby::Components.factory(comp) %>
-          <li id="sort_sites_component_<%= component.id %>" class="component component-<%= component.name %> <%= "disabled" unless component_is_available(component.name) %>">
+          <li id="sort_sites_component_<%= component.id %>" class="component component-<%= component.name %> <%= "disabled" unless component_is_available(component.name) %>" data-place="<%= name %>">
             <div>
-              <%#= image_tag("/assets/components/#{component.name}.png", style: 'height: 64px;') %>
-              <%= raw "#{toggle_field(component, "publish")} #{t("components.#{component.name}.name")} - #{component.alias || component.default_alias}" %>
-              <% exceptions = ["show"] %>
-              <% exceptions << "edit" unless component_is_available(component.name)  %>
+              <span class="widget-name">
+                <%#= image_tag("/assets/components/#{component.name}.png", style: 'height: 64px;') %>
+                <%= raw "#{toggle_field(component, "publish")} #{t("components.#{component.name}.name")} - #{component.alias || component.default_alias}" %>
+                <% exceptions = ["show"] %>
+                <% exceptions << "edit" unless component_is_available(component.name)  %>
+              </span>
               <div class="pull-right">
-                <%= raw make_menu(component, :except => exceptions) %>
+                <%= raw make_menu(component, :except => exceptions, :with_text => false) %>
                 <% if check_permission(Sites::Admin::ComponentsController, 'sort') %>
-                  <span class='handle'><%= icon('move', text:t("move")) %></span>
+                  <span class='handle'><%= icon('move') %></span>
                 <% end %>
               </div>
               <div class="clearfix"></div>
@@ -31,11 +34,10 @@
           <% end %>
           <% @components = @components - components_per_holder %>
         </ul>
-        <%= link_to t(".new_component"), new_site_admin_component_path(placeholder: name), class: "add-btn btn btn-success btn-small" if check_permission(Sites::Admin::ComponentsController, 'new') %>
       <% end %>
     <% end %>
   <div class="clearfix"></div>
-  </div>
+  <% end %>
 <% end %>
 </div>
 
@@ -61,37 +63,39 @@
 </div>
 
 <%= javascript_tag do %>
-  window.onload=function(){
-  $(document).ready(function() {
+window.onload=function(){
+  $(document).ready(function(){
 
-  $('.placeholder').each(function(){
+    $('.placeholder').each(function(){
+      $(this).sortable({
+        //axis: 'y',
+        dropOnEmpty: true,
+        handle: '.handle',
+        connectWith: '.placeholder',
+        forcePlaceholderSize: true,
+        placeholder: 'drop-here',
+        items: 'li',
+        opacity: 0.4,
+        scroll: true,
+        tolerance: 'pointer',
+        toleranceElement: '> div',
+        update: function(evt, ui){
+          $('.maxi_level.multi').each(function(){ $(this).attr('style', ''); $(this).css({'height':$(this).height()}); });
+          $.ajax({
+            type: 'post',
+            data: 'place_holder='+ $(this).data('place') +'&'+ $(this).sortable('serialize'),
+            dataType: 'script',
+            complete: function(request){ if(!ui.sender){ ui.item.effect('pulsate', {times: 1}, 350); } },
+            url: '<%= sort_site_admin_components_path %>'
+          });
+        }
+      });
+    });
 
-  $(this).sortable({
-  axis: 'y',
-  dropOnEmpty:false,
-  handle: '.handle',
-  cursor: 'crosshair',
-  items: 'li',
-  opacity: 0.4,
-  scroll: true,
-  update: function(evt, ui){
-  $.ajax({
-  type: 'post',
-  data: $(this).sortable('serialize'),
-  dataType: 'script',
-  complete: function(request){ ui.item.effect('pulsate', {times: 1}, 350); },
-  url: '<%= sort_site_admin_components_path %>'
-  })
-  }
-  })
+    ////FIX-ME
+    $('.maxi_level.multi').each(function(){ $(this).css({'height':$(this).height()}); });
   });
-
-  ////FIX-ME
-  $('#content').css({'overflow':'hidden'});
-  $('.maxi_level').each(function(){ $(this).css({'height':$(this).height()}); });
-
-  });
-  }
+}
 <% end %>
 <%= content_for :javascripts, javascript_include_tag("jquery-ui.min") %>
 <%= content_for :stylesheets, stylesheet_link_tag("sortable") %>

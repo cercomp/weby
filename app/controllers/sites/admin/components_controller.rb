@@ -65,12 +65,11 @@ class Sites::Admin::ComponentsController < ApplicationController
   end
   
   def sort
-    @components = @site.components
-
     params['sort_sites_component'] ||= []
-    params['sort_sites_component'].to_a.each do |p|
-      component = Component.find(p)
-      component.position = (params['sort_sites_component'].index(p) + 1)
+    params['sort_sites_component'].to_a.each do |comp_id|
+      component = Component.find(comp_id)
+      component.position = (params['sort_sites_component'].index(comp_id) + 1)
+      component.place_holder = params['place_holder'] if params['place_holder'].present?
       component.save
     end
 

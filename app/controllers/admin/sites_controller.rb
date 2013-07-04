@@ -19,6 +19,7 @@ class Admin::SitesController < ApplicationController
 
   def new
     @site = Site.new
+    @site.theme = 'this2' #default theme, TODO fazer isso ser configurável caso os temas sejam desvinculados do core
     load_themes
   end
 

@@ -1,32 +1,35 @@
 #maxi_layout{
-  border-top: 1px solid #D2D2D2;
-  border-left: 1px solid #D2D2D2;
   background-color: #F5F5F5;
   margin-bottom: 10px;
   
-  .maxi_level{
-    border-bottom: 1px solid #D2D2D2;
-    min-height: 25px;
-  }
-
   .maxi_level > .placeholder{
-    border-right: 1px solid #D2D2D2;
+    border-right: 10px solid #FFF;
+    border-bottom: 10px solid #FFF;
     box-sizing: border-box;
     -moz-box-sizing:border-box; /* Firefox */
     -webkit-box-sizing:border-box; /* Safari */
     float: left;
-    padding: 5px 5px 30px 5px;
+    padding: 5px 5px 10px;
     height: 100%;
-    position: relative;
   }
 
   .maxi_level > .placeholder > ul > li.disabled{
-    background-color: #f2dede;
+    background-color: #F2DEDE;
+  }
+
+  .maxi_level .placeholder-name{
+    margin-bottom: 15px;
+    font-size: 21px;
   }
 
   .maxi_level .add-btn{
-    position: absolute;
-    bottom: 5px;
+    float: right;
+  }
+
+  .drop-here{
+    background-color: #DDD !important;
+    border: 1px dashed #BBB !important;
+    padding: 4px;
   }
 }
 
@@ -38,10 +41,22 @@
   margin-bottom: 5px;
 }
 
+#maxi_layout .maxi_level.single > .placeholder > ul > li, #leftout ul > li{
+  min-height: 20px;
+}
+
+#maxi_layout .maxi_level.multi > .placeholder .widget-name{
+  display: block;
+}
+
+#maxi_layout .maxi_level.multi > .placeholder > ul > li{
+  min-height: 40px;
+}
+
 #maxi_layout .maxi_level > .placeholder .component, #leftout .component{
   display: block;
   padding: 4px;
-  border: 1px solid #ddd;
+  border: 1px solid #DDD;
   background-color: #FFF;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;

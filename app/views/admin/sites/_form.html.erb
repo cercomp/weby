@@ -12,7 +12,7 @@
   
   <%= f.input :view_desc_pages, :hint => t(".view_desc_pages_help"), :as => :boolean %>
 
-  <%= f.input :theme, :collection => @themes.collect{|p| [ p , p]}, :selected => "this2", :label => t("layout") %>
+  <%= f.input :theme, :collection => @themes.collect{|name| [t("themes.#{name}.title"), name]} %>
 
   <%= f.association :locales,
     :as => :check_boxes,

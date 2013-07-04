@@ -1,9 +1,11 @@
 pt-BR:
   themes:
     this2:
-      first_place:        " Primeiro Carregamento "
-      home:               " Página Inicial "
-      left:               " Esquerda "
-      right:              " Direita "
-      top:                " Topo "
-      bottom:             " Inferior "
+      title:              " THIS 2 "
+      placeholders:
+        first_place:        " Topo "
+        home:               " Página Inicial "
+        left:               " Esquerda "
+        right:              " Direita "
+        top:                " Cabeçalho "
+        bottom:             " Inferior "
