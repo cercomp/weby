@@ -52,6 +52,10 @@
       as: :boolean, input_html: { class: "check-button" } %>
   </div>
 
+  <div class='input'>
+    <%= f.input :html_class %>
+  </div>
+
   <div class="form-actions">
     <%= f.button :submit, class: 'btn-primary', disable_with: t("please_wait") %>
     <%= link_to t("back"), :back, class: "btn" %>

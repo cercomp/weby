@@ -8,6 +8,7 @@ pt-BR:
         url:             "URL"
         position:        "Posição"
         new_tab:         "Abrir em uma nova janela"
+        html_class:      "Classe HTML"
       "menu_item/i18ns":
         title:           "Título"
         description:     "Descrição"

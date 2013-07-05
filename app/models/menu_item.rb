@@ -7,5 +7,6 @@ class MenuItem < ActiveRecord::Base
   validates :menu_id,
     presence: true
 
+  validates_format_of :html_class, :with => /^[A-Za-z0-9_\-]*$/
   validates :position, numericality: true, allow_nil: false
 end

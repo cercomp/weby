@@ -9,6 +9,7 @@ en:
         url:             "URL"
         position:        "Position"
         new_tab:         "Open in a new window"
+        html_class:      "HTML Class"
       "menu_item/i18ns":
         title:           "Title"
         description:     "Description"
