@@ -1,9 +1,15 @@
+<% include_component_javascript :javascripts, 'news_list' %>
 <%= f.input :front, as: :boolean %>
 <%= f.input :events, as: :boolean %>
 <%= f.input :quant, as: :integer %>
 <%= f.input :show_image, as: :boolean %>
 <%= f.input :image_size, collection: component.image_sizes,
   priority: component.image_size,
+  include_blank: false
+%>
+<%= f.input :show_date, as: :boolean %>
+<%= f.input :date_format, collection: component.date_formats.map{|format| [l(Time.now, format: format.to_sym), format] },
+  priority: component.date_format,
   include_blank: false
 %>
 

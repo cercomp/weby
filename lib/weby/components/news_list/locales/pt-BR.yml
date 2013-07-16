@@ -6,6 +6,8 @@ pt-BR:
       front:                   " Apenas notícias de capa "
       events:                  " Mostrar eventos "
       show_image:              " Mostrar imagem da notícia "
+      show_date:               " Mostrar data da notícia "
+      date_format:             " Formato da data "
       image_size:              " Tamanho da imagem "
       category:                " Categoria "
   activerecord:
@@ -15,6 +17,8 @@ pt-BR:
         front:                 " Apenas notícias de capa "
         events:                " Mostrar eventos "
         show_image:            " Mostrar imagem da notícia "
+        show_date:             " Mostrar data da notícia "
+        date_format:           " Formato da data "
         image_size:            " Tamanho da imagem "
         category:              " Categoria "
   news_list:

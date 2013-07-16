@@ -165,6 +165,7 @@ es:
   time:
     formats:
       default:            " %a, %d-%m-%Y %H:%M:%S %z "
+      mini:               " %d/%b "
       short:              " %d/%m/%y %H:%M "
       medium:             " %d/%m/%Y a las %H:%M "
       long:               " %d de %B de %Y a las %H:%M "
