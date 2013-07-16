@@ -6,6 +6,8 @@ es:
       front:                   " Solo noticias de frente "
       events:                  " Mostrar los eventos "
       show_image:              " Mostrar la imagen de la noticia "
+      show_date:               " Mostrar la fecha de la noticia "
+      date_format:             " Formato de la fecha "
       image_size:              " Tamaño de imagen "
       category:                " Categoría "
   activerecord:
@@ -15,6 +17,8 @@ es:
         front:                 " Solo noticias de frente "
         events:                " Mostrar los eventos "
         show_image:            " Mostrar la imagen de la noticia "
+        show_date:             " Mostrar la fecha de la noticia "
+        date_format:           " Formato de la fecha "
         image_size:            " Tamaño de imagen "
         category:              " Categoría "
   news_list:

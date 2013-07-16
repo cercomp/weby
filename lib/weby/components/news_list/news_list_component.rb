@@ -1,5 +1,5 @@
 class NewsListComponent < Component
-  component_settings :quant, :front, :events, :category, :show_image, :image_size
+  component_settings :quant, :front, :events, :category, :show_image, :image_size, :show_date, :date_format
 
   validates :quant, presence: true
 
@@ -38,11 +38,25 @@ class NewsListComponent < Component
     _image_size.blank? ? '48' : _image_size
   end
 
+  alias :_show_date :show_date
+  def show_date
+    _show_date.blank? ? false : _show_date.to_i == 1
+  end
+
+  alias :_date_format :date_format
+  def date_format
+    _date_format.blank? ? :short : _date_format.to_sym
+  end
+
   def default_alias
     self.category
   end
 
   def image_sizes
     ['32', '48', '64', '128']
+  end
+
+  def date_formats
+    ['default','mini','short','medium','long','event_date_short','event_date_full']
   end
 end

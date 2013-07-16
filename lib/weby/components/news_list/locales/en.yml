@@ -6,6 +6,8 @@ en:
       front:                   " Only front news "
       events:                  " Show events "
       show_image:              " Show image "
+      show_date:               " Show date "
+      date_format:             " Date Format "
       image_size:              " Image size "
       category:                " Category "
   activerecord:
@@ -15,6 +17,8 @@ en:
         front:                 " Only front news "
         events:                " Show events "
         show_image:            " Show image "
+        show_date:             " Show date "
+        date_format:           " Date Format "
         image_size:            " Image size "
         category:              " Category "
   news_list:

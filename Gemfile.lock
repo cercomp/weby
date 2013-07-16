@@ -124,7 +124,11 @@ GEM
       rails
     method_source (0.8.1)
     mime-types (1.23)
+<<<<<<< HEAD
     multi_json (1.7.7)
+=======
+    multi_json (1.7.6)
+>>>>>>> date_on_newslist
     pg (0.14.1)
     polyglot (0.3.3)
     pry (0.9.12.2)
