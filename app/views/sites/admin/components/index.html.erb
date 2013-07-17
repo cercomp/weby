@@ -1,4 +1,4 @@
-<span><%= t("themes.#{current_site.theme}.title") %></span>
+<div style="text-align: center; margin-bottom: 5px;"><%= t("themes.#{current_site.theme}.title") %></div>
 <div id="maxi_layout">
 <% @placeholders.each do |row| %>
   <%= content_tag :div, class: "maxi_level #{row["names"].many? ? "multi" : "single"}" do %>

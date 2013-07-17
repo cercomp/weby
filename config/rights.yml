@@ -138,8 +138,8 @@ rights:
       name: Publicar Estilo
       action: publish unpublish
     follow:
-      name: Usar Estilo
-      action: follow
+      name: Seguir Estilo
+      action: follow unfollow
     copy:
       name: Copiar Estilo
       action: copy
@@ -187,5 +187,5 @@ rights:
       name: Listar Notificações
       action: index
     show:
-      name: Ver Notificações
+      name: Ver Notificação
       action: show
