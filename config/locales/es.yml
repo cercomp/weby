@@ -25,15 +25,6 @@ es:
   close:                                " Cerrar "
   copy:                                 " Copiar "
   component:                            " Componente "
-  components:
-    pos:
-      bottom:                           " Inferior "
-      content:                          " Conteúdo "
-      first_place:                      " Primeiro Carregamento "
-      home:                             " Página Inicial "
-      left:                             " Esquerda "
-      right:                            " Direita "
-      top:                              " Topo "
   custom:                               " Personalizado "
   create_account_successful:            " Su cuenta ha sido creada! Fue enviado a su e-mail las instrucciones sobre cómo activar "
   create_notification_successful:       " Notificación creado con éxito! "

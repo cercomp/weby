@@ -1,27 +1,16 @@
 module ComponentsHelper
-  # FIXME melhorar a forma de representar os hash e array de configurações
-  # Ver o uso de arquivos .yml
-
-  #TODO - Documentar
-  #
-  def places_holder
-    places = {
-      'weby' => ['first_place', 'top', 'left', 'right', 'home', 'bottom'],
-      'this2' => ['first_place', 'top', 'left', 'home', 'right', 'bottom'],
-      'weby_doc' => ['first_place', 'top' ,'home','bottom'],
-      'interteias' => ['first_place', 'top', 'home', 'bottom']
-    }
-
-    places[@site.theme] || []
-  end
-
   #retorna as divs do mini layout ---  menu de adicionar componente
   def make_mini_layout
-    content_for :stylesheets, stylesheet_link_tag("layouts/#{current_site.theme}/mini")
-    divs = "<div id='mini_layout'>"  
-    places_holder.map do |position|
-      divs += "<div id='mini_#{position}' class='hover'> #{t("components.pos.#{position}")}  </div>"
+    content_for :stylesheets, stylesheet_link_tag("layouts/shared/mini_layout")
+    config = Weby::Themes.layout current_site.theme
+    divs = "<div id='mini_layout' style='width: #{config["width"] || 500}px'>"  
+    
+    config["placeholders"].map do |placeholders|
+      divs += "<div class='mini_level' style='height:#{placeholders["height"] || 25}px'>"
+      divs += make_placeholders_divs(placeholders, config["width"] || 500)
+      divs += "</div>"
     end
+
     divs += "</div>" 
   end
 
@@ -41,4 +30,22 @@ module ComponentsHelper
   def components_as_options components
     components.map{|comp, opt| [t("components.#{comp.to_s}.name"), comp.to_s] }.sort!{|a,b| a[0] <=> b[0]}
   end
+
+  def make_placeholders_divs(placeholders,width)
+    divs = ""
+    placeholders["names"].map do |name|
+      divs += "<div 
+                  id='mini_#{name}'
+                  class='hover' 
+                  style='width:#{ if placeholders["widths"].nil?
+                                    ((width/placeholders["names"].size).to_s + "px") 
+                                  else 
+                                    (placeholders["widths"][placeholders["names"].index(name)].to_s + "%")
+                                  end }; 
+                   height:#{placeholders["height"] || 25}px;'>
+               #{t("themes.#{current_site.theme}.placeholders.#{name}")}  </div>"
+    end
+    return divs
+  end
+
 end

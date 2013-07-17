@@ -1,0 +1,67 @@
+#maxi_layout{
+  background-color: #F5F5F5;
+  margin-bottom: 10px;
+  
+  .maxi_level > .placeholder{
+    border-right: 10px solid #FFF;
+    border-bottom: 10px solid #FFF;
+    box-sizing: border-box;
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+    float: left;
+    padding: 5px 5px 10px;
+    height: 100%;
+  }
+
+  .maxi_level > .placeholder > ul > li.disabled{
+    background-color: #F2DEDE;
+  }
+
+  .maxi_level .placeholder-name{
+    margin-bottom: 15px;
+    font-size: 21px;
+  }
+
+  .maxi_level .add-btn{
+    float: right;
+  }
+
+  .drop-here{
+    background-color: #DDD !important;
+    border: 1px dashed #BBB !important;
+    padding: 4px;
+  }
+}
+
+#maxi_layout .maxi_level > .placeholder > ul, #leftout ul{
+  margin: 0;
+}
+
+#maxi_layout .maxi_level > .placeholder > ul > li, #leftout ul > li{
+  margin-bottom: 5px;
+}
+
+#maxi_layout .maxi_level.single > .placeholder > ul > li, #leftout ul > li{
+  min-height: 20px;
+}
+
+#maxi_layout .maxi_level.multi > .placeholder .widget-name{
+  display: block;
+}
+
+#maxi_layout .maxi_level.multi > .placeholder > ul > li{
+  min-height: 40px;
+}
+
+#maxi_layout .maxi_level > .placeholder .component, #leftout .component{
+  display: block;
+  padding: 4px;
+  border: 1px solid #DDD;
+  background-color: #FFF;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.055);
+  -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.055);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.055);
+}

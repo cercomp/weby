@@ -1,0 +1,23 @@
+#mini_layout{
+  border-top: 1px dotted black;
+  border-left: 1px dotted black;
+  background-color: #E6E6E6;	
+}
+
+.mini_level{
+  border-bottom: 1px dotted black;
+  min-height: 25px;
+} 
+
+.mini_level > div{
+  border-right: 1px dotted black;
+  box-sizing: border-box;
+  -moz-box-sizing:border-box; /* Firefox */
+  -webkit-box-sizing:border-box; /* Safari */
+  float: left;
+}
+
+
+.clicked, .clicked.hover:hover { background: #f7f6d9; }
+
+.hover:hover { background-color: #dadada; }

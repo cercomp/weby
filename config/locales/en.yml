@@ -23,15 +23,6 @@ en:
   close:                                " Close "
   copy:                                 " Copy "
   component:                            " Component "
-  components:
-    pos:
-      bottom:                           " Bottom "
-      content:                          " Content "
-      first_place:                      " First Place "
-      home:                             " Home Page "
-      left:                             " Left "
-      right:                            " Right "
-      top:                              " Top "
   custom:                               " Custom "
   create_account_successful:            " Your account has been created. Please check your e-mail for your account activation instructions "
   create_notification_successful:       " The notification has been created. "

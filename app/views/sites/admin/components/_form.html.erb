@@ -1,15 +1,15 @@
 <% content_for :javascripts, javascript_include_tag('site_admin_component_form') %>
 
-<%= simple_form_for [:site_admin, @component], html: { class: 'form-horizontal'}, :url => url, :method => method do |f| %>
+<%= simple_form_for [:site_admin, @component], html: {class: 'form-horizontal'}, url: url, method: method do |f| %>
   <%= f.show_errors %>
 
-  <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
+  <%= f.input :site_id, input_html: {value: @site.id}, as: :hidden %>
   <%= hidden_field_tag :component, @component.name %>
 
   <%= f.input :alias, placeholder: t(".alias_hint") if Weby::Components.is_aliasable? @component.name %>
 
   <div class="control-group">
-    <%= render_component @component, 'form', :locals => { :f => f } %>
+    <%= render_component @component, 'form', locals: {f: f} %>
   </div>
 
   <%= f.input :visibility, collection: [
@@ -23,7 +23,7 @@
   <label class="control-label"><%= t(".place")  %></label>
   <div class="controls">
     <%= raw make_mini_layout %>
-    <%= f.input :place_holder, :as => :hidden %>
+    <%= f.input :place_holder, as: :hidden, input_html: {id: "component_place_holder"} %>
   </div>
 
   <div class="form-actions">

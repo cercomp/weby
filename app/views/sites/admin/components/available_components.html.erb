@@ -1,5 +1,6 @@
 <div id="available_components">
   <%= form_tag new_site_admin_component_path, :method => :get do %>
+    <%= hidden_field_tag :placeholder, params[:placeholder] %>
     <div id="main">
       <%= select_tag "component", grouped_options_for_select(available_components_sorted), size: '11', id: "component_select" %>
 

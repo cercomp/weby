@@ -1,0 +1,11 @@
+en:
+  themes:
+    this2:
+      title:              " THIS 2 "
+      placeholders:
+        first_place:        " Top "
+        home:               " Home Page "
+        left:               " Left "
+        right:              " Right "
+        top:                " Header "
+        bottom:             " Bottom "

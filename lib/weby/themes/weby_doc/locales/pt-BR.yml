@@ -1,0 +1,11 @@
+pt-BR:
+  themes:
+    weby_doc:
+      title:              " Doc. Weby "
+      placeholders:
+        first_place:        " Topo "
+        home:               " Página Inicial "
+        left:               " Esquerda "
+        right:              " Direita "
+        top:                " Cabeçalho "
+        bottom:             " Inferior "

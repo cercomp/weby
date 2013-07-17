@@ -5,22 +5,24 @@ class Sites::Admin::ComponentsController < ApplicationController
 
   def index
     @components = @site.components.order('position asc')
+    @placeholders = Weby::Themes.layout(current_site.theme)['placeholders']
   end
 
   def show
-    @component = Weby::Components.factory(@site.components.find(params[:id]))
+    @component = Weby::Components.factory(current_site.components.find(params[:id]))
   end
 
   def new
     if (params[:component] and component_is_available(params[:component]))
       @component = Weby::Components.factory(params[:component])
+      @component.place_holder = params[:placeholder]
     else
       render :available_components
     end
   end
 
   def edit
-    @component = Weby::Components.factory(@site.components.find(params[:id]))
+    @component = Weby::Components.factory(current_site.components.find(params[:id]))
     unless(component_is_available(@component.name))
       flash[:warning] = t(".disabled_component")
       redirect_to site_admin_components_url
@@ -44,7 +46,7 @@ class Sites::Admin::ComponentsController < ApplicationController
   end
 
   def update
-    @component = Weby::Components.factory(@site.components.find(params[:id]))
+    @component = Weby::Components.factory(current_site.components.find(params[:id]))
 
     update_params
 
@@ -63,12 +65,11 @@ class Sites::Admin::ComponentsController < ApplicationController
   end
   
   def sort
-    @components = @site.components
-
     params['sort_sites_component'] ||= []
-    params['sort_sites_component'].to_a.each do |p|
-      component = Component.find(p)
-      component.position = (params['sort_sites_component'].index(p) + 1)
+    params['sort_sites_component'].to_a.each do |comp_id|
+      component = Component.find(comp_id)
+      component.position = (params['sort_sites_component'].index(comp_id) + 1)
+      component.place_holder = params['place_holder'] if params['place_holder'].present?
       component.save
     end
 

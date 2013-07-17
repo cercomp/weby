@@ -28,6 +28,8 @@ class Site < ActiveRecord::Base
     presence: true,
     :length => { :maximum => 50 }
 
+  validates :theme, presence: true
+
   has_many :subsites,
     foreign_key: :parent_id,
     class_name: "Site"

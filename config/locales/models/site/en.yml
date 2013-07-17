@@ -7,7 +7,7 @@ en:
         name:              " Name "
         created_at:        " Created at "
         updated_at:        " Updated at "
-        url:               " Url "
+        url:               " URL "
         description:       " Description "
         top_banner_id:     " Top banner "
         top_banner_width:  " Top banner width "

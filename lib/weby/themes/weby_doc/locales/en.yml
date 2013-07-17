@@ -1,0 +1,11 @@
+en:
+  themes:
+    weby_doc:
+      title:              " Weby Docs "
+      placeholders:
+        first_place:        " Top "
+        home:               " Home Page "
+        left:               " Left "
+        right:              " Right "
+        top:                " Header "
+        bottom:             " Bottom "
