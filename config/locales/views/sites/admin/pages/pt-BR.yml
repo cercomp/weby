@@ -27,7 +27,7 @@ pt-BR:
           none_cover:           " Nenhuma Capa "
           new_page:             " Nova Página "
           list_pages:           " Listar Páginas "
-          date_register:        " Data de Cadastro "
+          created_at:           " Criado em "
           title:                " Título "
           author:               " Autor "
           category:             " Categoria "

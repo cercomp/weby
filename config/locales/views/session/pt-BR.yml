@@ -1,7 +1,7 @@
 pt-BR:
   layouts:
     session:
-      portals:             " Portais "
+      portals:             " Sítios "
       help:                " Ajuda "
   access_denied:
     access_denied:         " Acesso negado "

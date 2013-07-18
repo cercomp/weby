@@ -5,8 +5,8 @@ en:
         notifications:      " Notifications "
         new_notification:   " New Notification " 
       list:
-        id:                 " ID "
         title:              " Title "
+        body:               " Message "
         date:               " Date "
       form:
         title:              " Title "
@@ -16,4 +16,5 @@ en:
         title:              " Title "
         body:               " Message "
         created_at:         " Created at "
+        list_all:           " List all "
 

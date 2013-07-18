@@ -4,8 +4,10 @@ pt-BR:
       notifications:
         list:
           title:                    " Título "
+          body:                     " Mensagem "
           date:                     " Data "
         show:
           title:                    " Título "
           body:                     " Mensagem "
           created_at:               " Criado em "
+          list_all:                 " Listar todas "

@@ -5,8 +5,8 @@ pt-BR:
         notifications:            " Notificações "
         new_notification:         " Nova Notificação "
       list:
-        id:                       " ID "
         title:                    " Título "
+        body:                     " Mensagem "
         date:                     " Data "
       form:
         title:                    " Título "
@@ -16,3 +16,4 @@ pt-BR:
         title:                    " Título "
         body:                     " Mensagem "
         created_at:               " Criado em "
+        list_all:                 " Listar todas "

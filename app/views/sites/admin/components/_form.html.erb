@@ -19,12 +19,16 @@
   ],
   include_blank: false
   %>
-
-  <label class="control-label"><%= t(".place")  %></label>
-  <div class="controls">
-    <%= raw make_mini_layout %>
-    <%= f.input :place_holder, as: :hidden, input_html: {id: "component_place_holder"} %>
-  </div>
+  
+    <label class="control-label"><%= t(".place")  %></label>
+    <div class="controls">
+      <% if params[:placeholder] %>
+        <input type="text"disabled="true" value="<%= t("themes.#{current_site.theme}.placeholders.#{@component.place_holder}") %>"/>
+      <% else %>
+        <%= raw make_mini_layout %>
+      <% end %>
+      <%= f.input :place_holder, as: :hidden, input_html: {id: "component_place_holder"} %>
+    </div>
 
   <div class="form-actions">
     <%= f.button :submit, class: 'btn-primary', disable_with: t("please_wait") %>

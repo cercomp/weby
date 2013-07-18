@@ -30,7 +30,7 @@ pt-BR:
         manage_roles:       " Gerenciar Papéis "
         roles_permissions:  " Permissões e Papéis "
       list:
-        id:                 " Id "
+        name:               " Nome "
         user:               " Usuário "
         email:              " E-mail "
         active:             " Ativo "

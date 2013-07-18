@@ -22,3 +22,4 @@ en:
         show:
           name:                   " Name "
           groups:                 " Groups "
+          list_all:               " List all "

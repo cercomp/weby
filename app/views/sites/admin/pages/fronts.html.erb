@@ -10,41 +10,40 @@
       new_site_admin_page_path,
       class: "btn btn-success" %>
   <% end %>
-  <%= link_to t(".list_pages"), site_admin_pages_path, :class => 'btn btn-primary' %>
+  <%= link_to t(".list_pages"), site_admin_pages_path, :class => 'btn' %>
 </div>
 <div class="clearfix control-group"></div>
 
 <table  class="table table-striped table-condensed" id="list">
   <thead>
-    <th><%= t(".date_register") %></th>
     <th><%= t(".title") %></th>
     <th><%= t(".author") %></th>
-    <th><%= t(".category") %></th>
     <th><%= t(".type") %></th>
+    <th><%= t(".created_at") %></th>
     <% with_permission(action: :toggle_field) do %>
-      <th><%= link_to t(".publish"), fronts_site_admin_pages_path(published: params[:published]=='true' ? 'false':'true' ) %></th>
+      <th><%= sortable 'pages.publish', t(".publish") %></th>
+      <th></th>
     <% end %>
-    <th></th>
   </thead>
   <tbody>
     <% @pages.each do |page| %>
       <tr id="sort_page_<%= page.id %>">
-        <td><%=l page.created_at, :format => :short %></td>
         <td>
           <%= title_with_flags(page) %>
         </td>
         <td><%= page.author.first_name %></td>
-        <td><%= page.category_list.join ', ' %></td>
         <td><%= t(".#{page.type.downcase}") %></td>
+        <td><%= l(page.created_at, :format => :short) %></td>
         <% with_permission(action: :toggle_field) do %>
-          <td align="center" class="publish"><%= publication_status(page) %></td>
+          <td align="center" class="publish">
+            <%= publication_status(page) %></td>
+          <td>
+            <%= make_menu(page, :except => "show") %>
+            <% with_permission(action: :sort) do %>
+              <a href='#' class='handle'><%= icon('move', text:t(".move"))%></a>
+            <% end %>
+          </td>
         <% end %>
-        <td>
-          <%= make_menu(page, :except => "show") %>
-          <% with_permission(action: :sort) do %>
-            <a href='#' class='handle'><%= icon('move', text:t(".move"))%></a>
-          <% end %>
-        </td>
       </tr>
     <% end %>
   </tbody>

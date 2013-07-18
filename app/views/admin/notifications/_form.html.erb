@@ -1,10 +1,9 @@
 <%= simple_form_for [:admin, @notification], html: { class: 'form-horizontal' } do |f| %>
   <%= f.show_errors %>
-  <%= f.input :title, :label => t(".title") %>
-  <%= f.input :body, :label => t(".body"), :input_html => {:rows => 10}, :as => :text %>
+  <%= f.input :title %>
+  <%= f.input :body, :input_html => {:rows => 10}, :as => :text %>
   <div class="form-actions">
     <%= f.button :submit, class: 'btn-primary', disable_with: t("please_wait") %>
-    <%= link_to t("back"), :back, class: "btn btn-danger" %>
+    <%= link_to t("back"), :back, class: "btn" %>
   </div>
-  <%= content_for :javascripts, javascript_include_tag("admin.edit") %>
 <% end %>

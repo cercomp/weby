@@ -9,7 +9,7 @@
     </ul>
     <%= form_tag request.path, method: 'get', autocapitalize: "off", class: 'form-inline pull-right search' do %>
       <%= content_tag :div, class: 'input-append' do %>
-        <%= search_field_tag :search, params[:search], class: 'input-search' %><%= submit_tag t(".search"), class: 'btn btn-primary' %>
+        <%= search_field_tag :search, params[:search], class: 'input-search' %><%= submit_tag t(".search"), class: 'btn btn-info' %>
       <% end %>
     <% end %>
   </div>

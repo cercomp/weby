@@ -22,4 +22,5 @@ pt-BR:
         show:
           name:                   " Nome "
           groups:                 " Grupos "
+          list_all:               " Listar todos "
 

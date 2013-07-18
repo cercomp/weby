@@ -10,9 +10,9 @@ pt-BR:
       clipping: "CLIPPING"
       help: "AJUDA"
       about: "SOBRE"
-      sites: "PORTAIS"
-      site: "PORTAL"
-      show-site: "ACESSAR PORTAL"
+      sites: "SÍTIOS"
+      site: "SÍTIO"
+      show-site: "ACESSAR SÍTIO"
     weby_pages:
       licence: "© Copyright 2013 UFG. Todos os direitos reservados."
       logout: "SAIR"
@@ -21,7 +21,7 @@ pt-BR:
       clipping: "CLIPPING"
       help: "AJUDA"
       about: "SOBRE"
-      sites: "PORTAIS"
+      sites: "SÍTIOS"
     weby_sessions:
       help: "AJUDA"
-      sites: "PORTAIS"
+      sites: "SÍTIOS"

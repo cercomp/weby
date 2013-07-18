@@ -1,8 +1,8 @@
 <table class='table table-striped'>
   <thead>
     <tr>
-      <th><%= t(".id") %></th>
       <th><%= t(".title") %></th>
+      <th><%= t(".body") %></th>
       <th><%= t(".date") %></th>
       <th></th> 
     </tr>
@@ -10,9 +10,10 @@
   <tbody>
     <% @notifications.each do |notification| %>
       <tr>
-        <td><%= notification.id %></td>
         <td><%= link_to notification.title, admin_notification_path(notification.id) %></td>
-        <td><%= notification.created_at.strftime("%d %b. %Y") %></td>
+        <td><%= notification.body.to_s[0..50] %></td>
+        <td><%= l(notification.created_at, :format => :short) %></td>
+        <td> <%= raw make_menu(notification) %> </td>
       </tr>
     <% end %>
   </tbody>

@@ -8,14 +8,17 @@ pt-BR:
          new_group:     " Novo Grupo "
          groups:        " Grupos "
          name:          " Nome "
+         message:       " Mensagem "
          subject:       " Assunto "
          email:         " E-mail "
         show:
          feedback:      " Feedback "
          name:          " Nome "
          email:         " E-mail "
+         subject:       " Assunto "
          message:       " Mensagem "
          send_date:     " Data de Envio "
          groups:        " Grupos "
          group:         " Grupo "
+         list_all:      " Listar todas "
 

@@ -4,7 +4,9 @@
 <textarea id="code"><%= @style.css %></textarea>
 
 <div class="form-actions">
-  <%= link_to t("back"), :back, class: "btn" %>
+  <%= make_menu(@style, :except => "show") %>
+  <%= link_to icon('list', text:t(".list_all")), site_admin_styles_path %>
+  <%= link_to icon('chevron-left', text:t("back")), :back %>
 </div>
 
 <%= content_for :stylesheets, stylesheet_link_tag("codeMirror/codemirror") %>

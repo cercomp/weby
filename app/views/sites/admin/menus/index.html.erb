@@ -23,27 +23,13 @@
 
   <div class='tab-content'>
     <% if @menu %>
-      <div class="pull-right">
+     <div class="well" id="main-menu">
         <% with_permission controller: Sites::Admin::Menus::MenuItemsController, action: :new do %>
           <%= link_to t(".new_menu_item"),
             new_site_admin_menu_menu_item_path(@menu),
-            class: "btn btn-success" %>
+            class: "btn btn-success pull-right" %>
         <% end %>
-        <% with_permission action: :edit do %>
-          <%= link_to t(".edit_menu"),
-            edit_site_admin_menu_path(@menu),
-            class: "btn btn-primary" %>
-        <% end %>
-        <% with_permission action: :destroy do %>
-          <%= link_to t("destroy"),
-            site_admin_menu_path(@menu),
-            method: :delete, data: {confirm: t(".are_you_sure")},
-            class: "btn btn-primary" %>
-        <% end %>
-        &nbsp;
-      </div>
-      <div class="clearfix control-group"></div>
-      <div class="well" id="main-menu">
+
         <% if @menu.menu_items.empty? %>
           <div class="alert">
             <%= t(".none_menu_item") %>
@@ -51,6 +37,10 @@
         <% end %>
         <%= raw print_menu(@menu, true) %>
       </div>
+
+     <div class="form-actions">
+        <%= make_menu(@menu, except: :show) %>
+     </div>
     <% end %>
   </div>
 </div>

@@ -1,7 +1,7 @@
 <div class="pull-left">
   <%= form_tag request.path, method: 'get', autocapitalize: "off", class: 'pull-left' do %>
     <%= content_tag :div, class: 'input-append' do %>
-      <%= search_field_tag :search, params[:search], class: 'input-search' %><%= submit_tag t("search"), class: 'btn btn-primary btn-search' %>
+      <%= search_field_tag :search, params[:search], class: 'input-search' %><%= submit_tag t("search"), class: 'btn btn-info btn-search' %>
     <% end %>
   <% end %>
 </div>
@@ -10,7 +10,7 @@
     <%= link_to t(".new_user"), new_admin_user_path, class: "btn btn-success" %>
   <% end %>
   <% if check_permission(Admin::UsersController, :change_roles) %>
-    <%= link_to t('.roles_permissions'), admin_roles_path, class: "btn btn-primary" %>
+    <%= link_to t('.roles_permissions'), admin_roles_path, class: "btn" %>
   <% end %>
 </p>
 <div class="clearfix"></div>

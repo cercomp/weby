@@ -34,7 +34,7 @@ pt-BR:
   deactivate:                           " Desativar "
   destroyed_style:                      " Estilo removido "
   destroyed_style_error:                " Erro ao remover Estilo "
-  destroyed_param:                      " %{param} removído "
+  destroyed_param:                      " %{param} removido "
 #---E---#
   edit:                                 " Editar "
   enable:                               " Ativado "

@@ -30,7 +30,7 @@ en:
         manage_roles:       " Manage Roles "
         roles_permissions:  " Roles and Permissions "
       list:
-        id:                 " Id "
+        name:               " Name "
         user:               " User "
         email:              " E-mail "
         active:             " Active "

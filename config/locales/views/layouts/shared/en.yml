@@ -24,7 +24,7 @@ en:
         statistics:        " Statistics "
         notification:      " Notifications "
         dashboard:         " Dashboard "
-        contents:          " Contents "
+        contents:          " Content "
       navbar:
         my_profile:        " My profile "
         logout:            " Logout "

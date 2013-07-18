@@ -5,8 +5,7 @@
 <table class='table table-striped'>
   <thead>
     <tr>
-      <th><%= t(".id") %></th>
-      <th><%= sortable 'login', t(".user") %></th>
+      <th><%= sortable 'first_name', t(".name") %></th>
       <th><%= sortable 'email', t(".email") %></th>
       <th><%= t(".active") %></th>
       <th><%= t(".is_admin") %></th>
@@ -19,8 +18,7 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.id %></td>
-        <td><%= link_to user.login, admin_user_path(user) %></td>
+        <td><%= link_to "#{user.fullname} (#{user.login})", admin_user_path(user) %></td>
         <td><%=h user.email %></td>
         <td align="center"><%= raw toggle_field(user, 'status') %></td>
         <td align="center"><%= raw toggle_field(user, 'is_admin', 'set_admin') %></td>
@@ -28,7 +26,7 @@
           <% link = user.is_admin? ? t('.admin') : t('.manage_roles') %>
           <td> <%= link_to link, manage_roles_admin_users_path(:user_id => user.id ) %> </td>
         <% end %>
-        <td> <%= raw make_menu(user) %> </td>
+        <td> <%= raw make_menu(user, with_text: false) %> </td>
       </tr>
     <% end %>
   </tbody>

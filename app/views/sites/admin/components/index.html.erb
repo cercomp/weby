@@ -1,4 +1,12 @@
-<div style="text-align: center; margin-bottom: 5px;"><%= t("themes.#{current_site.theme}.title") %></div>
+<p class="pull-right">
+  <% if check_permission(Sites::Admin::ComponentsController, [:new]) %>
+    <%= link_to t(".new_component"),
+      new_site_admin_component_path,
+      class: "btn btn-success" %>
+  <% end %>
+</p>
+<div class="clearfix"></div>
+
 <div id="maxi_layout">
 <% @placeholders.each do |row| %>
   <%= content_tag :div, class: "maxi_level #{row["names"].many? ? "multi" : "single"}" do %>

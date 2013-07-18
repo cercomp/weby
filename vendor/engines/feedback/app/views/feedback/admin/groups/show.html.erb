@@ -9,7 +9,8 @@
 </p>
 
 <div class="form-actions">
-    <%= link_to t("back"), :back, class: "btn btn-danger" %>
+  <%= link_to icon('list', text:t(".list_all")), admin_groups_path %>
+  <%= link_to icon('chevron-left', text:t("back")), :back %>
 </div>
 
 

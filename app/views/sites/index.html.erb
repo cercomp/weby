@@ -8,11 +8,11 @@
       <li class=""><%= link_to(t(".clipping"), clipping_url(subdomain: nil), class: 'left') %></li>
     </ul>
     <% if check_permission(Admin::SitesController, ["new"]) %>
-      <%= link_to t(".new_site"), new_admin_site_path, class: 'btn pull-right new-site' %>
+      <%= link_to t(".new_site"), new_admin_site_path, class: 'btn btn-success pull-right new-site' %>
     <% end %>
     <%= form_tag request.path, method: 'get', autocapitalize: "off", class: 'form-inline pull-right search' do %>
       <%= content_tag :div, class: 'input-append' do %>
-        <%= search_field_tag :search, params[:search], class: 'input-search' %><%= submit_tag t(".search"), class: 'btn btn-primary' %>
+        <%= search_field_tag :search, params[:search], class: 'input-search' %><%= submit_tag t(".search"), class: 'btn btn-info' %>
       <% end %>
     <% end %>
     <div class="clearfix"></div>

@@ -1,10 +1,11 @@
 <div class="user_profile">
   <br />
-  <p><b><%= t('.created_at') %>: </b><%= @notification.created_at.strftime("%d %b. %Y") %></p>
   <p><b><%= t('.title') %>: </b> <%= @notification.title %></p>
   <p><b><%= t('.body') %>: </b> <pre><%= @notification.body %></pre></p>
+  <p><b><%= t('.created_at') %>: </b><%= l(@notification.created_at, :format => :short) %></p>
 </div>
 
 <div class="form-actions">
-  <%= link_to t("back"), admin_notifications_path, class: "btn btn-primary" %>
+  <%= link_to icon('list', text:t(".list_all")), admin_notifications_path %>
+  <%= link_to icon('chevron-left', text:t("back")), :back %>
 </div>    

@@ -190,7 +190,7 @@ class Sites::Admin::StylesController < ApplicationController
 
     unless @style.owner == @site
       flash[:warning] = t("no_permission_to_action")
-      redirect_to site_style_url
+      redirect_to site_admin_style_url @style
     end
   end
 end

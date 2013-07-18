@@ -4,9 +4,11 @@ en:
       notifications:
         list:
           title:              " Title "
+          body:               " Message "
           date:               " Date "
         show:
           title:              " Title "
           body:               " Message "
           created_at:         " Created at "
+          list_all:           " List all "
 

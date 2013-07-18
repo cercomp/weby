@@ -1,7 +1,7 @@
 en:
   layouts:
     session:
-      portals:             " Portals "
+      portals:             " Sites "
       help:                " Help "
   access_denied:
     access_denied:         " Access denied "

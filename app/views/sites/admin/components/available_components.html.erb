@@ -1,13 +1,13 @@
 <div id="available_components">
   <%= form_tag new_site_admin_component_path, :method => :get do %>
-    <%= hidden_field_tag :placeholder, params[:placeholder] %>
+    <%= hidden_field_tag :placeholder, params[:placeholder] if params[:placeholder] %>
     <div id="main">
       <%= select_tag "component", grouped_options_for_select(available_components_sorted), size: '11', id: "component_select" %>
 
       <img id="component_image" src="/assets/components/default.png"/>
     </div>
     <div class="form-actions">
-        <button id="next_step" class="btn btn-info"><%= t(".next_step") %></button>
+        <button id="next_step" class="btn btn-primary"><%= t(".next_step") %></button>
     </div>
   <% end %>
 </div>

@@ -9,13 +9,16 @@ en:
          groups:        " Groups "
          name:          " Name "
          subject:       " Subject "
+         message:       " message "
          email:         " E-mail "
         show:
          feedback:      " Feedback "
          name:          " Name "
          email:         " E-mail "
+         subject:       " Subject "
          message:       " message "
          send_date:     " Send Date "
          groups:        " Groups "
          group:         " Group "
+         list_all:      " List all "
 

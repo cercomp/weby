@@ -3,3 +3,4 @@ en:
     statistics:
       index:
         generate:    " Generate "
+        site:        " Site "

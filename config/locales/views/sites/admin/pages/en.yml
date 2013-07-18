@@ -27,7 +27,7 @@ en:
           none_cover:           " None Cover "
           new_page:             " New Page "
           list_pages:           " List Pages "
-          date_register:        " Register Date "
+          created_at:           " Created at "
           title:                " Title "
           author:               " Author "
           category:             " Category "

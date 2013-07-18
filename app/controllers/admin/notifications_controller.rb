@@ -1,7 +1,7 @@
 class Admin::NotificationsController < ApplicationController
   before_filter :require_user
-  before_filter :check_authorization, :except => [:show]
-  before_filter :is_admin, except: [:edit]
+  before_filter :check_authorization
+  before_filter :is_admin
   respond_to :html, :xml
 
   def index
@@ -27,7 +27,7 @@ class Admin::NotificationsController < ApplicationController
     @notification.user_id = current_user.id
     if @notification.save
       flash[:success] = t("create_notification_successful")
-      redirect_to admin_notifications_path
+      redirect_to admin_notification_path @notification
     else
       flash[:error] = t("problem_create_notification")
       render :action => :new
@@ -38,7 +38,7 @@ class Admin::NotificationsController < ApplicationController
     @notification = Notification.find(params[:id])
 
     if @notification.update_attributes(params[:notification])
-      redirect_to admin_notifications_path
+      redirect_to admin_notification_path @notification
       flash[:success] = t("update_notification_successful")
     else
       flash[:error] = t("problem_update_notification")
@@ -48,7 +48,6 @@ class Admin::NotificationsController < ApplicationController
 
   def show
     @notification = Notification.find(params[:id])
-    #respond_with(:admin, @notification)
   end
 
   def destroy
@@ -58,6 +57,6 @@ class Admin::NotificationsController < ApplicationController
   rescue ActiveRecord::DeleteRestrictionError
     flash[:warning] = t("problem_destroy_notification")
   ensure
-    redirect_to admin_notification_path
+    redirect_to admin_notifications_path
   end
 end
