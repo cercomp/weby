@@ -1,0 +1,27 @@
+<div id="list">
+  <% if @my_sites.empty? %>
+    <div class="alert">
+      <%= t(".no-site-found") %>
+    </div>
+  <% else %>
+    <table class='table table-striped'>
+      <thead>
+        <tr>
+          <th style="width: 34px;"></th>
+          <th class='site-name'><%= sortable 'name', t(".name") %></th>
+          <th><%= t(".description") %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @my_sites.each do |site| %>
+          <tr>
+            <td><%= site_avatar_tag site %></td>
+            <td> <%= link_to site.title, site_url(subdomain: site) %> </td>
+            <td> <%= site.description %> </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  <% end %>
+</div>

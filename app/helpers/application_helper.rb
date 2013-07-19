@@ -146,11 +146,10 @@ module ApplicationHelper
   # Monta o menu baseado nas permissões do usuário
   # Parametros: objeto
   def make_menu(obj, args={})
-    if(obj.respond_to?(:site_id))
-      #não criar menu para objetos de outro site
-      return "" if obj.site_id != current_site.id
-    end
-
+    #não criar menu para objetos de outro site
+    return "" if obj.respond_to?(:site_id) and obj.site_id != current_site.id
+    return "" if obj.respond_to?(:owner_id) and obj.owner_id != current_site.id
+    
     raw("".tap do |menu|
       excepts = args[:except] || []
       ctrl = args[:controller] || controller.class

@@ -1,9 +1,9 @@
 pt-BR:
   clipping:
     index:
-      sites: "PORTAIS"
+      sites: "SÍTIOS"
       clipping: "CLIPPING"
-      my-sites: "MEUS PORTAIS"
+      my-sites: "MEUS SÍTIOS"
       search: "BUSCAR"
     list:
       none_page: " Nenhuma notícia "

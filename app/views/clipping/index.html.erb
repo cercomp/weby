@@ -2,8 +2,8 @@
   <div class="span12">
     <ul class="nav nav-pills pull-left">
       <li class=""><%= link_to(t(".sites"), root_url(subdomain: nil), class: 'left') %></li>
-      <% if current_user && not(current_user.is_admin) && not(user_sites.empty?) %>
-        <li><a href="#my-sites" data-toggle="tab"><%= t(".my-sites") %></a></li>
+      <% if current_user && !current_user.is_admin? && current_user.sites.any? %>
+        <li><%= link_to(t(".my-sites"), root_url(subdomain: nil, anchor: 'my-sites'), class: 'left') %></li>
       <% end %>
       <li class="active"><a href="#clipping" data-toggle="tab"><%= t(".clipping") %></a></li>
     </ul>
@@ -17,8 +17,6 @@
 
 <div class="content tabs">
   <div class="tab-content">
-    <div class="tab-pane" id="my-sites">
-    </div>
     <div class="tab-pane active" id="clipping">
       <%= render 'list' %>
     </div>

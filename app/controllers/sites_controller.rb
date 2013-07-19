@@ -20,6 +20,8 @@ class SitesController < ApplicationController
       per(params[:per_page])
     flash[:warning] = (t"none_page") unless @sites
 
+    @my_sites = current_user ? current_user.sites : []
+
     render layout: 'weby_pages'
   end
 

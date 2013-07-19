@@ -15,5 +15,5 @@ pt-BR:
           role:              " Papel "
           none_user:         " Nenhum Usuário "
         role_form:
-          confirm_unrole:
+          confirm_unrole:    " Tem certeza que deseja remover todos os papéis de seu próprio usuário e se desvincular deste sítio? "
 

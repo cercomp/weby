@@ -9,7 +9,7 @@ pt-BR:
         css:        " Estilo "
         created_at: " Criado em "
         updated_at: " Atualizado em "
-        publish:    " Publicar "
+        publish:    " Publicado "
         position:   " Posição "
         owner_id:   " Id do Dono "
 

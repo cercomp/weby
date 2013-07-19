@@ -18,12 +18,4 @@ module WebyBarHelper
       end
     end
   end
-
-  def user_sites
-    "".tap do |sites|
-      Site.where(id: current_user.roles.map{|role| role.site_id}).each do |site|
-        sites << (content_tag :li, link_to(site.name, main_app.site_url(subdomain: site)))
-      end
-    end.html_safe
-  end
 end

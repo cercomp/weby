@@ -7,7 +7,7 @@ pt-BR:
         status:             " Status "
         enabled:            " Ativo "
         disabled:           " Desativado "
-        username:           " Nome do usuário "
+        username:           " Nome de usuário "
         email:              " E-mail "
         phone:              " Telefone "
         mobile:             " Celular "
@@ -20,7 +20,7 @@ pt-BR:
       new:
         new_user:           " Novo Usuário "
       form:
-        username:           " Nome do Usuário "
+        username:           " Nome de Usuário "
         password:           " Senha "
         password_change:    " Nova senha "
         locale_hint:        " Idioma a ser utilizado na área administrativa "
@@ -49,6 +49,6 @@ pt-BR:
         role:               " Papel "
         none_user:          " Nenhum Usuário "
       role_form:
-        confirm_unrole:     " Desligar este usuário do site "
+        confirm_unrole:     " Tem certeza de que deseja remover todos os papéis de seu próprio usuário? "
       manage_roles:
         users:              " Usuários "

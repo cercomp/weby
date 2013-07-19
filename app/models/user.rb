@@ -99,7 +99,16 @@ class User < ActiveRecord::Base
     reset_perishable_token!
     Notifier.activation_confirmation(self, host).deliver
   end
-  
+
+  def has_access_to? site
+    return true if self.is_admin?
+    self.sites.include?(site) or self.global_roles.any?
+  end
+
+  def sites
+    Site.where(id: self.roles.map{|role| role.site_id}.uniq)
+  end
+
   # Pega os papeis globais do usuário
   def global_roles
     self.roles.where(site_id: nil)

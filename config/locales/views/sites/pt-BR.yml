@@ -10,6 +10,10 @@ pt-BR:
       description: "Descrição"
       name: "Nome"
       no-site-found: "Nenhum sítio encontrado."
+    my_list:
+      description: "Descrição"
+      name: "Nome"
+      no-site-found: "Em nenhum sítio."
     edit:
       sites: " Sítios "
       settings: " Configurações "

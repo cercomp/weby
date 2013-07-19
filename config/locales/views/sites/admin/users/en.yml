@@ -15,6 +15,6 @@ en:
           role:              " Role "
           none_user:         " None User "
         role_form:
-          confirm_unrole:
+          confirm_unrole:    " Are you sure you wish to remove all of your roles and unrole from this site? "
 
 

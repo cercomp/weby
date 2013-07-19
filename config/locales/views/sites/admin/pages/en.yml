@@ -46,7 +46,7 @@ en:
           event:                " Event "
           title:                " Title "
           cover:                " Cover "
-          publish:              " Publish "
+          publish:              " Published "
         list_popup:
           register_date:          " Register Date "
           news:                 " News "

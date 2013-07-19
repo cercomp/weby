@@ -1,7 +1,17 @@
 module StylesHelper
   def style_actions(style, args={others: false, follow: false})
     ''.tap do |actions|
-      controller.class.instance_methods(false).each do |action|
+
+      excepts = args[:except] || []
+      # Transforma o parâmetro em array caso não seja
+      excepts = [excepts] unless excepts.is_a? Array
+      excepts.each_index do |i|
+        # Transforma parâmetros em símbolos caso não sejam
+        excepts[i] = excepts[i].to_sym unless excepts[i].is_a? Symbol
+      end
+      #não criar menu para objetos de outro site
+      excepts.concat [:edit, :destroy] if style.owner_id != current_site.id
+      (controller.class.instance_methods(false) - excepts).each do |action|
         if test_permission(controller.class, action)
           if args[:others]
             case action.to_s
@@ -37,8 +47,8 @@ module StylesHelper
   end
 
   def style_action_publish style
-    if style.owner != @site
-      relation = style.sites_styles.where(site_id: @site.id).first
+    if style.owner != current_site
+      relation = style.sites_styles.where(site_id: current_site.id).first
     else
       relation = style
     end

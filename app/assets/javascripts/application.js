@@ -80,4 +80,9 @@ $(document).ready(function() {
         //window.location = $(this).find('option:selected').data('url');
         $.getScript($(this).find('option:selected').data('url'));
     });
+
+    var hash = location.hash
+      , hashPieces = hash.split('?')
+      , activeTab = $('[href=' + hashPieces[0] + ']');
+    activeTab && activeTab.tab('show');
 });

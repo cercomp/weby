@@ -74,6 +74,7 @@ class Sites::Admin::StylesController < ApplicationController
 
   def new
     @style = Style.new
+    @style.publish = true
   end
 
   def edit
@@ -82,7 +83,6 @@ class Sites::Admin::StylesController < ApplicationController
 
   def create
     @style = Style.new(params[:style])
-    @style.publish = true
     @style.position = @site.own_styles.count + 1
 
     flash[:success] = t("successfully_created") if @style.save

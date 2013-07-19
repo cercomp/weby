@@ -8,3 +8,4 @@ en:
         visibility:   " Visibility "
         alias:        " Name "
         name:         " Component "
+        publish:      " Published "

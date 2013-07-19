@@ -1,8 +1,9 @@
+<% has_my_sites = current_user && !current_user.is_admin? && current_user.sites.any? %>
 <div class="row">
   <div class="span12">
     <ul class="nav nav-pills pull-left">
       <li class="active"><a href="#sites" data-toggle="tab"><%= t(".sites") %></a></li>
-      <% if current_user && not(current_user.is_admin) && not(user_sites.empty?) %>
+      <% if has_my_sites %>
         <li><a href="#my-sites" data-toggle="tab"><%= t(".my-sites") %></a></li>
       <% end %>
       <li class=""><%= link_to(t(".clipping"), clipping_url(subdomain: nil), class: 'left') %></li>
@@ -24,7 +25,10 @@
     <div class="tab-pane active" id="sites">
       <%= render 'list' %>
     </div>
-    <div class="tab-pane" id="my-sites">
-    </div>
+    <% if has_my_sites %>
+      <div class="tab-pane" id="my-sites">
+        <%= render 'my_list' %>
+      </div>
+    <% end %>
   </div>
 </div>

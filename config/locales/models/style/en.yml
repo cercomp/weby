@@ -9,7 +9,7 @@ en:
         css:        " Style "
         created_at: " Created at "
         updated_at: " Updated at "
-        publish:    " Publish "
+        publish:    " Published "
         position:   " Position "
         owner_id:   " Owner id "
 

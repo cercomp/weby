@@ -49,6 +49,6 @@ en:
         role:               " Role "
         none_user:          " None User "
       role_form:
-        confirm_unrole:     " Unrole this user of the site "
+        confirm_unrole:     " Are you sure you wish to remove all roles from you own user? "
       manage_roles:
         users:              " Users "

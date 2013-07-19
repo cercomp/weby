@@ -12,6 +12,8 @@
     <%= render_component @component, 'form', locals: {f: f} %>
   </div>
 
+  <%= f.input :publish , wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" } %>
+
   <%= f.input :visibility, collection: [
     [t(".always"),"0"],
     [t(".home_page"),"1"],

@@ -4,7 +4,7 @@
 <textarea id="code"><%= @style.css %></textarea>
 
 <div class="form-actions">
-  <%= make_menu(@style, :except => "show") %>
+  <%= raw style_actions @style, except: "show", others: @style.owner_id != current_site.id, follow: @style.followers.include?(current_site) %>
   <%= link_to icon('list', text:t(".list_all")), site_admin_styles_path %>
   <%= link_to icon('chevron-left', text:t("back")), :back %>
 </div>

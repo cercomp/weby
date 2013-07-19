@@ -30,7 +30,7 @@
 <%= javascript_tag do %>
   function test_unrole(form_id){
     if( $('#'+form_id+' input:checked').length == 0 ){
-      if(!confirm('<%= t("confirm_unrole") -%>')){
+      if(!confirm('<%= t(".confirm_unrole") -%>')){
         return false;
       }
     }

@@ -4,6 +4,8 @@
   <%= f.input :name,
     hint: t("field_required") %>
 
+  <%= f.input :publish , wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" } %>
+
   <%= f.input :owner_id, 
     input_html: {value: @site.id}, 
     as: :hidden %>
@@ -16,6 +18,8 @@
           <%= link_to t(".comment"),"javascript:commentSelection(true)", class: "btn btn-small" %>
           <%= link_to t(".uncomment"),"javascript:commentSelection(false)", class: "btn btn-small" %>
         </div>
+        <%= f.button :button, t(".apply"), type: :button, disabled: :disabled, class: "btn-apply btn btn-primary btn-small" unless @style.new_record? %>
+
       </div>
       <%= f.input :css,
         as: :text,
@@ -28,7 +32,7 @@
     </div>
   <% end %>
   <div class="form-actions">
-    <%= f.button :button, t(".apply"), type: :button, disabled: :disabled, class: "btn-apply btn btn-primary" unless @style.new_record? %>
+    <%#= f.button :button, t(".apply"), type: :button, disabled: :disabled, class: "btn-apply btn btn-primary" unless @style.new_record? %>
     <%= f.button :submit, class: 'btn-primary', disable_with: t("please_wait") %>
     <%= link_to t("back"), :back, class: "btn" %>
   </div>
@@ -90,7 +94,7 @@
       });
 
       function flashMsgApply(title, content){
-        $('.btn-apply').popover({title:title,content:content,animation:true, placement: "top", html: true, trigger: "manual"}).popover('show');
+        $('.btn-apply').popover({title:title,content:"<span style=\"font-size: 12pt;\">"+content+"</span>",animation:true, placement: "right", html: true, trigger: "manual"}).popover('show');
         setTimeout(function(){
           $('.btn-apply').popover('hide');
         },2000);
