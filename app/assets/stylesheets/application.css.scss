@@ -171,3 +171,8 @@ body.modal-open {
     border: 2px solid #DDD;
   }
 }
+
+// to customize main menu
+#menu-admin {
+  .nav-header { padding: 0; }
+}
