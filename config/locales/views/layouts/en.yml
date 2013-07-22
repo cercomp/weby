@@ -1,6 +1,6 @@
 en:
   weby_doc:
-    documentation: " Documentation "
+    documentation: "Documentation"
   layouts:
     application:
       licence: "© Copyright 2012 UFG. All rights reserved."
@@ -23,5 +23,7 @@ en:
       about: "ABOUT"
       sites: "SITES"
     weby_sessions:
+      login: "LOGIN"
+      register: "REGISTER"
       help: "HELP"
       sites: "SITES"

@@ -1,6 +1,6 @@
 pt-BR:
   weby_doc:
-    documentation: " Documentação "
+    documentation: "Documentação"
   layouts:
     application:
       licence: "© Copyright 2013 UFG. Todos os direitos reservados."
@@ -23,5 +23,7 @@ pt-BR:
       about: "SOBRE"
       sites: "SÍTIOS"
     weby_sessions:
+      login: "ENTRAR"
+      register: "CADASTRAR"
       help: "AJUDA"
       sites: "SÍTIOS"

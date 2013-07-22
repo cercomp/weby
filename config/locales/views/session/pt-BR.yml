@@ -1,16 +1,12 @@
 pt-BR:
-  layouts:
-    session:
-      portals:             " Sítios "
-      help:                " Ajuda "
   access_denied:
-    access_denied:         " Acesso negado "
-    access_denied_page:    " Você não está autorizado a ver está página. "
+    access_denied:         "Acesso negado"
+    access_denied_page:    "Você não está autorizado a ver está página."
   session:
     login:
-      login:               " Entrar "
-      forgot_password:     " Esqueci minha senha "
-      register:            " Cadastrar "
+      login:               "Entrar"
+      forgot_password:     "Esqueci minha senha"
+      register:            "Cadastrar"
       field_login:         "Login"
       field_password:      "Senha"
       field_password_conf: "Confirmação da senha"
@@ -19,19 +15,19 @@ pt-BR:
       field_first_name:    "Nome"
       field_last_name:     "Sobrenome"
     forgot_password:
-      fill_email_form:     " Preencha o formulário para que sejam enviadas instruções de como mudar sua senha. "
-      recover_password:    " Recuperar senha "
+      fill_email_form:     "Preencha o formulário para que sejam enviadas instruções de como mudar sua senha."
+      recover_password:    "Recuperar senha"
       field_email:         "Email"
     password_sent:
-      sent_password:       " Instruções de como modificar sua senha foram enviadas para seu e-mail. "
-      recover_password:    " Mudar senha "
+      sent_password:       "Instruções de como modificar sua senha foram enviadas para seu e-mail."
+      recover_password:    "Mudar senha"
     reset_password:
-      change_password:     " Mudar senha "
-      reset_password:      " Nova senha "
-      password_change:     " Nova senha "
+      change_password:     "Mudar senha"
+      reset_password:      "Nova senha"
+      password_change:     "Nova senha"
       password_confirmation_label: "Confirmação da senha"
     signup:
-      signup:              " Novo usuário "
-      register:            " Cadastrar "
+      signup:              "Novo usuário"
+      register:            "Cadastrar"
     resend_activation:
-      resend:              " Reenviar e-mail de ativação "
+      resend:              "Reenviar e-mail de ativação"
