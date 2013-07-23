@@ -3,9 +3,10 @@
     <ul class="nav nav-pills pull-left">
       <li class=""><%= link_to(t(".sites"), root_url(subdomain: nil), class: 'left') %></li>
       <% if current_user && !current_user.is_admin? && current_user.sites.any? %>
-        <li><%= link_to(t(".my-sites"), mysites_url(subdomain: nil), class: 'left') %></li>
+        <li><%= link_to(t(".my-sites"), root_url(subdomain: nil, anchor: 'my-sites'), class: 'left') %></li>
       <% end %>
       <li class="active"><a href="#clipping" data-toggle="tab"><%= t(".clipping") %></a></li>
+      <li class=""><%= link_to(t(".condensed"), condensed_path, class: 'left') %></a></li>
     </ul>
     <%= form_tag request.path, method: 'get', autocapitalize: "off", class: 'form-inline pull-right search' do %>
       <%= content_tag :div, class: 'input-append' do %>

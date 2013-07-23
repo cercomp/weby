@@ -14,6 +14,8 @@ Weby::Application.routes.draw do
     # routes to feed and atom
     match '/feed' => 'sites/pages#published', as: :site_feed,
       defaults: { format: 'rss', per_page: 10, page: 1 }
+    # route to paginate
+    match 'admin/banners/page/:page' => 'sites/admin/banners#index'
 
     resources :pages,
       as: :site_pages, 
@@ -40,6 +42,8 @@ Weby::Application.routes.draw do
       match "repositories/page/:page" => "repositories#index"
       match "pages/page/:page" => "pages#index"
 
+      get "notifications" => "notifications#index"
+      
       resources :notifications, only: [:index, :show]
       resources :banners do
         member do
@@ -102,16 +106,12 @@ Weby::Application.routes.draw do
 
   root :to => "sites#index"
 
+  #rota para paginação
+  match "sites/page/:page" => "sites#index"
+
   constraints(Weby::GlobalDomain) do
-    #rota para paginação
-    match "sites/page/:page" => "sites#index"
-    #rota para paginação
-    match "mysites" => "sites#index", :my_sites => true
-
-    # clipping
-    get "/clipping" => "clipping#index", as: :clipping
-
     match "/admin" => "application#admin"
+
     namespace :admin do
       resources :settings, except: :show
       resources :users do
@@ -134,11 +134,16 @@ Weby::Application.routes.draw do
       resources :notifications
 
       get "stats" => "statistics#index", :as => :stats
-     
+      get "notifications" => "notifications#index"
+
       # route to paginate
       match "users/page/:page" => "users#index"
       match "sites/page/:page" => "sites#index"
     end
+
+    # clipping
+    get "/clipping" =>  "clipping#index", as: :clipping
+    get "condensed" => "clipping#condensed"
   end
 
   # routes to session

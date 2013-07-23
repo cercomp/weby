@@ -6,6 +6,7 @@ pt-BR:
       clipping: "CLIPPING"
       my-sites: "MEUS SÍTIOS"
       search: "BUSCAR"
+      condensed: "CONDENSADO"
     list:
       description: "Descrição"
       name: "Nome"
@@ -13,8 +14,7 @@ pt-BR:
     my_list:
       description: "Descrição"
       name: "Nome"
-      no-site-found: "Sem papel em nenhum sítio."
-      dashboard: " Administração "
+      no-site-found: "Em nenhum sítio."
     edit:
       sites: " Sítios "
       settings: " Configurações "

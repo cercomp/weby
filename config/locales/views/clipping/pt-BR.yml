@@ -7,4 +7,10 @@ pt-BR:
       search: "BUSCAR"
     list:
       none_page: " Nenhuma notícia "
+    condensed:
+      condensed: "CONDENSADO"
+      sites: "SÍTIOS"
+      clipping: "CLIPPING"
+      my-sites: "MEUS SÍTIOS"
+      search: "BUSCAR"
 
