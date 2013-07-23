@@ -13,7 +13,8 @@ en:
     my_list:
       description: "Description"
       name: "Name"
-      no-site-found: "Not in any site."
+      no-site-found: "Not roled in any site."
+      dashboard: "Dashboard"
     edit:
       sites: " Sites "
       settings: " Settings "

@@ -1,12 +1,12 @@
-<% has_my_sites = current_user && !current_user.is_admin? && current_user.sites.any? %>
+<% has_my_sites = current_user && !current_user.is_admin? && @my_sites.any? %>
 <div class="row">
   <div class="span12">
     <ul class="nav nav-pills pull-left">
-      <li class="active"><a href="#sites" data-toggle="tab"><%= t(".sites") %></a></li>
+      <li class="<%= params[:my_sites] ? "" : "active" %>"><a href="#sites" data-toggle="tab"><%= t(".sites") %></a></li>
       <% if has_my_sites %>
-        <li><a href="#my-sites" data-toggle="tab"><%= t(".my-sites") %></a></li>
+        <li class="<%= params[:my_sites] ? "active" : "" %>"><a href="#my-sites" data-toggle="tab"><%= t(".my-sites") %></a></li>
       <% end %>
-      <li class=""><%= link_to(t(".clipping"), clipping_url(subdomain: nil), class: 'left') %></li>
+      <li><%= link_to(t(".clipping"), clipping_url(subdomain: nil), class: 'left') %></li>
     </ul>
     <% if check_permission(Admin::SitesController, ["new"]) %>
       <%= link_to t(".new_site"), new_admin_site_path, class: 'btn btn-success pull-right new-site' %>
@@ -22,11 +22,11 @@
 
 <div class="content tabs">
   <div class="tab-content">
-    <div class="tab-pane active" id="sites">
+    <div class="tab-pane <%= params[:my_sites] ? "" : "active" %>" id="sites">
       <%= render 'list' %>
     </div>
     <% if has_my_sites %>
-      <div class="tab-pane" id="my-sites">
+      <div class="tab-pane <%= params[:my_sites] ? "active" : "" %>" id="my-sites">
         <%= render 'my_list' %>
       </div>
     <% end %>

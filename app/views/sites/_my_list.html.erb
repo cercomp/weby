@@ -10,6 +10,7 @@
           <th style="width: 34px;"></th>
           <th class='site-name'><%= sortable 'name', t(".name") %></th>
           <th><%= t(".description") %></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -18,6 +19,9 @@
             <td><%= site_avatar_tag site %></td>
             <td> <%= link_to site.title, site_url(subdomain: site) %> </td>
             <td> <%= site.description %> </td>
+            <td>
+              <%= link_to icon('briefcase', text: t(".dashboard")), site_admin_url(subdomain: site) if current_user %>
+            </td>
           </tr>
         <% end %>
       </tbody>

@@ -13,7 +13,8 @@ pt-BR:
     my_list:
       description: "Descrição"
       name: "Nome"
-      no-site-found: "Em nenhum sítio."
+      no-site-found: "Sem papel em nenhum sítio."
+      dashboard: " Administração "
     edit:
       sites: " Sítios "
       settings: " Configurações "
