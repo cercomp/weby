@@ -7,7 +7,8 @@
       <img id="component_image" src="/assets/components/default.png"/>
     </div>
     <div class="form-actions">
-        <button id="next_step" class="btn btn-primary"><%= t(".next_step") %></button>
+        <button type="submit" class="btn btn-primary"><%= t(".next_step") %></button>
+        <%= link_to t("back"), site_admin_components_path, class: "btn" %>
     </div>
   <% end %>
 </div>
@@ -25,10 +26,6 @@
     width: 230px;
     margin: 8px;
     border: 1px solid #888;
-  }
-
-  #available_components #next_step {
-    margin-top: 8px;
   }
 
   #available_components #main {

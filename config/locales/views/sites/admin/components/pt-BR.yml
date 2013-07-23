@@ -6,7 +6,7 @@ pt-BR:
           place:              " Local "
           visibility:         " Visibilidade "
           alias:              " Nome "
-          alias_hint:         " Apelido para o widget "
+          alias_hint:         " Apelido para o componente "
           always:             " Sempre mostrar "
           home_page:          " Apenas na página inicial "
           inner_page:         " Apenas nas páginas internas "
@@ -17,12 +17,12 @@ pt-BR:
           components:         " Componentes "
         index:
           components:         " Componentes "
-          new_component:      " Adicionar Widget "
+          new_component:      " Adicionar Componente "
           component:          " Componente "
           alias:              " Nome "
           category:           " Categoria "
           active:             " Ativo? "
-          empty_placeholder:  " Nenhum widget neste local "
+          empty_placeholder:  " Nenhum componente neste local "
           content:            " Conteúdo "
         new:
           components:         " Componentes "
