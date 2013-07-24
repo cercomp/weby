@@ -108,9 +108,6 @@ Weby::Application.routes.draw do
     #rota para paginação
     match "mysites" => "sites#index", :my_sites => true
 
-    # clipping
-    get "/clipping" => "clipping#index", as: :clipping
-
     match "/admin" => "application#admin"
     namespace :admin do
       resources :settings, except: :show
