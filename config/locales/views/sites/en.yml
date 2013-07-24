@@ -6,7 +6,10 @@ en:
       my-sites: "MY SITES"
       search: "SEARCH"
       last_news: "LAST NEWS"
+    clipping:
+      none_page: "No news"
     list:
+      sites: "SITES"
       description: "Description"
       name: "Name"
       no-site-found: "No site found."

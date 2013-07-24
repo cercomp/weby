@@ -2,7 +2,7 @@
 <div class="row">
   <div class="span12">
     <ul class="nav nav-pills pull-left">
-      <li class="active"><a href="#sites" data-toggle="tab"><%= t(".last_news") %></a></li>
+      <li class="active"><a href="#news" data-toggle="tab"><%= t(".last_news") %></a></li>
       <% if has_my_sites %>
         <li><a href="#my-sites" data-toggle="tab"><%= t(".my-sites") %></a></li>
       <% end %>
@@ -21,8 +21,9 @@
 
 <div class="content tabs row">
   <div class="tab-content">
-    <div class="tab-pane active" id="sites">
+    <div class="tab-pane active" id="news">
       <%= render 'list' %>
+      <%= render 'clipping' %>
     </div>
     <% if has_my_sites %>
       <div class="tab-pane" id="my-sites">

@@ -5,9 +5,11 @@ pt-BR:
       sites: "SITES"
       my-sites: "MEUS SITES"
       search: "BUSCAR"
-      condensed: "CONDENSADO"
       last_news: "ÚLTIMAS NOTÍCIAS"
+    clipping:
+      none_page: "Nenhuma notícia encontrada"
     list:
+      sites: "SITES"
       description: "Descrição"
       name: "Nome"
       no-site-found: "Nenhum site encontrado."
