@@ -10,7 +10,7 @@
   <% full_links = defined?(page_links) and page_links %>
   <div class="pagination<%= " pagination-#{size}" if defined?(size) %>">
     <ul>
-      <%= first_page_tag unless current_page.first? and full_links %>
+      <%= first_page_tag if full_links and !current_page.first? %>
       <%= prev_page_tag unless current_page.first? and full_links%>
       <% if full_links %>
         <% each_page do |page| -%>
@@ -30,7 +30,7 @@
         </li>
       <% end %>
       <%= next_page_tag unless current_page.last? and full_links %>
-      <%= last_page_tag unless current_page.last? and full_links %>
+      <%= last_page_tag if full_links and !current_page.last? %>
     </ul>
   </div>
 <% end -%>

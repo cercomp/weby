@@ -18,9 +18,11 @@ top:
     publish: true
   -
     name: 'menu'
-    settings: "{:menu_id => \"%{menu_top_id}\"}"
+    settings: "{:menu_id => \"%{menu_id}\"}"
     position: 2
     publish: true
+    menu:
+      name: "Menu Superior"
   -
     name: 'menu_accessibility'
     settings: '{}'
@@ -29,9 +31,11 @@ top:
 left:
   -
     name: 'menu'
-    settings: "{:menu_id => \"%{menu_left_id}\"}"
+    settings: "{:menu_id => \"%{menu_id}\"}"
     position: 1
     publish: true
+    menu:
+      name: "Menu Esquerdo"
   -
     name: 'banner_list'
     settings: '{:category => "esq", :orientation => "vertical"}'
@@ -45,9 +49,11 @@ right:
     publish: true
   -
     name: 'menu'
-    settings: "{:menu_id => \"%{menu_right_id}\"}"
+    settings: "{:menu_id => \"%{menu_id}\"}"
     position: 2
     publish: true
+    menu:
+      name: "Menu Direito"
   -
     name: 'banner_list'
     settings: '{:category => "dir", :orientation => "vertical"}'
@@ -56,9 +62,11 @@ right:
 bottom:
   -
     name: 'menu'
-    settings: "{:menu_id => \"%{menu_bottom_id}\"}"
+    settings: "{:menu_id => \"%{menu_id}\"}"
     position: 1
     publish: true
+    menu:
+      name: "Menu Inferior"
   -
     name: 'text'
     settings: "{:body => %{default_footer}, :html_class => \"footer\"}"

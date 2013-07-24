@@ -8,6 +8,7 @@ pt-BR:
         title:                    " Título "
         body:                     " Mensagem "
         date:                     " Data "
+        no_notifications:         " Nenhuma Notificação "
       form:
         title:                    " Título "
         body:                     " Mensagem "

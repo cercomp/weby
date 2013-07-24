@@ -1,20 +1,26 @@
-<table class='table table-striped'>
-  <thead>
-    <tr>
-      <th><%= t(".title") %></th>
-      <th><%= t(".body") %></th>
-      <th><%= t(".date") %></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @notifications.each do |notification| %>
+<% if @notifications.empty? %>
+  <div class="alert">
+    <%= t('.no_notifications') %>
+  </div>
+<% else %>
+  <table class='table table-striped'>
+    <thead>
       <tr>
-        <td><%= link_to notification.title, admin_notification_path(notification.id) %></td>
-        <td><%= notification.body.to_s[0..50] %></td>
-        <td><%= l(notification.created_at, :format => :short) %></td>
-        <td></td>
+        <th><%= t(".title") %></th>
+        <th><%= t(".body") %></th>
+        <th><%= t(".date") %></th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @notifications.each do |notification| %>
+        <tr>
+          <td><%= link_to notification.title, admin_notification_path(notification.id) %></td>
+          <td><%= notification.body.to_s[0..50] %></td>
+          <td><%= l(notification.created_at, :format => :short) %></td>
+          <td></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

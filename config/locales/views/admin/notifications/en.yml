@@ -8,6 +8,7 @@ en:
         title:              " Title "
         body:               " Message "
         date:               " Date "
+        no_notifications:   " No Notifications "
       form:
         title:              " Title "
         body:               " Message "
