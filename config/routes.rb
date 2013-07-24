@@ -106,10 +106,12 @@ Weby::Application.routes.draw do
 
   root :to => "sites#index"
 
-  #rota para paginação
-  match "sites/page/:page" => "sites#index"
-
   constraints(Weby::GlobalDomain) do
+    #rota para paginação
+    match "sites/page/:page" => "sites#index"
+
+    match "mysites" => "sites#index", :my_sites => true
+
     match "/admin" => "application#admin"
 
     namespace :admin do

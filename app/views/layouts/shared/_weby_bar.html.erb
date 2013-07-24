@@ -7,7 +7,6 @@
     <% end %>
     <div class="nav pull-left">
       <%= link_to t(".dashboard"), main_app.site_admin_path, class: 'left' if current_user.has_access_to?(current_site) %>
-      <%= link_to t(".clipping"), main_app.clipping_url(subdomain: nil), class: 'left'  %>
       <%= link_to(t(".help"), current_settings[:help_site], target: '_blank', class: 'left') if current_settings[:help_site] %>
       <%= link_to t(".about"), '#', target: '_blank', class: 'left', id: 'about-weby' %>
     </div>

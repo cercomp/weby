@@ -10,7 +10,7 @@ pt-BR:
   common_pages:
     site_path:
       title: "Página inicial"
-      description: "Página de início do sítio"
+      description: "Página de início do site"
     rss_feed_path:
       title: "Feed RSS"
       description: "Link para o feed de notícias no formato RSS"

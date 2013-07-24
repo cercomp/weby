@@ -6,6 +6,7 @@ en:
           title:              " Title "
           body:               " Message "
           date:               " Date "
+          no_notifications:   " No Notifications "
         show:
           title:              " Title "
           body:               " Message "

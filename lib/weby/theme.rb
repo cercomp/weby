@@ -26,7 +26,11 @@ class Weby::Theme
         component['place_holder'] = place
         if component['name'] == 'menu'
           menu = @site.menus.create(component.delete('menu'))
-          component['settings'] = I18n.interpolate(component['settings'], {menu_id: menu.id, default_footer: default_footer.to_s})
+          puts menu
+          component['settings'] = I18n.interpolate(component['settings'], {menu_id: menu.id})
+        end
+        if component['name'] == 'text'
+          component['settings'] = I18n.interpolate(component['settings'], {default_footer: default_footer.to_s})
         end
         @site.components.create(component)
       end

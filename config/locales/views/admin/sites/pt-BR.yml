@@ -2,14 +2,14 @@ pt-BR:
   admin:
     sites:
       show:
-        sites:                  " Sítios "
+        sites:                  " Sites "
       new:
-        sites:                  " Sítios "
+        sites:                  " Sites "
       index:
-        sites:                  " Sítios "
-        new_site:               " Novo Sítio "
+        sites:                  " Sites "
+        new_site:               " Novo Site "
       edit:
-        sites:                  " Sítios "
+        sites:                  " Sites "
         settings:               " Configurações "
       list:
         name:                   " Nome "

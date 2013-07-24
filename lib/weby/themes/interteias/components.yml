@@ -18,9 +18,11 @@ top:
     publish: true
   -
     name: 'menu'
-    settings: "{:menu_id => \"%{menu_top_id}\"}"
+    settings: "{:menu_id => \"%{menu_id}\"}"
     position: 2
     publish: true
+    menu:
+      name: "Menu Superior"
   -
     name: 'menu_accessibility'
     settings: '{}'
@@ -34,9 +36,11 @@ top:
 bottom:
   -
     name: 'menu'
-    settings: "{:menu_id => \"%{menu_bottom_id}\"}"
+    settings: "{:menu_id => \"%{menu_id}\"}"
     position: 1
     publish: true
+    menu:
+      name: "Menu Inferior"
   -
     name: 'text'
     settings: "{:body => %{default_footer}, :html_class => \"footer\"}"

@@ -1,33 +1,33 @@
 pt-BR:
   sites:
     index:
-      new_site: "CRIAR SÍTIO"
-      sites: "SÍTIOS"
-      clipping: "CLIPPING"
-      my-sites: "MEUS SÍTIOS"
+      new_site: "CRIAR SITE"
+      sites: "SITES"
+      my-sites: "MEUS SITES"
       search: "BUSCAR"
       condensed: "CONDENSADO"
       last_news: "ÚLTIMAS NOTÍCIAS"
     list:
       description: "Descrição"
       name: "Nome"
-      no-site-found: "Nenhum sítio encontrado."
+      no-site-found: "Nenhum site encontrado."
     my_list:
       description: "Descrição"
       name: "Nome"
-      no-site-found: "Em nenhum sítio."
+      no-site-found: "Sem papel em nenhum site."
+      dashboard: " Administração "
     edit:
-      sites: " Sítios "
+      sites: " Sites "
       settings: " Configurações "
       main: " Principal "
       subsites: " Subsites "
     form:
       view_desc_pages_help: " Deseja mostrar a data de criação e o autor das páginas? "
-      site_comments: " Comentário sobre os objetivos do sítio "
+      site_comments: " Comentário sobre os objetivos do site "
       example_width: " Exemplo "
       example_url: " Exemplo: http://site.com "
       example_top_widht: " Exemplo "
       example_top_height: " Exemplo "
       example_per_page: " Exemplo "
-      site_image: " Imagem do Sítio "
-      main_site: " Sítio Principal "
+      site_image: " Imagem do Site "
+      main_site: " Site Principal "

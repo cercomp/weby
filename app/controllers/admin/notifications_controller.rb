@@ -5,7 +5,7 @@ class Admin::NotificationsController < ApplicationController
   respond_to :html, :xml
 
   def index
-    @notifications = (Notification.all).sort_by(&:created_at).reverse
+    @notifications = (Notification.title_or_body_like(params[:search])).sort_by(&:created_at).reverse
 
     respond_to do |format|
       format.html # index.html.erb
