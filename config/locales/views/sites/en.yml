@@ -6,6 +6,7 @@ en:
       clipping: "CLIPPING"
       my-sites: "MY SITES"
       search: "SEARCH"
+      last_news: "LAST NEWS"
     list:
       description: "Description"
       name: "Name"

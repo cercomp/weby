@@ -1,14 +1,11 @@
 <% has_my_sites = current_user && !current_user.is_admin? && current_user.sites.any? %>
-
 <div class="row">
   <div class="span12">
     <ul class="nav nav-pills pull-left">
-      <li class="active"><a href="#sites" data-toggle="tab"><%= t(".sites") %></a></li>
+      <li class="active"><a href="#sites" data-toggle="tab"><%= t(".last_news") %></a></li>
       <% if has_my_sites %>
         <li><a href="#my-sites" data-toggle="tab"><%= t(".my-sites") %></a></li>
       <% end %>
-      <li class=""><%= link_to(t(".clipping"), clipping_url(subdomain: nil), class: 'left') %></li>
-      <li class=""><%= link_to(t(".condensed"), condensed_path, class: 'left') %></a></li>
     </ul>
     <% if check_permission(Admin::SitesController, ["new"]) %>
       <%= link_to t(".new_site"), new_admin_site_path, class: 'btn btn-success pull-right new-site' %>
@@ -22,7 +19,7 @@
   </div>
 </div>
 
-<div class="content tabs">
+<div class="content tabs row">
   <div class="tab-content">
     <div class="tab-pane active" id="sites">
       <%= render 'list' %>

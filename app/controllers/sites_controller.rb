@@ -12,7 +12,6 @@ class SitesController < ApplicationController
 
   def index
     params[:per_page] ||= current_settings[:per_page_default]
-
     @sites = Site.name_or_description_like(params[:search]).
       except(:order).
       order(sort_column + " " + sort_direction).
@@ -21,6 +20,8 @@ class SitesController < ApplicationController
     flash[:warning] = (t"none_page") unless @sites
 
     @my_sites = current_user ? current_user.sites : []
+
+    @pages = Page.front.published.available.clipping.search(params[:search], 1)
 
     render layout: 'weby_pages'
   end
