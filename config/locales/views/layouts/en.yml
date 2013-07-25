@@ -1,6 +1,4 @@
 en:
-  weby_doc:
-    documentation: "Documentation"
   layouts:
     application:
       licence: "© Copyright 2012 UFG. All rights reserved."
