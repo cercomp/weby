@@ -1,26 +1,35 @@
-<%= link_to new_admin_setting_path, class: 'pull-right' do %>
+<p class="pull-right">
+<%= link_to new_admin_setting_path do %>
   <button class="btn btn-success">
     <%= t(".new_setting") %>
   </button>
 <% end %>
+</p>
+<div class="clearfix"></div>
 
-<table class='table table-striped'>
-  <thead>
-    <tr>
-      <th> <%= sortable 'name', t('.name') %> </th>
-      <th> <%= sortable 'value', t('.value') %> </th>
-      <th> <%= t('.description') %> </th>
-      <th> </th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @settings.each do |setting| %>
+<% if @settings.empty? %>
+    <div class="alert">
+      <%= t(".none_setting") %>
+    </div>
+<% else %>
+  <table class='table table-striped'>
+    <thead>
       <tr>
-        <td> <%= setting.name %> </td>
-        <td> <%= setting.value %> </td>
-        <td> <%= setting.description %> </td>
-        <td> <%= raw make_menu(setting, :except => "show") %> </td>
+        <th> <%= sortable 'name', t('.name') %> </th>
+        <th> <%= sortable 'value', t('.value') %> </th>
+        <th> <%= t('.description') %> </th>
+        <th> </th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @settings.each do |setting| %>
+        <tr>
+          <td> <%= setting.name %> </td>
+          <td> <%= setting.value %> </td>
+          <td> <%= setting.description %> </td>
+          <td> <%= raw make_menu(setting, :except => "show") %> </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

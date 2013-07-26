@@ -16,6 +16,7 @@ es:
         dashboard:              " Administración "
         description:            " Descripción "
         settings:               " Configuración "
+        no-site-found:          " No hay sitios."
       form:
         example_width:          " Ejemplo "
         example_url:            " Ejemplo: http://site.com "

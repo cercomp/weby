@@ -1,0 +1,7 @@
+en:
+  admin:
+    roles:
+      index:
+        groups:       " Groups "
+        messages:     " Messages "
+          

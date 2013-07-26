@@ -2,12 +2,6 @@
 <div class="pull-right"> <%= paginate @repositories, remote: true %> </div>
 <div class="clearfix"></div>
 
-<% if @repositories.empty? %>
-  <div class="alert">
-    <%= t(".none_archive") %>
-  </div>
-<% end %>
-
 <table class='table table-striped table-condensed'>
   <thead>
       <th><%= sortable 'id', t(".archive") %></th>

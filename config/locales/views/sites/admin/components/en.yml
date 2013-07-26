@@ -17,7 +17,7 @@ en:
           components:         " Componentes "
         index:
           components:         " Componentes "
-          new_component:      " Add Widget "
+          new_component:      " New Widget "
           component:          " Component "
           alias:              " Name "
           category:           " Category "

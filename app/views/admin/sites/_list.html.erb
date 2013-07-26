@@ -1,29 +1,35 @@
-<div class="pull-left"> <%= info_page @sites %> </div>
-<div class="pull-right"> <%= paginate @sites, remote: true %> </div>
-<div class="clearfix"></div>
+<% if @sites.empty? %>
+    <div class="alert">
+      <%= t(".no-site-found") %>
+    </div>
+<% else %>
+  <div class="pull-left"> <%= info_page @sites %> </div>
+  <div class="pull-right"> <%= paginate @sites, remote: true %> </div>
+  <div class="clearfix"></div>
 
-<table class='table table-striped'>
-  <thead>
-    <tr>
-      <th class='site-name'><%= sortable 'name', t(".name") %></th>
-      <th><%= t(".description") %></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @sites.each do |site| %>
+  <table class='table table-striped'>
+    <thead>
       <tr>
-        <td> <%= link_to site.name, site_url(subdomain: site) %> </td>
-        <td> <%= site.description %> </td>
-        <td>
-              <%= link_to icon('briefcase', text: t(".dashboard")), site_admin_url(subdomain: site) if current_user && current_user.is_admin %>
-              <%= link_to icon('edit', text: t(".settings")), edit_admin_site_url(site, subdomain: nil) if current_user && current_user.is_admin %>
-        </td>
+        <th class='site-name'><%= sortable 'name', t(".name") %></th>
+        <th><%= t(".description") %></th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @sites.each do |site| %>
+        <tr>
+          <td> <%= link_to site.name, site_url(subdomain: site) %> </td>
+          <td> <%= site.description %> </td>
+          <td>
+                <%= link_to icon('briefcase', text: t(".dashboard")), site_admin_url(subdomain: site) if current_user && current_user.is_admin %>
+                <%= link_to icon('edit', text: t(".settings")), edit_admin_site_url(site, subdomain: nil) if current_user && current_user.is_admin %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<div class="pull-left"> <%= per_page_links @sites, true %> </div>
-<div class="pull-right"> <%= paginate @sites, remote: true %> </div>
-<div class="clearfix"></div>
+  <div class="pull-left"> <%= per_page_links @sites, true %> </div>
+  <div class="pull-right"> <%= paginate @sites, remote: true %> </div>
+  <div class="clearfix"></div>
+<% end %>

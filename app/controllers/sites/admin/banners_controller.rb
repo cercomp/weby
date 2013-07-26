@@ -13,10 +13,6 @@ class Sites::Admin::BannersController < ApplicationController
       order(sort_column + " " + sort_direction).
       titles_or_texts_like(params[:search]).
       page(params[:page]).per(params[:per_page])
-
-    unless @banners
-      flash.now[:warning] = (t".none_banner")
-    end
   end
 
   def show

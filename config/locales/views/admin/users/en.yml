@@ -38,6 +38,7 @@ en:
         roles:              " Roles "
         admin:              " Admin "
         manage_roles:       " Manage Roles "
+        none_user:          " No users "
       edit:
         editing_my_account: " Editting my account "
       enrole:
@@ -47,7 +48,7 @@ en:
       enroled:
         enroled_user:       " Enroled Users "
         role:               " Role "
-        none_user:          " None User "
+        none_user:          " None Enroled User "
       role_form:
         confirm_unrole:     " Are you sure you wish to remove all roles from you own user? "
       manage_roles:

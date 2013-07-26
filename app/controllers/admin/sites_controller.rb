@@ -14,7 +14,6 @@ class Admin::SitesController < ApplicationController
       order(sort_column + " " + sort_direction).
       page(params[:page]).
       per(params[:per_page])
-    flash[:warning] = (t"none_page") unless @sites
   end
 
   def new

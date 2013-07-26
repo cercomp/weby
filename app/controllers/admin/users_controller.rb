@@ -68,10 +68,6 @@ class Admin::UsersController < ApplicationController
 
     @roles = Role.select('id, name, theme').
       group("id, name, theme").order("id")
-
-    unless @users
-      flash.now[:warning] = (t"none_user")
-    end
   end
 
   def new

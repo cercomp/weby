@@ -9,12 +9,12 @@ pt-BR:
         list:
           name:                   " Nome "
           description:            " Descrição "
+          none_group:             " Não existe nenhum grupo "
+          group_explain:          " Grupos de e-mails destinatários das mensagens do Fale Conosco"
         index:
           groups:                 " Grupos "
           new_group:              " Novo Grupo "
           messages:               " Mensagens "
-          none_group:             " Não existe nenhum grupo "
-          group_explain:          " Grupos de e-mails que são destinatários das mensagens "
         edit:
           groups:                 " Grupos "
         new:

@@ -15,7 +15,7 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
 
   def create
     @menu_item = @menu.menu_items.new(params[:menu_item])
-    @menu_item.position = @menu.menu_items.maximum('position', :conditions=> ['parent_id = ?', @menu_item.parent_id]).to_i + 1
+    @menu_item.position = @menu.menu_items.maximum('position', :conditions=> {parent_id: @menu_item.parent_id}).to_i + 1
 
     if @menu_item.save
       flash[:success] = t("successfully_created")

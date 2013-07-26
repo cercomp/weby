@@ -1,11 +1,3 @@
-<%- title  ".feedback" %>
-
-<% if @messages.empty? %>
-  <div class="alert">
-    <%= t(".none_feedback") %>
-  </div>
-<% end %>
-
 <div class="pull-right">
   <% if check_permission(Feedback::Admin::GroupsController, [:new]) %>
     <%= link_to t(".new_group"),
@@ -18,9 +10,14 @@
       class: "btn" %>
   <% end %>
 </div>
-<div class="clearfix"></div>
+<div class="clearfix control-group"></div>
 
-<% unless @messages.empty? %>
+<% if @messages.empty? %>
+  <div class="alert">
+    <%= t(".none_feedback") %>
+  </div>
+<% else %>
+
   <div class="page_info_paginator"><%= t("views.pagination.total") %>&nbsp;<%= @messages.length %></div>
   <table class='table table-striped table-condensed'>
     <thead>
@@ -42,4 +39,5 @@
       <% end; reset_cycle %>
     </tbody>
   </table>
+
 <% end %>

@@ -7,6 +7,7 @@ pt-BR:
           new_archive:          " Novo Arquivo "
           repository_as_thumbs: " Exibir repositório como miniaturas "
           repository_as_list:   " Exibir repositório como lista "
+          none_archive:         " Nenhum Arquivo "
         show:
           archives:            " Arquivos "
           name:                " Nome "
@@ -38,13 +39,10 @@ pt-BR:
           archive:             " Arquivo "
           description:         " Descrição "
           type:                " Tipo "
-          none_archive:        " Nenhum Arquivo "
-        thumbs:
-          none_archive:        " Nenhum Arquivo "
         repository_search:
           archives:            " Arquivos "
-          repository:          " Repositório "
-          new_file:            " Novo Arquivo "
+          repository:          " REPOSITÓRIO "
+          new_file:            " NOVO ARQUIVO "
         search_and_new_file:
           search_image:        " Buscar Imagem "
           new_image:           " Nova imagem "

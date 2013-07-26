@@ -60,19 +60,15 @@
     </div>
 
     <div id="main" class="container">
-      <% unless flash.empty? %>
-        <div class="row">
-          <div class="span12">
-            <%= raw flash_message %>
-          </div>
-        </div>
-      <% end %>
       <div class="row">
         <div class="span3">
           <%= render 'layouts/shared/menu_admin' %>
           &nbsp;
         </div>
         <div class="span9">
+          <% unless flash.empty? %>
+            <%= raw flash_message %>
+          <% end %>
           <div class="well">
             <%= yield %>
           </div>

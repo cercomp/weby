@@ -13,13 +13,16 @@ pt-BR:
         groups:               " Grupos "
         menu_items:           " Itens de Menu "
         menus:                " Menus "
+        notifications:        " Notificações "
         pages:                " Páginas "
         repositories:         " Repositório "
         repositories_searchs: " Buscas "
         rights:               " Direitos "
         roles:                " Papéis "
+        sites:                " Sites "
         styles:               " Estilos "
         users:                " Usuários "
+        none_role:            " Nenhum papel "
       new:
         roles:                " Papéis "
       edit:

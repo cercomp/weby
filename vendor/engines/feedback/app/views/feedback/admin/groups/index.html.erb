@@ -1,15 +1,3 @@
-<%- title  ".groups" %>
-
-<% if @groups.empty?  %>
-  <div class="alert">
-    <%=t(".none_group")%>
-  </div>
-<% else %>
-  <div class="alert alert-info">
-    <%=t(".group_explain")%>
-  </div>
-<%end%>
-  
 <div class="pull-right">
   <% if check_permission(Feedback::Admin::GroupsController, [:new]) %>
     <%= link_to t(".new_group"),
@@ -22,9 +10,8 @@
       class: "btn" %>
   <% end %>
 </div>
-<div class="clearfix"></div>
+<div class="clearfix control-group"></div>
 
 <div id="list">
   <%= render :partial => "list" %>
 </div>
-

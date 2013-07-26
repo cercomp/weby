@@ -22,7 +22,6 @@ pt-BR:
           publish:                  " Publicado "
           register_date:            " Criado em "
           title:                    " Título "
-          none_banner:              " Nenhum Banner "
           none_category:            " Nenhuma categoria "
         edit:
           help_image_banner:        " Essa imagem será utilizada como banner "
@@ -32,6 +31,7 @@ pt-BR:
           banners:                  " Banners "
           banners_as_thumbs:        " Exibir banners como miniaturas "
           banners_as_list:          " Exibir banners como lista "
+          none_banner:              " Nenhum Banner "
         show:
           banner:                   " Banner "
           banners:                  " Banners "

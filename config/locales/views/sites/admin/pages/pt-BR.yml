@@ -54,6 +54,7 @@ pt-BR:
           title:                " Título "
           category:             " Categoria "
           type:                 " Tipo "
+          none_page:            " Nenhuma Página Encontrada "
         related_files:
           size:                 " Tamanho "
           related_files:        " Arquivos Relacionados "
@@ -78,6 +79,4 @@ pt-BR:
           id:                   "Id "
           title:                "Título "
           author:               "Autor "
-
-
-
+          none_page:            " Nenhuma Página Encontrada "

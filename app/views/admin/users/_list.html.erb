@@ -1,37 +1,43 @@
-<div class="pull-left"> <%= info_page @users %> </div>
-<div class="pull-right"> <%= paginate @users, remote: true %> </div>
-<div class="clearfix"></div>
+<% if @users.empty? %>
+    <div class="alert">
+      <%= t(".none_user") %>
+    </div>
+<% else %>
+  <div class="pull-left"> <%= info_page @users %> </div>
+  <div class="pull-right"> <%= paginate @users, remote: true %> </div>
+  <div class="clearfix"></div>
 
-<table class='table table-striped'>
-  <thead>
-    <tr>
-      <th><%= sortable 'first_name', t(".name") %></th>
-      <th><%= sortable 'email', t(".email") %></th>
-      <th><%= t(".active") %></th>
-      <th><%= t(".is_admin") %></th>
-      <% if check_permission(Admin::UsersController, :change_roles) %>
-        <th><%= t(".roles") %></th>
-      <% end %>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
+  <table class='table table-striped'>
+    <thead>
       <tr>
-        <td><%= link_to "#{user.fullname} (#{user.login})", admin_user_path(user) %></td>
-        <td><%=h user.email %></td>
-        <td align="center"><%= raw toggle_field(user, 'status') %></td>
-        <td align="center"><%= raw toggle_field(user, 'is_admin', 'set_admin') %></td>
+        <th><%= sortable 'first_name', t(".name") %></th>
+        <th><%= sortable 'email', t(".email") %></th>
+        <th><%= t(".active") %></th>
+        <th><%= t(".is_admin") %></th>
         <% if check_permission(Admin::UsersController, :change_roles) %>
-          <% link = user.is_admin? ? t('.admin') : t('.manage_roles') %>
-          <td> <%= link_to link, manage_roles_admin_users_path(:user_id => user.id ) %> </td>
+          <th><%= t(".roles") %></th>
         <% end %>
-        <td> <%= raw make_menu(user, with_text: false) %> </td>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= link_to "#{user.fullname} (#{user.login})", admin_user_path(user) %></td>
+          <td><%=h user.email %></td>
+          <td align="center"><%= raw toggle_field(user, 'status') %></td>
+          <td align="center"><%= raw toggle_field(user, 'is_admin', 'set_admin') %></td>
+          <% if check_permission(Admin::UsersController, :change_roles) %>
+            <% link = user.is_admin? ? t('.admin') : t('.manage_roles') %>
+            <td> <%= link_to link, manage_roles_admin_users_path(:user_id => user.id ) %> </td>
+          <% end %>
+          <td> <%= raw make_menu(user, with_text: false) %> </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<div class="pull-left"> <%= per_page_links @users, remote: true %> </div>
-<div class="pull-right"> <%= paginate @users, remote: true %> </div>
-<div class="clearfix"></div>
+  <div class="pull-left"> <%= per_page_links @users, remote: true %> </div>
+  <div class="pull-right"> <%= paginate @users, remote: true %> </div>
+  <div class="clearfix"></div>
+<% end %>

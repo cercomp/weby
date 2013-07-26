@@ -23,7 +23,6 @@ en:
           publish:                  " Published "
           register_date:            " Created at "
           title:                    " Title "
-          none_banner:              " None Banner "
           none_category:            " No category "
         edit:
           help_image_banner:        " This image will be set as the main image of the baner "
@@ -33,6 +32,7 @@ en:
           banners:                  " Banners "
           banners_as_thumbs:        " Show banners as thumbnails "
           banners_as_list:          " Show banners as list "
+          none_banner:              " None Banner "
         show:
           banner:                   " Banner "
           banners:                  " Banners "

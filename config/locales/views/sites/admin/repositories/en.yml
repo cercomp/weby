@@ -8,6 +8,7 @@ en:
           new_archive:          " New file "
           repository_as_thumbs: " Show repository as thumbnails "
           repository_as_list:   " Show repository as list "
+          none_archive:         " No Files "
         show:
           archives:            " Files "
           name:                " Name "
@@ -39,12 +40,10 @@ en:
           archive:             " File "
           description:         " Description "
           type:                " Type "
-        thumbs:
-          none_archive:        " No Files "
         repository_search:
           archives:            " Files "
-          repository:          " Repository "
-          new_file:            " New File "
+          repository:          " REPOSITORY "
+          new_file:            " NEW FILE "
         search_and_new_file:
           search_image:        " Search Image "
           new_image:           " New image "

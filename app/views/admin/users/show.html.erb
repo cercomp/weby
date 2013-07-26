@@ -14,24 +14,26 @@
 </div>
 
 <div id="user_current_roles">
-  <% unless @user.global_roles.blank? %>
+  <% if @user.global_roles.any? %>
     <h1><%= t('.global_roles') %></h1>
     <p><%= @user.global_roles.map{|r| r.name }.join(', ') %></p>
   <% end %>
 
   <br/>
 
-  <h1><%= t('.user_current_sites') %></h1>
-  <ul>
-    <% sites_with_roles.each do |s, roles| %>
-      <% unless s.blank? %>
-        <li>
-        <%= link_to s, site_url(subdomain: roles.first.site) %>
-        (<%= t('.roles') %>: <%= roles.map{|r| r.name}.join(', ') %>)
-        </li>
+  <% if sites_with_roles.any? %>
+    <h1><%= t('.user_current_sites') %></h1>
+    <ul>
+      <% sites_with_roles.each do |s, roles| %>
+        <% unless s.blank? %>
+          <li>
+          <%= link_to s, site_url(subdomain: roles.first.site) %>
+          (<%= t('.roles') %>: <%= roles.map{|r| r.name}.join(', ') %>)
+          </li>
+        <% end %>
       <% end %>
-    <% end %>
-  </ul>
+    </ul>
+  <% end %>
 </div>
 
 <div style="clear:both;"></div>

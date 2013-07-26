@@ -2,12 +2,6 @@
 <div class="pull-right"><%= paginate @banners, :remote => true %></div>
 <div class="clearfix"></div>
 
-<% if @banners.empty? %>
-  <div class="alert">
-    <%= t(".none_banner") %>
-  </div>
-<% end %>
-
 <ul class="clear thumbnails">
   <% @banners.each do |banner| %>
     <li class="span2">

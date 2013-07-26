@@ -2,18 +2,19 @@ en:
   admin:
     settings:
       new:
-        settings:    " Settings "
+        settings:     " Settings "
       index:
-        settings:    " Settings "
-        new_setting: " New Setting "
-        name:        " Name "
-        value:       " Value "
-        description: " Description "
+        settings:     " Settings "
+        new_setting:  " New Setting "
+        name:         " Name "
+        value:        " Value "
+        description:  " Description "
+        none_setting: " No Settings "
       edit:
-        settings:    " Settings "
+        settings:     " Settings "
       show:
-        setting:     " Settings "
-        name:        " Name "
-        value:       " Value "
-        description: " Description "
+        setting:      " Settings "
+        name:         " Name "
+        value:        " Value "
+        description:  " Description "
 

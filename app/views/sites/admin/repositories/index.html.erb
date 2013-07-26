@@ -14,6 +14,12 @@
     class: "btn btn-success" %>
 </div>
 <div class="clearfix"></div>
+
+<% if @repositories.empty? %>
+  <div class="alert">
+    <%= t(".none_archive") %>
+  </div>
+<% else %>
   <div class="btn-group">
     <%= link_to url_for(repository_view: 'thumbs'), class: "btn", title: t(".repository_as_thumbs") do %>
       <%= icon('th', white: true) %>
@@ -23,6 +29,7 @@
     <%  end %>
   </div>
 
-<div id="repo_list">
-  <%= render :partial => repository_partial %>
-</div>
+  <div id="repo_list">
+    <%= render :partial => repository_partial %>
+  </div>
+<% end %>

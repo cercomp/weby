@@ -13,13 +13,16 @@ en:
         groups:               " Groups "
         menu_items:           " Menu Items "
         menus:                " Menus "
+        notifications:        " Notifications "
         pages:                " Pages "
         repositories:         " Repositories "
         repositories_searchs: " Searches "
         rights:               " Rights "
         roles:                " Roles "
+        sites:                " Sites "
         styles:               " Styles "
         users:                " Users "
+        none_role:            " No roles. "
       new:
         roles:                " Roles "
       edit:

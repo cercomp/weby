@@ -48,12 +48,13 @@ en:
           cover:                " Cover "
           publish:              " Published "
         list_popup:
-          register_date:          " Register Date "
+          register_date:        " Register Date "
           news:                 " News "
           event:                " Event "
           title:                " Title "
           category:             " Category "
           type:                 " Type "
+          none_page:            " No Page Found "
         related_files:
           size:                 " Size "
           related_files:        " Related Files "
@@ -78,3 +79,4 @@ en:
           id:                   " Id "
           title:                " Title "
           author:               " Author "
+          none_page:            " No Page Found "

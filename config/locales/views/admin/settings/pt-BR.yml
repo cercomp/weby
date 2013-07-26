@@ -2,18 +2,19 @@ pt-BR:
   admin:
     settings:
       new:
-        settings:    " Configurações "
+        settings:     " Configurações "
       index:
-        settings:    " Configurações "
-        new_setting: " Nova Configuração "
-        name:        " Nome "
-        value:       " Valor "
-        description: " Descrição "
+        settings:     " Configurações "
+        new_setting:  " Nova Configuração "
+        name:         " Nome "
+        value:        " Valor "
+        description:  " Descrição "
+        none_setting: " Nenhuma configuração "
       edit:
-        settings:    " Configurações "
+        settings:     " Configurações "
       show:
-        setting:     " Configuração "
-        name:        " Nome "
-        value:       " Valor "
-        description: " Descrição "
+        setting:      " Configuração "
+        name:         " Nome "
+        value:        " Valor "
+        description:  " Descrição "
 

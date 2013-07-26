@@ -2,12 +2,6 @@
 <div class="pull-right"> <%= paginate @banners, remote: true %> </div>
 <div class="clearfix"></div>
 
-<% if @banners.empty? %>
-  <div class="alert">
-    <%= t(".none_banner") %>
-  </div>
-<% end %>
-
 <table class='table table-striped table-condensed'>
   <thead>
     <th><%= t(".image") %></th>

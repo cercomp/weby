@@ -16,8 +16,8 @@
   <%= f.input :message, as: :text, input_html: { value: params['message'], size: '60x8'} %>
   <%= f.input :site_id, :input_html => {:value => current_site.id}, :as => :hidden %>
 
-  <div class="form-actions">
-    <%= f.button :submit, t('submit'), class: 'btn-primary', disable_with: t("please_wait") %>
-    <%= link_to t("back"), :back, class: "btn btn-danger" %>
+  <div>
+    <%= f.button :submit, t('submit'), class: "btn", disable_with: t("please_wait") %>
+    <%= link_to t("back"), :back, class: "btn" %>
   </div>
 <% end %>

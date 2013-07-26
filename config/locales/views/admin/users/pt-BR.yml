@@ -38,6 +38,7 @@ pt-BR:
         roles:              " Papéis "
         admin:              " Admin "
         manage_roles:       " Gerenciar Papéis "
+        none_user:          " Nenhum usuário "
       edit:
         editing_my_account: " Editando Minha Conta "
       enrole:
@@ -47,7 +48,7 @@ pt-BR:
       enroled:
         enroled_user:       " Usuários Relacionados "
         role:               " Papel "
-        none_user:          " Nenhum Usuário "
+        none_user:          " Nenhum Usuário Relacionado "
       role_form:
         confirm_unrole:     " Tem certeza de que deseja remover todos os papéis de seu próprio usuário? "
       manage_roles:

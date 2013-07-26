@@ -22,7 +22,7 @@ class Admin::SettingsController < ApplicationController
     @setting = Setting.new(params[:setting])
 
     if @setting.save
-      redirect_to(admin_settings_path, flash: {success: 'Setting was successfully created.'})
+      redirect_to(admin_settings_path, flash: {success: t("successfully_created")})
     else
       render :action => "new"
     end
@@ -32,7 +32,7 @@ class Admin::SettingsController < ApplicationController
     @setting = Setting.find(params[:id])
 
     if @setting.update_attributes(params[:setting])
-      redirect_to(admin_settings_path, flash: {success: 'Setting was successfully updated.'})
+      redirect_to(admin_settings_path, flash: {success: t("successfully_updated")})
     else
       render :action => "edit"
     end

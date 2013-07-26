@@ -16,6 +16,7 @@ en:
         dashboard:              " Dashboard "
         description:            " Description "
         settings:               " Settings "
+        no-site-found:          " No site found."
       form:
         example_width:          " Example "
         example_url:            " Example: http://site.com "

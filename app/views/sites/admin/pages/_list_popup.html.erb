@@ -8,27 +8,33 @@
   <% end %>
 </div>
 
-<div class="page-results">
-  <table class="list table table-striped" data-url-template="<%=site_page_path(0)%>">
-    <thead>
-      <th><%= sortable 'date_begin_at', t(".register_date")%></th>
-      <th><%= t(".title") %></th>
-      <th><%= sortable 'tags.name', t(".category") %></th>
-      <th><%= sortable 'type', t(".type") %></th>
-    </thead>
-    <tbody>
-      <% @pages.each do |page| %>
-        <tr data-id="<%= page.id %>" data-title="<%= page.title %>" data-type="<%= "Page" %>" class="cursor highlight target-item">
-          <td><%= page.created_at.strftime('%d/%m/%y') %></td>
-          <td><%= page.title %></td>
-          <td><%= page.category_list %></td>
-          <td><%= t(".#{page.type.downcase}") %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+<% if @pages.empty? %>
+  <div class="alert">
+    <%= t(".none_page") %>
+  </div>
+<% else %>
+  <div class="page-results">
+    <table class="list table table-striped" data-url-template="<%=site_page_path(0)%>">
+      <thead>
+        <th><%= sortable 'date_begin_at', t(".register_date")%></th>
+        <th><%= t(".title") %></th>
+        <th><%= sortable 'tags.name', t(".category") %></th>
+        <th><%= sortable 'type', t(".type") %></th>
+      </thead>
+      <tbody>
+        <% @pages.each do |page| %>
+          <tr data-id="<%= page.id %>" data-title="<%= page.title %>" data-type="<%= "Page" %>" class="cursor highlight target-item">
+            <td><%= page.created_at.strftime('%d/%m/%y') %></td>
+            <td><%= page.title %></td>
+            <td><%= page.category_list %></td>
+            <td><%= t(".#{page.type.downcase}") %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
-  <div class="pull-left"> <%= paginate @pages, remote: true, size: :small %> </div>
-  <div class="pull-left"> <%= per_page_links @pages, true, :small %> </div>
-  <div class="clearfix"></div>
-</div>
+    <div class="pull-left"> <%= paginate @pages, remote: true, size: :small %> </div>
+    <div class="pull-left"> <%= per_page_links @pages, true, :small %> </div>
+    <div class="clearfix"></div>
+  </div>
+<% end %>
