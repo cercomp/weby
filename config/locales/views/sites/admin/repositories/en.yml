@@ -44,6 +44,7 @@ en:
           archives:            " Files "
           repository:          " REPOSITORY "
           new_file:            " NEW FILE "
+          none_file:           " No Files Found. "
         search_and_new_file:
           search_image:        " Search Image "
           new_image:           " New image "
@@ -54,6 +55,8 @@ en:
         tinymce:
           search:              " Search "
           image:               " Image "
+          none_file:           " No Files Found. "
         tinymce_link:
           search:              " Search "
           archive:             " File "
+          none_file:           " No Files Found. "

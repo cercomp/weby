@@ -36,24 +36,29 @@
   <%= link_to t('search'), site_admin_repositories_path, remote: true, id: 'search_button_repo' %>
 </div>
 <br/>
+<% if @repositories.empty? %>
+  <div class="alert">
+    <%= t(".none_file") %>
+  </div>
+<% else %>
+  <ul class="attachment_list">
+    <% @repositories.each do |repository| %>
+      <li id="<%= repository.id %>" class="attachment_list" data-url="<%=repository.archive.url(:original, false)%>">
+        <%=   weby_file_view(
+                repository,
+                :mini,
+                32,
+                32,
+                as: 'image'
+              ) %>
 
-<ul class="attachment_list">
-  <% @repositories.each do |repository| %>
-    <li id="<%= repository.id %>" class="attachment_list" data-url="<%=repository.archive.url(:original, false)%>">
-      <%=   weby_file_view(
-              repository,
-              :mini,
-              32,
-              32,
-              as: 'image'
-            ) %>
-      
-      <div><%=repository.description%></div>
-    </li>
-  <% end %>
-</ul>
+        <div><%=repository.description%></div>
+      </li>
+    <% end %>
+  </ul>
 
-<div style="clear: both;float:right;">
-  <%= paginate @repositories, remote: true, page_links: true %>
-</div>
-<div style="clear:both;"> </div>
+  <div style="clear: both;float:right;">
+    <%= paginate @repositories, remote: true, page_links: true %>
+  </div>
+  <div style="clear:both;"> </div>
+<% end %>

@@ -18,6 +18,7 @@
         autocapitalize: "off",
         class: 'search',
         id: 'repository-search-form',
+        data: {noresult: t('.none_file')},
         remote: true do %>
         <%= content_tag :div, class: 'input-append pull-right' do %>
           <%= search_field_tag :search, params[:search] %>

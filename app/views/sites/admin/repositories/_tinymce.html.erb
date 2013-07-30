@@ -32,25 +32,30 @@
   <%= link_to t('search'), site_admin_repositories_path(mime_type: params[:mime_type]), remote: true, id: 'search_button' %>
 </div>
 <br/>
+<% if @repositories.empty? %>
+  <div class="alert">
+    <%= t(".none_file") %>
+  </div>
+<% else %>
+  <ul class="attachment_list">
+    <% @repositories.each do |repository| %>
+      <li id="<%= repository.id %>" class="attachment_list">
+        <%= link_to(
+              image_tag(
+                repository.archive.url(:mini),
+                :alt => repository.description,
+                :width => '64px',
+                :height => '64px'
+              ),
+              repository.archive.url( :original ),
+              :title => repository.description,
+              :onclick => "select_thumb(this); return false;" ) %>
+      </li>
+    <% end %>
+  </ul>
 
-<ul class="attachment_list">
-  <% @repositories.each do |repository| %>
-    <li id="<%= repository.id %>" class="attachment_list">
-      <%= link_to(
-            image_tag(
-              repository.archive.url(:mini),
-              :alt => repository.description,
-              :width => '64px',
-              :height => '64px'
-            ),
-            repository.archive.url( :original ),
-            :title => repository.description,
-            :onclick => "select_thumb(this); return false;" ) %>
-    </li>
-  <% end %>
-</ul>
-
-<div style="clear: both;float: right;">
-  <%= paginate @repositories, remote: true, page_links: true %>
-</div>
-<div style="clear:both;"> </div>
+  <div style="clear: both;float: right;">
+    <%= paginate @repositories, remote: true, page_links: true %>
+  </div>
+  <div style="clear:both;"> </div>
+<% end %>

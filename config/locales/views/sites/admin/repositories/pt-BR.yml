@@ -43,6 +43,7 @@ pt-BR:
           archives:            " Arquivos "
           repository:          " REPOSITÓRIO "
           new_file:            " NOVO ARQUIVO "
+          none_file:           " Nenhum Arquivo Encontrado. "
         search_and_new_file:
           search_image:        " Buscar Imagem "
           new_image:           " Nova imagem "
@@ -53,6 +54,8 @@ pt-BR:
         tinymce:
           search:              " Buscar "
           image:               " Imagem "
+          none_file:           " Nenhum Arquivo Encontrado. "
         tinymce_link:
           search:              " Buscar "
           archive:             " Arquivo "
+          none_file:           " Nenhum Arquivo Encontrado. "
