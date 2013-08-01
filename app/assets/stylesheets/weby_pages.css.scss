@@ -82,20 +82,43 @@
   color: #BC1625; 
 }
 
-#clipping
+.thumbnails
 {
-  .thumbnail
+  li
   {
-    img { float: right; }
-    p { height: 60px; }
-    a { color: #BC1625; }
+    .thumbnail
+    {
+      height: 400px;
+      p
+      {
+        overflow: hidden;
+        .text:after
+        { 
+          content: "...";
+        }
+      }
+      .caption
+      {
+        height: 208px;
+      }
+    }
   }
 }
 
   //clipping > list
 
-  #list > .form-inline > .input-append > .input-search{
-    width: 262px;
+  #list 
+  {
+    .form-inline 
+    { 
+      .input-append
+      {
+        .input-search
+        {
+          width: 262px;
+        }
+      }
+    }
   }
 
 // legacy
