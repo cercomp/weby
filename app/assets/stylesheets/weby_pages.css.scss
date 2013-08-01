@@ -88,20 +88,39 @@
   {
     .thumbnail
     {
-      height: 400px;
-      p
-      {
-        overflow: hidden;
-        .text:after
-        { 
-          content: "...";
-        }
-      }
+      height: 410px;
       .caption
       {
         height: 208px;
+        margin-bottom: 7px;
+        h4
+        {
+          max-height: 42px;
+          overflow: hidden;
+          a
+          {
+            .text:after{
+              content: "...";
+            }
+          }
+        }
+        p
+        {
+          overflow: hidden;
+          .text:after
+          { 
+            content: "...";
+          }
+        }
       }
+     span
+     {
+       color: #BC1625;
+     }
     }
+  }
+  h4{
+    font-size: 15.5px
   }
 }
 

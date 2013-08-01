@@ -2,7 +2,7 @@ module RepositoryHelper
   attr_accessor :file, :format, :options, :size, :thumbnail
 
   # Retorna html a ser exibido da imagem 
-  #
+  # 
   def weby_file_view(file, format, width = nil, height = nil, options = {}, fallback = false)
     options[:as] ||= 'link'
     @file, @format, @width, @height, @options = file, format, width, height, options
