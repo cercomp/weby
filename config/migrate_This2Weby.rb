@@ -21,7 +21,8 @@ class Migrate_this2weby
       print "Exemplo:\nthis:\n  adapter: postgresql\n  host: localhost\n  database: this\n  username: this\n  password: senha_this\n\nweby:\n  adapter: postgresql\n  host: localhost\n  database: weby\n  username: weby\n  password: senha_weby\n"
       exit
     end
-    @config = YAML::load(File.open("./config-migrate.yml"))
+    @config = YAML::load(File.open("config-migrate.yml"))
+    
     @con_this = PGconn.connect(@config['this']['host'],nil,nil,nil,@config['this']['database'],@config['this']['username'],@config['this']['password'])
     @con_weby = PGconn.connect(@config['weby']['host'],nil,nil,nil,@config['weby']['database'],@config['weby']['username'],@config['weby']['password'])
     @verbose = verbose
@@ -41,22 +42,24 @@ class Migrate_this2weby
     this_sites = @con_this.exec(select_sites)
 
 		# Inserindo o que futuramente seria o site da UFG
-    insert_UFG = "INSERT INTO sites (name,url,description,footer,body_width,menu_dropdown,theme) VALUES ('ufg','www.ufg.br','Portal UFG','','960',true,'this2')"
-    @con_weby.exec(insert_UFG)
+    #insert_UFG = "INSERT INTO sites (name,url,description,footer,body_width,menu_dropdown,theme) VALUES ('ufg','www.ufg.br','Portal UFG','','960',true,'this2')"
+    #@con_weby.exec(insert_UFG)
 
     # Laço de repetição
     this_sites.each do |this_site|
       # Gerando o nome do site
       site_name = /http:\/\/www.([a-z\-]+).*\/([a-z\-]+)/.match("#{this_site['caminho_http']}")
+      
       if not site_name.nil?
         site_name = "#{site_name[1]}_#{site_name[2]}"
       else
         site_name = /http:\/\/www.([a-z\-]+).*/.match("#{this_site['caminho_http']}")
         if not site_name.nil?
-          site_name = site_name[1]
+          site_name = "#{site_name[1]}"
         end
       end
       site_name ||= this_site['site_id']
+      puts "Migrando #{site_name}"
 
       # Criando estrutura da variável de conversão
       @convar["#{this_site['site_id']}"] ||= {}
@@ -76,7 +79,7 @@ class Migrate_this2weby
 
       if @convar["#{this_site['site_id']}"]["weby"].nil?
         use_menu_dropdown = this_site['drop_down_esquerdo'].to_i == 1 ? true : false
-        insert_site = "INSERT INTO sites (name,url,description,footer,body_width,menu_dropdown,theme) VALUES ('#{pre_treat(site_name)}','#{pre_treat(this_site['caminho_http'])}','#{pre_treat(this_site['nm_site'])}','#{rodape_text}','900','#{use_menu_dropdown}','this2') RETURNING id"
+        insert_site = "INSERT INTO sites (name,url,description,title,footer,body_width,menu_dropdown,theme) VALUES ('#{pre_treat(site_name)}','#{pre_treat(this_site['caminho_http'])}','#{pre_treat(this_site['nm_site'])}','#{pre_treat(this_site['nm_site'])[0..49]}','#{rodape_text}','900','#{use_menu_dropdown}','this2') RETURNING id"
         site = @con_weby.exec(insert_site)
         puts "\t\tINSERINDO (#{site[0]['id']}) #{site_name} - #{this_site['nm_site']} \n" if @verbose
         puts "\t\t\tMenu Dropdown: #{use_menu_dropdown}"
@@ -87,23 +90,30 @@ class Migrate_this2weby
       # Inserindo componentes por omissão para portais vindos do This
       puts "\tINSERINDO estruturação de componentes...\n"
       insert_site_comp = <<EOF
-        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'first_place','{:background => "#7f7f7f"}','gov_bar',1,true);
-        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'first_place','{}','weby_bar',2,true);
-        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'first_place','{}','institutional_bar',3,true);
-        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'top','{}','header',4,true);
-        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'top','{:category => \"menu1\"}','menu_side',5,true);
-        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'top','{}','menu_accessibility',6,true);
-        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'right','{:category => \"menu4\"}','menu_side',7,true);
-        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'right','{:category => \"dir\"}','banner_side',8,true);
-        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'bottom','{:category => \"menu3\"}','menu_side',9,true);
-        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'bottom','{}','info_footer',10,true);
-        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'bottom','{}','feedback',11,true);
-        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'left','{:category => \"menu2\"}','menu_side',12,true);
-        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'left','{:category => \"esq\"}','banner_side',13,true);
-        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'home','{:quant => \"5\"}','front_news',14,true);
-        INSERT INTO site_components (site_id,place_holder,settings,component,position,publish)values(#{site[0]['id']},'home','{:quant => \"5\"}','no_front_news',15,true);
+        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish)values(#{site[0]['id']},'first_place','{:background => "#7f7f7f"}','gov_bar',1,true);
+        
+        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish)values(#{site[0]['id']},'first_place','{}','institutional_bar',2,true);
+        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish)values(#{site[0]['id']},'top','{}','image',1,true);
+        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish)values(#{site[0]['id']},'top','{}','menu',2,true);
+        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish)values(#{site[0]['id']},'top','{}','menu_accessibility',3,true);
+        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish)values(#{site[0]['id']},'right','{}','search_box',1,true);
+        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish)values(#{site[0]['id']},'right','{}','menu',2,true);
+        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish)values(#{site[0]['id']},'right','{:category => \"dir\", :orientation => \"vertical\"}','banner_list',3,true);
+        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish)values(#{site[0]['id']},'bottom','{}','menu',1,true);
+        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish)values(#{site[0]['id']},'bottom','{:body => {\"pt-BR\" => \"#{rodape_text}\"}, :html_class => \"footer\"}','text',2,true);
+        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish)values(#{site[0]['id']},'bottom','{}','feedback',3,true);
+        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish)values(#{site[0]['id']},'left','{}','menu',1,true);
+        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish)values(#{site[0]['id']},'left','{:category => \"esq\", :orientation => \"vertical\"}','banner_list',2,true);
+        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish)values(#{site[0]['id']},'home','{:quant => \"5\"}','front_news',1,true);
+        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish)values(#{site[0]['id']},'home','{:quant => \"5\"}','news_list',2,true);
 EOF
       @con_weby.exec(insert_site_comp)
+
+      # Inserindo extensões por omissão para portais vindos do This
+      puts "\tINSERINDO estruturação de extensões...\n"
+      insert_site_extensao = "INSERT INTO extension_sites (site_id,name,created_at,updated_at)values(#{site[0]['id']},'feedback','#{Time.now}','#{Time.now}');"
+
+      @con_weby.exec(insert_site_extensao)
       
 			# Migrando estilos
       puts "\tSELECIONANDO todos os estilos" if @verbose
@@ -119,18 +129,18 @@ weby_estilo = <<EOF
   header nav menu li,
   footer nav menu li { border:1px solid #{pre_treat(this_estilo.first['body_background'])}; }
 /* Fundo Tabela frontal das páginas */ 
-  #no_front_news table,
-  #no_front_news table th,
-  #no_front_news table td { border-color: #{pre_treat(this_estilo.first['cor_borda_noticias'])}; }
-  #no_front_news table th { background-color: #{pre_treat(this_estilo.first['cor_borda_noticias'])}; }
+  #news_list table,
+  #news_list table th,
+  #news_list table td { border-color: #{pre_treat(this_estilo.first['cor_borda_noticias'])}; }
+  #news_list table th { background-color: #{pre_treat(this_estilo.first['cor_borda_noticias'])}; }
 /* Cor titulo da tabela frontal das páginas */
-  #no_front_news table th { color: #{pre_treat(this_estilo.first['cor_letra_topo_noticias'])}; }
+  #news_list table th { color: #{pre_treat(this_estilo.first['cor_letra_topo_noticias'])}; }
 /* Cor Letra Titulo Tabela Frontal */ 
-  #no_front_news table td a { color: #{pre_treat(this_estilo.first['cor_letra_link_noticias_out'])}; }
+  #news_list table td a { color: #{pre_treat(this_estilo.first['cor_letra_link_noticias_out'])}; }
 /* Cor Letra Titulo Tabela Frontal Hover */ 
-  #no_front_news table td a:hover { color: #{pre_treat(this_estilo.first['cor_letra_link_noticias_over'])}; }
+  #news_list table td a:hover { color: #{pre_treat(this_estilo.first['cor_letra_link_noticias_over'])}; }
 /* Cor Letra Tabela Frontal */ 
-  #no_front_news table td { color: #{pre_treat(this_estilo.first['cor_letra_noticias_resumos'])}; }
+  #news_list table td { color: #{pre_treat(this_estilo.first['cor_letra_noticias_resumos'])}; }
 /* Cor da letra do rodape */ 
   footer section#info { color: #{pre_treat(this_estilo.first['cor_letra_rodape'])}; }
 /* Menu  */
@@ -139,9 +149,10 @@ weby_estilo = <<EOF
       /* Cor */ 
         aside.left menu li a { background-color: #{pre_treat(this_estilo.first['cor_mouseout'])}; }
         aside.left menu li { background-color: #{pre_treat(this_estilo.first['cor_mouseout'])}; }
-      /* Cor Hover */ 
-        /* aside.left menu li:hover { background-color: #{pre_treat(this_estilo.first['cor_mouseover'])}; } */
-        /* aside.left menu li a:hover { background-color: #{pre_treat(this_estilo.first['cor_mouseover'])}; } */
+      /* Cor Hover */
+         aside menu.dropdown li:hover { background-color: #{pre_treat(this_estilo.first['cor_mouseover'])}; }
+         /*aside.left menu li:hover { background-color: #{pre_treat(this_estilo.first['cor_mouseover'])}; } */
+         /*aside.left menu li a:hover { background-color: #{pre_treat(this_estilo.first['cor_mouseover'])}; } */
       /* Cor fonte */ 
         aside.left menu li a { color: #{pre_treat(this_estilo.first['cor_letra_out'])}; }
       /* Cor fonte hover */ 
@@ -196,8 +207,8 @@ weby_estilo = <<EOF
         footer nav menu li a { background-color: #{this_estilo.first['cor_mouseout4']}; }
         footer nav menu li { background-color: #{this_estilo.first['cor_mouseout4']}; }
       /* Cor Hover */
-        footer nav menu li:hover { background-color: #{this_estilo.first['cor_mouseover4']}; }
-        footer nav menu li a:hover { background-color: #{this_estilo.first['cor_mouseover4']}; }
+        footer nav menu li:hover { background-color: #{this_estilo.first['cor_mouseover3']}; }
+        footer nav menu li a:hover { background-color: #{this_estilo.first['cor_mouseover3']}; }
       /* Cor fonte */
         footer nav menu li a { color: #{this_estilo.first['cor_letra_out4']}; }
       /* Cor fonte hover */
@@ -222,11 +233,11 @@ weby_estilo = <<EOF
     #{pre_treat(this_estilo.first['avancado'])}
 EOF
       end
-      insert_css = "INSERT INTO csses (name,css) VALUES ('#{site_name}','#{pre_treat(weby_estilo)}') RETURNING id"
+      insert_css = "INSERT INTO styles (name,css,owner_id) VALUES ('#{site_name}','#{pre_treat(weby_estilo)}','#{this_site['site_id']}') RETURNING id"
       css = @con_weby.exec(insert_css)
-      puts "\t\tINSERINDO csses: (#{css[0]['id']})\n" if @verbose
-      insert_sites_csses = "INSERT INTO sites_csses (site_id,css_id,publish,owner) VALUES ('#{@convar["#{this_site['site_id']}"]['weby']}','#{css[0]['id']}',true,true)"
-      site_css = @con_weby.exec(insert_sites_csses)
+      # puts "\t\tINSERINDO styles: (#{css[0]['id']})\n" if @verbose
+      # insert_sites_csses = "INSERT INTO sites_csses (site_id,css_id,publish,owner) VALUES ('#{@convar["#{this_site['site_id']}"]['weby']}','#{css[0]['id']}',true,true)"
+      # site_css = @con_weby.exec(insert_sites_csses)
 
       # Atualizando os estilos estáticos pré-elaborados.
 			dir_css = '/data/css_changed'
@@ -234,8 +245,8 @@ EOF
 			if File.file?(css_file)
 				puts "ATUALIZANDO estilo alterando manualmente..."
 				css_new = IO.read(css_file)
-	      update_sites_csses = "UPDATE csses set css='#{pre_treat(css_new)}' WHERE id='#{css[0]['id']}'"
-  	    @con_weby.exec(update_sites_csses)
+	      update_sites_styles = "UPDATE styles set css='#{pre_treat(css_new)}' WHERE id='#{css[0]['id']}'"
+  	    @con_weby.exec(update_sites_styles)
 			end
 
 			puts "\tINSERINDO papel Gerente.\n"
@@ -567,15 +578,26 @@ EOF
     this_sites.clear()
 
     # Tratando links de weby.menus
-    select_menus = "SELECT id,title,link FROM menus"
+    select_menu_items = "SELECT id,url FROM menu_items"
     puts "\t\tSELECIONANDO todos os menus para tratamento de caracteres\n" if @verbose
-    weby_menus = @con_weby.exec(select_menus)
-    weby_menus.each do |weby_menu|
-      update_menu = "UPDATE menus SET title='#{treat(weby_menu['title'])}',link='#{treat(weby_menu['link'])}' WHERE id='#{weby_menu['id']}'"
-      puts "\t\t\tATUALIZANDO id:(#{weby_menu['id']})\n" if @verbose
-      @con_weby.exec(update_menu)
+    weby_menu_items = @con_weby.exec(select_menu_items)
+    weby_menu_items.each do |weby_menu_item|
+      update_menu_items = "UPDATE menu_items SET url='#{treat(weby_menu_item['url'])}' WHERE id='#{weby_menu_item['id']}'"
+      puts "\t\t\tATUALIZANDO id:(#{weby_menu_item['id']})\n" if @verbose
+      @con_weby.exec(update_menu_items)      
     end
-    weby_menus.clear()
+
+    # Tratando links de weby.menus
+    select_menu_items = "SELECT id,title FROM menu_item_i18ns"
+    puts "\t\tSELECIONANDO todos os menus para tratamento de caracteres\n" if @verbose
+    weby_menu_items = @con_weby.exec(select_menu_items)
+    weby_menu_items.each do |weby_menu_item|
+      update_menu_items = "UPDATE menu_item_i18ns SET title='#{treat(weby_menu_item['title'])}' WHERE id='#{weby_menu_item['id']}'"
+      puts "\t\t\tATUALIZANDO id:(#{weby_menu_item['id']})\n" if @verbose
+      @con_weby.exec(update_menu_items)
+    end
+
+    weby_menu_items.clear()
 
     # Tratando páginas de weby.pages
     select_pages = "SELECT id,url,source FROM pages"
@@ -601,7 +623,7 @@ EOF
   end
 
   # Metodo para chamada recursiva
-  def deep_insert_menu(sons, entry, this_id, site_id, menu_id, type)
+  def deep_insert_menu(sons, entry, this_id, site_id, parent_id, type,menu_id,position)
     if (not entry['texto'].nil?) and (entry['texto'].size > 5) # Se o campo texto não for nulo e não for vazio então o menu está embutido
       if @convar["#{this_id}"]["menus"]["#{entry['id']}"].nil?
         modificador = @convar["#{this_id}"]['usuarios'][entry['modificador']] 
@@ -614,52 +636,66 @@ EOF
 				@con_weby.exec(insert_site_page)
         puts "\t\t\t\tINSERINDO (sites_pages) (#{site_id} #{page_id[0]['id']})\n" if @verbose
         @convar["#{this_id}"]["paginas"]["#{entry['id']}"] = page_id[0]['id']
-        puts "\t\t\t\tINSERINDO (menus) página (#{page_id[0]['id']})\n" if @verbose
-        insert_menu = "INSERT INTO menus (title,link,page_id,description) VALUES ('#{pre_treat(entry['texto_item'])}','','#{page_id[0]['id']}','#{pre_treat(entry['alt'])}') RETURNING id"
+        puts "\t\t\t\tINSERINDO (menus) página (#{page_id[0]['id']})\n" if @verbose        
+        insert_menu_item = "INSERT INTO menu_items (created_at, updated_at, menu_id,target_id,target_type,url,parent_id,position) VALUES ('#{Time.now}','#{Time.now}','#{menu_id}','#{page_id[0]['id']}','Page','',#{parent_id},#{position}) RETURNING id"
       end
     elsif not /javascript:mostrar_pagina.*?([0-9]+).*?/.match("#{entry['url']}").nil? # Verificando se o menu é interno, externo
       page_id = /javascript:mostrar_pagina.*?([0-9]+).*?/.match("#{entry['url']}")[1]
       page_id = @convar["#{this_id}"]["paginas"]["#{page_id}"]
-      insert_menu = "INSERT INTO menus (title,link,page_id,description) VALUES ('#{pre_treat(entry['texto_item'])}','','#{page_id}','#{pre_treat(entry['alt'])}') RETURNING id" unless page_id.nil?
+      insert_menu_item = "INSERT INTO menu_items (created_at, updated_at, menu_id,target_id,target_type,url,parent_id,position) VALUES ('#{Time.now}','#{Time.now}','#{menu_id}','#{page_id}','Page','',#{parent_id},#{position}) RETURNING id" unless page_id.nil?
+      #VALUES ('#{pre_treat(entry['texto_item'])}','','#{page_id}','#{pre_treat(entry['alt'])}') RETURNING id" unless page_id.nil?
     elsif not /javascript:mostrar_menu.*?([0-9]+).*?/.match("#{entry['url']}").nil?
       page_id = /javascript:mostrar_menu.*?([0-9]+).*?/.match("#{entry['url']}")[1]
       page_id = @convar["#{this_id}"]["paginas"]["#{page_id}"]
-      insert_menu = "INSERT INTO menus (title,link,page_id,description) VALUES ('#{pre_treat(entry['texto_item'])}','','#{page_id}','#{pre_treat(entry['alt'])}') RETURNING id" unless page_id.nil?
-    else
-      insert_menu = "INSERT INTO menus (title,link,description) VALUES ('#{pre_treat(entry['texto_item'])}','#{pre_treat(entry['url'])}','#{pre_treat(entry['alt'])}') RETURNING id"
+      insert_menu_item = "INSERT INTO menu_items (created_at, updated_at, menu_id,target_id,target_type,url,parent_id,position) VALUES ('#{Time.now}','#{Time.now}','#{menu_id}','#{page_id}','Page','',#{parent_id},#{position}) RETURNING id" unless page_id.nil?
+    else      
+      insert_menu_item = "INSERT INTO menu_items (created_at, updated_at, menu_id,url,parent_id,position) VALUES ('#{Time.now}','#{Time.now}','#{menu_id}','#{pre_treat(entry['url'])}',#{parent_id},#{position}) RETURNING id"
     end
     # Evitar erros quando não consegue inserir menu
-    unless insert_menu.nil?
+    unless insert_menu_item.nil?
       #if @convar["#{this_id}"]['menus']["#{entry['id']}"].nil?
-        menu_sub = @con_weby.exec(insert_menu)
+        menu_sub = @con_weby.exec(insert_menu_item)
+        menu_itemi18n = "INSERT INTO menu_item_i18ns (created_at, updated_at, menu_item_id,locale_id,title,description) VALUES ('#{Time.now}','#{Time.now}','#{menu_sub[0]['id']}',1,'#{pre_treat(entry['texto_item'])}','#{pre_treat(entry['alt'])}') RETURNING id"
+        @con_weby.exec(menu_itemi18n)
         puts "\t\t\tINSERINDO sub_menu: (#{menu_sub[0]['id']})\n" if @verbose
         @convar["#{this_id}"]['menus']["#{entry['id']}"] = menu_sub[0]['id']
-        insert_sites_menus = "INSERT INTO sites_menus(site_id,menu_id,parent_id,category,position) VALUES ('#{site_id}','#{menu_sub[0]['id']}',#{menu_id},'#{type}','#{entry['posicao']}') RETURNING id"
-        menu_e0 = @con_weby.exec(insert_sites_menus)
-        puts "\t\t\t\tINSERINDO relacionamento sites_menus (#{menu_e0[0]['id']})\n" if @verbose
+        menu_e0 = []
+        menu_e0 << {'id' => menu_sub[0]['id']}
+        #insert_sites_menus = "INSERT INTO sites_menus(site_id,menu_id,parent_id,category,position) VALUES ('#{site_id}','#{menu_sub[0]['id']}',#{parent_id},'#{type}','#{entry['posicao']}') RETURNING id"
+        #menu_e0 = @con_weby.exec(insert_sites_menus)
+        #puts "\t\t\t\tINSERINDO relacionamento sites_menus (#{menu_e0[0]['id']})\n" if @verbose
       #end
     else
       menu_e0 = []
-      menu_e0 << {'id' => menu_id}
+      menu_e0 << {'id' => parent_id}
     end
 
     if sons["#{entry['id']}"].class.to_s == "Array"
+      position = 0
       sons["#{entry['id']}"].each do |child|
-        deep_insert_menu(sons, child, this_id, site_id, menu_e0[0]['id'], type)
+        position += 1
+        deep_insert_menu(sons, child, this_id, site_id, menu_e0[0]['id'], type,menu_id,position)
       end
     end
   end
   # Método para migração dos menus
   def migrate_this_menus(menus, this_id, weby_id)
     menus.each do |menus_this|
+      # Criar menu
+      insert_menu = "INSERT INTO menus (created_at, updated_at,site_id, name) VALUES ('#{Time.now}','#{Time.now}','#{weby_id}','Menu #{menus_this[0]}') RETURNING id"
+      menu_e0 = @con_weby.exec(insert_menu)
+      menu_names = {'direito' => 'right', 'esquerdo' => 'left', 'superior' => 'top', 'inferior' => 'bottom'}
+      update_component = "UPDATE site_components set settings = '{:menu_id => \"#{menu_e0[0]['id']}\",:dropdown => \"1\"}' where site_id = #{weby_id} AND name = 'menu' AND place_holder = '#{menu_names[menus_this[0]]}' "
+      @con_weby.exec(update_component)
+      
       if menus_this[0] != 'inferior'
-        select_menu = "SELECT * FROM menu_#{menus_this[0]} WHERE site_id='#{this_id}' AND id != item_pai"
+        select_menu = "SELECT * FROM menu_#{menus_this[0]} WHERE site_id='#{this_id}' AND id != item_pai order by posicao asc"
         puts "\t\tSELECIONANDO todos os menus do lado: #{menus_this[0]}\n" if @verbose
         menu_this = @con_this.exec(select_menu)
         # Agrupando por item_pai
         menus_this_groupby = menu_this.group_by{|i| i['item_pai']}
       else
-        select_menu = "SELECT * FROM menu_#{menus_this[0]} WHERE site_id='#{this_id}'"
+        select_menu = "SELECT * FROM menu_#{menus_this[0]} WHERE site_id='#{this_id}' order by posicao asc"
         puts "\t\tSELECIONANDO todos os menus do lado: #{menus_this[0]}\n" if @verbose
         menu_this = @con_this.exec(select_menu)
         menus_this_groupby = {}
@@ -667,9 +703,11 @@ EOF
       end
       # Laço
       unless menus_this_groupby["0"].nil?
+        position = 0
         menus_this_groupby["0"].each do |menu|
+          position += 1
           # Recursão
-          deep_insert_menu(menus_this_groupby, menu, this_id, weby_id, '0', menus_this[1])
+          deep_insert_menu(menus_this_groupby, menu, this_id, weby_id, 'null', menus_this[1],menu_e0[0]['id'],position)
         end
         menus_this_groupby.clear()
       end
@@ -692,22 +730,22 @@ EOF
         string.gsub!(/['"][^'"]*?uploads\/.*?([0-9]+)[^'"]*\/(.*?)['"]/){|x| "'/uploads/#{@convar[$1]['weby']}/original_#{$2}'" if @convar[$1] }
       end 
       if string.match(/javascript:mostrar_pagina.*?([0-9]+).*?([0-9]+).*?/) 
-        string.gsub!(/['"]javascript:mostrar_pagina.*?([0-9]+).*?([0-9]+).*?;['"]/){|x| "'/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["paginas"][$1]}'" if @convar[$2] }
+        string.gsub!(/['"]javascript:mostrar_pagina.*?([0-9]+).*?([0-9]+).*?;['"]/){|x| "'/pages/#{@convar[$2]["paginas"][$1]}'" if @convar[$2] }
       end 
       if string.match(/javascript:mostrar_noticia.*?([0-9]+).*?([0-9]+).*?/)
-        string.gsub!(/['"]javascript:mostrar_noticia.*?([0-9]+).*?([0-9]+).*?;['"]/){|x| "'/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["noticias"][$1]}'" if @convar[$2] }
+        string.gsub!(/['"]javascript:mostrar_noticia.*?([0-9]+).*?([0-9]+).*?;['"]/){|x| "'/pages/#{@convar[$2]["noticias"][$1]}'" if @convar[$2] }
       end 
       if string.match(/javascript:mostrar_informativo.*?([0-9]+).*?([0-9]+).*?/)
-        string.gsub!(/['"]javascript:mostrar_informativo.*?([0-9]+).*?([0-9]+).*?;['"]/){|x| "'/sites/#{@convar[$2]['weby_name']}/banners/#{@convar[$2]["informativos"][$1]}'" if @convar[$2] }
+        string.gsub!(/['"]javascript:mostrar_informativo.*?([0-9]+).*?([0-9]+).*?;['"]/){|x| "'/banners/#{@convar[$2]["informativos"][$1]}'" if @convar[$2] }
       end 
       if string.match(/javascript:mostrar_menu.*?([0-9]+).*?([0-9]+).*?/) 
-        string.gsub!(/['"]javascript:mostrar_menu.*?([0-9]+).*?([0-9]+).*?;['"]/){|x| "'/sites/#{@convar[$2]['weby_name']}/pages/#{@convar[$2]["paginas"][$1]}'" if @convar[$2] }
+        string.gsub!(/['"]javascript:mostrar_menu.*?([0-9]+).*?([0-9]+).*?;['"]/){|x| "'/pages/#{@convar[$2]["paginas"][$1]}'" if @convar[$2] }
       end 
       if string.match(/javascript:pagina_inicial.*?([0-9]+).*?/)
-        string.gsub!(/javascript:pagina_inicial.*?([0-9]+).*?;/){|x| "/sites/#{@convar[$1]['weby_name']}" if @convar[$1] }
+        string.gsub!(/javascript:pagina_inicial.*?([0-9]+).*?;/){|x| "/" if @convar[$1] }
       end 
       if string.match(/javascript:mostrar_fale_conosco.*?([0-9]+).*?/)
-        string.gsub!(/javascript:mostrar_fale_conosco.*?([0-9]+).*?;/){|x| "/sites/#{@convar[$1]['weby_name']}/feedbacks/new" if @convar[$1] }
+        string.gsub!(/javascript:mostrar_fale_conosco.*?([0-9]+).*?;/){|x| "/feedback" if @convar[$1] }
       end 
       str = @con_weby.escape(string)
       return str 
@@ -727,18 +765,18 @@ end
 class Migrate_files
   def initialize(from, to, id=[])
     # Coneção com banco
-    if not File.exist?("./config-migrate.yml")
+    if not File.exist?("config-migrate.yml")
       puts "É necessário criar o arquivo config-migrate.yml com as diretivas de conexão."
       print "Exemplo:\nthis:\n  adapter: postgresql\n  host: localhost\n  database: this\n  username: this\n  password: senha_this\n\nweby:\n  adapter: postgresql\n  host: localhost\n  database: weby\n  username: weby\n  password: senha_weby\n"
       exit
     end
     # Arquivo de conversão necessário
-    if not File.exist?("./convar.yml")
+    if not File.exist?("convar.yml")
       puts "Deve existir o arquivo convar.yml"
       exit
     end
-    @config = YAML::load(File.open("./config-migrate.yml"))
-    @convar = YAML::load(File.open("./convar.yml"))
+    @config = YAML::load(File.open("config-migrate.yml"))
+    @convar = YAML::load(File.open("convar.yml"))
     @con_weby = PGconn.connect(@config['weby']['host'],nil,nil,nil,@config['weby']['database'],@config['weby']['username'],@config['weby']['password'])
     @folders = ['imgd', 'banners', 'files', 'topo']
     @ids = id
@@ -844,8 +882,9 @@ class Migrate_files
         #puts "mv -ufv \"#{file}\" \"#{destino}/original_#{file_name}\""
         `mv -ufv "#{file}" "#{destino}/original_#{file_name}"`
 
-        if(file_name == "topo.gif" || file_name == "topo.swf" || file_name == "topo.jpg" || file_name == "topo.png")
-            sql = "UPDATE sites SET top_banner_id='#{repository_id}' WHERE id='#{@convar[id]['weby']}'"
+        if(file_name.match(/topo\.gif/i) || file_name == "topo.swf" || file_name == "topo.jpg" || file_name == "topo.png")
+            #sql = "UPDATE sites SET top_banner_id='#{repository_id}' WHERE id='#{@convar[id]['weby']}'"
+            sql = "UPDATE site_components set settings = '{:size => \"original\",:url => \"/\",:repository_id => \"#{repository_id}\", :html_class => \"header\"}' where site_id='#{@convar[id]['weby']}' AND name = 'image'"
             @con_weby.exec(sql)
             puts "\tATUALIZANDO topo"
             next
