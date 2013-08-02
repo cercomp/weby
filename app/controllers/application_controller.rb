@@ -73,7 +73,7 @@ class ApplicationController < ActionController::Base
 
   # Return Settings as a Hash object
   def current_settings
-    @current_settings ||= (Weby::Cache.request[:settings] ||= Hash[Setting.all.map{|st| [st.name.to_sym,st.value] }])
+    Weby::Settings
   end
 
   def locale_key

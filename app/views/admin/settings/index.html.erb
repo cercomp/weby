@@ -1,35 +1,28 @@
-<p class="pull-right">
-<%= link_to new_admin_setting_path do %>
-  <button class="btn btn-success">
-    <%= t(".new_setting") %>
-  </button>
-<% end %>
-</p>
-<div class="clearfix"></div>
+<% content_for :javascripts, javascript_include_tag("settings") %>
 
-<% if @settings.empty? %>
-    <div class="alert">
-      <%= t(".none_setting") %>
-    </div>
-<% else %>
+<%= form_tag admin_settings_path, :method => :put, :id => 'settings_form' do %>
   <table class='table table-striped'>
     <thead>
       <tr>
-        <th> <%= sortable 'name', t('.name') %> </th>
-        <th> <%= sortable 'value', t('.value') %> </th>
+        <th> <%= t('.name') %> </th>
+        <th> <%= t('.value') %> </th>
         <th> <%= t('.description') %> </th>
-        <th> </th>
       </tr>
     </thead>
     <tbody>
       <% @settings.each do |setting| %>
         <tr>
+          <input type="hidden" value="<%= setting.id %>" name="settings[][id]"/>
+          <input type="hidden" value="<%= setting.name %>" name="settings[][name]"/>
           <td> <%= setting.name %> </td>
-          <td> <%= setting.value %> </td>
-          <td> <%= setting.description %> </td>
-          <td> <%= raw make_menu(setting, :except => "show") %> </td>
+          <td> <%= setting_input_tag setting %> </td>
+          <td> <%= t("settings.#{setting.name}") %> </td>
         </tr>
       <% end %>
     </tbody>
   </table>
+  <div class="form-actions">
+    <%= button_tag t("save"), class: 'btn btn-primary', disable_with: t("please_wait") %>
+    <%= link_to t("back"), :back, class: "btn" %>
+  </div>
 <% end %>

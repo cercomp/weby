@@ -273,6 +273,7 @@ en:
         greater_than_or_equal_to: " Required greater or equal to %{count} "
         inclusion:                " is not included in the list "
         invalid:                  " unavailable "
+        invalid_format:           " is invalid. %{format_message} "
         less_than:                " Required shorter than  %{count} "
         less_than_or_equal_to:    " Required shorter or equal to %{count} "
         not_a_number:             " it's not a number "

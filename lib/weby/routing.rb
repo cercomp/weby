@@ -5,8 +5,7 @@ module ActionDispatch
     class RouteSet
       def with_subdomain(site, options)
         if not site
-          curr_sett = (Weby::Cache.request[:settings] ||= Hash[Setting.all.map{|st| [st.name.to_sym,st.value] }])
-          subdomain = curr_sett[:sites_index] || ""
+          subdomain = Weby::Settings.sites_index
         else
           if site.class == Site
             #TODO colocar ou não o "www."?
@@ -16,7 +15,7 @@ module ActionDispatch
             subdomain = site
           end
         end
-        subdomain += "." unless subdomain.empty?
+        subdomain += "." if subdomain.present?
         [subdomain ,Weby::Cache.request[:domain]].join
       end
 

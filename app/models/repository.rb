@@ -93,7 +93,10 @@ class Repository < ActiveRecord::Base
   # Reprocessamento de imagens para (re)gerar os thumbnails quando necessário
   def reprocess
     archive.reprocess! if need_reprocess?
-  rescue Errno::ENOENT
+  rescue Errno::ENOENT => e
+    File.open(Rails.root.join("log/error.log"), "a") do |f|
+      f.write("=> Erro no reprocess: #{e}")
+    end
   end
 
   private
