@@ -8,4 +8,5 @@ Disallow: /signup
 Disallow: /password_sent
 Disallow: /reset_password
 Disallow: /activate
+Disallow: /components
 
