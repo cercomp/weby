@@ -37,6 +37,7 @@ module RepositoryHelper
       hash[type] << [subtype, "#{type}/#{subtype}"]
     end
 
+
     hash
   end
 
