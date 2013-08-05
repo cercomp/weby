@@ -24,7 +24,7 @@ module Weby
 
     def self.find_site(domain=nil)
       domain = @site_domain unless domain
-      domain += domain.gsub(/www\./, '')
+      domain = domain.gsub(/www\./, '')
       sites = domain.split('.')
       site = Site.where(parent_id: nil).find_by_name(sites[-1])
       if(sites.length == 2)
