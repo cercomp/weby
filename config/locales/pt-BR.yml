@@ -280,6 +280,7 @@ pt-BR:
         greater_than_or_equal_to: " Requerido maior que ou igual a %{count} "
         inclusion:                " não está incluido na lista "
         invalid:                  " inválido  "
+        invalid_format:           " inválido. %{format_message} "
         less_than:                " Requerido menor que %{count} "
         less_than_or_equal_to:    " Requerido menor que ou igual a %{count} "
         not_a_number:             " não é um número "

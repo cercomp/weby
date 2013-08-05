@@ -110,7 +110,7 @@ Weby::Application.routes.draw do
 
     match "/admin" => "application#admin"
     namespace :admin do
-      resources :settings, except: :show
+      match "settings" => "settings#index", :via => [:get, :put]
       resources :users do
         collection do
           get :manage_roles

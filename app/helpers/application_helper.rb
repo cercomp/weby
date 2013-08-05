@@ -272,7 +272,7 @@ module ApplicationHelper
       ( @site.try(:per_page_default) || 
        Site.columns_hash['per_page_default'].try(:default) ).to_i
     else
-      current_settings[:per_page_default].try(:to_i) || 25
+      current_settings.per_page_default.try(:to_i)
     end
   end
 
@@ -283,8 +283,7 @@ module ApplicationHelper
       ( @site.try(:per_page) || Site.columns_hash['per_page'].default ) << 
       ",#{per_page_default}"
     else
-      ( current_settings[:per_page] || "5,15,30,60,100" ) <<
-      ",#{per_page_default}"
+      "#{current_settings.per_page},#{per_page_default}"
     end
   end
 
@@ -348,7 +347,7 @@ module ApplicationHelper
   end
 
   def login_protocol
-    current_settings[:login_protocol] || "http"
+    current_settings.login_protocol
   end
 
   #Método utilizado para ativar a aba de login ou de cadastro.

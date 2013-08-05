@@ -6,47 +6,19 @@ class Admin::SettingsController < ApplicationController
   helper_method :sort_column
 
   def index
-    @settings = Setting.order(sort_column + " " + sort_direction).
-      page(params[:page]).per(params[:per])
-  end
-
-  def new
-    @setting = Setting.new
-  end
-
-  def edit
-    @setting = Setting.find(params[:id])
-  end
-
-  def create
-    @setting = Setting.new(params[:setting])
-
-    if @setting.save
-      redirect_to(admin_settings_path, flash: {success: t("successfully_created")})
-    else
-      render :action => "new"
+    if request.put? #&& params[:role]
+      errors = ""
+      params[:settings].each do |attr|
+        enabled = attr.delete :enabled
+        setting = Setting.new_or_update(attr)
+        enabled ? setting.save : setting.destroy
+        errors << setting.errors.full_messages.join(',')
+      end
+      errors.present? ? flash[:error] = errors : flash[:success] = t("successfully_updated")
+      Weby::Settings.load_settings
     end
+
+    @settings = Weby::Settings.all
   end
 
-  def update
-    @setting = Setting.find(params[:id])
-
-    if @setting.update_attributes(params[:setting])
-      redirect_to(admin_settings_path, flash: {success: t("successfully_updated")})
-    else
-      render :action => "edit"
-    end
-  end
-
-  def destroy
-    @setting = Setting.find(params[:id])
-    @setting.destroy
-
-    redirect_to(admin_settings_url)
-  end
-
-  private
-  def sort_column
-    Setting.column_names.include?(params[:sort]) ? params[:sort] : 'name'
-  end
 end

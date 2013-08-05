@@ -1,0 +1,10 @@
+pt-BR:
+  settings:
+    per_page: 'Opções de escolha de quantidade de itens por página em listagens'
+    per_page_default: 'Padrão de itens por página em listagens'
+    default_locale: 'Idioma padrão'
+    help_site: "URL do site para o link 'ajuda'"
+    tld_length: "Tamanho do domínio onde o Weby está rodando Ex: 'weby.com.br' tld_length=2, 'weby.br' tld_length=1(padrão)"
+    clipping_per_days: 'Quantidade de dias a se buscar as últimas notícias da página inicial do Weby'
+    sites_index: 'site_id para mostrar a listagem dos sites, se não existir essa propriedade será a raiz do domínio'
+    login_protocol: "Protocolo da página de login (opções 'http' e 'https', padrão=http)"

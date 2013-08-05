@@ -1,22 +1,36 @@
-# Configurações usadas atualmente
-#
-# per_page:          opções de escolha de quantidade de itens por página em listagens
-# per_page_default:  padrão de itens por página em listagens
-# default_locale:    idioma padrão
-# help_site:         url do site para o link 'ajuda'
-# tld_length:        tamanho do domínio onde o weby está rodando Ex: 'weby.com.br' tld_length=2, 'weby.br' tld_length=1(padrão)
-# sites_index:       site_id para mostrar a listagem dos sites, se não existir essa propriedade será o root do domínio
-# login_protocol:    protocolo da página de login (opções 'http' e 'https', padrão=http)
-# clipping_per_days: período em dias de notícias no clipping.
-#
 class Setting < ActiveRecord::Base
   validates_uniqueness_of :name
-  validates_presence_of :name, :value, :description
+  validates :name, :value, presence: true
+  attr_accessor :default_value
 
-  validates :value, format: {with: /^https?$/}, if: :is_login_protocol?
+  VALUES_SET = {login_protocol: %w(http https),
+    clipping_per_days: :numericality,
+    per_page_default: :numericality,
+    tld_length: :numericality}
 
-  def is_login_protocol?
-    self.name == "login_protocol"
+  validate :check_value
+  def check_value
+    if (pattern = VALUES_SET[name.to_sym])
+      case pattern
+      when Array
+        errors.add(:value, :invalid_format, format_message: "#{name} = [#{pattern.join(",")}]") unless pattern.include?(value)
+      when Symbol
+        validator = "ActiveModel::Validations::#{pattern.to_s.classify}Validator".constantize.new(attributes: :value)
+        validator.validate self
+      else
+        errors.add(:value, :invalid_format, format_message: "#{name} = #{pattern}") unless value.match(pattern)
+      end
+    end
   end
-  
+
+  #TODO change this to a common place for all models (if needed)
+  def self.new_or_update attributes
+    instance = Setting.find_by_id attributes.delete(:id)
+    if instance
+      instance.assign_attributes attributes
+    else 
+      instance = self.new(attributes)
+    end
+    instance
+  end
 end

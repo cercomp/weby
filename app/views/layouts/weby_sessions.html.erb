@@ -51,8 +51,8 @@
           </div>
           <nav class="help-nav">
             <%= link_to t(".sites"), root_url(subdomain: nil) %>
-            <%= link_to(t(".help"), current_settings[:help_site],
-                        target: '_blank') if current_settings[:help_site] %>
+            <%= link_to(t(".help"), current_settings.help_site,
+                        target: '_blank') if current_settings.help_site %>
           </nav>
         </div>
       </div>

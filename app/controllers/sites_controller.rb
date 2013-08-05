@@ -11,7 +11,7 @@ class SitesController < ApplicationController
   #### FRONT-END
 
   def index
-    params[:per_page] ||= current_settings[:per_page_default]
+    params[:per_page] ||= current_settings.per_page_default
 
     @sites = Site.name_or_description_like(params[:search]).
       except(:order).
@@ -27,7 +27,6 @@ class SitesController < ApplicationController
 
   def show
     raise ActiveRecord::RecordNotFound unless @site
-    params[:site_id] = @site.name
     params[:id] = @site.id
     params[:per_page] = nil
   end

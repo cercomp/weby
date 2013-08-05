@@ -1,0 +1,18 @@
+settings:
+  per_page:
+    value: '5,15,30,60,100'
+  per_page_default:
+    value: '25'
+  default_locale:
+    value: 'pt-BR'
+  help_site:
+    value:
+  tld_length:
+    value: '1'
+  clipping_per_days:
+    value: '7'
+  sites_index:
+    value:
+  login_protocol:
+    value: 'http'
+  

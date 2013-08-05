@@ -7,7 +7,7 @@ class Admin::SitesController < ApplicationController
   helper_method :sort_column
 
   def index
-    params[:per_page] ||= current_settings[:per_page_default]
+    params[:per_page] ||= current_settings.per_page_default
 
     @sites = Site.name_or_description_like(params[:search]).
       except(:order).
