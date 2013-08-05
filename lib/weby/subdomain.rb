@@ -10,7 +10,7 @@ module Weby
 
       if request.subdomain.present? && request.subdomain != "www"
         if settings.sites_index.present?
-          return false if request.subdomain == settings.sites_index
+          return false if request.subdomain.gsub(/www\./, '') == settings.sites_index
         end
         @site_domain = request.subdomain.gsub(/www\./, '') and return true
       else
@@ -24,6 +24,7 @@ module Weby
 
     def self.find_site(domain=nil)
       domain = @site_domain unless domain
+      domain += domain.gsub(/www\./, '')
       sites = domain.split('.')
       site = Site.where(parent_id: nil).find_by_name(sites[-1])
       if(sites.length == 2)
