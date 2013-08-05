@@ -88,14 +88,17 @@
   {
     .thumbnail
     {
-      height: 427px;
+      height: 300px;
       .caption
       {
-        height: 208px;
-        margin-bottom: 7px;
+        hr
+        {
+          margin-top: 10px;
+          margin-bottom: 4px;
+        }
         h4
         {
-          max-height: 42px;
+          height: 59px;
           overflow: hidden;
           a
           {
@@ -104,23 +107,27 @@
             }
           }
         }
-        p
-        {
-          overflow: hidden;
-          .text:after
-          { 
-            content: "...";
-          }
-        }
       }
-     span
-     {
-       color: #BC1625;
-     }
     }
-  }
+ }
   h4{
     font-size: 15.5px
+  }
+}
+
+.thumbnail
+{
+  .thumbnail-footer
+  {
+    height: 49px;
+    overflow: hidden;
+    span
+    {
+       color: #BC1625;
+       font-weight: bold;
+       font-size: 11px;
+    }
+ 
   }
 }
 
