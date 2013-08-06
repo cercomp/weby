@@ -74,7 +74,7 @@ class SessionController < ApplicationController
     if @user.save
       @user.send_activation_instructions!(request.env["SERVER_NAME"])
       flash[:success] = t("create_account_successful")
-      redirect_to login_url(subdomain: nil, protocol: login_protocol)
+      redirect_to weby_login_url
     else
       @session = UserSession.new
       flash[:error] = t("problem_create_account")
@@ -123,12 +123,15 @@ class SessionController < ApplicationController
     @user = User.find_using_perishable_token(params[:id], 1.week)
     unless @user
       flash[:error] = t("missing_account")
-      redirect_to login_url(subdomain: nil, protocol: login_protocol)
+      redirect_to weby_login_url
     end
   end
 
   def set_domain
     current_domain = request.host.split('.').last(request.session_options[:tld_length].to_i).join('.')
+    if Weby::Settings.domain
+      current_domain = request.host.gsub(/www\./, '') unless request.domain.match(Weby::Settings.domain)
+    end
     request.session_options[:domain] = ".#{current_domain}"
   end
 

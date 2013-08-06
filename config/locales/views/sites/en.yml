@@ -32,3 +32,4 @@ en:
       example_per_page: " Example "
       site_image: " Site image "
       main_site: " Main Site "
+      domain_explain: " Fill in the domain field only if it's different than the default "

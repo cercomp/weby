@@ -15,4 +15,5 @@ settings:
     value:
   login_protocol:
     value: 'http'
-  
+  domain:
+    value:

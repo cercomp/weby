@@ -25,4 +25,4 @@ es:
         site_comments:          " Opina sobre los objetivos del sitio "
         footer_text:            " Institución - Dirección. XXX. Ciudad-Estado - Teléfono: General: + XX XX XXXX-XXXX, Servicio del usuario : + XXXX-XXXX XX XX XX + XXXX-XXXX. Fax: + XX XX XXXX-XXXX "
         view_desc_pages_help:   " ¿Quieres mostrar lo autor de las páginas? "
-        #desc_use_menu_dropdown: " Deseja que os menus sejam desdobráveis? "
+        domain_explain:         " Rellene el campo únicamente si es distinta de la predeterminada "
