@@ -1,0 +1,31 @@
+<div class="span8" id="news">
+  <% if @pages.empty? %>
+    <div class="alert">
+      <%= t(".none_page") %>
+    </div>
+  <% else %>
+  <div class="row" id="clipping-list">
+    <div>
+      <ul class="thumbnails">
+        <% @pages.each do |page| %>
+          <li class="span2">
+            <div class="thumbnail">
+              <%= news_image(page.image, :thumb, 160, nil, {as: "link", url: site_page_url(page, subdomain: page.owner)}) %>
+              <div class="caption">
+                <h4>
+                  <%= link_to page.title.truncate(70), site_page_url(page, subdomain: page.owner) %>
+                </h4>
+                <hr />
+                <div class="thumbnail-footer">
+                  <%= site_avatar_tag page.owner %>
+                  <div> <%= link_to page.owner.title, site_url(subdomain: page.owner) %></div>
+                </div>
+              </div>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <% end %>
+</div>

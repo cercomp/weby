@@ -5,15 +5,18 @@ en:
       sites: "SITES"
       my-sites: "MY SITES"
       search: "SEARCH"
+      last_news: "LAST NEWS"
+    clipping:
+      none_page: "No news"
     list:
+      sites: "SITES"
       description: "Description"
       name: "Name"
       no-site-found: "No site found."
     my_list:
       description: "Description"
       name: "Name"
-      no-site-found: "Not roled in any site."
-      dashboard: "Dashboard"
+      no-site-found: "Not in any site."
     edit:
       sites: " Sites "
       settings: " Settings "

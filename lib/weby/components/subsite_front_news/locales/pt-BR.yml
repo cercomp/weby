@@ -10,5 +10,5 @@ pt-BR:
   subsite_front_news:
     views:
       show:
-        news_from:                  " Notícia do sítio "
+        news_from:                  " Notícia do site "
         read_more:                  " Leia mais... "

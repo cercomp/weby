@@ -14,7 +14,7 @@ Weby::Application.routes.draw do
     # routes to feed and atom
     match '/feed' => 'sites/pages#published', as: :site_feed,
       defaults: { format: 'rss', per_page: 10, page: 1 }
-
+    
     resources :pages,
       as: :site_pages, 
       controller: "sites/pages", 
@@ -105,10 +105,11 @@ Weby::Application.routes.draw do
   constraints(Weby::GlobalDomain) do
     #rota para paginação
     match "sites/page/:page" => "sites#index"
-    #rota para paginação
+
     match "mysites" => "sites#index", :my_sites => true
 
     match "/admin" => "application#admin"
+
     namespace :admin do
       match "settings" => "settings#index", :via => [:get, :put]
       resources :users do
@@ -131,7 +132,7 @@ Weby::Application.routes.draw do
       resources :notifications
 
       get "stats" => "statistics#index", :as => :stats
-     
+
       # route to paginate
       match "users/page/:page" => "users#index"
       match "sites/page/:page" => "sites#index"
