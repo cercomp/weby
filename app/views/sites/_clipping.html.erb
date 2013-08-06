@@ -1,4 +1,4 @@
-<div class="span8">
+<div class="span8" id="news" name="#news">
   <% if @pages.empty? %>
     <div class="alert">
       <%= t(".none_page") %>
@@ -18,7 +18,7 @@
                 <hr />
                 <div class="thumbnail-footer">
                   <%= site_avatar_tag page.owner %>
-                  <span> <%= link_to page.owner.title, site_url(subdomain: page.owner) %> </span>
+                  <div> <%= link_to page.owner.title, site_url(subdomain: page.owner) %></div>
                 </div>
               </div>
             </div>

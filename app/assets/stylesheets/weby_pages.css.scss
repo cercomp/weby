@@ -119,18 +119,23 @@
 {
   .thumbnail-footer
   {
-    height: 49px;
+    height: 40px;
     overflow: hidden;
-    span
+    div
     {
        font-weight: bold;
+       width: 117px;
+       margin-left: 36px;
        font-size: 11px;
        a
        {
          color: #BC1625;
        }
     }
- 
+    img
+    {
+      float: left;
+    }
   }
 }
 
