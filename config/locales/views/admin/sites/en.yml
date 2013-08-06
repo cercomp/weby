@@ -24,5 +24,5 @@ en:
         main_site:              " Main Site "
         site_comments:          " Comments about goals site "
         footer_text:            " Institution - Address. Zip XXXXX-XXX - Post Box XXX. City-State - Phone: +XX XX XXXX-XXXX; Customer Care: +XX XX XXXX-XXXX, +XX XXXX-XXXX. Fax: +XX XX XXXX-XXXX "
-        view_desc_pages_help:   " You wish to show the creation date and author of pages? "
+        view_desc_pages_help:   " You wish to show the author of pages? "
         #desc_use_menu_dropdown: " Do you want dropdown menu use? "

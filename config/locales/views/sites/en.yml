@@ -23,7 +23,7 @@ en:
       main: " Main "
       subsites: " Subsites "
     form:
-      view_desc_pages_help: " Show the date of the creation anthe author of a page? "
+      view_desc_pages_help: " Show the author of the page? "
       site_comments: " Comments about the goal of the site "
       example_width: " Example "
       example_url: " Example: http://site.com "

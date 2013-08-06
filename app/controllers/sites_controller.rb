@@ -22,7 +22,7 @@ class SitesController < ApplicationController
     @my_sites = current_user ? current_user.sites : []
 
     # FIX ME - SORT SHOULD BE DONE IN MODEL ( SELECT DISTINC PREVENTS IT)
-    @pages = Page.front.published.available.clipping.search(params[:search], 1)
+    @pages = Page.front.published.available.clipping.search(params[:search], 1).sort{| a,b| b.created_at <=> a.created_at}
 
     render layout: 'weby_pages'
   end

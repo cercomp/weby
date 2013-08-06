@@ -8,13 +8,13 @@
       <h2><%= @page.title %></h2>
     <% end %>
   </header>
-  <% if !defined?(as_component) %>
-    <% if @site.view_desc_pages %>
+  <% if !defined?(as_component) %>    
     <div class="page-details">
+    <% if @site.view_desc_pages %>
        <span class="author"><%= t("posted_by") %><%= @page.author %></span>
-       <span class="date"><%= t("posted_on") %><%= l(@page.created_at, format: :short) %></span>
-    </div>
     <% end %>
+       <span class="date"><%= t("posted_on") %><%= l(@page.created_at, format: :short) %></span>
+    </div>    
   <% end %>
 
   <%= content_tag_if @page.event?, :div, class: 'event' do %>
