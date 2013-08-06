@@ -123,9 +123,12 @@
     overflow: hidden;
     span
     {
-       color: #BC1625;
        font-weight: bold;
        font-size: 11px;
+       a
+       {
+         color: #BC1625;
+       }
     }
  
   }

@@ -18,7 +18,7 @@
                 <hr />
                 <div class="thumbnail-footer">
                   <%= site_avatar_tag page.owner %>
-                  <span><%= page.owner.title %></span>
+                  <span> <%= link_to page.owner.title, site_url(subdomain: page.owner) %> </span>
                 </div>
               </div>
             </div>
