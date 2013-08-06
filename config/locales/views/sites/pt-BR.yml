@@ -5,11 +5,11 @@ pt-BR:
       sites: "SITES"
       my-sites: "MEUS SITES"
       last_news: "ÚLTIMAS NOTÍCIAS"
+      search: "BUSCAR"
     clipping:
       none_page: "Nenhuma notícia encontrada"
     list:
       sites: "SITES"
-      search: "BUSCAR"
       description: "Descrição"
       name: "Nome"
       no-site-found: "Nenhum site encontrado."

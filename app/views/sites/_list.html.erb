@@ -1,13 +1,5 @@
 <div id="list" class="span4">
-  
-  <%= form_tag request.path, method: 'get', autocapitalize: "off", class: 'form-inline pull-right search' do %>
-    <%= content_tag :div, class: 'input-append' do %>
-      <%= search_field_tag :search, params[:search], class: 'input-search' %><%= submit_tag t(".search"), class: 'btn btn-info' %>
-    <% end %>
-  <% end %>
-  
-  <div class="clearfix"></div>
-
+   
   <% if @sites.empty? %>
     <div class="alert">
       <%= t(".no-site-found") %>
