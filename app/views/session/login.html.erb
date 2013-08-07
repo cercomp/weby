@@ -4,7 +4,7 @@
       <%= simple_form_for @session, url: login_url(subdomain: nil, protocol: login_protocol), method: :post do |f| %>
         <%= f.show_errors %>
         <%= hidden_field_tag :back_url, "#{params[:back_url].blank? ? request.fullpath : params[:back_url]}" %>
-        <%= f.input :login, placeholder: t(".field_login"), label: false %>
+        <%= f.input :login, placeholder: t(".field_login"), label: false, input_html: { autofocus: "autofocus" } %>
         <%= f.input :password, placeholder: t(".field_password"), label: false %>
         <%= f.input :remember_me, as: :boolean, wrapper_html: { class: "pull-left boolean-inline" },
           label_html: { class: "pull-right" }, label: t(".field_remember_me") %>
