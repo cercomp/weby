@@ -88,6 +88,11 @@ footer nav menu li menu {
   margin-left: 20px; 
   width: 105px; }
 
+header nav menu li menu li,
+footer nav menu li menu li {
+  float: none;
+}
+
 header nav menu li menu li menu,
 footer nav menu li menu li menu { 
   margin-left: 0px; 
