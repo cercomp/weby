@@ -13,7 +13,9 @@
     <% if @site.view_desc_pages %>
        <span class="author"><%= t("posted_by") %><%= @page.author %></span>
     <% end %>
+    <% if @page.publish %>
        <span class="date"><%= t("posted_on") %><%= l(@page.created_at, format: :short) %></span>
+    <% end %>
     </div>    
   <% end %>
 
