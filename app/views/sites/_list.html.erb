@@ -15,18 +15,24 @@
               </div>
               <div class="caption">
                 <% pages = site.pages.includes(:image).order('position desc').front.available.first(3) %>
-                <% page = pages.shift %>
-                <div class="top-news">
-                  <%= news_image(page.image, :thumb, 80, nil, {as: "link", url: site_page_url(page, subdomain: page.owner)}) %>
-                  <div title="<%= strip_tags(page.summary).html_safe %>"><%= link_to page.title, site_page_url(page, subdomain: page.owner) %></div>
-                  <span class="date"><%= l(page.updated_at, format: :short) %></span>
-                  <!--<p><%#= page.summary.html_safe %></p>-->
-                </div>
-                <% pages.each do |page| %>
-                  <div class="news">
-                    <%= news_image(page.image, :thumb, 60, nil, {as: "link", url: site_page_url(page, subdomain: page.owner)}) %>
+                <% if pages.any? %>
+                  <% page = pages.shift %>
+                  <div class="top-news">
+                    <%= news_image(page.image, :thumb, 80, nil, {as: "link", url: site_page_url(page, subdomain: page.owner)}) %>
                     <div title="<%= strip_tags(page.summary).html_safe %>"><%= link_to page.title, site_page_url(page, subdomain: page.owner) %></div>
                     <span class="date"><%= l(page.updated_at, format: :short) %></span>
+                    <!--<p><%#= page.summary.html_safe %></p>-->
+                  </div>
+                  <% pages.each do |page| %>
+                    <div class="news">
+                      <%= news_image(page.image, :thumb, 60, nil, {as: "link", url: site_page_url(page, subdomain: page.owner)}) %>
+                      <div title="<%= strip_tags(page.summary).html_safe %>"><%= link_to page.title, site_page_url(page, subdomain: page.owner) %></div>
+                      <span class="date"><%= l(page.updated_at, format: :short) %></span>
+                    </div>
+                  <% end %>
+                <% else %>
+                  <div class="alert">
+                    <%= t(".none_page") %>
                   </div>
                 <% end %>
               </div>
