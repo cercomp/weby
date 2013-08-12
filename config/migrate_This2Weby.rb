@@ -11,6 +11,7 @@ require 'htmlentities'
 require 'iconv'
 require 'pp'
 require 'mime/types'
+require 'csv'
  
 # Classe par migração do banco
 class Migrate_this2weby
@@ -45,8 +46,19 @@ class Migrate_this2weby
     #insert_UFG = "INSERT INTO sites (name,url,description,footer,body_width,menu_dropdown,theme) VALUES ('ufg','www.ufg.br','Portal UFG','','960',true,'this2')"
     #@con_weby.exec(insert_UFG)
 
+    arquivo = 'dominios.txt'
+    dominios = {}
+    CSV.foreach(arquivo) do |linha|
+      dominios[linha[1]] = linha[0]
+    end
+
     # Laço de repetição
     this_sites.each do |this_site|
+
+      if not dominios["#{this_site['site_id']}"]
+        next
+      end
+
       # Gerando o nome do site
       site_name = /http:\/\/www.([a-z\-]+).*\/([a-z\-]+)/.match("#{this_site['caminho_http']}")
       
@@ -59,7 +71,7 @@ class Migrate_this2weby
         end
       end
       site_name ||= this_site['site_id']
-      puts "Migrando #{site_name}"
+      puts "Migrando #{site_name} :: #{dominios["#{this_site['site_id']}"]}"
 
       # Criando estrutura da variável de conversão
       @convar["#{this_site['site_id']}"] ||= {}
@@ -233,7 +245,8 @@ weby_estilo = <<EOF
     #{pre_treat(this_estilo.first['avancado'])}
 EOF
       end
-      insert_css = "INSERT INTO styles (name,css,owner_id) VALUES ('#{site_name}','#{pre_treat(weby_estilo)}','#{this_site['site_id']}') RETURNING id"
+      insert_css = "INSERT INTO styles (name,css,owner_id) VALUES ('#{site_name}','#{pre_treat(weby_estilo)}','#{site[0]['id']}') RETURNING id"
+      #puts insert_css
       css = @con_weby.exec(insert_css)
       # puts "\t\tINSERINDO styles: (#{css[0]['id']})\n" if @verbose
       # insert_sites_csses = "INSERT INTO sites_csses (site_id,css_id,publish,owner) VALUES ('#{@convar["#{this_site['site_id']}"]['weby']}','#{css[0]['id']}',true,true)"
@@ -249,139 +262,18 @@ EOF
   	    @con_weby.exec(update_sites_styles)
 			end
 
+      @rap = YAML::load(File.open("../db/seed/roles.yml"))
+      
 			puts "\tINSERINDO papel Gerente.\n"
-      insert_gerente = "INSERT INTO roles (name,site_id) VALUES ('Gerente',#{site[0]['id']}) RETURNING id"
+      insert_gerente = "INSERT INTO roles (name,site_id,permissions) VALUES ('Gerente',#{site[0]['id']},'#{@rap["Gerente"]["permissions"]}') RETURNING id"
       id_gerente = @con_weby.exec(insert_gerente)
 			puts "\tINSERINDO papel Editor Chefe.\n"
-      insert_editor = "INSERT INTO roles (name,site_id) VALUES ('Editor-Chefe',#{site[0]['id']}) RETURNING id"
+      insert_editor = "INSERT INTO roles (name,site_id,permissions) VALUES ('Editor-Chefe',#{site[0]['id']},'#{@rap["Editor-Chefe"]["permissions"]}') RETURNING id"
       id_editor = @con_weby.exec(insert_editor)
 			puts "\tINSERINDO papel Redator.\n"
-      insert_redator = "INSERT INTO roles (name,site_id) VALUES ('Redator',#{site[0]['id']}) RETURNING id"
+      insert_redator = "INSERT INTO roles (name,site_id,permissions) VALUES ('Redator',#{site[0]['id']},'#{@rap["Redator"]["permissions"]}') RETURNING id"
       id_redator = @con_weby.exec(insert_redator)
-			
-      puts "\tINSERINDO permissões e papéis por site...\n"
-      insert_rr_sites = <<EOF
-				insert into rights_roles (right_id,role_id)values(1,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(2,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(5,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(5,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(6,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(9,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(10,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(11,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(12,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(13,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(14,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(15,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(16,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(17,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(18,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(19,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(20,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(21,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(22,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(23,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(24,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(25,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(26,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(27,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(28,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(29,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(30,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(31,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(32,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(33,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(34,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(35,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(36,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(37,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(38,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(39,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(40,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(41,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(42,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(43,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(44,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(45,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(46,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(47,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(48,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(49,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(50,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(51,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(52,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(53,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(54,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(56,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(57,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(58,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(59,#{id_gerente[0]['id']});
-				insert into rights_roles (right_id,role_id)values(9,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(10,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(11,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(12,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(13,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(14,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(15,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(16,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(17,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(18,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(19,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(20,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(21,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(22,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(23,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(24,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(25,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(26,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(27,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(28,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(29,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(30,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(33,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(34,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(35,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(36,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(38,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(39,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(40,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(41,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(42,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(42,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(43,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(44,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(45,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(46,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(48,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(49,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(50,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(51,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(52,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(53,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(54,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(56,#{id_editor[0]['id']});
-				insert into rights_roles (right_id,role_id)values(9,#{id_redator[0]['id']});
-				insert into rights_roles (right_id,role_id)values(10,#{id_redator[0]['id']});
-				insert into rights_roles (right_id,role_id)values(14,#{id_redator[0]['id']});
-				insert into rights_roles (right_id,role_id)values(16,#{id_redator[0]['id']});
-				insert into rights_roles (right_id,role_id)values(17,#{id_redator[0]['id']});
-				insert into rights_roles (right_id,role_id)values(22,#{id_redator[0]['id']});
-				insert into rights_roles (right_id,role_id)values(23,#{id_redator[0]['id']});
-				insert into rights_roles (right_id,role_id)values(24,#{id_redator[0]['id']});
-				insert into rights_roles (right_id,role_id)values(26,#{id_redator[0]['id']});
-				insert into rights_roles (right_id,role_id)values(27,#{id_redator[0]['id']});
-				insert into rights_roles (right_id,role_id)values(28,#{id_redator[0]['id']});
-				insert into rights_roles (right_id,role_id)values(29,#{id_redator[0]['id']});
-				insert into rights_roles (right_id,role_id)values(30,#{id_redator[0]['id']});
-				insert into rights_roles (right_id,role_id)values(34,#{id_redator[0]['id']});
-				insert into rights_roles (right_id,role_id)values(35,#{id_redator[0]['id']});
-				insert into rights_roles (right_id,role_id)values(39,#{id_redator[0]['id']});
-				insert into rights_roles (right_id,role_id)values(40,#{id_redator[0]['id']});
-				insert into rights_roles (right_id,role_id)values(43,#{id_redator[0]['id']});
-				insert into rights_roles (right_id,role_id)values(44,#{id_redator[0]['id']});
-				insert into rights_roles (right_id,role_id)values(45,#{id_redator[0]['id']});
-EOF
-      @con_weby.exec(insert_rr_sites)
+
       puts "\tINSERINDO idiomas por site...\n"
       insert_locales_sites = <<EOF
 				insert into locales_sites (locale_id,site_id)values(1,#{site[0]['id']});
@@ -546,7 +438,20 @@ EOF
           autor ||= 1
           status = inform['status'] == 'P' ? true : false
           position = inform['posicao'].to_i == 0 ? 'NULL' : inform['posicao']
-          insert_banner = "INSERT INTO banners (created_at,updated_at,date_begin_at,date_end_at,site_id,user_id,text,url,title,publish,hide,width,position) VALUES ('#{dt_cadastro}','#{dt_cadastro}','#{dt_inicio}','#{dt_fim}','#{@convar["#{this_site['site_id']}"]['weby']}','#{autor}','#{pre_treat(inform['texto'])}','#{pre_treat(inform['url'])}','#{pre_treat(inform['assunto'])}',#{status},false,'153',#{pre_treat(position)}) RETURNING id"
+
+          # Tratando links dos banners
+          banner_url_weby = inform['url']
+          if not /javascript:mostrar_pagina.*?([0-9]+).*?/.match("#{inform['url']}").nil? # Verificando se o menu é interno, externo
+              page_id = /javascript:mostrar_pagina.*?([0-9]+).*?/.match("#{inform['url']}")[1]
+              page_id = @convar["#{this_site['site_id']}"]["paginas"]["#{page_id}"]
+              banner_url_weby = "/pages/#{page_id}"
+          elsif not /javascript:mostrar_noticia.*?([0-9]+).*?/.match("#{inform['url']}").nil? # Verificando se o menu é interno, externo
+              page_id = /javascript:mostrar_noticia.*?([0-9]+).*?/.match("#{inform['url']}")[1]
+              page_id = @convar["#{this_site['site_id']}"]["paginas"]["#{page_id}"]
+              banner_url_weby = "/pages/#{page_id}"
+          end
+          
+          insert_banner = "INSERT INTO banners (created_at,updated_at,date_begin_at,date_end_at,site_id,user_id,text,url,title,publish,hide,width,position) VALUES ('#{dt_cadastro}','#{dt_cadastro}','#{dt_inicio}','#{dt_fim}','#{@convar["#{this_site['site_id']}"]['weby']}','#{autor}','#{pre_treat(inform['texto'])}','#{pre_treat(banner_url_weby)}','#{pre_treat(inform['assunto'])}',#{status},false,'153',#{pre_treat(position)}) RETURNING id"
           banner = @con_weby.exec(insert_banner)
           puts "\t\t\tINSERIRNDO banner (#{banner[0]['id']}) no weby\n" if @verbose
 					# Verificando e selecionando id para rotulamento
@@ -573,7 +478,7 @@ EOF
       #   2o. this_id (integer) id do site no this
       #   3o. weby_id (integer) id do site no weby
       migrate_this_menus({'direito' => 'menu4', 'esquerdo' => 'menu2', 'superior' => 'menu1', 'inferior' => 'menu3'}, this_site['site_id'], @convar["#{this_site['site_id']}"]['weby'])
-
+      
     end
     this_sites.clear()
 
@@ -619,6 +524,7 @@ EOF
       puts "\t\t\tATUALIZANDO id:(#{weby_page['id']})\n" if @verbose
       @con_weby.exec(update_page)
     end
+    
     weby_pages.clear()
   end
 
@@ -726,20 +632,25 @@ EOF
   # Tratamento de caracteres 
   def treat(string)
     unless string.nil?
+      #http://www2.catalao.ufg.br/uploads/files/3/file/horario_2013_1%20(1).pdf
+      if string.match(/['"]?.*\/uploads\/.*?([0-9]+)\/.*?\/(.*?)['"]?/)
+        string.gsub!(/['"]?.*\/uploads\/.*?([0-9]+)\/.*?\/(.*?)['"]?/){|x| "uploads/#{@convar[$1]['weby']}/original_#{$2}" if @convar[$1] }
+      end
+      
       if string.match(/['"][^'"]*?uploads\/.*?([0-9]+).*?\/(.*?)['"]/)
         string.gsub!(/['"][^'"]*?uploads\/.*?([0-9]+)[^'"]*\/(.*?)['"]/){|x| "'/uploads/#{@convar[$1]['weby']}/original_#{$2}'" if @convar[$1] }
-      end 
+      end
       if string.match(/javascript:mostrar_pagina.*?([0-9]+).*?([0-9]+).*?/) 
-        string.gsub!(/['"]javascript:mostrar_pagina.*?([0-9]+).*?([0-9]+).*?;['"]/){|x| "'/pages/#{@convar[$2]["paginas"][$1]}'" if @convar[$2] }
+        string.gsub!(/javascript:mostrar_pagina.*?([0-9]+).*?([0-9]+).*?;/){|x| "'/pages/#{@convar[$2]["paginas"][$1]}'" if @convar[$2] }
       end 
       if string.match(/javascript:mostrar_noticia.*?([0-9]+).*?([0-9]+).*?/)
-        string.gsub!(/['"]javascript:mostrar_noticia.*?([0-9]+).*?([0-9]+).*?;['"]/){|x| "'/pages/#{@convar[$2]["noticias"][$1]}'" if @convar[$2] }
+        string.gsub!(/javascript:mostrar_noticia.*?([0-9]+).*?([0-9]+).*?;/){|x| "'/pages/#{@convar[$2]["noticias"][$1]}'" if @convar[$2] }
       end 
       if string.match(/javascript:mostrar_informativo.*?([0-9]+).*?([0-9]+).*?/)
-        string.gsub!(/['"]javascript:mostrar_informativo.*?([0-9]+).*?([0-9]+).*?;['"]/){|x| "'/banners/#{@convar[$2]["informativos"][$1]}'" if @convar[$2] }
+        string.gsub!(/javascript:mostrar_informativo.*?([0-9]+).*?([0-9]+).*?;/){|x| "'/banners/#{@convar[$2]["informativos"][$1]}'" if @convar[$2] }
       end 
       if string.match(/javascript:mostrar_menu.*?([0-9]+).*?([0-9]+).*?/) 
-        string.gsub!(/['"]javascript:mostrar_menu.*?([0-9]+).*?([0-9]+).*?;['"]/){|x| "'/pages/#{@convar[$2]["paginas"][$1]}'" if @convar[$2] }
+        string.gsub!(/javascript:mostrar_menu.*?([0-9]+).*?([0-9]+).*?;/){|x| "'/pages/#{@convar[$2]["paginas"][$1]}'" if @convar[$2] }
       end 
       if string.match(/javascript:pagina_inicial.*?([0-9]+).*?/)
         string.gsub!(/javascript:pagina_inicial.*?([0-9]+).*?;/){|x| "/" if @convar[$1] }
@@ -747,10 +658,12 @@ EOF
       if string.match(/javascript:mostrar_fale_conosco.*?([0-9]+).*?/)
         string.gsub!(/javascript:mostrar_fale_conosco.*?([0-9]+).*?;/){|x| "/feedback" if @convar[$1] }
       end 
-      str = @con_weby.escape(string)
+      str = @con_weby.escape(string)      
       return str 
     end 
-  end 
+  end
+
+  
   # Destrutor
   def finalize
     @con_this.close()
@@ -1006,4 +919,66 @@ elsif (up_this = ARGV.index('--dir-uploads-this')) and (up_weby = ARGV.index('--
   move.copy_files
   move.move_temp
   move.finalize
+
 end
+
+  # Pré tratamento de caracteres
+  def pre_treat(string)
+    unless string.nil?
+      coder = HTMLEntities.new
+      str = Iconv.conv("UTF-8//IGNORE//TRANSLIT","ASCII",string)
+      str = @con_weby.escape(str)
+      str = coder.decode(str)
+    end
+    return str
+  end
+ 
+  #atualizar as urls
+  arquivo = 'dominios.txt'
+  # Conexão com os dois bancos
+    if not File.exist?("config-migrate.yml")
+      puts "É necessário criar o arquivo config-migrate.yml com as diretivas de conexão."
+      print "Exemplo:\nthis:\n  adapter: postgresql\n  host: localhost\n  database: this\n  username: this\n  password: senha_this\n\nweby:\n  adapter: postgresql\n  host: localhost\n  database: weby\n  username: weby\n  password: senha_weby\n"
+      exit
+    end
+  @config = YAML::load(File.open("config-migrate.yml"))
+  @con_weby = PGconn.connect(@config['weby']['host'],nil,nil,nil,@config['weby']['database'],@config['weby']['username'],@config['weby']['password'])
+  @convar = YAML::load(File.open("./convar.yml"))
+
+ 
+  CSV.foreach(arquivo) do |linha|      
+      puts "#{linha[0]}::: #{linha[1]}"
+      
+      # Gerando o nome do site
+      site_name = /www.([a-z\-]+).*\/([a-z\-]+)/.match("#{linha[0]}")
+
+      if not site_name.nil?
+        site_name = "#{site_name[1]}_#{site_name[2]}"
+      else
+        site_name = /www.([a-z\-]+).*/.match("#{linha[0]}")
+        if not site_name.nil?
+          site_name = "#{site_name[1]}"
+        end
+      end
+      site_name ||= linha[1]
+
+      puts "Atualizando ID:'#{linha[1]}'"
+      url = "http://www.#{site_name}.catalao.ufg.br"
+
+      parent_id = @convar["37"]["weby"]
+
+      if linha[1].strip == '37'
+        parent_id = "null"
+        site_name = "catalao"
+      end
+
+      puts "Parent: #{parent_id}"
+      id_weby = @convar["#{linha[1].strip}"]["weby"]
+      
+      update_site = "UPDATE sites set name = '#{pre_treat(site_name)}', url = '#{pre_treat(url)}', parent_id = #{parent_id} where id =  #{id_weby}"
+      puts update_site
+      @con_weby.exec(update_site)
+      
+   
+  end
+  @con_weby.close()
