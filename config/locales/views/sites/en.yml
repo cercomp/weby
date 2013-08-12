@@ -13,6 +13,7 @@ en:
       description: "Description"
       name: "Name"
       no-site-found: "No site found."
+      see_all: "See all"
     my_list:
       description: "Description"
       name: "Name"
