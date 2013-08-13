@@ -91,7 +91,7 @@ class Migrate_this2weby
 
       if @convar["#{this_site['site_id']}"]["weby"].nil?
         use_menu_dropdown = this_site['drop_down_esquerdo'].to_i == 1 ? true : false
-        insert_site = "INSERT INTO sites (name,url,description,title,footer,body_width,menu_dropdown,theme) VALUES ('#{pre_treat(site_name)}','#{pre_treat(this_site['caminho_http'])}','#{pre_treat(this_site['nm_site'])}','#{pre_treat(this_site['nm_site'])[0..49]}','#{rodape_text}','900','#{use_menu_dropdown}','this2') RETURNING id"
+        insert_site = "INSERT INTO sites (name,url,description,title,footer,body_width,menu_dropdown,theme,created_at,updated_at) VALUES ('#{pre_treat(site_name)}','#{pre_treat(this_site['caminho_http'])}','#{pre_treat(this_site['nm_site'])}','#{pre_treat(this_site['nm_site'])[0..49]}','#{rodape_text}','900','#{use_menu_dropdown}','this2', '#{Time.now}', '#{Time.now}') RETURNING id"
         site = @con_weby.exec(insert_site)
         puts "\t\tINSERINDO (#{site[0]['id']}) #{site_name} - #{this_site['nm_site']} \n" if @verbose
         puts "\t\t\tMenu Dropdown: #{use_menu_dropdown}"
@@ -102,22 +102,22 @@ class Migrate_this2weby
       # Inserindo componentes por omissão para portais vindos do This
       puts "\tINSERINDO estruturação de componentes...\n"
       insert_site_comp = <<EOF
-        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish)values(#{site[0]['id']},'first_place','{:background => "#7f7f7f"}','gov_bar',1,true);
+        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'first_place','{:background => "#7f7f7f"}','gov_bar',1,true,'#{Time.now}','#{Time.now}');
         
-        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish)values(#{site[0]['id']},'first_place','{}','institutional_bar',2,true);
-        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish)values(#{site[0]['id']},'top','{}','image',1,true);
-        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish)values(#{site[0]['id']},'top','{}','menu',2,true);
-        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish)values(#{site[0]['id']},'top','{}','menu_accessibility',3,true);
-        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish)values(#{site[0]['id']},'right','{}','search_box',1,true);
-        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish)values(#{site[0]['id']},'right','{}','menu',2,true);
-        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish)values(#{site[0]['id']},'right','{:category => \"dir\", :orientation => \"vertical\"}','banner_list',3,true);
-        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish)values(#{site[0]['id']},'bottom','{}','menu',1,true);
-        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish)values(#{site[0]['id']},'bottom','{:body => {\"pt-BR\" => \"#{rodape_text}\"}, :html_class => \"footer\"}','text',2,true);
-        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish)values(#{site[0]['id']},'bottom','{}','feedback',3,true);
-        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish)values(#{site[0]['id']},'left','{}','menu',1,true);
-        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish)values(#{site[0]['id']},'left','{:category => \"esq\", :orientation => \"vertical\"}','banner_list',2,true);
-        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish)values(#{site[0]['id']},'home','{:quant => \"5\"}','front_news',1,true);
-        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish)values(#{site[0]['id']},'home','{:quant => \"5\"}','news_list',2,true);
+        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'first_place','{}','institutional_bar',2,true,'#{Time.now}','#{Time.now}');
+        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'top','{}','image',1,true,'#{Time.now}','#{Time.now}');
+        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'top','{}','menu',2,true,'#{Time.now}','#{Time.now}');
+        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'top','{}','menu_accessibility',3,true,'#{Time.now}','#{Time.now}');
+        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'right','{}','search_box',1,true,'#{Time.now}','#{Time.now}');
+        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'right','{}','menu',2,true,'#{Time.now}','#{Time.now}');
+        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'right','{:category => \"dir\", :orientation => \"vertical\"}','banner_list',3,true,'#{Time.now}','#{Time.now}');
+        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'bottom','{}','menu',1,true,'#{Time.now}','#{Time.now}');
+        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'bottom','{:body => {\"pt-BR\" => \"#{rodape_text}\"}, :html_class => \"footer\"}','text',2,true,'#{Time.now}','#{Time.now}');
+        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'bottom','{}','feedback',3,true,'#{Time.now}','#{Time.now}');
+        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'left','{}','menu',1,true,'#{Time.now}','#{Time.now}');
+        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'left','{:category => \"esq\", :orientation => \"vertical\"}','banner_list',2,true,'#{Time.now}','#{Time.now}');
+        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'home','{:quant => \"5\"}','front_news',1,true,'#{Time.now}','#{Time.now}');
+        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'home','{:quant => \"5\"}','news_list',2,true,'#{Time.now}','#{Time.now}');
 EOF
       @con_weby.exec(insert_site_comp)
 
@@ -245,7 +245,7 @@ weby_estilo = <<EOF
     #{pre_treat(this_estilo.first['avancado'])}
 EOF
       end
-      insert_css = "INSERT INTO styles (name,css,owner_id) VALUES ('#{site_name}','#{pre_treat(weby_estilo)}','#{site[0]['id']}') RETURNING id"
+      insert_css = "INSERT INTO styles (name,css,owner_id,created_at,updated_at) VALUES ('#{site_name}','#{pre_treat(weby_estilo)}','#{site[0]['id']}','#{Time.now}','#{Time.now}') RETURNING id"
       #puts insert_css
       css = @con_weby.exec(insert_css)
       # puts "\t\tINSERINDO styles: (#{css[0]['id']})\n" if @verbose
@@ -265,13 +265,13 @@ EOF
       @rap = YAML::load(File.open("../db/seed/roles.yml"))
       
 			puts "\tINSERINDO papel Gerente.\n"
-      insert_gerente = "INSERT INTO roles (name,site_id,permissions) VALUES ('Gerente',#{site[0]['id']},'#{@rap["Gerente"]["permissions"]}') RETURNING id"
+      insert_gerente = "INSERT INTO roles (name,site_id,permissions,created_at,updated_at) VALUES ('Gerente',#{site[0]['id']},'#{@rap["Gerente"]["permissions"]}','#{Time.now}','#{Time.now}') RETURNING id"
       id_gerente = @con_weby.exec(insert_gerente)
 			puts "\tINSERINDO papel Editor Chefe.\n"
-      insert_editor = "INSERT INTO roles (name,site_id,permissions) VALUES ('Editor-Chefe',#{site[0]['id']},'#{@rap["Editor-Chefe"]["permissions"]}') RETURNING id"
+      insert_editor = "INSERT INTO roles (name,site_id,permissions,created_at,updated_at) VALUES ('Editor-Chefe',#{site[0]['id']},'#{@rap["Editor-Chefe"]["permissions"]}','#{Time.now}','#{Time.now}') RETURNING id"
       id_editor = @con_weby.exec(insert_editor)
 			puts "\tINSERINDO papel Redator.\n"
-      insert_redator = "INSERT INTO roles (name,site_id,permissions) VALUES ('Redator',#{site[0]['id']},'#{@rap["Redator"]["permissions"]}') RETURNING id"
+      insert_redator = "INSERT INTO roles (name,site_id,permissions,created_at,updated_at) VALUES ('Redator',#{site[0]['id']},'#{@rap["Redator"]["permissions"]}','#{Time.now}','#{Time.now}') RETURNING id"
       id_redator = @con_weby.exec(insert_redator)
 
       puts "\tINSERINDO idiomas por site...\n"
@@ -296,7 +296,7 @@ EOF
           user = @con_weby.exec(select_user_weby)
           if user.first.nil?
             # Populando weby.users
-            insert_usuario = "INSERT INTO users (register,first_name,last_name,login,crypted_password,email,phone,mobile,status,password_salt,persistence_token,single_access_token,perishable_token) VALUES ('#{this_user['matricula']}','#{pre_treat(first_name)}','#{pre_treat(last_name)}','#{this_user['login_name']}','#{this_user['senha']}','#{this_user['email']}','#{this_user['telefone']}','#{this_user['celular']}','#{this_user['status']}','','','','') RETURNING id"
+            insert_usuario = "INSERT INTO users (register,first_name,last_name,login,crypted_password,email,phone,mobile,status,password_salt,persistence_token,single_access_token,perishable_token,created_at,updated_at) VALUES ('#{this_user['matricula']}','#{pre_treat(first_name)}','#{pre_treat(last_name)}','#{this_user['login_name']}','#{this_user['senha']}','#{this_user['email']}','#{this_user['telefone']}','#{this_user['celular']}','#{this_user['status']}','','','','','#{Time.now}','#{Time.now}') RETURNING id"
             puts "\t\tINSERINDO usuário: #{this_user['login_name']}\n" if @verbose
             user = @con_weby.exec(insert_usuario)
           end
@@ -349,10 +349,10 @@ EOF
           autor ||= 1
           insert_pages = "INSERT INTO pages (created_at,updated_at,date_begin_at,date_end_at,site_id,author_id,url,source,publish,front,type,position) VALUES ('#{dt_cadastro}','#{dt_cadastro}','#{dt_inicio}','#{dt_fim}','#{@convar["#{this_site['site_id']}"]['weby']}','#{autor}','#{pre_treat(noticia['url'])}','#{pre_treat(noticia['fonte'])}',#{status},#{capa},'News',#{position}) RETURNING id"
           page = @con_weby.exec(insert_pages)
-          insert_pages_i18n = "INSERT INTO page_i18ns (page_id,locale_id,text,title,summary) VALUES ('#{page[0]['id']}',1,'#{pre_treat(noticia['texto'])}','#{pre_treat(noticia['titulo'])}','#{pre_treat(noticia['resumo'])}')"
+          insert_pages_i18n = "INSERT INTO page_i18ns (page_id,locale_id,text,title,summary,created_at,updated_at) VALUES ('#{page[0]['id']}',1,'#{pre_treat(noticia['texto'])}','#{pre_treat(noticia['titulo'])}','#{pre_treat(noticia['resumo'])}','#{dt_cadastro}','#{dt_cadastro}')"
           @con_weby.exec(insert_pages_i18n)
           puts "\t\t\tINSERINDO (notícias) página: (#{page[0]['id']}) no weby\n" if @verbose
-          insert_sites_pages = "INSERT INTO sites_pages (site_id,page_id) VALUES ('#{@convar["#{this_site['site_id']}"]['weby']}','#{page[0]['id']}')"
+          insert_sites_pages = "INSERT INTO sites_pages (site_id,page_id,created_at,updated_at) VALUES ('#{@convar["#{this_site['site_id']}"]['weby']}','#{page[0]['id']}','#{dt_cadastro}','#{dt_cadastro}')"
           site_page = @con_weby.exec(insert_sites_pages)
           # Relacionando notícias na variável de conversão
           @convar["#{this_site['site_id']}"]["noticias"]["#{noticia['id']}"] = page[0]['id']
@@ -372,12 +372,12 @@ EOF
           data_publica = ((pagina['dt_publica'].nil?) || (/([-]+)/.match("#{pagina['dt_publica']}").nil?)) ? Time.now + 30000000 : pagina['dt_publica']
           autor = @convar["#{this_site['site_id']}"]['usuarios'][pagina['autor']]
           autor ||= 1
-          insert_pages = "INSERT INTO pages (created_at,date_begin_at,date_end_at,site_id,author_id,publish,front,type) VALUES ('#{Time.now}','#{Time.now}','#{data_publica}','#{@convar["#{this_site['site_id']}"]['weby']}','#{autor}',true,false,'News') RETURNING id"
+          insert_pages = "INSERT INTO pages (created_at,updated_at,date_begin_at,date_end_at,site_id,author_id,publish,front,type) VALUES ('#{Time.now}','#{Time.now}','#{Time.now}','#{data_publica}','#{@convar["#{this_site['site_id']}"]['weby']}','#{autor}',true,false,'News') RETURNING id"
           page = @con_weby.exec(insert_pages)
-          insert_pages_i18n = "INSERT INTO page_i18ns (page_id,locale_id,title,text) VALUES ('#{page[0]['id']}',1,'#{pre_treat(pagina['titulo'])}','#{pre_treat(pagina['texto'])}')"
+          insert_pages_i18n = "INSERT INTO page_i18ns (created_at,updated_at,page_id,locale_id,title,text) VALUES ('#{Time.now}','#{Time.now}','#{page[0]['id']}',1,'#{pre_treat(pagina['titulo'])}','#{pre_treat(pagina['texto'])}')"
           @con_weby.exec(insert_pages_i18n)
           puts "\t\t\tINSERINDO (avulsa) página: (#{page[0]['id']}) no weby\n" if @verbose
-          insert_sites_pages = "INSERT INTO sites_pages (site_id,page_id) VALUES ('#{@convar["#{this_site['site_id']}"]['weby']}','#{page[0]['id']}')"
+          insert_sites_pages = "INSERT INTO sites_pages (created_at,updated_at,site_id,page_id) VALUES ('#{Time.now}','#{Time.now}','#{@convar["#{this_site['site_id']}"]['weby']}','#{page[0]['id']}')"
           site_page = @con_weby.exec(insert_sites_pages)
           # Relacionando notícias na variável de conversão
           @convar["#{this_site['site_id']}"]["paginas"]["#{pagina['id']}"] = page[0]['id']
@@ -410,10 +410,10 @@ EOF
           autor ||= 1
           insert_pages = "INSERT INTO pages (created_at,updated_at,date_begin_at,date_end_at,event_begin,event_end,site_id,author_id,url,source,publish,front,type,kind,event_email,local,position) VALUES ('#{dt_cadastro}','#{dt_cadastro}','#{dt_inicio}','#{dt_fim}','#{inicio}','#{fim}','#{@convar["#{this_site['site_id']}"]['weby']}','#{autor}','#{pre_treat(evento['url'])}','#{pre_treat(evento['fonte'])}',#{status},#{capa},'Event','#{tipo}','#{evento['email']}','#{pre_treat(evento['local_realiza'])}',#{position}) RETURNING id"
           page = @con_weby.exec(insert_pages)
-          insert_pages_i18n = "INSERT INTO page_i18ns (page_id,locale_id,text,title,summary) VALUES ('#{page[0]['id']}',1,'#{pre_treat(evento['texto'])}','#{pre_treat(evento['titulo'])}','#{pre_treat(evento['resumo'])}')"
+          insert_pages_i18n = "INSERT INTO page_i18ns (created_at,updated_at,page_id,locale_id,text,title,summary) VALUES ('#{dt_cadastro}','#{dt_cadastro}','#{page[0]['id']}',1,'#{pre_treat(evento['texto'])}','#{pre_treat(evento['titulo'])}','#{pre_treat(evento['resumo'])}')"
           @con_weby.exec(insert_pages_i18n)
           puts "\t\t\tINSERINDO (eventos) página: (#{page[0]['id']}) no weby\n" if @verbose
-          insert_sites_pages = "INSERT INTO sites_pages (site_id,page_id) VALUES ('#{@convar["#{this_site['site_id']}"]['weby']}','#{page[0]['id']}')"
+          insert_sites_pages = "INSERT INTO sites_pages (created_at,updated_at,site_id,page_id) VALUES ('#{dt_cadastro}','#{dt_cadastro}','#{@convar["#{this_site['site_id']}"]['weby']}','#{page[0]['id']}')"
           site_page = @con_weby.exec(insert_sites_pages)
           # Relacionando notícias na variável de conversão
           @convar["#{this_site['site_id']}"]["eventos"]["#{evento['id']}"] = page[0]['id']
@@ -534,11 +534,11 @@ EOF
       if @convar["#{this_id}"]["menus"]["#{entry['id']}"].nil?
         modificador = @convar["#{this_id}"]['usuarios'][entry['modificador']] 
         modificador ||= 1
-        insert_page = "INSERT INTO pages (created_at,date_begin_at,date_end_at,site_id,author_id,publish,front,type) VALUES ('#{Time.now}','#{Time.now}','#{Time.now}','#{site_id}','#{modificador}',true,false,'News') RETURNING id"
+        insert_page = "INSERT INTO pages (created_at,updated_at,date_begin_at,date_end_at,site_id,author_id,publish,front,type) VALUES ('#{Time.now}','#{Time.now}','#{Time.now}','#{Time.now}','#{site_id}','#{modificador}',true,false,'News') RETURNING id"
         page_id = @con_weby.exec(insert_page)
-        insert_page_i18n = "INSERT INTO page_i18ns (page_id,locale_id,title,text) VALUES ('#{page_id[0]['id']}',1,'#{pre_treat(entry['texto_item'])}','#{pre_treat(entry['texto'])}')"
+        insert_page_i18n = "INSERT INTO page_i18ns (page_id,locale_id,title,text,created_at,updated_at) VALUES ('#{page_id[0]['id']}',1,'#{pre_treat(entry['texto_item'])}','#{pre_treat(entry['texto'])}','#{Time.now}','#{Time.now}')"
         @con_weby.exec(insert_page_i18n)
-        insert_site_page = "INSERT INTO sites_pages (site_id,page_id) VALUES ('#{site_id}','#{page_id[0]['id']}')"
+        insert_site_page = "INSERT INTO sites_pages (site_id,page_id,created_at,updated_at) VALUES ('#{site_id}','#{page_id[0]['id']}','#{Time.now}','#{Time.now}')"
 				@con_weby.exec(insert_site_page)
         puts "\t\t\t\tINSERINDO (sites_pages) (#{site_id} #{page_id[0]['id']})\n" if @verbose
         @convar["#{this_id}"]["paginas"]["#{entry['id']}"] = page_id[0]['id']
@@ -632,14 +632,13 @@ EOF
   # Tratamento de caracteres 
   def treat(string)
     unless string.nil?
-      #http://www2.catalao.ufg.br/uploads/files/3/file/horario_2013_1%20(1).pdf
-      if string.match(/['"]?.*\/uploads\/.*?([0-9]+)\/.*?\/(.*?)['"]?/)
-        string.gsub!(/['"]?.*\/uploads\/.*?([0-9]+)\/.*?\/(.*?)['"]?/){|x| "uploads/#{@convar[$1]['weby']}/original_#{$2}" if @convar[$1] }
-      end
       
-      if string.match(/['"][^'"]*?uploads\/.*?([0-9]+).*?\/(.*?)['"]/)
-        string.gsub!(/['"][^'"]*?uploads\/.*?([0-9]+)[^'"]*\/(.*?)['"]/){|x| "'/uploads/#{@convar[$1]['weby']}/original_#{$2}'" if @convar[$1] }
+      if string.match(/['"]http.*\/uploads\/.*?([0-9]+).*?\/(.*?)['"]/)
+          string.gsub!(/['"]http.*\/uploads\/.*?([0-9]+).*?\/(.*?)['"]/){|x| "'/uploads/#{@convar[$1]['weby']}/original_#{$2}'" if @convar[$1] }
+      else string.match(/.*\/uploads\/.*?([0-9]+)\/.*?\/(.*?)/)
+        string.gsub!(/.*\/uploads\/.*?([0-9]+)\/.*?\/(.*?)/){|x| "/uploads/#{@convar[$1]['weby']}/original_#{$2}" if @convar[$1] }
       end
+            
       if string.match(/javascript:mostrar_pagina.*?([0-9]+).*?([0-9]+).*?/) 
         string.gsub!(/javascript:mostrar_pagina.*?([0-9]+).*?([0-9]+).*?;/){|x| "'/pages/#{@convar[$2]["paginas"][$1]}'" if @convar[$2] }
       end 
