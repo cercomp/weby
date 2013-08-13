@@ -1,7 +1,7 @@
 <div class="content tabs">
   <div class="tab-content">
     <div class="tab-pane <%= active_tab("login") %>" id="login">
-      <%= simple_form_for @session, url: login_url(subdomain: nil, protocol: login_protocol), method: :post do |f| %>
+      <%= simple_form_for @session, url: weby_login_url, method: :post do |f| %>
         <%= f.show_errors %>
         <%= hidden_field_tag :back_url, "#{params[:back_url].blank? ? request.fullpath : params[:back_url]}" %>
         <%= f.input :login, placeholder: t(".field_login"), label: false, input_html: { autofocus: "autofocus" } %>
@@ -14,7 +14,7 @@
       <% end %>
     </div>
     <div class="tab-pane <%= active_tab("signup") %>" id="signup">
-      <%= simple_form_for @user, url: signup_url(subdomain: nil), method: :post do |f| %>
+      <%= simple_form_for @user, url: signup_path, method: :post do |f| %>
         <%= f.show_errors %>
         <%= f.input :login, placeholder: t(".field_login"), label: false %>
         <%= f.input :email, as: :email, placeholder: t(".field_email"), label: false %>

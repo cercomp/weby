@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130705153917) do
+ActiveRecord::Schema.define(:version => 20130806154257) do
 
   create_table "banners", :force => true do |t|
     t.datetime "date_begin_at"
@@ -303,6 +303,7 @@ ActiveRecord::Schema.define(:version => 20130705153917) do
     t.integer  "top_banner_id"
     t.integer  "top_banner_width"
     t.integer  "top_banner_height"
+    t.string   "domain"
   end
 
   add_index "sites", ["parent_id"], :name => "index_sites_on_parent_id"

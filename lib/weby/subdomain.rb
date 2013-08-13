@@ -5,14 +5,15 @@ module Weby
     def self.matches?(request)
       settings = Weby::Settings
       @site_domain = nil
+      subdomain = request.subdomain.gsub(/www\./, '')
 
       @@tld_length = settings.tld_length.to_i
 
       if request.subdomain.present? && request.subdomain != "www"
         if settings.sites_index.present?
-          return false if request.subdomain.gsub(/www\./, '') == settings.sites_index
+          return false if subdomain == settings.sites_index
         end
-        @site_domain = request.subdomain.gsub(/www\./, '') and return true
+        @site_domain = subdomain and return true
       else
         #@site_domain = Weby::Settings.root_site and return true if Weby::Settings.root_site.present?
       end
@@ -27,7 +28,7 @@ module Weby
       domain = domain.gsub(/www\./, '')
       sites = domain.split('.')
       site = Site.where(parent_id: nil).find_by_name(sites[-1])
-      if(sites.length == 2)
+      if sites.length == 2
         site = site.subsites.find_by_name(sites[-2]) if site
       end
       site if [1,2].include? sites.length

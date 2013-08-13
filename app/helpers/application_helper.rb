@@ -371,4 +371,21 @@ module ApplicationHelper
       link_to image_tag('weby-shortcut.png', style: 'width: 32px; height: 32px;'), main_app.site_url(subdomain: site)
     end
   end
+
+  #URL do login de acordo com o site.
+  #O login pode ser na url global ou na url do próprio site
+  def weby_login_url back_url=nil
+    site = nil
+    if Weby::Settings.domain.present? and current_site
+      unless request.host.match(Weby::Settings.domain)
+        site = current_site
+      end
+    end
+
+    main_app.login_url(
+      subdomain: site,
+      protocol: login_protocol,
+      back_url: back_url
+    )
+  end
 end

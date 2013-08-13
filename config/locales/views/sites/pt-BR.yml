@@ -33,3 +33,4 @@ pt-BR:
       example_per_page: " Exemplo "
       site_image: " Imagem do Site "
       main_site: " Site Principal "
+      domain_explain: " Preencha o domínio apenas se for diferente do padrão "

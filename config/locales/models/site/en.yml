@@ -8,6 +8,7 @@ en:
         created_at:        " Created at "
         updated_at:        " Updated at "
         url:               " URL "
+        domain:            " Domain "
         description:       " Description "
         top_banner_id:     " Top banner "
         top_banner_width:  " Top banner width "

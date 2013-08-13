@@ -8,6 +8,7 @@ pt-BR:
         created_at:        " Criado em "
         updated_at:        " Atualizado em "
         url:               " URL "
+        domain:            " Domínio "
         description:       " Descrição "
         top_banner_id:     " Topo do site "
         top_banner_width:  " Largura do topo do site "

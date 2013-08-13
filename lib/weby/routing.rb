@@ -5,18 +5,27 @@ module ActionDispatch
     class RouteSet
       def with_subdomain(site, options)
         if not site
+          domain = Weby::Settings.domain || Weby::Cache.request[:domain]
           subdomain = Weby::Settings.sites_index
         else
-          if site.class == Site
-            #TODO colocar ou não o "www."?
-            prefix = options[:use_route] == 'site_page' ? Weby::Cache.request[:subdomain].match(/www\./).to_s : "www."
+          domain = Weby::Cache.request[:domain]
+          if site.is_a? Site
+            if Weby::Settings.domain.present? and site.domain.present?
+              domain = site.domain if Weby::Settings.domain != site.domain
+            end
+            if Weby::Subdomain.site_id.present? #not global scope
+              prefix = Weby::Cache.request[:subdomain].match(/www\./).to_s
+            else
+              #TODO colocar ou não o "www."?
+              prefix = "www."
+            end
             subdomain = site.main_site ? "#{site.name}.#{site.main_site.name}" : "#{prefix}#{site.name}"
           else
             subdomain = site
           end
         end
         subdomain += "." if subdomain.present?
-        [subdomain ,Weby::Cache.request[:domain]].join
+        "#{subdomain}#{domain}"
       end
 
       def url_for_with_subdomains(options)

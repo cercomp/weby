@@ -8,3 +8,4 @@ pt-BR:
     clipping_per_days: 'Quantidade de dias a se buscar as últimas notícias da página inicial do Weby'
     sites_index: 'site_id para mostrar a listagem dos sites, se não existir essa propriedade será a raiz do domínio'
     login_protocol: "Protocolo da página de login (opções 'http' e 'https', padrão=http)"
+    domain: "Domínio padrão do Weby"

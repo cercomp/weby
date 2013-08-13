@@ -96,7 +96,7 @@ class ApplicationController < ActionController::Base
     else
       flash.now[:error] = t("try_login")
     end
-    redirect_back_or_default login_url(subdomain: nil, protocol: login_protocol)
+    redirect_back_or_default weby_login_url
   end
 
   unless Rails.application.config.consider_all_requests_local
@@ -206,7 +206,7 @@ class ApplicationController < ActionController::Base
     unless current_user
       store_location
       flash[:error] = t("need_login")
-      redirect_to login_url(subdomain: nil, protocol: login_protocol, back_url: "#{request.protocol}#{request.host_with_port}#{request.path}")
+      redirect_to weby_login_url("#{request.protocol}#{request.host_with_port}#{request.path}")
       return false
     end
   end

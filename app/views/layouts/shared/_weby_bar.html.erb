@@ -26,9 +26,5 @@
   </div>
 <% else %>
   <%= link_to image_tag('weby-shortcut.png'),
-    main_app.login_url(
-      subdomain: nil,
-      protocol: login_protocol,
-      back_url: main_app.site_admin_url(subdomain: current_site)
-    ), id: 'weby_shortcut' %>
+    weby_login_url(main_app.site_admin_url(subdomain: current_site)), id: 'weby_shortcut' %>
 <% end %>
