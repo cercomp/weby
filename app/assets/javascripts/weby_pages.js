@@ -56,8 +56,30 @@ $(document).ready(function() {
      $.getScript($(this).find('option:selected').data('url'));
    });
 
+   $(window).scroll(function(){
+       var w=$(this);
+       var pos = w.scrollTop()/($(document).height()-w.height());
+       if(pos > .75){
+         loadMoreSites();
+       }
+   });
+
    var hash = location.hash
       , hashPieces = hash.split('?')
       , activeTab = $('[href=' + hashPieces[0] + ']');
    activeTab && activeTab.tab('show');
 });
+
+function loadMoreSites(){
+   if($('.next-load')[0]){
+       loader = $('.next-load').remove();
+       $.get(loader.data('url'), function(data){
+           $(data).each(function(){
+              if($(this).is('ul')){
+                $('ul.thumbnails').append($(this).html());
+              }
+           });
+       });
+   }
+   return false;
+}

@@ -4,29 +4,31 @@ class SitesController < ApplicationController
   before_filter :require_user, only: [:admin, :edit, :update]
   before_filter :check_authorization, only: [:edit, :update]
 
-  respond_to :html, :xml, :js, :txt
+  respond_to :html, :xml, :js
 
   helper_method :sort_column
 
   #### FRONT-END
 
   def index
-    params[:per_page] ||= current_settings.per_page_default
+    params[:page] ||= 1
 
-    @sites = Site.name_or_description_like(params[:search]).
-      #TODO Pesquisar também nas páginas exibidas junto com o site
-      except(:order).
-      includes(:pages).
-      order("pages.created_at desc").
-      page(params[:page]).
-      per(params[:per_page])
-    
+    #TODO Pesquisar pelas notícias
+    @sites = Site.ordered_by_front_pages(params[:search]).
+    page(params[:page]).
+    per(52)
+
+    @nexturl = sites_path(page: params[:page].to_i+1, search: params[:search])
     @my_sites = current_user ? current_user.sites : []
 
     # FIX ME - SORT SHOULD BE DONE IN MODEL ( SELECT DISTINC PREVENTS IT)
     #@pages = Page.front.published.available.clipping.search(params[:search], 1).sort{| a,b| b.created_at <=> a.created_at}
 
-    render layout: 'weby_pages'
+    if request.xhr?
+      render partial: 'list', layout: false
+    else
+      render layout: 'weby_pages'
+    end
   end
 
   def show

@@ -7,26 +7,39 @@ class Site < ActiveRecord::Base
 
   scope :name_or_description_like, lambda { |text|
     where('lower(sites.name) LIKE lower(:text) OR lower(sites.description) LIKE lower(:text) OR lower(sites.title) LIKE lower(:text)',
-          { :text => "%#{text}%" })
+          {:text => "%#{text}%"})
+  }
+
+  scope :ordered_by_front_pages, lambda { |text|
+
+    page_query = Page.select("coalesce(max(pages.updated_at),'1900-01-01')").
+      front.published.available.
+      where("pages.site_id = sites.id").to_sql
+
+    where('lower(sites.name) LIKE lower(:text)
+         OR lower(sites.description) LIKE lower(:text)
+         OR lower(sites.title) LIKE lower(:text)',
+       {:text => "%#{text}%"}).
+    order("(#{page_query}) desc")
   }
 
   validates :url,
     presence: true,
-    format: { with: /^http[s]{,1}:\/\/[\w\.\-\%\#\=\?\&]+\.([\w\.\-\%\#\=\?\&]+\/{,1})*/i }
+    format: {with: /^http[s]{,1}:\/\/[\w\.\-\%\#\=\?\&]+\.([\w\.\-\%\#\=\?\&]+\/{,1})*/i}
 
   validates :name,
     presence: true,
      uniqueness: {:scope => :parent_id},
-      format: { with: /^[a-z0-9_\-]+$/ }
+      format: {with: /^[a-z0-9_\-]+$/}
 
 
   validates :per_page,
     presence: true,
-    format: { with: /([0-9]+[,\s]*)+[0-9]*/ }
+    format: {with: /([0-9]+[,\s]*)+[0-9]*/}
 
   validates :title,
     presence: true,
-    :length => { :maximum => 50 }
+    :length => {:maximum => 50}
 
   validates :theme, presence: true
 

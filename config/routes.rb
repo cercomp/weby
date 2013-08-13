@@ -104,7 +104,7 @@ Weby::Application.routes.draw do
 
   constraints(Weby::GlobalDomain) do
     #rota para paginação
-    match "sites/page/:page" => "sites#index"
+    match "sites/page/:page" => "sites#index", :as => :sites
 
     match "mysites" => "sites#index", :my_sites => true
 
