@@ -21,6 +21,6 @@
     </tbody>
 </table>
 
-<div class="pull-left"> <%= per_page_links @repositories, true  %> </div>
+<div class="pull-left"> <%= per_page_links @repositories, true, :mini  %> </div>
 <div class="pull-right"> <%= paginate @repositories, remote: true %> </div>
 <div class="clearfix"></div>
