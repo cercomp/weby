@@ -59,9 +59,17 @@ $(document).ready(function() {
    $(window).scroll(function(){
        var w=$(this);
        var pos = w.scrollTop()/($(document).height()-w.height());
-       if(pos > .75){
+       if(pos > .8){
          loadMoreSites();
        }
+   });
+
+   $('.switch').click(function(){
+       var swi = $(this);
+       $('.switch-panel').toggle('fast');
+       var text = swi.data('switchtext') || swi.text();
+       swi.data('switchtext', swi.text());
+       swi.text(text);
    });
 
    var hash = location.hash

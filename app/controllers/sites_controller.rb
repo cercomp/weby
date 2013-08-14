@@ -13,7 +13,7 @@ class SitesController < ApplicationController
   def index
     params[:page] ||= 1
 
-    #TODO Pesquisar pelas notícias
+    #TODO Pesquisar também no título das notícias
     @sites = Site.ordered_by_front_pages(params[:search]).
     page(params[:page]).
     per(52)

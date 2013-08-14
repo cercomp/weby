@@ -12,12 +12,14 @@ pt-BR:
       description: "Descrição"
       name: "Nome"
       no-site-found: "Nenhum site encontrado."
-      see_all: "Ver todas"
     my_list:
+      my-sites: "Meus Sites"
       description: "Descrição"
       name: "Nome"
       no-site-found: "Sem papel em nenhum site."
       dashboard: " Administração "
+    site:
+      see_all: "Ver todas"
     edit:
       sites: " Sites "
       settings: " Configurações "

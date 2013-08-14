@@ -37,13 +37,23 @@
         </td>
         <td>
           <ul class="nav"> 
-            <% @roles.each do |role| %>
+            <% if @roles.each do |role| %>
               <li >
               <label class="checkbox cursor">
                 <%= check_box_tag 'role_ids[]', role.id %>
                 <%= role.name %>
               </label>
               </li>
+            <% end.empty? %>
+              <% if check_permission(Sites::Admin::RolesController, [:new]) %>
+                <%= link_to t(".new_role"),
+                  new_site_admin_role_path,
+                  class: "btn btn-success" %>
+              <% else %>
+                <div class="alert">
+                  <%= t(".none_role") %>
+                </div>
+              <% end %>
             <% end %>
           </ul>
         </td>

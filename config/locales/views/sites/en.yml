@@ -12,11 +12,14 @@ en:
       description: "Description"
       name: "Name"
       no-site-found: "No site found."
+    site:
       see_all: "See all"
     my_list:
+      my-sites: "My Sites"
       description: "Description"
       name: "Name"
       no-site-found: "Not in any site."
+      dashboard: " Dashboard "
     edit:
       sites: " Sites "
       settings: " Settings "

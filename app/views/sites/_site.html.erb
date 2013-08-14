@@ -1,0 +1,32 @@
+<div class="thumbnail">
+  <div class="thumbnail-header" title="<%= site.description %>">
+    <%= site_avatar_tag site, 60 %>
+    <span><%= link_to site.title, site_url(subdomain: site) %></span>
+  </div>
+  <div class="caption">
+    <% pages = site.pages.includes(:image).order('position desc').front.available.first(4) %>
+    <% if pages.any? %>
+      <% page = pages.shift %>
+      <div class="top-news">
+        <%= news_image(page.image, :thumb, 140, nil, {as: "link", url: site_page_url(page, subdomain: page.owner)}) %>
+        <div title="<%= strip_tags(page.summary).html_safe %>"><%= link_to page.title, site_page_url(page, subdomain: page.owner) %></div>
+        <span class="date"><%= l(page.updated_at, format: :short) %></span>
+        <!--<p><%#= page.summary.html_safe %></p>-->
+      </div>
+      <ul class="news">
+        <% pages.each do |page| %>
+          <li>
+            <%= news_image(page.image, :thumb, 60, nil, {as: "link", url: site_page_url(page, subdomain: page.owner)}) %>
+            <div title="<%= strip_tags(page.summary).html_safe %>"><%= link_to page.title, site_page_url(page, subdomain: page.owner) %></div>
+            <span class="date"><%= l(page.updated_at, format: :short) %></span>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <div>
+        <%= site.description %>
+      </div>
+    <% end %>
+  </div>
+  <%= link_to '...', site_pages_url(subdomain: site), class: 'pull-right footer-link', title: t('.see_all') %>
+</div>

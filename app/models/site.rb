@@ -11,7 +11,6 @@ class Site < ActiveRecord::Base
   }
 
   scope :ordered_by_front_pages, lambda { |text|
-
     page_query = Page.select("coalesce(max(pages.updated_at),'1900-01-01')").
       front.published.available.
       where("pages.site_id = sites.id").to_sql

@@ -5,37 +5,8 @@
 <% else %>
   <ul class="thumbnails">
     <% @sites.each do |site| %>
-      <li class="span3">
-        <div class="thumbnail">
-          <div class="thumbnail-header" title="<%= site.description %>">
-            <%= site_avatar_tag site %>
-            <span><%= link_to site.title, site_url(subdomain: site) %></span>
-          </div>
-          <div class="caption">
-            <% pages = site.pages.includes(:image).order('position desc').front.available.first(3) %>
-            <% if pages.any? %>
-              <% page = pages.shift %>
-              <div class="top-news">
-                <%= news_image(page.image, :thumb, 80, nil, {as: "link", url: site_page_url(page, subdomain: page.owner)}) %>
-                <div title="<%= strip_tags(page.summary).html_safe %>"><%= link_to page.title, site_page_url(page, subdomain: page.owner) %></div>
-                <span class="date"><%= l(page.updated_at, format: :short) %></span>
-                <!--<p><%#= page.summary.html_safe %></p>-->
-              </div>
-              <% pages.each do |page| %>
-                <div class="news">
-                  <%= news_image(page.image, :thumb, 60, nil, {as: "link", url: site_page_url(page, subdomain: page.owner)}) %>
-                  <div title="<%= strip_tags(page.summary).html_safe %>"><%= link_to page.title, site_page_url(page, subdomain: page.owner) %></div>
-                  <span class="date"><%= l(page.updated_at, format: :short) %></span>
-                </div>
-              <% end %>
-            <% else %>
-              <div>
-                <%= site.description %>
-              </div>
-            <% end %>
-          </div>
-          <%= link_to '...', site_pages_url(subdomain: site), class: 'pull-right footer-link', title: t('.see_all') %>
-        </div>
+      <li class="span4">
+        <%= render partial: 'site', locals: {site: site} %>
       </li>
     <% end %>
     <%= hidden_field_tag 'next-page', nil, class: 'next-load', data: {url: @nexturl} %>
