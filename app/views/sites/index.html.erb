@@ -1,43 +1,27 @@
 <% has_my_sites = current_user && !current_user.is_admin? && current_user.sites.any? %>
 <div class="row">
-  <div class="span12">
-    
-    <%= form_tag request.path, method: 'get', autocapitalize: "off", class: 'form-inline pull-right search' do %>
+  <div class="span6">
+    <%= form_tag request.path, method: 'get', autocapitalize: "off", class: 'form-inline search' do %>
       <%= content_tag :div, class: 'input-append' do %>
         <%= search_field_tag :search, params[:search], class: 'input-search' %><%= submit_tag t(".search"), class: 'btn btn-info' %>
       <% end %>
     <% end %>
-  
-    <div class="clearfix"></div>
-
-    <% if check_permission(Admin::SitesController, ["new"]) %>
-      <%= link_to t(".new_site"), new_admin_site_path, class: 'btn btn-success pull-right new-site' %>
-    <% end %> 
-    <ul class="pull-left row">
-      <div class="span8 nav nav-pills ">
-        <li class="active last-news-index"><a href="#news" data-toggle="tab"><%= t(".last_news") %></a></li>
-      </div>
-      <div class="nav nav-pills span4">
-        <li class="active"><a href="#list" data-toggle="tab"><%= t(".sites") %></a></li>
-        <% if has_my_sites %>
-          <li><a href="#my-sites" data-toggle="tab"><%= t(".my-sites") %></a></li>
-        <% end %>
-      </div>
-    </ul>
-  <div class="clearfix"></div>
   </div>
-</div>
-
-<div class="content tabs row">
-  <div class="tab-content">
-    <div class="tab-pane active">
-      <%= render 'clipping' %>
-      <%= render 'list' %>
-    </div>
+  <div class="span6">
+   <% if check_permission(Admin::SitesController, ["new"]) %>
+      <%= link_to t(".new_site"), new_admin_site_path, class: 'btn btn-success pull-right new-site' %>
+    <% end %>
     <% if has_my_sites %>
-      <div class="tab-pane" id="my-sites">
-        <%= render 'my_list' %>
-      </div>
+      <%= link_to t(".my-sites"), '#', class: 'btn pull-right switch', data: {switchtext: t('.sites')}  %>
     <% end %>
   </div>
 </div>
+<div class="row">
+  <div class="span12 switch-panel buffer-top">
+    <%= render 'list' %>
+  </div>
+  <div class="span12 switch-panel hide">
+    <%= render 'my_list' %>
+  </div>
+</div>
+ 

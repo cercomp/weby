@@ -127,7 +127,7 @@ class ApplicationController < ActionController::Base
         "#{exception.class}\n"+
         "#{exception.message}\n"+
         "#{filter_backtrace(exception).join("\n")}\n"+
-        "#{request.host_with_port}#{request.fullpath}\n"+
+        "#{request.host_with_port}#{request.fullpath} from #{request.remote_ip}\n"+
         "#{params}\n"+
         "}")
     respond_to do |format|
