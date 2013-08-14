@@ -13,7 +13,6 @@ class Page < ActiveRecord::Base
 
   scope :news, where(type: 'News')
   scope :events, where(type: 'Event')
-  scope :clipping, proc { select("distinct on (site_id) pages.*").where("pages.updated_at >= ?", Time.now - Weby::Settings.clipping_per_days.to_i.days).limit(20)}
   
   scope :upcoming_events, proc{ where(" (event_begin >= :time OR event_end >= :time)", time: Time.now).events }
 

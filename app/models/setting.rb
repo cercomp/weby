@@ -4,7 +4,6 @@ class Setting < ActiveRecord::Base
   attr_accessor :default_value
 
   VALUES_SET = {login_protocol: %w(http https),
-    clipping_per_days: :numericality,
     per_page_default: :numericality,
     tld_length: :numericality}
 

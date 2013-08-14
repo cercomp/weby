@@ -16,13 +16,10 @@ class SitesController < ApplicationController
     #TODO Pesquisar também no título das notícias
     @sites = Site.ordered_by_front_pages(params[:search]).
     page(params[:page]).
-    per(52)
+    per(18)
 
     @nexturl = sites_path(page: params[:page].to_i+1, search: params[:search])
     @my_sites = current_user ? current_user.sites : []
-
-    # FIX ME - SORT SHOULD BE DONE IN MODEL ( SELECT DISTINC PREVENTS IT)
-    #@pages = Page.front.published.available.clipping.search(params[:search], 1).sort{| a,b| b.created_at <=> a.created_at}
 
     if request.xhr?
       render partial: 'list', layout: false

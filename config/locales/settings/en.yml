@@ -5,7 +5,6 @@ en:
     default_locale: 'Default language'
     help_site: "The URL for the 'help' link"
     tld_length: "Size of the domain name i.e.: 'weby.co.uk' tld_length=2, 'weby.com' tld_length=1(default)"
-    clipping_per_days: "The amount of days for looking up last news on the Weby's front page"
     sites_index: "The site_id for the URL of the Weby's front page. If this is not set, it'll be shown at the root of the domain."
     login_protocol: "Login page's protocol. Options: 'https' or 'https'(default)"
     domain: "Weby's default domain."

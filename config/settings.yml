@@ -9,8 +9,6 @@ settings:
     value:
   tld_length:
     value: '1'
-  clipping_per_days:
-    value: '7'
   sites_index:
     value:
   login_protocol:
