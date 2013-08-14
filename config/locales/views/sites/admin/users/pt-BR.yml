@@ -10,6 +10,8 @@ pt-BR:
           enrole_user:       " Relacionar Usuários "
           role:              " Papel "
           none_user:         " Nenhum Usuário "
+          none_role:         " Nenhum Papel "
+          new_role:          " Novo Papel "
         enroled:
           enroled_user:      " Usuário Relacionado "
           role:              " Papel "

@@ -95,7 +95,7 @@ class Repository < ActiveRecord::Base
     archive.reprocess! if need_reprocess?
   rescue Errno::ENOENT => e
     File.open(Rails.root.join("log/error.log"), "a") do |f|
-      f.write("=> Erro no reprocess: #{e}")
+      f.write("=> Erro no reprocess: #{e}\n")
     end
   end
 

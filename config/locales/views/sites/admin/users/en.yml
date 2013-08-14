@@ -10,6 +10,8 @@ en:
           enrole_user:       " Enrole user "
           role:              " Role "
           none_user:         " None User "
+          none_role:         " None Role "
+          new_role:          " New Role "
         enroled:
           enroled_user:      " Enroled User "
           role:              " Role "

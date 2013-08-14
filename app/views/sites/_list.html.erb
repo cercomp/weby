@@ -1,23 +1,14 @@
-<div id="list" class="span4">
-   
-  <% if @sites.empty? %>
-    <div class="alert">
-      <%= t(".no-site-found") %>
-    </div>
-  <% else %>
-    <div class="pull-left"><%= info_page @sites %></div>
-    <div class="pull-right"><%= paginate @sites, remote: true %></div>
-    <div class="clearfix"></div>
-    <table class="table table-striped">
-      <% @sites.each do |site| %>
-        <tr>
-          <td><%= site_avatar_tag site %></td>
-          <td> <%= link_to site.title, site_url(subdomain: site), title: site.description %> </td>
-        </tr>
-      <% end %>
-    </table>
-    <div class="pull-left"> <%= per_page_links @sites, true, :mini %> </div>
-    <div class="pull-right"> <%= paginate @sites, remote: true %> </div>
-    <div class="clearfix"></div>
-  <% end %>
-</div>
+<% if @sites.empty? %>
+  <div class="alert">
+    <%= t(".no-site-found") %>
+  </div>
+<% else %>
+  <ul class="thumbnails">
+    <% @sites.each do |site| %>
+      <li class="span4">
+        <%= render partial: 'site', locals: {site: site} %>
+      </li>
+    <% end %>
+    <%= hidden_field_tag 'next-page', nil, class: 'next-load', data: {url: @nexturl} %>
+  </ul>
+<% end %>

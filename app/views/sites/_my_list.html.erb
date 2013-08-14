@@ -1,31 +1,15 @@
-<div id="list">
-  <% if @my_sites.empty? %>
-    <div class="alert">
-      <%= t(".no-site-found") %>
-    </div>
-  <% else %>
-    <table class='table table-striped'>
-      <thead>
-        <tr>
-          <th style="width: 34px;"></th>
-          <th class='site-name'><%= sortable 'name', t(".name") %></th>
-          <th><%= t(".description") %></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @my_sites.each do |site| %>
-          <tr>
-            <td><%= site_avatar_tag site %></td>
-            <td> <%= link_to site.title, site_url(subdomain: site) %> </td>
-            <td> <%= site.description %> </td>
-            <td>
-              <%= link_to icon('briefcase', text: t(".dashboard")), site_admin_url(subdomain: site) if current_user %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-
-  <% end %>
-</div>
+<% if @my_sites.empty? %>
+  <div class="alert">
+    <%= t(".no-site-found") %>
+  </div>
+<% else %>
+  <h3><%= t('.my-sites') %></h3>
+  <ul class="thumbnails">
+    <% @my_sites.each do |site| %>
+      <li class="span4">
+        <%= render partial: 'site', locals: {site: site} %>
+        <%= link_to icon('briefcase', text: t(".dashboard"), white: true), site_admin_url(subdomain: site), class: 'btn btn-block buffer-top' if current_user %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

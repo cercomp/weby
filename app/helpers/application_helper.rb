@@ -359,16 +359,16 @@ module ApplicationHelper
     end
   end
 
-  def site_avatar_tag site=current_site
+  def site_avatar_tag site=current_site, size=32
     repository = Repository.find_by_id(site.top_banner_id)
     if repository
-      weby_file_view(repository, :mini, 32, 32,
+      weby_file_view(repository, :mini, size, size,
                       { as: 'link',
                         title: site.description,
                         url: main_app.site_url(subdomain: site)
                       })
     else
-      link_to image_tag('weby-shortcut.png', style: 'width: 32px; height: 32px;'), main_app.site_url(subdomain: site)
+      link_to image_tag('weby-filler.png', style: "width: #{size}px; height: #{size}px;"), main_app.site_url(subdomain: site)
     end
   end
 

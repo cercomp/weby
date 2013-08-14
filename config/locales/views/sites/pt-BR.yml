@@ -6,18 +6,20 @@ pt-BR:
       my-sites: "MEUS SITES"
       last_news: "ÚLTIMAS NOTÍCIAS"
       search: "BUSCAR"
-    clipping:
-      none_page: "Nenhuma notícia encontrada"
     list:
+      none_page: "Nenhuma notícia"
       sites: "SITES"
       description: "Descrição"
       name: "Nome"
       no-site-found: "Nenhum site encontrado."
     my_list:
+      my-sites: "Meus Sites"
       description: "Descrição"
       name: "Nome"
       no-site-found: "Sem papel em nenhum site."
       dashboard: " Administração "
+    site:
+      see_all: "Ver todas"
     edit:
       sites: " Sites "
       settings: " Configurações "
