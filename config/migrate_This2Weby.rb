@@ -101,9 +101,18 @@ class Migrate_this2weby
       
       # Inserindo componentes por omissão para portais vindos do This
       puts "\tINSERINDO estruturação de componentes...\n"
+      banner_site = ''
+      
+      if this_site['banner'].to_s != ''
+        banner_site = "INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'home','{}','image',1,true,'#{Time.now}','#{Time.now}');"
+        front_news = "INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'home','{:quant => \"5\"}','front_news',2,true,'#{Time.now}','#{Time.now}');"
+        news_list = "INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'home','{:quant => \"5\"}','news_list',3,true,'#{Time.now}','#{Time.now}');"
+      else
+        front_news = "INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'home','{:quant => \"5\"}','front_news',1,true,'#{Time.now}','#{Time.now}');"
+        news_list = "INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'home','{:quant => \"5\"}','news_list',2,true,'#{Time.now}','#{Time.now}');"
+      end
       insert_site_comp = <<EOF
         INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'first_place','{:background => "#7f7f7f"}','gov_bar',1,true,'#{Time.now}','#{Time.now}');
-        
         INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'first_place','{}','institutional_bar',2,true,'#{Time.now}','#{Time.now}');
         INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'top','{}','image',1,true,'#{Time.now}','#{Time.now}');
         INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'top','{}','menu',2,true,'#{Time.now}','#{Time.now}');
@@ -116,8 +125,9 @@ class Migrate_this2weby
         INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'bottom','{}','feedback',3,true,'#{Time.now}','#{Time.now}');
         INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'left','{}','menu',1,true,'#{Time.now}','#{Time.now}');
         INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'left','{:category => \"esq\", :orientation => \"vertical\"}','banner_list',2,true,'#{Time.now}','#{Time.now}');
-        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'home','{:quant => \"5\"}','front_news',1,true,'#{Time.now}','#{Time.now}');
-        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'home','{:quant => \"5\"}','news_list',2,true,'#{Time.now}','#{Time.now}');
+        #{banner_site}
+        #{front_news}
+        #{news_list}
 EOF
       @con_weby.exec(insert_site_comp)
 
@@ -691,6 +701,7 @@ class Migrate_files
     @config = YAML::load(File.open("config-migrate.yml"))
     @convar = YAML::load(File.open("convar.yml"))
     @con_weby = PGconn.connect(@config['weby']['host'],nil,nil,nil,@config['weby']['database'],@config['weby']['username'],@config['weby']['password'])
+    @con_this = PGconn.connect(@config['this']['host'],nil,nil,nil,@config['this']['database'],@config['this']['username'],@config['this']['password'])
     @folders = ['imgd', 'banners', 'files', 'topo']
     @ids = id
     from += '/' if from[-1] != '/'
@@ -797,10 +808,22 @@ class Migrate_files
 
         if(file_name.match(/topo\.gif/i) || file_name == "topo.swf" || file_name == "topo.jpg" || file_name == "topo.png")
             #sql = "UPDATE sites SET top_banner_id='#{repository_id}' WHERE id='#{@convar[id]['weby']}'"
-            sql = "UPDATE site_components set settings = '{:size => \"original\",:url => \"/\",:repository_id => \"#{repository_id}\", :html_class => \"header\"}' where site_id='#{@convar[id]['weby']}' AND name = 'image'"
+            sql = "UPDATE site_components set settings = '{:size => \"original\",:url => \"/\",:repository_id => \"#{repository_id}\", :html_class => \"header\"}' where site_id='#{@convar[id]['weby']}' AND name = 'image' AND place_holder = 'top'"
             @con_weby.exec(sql)
             puts "\tATUALIZANDO topo"
             next
+        end
+
+        sql_site = "select * from sites where site_id = #{id}"
+        this_site = @con_this.exec(sql_site)
+        puts "nome do arquivo no this:: #{this_site[0]['banner']}"
+        puts "nome do arquivo novo no #{id} #{file_name}"
+
+        if(file_name == this_site[0]['banner'])
+          sql = "UPDATE site_components set settings = '{:size => \"\",:url => \"#{this_site[0]['banner_link']}\",:repository_id => \"#{repository_id}\"}' where site_id='#{@convar[id]['weby']}' AND name = 'image' AND place_holder = 'home'"
+          @con_weby.exec(sql)
+          puts "\tATUALIZANDO topo"
+          next
         end
 
         file_info = file_name.match(/([a-zA-Z]{3,})(\d*)[a-zA-Z_]*.[a-zA-Z_]{3,}$/)
