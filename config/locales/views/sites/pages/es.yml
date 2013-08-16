@@ -14,14 +14,6 @@ es:
         list_all:      " Todas las páginas "
         categories:    " Categorías "
         source:        " Fuente "
-      list_as_table:
-        title:         " Título "
-        category:      " Categoría "
-        period_event:  " Periodo del Evento "
-        date_register: " Fecha "
-        type:          " Tipo "
-        news:          " Notícia "
-        event:         " Evento "
       list:
         read_more:     " Leer más "
         no_pages:      " No se han encontrado páginas "

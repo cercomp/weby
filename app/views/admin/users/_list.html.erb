@@ -37,7 +37,7 @@
     </tbody>
   </table>
 
-  <div class="pull-left"> <%= per_page_links @users, remote: true, :mini %> </div>
+  <div class="pull-left"> <%= per_page_links @users, true, :mini %> </div>
   <div class="pull-right"> <%= paginate @users, remote: true %> </div>
   <div class="clearfix"></div>
 <% end %>

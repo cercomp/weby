@@ -14,14 +14,6 @@ en:
         list_all:      " List all "
         categories:    " Categories "
         source:        " Source "
-      list_as_table:
-        title:         " Title "
-        category:      " Category "
-        period_event:  " Period of Event "
-        date_register: " Date "
-        type:          " Type "
-        news:          " News "
-        event:         " Event "
       list:
         read_more:     " Read more "
         no_pages:      " No pages were found "
