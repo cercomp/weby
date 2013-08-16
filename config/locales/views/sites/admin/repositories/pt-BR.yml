@@ -4,10 +4,12 @@ pt-BR:
       repositories:
         index:
           archives:             " Arquivos "
+          search:               " Buscar "
           new_archive:          " Novo Arquivo "
+          none_archive:         " Nenhum Arquivo "
+        view_picker:
           repository_as_thumbs: " Exibir repositório como miniaturas "
           repository_as_list:   " Exibir repositório como lista "
-          none_archive:         " Nenhum Arquivo "
         show:
           archives:            " Arquivos "
           name:                " Nome "

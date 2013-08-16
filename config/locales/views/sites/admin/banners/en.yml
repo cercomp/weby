@@ -30,9 +30,10 @@ en:
         index:
           new_banner:               " New Banner "
           banners:                  " Banners "
+          none_banner:              " None Banner "
+        view_picker:
           banners_as_thumbs:        " Show banners as thumbnails "
           banners_as_list:          " Show banners as list "
-          none_banner:              " None Banner "
         show:
           banner:                   " Banner "
           banners:                  " Banners "

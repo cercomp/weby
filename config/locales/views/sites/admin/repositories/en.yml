@@ -6,9 +6,10 @@ en:
           archives:             " Files "
           search:               " Search "
           new_archive:          " New file "
+          none_archive:         " No Files "
+        view_picker:
           repository_as_thumbs: " Show repository as thumbnails "
           repository_as_list:   " Show repository as list "
-          none_archive:         " No Files "
         show:
           archives:            " Files "
           name:                " Name "

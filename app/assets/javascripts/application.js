@@ -3,6 +3,8 @@
 //= require bootstrap
 //= require tables
 //= require jquery.lightbox_me
+//= require select2
+//= require select2_locale_pt-BR
 //= require about
 //= require_self
 

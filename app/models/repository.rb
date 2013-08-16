@@ -15,16 +15,16 @@ class Repository < ActiveRecord::Base
             { :text => "%#{text}%" } ] 
   }
 
-  scope :content_file, proc { |content_file|
-    if content_file.is_a?(Array)
+  scope :content_file, proc { |contents|
+    if contents.is_a?(Array)
       # TODO: Esse código funcionará exclusivamente para o Postgresql
       # TODO: Corrigir para funcionar independente do banco de dados.
-      content_file.map! {|content| "%#{content}%"}
+      contents = contents.map{|content| "%#{content}%"}
       where ["archive_content_type SIMILAR TO :values",
-             {values: "%(#{content_file.join('|')})%"}
+             {values: "%(#{contents.join('|')})%"}
       ]
     else
-      archive_content_file(content_file)
+      archive_content_file(contents)
     end
   }
 

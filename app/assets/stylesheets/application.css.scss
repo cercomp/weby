@@ -1,6 +1,7 @@
 /*
  *= require_self
  *= require google/lato
+ *= require select2
  */
 
 @import "weby/bootstrap";
@@ -104,6 +105,10 @@ body { background: #F5F5F5; }
 }
 #ui-datepicker-div{
     font-size: 0.9em;
+}
+
+.select2-search-field input{
+    height: 18px;
 }
 
 .pagination {

@@ -29,9 +29,10 @@ pt-BR:
         index:
           new_banner:               " Novo Banner "
           banners:                  " Banners "
+          none_banner:              " Nenhum Banner "
+        view_picker:
           banners_as_thumbs:        " Exibir banners como miniaturas "
           banners_as_list:          " Exibir banners como lista "
-          none_banner:              " Nenhum Banner "
         show:
           banner:                   " Banner "
           banners:                  " Banners "

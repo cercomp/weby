@@ -1,5 +1,5 @@
 <div class="pull-left">
-  <%= form_tag request.path, method: 'get', autocapitalize: "off", class: 'search pull-right' do %>
+  <%= form_tag site_admin_banners_path, method: 'get', autocapitalize: "off", class: 'search pull-right' do %>
     <%= content_tag :div, class: 'input-append' do %>
       <%= search_field_tag :search, params[:search], class: 'input-search' %><%= submit_tag t("search"), class: 'btn btn-info btn-search' %>
     <% end %>
@@ -18,15 +18,6 @@
     <%= t(".none_banner") %>
   </div>
 <% else %>
-  <div class="btn-group">
-      <%= link_to url_for(banners_view: 'thumbs'), class: "btn", title: t(".banners_as_thumbs") do %>
-        <%= icon('th', white: true) %>
-      <% end %>
-      <%= link_to url_for(banners_view: 'list'), class: "btn", title: t(".banners_as_list") do %>
-        <%= icon('list', white: true) %>
-      <%  end %>
-    </div>
-
   <div id="list">
     <%= render :partial => banners_partial %>
   </div>

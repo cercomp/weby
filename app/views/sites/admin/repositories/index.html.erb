@@ -1,11 +1,12 @@
+<% content_for :javascripts, javascript_include_tag('repositories') %>
 <div class="pull-left">
-  <%= form_tag request.path, method: 'get', autocapitalize: "off", class: 'search pull-right' do %>
+  <%= form_tag site_admin_repositories_path, method: 'get', autocapitalize: "off", class: 'search pull-right' do %>
     <%= content_tag :div, class: 'input-append' do %>
-      <%= search_field_tag :search, params[:search], class: 'input-search' %><%= submit_tag t("search"),
-        class: 'btn btn-info btn-search' %><%= select_tag "mime_type[]",
-          grouped_options_for_select(load_mime_types(@site)), include_blank: true, style: 'height:
-          32px;', class: 'add-on'  %>
+      <%= search_field_tag :search, params[:search], class: 'input-search' %><%= submit_tag t(".search"),
+        class: 'btn btn-info btn-search' %>
     <% end %>
+    <%= select_tag "mime_type[]",
+      grouped_options_for_select(load_mime_types(current_site), params[:mime_type]), include_blank: true, style: 'min-width: 250px; vertical-align: top;', class: 'search-filter', multiple: true  %>
   <% end %>
 </div>
 <div class="pull-right">
@@ -20,15 +21,6 @@
     <%= t(".none_archive") %>
   </div>
 <% else %>
-  <div class="btn-group">
-    <%= link_to url_for(repository_view: 'thumbs'), class: "btn", title: t(".repository_as_thumbs") do %>
-      <%= icon('th', white: true) %>
-    <% end %>
-    <%= link_to url_for(repository_view: 'list'), class: "btn", title: t(".repository_as_list") do %>
-      <%= icon('list', white: true) %>
-    <%  end %>
-  </div>
-
   <div id="repo_list">
     <%= render :partial => repository_partial %>
   </div>

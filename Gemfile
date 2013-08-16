@@ -13,6 +13,7 @@ gem 'simple_form', :tag => 'v2.0.1', :git => 'http://github.com/plataformatec/si
 gem 'acts-as-taggable-on', :git => 'https://github.com/mbleigh/acts-as-taggable-on.git'
 gem 'bootstrap-sass', '2.3.0.1'
 gem 'foreigner'
+gem "select2-rails"
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
