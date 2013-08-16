@@ -816,8 +816,6 @@ class Migrate_files
 
         sql_site = "select * from sites where site_id = #{id}"
         this_site = @con_this.exec(sql_site)
-        puts "nome do arquivo no this:: #{this_site[0]['banner']}"
-        puts "nome do arquivo novo no #{id} #{file_name}"
 
         if(file_name == this_site[0]['banner'])
           sql = "UPDATE site_components set settings = '{:size => \"\",:url => \"#{this_site[0]['banner_link']}\",:repository_id => \"#{repository_id}\"}' where site_id='#{@convar[id]['weby']}' AND name = 'image' AND place_holder = 'home'"
