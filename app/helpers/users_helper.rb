@@ -16,4 +16,28 @@ module UsersHelper
   def captalize_name(user)
     [user.first_name, user.last_name].join(' ').split.map{ |word| word.capitalize }.join(' ')
   end
+
+  def has_unread_notifications(text)
+    user = User.find(current_user.id)
+    unread = user.unread_notifications
+
+    case text
+    when "all"
+      if current_user.unread_notifications == "$"
+        link_to main_app.site_admin_notifications_url(subdomain: current_user.sites.first) do 
+          image_tag('envelope.png', style: "width: 14px") 
+          end
+      else
+          link_to main_app.site_admin_notifications_url(subdomain: current_user.sites.first) do
+          image_tag('message-new.png', style: "width: 14px") 
+          end
+      end
+    else
+      if unread.include?(text)
+        image_tag('envelope.png', style: "width: 14px")
+      else
+        image_tag('message-empty.png', style: "width: 14px")
+      end
+    end
+  end
 end

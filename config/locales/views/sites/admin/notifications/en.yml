@@ -12,4 +12,6 @@ en:
           body:               " Message "
           created_at:         " Created at "
           list_all:           " List all "
+        index:
+          mark_all_notifications_as_read: " Mark all notifications as read "
 

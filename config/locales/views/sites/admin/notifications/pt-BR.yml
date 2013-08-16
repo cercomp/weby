@@ -12,3 +12,5 @@ pt-BR:
           body:                     " Mensagem "
           created_at:               " Criado em "
           list_all:                 " Listar todas "
+        index:
+          mark_all_notifications_as_read: " Marcar todas como lido "

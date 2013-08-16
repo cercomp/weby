@@ -26,8 +26,28 @@ class Sites::Admin::NotificationsController < ApplicationController
 
   def show
     @notification = Notification.find(params[:id])
+    set_as_read(@notification.id)
   end
 
   def destroy
+  end
+  
+  def mark_as_read
+    set_as_read(params[:text])
+    redirect_to site_admin_notifications_path
+  end
+
+  private
+  def set_as_read(text)
+    user = User.find(current_user.id)
+    unread = user.unread_notifications
+
+    case text
+    when "all"
+      user.update_attribute(:unread_notifications, "$")
+    else
+      unread = unread.gsub "#{text}$", ""
+      user.update_attribute(:unread_notifications, unread)
+    end
   end
 end

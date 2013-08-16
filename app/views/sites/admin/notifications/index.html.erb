@@ -6,6 +6,10 @@
   <% end %>
 </div>
 
+<div class="pull-right">
+  <%= link_to t(".mark_all_notifications_as_read"), mark_as_read_site_admin_notifications_path(:text => "all"), method: :post, class: "btn btn-primary" %>
+</div>
+
 <div class="clearfix"></div>
 <%= content_tag :div, render('list'), id: 'list' %>
 

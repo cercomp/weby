@@ -6,6 +6,7 @@
   <table class='table table-striped'>
     <thead>
       <tr>
+        <th></th>
         <th><%= t(".title") %></th>
         <th><%= t(".body") %></th>
         <th><%= t(".date") %></th>
@@ -15,6 +16,7 @@
     <tbody>
       <% @notifications.each do |notification| %>
         <tr>
+          <td><%= has_unread_notifications("$#{notification.id}$") %></td>
           <td><%= link_to notification.title, admin_notification_path(notification.id) %></td>
           <td><%= notification.body.to_s[0..50] %></td>
           <td><%= l(notification.created_at, :format => :short) %></td>

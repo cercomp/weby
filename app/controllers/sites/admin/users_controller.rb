@@ -22,7 +22,7 @@ class Sites::Admin::UsersController < ApplicationController
 
   def change_roles
     params[:role_ids] ||= []
-    user_ids = []
+   user_ids = []
     user_ids.push(params[:user][:id]).flatten!
 
     user_ids.each do |user_id|

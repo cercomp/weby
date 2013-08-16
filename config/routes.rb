@@ -42,7 +42,12 @@ Weby::Application.routes.draw do
 
       get "stats" => "statistics#index"
 
-      resources :notifications, only: [:index, :show]
+      resources :notifications, only: [:index, :show] do
+        collection do
+          post :mark_as_read
+        end
+      end
+
       resources :banners do
         member do
           put :toggle_field
