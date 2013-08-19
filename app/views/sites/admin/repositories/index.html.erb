@@ -1,4 +1,9 @@
 <% content_for :javascripts, javascript_include_tag('repositories') %>
+<div class="pull-right">
+  <%= link_to t(".new_archive"),
+    new_site_admin_repository_path,
+    class: "btn btn-success" %>
+</div>
 <div class="pull-left">
   <%= form_tag site_admin_repositories_path, method: 'get', autocapitalize: "off", class: 'search pull-right' do %>
     <%= content_tag :div, class: 'input-append' do %>
@@ -6,13 +11,12 @@
         class: 'btn btn-info btn-search' %>
     <% end %>
     <%= select_tag "mime_type[]",
-      grouped_options_for_select(load_mime_types(current_site), params[:mime_type]), include_blank: true, style: 'min-width: 250px; vertical-align: top;', class: 'search-filter', multiple: true  %>
+      grouped_options_for_select(load_mime_types(current_site), params[:mime_type]),
+      include_blank: false,
+      style: 'min-width: 250px; vertical-align: top;',
+      class: 'search-filter',
+      multiple: true %>
   <% end %>
-</div>
-<div class="pull-right">
-  <%= link_to t(".new_archive"),
-    new_site_admin_repository_path,
-    class: "btn btn-success" %>
 </div>
 <div class="clearfix"></div>
 

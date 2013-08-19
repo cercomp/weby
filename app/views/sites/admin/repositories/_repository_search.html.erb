@@ -1,3 +1,4 @@
+<% content_for :javascripts, javascript_include_tag('repositories') %>
 <div class="modal-header">
   <h3 class="pull-left"><%= t('.archives') %></h3>
   <ul class="nav nav-pills pull-right">
@@ -16,19 +17,20 @@
       <%= form_tag site_admin_repositories_path(format: :json),
         method: 'get',
         autocapitalize: "off",
-        class: 'search',
+        class: 'search repo-search',
         id: 'repository-search-form',
         data: {noresult: t('.none_file')},
         remote: true do %>
-        <%= content_tag :div, class: 'input-append pull-right' do %>
+        <%= content_tag :div, class: 'input-append' do %>
           <%= search_field_tag :search, params[:search] %>
-          <%= select_tag "mime_type[]",
-          grouped_options_for_select(load_mime_types(@site), ),
-          include_blank: t('all'), style: 'height: 32px; width: 210px; -webkit-border-radius: 0;
-          -moz-border-radius: 0;
-          border-radius: 0;' %>
           <%= submit_tag t("search"), class: 'btn btn-info' %>
         <% end %>
+        <%= select_tag "mime_type[]",
+            grouped_options_for_select(load_mime_types(current_site), params[:mime_type]),
+            include_blank: false,
+            style: 'width: 208px; vertical-align: top;',
+            class: 'search-filter',
+            multiple: true %>
         <%= hidden_field_tag 'page', "1" %>
         <%= hidden_field_tag 'per_page', "#{params[:per_page]}" %>
         <div class="clearfix"></div>

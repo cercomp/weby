@@ -6,6 +6,7 @@ class Sites::Admin::RepositoriesController < ApplicationController
 
   respond_to :html, :xml, :js, :json
   def index
+    params[:mime_type] ||= params[:empty_filter]
     params[:mime_type].try(:delete, "")
     params[:direction] ||= 'desc'
 
