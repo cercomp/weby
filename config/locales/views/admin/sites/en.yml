@@ -15,6 +15,7 @@ en:
         name:                   " Name "
         dashboard:              " Dashboard "
         description:            " Description "
+        title:                  " Title "
         settings:               " Settings "
         no-site-found:          " No site found."
       form:

@@ -100,7 +100,7 @@ class User < ActiveRecord::Base
     Notifier.activation_confirmation(self, host).deliver
   end
 
-  def has_access_to? site
+  def has_role_in? site
     return true if self.is_admin?
     self.sites.include?(site) or self.global_roles.any?
   end

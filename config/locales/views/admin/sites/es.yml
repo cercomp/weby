@@ -15,6 +15,7 @@ es:
         name:                   " Nombre "
         dashboard:              " Administración "
         description:            " Descripción "
+        title:                  " Titulo "
         settings:               " Configuración "
         no-site-found:          " No hay sitios."
       form:

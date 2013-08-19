@@ -59,9 +59,9 @@ class SitesController < ApplicationController
     load_themes
     @sites = @site.subsites.
       except(:order).
-      order(:title).
-      page(1).
-      per(100)
+      order("#{sort_column} #{sort_direction}").
+      page(params[:page]).
+      per(params[:per_page])
 
     render layout: "application"
   end

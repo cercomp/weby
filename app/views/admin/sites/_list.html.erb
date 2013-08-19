@@ -11,7 +11,8 @@
     <thead>
       <tr>
         <th class='site-name'><%= sortable 'name', t(".name") %></th>
-        <th><%= t(".description") %></th>
+        <th><%= sortable 'title', t(".title") %></th>
+        <th><%= sortable 'description', t(".description") %></th>
         <th></th>
       </tr>
     </thead>
@@ -19,9 +20,10 @@
       <% @sites.each do |site| %>
         <tr>
           <td> <%= link_to site.name, site_url(subdomain: site) %> </td>
+          <td> <%= site.title %> </td>
           <td> <%= site.description %> </td>
           <td>
-                <%= link_to icon('briefcase', text: t(".dashboard")), site_admin_url(subdomain: site) if current_user && current_user.is_admin %>
+                <%= link_to icon('briefcase', text: t(".dashboard")), site_admin_url(subdomain: site) if current_user && current_user.has_role_in?(site) %>
                 <%= link_to icon('edit', text: t(".settings")), edit_admin_site_url(site, subdomain: nil) if current_user && current_user.is_admin %>
           </td>
         </tr>
