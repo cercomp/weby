@@ -2,12 +2,14 @@
   <% link_url = component.target_id.present? ? main_app.site_page_path(component.target_id) : component.url %>
   <% repository = Repository.find(component.repository_id) rescue nil %>
   <% if repository %>
-    <% if repository.image? %>
+    <% if repository.image? || repository.svg? %>
       <% 
           format = component.size.present? ? component.size : format_for_custom(component.width, component.height, repository)
-          unless component.size.present?
+          if component.size.blank?
             width = component.width.present? ? component.width : false#current_site.body_width ? current_site.body_width : false
             height = component.height.present? ? component.height : false
+          elsif repository.svg?
+            width, height = dimension_for_size component.size
           end
           size = style_for_dimension width, height
       %>

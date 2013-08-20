@@ -78,6 +78,10 @@ class Repository < ActiveRecord::Base
     archive_content_type.include?("image") and not archive_content_type.include?("svg")
   end
 
+  def svg?
+    archive_content_type.include?("image") and archive_content_type.include?("svg")
+  end
+
   def flash?
     archive_content_type.include?("flash") or archive_content_type.include?("shockwave")
   end
