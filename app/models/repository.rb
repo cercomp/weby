@@ -19,7 +19,7 @@ class Repository < ActiveRecord::Base
     if contents.is_a?(Array)
       # TODO: Esse código funcionará exclusivamente para o Postgresql
       # TODO: Corrigir para funcionar independente do banco de dados.
-      contents = contents.map{|content| "%#{content}%"}
+      contents = contents.map{|content| "%#{content.gsub("+", "\\\\+")}%"}
       where ["archive_content_type SIMILAR TO :values",
              {values: "%(#{contents.join('|')})%"}
       ]
