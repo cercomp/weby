@@ -643,11 +643,11 @@ EOF
   # Tratamento de caracteres 
   def treat(string)
     unless string.nil?
-      
-      if string.match(/['"]http.*\/uploads\/.*?([0-9]+).*?\/(.*?)['"]/)
-          string.gsub!(/['"]http.*\/uploads\/.*?([0-9]+).*?\/(.*?)['"]/){|x| "'/uploads/#{@convar[$1]['weby']}/original_#{$2}'" if @convar[$1] }
-      else string.match(/.*\/uploads\/.*?([0-9]+)\/.*?\/(.*?)/)
-        string.gsub!(/.*\/uploads\/.*?([0-9]+)\/.*?\/(.*?)/){|x| "/uploads/#{@convar[$1]['weby']}/original_#{$2}" if @convar[$1] }
+      # src="http://www2.catalao.ufg.br/uploads/files/3/image/GaleriaFotos/img1.jpg"
+      if string.match(/['"]http.*\/uploads\/.*?([0-9]+).*\/(.*?)['"]/)
+          string.gsub!(/['"]http.*\/uploads\/.*?([0-9]+).*\/(.*?)['"]/){|x| "'/uploads/#{@convar[$1]['weby']}/original_#{$2}'" if @convar[$1] }      
+      elsif string.match(/.*\/uploads\/.*?([0-9]+)\/.*\/(.*?)/)
+        string.gsub!(/.*\/uploads\/.*?([0-9]+)\/.*\/(.*?)/){|x| "/uploads/#{@convar[$1]['weby']}/original_#{$2}" if @convar[$1] }      
       end
             
       if string.match(/javascript:mostrar_pagina.*?([0-9]+).*?([0-9]+).*?/) 
