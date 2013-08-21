@@ -12,7 +12,6 @@
 {
   padding-top: 25px;
   padding-bottom: 15px;
-  margin-bottom: 15px;
   font-size: 12px;
   .noperson
   {
@@ -58,6 +57,7 @@
   .form { margin-bottom: 10px; }
   .new-site { margin-left: 5px }
   .search { margin-bottom: 10px; }
+  .row { margin-top: 15px; }
 }
 
 #footer
@@ -67,10 +67,10 @@
     margin-right: 5px;
     font-weight: bold;
   }
-  padding: 10px 0 0;
   text-transform: uppercase;
   text-align: center;
   font-size: 11px;
+  margin-top: 15px;
 }
 
 .buffer-top{
@@ -198,4 +198,93 @@
   float: left;
   border-color: #DDD;
   margin-bottom: 0;
+}
+
+// Profile
+#profile
+{
+  .alert { margin-top: 15px; }
+  .avatar { text-align: center; }
+  .info
+  {
+    margin: 15px 0;
+    text-align: center;
+    font-size: 25px;
+    line-height: 30px;
+    .last-name { font-size: 20px; }
+  }
+  .actions { margin-bottom: 15px; }
+  .heading
+  {
+    font-size: 20px;
+    line-height: 40px;
+    padding-left: 5px;
+    border-left: 5px solid #BC1625;
+  }
+  .thumbnail
+  {
+    @media (max-width: 480px)
+    {
+      .pull-left { text-align: center; }
+    }
+    border-color: #f5f5f5;
+    padding: 10px;
+    .media-body
+    {
+      height: 100px;
+      .title
+      {
+        padding-top: 10px;
+        font-size: 18px;
+        overflow: hidden;
+        height: 20px;
+        padding-bottom: 5px;
+      }
+      .description
+      {
+        font-size: 11px;
+        color: #AAA;
+        font-weight: bold;
+        padding-bottom: 5px;
+      }
+      .summary
+      {
+        text-align: justify;
+        font-size: 12px;
+        line-height: 15px;
+        overflow: hidden;
+        height: 30px;
+      }
+    }
+  }
+  .form-big
+  {
+    margin-bottom: 0;
+    abbr { color: #BC1625; }
+    .control-group.string,
+    .control-group.email,
+    .control-group.tel,
+    .control-group.radio_buttons,
+    .control-group.password
+    {
+      background: #f5f5f5;
+      padding: 10px;
+    }
+    .form-actions {
+      padding: 10px;
+      margin-top: 0;
+    }
+    select,
+    textarea,
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    input[type="tel"] { margin-bottom: 0; }
+    .help-block { margin-bottom: 0; }
+  }
+  .avatar-info
+  {
+    margin: 15px 0;
+    color: #7B7B7B;
+  }
 }

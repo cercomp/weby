@@ -1,0 +1,10 @@
+en:
+  profiles:
+    show:
+      edit-profile: "EDIT PROFILE"
+      latest-news-published: "Latest news published"
+    edit:
+      password-change: "New password"
+      locale-hint: "Language for the admin interface."
+      gravatar-info: "Wants to change the image? We use the Gravatar to manage the profile avatar, click on the image and follow the procedure to define a new avatar in Gravatar."
+      gravatar-important: "Use on Gravatar the same email used in weby."
