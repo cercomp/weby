@@ -20,17 +20,20 @@ module UsersHelper
   def has_unread_notifications(text)
     user = User.find(current_user.id)
     unread = user.unread_notifications
+    how_many = unread.count("$") - 1 
 
     case text
     when "all"
       if current_user.unread_notifications == "$"
-        link_to main_app.site_admin_notifications_url(subdomain: current_user.sites.first) do 
-          image_tag('envelope.png', style: "width: 14px") 
-          end
+        link_to content_tag(:i, "", class: "icon-envelope icon-white"), main_app.site_admin_notifications_url(subdomain: current_user.sites.first), class: "badge badge-inverse"
+        #link_to main_app.site_admin_notifications_url(subdomain: current_user.sites.first) do 
+        #  image_tag('envelope.png', style: "width: 14px")
+        #end
       else
-          link_to main_app.site_admin_notifications_url(subdomain: current_user.sites.first) do
-          image_tag('message-new.png', style: "width: 14px") 
-          end
+        link_to content_tag(:span, "#{content_tag(:i, "", class: "icon-envelope icon-white")} #{how_many}".html_safe, class: "badge badge-important"), main_app.site_admin_notifications_url(subdomain: current_user.sites.first)
+        #link_to main_app.site_admin_notifications_url(subdomain: current_user.sites.first) do
+        #  image_tag('message-new.png', style: "width: 14px") 
+        #end
       end
     else
       if unread.include?(text)
