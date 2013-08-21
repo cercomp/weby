@@ -83,11 +83,6 @@
         <%= link_to t(".sites"), main_app.root_url(subdomain: nil) %>
         <%= link_to(t(".help"), current_settings.help_site, target: '_blank') if current_settings.help_site %>
         <%= link_to t(".about"), '#', target: '_blank', id: 'about-weby' %>
-        <!--<br />-->
-        <%# O idioma do backend é definido no cadastro do usuário %>
-        <%# admin_locales.each do |locale| %>
-          <%#= link_to flag(locale), params.merge(locale: locale.name ) %>
-        <%# end %>
       </p>
     </div>
 
