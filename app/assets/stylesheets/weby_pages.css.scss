@@ -6,8 +6,6 @@
 @import "weby/bootstrap";
 @import "bootstrap-responsive";
 
-.zone { background: #F5F5F5; }
-
 #header
 {
   padding-top: 25px;
@@ -24,14 +22,8 @@
   {
     padding-top: 14px;
     padding-bottom: 14px;
-    .avatar
-    {
-      margin-right: 10px;
-    }
-    .info
-    {
-      line-height: 15px;
-    }
+    .avatar { margin-right: 10px; }
+    .info { line-height: 15px; }
     .info.name
     {
       font-weight: bold;
@@ -46,7 +38,6 @@
         margin-right: 5px;
       }
     }
-
   }
 }
 
@@ -73,121 +64,114 @@
   margin-top: 15px;
 }
 
-.buffer-top{
-  margin-top: 7px;
-}
+// helpers
+.zone { background: #F5F5F5; }
+.buffer-top { margin-top: 7px; }
+.buffer-bottom{ margin-bottom: 7px; }
 
-.buffer-bottom{
-  margin-bottom: 7px;
-}
-
-//clipping
-
-.thumbnail
+// sites
+#sites
 {
-  height: 310px;
-  position: relative;
-  .thumbnail-header
+  .thumbnail
   {
-    padding: 5px;
-    height: 65px;
-    overflow: hidden;
-    border-bottom: 1px solid #DDD;
-    margin-bottom: 5px;
-    img
+    // media queries in sass way
+    @media (max-width: 1199px) and (min-width: 768px), (max-width: 408px) { height: 528px; }
+    height: 310px;
+    position: relative;
+    .thumbnail-header
     {
-      float: left;
-      margin-right: 5px;
-      background-color: #F0F0F0;
-    }
-    span
-    {
-      font-size: 20px;
-      a
-      {
-        vertical-align: top;
-        line-height: 15px;
-        color: #181e29;
-      }
-    }
-  }
-  .caption
-  {
-    padding: 5px;
-    .top-news
-    {
-      display: inline-block;
-      width: 142px;
-      height: 100%;
-      margin-right: 10px;
-      div
-      {
-        font-size: 18px;
-        height: 60px;
-        overflow: hidden;
-      }
-      img
-      {
-        border: 1px solid #F0F0F0;
-      }
-    }
-    .news
-    {
-      display: inline-block;
-      vertical-align: top;
-      width: 194px;
-      height: 100%;
-      margin-left: 0px;
-      list-style-type: none;
-      li
-      {
-        padding-bottom: 5px;
-        margin-bottom: 5px;
-        border-bottom: 1px dotted #DDD;
-      }
-      li:last-child
-      {
-        border-bottom: 0;
-      }
-      div
-      {
-        font-size: 16px;
-        height: 40px;
-        overflow: hidden;
-      }
+      padding: 5px;
+      height: 65px;
+      overflow: hidden;
+      border-bottom: 1px solid #DDD;
+      margin-bottom: 5px;
       img
       {
         float: left;
         margin-right: 5px;
-        border: 1px solid #F0F0F0;
+        background-color: #F0F0F0;
+      }
+      span
+      {
+        font-size: 20px;
+        a
+        {
+          vertical-align: top;
+          line-height: 15px;
+          color: #181e29;
+        }
       }
     }
-    .date{
-      font-size: 9px;
-      color: #888;
-      margin: 0;
-      padding: 0;
-      visibility: hidden;
+    .caption
+    {
+      padding: 5px;
+      .top-news
+      {
+        display: inline-block;
+        width: 142px;
+        height: 100%;
+        margin-right: 10px;
+        div
+        {
+          font-size: 18px;
+          height: 60px;
+          overflow: hidden;
+        }
+        img
+        {
+          border: 1px solid #F0F0F0;
+        }
+      }
+      .news
+      {
+        display: inline-block;
+        vertical-align: top;
+        width: 194px;
+        height: 100%;
+        margin-left: 0px;
+        list-style-type: none;
+        li
+        {
+          padding-bottom: 5px;
+          margin-bottom: 5px;
+          border-bottom: 1px dotted #DDD;
+        }
+        li:last-child { border-bottom: 0; }
+        div
+        {
+          font-size: 16px;
+          height: 40px;
+          overflow: hidden;
+        }
+        img
+        {
+          float: left;
+          margin-right: 5px;
+          border: 1px solid #F0F0F0;
+        }
+      }
+      .date
+      {
+        font-size: 9px;
+        color: #888;
+        margin: 0;
+        padding: 0;
+        visibility: hidden;
+      }
+      li:hover .date,
+      .top-news:hover .date { visibility: visible; }
     }
-    li:hover .date,.top-news:hover .date{
-      visibility: visible;
+    .footer-link
+    {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      font-size: 30px;
+      line-height: 30px;
     }
-  }
-  .footer-link{
-    position: absolute;
-    bottom: 8px;
-    right: 8px;
-    font-size: 30px;
-    line-height: 30px;
   }
 }
 
-@media (max-width: 1199px) and (min-width: 768px), (max-width: 408px) {
-  .thumbnail
-  {
-    height: 528px;
-  }
-}
 
 // legacy
 .pagination select
