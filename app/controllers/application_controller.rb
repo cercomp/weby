@@ -257,7 +257,7 @@ class ApplicationController < ActionController::Base
   def set_global_vars
     @site = current_site
 
-    Weby::Cache.request[:domain] = request.domain
+    Weby::Cache.request[:domain] = request.domain || request.ip
     Weby::Cache.request[:subdomain] = request.subdomain
 
     params[:per_page] ||= per_page_default
