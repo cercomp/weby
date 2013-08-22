@@ -42,6 +42,24 @@ class Migrate_this2weby
     select_sites = "SELECT * FROM sites #{@param} ORDER BY site_id"
     this_sites = @con_this.exec(select_sites)
 
+    ## pegar os id's das tabelas que serão atualizadas depois, para atualizar só o que inserir
+    select_menu_items = "SELECT max(id) FROM menu_items"
+    id_weby_menu_items = @con_weby.exec(select_menu_items)
+
+    select_menu_items = "SELECT max(id)FROM menu_item_i18ns"
+    id_weby_menu_items_i18ns = @con_weby.exec(select_menu_items)
+
+    select_pages = "SELECT max(id) FROM pages"
+    id_weby_pages = @con_weby.exec(select_pages)
+
+    select_pages = "SELECT max(id) FROM page_i18ns"
+    id_weby_pages_i18ns = @con_weby.exec(select_pages)
+
+    select_menu_items = ""
+    select_pages = ""
+
+    puts "ID's: #{id_weby_menu_items[0]['max']}, #{id_weby_menu_items_i18ns[0]['max']}, #{id_weby_pages[0]['max']}, #{id_weby_pages_i18ns[0]['max']} "
+    
 		# Inserindo o que futuramente seria o site da UFG
     #insert_UFG = "INSERT INTO sites (name,url,description,footer,body_width,menu_dropdown,theme) VALUES ('ufg','www.ufg.br','Portal UFG','','960',true,'this2')"
     #@con_weby.exec(insert_UFG)
@@ -492,47 +510,47 @@ EOF
       
     end
     this_sites.clear()
-
+    
     # Tratando links de weby.menus
-    select_menu_items = "SELECT id,url FROM menu_items"
+    select_menu_items = "SELECT id,url FROM menu_items where id > #{id_weby_menu_items[0]['max']}"
     puts "\t\tSELECIONANDO todos os menus para tratamento de caracteres\n" if @verbose
     weby_menu_items = @con_weby.exec(select_menu_items)
     weby_menu_items.each do |weby_menu_item|
       update_menu_items = "UPDATE menu_items SET url='#{treat(weby_menu_item['url'])}' WHERE id='#{weby_menu_item['id']}'"
-      puts "\t\t\tATUALIZANDO id:(#{weby_menu_item['id']})\n" if @verbose
+      puts "\t\t\tATUALIZANDO menu_items id:(#{weby_menu_item['id']})\n" if @verbose
       @con_weby.exec(update_menu_items)      
     end
 
     # Tratando links de weby.menus
-    select_menu_items = "SELECT id,title FROM menu_item_i18ns"
+    select_menu_items = "SELECT id,title FROM menu_item_i18ns where id > #{id_weby_menu_items_i18ns[0]['max']}"
     puts "\t\tSELECIONANDO todos os menus para tratamento de caracteres\n" if @verbose
     weby_menu_items = @con_weby.exec(select_menu_items)
     weby_menu_items.each do |weby_menu_item|
       update_menu_items = "UPDATE menu_item_i18ns SET title='#{treat(weby_menu_item['title'])}' WHERE id='#{weby_menu_item['id']}'"
-      puts "\t\t\tATUALIZANDO id:(#{weby_menu_item['id']})\n" if @verbose
+      puts "\t\t\tATUALIZANDO menu_items_i18ns id:(#{weby_menu_item['id']})\n" if @verbose
       @con_weby.exec(update_menu_items)
     end
 
     weby_menu_items.clear()
 
     # Tratando páginas de weby.pages
-    select_pages = "SELECT id,url,source FROM pages"
+    select_pages = "SELECT id,url,source FROM pages where id > #{id_weby_pages[0]['max']}"
     puts "\t\tSELECIONANDO todas as páginas para tratamento de caracteres\n" if @verbose
     weby_pages = @con_weby.exec(select_pages)
     weby_pages.each do |weby_page|
       update_page = "UPDATE pages SET url='#{treat(weby_page['url'])}',source='#{treat(weby_page['source'])}' WHERE id='#{weby_page['id']}'"
-      puts "\t\t\tATUALIZANDO id:(#{weby_page['id']})\n" if @verbose
+      puts "\t\t\tATUALIZANDO pages id:(#{weby_page['id']})\n" if @verbose
       @con_weby.exec(update_page)
     end
     weby_pages.clear()
     
     # Tratando páginas de weby.page_i18ns
-    select_pages = "SELECT id,title,summary,text FROM page_i18ns"
+    select_pages = "SELECT id,title,summary,text FROM page_i18ns where id > #{id_weby_pages_i18ns[0]['max']}"
     puts "\t\tSELECIONANDO todas as páginas internacionalizáveis para tratamento de caracteres\n" if @verbose
     weby_pages = @con_weby.exec(select_pages)
     weby_pages.each do |weby_page|
       update_page = "UPDATE page_i18ns SET title='#{treat(weby_page['title'])}',summary='#{treat(weby_page['summary'])}',text='#{treat(weby_page['text'])}' WHERE id='#{weby_page['id']}'"
-      puts "\t\t\tATUALIZANDO id:(#{weby_page['id']})\n" if @verbose
+      puts "\t\t\tATUALIZANDO page_i18ns id:(#{weby_page['id']})\n" if @verbose
       @con_weby.exec(update_page)
     end
     
@@ -646,8 +664,8 @@ EOF
       # src="http://www2.catalao.ufg.br/uploads/files/3/image/GaleriaFotos/img1.jpg"
       if string.match(/['"]http.*\/uploads\/.*?([0-9]+).*\/(.*?)['"]/)
           string.gsub!(/['"]http.*\/uploads\/.*?([0-9]+).*\/(.*?)['"]/){|x| "'/uploads/#{@convar[$1]['weby']}/original_#{$2}'" if @convar[$1] }      
-      elsif string.match(/.*\/uploads\/.*?([0-9]+)\/.*\/(.*?)/)
-        string.gsub!(/.*\/uploads\/.*?([0-9]+)\/.*\/(.*?)/){|x| "/uploads/#{@convar[$1]['weby']}/original_#{$2}" if @convar[$1] }      
+      elsif string.match(/.*\/uploads\/.*?([0-9]+).*\/(.*?)/)
+        string.gsub!(/.*\/uploads\/.*?([0-9]+).*\/(.*?)/){|x| "/uploads/#{@convar[$1]['weby']}/original_#{$2}" if @convar[$1] }      
       end
             
       if string.match(/javascript:mostrar_pagina.*?([0-9]+).*?([0-9]+).*?/) 
