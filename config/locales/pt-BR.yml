@@ -242,7 +242,7 @@ pt-BR:
   authlogic:
     error_messages:
       login_blank:                              " deve ser preenchido "
-      login_not_found:                          " Inválido "
+      login_not_found:                          " inválido "
       login_invalid:                            " deve conter apenas letras, números, ponto, - e  _ "
       consecutive_failed_logins_limit_exceeded: " Você excedeu o número permitido de tentativas de login  "
       email_invalid:                            " Não parece um email válido "
@@ -251,7 +251,7 @@ pt-BR:
       not_approved:                             " A conta não foi aprovada "
       no_authentication_details:                " Não há detalhes de autenticação "
       password_blank:                           " deve ser preenchido "
-      password_invalid:                         " Inválido "
+      password_invalid:                         " inválido "
     attributes:
       user_session:
         login:       " Nome de usuário "

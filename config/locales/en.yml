@@ -235,7 +235,7 @@ en:
   authlogic:
     error_messages:
       login_blank:                              " must be filled "
-      login_not_found:                          " Not valid  "
+      login_not_found:                          " not valid  "
       login_invalid:                            " Should use letters, numbers, period, - and _ please. "
       consecutive_failed_logins_limit_exceeded: " You have exceeded the allowed number of login attempts. "
       email_invalid:                            " It does not seem a valid email address. "
@@ -244,7 +244,7 @@ en:
       not_approved:                             " The account was not approved "
       no_authentication_details:                " There is no authentication details "
       password_blank:                           " must be filled "
-      password_invalid:                         " Not valed "
+      password_invalid:                         " not valid "
     attributes:
       user_session:
         login:       " User name "
