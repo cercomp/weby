@@ -1,0 +1,35 @@
+<div id="profile">
+<%= simple_form_for @profile, url: profile_path, html: { class: 'form-big' } do |f| %>
+  <div class="row">
+    <div class="span3">
+      <div class="avatar">
+        <a href="http://pt.gravatar.com/emails/" target="_blank">
+          <img src="http://www.gravatar.com/avatar/<%= Digest::MD5.hexdigest(@profile.email) %>?s=120&d=mm" class="img-circle">
+        </a>
+      </div>
+      <div class="avatar-info">
+        <%= t(".gravatar-info") %><br/>
+        <b><%= t(".gravatar-important") %></b>
+      </div>
+      <div class="actions">
+        <%= f.button :submit, class: 'btn-primary btn-block', disable_with: t("please_wait") %>
+        <%= link_to t("back"), profile_path(@profile.login), class: "btn btn-block" %>
+      </div>
+    </div>
+    <div class="span6">
+        <%= f.show_errors %>
+        <%= f.input :first_name, input_html: { class: 'input-block-level' } %>
+        <%= f.input :last_name, input_html: { class: 'input-block-level' } %>
+        <%= f.input :login, input_html: { class: 'input-block-level' } %>
+        <%= f.input :email, as: :email, input_html: { class: 'input-block-level' }  %>
+        <%= f.input :password, label: t(".password-change"), hint: t("lower_upper_number_chars"), as: :password,
+          input_html: { class: 'input-block-level', pattern: '(?=.*\d)(?=.*[A-Z])(?=.*[a-z])^.{4,}$' } %>
+        <%= f.input :password_confirmation, as: :password, input_html: { class: 'input-block-level' } %>
+        <%= f.input :phone, input_html: {size: 20, maxlength: 20}, input_html: { class: 'input-block-level' } %>
+        <%= f.input :mobile, input_html: {size: 20, maxlength: 20}, as: :tel, input_html: { class: 'input-block-level' } %>
+        <%= f.input :locale_id, as: :radio, hint: t(".locale-hint"),
+          collection: admin_locales.map{|l| [image_tag("flags/24/#{l.flag}", title: t(l.name)), l.id] } %>
+    </div>
+  </div>
+<% end %>
+</div>

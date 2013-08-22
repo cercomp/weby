@@ -4,7 +4,7 @@
   </div>
 <% else %>
   <h3><%= t('.my-sites') %></h3>
-  <ul class="thumbnails">
+  <ul id="sites" class="thumbnails">
     <% @my_sites.each do |site| %>
       <li class="span4">
         <%= render partial: 'site', locals: {site: site} %>

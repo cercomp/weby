@@ -80,7 +80,8 @@ module RepositoryHelper
   end
 
   def link_viewer
-    raw link_to(image_viewer, @options[:url] || @file.archive.url, target: @options[:target], data: @options[:data])
+    raw link_to(image_viewer, @options[:url] || @file.archive.url, target: @options[:target],
+                data: @options[:data], class: @options[:link_class])
   end
 
   def image_viewer
@@ -90,6 +91,7 @@ module RepositoryHelper
     size = style_for_dimension @width, @height
     img_opt[:style] = @options[:style] ? "#{@options[:style]}#{size}" : size
     img_opt[:id] = @options[:id] if @options[:id]
+    img_opt[:class] = @options[:image_class] if @options[:image_class]
     begin
       image = image_tag(@thumbnail, img_opt)
     rescue
@@ -160,10 +162,15 @@ module RepositoryHelper
 
   def news_image(file, format, width = nil, height = nil, options = {})
     if file.nil?
-     link_to image_tag("weby-filler.png", width: width, height: height), options[:url]
+      img_opt = {}
+      size = style_for_dimension width, height
+      img_opt[:style] = options[:style] ? "#{options[:style]}#{size}" : size
+      img_opt[:id] = options[:id] if options[:id]
+      img_opt[:class] = options[:image_class] if options[:image_class]
+
+      link_to image_tag("weby-filler.png", img_opt), options[:url]
     else
       weby_file_view(file, format, width, height, options)
     end
   end
 end
-
