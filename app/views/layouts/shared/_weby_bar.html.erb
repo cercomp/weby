@@ -11,10 +11,10 @@
       <%= link_to t(".about"), '#', target: '_blank', class: 'left', id: 'about-weby' %>
     </div>
     <div class="user pull-right">
-      <img src="http://www.gravatar.com/avatar/<%= Digest::MD5.hexdigest(current_user.email) %>?s=42"
+      <img src="http://www.gravatar.com/avatar/<%= Digest::MD5.hexdigest(current_user.email) %>?s=42&d=mm"
         class="pull-right">
       <div class="info pull-right">
-        <%= link_to current_user.first_name, main_app.admin_user_url(current_user, subdomain: nil), class: 'clean' %>
+        <%= link_to current_user.first_name, main_app.profile_url(current_user.login, subdomain: current_site), class: 'clean' %>
         <br>
         <%= link_to main_app.site_admin_url(subdomain: nil) do %>
           <i class="icon-cog"></i>

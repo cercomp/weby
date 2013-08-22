@@ -1,0 +1,40 @@
+<div id="profile">
+  <div class="row">
+    <div class="span3">
+      <div class="avatar">
+        <img src="http://www.gravatar.com/avatar/<%= Digest::MD5.hexdigest(@profile.email) %>?s=120&d=mm" class="img-circle">
+      </div>
+      <div class="info">
+        <%= @profile.first_name %><br />
+        <span class="last-name"><%= @profile.last_name %></span>
+      </div>
+      <% if is_owner? %>
+        <div class="actions">
+          <%= link_to t('.edit-profile'), edit_profile_path(@profile.login),
+            class: 'btn btn-primary btn-block' %>
+        </div>
+      <% end %>
+    </div>
+    <div class="span9">
+      <div class="heading"><%= t('.latest-news-published') %></div>
+      <% if @news.blank? %>
+        <div class="alert">
+          Nenhuma noticia publicada por <%= @profile %>
+        </div>
+      <% else %>
+        <% @news.each do |new| %>
+          <div class="media thumbnail">
+            <div class="pull-left">
+              <%= news_image(new.image, :thumb, 100, nil, {as: "link", url: site_page_url(new, subdomain: new.owner), image_class:'img-circle'}) %>
+            </div>
+            <div class="media-body">
+              <div class="title"><%= new.title %></div>
+              <div class="description">Publicado no site <%= new.owner.title %>, em <%= l(new.created_at, format: :short) %></div>
+              <div class="summary"><%= new.summary.html_safe %></div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

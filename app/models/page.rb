@@ -49,6 +49,9 @@ class Page < ActiveRecord::Base
       where([query,values])
   }
 
+  scope :by_author, lambda { |id|
+    where(author_id: id)
+  }
 
   def event?
     type == 'Event'

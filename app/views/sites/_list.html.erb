@@ -3,7 +3,7 @@
     <%= t(".no-site-found") %>
   </div>
 <% else %>
-  <ul class="thumbnails">
+  <ul id="sites" class="thumbnails">
     <% @sites.each do |site| %>
       <li class="span4">
         <%= render partial: 'site', locals: {site: site} %>

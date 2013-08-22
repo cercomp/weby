@@ -1,7 +1,7 @@
 Weby::Application.routes.draw do
   constraints(Weby::Subdomain) do
+    # Mount all engines here
     constraints(Weby::Extensions) do
-      # Mount all engines here
       mount Feedback::Engine, :at => 'feedback'
       mount Acadufg::Engine, :at => 'acadufg'
     end
@@ -138,6 +138,9 @@ Weby::Application.routes.draw do
       match "sites/page/:page" => "sites#index"
     end
   end
+
+  # routes to profiles
+  resources :profiles, only: [:show, :edit, :update]
 
   # routes to session
   match "logout"  => "session#logout"
