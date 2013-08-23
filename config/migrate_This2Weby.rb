@@ -42,6 +42,7 @@ class Migrate_this2weby
     select_sites = "SELECT * FROM sites #{@param} ORDER BY site_id"
     this_sites = @con_this.exec(select_sites)
 
+    
     ## pegar os id's das tabelas que serão atualizadas depois, para atualizar só o que inserir
     select_menu_items = "SELECT max(id) FROM menu_items"
     id_weby_menu_items = @con_weby.exec(select_menu_items)
@@ -57,7 +58,7 @@ class Migrate_this2weby
 
     select_menu_items = ""
     select_pages = ""
-
+            
     puts "ID's: #{id_weby_menu_items[0]['max']}, #{id_weby_menu_items_i18ns[0]['max']}, #{id_weby_pages[0]['max']}, #{id_weby_pages_i18ns[0]['max']} "
     
 		# Inserindo o que futuramente seria o site da UFG
@@ -512,8 +513,9 @@ EOF
     this_sites.clear()
     
     # Tratando links de weby.menus
-    select_menu_items = "SELECT id,url FROM menu_items where id > #{id_weby_menu_items[0]['max']}"
+    select_menu_items = "SELECT id,url FROM menu_items #{id_weby_menu_items[0]['max'] ?  "where id > #{id_weby_menu_items[0]['max']}" : ""}"
     puts "\t\tSELECIONANDO todos os menus para tratamento de caracteres\n" if @verbose
+    puts select_menu_items
     weby_menu_items = @con_weby.exec(select_menu_items)
     weby_menu_items.each do |weby_menu_item|
       update_menu_items = "UPDATE menu_items SET url='#{treat(weby_menu_item['url'])}' WHERE id='#{weby_menu_item['id']}'"
@@ -522,7 +524,7 @@ EOF
     end
 
     # Tratando links de weby.menus
-    select_menu_items = "SELECT id,title FROM menu_item_i18ns where id > #{id_weby_menu_items_i18ns[0]['max']}"
+    select_menu_items = "SELECT id,title FROM menu_item_i18ns #{id_weby_menu_items_i18ns[0]['max'] ? "where id > #{id_weby_menu_items_i18ns[0]['max']}" : ""}"
     puts "\t\tSELECIONANDO todos os menus para tratamento de caracteres\n" if @verbose
     weby_menu_items = @con_weby.exec(select_menu_items)
     weby_menu_items.each do |weby_menu_item|
@@ -534,7 +536,7 @@ EOF
     weby_menu_items.clear()
 
     # Tratando páginas de weby.pages
-    select_pages = "SELECT id,url,source FROM pages where id > #{id_weby_pages[0]['max']}"
+    select_pages = "SELECT id,url,source FROM pages #{id_weby_pages[0]['max'] ?  "where id > #{id_weby_pages[0]['max']}" : ""}"
     puts "\t\tSELECIONANDO todas as páginas para tratamento de caracteres\n" if @verbose
     weby_pages = @con_weby.exec(select_pages)
     weby_pages.each do |weby_page|
@@ -545,7 +547,7 @@ EOF
     weby_pages.clear()
     
     # Tratando páginas de weby.page_i18ns
-    select_pages = "SELECT id,title,summary,text FROM page_i18ns where id > #{id_weby_pages_i18ns[0]['max']}"
+    select_pages = "SELECT id,title,summary,text FROM page_i18ns #{id_weby_pages_i18ns[0]['max'] ?  "where id > #{id_weby_pages_i18ns[0]['max']}" : ""}"
     puts "\t\tSELECIONANDO todas as páginas internacionalizáveis para tratamento de caracteres\n" if @verbose
     weby_pages = @con_weby.exec(select_pages)
     weby_pages.each do |weby_page|
@@ -663,11 +665,11 @@ EOF
     unless string.nil?
       # src="http://www2.catalao.ufg.br/uploads/files/3/image/GaleriaFotos/img1.jpg"
       if string.match(/['"]http.*\/uploads\/.*?([0-9]+).*\/(.*?)['"]/)
-          string.gsub!(/['"]http.*\/uploads\/.*?([0-9]+).*\/(.*?)['"]/){|x| "'/uploads/#{@convar[$1]['weby']}/original_#{$2}'" if @convar[$1] }      
+          string.gsub!(/['"]http.*\/uploads\/.*?([0-9]+).*\/(.*?)['"]/){|x| "'/uploads/#{@convar[$1]['weby']}/original_#{$2}'" if @convar[$1] }
       elsif string.match(/.*\/uploads\/.*?([0-9]+).*\/(.*?)/)
-        string.gsub!(/.*\/uploads\/.*?([0-9]+).*\/(.*?)/){|x| "/uploads/#{@convar[$1]['weby']}/original_#{$2}" if @convar[$1] }      
+        string.gsub!(/.*\/uploads\/.*?([0-9]+).*\/(.*?)/){|x| "/uploads/#{@convar[$1]['weby']}/original_#{$2}" if @convar[$1] }
       end
-            
+        
       if string.match(/javascript:mostrar_pagina.*?([0-9]+).*?([0-9]+).*?/) 
         string.gsub!(/javascript:mostrar_pagina.*?([0-9]+).*?([0-9]+).*?;/){|x| "'/pages/#{@convar[$2]["paginas"][$1]}'" if @convar[$2] }
       end 
