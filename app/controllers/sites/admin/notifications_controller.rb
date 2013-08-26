@@ -44,9 +44,9 @@ class Sites::Admin::NotificationsController < ApplicationController
 
     case text
     when "all"
-      user.update_attribute(:unread_notifications, "$")
+      user.update_attribute(:unread_notifications, "")
     else
-      unread = unread.gsub "#{text}$", ""
+      unread = unread.gsub "#{text},", ""
       user.update_attribute(:unread_notifications, unread)
     end
   end

@@ -11,8 +11,6 @@ class User < ActiveRecord::Base
 
   before_save { |user| user.email.downcase! }
 
-  after_create :set_notifications
-
   has_and_belongs_to_many :roles
   belongs_to :locale
 
@@ -114,13 +112,5 @@ class User < ActiveRecord::Base
   # Pega os papeis globais do usuário
   def global_roles
     self.roles.where(site_id: nil)
-  end
-
-  def set_notifications
-    unread = "$"
-    Notification.all.each do |notification|
-      unread += "#{notification.id}$"
-    end
-    self.update_attribute(:unread_notifications, unread)
   end
 end

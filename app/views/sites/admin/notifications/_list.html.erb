@@ -16,7 +16,7 @@
     <tbody>
       <% @notifications.each do |notification| %>
         <tr>
-          <td><%= has_unread_notifications("$#{notification.id}$") %></td>
+          <td><%= has_unread_notifications("#{notification.id}") %></td>
           <td><%= link_to notification.title, admin_notification_path(notification.id) %></td>
           <td><%= notification.body.to_s[0..50] %></td>
           <td><%= l(notification.created_at, :format => :short) %></td>

@@ -33,8 +33,8 @@ class Admin::NotificationsController < ApplicationController
       render :action => :new
     end
     User.all.each do |user|
-      unread = user.unread_notifications || "$"
-      unread += "#{@notification.id}$"
+      unread = user.unread_notifications || ""
+      unread += "#{@notification.id},"
       user.update_attribute(:unread_notifications, unread) unless user.id == 1
     end
   end
