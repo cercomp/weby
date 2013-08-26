@@ -5,13 +5,6 @@
   </ul>
 
   <div class='tab-content form-horizontal'>
-    <div class="control-group select optional">
-      <label class="select optional control-label" for="stats_site"><%= t('.site') %></label>
-      <div class="controls">
-        <%= select_tag :site_id, options_for_select(Site.all.map{|site| [site.title  || site.name, site.id]}), include_blank: true %>
-      </div>
-    </div>
-
     <div class="tab-pane active" id="day">
       <div class="control-group select optional">
         <label class="select optional control-label" for="stats_site"><%= t('.month') %></label>

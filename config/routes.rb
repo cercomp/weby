@@ -40,6 +40,8 @@ Weby::Application.routes.draw do
       match "repositories/page/:page" => "repositories#index"
       match "pages/page/:page" => "pages#index"
 
+      get "stats" => "statistics#index"
+
       resources :notifications, only: [:index, :show]
       resources :banners do
         member do
@@ -106,8 +108,6 @@ Weby::Application.routes.draw do
     #rota para paginação
     match "sites/page/:page" => "sites#index", :as => :sites
 
-    match "mysites" => "sites#index", :my_sites => true
-
     match "/admin" => "application#admin"
 
     namespace :admin do
@@ -131,7 +131,7 @@ Weby::Application.routes.draw do
       resources :sites, except: [:show]
       resources :notifications
 
-      get "stats" => "statistics#index", :as => :stats
+      get "stats" => "statistics#index"
 
       # route to paginate
       match "users/page/:page" => "users#index"

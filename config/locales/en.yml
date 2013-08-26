@@ -190,6 +190,7 @@ en:
       default: " %m-%d-%Y"
       short:   " %b %d "
       long:    " %B %d, %Y "
+      monthly: " %b-%y "
 
     day_names: [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday]
     abbr_day_names: [Sun, Mon, Tue, Wed, Thur, Fri, Sat]

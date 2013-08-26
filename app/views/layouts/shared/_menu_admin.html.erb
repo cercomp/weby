@@ -13,6 +13,7 @@
         <%= menu_item_to t(".components"), main_app.site_admin_components_path if check_permission(Sites::Admin::ComponentsController, [:index])%>
         <%= menu_item_to t(".styles"), main_app.site_admin_styles_path if check_permission(Sites::Admin::StylesController, [:index])%>
         <%= menu_item_to t(".notifications"), main_app.site_admin_notifications_path if check_permission(Sites::Admin::NotificationsController, [:index]) %>
+        <%= menu_item_to t(".statistics"), main_app.site_admin_stats_path if check_permission(Sites::Admin::StatisticsController, [:index])%>
         <%= menu_item_to t(".settings"), main_app.edit_site_admin_path if check_permission(SitesController, [:edit]) %>
         <div class="nav-header">
           <%= menu_item_to t(".contents"), main_app.site_admin_path %>

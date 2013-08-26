@@ -91,19 +91,19 @@ rights:
       action: toggle_field
   repositories:
     index:
-      name: Listar Repositório
+      name: Listar Arquivos
       action: index
     show:
-      name: Ver Repositório
+      name: Ver Arquivo
       action: show
     edit:
-      name: Editar Repositório
+      name: Editar Arquivo
       action: edit update
     destroy:
-      name: Excluir Repositório
+      name: Excluir Arquivo
       action: destroy
     new:
-      name: Criar Repositório
+      name: Enviar Arquivo
       action: new create
   styles:
     index:
@@ -176,3 +176,7 @@ rights:
     show:
       name: Ver Notificação
       action: show
+  statistics:
+    index:
+      name: Ver Estatísticas
+      action: index

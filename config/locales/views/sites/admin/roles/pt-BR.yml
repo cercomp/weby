@@ -12,13 +12,16 @@ pt-BR:
           extensions:           " Extensões "
           menu_items:           " Itens de Menu "
           menus:                " Menus "
+          notifications:        " Notificações "
           pages:                " Páginas "
-          repositorys:          " Repositório "
+          repositories:          " Repositório "
           repositories_searchs: " Buscas "
           rights:               " Direitos "
           roles:                " Papéis "
+          statistics:           " Estatísticas "
           styles:               " Estilos "
           users:                " Usuários "
+          none_role:            " Nenhum papel "
         new:
           roles_permissions:    " Permissões e Papéis "
         edit:

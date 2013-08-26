@@ -1,7 +1,7 @@
-class Admin::StatisticsController < ApplicationController
-
+class Sites::Admin::StatisticsController < ApplicationController
+  
   respond_to :html, :json
-
+  
   def index
     respond_to do |format|
       format.html do
@@ -16,9 +16,9 @@ class Admin::StatisticsController < ApplicationController
       format.json do
         case params[:type]
         when 'day'
-          render json: View.daily_stats(params[:filter_month].split('/')[1], params[:filter_month].split('/')[0], params[:site_id])
+          render json: View.daily_stats(params[:filter_month].split('/')[1], params[:filter_month].split('/')[0], current_site.id)
         when 'month'
-          render json: View.monthly_stats(params[:filter_year], params[:site_id])
+          render json: View.monthly_stats(params[:filter_year], current_site.id)
         end
       end
     end

@@ -86,6 +86,8 @@ GEM
       climate_control (>= 0.0.3, < 1.0)
     coderay (1.0.9)
     columnize (0.3.6)
+    d3js-rails (3.1.6)
+      railties (>= 3.0, < 5.0)
     daemons (1.1.9)
     debug_inspector (0.0.2)
     debugger (1.6.0)
@@ -222,6 +224,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass (= 2.3.0.1)
+  d3js-rails
   debugger (= 1.6.0)
   dispatcher (= 0.0.1)
   factory_girl_rails (= 1.7.0)

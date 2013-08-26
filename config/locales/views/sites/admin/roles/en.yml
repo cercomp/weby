@@ -12,13 +12,16 @@ en:
           extensions:           " Extensions "
           menu_items:           " Menu Items "
           menus:                " Menus "
+          notifications:        " Notifications "
           pages:                " Pages "
-          repositorys:          " Repositories "
+          repositories:          " Repositories "
           repositories_searchs: " Searches "
           rights:               " Rights "
           roles:                " Roles "
+          statistics:           " Statistics "
           styles:               " Styles "
           users:                " Users "
+          none_role:            " No roles. "
         new:
           roles_permissions:    " Roles and Permissions "
         edit:

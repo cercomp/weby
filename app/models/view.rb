@@ -4,21 +4,23 @@ class View < ActiveRecord::Base
   belongs_to :user
   attr_accessible :ip_address, :query_string, :referer, :user_agent, :request_path, :session_hash, :viewable, :user
 
-  def self.parsed_json site_id=nil, period=[Time.now - 14.days, Time.now]
-    ini_date, fin_date = period[0].to_date, period[1].to_date
+  def self.daily_stats year, month, site_id=nil
+    filter_month = ["extract(month from created_at) = ?", month]
+    filter_site = {site_id: site_id} if site_id.present?
 
-    filter = {created_at: ini_date..fin_date + 1.day}
-    filter[:site_id] = site_id if site_id.present?
+    counts = where(filter_month).where(filter_site).group("date(created_at)").count
 
-    database = where(filter).group("date(created_at)").count
+    (Date.new(year.to_i, month.to_i)..Date.new(year.to_i, month.to_i+1)-1.days).
+      map{|day| {date: day.strftime('%Y-%m-%d'), views: counts[day.strftime('%Y-%m-%d')].to_i} }.to_json
+  end
 
-    dfomrat = '%Y-%m-%d'
-    result = {}
-    ini_date.upto fin_date do |date|
-      result[date.strftime(dfomrat)] = database[date.strftime(dfomrat)].to_i
-    end
+  def self.monthly_stats year, site_id=nil
+    filter_year = ["extract(year from created_at) = ?", year]
+    filter_site = {site_id: site_id} if site_id.present?
 
-    result.map{ |key, value| {date: key, views: value} }.to_json
+    counts = where(filter_year).where(filter_site).group("extract(month from created_at)").count
+
+    (1..12).map{ |month| {month: month, views: counts[month.to_s].to_i} }.to_json
   end
 
 end

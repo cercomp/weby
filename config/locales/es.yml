@@ -191,6 +191,7 @@ es:
       default: " %d-%m-%Y "
       short:   " %b %d "
       long:    " %d de %B de %Y "
+      monthly: " %b/%y "
 
     day_names: [Domingo, Lunes, Martes, Miércoles, Jueves, Viernes, Sábado]
     abbr_day_names: [Dom, Lun, Mar, Mie, Jue, Vie, Sab]

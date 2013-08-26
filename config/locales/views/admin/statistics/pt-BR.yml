@@ -4,3 +4,5 @@ pt-BR:
       index:
         generate:    " Gerar "
         site:        " Site "
+        month:       " Mês "
+        year:        " Ano "

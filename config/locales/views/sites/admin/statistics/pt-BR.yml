@@ -1,0 +1,9 @@
+pt-BR:
+  sites:
+    admin:
+      statistics:
+        index:
+          generate:    " Gerar "
+          site:        " Site "
+          month:       " Mês "
+          year:        " Ano "

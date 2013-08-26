@@ -1,0 +1,9 @@
+en:
+  sites:
+    admin:
+      statistics:
+        index:
+          generate:    " Generate "
+          site:        " Site "
+          month:       " Month "
+          year:        " Year "
