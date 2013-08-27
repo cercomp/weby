@@ -3,7 +3,13 @@ pt-BR:
     admin:
       statistics:
         index:
-          generate:    " Gerar "
-          site:        " Site "
-          month:       " Mês "
-          year:        " Ano "
+          generate:      " Gerar "
+          site:          " Site "
+          month:         " Mês "
+          year:          " Ano "
+          views:         " Visualizações "
+          visitors:      " Visitantes "
+          uniq_visitors: " Visitantes Únicos "
+          metric:        " Métrica "
+          daily:         " Diária "
+          monthly:       " Mensal "

@@ -1,10 +1,17 @@
 <div class="tabbable">
   <ul class="nav nav-tabs" id="tabs">
-    <li class="active"><%= link_to('Diária', '#day', data: {toggle: "tab"}) %></li>
-    <li class=""><%= link_to('Mensal', '#month', data: {toggle: "tab"}) %></li>
+    <li class="active"><%= link_to(t('.daily'), '#day', data: {toggle: "tab"}) %></li>
+    <li class=""><%= link_to(t('.monthly'), '#month', data: {toggle: "tab"}) %></li>
   </ul>
 
   <div class='tab-content form-horizontal'>
+    <div class="control-group select optional">
+      <label class="select optional control-label" for="stats_site"><%= t('.metric') %></label>
+      <div class="controls">
+        <%= metrics_select_tag %>
+      </div>
+    </div>
+
     <div class="tab-pane active" id="day">
       <div class="control-group select optional">
         <label class="select optional control-label" for="stats_site"><%= t('.month') %></label>
@@ -32,34 +39,5 @@
   <%= link_to t("back"), :back, class: "btn" %>
 </div>
 
-<% content_for :stylesheets do %>
-  <style>
-    .stats {
-      font: 13px sans-serif;
-    }
-
-    .axis path,
-    .axis line {
-      fill: none;
-      stroke: #000;
-      shape-rendering: crispEdges;
-    }
-
-    .bar {
-      fill: steelblue;
-    }
-
-    .line {
-      fill: none;
-      stroke: steelblue;
-      stroke-width: 1.5px;
-    }
-
-    .stats-label{
-      font-size: 15px;
-      border: 1px solid #DDD;
-    }
-
-  </style>
-<% end %>
+<% content_for :stylesheets, statistics_style %>
 <% content_for :javascripts, javascript_include_tag('stats') %>

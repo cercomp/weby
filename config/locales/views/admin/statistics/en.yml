@@ -2,7 +2,13 @@ en:
   admin:
     statistics:
       index:
-        generate:    " Generate "
-        site:        " Site "
-        month:       " Month "
-        year:        " Year "
+        generate:      " Generate "
+        site:          " Site "
+        month:         " Month "
+        year:          " Year "
+        views:         " Views "
+        visitors:      " Visitors "
+        uniq_visitors: " Unique Visitors "
+        metric:        " Metric "
+        daily:         " Daily "
+        monthly:       " Monthly "

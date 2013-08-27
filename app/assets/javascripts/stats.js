@@ -5,8 +5,8 @@ var niceDate = function(date){
   return parts[2]+"/"+parts[1]+"/"+parts[0];
 }
 
-var margin = {top: 20, right: 20, bottom: 20, left:40},
-    width = 770,
+var margin = {top: 20, right: 20, bottom: 20, left:50},
+    width = 760,
     height = 300;
 
 $('.generate').click(function(){
@@ -14,6 +14,7 @@ $('.generate').click(function(){
       type: $('.tab-pane.active')[0].id,
       filter_month: $('#filter_month').val(),
       filter_year: $('#filter_year').val(),
+      metric: $('#metric').val(),
       site_id: $('#site_id').val()
   }
 
@@ -108,9 +109,16 @@ function monthly_chart(data){
 
     svg.append("g")
         .attr("class", "y axis")
-        .call(yAxis);
+        .call(yAxis)
+      .append('text')
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0 - margin.left)
+        .attr("x",0 - (height / 2))
+        .attr("dy", "1em")
+        .style("text-anchor", "middle")
+        .text($('#metric option:selected').text());
 
-    $('#monthly_stats').prepend('<div>'+$('#site_id option:selected').text()+'</div><div>Total de acessos em '+($('#filter_year').val())+': <b>'+d3.sum(data, function(d){ return d.views; })+'</b></div>')
+    $('#monthly_stats').prepend('<div class="pull-right">Total: <b>'+d3.sum(data, function(d){ return d.views; })+'</b></div><div>'+$('#site_id option:selected').text()+'</div>')
     .slideDown();
 }
 
@@ -151,7 +159,14 @@ function daily_chart(data){
 
     svg.append("g")
         .attr("class", "y axis")
-        .call(yAxis);
+        .call(yAxis)
+      .append('text')
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0 - margin.left)
+        .attr("x",0 - (height / 2))
+        .attr("dy", "1em")
+        .style("text-anchor", "middle")
+        .text($('#metric option:selected').text());
 
     svg.append("path")
         .datum(data)
@@ -176,6 +191,6 @@ function daily_chart(data){
         .attr('class', 'stats-label')
         .text(function(d) { return d.views; });
 
-    $('#daily_stats').prepend('<div>'+$('#site_id option:selected').text()+'</div><div>Total de acessos no período '+niceDate(data[0].date)+' a '+niceDate(data[data.length-1].date)+': <b>'+d3.sum(data, function(d){ return d.views; })+'</b></div>')
+    $('#daily_stats').prepend('<div class="pull-right">Total: <b>'+d3.sum(data, function(d){ return d.views; })+'</b></div><div>'+$('#site_id option:selected').text()+'</div>')
     .slideDown();
 }
