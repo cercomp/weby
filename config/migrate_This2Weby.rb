@@ -8,7 +8,7 @@ require 'pg'
 require 'yaml'
 require 'cgi'
 require 'htmlentities'
-require 'iconv'
+#require 'iconv'
 require 'pp'
 require 'mime/types'
 require 'csv'
@@ -655,11 +655,14 @@ EOF
   def pre_treat(string)
     unless string.nil?
       coder = HTMLEntities.new
-      str = Iconv.conv("UTF-8//IGNORE//TRANSLIT","ASCII",string)
+      #str = Iconv.conv("UTF-8//IGNORE//TRANSLIT","ASCII",string)
+      str = string.encode!('UTF-16', :undef => :replace, :invalid => :replace, :replace => "_")
+      str = string.encode!('UTF-8')
       str = @con_weby.escape(str)
       str = coder.decode(str)
     end
   end
+
   # Tratamento de caracteres 
   def treat(string)
     unless string.nil?
@@ -735,7 +738,9 @@ class Migrate_files
   def pre_treat(string)
     unless string.nil?
       coder = HTMLEntities.new
-      str = Iconv.conv("UTF-8//IGNORE//TRANSLIT","ASCII",string)
+      #str = Iconv.conv("UTF-8//IGNORE//TRANSLIT","ASCII",string)
+      str = string.encode!('UTF-16', :undef => :replace, :invalid => :replace, :replace => "_")
+      str = string.encode!('UTF-8')
       str = @con_weby.escape(str)
       str = coder.decode(str)
     end
@@ -761,7 +766,9 @@ class Migrate_files
     if @ids.empty?
       # Descobre os ids dos sites
       ls = `ls #{@from + @folders.first}`
-      ls = Iconv.conv("UTF-8//IGNORE//TRANSLIT","ASCII",ls)
+      #ls = Iconv.conv("UTF-8//IGNORE//TRANSLIT","ASCII",ls)
+      ls = ls.encode!('UTF-16', :undef => :replace, :invalid => :replace, :replace => "_")
+      ls = ls.encode!('UTF-8')
       ls.split("\n").each do |f|
         # Dentro de cada pasta teremos os ids dos sites
         # desde que  nome da pasta seja apenas números
@@ -967,7 +974,9 @@ end
   def pre_treat(string)
     unless string.nil?
       coder = HTMLEntities.new
-      str = Iconv.conv("UTF-8//IGNORE//TRANSLIT","ASCII",string)
+      #str = Iconv.conv("UTF-8//IGNORE//TRANSLIT","ASCII",string)
+      str = string.encode!('UTF-16', :undef => :replace, :invalid => :replace, :replace => "_")
+      str = string.encode!('UTF-8')
       str = @con_weby.escape(str)
       str = coder.decode(str)
     end
