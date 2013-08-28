@@ -1,0 +1,4 @@
+Weby::Components.register_component :institutional_ufg,
+  author: "Author",
+  site: "www.site.com",
+  email: "author@site.com"
