@@ -1,8 +1,4 @@
 rights:
-  admin:
-    index:
-      name: Ver página administrativa
-      action: index
   roles:
     manage:
       name: Gerenciar papéis
@@ -11,18 +7,9 @@ rights:
       name: Excluir papéis
       action: destroy
   users:
-    edit:
-      name: Editar usuários
-      action: edit
-    index:
-      name: Ver usuários
-      action: index
     change_roles:
       name: Mudar papéis de usuários
       action: change_roles manage_roles
-    toggle_field:
-      name: Ativar usuário
-      action: toggle_field
   pages:
     index:
       name: Listar Páginas

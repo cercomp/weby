@@ -23,6 +23,7 @@ pt-BR:
         notifications:     " Notificações "
         dashboard:         " Painel de Controle "
         contents:          " Conteúdo "
+        none_role:         " Você não possui papel neste site "
       navbar:
         my_profile:        " Meu Perfil "
         logout:            " Sair "

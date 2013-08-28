@@ -60,7 +60,7 @@ class SessionController < ApplicationController
     if @user.save
       flash[:success] = t("successfully_updated_password")
       if @user.active?
-        redirect_to admin_user_path(@user)
+        redirect_to profile_path(@user.login)
       else
         redirect_to login_path(subdomain: nil)
       end
@@ -129,7 +129,7 @@ class SessionController < ApplicationController
 
   def set_domain
     current_domain = request.host.split('.').last(request.session_options[:tld_length].to_i).join('.')
-    if Weby::Settings.domain
+    if Weby::Settings.domain.present?
       current_domain = request.host.gsub(/www\./, '') unless request.domain.match(Weby::Settings.domain)
     end
     request.session_options[:domain] = ".#{current_domain}"

@@ -175,7 +175,11 @@ class ApplicationController < ActionController::Base
   def is_admin
     unless current_user.is_admin
       flash[:error] = t"only_admin"
-      redirect_to :back
+      begin
+        redirect_to :back
+      rescue
+        redirect_to admin_path
+      end
     else 
       return true
     end
@@ -222,8 +226,7 @@ class ApplicationController < ActionController::Base
 
   def store_location
     #session[:return_to] = request.fullpath if request.get? and controller_name != "user_sessions" and controller_name != "sessions"
-    session[:return_to] = request.fullpath
-    session[:return_to] ||= request.referer
+    session[:return_to] = request.fullpath || request.referer
   end
 
   #  def redirect_back_or_default(default)

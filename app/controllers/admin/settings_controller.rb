@@ -1,6 +1,6 @@
 class Admin::SettingsController < ApplicationController
   before_filter :require_user
-  before_filter :check_authorization
+  before_filter :is_admin
   respond_to :html, :xml, :js
 
   helper_method :sort_column

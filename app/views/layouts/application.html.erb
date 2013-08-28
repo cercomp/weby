@@ -41,7 +41,7 @@
           <div class="span4 <%= current_site ? "" : "offset5 " %>person">
             <div class="pull-right">
               <div class="info name">
-                <%= link_to current_user, main_app.admin_user_url(current_user, subdomain: nil) %>
+                <%= link_to current_user, main_app.profile_url(current_user.login, subdomain: current_site) %>
               </div>
               <div class="info actions">
                 <%= link_to main_app.site_admin_url(subdomain: nil) do %>

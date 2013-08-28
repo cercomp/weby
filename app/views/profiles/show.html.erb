@@ -28,8 +28,8 @@
               <%= news_image(new.image, :thumb, 100, nil, {as: "link", url: site_page_url(new, subdomain: new.owner), image_class:'img-circle'}) %>
             </div>
             <div class="media-body">
-              <div class="title"><%= new.title %></div>
-              <div class="description">Publicado no site <%= new.owner.title %>, em <%= l(new.created_at, format: :short) %></div>
+              <div class="title"><%= link_to new.title, site_page_url(new, subdomain: new.owner) %></div>
+              <div class="description">Publicado no site <%= link_to new.owner.title, site_url(subdomain: new.owner) %>, em <%= l(new.created_at, format: :short) %></div>
               <div class="summary"><%= new.summary.html_safe %></div>
             </div>
           </div>

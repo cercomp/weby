@@ -28,7 +28,7 @@
                 <li>
                 <label class="checkbox cursor">
                   <%= check_box_tag 'user[id][]', user.id, user.id == params[:user_id].to_i %>
-                  <%= "#{user}" %>
+                  <%= user %>
                 </label>
                 </li>
               <% end %>

@@ -1,7 +1,7 @@
 # coding: utf-8
 class Admin::UsersController < ApplicationController
   before_filter :require_user
-  before_filter :check_authorization, :except => [:new, :create, :show, :edit, :update]
+  before_filter :is_admin, :except => [:new, :create]
   respond_to :html, :xml
   helper_method :sort_column
 
@@ -97,9 +97,6 @@ class Admin::UsersController < ApplicationController
   end
 
   def update
-    unless current_user.is_admin
-      params[:id] = current_user.id
-    end
     @user = User.find(params[:id])
     @user.update_attributes(user_params)
     flash[:success] = t("updated_account")
