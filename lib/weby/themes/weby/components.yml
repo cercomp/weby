@@ -12,7 +12,7 @@ top:
     publish: true
   -
     name: 'menu'
-    settings: "{:menu_id => \"%{menu_id}\"}"
+    settings: "{:menu_id => \"%{superior}\"}"
     position: 2
     publish: true
     menu:
