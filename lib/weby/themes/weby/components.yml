@@ -1,0 +1,21 @@
+first_place:
+  -
+    name: 'gov_bar'
+    settings: '{:background => "#7F7F7F"}'
+    position: 1
+    publish: true
+top:
+  -
+    name: 'institutional_ufg'
+    settings: '{}'
+    position:  1
+    publish: true
+  -
+    name: 'menu'
+    settings: "{:menu_id => \"%{menu_id}\"}"
+    position: 2
+    publish: true
+    menu:
+      name: "Menu Superior"
+
+
