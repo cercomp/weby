@@ -53,15 +53,16 @@
                   <span class='handle'><%= icon('move') %></span>
                 <% end %>
                 <% if check_permission(Sites::Admin::ComponentsController, [:new]) %>
-                  <%= link_to t("+"), new_site_admin_component_path(placeholder: component.name), class: "btn btn-success btn-small" %>
+                  <%= link_to t("+"), new_site_admin_component_path(placeholder: component.alias), class: "btn btn-success btn-small" %>
                 <% end %>
               </div>
               <div class="clearfix"></div>
 
-               <% components_per_group = @components.select{|comp| comp.place_holder == component.name} %>
+              <% components_per_group = @components.select{|comp| comp.place_holder == component.alias} %>
+                <% @components = @components - components_per_group %>
                 <% components_per_group.each do |comp| %>
                   <% compo = Weby::Components.factory(comp) %>
-                    <li id="sort_sites_component_<%= compo.id %>" class="component component-<%= compo.name %> <%= "disabled" unless component_is_available(compo.name) %>" data-place="<%= name%>">
+                    <li id="sort_sites_component_<%= compo.id %>" class="component component-<%= compo.name %> <%= "disabled" unless component_is_available(compo.name) %>" data-place="<%= component.alias%>">
                     <div>
                      <span class="widget-name">
                        <%= raw "#{toggle_field(compo, "publish")} #{t("components.#{compo.name}.name")} - #{compo.alias || compo.default_alias}" %>
