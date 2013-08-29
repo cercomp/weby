@@ -22,23 +22,66 @@
 
           <% components_per_holder.each do |comp| %>
           <% component = Weby::Components.factory(comp) %>
-          <li id="sort_sites_component_<%= component.id %>" class="component component-<%= component.name %> <%= "disabled" unless component_is_available(component.name) %>" data-place="<%= name %>">
-            <div>
-              <span class="widget-name">
-                <%#= image_tag("/assets/components/#{component.name}.png", style: 'height: 64px;') %>
-                <%= raw "#{toggle_field(component, "publish")} #{t("components.#{component.name}.name")} - #{component.alias || component.default_alias}" %>
-                <% exceptions = ["show"] %>
-                <% exceptions << "edit" unless component_is_available(component.name)  %>
-              </span>
+
+          <% if component.name != "components_group"%>
+            <li id="sort_sites_component_<%= component.id %>" class="component component-<%= component.name %> <%= "disabled" unless component_is_available(component.name) %>" data-place="<%= name%>">
+              <div>
+                <span class="widget-name">
+                 <%#= image_tag("/assets/components/#{component.name}.png", style: 'height: 64px;') %>
+                 <%= raw "#{toggle_field(component, "publish")} #{t("components.#{component.name}.name")} - #{component.alias || component.default_alias}" %>
+                 <% exceptions = ["show"] %>
+                 <% exceptions << "edit" unless component_is_available(component.name)  %>
+                </span>
+                <div class="pull-right">
+                  <%= raw make_menu(component, :except => exceptions, :with_text => false) %>
+                  <% if check_permission(Sites::Admin::ComponentsController, 'sort') %>
+                    <span class='handle'><%= icon('move') %></span>
+                  <% end %>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </li>
+          <% else%>
+            <li id="sort_site_component_<%= component.id %>" class="component component-<%= component.name %> <%= "disabled" unless component_is_available(component.name) %>" data-place="<%= name%>">
+              <%= raw "#{toggle_field(component, "publish")} #{t("components.#{component.name}.name")} - #{component.alias || component.default_alias}" %>
+              <% exceptions = ["show"] %>
+              <% exceptions << "edit" unless component_is_available(component.name)  %>
+
               <div class="pull-right">
                 <%= raw make_menu(component, :except => exceptions, :with_text => false) %>
                 <% if check_permission(Sites::Admin::ComponentsController, 'sort') %>
                   <span class='handle'><%= icon('move') %></span>
                 <% end %>
+                <% if check_permission(Sites::Admin::ComponentsController, [:new]) %>
+                  <%= link_to t("+"), new_site_admin_component_path(placeholder: component.name), class: "btn btn-success btn-small" %>
+                <% end %>
               </div>
               <div class="clearfix"></div>
-            </div>
-          </li>
+
+               <% components_per_group = @components.select{|comp| comp.place_holder == component.name} %>
+                <% components_per_group.each do |comp| %>
+                  <% compo = Weby::Components.factory(comp) %>
+                    <li id="sort_sites_component_<%= compo.id %>" class="component component-<%= compo.name %> <%= "disabled" unless component_is_available(compo.name) %>" data-place="<%= name%>">
+                    <div>
+                     <span class="widget-name">
+                       <%= raw "#{toggle_field(compo, "publish")} #{t("components.#{compo.name}.name")} - #{compo.alias || compo.default_alias}" %>
+                       <% exceptions = ["show"] %>
+                       <% exceptions << "edit" unless component_is_available(compo.name)  %>
+                     </span>
+                     <div class="pull-right">
+                       <%= raw make_menu(compo, :except => exceptions, :with_text => false) %>
+                       <% if check_permission(Sites::Admin::ComponentsController, 'sort') %>
+                         <span class='handle'><%= icon('move') %></span>
+                       <% end %>
+                     </div>
+                     <div class="clearfix"></div>
+                    </div>
+                  </li>
+                <% end %>
+                
+            </li>
+          <% end %>
+
           <% end %>
           <% @components = @components - components_per_holder %>
         </ul>

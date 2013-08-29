@@ -13,33 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20130806154257) do
 
-  create_table "banners", :force => true do |t|
-    t.datetime "date_begin_at"
-    t.datetime "date_end_at"
-    t.string   "title"
-    t.text     "text"
-    t.string   "url"
-    t.integer  "width"
-    t.integer  "height"
-    t.boolean  "hide",          :default => false
-    t.integer  "repository_id"
-    t.integer  "user_id"
-    t.string   "size"
-    t.boolean  "publish",       :default => false
-    t.integer  "site_id"
-    t.integer  "position"
-    t.integer  "page_id"
-    t.boolean  "new_tab",       :default => false
-    t.integer  "click_count",   :default => 0
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
-  end
-
-  add_index "banners", ["page_id"], :name => "index_banners_on_page_id"
-  add_index "banners", ["repository_id"], :name => "index_banners_on_repository_id"
-  add_index "banners", ["site_id"], :name => "index_banners_on_site_id"
-  add_index "banners", ["user_id"], :name => "index_banners_on_user_id"
-
   create_table "extension_sites", :force => true do |t|
     t.integer  "site_id"
     t.string   "name"
