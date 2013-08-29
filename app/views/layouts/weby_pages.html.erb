@@ -26,10 +26,10 @@
                 </div>
                 <div class="info actions">
                   <%= link_to main_app.site_admin_path(subdomain: nil) do %>
-                    <i class="icon-cog"></i>
+                    <%= content_tag(:span, icon('cog', white: true), class: "label") %>
                   <% end %>
-                  <%= has_unread_notifications("all").html_safe %>
-                  <%= link_to t(".logout"), main_app.logout_path(back_url: main_app.site_path) %>
+                  <%= notifications_icon %>
+                  <%= link_to icon('off', white: true), main_app.logout_path(back_url: main_app.site_path), class: 'label label-important', title: t('.logout') %>
                 </div>
               </div>
               <div class="avatar pull-right">

@@ -17,28 +17,14 @@ module UsersHelper
     [user.first_name, user.last_name].join(' ').split.map{ |word| word.capitalize }.join(' ')
   end
 
-  def has_unread_notifications(text)
+  def notifications_icon
     user = User.find(current_user.id)
-    unread = user.unread_notifications || ""
-
-    case text
-    when "all"
-      if unread == ""
-        link_to content_tag(:i, "", class: "icon-envelope icon-white"), main_app.site_admin_notifications_url(subdomain: current_user.sites.first), class: "badge badge-inverse"
-        #link_to main_app.site_admin_notifications_url(subdomain: current_user.sites.first) do 
-        #  image_tag('envelope.png', style: "width: 14px")
-        #end
-      else
-        link_to content_tag(:span, "#{content_tag(:i, "", class: "icon-envelope icon-white")} #{unread.split(',').size}".html_safe, class: "badge badge-important"), main_app.site_admin_notifications_url(subdomain: current_user.sites.first)
-        #link_to main_app.site_admin_notifications_url(subdomain: current_user.sites.first) do
-        #  image_tag('message-new.png', style: "width: 14px") 
-        #end
-      end
+    unread = user.unread_notifications_array
+    if unread.empty?
+      link_to icon("envelope", white: true), main_app.notifications_url(subdomain: current_site), class: "label", title: t('notifications.index.notifications')
     else
-      if unread.split(',').include?("#{text}")
-        image_tag('envelope.png', style: "width: 14px")
-      else
-        image_tag('message-empty.png', style: "width: 14px")
+      link_to main_app.notifications_url(subdomain: current_site) do
+        content_tag(:span, "#{icon("envelope", white: true)} #{unread.size}".html_safe, class: "label label-warning", title: t('notifications.index.notifications'))
       end
     end
   end

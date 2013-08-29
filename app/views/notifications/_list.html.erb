@@ -6,7 +6,6 @@
   <table class='table table-striped'>
     <thead>
       <tr>
-        <th></th>
         <th><%= t(".title") %></th>
         <th><%= t(".body") %></th>
         <th><%= t(".date") %></th>
@@ -15,10 +14,9 @@
     </thead>
     <tbody>
       <% @notifications.each do |notification| %>
-        <tr>
-          <td><%= has_unread_notifications("#{notification.id}") %></td>
-          <td><%= link_to notification.title, admin_notification_path(notification.id) %></td>
-          <td><%= notification.body.to_s[0..50] %></td>
+        <tr class="<%= current_user.has_read?(notification) ? "" : "unread warning" %>">
+          <td><%= link_to "#{image_tag("message-new.png", style: "width: 14px") unless current_user.has_read?(notification)} #{notification.title}".html_safe, notification_path(notification.id) %></td>
+          <td><%= strip_tags(notification.body.to_s)[0..50].html_safe %></td>
           <td><%= l(notification.created_at, :format => :short) %></td>
           <td></td>
         </tr>

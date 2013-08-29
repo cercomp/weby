@@ -169,16 +169,6 @@ rights:
     destroy:
       name: Excluir Extensões
       action: destroy
-  notifications:
-    index:
-      name: Listar Notificações
-      action: index
-    show:
-      name: Ver Notificação
-      action: show
-    mark:
-      name: Marcar como Lido
-      action: mark_as_read
   statistics:
     index:
       name: Ver Estatísticas

@@ -71,6 +71,26 @@ class User < ActiveRecord::Base
     self.first_name ? "#{self.first_name} #{self.last_name} <#{self.email}>" : "#{self.login} <#{self.email}>"
   end
 
+  def unread_notifications_array
+    self.unread_notifications.to_s.split(',').map{|notif| notif.to_i}
+  end
+
+  def append_unread_notification notification
+    return unless notification
+    self.update_attribute(:unread_notifications, unread_notifications_array.append(notification.id).join(','))
+  end
+
+  def remove_unread_notification notification=nil
+    unread = self.unread_notifications_array
+    notification ? unread.delete(notification.id) : unread.clear
+    self.update_attribute(:unread_notifications, unread.join(','))
+  end
+
+  def has_read? notification
+    @unread ||= unread_notifications_array
+    !@unread.include? notification.id
+  end
+
   def active?
     self.status
   end

@@ -1,15 +1,15 @@
 class Admin::NotificationsController < ApplicationController
   before_filter :require_user
-  before_filter :check_authorization
   before_filter :is_admin
-  respond_to :html, :xml
+  respond_to :html, :json
 
   def index
+    #TODO Pagination!
     @notifications = (Notification.title_or_body_like(params[:search])).sort_by(&:created_at).reverse
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @notification }
+      format.json { render json: @notifications }
     end
   end
 
@@ -32,10 +32,8 @@ class Admin::NotificationsController < ApplicationController
       flash[:error] = t("problem_create_notification")
       render :action => :new
     end
-    User.all.each do |user|
-      unread = user.unread_notifications || ""
-      unread += "#{@notification.id},"
-      user.update_attribute(:unread_notifications, unread) unless user.id == 1
+    User.no_admin.each do |user|
+      user.append_unread_notification @notification
     end
   end
 
@@ -59,6 +57,9 @@ class Admin::NotificationsController < ApplicationController
     @notification = Notification.find(params[:id])
     @notification.destroy
     flash[:success] = t("destroyed_param", :param => @notification.title)
+    User.no_admin.each do |user|
+      user.remove_unread_notification @notification
+    end
   rescue ActiveRecord::DeleteRestrictionError
     flash[:warning] = t("problem_destroy_notification")
   ensure
