@@ -25,7 +25,8 @@
     <label class="control-label"><%= t(".place")  %></label>
     <div class="controls">
       <% if params[:placeholder] %>
-        <input type="text"disabled="true" value="<%= t("themes.#{current_site.theme}.placeholders.#{@component.place_holder}") %>"/>
+        <input type="text"disabled="true" value="
+          <%= t("themes.#{current_site.theme}.placeholders.#{@component.place_holder}", :default => @component.place_holder) %>"/>
       <% else %>
         <%= raw make_mini_layout %>
       <% end %>

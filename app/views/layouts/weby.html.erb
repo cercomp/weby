@@ -7,16 +7,16 @@
   <div class='first_place'>
     <%= yield :layout_first_place %>
   </div>
-  <div id="wrapper" <%= "style=\"max-width: #{ @main_width }px\"".html_safe if @main_width %>>
+  <div id="wrapper" <%= "style=\".container{max-width: #{ @main_width }px}\"".html_safe if @main_width %>>
     <header>
-      <%= yield :layout_top %>
+      <div class="container"><%= yield :layout_top %></div>
       <div class="clear"> </div>
     </header>
     <section id="content">
-      <%= yield %>
+      <div class="container"><%= yield %></div>
     </section>
     <footer>
-      <%= yield :layout_bottom %>
+      <div class="container"><%= yield :layout_bottom %></div>
     </footer>
   </div>
   <%= render 'layouts/shared/javascripts', layout: 'weby' %>
