@@ -160,4 +160,16 @@ class Page < ActiveRecord::Base
   end
   private :own_files?
 
+  def self.uniq_category_counts
+    self.category_counts.inject(Hash.new) do |hash,j|
+      name = j.name.upcase
+      if hash[name]
+        hash[name].count += j.count
+      else
+        hash[name] = j
+      end
+      hash
+    end.values
+  end
+
 end

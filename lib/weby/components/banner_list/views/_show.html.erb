@@ -1,6 +1,6 @@
 <% include_component_javascript :javascripts, 'banner_list' %>
 <section class="banner_list_component <%= component.orientation %>">
-  <% @banners = current_site.banners.published.tagged_with(component.category) %>
+  <% @banners = current_site.banners.published.tagged_with(component.category, any: true) %>
   <% @banners.each do |banner| %>
     <% banner_url = banner.page_id ? main_app.site_page_path(banner.page_id) : banner.url %>
     <div class="banner">

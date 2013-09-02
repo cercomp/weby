@@ -1,4 +1,4 @@
-<%= f.input :news_category, collection: current_site.pages.category_counts.map(&:name),
+<%= f.input :news_category, collection: current_site.pages.uniq_category_counts.map(&:name),
   priority: component.news_category,
   include_blank: t(".no_category"),
   hint: t(".news_category_hint"),

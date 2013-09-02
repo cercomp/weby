@@ -8,7 +8,7 @@ class NewsListComponent < Component
       site.pages.order('created_at desc').available
     .send(front ? 'front' : 'no_front').send(events ? 'scoped' : 'news')
     .page(page).per(quant) :
-      site.pages.order('created_at desc').available.tagged_with(category)
+      site.pages.order('created_at desc').available.tagged_with(category, any: true)
     .send(front ? 'front' : 'no_front').send(events ? 'scoped' : 'news')
     .page(page).per(quant)
   end

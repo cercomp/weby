@@ -16,4 +16,4 @@ pt-BR:
       form:
         news_category_hint:       " Apenas notícias que possuam imagens de capa; É sugerido que a imagem tenha proporções iguais as especificadas "
         timer_hint:               " Em segundos "
-        no_category:              " Nenhuma categoria "
+        no_category:              " Todas as categorias "

@@ -71,7 +71,7 @@ en:
   no_permission_to_action:              " Yout don't have permission to execute this action"
   none_page:                            " None Page "
   need_login:                           " You need to be logged in to access this page. "
-  need_at_least_one_i18n:               " Needs at least one language "
+  need_at_least_one_i18n:               " Needs content in at least one language "
   none_user:                            " None User "
 #---O---#
   of:                                   " of "

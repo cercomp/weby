@@ -13,8 +13,8 @@
     <%= select_tag "mime_type[]",
       grouped_options_for_select(load_mime_types(current_site), params[:mime_type]),
       include_blank: false,
-      style: 'min-width: 250px; vertical-align: top;',
-      class: 'search-filter',
+      style: 'vertical-align: top;',
+      class: 'select2 search-filter input-xlarge',
       multiple: true %>
   <% end %>
 </div>

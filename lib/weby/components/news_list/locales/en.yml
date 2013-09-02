@@ -26,4 +26,4 @@ en:
       show:
         last_news:             " Latest news "
       form:
-        no_category_filter:    " Don't filter by category "
+        no_category_filter:    " All categories "

@@ -4,7 +4,7 @@ class WebyNewsSliderComponent < Component
   def pages(site)
     news_category.blank? ?
       site.pages.available.front.where('repository_id is not null').order('position desc').limit(quantity) :
-      site.pages.available.tagged_with(news_category).where('repository_id is not null').order('position desc')
+      site.pages.available.tagged_with(news_category, any: true).where('repository_id is not null').order('position desc')
   end
 
   alias :_width :width

@@ -21,28 +21,7 @@
     <% end %>
   </div>
 
-
-
-  <div class="input category_list">
-    <%= f.input :category_list, :wrapper => :append, :hint => t(".page_categories_help") do %>
-      <%= f.input_field :category_list, as: :string , placeholder: "UFG, Sports, Arts"%><a href="#modal_tag_list" role="button" data-toggle="modal" onclick="categories_checked();"><button class="btn btn-info" type="button"><%= t(".list_categories") %></button></a>
-    <% end %>
-  </div>
-
-
-  <div class="modal" id="modal_tag_list" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none;">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-      <h3><%= t(".categories") %></h3>
-    </div>
-    <div class="modal-body">
-      <%= render 'tag_list_popup' %>
-    </div>
-    <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="set_categories();"><%=t(".save")%></button>
-    </div>
-  </div>
-
+  <%= f.input :category_list, :hint => t(".page_categories_help"), input_html: {class: 'input-xlarge', data: {tags: current_site.pages.uniq_category_counts.map{|t| t.name }}} %>
 
   <div class="clearfix">
     <%= f.input :publish , wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" } %>

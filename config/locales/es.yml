@@ -73,7 +73,7 @@ es:
   no_permission_to_action:              " Você não tem permissão para executar essa ação "
   none_page:                            " Nenhuma Página "
   need_login:                           " Debes estar registrado para acceder a esta página. "
-  need_at_least_one_i18n:               " Necessita de pelo menos um idioma "
+  need_at_least_one_i18n:               " Necessita de conteúdo en pelo menos um idioma "
   none_user:                            " Nenhum Usuário "
 #---O---#
   of:                                   " de "
