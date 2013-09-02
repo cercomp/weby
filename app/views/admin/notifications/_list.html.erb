@@ -3,6 +3,9 @@
     <%= t('.no_notifications') %>
   </div>
 <% else %>
+  <div class="pull-left"> <%= info_page @notifications %> </div>
+  <div class="pull-right"> <%= paginate @notifications, remote: true %> </div>
+  <div class="clearfix"></div> 
   <table class='table table-striped'>
     <thead>
       <tr>
@@ -23,4 +26,8 @@
       <% end %>
     </tbody>
   </table>
+
+  <div class="pull-left"> <%= per_page_links @notifications, true, :mini %> </div>
+  <div class="pull-right"> <%= paginate @notifications, remote: true %> </div>
+  <div class="clearfix"></div>
 <% end %>

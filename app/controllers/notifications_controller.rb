@@ -1,16 +1,13 @@
 class NotificationsController < ApplicationController
   before_filter :require_user
-  respond_to :html, :json
+  respond_to :html, :js
   layout 'weby_pages'
 
   def index
-    #TODO Pagination!
-    @notifications = (Notification.title_or_body_like(params[:search])).sort_by(&:created_at).reverse
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @notifications }
-    end
+    @notifications = (Notification.title_or_body_like(params[:search]).
+                     page(params[:page]).
+                     per((params[:per_page] || per_page_default))).
+                     order("created_at DESC")
   end
 
   def show
