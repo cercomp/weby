@@ -667,12 +667,14 @@ EOF
   def treat(string)
     unless string.nil?
       # src="http://www2.catalao.ufg.br/uploads/files/3/image/GaleriaFotos/img1.jpg"
+      # href=\"http://www2.catalao.ufg.br/uploads/files/90/DECLARA____O_DE_CI__NCIA_DE_NORMAS_E_DISPONIBILIDADE-mod.pdf\">
+      
       if string.match(/['"]http.*\/uploads\/.*?([0-9]+).*\/(.*?)['"]/)
-          string.gsub!(/['"]http.*\/uploads\/.*?([0-9]+).*\/(.*?)['"]/){|x| "'/uploads/#{@convar[$1]['weby']}/original_#{$2}'" if @convar[$1] }
+          string.gsub!(/['"]http.*\/uploads\/.*?([0-9]+)\/(.*?)['"]/){|x| "'/uploads/#{@convar[$1]['weby']}/original_#{$2}'" if @convar[$1] }
       elsif string.match(/.*\/uploads\/.*?([0-9]+).*\/(.*?)/)
         string.gsub!(/.*\/uploads\/.*?([0-9]+).*\/(.*?)/){|x| "/uploads/#{@convar[$1]['weby']}/original_#{$2}" if @convar[$1] }
       end
-        
+
       if string.match(/javascript:mostrar_pagina.*?([0-9]+).*?([0-9]+).*?/) 
         string.gsub!(/javascript:mostrar_pagina.*?([0-9]+).*?([0-9]+).*?;/){|x| "'/pages/#{@convar[$2]["paginas"][$1]}'" if @convar[$2] }
       end 
@@ -833,7 +835,7 @@ class Migrate_files
         #puts "mv -ufv \"#{file}\" \"#{destino}/original_#{file_name}\""
         `mv -ufv "#{file}" "#{destino}/original_#{file_name}"`
 
-        if(file_name.match(/topo\.gif/i) || file_name == "topo.swf" || file_name == "topo.jpg" || file_name == "topo.png")
+        if(file_name.match(/topo\.bmp/i) || file_name.match(/topo\.gif/i) || file_name == "topo.swf" || file_name == "topo.jpg" || file_name == "topo.png")
             #sql = "UPDATE sites SET top_banner_id='#{repository_id}' WHERE id='#{@convar[id]['weby']}'"
             sql = "UPDATE site_components set settings = '{:size => \"original\",:url => \"/\",:repository_id => \"#{repository_id}\", :html_class => \"header\"}' where site_id='#{@convar[id]['weby']}' AND name = 'image' AND place_holder = 'top'"
             @con_weby.exec(sql)
@@ -1003,7 +1005,7 @@ end
       site_name = /www.([a-z\-]+).*\/([a-z\-]+)/.match("#{linha[0]}")
 
       if not site_name.nil?
-        site_name = "#{site_name[1]}_#{site_name[2]}"
+        site_name = "#{site_name[2]}_#{site_name[1]}"
       else
         site_name = /www.([a-z\-]+).*/.match("#{linha[0]}")
         if not site_name.nil?
