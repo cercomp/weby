@@ -4,14 +4,13 @@ module ActionDispatch
   module Routing
     class RouteSet
       def with_subdomain(site, options)
+        domain = Weby::Settings.domain || Weby::Cache.request[:domain]
         if not site
-          domain = Weby::Settings.domain || Weby::Cache.request[:domain]
           subdomain = Weby::Settings.sites_index
         else
-          domain = Weby::Cache.request[:domain]
           if site.is_a? Site
-            if Weby::Settings.domain.present? and site.domain.present?
-              domain = site.domain if Weby::Settings.domain != site.domain
+            if site.domain.present?
+              domain = site.domain
             end
             if Weby::Subdomain.site_id.present? #not global scope
               prefix = Weby::Cache.request[:subdomain].match(/www\./).to_s
