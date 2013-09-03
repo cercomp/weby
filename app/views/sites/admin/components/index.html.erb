@@ -2,7 +2,7 @@
   <% if check_permission(Sites::Admin::ComponentsController, [:new]) %>
     <%= link_to t(".new_component"),
       new_site_admin_component_path,
-      class: "bmetn btn-success" %>
+      class: "btn btn-success" %>
   <% end %>
 </p>
 <div class="clearfix control-group"></div>
@@ -11,7 +11,7 @@
 <% @placeholders.each do |row| %>
   <%= content_tag :div, class: "maxi_level #{row["names"].many? ? "multi" : "single"}" do %>
     <% row["names"].each_with_index do |name, idx| %>
-      <%= content_tag :div, class: "placeholder", data: {place: name}, style: "width: #{row["widths"] ? row["widths"][idx] : 100/row["names"].size}%;" do %>
+      <%= content_tag :div, class: "placeholder order-list", data: {place: name}, style: "width: #{row["widths"] ? row["widths"][idx] : 100/row["names"].size}%;" do %>
         <%= link_to '+', new_site_admin_component_path(placeholder: name), class: "add-btn btn btn-success btn-small", title: t(".new_component") if check_permission(Sites::Admin::ComponentsController, 'new') %>
         <div class="placeholder-name"><%= t("themes.#{current_site.theme}.placeholders.#{name}") %></div>
         <ul>
@@ -21,39 +21,11 @@
           <% end %>
 
           <% components_per_holder.each do |comp| %>
-          <% component = Weby::Components.factory(comp) %>
+            <% component = Weby::Components.factory(comp) %>
 
-          <% if component.name != "components_group"%>
-            <%= raw list_component(component, name) %> 
+            <%= list_component(component, name) %> 
 
-          <% else #LOAD COMPONENTS THAT BELONG TO A GROUP %>
-            <ul id="sort_site_component_<%= component.id %>" 
-                class="maxi_level single component component-<%= component.name %> <%= "disabled" unless component_is_available(component.name) %>" data-place="<%= name%>">
-              <%= raw "#{toggle_field(component, "publish")} #{t("components.#{component.name}.name")} - #{component.alias || component.default_alias}" %>
-              <% exceptions = ["show"] %>
-              <% exceptions << "edit" unless component_is_available(component.name)  %>
-
-              <div class="pull-right">
-                <%= raw make_menu(component, :except => exceptions, :with_text => false) %>
-                <% if check_permission(Sites::Admin::ComponentsController, 'sort') %>
-                  <span class='handle'><%= icon('move') %></span>
-                <% end %>
-                <% if check_permission(Sites::Admin::ComponentsController, [:new]) %>
-                  <%= link_to t("+"), new_site_admin_component_path(placeholder: component.alias), class: "btn btn-success btn-small" %>
-                <% end %>
-              </div>
-              <div class="clearfix"></div>
-              <% components_per_group = @components.select{|comp| comp.place_holder == component.alias} %>
-              <% @components = @components - components_per_group %>
-
-              <% components_per_group.each do |comp| %>
-                <% compo = Weby::Components.factory(comp) %>
-                <%= raw list_component(compo, name) %>
-              <% end %>
-
-            </ul>
-          <% end #COMPONENTS THAT BELONG TO A GROUP %>
-
+          
           <% end %>
           <% @components = @components - components_per_holder %>
         </ul>
@@ -89,21 +61,23 @@
 window.onload=function(){
   $(document).ready(function(){
 
-    $('.placeholder').each(function(){
+    $('.order-list').each(function(){
       $(this).sortable({
         //axis: 'y',
         dropOnEmpty: true,
         handle: '.handle',
-        connectWith: '.placeholder',
+        connectWith: '.order-list',
         forcePlaceholderSize: true,
         placeholder: 'drop-here',
-        items: 'li',
+        items: '> ul > li',
         opacity: 0.4,
         scroll: true,
         tolerance: 'pointer',
         toleranceElement: '> div',
         update: function(evt, ui){
           $('.maxi_level.multi').each(function(){ $(this).attr('style', ''); $(this).css({'height':$(this).height()}); });
+          console.log(this);
+          console.log(ui)
           $.ajax({
             type: 'post',
             data: 'place_holder='+ $(this).data('place') +'&'+ $(this).sortable('serialize'),
