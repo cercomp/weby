@@ -14,6 +14,25 @@ module ComponentsHelper
     divs += "</div>" 
   end
 
+  def list_component(compo, name)
+      exceptions = ["show"] 
+      exceptions << "edit" unless component_is_available(compo.name) 
+      components_html = ""
+      components_html <<  (" <li id='sort_sites_component_#{compo.id }' class='component component-#{ compo.name } #{'disabled' unless component_is_available(compo.name)}' data-place='#{name}'>
+        <div>
+          <span class='widget-name'>
+           #{ raw ("#{toggle_field(compo, "publish")} #{t("components.#{compo.name}.name")} - #{compo.alias || compo.default_alias}") }
+         </span>
+         <div class='pull-right'>
+           #{ raw make_menu(compo, :except => exceptions, :with_text => false) } 
+           #{ "<span class='handle'>#{icon('move') }</span>" if check_permission(Sites::Admin::ComponentsController, 'sort') }
+         </div>
+         <div class='clearfix'></div>
+        </div>
+      </li>")
+    return components_html
+  end
+
   # Busca os componentes existentes no sistema de forma ordenada pelo i18n
   def available_components_sorted
     options = {"Weby" => components_as_options(Weby::Components.components(:weby))}

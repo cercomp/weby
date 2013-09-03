@@ -53,7 +53,7 @@ module Weby
     ActionView::Helpers::RenderingHelper.module_eval do
 
       def load_components_groups
-        group_components = Hash.new {|h,k| h[k] = [].push(k)}  
+        group_components = Hash.new {|h,k| h[k] = []}  #if key does not exist use this structure
         @global_components.each do |place, comps|
           comps.each do |comp|
             if comp.name == :component_group
