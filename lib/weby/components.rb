@@ -59,6 +59,11 @@ module Weby
         end
       end
 
+
+      def render_home_components
+        content_for_components :home, @global_components[:home]
+      end
+
       def content_for_components place, comps
         comps.each do |compo_setting|
           comp = compo_setting[:component]
@@ -74,21 +79,6 @@ module Weby
         end
       end
       private :content_for_components
-
-      #TODO recursive for components_group
-      def render_home_components
-        raw([].tap do |components|
-          @global_components[:home].each do |compo_setting|
-            comp = compo_setting[:component]
-            if Weby::Components.is_enabled?(comp.name)
-              visible = comp.visibility == 1 ? current_page?(site_path) : comp.visibility == 2 ? !current_page?(site_path) : comp.visibility == 0
-              if visible
-                components << render_component(Weby::Components.factory(comp))
-              end
-            end
-          end if @global_components[:home]
-        end.join)
-      end
 
       def render_component(component, view = 'show', args = {})
 
