@@ -3,10 +3,7 @@
     <%= t('.no_notifications') %>
   </div>
 <% else %>
-  <div class="pull-left"> <%= info_page @notifications %> </div>
-  <div class="pull-right"> <%= paginate @notifications, remote: true %> </div>
-  <div class="clearfix"></div>
-  <table class='table table-striped'>
+  <table class='table table-striped notifications'>
     <thead>
       <tr>
         <th><%= t(".title") %></th>
@@ -26,7 +23,7 @@
       <% end %>
     </tbody>
   </table>
-  <div class="pull-left"> <%= per_page_links @notifications, true, :mini %> </div>
-  <div class="pull-right"> <%= paginate @notifications, remote: true %> </div>
-  <div class="clearfix"></div>
-<% end %>
+  <div style="text-align: center" class="load-more">
+    <%= link_to_function t('.load_more'), 'loadMoreNotifications()', class: 'btn btn-small next-load-notifications', data: {url: @nexturl} if @notifications.size == @per_notif %>
+  </div>
+  <% end %>

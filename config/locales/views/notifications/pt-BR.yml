@@ -5,6 +5,7 @@ pt-BR:
       body:                     " Mensagem "
       date:                     " Data "
       no_notifications:         " Nenhuma Notificação "
+      load_more:                " Carregar notficações anteriores "
     show:
       title:                    " Título "
       body:                     " Mensagem "

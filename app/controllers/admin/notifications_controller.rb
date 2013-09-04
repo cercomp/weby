@@ -4,10 +4,10 @@ class Admin::NotificationsController < ApplicationController
   respond_to :html, :js
 
   def index
-    @notifications = (Notification.title_or_body_like(params[:search]).
+    @notifications = Notification.title_or_body_like(params[:search]).
+                     order("created_at DESC").
                      page(params[:page]).
-                     per((params[:per_page] || per_page_default))).
-                     order("created_at DESC")
+                     per(params[:per_page] || per_page_default)
   end
 
   def new

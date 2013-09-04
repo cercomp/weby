@@ -8,6 +8,9 @@
         <%= current_user.first_name %><br />
         <span class="last-name"><%= current_user.last_name %></span>
       </div>
+      <div class="actions">
+        <%= link_to "#{icon('chevron-left', white: true)} #{t("back")}".html_safe, :back, class: "btn btn-block" %>
+      </div>
     </div>
     <div class="span9">
       <div class="heading buffer-bottom"><%= t('.notifications') %></div>
@@ -25,7 +28,9 @@
         </div>
 
         <div class="clearfix"></div>
-        <div id="list"><%= render 'list' %></div>
+        <div id="list">
+          <%= render 'list' %>
+        </div>
       </div>
     </div>
   </div>

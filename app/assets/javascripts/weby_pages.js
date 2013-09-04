@@ -91,3 +91,20 @@ function loadMoreSites(){
    }
    return false;
 }
+
+function loadMoreNotifications(){
+   if($('.next-load-notifications')[0]){
+       loader = $('.next-load-notifications');
+       $.get(loader.data('url'), function(data){
+           $('.load-more').html(null);
+           $(data).each(function(){
+              if($(this).is('table')){
+                $('table.notifications').append($(this).find('tbody > tr'));
+              }else if($(this).is('.load-more')){
+                $('.load-more').html(this);
+              }
+           });
+       });
+   }
+   return false;
+}

@@ -5,6 +5,7 @@ en:
       body:               " Message "
       date:               " Date "
       no_notifications:   " No Notifications "
+      load_more:          " Load previous notifications "
     show:
       title:              " Title "
       body:               " Message "
