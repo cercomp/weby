@@ -52,45 +52,34 @@ module Weby
     
     ActionView::Helpers::RenderingHelper.module_eval do
 
-      def load_components_groups
-        group_components = Hash.new {|h,k| h[k] = []}  #if key does not exist use this structure
-        @global_components.each do |place, comps|
-          comps.each do |comp|
-            if comp.name == :component_group
-              if Weby::Components.is_enabled?(comp.name)
-                visible = comp.visibility == 1 ? current_page?(main_app.site_path) : 
-                          comp.visibility == 2 ? !current_page?(main_app.site_path) : comp.visibility == 0
-                if visible
-                  content_for "layout_#{place}".to_sym, render_component(Weby::Components.factory(comp))
-                end
-              end
-            end
-            group_components[place].push(comp)  
-          end
-        end
-        return group_components
-      end
-
       #executa 'content_for :layout_<place_holder>', use yield :layout_<place_holder> para mostrar
       def load_components
-        load_components_groups
         @global_components.reject{|k,v| k == :home }.each do |place, comps|
-          comps.each do |comp|
-            unless comp.name == :component_group
-              if Weby::Components.is_enabled?(comp.name)
-                visible = comp.visibility == 1 ? current_page?(main_app.site_path) : comp.visibility == 2 ? !current_page?(main_app.site_path) : comp.visibility == 0
-                if visible
-                  content_for "layout_#{place}".to_sym, render_component(Weby::Components.factory(comp))
-                end
+          content_for_components place, comps
+        end
+      end
+
+      def content_for_components place, comps
+        comps.each do |compo_setting|
+          comp = compo_setting[:component]
+          if Weby::Components.is_enabled?(comp.name)
+            visible = comp.visibility == 1 ? current_page?(main_app.site_path) : comp.visibility == 2 ? !current_page?(main_app.site_path) : comp.visibility == 0
+            if visible
+              if comp.name == "components_group"
+                content_for_components comp.alias, compo_setting[comp.alias]
               end
+              content_for "layout_#{place}".to_sym, render_component(Weby::Components.factory(comp))
             end
           end
         end
       end
+      private :content_for_components
 
+      #TODO recursive for components_group
       def render_home_components
         raw([].tap do |components|
-          @global_components[:home].each do |comp|
+          @global_components[:home].each do |compo_setting|
+            comp = compo_setting[:component]
             if Weby::Components.is_enabled?(comp.name)
               visible = comp.visibility == 1 ? current_page?(site_path) : comp.visibility == 2 ? !current_page?(site_path) : comp.visibility == 0
               if visible
