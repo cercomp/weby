@@ -626,17 +626,18 @@ EOF
       @con_weby.exec(update_component)
       
       if menus_this[0] != 'inferior'
-        select_menu = "SELECT * FROM menu_#{menus_this[0]} WHERE site_id='#{this_id}' AND id != item_pai order by posicao asc"
+        select_menu = "SELECT *, CASE WHEN item_pai is null THEN '0' ELSE item_pai END as item_pai_certo FROM menu_#{menus_this[0]} WHERE site_id='#{this_id}' AND (id != item_pai OR item_pai is null) order by posicao asc"
         puts "\t\tSELECIONANDO todos os menus do lado: #{menus_this[0]}\n" if @verbose
         menu_this = @con_this.exec(select_menu)
         # Agrupando por item_pai
-        menus_this_groupby = menu_this.group_by{|i| i['item_pai']}
+        menus_this_groupby = menu_this.group_by{|i| i['item_pai_certo']}
+        
       else
         select_menu = "SELECT * FROM menu_#{menus_this[0]} WHERE site_id='#{this_id}' order by posicao asc"
-        puts "\t\tSELECIONANDO todos os menus do lado: #{menus_this[0]}\n" if @verbose
+        puts "\t\tSELECIONANDO todos os menus do lado: #{menus_this[0]}\n" if @verbose        
         menu_this = @con_this.exec(select_menu)
         menus_this_groupby = {}
-        menus_this_groupby["0"] = menu_this.each{|i| i}
+        menus_this_groupby["0"] = menu_this.each{|i| i}        
       end
       # Laço
       unless menus_this_groupby["0"].nil?
@@ -648,6 +649,7 @@ EOF
         end
         menus_this_groupby.clear()
       end
+      menus_this_groupby.clear()
       menu_this.clear()
     end
   end
@@ -669,10 +671,10 @@ EOF
       # src="http://www2.catalao.ufg.br/uploads/files/3/image/GaleriaFotos/img1.jpg"
       # href=\"http://www2.catalao.ufg.br/uploads/files/90/DECLARA____O_DE_CI__NCIA_DE_NORMAS_E_DISPONIBILIDADE-mod.pdf\">
       
-      if string.match(/['"]http.*\/uploads\/.*?([0-9]+).*\/(.*?)['"]/)
-          string.gsub!(/['"]http.*\/uploads\/.*?([0-9]+)\/(.*?)['"]/){|x| "'/uploads/#{@convar[$1]['weby']}/original_#{$2}'" if @convar[$1] }
-      elsif string.match(/.*\/uploads\/.*?([0-9]+).*\/(.*?)/)
-        string.gsub!(/.*\/uploads\/.*?([0-9]+).*\/(.*?)/){|x| "/uploads/#{@convar[$1]['weby']}/original_#{$2}" if @convar[$1] }
+      if string.match(/['"]http.*catalao.*\/uploads\/.*?([0-9]+).*\/(.*?)['"]/)
+          string.gsub!(/['"]http.*catalao.*\/uploads\/.*?([0-9]+)\/(.*?)['"]/){|x| "'/uploads/#{@convar[$1]['weby']}/original_#{$2}'" if @convar[$1] }
+      elsif string.match(/.*catalao.*\/uploads\/.*?([0-9]+).*\/(.*?)/)
+        string.gsub!(/.*catalao.*\/uploads\/.*?([0-9]+).*\/(.*?)/){|x| "/uploads/#{@convar[$1]['weby']}/original_#{$2}" if @convar[$1] }
       end
 
       if string.match(/javascript:mostrar_pagina.*?([0-9]+).*?([0-9]+).*?/) 
