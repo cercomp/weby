@@ -169,13 +169,6 @@ rights:
     destroy:
       name: Excluir Extensões
       action: destroy
-  notifications:
-    index:
-      name: Listar Notificações
-      action: index
-    show:
-      name: Ver Notificação
-      action: show
   statistics:
     index:
       name: Ver Estatísticas

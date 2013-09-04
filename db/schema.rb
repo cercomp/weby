@@ -380,24 +380,25 @@ ActiveRecord::Schema.define(:version => 20130806154257) do
     t.string   "persistence_token"
     t.string   "single_access_token"
     t.string   "perishable_token"
-    t.integer  "login_count",         :default => 0
-    t.integer  "failed_login_count",  :default => 0
+    t.integer  "login_count",          :default => 0
+    t.integer  "failed_login_count",   :default => 0
     t.datetime "last_request_at"
     t.datetime "current_login_at"
     t.datetime "last_login_at"
     t.string   "current_login_ip"
     t.string   "last_login_ip"
     t.string   "theme"
-    t.boolean  "status",              :default => false
-    t.boolean  "is_admin",            :default => false
+    t.boolean  "status",               :default => false
+    t.boolean  "is_admin",             :default => false
     t.string   "first_name"
     t.string   "last_name"
     t.string   "phone"
     t.string   "mobile"
     t.string   "register"
     t.integer  "locale_id"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
+    t.string   "unread_notifications"
   end
 
   add_index "users", ["locale_id"], :name => "index_users_on_locale_id"
