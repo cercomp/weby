@@ -670,15 +670,17 @@ EOF
     unless string.nil?
       # src="http://www2.catalao.ufg.br/uploads/files/3/image/GaleriaFotos/img1.jpg"
       # href=\"http://www2.catalao.ufg.br/uploads/files/90/DECLARA____O_DE_CI__NCIA_DE_NORMAS_E_DISPONIBILIDADE-mod.pdf\">
-      
-      if string.match(/['"]http.*catalao.*\/uploads\/.*?([0-9]+).*\/(.*?)['"]/)
-          string.gsub!(/['"]http.*catalao.*\/uploads\/.*?([0-9]+)\/(.*?)['"]/){|x| "'/uploads/#{@convar[$1]['weby']}/original_#{$2}'" if @convar[$1] }
-      elsif string.match(/.*catalao.*\/uploads\/.*?([0-9]+).*\/(.*?)/)
-        string.gsub!(/.*catalao.*\/uploads\/.*?([0-9]+).*\/(.*?)/){|x| "/uploads/#{@convar[$1]['weby']}/original_#{$2}" if @convar[$1] }
+
+      if string.match(/['"]+http.*?catalao.*?\/uploads\/.*?[0-9]+\/[^'"]*\/.*?['"]+/)
+          string.gsub!(/["']+http.*?catalao.*?\/uploads\/.*?([0-9]+)\/[^'"]*\/(.*?)['"]+/){|x| "\"/uploads/#{@convar[$1]['weby']}/original_#{$2}\"" if @convar[$1] }
+      elsif string.match(/['"]http.*?catalao.*?\/uploads\/.*?[0-9]+\/[^\/"']*['"]/)
+          string.gsub!(/["']http.*?catalao.*?\/uploads\/.*?([0-9]+)\/([^\/"']*)['"]/){|x| "\"/uploads/#{@convar[$1]['weby']}/original_#{$2}\"" if @convar[$1] }
+      elsif string.match(/.*?catalao.*?\/uploads\/.*?([0-9]+).*?\/(.*?)/)
+        string.gsub!(/.*?catalao.*?\/uploads\/.*?([0-9]+).*\/(.*?)/){|x| "/uploads/#{@convar[$1]['weby']}/original_#{$2}" if @convar[$1] }
       end
 
       if string.match(/javascript:mostrar_pagina.*?([0-9]+).*?([0-9]+).*?/) 
-        string.gsub!(/javascript:mostrar_pagina.*?([0-9]+).*?([0-9]+).*?;/){|x| "'/pages/#{@convar[$2]["paginas"][$1]}'" if @convar[$2] }
+        string.gsub!(/javascript:mostrar_pagina.*?([0-9]+).*?([0-9]+).*?;/){|x| "/pages/#{@convar[$2]["paginas"][$1]}" if @convar[$2] }
       end 
       if string.match(/javascript:mostrar_noticia.*?([0-9]+).*?([0-9]+).*?/)
         string.gsub!(/javascript:mostrar_noticia.*?([0-9]+).*?([0-9]+).*?;/){|x| "'/pages/#{@convar[$2]["noticias"][$1]}'" if @convar[$2] }
