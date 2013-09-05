@@ -1,0 +1,16 @@
+pt-BR:
+  notifications:
+    list:
+      title:                    " Título "
+      body:                     " Mensagem "
+      date:                     " Data "
+      no_notifications:         " Nenhuma Notificação "
+      load_more:                " Carregar notficações anteriores "
+    show:
+      title:                    " Título "
+      body:                     " Mensagem "
+      created_at:               " Criado em "
+      list_all:                 " Listar todas "
+    index:
+      mark_all_notifications_as_read: " Marcar todas como lido "
+      notifications:            " Notificações "

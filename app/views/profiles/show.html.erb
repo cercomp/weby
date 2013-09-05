@@ -8,12 +8,13 @@
         <%= @profile.first_name %><br />
         <span class="last-name"><%= @profile.last_name %></span>
       </div>
-      <% if is_owner? %>
-        <div class="actions">
+      <div class="actions">
+        <% if is_owner? %>
           <%= link_to t('.edit-profile'), edit_profile_path(@profile.login),
             class: 'btn btn-primary btn-block' %>
-        </div>
-      <% end %>
+        <% end %>
+        <%= link_to "#{icon('chevron-left', white: true)}#{t("back")}".html_safe, :back, class: "btn btn-block" %>
+      </div>
     </div>
     <div class="span9">
       <div class="heading"><%= t('.latest-news-published') %></div>

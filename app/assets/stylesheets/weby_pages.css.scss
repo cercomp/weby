@@ -276,3 +276,19 @@
     color: #7B7B7B;
   }
 }
+
+//Notifications
+#notifications
+{
+  .date
+  {
+    font-size: 11px;
+    color: #AAA;
+    font-weight: bold;
+    padding-bottom: 5px;
+  }
+  .unread
+  {
+    font-weight: bold;
+  }
+}

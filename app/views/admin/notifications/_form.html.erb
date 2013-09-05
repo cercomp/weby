@@ -1,9 +1,14 @@
 <%= simple_form_for [:admin, @notification], html: { class: 'form-horizontal' } do |f| %>
   <%= f.show_errors %>
   <%= f.input :title %>
-  <%= f.input :body, :input_html => {:rows => 10}, :as => :text %>
+  <%= f.input :body,
+    :input_html => {class: "mceSimple", style: "width: 550px; height: 280px;"},
+    :as => :text,
+    :required => false %>
   <div class="form-actions">
     <%= f.button :submit, class: 'btn-primary', disable_with: t("please_wait") %>
     <%= link_to t("back"), :back, class: "btn" %>
   </div>
 <% end %>
+<%= content_for :javascripts, javascript_include_tag("tinymce") %>
+<%= content_for :javascripts, javascript_include_tag("tiny_mce/jquery.tinymce") %>

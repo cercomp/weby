@@ -1,0 +1,29 @@
+<% if @notifications.empty? %>
+  <div class="alert">
+    <%= t('.no_notifications') %>
+  </div>
+<% else %>
+  <table class='table table-striped notifications'>
+    <thead>
+      <tr>
+        <th><%= t(".title") %></th>
+        <th><%= t(".body") %></th>
+        <th><%= t(".date") %></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @notifications.each do |notification| %>
+        <tr class="<%= current_user.has_read?(notification) ? "" : "unread warning" %>">
+          <td><%= link_to "#{image_tag("message-new.png", style: "width: 14px") unless current_user.has_read?(notification)} #{notification.title}".html_safe, notification_path(notification.id) %></td>
+          <td><%= strip_tags(notification.body.to_s)[0..50].html_safe %></td>
+          <td><%= l(notification.created_at, :format => :short) %></td>
+          <td></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div style="text-align: center" class="load-more">
+    <%= link_to_function t('.load_more'), 'loadMoreNotifications()', class: 'btn btn-small next-load-notifications', data: {url: @nexturl} if @notifications.size == @per_notif %>
+  </div>
+  <% end %>

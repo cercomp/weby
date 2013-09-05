@@ -42,7 +42,6 @@ Weby::Application.routes.draw do
 
       get "stats" => "statistics#index"
 
-      resources :notifications, only: [:index, :show]
       resources :banners do
         member do
           put :toggle_field
@@ -141,6 +140,12 @@ Weby::Application.routes.draw do
 
   # routes to profiles
   resources :profiles, only: [:show, :edit, :update]
+
+  resources :notifications, only: [:index, :show] do
+    collection do
+      post :mark_as_read
+    end
+  end
 
   # routes to session
   match "logout"  => "session#logout"

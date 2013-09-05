@@ -2,7 +2,7 @@
   <br />
   <p><b><%= t('.id') %>: </b> <%= @notification.id %></p>
   <p><b><%= t('.title') %>: </b> <%= @notification.title %></p>
-  <p><b><%= t('.body') %>: </b> <pre><%= @notification.body %></pre></p>
+  <p><b><%= t('.body') %>: </b><pre> <%= raw @notification.body %> </pre> </p>
   <p><b><%= t('.created_at') %>: </b><%= l(@notification.created_at, :format => :short) %></p>
 </div>
 <div class="form-actions">
