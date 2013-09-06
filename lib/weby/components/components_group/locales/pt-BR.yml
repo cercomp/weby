@@ -2,3 +2,7 @@ pt-BR:
   components:
     components_group:
       name: "Grupo de componentes"
+  activerecord:
+    attributes:
+      components_group_component:
+        html_class:   "Classe HTML"

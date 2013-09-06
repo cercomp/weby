@@ -5,7 +5,7 @@ en:
   activerecord:
     attributes:
       components_group_component:
-
+        html_class:   "HTML Class"
   components_group:
     views:
       show:

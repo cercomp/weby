@@ -25,10 +25,21 @@
     <label class="control-label"><%= t(".place")  %></label>
     <div class="controls">
       <% if params[:placeholder] %>
-        <input type="text"disabled="true" value="
-          <%= t("themes.#{current_site.theme}.placeholders.#{@component.place_holder}", :default => @component.place_holder) %>"/>
+        <% if params[:placeholder].match(/^\d*$/) %>
+          <% group = current_site.components.find_by_id(params[:placeholder].to_i) %>
+          <input type="text"disabled="true" value="
+            <%= group ? (group.alias.present? ? group.alias : t("components.#{group.name}.name")) : params[:placeholder] %>"/>
+        <% else %>
+          <input type="text"disabled="true" value="
+            <%= t("themes.#{current_site.theme}.placeholders.#{@component.place_holder}", :default => @component.place_holder) %>"/>
+        <% end %>
       <% else %>
-        <%= raw make_mini_layout %>
+        <% if @component.place_holder.match(/^\d*$/) and (group = current_site.components.find_by_id(@component.place_holder.to_i)) %>
+            <input type="text"disabled="true" value="
+             <%= group.alias.present? ? group.alias : t("components.#{group.name}.name") %>"/>
+        <% else %>
+          <%= raw make_mini_layout %>
+        <% end %>
       <% end %>
       <%= f.input :place_holder, as: :hidden, input_html: {id: "component_place_holder"} %>
     </div>

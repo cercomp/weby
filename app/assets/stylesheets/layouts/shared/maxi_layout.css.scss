@@ -17,11 +17,6 @@
     background-color: #F2DEDE;
   }
 
-  .maxi_level .placeholder-name{
-    margin-bottom: 15px;
-    font-size: 21px;
-  }
-
   .maxi_level .add-btn{
     float: right;
   }
@@ -31,29 +26,42 @@
     border: 1px dashed #BBB !important;
     padding: 4px;
   }
+
+  .order-list{
+    min-height: 20px;
+  }
 }
 
-#maxi_layout .maxi_level > .placeholder > ul, #leftout ul{
+.placeholder-name{
+  margin-bottom: 15px;
+  font-size: 21px;
+}
+
+#maxi_layout .maxi_level .placeholder > ul, #leftout.placeholder > ul{
   margin: 0;
 }
 
-#maxi_layout .maxi_level > .placeholder > ul > li, #leftout ul > li{
+.component-components_group ul, #leftout .component-components_group ul{
+  margin-top: 10px;
+}
+
+#maxi_layout .maxi_level .placeholder > ul > li, #leftout ul > li, .component-components_group li{
   margin-bottom: 5px;
 }
 
-#maxi_layout .maxi_level.single > .placeholder > ul > li, #leftout ul > li{
+#maxi_layout .maxi_level.single .placeholder > ul > li, #leftout ul > li{
   min-height: 20px;
 }
 
-#maxi_layout .maxi_level.multi > .placeholder .widget-name{
+#maxi_layout .maxi_level.multi .placeholder .widget-name{
   display: block;
 }
 
-#maxi_layout .maxi_level.multi > .placeholder > ul > li{
+#maxi_layout .maxi_level.multi .placeholder > ul > li{
   min-height: 40px;
 }
 
-#maxi_layout .maxi_level > .placeholder .component, #leftout .component{
+#maxi_layout .maxi_level .placeholder .component, #leftout .component{
   display: block;
   padding: 4px;
   border: 1px solid #DDD;

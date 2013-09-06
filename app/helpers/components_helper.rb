@@ -4,7 +4,7 @@ module ComponentsHelper
     content_for :stylesheets, stylesheet_link_tag("layouts/shared/mini_layout")
     config = Weby::Themes.layout current_site.theme
     divs = "<div id='mini_layout' style='width: #{config["width"] || 500}px'>"  
-    
+
     config["placeholders"].map do |placeholders|
       divs += "<div class='mini_level' style='height:#{placeholders["height"] || 25}px'>"
       divs += make_placeholders_divs(placeholders, config["width"] || 500)
@@ -14,29 +14,30 @@ module ComponentsHelper
     divs += "</div>" 
   end
 
-  def list_component(compo, name)
+  def list_component(compo, leftout=false)
     exceptions = ["show"]
     exceptions << "edit" unless component_is_available(compo.name)
-    components_html = ""
-    components_html <<  (" <li id='sort_sites_component_#{compo.id }' class='component component-#{ compo.name } #{'disabled' unless component_is_available(compo.name)}' data-place='#{name}'>
+    components_html = "<li "
+    components_html << "id='sort_sites_component_#{compo.id }' " unless leftout
+    components_html << "class='component component-#{ compo.name } #{'disabled' unless component_is_available(compo.name)}' data-place='#{compo.place_holder}'>
       <div>
         <span class='widget-name'>
-         #{ raw ("#{toggle_field(compo, "publish")} #{t("components.#{compo.name}.name")} - #{compo.alias || compo.default_alias}") }
-       </span>
-       <div class='pull-right'>
-         #{ raw make_menu(compo, :except => exceptions, :with_text => false) }
-         #{ "<span class='handle'>#{icon('move') }</span>" if check_permission(Sites::Admin::ComponentsController, 'sort') }
-         #{ link_to t("+"), new_site_admin_component_path(placeholder: compo.alias), class: "btn btn-success btn-small" if compo.name.to_s == "components_group" and check_permission(Sites::Admin::ComponentsController, [:new]) }
-       </div>
-       <div class='clearfix'></div>
-      </div>")
+          #{ raw ("#{toggle_field(compo, "publish")} #{t("components.#{compo.name}.name")} - #{compo.alias || compo.default_alias}") }
+        </span>
+        <div class='pull-right'>
+          #{ raw make_menu(compo, :except => exceptions, :with_text => leftout) }
+          #{ "<span class='handle'>#{icon('move') }</span>" if check_permission(Sites::Admin::ComponentsController, 'sort') and !leftout }
+          #{ link_to t("+"), new_site_admin_component_path(placeholder: compo.id), class: "btn btn-success btn-small" if compo.name.to_s == "components_group" and check_permission(Sites::Admin::ComponentsController, [:new]) and !leftout }
+        </div>
+        <div class='clearfix'></div>
+      </div>"
     if compo.name.to_s == "components_group"
-      components_per_group = @components.select{|comp| comp.place_holder == compo.alias}
+      components_per_group = @components.select{|comp| comp.place_holder.to_i == compo.id}
       @components = @components - components_per_group
-      components_html << "<div class=\"order-list\" data-place=\"#{compo.alias}\"><ul>"
+      components_html << "<div><ul class=\"order-list\" data-place=\"#{compo.id}\">"
       components_per_group.each do |comp|
         component = Weby::Components.factory(comp)
-        components_html << list_component(component, compo.alias)
+        components_html << list_component(component, leftout)
       end
       components_html << "</ul></div>"
     end

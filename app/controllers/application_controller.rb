@@ -293,7 +293,7 @@ class ApplicationController < ActionController::Base
           components.select{|comp| comp.place_holder == place_holder}.map do |component|
             comp = {component: component}
             if component.name == "components_group"
-              comp[component.alias] = comp_select.call(component.alias)
+              comp[:children] = comp_select.call(component.id.to_s)
             end
             comp
           end

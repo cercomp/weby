@@ -5,6 +5,8 @@ class Component < ActiveRecord::Base
   extend Weby::ComponentInstance
 
   before_save :prepare_variables
+  after_save :fix_position
+  after_destroy :remove_children, if: Proc.new{ self.name == "components_group" }
 
   belongs_to :site
 
@@ -24,10 +26,33 @@ class Component < ActiveRecord::Base
     @settings_map
   end
 
+  def self.update_positions positions, place_holder
+    positions.to_a.each_with_index do |comp_id, idx|
+      attr = {position: idx+1}
+      attr[:place_holder] = place_holder if place_holder.present?
+      Component.find(comp_id).update_attributes(attr)
+    end
+  end
+
   private
   def prepare_variables
     self.publish = true if self.publish.nil?
     self.settings = settings_map.to_s
     self.position = Component.maximum('position', :conditions=> ["site_id = ? AND place_holder = ?", self.site_id, self.place_holder]).to_i + 1 if self.position.blank?
+  end
+
+  def remove_children
+    position = self.position
+    positions = self.site.components.where(place_holder: self.place_holder).order('position asc').map{|comp| comp.id }
+    Component.where(place_holder: self.id.to_s).order('position asc').each do |component|
+      component.update_attributes(place_holder: self.place_holder)
+      positions.insert(position-1, component.id)
+      position += 1
+    end
+    Component.update_positions positions, self.place_holder
+  end
+
+  def fix_position
+    #TODO arrumar a posição quando o usuário mudar o placeholder pelo 'editar'
   end
 end
