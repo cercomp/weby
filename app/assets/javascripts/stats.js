@@ -9,6 +9,12 @@ var margin = {top: 20, right: 20, bottom: 20, left:50},
     width = 760,
     height = 300;
 
+function switch_disable_text(disable){
+  var $submit = $('.generate');
+  var $dis_txt = $submit.text();
+  $submit.text($submit.data('disable-with')).data('disable-with', $dis_txt).attr('disabled', disable);
+}
+
 $('.generate').click(function(){
   var params = {
       type: $('.tab-pane.active')[0].id,
@@ -17,8 +23,9 @@ $('.generate').click(function(){
       metric: $('#metric').val(),
       site_id: $('#site_id').val()
   }
-
+  switch_disable_text(true);
   $.getJSON('/admin/stats', params, function(data){
+    switch_disable_text(false);
     if(params.type == 'day')
         daily_chart(data);
     else if(params.type == 'month')
