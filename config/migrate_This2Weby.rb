@@ -163,115 +163,72 @@ EOF
 
       if not this_estilo.first.nil?# and site[0]['id'].to_i != 70
 weby_estilo = <<EOF
-/* Principal */
 /* Fundo do site */
-  html{ background: #{pre_treat(this_estilo.first['body_background'])}; }
+html{ background: #{pre_treat(this_estilo.first['body_background'])}; }
+
 /* Borda dos menus */ 
-  header nav menu li,
-  footer nav menu li { border:1px solid #{pre_treat(this_estilo.first['body_background'])}; }
-/* Fundo Tabela frontal das páginas */ 
-  #news_list table,
-  #news_list table th,
-  #news_list table td { border-color: #{pre_treat(this_estilo.first['cor_borda_noticias'])}; }
-  #news_list table th { background-color: #{pre_treat(this_estilo.first['cor_borda_noticias'])}; }
-/* Cor titulo da tabela frontal das páginas */
-  #news_list table th { color: #{pre_treat(this_estilo.first['cor_letra_topo_noticias'])}; }
-/* Cor Letra Titulo Tabela Frontal */ 
-  #news_list table td a { color: #{pre_treat(this_estilo.first['cor_letra_link_noticias_out'])}; }
-/* Cor Letra Titulo Tabela Frontal Hover */ 
-  #news_list table td a:hover { color: #{pre_treat(this_estilo.first['cor_letra_link_noticias_over'])}; }
-/* Cor Letra Tabela Frontal */ 
-  #news_list table td { color: #{pre_treat(this_estilo.first['cor_letra_noticias_resumos'])}; }
+header nav menu li,
+footer nav menu li { border:1px solid #{pre_treat(this_estilo.first['body_background'])}; }
 /* Cor da letra do rodape */ 
-  footer section#info { color: #{pre_treat(this_estilo.first['cor_letra_rodape'])}; }
-/* Menu  */
-  /* Esquerdo  */
-    /* Menu  */
-      /* Cor */ 
-        aside.left menu li a { background-color: #{pre_treat(this_estilo.first['cor_mouseout'])}; }
-        aside.left menu li { background-color: #{pre_treat(this_estilo.first['cor_mouseout'])}; }
-      /* Cor Hover */
-         aside menu.dropdown li:hover { background-color: #{pre_treat(this_estilo.first['cor_mouseover'])}; }
-         /*aside.left menu li:hover { background-color: #{pre_treat(this_estilo.first['cor_mouseover'])}; } */
-         /*aside.left menu li a:hover { background-color: #{pre_treat(this_estilo.first['cor_mouseover'])}; } */
-      /* Cor fonte */ 
-        aside.left menu li a { color: #{pre_treat(this_estilo.first['cor_letra_out'])}; }
-      /* Cor fonte hover */ 
-        aside.left menu li a:hover { color: #{pre_treat(this_estilo.first['cor_letra_hover'])}; }
-    /* Submenu  */
-      /* Cor */ 
-        /* aside.left menu li.sub > a { background-color: #{pre_treat(this_estilo.first['cor_td_subitem_mouseout'])}; } */
-        /* aside.left menu li.sub { background-color: #{pre_treat(this_estilo.first['cor_td_subitem_mouseout'])}; } */
-      /* Cor Hover */ 
-        /* aside.left menu li.sub:hover { background-color: #{pre_treat(this_estilo.first['cor_td_subitem_mouseout'])}; } */
-        /* aside.left menu li.sub:hover > a { background-color: #{pre_treat(this_estilo.first['cor_td_subitem_mouseover'])}; } */
-      /* Cor fonte */ 
-        aside.left menu li.sub > a { color: #{pre_treat(this_estilo.first['cor_letra_subitem_out'])}; }
-      /* Cor fonte hover */ 
-        aside.left menu li.sub > a:hover { color: #{pre_treat(this_estilo.first['cor_letra_subitem_out'])}; }
-    /* Menu  */
-      /* Cor */
-        aside.right menu li a { background-color: #{this_estilo.first['cor_mouseout2']}; }
-        aside.right menu li { background-color: #{this_estilo.first['cor_mouseout2']}; }        
-      /* Cor Hover */
-        aside.right menu li:hover { background-color: #{this_estilo.first['cor_mouseover2']}; }
-        aside.right menu li a:hover { background-color: #{this_estilo.first['cor_mouseover2']}; }
-      /* Cor fonte */
-        aside.right menu li a { color: #{this_estilo.first['cor_letra_out2']}; }
-      /* Cor fonte hover */
-      /*  aside.right menu li a:hover { color: #{this_estilo.first['cor_letra_hover2']}; } */
-    /* Submenu  */
-      /* Cor */
-        /* aside.right menu li.sub > a { background-color: #{this_estilo.first['cor_td_subitem_mouseout2']}; } */
-      /* Cor Hover */
-        /* aside.right menu li.sub:hover { background-color: #{this_estilo.first['cor_td_subitem_mouseout2']}; } */
-        /* aside.right menu li.sub:hover > a { background-color: #{this_estilo.first['cor_td_subitem_mouseover2']}; } */
-      /* Cor fonte */
-        aside.right menu li.sub > a { color: #{this_estilo.first['cor_letra_subitem_out2']}; }
-      /* Cor fonte hover */
-        aside.right menu li.sub > a:hover { color: #{this_estilo.first['cor_letra_subitem_out2']}; }
-  /* Superior  */
-    /* Menu  */
-      /* Cor */
-        header nav menu li a { background-color: #{this_estilo.first['cor_mouseout3']}; }
-        header nav menu li { background-color: #{this_estilo.first['cor_mouseout3']}; }
-      /* Cor Hover */
-        header nav menu li:hover { background-color: #{this_estilo.first['cor_mouseover3']}; }
-        header nav menu li a:hover { background-color: #{this_estilo.first['cor_mouseover3']}; }
-      /* Cor fonte */
-        header nav menu li a { color: #{this_estilo.first['cor_letra_out3']}; }
-      /* Cor fonte hover */
-        header nav menu li a:hover { color: #{this_estilo.first['cor_letra_hover3']}; }
-  /* Inferior  */
-    /* Menu  */
-      /* Cor */
-        footer nav menu li a { background-color: #{this_estilo.first['cor_mouseout4']}; }
-        footer nav menu li { background-color: #{this_estilo.first['cor_mouseout4']}; }
-      /* Cor Hover */
-        footer nav menu li:hover { background-color: #{this_estilo.first['cor_mouseover3']}; }
-        footer nav menu li a:hover { background-color: #{this_estilo.first['cor_mouseover3']}; }
-      /* Cor fonte */
-        footer nav menu li a { color: #{this_estilo.first['cor_letra_out4']}; }
-      /* Cor fonte hover */
-        footer nav menu li a:hover { color: #{this_estilo.first['cor_letra_hover4']}; }
-/* CSS  */
-/* Estilo das páginas  */
-  /* Cor Links */
-    section#content article > p a { color: #{pre_treat(this_estilo.first['cor_letra_links_out'])}; }
-  /* Cor Links Hover */
-    section#content article > p a:hover { color: #{pre_treat(this_estilo.first['cor_letra_links_over'])}; }
-  /* Cor Letra */
-    section#content article > p,
-    section#content article > summary { color: #{pre_treat(this_estilo.first['cor_letra_paragrafos'])}; }
-  /* Cor Titulos */
-    section#content article header h1,
-    section#content article header h2 {color: #{pre_treat(this_estilo.first['cor_letra_subtitulos'])}; }
-  /* Cor Subtitulos */
-    section#content article header,
-    section#content article header summary { color: #{pre_treat(this_estilo.first['cor_letra_titulos'])}; }
-  /* Avançado */
-    /* Pegar todo o CSS avançado, guardar em um arquivo */
-    #{pre_treat(this_estilo.first['avancado'])}
+footer section#info { color: #{pre_treat(this_estilo.first['cor_letra_rodape'])}; }
+
+/* Fundo tabela frontal das páginas */ 
+#news_list table,
+#news_list table th,
+#news_list table td { border-color: #{pre_treat(this_estilo.first['cor_borda_noticias'])}; }
+#news_list table th { background-color: #{pre_treat(this_estilo.first['cor_borda_noticias'])}; }
+#news_list table th { color: #{pre_treat(this_estilo.first['cor_letra_topo_noticias'])}; }
+#news_list table td a { color: #{pre_treat(this_estilo.first['cor_letra_link_noticias_out'])}; }
+#news_list table td a:hover { color: #{pre_treat(this_estilo.first['cor_letra_link_noticias_over'])}; }
+#news_list table td { color: #{pre_treat(this_estilo.first['cor_letra_noticias_resumos'])}; }
+
+/* Menus */
+aside menu.dropdown li:hover { background-color: #{pre_treat(this_estilo.first['cor_mouseover'])}; }
+/* Menu Esquerdo */
+aside.left menu li { background-color: #{pre_treat(this_estilo.first['cor_mouseout'])}; }
+aside.left menu li a { color: #{pre_treat(this_estilo.first['cor_letra_out'])}; background-color: #{pre_treat(this_estilo.first['cor_mouseout'])}; }
+/* aside.left menu li:hover { background-color: #{pre_treat(this_estilo.first['cor_mouseover'])}; } */
+aside.left menu li a:hover { color: #{pre_treat(this_estilo.first['cor_letra_hover'])}; }
+aside.left menu li.sub > a { color: #{pre_treat(this_estilo.first['cor_letra_subitem_out'])}; }
+aside.left menu li.sub > a:hover { color: #{pre_treat(this_estilo.first['cor_letra_subitem_out'])}; }
+/* aside.left menu li.sub { background-color: #{pre_treat(this_estilo.first['cor_td_subitem_mouseout'])}; } */
+/* aside.left menu li.sub > a { background-color: #{pre_treat(this_estilo.first['cor_td_subitem_mouseout'])}; } */
+/* aside.left menu li.sub:hover { background-color: #{pre_treat(this_estilo.first['cor_td_subitem_mouseout'])}; } */
+/* aside.left menu li.sub:hover > a { background-color: #{pre_treat(this_estilo.first['cor_td_subitem_mouseover'])}; } */
+/* Menu Direito */
+aside.right menu li { background-color: #{this_estilo.first['cor_mouseout2']}; }        
+aside.right menu li:hover { background-color: #{this_estilo.first['cor_mouseover2']}; }
+aside.right menu li a { color: #{this_estilo.first['cor_letra_out2']}; background-color: #{this_estilo.first['cor_mouseout2']}; }
+aside.right menu li a:hover { background-color: #{this_estilo.first['cor_mouseover2']}; }
+aside.right menu li.sub > a { color: #{this_estilo.first['cor_letra_subitem_out2']}; }
+aside.right menu li.sub > a:hover { color: #{this_estilo.first['cor_letra_subitem_out2']}; }
+/* aside.right menu li a:hover { color: #{this_estilo.first['cor_letra_hover2']}; } */
+/* aside.right menu li.sub > a { background-color: #{this_estilo.first['cor_td_subitem_mouseout2']}; } */
+/* aside.right menu li.sub:hover { background-color: #{this_estilo.first['cor_td_subitem_mouseout2']}; } */
+/* aside.right menu li.sub:hover > a { background-color: #{this_estilo.first['cor_td_subitem_mouseover2']}; } */
+/* Menu Superior */
+header nav menu li { background-color: #{this_estilo.first['cor_mouseout3']}; }
+header nav menu li:hover { background-color: #{this_estilo.first['cor_mouseover3']}; }
+header nav menu li a { color: #{this_estilo.first['cor_letra_out3']}; background-color: #{this_estilo.first['cor_mouseout3']}; }
+header nav menu li a:hover { color: #{this_estilo.first['cor_letra_hover3']}; background-color: #{this_estilo.first['cor_mouseover3']}; }
+/* Menu Inferior */
+footer nav menu li { background-color: #{this_estilo.first['cor_mouseout4']}; }
+footer nav menu li:hover { background-color: #{this_estilo.first['cor_mouseover3']}; }
+footer nav menu li a { color: #{this_estilo.first['cor_letra_out4']}; background-color: #{this_estilo.first['cor_mouseout4']}; }
+footer nav menu li a:hover { color: #{this_estilo.first['cor_letra_hover4']}; background-color: #{this_estilo.first['cor_mouseover3']}; }
+
+/* Estilo das páginas */
+section#content article > p,
+section#content article > summary { color: #{pre_treat(this_estilo.first['cor_letra_paragrafos'])}; }
+section#content article > p a { color: #{pre_treat(this_estilo.first['cor_letra_links_out'])}; }
+section#content article > p a:hover { color: #{pre_treat(this_estilo.first['cor_letra_links_over'])}; }
+section#content article header h1,
+section#content article header h2 {color: #{pre_treat(this_estilo.first['cor_letra_subtitulos'])}; }
+section#content article header,
+section#content article header summary { color: #{pre_treat(this_estilo.first['cor_letra_titulos'])}; }
+
+/* Outros */
+#{pre_treat(treat(this_estilo.first['avancado']))}
 EOF
       end
       insert_css = "INSERT INTO styles (name,css,owner_id,created_at,updated_at) VALUES ('#{site_name}','#{pre_treat(weby_estilo)}','#{site[0]['id']}','#{Time.now}','#{Time.now}') RETURNING id"
