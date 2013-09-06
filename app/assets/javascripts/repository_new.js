@@ -113,8 +113,14 @@ $(function () {
        },
 
        fail: function(e, data) {
+           console.log(e);
+           console.log(data);
           //console.log(data.jqXHR.responseText);
-          var errors = JSON.parse(data.jqXHR.responseText).errors;
+          try{
+            var errors = JSON.parse(data.jqXHR.responseText).errors;
+          }catch(e){
+            var errors = [data.jqXHR.responseText.split(/\r?\n/)[0]]
+          }
           handleFail(data.context, errors)
        }
     });
