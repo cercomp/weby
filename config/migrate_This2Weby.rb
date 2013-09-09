@@ -806,7 +806,7 @@ class Migrate_files
 
         if(file_name.match(/topo\.bmp/i) || file_name.match(/topo\.gif/i) || file_name == "topo.swf" || file_name == "topo.jpg" || file_name == "topo.png")
             #sql = "UPDATE sites SET top_banner_id='#{repository_id}' WHERE id='#{@convar[id]['weby']}'"
-            sql = "UPDATE site_components set settings = '{:size => \"original\",:url => \"/\",:repository_id => \"#{repository_id}\", :html_class => \"header\"}' where site_id='#{@convar[id]['weby']}' AND name = 'image' AND place_holder = 'top'"
+            sql = "UPDATE site_components set settings = '{:size => \"original\",:width=>\"900\",:url => \"/\",:repository_id => \"#{repository_id}\", :html_class => \"header\"}' where site_id='#{@convar[id]['weby']}' AND name = 'image' AND place_holder = 'top'"
             @con_weby.exec(sql)
             puts "\tATUALIZANDO topo"
             next
