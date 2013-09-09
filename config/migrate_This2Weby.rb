@@ -653,7 +653,15 @@ EOF
       end 
       if string.match(/javascript:mostrar_fale_conosco.*?([0-9]+).*?/)
         string.gsub!(/javascript:mostrar_fale_conosco.*?([0-9]+).*?;/){|x| "/feedback" if @convar[$1] }
-      end 
+      end
+
+      if string.match(/['"]http:\/\/.*?catalao.*?\/.*?\/.*?['"]/)
+        string.gsub!(/['"]http:\/\/(.*?catalao.*?)\/.*?\/([^\/"'].*?)\/?+['"]/){|x| "http://#{$2}_#{$1}" }
+      end
+      if string.match(/['"]+http.*?catalao.*?\/.*?\/+['"]/)
+        string.gsub!(/['"]+http:\/\/(.*?catalao.*?)\/([^\/"'].*?)\/?+['"]/){|x| "http://#{$2}_#{$1}" }
+      end
+      
       str = @con_weby.escape(string)      
       return str 
     end 
@@ -949,11 +957,11 @@ end
   #atualizar as urls
   arquivo = 'dominios.txt'
   # Conexão com os dois bancos
-    if not File.exist?("config-migrate.yml")
-      puts "É necessário criar o arquivo config-migrate.yml com as diretivas de conexão."
-      print "Exemplo:\nthis:\n  adapter: postgresql\n  host: localhost\n  database: this\n  username: this\n  password: senha_this\n\nweby:\n  adapter: postgresql\n  host: localhost\n  database: weby\n  username: weby\n  password: senha_weby\n"
-      exit
-    end
+  if not File.exist?("config-migrate.yml")
+    puts "É necessário criar o arquivo config-migrate.yml com as diretivas de conexão."
+    print "Exemplo:\nthis:\n  adapter: postgresql\n  host: localhost\n  database: this\n  username: this\n  password: senha_this\n\nweby:\n  adapter: postgresql\n  host: localhost\n  database: weby\n  username: weby\n  password: senha_weby\n"
+    exit
+  end
   @config = YAML::load(File.open("config-migrate.yml"))
   @con_weby = PGconn.connect(@config['weby']['host'],nil,nil,nil,@config['weby']['database'],@config['weby']['username'],@config['weby']['password'])
   @convar = YAML::load(File.open("./convar.yml"))
@@ -990,8 +998,7 @@ end
       
       update_site = "UPDATE sites set name = '#{pre_treat(site_name)}', url = '#{pre_treat(url)}', parent_id = #{parent_id} where id =  #{id_weby}"
       puts update_site
-      @con_weby.exec(update_site)
-      
-   
+      @con_weby.exec(update_site)         
   end
+
   @con_weby.close()
