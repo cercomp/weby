@@ -27,7 +27,7 @@
     </p>
     <%= content_tag_if @page.kind?, :p, class: 'event-type' do %>
       <%= label(:page, :kind, style: 'display: inline-block;') %>:
-      <%= t("pages.event_form.#{@page.kind}") %>
+      <%= t("sites.admin.pages.event_form.#{@page.kind}") %>
     <% end %>
     <%= content_tag_if @page.event_email?, :p, class: 'event-email' do %>
       <%= label(:page, :event_email, style: 'display: inline-block;') %>:
@@ -64,7 +64,7 @@
   <%= render partial: 'sites/pages/related_files' if @page.related_files.any? %>
 
   <div style="margin-top: 8px;">
-    <%= link_to(icon('edit', text: t("edit")), edit_site_admin_page_path(@page)) if check_permission(Sites::Admin::PagesController, [:edit]) %>
+    <%= link_to(icon('edit', text: t("edit")), main_app.edit_site_admin_page_path(@page)) if check_permission(Sites::Admin::PagesController, [:edit]) %>
     <% if !defined?(as_component) %>
       <%= link_to icon('list', text: t(".list_all")), site_pages_path() %>
       <%= link_to icon('chevron-left', text: t("back")), :back %>
