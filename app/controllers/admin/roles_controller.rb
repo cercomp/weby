@@ -1,6 +1,6 @@
 class Admin::RolesController < ApplicationController
   before_filter :require_user
-  before_filter :check_authorization
+  before_filter :is_admin
   before_filter :load_themes, :only => [:new, :edit]
 
   def load_themes
