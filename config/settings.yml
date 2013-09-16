@@ -15,3 +15,5 @@ settings:
     value: 'http'
   domain:
     value:
+  root_site:
+    value:

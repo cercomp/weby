@@ -288,11 +288,22 @@ class ApplicationController < ActionController::Base
           @global_menus[menu.id] = menu
         end
 
+        components = @site.components.where({publish: true}).order('position asc')
+        comp_select = lambda { |place_holder|
+          components.select{|comp| comp.place_holder == place_holder}.map do |component|
+            comp = {component: component}
+            if component.name == "components_group"
+              comp[:children] = comp_select.call(component.id.to_s)
+            end
+            comp
+          end
+        }
+
         @global_components = {}
-        @site.components.where({publish: true}).order('position asc').each do |comp|
-          (@global_components[comp.place_holder.to_sym] ||= []) << comp if component_is_available comp.name
+        Weby::Themes.layout(@site.theme)['placeholders'].map{|place| place['names']}.flatten.each do |place_holder|
+          @global_components[place_holder.to_sym] = comp_select.call(place_holder)
         end
-        
+
         @main_width = nil
         if @site.try(:body_width)
           @main_width = @site.body_width.to_i

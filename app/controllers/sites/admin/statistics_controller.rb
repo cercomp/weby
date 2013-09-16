@@ -1,4 +1,6 @@
 class Sites::Admin::StatisticsController < ApplicationController
+  before_filter :require_user
+  before_filter :check_authorization
   
   respond_to :html, :json
   

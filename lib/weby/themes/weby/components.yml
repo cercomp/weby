@@ -1,0 +1,8 @@
+first_place:
+  -
+    name: 'gov_bar'
+    settings: '{:background => "#7F7F7F"}'
+    position: 1
+    publish: true
+
+

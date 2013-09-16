@@ -24,5 +24,6 @@ en:
           active:             " Active? "
           empty_placeholder:  " No widgets in this place "
           content:            " Content "
+          leftout_components: " Components that are out of the layout "
         new:
           components:         " Components "

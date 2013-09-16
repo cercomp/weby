@@ -55,29 +55,30 @@ module Weby
       #executa 'content_for :layout_<place_holder>', use yield :layout_<place_holder> para mostrar
       def load_components
         @global_components.reject{|k,v| k == :home }.each do |place, comps|
-          comps.each do |comp|
-            if Weby::Components.is_enabled?(comp.name)
-              visible = comp.visibility == 1 ? current_page?(main_app.site_path) : comp.visibility == 2 ? !current_page?(main_app.site_path) : comp.visibility == 0
-              if visible
-                content_for "layout_#{place}".to_sym, render_component(Weby::Components.factory(comp))
+          content_for_components place, comps
+        end
+      end
+
+
+      def render_home_components
+        content_for_components :home, @global_components[:home]
+      end
+
+      def content_for_components place, comps
+        comps.each do |compo_setting|
+          comp = compo_setting[:component]
+          if Weby::Components.is_enabled?(comp.name)
+            visible = comp.visibility == 1 ? current_page?(main_app.site_path) : comp.visibility == 2 ? !current_page?(main_app.site_path) : comp.visibility == 0
+            if visible
+              if comp.name == "components_group"
+                content_for_components "group_#{comp.id}", compo_setting[:children]
               end
+              content_for "layout_#{place}".to_sym, render_component(Weby::Components.factory(comp))
             end
           end
         end
       end
-
-      def render_home_components
-        raw([].tap do |components|
-          @global_components[:home].each do |comp|
-            if Weby::Components.is_enabled?(comp.name)
-              visible = comp.visibility == 1 ? current_page?(site_path) : comp.visibility == 2 ? !current_page?(site_path) : comp.visibility == 0
-              if visible
-                components << render_component(Weby::Components.factory(comp))
-              end
-            end
-          end if @global_components[:home]
-        end.join)
-      end
+      private :content_for_components
 
       def render_component(component, view = 'show', args = {})
 

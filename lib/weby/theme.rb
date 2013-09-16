@@ -26,7 +26,6 @@ class Weby::Theme
         component['place_holder'] = place
         if component['name'] == 'menu'
           menu = @site.menus.create(component.delete('menu'))
-          puts menu
           component['settings'] = I18n.interpolate(component['settings'], {menu_id: menu.id})
         end
         if component['name'] == 'text'

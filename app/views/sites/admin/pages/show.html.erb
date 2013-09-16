@@ -14,7 +14,7 @@
     </p>
     <%= content_tag_if @page.kind?, :p, class: 'event-type' do %>
       <%= label(:page, :kind) %>
-      <%= t("pages.event_form.#{@page.kind}") %>
+      <%= t("sites.admin.pages.event_form.#{@page.kind}") %>
     <% end %>
     <%= content_tag_if @page.event_email?, :p, class: 'event-email' do %>
       <%= label(:page, :event_email) %>

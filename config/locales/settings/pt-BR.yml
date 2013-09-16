@@ -8,3 +8,4 @@ pt-BR:
     sites_index: 'site_id para mostrar a listagem dos sites, se não existir essa propriedade será a raiz do domínio'
     login_protocol: "Protocolo da página de login (opções 'http' e 'https', padrão=http)"
     domain: "Domínio padrão do Weby"
+    root_site: "Site principal, acessível na raiz do domínio"

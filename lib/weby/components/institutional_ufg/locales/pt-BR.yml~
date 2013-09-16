@@ -1,0 +1,12 @@
+pt-BR:
+  components:
+    institutional_ufg:
+      name: "Institutional Ufg"
+  activerecord:
+    attributes:
+      institutional_ufg_component:
+
+  institutional_ufg:
+    views:
+      show:
+      form:

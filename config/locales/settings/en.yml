@@ -8,3 +8,4 @@ en:
     sites_index: "The site_id for the URL of the Weby's front page. If this is not set, it'll be shown at the root of the domain."
     login_protocol: "Login page's protocol. Options: 'https' or 'https'(default)"
     domain: "Weby's default domain."
+    root_site: "Main site, to be viewed in the domain's root"

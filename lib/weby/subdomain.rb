@@ -15,7 +15,7 @@ module Weby
         end
         @site_domain = subdomain and return true
       else
-        #@site_domain = Weby::Settings.root_site and return true if Weby::Settings.root_site.present?
+        @site_domain = Weby::Settings.root_site and return true if Weby::Settings.root_site.present?
       end
     end
 

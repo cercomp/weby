@@ -92,7 +92,7 @@ module ApplicationHelper
         menus << indent_space + link_to(icon('trash', text: ''), site_admin_menu_menu_item_path(entry.menu_id, entry.id), :method=>:delete, :data => {:confirm => t('are_you_sure')}, :title => t("destroy"))
         menus << indent_space + link_to(icon('move', text: ''),"#", :class => 'handle', :title => t("move"))
       end
-      menus << "\n" + indent_space + (view_ctrl ? "</div><menu>":"<menu>") if submenu
+      menus << "\n" + indent_space + (view_ctrl ? "</div><menu>":"<menu class='submenu'>") if submenu
       if sons[entry.id].class.to_s == "Array"
         sons[entry.id].each do |child|
           menus << print_menu_entry(sons, child, view_ctrl, indent+3)
