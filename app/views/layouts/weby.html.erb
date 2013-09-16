@@ -9,14 +9,14 @@
   </div>
   <div id="wrapper" <%= "style=\".container{max-width: #{ @main_width }px}\"".html_safe if @main_width %>>
     <header>
-      <div class="container"><%= yield :layout_top %></div>
+      <%= yield :layout_top %>
       <div class="clear"> </div>
     </header>
     <section id="content">
       <div class="container"><%= yield %></div>
     </section>
     <footer>
-      <div class="container"><%= yield :layout_bottom %></div>
+      <%= yield :layout_bottom %>
     </footer>
   </div>
   <%= render 'layouts/shared/javascripts', layout: 'weby' %>
