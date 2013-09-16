@@ -359,7 +359,7 @@ EOF
           data_publica = ((pagina['dt_publica'].nil?) || (/([-]+)/.match("#{pagina['dt_publica']}").nil?)) ? Time.now + 30000000 : pagina['dt_publica']
           autor = @convar["#{this_site['site_id']}"]['usuarios'][pagina['autor']]
           autor ||= 1
-          insert_pages = "INSERT INTO pages (created_at,updated_at,date_begin_at,date_end_at,site_id,author_id,publish,front,type) VALUES ('#{Time.now}','#{Time.now}','#{Time.now}','#{data_publica}','#{@convar["#{this_site['site_id']}"]['weby']}','#{autor}',true,false,'News') RETURNING id"
+          insert_pages = "INSERT INTO pages (created_at,updated_at,date_begin_at,date_end_at,site_id,author_id,publish,front,type) VALUES ('#{Time.now}','#{Time.now}','#{Time.now}','#{data_publica}','#{@convar["#{this_site['site_id']}"]['weby']}','#{autor}',false,false,'News') RETURNING id"
           page = @con_weby.exec(insert_pages)
           insert_pages_i18n = "INSERT INTO page_i18ns (created_at,updated_at,page_id,locale_id,title,text) VALUES ('#{Time.now}','#{Time.now}','#{page[0]['id']}',1,'#{pre_treat(pagina['titulo'])}','#{pre_treat(pagina['texto'])}')"
           @con_weby.exec(insert_pages_i18n)
@@ -806,7 +806,7 @@ class Migrate_files
 
         if(file_name.match(/topo\.bmp/i) || file_name.match(/topo\.gif/i) || file_name == "topo.swf" || file_name == "topo.jpg" || file_name == "topo.png")
             #sql = "UPDATE sites SET top_banner_id='#{repository_id}' WHERE id='#{@convar[id]['weby']}'"
-            sql = "UPDATE site_components set settings = '{:size => \"original\",:width=>\"900\",:url => \"/\",:repository_id => \"#{repository_id}\", :html_class => \"header\"}' where site_id='#{@convar[id]['weby']}' AND name = 'image' AND place_holder = 'top'"
+            sql = "UPDATE site_components set settings = '{:size => \"\", :width=>\"900\", :url => \"/\", :repository_id => \"#{repository_id}\", :html_class => \"header\"}' where site_id='#{@convar[id]['weby']}' AND name = 'image' AND place_holder = 'top'"
             @con_weby.exec(sql)
             puts "\tATUALIZANDO topo"
             next
@@ -816,7 +816,7 @@ class Migrate_files
         this_site = @con_this.exec(sql_site)
 
         if(file_name == this_site[0]['banner'])
-          sql = "UPDATE site_components set settings = '{:size => \"\",:url => \"#{this_site[0]['banner_link']}\",:repository_id => \"#{repository_id}\"}' where site_id='#{@convar[id]['weby']}' AND name = 'image' AND place_holder = 'home'"
+          sql = "UPDATE site_components set settings = '{:size => \"\",:url => \"#{pre_treat(this_site[0]['banner_link'])}\",:repository_id => \"#{repository_id}\"}' where site_id='#{@convar[id]['weby']}' AND name = 'image' AND place_holder = 'home'"
           @con_weby.exec(sql)
           puts "\tATUALIZANDO topo"
           next
@@ -966,39 +966,42 @@ end
   @con_weby = PGconn.connect(@config['weby']['host'],nil,nil,nil,@config['weby']['database'],@config['weby']['username'],@config['weby']['password'])
   @convar = YAML::load(File.open("./convar.yml"))
 
- 
-  CSV.foreach(arquivo) do |linha|      
-      puts "#{linha[0]}::: #{linha[1]}"
-      
-      # Gerando o nome do site
-      site_name = /www.([a-z\-]+).*\/([a-z\-]+)/.match("#{linha[0]}")
+  CSV.open("enderecos.csv", "wb") do |csv|
+    CSV.foreach(arquivo) do |linha|
+        puts "#{linha[0]}::: #{linha[1]}"
 
-      if not site_name.nil?
-        site_name = "#{site_name[2]}_#{site_name[1]}"
-      else
-        site_name = /www.([a-z\-]+).*/.match("#{linha[0]}")
+        # Gerando o nome do site
+        site_name = /www.([[:alnum:]\-]+).*\/([[:alnum:]\-]+)/.match("#{linha[0]}")
+
         if not site_name.nil?
-          site_name = "#{site_name[1]}"
+          site_name = "#{site_name[2]}_#{site_name[1]}"
+        else
+          site_name = /www.([[:alnum:]\-]+).*/.match("#{linha[0]}")
+          if not site_name.nil?
+            site_name = "#{site_name[1]}"
+          end
         end
-      end
-      site_name ||= linha[1]
+        site_name ||= linha[1]
 
-      puts "Atualizando ID:'#{linha[1]}'"
-      url = "http://www.#{site_name}.catalao.ufg.br"
+        puts "Atualizando ID:'#{linha[1]}'"
+        url = "http://www.#{site_name}.catalao.ufg.br"
 
-      parent_id = @convar["37"]["weby"]
+        parent_id = @convar["37"]["weby"]
 
-      if linha[1].strip == '37'
-        parent_id = "null"
-        site_name = "catalao"
-      end
+        if linha[1].strip == '37'
+          parent_id = "null"
+          site_name = "catalao"
+        end
 
-      puts "Parent: #{parent_id}"
-      id_weby = @convar["#{linha[1].strip}"]["weby"]
-      
-      update_site = "UPDATE sites set name = '#{pre_treat(site_name)}', url = '#{pre_treat(url)}', parent_id = #{parent_id} where id =  #{id_weby}"
-      puts update_site
-      @con_weby.exec(update_site)         
+        puts "Parent: #{parent_id}"
+        id_weby = @convar["#{linha[1].strip}"]["weby"]
+
+        update_site = "UPDATE sites set name = '#{pre_treat(site_name)}', url = '#{pre_treat(url)}', parent_id = #{parent_id} where id =  #{id_weby}"
+        puts update_site
+
+        csv << ["#{linha[0]}","#{linha[1]}","#{url}"]
+
+        @con_weby.exec(update_site)
+    end
   end
-
   @con_weby.close()
