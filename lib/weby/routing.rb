@@ -19,7 +19,8 @@ module ActionDispatch
               prefix = "www."
             end
             subdomain = site.main_site ? "#{site.name}.#{site.main_site.name}" : "#{prefix}#{site.name}"
-            subdomain = "" if subdomain.gsub(/www\./, '') == Weby::Settings.root_site
+            #TODO colocar ou não o "www."?
+            subdomain = "www" if subdomain.gsub(/www\./, '') == Weby::Settings.root_site
           else
             subdomain = site
           end
