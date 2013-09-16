@@ -2,13 +2,15 @@ module LayoutHelper
   # loads the main stylesheet layout
   # eg: stylesheets/layouts/{name}/main.css 
   def load_layout_stylesheet(layout)
-    raw stylesheet_link_tag("layouts/#{layout}/main")
+    css_path = "layouts/#{layout}/main.css"
+    Weby::Application.assets.find_asset(css_path) ? stylesheet_link_tag(css_path) : ""
   end
 
   # loads the main javascript layout
   # eg: javascripts/layouts/{name}/main.css 
   def load_layout_javascript(layout)
-    raw javascript_include_tag("layouts/#{layout}/main")
+    js_path = "layouts/#{layout}/main.js"
+    Weby::Application.assets.find_asset(js_path) ? javascript_include_tag(js_path) : ""
   end
 
   # gera um item do menu admin com verificação de classe active
