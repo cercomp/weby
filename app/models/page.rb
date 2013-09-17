@@ -142,7 +142,7 @@ class Page < ActiveRecord::Base
   has_many :banners,
     dependent: :nullify
 
-  has_many :pages_repositories
+  has_many :pages_repositories, :dependent => :destroy
   has_many :related_files, through: :pages_repositories, source: :repository
   validate :should_be_own_files
 

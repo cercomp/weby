@@ -6,7 +6,7 @@ class Repository < ActiveRecord::Base
   has_one :banner
   has_many :sites, :foreign_key => "top_banner_id", :dependent => :nullify
 
-  has_many :pages_repositories
+  has_many :pages_repositories, :dependent => :destroy
   has_many :pages, :through => :pages_repositories
 
   scope :description_or_filename, proc {|text|
