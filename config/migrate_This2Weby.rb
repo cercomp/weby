@@ -437,11 +437,26 @@ EOF
               page_id = @convar["#{this_site['site_id']}"]["paginas"]["#{page_id}"]
               banner_url_weby = "/pages/#{page_id}"
           end
-          
-          insert_banner = "INSERT INTO banners (created_at,updated_at,date_begin_at,date_end_at,site_id,user_id,text,url,title,publish,hide,width,position) VALUES ('#{dt_cadastro}','#{dt_cadastro}','#{dt_inicio}','#{dt_fim}','#{@convar["#{this_site['site_id']}"]['weby']}','#{autor}','#{pre_treat(inform['texto'])}','#{pre_treat(banner_url_weby)}','#{pre_treat(inform['assunto'])}',#{status},false,'153',#{pre_treat(position)}) RETURNING id"
-          banner = @con_weby.exec(insert_banner)
-          puts "\t\t\tINSERIRNDO banner (#{banner[0]['id']}) no weby\n" if @verbose
-					# Verificando e selecionando id para rotulamento
+
+          if inform['url'] == ""
+            insert_pages = "INSERT INTO pages (created_at,updated_at,date_begin_at,date_end_at,site_id,author_id,url,source,publish,front,type,position)
+                                   VALUES ('#{dt_cadastro}','#{dt_cadastro}','#{dt_inicio}','#{dt_fim}','#{@convar["#{this_site['site_id']}"]['weby']}','#{autor}','#{pre_treat(inform['url'])}','#{pre_treat(inform['fonte'])}','false','false','News',#{position}) RETURNING id"
+
+            page = @con_weby.exec(insert_pages)
+            insert_pages_i18n = "INSERT INTO page_i18ns (created_at,updated_at,page_id,locale_id,text,title,summary)
+                                        VALUES ('#{dt_cadastro}','#{dt_cadastro}','#{page[0]['id']}',1,'#{pre_treat(inform['texto_clob'])}','#{pre_treat(inform['assunto'])}','#{pre_treat(inform['texto'])}')"
+            @con_weby.exec(insert_pages_i18n)
+            banner_url_weby = "/pages/#{page[0]['id']}"
+            insert_banner = "INSERT INTO banners (created_at,updated_at,date_begin_at,date_end_at,site_id,user_id,text,url,title,publish,hide,width,position) VALUES ('#{dt_cadastro}','#{dt_cadastro}','#{dt_inicio}','#{dt_fim}','#{@convar["#{this_site['site_id']}"]['weby']}','#{autor}','#{pre_treat(inform['texto'])}','#{pre_treat(banner_url_weby)}','#{pre_treat(inform['assunto'])}',#{status},false,'153',#{pre_treat(position)}) RETURNING id"
+            banner = @con_weby.exec(insert_banner)
+            puts "\t\t\tINSERIRNDO banner (#{banner[0]['id']}) no weby\n" if @verbose
+          else
+            insert_banner = "INSERT INTO banners (created_at,updated_at,date_begin_at,date_end_at,site_id,user_id,text,url,title,publish,hide,width,position) VALUES ('#{dt_cadastro}','#{dt_cadastro}','#{dt_inicio}','#{dt_fim}','#{@convar["#{this_site['site_id']}"]['weby']}','#{autor}','#{pre_treat(inform['texto'])}','#{pre_treat(banner_url_weby)}','#{pre_treat(inform['assunto'])}',#{status},false,'153',#{pre_treat(position)}) RETURNING id"
+            banner = @con_weby.exec(insert_banner)
+            puts "\t\t\tINSERIRNDO banner (#{banner[0]['id']}) no weby\n" if @verbose
+          end
+
+          # Verificando e selecionando id para rotulamento
 					sql_select_tag = "SELECT id FROM tags WHERE name='#{pre_treat(inform['lado'])}'"
 					select_tag = @con_weby.exec(sql_select_tag)
 					if select_tag.first.nil?
