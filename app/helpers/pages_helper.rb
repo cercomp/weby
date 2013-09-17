@@ -3,7 +3,7 @@ module PagesHelper
   # Recebe uma página e o site.
   def link_on_title(site, page)
     if page.url.blank?
-      site_page_url(page, subdomain: site)
+      main_app.site_page_url(page, subdomain: site)
     else
       page.url
     end
