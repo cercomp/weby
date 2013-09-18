@@ -1,5 +1,9 @@
 pt-BR:
   sites:
+    admin:
+      common_tasks: "TAREFAS MAIS COMUNS"
+      new_page: "Nova Página"
+      new_file: "Novo Arquivo"
     index:
       new_site: "CRIAR SITE"
       sites: "SITES"

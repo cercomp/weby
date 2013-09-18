@@ -9,6 +9,8 @@ class Repository < ActiveRecord::Base
   has_many :pages_repositories, :dependent => :destroy
   has_many :pages, :through => :pages_repositories
 
+  has_many :page_image, :dependent => :nullify, :class_name => 'Page'
+
   scope :description_or_filename, proc {|text|
     text = text.try(:downcase)
     where [ "(LOWER(description) LIKE :text OR LOWER(archive_file_name) LIKE :text)",

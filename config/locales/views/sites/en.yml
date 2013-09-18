@@ -1,5 +1,9 @@
 en:
   sites:
+    admin:
+      common_tasks: "COMMON TASKS"
+      new_page: "NEW PAGE"
+      new_file: "NEW FILE"
     index:
       new_site: "NEW SITE"
       sites: "SITES"

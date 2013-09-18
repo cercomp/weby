@@ -1,5 +1,5 @@
 class Menu < ActiveRecord::Base
-  has_many :menu_items, dependent: :delete_all, order: :position, include: :i18ns
+  has_many :menu_items, dependent: :destroy, order: :position, include: :i18ns
   
   validates :name, presence: true
 
