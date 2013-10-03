@@ -1,0 +1,23 @@
+<% if @activity.empty? %>
+  <!--div class="alert">
+    <#%= t('.no_activity_records') %>
+  </div-->
+<% else %>
+  <!--div class="pull-left"> <#%= info_page @records %> </div--!>
+  <!--div class="pull-right"> <#%= paginate @records, remote: true %> </div--!>
+  <div class="clearfix"></div>
+  <table class='table table-striped'>
+    <thead>
+    </thead>
+    <tbody>
+      <% @activity.each do |record| %>
+        <tr>
+          <td><%= record.user_id %></td>
+          <td><%= record.note %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <!--div class="pull-left"><#%= per_page_links @records, true, :mini %></div--!>
+<% end %>

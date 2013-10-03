@@ -40,6 +40,7 @@
       <%= menu_item_to t(".notifications"), main_app.admin_notifications_path if current_user.is_admin? %>
       <%= menu_item_to t(".statistics"), main_app.admin_stats_path if current_user.is_admin? %>
       <%= menu_item_to t(".settings"), main_app.admin_settings_path if current_user.is_admin? %>
+      <%= menu_item_to t(".activity_record"), main_app.admin_activity_records_path if current_user.is_admin? %>
     <% end %>
   </ul>
 </div>

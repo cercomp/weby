@@ -130,6 +130,7 @@ Weby::Application.routes.draw do
       resources :sites, except: [:show]
       resources :groupings, except: [:show]
       resources :notifications
+      resources :activity_records
 
       get "stats" => "statistics#index"
 

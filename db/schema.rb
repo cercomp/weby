@@ -13,6 +13,20 @@
 
 ActiveRecord::Schema.define(:version => 20131121201855) do
 
+  create_table "activity_records", :force => true do |t|
+    t.string   "user_id"
+    t.string   "browser"
+    t.string   "ip_address"
+    t.string   "controller"
+    t.string   "action"
+    t.string   "params"
+    t.string   "note"
+    t.integer  "loggeable_id"
+    t.string   "loggeable_type"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
   create_table "banners", :force => true do |t|
     t.datetime "date_begin_at"
     t.datetime "date_end_at"
