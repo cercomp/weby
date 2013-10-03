@@ -475,6 +475,10 @@ EOF
               page_id = /javascript:mostrar_noticia.*?([0-9]+).*?/.match("#{inform['url']}")[1]
               page_id = @convar["#{this_site['site_id']}"]["paginas"]["#{page_id}"]
               banner_url_weby = "/pages/#{page_id}"
+          elsif not /http:\/\/www.ufg.br\/page.php\?menu_id=/.match("#{inform['url']}").nil?
+              page_id = /http:\/\/(www.ufg.br)\/page.php.*?menu_id=([0-9]+).*/.match("#{inform['url']}")[1]
+              page_id = @convar["#{this_site['site_id']}"]["paginas_menus"]["#{page_id}"]
+              banner_url_weby = "/pages/#{page_id}"
           end
 
           if inform['url'] == ""

@@ -490,7 +490,12 @@ EOF
               page_id = /javascript:mostrar_noticia.*?([0-9]+).*?/.match("#{inform['url']}")[1]
               page_id = @convar["#{this_site['site_id']}"]["paginas"]["#{page_id}"]
               banner_url_weby = "/pages/#{page_id}"
+          elsif not /http:\/\/www.ufg.br\/page.php\?menu_id=/.match("#{inform['url']}").nil?
+              page_id = /http:\/\/(www.ufg.br)\/page.php.*?menu_id=([0-9]+).*/.match("#{inform['url']}")[1]
+              page_id = @convar["#{this_site['site_id']}"]["paginas_menus"]["#{page_id}"]
+              banner_url_weby = "/pages/#{page_id}"
           end
+
           if inform['url'] == ""
             insert_pages = "INSERT INTO pages (created_at,updated_at,date_begin_at,date_end_at,site_id,author_id,url,source,publish,front,type,position)
                                    VALUES ('#{dt_cadastro}','#{dt_cadastro}','#{dt_inicio}','#{dt_fim}','#{@convar["#{this_site['site_id']}"]['weby']}','#{autor}','#{pre_treat(inform['url'])}','#{pre_treat(inform['fonte'])}','false','false','News',#{position}) RETURNING id"
@@ -763,6 +768,11 @@ EOF
 
       if string.match(/http:\/\/www.ufg.*?\/page.php\/.*?[0-9]+?/)
         string.gsub!(/http:\/\/(www.ufg.*?)\/pages.php\/.*?([0-9]+)+/){|x| "/pages/#{@convar[$2]["paginas"]['1']}" if @convar[$2] }
+      end
+
+      if string.match(/http:\/\/www.ufg.br\/page.php\?menu_id=/)
+        puts "terceiro"
+        string.gsub!(/http:\/\/(www.ufg.br)\/page.php.*?menu_id=([0-9]+).*/){|x| "/pages/#{@convar[$2]["paginas"]['1']}" if @convar[$2] }
       end
 
       str = @con_weby.escape(string)      
