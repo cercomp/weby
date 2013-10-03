@@ -17,12 +17,12 @@ require 'csv'
 class Migrate_this2weby
   def initialize(verbose=true)
     # Coneção com os dois bancos
-    if not File.exist?("config-migrate.yml")
+    if not File.exist?("config-migrate_ufgbr.yml")
       puts "É necessário criar o arquivo config-migrate.yml com as diretivas de conexão."
       print "Exemplo:\nthis:\n  adapter: postgresql\n  host: localhost\n  database: this\n  username: this\n  password: senha_this\n\nweby:\n  adapter: postgresql\n  host: localhost\n  database: weby\n  username: weby\n  password: senha_weby\n"
       exit
     end
-    @config = YAML::load(File.open("config-migrate.yml"))
+    @config = YAML::load(File.open("config-migrate_ufgbr.yml"))
     
     @con_this = PGconn.connect(@config['this']['host'],nil,nil,nil,@config['this']['database'],@config['this']['username'],@config['this']['password'])
     @con_weby = PGconn.connect(@config['weby']['host'],nil,nil,nil,@config['weby']['database'],@config['weby']['username'],@config['weby']['password'])
@@ -30,8 +30,8 @@ class Migrate_this2weby
     #@param = "WHERE site_id=68"
 
     count_sites = @con_weby.exec("SELECT count(*) FROM sites")
-    if File.exists?("./convar.yml") and count_sites[0]['count'].to_i > 0
-      @convar = YAML::load(File.open("./convar.yml"))
+    if File.exists?("./convar_ufgbr.yml") and count_sites[0]['count'].to_i > 0
+      @convar = YAML::load(File.open("./convar_ufgbr.yml"))
     else
       @convar = {} # Variável de conversão
     end
@@ -44,28 +44,30 @@ class Migrate_this2weby
 
     
     ## pegar os id's das tabelas que serão atualizadas depois, para atualizar só o que inserir
-    select_menu_items = "SELECT max(id) FROM menu_items"
-    id_weby_menu_items = @con_weby.exec(select_menu_items)
+    #select_menu_items = "SELECT max(id) FROM menu_items"
+    #id_weby_menu_items = @con_weby.exec(select_menu_items)
+    id_weby_menu_items = '0'
+    #select_menu_items = "SELECT max(id)FROM menu_item_i18ns"
+    #id_weby_menu_items_i18ns = @con_weby.exec(select_menu_items)
+    id_weby_menu_items_i18ns = '0'
+    #select_pages = "SELECT max(id) FROM pages"
+    #id_weby_pages = @con_weby.exec(select_pages)
+    id_weby_pages = '0'
 
-    select_menu_items = "SELECT max(id)FROM menu_item_i18ns"
-    id_weby_menu_items_i18ns = @con_weby.exec(select_menu_items)
-
-    select_pages = "SELECT max(id) FROM pages"
-    id_weby_pages = @con_weby.exec(select_pages)
-
-    select_pages = "SELECT max(id) FROM page_i18ns"
-    id_weby_pages_i18ns = @con_weby.exec(select_pages)
+    #select_pages = "SELECT max(id) FROM page_i18ns"
+    #id_weby_pages_i18ns = @con_weby.exec(select_pages)
+    id_weby_pages_i18ns = '0'
 
     select_menu_items = ""
     select_pages = ""
             
-    puts "ID's: #{id_weby_menu_items[0]['max']}, #{id_weby_menu_items_i18ns[0]['max']}, #{id_weby_pages[0]['max']}, #{id_weby_pages_i18ns[0]['max']} "
+    #puts "ID's: #{id_weby_menu_items[0]['max']}, #{id_weby_menu_items_i18ns[0]['max']}, #{id_weby_pages[0]['max']}, #{id_weby_pages_i18ns[0]['max']} "
     
 		# Inserindo o que futuramente seria o site da UFG
     #insert_UFG = "INSERT INTO sites (name,url,description,footer,body_width,menu_dropdown,theme) VALUES ('ufg','www.ufg.br','Portal UFG','','960',true,'this2')"
     #@con_weby.exec(insert_UFG)
 
-    arquivo = 'dominios.txt'
+    arquivo = 'dominios_ufgbr.txt'
     dominios = {}
     CSV.foreach(arquivo) do |linha|
       dominios[linha[1]] = linha[0]
@@ -106,6 +108,12 @@ class Migrate_this2weby
       @convar["#{this_site['site_id']}"]["noticias"] ||= {}
       @convar["#{this_site['site_id']}"]["weby_name"] = "#{site_name}"
 
+
+      #s = Setting.new
+      #s.name = "tld_length"
+      #s.value = "2"
+      #s.save
+
       select_rodape = "SELECT endereco,telefone FROM rodape WHERE site_id='#{this_site['site_id']}'"
       puts "\tSELECIONANDO o ropapé do site #{this_site['site_id']}" if @verbose
       rodape = @con_this.exec(select_rodape)
@@ -114,14 +122,22 @@ class Migrate_this2weby
 
       if @convar["#{this_site['site_id']}"]["weby"].nil?
         use_menu_dropdown = this_site['drop_down_esquerdo'].to_i == 1 ? true : false
-        insert_site = "INSERT INTO sites (name,url,description,title,footer,body_width,menu_dropdown,theme,created_at,updated_at) VALUES ('#{pre_treat(site_name)}','#{pre_treat(this_site['caminho_http'])}','#{pre_treat(this_site['nm_site'])}','#{pre_treat(this_site['nm_site'])[0..49]}','#{rodape_text}','900','#{use_menu_dropdown}','this2', '#{Time.now}', '#{Time.now}') RETURNING id"
-        site = @con_weby.exec(insert_site)
+        #insert_site = "INSERT INTO sites (name,url,description,title,footer,body_width,menu_dropdown,theme,created_at,updated_at) VALUES ('#{pre_treat(site_name)}','#{pre_treat(this_site['caminho_http'])}','#{pre_treat(this_site['nm_site'])}','#{pre_treat(this_site['nm_site'])[0..49]}','#{rodape_text}','900','#{use_menu_dropdown}','this2', '#{Time.now}', '#{Time.now}') RETURNING id"
+        update_site_ufg = "UPDATE sites set name = '#{pre_treat(site_name)}',url = '#{pre_treat(this_site['caminho_http'])}',description = '#{pre_treat(this_site['nm_site'])}',title = '#{pre_treat(this_site['nm_site'])[0..49]}',footer = '#{rodape_text}', body_width = '900',menu_dropdown = '#{use_menu_dropdown}',theme = 'this2',created_at = '#{Time.now}', updated_at = '#{Time.now}' WHERE id = 1"
+        @con_weby.exec(update_site_ufg)
+        
+        site = [{"id" => "1"}]
+        #puts site[0]["id"]
         puts "\t\tINSERINDO (#{site[0]['id']}) #{site_name} - #{this_site['nm_site']} \n" if @verbose
         puts "\t\t\tMenu Dropdown: #{use_menu_dropdown}"
         # Criando objeto de conversão
         @convar["#{this_site['site_id']}"]["weby"] = site[0]['id']
       end
-      
+
+      # apagar todos componentes existentes
+      delete_site_comp = "DELETE FROM site_components where site_id = #{site[0]['id']}"
+      @con_weby.exec(delete_site_comp)
+
       # Inserindo componentes por omissão para portais vindos do This
       puts "\tINSERINDO estruturação de componentes...\n"
       banner_site = ''
@@ -132,7 +148,7 @@ class Migrate_this2weby
         if this_site['banner2'].to_s != ''
           banner_site_inferior = "INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'home','{}','image',3,true,'#{Time.now}','#{Time.now}');"
         end
-        news_list = "INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'home','{:quant => \"5\"}','news_list',3,true,'#{Time.now}','#{Time.now}');"
+        news_list = "INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'home','{:quant => \"5\"}','news_list',4,true,'#{Time.now}','#{Time.now}');"
       else
         front_news = "INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'home','{:quant => \"5\"}','front_news',1,true,'#{Time.now}','#{Time.now}');"
         news_list = "INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'home','{:quant => \"5\"}','news_list',2,true,'#{Time.now}','#{Time.now}');"
@@ -140,7 +156,7 @@ class Migrate_this2weby
       insert_site_comp = <<EOF
         INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'first_place','{:background => "#7f7f7f"}','gov_bar',1,true,'#{Time.now}','#{Time.now}');
         INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'first_place','{}','institutional_bar',2,true,'#{Time.now}','#{Time.now}');
-        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'top','{}','image',1,true,'#{Time.now}','#{Time.now}');
+        INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'top','{}','image',1,true,'#{Time.now}','#{Time.now}');        
         INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'top','{}','menu',2,true,'#{Time.now}','#{Time.now}');
         INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'top','{}','menu_accessibility',3,true,'#{Time.now}','#{Time.now}');
         INSERT INTO site_components (site_id,place_holder,settings,name,position,publish,created_at,updated_at)values(#{site[0]['id']},'right','{}','search_box',1,true,'#{Time.now}','#{Time.now}');
@@ -349,7 +365,7 @@ EOF
           puts "\t\t\tINSERINDO (notícias) página: (#{page[0]['id']}) no weby\n" if @verbose
           insert_sites_pages = "INSERT INTO sites_pages (site_id,page_id,created_at,updated_at) VALUES ('#{@convar["#{this_site['site_id']}"]['weby']}','#{page[0]['id']}','#{dt_cadastro}','#{dt_cadastro}')"
           site_page = @con_weby.exec(insert_sites_pages)
-
+                    
           if (not noticia['assunto'].nil?) and (noticia['assunto'].size > 3)
             tags_cadastrada = "SELECT * FROM tags WHERE name = '#{pre_treat(noticia['assunto'])}'"
             tags_existentes = @con_weby.exec(tags_cadastrada)
@@ -418,7 +434,7 @@ EOF
           status = evento['status'] == 'P' ? true : false
           autor = @convar["#{this_site['site_id']}"]['usuarios'][evento['autor']]
           autor ||= 1
-          insert_pages = "INSERT INTO pages (created_at,updated_at,date_begin_at,date_end_at,event_begin,event_end,site_id,author_id,url,source,publish,front,type,kind,event_email,local,position) VALUES ('#{dt_cadastro}','#{dt_cadastro}','#{dt_inicio}','#{dt_fim}','#{inicio}','#{fim}','#{@convar["#{this_site['site_id']}"]['weby']}','#{autor}','#{pre_treat(evento['url'])}','#{pre_treat(evento['fonte'])}',#{status},#{capa},'Event','#{tipo}','#{evento['email']}','#{pre_treat(evento['local_realiza'])}',#{position}) RETURNING id"
+          insert_pages = "INSERT INTO pages (created_at,updated_at,date_begin_at,date_end_at,event_begin,event_end,site_id,author_id,url,source,publish,front,type,kind,event_email,local,position) VALUES ('#{dt_cadastro}','#{dt_cadastro}','#{dt_inicio}','#{dt_fim}','#{inicio}','#{fim}','#{@convar["#{this_site['site_id']}"]['weby']}','#{autor}','#{pre_treat(evento['url'])}','#{pre_treat(evento['fonte'])}',#{status},#{capa},'Event','#{tipo}','#{pre_treat(evento['email'])}','#{pre_treat(evento['local_realiza'])}',#{position}) RETURNING id"          
           page = @con_weby.exec(insert_pages)
           insert_pages_i18n = "INSERT INTO page_i18ns (created_at,updated_at,page_id,locale_id,text,title,summary) VALUES ('#{dt_cadastro}','#{dt_cadastro}','#{page[0]['id']}',1,'#{pre_treat(evento['texto'])}','#{pre_treat(evento['titulo'])}','#{pre_treat(evento['resumo'])}')"
           @con_weby.exec(insert_pages_i18n)
@@ -438,7 +454,6 @@ EOF
               @con_weby.exec(insert_taggings)
             end
           end
-
           #insert_sites_pages = "INSERT INTO sites_pages (created_at,updated_at,site_id,page_id) VALUES ('#{dt_cadastro}','#{dt_cadastro}','#{@convar["#{this_site['site_id']}"]['weby']}','#{page[0]['id']}')"
           #site_page = @con_weby.exec(insert_sites_pages)
           # Relacionando notícias na variável de conversão
@@ -476,7 +491,6 @@ EOF
               page_id = @convar["#{this_site['site_id']}"]["paginas"]["#{page_id}"]
               banner_url_weby = "/pages/#{page_id}"
           end
-
           if inform['url'] == ""
             insert_pages = "INSERT INTO pages (created_at,updated_at,date_begin_at,date_end_at,site_id,author_id,url,source,publish,front,type,position)
                                    VALUES ('#{dt_cadastro}','#{dt_cadastro}','#{dt_inicio}','#{dt_fim}','#{@convar["#{this_site['site_id']}"]['weby']}','#{autor}','#{pre_treat(inform['url'])}','#{pre_treat(inform['fonte'])}','false','false','News',#{position}) RETURNING id"
@@ -510,8 +524,7 @@ EOF
             banner = @con_weby.exec(insert_banner)
             puts "\t\t\tINSERIRNDO banner (#{banner[0]['id']}) no weby\n" if @verbose
           end
-
-          # Verificando e selecionando id para rotulamento
+					# Verificando e selecionando id para rotulamento
 					sql_select_tag = "SELECT id FROM tags WHERE name='#{pre_treat(inform['lado'])}'"
 					select_tag = @con_weby.exec(sql_select_tag)
 					if select_tag.first.nil?
@@ -522,7 +535,7 @@ EOF
 					insert_tagging = "INSERT INTO taggings (tag_id,taggable_id,taggable_type,context)VALUES('#{select_tag[0]['id']}','#{banner[0]['id']}','Banner','categories')"
 					@con_weby.exec(insert_tagging)
           # Relacionando notícias na variável de conversão
-          @convar["#{this_site['site_id']}"]["informativos"]["#{inform['id']}"] = banner[0]['id']
+          @convar["#{this_site['site_id']}"]["informativos"]["#{inform['id']}"] = banner[0]['id']          
         end
       end
       this_informativos.clear()
@@ -622,7 +635,7 @@ EOF
         menu_itemi18n = "INSERT INTO menu_item_i18ns (created_at, updated_at, menu_item_id,locale_id,title,description) VALUES ('#{Time.now}','#{Time.now}','#{menu_sub[0]['id']}',1,'#{pre_treat(entry['texto_item'])}','#{pre_treat(entry['alt'])}') RETURNING id"
         @con_weby.exec(menu_itemi18n)
         puts "\t\t\tINSERINDO sub_menu: (#{menu_sub[0]['id']})\n" if @verbose
-        @convar["#{this_id}"]['menus_#{lado}']["#{entry['id']}"] = menu_sub[0]['id']
+        @convar["#{this_id}"]["menus_#{lado}"]["#{entry['id']}"] = menu_sub[0]['id']
         menu_e0 = []
         menu_e0 << {'id' => menu_sub[0]['id']}
         #insert_sites_menus = "INSERT INTO sites_menus(site_id,menu_id,parent_id,category,position) VALUES ('#{site_id}','#{menu_sub[0]['id']}',#{parent_id},'#{type}','#{entry['posicao']}') RETURNING id"
@@ -695,44 +708,63 @@ EOF
   # Tratamento de caracteres 
   def treat(string)
     unless string.nil?
-      # src="http://www2.catalao.ufg.br/uploads/files/3/image/GaleriaFotos/img1.jpg"
-      # href=\"http://www2.catalao.ufg.br/uploads/files/90/DECLARA____O_DE_CI__NCIA_DE_NORMAS_E_DISPONIBILIDADE-mod.pdf\">
-
-      if string.match(/['"]+http.*?catalao.*?\/uploads\/.*?[0-9]+\/[^'"]*\/.*?['"]+/)
-          string.gsub!(/["']+http.*?catalao.*?\/uploads\/.*?([0-9]+)\/[^'"]*\/(.*?)['"]+/){|x| "\"/uploads/#{@convar[$1]['weby']}/original_#{$2}\"" if @convar[$1] }
-      elsif string.match(/['"]http.*?catalao.*?\/uploads\/.*?[0-9]+\/[^\/"']*['"]/)
-          string.gsub!(/["']http.*?catalao.*?\/uploads\/.*?([0-9]+)\/([^\/"']*)['"]/){|x| "\"/uploads/#{@convar[$1]['weby']}/original_#{$2}\"" if @convar[$1] }
-      elsif string.match(/.*?catalao.*?\/uploads\/.*?([0-9]+).*?\/(.*?)/)
-        string.gsub!(/.*?catalao.*?\/uploads\/.*?([0-9]+).*\/(.*?)/){|x| "/uploads/#{@convar[$1]['weby']}/original_#{$2}" if @convar[$1] }
-      end
-
-      if string.match(/javascript:mostrar_pagina.*?([0-9]+).*?([0-9]+).*?/) 
-        string.gsub!(/javascript:mostrar_pagina.*?([0-9]+).*?([0-9]+).*?;/){|x| "/pages/#{@convar[$2]["paginas"][$1]}" if @convar[$2] }
-      end
+      # http://www.prodirh.ufg.br/uploads/64/original_Terceirizados_UFG.pdf
+      # http://www.ufg.br/uploads/files/Edital_073_2013_FINAL.pdf
+      # http://www.ufg.br/this2/uploads/files/92/planeta.htm
+      # http://www.ufg.br/uploads/files/UFG_em_n__meros_2010_12_07.pdf
       
-      if string.match(/javascript:mostrar_noticia.*?([0-9]+).*?([0-9]+).*?/)
-        string.gsub!(/javascript:mostrar_noticia.*?([0-9]+).*?([0-9]+).*?;/){|x| "'/pages/#{@convar[$2]["noticias"][$1]}'" if @convar[$2] }
-      end 
-      if string.match(/javascript:mostrar_informativo.*?([0-9]+).*?([0-9]+).*?/)
-        string.gsub!(/javascript:mostrar_informativo.*?([0-9]+).*?([0-9]+).*?;/){|x| "'/banners/#{@convar[$2]["informativos"][$1]}'" if @convar[$2] }
-      end 
-      if string.match(/javascript:mostrar_menu.*?([0-9]+).*?([0-9]+).*?/) 
-        string.gsub!(/javascript:mostrar_menu.*?([0-9]+).*?([0-9]+).*?;/){|x| "'/pages/#{@convar[$2]["paginas_menus"][$1]}'" if @convar[$2] }
+      if string.match(/['"]+http.*?ufg.*?\/uploads\/.*?\/*\/.*?['"]+/)
+          string.gsub!(/["']+http.*?ufg.*?\/uploads\/.*?\/*\/(.*?)['"]+/){|x| "\"/uploads/1/original_#{$1}\""}
+      elsif string.match(/['"]http.*?ufg.*?\/uploads\/.*?\/[^\/"']*['"]/)
+          string.gsub!(/["']http.*?ufg.*?\/uploads\/.*?\/([^\/"']*)['"]/){|x| "\"/uploads/1/original_#{$1}\""}
+      elsif string.match(/.*?ufg.*?\/uploads\/.*?[^0-9]\/(.*?)/)
+        string.gsub!(/.*?ufg.*?\/uploads\/.*?\/(.*?)/){|x| "/uploads/1/original_#{$1}"}
+      end
+
+      # javascript:mostrar_pagina(357);
+      if string.match(/javascript:mostrar_pagina\([0-9]+\)/)
+        string.gsub!(/javascript:mostrar_pagina\(([0-9]+)\);/){|x| "/pages/#{@convar["1"]["paginas"][$1]}" if @convar["1"] }
+      end
+      #javascript:mostrar_pagina('24');      
+      if string.match(/javascript:mostrar_pagina\('[0-9]+'\);/)
+        string.gsub!(/javascript:mostrar_pagina\('([0-9]+)'\);/){|x| "/pages/#{@convar["1"]["paginas"][$1]}" if @convar["1"] }
+      end
+
+
+      # javascript:mostrar_noticia('10355');
+      if string.match(/javascript:mostrar_noticia\('([0-9]+)'\)/)
+        string.gsub!(/javascript:mostrar_noticia\('([0-9]+)'\);/){|x| "/pages/#{@convar["1"]["noticias"][$1]}" if @convar["1"] }
+      end
+      # javascript:mostrar_informativo('6123');      
+      if string.match(/javascript:mostrar_informativo\('([0-9]+)'\)/)
+        string.gsub!(/javascript:mostrar_informativo\('([0-9]+)'\);/){|x| "\"/banners/#{@convar['1']["informativos"][$1]}'" if @convar['1']}
+      end
+
+      # javascript:mostrar_menu('179','esq');
+      # javascript:mostrar_menu('183','esq');
+      if string.match(/javascript:mostrar_menu\('([0-9]+)'.*\)/)
+        string.gsub!(/javascript:mostrar_menu\('([0-9]+)'.*\);/){|x| "/pages/#{@convar["1"]["paginas_menus"][$1]}" if @convar["1"] }
       end 
       if string.match(/javascript:pagina_inicial.*?([0-9]+).*?/)
         string.gsub!(/javascript:pagina_inicial.*?([0-9]+).*?;/){|x| "/" if @convar[$1] }
+      elsif string.match(/javascript:pagina_inicial.*?/)
+        string.gsub!(/javascript:pagina_inicial(.*?);/){|x| "/"}
       end 
-      if string.match(/javascript:mostrar_fale_conosco.*?([0-9]+).*?/)
-        string.gsub!(/javascript:mostrar_fale_conosco.*?([0-9]+).*?;/){|x| "/feedback" if @convar[$1] }
+      if string.match(/javascript:mostrar_fale_conosco.*?\(\).*?/)
+        string.gsub!(/javascript:mostrar_fale_conosco.*?\(\).*?;/){|x| "/feedback"}
       end
 
-      if string.match(/['"]http:\/\/.*?catalao.*?\/.*?\/.*?['"]/)
-        string.gsub!(/['"]http:\/\/(.*?catalao.*?)\/.*?\/([^\/"'].*?)\/?+['"]/){|x| "http://#{$2}_#{$1}" }
+      #if string.match(/['"]http:\/\/www.ufg.*?\/.*?\/.*?['"]/)
+      #  string.gsub!(/['"]http:\/\/www.(.*?ufg.*?)\/.*?\/([^\/"'].*?)\/?+['"]/){|x| "http://#{$1}_#{$2}" }
+      #end
+      #if string.match(/['"]+http:\/\/www.ufg.*?\/.*?\/+['"]/)
+      #  string.gsub!(/['"]+http:\/\/www.(.*?ufg.*?)\/([^\/"'].*?)\/?+['"]/){|x| "http://#{$1}_#{$2}" }
+      #end
+
+      if string.match(/http:\/\/www.ufg.*?\/page.php\/.*?[0-9]+?/)
+        string.gsub!(/http:\/\/(www.ufg.*?)\/pages.php\/.*?([0-9]+)+/){|x| "/pages/#{@convar[$2]["paginas"]['1']}" if @convar[$2] }
       end
-      if string.match(/['"]+http.*?catalao.*?\/.*?\/+['"]/)
-        string.gsub!(/['"]+http:\/\/(.*?catalao.*?)\/([^\/"'].*?)\/?+['"]/){|x| "http://#{$2}_#{$1}" }
-      end
-      
+
       str = @con_weby.escape(string)      
       return str 
     end 
@@ -743,7 +775,7 @@ EOF
   def finalize
     @con_this.close()
     @con_weby.close()
-    File.open('convar.yml', 'w') do |out|
+    File.open('convar_ufgbr.yml', 'w') do |out|
     YAML::dump(@convar, out)
     end
   end
@@ -753,21 +785,21 @@ end
 class Migrate_files
   def initialize(from, to, id=[])
     # Coneção com banco
-    if not File.exist?("config-migrate.yml")
+    if not File.exist?("config-migrate_ufgbr.yml")
       puts "É necessário criar o arquivo config-migrate.yml com as diretivas de conexão."
       print "Exemplo:\nthis:\n  adapter: postgresql\n  host: localhost\n  database: this\n  username: this\n  password: senha_this\n\nweby:\n  adapter: postgresql\n  host: localhost\n  database: weby\n  username: weby\n  password: senha_weby\n"
       exit
     end
     # Arquivo de conversão necessário
-    if not File.exist?("convar.yml")
-      puts "Deve existir o arquivo convar.yml"
+    if not File.exist?("convar_ufgbr.yml")
+      puts "Deve existir o arquivo convar_ufgbr.yml"
       exit
     end
-    @config = YAML::load(File.open("config-migrate.yml"))
-    @convar = YAML::load(File.open("convar.yml"))
+    @config = YAML::load(File.open("config-migrate_ufgbr.yml"))
+    @convar = YAML::load(File.open("convar_ufgbr.yml"))
     @con_weby = PGconn.connect(@config['weby']['host'],nil,nil,nil,@config['weby']['database'],@config['weby']['username'],@config['weby']['password'])
     @con_this = PGconn.connect(@config['this']['host'],nil,nil,nil,@config['this']['database'],@config['this']['username'],@config['this']['password'])
-    @folders = ['imgd', 'banners', 'files', 'topo']
+    @folders = ['files', 'imgd', 'banners', 'topo', 'eventos', 'imagens', 'noticias','docpdf', 'temporario', ]
     @ids = id
     from += '/' if from[-1] != '/'
     to += '/' if to[-1] != '/'
@@ -805,9 +837,11 @@ class Migrate_files
   end
 
   def copy_files
+    
     if @ids.empty?
       # Descobre os ids dos sites
       ls = `ls #{@from + @folders.first}`
+
       #ls = Iconv.conv("UTF-8//IGNORE//TRANSLIT","ASCII",ls)
       ls = ls.encode!('UTF-16', :undef => :replace, :invalid => :replace, :replace => "_")
       ls = ls.encode!('UTF-8')
@@ -824,6 +858,7 @@ class Migrate_files
     # Para cada id de site conhecido
     @ids.each do |id|
       #id = id.to_s
+      
       if @convar[id].nil? || @convar[id]['weby'].nil?
         next
       end
@@ -887,7 +922,11 @@ class Migrate_files
         this_site = @con_this.exec(sql_site)
 
         if(file_name == this_site[0]['banner'])
-          sql = "UPDATE site_components set settings = '{:size => \"\",:url => \"#{pre_treat(this_site[0]['banner_link'])}\",:repository_id => \"#{repository_id}\"}' where site_id='#{@convar[id]['weby']}' AND name = 'image' AND place_holder = 'home'"
+          string = this_site[0]['banner_link']
+          if string.match(/javascript:mostrar_pagina\(([0-9]+\))/)
+            string.gsub!(/javascript:mostrar_pagina\(([0-9]+)\);/){|x| "/pages/#{@convar['1']["paginas"][$1]}" if @convar['1'] }
+          end
+          sql = "UPDATE site_components set settings = '{:size => \"\",:url => \"#{string}\",:repository_id => \"#{repository_id}\"}' where site_id='#{@convar[id]['weby']}' AND name = 'image' AND place_holder = 'home' and position = 1"
           @con_weby.exec(sql)
           puts "\tATUALIZANDO topo"
           next
@@ -903,7 +942,6 @@ class Migrate_files
           puts "\tATUALIZANDO banner home"
           next
         end
-
         file_info = file_name.match(/([a-zA-Z]{3,})(\d*)[a-zA-Z_]*.[a-zA-Z_]{3,}$/)
         #puts "\t\t\tfile_info = #{file_info}, file_info.size: #{file_info.size}" unless file_info.nil?
 
@@ -974,8 +1012,8 @@ class Migrate_files
   # Destrutor
   def finalize
     @con_weby.close()
-    puts "Gravando arquivo: convar.yml"
-    File.open('convar.yml', 'w') do |out|
+    puts "Gravando arquivo: convar_ufgbr.yml"
+    File.open('convar_ufgbr.yml', 'w') do |out|
       YAML::dump(@convar, out)
     end
   end
@@ -1035,55 +1073,3 @@ end
     end
     return str
   end
- 
-  #atualizar as urls
-  arquivo = 'dominios.txt'
-  # Conexão com os dois bancos
-  if not File.exist?("config-migrate.yml")
-    puts "É necessário criar o arquivo config-migrate.yml com as diretivas de conexão."
-    print "Exemplo:\nthis:\n  adapter: postgresql\n  host: localhost\n  database: this\n  username: this\n  password: senha_this\n\nweby:\n  adapter: postgresql\n  host: localhost\n  database: weby\n  username: weby\n  password: senha_weby\n"
-    exit
-  end
-  @config = YAML::load(File.open("config-migrate.yml"))
-  @con_weby = PGconn.connect(@config['weby']['host'],nil,nil,nil,@config['weby']['database'],@config['weby']['username'],@config['weby']['password'])
-  @convar = YAML::load(File.open("./convar.yml"))
-
-  CSV.open("enderecos.csv", "wb") do |csv|
-    CSV.foreach(arquivo) do |linha|
-        puts "#{linha[0]}::: #{linha[1]}"
-
-        # Gerando o nome do site
-        site_name = /www.([[:alnum:]\-]+).*\/([[:alnum:]\-]+)/.match("#{linha[0]}")
-
-        if not site_name.nil?
-          site_name = "#{site_name[2]}_#{site_name[1]}"
-        else
-          site_name = /www.([[:alnum:]\-]+).*/.match("#{linha[0]}")
-          if not site_name.nil?
-            site_name = "#{site_name[1]}"
-          end
-        end
-        site_name ||= linha[1]
-
-        puts "Atualizando ID:'#{linha[1]}'"
-        url = "http://www.#{site_name}.catalao.ufg.br"
-
-        parent_id = @convar["37"]["weby"]
-
-        if linha[1].strip == '37'
-          parent_id = "null"
-          site_name = "catalao"
-        end
-
-        puts "Parent: #{parent_id}"
-        id_weby = @convar["#{linha[1].strip}"]["weby"]
-
-        update_site = "UPDATE sites set name = '#{pre_treat(site_name)}', url = '#{pre_treat(url)}', parent_id = #{parent_id} where id =  #{id_weby}"
-        puts update_site
-
-        csv << ["#{linha[0]}","#{linha[1]}","#{url}"]
-
-        @con_weby.exec(update_site)
-    end
-  end
-  @con_weby.close()
