@@ -622,7 +622,7 @@ EOF
         menu_itemi18n = "INSERT INTO menu_item_i18ns (created_at, updated_at, menu_item_id,locale_id,title,description) VALUES ('#{Time.now}','#{Time.now}','#{menu_sub[0]['id']}',1,'#{pre_treat(entry['texto_item'])}','#{pre_treat(entry['alt'])}') RETURNING id"
         @con_weby.exec(menu_itemi18n)
         puts "\t\t\tINSERINDO sub_menu: (#{menu_sub[0]['id']})\n" if @verbose
-        @convar["#{this_id}"]['menus_#{lado}']["#{entry['id']}"] = menu_sub[0]['id']
+        @convar["#{this_id}"]["menus_#{lado}"]["#{entry['id']}"] = menu_sub[0]['id']
         menu_e0 = []
         menu_e0 << {'id' => menu_sub[0]['id']}
         #insert_sites_menus = "INSERT INTO sites_menus(site_id,menu_id,parent_id,category,position) VALUES ('#{site_id}','#{menu_sub[0]['id']}',#{parent_id},'#{type}','#{entry['posicao']}') RETURNING id"
