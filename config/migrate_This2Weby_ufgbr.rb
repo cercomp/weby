@@ -662,16 +662,16 @@ EOF
   # Método para migração dos menus
   def migrate_this_menus(menus, this_id, weby_id)
     menus.each do |menus_this|
-      dropdown = '1'
+      dropdown = 1
       #Verificar se os menus superiores e esquerdos são dropdown
       if menus_this[0] == 'superior'
         select_site = "SELECT * FROM sites WHERE site_id='#{this_id}'"
         site = @con_this.exec(select_site)
-        dropdown = site["drop_down_superior"]
+        dropdown = site[0]["drop_down_superior"]
       elsif menus_this[0] == 'esquerdo'
         select_site = "SELECT * FROM sites WHERE site_id='#{this_id}'"
         site = @con_this.exec(select_site)
-        dropdown = site["drop_down_esquerdo"]
+        dropdown = "'#{site[0]["drop_down_esquerdo"]}'"
       end
       # Criar menu
       insert_menu = "INSERT INTO menus (created_at, updated_at,site_id, name) VALUES ('#{Time.now}','#{Time.now}','#{weby_id}','Menu #{menus_this[0]}') RETURNING id"
