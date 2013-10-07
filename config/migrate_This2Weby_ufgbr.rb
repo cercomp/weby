@@ -491,9 +491,8 @@ EOF
               page_id = @convar["#{this_site['site_id']}"]["paginas"]["#{page_id}"]
               banner_url_weby = "/pages/#{page_id}"
           elsif not /http:\/\/www.ufg.br\/page.php\?menu_id=/.match("#{inform['url']}").nil?
-              page_id = /http:\/\/www.ufg.br\/page.php.*?menu_id=([0-9]+).*/.match("#{inform['url']}")[1]
-              page_id = @convar["#{this_site['site_id']}"]["paginas_menus"]["#{page_id}"]
-              banner_url_weby = "/pages/#{page_id}"
+              banner_url_weby = inform['url']
+              banner_url_weby.gsub!(/http:\/\/www.ufg.br\/page.php.*?menu_id=([0-9]+).*/){|x| "/pages/#{@convar["#{this_site['site_id']}"]["paginas_menus"]["#{$1}"]}" if @convar[$1] }
           end
 
           if inform['url'] == ""
@@ -663,11 +662,22 @@ EOF
   # Método para migração dos menus
   def migrate_this_menus(menus, this_id, weby_id)
     menus.each do |menus_this|
+      dropdown = '1'
+      #Verificar se os menus superiores e esquerdos são dropdown
+      if menus_this[0] == 'superior'
+        select_site = "SELECT * FROM sites WHERE site_id='#{this_id}'"
+        site = @con_this.exec(select_site)
+        dropdown = site["drop_down_superior"]
+      elsif menus_this[0] == 'esquerdo'
+        select_site = "SELECT * FROM sites WHERE site_id='#{this_id}'"
+        site = @con_this.exec(select_site)
+        dropdown = site["drop_down_esquerdo"]
+      end
       # Criar menu
       insert_menu = "INSERT INTO menus (created_at, updated_at,site_id, name) VALUES ('#{Time.now}','#{Time.now}','#{weby_id}','Menu #{menus_this[0]}') RETURNING id"
       menu_e0 = @con_weby.exec(insert_menu)
       menu_names = {'direito' => 'right', 'esquerdo' => 'left', 'superior' => 'top', 'inferior' => 'bottom'}
-      update_component = "UPDATE site_components set settings = '{:menu_id => \"#{menu_e0[0]['id']}\",:dropdown => \"1\"}' where site_id = #{weby_id} AND name = 'menu' AND place_holder = '#{menu_names[menus_this[0]]}' "
+      update_component = "UPDATE site_components set settings = '{:menu_id => \"#{menu_e0[0]['id']}\",:dropdown => \"#{dropdown}\"}' where site_id = #{weby_id} AND name = 'menu' AND place_holder = '#{menu_names[menus_this[0]]}' "
       @con_weby.exec(update_component)
       
       if menus_this[0] != 'inferior'
