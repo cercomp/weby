@@ -14,7 +14,7 @@
        <span class="author"><%= t("posted_by") %><%= @page.author %></span>
     <% end %>
     <% if @page.publish %>
-       <span class="date"><%= t("posted_on") %><%= l(@page.created_at, format: :short) %></span>
+       <span class="date"><%= t(".updated_at") %><%= l(@page.updated_at, format: :short) %>.</span>
     <% end %>
     </div>    
   <% end %>

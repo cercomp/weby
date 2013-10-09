@@ -14,6 +14,7 @@ en:
         list_all:      " List all "
         categories:    " Categories "
         source:        " Source "
+        updated_at:    " Updated at "
       list:
         read_more:     " Read more "
         no_pages:      " No pages were found "

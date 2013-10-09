@@ -194,10 +194,10 @@ pt-BR:
       # Use the strftime parameters for formats.
       # When no format has been given, it uses default.
       # You can provide other formats here if you like!
-      default: " %d-%m-%Y "
-      short:   " %b %d "
-      long:    " %d de %B de %Y "
-      monthly: " %b/%y "
+      default: "%d-%m-%Y"
+      short:   "%b %d"
+      long:    "%d de %B de %Y"
+      monthly: "%b/%y"
 
     day_names: [Domingo, Segunda, Terça, Quarta, Quinta, Sexta, Sábado]
     abbr_day_names: [Dom, Seg, Ter, Qua, Qui, Sex, Sab]
@@ -213,16 +213,16 @@ pt-BR:
 
   time:
     formats:
-      default:            " %a, %d-%m-%Y %H:%M:%S %z "
-      mini:               " %d/%b "
-      short:              " %d/%m/%y %H:%M "
-      medium:             " %d/%m/%Y às %H:%M "
-      long:               " %d de %B de %Y às %H:%M "
-      event_date_short:   " %d %B "
-      event_date_full:    " %d %B %Y "
-      event_period_short: " %{iniday} a %{finday} %B "
-      event_period_full:  " %{iniday} a %{finday} %B %Y "
-      event_hour:         " às %kh "
+      default:            "%a, %d-%m-%Y %H:%M:%S %z"
+      mini:               "%d/%b"
+      short:              "%d/%m/%y %H:%M"
+      medium:             "%d/%m/%Y às %H:%M"
+      long:               "%d de %B de %Y às %H:%M"
+      event_date_short:   "%d %B"
+      event_date_full:    "%d %B %Y"
+      event_period_short: "%{iniday} a %{finday} %B"
+      event_period_full:  "%{iniday} a %{finday} %B %Y"
+      event_hour:         "às %kh"
     period_separator: "a"
     am: "am"
     pm: "pm"
