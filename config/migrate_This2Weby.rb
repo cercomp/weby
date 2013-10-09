@@ -660,6 +660,9 @@ EOF
         site = @con_this.exec(select_site)
         dropdown =  site[0]["drop_down_esquerdo"]
       end
+      if menus_this[0] == 'direito'
+        dropdown = 0
+      end
       # Criar menu
       insert_menu = "INSERT INTO menus (created_at, updated_at,site_id, name) VALUES ('#{Time.now}','#{Time.now}','#{weby_id}','Menu #{menus_this[0]}') RETURNING id"
       menu_e0 = @con_weby.exec(insert_menu)
@@ -714,11 +717,11 @@ EOF
       # href=\"http://www2.catalao.ufg.br/uploads/files/90/DECLARA____O_DE_CI__NCIA_DE_NORMAS_E_DISPONIBILIDADE-mod.pdf\">
 
       if string.match(/['"]+http.*?catalao.*?\/uploads\/.*?[0-9]+\/[^'"]*\/.*?['"]+/)
-          string.gsub!(/["']+http.*?catalao.*?\/uploads\/.*?([0-9]+)\/[^'"]*\/(.*?)['"]+/){|x| "\"/uploads/#{@convar[$1]['weby']}/original_#{$2}\"" if @convar[$1] }
+          string.gsub!(/["']+http.*?catalao.*?\/uploads\/.*([0-9]+)\/[^'"]*\/(.*?)['"]+/){|x| "\"/uploads/#{@convar[$1]['weby']}/original_#{$2}\"" if @convar[$1] }
       elsif string.match(/['"]http.*?catalao.*?\/uploads\/.*?[0-9]+\/[^\/"']*['"]/)
-          string.gsub!(/["']http.*?catalao.*?\/uploads\/.*?([0-9]+)\/([^\/"']*)['"]/){|x| "\"/uploads/#{@convar[$1]['weby']}/original_#{$2}\"" if @convar[$1] }
+          string.gsub!(/["']http.*?catalao.*?\/uploads\/.*([0-9]+)\/([^\/"']*)['"]/){|x| "\"/uploads/#{@convar[$1]['weby']}/original_#{$2}\"" if @convar[$1] }
       elsif string.match(/.*?catalao.*?\/uploads\/.*?([0-9]+).*?\/(.*?)/)
-        string.gsub!(/.*?catalao.*?\/uploads\/.*?([0-9]+).*\/(.*?)/){|x| "/uploads/#{@convar[$1]['weby']}/original_#{$2}" if @convar[$1] }
+        string.gsub!(/.*?catalao.*?\/uploads\/.*([0-9]+).*\/(.*?)/){|x| "/uploads/#{@convar[$1]['weby']}/original_#{$2}" if @convar[$1] }
       end
 
       if string.match(/javascript:mostrar_pagina.*?([0-9]+).*?([0-9]+).*?/) 

@@ -671,7 +671,10 @@ EOF
       elsif menus_this[0] == 'esquerdo'
         select_site = "SELECT * FROM sites WHERE site_id='#{this_id}'"
         site = @con_this.exec(select_site)
-        dropdown = "'#{site[0]["drop_down_esquerdo"]}'"
+        dropdown = site[0]["drop_down_esquerdo"]
+      end
+      if menus_this[0] == 'direito'
+        dropdown = 0
       end
       # Criar menu
       insert_menu = "INSERT INTO menus (created_at, updated_at,site_id, name) VALUES ('#{Time.now}','#{Time.now}','#{weby_id}','Menu #{menus_this[0]}') RETURNING id"
@@ -729,11 +732,11 @@ EOF
       # http://www.ufg.br/uploads/files/UFG_em_n__meros_2010_12_07.pdf
       
       if string.match(/['"]+http.*?ufg.*?\/uploads\/.*?\/*\/.*?['"]+/)
-          string.gsub!(/["']+http.*?ufg.*?\/uploads\/.*?\/*\/(.*?)['"]+/){|x| "\"/uploads/1/original_#{$1}\""}
+          string.gsub!(/["']+http.*?ufg.*?\/uploads\/.*\/*\/(.*?)['"]+/){|x| "\"/uploads/1/original_#{$1}\""}
       elsif string.match(/['"]http.*?ufg.*?\/uploads\/.*?\/[^\/"']*['"]/)
-          string.gsub!(/["']http.*?ufg.*?\/uploads\/.*?\/([^\/"']*)['"]/){|x| "\"/uploads/1/original_#{$1}\""}
+          string.gsub!(/["']http.*?ufg.*?\/uploads\/.*\/([^\/"']*)['"]/){|x| "\"/uploads/1/original_#{$1}\""}
       elsif string.match(/.*?ufg.*?\/uploads\/.*?[^0-9]\/(.*?)/)
-        string.gsub!(/.*?ufg.*?\/uploads\/.*?\/(.*?)/){|x| "/uploads/1/original_#{$1}"}
+        string.gsub!(/.*?ufg.*?\/uploads\/.*\/(.*?)/){|x| "/uploads/1/original_#{$1}"}
       end
 
       # javascript:mostrar_pagina(357);
