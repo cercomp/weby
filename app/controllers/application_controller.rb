@@ -298,20 +298,27 @@ class ApplicationController < ActionController::Base
     %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
   end
 
+<<<<<<< HEAD
   # NOTE overwrite devise url helpers
   def new_session_path(arg)
     login_path
   end
 
   def record_activity(note)
+=======
+  def record_activity(note, loggeable_id, loggeable_type)
+>>>>>>> Arrumando erros e ajeitando algumas infos.
     @activity = ActivityRecord.new
     @activity.user_id = current_user.id
+    @activity.site_id = @site.id || nil
     @activity.note = note
     @activity.browser = request.env['HTTP_USER_AGENT']
     @activity.ip_address = request.env['REMOTE_ADDR']
     @activity.controller = controller_name
     @activity.action = action_name
     @activity.params = params.inspect
+    @activity.loggeable_id = loggeable_id
+    @activity.loggeable_type = loggeable_type
     @activity.save
   end
 

@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(:version => 20131121201855) do
 
   create_table "activity_records", :force => true do |t|
     t.string   "user_id"
+    t.string   "site_id"
     t.string   "browser"
     t.string   "ip_address"
     t.string   "controller"

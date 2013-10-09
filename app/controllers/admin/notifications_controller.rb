@@ -24,7 +24,7 @@ class Admin::NotificationsController < ApplicationController
     @notification.user_id = current_user.id
     if @notification.save
       flash[:success] = t("create_notification_successful")
-      record_activity("Created new notification")
+      record_activity("created_new_notification")
       redirect_to admin_notification_path @notification
     else
       flash[:error] = t("problem_create_notification")
