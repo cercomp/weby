@@ -14,6 +14,7 @@ es:
         list_all:      " Todas las páginas "
         categories:    " Categorías "
         source:        " Fuente "
+        updated_at:    " Actualizado en "
       list:
         read_more:     " Leer más "
         no_pages:      " No se han encontrado páginas "
