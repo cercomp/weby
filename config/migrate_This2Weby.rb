@@ -199,10 +199,7 @@ aside.left menu li a { color: #{pre_treat(this_estilo.first['cor_letra_out'])}; 
 aside.left menu li a:hover { color: #{pre_treat(this_estilo.first['cor_letra_hover'])}; }
 aside.left menu li.sub > a { color: #{pre_treat(this_estilo.first['cor_letra_subitem_out'])}; }
 aside.left menu li.sub > a:hover { color: #{pre_treat(this_estilo.first['cor_letra_subitem_out'])}; }
-/* aside.left menu li.sub { background-color: #{pre_treat(this_estilo.first['cor_td_subitem_mouseout'])}; } */
-/* aside.left menu li.sub > a { background-color: #{pre_treat(this_estilo.first['cor_td_subitem_mouseout'])}; } */
-/* aside.left menu li.sub:hover { background-color: #{pre_treat(this_estilo.first['cor_td_subitem_mouseout'])}; } */
-/* aside.left menu li.sub:hover > a { background-color: #{pre_treat(this_estilo.first['cor_td_subitem_mouseover'])}; } */
+
 /* Menu Direito */
 aside.right menu li { background-color: #{this_estilo.first['cor_mouseout2']}; }        
 aside.right menu li:hover { background-color: #{this_estilo.first['cor_mouseover2']}; }
@@ -210,15 +207,20 @@ aside.right menu li a { color: #{this_estilo.first['cor_letra_out2']}; backgroun
 aside.right menu li a:hover { background-color: #{this_estilo.first['cor_mouseover2']}; }
 aside.right menu li.sub > a { color: #{this_estilo.first['cor_letra_subitem_out2']}; }
 aside.right menu li.sub > a:hover { color: #{this_estilo.first['cor_letra_subitem_out2']}; }
-/* aside.right menu li a:hover { color: #{this_estilo.first['cor_letra_hover2']}; } */
-/* aside.right menu li.sub > a { background-color: #{this_estilo.first['cor_td_subitem_mouseout2']}; } */
-/* aside.right menu li.sub:hover { background-color: #{this_estilo.first['cor_td_subitem_mouseout2']}; } */
-/* aside.right menu li.sub:hover > a { background-color: #{this_estilo.first['cor_td_subitem_mouseover2']}; } */
+
 /* Menu Superior */
 header nav menu li { background-color: #{this_estilo.first['cor_mouseout3']}; }
 header nav menu li:hover { background-color: #{this_estilo.first['cor_mouseover3']}; }
 header nav menu li a { color: #{this_estilo.first['cor_letra_out3']}; background-color: #{this_estilo.first['cor_mouseout3']}; }
 header nav menu li a:hover { color: #{this_estilo.first['cor_letra_hover3']}; background-color: #{this_estilo.first['cor_mouseover3']}; }
+
+header nav menu li.sub > a { color: #191970; }
+header nav menu li.sub > a:hover { color: #191970; }
+header nav menu li a:hover { color: #B0C4DE; }
+header nav menu li.sub > a { background-color: #B0C4DE; }
+header nav menu li.sub:hover { background-color: #FFFFFF; }
+header nav menu li.sub:hover > a { background-color: #FFFFFF; }
+
 /* Menu Inferior */
 footer nav menu li { background-color: #{this_estilo.first['cor_mouseout4']}; }
 footer nav menu li:hover { background-color: #{this_estilo.first['cor_mouseover3']}; }
