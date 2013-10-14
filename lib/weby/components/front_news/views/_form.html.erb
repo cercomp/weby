@@ -33,13 +33,8 @@
 <%= f.input :avatar_height, as: :integer %>
 <%= f.input :max_char, as: :integer %>
 
-<%= f.input :filter_by, :hint => t(".page_categories_help"), input_html: {id: 'categories-list', class: 'input-xlarge', data: {tags: current_site.pages.uniq_category_counts.map{|t| t.name }}} %>
+<%= f.input :filter_by, input_html: {id: 'categories-list', class: 'input-xlarge', data: {tags: current_site.pages.uniq_category_counts.map{|t| t.name }}} %>
 
-<%#= f.input :filter_by, collection: current_site.pages.uniq_category_counts.map(&:name),
-  priority: component.filter_by,
-  include_blank: t(".no_category_filter"),
-  input_html: { style: 'width: 325px' }
-%>
 
 <%= f.input :read_more, as: :boolean %>
 <%= f.input :show_author, as: :boolean %>
