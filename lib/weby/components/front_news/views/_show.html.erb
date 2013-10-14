@@ -1,11 +1,15 @@
 <% quant = component.quant || 5 %>
 
 <% unless component.show_label.nil? %> 
-  <%= component.label %>
+  <% if component.filter_by.present? %>
+    <%= link_to component.label.camelize, main_app.site_pages_path(direction: 'desc', sort: 'pages.created_at',
+                                                                   tags: component.filter_by) %>
+  <% else %>
+    <%= component.label %>
+  <% end %>
 <% end %>
 
-<% @front_news = current_site.pages.includes(:author, :image).order('position desc')
-.front.available.page(params[:front_pages]).per(quant) %>
+<% @front_news = component.pages(current_site , params[:front_pages]) %>
 
 <section class="front_news_component">
   <section id="pages">

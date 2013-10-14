@@ -4,6 +4,13 @@ class FrontNewsComponent < Component
   i18n_settings :label
 
   validates :quant, presence: true
+  
+  def pages(site, params)
+    filter_by.blank? ?
+      site.pages.includes(:author, :image).order('position desc').front.available.page(params).per(quant) :
+      site.pages.includes(:author, :image).order('position desc').front.available.page(params).per(quant)
+        .tagged_with(filter_by, any: true)
+  end
 
   alias :_read_more :read_more
   def read_more

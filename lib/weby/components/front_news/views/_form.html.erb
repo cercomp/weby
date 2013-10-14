@@ -3,6 +3,7 @@
   font-size: 10pt;
 }
 </style>
+<% include_component_javascript :javascripts, 'front_news' %>
 
 <%= f.input :quant, as: :integer %>
 <%= f.input :image_size, collection: component.image_sizes.map{|size| [t(".#{size}"),size] },
@@ -31,7 +32,14 @@
 <%= f.input :avatar_width, as: :integer %>
 <%= f.input :avatar_height, as: :integer %>
 <%= f.input :max_char, as: :integer %>
-<%= f.input :filter_by %>
+
+<%= f.input :filter_by, :hint => t(".page_categories_help"), input_html: {id: 'categories-list', class: 'input-xlarge', data: {tags: current_site.pages.uniq_category_counts.map{|t| t.name }}} %>
+
+<%#= f.input :filter_by, collection: current_site.pages.uniq_category_counts.map(&:name),
+  priority: component.filter_by,
+  include_blank: t(".no_category_filter"),
+  input_html: { style: 'width: 325px' }
+%>
 
 <%= f.input :read_more, as: :boolean %>
 <%= f.input :show_author, as: :boolean %>
@@ -39,3 +47,5 @@
 <%= f.input :show_label, as: :boolean %>
 
 <%= f.input :new_tab, as: :boolean %>
+
+
