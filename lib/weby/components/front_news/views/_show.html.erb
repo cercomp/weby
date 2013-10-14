@@ -1,5 +1,5 @@
 <% quant = component.quant || 5 %>
-
+<div id="front_news_tittle">
 <% unless component.show_label.nil? %> 
   <% if component.filter_by.present? %>
     <%= link_to component.label.camelize, main_app.site_pages_path(direction: 'desc', sort: 'pages.created_at',
@@ -8,6 +8,7 @@
     <%= component.label %>
   <% end %>
 <% end %>
+</div>
 
 <% @front_news = component.pages(current_site , params[:front_pages]) %>
 
