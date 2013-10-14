@@ -8,6 +8,7 @@ en:
       read_more:            " Show 'Read more' "
       show_author:          " Show the author of the news "
       show_date:            " Show the date of the news "
+      show_alias:           " Show the name of the component"
       image_size:           " Image version "
       new_tab:              " Open news with URL in a new tab "
   activerecord:
@@ -19,6 +20,7 @@ en:
         read_more:            " Show 'Read more' "
         show_author:          " Show the author of the news "
         show_date:            " Show the date of the news "
+        show_alias:           " Show the name of the component"
         image_size:           " Image version "
         new_tab:              " Open news with URL in a new tab "
         max_char:             " Maximum number of characters "

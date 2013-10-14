@@ -8,6 +8,7 @@ pt-BR:
       read_more:            " Exibir 'Leia mais' "
       show_author:          " Exibir autor da notícia "
       show_date:            " Exibir data da notícia "
+      show_alias:           " Exibir nome do componente "
       image_size:           " Versão da imagem "
       new_tab:              " Abrir páginas com URL em uma nova janela "
   activerecord:
@@ -19,6 +20,7 @@ pt-BR:
         read_more:            " Exibir 'Leia mais' "
         show_author:          " Exibir autor da notícia "
         show_date:            " Exibir data da notícia "
+        show_alias:           " Exibir nome do componente "
         image_size:           " Versão da imagem "
         new_tab:              " Abrir páginas com URL em uma nova janela "
         max_char:             " Número máximo de caracteres do resumo "

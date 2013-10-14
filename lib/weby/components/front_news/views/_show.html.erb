@@ -1,4 +1,9 @@
 <% quant = component.quant || 5 %>
+
+<% unless component.show_alias.nil? %> 
+  <%= component.alias %>
+<% end %>
+
 <% @front_news = current_site.pages.includes(:author, :image).order('position desc')
 .front.available.page(params[:front_pages]).per(quant) %>
 

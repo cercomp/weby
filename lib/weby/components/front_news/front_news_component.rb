@@ -1,5 +1,5 @@
 class FrontNewsComponent < Component
-  component_settings :quant, :avatar_height, :avatar_width, :read_more, :show_author, :show_date, :image_size, :new_tab, :max_char
+  component_settings :quant, :avatar_height, :avatar_width, :read_more, :show_author, :show_date, :image_size, :new_tab, :max_char, :filter_by, :show_alias
 
   validates :quant, presence: true
 
@@ -16,6 +16,11 @@ class FrontNewsComponent < Component
   alias :_show_date :show_date
   def show_date
     _show_date.blank? ? false : _show_date.to_i == 1
+  end
+
+  alias :_show_alias :show_alias
+  def show_alias
+    _show_alias.blank? ? false : _show_alias.to_i == 1
   end
 
   alias :_image_size :image_size
