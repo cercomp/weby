@@ -10,7 +10,7 @@
 <% end %>
 </div>
 
-<% @front_news = component.pages(current_site , params[:front_pages]) %>
+<% @front_news = component.pages(current_site , params["front_news#{component.id}".to_sym]) %>
 
 <section class="front_news_component">
   <section id="pages">
@@ -56,7 +56,7 @@
     <% end %>
     <div class="clear clearfix"> </div>
   </section>
-  <%= paginate @front_news, param_name: 'front_pages', page_links: true %>
+  <%= paginate @front_news, param_name: "front_news#{component.id}", page_links: true %>
 
   <%= javascript_tag do %>
     window.onload = function(){
