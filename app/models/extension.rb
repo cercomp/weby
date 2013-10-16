@@ -6,4 +6,5 @@ class Extension < ActiveRecord::Base
 
   validates :name, :presence => true, :uniqueness => { :scope => :site_id, :message => :already_installed }
   validates :site, :presence => true
+
 end

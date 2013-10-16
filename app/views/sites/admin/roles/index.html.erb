@@ -36,8 +36,12 @@
                 <%= link_to icon('edit', text: t("edit")), edit_site_admin_role_path(role)  %>
               <% end %>
               <% if check_permission(Sites::Admin::RolesController, [:destroy]) %>
-                <%= link_to icon('trash', text: t("destroy")), site_admin_role_path(role), :data => {:confirm => t("are_you_sure")}, :method => :delete %>
+                <%= link_to icon('fire', text: t("destroy")), site_admin_role_path(role), :data => {:confirm => t("are_you_sure")}, :method => :delete %>
               <% end %>
+              <% if check_permission(Sites::Admin::RolesController, [:remove]) %>                                                                       
+                <%= link_to icon('trash', text: t("remove")),  remove_site_admin_role_path(role), :data => {:confirm => t("are_you_sure")}  %>
+              <% end %>                                                                                                                                  
+
               </p>
             </th>
           <% end %>

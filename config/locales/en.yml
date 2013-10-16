@@ -93,6 +93,8 @@ en:
 #---Q---#
 #---R---#
   required:                             " Required "
+  recover:                              " Recover "
+  remove:                               " Remove "
 #---S---#
   save:                                 " Save "
   search:                               " Search "

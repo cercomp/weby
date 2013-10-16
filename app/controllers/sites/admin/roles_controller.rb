@@ -12,7 +12,7 @@ class Sites::Admin::RolesController < ApplicationController
 
   respond_to :html, :xml
   def index
-    @roles = @site ? @site.roles.order("id") : Role.where(:site_id => nil)
+    @roles = @site ? @site.roles.scoped.not_deleted.order("id") : Role.where(:site_id => nil)
     @rights = Weby::Rights.permissions.sort
     
     if request.put? #&& params[:role]
@@ -59,4 +59,19 @@ class Sites::Admin::RolesController < ApplicationController
     @role.destroy
     redirect_to :back
   end
+
+  def remove
+    @role = Role.find(params[:id])
+    @role.update_attributes(deleted: true)
+
+    redirect_to @site ? site_admin_roles_path : admin_roles_path
+  end
+
+  def recover
+    @role = Role.find(params[:id])
+    @role.update_attributes(deleted: false)
+
+    redirect_to @site ? site_admin_roles_path : admin_roles_path
+  end
+
 end

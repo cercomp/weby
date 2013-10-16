@@ -3,10 +3,13 @@ Feedback::Engine.routes.draw do
     get 'admin' => 'admin/messages#index'
 
     namespace :admin do
-      resources :groups
+      resources :groups do
+        member do
+          get :remove, :recover
+        end
+      end
       resources :messages, only: [:index, :show, :destroy]
     end
-
     resources :messages, only: :create, path: '/'
   end
 

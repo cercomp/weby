@@ -5,6 +5,7 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
 
   respond_to :html, :xml, :js
   def index
+    @menu_item = @menu.menu_items
     redirect_to site_admin_menus_path(:menu => @menu.id)
   end
 
@@ -49,6 +50,20 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
     update_position_for_remove(@menu_item)
     @menu_item.destroy
     redirect_to :back, flash: {success: t("successfully_deleted")}
+  end
+
+  def remove
+    @menu_item = @menu.menu_items.find(params[:id])
+    logger.debug @menu_item.deleted?
+    @menu_item.update_attribute(:deleted, true)
+    redirect_to :back
+  end
+
+  def recover
+    @menu_item = @menu.menu_items.find(params[:id])
+    @menu_item.update_attributes(deleted: false)
+
+    redirect_to site_admin_menu_menu_items_path
   end
 
   # Altera a ordenação do menu

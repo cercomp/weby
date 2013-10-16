@@ -95,6 +95,8 @@ es:
 #---Q---#
 #---R---#
   required:                             " Necesario "
+  recover:                              " Recuperar "
+  remove:                               " Eliminar "
 #---S---#
   save:                                 " Salvar "
   search:                               " Buscar "

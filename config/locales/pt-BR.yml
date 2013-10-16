@@ -93,6 +93,8 @@ pt-BR:
 #---Q---#
 #---R---#
   required:                             " Necessário "
+  recover:                              " Restaurar "
+  remove:                               " Remover "
 #---S---#
   save:                                 " Salvar "
   search:                               " Buscar "

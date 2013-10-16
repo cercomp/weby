@@ -89,7 +89,8 @@ module ApplicationHelper
         menus << ( (entry and entry.target) ? " [ #{entry.target.try(:title)} ] " : " [ #{entry.url if not entry.url.blank?} ] " )
         menus << link_to(icon('edit', text: ''), edit_site_admin_menu_menu_item_path(entry.menu_id, entry.id), :title => t("edit"))
         menus << indent_space + link_to(icon('plus', text: ''), new_site_admin_menu_menu_item_path(entry.menu_id, :parent_id => entry.id), :title => t("add_sub_menu"))
-        menus << indent_space + link_to(icon('trash', text: ''), site_admin_menu_menu_item_path(entry.menu_id, entry.id), :method=>:delete, :data => {:confirm => t('are_you_sure')}, :title => t("destroy"))
+        menus << indent_space + link_to(icon('fire', text: ''), site_admin_menu_menu_item_path(entry.menu_id, entry.id), :method=>:delete, :data => {:confirm => t('are_you_sure')}, :title => t("destroy"))
+        menus << indent_space + link_to(icon('trash', text: ''), remove_site_admin_menu_menu_item_path(entry.menu_id, entry.id), :title => t("remove"), :data => {:confirm => t("are_you_sure")}) 
         menus << indent_space + link_to(icon('move', text: ''),"#", :class => 'handle', :title => t("move"))
       end
       menus << "\n" + indent_space + (view_ctrl ? "</div><menu>":"<menu class='submenu'>") if submenu
@@ -149,7 +150,7 @@ module ApplicationHelper
     #não criar menu para objetos de outro site
     return "" if obj.respond_to?(:site_id) and obj.site_id != current_site.id
     return "" if obj.respond_to?(:owner_id) and obj.owner_id != current_site.id
-    
+
     raw("".tap do |menu|
       excepts = args[:except] || []
       ctrl = args[:controller] || controller.class
@@ -189,9 +190,20 @@ module ApplicationHelper
               :alt => t('edit'),
               :title => t('edit')) + " "
 
+          when :remove
+            menu << link_to(
+              icon('trash', text: args[:with_text] ? t('remove') : ''),
+              params.merge({
+                :controller => ctrl.controller_name,
+                :action => 'remove', :id => obj.id
+              }),
+              :data => {:confirm => t("are_you_sure")},
+              :alt => t('remove'),
+              :title => t('remove')) + " " 
+
           when :destroy
             menu << link_to(
-              icon('trash', text: args[:with_text] ? t('destroy') : ''),
+              icon('fire', text: args[:with_text] ? t('destroy') : ''),
               params.merge({
                 :controller => ctrl.controller_name,
                 :action => 'destroy',
@@ -200,7 +212,7 @@ module ApplicationHelper
               :data => {:confirm => t('are_you_sure')},
               :method => :delete,
               :alt => t('destroy'),
-              :title => t('destroy')) + " "
+              :title => t('destroy')) + " " 
           end
         end
       end

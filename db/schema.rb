@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130806154257) do
+ActiveRecord::Schema.define(:version => 20131015134357) do
 
   create_table "banners", :force => true do |t|
     t.datetime "date_begin_at"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20130806154257) do
     t.integer  "click_count",   :default => 0
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
+    t.boolean  "deleted",       :default => false
   end
 
   add_index "banners", ["page_id"], :name => "index_banners_on_page_id"
@@ -53,8 +54,9 @@ ActiveRecord::Schema.define(:version => 20130806154257) do
     t.string   "name"
     t.integer  "site_id"
     t.text     "emails"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "deleted",    :default => false
   end
 
   add_index "feedback_groups", ["site_id"], :name => "index_groups_on_site_id"
@@ -107,8 +109,9 @@ ActiveRecord::Schema.define(:version => 20130806154257) do
     t.integer  "locale_id"
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.boolean  "deleted",      :default => false
   end
 
   add_index "menu_item_i18ns", ["locale_id"], :name => "index_menu_item_i18ns_on_locale_id"
@@ -126,6 +129,7 @@ ActiveRecord::Schema.define(:version => 20130806154257) do
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
     t.string   "html_class"
+    t.boolean  "deleted",     :default => false
   end
 
   add_index "menu_items", ["menu_id"], :name => "index_menu_items_on_menu_id"
@@ -135,8 +139,9 @@ ActiveRecord::Schema.define(:version => 20130806154257) do
   create_table "menus", :force => true do |t|
     t.integer  "site_id"
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "deleted",    :default => false
   end
 
   add_index "menus", ["site_id"], :name => "index_menus_on_site_id"
@@ -197,6 +202,7 @@ ActiveRecord::Schema.define(:version => 20130806154257) do
     t.integer  "view_count",    :default => 0
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
+    t.boolean  "deleted",       :default => false
   end
 
   add_index "pages", ["author_id"], :name => "index_pages_on_author_id"
@@ -218,8 +224,9 @@ ActiveRecord::Schema.define(:version => 20130806154257) do
     t.integer  "archive_file_size"
     t.datetime "archive_updated_at"
     t.string   "description"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
+    t.boolean  "deleted",              :default => false
   end
 
   add_index "repositories", ["site_id"], :name => "index_repositories_on_site_id"
@@ -246,9 +253,10 @@ ActiveRecord::Schema.define(:version => 20130806154257) do
     t.string   "name"
     t.string   "theme"
     t.integer  "site_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.text     "permissions"
+    t.boolean  "deleted",     :default => false
   end
 
   add_index "roles", ["site_id"], :name => "index_roles_on_site_id"
@@ -278,8 +286,9 @@ ActiveRecord::Schema.define(:version => 20130806154257) do
     t.boolean  "publish",      :default => true
     t.integer  "visibility",   :default => 0
     t.string   "alias"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.boolean  "deleted",      :default => false
   end
 
   add_index "site_components", ["site_id"], :name => "index_site_components_on_site_id"
@@ -349,8 +358,9 @@ ActiveRecord::Schema.define(:version => 20130806154257) do
     t.boolean  "publish",    :default => true
     t.integer  "owner_id"
     t.integer  "position",   :default => 0
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "deleted",    :default => false
   end
 
   add_index "styles", ["owner_id"], :name => "index_styles_on_owner_id"

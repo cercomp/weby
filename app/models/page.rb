@@ -172,4 +172,7 @@ class Page < ActiveRecord::Base
     end.values
   end
 
+  scope :not_deleted, lambda { where(deleted: false) }
+  scope :deleted, lambda { where(deleted: true) }
+
 end

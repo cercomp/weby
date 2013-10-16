@@ -4,7 +4,7 @@ class Sites::Admin::ComponentsController < ApplicationController
   before_filter :check_authorization
 
   def index
-    @components = @site.components.order('position asc')
+    @components = @site.components.scoped.not_deleted.order('position asc')
     @placeholders = Weby::Themes.layout(current_site.theme)['placeholders']
   end
 
@@ -63,7 +63,21 @@ class Sites::Admin::ComponentsController < ApplicationController
 
     redirect_to site_admin_components_path, flash: {success: t("successfully_removed", param: t("component"))}
   end
-  
+
+  def remove
+    @component = Component.find(params[:id])
+    @component.update_attributes(deleted: true)
+
+    redirect_to site_admin_components_path
+  end
+
+  def recover
+    @component = Component.find(params[:id])
+    @component.update_attributes(deleted: false)
+
+    redirect_to site_admin_components_path
+  end
+
   def sort
     Component.update_positions(params['sort_sites_component'] || [], params[:place_holder])
     

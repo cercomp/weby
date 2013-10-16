@@ -4,7 +4,7 @@ class Sites::Admin::MenusController < ApplicationController
 
   respond_to :html, :xml, :js
   def index
-    @menus = current_site.menus
+    @menus = current_site.menus.scoped.not_deleted
     @menu = params[:menu] ? @menus.select{|menu| menu.id == params[:menu].to_i}[0] : @menus.first
   end
 
@@ -44,6 +44,20 @@ class Sites::Admin::MenusController < ApplicationController
     @menu = current_site.menus.find(params[:id])
     @menu.destroy
     flash[:success] = t("successfully_deleted")
+    redirect_to site_admin_menus_path
+  end
+
+  def remove
+    @menu = current_site.menus.find(params[:id])
+    @menu.update_attribute(:deleted, true)
+
+    redirect_to site_admin_menus_path
+  end
+
+  def recover
+    @menu = current_site.menus.find(params[:id])
+    @menu.update_attribute(:deleted, false)
+
     redirect_to site_admin_menus_path
   end
 

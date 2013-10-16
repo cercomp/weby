@@ -25,4 +25,5 @@ class Sites::Admin::ExtensionsController < ::ApplicationController
     current_site.extensions.find(params[:id]).destroy
     redirect_to site_admin_extensions_path
   end
+
 end

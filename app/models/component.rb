@@ -55,4 +55,8 @@ class Component < ActiveRecord::Base
   def fix_position
     #TODO arrumar a posição quando o usuário mudar o placeholder pelo 'editar'
   end
+
+   scope :not_deleted, lambda { where(deleted: false) }
+   scope :deleted, lambda { where(deleted: true) }
+
 end

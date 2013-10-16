@@ -44,11 +44,13 @@ Weby::Application.routes.draw do
 
       resources :banners do
         member do
+          get :remove, :recover
           put :toggle_field
         end
       end
       resources :components do
         member do
+          get :remove, :recover
           put :toggle_field
         end
         collection do
@@ -57,16 +59,22 @@ Weby::Application.routes.draw do
       end
       resources :extensions
       resources :menus do
+        member do
+          get :remove, :recover
+        end
         resources :menu_items,
-          controller: "menus/menu_items",
-          except: :show do
+          controller: "menus/menu_items", except: :show do
             collection do
               post :change_order, :change_menu
             end
-          end
+            member do
+              get :remove, :recover
+            end
+        end
       end
       resources :pages do
         member do
+          get :remove, :recover
           put :toggle_field
         end
         collection do
@@ -75,18 +83,24 @@ Weby::Application.routes.draw do
         end
       end
       resources :repositories do
+        member do
+          get :remove, :recover
+        end
         collection do
           get :manage
         end
       end
       resources :roles do
+        member do
+          get :remove, :recover
+        end
         collection do
           put :index
         end
       end
       resources :styles do
         member do
-          get :copy, :follow, :unfollow, :publish, :unpublish
+          get :copy, :follow, :unfollow, :publish, :unpublish, :remove, :recover
         end
         collection do
           post :sort

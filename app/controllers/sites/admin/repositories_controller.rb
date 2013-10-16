@@ -12,6 +12,7 @@ class Sites::Admin::RepositoriesController < ApplicationController
 
     @repositories = @site.repositories.
       description_or_filename(params[:search]).
+      scoped.not_deleted.
       order(sort_column + ' ' + sort_direction).
       page(params[:page]).per(per_page)
 
@@ -88,6 +89,20 @@ class Sites::Admin::RepositoriesController < ApplicationController
     @repository.destroy
 
     redirect_to site_admin_repositories_url
+  end
+
+  def remove
+    @repository = Repository.find(params[:id])
+    @repository.update_attributes(deleted: true)
+
+    redirect_to site_admin_repositories_path()
+  end
+
+  def recover
+    @repository = Repository.find(params[:id])
+    @repository.update_attributes(deleted: false)
+
+    redirect_to site_admin_repositories_path()
   end
 
   private

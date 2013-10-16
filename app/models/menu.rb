@@ -1,5 +1,6 @@
 class Menu < ActiveRecord::Base
-  has_many :menu_items, dependent: :destroy, order: :position, include: :i18ns
+  has_many :menu_items, dependent: :destroy, order: :position, include: :i18ns, :conditions => proc { ["deleted = false"] }
+  #has_many :menu_items, dependent: :delete_all, order: :position, include: :i18ns, -> (where deleted: false) # to updates 4.x
   
   validates :name, presence: true
 
@@ -16,4 +17,8 @@ class Menu < ActiveRecord::Base
   def items_by_parent
     self.menu_items.group_by(&:parent_id)
   end
+
+  scope :not_deleted, lambda { where(deleted: false) }
+  scope :deleted, lambda { where(deleted: true) }
+
 end

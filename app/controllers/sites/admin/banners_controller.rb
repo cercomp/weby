@@ -9,7 +9,7 @@ class Sites::Admin::BannersController < ApplicationController
   respond_to :html, :xml, :js
 
   def index
-    @banners = @site.banners.
+    @banners = @site.banners.scoped.not_deleted.
       order(sort_column + " " + sort_direction).
       titles_or_texts_like(params[:search]).
       page(params[:page]).per(params[:per_page])
@@ -55,6 +55,20 @@ class Sites::Admin::BannersController < ApplicationController
 
     # TODO mensagem de banner removido com sucesso
     redirect_to(site_admin_banners_path())
+  end
+
+  def remove
+    @banner = Banner.find(params[:id])
+    @banner.update_attributes(deleted: true)
+
+    redirect_to site_admin_banners_path()
+  end
+
+  def recover
+    @banner = Banner.find(params[:id])
+    @banner.update_attributes(deleted: false)
+
+    redirect_to site_admin_banners_path()
   end
 
   def toggle_field

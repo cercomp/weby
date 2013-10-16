@@ -28,4 +28,7 @@ class Style < ActiveRecord::Base
       site: site_id 
     }])
   }
+
+  scope :not_deleted, lambda { where(deleted: false) }
+  scope :deleted, lambda { where(deleted: true) }
 end
