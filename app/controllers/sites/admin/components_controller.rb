@@ -4,7 +4,7 @@ class Sites::Admin::ComponentsController < ApplicationController
   before_filter :check_authorization
 
   def index
-    @components = @site.components.scoped.not_deleted.order('position asc')
+    @components = @site.components.order('position asc')
     @placeholders = Weby::Themes.layout(current_site.theme)['placeholders']
   end
 

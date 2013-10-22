@@ -56,7 +56,7 @@ class Component < ActiveRecord::Base
     #TODO arrumar a posição quando o usuário mudar o placeholder pelo 'editar'
   end
 
-   scope :not_deleted, lambda { where(deleted: false) }
+   default_scope lambda { where(deleted: false) }
    scope :deleted, lambda { where(deleted: true) }
 
 end

@@ -19,6 +19,6 @@ class Role < ActiveRecord::Base
     self.permissions.present? ? eval(self.permissions.to_s) : {}
   end
 
-  scope :not_deleted, lambda { where(deleted: false) }
+  default_scope lambda { where(deleted: false) }
   scope :deleted, lambda { where(deleted: true) }
 end

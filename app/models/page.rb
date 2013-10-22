@@ -1,4 +1,6 @@
 class Page < ActiveRecord::Base
+
+
   self.inheritance_column = nil
 
   acts_as_multisite
@@ -172,7 +174,7 @@ class Page < ActiveRecord::Base
     end.values
   end
 
-  scope :not_deleted, lambda { where(deleted: false) }
+  default_scope  lambda { where(deleted: false) }
   scope :deleted, lambda { where(deleted: true) }
-
+   
 end

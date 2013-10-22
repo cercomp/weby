@@ -121,7 +121,7 @@ class Repository < ActiveRecord::Base
     FileTest.exist?(archive.path(format))
   end
   
-  scope :not_deleted, lambda { where(deleted: false) }
+  default_scope lambda { where(deleted: false) }
   scope :deleted, lambda { where(deleted: true) }
 
 end

@@ -26,7 +26,7 @@ class Banner < ActiveRecord::Base
   end
   private :validate_date
 
-  scope :not_deleted, lambda { where(deleted: false) }
+  default_scope lambda { where(deleted: false) }
   scope :deleted, lambda { where(deleted: true) }
 
 end

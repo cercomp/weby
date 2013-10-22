@@ -9,7 +9,7 @@ class Sites::Admin::BannersController < ApplicationController
   respond_to :html, :xml, :js
 
   def index
-    @banners = @site.banners.scoped.not_deleted.
+    @banners = @site.banners.
       order(sort_column + " " + sort_direction).
       titles_or_texts_like(params[:search]).
       page(params[:page]).per(params[:per_page])

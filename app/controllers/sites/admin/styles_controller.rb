@@ -25,7 +25,7 @@ class Sites::Admin::StylesController < ApplicationController
 
   # FIXME: duplicated code
   def own_styles
-    styles = @site.own_styles.scoped.not_deleted.
+    styles = @site.own_styles.
       order('position desc').page(params[:page_own_styles])
 
     search(styles, :own) || styles
@@ -35,7 +35,7 @@ class Sites::Admin::StylesController < ApplicationController
   # FIXME: duplicated code
   def follow_styles
     params[:style_type] = 'follow'
-    styles = @site.follow_styles.scoped.not_deleted.
+    styles = @site.follow_styles.
       order(sort_column + " " + sort_direction).page(params[:page_follow_styles]).per(5)
 
     search(styles, :follow) || styles

@@ -36,8 +36,6 @@ module StylesHelper
               actions << link_to( icon('eye-open', text: t('show')), site_admin_style_path(style)) + ' '
             when 'edit'
               actions << link_to( icon('edit', text: t('edit')), edit_site_admin_style_path(style)) + ' '
-            #when 'recover'
-            #  actions << link_to( icon('heart', text: t('recover')), recover_site_admin_style_path(style)) + ' '
             when 'remove'
               actions << (link_to( icon('trash', text: t('remove')), remove_site_admin_style_path(style),
                                 data: {confirm: t('are_you_sure')}) + ' ') if style.followers.empty?

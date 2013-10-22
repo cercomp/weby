@@ -5,7 +5,7 @@ module Feedback
 
     validates_presence_of :name, :emails
 
-    scope :not_deleted, lambda { where(deleted: false) }
+    default_scope lambda { where(deleted: false) }
     scope :deleted, lambda { where(deleted: true) }     
 
   end

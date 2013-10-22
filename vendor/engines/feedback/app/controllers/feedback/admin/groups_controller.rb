@@ -7,7 +7,7 @@ module Feedback::Admin
     helper_method :sort_column
 
     def index
-      @groups = Feedback::Group.where(site_id: current_site.id).scoped.not_deleted.order(sort_column + ' ' + sort_direction).
+      @groups = Feedback::Group.where(site_id: current_site.id).order(sort_column + ' ' + sort_direction).
         page(params[:page]).per(params[:per_page])
     end
 

@@ -12,7 +12,6 @@ class Sites::Admin::RepositoriesController < ApplicationController
 
     @repositories = @site.repositories.
       description_or_filename(params[:search]).
-      scoped.not_deleted.
       order(sort_column + ' ' + sort_direction).
       page(params[:page]).per(per_page)
 

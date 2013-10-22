@@ -4,7 +4,7 @@ class Sites::Admin::MenusController < ApplicationController
 
   respond_to :html, :xml, :js
   def index
-    @menus = current_site.menus.scoped.not_deleted
+    @menus = current_site.menus
     @menu = params[:menu] ? @menus.select{|menu| menu.id == params[:menu].to_i}[0] : @menus.first
   end
 

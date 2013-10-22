@@ -12,7 +12,7 @@ class Sites::Admin::PagesController < ApplicationController
   # GET /pages
   # GET /pages.json
   def index
-    @pages = get_pages.scoped.not_deleted
+    @pages = get_pages
     respond_with(:site_admin, @pages) do |format|
       if(params[:template])
         format.js { render "#{params[:template]}" }
@@ -110,7 +110,7 @@ class Sites::Admin::PagesController < ApplicationController
      @page = Page.find(params[:id])
      @page.update_attributes(deleted: false)
 
-    redirect_to site_admin_pages_path()
+     redirect_to site_admin_pages_path()
    end
 
   def toggle_field

@@ -18,7 +18,7 @@ class Menu < ActiveRecord::Base
     self.menu_items.group_by(&:parent_id)
   end
 
-  scope :not_deleted, lambda { where(deleted: false) }
+  default_scope lambda { where(deleted: false) }
   scope :deleted, lambda { where(deleted: true) }
 
 end

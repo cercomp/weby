@@ -256,7 +256,7 @@ class ApplicationController < ActionController::Base
     session[:return_to] = nil
   end
 
-  # Defini variáveis globais
+  # Define variáveis globais
   def set_global_vars
     @site = current_site
 
