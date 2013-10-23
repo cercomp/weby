@@ -1,15 +1,16 @@
 class FrontNewsComponent < Component
-  component_settings :quant, :avatar_height, :avatar_width, :read_more, :show_author, :show_date, :image_size, :new_tab, :max_char, :filter_by, :label, :show_label
+  component_settings :quant, :avatar_height, :avatar_width, :read_more, :show_author, :show_date, :image_size, :new_tab, :max_char, :filter_by, :label, :show_label, :show_events
 
   i18n_settings :label
 
   validates :quant, presence: true
   
   def pages(site, params)
-    filter_by.blank? ?
-      site.pages.includes(:author, :image).order('position desc').front.available.page(params).per(quant) :
-      site.pages.includes(:author, :image).order('position desc').front.available.page(params).per(quant)
-        .tagged_with(filter_by, any: true)
+    pages = only_events?(site, show_events)
+    
+    filter_by.blank? ? pages.includes(:author, :image).order('position desc').available.page(params).per(quant)
+                     : pages.includes(:author, :image).order('position desc').available.page(params).per(quant)
+                       .tagged_with(filter_by, any: true)
   end
 
   alias :_read_more :read_more
@@ -25,6 +26,11 @@ class FrontNewsComponent < Component
   alias :_show_date :show_date
   def show_date
     _show_date.blank? ? false : _show_date.to_i == 1
+  end
+
+  alias :_show_events :show_events
+  def show_events
+    _show_events.blank? ? false : _show_events.to_i == 1
   end
 
   alias :_show_label :show_label
@@ -50,4 +56,11 @@ class FrontNewsComponent < Component
   def image_sizes
     [:medium, :little, :mini, :thumb]
   end
+
+  private
+  def only_events?(site, show_events)
+    show_events == true ? site.pages.events : site.pages.front    
+  end
+
+
 end

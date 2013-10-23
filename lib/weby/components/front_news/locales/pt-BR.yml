@@ -11,6 +11,7 @@ pt-BR:
       show_author:          " Exibir autor da notícia "
       show_date:            " Exibir data da notícia "
       show_label:           " Exibir rótulo do componente "
+      show_events:          " Mostrar apenas eventos "
       image_size:           " Versão da imagem "
       new_tab:              " Abrir páginas com URL em uma nova janela "
   activerecord:
@@ -25,6 +26,7 @@ pt-BR:
         show_author:          " Exibir autor da notícia "
         show_date:            " Exibir data da notícia "
         show_label:           " Exibir rótulo do componente "
+        show_events:          " Mostrar apenas eventos "
         image_size:           " Versão da imagem "
         new_tab:              " Abrir páginas com URL em uma nova janela "
         max_char:             " Número máximo de caracteres do resumo "
