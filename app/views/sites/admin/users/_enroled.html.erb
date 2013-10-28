@@ -10,7 +10,7 @@
     <tbody>
       <% @site_users.uniq.each do |user| %>
         <tr>
-          <td><%= link_to user, profile_url(user.login, subdomain: current_site) %> <%= link_to icon('user'), admin_user_url(user, subdomain: nil), target: '_blank' if current_user.is_admin? %></td>
+          <td><%= link_to user, profile_url(user.login, subdomain: current_site) %> <%= link_to "(#{user.login}) #{icon('user')}".html_safe, admin_user_url(user, subdomain: nil), target: '_blank' if current_user.is_admin? %></td>
           <td>
             <span id="user_<%= user.id %>">
               <%= user.roles.map{ |r| r.name if r.site_id == @site.try(:id) }.compact.join(', ') %>
