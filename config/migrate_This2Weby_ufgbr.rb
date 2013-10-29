@@ -728,38 +728,39 @@ EOF
   # Tratamento de caracteres 
   def treat(string)
     unless string.nil?
-
-      #http://www.ufg.br/uploads/files/camp_samambaia.jpg
       
       if string.match(/['"]+http.*?ufg.*?\/uploads\/[^\/]*\/[^\/]*\/.*?['"]+/)
-          string.gsub!(/["']+http.*?ufg.*?\/uploads\/[^\/]*\/[^\/]*\/(.*?)['"]+/){|x| "\"/uploads/1/original_#{$1}\""}
-      elsif string.match(/['"]http.*?ufg.*?\/uploads\/[^\/]*\/[^\/"']*['"]/)
-          string.gsub!(/["']http.*?ufg.*?\/uploads\/[^\/]*\/([^\/"']*)['"]/){|x| "\"/uploads/1/original_#{$1}\""}
+          puts "primeiro"
+          string.gsub!(/["']+http.*?ufg.*?\/uploads\/[^\/]*\/[^\/]*\/([^\/].*?)['"]+/){|x| "\"/uploads/1/original_#{$1}\""}
+      elsif string.match(/['"]http.*?ufg.*?\/uploads\/[^\/]*\/[^\/"'].*?['"]/)
+        puts "segundo"
+          string.gsub!(/src=["']http.*?ufg.*?\/uploads\/[^\/]*\/([^\/"']*)['"]/){|x| "src=\"/uploads/1/original_#{$1}\""}
       elsif string.match(/.*?ufg.*?\/uploads\/.*?[^0-9]\/(.*?)/)
+        puts "terceiro"
         string.gsub!(/.*?ufg.*?\/uploads\/.*\/(.*)/){|x| "/uploads/1/original_#{$1}"}
       end
 
-      # javascript:mostrar_pagina(357);
+      if string.match(/src=['"]http.*?ufg.*?\/uploads\/[^\/]*\/[^\/"'].*?['"]/)
+        puts "segundo fora"
+          string.gsub!(/src=["']http.*?ufg.*?\/uploads\/[^\/]*\/([^\/"']*)['"]/){|x| "src=\"/uploads/1/original_#{$1}\""}
+      end
+      
       if string.match(/javascript:mostrar_pagina\([0-9]+\)/)
         string.gsub!(/javascript:mostrar_pagina\(([0-9]+)\);/){|x| "/pages/#{@convar_ufg["1"]["paginas"][$1]}" if @convar_ufg["1"] }
       end
-      #javascript:mostrar_pagina('24');      
+      
       if string.match(/javascript:mostrar_pagina\('[0-9]+'\);/)
         string.gsub!(/javascript:mostrar_pagina\('([0-9]+)'\);/){|x| "/pages/#{@convar_ufg["1"]["paginas"][$1]}" if @convar_ufg["1"] }
       end
 
-
-      # javascript:mostrar_noticia('10355');
       if string.match(/javascript:mostrar_noticia\('([0-9]+)'\)/)
         string.gsub!(/javascript:mostrar_noticia\('([0-9]+)'\);/){|x| "/pages/#{@convar_ufg["1"]["noticias"][$1]}" if @convar_ufg["1"] }
       end
-      # javascript:mostrar_informativo('6123');      
+      
       if string.match(/javascript:mostrar_informativo\('([0-9]+)'\)/)
         string.gsub!(/javascript:mostrar_informativo\('([0-9]+)'\);/){|x| "\"/banners/#{@convar_ufg['1']["informativos"][$1]}'" if @convar_ufg['1']}
       end
 
-      # javascript:mostrar_menu('179','esq');
-      # javascript:mostrar_menu('183','esq');
       if string.match(/javascript:mostrar_menu\('([0-9]+)'.*\)/)
         string.gsub!(/javascript:mostrar_menu\('([0-9]+)'.*\);/){|x| "/pages/#{@convar_ufg["1"]["paginas_menus"][$1]}" if @convar_ufg["1"] }
       end 
@@ -772,20 +773,12 @@ EOF
         string.gsub!(/javascript:mostrar_fale_conosco.*?\(\).*?;/){|x| "/feedback"}
       end
 
-      #if string.match(/['"]http:\/\/www.ufg.*?\/.*?\/.*?['"]/)
-      #  string.gsub!(/['"]http:\/\/www.(.*?ufg.*?)\/.*?\/([^\/"'].*?)\/?+['"]/){|x| "http://#{$1}_#{$2}" }
-      #end
-      #if string.match(/['"]+http:\/\/www.ufg.*?\/.*?\/+['"]/)
-      #  string.gsub!(/['"]+http:\/\/www.(.*?ufg.*?)\/([^\/"'].*?)\/?+['"]/){|x| "http://#{$1}_#{$2}" }
-      #end
-
-      if string.match(/http:\/\/www.ufg.*?\/page.php\/.*?[0-9]+?/)
-        string.gsub!(/http:\/\/(www.ufg.*?)\/pages.php\/.*?([0-9]+)+/){|x| "/pages/#{@convar_ufg[$2]["paginas"]['1']}" if @convar_ufg[$2] }
+      if string.match(/http:\/\/www.ufg.*?\/page.php\/.*?[0-9]+?/)        
+        string.gsub!(/http:\/\/www.ufg.*?\/pages.php\/.*?([0-9]+)+/){|x| "/pages/#{@convar_ufg['1']["paginas"][$1]}" if @convar_ufg['1'] }
       end
 
       if string.match(/http:\/\/www.ufg.br\/page.php\?menu_id=/)
-        puts "terceiro"
-        string.gsub!(/http:\/\/(www.ufg.br)\/page.php.*?menu_id=([0-9]+).*/){|x| "/pages/#{@convar_ufg[$2]["paginas"]['1']}" if @convar_ufg[$2] }
+        string.gsub!(/["]http:\/\/www.ufg.br\/page.php\?menu_id=([0-9]+).*["]/){|x| "\"/pages/#{@convar_ufg['1']["paginas_menus"][$1]}\"" if @convar_ufg['1'] }
       end
 
       str = @con_weby.escape(string)      
