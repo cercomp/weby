@@ -19,6 +19,7 @@
 <%= f.input :height %>
 <%= f.input :timer, hint: t(".timer_hint") %> 
 <%= f.input :description, as: :boolean %>
+<%= f.input :show_controls, as: :boolean, hint: t(".control_hint") %>
 
   <div class = "controls">
     <%= repository_search t(".add_photo"),

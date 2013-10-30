@@ -1,20 +1,22 @@
 pt-BR:
   components:
     photo_slider:
-      name:                   " Slider de Fotos    "
+      name:                   " Slider de Fotos "
   activerecord:
     attributes:
       photo_slider_component:
-        photos:               " Fotos              "
-        width:                " Largura            "
-        height:               " Altura             "
+        photos:               " Fotos "
+        width:                " Largura "
+        height:               " Altura "
         timer:                " Tempo de transição "
         description:          " Mostrar descrição? "
-        title:                " Título             "
-        style:                " Estilo             "
+        title:                " Título "
+        style:                " Estilo "
+        show_controls:        " Mostrar controles? "
   photo_slider:
     views:
       show:
       form:
-        add_photo:            " Adicionar Foto     "
-        timer_hint:           " Em segundos        "
+        add_photo:            " Adicionar Fotos "
+        timer_hint:           " Em segundos "
+        control_hint:         " Se estiver marcado, links para ir para a próxima foto ou a anterior serão exibidos abaixo do slider "

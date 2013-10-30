@@ -9,7 +9,7 @@
   <table class="list border fullwidth zebra">
     <tr>
       <th>
-        <%= link_to t(".events"), main_app.events_site_pages_path(direction: 'desc', sort: 'pages.event_begin') %>
+        <%= link_to(component.title || t(".events"), main_app.events_site_pages_path(direction: 'desc', sort: 'pages.event_begin')) %>
       </th>
     </tr>
     <% @events.try(:each) do |page| %>

@@ -1,4 +1,25 @@
 <% include_component_javascript :javascripts, 'news_list' %>
+<div class="tabbable i18n">
+  <ul class="nav nav-tabs">
+    <% current_site.locales.each_with_index do |locale, index| %>
+      <li class="<%= index == 0 ? "active" : "" %>"><%= link_to locale_with_name(locale, '16'), "#tab_#{locale}", data: {toggle: 'tab'} %></li>
+    <% end %>
+  </ul>
+  <div class="tab-content">
+    <% current_site.locales.each_with_index do |locale, index| %>
+      <div id="tab_<%= locale.name %>" class="tab-pane<%= index == 0 ? " active" : "" %>">
+
+        <%= f.component_i18n_input locale, :title %>
+
+      </div>
+    <% end %>
+  </div>
+</div>
+<%= f.input :category, collection: current_site.pages.uniq_category_counts.map(&:name),
+  priority: component.category,
+  include_blank: t(".no_category_filter"),
+  input_html: { style: 'width: 325px' }
+%>
 <%= f.input :front, as: :boolean %>
 <%= f.input :events, as: :boolean %>
 <%= f.input :quant, as: :integer %>
@@ -11,10 +32,4 @@
 <%= f.input :date_format, collection: component.date_formats.map{|format| [l(Time.now, format: format.to_sym), format] },
   priority: component.date_format,
   include_blank: false
-%>
-
-<%= f.input :category, collection: current_site.pages.uniq_category_counts.map(&:name),
-  priority: component.category,
-  include_blank: t(".no_category_filter"),
-  input_html: { style: 'width: 325px' }
 %>

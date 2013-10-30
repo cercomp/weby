@@ -9,7 +9,8 @@ en:
       show_date:               " Show date "
       date_format:             " Date Format "
       image_size:              " Image size "
-      category:                " Category "
+      category:                " Filter by Category "
+      title:                   " Title "
   activerecord:
     attributes:
       news_list_component:
@@ -20,7 +21,8 @@ en:
         show_date:             " Show date "
         date_format:           " Date Format "
         image_size:            " Image size "
-        category:              " Category "
+        category:              " Filter by Category "
+        title:                 " Title "
   news_list:
     views:
       show:

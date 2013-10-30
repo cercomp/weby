@@ -1,1 +1,17 @@
+<div class="tabbable i18n">
+  <ul class="nav nav-tabs">
+    <% current_site.locales.each_with_index do |locale, index| %>
+      <li class="<%= index == 0 ? "active" : "" %>"><%= link_to locale_with_name(locale, '16'), "#tab_#{locale}", data: {toggle: 'tab'} %></li>
+    <% end %>
+  </ul>
+  <div class="tab-content">
+    <% current_site.locales.each_with_index do |locale, index| %>
+      <div id="tab_<%= locale.name %>" class="tab-pane<%= index == 0 ? " active" : "" %>">
+
+        <%= f.component_i18n_input locale, :title %>
+
+      </div>
+    <% end %>
+  </div>
+</div>
 <%= f.input :quant, as: :integer %>
