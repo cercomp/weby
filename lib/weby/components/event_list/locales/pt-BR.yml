@@ -4,11 +4,13 @@ pt-BR:
       name:                 " Lista de Eventos "
       quant:                " Quantidade de eventos exibidos "
       title:                " Título "
+      new_tab:              " Abrir eventos com URL em uma nova janela "
   activerecord:
     attributes:
       event_list_component:
         quant:              " Quantidade de eventos exibidos "
         title:              " Título "
+        new_tab:            " Abrir eventos com URL em uma nova janela "
   event_list:
     views:
       show:

@@ -15,7 +15,7 @@
     <% @events.try(:each) do |page| %>
       <tr>
         <td>
-          <p><%= link_to page.title, main_app.site_page_path(page) %></p>
+          <p><%= link_to page.title, link_on_title(current_site, page), target: (component.new_tab && page.url.present? ? '_blank' : '_self') %></p>
           <p class="event-dates"><%= period_dates(page.event_begin, page.event_end, false) -%></p>
           <%= raw page.summary %>
         </td>

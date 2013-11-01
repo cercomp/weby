@@ -1,6 +1,6 @@
 class NewsListComponent < Component
   component_settings :quant, :front, :events, :category, :show_image, :image_size,
-    :show_date, :date_format, :title
+    :show_date, :date_format, :title, :new_tab
 
   i18n_settings :title
 
@@ -54,6 +54,11 @@ class NewsListComponent < Component
   alias :_category :category
   def category
     _category.blank? ? nil : _category
+  end
+
+  alias :_new_tab :new_tab
+  def new_tab
+    _new_tab.blank? ? false : _new_tab.to_i == 1
   end
 
   def default_alias

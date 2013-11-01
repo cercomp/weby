@@ -11,6 +11,7 @@ en:
       image_size:              " Image size "
       category:                " Filter by Category "
       title:                   " Title "
+      new_tab:                 " Open news with URL in a new tab "
   activerecord:
     attributes:
       news_list_component:
@@ -23,6 +24,7 @@ en:
         image_size:            " Image size "
         category:              " Filter by Category "
         title:                 " Title "
+        new_tab:              " Open news with URL in a new tab "
   news_list:
     views:
       show:

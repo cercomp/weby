@@ -11,6 +11,7 @@ pt-BR:
       image_size:              " Tamanho da imagem "
       category:                " Filtrar por Categoria "
       title:                   " Título "
+      new_tab:                 " Abrir páginas com URL em uma nova janela "
   activerecord:
     attributes:
       news_list_component:
@@ -23,6 +24,7 @@ pt-BR:
         image_size:            " Tamanho da imagem "
         category:              " Filtrar por Categoria "
         title:                 " Título "
+        new_tab:              " Abrir páginas com URL em uma nova janela "
   news_list:
     views:
       show:

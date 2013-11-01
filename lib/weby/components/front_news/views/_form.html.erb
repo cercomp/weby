@@ -5,13 +5,7 @@
 </style>
 <% include_component_javascript :javascripts, 'front_news' %>
 
-<%= f.input :quant, as: :integer %>
-<%= f.input :image_size, collection: component.image_sizes.map{|size| [t(".#{size}"),size] },
-  priority: component.image_size,
-  include_blank: false,
-  hint: t(".image_size_hint")
-%>
-
+<%= f.input :show_label, as: :boolean %>
 <div class="tabbable i18n">
   <ul class="nav nav-tabs">
     <% current_site.locales.each_with_index do |locale, index| %>
@@ -23,11 +17,18 @@
       <div id="tab_<%= locale.name %>" class="tab-pane<%= index == 0 ? " active" : "" %>">
 
         <%= f.component_i18n_input locale, :label, :as => :string %>
-        
+
       </div>
     <% end %>
   </div>
 </div>
+
+<%= f.input :quant, as: :integer %>
+<%= f.input :image_size, collection: component.image_sizes.map{|size| [t(".#{size}"),size] },
+  priority: component.image_size,
+  include_blank: false,
+  hint: t(".image_size_hint")
+%>
 
 <%= f.input :avatar_width, as: :integer %>
 <%= f.input :avatar_height, as: :integer %>
@@ -35,13 +36,11 @@
 
 <%= f.input :filter_by, input_html: {id: 'categories-list', class: 'input-xlarge', data: {tags: current_site.pages.uniq_category_counts.map{|t| t.name }}} %>
 
-
 <%= f.input :read_more, as: :boolean %>
 <%= f.input :show_author, as: :boolean %>
 <%= f.input :show_date, as: :boolean %>
-<%= f.input :show_label, as: :boolean %>
-<%= f.input :show_events, as: :boolean %>
 
+<%= f.input :show_events, as: :boolean %>
 <%= f.input :new_tab, as: :boolean %>
 
 
