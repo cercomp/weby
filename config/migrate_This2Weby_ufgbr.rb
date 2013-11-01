@@ -44,19 +44,19 @@ class Migrate_this2weby
 
     
     ## pegar os id's das tabelas que serão atualizadas depois, para atualizar só o que inserir
-    #select_menu_items = "SELECT max(id) FROM menu_items"
-    #id_weby_menu_items = @con_weby.exec(select_menu_items)
-    id_weby_menu_items = '0'
-    #select_menu_items = "SELECT max(id)FROM menu_item_i18ns"
-    #id_weby_menu_items_i18ns = @con_weby.exec(select_menu_items)
-    id_weby_menu_items_i18ns = '0'
-    #select_pages = "SELECT max(id) FROM pages"
-    #id_weby_pages = @con_weby.exec(select_pages)
-    id_weby_pages = '0'
+    select_menu_items = "SELECT max(id) FROM menu_items"
+    id_weby_menu_items = @con_weby.exec(select_menu_items)
+    #id_weby_menu_items = '0'
+    select_menu_items = "SELECT max(id)FROM menu_item_i18ns"
+    id_weby_menu_items_i18ns = @con_weby.exec(select_menu_items)
+    #id_weby_menu_items_i18ns = '0'
+    select_pages = "SELECT max(id) FROM pages"
+    id_weby_pages = @con_weby.exec(select_pages)
+    #id_weby_pages = '0'
 
-    #select_pages = "SELECT max(id) FROM page_i18ns"
-    #id_weby_pages_i18ns = @con_weby.exec(select_pages)
-    id_weby_pages_i18ns = '0'
+    select_pages = "SELECT max(id) FROM page_i18ns"
+    id_weby_pages_i18ns = @con_weby.exec(select_pages)
+    #id_weby_pages_i18ns = '0'
 
     select_menu_items = ""
     select_pages = ""
@@ -188,70 +188,69 @@ EOF
       if not this_estilo.first.nil?# and site[0]['id'].to_i != 70
 weby_estilo = <<EOF
 /* Fundo do site */
-html{ background: #{pre_treat(this_estilo.first['body_background'])}; }
-
-/* Borda dos menus */ 
-header nav menu li,
-footer nav menu li { border:1px solid #{pre_treat(this_estilo.first['body_background'])}; }
-/* Cor da letra do rodape */ 
-footer section#info { color: #{pre_treat(this_estilo.first['cor_letra_rodape'])}; }
-
-/* Fundo tabela frontal das páginas */ 
+html{ background: #045AA3; }
+/* Cor da letra do rodape */
+footer section#info { color: #191970; }
+/* Fundo tabela frontal das páginas */
 #news_list table,
 #news_list table th,
-#news_list table td { border-color: #{pre_treat(this_estilo.first['cor_borda_noticias'])}; }
-#news_list table th { background-color: #{pre_treat(this_estilo.first['cor_borda_noticias'])}; }
-#news_list table th { color: #{pre_treat(this_estilo.first['cor_letra_topo_noticias'])}; }
-#news_list table td a { color: #{pre_treat(this_estilo.first['cor_letra_link_noticias_out'])}; }
-#news_list table td a:hover { color: #{pre_treat(this_estilo.first['cor_letra_link_noticias_over'])}; }
-#news_list table td { color: #{pre_treat(this_estilo.first['cor_letra_noticias_resumos'])}; }
-
+#news_list table td { border-color: #0a59ad; color: #444; }
+#news_list table th { background-color: #0a59ad; color: #fff;}
+#news_list table td a { color: #191970; }
+#news_list table td a:hover { color: #0066cc; }
 /* Menus */
-aside menu.dropdown li:hover { background-color: #{pre_treat(this_estilo.first['cor_mouseover'])}; }
-/* Menu Esquerdo */
-aside.left menu li { background-color: #{pre_treat(this_estilo.first['cor_mouseout'])}; }
-aside.left menu li a { color: #{pre_treat(this_estilo.first['cor_letra_out'])}; background-color: #{pre_treat(this_estilo.first['cor_mouseout'])}; }
-/* aside.left menu li:hover { background-color: #{pre_treat(this_estilo.first['cor_mouseover'])}; } */
-aside.left menu li a:hover { color: #{pre_treat(this_estilo.first['cor_letra_hover'])}; }
-aside.left menu li.sub > a { color: #{pre_treat(this_estilo.first['cor_letra_subitem_out'])}; }
-aside.left menu li.sub > a:hover { color: #{pre_treat(this_estilo.first['cor_letra_subitem_out'])}; }
-
-/* Menu Direito */
-aside.right menu li { background-color: #{this_estilo.first['cor_mouseout2']}; }        
-aside.right menu li:hover { background-color: #{this_estilo.first['cor_mouseover2']}; }
-aside.right menu li a { color: #{this_estilo.first['cor_letra_out2']}; background-color: #{this_estilo.first['cor_mouseout2']}; }
-aside.right menu li a:hover { background-color: #{this_estilo.first['cor_mouseover2']}; }
-aside.right menu li.sub > a { color: #{this_estilo.first['cor_letra_subitem_out2']}; }
-aside.right menu li.sub > a:hover { color: #{this_estilo.first['cor_letra_subitem_out2']}; }
-
-/* Menu Superior */
-header nav menu li { background-color: #{this_estilo.first['cor_mouseout3']}; }
-header nav menu li:hover { background-color: #{this_estilo.first['cor_mouseover3']}; }
-header nav menu li a { color: #{this_estilo.first['cor_letra_out3']}; background-color: #{this_estilo.first['cor_mouseout3']}; }
-header nav menu li a:hover { color: #{this_estilo.first['cor_letra_hover3']}; background-color: #{this_estilo.first['cor_mouseover3']}; }
-
-header nav menu li.sub > a { color: #191970; }
-header nav menu li.sub > a:hover { color: #191970; }
-header nav menu li a:hover { color: #B0C4DE; }
-header nav menu li.sub > a { background-color: #B0C4DE; }
-header nav menu li.sub:hover { background-color: #FFFFFF; }
-header nav menu li.sub:hover > a { background-color: #FFFFFF; }
-
-/* Menu Inferior */
-footer nav menu li { background-color: #{this_estilo.first['cor_mouseout4']}; }
-footer nav menu li:hover { background-color: #{this_estilo.first['cor_mouseover3']}; }
-footer nav menu li a { color: #{this_estilo.first['cor_letra_out4']}; background-color: #{this_estilo.first['cor_mouseout4']}; }
-footer nav menu li a:hover { color: #{this_estilo.first['cor_letra_hover4']}; background-color: #{this_estilo.first['cor_mouseover3']}; }
-
+menu li { border:1px solid #fff !important; background-color: #b0c4de !important; }
+menu li a { color: #191970 !important; background-color: #b0c4de !important; font-weight: bold !important; }
+menu li:hover { background-color: #fff !important; }
+menu li a:hover { background-color: #fff !important; }
+menu li.sub:hover > a { background-color: #fff !important; }
+/* menu li.sub > a { font-weight: normal !important; } */
+menu li.sub > a:hover { color: #191970 !important; }
 /* Estilo das páginas */
 section#content article > p,
-section#content article > summary { color: #{pre_treat(this_estilo.first['cor_letra_paragrafos'])}; }
-section#content article > p a { color: #{pre_treat(this_estilo.first['cor_letra_links_out'])}; }
-section#content article > p a:hover { color: #{pre_treat(this_estilo.first['cor_letra_links_over'])}; }
+section#content article > summary { color: #333333; }
+section#content article > p a { color: #0066CC; }
+section#content article > p a:hover { color: #000066; }
 section#content article header h1,
-section#content article header h2 {color: #{pre_treat(this_estilo.first['cor_letra_subtitulos'])}; }
+section#content article header h2 {color: #003399; }
 section#content article header,
-section#content article header summary { color: #{pre_treat(this_estilo.first['cor_letra_titulos'])}; }
+section#content article header summary { color: #003399; }
+
+/* Notícas e evento um ao lado do outro */
+.news_list_component{
+  width: 50% !important;
+  height: 10% !important;
+  float: left !important;
+}
+.event_list_component{
+  width: 50% !important;
+  height: 10% !important;
+  float: left !important;
+}
+/* Notícias em 2 colunas */
+section#content section#pages > li {
+  width: 49%;
+  height: 220px;
+  display: inline-block;
+  border: 1px dotted #eee;
+  vertical-align: top;
+  position: relative;
+}
+section#content section#pages .paginator{ float: none; }
+section#content section#pages li:nth-child(odd) a img{ float: right; }
+/* section#content section#pages li a img { width: 90px; height: auto; } */
+section#content section#pages > li:first-child { width: 100%; height: 100%; position: relative; }
+section#content section#pages > li:first-child a img { width: 190px !important; float: left; }
+section#content section#pages > li > article { margin: 6px; }
+section#content section#pages > li > article header h2 { text-align: left; }
+section#content section#pages > li > article p { text-align: left; }
+section#content section#pages > li .control{
+  margin: 8px;
+  text-align: right;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+}
 
 /* Outros */
 #{pre_treat(treat(this_estilo.first['avancado']))}
