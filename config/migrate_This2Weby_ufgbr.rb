@@ -44,19 +44,19 @@ class Migrate_this2weby
 
     
     ## pegar os id's das tabelas que serão atualizadas depois, para atualizar só o que inserir
-    #select_menu_items = "SELECT max(id) FROM menu_items"
-    #id_weby_menu_items = @con_weby.exec(select_menu_items)
-    id_weby_menu_items = '0'
-    #select_menu_items = "SELECT max(id)FROM menu_item_i18ns"
-    #id_weby_menu_items_i18ns = @con_weby.exec(select_menu_items)
-    id_weby_menu_items_i18ns = '0'
-    #select_pages = "SELECT max(id) FROM pages"
-    #id_weby_pages = @con_weby.exec(select_pages)
-    id_weby_pages = '0'
+    select_menu_items = "SELECT max(id) FROM menu_items"
+    id_weby_menu_items = @con_weby.exec(select_menu_items)
+    #id_weby_menu_items = '0'
+    select_menu_items = "SELECT max(id)FROM menu_item_i18ns"
+    id_weby_menu_items_i18ns = @con_weby.exec(select_menu_items)
+    #id_weby_menu_items_i18ns = '0'
+    select_pages = "SELECT max(id) FROM pages"
+    id_weby_pages = @con_weby.exec(select_pages)
+    #id_weby_pages = '0'
 
-    #select_pages = "SELECT max(id) FROM page_i18ns"
-    #id_weby_pages_i18ns = @con_weby.exec(select_pages)
-    id_weby_pages_i18ns = '0'
+    select_pages = "SELECT max(id) FROM page_i18ns"
+    id_weby_pages_i18ns = @con_weby.exec(select_pages)
+    #id_weby_pages_i18ns = '0'
 
     select_menu_items = ""
     select_pages = ""
