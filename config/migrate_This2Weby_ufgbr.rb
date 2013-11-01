@@ -942,6 +942,9 @@ class Migrate_files
           if string.match(/javascript:mostrar_pagina\(([0-9]+\))/)
             string.gsub!(/javascript:mostrar_pagina\(([0-9]+)\);/){|x| "/pages/#{@convar_ufg['1']["paginas"][$1]}" if @convar_ufg['1'] }
           end
+          if string.match(/javascript:mostrar_evento\(.*?[0-9]+.*?\)/)
+            string.gsub!(/javascript:mostrar_evento\(.*?([0-9]+).*?\);/){|x| "/pages/#{@convar_ufg['1']["paginas"][$1]}" if @convar_ufg['1'] }
+          end
           sql = "UPDATE site_components set settings = '{:size => \"\",:url => \"#{string}\",:repository_id => \"#{repository_id}\"}' where site_id='#{@convar_ufg[id]['weby']}' AND name = 'image' AND place_holder = 'home' and position = 1"
           @con_weby.exec(sql)
           puts "\tATUALIZANDO topo"
@@ -950,9 +953,13 @@ class Migrate_files
 
         if(file_name == this_site[0]['banner2'])
           string = this_site[0]['banner_link2']
-          if string.match(/javascript:mostrar_pagina\(([0-9]+\))/)
-            string.gsub!(/javascript:mostrar_pagina\(([0-9]+)\);/){|x| "/pages/#{@convar_ufg['1']["paginas"][$1]}" if @convar_ufg['1'] }
+          if string.match(/javascript:mostrar_pagina\(.*?([0-9]+\).*?)/)
+            string.gsub!(/javascript:mostrar_pagina\(.*?([0-9]+).*?\);/){|x| "/pages/#{@convar_ufg['1']["paginas"][$1]}" if @convar_ufg['1'] }
           end
+          if string.match(/javascript:mostrar_evento\(.*?[0-9]+.*?\)/)
+            string.gsub!(/javascript:mostrar_evento\(.*?([0-9]+).*?\);/){|x| "/pages/#{@convar_ufg['1']["paginas"][$1]}" if @convar_ufg['1'] }
+          end
+
           sql = "UPDATE site_components set settings = '{:size => \"\",:url => \"#{string}\",:repository_id => \"#{repository_id}\"}' where site_id='#{@convar_ufg[id]['weby']}' AND name = 'image' AND place_holder = 'home' and position = 3"
           @con_weby.exec(sql)
           puts "\tATUALIZANDO banner home"
