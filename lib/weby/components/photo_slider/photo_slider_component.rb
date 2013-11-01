@@ -1,5 +1,5 @@
 class PhotoSliderComponent < Component
-  component_settings :photo_ids, :width, :height, :timer, :description, :style, :title
+  component_settings :photo_ids, :width, :height, :timer, :description, :style, :show_controls, :title
 
   i18n_settings :title
 
@@ -26,6 +26,10 @@ class PhotoSliderComponent < Component
   alias :_description :description
   def description
     _description.nil? ? "1" : _description
+  end
+
+  def show_controls?
+    show_controls.blank? ? false : show_controls == "1"
   end
 
   alias :_style :style

@@ -10,7 +10,7 @@
 
       <% include_component_javascript :javascripts, 'photo_slider' %>
       <div class="flex-container">
-        <div id="slider"  class="flexslider" data-slideshowspeed="<%= speed %>">
+        <div id="slider"  class="flexslider" data-slideshowspeed="<%= speed %>" data-controls="<%= component.show_controls? %>">
           <ul class="slides">
             <% imagens.each do |image| %>
               <%=content_tag :li do  %>
@@ -32,7 +32,7 @@
 
     <% else  %>
 
-      <% include_component_javascript :javascripts, 'lightbox' %>
+      <% include_component_javascript :javascripts, 'lightbox-photo_slider' %>
       <%= content_tag :div, class: "gallery", style:"width: #{width}px; height: #{height}px;" do  %>
         <%= content_tag :ul, style:"width: #{width}px; height: #{height}px;" do  %>
           <% imagens.each do |image| %>
@@ -45,7 +45,7 @@
                     style: "width: #{width}px; height: #{height}px;" %>
                 <% end %>
               <% else %>
-                <%= link_to image.archive.url, rel:"lightbox[roadtrip#{component.id}]" do %>
+                <%= link_to image.archive.url, rel:"lightbox" do %>
                   <%= image_tag image.archive.url,
                     alt: image.description,
                     title: image.description,

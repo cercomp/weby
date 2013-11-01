@@ -8,8 +8,6 @@
  */
 
 /* Browser Resets */
-.flex-container a,
-.flexslider a,
 .flex-container a:active,
 .flexslider a:active,
 .flex-container a:focus,
@@ -17,7 +15,6 @@
 .slides,
 .flex-control-nav,
 .flex-direction-nav {margin: 0; padding: 0; list-style: none;}
-
 
 /* FlexSlider Necessary Styles
 *********************************/
@@ -53,15 +50,42 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000,endCol
 
 /* Direction Nav */
 .flex-direction-nav { height: 0; }
-/*.flex-direction-nav a {width: 52px; height: 52px; margin: -13px 0 0; display: block; background: url("components/bg_direction_nav.png") no-repeat; position: absolute; top: 50%; cursor: pointer; text-indent: -999em;}*/ 
-.flex-direction-nav .flex-next {background-position: -52px 0; right: -21px;}
-.flex-direction-nav .flex-prev {left: -20px;}
-.flex-direction-nav .flex-disabled {opacity: .3; filter:alpha(opacity=30); cursor: default;}
+.flex-direction-nav li a {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  width: 30px;
+  height: 30px;
+  margin-top: -20px;
+  font-size: 60px;
+  font-weight: 100;
+  line-height: 25px;
+  color: #ffffff;
+  text-align: center;
+  font-size: 30px;
+  background: #222222;
+  border: 2px solid #ffffff;
+  -webkit-border-radius: 23px;
+     -moz-border-radius: 23px;
+          border-radius: 23px;
+  opacity: 0.5;
+  filter: alpha(opacity=50); }
+.flex-direction-nav li .flex-next {
+  right: 10px;
+  left: auto;
+}
+.flex-direction-nav li a:hover {
+  color: #ffffff;
+  text-decoration: none;
+  opacity: 0.9;
+  filter: alpha(opacity=90);
+}
+.flex-direction-nav li .disabled {opacity: .3; filter:alpha(opacity=30); cursor: default;}
 
 /* Control Nav */
 .flex-control-nav {width: 100%; position: absolute; bottom: -30px; text-align: center;}
 .flex-control-nav li {margin: 0 0 0 5px; display: inline-block; zoom: 1; *display: inline;}
 .flex-control-nav li:first-child {margin: 0;}
-.flex-control-nav a {width: 13px; height: 13px; display: block; background: url("components/bg_control_nav.png") no-repeat; cursor: pointer; text-indent: -999em;}
-.flex-control-nav a:hover {background-position: 0 -13px;}
-.flex-control-nav a.flex-active {background-position: 0 -26px; cursor: default;}
+.flex-control-nav li a {width: 13px; height: 13px; display: block; background: url(components/bg_control_nav.png) no-repeat; cursor: pointer; text-indent: -999em;}
+.flex-control-nav li a:hover {background-position: 0 -13px;}
+.flex-control-nav li a.flex-active {background-position: 0 -26px; cursor: default;}

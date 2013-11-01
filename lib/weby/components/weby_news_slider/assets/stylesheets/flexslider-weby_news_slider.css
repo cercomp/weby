@@ -70,7 +70,7 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000,endCol
           border-radius: 23px;
   opacity: 0.5;
   filter: alpha(opacity=50); }
-.flex-direction-nav li .next {
+.flex-direction-nav li .flex-next {
   right: 10px;
   left: auto;
 }
@@ -88,4 +88,4 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000,endCol
 .flex-control-nav li:first-child {margin: 0;}
 .flex-control-nav li a {width: 13px; height: 13px; display: block; background: url(components/bg_control_nav.png) no-repeat; cursor: pointer; text-indent: -999em;}
 .flex-control-nav li a:hover {background-position: 0 -13px;}
-.flex-control-nav li a.active {background-position: 0 -26px; cursor: default;}
+.flex-control-nav li a.flex-active {background-position: 0 -26px; cursor: default;}

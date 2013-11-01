@@ -1,5 +1,8 @@
 class NewsListComponent < Component
-  component_settings :quant, :front, :events, :category, :show_image, :image_size, :show_date, :date_format
+  component_settings :quant, :front, :events, :category, :show_image, :image_size,
+    :show_date, :date_format, :title
+
+  i18n_settings :title
 
   validates :quant, presence: true
 
@@ -48,6 +51,11 @@ class NewsListComponent < Component
     _date_format.blank? ? :short : _date_format.to_sym
   end
 
+  alias :_category :category
+  def category
+    _category.blank? ? nil : _category
+  end
+
   def default_alias
     self.category
   end
@@ -58,5 +66,13 @@ class NewsListComponent < Component
 
   def date_formats
     ['default','mini','short','medium','long','event_date_short','event_date_full']
+  end
+
+  def title_for_link
+    if self.title.present?
+      self.title
+    elsif self.category.present?
+      self.category.camelize
+    end
   end
 end

@@ -1,6 +1,6 @@
 /*
- *= require flexslider
- *= require lightbox
+ *= require flexslider-photo_slider
+ *= require lightbox-photo_slider
  */
 
 /* jQuery Flex Slider plugin*/
@@ -30,8 +30,8 @@
   line-height: 21px;
   text-align: center;
 }
-ul.flex-direction-nav li a.prev {left: 18px;}
-ul.flex-direction-nav li a.next {right: 18px;}
+ul.flex-direction-nav li a.flex-prev {left: 18px;}
+ul.flex-direction-nav li a.flex-next {right: 18px;}
 
 /* jQuery lightBox plugin - Gallery style */
 .gallery {

@@ -3,10 +3,12 @@ en:
     event_list:
       name:                 " Event List "
       quant:                " Number of events to show "
+      title:                " Title "
   activerecord:
     attributes:
       event_list_component:
         quant:              " Number of events to show "
+        title:              " Title "
   event_list:
     views:
       show:
