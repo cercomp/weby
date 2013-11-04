@@ -11,8 +11,8 @@ pt-BR:
         styles:
           other_styles:     " Outros Estilos "
           follow_styles:    " Estilos seguidos "
-          no_other_styles:  " Não existem outros estilos "
-          no_follow_styles: " Nenhum estilo seguido "
+          no_other_styles:  " Outros estilos não encontrados "
+          no_follow_styles: " Nenhum estilo seguido encontrado "
           name:             " Nome "
           owner:            " Dono "
           actions:          " Ações "
@@ -21,7 +21,7 @@ pt-BR:
           actions:          " Ações "
           own_styles:       " Estilos próprios "
           name:             " Nome "
-          no_own_styles:    " Não possui estilo próprio "
+          no_own_styles:    " Nenhum estilo próprio encontrado "
           sites_followers:  " Sites que seguem esse estilo "
         form:
           help_with_style:  " Precisa de ajuda com o estilo "

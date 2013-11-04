@@ -21,20 +21,34 @@
 <div class="tabbable">
   <ul class="nav nav-tabs" id="style-tab">
     <li class="<%= params["others"] ? "" : "active" %>" >
-    <a href="#own" data-toggle="tab"><%= t(".own_styles") %></a>
+    <a href="#own_styles" data-toggle="tab"><%= t(".own_styles") %></a>
     </li>
     <li class="<%= params["others"] ? "active" : "" %>" >
     <a href="#others" data-toggle="tab"><%= t(".other_styles") %></a>
     </li>
   </ul>
   <div class="tab-content">
-    <div class="tab-pane <%= params["others"] ? "" : "active" %>" id="own">
+    <div class="tab-pane <%= params["others"] ? "" : "active" %>" id="own_styles">
       <%= render partial: 'own_styles', locals: { styles: @styles.delete(:own) } %>
     </div>
     <div class="tab-pane <%= params["others"] ? "active" : "" %>" id="others">
       <% @styles.each do |type, styles| %>
-        <%= render partial: "styles", locals: { styles: styles, type: type } %>
+        <div class="styles" id="<%= "#{type}_styles" %>">
+          <%= render partial: "styles", locals: { styles: styles, type: type } %>
+        </div>
       <% end %>
     </div>
   </div>
 </div>
+<%= javascript_tag do %>
+  window.onload=function(){
+    $(document).ready(function(){
+      $('form.search').submit(function(){
+        if( $('#style_type').val() == 'own' )
+          $('a[href=#own_styles]').tab('show');
+        else
+          $('a[href=#others]').tab('show');
+      });
+    });
+  };
+<% end %>
