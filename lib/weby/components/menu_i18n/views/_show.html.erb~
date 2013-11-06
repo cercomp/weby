@@ -1,0 +1,13 @@
+<nav class="menu_i18n_component right">
+  <% if component.dropdown %>
+    <% @site.locales.each do |locale| %>
+      <%= link_to flag(locale), params.merge(locale: locale.name ) %>
+    <% end %>
+  <% else %>
+    <% @site.locales.each do |locale| %>
+      <%= link_to flag(locale), params.merge(locale: locale.name ) %>
+    <% end %>
+  <% end %>
+</nav>
+
+
