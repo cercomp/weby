@@ -8,7 +8,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @site_users.uniq.each do |user| %>
+      <% @site_users.each do |user| %>
         <tr>
           <td><%= raw "#{user} (#{link_to_if check_permission(Admin::UsersController, :index), user.login, admin_user_url(user, subdomain: nil)})" %></td>
           <td>

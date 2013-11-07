@@ -9,11 +9,11 @@ class Sites::Admin::UsersController < ApplicationController
 
   def manage_roles
     # Seleciona os todos os usuários que não são administradores
-    @users = User.no_admin
+    #@users = User.no_admin
     # Usuários que possuem papel no site e não são administradores
-    @site_users = User.no_admin.by_site(@site)
+    @site_users = User.no_admin.by_site(@site).order('users.first_name asc')
     # Usuários que NÃO possuem papel no site e não são administradores
-    @users_unroled = User.actives.no_admin.by_no_site(@site)
+    @users_unroled = User.actives.no_admin.by_no_site(@site).order('users.first_name asc')
     # Busca os papéis do site e global
     @roles = @site.roles.order("id")
     # Quando a edição dos papeis é solicitada

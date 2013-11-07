@@ -15,11 +15,7 @@
         <% raw_extension = Weby::extensions[extension.name.to_sym] %>
         <tr>
           <td>
-            <% if check_permission(Sites::Admin::ExtensionsController, 'edit') %>
               <%= link_to t("extensions.#{extension.name}.name"), "/#{extension.name}/admin" %>
-            <% else %>
-              <%= t("extensions.#{extension.name}.name") %>
-            <% end %>
             </td>
           <td>
             <%= raw_extension.version %>

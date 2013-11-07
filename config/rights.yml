@@ -160,9 +160,6 @@ rights:
     index:
       name: Listar Extensões
       action: index
-    edit:
-      name: Editar Extensões
-      action: edit update
     new:
       name: Instalar Extensões
       action: new create

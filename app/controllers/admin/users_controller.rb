@@ -6,30 +6,16 @@ class Admin::UsersController < ApplicationController
   helper_method :sort_column
 
   def manage_roles
-    # Se a ação for selecionada para um site:
-    if @site
-      # Seleciona os todos os usuários que não são administradores
-      @users = User.no_admin
-      # Usuários que possuem papel no site e não são administradores
-      @site_users = User.by_site(@site) - User.admin
-      # Usuários que NÃO possuem papel no site e não são administradores
-      @users_unroled = User.by_no_site(@site) - User.admin
-      # Busca os papéis do site e global
-      @roles = @site.roles.order("id")
-      # Quando a edição dos papeis é solicitada
-      @user = User.find(params[:user_id]) if params[:user_id]
-    else
-      # Seleciona os todos os usuários que não são administradores
-      @user = User.no_admin
-      # Usuários que possuem papel global e não são administradores
-      @site_users = User.global_role - User.admin
-      # Todos os usuários menos os que não são administradores e possuem papeis globais
-      @users_unroled = User.all - (User.admin + User.global_role)
-      # Busca os papéis globais
-      @roles = Role.globals
-      # Quando a edição dos papeis é solicitada
-      @user = User.find(params[:user_id]) if params[:user_id]
-    end
+    # Seleciona os todos os usuários que não são administradores
+    @user = User.no_admin
+    # Usuários que possuem papel global e não são administradores
+    @site_users = User.global_role.no_admin.order('users.first_name asc')
+    # Todos os usuários menos os que não são administradores e possuem papeis globais
+    @users_unroled = User.order('users.first_name asc') - (User.admin + User.global_role)
+    # Busca os papéis globais
+    @roles = Role.globals
+    # Quando a edição dos papeis é solicitada
+    @user = User.find(params[:user_id]) if params[:user_id]
   end
 
   def change_roles
