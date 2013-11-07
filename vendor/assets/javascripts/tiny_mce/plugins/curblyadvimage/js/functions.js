@@ -81,8 +81,9 @@ var ImageDialog = {
         this.fillFileList('src_list', 'tinyMCEImageList');
         this.fillFileList('over_list', 'tinyMCEImageList');
         this.fillFileList('out_list', 'tinyMCEImageList');
-
+        console.log(n)
         if (n.nodeName == 'IMG') {
+            console.log(nl)
             nl.src.value = dom.getAttrib(n, 'src');
             nl.width.value = dom.getAttrib(n, 'width');
             nl.height.value = dom.getAttrib(n, 'height');
@@ -94,11 +95,11 @@ var ImageDialog = {
             selectByValue(f, 'align', this.getAttrib(n, 'align'));
             selectByValue(f, 'class_list', dom.getAttrib(n, 'class'));
             nl.style.value = dom.getAttrib(n, 'style');
-            nl.id.value = dom.getAttrib(n, 'id');
-            nl.dir.value = dom.getAttrib(n, 'dir');
-            nl.lang.value = dom.getAttrib(n, 'lang');
-            nl.usemap.value = dom.getAttrib(n, 'usemap');
-            nl.longdesc.value = dom.getAttrib(n, 'longdesc');
+            //nl.id.value = dom.getAttrib(n, 'id');
+            //nl.dir.value = dom.getAttrib(n, 'dir');
+            //nl.lang.value = dom.getAttrib(n, 'lang');
+            //nl.usemap.value = dom.getAttrib(n, 'usemap');
+            //nl.longdesc.value = dom.getAttrib(n, 'longdesc');
             nl.insert.value = ed.getLang('update');
 
             if (/^\s*this.src\s*=\s*\'([^\']+)\';?\s*$/.test(dom.getAttrib(n, 'onmouseover')))
