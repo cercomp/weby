@@ -81,9 +81,8 @@ var ImageDialog = {
         this.fillFileList('src_list', 'tinyMCEImageList');
         this.fillFileList('over_list', 'tinyMCEImageList');
         this.fillFileList('out_list', 'tinyMCEImageList');
-        console.log(n)
+        
         if (n.nodeName == 'IMG') {
-            console.log(nl)
             nl.src.value = dom.getAttrib(n, 'src');
             nl.width.value = dom.getAttrib(n, 'width');
             nl.height.value = dom.getAttrib(n, 'height');
