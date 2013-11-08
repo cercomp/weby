@@ -2,7 +2,7 @@
 <% quant = component.quant || 5 %>
 <%
 @events = @site.pages.order('event_begin asc').
-  available.upcoming_events.
+  published.upcoming_events.
   page(params[:event_list_page]).per(quant)
 %>
 
