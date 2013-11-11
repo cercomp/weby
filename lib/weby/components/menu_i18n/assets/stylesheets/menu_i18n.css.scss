@@ -1,6 +1,41 @@
-menu.i18n_dropdown {
-  display: block;
-  list-style: none outside none;
+ul.i18n_dropdown > li > ul{
+  display: none;
 }
 
+ul.i18n_dropdown > li
+{
+  background: url("components/menu_i18n_arrow_expanded.png") no-repeat scroll;
+  background-position: 27px 5px;
+}
+
+ul.i18n_dropdown{
+  border: 1px solid #999999;
+  background-color: #CCCCCC;
+}
+
+ul.i18n_dropdown > li:hover > ul{
+  display: block;
+  margin: 0;
+}
+
+ul.i18n_dropdown > li > ul > li:hover{
+  background-color: #999999;
+}
+
+ul.i18n_dropdown,
+ul.i18n_submenu{
+  list-style:none;
+  position:relative;
+  display:inline-table;
+}
+
+ul.i18n_dropdown >  li,
+ul.i18n_submenu >  li{
+  width: 43px;
+}
+
+ul.i18n_dropdown >  li > a,
+ul.i18n_submenu >  li > a{
+  margin-left: 3px;
+}
 

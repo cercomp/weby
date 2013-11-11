@@ -1,18 +1,17 @@
 <% locales = @site.locales %>
-<%= debug locales.length %>
 
 <nav class="menu_i18n_component right">
   <% if component.dropdown  %>
-    <menu class="i18n_dropdown" tabindex="1">
+    <ul class="i18n_dropdown" >
       <li>
         <%= link_to flag(locales.first), params.merge(locale: locales.first.name ) %>
-        <ul>
+        <ul class="i18n_submenu">
           <% locales[1..locales.length].each do |locale| %>
             <li><%= link_to flag(locale), params.merge(locale: locale.name ) %></li>
           <% end %>
         </ul>
       </li>
-    </menu>
+    </ul>
   <% else %>
     <% locales.each do |locale| %>
       <%= link_to flag(locale), params.merge(locale: locale.name ) %>
