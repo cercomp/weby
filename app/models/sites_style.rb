@@ -2,13 +2,8 @@ class SitesStyle < ActiveRecord::Base
   belongs_to :site
   belongs_to :style
 
-  validates :site_id,
-    presence: true,
-    numericality: true
+  validates :site, presence: true
+  validates :style, presence: true
 
-  validates :style_id,
-    presence: true,
-    numericality: true 
-
-  validates_uniqueness_of :style_id, :scope => :site_id
+  validates :style_id, uniqueness: { scope: :site_id }
 end

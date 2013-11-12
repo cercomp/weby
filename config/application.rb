@@ -70,7 +70,22 @@ module Weby
     #config.assets.precompile = [/(?=.*weby)(?:\/|\\|\A)\w+\.(css|js)$/]
     config.assets.precompile << Proc.new { |path| !path.match(/bootstrap/) }
     #config.assets.paths = [/(?=.*weby)/]
-    
+
     config.i18n.fallbacks = true
+
+    # Usando generator mais limpo, desse modo é criado o arquivo só quando necessário
+    # ajuda a evitar arquivos desnecessário
+    config.generators do |g|
+      g.helper false
+      g.stylesheets false
+      g.javascripts false
+      g.test_framework :rspec,
+        :fixtures => false,
+        :view_specs => false,
+        :helper_specs => false,
+        :routing_specs => false,
+        :controller_specs => false,
+        :request_specs => false
+    end
   end
 end

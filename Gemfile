@@ -28,25 +28,24 @@ group :production do
 end
 
 group :development, :test do
-  gem 'railroady'
-  gem 'meta_request', '0.2.0'
-  gem 'pry-rails', '0.2.2'
-  gem 'rspec-rails', '2.9.0'
-  gem 'factory_girl_rails', '1.7.0'
-  gem 'shoulda-matchers', '1.0.0'
-  gem 'sqlite3'
-  gem 'debugger', '1.6.0'
+  gem 'rspec-rails', '2.14.0'
 end
 
 group :development do
   gem "binding_of_caller"
   gem "better_errors"
+  gem 'meta_request', '0.2.0'
+  gem 'pry-rails', '0.2.2'
+end
+
+group :test do
+  gem 'shoulda-matchers', '2.4.0'
+  gem 'factory_girl_rails', '4.3.0'
+  gem 'selenium-webdriver', '2.37.0'
+  gem 'capybara', '2.1.0'
+  gem 'capybara-webkit', '1.0.0'
 end
 
 #Extensions (engines)
 gem 'acadufg', :path => 'vendor/engines/acadufg'
 gem 'feedback', :path => 'vendor/engines/feedback'
-#Dir.glob(File.dirname(__FILE__) + '/vendor/engines/*/*.gemspec').each do |engine_gemspec|
-#  gemspec :path => File.dirname(engine_gemspec)
-#end
-

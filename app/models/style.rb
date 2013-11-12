@@ -1,21 +1,21 @@
 # coding: utf-8
 
 class Style < ActiveRecord::Base
+  belongs_to :owner, class_name: "Site"
+
   has_many :sites_styles, dependent: :destroy
   has_many :followers, through: :sites_styles, source: :site
 
-  belongs_to :owner, foreign_key: :owner_id, class_name: "Site"
-  validates :owner_id,
-    presence: true,
-    numericality: true
-
   accepts_nested_attributes_for :sites_styles, :allow_destroy => true
-  validates_presence_of :name
+
+  validates :name, presence: true
+  validates :owner, presence: true
 
   scope :by_name, lambda { |name|
     where(['lower(name) like :name', { name: "%#{name.downcase}%" } ])
   }
 
+  # TODO: mudar nome para by_owner
   scope :by, lambda { |site_id|
     where(['owner_id = :site_id', { site_id: site_id } ])
   }
