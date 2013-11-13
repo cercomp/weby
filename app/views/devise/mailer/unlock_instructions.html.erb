@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <p>Olá <%= @resource.first_name %>!</p>
+
+    <p>Sua conta foi bloqueada devido a um número excessivo de tentativas sem sucesso de autenticar usando
+      esta conta.</p>
+
+    <p>Clique no link abaixo para desbloquear sua conta:</p>
+
+    <p><%= link_to "#{unlock_url(@resource, unlock_token: @token)}", unlock_url(@resource, unlock_token: @token) %></p>
+
+    <p>Caso não clique no link, sua conta será desbloqueada em 1 hora.</p>
+  </body>
+</html>

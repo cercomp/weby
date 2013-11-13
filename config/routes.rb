@@ -148,24 +148,30 @@ Weby::Application.routes.draw do
     end
   end
 
-  # routes to session
-  match "logout"  => "session#logout"
-  get   "login"   => "session#login"
-  post  "login"   => "session#create_session"
-  get   "signup"  => "session#login"
-  post  "signup"  => "session#create_user"
+  # defaults devise routes
+  devise_for :users, path: '/', skip: [:sessions, :registrations, :passwords]
 
-  # routes to forget password
-  match "forgot_password" => "session#forgot_password"
-  match "password_sent"   => "session#password_sent"
-  get   "reset_password"  => "session#reset_password"
-  post  "update_password" => "session#update_password"
+  # customize devise routes
+  devise_scope :user do
+    # routes to session
+    delete 'logout'  => 'sessions#destroy'
+    get    'login'   => 'sessions#new'
+    post   'login'   => 'sessions#create'
 
-  # Para ativação de conta por email
-  match "activate(/:activation_code)" => "session#activate_user", as: :activate_account
-  post  "resend_activation" => "session#resend_activation"
+    # routes to register
+    get    'signup'  => 'devise/registrations#new'
+    post   'signup'  => 'devise/registrations#create'
 
+    # routes to password
+    get  'forgot_password' => 'devise/passwords#new'
+    post 'forgot_password' => 'devise/passwords#create'
+    get  'reset_password'  => 'devise/passwords#edit'
+    put  'reset_password'  => 'devise/passwords#update'
+  end
+
+  # route to about
   get "about" => "sites#about"
+
   match "robots.txt" => "sites#robots", :format => "txt"
   match "*not_found" => "application#render_404"
 end

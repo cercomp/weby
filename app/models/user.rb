@@ -1,28 +1,32 @@
 # coding: utf-8
-
 class User < ActiveRecord::Base
-  acts_as_authentic
+  devise :database_authenticatable, :registerable, :recoverable,
+         :rememberable, :trackable, :confirmable, :lockable
 
-  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
-  validates_format_of :login, :with => /^[a-z\d_\-\.@]+$/i
+  attr_accessible :login, :email, :password, :password_confirmation, :remember_me,
+                  :first_name, :last_name, :phone, :mobile, :locale_id
+
   validates_presence_of :email, :login, :first_name, :last_name
-  validates_presence_of :password, :on => :create
-	validates_format_of :password, :with => /(?=.*\d+)(?=.*[A-Z]+)(?=.*[a-z]+)^.{4,}$/, :allow_blank => true, :message => I18n.t("lower_upper_number_chars")
+  validates_presence_of :password, on: :create
+
+  validates_uniqueness_of :email, :login
+
+  validates_confirmation_of :password
+
+  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+  validates_format_of :login, with: /^[a-z\d_\-\.@]+$/i
+	validates_format_of :password, with: /(?=.*\d+)(?=.*[A-Z]+)(?=.*[a-z]+)^.{4,}$/,
+	                    allow_blank: true, message: I18n.t("lower_upper_number_chars")
 
   before_save { |user| user.email.downcase! }
 
   has_and_belongs_to_many :roles
+
   belongs_to :locale
 
-  has_many :notifications,
-    dependent: :nullify
-
-  has_many :pages,
-    foreign_key: :author_id,
-    dependent: :restrict
-
-  has_many :views,
-    dependent: :nullify
+  has_many :views, dependent: :nullify
+  has_many :notifications, dependent: :nullify
+  has_many :pages, foreign_key: :author_id, dependent: :restrict
 
   scope :login_or_name_like, lambda { |text|
     where('LOWER(login) like :text OR LOWER(first_name) like :text OR LOWER(last_name) like :text OR LOWER(email) like :text',
@@ -39,7 +43,7 @@ class User < ActiveRecord::Base
     where(["roles.site_id = ?", site_id])           
   }
 
-  scope :actives, where(:status => true)
+  scope :actives, where('confirmed_at IS NOT NULL')
 
   scope :global_role, lambda { 
     select("DISTINCT users.* ").
@@ -91,36 +95,7 @@ class User < ActiveRecord::Base
     @unread ||= unread_notifications_array
     !@unread.include? notification.id
   end
-
-  def active?
-    self.status
-  end
-
-  def activate!
-    self.status = true
-    save
-  end
-
-  def deactivate!
-    self.status = false
-    save
-  end
-
-  def password_reset!(host)
-    reset_perishable_token!
-    Notifier.password_reset_instructions(self, host).deliver
-  end  
-
-  def send_activation_instructions!(host)
-    reset_perishable_token!
-    Notifier.activation_instructions(self, host).deliver
-  end
-
-  def send_activation_confirmation!(host)
-    reset_perishable_token!
-    Notifier.activation_confirmation(self, host).deliver
-  end
-
+  
   def has_role_in? site
     return true if self.is_admin?
     self.sites.include?(site) or self.global_roles.any?
@@ -133,5 +108,22 @@ class User < ActiveRecord::Base
   # Pega os papeis globais do usuário
   def global_roles
     self.roles.where(site_id: nil)
+  end
+
+  # NOTE Rotina para trabalhar com o padrão de senha do authlogic no devise.
+  # Quando um usuário possui a senha encriptada usando o hash do authlogic
+  # é gerada uma nova senha encriptada com o hash do devise, atualiza e autentica 
+  alias :devise_valid_password? :valid_password?
+  def valid_password?(password)
+    begin
+      super(password)
+    rescue BCrypt::Errors::InvalidHash
+      digest = "#{password}#{password_salt}"
+      20.times { digest = Digest::SHA512.hexdigest(digest) }
+      return false unless digest == encrypted_password
+      logger.info "User #{email} is using the old password hashing method, updating attribute."
+      self.password = password
+      true
+    end
   end
 end

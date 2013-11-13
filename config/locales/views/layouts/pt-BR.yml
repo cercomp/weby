@@ -23,3 +23,5 @@ pt-BR:
       register: "CADASTRAR"
       help: "AJUDA"
       sites: "SITES"
+      confirmation: "CONFIRMAÇÂO DE CADASTRO"
+      unlock: "INSTRUÇÕES DE DESBLOQUEIO"

@@ -1,14 +1,14 @@
 # coding: utf-8
 class ApplicationController < ActionController::Base
   include ApplicationHelper # Para usar helper methods nos controllers
-  #include UrlHelper #Para utilizar url_helper que trata o subdomínio para Sites
+
   protect_from_forgery
   before_filter :set_contrast, :set_locale, :set_global_vars, :set_view_types
   after_filter :weby_clear, :count_view
   before_filter :require_user, only: [:admin]
 
   helper :all
-  helper_method :current_user_session, :current_user, :sort_direction, :test_permission,
+  helper_method :current_user_session, :sort_direction, :test_permission,
     :current_locale, :current_site, :current_settings, :current_roles_assigned, :component_is_available
 
   def admin
@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
     unless test_permission(self, action_name)
       respond_to do |format|
         format.json { render json: {errors: [t("access_denied.access_denied")]}, :status => :forbidden }
-        format.any { render :template => 'session/access_denied', :status => :forbidden }
+        format.any { render :template => 'admin/access_denied', :status => :forbidden }
       end
     end
   end
@@ -187,13 +187,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user_session
-    return @current_user_session if defined?(@current_user_session)
-    @current_user_session = UserSession.find
-  end
-
-  def current_user
-    return @current_user if defined?(@current_user)
-    @current_user = current_user_session && current_user_session.record
+    user_session
   end
 
   def current_roles_assigned
@@ -208,12 +202,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_user
-    unless current_user
-      store_location
-      flash[:error] = t("need_login")
-      redirect_to weby_login_url("#{request.protocol}#{request.host_with_port}#{request.path}")
-      return false
-    end
+    authenticate_user!
   end
 
   def require_no_user
@@ -226,38 +215,15 @@ class ApplicationController < ActionController::Base
   end
 
   def store_location
-    #session[:return_to] = request.fullpath if request.get? and controller_name != "user_sessions" and controller_name != "sessions"
     session[:return_to] = request.fullpath || request.referer
   end
-
-  #  def redirect_back_or_default(default)
-  #    back_url = CGI.unescape(params[:back_url].to_s)
-  #    if !back_url.blank?
-  #      begin
-  #        uri = URI.parse(back_url)
-  #        # do not redirect user to another host or to the login or register page
-  #        if (uri.relative? || (uri.host == request.host)) && !uri.path.match(%r{/(login|account/register)})
-  #          redirect_to(back_url)
-  #          return
-  #        end
-  #      rescue URI::InvalidURIError
-  #        # redirect to default
-  #      end
-  #    end
-  #    if session[:return_to] && !session[:return_to].match(%r{/(login|user_sessions/new)}).nil?
-  #      redirect_to(session[:return_to])
-  #    else
-  #      redirect_to(default)
-  #    end
-  #    session[:return_to] = nil
-  #  end
 
   def redirect_back_or_default(default)
     session[:return_to] ? redirect_to(session[:return_to]) : redirect_to(default)
     session[:return_to] = nil
   end
 
-  # Defini variáveis globais
+  # Define variáveis globais
   def set_global_vars
     @site = current_site
 
@@ -277,7 +243,6 @@ class ApplicationController < ActionController::Base
         end
       end
     end
-    #puts @current_rights
 
     if is_in_admin_context?
       #alguma var global exclusiva para o backend
@@ -333,4 +298,8 @@ class ApplicationController < ActionController::Base
     %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
   end
 
+  # NOTE overwrite devise url helpers
+  def new_session_path(arg)
+    login_path
+  end
 end

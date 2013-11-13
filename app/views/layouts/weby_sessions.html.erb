@@ -50,6 +50,10 @@
             </div>
           </div>
           <nav class="help-nav">
+            <%= link_to t('.confirmation'), new_user_confirmation_path %>
+            <br />
+            <%= link_to t('.unlock'), new_user_unlock_path %>
+            <br />
             <%= link_to t(".sites"), root_url(subdomain: nil) %>
             <%= link_to(t(".help"), current_settings.help_site,
                         target: '_blank') if current_settings.help_site %>

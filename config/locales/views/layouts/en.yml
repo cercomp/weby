@@ -23,3 +23,5 @@ en:
       register: "REGISTER"
       help: "HELP"
       sites: "SITES"
+      confirmation: "SIGNUP CONFIRMATION"
+      unlock: "UNLOCK INSTRUCTIONS"

@@ -1,5 +1,0 @@
-<%= simple_form_for @session, url: resend_activation_url(subdomain: nil), method: :post do |f| %>
-  <%= f.show_errors %>
-  <%= f.input :login, as: :hidden %>
-  <%= f.button :submit, t(".resend"), class: 'btn btn-primary' %>
-<% end %>

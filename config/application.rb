@@ -88,5 +88,13 @@ module Weby
         :controller_specs => false,
         :request_specs => false
     end
+
+    # Especificando o layout correto nos controllers do devise
+    config.to_prepare do
+      Devise::RegistrationsController.layout 'weby_sessions'
+      Devise::PasswordsController.layout 'weby_sessions'
+      Devise::ConfirmationsController.layout 'weby_sessions'
+      Devise::UnlocksController.layout 'weby_sessions'
+    end
   end
 end

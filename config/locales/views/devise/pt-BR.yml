@@ -1,0 +1,47 @@
+pt-BR:
+  access_denied:
+    access_denied:         "Acesso negado"
+    access_denied_page:    "Você não está autorizado a ver está página."
+  devise:
+    sessions:
+      form:
+        login:               "Entrar"
+        forgot_password:     "Esqueci minha senha"
+        register:            "Cadastrar"
+        field_login:         "Login"
+        field_password:      "Senha"
+        field_password_conf: "Confirmação da senha"
+        field_remember_me:   "Continuar conectado"
+        field_email:         "Email"
+        field_first_name:    "Nome"
+        field_last_name:     "Sobrenome"
+    registrations:
+      form:
+        login:               "Entrar"
+        forgot_password:     "Esqueci minha senha"
+        register:            "Cadastrar"
+        field_login:         "Login"
+        field_password:      "Senha"
+        field_password_conf: "Confirmação da senha"
+        field_remember_me:   "Continuar conectado"
+        field_email:         "Email"
+        field_first_name:    "Nome"
+        field_last_name:     "Sobrenome"
+    passwords:
+      new:
+        fill_email_form:     "Preencha o formulário para que sejam enviadas instruções de como mudar sua senha."
+        recover_password:    "Recuperar senha"
+        field_email:         "Email"
+      edit:
+        change_password:     "Mudar senha"
+        reset_password:      "Nova senha"
+        password_change:     "Nova senha"
+        password_confirmation_label: "Confirmação da senha"
+    confirmations:
+      new:
+        resend_confirmation: "Reenviar confirmação de cadastro"
+        field_email:         "Email"
+    unlocks:
+      new:
+        unlock_instructions: "Instruções de desbloqueio"
+        field_email:         "Email"

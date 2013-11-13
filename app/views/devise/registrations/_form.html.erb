@@ -1,0 +1,21 @@
+<%= simple_form_for resource,
+  as: resource_name,
+  url: signup_path do |f| %>
+
+  <%= f.error_notification %>
+
+  <%= f.input :login, label: false, placeholder: t('.field_login') %>
+  <%= f.input :email, label: false, as: :email, 
+    placeholder: t('.field_email') %>
+  <%= f.input :password, label: false, as: :password,
+    placeholder: t('.field_password'),
+    hint: t('lower_upper_number_chars'),
+    input_html: { pattern: '(?=.*\d)(?=.*[A-Z])(?=.*[a-z])^.{4,}$' } %>
+  <%= f.input :password_confirmation, label: false, as: :password,
+    placeholder: t('.field_password_conf') %> 
+  <%= f.input :first_name, label: false, placeholder: t('.field_first_name') %>
+  <%= f.input :last_name, label: false, placeholder: t('.field_last_name') %>
+
+  <%= f.button :submit, t('.register'), class: 'btn-primary',
+    disable_with: t("please_wait") %>
+<% end %>

@@ -1,0 +1,10 @@
+<div class="content tabs">
+  <div class="tab-content">
+    <div class="tab-pane active" id="login">
+      <%= render 'form' %>
+    </div>
+    <div class="tab-pane" id="signup">
+      <%= render 'devise/registrations/form', resource: resource_class.new %>
+    </div>
+  </div>
+</div>

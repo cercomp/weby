@@ -1,0 +1,18 @@
+<h3 class="title-box">
+  <%= t(".unlock_instructions") %>
+</h3>
+
+<%= simple_form_for resource,
+  as: resource_name,
+  url: unlock_path(resource_name),
+  html: { method: :post } do |f| %>
+
+  <%= f.error_notification %>
+  <%= f.full_error :unlock_token %>
+
+  <%= f.input :email, required: true, autofocus: true, label: false,
+    as: :email, placeholder: t('.field_email') %>
+
+  <%= f.button :submit, t('submit'), class: 'btn-primary',
+    disable_with: t("please_wait") %>
+<% end %>

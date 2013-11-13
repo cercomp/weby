@@ -1,0 +1,47 @@
+en:
+  access_denied:
+    access_denied:         "Access denied"
+    access_denied_page:    "You are not allowed to see this page."
+  devise:
+    sessions:
+      form:
+        login:               "Login"
+        forgot_password:     "Forgot password"
+        register:            "Register"
+        field_login:         "Login"
+        field_password:      "Password"
+        field_password_conf: "Password confirmation"
+        field_remember_me:   "Stay signed"
+        field_email:         "Email"
+        field_first_name:    "First name"
+        field_last_name:     "Last name"
+    registrations:
+      form:
+        login:               "Login"
+        forgot_password:     "Forgot password"
+        register:            "Register"
+        field_login:         "Login"
+        field_password:      "Password"
+        field_password_conf: "Password confirmation"
+        field_remember_me:   "Stay signed"
+        field_email:         "Email"
+        field_first_name:    "First name"
+        field_last_name:     "Last name"
+    passwords:
+      new:
+        fill_email_form:     "Fill in the form so that instructions may be sent on how to change your password."
+        recover_password:    "Recover password"
+        field_email:         "Email"
+      edit:
+        change_password:     "Change password"
+        reset_password:      "New password"
+        password_change:     "New password"
+        password_confirmation_label: "Password confirmation"
+    confirmations:
+      new:
+        resend_confirmation: "Resend signup instructions"
+        field_email:         "Email"
+    unlocks:
+      new:
+        unlock_instructions: "Unlock instructions"
+        field_email:         "Email"
