@@ -84,15 +84,21 @@ class Sites::Admin::StylesController < ApplicationController
   def create
     @style = Style.new(params[:style])
     @style.position = @site.own_styles.count + 1
-
-    flash[:success] = t("successfully_created") if @style.save
+    
+    if @style.save
+      flash[:success] = t("successfully_created")
+      record_activity("created_style", @style)
+    end
     respond_with(:site_admin, @style, location:  edit_site_admin_style_path(@style))
   end
 
   def update
     @style = Style.find(params[:id])
 
-    flash[:success] = t("successfully_updated") if @style.update_attributes(params[:style])
+    if @style.update_attributes(params[:style])
+      flash[:success] = t("successfully_updated")
+      record_activity("updated_style", @style)
+    end
     respond_with(:site_admin, @style, location: site_admin_styles_path) do |format|
       format.json{ render :text => @style.errors.full_messages.to_json }
     end
@@ -103,6 +109,7 @@ class Sites::Admin::StylesController < ApplicationController
 
     if @style.destroy
       flash[:success] = t("destroyed_style")
+      record_activity("destroyed_style", @style)
     else
       flash[:alert] = t("destroyed_style_error")
     end

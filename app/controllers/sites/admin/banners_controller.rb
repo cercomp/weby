@@ -35,7 +35,9 @@ class Sites::Admin::BannersController < ApplicationController
       search_images
       render action: :edit
     end
-    @banner.save
+    if @banner.save
+      record_activity("created_banner", @banner)
+    end
     respond_with(:site_admin, @banner)
   end
 
@@ -45,15 +47,19 @@ class Sites::Admin::BannersController < ApplicationController
       @banner.attributes = params[:banner]
       search_images
     end
-    @banner.update_attributes(params[:banner])
+    if @banner.update_attributes(params[:banner])
+      record_activity("updated_banner", @banner)
+    end
     respond_with(:site_admin, @banner)
   end
 
   def destroy
     @banner = Banner.find(params[:id])
-    @banner.destroy
+    if @banner.destroy
+      record_activity("destroyed_banner", @banner)
+      flash[:success] = t("destroyed_param", :param => @banner.title)
+    end
 
-    # TODO mensagem de banner removido com sucesso
     redirect_to(site_admin_banners_path())
   end
 

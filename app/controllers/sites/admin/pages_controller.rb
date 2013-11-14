@@ -79,6 +79,7 @@ class Sites::Admin::PagesController < ApplicationController
     @page = @site.pages.new(params[:page])
     @page.author = current_user
     @page.save
+    record_activity("created_page", @page)
     respond_with(:site_admin, @page)
   end
 
@@ -88,6 +89,7 @@ class Sites::Admin::PagesController < ApplicationController
     params[:page][:related_file_ids] ||= []
     @page = @site.pages.find(params[:id])
     @page.update_attributes(params[:page])
+    record_activity("updated_page", @page)
     respond_with(:site_admin, @page)
   end
 
@@ -96,6 +98,7 @@ class Sites::Admin::PagesController < ApplicationController
   def destroy
     @page = @site.pages.find(params[:id])
     @page.destroy
+    record_activity("destroyed_page", @page)
     respond_with(:site_admin, @page)
   end
 

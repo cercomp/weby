@@ -42,6 +42,7 @@ Weby::Application.routes.draw do
 
       get "stats" => "statistics#index"
 
+      resources :activity_records, only: [:index]
       resources :banners do
         member do
           put :toggle_field
@@ -58,8 +59,8 @@ Weby::Application.routes.draw do
       resources :extensions
       resources :menus do
         resources :menu_items,
-          controller: "menus/menu_items",
-          except: :show do
+          controller: "menus/menu_items" do#,
+#          except: :show do
             collection do
               post :change_order, :change_menu
             end

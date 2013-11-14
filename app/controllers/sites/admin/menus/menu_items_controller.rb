@@ -8,6 +8,10 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
     redirect_to site_admin_menus_path(:menu => @menu.id)
   end
 
+  def show
+    redirect_to site_admin_menus_path(:menu => @menu.id)
+  end
+
   def new
     get_parent_menu_item params[:parent_id]
     @menu_item = @menu.menu_items.new
@@ -19,6 +23,7 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
 
     if @menu_item.save
       flash[:success] = t("successfully_created")
+      record_activity("created_menu_item", @menu_item)
       redirect_to site_admin_menus_path(:menu => @menu.id) 
     else
       get_parent_menu_item params[:menu_item][:parent_id]
@@ -34,6 +39,7 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
     @menu_item = @menu.menu_items.find(params[:id])
     if @menu_item.update_attributes(params[:menu_item])
       flash[:success] = t("successfully_updated")
+      record_activity("updated_menu_item", @menu_item)
       redirect_to site_admin_menus_path(:menu => @menu.id)
     else
       render action: :edit
@@ -44,6 +50,7 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
     @menu_item = @menu.menu_items.find(params[:id])
     update_position_for_remove(@menu_item)
     @menu_item.destroy
+    record_activity("destroyed_menu_item", @menu_item)
     redirect_to :back, flash: {success: t("successfully_deleted")}
   end
 

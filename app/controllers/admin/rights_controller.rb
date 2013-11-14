@@ -23,6 +23,7 @@ class Admin::RightsController < ApplicationController
   def create
     @right = Right.new(params[:right])
     @right.save
+    record_activity("created_global_right", @right)
 
     redirect_to admin_rights_path
   end
@@ -30,6 +31,7 @@ class Admin::RightsController < ApplicationController
   def update
     @right = Right.find(params[:id])
     @right.update_attributes(params[:right])
+    record_activity("updated_global_rights", @right)
     
     redirect_to admin_rights_path
   end
@@ -37,6 +39,7 @@ class Admin::RightsController < ApplicationController
   def destroy
     @right = Right.find(params[:id])
     @right.destroy
+    record_activity("destroyed_global_rights", @right)
     respond_with(:admin, @right)
   end
 

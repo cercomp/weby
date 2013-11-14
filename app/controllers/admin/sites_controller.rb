@@ -27,7 +27,7 @@ class Admin::SitesController < ApplicationController
     if @site.save
       theme = ::Weby::Theme.new @site
       theme.populate
-      
+      record_activity("created_site", @site)  
       redirect_to site_admin_components_url(subdomain: @site)
     else
       load_themes
@@ -44,6 +44,7 @@ class Admin::SitesController < ApplicationController
     @site = Site.find(params[:id])
     if @site.update_attributes(params[:site])
       flash[:success] = t"successfully_updated"
+      record_activity("updated_site", @site)
       redirect_to edit_admin_site_path(@site.id)
     else
       load_themes

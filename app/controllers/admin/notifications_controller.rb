@@ -24,7 +24,7 @@ class Admin::NotificationsController < ApplicationController
     @notification.user_id = current_user.id
     if @notification.save
       flash[:success] = t("create_notification_successful")
-      record_activity("created_new_notification")
+      record_activity("created_notification", @notification)
       redirect_to admin_notification_path @notification
     else
       flash[:error] = t("problem_create_notification")
@@ -40,6 +40,7 @@ class Admin::NotificationsController < ApplicationController
 
     if @notification.update_attributes(params[:notification])
       redirect_to admin_notification_path @notification
+      record_activity("updated_notification", @notification)
       flash[:success] = t("update_notification_successful")
     else
       flash[:error] = t("problem_update_notification")
@@ -55,6 +56,7 @@ class Admin::NotificationsController < ApplicationController
     @notification = Notification.find(params[:id])
     @notification.destroy
     flash[:success] = t("destroyed_param", :param => @notification.title)
+    record_activity("destroyed_notification", @notification)
     User.no_admin.each do |user|
       user.remove_unread_notification @notification
     end

@@ -14,13 +14,13 @@
 ActiveRecord::Schema.define(:version => 20131121201855) do
 
   create_table "activity_records", :force => true do |t|
-    t.string   "user_id"
-    t.string   "site_id"
+    t.integer  "user_id"
+    t.integer  "site_id"
     t.string   "browser"
     t.string   "ip_address"
     t.string   "controller"
     t.string   "action"
-    t.string   "params"
+    t.text     "params"
     t.string   "note"
     t.integer  "loggeable_id"
     t.string   "loggeable_type"

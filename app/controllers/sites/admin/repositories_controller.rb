@@ -62,6 +62,7 @@ class Sites::Admin::RepositoriesController < ApplicationController
                          :url => site_admin_repository_path(@repository) },
             content_type: check_accept_json
         end
+        record_activity("uploaded_file", @repository)
       else
         format.html { render action: :new }
         format.json do
@@ -77,6 +78,7 @@ class Sites::Admin::RepositoriesController < ApplicationController
 
     if @repository.update_attributes(params[:repository]) 
       flash[:success] = t("successfully_updated") 
+      record_activity("updated_file", @repository)
       redirect_to [:site, :admin, @repository]
     else
       render action: :edit
@@ -86,6 +88,7 @@ class Sites::Admin::RepositoriesController < ApplicationController
   def destroy
     @repository = Repository.find(params[:id])
     @repository.destroy
+    record_activity("destroyed_file", @repository)
 
     redirect_to site_admin_repositories_url
   end

@@ -9,7 +9,8 @@ class Sites::Admin::ComponentsController < ApplicationController
   end
 
   def show
-    @component = Weby::Components.factory(current_site.components.find(params[:id]))
+    #@component = Weby::Components.factory(current_site.components.find(params[:id]))
+    redirect_to site_admin_components_path 
   end
 
   def new
@@ -36,6 +37,7 @@ class Sites::Admin::ComponentsController < ApplicationController
       @component.attributes = params["#{comp}_component"]
 
       if @component.save
+        record_activity("created_component", @component)
         redirect_to(site_admin_components_path, flash: {success: t("successfully_created_param", param: t("component"))})
       else
         render :action => "new"
@@ -51,6 +53,7 @@ class Sites::Admin::ComponentsController < ApplicationController
     update_params
 
     if @component.update_attributes(params["#{params[:component]}_component"])
+      record_activity("updated_component", @component)
       redirect_to(site_admin_components_path, flash: {success: t("successfully_updated_param", param: t("component"))})
     else
       render :action => "edit"
@@ -59,7 +62,9 @@ class Sites::Admin::ComponentsController < ApplicationController
 
   def destroy
     @component = Component.find(params[:id])
-    @component.destroy
+    if @component.destroy
+     record_activity("destroyed_component", @component)
+    end
 
     redirect_to site_admin_components_path, flash: {success: t("successfully_removed", param: t("component"))}
   end

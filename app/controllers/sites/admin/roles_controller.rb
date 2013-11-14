@@ -44,6 +44,7 @@ class Sites::Admin::RolesController < ApplicationController
   def create
     @role = Role.new(params[:role])
     @role.save
+    record_activity("created_role", @role)
 
     redirect_to @site ? site_admin_roles_path : admin_roles_path
   end
@@ -51,12 +52,14 @@ class Sites::Admin::RolesController < ApplicationController
   def update
     @role = Role.find(params[:id])
     @role.update_attributes(params[:role])
+    record_activity("updated_role", @role)
     redirect_to @site ? site_admin_roles_path : admin_roles_path
   end
 
   def destroy
     @role = Role.find(params[:id])
     @role.destroy
+    record_activity("destroyed_role", @role)
     redirect_to :back
   end
 end

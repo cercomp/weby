@@ -3,8 +3,6 @@
     <%= t('.no_activity_records') %>
   </div>
 <% else %>
-  <!--div class="pull-left"> <#%= info_page @records %> </div--!>
-  <!--div class="pull-right"> <#%= paginate @records, remote: true %> </div--!>
   <div class="clearfix"></div>
   <table class='table table-striped'>
     <thead>
@@ -14,7 +12,7 @@
         <tr>
           <td><%= l(record.created_at, :format => :short) %></td>
           <td><%= record.user %> <%= t(record.note) %></td>
-          <td style="text-align: right">
+          <td>
             <% if record.controller == "menu_items" %>
               <%= link_to(icon("eye-open", :text => t(".show")), 
                   polymorphic_url([:site_admin, record.loggeable.menu, record.loggeable], 
@@ -24,15 +22,9 @@
                   polymorphic_url([:site_admin, record.loggeable], 
                   :subdomain => record.site)) unless record.action.eql?("destroy") %>
             <% end %>
-            <%= link_to(icon("search", :text => t(".details")),
-                        admin_activity_record_path(record.id) ) %>
-            <%= link_to(icon("trash", :text => t(".destroy")), 
-                        [:admin, record], :method => :delete) %>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
-
-  <!--div class="pull-left"><#%= per_page_links @activity, true, :mini %></div-->
 <% end %>

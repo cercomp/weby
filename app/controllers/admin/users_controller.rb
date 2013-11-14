@@ -65,6 +65,7 @@ class Admin::UsersController < ApplicationController
     @user.status = true
     if @user.save
       flash[:success] = t("create_account_successful")
+      record_activity("created_user", @user)
       redirect_to admin_user_path(@user)
     else
       flash[:error] = t("problem_create_account")
@@ -85,6 +86,7 @@ class Admin::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update_attributes(user_params)
+    record_activity("updated_user", @user)
     flash[:success] = t("updated_account")
     respond_with(:admin, @user)
   end
@@ -93,6 +95,7 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
     flash[:success] = t("destroyed_param", :param => @user.first_name)
+    record_activity("destroyed_user", @user)
   rescue ActiveRecord::DeleteRestrictionError
     flash[:warning] = t("user_cant_be_deleted")
   ensure

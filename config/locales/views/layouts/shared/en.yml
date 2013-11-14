@@ -26,6 +26,7 @@ en:
         dashboard:         " Dashboard "
         contents:          " Content "
         none_role:         " You don't have roles in this site "
+        activity_record:   " Activity Records "
       navbar:
         my_profile:        " My profile "
         logout:            " Logout "
