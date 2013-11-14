@@ -1,6 +1,7 @@
 <% if params[:style_type] == 'own' %>
   $('#own_styles').
   html("<%= escape_javascript render(partial: 'own_styles', locals: { styles: @styles.delete(:own) }) %>")
+	initStylesSortable();
 <% else %>
   $('#<%= "#{params[:style_type]}_styles" %>').
   html("<%=escape_javascript render(partial: "styles",

@@ -1,6 +1,6 @@
 <% unless styles.empty? %>
   <div class="styles">
-    <table class='table table-striped' id='style_list'>
+    <table class="table table-striped" id="style_list">
       <thead>
         <th> <%= t('.name') %> </th>
         <th> <%= t('.sites_followers') %> </th>
@@ -30,36 +30,6 @@
   <div class="alert">
     <%= t('.no_own_styles') %>
   </div>
-<% end %>
-
-<%= javascript_tag do %>
-  window.onload=function(){
-    $(document).ready(function() {
-      $('#style_list').sortable({
-        axis: 'y',
-        dropOnEmpty:false,
-        handle: '.handle',
-        items: 'tbody > tr',
-        opacity: 0.7,
-        scroll: true,
-        forcePlaceholderSize: true,
-        update: function(ev, ui){
-          id_moved = ui.item.attr('id').replace('sort_style_','');
-          id_after = ui.item.next().attr('id') ? ui.item.next().attr('id').replace('sort_style_','') : 0;
-          id_before = ui.item.prev().attr('id') ? ui.item.prev().attr('id').replace('sort_style_','') : 0;
-          //alert(id_moved+' between '+id_before+' and '+id_after);
-          $.ajax({
-            type: 'post',
-            data: {'id_moved':id_moved,'id_after':id_after,'id_before':id_before},
-            dataType: 'script',
-            complete: function(request){ ui.item.effect('pulsate', {times: 1}, 350); },
-            error: function(){$('#list').sortable('cancel');},
-            url: '<%= sort_site_admin_styles_path %>'
-          });
-        }
-      });
-    });
-  }
 <% end %>
 
 <%= content_for :javascripts, javascript_include_tag("jquery-ui.min") %>
