@@ -42,10 +42,6 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
 
   def destroy
     @menu_item = @menu.menu_items.find(params[:id])
-    ary_for_del = items_deep(@menu, @menu_item)
-    ary_for_del.each do |item|
-      item.destroy
-    end
     update_position_for_remove(@menu_item)
     @menu_item.destroy
     redirect_to :back, flash: {success: t("successfully_deleted")}
