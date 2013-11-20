@@ -3,6 +3,8 @@ en:
     show:
       edit-profile: "EDIT PROFILE"
       latest-news-published: "Latest news published"
+      none_news: "No news published by %{name}"
+      published: "Published at %{site}, in %{date}"
     edit:
       password-change: "New password"
       locale-hint: "Language for the admin interface."

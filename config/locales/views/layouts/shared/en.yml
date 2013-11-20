@@ -21,7 +21,7 @@ en:
         permissions:       " Permissions "
         settings:          " Settings "
         statistics:        " Statistics "
-        notification:      " Notifications "
+        notifications:     " Notifications "
         dashboard:         " Dashboard "
         contents:          " Content "
         none_role:         " You don't have roles in this site "

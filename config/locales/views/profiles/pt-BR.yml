@@ -3,6 +3,8 @@ pt-BR:
     show:
       edit-profile: "EDITAR O PERFIL"
       latest-news-published: "Últimas nóticias publicadas"
+      none_news: "Nenhuma noticia publicada por %{name}"
+      published: "Publicado no site %{site}, em %{date}"
     edit:
       password-change: "Nova senha"
       locale-hint: "Idioma a ser utilizado na área administrativa."

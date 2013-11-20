@@ -82,7 +82,7 @@ class ApplicationController < ActionController::Base
 
   def set_locale
     session[:locales] ||= {}
-    locale = (is_in_admin_context? ? current_user.try(:locale).try(:name) : params[:locale] || session[:locales][locale_key]) || I18n.default_locale
+    locale = ((is_in_admin_context? || is_in_profile_context? || is_in_sites_index?) ? current_user.try(:locale).try(:name) : params[:locale] || session[:locales][locale_key]) || I18n.default_locale
     @current_locale = session[:locales][locale_key] = I18n.locale = locale if locale != @current_locale
   end
 

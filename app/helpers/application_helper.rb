@@ -5,7 +5,16 @@ module ApplicationHelper
   end
 
   def is_in_admin_context?
-    request.path.split('/').include?('admin')
+    request.path.split('/').first(3).include?('admin')
+  end
+
+  def is_in_profile_context?
+    paths = request.path.split('/').first(2)
+    paths.include?('profiles') || paths.include?('notifications')
+  end
+
+  def is_in_sites_index?
+    request.path == "/" and !current_site
   end
 
   # Alterna entre habilitar e desabilitar registro

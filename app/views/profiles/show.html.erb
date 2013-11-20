@@ -20,7 +20,7 @@
       <div class="heading"><%= t('.latest-news-published') %></div>
       <% if @news.blank? %>
         <div class="alert">
-          Nenhuma noticia publicada por <%= @profile %>
+          <%= t(".none_news", name: @profile) %>
         </div>
       <% else %>
         <% @news.each do |new| %>
@@ -30,7 +30,7 @@
             </div>
             <div class="media-body">
               <div class="title"><%= link_to new.title, site_page_url(new, subdomain: new.owner) %></div>
-              <div class="description">Publicado no site <%= link_to new.owner.title, site_url(subdomain: new.owner) %>, em <%= l(new.created_at, format: :short) %></div>
+              <div class="description"><%= t(".published", site: link_to(new.owner.title, site_url(subdomain: new.owner)), date: l(new.created_at, format: :short)).html_safe %></div>
               <div class="summary"><%= new.summary.html_safe %></div>
             </div>
           </div>
