@@ -1,4 +1,4 @@
-$(document).ready(function wrap_table() {
+function wrap_table(){
   if ($('table.nowrap').length == 0) return;
 
   var width;
@@ -12,6 +12,9 @@ $(document).ready(function wrap_table() {
   }, function() {
     $('td > div', this).css('white-space', 'nowrap');
   });
+}
 
-  $(document).live('ajaxComplete', wrap_table);
+$(document).ready(function (){
+  wrap_table();
+  $(document).on('ajaxComplete', wrap_table);
 });
