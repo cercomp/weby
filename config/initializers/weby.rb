@@ -6,6 +6,7 @@ require 'weby/routing'
 require 'weby/rights'
 require 'weby/settings'
 require 'weby/themes'
+require 'weby/assets'
 
 # Adiciona views dos componentes no path de views da aplicação
 ActionController::Base.view_paths +=

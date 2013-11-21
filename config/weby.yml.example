@@ -1,0 +1,5 @@
+production:
+  asset_host:
+    ^\/assets\/: '//assets.aws.cercomp.ufg.br'
+    ^\/uploads\/: '//cloud.aws.cercomp.ufg.br'
+development:
