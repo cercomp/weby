@@ -128,6 +128,7 @@ Weby::Application.routes.draw do
         end
       end
       resources :sites, except: [:show]
+      resources :groupings, except: [:show]
       resources :notifications
 
       get "stats" => "statistics#index"

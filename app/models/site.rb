@@ -86,6 +86,8 @@ class Site < ActiveRecord::Base
 
   has_and_belongs_to_many :locales
 
+  has_and_belongs_to_many :groupings
+
   validate :at_least_one_locale
 
   def at_least_one_locale

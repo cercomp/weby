@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130806154257) do
+ActiveRecord::Schema.define(:version => 20131121201855) do
 
   create_table "banners", :force => true do |t|
     t.datetime "date_begin_at"
@@ -78,6 +78,17 @@ ActiveRecord::Schema.define(:version => 20130806154257) do
 
   add_index "feedback_messages_groups", ["group_id"], :name => "index_feedbacks_groups_on_group_id"
   add_index "feedback_messages_groups", ["message_id"], :name => "index_feedbacks_groups_on_feedback_id"
+
+  create_table "groupings", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "groupings_sites", :force => true do |t|
+    t.integer "grouping_id"
+    t.integer "site_id"
+  end
 
   create_table "groups_users", :id => false, :force => true do |t|
     t.integer "group_id"
