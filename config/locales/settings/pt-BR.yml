@@ -9,3 +9,4 @@ pt-BR:
     login_protocol: "Protocolo da página de login (opções 'http' e 'https', padrão=http)"
     domain: "Domínio padrão do Weby"
     root_site: "Site principal, acessível na raiz do domínio"
+    default_groupings: 'Filtro padrão de grupos de site na listagem dos sites'

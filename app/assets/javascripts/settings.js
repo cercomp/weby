@@ -6,4 +6,8 @@ $(document).ready(function(){
         $input.val($input.data('disabledtext'));
         $input.data('disabledtext', aux);
     });
+
+    $('.select2').select2({
+       width: 'resolve'
+   });
 });

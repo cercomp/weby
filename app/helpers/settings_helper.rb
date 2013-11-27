@@ -7,6 +7,16 @@ module SettingsHelper
     "<div class=\"input-append setting-input\">".tap do |html|
       if (pattern = Setting::VALUES_SET[setting.name.to_sym])
         case pattern
+        when Hash
+          if pattern[:select]
+            html << select_tag(
+              name,
+              options_for_select(pattern[:select], setting.value ? setting.value.split(',') : nil),
+              {class: 'setting-field select', data: data, disabled: disabled}.merge(pattern[:options]){|k, old, new| old.is_a?(String) ? new+" "+old : new }
+            )
+          else
+            #TODO another kind of input
+          end
         when Array
           html << select_tag(name, options_for_select(pattern, setting.value), class: 'setting-field select', data: data, disabled: disabled)
         when Symbol

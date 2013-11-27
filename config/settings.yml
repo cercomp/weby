@@ -17,3 +17,5 @@ settings:
     value:
   root_site:
     value:
+  default_groupings:
+    value:

@@ -35,7 +35,7 @@
         <%= menu_item_to t(".dashboard"), main_app.admin_path %>
       </div>
       <%= menu_item_to t(".sites"), main_app.admin_sites_path if true or check_permission(Admin::SitesController, [:index])%>
-      <%= menu_item_to t(".groupings"), main_app.admin_groupings_path if true or check_permission(Admin::GroupingsController, [:index])%>
+      <%= menu_item_to t(".groupings"), main_app.admin_groupings_path if current_user.is_admin? %>
       <%= menu_item_to t(".users"), main_app.admin_users_path if current_user.is_admin? %>
       <%= menu_item_to t(".notifications"), main_app.admin_notifications_path if current_user.is_admin? %>
       <%= menu_item_to t(".statistics"), main_app.admin_stats_path if current_user.is_admin? %>

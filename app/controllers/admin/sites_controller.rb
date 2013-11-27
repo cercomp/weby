@@ -36,15 +36,15 @@ class Admin::SitesController < ApplicationController
   end
 
   def edit
-    @site = Site.find_by_name(params[:id])
+    @site = Site.find(params[:id])
     load_themes
   end
 
   def update
-    @site = Site.find_by_name(params[:id])
+    @site = Site.find(params[:id])
     if @site.update_attributes(params[:site])
       flash[:success] = t"successfully_updated"
-      redirect_to edit_admin_site_path(@site)
+      redirect_to edit_admin_site_path(@site.id)
     else
       load_themes
       render :edit

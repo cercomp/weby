@@ -15,6 +15,12 @@
       <%= link_to t(".my-sites"), '#', class: 'btn pull-right switch', data: {switchtext: t('.sites')}  %>
     <% end %>
   </div>
+  <div class="span12 text-right">
+    <%= link_to t('.all'), main_app.root_path(groupings: params[:groupings] == 'all' ? nil : 'all'), class: "badge #{params[:groupings] == 'all' ? 'badge-success' : 'badge-info'}" %>
+    <% @groupings.each do |grouping| %>
+      <%= link_to grouping.name, main_app.root_path(groupings: params[:groupings] == grouping.id.to_s ? nil : grouping.id), class: "badge #{params[:groupings] == grouping.id.to_s ? 'badge-success' : 'badge-info'}" %>
+    <% end %>
+  </div>
 </div>
 <div class="row">
   <div class="span12 switch-panel buffer-top">

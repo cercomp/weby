@@ -6,7 +6,7 @@ class Admin::SettingsController < ApplicationController
   helper_method :sort_column
 
   def index
-    if request.put? #&& params[:role]
+    if request.put?
       errors = ""
       params[:settings].each do |attr|
         enabled = attr.delete :enabled

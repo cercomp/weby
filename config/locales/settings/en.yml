@@ -9,3 +9,4 @@ en:
     login_protocol: "Login page's protocol. Options: 'https' or 'https'(default)"
     domain: "Weby's default domain."
     root_site: "Main site, to be viewed in the domain's root"
+    default_groupings: 'Default groups filter on the sites listing'

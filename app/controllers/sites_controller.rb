@@ -3,7 +3,7 @@ class SitesController < ApplicationController
   
   before_filter :require_user, only: [:admin, :edit, :update]
   before_filter :check_authorization, only: [:edit, :update]
-
+  
   respond_to :html, :xml, :js
 
   helper_method :sort_column
@@ -14,16 +14,21 @@ class SitesController < ApplicationController
     params[:page] ||= 1
 
     #TODO Pesquisar também no título das notícias
-    @sites = Site.ordered_by_front_pages(params[:search]).
-    page(params[:page]).
-    per(18)
+    @sites = Site.ordered_by_front_pages(params[:search])
+    
+    @sites = @sites.includes(:groupings).where(groupings: {id: params[:groupings].split(',')}) if params[:groupings]
 
-    @nexturl = sites_path(page: params[:page].to_i+1, search: params[:search])
-    @my_sites = current_user ? current_user.sites : []
+    @sites = @sites.page(params[:page]).per(18)
 
+    @nexturl = sites_path(page: params[:page].to_i+1, search: params[:search], groupings: params[:groupings])
+    
     if request.xhr?
       render partial: 'list', layout: false
     else
+      @my_sites = current_user ? current_user.sites : []
+
+      @groupings = Grouping.all
+
       render layout: 'weby_pages'
     end
   end

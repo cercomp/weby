@@ -3,16 +3,31 @@ class Setting < ActiveRecord::Base
   validates :name, :value, presence: true
   attr_accessor :default_value
 
-  VALUES_SET = {login_protocol: %w(http https),
+  VALUES_SET = {
+    login_protocol: %w(http https),
     per_page_default: :numericality,
-    tld_length: :numericality}
+    tld_length: :numericality,
+    default_groupings: {select: Grouping.all.map{|g| [g.name, g.id] }, options: {class: 'select2', multiple: true}}
+  }
 
   validate :check_value
   def check_value
     if (pattern = VALUES_SET[name.to_sym])
       case pattern
+      when Hash
+        if pattern[:select]
+          values = pattern[:select].map{|a| a.is_a?(Array) ? a[1].to_s : a.to_s}
+          invvalue = false
+          value.split(',').each do |each_value|
+            invvalue = true unless values.include?(each_value)
+          end if value
+          errors.add(:value, :invalid_format, format_message: "#{name} = [#{pattern[:select].map{|a| a.is_a?(Array) ? a[0] : a}.join(",")}]") if invvalue
+        else
+          #TODO another kind of input
+        end
       when Array
-        errors.add(:value, :invalid_format, format_message: "#{name} = [#{pattern.join(",")}]") unless pattern.include?(value)
+        values = pattern.map{|a| a.is_a?(Array) ? a[1].to_s : a.to_s}
+        errors.add(:value, :invalid_format, format_message: "#{name} = [#{pattern.map{|a| a.is_a?(Array) ? a[0] : a}.join(",")}]") unless values.include?(value)
       when Symbol
         validator = "ActiveModel::Validations::#{pattern.to_s.classify}Validator".constantize.new(attributes: :value)
         validator.validate self
@@ -25,6 +40,7 @@ class Setting < ActiveRecord::Base
   #TODO change this to a common place for all models (if needed)
   def self.new_or_update attributes
     instance = Setting.find_by_id attributes.delete(:id)
+    attributes.each{|k,v| attributes[k] = v.join(',') if v.is_a?(Array) }
     if instance
       instance.assign_attributes attributes
     else 
