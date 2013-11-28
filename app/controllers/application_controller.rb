@@ -304,9 +304,8 @@ class ApplicationController < ActionController::Base
   end
 
   def record_activity(note, loggeable)
-    @activity = ActivityRecord.new
-    if !ActivityRecord.where(user_id: current_user.id, site_id: current_site.id, controller_name, action: action_name, loggeable: loggeable, 
-#      @activity = ActivityRecord.new
+#    if !ActivityRecord.where(user_id: current_user.id, site_id: current_site.id, controller: controller_name, action: action_name, loggeable: loggeable, 
+      @activity = ActivityRecord.new
       @activity.user_id = current_user.id
       @activity.site_id = current_site.id
       @activity.note = note
@@ -317,7 +316,7 @@ class ApplicationController < ActionController::Base
       @activity.params = params.inspect
       @activity.loggeable = loggeable
       @activity.save
-    end
+#    end
   end
 
 end
