@@ -15,8 +15,19 @@ class SitesController < ApplicationController
 
     #TODO Pesquisar também no título das notícias
     @sites = Site.ordered_by_front_pages(params[:search])
-    
-    @sites = @sites.includes(:groupings).where(groupings: {id: params[:groupings].split(',')}) if params[:groupings]
+
+    @default_groupings = Weby::Settings.default_groupings
+    if params[:groupings]
+      @sites = @sites.includes(:groupings).where(groupings: {id: params[:groupings].split(',')}) unless params[:groupings] == 'all'
+    else
+      if @default_groupings
+        if @default_groupings.match(/^!/)
+          @sites = @sites.includes(:groupings).where("(groupings.id NOT IN (?) OR groupings.id IS NULL)", @default_groupings.gsub(/^!/, '').split(','))
+        else
+          @sites = @sites.includes(:groupings).where(groupings: {id: @default_groupings.split(',')})
+        end
+      end
+    end
 
     @sites = @sites.page(params[:page]).per(18)
 

@@ -6,8 +6,8 @@ class Setting < ActiveRecord::Base
   VALUES_SET = {
     login_protocol: %w(http https),
     per_page_default: :numericality,
-    tld_length: :numericality,
-    default_groupings: {select: Grouping.all.map{|g| [g.name, g.id] }, options: {class: 'select2', multiple: true}}
+    tld_length: :numericality
+    #,default_groupings: {select: Grouping.all.map{|g| [g.name, g.id] }, options: {class: 'select2', multiple: true}}
   }
 
   validate :check_value

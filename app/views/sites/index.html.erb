@@ -15,10 +15,16 @@
       <%= link_to t(".my-sites"), '#', class: 'btn pull-right switch', data: {switchtext: t('.sites')}  %>
     <% end %>
   </div>
-  <div class="span12 text-right">
-    <%= link_to t('.all'), main_app.root_path(groupings: params[:groupings] == 'all' ? nil : 'all'), class: "badge #{params[:groupings] == 'all' ? 'badge-success' : 'badge-info'}" %>
+  <div class="span12">
+    <%= link_to main_app.root_path(groupings: params[:groupings] == 'all' ? nil : 'all'), class: "label #{params[:groupings] == 'all' ? 'label-info' : ''}" do %>
+      <span><%= t('.all') %></span>
+      <%= content_tag :span, 'X', class: 'label label-info' if params[:groupings] == 'all' %>
+    <% end if @default_groupings %>
     <% @groupings.each do |grouping| %>
-      <%= link_to grouping.name, main_app.root_path(groupings: params[:groupings] == grouping.id.to_s ? nil : grouping.id), class: "badge #{params[:groupings] == grouping.id.to_s ? 'badge-success' : 'badge-info'}" %>
+      <%= link_to main_app.root_path(groupings: params[:groupings] == grouping.id.to_s ? nil : grouping.id.to_s), class: "label #{params[:groupings] == grouping.id.to_s ? 'label-info' : ''}" do %>
+        <span><%= grouping.name %></span>
+        <%= content_tag :span, 'X', class: 'label label-info' if params[:groupings] == grouping.id.to_s %>
+      <% end %>
     <% end %>
   </div>
 </div>
