@@ -3,7 +3,7 @@ pt-BR:
     roles:
       index:
         roles_permissions:    " Permissões e Pápeis "
-        create_role:          " Criar Papel "
+        create_role:          " Novo Papel "
         list_permissions:     " Listar Permissões "
         admins:               " Admins "
         banners:              " Banners "

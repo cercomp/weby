@@ -4,6 +4,6 @@ pt-BR:
       index:
         name:            " Nome "
         sites:           " Sites "
-        create_grouping: " Criar Grupo de sites "
+        create_grouping: " Novo Grupo de sites "
         none_grouping:   " Nenhum Grupo de sites encontrado "
       

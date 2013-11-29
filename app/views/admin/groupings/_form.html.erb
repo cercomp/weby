@@ -2,7 +2,7 @@
   <%= f.show_errors %>
 
   <%= f.input :name  %>
-  <%= f.association :sites, input_html: {class: 'select2 site-groupings'} %>
+  <%= f.association :sites, labelmethod: :title, input_html: {class: 'select2 site-groupings'} %>
 
   <div class="form-actions">
     <%= f.button :submit, class: 'btn-primary', disable_with: t("please_wait") %>

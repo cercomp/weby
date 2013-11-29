@@ -53,3 +53,4 @@ en:
         confirm_unrole:     " Are you sure you wish to remove all roles from you own user? "
       manage_roles:
         users:              " Users "
+        roles_permissions:  " Roles and Permissions "

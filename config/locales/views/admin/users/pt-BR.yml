@@ -53,3 +53,4 @@ pt-BR:
         confirm_unrole:     " Tem certeza de que deseja remover todos os papéis de seu próprio usuário? "
       manage_roles:
         users:              " Usuários "
+        roles_permissions:  " Permissões e Papéis "

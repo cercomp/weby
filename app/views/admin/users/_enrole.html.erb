@@ -50,7 +50,6 @@
       </tr>
     </tbody>
   </table>
-
   <div class="form-actions">
     <%= button_tag t("save"), class: 'btn btn-primary', disable_with: t("please_wait") %>
     <%= link_to t("back"), :back, class: "btn" %>
@@ -61,25 +60,20 @@
 <%= content_for :javascripts do %>
   <%= javascript_tag do %>
     $(document).ready(function(){
-    var filter_user = function(input) {
-    var pattern = new RegExp(".*" + input + ".*", "gi");
-    $('#users_list_roles li').each(function(index, element){
-    if( $(element).text().match(pattern) ){
-    $(element).show();
-    } else {
-    $(element).hide();
-    }
-    });
-    }
-
-    $('#users_unroled').live('keyup',function(){
-    filter_user($(this).val());
-    });
+      var list = $('#users_list_roles');
+      $('#users_unroled').keypress(function(ev){
+        if(ev.keyCode == 13){
+          filter_user($(this).val(), list);
+          ev.stopPropagation();
+          ev.preventDefault();
+          return false;
+        }
+      });
 
     <% unless @user.blank? or not @users_unroled.include?(@user) %>
       var name = '<%= @user.first_name %>';
       $('#users_unroled').val(name);
-      filter_user(name);
+      filter_user(name, list);
     <% end %>
     });
   <% end %>

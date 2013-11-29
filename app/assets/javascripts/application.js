@@ -39,6 +39,23 @@ function addToSelect(selectId, text){
    $(option).attr('selected', true);
 }
 
+/*input: texto pesquisado
+ *list: lista a ser filtrada <menu> ou <ul> */
+function filter_user(input, list){
+    var pattern = new RegExp(".*"+input+".*", "gi"),
+        $list = $(list);
+    $list.find('.no-elements-filter-user').remove();
+    $list.find('li').each(function(idx, element){
+      if( $(element).text().match(pattern) )
+        $(element).show();
+      else
+        $(element).hide();
+    });
+    if($list.find('li:visible').length == 0){
+      $list.append('<li class="no-elements-filter-user alert">Nenhum usu&aacute;rio encontrado. ('+input+')</li>')
+    }
+}
+
 $(document).ready(function() {
    // Ajax indicator
    $('body').append($('<div class="modal hide" data-backdrop="false" style="width: 150px; margin: -30px 0 0 -75px; z-index: 1060;" id="loading-modal"><div class="modal-body"><img src="/assets/loading-bar.gif"/></div></div>'));

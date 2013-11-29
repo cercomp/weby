@@ -1,8 +1,8 @@
 class Site < ActiveRecord::Base
   before_save :clear_per_page
 
-  def to_param
-    "#{name}"
+  def to_label
+    "#{name}#{".#{main_site.name}" if main_site} (#{title})"
   end
 
   scope :name_or_description_like, lambda { |text|
