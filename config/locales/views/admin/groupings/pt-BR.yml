@@ -1,0 +1,9 @@
+pt-BR:
+  admin:
+    groupings:
+      index:
+        name:            " Nome "
+        sites:           " Sites "
+        create_grouping: " Criar Grupo de sites "
+        none_grouping:   " Nenhum Grupo de sites encontrado "
+      

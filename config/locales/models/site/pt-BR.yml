@@ -10,6 +10,7 @@ pt-BR:
         url:               " URL "
         domain:            " Domínio "
         description:       " Descrição "
+        groupings:         " Grupos "
         top_banner_id:     " Topo do site "
         top_banner_width:  " Largura do topo do site "
         top_banner_height: " Altura do topo do site "

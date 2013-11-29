@@ -16,6 +16,7 @@ pt-BR:
         extensions:        " Extensões "
         roles_permissions: " Permissões e Papéis "
         groups:            " Grupos "
+        groupings:         " Grupos de sites "
         messages:          " Mensagens "
         sites:             " Sites "
         permissions:       " Permissões "

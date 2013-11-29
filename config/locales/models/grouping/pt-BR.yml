@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      grouping:     " Grupo de sites "
+    attributes:
+      grouping:
+        name:       " Nome "
+        created_at: " Criado em "
+        updated_at: " Atualizado em "
+        sites:      " Sites "

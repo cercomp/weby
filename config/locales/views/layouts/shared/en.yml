@@ -16,6 +16,7 @@ en:
         extensions:        " Extensions "
         roles_permissions: " Roles and Permissions "
         groups:            " Groups "
+        groupings:         " Groups of sites "
         messages:          " Messages "
         sites:             " Sites "
         permissions:       " Permissions "

@@ -10,6 +10,7 @@ en:
         url:               " URL "
         domain:            " Domain "
         description:       " Description "
+        groupings:         " Groups "
         top_banner_id:     " Top banner "
         top_banner_width:  " Top banner width "
         top_banner_height: " Top banner height "

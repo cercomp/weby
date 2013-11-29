@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      grouping:     " Group of sites "
+    attributes:
+      grouping:
+        name:       " Name "
+        created_at: " Created at "
+        updated_at: " Updated at "
+        sites:      " Sites "
