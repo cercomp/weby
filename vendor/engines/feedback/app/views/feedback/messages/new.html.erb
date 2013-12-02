@@ -10,6 +10,8 @@
       checked: params_groups %>
   <% end %>
 
+  <% params.merge! params[:message] if params[:message].is_a? Hash %>
+  
   <%= f.input :name, input_html: { value: params['name'] }  %>
   <%= f.input :email, input_html: { value: params['email'] }%>
   <%= f.input :subject, input_html: { value: params['subject'] } %>
