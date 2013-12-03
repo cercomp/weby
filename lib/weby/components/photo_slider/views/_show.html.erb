@@ -10,7 +10,7 @@
 
       <% include_component_javascript :javascripts, 'photo_slider' %>
       <div class="flex-container">
-        <div id="slider"  class="flexslider" data-slideshowspeed="<%= speed %>" data-controls="<%= component.show_controls? %>">
+        <div id="slider" class="flexslider" data-slideshowspeed="<%= speed %>" data-controls="<%= component.show_controls? %>">
           <ul class="slides">
             <% imagens.each do |image| %>
               <%=content_tag :li do  %>

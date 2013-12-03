@@ -21,7 +21,7 @@ class Sites::Admin::BannersController < ApplicationController
 
   def new
     @banner = Banner.new
-    @banner.new_tab = true
+    #@banner.new_tab = true
   end
 
   def edit

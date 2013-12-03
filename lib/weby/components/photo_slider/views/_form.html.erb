@@ -17,7 +17,7 @@
 <%= f.input :style, :include_blank => false, :priority => [ ["FlexSlider",1] ], :collection => [ ["FlexSlider",1], ["LightBox",2]] %>
 <%= f.input :width %>
 <%= f.input :height %>
-<%= f.input :timer, hint: t(".timer_hint") %> 
+<%= f.input :timer, as: :integer, hint: t(".timer_hint") %>
 <%= f.input :description, as: :boolean %>
 <%= f.input :show_controls, as: :boolean, hint: t(".control_hint") %>
 

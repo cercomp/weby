@@ -1,3 +1,4 @@
+<% include_component_javascript :javascripts, 'banner_list' %>
 <%= f.input :category,
   collection: current_site.banners.category_counts.map{|b| b.name},
   priority: component.category,
@@ -11,4 +12,9 @@
   priority: component.orientation,
   include_blank: false
 %>
+<div class="slider-form">
+  <%= f.input :timer, as: :integer, hint: t(".timer_hint") %>
+  <%= f.input :description, as: :boolean %>
+  <%= f.input :show_controls, as: :boolean, hint: t(".control_hint") %>
+</div>
 

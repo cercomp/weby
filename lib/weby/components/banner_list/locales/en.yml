@@ -3,14 +3,24 @@ en:
     banner_list:
       name:                  " Banners List "
       category:              " Category "
-      orientation:           " Orientation "
+      orientation:           " Type "
+      timer:                 " Transition time "
+      description:           " Show description? "
+      show_controls:         " Show controls? "
   activerecord:
     attributes:
       banner_list_component:
         category:            " Category "
-        orientation:         " Orientation "
+        orientation:         " Type "
+        timer:               " Transition time "
+        description:         " Show description? "
+        show_controls:       " Show controls? "
   banner_list:
     views:
       form:
-        horizontal:          " Horizontal "
-        vertical:            " Vertical "
+        horizontal:          " Horizontal List "
+        vertical:            " Vertical List "
+        slider:              " Slider "
+        timer_hint:          " In seconds "
+        control_hint:        " If this is checked, links for the next or previous photo will be visible under the slider "
+
