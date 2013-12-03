@@ -15,7 +15,7 @@ class Admin::SettingsController < ApplicationController
         errors << setting.errors.full_messages.join(',')
       end
       errors.present? ? flash[:error] = errors : flash[:success] = t("successfully_updated")
-      Weby::Settings.load_settings
+      Weby::Settings.clear
     end
 
     @settings = Weby::Settings.all

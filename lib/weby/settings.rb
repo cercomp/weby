@@ -6,18 +6,19 @@ module Weby
     @@default_settings.each do |key, value|
       class_eval <<-METHOD
         def self.#{key}(value_only=true)
-          @@settings ||= Setting.all
-          sett = @@settings.select{|setting| setting.name == "#{key}" }.first || Setting.new({name: '#{key}', value: @@default_settings['#{key}']['value']})
+          @settings ||= Setting.all
+          sett = @settings.select{|setting| setting.name == "#{key}" }.first || Setting.new({name: '#{key}', value: @@default_settings['#{key}']['value']})
           sett.default_value = @@default_settings['#{key}']['value']
           value_only ? sett.value : sett
         end
       METHOD
     end
 
-    #As configurações ficam em memória quando sobe o server,
-    #chame essa função caso alguma configuração seja alterada
-    def self.load_settings
-      @@settings = Setting.all
+    #As configurações ficam em memória, na variavel @settings
+    #ao final da requisição chame a função clear para que na próxima chamada
+    # a alguma configuração ela, seja recarregada
+    def self.clear
+      @settings = nil
     end
 
     def self.all

@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   #include UrlHelper #Para utilizar url_helper que trata o subdomínio para Sites
   protect_from_forgery
   before_filter :set_contrast, :set_locale, :set_global_vars, :set_view_types
-  after_filter :clear_weby_cache, :count_view
+  after_filter :weby_clear, :count_view
   before_filter :require_user, only: [:admin]
 
   helper :all
@@ -322,8 +322,9 @@ class ApplicationController < ActionController::Base
     Weby::Components.is_enabled? comp_name
   end
 
-  def clear_weby_cache
+  def weby_clear
     Weby::Cache.request.clear
+    Weby::Settings.clear
   end
 
   # Metodo usado na ordenação de tabelas por alguma coluna
