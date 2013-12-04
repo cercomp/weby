@@ -11,7 +11,7 @@
       <% @activity.each do |record| %>
         <tr>
           <td><%= l(record.created_at, :format => :short) %></td>
-          <td><%= record.user %> <%= t(record.note) %></td>
+          <td><%= record.user %> <%= t(".#{record.note}") %></td>
           <td>
             <% if record.controller == "menu_items" %>
               <%= link_to(icon("eye-open", :text => t(".show")), 

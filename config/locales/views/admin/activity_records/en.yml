@@ -1,0 +1,65 @@
+en:
+  admin:
+    activity_records:
+      index:
+        show:                       " Show "
+        details:                    " Details "
+        destroy:                    " Destroy "
+#--- Admin/Rights ---#
+        created_global_right:       " created a global right "
+        updated_global_right:       " updated a global right "
+        destroyed_global_right:     " destroyed a global right "
+#--- Admin/Roles ---#
+        created_global_role:        " created a global role "
+        updated_global_role:        " updated a global role "
+        destroyed_global_role:      " destroyed a global role "
+#--- Admin/Sites ---#
+        created_site:               " created a site "
+        updated_site:               " updated a site "
+#--- Admin/Users ---#
+        created_user:               " registered a user "
+        updated_user:               " updated user "
+        destroyed_user:             " destroyed user "
+#--- Sites/Admin/Menus/MenuItem ---#
+        created_menu_item:          " created a menu item "
+        updated_menu_item:          " updated a menu item "
+        destroyed_menu_item:        " destroyed a menu item "
+#--- Sites/Admin/Banners ---#
+        created_banner:             " created banner "
+        updated_banner:             " updated a banner "
+        destroyed_banner:           " destroyed a banner "
+#--- Sites/Admin/Components ---#
+        created_component:          " created component "
+        updated_component:          " updated component "
+        destroyed_component:        " destroyed component "
+#--- Sites/Admin/Menus ---#
+        created_menu:               " created menu "
+        updated_menu:               " updated menu "
+        destroyed_menu:             " destroyed menu "
+#--- Sites/Admin/Pages ---#
+        created_page:               " created page "
+        updated_page:               " updated page "
+        destroyed_page:             " destroyed page "
+#--- Sites/Admin/Repositories ---#
+        uploaded_file:              " uploaded file "
+        updated_file:               " updated file "
+        destroyed_file:             " destroyed file "
+#--- Sites/Admin/Roles ---#
+        created_role:               " created role "
+        updated_role:               " updated role "
+        destroyed_role:             " destroyed role "
+#--- Sites/Admin/Style ---#
+        created_style:              " created style "
+        updated_style:              " updated style "
+        destroyed_style:            " destroyed style "
+      show:
+        id:                 " ID "
+        user:               " User "
+        site:               " Website "
+        browser:            " Browser "
+        ip:                 " IP "
+        controller:         " Controller "
+        action:             " Action "
+        params:             " Params "
+        created_at:         " Created At "
+

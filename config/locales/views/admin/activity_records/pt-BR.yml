@@ -1,0 +1,65 @@
+pt-BR:
+  admin:
+    activity_records:
+      list:
+        show:                       " Mostrar "
+        details:                    " Detalhes "
+        destroy:                    " Excluir "
+#--- Admin/Rights ---#
+        created_global_right:       " criou uma permissão global "
+        updated_global_right:       " atualizou uma permissão global "
+        destroyed_global_right:     " excluiu uma permissão global "
+#--- Admin/Roles ---#
+        created_global_role:        " criou um papel global "
+        updated_global_role:        " atualizou um papel global "
+        destroyed_global_role:      " excluiu um papel global "
+#--- Admin/Sites ---#
+        created_site:               " criou um site "
+        updated_site:               " atualizou um site "
+#--- Admin/Users ---#
+        created_user:               " registrou um usuário "
+        updated_user:               " atualizou um usuário "
+        destroyed_user:             " excluiu um usuário "
+#--- Sites/Admin/Menus/MenuItem ---#
+        created_menu_item:          " criou um item de menu "
+        updated_menu_item:          " atualizou um item de menu "
+        destroyed_menu_item:        " excluiu um item de menu "
+#--- Sites/Admin/Banners ---#
+        created_banner:             " criou um banner "
+        updated_banner:             " atualizou um banner "
+        destroyed_banner:           " excluiu um banner "
+#--- Sites/Admin/Components ---#
+        created_component:          " criou um componente "
+        updated_component:          " atualizou um componente "
+        destroyed_component:        " excluiu um componente "
+#--- Sites/Admin/Menus ---#
+        created_menu:               " criou um menu "
+        updated_menu:               " atualizou um menu "
+        destroyed_menu:             " excluiu um menu "
+#--- Sites/Admin/Pages ---#
+        created_page:               " criou uma página "
+        updated_page:               " atualizou uma página "
+        destroyed_page:             " excluiu uma página "
+#--- Sites/Admin/Repositories ---#
+        uploaded_file:              " enviou um arquivo "
+        updated_file:               " atualizou um arquivo "
+        destroyed_file:             " excluiu um arquivo "
+#--- Sites/Admin/Roles ---#
+        created_role:               " criou um papel "
+        updated_role:               " atualizou um papel "
+        destroyed_role:             " excluiu um papel "
+#--- Sites/Admin/Style ---#
+        created_style:              " criou um estilo "
+        updated_style:              " atualizou um estilo "
+        destroyed_style:            " excluiu um estilo "
+      show:
+        id:                         " ID "
+        user:                       " Usuário "
+        site:                       " Site "
+        browser:                    " Navegador "
+        ip:                         " IP "
+        controller:                 " Controller "
+        action:                     " Action "
+        params:                     " Parâmetros "
+        created_at:                 " Criado em "
+
