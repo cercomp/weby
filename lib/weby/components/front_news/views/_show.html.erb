@@ -12,7 +12,7 @@
 
 <% @front_news = component.pages(current_site , params["front_news#{component.id}".to_sym]) %>
 
-<section class="front_news_component">
+<section class="front_news_component" data-url="<%= main_app.sort_site_pages_path() %>">
   <section id="pages">
     <% @front_news.try(:each) do |page| %>
       <li id="sort_page_<%= "#{page.id}" %>" style="list-style-type:none;">
@@ -56,38 +56,8 @@
     <% end %>
     <div class="clear clearfix"> </div>
   </section>
-  <%= paginate @front_news, param_name: "front_news#{component.id}", page_links: true %>
-
-  <%= javascript_tag do %>
-    window.onload = function(){
-    $(document).ready(function() {
-    $('section#pages').sortable({
-      axis: 'y',
-      dropOnEmpty:false,
-      handle: '.handle',
-      items: 'li',
-      opacity: 0.7, scroll: true,
-      forcePlaceholderSize: true,
-      placeholder: 'drop-here',
-      update: function(ev, ui){
-        id_moved = ui.item.attr('id').replace('sort_page_','');
-        id_after = ui.item.next().attr('id') ? ui.item.next().attr('id').replace('sort_page_','') : 0;
-        id_before = ui.item.prev().attr('id') ? ui.item.prev().attr('id').replace('sort_page_','') : 0;
-        //alert(id_moved+' between '+id_before+' and '+id_after);
-        $.ajax({
-          type: 'post',
-          data: {'id_moved':id_moved,'id_after':id_after,'id_before':id_before},
-          dataType: 'script',
-          complete: function(request){ ui.item.effect('pulsate', {times: 1}, 350); },
-          error: function(){$('section#pages').sortable('cancel');},
-          url: '<%= main_app.sort_site_pages_path() %>'
-        });
-      }
-    });
-    });
-    }
-  <% end %>
+  <%= paginate @front_news, param_name: "front_news#{component.id}", remote: true, comp_url: main_app.site_component_path(component.id), page_links: true %>
 </section>
-
+<% include_component_javascript :javascripts, 'front_news' %>
 <%= content_for :stylesheets, stylesheet_link_tag("sortable") %>
 <%= content_for :javascripts, javascript_include_tag("jquery-ui.min") %>

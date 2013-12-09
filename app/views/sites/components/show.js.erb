@@ -1,1 +1,8 @@
-$('.<%= @component.name%>_component#component_<%=@component.id%>').html($("<%= escape_javascript(render_component(@component, 'show.html')) %>").html());
+var comp_content = $("<%= escape_javascript(render_component(@component, 'show.html')) %>");
+comp_content.each(function(){
+  if($(this).hasClass('<%= @component.name%>_component')){
+    $('.<%= @component.name%>_component#component_<%=@component.id%>').replaceWith($(this));
+    $('.<%= @component.name%>_component#component_<%=@component.id%>').trigger('componentReload');
+    return false;
+  }
+});
