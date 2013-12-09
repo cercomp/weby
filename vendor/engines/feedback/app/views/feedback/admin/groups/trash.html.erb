@@ -1,0 +1,64 @@
+<div class="pull-right">
+  <% if check_permission(Feedback::Admin::GroupsController, [:new]) %>
+    <%= link_to t(".new_group"),
+      new_admin_group_path,
+      class: "btn btn-success" %>
+  <% end %>
+  <% if check_permission(Feedback::Admin::MessagesController, [:index]) %>
+    <%= link_to  t(".messages"),
+      admin_messages_path,
+      class: "btn" %>
+  <% end %>
+  <% if check_permission(Feedback::Admin::GroupsController, [:index]) %>
+    <%= link_to t(".groups"),
+    admin_groups_path,
+    class: "btn" %>                                                   
+  <% end %>
+  <%= link_to t(:recycle_bin),
+      admin_groups_path(deleted: true),
+      class: "btn btn-inverse" %>
+</div>
+<div class="clearfix control-group"></div>
+
+<div id="list">
+  <% if @groups.empty?  %>                                                   
+      <div class="alert">                                                      
+      <%=t(".none_group")%>                                                  
+    </div>                                                                   
+  <% else %>                                                                 
+        <div class="pull-left"> <%= info_page @groups %> </div>                  
+      <div class="pull-right"> <%= paginate @groups, remote: true %> </div>    
+      <div class="clearfix"></div>                                             
+                                                                               
+                                                                                 
+          <table class='table table-striped'>                                    
+            <thead>                                                              
+              <th><%= sortable 'name', t(".name") %></th>                        
+              <th></th>                                                          
+            </thead>                                                             
+            <tbody>                                                              
+            <% @groups.each do |group| %>                                        
+                <tr>                                                               
+                <td><%= link_to group.name, admin_group_path(group) %></td>      
+                <td>                                                             
+                  <% if check_permission(Feedback::Admin::GroupsController, [:destroy]) %>
+                    <%= link_to icon('fire', text: t("destroy")), admin_group_path(group), :data => {:confirm => t("are_you_sure")}, :method => :delete %>
+                  <% end %>                                                                                                                                      
+                  <% if check_permission(Feedback::Admin::GroupsController, [:recover]) %>                                                                          
+                   <%= link_to icon('refresh', text: t("recover")), recover_admin_group_path(group)  %>                                                  
+                  <% end %>
+                </td>                                                            
+              </tr>                                                              
+            <% end %>                                                            
+            </tbody>                                                             
+          </table>                                                               
+        <div class="pull-left"> <%= per_page_links @groups, true, :mini %> </div>
+        <div class="pull-right"> <%= paginate @groups, remote: true %> </div>    
+        <div class="clearfix"></div>                                             
+                                                                                 
+          <div class="help-block">                                                 
+            <%=t(".group_explain")%>                                               
+          </div>                                                                   
+        <% end %>                                                                  
+
+</div>

@@ -41,3 +41,16 @@ pt-BR:
           period_banner:            " Período do Banner "
         new:
           banners:                  " Banners "
+        trash:
+          new_banner:               " Novo Banner "  
+          banners:                  " Banners "      
+          none_banner:              " Lixeira vazia "
+          image:                    " Imagem "           
+          category:                 " Categoria "        
+          position:                 " Posição "          
+          publication_date:         " Data inicial "     
+          publish:                  " Publicado "        
+          register_date:            " Criado em "        
+          title:                    " Título "           
+          none_category:            " Nenhuma categoria "
+

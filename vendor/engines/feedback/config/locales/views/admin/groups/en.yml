@@ -23,3 +23,12 @@ en:
           name:                   " Name "
           groups:                 " Groups "
           list_all:               " List all "
+        trash:
+          name:                   " Name "                                 
+          description:            " Description "                          
+          none_group:             " Empty recycle bin "                             
+          group_explain:          " E-mail groups, recipients of messages "
+          groups:                 " Groups "   
+          new_group:              " New Group "
+          messages:               " Messages " 
+

@@ -1,0 +1,45 @@
+<% with_permission action: :new do %>
+  <div class="pull-right">
+    <%= link_to t(".new_menu"),
+      new_site_admin_menu_path,
+      class: "btn btn-success" %>
+    <%= link_to t(:recycle_bin),
+        site_admin_menus_path(deleted: true),
+        class: "btn btn-inverse" %>
+  </div>
+  <div class="clearfix control-group"></div>
+<% end %>
+
+<% if @menus.empty? %>
+  <div class="alert">
+    <%= t(".none_menu") %>
+  </div>
+<% else %>
+  
+  <div class="tabbable">
+    <ul class="nav nav-tabs" id="tabs">
+      <% @menus.each do |menu| %>
+        <% active = (menu==@menu ? "active" : "") %>
+        <li class="<%= active %>"><%= link_to(menu.name.try(:titleize), menu==@menu ? '#' : site_admin_menus_path(deleted: true, menu: menu.id), :rel => menu.id) %></li>
+      <% end %>
+    </ul>
+
+    <div class='tab-content'>
+      <% if @menu %>
+        <div id="main-menu">
+          <% if @menu.items_by_parent.empty? %>
+            <div class="alert">
+              <%= t(".none_menu_item") %>
+            </div>
+          <% else %>
+           <%= raw print_menu(@menu, true) %>
+          <% end %>
+        </div>
+        <div class="form-actions">
+          <%= link_to icon('fire', text: t("destroy")), site_admin_menu_path(@menu), :data => {:confirm => t("are_you_sure")}, :method => :delete %>
+          <%= link_to icon('refresh', text: t("recover")), recover_site_admin_menu_path(@menu)  %>                                                             
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end  %>

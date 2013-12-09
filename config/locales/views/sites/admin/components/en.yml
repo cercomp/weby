@@ -27,3 +27,14 @@ en:
           leftout_components: " Components that are out of the layout "
         new:
           components:         " Components "
+        trash:
+          components:         " Componentes "                           
+          new_component:      " New Widget "                            
+          component:          " Component "                             
+          alias:              " Name "                                  
+          category:           " Category "                              
+          active:             " Active? "                               
+          empty_placeholder:  " No widgets in this place "              
+          content:            " Content "                               
+          leftout_components: " Components that are out of the layout " 
+

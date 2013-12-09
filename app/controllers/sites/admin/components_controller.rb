@@ -4,8 +4,9 @@ class Sites::Admin::ComponentsController < ApplicationController
   before_filter :check_authorization
 
   def index
-    @components = @site.components.order('position asc')
+    @components = params[:deleted] == 'true' ? Component.unscoped.where(deleted: true, site_id: current_site.id).order('position asc') : current_site.components.order('position asc')
     @placeholders = Weby::Themes.layout(current_site.theme)['placeholders']
+    render "trash" if params[:deleted] == 'true'
   end
 
   def show
@@ -58,24 +59,25 @@ class Sites::Admin::ComponentsController < ApplicationController
   end
 
   def destroy
-    @component = Component.find(params[:id])
+    @component = Component.unscoped.find(params[:id])
     @component.destroy
 
-    redirect_to site_admin_components_path, flash: {success: t("successfully_removed", param: t("component"))}
+    redirect_to :back, flash: {success: t("successfully_removed", param: t("component"))}
   end
 
   def remove
     @component = Component.find(params[:id])
     @component.update_attributes(deleted: true)
+    @component.update_attributes(publish: false) 
 
-    redirect_to site_admin_components_path
+    redirect_to site_admin_components_path()
   end
 
   def recover
-    @component = Component.find(params[:id])
+    @component = Component.unscoped.find(params[:id])
     @component.update_attributes(deleted: false)
 
-    redirect_to site_admin_components_path
+    redirect_to site_admin_components_path(deleted: true)
   end
 
   def sort

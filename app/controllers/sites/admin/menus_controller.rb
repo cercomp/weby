@@ -4,8 +4,14 @@ class Sites::Admin::MenusController < ApplicationController
 
   respond_to :html, :xml, :js
   def index
-    @menus = current_site.menus
-    @menu = params[:menu] ? @menus.select{|menu| menu.id == params[:menu].to_i}[0] : @menus.first
+    if params[:deleted] == 'true'
+      @menus = Menu.unscoped.where(deleted: true, site_id: current_site.id)
+      @menu = params[:menu] ? @menus.select{|menu| menu.id == params[:menu].to_i}[0] : @menus.first
+      render "trash"
+    else
+      @menus = current_site.menus
+      @menu = params[:menu] ? @menus.select{|menu| menu.id == params[:menu].to_i}[0] : @menus.first
+    end
   end
 
   def show
@@ -41,24 +47,26 @@ class Sites::Admin::MenusController < ApplicationController
   end
 
   def destroy
-    @menu = current_site.menus.find(params[:id])
+    @menu = current_site.menus.unscoped.find(params[:id])
     @menu.destroy
     flash[:success] = t("successfully_deleted")
-    redirect_to site_admin_menus_path
+    redirect_to :back
   end
 
   def remove
     @menu = current_site.menus.find(params[:id])
     @menu.update_attribute(:deleted, true)
+    MenuItem.update_all('deleted = true', menu_id: @menu.id)
 
-    redirect_to site_admin_menus_path
+    redirect_to :back
   end
 
   def recover
-    @menu = current_site.menus.find(params[:id])
+    @menu = current_site.menus.unscoped.find(params[:id])
     @menu.update_attribute(:deleted, false)
+    MenuItem.update_all('deleted = false', menu_id: @menu.id)
 
-    redirect_to site_admin_menus_path
+    redirect_to :back
   end
 
 end

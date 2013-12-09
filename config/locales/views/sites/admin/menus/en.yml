@@ -18,3 +18,12 @@ en:
           none_menu_item: " No menu item "
         new:
           menus:          " Menus "
+        trash:
+          menus:          " Menus "        
+          menu:           " Menu "         
+          none_menu:      " Empty recycle bin "    
+          new_menu:       " New Menu "     
+          new_menu_item:  " New Menu Item "
+          edit_menu:      " Edit "         
+          destroy:        " Destroy "      
+          are_you_sure:   " Are you sure " 

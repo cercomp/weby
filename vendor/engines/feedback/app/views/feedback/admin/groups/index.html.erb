@@ -4,11 +4,14 @@
       new_admin_group_path,
       class: "btn btn-success" %>
   <% end %>
-  <% if check_permission(Feedback::Admin::MessagesController, [:index]) %>
+  <% if check_permission(Feedback::Admin::GroupsController, [:index]) %>
     <%= link_to  t(".messages"),
       admin_messages_path,
       class: "btn" %>
   <% end %>
+  <%= link_to t(:recycle_bin),
+      admin_groups_path(deleted: true),
+      class: "btn btn-inverse" %>
 </div>
 <div class="clearfix control-group"></div>
 

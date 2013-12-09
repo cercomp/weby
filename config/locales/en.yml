@@ -94,6 +94,7 @@ en:
 #---R---#
   required:                             " Required "
   recover:                              " Recover "
+  recycle_bin:                          " Recycle Bin "
   remove:                               " Remove "
 #---S---#
   save:                                 " Save "

@@ -15,7 +15,11 @@ class Menu < ActiveRecord::Base
   #Returns a hash, with the parent_id and a array as the value
   # ie. {0 => [menuitem1, menuitem2}, 1 => [menuitem3,menuitem4] }
   def items_by_parent
-    self.menu_items.group_by(&:parent_id)
+    if self.deleted
+      MenuItem.unscoped.where(menu_id: self.id).group_by(&:parent_id)
+    else
+      self.menu_items.group_by(&:parent_id)
+    end
   end
 
   default_scope lambda { where(deleted: false) }

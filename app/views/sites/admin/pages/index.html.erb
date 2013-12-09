@@ -15,6 +15,9 @@
   <% with_permission(action: :fronts) do %>
     <%= link_to t(".covers"), fronts_site_admin_pages_path, class: "btn" %>
   <% end %>
+  <%= link_to t(:recycle_bin),            
+    site_admin_pages_path(deleted: true),
+    class: "btn btn-inverse" %>           
 </div>
 <div class="clearfix"></div>
 

@@ -7,8 +7,12 @@ module Feedback::Admin
     helper_method :sort_column
 
     def index
-      @groups = Feedback::Group.where(site_id: current_site.id).order(sort_column + ' ' + sort_direction).
+      @groups = params[:deleted]  == 'true' ? Feedback::Group.unscoped.where(deleted: true, site_id: current_site.id).
+        order(sort_column + ' ' + sort_direction).page(params[:page]).
+        per(params[:per_page]) : Feedback::Group.where(site_id: current_site.id).order(sort_column + ' ' + sort_direction).
         page(params[:page]).per(params[:per_page])
+        
+      render "trash" if params[:deleted]  == 'true'
     end
 
     def show
@@ -47,24 +51,24 @@ module Feedback::Admin
     end
 
     def destroy
-      @group = Feedback::Group.find(params[:id])
+      @group = Feedback::Group.unscoped.find(params[:id])
       @group.destroy
 
-      redirect_to(admin_groups_url)
+      redirect_to :back
     end
 
     def remove                                 
-      @group = Feedback::Group.find(params[:id])
+      @group = Feedback::Group.unscoped.find(params[:id])
       @group.update_attributes(deleted: true)
                                                      
-      redirect_to(admin_groups_url)
+      redirect_to :back
     end                                        
                                                
     def recover                                
-      @group = Feedback::Group.find(params[:id])
+        @group = Feedback::Group.unscoped.find(params[:id])
       @group.update_attributes(deleted: false)
                                                      
-      redirect_to(admin_groups_url)
+      redirect_to :back
     end
 
     private

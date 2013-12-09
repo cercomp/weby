@@ -38,4 +38,16 @@ en:
           styles:           " Styles "
           style:            " Style "
           list_all:         " List all "
+        trash: 
+        other_styles:     " Other Styles " 
+        follow_styles:    " Follow Styles "
+        own_styles:       " Own Styles "   
+        new_style:        " New Style "    
+        styles:           " Styles "       
+        actions:          " Actions "            
+        own_styles:       " Own Styles "         
+        name:             " Name "               
+        no_own_styles:    " Not have own styles "
+        sites_followers:  " Sites followers "    
+
 

@@ -5,8 +5,6 @@ class AddDeleted < ActiveRecord::Migration
     add_column :repositories, :deleted, :boolean, default: false
     add_column :pages, :deleted, :boolean, default: false
     add_column :menus, :deleted, :boolean, default: false
-    add_column :menu_item_i18ns, :deleted, :boolean, default: false
-    add_column :menu_items, :deleted, :boolean, default: false
     add_column :site_components, :deleted, :boolean, default: false
     add_column :banners, :deleted, :boolean, default: false
     add_column :feedback_groups, :deleted, :boolean, default: false

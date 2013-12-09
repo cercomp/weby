@@ -9,10 +9,14 @@ class Sites::Admin::BannersController < ApplicationController
   respond_to :html, :xml, :js
 
   def index
-    @banners = @site.banners.
+    @banners = params[:deleted] == 'true' ? Banner.unscoped.where(deleted: true, site_id: current_site.id).
+      order(sort_column + " " + sort_direction).
+      page(params[:page]).per(params[:per_page]) : @site.banners.
       order(sort_column + " " + sort_direction).
       titles_or_texts_like(params[:search]).
       page(params[:page]).per(params[:per_page])
+
+      render "trash" if params[:deleted] == 'true'
   end
 
   def show
@@ -50,25 +54,26 @@ class Sites::Admin::BannersController < ApplicationController
   end
 
   def destroy
-    @banner = Banner.find(params[:id])
+    @banner = Banner.unscoped.find(params[:id])
     @banner.destroy
 
     # TODO mensagem de banner removido com sucesso
-    redirect_to(site_admin_banners_path())
+    redirect_to :back
   end
 
   def remove
-    @banner = Banner.find(params[:id])
+    @banner = Banner.unscoped.find(params[:id])
     @banner.update_attributes(deleted: true)
+    @banner.update_attributes(publish: false)
 
-    redirect_to site_admin_banners_path()
+    redirect_to site_admin_banners_path(deleted: true)
   end
 
   def recover
-    @banner = Banner.find(params[:id])
+    @banner = Banner.unscoped.find(params[:id])
     @banner.update_attributes(deleted: false)
 
-    redirect_to site_admin_banners_path()
+    redirect_to site_admin_banners_path(deleted: true)
   end
 
   def toggle_field

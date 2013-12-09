@@ -61,3 +61,12 @@ en:
           search:              " Search "
           archive:             " File "
           none_file:           " No Files Found. "
+        trash:
+          archive:             " File "       
+          description:         " Description "
+          type:                " Type "       
+          archives:            " Files "   
+          search:              " Search "  
+          new_archive:         " New file "
+          none_archive:        " Empty recycle bin "
+

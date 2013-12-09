@@ -22,12 +22,19 @@ module ComponentsHelper
     components_html << "class='component component-#{ compo.name } #{'disabled' unless component_is_available(compo.name)}' data-place='#{compo.place_holder}'>
       <div>
         <span class='widget-name'>
-          #{ raw ("#{toggle_field(compo, "publish")} #{t("components.#{compo.name}.name")} - #{compo.alias || compo.default_alias}") }
+          #{ raw ("#{compo.deleted ? status_icon(compo) : toggle_field(compo, "publish")} #{t("components.#{compo.name}.name")} - #{compo.alias || compo.default_alias}") }
         </span>
-        <div class='pull-right'>
+        <div class='pull-right'>"
+        if compo.deleted
+          components_html << link_to( icon('fire', text: t("destroy")) , site_admin_component_path(compo), method: :delete, data: {confirm: t("are_you_sure")}) if check_permission(Sites::Admin::ComponentsController, 'destroy')
+          components_html << link_to( icon('refresh', text: t("recover")) , recover_site_admin_component_path(compo)) if check_permission(Sites::Admin::ComponentsController, 'recover')
+        else 
+          components_html << "
           #{ raw make_menu(compo, :except => exceptions, :with_text => leftout) }
           #{ "<span class='handle'>#{icon('move') }</span>" if check_permission(Sites::Admin::ComponentsController, 'sort') and !leftout }
-          #{ link_to t("+"), new_site_admin_component_path(placeholder: compo.id), class: "btn btn-success btn-small", title: t(".new_component") if compo.name.to_s == "components_group" and check_permission(Sites::Admin::ComponentsController, [:new]) and !leftout }
+          #{ link_to t("+"), new_site_admin_component_path(placeholder: compo.id), class: "btn btn-success btn-small", title: t(".new_component") if compo.name.to_s == "components_group" and check_permission(Sites::Admin::ComponentsController, [:new]) and !leftout }"
+        end
+        components_html << "
         </div>
         <div class='clearfix'></div>
       </div>"

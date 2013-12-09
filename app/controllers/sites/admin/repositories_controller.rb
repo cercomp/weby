@@ -10,12 +10,17 @@ class Sites::Admin::RepositoriesController < ApplicationController
     params[:mime_type].try(:delete, "")
     params[:direction] ||= 'desc'
 
-    @repositories = @site.repositories.
+    
+    if params[:deleted] == 'true'
+      @repositories = Repository.unscoped.where(deleted: true, site_id: current_site.id).order(sort_column + ' ' + sort_direction).page(params[:page]).per(per_page)
+    else
+      @repositories = @site.repositories.
       description_or_filename(params[:search]).
       order(sort_column + ' ' + sort_direction).
       page(params[:page]).per(per_page)
 
     @repositories = @repositories.content_file(params[:mime_type]) if params[:mime_type]
+    end
 
     respond_with(:site_admin, @repositories) do |format|
       format.json do
@@ -25,9 +30,13 @@ class Sites::Admin::RepositoriesController < ApplicationController
           repositories: @repositories
         }
       end
-      if params[:template] 
+      if params[:deleted] == 'true'
+        render "trash" and return
+      else
+        if params[:template] 
         format.html { render "#{params[:template]}" }
         format.js { render "#{params[:template]}" }
+        end
       end
     end
   end
@@ -84,10 +93,10 @@ class Sites::Admin::RepositoriesController < ApplicationController
   end
 
   def destroy
-    @repository = Repository.find(params[:id])
+    @repository = Repository.unscoped.find(params[:id])
     @repository.destroy
 
-    redirect_to site_admin_repositories_url
+    redirect_to :back
   end
 
   def remove
@@ -98,10 +107,10 @@ class Sites::Admin::RepositoriesController < ApplicationController
   end
 
   def recover
-    @repository = Repository.find(params[:id])
+    @repository = Repository.unscoped.find(params[:id])
     @repository.update_attributes(deleted: false)
 
-    redirect_to site_admin_repositories_path()
+    redirect_to site_admin_repositories_path(deleted: true)
   end
 
   private

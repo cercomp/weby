@@ -68,7 +68,7 @@ Weby::Application.routes.draw do
               post :change_order, :change_menu
             end
             member do
-              get :remove, :recover
+              put :toggle_field
             end
         end
       end

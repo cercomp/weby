@@ -10,6 +10,10 @@
   <%= link_to t(".new_banner"),
     new_site_admin_banner_path,
     class: "btn btn-success" %>
+  <%= link_to t(:recycle_bin),
+      site_admin_banners_path(deleted: true),
+      class: "btn btn-inverse"
+    %>
 </div>
 <div class="clearfix"></div>
 

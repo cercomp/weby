@@ -3,6 +3,9 @@
     <%= link_to t(".new_menu"),
       new_site_admin_menu_path,
       class: "btn btn-success" %>
+    <%= link_to t(:recycle_bin),
+        site_admin_menus_path(deleted: true),
+        class: "btn btn-inverse" %>
   </div>
   <div class="clearfix control-group"></div>
 <% end %>

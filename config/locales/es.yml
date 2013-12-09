@@ -96,6 +96,7 @@ es:
 #---R---#
   required:                             " Necesario "
   recover:                              " Recuperar "
+  recycle_bin:                          " Papelera de Reciclaje "
   remove:                               " Eliminar "
 #---S---#
   save:                                 " Salvar "

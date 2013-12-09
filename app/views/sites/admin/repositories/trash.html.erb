@@ -1,0 +1,52 @@
+<% content_for :javascripts, javascript_include_tag('repositories') %>
+<p class="pull-right">
+  <%= link_to t(".new_archive"),
+    new_site_admin_repository_path,
+    class: "btn btn-success" %>
+  <%= link_to t(:recycle_bin),
+      site_admin_repositories_path(deleted: true),
+      class: "btn btn-inverse"%>
+</p>
+<div class="clearfix"></div>
+<% if @repositories.empty? %>
+  <div class="alert">
+    <%= t(".none_archive") %>
+  </div>
+<% else %>
+  <div id="repo_list">
+    <div class="pull-right"> <%= paginate @repositories, remote: true %> </div>               
+    <div class="clearfix"></div>                                                              
+                                                                                              
+    <table class='table table-striped table-condensed'>                                       
+        <thead>                                                                                 
+            <th><%= sortable 'id', t(".archive") %></th>                                        
+            <th><%= sortable 'description', t(".description") %></th>                           
+            <th><%= sortable 'archive_content_type', t(".type") %></th>                         
+            <th></th>                                                                           
+          </thead>                                                                              
+        <tbody>                                                                                 
+          <% @repositories.each do |repository| %>                                              
+              <tr class="<%= cycle 'odd', 'even' %>">                                             
+              <td> <%= weby_file_view(repository, :thumb, "64", "64", target: '_blank') %> </td>
+              <td> <%= repository.description %> </td>                                          
+              <td> <%= repository.archive_content_type %> </td>                                 
+              <td> 
+                <% if check_permission(Sites::Admin::RepositoriesController, [:destroy]) %>                                                                          
+                  <%= link_to icon('fire', text: t("destroy")), site_admin_repository_path(repository), :data => {:confirm => t("are_you_sure")}, :method => :delete %>
+                <% end %>                                                                                                                                      
+                <% if check_permission(Sites::Admin::RepositoriesController, [:recover]) %>                                                                          
+                   <%= link_to icon('refresh', text: t("recover")),  recover_site_admin_repository_path(repository)  %>
+                 <% end %>                                              
+              </td>                                       
+            </tr>                                                                               
+          <% end; reset_cycle %>                                                                
+          </tbody>                                                                              
+        </table>                                                                                  
+                                                                                                  
+        <div class="pull-left"> <%= per_page_links @repositories, true, :mini  %> </div>          
+        <div class="pull-right"> <%= paginate @repositories, remote: true %> </div>               
+        <div class="clearfix"></div>                                                              
+                                                                                                  
+
+  </div>
+<% end %>

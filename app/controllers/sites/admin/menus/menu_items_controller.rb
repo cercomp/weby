@@ -52,20 +52,6 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
     redirect_to :back, flash: {success: t("successfully_deleted")}
   end
 
-  def remove
-    @menu_item = @menu.menu_items.find(params[:id])
-    logger.debug @menu_item.deleted?
-    @menu_item.update_attribute(:deleted, true)
-    redirect_to :back
-  end
-
-  def recover
-    @menu_item = @menu.menu_items.find(params[:id])
-    @menu_item.update_attributes(deleted: false)
-
-    redirect_to site_admin_menu_menu_items_path
-  end
-
   # Altera a ordenação do menu
   def change_order
     @ch_pos = @menu.menu_items.find(params[:id])
@@ -99,6 +85,19 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
     render :nothing => true
   end
 
+  def toggle_field                                 
+   @menu_item = @menu.menu_items.find(params[:id])
+      if params[:field]                              
+        if @menu_item.toggle!(params[:field])        
+          flash[:success] = t("successfully_updated")
+        else                                         
+          flash[:error] = t("error_updating_object") 
+        end                                          
+      end                                            
+    redirect_to :back                              
+  end                                              
+
+
   private
   def get_current_menu
     @menu = current_site.menus.find(params[:menu_id])
@@ -128,7 +127,7 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
     end
     res
   end
-
+  
   #Atualiza a position de todos os itens menos o do obj, assumindo que ele irá para outro parent_id
   def update_position_for_remove(obj)
     idx = 1

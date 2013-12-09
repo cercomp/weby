@@ -3,6 +3,9 @@
   <%= link_to t(".new_archive"),
     new_site_admin_repository_path,
     class: "btn btn-success" %>
+  <%= link_to t(:recycle_bin),
+      site_admin_repositories_path(deleted: true),
+      class: "btn btn-inverse"%>
 </div>
 <div class="pull-left">
   <%= form_tag site_admin_repositories_path, method: 'get', autocapitalize: "off", class: 'search pull-right' do %>
@@ -14,7 +17,7 @@
       grouped_options_for_select(load_mime_types(current_site), params[:mime_type]),
       include_blank: false,
       style: 'vertical-align: top;',
-      class: 'select2 search-filter input-xlarge',
+      class: 'select2 search-filter input-large',
       multiple: true %>
   <% end %>
 </div>

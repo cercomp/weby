@@ -1,0 +1,65 @@
+<% if check_permission(Sites::Admin::StylesController, 'new') %>
+  <div class="pull-right">
+    <%= link_to t(".new_style"),
+      new_site_admin_style_path,
+      class: "btn btn-success" %>
+    <%= link_to t(:recycle_bin),
+      site_admin_styles_path(deleted: true),   
+      class: "btn btn-inverse" %>
+  </div>
+<% end %>
+<div class="clearfix"></div>
+
+<div class="tabbable">
+  <ul class="nav nav-tabs" id="style-tab">
+    <li class="<%= params["others"] ? "" : "active" %>" >
+    <a href="#own" data-toggle="tab"><%= t(".own_styles") %></a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane <%= params["others"] ? "" : "active" %>" id="own">
+       <% unless @styles.empty? %>                                                                       
+            <div class="styles" id="own_styles">                                                           
+            <table class='table table-striped' id='style_list'>                                          
+              <thead>                                                                                    
+                <th> <%= t('.name') %> </th>                                                             
+                <th> <%= t('.sites_followers') %> </th>                                                  
+                <th> <%= t('.actions') %> </th>                                                          
+              </thead>                                                                                   
+              <tbody>                                                                                    
+                <% @styles.each do |style| %>                                                             
+                    <tr id="sort_style_<%= style.id %>" class="<%= style.publish ? "success" : "error" %>">
+                    <td> <%= style.name %> </td>                                                         
+                    <td>                                                                                 
+                      <% style.followers.each do |site| %>                                               
+                          <%= link_to site.name, site_url(subdomain: site) %>                              
+                      <% end %>                                                                          
+                    </td>                                                                                
+                    <td class="style-action">                                                            
+                      <% if check_permission(Sites::Admin::StylesController, [:destroy]) %>                                                                       
+                          <%= link_to icon('fire', text: t("destroy")), site_admin_style_path(style), :data => {:confirm => t("are_you_sure")}, :method => :delete %>
+                      <% end %>                                                                                                                                  
+                      <% if check_permission(Sites::Admin::StylesController, [:recover]) %>                                                                       
+                         <%= link_to icon('refresh', text: t("recover")),  recover_site_admin_style_path(style)  %>                                                 
+                      <% end %>
+                    </td>                                                                                
+                  </tr>                                                                                  
+                <% end %>                                                                                
+              </tbody>                                                                                   
+            </table>                                                                                     
+          </div>                                                                                         
+        <% else %>                                                                                       
+            <div class="alert">                                                                            
+            <%= t('.no_own_styles') %>                                                                   
+          </div>                                                                                         
+        <% end %>                                                                                        
+                                                                                                         
+
+    </div>
+    <div class="tab-pane <%= params["others"] ? "active" : "" %>" id="others">
+      <% @styles.each do |type, styles| %>
+        <%= render partial: "styles", locals: { styles: styles, type: type } %>
+      <% end %>
+    </div>
+  </div>
+</div>

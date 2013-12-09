@@ -18,3 +18,13 @@ pt-BR:
           none_menu_item: " Nenhum item de menu "
         new:
           menus:          " Menus "
+        trash:
+          menus:          " Menus "              
+          menu:           " Menu "               
+          none_menu:      " Lixeira vazia "        
+          new_menu:       " Novo Menu "          
+          new_menu_item:  " Novo Item de Menu "  
+          edit_menu:      " Editar "             
+          destroy:        " Excluir "            
+          are_you_sure:   " Você tem certeza "   
+

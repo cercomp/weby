@@ -12,8 +12,9 @@ class Sites::Admin::RolesController < ApplicationController
 
   respond_to :html, :xml
   def index
-    @roles = @site ? @site.roles.order("id") : Role.where(:site_id => nil)
+    @roles = params[:deleted] == 'true' ? Role.unscoped.where(deleted: true, site_id: current_site.id).order("id") : current_site.roles.order("id")
     @rights = Weby::Rights.permissions.sort
+    render "trash" if params[:deleted] == 'true'
     
     if request.put? #&& params[:role]
       params[:role] ||= {}
@@ -55,23 +56,25 @@ class Sites::Admin::RolesController < ApplicationController
   end
 
   def destroy
-    @role = Role.find(params[:id])
+    @role = Role.unscoped.find(params[:id])
     @role.destroy
     redirect_to :back
   end
 
   def remove
-    @role = Role.find(params[:id])
-    @role.update_attributes(deleted: true)
+    @role = Role.unscoped.find(params[:id])
+    if @role.update_attributes(deleted: true)
+      RolesUser.delete_all("role_id = #{@role.id}")
+    end
 
     redirect_to @site ? site_admin_roles_path : admin_roles_path
   end
 
   def recover
-    @role = Role.find(params[:id])
+    @role = current_site.roles.unscoped.find(params[:id])
     @role.update_attributes(deleted: false)
 
-    redirect_to @site ? site_admin_roles_path : admin_roles_path
+    redirect_to  site_admin_roles_path(deleted: true)
   end
 
 end

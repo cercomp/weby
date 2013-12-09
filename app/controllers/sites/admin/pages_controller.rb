@@ -13,10 +13,15 @@ class Sites::Admin::PagesController < ApplicationController
   # GET /pages.json
   def index
     @pages = get_pages
+    if params[:deleted] == 'true'
+      render "trash" and return
+    end
     respond_with(:site_admin, @pages) do |format|
       if(params[:template])
         format.js { render "#{params[:template]}" }
-        format.html{ render partial: "#{params[:template]}", layout: false }
+        format.html do 
+          render partial: "#{params[:template]}", layout: false 
+        end
       end
     end
   end
@@ -29,10 +34,15 @@ class Sites::Admin::PagesController < ApplicationController
     params[:direction] ||= 'desc'
     # Vai ao banco por linha para recuperar
     # tags e locales
-    @site.pages.
+    if params[:deleted] == 'true'
+      Page.unscoped.where(deleted: true, site_id: current_site.id).order(sort_column + " " + sort_direction).
+      page(params[:page]).per(params[:per_page])
+    else
+      @site.pages.
       search(params[:search], 1). # 1 = busca com AND entre termos
-      page(params[:page]).per(params[:per_page]).
-      order(sort_column + " " + sort_direction)
+      order(sort_column + " " + sort_direction).
+      page(params[:page]).per(params[:per_page])
+    end
   end
   private :get_pages
 
@@ -94,23 +104,26 @@ class Sites::Admin::PagesController < ApplicationController
   # DELETE /pages/1
   # DELETE /pages/1.json
   def destroy
-    @page = @site.pages.find(params[:id])
+    @page = @site.pages.unscoped.find(params[:id])
     @page.destroy
-    respond_with(:site_admin, @page)
+    redirect_to :back
   end
 
    def remove
      @page = Page.find(params[:id])
      @page.update_attributes(deleted: true)
+     @page.update_attributes(publish: false) 
+     @page.update_attributes(front: false) 
 
+      
      redirect_to site_admin_pages_path()
    end
 
    def recover
-     @page = Page.find(params[:id])
+     @page = Page.unscoped.find(params[:id])
      @page.update_attributes(deleted: false)
 
-     redirect_to site_admin_pages_path()
+     redirect_to site_admin_pages_path(deleted: true)
    end
 
   def toggle_field

@@ -26,6 +26,25 @@ pt-BR:
           roles_permissions:    " Permissões e Papéis "
         edit:
           roles_permissions:    " Permissões e Papéis "
+        trash:
+          roles_permissions:    " Permissões e Papéis "
+          new_role:             " Novo Papel "         
+          admins:               " Admins "             
+          banners:              " Banners "            
+          components:           " Componentes "        
+          extensions:           " Extensões "          
+          menu_items:           " Itens de Menu "      
+          menus:                " Menus "              
+          notifications:        " Notificações "       
+          pages:                " Páginas "            
+          repositories:         " Repositório "       
+          repositories_searchs: " Buscas "             
+          rights:               " Direitos "           
+          roles:                " Papéis "             
+          statistics:           " Estatísticas "       
+          styles:               " Estilos "            
+          users:                " Usuários "           
+          none_role:            " Lixeira vazia. "       
 
 
 

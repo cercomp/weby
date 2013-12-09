@@ -10,11 +10,12 @@ class Sites::Admin::StylesController < ApplicationController
 
   def index
     return only_selected_style if params[:style_type]
-    @styles = {
+    @styles = params[:deleted] == 'true' ? Style.unscoped.where(deleted: true, owner_id: current_site.id) : {
       own: own_styles,
       follow: follow_styles,
       other: other_styles
-    }    
+    }
+    render "trash" if params[:deleted] == 'true'
   end
 
   def only_selected_style
@@ -25,9 +26,7 @@ class Sites::Admin::StylesController < ApplicationController
 
   # FIXME: duplicated code
   def own_styles
-    styles = @site.own_styles.
-      order('position desc').page(params[:page_own_styles])
-
+    styles = @site.own_styles.order('position desc').page(params[:page_own_styles])
     search(styles, :own) || styles
   end
   private :own_styles
@@ -99,7 +98,7 @@ class Sites::Admin::StylesController < ApplicationController
   end
 
   def destroy
-    @style = Style.find(params[:id])
+    @style = Style.unscoped.find(params[:id])
 
     if @style.destroy
       flash[:success] = t("destroyed_style")
@@ -107,21 +106,23 @@ class Sites::Admin::StylesController < ApplicationController
       flash[:alert] = t("destroyed_style_error")
     end
     
-    respond_with(:site_admin, @style, location: site_admin_styles_path())
+    respond_with(:site_admin, @style, location: site_admin_styles_path(deleted: true))
   end
 
   def remove
     @style = Style.find(params[:id])
     @style.update_attributes(deleted: true)
+    @style.update_attributes(publish: false)
+
 
     redirect_to site_admin_styles_path()
   end
 
   def recover
-    @style = Style.find(params[:id])
+    @style = Style.unscoped.find(params[:id])
     @style.update_attributes(deleted: false)
 
-    redirect_to site_admin_styles_path()
+    redirect_to site_admin_styles_path(deleted: true)
   end
 
   def follow
@@ -200,7 +201,7 @@ class Sites::Admin::StylesController < ApplicationController
 
   private
   def verify_ownership
-    @style = Style.find(params[:id])
+    @style = Style.unscoped.find(params[:id])
 
     unless @style.owner == @site
       flash[:warning] = t("no_permission_to_action")

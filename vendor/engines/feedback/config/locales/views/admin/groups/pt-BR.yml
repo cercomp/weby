@@ -23,4 +23,12 @@ pt-BR:
           name:                   " Nome "
           groups:                 " Grupos "
           list_all:               " Listar todos "
+        trash:
+          name:                   " Nome "                                                        
+          description:            " Descrição "                                                   
+          none_group:             " Lixeira vazia "                                     
+          group_explain:          " Grupos de e-mails destinatários das mensagens do Fale Conosco"
+          groups:                 " Grupos "    
+          new_group:              " Novo Grupo "
+          messages:               " Mensagens " 
 

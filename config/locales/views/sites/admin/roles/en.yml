@@ -26,5 +26,24 @@ en:
           roles_permissions:    " Roles and Permissions "
         edit:
           roles_permissions:    " Roles and Permissions "
-
+        trash:
+          roles_permissions:    " Roles and Permissions "
+          none_role:            " None Role "            
+          new_role:             " New Role "             
+          admins:               " Admins "               
+          banners:              " Banners "              
+          components:           " Components "           
+          extensions:           " Extensions "           
+          menu_items:           " Menu Items "           
+          menus:                " Menus "                
+          notifications:        " Notifications "        
+          pages:                " Pages "                
+          repositories:          " Repositories "        
+          repositories_searchs: " Searches "             
+          rights:               " Rights "               
+          roles:                " Roles "                
+          statistics:           " Statistics "           
+          styles:               " Styles "               
+          users:                " Users "                
+          none_role:            " Empty recycle bin. "            
 

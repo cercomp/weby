@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131015134357) do
+ActiveRecord::Schema.define(:version => 20131204190222) do
 
   create_table "banners", :force => true do |t|
     t.datetime "date_begin_at"
@@ -130,6 +130,7 @@ ActiveRecord::Schema.define(:version => 20131015134357) do
     t.datetime "updated_at",                     :null => false
     t.string   "html_class"
     t.boolean  "deleted",     :default => false
+    t.boolean  "publish",     :default => true
   end
 
   add_index "menu_items", ["menu_id"], :name => "index_menu_items_on_menu_id"

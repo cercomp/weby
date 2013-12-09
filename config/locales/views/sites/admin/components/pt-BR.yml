@@ -27,3 +27,14 @@ pt-BR:
           leftout_components: " Componentes fora do layout "
         new:
           components:         " Componentes "
+        trash: 
+          components:         " Componentes "                  
+          new_component:      " Novo Componente "              
+          component:          " Componente "                   
+          alias:              " Nome "                         
+          category:           " Categoria "                    
+          active:             " Ativo? "                       
+          empty_placeholder:  " Nenhum componente neste local "
+          content:            " Conteúdo "                     
+          leftout_components: " Componentes fora do layout "   
+          

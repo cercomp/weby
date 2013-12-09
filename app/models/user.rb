@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
   scope :by_site, lambda { |site_id|
     select("DISTINCT users.* ").
     joins('LEFT JOIN roles_users ON roles_users.user_id = users.id
-           LEFT JOIN roles ON roles.id = roles_users.role_id').
+           LEFT JOIN roles ON roles.id = roles_users.role_id AND roles.deleted = false').
     where(["roles.site_id = ?", site_id])           
   }
 
@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
   scope :global_role, lambda { 
     select("DISTINCT users.* ").
     joins('INNER JOIN roles_users ON roles_users.user_id = users.id 
-           INNER JOIN roles ON roles.id = roles_users.role_id').
+           INNER JOIN roles ON roles.id = roles_users.role_id AND roles.deleted = false').
     where(["roles.site_id IS NULL"])
   }
 
