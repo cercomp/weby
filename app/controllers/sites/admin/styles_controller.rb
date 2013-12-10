@@ -26,7 +26,7 @@ class Sites::Admin::StylesController < ApplicationController
   # FIXME: duplicated code
   def own_styles
     styles = @site.own_styles.scoped.
-      order('position desc').page(params[:page_own_styles])
+      order('position desc')
 
     search(styles, :own) || styles
   end
