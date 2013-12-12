@@ -7,45 +7,17 @@ html, body { margin: 0; }
 
 #weby_bar
 {
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  height: 42px;
-  background: #f5f5f5;
-  color: #333;
-  font-size: 12px;
-  line-height: 42px;
-  overflow: hidden;
-
-  // reset
-  div, span, img, h1, h2, h3, h4, h5, h6, p, a, ol, ul, li
-  {
-    vertical-align: baseline;
-    font-family: inherit;
-    font-weight: inherit;
-    font-style: inherit;
-    font-size: 100%;
-    outline: 0;
-    padding: 0;
-    margin: 0;
-    border: 0;
-    text-decoration: none;
-  }
-
+  @import "weby/bootstrap";
+  * { font-family: inherit; }
   a 
   {
     color: #bb1726;
     text-transform: uppercase;
   }
-
-  a.clean{ color: #333; }
-
-  .pull-right { float: right; }
-  .pull-left { float: left; }
-  .clearfix { clear: both; }
-
+  .clean { color: #333333; }
   .user
   {
     line-height: 18px;
-    text-transform: uppercase;
     .info
     {
       text-align: right;
@@ -55,22 +27,23 @@ html, body { margin: 0; }
   }
   .logo
   {
-    margin: 6px 10px;
-    line-height: 0;
+    margin: 0 10px;
+    line-height: 42px
   }
   .nav
   {
     margin-left: 10px;
     a { margin-left: 7px; }
   }
-  .badge
-  {
-    padding: 2px 9px;
-  }
-  .label
-  {
-    padding: 2px 4px;
-  }
+  margin: 0;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  line-height: 42px;
+  color: #333333;
+  background-color: white;
+  height: 42px;
+  overflow: hidden;
+  background: #f5f5f5;
 }
 
 #weby_shortcut
