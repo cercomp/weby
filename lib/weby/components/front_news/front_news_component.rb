@@ -6,7 +6,7 @@ class FrontNewsComponent < Component
   validates :quant, presence: true
   
   def pages(site, params)
-    pages = only_events?(site, show_events)
+    pages = only_events? ? site.pages.events : site.pages.front
     
     filter_by.blank? ? pages.includes(:author, :image).order('position desc').available.page(params).per(quant)
                      : pages.includes(:author, :image).order('position desc').available.page(params).per(quant)
@@ -26,11 +26,6 @@ class FrontNewsComponent < Component
   alias :_show_date :show_date
   def show_date
     _show_date.blank? ? false : _show_date.to_i == 1
-  end
-
-  alias :_show_events :show_events
-  def show_events
-    _show_events.blank? ? false : _show_events.to_i == 1
   end
 
   alias :_show_label :show_label
@@ -57,10 +52,7 @@ class FrontNewsComponent < Component
     [:medium, :little, :mini, :thumb]
   end
 
-  private
-  def only_events?(site, show_events)
-    show_events == true ? site.pages.events : site.pages.front    
+  def only_events?
+    show_events.blank? ? false : show_events.to_i == 1
   end
-
-
 end

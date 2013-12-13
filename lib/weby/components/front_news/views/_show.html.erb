@@ -1,18 +1,16 @@
 <% quant = component.quant || 5 %>
-<div id="front_news_tittle">
-<% unless component.show_label.nil? %> 
-  <% if component.filter_by.present? %>
-    <%= link_to component.label.camelize, main_app.site_pages_path(direction: 'desc', sort: 'pages.created_at',
-                                                                   tags: component.filter_by) %>
-  <% else %>
-    <%= component.label %>
-  <% end %>
-<% end %>
-</div>
-
 <% @front_news = component.pages(current_site , params["front_news#{component.id}".to_sym]) %>
-
 <section class="front_news_component" data-url="<%= main_app.sort_site_pages_path() %>">
+  <% if component.show_label %>
+    <div id="front_news_title">
+      <% if component.filter_by.present? %>
+        <%= link_to component.label.camelize, main_app.site_pages_path(direction: 'desc', sort: 'pages.created_at',
+                                                                   tags: component.filter_by) %>
+      <% else %>
+        <%= component.only_events? ? link_to(component.label, main_app.events_site_pages_path(direction: 'desc', sort: 'pages.event_begin')) : component.label %>
+      <% end %>
+    </div>
+  <% end %>
   <section id="pages">
     <% @front_news.try(:each) do |page| %>
       <li id="sort_page_<%= "#{page.id}" %>" style="list-style-type:none;">
@@ -31,6 +29,9 @@
                 <span class="date"><%= t(".posted_on") %><%= localize page.created_at, format: :medium %></span>
               <% end %>
             </p>
+          <% end %>
+          <% if component.only_events? %>
+            <div class="event-dates"><%= period_dates(page.event_begin, page.event_end, false) -%></div>
           <% end %>
         </header>
         <summary>
