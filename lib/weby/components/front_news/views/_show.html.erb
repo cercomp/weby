@@ -2,7 +2,7 @@
 <% @front_news = component.pages(current_site , params["front_news#{component.id}".to_sym]) %>
 <section class="front_news_component" data-url="<%= main_app.sort_site_pages_path() %>">
   <% if component.show_label %>
-    <div id="front_news_title">
+    <div class="front_news_title">
       <% if component.filter_by.present? %>
         <%= link_to component.label.camelize, main_app.site_pages_path(direction: 'desc', sort: 'pages.created_at',
                                                                    tags: component.filter_by) %>
