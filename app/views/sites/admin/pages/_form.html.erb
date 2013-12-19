@@ -21,7 +21,7 @@
     <% end %>
   </div>
 
-  <%= f.input :category_list, :hint => t(".page_categories_help"), input_html: {class: 'input-xlarge', data: {tags: current_site.pages.uniq_category_counts.map{|t| t.name }}} %>
+  <%= f.input :category_list, :hint => t(".page_categories_help"), input_html: {class: 'input-xlarge', data: {tags: Page.uniq_category_counts.map{|t| t.name }}} %>
 
   <div class="clearfix">
     <%= f.input :publish , wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" } %>
