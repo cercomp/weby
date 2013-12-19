@@ -36,6 +36,7 @@ pt-BR:
           news:                 " Notícia "
           event:                " Evento "
           move:                 " Mover "
+          events_only:          " Somente Eventos "
         list:
           none_page:            " Nenhuma Página "
           author:               " Autor "

@@ -1,12 +1,13 @@
 class FrontNewsComponent < Component
-  component_settings :quant, :avatar_height, :avatar_width, :read_more, :show_author, :show_date, :image_size, :new_tab, :max_char, :filter_by, :label, :show_label, :show_events
+  component_settings :quant, :avatar_height, :avatar_width, :read_more, :show_author,
+    :show_date, :image_size, :new_tab, :max_char, :filter_by, :label, :show_label, :show_events
 
   i18n_settings :label
 
   validates :quant, presence: true
   
   def pages(site, params)
-    pages = only_events? ? site.pages.events : site.pages.front
+    pages = only_events? ? site.pages.front.events : site.pages.front
     
     filter_by.blank? ? pages.includes(:author, :image).order('position desc').available.page(params).per(quant)
                      : pages.includes(:author, :image).order('position desc').available.page(params).per(quant)

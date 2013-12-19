@@ -36,6 +36,7 @@ en:
           news:                 " News "
           event:                " Event "
           move:                 " Move "
+          events_only:          " Only Events "
         list:
           none_page:            " No Page "
           author:               " Author "
