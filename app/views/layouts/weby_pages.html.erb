@@ -69,7 +69,7 @@
         <br />
         <% admin_locales.each do |locale| %>
           <%= link_to flag(locale), params.merge(locale: locale.name ) %>
-        <% end %>
+        <% end unless current_user %>
       </p>
     </div>
 

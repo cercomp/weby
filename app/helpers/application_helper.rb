@@ -14,7 +14,11 @@ module ApplicationHelper
   end
 
   def is_in_sites_index?
-    request.path == "/" and !current_site
+    (request.path == "/" or request.path.match(/^\/sites\/page\/\d+/)) and !current_site
+  end
+
+  def not_in_site_context?
+    !current_site || is_in_admin_context? || is_in_profile_context? || is_in_sites_index?
   end
 
   # Alterna entre habilitar e desabilitar registro
