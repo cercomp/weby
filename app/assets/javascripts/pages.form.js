@@ -1,7 +1,5 @@
 //= require datetime
 //= require tinymce
-//= require repository.dialog
-//= require tiny_mce/jquery.tinymce
 //= require_self
 
 $(document).ready(function(){

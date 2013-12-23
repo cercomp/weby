@@ -29,12 +29,6 @@ pt-BR:
           field_required:      " Campo obrigatório! "
           accessibility_needs: " Necessário para a acessibilidade de seu site. "
           please_wait:         " Por favor, aguarde "
-        ajax_upload:
-          file:                " Arquivo "
-          description:         " Descrição "
-          send:                " Enviar "
-          select_file:         " Selecione o arquivo "
-          field_required:      " Campo obrigatório! "
         repo:
           picture:             " Imagem "
         list:
@@ -46,6 +40,11 @@ pt-BR:
           repository:          " REPOSITÓRIO "
           new_file:            " NOVO ARQUIVO "
           none_file:           " Nenhum Arquivo Encontrado. "
+          file:                " Arquivo "
+          description:         " Descrição "
+          send:                " Enviar "
+          select_file:         " Selecione o arquivo "
+          field_required:      " Campo obrigatório! "
         search_and_new_file:
           search_image:        " Buscar Imagem "
           new_image:           " Nova imagem "

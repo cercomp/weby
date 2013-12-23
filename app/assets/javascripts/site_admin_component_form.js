@@ -1,5 +1,4 @@
 //= require jquery-ui.min 
-//= require repository.dialog
 
 /**
  * Script para páginas com formulário de componentes
