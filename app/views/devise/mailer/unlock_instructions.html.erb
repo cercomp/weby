@@ -10,7 +10,7 @@
 
     <p>Clique no link abaixo para desbloquear sua conta:</p>
 
-    <p><%= link_to "#{unlock_url(@resource, unlock_token: @token)}", unlock_url(@resource, unlock_token: @token) %></p>
+    <p><%= link_to "#{unlock_url(@resource, unlock_token: @token, subdomain: nil)}", unlock_url(@resource, unlock_token: @token, subdomain: nil) %></p>
 
     <p>Caso não clique no link, sua conta será desbloqueada em 1 hora.</p>
   </body>
