@@ -14,6 +14,7 @@ pt-BR:
         locale:             " Idioma "
         register:           " Cadastro "
         last_request:       " Última ação "
+        last_sign_in_at:    " Último login "
         global_roles:       " Papéis Globais "
         user_current_sites: " Sites Cadastrados "
         roles:              " Papéis "

@@ -14,6 +14,7 @@ en:
         locale:             " Language "
         register:           " Register "
         last_request:       " Last Request "
+        last_sign_in_at:    " Last Login "
         global_roles:       " Global Roles "
         user_current_sites: " Current Sites "
         roles:              " Roles "

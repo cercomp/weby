@@ -3,14 +3,14 @@
   <img src="http://www.gravatar.com/avatar/<%= Digest::MD5.hexdigest(@user.email) %>?s=120&d=mm"></img>
   <h1><%= captalize_name @user %></h1>
   <p> <b><%= t('.id') %>:</b> <%= @user.id %> </p>
-  <p> <b><%= t('.status') %>:</b> <%= @user.status ? t('.enabled') : t('.disabled') %> </p>
+  <p> <b><%= t('.status') %>:</b> <%= @user.confirmed_at? ? t('.enabled') : t('.disabled') %> </p>
   <p> <b><%= t('.username') %>:</b> <%= @user.login %> </p>
   <p> <b><%= t('.email') %>:</b> <%= @user.email %> </p>
   <p> <b><%= t('.phone') %>:</b> <%= @user.phone %> </p>
   <p> <b><%= t('.mobile') %>:</b> <%= @user.mobile %> </p>
   <p> <b><%= t('.locale') %>:</b> <%= t(@user.locale.name) if @user.locale %> </p>
-  <p> <b><%= t('.register') %>: <%= @user.created_at.to_s(:short) if @user.created_at %> </b> </p>
-  <p> <b><%= t('.last_request') %>:</b> <%= @user.last_request_at.to_s(:short) if @user.last_request_at %> </p>
+  <p> <b><%= t('.register') %>: <%= l(@user.created_at, format: :short) if @user.created_at %> </b> </p>
+  <p> <b><%= t('.last_sign_in_at') %>:</b> <%= l(@user.last_sign_in_at, format: :short) if @user.last_sign_in_at %> </p>
 </div>
 
 <div id="user_current_roles">
