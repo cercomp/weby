@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
          :rememberable, :trackable, :confirmable, :lockable
 
   attr_accessible :login, :email, :password, :password_confirmation, :remember_me,
-                  :first_name, :last_name, :phone, :mobile, :locale_id
+                  :first_name, :last_name, :phone, :mobile, :locale_id, :confirmed_at
 
   validates_presence_of :email, :login, :first_name, :last_name
   validates_presence_of :password, on: :create

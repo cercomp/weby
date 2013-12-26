@@ -2,6 +2,7 @@ pt-BR:
   admin:
     roles:
       index:
+        activity_records:     " Histórico de Atividades "
         roles_permissions:    " Permissões e Pápeis "
         create_role:          " Novo Papel "
         list_permissions:     " Listar Permissões "

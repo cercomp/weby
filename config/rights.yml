@@ -170,3 +170,7 @@ rights:
     index:
       name: Ver Estatísticas
       action: index
+  activity_records:
+    index:
+      name: Ver o Histórico de Atividades
+      action: index

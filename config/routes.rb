@@ -42,7 +42,7 @@ Weby::Application.routes.draw do
 
       get "stats" => "statistics#index"
 
-      resources :activity_records, only: [:index]
+      resources :activity_records, only: [:index, :show]
       resources :banners do
         member do
           put :toggle_field
@@ -131,7 +131,7 @@ Weby::Application.routes.draw do
       resources :sites, except: [:show]
       resources :groupings, except: [:show]
       resources :notifications
-      resources :activity_records
+      resources :activity_records, only: [:index, :show, :destroy]
 
       get "stats" => "statistics#index"
 

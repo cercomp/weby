@@ -1,9 +1,12 @@
 en:
   admin:
     activity_records:
-      index:
-        show:                       " Show "
+      list:
+        no_activity_records:        " No activity records found "
         details:                    " Details "
+        show:                       " Show "
+        created_at:                 " Date "
+        note:                       " Activity "
         destroy:                    " Destroy "
 #--- Admin/Rights ---#
         created_global_right:       " created a global right "
@@ -62,4 +65,6 @@ en:
         action:             " Action "
         params:             " Params "
         created_at:         " Created At "
+        list_all:           " List all "
+        destroy:            " Destroy "
 

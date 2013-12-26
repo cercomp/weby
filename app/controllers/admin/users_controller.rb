@@ -102,10 +102,11 @@ class Admin::UsersController < ApplicationController
     redirect_to admin_users_path
   end
 
+  #usado para o attr 'confirmed_at'
   def toggle_field
     @user = User.find(params[:id])
     if params[:field] 
-      if @user.update_attributes(params[:field] => (@user[params[:field]] == 0 or not @user[params[:field]] ? true : false))
+      if @user.update_attributes(params[:field] => (@user[params[:field]] ? nil : Time.now))
         flash[:success] = t("successfully_updated")
       else
         flash[:error] = t("error_updating_object")
@@ -113,7 +114,8 @@ class Admin::UsersController < ApplicationController
     end
     redirect_to admin_users_path
   end
-  
+
+  #usado para o attr 'is_admin'
   def set_admin
     @user = User.find(params[:id])
     if params[:field] 

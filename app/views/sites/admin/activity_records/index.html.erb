@@ -5,6 +5,8 @@
     <% end %>
   <% end %>
 </div>
-
 <div class="clearfix"></div>
-<%= content_tag :div, render('list'), id: 'list' %>
+
+<div id="list">
+  <%= render :partial => "list" %>
+</div>

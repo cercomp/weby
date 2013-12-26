@@ -1,38 +1,39 @@
-<% if @activity.empty? %>
+<% if @activity_records.empty? %>
   <div class="alert">
     <%= t('.no_activity_records') %>
   </div>
 <% else %>
-  <!--div class="pull-left"> <#%= info_page @records %> </div--!>
-  <!--div class="pull-right"> <#%= paginate @records, remote: true %> </div--!>
+  <div class="pull-left"> <%= info_page @activity_records %> </div>
+  <div class="pull-right"> <%= paginate @activity_records, remote: true %> </div>
   <div class="clearfix"></div>
+
   <table class='table table-striped'>
     <thead>
+      <tr>
+        <th><%= t(".created_at") %></th>
+        <th><%= t(".note") %></th>
+        <th></th>
+      </tr>
     </thead>
     <tbody>
-      <% @activity.each do |record| %>
+      <% @activity_records.each do |activity_record| %>
         <tr>
-          <td><%= l(record.created_at, :format => :short) %></td>
-          <td><%= record.user %> <%= t(".#{record.note}") %></td>
+          <td><%= l(activity_record.created_at, format: :short) %></td>
+          <td><%= activity_record.user %> <%= t(".#{activity_record.note}") %></td>
           <td style="text-align: right">
-            <% if record.controller == "menu_items" %>
-              <%= link_to(icon("eye-open", :text => t(".show")), 
-                  polymorphic_url([:site_admin, record.loggeable.menu, record.loggeable], 
-                  :subdomain => record.site)) unless record.action.eql?("destroy") %>
-            <% else %>
-              <%= link_to(icon("eye-open", :text => t(".show")), 
-                  polymorphic_url([:site_admin, record.loggeable], 
-                  :subdomain => record.site)) unless record.action.eql?("destroy") %>
-            <% end %>
-            <%= link_to(icon("search", :text => t(".details")),
-                        admin_activity_record_path(record.id) ) %>
-            <%= link_to(icon("trash", :text => t(".destroy")), 
-                        [:admin, record], :method => :delete) %>
+            <%= link_to(icon("eye-open", text: t(".show")),
+                       polymorphic_url(activity_record.loggeable_url_params, subdomain: activity_record.site)) unless activity_record.action == "destroy" %>
+            <%= link_to(icon("search", text: t(".details")),
+                        admin_activity_record_path(activity_record)) %>
+            <%= link_to(icon("trash", text: t(".destroy")),
+                        admin_activity_record_path(activity_record), method: :delete, confirm: t('are_you_sure')) %>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
 
-  <!--div class="pull-left"><#%= per_page_links @activity, true, :mini %></div-->
+  <div class="pull-left"> <%= per_page_links @activity_records, true, :mini %> </div>
+  <div class="pull-right"> <%= paginate @activity_records, remote: true %> </div>
+  <div class="clearfix"></div>
 <% end %>

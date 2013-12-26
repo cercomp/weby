@@ -3,6 +3,7 @@ pt-BR:
     admin:
       roles:
         index:
+          activity_records:     " Histórico de Atividades "
           roles_permissions:    " Permissões e Papéis "
           none_role:            " Nenhum Papel "
           new_role:             " Novo Papel "

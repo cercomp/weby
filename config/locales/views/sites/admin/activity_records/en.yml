@@ -3,7 +3,11 @@ en:
     admin:
       activity_records:
         list:
+          no_activity_records:        " No activity records found "
+          details:                    " Details "
           show:                       " Show "
+          created_at:                 " Date "
+          note:                       " Activity "
 #--- Sites/Admin/Menus/MenuItem ---#
           created_menu_item:          " created a menu item "
           updated_menu_item:          " updated a menu item "

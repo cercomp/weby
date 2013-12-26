@@ -2,6 +2,7 @@ en:
   admin:
     roles:
       index:
+        activity_records:     " Activity Records "
         roles_permissions:    " Rights and Roles "
         create_role:          " Create Role "
         list_permissions:     " List Permissions "

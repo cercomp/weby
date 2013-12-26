@@ -1,12 +1,15 @@
-<div class="user_profile">
-  <br />
-  <p><b><%= t('.id') %>: </b> <%= @activity.id %></p>
-  <p><b><%= t('.user') %>: </b> <%= @activity.user %></p>
-  <p><b><%= t('.site') %>: </b> <%= @activity.site.title %></p>
-  <p><b><%= t('.browser') %>: </b> <%= @activity.browser %></p>
-  <p><b><%= t('.ip') %>: </b> <%= @activity.ip_address %></p>
-  <p><b><%= t('.controller') %>: </b> <%= @activity.controller %></p>
-  <p><b><%= t('.action') %>: </b> <%= @activity.action %></p>
-  <p><b><%= t('.params') %>: </b> <%= @activity.params %></p>
-  <p><b><%= t('.created_at') %>: </b> <%= @activity.created_at %></p>
+<p><b><%= t('.id') %>: </b> <%= @activity_record.id %></p>
+<p><b><%= t('.user') %>: </b> <%= @activity_record.user %></p>
+<p><b><%= t('.site') %>: </b> <%= @activity_record.site.title %></p>
+<p><b><%= t('.browser') %>: </b> <%= @activity_record.browser %></p>
+<p><b><%= t('.ip') %>: </b> <%= @activity_record.ip_address %></p>
+<p><b><%= t('.controller') %>: </b> <%= @activity_record.controller %></p>
+<p><b><%= t('.action') %>: </b> <%= @activity_record.action %></p>
+<p><b><%= t('.params') %>: </b> <%= @activity_record.params %></p>
+<p><b><%= t('.created_at') %>: </b> <%= @activity_record.created_at %></p>
+
+<div class="form-actions">
+  <%= link_to icon('trash', text: t(".destroy")), admin_activity_record_path(@activity_record), method: :delete, confirm: t('are_you_sure') unless current_site %>
+  <%= link_to icon('list', text: t(".list_all")), site_admin_activity_records_path %>
+  <%= link_to icon('chevron-left', text: t("back")), :back %>
 </div>
