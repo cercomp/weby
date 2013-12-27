@@ -151,7 +151,11 @@ body.modal-open {
 }
 
 .select2-drop{
-  z-index: 66051;
+  z-index: 66055;
+}
+
+.select2-drop-mask{
+  z-index: 66052;
 }
 
 .tabbable.i18n .nav.nav-tabs {

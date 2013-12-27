@@ -1,40 +1,41 @@
 <div class="search_bar">
   <%= form_tag site_admin_pages_path(template: 'list_popup'), method: 'get', autocapitalize: "off", class: 'search', remote: true do %>
     <%= content_tag :div, class: 'input-append' do %>
-      <%= search_field_tag :search, params[:search], class: 'input-search' %><%= submit_tag t("search"), class: 'btn btn-info btn-search' %>
+      <%= search_field_tag :search, params[:search], placeholder: t('.search_pages'), class: 'input-search' %><%= submit_tag t("search"), class: 'btn btn-info btn-search' %>
     <% end %>
     <%= hidden_field_tag 'page', 1 %>
     <%= hidden_field_tag 'per_page', "#{params[:per_page]}" %>
   <% end %>
 </div>
+<% if @pages %>
+  <% if @pages.empty? %>
+    <div class="alert">
+      <%= t(".none_page") %>
+    </div>
+  <% else %>
+    <div class="page-results">
+      <table class="list table table-striped" data-url-template="<%=site_page_path(0)%>">
+        <thead>
+          <th><%= sortable 'date_begin_at', t(".register_date")%></th>
+          <th><%= t(".title") %></th>
+          <th><%= sortable 'tags.name', t(".category") %></th>
+          <th><%= sortable 'type', t(".type") %></th>
+        </thead>
+        <tbody>
+          <% @pages.each do |page| %>
+            <tr data-id="<%= page.id %>" data-title="<%= page.title %>" data-type="<%= "Page" %>" class="cursor highlight target-item">
+              <td><%= page.created_at.strftime('%d/%m/%y') %></td>
+              <td><%= page.title %></td>
+              <td><%= page.category_list %></td>
+              <td><%= t(".#{page.type.downcase}") %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
 
-<% if @pages.empty? %>
-  <div class="alert">
-    <%= t(".none_page") %>
-  </div>
-<% else %>
-  <div class="page-results">
-    <table class="list table table-striped" data-url-template="<%=site_page_path(0)%>">
-      <thead>
-        <th><%= sortable 'date_begin_at', t(".register_date")%></th>
-        <th><%= t(".title") %></th>
-        <th><%= sortable 'tags.name', t(".category") %></th>
-        <th><%= sortable 'type', t(".type") %></th>
-      </thead>
-      <tbody>
-        <% @pages.each do |page| %>
-          <tr data-id="<%= page.id %>" data-title="<%= page.title %>" data-type="<%= "Page" %>" class="cursor highlight target-item">
-            <td><%= page.created_at.strftime('%d/%m/%y') %></td>
-            <td><%= page.title %></td>
-            <td><%= page.category_list %></td>
-            <td><%= t(".#{page.type.downcase}") %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-
-    <div class="pull-right"> <%= paginate @pages, remote: true, size: :small %> </div>
-    <div class="pull-left"> <%= per_page_links @pages, true, :mini %> </div>
-    <div class="clearfix"></div>
-  </div>
+      <div class="pull-right"> <%= paginate @pages, remote: true, size: :small %> </div>
+      <div class="pull-left"> <%= per_page_links @pages, true, :mini %> </div>
+      <div class="clearfix"></div>
+    </div>
+  <% end %>
 <% end %>

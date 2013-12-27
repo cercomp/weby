@@ -74,6 +74,7 @@ en:
   need_at_least_one_i18n:               " Needs content in at least one language "
   none_user:                            " None User "
 #---O---#
+  ok:                                   " OK "
   of:                                   " of "
   only_admin:                           " Only for admin users "
 #---P---#

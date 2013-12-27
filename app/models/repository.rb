@@ -105,6 +105,16 @@ class Repository < ActiveRecord::Base
     end
   end
 
+  def as_json options={}
+    json = super(options)
+    json['repository'][:original_path] = self.archive.url(:original)
+    json['repository'][:little_path] = self.archive.url(:little)
+    json['repository'][:medium_path] = self.archive.url(:medium)
+    json['repository'][:mini_path] = self.archive.url(:mini)
+    json['repository'][:thumb_path] = self.archive.url(:thumb)
+    json
+  end
+
   private
   def need_reprocess?
     image? and not has_all_formats?
@@ -120,5 +130,5 @@ class Repository < ActiveRecord::Base
   def exists_archive?(format=nil)
     FileTest.exist?(archive.path(format))
   end
-  
+
 end

@@ -7,12 +7,75 @@
         margin-bottom: 10px;
     }
 
-    .search_bar{
-        text-align: right;
+    .page-results{
+        height: 300px;
+        overflow: auto;
     }
 
-    .page-results{
-        height: 310px;
-        overflow: auto;
+    .tab-content{
+      height: 352px;
+    }
+
+    .backgrounded {
+      $bg-color: #EDEDED;
+      background: $bg-color;
+
+      border: 1px solid darken($bg-color, 20%);
+      border-width: 1px 0;
+    }
+
+    #target-search-results {
+      list-style: none;
+      margin: 10px 0 10px 0;
+      overflow: auto;
+      padding: 0;
+
+      li {
+        border: 1px solid transparent;
+        border-width: 1px 0;
+
+        float: left;
+        height: 64px;
+        margin: 0 10px 15px 0;
+        overflow: hidden;
+        padding: 5px;
+        width: 230px;
+
+        &:hover {
+          @extend .backgrounded;
+        }
+      }
+
+      label {
+        float: right;
+        margin: 0 auto;
+        padding: 0;
+        width: 210px;
+      }
+
+      figure {
+        margin: 0;
+        padding: 0;
+      }
+
+      figure img{
+        float: left;
+        height: 64px;
+        margin-right: 5px;
+        width: 64px;
+      }
+
+      figcaption {
+        height: 64px;
+        margin-left: 3px;
+        overflow: hidden;
+        text-overflow: ellipsis-word;
+        white-space: wrap;
+      }
+
+      li input[type=checkbox],
+      li input[type=radio]{
+        margin: 25px 0 0 0;
+      }
     }
 }

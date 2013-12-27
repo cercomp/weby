@@ -105,13 +105,6 @@ class Sites::Admin::RepositoriesController < ApplicationController
   end
 
   def per_page
-    if params[:template]
-      if params[:template]=='tinymce_link'
-        return 12
-      elsif params[:template]=='tinymce'
-        return 18
-      end
-    end
     params[:format] == 'json' ? 50 : params[:per_page] || per_page_default
   end
 end

@@ -48,9 +48,9 @@ module RepositoryHelper
                      place_name: place_name,
                      field_name: field_name,
                      selected: selected })
-    content_for :javascripts do
-      @included = @included.to_i + 1
-      render('sites/admin/repositories/repository_search') if @included == 1
+    content_for :body_end do
+      @repo_included = @repo_included.to_i + 1
+      render('sites/admin/repositories/repository_search') if @repo_included == 1
     end
     render 'sites/admin/repositories/link_to_add_files', options
   end

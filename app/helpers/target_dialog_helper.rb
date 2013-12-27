@@ -1,6 +1,14 @@
 module TargetDialogHelper
 
+  def target_dialog(polymorphic=false, editable_url=true)
+    content_for :body_end do
+      @target_included = @target_included.to_i + 1
+      render partial: 'sites/admin/pages/target_dialog_search', locals: {polymorphic: polymorphic, editable_url: editable_url}  if @target_included == 1
+    end
+  end
+
   def target_dialog_input(form_builder, target_name, polymorphic=false, editable_url=true)
+    target_dialog polymorphic, editable_url
     render partial: "sites/admin/pages/target_dialog_input", locals: {f: form_builder, target_name: target_name, polymorphic: polymorphic, editable_url: editable_url}
   end
 

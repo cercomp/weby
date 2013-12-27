@@ -52,11 +52,7 @@ pt-BR:
           insert:              " Inserir "
           details:             " Detalhes "
           cancel:              " Cancelar "
-        tinymce:
-          search:              " Buscar "
-          image:               " Imagem "
-          none_file:           " Nenhum Arquivo Encontrado. "
-        tinymce_link:
-          search:              " Buscar "
+        list_popup:
+          search_repository:   " Pesquisar arquivo "
           archive:             " Arquivo "
           none_file:           " Nenhum Arquivo Encontrado. "

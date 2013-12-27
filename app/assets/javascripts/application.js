@@ -58,7 +58,7 @@ function filter_user(input, list){
 
 $(document).ready(function() {
    // Ajax indicator
-   $('body').append($('<div class="modal hide" data-backdrop="false" style="width: 150px; margin: -30px 0 0 -75px; z-index: 1060;" id="loading-modal"><div class="modal-body"><img src="/assets/loading-bar.gif"/></div></div>'));
+   $('body').append($('<div class="modal hide" data-backdrop="false" style="width: 150px; margin: -30px 0 0 -75px; z-index: 66060;" id="loading-modal"><div class="modal-body"><img src="/assets/loading-bar.gif"/></div></div>'));
    $('body').ajaxSend(function(ev, jqXHR, options){
        if(options.files){
           return;

@@ -52,11 +52,7 @@ en:
           insert:              " Insert "
           details:             " Details "
           cancel:              " Cancel "
-        tinymce:
-          search:              " Search "
-          image:               " Image "
-          none_file:           " No Files Found. "
-        tinymce_link:
-          search:              " Search "
+        list_popup:
+          search_repository:   " Search file "
           archive:             " File "
           none_file:           " No Files Found. "

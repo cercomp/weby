@@ -56,6 +56,7 @@ pt-BR:
           category:             " Categoria "
           type:                 " Tipo "
           none_page:            " Nenhuma Página Encontrada "
+          search_pages:         " Pesquisar página "
         related_files:
           size:                 " Tamanho "
           related_files:        " Arquivos Relacionados "
