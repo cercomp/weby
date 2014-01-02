@@ -13,15 +13,17 @@ Dir[File.join(Rails.root, "db/seed/*.yml")].each do |filename|
   ActiveRecord::Fixtures.create_fixtures('db/seed', table_name)
 end
 
-User.create do |u|
-  u.login = 'admin'
-  u.password = u.password_confirmation = 'Admin1'
-  u.email = 'admin@domain.com'
-  u.first_name = 'Administrador'
-  u.last_name = 'do Sistema'
-  u.status = true
-  u.is_admin = true
-end
+user = User.new(
+  login: 'admin',
+  password: 'Admin1',
+  password_confirmation: 'Admin1',
+  email: 'admin@domain.com',
+  first_name: 'Administrador',
+  last_name: 'do Sistema',
+  is_admin: true
+)
+user.skip_confirmation!
+user.save!
 
 load(Rails.root.join('db', 'seed', 'default_per_page.rb').to_s)
 
