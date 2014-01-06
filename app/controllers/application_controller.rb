@@ -303,6 +303,10 @@ class ApplicationController < ActionController::Base
     login_path
   end
 
+  def after_sign_in_path_for(args)
+    session[:return_to] || root_path
+  end
+
   def record_activity(note, loggeable)
 #    if !ActivityRecord.where(user_id: current_user.id, site_id: current_site.id, controller: controller_name, action: action_name, loggeable: loggeable, 
       @activity = ActivityRecord.new
@@ -318,5 +322,4 @@ class ApplicationController < ActionController::Base
       @activity.save
 #    end
   end
-
 end
