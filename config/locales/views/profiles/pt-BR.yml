@@ -2,8 +2,8 @@ pt-BR:
   profiles:
     show:
       edit-profile: "EDITAR O PERFIL"
-      latest-news-published: "Últimas nóticias publicadas"
-      none_news: "Nenhuma noticia publicada por %{name}"
+      latest-news-published: "Últimas notícias publicadas"
+      none_news: "Nenhuma notícia publicada por %{name}"
       published: "Publicado no site %{site}, em %{date}"
     edit:
       password-change: "Nova senha"
