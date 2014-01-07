@@ -173,5 +173,6 @@ tinymce.addI18n('pt_BR',{
 "Tools": "Ferramentas",
 "View": "Visualizar",
 "Table": "Tabela",
-"Format": "Formatar"
+"Format": "Formatar",
+"No templates defined": "Nenhum modelo definido"
 });

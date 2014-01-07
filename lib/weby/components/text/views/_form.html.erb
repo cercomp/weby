@@ -15,5 +15,6 @@
   </div>
 </div>
 <%= f.input :html_class, :input_html => {:pattern => '^[A-Za-z0-9_\-]*$'} %>
-
+<%= target_dialog %>
+<%= repository_dialog %>
 <%= content_for :javascripts, javascript_include_tag("text_component_form") %>
