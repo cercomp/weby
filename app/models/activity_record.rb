@@ -10,8 +10,9 @@ class ActivityRecord < ActiveRecord::Base
 
   def loggeable_url_params
     return nil if self.action == "destroy"
+    prefix = self.site ? :site_admin : :admin
     self.controller == "menu_items" ?
-      [:site_admin, self.loggeable.menu, self.loggeable] : [:site_admin, self.loggeable]
+      [prefix, self.loggeable.menu, self.loggeable] : [prefix, self.loggeable]
   end
 
 end

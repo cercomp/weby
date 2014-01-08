@@ -8,6 +8,10 @@ en:
         created_at:                 " Date "
         note:                       " Activity "
         destroy:                    " Destroy "
+#--- Admin/Notifications ---#
+        created_notification:       " created a notification "
+        updated_notification:       " updated a notification "
+        destroyed_notification:     " destroyed a notification "
 #--- Admin/Rights ---#
         created_global_right:       " created a global right "
         updated_global_right:       " updated a global right "

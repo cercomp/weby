@@ -8,6 +8,10 @@ pt-BR:
         created_at:                 " Data "
         note:                       " Atividade "
         destroy:                    " Excluir "
+#--- Admin/Notifications ---#
+        created_notification:       " criou uma notificação "
+        updated_notification:       " atualizou uma notificação "
+        destroyed_notification:     " excluiu uma notificação "
 #--- Admin/Rights ---#
         created_global_right:       " criou uma permissão global "
         updated_global_right:       " atualizou uma permissão global "
