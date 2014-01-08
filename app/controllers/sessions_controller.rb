@@ -2,6 +2,7 @@ class SessionsController < Devise::SessionsController
   layout 'weby_sessions'
 
   before_filter :set_domain
+  before_filter :store_location, only: :new
 
   private
 
@@ -11,5 +12,9 @@ class SessionsController < Devise::SessionsController
       current_domain = request.host.gsub(/www\./, '')
     end
     request.session_options[:domain] = ".#{current_domain}"
+  end
+
+  def store_location
+    session[:return_to] = params[:back_url]
   end
 end
