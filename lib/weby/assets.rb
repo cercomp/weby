@@ -10,8 +10,8 @@ module Weby
     end
 
     def self.asset_host_for(source, request)
-      return nil if request && request.ssl? && !@asset_host_https
-      return nil unless @asset_hosts
+      return nil if !@asset_hosts || !request
+      return nil if request.ssl? && !@asset_host_https
       @asset_hosts.each do |regex, host|
         return host if source.match(regex)
       end
