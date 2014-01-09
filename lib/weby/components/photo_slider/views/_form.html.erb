@@ -26,10 +26,3 @@
       "photo_ids", "photo_slider_component[photo_ids][]", component.generate_vector_images,
       multiple: true, file_types: 'image' %>
   </div>
-
-<% content_for :bottom do %>
-  <div id="dialog-repository-search">
-    <%= render('sites/admin/repositories/repository_search') %>
-  </div>
-<% end %>
-<%= content_for :stylesheets, stylesheet_link_tag("include_files") %>

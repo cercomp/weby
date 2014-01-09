@@ -29,12 +29,6 @@ en:
           field_required:      " Field required! "
           accessibility_needs: " Needed for your site's accessibility. "
           please_wait:         " Please wait "
-        ajax_upload:
-          file:                " File "
-          description:         " Description "
-          send:                " Send "
-          select_file:         " Select File "
-          field_required:      " Field Required! "
         repo:
           picture:             " Picture "
         list:
@@ -46,6 +40,11 @@ en:
           repository:          " REPOSITORY "
           new_file:            " NEW FILE "
           none_file:           " No Files Found. "
+          file:                " File "
+          description:         " Description "
+          send:                " Send "
+          select_file:         " Select File "
+          field_required:      " Field Required! "
         search_and_new_file:
           search_image:        " Search Image "
           new_image:           " New image "
@@ -53,11 +52,7 @@ en:
           insert:              " Insert "
           details:             " Details "
           cancel:              " Cancel "
-        tinymce:
-          search:              " Search "
-          image:               " Image "
-          none_file:           " No Files Found. "
-        tinymce_link:
-          search:              " Search "
+        list_popup:
+          search_repository:   " Search file "
           archive:             " File "
           none_file:           " No Files Found. "

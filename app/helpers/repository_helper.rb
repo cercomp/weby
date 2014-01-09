@@ -41,6 +41,13 @@ module RepositoryHelper
     hash
   end
 
+  def repository_dialog
+    content_for :body_end do
+      @repo_included = @repo_included.to_i + 1
+      render('sites/admin/repositories/repository_search') if @repo_included == 1
+    end
+  end
+
   def repository_search(link_title, place_name, field_name, selected, options = {})
     options[:file_types] = [options[:file_types]].flatten
     
@@ -48,8 +55,7 @@ module RepositoryHelper
                      place_name: place_name,
                      field_name: field_name,
                      selected: selected })
-
-
+    repository_dialog
     render 'sites/admin/repositories/link_to_add_files', options
   end
 

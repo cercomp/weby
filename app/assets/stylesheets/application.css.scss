@@ -142,6 +142,22 @@ body.modal-open {
     overflow: hidden;
 }
 
+.modal-backdrop{
+  z-index: 66000;
+}
+
+.modal{
+  z-index: 66050;
+}
+
+.select2-drop{
+  z-index: 66055;
+}
+
+.select2-drop-mask{
+  z-index: 66052;
+}
+
 .tabbable.i18n .nav.nav-tabs {
     margin-bottom: 0px !important;
 }

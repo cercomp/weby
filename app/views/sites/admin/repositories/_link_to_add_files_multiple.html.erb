@@ -1,6 +1,5 @@
 <div class="input add-multiple-files">
-  <%= link_to_function link_title,
-    "repositorySearch(this);",
+  <%= link_to link_title, "#",
     {data: {:'place-name' => place_name, :'field-name' => field_name, :'multiple' => multiple, :'file-types' => file_types.to_s},
     class: 'add-button btn btn-info'} %>
   <ul id="<%= place_name %>">

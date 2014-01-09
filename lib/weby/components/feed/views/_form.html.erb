@@ -30,10 +30,3 @@
   priority: component.align,
   include_blank: false
 %>
-
-<%= content_for :stylesheets, stylesheet_link_tag("include_files") %>
-<% content_for :bottom do %>
-  <div id="dialog-repository-search">
-    <%= render('sites/admin/repositories/repository_search') %>
-  </div>
-<% end %>

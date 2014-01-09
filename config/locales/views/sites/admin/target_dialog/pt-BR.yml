@@ -1,12 +1,14 @@
 pt-BR:
   target_dialog:
-    select_target: " Selecionar Página "
+    select_target: " Selecionar Página"
+    select_file: "/Arquivo"
     none_selected: " Nenhuma Selecionada "
     common_pages: " Páginas predefinidas "
     extensions:   " Extensões "
     extension:    " Extensão "
     title: " Título "
     description: "Descrição"
+    repositories: "Arquivos"
   common_pages:
     site_path:
       title: "Página inicial"

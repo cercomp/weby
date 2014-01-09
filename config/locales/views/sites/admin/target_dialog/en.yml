@@ -1,12 +1,14 @@
 en:
   target_dialog:
-    select_target: " Select Page "
+    select_target: " Select Page"
+    select_file: "/File"
     none_selected: " None Selected "
     common_pages: " Preset pages "
     extensions:   " Extensions "
     extension:    " Extension "
     title: " Title "
     description: "Description"
+    repositories: "Files"
   common_pages:
     site_path:
       title: "Home page"

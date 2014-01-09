@@ -8,9 +8,3 @@
 
 <%= f.input :html_class, :input_html => {:pattern => '^[A-Za-z0-9_\-]*$'} %>
 
-<% content_for :bottom do %>
-  <div id="dialog-repository-search">
-    <%= render('sites/admin/repositories/repository_search') %>
-  </div>
-<% end %>
-<%= content_for :stylesheets, stylesheet_link_tag("include_files") %>
