@@ -1,6 +1,8 @@
 class ImageComponent < Component
   component_settings :repository_id, :size, :height, :width, :target_type, :target_id, :url, :new_tab, :html_class
 
+  i18n_settings :repository_id
+
   alias :_new_tab :new_tab
   def new_tab
     _new_tab.blank? ? false : _new_tab.to_i == 1
