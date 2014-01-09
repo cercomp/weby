@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131121201855) do
+ActiveRecord::Schema.define(:version => 20140109165826) do
 
   create_table "activity_records", :force => true do |t|
     t.integer  "user_id"
@@ -250,24 +250,6 @@ ActiveRecord::Schema.define(:version => 20131121201855) do
 
   add_index "repositories", ["site_id"], :name => "index_repositories_on_site_id"
 
-  create_table "rights", :force => true do |t|
-    t.string   "name"
-    t.string   "controller"
-    t.string   "action"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "rights_roles", :force => true do |t|
-    t.integer  "right_id"
-    t.integer  "role_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "rights_roles", ["right_id"], :name => "index_rights_roles_on_right_id"
-  add_index "rights_roles", ["role_id"], :name => "index_rights_roles_on_role_id"
-
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.string   "theme"
@@ -494,9 +476,6 @@ ActiveRecord::Schema.define(:version => 20131121201855) do
   add_foreign_key "pages_repositories", "repositories", :name => "pages_repositories_repository_id_fk"
 
   add_foreign_key "repositories", "sites", :name => "repositories_site_id_fk"
-
-  add_foreign_key "rights_roles", "rights", :name => "rights_roles_right_id_fk"
-  add_foreign_key "rights_roles", "roles", :name => "rights_roles_role_id_fk"
 
   add_foreign_key "roles", "sites", :name => "roles_site_id_fk"
 

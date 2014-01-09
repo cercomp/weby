@@ -12,9 +12,6 @@ class Role < ActiveRecord::Base
 
   has_and_belongs_to_many :users
 
-  has_many :rights_roles
-  has_many :rights, :through => :rights_roles
-
   def permissions_hash
     self.permissions.present? ? eval(self.permissions.to_s) : {}
   end
