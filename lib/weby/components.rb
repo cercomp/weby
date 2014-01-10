@@ -196,6 +196,8 @@ module Weby
             val = settings_map[:#{setting}]
             if val.is_a? Hash
               return val[locale]
+            elsif val.is_a? String
+              return val if locale == I18n.locale.to_s
             end
             ""
           end

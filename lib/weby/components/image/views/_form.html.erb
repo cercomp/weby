@@ -1,4 +1,6 @@
-<%= repository_search( t(".select_image"), "page_image", "image_component[repository_id]", (Repository.find(component.repository_id) rescue nil), multiple: false, file_types: ['image','flash']) %>
+<%= each_i18n_tab do |locale| %>
+  <%= repository_search( t(".select_image"), "page_image_#{locale.name}", "image_component[repository_id][#{locale.name}]", (Repository.find(component.repository_id_i18n(locale.name)) rescue nil), multiple: false, file_types: ['image','flash']) %>
+<% end %>
 
 <%= image_size_picker f %>
 
