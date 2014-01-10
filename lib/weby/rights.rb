@@ -29,6 +29,23 @@ module Weby
         end
         return nil
       end
+
+      def seed_roles site_id=nil
+        roles  = YAML.load(ERB.new(File.read(Rails.root.join("config","roles.yml"))).result)
+
+        roles.each do |name, values|
+          permissions = {}.to_s
+          case values['permissions']
+          when Hash
+            permissions = values['permissions'].to_s
+          when String
+            if values['permissions'] == 'all'
+              permissions = Hash[Weby::Rights.permissions.map{|controller, actions| [controller, actions.keys]}].to_s
+            end
+          end
+          Role.create(name: name, permissions: permissions, site_id: site_id)
+        end
+      end
     end
   end
 end
