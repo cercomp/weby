@@ -10,6 +10,7 @@ class Weby::Theme
   def populate
     extensions if File.exists? @extensions_yaml
     components if File.exists? @components_yaml
+    Weby::Rights.seed_roles @site.id
   end
 
   def components

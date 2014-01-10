@@ -1,0 +1,18 @@
+Gerente:
+  permissions: all
+
+Editor-Chefe:
+  permissions:
+    banners: ["index", "show", "edit", "destroy", "change_position", "new", "toggle_field"]
+    groups: ["index", "show", "new"]
+    messages: ["index", "show"]
+    menu_items: ["change_position", "index", "show", "edit", "destroy", "new"]
+    menus: ["index", "show", "edit", "destroy", "new"]
+    pages: ["index", "show", "edit", "destroy", "sort", "new", "toggle_field"]
+    repositories: ["index", "show", "destroy", "new"]
+    extensions: ["index"]
+Redator:
+  permissions:
+    pages: ["index", "show", "edit", "new"]
+    extensions: ["index"]
+    repositories: ["index", "show", "new"]

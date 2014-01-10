@@ -13,6 +13,8 @@ Dir[File.join(Rails.root, "db/seed/*.yml")].each do |filename|
   ActiveRecord::Fixtures.create_fixtures('db/seed', table_name)
 end
 
+Weby::Rights.seed_roles
+
 user = User.new(
   login: 'admin',
   password: 'Admin1',
@@ -25,5 +27,6 @@ user = User.new(
 user.skip_confirmation!
 user.save!
 
-load(Rails.root.join('db', 'seed', 'default_per_page.rb').to_s)
-
+Dir[File.join(Rails.root, "db/seed/*.rb")].each do |filename|
+  load(filename)
+end
