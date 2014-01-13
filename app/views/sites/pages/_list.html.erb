@@ -22,7 +22,7 @@
       <%= raw page.summary %>
     </summary>
     <% page.category_list.each do |category| %>
-      <span class="category label label-info"><%= link_to category , site_pages_path( tags: category.to_s )%></span>
+      <span class="category label"><%= link_to category , site_pages_path( tags: category.to_s )%></span>
     <% end %>
     <p class="read_more"><%#= link_to t(".read_more"), site_page_path(page) %></p>
   </div>
