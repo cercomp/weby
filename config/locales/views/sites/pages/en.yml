@@ -4,6 +4,7 @@ en:
       index:
         events:        " Events "
         pages:         " Pages "
+        news:          " News "
         advanced:      " Advanced Options "
         match_search:  " Exact sentence "
         and_search:    " All the words "

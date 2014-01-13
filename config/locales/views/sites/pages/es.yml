@@ -4,6 +4,7 @@ es:
       index:
         events:        " Eventos "
         pages:         " Páginas "
+        news:          " Notícias "
         advanced:      " Opciones avanzadas "
         match_search:  " Coincidencia exacta "
         and_search:    " Todas las palabras "

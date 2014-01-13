@@ -7,7 +7,7 @@
         <%= link_to component.label.camelize, main_app.site_pages_path(direction: 'desc', sort: 'pages.created_at',
                                                                    tags: component.filter_by) %>
       <% else %>
-        <%= component.only_events? ? link_to(component.label, main_app.events_site_pages_path(direction: 'desc', sort: 'pages.event_begin')) : component.label %>
+        <%= link_to(component.label, component.only_events? ? main_app.events_site_pages_path(direction: 'desc', sort: 'pages.event_begin') : main_app.news_site_pages_path(direction: 'desc', sort: 'pages.created_at')) %>
       <% end %>
     </div>
   <% end %>

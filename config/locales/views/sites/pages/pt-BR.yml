@@ -4,6 +4,7 @@ pt-BR:
       index:
         events:        " Eventos "
         pages:         " Páginas "
+        news:          " Notícias "
         advanced:      " Opções Avançadas "
         match_search:  " Busca exata "
         and_search:    " Todas as palavras "
