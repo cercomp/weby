@@ -10,7 +10,7 @@ class Admin::StatisticsController < ApplicationController
         min_date = View.minimum(:created_at)
         @years = min_date ? Time.now.year.downto(min_date.year).to_a : [Time.now.year]
         @months = []
-        curr_date, oldest_date = Time.now.to_date, min_date ? min_date.to_date : Time.now.to_date
+        curr_date, oldest_date = Date.current, min_date ? min_date.to_date : Date.current
         while curr_date.month >= oldest_date.month && curr_date.year >= oldest_date.year
           @months << [l(curr_date, format: :monthly), curr_date.strftime('%m/%Y')]
           curr_date -= 1.month
