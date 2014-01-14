@@ -1,12 +1,30 @@
-<% width = @main_width ? "#{@main_width+4}px" : "100%" %>
+<% content_for :javascripts do %>
+  <% javascript_include_tag 'http://coletajavascript.serpro.gov.br/estatistica.js' %>
+<% end %>
 
-<section class="gov_bar_component">
-  <div id="barra-brasil" style="background-color: <%= component.background %>">
-      <div class="barra" style="max-width: <%= raw width %>;">
-          <ul>
-              <li><a style="background-color: <%= component.background %>" href="http://www.acessoainformacao.gov.br" class="ai" target="_blank" title="Acesso à informação">www.sic.gov.br</a></li>
-              <li><a style="background-color: <%= component.background %>" href="http://www.brasil.gov.br" class="brasilgov" target="_blank" title="Portal de Estado do Brasil">www.brasil.gov.br</a></li>
-          </ul>
+<div class="gov_bar_component">
+  <div id="barra-brasil">
+    <div id="wrapper-barra-brasil">
+      <div class="brasil-flag">
+        <a href="http://brasil.gov.br" class="link-barra">Brasil</a>
       </div>
+      <span class="acesso-info">
+        <a href="http://brasil.gov.br/barra#acesso-informacao" class="link-barra">Acesso à informação</a>
+      </span>
+      <ul class="list">
+        <li class="list-item first">
+          <a href="http://brasil.gov.br/barra#participe" class="link-barra">Participe</a>
+        </li>
+        <li class="list-item">
+          <a href="http://www.servicos.gov.br/" class="link-barra">Serviços</a>
+        </li>
+        <li class="list-item">
+          <a href="http://www.planalto.gov.br/legislacao" class="link-barra">Legislação</a>
+        </li>
+        <li class="list-item last last-item">
+          <a href="http://brasil.gov.br/barra#orgaos-atuacao-canais" class="link-barra">Canais</a>
+        </li>
+      </ul>
+    </div>
   </div>
-</section>
+</div>

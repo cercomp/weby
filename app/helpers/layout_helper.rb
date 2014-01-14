@@ -6,13 +6,6 @@ module LayoutHelper
     Weby::Application.assets.find_asset(css_path) ? stylesheet_link_tag(css_path) : ""
   end
 
-  # loads the main javascript layout
-  # eg: javascripts/layouts/{name}/main.css 
-  def load_layout_javascript(layout)
-    js_path = "layouts/#{layout}/main.js"
-    Weby::Application.assets.find_asset(js_path) ? javascript_include_tag(js_path) : ""
-  end
-
   # gera um item do menu admin com verificação de classe active
   def menu_item_to title, url
     content_tag :li, link_to(title, url), class: request.path.match(url.to_s) ? 'active' : ''
