@@ -83,13 +83,13 @@ div#wrapper-barra-brasil {
   color:#606060;
 }
 
-@media screen and max-width 668px{
+@media screen and (max-width: 668px){
   #barra-brasil .list {
     top:-100px;
   }
 }
 
-@media screen and min-width 960px{
+@media screen and (min-width: 960px){
   #wrapper-barra-brasil {
     width:960px;
   }
