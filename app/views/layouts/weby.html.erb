@@ -1,24 +1,28 @@
 <% load_components %>
+
 <!doctype html>
 <html lang="<%= current_locale %>">
-<%= render 'layouts/shared/head', layout: 'weby' %>
-<body>
-  <%= render_webybar %>
-  <div class='first_place'>
-    <%= yield :layout_first_place %>
-  </div>
-  <div id="wrapper" <%= "style=\"max-width: #{ @main_width }px\"".html_safe if @main_width %>>
-    <header>
-      <%= yield :layout_top %>
-      <div class="clear"> </div>
-    </header>
-    <section id="content">
-      <div class="container"><%= yield %></div>
-    </section>
- </div>
- <footer>
-    <%= yield :layout_bottom %>
- </footer>
-  <%= render 'layouts/shared/javascripts', layout: 'weby' %>
-</body>
+  <%= render 'layouts/shared/head', layout: 'weby' %>
+
+  <body>
+    <%= render_webybar %>
+    <div class='first_place'>
+      <%= yield :layout_first_place %>
+    </div>
+    <div id="wrapper" <%= "style=\"max-width: #{ @main_width }px\"".html_safe if @main_width %>>
+      <header>
+        <%= yield :layout_top %>
+        <div class="clear"> </div>
+      </header>
+      <section id="content">
+        <div class="container"><%= yield %></div>
+      </section>
+    </div>
+    <footer>
+      <%= yield :layout_bottom %>
+    </footer>
+
+    <%= javascript_include_tag "base" %>
+    <%= yield :javascripts %>
+  </body>
 </html>

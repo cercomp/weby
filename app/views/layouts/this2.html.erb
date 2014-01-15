@@ -1,30 +1,35 @@
 <% load_components %>
+
 <!doctype html>
 <html lang="<%= current_locale %>">
-<%= render 'layouts/shared/head', layout: 'this2' %>
-<body>
-  <%= render_webybar %>
-  <div class='first_place'>
-    <%= yield :layout_first_place %>
-  </div>
-  <div id="wrapper" <%= "style=\"max-width: #{ @main_width }px\"".html_safe if @main_width %>>
-    <header>
-      <%= yield :layout_top %>
-      <div class="clear"> </div>
-    </header>
-    <aside class="right">
-      <%= yield :layout_right %>
-    </aside>
-    <aside class="left">
-      <%= yield :layout_left %>
-    </aside>
-    <section id="content">
-      <%= yield %>
-    </section>
-    <footer>
-    <%= yield :layout_bottom %>
-    </footer>
-  </div>
-  <%= render 'layouts/shared/javascripts', layout: 'this2' %>
-</body>
+  <%= render 'layouts/shared/head', layout: 'this2' %>
+
+  <body>
+    <%= render_webybar %>
+    <div class='first_place'>
+      <%= yield :layout_first_place %>
+    </div>
+    <div id="wrapper" <%= "style=\"max-width: #{ @main_width }px\"".html_safe if @main_width %>>
+      <header>
+        <%= yield :layout_top %>
+        <div class="clear"> </div>
+      </header>
+      <aside class="right">
+        <%= yield :layout_right %>
+      </aside>
+      <aside class="left">
+        <%= yield :layout_left %>
+      </aside>
+      <section id="content">
+        <%= yield %>
+      </section>
+      <footer>
+        <%= yield :layout_bottom %>
+      </footer>
+    </div>
+
+    <%= javascript_include_tag "base" %>
+    <%= javascript_include_tag "layouts/this2/main.js" %>
+    <%= yield :javascripts %>
+  </body>
 </html>
