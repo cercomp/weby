@@ -71,4 +71,12 @@ class FrontNewsComponent < Component
   def image_sizes
     [:medium, :little, :mini, :thumb]
   end
+
+  def only_events?
+    type_filter == 'events'
+  end
+
+  def only_news?
+    type_filter == 'news'
+  end
 end
