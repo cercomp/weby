@@ -28,7 +28,10 @@
 <%= f.input :show_author, as: :boolean %>
 <%= f.input :show_date, as: :boolean %>
 
-<%= f.input :show_events, as: :boolean %>
+<%= f.input :type_filter, collection: component.type_filters.map{|type| [t(".#{type}"),type] },
+  priority: component.type_filter,
+  include_blank: false
+%>
 <%= f.input :new_tab, as: :boolean %>
 
 

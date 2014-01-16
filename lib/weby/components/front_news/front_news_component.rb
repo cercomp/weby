@@ -1,13 +1,23 @@
 class FrontNewsComponent < Component
   component_settings :quant, :avatar_height, :avatar_width, :read_more, :show_author,
-    :show_date, :image_size, :new_tab, :max_char, :filter_by, :label, :show_label, :show_events
+    :show_date, :image_size, :new_tab, :max_char, :filter_by, :label, :show_label, :type_filter
 
   i18n_settings :label
 
   validates :quant, presence: true
   
   def pages(site, params)
-    pages = only_events? ? site.pages.front.events : site.pages.front
+
+    pages = site.pages.front.send(
+      case type_filter
+      when 'events'
+        :events
+      when 'news'
+        :news
+      else
+        :scoped
+      end
+    )
     
     filter_by.blank? ? pages.includes(:author, :image).order('position desc').available.page(params).per(quant)
                      : pages.includes(:author, :image).order('position desc').available.page(params).per(quant)
@@ -49,11 +59,16 @@ class FrontNewsComponent < Component
     _new_tab.blank? ? false : _new_tab.to_i == 1
   end
 
-  def image_sizes
-    [:medium, :little, :mini, :thumb]
+  alias :_type_filter :type_filter
+  def new_tab
+    _type_filter.blank? ? type_filters[0].to_s : _type_filter
   end
 
-  def only_events?
-    show_events.blank? ? false : show_events.to_i == 1
+  def type_filters
+    [:all, :news, :events]
+  end
+
+  def image_sizes
+    [:medium, :little, :mini, :thumb]
   end
 end
