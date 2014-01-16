@@ -227,7 +227,7 @@ class ApplicationController < ActionController::Base
   def set_global_vars
     @site = current_site
 
-    Weby::Cache.request[:domain] = request.domain || request.ip
+    Weby::Cache.request[:domain] = request.domain || request.remote_ip
     Weby::Cache.request[:subdomain] = request.subdomain
     Weby::Cache.request[:current_user] = current_user
 
@@ -308,18 +308,19 @@ class ApplicationController < ActionController::Base
   end
 
   def record_activity(note, loggeable)
-#    if !ActivityRecord.where(user_id: current_user.id, site_id: current_site.id, controller: controller_name, action: action_name, loggeable: loggeable, 
+    #real_ip = request.env['HTTP_X_FORWARDED_FOR'] || request.remote_ip
+    #if !ActivityRecord.where(user_id: current_user.id, site_id: current_site.id, controller: controller_name, action: action_name, loggeable: loggeable,
       @activity = ActivityRecord.new
       @activity.user_id = current_user.id
       @activity.site_id = current_site.id if current_site
       @activity.note = note
-      @activity.browser = request.env['HTTP_USER_AGENT']
-      @activity.ip_address = request.env['REMOTE_ADDR']
+      @activity.browser = request.user_agent
+      @activity.ip_address = request.remote_ip
       @activity.controller = controller_name
       @activity.action = action_name
       @activity.params = params.inspect
       @activity.loggeable = loggeable
       @activity.save
-#    end
+    #end
   end
 end
