@@ -22,23 +22,23 @@ module ApplicationHelper
   end
 
   # Alterna entre habilitar e desabilitar registro
-  # Parâmetros: obj (Objeto), publish (Campo para alternar), action (Ação a ser executada no controller)
+  # Parâmetros: obj (Objeto), field (Campo para alternar), action (Ação a ser executada no controller)
   # Campo com imagens V ou X para habilitar/desabilitar e degradê se não tiver permissão para alteração.
   def toggle_field(obj, field, action='toggle_field', options = {})
     ''.tap do |menu|
       if check_permission(controller.class, "#{action}")
         if obj[field.to_s] == 0 or not obj[field.to_s]
-          menu << link_to( image_tag("false.png", :alt => t("disable")),
-            {:action => "#{action}", :id => obj.id, :field => "#{field}"},
-            options.merge({method: :put, :title => t("activate")}))
+          menu <<  link_to( check_box_tag(t("disable"), action.to_s, false, alt: t("disable")),
+                            {:action => "#{action}", :id => obj.id, :field => "#{field}"},
+                            options.merge({method: :put, :title => t("activate")}))
           menu << " #{t('unpublished')}" if options[:show_label]
         else
-          menu << link_to(image_tag("true.png", :alt => t("enable")),
-                          {:action => "#{action}", :id=> obj.id, :field => "#{field}"},
-                          options.merge({method: :put, :title => t("deactivate")}))
+          menu << link_to( check_box_tag(t("enable"), action.to_s, true, :alt => t("enable")),
+                           {:action => "#{action}", :id=> obj.id, :field => "#{field}"},
+                           options.merge({method: :put, :title => t("deactivate")}))
           menu << " #{t('published')}" if options[:show_label]
         end
-      else
+      else        
         if obj[field.to_s] == 0 or not obj[field.to_s]
           menu << image_tag("false_off.png", :alt => t("enable"), :title => t("no_permission_to_activate_deactivate"))
           menu << " #{t('unpublished')}" if options[:show_label]
