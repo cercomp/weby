@@ -6,7 +6,8 @@ class Setting < ActiveRecord::Base
   VALUES_SET = {
     login_protocol: %w(http https),
     per_page_default: :numericality,
-    tld_length: :numericality
+    tld_length: :numericality,
+    maintenance_mode: %w(true false)
     #,default_groupings: {select: Grouping.all.map{|g| [g.name, g.id] }, options: {class: 'select2', multiple: true}}
   }
 

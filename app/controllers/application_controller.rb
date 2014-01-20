@@ -364,4 +364,11 @@ class ApplicationController < ActionController::Base
       @activity.save
     #end
   end
+
+  def maintenance_mode
+    if Weby::Settings.maintenance_mode == "true"
+     @users = User.all
+     @users.sign_out
+    end
+  end
 end

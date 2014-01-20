@@ -10,3 +10,4 @@ pt-BR:
     domain: "Domínio padrão do Weby"
     root_site: "Site principal, acessível na raiz do domínio"
     default_groupings: 'Filtro padrão de grupos de site na listagem dos sites. Ex: 1 | !1 | 1,2 | !2,3'
+    maintenance_mode: 'Modo de Manutenção. True faz com que apenas admins possam logar.'
