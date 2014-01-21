@@ -11,7 +11,7 @@
     <th><%= sortable 'position', t(".position") %></th>
     <!--<th><%#= sortable 'created_at', t(".register_date")%></th>-->
     <th><%= sortable 'date_begin_at', t(".publication_date")%></th>
-    <th><%= t(".publish") %></th>
+    <th style="text-align: center;"><%= t(".publish") %></th>
     <th></th>
   </thead>
   <tbody>
@@ -28,7 +28,7 @@
           <%= publication_status(banner) %>
         </td>
         <td>
-          <%= raw make_menu(banner) %> 
+          <%= raw make_menu(banner, :except => "show") %> 
         </td>
       </tr>
     <% end %>

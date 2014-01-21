@@ -22,10 +22,10 @@ module ComponentsHelper
     components_html << "class='component component-#{ compo.name } #{'disabled' unless component_is_available(compo.name)}' data-place='#{compo.place_holder}'>
       <div>
         <span class='widget-name'>
-          #{ raw ("#{toggle_field(compo, "publish")} #{t("components.#{compo.name}.name")} - #{compo.alias || compo.default_alias}") }
+          #{ raw ("#{t("components.#{compo.name}.name")} - #{compo.alias || compo.default_alias}") }
         </span>
         <div class='pull-right'>
-          #{ raw make_menu(compo, :except => exceptions, :with_text => leftout) }
+          #{ raw ("#{toggle_field(compo, "publish")} #{t("activate")} #{make_menu(compo, :except => exceptions, :with_text => leftout)}") }
           #{ "<span class='handle'>#{icon('move') }</span>" if check_permission(Sites::Admin::ComponentsController, 'sort') and !leftout }
           #{ link_to t("+"), new_site_admin_component_path(placeholder: compo.id), class: "btn btn-success btn-small", title: t(".new_component") if compo.name.to_s == "components_group" and check_permission(Sites::Admin::ComponentsController, [:new]) and !leftout }
         </div>

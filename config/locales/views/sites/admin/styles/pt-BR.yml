@@ -22,6 +22,7 @@ pt-BR:
           own_styles:       " Estilos próprios "
           name:             " Nome "
           no_own_styles:    " Nenhum estilo próprio encontrado "
+          publish:          " Publicar "
           sites_followers:  " Sites que seguem esse estilo "
         form:
           help_with_style:  " Precisa de ajuda com o estilo "

@@ -59,4 +59,8 @@ module StylesHelper
       link_to( icon('ok-circle', text: t('publish')), publish_site_admin_style_path(style)) + ' '
     end
   end
+
+  def pub(s)
+    toggle_field(s, "publish")
+  end
 end
