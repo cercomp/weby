@@ -1,3 +1,5 @@
+<% title ".feedback" %>
+<% breadcrumb :feedback_trash %>
 <div class="pull-right">
   <% if check_permission(Feedback::Admin::GroupsController, [:new]) %>
     <%= link_to t(".new_group"),

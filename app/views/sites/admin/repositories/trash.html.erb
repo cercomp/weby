@@ -1,4 +1,7 @@
 <% content_for :javascripts, javascript_include_tag('repositories') %>
+<% title ".archives" %>
+<% breadcrumb :repositories_trash %>
+
 <p class="pull-right">
   <%= link_to t(".new_archive"),
     new_site_admin_repository_path,

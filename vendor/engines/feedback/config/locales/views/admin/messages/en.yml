@@ -3,6 +3,7 @@ en:
     admin:
       messages:
         index:
+         feedbacktitle: " Feedback "
          feedback:      " Messages "
          none_feedback: " None Feedback "
          new_group:     " New Group "

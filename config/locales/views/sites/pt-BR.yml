@@ -1,6 +1,7 @@
 pt-BR:
   sites:
     admin:
+      home: " Início "
       common_tasks: "TAREFAS MAIS COMUNS"
       new_page: "Nova Página"
       new_file: "Novo Arquivo"

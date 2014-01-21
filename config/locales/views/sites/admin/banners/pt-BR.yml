@@ -3,6 +3,7 @@ pt-BR:
     admin:
       banners:
         form:
+          banners:                  " Banners "
           add_category:             " Adicionar Categoria "
           image:                    " Imagem do banner "
           begin:                    " Início "

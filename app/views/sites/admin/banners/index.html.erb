@@ -1,3 +1,5 @@
+<% title ".banners" %>
+<% breadcrumb params[:search].present? ? :banners_search : :banners %>
 <div class="pull-left">
   <%= form_tag site_admin_banners_path, method: 'get', autocapitalize: "off", class: 'search pull-right' do %>
     <%= content_tag :div, class: 'input-append' do %>

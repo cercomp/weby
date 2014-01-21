@@ -23,6 +23,7 @@ pt-BR:
           categories:           " Categorias "
           source:               " Fonte "
         fronts:
+          pages:                " Páginas "
           covers:               " Capas "
           none_cover:           " Nenhuma Capa "
           new_page:             " Nova Página "

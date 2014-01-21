@@ -3,6 +3,7 @@ pt-BR:
     admin:
       components:
         form:
+          layout:             " Layout "
           place:              " Local "
           visibility:         " Visibilidade "
           alias:              " Nome "
@@ -11,11 +12,13 @@ pt-BR:
           home_page:          " Apenas na página inicial "
           inner_page:         " Apenas nas páginas internas "
         available_components:
+          layout:             " Layout "
           next_step:          " Próximo Passo "
           components:         " Componentes "
         edit:
           components:         " Componentes "
         index:
+          layout:             " Layout "
           components:         " Componentes "
           new_component:      " Novo Componente "
           component:          " Componente "
@@ -28,6 +31,7 @@ pt-BR:
         new:
           components:         " Componentes "
         trash: 
+          layout:             " Layout "
           components:         " Componentes "                  
           new_component:      " Novo Componente "              
           component:          " Componente "                   

@@ -3,6 +3,7 @@ en:
     admin:
       banners:
         form:
+          banners:                  " Banners "
           add_category:             " Add Category "
           image:                    " Banner image "
           begin:                    " Begin "

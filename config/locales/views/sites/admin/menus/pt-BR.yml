@@ -26,5 +26,6 @@ pt-BR:
           new_menu_item:  " Novo Item de Menu "  
           edit_menu:      " Editar "             
           destroy:        " Excluir "            
-          are_you_sure:   " Você tem certeza "   
+          are_you_sure:   " Você tem certeza "
+          none_menu_item: " Nenhum item de menu "
 

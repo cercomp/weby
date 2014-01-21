@@ -109,6 +109,8 @@ GEM
       railties (>= 3.0.0)
     foreigner (1.4.2)
       activerecord (>= 3.0.0)
+    gretel (3.0.5)
+      rails (>= 3.2.0)
     hike (1.2.3)
     i18n (0.6.1)
     journey (1.0.4)
@@ -230,6 +232,7 @@ DEPENDENCIES
   factory_girl_rails (= 1.7.0)
   feedback!
   foreigner
+  gretel
   jquery-rails (= 2.1.4)
   kaminari (= 0.14.1)
   meta_request (= 0.2.0)

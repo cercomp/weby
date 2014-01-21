@@ -23,8 +23,11 @@ pt-BR:
           users:                " Usuários "
           none_role:            " Nenhum papel "
         new:
+          users:                " Usuários "
           roles_permissions:    " Permissões e Papéis "
+          new_role:             " Novo Papel "
         edit:
+          users:                " Usuários "
           roles_permissions:    " Permissões e Papéis "
         trash:
           roles_permissions:    " Permissões e Papéis "
@@ -44,7 +47,8 @@ pt-BR:
           statistics:           " Estatísticas "       
           styles:               " Estilos "            
           users:                " Usuários "           
-          none_role:            " Lixeira vazia. "       
+          none_role:            " Lixeira vazia. "
+          recycle_bin:          " Lixeira "
 
 
 

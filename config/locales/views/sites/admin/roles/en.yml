@@ -23,8 +23,11 @@ en:
           users:                " Users "
           none_role:            " No roles. "
         new:
+          users:                " Users "
           roles_permissions:    " Roles and Permissions "
+          new_role:             " New Role "
         edit:
+          users:                " Users "
           roles_permissions:    " Roles and Permissions "
         trash:
           roles_permissions:    " Roles and Permissions "
@@ -46,4 +49,4 @@ en:
           styles:               " Styles "               
           users:                " Users "                
           none_role:            " Empty recycle bin. "            
-
+          recycle_bin:          " Recycle Bin "
