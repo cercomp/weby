@@ -152,7 +152,7 @@ Weby::Application.routes.draw do
   end
 
   # defaults devise routes
-  devise_for :users, path: '/', skip: [:sessions, :registrations, :passwords]
+  devise_for :users, controllers: {sessions: "sessions"}, path: '/', skip: [:sessions, :registrations, :passwords]
 
   # customize devise routes
   devise_scope :user do
