@@ -30,13 +30,13 @@ module ApplicationHelper
         if obj[field.to_s] == 0 or not obj[field.to_s]
           menu <<  link_to( check_box_tag(t("disable"), action.to_s, false, alt: t("disable")),
                             {:action => "#{action}", :id => obj.id, :field => "#{field}"},
-                            options.merge({method: :put, :title => t("activate")}))
-          menu << " #{t('unpublished')}" if options[:show_label]
+                            options.merge({method: :put, :title => t("unpublished")}))
+          menu << " #{t('publish')}" if options[:show_label]
         else
           menu << link_to( check_box_tag(t("enable"), action.to_s, true, :alt => t("enable")),
                            {:action => "#{action}", :id=> obj.id, :field => "#{field}"},
-                           options.merge({method: :put, :title => t("deactivate")}))
-          menu << " #{t('published')}" if options[:show_label]
+                           options.merge({method: :put, :title => t("published")}))
+          menu << " #{t('publish')}" if options[:show_label]
         end
       else        
         if obj[field.to_s] == 0 or not obj[field.to_s]

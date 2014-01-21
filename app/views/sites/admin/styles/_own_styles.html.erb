@@ -9,7 +9,7 @@
       <tbody>
         <% styles.each do |style| %>
           <tr id="sort_style_<%= style.id %>" class="<%= style.publish ? "success" : "error" %>">
-            <td> <%= style.name %> </td>
+            <td> <%= link_to(style.name, site_admin_style_path(style)) %> </td>
             <td> 
               <% style.followers.each do |site| %>
                 <%= link_to site.name, site_url(subdomain: site) %>
