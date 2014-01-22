@@ -38,48 +38,41 @@ module StylesHelper
     end
   end
 
-  # Alterna entre habilitar e desabilitar registro
+  # Alterna entre habilitar e desabilitar registro de estilo
   # Parâmetros: obj (Objeto), field (Campo para alternar), action (Ação a ser executada no controller)
   # Campo com imagens V ou X para habilitar/desabilitar e degradê se não tiver permissão para alteração.
-  def toggle_field_style(obj, field, action='toggle_field', options = {})
-    ''.tap do |menu|
+  def toggle_field_style(obj, field="publish", action='toggle_field', options = {})
+    ''.tap do |check|
       if check_permission(controller.class, "#{action}")
         obj_temp = check_if_style(obj)
         if obj_temp[field.to_s] == 0 or not obj_temp[field.to_s]
-          menu <<  link_to( check_box_tag(t("disable"), action.to_s, false, alt: t("disable")),
+          check <<  link_to( check_box_tag(t("disable"), action.to_s, false, alt: t("disable")),
                             {:action => "#{action}", :id => obj.id, :field => "#{field}"},
                             options.merge({method: :put, :title => t("unpublished")}))
-          menu << " #{t('publish')}" if options[:show_label]
+          check << " #{t('publish')}" if options[:show_label]
         else
-          menu << link_to( check_box_tag(t("enable"), action.to_s, true, :alt => t("enable")),
+          check << link_to( check_box_tag(t("enable"), action.to_s, true, :alt => t("enable")),
                            {:action => "#{action}", :id=> obj.id, :field => "#{field}"},
                            options.merge({method: :put, :title => t("published")}))
-          menu << " #{t('publish')}" if options[:show_label]
+          check << " #{t('publish')}" if options[:show_label]
         end
       else        
         if obj[field.to_s] == 0 or not obj[field.to_s]
-          menu << image_tag("false_off.png", :alt => t("enable"), :title => t("no_permission_to_activate_deactivate"))
-          menu << " #{t('unpublished')}" if options[:show_label]
+          check << image_tag("false_off.png", :alt => t("enable"), :title => t("no_permission_to_activate_deactivate"))
+          check << " #{t('unpublished')}" if options[:show_label]
         else
-          menu << image_tag("true_off.png", :alt => t("disable"), :title => t("no_permission_to_activate_deactivate"))
-          menu << " #{t('published')}" if options[:show_label]
+          check << image_tag("true_off.png", :alt => t("disable"), :title => t("no_permission_to_activate_deactivate"))
+          check << " #{t('published')}" if options[:show_label]
         end
       end
-      print menu
+      print check
     end
   end
 
+  private
   def check_if_style(obj)
-    if obj.is_a? Style
-      if obj.owner != current_site
-        return obj.sites_styles.where(site_id: @site.id)[0]
-      else
-        return obj
-      end
-    end
+    return obj.sites_styles.where(site_id: @site.id)[0] if obj.owner != current_site
     return obj
   end
-  private :check_if_style
-
 
 end
