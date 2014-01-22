@@ -137,31 +137,18 @@ class Sites::Admin::StylesController < ApplicationController
     @style = Style.find(params[:id])
     if params[:field]
       own = @style.owner != current_site
-      @style = @style.sites_styles.where(site_id: @site.id).first if own
-      @style.update_attributes("#{params[:field]}" => (@style[params[:field]] == 0 or not @style[params[:field]] ? true : false))
+      if own
+        @style = @style.sites_styles.where(site_id: @site.id)[0]
+        published = @style.publish
+        @style.update_attributes(publish: published ? false : true )                
+      else
+        published = @style.publish
+        @style.update_attributes(publish: published ? false : true )
+      end
       flash[:success] = t("successfully_updated")
     else
-        flash[:warning] = t("error_updating_object")
+      flash[:warning] = t("error_updating_object")
     end
-    redirect_to site_admin_styles_path(others: own ? "true" : nil)
-  end
-
-
-  def publish
-    @style = Style.find(params[:id])
-    own = @style.owner != current_site
-    @style = @style.sites_styles.where(site_id: @site.id).first if own
-    @style.update_attributes(publish: true)
-
-    redirect_to site_admin_styles_path(others: own ? "true" : nil) 
-  end
-
-  def unpublish
-    @style = Style.find(params[:id])
-    own = @style.owner != current_site
-    @style = @style.sites_styles.where(site_id: @site.id).first if own
-    @style.update_attributes(publish: false)
-
     redirect_to site_admin_styles_path(others: own ? "true" : nil)
   end
 

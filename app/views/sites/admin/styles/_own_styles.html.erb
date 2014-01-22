@@ -16,11 +16,11 @@
                 <%= link_to site.name, site_url(subdomain: site) %>
               <% end %>
             </td>
-            <td style="text-align: center;"><%= raw pub(style) %></td>
+            <td style="text-align: center;"><%= raw toggle_field(style, "publish") %></td>
             <td class="style-action">
               <%= raw make_menu(style, :except => "show") %>
               <% with_permission(action: :sort) do %>
-              <span class='handle'><%= icon('move', text: t("move")) %></span>
+                <span class='handle'><%= icon('move', text: t("move")) %></span>
               <% end %>
             </td>
           </tr>

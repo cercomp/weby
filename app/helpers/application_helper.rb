@@ -27,7 +27,8 @@ module ApplicationHelper
   def toggle_field(obj, field, action='toggle_field', options = {})
     ''.tap do |menu|
       if check_permission(controller.class, "#{action}")
-        if obj[field.to_s] == 0 or not obj[field.to_s]
+        obj_temp = check_if_style(obj)
+        if obj_temp[field.to_s] == 0 or not obj_temp[field.to_s]
           menu <<  link_to( check_box_tag(t("disable"), action.to_s, false, alt: t("disable")),
                             {:action => "#{action}", :id => obj.id, :field => "#{field}"},
                             options.merge({method: :put, :title => t("unpublished")}))
@@ -47,8 +48,21 @@ module ApplicationHelper
           menu << " #{t('published')}" if options[:show_label]
         end
       end
+      print menu
     end
   end
+
+  def check_if_style(obj)
+    if obj.is_a? Style
+      if obj.owner != current_site
+        return obj.sites_styles.where(site_id: @site.id)[0]
+      else
+        return obj
+      end
+    end
+    return obj
+  end
+  private :check_if_style
 
   # Define os menus
   # Parâmetros: Lista de menu (sons, view_ctrl=false)

@@ -6,18 +6,22 @@
       <th> <%= t('.owner') %> </th>
       <% if type.to_s == 'follow' %>
         <th> <%= sortable 'styles.updated_at', t(".last_update") %> </th>
+        <th style="text-align: center;"><%= t(".publish") %></th>
       <% end %>
       <th> <%= t('.actions') %> </th>
     </thead>
     <tbody>
       <% styles.each do |style| %>
         <tr>
-          <td> <%= style.name %> </td>
+          <td><%= link_to(style.name, site_admin_style_path(style)) %> ? <%= style.publish %></td>
           <td>
             <%= link_to style.owner.name, site_url(subdomain: style.owner) %>
           </td>
           <% if type.to_s == 'follow' %>
-            <td> <%=  l(style.updated_at, :format => :short) %> </td>
+            <td><%= l(style.updated_at, :format => :short) %></td>
+            <td style="text-align: center;">
+              <%= raw toggle_field_style(style, "publish") %>
+            </td>
           <% end %>
           <td class="style-action">
             <%= raw style_actions style, { others: true, type.to_sym => true } %>

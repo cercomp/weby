@@ -11,6 +11,7 @@ en:
         styles:
           other_styles:     " Other Styles "
           follow_styles:    " Follow Styles "
+          publish:          " Publish "
           no_other_styles:  " No other styles found "
           no_follow_styles: " No following other styles found "
           name:             " Name "
