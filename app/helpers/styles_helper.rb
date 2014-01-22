@@ -44,7 +44,7 @@ module StylesHelper
   def toggle_field_style(obj, field="publish", action='toggle_field', options = {})
     ''.tap do |check|
       if check_permission(controller.class, "#{action}")
-        obj_temp = check_if_style(obj)
+        obj_temp = get_site_style(obj)
         if obj_temp[field.to_s] == 0 or not obj_temp[field.to_s]
           check <<  link_to( check_box_tag(t("disable"), action.to_s, false, alt: t("disable")),
                             {:action => "#{action}", :id => obj.id, :field => "#{field}"},
@@ -70,9 +70,8 @@ module StylesHelper
   end
 
   private
-  def check_if_style(obj)
+  def get_site_style(obj)
     return obj.sites_styles.where(site_id: @site.id)[0] if obj.owner != current_site
-    return obj
   end
 
 end
