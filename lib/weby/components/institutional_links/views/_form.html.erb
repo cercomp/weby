@@ -1,0 +1,10 @@
+<%= f.input :institution, collection: component.institutions_as_options,
+  priority: component.institution,
+  include_blank: false
+%>
+<%= f.input :format, collection: component.format_list.map{|format| [t(".#{format}"), format]},
+  priority: component.format,
+  include_blank: false
+%>
+<%= f.input :new_tab, as: :boolean %>
+<%= f.input :html_class %>

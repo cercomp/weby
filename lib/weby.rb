@@ -1,12 +1,25 @@
 module Weby
   autoload :Extension, 'weby/extension'
+  class << self
 
-  @@extensions = {}
-  def self.extensions
-    @@extensions
-  end
+    @@extensions = {}
+    @@institutions = {}
 
-  def self.register_extension(extension)
-    @@extensions[extension.name] = extension
+    begin
+      file = 'lib/weby/institutions/institutions.yml'
+      @@institutions = YAML.load_file(file) if File.exists? file
+    end
+
+    def institutions
+      @@institutions
+    end
+
+    def register_extension(extension)
+      @@extensions[extension.name] = extension
+    end
+
+    def extensions
+      @@extensions
+    end
   end
 end

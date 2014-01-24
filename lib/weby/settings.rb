@@ -1,6 +1,6 @@
 module Weby
   class Settings
-    settings_yaml = "config/settings.yml"
+    settings_yaml = "lib/weby/config/settings.yml"
     @@default_settings = YAML.load_file(Rails.root.join(settings_yaml))['settings'] if File.exists? settings_yaml
     
     @@default_settings.each do |key, value|

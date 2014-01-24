@@ -1,0 +1,22 @@
+pt-BR:
+  components:
+    institutional_links:
+      name:         " Links Institucionais "
+      institution:  " Instituição "
+      label:        " Rótulo "
+      html_class:   " Classe HTML "
+      format:       " Formato de exibição "
+      new_tab:      " Abrir links em uma nova janela "
+  activerecord:
+    attributes:
+      institutional_links_component:
+        institution:  " Instituição "
+        label:        " Rótulo "
+        html_class:   " Classe HTML "
+        format:       " Formato de exibição "
+        new_tab:      " Abrir links em uma nova janela "
+  institutional_links:
+    views:
+      form:
+        bar:               " Barra "
+        list:              " Lista "

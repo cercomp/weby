@@ -1,3 +1,0 @@
-class InstitutionalUfgComponent < Component
-  
-end

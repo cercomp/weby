@@ -1,0 +1,32 @@
+<section class="institutional_links_component <%= component.html_class %> <%= component.format %>">
+<% if component.format == 'bar' %>
+  <% style = @main_width ? "style=\"max-width: #{@main_width+4}px\"".html_safe : "" %>
+  <section class="content" <%= style %>>
+    <aside class="left">
+      <a href="<%= component.institution_values['url'] %>">
+        <%= image_tag(component.institution_values['logo']['small'], alt: component.institution_values['name']) %>
+        <span class="name"><%= component.institution_values['name'] %></span>
+      </a>
+    </aside>
+    <aside class="right">
+      <select onchange="if(options[selectedIndex].value){ <%= component.new_tab ? "window.open(options[selectedIndex].value);" : "window.location.href = options[selectedIndex].value;" %> <%= component.label.present? ? "selectedIndex = 0;": "" %> }">
+        <% if component.label.present? %>
+          <option value=""><%= component.label %></option>
+        <% end %>
+        <% (component.institution_values['links']['bar'] || component.institution_values['links']['list']).each do |text, url| %>
+          <option value="<%= url %>"><%= text %></option>
+        <% end %>
+      </select>
+    </aside>
+  </section>
+<% elsif component.format == 'list' %>
+  <ul>
+    <% if component.label.present? %>
+      <li><%= component.label %></li>
+    <% end %>
+    <% component.institution_values['links']['list'].each do |text, url| %>
+      <li><a href="<%= url %>"<%= component.new_tab ? " target=\"_blank\"":"" %>><%= text %></a></li>
+    <% end %>
+  </ul>
+<% end %>
+  
