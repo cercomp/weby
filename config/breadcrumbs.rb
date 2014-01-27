@@ -15,11 +15,6 @@ crumb :repositories_new do
   parent :repositories
 end
 
-crumb :repositories_trash do
-  link t("breadcrumbs.recycle_bin"), site_admin_repositories_path(deleted: 'true')
-  parent :repositories
-end
-
 crumb :repositories_edit do |repository|
   link "#{t("breadcrumbs.edit")}-#{repository.description}", edit_site_admin_repository_path
   parent :repositories
@@ -50,11 +45,6 @@ crumb :pages_fronts do
   parent :pages
 end
 
-crumb :pages_trash do
-  link t("breadcrumbs.recycle_bin"), site_admin_repositories_path(deleted: 'true')
-  parent :pages
-end
-
 crumb :pages_show do |page|
   link "#{t("breadcrumbs.show")}-#{page.title}", site_admin_page_path
   parent :pages
@@ -80,11 +70,6 @@ crumb :menus_new do
   parent :menus
 end
 
-crumb :menus_trash do
-  link t("breadcrumbs.recycle_bin"), site_admin_pages_path(deleted: 'true')
-  parent :menus
-end
-
 crumb :menus_edit do |menu|
   link "#{t("breadcrumbs.edit")}-#{menu.name}", edit_site_admin_path
   parent :menus
@@ -107,11 +92,6 @@ end
 
 crumb :banners_new do
   link t("breadcrumbs.new_banner"), new_site_admin_banner_path
-  parent :banners
-end
-
-crumb :banners_trash do
-  link t("breadcrumbs.recycle_bin"), site_admin_banners_path(deleted: true)
   parent :banners
 end
 
@@ -145,11 +125,6 @@ crumb :roles_new do
   parent :roles
 end
 
-crumb :roles_trash do
-  link t("breadcrumbs.recycle_bin"), site_admin_roles_path(deleted: true)
-  parent :roles
-end
-
 crumb :roles_edit do |role|
   link "#{t("breadcrumbs.edit")}-#{role.name}", edit_site_admin_role_path
   parent :roles
@@ -162,11 +137,6 @@ end
 
 crumb :styles_new do
   link t("breadcrumbs.new_style"), new_site_admin_style_path
-  parent :styles
-end
-
-crumb :styles_trash do
-  link t("breadcrumbs.recycle_bin"), site_admin_styles_path(deleted: true)
   parent :styles
 end
 
@@ -215,11 +185,6 @@ crumb :components_edit do |component|
   parent :layout
 end
 
-crumb :components_trash do
-  link t("breadcrumbs.recycle_bin"), site_admin_components_path(deleted: true)
-  parent :layout
-end
-
 #extensions;feedback
 crumb :extensions do
   link t("breadcrumbs.extensions"), main_app.site_admin_extensions_path
@@ -263,9 +228,4 @@ end
 crumb :show_message do |message|
   link "#{t("breadcrumbs.show")}-#{message.name}", feedback.admin_message_path
   parent :messages
-end
-
-crumb :feedback_trash do
-  link t("breadcrumbs.recycle_bin"), feedback.admin_groups_path(deleted: true)
-  parent :groups
 end
