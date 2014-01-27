@@ -1,3 +1,5 @@
+<% title ".banners" %>
+<% breadcrumb :banners_show, @banner %>
 <% unless @banner.repository.nil? %>
   <% format = @banner.size.present? ? @banner.size : format_for_custom(@banner.width, @banner.height, @banner.repository) %>
   <%= weby_file_view(@banner.repository,

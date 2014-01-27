@@ -24,8 +24,9 @@ en:
           users:                " Users "
           none_role:            " No roles. "
         new:
+          users:                " Users "
           roles_permissions:    " Roles and Permissions "
+          new_role:             " New Role "
         edit:
+          users:                " Users "
           roles_permissions:    " Roles and Permissions "
-
-

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="<%= current_locale %>">
   <head>
-    <title>weby</title>
+  <title>weby -<%= yield :title %></title>
     <%= stylesheet_link_tag 'application', media: "all" %>
     <%# NOTE: review here %>
     <%= yield :stylesheets %>
@@ -59,6 +59,7 @@
             <div class="clearfix"></div>
           </div>
         </div>
+        <%= breadcrumbs separator: " &rsaquo; " %>
       </div>
     </div>
 

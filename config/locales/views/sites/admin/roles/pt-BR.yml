@@ -24,10 +24,9 @@ pt-BR:
           users:                " Usuários "
           none_role:            " Nenhum papel "
         new:
+          users:                " Usuários "
           roles_permissions:    " Permissões e Papéis "
+          new_role:             " Novo Papel "
         edit:
+          users:                " Usuários "
           roles_permissions:    " Permissões e Papéis "
-
-
-
-

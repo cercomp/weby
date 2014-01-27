@@ -404,4 +404,5 @@ module ApplicationHelper
       back_url: back_url
     )
   end
+
 end

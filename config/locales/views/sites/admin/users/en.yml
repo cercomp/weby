@@ -6,6 +6,7 @@ en:
           manage_roles:      " Manage Roles "
           roles_permissions: " Roles and Permissions "
           manage_users:      " Manage Users "
+          users:             " Users "
         enrole:
           enrole_user:       " Enrole user "
           role:              " Role "
