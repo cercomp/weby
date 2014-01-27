@@ -106,7 +106,7 @@ class Sites::Admin::PagesController < ApplicationController
     @page = @site.pages.find(params[:id])
     @page.toggle!(params[:field])
     respond_with(:site_admin, @page) do |format|
-      format.any { redirect_to site_admin_pages_path() }
+      format.any { redirect_to :back }
     end
   end
 

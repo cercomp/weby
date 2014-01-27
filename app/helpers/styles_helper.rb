@@ -15,10 +15,6 @@ module StylesHelper
         if test_permission(controller.class, action)
           if args[:others]
             case action.to_s
-            when 'show'
-              actions << link_to( icon('eye-open', text: t('show')), site_admin_style_path(style)) + ' '
-            when 'publish'
-              actions << style_action_publish(style) + ' ' if args[:follow]
             when 'follow'
               if args[:follow]
                 actions << link_to( icon('star-empty', text: t('unfollow')), unfollow_site_admin_style_path(style )) + ' '
@@ -30,10 +26,6 @@ module StylesHelper
             end
           else
             case action.to_s
-            when 'publish'
-              actions << style_action_publish(style) + ' '
-            when 'show'
-              actions << link_to( icon('eye-open', text: t('show')), site_admin_style_path(style)) + ' '
             when 'edit'
               actions << link_to( icon('edit', text: t('edit')), edit_site_admin_style_path(style)) + ' '
             when 'destroy'
@@ -46,17 +38,40 @@ module StylesHelper
     end
   end
 
-  def style_action_publish style
-    if style.owner != current_site
-      relation = style.sites_styles.where(site_id: current_site.id).first
-    else
-      relation = style
-    end
-
-    if relation.publish
-      link_to( icon('remove-circle', text: t('unpublish')), unpublish_site_admin_style_path(style) ) + ' '
-    else
-      link_to( icon('ok-circle', text: t('publish')), publish_site_admin_style_path(style)) + ' '
+  # Alterna entre habilitar e desabilitar registro de estilo
+  # Parâmetros: obj (Objeto), field (Campo para alternar), action (Ação a ser executada no controller)
+  # Campo com imagens V ou X para habilitar/desabilitar e degradê se não tiver permissão para alteração.
+  def toggle_field_style(obj, field="publish", action='toggle_field', options = {})
+    ''.tap do |check|
+      if check_permission(controller.class, "#{action}")
+        obj_temp = get_site_style(obj)
+        if obj_temp[field.to_s] == 0 or not obj_temp[field.to_s]
+          check <<  link_to( check_box_tag(t("disable"), action.to_s, false, alt: t("disable")),
+                            {:action => "#{action}", :id => obj.id, :field => "#{field}"},
+                            options.merge({method: :put, :title => t("unpublished")}))
+          check << " #{t('publish')}" if options[:show_label]
+        else
+          check << link_to( check_box_tag(t("enable"), action.to_s, true, :alt => t("enable")),
+                           {:action => "#{action}", :id=> obj.id, :field => "#{field}"},
+                           options.merge({method: :put, :title => t("published")}))
+          check << " #{t('publish')}" if options[:show_label]
+        end
+      else        
+        if obj[field.to_s] == 0 or not obj[field.to_s]
+          check << image_tag("false_off.png", :alt => t("enable"), :title => t("no_permission_to_activate_deactivate"))
+          check << " #{t('unpublished')}" if options[:show_label]
+        else
+          check << image_tag("true_off.png", :alt => t("disable"), :title => t("no_permission_to_activate_deactivate"))
+          check << " #{t('published')}" if options[:show_label]
+        end
+      end
+      print check
     end
   end
+
+  private
+  def get_site_style(obj)
+    return obj.sites_styles.where(site_id: @site.id)[0] if obj.owner != current_site
+  end
+
 end

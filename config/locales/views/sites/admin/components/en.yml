@@ -17,6 +17,7 @@ en:
           components:         " Componentes "
         index:
           components:         " Componentes "
+          activate:           " Activate "
           new_component:      " New Widget "
           component:          " Component "
           alias:              " Name "

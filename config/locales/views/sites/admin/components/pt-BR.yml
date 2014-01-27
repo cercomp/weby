@@ -17,6 +17,7 @@ pt-BR:
           components:         " Componentes "
         index:
           components:         " Componentes "
+          activate:             " Ativar "
           new_component:      " Novo Componente "
           component:          " Componente "
           alias:              " Nome "
