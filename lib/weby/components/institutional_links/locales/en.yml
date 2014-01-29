@@ -1,0 +1,22 @@
+en:
+  components:
+    institutional_links:
+      name:         " Institutional links "
+      institution:  " Institution "
+      label:        " Label "
+      html_class:   " HTML Class "
+      format:       " Format "
+      new_tab:      " Open links in a new tab "
+  activerecord:
+    attributes:
+      institutional_links_component:
+        institution:  " Institution "
+        label:        " Label "
+        html_class:   " HTML Class "
+        format:       " Format "
+        new_tab:      " Open links in a new tab "
+  institutional_links:
+    views:
+      form:
+        bar:               " Bar "
+        list:              " List "

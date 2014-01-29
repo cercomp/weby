@@ -2,13 +2,13 @@ $height: 24px;
 $text-color: black;
 $background-color: #ccc;
 
-.institutional_bar_component {
+.institutional_links_component.bar {
   .content {
     aside {
       margin: 0;
       width: auto; }
     .left{
-      a { 
+      a {
         color: $text-color;
         font-size: 16px; }
       img {

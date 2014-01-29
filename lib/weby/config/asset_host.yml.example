@@ -1,6 +1,6 @@
 production:
-  asset_host_https: false
-  asset_host:
+  disable_on_https: true
+  hosts:
     ^\/assets\/: '//assets.aws.cercomp.ufg.br'
     ^\/uploads\/: '//cloud.aws.cercomp.ufg.br'
 development:

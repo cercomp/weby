@@ -13,6 +13,8 @@ ActionController::Base.view_paths +=
   Dir[Rails.root.join('**', 'lib', '**', 'weby', '**', 'components')]
 
 Weby::Application.config.assets.paths +=
+  Dir[Rails.root.join('lib', 'weby', 'institutions', 'assets', '*')]
+Weby::Application.config.assets.paths +=
   Dir[Rails.root.join('**', 'weby', '**', 'components', '**', 'assets', '*')]
 
 # Inicializar os componentes

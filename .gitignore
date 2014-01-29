@@ -6,9 +6,13 @@
 
 # Ignore bundler config
 .bundle
+
+# Ignore weby instances specifics configurations
 config/database.yml
 config/email.yml
-config/weby.yml
+lib/weby/config/asset_host.yml
+lib/weby/institutions/assets/*/*
+lib/weby/institutions/*.yml
 
 # Ignore the default SQLite database.
 db/*.sqlite3

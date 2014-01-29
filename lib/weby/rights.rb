@@ -3,9 +3,9 @@ module Weby
     class << self
 
       begin
-        @@rights = YAML.load(ERB.new(File.read(Rails.root.join("config","rights.yml"))).result)["rights"]
+        @@rights = YAML.load(ERB.new(File.read(Rails.root.join("lib","weby","config","rights.yml"))).result)["rights"]
         Dir.glob File.expand_path("vendor/engines/*", Rails.root) do |extension_dir|
-          file = File.join(extension_dir, "config/rights.yml")
+          file = File.join(extension_dir, "lib/weby/config/rights.yml")
           if File.exists?(file)
             @@rights = YAML.load(ERB.new(File.read(file)).result)["rights"].merge @@rights
           end
@@ -31,7 +31,7 @@ module Weby
       end
 
       def seed_roles site_id=nil
-        roles  = YAML.load(ERB.new(File.read(Rails.root.join("config","roles.yml"))).result)
+        roles  = YAML.load(ERB.new(File.read(Rails.root.join("lib","weby","config","roles.yml"))).result)
 
         roles.each do |name, values|
           permissions = {}.to_s

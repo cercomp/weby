@@ -9,11 +9,11 @@ module Weby
       doc["user_agents"]["user_agent"].each do |user_agent|
         text << "#{user_agent["String"]}\n"
       end
-      File.open("config/bots_list.txt", 'w') {|f| f.write(text) }
+      File.open("lib/weby/config/bots_list.txt", 'w') {|f| f.write(text) }
     end
 
     def self.load_list
-      source = File.new("config/bots_list.txt").read
+      source = File.new("lib/weby/config/bots_list.txt").read
       @list = source.split("\n")
     end
 

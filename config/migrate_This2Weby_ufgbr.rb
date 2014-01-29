@@ -273,16 +273,36 @@ EOF
   	    @con_weby.exec(update_sites_styles)
 			end
 
-      @rap = YAML::load(File.open("../db/seed/roles.yml"))
-      
+      @rap = YAML::load(File.open("../lib/weby/config/roles.yml"))
+
+      def get_rights_from_permissions permissions
+        unless @rights
+          @rights = YAML.load(File.open("../lib/weby/config/rights.yml"))["rights"]
+          Dir.glob File.expand_path("../vendor/engines/*") do |extension_dir|
+            file = File.join(extension_dir, "lib/weby/config/rights.yml")
+            if File.exists?(file)
+              @rights = YAML.load(File.open(file))["rights"].merge @rights
+            end
+          end
+        end
+        case permissions
+        when Hash
+          permissions.to_s
+        when String
+          if permissions == 'all'
+            Hash[@rights.map{|controller, actions| [controller, actions.keys]}].to_s
+          end
+        end
+      end
+
 			puts "\tINSERINDO papel Gerente.\n"
-      insert_gerente = "INSERT INTO roles (name,site_id,permissions,created_at,updated_at) VALUES ('Gerente',#{site[0]['id']},'#{@rap["Gerente"]["permissions"]}','#{Time.now}','#{Time.now}') RETURNING id"
+      insert_gerente = "INSERT INTO roles (name,site_id,permissions,created_at,updated_at) VALUES ('Gerente',#{site[0]['id']},'#{get_rights_from_permissions(@rap["Gerente"]["permissions"])}','#{Time.now}','#{Time.now}') RETURNING id"
       id_gerente = @con_weby.exec(insert_gerente)
 			puts "\tINSERINDO papel Editor Chefe.\n"
-      insert_editor = "INSERT INTO roles (name,site_id,permissions,created_at,updated_at) VALUES ('Editor-Chefe',#{site[0]['id']},'#{@rap["Editor-Chefe"]["permissions"]}','#{Time.now}','#{Time.now}') RETURNING id"
+      insert_editor = "INSERT INTO roles (name,site_id,permissions,created_at,updated_at) VALUES ('Editor-Chefe',#{site[0]['id']},'#{get_rights_from_permissions(@rap["Editor-Chefe"]["permissions"])}','#{Time.now}','#{Time.now}') RETURNING id"
       id_editor = @con_weby.exec(insert_editor)
 			puts "\tINSERINDO papel Redator.\n"
-      insert_redator = "INSERT INTO roles (name,site_id,permissions,created_at,updated_at) VALUES ('Redator',#{site[0]['id']},'#{@rap["Redator"]["permissions"]}','#{Time.now}','#{Time.now}') RETURNING id"
+      insert_redator = "INSERT INTO roles (name,site_id,permissions,created_at,updated_at) VALUES ('Redator',#{site[0]['id']},'#{get_rights_from_permissions(@rap["Redator"]["permissions"])}','#{Time.now}','#{Time.now}') RETURNING id"
       id_redator = @con_weby.exec(insert_redator)
 
       puts "\tINSERINDO idiomas por site...\n"
