@@ -47,7 +47,7 @@ module ApplicationHelper
           menu << " #{t('published')}" if options[:show_label]
         end
       end
-      print menu
+      return menu
     end
   end
 

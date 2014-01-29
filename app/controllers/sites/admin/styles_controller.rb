@@ -139,11 +139,9 @@ class Sites::Admin::StylesController < ApplicationController
       own = @style.owner != current_site
       if own
         @style = @style.sites_styles.where(site_id: @site.id)[0]
-        published = @style.publish
-        @style.update_attributes(publish: published ? false : true )                
+        @style.toggle!(:publish)
       else
-        published = @style.publish
-        @style.update_attributes(publish: published ? false : true )
+        @style.toggle!(:publish)
       end
       flash[:success] = t("successfully_updated")
     else

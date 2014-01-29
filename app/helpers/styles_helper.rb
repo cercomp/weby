@@ -65,7 +65,7 @@ module StylesHelper
           check << " #{t('published')}" if options[:show_label]
         end
       end
-      print check
+      return check
     end
   end
 
