@@ -121,7 +121,7 @@ class Sites::Admin::StylesController < ApplicationController
     @style = Style.find(params[:id])
     current_site.follow_styles << @style
     
-    @site_style = @style.sites_styles.where(site_id: current_site.id).first
+    @site_style = @style.sites_styles.find_by_site_id(current_site.id)
     @site_style.update_attributes(publish: true)
 
     redirect_to site_admin_styles_path(others: true)
@@ -129,7 +129,7 @@ class Sites::Admin::StylesController < ApplicationController
 
   def unfollow
     @style = Style.find(params[:id])
-    @site_style = @style.sites_styles.where(site_id: current_site.id).first
+    @site_style = @style.sites_styles.find_by_site_id(current_site.id)
     @site_style.destroy
 
     redirect_to site_admin_styles_path(others: true)
@@ -141,7 +141,7 @@ class Sites::Admin::StylesController < ApplicationController
     if params[:field]
       own = @style.owner != current_site
       if own
-        @style = @style.sites_styles.where(site_id: current_site.id)[0]
+        @style = @style.sites_styles.find_by_site_id(current_site.id)
         @style.toggle!(:publish)
       else
         @style.toggle!(:publish)

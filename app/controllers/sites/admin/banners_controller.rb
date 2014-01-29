@@ -66,7 +66,7 @@ class Sites::Admin::BannersController < ApplicationController
   def toggle_field
     @banner = Banner.find(params[:id])
     if params[:field] 
-      if @banner.toggle!("#{params[:field]}")
+      if @banner.toggle!(params[:field])
         flash[:success] = t("successfully_updated")
       else
         flash[:warning] = t("error_updating_object")
