@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
-  before_action :set_tld_length, :set_global_vars
+  before_action :set_tld_length, :verify_protocol, :set_global_vars
   before_action :set_contrast, :set_locale, :set_view_types
   before_action :maintenance_mode
   before_action :require_user, only: [:admin]
@@ -92,6 +92,12 @@ class ApplicationController < ActionController::Base
       if Weby::Settings.domain.present? && !(request.domain.match(Weby::Settings.domain))
         request.session_options[:tld_length] = current_site.domain.split('.').length + 1 if current_site.domain
       end
+    end
+  end
+
+  def verify_protocol
+    if current_user && Weby::Settings.login_protocol == 'https' && request.protocol != Weby::Settings.login_protocol
+      redirect_to "https://"+request.host_with_port+request.fullpath
     end
   end
 
