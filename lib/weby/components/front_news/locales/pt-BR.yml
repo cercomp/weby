@@ -30,6 +30,14 @@ pt-BR:
         image_size:           " Versão da imagem "
         new_tab:              " Abrir páginas com URL em uma nova janela "
         max_char:             " Número máximo de caracteres do resumo "
+        link_to_all:          " Link para exibir todos "
+        order_by:             " Ordenação "
+    errors:
+      models:
+        front_news_component:
+          attributes:
+            order_by:
+              allowed_only_for_events: "'Data do evento' só é permitida caso o filtro por tipo de página for 'Apenas Eventos'."
   front_news:
     views:
       show:
@@ -37,6 +45,8 @@ pt-BR:
         posted_by:            " Por "
         posted_on:            " Em "
       form:
+        main:                 " Básico "
+        advanced:             " Avançado "
         medium:               " Média "
         little:               " Pequena "
         mini:                 " Miniatura "
@@ -44,4 +54,9 @@ pt-BR:
         all:                  " Notícias e Eventos "
         news:                 " Apenas Notícias "
         events:               " Apenas Eventos "
+        position:             " Manual "
+        created_at:           " Data de criação "
+        updated_at:           " Data de atualização "
+        event_begin:          " Data do evento "
+        link_to_all_hint:     " Texto do link para a lista com todas as notícias "
         image_size_hint:      " Thumbnail é uma versão reduzida da imagem, onde é feito um corte quadrado para que a proporção original não se perca "
