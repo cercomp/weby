@@ -25,7 +25,7 @@ class Sites::Admin::StylesController < ApplicationController
 
   # FIXME: duplicated code
   def own_styles
-    styles = @site.own_styles.scoped.
+    styles = current_site.own_styles.scoped.
       order('position desc')
 
     search(styles, :own) || styles
@@ -35,7 +35,7 @@ class Sites::Admin::StylesController < ApplicationController
   # FIXME: duplicated code
   def follow_styles
     params[:style_type] = 'follow'
-    styles = @site.follow_styles.scoped.
+    styles = current_site.follow_styles.scoped.
       order(sort_column + " " + sort_direction).page(params[:page_follow_styles]).per(5)
 
     search(styles, :follow) || styles
@@ -44,7 +44,7 @@ class Sites::Admin::StylesController < ApplicationController
 
   # FIXME: duplicated code
   def other_styles
-    styles = Style.not_followed_by(@site).
+    styles = Style.not_followed_by(current_site).
       order(:id).page(params[:page_other_styles]).per(5)
 
     search(styles, :other) || styles
@@ -83,7 +83,7 @@ class Sites::Admin::StylesController < ApplicationController
 
   def create
     @style = Style.new(params[:style])
-    @style.position = @site.own_styles.count + 1
+    @style.position = current_site.own_styles.count + 1
     
     if @style.save
       flash[:success] = t("successfully_created")
@@ -119,40 +119,43 @@ class Sites::Admin::StylesController < ApplicationController
 
   def follow
     @style = Style.find(params[:id])
-    @site.follow_styles << @style
+    current_site.follow_styles << @style
     
-    publish
-  end
-
-  def unfollow
-    @style = Style.find(params[:id])
-    @site_style = @style.sites_styles.where(site_id: @site.id).first
-    @site_style.destroy
+    @site_style = @style.sites_styles.find_by_site_id(current_site.id)
+    @site_style.update_attributes(publish: true)
 
     redirect_to site_admin_styles_path(others: true)
   end
 
-  def publish
+  def unfollow
     @style = Style.find(params[:id])
-    own = @style.owner != current_site
-    @style = @style.sites_styles.where(site_id: @site.id).first if own
-    @style.update_attributes(publish: true)
+    @site_style = @style.sites_styles.find_by_site_id(current_site.id)
+    @site_style.destroy
 
-    redirect_to site_admin_styles_path(others: own ? "true" : nil) 
+    redirect_to site_admin_styles_path(others: true)
   end
-
-  def unpublish
+  
+  # Publish and unpublish style
+  def toggle_field
     @style = Style.find(params[:id])
-    own = @style.owner != current_site
-    @style = @style.sites_styles.where(site_id: @site.id).first if own
-    @style.update_attributes(publish: false)
-
+    if params[:field]
+      own = @style.owner != current_site
+      if own
+        @style = @style.sites_styles.find_by_site_id(current_site.id)
+        @style.toggle!(:publish)
+      else
+        @style.toggle!(:publish)
+      end
+      flash[:success] = t("successfully_updated")
+    else
+      flash[:warning] = t("error_updating_object")
+    end
     redirect_to site_admin_styles_path(others: own ? "true" : nil)
   end
 
   def copy
     @style = Style.find(params[:id]).dup
-    @style.owner = @site
+    @style.owner = current_site
     @style.publish = false
 
     if @style.save
@@ -165,16 +168,16 @@ class Sites::Admin::StylesController < ApplicationController
   end
   
   def sort
-    @ch_pos = @site.own_styles.find(params[:id_moved], :readonly => false)
+    @ch_pos = current_site.own_styles.find(params[:id_moved], :readonly => false)
     increment = 1
     #Caso foi movido para o fim da lista ou o fim de uma pagina(quando paginado)
     p params
     if(params[:id_after] == '0')
-      @before = @site.own_styles.find(params[:id_before])
+      @before = current_site.own_styles.find(params[:id_before])
       condition = "position < #{@ch_pos.position} AND position >= #{@before.position}"
       new_pos = @before.position
     else
-      @after = @site.own_styles.find(params[:id_after])
+      @after = current_site.own_styles.find(params[:id_after])
       #Caso foi movido de cima pra baixo
       if(@ch_pos.position > @after.position)
         condition = "position < #{@ch_pos.position} AND position > #{@after.position}"
@@ -186,7 +189,7 @@ class Sites::Admin::StylesController < ApplicationController
         new_pos = @after.position
       end
     end
-    @site.own_styles.where(condition).update_all("position = position + (#{increment})")
+    current_site.own_styles.where(condition).update_all("position = position + (#{increment})")
     @ch_pos.update_attribute(:position, new_pos)
     render :nothing => true
   end
@@ -195,7 +198,7 @@ class Sites::Admin::StylesController < ApplicationController
   def verify_ownership
     @style = Style.find(params[:id])
 
-    unless @style.owner == @site
+    unless @style.owner == current_site
       flash[:warning] = t("no_permission_to_action")
       redirect_to site_admin_style_url @style
     end

@@ -11,6 +11,7 @@ en:
         styles:
           other_styles:     " Other Styles "
           follow_styles:    " Follow Styles "
+          publish:          " Publish "
           no_other_styles:  " No other styles found "
           no_follow_styles: " No following other styles found "
           name:             " Name "
@@ -22,6 +23,7 @@ en:
           own_styles:       " Own Styles "
           name:             " Name "
           no_own_styles:    " No own styles found "
+          publish:          " Publish "
           sites_followers:  " Sites followers "
         form:
           help_with_style:  " Need help with the style "
