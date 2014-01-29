@@ -1,0 +1,34 @@
+<%content_for :stylesheets do%>
+  <style type="text/css">
+  .dialog {
+    width: 600px;
+    margin: 30px auto 0;
+    text-align: center;
+  }
+  .dialog h1 {
+    font-size: 20px;
+  }
+  .red { color: red }
+  </style>
+<% end %>
+<%- title '404', true %>
+
+<div class="dialog alert alert-info">
+  <%#= image_tag 'weby-logo.png' %>
+  <h1></h1>
+  <h2>O Weby está em manutenção.</h2>
+  <p>
+    O sistema se encontra em manutenção para atualização e melhorias. Suas ações
+    estão temporariamente desativadas.
+    No modo de manutenção, você poderá navegar normalmente pelo seu site, porém,
+    não poderá atualizar nenhuma página.
+    
+    O período de manutenção varia entre 1 ou 2 horas.
+  </p>
+  <p>
+    <%#= @not_found_path %>
+  </p>
+  <p>
+    <%= link_to 'Clique aqui para voltar à página inicial.', root_url(subdomain: current_site) %>
+  </p>
+</div>
