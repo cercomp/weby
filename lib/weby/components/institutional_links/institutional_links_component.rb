@@ -32,6 +32,6 @@ class InstitutionalLinksComponent < Component
 
   def label
     labels = self.institution_values['links']['label'] || {}
-    labels[I18n.locale] #|| labels.values[0]
+    labels[I18n.locale.to_s] #|| labels.values[0]
   end
 end
