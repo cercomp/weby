@@ -3,9 +3,10 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper # Para usar helper methods nos controllers
 
   protect_from_forgery
+  before_filter :set_tld_length
   before_filter :set_contrast, :set_locale, :set_global_vars, :set_view_types
-  after_filter :weby_clear, :count_view
   before_filter :require_user, only: [:admin]
+  after_filter :weby_clear, :count_view
 
   helper :all
   helper_method :current_user_session, :sort_direction, :test_permission,
@@ -98,6 +99,12 @@ class ApplicationController < ActionController::Base
       flash.now[:error] = t("try_login")
     end
     redirect_back_or_default weby_login_url
+  end
+
+  def set_tld_length
+    if Weby::Settings.domain.present? and !(request.domain.match(Weby::Settings.domain))
+      request.session_options[:tld_length] = current_site.domain.split(".").length + 1 if current_site.domain
+    end
   end
 
   unless Rails.application.config.consider_all_requests_local
