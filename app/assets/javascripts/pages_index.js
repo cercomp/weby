@@ -1,7 +1,7 @@
 $(document).on("click", ".pages-list .pagination a", function(){
     $comp = $(this).parents('.pagination');
     //alert($comp);
-    $comp.css('position', 'relative');
+    if($comp.css('position')!='absolute') $comp.css('position', 'relative');
     $comp.prepend($('<div class="loading-cloak"></div>').css({
         position: 'absolute',
         top: 0,
