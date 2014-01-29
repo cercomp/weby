@@ -1,6 +1,6 @@
 <% unless styles.empty? %>
   <div class="styles">
-    <table class="table table-striped" id="style_list">
+    <table class="table" id="style_list">
       <thead>
         <th> <%= t('.name') %> </th>
         <th> <%= t('.sites_followers') %> </th>
@@ -9,7 +9,7 @@
       </thead>
       <tbody>
         <% styles.each do |style| %>
-          <tr id="sort_style_<%= style.id %>" class="<%= style.publish ? "success" : "error" %>">
+          <tr id="sort_style_<%= style.id %>" class="<%= style.publish ? "activated" : "deactivated" %>">
             <td> <%= link_to(style.name, site_admin_style_path(style)) %> </td>
             <td> 
               <% style.followers.each do |site| %>

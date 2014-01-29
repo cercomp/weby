@@ -198,3 +198,11 @@ body.modal-open {
 #menu-admin {
   .nav-header { padding: 0; }
 }
+
+// used to mark object as published/unpublished
+.deactivated{
+  background-color: #F2DEDE !important;
+}
+.activated{
+  background-color: #DFF0D8 !important;
+}
