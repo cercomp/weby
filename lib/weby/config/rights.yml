@@ -123,7 +123,7 @@ rights:
       action: new create
     publish:
       name: Publicar Estilo
-      action: publish unpublish
+      action: toggle_field
     follow:
       name: Seguir Estilo
       action: follow unfollow

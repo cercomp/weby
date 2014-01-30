@@ -20,7 +20,8 @@
       <tr>
         <td style="height: 300px; overflow: auto">
           <div>
-            <%= text_field_tag :users_unroled, params[:users_unroled], placeholder: t("search") %>
+            <%= text_field_tag :users_unroled, params[:users_unroled], placeholder: t("search"),
+              data: {fullname: (@user and @users_unroled.include?(@user)) ? @user.fullname : ''} %>
           </div>
           <div style="height: 300px; overflow: auto">
             <ul id="users_list_roles" class="nav"> 
@@ -56,25 +57,4 @@
   </div>
 </form>
 <% end %>
-
-<%= content_for :javascripts do %>
-  <%= javascript_tag do %>
-    $(document).ready(function(){
-      var list = $('#users_list_roles');
-      $('#users_unroled').keypress(function(ev){
-        if(ev.keyCode == 13){
-          filter_user($(this).val(), list);
-          ev.stopPropagation();
-          ev.preventDefault();
-          return false;
-        }
-      });
-
-    <% unless @user.blank? or not @users_unroled.include?(@user) %>
-      var name = '<%= @user.first_name %>';
-      $('#users_unroled').val(name);
-      filter_user(name, list);
-    <% end %>
-    });
-  <% end %>
-<% end %>
+<% content_for :javascripts, javascript_include_tag('user_enrole') %>
