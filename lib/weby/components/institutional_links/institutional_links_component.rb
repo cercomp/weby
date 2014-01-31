@@ -22,8 +22,18 @@ class InstitutionalLinksComponent < Component
     Weby.institutions.map{|name, values| [values['name'], name]}
   end
 
-  def institution_values
-    @institution ||= Weby.institutions[self.institution]
+  def institution_value path
+    @institution ||= Weby.institutions[self.institution] || {}
+    result = nil
+    path.split('.').each do |level|
+      result ||= @institution
+      result = result.fetch(level, {})
+    end
+    result.empty? ? nil : result
+  end
+
+  def institution_links format
+    institution_value("links.#{format}") || []
   end
 
   def default_alias
@@ -31,7 +41,7 @@ class InstitutionalLinksComponent < Component
   end
 
   def label
-    labels = self.institution_values['links']['label'] || {}
+    labels = self.institution_value('links.label') || {}
     labels[I18n.locale.to_s] #|| labels.values[0]
   end
 end

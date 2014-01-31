@@ -3,9 +3,9 @@
   <% style = @main_width ? "style=\"max-width: #{@main_width+4}px\"".html_safe : "" %>
   <section class="content" <%= style %>>
     <aside class="left">
-      <a href="<%= component.institution_values['url'] %>">
-        <%= image_tag(component.institution_values['logo']['small'], alt: component.institution_values['name']) %>
-        <span class="name"><%= component.institution_values['name'] %></span>
+      <a href="<%= component.institution_value('url') %>">
+        <%= image_tag(component.institution_value('logo.small'), alt: component.institution_value('name')) %>
+        <span class="name"><%= component.institution_value('name') %></span>
       </a>
     </aside>
     <aside class="right">
@@ -13,7 +13,7 @@
         <% if component.label.present? %>
           <option value=""><%= component.label %></option>
         <% end %>
-        <% (component.institution_values['links']['bar'] || component.institution_values['links']['list']).each do |text, url| %>
+        <% (component.institution_links('bar') || component.institution_links('list')).each do |text, url| %>
           <option value="<%= url %>"><%= text %></option>
         <% end %>
       </select>
@@ -24,7 +24,7 @@
     <% if component.label.present? %>
       <li><%= component.label %></li>
     <% end %>
-    <% component.institution_values['links']['list'].each do |text, url| %>
+    <% component.institution_links('list').each do |text, url| %>
       <li><a href="<%= url %>"<%= component.new_tab ? " target=\"_blank\"":"" %>><%= text %></a></li>
     <% end %>
   </ul>
