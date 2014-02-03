@@ -14,7 +14,7 @@ class MenuItem < ActiveRecord::Base
   validates :position, numericality: true, allow_nil: false
 
   def serializable_hash options={}
-    options = {include: :children}.merge(options)
+    options.merge!({include: [:i18ns, :children]})
     super options
   end
 end
