@@ -12,4 +12,9 @@ class MenuItem < ActiveRecord::Base
 
   validates_format_of :html_class, :with => /^[A-Za-z0-9_\-]*$/
   validates :position, numericality: true, allow_nil: false
+
+  def serializable_hash options={}
+    options = {include: :children}.merge(options)
+    super options
+  end
 end
