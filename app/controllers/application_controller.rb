@@ -367,7 +367,7 @@ class ApplicationController < ActionController::Base
   end
 
   def maintenance_mode
-    if Weby::Settings.maintenance_mode == "true" and !current_user.is_admin? and is_in_admin_context?
+    if Weby::Settings.maintenance_mode == "true" and !current_user.try(:is_admin?) and is_in_admin_context?
       render template: 'errors/maintenance', layout: 'weby_pages'
     end
   end
