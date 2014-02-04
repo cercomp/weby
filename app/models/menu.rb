@@ -17,4 +17,20 @@ class Menu < ActiveRecord::Base
   def items_by_parent
     self.menu_items.group_by(&:parent_id)
   end
+
+  def self.import attrs, options={}
+    return attrs.each{|attr| self.import attr } if attrs.is_a? Array
+
+    attrs = attrs.dup
+    attrs = attrs['menu'] if attrs.has_key? 'menu'
+
+    attrs.except!('id', 'created_at', 'updated_at', 'site_id')
+    items = attrs.delete('root_menu_items')
+
+    menu = self.create!(attrs)
+    if menu.persisted?
+      menu.menu_items.import items
+    end
+  end
+
 end
