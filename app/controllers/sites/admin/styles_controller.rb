@@ -190,15 +190,7 @@ class Sites::Admin::StylesController < ApplicationController
 
   # override method from concern to work with relation
   def resource
-    get_resource_ivar || set_resource_ivar(style_or_relation)
-  end
-
-  # return style or relation when style owner not equal current site
-  def style_or_relation
-    style = Style.find params[:id]
-    style = style.sites_styles.find_by_site_id(current_site.id) if style.owner != current_site
-
-    return style
+    get_resource_ivar || set_resource_ivar(Style.find(params[:id]).mine(current_site.id))
   end
 
   def after_toggle_path

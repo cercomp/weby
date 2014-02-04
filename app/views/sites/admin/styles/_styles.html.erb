@@ -20,7 +20,7 @@
           <% if type.to_s == 'follow' %>
             <td><%= l(style.updated_at, :format => :short) %></td>
             <td style="text-align: center;">
-              <%= raw toggle_field_style(style) %>
+              <%= raw toggle_field(style.mine(current_site.id), 'publish', 'toggle', {id: style.id}) %>
             </td>
           <% end %>
           <td class="style-action">

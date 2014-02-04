@@ -21,36 +21,6 @@ module ApplicationHelper
     !current_site || is_in_admin_context? || is_in_profile_context? || is_in_sites_index?
   end
 
-  # Alterna entre habilitar e desabilitar registro
-  # Parâmetros: obj (Objeto), field (Campo para alternar), action (Ação a ser executada no controller)
-  # Campo com imagens V ou X para habilitar/desabilitar e degradê se não tiver permissão para alteração.
-  def toggle_field(obj, field, action='toggle', options = {})
-    ''.tap do |menu|
-      if check_permission(controller.class, "#{action}")
-        if obj[field.to_s] == 0 or not obj[field.to_s]
-          menu <<  link_to( check_box_tag(t("disable"), action.to_s, false, alt: t("disable")),
-                            {:action => "#{action}", :id => obj.id, :field => "#{field}"},
-                            options.merge({method: :put, :title => t("unpublished")}))
-          menu << " #{t('publish')}" if options[:show_label]
-        else
-          menu << link_to( check_box_tag(t("enable"), action.to_s, true, :alt => t("enable")),
-                           {:action => "#{action}", :id=> obj.id, :field => "#{field}"},
-                           options.merge({method: :put, :title => t("published")}))
-          menu << " #{t('publish')}" if options[:show_label]
-        end
-      else        
-        if obj[field.to_s] == 0 or not obj[field.to_s]
-          menu << image_tag("false_off.png", :alt => t("enable"), :title => t("no_permission_to_activate_deactivate"))
-          menu << " #{t('unpublished')}" if options[:show_label]
-        else
-          menu << image_tag("true_off.png", :alt => t("disable"), :title => t("no_permission_to_activate_deactivate"))
-          menu << " #{t('published')}" if options[:show_label]
-        end
-      end
-      return menu
-    end
-  end
-
   # Define os menus
   # Parâmetros: Lista de menu (sons, view_ctrl=false)
   # html_class: "dropdown" ou "expanded"
@@ -151,13 +121,13 @@ module ApplicationHelper
   # Parâmetros: (Objeto) ctrl, (array) actions, Objeto site (opcional)
   # Retorna: verdadeiro ou falso
   def check_permission(ctrl, actions)
-     actions = [actions] unless actions.is_a? Array
-     actions.each do |action|
-        if test_permission(ctrl.controller_name, action)
-          return true
-        end
-     end
-     return false
+    actions = [actions] unless actions.is_a? Array
+    actions.each do |action|
+      if test_permission(ctrl.controller_name, action)
+        return true
+      end
+    end
+    return false
   end
 
   # Monta o menu baseado nas permissões do usuário
@@ -404,5 +374,40 @@ module ApplicationHelper
       protocol: login_protocol,
       back_url: back_url
     )
+  end
+
+  # refactored
+
+  ##
+  # Helper to print checkboxes showing status for fields setted in parameter.
+  # When user has permission to change this field, is generated one link
+  # to access the action setted in parameters or by defautl 'toggle' action.
+
+  # TODO usar named parameters do ruby 2.
+  def toggle_field(resource, field, action = 'toggle', options = {})
+    ''.tap do |html|
+      title = resource[field] ? t('enable') : t('disable')
+      options[:id] ||= resource.id
+
+      check_box_options = {
+        alt: title,
+        title: title,
+        class: 'toggle'
+      }
+
+      link_options = options.merge({
+        method: :put,
+        alt: title,
+        title: title
+      })
+
+      if test_permission controller_name, action
+        checkbox = check_box_tag(field, resource[field], resource[field], check_box_options)
+        html << link_to(checkbox, {action: action, id: options[:id], field: field}, link_options)
+      else
+        check_box_options = check_box_options.merge({disabled: true})
+        html << check_box_tag(field, resource[field], resource[field], check_box_options)
+      end
+    end
   end
 end

@@ -28,4 +28,10 @@ class Style < ActiveRecord::Base
       site: site_id 
     }])
   }
+
+  def mine(owner_id)
+    return self if self.owner_id == owner_id
+
+    self.sites_styles.find_by_site_id(owner_id)
+  end
 end
