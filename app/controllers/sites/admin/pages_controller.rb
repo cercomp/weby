@@ -1,4 +1,5 @@
 class Sites::Admin::PagesController < ApplicationController
+  include ActsToToggle
 
   before_filter :require_user
   before_filter :check_authorization
@@ -100,14 +101,6 @@ class Sites::Admin::PagesController < ApplicationController
     @page.destroy
     record_activity("destroyed_page", @page)
     respond_with(:site_admin, @page)
-  end
-
-  def toggle_field
-    @page = @site.pages.find(params[:id])
-    @page.toggle!(params[:field])
-    respond_with(:site_admin, @page) do |format|
-      format.any { redirect_to :back }
-    end
   end
 
   def sort

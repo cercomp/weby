@@ -103,7 +103,7 @@ class Admin::UsersController < ApplicationController
   end
 
   #usado para o attr 'confirmed_at'
-  def toggle_field
+  def toggle
     @user = User.find(params[:id])
     if params[:field] 
       if @user.update_attributes(params[:field] => (@user[params[:field]] ? nil : Time.now))

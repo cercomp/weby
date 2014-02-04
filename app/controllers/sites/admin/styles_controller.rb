@@ -1,4 +1,5 @@
 class Sites::Admin::StylesController < ApplicationController
+  include ActsToToggle
 
   before_filter :require_user
   before_filter :check_authorization
@@ -135,24 +136,6 @@ class Sites::Admin::StylesController < ApplicationController
     redirect_to site_admin_styles_path(others: true)
   end
   
-  # Publish and unpublish style
-  def toggle_field
-    @style = Style.find(params[:id])
-    if params[:field]
-      own = @style.owner != current_site
-      if own
-        @style = @style.sites_styles.find_by_site_id(current_site.id)
-        @style.toggle!(:publish)
-      else
-        @style.toggle!(:publish)
-      end
-      flash[:success] = t("successfully_updated")
-    else
-      flash[:warning] = t("error_updating_object")
-    end
-    redirect_to site_admin_styles_path(others: own ? "true" : nil)
-  end
-
   def copy
     @style = Style.find(params[:id]).dup
     @style.owner = current_site
@@ -195,6 +178,7 @@ class Sites::Admin::StylesController < ApplicationController
   end
 
   private
+
   def verify_ownership
     @style = Style.find(params[:id])
 
@@ -202,5 +186,24 @@ class Sites::Admin::StylesController < ApplicationController
       flash[:warning] = t("no_permission_to_action")
       redirect_to site_admin_style_url @style
     end
+  end
+
+  # override method from concern to work with relation
+  def resource
+    get_resource_ivar || set_resource_ivar(style_or_relation)
+  end
+
+  # return style or relation when style owner not equal current site
+  def style_or_relation
+    style = Style.find params[:id]
+    style = style.sites_styles.find_by_site_id(current_site.id) if style.owner != current_site
+
+    return style
+  end
+
+  def after_toggle_path
+    return site_admin_styles_path if resource.is_a? Style
+
+    site_admin_styles_path(others: 'true')
   end
 end

@@ -24,7 +24,7 @@ module ApplicationHelper
   # Alterna entre habilitar e desabilitar registro
   # Parâmetros: obj (Objeto), field (Campo para alternar), action (Ação a ser executada no controller)
   # Campo com imagens V ou X para habilitar/desabilitar e degradê se não tiver permissão para alteração.
-  def toggle_field(obj, field, action='toggle_field', options = {})
+  def toggle_field(obj, field, action='toggle', options = {})
     ''.tap do |menu|
       if check_permission(controller.class, "#{action}")
         if obj[field.to_s] == 0 or not obj[field.to_s]

@@ -41,7 +41,7 @@ module StylesHelper
   # Alterna entre habilitar e desabilitar registro de estilo
   # Parâmetros: obj (Objeto), field (Campo para alternar), action (Ação a ser executada no controller)
   # Campo com imagens V ou X para habilitar/desabilitar e degradê se não tiver permissão para alteração.
-  def toggle_field_style(obj, field="publish", action='toggle_field', options = {})
+  def toggle_field_style(obj, field="publish", action='toggle', options = {})
     ''.tap do |check|
       if check_permission(controller.class, "#{action}")
         obj_temp = get_site_style(obj)

@@ -1,4 +1,6 @@
 class Sites::Admin::BannersController < ApplicationController
+  include ActsToToggle
+
   before_filter :require_user
   before_filter :check_authorization
   before_filter :repositories, :only => ['new', 'edit', 'create', 'update']
@@ -61,18 +63,6 @@ class Sites::Admin::BannersController < ApplicationController
     end
 
     redirect_to(site_admin_banners_path())
-  end
-
-  def toggle_field
-    @banner = Banner.find(params[:id])
-    if params[:field] 
-      if @banner.toggle!(params[:field])
-        flash[:success] = t("successfully_updated")
-      else
-        flash[:warning] = t("error_updating_object")
-      end
-    end
-    redirect_to :back
   end
 
   private
