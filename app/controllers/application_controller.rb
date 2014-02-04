@@ -170,7 +170,39 @@ class ApplicationController < ActionController::Base
     render nothing: true
   end
 
+  protected
+
+  # carrega o recurso de um controller
+  # ex: /users/2
+  #
+  # busca por um elemento @user (get_resource_ivar), caso ele já tenha sido carregado
+  # caso seja null, ele seta essa variavel sempre com o padrão Model.find(params[:id])
+  # para mudar o comportamento basta sobreescrever esse methodo, por exemplo:
+  #
+  # def resource
+  #   get_resource_ivar || set_resource_ivar(self.controller_name.classify.constantize.send(:find_by_token, params[:token]))
+  # end
+  #
+  # kudos para @josevalim em https://github.com/josevalim/inherited_resources
+  def resource
+    get_resource_ivar || set_resource_ivar(self.controller_name.classify.constantize.send(:find, params[:id]))
+  end
+
   private
+
+  # busca por uma variabel com o mesmo nome do controller
+  # ex. se o controller for Users ele vai buscar uma
+  # variavel @user
+  def get_resource_ivar
+    instance_variable_get("@#{self.controller_name.singularize}")
+  end
+
+  # define uma variabel com o mesmo nome do controller
+  # ex. se o controller for Users ele vai definir uma
+  # variavel @user com o valor do parametro
+  def set_resource_ivar(resource)
+    instance_variable_set("@#{self.controller_name.singularize}", resource)
+  end
 
   def filter_backtrace(exception)
     if backtrace = exception.backtrace
