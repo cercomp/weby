@@ -4,11 +4,6 @@ first_place:
     settings: '{:background => "#7F7F7F"}'
     position: 1
     publish: true
-  -
-    name: 'institutional_bar'
-    settings: '{}'
-    position: 2
-    publish: true
 top:
   -
     name: 'image'
