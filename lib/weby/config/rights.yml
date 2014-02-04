@@ -19,7 +19,7 @@ rights:
       action: show
     edit:
       name: Editar Página
-      action: edit update
+      action: edit update toggle
     destroy:
       name: Excluir Página
       action: destroy
@@ -29,9 +29,6 @@ rights:
     new:
       name: Criar Página
       action: new create
-    toggle_field:
-      name: Publicar Página
-      action: toggle_field
   menus:
     index:
       name: Listar Menus
@@ -76,7 +73,7 @@ rights:
       action: show
     edit:
       name: Editar Banner
-      action: edit update
+      action: edit update toggle
     destroy:
       name: Excluir Banner
       action: destroy
@@ -86,9 +83,6 @@ rights:
     new:
       name: Criar Banner
       action: new create
-    toggle_field:
-      name: Publicar Banner
-      action: toggle_field
   repositories:
     index:
       name: Listar Arquivos
@@ -114,16 +108,13 @@ rights:
       action: show
     edit:
       name: Editar Estilo
-      action: edit update
+      action: edit update toggle
     destroy:
       name: Excluir Estilo
       action: destroy
     new:
       name: Criar Estilo
       action: new create
-    publish:
-      name: Publicar Estilo
-      action: toggle_field
     follow:
       name: Seguir Estilo
       action: follow unfollow
@@ -142,7 +133,7 @@ rights:
       action: show
     edit:
       name: Editar Componente
-      action: edit update toggle_field
+      action: edit update toggle
     destroy:
       name: Excluir Componente
       action: destroy
