@@ -3,6 +3,7 @@
     <table class="table" id="style_list">
       <thead>
         <th> <%= t('.name') %> </th>
+        <th> <%= t('.site') %> </th>
         <th> <%= t('.sites_followers') %> </th>
         <th style="text-align: center;"> <%= t('.publish') %> </th>
         <th> <%= t('.actions') %> </th>
@@ -11,6 +12,7 @@
         <% styles.each do |style| %>
           <tr id="sort_style_<%= style.id %>" class="<%= style.publish ? "activated" : "deactivated" %>">
             <td> <%= link_to(style.name, site_admin_style_path(style)) %> </td>
+            <td> <%= link_to style.owner.name, site_url(subdomain: style.owner), target: :_blank, title: style.owner.title %> </td>
             <td> 
               <% style.followers.each do |site| %>
                 <%= link_to site.name, site_url(subdomain: site) %>
@@ -18,7 +20,7 @@
             </td>
             <td style="text-align: center;"><%= raw toggle_field(style, "publish") %></td>
             <td class="style-action">
-              <%= raw make_menu(style, :except => "show") %>
+              <%= style_menu(style) %>
               <% with_permission(action: :sort) do %>
                 <span class='handle'><%= icon('move', text: t("move")) %></span>
               <% end %>

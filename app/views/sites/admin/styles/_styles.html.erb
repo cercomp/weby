@@ -1,13 +1,9 @@
 <% unless styles.blank? %>
-  <h4><%= t(".#{type}_styles") %></h4>
+ <div class="styles" id="<%= "others_styles" %>">
   <table class='table table-striped'>
     <thead>
       <th> <%= t('.name') %> </th>
-      <th> <%= t('.owner') %> </th>
-      <% if type.to_s == 'follow' %>
-        <th> <%= sortable 'styles.updated_at', t(".last_update") %> </th>
-        <th style="text-align: center;"><%= t(".publish") %></th>
-      <% end %>
+      <th> <%= t('.site') %> </th>
       <th> <%= t('.actions') %> </th>
     </thead>
     <tbody>
@@ -15,25 +11,25 @@
         <tr>
           <td><%= link_to(style.name, site_admin_style_path(style)) %></td>
           <td>
-            <%= link_to style.owner.name, site_url(subdomain: style.owner) %>
+            <%= link_to style.site.name, site_url(subdomain: style.site) %>
           </td>
-          <% if type.to_s == 'follow' %>
-            <td><%= l(style.updated_at, :format => :short) %></td>
-            <td style="text-align: center;">
-              <%= raw toggle_field(style.mine(current_site.id), 'publish', 'toggle', {id: style.id}) %>
-            </td>
-          <% end %>
           <td class="style-action">
-            <%= raw style_actions style, { others: true, type.to_sym => true } %>
+            <% if check_permission(Sites::Admin::StylesController, 'follow') %>
+              <%= link_to( icon('star', text: t('follow')), follow_site_admin_style_path(style)) %>
+            <% end %>
+            <% if check_permission(Sites::Admin::StylesController, 'copy') %>
+              <%= link_to( icon('hdd', text: t('copy')), copy_site_admin_style_path(style)) %>
+            <% end %>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
-  <%= paginate styles, param_name: "page_#{type}_styles", remote: true, params: { style_type: type.to_s } %>
+  <%= paginate styles, param_name: "page_others_styles", remote: true, params: { style_type: 'others' } %>
+ </div>
 <% else %>
-  <h4><%= t(".#{type}_styles") %></h4>
+  <h4><%= t(".others_styles") %></h4>
   <div class="alert">
-    <%= t(".no_#{type}_styles") %>
+    <%= t(".no_others_styles") %>
   </div>
 <% end %>
