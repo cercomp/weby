@@ -45,12 +45,12 @@ Weby::Application.routes.draw do
       resources :activity_records, only: [:index, :show]
       resources :banners do
         member do
-          put :toggle_field
+          put :toggle
         end
       end
       resources :components do
         member do
-          put :toggle_field
+          put :toggle
         end
         collection do
           post :sort
@@ -68,7 +68,7 @@ Weby::Application.routes.draw do
       end
       resources :pages do
         member do
-          put :toggle_field
+          put :toggle
         end
         collection do
           get :fronts
@@ -87,8 +87,8 @@ Weby::Application.routes.draw do
       end
       resources :styles do
         member do
-          get :copy, :follow, :unfollow, :publish, :unpublish
-          put :toggle_field
+          get :copy, :follow, :unfollow
+          put :toggle
         end
         collection do
           post :sort
@@ -119,7 +119,7 @@ Weby::Application.routes.draw do
           post :change_roles
         end
         member do
-          put :toggle_field
+          put :toggle
           put :set_admin
         end
       end

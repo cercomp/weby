@@ -10,7 +10,7 @@
         <%= weby_file_view(banner.repository, :thumb, 160, nil, {target: '_blank', title: banner.text}, true) %>
         <div class="caption">
           <p style="overflow: hidden; white-space: nowrap; height: 20px; text-overflow: ellipsis;"><%= banner.title %></p>
-          <p><%= publication_status(banner, show_label: true) %></p>
+          <p>Publicado: <%= publication_status(banner) %></p>
           <%= raw make_menu(banner) %>
         </div>
       </div>

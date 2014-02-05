@@ -36,7 +36,6 @@ class Component < ActiveRecord::Base
 
   private
   def prepare_variables
-    self.publish = true if self.publish.nil?
     self.settings = settings_map.to_s
     self.position = Component.maximum('position', :conditions=> ["site_id = ? AND place_holder = ?", self.site_id, self.place_holder]).to_i + 1 if self.position.blank?
   end

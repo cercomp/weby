@@ -30,7 +30,7 @@
       <th><%= t(".category") %></th>
       <th><%= t(".type") %></th>
       <th><%= t(".created_at") %></th>
-      <% with_permission(action: :toggle_field) do %>
+      <% with_permission(action: :edit) do %>
         <th><%= sortable 'pages.publish', t(".publish") %></th>
         <th></th>
       <% end %>
@@ -45,7 +45,7 @@
           <td><%= raw categories_links(page.category_list) %></td>
           <td><%= t(".#{page.type.downcase}") %></td>
           <td><%= l(page.created_at, :format => :short) %></td>
-          <% with_permission(action: :toggle_field) do %>
+          <% with_permission(action: :edit) do %>
             <td align="center" class="publish">
               <%= publication_status(page) %></td>
             <td>

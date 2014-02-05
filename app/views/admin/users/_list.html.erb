@@ -26,7 +26,7 @@
           <td><%= link_to "#{user.fullname} (#{user.login})", admin_user_path(user) %></td>
           <td><%=h user.email %></td>
           <td align="center"><%= raw toggle_field(user, 'confirmed_at') %></td>
-          <td align="center"><%= raw toggle_field(user, 'is_admin', 'set_admin') %></td>
+          <td align="center"><%= raw toggle_field(user, 'is_admin') %></td>
           <% if check_permission(Admin::UsersController, :change_roles) %>
             <% link = user.is_admin? ? t('.admin') : t('.manage_roles') %>
             <td> <%= link_to link, manage_roles_admin_users_path(:user_id => user.id ) %> </td>

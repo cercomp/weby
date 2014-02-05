@@ -7,8 +7,8 @@ module DateHelper
   # Receives an object (Page, Banner) and verifies if the publication's date has expired 
   # Returns toggle_field if not expired otherwise returns "Expired"
   def publication_status(obj, options={})
-    return raw toggle_field(obj, "publish", 'toggle_field', options) if obj.date_end_at.nil?
-    return raw toggle_field(obj, "publish", 'toggle_field', options) if publish_date?(obj)
+    return raw toggle_field(obj, "publish", 'toggle', options) if obj.date_end_at.nil?
+    return raw toggle_field(obj, "publish", 'toggle', options) if publish_date?(obj)
     return t("expired") 
   end
 

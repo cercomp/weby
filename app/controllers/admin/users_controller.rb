@@ -1,5 +1,7 @@
 # coding: utf-8
 class Admin::UsersController < ApplicationController
+  include ActsToToggle
+
   before_filter :require_user
   before_filter :is_admin, :except => [:new, :create]
   respond_to :html, :xml
@@ -62,7 +64,6 @@ class Admin::UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.status = true
     if @user.save
       flash[:success] = t("create_account_successful")
       record_activity("created_user", @user)
@@ -102,38 +103,23 @@ class Admin::UsersController < ApplicationController
     redirect_to admin_users_path
   end
 
-  #usado para o attr 'confirmed_at'
-  def toggle_field
-    @user = User.find(params[:id])
-    if params[:field] 
-      if @user.update_attributes(params[:field] => (@user[params[:field]] ? nil : Time.now))
-        flash[:success] = t("successfully_updated")
-      else
-        flash[:error] = t("error_updating_object")
-      end
-    end
-    redirect_to admin_users_path
-  end
-
-  #usado para o attr 'is_admin'
-  def set_admin
-    @user = User.find(params[:id])
-    if params[:field] 
-      if @user.update_attributes(params[:field] => (@user[params[:field]] == 0 or not @user[params[:field]] ? true : false))
-        flash[:success] = t("successfully_updated")
-      else
-        flash[:error] = t("error_updating_object")
-      end
-    end
-    redirect_to admin_users_path
-  end
-
   private
+
   def sort_column
     User.column_names.include?(params[:sort]) ? params[:sort] : 'id'
   end
   
   def user_params
     params[:user].slice(:login, :email, :password, :password_confirmation, :first_name, :last_name, :phone, :mobile, :locale_id)
+  end
+
+  def toggle_attribute!
+    return false if resource.blank? && params[:field].blank?
+
+    if params[:field] == 'confirmed_at'
+      resource.update_attributes(confirmed_at: (resource.confirmed_at ? nil : Time.now))
+    else
+      resource.toggle!(params[:field])
+    end
   end
 end

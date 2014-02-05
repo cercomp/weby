@@ -28,8 +28,8 @@
           <a href="<%= "#{banner_url}" %>" data-banner-id="<%=  banner.id %>" target="<%= banner.new_tab ? "_blank":"" %>"><p><%= "#{banner.text}" %></p></a>
         </div>
       <% end %>
-      <% if check_permission(Sites::Admin::BannersController, ["toggle_field"]) %>
-        <span class="unpublish"><%= link_to t("unpublish"), main_app.toggle_field_site_admin_banner_path(banner, field: 'publish'), method: :put %></span>
+      <% if check_permission(Sites::Admin::BannersController, ["edit"]) %>
+        <span class="unpublish"><%= link_to t("unpublish"), main_app.toggle_site_admin_banner_path(banner, field: 'publish'), method: :put %></span>
       <% end %>
       </div>
     <% end %>

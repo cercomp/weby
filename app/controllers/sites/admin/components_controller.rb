@@ -1,5 +1,7 @@
 # encoding: UTF-8
 class Sites::Admin::ComponentsController < ApplicationController
+  include ActsToToggle
+
   before_filter :require_user
   before_filter :check_authorization
 
@@ -75,18 +77,6 @@ class Sites::Admin::ComponentsController < ApplicationController
     render :nothing => true
   end
   
-  def toggle_field
-    @component = Component.find(params[:id])
-    if params[:field] 
-      if @component.toggle!(params[:field])
-        flash[:success] = t("successfully_updated")
-      else
-        flash[:error] = t("error_updating_object")
-      end
-    end
-    redirect_to :back
-  end
-
   # TODO: método criado somente para colocar códigos específicos de componentes
   #enquanto não há uma solução melhor, já que um componente não tem um controller
   def update_params
