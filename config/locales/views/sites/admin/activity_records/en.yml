@@ -2,6 +2,10 @@ en:
   sites:
     admin:
       activity_records:
+        index:
+          activity_records:           " Activity records "
+        show:
+          activity_records:           " Activity records "
         list:
           no_activity_records:        " No activity records found "
           details:                    " Details "

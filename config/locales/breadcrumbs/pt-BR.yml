@@ -26,6 +26,10 @@ pt-BR:
     #settings
     settings:  " Configurações "
 
+    #activity_records
+    activity_records:  " Histórico de atividades "
+    activity_records_details:  " Detalhes "
+
     #repositories
     repositories:  " Arquivos "
     new_repository:  " Novo arquivo"

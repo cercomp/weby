@@ -24,7 +24,7 @@
             <%= link_to(icon("eye-open", text: t(".show")),
                        polymorphic_url(activity_record.loggeable_url_params, subdomain: activity_record.site)) unless activity_record.action == "destroy" %>
             <%= link_to(icon("search", text: t(".details")),
-                        admin_activity_record_path(activity_record)) if current_user.is_admin? %>
+                        site_admin_activity_record_path(activity_record)) if current_user.is_admin? %>
           </td>
         </tr>
       <% end %>

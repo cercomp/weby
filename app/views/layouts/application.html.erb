@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="<%= current_locale %>">
   <head>
-  <title>weby -<%= yield :title %></title>
+  <title>weby <%= "-#{yield :title}" if content_for?(:title) %></title>
     <%= stylesheet_link_tag 'application', media: "all" %>
     <%# NOTE: review here %>
     <%= yield :stylesheets %>
