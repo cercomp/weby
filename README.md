@@ -1,5 +1,7 @@
 # Weby CMS
 
+[![Build Status](https://travis-ci.org/cercomp/weby.png?branch=master)](https://travis-ci.org/cercomp/weby)
+
 __What is the project?__
 
 The Weby project, is a Web content manager, multisite, this mean you can manage several sites at once, developed initially by [Universidade Federal de Goiás](http://www.ufg.br/) and released as Free Software. A Web content manager is a manager system of pages from internet (World Wide Web) or intranet (Corporate or Domestic networks) that integrates the necessary tools for manage CRUD (create, read, update and delete) content in real time, without programming code. The main motivation for the project is to make content available in a simple way, making possible an easier way of management the information.
