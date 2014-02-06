@@ -70,8 +70,6 @@ window.onload=function(){
         tolerance: 'pointer',
         update: function(evt, ui){
           $('.maxi_level.multi').each(function(){ $(this).attr('style', ''); $(this).css({'height':$(this).height()}); });
-          console.log(this);
-          console.log(ui)
           $.ajax({
             type: 'post',
             data: 'place_holder='+ $(this).data('place') +'&'+ $(this).sortable('serialize'),

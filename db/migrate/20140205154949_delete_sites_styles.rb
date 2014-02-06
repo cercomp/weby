@@ -4,7 +4,7 @@ class DeleteSitesStyles < ActiveRecord::Migration
     add_column :styles, :style_id, :integer
 
     add_index :styles, :style_id
-
+    
     add_foreign_key :styles, :styles
 
     Style.transaction do

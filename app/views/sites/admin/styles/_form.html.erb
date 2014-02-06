@@ -28,7 +28,6 @@
     </div>
   <% end %>
   <div class="form-actions">
-    <%#= f.button :button, t(".apply"), type: :button, disabled: :disabled, class: "btn-apply btn btn-primary" unless @style.new_record? %>
     <%= f.button :submit, class: 'btn-primary', disable_with: t("please_wait") %>
     <%= link_to t("back"), :back, class: "btn" %>
   </div>

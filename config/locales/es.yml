@@ -43,6 +43,9 @@ es:
   expired:                              " Expirado "
   error_updating_object:                " Erro ao atualizar objeto "
   error_creating_object:                " Erro ao criar objeto "
+  error_following_style:                " Erro ao seguir o estilo "
+  error_unfollowing_style:              " Erro ao deixar de seguir o estilo "
+  error_copying_style:                  " Erro ao copiar o estilo "
 #---F---#
   field_required:                       " Campo Obrigatório! "
   file_already_exists:                  " Já existe outro arquivo com o nome: %{value} "
@@ -109,6 +112,8 @@ es:
   successfully_removed:                 " %{param} foi excluído com sucesso! "
   successfully_deleted:                 " Excluído com sucesso! "
   successfully_updated_password:        " Senha atualizada com sucesso "
+  successfully_followed:                " Estilo seguido con sucesso "
+  successfully_copied:                  " Estilo copiado con sucesso "
   should_be_image:                      " Deve ser uma imagem "
 #---T---#
 #---U---#

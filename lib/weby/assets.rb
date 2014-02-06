@@ -1,7 +1,7 @@
 module Weby
   class Assets
     file = 'lib/weby/config/asset_host.yml'
-    if File.exists? file
+    if File.exist? file
       settings = YAML.load_file(file)[Rails.env]
       if settings
         @asset_hosts = settings['hosts']

@@ -87,8 +87,7 @@ Weby::Application.routes.draw do
       end
       resources :styles do
         member do
-          get :copy, :follow, :unfollow
-          put :toggle
+          put :toggle, :copy, :follow, :unfollow
         end
         collection do
           post :sort

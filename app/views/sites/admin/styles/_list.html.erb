@@ -4,7 +4,7 @@
       <thead>
         <th> <%= t('.name') %> </th>
         <th> <%= t('.site') %> </th>
-        <th> <%= t('.sites_followers') %> </th>
+        <th> <%= t('.followers') %> </th>
         <th style="text-align: center;"> <%= t('.publish') %> </th>
         <th> <%= t('.actions') %> </th>
       </thead>
@@ -13,11 +13,7 @@
           <tr id="sort_style_<%= style.id %>" class="<%= style.publish ? "activated" : "deactivated" %>">
             <td> <%= link_to(style.name, site_admin_style_path(style)) %> </td>
             <td> <%= link_to style.owner.name, site_url(subdomain: style.owner), target: :_blank, title: style.owner.title %> </td>
-            <td> 
-              <% style.followers.each do |site| %>
-                <%= link_to site.name, site_url(subdomain: site) %>
-              <% end %>
-            </td>
+            <td> <%= raw style.followers.each.map{|site| link_to site.name, site_url(subdomain: site), title: site.title, target: :_blank }.join(', ') %></td>
             <td style="text-align: center;"><%= raw toggle_field(style, "publish") %></td>
             <td class="style-action">
               <%= style_menu(style) %>
@@ -32,7 +28,7 @@
   </div>
 <% else %>
   <div class="alert">
-    <%= t('.no_own_styles') %>
+    <%= t('.no_styles') %>
   </div>
 <% end %>
 

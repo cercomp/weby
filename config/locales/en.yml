@@ -41,6 +41,9 @@ en:
   expired:                              " Expired "
   error_updating_object:                " Error updating object "
   error_creating_object:                " Error creating object "
+  error_following_style:                " Error following style "
+  error_unfollowing_style:              " Error unfollowing style "
+  error_copying_style:                  " Error copying style "
 #---F---#
   field_required:                       " Field Required!  "
   file_already_exists:                  " There is another file named '%{value}' "
@@ -107,6 +110,8 @@ en:
   successfully_removed:                 " %{param} successfully removed! "
   successfully_deleted:                 " Successfully deleted! "
   successfully_updated_password:        " Password successfully updated "
+  successfully_followed:                " Style successfully followed "
+  successfully_copied:                  " Style successfully copied "
   should_be_image:                      " Must be an image file "
 #---T---#
 #---U---#

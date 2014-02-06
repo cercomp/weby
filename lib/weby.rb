@@ -7,7 +7,7 @@ module Weby
 
     begin
       file = 'lib/weby/institutions/institutions.yml'
-      @@institutions = YAML.load_file(file) if File.exists? file
+      @@institutions = YAML.load_file(file) if File.exist? file
     end
 
     def institutions

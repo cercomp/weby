@@ -1,6 +1,9 @@
 <% title ".styles" %> 
 <% breadcrumb :styles_show, @style %>
 <h3> <%= t(".style") %>: <%= @style.name %> </h3>
+<% if @style.owner != current_site %>
+<h4> <%= t(".site") %>: <%= @style.owner.title %> </h4>
+<% end %>
 
 <b> <%= "CSS" %> </b>
 <textarea id="code"><%= @style.css %></textarea>

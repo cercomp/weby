@@ -3,16 +3,19 @@ class Sites::Admin::StylesController < ApplicationController
 
   before_filter :require_user
   before_filter :check_authorization
-  before_filter :resource, only: [:edit, :show]
+  before_filter :resource, only: [:edit]
 
   respond_to :html, :xml, :js
   
   def index
-    @styles = {
-      own: current_site.styles.by_name(params[:style_name]),
-      other: Style.not_followed_by(current_site).by_name(params[:style_name]).
-                page(params[:page]).per(params[:per_page])
-    }
+    @styles = {}
+    @styles[:others] = Style.not_followed_by(current_site).search(params[:search]).
+                        page(params[:page]).per(params[:per_page])
+    @styles[:styles] = current_site.styles if request.format.html?
+  end
+
+  def show
+    @style = Style.find params[:id]
   end
 
   def new
@@ -62,51 +65,37 @@ class Sites::Admin::StylesController < ApplicationController
   def follow
     resource = Style.find params[:id]
     @style = current_site.styles.new(style_id: resource.id)
-    if @style.save
-      flash[:success] = t("successfully_created")
+    if resource.owner != current_site and @style.save
+      flash[:success] = t("successfully_followed")
     else
-      flash[:error] = t("error_creating_object")
+      flash[:error] = t("error_following_style")
     end
     redirect_to site_admin_styles_path(others: true)
   end
 
-  def copy
-    resource = Style.find params[:id]
-    status = resource.site == current_site ? 
-      resource.copy! : 
-      current_site.styles.new(name: resource.name, css: resource.css).save
-    if status
-      flash[:success] = t("successfully_created")
+  def unfollow
+    if resource.owner == current_site
+      flash[:error] = t("error_unfollowing_style")
+      redirect_to :back
     else
-      flash[:error] = t("error_creating_object")
+      destroy
+    end
+  end
+
+  def copy
+    if Style.find(params[:id]).copy! current_site
+      flash[:success] = t("successfully_copied")
+    else
+      flash[:error] = t("error_copying_style")
     end
     redirect_to site_admin_styles_path
   end
   
   def sort
-    @ch_pos = current_site.own_styles.find(params[:id_moved], :readonly => false)
-    increment = 1
-    #Caso foi movido para o fim da lista ou o fim de uma pagina(quando paginado)
-    p params
-    if(params[:id_after] == '0')
-      @before = current_site.own_styles.find(params[:id_before])
-      condition = "position < #{@ch_pos.position} AND position >= #{@before.position}"
-      new_pos = @before.position
-    else
-      @after = current_site.own_styles.find(params[:id_after])
-      #Caso foi movido de cima pra baixo
-      if(@ch_pos.position > @after.position)
-        condition = "position < #{@ch_pos.position} AND position > #{@after.position}"
-        new_pos = @after.position+1
-        #Caso foi movido de baixo pra cima
-      else
-        increment = -1
-        condition = "position > #{@ch_pos.position} AND position <= #{@after.position}"
-        new_pos = @after.position
-      end
+    position = 0
+    params['sort_style'].reverse_each do |style_id|
+      current_site.styles.find(style_id).update_attribute(:position, position += 1)
     end
-    current_site.own_styles.where(condition).update_all("position = position + (#{increment})")
-    @ch_pos.update_attribute(:position, new_pos)
     render :nothing => true
   end
 

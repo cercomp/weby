@@ -1,17 +1,6 @@
-<% unless @site.own_styles.blank? %>
-  <!-- Own styles -->
+<% current_site.styles.published.reorder('styles.position asc').each do |style| %>
+  <!-- <%= "#{style.name} (#{style.owner.name})" %> -->
   <style type="text/css">
-    <% @site.own_styles.where(:publish => :true).order('position asc').each do |style| %>
-        <%= raw style.css %>
-    <% end %>
+    <%= raw style.css %>
   </style>
-<% end %>
-
-<% unless @site.follow_styles.blank? %>
-  <% @site.sites_styles.where(:publish => :true).each do |relstyle| %>
-    <!-- Follow style (<%= relstyle.style.name %>) -->
-    <style type="text/css">
-      <%= raw relstyle.style.css %>
-    </style>
-  <% end %>
 <% end %>

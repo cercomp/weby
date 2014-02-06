@@ -8,23 +8,36 @@ class Style < ActiveRecord::Base
   
   validates :site, presence: true
   validates :name, presence: true, unless: :style_id
+  validates :style_id, uniqueness: { scope: :site_id }, if: :style_id
 
-  scope :by_name, lambda { |name|
-    include(:sites).where('lower(styles.name) like :name OR lower(sites.title) like :name', name: "%#{name.downcase}%") if name
+  scope :search, lambda { |param|
+    fields = ['styles.name', 'sites.title', 'sites.name']
+    includes(:site).where(fields.map{|field| "lower(#{field}) like :param"}.join(" OR "), param: "%#{param.downcase}%") if param
   }
 
   # returns all styles that are not being followed
   # in follow_styles was used a hack to avoid null return
   scope :not_followed_by, lambda { |site|
-    where('id not in (:follow_styles) and site_id <> :site and style_id is null', {
+    where('styles.id not in (:follow_styles) and styles.site_id <> :site_id and styles.style_id is null', {
       follow_styles: Site.find(site).styles.where('style_id is not null').map(&:style_id) << 0,
-      site: site
+      site_id: site
     })
   }
 
-  def copy!
-    return false unless style_id
-    update_attributes(css: css, name: name, style_id: nil)
+  scope :published, where(publish: true)
+
+  after_create do |style|
+    update_attribute(:position, style.site.styles.maximum(:position)+1)
+  end
+
+  def copy! to_site
+    if site == to_site
+      return false unless self.style_id
+      update_attributes(css: css, name: name, style_id: nil)
+    else
+      return false if self.style_id
+      Style.create(name: self.name, css: self.css, site: to_site).persisted?
+    end
   end
 
   def css

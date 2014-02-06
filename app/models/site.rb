@@ -66,7 +66,7 @@ class Site < ActiveRecord::Base
 
   has_many :banners, order: :position
 
-  has_many :styles, dependent: :destroy, order: :position
+  has_many :styles, dependent: :destroy, order: 'styles.position desc'
 
   has_many :components, order: 'place_holder, position asc', dependent: :destroy
   has_many :root_components, order: :position, class_name: 'Component', conditions: "place_holder !~ '^\\d*$'"

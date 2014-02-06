@@ -3,28 +3,22 @@ pt-BR:
     admin:
       styles:
         index:
-          other_styles:     " Outros Estilos "
-          follow_styles:    " Estilos seguidos "
-          own_styles:       " Estilos próprios "
+          others:           " Outros Estilos "
           new_style:        " Novo Estilo "
-          styles:           " Estilos "
-        styles:
-          other_styles:     " Outros Estilos "
-          follow_styles:    " Estilos seguidos "
-          no_other_styles:  " Outros estilos não encontrados "
-          no_follow_styles: " Nenhum estilo seguido encontrado "
-          publish:          " Publicar "
+          styles:           " Meus Estilos "
+        others:
+          no_other_styles:  " Nenhum estilo encontrado "
           name:             " Nome "
-          owner:            " Dono "
+          site:             " Dono "
           actions:          " Ações "
-          last_update:      " Última Atualização "
-        own_styles:
+          updated_at:       " Última atualização "
+        list:
           actions:          " Ações "
-          own_styles:       " Estilos próprios "
           name:             " Nome "
-          no_own_styles:    " Nenhum estilo próprio encontrado "
+          no_styles:        " Nenhum estilo encontrado "
           publish:          " Publicar "
-          sites_followers:  " Sites que seguem esse estilo "
+          site:             " Dono "
+          followers:        " Seguidores "
         form:
           help_with_style:  " Precisa de ajuda com o estilo "
           format:           " Formatar "
