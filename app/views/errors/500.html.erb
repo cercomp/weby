@@ -13,7 +13,7 @@
 <div class="dialog alert alert-error">
     <%#= image_tag 'weby-logo.png' %>
     <h1></h1>
-    <h1>Ocorreu um erro interno no servidor</h1>
+    <h1><%= t('intern_error') %></h1>
     <h3><span class="red"><%#= @error %></span></h3>
     <p><%= @error_code %></p>
     <%= link_to t("back"), :back %>

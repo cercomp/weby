@@ -16,19 +16,14 @@
 <div class="dialog alert alert-info">
   <%#= image_tag 'weby-logo.png' %>
   <h1></h1>
-  <h2>O Weby está em manutenção.</h2>
-  <p>
-    O sistema se encontra em manutenção para atualização e melhorias. Suas ações
-    estão temporariamente desativadas.
-    No modo de manutenção, você poderá navegar normalmente pelo seu site, porém,
-    não poderá atualizar nenhuma página.
-    
-    O período de manutenção varia entre 1 ou 2 horas.
-  </p>
+  <h2><%= t('maintenance_mode') %></h2>
+  <p><%= t('maintenance_one') %></p>
+  <p><%= t('maintenance_two') %></p>
+  <p><%= t('maintenance_three') %></p>
   <p>
     <%#= @not_found_path %>
   </p>
   <p>
-    <%= link_to 'Clique aqui para voltar à página inicial.', root_url(subdomain: current_site) %>
+    <%= link_to t('return_to_home'), root_url(subdomain: current_site) %>
   </p>
 </div>
