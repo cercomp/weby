@@ -1,4 +1,16 @@
 class Page < ActiveRecord::Base
+  include Trashable
+
+  def check_page_status
+    if self.publish
+      self.errors[:base] << I18n.t("cannot_destroy_a_published_page")
+      return false
+    else
+      self.update_attribute(:front, false)
+      return true
+    end
+  end
+
   self.inheritance_column = nil
 
   acts_as_multisite

@@ -1,6 +1,8 @@
 class MenuItem < ActiveRecord::Base
   weby_content_i18n :title, :description, required: :title
 
+  scope :published, where(publish: true)
+
   belongs_to :target, polymorphic: true
   
   belongs_to :menu

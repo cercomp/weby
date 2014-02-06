@@ -6,6 +6,7 @@ en:
           archives:             " Files "
           search:               " Search "
           new_archive:          " New file "
+          recycle_bin:          " Recycle Bin "
           none_archive:         " No Files "
         view_picker:
           repository_as_thumbs: " Show repository as thumbnails "
@@ -60,3 +61,15 @@ en:
           search_repository:   " Search file "
           archive:             " File "
           none_file:           " No Files Found. "
+        recycle_bin:                              
+          recycle_bin:          " Recycle Bin "       
+          empty_recycle_bin:    " Empty Recycle Bin " 
+          archives:             " Files "              
+          new_archive:          " New File "  
+          archive:              " File "       
+          description:          " Description "     
+          type:                 " Typo "          
+          deleted_at:           " Deleted at "   
+          destroy:              " Destroy "
+          recover:              " Recover "
+

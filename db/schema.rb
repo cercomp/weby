@@ -152,6 +152,7 @@ ActiveRecord::Schema.define(:version => 20140205154949) do
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
     t.string   "html_class"
+    t.boolean  "publish",     :default => true
   end
 
   add_index "menu_items", ["menu_id"], :name => "index_menu_items_on_menu_id"
@@ -223,6 +224,7 @@ ActiveRecord::Schema.define(:version => 20140205154949) do
     t.integer  "view_count",    :default => 0
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
+    t.datetime "deleted_at"
   end
 
   add_index "pages", ["author_id"], :name => "index_pages_on_author_id"
@@ -246,6 +248,7 @@ ActiveRecord::Schema.define(:version => 20140205154949) do
     t.string   "description"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
+    t.datetime "deleted_at"
   end
 
   add_index "repositories", ["site_id"], :name => "index_repositories_on_site_id"

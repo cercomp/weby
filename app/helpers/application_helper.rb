@@ -42,6 +42,7 @@ module ApplicationHelper
 
   # Método recursivo para gerar submenus e os controles
   def print_menu_entry(sons, entry, view_ctrl, indent=0)
+    return "" if !view_ctrl && !entry.publish
     indent_space = " " * indent
     submenu = sons[entry.id].present?
     current_page = (@page && @page == entry.target) || request.path == entry.url
@@ -55,6 +56,7 @@ module ApplicationHelper
       #if (entry.menu.try(:page_id).nil? and entry.menu.try(:link).empty?)
         #menus << "#{entry.menu.try(:title)}"
       #else
+        menus << ((entry.parent and !entry.parent.publish) ? image_tag("#{entry.publish}.png") : toggle_field(entry, "publish", :toggle_field, {controller: "sites/admin/menus/menu_items", menu_id: entry.menu_id})) if view_ctrl
         menus << link_to(entry.title, entry.target_id.to_i > 0 ? main_app.site_page_path(entry.target_id) : entry.url, :alt => entry.title,:title => entry.description, :target => entry.new_tab ? "_blank":"")
       #end
 
@@ -69,7 +71,7 @@ module ApplicationHelper
             end
           end
         end
-        #menus << " [ id:#{entry.id} pos:#{entry.position} ]" # Para debug
+        #menus << " [ id:#{entry.id} pos:#{entry.position} ]" # Para debuga
         menus << ( (entry and entry.target) ? " [ #{entry.target.try(:title)} ] " : " [ #{entry.url if not entry.url.blank?} ] " )
         menus << link_to(icon('edit', text: ''), edit_site_admin_menu_menu_item_path(entry.menu_id, entry.id), :title => t("edit"))
         menus << indent_space + link_to(icon('plus', text: ''), new_site_admin_menu_menu_item_path(entry.menu_id, :parent_id => entry.id), :title => t("add_sub_menu"))
@@ -400,9 +402,15 @@ module ApplicationHelper
         title: title
       })
 
+      url_options = options.merge({
+        action: action,
+        id: options[:id],
+        field: field
+      })
+
       if test_permission controller_name, action
         checkbox = check_box_tag(field, resource[field], resource[field], check_box_options)
-        html << link_to(checkbox, {action: action, id: options[:id], field: field}, link_options)
+        html << link_to(checkbox, url_options, link_options)
       else
         check_box_options = check_box_options.merge({disabled: true})
         html << check_box_tag(field, resource[field], resource[field], check_box_options)

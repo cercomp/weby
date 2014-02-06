@@ -19,6 +19,7 @@ en:
   back:                                 " Back "
   begin:                                " Begin "
 #---C---#
+  cannot_destroy_a_published_page:      " Cannot destroy a published page "
   cancel:                               " Cancel "
   close:                                " Close "
   copy:                                 " Copy "

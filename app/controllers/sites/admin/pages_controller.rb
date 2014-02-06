@@ -22,6 +22,10 @@ class Sites::Admin::PagesController < ApplicationController
     end
   end
 
+  def recycle_bin
+    @pages = @site.pages.trashed.order("pages.deleted_at DESC").page(params[:page]).per(params[:per_page])
+  end
+
   def get_pages
     case params[:template]
     when "tiny_mce"
@@ -97,10 +101,25 @@ class Sites::Admin::PagesController < ApplicationController
   # DELETE /pages/1
   # DELETE /pages/1.json
   def destroy
-    @page = @site.pages.find(params[:id])
-    @page.destroy
-    record_activity("destroyed_page", @page)
-    respond_with(:site_admin, @page)
+    @page = @site.pages.unscoped.find(params[:id])
+    if @page.trash
+      if @page.persisted?                                   
+        record_activity("moved_page_to_recycle_bin", @page)
+      else                                                  
+        record_activity("destroyed_page", @page)          
+      end                                                   
+    else
+      flash[:error] = @page.errors.full_messages.join(",")
+    end
+
+    redirect_to :back
+  end
+
+  def recover
+    @page = @site.pages.unscoped.find(params[:id])
+    @page.update_attribute(:deleted_at, nil)
+    record_activity("restored_page", @page)
+    redirect_to :back
   end
 
   def sort

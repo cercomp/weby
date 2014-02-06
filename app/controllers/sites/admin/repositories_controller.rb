@@ -32,6 +32,13 @@ class Sites::Admin::RepositoriesController < ApplicationController
     end
   end
 
+  def recycle_bin
+    @repositories = @site.repositories.trashed.
+    order("repositories.deleted_at DESC").
+    order(sort_column + ' ' + sort_direction).
+    page(params[:page]).per(per_page)
+  end
+
   def show
     @repository = Repository.find(params[:id])
     respond_with(:site_admin, @repository)
@@ -86,11 +93,23 @@ class Sites::Admin::RepositoriesController < ApplicationController
   end
 
   def destroy
-    @repository = Repository.find(params[:id])
-    @repository.destroy
-    record_activity("destroyed_file", @repository)
+    @repository = Repository.unscoped.find(params[:id])
+    @repository.trash
+    
+    if @repository.persisted?
+      record_activity("moved_file_to_recycle_bin", @repository)
+    else
+      record_activity("destroyed_file", @repository)
+    end
 
-    redirect_to site_admin_repositories_url
+    redirect_to :back
+  end
+
+  def recover                                      
+    @repository = Repository.unscoped.find(params[:id]) 
+    @repository.update_attribute(:deleted_at, nil)       
+    record_activity("restored_file", @repository)
+    redirect_to :back                              
   end
 
   private

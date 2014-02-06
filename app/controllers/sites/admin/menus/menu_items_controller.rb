@@ -30,6 +30,24 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
       render action: :new
     end
   end
+  
+  def toggle_field                                      
+   @menu_item = @site.menu_items.find(params[:id])               
+   @menu_item.toggle!(params[:field])          
+   update_children(@menu_item)
+   record_activity("updated_menu_item", @menu_item)
+   respond_with(:site_admin, @menu_item) do |format|        
+    format.any { redirect_to site_admin_menu_path(@menu_item.menu) }
+   end                                                 
+  end
+
+  def update_children(menu_item)
+    menu_item.children.each do |child|
+      child.update_attribute(:publish, menu_item.publish)
+      update_children(child)
+    end
+  end
+  private :update_children
 
   def edit
     @menu_item = @menu.menu_items.find(params[:id])

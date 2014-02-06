@@ -6,6 +6,7 @@ pt-BR:
           archives:             " Arquivos "
           search:               " Buscar "
           new_archive:          " Novo Arquivo "
+          recycle_bin:          " Lixeira "
           none_archive:         " Nenhum Arquivo "
         view_picker:
           repository_as_thumbs: " Exibir repositório como miniaturas "
@@ -60,3 +61,15 @@ pt-BR:
           search_repository:   " Pesquisar arquivo "
           archive:             " Arquivo "
           none_file:           " Nenhum Arquivo Encontrado. "
+        recycle_bin:
+          recycle_bin:          " Lixeira "
+          empty_recycle_bin:    " Lixeira Vazia "
+          archives:             " Arquivos "      
+          new_archive:          " Novo Arquivo "  
+          none_archive:         " Nenhum Arquivo "
+          archive:              " Arquivo "  
+          description:          " Descrição "
+          type:                 " Tipo "
+          deleted_at:           " Deletado em "
+          destroy:              " Excluir "
+          recover:              " Restaurar "

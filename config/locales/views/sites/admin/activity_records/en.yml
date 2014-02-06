@@ -32,10 +32,14 @@ en:
           created_page:               " created page "
           updated_page:               " updated page "
           destroyed_page:             " destroyed page "
+          moved_page_to_recycle_bin:  " moved a page to recycle bin "
+          restored_page:              " restore a page "
 #--- Sites/Admin/Repositories ---#
           uploaded_file:              " uploaded file "
           updated_file:               " updated file "
           destroyed_file:             " destroyed file "
+          moved_file_to_recycle_bin:  " moved a file to recycle bin "
+          restored_file:              " restored a file "         
 #--- Sites/Admin/Roles ---#
           created_role:               " created role "
           updated_role:               " updated role "

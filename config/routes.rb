@@ -64,6 +64,9 @@ Weby::Application.routes.draw do
         resources :menu_items,
           controller: "menus/menu_items" do#,
 #          except: :show do
+            member do
+              put :toggle_field
+            end
             collection do
               post :change_order, :change_menu
             end
@@ -72,15 +75,19 @@ Weby::Application.routes.draw do
       resources :pages do
         member do
           put :toggle
+          get :recover
         end
         collection do
-          get :fronts
+          get :fronts, :recycle_bin
           post :sort
         end
       end
       resources :repositories do
+        member do
+          get :recover
+        end
         collection do
-          get :manage
+          get :manage, :recycle_bin
         end
       end
       resources :roles do
