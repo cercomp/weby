@@ -1,4 +1,8 @@
 language: ruby
 rvm:
   - 2.0.0
+before_script:
+  - psql -c 'create database weby_test;' -U postgres
+  - mv config/travis_database.yml config/database.yml
+  - RAILS_ENV=test bundle exec rake --trace db:migrate
 script: bundle exec rspec spec
