@@ -165,6 +165,16 @@ crumb :settings do
   link t("breadcrumbs.settings"), edit_site_admin_path
 end
 
+#activity_records
+crumb :activity_records do
+  link t("breadcrumbs.activity_records"), site_admin_activity_records_path
+end
+
+crumb :activity_records_details do
+  link t("breadcrumbs.activity_records_details"), site_admin_activity_record_path
+  parent :activity_records
+end
+
 #layout/components
 crumb :layout do
   link t("breadcrumbs.components"), site_admin_components_path

@@ -26,6 +26,10 @@ en:
     #settings
     settings:  " Settings "
 
+    #activity_records                             
+    activity_records:  " Activity records "
+    activity_records_details:  " Details "
+
     #repositories
     repositories:  " Respositories "
     new_repository:  " New repository"
