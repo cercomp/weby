@@ -46,9 +46,11 @@ en:
   file_already_exists:                  " There is another file named '%{value}' "
   follow:                               " Follow "
 #---G---#
+  generate:                             " Gerar "
 #---H---#
 #---I---#
   invalid_activation_token:             " Invalid or expired activation link! "
+  import:                               " Importar "
 #---J---#
 #---K---#
 #---L---#

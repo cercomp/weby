@@ -46,9 +46,11 @@ pt-BR:
   file_already_exists:                  " Já existe outro arquivo com o nome: %{value} "
   follow:                               " Seguir "
 #---G---#
+  generate:                             " Gerar "
 #---H---#
 #---I---#
   invalid_activation_token:             " Link de ativação inválido ou expirado! "
+  import:                               " Importar "
 #---J---#
 #---K---#
 #---L---#
