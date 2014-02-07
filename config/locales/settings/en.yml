@@ -10,3 +10,4 @@ en:
     domain: "Weby's default domain."
     root_site: "Main site, to be viewed in the domain's root"
     default_groupings: 'Default groups filter on the sites listing. Ex: 1 | !1 | 1,2 | !2,3'
+    maintenance_mode: 'Maintenance Mode. True makes it so only admin users can log in.'

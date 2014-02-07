@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :set_tld_length
   before_filter :set_contrast, :set_locale, :set_global_vars, :set_view_types
+  before_filter :maintenance_mode
   before_filter :require_user, only: [:admin]
   after_filter :weby_clear, :count_view
 
@@ -363,5 +364,11 @@ class ApplicationController < ActionController::Base
       @activity.loggeable = loggeable
       @activity.save
     #end
+  end
+
+  def maintenance_mode
+    if Weby::Settings.maintenance_mode == "true" and !current_user.try(:is_admin?) and is_in_admin_context?
+      render template: 'errors/maintenance', layout: 'weby_pages'
+    end
   end
 end

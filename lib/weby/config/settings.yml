@@ -19,3 +19,5 @@ settings:
     value:
   default_groupings:
     value:
+  maintenance_mode:
+    value: 'false'

@@ -1,0 +1,9 @@
+pt-BR:
+  does_not_exist:    " O endereço que você digitou parece não existir "
+  verify_url:        " Verifique se o endereço foi digitado corretamente "
+  return_to_home:    " Clique aqui para voltar à página inicial. "
+  intern_error:      " Ocorreu um erro interno no servidor "
+  maintenance_mode:  " O Weby está em manutenção "
+  maintenance_one:   " O sistema se encontra em manutenção para atualização. Suas ações estão temporariamente desativadas. "
+  maintenance_two:   " No modo de manutenção, você ainda poderá navegar pelo site, porém não poderá realizar atualizações. "
+  maintenance_three:  " Normalmente, o período de manutenção varia entre 1 e 2 horas. "
