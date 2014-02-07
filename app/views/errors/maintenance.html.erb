@@ -1,22 +1,9 @@
-<%content_for :stylesheets do%>
-  <style type="text/css">
-  .dialog {
-    width: 600px;
-    margin: 30px auto 0;
-    text-align: center;
-  }
-  .dialog h1 {
-    font-size: 20px;
-  }
-  .red { color: red }
-  </style>
-<% end %>
 <%- title 'Modo de Manutenção', true %>
 
 <div class="dialog alert alert-info">
   <%#= image_tag 'weby-logo.png' %>
   <h1></h1>
-  <h2><%= t('maintenance_mode') %></h2>
+  <h1><%= t('maintenance_mode') %></h1>
   <p><%= t('maintenance_one') %></p>
   <p><%= t('maintenance_two') %></p>
   <p><%= t('maintenance_three') %></p>
