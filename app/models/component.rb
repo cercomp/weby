@@ -7,6 +7,7 @@ class Component < ActiveRecord::Base
   before_save :prepare_variables
   after_save :fix_position
   after_destroy :remove_children, if: Proc.new{ self.name == "components_group" }
+  #has_many :children, class_name: 'Component', foreign_key: 'place_holder', conditions: "name='components_group'"
 
   belongs_to :site
 
@@ -20,7 +21,32 @@ class Component < ActiveRecord::Base
     ""
   end
 
+  def self.import attrs, options={}
+    return attrs.each{|attr| self.import attr } if attrs.is_a? Array
+
+    attrs = attrs.dup
+    attrs = attrs['component'] if attrs.has_key? 'component'
+
+    attrs.except!('id', 'created_at', 'updated_at', 'site_id')
+    attrs["place_holder"] = options[:place_holder] if options[:place_holder]
+    components_children = attrs.delete('children')
+
+    component = self.create!(attrs)
+    if component.persisted?
+      components_children.each do |child|
+        self.import child, place_holder: component.id
+      end
+    end
+  end
+
+  def serializable_hash options={}
+    hash = super options
+    hash[:children] = self.site.components.where(place_holder: self.id.to_s).map{|c| c.serializable_hash(options)}
+    hash
+  end
+
   protected
+
   def settings_map
     @settings_map = self.settings ? eval(self.settings) : {} if @settings_map.nil?
     @settings_map
@@ -36,6 +62,7 @@ class Component < ActiveRecord::Base
 
   private
   def prepare_variables
+    self.publish = true if self.publish.nil?
     self.settings = settings_map.to_s
     self.position = Component.maximum('position', :conditions=> ["site_id = ? AND place_holder = ?", self.site_id, self.place_holder]).to_i + 1 if self.position.blank?
   end
