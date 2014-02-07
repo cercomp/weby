@@ -6,6 +6,7 @@ pt-BR:
           manage_roles:      " Gerenciar Papéis "
           roles_permissions: " Permissões e Papéis "
           manage_users:      " Gerenciar Usuários "
+          users:             " Usuários "
         enrole:
           enrole_user:       " Relacionar Usuários "
           role:              " Papel "

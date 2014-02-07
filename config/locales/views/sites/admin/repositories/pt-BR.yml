@@ -18,6 +18,7 @@ pt-BR:
           archive_description: " Descrição do arquivo "
           file_link:           " Link para arquivo "
           list_all:            " Listar todos "
+          show:                " Mostrar "
         new:
           archives:            " Arquivos "
           field_required:      " Campo obrigatório! "

@@ -3,6 +3,7 @@ pt-BR:
     admin:
       statistics:
         index:
+          statistics:     " Estatísticas "
           generate:      " Gerar "
           site:          " Site "
           month:         " Mês "

@@ -1,3 +1,5 @@
+<% title ".archives" %>
+<% breadcrumb :repositories_show, @repository %>
 <p><%= weby_file_view(@repository, :original, nil, nil, target: '_blank') %>  </p>
 <p><b><%= t(".name") %>:</b> <%= @repository.archive_file_name %> </p>
 <p><b><%= t(".size") %>:</b> <%= number_to_human_size(@repository.archive_file_size) %> </p>

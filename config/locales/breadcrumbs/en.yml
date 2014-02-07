@@ -1,0 +1,55 @@
+en:
+  breadcrumbs:
+    #generic
+    home:   " Home "
+    edit:  " Edit "        
+    recycle_bin:  " Recycle bin "
+    show:  " Show "
+    search:  " Search "
+    
+    #users/roles
+    users:  " Users "
+    roles:  " Roles "
+    new_role:  " New role "
+
+    #component
+    components:  " Components "
+    choose_component:  " Choose component "
+    new_component:  "New component "
+
+    #styles
+    styles:  " Styles "
+    new_style:  " New Style "
+    
+    #statistics
+    statistics:  " Estatistics "
+
+    #settings
+    settings:  " Settings "
+
+    #repositories
+    repositories:  " Respositories "
+    new_repository:  " New repository"
+
+    #pages
+    pages:  " Pages "
+    new_page:  " New pages"
+    fronts:  " Fronts "
+
+    #menus
+    menus:  " Menus "
+    new_menu:  " New menu "
+    new_menu_item: " New menu item "
+    edit_menu_item:  " Edit menu item "
+
+    #banners
+    banners:  " Banners "
+    new_banner:  " New banner "
+
+    #extensions/feedback
+    extensions:  " Extensions "
+    new_extension:  " New extension "
+    feedback:  " Feedback "
+    messages:  " Menssages "
+    groups:  " Groups "
+    new_group:  " New group "

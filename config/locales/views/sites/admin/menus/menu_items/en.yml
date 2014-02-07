@@ -9,6 +9,7 @@ en:
           edit:
             title:            " Edit Menu Item "
           form:
+            menus:            " Menus "
             parent_menu_item: " Parent menu item "
             type_url:         " Type a URL "
             title:            " Title "

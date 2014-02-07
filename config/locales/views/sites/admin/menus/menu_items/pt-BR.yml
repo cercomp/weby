@@ -9,6 +9,7 @@ pt-BR:
           edit:
             title:            " Editar Item de Menu "
           form:
+            menus:            " Menus "
             parent_menu_item: " Item de menu pai "
             type_url:         " Digite a URL "
             title:            " Título "

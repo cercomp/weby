@@ -23,6 +23,7 @@ en:
           categories:           " Categories "
           source:               " Source "
         fronts:
+          pages:                " Pages "
           covers:               " Covers "
           none_cover:           " None Cover "
           new_page:             " New Page "
