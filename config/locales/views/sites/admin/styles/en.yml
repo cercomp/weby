@@ -18,6 +18,7 @@ en:
           no_styles:        " No styles found "
           publish:          " Published "
           site:             " Owner "
+          updated_at:       " Last update "
           followers:        " Followers "
         form:
           help_with_style:  " Need help with the style "

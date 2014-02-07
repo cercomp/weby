@@ -3,15 +3,14 @@ class Sites::Admin::StylesController < ApplicationController
 
   before_filter :require_user
   before_filter :check_authorization
-  before_filter :resource, only: [:edit]
-
+  
   respond_to :html, :xml, :js
   
   def index
     @styles = {}
     @styles[:others] = Style.not_followed_by(current_site).search(params[:search]).
                         page(params[:page]).per(params[:per_page])
-    @styles[:styles] = current_site.styles if request.format.html?
+    @styles[:styles] = current_site.styles.includes(:site, :style, :followers) if request.format.html?
   end
 
   def show
@@ -34,12 +33,14 @@ class Sites::Admin::StylesController < ApplicationController
   end
 
   def edit
+    @style = current_site.styles.own.find params[:id]
   end
 
   def update
+    @style = current_site.styles.own.find params[:id]
     respond_to do |format|
-      if resource.update_attributes(params[:style])
-        record_activity("updated_style", resource)
+      if @style.update_attributes(params[:style])
+        record_activity("updated_style", @style)
         format.html do
           flash[:success] = t("successfully_updated")
           redirect_to site_admin_styles_path
@@ -47,7 +48,7 @@ class Sites::Admin::StylesController < ApplicationController
       else
         format.html { render 'edit' }
       end
-      format.json { render :text => resource.errors.full_messages.to_json }
+      format.json { render :text => @style.errors.full_messages.to_json }
     end
   end
 
@@ -65,10 +66,10 @@ class Sites::Admin::StylesController < ApplicationController
   def follow
     resource = Style.find params[:id]
     @style = current_site.styles.new(style_id: resource.id)
-    if resource.owner != current_site and @style.save
+    if @style.save
       flash[:success] = t("successfully_followed")
     else
-      flash[:error] = t("error_following_style")
+      flash[:error] = @style.errors.full_messages.join(", ")
     end
     redirect_to site_admin_styles_path(others: true)
   end

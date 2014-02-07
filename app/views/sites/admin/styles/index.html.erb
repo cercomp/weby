@@ -40,7 +40,7 @@
       placeholder: 'drop-here',
       tolerance: 'pointer',
       start: function (event, ui){
-        //ui.placeholder.html('<td colspan="5">&nbsp;</td>')
+        ui.placeholder.html('<td colspan="'+ui.helper.find('td').length+'">&nbsp;</td>');
       },
       update: function(ev, ui){
         $.ajax({

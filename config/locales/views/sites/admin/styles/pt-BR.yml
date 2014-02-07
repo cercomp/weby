@@ -18,6 +18,7 @@ pt-BR:
           no_styles:        " Nenhum estilo encontrado "
           publish:          " Publicar "
           site:             " Dono "
+          updated_at:       " Última atualização "
           followers:        " Seguidores "
         form:
           help_with_style:  " Precisa de ajuda com o estilo "

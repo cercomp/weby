@@ -42,6 +42,8 @@ en:
   error_updating_object:                " Error updating object "
   error_creating_object:                " Error creating object "
   error_following_style:                " Error following style "
+  cant_follow_own_styles:               " You can't follow a style from your own site "
+  can_only_follow_styles:               " You can't follow this style "
   error_unfollowing_style:              " Error unfollowing style "
   error_copying_style:                  " Error copying style "
 #---F---#
