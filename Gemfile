@@ -15,6 +15,7 @@ gem 'bootstrap-sass', '2.3.0.1'
 gem 'foreigner'
 gem "select2-rails"
 gem 'd3js-rails'
+gem "gretel"
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

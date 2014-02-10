@@ -3,6 +3,7 @@ en:
     admin:
       statistics:
         index:
+          statistics:    " Statistics "
           generate:      " Generate "
           site:          " Site "
           month:         " Month "

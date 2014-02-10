@@ -12,6 +12,5 @@ class Sites::Admin::ActivityRecordsController < ApplicationController
 
   def show
     @activity_record = ActivityRecord.find(params[:id])
-    render 'admin/activity_records/show'
   end
 end

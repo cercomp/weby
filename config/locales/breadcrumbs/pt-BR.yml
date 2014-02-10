@@ -1,0 +1,58 @@
+pt-BR:
+  breadcrumbs:
+    #generic
+    home:   " Início "
+    edit:  " Editar"        
+    show:  " Mostrar"
+    search:  " Pesquisar "
+    
+    #users/roles
+    users:  " Usuários "
+    roles:  " Papéis "
+    new_role:  " Novo papel "
+
+    #component
+    components:  " Componentes "
+    choose_component:  " Escolher componente "
+    new_component:  "Novo componente "
+
+    #styles
+    styles:  " Estilos "
+    new_style:  " Novo estilo "
+    
+    #statistics
+    statistics:  " Estatísticas "
+
+    #settings
+    settings:  " Configurações "
+
+    #activity_records
+    activity_records:  " Histórico de atividades "
+    activity_records_details:  " Detalhes "
+
+    #repositories
+    repositories:  " Arquivos "
+    new_repository:  " Novo arquivo"
+
+    #pages
+    pages:  " Páginas "
+    new_page:  " Nova página "
+    fronts:  " Capas "
+
+    #menus/menus_items
+    menus:  " Menus "
+    new_menu:  " Novo menu "
+    new_menu_item: " Novo item de menu "
+    edit_menu_item:  " Editar item de menu "
+
+    #banners
+    banners:  " Banners "
+    new_banner:  " Novo banner "
+
+    #extensions/feedback
+    new_extension: " Nova extensão "
+    extensions:  " Extensões "
+    feedback:  " Fale conosco "
+    messages:  " Mensagens "
+    groups:  " Grupos "
+    new_group:  " Novo grupo "

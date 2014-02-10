@@ -3,6 +3,7 @@ en:
     admin:
       groups:
         form:
+          feedback:               " Feedback "
           field_required:         " Field required! "
           comma_separated_emails: " Comma Separated Emails "
           please_wait:            " Please wait "
@@ -12,6 +13,7 @@ en:
           none_group:             " No group "
           group_explain:          " E-mail groups, recipients of messages "
         index:
+          feedback:               " Feedback "
           groups:                 " Groups "
           new_group:              " New Group "
           messages:               " Messages "
@@ -20,6 +22,7 @@ en:
         new:
           groups:                 " Groups "
         show:
+          feedback:               " Feedback "
           name:                   " Name "
           groups:                 " Groups "
           list_all:               " List all "

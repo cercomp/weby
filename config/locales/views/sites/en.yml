@@ -1,6 +1,7 @@
 en:
   sites:
     admin:
+      home: " Home "
       common_tasks: "COMMON TASKS"
       new_page: "NEW PAGE"
       new_file: "NEW FILE"

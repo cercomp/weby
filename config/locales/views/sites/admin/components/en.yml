@@ -3,6 +3,7 @@ en:
     admin:
       components:
         form:
+          layout:             " Layout "
           place:              " Place "
           visibility:         " Visibility "
           alias:              " Name "
@@ -11,11 +12,13 @@ en:
           home_page:          " Only on the home page "
           inner_page:         " Only on inner pages "
         available_components:
+          layout:             " Layout "
           next_step:          " Next Step "
           components:         " Components "
         edit:
           components:         " Componentes "
         index:
+          layout:             " Layout "
           components:         " Componentes "
           activate:           " Activate "
           new_component:      " New Widget "
@@ -28,3 +31,4 @@ en:
           leftout_components: " Components that are out of the layout "
         new:
           components:         " Components "
+

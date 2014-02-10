@@ -3,6 +3,7 @@ pt-BR:
     admin:
       groups:
         form:
+          feedback:               " Fale conosco "
           field_required:         " Campo obrigatório! "
           comma_separated_emails: " Emails Separados por Vírgula "
           please_wait:            " Por favor, aguarde "
@@ -12,6 +13,7 @@ pt-BR:
           none_group:             " Não existe nenhum grupo "
           group_explain:          " Grupos de e-mails destinatários das mensagens do Fale Conosco"
         index:
+          feedback:               " Fale conosco "
           groups:                 " Grupos "
           new_group:              " Novo Grupo "
           messages:               " Mensagens "
@@ -20,7 +22,7 @@ pt-BR:
         new:
           groups:                 " Grupos "
         show:
+          feedback:               " Fale conosco "
           name:                   " Nome "
           groups:                 " Grupos "
           list_all:               " Listar todos "
-

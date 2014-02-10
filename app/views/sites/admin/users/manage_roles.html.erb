@@ -1,4 +1,5 @@
-
+<% title ".users" %>
+<% breadcrumb :users %>
 <p class="pull-right">
   <% if check_permission(Admin::RolesController, [:index]) %>
     <%= link_to t(".roles_permissions"),

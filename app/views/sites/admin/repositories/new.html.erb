@@ -1,3 +1,6 @@
+<% title ".archives" %>
+<% breadcrumb :repositories_new%>
+
 <%= simple_form_for [:site_admin, @repository], remote: true, :html => { class: 'form-horizontal', id: 'create-repository-form'} do |f| %>
   <%= f.show_errors %>
 

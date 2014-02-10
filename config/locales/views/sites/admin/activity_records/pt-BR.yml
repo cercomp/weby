@@ -2,6 +2,10 @@ pt-BR:
   sites:
     admin:
       activity_records:
+        index:
+          activity_records:           " Histórico de atividades "
+        show:
+          activity_records:           " Histórico de atividades "
         list:
           no_activity_records:        " Nenhum registro de atividade encontrado "
           details:                    " Detalhes "

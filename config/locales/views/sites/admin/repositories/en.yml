@@ -11,6 +11,7 @@ en:
           repository_as_thumbs: " Show repository as thumbnails "
           repository_as_list:   " Show repository as list "
         show:
+          new_archive:         " New file "
           archives:            " Files "
           name:                " Name "
           size:                " Size "

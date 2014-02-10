@@ -3,6 +3,7 @@ pt-BR:
     admin:
       messages:
         index:
+         feedbacktitle: " Fale conosco "
          feedback:      " Mensagens "
          none_feedback: " Nenhuma Mensagem "
          new_group:     " Novo Grupo "
@@ -12,7 +13,7 @@ pt-BR:
          subject:       " Assunto "
          email:         " E-mail "
         show:
-         feedback:      " Feedback "
+         feedback:      " Fale conosco "
          name:          " Nome "
          email:         " E-mail "
          subject:       " Assunto "
