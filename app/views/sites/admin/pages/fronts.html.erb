@@ -74,6 +74,10 @@
           scroll: true,
           forcePlaceholderSize: true,
           placeholder: 'drop-here',
+          tolerance: 'pointer',
+          start: function (event, ui){
+            ui.placeholder.html('<td colspan="'+ui.helper.find('td').length+'">&nbsp;</td>');
+          },
           update: function(ev, ui){
             id_moved = ui.item.attr('id').replace('sort_page_','');
             id_after = ui.item.next().attr('id') ? ui.item.next().attr('id').replace('sort_page_','') : 0;

@@ -30,7 +30,7 @@ class Migrate_this2weby
     #@param = "WHERE site_id=68"
 
     count_sites = @con_weby.exec("SELECT count(*) FROM sites")
-    if File.exists?("./convar_ufgbr.yml") and count_sites[0]['count'].to_i > 0
+    if File.exist?("./convar_ufgbr.yml") and count_sites[0]['count'].to_i > 0
       @convar_ufg = YAML::load(File.open("./convar_ufgbr.yml"))
     else
       @convar_ufg = {} # Variável de conversão
@@ -280,7 +280,7 @@ EOF
           @rights = YAML.load(File.open("../lib/weby/config/rights.yml"))["rights"]
           Dir.glob File.expand_path("../vendor/engines/*") do |extension_dir|
             file = File.join(extension_dir, "lib/weby/config/rights.yml")
-            if File.exists?(file)
+            if File.exist?(file)
               @rights = YAML.load(File.open(file))["rights"].merge @rights
             end
           end
@@ -900,7 +900,7 @@ class Migrate_files
 
       destino = @to + @convar_ufg[id]['weby']
       # Se a pasta destino ainda não existe
-      Dir.mkdir("#{destino}") unless Dir.exists?("#{destino}")
+      Dir.mkdir("#{destino}") unless Dir.exist?("#{destino}")
 
       # Verifica cada pasta conhecida
       @folders.each do |folder|
@@ -1045,7 +1045,7 @@ class Migrate_files
     if to_move.size > 0
       temp_folder = "#{@to}temp"
 
-      Dir.mkdir("#{temp_folder}") unless Dir.exists?("#{temp_folder}")
+      Dir.mkdir("#{temp_folder}") unless Dir.exist?("#{temp_folder}")
       to_move.each do |d|
         puts `cp -urv "#{@from + d}" "#{temp_folder}"`
       end

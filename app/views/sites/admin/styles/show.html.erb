@@ -1,12 +1,15 @@
 <% title ".styles" %> 
 <% breadcrumb :styles_show, @style %>
 <h3> <%= t(".style") %>: <%= @style.name %> </h3>
+<% if @style.owner != current_site %>
+<h4> <%= t(".site") %>: <%= @style.owner.title %> </h4>
+<% end %>
 
 <b> <%= "CSS" %> </b>
 <textarea id="code"><%= @style.css %></textarea>
 
 <div class="form-actions">
-  <%= raw style_actions @style, except: "show", others: @style.owner_id != current_site.id, follow: @style.followers.include?(current_site) %>
+  <%= style_menu @style %>
   <%= link_to icon('list', text:t(".list_all")), site_admin_styles_path %>
   <%= link_to icon('chevron-left', text:t("back")), :back %>
 </div>

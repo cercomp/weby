@@ -1,71 +1,54 @@
 <% title ".styles" %>
 <% breadcrumb params[:search].present? ? :styles_search : :styles %> 
-<div class="pull-left">
-  <%= form_tag site_admin_styles_path, method: 'get', name: 'style_search', remote: true, class: 'search pull-right' do %>
-    <%= content_tag :div, class: 'input-append' do %>
-      <%= search_field_tag :style_name, @style_name, class: 'input-search' %><%= submit_tag t("search"), class: 'btn btn-info btn-search' %><%= select_tag :style_type, options_for_select([
-        [t('.other_styles'), 'other'],
-        [t('.own_styles'), 'own'],
-        [t('.follow_styles'), 'follow']], @style_type), style: 'height: 32px;', class: 'add-on' %>
-    <% end %>    
-  <% end %>
-</div>
-
-<% if check_permission(Sites::Admin::StylesController, 'new') %>
+<% with_permission action: :new do %>
   <div class="pull-right">
     <%= link_to t(".new_style"),
       new_site_admin_style_path,
       class: "btn btn-success" %>
   </div>
+  <div class="clearfix control-group"></div>
 <% end %>
-<div class="clearfix"></div>
 
 <div class="tabbable">
   <ul class="nav nav-tabs" id="style-tab">
     <li class="<%= params["others"] ? "" : "active" %>" >
-    <a href="#own_styles" data-toggle="tab"><%= t(".own_styles") %></a>
+      <a href="#styles" data-toggle="tab"><%= t(".styles") %></a>
     </li>
     <li class="<%= params["others"] ? "active" : "" %>" >
-    <a href="#others" data-toggle="tab"><%= t(".other_styles") %></a>
+      <a href="#others" data-toggle="tab"><%= t(".others") %></a>
     </li>
   </ul>
   <div class="tab-content">
-    <div class="tab-pane <%= params["others"] ? "" : "active" %>" id="own_styles">
-      <%= render partial: 'own_styles', locals: { styles: @styles.delete(:own) } %>
+    <div class="tab-pane <%= params["others"] ? "" : "active" %>" id="styles">
+      <%= render partial: 'list', locals: { styles: @styles.delete(:styles) } %>
     </div>
     <div class="tab-pane <%= params["others"] ? "active" : "" %>" id="others">
-      <% @styles.each do |type, styles| %>
-        <div class="styles" id="<%= "#{type}_styles" %>">
-          <%= render partial: "styles", locals: { styles: styles, type: type } %>
-        </div>
-      <% end %>
+      <%= render partial: 'others', locals: { styles: @styles.delete(:others) } %>
     </div>
   </div>
 </div>
 <%= javascript_tag do %>
-
   function initStylesSortable(){
     $('#style_list').sortable({
       axis: 'y',
       dropOnEmpty:false,
       handle: '.handle',
       items: 'tbody > tr',
-      opacity: 0.7,
+      opacity: 0.6,
       scroll: true,
       forcePlaceholderSize: true,
       placeholder: 'drop-here',
       tolerance: 'pointer',
+      start: function (event, ui){
+        ui.placeholder.html('<td colspan="'+ui.helper.find('td').length+'">&nbsp;</td>');
+      },
       update: function(ev, ui){
-        id_moved = ui.item.attr('id').replace('sort_style_','');
-        id_after = ui.item.next().attr('id') ? ui.item.next().attr('id').replace('sort_style_','') : 0;
-        id_before = ui.item.prev().attr('id') ? ui.item.prev().attr('id').replace('sort_style_','') : 0;
-        //alert(id_moved+' between '+id_before+' and '+id_after);
         $.ajax({
           type: 'post',
-          data: {'id_moved':id_moved,'id_after':id_after,'id_before':id_before},
+          data: $(this).sortable('serialize'),
           dataType: 'script',
           complete: function(request){ ui.item.effect('pulsate', {times: 1}, 350); },
-          error: function(){$('#list').sortable('cancel');},
+          error: function(){$(this).sortable('cancel');},
           url: '<%= sort_site_admin_styles_path %>'
         });
       }
@@ -74,12 +57,6 @@
 
   window.onload=function(){
     $(document).ready(function(){
-      $('form.search').submit(function(){
-        if( $('#style_type').val() == 'own' )
-          $('a[href=#own_styles]').tab('show');
-        else
-          $('a[href=#others]').tab('show');
-      });
       initStylesSortable();
     });
   };

@@ -32,15 +32,6 @@ describe Style do
       expect(subject).to_not eq [@style_1, @style_2]
     end
 
-    it 'by' do
-      pending 'Escrever em integration'
-      subject = Style.by @site_1.id
-
-      expect(subject).to eq [@style_1]
-      expect(subject).to_not eq [@style_2]
-      expect(subject).to_not eq [@style_1, @style_2]
-    end
-
     it 'not_followed_by' do
       pending 'Escrever em integration'
     end

@@ -1,37 +1,67 @@
 # coding: utf-8
-
 class Style < ActiveRecord::Base
-  belongs_to :owner, class_name: "Site"
+  belongs_to :site
+  belongs_to :style
 
-  has_many :sites_styles, dependent: :destroy
-  has_many :followers, through: :sites_styles, source: :site
+  has_many :styles, dependent: :restrict
+  has_many :followers, through: :styles, source: :site
+  
+  validates :site, presence: true
+  validates :name, presence: true, unless: :style_id
+  validates :style_id, uniqueness: { scope: :site_id }, if: :style_id
 
-  accepts_nested_attributes_for :sites_styles, :allow_destroy => true
+  validate do
+    if style
+      errors[:base] = I18n.t('cant_follow_own_styles') if style.site == site
+      errors[:base] = I18n.t('can_only_follow_styles') if style.style
+    end
+  end
 
-  validates :name, presence: true
-  validates :owner, presence: true
-
-  scope :by_name, lambda { |name|
-    where(['lower(name) like :name', { name: "%#{name.downcase}%" } ])
-  }
-
-  # TODO: mudar nome para by_owner
-  scope :by, lambda { |site_id|
-    where(['owner_id = :site_id', { site_id: site_id } ])
+  scope :search, lambda { |param|
+    fields = ['styles.name', 'sites.title', 'sites.name']
+    includes(:site).where(fields.map{|field| "lower(#{field}) like :param"}.join(" OR "), param: "%#{param.downcase}%") if param
   }
 
   # returns all styles that are not being followed
   # in follow_styles was used a hack to avoid null return
-  scope :not_followed_by, lambda { |site_id|
-    where(['id not in (:follow_styles) and owner_id <> :site', {
-      follow_styles: Site.find(site_id).follow_styles.map { |follow_style| follow_style.id } << 0,
-      site: site_id 
-    }])
+  scope :not_followed_by, lambda { |site|
+    includes(:site).where('styles.id not in (:follow_styles) and styles.site_id <> :site_id and styles.style_id is null', {
+      follow_styles: Site.find(site).styles.where('style_id is not null').map(&:style_id) << 0,
+      site_id: site
+    })
   }
 
-  def mine(owner_id)
-    return self if self.owner_id == owner_id
+  scope :own, where('style_id is null')
 
-    self.sites_styles.find_by_site_id(owner_id)
+  scope :published, where(publish: true)
+
+  after_create do |style|
+    update_attribute(:position, style.site.styles.maximum(:position)+1)
+  end
+
+  def copy! to_site
+    if site == to_site
+      return false unless self.style_id
+      update_attributes(css: css, name: name, style_id: nil)
+    else
+      return false if self.style_id
+      Style.create(name: self.name, css: self.css, site: to_site).persisted?
+    end
+  end
+
+  def original
+    style || self
+  end
+
+  def css
+    style ? style.css : read_attribute(:css)
+  end
+
+  def name
+    style ? style.name : read_attribute(:name)
+  end
+
+  def owner
+    style ? style.site : site
   end
 end

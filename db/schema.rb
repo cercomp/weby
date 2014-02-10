@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140109165826) do
+ActiveRecord::Schema.define(:version => 20140205154949) do
 
   create_table "activity_records", :force => true do |t|
     t.integer  "user_id"
@@ -340,28 +340,19 @@ ActiveRecord::Schema.define(:version => 20140109165826) do
   add_index "sites_pages", ["page_id"], :name => "index_sites_pages_on_page_id"
   add_index "sites_pages", ["site_id"], :name => "index_sites_pages_on_site_id"
 
-  create_table "sites_styles", :force => true do |t|
-    t.integer  "site_id"
-    t.integer  "style_id"
-    t.boolean  "publish",    :default => true
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
-  end
-
-  add_index "sites_styles", ["site_id"], :name => "index_sites_styles_on_site_id"
-  add_index "sites_styles", ["style_id"], :name => "index_sites_styles_on_style_id"
-
   create_table "styles", :force => true do |t|
     t.string   "name"
     t.text     "css"
     t.boolean  "publish",    :default => true
-    t.integer  "owner_id"
+    t.integer  "site_id"
     t.integer  "position",   :default => 0
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
+    t.integer  "style_id"
   end
 
-  add_index "styles", ["owner_id"], :name => "index_styles_on_owner_id"
+  add_index "styles", ["site_id"], :name => "index_styles_on_owner_id"
+  add_index "styles", ["style_id"], :name => "index_styles_on_style_id"
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
@@ -490,10 +481,8 @@ ActiveRecord::Schema.define(:version => 20140109165826) do
   add_foreign_key "sites_menus", "menus", :name => "sites_menus_menu_id_fk"
   add_foreign_key "sites_menus", "sites", :name => "sites_menus_site_id_fk"
 
-  add_foreign_key "sites_styles", "sites", :name => "sites_styles_site_id_fk"
-  add_foreign_key "sites_styles", "styles", :name => "sites_styles_style_id_fk"
-
-  add_foreign_key "styles", "sites", :name => "styles_owner_id_fk", :column => "owner_id"
+  add_foreign_key "styles", "sites", :name => "styles_owner_id_fk"
+  add_foreign_key "styles", "styles", :name => "styles_style_id_fk"
 
   add_foreign_key "users", "locales", :name => "users_locale_id_fk"
 

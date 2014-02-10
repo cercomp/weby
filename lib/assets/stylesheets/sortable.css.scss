@@ -1,7 +1,10 @@
 .drop-here{
-  background-color: #DDD !important;
-  border: 1px dashed #BBB !important;
-  display: block;
+  background-color: #EEE !important;
+  outline: #BBB dashed 1px !important;
+}
+
+.drop-here td{
+  background-color: #EEE !important;
 }
 
 .handle{

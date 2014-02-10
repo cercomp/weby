@@ -8,8 +8,8 @@ class Weby::Theme
   end
 
   def populate
-    extensions if File.exists? @extensions_yaml
-    components if File.exists? @components_yaml
+    extensions if File.exist? @extensions_yaml
+    components if File.exist? @components_yaml
     Weby::Rights.seed_roles @site.id
   end
 

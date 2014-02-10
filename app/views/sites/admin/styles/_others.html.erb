@@ -1,0 +1,36 @@
+<div class="pull-left">
+  <%= form_tag site_admin_styles_path, method: 'get', name: 'style_search', remote: true, class: 'search pull-right' do %>
+    <%= content_tag :div, class: 'input-append' do %>
+      <%= search_field_tag :search, params[:search], class: 'input-search' %><%= submit_tag t("search"), class: 'btn btn-info btn-search' %>
+    <% end %>
+  <% end %>
+</div>
+<div class="clearfix"></div>
+
+<% unless styles.blank? %>
+ <div class="styles" id="other_styles">
+  <table class='table table-striped'>
+    <thead>
+      <th> <%= t('.name') %> </th>
+      <th> <%= t('.site') %> </th>
+      <th> <%= t('.updated_at') %> </th>
+      <th> <%= t('.actions') %> </th>
+    </thead>
+    <tbody>
+      <% styles.each do |style| %>
+        <tr>
+          <td><%= link_to(style.name, site_admin_style_path(style)) %></td>
+          <td><%= link_to style.site.name, site_url(subdomain: style.site), title: style.site.title, target: :_blank %></td>
+          <td><%= l(style.updated_at, format: :short) %>
+          <td class="style-action"><%= style_menu(style) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate styles, remote: true %>
+ </div>
+<% else %>
+  <div class="alert">
+    <%= t(".no_other_styles") %>
+  </div>
+<% end %>

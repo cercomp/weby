@@ -6,10 +6,6 @@
 
   <%= f.input :publish , wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" } %>
 
-  <%= f.input :owner_id, 
-    input_html: {value: @site.id}, 
-    as: :hidden %>
-
   <% unless @style.new_record? %>
     <div class="input">
       <div class="btn-toolbar code-editor-menu">
@@ -32,7 +28,6 @@
     </div>
   <% end %>
   <div class="form-actions">
-    <%#= f.button :button, t(".apply"), type: :button, disabled: :disabled, class: "btn-apply btn btn-primary" unless @style.new_record? %>
     <%= f.button :submit, class: 'btn-primary', disable_with: t("please_wait") %>
     <%= link_to t("back"), :back, class: "btn" %>
   </div>

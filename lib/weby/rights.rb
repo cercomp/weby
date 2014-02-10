@@ -6,7 +6,7 @@ module Weby
         @@rights = YAML.load(ERB.new(File.read(Rails.root.join("lib","weby","config","rights.yml"))).result)["rights"]
         Dir.glob File.expand_path("vendor/engines/*", Rails.root) do |extension_dir|
           file = File.join(extension_dir, "lib/weby/config/rights.yml")
-          if File.exists?(file)
+          if File.exist?(file)
             @@rights = YAML.load(ERB.new(File.read(file)).result)["rights"].merge @@rights
           end
         end
