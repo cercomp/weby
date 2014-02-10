@@ -23,8 +23,7 @@ module Weby
     )
     config.autoload_paths += Dir["#{config.root}/lib/weby/components/**/*"]
     config.autoload_paths += Dir["#{config.root}/vendor/engines/*/lib/weby/components/**/*"]
-    config.autoload_paths += %W(#{config.root}/app/models/concerns)
-
+    
     # Activate observers that should always be running.
     config.active_record.observers = :page_position_observer
 

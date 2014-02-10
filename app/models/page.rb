@@ -1,16 +1,6 @@
 class Page < ActiveRecord::Base
   include Trashable
 
-  def check_page_status
-    if self.publish
-      self.errors[:base] << I18n.t("cannot_destroy_a_published_page")
-      return false
-    else
-      self.update_attribute(:front, false)
-      return true
-    end
-  end
-
   self.inheritance_column = nil
 
   acts_as_multisite
@@ -175,6 +165,17 @@ class Page < ActiveRecord::Base
   has_many :related_files, through: :pages_repositories, source: :repository
   validate :should_be_own_files
 
+  def before_trash
+    if publish
+      self.errors[:base] << I18n.t("cannot_destroy_a_published_page")
+      false
+    else
+      self.update_attribute(:front, false)
+      true
+    end
+  end
+  private :before_trash
+  
   def should_be_own_files
     error_message = I18n.t("should_be_own_files")
     errors.add(:related_files, error_message) unless own_files?

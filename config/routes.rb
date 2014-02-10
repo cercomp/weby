@@ -62,10 +62,9 @@ Weby::Application.routes.draw do
       resources :extensions
       resources :menus do
         resources :menu_items,
-          controller: "menus/menu_items" do#,
-#          except: :show do
+          controller: "menus/menu_items" do
             member do
-              put :toggle_field
+              put :toggle
             end
             collection do
               post :change_order, :change_menu
