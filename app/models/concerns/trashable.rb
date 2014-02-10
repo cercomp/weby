@@ -12,7 +12,7 @@ module Trashable
     if deleted_at
       destroy
     else
-      if (self.respond_to?(:before_trash) ? before_trash : true)
+      if (respond_to?(:before_trash, true) ? before_trash : true)
         update_attribute(:deleted_at, Time.now)
       else
         false

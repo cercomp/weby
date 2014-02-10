@@ -109,7 +109,7 @@ class Sites::Admin::PagesController < ApplicationController
         record_activity("destroyed_page", @page)          
       end                                                   
     else
-      flash[:error] = @page.errors.full_messages.join(",")
+      flash[:error] = @page.errors.full_messages.join(", ")
     end
 
     redirect_to :back
