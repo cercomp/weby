@@ -99,9 +99,11 @@ pt-BR:
   problem_create_notification:          " Problemas ao criar a notificação. "
   problem_update_notification:          " Problemas ao atualizar a notificação. "
   problem_destroy_notification:         " Problemas ao excluir a notificação. "
+  purge:                                " Excluir permanentemente "
 #---Q---#
 #---R---#
   required:                             " Necessário "
+  recover:                              " Restaurar "
 #---S---#
   save:                                 " Salvar "
   search:                               " Buscar "
@@ -117,6 +119,7 @@ pt-BR:
   successfully_updated_password:        " Senha atualizada com sucesso "
   successfully_followed:                " Estilo seguido com sucesso "
   successfully_copied:                  " Estilo copiado com sucesso "
+  successfully_restored:                " Restaurado com sucesso! "
   should_be_image:                      " Deve ser uma imagem "
 #---T---#
 #---U---#

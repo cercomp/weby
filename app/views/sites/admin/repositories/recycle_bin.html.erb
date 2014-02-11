@@ -1,10 +1,12 @@
 <% content_for :javascripts, javascript_include_tag('repositories') %>
 <div class="pull-right">
-  <%= link_to t(".new_archive"),
-    new_site_admin_repository_path,
-    class: "btn btn-success" %>
-  <% with_permission(action: :destroy) do %>                                                     
-    <%= link_to t(".recycle_bin"), recycle_bin_site_admin_repositories_path, class: "btn btn-inverse" %>
+  <% with_permission(action: :new) do %>
+    <%= link_to t(".new_archive"),
+      new_site_admin_repository_path,
+      class: "btn btn-success" %>
+  <% end %>
+  <% with_permission(action: :index) do %>
+    <%= link_to t(".archives"), site_admin_repositories_path, class: "btn" %>
   <% end %>
 </div>
 <div class="clearfix"></div>
@@ -21,7 +23,7 @@
                                                                                               
     <table class='table table-striped table-condensed'>                                       
         <thead>                                                                                 
-            <th><%= sortable 'id', t(".archive") %></th>                                        
+            <th><%= sortable 'archive_file_name', t(".archive") %></th>
             <th><%= sortable 'description', t(".description") %></th>                           
             <th><%= sortable 'archive_content_type', t(".type") %></th>                         
             <th><%= sortable 'deleted_at', t(".deleted_at") %></th>                                                                           
@@ -29,13 +31,12 @@
         <tbody>                                                                                 
           <% @repositories.each do |repository| %>                                              
               <tr class="<%= cycle 'odd', 'even' %>">                                             
-              <td> <%= weby_file_view(repository, :thumb, "64", "64", as: :image) %> </td>
+              <td> <%= weby_file_view(repository, :thumb, "64", "64", as: :image, title: repository.archive_file_name) %> </td>
               <td> <%= repository.description %> </td>                                          
               <td> <%= repository.archive_content_type %> </td>
               <td> <%= l(repository.deleted_at, :format => :short) %> </td>
               <td>
-                <%= link_to icon('trash', :action => 'destroy', :text => t('.destroy')), site_admin_repository_path(repository), method: 'delete', confirm: t('are_you_sure') %>
-                <%= link_to icon('refresh', :action => 'recover', :text => t('.recover')), recover_site_admin_repository_path(repository)  %>
+                <%= recycle_bin_actions repository, with_text: true %>
               </td>                                       
             </tr>                                                                               
           <% end; reset_cycle %>                                                                

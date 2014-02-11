@@ -29,6 +29,12 @@ rights:
     new:
       name: Criar Página
       action: new create
+    purge:
+      name: Excluir permanentemente
+      action: recycle_bin destroy purge
+    recover:
+      name: Restaurar página
+      action: recycle_bin recover
   menus:
     index:
       name: Listar Menus
@@ -99,6 +105,12 @@ rights:
     new:
       name: Enviar Arquivo
       action: new create
+    purge:
+      name: Excluir permanentemente
+      action: recycle_bin destroy purge
+    recover:
+      name: Restaurar Arquivo
+      action: recycle_bin recover
   styles:
     index:
       name: Listar Estilo

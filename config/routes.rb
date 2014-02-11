@@ -73,8 +73,7 @@ Weby::Application.routes.draw do
       end
       resources :pages do
         member do
-          put :toggle
-          get :recover
+          put :toggle, :recover
         end
         collection do
           get :fronts, :recycle_bin
@@ -83,7 +82,7 @@ Weby::Application.routes.draw do
       end
       resources :repositories do
         member do
-          get :recover
+          put :recover
         end
         collection do
           get :manage, :recycle_bin

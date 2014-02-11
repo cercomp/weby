@@ -70,6 +70,6 @@ pt-BR:
           archive:              " Arquivo "  
           description:          " Descrição "
           type:                 " Tipo "
-          deleted_at:           " Deletado em "
+          deleted_at:           " Excluído em "
           destroy:              " Excluir "
           recover:              " Restaurar "

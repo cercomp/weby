@@ -3,11 +3,13 @@
 <% breadcrumb params[:search].present? ? :repositories_search : :repositories %>
 
 <div class="pull-right">
-  <%= link_to t(".new_archive"),
-    new_site_admin_repository_path,
-    class: "btn btn-success" %>
-  <% with_permission(action: :destroy) do %>                                                     
-    <%= link_to t(".recycle_bin"), recycle_bin_site_admin_repositories_path, class: "btn btn-inverse" %>
+  <% with_permission(action: :new) do %>
+    <%= link_to t(".new_archive"),
+      new_site_admin_repository_path,
+      class: "btn btn-success" %>
+  <% end %>
+  <% with_permission(action: [:purge, :recover]) do %>
+    <%= link_to t(".recycle_bin"), recycle_bin_site_admin_repositories_path, class: "btn" %>
   <% end %>
 </div>
 <div class="pull-left">

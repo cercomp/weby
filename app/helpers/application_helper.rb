@@ -195,6 +195,19 @@ module ApplicationHelper
     end)
   end
 
+  def recycle_bin_actions resource, options={}
+    ''.tap do |html|
+      if test_permission controller_name, :purge
+        html << link_to(icon('trash', text: options[:with_text] ? t('destroy') : nil),
+          options.merge({action: 'show', id: resource.id}), :title => t("purge"), method: 'delete', confirm: t('are_you_sure'))
+      end
+      if test_permission controller_name, :recover
+        html << link_to(icon('refresh', text: options[:with_text] ? t('recover') : nil),
+          options.merge({action: 'recover', id: resource.id}), :title => t("recover"), method: 'put')
+      end
+    end.html_safe
+  end
+
   # Método para ordenar tabelas pela coluna
   def sortable(column, title = nil)
     title ||= column.titleize

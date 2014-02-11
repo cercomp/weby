@@ -23,7 +23,11 @@ class Sites::Admin::PagesController < ApplicationController
   end
 
   def recycle_bin
-    @pages = @site.pages.trashed.order("pages.deleted_at DESC").page(params[:page]).per(params[:per_page])
+    params[:sort] ||= 'pages.deleted_at'
+    params[:direction] ||= 'desc'
+    @pages = @site.pages.trashed.includes(:author, :categories).
+      order("#{params[:sort]} #{sort_direction}").
+      page(params[:page]).per(params[:per_page])
   end
 
   def get_pages
@@ -107,7 +111,8 @@ class Sites::Admin::PagesController < ApplicationController
         record_activity("moved_page_to_recycle_bin", @page)
       else                                                  
         record_activity("destroyed_page", @page)          
-      end                                                   
+      end
+      flash[:success] = t('successfully_deleted')
     else
       flash[:error] = @page.errors.full_messages.join(", ")
     end
@@ -116,8 +121,10 @@ class Sites::Admin::PagesController < ApplicationController
   end
 
   def recover
-    @page = @site.pages.unscoped.find(params[:id])
-    @page.update_attribute(:deleted_at, nil)
+    @page = @site.pages.trashed.find(params[:id])
+    if @page.untrash
+      flash[:success] = t('successfully_restored')
+    end
     record_activity("restored_page", @page)
     redirect_to :back
   end
