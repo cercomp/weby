@@ -63,7 +63,7 @@ rights:
       action: show
     edit:
       name: Editar Item de Menu
-      action: edit update
+      action: edit update toggle
     destroy:
       name: Excluir Item de Menu
       action: destroy

@@ -116,10 +116,12 @@ class Page < ActiveRecord::Base
       when 1, 2
         keywords = param.split(' ')
         query = fields.map do |field|
-          keywords.each_with_index.map do |keyword, idx|
-            values["key#{idx}".to_sym] = "%#{keyword.try(:downcase)}%"
-            "LOWER(#{field}) LIKE :key#{idx}"
-          end.join(search_type == 1 ? " AND " : " OR ")
+          "(".concat(
+              keywords.each_with_index.map do |keyword, idx|
+                values["key#{idx}".to_sym] = "%#{keyword.try(:downcase)}%"
+                "LOWER(#{field}) LIKE :key#{idx}"
+              end.join(search_type == 1 ? " AND " : " OR ")
+          ).concat(")")
         end.join(" OR ")
       end
       includes(:author, :categories, :i18ns, :locales).

@@ -25,7 +25,7 @@
 
     <div class='tab-content'>
       <% if @menu %>
-        <div id="main-menu">
+        <div>
           <% with_permission controller: Sites::Admin::Menus::MenuItemsController, action: :new do %>
             <div class="pull-right">
               <%= link_to t(".new_menu_item"),
@@ -40,7 +40,9 @@
               <%= t(".none_menu_item") %>
             </div>
           <% else %>
-            <%= raw print_menu(@menu, true) %>
+            <div id="main-menu">
+            <%= print_menu(@menu, view_ctrl: true) %>
+            </div>
           <% end %>
         </div>
         <div class="form-actions">

@@ -25,70 +25,65 @@ module ApplicationHelper
   # Parâmetros: Lista de menu (sons, view_ctrl=false)
   # html_class: "dropdown" ou "expanded"
   # Retorna: O menu com seus controles
-  def print_menu(menu, view_ctrl=false, html_class="expanded")
-    ''.tap do |menus|
-      if menu
-        menuitems = menu.items_by_parent
-        menus << "\n<menu class=\"#{html_class}\">"
-        if menuitems[nil]
-          menuitems[nil].each do |child|
-            menus << print_menu_entry(menuitems, child, view_ctrl, 1)
-          end
-        end
-        menus << "\n</menu>\n"
-      end
+  def print_menu(menu, view_ctrl: false, html_class: "expanded")
+    return '' unless menu
+    menuitems = menu.items_by_parent(!view_ctrl)
+    content_tag :menu, class: html_class do
+      menuitems.fetch(nil, []).map do |child|
+        print_menu_entry(menuitems, child, view_ctrl)
+      end.join.html_safe
     end
   end
 
   # Método recursivo para gerar submenus e os controles
-  def print_menu_entry(sons, entry, view_ctrl, indent=0)
-    return "" if !view_ctrl && !entry.publish
-    indent_space = " " * indent
-    submenu = sons[entry.id].present?
-    current_page = (@page && @page == entry.target) || request.path == entry.url
-    item_class = submenu ? "sub" : ""
-    item_class += current_page ? " current_page" : ""
-    item_class += " #{entry.html_class}" if entry.html_class.present?
+  def print_menu_entry(sons, entry, view_ctrl)
+    has_submenu = sons[entry.id].present?
+    is_current_page = (@page && @page == entry.target) || request.path == entry.url
+    item_class = entry.html_class.present? ? [entry.html_class] : []
+    item_class << 'sub' if has_submenu
+    item_class << 'current_page' if is_current_page
+    if view_ctrl
+      item_class << 'menuitem-ctrl'
+      item_class << 'deactivated' unless entry.publish
+    end
 
-    "<li id=\"menu_item_#{entry.id}\" class=\"#{item_class}\">".tap do |menus|
+    content_tag :li, id: "menu_item_#{entry.id}", class: item_class.join(" ") do
+      title_link = link_to(entry.title,
+        entry.target_id.to_i > 0 ? main_app.site_page_path(entry.target_id) : entry.url,
+        alt: entry.title, title: entry.description, target: entry.new_tab ? "_blank":"")
 
-      menus << "<div>" if view_ctrl
-      #if (entry.menu.try(:page_id).nil? and entry.menu.try(:link).empty?)
-        #menus << "#{entry.menu.try(:title)}"
-      #else
-        menus << ((entry.parent and !entry.parent.publish) ? image_tag("#{entry.publish}.png") : toggle_field(entry, "publish", :toggle_field, {controller: "sites/admin/menus/menu_items", menu_id: entry.menu_id})) if view_ctrl
-        menus << link_to(entry.title, entry.target_id.to_i > 0 ? main_app.site_page_path(entry.target_id) : entry.url, :alt => entry.title,:title => entry.description, :target => entry.new_tab ? "_blank":"")
-      #end
-
-      if view_ctrl
-        # Se existir um position nulo ele será organizado e todos do seu nível
-        if entry.position.nil? or entry.position.to_i < 1 or entry.position.to_i > 2000
-          sons[entry.parent_id].each_with_index do |item, idx|
-            #menus << " (item.id:#{item.id} entry.id:#{entry.id} idx:#{idx+1}) " # Para debug
-            if item.id == entry.id
-              entry.update_attribute(:position, idx + 1)
-              entry.position = idx + 1
+      content = [
+        view_ctrl ?
+        content_tag(:div, style: 'min-height: 25px') do
+          [
+            content_tag(:span) do
+              [
+                toggle_field(entry, "publish", 'toggle', {controller: 'sites/admin/menus/menu_items', menu_id: entry.menu_id}),
+                " #{title_link}",
+                ( (entry and entry.target) ? " [ #{entry.target.try(:title)} ] " : " [ #{entry.url if not entry.url.blank?} ] " )
+              ].join.html_safe
+            end,
+            content_tag(:div, class: 'pull-right') do
+              content = []
+              content << link_to(icon('edit', text: ''), edit_site_admin_menu_menu_item_path(entry.menu_id, entry.id), title: t("edit")) if test_permission(:menu_items, :edit)
+              content << link_to(icon('trash', text: ''), site_admin_menu_menu_item_path(entry.menu_id, entry.id), method: :delete, data: {confirm: t('are_you_sure')}, title: t("destroy")) if test_permission(:menu_items, :destroy)
+              content << link_to(icon('move', text: ''),"#", class: 'handle', title: t("move")) if test_permission(:menu_items, :change_position)
+              content << link_to(t("+"), new_site_admin_menu_menu_item_path(entry.menu_id, parent_id: entry.id), class: "btn btn-success btn-small", title: t("add_sub_menu")) if test_permission(:menu_items, :new)
+              content.join.html_safe
             end
-          end
-        end
-        #menus << " [ id:#{entry.id} pos:#{entry.position} ]" # Para debuga
-        menus << ( (entry and entry.target) ? " [ #{entry.target.try(:title)} ] " : " [ #{entry.url if not entry.url.blank?} ] " )
-        menus << link_to(icon('edit', text: ''), edit_site_admin_menu_menu_item_path(entry.menu_id, entry.id), :title => t("edit"))
-        menus << indent_space + link_to(icon('plus', text: ''), new_site_admin_menu_menu_item_path(entry.menu_id, :parent_id => entry.id), :title => t("add_sub_menu"))
-        menus << indent_space + link_to(icon('trash', text: ''), site_admin_menu_menu_item_path(entry.menu_id, entry.id), :method=>:delete, :data => {:confirm => t('are_you_sure')}, :title => t("destroy"))
-        menus << indent_space + link_to(icon('move', text: ''),"#", :class => 'handle', :title => t("move"))
-      end
-      menus << "\n" + indent_space + (view_ctrl ? "</div><menu>":"<menu class='submenu'>") if submenu
-      if sons[entry.id].class.to_s == "Array"
-        sons[entry.id].each do |child|
-          menus << print_menu_entry(sons, child, view_ctrl, indent+3)
-        end
-      end
-      menus << "\n" + indent_space + " </menu>" if submenu
-      menus << "\n" + indent_space + "</li>" if submenu
-      menus << (view_ctrl ? "</div></li>":"</li>") unless submenu
-     end
+          ].join.html_safe
+        end :
+        title_link
+      ]
+      content << content_tag(:menu, class: 'submenu') do
+        sons[entry.id].map do |child|
+          print_menu_entry(sons, child, view_ctrl)
+        end.join.html_safe
+      end if has_submenu
+      content.join.html_safe
+    end
   end
+  private :print_menu_entry
 
   # Define mensagens personalizadas
   def flash_message
@@ -420,8 +415,7 @@ module ApplicationHelper
         id: options[:id],
         field: field
       })
-
-      if test_permission controller_name, action
+      if test_permission (options[:controller] || controller_name), action
         checkbox = check_box_tag(field, resource[field], resource[field], check_box_options)
         html << link_to(checkbox, url_options, link_options)
       else

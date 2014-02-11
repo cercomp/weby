@@ -31,8 +31,8 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
     end
   end
   
-  def toggle                                     
-   @menu_item = @site.menu_items.find(params[:id])               
+  def toggle
+   @menu_item = @site.menu_items.find(params[:id])
    @menu_item.toggle!(params[:field])          
    update_children(@menu_item)
    record_activity("updated_menu_item", @menu_item)

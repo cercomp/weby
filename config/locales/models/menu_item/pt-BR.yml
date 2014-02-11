@@ -9,6 +9,7 @@ pt-BR:
         position:        "Posição"
         new_tab:         "Abrir em uma nova janela"
         html_class:      "Classe HTML"
+        publish:         "Publicado"
       "menu_item/i18ns":
         title:           "Título"
         description:     "Descrição"

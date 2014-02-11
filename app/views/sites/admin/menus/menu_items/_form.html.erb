@@ -30,12 +30,17 @@
   <% # URL Input %>
   <%=  target_dialog_input(f, :target, true) %>
 
-  <div class='input'>
+  <div class="input">
     <%= f.input :new_tab,
       as: :boolean, input_html: { class: "check-button" } %>
   </div>
 
-  <div class='input'>
+  <div class="input">
+    <%= f.input :publish,
+      as: :boolean, input_html: { class: "check-button" } %>
+  </div>
+
+  <div class="input">
     <%= f.input :html_class %>
   </div>
 
