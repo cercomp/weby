@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :menu do
-    name "menu"
+    sequence(:name) { |count| "Menu#{count}" }
   end
 end
