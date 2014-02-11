@@ -7,6 +7,5 @@ en:
         name:       " Name "
         created_at: " Created at "
         updated_at: " Updated at "
-        theme:      " Theme "
         site_id:    " Site id "
 
