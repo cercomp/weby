@@ -49,9 +49,11 @@ class Sites::Admin::BackupsController < ApplicationController
     if uploaded_io.content_type == 'text/xml'
       
     elsif uploaded_io.content_type == 'application/octet-stream'
-      a = JSON.parse uploaded_io.read
-      current_site.components.import(a["site"]["root_components"])
-      current_site.menus.import(a["site"]["menus"])
+      attrs = JSON.parse uploaded_io.read
+      current_site.pages.import(a["site"]["pages"]) if attrs.has_key? 'page'
+      current_site.components.import(a["site"]["root_components"]) if attrs.has_key? 'root_components'
+      current_site.menus.import(a["site"]["menus"]) if attrs.has_key? 'menus'
+      current_site.styles.import(a["site"]["own_styles"]) if attrs.has_key? 'own_styles'
     end
 
 #    File.open(Rails.root.join('public', "uploads/#{current_site.id}", uploaded_io.original_filename), 'wb') do |file|

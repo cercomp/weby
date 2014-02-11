@@ -34,4 +34,17 @@ class Style < ActiveRecord::Base
 
     self.sites_styles.find_by_site_id(owner_id)
   end
+
+  def self.import attrs, options={}
+    return attrs.each{|attr| self.import attr } if attrs.is_a? Array
+
+    attrs = attrs.dup
+    attrs = attrs['style'] if attrs.has_key? 'style'
+
+    attrs.except!('id', 'created_at', 'updated_at')
+
+    style = self.create!(attrs)
+
+  end
+
 end

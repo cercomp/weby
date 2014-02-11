@@ -76,6 +76,23 @@ class Page < ActiveRecord::Base
       self.date_begin_at = Time.now.to_s
     end
   end
+
+  def self.import attrs, options={}
+    return attrs.each{|attr| self.import attr } if attrs.is_a? Array
+
+    attrs = attrs.dup
+    attrs = attrs['page'] if attrs.has_key? 'page'
+
+    attrs.except!('id', 'created_at', 'updated_at', 'site_id')
+
+    attrs['repository_id'] = ''
+
+    attrs['i18ns'] = attrs['i18ns'].map{|i18n| self::I18ns.new(i18n.except('id', 'created_at', 'updated_at', 'page_id')) }
+
+    page = self.create!(attrs)
+
+  end
+
   private :validate_date
 
   validates :local, :event_begin,
