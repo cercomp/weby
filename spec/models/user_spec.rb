@@ -53,23 +53,27 @@ describe User do
       subject = build(:user, login: user.email)
       expect(subject).to validate_uniqueness_of(:login)
     end
-
   end
 
   context 'password' do
     pending 'should confirm password' do
     end
 
-    it 'should accept valid password format ' do
+    it 'should accept valid password format' do
       subject = build(:user)
       expect(subject.password).to match(/(?=.*\d+)(?=.*[A-Z]+)(?=.*[a-z]+)^.{4,}$/)
     end
 
     it 'should reject invalid password format' do
-      subject = build(:user, password: "a1234")
+      subject = build(:user, password: 'a1234')
       expect(subject.password).not_to match(/(?=.*\d+)(?=.*[A-Z]+)(?=.*[a-z]+)^.{4,}$/)
     end
+  end
 
+  context 'roles' do
+  end
+
+  context 'locale' do
   end
 
 end
