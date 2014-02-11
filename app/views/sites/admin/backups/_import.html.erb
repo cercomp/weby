@@ -1,21 +1,13 @@
-<%= form_tag site_admin_backups_path, method: 'get' do %>
 <div class="form-actions">
   <table class='table table-striped'>
     <thead>      
       <tr>
         <th>
-          <%=  t('.restore') %>          
-        </th>
-      </tr>
-      <tr>
-        <th>
-          <%= submit_tag t('import'), class: 'btn btn-primary import'  %>
-          <%= link_to t("back"), site_admin_path, class: "btn" %>
+          <%= form_tag site_admin_import_path, multipart: true, method: :post do %>
+             <%= file_field_tag 'upload' %>
+             <%= submit_tag t('import'), class: 'btn btn-primary import' %>
+          <% end %>
         </th>
       </tr>
   </table>  
 </div>
-
-  <div class="form-actions">    
-  </div>
-<%  end %>

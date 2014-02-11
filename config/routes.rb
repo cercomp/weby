@@ -40,10 +40,10 @@ Weby::Application.routes.draw do
       match "repositories/page/:page" => "repositories#index"
       match "pages/page/:page" => "pages#index"
 
-      get "stats" => "statistics#index"
-      get "backups" => "backups#index"
-      get "generate" => "backups#generate"
-      get "import" => "backups#import"
+      get  "stats" => "statistics#index"
+      get  'backups' => 'backups#index'
+      get  'generate' => 'backups#generate'
+      post 'import' => 'backups#import'
 
       resources :activity_records, only: [:index, :show]
       resources :banners do

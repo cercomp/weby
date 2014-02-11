@@ -32,7 +32,7 @@
             <%= t('.repositories') %>
           </div>
           <div class="clearfix">
-            <%= check_box_tag( :menus) %>
+            <%= check_box_tag( :root_menus) %>
             <%= t('.menus') %>
           </div>
 
@@ -45,7 +45,7 @@
             <%= t('.follow_styles') %>
           </div>
           <div class="clearfix">
-            <%= check_box_tag( :components) %>
+            <%= check_box_tag( :root_components) %>
             <%= t('.components') %>
           </div>
           <div class="clearfix">
@@ -76,9 +76,6 @@
         <%  end %>
       </div>
       <div class="tab-pane <%= params["restore"] ? "active" : "" %>" id="restore">
-      <%= form_tag site_admin_import_path, html: { class: 'form-horizontal' }, method: 'get' do
-          render partial: 'import'
-        end
-      %>
+      <%= render partial: 'import'%>
       </div>
 </div>

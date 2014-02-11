@@ -20,7 +20,7 @@ class Sites::Admin::BackupsController < ApplicationController
     h[:include][:follow_styles] = {}  if params[:follow_styles]
     h[:include][:own_styles] = {}  if params[:own_styles]
     h[:include][:banners] = {}  if params[:banners]
-    h[:include][:components] = {}  if params[:components]
+    h[:include][:root_components] = {}  if params[:root_components]
     h[:include][:extensions] = {}  if params[:extensions]
     h[:include][:groupings] = {}  if params[:groupings]
     h[:include][:roles] = {include: :users}  if params[:roles]
@@ -43,6 +43,16 @@ class Sites::Admin::BackupsController < ApplicationController
   end
   
   def import
+
+    uploaded_io = params[:upload]
+
+#    File.open(Rails.root.join('public', "uploads/#{current_site.id}", uploaded_io.original_filename), 'wb') do |file|
+#      file.write(uploaded_io.read)
+#    end
+
+    a = JSON.parse uploaded_io.read
+    current_site.components.import(a["site"]["root_components"])
+    current_site.components.import(a["site"]["root_menus"])
 
     redirect_to :back
   end
