@@ -6,6 +6,8 @@ FactoryGirl.define do
     last_name 'Sobrenome'
     password 'Admin1'
     password_confirmation 'Admin1'
-    status true
+    is_admin true
+    # required if the Devise Confirmable module is used
+    confirmed_at Time.now
   end
 end
