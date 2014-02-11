@@ -46,13 +46,17 @@ class Sites::Admin::BackupsController < ApplicationController
 
     uploaded_io = params[:upload]
 
+    if uploaded_io.content_type == 'text/xml'
+      
+    elsif uploaded_io.content_type == 'application/octet-stream'
+      a = JSON.parse uploaded_io.read
+      current_site.components.import(a["site"]["root_components"])
+      current_site.menus.import(a["site"]["menus"])
+    end
+
 #    File.open(Rails.root.join('public', "uploads/#{current_site.id}", uploaded_io.original_filename), 'wb') do |file|
 #      file.write(uploaded_io.read)
-#    end
-
-    a = JSON.parse uploaded_io.read
-    current_site.components.import(a["site"]["root_components"])
-    current_site.components.import(a["site"]["root_menus"])
+#    end  
 
     redirect_to :back
   end
