@@ -1,14 +1,6 @@
 class Admin::RolesController < ApplicationController
   before_filter :require_user
   before_filter :is_admin
-  before_filter :load_themes, :only => [:new, :edit]
-
-  def load_themes
-    @themes = []
-    for file in Dir[File.join(Rails.root + "app/views/layouts/[a-zA-Z]*")]
-      @themes << file.split("/")[-1].split(".")[0]
-    end
-  end
 
   respond_to :html, :xml
   def index

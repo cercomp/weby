@@ -3,7 +3,6 @@
 
   <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden if @site %>
   <%= f.input :name  %>
-  <%#= f.input :theme, :collection => @themes.collect{|p| [ p , p]}, :label => t("layout") %>
 
   <div class="form-actions">
     <%= f.button :submit, class: 'btn-primary', disable_with: t("please_wait") %>
