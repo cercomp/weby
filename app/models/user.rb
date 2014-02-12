@@ -35,6 +35,7 @@ class User < ActiveRecord::Base
           { :text => "%#{text.try(:downcase)}%" })
   }
 
+  #TODO verificar se os 2 scopes são usados
   scope :admin, where(:is_admin => true)
   scope :no_admin, where(:is_admin => false)
 

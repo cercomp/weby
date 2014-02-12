@@ -6,16 +6,15 @@ describe User do
   it { expect(subject).to validate_presence_of(:login) } 
   it { expect(subject).to validate_presence_of(:first_name) } 
   it { expect(subject).to validate_presence_of(:last_name) } 
+  it { expect(subject).to validate_presence_of(:password) } # TODO on: create
 
-  context 'email' do
+  context 'Email' do
     it 'should accept valid email addresses format' do
-      subject = build(:user) 
-      expect(subject.email).to match(/\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i)
+      expect(subject).to allow_value('user@domain.com').for(:email)
     end
 
     it 'should reject invalid email addresses format' do
-      subject = build(:user, email: 'askdjasldasdjl.com')
-      expect(subject.email).not_to match(/\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i)
+      expect(subject).not_to allow_value('userdomain.com').for(:email)
     end
 
     it 'should validate uniqueness of email addresses' do
@@ -37,15 +36,13 @@ describe User do
     end
   end
   
-  context 'login' do
+  context 'Login' do
     it 'should accept valid login format' do
-      subject = build(:user)
-      expect(subject.login).to match(/^[a-z\d_\-\.@]+$/i)
+      expect(subject).to allow_value('login1').for(:login)
     end
 
     it 'should reject invalid login format' do
-      subject = build(:user, login: 'log#in')
-      expect(subject.login).not_to match(/^[a-z\d_\-\.@]+$/i)                            
+      expect(subject).not_to allow_value('log#in1').for(:login)
     end
 
     it 'should validate uniqueness of login' do
@@ -60,20 +57,54 @@ describe User do
     end
 
     it 'should accept valid password format' do
-      subject = build(:user)
-      expect(subject.password).to match(/(?=.*\d+)(?=.*[A-Z]+)(?=.*[a-z]+)^.{4,}$/)
+      expect(subject).to allow_value('Admin1').for(:password).with_message(I18n.t('lower_upper_number_chars'))
+
+    end
+
+    pending 'should allow blank password on edit' do
     end
 
     it 'should reject invalid password format' do
-      subject = build(:user, password: 'a1234')
-      expect(subject.password).not_to match(/(?=.*\d+)(?=.*[A-Z]+)(?=.*[a-z]+)^.{4,}$/)
+      expect(subject).not_to allow_value('admin1').for(:password).with_message(I18n.t('lower_upper_number_chars'))
     end
   end
 
-  context 'roles' do
+  context 'Roles' do
+    it { expect(subject).to have_and_belong_to_many(:roles) }
   end
 
-  context 'locale' do
+  context 'Locale' do
+    it { expect(subject).to belong_to(:locale) }
+  end
+
+  context 'Notifications' do
+    it { expect(subject).to have_many(:notifications).dependent(:nullify) }
+  end
+
+  context 'Pages' do
+    it { expect(subject).to have_many(:pages).with_foreign_key(:author_id).dependent(:restrict) }
+  end
+
+  context 'Views' do
+    it { expect(subject).to have_many(:views).dependent(:nullify) }
+  end
+
+  context 'Scopes' do
+    it 'admin' do
+      expect(subject.admin).to be_true
+    end
+    it 'no_admin' do
+      subject = build(:user, is_admin: false)
+      expect(subject.no_admin).to be_false
+    end
+    pending 'by_site' do
+    end
+    pending 'actives' do
+    end
+    pending 'global_role' do
+    end
+    pending 'by_no_site' do
+    end
   end
 
 end
