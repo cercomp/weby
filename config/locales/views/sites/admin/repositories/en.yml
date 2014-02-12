@@ -13,6 +13,9 @@ en:
         show:
           new_archive:         " New file "
           archives:            " Files "
+          copy:                " Copy "
+          copied:              " Copied " 
+          copy_to_clipboard:   " Copy to Clipboard "
           name:                " Name "
           size:                " Size "
           type:                " Type "
