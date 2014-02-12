@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :banner do
     sequence(:title) { |count| "Banner#{count}" }
-    publish 'true'
+    publish false 
   end
 end
