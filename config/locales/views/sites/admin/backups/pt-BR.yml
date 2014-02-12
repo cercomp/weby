@@ -1,0 +1,24 @@
+pt-BR:
+  sites:
+    admin:
+      backups:
+        index:
+          options_backup:         " Opções de backup "
+          repositories:           " Arquivos "
+          menus:                  " Menus "
+          styles:                 " Estilos "
+          follow_styles:          " Estilos seguidos "
+          components:             " Leiaute "
+          banners:                " Banners "
+          extensions:             " Extensões "
+          groupings:              " Grupos "
+          locales:                " Idiomas "
+          messages_feedbacks:     " Mensagens de feedbacks "
+          pages:                  " Páginas "          
+          output:                 " Saída: "
+          restore:                " Restaurar "
+          import:                 " Importar "
+        import:
+          restore:                " Restaurar "
+          import:                 " Importar "
+          

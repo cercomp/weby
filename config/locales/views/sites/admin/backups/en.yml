@@ -1,0 +1,23 @@
+en:
+  sites:
+    admin:
+      backups:        
+        index:
+          options_backup:         " Options backup "
+          repositories:           " Repositorio "
+          menus:                  " Menus "
+          styles:                 " Styles "
+          follow_styles:          " Follow styles "
+          components:             " Layout "
+          banners:                " Banners "
+          extensions:             " Extensions "
+          groupings:              " Groupings "
+          locales:                " Locales "
+          messages_feedbacks:     " Feedbacks messages "
+          pages:                  " Pages "
+          output:                 " Output: "
+          restore:                " Restore "
+          import:                 " Import "
+        import:
+          restore:                " Restore "
+          import:                 " Import "

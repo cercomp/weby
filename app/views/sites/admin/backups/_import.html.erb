@@ -1,0 +1,13 @@
+<div class="form-actions">
+  <table class='table table-striped'>
+    <thead>      
+      <tr>
+        <th>
+          <%= form_tag site_admin_import_path, multipart: true, method: :post do %>
+             <%= file_field_tag 'upload' %>
+             <%= submit_tag t('import'), class: 'btn btn-primary import' %>
+          <% end %>
+        </th>
+      </tr>
+  </table>  
+</div>
