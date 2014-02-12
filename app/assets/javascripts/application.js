@@ -6,6 +6,7 @@
 //= require select2
 //= require select2_locale_pt-BR
 //= require about
+//= require zeroclipboard
 //= require_self
 
 var WEBY = {};
