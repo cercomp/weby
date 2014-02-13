@@ -104,6 +104,8 @@ en:
 #---R---#
   required:                             " Required "
   recover:                              " Recover "
+  recycle_bin:                          " Recycle bin "
+  empty_recycle_bin:                    " Empty recycle bin "
 #---S---#
   save:                                 " Save "
   search:                               " Search "

@@ -14,73 +14,63 @@
     <%= t(".none_menu") %>
   </div>
 <% else %>
-  
   <div class="tabbable">
     <ul class="nav nav-tabs" id="tabs">
       <% @menus.each do |menu| %>
         <% active = (menu==@menu ? "active" : "") %>
-        <li class="<%= active %>"><%= link_to(menu.name.try(:titleize), menu==@menu ? '#' : site_admin_menus_path(:menu => menu.id), :rel => menu.id) %></li>
+        <li class="<%= active %>" data-menu-id="<%= menu.id %>"><%= link_to(menu.name.try(:titleize), menu==@menu ? '#' : site_admin_menus_path(menu: menu.id)) %></li>
       <% end %>
     </ul>
-
-    <div class='tab-content'>
-      <% if @menu %>
-        <div>
-          <% with_permission controller: Sites::Admin::Menus::MenuItemsController, action: :new do %>
-            <div class="pull-right">
-              <%= link_to t(".new_menu_item"),
-                new_site_admin_menu_menu_item_path(@menu),
-                class: "btn btn-success" %>
-            </div>
-            <div class="clearfix control-group"></div>
-          <% end %>
-
-          <% if @menu.menu_items.empty? %>
-            <div class="alert">
-              <%= t(".none_menu_item") %>
-            </div>
-          <% else %>
-            <div id="main-menu">
-            <%= print_menu(@menu, view_ctrl: true) %>
-            </div>
-          <% end %>
-        </div>
-        <div class="form-actions">
-          <%= make_menu(@menu, except: :show) %>
-        </div>
-      <% end %>
-    </div>
   </div>
-
+  <% if @menu %>
+    <% with_permission controller: Sites::Admin::Menus::MenuItemsController, action: :new do %>
+      <div class="pull-right">
+        <%= link_to t(".new_menu_item"),
+          new_site_admin_menu_menu_item_path(@menu),
+          class: "btn btn-success" %>
+      </div>
+      <div class="clearfix control-group"></div>
+    <% end %>
+    <% if @menu.menu_items.empty? %>
+      <div class="alert">
+        <%= t(".none_menu_item") %>
+      </div>
+    <% else %>
+      <div id="main-menu">
+      <%= print_menu(@menu, view_ctrl: true) %>
+      </div>
+    <% end %>
+    <div class="form-actions">
+      <%= make_menu(@menu, except: :show) %>
+    </div>
+  <% end %>
+  
   <%= javascript_tag do %>
     window.onload=function(){
-    $(document).ready(function() {
+      $(document).ready(function() {
 
-    var dropped = false;
-    $('#main-menu > menu').nestedSortable({
-    listType: 'menu',
-    handle: '.handle',
-    items: 'li',
-    opacity: 0.7,
-    forcePlaceholderSize: true,
-    placeholder: 'drop-here',
-    tolerance: 'pointer',
-    toleranceElement: '> div',
-    update: function(event, ui){
-
-    if(dropped){
-    $(this).nestedSortable('cancel');
-    dropped = false;
-    return;
-    }
-
-    id = ui.item.attr('id').replace('menu_item_','');
-    parent_id = ui.item.parents('li').attr('id') ? ui.item.parents('li').attr('id').replace('menu_item_','') : '';
-    position = ui.item.index()+1;//A position no banco começa com 1
-
+        var dropped = false;
+        $('#main-menu > menu').nestedSortable({
+          rootID: 'root',
+          listType: 'menu',
+          handle: '.handle',
+          items: 'li',
+          opacity: 0.7,
+          scroll: true,
+          forcePlaceholderSize: true,
+          placeholder: 'drop-here',
+          tolerance: 'pointer',
+          toleranceElement: 'div.menuitem-ctrl',
+          update: function(event, ui){
+            if(dropped){
+              $(this).nestedSortable('cancel');
+              dropped = false;
+              return;
+            }
+            var id = ui.item.attr('id').replace('menu_item_','');
             $.ajax({
               type: 'post',
-              data: 'id='+id+'&parent_id='+parent_id+'&position='+position,
+              data: 'id='+ id +'&'+ $(this).nestedSortable('serialize'),
               dataType: 'script',
               complete: function(request,text){
                 if(text=='success') ui.item.effect('pulsate', {times: 1}, 350);
@@ -91,19 +81,17 @@
           }
         });
 
-    $( "#tabs li" ).not('.active').droppable({
-    hoverClass: "drop-here",
-    tolerance: "pointer",
-    drop: function( event, ui ) {
-    drop_li = $(this)
-    id = ui.draggable.attr('id').replace('menu_item_','');
-    menu_id = drop_li.find('a').attr('rel');
+        $( "#tabs li" ).not('.active').droppable({
+          hoverClass: "drop-here",
+          tolerance: "pointer",
+          drop: function( event, ui ) {
+            var drop_li = $(this)
+            var id = ui.draggable.attr('id').replace('menu_item_','');
+            var menu_id = drop_li.data('menu-id');
 
-    dropped = true;
-
-    ////Testa para não alterar pra o proprio menu
-    if( !drop_li.hasClass('active') ){
-
+            dropped = true;
+            ////Testa para não alterar pra o proprio menu
+            if( !drop_li.hasClass('active') ){
               $.ajax({
                 type: 'post',
                 data: 'id='+id+'&new_menu_id='+menu_id,
@@ -116,16 +104,13 @@
                 },
                 url: '<%= change_menu_site_admin_menu_menu_items_path(@menu) if @menu%>'
               });
+            }
+          }
+        });
 
-    }
-    }
-    });
-
-    ////FIX-ME
-    $('#content').css({'overflow':'hidden'});
-    $('#main-menu').css({'height':$('#main-menu').height()});
-
-    });
+        ////FIX-ME
+        $('#main-menu').css({'height':$('#main-menu').height()});
+      });
     }
   <% end %>
   <%= content_for :javascripts, javascript_include_tag("jquery-ui.min") %>

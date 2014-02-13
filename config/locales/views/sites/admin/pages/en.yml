@@ -15,7 +15,6 @@ en:
           new_page:             " New Page "
           covers:               " Covers "
           events:               " Events "
-          recycle_bin:          " Recycle Bin "
         show:
           pages:                " Pages "
           event:                " Event "
@@ -29,7 +28,6 @@ en:
           none_cover:           " None Cover "
           new_page:             " New Page "
           list_pages:           " Pages "
-          recycle_bin:          " Recycle Bin "
           created_at:           " Created at "
           title:                " Title "
           author:               " Author "
@@ -88,9 +86,7 @@ en:
         recycle_bin:                             
           new_page:             " New Page "
           covers:               " Covers "
-          recycle_bin:          " Recycle Bin "
           list_pages:           " Pages "
-          empty_recycle_bin:    " Empty Recycle Bin "
           author:               " Author "
           type:                 " Type "
           category:             " Category "

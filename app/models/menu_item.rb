@@ -15,6 +15,33 @@ class MenuItem < ActiveRecord::Base
   validates_format_of :html_class, :with => /^[A-Za-z0-9_\-]*$/
   validates :position, numericality: true, allow_nil: false
 
+  after_save do
+    if publish_changed?
+      children.each do |child|
+        child.update_attribute(:publish, publish)
+      end
+    end
+    if menu_id_changed?
+      children.each do |child|
+        child.update_attribute(:menu_id, menu_id)
+      end
+    end
+  end
+
+  def update_positions positions
+    positions = positions_by_parent(positions)
+    positions.fetch(parent_id, []).each_with_index do |item_id, idx|
+      MenuItem.find(item_id).update_attribute(:position, idx+1)
+    end
+    if parent_id != @new_parent
+      positions.fetch(@new_parent, []).each_with_index do |item_id, idx|
+        attrs = {position: idx+1}
+        attrs[:parent_id] = @new_parent if item_id == id
+        MenuItem.find(item_id).update_attributes(attrs)
+      end
+    end
+  end
+
   def self.import attrs, options={}
     return attrs.each{|attr| self.import attr } if attrs.is_a? Array
 
@@ -36,5 +63,18 @@ class MenuItem < ActiveRecord::Base
   def serializable_hash options={}
     options.merge!({include: [:i18ns, :children]})
     super options
+  end
+
+  private
+
+  def positions_by_parent serialized
+    hierarchy = {}
+    serialized.each do |item, parent|
+      parent = ['root','null'].include?(parent) ? nil : parent.to_i
+      hierarchy[parent] ||= []
+      hierarchy[parent] << item.to_i
+      @new_parent = parent if item.to_i == id
+    end
+    hierarchy
   end
 end

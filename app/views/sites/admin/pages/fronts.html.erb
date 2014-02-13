@@ -10,7 +10,7 @@
     <%= link_to t(".list_pages"), site_admin_pages_path, class: 'btn' %>
   <% end %>
   <% with_permission(action: [:recover, :purge]) do %>
-    <%= link_to t(".recycle_bin"), recycle_bin_site_admin_pages_path, class: "btn" %>
+    <%= link_to t("recycle_bin"), recycle_bin_site_admin_pages_path, class: "btn" %>
   <% end %>
 </div>
 <div class="pull-left">

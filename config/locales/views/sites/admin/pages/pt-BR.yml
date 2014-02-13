@@ -15,7 +15,6 @@ pt-BR:
           new_page:             " Nova Página "
           covers:               " Capas "
           events:               " Eventos "
-          recycle_bin:          " Lixeira "
         show:
           pages:                " Páginas "
           event:                " Evento "
@@ -28,7 +27,6 @@ pt-BR:
           covers:               " Capas "
           none_cover:           " Nenhuma Capa "
           new_page:             " Nova Página "
-          recycle_bin:          " Lixeira "
           list_pages:           " Páginas "
           created_at:           " Criado em "
           title:                " Título "
@@ -88,9 +86,7 @@ pt-BR:
         recycle_bin:
           new_page:             " Nova Página "
           covers:               " Capas "
-          recycle_bin:          " Lixeira "
           list_pages:           " Páginas "
-          empty_recycle_bin:    " Lixeira Vazia "
           author:               " Autor "         
           type:                 " Tipo "          
           category:             " Categoria "     

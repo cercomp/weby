@@ -78,10 +78,10 @@ class Page < ActiveRecord::Base
   #Callbacks
   before_trash do
     if publish
-      self.errors[:base] << I18n.t("cannot_destroy_a_published_page")
+      errors[:base] << I18n.t("cannot_destroy_a_published_page")
       false
     else
-      self.update_attribute(:front, false)
+      self.front = false
       true
     end
   end
@@ -116,12 +116,12 @@ class Page < ActiveRecord::Base
       when 1, 2
         keywords = param.split(' ')
         query = fields.map do |field|
-          "(".concat(
+          "(#{
               keywords.each_with_index.map do |keyword, idx|
                 values["key#{idx}".to_sym] = "%#{keyword.try(:downcase)}%"
                 "LOWER(#{field}) LIKE :key#{idx}"
               end.join(search_type == 1 ? " AND " : " OR ")
-          ).concat(")")
+          })"
         end.join(" OR ")
       end
       includes(:author, :categories, :i18ns, :locales).

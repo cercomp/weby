@@ -42,45 +42,44 @@ module ApplicationHelper
     item_class = entry.html_class.present? ? [entry.html_class] : []
     item_class << 'sub' if has_submenu
     item_class << 'current_page' if is_current_page
-    if view_ctrl
-      item_class << 'menuitem-ctrl'
-      item_class << 'deactivated' unless entry.publish
-    end
-
+    
     content_tag :li, id: "menu_item_#{entry.id}", class: item_class.join(" ") do
       title_link = link_to(entry.title,
         entry.target_id.to_i > 0 ? main_app.site_page_path(entry.target_id) : entry.url,
         alt: entry.title, title: entry.description, target: entry.new_tab ? "_blank":"")
 
-      content = [
-        view_ctrl ?
-        content_tag(:div, style: 'min-height: 25px') do
-          [
-            content_tag(:span) do
-              [
-                toggle_field(entry, "publish", 'toggle', {controller: 'sites/admin/menus/menu_items', menu_id: entry.menu_id}),
-                " #{title_link}",
-                ( (entry and entry.target) ? " [ #{entry.target.try(:title)} ] " : " [ #{entry.url if not entry.url.blank?} ] " )
-              ].join.html_safe
-            end,
-            content_tag(:div, class: 'pull-right') do
-              content = []
-              content << link_to(icon('edit', text: ''), edit_site_admin_menu_menu_item_path(entry.menu_id, entry.id), title: t("edit")) if test_permission(:menu_items, :edit)
-              content << link_to(icon('trash', text: ''), site_admin_menu_menu_item_path(entry.menu_id, entry.id), method: :delete, data: {confirm: t('are_you_sure')}, title: t("destroy")) if test_permission(:menu_items, :destroy)
-              content << link_to(icon('move', text: ''),"#", class: 'handle', title: t("move")) if test_permission(:menu_items, :change_position)
-              content << link_to(t("+"), new_site_admin_menu_menu_item_path(entry.menu_id, parent_id: entry.id), class: "btn btn-success btn-small", title: t("add_sub_menu")) if test_permission(:menu_items, :new)
-              content.join.html_safe
-            end
-          ].join.html_safe
-        end :
+      li_content = []
+      li_content << content_tag(:div, '', class: 'hierarchy') if view_ctrl
+      li_content << if view_ctrl
+        content_tag(:div, style: 'min-height: 25px', class: "menuitem-ctrl#{' deactivated' unless entry.publish}") do
+          div_content = []
+          div_content << content_tag(:span) do
+            [
+              toggle_field(entry, "publish", 'toggle', {controller: 'sites/admin/menus/menu_items', menu_id: entry.menu_id}),
+              #" #{entry.position}",
+              " #{title_link}",
+              ( (entry and entry.target) ? " [ #{entry.target.try(:title)} ] " : " [ #{entry.url if not entry.url.blank?} ] " )
+            ].join.html_safe
+          end
+          div_content << content_tag(:div, class: 'pull-right') do
+            menu_content = []
+            menu_content << link_to(icon('edit', text: ''), edit_site_admin_menu_menu_item_path(entry.menu_id, entry.id), title: t("edit")) if test_permission(:menu_items, :edit)
+            menu_content << link_to(icon('trash', text: ''), site_admin_menu_menu_item_path(entry.menu_id, entry.id), method: :delete, data: {confirm: t('are_you_sure')}, title: t("destroy")) if test_permission(:menu_items, :destroy)
+            menu_content << link_to(icon('move', text: ''),"#", class: 'handle', title: t("move")) if test_permission(:menu_items, :change_position)
+            menu_content << link_to("+", new_site_admin_menu_menu_item_path(entry.menu_id, parent_id: entry.id), class: "btn btn-success btn-small", title: t("add_sub_menu")) if test_permission(:menu_items, :new)
+            menu_content.join.html_safe
+          end
+          div_content.join.html_safe
+        end
+      else
         title_link
-      ]
-      content << content_tag(:menu, class: 'submenu') do
+      end
+      li_content << content_tag(:menu, class: 'submenu') do
         sons[entry.id].map do |child|
           print_menu_entry(sons, child, view_ctrl)
         end.join.html_safe
       end if has_submenu
-      content.join.html_safe
+      li_content.join.html_safe
     end
   end
   private :print_menu_entry

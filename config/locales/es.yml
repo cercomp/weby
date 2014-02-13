@@ -103,6 +103,8 @@ es:
 #---R---#
   required:                             " Necesario "
   recover:                              " Restaurar "
+  recycle_bin:                          " Lixeira "
+  empty_recycle_bin:                    " Lixeira Vazia "
 #---S---#
   save:                                 " Salvar "
   search:                               " Buscar "

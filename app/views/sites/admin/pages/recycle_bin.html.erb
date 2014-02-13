@@ -1,3 +1,5 @@
+<% title "recycle_bin" %>
+<% breadcrumb :pages_recycle_bin %>
 <div class="pull-right">
   <% with_permission(action: :new) do %>
     <%= link_to t(".new_page"),
@@ -16,7 +18,7 @@
 <div id="pages">
   <% if @pages.empty? %>
     <div style="margin-top: 10px;" class="alert">                                                                
-      <%= t(".empty_recycle_bin") %>                                                           
+      <%= t("empty_recycle_bin") %>                                                           
     </div>                                                                             
   <% else %>                                                                           
     <div class="pull-left"> <%= info_page @pages %> </div>

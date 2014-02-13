@@ -9,7 +9,7 @@
       class: "btn btn-success" %>
   <% end %>
   <% with_permission(action: [:purge, :recover]) do %>
-    <%= link_to t(".recycle_bin"), recycle_bin_site_admin_repositories_path, class: "btn" %>
+    <%= link_to t("recycle_bin"), recycle_bin_site_admin_repositories_path, class: "btn" %>
   <% end %>
 </div>
 <div class="pull-left">

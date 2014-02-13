@@ -1,3 +1,5 @@
+<% title "recycle_bin" %>
+<% breadcrumb :repositories_recycle_bin %>
 <% content_for :javascripts, javascript_include_tag('repositories') %>
 <div class="pull-right">
   <% with_permission(action: :new) do %>
@@ -13,7 +15,7 @@
 
 <% if @repositories.empty? %>
   <div style="margin-top: 10px;" class="alert">
-    <%= t(".empty_recycle_bin") %>
+    <%= t("empty_recycle_bin") %>
   </div>
 <% else %>
   <div id="repo_list">
