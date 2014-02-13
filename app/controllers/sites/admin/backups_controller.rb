@@ -54,7 +54,8 @@ class Sites::Admin::BackupsController < ApplicationController
       current_site.pages.import(attrs['site']['pages']) if attrs['site']['pages']
       current_site.components.import(attrs['site']['root_components']) if attrs['site']['root_components']
       current_site.menus.import(attrs['site']['menus']) if attrs['site']['menus']
-#      current_site.styles.import(attrs['site']['own_styles']) if attrs['site']['own_styles']
+      current_site.own_styles.import(attrs['site']['own_styles'], owner: current_site.id) if attrs['site']['own_styles']
+      current_site.own_styles.import(attrs['site']['follow_styles'], owner: current_site.id) if attrs['site']['follow_styles']
     end
 
 #    File.open(Rails.root.join('public', "uploads/#{current_site.id}", uploaded_io.original_filename), 'wb') do |file|
