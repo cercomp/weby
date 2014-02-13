@@ -66,12 +66,23 @@ class Style < ActiveRecord::Base
   end
 
   def self.import attrs, options={}
-    return attrs.each{|attr| self.import attr } if attrs.is_a? Array
+    return attrs.each{|attr| self.import attr, options } if attrs.is_a? Array
 
     attrs = attrs.dup
-    attrs = attrs['own_styles'] if attrs.has_key? 'own_styles'
+    attrs = attrs['styles'] if attrs.has_key? 'styles'
 
-    attrs.except!('id', 'created_at', 'updated_at')
+    if attrs['style_id']
+      follow = Style.unscoped.find(attrs['style_id'])
+      if attrs['name'] == follow.name
+         attrs['css'] = nil
+         attrs['name'] = nil
+      else
+         attrs['style_id'] = nil
+      end
+
+    end
+
+    attrs.except!('id', 'created_at', 'updated_at', 'site_id')
 
     style = self.create!(attrs)
 
