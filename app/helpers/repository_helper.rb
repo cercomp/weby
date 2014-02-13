@@ -41,6 +41,7 @@ module RepositoryHelper
     hash
   end
 
+  # Used to include a partial in order to search for images
   def repository_dialog
     content_for :body_end do
       @repo_included = @repo_included.to_i + 1

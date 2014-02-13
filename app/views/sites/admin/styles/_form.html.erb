@@ -13,6 +13,7 @@
           <%= link_to t(".format"),"javascript:autoFormatSelection()", class: "btn btn-small" %>
           <%= link_to t(".comment"),"javascript:commentSelection(true)", class: "btn btn-small" %>
           <%= link_to t(".uncomment"),"javascript:commentSelection(false)", class: "btn btn-small" %>
+          <%= link_to t(".insert_image"), "javascript:insertImage()", class: "btn btn-small" %>
         </div>
         <%= f.button :button, t(".apply"), type: :button, disabled: :disabled, class: "btn-apply btn btn-primary btn-small" unless @style.new_record? %>
 
@@ -107,6 +108,20 @@
       function commentSelection(isComment) {
         var range = getSelectedRange();
         editor.commentRange(isComment, range.from, range.to);
+      }
+      
+      function insertImage(value){
+        WEBY.getRepositoryDialog().open({
+          file_types: ["image"],
+          selected: value,
+          multiple: false,
+          onsubmit: insert_into_editor
+        });
+      }
+      
+      var insert_into_editor = function(value){
+        var path = value[0].original_path.replace(/\?\d+$/, '')
+        editor.replaceRange(path, editor.getCursor())
       }
      
       function refreshIframe(){

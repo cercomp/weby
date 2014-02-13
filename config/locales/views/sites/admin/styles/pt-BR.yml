@@ -27,6 +27,7 @@ pt-BR:
           uncomment:        " Descomentar "
           apply:            " Aplicar "
           preview:          " Pré-visualizar "
+          insert_image:     " Link para imagem "
         edit:
           styles:           " Estilos "
         new:
@@ -35,6 +36,5 @@ pt-BR:
           styles:           " Estilos "
           style:            " Estilo "
           list_all:         " Listar todos "
-
 
 
