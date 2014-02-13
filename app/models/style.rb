@@ -66,13 +66,14 @@ class Style < ActiveRecord::Base
   end
 
   def self.import attrs, options={}
-    return attrs.each{|attr| self.import attr } if attrs.is_a? Array
+    return attrs.each{|attr| self.import attr, options } if attrs.is_a? Array
 
     attrs = attrs.dup
     attrs = attrs['own_styles'] if attrs.has_key? 'own_styles'
+    attrs = attrs['follow_styles'] if attrs.has_key? 'follow_styles'
 
     attrs.except!('id', 'created_at', 'updated_at')
-
+    attrs['owner_id'] = options[:owner]
     style = self.create!(attrs)
 
   end
