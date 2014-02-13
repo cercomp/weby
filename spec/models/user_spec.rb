@@ -52,7 +52,7 @@ describe User do
     end
   end
 
-  context 'password' do
+  context 'Password' do
     pending 'should confirm password' do
     end
 
@@ -91,12 +91,30 @@ describe User do
 
   context 'Scopes' do
     it 'admin' do
-      expect(subject.admin).to be_true
+      subject = create(:user)
+      expect(User.admin).to include(subject)
     end
+
     it 'no_admin' do
-      subject = build(:user, is_admin: false)
-      expect(subject.no_admin).to be_false
+      subject = create(:user, is_admin: false)
+      expect(User.admin).not_to include(subject)
     end
+
+    it 'login_or_name_like (LOGIN)' do
+      subject = create(:user, login: "user", first_name: "John")
+      user = create(:user, login: "login", first_name: "First Name")
+      
+      expect(User.login_or_name_like("us")).to include(subject)
+      expect(User.login_or_name_like("login")).not_to include(subject)
+      expect(User.login_or_name_like("First")).to include(user)
+      expect(User.login_or_name_like("John")).not_to include(user)
+    end
+
+    it 'actives' do
+      subject = create(:user)
+      expect(User.actives).to include(subject)
+    end
+
     pending 'by_site' do
     end
     pending 'actives' do
@@ -104,6 +122,17 @@ describe User do
     pending 'global_role' do
     end
     pending 'by_no_site' do
+    end
+  end
+
+  context 'Self' do
+    pending "should return the user full name when called fullname" do
+    end
+
+    pending "should return the user email with his name when called email_adrress_with_name" do
+    end
+    
+    pending "should return the user's unread notifications as an array when called unread_notifications_array" do
     end
   end
 
