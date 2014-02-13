@@ -27,6 +27,7 @@ en:
           uncomment:        " Uncomment "
           apply:            " Apply "
           preview:          " Preview "
+          insert_image:     " Image Link"          
         edit:
           styles:           " Styles "
         new:
