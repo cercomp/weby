@@ -36,7 +36,7 @@ class Style < ActiveRecord::Base
   scope :published, where(publish: true)
 
   after_create do |style|
-    update_attribute(:position, style.site.styles.maximum(:position)+1)
+    update_attribute(:position, style.site.styles.maximum(:position)+1) unless position
   end
 
   def copy! to_site
