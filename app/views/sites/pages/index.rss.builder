@@ -3,7 +3,7 @@ xml.rss :version => "2.0" do
   xml.channel do
     xml.title current_site.name
     xml.description current_site.description
-    xml.link published_site_pages_url
+    xml.link site_pages_url
 
     for page in @pages
       xml.item do

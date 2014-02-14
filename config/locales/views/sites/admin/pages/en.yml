@@ -18,7 +18,8 @@ en:
         show:
           pages:                " Pages "
           event:                " Event "
-          period_event:         " Event date "
+          period_event:         " Event period "
+          period_page:          " Published period "
           list_all:             " List all "
           categories:           " Categories "
           source:               " Source "
