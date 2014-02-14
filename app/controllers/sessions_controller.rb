@@ -15,7 +15,7 @@ class SessionsController < Devise::SessionsController
     @history.user_id = current_user.id
     @history.login_ip = request.remote_ip
     @history.browser = user_agent.browser
-    @history.platform = user_agent.browser + " " + user_agent.os
+    @history.platform = user_agent.platform + " " + user_agent.os
     @history.save
   end
 
