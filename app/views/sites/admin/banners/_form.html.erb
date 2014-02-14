@@ -22,7 +22,7 @@
   <%= f.input t(".category"), wrapper: :append do %>
     <%= f.select :category_list,
       @site.banners.category_counts, {},
-      :id => "category" %><%= link_to_function t(".add_category"), "addToSelect('#category','#{t(".new_category")}')", :class => 'btn btn-default btn-info' %>
+      :id => "category" %><%= link_to_function t(".add_category"), "addToSelect('#category','#{t(".new_category")}')", :class => 'btn btn-info' %>
   <% end %>
 
   <%= f.input :position, hint: t(".lower_numbers_come_first") %>

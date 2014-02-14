@@ -49,7 +49,7 @@
               <% if check_permission(Sites::Admin::RolesController, [:new]) %>
                 <%= link_to t(".new_role"),
                   new_site_admin_role_path,
-                  class: "btn btn-default btn-success" %>
+                  class: "btn btn-success" %>
               <% else %>
                 <div class="alert">
                   <%= t(".none_role") %>

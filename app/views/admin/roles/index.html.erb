@@ -3,7 +3,7 @@
   <% if check_permission(Admin::RolesController, [:new]) %>
     <%= link_to t(".create_role"),
       new_admin_role_path,
-      class: "btn btn-default btn-success" %>
+      class: "btn btn-success" %>
   <% end %>
   <% if check_permission(Admin::UsersController, [:index]) %>
     <%= link_to t(".users"),
@@ -65,7 +65,7 @@
     </table>
 
     <div class="form-actions">
-      <%= button_tag t("save"), class: 'btn btn-default btn-primary', disable_with: t("please_wait") %>
+      <%= button_tag t("save"), class: 'btn btn-primary', disable_with: t("please_wait") %>
       <%= link_to t("back"), :back, class: "btn btn-default" %>
     </div>
   <% end %>

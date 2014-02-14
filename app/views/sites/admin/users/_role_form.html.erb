@@ -18,7 +18,7 @@
   </p>
 
   <%= submit_tag (t"submit"),
-    class: "btn btn-default btn-primary", disable_with: t("please_wait"),
+    class: "btn btn-primary", disable_with: t("please_wait"),
     onclick: current_user.id == @user.id ? "return test_unrole('form_user_#{@user.id}');" : "" %>
 
   <%= link_to t('cancel'), {action: 'manage_roles'},

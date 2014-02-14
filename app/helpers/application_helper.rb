@@ -248,8 +248,10 @@ module ApplicationHelper
         end
       end
 
-      content_tag :div, :class => "pagination#{" pagination-#{size}" if size}" do
-        content_tag :ul, raw(html)
+      content_tag :div do
+        content_tag :ul, :class => "pagination#{" pagination-#{size}" if size}"  do
+          raw(html)
+        end
       end
     end
   end

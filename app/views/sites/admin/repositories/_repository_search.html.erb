@@ -49,7 +49,7 @@
             <%= label_tag :fileupload, t(".file") %>
             <span class="file-wrapper">
               <%= file_field_tag "repository[archive]", required: false, id: "fileupload" %>
-              <span class="folder-button btn btn-default btn-info"><%= t(".select_file") %></span>
+              <span class="folder-button btn btn-info"><%= t(".select_file") %></span>
             </span>
             <span class="file-name"></span>
           </p>
@@ -60,7 +60,7 @@
           </p>
           <%= hidden_field_tag "repository[site_id]", @site.id, id: "site_id" %>
 
-          <%= submit_tag t(".send"), class: 'btn btn-default btn-primary send-file', type: :submit, disable_with: t('please_wait') %>
+          <%= submit_tag t(".send"), class: 'btn btn-primary send-file', type: :submit, disable_with: t('please_wait') %>
           <p>
           </p>
 
@@ -74,7 +74,7 @@
     </div>
   </div>
   <div class="modal-footer">
-    <%= link_to_function t("ok"), '', id: 'repository-include-link', class: "btn btn-default btn-primary" %>
+    <%= link_to_function t("ok"), '', id: 'repository-include-link', class: "btn btn-primary" %>
     <a href="#" class="btn btn-default" data-dismiss="modal"><%=t('cancel')%></a>
   </div>
 </div>
