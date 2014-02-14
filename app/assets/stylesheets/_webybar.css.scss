@@ -7,7 +7,8 @@ html, body { margin: 0; }
 
 #weby_bar
 {
-  @import "weby/bootstrap";
+  @import "bootstrap2";
+
   * { font-family: inherit; }
   a 
   {
