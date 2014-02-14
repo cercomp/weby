@@ -88,7 +88,7 @@ class Page < ActiveRecord::Base
     attrs['author_id'] = options[:author] unless User.unscoped.find_by_id(attrs['author_id'])
     attrs['repository_id'] = ''
 
-    attrs['i18ns'] = attrs['i18ns'].map{|i18n| self::I18ns.new(i18n.except('id', 'created_at', 'updated_at', 'page_id')) }
+    attrs['i18ns'] = attrs['i18ns'].map{|i18n| self::I18ns.new(i18n.except('id', 'created_at', 'updated_at', 'page_id', 'type')) }
 
     page = self.create!(attrs)
 

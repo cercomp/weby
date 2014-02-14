@@ -31,7 +31,7 @@ class Banner < ActiveRecord::Base
     attrs = attrs.dup
     attrs = attrs['banners'] if attrs.has_key? 'banners'
 
-    attrs.except!('id', 'created_at', 'updated_at', 'site_id')
+    attrs.except!('id', 'created_at', 'updated_at', 'site_id', 'type')
 
     attrs['repository_id'] = ''
     attrs['user_id'] = options[:author] unless User.unscoped.find_by_id(attrs['user_id'])

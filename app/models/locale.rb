@@ -14,7 +14,7 @@ class Locale < ActiveRecord::Base
     attrs = attrs.dup
     attrs = attrs['locales'] if attrs.has_key? 'locales'
 
-    attrs.except!('id', 'created_at', 'updated_at', 'site_id')
+    attrs.except!('id', 'created_at', 'updated_at', 'site_id', 'type')
 
     locale = self.create!(attrs)
 
