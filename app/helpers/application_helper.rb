@@ -333,7 +333,7 @@ module ApplicationHelper
     })
 
     unless type.nil?
-      icon_class = "icon-#{type}" + (args[:white] ? ' icon-white' : '')
+      icon_class = "glyphicon glyphicon-#{type}" + (args[:white] ? ' .glyphicon-white' : '')
 
       if args[:right]
         raw "#{args[:text]} <i class='#{icon_class}'></i>"
