@@ -2,11 +2,17 @@ en:
   profiles:
     show:
       edit-profile: "EDIT PROFILE"
+      security: "SECURITY"
       latest-news-published: "Latest news published"
       none_news: "No news published by %{name}"
       published: "Published at %{site}, in %{date}"
+      login_history: "Access history"
     edit:
       password-change: "New password"
       locale-hint: "Language for the admin interface."
       gravatar-info: "Wants to change the image? We use the Gravatar to manage the profile avatar, click on the image and follow the procedure to define a new avatar in Gravatar."
       gravatar-important: "Use on Gravatar the same email used in weby."
+    history:
+      edit-profile: "EDIT PROFILE"
+      login_history: "Access history"
+      security: "SECURITY"

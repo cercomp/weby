@@ -27,6 +27,7 @@ class User < ActiveRecord::Base
 
   has_many :views, dependent: :nullify
   has_many :notifications, dependent: :nullify
+  has_many :user_login_histories, dependent: :nullify
   has_many :pages, foreign_key: :author_id, dependent: :restrict
 
   scope :login_or_name_like, lambda { |text|

@@ -17,7 +17,7 @@ gem "select2-rails"
 gem 'd3js-rails'
 gem "gretel"
 gem 'zeroclipboard-rails'
-gem 'useragent'
+gem 'useragent', '0.2.3', :git => 'http://github.com/jilion/useragent'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

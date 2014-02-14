@@ -12,6 +12,8 @@
         <% if is_owner? %>
           <%= link_to t('.edit-profile'), edit_profile_path(@profile.login),
             class: 'btn btn-primary btn-block' %>
+          <%= link_to t('.security'), history_profile_path(@profile.login),
+            class: 'btn btn-primary btn-block' %>
         <% end %>
         <%= link_to "#{icon('chevron-left', white: true)}#{t("back")}".html_safe, :back, class: "btn btn-block" %>
       </div>
