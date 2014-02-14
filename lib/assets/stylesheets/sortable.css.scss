@@ -1,10 +1,10 @@
 .drop-here{
-  background-color: #EEE !important;
   outline: #BBB dashed 1px !important;
+  background-color: #DDD !important;
 }
 
 .drop-here td{
-  background-color: #EEE !important;
+  background-color: #DDD !important;
 }
 
 .handle{
@@ -16,24 +16,56 @@ li.drop-here{
 }
 
 li > menu{
-  margin:3px 0px;
+  margin: 0;
 }
 
-#main-menu menu{
-  list-style-type: none;
-}
+#main-menu{
+  padding: 5px;
+  background-color: #EEE;
 
-#main-menu > menu{
-  padding-left: 20px;
-    
-  li{
-    margin-bottom: 5px;
-    border: 1px solid transparent;
+  > menu{
+    padding-left: 5px;
+
+    li{
+      margin-top: 5px;
+      border: 1px solid transparent;
+    }
+
+    menu{
+      padding-left: 30px;
+    }
   }
 
-  li div{
-    border-left: 2px solid #BBB;
-    padding: 0px 0px 1px 3px;
-    margin: 0;
+  menu{
+    list-style-type: none;
+
+    li{
+      position: relative;
+    }
+
+    .menuitem-ctrl{
+      display: block;
+      position: relative;
+      padding: 4px;
+      border: 1px solid #CCC;
+      background-color: #FFF;
+      z-index: 805;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      border-radius: 4px;
+      -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.055);
+      -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.055);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.055);
+    }
+
+    li > .hierarchy{
+      position: absolute;
+      z-index: 800;
+      top: 32px;
+      left: 15px;
+      bottom: 1px;
+      width: 2px;
+      border-left: 2px solid #BBB;
+    }
   }
 }

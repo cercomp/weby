@@ -32,10 +32,14 @@ pt-BR:
           created_page:               " criou uma página "
           updated_page:               " atualizou uma página "
           destroyed_page:             " excluiu uma página "
+          moved_page_to_recycle_bin:  " moveu uma página pra lixeira "
+          restored_page:              " restaurou uma página "
 #--- Sites/Admin/Repositories ---#
           uploaded_file:              " enviou um arquivo "
           updated_file:               " atualizou um arquivo "
           destroyed_file:             " excluiu um arquivo "
+          moved_file_to_recycle_bin:  " moveu uma arquivo pra lixeira "
+          restored_file:              " restaurou um arquivo "
 #--- Sites/Admin/Roles ---#
           created_role:               " criou um papel "
           updated_role:               " atualizou um papel "

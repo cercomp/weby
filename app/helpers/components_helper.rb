@@ -59,7 +59,7 @@ module ComponentsHelper
 
   private
   def components_as_options components
-    components.map{|comp, opt| [t("components.#{comp.to_s}.name"), comp.to_s] }.sort!{|a,b| a[0] <=> b[0]}
+    components.map{|comp, opt| [t("components.#{comp.to_s}.name").strip, comp.to_s] }.sort!{|a,b| a[0] <=> b[0]}
   end
 
   def make_placeholders_divs(placeholders,width)

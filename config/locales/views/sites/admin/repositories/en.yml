@@ -60,3 +60,13 @@ en:
           search_repository:   " Search file "
           archive:             " File "
           none_file:           " No Files Found. "
+        recycle_bin:                              
+          archives:             " Files "              
+          new_archive:          " New File "  
+          archive:              " File "       
+          description:          " Description "     
+          type:                 " Typo "          
+          deleted_at:           " Deleted at "   
+          destroy:              " Destroy "
+          recover:              " Recover "
+

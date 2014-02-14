@@ -1,0 +1,61 @@
+<% title "recycle_bin" %>
+<% breadcrumb :pages_recycle_bin %>
+<div class="pull-right">
+  <% with_permission(action: :new) do %>
+    <%= link_to t(".new_page"),
+      new_site_admin_page_path,
+      class: "btn btn-success" %>
+  <% end %>
+  <% with_permission(action: :fronts) do %>
+    <%= link_to t(".covers"), fronts_site_admin_pages_path, class: "btn" %>
+  <% end %>
+  <% with_permission(action: :index) do %>
+    <%= link_to t(".list_pages"), site_admin_pages_path, class: 'btn' %>
+  <% end %>
+</div>
+<div class="clearfix"></div>
+
+<div id="pages">
+  <% if @pages.empty? %>
+    <div style="margin-top: 10px;" class="alert">                                                                
+      <%= t("empty_recycle_bin") %>                                                           
+    </div>                                                                             
+  <% else %>                                                                           
+    <div class="pull-left"> <%= info_page @pages %> </div>
+    <div class="pull-right"> <%= paginate @pages, remote: true %> </div>
+    <div class="clearfix"></div>
+
+    <table class="table table-striped table-condensed nowrap">
+      <thead>
+        <tr>
+          <th width="270px"><%= t(".title") %></th>
+          <th width="90px"><%= sortable 'users.first_name', t(".author") %></th>
+          <th width="80px"><%= sortable 'tags.name', t(".category") %></th>
+          <th width="50px"><%= sortable 'pages.type', t(".type") %></th>
+          <th width="120px"><%= sortable 'pages.deleted_at', t(".deleted_at") %></th>
+          <th width="50px"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @pages.each do |page| %>
+          <tr id="<%= page.id %>">
+            <td>
+              <%= page.title %>
+            </td>
+            <td><%= page.author.first_name %></td>
+            <td><%= raw categories_links(page.category_list) %></td>
+            <td><%= t(".#{page.type.downcase}") %></td>
+            <td><%= l(page.deleted_at, :format => :short) %></td>
+            <td>
+              <%= recycle_bin_actions page %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <div class="pull-left"> <%= per_page_links @pages, true, :mini %> </div>
+    <div class="pull-right"> <%= paginate @pages, remote: true %> </div>
+    <div class="clearfix"></div>
+  <% end %>
+</div>

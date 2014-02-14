@@ -98,9 +98,13 @@ es:
   problem_create_notification:          " Problemas al crear la notificación "
   problem_update_notification:          " Problemas con la actualización de la notificación "
   problem_destroy_notification:         " Dificultad para eliminar la notificación "
+  purge:                                " Excluir permanentemente "
 #---Q---#
 #---R---#
   required:                             " Necesario "
+  recover:                              " Restaurar "
+  recycle_bin:                          " Lixeira "
+  empty_recycle_bin:                    " Lixeira Vazia "
 #---S---#
   save:                                 " Salvar "
   search:                               " Buscar "
@@ -116,6 +120,7 @@ es:
   successfully_updated_password:        " Senha atualizada com sucesso "
   successfully_followed:                " Estilo seguido con sucesso "
   successfully_copied:                  " Estilo copiado con sucesso "
+  successfully_restored:                " Restaurado com sucesso! "
   should_be_image:                      " Deve ser uma imagem "
 #---T---#
 #---U---#

@@ -14,8 +14,8 @@ class Menu < ActiveRecord::Base
 
   #Returns a hash, with the parent_id and a array as the value
   # ie. {0 => [menuitem1, menuitem2}, 1 => [menuitem3,menuitem4] }
-  def items_by_parent
-    self.menu_items.group_by(&:parent_id)
+  def items_by_parent published=false
+    self.menu_items.send(published ? :published : :scoped).group_by(&:parent_id)
   end
 
   def self.import attrs, options={}

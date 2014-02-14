@@ -4,7 +4,6 @@ crumb :root do
   link t("breadcrumbs.home"), main_app.site_admin_path
 end
 
-
 #repositories
 crumb :repositories do
   link t("breadcrumbs.repositories"), site_admin_repositories_path
@@ -27,6 +26,11 @@ end
 
 crumb :repositories_search do
   link t("breadcrumbs.search")
+  parent :repositories
+end
+
+crumb :repositories_recycle_bin do
+  link t("recycle_bin")
   parent :repositories
 end
 
@@ -57,6 +61,11 @@ end
 
 crumb :pages_search do
   link t("breadcrumbs.search")
+  parent :pages
+end
+
+crumb :pages_recycle_bin do
+  link t("recycle_bin")
   parent :pages
 end
 

@@ -19,6 +19,7 @@ en:
   back:                                 " Back "
   begin:                                " Begin "
 #---C---#
+  cannot_destroy_a_published_page:      " Cannot destroy a published page "
   cancel:                               " Cancel "
   close:                                " Close "
   copy:                                 " Copy "
@@ -98,9 +99,13 @@ en:
   problem_create_notification:          " Problem on creating notification "
   problem_update_notification:          " Problem updating the notification "
   problem_destroy_notification:         " Error ocurred while deleting the notification "
+  purge:                                " Permanently delete "
 #---Q---#
 #---R---#
   required:                             " Required "
+  recover:                              " Recover "
+  recycle_bin:                          " Recycle bin "
+  empty_recycle_bin:                    " Empty recycle bin "
 #---S---#
   save:                                 " Save "
   search:                               " Search "
@@ -116,6 +121,7 @@ en:
   successfully_updated_password:        " Password successfully updated "
   successfully_followed:                " Style successfully followed "
   successfully_copied:                  " Style successfully copied "
+  successfully_restored:                " Successfully Restored! "
   should_be_image:                      " Must be an image file "
 #---T---#
 #---U---#

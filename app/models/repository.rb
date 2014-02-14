@@ -1,4 +1,6 @@
 class Repository < ActiveRecord::Base
+  include Trashable
+
   has_many :page, 
     foreign_key: 'repository_id'
 

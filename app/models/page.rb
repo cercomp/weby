@@ -1,77 +1,34 @@
 class Page < ActiveRecord::Base
-  self.inheritance_column = nil
-
-  acts_as_multisite
-
+  include Trashable
   weby_content_i18n :title, :summary, :text, required: :title
 
   EVENT_TYPES = %w[regional national international]
 
+  self.inheritance_column = nil
+
   acts_as_taggable_on :categories
+  acts_as_multisite
 
-  scope :published, where(publish: true)
+  #Relations
+  belongs_to :owner, class_name: "Site", foreign_key: "site_id"
+  belongs_to :author, class_name: "User"
+  belongs_to :image, class_name: 'Repository', foreign_key: 'repository_id'
 
-  scope :news, where(type: 'News')
-  scope :events, where(type: 'Event')
-  
-  scope :upcoming_events, proc{ where(" (event_begin >= :time OR event_end >= :time)", time: Time.now).events }
+  has_many :views, as: :viewable
+  has_many :menu_items, as: :target, dependent: :nullify
+  has_many :banners, dependent: :nullify
+  has_many :pages_repositories, dependent: :destroy
+  has_many :related_files, through: :pages_repositories, source: :repository
 
-  scope :front, where(front: true)
-  scope :no_front, where(front: false)
+  #Validations
+  validates :author_id, :site_id, presence: true
+  validates :position, presence: {if: proc { self.front? }}
+  validates :type, presence: true, inclusion: %w[News Event]
+  validates :kind, inclusion: EVENT_TYPES, allow_nil: true, allow_blank: true
+  validates :local, :event_begin, presence: {if: proc { self.event? }}
 
-  scope :available, proc { where("date_begin_at <= :time AND ( date_end_at is NULL OR date_end_at > :time)",
-                                 { time: Time.now }).published }
-  # tipos de busca
-  # 0 = "termo1 termo2"
-  # 1 = termo1 AND termo2
-  # 2 = termo1 OR termo2
-  scope :search, lambda { |param, search_type|
-      fields = ["page_i18ns.title", "page_i18ns.summary", "page_i18ns.text",
-        "users.first_name", "pages.type", "tags.name"]
-      query, values = "", {}
-      if param.present?
-        keys = param.split(' ')
-        fields.each_with_index do |field, findex|
-          query << " #{findex == 0 ? "" : "OR"} ("
-          if search_type > 0
-            keys.each_with_index { |key, kindex|
-              query << " #{kindex == 0 ? "" : search_type == 1 ? "AND" : "OR"} LOWER(#{field}) LIKE :key#{kindex} ";
-              values["key#{kindex}".to_sym] = "%#{key.try(:downcase)}%";
-            }
-          else
-            query << " LOWER(#{field}) LIKE :param "
-            values[:param] = "%#{param.try(:downcase)}%"
-          end
-          query << ") "
-        end
-      end
-      includes(:author, :categories, :i18ns, :locales).
-      where([query,values])
-  }
-
-  scope :by_author, lambda { |id|
-    where(author_id: id)
-  }
-
-  def event?
-    type == 'Event'
-  end
-
-  validates :position,
-    presence: true,
-    if: proc { |page| page.front? }
-
-  validates :type,
-    presence: true,
-    inclusion: %w[News Event]
-
-  validates :kind,
-    inclusion: EVENT_TYPES,
-    allow_nil: true,
-    allow_blank: true
-
-  validate :validate_date 
-  def validate_date 
+  validate :validate_date
+  def validate_date
     if self.date_begin_at.blank?
       self.date_begin_at = Time.now.to_s
     end
@@ -95,87 +52,91 @@ class Page < ActiveRecord::Base
 
   private :validate_date
 
-  validates :local, :event_begin,
-    presence: { if: proc { self.type == 'Event' } }
-
-  belongs_to :owner,
-    class_name: "Site",
-    foreign_key: "site_id"
-  validates :site_id,
-    presence: true
-
-  belongs_to :author,
-    class_name: "User"
-  validates :author_id,
-    presence: true
-
-  belongs_to :image,
-    class_name: 'Repository',
-    foreign_key: 'repository_id'
   validate :should_be_image
-  validate :should_be_own_image
-
-  has_many :views, as: :viewable
-
   def should_be_image
-    return unless have_image?
+    return unless image
     error_message = I18n.t("should_be_image")
-    errors.add(:image, error_message) unless image?
+    errors.add(:image, error_message) unless is_image?
   end
   private :should_be_image
 
-  def image?
-    image.archive_content_type =~ /image/
-  end
-  private :image?
-
+  validate :should_be_own_image
   def should_be_own_image
-    return unless have_image?
+    return unless image
     error_message = I18n.t("should_be_own_image")
     errors.add(:image, error_message) unless own_image?
   end
   private :should_be_own_image
 
-  def own_image?
-    image.site_id == owner.id
-  end
-  private :own_image?
-
-  def have_image?
-    not image.blank?
-  end
-  private :have_image?
-
-  def image=(file)
-    return self.repository_id = file.id if file.is_a?(Repository)
-
-    self.repository_id = file
-  end
-
-  has_many :menu_items,
-    as: :target,
-    dependent: :nullify
-
-  has_many :banners,
-    dependent: :nullify
-
-  has_many :pages_repositories, :dependent => :destroy
-  has_many :related_files, through: :pages_repositories, source: :repository
   validate :should_be_own_files
-
   def should_be_own_files
     error_message = I18n.t("should_be_own_files")
     errors.add(:related_files, error_message) unless own_files?
   end
-  private :should_be_own_image
+  private :should_be_own_files
 
-  def own_files?
-    related_files.each do |file|
-      return false if file.site_id != owner.id
+  #Callbacks
+  before_trash do
+    if publish
+      errors[:base] << I18n.t("cannot_destroy_a_published_page")
+      false
+    else
+      self.front = false
+      true
     end
-    return true
   end
-  private :own_files?
+
+  #Scopes
+  scope :published, where(publish: true)
+
+  scope :news, where(type: 'News')
+  scope :events, where(type: 'Event')
+  
+  scope :upcoming_events, proc{ where(" (event_begin >= :time OR event_end >= :time)", time: Time.now).events }
+
+  scope :front, where(front: true)
+  scope :no_front, where(front: false)
+  scope :by_author, lambda { |id| where(author_id: id) }
+
+  scope :available, proc { where("date_begin_at <= :time AND ( date_end_at is NULL OR date_end_at > :time)",
+                                 { time: Time.now }).published }
+  # tipos de busca
+  # 0 = "termo1 termo2"
+  # 1 = termo1 AND termo2
+  # 2 = termo1 OR termo2
+  scope :search, lambda { |param, search_type|
+    if param.present?
+      fields = ["page_i18ns.title", "page_i18ns.summary", "page_i18ns.text",
+      "users.first_name", "pages.type", "tags.name"]
+      query, values = "", {}
+      case search_type
+      when 0
+        query = fields.map { |field| "LOWER(#{field}) LIKE :param"}.join(" OR ")
+        values[:param] = "%#{param.try(:downcase)}%"
+      when 1, 2
+        keywords = param.split(' ')
+        query = fields.map do |field|
+          "(#{
+              keywords.each_with_index.map do |keyword, idx|
+                values["key#{idx}".to_sym] = "%#{keyword.try(:downcase)}%"
+                "LOWER(#{field}) LIKE :key#{idx}"
+              end.join(search_type == 1 ? " AND " : " OR ")
+          })"
+        end.join(" OR ")
+      end
+      includes(:author, :categories, :i18ns, :locales).
+      where(query, values)
+    end
+  }
+
+  def event?
+    type == 'Event'
+  end
+
+  def image=(file)
+    return self.repository_id = file.id if file.is_a?(Repository)
+    self.repository_id = file
+  end
 
   def self.uniq_category_counts
     self.category_counts.inject(Hash.new) do |hash,j|
@@ -189,4 +150,20 @@ class Page < ActiveRecord::Base
     end.values
   end
 
+  private
+
+  def is_image?
+    image.archive_content_type =~ /image/
+  end
+  
+  def own_image?
+    image.site_id == owner.id
+  end
+  
+  def own_files?
+    related_files.each do |file|
+      return false if file.site_id != owner.id
+    end
+    return true
+  end
 end

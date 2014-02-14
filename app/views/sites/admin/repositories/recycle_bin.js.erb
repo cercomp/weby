@@ -1,0 +1,3 @@
+var page = $('<div><%= escape_javascript(render(template: 'sites/admin/repositories/recycle_bin.html')) %></div>');
+$('#repo_list').html(page.find('#repo_list').html());
+

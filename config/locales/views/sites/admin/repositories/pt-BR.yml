@@ -60,3 +60,13 @@ pt-BR:
           search_repository:   " Pesquisar arquivo "
           archive:             " Arquivo "
           none_file:           " Nenhum Arquivo Encontrado. "
+        recycle_bin:
+          archives:             " Arquivos "      
+          new_archive:          " Novo Arquivo "  
+          none_archive:         " Nenhum Arquivo "
+          archive:              " Arquivo "  
+          description:          " Descrição "
+          type:                 " Tipo "
+          deleted_at:           " Excluído em "
+          destroy:              " Excluir "
+          recover:              " Restaurar "

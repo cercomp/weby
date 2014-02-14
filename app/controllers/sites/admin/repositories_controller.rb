@@ -10,7 +10,7 @@ class Sites::Admin::RepositoriesController < ApplicationController
     params[:mime_type].try(:delete, "")
     params[:direction] ||= 'desc'
 
-    @repositories = @site.repositories.
+    @repositories = current_site.repositories.
       description_or_filename(params[:search]).
       order(sort_column + ' ' + sort_direction).
       page(params[:page]).per(per_page)
@@ -32,21 +32,29 @@ class Sites::Admin::RepositoriesController < ApplicationController
     end
   end
 
+  def recycle_bin
+    params[:sort] ||= 'repositories.deleted_at'
+    params[:direction] ||= 'desc'
+    @repositories = current_site.repositories.trashed.
+    order("#{params[:sort]} #{sort_direction}").
+    page(params[:page]).per(per_page)
+  end
+
   def show
-    @repository = Repository.find(params[:id])
+    @repository = current_site.repositories.find(params[:id])
     respond_with(:site_admin, @repository)
   end
 
   def new
-    @repository = Repository.new
+    @repository = current_site.repositories.new
   end
 
   def edit
-    @repository = Repository.find(params[:id])
+    @repository = current_site.repositories.find(params[:id])
   end
 
   def create
-    @repository = Repository.new(params[:repository])
+    @repository = current_site.repositories.new(params[:repository])
     respond_with(:site_admin, @repository) do |format|
       if @repository.save
         format.html do
@@ -74,7 +82,7 @@ class Sites::Admin::RepositoriesController < ApplicationController
   end
 
   def update
-    @repository = Repository.find(params[:id])
+    @repository = current_site.repositories.find(params[:id])
 
     if @repository.update_attributes(params[:repository]) 
       flash[:success] = t("successfully_updated") 
@@ -86,11 +94,28 @@ class Sites::Admin::RepositoriesController < ApplicationController
   end
 
   def destroy
-    @repository = Repository.find(params[:id])
-    @repository.destroy
-    record_activity("destroyed_file", @repository)
+    @repository = current_site.repositories.unscoped.find(params[:id])
+    if @repository.trash
+      if @repository.persisted?
+        record_activity("moved_file_to_recycle_bin", @repository)
+      else
+        record_activity("destroyed_file", @repository)
+      end
+      flash[:success] = t('successfully_deleted')
+    else
+      flash[:error] = @repository.errors.full_messages.join(", ")
+    end
+    
+    redirect_to :back
+  end
 
-    redirect_to site_admin_repositories_url
+  def recover                                      
+    @repository = current_site.repositories.trashed.find(params[:id])
+    if @repository.untrash
+      flash[:success] = t('successfully_restored')
+    end
+    record_activity("restored_file", @repository)
+    redirect_to :back                              
   end
 
   private

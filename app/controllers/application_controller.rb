@@ -51,6 +51,7 @@ class ApplicationController < ActionController::Base
     return false unless current_user
     return true if current_user.is_admin
     ctrl = ctrl.controller_name if ctrl.respond_to? :controller_name
+    ctrl = ctrl.split('/')[-1] if ctrl.match(/^\w+\/\w+/)
     return @current_rights.fetch(ctrl.to_sym, {}).fetch(action.to_sym, false)
   end
 
