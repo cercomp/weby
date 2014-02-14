@@ -8,7 +8,7 @@
     <% @my_sites.each do |site| %>
       <li class="col-lg-4 col-md-4 col-sm-4">
         <%= render partial: 'site', locals: {site: site} %>
-        <%= link_to icon('briefcase', text: t(".dashboard"), white: true), site_admin_url(subdomain: site), class: 'btn btn-block buffer-top' if current_user %>
+        <%= link_to icon('briefcase', text: t(".dashboard"), white: true), site_admin_url(subdomain: site), class: 'btn btn-default btn-block buffer-top' if current_user %>
       </li>
     <% end %>
   </ul>

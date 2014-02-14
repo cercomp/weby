@@ -1,7 +1,7 @@
 <div class="input add-multiple-files">
   <%= link_to link_title, "#",
     {data: {:'place-name' => place_name, :'field-name' => field_name, :'multiple' => multiple, :'file-types' => file_types.to_s},
-    class: 'add-button btn btn-info'} %>
+    class: 'add-button btn btn-default btn-info'} %>
   <ul id="<%= place_name %>">
     <% selected.each do |repository|  %>
       <li class="backgrounded">

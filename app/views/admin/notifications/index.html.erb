@@ -1,14 +1,14 @@
 <div class="pull-left">
   <%= form_tag admin_notifications_path, method: 'get', autocapitalize: "off", class: 'search pull-right' do %>
     <%= content_tag :div, class: 'input-append' do %>
-      <%= search_field_tag :search, params[:search], class: 'input-search' %><%= submit_tag t("search"), class: 'btn btn-info btn-search' %>
+      <%= search_field_tag :search, params[:search], class: 'input-search' %><%= submit_tag t("search"), class: 'btn btn-default btn-info btn-search' %>
     <% end %>
   <% end %>
 </div>
 
 <% if check_permission(Admin::NotificationsController, ["new"]) %>
   <div class="pull-right">
-    <%= link_to t(".new_notification"), new_admin_notification_path, class: "btn btn-success" %>
+    <%= link_to t(".new_notification"), new_admin_notification_path, class: "btn btn-default btn-success" %>
   </div>
 <% end %>
 

@@ -11,5 +11,5 @@
     :collection => admin_locales.map{|l| [image_tag("flags/24/#{l.flag}", :title=>t(l.name)), l.id] } %>
 <div class="form-actions">
   <%= form.button :submit, class: 'btn-primary', disable_with: t("please_wait") %>
-  <%= link_to t("back"), :back, class: "btn" %>
+  <%= link_to t("back"), :back, class: "btn btn-default" %>
 </div>

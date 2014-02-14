@@ -8,7 +8,7 @@
 <p>
   <b id="toppathwrap"><%= t(".file_link") %>: </b>
   <span id="link"><%= @repository.archive.url(:original, false) %></span>
-  <button class="btn btn-small" data-clipboard-target='link' id='d_clip_button' data-copied-hint="<%= t(".copied")%>" tittle="<%= t(".copy_to_clipboard") %>"><%= t(".copy")%></button>
+  <button class="btn btn-default btn-small" data-clipboard-target='link' id='d_clip_button' data-copied-hint="<%= t(".copied")%>" tittle="<%= t(".copy_to_clipboard") %>"><%= t(".copy")%></button>
 </p>     
 
 <div class="form-actions">

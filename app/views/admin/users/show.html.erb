@@ -41,7 +41,7 @@
 
 <div class="form-actions">
   <% if @user.id == @current_user.id or check_permission(Admin::UsersController, 'edit') %>
-    <%= link_to t('edit'), edit_admin_user_path(@user), :class => "btn btn-primary" %>
+    <%= link_to t('edit'), edit_admin_user_path(@user), :class => "btn btn-default btn-primary" %>
   <% end %>
-  <%= link_to t("back"), :back, class: "btn" %>
+  <%= link_to t("back"), :back, class: "btn btn-default" %>
 </div>

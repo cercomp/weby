@@ -5,12 +5,12 @@
   <% if check_permission(Sites::Admin::RolesController, [:new]) %>
     <%= link_to t(".new_role"),
       new_site_admin_role_path,
-      class: "btn btn-success" %>
+      class: "btn btn-default btn-success" %>
   <% end %>
   <% if check_permission(Sites::Admin::UsersController, [:manage_roles]) %>
     <%= link_to t(".users"), 
       main_app.manage_roles_site_admin_users_path,
-      class: "btn" %>
+      class: "btn btn-default" %>
   <% end %>
 </p>
 <div class="clearfix"></div>
@@ -68,7 +68,7 @@
 
     <div class="form-actions">
       <%= button_tag t("save"), class: 'btn btn-primary', disable_with: t("please_wait") %>
-      <%= link_to t("back"), :back, class: "btn" %>
+      <%= link_to t("back"), :back, class: "btn btn-default" %>
     </div>
   <% end %>
 

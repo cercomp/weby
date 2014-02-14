@@ -4,13 +4,13 @@
   <% with_permission(action: :new) do %>
     <%= link_to t(".new_page"),
       new_site_admin_page_path,
-      class: "btn btn-success" %>
+      class: "btn btn-default btn-success" %>
   <% end %>
   <% with_permission(action: :index) do %>
-    <%= link_to t(".list_pages"), site_admin_pages_path, class: 'btn' %>
+    <%= link_to t(".list_pages"), site_admin_pages_path, class: 'btn btn-default' %>
   <% end %>
   <% with_permission(action: [:recover, :purge]) do %>
-    <%= link_to t("recycle_bin"), recycle_bin_site_admin_pages_path, class: "btn" %>
+    <%= link_to t("recycle_bin"), recycle_bin_site_admin_pages_path, class: "btn btn-default" %>
   <% end %>
 </div>
 <div class="pull-left">

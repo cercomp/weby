@@ -42,8 +42,8 @@
           <% else %>
             <div class="col-lg-4 col-md-4 col-sm-4 offset5 noperson">
               <%= link_to t(".register"), main_app.signup_url(subdomain: nil, protocol: login_protocol,
-                back_url: "#{request.fullpath}"), class: 'btn' %>
-              <%= link_to t(".login"), weby_login_url("#{request.fullpath}"), class: 'btn btn-primary' %>
+                back_url: "#{request.fullpath}"), class: 'btn btn-default' %>
+              <%= link_to t(".login"), weby_login_url("#{request.fullpath}"), class: 'btn btn-default btn-primary' %>
             </div>
           <% end %>
         </div>

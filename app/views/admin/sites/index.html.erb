@@ -1,7 +1,7 @@
 <div class="pull-left">
   <%= form_tag admin_sites_path, method: 'get', autocapitalize: "off", class: 'search pull-right' do %>
     <%= content_tag :div, class: 'input-append' do %>
-      <%= search_field_tag :search, params[:search], class: 'input-search' %><%= submit_tag t("search"), class: 'btn btn-info btn-search' %>
+      <%= search_field_tag :search, params[:search], class: 'input-search' %><%= submit_tag t("search"), class: 'btn btn-default btn-info btn-search' %>
     <% end %>
   <% end %>
 </div>
@@ -10,7 +10,7 @@
 <div class="pull-right">
   <%= link_to t(".new_site"),
     new_admin_site_path,
-    class: "btn btn-success" %>
+    class: "btn btn-default btn-success" %>
 </div>
 <% end %>
 <div class="clearfix"></div>

@@ -4,16 +4,16 @@
     <%= form_tag root_path, method: 'get', autocapitalize: "off", class: 'form-inline search' do %>
       <%= hidden_field_tag(:groupings, params[:groupings]) if params[:groupings] %>
       <%= content_tag :div, class: 'input-append' do %>
-        <%= search_field_tag :search, params[:search], class: 'input-search' %><%= submit_tag t(".search"), class: 'btn btn-info' %>
+        <%= search_field_tag :search, params[:search], class: 'input-search' %><%= submit_tag t(".search"), class: 'btn btn-default btn-info' %>
       <% end %>
     <% end %>
   </div>
   <div class="col-lg-6 col-md-6 col-sm-6">
    <% if check_permission(Admin::SitesController, ["new"]) %>
-      <%= link_to t(".new_site"), new_admin_site_path, class: 'btn btn-success pull-right new-site' %>
+      <%= link_to t(".new_site"), new_admin_site_path, class: 'btn btn-default btn-success pull-right new-site' %>
     <% end %>
     <% if has_my_sites %>
-      <%= link_to t(".my-sites"), '#', class: 'btn pull-right switch', data: {switchtext: t('.sites')}  %>
+      <%= link_to t(".my-sites"), '#', class: 'btn btn-default pull-right switch', data: {switchtext: t('.sites')}  %>
     <% end %>
   </div>
   <div class="col-lg-12 col-md-12 col-sm-12">

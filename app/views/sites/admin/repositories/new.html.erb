@@ -26,7 +26,7 @@
 
   <div class="form-actions">
     <%= f.button :submit, class: 'btn-primary send-files', disable_with: t("please_wait") %>
-    <%= link_to t("back"), :back, class: "btn" %>
+    <%= link_to t("back"), :back, class: "btn btn-default" %>
   </div>
 <% end %>
 <% content_for :javascripts, javascript_include_tag('repositories.new') %>

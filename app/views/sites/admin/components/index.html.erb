@@ -7,7 +7,7 @@
   <% if check_permission(Sites::Admin::ComponentsController, [:new]) %>
     <%= link_to t(".new_component"),
       new_site_admin_component_path,
-      class: "btn btn-success" %>
+      class: "btn btn-default btn-success" %>
   <% end %>
 </p>
 <div class="clearfix control-group"></div>
@@ -17,7 +17,7 @@
   <%= content_tag :div, class: "maxi_level #{row["names"].many? ? "multi" : "single"}" do %>
     <% row["names"].each_with_index do |name, idx| %>
       <%= content_tag :div, class: "placeholder", data: {place: name}, style: "width: #{row["widths"] ? row["widths"][idx] : 100/row["names"].size}%;" do %>
-        <%= link_to '+', new_site_admin_component_path(placeholder: name), class: "add-btn btn btn-success btn-small", title: t(".new_component") if check_permission(Sites::Admin::ComponentsController, 'new') %>
+        <%= link_to '+', new_site_admin_component_path(placeholder: name), class: "add-btn btn btn-default btn-success btn-small", title: t(".new_component") if check_permission(Sites::Admin::ComponentsController, 'new') %>
         <div class="placeholder-name"><%= t("themes.#{current_site.theme}.placeholders.#{name}") %></div>
         <ul class="order-list" data-place="<%= name %>">
           <% components_per_holder = @components.select{|component| component.place_holder == name} %>
