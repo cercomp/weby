@@ -7,7 +7,7 @@
   </ul>
 
   <div class='tab-content form-horizontal'>
-    <div class="control-group select optional">
+    <div class="form-group select optional">
       <label class="select optional control-label" for="stats_site"><%= t('.metric') %></label>
       <div class="controls">
         <%= metrics_select_tag %>
@@ -15,7 +15,7 @@
     </div>
 
     <div class="tab-pane active" id="day">
-      <div class="control-group select optional">
+      <div class="form-group select optional">
         <label class="select optional control-label" for="stats_site"><%= t('.month') %></label>
         <div class="controls">
           <%= select_tag :filter_month, options_for_select(@months) %>
@@ -25,7 +25,7 @@
     </div>
 
     <div class="tab-pane" id="month">
-      <div class="control-group select optional">
+      <div class="form-group select optional">
         <label class="select optional control-label" for="stats_site"><%= t('.year') %></label>
         <div class="controls">
           <%= select_tag :filter_year, options_for_select(@years) %>

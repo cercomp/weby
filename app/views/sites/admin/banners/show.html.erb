@@ -15,7 +15,7 @@
     <%= @banner.text %> 
 </p>
 <p>
-  <span class="label label-info"><%= @banner.categories.join(", ") || t(".none_category") %></span>
+  <span class="label label-defaultlabel-info"><%= @banner.categories.join(", ") || t(".none_category") %></span>
 </p>
 <p>
   <b> <%= t(".period_banner") %>: </b> <%= l @banner.date_begin_at, :format => :short %> - <%= l @banner.date_end_at, :format => :short if @banner.date_end_at  %>

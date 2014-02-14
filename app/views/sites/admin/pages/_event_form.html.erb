@@ -1,4 +1,4 @@
-<div class="control-group boolean optional side">
+<div class="form-group boolean optional side">
   <%= label_tag :is_event, t(".is_event"), class: 'boolean optional control-label', for: 'is_event' %>
   <%= content_tag :div, class: 'controls' do %>
     <%= check_box_tag :is_event, :Event, @page.type == 'Event' %>

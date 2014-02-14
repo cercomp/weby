@@ -49,7 +49,7 @@
   <%= content_tag_if @page.category_list.any?, :p, class: 'categories' do %>
     <span class="categories-label"><%= "#{t('.categories')}:"  %></span>
     <% @page.category_list.each do |category| %>
-      <span class="label label-info"><%= category %></span>
+      <span class="label label-default label-info"><%= category %></span>
     <% end %>
   <% end %>
 

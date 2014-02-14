@@ -48,7 +48,7 @@
                   <%= content_tag(:span, icon('cog', white: true), class: "label label-default") %>
                 <% end if current_user.is_admin? %>
                 <%= notifications_icon %>
-                <%= link_to icon('off', white: true), main_app.logout_path(back_url: main_app.site_path), method: :delete, class: 'label label-danger', title: t('.logout') %>
+                <%= link_to icon('off', white: true), main_app.logout_path(back_url: main_app.site_path), method: :delete, class: 'label label-default label-danger', title: t('.logout') %>
               </div>
             </div>
             <div class="avatar pull-right">

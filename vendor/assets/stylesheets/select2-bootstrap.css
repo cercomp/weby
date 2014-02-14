@@ -54,7 +54,7 @@
   filter: none;
 }
 
-.control-group.error [class^="select2-choice"] {
+.form-group.error [class^="select2-choice"] {
   border-color: #b94a48;
 }
 

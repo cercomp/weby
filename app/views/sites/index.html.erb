@@ -19,12 +19,12 @@
   <div class="col-lg-12 col-md-12 col-sm-12">
     <%= link_to main_app.root_path(groupings: params[:groupings] == 'all' ? nil : 'all', search: params[:search]), class: "label #{params[:groupings] == 'all' ? 'label-info' : ''}" do %>
       <span><%= t('.all') %></span>
-      <%= content_tag :span, 'X', class: 'label label-info' if params[:groupings] == 'all' %>
+      <%= content_tag :span, 'X', class: 'label label-defaultlabel-info' if params[:groupings] == 'all' %>
     <% end if @default_groupings %>
     <% @groupings.each do |grouping| %>
-      <%= link_to main_app.root_path(groupings: params[:groupings] == grouping.id.to_s ? nil : grouping.id.to_s, search: params[:search]), class: "label #{params[:groupings] == grouping.id.to_s ? 'label-info' : ''}" do %>
+      <%= link_to main_app.root_path(groupings: params[:groupings] == grouping.id.to_s ? nil : grouping.id.to_s, search: params[:search]), class: "label label-default #{params[:groupings] == grouping.id.to_s ? 'label-info' : ''}" do %>
         <span><%= grouping.name %></span>
-        <%= content_tag :span, 'X', class: 'label label-info' if params[:groupings] == grouping.id.to_s %>
+        <%= content_tag :span, 'X', class: 'label label-defaultlabel-info' if params[:groupings] == grouping.id.to_s %>
       <% end %>
     <% end %>
   </div>

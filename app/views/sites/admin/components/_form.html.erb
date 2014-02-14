@@ -9,7 +9,7 @@
 
   <%= f.input :alias, placeholder: t(".alias_hint") if Weby::Components.is_aliasable? @component.name %>
 
-  <div class="control-group">
+  <div class="form-group">
     <%= render_component @component, 'form', locals: {f: f} %>
   </div>
 
