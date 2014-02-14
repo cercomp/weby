@@ -12,7 +12,7 @@ Weby::Application.routes.draw do
     put '/admin/edit' => 'sites#update', as: :edit_site_admin
 
     # routes to feed and atom
-    match '/feed' => 'sites/pages#published', as: :site_feed,
+    match '/feed' => 'sites/pages#index', as: :site_feed,
       defaults: { format: 'rss', per_page: 10, page: 1 }
     
     resources :pages,
@@ -20,7 +20,7 @@ Weby::Application.routes.draw do
       controller: "sites/pages", 
       only: [:index, :show] do
         collection do
-          get :published, :events, :news
+          get :events, :news
           post :sort
         end
       end

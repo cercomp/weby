@@ -9,37 +9,26 @@ class Sites::PagesController < ApplicationController
   # GET /pages
   # GET /pages.json
   def index
-    (redirect_to published_site_pages_path(search: params[:search],tags: params[:tags]) unless current_user) and return
     if params[:tags]
-      @pages = get_pages.tagged_with(tags, any: true)
+      @pages = get_pages.available.tagged_with(tags, any: true)
     else
-      @pages = get_pages 
-    end
-    respond_with(:site, @page)
-  end
-
-  def published
-    if params[:tags]
-      @pages = get_pages.published.tagged_with(tags, any: true)
-    else  
-      @pages = get_pages.published
+      @pages = get_pages.available
     end
     respond_with(:site, @page) do |format|
-      format.rss { render :layout => false, :content_type => Mime::XML } #published.rss.builder
-      format.atom { render :layout => false, :content_type => Mime::XML } #ublished.atom.builder
-      format.any { render 'index' }
+      format.rss { render :layout => false, :content_type => Mime::XML } #index.rss.builder
+      format.atom { render :layout => false, :content_type => Mime::XML } #index.atom.builder
     end
   end
 
   def events
-    @pages = get_pages.published.events
+    @pages = get_pages.available.events.send(params[:upcoming] ? :upcoming_events : :scoped)
     respond_with(current_site, @pages) do |format|
       format.any { render 'index' }
     end
   end
 
   def news
-    @pages = get_pages.published.news 
+    @pages = get_pages.available.news
     respond_with(current_site, @pages) do |format|
       format.any { render 'index'}
     end
