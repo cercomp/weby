@@ -53,8 +53,8 @@ class Sites::Admin::BackupsController < ApplicationController
 
 #      current_site.roles.import(attrs['site']['roles']) if attrs['site']['roles']
     current_site.pages.import(attrs['site']['pages'], author: current_user.id) if attrs['site']['pages']
-    current_site.components.import(attrs['site']['root_components']) if attrs['site']['root_components']
     current_site.menus.import(attrs['site']['menus']) if attrs['site']['menus']
+    current_site.components.import(attrs['site']['root_components']) if attrs['site']['root_components']
     current_site.styles.import(attrs['site']['styles']) if attrs['site']['styles']
     current_site.banners.import(attrs['site']['banners'], author: current_user.id) if attrs['site']['banners']
     current_site.extensions.import(attrs['site']['extensions']) if attrs['site']['extensions']
