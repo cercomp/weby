@@ -18,13 +18,13 @@
     <div class="zone">
       <div id="header" class="container">
         <div class="row">
-          <div class="span3">
+          <div class="col-lg-3 col-md-3 col-sm-3">
             <%= link_to main_app.root_url(subdomain: nil) do %>
               <%= image_tag 'weby-logo-60.png' %>
             <% end %>
           </div>
           <% if current_site %>
-            <div class="span5 site">
+            <div class="col-lg-5 col-md-5 col-sm-5 site">
               <div class="avatar pull-left">
                 <%= site_avatar_tag %>
               </div>
@@ -38,17 +38,17 @@
               </div>
             </div>
           <% end %>
-          <div class="span4 <%= current_site ? "" : "offset5 " %>person">
+          <div class="col-lg-4 col-md-4 col-sm-4 <%= current_site ? "" : "offset5 " %>person">
             <div class="pull-right">
               <div class="info name">
                 <%= link_to current_user, main_app.profile_url(current_user.login, subdomain: current_site) %>
               </div>
               <div class="info actions">
                 <%= link_to main_app.site_admin_url(subdomain: nil) do %>
-                  <%= content_tag(:span, icon('cog', white: true), class: "label") %>
+                  <%= content_tag(:span, icon('cog', white: true), class: "label label-default") %>
                 <% end if current_user.is_admin? %>
                 <%= notifications_icon %>
-                <%= link_to icon('off', white: true), main_app.logout_path(back_url: main_app.site_path), method: :delete, class: 'label label-important', title: t('.logout') %>
+                <%= link_to icon('off', white: true), main_app.logout_path(back_url: main_app.site_path), method: :delete, class: 'label label-danger', title: t('.logout') %>
               </div>
             </div>
             <div class="avatar pull-right">
@@ -65,11 +65,11 @@
 
     <div id="main" class="container">
       <div class="row">
-        <div class="span3">
+        <div class="col-lg-3 col-md-3 col-sm-3">
           <%= render 'layouts/shared/menu_admin' %>
           &nbsp;
         </div>
-        <div class="span9">
+        <div class="col-lg-9 col-md-9 col-sm-9">
           <% unless flash.empty? %>
             <%= raw flash_message %>
           <% end %>

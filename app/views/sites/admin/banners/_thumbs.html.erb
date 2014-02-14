@@ -5,7 +5,7 @@
 
 <ul class="clear thumbnails">
   <% @banners.each do |banner| %>
-    <li class="span2">
+    <li class="col-lg-2 col-md-2 col-sm-2">
       <div class="thumbnail">
         <%= weby_file_view(banner.repository, :thumb, 160, nil, {target: '_blank', title: banner.text}, true) %>
         <div class="caption">

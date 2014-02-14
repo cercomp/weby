@@ -15,11 +15,11 @@
     <div class="zone">
       <div id="header" class="container">
         <div class="row">
-          <div class="span3">
+          <div class="col-lg-3 col-md-3 col-sm-3">
             <%= link_to image_tag('weby-logo-60.png'), main_app.root_url(subdomain: nil) %>
           </div>
           <% if current_user %>
-            <div class="span4 offset5 person">
+            <div class="col-lg-4 col-md-4 col-sm-4 offset5 person">
               <div class="pull-right">
                 <div class="info name">
                   <%= link_to current_user, main_app.profile_url(current_user.login, subdomain: current_site) %>
@@ -40,7 +40,7 @@
               <div class="clearfix"></div>
             </div>
           <% else %>
-            <div class="span4 offset5 noperson">
+            <div class="col-lg-4 col-md-4 col-sm-4 offset5 noperson">
               <%= link_to t(".register"), main_app.signup_url(subdomain: nil, protocol: login_protocol,
                 back_url: "#{request.fullpath}"), class: 'btn' %>
               <%= link_to t(".login"), weby_login_url("#{request.fullpath}"), class: 'btn btn-primary' %>
@@ -53,7 +53,7 @@
     <div id="main" class="container">
       <% unless flash.empty? %>
         <div class="row">
-          <div class="span12">
+          <div class="col-lg-12 col-md-12 col-sm-12">
             <%= raw flash_message %>
           </div>
         </div>

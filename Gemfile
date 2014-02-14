@@ -12,7 +12,7 @@ gem 'paperclip', :tag => 'v3.5.1', :git => 'http://github.com/thoughtbot/papercl
 gem 'acts_as_list', '0.1.9'
 gem 'simple_form', :tag => 'v2.0.1', :git => 'http://github.com/plataformatec/simple_form.git'
 gem 'acts-as-taggable-on', :git => 'https://github.com/mbleigh/acts-as-taggable-on.git'
-gem 'bootstrap-sass', '2.3.0.1'
+gem 'bootstrap-sass', '3.1.1'
 gem 'foreigner'
 gem "select2-rails"
 gem 'd3js-rails'

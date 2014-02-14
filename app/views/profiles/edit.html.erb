@@ -1,7 +1,7 @@
 <div id="profile">
 <%= simple_form_for @profile, url: profile_path, html: { class: 'form-big' } do |f| %>
   <div class="row">
-    <div class="span3">
+    <div class="col-lg-3 col-md-3 col-sm-3">
       <div class="avatar">
         <a href="http://pt.gravatar.com/emails/" target="_blank">
           <img src="http://www.gravatar.com/avatar/<%= Digest::MD5.hexdigest(@profile.email) %>?s=120&d=mm" class="img-circle">
@@ -16,7 +16,7 @@
         <%= link_to "#{icon('chevron-left', white: true)}#{t("back")}".html_safe, profile_path(@profile.login), class: "btn btn-block" %>
       </div>
     </div>
-    <div class="span6">
+    <div class="col-lg-6 col-md-6 col-sm-6">
         <%= f.show_errors %>
         <%= f.input :first_name, input_html: { class: 'input-block-level' } %>
         <%= f.input :last_name, input_html: { class: 'input-block-level' } %>

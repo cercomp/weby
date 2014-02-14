@@ -1,6 +1,6 @@
 <% has_my_sites = current_user && !current_user.is_admin? && current_user.sites.any? %>
 <div class="row">
-  <div class="span6">
+  <div class="col-lg-6 col-md-6 col-sm-6">
     <%= form_tag root_path, method: 'get', autocapitalize: "off", class: 'form-inline search' do %>
       <%= hidden_field_tag(:groupings, params[:groupings]) if params[:groupings] %>
       <%= content_tag :div, class: 'input-append' do %>
@@ -8,7 +8,7 @@
       <% end %>
     <% end %>
   </div>
-  <div class="span6">
+  <div class="col-lg-6 col-md-6 col-sm-6">
    <% if check_permission(Admin::SitesController, ["new"]) %>
       <%= link_to t(".new_site"), new_admin_site_path, class: 'btn btn-success pull-right new-site' %>
     <% end %>
@@ -16,7 +16,7 @@
       <%= link_to t(".my-sites"), '#', class: 'btn pull-right switch', data: {switchtext: t('.sites')}  %>
     <% end %>
   </div>
-  <div class="span12">
+  <div class="col-lg-12 col-md-12 col-sm-12">
     <%= link_to main_app.root_path(groupings: params[:groupings] == 'all' ? nil : 'all', search: params[:search]), class: "label #{params[:groupings] == 'all' ? 'label-info' : ''}" do %>
       <span><%= t('.all') %></span>
       <%= content_tag :span, 'X', class: 'label label-info' if params[:groupings] == 'all' %>
@@ -30,10 +30,10 @@
   </div>
 </div>
 <div class="row">
-  <div class="span12 switch-panel buffer-top">
+  <div class="col-lg-12 col-md-12 col-sm-12 switch-panel buffer-top">
     <%= render 'list' %>
   </div>
-  <div class="span12 switch-panel hide">
+  <div class="col-lg-12 col-md-12 col-sm-12 switch-panel hide">
     <%= render 'my_list' %>
   </div>
 </div>
