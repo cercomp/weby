@@ -38,7 +38,7 @@
               </div>
             </div>
           <% end %>
-          <div class="col-lg-4 col-md-4 col-sm-4 <%= current_site ? "" : "offset5 " %>person">
+          <div class="col-lg-4 col-md-4 col-sm-4 <%= current_site ? "" : "col-md-offset-5 col-lg-offset-5 col-sm-offset-5 " %>person">
             <div class="pull-right">
               <div class="info name">
                 <%= link_to current_user, main_app.profile_url(current_user.login, subdomain: current_site) %>
