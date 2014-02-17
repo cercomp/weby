@@ -13,7 +13,7 @@ class ProfilesController < ApplicationController
   end
 
   def history
-    @history = UserLoginHistory.by_user(@profile.id).order('created_at desc')
+    @history = @profile.user_login_histories.order('created_at desc')
   end
 
   def edit
