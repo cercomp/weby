@@ -115,6 +115,18 @@ class Repository < ActiveRecord::Base
     json
   end
 
+  def self.import attrs, options={}
+    return attrs.each{|attr| self.import attr, options } if attrs.is_a? Array
+
+    attrs = attrs.dup
+    attrs = attrs['repository'] if attrs.has_key? 'repository'
+
+    attrs.except!('id', 'created_at', 'updated_at', 'deleted_at', 'site_id', 'type')
+
+    repository = self.create!(attrs)
+
+  end
+
   private
   def need_reprocess?
     image? and not has_all_formats?
