@@ -11,12 +11,10 @@ class SessionsController < Devise::SessionsController
     string = request.user_agent
     user_agent = UserAgent.parse(string) 
 
-    @history = UserLoginHistory.new
-    @history.user_id = current_user.id
-    @history.login_ip = request.remote_ip
-    @history.browser = user_agent.browser
-    @history.platform = user_agent.platform + " " + user_agent.os
-    @history.save
+    UserLoginHistory.create(user_id: current_user.id,
+                            login_ip: request.remote_ip,
+                            browser: user_agent.browser,
+                            platform: "#{user_agent.platform} #{user_agent.os}")
   end
 
   def store_location
