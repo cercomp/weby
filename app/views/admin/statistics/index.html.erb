@@ -41,7 +41,7 @@
           <label class="select optional control-label" for="stats_site"><%= t('.year') %></label>
         </div>
         <div class="col-md-7">
-          <%= select_tag :filter_year, options_for_select(@years) %>
+          <%= select_tag :filter_year, options_for_select(@years), class: 'form-control' %>
         </div>
       </div>
       <input type="hidden" name="month_names" value="<%= t('date.abbr_month_names').to_s.gsub('nil', 'null') %>"/>
