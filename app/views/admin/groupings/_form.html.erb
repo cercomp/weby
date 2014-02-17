@@ -1,7 +1,7 @@
 <%= simple_form_for [:admin, @grouping], html: { class: 'form-horizontal' } do |f| %>
   <%= f.show_errors %>
 
-  <%= f.input :name, input_html: { class: 'form-control col-md-6' }, label_html: { class: 'col-md-2' } %>
+  <%= f.input :name %>
   <%= f.association :sites, labelmethod: :title, input_html: {class: 'select2 site-groupings'} %>
 
   <div class="form-actions">
