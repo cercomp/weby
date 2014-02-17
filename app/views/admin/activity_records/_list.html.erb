@@ -22,11 +22,11 @@
           <td><%= activity_record.user %> <%= t(".#{activity_record.note}") %></td>
           <td style="text-align: right">
             <%= link_to(icon("eye-open", text: t(".show")),
-                       polymorphic_url(activity_record.loggeable_url_params, subdomain: activity_record.site)) if activity_record.action != "destroy" && activity_record.loggeable %>
+                       polymorphic_url(activity_record.loggeable_url_params, subdomain: activity_record.site), class: "table-menu") if activity_record.action != "destroy" && activity_record.loggeable %>
             <%= link_to(icon("search", text: t(".details")),
-                        admin_activity_record_path(activity_record)) %>
+                        admin_activity_record_path(activity_record), class: "table-menu" )%>
             <%= link_to(icon("trash", text: t(".destroy")),
-                        admin_activity_record_path(activity_record), method: :delete, confirm: t('are_you_sure')) %>
+                        admin_activity_record_path(activity_record), method: :delete, confirm: t('are_you_sure'), class: "table-menu") %>
           </td>
         </tr>
       <% end %>

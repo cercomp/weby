@@ -23,8 +23,8 @@
           <td> <%= site.title %> </td>
           <td> <%= site.description %> </td>
           <td>
-                <%= link_to icon('briefcase', text: t(".dashboard")), site_admin_url(subdomain: site) if current_user && current_user.has_role_in?(site) %>
-                <%= link_to icon('edit', text: t(".settings")), edit_admin_site_url(site.id, subdomain: nil) if current_user && current_user.is_admin %>
+                <%= link_to icon('briefcase', text: t(".dashboard")), site_admin_url(subdomain: site), class: "table-menu"  if current_user && current_user.has_role_in?(site) %>
+                <%= link_to icon('edit', text: t(".settings")), edit_admin_site_url(site.id, subdomain: nil), class: "table-menu" if current_user && current_user.is_admin %>
           </td>
         </tr>
       <% end %>
