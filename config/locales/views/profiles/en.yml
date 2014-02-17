@@ -16,3 +16,8 @@ en:
       edit-profile: "EDIT PROFILE"
       login_history: "Access history"
       security: "SECURITY"
+      login_ip: "Login IP"
+      browser: "Browser"
+      platform: "Platform"
+      date: "Date"
+      
