@@ -82,7 +82,7 @@ class Style < ActiveRecord::Base
 
     end
 
-    attrs.except!('id', 'created_at', 'updated_at', 'site_id')
+    attrs.except!('id', 'created_at', 'updated_at', 'site_id', 'type')
 
     style = self.create!(attrs)
 
