@@ -85,55 +85,42 @@ $border-radius-small:     3px !default;
 
 // Tables
 // -------------------------
-//$tableBackground:                   transparent !default; // overall background-color
-//$tableBackgroundAccent:             #f9f9f9 !default; // for striping
-//$tableBackgroundHover:              #f5f5f5 !default; // for hover
-//$tableBorder:                       #ddd !default; // table and cell border
+$table-bg:                   transparent !default; // overall background-color
+$table-bg-accent:            #f9f9f9 !default; // for striping
+$table-bg-hover:             #f5f5f5 !default; // for hover
+$table-border-color:         #ddd !default; // table and cell border
 
 // Buttons
 // -------------------------
 // NOTE: changed to weby
-// //$btnBackground:                     //$white !default;
-// //$btnBackgroundHighlight:            darken(//$white, 10%) !default;
-//$btnBackground:                     //$linkColor !default;
+//$btn-default-bg:                    $white !default;
+//$btnBackgroundHighlight:            darken($white, 10%) !default;
 //$btnBackgroundHighlight:            lighten(//$linkColor, 15%) !default;
-//$btnBorder:                         #ccc !default;
+$btn-default-bg:                      $link-color !default;
+$btn-default-border:                  #ccc !default;
+$btn-default-color:                   $white;
 
 // NOTE: changed to weby
-// //$btnPrimaryBackground:              //$linkColor !default;
-// //$btnPrimaryBackgroundHighlight:     adjust-hue(//$btnPrimaryBackground, 20%) !default;
-//$btnPrimaryBackground:              //$weby-red !default;
-//$btnPrimaryBackgroundHighlight:     lighten(//$weby-red, 15%) !default;
-
-// NOTE: changed to weby
-// //$btnInfoBackground:                 #5bc0de !default;
-// //$btnInfoBackgroundHighlight:        #2f96b4 !default;
-//$btnInfoBackground:                 #2f96b4 !default;
+$btn-primary-bg:                      $weby-red !default;
+//$btnPrimaryBackgroundHighlight:     lighten($weby-red, 15%) !default;
+$btn-info-bg:                         #2f96b4 !default;
 //$btnInfoBackgroundHighlight:        #5bc0de !default;
-
-// NOTE: changed to weby
-// //$btnSuccessBackgroundHighlight:     #51a351 !default;
-//$btnSuccessBackground:              #62c462 !default;
+$btn-success-border:                  #62c462 !default;
 //$btnSuccessBackgroundHighlight:     lighten(#62c462, 10%) !default;
-
-// NOTE: changed to weby
-// //$btnWarningBackground:              lighten(//$orange, 15%) !default;
-// //$btnWarningBackgroundHighlight:     //$orange !default;
-//$btnWarningBackground:              //$orange !default;
+$btn-warning-color:                   $orange !default;
 //$btnWarningBackgroundHighlight:     lighten(//$orange, 15%) !default;
 
 // NOTE: changed to weby
-// //$btnDangerBackground:               #ee5f5b !default;
-// //$btnDangerBackgroundHighlight:      #bd362f !default;
-//$btnDangerBackground:               red !default;
+$btn-danger-border:                   red !default;
 //$btnDangerBackgroundHighlight:      lighten(red, 15%) !default;
 
 // NOTE: changed to weby
-// //$btnInverseBackground:              #444 !default;
-// //$btnInverseBackgroundHighlight:     //$grayDarker !default;
-//$btnInverseBackground:              //$black !default;
-//$btnInverseBackgroundHighlight:     #444 !default;
+// //$btnInverseBackground:             #444 !default;
+// //$btnInverseBackgroundHighlight:    //$grayDarker !default;
+//$btnInverseBackground:                  $black !default;
+//$btnInverseBackgroundHighlight:       #444 !default;
 
+$brand-primary:  $weby-blue;
 
 // Forms
 // -------------------------
@@ -291,39 +278,3 @@ $border-radius-small:     3px !default;
 //$popoverArrowOuterWidth:  //$popoverArrowWidth + 1 !default;
 //$popoverArrowOuterColor:  rgba(0,0,0,.25) !default;
 
-
-
-// GRID
-// --------------------------------------------------
-
-
-// Default 940px grid
-// -------------------------
-//$gridColumns:             12 !default;
-//$gridColumnWidth:         60px !default;
-//$gridGutterWidth:         20px !default;
-//$gridRowWidth:            (//$gridColumns * //$gridColumnWidth) + (//$gridGutterWidth * (//$gridColumns - 1)) !default;
-
-// 1200px min
-//$gridColumnWidth1200:     70px !default;
-//$gridGutterWidth1200:     30px !default;
-//$gridRowWidth1200:        (//$gridColumns * //$gridColumnWidth1200) + (//$gridGutterWidth1200 * (//$gridColumns - 1)) !default;
-
-// 768px-979px
-//$gridColumnWidth768:      42px !default;
-//$gridGutterWidth768:      20px !default;
-//$gridRowWidth768:         (//$gridColumns * //$gridColumnWidth768) + (//$gridGutterWidth768 * (//$gridColumns - 1)) !default;
-
-
-// Fluid grid
-// -------------------------
-//$fluidGridColumnWidth:    percentage(//$gridColumnWidth///$gridRowWidth) !default;
-//$fluidGridGutterWidth:    percentage(//$gridGutterWidth///$gridRowWidth) !default;
-
-// 1200px min
-//$fluidGridColumnWidth1200:     percentage(//$gridColumnWidth1200///$gridRowWidth1200) !default;
-//$fluidGridGutterWidth1200:     percentage(//$gridGutterWidth1200///$gridRowWidth1200) !default;
-
-// 768px-979px
-//$fluidGridColumnWidth768:      percentage(//$gridColumnWidth768///$gridRowWidth768) !default;
-//$fluidGridGutterWidth768:      percentage(//$gridGutterWidth768///$gridRowWidth768) !default;
