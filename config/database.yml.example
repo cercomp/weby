@@ -1,0 +1,6 @@
+development:
+  adapter: postgresql
+  encoding: UTF-8
+  database: weby
+  username: weby
+  password: weby 
