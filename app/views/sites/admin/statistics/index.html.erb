@@ -16,9 +16,11 @@
 
     <div class="tab-pane active" id="day">
       <div class="form-group select optional">
-        <label class="select optional control-label" for="stats_site"><%= t('.month') %></label>
-        <div class="controls">
-          <%= select_tag :filter_month, options_for_select(@months) %>
+      	<div class="col-sm-2 control-label">
+          <label class="select optional control-label" for="stats_site"><%= t('.month') %></label>
+        </div>
+        <div class="col-md-7">
+          <%= select_tag :filter_month, options_for_select(@months) ,class: 'form-control'%>
         </div>
       </div>
       <div id="daily_stats" class="stats hide"></div>
