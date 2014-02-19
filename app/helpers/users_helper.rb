@@ -21,7 +21,7 @@ module UsersHelper
     user = User.find(current_user.id)
     unread = user.unread_notifications_array
     if unread.empty?
-      link_to icon("envelope", white: true), main_app.notifications_url(subdomain: current_site), class: "label", title: t('notifications.index.notifications')
+      link_to icon("envelope", white: true), main_app.notifications_url(subdomain: current_site), class: "label label-default", title: t('notifications.index.notifications')
     else
       link_to main_app.notifications_url(subdomain: current_site) do
         content_tag(:span, "#{icon("envelope", white: true)} #{unread.size}".html_safe, class: "label label-warning", title: t('notifications.index.notifications'))

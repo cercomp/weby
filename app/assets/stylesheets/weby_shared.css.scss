@@ -1,0 +1,40 @@
+//Buttons
+.btn {
+  text-transform: uppercase;
+}
+
+//Icons
+.well .glyphicon {
+  color: black;
+}
+
+.glyphicon {
+  font-size: 12px;
+}
+
+ul.order-list {
+  padding: 0;
+}
+
+.label-important{
+  background-color: #953b39;
+}
+
+
+.person{
+  .info.actions {
+    a{
+      color: white;
+    }
+    .label{
+      font-size: 11.844px;
+      padding: 2px 4px;
+    }
+  }
+}
+.site {
+  .info.actions a{
+    color: #BC1625;
+  }   
+}
+

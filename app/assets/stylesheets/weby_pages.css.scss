@@ -1,5 +1,6 @@
 /*
  *= require_self
+ *= require weby_shared
  *= require google/lato
  */
 
@@ -34,7 +35,6 @@
       padding-top: 1px;
       a
       {
-        color: #BC1625;
         margin-right: 5px;
       }
     }

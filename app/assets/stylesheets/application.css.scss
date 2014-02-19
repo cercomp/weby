@@ -1,6 +1,7 @@
 /*
  *= require select2
  *= require select2-bootstrap
+ *= require weby_shared
  *= require_self
  *= require google/lato
  */
@@ -46,12 +47,12 @@ body { background: #F5F5F5; }
       padding-top: 1px;
       a
       {
-        color: #BC1625;
         margin-right: 5px;
       }
     }
   }
 }
+
 
 #main.container
 {
@@ -233,8 +234,8 @@ input[type="checkbox"].toggle { margin-top: 0; }
 //Nav
 .nav-pills > li > a {
   border-radius: 4px;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding-top: 6px;
+  padding-bottom: 6px;
   margin-top: 2px;
   margin-bottom: 2px;
   -webkit-border-radius: 5px;
@@ -250,19 +251,6 @@ input[type="checkbox"].toggle { margin-top: 0; }
   text-shadow: 0 1px 0 rgba(255,255,255,0.5);
 }
 
-//Buttons
-.btn {
-  text-transform: uppercase;
-}
-
-//Icons
-.well .glyphicon {
-  color: black;
-}
-
-ul.order-list {
-  padding: 0;
-}
 
 //Form-actions
 .form-actions {
