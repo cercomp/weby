@@ -5,10 +5,10 @@ class Style < ActiveRecord::Base
 
   has_many :styles, dependent: :restrict
   has_many :followers, through: :styles, source: :site
-  
+
   validates :site, presence: true
-  validates :name, presence: true, unless: :style_id
-  validates :style_id, uniqueness: { scope: :site_id }, if: :style_id
+  validates :name, presence: true, unless: :style
+  validates :style_id, uniqueness: { scope: :site_id }, if: :style
 
   validate do
     if style
@@ -79,13 +79,9 @@ class Style < ActiveRecord::Base
       else
          attrs['style_id'] = nil
       end
-
     end
 
     attrs.except!('id', 'created_at', 'updated_at', 'site_id')
-
-    style = self.create!(attrs)
-
+    self.create!(attrs)
   end
-
 end
