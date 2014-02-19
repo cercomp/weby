@@ -1,0 +1,34 @@
+<% if @messages.empty? %>
+  <div class="alert">
+    <%= t(".none_feedback") %>
+  </div>
+<% else %>
+  <div class="pull-left"> <%= info_page @messages %> </div>
+  <div class="pull-right"> <%= paginate @messages, remote: true %> </div>
+  <div class="clearfix"></div>
+
+  <table class='table table-striped table-condensed'>
+    <thead>
+      <th><%= t(".name") %></th>
+      <th><%= t(".subject") %></th>
+      <th><%= t(".date") %></th>
+      <th></th>
+    </thead>
+    <tbody>
+      <% @messages.each do |message| %>
+        <tr class="<%= cycle 'odd', 'even' %>">
+          <td><%= "#{message.name} <#{message.email}>" %></td>
+          <td><%= link_to message.subject, admin_message_path(message) %></td>
+          <td><%= l(message.created_at, :format => :short) %></td>
+          <td>
+            <%= raw make_menu(message) %>
+          </td>
+        </tr>
+      <% end; reset_cycle %>
+    </tbody>
+  </table>
+  <div class="pull-left"> <%= per_page_links @messages, true, :mini %> </div>
+  <div class="pull-right"> <%= paginate @messages, remote: true %> </div>
+  <div class="clearfix"></div>
+
+<% end %>
