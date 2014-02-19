@@ -1,9 +1,6 @@
 <% title ".users" %>
 <% breadcrumb :roles %>
-<% content_for :javascripts do %>
-  <%= javascript_include_tag "roles_index" %>
-<% end %>
-
+<% content_for :javascripts, javascript_include_tag("roles.index") %>
 <p class="pull-right">
   <% if check_permission(Sites::Admin::RolesController, [:new]) %>
     <%= link_to t(".new_role"),
@@ -53,9 +50,9 @@
             </td>
           </tr>
           <% permissions.each do |right, config| %>
-            <tr class="<%= cycle 'odd', 'even' %> right-<%= right %>">
+            <tr class="<%= cycle 'odd', 'even' %> <%= "#{controller}-#{right}" %>">
               <td>
-                <%= link_to icon('check'), nil, :onclick => "toggleCheckboxesBySelector('.right-#{right} input')", :remote => true %>
+                <%= link_to icon('check'), nil, :onclick => "toggleCheckboxesBySelector('.#{controller}-#{right} input')", :remote => true %>
                 <%= config['name'] %>
               </td>
               <% @roles.each do |role| %>

@@ -34,7 +34,7 @@
           <td><%= l(page.created_at, :format => :short) %></td>
           <% with_permission(action: :edit) do %>
             <td class="front" style="text-align:center;">
-              <%= raw toggle_field(page, "front") %></td>
+              <%= front_status(page) %></td>
             <td class="publish" style="text-align:center;">
               <%= publication_status(page) %>
             <td><%= make_menu(page, :except => "show", :with_text => false) %></td>

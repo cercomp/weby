@@ -1,5 +1,3 @@
-//= require jquery-ui.min 
-
 /**
  * Script para páginas com formulário de componentes
  */

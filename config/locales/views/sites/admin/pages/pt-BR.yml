@@ -64,7 +64,8 @@ pt-BR:
           related_files:        " Arquivos Relacionados "
         form:
           image:                " Imagem da página "
-          period_page:          " Período da Página "
+          date_begin_hint:      " A página será listada no site somente a partir desta data "
+          date_end_hint:        " A página deixará de ser listada como capa a partir desta data "
           related_files:        " Arquivos relacionados "
           page_categories_help: " Categorias são separadas por vírgula, a categoria de uma página é relacionada ao seu conteúdo. Ex: Esporte, Notícia, Vestibular "
           list_categories:      " Listar Categorias "

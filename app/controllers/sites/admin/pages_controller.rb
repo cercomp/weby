@@ -54,7 +54,7 @@ class Sites::Admin::PagesController < ApplicationController
   def fronts
     params[:published] ||= 'true'
     @pages = @site.pages.front.order('position desc')
-    @pages = @pages.available if params[:published] == 'true' 
+    @pages = @pages.available if params[:published] == 'true'
   end
 
   # GET /pages/1

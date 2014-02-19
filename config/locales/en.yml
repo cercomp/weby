@@ -109,6 +109,7 @@ en:
 #---S---#
   save:                                 " Save "
   search:                               " Search "
+  scheduled:                            " Scheduled to %{date} "
   show:                                 " Show "
   site_need_at_least_one_locale:        " Needs at least one language "
   submit:                               " Submit "

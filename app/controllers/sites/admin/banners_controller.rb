@@ -3,7 +3,6 @@ class Sites::Admin::BannersController < ApplicationController
 
   before_filter :require_user
   before_filter :check_authorization
-  before_filter :repositories, :only => ['new', 'edit', 'create', 'update']
   before_filter :search_images, only: [:new, :edit, :create, :update]
 
   helper_method :sort_column
@@ -11,27 +10,27 @@ class Sites::Admin::BannersController < ApplicationController
   respond_to :html, :xml, :js
 
   def index
-    @banners = @site.banners.
+    @banners = current_site.banners.
       order(sort_column + " " + sort_direction).
       titles_or_texts_like(params[:search]).
       page(params[:page]).per(params[:per_page])
   end
 
   def show
-    @banner = Banner.find(params[:id])
+    @banner = current_site.banners.find(params[:id])
   end
 
   def new
-    @banner = Banner.new
+    @banner = current_site.banners.new
     #@banner.new_tab = true
   end
 
   def edit
-    @banner = Banner.find(params[:id])
+    @banner = current_site.banners.find(params[:id])
   end
 
   def create
-    @banner = Banner.new(params[:banner])
+    @banner = current_site.banners.new(params[:banner])
     @banner.user_id = @current_user.id
     if params[:submit_search]
       search_images
@@ -44,7 +43,7 @@ class Sites::Admin::BannersController < ApplicationController
   end
 
   def update
-    @banner = Banner.find(params[:id])
+    @banner = current_site.banners.find(params[:id])
     if params[:submit_search]
       @banner.attributes = params[:banner]
       search_images
@@ -56,7 +55,7 @@ class Sites::Admin::BannersController < ApplicationController
   end
 
   def destroy
-    @banner = Banner.find(params[:id])
+    @banner = current_site.banners.find(params[:id])
     if @banner.destroy
       record_activity("destroyed_banner", @banner)
       flash[:success] = t("destroyed_param", :param => @banner.title)
@@ -70,14 +69,10 @@ class Sites::Admin::BannersController < ApplicationController
     Banner.column_names.include?(params[:sort]) ? params[:sort] : 'id'
   end
 
-  def repositories
-    @repositories = Repository.where(["site_id = ? AND archive_content_type LIKE ?", @site.id, "image%"]).page(params[:page]).per(params[:per_page])
-  end
-
   def search_images
-    @images = @site.repositories.
+    @images = current_site.repositories.
       description_or_filename(params[:image_search]).
       content_file(["image", "flash"]).
-      page(params[:page]).per(@site.per_page_default)
+      page(params[:page]).per(current_site.per_page_default)
   end
 end

@@ -1,4 +1,4 @@
-//= require fileupload/vendor/jquery.ui.widget
+//= require jquery.ui.widget
 //= require fileupload/jquery.iframe-transport
 //= require fileupload/jquery.fileupload
 //= require_self

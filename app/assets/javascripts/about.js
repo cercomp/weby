@@ -1,3 +1,5 @@
+//= require jquery.lightbox_me
+
 $(document).ready(function(){
    $('#about-weby').click(function(e) {
         if( $('#about-modal').length > 0 ){

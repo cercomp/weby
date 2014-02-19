@@ -2,7 +2,6 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require tables
-//= require jquery.lightbox_me
 //= require about
 //= require_self
 

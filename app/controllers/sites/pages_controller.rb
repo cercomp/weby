@@ -21,7 +21,7 @@ class Sites::PagesController < ApplicationController
   end
 
   def events
-    @pages = get_pages.available.events.send(params[:upcoming] ? :upcoming_events : :scoped)
+    @pages = get_pages.available.send(params[:upcoming] ? :upcoming_events : :events)
     respond_with(current_site, @pages) do |format|
       format.any { render 'index' }
     end
@@ -58,7 +58,7 @@ class Sites::PagesController < ApplicationController
   # GET /pages/1
   # GET /pages/1.json
   def show
-    @page = current_site.pages.find(params[:id]).in(params[:page_locale])
+    @page = current_site.pages.find(params[:id])
     respond_with(:site, @page)
   end
 

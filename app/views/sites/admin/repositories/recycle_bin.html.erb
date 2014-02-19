@@ -1,6 +1,6 @@
 <% title "recycle_bin" %>
 <% breadcrumb :repositories_recycle_bin %>
-<% content_for :javascripts, javascript_include_tag('repositories') %>
+<% content_for :javascripts, javascript_include_tag('repositories.index') %>
 <div class="pull-right">
   <% with_permission(action: :new) do %>
     <%= link_to t(".new_archive"),

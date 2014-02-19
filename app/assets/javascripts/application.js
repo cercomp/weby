@@ -2,11 +2,9 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require tables
-//= require jquery.lightbox_me
+//= require about
 //= require select2
 //= require select2_locale_pt-BR
-//= require about
-//= require zeroclipboard
 //= require_self
 
 var WEBY = {};

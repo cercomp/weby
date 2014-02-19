@@ -98,8 +98,9 @@ class Page < ActiveRecord::Base
   scope :no_front, where(front: false)
   scope :by_author, lambda { |id| where(author_id: id) }
 
-  scope :available, proc { where("date_begin_at <= :time AND ( date_end_at is NULL OR date_end_at > :time)",
-                                 { time: Time.now }).published }
+  scope :available, proc { where("date_begin_at is NULL OR date_begin_at <= :time", {time: Time.now}).published }
+  scope :available_fronts, proc { front.available.where("date_end_at is NULL OR date_end_at > :time", {time: Time.now}) }
+
   # tipos de busca
   # 0 = "termo1 termo2"
   # 1 = termo1 AND termo2
