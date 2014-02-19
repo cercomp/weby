@@ -11,7 +11,7 @@
       <% end %>
     <% end %>
   </div>
-  <div class="col-md-6">
+  <div class="col-md-6 col-md-offset-2">
    <% if check_permission(Admin::SitesController, ["new"]) %>
       <%= link_to t(".new_site"), new_admin_site_path, class: 'btn btn-success pull-right new-site' %>
     <% end %>

@@ -10,7 +10,7 @@
 <% end %>
 
 <% if @menus.empty? %>
-  <div class="alert">
+  <div class="alert alert-warning">
     <%= t(".none_menu") %>
   </div>
 <% else %>
@@ -32,7 +32,7 @@
       <div class="clearfix control-group"></div>
     <% end %>
     <% if @menu.menu_items.empty? %>
-      <div class="alert">
+      <div class="alert alert-warning">
         <%= t(".none_menu_item") %>
       </div>
     <% else %>

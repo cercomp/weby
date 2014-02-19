@@ -1,8 +1,9 @@
 <% if @activity_records.empty? %>
-  <div class="alert">
+  <div class="alert alert-warning">
     <%= t('.no_activity_records') %>
   </div>
 <% else %>
+
   <div class="pull-left"> <%= info_page @activity_records %> </div>
   <div class="pull-right"> <%= paginate @activity_records, remote: true %> </div>
   <div class="clearfix"></div>

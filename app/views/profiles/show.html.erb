@@ -21,7 +21,7 @@
     <div class="col-md-9">
       <div class="heading"><%= t('.latest-news-published') %></div>
       <% if @news.blank? %>
-        <div class="alert">
+        <div class="alert alert-warning">
           <%= t(".none_news", name: @profile) %>
         </div>
       <% else %>

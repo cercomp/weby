@@ -9,7 +9,8 @@
       <% end %>
     </div>
     <div class="col-md-5">
-      <%= select_tag :site_id, options_for_select(Site.all.map{ |site| [site.title || site.name, site.id] }, params[:site_id]), include_blank: true %>
+      <%= select_tag :site_id, options_for_select(Site.all.map{ |site| [site.title || site.name, site.id] }, params[:site_id]), include_blank: true,
+                             class: 'form-control' %>
     </div>
   <% end %>
 </div>

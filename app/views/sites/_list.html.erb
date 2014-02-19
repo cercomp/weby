@@ -1,14 +1,14 @@
 <% if @sites.empty? %>
-  <div class="alert">
+  <div class="alert alert-warning">
     <%= t(".no-site-found") %>
   </div>
 <% else %>
-  <ul id="sites" class="thumbnails">
+  <div id="sites" class="row">
     <% @sites.each do |site| %>
-      <li class="col-md-4">
+      <div class="col-md-4">
         <%= render partial: 'site', locals: {site: site} %>
-      </li>
+      </div>
     <% end %>
     <%= hidden_field_tag 'next-page', nil, class: 'next-load', data: {url: @nexturl} %>
-  </ul>
+  </div>
 <% end %>
