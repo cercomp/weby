@@ -1,6 +1,5 @@
 FactoryGirl.define do
   factory :page do
-    sequence(:title) { |count| "Título#{count}" }
-    text "Texto"
+    sequence(:title) { |count| "Page #{count}" }
   end
 end

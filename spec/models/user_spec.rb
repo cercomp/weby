@@ -1,11 +1,10 @@
 require 'spec_helper'
 
 describe User do
-
-  it { expect(subject).to validate_presence_of(:email) } 
-  it { expect(subject).to validate_presence_of(:login) } 
-  it { expect(subject).to validate_presence_of(:first_name) } 
-  it { expect(subject).to validate_presence_of(:last_name) } 
+  it { expect(subject).to validate_presence_of(:email) }
+  it { expect(subject).to validate_presence_of(:login) }
+  it { expect(subject).to validate_presence_of(:first_name) }
+  it { expect(subject).to validate_presence_of(:last_name) }
   it { expect(subject).to validate_presence_of(:password) } # TODO on: create
 
   context 'Email' do
@@ -35,7 +34,7 @@ describe User do
       expect(subject.email).to eq(subject.email.downcase)
     end
   end
-  
+
   context 'Login' do
     it 'should accept valid login format' do
       expect(subject).to allow_value('login1').for(:login)
@@ -103,7 +102,7 @@ describe User do
     it 'login_or_name_like (LOGIN)' do
       subject = create(:user, login: "user", first_name: "John")
       user = create(:user, login: "login", first_name: "First Name")
-      
+
       expect(User.login_or_name_like("us")).to include(subject)
       expect(User.login_or_name_like("login")).not_to include(subject)
       expect(User.login_or_name_like("First")).to include(user)
@@ -117,10 +116,13 @@ describe User do
 
     pending 'by_site' do
     end
+
     pending 'actives' do
     end
+
     pending 'global_role' do
     end
+
     pending 'by_no_site' do
     end
   end
@@ -131,9 +133,8 @@ describe User do
 
     pending "should return the user email with his name when called email_adrress_with_name" do
     end
-    
+
     pending "should return the user's unread notifications as an array when called unread_notifications_array" do
     end
   end
-
 end

@@ -1,7 +1,6 @@
 FactoryGirl.define do
   factory :component do
+    sequence(:alias) { |count| "Component #{count}" }
     place_holder 'home'
-    publish 'true'
-    sequence('alias') { |count| "Component#{count}" }
   end
 end

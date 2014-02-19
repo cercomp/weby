@@ -1,6 +1,5 @@
 FactoryGirl.define do
   factory :role do
-    sequence(:name) { |count| "Papel#{count}" }
-    permissions "Permissoes"
+    sequence(:name) { |count| "Papel #{count}" }
   end
 end

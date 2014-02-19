@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :extension do
-    sequence('name') { |count| "Extension#{count}" }
+    sequence(:name) { |count| "Extension #{count}" }
   end
 end

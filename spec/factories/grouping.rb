@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :grouping do
-    sequence(:name) { |count| "Group#{count}" }
+    sequence(:name) { |count| "Grouping #{count}" }
   end
 end
