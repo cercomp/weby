@@ -8,8 +8,10 @@
 
   <div class='tab-content form-horizontal'>
     <div class="form-group select optional">
-      <label class="select optional control-label" for="stats_site"><%= t('.metric') %></label>
-      <div class="controls">
+      <div class="col-md-2 control-label">
+        <label class="select optional control-label" for="stats_site"><%= t('.metric') %></label>
+      </div>
+      <div class="col-md-7">
         <%= metrics_select_tag %>
       </div>
     </div>
@@ -28,9 +30,11 @@
 
     <div class="tab-pane" id="month">
       <div class="form-group select optional">
-        <label class="select optional control-label" for="stats_site"><%= t('.year') %></label>
-        <div class="controls">
-          <%= select_tag :filter_year, options_for_select(@years) %>
+        <div class="col-md-2 control-label">
+          <label class="select optional control-label" for="stats_site"><%= t('.year') %></label>
+        </div>
+        <div class="col-md-7">
+          <%= select_tag :filter_year, options_for_select(@years), class: 'form-control' %>
         </div>
       </div>
       <input type="hidden" name="month_names" value="<%= t('date.abbr_month_names').to_s.gsub('nil', 'null') %>"/>
