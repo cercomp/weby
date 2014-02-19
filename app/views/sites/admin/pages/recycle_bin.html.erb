@@ -7,20 +7,20 @@
       class: "btn btn-success" %>
   <% end %>
   <% with_permission(action: :fronts) do %>
-    <%= link_to t(".covers"), fronts_site_admin_pages_path, class: "btn" %>
+    <%= link_to t(".covers"), fronts_site_admin_pages_path, class: "btn btn-default" %>
   <% end %>
   <% with_permission(action: :index) do %>
-    <%= link_to t(".list_pages"), site_admin_pages_path, class: 'btn' %>
+    <%= link_to t(".list_pages"), site_admin_pages_path, class: "btn btn-default" %>
   <% end %>
 </div>
 <div class="clearfix"></div>
 
 <div id="pages">
   <% if @pages.empty? %>
-    <div style="margin-top: 10px;" class="alert">                                                                
-      <%= t("empty_recycle_bin") %>                                                           
-    </div>                                                                             
-  <% else %>                                                                           
+    <div style="margin-top: 10px;" class="alert">
+      <%= t("empty_recycle_bin") %>
+    </div>
+  <% else %>
     <div class="pull-left"> <%= info_page @pages %> </div>
     <div class="pull-right"> <%= paginate @pages, remote: true %> </div>
     <div class="clearfix"></div>

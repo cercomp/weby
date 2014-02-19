@@ -3,7 +3,7 @@
 <div class="pull-left">
   <%= form_tag site_admin_pages_path, method: 'get', autocapitalize: "off", class: 'search pull-right' do %>
     <%= content_tag :div, class: 'input-append' do %>
-      <%= search_field_tag :search, params[:search], class: 'input-search' %><%= submit_tag t("search"), class: 'btn btn-default btn-info btn-search' %>
+      <%= search_field_tag :search, params[:search], class: 'input-search' %><%= submit_tag t("search"), class: 'btn btn-info' %>
     <% end %>
   <% end %>
 </div>
@@ -18,7 +18,7 @@
     <%= link_to t(".covers"), fronts_site_admin_pages_path, class: "btn btn-default" %>
   <% end %>
   <% with_permission(action: [:recover, :purge]) do %>
-    <%= link_to t("recycle_bin"), recycle_bin_site_admin_pages_path, class: "btn" %> 
+    <%= link_to t("recycle_bin"), recycle_bin_site_admin_pages_path, class: "btn btn-default" %>
   <% end %>
 </div>
 <div class="clearfix"></div>

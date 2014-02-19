@@ -21,31 +21,6 @@
         <li class="<%= active %>" data-menu-id="<%= menu.id %>"><%= link_to(menu.name.try(:titleize), menu==@menu ? '#' : site_admin_menus_path(menu: menu.id)) %></li>
       <% end %>
     </ul>
-    <div class='tab-content'>
-      <% if @menu %>
-        <div id="main-menu">
-          <% with_permission controller: Sites::Admin::Menus::MenuItemsController, action: :new do %>
-            <div class="pull-right">
-              <%= link_to t(".new_menu_item"),
-                new_site_admin_menu_menu_item_path(@menu),
-                class: "btn btn-default btn-success" %>
-            </div>
-            <div class="clearfix form-group"></div>
-          <% end %>
-
-          <% if @menu.menu_items.empty? %>
-            <div class="alert">
-              <%= t(".none_menu_item") %>
-            </div>
-          <% else %>
-            <%= raw print_menu(@menu, true) %>
-          <% end %>
-        </div>
-        <div class="form-actions">
-          <%= make_menu(@menu, except: :show) %>
-        </div>
-      <% end %>
-    </div>
   </div>
   <% if @menu %>
     <% with_permission controller: Sites::Admin::Menus::MenuItemsController, action: :new do %>

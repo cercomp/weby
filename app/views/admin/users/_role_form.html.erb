@@ -2,15 +2,15 @@
   method: "post",
   id: "form_user_#{@user.id}",
   remote: 'true',
-  update: 'enroled' %> 
+  update: 'enroled' %>
 
   <%= hidden_field_tag 'user[id]', @user.id %>
 
   <p>
     <% @roles.each do |role| %>
       <label class="checkbox">
-        <%= check_box_tag 'role_ids[]', 
-          role.id, 
+        <%= check_box_tag 'role_ids[]',
+          role.id,
               @user.roles.any?{ |r| r.site_id == @site.try(:id) && r.id == role.id} %>
         <%= role.name %>
       </label>
@@ -18,11 +18,11 @@
     </p>
 
   <%= submit_tag (t"submit"),
-    class: "btn btn-default btn-primary", disable_with: t("please_wait"),
+    class: "btn btn-primary", disable_with: t("please_wait"),
     onclick: current_user.id == @user.id ? "return test_unrole('form_user_#{@user.id}');" : "" %>
 
   <%= link_to t('cancel'), {action: 'manage_roles'},
-    onclick: "return hide_form(#{@user.id});", 
+    onclick: "return hide_form(#{@user.id});",
     id: "form_role_cancel",
     class: "btn btn-default" %>
 </form>

@@ -1,4 +1,4 @@
-<% title ".layout" %> 
+<% title ".layout" %>
 <% breadcrumb :components_new_choose%>
 <div id="available_components">
   <%= form_tag new_site_admin_component_path, :method => :get do %>
@@ -9,7 +9,7 @@
       <img id="component_image" src="/assets/components/default.png"/>
     </div>
     <div class="form-actions">
-        <button type="submit" class="btn btn-default btn-primary"><%= t(".next_step") %></button>
+        <button type="submit" class="btn btn-primary"><%= t(".next_step") %></button>
         <%= link_to t("back"), site_admin_components_path, class: "btn btn-default" %>
     </div>
   <% end %>
@@ -53,7 +53,7 @@
         $.get(url, function() {
           $('#component_image').attr('src', url);
           img_cache[selected] = url;
-          
+
         }).error(function(){
           $('#component_image').attr('src', default_image);
         });

@@ -1,6 +1,6 @@
 <div id="profile">
   <div class="row">
-    <div class="col-lg-3 col-md-3 col-sm-3">
+    <div class="col-md-3">
       <div class="avatar">
         <img src="http://www.gravatar.com/avatar/<%= Digest::MD5.hexdigest(current_user.email) %>?s=120&d=mm" class="img-circle">
       </div>
@@ -12,13 +12,13 @@
         <%= link_to "#{icon('chevron-left', white: true)} #{t("back")}".html_safe, :back, class: "btn btn-default btn-block" %>
       </div>
     </div>
-    <div class="col-lg-9 col-md-9 col-sm-9">
+    <div class="col-md-9">
       <div class="heading buffer-bottom"><%= t('.notifications') %></div>
       <div id="notifications">
         <div class="pull-left">
           <%= form_tag notifications_path, method: 'get', autocapitalize: "off", class: 'search pull-right' do %>
             <%= content_tag :div, class: 'input-append' do %>
-              <%= search_field_tag :search, params[:search], class: 'input-search' %><%= submit_tag t("search"), class: 'btn btn-info btn-search' %>
+              <%= search_field_tag :search, params[:search], class: 'input-search' %><%= submit_tag t("search"), class: 'btn btn-info' %>
             <% end %>
           <% end %>
         </div>
@@ -35,5 +35,3 @@
     </div>
   </div>
 </div>
-
-

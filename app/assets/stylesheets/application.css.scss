@@ -7,7 +7,6 @@
 
 @import "weby/bootstrap";
 @import "bootstrap";
-//@import "bootstrap-responsive";
 
 body { background: #F5F5F5; }
 
@@ -133,7 +132,7 @@ body { background: #F5F5F5; }
 label.required abbr { color: #BC1625; }
 
 // nowrap tables
-table.nowrap td > div 
+table.nowrap td > div
 {
   overflow: hidden;
   white-space: nowrap;
@@ -205,8 +204,8 @@ body.modal-open {
 
 // to customize main menu
 #menu-admin {
-  .nav-header { 
-    padding: 0; 
+  .nav-header {
+    padding: 0;
     li { font-weight: bold; }
   }
 }
@@ -229,7 +228,7 @@ input[type="checkbox"].toggle { margin-top: 0; }
 .table-menu{
   margin-left: 2px;
   float: left;
-} 
+}
 
 //Nav
 .nav-pills > li > a {

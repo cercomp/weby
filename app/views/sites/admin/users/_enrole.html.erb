@@ -24,7 +24,7 @@
               data: {fullname: (@user and @users_unroled.include?(@user)) ? @user.fullname : ''} %>
           </div>
           <div style="height: 300px; overflow: auto">
-            <ul  id="users_list_roles" class="nav"> 
+            <ul  id="users_list_roles" class="nav">
               <% @users_unroled.each do |user| %>
                 <li>
                 <label class="checkbox cursor">
@@ -37,7 +37,7 @@
           </div>
         </td>
         <td>
-          <ul class="nav"> 
+          <ul class="nav">
             <% if @roles.each do |role| %>
               <li >
               <label class="checkbox cursor">
@@ -63,7 +63,7 @@
   </table>
 
   <div class="form-actions">
-    <%= button_tag t("save"), class: 'btn btn-default btn-primary', disable_with: t("please_wait") %>
+    <%= button_tag t("save"), class: 'btn btn-primary', disable_with: t("please_wait") %>
     <%= link_to t("back"), :back, class: "btn btn-default" %>
   </div>
 </form>

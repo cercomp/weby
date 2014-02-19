@@ -1,7 +1,7 @@
 <div class="search_bar">
   <%= form_tag site_admin_repositories_path(template: 'list_popup'), method: 'get', autocapitalize: "off", class: 'search', remote: true do %>
     <%= content_tag :div, class: 'input-append' do %>
-      <%= search_field_tag :search, params[:search], placeholder: t('.search_repository'), class: 'input-search' %><%= submit_tag t("search"), class: 'btn btn-info btn-search btn-search-repository' %>
+      <%= search_field_tag :search, params[:search], placeholder: t('.search_repository'), class: 'input-search' %><%= submit_tag t("search"), class: 'btn btn-info btn-search-repository' %>
     <% end %>
     <%= hidden_field_tag 'page', 1 %>
     <%= hidden_field_tag 'per_page', "#{params[:per_page]}" %>
