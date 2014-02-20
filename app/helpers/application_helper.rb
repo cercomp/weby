@@ -66,7 +66,7 @@ module ApplicationHelper
             menu_content << link_to(icon('edit', text: ''), edit_site_admin_menu_menu_item_path(entry.menu_id, entry.id), title: t("edit")) if test_permission(:menu_items, :edit)
             menu_content << link_to(icon('trash', text: ''), site_admin_menu_menu_item_path(entry.menu_id, entry.id), method: :delete, data: {confirm: t('are_you_sure')}, title: t("destroy")) if test_permission(:menu_items, :destroy)
             menu_content << link_to(icon('move', text: ''),"#", class: 'handle', title: t("move")) if test_permission(:menu_items, :change_position)
-            menu_content << link_to("+", new_site_admin_menu_menu_item_path(entry.menu_id, parent_id: entry.id), class: "btn btn-success btn-small", title: t("add_sub_menu")) if test_permission(:menu_items, :new)
+            menu_content << link_to("+", new_site_admin_menu_menu_item_path(entry.menu_id, parent_id: entry.id), class: "btn btn-success btn-xs", title: t("add_sub_menu")) if test_permission(:menu_items, :new)
             menu_content.join.html_safe
           end
           div_content.join.html_safe
@@ -89,8 +89,8 @@ module ApplicationHelper
     "".tap do |messages|
       [:info, :warning, :error, :success, :notice, :alert].each do |type|
         if flash[type]
-          css = (type == :notice ? :success : type)
-          css = (type == :alert ? :error : type)
+          css = :success if type == :notice 
+          css = :error   if type == :alert 
 
           messages << content_tag('div', :class => "alert alert-#{css}") do
             raw %{
@@ -333,7 +333,7 @@ module ApplicationHelper
     })
 
     unless type.nil?
-      icon_class = "glyphicon glyphicon-#{type}" + (args[:white] ? ' .glyphicon-white' : '')
+      icon_class = "glyphicon glyphicon-#{type}" + (args[:white] ? ' glyphicon-white' : '')
 
       if args[:right]
         raw "#{args[:text]} <i class='#{icon_class}'></i>"

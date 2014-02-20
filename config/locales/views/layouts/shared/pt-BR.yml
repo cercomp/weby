@@ -25,7 +25,7 @@ pt-BR:
         dashboard:         " Painel de Controle "
         contents:          " Conteúdo "
         none_role:         " Você não possui papel neste site "
-        activity_records:  " Histórico de Atividades "
+        activity_records:  " Histórico "
       navbar:
         my_profile:        " Meu Perfil "
         logout:            " Sair "

@@ -9,20 +9,20 @@
 <div class="tab-content">
   <div class="tab-pane <%= params["restore"] ? "" : "active" %>" id="backup">
     <%= form_tag site_admin_generate_path, html: { class: 'form-horizontal' }, method: 'get' do %>
-      <div id="home" class="form-actions">
+      <div id="home" class="well">
         <table class='table table-striped'>
           <thead>
             <tr>
               <th><%= t(".options_backup") %></th>
             </tr>
-            <tr>
-              <th></th>
-            </tr>
           </table>
-          <div>
-            <%= t('.output') %>
-            <%= select_tag :type, options_for_select([ "XML", "JSON" ], "XML") %>
+          <div class='col-md-12'>
+            <div class="col-md-6">
+              <%= t('.output') %>
+              <%= select_tag :type, options_for_select([ "XML", "JSON" ], "XML"), class: 'form-control' %>
+            </div>
           </div>
+          <div class="col-md-12">
           <div class="clearfix">
             <%= check_box_tag( :pages) %>
             <%= t('.pages') %>
@@ -55,6 +55,7 @@
           <div class="clearfix">
             <%= check_box_tag( :messages) %>
             <%= t('.messages_feedbacks') %>
+          </div>
           </div>
           <div class="form-actions">
             <%= submit_tag t('generate'), class: 'btn btn-primary generate'  %>

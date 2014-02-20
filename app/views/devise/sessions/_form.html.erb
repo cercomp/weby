@@ -1,5 +1,6 @@
 <%= simple_form_for resource,
   as: resource_name,
+  wrapper: :devise_sessions,
   url: login_path do |f| %>
 
   <%= raw flash_message %>
@@ -10,6 +11,7 @@
     placeholder: t('.field_password') %>
   <%= f.input :remember_me, as: :boolean,
     wrapper_html: { class: "pull-left boolean-inline" },
+    wrapper: :checkbox,
     label_html: { class: "pull-right" },
     label: t(".field_remember_me") %>
 
@@ -17,5 +19,5 @@
 
   <div class="clearfix"></div>
 
-  <%= f.button :submit, t('.login'), class: 'btn-primary' %> 
+  <%= f.button :submit, t('.login'), class: 'btn btn-primary' %> 
 <% end %>

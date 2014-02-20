@@ -286,6 +286,10 @@
   text-shadow: 0 1px 0 rgba(255,255,255,0.5);
 }
 
+a:hover {
+  text-decoration:none;
+}
+
 //Buttons
 .btn {
   text-transform: uppercase;

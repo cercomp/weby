@@ -25,27 +25,29 @@
           <div class="box">
             <div class="box_cont">
               <%= raw flash_message %>
-              <nav class="locales-nav pull-right">
-                <% admin_locales.each do |locale| %>
-                  <%= link_to flag(locale), params.merge(locale: locale.name ) %>
-                <% end %>
-              </nav>
-              <ul class="nav nav-pills">
-                <li class="<%= active_tab("login") %>" >
-                  <% if active_tab('login').present? || active_tab('signup').present? %>
-                    <%= link_to t('.login'), '#login', 'data-toggle' => 'tab' %>
-                  <% else %>
-                    <%= link_to t('.login'), login_path %>
-                  <% end %>
-                </li>
-                <li class="<%= active_tab("signup") %>">
-                  <% if active_tab('login').present? || active_tab('signup').present? %>
-                    <%= link_to t('.register'), '#signup', 'data-toggle' => 'tab' %>
-                  <% else %>
-                    <%= link_to t('.register'), signup_path %>
-                  <% end %>
-                </li>
-              </ul>
+              <div class="col-md-12">
+               <nav class="locales-nav pull-right">
+                 <% admin_locales.each do |locale| %>
+                   <%= link_to flag(locale), params.merge(locale: locale.name ) %>
+                 <% end %>
+                </nav>
+                <ul class="nav nav-pills">
+                  <li class="<%= active_tab("login") %>" >
+                    <% if active_tab('login').present? || active_tab('signup').present? %>
+                      <%= link_to t('.login'), '#login', 'data-toggle' => 'tab' %>
+                    <% else %>
+                      <%= link_to t('.login'), login_path %>
+                    <% end %>
+                  </li>
+                  <li class="<%= active_tab("signup") %>">
+                    <% if active_tab('login').present? || active_tab('signup').present? %>
+                      <%= link_to t('.register'), '#signup', 'data-toggle' => 'tab' %>
+                    <% else %>
+                      <%= link_to t('.register'), signup_path %>
+                    <% end %>
+                  </li>
+                </ul>
+              </div>
               <%= yield %>
             </div>
           </div>

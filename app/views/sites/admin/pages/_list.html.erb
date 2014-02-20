@@ -16,8 +16,8 @@
           <th width="50px"><%= sortable 'pages.type', t(".type") %></th>
           <th width="120px"><%= sortable 'pages.created_at', t(".created_at") %></th>
           <% with_permission(action: :edit) do %>
-            <th><%= sortable 'pages.front', t(".cover") %></th>
-            <th><%= sortable 'pages.publish', t(".publish") %></th>
+            <th class="center"><%= sortable 'pages.front', t(".cover") %></th>
+            <th class="center"><%= sortable 'pages.publish', t(".publish") %></th>
           <% end %>
           <th width="50px"></th>
         </tr>

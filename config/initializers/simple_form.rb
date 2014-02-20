@@ -61,14 +61,34 @@ SimpleForm.setup do |config|
     # Form components
     b.wrapper tag: :label do |ba|
       ba.use :input
-      ba.use :label_text
+      ba.use :label_text, wrap_with: { class: 'col-md-12' }
     end
 
-    b.use :hint,  wrap_with: { tag: :p, class: "help-block" }
+    b.use :hint,  wrap_with: { tag: :p, class: " help-block" }
     b.use :error, wrap_with: { tag: :span, class: "help-block text-danger" }
   end
-	
-	config.wrappers :bootstrap3, tag: 'div', class: 'form-group', error_class: 'has-error',
+
+	config.wrappers :devise_sessions, tag: 'div', class: 'form-group', error_class: 'has-error',
+                  defaults: { input_html: { class: 'form-group default_class' } } do |b|
+
+    b.use :html5
+    b.use :min_max
+    b.use :maxlength
+    b.use :placeholder
+
+    b.optional :pattern
+    b.optional :readonly
+
+    b.use :label,  class: 'control-label'
+
+    b.wrapper tag: 'div', class: 'col-md-12' do |input_block|
+      input_block.use :input
+      input_block.use :hint,  wrap_with: { tag: 'span', class: 'help-block' }
+    end
+    b.use :error, wrap_with: { tag: 'span', class: 'help-block has-error' }
+  end
+
+	 config.wrappers :bootstrap3, tag: 'div', class: 'form-group', error_class: 'has-error',
                   defaults: { input_html: { class: 'form-group default_class' } } do |b|
 
     b.use :html5
@@ -87,7 +107,7 @@ SimpleForm.setup do |config|
     end
     b.use :error, wrap_with: { tag: 'span', class: 'help-block has-error' }
   end
- 
+
   # Wrappers for forms and inputs using the Twitter Bootstrap toolkit.
   # Check the Bootstrap docs (http://getbootstrap.com/)
   # to learn about the different styles for forms and inputs,
