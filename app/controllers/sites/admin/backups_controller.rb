@@ -29,35 +29,44 @@ class Sites::Admin::BackupsController < ApplicationController
 #    h[:include][:roles] = {include: :users}  if params[:roles]
     h[:include][:locales] = {}  if params[:locales]
 
+    dir = "tmp/#{s.id}"
+    Dir.mkdir("#{dir}") unless Dir.exist?("#{dir}")
+
+    FileUtils.rm_r Dir.glob("#{dir}/*")
+
     if params[:type] == "JSON"      
-         File.open(Rails.root.join('public', "uploads/#{s.id}", "#{s.name}.xml"), 'wb') do |file|
+         File.open(Rails.root.join(dir, "#{s.name}.json"), 'wb') do |file|
             file.write(s.to_json(h) do |json|
               json.messages {Feedback::Message.where(site_id: s.id).each { |message| message.to_xml(skip_instruct: true, builder: json)  }} if params[:messages]
             end)
           end
+          filename = "#{dir}/#{s.name}.json"
     else
-        File.open(Rails.root.join('public', "uploads/#{s.id}", "#{s.name}.xml"), 'wb') do |file|
+        File.open(Rails.root.join(dir, "#{s.name}.xml"), 'wb') do |file|
             file.write(s.to_xml(h) do |xml|
               xml.messages {Feedback::Message.where(site_id: s.id).each { |message| message.to_xml(skip_instruct: true, builder: xml)  }} if params[:messages]
             end)
         end
+        filename = "#{dir}/#{s.name}.xml"
     end
-    zip_dir = Rails.root.join('public', "uploads/#{current_site.id}", "#{s.name}.zip")
-    dir = "public/uploads/#{current_site.id}"
 
+    zip_dir = Rails.root.join(dir, "#{s.name}.zip")
+    repository = "public/uploads/#{s.id}"
     Zip::ZipFile.open(zip_dir, Zip::ZipFile::CREATE)do |zipfile|
-      Find.find(dir) do |path|
+      Find.find(repository) do |path|
         Find.prune if File.basename(path)[0] == ?.
-        dest = /#{dir}\/(\w.*)/.match(path)
+        dest = /#{repository}\/(\w.*)/.match(path)
         begin
           zipfile.add(dest[1],path) if dest
         rescue Zip::ZipEntryExistsError
         end
-      end
+      end if params[:repositories]
+      dest = /#{dir}\/(\w.*)/.match(filename)
+      zipfile.add(dest[1],filename) if dest
     end
+
     zip_data = File.read("#{dir}/#{s.name}.zip")
     send_data(zip_data, :type => 'application/zip', :filename => "#{s.name}.zip")
-    FileUtils.rm("#{dir}/#{s.name}.zip", :force => true)
 
   end
 
