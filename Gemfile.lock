@@ -1,4 +1,10 @@
 GIT
+  remote: http://github.com/jilion/useragent
+  revision: 742f29d8643f378773a933b3c0a37ce1bc52a7aa
+  specs:
+    useragent (0.2.3)
+
+GIT
   remote: http://github.com/plataformatec/simple_form.git
   revision: 6f8a02452484060b6df6403c477d389d1de78fd5
   tag: v2.0.1
@@ -277,4 +283,5 @@ DEPENDENCIES
   thin (= 1.5.1)
   turbo-sprockets-rails3
   uglifier (>= 1.0.3)
+  useragent (= 0.2.3)!
   zeroclipboard-rails

@@ -12,6 +12,10 @@ class ProfilesController < ApplicationController
     @news = Page.by_author(@profile.id).published.limit(3).order('pages.created_at desc')
   end
 
+  def history
+    @history = @profile.user_login_histories.order('created_at desc')
+  end
+
   def edit
   end
 

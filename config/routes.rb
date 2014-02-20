@@ -150,7 +150,11 @@ Weby::Application.routes.draw do
   end
 
   # routes to profiles
-  resources :profiles, only: [:show, :edit, :update]
+  resources :profiles, only: [:show, :edit, :update] do
+    member do
+      get :history
+    end
+  end
 
   resources :notifications, only: [:index, :show] do
     collection do

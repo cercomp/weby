@@ -1,0 +1,45 @@
+<div id="profile">
+  <div class="row">
+    <div class="span3">
+      <div class="avatar">
+        <img src="http://www.gravatar.com/avatar/<%= Digest::MD5.hexdigest(@profile.email) %>?s=120&d=mm" class="img-circle">
+      </div>
+      <div class="info">
+        <%= @profile.first_name %><br />
+        <span class="last-name"><%= @profile.last_name %></span>
+      </div>
+      <div class="actions">
+        <% if is_owner? %>
+          <%= link_to t('.edit-profile'), edit_profile_path(@profile.login),
+            class: 'btn btn-primary btn-block' %>
+          <%= link_to t('.security'), '#', class: 'btn btn-primary btn-block' %>
+        <% end %>
+        <%= link_to "#{icon('chevron-left', white: true)}#{t("back")}".html_safe, :back, class: "btn btn-block" %>
+      </div>
+    </div>
+    <div class="span9">
+      <div class="heading"><%= t('.login_history') %></div>
+      <table class='table table-striped'>
+        <thead>
+          <tr>
+            <th><%= t(".login_ip") %></th>
+            <th><%= t(".browser") %></th>
+            <th><%= t(".platform") %></th>
+            <th><%= t(".date") %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @history.each do |history| %>
+            <tr>
+              <td><%= history.login_ip %></td>
+              <td><%= history.browser %></td>
+              <td><%= history.platform %></td>
+              <td><%= l(history.created_at, :format => :short) %></td>
+              <td></td>
+            <tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
