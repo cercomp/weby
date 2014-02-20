@@ -3,8 +3,8 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper # Para usar helper methods nos controllers
 
   protect_from_forgery
-  before_filter :set_tld_length
-  before_filter :set_contrast, :set_locale, :set_global_vars, :set_view_types
+  before_filter :set_tld_length, :set_global_vars
+  before_filter :set_contrast, :set_locale, :set_view_types
   before_filter :maintenance_mode
   before_filter :require_user, only: [:admin]
   after_filter :weby_clear, :count_view
