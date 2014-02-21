@@ -7,7 +7,7 @@
 <%= form.input :phone, :input_html => {:size => 20, :maxlength => 20} %>
 <%= form.input :mobile, :input_html => {:size => 20, :maxlength => 20}, :as => :tel %>
 <%= form.input :locale_id,
-    :as => :radio, :hint => t(".locale_hint"),
+    :as => :radio_buttons, :hint => t(".locale_hint"),
     :collection => admin_locales.map{|l| [image_tag("flags/24/#{l.flag}", :title=>t(l.name)), l.id] } %>
 <div class="form-actions">
   <%= form.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>

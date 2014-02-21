@@ -1,7 +1,6 @@
 #TODO keep this file updated
 inputs = %w[
   CollectionSelectInput
-  DateTimeInput
   FileInput
   GroupedCollectionSelectInput
   NumericInput
@@ -27,60 +26,36 @@ end
 SimpleForm.setup do |config|
   config.boolean_style = :nested
  
-  config.wrappers :prepend, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
-    b.use :html5
-    b.use :placeholder
-    b.wrapper tag: 'div', class: 'controls' do |input|
-      input.wrapper tag: 'div', class: 'input-group' do |prepend|
-    prepend.use :label , class: 'input-group-addon' ###Please note setting class here fro the label does not currently work (let me know if you know a workaround as this is the final hurdle)
-        prepend.use :input
-      end
-      input.use :hint,  wrap_with: { tag: 'span', class: 'help-block' }
-      input.use :error, wrap_with: { tag: 'span', class: 'help-block has-error' }
-    end
-  end
- 
   config.wrappers :append, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
     b.use :html5
     b.use :placeholder
-    b.wrapper tag: 'div', class: 'controls' do |input|
-      input.wrapper tag: 'div', class: 'input-group' do |prepend|
-        prepend.use :input
-    prepend.use :label , class: 'input-group-addon' ###Please note setting class here fro the label does not currently work (let me know if you know a workaround as this is the final hurdle)
-      end
-      input.use :hint,  wrap_with: { tag: 'span', class: 'help-block' }
-      input.use :error, wrap_with: { tag: 'span', class: 'help-block has-error' }
+    b.use :label,  class: 'col-md-2 control-label'
+    b.wrapper tag: 'div', class: ' col-md-7' do |append|
+      append.use :input, wrap_with: { tag: 'div', class: 'input-group' }
     end
+    b.use :hint,  wrap_with: { tag: 'span', class: 'help-block' }
+    b.use :error, wrap_with: { tag: 'span', class: 'help-block has-error' }
   end
 
   config.wrappers :checkbox, tag: :div, class: "checkbox", error_class: "has-error" do |b|
-
-    # Form extensions
     b.use :html5
-
-    # Form components
     b.wrapper tag: :label do |ba|
       ba.use :input
       ba.use :label_text, wrap_with: { class: 'col-md-12' }
     end
-
     b.use :hint,  wrap_with: { tag: :p, class: " help-block" }
     b.use :error, wrap_with: { tag: :span, class: "help-block text-danger" }
   end
 
 	config.wrappers :devise_sessions, tag: 'div', class: 'form-group', error_class: 'has-error',
                   defaults: { input_html: { class: 'form-group default_class' } } do |b|
-
     b.use :html5
     b.use :min_max
     b.use :maxlength
     b.use :placeholder
-
     b.optional :pattern
     b.optional :readonly
-
     b.use :label,  class: 'control-label'
-
     b.wrapper tag: 'div', class: 'col-md-12' do |input_block|
       input_block.use :input
       input_block.use :hint,  wrap_with: { tag: 'span', class: 'help-block' }
@@ -88,19 +63,15 @@ SimpleForm.setup do |config|
     b.use :error, wrap_with: { tag: 'span', class: 'help-block has-error' }
   end
 
-	 config.wrappers :bootstrap3, tag: 'div', class: 'form-group', error_class: 'has-error',
+  config.wrappers :bootstrap3, tag: 'div', class: 'form-group', error_class: 'has-error',
                   defaults: { input_html: { class: 'form-group default_class' } } do |b|
-
     b.use :html5
     b.use :min_max
     b.use :maxlength
     b.use :placeholder
-
     b.optional :pattern
     b.optional :readonly
-
     b.use :label,  class: 'col-md-2 control-label'
-
     b.wrapper tag: 'div', class: 'col-md-7' do |input_block|
       input_block.use :input
       input_block.use :hint,  wrap_with: { tag: 'span', class: 'help-block' }

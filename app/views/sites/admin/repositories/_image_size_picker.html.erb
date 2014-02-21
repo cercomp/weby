@@ -9,6 +9,6 @@
       collection: styles,
       label_method: lambda { |u| "<div class=\"outer\"><label>#{u[1]}</label>#{u[0] ? "<div class=\"box #{u[0]}\"></div>" : "<div class=\"custom-size\">#{f.input :width, :as => :integer}#{f.input :height, :as => :integer}</div>"}</div>".html_safe },
       value_method: lambda { |u| "#{u[0]}" },
-      as: :radio%>
+      as: :radio_buttons %>
   <% end %>
 </div>

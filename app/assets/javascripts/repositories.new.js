@@ -105,7 +105,7 @@ $(function () {
           }else{
             var $repoItem = data.context;
 
-            $repoItem.find('.status').html('<span class="label label-success">'+data.result.message+'</span>&nbsp;<a href="'+data.result.url+'"><i class="icon-eye-open"></i></a>');
+            $repoItem.find('.status').html('<span class="label label-success">'+data.result.message+'</span>&nbsp;<a href="'+data.result.url+'"><span class="glyphicon glyphicon-eye-open"></span></a>');
             $repoItem.removeClass('repo-item');
             $repoItem.find('#repository_description').prop('disabled', true);
             $repoItem.find('img.preview').wrap($('<a href="'+data.result.repositories.repository.archive_url+'" target="_blank"></a>'));

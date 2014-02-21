@@ -23,8 +23,8 @@
               <%= image_tag 'weby-logo-60.png' %>
             <% end %>
           </div>
-          <% if current_site %>
-            <div class="col-md-6 site">
+          <div class="col-md-6 site">
+            <% if current_site %>
               <div class="avatar pull-left">
                 <%= site_avatar_tag %>
               </div>
@@ -36,19 +36,19 @@
                   <%= link_to t(".show-site"), main_app.site_url(subdomain: current_site) %>
                 </div>
               </div>
-            </div>
-          <% end %>
-          <div class="col-md-4 <%= current_site ? "" : "col-md-offset-5" %> person">
+            <% end %>
+          </div>
+          <div class="col-md-4 person">
             <div class="pull-right">
               <div class="info name">
                 <%= link_to current_user, main_app.profile_url(current_user.login, subdomain: current_site) %>
               </div>
               <div class="info actions">
-                <%= link_to main_app.site_admin_url(subdomain: nil) do %>
-                  <%= content_tag(:span, icon('cog', white: true), class: "label label-default") %>
+                <%= link_to main_app.site_admin_url(subdomain: nil), class: "label label-default" do %>
+                  <%= icon('cog', white: true) %>
                 <% end if current_user.is_admin? %>
                 <%= notifications_icon %>
-                <%= link_to icon('off', white: true), main_app.logout_path(back_url: main_app.site_path), method: :delete, class: 'label label-important', title: t('.logout') %>
+                <%= link_to icon('off', white: true), main_app.logout_path(back_url: main_app.site_path), method: :delete, class: 'label label-danger', title: t('.logout') %>
               </div>
             </div>
             <div class="avatar pull-right">

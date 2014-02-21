@@ -22,7 +22,7 @@
     </thead>
     <tbody>
       <% @users.each do |user| %>
-        <tr>
+        <tr<%= ' class="deactivated"'.html_safe unless user.confirmed_at %>>
           <td><%= link_to "#{user.fullname} (#{user.login})", admin_user_path(user) %></td>
           <td><%=h user.email %></td>
           <td align="center"><%= raw toggle_field(user, 'confirmed_at') %></td>

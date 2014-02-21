@@ -22,10 +22,14 @@
         as: :text,
         wrapper_html: { class: 'nostyle' },
         input_html: {class: 'style-editor', id: 'code' } %>
-
-      <%= link_to icon('question-sign', text:t(".help_with_style")),
-        (current_settings.help_site || "/help"),
-        target: "_blank"%>
+      
+      <div class="form-group">
+        <div class="col-md-7 col-md-offset-2">
+          <%= link_to icon('question-sign', text:t(".help_with_style")),
+            (current_settings.help_site || "/help"),
+            target: "_blank"%>
+        </div>
+      </div>
     </div>
     <% content_for :stylesheets, stylesheet_link_tag("codeMirror/codemirror") %>
     <% content_for :javascripts, javascript_include_tag("init/codemirror") %>

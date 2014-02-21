@@ -89,10 +89,10 @@ module ApplicationHelper
     "".tap do |messages|
       [:info, :warning, :error, :success, :notice, :alert].each do |type|
         if flash[type]
-          css = :success if type == :notice 
-          css = :error   if type == :alert 
-
-          messages << content_tag('div', :class => "alert alert-#{css}") do
+          type = :success if type == :notice
+          type = :error   if type == :alert
+          
+          messages << content_tag('div', :class => "alert alert-#{type}") do
             raw %{
               #{link_to(raw('&times;'), '#', class: 'close', data: {dismiss: "alert"})}
               #{flash.now[type]}
