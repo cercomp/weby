@@ -11,6 +11,10 @@
 
 body { background: #F5F5F5; }
 
+img{
+  max-width: 100%;
+}
+
 #header
 {
   padding-top: 25px;
@@ -226,10 +230,6 @@ body.modal-open {
 
 input[type="checkbox"].toggle { margin-top: 0; }
 
-.breadcrumbs {
-  margin-left: 300px;
-}
-
 //Menus inside Tables
 .table-menu{
   margin-left: 2px;
@@ -259,6 +259,9 @@ input[type="checkbox"].toggle { margin-top: 0; }
   background-color: #f5f5f5;
   border-top: 1px solid #e5e5e5;
   padding-left: 137px;
+}
+.form-group {
+  margin-top: 20px;
 }
 
   //Paginator

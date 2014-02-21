@@ -4,12 +4,12 @@
   </div>
 <% else %>
   <h3><%= t('.my-sites') %></h3>
-  <ul id="sites" class="thumbnails">
+  <div id="sites" class="thumbnails">
     <% @my_sites.each do |site| %>
-      <li class="col-md-4">
+      <div class="col-md-4">
         <%= render partial: 'site', locals: {site: site} %>
         <%= link_to icon('briefcase', text: t(".dashboard"), white: true), site_admin_url(subdomain: site), class: 'btn btn-default btn-block buffer-top' if current_user %>
-      </li>
+      </div>
     <% end %>
-  </ul>
+  </div>
 <% end %>

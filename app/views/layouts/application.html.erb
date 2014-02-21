@@ -18,13 +18,13 @@
     <div class="zone">
       <div id="header" class="container">
         <div class="row">
-          <div class="col-md-3">
+          <div class="col-md-2">
             <%= link_to main_app.root_url(subdomain: nil) do %>
               <%= image_tag 'weby-logo-60.png' %>
             <% end %>
           </div>
           <% if current_site %>
-            <div class="col-md-5 site">
+            <div class="col-md-6 site">
               <div class="avatar pull-left">
                 <%= site_avatar_tag %>
               </div>
@@ -59,7 +59,7 @@
             <div class="clearfix"></div>
           </div>
         </div>
-        <%= breadcrumbs separator: " &rsaquo; " %>
+        <div class="col-md-10 col-md-ofsset-2 pull-right"><%= breadcrumbs separator: " &rsaquo; " %></div>
       </div>
     </div>
 

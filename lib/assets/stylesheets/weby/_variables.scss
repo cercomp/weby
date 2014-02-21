@@ -97,7 +97,7 @@ $table-border-color:         #ddd !default; // table and cell border
 //$btnBackgroundHighlight:            darken($white, 10%) !default;
 //$btnBackgroundHighlight:            lighten(//$linkColor, 15%) !default;
 $btn-default-bg:                      $link-color !default;
-$btn-default-border:                  #ccc !default;
+$btn-default-border:                  $link-color !default;
 $btn-default-color:                   $white;
 
 // NOTE: changed to weby
