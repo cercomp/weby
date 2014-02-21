@@ -218,7 +218,6 @@
       height: 100px;
       .title
       {
-        padding-top: 10px;
         font-size: 18px;
         overflow: hidden;
         height: 20px;
@@ -242,6 +241,7 @@
         line-height: 15px;
         overflow: hidden;
         height: 30px;
+        p { margin: 0; }
       }
     }
   }

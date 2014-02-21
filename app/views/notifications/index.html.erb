@@ -15,16 +15,21 @@
     <div class="col-md-9">
       <div class="heading buffer-bottom"><%= t('.notifications') %></div>
       <div id="notifications">
-        <div class="pull-left">
-          <%= form_tag notifications_path, method: 'get', autocapitalize: "off", class: 'search pull-right' do %>
-            <%= content_tag :div, class: 'input-append' do %>
-              <%= search_field_tag :search, params[:search], class: 'input-search' %><%= submit_tag t("search"), class: 'btn btn-info' %>
+        <div class="row">
+          <div class="col-md-5">
+            <%= form_tag notifications_path, method: 'get', autocapitalize: "off", class: 'search' do %>
+              <%= content_tag :div, class: 'input-group' do %>
+                <%= search_field_tag :search, params[:search], class: 'form-control' %>
+                <span class="input-group-btn">
+                  <%= submit_tag t("search"), class: 'btn btn-info' %>
+                </span>
+              <% end %>
             <% end %>
-          <% end %>
-        </div>
+          </div>
 
-        <div class="pull-right">
-          <%= link_to t(".mark_all_notifications_as_read"), mark_as_read_notifications_path, method: :post, class: "btn btn-primary" if current_user.unread_notifications_array.any? %>
+            <div class="col-md-5 pull-right">
+            <%= link_to t(".mark_all_notifications_as_read"), mark_as_read_notifications_path, method: :post, class: "btn btn-primary" if current_user.unread_notifications_array.any? %>
+          </div>
         </div>
 
         <div class="clearfix"></div>

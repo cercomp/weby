@@ -12,7 +12,7 @@
         <b><%= t(".gravatar-important") %></b>
       </div>
       <div class="actions">
-        <%= f.button :submit, class: 'btn-primary btn-block', disable_with: t("please_wait") %>
+        <%= f.button :submit, class: 'btn btn-primary btn-block', disable_with: t("please_wait") %>
         <%= link_to "#{icon('chevron-left', white: true)}#{t("back")}".html_safe, profile_path(@profile.login), class: "btn btn-default btn-block" %>
       </div>
     </div>
