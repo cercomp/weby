@@ -16,7 +16,7 @@
   </thead>
   <tbody>
     <% @banners.each do |banner| %>
-      <tr>
+      <tr<%= ' class="deactivated"'.html_safe unless banner.publish %>>
         <td> <%= weby_file_view(banner.repository, :thumb, "64", "64", {target: '_blank', title: banner.text}, true) %></td>
         <%# Se for pra mostrar inicio e fim, assim é como se mostra a data de fim: print_date_end(banner.date_end_at) %> 
         <td><%= link_to(banner.title, site_admin_banner_path(banner)) %></td>

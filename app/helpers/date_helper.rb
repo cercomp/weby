@@ -18,7 +18,7 @@ module DateHelper
   def publication_status_page(page, options={})
     "".tap do |html|
       html << toggle_field(page, "publish", 'toggle', options)
-      html << "<span class=\"label label-warning\" title=\"#{t("scheduled", date: l(page.date_begin_at, format: :short))}\">!</span>" if page.date_begin_at and Time.now < page.date_begin_at and page.publish
+      html << "<span class=\"label label-warning publish-warning\" title=\"#{t("scheduled", date: l(page.date_begin_at, format: :short))}\">!</span>" if page.date_begin_at and Time.now < page.date_begin_at and page.publish
     end.html_safe
   end
   private :publication_status_page
@@ -28,9 +28,9 @@ module DateHelper
       html << toggle_field(banner, "publish", 'toggle', options)
       if banner.publish
         if banner.date_begin_at and Time.now < banner.date_begin_at
-          html << "<span class=\"label label-warning\" title=\"#{t("scheduled", date: l(banner.date_begin_at, format: :short))}\">!</span>"
+          html << "<span class=\"label label-warning publish-warning\" title=\"#{t("scheduled", date: l(banner.date_begin_at, format: :short))}\">!</span>"
         elsif banner.date_end_at and banner.date_end_at <= Time.now
-          html << "<span class=\"label label-important\" title=\"#{t("expired")}\">!</span>"
+          html << "<span class=\"label label-important publish-warning\" title=\"#{t("expired")}\">!</span>"
         end
       end
     end.html_safe
@@ -40,7 +40,7 @@ module DateHelper
   def front_status(page, options={})
     "".tap do |html|
       html << toggle_field(page, "front", 'toggle', options)
-      html << "<span class=\"label label-important\" title=\"#{t("expired")}\">!</span>" if page.date_end_at and page.front and page.date_end_at <= Time.now
+      html << "<span class=\"label label-important publish-warning\" title=\"#{t("expired")}\">!</span>" if page.date_end_at and page.front and page.date_end_at <= Time.now
     end.html_safe
   end
 
