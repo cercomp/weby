@@ -261,6 +261,11 @@ input[type="checkbox"].toggle { margin-top: 0; }
   padding-left: 137px;
 }
 
+  //Paginator
+.pagination > li {
+  float: left;
+}
+
 //checkboxes
 .well .nav .checkbox {
   font-weight: normal;

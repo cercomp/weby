@@ -4,8 +4,10 @@
   </div>
 <% else %>
 
-  <div class="pull-left"> <%= info_page @activity_records %> </div>
-  <div class="pull-right"> <%= paginate @activity_records, remote: true %> </div>
+  <div class="row">
+    <div class="col-md-5"> <%= info_page @activity_records %> </div>
+    <div class="col-md-5 pull-right"> <%= paginate @activity_records, remote: true %> </div>
+  </div>
   <div class="clearfix"></div>
 
   <table class='table table-striped'>

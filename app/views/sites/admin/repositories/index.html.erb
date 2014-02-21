@@ -14,7 +14,7 @@
 </div>
 <div class="col-md-9">
   <%= form_tag site_admin_repositories_path, method: 'get', autocapitalize: "off", class: 'search' do %>
-    <div class="col-md-5">
+    <div class="col-md-6">
       <%= content_tag :div, class: 'input-group' do %>
         <%= search_field_tag :search, params[:search], class: 'form-control' %>
         <span class="input-group-btn">
@@ -22,15 +22,16 @@
         </span>
       <% end %>
     </div>
-    <%= select_tag "mime_type[]",
-      grouped_options_for_select(load_mime_types(current_site), params[:mime_type]),
-      include_blank: false,
-      style: 'vertical-align: top;',
-      class: 'select2 search-filter form-control',
-      multiple: true %>
+    <div class="col-md-5">
+      <%= select_tag "mime_type[]",
+          grouped_options_for_select(load_mime_types(current_site), params[:mime_type]),
+          include_blank: false,
+          style: 'vertical-align: top;',
+          class: 'select2 search-filter form-control',
+          multiple: true %>
+    </div>
   <% end %>
 </div>
-<div class="clearfix"></div>
 
 <% if @repositories.empty? %>
   <div class="alert alert-warning">
