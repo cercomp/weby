@@ -86,6 +86,6 @@ window.onload=function(){
   });
 }
 <% end %>
-<%= content_for :javascripts, javascript_include_tag("jquery-ui.min") %>
-<%= content_for :stylesheets, stylesheet_link_tag("sortable") %>
-<%= content_for :stylesheets, stylesheet_link_tag("layouts/shared/maxi_layout") %>
+<% content_for :javascripts, javascript_include_tag("init/sortable") %>
+<% content_for :stylesheets, stylesheet_link_tag("sortable") %>
+<% content_for :stylesheets, stylesheet_link_tag("maxi_layout") %>

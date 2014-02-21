@@ -25,7 +25,7 @@
           remote: true do %>
           <%= content_tag :div, class: 'input-append' do %>
             <%= search_field_tag :search, params[:search] %>
-            <%= submit_tag t("search"), class: 'btn btn-info' %>
+            <%= submit_tag t("search"), class: 'btn btn-info btn-search-files' %>
           <% end %>
           <%= select_tag "mime_type[]",
               grouped_options_for_select(load_mime_types(current_site), params[:mime_type]),

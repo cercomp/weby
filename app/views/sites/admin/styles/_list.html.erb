@@ -1,11 +1,11 @@
 <% unless styles.empty? %>
   <div class="styles">
-    <table class="table" id="style_list">
+    <table class="table table-striped" id="style_list">
       <thead>
-        <th> <%= t('.name') %> </th>
-        <th> <%= "#{t('.site')}/#{t('.followers')}" %> </th>
-        <th> <%= t('.updated_at') %> </th>
-        <th style="text-align: center;"> <%= t('.publish') %> </th>
+        <th width="20%"> <%= t('.name') %> </th>
+        <th width="30%"> <%= "#{t('.site')}/#{t('.followers')}" %> </th>
+        <th width="15%"> <%= t('.updated_at') %> </th>
+        <th width="5%" style="text-align: center;"> <%= t('.publish') %> </th>
         <th> <%= t('.actions') %> </th>
       </thead>
       <tbody>
@@ -35,6 +35,3 @@
     <%= t('.no_styles') %>
   </div>
 <% end %>
-
-<%= content_for :javascripts, javascript_include_tag("jquery-ui.min") %>
-<%= content_for :stylesheets, stylesheet_link_tag("sortable") %>

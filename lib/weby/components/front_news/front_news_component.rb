@@ -13,7 +13,7 @@ class FrontNewsComponent < Component
 
   def pages(site, page_param)
     direction = 'desc'
-    site.pages.includes(:author, :image).front.available.send(
+    site.pages.includes(:author, :image).available_fronts.send(
       case type_filter
       when 'events'
         if order_by == 'event_begin'

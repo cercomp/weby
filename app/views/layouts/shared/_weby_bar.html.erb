@@ -1,6 +1,4 @@
 <% if current_user %>
-  <% content_for :javascripts, javascript_include_tag('jquery.lightbox_me') %>
-  <% content_for :javascripts, javascript_include_tag('about') %>
   <div id="weby_bar">
     <%= link_to main_app.root_url(subdomain: nil), class: 'pull-left logo' do %>
       <%= image_tag 'weby-navbar.png' %>

@@ -30,7 +30,7 @@
   </div>
 <% else %>
 
-  <table  class="table table-striped table-condensed" id="list">
+  <table  class="table table-striped" id="list">
     <thead>
       <th><%= t(".title") %></th>
       <th><%= t(".author") %></th>
@@ -66,68 +66,66 @@
       <% end %>
     </tbody>
   </table>
-
+<% end %>
+<% content_for :javascripts do %>
   <%= javascript_tag do %>
-    window.onload=function(){
-      $(document).ready(function() {
-        $('#list').sortable({
-          axis: 'y',
-          dropOnEmpty:false,
-          handle: '.handle',
-          items: 'tbody > tr',
-          opacity: 0.7,
-          scroll: true,
-          forcePlaceholderSize: true,
-          placeholder: 'drop-here',
-          tolerance: 'pointer',
-          start: function (event, ui){
-            ui.placeholder.html('<td colspan="'+ui.helper.find('td').length+'">&nbsp;</td>');
-          },
-          update: function(ev, ui){
-            id_moved = ui.item.attr('id').replace('sort_page_','');
-            id_after = ui.item.next().attr('id') ? ui.item.next().attr('id').replace('sort_page_','') : 0;
-            id_before = ui.item.prev().attr('id') ? ui.item.prev().attr('id').replace('sort_page_','') : 0;
-            //alert(id_moved+' between '+id_before+' and '+id_after);
-            $.ajax({
-              type: 'post',
-              data: {'id_moved':id_moved,'id_after':id_after,'id_before':id_before},
-              dataType: 'script',
-              complete: function(request){ ui.item.effect('pulsate', {times: 1}, 350); },
-              error: function(){$('#list').sortable('cancel');},
-              url: '<%= sort_site_admin_pages_path %>'
-            });
-          }
-        });
+    $(document).ready(function() {
+      $('#list').sortable({
+        axis: 'y',
+        dropOnEmpty:false,
+        handle: '.handle',
+        items: 'tbody > tr',
+        opacity: 0.7,
+        scroll: true,
+        forcePlaceholderSize: true,
+        placeholder: 'drop-here',
+        tolerance: 'pointer',
+        start: function (event, ui){
+          ui.placeholder.html('<td colspan="'+ui.helper.find('td').length+'">&nbsp;</td>');
+        },
+        update: function(ev, ui){
+          id_moved = ui.item.attr('id').replace('sort_page_','');
+          id_after = ui.item.next().attr('id') ? ui.item.next().attr('id').replace('sort_page_','') : 0;
+          id_before = ui.item.prev().attr('id') ? ui.item.prev().attr('id').replace('sort_page_','') : 0;
+          //alert(id_moved+' between '+id_before+' and '+id_after);
+          $.ajax({
+            type: 'post',
+            data: {'id_moved':id_moved,'id_after':id_after,'id_before':id_before},
+            dataType: 'script',
+            complete: function(request){ ui.item.effect('pulsate', {times: 1}, 350); },
+            error: function(){$('#list').sortable('cancel');},
+            url: '<%= sort_site_admin_pages_path %>'
+          });
+        }
+      });
 
-        $('.select2').select2({
-           placeholder: "Filtrar por categoria",
-           width: 'resolve'
-        });
+      $('.select2').select2({
+         placeholder: "Filtrar por categoria",
+         width: 'resolve'
+      });
 
-        var applyFilter = function(){
-          var onlyEvents = $('#filter-events'),
-              categories = $('#filter-category');
+      var applyFilter = function(){
+        var onlyEvents = $('#filter-events'),
+            categories = $('#filter-category');
 
-          $('.sort_page').hide();
+        $('.sort_page').hide();
 
-          if(categories.val()){
-            $(categories.val()).each(function(idx, category){
-              $('.sort_page.'+category).show();
-            });
-          }else{
-            $('.sort_page').show();
-          }
-
-          if(onlyEvents.is(':checked')){
-            $('.sort_page.news').hide();
-          }
+        if(categories.val()){
+          $(categories.val()).each(function(idx, category){
+            $('.sort_page.'+category).show();
+          });
+        }else{
+          $('.sort_page').show();
         }
 
-        $('#filter-events, #filter-category').change(applyFilter);
-      });
-    }
-  <% end %>
-  <%= content_for :javascripts, javascript_include_tag("jquery-ui.min") %>
-  <%= content_for :stylesheets, stylesheet_link_tag("sortable") %>
+        if(onlyEvents.is(':checked')){
+          $('.sort_page.news').hide();
+        }
+      }
 
+      $('#filter-events, #filter-category').change(applyFilter);
+    });
+  <% end %>
 <% end %>
+<% content_for :javascripts, javascript_include_tag("init/sortable") %>
+<% content_for :stylesheets, stylesheet_link_tag("sortable") %>

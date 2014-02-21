@@ -16,7 +16,7 @@
   <%= link_to icon('list', text: t("list_all")), site_admin_repositories_path() %>
   <%= link_to icon('chevron-left', text:t("back")), :back %>
 </div>
-
+<% content_for :javascripts, javascript_include_tag('zeroclipboard') %>
 <% content_for :javascripts do %>
   <script>
     $(document).ready(function() {
@@ -27,3 +27,4 @@
     });
  </script>
 <% end %>
+

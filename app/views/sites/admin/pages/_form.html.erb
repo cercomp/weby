@@ -14,18 +14,16 @@
     <%= f.input :url, wrapper_html: {class: 'side'}, placeholder: "http://site.com" %>
   </div>
 
-  <div class="clearfix">
-    <%= f.input :date_begin_at, label: t(".period_page") do %>
-      <%= f.input_field :date_begin_at, placeholder: t("begin"), label: false %>
-      <%= f.input_field :date_end_at, placeholder: t("publication_infinite"), label: false %>
-    <% end %>
-  </div>
-
   <%= f.input :category_list, :hint => t(".page_categories_help"), input_html: {class: 'input-xlarge', data: {tags: Page.uniq_category_counts.map{|t| t.name }}} %>
 
   <div class="clearfix">
     <%= f.input :publish , wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" } %>
+    <%= f.input :date_begin_at, :hint => t(".date_begin_hint") %>
+    </div>
+
+  <div class="clearfix">
     <%= f.input :front , wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" } %>
+    <%= f.input :date_end_at, :hint => t(".date_end_hint") %>
   </div>
 
   <div class = "controls">
@@ -40,6 +38,5 @@
   </div>
 <% end %>
 
-<%= content_for :stylesheets, stylesheet_link_tag("jquery-ui") %>
-<%= content_for :stylesheets, stylesheet_link_tag("jquery-ui-timepicker-addon") %>
-<%= content_for :javascripts, javascript_include_tag("pages.form") %>
+<% content_for :javascripts, javascript_include_tag("pages.form") %>
+<% content_for :stylesheets, stylesheet_link_tag("datetime") %>

@@ -6,7 +6,7 @@
     "banner[repository_id]", @banner.repository,
     multiple: false, file_types: 'image' %>
 
-<%= image_size_picker f %>
+  <%= image_size_picker f %>
 
   <%= f.input :title, 
     placeholder: t(".title"),
@@ -16,10 +16,8 @@
     input_html: {:size => "70x5"},
     as: :text %>
 
-  <%= f.input :date_begin_at, label: t(".period_banner"), :wrapper => :append do %>
-     <%= f.input_field :date_begin_at, placeholder: t(".begin"), label: false %>
-     <%= f.input_field :date_end_at, placeholder: t(".publication_infinite"), label: false %>
-  <% end %>
+  <% # URL Input %>
+  <%=  target_dialog_input(f, :page) %>
 
   <%= f.input t(".category"), wrapper: :append do %>
     <%= f.select :category_list,
@@ -29,9 +27,6 @@
 
   <%= f.input :position, hint: t(".lower_numbers_come_first") %>
 
-  <% # URL Input %>
-  <%=  target_dialog_input(f, :page) %>
-
   <div class='input'>
     <%= f.input :publish, 
       wrapper_html: { class: "side" },
@@ -39,15 +34,17 @@
     <div class="clear"></div>
   </div>
 
-    <div class='input'>
-        <%= f.input :new_tab,
-          wrapper_html: { class: "side" },
-          as: :boolean, input_html: { class: "check-button" } %>
+  <%= f.input :date_begin_at, label: t(".period_banner"), :wrapper => :append do %>
+     <%= f.input_field :date_begin_at, placeholder: t(".begin"), label: false %>
+     <%= f.input_field :date_end_at, placeholder: t(".publication_infinite"), label: false %>
+  <% end %>
 
-        <div class="clear"></div>
-      </div>
-
-  <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
+  <div class='input'>
+    <%= f.input :new_tab,
+      wrapper_html: { class: "side" },
+      as: :boolean, input_html: { class: "check-button" } %>
+    <div class="clear"></div>
+  </div>
 
   <div class="form-actions">
     <%= f.button :submit, class: 'btn-primary', disable_with: t("please_wait") %>
@@ -55,6 +52,5 @@
   </div>
 <% end %>
 
-<%= content_for :stylesheets, stylesheet_link_tag("jquery-ui") %>
-<%= content_for :stylesheets, stylesheet_link_tag("jquery-ui-timepicker-addon") %>
-<%= content_for :javascripts, javascript_include_tag("banners") %>
+<% content_for :javascripts, javascript_include_tag("init/datetime") %>
+<% content_for :stylesheets, stylesheet_link_tag("datetime") %>

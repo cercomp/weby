@@ -109,6 +109,7 @@ pt-BR:
 #---S---#
   save:                                 " Salvar "
   search:                               " Buscar "
+  scheduled:                            " Agendado para %{date} "
   show:                                 " Mostrar "
   site_need_at_least_one_locale:        " Necessita de pelo menos um idioma "
   submit:                               " Enviar "

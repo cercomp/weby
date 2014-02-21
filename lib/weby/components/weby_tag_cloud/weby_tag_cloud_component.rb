@@ -4,7 +4,7 @@ class WebyTagCloudComponent < Component
   validates :speed, :numericality => {:greater_than => 0}
 
   def tags(site)
-    site.pages.published.uniq_category_counts.map { |tag| tag.name }
+    site.pages.available.uniq_category_counts.map { |tag| tag.name }
   end
 
   def tag_size(tag,site)

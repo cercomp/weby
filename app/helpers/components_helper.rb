@@ -1,7 +1,7 @@
 module ComponentsHelper
   #retorna as divs do mini layout ---  menu de adicionar componente
   def make_mini_layout
-    content_for :stylesheets, stylesheet_link_tag("layouts/shared/mini_layout")
+    content_for :stylesheets, stylesheet_link_tag("mini_layout")
     config = Weby::Themes.layout current_site.theme
     divs = "<div id='mini_layout' style='width: #{config["width"] || 500}px'>"  
 

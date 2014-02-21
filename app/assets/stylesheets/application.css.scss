@@ -138,6 +138,14 @@ table.nowrap td > div
   white-space: nowrap;
 }
 
+table td p{
+  margin: 0;
+}
+
+.publish-warning{
+  position: absolute;
+}
+
 body.modal-open {
     overflow: hidden;
 }
@@ -200,7 +208,7 @@ body.modal-open {
 }
 
 // used to mark object as published/unpublished
-.deactivated{
+.deactivated, .deactivated > td{
   background-color: #F2DEDE !important;
 }
 .activated{

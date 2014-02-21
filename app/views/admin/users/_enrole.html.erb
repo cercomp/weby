@@ -56,5 +56,5 @@
     <%= link_to t("back"), :back, class: "btn" %>
   </div>
 </form>
+<% content_for :javascripts, javascript_include_tag('users.enrole') %>
 <% end %>
-<% content_for :javascripts, javascript_include_tag('user_enrole') %>
