@@ -35,16 +35,17 @@ class Page < ActiveRecord::Base
   end
 
   def self.import attrs, options={}
-    return attrs.each{|attr| self.import attr } if attrs.is_a? Array
+    return attrs.each{|attr| self.import attr, options } if attrs.is_a? Array
 
     attrs = attrs.dup
     attrs = attrs['page'] if attrs.has_key? 'page'
 
     attrs.except!('id', 'created_at', 'updated_at', 'site_id')
 
+    attrs['author_id'] = options[:author] unless User.unscoped.find_by_id(attrs['author_id'])
     attrs['repository_id'] = ''
 
-    attrs['i18ns'] = attrs['i18ns'].map{|i18n| self::I18ns.new(i18n.except('id', 'created_at', 'updated_at', 'page_id')) }
+    attrs['i18ns'] = attrs['i18ns'].map{|i18n| self::I18ns.new(i18n.except('id', 'created_at', 'updated_at', 'page_id', 'type')) }
 
     page = self.create!(attrs)
 
