@@ -88,7 +88,6 @@ class Sites::Admin::BackupsController < ApplicationController
     current_site.styles.import(attrs['site']['styles']) if attrs['site']['styles']
 #    current_site.banners.import(attrs['site']['banners'], author: current_user.id) if attrs['site']['banners']
     current_site.extensions.import(attrs['site']['extensions']) if attrs['site']['extensions']
-    current_site.locales.import(attrs['site']['locales']) if attrs['site']['locales']
 
 #    File.open(Rails.root.join('public', "uploads/#{current_site.id}", uploaded_io.original_filename), 'wb') do |file|
 #      file.write(uploaded_io.read)
