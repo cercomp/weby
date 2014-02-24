@@ -34,6 +34,7 @@ en:
           author:               " Author "
           category:             " Category "
           type:                 " Type "
+          cover:                " Cover "
           publish:              " Publish "
           news:                 " News "
           event:                " Event "

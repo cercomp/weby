@@ -18,8 +18,8 @@
           <% with_permission(action: :edit) do %>
             <th><%= sortable 'pages.front', t(".cover") %></th>
             <th><%= sortable 'pages.publish', t(".publish") %></th>
-            <th width="50px"></th>
           <% end %>
+          <th width="50px"></th>
         </tr>
       </thead>
       <tbody>
@@ -37,8 +37,8 @@
               <%= front_status(page) %></td>
             <td class="publish" style="text-align:center;">
               <%= publication_status(page) %>
-            <td><%= make_menu(page, :except => "show", :with_text => false) %></td>
           <% end %>
+          <td><%= make_menu(page, :except => "show", :with_text => false) %></td>
         </tr>
       <% end %>
       </tbody>

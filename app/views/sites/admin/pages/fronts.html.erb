@@ -38,9 +38,10 @@
       <th><%= t(".type") %></th>
       <th><%= t(".created_at") %></th>
       <% with_permission(action: :edit) do %>
-        <th><%= sortable 'pages.publish', t(".publish") %></th>
-        <th></th>
+        <th><%= t(".cover") %></th>
+        <th><%= t(".publish") %></th>
       <% end %>
+      <th></th>
     </thead>
     <tbody>
       <% @pages.each do |page| %>
@@ -53,15 +54,17 @@
           <td><%= t(".#{page.type.downcase}") %></td>
           <td><%= l(page.created_at, :format => :short) %></td>
           <% with_permission(action: :edit) do %>
-            <td align="center" class="publish">
+            <td class="publish" style="text-align:center;">
+              <%= front_status(page) %></td>
+            <td class="publish" style="text-align:center;">
               <%= publication_status(page) %></td>
-            <td>
-              <%= make_menu(page, :except => "show") %>
-              <% with_permission(action: :sort) do %>
-                <a href='#' class='handle'><%= icon('move', text:t(".move"))%></a>
-              <% end %>
-            </td>
           <% end %>
+          <td>
+            <%= make_menu(page, :except => "show", :with_text => false) %>
+            <% with_permission(action: :sort) do %>
+              <%= link_to icon('move'), '#', class: 'handle' %>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>
