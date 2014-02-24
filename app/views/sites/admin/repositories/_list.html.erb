@@ -1,8 +1,9 @@
-<div class="col-md-12">
-  <div class="col-md-12 pull-left"><%= render 'view_picker' %></div>
-  <div class="col-md-5 pull-left"><%= info_page @repositories %></div>
-  <div class="col-md-7 pull-right"><%= paginate @repositories, :remote => true %></div>
-  <div class="clearfix"></div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="col-md-12" style="margin-top: 10px"><%= render 'view_picker' %></div>
+    <div class="col-md-5 pull-left"><%= info_page @repositories %></div>
+    <div class="col-md-4 pull-right"><%= paginate @repositories, :remote => true %></div>
+  </div>
 </div>
 
 <div class="col-md-12">
@@ -26,6 +27,7 @@
   </table>
 </div>
 
-<div class="pull-left"> <%= per_page_links @repositories, true, :xs  %> </div>
-<div class="pull-right"> <%= paginate @repositories, remote: true %> </div>
-<div class="clearfix"></div>
+<div class="row">
+  <div class="col-md-5 pull-left"> <%= per_page_links @repositories, true, :xs  %> </div>
+  <div class=" col-md-4 pull-right"> <%= paginate @repositories, remote: true %> </div>
+</div>

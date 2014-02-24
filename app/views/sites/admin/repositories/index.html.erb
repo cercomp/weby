@@ -2,36 +2,37 @@
 <% title ".archives" %>
 <% breadcrumb params[:search].present? ? :repositories_search : :repositories %>
 <div class="row">
-  <div class="col-md-8">
-    <%= form_tag site_admin_repositories_path, method: 'get', autocapitalize: "off", class: 'search' do %>
-      <div class="col-md-6">
-        <%= content_tag :div, class: 'input-group' do %>
-          <%= search_field_tag :search, params[:search], class: 'form-control' %>
-          <span class="input-group-btn">
-            <%= submit_tag t(".search"), class: 'btn btn-info' %>
-          </span>
-        <% end %>
-      </div>
-      <div class="col-md-5">
-        <%= select_tag "mime_type[]",
-            grouped_options_for_select(load_mime_types(current_site), params[:mime_type]),
-            include_blank: false,
-            style: 'vertical-align: top;',
-            class: 'select2 search-filter form-control',
-            multiple: true %>
-      </div>
-    <div class="clearfix"></div>
-    <% end %>
-  </div>
-  <div class="col-md-4 pull-right">
-    <% with_permission(action: :new) do %>
-      <%= link_to t(".new_archive"),
-        new_site_admin_repository_path,
-        class: "btn btn-success" %>
-    <% end %>
-    <% with_permission(action: [:purge, :recover]) do %>
-      <%= link_to t("recycle_bin"), recycle_bin_site_admin_repositories_path, class: "btn btn-default" %>
-    <% end %>
+  <div class="col-md-12" style="margin-left: -15px">
+    <div class="col-md-8">
+      <%= form_tag site_admin_repositories_path, method: 'get', autocapitalize: "off", class: 'search' do %>
+        <div class="col-md-6">
+          <%= content_tag :div, class: 'input-group' do %>
+            <%= search_field_tag :search, params[:search], class: 'form-control' %>
+            <span class="input-group-btn">
+              <%= submit_tag t(".search"), class: 'btn btn-info' %>
+            </span>
+          <% end %>
+        </div>
+        <div class="col-md-6">
+          <%= select_tag "mime_type[]",
+              grouped_options_for_select(load_mime_types(current_site), params[:mime_type]),
+              include_blank: false,
+              style: 'vertical-align: top;',
+              class: 'select2 search-filter form-control',
+              multiple: true %>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-4 pull-right">
+      <% with_permission(action: :new) do %>
+        <%= link_to t(".new_archive"),
+          new_site_admin_repository_path,
+          class: "btn btn-success" %>
+      <% end %>
+      <% with_permission(action: [:purge, :recover]) do %>
+        <%= link_to t("recycle_bin"), recycle_bin_site_admin_repositories_path, class: "btn btn-default" %>
+      <% end %>
+    </div>
   </div>
 </div>
 
