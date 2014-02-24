@@ -7,8 +7,8 @@ class Style < ActiveRecord::Base
   has_many :followers, through: :styles, source: :site
 
   validates :site, presence: true
-  validates :name, presence: true, unless: :style
-  validates :style_id, uniqueness: { scope: :site_id }, if: :style
+  validates :name, presence: true, unless: :style_id
+  validates :style_id, uniqueness: { scope: :site_id }, if: :style_id
 
   validate do
     if style
@@ -71,7 +71,7 @@ class Style < ActiveRecord::Base
     attrs = attrs.dup
     attrs = attrs['styles'] if attrs.has_key? 'styles'
 
-    if attrs['style_id']
+    if attrs['style_id'].present?
       follow = Style.unscoped.find(attrs['style_id'])
       if attrs['name'] == follow.name
          attrs['css'] = nil
@@ -84,6 +84,6 @@ class Style < ActiveRecord::Base
     attrs.except!('id', 'created_at', 'updated_at', 'site_id', 'type')
 
     style = self.create!(attrs)
-    
+
   end
 end

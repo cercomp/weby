@@ -6,7 +6,7 @@ class Sites::Admin::BackupsController < ApplicationController
 
   def index
     respond_to do |format|
-      format.html 
+      format.html
   end
 
   end
@@ -16,11 +16,11 @@ class Sites::Admin::BackupsController < ApplicationController
     require 'find'
     require 'fileutils'
 
-    s = current_site    
+    s = current_site
     h = {include: {}}
     h[:include][:pages] = {include: :i18ns} if params[:pages]
     h[:include][:repositories] = {}  if params[:repositories]
-    h[:include][:menus] = {include: :root_menu_items } if params[:menus]    
+    h[:include][:menus] = {include: :root_menu_items } if params[:menus]
     h[:include][:styles] = {}  if params[:styles]
     h[:include][:banners] = {}  if params[:banners]
     h[:include][:root_components] = {}  if params[:root_components]
@@ -34,7 +34,7 @@ class Sites::Admin::BackupsController < ApplicationController
 
     FileUtils.rm_r Dir.glob("#{dir}/*")
 
-    if params[:type] == "JSON"      
+    if params[:type] == "JSON"
          File.open(Rails.root.join(dir, "#{s.name}.json"), 'wb') do |file|
             file.write(s.to_json(h) do |json|
               json.messages {Feedback::Message.where(site_id: s.id).each { |message| message.to_xml(skip_instruct: true, builder: json)  }} if params[:messages]
@@ -75,7 +75,7 @@ class Sites::Admin::BackupsController < ApplicationController
     uploaded_io = params[:upload]
 
     if uploaded_io.content_type == 'text/xml'
-      attrs = Hash.from_xml(uploaded_io.read)      
+      attrs = Hash.from_xml(uploaded_io.read)
     elsif uploaded_io.content_type == 'application/json'
       attrs = JSON.parse uploaded_io.read
     end
@@ -91,9 +91,9 @@ class Sites::Admin::BackupsController < ApplicationController
 
 #    File.open(Rails.root.join('public', "uploads/#{current_site.id}", uploaded_io.original_filename), 'wb') do |file|
 #      file.write(uploaded_io.read)
-#    end  
+#    end
 
     redirect_to :back
   end
-  
+
 end
