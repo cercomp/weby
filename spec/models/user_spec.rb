@@ -137,8 +137,4 @@ describe User do
     pending "should return the user's unread notifications as an array when called unread_notifications_array" do
     end
   end
-
-  context 'Groups' do
-    it { expect(subject).to belong_to(:feedback_groups) }
-  end
 end
