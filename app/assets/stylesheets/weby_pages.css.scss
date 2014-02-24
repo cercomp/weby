@@ -154,7 +154,7 @@
         padding: 0;
         visibility: hidden;
       }
-      li:hover .date,
+      div:hover  > .date,
       .top-news:hover .date { visibility: visible; }
     }
     .footer-link

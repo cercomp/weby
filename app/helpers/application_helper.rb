@@ -333,7 +333,8 @@ module ApplicationHelper
     })
 
     unless type.nil?
-      icon_class = "glyphicon glyphicon-#{type}" + (args[:white] ? ' glyphicon-white' : '')
+      ico = is_in_admin_context? ?  "glyphicon" : "icon"
+      icon_class = "#{ico} #{ico}-#{type}" + (args[:white] ? " #{ico}-white" : "") 
 
       if args[:right]
         raw "#{args[:text]} <i class='#{icon_class}'></i>"
