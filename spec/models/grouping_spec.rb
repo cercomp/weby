@@ -1,5 +1,9 @@
 require 'spec_helper'
 
 describe Grouping do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { expect(subject).to validate_presence_of(:name) } 
+
+  context 'Sites' do
+    it { expect(subject).to belong_to(:site) }
+  end
 end
