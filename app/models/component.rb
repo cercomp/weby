@@ -27,7 +27,7 @@ class Component < ActiveRecord::Base
     attrs = attrs.dup
     attrs = attrs['component'] if attrs.has_key? 'component'
 
-    attrs.except!('id', 'created_at', 'updated_at', 'site_id')
+    attrs.except!('id', 'created_at', 'updated_at', 'site_id', 'type')
     attrs["place_holder"] = options[:place_holder] if options[:place_holder]
     components_children = attrs.delete('children')
 

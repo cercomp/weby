@@ -23,6 +23,22 @@ class Banner < ActiveRecord::Base
       self.date_begin_at = Time.now.to_s
     end
   end
+
+  def self.import attrs, options={}
+    return attrs.each{|attr| self.import attr, options } if attrs.is_a? Array
+
+    attrs = attrs.dup
+    attrs = attrs['banners'] if attrs.has_key? 'banners'
+
+    attrs.except!('id', 'created_at', 'updated_at', 'site_id', 'type')
+
+    attrs['repository_id'] = ''
+    attrs['user_id'] = options[:author] unless User.unscoped.find_by_id(attrs['user_id'])
+
+    extension = self.create!(attrs)
+
+  end
+
   private :validate_date
 
 end
