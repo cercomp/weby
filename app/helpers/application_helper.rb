@@ -333,7 +333,7 @@ module ApplicationHelper
     })
 
     unless type.nil?
-      ico = is_in_admin_context? ?  "glyphicon" : "icon"
+      ico = (is_in_admin_context? || is_in_sites_index? || is_in_profile_context?) ?  "glyphicon" : "icon"
       icon_class = "#{ico} #{ico}-#{type}" + (args[:white] ? " #{ico}-white" : "") 
 
       if args[:right]

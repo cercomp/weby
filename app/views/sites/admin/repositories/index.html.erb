@@ -2,7 +2,7 @@
 <% title ".archives" %>
 <% breadcrumb params[:search].present? ? :repositories_search : :repositories %>
 <div class="row">
-  <div class="col-md-12" style="margin-left: -15px">
+  <div class="col-md-12">
     <div class="col-md-8">
       <%= form_tag site_admin_repositories_path, method: 'get', autocapitalize: "off", class: 'search' do %>
         <div class="col-md-6">
