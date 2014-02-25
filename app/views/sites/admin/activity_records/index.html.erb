@@ -1,18 +1,17 @@
 <% title ".activity_records" %>
 <% breadcrumb :activity_records %>
 <div class="row">
-  <%= form_tag admin_activity_records_path, method: 'get', autocapitalize: "off", class: 'search' do %>
-    <div class="col-md-5">
+  <div class="col-md-5">
+    <%= form_tag admin_activity_records_path, method: 'get', autocapitalize: "off", class: 'search' do %>
       <%= content_tag :div, class: 'input-group' do %>
         <%= search_field_tag :search, params[:search], class: 'form-control' %>
         <span class="input-group-btn">
           <%= submit_tag t("search"), class: 'btn btn-info' %>
         </span>
       <% end %>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
-<div class="clearfix"></div>
 
 <div id="list">
   <%= render :partial => "list" %>

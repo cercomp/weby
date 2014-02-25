@@ -1,14 +1,15 @@
-<div class="col-md-5 pull-left">
-  <%= form_tag site_admin_styles_path, method: 'get', name: 'style_search', remote: true, class: 'search' do %>
-    <%= content_tag :div, class: 'input-group' do %>
-      <%= search_field_tag :search, params[:search], class: 'form-control' %>
-      <span class="input-group-btn">
-        <%= submit_tag t("search"), class: 'btn btn-info' %>
-      </span>
+<div class="row">
+  <div class="col-md-5">
+    <%= form_tag site_admin_styles_path, method: 'get', name: 'style_search', remote: true, class: 'search' do %>
+      <%= content_tag :div, class: 'input-group' do %>
+        <%= search_field_tag :search, params[:search], class: 'form-control' %>
+        <span class="input-group-btn">
+          <%= submit_tag t("search"), class: 'btn btn-info' %>
+        </span>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>
-<div class="clearfix"></div>
 
 <% unless styles.blank? %>
  <div class="styles" id="other_styles">

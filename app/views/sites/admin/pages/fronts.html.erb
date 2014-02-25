@@ -1,27 +1,31 @@
 <% title ".pages" %>
 <% breadcrumb :pages_fronts %>
-<div class="row">
-  <div class="col-md-5 pull-right">
-    <% with_permission(action: :new) do %>
-      <%= link_to t(".new_page"),
-        new_site_admin_page_path,
-        class: "btn btn-success" %>
-    <% end %>
-    <% with_permission(action: :index) do %>
-      <%= link_to t(".list_pages"), site_admin_pages_path, class: 'btn btn-default' %>
-    <% end %>
-    <% with_permission(action: [:recover, :purge]) do %>
-      <%= link_to t("recycle_bin"), recycle_bin_site_admin_pages_path, class: "btn btn-default" %>
-    <% end %>
-  </div>
-  <div class="col-md-5">
+<div class="row" style="margin-bottom: 15px">
+  <div class="col-md-4">
     <%= select_tag "filter-category",
       options_for_select(current_site.pages.uniq_category_counts.map{|c| [c.name, c.name.parameterize] }),
       include_blank: false,
       class: 'form-control select2 input-xlarge',
       multiple: true %>
-    &nbsp;<input type="checkbox" name="filter-events" id="filter-events"/>&nbsp;<%= t('.events_only') %>
+  </div>
+  <div class="col-md-3">
+    <input type="checkbox" name="filter-events" id="filter-events"/>&nbsp;<%= t('.events_only') %>
     <label></label>
+  </div>
+  <div class="col-md-5">
+    <div class="pull-right">
+      <% with_permission(action: :new) do %>
+        <%= link_to t(".new_page"),
+          new_site_admin_page_path,
+          class: "btn btn-success" %>
+      <% end %>
+      <% with_permission(action: :index) do %>
+        <%= link_to t(".list_pages"), site_admin_pages_path, class: 'btn btn-default' %>
+      <% end %>
+      <% with_permission(action: [:recover, :purge]) do %>
+        <%= link_to t("recycle_bin"), recycle_bin_site_admin_pages_path, class: "btn btn-default" %>
+      <% end %>
+    </div>
   </div>
 </div>
 

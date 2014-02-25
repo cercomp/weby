@@ -1,19 +1,18 @@
 <% title ".pages" %>
 <% breadcrumb params[:search].present? ? :pages_search : :pages %>
 <div class="row">
-  <div class="col-md-12" style="margin-left: -15px;">
-    <div class="col-md-5">
-      <%= form_tag site_admin_pages_path, method: 'get', autocapitalize: "off", class: 'search' do %>
-        <%= content_tag :div, class: 'input-group' do %>
-          <%= search_field_tag :search, params[:search], class: 'form-control' %>
-            <span class="input-group-btn">
-              <%= submit_tag t("search"), class: 'btn btn-info' %>
-            </span>
-          <% end %>
-      <% end %>
-    </div>
-
-    <div class="col-md-5 pull-right">
+  <div class="col-md-5">
+    <%= form_tag site_admin_pages_path, method: 'get', autocapitalize: "off", class: 'search' do %>
+      <%= content_tag :div, class: 'input-group' do %>
+        <%= search_field_tag :search, params[:search], class: 'form-control' %>
+          <span class="input-group-btn">
+            <%= submit_tag t("search"), class: 'btn btn-info' %>
+          </span>
+        <% end %>
+    <% end %>
+  </div>
+  <div class="col-md-7">
+    <div class="pull-right">
       <% with_permission(action: :new) do %>
         <%= link_to t(".new_page"),
             new_site_admin_page_path,

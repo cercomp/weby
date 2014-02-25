@@ -2,27 +2,28 @@
 <% breadcrumb :messages %>
 <div class="row">
   <div class="col-md-5">
-  <%= form_tag admin_messages_path, method: 'get', autocapitalize: "off", class: 'search' do %>
+    <%= form_tag admin_messages_path, method: 'get', autocapitalize: "off", class: 'search' do %>
       <%= content_tag :div, class: 'input-group' do %>
         <%= search_field_tag :search, params[:search], class: 'form-control' %>
         <span class="input-group-btn">
           <%= submit_tag t("search"), class: 'btn btn-info btn-search' %>
         </span>
       <% end %>
+    <% end %>
+  </div>
+  <div class=" col-md-7">
+    <div class="pull-right">
+      <% if check_permission(Feedback::Admin::GroupsController, [:new]) %>
+        <%= link_to t(".new_group"),
+          new_admin_group_path,
+          class: "btn btn-success" %>
+      <% end %>
+      <% if check_permission(Feedback::Admin::GroupsController, [:index]) %>
+        <%= link_to t(".groups"),
+          admin_groups_path,
+          class: "btn btn-default" %>
+      <% end %>
     </div>
-  <% end %>
-
-  <div class=" col-md-4 pull-right">
-    <% if check_permission(Feedback::Admin::GroupsController, [:new]) %>
-      <%= link_to t(".new_group"),
-        new_admin_group_path,
-        class: "btn btn-success" %>
-    <% end %>
-    <% if check_permission(Feedback::Admin::GroupsController, [:index]) %>
-      <%= link_to t(".groups"),
-        admin_groups_path,
-        class: "btn btn-default" %>
-    <% end %>
   </div>
 </div>
 
