@@ -16,7 +16,11 @@
 
 body { background: #FCFCFC url(sessions_bg.jpg) repeat left top; }
 .tab-content { overflow: visible; }
-.nav-pills { text-transform: uppercase; }
+
+.nav-pills { 
+  text-transform: uppercase; 
+  margin-bottom: 20px;
+}
 
 .help-nav
 {
@@ -63,7 +67,6 @@ form {
   input[type="password"],
   input[type="email"]
   {
-    width: 96%;
     margin-bottom: 5px;
   }
   .boolean-inline
@@ -86,7 +89,20 @@ form {
   }
 }
 
+body > div > div:nth-child(2) > div > div > div > div.col-md-12 > ul > li:nth-child(2) > a {
+  margin-left: 10px;
+}
+
+//checkbox
+#new_user > div.checkbox.boolean.optional.pull-left.boolean-inline > label > div {
+  padding-left: 0;
+}  
 .checkbox {
   margin-top: 0;
   padding-left: 39px;
+}
+
+// forgotten password
+#new_user > a {
+  margin-right: 15px;
 }
