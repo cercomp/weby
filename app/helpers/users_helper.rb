@@ -9,7 +9,7 @@ module UsersHelper
     end
     sites
   end
-  
+
   # Maneira de realizar um camel case do nome do usuário, assim mesmo que ele escreva
   # o nome em uppercase, será mostrado em camelcase.
   # NOTE procurei no ruby uma função para isso e não achei
@@ -21,10 +21,14 @@ module UsersHelper
     user = User.find(current_user.id)
     unread = user.unread_notifications_array
     if unread.empty?
-      link_to icon("envelope", white: true), main_app.notifications_url(subdomain: current_site), class: "label label-default", title: t('notifications.index.notifications')
+      link_to main_app.notifications_url(subdomain: current_site), class: "label label-default", title: t('notifications.index.notifications') do
+        "<span class=\"glyphicon glyphicon-envelope\"></span>".html_safe
+      end
     else
       link_to main_app.notifications_url(subdomain: current_site) do
-        content_tag(:span, "#{icon("envelope", white: true)} #{unread.size}".html_safe, class: "label label-warning", title: t('notifications.index.notifications'))
+        content_tag(:span, class: "label label-warning", title: t('notifications.index.notifications')) do
+          "<span class=\"glyphicon glyphicon-envelope\"></span> #{unread.size}".html_safe
+        end
       end
     end
   end

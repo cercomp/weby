@@ -1,10 +1,9 @@
 <% if current_user %>
-  <div id="weby_bar">
+  <div id="webybar">
     <%= link_to main_app.root_url(subdomain: nil), class: 'pull-left logo' do %>
       <%= image_tag 'weby-navbar.png' %>
     <% end %>
-    
-      
+
     <div class="nav pull-left">
       <%= link_to t(".dashboard"), main_app.site_admin_path, class: 'pull-left' if current_user.has_role_in?(current_site) %>
       <%= link_to(t(".help"), current_settings.help_site, target: '_blank', class: 'left') if current_settings.help_site %>
@@ -16,13 +15,14 @@
         class="pull-right"/>
       <% end %>
       <div class="info pull-right">
-        <%= link_to current_user.first_name, main_app.profile_url(current_user.login, subdomain: current_site), class: 'clean' %>
+        <%= link_to current_user.first_name, main_app.profile_url(current_user.login, subdomain: current_site) %>
         <br/>
-        <%= link_to main_app.site_admin_url(subdomain: nil) do %>
-          <%= content_tag(:span, icon('cog', white: true), class: "label label-default") %>
-        <% end if current_user.is_admin? %>
+        <% if current_user.is_admin? %>
+          <%= link_to '<span class="glyphicon glyphicon-cog"></span>'.html_safe, main_app.site_admin_url(subdomain: nil), class: 'label label-default' %>
+        <% end %>
         <%= notifications_icon %>
-        <%= link_to icon('off', white: true), main_app.logout_path(back_url: main_app.site_path), method: :delete, class: 'label label-important', title: t('.logout') %>
+        <%= link_to '<span class="glyphicon glyphicon-off"></span>'.html_safe, main_app.logout_path(back_url: main_app.site_path), method:
+          :delete, class: 'label label-danger', title: t('.logout') %>
       </div>
     </div>
     <div class="clearfix"></div>
