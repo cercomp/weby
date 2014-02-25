@@ -24,7 +24,7 @@
               data: {fullname: (@user and @users_unroled.include?(@user)) ? @user.fullname : ''}, class: 'form-control' %>
           </div>
           <div style="height: 300px; overflow: auto">
-            <ul  id="users_list_roles" class="nav">
+            <ul id="users_list_roles" class="nav">
               <% @users_unroled.each do |user| %>
                 <li>
                 <label class="checkbox cursor">

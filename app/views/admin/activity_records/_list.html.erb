@@ -10,6 +10,7 @@
     <thead>
       <tr>
         <th><%= t(".created_at") %></th>
+        <th><%= t(".site") %></th>
         <th><%= t(".note") %></th>
         <th></th>
       </tr>
@@ -18,6 +19,7 @@
       <% @activity_records.each do |activity_record| %>
         <tr>
           <td><%= l(activity_record.created_at, format: :short) %></td>
+          <td><%= link_to activity_record.site.name, site_url(subdomain: activity_record.site), title: activity_record.site.title, target: :_blank if activity_record.site %></td>
           <td><%= activity_record.user %> <%= t(".#{activity_record.note}") %></td>
           <td class="text-right">
             <%= link_to(icon("eye-open", text: t(".show")),
