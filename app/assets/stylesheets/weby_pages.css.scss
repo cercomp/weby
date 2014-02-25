@@ -23,8 +23,10 @@
   {
     padding-top: 14px;
     padding-bottom: 14px;
-    .avatar { margin-right: 10px; }
-    .info { line-height: 15px; }
+    .info { 
+      line-height: 15px;
+      margin: 0 10px;
+    }
     .info.name
     {
       font-weight: bold;
@@ -33,9 +35,9 @@
     .info.actions
     {
       padding-top: 1px;
-      a
+      a.label
       {
-        margin-right: 5px;
+        margin-left: 5px;
       }
     }
   }
@@ -81,7 +83,7 @@
     .thumbnail-header
     {
       padding: 5px;
-      height: 65px;
+      height: 75px;
       overflow: hidden;
       border-bottom: 1px solid #DDD;
       margin-bottom: 5px;

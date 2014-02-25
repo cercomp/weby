@@ -21,7 +21,6 @@ a:hover { text-decoration: none; }
 {
   padding-top: 25px;
   padding-bottom: 15px;
-  margin-bottom: 15px;
   font-size: 12px;
   .noperson
   {
@@ -33,15 +32,10 @@ a:hover { text-decoration: none; }
   .person,
   .site
   {
-    padding-top: 14px;
-    padding-bottom: 14px;
-    .avatar
-    {
-      margin-right: 10px;
-    }
     .info
     {
       line-height: 15px;
+      margin: 0 10px;
     }
     .info.name
     {
@@ -50,10 +44,11 @@ a:hover { text-decoration: none; }
     }
     .info.actions
     {
+      min-width: 80px;
       padding-top: 1px;
-      a
+      a.label
       {
-        margin-right: 5px;
+        margin-left: 5px;
       }
     }
   }

@@ -26,13 +26,13 @@
               <% end %>
             <% end %>
           </div>
-
-            <div class="col-md-5 pull-right">
-            <%= link_to t(".mark_all_notifications_as_read"), mark_as_read_notifications_path, method: :post, class: "btn btn-primary" if current_user.unread_notifications_array.any? %>
+          <div class="col-md-7">
+            <div class="pull-right">
+              <%= link_to t(".mark_all_notifications_as_read"), mark_as_read_notifications_path, method: :post, class: "btn btn-primary" if current_user.unread_notifications_array.any? %>
+            </div>
           </div>
         </div>
 
-        <div class="clearfix"></div>
         <div id="list">
           <%= render 'list' %>
         </div>

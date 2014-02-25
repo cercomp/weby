@@ -39,7 +39,12 @@
             <% end %>
           </div>
           <div class="col-md-4 person">
-            <div class="pull-right">
+            <div class="avatar pull-right">
+              <%= link_to main_app.profile_url(current_user.login, subdomain: current_site) do %>
+                <img src="http://www.gravatar.com/avatar/<%= Digest::MD5.hexdigest(current_user.email) %>?s=32&d=mm">
+              <% end %>
+            </div>
+            <div class="pull-right text-right">
               <div class="info name">
                 <%= link_to current_user, main_app.profile_url(current_user.login, subdomain: current_site) %>
               </div>
@@ -50,12 +55,7 @@
                 <%= notifications_icon %>
                 <%= link_to icon('off', white: true), main_app.logout_path(back_url: main_app.site_path), method: :delete, class: 'label label-danger', title: t('.logout') %>
               </div>
-            </div>
-            <div class="avatar pull-right">
-              <%= link_to main_app.profile_url(current_user.login, subdomain: current_site) do %>
-                <img src="http://www.gravatar.com/avatar/<%= Digest::MD5.hexdigest(current_user.email) %>?s=32&d=mm">
-              <% end %>
-            </div>
+            </div>       
             <div class="clearfix"></div>
           </div>
         </div>
