@@ -242,7 +242,7 @@ module ApplicationHelper
         if params[:per_page].to_i == item.to_i
           content_tag :li, :class => 'page active' do
             #link_to "#{item} ", params.merge({:per_page => item, :page => 1}), :remote => remote
-            content_tag :span, item
+            content_tag :span, "#{item} "
           end
         else
           content_tag(:li, :class => 'page') do
