@@ -29,19 +29,20 @@
             <th><%= sortable 'description', t(".description") %></th>
             <th><%= sortable 'archive_content_type', t(".type") %></th>
             <th><%= sortable 'deleted_at', t(".deleted_at") %></th>
+            <th></th>
           </thead>
         <tbody>
           <% @repositories.each do |repository| %>
-              <tr class="<%= cycle 'odd', 'even' %>">
+              <tr>
               <td> <%= weby_file_view(repository, :thumb, "64", "64", as: :image, title: repository.archive_file_name) %> </td>
               <td> <%= repository.description %> </td>
               <td> <%= repository.archive_content_type %> </td>
               <td> <%= l(repository.deleted_at, :format => :short) %> </td>
-              <td>
+              <td class="text-right">
                 <%= recycle_bin_actions repository, with_text: true %>
               </td>
             </tr>
-          <% end; reset_cycle %>
+          <% end %>
           </tbody>
         </table>
 

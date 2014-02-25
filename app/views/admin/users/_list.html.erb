@@ -31,13 +31,13 @@
             <% link = user.is_admin? ? t('.admin') : t('.manage_roles') %>
             <td> <%= link_to link, manage_roles_admin_users_path(:user_id => user.id ) %> </td>
           <% end %>
-          <td> <%= raw make_menu(user, with_text: false) %> </td>
+          <td class="text-right"> <%= raw make_menu(user, with_text: false) %> </td>
         </tr>
       <% end %>
     </tbody>
   </table>
 
-  <div class="pull-left"> <%= per_page_links @users, true, :xs %> </div>
+  <div class="pull-left"> <%= per_page_links @users, true, :sm %> </div>
   <div class="pull-right"> <%= paginate @users, remote: true %> </div>
   <div class="clearfix"></div>
 <% end %>

@@ -158,7 +158,8 @@ module ApplicationHelper
                 :action => 'show', :id => obj.id
               }),
               :alt => t('show'),
-              :title => t('show')
+              :title => t('show'),
+              :class => 'action-link'
             ) + " "
 
           when :edit
@@ -169,7 +170,8 @@ module ApplicationHelper
                 :action => 'edit', :id => obj.id
               }),
               :alt => t('edit'),
-              :title => t('edit')) + " "
+              :title => t('edit'),
+              :class => 'action-link') + " "
 
           when :destroy
             menu << link_to(
@@ -182,7 +184,8 @@ module ApplicationHelper
               :data => {:confirm => t('are_you_sure')},
               :method => :delete,
               :alt => t('destroy'),
-              :title => t('destroy')) + " "
+              :title => t('destroy'),
+              :class => 'action-link') + " "
           end
         end
       end
@@ -193,11 +196,11 @@ module ApplicationHelper
     ''.tap do |html|
       if test_permission controller_name, :purge
         html << link_to(icon('trash', text: options[:with_text] ? t('destroy') : nil),
-          options.merge({action: 'show', id: resource.id}), :title => t("purge"), method: 'delete', confirm: t('are_you_sure'))
+          options.merge({action: 'show', id: resource.id}), :title => t("purge"), class: 'action-link', method: 'delete', confirm: t('are_you_sure'))
       end
       if test_permission controller_name, :recover
         html << link_to(icon('refresh', text: options[:with_text] ? t('recover') : nil),
-          options.merge({action: 'recover', id: resource.id}), :title => t("recover"), method: 'put')
+          options.merge({action: 'recover', id: resource.id}), :title => t("recover"), class: 'action-link', method: 'put')
       end
     end.html_safe
   end

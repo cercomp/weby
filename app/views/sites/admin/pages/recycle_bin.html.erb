@@ -46,7 +46,7 @@
             <td><%= raw categories_links(page.category_list) %></td>
             <td><%= t(".#{page.type.downcase}") %></td>
             <td><%= l(page.deleted_at, :format => :short) %></td>
-            <td>
+            <td class="text-right">
               <%= recycle_bin_actions page %>
             </td>
           </tr>

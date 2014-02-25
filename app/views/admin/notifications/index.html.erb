@@ -9,12 +9,13 @@
       <% end %>
     <% end %>
   </div>
-
-  <% if check_permission(Admin::NotificationsController, ["new"]) %>
-    <div class="col-md-3 pull-right">
-      <%= link_to t(".new_notification"), new_admin_notification_path, class: "btn btn-success" %>
-    </div>
-  <% end %>
+  <div class="col-md-7">
+    <% if check_permission(Admin::NotificationsController, ["new"]) %>
+      <div class="pull-right">
+        <%= link_to t(".new_notification"), new_admin_notification_path, class: "btn btn-success" %>
+      </div>
+    <% end %>
+  </div>
 </div>
 
 <%= content_tag :div, render('list'), id: 'list' %>

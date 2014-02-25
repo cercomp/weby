@@ -17,14 +17,14 @@
       <% @groups.each do |group| %>
         <tr>
           <td><%= link_to group.name, admin_group_path(group) %></td>
-          <td>
+          <td class="text-right">
             <%= raw make_menu(group) %>
           </td>
         </tr>
       <% end %>
       </tbody>
     </table>
-  <div class="pull-left"> <%= per_page_links @groups, true, :xs %> </div>
+  <div class="pull-left"> <%= per_page_links @groups, true, :sm %> </div>
   <div class="pull-right"> <%= paginate @groups, remote: true %> </div>
   <div class="clearfix"></div>
 

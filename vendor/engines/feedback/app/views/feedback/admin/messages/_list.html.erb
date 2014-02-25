@@ -16,15 +16,15 @@
     </thead>
     <tbody>
       <% @messages.each do |message| %>
-        <tr class="<%= cycle 'odd', 'even' %>">
+        <tr>
           <td><%= "#{message.name} <#{message.email}>" %></td>
           <td><%= link_to message.subject, admin_message_path(message) %></td>
           <td><%= l(message.created_at, :format => :short) %></td>
-          <td>
+          <td class="text-right">
             <%= raw make_menu(message) %>
           </td>
         </tr>
-      <% end; reset_cycle %>
+      <% end %>
     </tbody>
   </table>
   <div class="pull-left"> <%= per_page_links @messages, true, :mini %> </div>

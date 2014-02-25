@@ -32,7 +32,7 @@
           <%= select_tag :filter_month, options_for_select(@months), class: 'form-control' %>
         </div>
       </div>
-      <div id="daily_stats" class="stats hide"></div>
+      <div id="daily_stats" class="stats" style="display: none"></div>
     </div>
 
     <div class="tab-pane" id="month">
@@ -45,7 +45,7 @@
         </div>
       </div>
       <input type="hidden" name="month_names" value="<%= t('date.abbr_month_names').to_s.gsub('nil', 'null') %>"/>
-      <div id="monthly_stats" class="stats hide"></div>
+      <div id="monthly_stats" class="stats" style="display: none"></div>
     </div>
   </div>
 </div>

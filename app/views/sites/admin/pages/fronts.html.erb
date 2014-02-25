@@ -35,16 +35,16 @@
   </div>
 <% else %>
 
-  <table  class="table table-striped" id="list">
+  <table  class="table table-striped nowrap" id="list">
     <thead>
-      <th><%= t(".title") %></th>
-      <th><%= t(".author") %></th>
-      <th><%= t(".category") %></th>
-      <th><%= t(".type") %></th>
-      <th><%= t(".created_at") %></th>
+      <th width="35%"><%= t(".title") %></th>
+      <th width="12%"><%= t(".author") %></th>
+      <th width="13%"><%= t(".category") %></th>
+      <th width="6%"><%= t(".type") %></th>
+      <th width="13%"><%= t(".created_at") %></th>
       <% with_permission(action: :edit) do %>
-        <th><%= t(".cover") %></th>
-        <th><%= t(".publish") %></th>
+        <th  width="5%"><%= t(".cover") %></th>
+        <th  width="5%"><%= t(".publish") %></th>
       <% end %>
       <th></th>
     </thead>
@@ -64,7 +64,7 @@
             <td class="publish" style="text-align:center;">
               <%= publication_status(page) %></td>
           <% end %>
-          <td>
+          <td class="text-right">
             <%= make_menu(page, :except => "show", :with_text => false) %>
             <% with_permission(action: :sort) do %>
               <%= link_to icon('move'), '#', class: 'handle' %>

@@ -1,11 +1,9 @@
-<div class="col-md-12">
-  <div class="col-md-12 pull-left"><%= render 'view_picker' %></div>
-  <div class="col-md-5 pull-left"><%= info_page @repositories %></div>
-  <div class="col-md-7 pull-right"><%= paginate @repositories, :remote => true %></div>
-  <div class="clearfix"></div>
-</div>
+<%= render 'view_picker' %>
+<div class="pull-right"><%= paginate @repositories, :remote => true %></div>
+<div class="pull-left"><%= info_page @repositories %></div>
+<div class="clearfix"></div>
 
-<div class="clear col-md-12">
+<div class="row">
   <% @repositories.each do |repository| %>
     <div class="col-md-3">
       <div class="thumbnail">
@@ -19,6 +17,6 @@
   <% end %>
 </div>
 
-<div class="pull-left"><%= per_page_links @repositories, true, :xs %></div>
 <div class="pull-right"><%= paginate @repositories, :remote => true %></div>
+<div class="pull-left"><%= per_page_links @repositories, true, :sm %></div>
 <div class="clearfix"></div>

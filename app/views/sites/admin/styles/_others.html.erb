@@ -18,7 +18,7 @@
       <th> <%= t('.name') %> </th>
       <th> <%= t('.site') %> </th>
       <th> <%= t('.updated_at') %> </th>
-      <th> <%= t('.actions') %> </th>
+      <th></th>
     </thead>
     <tbody>
       <% styles.each do |style| %>
@@ -26,7 +26,7 @@
           <td><%= link_to(style.name, site_admin_style_path(style)) %></td>
           <td><%= link_to style.site.name, site_url(subdomain: style.site), title: style.site.title, target: :_blank %></td>
           <td><%= l(style.updated_at, format: :short) %>
-          <td class="style-action"><%= style_menu(style) %></td>
+          <td class="text-right"><%= style_menu(style) %></td>
         </tr>
       <% end %>
     </tbody>

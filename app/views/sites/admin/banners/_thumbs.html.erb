@@ -18,6 +18,6 @@
   <% end %>
 </div>
 
-<div class="pull-left"><%= per_page_links @banners, true, :xs %></div>
 <div class="pull-right"><%= paginate @banners, :remote => true %></div>
+<div class="pull-left"><%= per_page_links @banners, true, :sm %></div>
 <div class="clearfix"></div>

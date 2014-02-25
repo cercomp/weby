@@ -44,13 +44,13 @@
       </thead>
       <tbody>
         <% @rights.each do |controller, permissions| %>
-          <tr class="<%= cycle 'odd', 'even' %>">
+          <tr>
             <td colspan="<%= @roles.length + 1%>">
               <b><%= t(".#{controller}") %></b>
             </td>
           </tr>
           <% permissions.each do |right, config| %>
-            <tr class="<%= cycle 'odd', 'even' %> <%= "#{controller}-#{right}" %>">
+            <tr class="<%= "#{controller}-#{right}" %>">
               <td>
                 <%= link_to icon('check'), nil, :onclick => "toggleCheckboxesBySelector('.#{controller}-#{right} input')", :remote => true %>
                 <%= config['name'] %>
@@ -62,7 +62,7 @@
               <% end %>
             </tr>
           <% end %>
-        <% end; reset_cycle %>
+        <% end %>
       </tbody>
     </table>
 

@@ -204,6 +204,10 @@ body.modal-open {
   cursor: pointer;
 }
 
+.action-link, .handle{
+  white-space: nowrap;
+}
+
 #preview-css-panel{
   text-align: center;
 
@@ -236,12 +240,6 @@ body.modal-open {
 }
 
 input[type="checkbox"].toggle { margin-top: 0; }
-
-//Menus inside Tables
-.table-menu{
-  margin-left: 2px;
-  float: left;
-}
 
 .nav-header {
   text-transform: uppercase;

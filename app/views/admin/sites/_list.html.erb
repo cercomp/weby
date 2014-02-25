@@ -22,16 +22,16 @@
           <td> <%= link_to site.name, site_url(subdomain: site) %> </td>
           <td> <%= site.title %> </td>
           <td> <%= site.description %> </td>
-          <td>
-                <%= link_to icon('briefcase', text: t(".dashboard")), site_admin_url(subdomain: site), class: "table-menu"  if current_user && current_user.has_role_in?(site) %>
-                <%= link_to icon('edit', text: t(".settings")), edit_admin_site_url(site.id, subdomain: nil), class: "table-menu" if current_user && current_user.is_admin %>
+          <td class="text-right">
+                <%= link_to icon('briefcase', text: t(".dashboard")), site_admin_url(subdomain: site), class: "action-link"  if current_user && current_user.has_role_in?(site) %>
+                <%= link_to icon('edit', text: t(".settings")), edit_admin_site_url(site.id, subdomain: nil), class: "action-link" if current_user && current_user.is_admin %>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
 
-  <div class="pull-left"> <%= per_page_links @sites, true, :xs %> </div>
+  <div class="pull-left"> <%= per_page_links @sites, true, :sm %> </div>
   <div class="pull-right"> <%= paginate @sites, remote: true %> </div>
   <div class="clearfix"></div>
 <% end %>
