@@ -1,18 +1,22 @@
-<h3 class="title-box">
-  <%= t(".resend_confirmation") %>
-</h3>
+<h3 class="title-box"><%= t('.resend_confirmation') %></h3>
 
 <%= simple_form_for resource,
   as: resource_name,
   url: confirmation_path(resource_name),
+  wrapper: :devise_input,
   html: { method: :post } do |f| %>
-
   <%= f.error_notification %>
   <%= f.full_error :confirmation_token %>
 
-  <%= f.input :email, required: true, autofocus: true,
-    label: false, as: :email, placeholder: t('.field_email') %>
+  <%= f.input :email,
+    required: true,
+    autofocus: true,
+    label: false,
+    as: :email,
+    placeholder: t('.field_email') %>
 
-  <%= f.button :submit, t('submit'), class: 'btn btn-primary',
-    disable_with: t("please_wait") %>
+  <%= f.button :submit,
+    t('submit'),
+    class: 'btn-primary btn-block',
+    disable_with: t('please_wait') %>
 <% end %>

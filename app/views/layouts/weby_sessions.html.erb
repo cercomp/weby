@@ -1,69 +1,61 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="<%= current_locale %>">
   <head>
-    <title>weby</title>
-    <%= stylesheet_link_tag 'weby_sessions', media: "all" %>
-    <!--[if lt IE 9]>
-      <%= javascript_include_tag "html5shim/html5" %>
-    <![endif]-->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tag %>
+    <title>weby</title>
+    <%= stylesheet_link_tag 'weby_sessions' %>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
   </head>
-
   <body>
     <div class="container">
-      <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-          <header class="logo">
-            <%= link_to image_tag('weby-logo-60.png'), main_app.root_url(subdomain: nil) %>
-          </header>
+      <div class="inside">
+        <div class="logo">
+          <%= link_to image_tag('weby-logo-60.png'), main_app.root_url(subdomain: nil) %>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-          <div class="box">
-            <div class="box_cont">
-              <%= raw flash_message %>
-              <div class="col-md-12">
-               <nav class="locales-nav pull-right">
-                 <% admin_locales.each do |locale| %>
-                   <%= link_to flag(locale), params.merge(locale: locale.name ) %>
-                 <% end %>
-                </nav>
-                <ul class="nav nav-pills">
-                  <li class="<%= active_tab("login") %>" >
-                    <% if active_tab('login').present? || active_tab('signup').present? %>
-                      <%= link_to t('.login'), '#login', 'data-toggle' => 'tab' %>
-                    <% else %>
-                      <%= link_to t('.login'), login_path %>
-                    <% end %>
-                  </li>
-                  <li class="<%= active_tab("signup") %>">
-                    <% if active_tab('login').present? || active_tab('signup').present? %>
-                      <%= link_to t('.register'), '#signup', 'data-toggle' => 'tab' %>
-                    <% else %>
-                      <%= link_to t('.register'), signup_path %>
-                    <% end %>
-                  </li>
-                </ul>
-              </div>
-              <%= yield %>
-            </div>
-          </div>
-          <nav class="help-nav">
-            <%= link_to t('.confirmation'), new_user_confirmation_path %>
-            <br />
-            <%= link_to t('.unlock'), new_user_unlock_path %>
-            <br />
-            <%= link_to t(".sites"), root_url(subdomain: nil) %>
-            <%= link_to(t(".help"), current_settings.help_site,
-                        target: '_blank') if current_settings.help_site %>
+
+        <div class="box">
+          <nav class="locales-nav pull-right">
+            <% admin_locales.each do |locale| %>
+              <%= link_to flag(locale), params.merge(locale: locale.name ) %>
+            <% end %>
           </nav>
+
+          <ul class="sessions-pills nav nav-pills">
+            <li<%= ' class=active' if active_tab('login').present? %>>
+              <% if active_tab('login').present? || active_tab('signup').present? %>
+                <%= link_to t('.login'), '#login', 'data-toggle' => 'tab' %>
+              <% else %>
+                <%= link_to t('.login'), login_path %>
+              <% end %>
+            </li>
+            <li<%= ' class=active' if active_tab('signup').present? %>>
+              <% if active_tab('login').present? || active_tab('signup').present? %>
+                <%= link_to t('.register'), '#signup', 'data-toggle' => 'tab' %>
+              <% else %>
+                <%= link_to t('.register'), signup_path %>
+              <% end %>
+            </li>
+          </ul>
+          <%= render 'layouts/flash', flash: flash %>
+          <% flash = [] %>
+          <%= yield %>
         </div>
+        <nav class="help-nav">
+          <%= link_to t('.confirmation'), new_user_confirmation_path %>
+          <%= link_to t('.unlock'), new_user_unlock_path %>
+          <%= link_to t('.sites'), root_url(subdomain: nil) %>
+          <%= link_to(t('.help'), current_settings.help_site, target: '_blank') if current_settings.help_site %>
+        </nav>
       </div>
     </div>
-
-    <%= javascript_include_tag "layouts/weby_sessions" %>
+    <%= javascript_include_tag 'weby_sessions' %>
   </body>
 </html>

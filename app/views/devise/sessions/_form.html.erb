@@ -1,23 +1,22 @@
+<%# TODO fix fix fix fix!!! %>
+<%= render 'layouts/flash', flash: flash %>
+<% flash = [] %>
+
 <%= simple_form_for resource,
   as: resource_name,
-  wrapper: :devise_sessions,
+  wrapper: :devise_input,
   url: login_path do |f| %>
 
-  <%= raw flash_message %>
+  <%= f.input :login, autofocus: true, label: false, placeholder: t('.field_login') %>
+  <%= f.input :password, label: false, placeholder: t('.field_password') %>
+  <%= f.input :remember_me,
+    as: :boolean,
+    wrapper_html: { class: 'pull-left' },
+    wrapper: :devise_checkbox,
+    label: t('.field_remember_me') %>
 
-  <%= f.input :login, autofocus: true, label: false,
-    placeholder: t('.field_login') %>
-  <%= f.input :password, label: false,
-    placeholder: t('.field_password') %>
-  <%= f.input :remember_me, as: :boolean,
-    wrapper_html: { class: "pull-left boolean-inline" },
-    wrapper: :checkbox,
-    label_html: { class: "pull-right" },
-    label: t(".field_remember_me") %>
-
-  <%= link_to t(".forgot_password"), forgot_password_path, class: "pull-right" %>
-
+  <%= link_to t('.forgot_password'), forgot_password_path, class: 'pull-right' %>
   <div class="clearfix"></div>
 
-  <%= f.button :submit, t('.login'), class: 'btn btn-primary' %> 
+  <%= f.button :submit, t('.login'), class: 'btn-primary btn-block' %>
 <% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140211124702) do
+ActiveRecord::Schema.define(:version => 20140214120458) do
 
   create_table "activity_records", :force => true do |t|
     t.integer  "user_id"
@@ -381,6 +381,17 @@ ActiveRecord::Schema.define(:version => 20140211124702) do
     t.string "name"
   end
 
+  create_table "user_login_histories", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.string   "login_ip"
+    t.string   "browser"
+    t.string   "platform"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "user_login_histories", ["user_id"], :name => "index_user_login_histories_on_user_id"
+
   create_table "users", :force => true do |t|
     t.string   "login"
     t.string   "email"
@@ -501,6 +512,8 @@ ActiveRecord::Schema.define(:version => 20140211124702) do
 
   add_foreign_key "styles", "sites", :name => "styles_owner_id_fk"
   add_foreign_key "styles", "styles", :name => "styles_style_id_fk"
+
+  add_foreign_key "user_login_histories", "users", :name => "user_login_histories_user_id_fk"
 
   add_foreign_key "users", "locales", :name => "users_locale_id_fk"
 

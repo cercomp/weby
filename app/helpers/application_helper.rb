@@ -42,7 +42,7 @@ module ApplicationHelper
     item_class = entry.html_class.present? ? [entry.html_class] : []
     item_class << 'sub' if has_submenu
     item_class << 'current_page' if is_current_page
-    
+
     content_tag :li, id: "menu_item_#{entry.id}", class: item_class.join(" ") do
       title_link = link_to(entry.title,
         entry.target_id.to_i > 0 ? main_app.site_page_path(entry.target_id) : entry.url,
@@ -91,7 +91,7 @@ module ApplicationHelper
         if flash[type]
           type = :success if type == :notice
           type = :error   if type == :alert
-          
+
           messages << content_tag('div', :class => "alert alert-#{type}") do
             raw %{
               #{link_to(raw('&times;'), '#', class: 'close', data: {dismiss: "alert"})}
@@ -131,7 +131,7 @@ module ApplicationHelper
   def make_menu(obj, args={})
     #não criar menu para objetos de outro site
     return "" if obj.respond_to?(:site_id) and obj.site_id != current_site.id
-    
+
     raw("".tap do |menu|
       excepts = args[:except] || []
       ctrl = args[:controller] || controller.class
@@ -149,7 +149,7 @@ module ApplicationHelper
       (ctrl.instance_methods(false) - excepts).each do |action|
         if test_permission(ctrl, action)
           case action.to_sym
-          
+
           when :show
             menu << link_to(
               icon('eye-open', text: args[:with_text] ? t('show') : ''),
@@ -222,9 +222,9 @@ module ApplicationHelper
   # Informações sobre paginação
   def info_page(collection, style = nil)
     if collection.page(1).count > 0
-      html = "#{t('views.pagination.displaying')} #{collection.offset_value + 1} - 
+      html = "#{t('views.pagination.displaying')} #{collection.offset_value + 1} -
       #{collection.offset_value + collection.length}"
-      html << " #{t('of')} #{collection.total_count}" 
+      html << " #{t('of')} #{collection.total_count}"
 
       content_tag :div, html, :class => "pagination", :style => style
     end
@@ -238,7 +238,7 @@ module ApplicationHelper
       params[:per_page] = per_page_default if params[:per_page].blank?
 
       per_page_array.each do |item|
-        html << 
+        html <<
         if params[:per_page].to_i == item.to_i
           content_tag :li, :class => 'page active' do
             #link_to "#{item} ", params.merge({:per_page => item, :page => 1}), :remote => remote
@@ -269,7 +269,7 @@ module ApplicationHelper
   # Quantidade de registro por página padrão
   def per_page_default
     if @site
-      ( @site.try(:per_page_default) || 
+      ( @site.try(:per_page_default) ||
        Site.columns_hash['per_page_default'].try(:default) ).to_i
     else
       current_settings.per_page_default.try(:to_i)
@@ -280,7 +280,7 @@ module ApplicationHelper
   # Ordem: Site, Valor Padrão da coluna, valor fixo.
   def per_page_string
     if @site
-      ( @site.try(:per_page) || Site.columns_hash['per_page'].default ) << 
+      ( @site.try(:per_page) || Site.columns_hash['per_page'].default ) <<
       ",#{per_page_default}"
     else
       "#{current_settings.per_page},#{per_page_default}"
@@ -292,7 +292,7 @@ module ApplicationHelper
   end
 
   def content_tag_if(condition, tag_name, options = {}, &block)
-    content_tag(tag_name, options, &block) if condition 
+    content_tag(tag_name, options, &block) if condition
   end
 
   def title title, raw_text=false
@@ -337,7 +337,7 @@ module ApplicationHelper
 
     unless type.nil?
       ico = not_in_site_context? ?  "glyphicon" : "icon"
-      icon_class = "#{ico} #{ico}-#{type}" + (args[:white] ? " #{ico}-white" : "") 
+      icon_class = "#{ico} #{ico}-#{type}" + (args[:white] ? " #{ico}-white" : "")
 
       if args[:right]
         raw "#{args[:text]} <i class='#{icon_class}'></i>"
@@ -427,6 +427,16 @@ module ApplicationHelper
         check_box_options = check_box_options.merge({disabled: true})
         html << check_box_tag(field, resource[field], resource[field], check_box_options)
       end
+    end
+  end
+
+  def flash_class(type)
+    case type
+      when :notice then "alert alert-info"
+      when :success then "alert alert-success"
+      when :error then "alert alert-danger"
+      when :alert then "alert alert-danger"
+      when :warning then "alert alert-warning"
     end
   end
 end

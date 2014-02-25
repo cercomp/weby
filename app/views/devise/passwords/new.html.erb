@@ -1,19 +1,25 @@
 <h3 class="title-box">
-  <%= t(".recover_password") %>
+  <%= t('.recover_password') %>
 </h3>
 
 <p>
-  <%= t(".fill_email_form") %>
+  <%= t('.fill_email_form') %>
 </p>
 
 <%= simple_form_for resource,
   as: resource_name,
   url: forgot_password_path,
+  wrapper: :devise_input,
   html: { method: :post } do |f| %>
 
-  <%= f.input :email, required: true, autofocus: true,
-    label: false, placeholder: t('.field_email') %>
+  <%= f.input :email,
+    required: true,
+    autofocus: true,
+    label: false,
+    placeholder: t('.field_email') %>
 
-  <%= f.button :submit, t('submit'), class: 'btn btn-primary',
-    disable_with: t("please_wait") %>
+  <%= f.button :submit,
+    t('submit'),
+    class: 'btn-primary btn-block',
+    disable_with: t('please_wait') %>
 <% end %>

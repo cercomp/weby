@@ -1,21 +1,30 @@
 <h3 class="title-box">
-  <%= t(".change_password") %>
+  <%= t('.change_password') %>
 </h3>
 
 <%= simple_form_for resource,
   as: resource_name,
   url: reset_password_path,
+  wrapper: :devise_input,
   html: { method: :put } do |f| %>
-
   <%= f.error_notification %>
   <%= f.input :reset_password_token, as: :hidden %>
   <%= f.full_error :reset_password_token %>
 
-  <%= f.input :password, label: false, required: true, autofocus: true,
-    as: :password, placeholder: t('.password_change') %>
-  <%= f.input :password_confirmation, label: false, required: true,
-    as: :password, placeholder: t('.password_confirmation_label') %>
+  <%= f.input :password,
+    label: false,
+    required: true,
+    autofocus: true,
+    as: :password,
+    placeholder: t('.password_change') %>
+  <%= f.input :password_confirmation,
+    label: false,
+    required: true,
+    as: :password,
+    placeholder: t('.password_confirmation_label') %>
 
-  <%= f.button :submit, t("submit"), class: 'btn btn-primary',
-    disable_with: t("please_wait") %>
+  <%= f.button :submit,
+    t('submit'),
+    class: 'btn-primary btn-block',
+    disable_with: t('please_wait') %>
 <% end %>
