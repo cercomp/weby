@@ -288,3 +288,6 @@ input[type="checkbox"].toggle { margin-top: 0; }
 #repo_list {
   margin-top: 10px;
 }
+#repo_list > div.col-md-12 > table {
+  margin-left: 15px;
+}
