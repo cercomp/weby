@@ -10,6 +10,6 @@ describe Component do
   end
 
   it 'should place_holder default is home' do
-    expect(subject.place_holder).to eql? 'home'
+    expect(subject.place_holder).to eql 'home'
   end
 end
