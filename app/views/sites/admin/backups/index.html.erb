@@ -1,3 +1,4 @@
+<% breadcrumb params[:search].present? ? :backups : :backups %>
 <ul class="nav nav-tabs" id="backup-tab">
   <li class="<%= params["restore"] ? "" : "active" %>" >
     <a href="#backup" data-toggle="tab"><%= t(".backup") %></a>

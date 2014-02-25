@@ -204,6 +204,11 @@ crumb :components_edit do |component|
   parent :layout
 end
 
+#backups
+crumb :backups do
+  link t("backups"), site_admin_backups_path
+end
+
 #extensions;feedback
 crumb :extensions do
   link t("breadcrumbs.extensions"), main_app.site_admin_extensions_path
