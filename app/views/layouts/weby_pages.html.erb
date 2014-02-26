@@ -1,16 +1,19 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="<%= current_locale %>">
   <head>
-    <title>weby</title>
-    <%= stylesheet_link_tag 'weby_pages', media: "all" %>
-    <!--[if lt IE 9]>
-      <%= javascript_include_tag "html5shim/html5" %>
-    <![endif]-->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tag %>
+    <title>weby</title>
+    <%= stylesheet_link_tag 'weby_pages' %>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
   </head>
-
   <body>
     <div class="zone">
       <div id="header" class="container">
@@ -49,7 +52,6 @@
         </div>
       </div>
     </div>
-
     <div id="main" class="container">
       <% unless flash.empty? %>
         <div class="row">
@@ -60,7 +62,6 @@
       <% end %>
       <%= yield %>
     </div>
-
     <div id="footer" class="container">
       <p>
         <%= t(".licence") %>
@@ -74,7 +75,6 @@
         <% end unless current_user %>
       </p>
     </div>
-
-    <%= javascript_include_tag "layouts/weby_pages" %>
+    <%= javascript_include_tag 'weby_pages' %>
   </body>
 </html>

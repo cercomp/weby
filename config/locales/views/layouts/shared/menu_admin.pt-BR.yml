@@ -1,8 +1,6 @@
 pt-BR:
   layouts:
     shared:
-      head:
-      javascripts:
       menu_admin:
         settings:          " Configurações "
         users:             " Usuários "
@@ -26,22 +24,3 @@ pt-BR:
         contents:          " Conteúdo "
         none_role:         " Você não possui papel neste site "
         activity_records:  " Histórico "
-      navbar:
-        my_profile:        " Meu Perfil "
-        logout:            " Sair "
-        login:             " Entrar "
-        register:          " Cadastro "
-        sites:             " Sites "
-        dashboard:         " Administração "
-        weby-dashboard:    " Administração do Weby "
-        show_site:         " Mostrar site "
-        help:              " Ajuda "
-        about:             " Sobre "
-      search_form:
-        search:            " Buscar "
-        searching:         " Buscando... "
-      weby_bar:
-        logout: "SAIR"
-        dashboard: "ADMINISTRAÇÃO"
-        help: "AJUDA"
-        about: "SOBRE"

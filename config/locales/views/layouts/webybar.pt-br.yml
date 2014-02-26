@@ -1,0 +1,7 @@
+pt-BR:
+  layouts:
+    webybar:
+      logout: "SAIR"
+      dashboard: "ADMINISTRAÇÃO"
+      help: "AJUDA"
+      about: "SOBRE"

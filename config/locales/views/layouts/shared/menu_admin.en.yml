@@ -1,8 +1,6 @@
 en:
   layouts:
     shared:
-      head:
-      javascripts:
       menu_admin:
         settings:          " Settings "
         users:             " Users "
@@ -20,29 +18,9 @@ en:
         messages:          " Messages "
         sites:             " Sites "
         permissions:       " Permissions "
-        settings:          " Settings "
         statistics:        " Statistics "
         notifications:     " Notifications "
         dashboard:         " Dashboard "
         contents:          " Content "
         none_role:         " You don't have roles in this site "
         activity_records:   " Activity Records "
-      navbar:
-        my_profile:        " My profile "
-        logout:            " Logout "
-        login:             " Login "
-        register:          " Register "
-        sites:             " Sites "
-        dashboard:         " Administration "
-        weby-dashboard:    " Weby administration "
-        show_site:         " Show site "
-        help:              " Help "
-        about:             " About "
-      search_form:
-        search:            "Search "
-        searching:         "Searching... "
-      weby_bar:
-        logout: "LOGOUT"
-        dashboard: "DASHBOARD"
-        help: "HELP"
-        about: "ABOUT"
