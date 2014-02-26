@@ -1,5 +1,5 @@
 class Role < ActiveRecord::Base
-  
+
   scope :globals, where(site_id: nil)
 
   validates_presence_of :name

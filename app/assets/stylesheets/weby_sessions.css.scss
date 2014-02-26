@@ -1,86 +1,83 @@
 /*
- *= require_self
  *= require google/lato
  */
 
-@import "weby/bootstrap";
-@import "bootstrap-responsive";
+$weby-red: #BC1625;
+$weby-blue: #344259;
+$link-color: $weby-blue;
+$body-bg: #F5F5F5;
+$lato-font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-base: $lato-font-family;
+$btn-primary-bg: #BC1625;
+$nav-pills-active-link-hover-bg: $weby-blue;
 
-// responsible more friendly
-@media (min-width: 768px) and (max-width: 979px)
-{
-  .offset3 { margin-left: 152px; }
-  .span6 { width: 460px }
-}
+@import "bootstrap";
 
-body { background: #FCFCFC url(sessions_bg.jpg) repeat left top; }
-.tab-content { overflow: visible; }
-.nav-pills { text-transform: uppercase; }
-
-.help-nav
-{
-  a { margin-right: 5px; }
-  padding: 10px 0 0;
-  width: 90%;
-  text-transform: uppercase;
-  text-align: right;
+.inside {
+  max-width: 500px;
+  padding: 15px;
   margin: 0 auto;
-  font-size: 11px;
-}
-.title-box
-{
-  font-size: 22px;
-  color: #344259;
-  margin-top: 0px;
-  line-height: 22px;
-  margin-bottom: 20px;
-}
-.logo
-{
-  width: 90%;
-  margin: 30px auto 0;
-  text-align: center;
-}
-.box
-{
-  box-shadow: 0 0 5px 0 rgb(238, 238, 238);
-  background: white;
-  border: 1px solid #DFDFDF;
-  border-radius: 5px;
-  width: 90%;
-  padding: 35px 0 30px;
-  margin: 20px auto 0;
-  .box_cont
-  {
-    margin: 0 auto;
-    width: 77%;
+
+  .logo {
+    text-align: center;
+    margin: 15px 0 30px;
   }
-}
-form {
-  margin-bottom: 0;
-  input[type="text"],
-  input[type="password"],
-  input[type="email"]
-  {
-    width: 96%;
-    margin-bottom: 5px;
-  }
-  .boolean-inline
-  {
-    label { margin: 0; }
-    .controls
-    {
-      float: right;
-      margin-right: 5px;
-      .boolean { margin: 0; }
+
+  .box {
+    background: #FFF;
+    padding: 20px 30px;
+    border: 1px solid #DFDFDF;
+    box-shadow: 0 0 5px 0 #eee;
+    border-radius: 5px;
+
+    .sessions-pills {
+      margin-bottom: 15px;
+
+      li > a {
+        padding: 10px 20px;
+        font-size: 12px;
+        line-height: 12px;
+      }
     }
-    .checkbox { padding-left: 0; }
-    .checkbox input { margin-top: 4px !important; }
   }
-  .btn
-  {
-    margin: 0 auto;
-    margin-top: 10px;
-    display: block;
+  .help-nav {
+    text-align: right;
+    font-size: 11px;
+
+    a {
+      display: block;
+      padding: 5px 0 0;
+    }
   }
+}
+
+.alert {
+  margin-bottom: 15px;
+  font-size: 13px;
+  padding: 10px 15px;
+}
+
+.close { font-size: 18px; }
+
+.checkbox { margin-top: 0 }
+
+.btn {
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+
+a:hover { text-decoration: none; }
+
+.help-block {
+  font-size: 12px;
+  color: #888;
+}
+
+.title-box {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+blockquote{
+  font-size: 14px;
 }

@@ -18,7 +18,5 @@ class Extension < ActiveRecord::Base
     attrs.except!('id', 'created_at', 'updated_at', 'site_id', 'type')
 
     extension = self.create!(attrs)
-
   end
-
 end

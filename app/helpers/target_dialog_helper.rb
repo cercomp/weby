@@ -1,5 +1,4 @@
 module TargetDialogHelper
-
   def target_dialog(polymorphic=false, editable_url=true)
     content_for :body_end do
       @target_included = @target_included.to_i + 1
@@ -22,5 +21,4 @@ module TargetDialogHelper
       {title: t("common_pages.events_path.title"), description: t("common_pages.events_path.description"), url: events_site_pages_path}
     ]
   end
-
 end

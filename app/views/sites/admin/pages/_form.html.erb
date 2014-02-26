@@ -9,32 +9,27 @@
 
   <%= render('translates_form', f: f) %>
 
-  <div class="clearfix">
-    <%= f.input :source, wrapper_html: {class: 'side'} %> 
-    <%= f.input :url, wrapper_html: {class: 'side'}, placeholder: "http://site.com" %>
-  </div>
+  <%= f.input :source, wrapper_html: {class: 'side'} %> 
 
+  <%= f.input :url, wrapper_html: {class: 'side'}, placeholder: "http://site.com" %>
+  
   <%= f.input :category_list, :hint => t(".page_categories_help"), input_html: {class: 'input-xlarge', data: {tags: Page.uniq_category_counts.map{|t| t.name }}} %>
 
-  <div class="clearfix">
-    <%= f.input :publish , wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" } %>
-    <%= f.input :date_begin_at, :hint => t(".date_begin_hint") %>
-    </div>
+  <%= f.input :publish , wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" } %>
 
-  <div class="clearfix">
-    <%= f.input :front , wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" } %>
-    <%= f.input :date_end_at, :hint => t(".date_end_hint") %>
-  </div>
+  <%= f.input :date_begin_at, :hint => t(".date_begin_hint") %>
 
-  <div class = "controls">
-    <%= repository_search t(".related_files"),
-      "related_file_ids", "page[related_file_ids][]", @page.related_files,
-      multiple: true, file_types: false %>
-  </div>
+  <%= f.input :front , wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" } %>
 
+  <%= f.input :date_end_at, :hint => t(".date_end_hint") %>
+  
+  <%= repository_search t(".related_files"),
+    "related_file_ids", "page[related_file_ids][]", @page.related_files,
+    multiple: true, file_types: false %>
+  
   <div class="form-actions">
-    <%= f.button :submit, class: 'btn-primary', disable_with: t("please_wait") %>
-    <%= link_to t("back"), :back, class: "btn" %>
+    <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
+    <%= link_to t("back"), :back, class: "btn btn-default" %>
   </div>
 <% end %>
 

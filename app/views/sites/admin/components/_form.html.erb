@@ -9,9 +9,8 @@
 
   <%= f.input :alias, placeholder: t(".alias_hint") if Weby::Components.is_aliasable? @component.name %>
 
-  <div class="control-group">
-    <%= render_component @component, 'form', locals: {f: f} %>
-  </div>
+  <%= render_component @component, 'form', locals: {f: f} %>
+  <hr/>
 
   <%= f.input :publish , wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" } %>
 
@@ -22,21 +21,24 @@
   ],
   include_blank: false
   %>
-  
-    <label class="control-label"><%= t(".place")  %></label>
-    <div class="controls">
+
+  <div class="form-group">
+    <div class="col-md-2 control-label">
+      <label><%= t(".place")  %></label>
+    </div>
+    <div class="col-md-7">
       <% if params[:placeholder] %>
         <% if params[:placeholder].match(/^\d*$/) %>
           <% group = current_site.components.find_by_id(params[:placeholder].to_i) %>
-          <input type="text"disabled="true" value="
+          <input type="text"disabled="true" class="form-control" value="
             <%= group ? (group.alias.present? ? group.alias : t("components.#{group.name}.name")) : params[:placeholder] %>"/>
         <% else %>
-          <input type="text"disabled="true" value="
+          <input type="text"disabled="true" class="form-control" value="
             <%= t("themes.#{current_site.theme}.placeholders.#{@component.place_holder}", :default => @component.place_holder) %>"/>
         <% end %>
       <% else %>
         <% if @component.place_holder.to_s.match(/^\d*$/) and (group = current_site.components.find_by_id(@component.place_holder.to_i)) %>
-            <input type="text"disabled="true" value="
+            <input type="text"disabled="true" class="form-control" value="
              <%= group.alias.present? ? group.alias : t("components.#{group.name}.name") %>"/>
         <% else %>
           <%= raw make_mini_layout %>
@@ -44,10 +46,11 @@
       <% end %>
       <%= f.input :place_holder, as: :hidden, input_html: {id: "component_place_holder"} %>
     </div>
-
+  </div>
+  
   <div class="form-actions">
-    <%= f.button :submit, class: 'btn-primary', disable_with: t("please_wait") %>
-    <%= link_to t("back"), :back, class: "btn" %>
+    <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
+    <%= link_to t("back"), :back, class: "btn btn-default" %>
   </div>
 <% end %>
 

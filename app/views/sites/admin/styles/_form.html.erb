@@ -10,22 +10,26 @@
     <div class="input">
       <div class="btn-toolbar code-editor-menu">
         <div class="btn-group">
-          <%= link_to t(".format"),"javascript:autoFormatSelection()", class: "btn btn-small" %>
-          <%= link_to t(".comment"),"javascript:commentSelection(true)", class: "btn btn-small" %>
-          <%= link_to t(".uncomment"),"javascript:commentSelection(false)", class: "btn btn-small" %>
-          <%= link_to t(".insert_image"), "javascript:insertImage()", class: "btn btn-small" %>
+          <%= link_to t(".format"),"javascript:autoFormatSelection()", class: "btn btn-default btn-sm" %>
+          <%= link_to t(".comment"),"javascript:commentSelection(true)", class: "btn btn-default btn-sm" %>
+          <%= link_to t(".uncomment"),"javascript:commentSelection(false)", class: "btn btn-default btn-sm" %>
+            <%= link_to t(".insert_image"), "javascript:insertImage()", class: "btn btn-default btn-sm" %>
         </div>
-        <%= f.button :button, t(".apply"), type: :button, disabled: :disabled, class: "btn-apply btn btn-primary btn-small" unless @style.new_record? %>
+        <%= f.button :button, t(".apply"), type: :button, disabled: :disabled, class: "btn-apply btn btn-primary btn-sm" unless @style.new_record? %>
 
       </div>
       <%= f.input :css,
         as: :text,
         wrapper_html: { class: 'nostyle' },
         input_html: {class: 'style-editor', id: 'code' } %>
-
-      <%= link_to icon('question-sign', text:t(".help_with_style")),
-        (current_settings.help_site || "/help"),
-        target: "_blank"%>
+      
+      <div class="form-group">
+        <div class="col-md-7 col-md-offset-2">
+          <%= link_to icon('question-sign', text:t(".help_with_style")),
+            (current_settings.help_site || "/help"),
+            target: "_blank"%>
+        </div>
+      </div>
     </div>
     <% content_for :stylesheets, stylesheet_link_tag("codeMirror/codemirror") %>
     <% content_for :javascripts, javascript_include_tag("init/codemirror") %>
@@ -120,8 +124,8 @@
     <% end %>
   <% end %>
   <div class="form-actions">
-    <%= f.button :submit, class: 'btn-primary', disable_with: t("please_wait") %>
-    <%= link_to t("back"), :back, class: "btn" %>
+    <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
+    <%= link_to t("back"), :back, class: "btn btn-default" %>
   </div>
   <% unless @style.new_record? %>
     <div id="preview-css-panel">

@@ -7,9 +7,6 @@
 <%= f.input :timer, as: :integer, hint: t(".timer_hint") %>
 <%= f.input :description, as: :boolean %>
 <%= f.input :show_controls, as: :boolean, hint: t(".control_hint") %>
-
-  <div class = "controls">
-    <%= repository_search t(".add_photo"),
-      "photo_ids", "photo_slider_component[photo_ids][]", component.generate_vector_images,
-      multiple: true, file_types: 'image' %>
-  </div>
+<%= repository_search t(".add_photo"),
+  "photo_ids", "photo_slider_component[photo_ids][]", component.generate_vector_images,
+  multiple: true, file_types: 'image' %>

@@ -7,8 +7,10 @@
         disabled: !editable_url,
         value: editable_url ? f.object.send(field_name) : f.object.send(field_name).try(:title),
         placeholder: editable_url ? "" : t("target_dialog.none_selected"),
-        data: {target_content: true, prefix: "#{target_name}", editable: editable_url}, class: 'url-field' %><%=
-      link_to t("target_dialog.select_target"), '#', class: 'target-btn btn btn-info' %>
+        data: {target_content: true, prefix: "#{target_name}", editable: editable_url}, class: 'url-field' %>
+      <span class="input-group-btn">
+        <%=  link_to t("target_dialog.select_target"), '#', class: 'target-btn btn btn-info' %>
+      </span>
    <% end %>
 
    <%= f.input "#{target_name}_id", as: :hidden, input_html: {data: {target_id: true, prefix: "#{target_name}"}} %>

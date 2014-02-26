@@ -1,8 +1,8 @@
 <div class="btn-group">
-  <%= link_to url_for(params.merge(repository_view: 'thumbs')), class: "btn", title: t(".repository_as_thumbs") do %>
+  <%= link_to url_for(params.merge(repository_view: 'thumbs')), class: "btn btn-default", title: t(".repository_as_thumbs") do %>
     <%= icon('th', white: true) %>
   <% end %>
-  <%= link_to url_for(params.merge(repository_view: 'list')), class: "btn", title: t(".repository_as_list") do %>
+  <%= link_to url_for(params.merge(repository_view: 'list')), class: "btn btn-default", title: t(".repository_as_list") do %>
     <%= icon('list', white: true) %>
   <%  end %>
 </div>

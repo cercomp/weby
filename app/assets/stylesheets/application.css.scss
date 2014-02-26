@@ -1,20 +1,26 @@
 /*
  *= require select2
  *= require select2-bootstrap
+ *= require weby_shared
  *= require_self
  *= require google/lato
  */
 
 @import "weby/bootstrap";
-@import "bootstrap-responsive";
+@import "bootstrap";
 
 body { background: #F5F5F5; }
+
+img{
+  max-width: 100%;
+}
+
+a:hover { text-decoration: none; }
 
 #header
 {
   padding-top: 25px;
-  padding-bottom: 15px;
-  margin-bottom: 15px;
+  padding-bottom: 25px;
   font-size: 12px;
   .noperson
   {
@@ -26,32 +32,29 @@ body { background: #F5F5F5; }
   .person,
   .site
   {
-    padding-top: 14px;
-    padding-bottom: 14px;
-    .avatar
-    {
-      margin-right: 10px;
-    }
     .info
     {
       line-height: 15px;
+      margin: 0 10px;
     }
     .info.name
     {
       font-weight: bold;
-      padding-bottom: 1px;
+      text-transform: uppercase;
+      margin-top: -3px;
+      margin-bottom: 3px;
     }
     .info.actions
     {
-      padding-top: 1px;
-      a
+      min-width: 80px;
+      a.label
       {
-        color: #BC1625;
-        margin-right: 5px;
+        margin-left: 5px;
       }
     }
   }
 }
+
 
 #main.container
 {
@@ -106,10 +109,15 @@ body { background: #F5F5F5; }
 }
 #ui-datepicker-div{
     font-size: 0.9em;
+    z-index: 10 !important;
 }
 
 .select2-search-field input{
     height: 18px;
+}
+
+select.select2{
+  height: 34px;
 }
 
 .pagination {
@@ -132,7 +140,7 @@ body { background: #F5F5F5; }
 label.required abbr { color: #BC1625; }
 
 // nowrap tables
-table.nowrap td > div 
+table.nowrap td > div
 {
   overflow: hidden;
   white-space: nowrap;
@@ -192,6 +200,10 @@ body.modal-open {
   cursor: pointer;
 }
 
+.action-link, .handle{
+  white-space: nowrap;
+}
+
 #preview-css-panel{
   text-align: center;
 
@@ -204,7 +216,15 @@ body.modal-open {
 
 // to customize main menu
 #menu-admin {
-  .nav-header { padding: 0; }
+  .nav-header {
+    padding: 0;
+    li { font-weight: bold; }
+  }
+}
+
+//Glyphicon
+.glyphicon.glyphicon-white {
+  color: white;
 }
 
 // used to mark object as published/unpublished
@@ -217,7 +237,55 @@ body.modal-open {
 
 input[type="checkbox"].toggle { margin-top: 0; }
 
-.breadcrumbs {
-  margin-left: 300px;
+.nav-header {
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 20px;
+  color: #999;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+}
+.nav > li > a {
+  position: relative;
+  display: block;
+  padding: 6px 12px;
 }
 
+
+//Form-actions
+.form-actions {
+  padding: 19px 20px 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #f5f5f5;
+  border-top: 1px solid #e5e5e5;
+}
+.form-group {
+  margin-top: 20px;
+}
+
+  //Paginator
+.pagination > li {
+  float: left;
+}
+
+//alert
+.alert {
+  margin-top: 10px;
+}
+
+//checkboxes
+.well .nav .checkbox {
+  font-weight: normal;
+}
+
+.center{
+  text-align: center;
+}
+
+#repo_list {
+  margin-top: 10px;
+}
+#repo_list > div.col-md-12 > table {
+  margin-left: 15px;
+}

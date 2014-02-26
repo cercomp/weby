@@ -32,5 +32,4 @@ class Menu < ActiveRecord::Base
       menu.menu_items.import items
     end
   end
-
 end

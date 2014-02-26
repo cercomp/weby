@@ -1,4 +1,4 @@
-.image-size-picker .controls{
+.image-size-picker{
     input[type=radio]{
         display: none;
     }
@@ -42,16 +42,18 @@
         width: 72px;
         height: 56px;
     }
-    .control-label{
-        width: auto;
+    .custom-size{
+        width: 174px;
     }
-    .controls{
-        margin-left: 60px;
+
+    .custom-size .form-group div:last-child{
+      float: right;
     }
-    .controls input{
-        width: 55px;
+
+    input[type=number]{
+        /*width: 55px;*/
     }
-    .outer > .control-group:last-child{
+    .outer > .form-group:last-child{
         margin-bottom: 5px;
     }
 }

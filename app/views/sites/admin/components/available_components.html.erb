@@ -1,16 +1,19 @@
-<% title ".layout" %> 
+<% title ".layout" %>
 <% breadcrumb :components_new_choose%>
 <div id="available_components">
   <%= form_tag new_site_admin_component_path, :method => :get do %>
     <%= hidden_field_tag :placeholder, params[:placeholder] if params[:placeholder] %>
-    <div id="main">
-      <%= select_tag "component", grouped_options_for_select(available_components_sorted), size: '11', id: "component_select" %>
-
-      <img id="component_image" src="/assets/components/default.png"/>
+    <div id="main" class="row">
+      <div class="col-md-3 col-md-offset-1">
+        <%= select_tag "component", grouped_options_for_select(available_components_sorted), class: 'form-control', size: '10', id: "component_select" %>
+      </div>
+      <div class="col-md-3 col-md-offset-1">
+        <img id="component_image" class="panel" src="/assets/components/default.png"/>
+      </div>
     </div>
     <div class="form-actions">
         <button type="submit" class="btn btn-primary"><%= t(".next_step") %></button>
-        <%= link_to t("back"), site_admin_components_path, class: "btn" %>
+        <%= link_to t("back"), site_admin_components_path, class: "btn btn-default" %>
     </div>
   <% end %>
 </div>
@@ -53,7 +56,7 @@
         $.get(url, function() {
           $('#component_image').attr('src', url);
           img_cache[selected] = url;
-          
+
         }).error(function(){
           $('#component_image').attr('src', default_image);
         });

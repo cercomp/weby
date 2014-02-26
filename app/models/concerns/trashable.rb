@@ -1,6 +1,6 @@
 module Trashable
   extend ActiveSupport::Concern
-  
+
   included do
     default_scope where(deleted_at: nil)
 
@@ -14,7 +14,7 @@ module Trashable
 
     define_model_callbacks :trash, :untrash
   end
-        
+
   def trash
     if deleted_at
       destroy

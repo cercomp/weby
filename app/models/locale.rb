@@ -17,7 +17,5 @@ class Locale < ActiveRecord::Base
     attrs.except!('id', 'created_at', 'updated_at', 'site_id', 'type')
 
     locale = self.create!(attrs)
-
   end
-
 end

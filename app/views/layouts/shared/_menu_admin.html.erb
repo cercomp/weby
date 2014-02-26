@@ -2,7 +2,7 @@
   <ul class="nav nav-pills nav-stacked">
     <% if current_site %>
       <%  if !current_user.has_role_in?(current_site) %>
-        <div class="alert">
+        <div class="alert alert-warning">
           <%= t('.none_role') %>
         </div>
       <% else %>
@@ -46,4 +46,3 @@
     <% end %>
   </ul>
 </div>
-

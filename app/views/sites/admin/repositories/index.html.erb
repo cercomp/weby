@@ -1,35 +1,40 @@
-<% content_for :javascripts, javascript_include_tag('repositories.index') %>
 <% title ".archives" %>
 <% breadcrumb params[:search].present? ? :repositories_search : :repositories %>
-
-<div class="pull-right">
-  <% with_permission(action: :new) do %>
-    <%= link_to t(".new_archive"),
-      new_site_admin_repository_path,
-      class: "btn btn-success" %>
-  <% end %>
-  <% with_permission(action: [:purge, :recover]) do %>
-    <%= link_to t("recycle_bin"), recycle_bin_site_admin_repositories_path, class: "btn" %>
-  <% end %>
-</div>
-<div class="pull-left">
-  <%= form_tag site_admin_repositories_path, method: 'get', autocapitalize: "off", class: 'search pull-right' do %>
-    <%= content_tag :div, class: 'input-append' do %>
-      <%= search_field_tag :search, params[:search], class: 'input-search' %><%= submit_tag t(".search"),
-        class: 'btn btn-info btn-search' %>
-    <% end %>
-    <%= select_tag "mime_type[]",
-      grouped_options_for_select(load_mime_types(current_site), params[:mime_type]),
-      include_blank: false,
-      style: 'vertical-align: top;',
-      class: 'select2 search-filter',
-      multiple: true %>
-  <% end %>
-</div>
-<div class="clearfix"></div>
+<%= form_tag site_admin_repositories_path, method: 'get', autocapitalize: "off", class: 'search' do %>
+  <div class="row">
+    <div class="col-md-5">
+      <%= content_tag :div, class: 'input-group' do %>
+        <%= search_field_tag :search, params[:search], class: 'form-control' %>
+        <span class="input-group-btn">
+          <%= submit_tag t(".search"), class: 'btn btn-info' %>
+        </span>
+      <% end %>
+    </div>
+    <div class="col-md-3">
+      <%= select_tag "mime_type[]",
+          grouped_options_for_select(load_mime_types(current_site), params[:mime_type]),
+          include_blank: false,
+          style: 'vertical-align: top;',
+          class: 'select2 search-filter form-control',
+          multiple: true %>
+    </div>
+    <div class="col-md-4">
+      <div class="pull-right">
+        <% with_permission(action: :new) do %>
+          <%= link_to t(".new_archive"),
+            new_site_admin_repository_path,
+            class: "btn btn-success" %>
+        <% end %>
+        <% with_permission(action: [:purge, :recover]) do %>
+          <%= link_to t("recycle_bin"), recycle_bin_site_admin_repositories_path, class: "btn btn-default" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
 
 <% if @repositories.empty? %>
-  <div class="alert">
+  <div class="alert alert-warning">
     <%= t(".none_archive") %>
   </div>
 <% else %>
@@ -37,3 +42,4 @@
     <%= render :partial => repository_partial %>
   </div>
 <% end %>
+<% content_for :javascripts, javascript_include_tag('repositories.index') %>

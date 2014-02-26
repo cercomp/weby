@@ -5,6 +5,7 @@ pt-BR:
         no_activity_records:        " Nenhum registro de atividade encontrado "
         details:                    " Detalhes "
         show:                       " Mostrar "
+        site:                       " Site "
         created_at:                 " Data "
         note:                       " Atividade "
         destroy:                    " Excluir "

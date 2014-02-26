@@ -1,5 +1,5 @@
 <% if @extensions.empty? %>
-  <div class="alert">
+  <div class="alert alert-warning">
     <%= t(".none_extension") %>
   </div>
 <% else %>
@@ -20,7 +20,7 @@
           <td>
             <%= raw_extension.version %>
           </td>
-          <td>
+          <td class="text-right">
             <%= raw make_menu(extension) %>
          </td>
         </tr>

@@ -44,7 +44,7 @@ class Setting < ActiveRecord::Base
     attributes.each{|k,v| attributes[k] = v.join(',') if v.is_a?(Array) }
     if instance
       instance.assign_attributes attributes
-    else 
+    else
       instance = self.new(attributes)
     end
     instance

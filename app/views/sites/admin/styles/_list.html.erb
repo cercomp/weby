@@ -6,7 +6,7 @@
         <th width="30%"> <%= "#{t('.site')}/#{t('.followers')}" %> </th>
         <th width="15%"> <%= t('.updated_at') %> </th>
         <th width="5%" style="text-align: center;"> <%= t('.publish') %> </th>
-        <th> <%= t('.actions') %> </th>
+        <th></th>
       </thead>
       <tbody>
         <% styles.each do |style| %>
@@ -19,7 +19,7 @@
             </td>
             <td> <%= l(style.original.updated_at, format: :short) %></td>
             <td style="text-align: center;"><%= raw toggle_field(style, "publish") %></td>
-            <td class="style-action">
+            <td class="text-right">
               <%= style_menu(style) %>
               <% with_permission(action: :sort) do %>
                 <span class='handle'><%= icon('move', text: t("move")) %></span>
@@ -31,7 +31,7 @@
     </table>
   </div>
 <% else %>
-  <div class="alert">
+  <div class="alert alert-warning">
     <%= t('.no_styles') %>
   </div>
 <% end %>

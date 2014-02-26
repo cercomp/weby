@@ -1,0 +1,26 @@
+pt-BR:
+  layouts:
+    shared:
+      menu_admin:
+        settings:          " Configurações "
+        users:             " Usuários "
+        pages:             " Páginas "
+        covers:            " Capas "
+        menus:             " Menus "
+        banners:           " Banners "
+        components:        " Layout "
+        archives:          " Arquivos "
+        styles:            " Estilos "
+        extensions:        " Extensões "
+        roles_permissions: " Permissões e Papéis "
+        groups:            " Grupos "
+        groupings:         " Grupos de sites "
+        messages:          " Mensagens "
+        sites:             " Sites "
+        permissions:       " Permissões "
+        statistics:        " Estatísticas "
+        notifications:     " Notificações "
+        dashboard:         " Painel de Controle "
+        contents:          " Conteúdo "
+        none_role:         " Você não possui papel neste site "
+        activity_records:  " Histórico "

@@ -6,8 +6,8 @@
     :as => :text,
     :required => false %>
   <div class="form-actions">
-    <%= f.button :submit, class: 'btn-primary', disable_with: t("please_wait") %>
-    <%= link_to t("back"), :back, class: "btn" %>
+    <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
+    <%= link_to t("back"), :back, class: "btn btn-default" %>
   </div>
 <% end %>
 <% content_for :javascripts, javascript_include_tag("init/tinymce") %>

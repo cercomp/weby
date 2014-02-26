@@ -1,0 +1,26 @@
+en:
+  layouts:
+    shared:
+      menu_admin:
+        settings:          " Settings "
+        users:             " Users "
+        pages:             " Pages "
+        covers:            " Covers "
+        menus:             " Menus "
+        banners:           " Banners "
+        components:        " Layout "
+        archives:          " Files "
+        styles:            " Styles "
+        extensions:        " Extensions "
+        roles_permissions: " Roles and Permissions "
+        groups:            " Groups "
+        groupings:         " Groups of sites "
+        messages:          " Messages "
+        sites:             " Sites "
+        permissions:       " Permissions "
+        statistics:        " Statistics "
+        notifications:     " Notifications "
+        dashboard:         " Dashboard "
+        contents:          " Content "
+        none_role:         " You don't have roles in this site "
+        activity_records:   " Activity Records "

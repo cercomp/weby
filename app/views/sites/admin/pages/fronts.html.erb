@@ -1,45 +1,50 @@
 <% title ".pages" %>
 <% breadcrumb :pages_fronts %>
-<div class="pull-right">
-  <% with_permission(action: :new) do %>
-    <%= link_to t(".new_page"),
-      new_site_admin_page_path,
-      class: "btn btn-success" %>
-  <% end %>
-  <% with_permission(action: :index) do %>
-    <%= link_to t(".list_pages"), site_admin_pages_path, class: 'btn' %>
-  <% end %>
-  <% with_permission(action: [:recover, :purge]) do %>
-    <%= link_to t("recycle_bin"), recycle_bin_site_admin_pages_path, class: "btn" %>
-  <% end %>
+<div class="row" style="margin-bottom: 15px">
+  <div class="col-md-4">
+    <%= select_tag "filter-category",
+      options_for_select(current_site.pages.uniq_category_counts.map{|c| [c.name, c.name.parameterize] }),
+      include_blank: false,
+      class: 'form-control select2 input-xlarge',
+      multiple: true %>
+  </div>
+  <div class="col-md-3">
+    <input type="checkbox" name="filter-events" id="filter-events"/>&nbsp;<%= t('.events_only') %>
+    <label></label>
+  </div>
+  <div class="col-md-5">
+    <div class="pull-right">
+      <% with_permission(action: :new) do %>
+        <%= link_to t(".new_page"),
+          new_site_admin_page_path,
+          class: "btn btn-success" %>
+      <% end %>
+      <% with_permission(action: :index) do %>
+        <%= link_to t(".list_pages"), site_admin_pages_path, class: 'btn btn-default' %>
+      <% end %>
+      <% with_permission(action: [:recover, :purge]) do %>
+        <%= link_to t("recycle_bin"), recycle_bin_site_admin_pages_path, class: "btn btn-default" %>
+      <% end %>
+    </div>
+  </div>
 </div>
-<div class="pull-left">
-  <%= select_tag "filter-category",
-    options_for_select(current_site.pages.uniq_category_counts.map{|c| [c.name, c.name.parameterize] }),
-    include_blank: false,
-    class: 'select2 input-xlarge',
-    multiple: true %>
-  &nbsp;<input type="checkbox" name="filter-events" id="filter-events"/>&nbsp;<%= t('.events_only') %>
-  <label></label>
-</div>
-<div class="clearfix control-group"></div>
 
 <% if @pages.empty? %>
-  <div class="alert">
+  <div class="alert alert-warning">
     <%= t(".none_cover") %>
   </div>
 <% else %>
 
-  <table  class="table table-striped" id="list">
+  <table  class="table table-striped nowrap" id="list">
     <thead>
-      <th><%= t(".title") %></th>
-      <th><%= t(".author") %></th>
-      <th><%= t(".category") %></th>
-      <th><%= t(".type") %></th>
-      <th><%= t(".created_at") %></th>
+      <th width="35%"><%= t(".title") %></th>
+      <th width="12%"><%= t(".author") %></th>
+      <th width="13%"><%= t(".category") %></th>
+      <th width="6%"><%= t(".type") %></th>
+      <th width="13%"><%= t(".created_at") %></th>
       <% with_permission(action: :edit) do %>
-        <th><%= t(".cover") %></th>
-        <th><%= t(".publish") %></th>
+        <th  width="5%"><%= t(".cover") %></th>
+        <th  width="5%"><%= t(".publish") %></th>
       <% end %>
       <th></th>
     </thead>
@@ -59,7 +64,7 @@
             <td class="publish" style="text-align:center;">
               <%= publication_status(page) %></td>
           <% end %>
-          <td>
+          <td class="text-right">
             <%= make_menu(page, :except => "show", :with_text => false) %>
             <% with_permission(action: :sort) do %>
               <%= link_to icon('move'), '#', class: 'handle' %>

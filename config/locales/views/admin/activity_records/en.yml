@@ -5,6 +5,7 @@ en:
         no_activity_records:        " No activity records found "
         details:                    " Details "
         show:                       " Show "
+        site:                       " Site "
         created_at:                 " Date "
         note:                       " Activity "
         destroy:                    " Destroy "

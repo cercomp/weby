@@ -87,11 +87,11 @@
     border-width: 1px 0;
 
     float: left;
-    height: 64px;
+    height: 75px;
     margin: 0 10px 15px 0;
     overflow: hidden;
     padding: 5px;
-    width: 230px;
+    width: 260px;
 
     &:hover {
       @extend .backgrounded;
@@ -102,7 +102,7 @@
     float: right;
     margin: 0 auto;
     padding: 0;
-    width: 210px;
+    width: 230px;
   }
 
   figure {
@@ -149,7 +149,8 @@
 }
 
 #results {
-    height: 174px;
+    margin-top: 10px;
+    height: 300px;
     overflow-y: auto;
 
   .label{
