@@ -4,7 +4,7 @@
       <tr>
         <th>
           <%= form_tag site_admin_import_path, multipart: true, method: :post do %>
-             <%= file_field_tag 'upload' %>
+             <%= file_field_tag 'upload', required: :required, :accept => 'text/json,text/xml' %>
              <%= submit_tag t('import'), class: 'btn btn-primary import' %>
           <% end %>
         </th>

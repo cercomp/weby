@@ -74,25 +74,28 @@ class Sites::Admin::BackupsController < ApplicationController
 
     uploaded_io = params[:upload]
 
-    if uploaded_io.content_type == 'text/xml'
-      attrs = Hash.from_xml(uploaded_io.read)
-    elsif uploaded_io.content_type == 'application/json'
-      attrs = JSON.parse uploaded_io.read
+    case uploaded_io.content_type
+      when 'text/xml'
+        attrs = Hash.from_xml(uploaded_io.read)
+      when 'application/json'
+        attrs = JSON.parse uploaded_io.read
+      when 'application/octet-stream'
+        attrs = JSON.parse uploaded_io.read
     end
-
-#      current_site.roles.import(attrs['site']['roles']) if attrs['site']['roles']
-#    current_site.repositories.import(attrs['site']['repositories']) if attrs['site']['repositories']
-    current_site.pages.import(attrs['site']['pages'], author: current_user.id) if attrs['site']['pages']
-    current_site.menus.import(attrs['site']['menus']) if attrs['site']['menus']
-    current_site.components.import(attrs['site']['root_components']) if attrs['site']['root_components']
-    current_site.styles.import(attrs['site']['styles']) if attrs['site']['styles']
-#    current_site.banners.import(attrs['site']['banners'], author: current_user.id) if attrs['site']['banners']
-    current_site.extensions.import(attrs['site']['extensions']) if attrs['site']['extensions']
-
+if attrs
+  #    current_site.roles.import(attrs['site']['roles']) if attrs['site']['roles']
+  #    current_site.repositories.import(attrs['site']['repositories']) if attrs['site']['repositories']
+  #    current_site.banners.import(attrs['site']['banners'], author: current_user.id) if attrs['site']['banners']
+      current_site.pages.import(attrs['site']['pages'], author: current_user.id) if attrs['site']['pages']
+      current_site.menus.import(attrs['site']['menus']) if attrs['site']['menus']
+      current_site.components.import(attrs['site']['root_components']) if attrs['site']['root_components']
+      current_site.styles.import(attrs['site']['styles']) if attrs['site']['styles']
+      current_site.extensions.import(attrs['site']['extensions']) if attrs['site']['extensions']
+end
 #    File.open(Rails.root.join('public', "uploads/#{current_site.id}", uploaded_io.original_filename), 'wb') do |file|
 #      file.write(uploaded_io.read)
 #    end
-
+#    flash[:error] = 'Houve algum erro na importaçao' Colocar mensagens de erro e sucesso
     redirect_to :back
   end
 

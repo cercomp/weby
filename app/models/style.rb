@@ -72,8 +72,8 @@ class Style < ActiveRecord::Base
     attrs = attrs['styles'] if attrs.has_key? 'styles'
 
     if attrs['style_id'].present?
-      follow = Style.unscoped.find(attrs['style_id'])
-      if attrs['name'] == follow.name
+      follow = Style.unscoped.find_by_id(attrs['style_id'])
+      if follow and attrs['name'] == follow.name
          attrs['css'] = nil
          attrs['name'] = nil
       else
