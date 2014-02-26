@@ -1,6 +1,8 @@
 class Repository < ActiveRecord::Base
   include Trashable
 
+  attr_accessor :x, :y, :w, :h
+
   has_many :page, 
     foreign_key: 'repository_id'
 
@@ -55,12 +57,17 @@ class Repository < ActiveRecord::Base
       little: "-quality 90 -strip",
       medium: "-quality 80 -strip",
       thumb: "-crop 160x160+0+0 +repage -quality 90 -strip",
-      original: "-quality 80 -strip"}
+      original: "-quality 80 -strip"},
+      :processors => [:cropper]
 
   validates_attachment_presence :archive,
     :message => I18n.t('activerecord.errors.messages.attachment_presence'), :on => :create
 
   before_post_process :image?, :normalize_file_name
+  
+  def cropping?
+    !x.blank? && !y.blank? && !w.blank? && !h.blank?
+  end
 
   # Metodo para incluir a url do arquivo no json
   def archive_url(format = :original)
