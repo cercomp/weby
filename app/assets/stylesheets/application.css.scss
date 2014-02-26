@@ -19,8 +19,8 @@ a:hover { text-decoration: none; }
 
 #header
 {
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding-top: 25px;
+  padding-bottom: 25px;
   font-size: 12px;
   .noperson
   {
@@ -40,12 +40,13 @@ a:hover { text-decoration: none; }
     .info.name
     {
       font-weight: bold;
-      padding-bottom: 1px;
+      text-transform: uppercase;
+      margin-top: -3px;
+      margin-bottom: 3px;
     }
     .info.actions
     {
       min-width: 80px;
-      padding-top: 1px;
       a.label
       {
         margin-left: 5px;

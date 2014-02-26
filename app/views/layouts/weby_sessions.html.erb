@@ -44,8 +44,7 @@
               <% end %>
             </li>
           </ul>
-          <%= render 'layouts/flash', flash: flash %>
-          <% flash = [] %>
+          <%= flash_message %>
           <%= yield %>
         </div>
         <nav class="help-nav">

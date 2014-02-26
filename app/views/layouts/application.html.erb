@@ -49,7 +49,7 @@
             </div>
             <div class="pull-right text-right">
               <div class="info name">
-                <%= link_to current_user, main_app.profile_url(current_user.login, subdomain: current_site) %>
+                <%= link_to current_user.first_name, main_app.profile_url(current_user.login, subdomain: current_site) %>
               </div>
               <div class="info actions">
                 <%= link_to main_app.site_admin_url(subdomain: nil), class: "label label-default" do %>

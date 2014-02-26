@@ -86,22 +86,26 @@ module ApplicationHelper
 
   # Define mensagens personalizadas
   def flash_message
-    "".tap do |messages|
-      [:info, :warning, :error, :success, :notice, :alert].each do |type|
-        if flash[type]
-          type = :success if type == :notice
-          type = :error   if type == :alert
-
-          messages << content_tag('div', :class => "alert alert-#{type}") do
-            raw %{
-              #{link_to(raw('&times;'), '#', class: 'close', data: {dismiss: "alert"})}
-              #{flash.now[type]}
-            }
-          end
-          # Limpa a mensagem
-          flash[type] = nil
+    "".tap do |html|
+      flash.each do |key, value|
+        html << content_tag('blockquote', :class => flash_class(key)) do
+          raw %{
+            #{link_to('&times;'.html_safe, '#', class: 'close', data: {dismiss: "alert"}, 'aria-hidden' => true)}
+            #{value}
+          }
         end
       end
+      flash.clear
+    end.html_safe
+  end
+
+  def flash_class(type)
+    case type
+      when :info then "alert-info"
+      when :notice, :success then "alert-success"
+      when :error, :alert then "alert-danger"
+      when :warning then "alert-warning"
+      else "alert-info"
     end
   end
 
@@ -427,16 +431,6 @@ module ApplicationHelper
         check_box_options = check_box_options.merge({disabled: true})
         html << check_box_tag(field, resource[field], resource[field], check_box_options)
       end
-    end
-  end
-
-  def flash_class(type)
-    case type
-      when :notice then "alert alert-info"
-      when :success then "alert alert-success"
-      when :error then "alert alert-danger"
-      when :alert then "alert alert-danger"
-      when :warning then "alert alert-warning"
     end
   end
 end

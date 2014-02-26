@@ -15,12 +15,12 @@ crumb :repositories_new do
 end
 
 crumb :repositories_edit do |repository|
-  link "#{t("breadcrumbs.edit")}-#{repository.description}", edit_site_admin_repository_path
+  link "#{t("breadcrumbs.edit")} #{repository.description}", edit_site_admin_repository_path
   parent :repositories
 end
 
 crumb :repositories_show do |repository|
-  link "#{t("breadcrumbs.show")}-#{repository.description}", site_admin_repository_path
+  link "#{repository.description}", site_admin_repository_path
   parent :repositories
 end
 
@@ -50,12 +50,12 @@ crumb :pages_fronts do
 end
 
 crumb :pages_show do |page|
-  link "#{t("breadcrumbs.show")}-#{page.title}", site_admin_page_path
+  link "#{page.title}", site_admin_page_path
   parent :pages
 end
 
 crumb :pages_edit do |page|
-  link "#{t("breadcrumbs.edit")}-#{page.title}", edit_site_admin_page_path
+  link "#{t("breadcrumbs.edit")} #{page.title}", edit_site_admin_page_path
   parent :pages
 end
 
@@ -80,17 +80,17 @@ crumb :menus_new do
 end
 
 crumb :menus_edit do |menu|
-  link "#{t("breadcrumbs.edit")}-#{menu.name}", edit_site_admin_path
+  link "#{t("breadcrumbs.edit")} #{menu.name}", edit_site_admin_path
   parent :menus
 end
 
 crumb :menus_items_new do |menu|
-  link "#{t("breadcrumbs.new_menu_item")}(Menu-#{menu.name})"
+  link "#{t("breadcrumbs.new_menu_item")} (#{menu.name})"
   parent :menus
 end
 
 crumb :edit_menu_item do |menu|
-  link "#{t("breadcrumbs.edit_menu_item")}(Menu-#{menu.name})"
+  link "#{t("breadcrumbs.edit_menu_item")} (#{menu.name})"
   parent :menus
 end
 
@@ -105,12 +105,12 @@ crumb :banners_new do
 end
 
 crumb :banners_edit do |banner|
-  link "#{t("breadcrumbs.edit")}-#{banner.title}", edit_site_admin_banner_path
+  link "#{t("breadcrumbs.edit")} #{banner.title}", edit_site_admin_banner_path
   parent :banners
 end
 
 crumb :banners_show do |banner|
-  link "#{t("breadcrumbs.show")}-#{banner.title}", site_admin_banner_path
+  link "#{banner.title}", site_admin_banner_path
   parent :banners
 end
 
@@ -135,7 +135,7 @@ crumb :roles_new do
 end
 
 crumb :roles_edit do |role|
-  link "#{t("breadcrumbs.edit")}-#{role.name}", edit_site_admin_role_path
+  link "#{t("breadcrumbs.edit")} #{role.name}", edit_site_admin_role_path
   parent :roles
 end
 
@@ -150,12 +150,12 @@ crumb :styles_new do
 end
 
 crumb :styles_show do |style|
-  link "#{t("breadcrumbs.show")}-#{style.name}", site_admin_style_path
+  link "#{style.name}", site_admin_style_path
   parent :styles
 end
 
 crumb :styles_edit do |style|
-  link "#{t("breadcrumbs.edit")}-#{style.name}", edit_site_admin_style_path
+  link "#{t("breadcrumbs.edit")} #{style.name}", edit_site_admin_style_path
   parent :styles
 end
 
@@ -200,7 +200,7 @@ crumb :components_new do
 end
 
 crumb :components_edit do |component|
-  link "#{t("breadcrumbs.edit")}-#{t("components.#{component.name}.name")}", edit_site_admin_component_path
+  link "#{t("breadcrumbs.edit")} #{t("components.#{component.name}.name")}", edit_site_admin_component_path
   parent :layout
 end
 
@@ -230,12 +230,12 @@ crumb :new_group do
 end
 
 crumb :edit_group do |group|
-  link "#{t("breadcrumbs.edit")}-#{group.name}", feedback.edit_admin_group_path
+  link "#{t("breadcrumbs.edit")} #{group.name}", feedback.edit_admin_group_path
   parent :groups
 end
 
 crumb :show_group do |group|
-  link "#{t("breadcrumbs.show")}-#{group.name}", feedback.admin_group_path
+  link "#{group.name}", feedback.admin_group_path
   parent :groups
 end
 
@@ -250,6 +250,6 @@ crumb :messages do
 end
 
 crumb :show_message do |message|
-  link "#{t("breadcrumbs.show")}-#{message.name}", feedback.admin_message_path
+  link "#{message.name}", feedback.admin_message_path
   parent :messages
 end
