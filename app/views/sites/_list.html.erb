@@ -5,7 +5,7 @@
 <% else %>
   <div id="sites" class="row">
     <% @sites.each do |site| %>
-      <div class="col-md-4">
+      <div class="col-md-4 site-thumbnail">
         <%= render partial: 'site', locals: {site: site} %>
       </div>
     <% end %>

@@ -78,17 +78,15 @@ $(document).ready(function() {
 });
 
 function loadMoreSites(){
-   if($('.next-load')[0]){
-       loader = $('.next-load').remove();
-       $.get(loader.data('url'), function(data){
-           $(data).each(function(){
-              if($(this).is('ul')){
-                $('ul.thumbnails').append($(this).html());
-              }
-           });
-       });
-   }
-   return false;
+  if($('.next-load')[0]){
+    loader = $('.next-load').remove();
+    $.get(loader.data('url'), function(data){
+      if($(data).is('#sites')){
+        $('#sites').append($(data).html());
+      }
+    });
+  }
+  return false;
 }
 
 function loadMoreNotifications(){
