@@ -20,12 +20,12 @@
     <% end %>
   </div>
   <div class="col-md-12">
-    <%= link_to main_app.root_path(groupings: params[:groupings] == 'all' ? nil : 'all', search: params[:search]), class: "label #{params[:groupings] == 'all' ? 'label-info' : ''}" do %>
+    <%= link_to main_app.root_path(groupings: params[:groupings] == 'all' ? nil : 'all', search: params[:search]), class: "grouping-label label #{params[:groupings] == 'all' ? 'label-primary' : 'label-default'}" do %>
       <span><%= t('.all') %></span>
       <%= content_tag :span, 'X', class: 'label label-info' if params[:groupings] == 'all' %>
     <% end if @default_groupings %>
     <% @groupings.each do |grouping| %>
-      <%= link_to main_app.root_path(groupings: params[:groupings] == grouping.id.to_s ? nil : grouping.id.to_s, search: params[:search]), class: "label label-default #{params[:groupings] == grouping.id.to_s ? 'label-info' : ''}" do %>
+      <%= link_to main_app.root_path(groupings: params[:groupings] == grouping.id.to_s ? nil : grouping.id.to_s, search: params[:search]), class: "grouping-label label #{params[:groupings] == grouping.id.to_s ? 'label-primary' : 'label-default'}" do %>
         <span><%= grouping.name %></span>
         <%= content_tag :span, 'X', class: 'label label-info' if params[:groupings] == grouping.id.to_s %>
       <% end %>
