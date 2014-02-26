@@ -66,12 +66,17 @@ class Repository < ActiveRecord::Base
   before_post_process :image?, :normalize_file_name
   
   def cropping?
-    !x.blank? && !y.blank? && !w.blank? && !h.blank?
+    !x.blank? && !y.blank? && w.to_i > 0 && h.to_i > 0
+  end
+
+   def image_geometry(styles = :original)
+    @geometry ||= {}
+    @geometry[styles] ||= Paperclip::Geometry.from_file images.path(styles)
   end
 
   # Metodo para incluir a url do arquivo no json
   def archive_url(format = :original)
-    self.archive.url(format) 
+    self.archive.url(format)
   end
 
   alias :as_json_bkp :as_json

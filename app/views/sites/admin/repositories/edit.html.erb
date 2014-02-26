@@ -12,10 +12,10 @@
     <input type="hidden" name="x" value="" />
     <input type="hidden" name="y" value="" />
     <div id="crop-dimensions">
-      <span>Altura</span>
-      <input style="width: 50px;" type="text" name="w" value="" />
-      <span>Largura</span>
+      <span><%= t('.height') %></span>
       <input style="width: 50px;" type="text" name="h" value="" />
+      <span><%= t('.width') %></span>
+      <input style="width: 50px;" type="text" name="w" value="" />   
     </div>
   <% end  %>
 
@@ -38,8 +38,7 @@
             $('input[name=y]').val(selection.y1);
             $('input[name=w]').val(selection.width);
             $('input[name=h]').val(selection.height);
-       }
-    });
+       }})
       });
       $('#img-crop').attr('src', $('#img-crop').data('src'))
     });
