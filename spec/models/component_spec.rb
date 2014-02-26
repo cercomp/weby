@@ -9,7 +9,12 @@ describe Component do
     expect(subject.publish).to eql true
   end
 
-  it 'should place_holder default is home' do
-    expect(subject.place_holder).to eql 'home'
+  pending 'before_save' do
+  end
+
+  pending 'after_save' do
+  end
+
+  pending 'after_destroy' do
   end
 end

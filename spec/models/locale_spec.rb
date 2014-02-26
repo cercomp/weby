@@ -1,5 +1,6 @@
 require 'spec_helper'
 
 describe Locale do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { expect(subject).to have_and_belong_to_many(:sites) }
+  it { expect(subject).to have_many(:news).class_name('Page::I18ns')  }
 end
