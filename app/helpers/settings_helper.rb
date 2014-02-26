@@ -1,5 +1,4 @@
 module SettingsHelper
-
   def setting_input_tag setting
     name = 'settings[][value]'
     disabled = setting.new_record?

@@ -1,8 +1,8 @@
 module RepositoryHelper
   attr_accessor :file, :format, :options, :size, :thumbnail
 
-  # Retorna html a ser exibido da imagem 
-  # 
+  # Retorna html a ser exibido da imagem
+  #
   def weby_file_view(file, format, width = nil, height = nil, options = {}, fallback = false)
     options[:as] ||= 'link'
     @file, @format, @width, @height, @options = file, format, width, height, options
@@ -33,7 +33,7 @@ module RepositoryHelper
 
     hash = Hash.new{|hash,key| hash[key] = Array.new}
 
-    mime_types.each do  |type, subtype|  
+    mime_types.each do  |type, subtype|
       hash[type] << [subtype, "#{type}/#{subtype}"]
     end
 
@@ -51,7 +51,7 @@ module RepositoryHelper
 
   def repository_search(link_title, place_name, field_name, selected, options = {})
     options[:file_types] = [options[:file_types]].flatten
-    
+
     options.merge!({ link_title: link_title,
                      place_name: place_name,
                      field_name: field_name,
@@ -62,10 +62,10 @@ module RepositoryHelper
 
   def link_to_add_files(local_assigns)
     if  local_assigns[:multiple]
-      render 'sites/admin/repositories/link_to_add_files_multiple', local_assigns 
-    else 
-      render 'sites/admin/repositories/link_to_add_files_uniq', local_assigns 
-    end 
+      render 'sites/admin/repositories/link_to_add_files_multiple', local_assigns
+    else
+      render 'sites/admin/repositories/link_to_add_files_uniq', local_assigns
+    end
   end
 
   private
@@ -75,8 +75,8 @@ module RepositoryHelper
       @thumbnail = empty_mime
     else
       if mime_type.first == "image"
-        if mime_type.last.include?("svg") 
-          @format = :original 
+        if mime_type.last.include?("svg")
+          @format = :original
         end
 
         @thumbnail = @file.archive.url(@format)

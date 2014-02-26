@@ -4,7 +4,7 @@ module DateHelper
     return l(date, format: format)
   end
 
-  # Receives an object (Page, Banner) and verifies if the publication's date has expired 
+  # Receives an object (Page, Banner) and verifies if the publication's date has expired
   # Returns toggle_field if not expired otherwise returns "Expired"
   def publication_status(obj, options={})
     case obj

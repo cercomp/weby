@@ -1,5 +1,4 @@
 module StatisticsHelper
-
   def metrics_select_tag
     select_tag :metric, options_for_select([[t('.views'), 'views'], [t('.visitors'), 'visitors']]), class: 'form-control'#, [t('.uniq_visitors'), 'uniq_visitors']])
   end
@@ -35,5 +34,4 @@ module StatisticsHelper
 STYLE
     end
   end
-  
 end

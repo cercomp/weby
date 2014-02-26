@@ -92,7 +92,7 @@ class Page < ActiveRecord::Base
 
   scope :news, where(type: 'News')
   scope :events, where(type: 'Event')
-  
+
   scope :upcoming_events, proc{ where(" (event_begin >= :time OR event_end >= :time)", time: Time.now).events }
 
   scope :front, where(front: true)
@@ -157,11 +157,11 @@ class Page < ActiveRecord::Base
   def is_image?
     image.archive_content_type =~ /image/
   end
-  
+
   def own_image?
     image.site_id == owner.id
   end
-  
+
   def own_files?
     related_files.each do |file|
       return false if file.site_id != owner.id

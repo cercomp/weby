@@ -1,7 +1,7 @@
 class Repository < ActiveRecord::Base
   include Trashable
 
-  has_many :page, 
+  has_many :page,
     foreign_key: 'repository_id'
 
   belongs_to :site
@@ -16,7 +16,7 @@ class Repository < ActiveRecord::Base
   scope :description_or_filename, proc {|text|
     text = text.try(:downcase)
     where [ "(LOWER(description) LIKE :text OR LOWER(archive_file_name) LIKE :text)",
-            { :text => "%#{text}%" } ] 
+            { :text => "%#{text}%" } ]
   }
 
   scope :content_file, proc { |contents|
@@ -64,7 +64,7 @@ class Repository < ActiveRecord::Base
 
   # Metodo para incluir a url do arquivo no json
   def archive_url(format = :original)
-    self.archive.url(format) 
+    self.archive.url(format)
   end
 
   alias :as_json_bkp :as_json
@@ -137,7 +137,7 @@ class Repository < ActiveRecord::Base
   def has_all_formats?
     STYLES.each_key do |format|
       return false unless exists_archive?(format)
-    end 
+    end
     true
   end
 

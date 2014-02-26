@@ -1,5 +1,5 @@
 class Notification < ActiveRecord::Base
-  attr_accessible :title, :body 
+  attr_accessible :title, :body
 
   belongs_to :user
 

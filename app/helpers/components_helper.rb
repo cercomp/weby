@@ -3,7 +3,7 @@ module ComponentsHelper
   def make_mini_layout
     content_for :stylesheets, stylesheet_link_tag("mini_layout")
     config = Weby::Themes.layout current_site.theme
-    divs = "<div id='mini_layout' style='width: #{config["width"] || 500}px'>"  
+    divs = "<div id='mini_layout' style='width: #{config["width"] || 500}px'>"
 
     config["placeholders"].map do |placeholders|
       divs += "<div class='mini_level' style='height:#{placeholders["height"] || 25}px'>"
@@ -11,7 +11,7 @@ module ComponentsHelper
       divs += "</div>"
     end
 
-    divs += "</div>" 
+    divs += "</div>"
   end
 
   def list_component(compo, leftout=false)
@@ -53,7 +53,7 @@ module ComponentsHelper
       extension_components = components_as_options(Weby::Components.components(extension.name.to_sym))
       options[t("extensions.#{extension.name}.name")] = extension_components if extension_components.any?
     end
-    
+
     options
   end
 
@@ -65,18 +65,17 @@ module ComponentsHelper
   def make_placeholders_divs(placeholders,width)
     divs = ""
     placeholders["names"].map do |name|
-      divs += "<div 
+      divs += "<div
                   id='mini_#{name}'
-                  class='hover' 
+                  class='hover'
                   style='width:#{ if placeholders["widths"].nil?
-                                    ((width/placeholders["names"].size).to_s + "px") 
-                                  else 
+                                    ((width/placeholders["names"].size).to_s + "px")
+                                  else
                                     (placeholders["widths"][placeholders["names"].index(name)].to_s + "%")
-                                  end }; 
+                                  end };
                    height:#{placeholders["height"] || 25}px;'>
                #{t("themes.#{current_site.theme}.placeholders.#{name}")}  </div>"
     end
     return divs
   end
-
 end

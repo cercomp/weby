@@ -17,8 +17,9 @@ class Banner < ActiveRecord::Base
 
   validates :title, :user_id, presence: true
 
-  validate :validate_date 
-  def validate_date 
+  validate :validate_date
+
+  def validate_date
     if self.date_begin_at.blank?
       self.date_begin_at = Time.now.to_s
     end
@@ -36,9 +37,7 @@ class Banner < ActiveRecord::Base
     attrs['user_id'] = options[:author] unless User.unscoped.find_by_id(attrs['user_id'])
 
     extension = self.create!(attrs)
-
   end
 
   private :validate_date
-
 end

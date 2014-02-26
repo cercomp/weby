@@ -23,7 +23,7 @@ class View < ActiveRecord::Base
     end
 
     finish_year, finish_month = month.to_i == 12 ? [year.to_i + 1, 1] : [year.to_i, month.to_i + 1]
-    
+
     (Date.new(year.to_i, month.to_i)..Date.new(finish_year, finish_month)-1.days).
       map{|day| {date: day.strftime('%Y-%m-%d'), views: counts[day.strftime('%Y-%m-%d')].to_i} }.to_json
   end
@@ -48,5 +48,4 @@ class View < ActiveRecord::Base
 
     (1..12).map{ |month| {month: month, views: counts[month.to_s].to_i} }.to_json
   end
-
 end
