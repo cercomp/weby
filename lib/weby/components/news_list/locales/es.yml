@@ -3,7 +3,7 @@ es:
     news_list:
       name:                    " Listado de noticias "
       quant:                   " Noticias por página "
-      front:                   " Solo noticias de frente "
+      front:                   " Incluir noticias de frente "
       events:                  " Mostrar los eventos "
       show_image:              " Mostrar la imagen de la noticia "
       show_date:               " Mostrar la fecha de la noticia "
@@ -16,7 +16,7 @@ es:
     attributes:
       news_list_component:
         quant:                 " Noticias por página "
-        front:                 " Solo noticias de frente "
+        front:                 " Incluir noticias de frente "
         events:                " Mostrar los eventos "
         show_image:            " Mostrar la imagen de la noticia "
         show_date:             " Mostrar la fecha de la noticia "

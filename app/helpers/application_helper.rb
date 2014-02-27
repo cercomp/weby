@@ -42,7 +42,7 @@ module ApplicationHelper
     item_class = entry.html_class.present? ? [entry.html_class] : []
     item_class << 'sub' if has_submenu
     item_class << 'current_page' if is_current_page
-    
+
     content_tag :li, id: "menu_item_#{entry.id}", class: item_class.join(" ") do
       title_link = link_to(entry.title,
         entry.target_id.to_i > 0 ? main_app.site_page_path(entry.target_id) : entry.url,
@@ -66,7 +66,7 @@ module ApplicationHelper
             menu_content << link_to(icon('edit', text: ''), edit_site_admin_menu_menu_item_path(entry.menu_id, entry.id), title: t("edit")) if test_permission(:menu_items, :edit)
             menu_content << link_to(icon('trash', text: ''), site_admin_menu_menu_item_path(entry.menu_id, entry.id), method: :delete, data: {confirm: t('are_you_sure')}, title: t("destroy")) if test_permission(:menu_items, :destroy)
             menu_content << link_to(icon('move', text: ''),"#", class: 'handle', title: t("move")) if test_permission(:menu_items, :change_position)
-            menu_content << link_to("+", new_site_admin_menu_menu_item_path(entry.menu_id, parent_id: entry.id), class: "btn btn-success btn-small", title: t("add_sub_menu")) if test_permission(:menu_items, :new)
+            menu_content << link_to("+", new_site_admin_menu_menu_item_path(entry.menu_id, parent_id: entry.id), class: "btn btn-success btn-xs", title: t("add_sub_menu")) if test_permission(:menu_items, :new)
             menu_content.join.html_safe
           end
           div_content.join.html_safe
@@ -86,22 +86,26 @@ module ApplicationHelper
 
   # Define mensagens personalizadas
   def flash_message
-    "".tap do |messages|
-      [:info, :warning, :error, :success, :notice, :alert].each do |type|
-        if flash[type]
-          css = (type == :notice ? :success : type)
-          css = (type == :alert ? :error : type)
-
-          messages << content_tag('div', :class => "alert alert-#{css}") do
-            raw %{
-              #{link_to(raw('&times;'), '#', class: 'close', data: {dismiss: "alert"})}
-              #{flash.now[type]}
-            }
-          end
-          # Limpa a mensagem
-          flash[type] = nil
+    "".tap do |html|
+      flash.each do |key, value|
+        html << content_tag('blockquote', :class => flash_class(key)) do
+          raw %{
+            #{link_to('&times;'.html_safe, '#', class: 'close', data: {dismiss: "alert"}, 'aria-hidden' => true)}
+            #{value}
+          }
         end
       end
+      flash.clear
+    end.html_safe
+  end
+
+  def flash_class(type)
+    case type
+      when :info then "alert-info"
+      when :notice, :success then "alert-success"
+      when :error, :alert then "alert-danger"
+      when :warning then "alert-warning"
+      else "alert-info"
     end
   end
 
@@ -131,7 +135,7 @@ module ApplicationHelper
   def make_menu(obj, args={})
     #não criar menu para objetos de outro site
     return "" if obj.respond_to?(:site_id) and obj.site_id != current_site.id
-    
+
     raw("".tap do |menu|
       excepts = args[:except] || []
       ctrl = args[:controller] || controller.class
@@ -149,7 +153,7 @@ module ApplicationHelper
       (ctrl.instance_methods(false) - excepts).each do |action|
         if test_permission(ctrl, action)
           case action.to_sym
-          
+
           when :show
             menu << link_to(
               icon('eye-open', text: args[:with_text] ? t('show') : ''),
@@ -158,7 +162,8 @@ module ApplicationHelper
                 :action => 'show', :id => obj.id
               }),
               :alt => t('show'),
-              :title => t('show')
+              :title => t('show'),
+              :class => 'action-link'
             ) + " "
 
           when :edit
@@ -169,7 +174,8 @@ module ApplicationHelper
                 :action => 'edit', :id => obj.id
               }),
               :alt => t('edit'),
-              :title => t('edit')) + " "
+              :title => t('edit'),
+              :class => 'action-link') + " "
 
           when :destroy
             menu << link_to(
@@ -182,7 +188,8 @@ module ApplicationHelper
               :data => {:confirm => t('are_you_sure')},
               :method => :delete,
               :alt => t('destroy'),
-              :title => t('destroy')) + " "
+              :title => t('destroy'),
+              :class => 'action-link') + " "
           end
         end
       end
@@ -193,11 +200,11 @@ module ApplicationHelper
     ''.tap do |html|
       if test_permission controller_name, :purge
         html << link_to(icon('trash', text: options[:with_text] ? t('destroy') : nil),
-          options.merge({action: 'show', id: resource.id}), :title => t("purge"), method: 'delete', confirm: t('are_you_sure'))
+          options.merge({action: 'show', id: resource.id}), :title => t("purge"), class: 'action-link', method: 'delete', confirm: t('are_you_sure'))
       end
       if test_permission controller_name, :recover
         html << link_to(icon('refresh', text: options[:with_text] ? t('recover') : nil),
-          options.merge({action: 'recover', id: resource.id}), :title => t("recover"), method: 'put')
+          options.merge({action: 'recover', id: resource.id}), :title => t("recover"), class: 'action-link', method: 'put')
       end
     end.html_safe
   end
@@ -219,9 +226,9 @@ module ApplicationHelper
   # Informações sobre paginação
   def info_page(collection, style = nil)
     if collection.page(1).count > 0
-      html = "#{t('views.pagination.displaying')} #{collection.offset_value + 1} - 
+      html = "#{t('views.pagination.displaying')} #{collection.offset_value + 1} -
       #{collection.offset_value + collection.length}"
-      html << " #{t('of')} #{collection.total_count}" 
+      html << " #{t('of')} #{collection.total_count}"
 
       content_tag :div, html, :class => "pagination", :style => style
     end
@@ -235,11 +242,11 @@ module ApplicationHelper
       params[:per_page] = per_page_default if params[:per_page].blank?
 
       per_page_array.each do |item|
-        html << 
+        html <<
         if params[:per_page].to_i == item.to_i
           content_tag :li, :class => 'page active' do
             #link_to "#{item} ", params.merge({:per_page => item, :page => 1}), :remote => remote
-            content_tag :span, item
+            content_tag :span, "#{item} "
           end
         else
           content_tag(:li, :class => 'page') do
@@ -248,8 +255,10 @@ module ApplicationHelper
         end
       end
 
-      content_tag :div, :class => "pagination#{" pagination-#{size}" if size}" do
-        content_tag :ul, raw(html)
+      content_tag :div do
+        content_tag :ul, :class => "pagination#{" pagination-#{size}" if size}"  do
+          raw(html)
+        end
       end
     end
   end
@@ -264,7 +273,7 @@ module ApplicationHelper
   # Quantidade de registro por página padrão
   def per_page_default
     if @site
-      ( @site.try(:per_page_default) || 
+      ( @site.try(:per_page_default) ||
        Site.columns_hash['per_page_default'].try(:default) ).to_i
     else
       current_settings.per_page_default.try(:to_i)
@@ -275,7 +284,7 @@ module ApplicationHelper
   # Ordem: Site, Valor Padrão da coluna, valor fixo.
   def per_page_string
     if @site
-      ( @site.try(:per_page) || Site.columns_hash['per_page'].default ) << 
+      ( @site.try(:per_page) || Site.columns_hash['per_page'].default ) <<
       ",#{per_page_default}"
     else
       "#{current_settings.per_page},#{per_page_default}"
@@ -287,7 +296,7 @@ module ApplicationHelper
   end
 
   def content_tag_if(condition, tag_name, options = {}, &block)
-    content_tag(tag_name, options, &block) if condition 
+    content_tag(tag_name, options, &block) if condition
   end
 
   def title title, raw_text=false
@@ -331,7 +340,8 @@ module ApplicationHelper
     })
 
     unless type.nil?
-      icon_class = "icon-#{type}" + (args[:white] ? ' icon-white' : '')
+      ico = not_in_site_context? ?  "glyphicon" : "icon"
+      icon_class = "#{ico} #{ico}-#{type}" + (args[:white] ? " #{ico}-white" : "")
 
       if args[:right]
         raw "#{args[:text]} <i class='#{icon_class}'></i>"

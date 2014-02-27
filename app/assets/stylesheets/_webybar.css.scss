@@ -1,53 +1,47 @@
 /*
- *= require_self
  *= require google/lato
  */
 
 html, body { margin: 0; }
 
-#weby_bar
-{
-  @import "weby/bootstrap";
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url("/assets/bootstrap/glyphicons-halflings-regular.eot");
+  src: url("/assets/bootstrap/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("/assets/bootstrap/glyphicons-halflings-regular.woff") format("woff"), url("/assets/bootstrap/glyphicons-halflings-regular.ttf") format("truetype"), url("/assets/bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg");
+}
+
+$weby-blue: #344259;
+$link-color: $weby-blue;
+
+#webybar {
+  @import "bootstrap";
   * { font-family: inherit; }
-  a 
-  {
-    color: #bb1726;
-    text-transform: uppercase;
-  }
-  .clean { color: #333333; }
-  .user
-  {
+  a { text-transform: uppercase; }
+  a:hover { text-decoration: none; }
+  .user {
     line-height: 18px;
-    .info
-    {
+    .info {
       text-align: right;
-      padding-top: 4px;
-      margin-right: 15px;
+      padding-top: 2px;
+      margin-right: 10px;
+      min-width: 80px;
     }
   }
-  .logo
-  {
-    margin: 0 10px;
-    line-height: 42px
-  }
-  .nav
-  {
-    margin-left: 10px;
-    a { margin-left: 7px; }
+  .logo { margin: 0 10px; }
+  .nav a {
+    margin-left: 7px;
+    color: #bb1726;
   }
   margin: 0;
   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 12px;
   line-height: 42px;
-  color: #333333;
   background-color: white;
   height: 42px;
   overflow: hidden;
   border-bottom: 1px solid #DDD;
 }
-
-#weby_shortcut
-{
+#weby_shortcut {
   position: fixed;
   z-index: 1000;
   top: 0;

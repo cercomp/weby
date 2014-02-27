@@ -1,0 +1,60 @@
+//Nav
+.nav-pills > li > a {
+  border-radius: 4px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+//Buttons
+.btn {
+  text-transform: uppercase;
+}
+
+//Icons
+.well .glyphicon {
+  color: black;
+}
+
+//Alert
+blockquote{
+  font-size: 16px;
+}
+
+.glyphicon {
+  font-size: 12px;
+}
+
+ul.order-list {
+  padding: 0;
+}
+
+.label-important{
+  background-color: #953b39;
+}
+
+
+.person{
+  .info.actions {
+    a{
+      color: white;
+    }
+    .label{
+      font-size: 11.844px;
+      padding: 2px 4px;
+    }
+  }
+}
+.site {
+  .info.actions a{
+    color: #BC1625;
+  }   
+}
+
+.search .input-group {
+  //margin-left: -15px;
+}

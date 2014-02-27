@@ -1,10 +1,13 @@
-<div class="control-group boolean optional side">
-  <%= label_tag :is_event, t(".is_event"), class: 'boolean optional control-label', for: 'is_event' %>
-  <%= content_tag :div, class: 'controls' do %>
-    <%= check_box_tag :is_event, :Event, @page.type == 'Event' %>
-  <% end %>
-  <%= f.input :type, as: :hidden %>
-  <div class='clear'></div>
+<div class="form-group boolean optional side">
+  <div class="col-md-3 control-label">
+    <%= label_tag :is_event, t(".is_event"), class: 'boolean optional', for: 'is_event' %>
+  </div>
+  <div class="col-md-7">
+    <%= f.input :type, as: :hidden %>
+    <label class="checkbox">
+      <%= check_box_tag :is_event, :Event, @page.type == 'Event' %>
+    </label>
+  </div>
 </div>
 <div id="form_event">
   <div id="event_fields">
@@ -19,8 +22,17 @@
     <%= f.input :event_email %>
 
     <%= f.input :event_begin, required: :true, label: t(".period_event") do %>
-       <%= f.input_field :event_begin, placeholder: t(".begin"), label: false %>
-       <%= f.input_field :event_end, placeholder: t(".end"), label: false %>
+      <div class="row">
+        <div class="col-md-5">
+           <%= f.input_field :event_begin, placeholder: t(".begin") %>
+        </div>
+        <div class="col-md-1 text-center">
+          <b><%= t('time.period_separator') %></b>
+        </div>
+        <div class="col-md-6">
+           <%= f.input_field :event_end, placeholder: t(".end") %>
+        </div>
+      </div>
     <% end %>
     <div class='clear'></div>
   </div>

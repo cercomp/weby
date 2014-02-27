@@ -1,28 +1,29 @@
+<% breadcrumb params[:search].present? ? :backups : :backups %>
 <ul class="nav nav-tabs" id="backup-tab">
-    <li class="<%= params["restore"] ? "" : "active" %>" >
+  <li class="<%= params["restore"] ? "" : "active" %>" >
     <a href="#backup" data-toggle="tab"><%= t(".backup") %></a>
-    </li>
-    <li class="<%= params["restore"] ? "active" : "" %>" >
+  </li>
+  <li class="<%= params["restore"] ? "active" : "" %>" >
     <a href="#restore" data-toggle="tab"><%= t(".restore") %></a>
-    </li>
+  </li>
 </ul>
-<div class="tab-content">    
-    <div class="tab-pane <%= params["restore"] ? "" : "active" %>" id="backup">
-      <%= form_tag site_admin_generate_path, html: { class: 'form-horizontal' }, method: 'get' do %>
-        <div id="home" class="form-actions">
-            <table class='table table-striped'>
-              <thead>
-                <tr>
-                  <th><%= t(".options_backup") %></th>
-                </tr>
-                <tr>
-                  <th></th>
-                </tr>
-            </table>
-          <div>
-            <%= t('.output') %>
-            <%= select_tag :type, options_for_select([ "XML", "JSON" ], "XML") %>
+<div class="tab-content">
+  <div class="tab-pane <%= params["restore"] ? "" : "active" %>" id="backup">
+    <%= form_tag site_admin_generate_path, html: { class: 'form-horizontal' }, method: 'get' do %>
+      <div id="home" class="well">
+        <table class='table table-striped'>
+          <thead>
+            <tr>
+              <th><%= t(".options_backup") %></th>
+            </tr>
+          </table>
+          <div class='col-md-12'>
+            <div class="col-md-6">
+              <%= t('.output') %>
+              <%= select_tag :type, options_for_select([ "XML", "JSON" ], "XML"), class: 'form-control' %>
+            </div>
           </div>
+          <div class="col-md-12">
           <div class="clearfix">
             <%= check_box_tag( :pages) %>
             <%= t('.pages') %>
@@ -53,25 +54,18 @@
             <%= t('.extensions') %>
           </div>
           <div class="clearfix">
-            <%= check_box_tag( :groupings) %>
-            <%= t('.groupings') %>
-          </div>
-          <div class="clearfix">
-            <%= check_box_tag( :locales) %>
-            <%= t('.locales') %>
-          </div>
-          <div class="clearfix">
             <%= check_box_tag( :messages) %>
             <%= t('.messages_feedbacks') %>
           </div>
+          </div>
           <div class="form-actions">
             <%= submit_tag t('generate'), class: 'btn btn-primary generate'  %>
-            <%= link_to t("back"), site_admin_path, class: "btn" %>
+            <%= link_to t("back"), site_admin_path, class: "btn btn-default" %>
           </div>
         </div>
-        <%  end %>
-      </div>
-      <div class="tab-pane <%= params["restore"] ? "active" : "" %>" id="restore">
+      <%  end %>
+    </div>
+    <div class="tab-pane <%= params["restore"] ? "active" : "" %>" id="restore">
       <%= render partial: 'import'%>
-      </div>
-</div>
+    </div>
+  </div>

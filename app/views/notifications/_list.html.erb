@@ -1,5 +1,5 @@
 <% if @notifications.empty? %>
-  <div class="alert">
+  <div class="alert alert-warning">
     <%= t('.no_notifications') %>
   </div>
 <% else %>
@@ -24,6 +24,6 @@
     </tbody>
   </table>
   <div style="text-align: center" class="load-more">
-    <%= link_to_function t('.load_more'), 'loadMoreNotifications()', class: 'btn btn-small next-load-notifications', data: {url: @nexturl} if @notifications.size == @per_notif %>
+    <%= link_to_function t('.load_more'), 'loadMoreNotifications()', class: 'btn btn-default btn-sm next-load-notifications', data: {url: @nexturl} if @notifications.size == @per_notif %>
   </div>
   <% end %>

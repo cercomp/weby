@@ -1,5 +1,5 @@
 <% if @pages.empty? %>
-  <div class="alert">
+  <div class="alert alert-warning">
     <%= t(".none_page") %>
   </div>
 <% else %>
@@ -7,24 +7,24 @@
   <div class="pull-right"> <%= paginate @pages, remote: true %> </div>
   <div class="clearfix"></div>
 
-  <table class="table table-striped table-condensed nowrap">
+  <table class="table table-striped nowrap">
       <thead>
         <tr>
-          <th width="270px"><%= t(".title") %></th>
-          <th width="90px"><%= sortable 'users.first_name', t(".author") %></th>
-          <th width="80px"><%= sortable 'tags.name', t(".category") %></th>
-          <th width="50px"><%= sortable 'pages.type', t(".type") %></th>
-          <th width="120px"><%= sortable 'pages.created_at', t(".created_at") %></th>
+          <th width="35%"><%= t(".title") %></th>
+          <th width="12%"><%= sortable 'users.first_name', t(".author") %></th>
+          <th width="13%"><%= sortable 'tags.name', t(".category") %></th>
+          <th width="6%"><%= sortable 'pages.type', t(".type") %></th>
+          <th width="13%"><%= sortable 'pages.created_at', t(".created_at") %></th>
           <% with_permission(action: :edit) do %>
-            <th><%= sortable 'pages.front', t(".cover") %></th>
-            <th><%= sortable 'pages.publish', t(".publish") %></th>
-            <th width="50px"></th>
+            <th width="5%" class="center"><%= sortable 'pages.front', t(".cover") %></th>
+            <th width="5%" class="center"><%= sortable 'pages.publish', t(".publish") %></th>
           <% end %>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         <% @pages.each do |page| %>
-        <tr id="<%= page.id %>">
+        <tr id="<%= page.id %>"<%= ' class="deactivated"'.html_safe unless page.publish %>>
           <td>
             <%= title_with_flags(page) %>
           </td>
@@ -34,17 +34,17 @@
           <td><%= l(page.created_at, :format => :short) %></td>
           <% with_permission(action: :edit) do %>
             <td class="front" style="text-align:center;">
-              <%= raw toggle_field(page, "front") %></td>
+              <%= front_status(page) %></td>
             <td class="publish" style="text-align:center;">
               <%= publication_status(page) %>
-            <td><%= make_menu(page, :except => "show", :with_text => false) %></td>
           <% end %>
+          <td class="text-right"><%= make_menu(page, :except => "show", :with_text => false) %></td>
         </tr>
       <% end %>
       </tbody>
     </table>
 
-  <div class="pull-left"> <%= per_page_links @pages, true, :mini %> </div>
+  <div class="pull-left"> <%= per_page_links @pages, true, :sm %> </div>
   <div class="pull-right"> <%= paginate @pages, remote: true %> </div>
   <div class="clearfix"></div>
 <% end %>

@@ -1,4 +1,4 @@
-<% content_for :javascripts, javascript_include_tag("settings") %>
+<% content_for :javascripts, javascript_include_tag("settings.index") %>
 
 <%= form_tag admin_settings_path, :method => :put, :id => 'settings_form' do %>
   <table class='table table-striped'>
@@ -15,7 +15,7 @@
           <input type="hidden" value="<%= setting.id %>" name="settings[][id]"/>
           <input type="hidden" value="<%= setting.name %>" name="settings[][name]"/>
           <td> <%= setting.name %> </td>
-          <td> <%= setting_input_tag setting %> </td>
+          <td style="width: 30%"> <%= setting_input_tag setting %> </td>
           <td> <%= t("settings.#{setting.name}") %> </td>
         </tr>
       <% end %>
@@ -23,6 +23,6 @@
   </table>
   <div class="form-actions">
     <%= button_tag t("save"), class: 'btn btn-primary', disable_with: t("please_wait") %>
-    <%= link_to t("back"), :back, class: "btn" %>
+    <%= link_to t("back"), :back, class: "btn btn-default" %>
   </div>
 <% end %>

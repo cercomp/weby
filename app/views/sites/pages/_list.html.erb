@@ -30,5 +30,5 @@
   <div class="empty-result"><%= t(".no_#{action_name=='events' ? 'events' : 'pages' }") %></div>
 <% end %>
 </div>
-<%= per_page_links @pages, true, :mini %>
+<%= per_page_links @pages, true, :sm %>
 <%= paginate @pages, remote: true, page_links: true %>

@@ -55,12 +55,6 @@
 
   <%= render partial: 'sites/admin/pages/related_files' if @page.related_files.any? %>
 
-  <p>
-    <span class="categories-label"><%= "#{t('.period_page')}:"  %></span>
-    <b><%= period_dates(@page.date_begin_at, @page.date_end_at) -%></b>
-  </p>
-  
-
   <div class="form-actions">
     <%= link_to icon('eye-open', text: t('show')), site_page_path(@page) %>
     <%= make_menu(@page, :except => "show") %>

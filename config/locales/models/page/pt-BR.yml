@@ -9,7 +9,7 @@ pt-BR:
         author:          "Autor"
         category_list:   "Categorias"
         date_begin_at:   "Data de início"
-        date_end_at:     "Data de fim"
+        date_end_at:     "Data final de capa"
         event_begin:     "Início do evento"
         event_email:     "E-mail do evento"
         event_end:       "Fim do evento"

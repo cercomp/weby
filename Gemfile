@@ -1,9 +1,10 @@
 source 'https://rubygems.org'
 ruby '2.1.0'
 
-gem 'rails', '3.2.16'
+gem 'rails', '3.2.17'
 gem 'thin', '1.5.1'
-gem 'jquery-rails', '2.1.4'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'pg', '0.14.1'
 gem 'devise', '3.2.0'
 gem 'kaminari', '0.14.1'
@@ -11,12 +12,14 @@ gem 'paperclip', :tag => 'v3.5.1', :git => 'http://github.com/thoughtbot/papercl
 gem 'acts_as_list', '0.1.9'
 gem 'simple_form', :tag => 'v2.0.1', :git => 'http://github.com/plataformatec/simple_form.git'
 gem 'acts-as-taggable-on', :git => 'https://github.com/mbleigh/acts-as-taggable-on.git'
-gem 'bootstrap-sass', '2.3.0.1'
+gem 'bootstrap-sass', '3.1.1'
 gem 'foreigner'
 gem "select2-rails"
 gem 'd3js-rails'
 gem "gretel"
 gem 'zeroclipboard-rails'
+gem 'useragent', '0.2.3', :git => 'http://github.com/jilion/useragent'
+gem 'zip-zip'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

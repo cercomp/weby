@@ -1,0 +1,7 @@
+en:
+  layouts:
+    webybar:
+      logout: "LOGOUT"
+      dashboard: "DASHBOARD"
+      help: "HELP"
+      about: "ABOUT"

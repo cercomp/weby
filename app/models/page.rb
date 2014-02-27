@@ -35,16 +35,17 @@ class Page < ActiveRecord::Base
   end
 
   def self.import attrs, options={}
-    return attrs.each{|attr| self.import attr } if attrs.is_a? Array
+    return attrs.each{|attr| self.import attr, options } if attrs.is_a? Array
 
     attrs = attrs.dup
     attrs = attrs['page'] if attrs.has_key? 'page'
 
     attrs.except!('id', 'created_at', 'updated_at', 'site_id')
 
+    attrs['author_id'] = options[:author] unless User.unscoped.find_by_id(attrs['author_id'])
     attrs['repository_id'] = ''
 
-    attrs['i18ns'] = attrs['i18ns'].map{|i18n| self::I18ns.new(i18n.except('id', 'created_at', 'updated_at', 'page_id')) }
+    attrs['i18ns'] = attrs['i18ns'].map{|i18n| self::I18ns.new(i18n.except('id', 'created_at', 'updated_at', 'page_id', 'type')) }
 
     page = self.create!(attrs)
 
@@ -91,15 +92,16 @@ class Page < ActiveRecord::Base
 
   scope :news, where(type: 'News')
   scope :events, where(type: 'Event')
-  
+
   scope :upcoming_events, proc{ where(" (event_begin >= :time OR event_end >= :time)", time: Time.now).events }
 
   scope :front, where(front: true)
   scope :no_front, where(front: false)
   scope :by_author, lambda { |id| where(author_id: id) }
 
-  scope :available, proc { where("date_begin_at <= :time AND ( date_end_at is NULL OR date_end_at > :time)",
-                                 { time: Time.now }).published }
+  scope :available, proc { where("date_begin_at is NULL OR date_begin_at <= :time", {time: Time.now}).published }
+  scope :available_fronts, proc { front.available.where("date_end_at is NULL OR date_end_at > :time", {time: Time.now}) }
+
   # tipos de busca
   # 0 = "termo1 termo2"
   # 1 = termo1 AND termo2
@@ -155,11 +157,11 @@ class Page < ActiveRecord::Base
   def is_image?
     image.archive_content_type =~ /image/
   end
-  
+
   def own_image?
     image.site_id == owner.id
   end
-  
+
   def own_files?
     related_files.each do |file|
       return false if file.site_id != owner.id

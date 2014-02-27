@@ -1,80 +1,95 @@
 <% content_for :javascripts, javascript_include_tag('repository.dialog') %>
 <% content_for :stylesheets, stylesheet_link_tag("repository_search") %>
 <div id="dialog-repository-search" class="modal fade">
-  <div class="modal-header">
-    <h3 class="pull-left"><%= t('.archives') %></h3>
-    <ul class="nav nav-pills pull-right">
-      <li class="active">
-        <%= link_to t(".repository"), "#tab_repository", data: {toggle: 'pill'} %>
-      </li>
-      <li>
-        <%= link_to t(".new_file"), "#tab_new_file", data: {toggle: 'pill'} %>
-      </li>
-    </ul>
-    <div class="clearfix"></div>
-  </div>
-  <div class="modal-body">
-    <div class="tab-content">
-      <div id="tab_repository" class="tab-pane active">
-        <%= form_tag site_admin_repositories_path(format: :json),
-          method: 'get',
-          autocapitalize: "off",
-          class: 'search repo-search',
-          id: 'repository-search-form',
-          data: {noresult: t('.none_file')},
-          remote: true do %>
-          <%= content_tag :div, class: 'input-append' do %>
-            <%= search_field_tag :search, params[:search] %>
-            <%= submit_tag t("search"), class: 'btn btn-info' %>
-          <% end %>
-          <%= select_tag "mime_type[]",
-              grouped_options_for_select(load_mime_types(current_site), params[:mime_type]),
-              include_blank: false,
-              style: 'width: 208px; vertical-align: top;',
-              class: 'search-filter',
-              multiple: true %>
-          <%= hidden_field_tag 'page', "1", id: 'search-page' %>
-          <div class="clearfix"></div>
-        <% end %>
-
-        <ul id="repositories-search-results">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <ul class="nav nav-pills pull-right">
+          <li class="active">
+            <%= link_to t(".repository"), "#tab_repository", data: {toggle: 'pill'} %>
+          </li>
+          <li>
+            <%= link_to t(".new_file"), "#tab_new_file", data: {toggle: 'pill'} %>
+          </li>
         </ul>
+        <h3 class="modal-title pull-left"><%= t('.archives') %></h3>
+        <div class="clearfix"></div>
       </div>
+      <div class="modal-body">
+        <div class="tab-content">
+          <div id="tab_repository" class="tab-pane active">
+            <%= form_tag site_admin_repositories_path(format: :json),
+              method: 'get',
+              autocapitalize: "off",
+              class: 'search repo-search',
+              id: 'repository-search-form',
+              data: {noresult: t('.none_file')},
+              remote: true do %>
+              <div class="row">
+                <div class="col-md-6">
+                  <%= content_tag :div, class: 'input-group' do %>
+                    <%= search_field_tag :search, params[:search], class: 'form-control' %>
+                    <span class="input-group-btn">
+                      <%= submit_tag t("search"), class: 'btn btn-info btn-search-files' %>
+                    </span>
+                  <% end %>
+                </div>
+                <div class="col-md-6">
+                  <%= select_tag "mime_type[]",
+                      grouped_options_for_select(load_mime_types(current_site), params[:mime_type]),
+                      include_blank: false,
+                      style: 'width: 208px; vertical-align: top;',
+                      class: 'search-filter pull-right',
+                      multiple: true %>
+                  <%= hidden_field_tag 'page', "1", id: 'search-page' %>
+                </div>
+              </div>
+            <% end %>
 
-      <div id="tab_new_file" class="tab-pane">
-        <%= simple_form_for [:site_admin, Repository.new],
-          method: :post, remote: true, :html => { class: 'form-horizontal', id: "ajax-upload-form" } do |f| %>
+            <ul id="repositories-search-results">
+            </ul>
+          </div>
 
-          <p>
-            <%= label_tag :fileupload, t(".file") %>
-            <span class="file-wrapper">
-              <%= file_field_tag "repository[archive]", required: false, id: "fileupload" %>
-              <span class="folder-button btn btn-info"><%= t(".select_file") %></span>
-            </span>
-            <span class="file-name"></span>
-          </p>
-          <p>
-            <%= label_tag :description, t(".description") %>
-            <%= text_field_tag "repository[description]", "", required: true,
-              id: "repository_description", hint: t(".field_required") %>
-          </p>
-          <%= hidden_field_tag "repository[site_id]", @site.id, id: "site_id" %>
+          <div id="tab_new_file" class="tab-pane">
+            <div class="row">
+              <div class="col-md-7">
+                <%= simple_form_for [:site_admin, Repository.new],
+                  method: :post, remote: true, :html => { class: 'form-xhorizontal', id: "ajax-upload-form" } do |f| %>
 
-          <%= submit_tag t(".send"), class: 'btn btn-primary send-file', type: :submit, disable_with: t('please_wait') %>
-          <p>
-          </p>
+                  <div style="margin-bottom: 10px">
+                    <%= label_tag :fileupload, t(".file") %>
+                    <div>
+                      <span class="file-wrapper">
+                        <%= file_field_tag "repository[archive]", required: false, id: "fileupload" %>
+                        <span class="folder-button btn btn-info"><%= t(".select_file") %></span>
+                      </span>
+                      <span class="file-name"></span>
+                    </div>
+                  </div>
+                  <div style="margin-bottom: 15px">
+                    <%= label_tag :description, t(".description") %>
+                    <%= text_field_tag "repository[description]", "", required: true, class: 'form-control',
+                      id: "repository_description", hint: t(".field_required") %>
+                    <div class="clearfix"></div>
+                  </div>
+                  <%= hidden_field_tag "repository[site_id]", @site.id, id: "site_id" %>
 
-        <% end %>
-        <img src="/assets/loading-bar.gif" id="upload-file-progress" style="display: none;"/>
-        <!--<progress value="0" max="100" id="upload-file-progress" style="display: none;"></progress>-->
-        <div id="results"></div>
-
-
+                  <%= submit_tag t(".send"), class: 'btn btn-primary send-file', type: :submit, disable_with: t('please_wait') %>
+                <% end %>
+              </div>
+              <div class="col-md-5">
+                <img src="/assets/loading-bar.gif" id="upload-file-progress" style="display: none;"/>
+                <!--<progress value="0" max="100" id="upload-file-progress" style="display: none;"></progress>-->
+                <div id="results"></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="modal-footer">
-    <%= link_to_function t("ok"), '', id: 'repository-include-link', class: "btn btn-primary" %>
-    <a href="#" class="btn" data-dismiss="modal"><%=t('cancel')%></a>
+      <div class="modal-footer">
+        <%= link_to_function t("ok"), '', id: 'repository-include-link', class: "btn btn-primary" %>
+        <a href="#" class="btn btn-default" data-dismiss="modal"><%=t('cancel')%></a>
+      </div>
+    </div> 
   </div>
 </div>

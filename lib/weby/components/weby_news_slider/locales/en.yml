@@ -14,6 +14,6 @@ en:
     views:
       show:
       form:
-        news_category_hint:       " It is preferable that the reports contain images cover a proportion of 400 wide by 300 high "
+        news_category_hint:       " It is preferable that the news contain an image with a proportion of 400 x 300 "
         timer_hint:               " In seconds "
-        no_category:              " All categories "
+        no_category:              " Front News "

@@ -12,13 +12,21 @@
   </span>
   <%= hidden_field_tag 'page', 1 %>
   <%= hidden_field_tag 'per_page', "#{params[:per_page]}" %>
-
 <% end %>
-
+<% if params[:tags] %>
+  <% tags = params[:tags].split(',') %>
+  <% tags.each do |tag| %>
+    <% newtags = tags.reject {|t| t == tag} %>
+    <% newtags.any? ? params[:tags] = newtags.join(',') : params.delete(:tags) %>
+    <%= link_to site_pages_path(params), class: 'label label-info' do %>
+      <span><%= tag %></span><span class="label label-info">X</span>
+    <% end %>
+  <% end %>
+<% end %>
 <div id="pages" class="pages-list">
   <%= render partial: 'list' %>
 </div>
 
-<% content_for :javascripts, javascript_include_tag("pages_index") %>
+<% content_for :javascripts, javascript_include_tag("pages.index") %>
 <% content_for :stylesheets, stylesheet_link_tag("search_results") %>
 

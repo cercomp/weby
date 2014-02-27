@@ -1,19 +1,27 @@
 <div class="search_bar">
   <%= form_tag site_admin_repositories_path(template: 'list_popup'), method: 'get', autocapitalize: "off", class: 'search', remote: true do %>
-    <%= content_tag :div, class: 'input-append' do %>
-      <%= search_field_tag :search, params[:search], placeholder: t('.search_repository'), class: 'input-search' %><%= submit_tag t("search"), class: 'btn btn-info btn-search' %>
-    <% end %>
+    <div class="row">
+      <div class="col-md-7">
+        <%= content_tag :div, class: 'input-group' do %>
+          <%= search_field_tag :search, params[:search], placeholder: t('.search_repository'), class: 'input-search form-control' %>
+          <span class="input-group-btn">
+            <%= submit_tag t("search"), class: 'btn btn-info btn-search-repository' %>
+          </span>
+        <% end %>
+      </div>
+    </div>
     <%= hidden_field_tag 'page', 1 %>
     <%= hidden_field_tag 'per_page', "#{params[:per_page]}" %>
   <% end %>
+  <div class="clearfix"></div>
 </div>
 <% if @repositories %>
   <% if @repositories.empty? %>
-    <div class="alert">
+    <div class="alert alert-warning">
       <%= t(".none_file") %>
     </div>
   <% else %>
-    <div class="page-results">
+    <div class="repository-results">
       <ul id="target-search-results">
         <% @repositories.each do |repository| %>
           <li data-title="<%= repository.description %>" data-url="<%= repository.archive.url(:original, false) %>" class="cursor highlight target-item">
@@ -27,8 +35,8 @@
         <% end %>
       </ul>
 
-      <div class="pull-right"> <%= paginate @repositories, remote: true, size: :small %> </div>
-      <div class="pull-left"> <%= per_page_links @repositories, true, :mini %> </div>
+      <div class="pull-right"> <%= paginate @repositories, remote: true, size: :sm %> </div>
+      <div class="pull-left"> <%= per_page_links @repositories, true, :sm %> </div>
       <div class="clearfix"></div>
     </div>
   <% end %>

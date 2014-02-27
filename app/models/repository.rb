@@ -18,7 +18,7 @@ class Repository < ActiveRecord::Base
   scope :description_or_filename, proc {|text|
     text = text.try(:downcase)
     where [ "(LOWER(description) LIKE :text OR LOWER(archive_file_name) LIKE :text)",
-            { :text => "%#{text}%" } ] 
+            { :text => "%#{text}%" } ]
   }
 
   scope :content_file, proc { |contents|
@@ -129,6 +129,18 @@ class Repository < ActiveRecord::Base
     json
   end
 
+  def self.import attrs, options={}
+    return attrs.each{|attr| self.import attr, options } if attrs.is_a? Array
+
+    attrs = attrs.dup
+    attrs = attrs['repository'] if attrs.has_key? 'repository'
+
+    attrs.except!('id', 'created_at', 'updated_at', 'deleted_at', 'site_id', 'type')
+
+    repository = self.create!(attrs)
+
+  end
+
   private
   def need_reprocess?
     image? and not has_all_formats?
@@ -137,7 +149,7 @@ class Repository < ActiveRecord::Base
   def has_all_formats?
     STYLES.each_key do |format|
       return false unless exists_archive?(format)
-    end 
+    end
     true
   end
 

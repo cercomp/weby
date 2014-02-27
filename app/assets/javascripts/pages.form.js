@@ -1,5 +1,5 @@
-//= require datetime
-//= require tinymce
+//= require init/datetime
+//= require init/tinymce
 //= require_self
 
 $(document).ready(function(){
@@ -44,4 +44,3 @@ $("input#is_event").change(function(){
       });
    }
 });
-

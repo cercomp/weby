@@ -1,7 +1,6 @@
 class Banner < ActiveRecord::Base
   acts_as_taggable_on :categories
 
-  #scope :unhide, :conditions => { :hide => false }, :order => 'position,id DESC'
   scope :published, lambda {
     where("publish = true AND (date_begin_at <= :time AND
                           (date_end_at is NULL OR date_end_at > :time))",
@@ -18,12 +17,27 @@ class Banner < ActiveRecord::Base
 
   validates :title, :user_id, presence: true
 
-  validate :validate_date 
-  def validate_date 
+  validate :validate_date
+
+  def validate_date
     if self.date_begin_at.blank?
       self.date_begin_at = Time.now.to_s
     end
   end
-  private :validate_date
 
+  def self.import attrs, options={}
+    return attrs.each{|attr| self.import attr, options } if attrs.is_a? Array
+
+    attrs = attrs.dup
+    attrs = attrs['banners'] if attrs.has_key? 'banners'
+
+    attrs.except!('id', 'created_at', 'updated_at', 'site_id', 'type')
+
+    attrs['repository_id'] = ''
+    attrs['user_id'] = options[:author] unless User.unscoped.find_by_id(attrs['user_id'])
+
+    extension = self.create!(attrs)
+  end
+
+  private :validate_date
 end

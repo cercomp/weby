@@ -1,15 +1,15 @@
 <% if @my_sites.empty? %>
-  <div class="alert">
+  <div class="alert alert-warning">
     <%= t(".no-site-found") %>
   </div>
 <% else %>
   <h3><%= t('.my-sites') %></h3>
-  <ul id="sites" class="thumbnails">
+  <div id="sites" class="row">
     <% @my_sites.each do |site| %>
-      <li class="span4">
+      <div class="col-md-4 site-thumbnail">
         <%= render partial: 'site', locals: {site: site} %>
-        <%= link_to icon('briefcase', text: t(".dashboard"), white: true), site_admin_url(subdomain: site), class: 'btn btn-block buffer-top' if current_user %>
-      </li>
+        <%= link_to icon('briefcase', text: t(".dashboard"), white: true), site_admin_url(subdomain: site), class: 'btn btn-default btn-block btn-admin' if current_user %>
+      </div>
     <% end %>
-  </ul>
+  </div>
 <% end %>

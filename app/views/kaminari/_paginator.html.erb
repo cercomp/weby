@@ -8,8 +8,8 @@
 -%>
 <%= paginator.render do -%>
   <% full_links = defined?(page_links) and page_links %>
-  <div class="pagination<%= " pagination-#{size}" if defined?(size) %>">
-    <ul>
+  <div>
+    <ul class="pagination<%= " pagination-#{size}" if defined?(size) %>">
       <%= first_page_tag if full_links and !current_page.first? %>
       <%= prev_page_tag unless current_page.first? and full_links%>
       <% if full_links %>
@@ -22,7 +22,7 @@
         <% end %>
       <% else %>
         <li class="page">
-          <select class="input-mini<%= " #{size}" if defined?(size) %>">
+          <select class="input-mini<%= " input-#{size}" if defined?(size) %> form-control">
             <% 1.upto total_pages do |page| %>
               <option data-url="<%= Kaminari::Helpers::Page.new(@template, @options).page_url_for page %>" <%= page == current_page.number ? 'selected="selected"' : '' %>><%= page -%></option>
             <% end -%>

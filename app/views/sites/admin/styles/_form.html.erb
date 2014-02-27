@@ -7,30 +7,126 @@
   <%= f.input :publish , wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" } %>
 
   <% unless @style.new_record? %>
-    <div class="input">
-      <div class="btn-toolbar code-editor-menu">
-        <div class="btn-group">
-          <%= link_to t(".format"),"javascript:autoFormatSelection()", class: "btn btn-small" %>
-          <%= link_to t(".comment"),"javascript:commentSelection(true)", class: "btn btn-small" %>
-          <%= link_to t(".uncomment"),"javascript:commentSelection(false)", class: "btn btn-small" %>
-          <%= link_to t(".insert_image"), "javascript:insertImage()", class: "btn btn-small" %>
+    <div class="form-group">
+      <div class="col-md-9 col-md-offset-3">
+        <div class="btn-toolbar">
+          <div class="btn-group">
+            <%= link_to t(".format"),"javascript:autoFormatSelection()", class: "btn btn-default btn-sm" %>
+            <%= link_to t(".comment"),"javascript:commentSelection(true)", class: "btn btn-default btn-sm" %>
+            <%= link_to t(".uncomment"),"javascript:commentSelection(false)", class: "btn btn-default btn-sm" %>
+              <%= link_to t(".insert_image"), "javascript:insertImage()", class: "btn btn-default btn-sm" %>
+          </div>
+          <%= f.button :button, t(".apply"), type: :button, disabled: :disabled, class: "btn-apply btn btn-primary btn-sm" unless @style.new_record? %>
         </div>
-        <%= f.button :button, t(".apply"), type: :button, disabled: :disabled, class: "btn-apply btn btn-primary btn-small" unless @style.new_record? %>
-
       </div>
-      <%= f.input :css,
-        as: :text,
-        wrapper_html: { class: 'nostyle' },
-        input_html: {class: 'style-editor', id: 'code' } %>
-
-      <%= link_to icon('question-sign', text:t(".help_with_style")),
-        (current_settings.help_site || "/help"),
-        target: "_blank"%>
     </div>
+    <%= f.input :css,
+      as: :text,
+      wrapper_html: { class: 'nostyle' },
+      input_html: {class: 'style-editor', id: 'code' } %>
+
+    <div class="form-group">
+      <div class="col-md-7 col-md-offset-3">
+        <%= link_to icon('question-sign', text:t(".help_with_style")),
+          (current_settings.help_site || "/help"),
+          target: "_blank"%>
+      </div>
+    </div>
+    <% content_for :stylesheets, stylesheet_link_tag("codeMirror/codemirror") %>
+    <% content_for :javascripts, javascript_include_tag("init/codemirror") %>
+    <% content_for :javascripts do %>
+      <script type="text/javascript">
+          var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+            mode: 'css',
+            lineNumbers: true,
+            tabSize: 2,
+            onCursorActivity: function() {
+              editor.setLineClass(hlLine, null, null);
+              hlLine = editor.setLineClass(editor.getCursor().line, null, "activeline");
+            },
+            onChange: function() {
+              $('.btn-apply').prop('disabled',false);
+            }
+          });
+          var hlLine = editor.setLineClass(0, "activeline");
+          //CodeMirror.commands["selectAll"](editor);
+
+          $('.btn-apply').click(function(){
+            /////Retorna uma array dos erros, se tiver vazio = OK
+            $.ajax({
+              url: $(this).closest('form').prop('action'),
+              type: "PUT",
+              data: {'style[css]': editor.getValue()},
+              dataType: "json",
+              success: function(data, st, jqxhr){
+                if(data.length > 0){
+                  var str = ""
+                  for (var e in data){
+                    str += data[e]+"<br/>";
+                  }
+                  flashMsgApply('<%=image_tag("false.png")%>',"<%=t("simple_form.error_notification.default_message")%> <br/>"+str);
+                  $('.btn-apply').prop('disabled',false);
+                }else{
+                  flashMsgApply('<%=image_tag("true.png")%>',"<%=t("successfully_updated")%>");
+                  refreshIframe();
+                }
+              },
+              error: function(jqxhr, st, error){
+                flashMsgApply('<%=image_tag("false.png")%>',"<%=t("simple_form.error_notification.default_message")%> <br/>"+st);
+                $('.btn-apply').prop('disabled',false);
+              },
+              beforeSend: function(){
+                $('.btn-apply').prop('disabled',true);
+              }
+            })
+          });
+
+          function flashMsgApply(title, content){
+            $('.btn-apply').popover({title:title,content:"<span style=\"font-size: 12pt;\">"+content+"</span>",animation:true, placement: "right", html: true, trigger: "manual"}).popover('show');
+            setTimeout(function(){
+              $('.btn-apply').popover('hide');
+            },2000);
+          }
+
+          function getSelectedRange() {
+            return { from: editor.getCursor(true), to: editor.getCursor(false) };
+          }
+
+          function autoFormatSelection() {
+            var range = getSelectedRange();
+            editor.autoFormatRange(range.from, range.to);
+          }
+
+          function commentSelection(isComment) {
+            var range = getSelectedRange();
+            editor.commentRange(isComment, range.from, range.to);
+          }
+
+          function insertImage(value){
+            WEBY.getRepositoryDialog().open({
+              file_types: ["image"],
+              selected: value,
+              multiple: false,
+              onsubmit: insert_into_editor
+            });
+          }
+
+          var insert_into_editor = function(value){
+            var path = value[0].original_path.replace(/\?\d+$/, '')
+            editor.replaceRange(path, editor.getCursor())
+          }
+
+          function refreshIframe(){
+            var iframe = $('#preview-css-panel iframe');
+            iframe[0].contentWindow.location.reload();
+            //iframe.attr('src', iframe.attr('src'));
+          }
+      </script>
+    <% end %>
   <% end %>
   <div class="form-actions">
-    <%= f.button :submit, class: 'btn-primary', disable_with: t("please_wait") %>
-    <%= link_to t("back"), :back, class: "btn" %>
+    <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
+    <%= link_to t("back"), :back, class: "btn btn-default" %>
   </div>
   <% unless @style.new_record? %>
     <div id="preview-css-panel">
@@ -38,96 +134,4 @@
       <iframe src="<%= site_url(subdomain: current_site) %>"></iframe>
     </div>
   <% end %>
-<% end %>
-<%= content_for :stylesheets, stylesheet_link_tag("codeMirror/codemirror") %>
-<%= content_for :javascripts, javascript_include_tag("codeMirror/codemirror.min") %>
-<%= content_for :javascripts, javascript_include_tag("codeMirror/formatting.min") %>
-<%= content_for :javascripts, javascript_include_tag("codeMirror/css.min") %>
-<%= content_for :javascripts do %>
-  <script type="text/javascript">
-      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-        lineNumbers: true,
-        tabSize: 2,
-        onCursorActivity: function() {
-          editor.setLineClass(hlLine, null, null);
-          hlLine = editor.setLineClass(editor.getCursor().line, null, "activeline");
-        },
-        onChange: function() {
-          $('.btn-apply').prop('disabled',false);
-        }
-      });
-      var hlLine = editor.setLineClass(0, "activeline");
-      //CodeMirror.commands["selectAll"](editor);
-
-      $('.btn-apply').click(function(){
-        /////Retorna uma array dos erros, se tiver vazio = OK
-        $.ajax({
-          url: $(this).closest('form').prop('action'),
-          type: "PUT",
-          data: {'style[css]': editor.getValue()},
-          dataType: "json",
-          success: function(data, st, jqxhr){
-            if(data.length > 0){
-              var str = ""
-              for (var e in data){
-                str += data[e]+"<br/>";
-              }
-              flashMsgApply('<%=image_tag("false.png")%>',"<%=t("simple_form.error_notification.default_message")%> <br/>"+str);
-              $('.btn-apply').prop('disabled',false);
-            }else{
-              flashMsgApply('<%=image_tag("true.png")%>',"<%=t("successfully_updated")%>");
-              refreshIframe();
-            }
-          },
-          error: function(jqxhr, st, error){
-            flashMsgApply('<%=image_tag("false.png")%>',"<%=t("simple_form.error_notification.default_message")%> <br/>"+st);
-            $('.btn-apply').prop('disabled',false);
-          },
-          beforeSend: function(){
-            $('.btn-apply').prop('disabled',true);
-          }
-        })
-      });
-
-      function flashMsgApply(title, content){
-        $('.btn-apply').popover({title:title,content:"<span style=\"font-size: 12pt;\">"+content+"</span>",animation:true, placement: "right", html: true, trigger: "manual"}).popover('show');
-        setTimeout(function(){
-          $('.btn-apply').popover('hide');
-        },2000);
-      }
-
-      function getSelectedRange() {
-        return { from: editor.getCursor(true), to: editor.getCursor(false) };
-      }
-      
-      function autoFormatSelection() {
-        var range = getSelectedRange();
-        editor.autoFormatRange(range.from, range.to);
-      }
-      
-      function commentSelection(isComment) {
-        var range = getSelectedRange();
-        editor.commentRange(isComment, range.from, range.to);
-      }
-      
-      function insertImage(value){
-        WEBY.getRepositoryDialog().open({
-          file_types: ["image"],
-          selected: value,
-          multiple: false,
-          onsubmit: insert_into_editor
-        });
-      }
-      
-      var insert_into_editor = function(value){
-        var path = value[0].original_path.replace(/\?\d+$/, '')
-        editor.replaceRange(path, editor.getCursor())
-      }
-     
-      function refreshIframe(){
-        var iframe = $('#preview-css-panel iframe');
-        iframe[0].contentWindow.location.reload();
-        //iframe.attr('src', iframe.attr('src'));
-      }
-  </script>
 <% end %>

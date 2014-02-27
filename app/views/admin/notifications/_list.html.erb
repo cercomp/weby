@@ -1,5 +1,5 @@
 <% if @notifications.empty? %>
-  <div class="alert">
+  <div class="alert alert-warning">
     <%= t('.no_notifications') %>
   </div>
 <% else %>
@@ -21,13 +21,13 @@
           <td><%= link_to notification.title, admin_notification_path(notification.id) %></td>
           <td><%= strip_tags(notification.body.to_s)[0..50].html_safe %></td>
           <td><%= l(notification.created_at, :format => :short) %></td>
-          <td> <%= raw make_menu(notification) %> </td>
+          <td class="text-right"> <%= raw make_menu(notification) %> </td>
         </tr>
       <% end %>
     </tbody>
   </table>
 
-  <div class="pull-left"> <%= per_page_links @notifications, true, :mini %> </div>
+  <div class="pull-left"> <%= per_page_links @notifications, true, :sm %> </div>
   <div class="pull-right"> <%= paginate @notifications, remote: true %> </div>
   <div class="clearfix"></div>
 <% end %>

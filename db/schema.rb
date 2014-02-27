@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140205154949) do
+ActiveRecord::Schema.define(:version => 20140214120458) do
 
   create_table "activity_records", :force => true do |t|
     t.integer  "user_id"
@@ -27,6 +27,9 @@ ActiveRecord::Schema.define(:version => 20140205154949) do
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
   end
+
+  add_index "activity_records", ["site_id"], :name => "index_activity_records_on_site_id"
+  add_index "activity_records", ["user_id"], :name => "index_activity_records_on_user_id"
 
   create_table "banners", :force => true do |t|
     t.datetime "date_begin_at"
@@ -105,6 +108,9 @@ ActiveRecord::Schema.define(:version => 20140205154949) do
     t.integer "site_id"
   end
 
+  add_index "groupings_sites", ["grouping_id"], :name => "index_groupings_sites_on_grouping_id"
+  add_index "groupings_sites", ["site_id"], :name => "index_groupings_sites_on_site_id"
+
   create_table "groups_users", :id => false, :force => true do |t|
     t.integer "group_id"
     t.integer "user_id"
@@ -175,6 +181,8 @@ ActiveRecord::Schema.define(:version => 20140205154949) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "notifications", ["user_id"], :name => "index_notifications_on_user_id"
 
   create_table "old_menus", :force => true do |t|
     t.string   "title"
@@ -255,7 +263,6 @@ ActiveRecord::Schema.define(:version => 20140205154949) do
 
   create_table "roles", :force => true do |t|
     t.string   "name"
-    t.string   "theme"
     t.integer  "site_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
@@ -374,6 +381,17 @@ ActiveRecord::Schema.define(:version => 20140205154949) do
     t.string "name"
   end
 
+  create_table "user_login_histories", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.string   "login_ip"
+    t.string   "browser"
+    t.string   "platform"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "user_login_histories", ["user_id"], :name => "index_user_login_histories_on_user_id"
+
   create_table "users", :force => true do |t|
     t.string   "login"
     t.string   "email"
@@ -429,6 +447,9 @@ ActiveRecord::Schema.define(:version => 20140205154949) do
   add_index "views", ["site_id"], :name => "index_views_on_site_id"
   add_index "views", ["user_id"], :name => "index_views_on_user_id"
 
+  add_foreign_key "activity_records", "sites", :name => "activity_records_site_id_fk"
+  add_foreign_key "activity_records", "users", :name => "activity_records_user_id_fk"
+
   add_foreign_key "banners", "pages", :name => "banners_page_id_fk"
   add_foreign_key "banners", "repositories", :name => "banners_repository_id_fk"
   add_foreign_key "banners", "sites", :name => "banners_site_id_fk"
@@ -443,6 +464,9 @@ ActiveRecord::Schema.define(:version => 20140205154949) do
   add_foreign_key "feedback_messages_groups", "feedback_groups", :name => "feedbacks_groups_group_id_fk", :column => "group_id"
   add_foreign_key "feedback_messages_groups", "feedback_messages", :name => "feedbacks_groups_feedback_id_fk", :column => "message_id"
 
+  add_foreign_key "groupings_sites", "groupings", :name => "groupings_sites_grouping_id_fk"
+  add_foreign_key "groupings_sites", "sites", :name => "groupings_sites_site_id_fk"
+
   add_foreign_key "groups_users", "feedback_groups", :name => "groups_users_group_id_fk", :column => "group_id"
   add_foreign_key "groups_users", "users", :name => "groups_users_user_id_fk"
 
@@ -456,6 +480,8 @@ ActiveRecord::Schema.define(:version => 20140205154949) do
   add_foreign_key "menu_items", "menus", :name => "menu_items_menu_id_fk"
 
   add_foreign_key "menus", "sites", :name => "menus_site_id_fk"
+
+  add_foreign_key "notifications", "users", :name => "notifications_user_id_fk"
 
   add_foreign_key "old_menus", "pages", :name => "old_menus_page_id_fk"
 
@@ -486,6 +512,8 @@ ActiveRecord::Schema.define(:version => 20140205154949) do
 
   add_foreign_key "styles", "sites", :name => "styles_owner_id_fk"
   add_foreign_key "styles", "styles", :name => "styles_style_id_fk"
+
+  add_foreign_key "user_login_histories", "users", :name => "user_login_histories_user_id_fk"
 
   add_foreign_key "users", "locales", :name => "users_locale_id_fk"
 

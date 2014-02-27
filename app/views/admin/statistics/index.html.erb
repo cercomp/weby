@@ -5,45 +5,54 @@
   </ul>
 
   <div class='tab-content form-horizontal'>
-    <div class="control-group select optional">
-      <label class="select optional control-label" for="stats_site"><%= t('.site') %></label>
-      <div class="controls">
-        <%= select_tag :site_id, options_for_select(Site.all.map{|site| [site.title  || site.name, site.id]}), include_blank: true %>
+    <div class="form-group select optional">
+      <div class="col-md-3 control-label">
+        <label class="select optional" for="stats_site"><%= t('.site') %></label>
+      </div>
+      <div class="col-md-7">
+        <%= select_tag :site_id, options_for_select(Site.all.map{|site| [site.title  || site.name, site.id]}), class: 'form-control',
+                       include_blank: true %>
       </div>
     </div>
-    <div class="control-group select optional">
-      <label class="select optional control-label" for="stats_site"><%= t('.metric') %></label>
-      <div class="controls">
+    <div class="form-group select optional">
+      <div class="col-md-3 control-label">
+        <label class="select optional" for="stats_site"><%= t('.metric') %></label>
+      </div>
+      <div class="col-md-7">
         <%= metrics_select_tag %>
       </div>
     </div>
 
     <div class="tab-pane active" id="day">
-      <div class="control-group select optional">
-        <label class="select optional control-label" for="stats_site"><%= t('.month') %></label>
-        <div class="controls">
-          <%= select_tag :filter_month, options_for_select(@months) %>
+      <div class="form-group select optional">
+        <div class="col-md-3 control-label">
+          <label class="select optional" for="stats_site"><%= t('.month') %></label>
+        </div>
+        <div class="col-md-7">
+          <%= select_tag :filter_month, options_for_select(@months), class: 'form-control' %>
         </div>
       </div>
-      <div id="daily_stats" class="stats hide"></div>
+      <div id="daily_stats" class="stats" style="display: none"></div>
     </div>
 
     <div class="tab-pane" id="month">
-      <div class="control-group select optional">
-        <label class="select optional control-label" for="stats_site"><%= t('.year') %></label>
-        <div class="controls">
-          <%= select_tag :filter_year, options_for_select(@years) %>
+      <div class="form-group select optional">
+        <div class="col-md-3 control-label">
+          <label class="select optional" for="stats_site"><%= t('.year') %></label>
+        </div>
+        <div class="col-md-7">
+          <%= select_tag :filter_year, options_for_select(@years), class: 'form-control' %>
         </div>
       </div>
       <input type="hidden" name="month_names" value="<%= t('date.abbr_month_names').to_s.gsub('nil', 'null') %>"/>
-      <div id="monthly_stats" class="stats hide"></div>
+      <div id="monthly_stats" class="stats" style="display: none"></div>
     </div>
   </div>
 </div>
 <div class="form-actions">
   <%= link_to t('.generate'), "#", class: 'btn btn-primary generate', disable_with: t('please_wait')  %>
-  <%= link_to t("back"), :back, class: "btn" %>
+  <%= link_to t("back"), :back, class: "btn btn-default" %>
 </div>
 
 <% content_for :stylesheets, statistics_style %>
-<% content_for :javascripts, javascript_include_tag('stats') %>
+<% content_for :javascripts, javascript_include_tag('statistics.index') %>

@@ -3,9 +3,9 @@ pt-BR:
     admin:
       activity_records:
         index:
-          activity_records:           " Histórico de atividades "
+          activity_records:           " Histórico "
         show:
-          activity_records:           " Histórico de atividades "
+          activity_records:           " Histórico "
         list:
           no_activity_records:        " Nenhum registro de atividade encontrado "
           details:                    " Detalhes "

@@ -3,7 +3,7 @@ pt-BR:
     news_list:
       name:                    " Lista de Notícias "
       quant:                   " Quantidade de notícias exibidas "
-      front:                   " Apenas notícias de capa "
+      front:                   " Incluir notícias de capa "
       events:                  " Mostrar eventos "
       show_image:              " Mostrar imagem da notícia "
       show_date:               " Mostrar data da notícia "
@@ -16,7 +16,7 @@ pt-BR:
     attributes:
       news_list_component:
         quant:                 " Quantidade de notícias exibidas "
-        front:                 " Apenas notícias de capa "
+        front:                 " Incluir notícias de capa "
         events:                " Mostrar eventos "
         show_image:            " Mostrar imagem da notícia "
         show_date:             " Mostrar data da notícia "

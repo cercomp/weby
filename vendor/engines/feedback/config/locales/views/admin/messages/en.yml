@@ -5,13 +5,8 @@ en:
         index:
          feedbacktitle: " Feedback "
          feedback:      " Messages "
-         none_feedback: " None Feedback "
          new_group:     " New Group "
          groups:        " Groups "
-         name:          " Name "
-         subject:       " Subject "
-         message:       " message "
-         email:         " E-mail "
         show:
          feedback:      " Feedback "
          name:          " Name "
@@ -22,4 +17,10 @@ en:
          groups:        " Groups "
          group:         " Group "
          list_all:      " List all "
+        list:
+         name:          " Name "
+         none_feedback: " None Feedback "
+         subject:       " Subject "
+         date:          " Date "
+         email:         " E-mail "
 

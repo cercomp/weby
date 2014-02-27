@@ -2,7 +2,6 @@
  *= require_tree .
  *= require_self
  */
-@import "bootstrap";
 
 body { background: transparent; }
 
@@ -332,9 +331,6 @@ table th {
   height: auto;
   margin: 0;
   padding: 3px 0px;
-}
-
-.pagination ul {
   -webkit-border-radius: none;
   -moz-border-radius: none;
   border-radius: none;
@@ -343,7 +339,11 @@ table th {
   box-shadow: none;
 }
 
-.pagination ul > li > a,.pagination ul > li > span {
+.pagination > li{
+  display: inline;
+}
+
+.pagination > li > a,.pagination > li > span {
   background: transparent !important;
   float: none;
   padding: 0;
@@ -351,7 +351,7 @@ table th {
   border: none;
 }
 
-.pagination ul > li > span {
+.pagination > li > span {
   padding-right: 5px;
 }
 
@@ -381,8 +381,6 @@ p {
 
 // required is red!
 label.required abbr { color: red; }
-
-@import "bootstrap-responsive";
 
 .mobile { display: none; }
 

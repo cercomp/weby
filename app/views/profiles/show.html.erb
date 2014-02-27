@@ -1,6 +1,6 @@
 <div id="profile">
   <div class="row">
-    <div class="span3">
+    <div class="col-md-3">
       <div class="avatar">
         <img src="http://www.gravatar.com/avatar/<%= Digest::MD5.hexdigest(@profile.email) %>?s=120&d=mm" class="img-circle">
       </div>
@@ -12,14 +12,16 @@
         <% if is_owner? %>
           <%= link_to t('.edit-profile'), edit_profile_path(@profile.login),
             class: 'btn btn-primary btn-block' %>
+          <%= link_to t('.security'), history_profile_path(@profile.login),
+            class: 'btn btn-primary btn-block' %>
         <% end %>
-        <%= link_to "#{icon('chevron-left', white: true)}#{t("back")}".html_safe, :back, class: "btn btn-block" %>
+        <%= link_to "#{icon('chevron-left', white: true)}#{t("back")}".html_safe, :back, class: "btn btn-default btn-block" %>
       </div>
     </div>
-    <div class="span9">
+    <div class="col-md-9">
       <div class="heading"><%= t('.latest-news-published') %></div>
       <% if @news.blank? %>
-        <div class="alert">
+        <div class="alert alert-warning">
           <%= t(".none_news", name: @profile) %>
         </div>
       <% else %>
@@ -31,7 +33,7 @@
             <div class="media-body">
               <div class="title"><%= link_to new.title, site_page_url(new, subdomain: new.owner) %></div>
               <div class="description"><%= t(".published", site: link_to(new.owner.title, site_url(subdomain: new.owner)), date: l(new.created_at, format: :short)).html_safe %></div>
-              <div class="summary"><%= new.summary.html_safe %></div>
+              <div class="summary"><%= new.summary.try(:html_safe) %></div>
             </div>
           </div>
         <% end %>

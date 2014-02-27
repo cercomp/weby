@@ -1,15 +1,23 @@
 <div class="search_bar">
   <%= form_tag site_admin_pages_path(template: 'list_popup'), method: 'get', autocapitalize: "off", class: 'search', remote: true do %>
-    <%= content_tag :div, class: 'input-append' do %>
-      <%= search_field_tag :search, params[:search], placeholder: t('.search_pages'), class: 'input-search' %><%= submit_tag t("search"), class: 'btn btn-info btn-search' %>
-    <% end %>
+    <div class="row">
+      <div class="col-md-7">
+        <%= content_tag :div, class: 'input-group' do %>
+          <%= search_field_tag :search, params[:search], placeholder: t('.search_pages'), class: 'input-search form-control' %>
+          <span class="input-group-btn">
+            <%= submit_tag t("search"), class: 'btn btn-info btn-search-page' %>
+          </span>
+        <% end %>
+      </div>
+    </div>
     <%= hidden_field_tag 'page', 1 %>
     <%= hidden_field_tag 'per_page', "#{params[:per_page]}" %>
   <% end %>
+  <div class="clearfix"></div>
 </div>
 <% if @pages %>
   <% if @pages.empty? %>
-    <div class="alert">
+    <div class="alert alert-warning">
       <%= t(".none_page") %>
     </div>
   <% else %>
@@ -33,8 +41,8 @@
         </tbody>
       </table>
 
-      <div class="pull-right"> <%= paginate @pages, remote: true, size: :small %> </div>
-      <div class="pull-left"> <%= per_page_links @pages, true, :mini %> </div>
+      <div class="pull-right"> <%= paginate @pages, remote: true, size: :sm %> </div>
+      <div class="pull-left"> <%= per_page_links @pages, true, :sm %> </div>
       <div class="clearfix"></div>
     </div>
   <% end %>

@@ -21,17 +21,16 @@
               <% end %>
             </div>
           </td>
-          <td>
+          <td class="text-right">
             <%= link_to icon('edit', text: t("edit")), { action: 'manage_roles', user_id: user.id },
-              remote: 'true',
-              user_id: user.id %>
+              remote: 'true', class: 'action-link' %>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
 <% else %>
-  <div class="alert">
+  <div class="alert alert-warning">
     <%= t(".none_user") %>
   </div>
 <% end %>

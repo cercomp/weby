@@ -17,12 +17,12 @@ class PagePositionObserver < ActiveRecord::Observer
 
   def before_destroy(page)
     @page = page
-    leaving_fronts 
+    leaving_fronts
   end
 
   private
   def update_position
-    @page.front ? turning_front : leaving_fronts 
+    @page.front ? turning_front : leaving_fronts
   end
 
   def leaving_fronts

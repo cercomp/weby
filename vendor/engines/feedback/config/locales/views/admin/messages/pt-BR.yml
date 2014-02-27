@@ -5,13 +5,8 @@ pt-BR:
         index:
          feedbacktitle: " Fale conosco "
          feedback:      " Mensagens "
-         none_feedback: " Nenhuma Mensagem "
          new_group:     " Novo Grupo "
          groups:        " Grupos "
-         name:          " Nome "
-         message:       " Mensagem "
-         subject:       " Assunto "
-         email:         " E-mail "
         show:
          feedback:      " Fale conosco "
          name:          " Nome "
@@ -22,4 +17,10 @@ pt-BR:
          groups:        " Grupos "
          group:         " Grupo "
          list_all:      " Listar todas "
+        list:
+         name:          " Nome "
+         none_feedback: " Nenhuma Mensagem "
+         subject:       " Assunto "
+         date:          " Data "
+         email:         " E-mail "
 

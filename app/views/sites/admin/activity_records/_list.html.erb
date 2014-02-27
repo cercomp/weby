@@ -1,5 +1,5 @@
 <% if @activity_records.empty? %>
-  <div class="alert">
+  <div class="alert alert-warning">
     <%= t('.no_activity_records') %>
   </div>
 <% else %>
@@ -20,18 +20,18 @@
         <tr>
           <td><%= l(activity_record.created_at, format: :short) %></td>
           <td><%= activity_record.user %> <%= t(".#{activity_record.note}") %></td>
-          <td style="text-align: right">
+          <td class="text-right">
             <%= link_to(icon("eye-open", text: t(".show")),
-                       polymorphic_url(activity_record.loggeable_url_params, subdomain: activity_record.site)) unless activity_record.action == "destroy" %>
+                       polymorphic_url(activity_record.loggeable_url_params, subdomain: activity_record.site), class: 'action-link') unless activity_record.action == "destroy" %>
             <%= link_to(icon("search", text: t(".details")),
-                        site_admin_activity_record_path(activity_record)) if current_user.is_admin? %>
+                        site_admin_activity_record_path(activity_record), class: 'action-link') if current_user.is_admin? %>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
 
-  <div class="pull-left"> <%= per_page_links @activity_records, true, :mini %> </div>
+  <div class="pull-left"> <%= per_page_links @activity_records, true, :sm %> </div>
   <div class="pull-right"> <%= paginate @activity_records, remote: true %> </div>
   <div class="clearfix"></div>
 <% end %>

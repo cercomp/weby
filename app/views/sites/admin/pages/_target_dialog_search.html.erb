@@ -1,74 +1,78 @@
 <% content_for :javascripts, javascript_include_tag("target.dialog") %>
 <% content_for :stylesheets, stylesheet_link_tag('target.dialog') %>
 <% extensions = current_site.extensions %>
-<div id="modal_target_list" class="modal hide fade">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="<%= t("close") %>">&times;</button>
-    <h3><%=t("target_dialog.select_target")%><%=t("target_dialog.select_file") if editable_url %></h3>
-  </div>
-  <div class="modal-body">
-    <ul class="nav nav-tabs <%= editable_url ? "" : "hide" %>" id="target_tabs">
-      <li class="active"><a href="#tab-pages" data-toggle="tab" data-link="<%= main_app.site_admin_pages_path %>"><%= t("activerecord.models.pages") %></a></li>
-      <% if editable_url %>
-        <li><a data-toggle="tab" href="#tab-weby"><%= t("target_dialog.common_pages") %></a></li>
-        <% if extensions.any? %>
-          <li><a data-toggle="tab" href="#tab-extensions"><%= t("target_dialog.extensions") %></a></li>
-        <% end  %>
-        <li><a data-toggle="tab" href="#tab-repository"><%= t("target_dialog.repositories") %></a></li>
-      <% end %>
-    </ul>
-
-    <div class="tab-content" id="target-results">
-      <div class="tab-pane active" id="tab-pages">
-        <%= render 'sites/admin/pages/list_popup' %>
+<div id="modal_target_list" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="<%= t("close") %>">&times;</button>
+        <h3 class="modal-title"><%=t("target_dialog.select_target")%><%=t("target_dialog.select_file") if editable_url %></h3>
       </div>
-      <% if editable_url %>
-        <div class="tab-pane" id="tab-repository">
-          <%= render 'sites/admin/repositories/list_popup' %>
-        </div>
-        <div class="tab-pane" id="tab-weby">
-          <table class="list table table-striped">
-            <thead>
-              <th><%= t("target_dialog.title") %></th>
-              <th><%= t("target_dialog.description") %></th>
-            </thead>
-            <tbody>
-                <% common_pages.each do |common_page| %>
-                <tr data-title="<%= common_page[:title] %>" data-url="<%= common_page[:url] %>" class="cursor highlight target-item">
-                  <td><%= common_page[:title] %></td>
-                  <td><%= common_page[:description] %></td>
-                </tr>
-                <% end %>
-               
-            </tbody>
-          </table>
-        </div>
-        <% if extensions.any? %>
-        <div class="tab-pane" id="tab-extensions">
-          <table class="list table table-striped">
-            <thead>
-              <th><%= t("target_dialog.extension") %></th>
-              <th><%= t("target_dialog.title") %></th>
-              <th><%= t("target_dialog.description") %></th>
-            </thead>
-            <tbody>
-                <% extensions.each do |extension|  %>
-                  <% eval(extension.name).routes.routes.each do |route| %>
-                    <% if !route.defaults[:controller].match(/admin\//) && "GET".match(route.verb)# && route.name != "root" %>
-                        <tr data-title="<%= route.name %>" data-url="<%= eval("#{extension.name}.#{route.name}_path") %>" class="cursor highlight target-item">
-                        <td><%= t("extensions.#{extension.name}.name") %></td>
-                        <td><%= t("extensions.#{extension.name}.routes.#{route.name}.title") %></td>
-                        <td><%= t("extensions.#{extension.name}.routes.#{route.name}.description") %></td>
-                        </tr>
+      <div class="modal-body">
+        <ul class="nav nav-tabs <%= editable_url ? "" : "hide" %>" id="target_tabs">
+          <li class="active"><a href="#tab-pages" data-toggle="tab" data-link="<%= main_app.site_admin_pages_path %>"><%= t("activerecord.models.pages") %></a></li>
+          <% if editable_url %>
+            <li><a data-toggle="tab" href="#tab-weby"><%= t("target_dialog.common_pages") %></a></li>
+            <% if extensions.any? %>
+              <li><a data-toggle="tab" href="#tab-extensions"><%= t("target_dialog.extensions") %></a></li>
+            <% end  %>
+            <li><a data-toggle="tab" href="#tab-repository"><%= t("target_dialog.repositories") %></a></li>
+          <% end %>
+        </ul>
+
+        <div class="tab-content" id="target-results">
+          <div class="tab-pane active" id="tab-pages">
+            <%= render 'sites/admin/pages/list_popup' %>
+          </div>
+          <% if editable_url %>
+            <div class="tab-pane" id="tab-repository">
+              <%= render 'sites/admin/repositories/list_popup' %>
+            </div>
+            <div class="tab-pane" id="tab-weby">
+              <table class="list table table-striped">
+                <thead>
+                  <th><%= t("target_dialog.title") %></th>
+                  <th><%= t("target_dialog.description") %></th>
+                </thead>
+                <tbody>
+                    <% common_pages.each do |common_page| %>
+                    <tr data-title="<%= common_page[:title] %>" data-url="<%= common_page[:url] %>" class="cursor highlight target-item">
+                      <td><%= common_page[:title] %></td>
+                      <td><%= common_page[:description] %></td>
+                    </tr>
                     <% end %>
-                  <% end %>
-                <% end %>
-            </tbody>
-          </table>
+
+                </tbody>
+              </table>
+            </div>
+            <% if extensions.any? %>
+            <div class="tab-pane" id="tab-extensions">
+              <table class="list table table-striped">
+                <thead>
+                  <th><%= t("target_dialog.extension") %></th>
+                  <th><%= t("target_dialog.title") %></th>
+                  <th><%= t("target_dialog.description") %></th>
+                </thead>
+                <tbody>
+                    <% extensions.each do |extension|  %>
+                      <% eval(extension.name).routes.routes.each do |route| %>
+                        <% if !route.defaults[:controller].match(/admin\//) && "GET".match(route.verb)# && route.name != "root" %>
+                            <tr data-title="<%= route.name %>" data-url="<%= eval("#{extension.name}.#{route.name}_path") %>" class="cursor highlight target-item">
+                            <td><%= t("extensions.#{extension.name}.name") %></td>
+                            <td><%= t("extensions.#{extension.name}.routes.#{route.name}.title") %></td>
+                            <td><%= t("extensions.#{extension.name}.routes.#{route.name}.description") %></td>
+                            </tr>
+                        <% end %>
+                      <% end %>
+                    <% end %>
+                </tbody>
+              </table>
+            </div>
+            <% end %>
+          <% end %>
         </div>
-        <% end %>
-      <% end %>
+      </div>
+      <div class="modal-footer"></div>
     </div>
   </div>
-  <div class="modal-footer"></div>
 </div>

@@ -1,30 +1,33 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="<%= current_locale %>">
   <head>
-  <title>weby <%= "-#{yield :title}" if content_for?(:title) %></title>
-    <%= stylesheet_link_tag 'application', media: "all" %>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= csrf_meta_tag %>
+    <title>weby<%= " - #{yield :title}" if content_for?(:title) %></title>
+    <%= stylesheet_link_tag 'application' %>
     <%# NOTE: review here %>
     <%= yield :stylesheets %>
     <%= yield :components_stylesheets %>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-      <%= javascript_include_tag "html5shim/html5" %>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <%= csrf_meta_tag %>
   </head>
-
   <body>
     <div class="zone">
       <div id="header" class="container">
         <div class="row">
-          <div class="span3">
+          <div class="col-md-2">
             <%= link_to main_app.root_url(subdomain: nil) do %>
               <%= image_tag 'weby-logo-60.png' %>
             <% end %>
           </div>
-          <% if current_site %>
-            <div class="span5 site">
+          <div class="col-md-6 site">
+            <% if current_site %>
               <div class="avatar pull-left">
                 <%= site_avatar_tag %>
               </div>
@@ -36,50 +39,48 @@
                   <%= link_to t(".show-site"), main_app.site_url(subdomain: current_site) %>
                 </div>
               </div>
-            </div>
-          <% end %>
-          <div class="span4 <%= current_site ? "" : "offset5 " %>person">
-            <div class="pull-right">
-              <div class="info name">
-                <%= link_to current_user, main_app.profile_url(current_user.login, subdomain: current_site) %>
-              </div>
-              <div class="info actions">
-                <%= link_to main_app.site_admin_url(subdomain: nil) do %>
-                  <%= content_tag(:span, icon('cog', white: true), class: "label") %>
-                <% end if current_user.is_admin? %>
-                <%= notifications_icon %>
-                <%= link_to icon('off', white: true), main_app.logout_path(back_url: main_app.site_path), method: :delete, class: 'label label-important', title: t('.logout') %>
-              </div>
-            </div>
+            <% end %>
+          </div>
+          <div class="col-md-4 person">
             <div class="avatar pull-right">
               <%= link_to main_app.profile_url(current_user.login, subdomain: current_site) do %>
                 <img src="http://www.gravatar.com/avatar/<%= Digest::MD5.hexdigest(current_user.email) %>?s=32&d=mm">
               <% end %>
             </div>
+            <div class="pull-right text-right">
+              <div class="info name">
+                <%= link_to current_user.first_name, main_app.profile_url(current_user.login, subdomain: current_site) %>
+              </div>
+              <div class="info actions">
+                <%= link_to main_app.site_admin_url(subdomain: nil), class: "label label-default" do %>
+                  <%= icon('cog', white: true) %>
+                <% end if current_user.is_admin? %>
+                <%= notifications_icon %>
+                <%= link_to icon('off', white: true), main_app.logout_path(back_url: main_app.site_path), method: :delete, class: 'label label-danger', title: t('.logout') %>
+              </div>
+            </div>
             <div class="clearfix"></div>
           </div>
         </div>
-        <%= breadcrumbs separator: " &rsaquo; " %>
       </div>
     </div>
-
     <div id="main" class="container">
       <div class="row">
-        <div class="span3">
+        <div class="col-md-2">
           <%= render 'layouts/shared/menu_admin' %>
           &nbsp;
         </div>
-        <div class="span9">
+        <div class="col-md-10">
           <% unless flash.empty? %>
             <%= raw flash_message %>
           <% end %>
           <div class="well">
+            <%= breadcrumbs style: :bootstrap %>
             <%= yield %>
           </div>
         </div>
       </div>
     </div>
-
     <div id="footer" class="container">
       <p>
         <%= t(".licence") %>
@@ -89,7 +90,6 @@
         <%= link_to t(".about"), '#', target: '_blank', id: 'about-weby' %>
       </p>
     </div>
-
     <%# NOTE: review here %>
     <%= yield :body_end %>
     <%= javascript_include_tag "application" %>

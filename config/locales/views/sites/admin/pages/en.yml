@@ -34,6 +34,7 @@ en:
           author:               " Author "
           category:             " Category "
           type:                 " Type "
+          cover:                " Cover "
           publish:              " Publish "
           news:                 " News "
           event:                " Event "
@@ -64,7 +65,8 @@ en:
           related_files:        " Related Files "
         form:
           image:                " Page image "
-          period_page:          " Page period "
+          date_begin_hint:      " The page will be listed in the site only after this date "
+          date_end_hint:        " The page won't be listed as cover after this date "
           related_files:        " Related files "
           page_categories_help: " Categories are separated by commas, the page's category are related with your content. Ex:Sports, News, Policy "
           list_categories:      " List Categories "

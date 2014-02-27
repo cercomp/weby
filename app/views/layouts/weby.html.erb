@@ -2,8 +2,19 @@
 
 <!doctype html>
 <html lang="<%= current_locale %>">
-  <%= render 'layouts/shared/head', layout: 'weby' %>
-
+  <head>
+    <title><%= @site.try(:description) || 'Weby' %><%= yield :title %></title>
+    <meta charset="utf-8"/>
+    <meta name="description" content="<%= @site.try(:description) %>"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= csrf_meta_tag %>
+    <%= auto_discovery_link_tag(:rss, main_app.site_feed_url(format: 'rss'),  {:title => "#{@site.try(:title)} - RSS"}) %>
+    <%= auto_discovery_link_tag(:atom, main_app.site_feed_url(format: 'atom'),  {:title => "#{@site.try(:title)} - ATOM"}) %>
+    <%= stylesheet_link_tag '_webybar' %>
+    <%= yield :stylesheets %>
+    <%= yield :components_stylesheets %>
+    <%= render 'sites/shared/loadStyles' %>
+  </head>
   <body>
     <%= render_webybar %>
     <div class='first_place'>

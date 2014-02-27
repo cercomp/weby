@@ -24,7 +24,7 @@ class Menu < ActiveRecord::Base
     attrs = attrs.dup
     attrs = attrs['menu'] if attrs.has_key? 'menu'
 
-    attrs.except!('id', 'created_at', 'updated_at', 'site_id')
+    attrs.except!('id', 'created_at', 'updated_at', 'site_id', 'type')
     items = attrs.delete('root_menu_items')
 
     menu = self.create!(attrs)
@@ -32,5 +32,4 @@ class Menu < ActiveRecord::Base
       menu.menu_items.import items
     end
   end
-
 end

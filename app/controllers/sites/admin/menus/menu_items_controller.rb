@@ -15,7 +15,7 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
   end
 
   def new
-    get_parent_menu_item params[:parent_id]
+    set_parent_menu_item params[:parent_id]
     @menu_item = @menu.menu_items.new
   end
 
@@ -28,7 +28,7 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
       record_activity("created_menu_item", @menu_item)
       redirect_to site_admin_menus_path(menu: @menu.id)
     else
-      get_parent_menu_item params[:menu_item][:parent_id]
+      set_parent_menu_item params[:menu_item][:parent_id]
       render action: :new
     end
   end
@@ -50,10 +50,12 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
 
   def destroy
     @menu_item = @menu.menu_items.find(params[:id])
-    update_position_for_remove(@menu_item)
-    @menu_item.destroy
-    record_activity("destroyed_menu_item", @menu_item)
-    redirect_to :back, flash: {success: t("successfully_deleted")}
+    if @menu_item.destroy
+      record_activity("destroyed_menu_item", @menu_item)
+      redirect_to :back, flash: {success: t("successfully_deleted")}
+    else
+      redirect_to :back, flash: {success: t("error_destroying_object")}
+    end
   end
 
   # Altera a ordenação do menu
@@ -79,7 +81,7 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
     @menu = current_site.menus.find(params[:menu_id])
   end
 
-  def get_parent_menu_item(parent_id)
+  def set_parent_menu_item(parent_id)
     @menu_item_parent = @menu.menu_items.find(parent_id) if parent_id
   end
 

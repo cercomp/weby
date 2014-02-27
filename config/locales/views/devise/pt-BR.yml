@@ -6,7 +6,7 @@ pt-BR:
     sessions:
       form:
         login:               "Entrar"
-        forgot_password:     "Esqueci minha senha"
+        forgot_password:     "Esqueceu a senha?"
         register:            "Cadastrar"
         field_login:         "Login"
         field_password:      "Senha"
@@ -18,7 +18,7 @@ pt-BR:
     registrations:
       form:
         login:               "Entrar"
-        forgot_password:     "Esqueci minha senha"
+        forgot_password:     "Esqueceu a senha?"
         register:            "Cadastrar"
         field_login:         "Login"
         field_password:      "Senha"

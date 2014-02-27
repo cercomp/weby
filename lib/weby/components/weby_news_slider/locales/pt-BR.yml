@@ -14,6 +14,6 @@ pt-BR:
     views:
       show:
       form:
-        news_category_hint:       " Apenas notícias que possuam imagens de capa; É sugerido que a imagem tenha proporções iguais as especificadas "
+        news_category_hint:       " Apenas notícias que possuam imagens de destaque. É sugerido que a imagem tenha proporções iguais as especificadas "
         timer_hint:               " Em segundos "
-        no_category:              " Todas as categorias "
+        no_category:              " Notícias de capa "

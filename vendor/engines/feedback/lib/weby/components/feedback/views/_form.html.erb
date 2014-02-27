@@ -3,7 +3,7 @@
 <% end %>
 
 <% if !(groups = Feedback::Group.where(site_id: current_site.id)).empty? %>
-  <div class="control-group check_boxes optional">
+  <div class="form-group check_boxes optional">
     <label class="check_boxes optional control-label"> <%= t(".group_checked") %> </label>
     <div class="controls">
       <% groups.each do |group| %>
