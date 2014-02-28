@@ -1,12 +1,12 @@
 //= require jquery.Jcrop.min
 
 $(document).ready(function () {
-  var jcroper;
+  var jcrop_api;
 
   //Após o carregamento da imagem, iniciar o jCrop
   $('#img-crop').load(function(){
-    $('.real-width').text(this.naturalWidth+" px");
-    $('.real-height').text(this.naturalHeight+" px");
+    $('.real-width').text(this.naturalWidth);
+    $('.real-height').text(this.naturalHeight);
     $(this).Jcrop({
       boxWidth: this.clientWidth,
       boxHeight: this.clientHeight,
@@ -24,33 +24,45 @@ $(document).ready(function () {
         $("#repository_h").val(null);
       }
     }, function(){
-      jcroper = this;
+      jcrop_api = this;
     });
     $('.img-edit .panel-body').hide();
   });
   //Iniciar o carregamento da imagem manualmente
   $('#img-crop').attr('src', $('#img-crop').data('src'));
 
+  $('.toggle-lock').click(function(){
+    if($(this).hasClass('active')){
+      $(this).removeClass('active');
+      jcrop_api.setOptions({aspectRatio: 0})
+    }else{
+      $(this).addClass('active');
+      var o = jcrop_api.tellSelect();
+      jcrop_api.setOptions({aspectRatio: parseInt(o.w)/parseInt(o.h)})
+    }
+    return false;
+  });
+
   //Quando o usuário seta os valores, muda a seleção na imagem
   $('#repository_w,#repository_h').change(function(){
-    if($('#repository_x').val().length == 0) $('#repository_x').val(0);
-    if($('#repository_y').val().length == 0) $('#repository_y').val(0);
-    if($('#repository_w').val().length == 0) $('#repository_w').val(0);
-    if($('#repository_h').val().length == 0) $('#repository_h').val(0);
+    $(['x','y','w','h']).each(function(){
+      if($('#repository_'+this).val().length == 0)
+        $('#repository_'+this).val(0);
+    });
     var x = parseInt($('#repository_x').val()),
         y = parseInt($('#repository_y').val()),
         w = parseInt($('#repository_w').val()),
-        h = parseInt($('#repository_h').val());
-    if(w < 0){
-      $('#repository_w').val(0);
-      w = 0;
-    }
-    if(h < 0){
-      $('#repository_h').val(0);
-      h = 0;
+        h = parseInt($('#repository_h').val()),
+        aspect = jcrop_api.getOptions().aspectRatio;
+    if(aspect != 0){
+      if($(this).is('#repository_w')){
+        h = w / aspect;
+      }else{
+        w = h * aspect;
+      }
     }
 
-    jcroper.animateTo([x, y, x+w, y+h]);
+    jcrop_api.setSelect([x, y, x+w, y+h]);
   });
 
   //Simular o efeito de onchange quando pressiona [enter] e impedir que o formulário seja enviado
@@ -63,7 +75,7 @@ $(document).ready(function () {
 
   //Se o usuário trocar o arquivo, remover o panel de corte da imagem
   $('#repository_archive').change(function(){
-     jcroper.release();
+     jcrop_api.release();
     $('.img-edit').remove();
   });
 
@@ -77,7 +89,7 @@ $(document).ready(function () {
     var $body = $('.img-edit .panel-body');
     $body.slideUp(300);
     $body.prev('.panel-heading').removeClass('open').addClass('closed');
-    jcroper.release();
+    jcrop_api.release();
     return false;
   });
 });
