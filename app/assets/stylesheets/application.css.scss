@@ -279,9 +279,6 @@ input[type="checkbox"].toggle { margin-top: 0; }
   font-weight: normal;
 }
 
-div#crop-dimensions{
-    margin-top: 10px;
-}
 .center{
   text-align: center;
 }
@@ -289,6 +286,11 @@ div#crop-dimensions{
 #repo_list {
   margin-top: 10px;
 }
-#repo_list > div.col-md-12 > table {
-  margin-left: 15px;
+
+.img-edit .panel-heading.closed{
+  cursor: pointer;
+}
+
+.img-edit .panel-heading.open{
+  cursor: default;
 }

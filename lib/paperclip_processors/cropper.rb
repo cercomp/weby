@@ -1,13 +1,10 @@
 module Paperclip
   class Cropper < Thumbnail
     def transformation_command
-      puts options
-      if crop_command and options[:geometry] == 'original'
-        r = super
-        if r.class == Array
-          r = r.join(' ')
-        end
-        crop_command + r.sub(/ -crop \S+/, '')
+      if crop_command && options[:geometry] == 'original'
+        cmd = super
+        cmd = cmd.join(' ') if cmd.is_a? Array
+        crop_command + cmd.gsub(/ -crop \S+/, '').gsub(/\+repage/, '')
       else
         super
       end
@@ -15,8 +12,8 @@ module Paperclip
 
     def crop_command
       target = @attachment.instance
-      if target.cropping?
-       ["-crop","#{target.w.to_i}x#{target.h.to_i}+#{target.x.to_i}+#{target.y.to_i} "].join(' ')
+      if target.will_crop?
+        "-crop #{target.w.to_i}x#{target.h.to_i}+#{target.x.to_i}+#{target.y.to_i} +repage "
       end
     end
   end

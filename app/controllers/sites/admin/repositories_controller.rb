@@ -85,11 +85,7 @@ class Sites::Admin::RepositoriesController < ApplicationController
     @repository = current_site.repositories.find(params[:id])
 
     if @repository.update_attributes(params[:repository])
-      @repository.x = params[:x]
-      @repository.y = params[:y]
-      @repository.h = params[:h]
-      @repository.w = params[:w]
-      @repository.archive.reprocess!
+      @repository.archive.reprocess! unless params[:repository][:archive]
       flash[:success] = t("successfully_updated") 
       record_activity("updated_file", @repository)
       redirect_to [:site, :admin, @repository]

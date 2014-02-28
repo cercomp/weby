@@ -20,6 +20,7 @@ gem "gretel"
 gem 'zeroclipboard-rails'
 gem 'useragent', '0.2.3', :git => 'http://github.com/jilion/useragent'
 gem 'zip-zip'
+gem 'jcrop-rails-v2'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

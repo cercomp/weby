@@ -2,20 +2,49 @@
 <% breadcrumb :repositories_edit, @repository %>
 <%= simple_form_for [:site_admin, @repository], :html => { class: 'form-horizontal'} do |f| %>
   <%= f.show_errors %>
- 
+
   <%= f.input :archive, :as => :file %>
   <%= f.input :description,  :hint => (t(".field_required") + " " + t(".accessibility_needs"))%>
   <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
 
   <%  if @repository.image? %>
-    <img id="img-crop" data-src="<%= @repository.archive_url %>"/>
-    <input type="hidden" name="x" value="" />
-    <input type="hidden" name="y" value="" />
-    <div id="crop-dimensions">
-      <span><%= t('.height') %></span>
-      <input style="width: 50px;" type="text" name="h" value="" />
-      <span><%= t('.width') %></span>
-      <input style="width: 50px;" type="text" name="w" value="" />   
+    <div class="panel panel-default img-edit">
+      <div class="panel-heading closed">
+        <small class="pull-right"><%= @repository.archive_file_name %></small>
+        <span>Editar imagem <span class="caret"></span></span>
+      </div>
+      <div class="panel-body">
+        <img id="img-crop" data-src="<%= @repository.archive_url %>" src="" alt="<%= @repository.description %>"/>
+        <%= hidden_field_tag 'repository[x]' %>
+        <%= hidden_field_tag 'repository[y]' %>
+        <div class="form-group">
+          <div class="col-md-3 control-label">
+            <label><%= t('.width') %></label>
+          </div>
+          <div class="col-md-2">
+            <%= number_field_tag 'repository[w]', '', class: 'form-control', min: 0 %>
+          </div>
+          <div class="col-md-2">
+            <small class="real-width"></small>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-md-3 control-label">
+            <label><%= t('.height') %></label>
+          </div>
+          <div class="col-md-2">
+            <%= number_field_tag 'repository[h]', '', class: 'form-control', min: 0 %>
+          </div>
+          <div class="col-md-2">
+            <small class="real-height"></small>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-md-3 col-md-offset-3">
+            <%= link_to 'Cancelar', '#', class: 'btn btn-default btn-sm img-edit-cancel' %>
+          </div>
+        </div>
+      </div>
     </div>
   <% end  %>
 
@@ -25,23 +54,5 @@
   </div>
 <% end %>
 
-<% content_for :javascripts, javascript_include_tag('imgAreaSelect/jquery.imgareaselect') %>
-<% content_for :stylesheets, stylesheet_link_tag('imgAreaSelect/imgareaselect-default') %>
-<%= content_for :javascripts do %>
-  <script type="text/javascript">
-    $(document).ready(function () {
-      $('#img-crop').load(function(){
-      $(this).imgAreaSelect({ fadeSpeed: 400, handles: true,
-       imageHeight: this.naturalHeight, imageWidth: this.naturalWidth,
-        onSelectChange: function ( image, selection ) {
-            $('input[name=x]').val(selection.x1);
-            $('input[name=y]').val(selection.y1);
-            $('input[name=w]').val(selection.width);
-            $('input[name=h]').val(selection.height);
-        }
-       })
-      });
-      $('#img-crop').attr('src', $('#img-crop').data('src'))
-    });
-  </script>
-<% end %>
+<% content_for :stylesheets, stylesheet_link_tag('jquery.Jcrop.min') %>
+<% content_for :javascripts, javascript_include_tag('repositories.edit') %>

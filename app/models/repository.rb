@@ -3,11 +3,10 @@ class Repository < ActiveRecord::Base
 
   attr_accessor :x, :y, :w, :h
 
-  has_many :page, 
-    foreign_key: 'repository_id'
+  has_many :page, foreign_key: 'repository_id'
 
   belongs_to :site
-  has_one :banner
+  has_many :banners
   has_many :sites, :foreign_key => "top_banner_id", :dependent => :nullify
 
   has_many :pages_repositories, :dependent => :destroy
@@ -58,20 +57,15 @@ class Repository < ActiveRecord::Base
       medium: "-quality 80 -strip",
       thumb: "-crop 160x160+0+0 +repage -quality 90 -strip",
       original: "-quality 80 -strip"},
-      :processors => [:cropper]
+      processors: [:cropper]
 
   validates_attachment_presence :archive,
     :message => I18n.t('activerecord.errors.messages.attachment_presence'), :on => :create
 
   before_post_process :image?, :normalize_file_name
   
-  def cropping?
+  def will_crop?
     !x.blank? && !y.blank? && w.to_i > 0 && h.to_i > 0
-  end
-
-   def image_geometry(styles = :original)
-    @geometry ||= {}
-    @geometry[styles] ||= Paperclip::Geometry.from_file images.path(styles)
   end
 
   # Metodo para incluir a url do arquivo no json
@@ -156,5 +150,4 @@ class Repository < ActiveRecord::Base
   def exists_archive?(format=nil)
     FileTest.exist?(archive.path(format))
   end
-
 end
