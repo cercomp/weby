@@ -20,7 +20,7 @@ pt-BR:
   begin:                                " Início "
 #---C---#
   cancel:                               " Cancelar "
-  cannot_destroy_a_published_page:      " Não é permitido excluir uma página publicada "
+  cannot_destroy_a_published_page:      " Não é permitido excluir uma página publicada. "
   close:                                " Fechar "
   copy:                                 " Copiar "
   component:                            " Componente "
