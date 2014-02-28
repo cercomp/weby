@@ -52,7 +52,6 @@ class Site < ActiveRecord::Base
 
   has_many :roles
 
-  has_one :repository
   has_many :views
 
   has_many :menus, dependent: :delete_all, order: :id

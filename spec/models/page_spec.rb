@@ -41,6 +41,8 @@ describe Page do
   end
 
   context 'kind' do
+    it { expect(subject).to validate_presence_of(:type) }
+
     it 'should accept only valid kinds' do
       expect(subject).to allow_value('regional').for(:kind)
       expect(subject).to allow_value('national').for(:kind)
@@ -49,6 +51,16 @@ describe Page do
 
     it 'should not accept invalid kinds' do
       expect(subject).not_to allow_value('not regional').for(:kind)
+    end
+  end
+
+  context 'local' do
+    it 'local should be default false' do
+      expect(subject).not_to validate_presence_of(:local)
+    end
+
+    it 'should accept local to be true' do
+      expect(subject).to allow_value(true).for(:position)
     end
   end
 end
