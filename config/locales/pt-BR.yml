@@ -20,7 +20,7 @@ pt-BR:
   begin:                                " Início "
 #---C---#
   cancel:                               " Cancelar "
-  cannot_destroy_a_published_page:      " Não é permitido excluir uma página publicada "
+  cannot_destroy_a_published_page:      " Não é permitido excluir uma página publicada. "
   close:                                " Fechar "
   copy:                                 " Copiar "
   component:                            " Componente "
@@ -69,6 +69,8 @@ pt-BR:
   logout_success:                       " Logout com sucesso! "
   look_changed:                         " Aparência alterada "
 #---M---#
+  moved_file_to_recycle_bin:            " Arquivo movido para a lixeira. "
+  moved_page_to_recycle_bin:            " Página movida para a lixeira. "
   move:                                 " Mover "
   manage_roles:                         " Gerenciar Papéis "
   missing_account:                      " Desculpe-nos, mas não conseguimos localizar sua conta. Este link pode ser inválido ou estar expirado. Tente reiniciar o processo de recuperação de senha. "

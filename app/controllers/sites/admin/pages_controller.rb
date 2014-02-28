@@ -107,10 +107,11 @@ class Sites::Admin::PagesController < ApplicationController
     if @page.trash
       if @page.persisted?                                   
         record_activity("moved_page_to_recycle_bin", @page)
+        flash[:success] = t('moved_page_to_recycle_bin')
       else                                                  
-        record_activity("destroyed_page", @page)          
+        record_activity("destroyed_page", @page)
+        flash[:success] = t('successfully_deleted')
       end
-      flash[:success] = t('successfully_deleted')
     else
       flash[:error] = @page.errors.full_messages.join(", ")
     end
