@@ -1,11 +1,18 @@
 <% title ".archives" %>
 <% breadcrumb :repositories_edit, @repository %>
-<%= simple_form_for [:site_admin, @repository], :html => { class: 'form-horizontal'} do |f| %>
+<%= simple_form_for [:site_admin, @repository], wrapper: :devise_input do |f| %>
   <%= f.show_errors %>
 
-  <%= f.input :archive, :as => :file %>
-  <%= f.input :description,  :hint => (t(".field_required") + " " + t(".accessibility_needs"))%>
-  <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
+  <div class="row">
+    <div class="col-md-3">
+      <%= weby_file_view(@repository, :original, nil, nil, target: '_blank') %>
+    </div>
+    <div class="col-md-7">
+      <%= f.input :archive, :as => :file %>
+      <%= f.input :description,  :hint => (t(".field_required") + " " + t(".accessibility_needs"))%>
+      <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
+    </div>
+  </div>
 
   <%  if @repository.image? %>
     <div class="panel panel-default img-edit">
