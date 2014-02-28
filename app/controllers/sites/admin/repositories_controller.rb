@@ -98,10 +98,12 @@ class Sites::Admin::RepositoriesController < ApplicationController
     if @repository.trash
       if @repository.persisted?
         record_activity("moved_file_to_recycle_bin", @repository)
+        flash[:success] = t('moved_file_to_recycle_bin')
       else
         record_activity("destroyed_file", @repository)
+        flash[:success] = t('successfully_deleted')
       end
-      flash[:success] = t('successfully_deleted')
+      
     else
       flash[:error] = @repository.errors.full_messages.join(", ")
     end

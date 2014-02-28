@@ -69,6 +69,8 @@ en:
   logout_success:                       " Logged out successfully! "
   look_changed:                         " Appearence was changed "
 #---M---#
+  moved_file_to_recycle_bin:            " Moved file to recycle bin. "
+  moved_page_to_recycle_bin:            " Moved page to recycle bin. "
   move:                                 " Move "
   manage_roles:                         " Manage Roles "
   missing_account:                      " We're sorry, but we could not locate your account. This URL is either invalid or expired. Try restarting the reset password process. "
