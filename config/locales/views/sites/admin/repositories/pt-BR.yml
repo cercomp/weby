@@ -33,8 +33,9 @@ pt-BR:
           field_required:      " Campo obrigatório! "
           accessibility_needs: " Necessário para a acessibilidade de seu site. "
           please_wait:         " Por favor, aguarde "
-          height:               " Altura "
-          width:                " Largura "
+          edit_image:          " Editar imagem "
+          height:              " Altura "
+          width:               " Largura "
         repo:
           picture:             " Imagem "
         list:

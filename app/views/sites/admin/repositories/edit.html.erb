@@ -11,7 +11,7 @@
     <div class="panel panel-default img-edit">
       <div class="panel-heading closed">
         <small class="pull-right"><%= @repository.archive_file_name %></small>
-        <span>Editar imagem <span class="caret"></span></span>
+        <span><%= t('.edit_image') %><span class="caret"></span></span>
       </div>
       <div class="panel-body">
         <img id="img-crop" data-src="<%= @repository.archive_url %>" src="" alt="<%= @repository.description %>"/>
@@ -41,7 +41,7 @@
         </div>
         <div class="form-group">
           <div class="col-md-3 col-md-offset-3">
-            <%= link_to 'Cancelar', '#', class: 'btn btn-default btn-sm img-edit-cancel' %>
+            <%= link_to t('cancel'), '#', class: 'btn btn-default btn-sm img-edit-cancel' %>
           </div>
         </div>
       </div>
