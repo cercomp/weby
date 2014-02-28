@@ -4,7 +4,7 @@
   <%= f.show_errors %>
 
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-3 img-edit-preview">
       <%= weby_file_view(@repository, :original, nil, nil, target: '_blank') %>
     </div>
     <div class="col-md-7">
@@ -25,26 +25,29 @@
         <%= hidden_field_tag 'repository[x]' %>
         <%= hidden_field_tag 'repository[y]' %>
         <div class="form-group">
-          <div class="col-md-3 control-label">
+          <div class="col-md-1 control-label">
             <label><%= t('.width') %></label>
           </div>
           <div class="col-md-2">
             <%= number_field_tag 'repository[w]', '', class: 'form-control', min: 0 %>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-8">
             <%= link_to icon('lock', white: true), '#', class: 'btn btn-info btn-sm toggle-lock', title: t('.lock_aspect_ratio'), tabindex: '-1' %>
           </div>
+          <div class="clearfix"></div>
         </div>
         <div class="form-group">
-          <div class="col-md-3 control-label">
+          <div class="col-md-1 control-label">
             <label><%= t('.height') %></label>
           </div>
           <div class="col-md-2">
             <%= number_field_tag 'repository[h]', '', class: 'form-control', min: 0 %>
           </div>
+          <div class="col-md-8"></div>
+          <div class="clearfix"></div>
         </div>
         <div class="form-group">
-          <div class="col-md-3 col-md-offset-3">
+          <div class="col-md-3 col-md-offset-1">
             <%= link_to t('cancel'), '#', class: 'btn btn-default btn-sm img-edit-cancel' %>
           </div>
         </div>

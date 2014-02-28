@@ -75,8 +75,20 @@ $(document).ready(function () {
 
   //Se o usuário trocar o arquivo, remover o panel de corte da imagem
   $('#repository_archive').change(function(){
-     jcrop_api.release();
+    if(jcrop_api)
+      jcrop_api.release();
     $('.img-edit').remove();
+    /////Geração do thumbnail de preview (Se o browser tiver o FileReader)
+    var img = $('.img-edit-preview img');
+    img.hide();
+    if (typeof FileReader !== "undefined" && (/image/i).test(this.files[0].type)){
+      var reader = new FileReader();
+      reader.onload = function(evt){
+        img[0].src = evt.target.result;
+        img.show();
+      };
+      reader.readAsDataURL(this.files[0]);
+    }
   });
 
   $('.panel-heading').click(function(){
