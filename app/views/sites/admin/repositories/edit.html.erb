@@ -17,10 +17,10 @@
   <%  if @repository.image? %>
     <div class="panel panel-default img-edit">
       <div class="panel-heading closed">
-        <small class="pull-right"><%= @repository.archive_file_name %> (<span class="real-width"></span>x<span class="real-height"></span>)</small>
+        <small class="pull-right"><%= @repository.archive_file_name %> <span class="real-size"></span></small>
         <span><%= t('.edit_image') %><span class="caret"></span></span>
       </div>
-      <div class="panel-body">
+      <div class="panel-body" style="display: none">
         <img id="img-crop" data-src="<%= @repository.archive_url %>" src="" alt="<%= @repository.description %>"/>
         <%= hidden_field_tag 'repository[x]' %>
         <%= hidden_field_tag 'repository[y]' %>
