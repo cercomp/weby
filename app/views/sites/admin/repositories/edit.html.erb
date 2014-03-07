@@ -32,7 +32,9 @@
             <%= number_field_tag 'repository[w]', '', class: 'form-control', min: 0 %>
           </div>
           <div class="col-md-8">
-            <%= link_to icon('lock', white: true), '#', class: 'btn btn-info btn-sm toggle-lock', title: t('.lock_aspect_ratio'), tabindex: '-1' %>
+            <div class="toggle-lock label label-default" title="<%= t('.lock_aspect_ratio') %>">
+              <%= icon('lock', white: true) %><%= check_box_tag('lock', '1', false, tabindex: '-1') %>
+            </div>
           </div>
           <div class="clearfix"></div>
         </div>

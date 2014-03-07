@@ -88,14 +88,14 @@ $(document).ready(function () {
     setValue('h', o.h, h);
   });
 
-  $('.toggle-lock').click(function(){
-    if($(this).hasClass('active')){
-      $(this).removeClass('active');
-      jcrop_api.setOptions({aspectRatio: 0})
-    }else{
-      $(this).addClass('active');
+  $('.toggle-lock input').change(function(){
+    if($(this).is(':checked')){
+      $(this).siblings('.glyphicon').removeClass('glyphicon-white');
       var o = jcrop_api.tellSelect();
-      jcrop_api.setOptions({aspectRatio: Math.round(o.w)/Math.round(o.h)})
+      jcrop_api.setOptions({aspectRatio: Math.round(o.w)/Math.round(o.h)});
+    }else{
+      $(this).siblings('.glyphicon').addClass('glyphicon-white');
+      jcrop_api.setOptions({aspectRatio: 0});
     }
     return false;
   });
@@ -142,7 +142,7 @@ $(document).ready(function () {
     var $body = $('.img-edit .panel-body');
     $body.slideUp(300);
     $body.prev('.panel-heading').removeClass('open').addClass('closed');
-    $('.toggle-lock').removeClass('active');
+    $('.toggle-lock input').prop('checked', false);
     jcrop_api.setOptions({aspectRatio: 0})
     jcrop_api.release();
     return false;

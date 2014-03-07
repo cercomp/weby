@@ -301,6 +301,11 @@ input[type="checkbox"].toggle { margin-top: 0; }
 
 .toggle-lock{
   position: relative;
-  top: 29px;
-  left: -15px;
+  top: 31px;
+  left: -20px;
+}
+
+.toggle-lock input{
+  vertical-align: middle;
+  margin-top: -1px;
 }
