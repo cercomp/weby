@@ -11,7 +11,7 @@ class Sites::Admin::RepositoriesController < ApplicationController
     params[:mime_type].try(:delete, '')
     params[:direction] ||= 'desc'
 
-    @repositories = current_site.repositories.
+    @repositories = Repository.
       description_or_filename(params[:search]).
       order(sort_column + ' ' + sort_direction).
       page(params[:page]).per(per_page)
