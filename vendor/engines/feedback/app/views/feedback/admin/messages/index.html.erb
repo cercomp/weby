@@ -1,5 +1,5 @@
 <% title ".feedbacktitle" %>
-<% breadcrumb :messages %>
+<% breadcrumb params[:search].present? ? :message_search : :messages, params[:search] %>
 <div class="row">
   <div class="col-md-5">
     <%= form_tag admin_messages_path, method: 'get', autocapitalize: "off", class: 'search' do %>

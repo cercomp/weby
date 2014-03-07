@@ -1,5 +1,5 @@
 <% title ".activity_records" %>
-<% breadcrumb :activity_records %>
+<% breadcrumb params[:search].present? ? :activity_records_search : :activity_records, params[:search] %>
 <div class="row">
   <div class="col-md-5">
     <%= form_tag admin_activity_records_path, method: 'get', autocapitalize: "off", class: 'search' do %>
