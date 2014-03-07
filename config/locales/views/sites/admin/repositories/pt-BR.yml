@@ -33,6 +33,10 @@ pt-BR:
           field_required:      " Campo obrigatório! "
           accessibility_needs: " Necessário para a acessibilidade de seu site. "
           please_wait:         " Por favor, aguarde "
+          edit_image:          " Editar imagem "
+          lock_aspect_ratio:   " Fixar a proporção do corte da imagem "
+          height:              " Altura "
+          width:               " Largura "
         repo:
           picture:             " Imagem "
         list:

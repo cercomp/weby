@@ -55,6 +55,7 @@ SimpleForm.setup do |config|
     b.optional :pattern
     b.optional :readonly
     b.use :error, wrap_with: { tag: 'p', class: 'help-block has-error' }
+    b.use :label
     b.use :input
     b.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
   end
