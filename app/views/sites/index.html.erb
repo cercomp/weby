@@ -3,12 +3,7 @@
   <div class="col-md-4">
     <%= form_tag root_path, method: 'get', autocapitalize: "off", class: 'search' do %>
       <%= hidden_field_tag(:groupings, params[:groupings]) if params[:groupings] %>
-      <%= content_tag :div, class: 'input-group' do %>
-        <%= search_field_tag :search, params[:search], class: 'form-control' %>
-        <span class="input-group-btn">
-          <%= submit_tag t(".search"), class: 'btn btn-info' %>
-        </span>
-      <% end %>
+      <%= search_input params[:search] %>
     <% end %>
   </div>
   <div class="col-md-6 col-md-offset-2">

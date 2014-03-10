@@ -1,8 +1,8 @@
 /*
  *= require select2
  *= require select2-bootstrap
- *= require weby_shared
  *= require_self
+ *= require weby_shared
  *= require google/lato
  */
 
@@ -220,11 +220,6 @@ body.modal-open {
     padding: 0;
     li { font-weight: bold; }
   }
-}
-
-//Glyphicon
-.glyphicon.glyphicon-white {
-  color: white;
 }
 
 //repositório de imagens

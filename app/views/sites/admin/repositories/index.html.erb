@@ -1,14 +1,9 @@
 <% title ".archives" %>
-<% breadcrumb params[:search].present? ? :repositories_search : :repositories %>
+<% breadcrumb params[:search].present? ? :repositories_search : :repositories, params[:search] %>
 <%= form_tag site_admin_repositories_path, method: 'get', autocapitalize: "off", class: 'search' do %>
   <div class="row">
     <div class="col-md-5">
-      <%= content_tag :div, class: 'input-group' do %>
-        <%= search_field_tag :search, params[:search], class: 'form-control' %>
-        <span class="input-group-btn">
-          <%= submit_tag t(".search"), class: 'btn btn-info' %>
-        </span>
-      <% end %>
+      <%= search_input params[:search] %>
     </div>
     <div class="col-md-3">
       <%= select_tag "mime_type[]",

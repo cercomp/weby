@@ -344,9 +344,9 @@ module ApplicationHelper
       icon_class = "#{ico} #{ico}-#{type}" + (args[:white] ? " #{ico}-white" : "")
 
       if args[:right]
-        raw "#{args[:text]} <i class='#{icon_class}'></i>"
+        raw "#{args[:text]} <i class='#{icon_class}' style='#{args[:icon_style]}'></i>"
       else
-        raw "<i class='#{icon_class}'></i> #{args[:text]}"
+        raw "<i class='#{icon_class}' style='#{args[:icon_style]}'></i> #{args[:text]}"
       end
     end
   end
@@ -392,6 +392,20 @@ module ApplicationHelper
       protocol: login_protocol,
       back_url: back_url
     )
+  end
+
+  def search_input value, options={}
+    placeholder = options[:placeholder] || t('search')
+    button_class = 'btn btn-info btn-search'
+    button_class << ' ' + options[:button_class] if options[:button_class]
+    content_tag :div, class: 'input-group' do
+      concat search_field_tag(:search, value, class: 'form-control', placeholder: placeholder)
+      concat(
+        content_tag(:span, class: 'input-group-btn') do
+          button_tag(icon('search', white: true, icon_style: 'width: 32px'), type: 'submit', class: button_class, title: t('search'))
+        end
+      )
+    end
   end
 
   # refactored

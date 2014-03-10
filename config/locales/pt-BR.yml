@@ -111,7 +111,7 @@ pt-BR:
   empty_recycle_bin:                    " Lixeira Vazia "
 #---S---#
   save:                                 " Salvar "
-  search:                               " Buscar "
+  search:                               " Pesquisar "
   scheduled:                            " Agendado para %{date} "
   show:                                 " Mostrar "
   site_need_at_least_one_locale:        " Necessita de pelo menos um idioma "

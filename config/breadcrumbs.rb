@@ -24,8 +24,8 @@ crumb :repositories_show do |repository|
   parent :repositories
 end
 
-crumb :repositories_search do
-  link t("breadcrumbs.search")
+crumb :repositories_search do |search|
+  link "#{t("breadcrumbs.search")}/ #{search}"
   parent :repositories
 end
 
@@ -59,8 +59,8 @@ crumb :pages_edit do |page|
   parent :pages
 end
 
-crumb :pages_search do
-  link t("breadcrumbs.search")
+crumb :pages_search do |search|
+  link "#{t("breadcrumbs.search")}/ #{search}"
   parent :pages
 end
 
@@ -114,8 +114,8 @@ crumb :banners_show do |banner|
   parent :banners
 end
 
-crumb :banners_search do
-  link t("breadcrumbs.search")
+crumb :banners_search do |search|
+  link "#{t("breadcrumbs.search")}/ #{search}"
   parent :banners
 end
 
@@ -181,6 +181,11 @@ end
 
 crumb :activity_records_details do
   link t("breadcrumbs.activity_records_details"), site_admin_activity_record_path
+  parent :activity_records
+end
+
+crumb :activity_records_search do |search|
+  link "#{t("breadcrumbs.search")}/ #{search}"
   parent :activity_records
 end
 
@@ -251,5 +256,10 @@ end
 
 crumb :show_message do |message|
   link "#{message.name}", feedback.admin_message_path
+  parent :messages
+end
+
+crumb :message_search do |search|
+  link "#{t("breadcrumbs.search")}/ #{search}"
   parent :messages
 end

@@ -1,12 +1,7 @@
 <div class="row">
   <div class="col-md-5">
     <%= form_tag admin_sites_path, method: 'get', autocapitalize: "off", class: 'search' do %>
-      <%= content_tag :div, class: 'input-group' do %>
-        <%= search_field_tag :search, params[:search], class: 'form-control' %>
-          <span class="input-group-btn">
-            <%= submit_tag t("search"), class: 'btn btn-info' %>
-          </span>
-      <% end %>
+      <%= search_input params[:search] %>
     <% end %>
   </div>
   <div class="col-md-7">

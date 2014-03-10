@@ -1,7 +1,7 @@
 <h2><%= controller.action_name == 'events' ? t(".events") : controller.action_name == 'news' ? t(".news") : t(".pages") %></h2>
 <%= form_tag nil, method: 'get' do %>
   <div class="input-append search-field-button">
-      <%= text_field_tag :search, params[:search] %>
+      <%= text_field_tag :search, params[:search], placeholder: t('search') %>
       <%= button_tag image_tag("/assets/components/icon_search.png"), class: 'btn', title: t("search") %>
   </div>
   <%= link_to t('.advanced'), '#', class: 'toggle-advanced-search', onclick: "return toggleAdvancedSearch()"%>

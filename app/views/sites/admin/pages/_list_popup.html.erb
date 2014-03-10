@@ -2,12 +2,7 @@
   <%= form_tag site_admin_pages_path(template: 'list_popup'), method: 'get', autocapitalize: "off", class: 'search', remote: true do %>
     <div class="row">
       <div class="col-md-7">
-        <%= content_tag :div, class: 'input-group' do %>
-          <%= search_field_tag :search, params[:search], placeholder: t('.search_pages'), class: 'input-search form-control' %>
-          <span class="input-group-btn">
-            <%= submit_tag t("search"), class: 'btn btn-info btn-search-page' %>
-          </span>
-        <% end %>
+        <%= search_input params[:search], placeholder: t('.search_pages'), button_class: 'btn-search-page' %>
       </div>
     </div>
     <%= hidden_field_tag 'page', 1 %>

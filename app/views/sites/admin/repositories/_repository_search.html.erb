@@ -27,12 +27,7 @@
               remote: true do %>
               <div class="row">
                 <div class="col-md-6">
-                  <%= content_tag :div, class: 'input-group' do %>
-                    <%= search_field_tag :search, params[:search], class: 'form-control' %>
-                    <span class="input-group-btn">
-                      <%= submit_tag t("search"), class: 'btn btn-info btn-search-files' %>
-                    </span>
-                  <% end %>
+                  <%= search_input params[:search] %>
                 </div>
                 <div class="col-md-6">
                   <%= select_tag "mime_type[]",

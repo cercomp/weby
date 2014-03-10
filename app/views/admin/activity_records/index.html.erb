@@ -1,12 +1,7 @@
 <%= form_tag admin_activity_records_path, method: 'get', autocapitalize: "off", class: 'search' do %>
   <div class="row">
     <div class="col-md-5">
-      <%= content_tag :div, class: 'input-group' do %>
-        <%= search_field_tag :search, params[:search], class: 'form-control' %>
-        <span class="input-group-btn">
-          <%= submit_tag t("search"), class: 'btn btn-info' %>
-        </span>
-      <% end %>
+      <%= search_input params[:search] %>
     </div>
     <div class="col-md-4">
       <%= select_tag :site_id, options_for_select(Site.all.map{ |site| [site.title || site.name, site.id] }, params[:site_id]), include_blank: true,
