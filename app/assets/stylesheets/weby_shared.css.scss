@@ -15,18 +15,22 @@
   text-transform: uppercase;
 }
 
-//Icons
+//Glyphicon
 .well .glyphicon {
   color: black;
+}
+
+.glyphicon {
+  font-size: 12px;
+}
+
+.glyphicon.glyphicon-white {
+  color: white;
 }
 
 //Alert
 blockquote{
   font-size: 16px;
-}
-
-.glyphicon {
-  font-size: 12px;
 }
 
 ul.order-list {
@@ -36,7 +40,6 @@ ul.order-list {
 .label-important{
   background-color: #953b39;
 }
-
 
 .person{
   .info.actions {
@@ -49,12 +52,9 @@ ul.order-list {
     }
   }
 }
+
 .site {
   .info.actions a{
     color: #BC1625;
   }   
-}
-
-.search .input-group {
-  //margin-left: -15px;
 }
