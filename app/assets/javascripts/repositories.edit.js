@@ -6,7 +6,7 @@ $(document).ready(function () {
       userValue = false;
 
   var setValue = function(input, data, value){
-    if ($("#repository_"+input).data('raw') != data){
+    if ($("#repository_"+input).data('raw') != data || value == null){
       $("#repository_"+input).data('raw', data);
       if (typeof(value) == 'undefined' || value == null){
         value = Math.round(data);
@@ -72,13 +72,13 @@ $(document).ready(function () {
     var o = jcrop_api.tellSelect();
     //Se o usuário seta um valor que corta pra fora da imagem,
     //muda o valor do campo para o valor real
-    if(Math.abs(w-o.w) > 2){
+    if(Math.abs(w - o.w) > 1){
       w = null;
       if(aspect != 0){
         h = null;
       }
     }
-    if(Math.abs(h-o.h) > 2){
+    if(Math.abs(h - o.h) > 1){
       h = null;
       if(aspect != 0){
         w= null;
