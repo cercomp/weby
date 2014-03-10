@@ -1,7 +1,25 @@
-<h2><%= controller.action_name == 'events' ? t(".events") : controller.action_name == 'news' ? t(".news") : t(".pages") %></h2>
+<h2><% if controller.action_name == 'events' %>
+      <% if params[:upcoming] == nil %>
+        <%= t(".events") + t(".previous_events") %>
+        <span class="events_search" style="float: right">
+        <%= link_to t('.upcoming_events'), events_site_pages_path(upcoming: true, direction: 'asc', sort: 'pages.event_begin'), class: "label" %>
+        </span>
+      <% else %>
+        <%= t(".events") + t(".upcoming_events") %>
+        <span class="events_search" style="float: right">
+          <%= link_to t('.previous_events'), events_site_pages_path(upcoming: nil, direction: 'desc', sort: 'pages.event_begin'), class: "label" %>
+        </span>
+      <% end %>
+      <% elsif controller.action_name == 'news' %>
+        <%= t(".news") %>
+      <% else %>
+        <%= t(".pages") %>
+      <% end %>
+</h2>
+
 <%= form_tag nil, method: 'get' do %>
   <div class="input-append search-field-button">
-      <%= text_field_tag :search, params[:search], placeholder: t('search') %>
+      <%= text_field_tag :search, params[:search] %>
       <%= button_tag image_tag("/assets/components/icon_search.png"), class: 'btn', title: t("search") %>
   </div>
   <%= link_to t('.advanced'), '#', class: 'toggle-advanced-search', onclick: "return toggleAdvancedSearch()"%>

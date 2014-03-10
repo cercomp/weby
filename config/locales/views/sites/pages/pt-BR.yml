@@ -2,13 +2,15 @@ pt-BR:
   sites:
     pages:
       index:
-        events:        " Eventos "
-        pages:         " Páginas "
-        news:          " Notícias "
-        advanced:      " Opções Avançadas "
-        match_search:  " Busca exata "
-        and_search:    " Todas as palavras "
-        or_search:     " Qualquer uma das palavras "
+        events:          " Eventos "
+        pages:           " Páginas "
+        news:            " Notícias "
+        advanced:        " Opções Avançadas "
+        match_search:    " Busca exata "
+        and_search:      " Todas as palavras "
+        or_search:       " Qualquer uma das palavras "
+        upcoming_events: " Em andamento / A Realizar "
+        previous_events: " Realizados "
       show:
         event:         " Evento "
         period_event:  " Período do Evento "
