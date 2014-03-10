@@ -227,6 +227,15 @@ body.modal-open {
   color: white;
 }
 
+//repositório de imagens
+#repo_list > div.row > div > div{
+  height: 258px;
+}
+
+#repo_list > div.row > div > div > a > img{
+  height: 160px;
+}
+
 // used to mark object as published/unpublished
 .deactivated, .deactivated > td{
   background-color: #F2DEDE !important;
