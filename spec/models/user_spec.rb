@@ -76,6 +76,10 @@ describe User do
     it { expect(subject).to belong_to(:locale) }
   end
 
+  context 'LoginHistories' do
+    it { expect(subject).to have_many(:user_login_histories).dependent(:destroy) }
+  end
+
   context 'Notifications' do
     it { expect(subject).to have_many(:notifications).dependent(:nullify) }
   end

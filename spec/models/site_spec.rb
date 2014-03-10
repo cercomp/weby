@@ -83,4 +83,16 @@ describe Site do
   it { expect(subject).to have_and_belong_to_many(:locales) }
 
   it { expect(subject).to have_and_belong_to_many(:groupings) }
+
+  pending 'Scopes' do
+    it 'name_or_description_like' do
+      subject = create(:site, name: "subject", description: "Description")
+      site = create(:site, name: "site", description: "Here")
+
+      expect(Site.name_or_description_like("ect")).to include(subject)
+      expect(Site.name_or_description_like("ite")).not_to include(subject)
+      expect(Site.name_or_description_like("Here")).to include(site)
+      expect(Site.name_or_description_like("ption")).not_to include(site)
+    end
+  end
 end
