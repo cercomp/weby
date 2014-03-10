@@ -1,14 +1,67 @@
 <% title ".archives" %>
 <% breadcrumb :repositories_edit, @repository %>
-<%= simple_form_for [:site_admin, @repository], :html => { class: 'form-horizontal'} do |f| %>
+<%= simple_form_for [:site_admin, @repository], wrapper: :devise_input do |f| %>
   <%= f.show_errors %>
 
-  <%= f.input :archive, :as => :file %>
-  <%= f.input :description,  :hint => (t(".field_required") + " " + t(".accessibility_needs"))%>
-  <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
+  <div class="row">
+    <div class="col-md-3 img-edit-preview">
+      <%= weby_file_view(@repository, :original, nil, nil, target: '_blank') %>
+    </div>
+    <div class="col-md-7">
+      <%= f.input :archive, :as => :file %>
+      <%= f.input :description,  :hint => (t(".field_required") + " " + t(".accessibility_needs"))%>
+      <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
+    </div>
+  </div>
+
+  <%  if @repository.image? %>
+    <div class="panel panel-default img-edit">
+      <div class="panel-heading closed">
+        <small class="pull-right"><%= @repository.archive_file_name %> <span class="real-size"></span></small>
+        <span><%= t('.edit_image') %><span class="caret"></span></span>
+      </div>
+      <div class="panel-body" style="display: none">
+        <img id="img-crop" data-src="<%= @repository.archive_url %>" src="" alt="<%= @repository.description %>"/>
+        <%= hidden_field_tag 'repository[x]' %>
+        <%= hidden_field_tag 'repository[y]' %>
+        <div class="form-group">
+          <div class="col-md-1 control-label">
+            <label><%= t('.width') %></label>
+          </div>
+          <div class="col-md-2">
+            <%= number_field_tag 'repository[w]', '', class: 'form-control', min: 0 %>
+          </div>
+          <div class="col-md-8">
+            <div class="toggle-lock label label-default" title="<%= t('.lock_aspect_ratio') %>">
+              <%= icon('lock', white: true) %><%= check_box_tag('lock', '1', false, tabindex: '-1') %>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="form-group">
+          <div class="col-md-1 control-label">
+            <label><%= t('.height') %></label>
+          </div>
+          <div class="col-md-2">
+            <%= number_field_tag 'repository[h]', '', class: 'form-control', min: 0 %>
+          </div>
+          <div class="col-md-8"></div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="form-group">
+          <div class="col-md-3 col-md-offset-1">
+            <%= link_to t('cancel'), '#', class: 'btn btn-default btn-sm img-edit-cancel' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end  %>
 
   <div class="form-actions">
     <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
     <%= link_to t("back"), :back, class: "btn btn-default" %>
   </div>
 <% end %>
+
+<% content_for :stylesheets, stylesheet_link_tag('jquery.Jcrop.min') %>
+<% content_for :javascripts, javascript_include_tag('repositories.edit') %>

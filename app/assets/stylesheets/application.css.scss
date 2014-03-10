@@ -295,6 +295,26 @@ input[type="checkbox"].toggle { margin-top: 0; }
 #repo_list {
   margin-top: 10px;
 }
-#repo_list > div.col-md-12 > table {
-  margin-left: 15px;
+
+.img-edit .panel-heading.closed{
+  cursor: pointer;
+}
+
+.img-edit .panel-heading.open{
+  cursor: default;
+}
+
+.img-edit-preview{
+  margin-bottom: 10px;
+}
+
+.toggle-lock{
+  position: relative;
+  top: 31px;
+  left: -20px;
+}
+
+.toggle-lock input{
+  vertical-align: middle;
+  margin-top: -1px;
 }

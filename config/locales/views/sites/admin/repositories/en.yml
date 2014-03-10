@@ -33,6 +33,10 @@ en:
           field_required:      " Field required! "
           accessibility_needs: " Needed for your site's accessibility. "
           please_wait:         " Please wait "
+          edit_image:          " Edit image "
+          lock_aspect_ratio:   " Lock the aspect ratio "
+          height:              " Height "
+          width:               " Width "
         repo:
           picture:             " Picture "
         list:
