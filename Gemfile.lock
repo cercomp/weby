@@ -129,10 +129,10 @@ GEM
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     orm_adapter (0.5.0)
-    paperclip (4.1.1)
+    paperclip (3.5.1)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
-      cocaine (~> 0.5.3)
+      cocaine (~> 0.5.0)
       mime-types
     pg (0.14.1)
     polyglot (0.3.4)
@@ -259,7 +259,7 @@ DEPENDENCIES
   jquery-ui-rails
   kaminari (= 0.14.1)
   meta_request (= 0.2.0)
-  paperclip (= 4.1.1)
+  paperclip (= 3.5.1)
   pg (= 0.14.1)
   pry-rails (= 0.2.2)
   rails (= 3.2.17)
