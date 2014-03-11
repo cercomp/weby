@@ -51,6 +51,11 @@ class Page < ActiveRecord::Base
 
   end
 
+  def to_param
+    "#{id} #{title}".parameterize
+  end
+
+
   private :validate_date
 
   validate :should_be_image
