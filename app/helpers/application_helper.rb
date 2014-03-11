@@ -308,12 +308,12 @@ module ApplicationHelper
     if not findate
       html << period_date_and_hour(inidate, force_show_year)
     else
-      if(inidate.month == findate.month)
-        html << "#{l(inidate, format: (force_show_year || inidate.year!=Time.now.year) ? :event_period_full : :event_period_short, iniday: inidate.strftime('%d'), finday: findate.strftime('%d'))}"
-      else
+      if(inidate.month != findate.month)||(inidate.year != findate.year)
         html << period_date_and_hour(inidate, force_show_year)
         html << " #{t('time.period_separator')} "
         html << period_date_and_hour(findate, force_show_year)
+      else
+        html << "#{l(inidate, format: (force_show_year || inidate.year!=Time.now.year) ? :event_period_full : :event_period_short, iniday: inidate.strftime('%d'), finday: findate.strftime('%d'))}"
       end
     end
     raw html
