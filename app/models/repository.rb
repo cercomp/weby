@@ -4,7 +4,8 @@ class Repository < ActiveRecord::Base
   attr_accessor :x, :y, :w, :h
 
 
-  STYLES = {
+
+ STYLES = {
     i: "95x70",
     l: "190x140",
     m: "400x300",
@@ -32,7 +33,6 @@ class Repository < ActiveRecord::Base
       t: "-crop 160x160+0+0 +repage -quality 90 -strip",
       o: "-quality 80 -strip",
       processors: [:cropper] }
-
 
   validates :description, presence: true
 
