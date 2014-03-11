@@ -13,7 +13,7 @@
   <tbody>
     <% @repositories.each do |repository| %>
       <tr>
-        <td> <%= weby_file_view(repository, :thumb, "64", "64", target: '_blank', title: repository.archive_file_name) %> </td>
+        <td> <%= weby_file_view(repository, :t, "64", "64", target: '_blank', title: repository.archive_file_name) %> </td>
         <td> <%= repository.description %> </td>
         <td> <%= repository.archive_content_type %> </td>
         <td class="text-right"> <%= raw make_menu(repository) %> </td>
