@@ -5,7 +5,7 @@ class Component < ActiveRecord::Base
   extend Weby::ComponentInstance
 
   before_save :prepare_variables
-  after_save :fix_position
+  before_update :fix_position
   after_destroy :remove_children, if: Proc.new{ self.name == "components_group" }
   #has_many :children, class_name: 'Component', foreign_key: 'place_holder', conditions: "name='components_group'"
 
@@ -79,6 +79,8 @@ class Component < ActiveRecord::Base
   end
 
   def fix_position
-    #TODO arrumar a posição quando o usuário mudar o placeholder pelo 'editar'
+    if place_holder_changed? && !position_changed?
+      self.position = site.components.maximum(:position, conditions: {place_holder: place_holder}).to_i + 1
+    end
   end
 end
