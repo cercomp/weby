@@ -2,8 +2,9 @@ en:
   admin:
     groupings:
       index:
-        name:            " Name "
-        sites:           " Sites "
         create_grouping: " Create Group of sites "
         none_grouping:   " No Group of sites found "
-      
+      form:
+        name:            " Name "
+        sites:           " Sites "
+        hidden:          " Hidden "

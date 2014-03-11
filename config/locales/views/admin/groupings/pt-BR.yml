@@ -2,8 +2,9 @@ pt-BR:
   admin:
     groupings:
       index:
-        name:            " Nome "
-        sites:           " Sites "
         create_grouping: " Novo Grupo de sites "
         none_grouping:   " Nenhum Grupo de sites encontrado "
-      
+      form:
+        name:            " Nome "
+        sites:           " Sites "
+        hidden:          " Oculto "
