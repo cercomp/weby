@@ -9,10 +9,13 @@ describe Component do
     expect(subject.publish).to eql true
   end
 
-  pending 'before_save' do
-  end
+  context 'before_save' do
+    before do
+      component = Component.new(publish: false)
+      component.save
+    end
 
-  pending 'after_save' do
+    it { should_not be_valid }
   end
 
   pending 'after_destroy' do

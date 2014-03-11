@@ -7,6 +7,9 @@ describe ActivityRecord do
   pending 'Scopes' do
     it 'user_or_action_like (ACTION)' do
       site = create(:site)
+      locale = Locale.new(:name => 'Locale')
+
+      site.locales << locale
 
       user1 = create(:user, login: "user", first_name: "John")
       user2 = create(:user, login: "login", first_name: "James")
