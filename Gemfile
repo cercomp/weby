@@ -8,10 +8,10 @@ gem 'jquery-ui-rails'
 gem 'pg', '0.14.1'
 gem 'devise', '3.2.0'
 gem 'kaminari', '0.14.1'
-gem 'paperclip', :tag => 'v3.5.1', :git => 'http://github.com/thoughtbot/paperclip.git'
+gem 'paperclip', '4.1.1'
 gem 'acts_as_list', '0.1.9'
-gem 'simple_form', :tag => 'v2.0.1', :git => 'http://github.com/plataformatec/simple_form.git'
-gem 'acts-as-taggable-on', :git => 'https://github.com/mbleigh/acts-as-taggable-on.git'
+gem 'simple_form', '2.1.1'
+gem 'acts-as-taggable-on', '3.0.1'
 gem 'bootstrap-sass', '3.1.1'
 gem 'foreigner'
 gem "select2-rails"
@@ -23,9 +23,9 @@ gem 'zip-zip'
 gem 'jcrop-rails-v2'
 
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'therubyracer', '0.10.2'
-  gem 'uglifier', '>= 1.0.3'
+  gem 'sass-rails'
+  gem 'uglifier'
+  gem 'therubyracer', :platforms => :ruby
 end
 
 group :production do
