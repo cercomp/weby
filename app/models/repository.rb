@@ -3,12 +3,12 @@ class Repository < ActiveRecord::Base
 
   attr_accessor :x, :y, :w, :h
 
-  STYLES = {
-    mini: '95x70',
-    little: '190x140',
-    medium: '400x300',
-    thumb: '160x160^',
-    original: 'original'
+ STYLES = {
+    i: "95x70",
+    l: "190x140",
+    m: "400x300",
+    t: "160x160^",
+    o: "original"
   }
 
   belongs_to :site
@@ -21,15 +21,15 @@ class Repository < ActiveRecord::Base
   has_many :page_image, class_name: 'Page', dependent: :nullify
 
   has_attached_file :archive,
-                    styles: STYLES,
-                    url: '/uploads/:site_id/:style_:basename.:extension',
-                    convert_options: {
-                      mini: '-quality 90 -strip',
-                      little: '-quality 90 -strip',
-                      medium: '-quality 80 -strip',
-                      thumb: '-crop 160x160+0+0 +repage -quality 90 -strip',
-                      original: '-quality 80 -strip' },
-                    processors: [:cropper]
+    styles: STYLES,
+    url: "/uploads/:style/:basename.:extension",
+    convert_options: {
+      i: "-quality 90 -strip",
+      l: "-quality 90 -strip",
+      m: "-quality 80 -strip",
+      t: "-crop 160x160+0+0 +repage -quality 90 -strip",
+      o: "-quality 80 -strip",
+      processors: [:cropper] }
 
   validates :description, presence: true
 
@@ -67,8 +67,8 @@ class Repository < ActiveRecord::Base
     !x.blank? && !y.blank? && w.to_i > 0 && h.to_i > 0
   end
 
-  # Includes the file's url in the json
-  def archive_url(format = :original)
+  # Metodo para incluir a url do arquivo no json
+  def archive_url(format = :o)
     archive.url(format)
   end
 
@@ -114,11 +114,19 @@ class Repository < ActiveRecord::Base
 
   def as_json(options = {})
     json = super(options)
+<<<<<<< HEAD
     json[:original_path] = archive.url(:original)
     json[:little_path] = archive.url(:little)
     json[:medium_path] = archive.url(:medium)
     json[:mini_path] = archive.url(:mini)
     json[:thumb_path] = archive.url(:thumb)
+=======
+    json['repository'][:o_path] = self.archive.url(:o)
+    json['repository'][:l_path] = self.archive.url(:l)
+    json['repository'][:m_path] = self.archive.url(:m)
+    json['repository'][:i_path] = self.archive.url(:i)
+    json['repository'][:t_path] = self.archive.url(:t)
+>>>>>>> Tarefa #8 retirando o site_id da url, ficarão tudo em uploads!!
     json
   end
 
