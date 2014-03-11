@@ -3,7 +3,7 @@
   <% show_all_link = component.filter_by.present? ?
       main_app.site_pages_path(direction: 'desc', sort: 'pages.created_at', tags: component.filter_by) :
       component.only_events? ? 
-        main_app.events_site_pages_path(direction: 'asc', sort: 'pages.event_begin', upcoming: 'true') : 
+        main_app.events_site_pages_path(direction: 'asc', sort: 'pages.event_begin', upcoming: true) : 
         component.only_news? ?
           main_app.news_site_pages_path(direction: 'desc', sort: 'pages.created_at') :
           main_app.site_pages_path(direction: 'desc', sort: 'pages.created_at')

@@ -1,20 +1,15 @@
 <h2><% if controller.action_name == 'events' %>
-      <% if params[:upcoming] == nil %>
-        <%= t(".events") + t(".previous_events") %>
-        <span class="events_search" style="float: right">
-        <%= link_to t('.upcoming_events'), events_site_pages_path(upcoming: true, direction: 'asc', sort: 'pages.event_begin'), class: "label" %>
-        </span>
-      <% else %>
-        <%= t(".events") + t(".upcoming_events") %>
-        <span class="events_search" style="float: right">
-          <%= link_to t('.previous_events'), events_site_pages_path(upcoming: nil, direction: 'desc', sort: 'pages.event_begin'), class: "label" %>
-        </span>
-      <% end %>
-      <% elsif controller.action_name == 'news' %>
-        <%= t(".news") %>
-      <% else %>
-        <%= t(".pages") %>
-      <% end %>
+  <%= t(".events") %>
+  <% if params[:upcoming] != nil %>
+      <div class="events_search" style="float: right">
+          <%= link_to t('.previous_events'), events_site_pages_path(upcoming: nil, direction: 'desc', sort: 'pages.event_begin') %>
+      </div>
+  <% end %>
+  <% elsif controller.action_name == 'news' %>
+    <%= t(".news") %>
+  <% else %>
+    <%= t(".pages") %>
+  <% end %>
 </h2>
 
 <%= form_tag nil, method: 'get' do %>
