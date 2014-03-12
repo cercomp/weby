@@ -71,7 +71,7 @@ end
 
 #menus/item_menu
 crumb :menus do
-  link t("breadcumbs.menus"), site_admin_menus_path
+  link t("breadcrumbs.menus"), site_admin_menus_path
 end
 
 crumb :menus_new do
