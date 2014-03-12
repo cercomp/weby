@@ -114,19 +114,11 @@ class Repository < ActiveRecord::Base
 
   def as_json(options = {})
     json = super(options)
-<<<<<<< HEAD
-    json[:original_path] = archive.url(:original)
-    json[:little_path] = archive.url(:little)
-    json[:medium_path] = archive.url(:medium)
-    json[:mini_path] = archive.url(:mini)
-    json[:thumb_path] = archive.url(:thumb)
-=======
     json['repository'][:o_path] = self.archive.url(:o)
     json['repository'][:l_path] = self.archive.url(:l)
     json['repository'][:m_path] = self.archive.url(:m)
     json['repository'][:i_path] = self.archive.url(:i)
     json['repository'][:t_path] = self.archive.url(:t)
->>>>>>> Tarefa #8 retirando o site_id da url, ficarão tudo em uploads!!
     json
   end
 

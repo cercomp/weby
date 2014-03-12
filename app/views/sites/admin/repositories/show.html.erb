@@ -1,13 +1,13 @@
 <% title ".archives" %>
 <% breadcrumb :repositories_show, @repository %>
-<p><%= weby_file_view(@repository, :original, nil, nil, target: '_blank') %>  </p>
+<p><%= weby_file_view(@repository, :o, nil, nil, target: '_blank') %>  </p>
 <p><b><%= t(".name") %>:</b> <%= @repository.archive_file_name %> </p>
 <p><b><%= t(".size") %>:</b> <%= number_to_human_size(@repository.archive_file_size) %> </p>
 <p><b><%= t(".type") %>:</b> <%= @repository.archive_content_type %> </p>
 <p><b><%= t(".archive_description") %>:</b> <%= @repository.description %> </p>
 <p>
   <b id="toppathwrap"><%= t(".file_link") %>: </b>
-  <span id="link"><%= @repository.archive.url(:original, false) %></span>
+  <span id="link"><%= @repository.archive.url(:o, false) %></span>
   <button class="btn btn-default btn-sm" data-clipboard-target='link' id='d_clip_button' data-copied-hint="<%= t(".copied")%>" tittle="<%= t(".copy_to_clipboard") %>"><%= t(".copy")%></button>
 </p>     
 
