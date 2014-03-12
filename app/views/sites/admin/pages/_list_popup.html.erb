@@ -17,7 +17,7 @@
     </div>
   <% else %>
     <div class="page-results">
-      <table class="list table table-striped" data-url-template="<%=site_page_path(0)%>">
+      <table class="list table table-striped">
         <thead>
           <th><%= sortable 'date_begin_at', t(".register_date")%></th>
           <th><%= t(".title") %></th>
@@ -26,7 +26,7 @@
         </thead>
         <tbody>
           <% @pages.each do |page| %>
-            <tr data-id="<%= page.id %>" data-title="<%= page.title %>" data-type="<%= "Page" %>" class="cursor highlight target-item">
+            <tr data-id="<%= page.id%>" data-url="<%= site_page_path(page) %>" data-title="<%= page.title %>" data-type="<%= "Page" %>" class="cursor highlight target-item">
               <td><%= page.created_at.strftime('%d/%m/%y') %></td>
               <td><%= page.title %></td>
               <td><%= page.category_list %></td>
