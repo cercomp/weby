@@ -1,10 +1,18 @@
-<h2><% if controller.action_name == 'events' %>
+<h2>
+<% if controller.action_name == 'events' %>
   <%= t(".events") %>
-  <% if params[:upcoming] != nil %>
-      <div class="events_search" style="float: right">
-          <%= link_to t('.previous_events'), events_site_pages_path(upcoming: nil, direction: 'desc', sort: 'pages.event_begin') %>
-      </div>
-  <% end %>
+  <div class="events_search", style="float: right">
+    <ul id="filterNav" >
+      <% (params[:upcoming] == nil && params[:previous] == nil) ? classe = "selected" : classe = nil %>
+      <li><%= link_to t('.all_events'), events_site_pages_path(upcoming: nil, previous: nil, direction: 'desc', sort: 'pages.event_begin'), class: classe %></li>
+
+      <% (params[:upcoming] != nil) ? classe = "selected" : classe = nil %>
+      <li><%= link_to t('.upcoming_events'), events_site_pages_path(upcoming: true, previous: nil, direction: 'asc', sort: 'pages.event_begin'), class: classe %></li>
+
+      <% (params[:previous] != nil) ? classe = "selected" : classe = nil %>
+      <li><%= link_to t('.previous_events'), events_site_pages_path(upcoming: nil, previous: true, direction: 'desc', sort: 'pages.event_begin'), class: classe %></li>
+    </ul>
+  </div>
   <% elsif controller.action_name == 'news' %>
     <%= t(".news") %>
   <% else %>
