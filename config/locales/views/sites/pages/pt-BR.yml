@@ -10,7 +10,7 @@ pt-BR:
         and_search:      " Todas as palavras "
         or_search:       " Qualquer uma das palavras "
         all_events:      " Todos "
-        upcoming_events: " Em andamento / A Realizar "
+        upcoming_events: " Em andamento / A realizar "
         previous_events: " Realizados "
       show:
         event:         " Evento "
