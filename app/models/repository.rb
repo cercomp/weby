@@ -4,7 +4,6 @@ class Repository < ActiveRecord::Base
   attr_accessor :x, :y, :w, :h
 
 
-
  STYLES = {
     i: "95x70",
     l: "190x140",
@@ -68,6 +67,19 @@ class Repository < ActiveRecord::Base
 
   def will_crop?
     !x.blank? && !y.blank? && w.to_i > 0 && h.to_i > 0
+  end
+#  after_post_process do
+#    self.archive_fingerprint = Digest::MD5.file(self.archive.path).to_s
+#    archive.instance_write(:file_name, CGI.unescape(archive.original_filename))
+#  end
+
+  before_save :presence_fingerprint
+
+  # Verificar se já existe um arquivo com o mesmo nome
+  def presence_fingerprint
+    a = Digest::MD5.file("/tmp/#{self.name}").to_s
+    puts a
+#    url = "/uploads/:style/:site_id_:basename.:extension"
   end
 
 # Metodo para incluir a url do arquivo no json
