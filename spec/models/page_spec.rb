@@ -63,4 +63,10 @@ describe Page do
       expect(subject).to allow_value(true).for(:position)
     end
   end
+
+  context 'Scopes' do
+    it 'should only return published pages' do
+      expect(Page.published.where_values_hash).to eql(true)
+    end
+  end
 end

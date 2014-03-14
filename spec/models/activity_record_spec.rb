@@ -4,12 +4,9 @@ describe ActivityRecord do
   it { expect(subject).to belong_to(:user) }
   it { expect(subject).to belong_to(:site) }
 
-  pending 'Scopes' do
+  context 'Scopes' do
     it 'user_or_action_like (ACTION)' do
-      site = create(:site)
-      locale = Locale.new(:name => 'Locale')
-
-      site.locales << locale
+      site = build(:site)
 
       user1 = create(:user, login: "user", first_name: "John")
       user2 = create(:user, login: "login", first_name: "James")

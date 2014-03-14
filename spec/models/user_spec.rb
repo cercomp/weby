@@ -133,6 +133,8 @@ describe User do
 
   context 'Self' do
     pending "should return the user full name when called fullname" do
+      user = create(:user, login: "login", first_name: "John", last_name: "Smith")
+      expect(subject).to receive(:fullname).with(user.id).and_return("#{user.first_name}  #{user.last_name}")
     end
 
     pending "should return the user email with his name when called email_adrress_with_name" do
