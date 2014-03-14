@@ -4,33 +4,6 @@ GIT
   specs:
     useragent (0.2.3)
 
-GIT
-  remote: http://github.com/plataformatec/simple_form.git
-  revision: 6f8a02452484060b6df6403c477d389d1de78fd5
-  tag: v2.0.1
-  specs:
-    simple_form (2.0.1)
-      actionpack (~> 3.0)
-      activemodel (~> 3.0)
-
-GIT
-  remote: http://github.com/thoughtbot/paperclip.git
-  revision: dbe24e28ac4b6b1e46a29aee39b876f761d52ba9
-  tag: v3.5.1
-  specs:
-    paperclip (3.5.1)
-      activemodel (>= 3.0.0)
-      activesupport (>= 3.0.0)
-      cocaine (~> 0.5.0)
-      mime-types
-
-GIT
-  remote: https://github.com/mbleigh/acts-as-taggable-on.git
-  revision: 98aecdd86ddf447a88ae6351cc02ab420a78d0ec
-  specs:
-    acts-as-taggable-on (2.4.2.pre)
-      rails (>= 3, < 5)
-
 PATH
   remote: vendor/engines/acadufg
   specs:
@@ -73,6 +46,8 @@ GEM
     activesupport (3.2.17)
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
+    acts-as-taggable-on (3.0.1)
+      rails (>= 3, < 5)
     acts_as_list (0.1.9)
     arel (3.0.3)
     atomic (1.1.14)
@@ -98,7 +73,7 @@ GEM
       ffi (~> 1.0, >= 1.0.11)
     climate_control (0.0.3)
       activesupport (>= 3.0)
-    cocaine (0.5.1)
+    cocaine (0.5.3)
       climate_control (>= 0.0.3, < 1.0)
     coderay (1.0.9)
     d3js-rails (3.1.6)
@@ -154,6 +129,11 @@ GEM
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     orm_adapter (0.5.0)
+    paperclip (3.5.1)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.0)
+      mime-types
     pg (0.14.1)
     polyglot (0.3.4)
     pry (0.9.12.2)
@@ -216,6 +196,9 @@ GEM
       websocket (~> 1.0.4)
     shoulda-matchers (2.4.0)
       activesupport (>= 3.0.0)
+    simple_form (2.1.1)
+      actionpack (~> 3.0)
+      activemodel (~> 3.0)
     slop (3.4.6)
     sprockets (2.2.2)
       hike (~> 1.2)
@@ -257,7 +240,7 @@ PLATFORMS
 
 DEPENDENCIES
   acadufg!
-  acts-as-taggable-on!
+  acts-as-taggable-on (= 3.0.1)
   acts_as_list (= 0.1.9)
   better_errors
   binding_of_caller
@@ -276,20 +259,20 @@ DEPENDENCIES
   jquery-ui-rails
   kaminari (= 0.14.1)
   meta_request (= 0.2.0)
-  paperclip!
+  paperclip (= 3.5.1)
   pg (= 0.14.1)
   pry-rails (= 0.2.2)
   rails (= 3.2.17)
   rspec-rails (= 2.14.0)
-  sass-rails (~> 3.2.3)
+  sass-rails
   select2-rails
   selenium-webdriver (= 2.37.0)
   shoulda-matchers (= 2.4.0)
-  simple_form!
-  therubyracer (= 0.10.2)
+  simple_form (= 2.1.1)
+  therubyracer
   thin (= 1.5.1)
   turbo-sprockets-rails3
-  uglifier (>= 1.0.3)
+  uglifier
   useragent (= 0.2.3)!
   zeroclipboard-rails
   zip-zip
