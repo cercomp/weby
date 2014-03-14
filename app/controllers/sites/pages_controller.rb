@@ -59,6 +59,11 @@ class Sites::PagesController < ApplicationController
   # GET /pages/1.json
   def show
     @page = current_site.pages.find(params[:id])
+    if request.path != site_page_path(@page)
+      redirect_to site_page_path(@page), status: :moved_permanently
+      return
+    end
+
     respond_with(:site, @page)
   end
 

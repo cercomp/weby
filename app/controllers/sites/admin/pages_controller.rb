@@ -59,6 +59,10 @@ class Sites::Admin::PagesController < ApplicationController
   # GET /pages/1.json
   def show
     @page = current_site.pages.find(params[:id]).in(params[:page_locale])
+    if request.path != site_admin_page_path(@page)
+      redirect_to site_admin_page_path(@page), status: :moved_permanently
+      return
+    end
     respond_with(:site_admin, @page)
   end
 
