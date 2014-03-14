@@ -8,7 +8,7 @@ class FrontNewsComponent < Component
   validates :quant, presence: true
 
   def get_pages(site, page_param)
-    filter_by.blank? ? pages(site, page_param) : pages(site, page_param).tagged_with(filter_by, any: true)
+    filter_by.blank? ? pages(site, page_param) : pages(site, page_param).tagged_with(filter_by.mb_chars.downcase.to_s, any: true)
   end
 
   def pages(site, page_param)

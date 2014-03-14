@@ -9,11 +9,8 @@ class Sites::PagesController < ApplicationController
   # GET /pages
   # GET /pages.json
   def index
-    if params[:tags]
-      @pages = get_pages.available.tagged_with(tags, any: true)
-    else
-      @pages = get_pages.available
-    end
+    @pages = get_pages
+
     respond_with(:site, @page) do |format|
       format.rss { render :layout => false, :content_type => Mime::XML } #index.rss.builder
       format.atom { render :layout => false, :content_type => Mime::XML } #index.atom.builder
@@ -21,7 +18,7 @@ class Sites::PagesController < ApplicationController
   end
 
   def events
-    @pages = get_pages.available.send(params[:upcoming] ? :upcoming_events : params[:previous] ? :previous_events : :events)
+    @pages = get_pages.send(params[:upcoming] ? :upcoming_events : params[:previous] ? :previous_events : :events)
 
     respond_with(current_site, @pages) do |format|
       format.any { render 'index' }
@@ -29,14 +26,14 @@ class Sites::PagesController < ApplicationController
   end
 
   def news
-    @pages = get_pages.available.news
+    @pages = get_pages.news
     respond_with(current_site, @pages) do |format|
       format.any { render 'index'}
     end
   end
 
   def tags
-    params[:tags].split(',')
+    params[:tags].split(',').map{ |tag| tag.mb_chars.downcase.to_s }
   end
   private :tags
 
@@ -44,10 +41,13 @@ class Sites::PagesController < ApplicationController
     params[:direction] ||= 'desc'
     # Vai ao banco por linha para recuperar
     # tags e locales
-    current_site.pages.
+    pages = current_site.pages.available.
       search(params[:search], params.fetch(:search_type, 1).to_i).
-      page(params[:page]).per(params[:per_page]).
-      order(sort_column + " " + sort_direction)
+      order(sort_column + " " + sort_direction).
+      page(params[:page]).per(params[:per_page])
+
+    pages = pages.tagged_with(tags, any: true) if params[:tags]
+    pages
   end
   private :get_pages
 

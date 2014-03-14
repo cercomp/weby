@@ -13,7 +13,7 @@ class WebyTagCloudComponent < Component
     occurs = tag_count(site)
     min_occurs = occurs.min
     max_occurs = occurs.max
-    tag_occurs = site.pages.published.tagged_with(tag, any: true).count
+    tag_occurs = site.pages.published.tagged_with(tag.to_s.mb_chars.downcase.to_s, any: true).count
 
     tag_occurs = 1 if tag_occurs < 1
     diff = Math.log(max_occurs)-Math.log(min_occurs)
