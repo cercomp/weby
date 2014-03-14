@@ -22,7 +22,7 @@ module ComponentsHelper
     components_html << "class='component component-#{ compo.name } #{'disabled' unless component_is_available(compo.name)} #{compo.publish ? "" : "deactivated"}' data-place='#{compo.place_holder}'>
       <div>
         <span class='widget-name'>
-          #{ compo.position } #{ raw ("#{toggle_field(compo, "publish")} #{t("components.#{compo.name}.name")} - #{compo.alias || compo.default_alias}") }
+          #{ raw ("#{toggle_field(compo, "publish")} #{t("components.#{compo.name}.name")} - #{compo.alias || compo.default_alias}") }
         </span>
         <div class='pull-right' style='min-width: 46px'>
           #{ raw ("#{make_menu(compo, :except => exceptions, :with_text => leftout)}") }
