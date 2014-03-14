@@ -21,7 +21,8 @@ class Sites::PagesController < ApplicationController
   end
 
   def events
-    @pages = get_pages.available.send(params[:upcoming] ? :upcoming_events : :events)
+    @pages = get_pages.available.send(params[:upcoming] ? :upcoming_events : params[:previous] ? :previous_events : :events)
+
     respond_with(current_site, @pages) do |format|
       format.any { render 'index' }
     end

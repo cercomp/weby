@@ -23,3 +23,45 @@
 
 .search-field-button{ clear: left; }
 .advanced-search input[type=radio]{ margin: 0px; }
+
+#content #filterNav{
+  padding: 0;
+  margin: 0 0 20px 0; 
+
+  li{
+    padding: 1px 0 0 0;
+    background: none;
+    margin: 0 5px 0 0;  
+    display: block;
+    float: left;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+}
+
+#filterNav {
+  li a{
+    font-size: 11px;  
+    background: #f0f0f0;  
+    display: inline-block;  
+    color: #7d7d7b;
+    text-decoration: none;
+    position: relative;
+    cursor: pointer;  
+    padding: 0 6px 0;  
+    border: none;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    line-height: 20px;      
+  }
+
+  li a:hover {
+    background: #6a6a6a;
+    color: #fff;
+  }
+
+  .selected {
+    background: #6a6a6a;
+    color: #fff !important;
+  } 
+}
