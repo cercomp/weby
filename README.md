@@ -4,12 +4,12 @@
 
 __What is the project?__
 
-The Weby project, is a Web content manager, multisite, this mean you can manage several sites at once, developed initially by [Universidade Federal de Goiás](http://www.ufg.br/) and released as Free Software. A Web content manager is a manager system of pages from internet (World Wide Web) or intranet (Corporate or Domestic networks) that integrates the necessary tools for manage CRUD (create, read, update and delete) content in real time, without programming code. The main motivation for the project is to make content available in a simple way, making possible an easier way of management the information.
+The Weby project, is a multisite Web content manager, this means that you can manage several sites at once. It was initially developed  by [Universidade Federal de Goiás](http://www.ufg.br/) and released as a Free Software. A Web content manager is system that allows you to manage in a simple way pages from internet (World Wide Web) or intranet (Corporate or Domestic networks). It integrates the necessary tools to manage CRUD (create, read, update and delete) content in real time, without programming code. Our motivation is to make content available in a simple  and easy way, making possible the management of online information.
 
-The project was development with [Ruby on Rails](http://rubyonrails.org/) (open source tool kit, write on Ruby a programming language) and your focus is to be simple, flexible and extensible.
+The project was development with [Ruby on Rails](http://rubyonrails.org/) (open source tool kit, write on Ruby a programming language) focusing in been simple, flexible and extensible.
 
-* Simple: Bring an easier experience for beginners users, through of usability, with dynamism and interactivity.
-* Flexible: With more experienced users, advanced options are necessary. Without lose the focus on the simplicity, make avaliable mechanisms to support the advanced settings, making possible the increased of the system feature.
+* Simple: Make the beginners users experience easier, with dynamism and interactivity.
+* Flexible: In order to attract more experienced users, advanced options are necessary. Without losing the focus on the simplicity, we make avaliable mechanisms to support advanced settings, making possible to increase the system features.
 * Extensible: An extensible system can provide new functionalities beyond those that exist in its core.The most common way of provide these functionalities is as extensions (plugins) and easy linkage.
 
 
