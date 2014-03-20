@@ -10,10 +10,11 @@ class Sites::Admin::BannersController < ApplicationController
   respond_to :html, :xml, :js
 
   def index
-    @banners = current_site.banners.
-      order(sort_column + " " + sort_direction).
-      titles_or_texts_like(params[:search]).
-      page(params[:page]).per(params[:per_page])
+    sort = sort_column == "id" ?  " " : (sort_column + " " + sort_direction + ", ")
+    @banners = current_site.banners.unscoped.
+     order(sort + "position ASC").
+     titles_or_texts_like(params[:search]).
+     page(params[:page]).per(params[:per_page])
   end
 
   def show
