@@ -222,13 +222,30 @@ body.modal-open {
   }
 }
 
-//repositório de imagens
 #repo_list > div.row > div > div{
   height: 258px;
 }
 
 #repo_list > div.row > div > div > a > img{
   height: 160px;
+}
+
+
+//available components
+div#available_components div > div.thumbnail {
+  height: 245px;
+}
+
+div#available_components div > div.thumbnail .glyphicon{
+  color: white;
+}
+
+div#available_components div > div.thumbnail h5{
+  height: 30px;
+}
+
+div#available_components div > div.thumbnail img {
+ height: 130px;
 }
 
 // used to mark object as published/unpublished
