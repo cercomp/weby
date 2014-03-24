@@ -1,57 +1,53 @@
 <% title ".layout" %>
 <% breadcrumb :components_new_choose%>
 
-<% debug available_components_sorted %>
-
 <div id="available_components" class="row">
   <ul class="nav nav-tabs">
-      <li class="active"><a href="#all" data-toggle="tab"><%= t(".all") %></a></li>
-      <% available_components_sorted.each do |c| %>
-        <li><a href="#<%= c[0].delete(" ") %>" data-toggle="tab"><%= c[0] %></a></li>
-      <% end %>
-    </ul>
+    <li class="active"><a href="#all" data-toggle="tab"><%= t(".all") %></a></li>
+    <% available_components_sorted.each do |c| %>
+      <li><a href="#<%= c[0].delete(" ") %>" data-toggle="tab"><%= c[0] %></a></li>
+    <% end %>
+  </ul>
 
-    <div class="tab-content col-md-12">
-      
-      <div class="tab-pane active" id="all">
-        <%= form_tag new_site_admin_component_path, :method => :get do %>
-          <%= hidden_field_tag :placeholder, params[:placeholder] if params[:placeholder] %>
-          <div id="main" class="row">
-            <div class="col-md-3 col-md-offset-1">
-              <%= select_tag "component", grouped_options_for_select(available_components_sorted), class: 'form-control', size: '10', id: "component_select" %>
-            </div>
-            <div class="col-md-3 col-md-offset-1">
-              <img id="component_image" class="panel" src="/assets/components/default.png"/>
-            </div>
+  <div class="tab-content col-md-12">
+    <div class="tab-pane active" id="all">
+      <%= form_tag new_site_admin_component_path, :method => :get do %>
+        <%= hidden_field_tag :placeholder, params[:placeholder] if params[:placeholder] %>
+        <div id="main" class="row">
+          <div class="col-md-3 col-md-offset-1">
+            <%= select_tag "component", grouped_options_for_select(available_components_sorted), class: 'form-control', size: '10', id: "component_select" %>
           </div>
-          <div class="form-actions">
-            <button type="submit" class="btn btn-primary"><%= t(".next_step") %></button>
-            <%= link_to t("back"), site_admin_components_path, class: "btn btn-default" %>
-          </div>
-        <% end %>
-      </div>
-
-      <% available_components_sorted.each do |tab| %>
-        <div class="tab-pane" id="<%= tab[0].delete(" ") %>">
-          <div class="col-md-12">
-            <% tab[1].each do |compo| %>
-              <div class="col-md-3">
-                <div class="thumbnail">
-                  <h5 class="text-center"><%= compo[0] %></h5>
-                  <img id="component_image" class="panel" src="/assets/components/<%= compo[1] %>.png"/>
-                  <%= link_to raw("#{t(".install")} <span class='glyphicon glyphicon-plus'</span>"), 
-                      new_site_admin_component_path(placeholder: params[:placeholder],
-                      component: compo[1]),
-                      class: ' col-md-12 centered btn btn-success'%>
-                </div>
-              </div>
-            <% end%>
+          <div class="col-md-3 col-md-offset-1">
+            <img id="component_image" class="panel" src="/assets/components/default.png"/>
           </div>
         </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary"><%= t(".next_step") %></button>
+            <%= link_to t("back"), site_admin_components_path, class: "btn btn-default" %>
+        </div>
       <% end %>
-
     </div>
- </div>
+
+    <% available_components_sorted.each do |tab| %>
+      <div class="tab-pane" id="<%= tab[0].delete(" ") %>">
+        <div class="col-md-12">
+          <% tab[1].each do |compo| %>
+            <div class="col-md-3">
+              <div class="thumbnail">
+                <h5 class="text-center"><%= compo[0] %></h5>
+                <img id="component_image" class="panel" src="/assets/components/<%= compo[1] %>.png"/>
+                <%= link_to raw("#{t(".install")} <span class='glyphicon glyphicon-plus'</span>"), 
+                    new_site_admin_component_path(placeholder: params[:placeholder],
+                    component: compo[1]),
+                    class: ' col-md-12 centered btn btn-success'%>
+              </div>
+            </div>
+          <% end%>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
 
 <%= content_for :javascripts do %>
   <script type="text/javascript">
