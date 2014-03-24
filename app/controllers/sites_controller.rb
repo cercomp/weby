@@ -15,7 +15,7 @@ class SitesController < ApplicationController
 
     #TODO Pesquisar também no título das notícias
     @sites = Site.ordered_by_front_pages(params[:search])
-
+		@sites = list_sites(@sites)
     @default_groupings = Weby::Settings.default_groupings
     if params[:groupings]
       @sites = @sites.includes(:groupings).where(groupings: {id: params[:groupings].split(',')}) unless params[:groupings] == 'all'
@@ -29,7 +29,7 @@ class SitesController < ApplicationController
       end
     end
 
-    @sites = @sites.page(params[:page]).per(18)
+    @sites = Kaminari.paginate_array(@sites).page(params[:page]).per(18)
 
     @nexturl = sites_path(page: params[:page].to_i+1, search: params[:search], groupings: params[:groupings])
     
@@ -102,4 +102,31 @@ class SitesController < ApplicationController
   def load_themes
     @themes = Weby::Themes.all
   end
+      
+  def sites_hidden
+  	@group = Grouping.all
+  	ids_hidden = Array.new
+  	
+		@group.each do |g|
+			if g.hidden
+				g.site_ids.each do |id|
+					ids_hidden << id unless ids_hidden.include?(id)
+				end
+			end
+		end
+		ids_hidden
+	end
+		
+  def list_sites(site)
+  	unless site.nil?
+			site = Site.all
+  	end
+		if current_user.blank? || !current_user.is_admin
+			sites_hidden.each do |hidden|
+				site.delete(Site.find(hidden))
+			end
+		end
+		site
+	end
+  
 end
