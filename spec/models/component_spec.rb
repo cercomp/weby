@@ -19,17 +19,5 @@ describe Component do
   end
 
   pending 'after_destroy' do
-    before :each do
-      @component1 = Component.new(place_holder: 'top', position: 1)
-      @component1.save
-      @component2 = Component.new(place_holder: 'top', position: 2)
-      @component2.save
-    end
-
-    it "changes place_holder of children" do
-      expect {
-        delete :destroy, id: @component1
-      }.to change(@component2, :position).by(-1)
-    end
   end
 end

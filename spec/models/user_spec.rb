@@ -52,19 +52,33 @@ describe User do
   end
 
   context 'Password' do
-    pending 'should confirm password' do
+    describe 'should not allow when password is not present' do
+      before do
+        @user = create(:user, login: "user", first_name: "John", password_salt: "", encrypted_password: "")
+      end
+
+      it { should_not be_valid }
+    end
+
+    describe "should not allow password mismatch" do
+      before { @user = create(:user, password_salt: "", encrypted_password: "wrong_password") }
+      it { should_not be_valid }
+    end
+
+    describe "when password doesn't match confirmation" do
+      before { @user = create(:user, encrypted_password: "mismatch") }
+      it { should_not be_valid }
     end
 
     it 'should accept valid password format' do
       expect(subject).to allow_value('Admin1').for(:password).with_message(I18n.t('lower_upper_number_chars'))
-
-    end
-
-    pending 'should allow blank password on edit' do
     end
 
     it 'should reject invalid password format' do
       expect(subject).not_to allow_value('admin1').for(:password).with_message(I18n.t('lower_upper_number_chars'))
+    end
+
+    pending 'should allow blank password on edit' do
     end
   end
 
@@ -133,8 +147,8 @@ describe User do
 
   context 'Self' do
     pending "should return the user full name when called fullname" do
-      user = create(:user, login: "login", first_name: "John", last_name: "Smith")
-      expect(subject).to receive(:fullname).with(user.id).and_return("#{user.first_name}  #{user.last_name}")
+      subject = create(:user, login: "login", first_name: "John", last_name: "Smith")
+      expect(subject).to receive(:fullname).with(subject.id).and_return("#{subject.first_name} #{subject.last_name}")
     end
 
     pending "should return the user email with his name when called email_adrress_with_name" do

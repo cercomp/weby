@@ -13,6 +13,13 @@ describe Banner do
     expect(subject.publish).to eql false
   end
 
+  context 'should validate date' do
+    before do
+      @banner = build(:banner, date_begin_at: nil)
+    end
+    it { should_not be_valid }
+  end
+
   context 'Scopes' do
     it 'titles_or_texts_like (TITLES)' do
       user = create(:user, login: "user", first_name: "John")
