@@ -8,7 +8,7 @@ require 'weby/settings'
 require 'weby/themes'
 require 'weby/assets'
 
-+# Adds the components views to the applications views path
+# Adds the components views to the applications views path
 ActionController::Base.view_paths +=
   Dir[Rails.root.join('**', 'lib', '**', 'weby', '**', 'components')]
 
