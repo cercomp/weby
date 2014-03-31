@@ -45,7 +45,7 @@ module ComponentsHelper
     return components_html.html_safe
   end
 
-  # Busca os componentes existentes no sistema de forma ordenada pelo i18n
+  # Search for the existing components ordering by the I18N name
   def available_components_sorted
     options = {"Weby" => components_as_options(Weby::Components.components(:weby))}
 
@@ -62,6 +62,7 @@ module ComponentsHelper
     components.map{|comp, opt| [t("components.#{comp.to_s}.name").strip, comp.to_s] }.sort!{|a,b| a[0] <=> b[0]}
   end
 
+  # Generate the mini-layout view so  the user can choose the placeholder
   def make_placeholders_divs(placeholders,width)
     divs = ""
     placeholders["names"].map do |name|
