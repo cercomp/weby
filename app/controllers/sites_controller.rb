@@ -36,7 +36,7 @@ class SitesController < ApplicationController
     if request.xhr?
       render partial: 'list', layout: false
     else
-      @my_sites = current_user ? current_user.sites : []
+  @my_sites = current_user ? current_user.sites : []
 
       @groupings = Grouping.all
 
