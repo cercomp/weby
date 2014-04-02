@@ -19,23 +19,23 @@
       <span><%= t('.all') %></span>
       <%= content_tag :span, 'X', class: 'label label-info' if params[:groupings] == 'all' %>
     <% end if @default_groupings %>
-	<% if check_permission(Admin::SitesController, ["new"]) %>
-		<% @groupings.each do |grouping| %>
-			<%= link_to main_app.root_path(groupings: params[:groupings] == grouping.id.to_s ? nil : grouping.id.to_s, search: params[:search]), class: "grouping-label label #{params[:groupings] == grouping.id.to_s ? 'label-primary' : 'label-default'}" do %>
-			<span><%= grouping.name %></span>
-			<%= content_tag :span, 'X', class: 'label label-info' if params[:groupings] == grouping.id.to_s %>
-			<% end %>
-		<% end %>
-	<% else %>
-		<% @groupings.each do |grouping| %>
-			<% unless grouping.hidden %>
-				<%= link_to main_app.root_path(groupings: params[:groupings] == grouping.id.to_s ? nil : grouping.id.to_s, search: params[:search]), class: "grouping-label label #{params[:groupings] == grouping.id.to_s ? 'label-primary' : 'label-default'}" do %>
-				<span><%= grouping.name %></span>
-					<%= content_tag :span, 'X', class: 'label label-info' if params[:groupings] == grouping.id.to_s %>
-				<% end %>
-			<% end %>
-		<% end %>
-	<% end %>
+  <% if check_permission(Admin::SitesController, ["new"]) %>
+    <% @groupings.each do |grouping| %>
+      <%= link_to main_app.root_path(groupings: params[:groupings] == grouping.id.to_s ? nil : grouping.id.to_s, search: params[:search]), class: "grouping-label label #{params[:groupings] == grouping.id.to_s ? 'label-primary' : 'label-default'}" do %>
+      <span><%= grouping.name %></span>
+      <%= content_tag :span, 'X', class: 'label label-info' if params[:groupings] == grouping.id.to_s %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <% @groupings.each do |grouping| %>
+      <% unless grouping.hidden %>
+        <%= link_to main_app.root_path(groupings: params[:groupings] == grouping.id.to_s ? nil : grouping.id.to_s, search: params[:search]), class: "grouping-label label #{params[:groupings] == grouping.id.to_s ? 'label-primary' : 'label-default'}" do %>
+        <span><%= grouping.name %></span>
+          <%= content_tag :span, 'X', class: 'label label-info' if params[:groupings] == grouping.id.to_s %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
   </div>
 </div>
 <div class="row">
