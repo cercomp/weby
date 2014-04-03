@@ -2,8 +2,9 @@ Weby::Application.routes.draw do
   constraints(Weby::Subdomain) do
     # Mount all engines here
     constraints(Weby::Extensions) do
-      mount Feedback::Engine, :at => 'feedback'
-      mount Acadufg::Engine, :at => 'acadufg'
+      mount Feedback::Engine, at: 'feedback'
+      mount Acadufg::Engine, at: 'acadufg'
+      mount Sticker::Engine, at: 'sticker'
     end
 
     get '/' => 'sites#show', as: :site

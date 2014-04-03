@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140311151956) do
+ActiveRecord::Schema.define(:version => 20140402120348) do
 
   create_table "activity_records", :force => true do |t|
     t.integer  "user_id"
@@ -350,6 +350,33 @@ ActiveRecord::Schema.define(:version => 20140311151956) do
   add_index "sites_pages", ["page_id"], :name => "index_sites_pages_on_page_id"
   add_index "sites_pages", ["site_id"], :name => "index_sites_pages_on_site_id"
 
+  create_table "sticker_banners", :force => true do |t|
+    t.datetime "date_begin_at"
+    t.datetime "date_end_at"
+    t.string   "title"
+    t.text     "text"
+    t.string   "url"
+    t.integer  "width"
+    t.integer  "height"
+    t.boolean  "hide",          :default => false
+    t.integer  "repository_id"
+    t.integer  "user_id"
+    t.string   "size"
+    t.boolean  "publish",       :default => false
+    t.integer  "site_id"
+    t.integer  "position"
+    t.integer  "page_id"
+    t.boolean  "new_tab",       :default => false
+    t.integer  "click_count",   :default => 0
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+  end
+
+  add_index "sticker_banners", ["page_id"], :name => "index_sticker_banners_on_page_id"
+  add_index "sticker_banners", ["repository_id"], :name => "index_sticker_banners_on_repository_id"
+  add_index "sticker_banners", ["site_id"], :name => "index_sticker_banners_on_site_id"
+  add_index "sticker_banners", ["user_id"], :name => "index_sticker_banners_on_user_id"
+
   create_table "styles", :force => true do |t|
     t.string   "name"
     t.text     "css"
@@ -510,6 +537,11 @@ ActiveRecord::Schema.define(:version => 20140311151956) do
 
   add_foreign_key "sites_menus", "menus", :name => "sites_menus_menu_id_fk"
   add_foreign_key "sites_menus", "sites", :name => "sites_menus_site_id_fk"
+
+  add_foreign_key "sticker_banners", "pages", :name => "sticker_banners_page_id_fk"
+  add_foreign_key "sticker_banners", "repositories", :name => "sticker_banners_repository_id_fk"
+  add_foreign_key "sticker_banners", "sites", :name => "sticker_banners_site_id_fk"
+  add_foreign_key "sticker_banners", "users", :name => "sticker_banners_user_id_fk"
 
   add_foreign_key "styles", "sites", :name => "styles_owner_id_fk"
   add_foreign_key "styles", "styles", :name => "styles_style_id_fk"

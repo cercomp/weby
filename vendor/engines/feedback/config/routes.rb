@@ -10,5 +10,5 @@ Feedback::Engine.routes.draw do
     resources :messages, only: :create, path: '/'
   end
 
-  root :to => 'messages#new'
+  root to: 'messages#new'
 end

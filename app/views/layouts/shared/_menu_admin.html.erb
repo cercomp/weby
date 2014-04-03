@@ -22,7 +22,6 @@
         <%= menu_item_to t(".archives"), main_app.site_admin_repositories_path if check_permission(Sites::Admin::RepositoriesController, [:index])%>
         <%= menu_item_to t(".pages"), main_app.site_admin_pages_path if check_permission(Sites::Admin::PagesController, [:index])%>
         <%= menu_item_to t(".menus"), main_app.site_admin_menus_path if check_permission(Sites::Admin::MenusController, [:index])%>
-        <%= menu_item_to t(".banners"), main_app.site_admin_banners_path if check_permission(Sites::Admin::BannersController, [:index])%>
         <% if check_permission(Sites::Admin::ExtensionsController, [:index]) %>
           <div class="nav-header">
             <%= menu_item_to t(".extensions"), main_app.site_admin_extensions_path %>

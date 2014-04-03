@@ -1,0 +1,26 @@
+<% title ".banners" %>
+<% breadcrumb params[:search].present? ? :banners_search : :sticker_banners, params[:search] %>
+<div class="row">
+  <div class="col-md-5">
+    <!-- <%#= form_tag site_admin_banners_path, method: 'get', autocapitalize: "off", class: 'search' do %>
+      <%#= search_input params[:search] %>
+    <%# end %> -->
+  </div>
+  <div class="col-md-7">
+    <% with_permission(action: :new) do %>
+      <div class="pull-right">
+        <%= link_to t(".new_banner"), new_admin_banner_path, class: "btn btn-success" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<% if @banners.empty? %>
+  <div class="alert alert-warning">
+    <%= t(".none_banner") %>
+  </div>
+<% else %>
+  <div id="list">
+    <%= render :partial => banners_partial %>
+  </div>
+<% end %>

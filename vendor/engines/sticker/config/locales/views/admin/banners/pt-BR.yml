@@ -1,0 +1,44 @@
+pt-BR:
+  sticker:
+    admin:
+      banners:
+        form:
+          banners:                  " Banners "
+          add_category:             " Adicionar Categoria "
+          image:                    " Imagem do banner "
+          begin:                    " Início "
+          category:                 " Categoria "
+          enter_the_url:            " Digite a URL "
+          lower_numbers_come_first: " Menores números aparecem primeiro "
+          period_banner:            " Período do Banner "
+          publication_infinite:     " Publicação Infinita "
+          title:                    " Título "
+          description:              " Descrição "
+          new_category:             " Nova Categoria "
+        list:
+          image:                    " Imagem "
+          category:                 " Categoria "
+          position:                 " Posição "
+          publication_date:         " Data inicial "
+          publish:                  " Publicar "
+          register_date:            " Criado em "
+          title:                    " Título "
+          none_category:            " Nenhuma categoria "
+        edit:
+          help_image_banner:        " Essa imagem será utilizada como banner "
+          banners:                  " Banners "
+        index:
+          new_banner:               " Novo Banner "
+          banners:                  " Banners "
+          none_banner:              " Nenhum Banner "
+        view_picker:
+          banners_as_thumbs:        " Exibir banners como miniaturas "
+          banners_as_list:          " Exibir banners como lista "
+        show:
+          banner:                   " Banner "
+          banners:                  " Banners "
+          list_all:                 " Listar todos "
+          url:                      " URL "
+          period_banner:            " Período do Banner "
+        new:
+          banners:                  " Banners "
