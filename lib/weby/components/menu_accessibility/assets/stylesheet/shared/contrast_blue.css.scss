@@ -1,0 +1,92 @@
+* :not(.btn){
+background-color: #cfe5fc !important;
+color: #000066 !important;
+border-color: 1px white !important;
+}
+a:not(.btn){
+color: #000066;
+font-weight: bold !important;
+}
+a:hover:not(.btn){
+text-decoration: underline !important;
+}
+.gov_bar_component {
+border-top: 1px solid white !important;
+border-bottom: 1px solid white !important;
+}
+.gov_bar_component *,
+article.page-show,
+article.page-show *,
+.menu_component *,
+.news_list_component *,
+menu li,
+.event_list_component *,
+.news_as_home_component section#pages *,
+div#list *,
+div#pages.pages-list,
+div#pages.pages-list * {
+background-color: #9FCFFF !important;
+}
+#barra-brasil .list .first {
+border-right: 2px solid white !important;
+border-left: 2px solid white !important
+}
+.brasil-flag,
+#barra-brasil .list-item {
+border-right: 2px solid white !important;
+}
+section#content > article,
+.news_list_component .list border fullwidth zebra,
+.news_list_component,
+.event_list_component,
+.news_as_home_component article.page-show,
+.front_news_component,
+div#pages.pages-list {
+border: 1px solid white !important;
+}
+header nav menu li,
+aside .menu_component menu li,
+footer nav menu li {
+border: 1px solid white !important;
+margin-right: 0px;
+}
+.search_box_component #search,
+.form-control {
+background-color: white !important;
+border-color: #9FCFFF !important;
+}
+table.border, table.border th, table.border td{
+border: none !important;
+}
+.input-append #search {
+background-color: white !important;
+border-color: #9FCFFF !important;
+}
+section#content > article .event {
+border-left: 1px solid white !important;
+}
+section#content section#pages li {
+border-bottom: 1px dotted white !important;
+}
+div.pagination,
+.search-results .item-search-result {
+border-bottom: 1px dotted white !important;
+}
+div .btn a {
+background-color: none !important;
+}
+#filterNav .selected {
+color: #000066 !important;
+font-weight: normal !important;
+}
+span.accessibility {
+border: 1px solid white !important;
+}
+span.accessibility,
+span.accessibility_font *,
+span.accessibility_color {
+background-color: #9FCFFF !important;
+}
+span.accessibility_font {
+border-right: 1.5px solid white !important;
+}

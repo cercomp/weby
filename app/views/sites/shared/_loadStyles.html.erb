@@ -4,3 +4,7 @@
     <%= raw style.css %>
   </style>
 <% end %>
+
+<%= stylesheet_link_tag 'shared/contrast_blue' if session[:contrast] == "blue" %>
+<%= stylesheet_link_tag 'shared/contrast_black' if session[:contrast] == "black" %>
+<%= stylesheet_link_tag 'shared/contrast_yellow' if session[:contrast] == "yellow" %>
