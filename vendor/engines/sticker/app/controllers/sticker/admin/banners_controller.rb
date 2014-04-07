@@ -18,12 +18,11 @@ module Sticker::Admin
     end
 
   def show
-    @banner = cSticker::Banner.where(site_id: current_site).find(params[:id])
+    @banner = Sticker::Banner.where(site_id: current_site).find(params[:id])
   end
 
   def new
     @banner = Sticker::Banner.where(site_id: current_site).new
-    #@banner.new_tab = true
   end
 
   def edit

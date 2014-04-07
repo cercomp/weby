@@ -2,7 +2,7 @@
 <%= simple_form_for [:admin, @banner], html:  { class: 'form-horizontal' } do |f| %>
   <%= f.show_errors %>
 
-  <%#= repository_search t(".image"), "banner_image",
+  <%= repository_search t(".image"), "banner_image",
     "banner[repository_id]", @banner.repository,
     multiple: false, file_types: 'image' %>
 
