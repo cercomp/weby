@@ -2,9 +2,9 @@
 <% breadcrumb params[:search].present? ? :banners_search : :sticker_banners, params[:search] %>
 <div class="row">
   <div class="col-md-5">
-    <!-- <%#= form_tag site_admin_banners_path, method: 'get', autocapitalize: "off", class: 'search' do %>
-      <%#= search_input params[:search] %>
-    <%# end %> -->
+    <%= form_tag admin_banners_path, method: 'get', autocapitalize: "off", class: 'search' do %>
+      <%= search_input params[:search] %>
+    <% end %>
   </div>
   <div class="col-md-7">
     <% with_permission(action: :new) do %>

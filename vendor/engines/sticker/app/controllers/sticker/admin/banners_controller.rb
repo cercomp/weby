@@ -31,7 +31,7 @@ module Sticker::Admin
 
   def create
     @banner = Sticker::Banner.where(site_id: current_site).new(params[:banner])
-    @banner.user_id = @current_user.id
+    @banner.user_id = current_user.id
     if params[:submit_search]
       search_images
       render action: :edit
@@ -39,7 +39,7 @@ module Sticker::Admin
     if @banner.save
       record_activity("created_banner", @banner)
     end
-    respond_with(:site_admin, @banner)
+    respond_with(:admin, @banner)
   end
 
   def update
@@ -74,6 +74,10 @@ module Sticker::Admin
         description_or_filename(params[:image_search]).
         content_file(["image", "flash"]).
         page(params[:page]).per(current_site.per_page_default)
+    end
+    
+    def resource
+      get_resource_ivar || set_resource_ivar(Sticker::Banner.send(:find, params[:id]))
     end
   end
 end
