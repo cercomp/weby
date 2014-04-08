@@ -18,7 +18,7 @@ crumb :sticker_banners_show do |banner|
   parent :sticker_banners
 end
 
-crumb :sticker_banners_search do |search|
+crumb :banners_search do |search|
   link "#{t("breadcrumbs.search")}/ #{search}"
   parent :sticker_banners
 end

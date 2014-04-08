@@ -1,6 +1,7 @@
 module Sticker::Admin
   class BannersController < ApplicationController
     include ActsToToggle
+    helper Sticker::Engine.helpers
 
     before_filter :require_user
     before_filter :check_authorization
@@ -51,7 +52,7 @@ module Sticker::Admin
     if @banner.update_attributes(params[:banner])
       record_activity("updated_banner", @banner)
     end
-    respond_with(:site_admin, @banner)
+    respond_with(:admin, @banner)
   end
 
   def destroy
@@ -61,7 +62,7 @@ module Sticker::Admin
       flash[:success] = t("destroyed_param", :param => @banner.title)
     end
 
-    redirect_to(site_admin_banners_path())
+    redirect_to(admin_banners_path())
   end
 
     private

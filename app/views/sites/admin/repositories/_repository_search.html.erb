@@ -18,7 +18,7 @@
       <div class="modal-body">
         <div class="tab-content">
           <div id="tab_repository" class="tab-pane active">
-            <%= form_tag site_admin_repositories_path(format: :json),
+            <%= form_tag main_app.site_admin_repositories_path(format: :json),
               method: 'get',
               autocapitalize: "off",
               class: 'search repo-search',
@@ -48,7 +48,7 @@
           <div id="tab_new_file" class="tab-pane">
             <div class="row">
               <div class="col-md-7">
-                <%= simple_form_for [:site_admin, Repository.new],
+                <%= simple_form_for Repository.new, url: main_app.site_admin_path,
                   method: :post, remote: true, :html => { class: 'form-xhorizontal', id: "ajax-upload-form" } do |f| %>
 
                   <div style="margin-bottom: 10px">
