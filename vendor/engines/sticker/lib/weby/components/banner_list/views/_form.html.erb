@@ -1,6 +1,6 @@
 <% include_component_javascript :javascripts, 'banner_list' %>
 <%= f.input :category,
-  collection: current_site.banners.category_counts.map{|b| b.name},
+  collection: Sticker::Banner.where(site_id: current_site).category_counts.map{|b| b.name},
   priority: component.category,
   include_blank: false
 %>

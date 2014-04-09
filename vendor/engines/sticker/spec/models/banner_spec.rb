@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Banner do
+describe Sticker::Banner do
   it { expect(subject).to belong_to(:page) }
   it { expect(subject).to belong_to(:repository) }
   it { expect(subject).to belong_to(:user) }
@@ -27,10 +27,10 @@ describe Banner do
       subject = create(:banner, title: "banner", text: "new text", user_id: user.id)
       banner = create(:banner, title: "another", text: "again", user_id: user.id)
 
-      expect(Banner.titles_or_texts_like("ner")).to include(subject)
-      expect(Banner.titles_or_texts_like("ther")).not_to include(subject)
-      expect(Banner.titles_or_texts_like("again")).to include(banner)
-      expect(Banner.titles_or_texts_like("text")).not_to include(banner)
+      expect(Sticker::Banner.titles_or_texts_like("ner")).to include(subject)
+      expect(Sticker::Banner.titles_or_texts_like("ther")).not_to include(subject)
+      expect(Sticker::Banner.titles_or_texts_like("again")).to include(banner)
+      expect(Sticker::Banner.titles_or_texts_like("text")).not_to include(banner)
     end
 
     it 'published' do
@@ -39,8 +39,8 @@ describe Banner do
       subject = create(:banner, publish: true, date_begin_at: '2013-10-20 03:00:00', user_id: user.id)
       banner = create(:banner, publish: false, user_id: user.id)
 
-      expect(Banner.published).to include(subject)
-      expect(Banner.published).not_to include(banner)
+      expect(Sticker::Banner.published).to include(subject)
+      expect(Sticker::Banner.published).not_to include(banner)
     end
   end
 end
