@@ -71,7 +71,9 @@ describe Page do
 
       expect(subject).to respond_to(:published)
       expect(page).not_to respond_to(:published)
-      #expect(Page.published).to eql [subject]
     end
+  end
+
+  pending 'self.import' do
   end
 end

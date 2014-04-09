@@ -20,4 +20,7 @@ describe Component do
 
   pending 'after_destroy' do
   end
+
+  pending 'self.import' do
+  end
 end

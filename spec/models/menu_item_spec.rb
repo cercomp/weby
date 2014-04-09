@@ -5,7 +5,7 @@ describe MenuItem do
   it { expect(subject).to validate_presence_of(:menu_id) }
 
   it { expect(subject).to belong_to(:parent).class_name('MenuItem') }
-  
+
   it { expect(subject).to have_many(:children).dependent(:destroy) }
   it { expect(subject).to have_many(:children).class_name('MenuItem') }
   it { expect(subject).to have_many(:children).with_foreign_key('parent_id') }
@@ -19,5 +19,11 @@ describe MenuItem do
   end
 
   pending 'after_save' do
+  end
+
+  pending 'update_positions' do
+  end
+
+  pending 'self.import' do
   end
 end

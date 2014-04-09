@@ -8,4 +8,7 @@ describe Extension do
 
   it { expect(subject).to validate_presence_of(:name) }
   it { expect(subject).to validate_presence_of(:site) }
+
+  pending 'self.import' do
+  end
 end

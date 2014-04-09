@@ -77,9 +77,6 @@ describe User do
     it 'should reject invalid password format' do
       expect(subject).not_to allow_value('admin1').for(:password).with_message(I18n.t('lower_upper_number_chars'))
     end
-
-    pending 'should allow blank password on edit' do
-    end
   end
 
   context 'Roles' do
@@ -133,9 +130,12 @@ describe User do
     end
 
     pending 'by_site' do
-    end
+      subject = create(:user, login: "user", first_name: "John")
+      site = build(:site)
+      role = create(:role, site_id: site.id)
+      #role_user = create(:role_user, role_id: role.id, user_id: subject.id)
 
-    pending 'actives' do
+      expect(User.by_ste(site.id)).to include(subject)
     end
 
     pending 'global_role' do
@@ -146,15 +146,20 @@ describe User do
   end
 
   context 'Self' do
-    pending "should return the user full name when called fullname" do
-      subject = create(:user, login: "login", first_name: "John", last_name: "Smith")
-      expect(subject).to receive(:fullname).with(subject.id).and_return("#{subject.first_name} #{subject.last_name}")
+    before(:each) do
+      subject = create(:user, login: "login", first_name: "John", last_name: "Smith", email: "john@example.com")
     end
 
-    pending "should return the user email with his name when called email_adrress_with_name" do
+    it "should return the user full name when called fullname" do
+      allow_any_instance_of(User).to receive(:fullname).and_return(:return_value)
+
+      expect(subject.fullname).to eq(:return_value)
     end
 
-    pending "should return the user's unread notifications as an array when called unread_notifications_array" do
+    it "should return the user email with his name when called email_address_with_name" do
+      allow_any_instance_of(User).to receive(:email_address_with_name).and_return(:return_value)
+
+      expect(subject.email_address_with_name).to eq(:return_value)
     end
   end
 end

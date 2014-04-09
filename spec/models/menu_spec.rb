@@ -9,4 +9,7 @@ describe Menu do
 
   it { expect(subject).to have_many(:menu_items).dependent(:destroy) }
   it { expect(subject).to have_many(:root_menu_items).class_name('MenuItem') }
+
+  pending 'self.import' do
+  end
 end
