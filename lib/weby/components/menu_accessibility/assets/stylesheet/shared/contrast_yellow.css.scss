@@ -14,6 +14,8 @@ text-decoration: underline !important;
 border-top: 1px solid #020167 !important;
 border-bottom: 1px solid #020167 !important;
 }
+#webybar .label,
+#webybar .label *,
 .gov_bar_component *,
 article.page-show,
 article.page-show *,
@@ -35,10 +37,12 @@ border-left: 2px solid #020167 !important
 #barra-brasil .list-item {
 border-right: 2px solid #020167 !important;
 }
+#webybar .label,
 section#content > article,
 .news_list_component .list border fullwidth zebra,
 .news_list_component,
 .event_list_component,
+article.page-show,
 .news_as_home_component article.page-show,
 .front_news_component,
 div#pages.pages-list {
@@ -69,6 +73,7 @@ section#content section#pages li {
 border-bottom: 1px dotted #020167 !important;
 }
 div.pagination,
+.search-results .item-search-result:first-child,
 .search-results .item-search-result {
 border-bottom: 1px dotted #020167 !important;
 }
@@ -86,7 +91,4 @@ span.accessibility,
 span.accessibility_font *,
 span.accessibility_color {
 background-color: #DFD179 !important;
-}
-span.accessibility_font {
-border-right: 1.5px solid #020167 !important;
 }

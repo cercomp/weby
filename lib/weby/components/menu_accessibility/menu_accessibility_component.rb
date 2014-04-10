@@ -1,5 +1,5 @@
 class MenuAccessibilityComponent < Component
-  component_settings :font_size, :contrast
+  component_settings :font_size, :contrast, :own_contrast, :css_contrast
     
   def font_size?
     font_size.blank? ? false : font_size == "1"

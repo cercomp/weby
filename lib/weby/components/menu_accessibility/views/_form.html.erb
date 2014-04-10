@@ -1,2 +1,32 @@
-<%= f.input :font_size , wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" } %>
-<%= f.input :contrast , wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" } %>
+<div class="tabbable">
+  <ul class="nav nav-tabs" id="style-tab">
+    <li class="active" >
+      <a href="#tab-main" data-toggle="tab"><%= t(".main") %></a>
+    </li>
+    <li>
+      <a href="#tab-advanced" data-toggle="tab"><%= t(".advanced") %></a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab-main" style="padding-left: 5px;">
+      <%= f.input :font_size , wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" } %>
+      <%= f.input :contrast , wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" } %>
+    </div>
+    <div class="tab-pane" id="tab-advanced">
+      <%= f.input :own_contrast , wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" } %>
+      <div class="form-group">
+      <div class="col-md-9 col-md-offset-3">
+        <div class="btn-toolbar">
+          <div class="btn-group">
+            <%= link_to t(".format"),"javascript:autoFormatSelection()", class: "btn btn-default btn-sm" %>
+            <%= link_to t(".comment"),"javascript:commentSelection(true)", class: "btn btn-default btn-sm" %>
+            <%= link_to t(".uncomment"),"javascript:commentSelection(false)", class: "btn btn-default btn-sm" %>
+            <%= link_to t(".insert_image"), "javascript:insertImage()", class: "btn btn-default btn-sm" %>
+          </div>
+          <%= f.button :button, t(".apply"), type: :button, disabled: :disabled, class: "btn-apply btn btn-primary btn-sm" %>
+        </div>
+      </div>
+      <%= f.input :css_contrast , wrapper_html: { class: "side" }, as: :text %>
+    </div>
+  </div>
+</div>

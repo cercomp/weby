@@ -2,6 +2,11 @@ es:
   components:
     menu_accessibility:
       name:                 " Menú de Accesibilidad "
+  activerecord:
+    attributes:
+      menu_accessibility_component:
+        font_size:          " Tamaño de la Fuente "
+        contrast:           " Contrastar "
   menu_accessibility:
     views:
       show:
