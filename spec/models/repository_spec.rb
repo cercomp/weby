@@ -5,8 +5,6 @@ describe Repository do
 
   it { expect(subject).to belong_to(:site) }
 
-  it { expect(subject).to have_one(:banner) }
-
   it { expect(subject).to have_many(:pages_repositories).dependent(:destroy) }
   it { expect(subject).to have_many(:pages).through(:pages_repositories) }
 
