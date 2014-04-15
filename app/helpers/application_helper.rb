@@ -117,9 +117,9 @@ module ApplicationHelper
     block.call if check_permission(args[:controller], args[:action])
   end
 
-  # Verifica se o usuário tem permissão no controlador e na ação passada como parâmetro
-  # Parâmetros: (Objeto) ctrl, (array) actions, Objeto site (opcional)
-  # Retorna: verdadeiro ou falso
+  # Verifies if the user have an permition on the specified controller and action
+  # Params: (Object) ctrl, (array) actions
+  # Returns: true or false
   def check_permission(ctrl, actions)
     actions = [actions] unless actions.is_a? Array
     actions.each do |action|
@@ -130,10 +130,10 @@ module ApplicationHelper
     return false
   end
 
-  # Monta o menu baseado nas permissões do usuário
-  # Parametros: objeto
+  # Creates the menu based on user's permitions
+  # Params: object, args={TODO}
   def make_menu(obj, args={})
-    #não criar menu para objetos de outro site
+    #in order to not create an menu with objects form another site
     return "" if obj.respond_to?(:site_id) and obj.site_id != current_site.id
 
     raw("".tap do |menu|
@@ -209,21 +209,25 @@ module ApplicationHelper
     end.html_safe
   end
 
-  # Método para ordenar tabelas pela coluna
+  # Order tables by its column
+  # TODO
+  # TODO
   def sortable(column, title = nil)
     title ||= column.titleize
     css_class = column == sort_column ? "current #{sort_direction}" : nil
     direction = (column == sort_column && sort_direction == "asc") ? "desc" : "asc"
     icon_name = column == sort_column ? sort_direction == "asc" ? "chevron-up" : "chevron-down" : nil
     link_to "#{title}#{icon(icon_name)}".html_safe,
-      #quando uma lista é reordenada, ela volta para a página 1
+      # when we reorder an list it goes back to the first page
       params.merge({sort: column, direction: direction, page: 1}),
       data: { column: column},
       remote: true,
       class: "sortable #{css_class}"
   end
 
-  # Informações sobre paginação
+  # Pagination's informations
+  # TODO
+  # TODO
   def info_page(collection, style = nil)
     if collection.page(1).count > 0
       html = "#{t('views.pagination.displaying')} #{collection.offset_value + 1} -
@@ -234,7 +238,7 @@ module ApplicationHelper
     end
   end
 
-  # Links para selecionar a quantidade de itens por página
+  # Generate links in order to select the amount of intes per page
   def per_page_links(collection, remote = false, size = nil)
     if collection.page(1).count > per_page_array.first.to_i
       html = "<li><span>#{t('views.pagination.per_page')} </span></li>"
@@ -245,7 +249,7 @@ module ApplicationHelper
         html <<
         if params[:per_page].to_i == item.to_i
           content_tag :li, :class => 'page active' do
-            #link_to "#{item} ", params.merge({:per_page => item, :page => 1}), :remote => remote
+            # link_to "#{item} ", params.merge({:per_page => item, :page => 1}), :remote => remote
             content_tag :span, "#{item} "
           end
         else
@@ -263,14 +267,14 @@ module ApplicationHelper
     end
   end
 
-  # Cria array de itens por página
+  # Creates an array of itens per page
   def per_page_array
     per_page_string.gsub(/[^\d,]/,'').
       split(',').uniq.
       sort {|a,b| a.to_i <=> b.to_i}
   end
 
-  # Quantidade de registro por página padrão
+  # Default amount of registers per pages
   def per_page_default
     if @site
       ( @site.try(:per_page_default) ||
@@ -333,6 +337,9 @@ module ApplicationHelper
   end
   private :period_date_and_hour
 
+  # Generate icons
+  # TODO:
+  # TODO:
   def icon(type, args={})
     args.reverse_merge({
       :white => false,
@@ -355,7 +362,7 @@ module ApplicationHelper
     current_settings.login_protocol
   end
 
-  #Método utilizado para ativar a aba de login ou de cadastro.
+  # Used to activate login/register tab
   def active_tab(tab)
     if request.path.include?(tab)
       "active"
@@ -415,7 +422,7 @@ module ApplicationHelper
   # When user has permission to change this field, is generated one link
   # to access the action setted in parameters or by defautl 'toggle' action.
 
-  # TODO usar named parameters do ruby 2.
+  # TODO use named parameters from ruby 2.
   def toggle_field(resource, field, action = 'toggle', options = {})
     ''.tap do |html|
       title = resource[field] ? t('enable') : t('disable')
