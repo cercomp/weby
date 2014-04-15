@@ -30,21 +30,26 @@ class User < ActiveRecord::Base
   has_many :user_login_histories, dependent: :destroy
   has_many :pages, foreign_key: :author_id, dependent: :restrict
 
+  # Returns all user with the name similar to text.
   scope :login_or_name_like, lambda { |text|
     where('LOWER(login) like :text OR LOWER(first_name) like :text OR LOWER(last_name) like :text OR LOWER(email) like :text',
           { :text => "%#{text.try(:downcase)}%" })
   }
 
+  # Returns all admin users.
   scope :admin, where(:is_admin => true)
+  # Returns all users that are no admins.
   scope :no_admin, where(:is_admin => false)
 
+  # Returns all user that have a role in site_id.
   scope :by_site, lambda { |site_id|
     select("DISTINCT users.* ").
     joins('LEFT JOIN roles_users ON roles_users.user_id = users.id
            LEFT JOIN roles ON roles.id = roles_users.role_id').
     where(["roles.site_id = ?", site_id])
   }
-
+  
+  # Returns all users that have confirmed their registration.
   scope :actives, where('confirmed_at IS NOT NULL')
 
   scope :global_role, lambda {
