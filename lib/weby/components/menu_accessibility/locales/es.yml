@@ -7,8 +7,13 @@ es:
       menu_accessibility_component:
         font_size:          " Tamaño de la Fuente "
         contrast:           " Contrastar "
+        own_contrast:       " Contraste Meu "
+        css_own_contrast:   " CSS Contraste "
   menu_accessibility:
     views:
+      form:
+        font_size:          " Tamaño de la Fuente "
+        contrast:           " Contrastar "
       show:
         increase_font_size: " Aumentar tamaño de letra "
         decrease_font_size: " Disminuir tamaño de letra "

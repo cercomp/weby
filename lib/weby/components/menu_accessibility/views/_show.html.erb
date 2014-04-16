@@ -18,5 +18,11 @@
       <%= link_to ('C'), {contrast: params[:contrast] = "yellow"}, title: t(".contrast"), class: 'contrast_yellow' %>
     </span>
     <% end %>
+    <% if component.own_contrast? %>
+    <span class="accessibility_color">
+      <%= t(".colour") %>
+      <%= link_to ('C'), {contrast: (params[:contrast] == "own_contrast" ? "no" : "own_contrast") }, title: t(".contrast"), class: 'own_contrast' %>
+    </span>
+    <% end %>
   </span>
 </nav>

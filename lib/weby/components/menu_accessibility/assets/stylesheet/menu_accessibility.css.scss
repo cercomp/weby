@@ -12,7 +12,8 @@ font-weight: bold !important;
 a.contrast_normal,
 a.contrast_blue,
 a.contrast_black,
-a.contrast_yellow {
+a.contrast_yellow,
+a.own_contrast {
 border: 1px solid #838383 !important;
 padding: 0px 3px 0px 3px !important;
 font-weight: bold !important;
@@ -20,10 +21,12 @@ font-weight: bold !important;
 a:hover.contrast_normal,
 a:hover.contrast_blue,
 a:hover.contrast_black,
-a:hover.contrast_yellow {
+a:hover.contrast_yellow,
+a:hover.own_contrast {
 text-decoration: underline !important;
 }
-a.contrast_normal {
+a.contrast_normal,
+a.own_contrast {
 background-color: #FFFFFF !important;
 color: #484848 !important;
 }
