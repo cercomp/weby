@@ -1,6 +1,7 @@
 # Weby CMS
 
 [![Build Status](https://travis-ci.org/cercomp/weby.png?branch=master)](https://travis-ci.org/cercomp/weby)
+[![PullReview stats](https://www.pullreview.com/github/cercomp/weby/badges/master.svg?)](https://www.pullreview.com/github/cercomp/weby/reviews/master)
 
 __What is the project?__
 
