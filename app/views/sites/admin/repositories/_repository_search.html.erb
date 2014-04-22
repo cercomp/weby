@@ -48,7 +48,7 @@
           <div id="tab_new_file" class="tab-pane">
             <div class="row">
               <div class="col-md-7">
-                <%= simple_form_for Repository.new, url: main_app.site_admin_path,
+                <%= simple_form_for Repository.new, url: main_app.site_admin_repositories_path,
                   method: :post, remote: true, :html => { class: 'form-xhorizontal', id: "ajax-upload-form" } do |f| %>
 
                   <div style="margin-bottom: 10px">
