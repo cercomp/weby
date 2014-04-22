@@ -1,9 +1,9 @@
 pt-BR:
   activerecord:
     models:
-      banner:          " Banner "
+      sticker/banner:          " Banner "
     attributes:
-      banner:
+      sticker/banner:
         created_at:    " Criado em "
         date_begin_at: " Data de início "
         date_end_at:   " Data de fim "
