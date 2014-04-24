@@ -11,7 +11,7 @@ class Sites::Admin::BannersController < ApplicationController
 
   def index
     sort = sort_column == "id" ?  " " : (sort_column + " " + sort_direction + ", ")
-    @banners = current_site.banners.unscoped.
+    @banners = Banner.unscoped.where(site_id: current_site).
      order(sort + "position ASC").
      titles_or_texts_like(params[:search]).
      page(params[:page]).per(params[:per_page])
