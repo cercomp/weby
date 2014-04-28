@@ -15,7 +15,8 @@ class Component < ActiveRecord::Base
   # ex: Um componente pode existe na área X em um layout, mas em outro
   # layout essa área pode não existir
   validates :place_holder, presence: true
-  validates :alias, presence: true
+  # TODO corrigir
+  # validates :alias, presence: true
   validates :name, presence: true
 
   def default_alias
