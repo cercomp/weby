@@ -1,11 +1,11 @@
-<% title ".layout" %> 
+<% title ".layout" %>
 <% content_for :javascripts, javascript_include_tag('components.form') %>
 
 <%= simple_form_for [:site_admin, @component], html: {class: 'form-horizontal'}, url: url, method: method do |f| %>
   <%= f.show_errors %>
 
   <%= f.input :site_id, input_html: {value: @site.id}, as: :hidden %>
-  <%= f.input :component, input_html: {value: @component.name}, as: :hidden %>
+  <%= hidden_field_tag :component, @component.name %>
   <%= f.input :alias, placeholder: t(".alias_hint") if Weby::Components.is_aliasable? @component.name %>
 
   <%= render_component @component, 'form', locals: {f: f} %>
@@ -46,7 +46,7 @@
       <%= f.input :place_holder, as: :hidden, input_html: {id: "component_place_holder"} %>
     </div>
   </div>
-  
+
   <div class="form-actions">
     <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
     <%= link_to t("back"), :back, class: "btn btn-default" %>
