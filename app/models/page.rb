@@ -16,7 +16,7 @@ class Page < ActiveRecord::Base
 
   has_many :views, as: :viewable
   has_many :menu_items, as: :target, dependent: :nullify
-  has_many :banners, dependent: :nullify
+  #has_many :banners, dependent: :nullify
   has_many :pages_repositories, dependent: :destroy
   has_many :related_files, through: :pages_repositories, source: :repository
 

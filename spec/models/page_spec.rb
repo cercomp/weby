@@ -11,7 +11,7 @@ describe Page do
 
   it { expect(subject).to have_many(:views) }
   it { expect(subject).to have_many(:menu_items).dependent(:nullify) }
-  it { expect(subject).to have_many(:banners).dependent(:nullify) }
+  #it { expect(subject).to have_many(:banners).dependent(:nullify) }
   it { expect(subject).to have_many(:pages_repositories).dependent(:destroy) }
   it { expect(subject).to have_many(:related_files).through(:pages_repositories) }
 

@@ -60,9 +60,10 @@ describe Site do
   it { expect(subject).to have_many(:pages).dependent(:delete_all) }
 
   it { expect(subject).to have_many(:pages_i18ns).through(:pages) }
-
-  it { expect(subject).to have_many(:banners).order(:position) }
-
+  
+  #StickerBanners
+  pending { expect(subject).to have_many(:banners).order(:position) }
+  
   it { expect(subject).to have_many(:styles).dependent(:destroy).order('styles.position desc') }
 
   context 'Component' do
