@@ -14,9 +14,11 @@ pt-BR:
       form:
         font_size:          " Tamanho da Fonte "
         contrast:           " Contraste "
+        label_contrast:     " Rótulo "
       show:
         increase_font_size: " Aumentar o tamanho da fonte "
         decrease_font_size: " Diminuir o tamanho da fonte "
         default_font_size:  " Tamanho padrão da fonte "
         contrast:           " Alterar o contraste da página "
+        contrast_normal:    " Retirar o contraste da pagina "
         colour:             " Cor "

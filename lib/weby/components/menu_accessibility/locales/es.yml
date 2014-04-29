@@ -14,9 +14,11 @@ es:
       form:
         font_size:          " Tamaño de la Fuente "
         contrast:           " Contrastar "
+        label_contrast:     " Etiqueta "
       show:
         increase_font_size: " Aumentar tamaño de letra "
         decrease_font_size: " Disminuir tamaño de letra "
         default_font_size:  " Cambiar al tamaño de fuente predeterminado "
         contrast:           " Cambiar el contraste de color "
+        contrast_normal:    " Borrarse el contraste de color "
         colour:             " Color "

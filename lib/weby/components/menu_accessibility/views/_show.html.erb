@@ -11,17 +11,15 @@
     <% end %>
     <% if component.contrast? %>
     <span class="accessibility_color">
-      <%= t(".colour") %>
-      <%= link_to ('C'), {contrast: params[:contrast] = "no"}, title: t(".contrast"), class: 'contrast_normal' %>
+      <% unless component.label_contrast.nil? %>
+        <%= component.label_contrast %>
+      <% else %>
+        <%= t(".colour") %>
+      <% end %>
+      <%= link_to ('C'), {contrast: params[:contrast] = "no"}, title: t(".contrast_normal"), class: 'contrast_normal' %>
       <%= link_to ('C'), {contrast: params[:contrast] = "blue"}, title: t(".contrast"), class: 'contrast_blue' %>
       <%= link_to ('C'), {contrast: params[:contrast] = "black"}, title: t(".contrast"), class: 'contrast_black' %>
       <%= link_to ('C'), {contrast: params[:contrast] = "yellow"}, title: t(".contrast"), class: 'contrast_yellow' %>
-    </span>
-    <% end %>
-    <% if component.own_contrast? %>
-    <span class="accessibility_color">
-      <%= t(".colour") %>
-      <%= link_to ('C'), {contrast: (params[:contrast] == "own_contrast" ? "no" : "own_contrast") }, title: t(".contrast"), class: 'own_contrast' %>
     </span>
     <% end %>
   </span>
