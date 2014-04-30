@@ -32,6 +32,7 @@ en:
           new_banner:               " New Banner "
           banners:                  " Banners "
           none_banner:              " None Banner "
+          publisheds:               " Published "
         view_picker:
           banners_as_thumbs:        " Show banners as thumbnails "
           banners_as_list:          " Show banners as list "
@@ -43,3 +44,14 @@ en:
           period_banner:            " Banner period "
         new:
           banners:                  " Banners "
+        fronts:
+          banners:                  " Banners "
+          new_banner:               " New Banner "
+          all_banners:              " All Banners "
+          none_published:           " None Published "
+          image:                    " Image "
+          title:                    " Title "
+          category:                 " Category "
+          position:                 " Position "
+          publication_date:         " Publication Date "
+          publish:                  " Publish "

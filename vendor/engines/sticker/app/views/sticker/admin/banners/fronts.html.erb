@@ -1,0 +1,50 @@
+<% title ".banners" %>
+<% breadcrumb :sticker_banners %>
+
+<div class="row">
+  <div class="col-md-5">
+  </div>
+  <div class="col-md-7">
+    <div class="pull-right">
+      <% with_permission(action: :new) do %>
+        <%= link_to t(".new_banner"), new_admin_banner_path, class: "btn btn-success" %>
+      <% end %>
+      <% with_permission(action: :index) do %>
+        <%= link_to t(".all_banners"), admin_banners_path, class: "btn btn-default" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% if @banners.empty? %>
+  <div class="alert alert-warning">
+    <%= t(".none_published") %>
+  </div>
+
+<% else %>
+  <%= render 'view_picker' %>
+  <table class="table table-striped nowrap" id="list">
+    <thead>
+      <th><%= t(".image") %></th>
+      <th><%= t(".title") %></th>
+      <th><%= t(".category") %></th>
+      <th><%= t(".position") %></th>
+      <th><%= t(".publication_date") %></th>
+      <% with_permission(action: :edit) do %>
+        <th style="text-align: center;"><%= t(".publish") %></th>
+      <% end %>
+      <th></th>
+    </thead>
+    <tbody>
+      <% @banners.each do |banner| %>
+        <td><%= weby_file_view(banner.repository, :thumb, "64", "64", {target: '_blank', title: banner.text}, true) %></td>
+        <td><%= link_to(banner.title, admin_banner_path(banner)) %></td>
+        <td><%= banner.categories.join(", ") || t(".none_category") %></td>
+        <td><%= banner.position %></td>
+        <td><%=l banner.date_begin_at, format: :short %></td>
+        <td style="text-align: center;"><%= publication_status_banner(banner, options{}) %></td>
+        <td style="text-align: center;"><%= raw make_menu(banner, :except => "show") %></td>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

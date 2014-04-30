@@ -7,11 +7,14 @@
     <% end %>
   </div>
   <div class="col-md-7">
-    <% with_permission(action: :new) do %>
-      <div class="pull-right">
+    <div class="pull-right">
+      <% with_permission(action: :new) do %>
         <%= link_to t(".new_banner"), new_admin_banner_path, class: "btn btn-success" %>
-      </div>
-    <% end %>
+      <% end %>
+      <% with_permission(action: :fronts) do %>
+        <%= link_to t(".publisheds"), fronts_admin_banners_path, class: "btn btn-default" %>
+      <% end %>
+    </div>
   </div>
 </div>
 

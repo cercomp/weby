@@ -31,6 +31,10 @@ module Sticker::Admin
     @banner = Sticker::Banner.where(site_id: current_site).find(params[:id])
   end
 
+  def fronts
+    @banners = Sticker::Banner.where(site_id: current_site, publish: true).order('position desc')
+  end
+
   def create
     @banner = Sticker::Banner.where(site_id: current_site).new(params[:banner])
     @banner.user_id = current_user.id
@@ -77,7 +81,7 @@ module Sticker::Admin
         content_file(["image", "flash"]).
         page(params[:page]).per(current_site.per_page_default)
     end
-    
+
     def resource
       get_resource_ivar || set_resource_ivar(Sticker::Banner.send(:find, params[:id]))
     end
