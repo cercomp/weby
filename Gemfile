@@ -55,3 +55,4 @@ end
 #Extensions (engines)
 gem 'acadufg', :path => 'vendor/engines/acadufg'
 gem 'feedback', :path => 'vendor/engines/feedback'
+gem 'sticker', :path => 'vendor/engines/sticker'

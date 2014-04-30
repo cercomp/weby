@@ -1,0 +1,25 @@
+pt-BR:
+  activerecord:
+    models:
+      sticker/banner:          " Banner "
+    attributes:
+      sticker/banner:
+        created_at:    " Criado em "
+        date_begin_at: " Data de início "
+        date_end_at:   " Data de fim "
+        height:        " Altura "
+        hide:          " Esconder "
+        new_tab:       " Abrir em uma nova janela "
+        page_id:       " Id da página "
+        position:      " Posição "
+        publish:       " Publicado "
+        repository_id: " Id do repositório "
+        site_id:       " Id do site "
+        size:          " Tamanho "
+        text:          " Descrição "
+        title:         " Título "
+        updated_at:    " Atualizado em "
+        url:           " URL "
+        user_id:       " Id do usuário "
+        width:         " Largura "
+

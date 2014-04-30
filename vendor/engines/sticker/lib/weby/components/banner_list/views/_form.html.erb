@@ -1,0 +1,20 @@
+<% include_component_javascript :javascripts, 'banner_list' %>
+<%= f.input :category,
+  collection: Sticker::Banner.where(site_id: current_site).category_counts.map{|b| b.name},
+  priority: component.category,
+  include_blank: false
+%>
+<%= f.input :orientation, collection: [
+    [t(".vertical"),"vertical"],
+    [t(".horizontal"),"horizontal"],
+    [t(".slider"),"slider"]
+  ],
+  priority: component.orientation,
+  include_blank: false
+%>
+<div class="slider-form">
+  <%= f.input :timer, as: :integer, hint: t(".timer_hint") %>
+  <%= f.input :description, as: :boolean %>
+  <%= f.input :show_controls, as: :boolean, hint: t(".control_hint") %>
+</div>
+

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140311151956) do
+ActiveRecord::Schema.define(:version => 20140402120348) do
 
   create_table "activity_records", :force => true do |t|
     t.integer  "user_id"
@@ -30,33 +30,6 @@ ActiveRecord::Schema.define(:version => 20140311151956) do
 
   add_index "activity_records", ["site_id"], :name => "index_activity_records_on_site_id"
   add_index "activity_records", ["user_id"], :name => "index_activity_records_on_user_id"
-
-  create_table "banners", :force => true do |t|
-    t.datetime "date_begin_at"
-    t.datetime "date_end_at"
-    t.string   "title"
-    t.text     "text"
-    t.string   "url"
-    t.integer  "width"
-    t.integer  "height"
-    t.boolean  "hide",          :default => false
-    t.integer  "repository_id"
-    t.integer  "user_id"
-    t.string   "size"
-    t.boolean  "publish",       :default => false
-    t.integer  "site_id"
-    t.integer  "position"
-    t.integer  "page_id"
-    t.boolean  "new_tab",       :default => false
-    t.integer  "click_count",   :default => 0
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
-  end
-
-  add_index "banners", ["page_id"], :name => "index_banners_on_page_id"
-  add_index "banners", ["repository_id"], :name => "index_banners_on_repository_id"
-  add_index "banners", ["site_id"], :name => "index_banners_on_site_id"
-  add_index "banners", ["user_id"], :name => "index_banners_on_user_id"
 
   create_table "extension_sites", :force => true do |t|
     t.integer  "site_id"
@@ -350,6 +323,33 @@ ActiveRecord::Schema.define(:version => 20140311151956) do
   add_index "sites_pages", ["page_id"], :name => "index_sites_pages_on_page_id"
   add_index "sites_pages", ["site_id"], :name => "index_sites_pages_on_site_id"
 
+  create_table "sticker_banners", :force => true do |t|
+    t.datetime "date_begin_at"
+    t.datetime "date_end_at"
+    t.string   "title"
+    t.text     "text"
+    t.string   "url"
+    t.integer  "width"
+    t.integer  "height"
+    t.boolean  "hide",          :default => false
+    t.integer  "repository_id"
+    t.integer  "user_id"
+    t.string   "size"
+    t.boolean  "publish",       :default => false
+    t.integer  "site_id"
+    t.integer  "position"
+    t.integer  "page_id"
+    t.boolean  "new_tab",       :default => false
+    t.integer  "click_count",   :default => 0
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+  end
+
+  add_index "sticker_banners", ["page_id"], :name => "index_banners_on_page_id"
+  add_index "sticker_banners", ["repository_id"], :name => "index_banners_on_repository_id"
+  add_index "sticker_banners", ["site_id"], :name => "index_banners_on_site_id"
+  add_index "sticker_banners", ["user_id"], :name => "index_banners_on_user_id"
+
   create_table "styles", :force => true do |t|
     t.string   "name"
     t.text     "css"
@@ -448,77 +448,77 @@ ActiveRecord::Schema.define(:version => 20140311151956) do
   add_index "views", ["site_id"], :name => "index_views_on_site_id"
   add_index "views", ["user_id"], :name => "index_views_on_user_id"
 
-  add_foreign_key "activity_records", "sites", :name => "activity_records_site_id_fk"
-  add_foreign_key "activity_records", "users", :name => "activity_records_user_id_fk"
+  add_foreign_key "activity_records", "sites", name: "activity_records_site_id_fk"
+  add_foreign_key "activity_records", "users", name: "activity_records_user_id_fk"
 
-  add_foreign_key "banners", "pages", :name => "banners_page_id_fk"
-  add_foreign_key "banners", "repositories", :name => "banners_repository_id_fk"
-  add_foreign_key "banners", "sites", :name => "banners_site_id_fk"
-  add_foreign_key "banners", "users", :name => "banners_user_id_fk"
+  add_foreign_key "extension_sites", "sites", name: "extension_sites_site_id_fk"
 
-  add_foreign_key "extension_sites", "sites", :name => "extension_sites_site_id_fk"
+  add_foreign_key "feedback_groups", "sites", name: "groups_site_id_fk"
 
-  add_foreign_key "feedback_groups", "sites", :name => "groups_site_id_fk"
+  add_foreign_key "feedback_messages", "sites", name: "feedbacks_site_id_fk"
 
-  add_foreign_key "feedback_messages", "sites", :name => "feedbacks_site_id_fk"
+  add_foreign_key "feedback_messages_groups", "feedback_groups", name: "feedbacks_groups_group_id_fk", column: "group_id"
+  add_foreign_key "feedback_messages_groups", "feedback_messages", name: "feedbacks_groups_feedback_id_fk", column: "message_id"
 
-  add_foreign_key "feedback_messages_groups", "feedback_groups", :name => "feedbacks_groups_group_id_fk", :column => "group_id"
-  add_foreign_key "feedback_messages_groups", "feedback_messages", :name => "feedbacks_groups_feedback_id_fk", :column => "message_id"
+  add_foreign_key "groupings_sites", "groupings", name: "groupings_sites_grouping_id_fk"
+  add_foreign_key "groupings_sites", "sites", name: "groupings_sites_site_id_fk"
 
-  add_foreign_key "groupings_sites", "groupings", :name => "groupings_sites_grouping_id_fk"
-  add_foreign_key "groupings_sites", "sites", :name => "groupings_sites_site_id_fk"
+  add_foreign_key "groups_users", "feedback_groups", name: "groups_users_group_id_fk", column: "group_id"
+  add_foreign_key "groups_users", "users", name: "groups_users_user_id_fk"
 
-  add_foreign_key "groups_users", "feedback_groups", :name => "groups_users_group_id_fk", :column => "group_id"
-  add_foreign_key "groups_users", "users", :name => "groups_users_user_id_fk"
+  add_foreign_key "locales_sites", "locales", name: "locales_sites_locale_id_fk"
+  add_foreign_key "locales_sites", "sites", name: "locales_sites_site_id_fk"
 
-  add_foreign_key "locales_sites", "locales", :name => "locales_sites_locale_id_fk"
-  add_foreign_key "locales_sites", "sites", :name => "locales_sites_site_id_fk"
+  add_foreign_key "menu_item_i18ns", "locales", name: "menu_item_i18ns_locale_id_fk"
+  add_foreign_key "menu_item_i18ns", "menu_items", name: "menu_item_i18ns_menu_item_id_fk"
 
-  add_foreign_key "menu_item_i18ns", "locales", :name => "menu_item_i18ns_locale_id_fk"
-  add_foreign_key "menu_item_i18ns", "menu_items", :name => "menu_item_i18ns_menu_item_id_fk"
+  add_foreign_key "menu_items", "menu_items", name: "menu_items_parent_id_fk", column: "parent_id"
+  add_foreign_key "menu_items", "menus", name: "menu_items_menu_id_fk"
 
-  add_foreign_key "menu_items", "menu_items", :name => "menu_items_parent_id_fk", :column => "parent_id"
-  add_foreign_key "menu_items", "menus", :name => "menu_items_menu_id_fk"
+  add_foreign_key "menus", "sites", name: "menus_site_id_fk"
 
-  add_foreign_key "menus", "sites", :name => "menus_site_id_fk"
+  add_foreign_key "notifications", "users", name: "notifications_user_id_fk"
 
-  add_foreign_key "notifications", "users", :name => "notifications_user_id_fk"
+  add_foreign_key "old_menus", "pages", name: "old_menus_page_id_fk"
 
-  add_foreign_key "old_menus", "pages", :name => "old_menus_page_id_fk"
+  add_foreign_key "page_i18ns", "locales", name: "page_i18ns_locale_id_fk"
+  add_foreign_key "page_i18ns", "pages", name: "page_i18ns_page_id_fk"
 
-  add_foreign_key "page_i18ns", "locales", :name => "page_i18ns_locale_id_fk"
-  add_foreign_key "page_i18ns", "pages", :name => "page_i18ns_page_id_fk"
+  add_foreign_key "pages", "repositories", name: "pages_repository_id_fk"
+  add_foreign_key "pages", "sites", name: "pages_site_id_fk"
+  add_foreign_key "pages", "users", name: "pages_author_id_fk", column: "author_id"
 
-  add_foreign_key "pages", "repositories", :name => "pages_repository_id_fk"
-  add_foreign_key "pages", "sites", :name => "pages_site_id_fk"
-  add_foreign_key "pages", "users", :name => "pages_author_id_fk", :column => "author_id"
+  add_foreign_key "pages_repositories", "pages", name: "pages_repositories_page_id_fk"
+  add_foreign_key "pages_repositories", "repositories", name: "pages_repositories_repository_id_fk"
 
-  add_foreign_key "pages_repositories", "pages", :name => "pages_repositories_page_id_fk"
-  add_foreign_key "pages_repositories", "repositories", :name => "pages_repositories_repository_id_fk"
+  add_foreign_key "repositories", "sites", name: "repositories_site_id_fk"
 
-  add_foreign_key "repositories", "sites", :name => "repositories_site_id_fk"
+  add_foreign_key "roles", "sites", name: "roles_site_id_fk"
 
-  add_foreign_key "roles", "sites", :name => "roles_site_id_fk"
+  add_foreign_key "roles_users", "roles", name: "roles_users_role_id_fk"
+  add_foreign_key "roles_users", "users", name: "roles_users_user_id_fk"
 
-  add_foreign_key "roles_users", "roles", :name => "roles_users_role_id_fk"
-  add_foreign_key "roles_users", "users", :name => "roles_users_user_id_fk"
+  add_foreign_key "site_components", "sites", name: "site_components_site_id_fk"
 
-  add_foreign_key "site_components", "sites", :name => "site_components_site_id_fk"
+  add_foreign_key "sites", "repositories", name: "sites_top_banner_id_fk", column: "top_banner_id"
+  add_foreign_key "sites", "sites", name: "sites_parent_id_fk", column: "parent_id"
 
-  add_foreign_key "sites", "repositories", :name => "sites_top_banner_id_fk", :column => "top_banner_id"
-  add_foreign_key "sites", "sites", :name => "sites_parent_id_fk", :column => "parent_id"
+  add_foreign_key "sites_menus", "menus", name: "sites_menus_menu_id_fk"
+  add_foreign_key "sites_menus", "sites", name: "sites_menus_site_id_fk"
 
-  add_foreign_key "sites_menus", "menus", :name => "sites_menus_menu_id_fk"
-  add_foreign_key "sites_menus", "sites", :name => "sites_menus_site_id_fk"
+  add_foreign_key "sticker_banners", "pages", name: "banners_page_id_fk"
+  add_foreign_key "sticker_banners", "repositories", name: "banners_repository_id_fk"
+  add_foreign_key "sticker_banners", "sites", name: "banners_site_id_fk"
+  add_foreign_key "sticker_banners", "users", name: "banners_user_id_fk"
 
-  add_foreign_key "styles", "sites", :name => "styles_owner_id_fk"
-  add_foreign_key "styles", "styles", :name => "styles_style_id_fk"
+  add_foreign_key "styles", "sites", name: "styles_owner_id_fk"
+  add_foreign_key "styles", "styles", name: "styles_style_id_fk"
 
-  add_foreign_key "user_login_histories", "users", :name => "user_login_histories_user_id_fk"
+  add_foreign_key "user_login_histories", "users", name: "user_login_histories_user_id_fk"
 
-  add_foreign_key "users", "locales", :name => "users_locale_id_fk"
+  add_foreign_key "users", "locales", name: "users_locale_id_fk"
 
-  add_foreign_key "views", "sites", :name => "views_site_id_fk"
-  add_foreign_key "views", "users", :name => "views_user_id_fk"
+  add_foreign_key "views", "sites", name: "views_site_id_fk"
+  add_foreign_key "views", "users", name: "views_user_id_fk"
 
 end
