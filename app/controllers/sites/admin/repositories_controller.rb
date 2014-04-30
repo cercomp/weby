@@ -109,7 +109,7 @@ class Sites::Admin::RepositoriesController < ApplicationController
       flash[:error] = @repository.errors.full_messages.join(", ")
     end
     
-    redirect_to site_admin_repositories_path
+    redirect_to main_app.site_admin_repositories_path
   end
 
   def recover                                      
