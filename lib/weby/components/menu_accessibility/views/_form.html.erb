@@ -9,13 +9,13 @@
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="tab-main" style="padding-left: 5px;">
-      <%= f.input :font_size , wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button", checked: true }  %>
+      <%= f.input :font_size , wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" }  %>
     </div>
     <div class="tab-pane" id="tab-advanced">
-      <%= f.input :contrast , wrapper_html: { class: "side", checked: "checked" }, as: :boolean, input_html: { class: "check-button" } %>
+      <%= f.input :contrast , wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" } %>
 
       <%= each_i18n_tab do |locale| %>
         <%= f.component_i18n_input locale, :label_contrast, :as => :string %>
       <% end %>
-  </div>
+    </div>
 </div>

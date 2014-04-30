@@ -7,14 +7,12 @@ en:
       menu_accessibility_component:
         font_size:          " Font Size "
         contrast:           " Contrast "
-        own_contrast:       " My Contrast "
-        css_own_contrast:   " CSS Contrast "
+        label_contrast:     " Label "
   menu_accessibility:
     views:
       form:
         font_size:          " Font Size "
         contrast:           " Contrast "
-        label_contrast:     " Label "
       show:
         increase_font_size: " Increase font size "
         decrease_font_size: " Decrease font size "

@@ -2,3 +2,8 @@ en:
   components:
     menu_i18n:
       name:    " Internationalization Menu "
+  activerecord:
+    attributes:
+      menu_i18n_component:
+        dropdown:           " Dropdown "
+

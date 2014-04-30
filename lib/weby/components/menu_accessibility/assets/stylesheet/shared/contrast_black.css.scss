@@ -91,3 +91,13 @@ span.accessibility_font *,
 span.accessibility_color {
 background-color: #000000 !important;
 }
+input#search:focus,
+textarea:focus,
+input:focus {
+border-color: #FFFF00 !important;
+-webkit-box-shadow: none !important;
+box-shadow: none !important;
+}
+::-webkit-input-placeholder {
+color: #FFFF00 !important;
+}

@@ -7,14 +7,12 @@ pt-BR:
       menu_accessibility_component:
         font_size:          " Tamanho da Fonte "
         contrast:           " Contraste "
-        own_contrast:       " Meu Contraste "
-        css_own_contrast:   " CSS Contraste "
+        label_contrast:     " Rótulo "
   menu_accessibility:
     views:
       form:
         font_size:          " Tamanho da Fonte "
         contrast:           " Contraste "
-        label_contrast:     " Rótulo "
       show:
         increase_font_size: " Aumentar o tamanho da fonte "
         decrease_font_size: " Diminuir o tamanho da fonte "
