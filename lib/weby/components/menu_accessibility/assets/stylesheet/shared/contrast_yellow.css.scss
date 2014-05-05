@@ -7,7 +7,7 @@ a:not(.btn){
 color: #020167;
 font-weight: bold !important;
 }
-a:hover :not(.btn):not(a i){
+a:hover:not(.btn){
 text-decoration: underline !important;
 }
 .gov_bar_component {
