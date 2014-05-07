@@ -222,6 +222,7 @@ class ApplicationController < ActionController::Base
   end
 
   def is_admin
+<<<<<<< HEAD
     return true if current_user.is_admin
 
     flash[:error] = t'only_admin'
@@ -230,6 +231,17 @@ class ApplicationController < ActionController::Base
       redirect_to :back
     rescue
       redirect_to admin_path
+=======
+    unless current_user.is_admin
+      flash[:error] = t"only_admin"
+      begin
+        redirect_to :back
+      rescue
+        redirect_to admin_path
+      end
+    else
+      return true
+>>>>>>> Init controller test
     end
   end
 
