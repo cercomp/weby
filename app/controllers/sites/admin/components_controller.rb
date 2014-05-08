@@ -11,7 +11,7 @@ class Sites::Admin::ComponentsController < ApplicationController
   end
 
   def show
-    #@component = Weby::Components.factory(current_site.components.find(params[:id]))
+    # @component = Weby::Components.factory(current_site.components.find(params[:id]))
     redirect_to site_admin_components_path 
   end
 
@@ -78,7 +78,7 @@ class Sites::Admin::ComponentsController < ApplicationController
   end
   
   # TODO: método criado somente para colocar códigos específicos de componentes
-  #enquanto não há uma solução melhor, já que um componente não tem um controller
+  # enquanto não há uma solução melhor, já que um componente não tem um controller
   def update_params
 
     params[:feedback_component][:groups_id] ||= nil if params[:feedback_component]

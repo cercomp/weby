@@ -56,7 +56,7 @@ module ApplicationHelper
           div_content << content_tag(:span) do
             [
               toggle_field(entry, "publish", 'toggle', {controller: 'sites/admin/menus/menu_items', menu_id: entry.menu_id}),
-              #" #{entry.position}",
+              # " #{entry.position}",
               " #{title_link}",
               ( (entry and entry.target) ? " [ #{entry.target.try(:title)} ] " : " [ #{entry.url if not entry.url.blank?} ] " )
             ].join.html_safe
@@ -84,7 +84,7 @@ module ApplicationHelper
   end
   private :print_menu_entry
 
-  # Define mensagens personalizadas
+  # Defines custom messages
   def flash_message
     "".tap do |html|
       flash.each do |key, value|
@@ -101,11 +101,11 @@ module ApplicationHelper
 
   def flash_class(type)
     case type
-      when :info then "alert-info"
-      when :notice, :success then "alert-success"
-      when :error, :alert then "alert-danger"
-      when :warning then "alert-warning"
-      else "alert-info"
+    when :info then "alert-info"
+    when :notice, :success then "alert-success"
+    when :error, :alert then "alert-danger"
+    when :warning then "alert-warning"
+    else "alert-info"
     end
   end
 
@@ -140,13 +140,13 @@ module ApplicationHelper
       excepts = args[:except] || []
       ctrl = args[:controller] || controller.class
 
-      # Texto nos ícones
+      # Icon's texts
       args[:with_text] = true if args[:with_text].nil?
 
-      # Transforma o parâmetro em array caso não seja
+      # Transforms the param in array if it is not one
       excepts = [excepts] unless excepts.is_a? Array
       excepts.each_index do |i|
-        # Transforma parâmetros em símbolos caso não sejam
+        # Transforms the params in symbols if they are not
         excepts[i] = excepts[i].to_sym unless excepts[i].is_a? Symbol
       end
 

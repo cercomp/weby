@@ -1,5 +1,5 @@
 module ComponentsHelper
-  #retorna as divs do mini layout ---  menu de adicionar componente
+  # returns the mini layout  divs ---  The menu that attaches an component to a block
   def make_mini_layout
     content_for :stylesheets, stylesheet_link_tag("mini_layout")
     config = Weby::Themes.layout current_site.theme
