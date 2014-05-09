@@ -32,7 +32,10 @@ module Sticker::Admin
   end
 
   def fronts
-    @banners = Sticker::Banner.where(site_id: current_site, publish: true).order('position desc')
+    @banners = Sticker::Banner.where(site_id: current_site, publish: true).
+      order('position desc').
+      titles_or_texts_like(params[:search]).
+      page(params[:page]).per(params[:per_page])
   end
 
   def create
