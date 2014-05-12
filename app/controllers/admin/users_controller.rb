@@ -1,7 +1,6 @@
 # coding: utf-8
 class Admin::UsersController < ApplicationController
   include ActsToToggle
-  include UserCommon
 
   before_filter :require_user
   before_filter :is_admin, :except => [:new, :create]

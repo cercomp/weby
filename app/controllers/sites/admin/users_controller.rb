@@ -1,6 +1,5 @@
 # coding: utf-8
 class Sites::Admin::UsersController < ApplicationController
-  include UserCommon
   before_filter :require_user
   before_filter :check_authorization
   
