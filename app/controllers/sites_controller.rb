@@ -13,7 +13,7 @@ class SitesController < ApplicationController
   def index
     params[:page] ||= 1
 
-    #TODO Pesquisar também no título das notícias
+    #TODO Search using the new's tittle too
     @sites = Site.ordered_by_front_pages(params[:search])
 
     @default_groupings = Weby::Settings.default_groupings

@@ -1,9 +1,10 @@
-# Concern para criar ações de toggle no controller
-# para usar basta incluir o concenr no controller
+# Concern that creates the toggle actions in a controller 
+# Just add to your controller to use:
 #
 #   include ActsToToggle
 #
-# e adicionar a rota
+# and add  the new route:
+# eg.
 #
 #   resource :users do
 #     member do

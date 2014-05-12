@@ -18,7 +18,7 @@ class Admin::SitesController < ApplicationController
 
   def new
     @site = Site.new
-    @site.theme = 'this2' #default theme, TODO fazer isso ser configurável caso os temas sejam desvinculados do core
+    @site.theme = 'this2' #default theme, TODO make this configurable if it ever stop being part of the weby core
     load_themes
   end
 
