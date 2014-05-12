@@ -10,8 +10,4 @@ class MenuAccessibilityComponent < Component
   def contrast?
     contrast.blank? ? true :  contrast == "1"
   end
-
-  def own_contrast?
-    own_contrast.blank? ? false :  own_contrast == "1"
-  end
 end

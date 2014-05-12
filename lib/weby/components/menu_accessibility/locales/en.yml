@@ -13,6 +13,7 @@ en:
       form:
         font_size:          " Font Size "
         contrast:           " Contrast "
+        colour:             " Colour "
       show:
         increase_font_size: " Increase font size "
         decrease_font_size: " Decrease font size "

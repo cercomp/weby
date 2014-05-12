@@ -15,7 +15,7 @@
       <%= f.input :contrast , wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" } %>
 
       <%= each_i18n_tab do |locale| %>
-        <%= f.component_i18n_input locale, :label_contrast, :as => :string %>
+        <%= f.component_i18n_input locale, :label_contrast, :as => :string, :placeholder => t("menu_accessibility.views.show.colour", locale: locale.name.to_sym) %>
       <% end %>
     </div>
 </div>
