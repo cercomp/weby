@@ -13,8 +13,6 @@ es:
       form:
         font_size:          " Tamaño de la Fuente "
         contrast:           " Contrastar "
-        colour:             " Color "
-
       show:
         increase_font_size: " Aumentar tamaño de letra "
         decrease_font_size: " Disminuir tamaño de letra "

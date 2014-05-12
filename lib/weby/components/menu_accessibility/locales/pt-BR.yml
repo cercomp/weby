@@ -13,7 +13,6 @@ pt-BR:
       form:
         font_size:          " Tamanho da Fonte "
         contrast:           " Contraste "
-        colour:             " Cor "
       show:
         increase_font_size: " Aumentar o tamanho da fonte "
         decrease_font_size: " Diminuir o tamanho da fonte "
