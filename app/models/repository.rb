@@ -73,13 +73,17 @@ class Repository < ActiveRecord::Base
 #    archive.instance_write(:file_name, CGI.unescape(archive.original_filename))
 #  end
 
-  before_save :presence_fingerprint
+  before_save :presence_fingerprint, :presence_file_name
 
-  # Verificar se já existe um arquivo com o mesmo nome
+  # Verificar se o arquivo já existe no repositório
   def presence_fingerprint
-    a = Digest::MD5.file("/tmp/#{self.name}").to_s
+    a = Digest::MD5.file(archive.uploaded_file).to_s
     puts a
-#    url = "/uploads/:style/:site_id_:basename.:extension"
+  end
+
+  # Verificar se existe um arquivo com o mesmo nome
+  def presence_file_name
+    url = "/uploads/:style/:site_id_:basename.:extension"
   end
 
 # Metodo para incluir a url do arquivo no json
