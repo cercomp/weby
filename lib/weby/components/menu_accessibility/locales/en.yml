@@ -7,12 +7,14 @@ en:
       menu_accessibility_component:
         font_size:          " Font Size "
         contrast:           " Contrast "
-        label_contrast:     " Label "
+        label_font_size:    " Font Size Label "
+        label_contrast:     " Contrast Label "
+        display_controls:   " Display Controls "
   menu_accessibility:
     views:
       form:
         font_size:          " Font Size "
-        contrast:           " Contrast "
+        contrast:           " Contrast "  
       show:
         increase_font_size: " Increase font size "
         decrease_font_size: " Decrease font size "

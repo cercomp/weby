@@ -7,7 +7,9 @@ es:
       menu_accessibility_component:
         font_size:          " Tamaño de la Fuente "
         contrast:           " Contrastar "
-        label_contrast:     " Etiqueta "
+        label_font_size:    " Etiqueta Tamaño de la Fuente "
+        label_contrast:     " Etiqueta Contrast "
+        display_controls:   " Controles de la Pantalla "
   menu_accessibility:
     views:
       form:
