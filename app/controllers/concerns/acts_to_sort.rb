@@ -1,4 +1,4 @@
-module PageCommon
+module ActsToSort
   extend ActiveSupport::Concern
   
   def sort

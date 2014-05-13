@@ -1,6 +1,6 @@
 class Sites::Admin::PagesController < ApplicationController
   include ActsToToggle
-  include PageCommon
+  include ActsToSort
 
   before_filter :require_user
   before_filter :check_authorization

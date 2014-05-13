@@ -18,24 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   def choose_layout
-    if @site.nil? or @site.id.nil? 
-      return "application"
-    else
-      if @site.theme
-        return @site.theme
-        # Try to user thentar usar tema definido no perfil do usuário
-      elsif current_user && !current_user.theme.empty?
-        return current_user.theme
-        # Se não existir tente o definido no papel do usuário
-      elsif current_user && !current_user.role_ids.empty?
-        role_theme = Role.find(current_user.role_ids).theme
-        unless role_theme.nil? or role_theme.empty?
-          return role_theme
-        end
-      end
-    end
-    # Se não for nenhum dos acima use este
-    return "this2"
+    current_site.theme
   end
 
   def check_authorization

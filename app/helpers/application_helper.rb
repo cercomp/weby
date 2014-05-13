@@ -21,10 +21,10 @@ module ApplicationHelper
     !current_site || is_in_admin_context? || is_in_profile_context? || is_in_sites_index?
   end
 
-  # Define os menus
-  # Parâmetros: Lista de menu (sons, view_ctrl=false)
-  # html_class: "dropdown" ou "expanded"
-  # Retorna: O menu com seus controles
+  # Define the menus
+  # Params: Menu's list (sons, view_ctrl=false)
+  # html_class: "dropdown" or "expanded"
+  # Returns: the menu with its controllers
   def print_menu(menu, view_ctrl: false, html_class: "expanded")
     return '' unless menu
     menuitems = menu.items_by_parent(!view_ctrl)
@@ -35,7 +35,7 @@ module ApplicationHelper
     end
   end
 
-  # Método recursivo para gerar submenus e os controles
+  # Recursive methods in order to generate submenus and controles
   def print_menu_entry(sons, entry, view_ctrl)
     has_submenu = sons[entry.id].present?
     is_current_page = (@page && @page == entry.target) || request.path == entry.url

@@ -1,6 +1,6 @@
 class Sites::PagesController < ApplicationController
   layout :choose_layout
-  include PageCommon
+  include ActsToSort
 
   helper_method :sort_column
   before_filter :check_current_site
