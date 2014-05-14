@@ -13,7 +13,7 @@ window.onload = function(){
 /**
   * Mini layout's configurations functions
   */
-// Remove the clicked classa of the element
+// Remove the clicked class of the element
 function clear_mini_layout(){
   $(".clicked").each(function(){
     $(this).removeClass("clicked");
@@ -27,7 +27,7 @@ function select_position(){
   $("input[id$=_place_holder]").val(id.slice(5));
 }
 
-//Controls what happens when at the moment the local is selected
+//Controls what happens at the moment the local is selected
 $("[id*=mini_]").click(function(event){
   clear_mini_layout();
   $(event.target).addClass('clicked');
