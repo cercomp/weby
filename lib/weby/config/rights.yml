@@ -73,7 +73,7 @@ rights:
   banners:
     index:
       name: Listar Banners
-      action: index
+      action: index fronts
     show:
       name: Ver Banner
       action: show

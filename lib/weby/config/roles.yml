@@ -3,7 +3,7 @@ Gerente:
 
 Editor-Chefe:
   permissions:
-    banners: ["index", "show", "edit", "destroy", "change_position", "new"]
+    banners: ["index", "show", "edit", "destroy", "change_position", "new", "fronts"]
     groups: ["index", "show", "new"]
     messages: ["index", "show"]
     menu_items: ["change_position", "index", "show", "edit", "destroy", "new"]
