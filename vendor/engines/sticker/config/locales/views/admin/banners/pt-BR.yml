@@ -31,6 +31,7 @@ pt-BR:
           new_banner:               " Novo Banner "
           banners:                  " Banners "
           none_banner:              " Nenhum Banner "
+          publisheds:               " Publicados "
         view_picker:
           banners_as_thumbs:        " Exibir banners como miniaturas "
           banners_as_list:          " Exibir banners como lista "
@@ -42,3 +43,14 @@ pt-BR:
           period_banner:            " Período do Banner "
         new:
           banners:                  " Banners "
+        fronts:
+          banners:                  " Banners "
+          new_banner:               " Novo Banner "
+          all_banners:              " Todos "
+          none_published:           " Nenhum Banner "
+          image:                    " Imagem "
+          title:                    " Título "
+          category:                 " Categoria "
+          position:                 " Posição "
+          publication_date:         " Data Inicial "
+          publish:                  " Publicados "
