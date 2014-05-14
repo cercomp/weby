@@ -6,7 +6,6 @@ describe ApplicationController do
   end
 
   describe "admin" do
-    it 'renders admin/admin' 
   end
 
   describe "choose_layout" do
@@ -59,7 +58,7 @@ describe ApplicationController do
 
   #protected
 
-  describe resource do
+  describe "resource" do
   end
 
   describe "get_resource_ivar" do
