@@ -10,7 +10,7 @@
     <tbody>
       <% @site_users.each do |user| %>
         <tr>
-          <td><%= raw "#{user} (#{link_to_if check_permission(Admin::UsersController, :index), user.login, admin_user_url(user, subdomain: nil)})" %></td>
+          <td><%= raw "#{captalize_name(user)} (#{link_to_if check_permission(Admin::UsersController, :index), user.login, admin_user_url(user, subdomain: nil)})" %></td>
           <td>
             <span id="user_<%= user.id %>">
               <%= user.roles.map{ |r| r.name if r.site_id == @site.try(:id) }.compact.join(', ') %>

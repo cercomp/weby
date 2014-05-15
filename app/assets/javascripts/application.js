@@ -45,7 +45,7 @@ $(document).ready(function() {
        if(options.files){
           return;
        }
-      //Do noto use the .modal() function. If there is another modal it generates anomalous behaviour
+      //Do not use the .modal() function. If there is another modal it generates anomalous behaviour
       $('#loading-modal').removeClass('hide');
    }).ajaxComplete(function(evt,xhr){
       $('#loading-modal').addClass('hide');

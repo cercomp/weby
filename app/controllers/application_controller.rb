@@ -234,7 +234,7 @@ class ApplicationController < ActionController::Base
   def require_no_user
     if current_user
       store_location
-      #flash[:error] = t("no_need_to_login")
+      # flash[:error] = t("no_need_to_login")
       redirect_to admin_path
       return false
     end
@@ -271,7 +271,7 @@ class ApplicationController < ActionController::Base
     end
 
     if is_in_admin_context?
-      #an global variable exclusive for the backend
+      # An global variable exclusive for the backend
     else
       if @site
 
@@ -334,8 +334,8 @@ class ApplicationController < ActionController::Base
   end
 
   def record_activity(note, loggeable)
-    #real_ip = request.env['HTTP_X_FORWARDED_FOR'] || request.remote_ip
-    #if !ActivityRecord.where(user_id: current_user.id, site_id: current_site.id, controller: controller_name, action: action_name, loggeable: loggeable,
+    # real_ip = request.env['HTTP_X_FORWARDED_FOR'] || request.remote_ip
+    # if !ActivityRecord.where(user_id: current_user.id, site_id: current_site.id, controller: controller_name, action: action_name, loggeable: loggeable,
       @activity = ActivityRecord.new
       @activity.user_id = current_user.id
       @activity.site_id = current_site.id if current_site
