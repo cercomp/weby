@@ -7,7 +7,7 @@
       <h2><%= @page.title %></h2>
     <% end %>
   </header>
-  <% if !defined?(as_component) %>    
+  <% if !defined?(as_component) %>
     <div class="page-details">
     <% if @site.view_desc_pages %>
        <span class="author"><%= t("posted_by") %><%= @page.author %></span>
@@ -15,7 +15,7 @@
     <% if @page.publish %>
        <span class="date"><%= t(".updated_at") %><%= l((@page.updated_at.blank? ? @page.created_at : @page.updated_at), format: :short) %>.</span>
     <% end %>
-    </div>    
+    </div>
   <% end %>
 
   <%= content_tag_if @page.event?, :div, class: 'event' do %>
@@ -55,7 +55,7 @@
     <%= content_tag_if @page.category_list.any?, :p, class: 'categories' do %>
       <span class="categories-label"><%= "#{t('.categories')}:"  %></span>
       <% @page.category_list.each do |category| %>
-        <span class="label"><%= link_to category , site_pages_path( tags: category.to_s )%></span>
+        <%= link_to category, site_pages_path( tags: category.to_s ), class: 'weby-label default' %>
       <% end %>
     <% end %>
   <% end %>
@@ -63,10 +63,10 @@
   <%= render partial: 'sites/pages/related_files' if @page.related_files.any? %>
 
   <div style="margin-top: 8px;">
-    <%= link_to(icon('edit', text: t("edit")), main_app.edit_site_admin_page_path(@page)) if check_permission(Sites::Admin::PagesController, [:edit]) %>
+    <%= link_to(weby_icon('edit', t("edit")), main_app.edit_site_admin_page_path(@page)) if check_permission(Sites::Admin::PagesController, [:edit]) %>
     <% if !defined?(as_component) %>
-      <%= link_to icon('list', text: t(".list_all")), site_pages_path() %>
-      <%= link_to icon('chevron-left', text: t("back")), :back %>
+      <%= link_to weby_icon('list', t(".list_all")), site_pages_path() %>
+      <%= link_to weby_icon('chevron-left', t("back")), :back %>
     <% end %>
   </div>
 </article>

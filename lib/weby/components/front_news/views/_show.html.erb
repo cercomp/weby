@@ -2,8 +2,8 @@
 <section class="front_news_component<%= component.only_events? ? " events" : "" %>" data-url="<%= main_app.sort_site_pages_path if component.order_by == 'position' %>">
   <% show_all_link = component.filter_by.present? ?
       main_app.site_pages_path(direction: 'desc', sort: 'pages.created_at', tags: component.filter_by) :
-      component.only_events? ? 
-        main_app.events_site_pages_path(direction: 'asc', sort: 'pages.event_begin', upcoming: true, previous: nil) : 
+      component.only_events? ?
+        main_app.events_site_pages_path(direction: 'asc', sort: 'pages.event_begin', upcoming: true, previous: nil) :
         component.only_news? ?
           main_app.news_site_pages_path(direction: 'desc', sort: 'pages.created_at') :
           main_app.site_pages_path(direction: 'desc', sort: 'pages.created_at')
@@ -38,7 +38,7 @@
         </header>
         <summary>
           <% if component.max_char.present? %>
-            <%= raw(page.summary[0..component.max_char.to_i] + 
+            <%= raw(page.summary[0..component.max_char.to_i] +
                     (page.summary.size > component.max_char.to_i ? "..." : "")) %>
           <% else  %>
             <%= raw page.summary %>
@@ -49,9 +49,9 @@
         <% end %>
         <div class="clear clearfix"> </div>
         <div class="control">
-          <%= link_to icon('edit', text: t("edit")), main_app.edit_site_admin_page_path(page) if check_permission Sites::Admin::PagesController, [:edit] %>
+          <%= link_to weby_icon('edit', t("edit")), main_app.edit_site_admin_page_path(page) if check_permission Sites::Admin::PagesController, [:edit] %>
           <% if component.order_by == 'position' && check_permission(Sites::PagesController, ["sort"]) %>
-            <%= link_to icon('move', text: t("move")), "#", class: 'handle' if @front_news.length > 1 %>
+            <%= link_to weby_icon('arrows', t("move")), "#", class: 'handle' if @front_news.length > 1 %>
           <% end %>
         </div>
       </article>

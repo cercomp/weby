@@ -21,6 +21,7 @@ gem 'zeroclipboard-rails'
 gem 'useragent', '0.2.3', :git => 'http://github.com/jilion/useragent'
 gem 'zip-zip'
 gem 'jcrop-rails-v2'
+gem 'font-awesome-sass'
 
 group :assets do
   gem 'sass-rails'

@@ -11,6 +11,7 @@
     <%= auto_discovery_link_tag(:rss, main_app.site_feed_url(format: 'rss'),  {:title => "#{@site.try(:title)} - RSS"}) %>
     <%= auto_discovery_link_tag(:atom, main_app.site_feed_url(format: 'atom'),  {:title => "#{@site.try(:title)} - ATOM"}) %>
     <%= stylesheet_link_tag '_webybar' %>
+    <%= stylesheet_link_tag 'weby-assets' %>
     <%= yield :stylesheets %>
     <%= yield :components_stylesheets %>
     <%= render 'sites/shared/loadStyles' %>
