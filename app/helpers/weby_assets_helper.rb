@@ -1,5 +1,6 @@
 module WebyAssetsHelper
-  def weby_icon(icon, text="", html_options={})
+  # method to print a icon and text if has params setted
+  def weby_icon(icon, text = '', html_options = {})
     content_class = "fa fa-#{icon}"
     content_class << " #{html_options[:class]}" if html_options.key?(:class)
     html_options[:class] = content_class
