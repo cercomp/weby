@@ -60,7 +60,25 @@
     <% end %>
   <% end %>
 
-  <%= render partial: 'sites/pages/related_files' if @page.related_files.any? %>
+  <%# List the related files if they exist %>
+  <% if @page.related_files.any? %>
+    <table class="table table-striped table-condensed table-bordered">
+      <thead>
+        <tr>
+          <th><%= t(".related_files") %></th>
+          <th><%= t(".size") %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @page.related_files.each do |file| %>
+        <tr>
+          <td><%= link_to file.description, file.archive.url %></td>
+          <td><%= file.archive_file_size.to_i/1024 %> Kb</td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
 
   <div style="margin-top: 8px;">
     <%= link_to(icon('edit', text: t("edit")), main_app.edit_site_admin_page_path(@page)) if check_permission(Sites::Admin::PagesController, [:edit]) %>
