@@ -18,8 +18,7 @@ class Admin::SitesController < ApplicationController
 
   def new
     @site = Site.new
-    @site.theme = 'this2' #default theme, TODO make this configurable if it ever stop being part of the weby core
-    load_themes
+    load_themes #@themes
   end
 
   def create

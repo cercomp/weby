@@ -10,12 +10,6 @@ module UsersHelper
     sites
   end
 
-  # Input: User
-  # Output: User full name in camelcase
-  def captalize_name(user)
-    user.fullname.titleize
-  end
-
   def notifications_icon
     user = User.find(current_user.id)
     unread = user.unread_notifications_array

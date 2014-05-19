@@ -22,8 +22,8 @@ class Repository < ActiveRecord::Base
 
   scope :content_file, proc { |contents|
     if contents.is_a?(Array)
-      # TODO: Esse código funcionará exclusivamente para o Postgresql
-      # TODO: Corrigir para funcionar independente do banco de dados.
+      # NOTE: It only works with Postgresql, it needs to be refactored in order to
+      # be used with another DBMS
       contents = contents.map{|content| "%#{content.gsub("+", "\\\\+")}%"}
       where ["archive_content_type SIMILAR TO :values",
              {values: "%(#{contents.join('|')})%"}
@@ -68,14 +68,14 @@ class Repository < ActiveRecord::Base
     !x.blank? && !y.blank? && w.to_i > 0 && h.to_i > 0
   end
 
-  # Metodo para incluir a url do arquivo no json
+  # Includes the file's url in the json
   def archive_url(format = :original)
     self.archive.url(format)
   end
 
   alias :as_json_bkp :as_json
 
-  # json alterado para enviar os dados mínimos
+  # json with the minimum data 
   def as_json(options = {})
     self.as_json_bkp only: [:id,
                             :archive_file_name,
@@ -96,8 +96,8 @@ class Repository < ActiveRecord::Base
     archive_content_type.include?("flash") or archive_content_type.include?("shockwave")
   end
 
-  # Remoção de caracteres que causava erro no paperclip
-  # TODO: Rever uma melhor implementação
+  # Removing characters in conflict with paperclip
+  # TODO: Review thie method
   def normalize_file_name
     archive.instance_write(:file_name, CGI.unescape(archive.original_filename))
   end

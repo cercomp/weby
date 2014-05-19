@@ -34,7 +34,7 @@ class Sites::Admin::ComponentsController < ApplicationController
 
   def create
     if (comp = params[:component])
-      # cria uma nova instância do componente selecionado
+      # creates an new instance of the selected component
       @component = Weby::Components.factory(comp)
       @component.attributes = params["#{comp}_component"]
 
@@ -77,13 +77,11 @@ class Sites::Admin::ComponentsController < ApplicationController
     render :nothing => true
   end
   
-  # TODO: método criado somente para colocar códigos específicos de componentes
-  # enquanto não há uma solução melhor, já que um componente não tem um controller
+  # TODO: Review this method
+  # Used to add especific component's code as the component don't have an controller
   def update_params
-
     params[:feedback_component][:groups_id] ||= nil if params[:feedback_component]
     params[:photo_slider_component][:photo_ids] ||= [] if params[:photo_slider_component]
-    
   end
   private :update_params
 end

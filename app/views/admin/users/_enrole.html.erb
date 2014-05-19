@@ -21,7 +21,7 @@
         <td style="height: 300px; overflow: auto">
           <div>
             <%= text_field_tag :users_unroled, params[:users_unroled], placeholder: t("search"),
-              data: {fullname: (@user and @users_unroled.include?(@user)) ? captalize_name(@user) : ''}, class: 'form-control' %>
+              data: {fullname: (@user and @users_unroled.include?(@user)) ? @user.fullname : ''}, class: 'form-control' %>
           </div>
           <div style="height: 300px; overflow: auto">
             <ul id="users_list_roles" class="nav"> 
@@ -29,7 +29,7 @@
                 <li>
                 <label class="checkbox cursor">
                   <%= check_box_tag 'user[id][]', user.id, user.id == params[:user_id].to_i %>
-                  <%= "#{captalize_name(user)} (#{user.login})" %>
+                  <%= "#{user.fullname} (#{user.login})" %>
                 </label>
                 </li>
               <% end %>

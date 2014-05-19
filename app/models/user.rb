@@ -112,14 +112,14 @@ class User < ActiveRecord::Base
     Site.where(id: self.roles.map{|role| role.site_id}.uniq)
   end
 
-  # Pega os papeis globais do usuário
+  # Returns the user's global roles
   def global_roles
     self.roles.where(site_id: nil)
   end
 
-  # NOTE Rotina para trabalhar com o padrão de senha do authlogic no devise.
-  # Quando um usuário possui a senha encriptada usando o hash do authlogic
-  # é gerada uma nova senha encriptada com o hash do devise, atualiza e autentica
+  # NOTE Routine used to manage the authlogic's password pattern using devise.
+  # When the user have an encripted password using the authlogic's hash
+  # it is generated an new password using the devise's hash, and then authenticate
   alias :devise_valid_password? :valid_password?
   def valid_password?(password)
     begin

@@ -383,8 +383,8 @@ module ApplicationHelper
     end
   end
 
-  #URL do login de acordo com o site.
-  #O login pode ser na url global ou na url do próprio site
+  # Login's URL according to the site.
+  # O login pode ser na url global ou na url do próprio site
   def weby_login_url back_url=nil
     site = nil
     if Weby::Settings.domain.present? and current_site
