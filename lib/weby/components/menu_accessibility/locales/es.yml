@@ -15,6 +15,7 @@ es:
       form:
         font_size:          " Tamaño de la Fuente "
         contrast:           " Contrastar "
+        display_controls:   " Controles de la Pantalla "
       show:
         increase_font_size: " Aumentar tamaño de letra "
         decrease_font_size: " Disminuir tamaño de letra "

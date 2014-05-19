@@ -14,7 +14,8 @@ en:
     views:
       form:
         font_size:          " Font Size "
-        contrast:           " Contrast "  
+        contrast:           " Contrast "
+        display_controls:   " Display Controls "
       show:
         increase_font_size: " Increase font size "
         decrease_font_size: " Decrease font size "

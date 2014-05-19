@@ -9,7 +9,6 @@ pt-BR:
         contrast:           " Contraste "
         label_font_size:    " Rótulo Tamanho de Fonte "
         label_contrast:     " Rótulo Contraste "
-        
   menu_accessibility:
     views:
       form:

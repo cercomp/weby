@@ -1,3 +1,6 @@
+.btn > img {
+background-color: transparent !important;
+}
 * :not(.btn){
 background-color: #F7F3D6 !important;
 color: #020167 !important;
@@ -88,6 +91,7 @@ span.accessibility {
 border: 1px solid #020167 !important;
 }
 span.accessibility,
+span.accessibility_font,
 span.accessibility_font *,
 span.accessibility_color {
 background-color: #DFD179 !important;
@@ -101,4 +105,7 @@ box-shadow: none !important;
 }
 ::-webkit-input-placeholder {
 color: #020167 !important;
+}
+.fa.fa-search {
+background: transparent !important;
 }
