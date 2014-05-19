@@ -1,0 +1,97 @@
+.weby-label {
+  display: inline;
+  padding: .2em .6em .3em;
+  font-size: 75%;
+  font-weight: bold;
+  line-height: 1;
+  color: #FFFFFF;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+  text-decoration: none;
+
+  &:empty {
+    display: none;
+  }
+
+  .btn & {
+    position: relative;
+    top: -1px;
+  }
+
+  &.default {
+    background-color: #999;
+
+    &[href] {
+      &:hover,
+      &:focus {
+        background-color: darken(#999, 10%);
+      }
+    }
+  }
+
+  &.primary {
+    background-color: #428bca;
+
+    &[href] {
+      &:hover,
+      &:focus {
+        background-color: darken(#428bca, 10%);
+      }
+    }
+  }
+
+  &.success {
+    background-color: #5cb85c;
+
+    &[href] {
+      &:hover,
+      &:focus {
+        background-color: darken(#5cb85c, 10%);
+      }
+    }
+  }
+
+  &.info {
+    background-color: #5bc0de;
+
+    &[href] {
+      &:hover,
+      &:focus {
+        background-color: darken(#5bc0de, 10%);
+      }
+    }
+  }
+
+  &.warning {
+    background-color: #f0ad4e;
+
+    &[href] {
+      &:hover,
+      &:focus {
+        background-color: darken(#f0ad4e, 10%);
+      }
+    }
+  }
+
+  &.danger {
+    background-color: #d9534f;
+
+    &[href] {
+      &:hover,
+      &:focus {
+        background-color: darken(#d9534f, 10%);
+      }
+    }
+  }
+}
+
+a.weby-label {
+  &:hover,
+  &:focus {
+    color: #FFFFFF;
+    text-decoration: none;
+    cursor: pointer;
+  }
+}

@@ -2,3 +2,7 @@ pt-BR:
   components:
     menu_i18n:
       name:    " Menu de internacionalização "
+  activerecord:
+    attributes:
+      menu_i18n_component:
+        dropdown:           " Desdobrável "

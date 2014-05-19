@@ -14,7 +14,7 @@
             <%= link_to t(".format"),"javascript:autoFormatSelection()", class: "btn btn-default btn-sm" %>
             <%= link_to t(".comment"),"javascript:commentSelection(true)", class: "btn btn-default btn-sm" %>
             <%= link_to t(".uncomment"),"javascript:commentSelection(false)", class: "btn btn-default btn-sm" %>
-              <%= link_to t(".insert_image"), "javascript:insertImage()", class: "btn btn-default btn-sm" %>
+            <%= link_to t(".insert_image"), "javascript:insertImage()", class: "btn btn-default btn-sm" %>
           </div>
           <%= f.button :button, t(".apply"), type: :button, disabled: :disabled, class: "btn-apply btn btn-primary btn-sm" unless @style.new_record? %>
         </div>

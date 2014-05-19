@@ -1,0 +1,104 @@
+* :not(.btn){
+background-color: #F7F3D6 !important;
+color: #020167 !important;
+border-color: 1px white !important;
+}
+a:not(.btn){
+color: #020167;
+font-weight: bold !important;
+}
+a:hover:not(.btn){
+text-decoration: underline !important;
+}
+.gov_bar_component {
+border-top: 1px solid #020167 !important;
+border-bottom: 1px solid #020167 !important;
+}
+#webybar .label,
+#webybar .label *,
+.gov_bar_component *,
+article.page-show,
+article.page-show *,
+.menu_component *,
+.news_list_component *,
+menu li,
+.event_list_component *,
+.news_as_home_component section#pages *,
+div#list *,
+div#pages.pages-list,
+div#pages.pages-list * {
+background-color: #DFD179 !important;
+}
+#barra-brasil .list .first {
+border-right: 2px solid #020167 !important;
+border-left: 2px solid #020167 !important
+}
+.brasil-flag,
+#barra-brasil .list-item {
+border-right: 2px solid #020167 !important;
+}
+#webybar .label,
+section#content > article,
+.news_list_component .list border fullwidth zebra,
+.news_list_component,
+.event_list_component,
+article.page-show,
+.news_as_home_component article.page-show,
+.front_news_component,
+div#pages.pages-list {
+border: 1px solid #020167 !important;
+}
+header nav menu li,
+aside .menu_component menu li,
+footer nav menu li {
+border: 1px solid #020167 !important;
+margin-right: 0px;
+}
+.search_box_component #search,
+.form-control {
+background-color: white !important;
+border-color: #020167 !important;
+}
+table.border, table.border th, table.border td{
+border: none !important;
+}
+.input-append #search {
+background-color: white !important;
+border-color: #020167 !important;
+}
+section#content > article .event {
+border-left: 1px solid #020167 !important;
+}
+section#content section#pages li {
+border-bottom: 1px dotted #020167 !important;
+}
+div.pagination,
+.search-results .item-search-result:first-child,
+.search-results .item-search-result {
+border-bottom: 1px dotted #020167 !important;
+}
+div .btn a {
+background-color: none !important;
+}
+#filterNav .selected {
+color: #000066 !important;
+font-weight: normal !important;
+}
+span.accessibility {
+border: 1px solid #020167 !important;
+}
+span.accessibility,
+span.accessibility_font *,
+span.accessibility_color {
+background-color: #DFD179 !important;
+}
+input#search:focus,
+textarea:focus,
+input:focus {
+border-color: #020167 !important;
+-webkit-box-shadow: none !important;
+box-shadow: none !important;
+}
+::-webkit-input-placeholder {
+color: #020167 !important;
+}

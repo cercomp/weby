@@ -2,10 +2,24 @@ pt-BR:
   components:
     menu_accessibility:
       name:                 " Menu de acessibilidade "
+  activerecord:
+    attributes:
+      menu_accessibility_component:
+        font_size:          " Tamanho da Fonte "
+        contrast:           " Contraste "
+        label_font_size:    " Rótulo Tamanho de Fonte "
+        label_contrast:     " Rótulo Contraste "
+        
   menu_accessibility:
     views:
+      form:
+        font_size:          " Tamanho da Fonte "
+        contrast:           " Contraste "
+        display_controls:   " Exibir Controles "
       show:
         increase_font_size: " Aumentar o tamanho da fonte "
         decrease_font_size: " Diminuir o tamanho da fonte "
         default_font_size:  " Tamanho padrão da fonte "
         contrast:           " Alterar o contraste da página "
+        contrast_normal:    " Retirar o contraste da pagina "
+        colour:             " Cor "

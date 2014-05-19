@@ -1,9 +1,28 @@
 <nav class="menu_accessibility_component right">
-  <%= link_to icon('adjust'), "#", onclick: 'Contrast()', title: t(".contrast") %>
-  <%= link_to icon('minus'), "#", onclick: 'font_size_down()', title: t(".decrease_font_size")%>
-  <%= link_to icon('font'), "#", onclick: 'font_size_original()', title: t(".default_font_size")%>
-  <%= link_to icon('plus'), "#", onclick: 'font_size_up()', title: t(".increase_font_size")%>
-  <% content_for :javascripts, javascript_include_tag('font_size_control') %>
-  <% content_for :javascripts, javascript_include_tag('rgbcolor') %>
-  <% content_for :javascripts, javascript_include_tag('contrast') %>
+  <span class="accessibility">
+    <% if component.font_size? %>
+      <span class="accessibility_font">
+        <% if !component.label_font_size.blank? %>
+          <%= component.label_font_size %>
+        <% end %>
+
+        <%= link_to weby_icon('minus'), "#", onclick: 'font_size_down()', title: t(".decrease_font_size")%>
+        <%= link_to weby_icon('font'), "#", onclick: 'font_size_original()', title: t(".default_font_size")%>
+        <%= link_to weby_icon('plus'), "#", onclick: 'font_size_up()', title: t(".increase_font_size")%>
+        <% content_for :javascripts, javascript_include_tag('font_size_control') %>
+      </span>
+    <% end %>
+    <% if component.contrast? %>
+      <span class="accessibility_color">
+        <% if !component.label_contrast.blank? %>
+          <%= component.label_contrast %>
+        <% end %>
+
+        <%= link_to ('C'), {contrast: params[:contrast] = "no"}, title: t(".contrast_normal"), class: 'contrast_normal' %>
+        <%= link_to ('C'), {contrast: params[:contrast] = "blue"}, title: t(".contrast"), class: 'contrast_blue' %>
+        <%= link_to ('C'), {contrast: params[:contrast] = "black"}, title: t(".contrast"), class: 'contrast_black' %>
+        <%= link_to ('C'), {contrast: params[:contrast] = "yellow"}, title: t(".contrast"), class: 'contrast_yellow' %>
+      </span>
+    <% end %>
+  </span>
 </nav>

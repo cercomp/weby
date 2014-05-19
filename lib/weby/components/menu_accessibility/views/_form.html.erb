@@ -1,0 +1,25 @@
+<div class="tabbable">
+  <ul class="nav nav-tabs" id="style-tab">
+    <li class="active" >
+      <a href="#font-size" data-toggle="tab"><%= t(".font_size") %></a>
+    </li>
+    <li>
+      <a href="#contrast" data-toggle="tab"><%= t(".contrast") %></a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="font-size" style="padding-left: 5px;">
+      <%= f.input :font_size , :label => t("menu_accessibility.views.form.display_controls"), wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" }  %>
+
+      <%= each_i18n_tab do |locale| %>
+        <%= f.component_i18n_input locale, :label_font_size, :as => :string %>
+      <% end %>
+    </div>
+    <div class="tab-pane" id="contrast">
+      <%= f.input :contrast, :label => t("menu_accessibility.views.form.display_controls") , wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" } %>
+
+      <%= each_i18n_tab do |locale| %>
+        <%= f.component_i18n_input locale, :label_contrast, :as => :string %>
+      <% end %>
+    </div>
+</div>
