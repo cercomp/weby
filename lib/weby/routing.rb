@@ -35,7 +35,7 @@ module ActionDispatch
             options[:host] = with_subdomain(options.delete(:subdomain), options)
           else
             #puts options
-            raise ActionController::RoutingError.new "Subdomain missing" if !options[:only_path] && ['site','site_page'].include?(options[:use_route])
+            raise ActionController::RoutingError.new 'Subdomain missing' if !options[:only_path] && ['site','site_page'].include?(options[:use_route])
           end
         end
         #options[:protocol] = Weby::Settings.login_protocol if Weby::Cache.request[:current_user]

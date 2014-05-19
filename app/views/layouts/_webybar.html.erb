@@ -7,7 +7,6 @@
     <div class="nav pull-left">
       <%= link_to t(".dashboard"), main_app.site_admin_path, class: 'pull-left' if current_user.has_role_in?(current_site) %>
       <%= link_to(t(".help"), current_settings.help_site, target: '_blank', class: 'pull-left') if current_settings.help_site %>
-      <%= link_to t(".about"), '#', target: '_blank', class: 'pull-left', id: 'about-weby' %>
     </div>
     <div class="user pull-right">
       <%= link_to main_app.profile_url(current_user.login, subdomain: current_site) do %>
