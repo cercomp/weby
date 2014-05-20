@@ -167,8 +167,14 @@ class ApplicationController < ActionController::Base
     Site.increment_counter :view_count, current_site.id
   end
 
+  # NOTE Review this method to include the extensions
   def count_click
-    params[:model].titleize.constantize.increment_counter :click_count, params[:id]
+    case params[:model] 
+    when "banner"
+      Sticker::Banner.increment_counter :click_count, params[:id]
+    else
+      params[:model].titleize.constantize.increment_counter :click_count, params[:id]
+    end
     render nothing: true
   end
 
