@@ -1,6 +1,6 @@
 # coding: utf-8
 class ApplicationController < ActionController::Base
-  include ApplicationHelper # Para usar helper methods nos controllers
+  include ApplicationHelper # In order to user helper methods in controllers
 
   protect_from_forgery
   before_filter :set_tld_length, :set_global_vars
@@ -18,24 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   def choose_layout
-    if @site.nil? or @site.id.nil? 
-      return "application"
-    else
-      if @site.theme
-        return @site.theme
-        # Tentar usar tema definido no perfil do usuário
-      elsif current_user && !current_user.theme.empty?
-        return current_user.theme
-        # Se não existir tente o definido no papel do usuário
-      elsif current_user && !current_user.role_ids.empty?
-        role_theme = Role.find(current_user.role_ids).theme
-        unless role_theme.nil? or role_theme.empty?
-          return role_theme
-        end
-      end
-    end
-    # Se não for nenhum dos acima use este
-    return "this2"
+    current_site.theme
   end
 
   def check_authorization
@@ -121,7 +104,7 @@ class ApplicationController < ActionController::Base
 
   @@weby_error_logger = Logger.new("#{Rails.root}/log/error.log")
 
-  # Método utilizado para redirecionamento, quando endereço não existe
+  # Redirection when the address does not exist
   def render_404(exception=nil)
     @not_found_path = request.path
     @error = exception
@@ -198,16 +181,16 @@ class ApplicationController < ActionController::Base
 
   private
 
-  # busca por uma variabel com o mesmo nome do controller
-  # ex. se o controller for Users ele vai buscar uma
-  # variavel @user
+  # Search for a variable with the same name of the controller
+  # eg. if it is the Users controller it will search for
+  # @user
   def get_resource_ivar
     instance_variable_get("@#{self.controller_name.singularize}")
   end
 
-  # define uma variabel com o mesmo nome do controller
-  # ex. se o controller for Users ele vai definir uma
-  # variavel @user com o valor do parametro
+  # Defines one variable with the same name of the controlller
+  # eg. if it is the Users controller it will create
+  # @user with the given param
   def set_resource_ivar(resource)
     instance_variable_set("@#{self.controller_name.singularize}", resource)
   end
@@ -242,10 +225,10 @@ class ApplicationController < ActionController::Base
   def current_roles_assigned
     return [] unless current_user
     if @site
-      # Obtém todos os papéis do usuário relacionados com site
+      # Get all the user's roles related to a site
       @current_roles_assigned ||= current_user.roles.where(['site_id IS NULL OR site_id = ?', @site.id])
     else
-      # Obtém os papéis globais
+      # Get the global roles
       @current_roles_assigned ||= current_user.roles.where(site_id: nil)
     end
   end
@@ -257,7 +240,7 @@ class ApplicationController < ActionController::Base
   def require_no_user
     if current_user
       store_location
-      #flash[:error] = t("no_need_to_login")
+      # flash[:error] = t("no_need_to_login")
       redirect_to admin_path
       return false
     end
@@ -272,7 +255,7 @@ class ApplicationController < ActionController::Base
     session[:return_to] = nil
   end
 
-  # Define variáveis globais
+  # Defines global variables
   def set_global_vars
     @site = current_site
 
@@ -294,12 +277,12 @@ class ApplicationController < ActionController::Base
     end
 
     if is_in_admin_context?
-      #alguma var global exclusiva para o backend
+      # An global variable exclusive for the backend
     else
       if @site
 
         @global_menus = {}
-        # Carrega os menus, para auemntar a eficiência, já que menus são carregados em todas as requisições
+        # Get the menus more efficiently, since menus are asked for in every requisition
         @site.menus.with_items.each do |menu|
           @global_menus[menu.id] = menu
         end
@@ -342,7 +325,7 @@ class ApplicationController < ActionController::Base
     Weby::Settings.clear
   end
 
-  # Metodo usado na ordenação de tabelas por alguma coluna
+  # Used to sort tables by any column
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
   end
@@ -357,8 +340,8 @@ class ApplicationController < ActionController::Base
   end
 
   def record_activity(note, loggeable)
-    #real_ip = request.env['HTTP_X_FORWARDED_FOR'] || request.remote_ip
-    #if !ActivityRecord.where(user_id: current_user.id, site_id: current_site.id, controller: controller_name, action: action_name, loggeable: loggeable,
+    # real_ip = request.env['HTTP_X_FORWARDED_FOR'] || request.remote_ip
+    # if !ActivityRecord.where(user_id: current_user.id, site_id: current_site.id, controller: controller_name, action: action_name, loggeable: loggeable,
       @activity = ActivityRecord.new
       @activity.user_id = current_user.id
       @activity.site_id = current_site.id if current_site

@@ -14,9 +14,9 @@ module Weby
       METHOD
     end
 
-    #As configurações ficam em memória, na variavel @settings
-    #ao final da requisição chame a função clear para que na próxima chamada
-    # a alguma configuração ela, seja recarregada
+    # The configurations are stored in memory ( @settings )
+    # at the end of an requisition call the clear function in order to  reload it at  the next call
+    # of any confiuration
     def self.clear
       @settings = nil
     end

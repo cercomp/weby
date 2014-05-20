@@ -7,19 +7,6 @@ class Admin::UsersController < ApplicationController
   respond_to :html, :xml
   helper_method :sort_column
 
-  def manage_roles
-    # Seleciona os todos os usuários que não são administradores
-    @user = User.no_admin
-    # Usuários que possuem papel global e não são administradores
-    @site_users = User.global_role.no_admin.order('users.first_name asc')
-    # Todos os usuários menos os que não são administradores e possuem papeis globais
-    @users_unroled = User.order('users.first_name asc') - (User.admin + User.global_role)
-    # Busca os papéis globais
-    @roles = Role.globals
-    # Quando a edição dos papeis é solicitada
-    @user = User.find(params[:user_id]) if params[:user_id]
-  end
-
   def change_roles
     params[:role_ids] ||= []
     user_ids = []
@@ -27,22 +14,34 @@ class Admin::UsersController < ApplicationController
 
     user_ids.each do |user_id|
       user = User.find(user_id)
-      # Limpa os papeis do usuário no site
+      #  Clean all user's roles in the site
       user.role_ids.each do |role_id|
         if @site and @site.roles.map{|r| r.id }.index(role_id)
           user.role_ids -= [role_id]
         end
       end
       
-      # Se for global, limpa os papeis globais
+      # If it is an global role
       unless @site
         user.roles.where(site_id: nil).each{|r| user.role_ids -= [r.id] }
       end
-      # NOTE Talvez seja melhor usar (user.role_ids += params[:role_ids]).uniq
-      # assim removemos o each logo a cima
+      # NOTE Maybe it is better to use (user.role_ids += params[:role_ids]).uniq
       user.role_ids += params[:role_ids]
     end
     redirect_to :action => 'manage_roles'
+  end
+
+  def manage_roles
+    # Select the users that are not ADMIN
+    #@users = User.no_admin
+    # User that have a role and are not ADMIN
+    @site_users = User.no_admin.by_site(@site).order('users.first_name asc')
+    # Users that do not have a role and are not ADMIN
+    @users_unroled = User.actives.no_admin.by_no_site(@site).order('users.first_name asc')
+    # Search for the roles (global/site)
+    @roles = @site.roles.order("id")
+    # When it is asked to manage a role
+    @user = User.find(params[:user_id]) if params[:user_id]
   end
 
   def index

@@ -1,5 +1,6 @@
 class Sites::Admin::PagesController < ApplicationController
   include ActsToToggle
+  include ActsToSort
 
   before_filter :require_user
   before_filter :check_authorization
@@ -130,31 +131,5 @@ class Sites::Admin::PagesController < ApplicationController
     end
     record_activity("restored_page", @page)
     redirect_to :back
-  end
-
-  def sort
-    @ch_pos = current_site.pages.find(params[:id_moved], :readonly => false)
-    increment = 1
-    #Caso foi movido para o fim da lista ou o fim de uma pagina(quando paginado)
-    if(params[:id_after] == '0')
-      @before = current_site.pages.find(params[:id_before])
-      condition = "position < #{@ch_pos.position} AND position >= #{@before.position}"
-      new_pos = @before.position
-    else
-      @after = current_site.pages.find(params[:id_after])
-      #Caso foi movido de cima pra baixo
-      if(@ch_pos.position > @after.position)
-        condition = "position < #{@ch_pos.position} AND position > #{@after.position}"
-        new_pos = @after.position+1
-        #Caso foi movido de baixo pra cima
-      else
-        increment = -1
-        condition = "position > #{@ch_pos.position} AND position <= #{@after.position}"
-        new_pos = @after.position
-      end
-    end
-    current_site.pages.front.where(condition).update_all("position = position + (#{increment})")
-    @ch_pos.update_attribute(:position, new_pos)
-    render :nothing => true
   end
 end

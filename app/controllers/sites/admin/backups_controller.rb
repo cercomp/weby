@@ -75,12 +75,12 @@ class Sites::Admin::BackupsController < ApplicationController
     uploaded_io = params[:upload]
 
     case uploaded_io.content_type
-      when 'text/xml'
-        attrs = Hash.from_xml(uploaded_io.read)
-      when 'application/json'
-        attrs = JSON.parse uploaded_io.read
-      when 'application/octet-stream'
-        attrs = JSON.parse uploaded_io.read
+    when 'text/xml'
+      attrs = Hash.from_xml(uploaded_io.read)
+    when 'application/json'
+      attrs = JSON.parse uploaded_io.read
+    when 'application/octet-stream'
+      attrs = JSON.parse uploaded_io.read
     end
 if attrs
   #    current_site.roles.import(attrs['site']['roles']) if attrs['site']['roles']

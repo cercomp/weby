@@ -1,8 +1,8 @@
 /**
- * Script para páginas com formulário de componentes
+ * Script for the pages with component's forms
  */
 
-/* Configurações iniciais */
+/* Initial configuration */
 var place_holder = "#mini_"
 
 window.onload = function(){
@@ -11,23 +11,23 @@ window.onload = function(){
 };
 
 /**
-  * Funções para manipulação do mini Layout
+  * Mini layout's configurations functions
   */
-// Remove a classe de selecionado dos elementos
+// Remove the clicked class of the element
 function clear_mini_layout(){
   $(".clicked").each(function(){
     $(this).removeClass("clicked");
   });
 }
 
-//Retorna o id sem o "mini_" como o valor para o input
+//Returns the id without the "mini_" as the value for the input
 function select_position(){
   var id = ""
   $(".clicked").each(function(){ id = this.id});	
   $("input[id$=_place_holder]").val(id.slice(5));
 }
 
-//Controla o que acontence no momento em que a local e selecionado
+//Controls what happens at the moment the local is selected
 $("[id*=mini_]").click(function(event){
   clear_mini_layout();
   $(event.target).addClass('clicked');

@@ -1,24 +1,10 @@
 # coding: utf-8
-
 class Sites::Admin::UsersController < ApplicationController
   before_filter :require_user
   before_filter :check_authorization
   
   respond_to :html, :xml
   helper_method :sort_column
-
-  def manage_roles
-    # Seleciona os todos os usuários que não são administradores
-    #@users = User.no_admin
-    # Usuários que possuem papel no site e não são administradores
-    @site_users = User.no_admin.by_site(@site).order('users.first_name asc')
-    # Usuários que NÃO possuem papel no site e não são administradores
-    @users_unroled = User.actives.no_admin.by_no_site(@site).order('users.first_name asc')
-    # Busca os papéis do site e global
-    @roles = @site.roles.order("id")
-    # Quando a edição dos papeis é solicitada
-    @user = User.find(params[:user_id]) if params[:user_id]
-  end
 
   def change_roles
     params[:role_ids] ||= []
@@ -27,21 +13,34 @@ class Sites::Admin::UsersController < ApplicationController
 
     user_ids.each do |user_id|
       user = User.find(user_id)
-      # Limpa os papeis do usuário no site
+      # Clean the roles of an user in a site
       user.role_ids.each do |role_id|
         if @site and @site.roles.map{|r| r.id }.index(role_id)
           user.role_ids -= [role_id]
         end
       end
       
-      # Se for global, limpa os papeis globais
+      # If it is a global role, clean the golbal roles
       unless @site
         user.roles.where(site_id: nil).each{|r| user.role_ids -= [r.id] }
       end
-      # NOTE Talvez seja melhor usar (user.role_ids += params[:role_ids]).uniq
-      # assim removemos o each logo a cima
+      # NOTE maybe it is better to use (user.role_ids += params[:role_ids]).uniq
+      # that way we remove the each above
       user.role_ids += params[:role_ids]
     end
     redirect_to :action => 'manage_roles'
+  end
+
+  def manage_roles
+    # Select the users that are not ADMIN
+    #@users = User.no_admin
+    # User that have a role and are not ADMIN
+    @site_users = User.no_admin.by_site(@site).order('users.first_name asc')
+    # Users that do not have a role and are not ADMIN
+    @users_unroled = User.actives.no_admin.by_no_site(@site).order('users.first_name asc')
+    # Search for the roles (global/site)
+    @roles = @site.roles.order("id")
+    # When it is asked to manage a role
+    @user = User.find(params[:user_id]) if params[:user_id]
   end
 end

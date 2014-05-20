@@ -2,7 +2,6 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require tables
-//= require about
 //= require select2
 //= require select2_locale_pt-BR
 //= require_self
@@ -12,7 +11,7 @@ var WEBY = {};
 // Mostrar mensagem para erros, no retorno do ajax
 FlashMsg = {
    notify: function(status){
-      //TODO algumas requisições ajax, retornam 500, mesmo quando OK
+      //TODO some ajax requisitions return 500, even if they are ok
       //if([403,500].indexOf(status)>-1){
       if(status == 403){
          //flash = $(document.createElement('div'));
@@ -45,15 +44,15 @@ $(document).ready(function() {
        if(options.files){
           return;
        }
-      //Não use a função .modal() pois se a página tiver outro modal, gera comportamento não ideal
+      //Do not use the .modal() function. If there is another modal it generates anomalous behaviour
       $('#loading-modal').removeClass('hide');
    }).ajaxComplete(function(evt,xhr){
       $('#loading-modal').addClass('hide');
       FlashMsg.notify(xhr.status);
    });
 
-   //Fixar o menu admin quando o usuário rola a página
-   //inclusive responsivo
+   //Fixes the admin menu on the screen
+   //responsive
    var menuadmin = $('#menu-admin');
    if(menuadmin.length>0){
        $(window).scroll(function(){

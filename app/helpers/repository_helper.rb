@@ -1,14 +1,14 @@
 module RepositoryHelper
   attr_accessor :file, :format, :options, :size, :thumbnail
 
-  # Retorna html a ser exibido da imagem
   #
+  # Returns the image's HTML 
   def weby_file_view(file, format, width = nil, height = nil, options = {}, fallback = false)
     options[:as] ||= 'link'
     @file, @format, @width, @height, @options = file, format, width, height, options
     if @file
       make_thumbnail!
-      send("#{@options[:as]}_viewer") # chama método http://ruby-doc.org/core-1.9.3/Object.html#method-i-send
+      send("#{@options[:as]}_viewer") # calls method http://ruby-doc.org/core-1.9.3/Object.html#method-i-send
     elsif fallback
       img_opt = {}
       img_opt[:alt] = @options[:alt] if @options[:alt]
@@ -20,8 +20,8 @@ module RepositoryHelper
     end
   end
 
-  # Retorna quais os tipos de arquivos existentes em um Site
-  # Recebe um objeto do tipo Site
+  # Input: Site object 
+  # Output: Returns all the MIME types of an site files
   def load_mime_types(site, only = [])
 
     mime_types = site.repositories.
