@@ -14,7 +14,7 @@ class Sites::Admin::PagesController < ApplicationController
   # GET /pages
   # GET /pages.json
   def index
-    @pages = get_pages 
+    @pages = get_pages
     respond_with(:site_admin, @pages) do |format|
       if(params[:template])
         format.js { render "#{params[:template]}" }
@@ -39,10 +39,16 @@ class Sites::Admin::PagesController < ApplicationController
     params[:direction] ||= 'desc'
     # Vai ao banco por linha para recuperar
     # tags e locales
-    current_site.pages.
-      search(params[:search], 1). # 1 = busca com AND entre termos
-      page(params[:page]).per(params[:per_page]).
-      order(sort_column + " " + sort_direction)
+    pages = current_site.pages.
+      search(params[:search], 1) # 1 = busca com AND entre termos
+
+    if sort_column == 'tags.name'
+      pages = pages.includes(categories: :taggings).order(sort_column + " " + sort_direction)
+    else
+      pages = pages.order(sort_column + " " + sort_direction)
+    end
+
+    pages = pages.page(params[:page]).per(params[:per_page])
   end
   private :get_pages
 
@@ -110,10 +116,10 @@ class Sites::Admin::PagesController < ApplicationController
   def destroy
     @page = current_site.pages.unscoped.find(params[:id])
     if @page.trash
-      if @page.persisted?                                   
+      if @page.persisted?
         record_activity("moved_page_to_recycle_bin", @page)
         flash[:success] = t('moved_page_to_recycle_bin')
-      else                                                  
+      else
         record_activity("destroyed_page", @page)
         flash[:success] = t('successfully_deleted')
       end

@@ -1,6 +1,6 @@
 module ActsToSort
   extend ActiveSupport::Concern
- 
+
   # TODO make this concern generic
   def sort
     @ch_pos = current_site.pages.find(params[:id_moved], :readonly => false)
@@ -28,4 +28,3 @@ module ActsToSort
     render :nothing => true
   end
 end
-
