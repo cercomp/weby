@@ -42,6 +42,7 @@ class Sites::Admin::RepositoriesController < ApplicationController
 
   def show
     @repository = current_site.repositories.find(params[:id])
+    @repository.reprocess
     respond_with(:site_admin, @repository)
   end
 
