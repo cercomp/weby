@@ -70,7 +70,7 @@ module RepositoryHelper
 
   private
   def make_thumbnail!
-    #@file.reprocess -- Removed in order to use several back-ends
+    # @file.reprocess -- Removed in order to use several back-ends
     if file.archive_content_type.empty?
       @thumbnail = empty_mime
     else
