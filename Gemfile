@@ -11,7 +11,7 @@ gem 'kaminari', '0.14.1'
 gem 'paperclip', '3.5.1'
 gem 'acts_as_list', '0.1.9'
 gem 'simple_form', '2.1.1'
-gem 'acts-as-taggable-on', '3.0.1'
+gem 'acts-as-taggable-on', '3.2.3'
 gem 'bootstrap-sass', '3.1.1'
 gem 'foreigner'
 gem "select2-rails"
