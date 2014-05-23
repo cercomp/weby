@@ -4,7 +4,7 @@ class Sites::PagesController < ApplicationController
 
   helper_method :sort_column
   before_filter :check_current_site
-  
+
   respond_to :html, :js, :json, :rss
 
   # GET /pages
