@@ -10,7 +10,7 @@ pt-BR:
     failure:
       already_authenticated: "Você já está logado."
       inactive: "A sua conta não foi ativada ainda."
-      invalid: "Login ou senha inválidos."
+      invalid: "Login/E-mail ou senha inválidos."
       last_attempt: "Esta é a última tentativa de login antes de bloquear a conta"
       invalid_token: "Token de autenticação inválido."
       locked: "Sua conta está bloqueada."
