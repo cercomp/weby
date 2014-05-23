@@ -5,7 +5,7 @@
   wrapper: :devise_input,
   url: login_path do |f| %>
 
-  <%= f.input :login, autofocus: true, label: false, placeholder: t('.field_login') %>
+  <%= f.input :auth, autofocus: true, label: false, placeholder: t('.field_login') %>
   <%= f.input :password, label: false, placeholder: t('.field_password') %>
   <%= f.input :remember_me,
     as: :boolean,

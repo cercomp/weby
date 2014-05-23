@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
 
   attr_accessible :login, :email, :password, :password_confirmation, :remember_me,
                   :first_name, :last_name, :phone, :mobile, :locale_id, :confirmed_at,
-                  :is_admin
+                  :is_admin, :auth
+  attr_accessor :auth
 
   validates_presence_of :email, :login, :first_name, :last_name
   validates_presence_of :password, on: :create
@@ -131,6 +132,16 @@ class User < ActiveRecord::Base
       logger.info "User #{email} is using the old password hashing method, updating attribute."
       self.password = password
       true
+    end
+  end
+
+  # Authenticates using login or email
+  def self.find_first_by_auth_conditions(warden_conditions)
+    conditions = warden_conditions.dup
+    if login = conditions.delete(:auth)
+      where(conditions).where(["lower(login) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+    else
+      where(conditions).first
     end
   end
 end
