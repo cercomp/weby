@@ -21,3 +21,5 @@ settings:
     value:
   maintenance_mode:
     value: 'false'
+  max_file_size:
+    value: '20'

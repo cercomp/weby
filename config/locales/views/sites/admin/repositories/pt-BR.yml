@@ -28,6 +28,7 @@ pt-BR:
           accessibility_needs: " Necessário para a acessibilidade de seu site. "
           please_wait:         " Por favor, aguarde "
           add_archives:        " Adicionar Arquivos "
+          max_file_size:       " Tamanho máximo de arquivo: %{param}MB "
         edit:
           archives:            " Arquivos "
           field_required:      " Campo obrigatório! "
@@ -53,6 +54,7 @@ pt-BR:
           send:                " Enviar "
           select_file:         " Selecione o arquivo "
           field_required:      " Campo obrigatório! "
+          max_file_size:       " Tamanho máximo de arquivo: %{param}MB "
         search_and_new_file:
           search_image:        " Buscar Imagem "
           new_image:           " Nova imagem "

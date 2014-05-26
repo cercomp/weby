@@ -28,6 +28,7 @@ en:
           accessibility_needs: " Needed for your site's accessibility. "
           please_wait:         " Please wait "
           add_archives:        " Add files "
+          max_file_size:       " Maximum file size: %{param}MB "
         edit:
           archives:            " Files "
           field_required:      " Field required! "

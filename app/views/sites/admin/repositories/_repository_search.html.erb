@@ -72,6 +72,11 @@
                   <%= submit_tag t(".send"), class: 'btn btn-primary send-file', type: :submit, disable_with: t('please_wait') %>
                 <% end %>
               </div>
+              <div class="form-group string">
+                <p class="help-block col-md-12">
+                  <%= t(".max_file_size", param: current_settings.max_file_size) %>
+                </p>
+              </div>
               <div class="col-md-5">
                 <img src="/assets/loading-bar.gif" id="upload-file-progress" style="display: none;"/>
                 <!--<progress value="0" max="100" id="upload-file-progress" style="display: none;"></progress>-->
