@@ -4,7 +4,7 @@
 <%= simple_form_for [:site_admin, @repository], remote: true, :html => { class: 'form-horizontal', id: 'create-repository-form'} do |f| %>
   <%= f.show_errors %>
 
-  <%= f.input :archive, as: :file, label: t('.add_archives'), input_html: {multiple: true, hint: "ola ="} %>
+  <%= f.input :archive, as: :file, label: t('.add_archives'), input_html: {multiple: true} %>
   <div class="form-group string">
     <p class="help-block col-md-6 col-md-offset-3">
       <%= t(".max_file_size", param: current_settings.max_file_size) %>
