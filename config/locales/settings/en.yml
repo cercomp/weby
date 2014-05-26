@@ -1,13 +1,14 @@
 en:
   settings:
-    per_page: 'Options for chosing the amount of items per page'
-    per_page_default: 'Default items per page amount'
-    default_locale: 'Default language'
-    help_site: "The URL for the 'help' link"
-    tld_length: "Size of the domain name i.e.: 'weby.co.uk' tld_length=2, 'weby.com' tld_length=1(default)"
-    sites_index: "The site_id for the URL of the Weby's front page. If this is not set, it'll be shown at the root of the domain."
-    login_protocol: "Login page's protocol. Options: 'https' or 'https'(default)"
-    domain: "Weby's default domain."
-    root_site: "Main site, to be viewed in the domain's root"
-    default_groupings: 'Default groups filter on the sites listing. Ex: 1 | !1 | 1,2 | !2,3'
-    maintenance_mode: 'Maintenance Mode. True makes it so only admin users can log in.'
+    per_page:           'Options for chosing the amount of items per page'
+    per_page_default:   'Default items per page amount'
+    default_locale:     'Default language'
+    help_site:          "The URL for the 'help' link"
+    tld_length:         "Size of the domain name i.e.: 'weby.co.uk' tld_length=2, 'weby.com' tld_length=1(default)"
+    sites_index:        "The site_id for the URL of the Weby's front page. If this is not set, it'll be shown at the root of the domain."
+    login_protocol:     "Login page's protocol. Options: 'https' or 'https'(default)"
+    domain:             "Weby's default domain."
+    root_site:          "Main site, to be viewed in the domain's root"
+    default_groupings:  'Default groups filter on the sites listing. Ex: 1 | !1 | 1,2 | !2,3'
+    maintenance_mode:   'Maintenance Mode. True makes it so only admin users can log in.'
+    max_file_size:      'Maximum file size warning.'
