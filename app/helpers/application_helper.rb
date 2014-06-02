@@ -453,4 +453,10 @@ module ApplicationHelper
       end
     end
   end
+  
+  # Input: Site object  
+  # Output: link to the favicon
+  def favicon(site) 
+    site_url(subdomain: site) + "uploads/#{site.id}/original_favicon.png" 
+  end
 end

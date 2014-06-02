@@ -8,6 +8,7 @@
     <meta name="description" content="<%= @site.try(:description) %>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tag %>
+    <%= favicon_link_tag favicon(@site) %>
     <%= auto_discovery_link_tag(:rss, main_app.site_feed_url(format: 'rss'),  {:title => "#{@site.try(:title)} - RSS"}) %>
     <%= auto_discovery_link_tag(:atom, main_app.site_feed_url(format: 'atom'),  {:title => "#{@site.try(:title)} - ATOM"}) %>
     <%= stylesheet_link_tag '_webybar' %>
