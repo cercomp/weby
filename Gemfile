@@ -2,7 +2,8 @@ source 'https://rubygems.org'
 
 ruby '2.1.2'
 
-gem 'rails', '3.2.18'
+gem 'rails', '~>4.0.0'
+
 gem 'thin', '1.5.1'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
@@ -11,7 +12,6 @@ gem 'devise', '3.2.0'
 gem 'kaminari', '0.14.1'
 gem 'paperclip', '3.5.1'
 gem 'acts_as_list', '0.1.9'
-gem 'simple_form', '2.1.1'
 gem 'acts-as-taggable-on', '3.2.3'
 gem 'bootstrap-sass', '3.1.1'
 gem 'foreigner'
@@ -24,11 +24,14 @@ gem 'zip-zip'
 gem 'jcrop-rails-v2'
 gem 'font-awesome-rails'
 
-group :assets do
-  gem 'sass-rails'
-  gem 'uglifier'
-  gem 'therubyracer', :platforms => :ruby
-end
+gem 'sass-rails'
+gem 'uglifier'
+gem 'therubyracer', :platforms => :ruby
+
+# updated
+gem 'simple_form', '~> 3.0.2'
+gem 'rails-observers', '~> 0.1.2'
+
 
 group :production do
   gem 'dispatcher', '0.0.1'

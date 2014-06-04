@@ -3,9 +3,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable,
          :rememberable, :trackable, :confirmable, :lockable
 
-  attr_accessible :login, :email, :password, :password_confirmation, :remember_me,
-                  :first_name, :last_name, :phone, :mobile, :locale_id, :confirmed_at,
-                  :is_admin, :auth
   attr_accessor :auth
 
   validates_presence_of :email, :login, :first_name, :last_name
@@ -49,7 +46,7 @@ class User < ActiveRecord::Base
            LEFT JOIN roles ON roles.id = roles_users.role_id').
     where(["roles.site_id = ?", site_id])
   }
-  
+
   # Returns all users that have confirmed their registration.
   scope :actives, where('confirmed_at IS NOT NULL')
 

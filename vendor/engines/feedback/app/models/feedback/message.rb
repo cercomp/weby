@@ -3,8 +3,6 @@ module Feedback
     belongs_to :site
     has_and_belongs_to_many :groups, :join_table => :feedback_messages_groups
 
-    attr_accessible :email, :message, :name, :subject, :group_ids, :site_id
-
     validates_presence_of :name, :email, :subject, :message
 
     validate :at_least_one_group
