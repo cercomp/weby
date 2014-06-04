@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.1.2'
 
-gem 'rails', '~>4.0.0'
+gem 'rails', '~> 4.1.1'
 
 gem 'thin', '1.5.1'
 gem 'jquery-rails'
@@ -24,11 +24,12 @@ gem 'zip-zip'
 gem 'jcrop-rails-v2'
 gem 'font-awesome-rails'
 
-gem 'sass-rails'
-gem 'uglifier'
-gem 'therubyracer', :platforms => :ruby
 
 # updated
+gem 'sass-rails', '~> 4.0.3'
+gem 'uglifier', '>= 1.3.0'
+gem 'therubyracer', :platforms => :ruby
+
 gem 'simple_form', '~> 3.0.2'
 gem 'rails-observers', '~> 0.1.2'
 
