@@ -16,6 +16,8 @@ en:
         categories:    " Categories "
         source:        " Source "
         updated_at:    " Updated at "
+        related_files: " Related files "
+        size:          " Size "
       list:
         read_more:     " Read more "
         no_pages:      " No pages were found "

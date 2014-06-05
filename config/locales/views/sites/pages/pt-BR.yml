@@ -19,6 +19,8 @@ pt-BR:
         categories:    " Categorias "
         source:        " Fonte "
         updated_at:    " Atualizado em "
+        related_files: " Arquivos relacionados "
+        size:          " Tamanho "
       list:
         read_more:     " Leia mais "
         no_pages:      " Nenhuma página encontrada "

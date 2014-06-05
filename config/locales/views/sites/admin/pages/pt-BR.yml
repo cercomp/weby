@@ -23,6 +23,8 @@ pt-BR:
           list_all:             " Listar todas "
           categories:           " Categorias "
           source:               " Fonte "
+          size:                 " Tamanho "
+          related_files:        " Arquivos Relacionados "
         fronts:
           pages:                " Páginas "
           covers:               " Capas "

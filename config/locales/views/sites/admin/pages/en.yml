@@ -23,6 +23,8 @@ en:
           list_all:             " List all "
           categories:           " Categories "
           source:               " Source "
+          size:                 " Size "
+          related_files:        " Related Files "
         fronts:
           pages:                " Pages "
           covers:               " Covers "
