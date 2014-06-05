@@ -6,7 +6,7 @@ module Acadufg
     respond_to :html, :js
 
     def index
-      @setting = Acadufg::Setting.find(:first, :conditions => ["site_id = ?", current_site])
+      @setting = Acadufg::Setting.find(:first, conditions: ["site_id = ?", current_site])
       make_request 'uri_docentes', programa_id: @setting.programa_id
 
       @docentes = ActiveSupport::JSON.decode(@response_text)

@@ -66,16 +66,16 @@ class Sites::Admin::RepositoriesController < ApplicationController
           end
         end
         format.json do
-          render json: { :repositories => @repository,
-                         :message => t("successfully_created"),
-                         :url => site_admin_repository_path(@repository) },
+          render json: { repositories: @repository,
+                         message: t("successfully_created"),
+                         url: site_admin_repository_path(@repository) },
             content_type: check_accept_json
         end
         record_activity("uploaded_file", @repository)
       else
         format.html { render action: :new }
         format.json do
-          render json: { :errors => @repository.errors.full_messages }, status: 412,
+          render json: { errors: @repository.errors.full_messages }, status: 412,
             content_type: check_accept_json
         end
       end

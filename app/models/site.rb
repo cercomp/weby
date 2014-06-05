@@ -7,7 +7,7 @@ class Site < ActiveRecord::Base
 
   scope :name_or_description_like, lambda { |text|
     where('lower(sites.name) LIKE lower(:text) OR lower(sites.description) LIKE lower(:text) OR lower(sites.title) LIKE lower(:text)',
-          {:text => "%#{text}%"})
+          {text: "%#{text}%"})
   }
 
   scope :ordered_by_front_pages, lambda { |text|
@@ -18,7 +18,7 @@ class Site < ActiveRecord::Base
     where('lower(sites.name) LIKE lower(:text)
          OR lower(sites.description) LIKE lower(:text)
          OR lower(sites.title) LIKE lower(:text)',
-       {:text => "%#{text}%"}).
+       {text: "%#{text}%"}).
     order("(#{page_query}) desc")
   }
 
@@ -28,7 +28,7 @@ class Site < ActiveRecord::Base
 
   validates :name,
     presence: true,
-     uniqueness: {:scope => :parent_id},
+     uniqueness: {scope: :parent_id},
       format: {with: /^[a-z0-9_\-]+$/}
 
 
@@ -38,7 +38,7 @@ class Site < ActiveRecord::Base
 
   validates :title,
     presence: true,
-    :length => {:maximum => 50}
+    length: {maximum: 50}
 
   validates :theme, presence: true
 
@@ -55,7 +55,7 @@ class Site < ActiveRecord::Base
   has_many :views
 
   has_many :menus, dependent: :delete_all, order: :id
-  has_many :menu_items, :through => :menus
+  has_many :menu_items, through: :menus
 
   has_many :pages,
     include: :i18ns,
@@ -70,7 +70,7 @@ class Site < ActiveRecord::Base
   has_many :components, order: 'place_holder, position asc', dependent: :destroy
   has_many :root_components, order: :position, class_name: 'Component', conditions: "place_holder !~ '^\\d*$'"
 
-  belongs_to :repository, :foreign_key => "top_banner_id"
+  belongs_to :repository, foreign_key: "top_banner_id"
   has_many :repositories
 
   has_many :extensions
@@ -95,7 +95,7 @@ class Site < ActiveRecord::Base
     extensions.select {|ext| ext.name = extension.to_s }.any?
   end
 
-  has_attached_file :top_banner, :url => "/uploads/:site_id/:style_:basename.:extension"
+  has_attached_file :top_banner, url: "/uploads/:site_id/:style_:basename.:extension"
   private
   def clear_per_page
     self.per_page.gsub!(/[^\d,]/,'')

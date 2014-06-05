@@ -1,7 +1,7 @@
 #coding: utf-8
 module ApplicationHelper
   def session_user
-    @session_user ||= User.find(:first, :conditions => ['id = ?', session[:user]])
+    @session_user ||= User.find(:first, conditions: ['id = ?', session[:user]])
   end
 
   def is_in_admin_context?
@@ -87,7 +87,7 @@ module ApplicationHelper
   def flash_message
     "".tap do |html|
       flash.each do |key, value|
-        html << content_tag('blockquote', :class => flash_class(key)) do
+        html << content_tag('blockquote', class: flash_class(key)) do
           raw %{
             #{link_to('&times;'.html_safe, '#', class: 'close', data: {dismiss: "alert"}, 'aria-hidden' => true)}
             #{value}
@@ -157,38 +157,38 @@ module ApplicationHelper
             menu << link_to(
               icon('eye-open', text: args[:with_text] ? t('show') : ''),
               params.merge({
-                :controller => ctrl.controller_name,
-                :action => 'show', :id => obj.id
+                controller: ctrl.controller_name,
+                action: 'show', id: obj.id
               }),
-              :alt => t('show'),
-              :title => t('show'),
-              :class => 'action-link'
+              alt: t('show'),
+              title: t('show'),
+              class: 'action-link'
             ) + " "
 
           when :edit
             menu << link_to(
               icon('edit', text: args[:with_text] ? t('edit') : ''),
               params.merge({
-                :controller => ctrl.controller_name,
-                :action => 'edit', :id => obj.id
+                controller: ctrl.controller_name,
+                action: 'edit', id: obj.id
               }),
-              :alt => t('edit'),
-              :title => t('edit'),
-              :class => 'action-link') + " "
+              alt: t('edit'),
+              title: t('edit'),
+              class: 'action-link') + " "
 
           when :destroy
             menu << link_to(
               icon('trash', text: args[:with_text] ? t('destroy') : ''),
               params.merge({
-                :controller => ctrl.controller_name,
-                :action => 'destroy',
-                :id => obj.id
+                controller: ctrl.controller_name,
+                action: 'destroy',
+                id: obj.id
               }),
-              :data => {:confirm => t('are_you_sure')},
-              :method => :delete,
-              :alt => t('destroy'),
-              :title => t('destroy'),
-              :class => 'action-link') + " "
+              data: {confirm: t('are_you_sure')},
+              method: :delete,
+              alt: t('destroy'),
+              title: t('destroy'),
+              class: 'action-link') + " "
           end
         end
       end
@@ -199,11 +199,11 @@ module ApplicationHelper
     ''.tap do |html|
       if test_permission controller_name, :purge
         html << link_to(icon('trash', text: options[:with_text] ? t('destroy') : nil),
-          options.merge({action: 'show', id: resource.id}), :title => t("purge"), class: 'action-link', method: 'delete', confirm: t('are_you_sure'))
+          options.merge({action: 'show', id: resource.id}), title: t("purge"), class: 'action-link', method: 'delete', confirm: t('are_you_sure'))
       end
       if test_permission controller_name, :recover
         html << link_to(icon('refresh', text: options[:with_text] ? t('recover') : nil),
-          options.merge({action: 'recover', id: resource.id}), :title => t("recover"), class: 'action-link', method: 'put')
+          options.merge({action: 'recover', id: resource.id}), title: t("recover"), class: 'action-link', method: 'put')
       end
     end.html_safe
   end
@@ -233,7 +233,7 @@ module ApplicationHelper
       #{collection.offset_value + collection.length}"
       html << " #{t('of')} #{collection.total_count}"
 
-      content_tag :div, html, :class => "pagination", :style => style
+      content_tag :div, html, class: "pagination", style: style
     end
   end
 
@@ -247,19 +247,19 @@ module ApplicationHelper
       per_page_array.each do |item|
         html <<
         if params[:per_page].to_i == item.to_i
-          content_tag :li, :class => 'page active' do
-            # link_to "#{item} ", params.merge({:per_page => item, :page => 1}), :remote => remote
+          content_tag :li, class: 'page active' do
+            # link_to "#{item} ", params.merge({per_page: item, page: 1}), remote: remote
             content_tag :span, "#{item} "
           end
         else
-          content_tag(:li, :class => 'page') do
-            link_to "#{item} ", params.merge({:per_page => item, :page => 1}), :remote => remote
+          content_tag(:li, class: 'page') do
+            link_to "#{item} ", params.merge({per_page: item, page: 1}), remote: remote
           end
         end
       end
 
       content_tag :div do
-        content_tag :ul, :class => "pagination#{" pagination-#{size}" if size}"  do
+        content_tag :ul, class: "pagination#{" pagination-#{size}" if size}"  do
           raw(html)
         end
       end
@@ -341,8 +341,8 @@ module ApplicationHelper
   # TODO:
   def icon(type, args={})
     args.reverse_merge({
-      :white => false,
-      :text  => ''
+      white: false,
+      text: ''
     })
 
     unless type.nil?

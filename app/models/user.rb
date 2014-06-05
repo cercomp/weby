@@ -31,13 +31,13 @@ class User < ActiveRecord::Base
   # Returns all user with the name similar to text.
   scope :login_or_name_like, lambda { |text|
     where('LOWER(login) like :text OR LOWER(first_name) like :text OR LOWER(last_name) like :text OR LOWER(email) like :text',
-          { :text => "%#{text.try(:downcase)}%" })
+          { text: "%#{text.try(:downcase)}%" })
   }
 
   # Returns all admin users.
-  scope :admin, where(:is_admin => true)
+  scope :admin, where(is_admin: true)
   # Returns all users that are no admins.
-  scope :no_admin, where(:is_admin => false)
+  scope :no_admin, where(is_admin: false)
 
   # Returns all user that have a role in site_id.
   scope :by_site, lambda { |site_id|
@@ -61,7 +61,7 @@ class User < ActiveRecord::Base
     where "not exists (#{
       Role.joins('INNER JOIN roles_users ON
       roles_users.role_id = roles.id AND users.id = roles_users.user_id').
-      where(:site_id => site_id).to_sql
+      where(site_id: site_id).to_sql
     })"
   }
 

@@ -24,8 +24,8 @@ class ApplicationController < ActionController::Base
   def check_authorization
     unless test_permission(self, action_name)
       respond_to do |format|
-        format.json { render json: {errors: [t("access_denied.access_denied")]}, :status => :forbidden }
-        format.any { render :template => 'admin/access_denied', :status => :forbidden }
+        format.json { render json: {errors: [t("access_denied.access_denied")]}, status: :forbidden }
+        format.any { render template: 'admin/access_denied', status: :forbidden }
       end
     end
   end

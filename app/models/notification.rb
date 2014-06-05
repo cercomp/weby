@@ -5,6 +5,6 @@ class Notification < ActiveRecord::Base
 
   scope :title_or_body_like, lambda { |text|
     where('LOWER(title) like :text OR LOWER(body) like :text',
-          { :text => "%#{text.try(:downcase)}%" })
+          { text: "%#{text.try(:downcase)}%" })
   }
 end

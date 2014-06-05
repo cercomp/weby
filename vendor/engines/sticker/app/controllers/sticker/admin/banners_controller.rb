@@ -69,7 +69,7 @@ module Sticker::Admin
       @banner = Sticker::Banner.where(site_id: current_site).find(params[:id])
       if @banner.destroy
         record_activity("destroyed_banner", @banner)
-        flash[:success] = t("destroyed_param", :param => @banner.title)
+        flash[:success] = t("destroyed_param", param: @banner.title)
       end
 
       redirect_to(admin_banners_path())

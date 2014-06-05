@@ -3,7 +3,7 @@ module ActsToSort
 
   # TODO make this concern generic
   def sort
-    @ch_pos = current_site.pages.find(params[:id_moved], :readonly => false)
+    @ch_pos = current_site.pages.find(params[:id_moved], readonly: false)
     increment = 1
     # In case it was moved to the end of the list or the end of a page (when paginated)
     if(params[:id_after] == '0')
@@ -25,6 +25,6 @@ module ActsToSort
     end
     current_site.pages.front.where(condition).update_all("position = position + (#{increment})")
     @ch_pos.update_attribute(:position, new_pos)
-    render :nothing => true
+    render nothing: true
   end
 end

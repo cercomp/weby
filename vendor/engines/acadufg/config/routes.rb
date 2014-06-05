@@ -7,5 +7,5 @@ Acadufg::Engine.routes.draw do
     end
   end
 
-  root :to => 'acadufg#index'
+  root to: 'acadufg#index'
 end

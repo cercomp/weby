@@ -42,7 +42,7 @@ class Sites::Admin::ComponentsController < ApplicationController
         record_activity("created_component", @component)
         redirect_to(site_admin_components_path, flash: {success: t("successfully_created_param", param: t("component"))})
       else
-        render :action => "new"
+        render action: "new"
       end
     else
       render :available_components
@@ -58,7 +58,7 @@ class Sites::Admin::ComponentsController < ApplicationController
       record_activity("updated_component", @component)
       redirect_to(site_admin_components_path, flash: {success: t("successfully_updated_param", param: t("component"))})
     else
-      render :action => "edit"
+      render action: "edit"
     end
   end
 
@@ -74,7 +74,7 @@ class Sites::Admin::ComponentsController < ApplicationController
   def sort
     Component.update_positions(params['sort_sites_component'] || [], params[:place_holder])
     
-    render :nothing => true
+    render nothing: true
   end
   
   # TODO: Review this method

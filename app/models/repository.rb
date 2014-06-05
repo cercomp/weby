@@ -7,17 +7,17 @@ class Repository < ActiveRecord::Base
 
   belongs_to :site
   has_many :banners
-  has_many :sites, :foreign_key => "top_banner_id", :dependent => :nullify
+  has_many :sites, foreign_key: "top_banner_id", dependent: :nullify
 
-  has_many :pages_repositories, :dependent => :destroy
-  has_many :pages, :through => :pages_repositories
+  has_many :pages_repositories, dependent: :destroy
+  has_many :pages, through: :pages_repositories
 
-  has_many :page_image, :dependent => :nullify, :class_name => 'Page'
+  has_many :page_image, dependent: :nullify, class_name: 'Page'
 
   scope :description_or_filename, proc {|text|
     text = text.try(:downcase)
     where [ "(LOWER(description) LIKE :text OR LOWER(archive_file_name) LIKE :text)",
-            { :text => "%#{text}%" } ]
+            { text: "%#{text}%" } ]
   }
 
   scope :content_file, proc { |contents|
@@ -35,7 +35,7 @@ class Repository < ActiveRecord::Base
 
   scope :archive_content_file, proc { |content_file|
     where [ "LOWER(archive_content_type) LIKE :content_file",
-            { :content_file => "%#{content_file.try(:downcase)}%" } ]
+            { content_file: "%#{content_file.try(:downcase)}%" } ]
   }
 
   validates_presence_of :description
@@ -60,7 +60,7 @@ class Repository < ActiveRecord::Base
       processors: [:cropper]
 
   validates_attachment_presence :archive,
-    :message => I18n.t('activerecord.errors.messages.attachment_presence'), :on => :create
+    message: I18n.t('activerecord.errors.messages.attachment_presence'), on: :create
 
   before_post_process :image?, :normalize_file_name
   
@@ -102,7 +102,7 @@ class Repository < ActiveRecord::Base
     archive.instance_write(:file_name, CGI.unescape(archive.original_filename))
   end
 
-  validates :archive_file_name, uniqueness: {:scope => :site_id, :message => I18n.t("file_already_exists")}
+  validates :archive_file_name, uniqueness: {scope: :site_id, message: I18n.t("file_already_exists")}
 
   # Reprocessamento de imagens para (re)gerar os thumbnails quando necessário
   def reprocess

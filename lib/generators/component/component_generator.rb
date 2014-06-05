@@ -2,8 +2,8 @@
 class ComponentGenerator < Rails::Generators::Base
   desc "Gerador de componentes do Weby\nEx.: rails generate component teste nome:string size:integer"
   source_root File.expand_path('../templates', __FILE__)
-  argument :component_name, :type => :string, :required => true, :desc => "Nome do componente. Ex.: news_list"
-  argument :settings, :type => :hash, :required => false, :desc => "Configurações do componente. Ex.: quant:integer show:boolean text:string "
+  argument :component_name, type: :string, required: true, desc: "Nome do componente. Ex.: news_list"
+  argument :settings, type: :hash, required: false, desc: "Configurações do componente. Ex.: quant:integer show:boolean text:string "
   
   def generate_component
     directory(".", "lib/weby/components/#{comp_name}/")
@@ -27,7 +27,7 @@ class ComponentGenerator < Rails::Generators::Base
 
   def settings_inputs
     settings.map do |name,type|
-        "<%= f.input :#{name}, :as => :#{type} %>"
+        "<%= f.input :#{name}, as: :#{type} %>"
     end.join("\n") if (settings and settings.any?)
   end
 

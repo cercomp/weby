@@ -3,7 +3,7 @@ class Admin::UsersController < ApplicationController
   include ActsToToggle
 
   before_filter :require_user
-  before_filter :is_admin, :except => [:new, :create]
+  before_filter :is_admin, except: [:new, :create]
   respond_to :html, :xml
   helper_method :sort_column
 
@@ -28,7 +28,7 @@ class Admin::UsersController < ApplicationController
       # NOTE Maybe it is better to use (user.role_ids += params[:role_ids]).uniq
       user.role_ids += params[:role_ids]
     end
-    redirect_to :action => 'manage_roles'
+    redirect_to action: 'manage_roles'
   end
 
   def manage_roles
@@ -69,7 +69,7 @@ class Admin::UsersController < ApplicationController
       redirect_to admin_user_path(@user)
     else
       flash[:error] = t("problem_create_account")
-      render :action => :new
+      render action: :new
     end
   end
 
@@ -94,7 +94,7 @@ class Admin::UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    flash[:success] = t("destroyed_param", :param => @user.first_name)
+    flash[:success] = t("destroyed_param", param: @user.first_name)
     record_activity("destroyed_user", @user)
   rescue ActiveRecord::DeleteRestrictionError
     flash[:warning] = t("user_cant_be_deleted")

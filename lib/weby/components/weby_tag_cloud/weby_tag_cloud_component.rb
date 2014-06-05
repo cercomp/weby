@@ -1,7 +1,7 @@
 class WebyTagCloudComponent < Component
   component_settings :cloud_type, :width, :height, :color, :hoover_color, :hoover_type, :speed
 
-  validates :speed, :numericality => {:greater_than => 0}
+  validates :speed, numericality: {greater_than: 0}
 
   def tags(site)
     site.pages.available.uniq_category_counts.map { |tag| tag.name }

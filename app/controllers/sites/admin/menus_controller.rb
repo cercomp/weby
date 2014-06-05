@@ -9,7 +9,7 @@ class Sites::Admin::MenusController < ApplicationController
   end
 
   def show
-    redirect_to site_admin_menus_path(:menu => params[:id])
+    redirect_to site_admin_menus_path(menu: params[:id])
   end
 
   def new
@@ -21,7 +21,7 @@ class Sites::Admin::MenusController < ApplicationController
     if @menu.save
       flash[:success] = t("successfully_created")
       record_activity("created_menu", @menu)
-      redirect_to site_admin_menus_path(:menu => @menu.id)
+      redirect_to site_admin_menus_path(menu: @menu.id)
     else
       respond_with(:site_admin, @menu)
     end
@@ -36,7 +36,7 @@ class Sites::Admin::MenusController < ApplicationController
     if @menu.update_attributes(params[:menu])
       flash[:success] = t("successfully_updated")
       record_activity("updated_menu", @menu)
-      redirect_to site_admin_menus_path(:menu => @menu.id)
+      redirect_to site_admin_menus_path(menu: @menu.id)
     else
       respond_with(:site_admin, @menu)
     end

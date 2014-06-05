@@ -29,7 +29,7 @@ module Feedback::Admin
       @group = Feedback::Group.new(params[:group])
 
       if @group.save
-        redirect_to({:site_id => @group.site.name, :controller => 'groups'},
+        redirect_to({site_id: @group.site.name, controller: 'groups'},
                     flash: {success: t('successfully_created')})
       else
         respond_with(:site_admin, @group)
@@ -39,7 +39,7 @@ module Feedback::Admin
     def update
       @group = Feedback::Group.find(params[:id])
       if @group.update_attributes(params[:group])
-        redirect_to({:site_id => @group.site.name, :controller => 'groups', :action => 'index'},
+        redirect_to({site_id: @group.site.name, controller: 'groups', action: 'index'},
                     flash: {success: t("successfully_updated")})
       else
         respond_with(:site_admin, @group)

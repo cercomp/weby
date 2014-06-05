@@ -85,7 +85,7 @@ module Weby
         args[:partial] = "#{component.name}/views/#{view.to_s}"
         
         args[:locals] ||= {}
-        args[:locals].merge!({ :component => component })
+        args[:locals].merge!({ component: component })
 
         # Caso a partial não exista, não mostra nada
         begin
@@ -122,9 +122,9 @@ module Weby
     module Form
       def component_i18n_input(locale, attribute_name, options={}, &block)
         options[:input_html] = (options[:input_html] || {}).merge({
-            :value => @object.respond_to?("#{attribute_name}_i18n".to_sym) ? @object.send("#{attribute_name}_i18n".to_sym, locale.name) : "",
-            :name => "#{@object_name}[#{attribute_name}][#{locale.name}]",
-            :id => "#{@object_name}_#{attribute_name}_#{locale.name}"})
+            value: @object.respond_to?("#{attribute_name}_i18n".to_sym) ? @object.send("#{attribute_name}_i18n".to_sym, locale.name) : "",
+            name: "#{@object_name}[#{attribute_name}][#{locale.name}]",
+            id: "#{@object_name}_#{attribute_name}_#{locale.name}"})
 
         input attribute_name, options, &block
       end
@@ -155,7 +155,7 @@ module Weby
                 self.name = self.class.name.tableize.gsub(/_components$/, '')
               end
 
-              default_scope where(:name => self.cname)
+              default_scope where(name: self.cname)
              end
           end
           alias_method_chain :inherited, :weby

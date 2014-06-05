@@ -66,7 +66,7 @@ class Sites::Admin::BackupsController < ApplicationController
     end
 
     zip_data = File.read("#{dir}/#{s.name}.zip")
-    send_data(zip_data, :type => 'application/zip', :filename => "#{s.name}.zip")
+    send_data(zip_data, type: 'application/zip', filename: "#{s.name}.zip")
 
   end
 

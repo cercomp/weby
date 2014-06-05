@@ -28,7 +28,7 @@ class Sites::Admin::UsersController < ApplicationController
       # that way we remove the each above
       user.role_ids += params[:role_ids]
     end
-    redirect_to :action => 'manage_roles'
+    redirect_to action: 'manage_roles'
   end
 
   def manage_roles

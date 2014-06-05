@@ -13,8 +13,8 @@ class Sites::PagesController < ApplicationController
     @pages = get_pages
 
     respond_with(:site, @page) do |format|
-      format.rss { render :layout => false, :content_type => Mime::XML } #index.rss.builder
-      format.atom { render :layout => false, :content_type => Mime::XML } #index.atom.builder
+      format.rss { render layout: false, content_type: Mime::XML } #index.rss.builder
+      format.atom { render layout: false, content_type: Mime::XML } #index.atom.builder
     end
   end
 

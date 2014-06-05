@@ -28,7 +28,7 @@ class Admin::NotificationsController < ApplicationController
       redirect_to admin_notification_path @notification
     else
       flash[:error] = t("problem_create_notification")
-      render :action => :new
+      render action: :new
     end
     User.no_admin.each do |user|
       user.append_unread_notification @notification
@@ -55,7 +55,7 @@ class Admin::NotificationsController < ApplicationController
   def destroy
     @notification = Notification.find(params[:id])
     @notification.destroy
-    flash[:success] = t("destroyed_param", :param => @notification.title)
+    flash[:success] = t("destroyed_param", param: @notification.title)
     record_activity("destroyed_notification", @notification)
     User.no_admin.each do |user|
       user.remove_unread_notification @notification

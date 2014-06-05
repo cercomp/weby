@@ -9,7 +9,7 @@ module Acadufg::Admin
       make_request 'uri_programas'
       @programas = ActiveSupport::JSON.decode(@response_text).map{|programa| [programa['nmPrograma'], programa['id']] }
       
-      @setting = Acadufg::Setting.find(:first, :conditions => ["site_id = ?", current_site])
+      @setting = Acadufg::Setting.find(:first, conditions: ["site_id = ?", current_site])
       @setting ||= Acadufg::Setting.create site_id: current_site.id
     end
     
@@ -23,7 +23,7 @@ module Acadufg::Admin
     end
   
     def update
-      @setting = Acadufg::Setting.find(:first, :conditions => ["site_id = ?", current_site])
+      @setting = Acadufg::Setting.find(:first, conditions: ["site_id = ?", current_site])
       if @setting.update_attributes(params[:setting])
         redirect_to(admin_path, flash: {success: t('successfully_updated')})
       else
