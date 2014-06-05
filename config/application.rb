@@ -28,11 +28,6 @@ module Weby
     config.i18n.load_path += Dir["#{config.root}/**/locales/**/*.yml"]
     config.i18n.default_locale = 'pt-BR'
 
-    # Add more assets
-    config.assets.precompile << Proc.new { |path| !path.match(/bootstrap/) }
-
-    config.i18n.fallbacks = true
-
     # Usando generator mais limpo.
     # Ajuda a evitar arquivos desnecessário.
     config.generators do |g|

@@ -43,6 +43,7 @@ group :development do
   gem 'better_errors', '~> 1.1.0'
   gem 'meta_request', '~> 0.3.0'
   gem 'pry-rails', '~> 0.3.2'
+  gem 'letter_opener', '~> 1.2.0'
 end
 
 group :test do

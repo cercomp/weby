@@ -1,6 +1,19 @@
-development:
+default: &default
   adapter: postgresql
-  encoding: UTF-8
-  database: weby
-  username: weby
-  password: weby 
+  encoding: unicode
+  pool: 5
+  timeout: 5000
+  username:
+  password:
+
+development:
+  <<: *default
+  database: weby_development
+
+test:
+  <<: *default
+  database: weby_test
+
+production:
+  <<: *default
+  database: weby_production
