@@ -3,7 +3,7 @@ class Style < ActiveRecord::Base
   belongs_to :site
   belongs_to :style
 
-  has_many :styles, dependent: :restrict
+  has_many :styles, dependent: :restrict_with_error
   has_many :followers, through: :styles, source: :site
 
   validates :site, presence: true

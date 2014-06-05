@@ -12,9 +12,9 @@ class User < ActiveRecord::Base
 
   validates_confirmation_of :password
 
-  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
-  validates_format_of :login, with: /^[a-z\d_\-\.@]+$/i
-  validates_format_of :password, with: /(?=.*\d+)(?=.*[A-Z]+)(?=.*[a-z]+)^.{4,}$/,
+  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+  validates_format_of :login, with: /\A[a-z\d_\-\.@]+\z/i
+  validates_format_of :password, with: /(?=.*\d+)(?=.*[A-Z]+)(?=.*[a-z]+)\A.{4,}\z/,
                       allow_blank: true, message: I18n.t("lower_upper_number_chars")
 
   before_save { |user| user.email.downcase! }
@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   has_many :views, dependent: :nullify
   has_many :notifications, dependent: :nullify
   has_many :user_login_histories, dependent: :destroy
-  has_many :pages, foreign_key: :author_id, dependent: :restrict
+  has_many :pages, foreign_key: :author_id, dependent: :restrict_with_error
 
   # Returns all user with the name similar to text.
   scope :login_or_name_like, lambda { |text|

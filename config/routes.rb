@@ -187,6 +187,6 @@ Weby::Application.routes.draw do
   # route to about
   get "about" => "sites#about"
 
-  match "robots.txt" => "sites#robots", format: "txt"
-  match "*not_found" => "application#render_404"
+  get "robots.txt" => "sites#robots", format: "txt"
+  get "*not_found" => "application#render_404"
 end
