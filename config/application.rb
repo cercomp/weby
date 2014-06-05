@@ -13,11 +13,7 @@ module Weby
     # -- all .rb files in that directory are automatically loaded.
 
     # Custom directories with classes and modules you want to be autoloadable.
-    config.autoload_paths += %W(
-      #{config.root}/lib
-      #{config.root}/app/models/concerns
-      #{config.root}/app/controllers/concerns
-    )
+    config.autoload_paths += Dir["#{config.root}/lib"]
     config.autoload_paths += Dir["#{config.root}/lib/weby/components/**/*"]
     config.autoload_paths += Dir["#{config.root}/vendor/engines/*/lib/weby/components/**/*"]
 
@@ -32,25 +28,13 @@ module Weby
     config.i18n.load_path += Dir["#{config.root}/**/locales/**/*.yml"]
     config.i18n.default_locale = 'pt-BR'
 
-    I18n.enforce_available_locales = false
-
-    # Configure sensitive parameters which will be filtered from the log file.
-    config.filter_parameters << :password << :password_confirmation
-
-    # Enable the asset pipeline
-    config.assets.enabled = true
-
-    # Weby configs
-    config.assets.initialize_on_precompile = true # Bad config?
-
-    # Version of your assets, change this if you want to expire all your assets
-    config.assets.version = '1.0'
+    # Add more assets
     config.assets.precompile << Proc.new { |path| !path.match(/bootstrap/) }
 
     config.i18n.fallbacks = true
 
-    # Usando generator mais limpo, desse modo é criado o arquivo só quando necessário
-    # ajuda a evitar arquivos desnecessário
+    # Usando generator mais limpo.
+    # Ajuda a evitar arquivos desnecessário.
     config.generators do |g|
       g.helper false
       g.stylesheets false
