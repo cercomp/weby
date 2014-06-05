@@ -6,10 +6,10 @@ describe Admin::ActivityRecordsController do
   before { sign_in user }
 
   context "GET #index" do
-    pending "should list all activities records" do
-      activities = ActivityRecord.create
+    pending "should populate an array of activities from the site being viewed" do
+      record = FactoryGirl.create(:activity_record)
       get :index
-      expect(assigns(:activity_record)).to eq([activities])
+      expect(assigns(:activity_records)).to eq([record])
     end
 
     it "renders the :index view" do
