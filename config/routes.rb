@@ -10,15 +10,15 @@ Weby::Application.routes.draw do
     get '/' => 'sites#show', as: :site
     get '/admin' => 'sites#admin', as: :site_admin
     get '/admin/edit' => 'sites#edit', as: :edit_site_admin
-    put '/admin/edit' => 'sites#update', as: :edit_site_admin
+    patch '/admin/edit' => 'sites#update', as: :update_site_admin
 
     # routes to feed and atom
-    match '/feed' => 'sites/pages#index', as: :site_feed,
+    get '/feed' => 'sites/pages#index', as: :site_feed,
       defaults: { format: 'rss', per_page: 10, page: 1 }
-    
+
     resources :pages,
-      as: :site_pages, 
-      controller: "sites/pages", 
+      as: :site_pages,
+      controller: "sites/pages",
       only: [:index, :show] do
         collection do
           get :events, :news
@@ -36,10 +36,10 @@ Weby::Application.routes.draw do
     namespace :admin, module: 'sites/admin', as: :site_admin do
 
       # route to paginate
-      match "banners/page/:page" => "banners#index"
-      match "groups/page/:page" => "groups#index"
-      match "repositories/page/:page" => "repositories#index"
-      match "pages/page/:page" => "pages#index"
+      get "banners/page/:page" => "banners#index"
+      get "groups/page/:page" => "groups#index"
+      get "repositories/page/:page" => "repositories#index"
+      get "pages/page/:page" => "pages#index"
 
       get  "stats" => "statistics#index"
       get  'backups' => 'backups#index'
@@ -115,9 +115,9 @@ Weby::Application.routes.draw do
 
   constraints(Weby::GlobalDomain) do
     #rota para paginação
-    match "sites/page/:page" => "sites#index", as: :sites
+    get "sites/page/:page" => "sites#index", as: :sites
 
-    match "/admin" => "application#admin"
+    get "/admin" => "application#admin"
 
     namespace :admin do
       match "settings" => "settings#index", via: [:get, :put]
@@ -145,8 +145,8 @@ Weby::Application.routes.draw do
       get "stats" => "statistics#index"
 
       # route to paginate
-      match "users/page/:page" => "users#index"
-      match "sites/page/:page" => "sites#index"
+      get "users/page/:page" => "users#index"
+      get "sites/page/:page" => "sites#index"
     end
   end
 

@@ -7,12 +7,11 @@ module Weby
         i18n_class = base.const_set(:I18ns, Class.new(Weby::I18nsTemplate))
 
         i18n_class.table_name = ("#{base.name.underscore.gsub('/', '_')}_i18ns")
-        i18n_class.belongs_to(base.name.underscore.gsub('/', '_'))
+        i18n_class.belongs_to(base.name.underscore.gsub('/', '_').to_sym)
 
         base.class_eval do
           has_many :i18ns,
             class_name: i18n_class.name,
-            include: :locale,
             dependent: :delete_all
 
           has_many :locales, through: :i18ns
@@ -21,7 +20,7 @@ module Weby
 
           # FIXME: Refatorar local das internacionalizações das msg de erro
           def validate_i18ns
-            self.errors.add(:base, I18n.t('need_at_least_one_i18n')) if active_i18ns.none? 
+            self.errors.add(:base, I18n.t('need_at_least_one_i18n')) if active_i18ns.none?
 
             self.errors.add(:base, I18n.t('cant_have_i18ns_with_same_locale')) if has_duplicated_locales?
 
@@ -34,13 +33,13 @@ module Weby
           private :validate_i18ns
 
           def active_i18ns
-            self.i18ns.select { |i18n| !i18n.marked_for_destruction? } 
+            self.i18ns.select { |i18n| !i18n.marked_for_destruction? }
           end
           private :active_i18ns
 
           def has_duplicated_locales?
             locales = self.i18ns.map {|i18n| i18n.locale_id}
-            locales.length > locales.uniq.length 
+            locales.length > locales.uniq.length
           end
           private :has_duplicated_locales?
 

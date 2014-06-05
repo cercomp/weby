@@ -1,18 +1,3 @@
-require 'active_record/fixtures'
-
-# Fix foreigner gem problem with fixtures on postgres
-# read more: https://github.com/matthuhiggins/foreigner/issues/61
-class ActiveRecord::ConnectionAdapters::PostgreSQLAdapter
-  def supports_disable_referential_integrity?
-    false
-  end
-end
- 
-Dir[File.join(Rails.root, "db/seed/*.yml")].each do |filename|
-  table_name = File.basename(filename, ".yml")
-  ActiveRecord::Fixtures.create_fixtures('db/seed', table_name)
-end
-
 Weby::Rights.seed_roles
 
 user = User.new(
@@ -27,6 +12,6 @@ user = User.new(
 user.skip_confirmation!
 user.save!
 
-Dir[File.join(Rails.root, "db/seed/*.rb")].each do |filename|
-  load(filename)
-end
+Locale.create(name: 'pt-BR', flag: 'Brazil.png')
+Locale.create(name: 'en', flag: 'United States of America(USA).png')
+Locale.create(name: 'es', flag: 'Spain.png')
