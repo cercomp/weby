@@ -31,7 +31,7 @@ Weby::Application.routes.draw do
       controller: 'sites/components',
       only: [:show]
 
-    post "count/:model/:id" => "application#count_click", :as => :count_click
+    post "count/:model/:id" => "application#count_click", as: :count_click
 
     namespace :admin, module: 'sites/admin', as: :site_admin do
 
@@ -111,16 +111,16 @@ Weby::Application.routes.draw do
     end
   end
 
-  root :to => "sites#index"
+  root to: "sites#index"
 
   constraints(Weby::GlobalDomain) do
     #rota para paginação
-    match "sites/page/:page" => "sites#index", :as => :sites
+    match "sites/page/:page" => "sites#index", as: :sites
 
     match "/admin" => "application#admin"
 
     namespace :admin do
-      match "settings" => "settings#index", :via => [:get, :put]
+      match "settings" => "settings#index", via: [:get, :put]
       resources :users do
         collection do
           get :manage_roles
@@ -187,6 +187,6 @@ Weby::Application.routes.draw do
   # route to about
   get "about" => "sites#about"
 
-  match "robots.txt" => "sites#robots", :format => "txt"
+  match "robots.txt" => "sites#robots", format: "txt"
   match "*not_found" => "application#render_404"
 end
