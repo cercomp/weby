@@ -21,6 +21,7 @@ class PagePositionObserver < ActiveRecord::Observer
   end
 
   private
+
   def update_position
     @page.front ? turning_front : leaving_fronts
   end

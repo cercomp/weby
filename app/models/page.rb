@@ -1,15 +1,15 @@
 class Page < ActiveRecord::Base
   include Trashable
+
   weby_content_i18n :title, :summary, :text, required: :title
-
-  EVENT_TYPES = %w[regional national international]
-
-  self.inheritance_column = nil
 
   acts_as_taggable_on :categories
   acts_as_multisite
 
-  #Relations
+  self.inheritance_column = nil
+
+  EVENT_TYPES = %w[regional national international]
+
   belongs_to :owner, class_name: "Site", foreign_key: "site_id"
   belongs_to :author, class_name: "User"
   belongs_to :image, class_name: 'Repository', foreign_key: 'repository_id'
@@ -27,79 +27,17 @@ class Page < ActiveRecord::Base
   validates :local, :event_begin, presence: {if: proc { self.event? }}
 
   validate :validate_date
-  def validate_date
-    if self.date_begin_at.blank?
-      self.date_begin_at = Time.now.to_s
-    end
-  end
-
-  def self.import attrs, options={}
-    return attrs.each{|attr| self.import attr, options } if attrs.is_a? Array
-
-    attrs = attrs.dup
-    attrs = attrs['page'] if attrs.has_key? 'page'
-
-    attrs.except!('id', 'created_at', 'updated_at', 'site_id')
-
-    attrs['author_id'] = options[:author] unless User.unscoped.find_by_id(attrs['author_id'])
-    attrs['repository_id'] = ''
-
-    attrs['i18ns'] = attrs['i18ns'].map{|i18n| self::I18ns.new(i18n.except('id', 'created_at', 'updated_at', 'page_id', 'type')) }
-
-    page = self.create!(attrs)
-
-  end
-
-  def to_param
-    "#{id} #{title}".parameterize
-  end
-
-
-  private :validate_date
-
   validate :should_be_image
-  def should_be_image
-    return unless image
-    error_message = I18n.t("should_be_image")
-    errors.add(:image, error_message) unless is_image?
-  end
-  private :should_be_image
-
   validate :should_be_own_image
-  def should_be_own_image
-    return unless image
-    error_message = I18n.t("should_be_own_image")
-    errors.add(:image, error_message) unless own_image?
-  end
-  private :should_be_own_image
-
   validate :should_be_own_files
-  def should_be_own_files
-    error_message = I18n.t("should_be_own_files")
-    errors.add(:related_files, error_message) unless own_files?
-  end
-  private :should_be_own_files
 
-  #Callbacks
-  before_trash do
-    if publish
-      errors[:base] << I18n.t("cannot_destroy_a_published_page")
-      false
-    else
-      self.front = false
-      true
-    end
-  end
-
-  #Scopes
   scope :published, -> { where(publish: true) }
 
   scope :news, -> { where(type: 'News') }
   scope :events, -> { where(type: 'Event') }
 
-  scope :upcoming_events, proc{ where(" (event_begin >= :time OR event_end >= :time)", time: Time.now).events }
-  scope :previous_events, proc{ where(" (event_end < :time)", time: Time.now).events }
-
+  scope :upcoming_events, -> { where(" (event_begin >= :time OR event_end >= :time)", time: Time.now).events }
+  scope :previous_events, -> { where(" (event_end < :time)", time: Time.now).events }
 
   scope :front, -> { where(front: true) }
   scope :no_front, -> { where(front: false) }
@@ -112,7 +50,7 @@ class Page < ActiveRecord::Base
   # 0 = "termo1 termo2"
   # 1 = termo1 AND termo2
   # 2 = termo1 OR termo2
-  scope :search, lambda { |param, search_type|
+  scope :search, ->(param, search_type) {
     if param.present?
       fields = ["page_i18ns.title", "page_i18ns.summary", "page_i18ns.text",
       "users.first_name", "pages.type", "tags.name"]
@@ -137,6 +75,36 @@ class Page < ActiveRecord::Base
     end
   }
 
+  before_trash do
+    if publish
+      errors[:base] << I18n.t("cannot_destroy_a_published_page")
+      false
+    else
+      self.front = false
+      true
+    end
+  end
+
+  def self.import attrs, options={}
+    return attrs.each{|attr| self.import attr, options } if attrs.is_a? Array
+
+    attrs = attrs.dup
+    attrs = attrs['page'] if attrs.has_key? 'page'
+
+    attrs.except!('id', 'created_at', 'updated_at', 'site_id')
+
+    attrs['author_id'] = options[:author] unless User.unscoped.find_by_id(attrs['author_id'])
+    attrs['repository_id'] = ''
+
+    attrs['i18ns'] = attrs['i18ns'].map{|i18n| self::I18ns.new(i18n.except('id', 'created_at', 'updated_at', 'page_id', 'type')) }
+
+    self.create!(attrs)
+  end
+
+  def to_param
+    "#{id} #{title}".parameterize
+  end
+
   def event?
     type == 'Event'
   end
@@ -159,6 +127,29 @@ class Page < ActiveRecord::Base
   end
 
   private
+
+  def validate_date
+    if self.date_begin_at.blank?
+      self.date_begin_at = Time.now.to_s
+    end
+  end
+
+  def should_be_image
+    return unless image
+    error_message = I18n.t("should_be_image")
+    errors.add(:image, error_message) unless is_image?
+  end
+
+  def should_be_own_image
+    return unless image
+    error_message = I18n.t("should_be_own_image")
+    errors.add(:image, error_message) unless own_image?
+  end
+
+  def should_be_own_files
+    error_message = I18n.t("should_be_own_files")
+    errors.add(:related_files, error_message) unless own_files?
+  end
 
   def is_image?
     image.archive_content_type =~ /image/
