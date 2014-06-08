@@ -8,7 +8,7 @@ class Locale < ActiveRecord::Base
   end
 
   def self.import(attrs, options = {})
-    return attrs.each{|attr| self.import attr } if attrs.is_a? Array
+    return attrs.each { |attr| self.import attr } if attrs.is_a? Array
 
     attrs = attrs.dup
     attrs = attrs['locales'] if attrs.has_key? 'locales'

@@ -28,7 +28,7 @@ class Setting < ActiveRecord::Base
           # TODO another kind of input
         end
       when Array
-        values = pattern.map{|a| a.is_a?(Array) ? a[1].to_s : a.to_s}
+        values = pattern.map { |a| a.is_a?(Array) ? a[1].to_s : a.to_s }
         errors.add(:value, :invalid_format, format_message: "#{name} = [#{pattern.map { |a| a.is_a?(Array) ? a[0] : a }.join(",")}]") unless values.include?(value)
       when Symbol
         validator = "ActiveModel::Validations::#{pattern.to_s.classify}Validator".constantize.new(attributes: :value)

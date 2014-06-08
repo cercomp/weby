@@ -34,7 +34,7 @@ class Style < ActiveRecord::Base
 
   after_create :update_position
 
-  def copy! to_site
+  def copy!(to_site)
     if site == to_site
       return false unless self.style_id
       update_attributes(css: css, name: name, style_id: nil)

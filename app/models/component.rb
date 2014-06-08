@@ -24,7 +24,7 @@ class Component < ActiveRecord::Base
   end
 
   def self.import(attrs, options = {})
-    return attrs.each{|attr| self.import attr } if attrs.is_a? Array
+    return attrs.each { |attr| self.import attr } if attrs.is_a? Array
 
     attrs = attrs.dup
     attrs = attrs['component'] if attrs.has_key? 'component'
@@ -43,7 +43,7 @@ class Component < ActiveRecord::Base
 
   def serializable_hash(options = {})
     hash = super options
-    hash[:children] = self.site.components.where(place_holder: self.id.to_s).map{|c| c.serializable_hash(options)}
+    hash[:children] = self.site.components.where(place_holder: self.id.to_s).map { |c| c.serializable_hash(options) }
     hash
   end
 
@@ -71,7 +71,7 @@ class Component < ActiveRecord::Base
 
   def remove_children
     position = self.position
-    positions = self.site.components.where(place_holder: self.place_holder).order('position asc').map{|comp| comp.id }
+    positions = self.site.components.where(place_holder: self.place_holder).order('position asc').map { |comp| comp.id }
     Component.where(place_holder: self.id.to_s).order('position asc').each do |component|
       component.update_attributes(place_holder: self.place_holder)
       positions.insert(position-1, component.id)

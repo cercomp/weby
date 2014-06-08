@@ -15,7 +15,7 @@ class Menu < ActiveRecord::Base
   end
 
   def self.import(attrs, options = {})
-    return attrs.each{|attr| self.import attr } if attrs.is_a? Array
+    return attrs.each { |attr| self.import attr } if attrs.is_a? Array
 
     attrs = attrs.dup
     attrs = attrs['menu'] if attrs.has_key? 'menu'
@@ -25,8 +25,6 @@ class Menu < ActiveRecord::Base
 
     menu = self.create!(attrs)
 
-    if menu.persisted?
-      menu.menu_items.import items
-    end
+    menu.menu_items.import items if menu.persisted?
   end
 end

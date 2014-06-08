@@ -85,7 +85,7 @@ class User < ActiveRecord::Base
   end
 
   def unread_notifications_array
-    self.unread_notifications.to_s.split(',').map{|notif| notif.to_i}
+    self.unread_notifications.to_s.split(',').map { |notif| notif.to_i }
   end
 
   def append_unread_notification(notification)
@@ -110,7 +110,7 @@ class User < ActiveRecord::Base
   end
 
   def sites
-    Site.where(id: self.roles.map{|role| role.site_id}.uniq)
+    Site.where(id: self.roles.map { |role| role.site_id }.uniq)
   end
 
   # Returns the user's global roles

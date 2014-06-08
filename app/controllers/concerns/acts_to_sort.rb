@@ -3,7 +3,7 @@ module ActsToSort
 
   # TODO make this concern generic
   def sort
-    @ch_pos = current_site.pages.find(params[:id_moved], readonly: false)
+    @ch_pos = current_site.pages.find(params[:id_moved])
     increment = 1
     # In case it was moved to the end of the list or the end of a page (when paginated)
     if(params[:id_after] == '0')
