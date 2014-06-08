@@ -24,17 +24,17 @@ class Site < ActiveRecord::Base
 
   validates :url,
     presence: true,
-    format: {with: /^http[s]{,1}:\/\/[\w\.\-\%\#\=\?\&]+\.([\w\.\-\%\#\=\?\&]+\/{,1})*/i}
+    format: {with: /\Ahttp[s]{,1}:\/\/[\w\.\-\%\#\=\?\&]+\.([\w\.\-\%\#\=\?\&]+\/{,1})*\z/i}
 
   validates :name,
     presence: true,
      uniqueness: {scope: :parent_id},
-      format: {with: /^[a-z0-9_\-]+$/}
+      format: {with: /\A^[a-z0-9_\-]+\z/}
 
 
   validates :per_page,
     presence: true,
-    format: {with: /([0-9]+[,\s]*)+[0-9]*/}
+    format: {with: /\A([0-9]+[,\s]*)+[0-9]*\z/}
 
   validates :title,
     presence: true,
