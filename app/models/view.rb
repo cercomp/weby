@@ -1,7 +1,7 @@
 class View < ActiveRecord::Base
   belongs_to :site
-  belongs_to :viewable, polymorphic: true
   belongs_to :user
+  belongs_to :viewable, polymorphic: true
 
   def self.daily_stats year, month, metric, site_id=nil
     filter_month = ["extract(month from created_at) = ?", month]

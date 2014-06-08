@@ -92,21 +92,21 @@ class Page < ActiveRecord::Base
   end
 
   #Scopes
-  scope :published, where(publish: true)
+  scope :published, -> { where(publish: true) }
 
-  scope :news, where(type: 'News')
-  scope :events, where(type: 'Event')
+  scope :news, -> { where(type: 'News') }
+  scope :events, -> { where(type: 'Event') }
 
   scope :upcoming_events, proc{ where(" (event_begin >= :time OR event_end >= :time)", time: Time.now).events }
   scope :previous_events, proc{ where(" (event_end < :time)", time: Time.now).events }
 
 
-  scope :front, where(front: true)
-  scope :no_front, where(front: false)
-  scope :by_author, lambda { |id| where(author_id: id) }
+  scope :front, -> { where(front: true) }
+  scope :no_front, -> { where(front: false) }
+  scope :by_author, ->(id) { where(author_id: id) }
 
-  scope :available, proc { where("date_begin_at is NULL OR date_begin_at <= :time", {time: Time.now}).published }
-  scope :available_fronts, proc { front.available.where("date_end_at is NULL OR date_end_at > :time", {time: Time.now}) }
+  scope :available, -> { where("date_begin_at is NULL OR date_begin_at <= :time", { time: Time.now }).published }
+  scope :available_fronts, -> { front.available.where("date_end_at is NULL OR date_end_at > :time", {time: Time.now}) }
 
   # tipos de busca
   # 0 = "termo1 termo2"

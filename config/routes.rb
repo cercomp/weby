@@ -1,4 +1,4 @@
-Weby::Application.routes.draw do
+Rails.application.routes.draw do
   constraints(Weby::Subdomain) do
     # Mount all engines here
     constraints(Weby::Extensions) do

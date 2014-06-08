@@ -1,25 +1,8 @@
-# coding: utf-8
 class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable,
          :rememberable, :trackable, :confirmable, :lockable
 
   attr_accessor :auth
-
-  validates_presence_of :email, :login, :first_name, :last_name
-  validates_presence_of :password, on: :create
-
-  validates_uniqueness_of :email, :login
-
-  validates_confirmation_of :password
-
-  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
-  validates_format_of :login, with: /\A[a-z\d_\-\.@]+\z/i
-  validates_format_of :password, with: /(?=.*\d+)(?=.*[A-Z]+)(?=.*[a-z]+)\A.{4,}\z/,
-                      allow_blank: true, message: I18n.t("lower_upper_number_chars")
-
-  before_save { |user| user.email.downcase! }
-
-  has_and_belongs_to_many :roles
 
   belongs_to :locale
 
@@ -28,41 +11,61 @@ class User < ActiveRecord::Base
   has_many :user_login_histories, dependent: :destroy
   has_many :pages, foreign_key: :author_id, dependent: :restrict_with_error
 
+  has_and_belongs_to_many :roles
+
+  validates :email, :login, :first_name, :last_name, presence: true
+  validates :password, presence: true, on: :create
+  validates :email, :login, uniqueness: true
+  validates :password, confirmation: true
+  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
+  validates :login, format: { with: /\A[a-z\d_\-\.@]+\z/i }
+  validates :password,
+            format: {
+              with: /(?=.*\d+)(?=.*[A-Z]+)(?=.*[a-z]+)\A.{4,}\z/,
+              message: I18n.t("lower_upper_number_chars"),
+              allow_blank: true
+            }
+
+  before_save :normalize_attributes
+
   # Returns all user with the name similar to text.
-  scope :login_or_name_like, lambda { |text|
-    where('LOWER(login) like :text OR LOWER(first_name) like :text OR LOWER(last_name) like :text OR LOWER(email) like :text',
-          { text: "%#{text.try(:downcase)}%" })
+  scope :login_or_name_like, ->(text) {
+    where('LOWER(login) like :text OR
+           LOWER(first_name) like :text OR
+           LOWER(last_name) like :text OR
+           LOWER(email) like :text', { text: "%#{text.try(:downcase)}%" })
   }
 
   # Returns all admin users.
-  scope :admin, where(is_admin: true)
+  scope :admin, -> { where(is_admin: true) }
+
   # Returns all users that are no admins.
-  scope :no_admin, where(is_admin: false)
+  scope :no_admin, -> { where(is_admin: false) }
 
   # Returns all user that have a role in site_id.
-  scope :by_site, lambda { |site_id|
+  scope :by_site, ->(id) {
     select("DISTINCT users.* ").
     joins('LEFT JOIN roles_users ON roles_users.user_id = users.id
            LEFT JOIN roles ON roles.id = roles_users.role_id').
-    where(["roles.site_id = ?", site_id])
+    where(["roles.site_id = ?", id])
   }
 
   # Returns all users that have confirmed their registration.
-  scope :actives, where('confirmed_at IS NOT NULL')
+  scope :actives, -> { where('confirmed_at IS NOT NULL') }
 
-  scope :global_role, lambda {
+  scope :global_role, -> {
     select("DISTINCT users.* ").
     joins('INNER JOIN roles_users ON roles_users.user_id = users.id
            INNER JOIN roles ON roles.id = roles_users.role_id').
     where(["roles.site_id IS NULL"])
   }
 
-  scope :by_no_site, lambda { |site_id|
-    where "not exists (#{
+  scope :by_no_site, ->(id) {
+    where("not exists (#{
       Role.joins('INNER JOIN roles_users ON
       roles_users.role_id = roles.id AND users.id = roles_users.user_id').
-      where(site_id: site_id).to_sql
-    })"
+      where(site_id: id).to_sql
+    })")
   }
 
   def to_s
@@ -140,5 +143,11 @@ class User < ActiveRecord::Base
     else
       where(conditions).first
     end
+  end
+
+  private
+
+  def normalize_attributes
+    self.email.downcase!
   end
 end
