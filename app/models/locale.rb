@@ -8,7 +8,7 @@ class Locale < ActiveRecord::Base
     name
   end
 
-  def self.import attrs, options={}
+  def self.import(attrs, options = {})
     return attrs.each{|attr| self.import attr } if attrs.is_a? Array
 
     attrs = attrs.dup

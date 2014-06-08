@@ -12,7 +12,7 @@ class MenuItem < ActiveRecord::Base
   belongs_to :parent, class_name: 'MenuItem'
   has_many :children, class_name: 'MenuItem', foreign_key: 'parent_id', dependent: :destroy
 
-  validates_format_of :html_class, with: /^[A-Za-z0-9_\-]*$/
+  validates_format_of :html_class, with: /\A[A-Za-z0-9_\-]*\z/
   validates :position, numericality: true, allow_nil: false
 
   after_save do
@@ -28,7 +28,7 @@ class MenuItem < ActiveRecord::Base
     end
   end
 
-  def update_positions positions
+  def update_positions(positions)
     positions = positions_by_parent(positions)
     positions.fetch(parent_id, []).each_with_index do |item_id, idx|
       MenuItem.find(item_id).update_attribute(:position, idx+1)
@@ -42,7 +42,7 @@ class MenuItem < ActiveRecord::Base
     end
   end
 
-  def self.import attrs, options={}
+  def self.import(attrs, options = {})
     return attrs.each{|attr| self.import attr } if attrs.is_a? Array
 
     attrs = attrs.dup
@@ -60,14 +60,14 @@ class MenuItem < ActiveRecord::Base
     end
   end
 
-  def serializable_hash options={}
+  def serializable_hash(options = {})
     options.merge!({include: [:i18ns, :children]})
     super options
   end
 
   private
 
-  def positions_by_parent serialized
+  def positions_by_parent(serialized)
     hierarchy = {}
     serialized.each do |item, parent|
       parent = ['root','null'].include?(parent) ? nil : parent.to_i

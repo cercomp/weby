@@ -15,7 +15,7 @@ class Style < ActiveRecord::Base
     fields = ['styles.name', 'sites.title', 'sites.name']
 
     includes(:site).
-    where(fields.map{ |field| "lower(#{field}) like :term" }.join(" OR "), term: "%#{term.downcase}%") if term
+    where(fields.map { |field| "lower(#{field}) like :term" }.join(" OR "), term: "%#{term.downcase}%") if term
   }
 
   # returns all styles that are not being followed
@@ -60,7 +60,7 @@ class Style < ActiveRecord::Base
     style ? style.site : site
   end
 
-  def self.import attrs, options={}
+  def self.import(attrs, options = {})
     return attrs.each { |attr| self.import attr, options } if attrs.is_a? Array
 
     attrs = attrs.dup

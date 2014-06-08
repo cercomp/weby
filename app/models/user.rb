@@ -88,23 +88,23 @@ class User < ActiveRecord::Base
     self.unread_notifications.to_s.split(',').map{|notif| notif.to_i}
   end
 
-  def append_unread_notification notification
+  def append_unread_notification(notification)
     return unless notification
     self.update_attribute(:unread_notifications, unread_notifications_array.append(notification.id).join(','))
   end
 
-  def remove_unread_notification notification=nil
+  def remove_unread_notification(notification = nil)
     unread = self.unread_notifications_array
     notification ? unread.delete(notification.id) : unread.clear
     self.update_attribute(:unread_notifications, unread.join(','))
   end
 
-  def has_read? notification
+  def has_read?(notification)
     @unread ||= unread_notifications_array
     !@unread.include? notification.id
   end
 
-  def has_role_in? site
+  def has_role_in?(site)
     return true if self.is_admin?
     self.sites.include?(site) or self.global_roles.any?
   end

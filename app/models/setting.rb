@@ -18,18 +18,18 @@ class Setting < ActiveRecord::Base
       case pattern
       when Hash
         if pattern[:select]
-          values = pattern[:select].map{ |a| a.is_a?(Array) ? a[1].to_s : a.to_s }
+          values = pattern[:select].map { |a| a.is_a?(Array) ? a[1].to_s : a.to_s }
           invvalue = false
           value.split(',').each do |each_value|
             invvalue = true unless values.include?(each_value)
           end if value
-          errors.add(:value, :invalid_format, format_message: "#{name} = [#{pattern[:select].map{|a| a.is_a?(Array) ? a[0] : a}.join(",")}]") if invvalue
+          errors.add(:value, :invalid_format, format_message: "#{name} = [#{pattern[:select].map { |a| a.is_a?(Array) ? a[0] : a }.join(",")}]") if invvalue
         else
           # TODO another kind of input
         end
       when Array
         values = pattern.map{|a| a.is_a?(Array) ? a[1].to_s : a.to_s}
-        errors.add(:value, :invalid_format, format_message: "#{name} = [#{pattern.map{ |a| a.is_a?(Array) ? a[0] : a }.join(",")}]") unless values.include?(value)
+        errors.add(:value, :invalid_format, format_message: "#{name} = [#{pattern.map { |a| a.is_a?(Array) ? a[0] : a }.join(",")}]") unless values.include?(value)
       when Symbol
         validator = "ActiveModel::Validations::#{pattern.to_s.classify}Validator".constantize.new(attributes: :value)
         validator.validate self
@@ -40,9 +40,9 @@ class Setting < ActiveRecord::Base
   end
 
   # TODO change this to a common place for all models (if needed)
-  def self.new_or_update attributes
+  def self.new_or_update(attributes)
     instance = Setting.find_by_id attributes.delete(:id)
-    attributes.each{ |k, v| attributes[k] = v.join(',') if v.is_a?(Array) }
+    attributes.each { |k, v| attributes[k] = v.join(',') if v.is_a?(Array) }
     if instance
       instance.assign_attributes attributes
     else

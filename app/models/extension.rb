@@ -6,8 +6,8 @@ class Extension < ActiveRecord::Base
   validates :name, presence: true, uniqueness: { scope: :site_id, message: :already_installed }
   validates :site, presence: true
 
-  def self.import attrs, options={}
-    return attrs.each{ |attr| self.import attr } if attrs.is_a? Array
+  def self.import(attrs, options = {})
+    return attrs.each { |attr| self.import attr } if attrs.is_a? Array
 
     attrs = attrs.dup
     attrs = attrs['extensions'] if attrs.has_key? 'extensions'

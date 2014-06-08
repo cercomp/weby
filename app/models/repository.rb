@@ -28,8 +28,8 @@ class Repository < ActiveRecord::Base
       little: "-quality 90 -strip",
       medium: "-quality 80 -strip",
       thumb: "-crop 160x160+0+0 +repage -quality 90 -strip",
-      original: "-quality 80 -strip"},
-      processors: [:cropper]
+      original: "-quality 80 -strip" },
+    processors: [:cropper]
 
   validates :description, presence: true
 
@@ -46,7 +46,7 @@ class Repository < ActiveRecord::Base
 
   scope :content_file, ->(contents) {
     if contents.is_a?(Array)
-      contents = contents.map{ |content| "%#{content.gsub("+", "\\\\+")}%" }
+      contents = contents.map { |content| "%#{content.gsub("+", "\\\\+")}%" }
       where("archive_content_type SIMILAR TO :values",
             { values: "%(#{contents.join('|')})%" })
     else
@@ -110,7 +110,7 @@ class Repository < ActiveRecord::Base
     end
   end
 
-  def as_json options={}
+  def as_json(options = {})
     json = super(options)
     json['repository'][:original_path] = self.archive.url(:original)
     json['repository'][:little_path] = self.archive.url(:little)
@@ -120,7 +120,7 @@ class Repository < ActiveRecord::Base
     json
   end
 
-  def self.import attrs, options={}
+  def self.import(attrs, options = {})
     return attrs.each { |attr| self.import attr, options } if attrs.is_a? Array
 
     attrs = attrs.dup
@@ -144,7 +144,7 @@ class Repository < ActiveRecord::Base
     true
   end
 
-  def exists_archive?(format=nil)
+  def exists_archive?(format = nil)
     FileTest.exist?(archive.path(format))
   end
 end

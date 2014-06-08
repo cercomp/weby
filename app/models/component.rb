@@ -23,7 +23,7 @@ class Component < ActiveRecord::Base
     ""
   end
 
-  def self.import attrs, options={}
+  def self.import(attrs, options = {})
     return attrs.each{|attr| self.import attr } if attrs.is_a? Array
 
     attrs = attrs.dup
@@ -41,7 +41,7 @@ class Component < ActiveRecord::Base
     end
   end
 
-  def serializable_hash options={}
+  def serializable_hash(options = {})
     hash = super options
     hash[:children] = self.site.components.where(place_holder: self.id.to_s).map{|c| c.serializable_hash(options)}
     hash
@@ -54,7 +54,7 @@ class Component < ActiveRecord::Base
     @settings_map
   end
 
-  def self.update_positions positions, place_holder
+  def self.update_positions(positions, place_holder)
     positions.to_a.each_with_index do |comp_id, idx|
       attr = {position: idx+1}
       attr[:place_holder] = place_holder if place_holder.present?

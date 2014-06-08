@@ -57,7 +57,7 @@ class Page < ActiveRecord::Base
       query, values = "", {}
       case search_type
       when 0
-        query = fields.map { |field| "LOWER(#{field}) LIKE :param"}.join(" OR ")
+        query = fields.map { |field| "LOWER(#{field}) LIKE :param" }.join(" OR ")
         values[:param] = "%#{param.try(:downcase)}%"
       when 1, 2
         keywords = param.split(' ')
@@ -85,7 +85,7 @@ class Page < ActiveRecord::Base
     end
   end
 
-  def self.import attrs, options={}
+  def self.import(attrs, options = {})
     return attrs.each { |attr| self.import attr, options } if attrs.is_a? Array
 
     attrs = attrs.dup
