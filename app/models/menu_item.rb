@@ -1,41 +1,28 @@
 class MenuItem < ActiveRecord::Base
   weby_content_i18n :title, :description, required: :title
 
-  scope :published, where(publish: true)
-
   belongs_to :target, polymorphic: true
-
   belongs_to :menu
-  validates :menu_id,
-    presence: true
-
   belongs_to :parent, class_name: 'MenuItem'
+
   has_many :children, class_name: 'MenuItem', foreign_key: 'parent_id', dependent: :destroy
 
-  validates_format_of :html_class, with: /\A[A-Za-z0-9_\-]*\z/
+  validates :menu_id, presence: true
   validates :position, numericality: true, allow_nil: false
+  validates :html_class, format: { with: /\A[A-Za-z0-9_\-]*\z/ }
 
-  after_save do
-    if publish_changed?
-      children.each do |child|
-        child.update_attribute(:publish, publish)
-      end
-    end
-    if menu_id_changed?
-      children.each do |child|
-        child.update_attribute(:menu_id, menu_id)
-      end
-    end
-  end
+  scope :published, where(publish: true)
+
+  after_save :save_childrens
 
   def update_positions(positions)
     positions = positions_by_parent(positions)
     positions.fetch(parent_id, []).each_with_index do |item_id, idx|
-      MenuItem.find(item_id).update_attribute(:position, idx+1)
+      MenuItem.find(item_id).update_attribute(:position, idx + 1)
     end
     if parent_id != @new_parent
       positions.fetch(@new_parent, []).each_with_index do |item_id, idx|
-        attrs = {position: idx+1}
+        attrs = { position: idx + 1 }
         attrs[:parent_id] = @new_parent if item_id == id
         MenuItem.find(item_id).update_attributes(attrs)
       end
@@ -43,7 +30,7 @@ class MenuItem < ActiveRecord::Base
   end
 
   def self.import(attrs, options = {})
-    return attrs.each { |attr| self.import attr } if attrs.is_a? Array
+    return attrs.each { |attr| import attr } if attrs.is_a? Array
 
     attrs = attrs.dup
     attrs.except!('id', 'created_at', 'updated_at', 'menu_id', 'parent_id', 'target_id', 'target_type', 'type')
@@ -55,13 +42,13 @@ class MenuItem < ActiveRecord::Base
     menu_item = self.create!(attrs.merge(parent_id: options[:parent_id]))
     if menu_item.persisted?
       children.each do |child|
-        self.import child, parent_id: menu_item.id
+        import child, parent_id: menu_item.id
       end
     end
   end
 
   def serializable_hash(options = {})
-    options.merge!({include: [:i18ns, :children]})
+    options.merge!(include: [:i18ns, :children])
     super options
   end
 
@@ -70,11 +57,24 @@ class MenuItem < ActiveRecord::Base
   def positions_by_parent(serialized)
     hierarchy = {}
     serialized.each do |item, parent|
-      parent = ['root','null'].include?(parent) ? nil : parent.to_i
+      parent = %w(root null).include?(parent) ? nil : parent.to_i
       hierarchy[parent] ||= []
       hierarchy[parent] << item.to_i
       @new_parent = parent if item.to_i == id
     end
     hierarchy
+  end
+
+  def save_childrens
+    if publish_changed?
+      children.each do |child|
+        child.update_attribute(:publish, publish)
+      end
+    end
+    if menu_id_changed?
+      children.each do |child|
+        child.update_attribute(:menu_id, menu_id)
+      end
+    end
   end
 end
