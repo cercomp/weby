@@ -5,7 +5,7 @@ class View < ActiveRecord::Base
 
   def self.daily_stats year, month, metric, site_id=nil
     filter_month = ["extract(month from created_at) = ?", month]
-    filter_site = {site_id: site_id} if site_id.present?
+    filter_site = { site_id: site_id } if site_id.present?
 
     counts = {}
     case metric.to_sym
@@ -23,13 +23,13 @@ class View < ActiveRecord::Base
 
     finish_year, finish_month = month.to_i == 12 ? [year.to_i + 1, 1] : [year.to_i, month.to_i + 1]
 
-    (Date.new(year.to_i, month.to_i)..Date.new(finish_year, finish_month)-1.days).
-      map{|day| {date: day.strftime('%Y-%m-%d'), views: counts[day.strftime('%Y-%m-%d')].to_i} }.to_json
+    (Date.new(year.to_i, month.to_i)..Date.new(finish_year, finish_month) - 1.days).
+      map{ |day| { date: day.strftime('%Y-%m-%d'), views: counts[day.strftime('%Y-%m-%d')].to_i } }.to_json
   end
 
   def self.monthly_stats year, metric, site_id=nil
     filter_year = ["extract(year from created_at) = ?", year]
-    filter_site = {site_id: site_id} if site_id.present?
+    filter_site = { site_id: site_id } if site_id.present?
 
     counts = {}
     case metric.to_sym
@@ -45,6 +45,6 @@ class View < ActiveRecord::Base
       end
     end
 
-    (1..12).map{ |month| {month: month, views: counts[month.to_s].to_i} }.to_json
+    (1..12).map{ |month| { month: month, views: counts[month.to_s].to_i } }.to_json
   end
 end

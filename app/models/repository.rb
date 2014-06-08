@@ -46,9 +46,9 @@ class Repository < ActiveRecord::Base
 
   scope :content_file, ->(contents) {
     if contents.is_a?(Array)
-      contents = contents.map{|content| "%#{content.gsub("+", "\\\\+")}%"}
-      where(["archive_content_type SIMILAR TO :values",
-             { values: "%(#{contents.join('|')})%" } ])
+      contents = contents.map{ |content| "%#{content.gsub("+", "\\\\+")}%" }
+      where("archive_content_type SIMILAR TO :values",
+            { values: "%(#{contents.join('|')})%" })
     else
       archive_content_file(contents)
     end
@@ -99,7 +99,7 @@ class Repository < ActiveRecord::Base
     archive.instance_write(:file_name, CGI.unescape(archive.original_filename))
   end
 
-  validates :archive_file_name, uniqueness: {scope: :site_id, message: I18n.t("file_already_exists")}
+  validates :archive_file_name, uniqueness: { scope: :site_id, message: I18n.t("file_already_exists") }
 
   # Reprocessamento de imagens para (re)gerar os thumbnails quando necessário
   def reprocess
@@ -121,7 +121,7 @@ class Repository < ActiveRecord::Base
   end
 
   def self.import attrs, options={}
-    return attrs.each{|attr| self.import attr, options } if attrs.is_a? Array
+    return attrs.each { |attr| self.import attr, options } if attrs.is_a? Array
 
     attrs = attrs.dup
     attrs = attrs['repository'] if attrs.has_key? 'repository'

@@ -61,7 +61,7 @@ class Style < ActiveRecord::Base
   end
 
   def self.import attrs, options={}
-    return attrs.each{|attr| self.import attr, options } if attrs.is_a? Array
+    return attrs.each { |attr| self.import attr, options } if attrs.is_a? Array
 
     attrs = attrs.dup
     attrs = attrs['styles'] if attrs.has_key? 'styles'
@@ -91,6 +91,6 @@ class Style < ActiveRecord::Base
   end
 
   def update_position
-    update(position: site.styles.maximum(:position)+1) unless position
+    update(position: site.styles.maximum(:position) + 1) unless position
   end
 end

@@ -44,7 +44,7 @@ class Page < ActiveRecord::Base
   scope :by_author, ->(id) { where(author_id: id) }
 
   scope :available, -> { where("date_begin_at is NULL OR date_begin_at <= :time", { time: Time.now }).published }
-  scope :available_fronts, -> { front.available.where("date_end_at is NULL OR date_end_at > :time", {time: Time.now}) }
+  scope :available_fronts, -> { front.available.where("date_end_at is NULL OR date_end_at > :time", { time: Time.now }) }
 
   # tipos de busca
   # 0 = "termo1 termo2"
@@ -86,7 +86,7 @@ class Page < ActiveRecord::Base
   end
 
   def self.import attrs, options={}
-    return attrs.each{|attr| self.import attr, options } if attrs.is_a? Array
+    return attrs.each { |attr| self.import attr, options } if attrs.is_a? Array
 
     attrs = attrs.dup
     attrs = attrs['page'] if attrs.has_key? 'page'
@@ -96,7 +96,7 @@ class Page < ActiveRecord::Base
     attrs['author_id'] = options[:author] unless User.unscoped.find_by_id(attrs['author_id'])
     attrs['repository_id'] = ''
 
-    attrs['i18ns'] = attrs['i18ns'].map{|i18n| self::I18ns.new(i18n.except('id', 'created_at', 'updated_at', 'page_id', 'type')) }
+    attrs['i18ns'] = attrs['i18ns'].map { |i18n| self::I18ns.new(i18n.except('id', 'created_at', 'updated_at', 'page_id', 'type')) }
 
     self.create!(attrs)
   end
@@ -115,7 +115,7 @@ class Page < ActiveRecord::Base
   end
 
   def self.uniq_category_counts
-    self.category_counts.inject(Hash.new) do |hash,j|
+    self.category_counts.reduce(Hash.new) do |hash, j|
       name = j.name.upcase
       if hash[name]
         hash[name].count += j.count
@@ -129,9 +129,7 @@ class Page < ActiveRecord::Base
   private
 
   def validate_date
-    if self.date_begin_at.blank?
-      self.date_begin_at = Time.now.to_s
-    end
+    self.date_begin_at = Time.now.to_s if self.date_begin_at.blank?
   end
 
   def should_be_image

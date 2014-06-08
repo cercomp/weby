@@ -53,7 +53,7 @@ class Site < ActiveRecord::Base
   end
 
   def has_extension(extension)
-    extensions.select {|ext| ext.name = extension.to_s }.any?
+    extensions.select { |ext| ext.name = extension.to_s }.any?
   end
 
   private
@@ -65,7 +65,7 @@ class Site < ActiveRecord::Base
   end
 
   def clear_per_page
-    self.per_page.gsub!(/[^\d,]/,'')
-    self.per_page.gsub!(',,',',')
+    self.per_page.gsub!(/[^\d,]/, '')
+    self.per_page.gsub!(',,', ',')
   end
 end

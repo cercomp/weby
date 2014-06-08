@@ -7,7 +7,7 @@ class Extension < ActiveRecord::Base
   validates :site, presence: true
 
   def self.import attrs, options={}
-    return attrs.each{|attr| self.import attr } if attrs.is_a? Array
+    return attrs.each{ |attr| self.import attr } if attrs.is_a? Array
 
     attrs = attrs.dup
     attrs = attrs['extensions'] if attrs.has_key? 'extensions'
@@ -16,6 +16,6 @@ class Extension < ActiveRecord::Base
 
     attrs.except!('id', 'created_at', 'updated_at', 'site_id', 'type')
 
-    extension = self.create!(attrs)
+    self.create!(attrs)
   end
 end
