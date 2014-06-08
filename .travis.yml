@@ -6,7 +6,7 @@ before_script:
   - mv config/travis_database.yml config/database.yml
   - rm -rf vendor/bundle/ruby/2.1.0/gems/i18n-0.6.9/test
   - RAILS_ENV=test bundle exec rake --trace db:schema:load
-script: rspec spec
+script: bin/rspec spec
 notifications:
   webhooks:
     urls:
