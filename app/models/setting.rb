@@ -1,6 +1,4 @@
 class Setting < ActiveRecord::Base
-  validates_uniqueness_of :name
-  validates :name, :value, presence: true
   attr_accessor :default_value
 
   VALUES_SET = {
@@ -8,10 +6,13 @@ class Setting < ActiveRecord::Base
     per_page_default: :numericality,
     tld_length: :numericality,
     maintenance_mode: %w(false true)
-    #,default_groupings: {select: Grouping.all.map{|g| [g.name, g.id] }, options: {class: 'select2', multiple: true}}
   }
 
+  validates :name, :value, presence: true
+  validates :name, uniqueness: true
+
   validate :check_value
+
   def check_value
     if (pattern = VALUES_SET[name.to_sym])
       case pattern
