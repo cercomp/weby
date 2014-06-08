@@ -1,16 +1,12 @@
 class Menu < ActiveRecord::Base
-  has_many :menu_items, dependent: :destroy, order: :position, include: :i18ns
-  has_many :root_menu_items, order: :position, include: :i18ns, class_name: 'MenuItem', conditions: 'parent_id is NULL'
-
-  validates :name, presence: true
-
   belongs_to :site
-  # validates_associated :site
-  validates :site_id,
-    presence: true,
-    numericality: true
 
-  scope :with_items, includes(:menu_items)
+  has_many :menu_items, -> { order(:position).include(:i18ns) }, dependent: :destroy
+  has_many :root_menu_items, -> { order(:position).include(:i18ns).where('parent_id is NULL') }, class_name: 'MenuItem'
+
+  validates :name, :site, presence: true
+
+  scope :with_items, -> { includes(:menu_items) }
 
   # Returns a hash, with the parent_id and a array as the value
   # ie. {0 => [menuitem1, menuitem2}, 1 => [menuitem3,menuitem4] }
@@ -28,6 +24,7 @@ class Menu < ActiveRecord::Base
     items = attrs.delete('root_menu_items')
 
     menu = self.create!(attrs)
+
     if menu.persisted?
       menu.menu_items.import items
     end

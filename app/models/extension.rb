@@ -3,8 +3,8 @@ class Extension < ActiveRecord::Base
 
   belongs_to :site
 
-  validates :name, presence: true, uniqueness: { scope: :site_id, message: :already_installed }
-  validates :site, presence: true
+  validates :name, :site, presence: true
+  validates :name, uniqueness: { scope: :site_id, message: :already_installed }
 
   def self.import(attrs, options = {})
     return attrs.each { |attr| self.import attr } if attrs.is_a? Array
