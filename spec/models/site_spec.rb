@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Site do
   skip 'Scopes' do
@@ -51,7 +51,7 @@ describe Site do
   it { expect(subject).to belong_to(:main_site).class_name('Site').with_foreign_key('parent_id') }
 
   it { expect(subject).to have_many(:roles) }
-  
+
   it { expect(subject).to have_many(:views) }
 
   it { expect(subject).to have_many(:menus).dependent(:delete_all).order(:id) }
@@ -60,15 +60,16 @@ describe Site do
   it { expect(subject).to have_many(:pages).dependent(:delete_all) }
 
   it { expect(subject).to have_many(:pages_i18ns).through(:pages) }
-  
+
   #StickerBanners
   skip { expect(subject).to have_many(:banners).order(:position) }
-  
-  it { expect(subject).to have_many(:styles).dependent(:destroy).order('styles.position desc') }
+
+  it { expect(subject).to have_many(:styles).dependent(:destroy).order('styles.position DESC') }
 
   context 'Component' do
     it 'components should be ordered by place_holder, position asc' do
-      expect(subject).to have_many(:components).dependent(:destroy).order('place_holder, position asc')
+      expect(subject).to have_many(:components).dependent(:destroy)
+        .order([:place_holder, :position])
     end
 
     it { expect(subject).to have_many(:root_components).order(:position).class_name('Component') }

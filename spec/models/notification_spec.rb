@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Notification do
   it { expect(subject).to belong_to(:user) }

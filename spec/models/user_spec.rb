@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe User do
   it { expect(subject).to validate_presence_of(:email) }
@@ -96,7 +96,7 @@ describe User do
   end
 
   context 'Pages' do
-    it { expect(subject).to have_many(:pages).with_foreign_key(:author_id).dependent(:restrict) }
+    it { expect(subject).to have_many(:pages).with_foreign_key(:author_id).dependent(:restrict_with_error) }
   end
 
   context 'Views' do

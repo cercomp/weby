@@ -20,7 +20,7 @@ class Admin::UsersController < ApplicationController
           user.role_ids -= [role_id]
         end
       end
-      
+
       # If it is an global role
       unless @site
         user.roles.where(site_id: nil).each{|r| user.role_ids -= [r.id] }
@@ -49,7 +49,7 @@ class Admin::UsersController < ApplicationController
       order(sort_column + " " + sort_direction).page(params[:page]).
       per((params[:per_page] || per_page_default ))
 
-    if @site 
+    if @site
       @users = @users.by_site(@site.id)
     end
 
@@ -94,11 +94,12 @@ class Admin::UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    flash[:success] = t("destroyed_param", param: @user.first_name)
-    record_activity("destroyed_user", @user)
-  rescue ActiveRecord::DeleteRestrictionError
-    flash[:warning] = t("user_cant_be_deleted")
-  ensure
+    if @user.errors.full_messages.empty?
+      flash[:success] = t("destroyed_param", param: @user.first_name)
+      record_activity("destroyed_user", @user)
+    else
+      flash[:warning] = t("user_cant_be_deleted")
+    end
     redirect_to admin_users_path
   end
 
@@ -107,7 +108,7 @@ class Admin::UsersController < ApplicationController
   def sort_column
     User.column_names.include?(params[:sort]) ? params[:sort] : 'id'
   end
-  
+
   def user_params
     params[:user].slice(:login, :email, :password, :password_confirmation, :first_name, :last_name, :phone, :mobile, :locale_id)
   end

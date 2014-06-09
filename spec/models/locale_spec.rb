@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Locale do
   it { expect(subject).to have_and_belong_to_many(:sites) }

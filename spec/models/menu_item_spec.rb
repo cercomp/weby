@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe MenuItem do
   it { expect(subject).to belong_to(:menu) }

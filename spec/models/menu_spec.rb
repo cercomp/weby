@@ -1,9 +1,8 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Menu do
   it { expect(subject).to validate_presence_of(:name) }
-  it { expect(subject).to validate_presence_of(:site_id) }
-  it { expect(subject).to validate_numericality_of(:site_id) }
+  it { expect(subject).to validate_presence_of(:site) }
 
   it { expect(subject).to belong_to(:site) }
 

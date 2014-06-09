@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Repository do
   it { expect(subject).to have_many(:page).with_foreign_key('repository_id') }

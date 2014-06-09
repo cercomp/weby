@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Component do
   it { expect(subject).to belong_to(:site) }

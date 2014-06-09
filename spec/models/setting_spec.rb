@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Setting do
   it { expect(subject).to validate_uniqueness_of(:name) }

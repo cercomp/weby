@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Grouping do
   it { expect(subject).to validate_presence_of(:name) }
