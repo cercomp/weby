@@ -1,9 +1,9 @@
 module Weby
   class Settings
-    settings_yaml = "lib/weby/config/settings.yml"
+    settings_yaml = 'lib/weby/config/settings.yml'
     @@default_settings = YAML.load_file(Rails.root.join(settings_yaml))['settings'] if File.exist? settings_yaml
-    
-    @@default_settings.each do |key, value|
+
+    @@default_settings.each do |key, _value|
       class_eval <<-METHOD
         def self.#{key}(value_only=true)
           @settings ||= Setting.all
@@ -22,7 +22,7 @@ module Weby
     end
 
     def self.all
-      @@default_settings.map{|key, setting| self.send(key.to_sym, false) }.sort{|a,b| a.name <=> b.name }
+      @@default_settings.map { |key, _setting| send(key.to_sym, false) }.sort { |a, b| a.name <=> b.name }
     end
   end
 end

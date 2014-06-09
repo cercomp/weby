@@ -5,7 +5,7 @@ module Weby
     belongs_to :locale
 
     validates :locale_id,
-      presence: true,
-      numericality: true
+              presence: true,
+              numericality: true
   end
 end

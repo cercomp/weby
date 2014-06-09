@@ -1,13 +1,12 @@
 module Weby
   class Rights
     class << self
-
       begin
-        @@rights = YAML.load(ERB.new(File.read(Rails.root.join("lib","weby","config","rights.yml"))).result)["rights"]
-        Dir.glob File.expand_path("vendor/engines/*", Rails.root) do |extension_dir|
-          file = File.join(extension_dir, "lib/weby/config/rights.yml")
+        @@rights = YAML.load(ERB.new(File.read(Rails.root.join('lib', 'weby', 'config', 'rights.yml'))).result)['rights']
+        Dir.glob File.expand_path('vendor/engines/*', Rails.root) do |extension_dir|
+          file = File.join(extension_dir, 'lib/weby/config/rights.yml')
           if File.exist?(file)
-            @@rights = YAML.load(ERB.new(File.read(file)).result)["rights"].merge @@rights
+            @@rights = YAML.load(ERB.new(File.read(file)).result)['rights'].merge @@rights
           end
         end
       end
@@ -17,7 +16,7 @@ module Weby
       end
 
       def actions(controller, permission)
-        @@rights.fetch(controller, {}).fetch(permission, {'action' => ''})['action'].split(' ')
+        @@rights.fetch(controller, {}).fetch(permission, 'action' => '')['action'].split(' ')
       end
 
       def permission(controller, action)
@@ -27,11 +26,11 @@ module Weby
         ctrl.each do |permission, config|
           return permission if config['action'].include? action
         end
-        return nil
+        nil
       end
 
-      def seed_roles site_id=nil
-        roles  = YAML.load(ERB.new(File.read(Rails.root.join("lib","weby","config","roles.yml"))).result)
+      def seed_roles(site_id = nil)
+        roles  = YAML.load(ERB.new(File.read(Rails.root.join('lib', 'weby', 'config', 'roles.yml'))).result)
 
         roles.each do |name, values|
           permissions = {}.to_s
@@ -40,7 +39,7 @@ module Weby
             permissions = values['permissions'].to_s
           when String
             if values['permissions'] == 'all'
-              permissions = Hash[Weby::Rights.permissions.map{|controller, actions| [controller, actions.keys]}].to_s
+              permissions = Hash[Weby::Rights.permissions.map { |controller, actions| [controller, actions.keys] }].to_s
             end
           end
           Role.create(name: name, permissions: permissions, site_id: site_id)

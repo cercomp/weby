@@ -12,10 +12,10 @@ module Weby
       end
 
       def error_title
-        content_tag :b, %{
-          #{pluralize(@object.errors.count,"")}
-          #{I18n.t("prohibited_being_saved", count: @object.errors.count)}
-        }
+        content_tag :b, %(
+          #{pluralize(@object.errors.count, '')}
+          #{I18n.t('prohibited_being_saved', count: @object.errors.count)}
+        )
       end
       private :error_title
 

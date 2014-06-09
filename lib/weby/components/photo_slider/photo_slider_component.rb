@@ -3,56 +3,55 @@ class PhotoSliderComponent < Component
 
   i18n_settings :title
 
-  alias :_photo_ids :photo_ids
+  alias_method :_photo_ids, :photo_ids
   def photo_ids
-    _photo_ids.blank? ? [] : _photo_ids 
+    _photo_ids.blank? ? [] : _photo_ids
   end
 
-  alias :_width :width
+  alias_method :_width, :width
   def width
     _width.blank? ? '400' : _width
   end
 
-  alias :_height :height
+  alias_method :_height, :height
   def  height
-    _height.blank? ? '300' : _height 
+    _height.blank? ? '300' : _height
   end
 
-  alias :_timer :timer
-  def timer 
-    _timer.blank? ? '7' : _timer 
+  alias_method :_timer, :timer
+  def timer
+    _timer.blank? ? '7' : _timer
   end
 
-  alias :_description :description
+  alias_method :_description, :description
   def description
-    _description.nil? ? "1" : _description
+    _description.nil? ? '1' : _description
   end
 
   def show_controls?
-    show_controls.blank? ? false : show_controls == "1"
+    show_controls.blank? ? false : show_controls == '1'
   end
 
-  alias :_style :style
+  alias_method :_style, :style
   def style
-    _style.blank? ? "1" : _style
+    _style.blank? ? '1' : _style
   end
 
   def generate_vector_images
     [].tap do |images|
-    photo_ids.each do |image|
-      images<<Repository.find_by_id(image)
-    end
-    images.compact!
+      photo_ids.each do |image|
+        images << Repository.find_by_id(image)
+      end
+      images.compact!
     end
   end
 
   def show_description?
-    _description.eql?("1")    
+    _description.eql?('1')
   end
 
   def flex_slider_style?
-    flex_slider = "1"
-   _style.eql?(flex_slider) 
+    flex_slider = '1'
+    _style.eql?(flex_slider)
   end
-
 end

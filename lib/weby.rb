@@ -1,7 +1,6 @@
 module Weby
   autoload :Extension, 'weby/extension'
   class << self
-
     @@extensions = {}
     @@institutions = {}
 
