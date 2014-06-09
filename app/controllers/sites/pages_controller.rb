@@ -13,8 +13,8 @@ class Sites::PagesController < ApplicationController
     @pages = get_pages
 
     respond_with(:site, @page) do |format|
-      format.rss { render layout: false, content_type: Mime::XML } #index.rss.builder
-      format.atom { render layout: false, content_type: Mime::XML } #index.atom.builder
+      format.rss { render layout: false, content_type: Mime::XML } # index.rss.builder
+      format.atom { render layout: false, content_type: Mime::XML } # index.atom.builder
     end
   end
 
@@ -29,12 +29,12 @@ class Sites::PagesController < ApplicationController
   def news
     @pages = get_pages.news
     respond_with(current_site, @pages) do |format|
-      format.any { render 'index'}
+      format.any { render 'index' }
     end
   end
 
   def tags
-    params[:tags].split(',').map{ |tag| tag.mb_chars.downcase.to_s }
+    params[:tags].split(',').map { |tag| tag.mb_chars.downcase.to_s }
   end
   private :tags
 
@@ -44,7 +44,7 @@ class Sites::PagesController < ApplicationController
     # tags e locales
     pages = current_site.pages.available.
       search(params[:search], params.fetch(:search_type, 1).to_i).
-      order(sort_column + " " + sort_direction).
+      order(sort_column + ' ' + sort_direction).
       page(params[:page]).per(params[:per_page])
 
     pages = pages.tagged_with(tags, any: true) if params[:tags]
@@ -71,7 +71,6 @@ class Sites::PagesController < ApplicationController
 
   private
   def check_current_site
-    render_404 if not current_site
+    render_404 unless current_site
   end
-
 end

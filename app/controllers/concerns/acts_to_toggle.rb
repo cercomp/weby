@@ -1,4 +1,4 @@
-# Concern that creates the toggle actions in a controller 
+# Concern that creates the toggle actions in a controller
 # Just add to your controller to use:
 #
 #   include ActsToToggle
@@ -17,9 +17,9 @@ module ActsToToggle
   # PUT /toggle?field=FIELD_NAME
   def toggle
     if toggle_attribute!
-      flash[:success] = t("successfully_updated")
+      flash[:success] = t('successfully_updated')
     else
-      flash[:warning] = t("error_updating_object")
+      flash[:warning] = t('error_updating_object')
     end
 
     redirect_to after_toggle_path
@@ -41,7 +41,7 @@ module ActsToToggle
   # path que será redirecionando após a action toggle
   # por default é :back
   def after_toggle_path
-    request.env["HTTP_REFERER"]
+    request.env['HTTP_REFERER']
   end
 
   private :toggle_attribute!, :after_toggle_path

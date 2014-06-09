@@ -5,13 +5,13 @@ class Admin::NotificationsController < ApplicationController
 
   def index
     @notifications = Notification.title_or_body_like(params[:search]).
-                     order("created_at DESC").
+                     order('created_at DESC').
                      page(params[:page]).
                      per(params[:per_page] || per_page_default)
   end
 
   def new
-    @notification = Notification.new 
+    @notification = Notification.new
   end
 
   def edit
@@ -23,11 +23,11 @@ class Admin::NotificationsController < ApplicationController
     @notification = Notification.new(params[:notification])
     @notification.user_id = current_user.id
     if @notification.save
-      flash[:success] = t("create_notification_successful")
-      record_activity("created_notification", @notification)
+      flash[:success] = t('create_notification_successful')
+      record_activity('created_notification', @notification)
       redirect_to admin_notification_path @notification
     else
-      flash[:error] = t("problem_create_notification")
+      flash[:error] = t('problem_create_notification')
       render action: :new
     end
     User.no_admin.each do |user|
@@ -40,11 +40,11 @@ class Admin::NotificationsController < ApplicationController
 
     if @notification.update(params[:notification])
       redirect_to admin_notification_path @notification
-      record_activity("updated_notification", @notification)
-      flash[:success] = t("update_notification_successful")
+      record_activity('updated_notification', @notification)
+      flash[:success] = t('update_notification_successful')
     else
-      flash[:error] = t("problem_update_notification")
-      render action: "index"
+      flash[:error] = t('problem_update_notification')
+      render action: 'index'
     end
   end
 
@@ -55,13 +55,13 @@ class Admin::NotificationsController < ApplicationController
   def destroy
     @notification = Notification.find(params[:id])
     @notification.destroy
-    flash[:success] = t("destroyed_param", param: @notification.title)
-    record_activity("destroyed_notification", @notification)
+    flash[:success] = t('destroyed_param', param: @notification.title)
+    record_activity('destroyed_notification', @notification)
     User.no_admin.each do |user|
       user.remove_unread_notification @notification
     end
   rescue ActiveRecord::DeleteRestrictionError
-    flash[:warning] = t("problem_destroy_notification")
+    flash[:warning] = t('problem_destroy_notification')
   ensure
     redirect_to admin_notifications_path
   end

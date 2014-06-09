@@ -1,5 +1,4 @@
 module PagesHelper
- 
   # Input: receives(Site, Page)
   # Output: Returns an external link when it exists or the link to a Page
   def link_on_title(site, page)
@@ -11,17 +10,17 @@ module PagesHelper
   end
 
   def locale_with_name(locale, size = '24')
-    raw %{
+    raw %(
       #{flag(locale, size)}
       #{t(locale.name)}
-    } if locale
+    ) if locale
   end
 
   def title_with_flags(page)
-    %{
+    %(
       #{available_flags(page)}
       #{content_tag(:p, link_to(page.title, site_admin_page_path(page)))}
-    }.html_safe
+    ).html_safe
   end
 
   def available_flags(page, size = '16')
@@ -36,12 +35,12 @@ module PagesHelper
 
   def other_flags(page, size = '16')
     page.other_locales.map do |locale|
-      link_to(flag(locale, size), send((is_in_admin_context? ? :site_admin_page_path : :site_page_path) ,page, page_locale: locale.name) )
+      link_to(flag(locale, size), send((is_in_admin_context? ? :site_admin_page_path : :site_page_path) , page, page_locale: locale.name))
     end.join(' ')
   end
 
   def categories_links(categories)
-    "".tap do |link|
+    ''.tap do |link|
       categories.each do |category|
         link << link_to(category, site_pages_path(tags: category)) + ",\n"
       end

@@ -3,7 +3,7 @@ class Admin::GroupingsController < ApplicationController
   before_action :is_admin
 
   respond_to :html, :xml
-  
+
   def index
     @groupings = Grouping.all
   end

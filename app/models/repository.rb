@@ -48,7 +48,7 @@ class Repository < ActiveRecord::Base
     if contents.is_a?(Array)
       contents = contents.map { |content| "%#{content.gsub('+', '\\\\+')}%" }
       where('archive_content_type SIMILAR TO :values',
-             values: "%(#{contents.join('|')})%")
+            values: "%(#{contents.join('|')})%")
     else
       archive_content_file(contents)
     end

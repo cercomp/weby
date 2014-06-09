@@ -20,5 +20,4 @@ class Admin::StatisticsController < ApplicationController
       end
     end
   end
-
 end

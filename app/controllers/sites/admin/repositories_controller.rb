@@ -1,13 +1,13 @@
 class Sites::Admin::RepositoriesController < ApplicationController
   before_action :require_user
   before_action :check_authorization
-  
+
   helper_method :sort_column
 
   respond_to :html, :xml, :js, :json
   def index
     params[:mime_type] ||= params[:empty_filter]
-    params[:mime_type].try(:delete, "")
+    params[:mime_type].try(:delete, '')
     params[:direction] ||= 'desc'
 
     @repositories = current_site.repositories.
@@ -25,7 +25,7 @@ class Sites::Admin::RepositoriesController < ApplicationController
           repositories: @repositories
         }
       end
-      if params[:template] 
+      if params[:template]
         format.html { render "#{params[:template]}" }
         format.js { render "#{params[:template]}" }
       end
@@ -67,16 +67,16 @@ class Sites::Admin::RepositoriesController < ApplicationController
         end
         format.json do
           render json: { repositories: @repository,
-                         message: t("successfully_created"),
+                         message: t('successfully_created'),
                          url: site_admin_repository_path(@repository) },
-            content_type: check_accept_json
+                 content_type: check_accept_json
         end
-        record_activity("uploaded_file", @repository)
+        record_activity('uploaded_file', @repository)
       else
         format.html { render action: :new }
         format.json do
           render json: { errors: @repository.errors.full_messages }, status: 412,
-            content_type: check_accept_json
+                 content_type: check_accept_json
         end
       end
     end
@@ -87,8 +87,8 @@ class Sites::Admin::RepositoriesController < ApplicationController
 
     if @repository.update(params[:repository])
       @repository.archive.reprocess! unless params[:repository][:archive]
-      flash[:success] = t("successfully_updated") 
-      record_activity("updated_file", @repository)
+      flash[:success] = t('successfully_updated')
+      record_activity('updated_file', @repository)
       redirect_to [:site, :admin, @repository]
     else
       render action: :edit
@@ -99,27 +99,27 @@ class Sites::Admin::RepositoriesController < ApplicationController
     @repository = current_site.repositories.unscoped.find(params[:id])
     if @repository.trash
       if @repository.persisted?
-        record_activity("moved_file_to_recycle_bin", @repository)
+        record_activity('moved_file_to_recycle_bin', @repository)
         flash[:success] = t('moved_file_to_recycle_bin')
       else
-        record_activity("destroyed_file", @repository)
+        record_activity('destroyed_file', @repository)
         flash[:success] = t('successfully_deleted')
       end
-      
+
     else
-      flash[:error] = @repository.errors.full_messages.join(", ")
+      flash[:error] = @repository.errors.full_messages.join(', ')
     end
-    
+
     redirect_to main_app.site_admin_repositories_path
   end
 
-  def recover                                      
+  def recover
     @repository = current_site.repositories.trashed.find(params[:id])
     if @repository.untrash
       flash[:success] = t('successfully_restored')
     end
-    record_activity("restored_file", @repository)
-    redirect_to :back                              
+    record_activity('restored_file', @repository)
+    redirect_to :back
   end
 
   private

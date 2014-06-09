@@ -11,14 +11,14 @@ class Admin::SitesController < ApplicationController
 
     @sites = Site.name_or_description_like(params[:search]).
       except(:order).
-      order(sort_column + " " + sort_direction).
+      order(sort_column + ' ' + sort_direction).
       page(params[:page]).
       per(params[:per_page])
   end
 
   def new
     @site = Site.new
-    load_themes #@themes
+    load_themes # @themes
   end
 
   def create
@@ -26,7 +26,7 @@ class Admin::SitesController < ApplicationController
     if @site.save
       theme = ::Weby::Theme.new @site
       theme.populate
-      record_activity("created_site", @site)  
+      record_activity('created_site', @site)
       redirect_to site_admin_components_url(subdomain: @site)
     else
       load_themes
@@ -42,8 +42,8 @@ class Admin::SitesController < ApplicationController
   def update
     @site = Site.find(params[:id])
     if @site.update(params[:site])
-      flash[:success] = t"successfully_updated"
-      record_activity("updated_site", @site)
+      flash[:success] = t'successfully_updated'
+      record_activity('updated_site', @site)
       redirect_to edit_admin_site_path(@site.id)
     else
       load_themes
@@ -52,9 +52,9 @@ class Admin::SitesController < ApplicationController
   end
 
   def destroy
-    #@site = Site.find_by_name(params[:id])
-    #@site.destroy
-    #respond_with(:admin, @site)
+    # @site = Site.find_by_name(params[:id])
+    # @site.destroy
+    # respond_with(:admin, @site)
   end
 
   private
