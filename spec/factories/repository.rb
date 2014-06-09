@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :repository do
-    description "Description"
+    description 'Description'
   end
 end

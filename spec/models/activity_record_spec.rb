@@ -8,16 +8,16 @@ describe ActivityRecord do
     it 'user_or_action_like (ACTION)' do
       site = build(:site)
 
-      user1 = create(:user, login: "user", first_name: "John")
-      user2 = create(:user, login: "login", first_name: "James")
+      user1 = create(:user, login: 'user', first_name: 'John')
+      user2 = create(:user, login: 'login', first_name: 'James')
 
-      subject = create(:activity_record, action: "Create", user_id: user1.id)
-      record = create(:activity_record, action: "Destroy", user_id: user2.id)
+      subject = create(:activity_record, action: 'Create', user_id: user1.id)
+      record = create(:activity_record, action: 'Destroy', user_id: user2.id)
 
-      expect(ActivityRecord.user_or_action_like("ate", site.id)).to include(subject)
-      expect(ActivityRecord.user_or_action_like("troy", site.id)).not_to include(subject)
-      expect(ActivityRecord.user_or_action_like("James", site.id)).to include(record)
-      expect(ActivityRecord.user_or_action_like("John", site.id)).not_to include(record)
+      expect(ActivityRecord.user_or_action_like('ate', site.id)).to include(subject)
+      expect(ActivityRecord.user_or_action_like('troy', site.id)).not_to include(subject)
+      expect(ActivityRecord.user_or_action_like('James', site.id)).to include(record)
+      expect(ActivityRecord.user_or_action_like('John', site.id)).not_to include(record)
     end
   end
 end

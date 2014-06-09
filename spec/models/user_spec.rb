@@ -29,7 +29,7 @@ describe User do
     end
 
     it 'should change email into downcase before saving' do
-      subject= build(:user, email:"EMAIL@email.com")
+      subject = build(:user, email: 'EMAIL@email.com')
       subject.save
       expect(subject.email).to eq(subject.email.downcase)
     end
@@ -54,19 +54,19 @@ describe User do
   context 'Password' do
     describe 'should not allow when password is not present' do
       before do
-        @user = create(:user, login: "user", first_name: "John", password_salt: "", encrypted_password: "")
+        @user = create(:user, login: 'user', first_name: 'John', password_salt: '', encrypted_password: '')
       end
 
       it { should_not be_valid }
     end
 
-    describe "should not allow password mismatch" do
-      before { @user = create(:user, password_salt: "", encrypted_password: "wrong_password") }
+    describe 'should not allow password mismatch' do
+      before { @user = create(:user, password_salt: '', encrypted_password: 'wrong_password') }
       it { should_not be_valid }
     end
 
     describe "when password doesn't match confirmation" do
-      before { @user = create(:user, encrypted_password: "mismatch") }
+      before { @user = create(:user, encrypted_password: 'mismatch') }
       it { should_not be_valid }
     end
 
@@ -115,13 +115,13 @@ describe User do
     end
 
     it 'login_or_name_like (LOGIN)' do
-      subject = create(:user, login: "user", first_name: "John")
-      user = create(:user, login: "login", first_name: "First Name")
+      subject = create(:user, login: 'user', first_name: 'John')
+      user = create(:user, login: 'login', first_name: 'First Name')
 
-      expect(User.login_or_name_like("us")).to include(subject)
-      expect(User.login_or_name_like("login")).not_to include(subject)
-      expect(User.login_or_name_like("First")).to include(user)
-      expect(User.login_or_name_like("John")).not_to include(user)
+      expect(User.login_or_name_like('us')).to include(subject)
+      expect(User.login_or_name_like('login')).not_to include(subject)
+      expect(User.login_or_name_like('First')).to include(user)
+      expect(User.login_or_name_like('John')).not_to include(user)
     end
 
     it 'actives' do
@@ -130,10 +130,10 @@ describe User do
     end
 
     skip 'by_site' do
-      subject = create(:user, login: "user", first_name: "John")
+      subject = create(:user, login: 'user', first_name: 'John')
       site = build(:site)
-      role = create(:role, site_id: site.id)
-      #role_user = create(:role_user, role_id: role.id, user_id: subject.id)
+      create(:role, site_id: site.id)
+      # role_user = create(:role_user, role_id: role.id, user_id: subject.id)
 
       expect(User.by_ste(site.id)).to include(subject)
     end
@@ -146,17 +146,17 @@ describe User do
   end
 
   context 'Self' do
-    before(:each) do
-      subject = create(:user, login: "login", first_name: "John", last_name: "Smith", email: "john@example.com")
+    subject do
+      create(:user, login: 'login', first_name: 'John', last_name: 'Smith', email: 'john@example.com')
     end
 
-    it "should return the user full name when called fullname" do
+    it 'should return the user full name when called fullname' do
       allow_any_instance_of(User).to receive(:fullname).and_return(:return_value)
 
       expect(subject.fullname).to eq(:return_value)
     end
 
-    it "should return the user email with his name when called email_address_with_name" do
+    it 'should return the user email with his name when called email_address_with_name' do
       allow_any_instance_of(User).to receive(:email_address_with_name).and_return(:return_value)
 
       expect(subject.email_address_with_name).to eq(:return_value)
