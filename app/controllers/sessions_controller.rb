@@ -1,7 +1,7 @@
 class SessionsController < Devise::SessionsController
   layout 'weby_sessions'
 
-  before_filter :store_location, only: :new
+  before_action :store_location, only: :new
 
   after_filter :record_login, only: :create
 

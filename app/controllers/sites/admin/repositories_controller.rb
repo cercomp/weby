@@ -1,6 +1,6 @@
 class Sites::Admin::RepositoriesController < ApplicationController
-  before_filter :require_user
-  before_filter :check_authorization
+  before_action :require_user
+  before_action :check_authorization
   
   helper_method :sort_column
 

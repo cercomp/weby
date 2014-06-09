@@ -1,7 +1,7 @@
 # encoding: UTF-8
 class Admin::SitesController < ApplicationController
-  before_filter :require_user, only: [:new, :create, :edit, :update, :destroy]
-  before_filter :check_authorization, except: [:show, :index]
+  before_action :require_user, only: [:new, :create, :edit, :update, :destroy]
+  before_action :check_authorization, except: [:show, :index]
   respond_to :html, :xml, :js
 
   helper_method :sort_column

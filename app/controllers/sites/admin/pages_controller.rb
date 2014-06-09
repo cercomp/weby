@@ -2,10 +2,10 @@ class Sites::Admin::PagesController < ApplicationController
   include ActsToToggle
   include ActsToSort
 
-  before_filter :require_user
-  before_filter :check_authorization
+  before_action :require_user
+  before_action :check_authorization
 
-  before_filter :event_types, only: [:new, :edit]
+  before_action :event_types, only: [:new, :edit]
 
   helper_method :sort_column
 

@@ -3,7 +3,7 @@ class Sites::PagesController < ApplicationController
   include ActsToSort
 
   helper_method :sort_column
-  before_filter :check_current_site
+  before_action :check_current_site
 
   respond_to :html, :js, :json, :rss
 

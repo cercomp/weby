@@ -1,6 +1,6 @@
 class Sites::Admin::BackupsController < ApplicationController
-  before_filter :require_user
-  before_filter :check_authorization
+  before_action :require_user
+  before_action :check_authorization
 
   respond_to :html, :json
 

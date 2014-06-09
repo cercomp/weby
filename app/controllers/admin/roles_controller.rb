@@ -1,6 +1,6 @@
 class Admin::RolesController < ApplicationController
-  before_filter :require_user
-  before_filter :is_admin
+  before_action :require_user
+  before_action :is_admin
 
   respond_to :html
   def index

@@ -2,8 +2,8 @@
 class Admin::UsersController < ApplicationController
   include ActsToToggle
 
-  before_filter :require_user
-  before_filter :is_admin, except: [:new, :create]
+  before_action :require_user
+  before_action :is_admin, except: [:new, :create]
   respond_to :html, :xml
   helper_method :sort_column
 

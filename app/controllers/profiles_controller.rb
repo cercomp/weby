@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
-  before_filter :set_profile
-  before_filter :require_owner, only: [:edit, :update]
+  before_action :set_profile
+  before_action :require_owner, only: [:edit, :update]
 
   layout 'weby_pages'
 

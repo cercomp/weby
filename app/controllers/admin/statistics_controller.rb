@@ -1,7 +1,7 @@
 class Admin::StatisticsController < ApplicationController
   include DateHelper
-  before_filter :require_user
-  before_filter :is_admin
+  before_action :require_user
+  before_action :is_admin
 
   respond_to :html, :json
 

@@ -1,8 +1,8 @@
 class SitesController < ApplicationController
   layout :choose_layout, only: :show
   
-  before_filter :require_user, only: [:admin, :edit, :update]
-  before_filter :check_authorization, only: [:edit, :update]
+  before_action :require_user, only: [:admin, :edit, :update]
+  before_action :check_authorization, only: [:edit, :update]
   
   respond_to :html, :xml, :js
 

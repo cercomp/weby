@@ -1,8 +1,8 @@
 class Sites::Admin::StylesController < ApplicationController
   include ActsToToggle
 
-  before_filter :require_user
-  before_filter :check_authorization
+  before_action :require_user
+  before_action :check_authorization
   
   respond_to :html, :xml, :js
   

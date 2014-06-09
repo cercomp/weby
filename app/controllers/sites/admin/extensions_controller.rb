@@ -1,6 +1,6 @@
 class Sites::Admin::ExtensionsController < ::ApplicationController
-  before_filter :require_user
-  before_filter :check_authorization
+  before_action :require_user
+  before_action :check_authorization
 
   def index
     @extensions = current_site.extensions

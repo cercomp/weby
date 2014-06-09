@@ -2,8 +2,8 @@
 class Sites::Admin::ComponentsController < ApplicationController
   include ActsToToggle
 
-  before_filter :require_user
-  before_filter :check_authorization
+  before_action :require_user
+  before_action :check_authorization
 
   def index
     @components = @site.components.order('position asc')

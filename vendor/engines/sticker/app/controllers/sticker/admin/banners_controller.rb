@@ -4,9 +4,9 @@ module Sticker::Admin
 
     helper Sticker::Engine.helpers
 
-    before_filter :require_user
-    before_filter :check_authorization
-    before_filter :search_images, only: [:new, :edit, :create, :update]
+    before_action :require_user
+    before_action :check_authorization
+    before_action :search_images, only: [:new, :edit, :create, :update]
 
     helper_method :sort_column
 

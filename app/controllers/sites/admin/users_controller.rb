@@ -1,7 +1,7 @@
 # coding: utf-8
 class Sites::Admin::UsersController < ApplicationController
-  before_filter :require_user
-  before_filter :check_authorization
+  before_action :require_user
+  before_action :check_authorization
   
   respond_to :html, :xml
   helper_method :sort_column

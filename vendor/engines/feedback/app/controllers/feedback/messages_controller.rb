@@ -2,7 +2,7 @@ module Feedback
   class MessagesController < Feedback::ApplicationController
     layout :choose_layout
 
-    before_filter :get_groups, only: [:new, :create, :index]
+    before_action :get_groups, only: [:new, :create, :index]
 
     respond_to :html, :xml, :js
 
