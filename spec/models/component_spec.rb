@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Component do
   it { expect(subject).to belong_to(:site) }
 
-  pending { expect(subject).to validate_presence_of(:alias) }
+  skip { expect(subject).to validate_presence_of(:alias) }
 
   it 'should publish default is true' do
     expect(subject.publish).to eql true
@@ -18,9 +18,9 @@ describe Component do
     it { should_not be_valid }
   end
 
-  pending 'after_destroy' do
+  skip 'after_destroy' do
   end
 
-  pending 'self.import' do
+  skip 'self.import' do
   end
 end

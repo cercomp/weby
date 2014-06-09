@@ -129,7 +129,7 @@ describe User do
       expect(User.actives).to include(subject)
     end
 
-    pending 'by_site' do
+    skip 'by_site' do
       subject = create(:user, login: "user", first_name: "John")
       site = build(:site)
       role = create(:role, site_id: site.id)
@@ -138,10 +138,10 @@ describe User do
       expect(User.by_ste(site.id)).to include(subject)
     end
 
-    pending 'global_role' do
+    skip 'global_role' do
     end
 
-    pending 'by_no_site' do
+    skip 'by_no_site' do
     end
   end
 

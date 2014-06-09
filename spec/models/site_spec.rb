@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Site do
-  pending 'Scopes' do
+  skip 'Scopes' do
   end
 
   context 'url' do
@@ -62,7 +62,7 @@ describe Site do
   it { expect(subject).to have_many(:pages_i18ns).through(:pages) }
   
   #StickerBanners
-  pending { expect(subject).to have_many(:banners).order(:position) }
+  skip { expect(subject).to have_many(:banners).order(:position) }
   
   it { expect(subject).to have_many(:styles).dependent(:destroy).order('styles.position desc') }
 
@@ -72,7 +72,7 @@ describe Site do
     end
 
     it { expect(subject).to have_many(:root_components).order(:position).class_name('Component') }
-    pending { expect(subject).to have_many(:root_components).conditions(condition: "place_holder !~ '^\\d*$'") }
+    skip { expect(subject).to have_many(:root_components).conditions(condition: "place_holder !~ '^\\d*$'") }
   end
 
   it { expect(subject).to belong_to(:repository).with_foreign_key('top_banner_id') }
@@ -85,7 +85,7 @@ describe Site do
 
   it { expect(subject).to have_and_belong_to_many(:groupings) }
 
-  pending 'Scopes' do
+  skip 'Scopes' do
     it 'name_or_description_like' do
       subject = create(:site, name: "subject", description: "Description")
       site = create(:site, name: "site", description: "Here")

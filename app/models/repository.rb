@@ -18,7 +18,7 @@ class Repository < ActiveRecord::Base
   has_many :sites, foreign_key: 'top_banner_id'
   has_many :pages_repositories, dependent: :destroy
   has_many :pages, through: :pages_repositories
-  has_many :page_image, class_name: 'Page'
+  has_many :page_image, class_name: 'Page', dependent: :nullify
 
   has_attached_file :archive,
                     styles: STYLES,
