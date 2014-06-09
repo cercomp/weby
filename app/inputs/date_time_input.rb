@@ -16,7 +16,7 @@ class DateTimeInput < SimpleForm::Inputs::DateTimeInput
   enable :placeholder
 
   def input
-    input_html_options[:class] << " datetimepicker form-control"
+    input_html_options[:class] << ' datetimepicker form-control'
     input_html_options[:value] = @builder.object[@attribute_name] ? @builder.object[@attribute_name].strftime('%d/%m/%Y %H:%M') : ''
     @builder.text_field(attribute_name, input_html_options).html_safe
   end

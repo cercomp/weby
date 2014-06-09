@@ -18,12 +18,12 @@ Weby::Application.config.assets.paths +=
   Dir[Rails.root.join('**', 'weby', '**', 'components', '**', 'assets', '*')]
 
 # Initialize the components
-Dir.glob(File.join("**", "weby", "**", "components", "*", "init.rb")) do |rb_file|
+Dir.glob(File.join('**', 'weby', '**', 'components', '*', 'init.rb')) do |rb_file|
   load rb_file
 end
 
 # Initialize the extensions
-Dir.glob(File.join("vendor", "engines", "*", "init.rb")) do |rb_file|
+Dir.glob(File.join('vendor', 'engines', '*', 'init.rb')) do |rb_file|
   load rb_file
 end
 

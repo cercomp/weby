@@ -55,7 +55,7 @@ Rails.application.configure do
   # config.cache_store = :mem_cache_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  config.action_controller.asset_host = Proc.new {|*args| Weby::Assets.asset_host_for(args[0], args[1] || nil) }
+  config.action_controller.asset_host = proc { |*args| Weby::Assets.asset_host_for(args[0], args[1] || nil) }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

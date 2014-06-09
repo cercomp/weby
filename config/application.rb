@@ -28,22 +28,21 @@ module Weby
     config.i18n.load_path += Dir["#{config.root}/**/locales/**/*.yml"]
     config.i18n.default_locale = 'pt-BR'
 
-    # Usando generator mais limpo.
-    # Ajuda a evitar arquivos desnecessário.
+    # Clean generators
     config.generators do |g|
       g.helper false
       g.stylesheets false
       g.javascripts false
       g.test_framework :rspec,
-        fixtures: false,
-        view_specs: false,
-        helper_specs: false,
-        routing_specs: false,
-        controller_specs: false,
-        request_specs: false
+                       fixtures: false,
+                       view_specs: false,
+                       helper_specs: false,
+                       routing_specs: false,
+                       controller_specs: false,
+                       request_specs: false
     end
 
-    # Especificando o layout correto nos controllers do devise
+    # Set layout in devise controllers
     config.to_prepare do
       Devise::RegistrationsController.layout 'weby_sessions'
       Devise::PasswordsController.layout 'weby_sessions'

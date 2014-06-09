@@ -1,5 +1,5 @@
-#TODO keep this file updated
-inputs = %w[
+# TODO keep this file updated
+inputs = %w(
   CollectionSelectInput
   FileInput
   GroupedCollectionSelectInput
@@ -8,7 +8,7 @@ inputs = %w[
   RangeInput
   StringInput
   TextInput
-]
+)
 
 inputs.each do |input_type|
   superclass = "SimpleForm::Inputs::#{input_type}".constantize
@@ -40,14 +40,14 @@ SimpleForm.setup do |config|
     b.use :error, wrap_with: { tag: 'span', class: 'help-block has-error' }
   end
 
-  config.wrappers :checkbox, tag: :div, class: "checkbox", error_class: "has-error" do |b|
+  config.wrappers :checkbox, tag: :div, class: 'checkbox', error_class: 'has-error' do |b|
     b.use :html5
     b.wrapper tag: :label do |ba|
       ba.use :input
       ba.use :label_text, wrap_with: { class: 'col-md-12' }
     end
-    b.use :hint,  wrap_with: { tag: :p, class: " help-block" }
-    b.use :error, wrap_with: { tag: :span, class: "help-block text-danger" }
+    b.use :hint,  wrap_with: { tag: :p, class: ' help-block' }
+    b.use :error, wrap_with: { tag: :span, class: 'help-block text-danger' }
   end
 
   config.wrappers :devise_input, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
@@ -72,7 +72,7 @@ SimpleForm.setup do |config|
   end
 
   config.wrappers :bootstrap3, tag: 'div', class: 'form-group', error_class: 'has-error',
-                  defaults: { input_html: { class: 'form-group default_class' } } do |b|
+                               defaults: { input_html: { class: 'form-group default_class' } } do |b|
     b.use :html5
     b.use :min_max
     b.use :maxlength
