@@ -1,7 +1,7 @@
 #coding: utf-8
 module ApplicationHelper
   def session_user
-    @session_user ||= User.find(:first, conditions: ['id = ?', session[:user]])
+    @session_user ||= User.find(session[:user])
   end
 
   def is_in_admin_context?
