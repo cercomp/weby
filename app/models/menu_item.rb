@@ -24,7 +24,7 @@ class MenuItem < ActiveRecord::Base
       positions.fetch(@new_parent, []).each_with_index do |item_id, idx|
         attrs = { position: idx + 1 }
         attrs[:parent_id] = @new_parent if item_id == id
-        MenuItem.find(item_id).update_attributes(attrs)
+        MenuItem.find(item_id).update(attrs)
       end
     end
   end

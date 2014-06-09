@@ -53,7 +53,7 @@ class Component < ActiveRecord::Base
     positions.to_a.each_with_index do |comp_id, idx|
       attr = { position: idx + 1 }
       attr[:place_holder] = place_holder if place_holder.present?
-      Component.find(comp_id).update_attributes(attr)
+      Component.find(comp_id).update(attr)
     end
   end
 
@@ -69,7 +69,7 @@ class Component < ActiveRecord::Base
     position = self.position
     positions = site.components.where(place_holder: place_holder).order('position asc').map { |comp| comp.id }
     Component.where(place_holder: id.to_s).order('position asc').each do |component|
-      component.update_attributes(place_holder: place_holder)
+      component.update(place_holder: place_holder)
       positions.insert(position - 1, component.id)
       position += 1
     end

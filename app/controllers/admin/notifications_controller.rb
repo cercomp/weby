@@ -38,7 +38,7 @@ class Admin::NotificationsController < ApplicationController
   def update
     @notification = Notification.find(params[:id])
 
-    if @notification.update_attributes(params[:notification])
+    if @notification.update(params[:notification])
       redirect_to admin_notification_path @notification
       record_activity("updated_notification", @notification)
       flash[:success] = t("update_notification_successful")

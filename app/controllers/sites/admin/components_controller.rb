@@ -54,7 +54,7 @@ class Sites::Admin::ComponentsController < ApplicationController
 
     update_params
 
-    if @component.update_attributes(params["#{params[:component]}_component"])
+    if @component.update(params["#{params[:component]}_component"])
       record_activity("updated_component", @component)
       redirect_to(site_admin_components_path, flash: {success: t("successfully_updated_param", param: t("component"))})
     else

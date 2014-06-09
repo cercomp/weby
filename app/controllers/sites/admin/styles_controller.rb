@@ -39,7 +39,7 @@ class Sites::Admin::StylesController < ApplicationController
   def update
     @style = current_site.styles.own.find params[:id]
     respond_to do |format|
-      if @style.update_attributes(params[:style])
+      if @style.update(params[:style])
         record_activity("updated_style", @style)
         format.html do
           flash[:success] = t("successfully_updated")

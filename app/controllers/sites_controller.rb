@@ -85,7 +85,7 @@ class SitesController < ApplicationController
   def update
     @site = current_site
     params[:site][:top_banner_id] ||= nil
-    if @site.update_attributes(params[:site])
+    if @site.update(params[:site])
       flash[:success] = t("successfully_updated")
       redirect_to edit_site_admin_url(subdomain: @site)
     else

@@ -51,7 +51,7 @@ module Sticker::Admin
         @banner.attributes = params[:banner]
         search_images
       end
-      if @banner.update_attributes(params[:banner])
+      if @banner.update(params[:banner])
         record_activity("updated_banner", @banner)
       end
       respond_with(:admin, @banner)

@@ -26,7 +26,7 @@ class Admin::GroupingsController < ApplicationController
 
   def update
     @grouping = Grouping.find params[:id]
-    @grouping.update_attributes(params[:grouping])
+    @grouping.update(params[:grouping])
     redirect_to admin_groupings_path
   end
 

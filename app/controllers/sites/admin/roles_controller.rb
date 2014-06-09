@@ -10,7 +10,7 @@ class Sites::Admin::RolesController < ApplicationController
     if request.put? # && params[:role]
       params[:role] ||= {}
       @roles.each do |role| # params[:role].each do |role, right|
-        role.update_attributes(permissions: params[:role][role.id.to_s] ? params[:role][role.id.to_s]['permissions'].to_s : "{}")
+        role.update(permissions: params[:role][role.id.to_s] ? params[:role][role.id.to_s]['permissions'].to_s : "{}")
       end
       flash[:success] = t("successfully_updated")
       redirect_to @site ? site_admin_roles_path : admin_roles_path
@@ -43,7 +43,7 @@ class Sites::Admin::RolesController < ApplicationController
 
   def update
     @role = Role.find(params[:id])
-    @role.update_attributes(params[:role])
+    @role.update(params[:role])
     record_activity("updated_role", @role)
     redirect_to @site ? site_admin_roles_path : admin_roles_path
   end

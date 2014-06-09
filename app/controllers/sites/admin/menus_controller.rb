@@ -33,7 +33,7 @@ class Sites::Admin::MenusController < ApplicationController
 
   def update
     @menu = current_site.menus.find(params[:id])
-    if @menu.update_attributes(params[:menu])
+    if @menu.update(params[:menu])
       flash[:success] = t("successfully_updated")
       record_activity("updated_menu", @menu)
       redirect_to site_admin_menus_path(menu: @menu.id)

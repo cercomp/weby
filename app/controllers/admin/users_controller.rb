@@ -85,7 +85,7 @@ class Admin::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update_attributes(user_params)
+    @user.update(user_params)
     record_activity("updated_user", @user)
     flash[:success] = t("updated_account")
     respond_with(:admin, @user)
@@ -117,7 +117,7 @@ class Admin::UsersController < ApplicationController
     return false if resource.blank? && params[:field].blank?
 
     if params[:field] == 'confirmed_at'
-      resource.update_attributes(confirmed_at: (resource.confirmed_at ? nil : Time.now))
+      resource.update(confirmed_at: (resource.confirmed_at ? nil : Time.now))
     else
       resource.toggle!(params[:field])
     end

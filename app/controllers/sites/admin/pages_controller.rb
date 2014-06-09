@@ -106,7 +106,7 @@ class Sites::Admin::PagesController < ApplicationController
   def update
     params[:page][:related_file_ids] ||= []
     @page = current_site.pages.find(params[:id])
-    @page.update_attributes(params[:page])
+    @page.update(params[:page])
     record_activity("updated_page", @page)
     respond_with(:site_admin, @page)
   end

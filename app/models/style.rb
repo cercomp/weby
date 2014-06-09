@@ -37,7 +37,7 @@ class Style < ActiveRecord::Base
     if site == to_site
       return false unless style_id
 
-      update_attributes(css: css, name: name, style_id: nil)
+      update(css: css, name: name, style_id: nil)
     else
       return false if style_id
 

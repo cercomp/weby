@@ -21,7 +21,7 @@ module Feedback::Admin
 #    def update
 #      @message = Feedback::Message.find(params[:id])
 #
-#      if @message.update_attributes(params[:message])
+#      if @message.update(params[:message])
 #        redirect_to(message_path(@message),
 #                    flash: {success: t("successfully_updated")})
 #      else

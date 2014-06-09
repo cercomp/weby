@@ -38,7 +38,7 @@ module Feedback::Admin
 
     def update
       @group = Feedback::Group.find(params[:id])
-      if @group.update_attributes(params[:group])
+      if @group.update(params[:group])
         redirect_to({site_id: @group.site.name, controller: 'groups', action: 'index'},
                     flash: {success: t("successfully_updated")})
       else

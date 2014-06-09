@@ -24,7 +24,7 @@ module Acadufg::Admin
 
     def update
       @setting = Acadufg::Setting.find_by(site_id: current_site)
-      if @setting.update_attributes(params[:setting])
+      if @setting.update(params[:setting])
         redirect_to(admin_path, flash: {success: t('successfully_updated')})
       else
         render :show
