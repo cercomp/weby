@@ -1,6 +1,7 @@
 module Feedback
   class MessagesController < Feedback::ApplicationController
     layout :choose_layout
+
     before_filter :get_groups, only: [:new, :create, :index]
 
     respond_to :html, :xml, :js
@@ -14,8 +15,7 @@ module Feedback
       @message.site = current_site
 
       if @message.save
-        #Se não tiver nenhum grupo cadastrado no site, envia para todos os usuário do site
-        if(@groups.length == 0)
+        if (@groups.length == 0)
           emails = User.no_admin.by_site(current_site.id).actives.map(&:email).join(',')
           FeedbackMailer.send_feedback(@message, emails, current_site).deliver
         else
@@ -29,6 +29,7 @@ module Feedback
     end
 
     private
+
     def get_groups
       @groups = Feedback::Group.where(site_id: current_site.id)
     end

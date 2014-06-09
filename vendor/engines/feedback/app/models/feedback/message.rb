@@ -10,12 +10,12 @@ module Feedback
 
     scope :name_or_subject_like, ->(text) {
       where('LOWER(name) like :text OR LOWER(subject) like :text',
-            { text: "#{text.try(:downcase)}%" })
+            text: "#{text.try(:downcase)}%")
     }
 
     def at_least_one_group
-      if(Group.where(site_id: self.site.id).length > 0 and self.groups.length < 1)
-        errors.add(:base, :need_at_least_one_group )
+      if Group.where(site_id: site.id).length > 0 && groups.length < 1
+        errors.add(:base, :need_at_least_one_group)
       end
     end
   end

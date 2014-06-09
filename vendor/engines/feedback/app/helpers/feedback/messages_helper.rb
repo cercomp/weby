@@ -1,9 +1,8 @@
 module Feedback
   module MessagesHelper
-
     def params_groups
       if params['groups']
-       verify_groups
+        verify_groups
       end
     end
 
@@ -19,6 +18,5 @@ module Feedback
         end
       end
     end
-
   end
 end
