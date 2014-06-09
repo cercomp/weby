@@ -8,8 +8,9 @@ module Feedback::Admin
     helper_method :sort_column
 
     def index
-      @groups = Feedback::Group.where(site_id: current_site.id).order(sort_column + ' ' + sort_direction).
-        page(params[:page]).per(params[:per_page])
+      @groups = Feedback::Group.where(site_id: current_site.id)
+        .order(sort_column + ' ' + sort_direction)
+        .page(params[:page]).per(params[:per_page])
     end
 
     def show

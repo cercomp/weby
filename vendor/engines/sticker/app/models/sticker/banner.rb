@@ -7,25 +7,25 @@ module Sticker
     belongs_to :user
     belongs_to :site
 
-   validates :title, :user_id, presence: true
+    validates :title, :user_id, presence: true
 
-   validate :validate_date
+    validate :validate_date
 
-   scope :published, -> {
-     where("publish = true AND (date_begin_at <= :time AND
-           (date_end_at is NULL OR date_end_at > :time))", { time: Time.now })
-   }
+    scope :published, -> {
+      where("publish = true AND (date_begin_at <= :time AND
+           (date_end_at is NULL OR date_end_at > :time))",  time: Time.now)
+    }
 
-   scope :titles_or_texts_like, ->(str) {
-     where("LOWER(title) like :str OR
-           LOWER(text) like :str", { str: "%#{str.try(:downcase)}%"})
-   }
+    scope :titles_or_texts_like, ->(str) {
+      where("LOWER(title) like :str OR
+           LOWER(text) like :str",  str: "%#{str.try(:downcase)}%")
+    }
 
-    def self.import attrs, options={}
-      return attrs.each{|attr| self.import attr, options } if attrs.is_a? Array
+    def self.import(attrs, options = {})
+      return attrs.each { |attr| import attr, options } if attrs.is_a? Array
 
       attrs = attrs.dup
-      attrs = attrs['banners'] if attrs.has_key? 'banners'
+      attrs = attrs['banners'] if attrs.key? 'banners'
 
       attrs.except!('id', 'created_at', 'updated_at', 'site_id', 'type')
 
@@ -38,9 +38,7 @@ module Sticker
     private
 
     def validate_date
-      if self.date_begin_at.blank?
-        self.date_begin_at = Time.now.to_s
-      end
+      self.date_begin_at = Time.now.to_s if date_begin_at.blank?
     end
   end
 end

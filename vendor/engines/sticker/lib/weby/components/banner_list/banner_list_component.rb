@@ -3,21 +3,20 @@ class BannerListComponent < Component
 
   validates :category, presence: true
 
-  alias :_timer :timer
+  alias_method :_timer, :timer
   def timer
     _timer.blank? ? '4' : _timer
   end
 
   def show_controls?
-    show_controls.blank? ? false : show_controls == "1"
+    show_controls.blank? ? false : show_controls == '1'
   end
 
   def show_description?
-    description.blank? ? false :  description == "1"
+    description.blank? ? false :  description == '1'
   end
 
   def default_alias
-    self.category
+    category
   end
-
 end
