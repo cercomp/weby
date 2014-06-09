@@ -1,8 +1,8 @@
 class Menu < ActiveRecord::Base
   belongs_to :site
 
-  has_many :menu_items, -> { order(:position).include(:i18ns) }, dependent: :destroy
-  has_many :root_menu_items, -> { order(:position).include(:i18ns).where('parent_id is NULL') }, class_name: 'MenuItem'
+  has_many :menu_items, -> { order(:position).includes(:i18ns) }, dependent: :destroy
+  has_many :root_menu_items, -> { order(:position).includes(:i18ns).where('parent_id is NULL') }, class_name: 'MenuItem'
 
   validates :name, :site, presence: true
 

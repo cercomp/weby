@@ -18,12 +18,12 @@ describe MenuItem do
     end
   end
 
-  pending 'after_save' do
+  skip 'after_save' do
   end
 
-  pending 'update_positions' do
+  skip 'update_positions' do
   end
 
-  pending 'self.import' do
+  skip 'self.import' do
   end
 end

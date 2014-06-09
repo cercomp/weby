@@ -5,7 +5,7 @@ module Trashable
     default_scope { where(deleted_at: nil) }
 
     def self.trashed
-      result = unscoped.where("deleted_at is not null")
+      result = unscoped.where('deleted_at is not null')
       if site_id = scoped.where_values_hash[:site_id]
         result = result.where(site_id: site_id)
       end

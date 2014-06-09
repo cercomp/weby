@@ -1,12 +1,12 @@
 class Page < ActiveRecord::Base
+  self.inheritance_column = nil
+
   include Trashable
 
   weby_content_i18n :title, :summary, :text, required: :title
 
   acts_as_taggable_on :categories
   acts_as_multisite
-
-  self.inheritance_column = nil
 
   EVENT_TYPES = %w[regional national international]
 

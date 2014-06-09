@@ -7,7 +7,7 @@ class Site < ActiveRecord::Base
   has_many :views
   has_many :menus, -> { order(:id) }, dependent: :delete_all
   has_many :menu_items, through: :menus
-  has_many :pages, -> { include(:i18ns) }, dependent: :delete_all
+  has_many :pages, -> { includes(:i18ns) }, dependent: :delete_all
   has_many :pages_i18ns, through: :pages, source: :i18ns
   has_many :banners, -> { order(:position) }
   has_many :styles, -> { order('styles.position DESC') }, dependent: :destroy

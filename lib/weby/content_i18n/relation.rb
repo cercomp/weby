@@ -11,7 +11,7 @@ module Weby
 
         base.class_eval do
           has_many :i18ns,
-            -> { include(:locale) },
+            -> { includes(:locale) },
             class_name: i18n_class.name,
             dependent: :delete_all
 
