@@ -54,7 +54,7 @@ group :test do
   gem 'capybara-webkit'
 end
 
-#Extensions (engines)
-gem 'acadufg', :path => 'vendor/engines/acadufg'
+# Extensions (engines)
+# gem 'acadufg', :path => 'vendor/engines/acadufg'
 gem 'feedback', :path => 'vendor/engines/feedback'
 gem 'sticker', :path => 'vendor/engines/sticker'

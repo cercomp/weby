@@ -20,12 +20,12 @@ class CreateStickerBanners < ActiveRecord::Migration
       t.integer  :click_count, default: 0
       t.timestamps
     end
-    
+
     add_index :sticker_banners, :repository_id
     add_index :sticker_banners, :user_id
     add_index :sticker_banners, :site_id
     add_index :sticker_banners, :page_id
-    
+
     add_foreign_key :sticker_banners, :repositories
     add_foreign_key :sticker_banners, :users
     add_foreign_key :sticker_banners, :sites

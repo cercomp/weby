@@ -1,6 +1,6 @@
 module Sticker
   module BannersHelper
-    
+
     def publication_status_banner(banner, options={})
       "".tap do |html|
         html << toggle_field(banner, "publish", 'toggle', options)

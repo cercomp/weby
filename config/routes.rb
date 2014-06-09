@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     # Mount all engines here
     constraints(Weby::Extensions) do
       mount Feedback::Engine, at: 'feedback'
-      mount Acadufg::Engine, at: 'acadufg'
+      # mount Acadufg::Engine, at: 'acadufg'
       mount Sticker::Engine, at: 'sticker'
     end
 

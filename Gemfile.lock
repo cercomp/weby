@@ -5,12 +5,6 @@ GIT
     useragent (0.2.3)
 
 PATH
-  remote: vendor/engines/acadufg
-  specs:
-    acadufg (0.0.1)
-      rails (~> 4.1.1)
-
-PATH
   remote: vendor/engines/feedback
   specs:
     feedback (0.0.1)
@@ -253,7 +247,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  acadufg!
   acts-as-taggable-on (~> 3.2.6)
   better_errors (~> 1.1.0)
   binding_of_caller (~> 0.7.2)

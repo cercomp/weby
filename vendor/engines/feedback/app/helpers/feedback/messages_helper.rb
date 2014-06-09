@@ -7,6 +7,8 @@ module Feedback
       end
     end
 
+    private
+
     def verify_groups
       groups = params['groups'].split(',')
       [].tap do |groups_id|
@@ -17,6 +19,6 @@ module Feedback
         end
       end
     end
-    private :verify_groups
+
   end
 end
