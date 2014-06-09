@@ -6,11 +6,11 @@ class Extension < ActiveRecord::Base
   validates :name, :site, presence: true
   validates :name, uniqueness: { scope: :site_id, message: :already_installed }
 
-  def self.import(attrs, options = {})
-    return attrs.each { |attr| self.import attr } if attrs.is_a? Array
+  def self.import(attrs, _options = {})
+    return attrs.each { |attr| import attr } if attrs.is_a? Array
 
     attrs = attrs.dup
-    attrs = attrs['extensions'] if attrs.has_key? 'extensions'
+    attrs = attrs['extensions'] if attrs.key? 'extensions'
 
     return if Extension.unscoped.find_by_name(attrs['name'])
 
