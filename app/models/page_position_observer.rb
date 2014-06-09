@@ -32,8 +32,8 @@ class PagePositionObserver < ActiveRecord::Observer
   end
 
   def update_fronts_up_me
-    @page.owner.pages.front.where("position > #{@page.position}").
-      update_all("position = position - 1")
+    @page.owner.pages.front.where("position > #{@page.position}")
+      .update_all('position = position - 1')
   end
 
   def turning_front

@@ -8,6 +8,6 @@ class Role < ActiveRecord::Base
   scope :globals, -> { where(site_id: nil) }
 
   def permissions_hash
-    self.permissions.present? ? eval(self.permissions.to_s) : {}
+    permissions.present? ? eval(permissions.to_s) : {}
   end
 end

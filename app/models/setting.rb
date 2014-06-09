@@ -23,13 +23,13 @@ class Setting < ActiveRecord::Base
           value.split(',').each do |each_value|
             invvalue = true unless values.include?(each_value)
           end if value
-          errors.add(:value, :invalid_format, format_message: "#{name} = [#{pattern[:select].map { |a| a.is_a?(Array) ? a[0] : a }.join(",")}]") if invvalue
+          errors.add(:value, :invalid_format, format_message: "#{name} = [#{pattern[:select].map { |a| a.is_a?(Array) ? a[0] : a }.join(',')}]") if invvalue
         else
           # TODO another kind of input
         end
       when Array
         values = pattern.map { |a| a.is_a?(Array) ? a[1].to_s : a.to_s }
-        errors.add(:value, :invalid_format, format_message: "#{name} = [#{pattern.map { |a| a.is_a?(Array) ? a[0] : a }.join(",")}]") unless values.include?(value)
+        errors.add(:value, :invalid_format, format_message: "#{name} = [#{pattern.map { |a| a.is_a?(Array) ? a[0] : a }.join(',')}]") unless values.include?(value)
       when Symbol
         validator = "ActiveModel::Validations::#{pattern.to_s.classify}Validator".constantize.new(attributes: :value)
         validator.validate self
@@ -46,7 +46,7 @@ class Setting < ActiveRecord::Base
     if instance
       instance.assign_attributes attributes
     else
-      instance = self.new(attributes)
+      instance = new(attributes)
     end
     instance
   end

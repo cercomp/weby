@@ -11,7 +11,7 @@ class MenuItem < ActiveRecord::Base
   validates :position, numericality: true, allow_nil: false
   validates :html_class, format: { with: /\A[A-Za-z0-9_\-]*\z/ }
 
-  scope :published, where(publish: true)
+  scope :published, -> { where(publish: true) }
 
   after_save :save_childrens
 
@@ -34,7 +34,7 @@ class MenuItem < ActiveRecord::Base
 
     attrs = attrs.dup
     attrs.except!('id', 'created_at', 'updated_at', 'menu_id', 'parent_id', 'target_id', 'target_type', 'type')
-    attrs.except!('url') if attrs['url'] and !attrs['url'].match(/^https?:\/\//)
+    attrs.except!('url') if attrs['url'] && !attrs['url'].match(/^https?:\/\//)
     children = attrs.delete('children')
 
     attrs['i18ns'] = attrs['i18ns'].map { |i18n| self::I18ns.new(i18n.except('id', 'created_at', 'updated_at', 'menu_item_id')) }

@@ -4,38 +4,38 @@ class Repository < ActiveRecord::Base
   attr_accessor :x, :y, :w, :h
 
   STYLES = {
-    mini: "95x70",
-    little: "190x140",
-    medium: "400x300",
-    thumb: "160x160^",
-    original: "original"
+    mini: '95x70',
+    little: '190x140',
+    medium: '400x300',
+    thumb: '160x160^',
+    original: 'original'
   }
 
   belongs_to :site
 
   has_many :page, foreign_key: 'repository_id'
   has_many :banners
-  has_many :sites, foreign_key: "top_banner_id"
+  has_many :sites, foreign_key: 'top_banner_id'
   has_many :pages_repositories, dependent: :destroy
   has_many :pages, through: :pages_repositories
   has_many :page_image, class_name: 'Page'
 
   has_attached_file :archive,
-    styles: STYLES,
-    url: "/uploads/:site_id/:style_:basename.:extension",
-    convert_options: {
-      mini: "-quality 90 -strip",
-      little: "-quality 90 -strip",
-      medium: "-quality 80 -strip",
-      thumb: "-crop 160x160+0+0 +repage -quality 90 -strip",
-      original: "-quality 80 -strip" },
-    processors: [:cropper]
+                    styles: STYLES,
+                    url: '/uploads/:site_id/:style_:basename.:extension',
+                    convert_options: {
+                      mini: '-quality 90 -strip',
+                      little: '-quality 90 -strip',
+                      medium: '-quality 80 -strip',
+                      thumb: '-crop 160x160+0+0 +repage -quality 90 -strip',
+                      original: '-quality 80 -strip' },
+                    processors: [:cropper]
 
   validates :description, presence: true
 
   validates_attachment_presence :archive,
-    message: I18n.t('activerecord.errors.messages.attachment_presence'),
-    on: :create
+                                message: I18n.t('activerecord.errors.messages.attachment_presence'),
+                                on: :create
 
   scope :description_or_filename, ->(text) {
     text = text.try(:downcase)
@@ -46,16 +46,16 @@ class Repository < ActiveRecord::Base
 
   scope :content_file, ->(contents) {
     if contents.is_a?(Array)
-      contents = contents.map { |content| "%#{content.gsub("+", "\\\\+")}%" }
-      where("archive_content_type SIMILAR TO :values",
-            { values: "%(#{contents.join('|')})%" })
+      contents = contents.map { |content| "%#{content.gsub('+', '\\\\+')}%" }
+      where('archive_content_type SIMILAR TO :values',
+             values: "%(#{contents.join('|')})%")
     else
       archive_content_file(contents)
     end
   }
 
   scope :archive_content_file, ->(content_file) {
-    where(["LOWER(archive_content_type) LIKE :content_file",
+    where(['LOWER(archive_content_type) LIKE :content_file',
            { content_file: "%#{content_file.try(:downcase)}%" }])
   }
 
@@ -67,30 +67,30 @@ class Repository < ActiveRecord::Base
 
   # Includes the file's url in the json
   def archive_url(format = :original)
-    self.archive.url(format)
+    archive.url(format)
   end
 
-  alias :as_json_bkp :as_json
+  alias_method :as_json_bkp, :as_json
 
   # json with the minimum data
-  def as_json(options = {})
-    self.as_json_bkp only: [:id,
-                            :archive_file_name,
-                            :description,
-                            :archive_content_type],
-                            methods: :archive_url
+  def as_json(_options = {})
+    as_json_bkp only: [:id,
+                       :archive_file_name,
+                       :description,
+                       :archive_content_type],
+                methods: :archive_url
   end
 
   def image?
-    archive_content_type.include?("image") and not archive_content_type.include?("svg")
+    archive_content_type.include?('image') && !archive_content_type.include?('svg')
   end
 
   def svg?
-    archive_content_type.include?("image") and archive_content_type.include?("svg")
+    archive_content_type.include?('image') && archive_content_type.include?('svg')
   end
 
   def flash?
-    archive_content_type.include?("flash") or archive_content_type.include?("shockwave")
+    archive_content_type.include?('flash') || archive_content_type.include?('shockwave')
   end
 
   # Removing characters in conflict with paperclip
@@ -99,32 +99,32 @@ class Repository < ActiveRecord::Base
     archive.instance_write(:file_name, CGI.unescape(archive.original_filename))
   end
 
-  validates :archive_file_name, uniqueness: { scope: :site_id, message: I18n.t("file_already_exists") }
+  validates :archive_file_name, uniqueness: { scope: :site_id, message: I18n.t('file_already_exists') }
 
   # Reprocessamento de imagens para (re)gerar os thumbnails quando necessário
   def reprocess
     archive.reprocess! if need_reprocess?
   rescue Errno::ENOENT => e
-    File.open(Rails.root.join("log/error.log"), "a") do |f|
+    File.open(Rails.root.join('log/error.log'), 'a') do |f|
       f.write("=> Erro no reprocess: #{e}\n")
     end
   end
 
   def as_json(options = {})
     json = super(options)
-    json['repository'][:original_path] = self.archive.url(:original)
-    json['repository'][:little_path] = self.archive.url(:little)
-    json['repository'][:medium_path] = self.archive.url(:medium)
-    json['repository'][:mini_path] = self.archive.url(:mini)
-    json['repository'][:thumb_path] = self.archive.url(:thumb)
+    json['repository'][:original_path] = archive.url(:original)
+    json['repository'][:little_path] = archive.url(:little)
+    json['repository'][:medium_path] = archive.url(:medium)
+    json['repository'][:mini_path] = archive.url(:mini)
+    json['repository'][:thumb_path] = archive.url(:thumb)
     json
   end
 
   def self.import(attrs, options = {})
-    return attrs.each { |attr| self.import attr, options } if attrs.is_a? Array
+    return attrs.each { |attr| import attr, options } if attrs.is_a? Array
 
     attrs = attrs.dup
-    attrs = attrs['repository'] if attrs.has_key? 'repository'
+    attrs = attrs['repository'] if attrs.key? 'repository'
 
     attrs.except!('id', 'created_at', 'updated_at', 'deleted_at', 'site_id', 'type')
 
@@ -134,7 +134,7 @@ class Repository < ActiveRecord::Base
   private
 
   def need_reprocess?
-    image? and not has_all_formats?
+    image? && !has_all_formats?
   end
 
   def has_all_formats?
