@@ -1,6 +1,6 @@
 # encoding: UTF-8
 class Admin::SitesController < ApplicationController
-  before_action :require_user, only: [:new, :create, :edit, :update, :destroy]
+  before_action :require_user
   before_action :check_authorization, except: [:show, :index]
   respond_to :html, :xml, :js
 

@@ -1,7 +1,9 @@
 class NotificationsController < ApplicationController
-  before_action :require_user
-  respond_to :html, :js
   layout 'weby_pages'
+
+  before_action :require_user
+
+  respond_to :html, :js
 
   def index
     params[:page] ||= 1
@@ -29,6 +31,7 @@ class NotificationsController < ApplicationController
   end
 
   private
+
   def set_as_read(notification = nil)
     user = User.find(current_user.id)
     user.remove_unread_notification notification

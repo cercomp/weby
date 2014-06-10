@@ -8,6 +8,8 @@ class ApplicationController < ActionController::Base
   before_action :set_contrast, :set_locale, :set_view_types
   before_action :maintenance_mode
   before_action :require_user, only: [:admin]
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
   after_action :weby_clear, :count_view
 
   helper :all
@@ -176,6 +178,13 @@ class ApplicationController < ActionController::Base
   # kudos para @josevalim em https://github.com/josevalim/inherited_resources
   def resource
     get_resource_ivar || set_resource_ivar(controller_name.classify.constantize.send(:find, params[:id]))
+  end
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) { |u|
+      u.permit(:login, :email, :first_name, :last_name, :password,
+               :password_confirmation)
+    }
   end
 
   private

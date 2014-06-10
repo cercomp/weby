@@ -1,6 +1,7 @@
 class Admin::NotificationsController < ApplicationController
   before_action :require_user
   before_action :is_admin
+
   respond_to :html, :js
 
   def index
