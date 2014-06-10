@@ -180,6 +180,7 @@ class ApplicationController < ActionController::Base
     get_resource_ivar || set_resource_ivar(controller_name.classify.constantize.send(:find, params[:id]))
   end
 
+  # strong parameter to load in devise
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) { |u|
       u.permit(:login, :email, :first_name, :last_name, :password,
@@ -214,7 +215,7 @@ class ApplicationController < ActionController::Base
   end
 
   def is_admin
-    return true if current_site.is_admin
+    return true if current_user.is_admin
 
     flash[:error] = t'only_admin'
 

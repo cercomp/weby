@@ -1,69 +1,71 @@
-class Admin::NotificationsController < ApplicationController
-  before_action :require_user
-  before_action :is_admin
+class Admin::NotificationsController < Admin::BaseController
+  before_action :set_notification, only: [:edit, :update, :show, :destroy]
 
   respond_to :html, :js
 
   def index
-    @notifications = Notification.title_or_body_like(params[:search]).
-                     order('created_at DESC').
-                     page(params[:page]).
-                     per(params[:per_page] || per_page_default)
+    @notifications = Notification.title_or_body_like(params[:search])
+      .order('created_at DESC')
+      .page(params[:page])
+      .per(params[:per_page] || per_page_default)
   end
 
   def new
     @notification = Notification.new
   end
 
-  def edit
-    @notification = Notification.find(params[:id])
-    respond_with(:admin, @notification)
+  def create
+    @notification = Notification.new(notification_params)
+    @notification.user_id = current_user.id
+
+    if @notification.save
+      record_activity('created_notification', @notification)
+
+      User.no_admin.each { |user| user.append_unread_notification @notification }
+
+      redirect_to(admin_notification_path(@notification), notice: t('create_notification_successful'))
+    else
+      flash[:alert] = t('problem_create_notification')
+
+      render :new
+    end
   end
 
-  def create
-    @notification = Notification.new(params[:notification])
-    @notification.user_id = current_user.id
-    if @notification.save
-      flash[:success] = t('create_notification_successful')
-      record_activity('created_notification', @notification)
-      redirect_to admin_notification_path @notification
-    else
-      flash[:error] = t('problem_create_notification')
-      render action: :new
-    end
-    User.no_admin.each do |user|
-      user.append_unread_notification @notification
-    end
+  def edit
   end
 
   def update
-    @notification = Notification.find(params[:id])
-
-    if @notification.update(params[:notification])
-      redirect_to admin_notification_path @notification
+    if @notification.update(notification_params)
       record_activity('updated_notification', @notification)
-      flash[:success] = t('update_notification_successful')
+
+      redirect_to(admin_notification_path(@notification), notice: t('update_notification_successful'))
     else
-      flash[:error] = t('problem_update_notification')
-      render action: 'index'
+      flash[:alert] = t('problem_update_notification')
+
+      render :edit
     end
   end
 
   def show
-    @notification = Notification.find(params[:id])
   end
 
   def destroy
-    @notification = Notification.find(params[:id])
     @notification.destroy
-    flash[:success] = t('destroyed_param', param: @notification.title)
+
     record_activity('destroyed_notification', @notification)
-    User.no_admin.each do |user|
-      user.remove_unread_notification @notification
-    end
-  rescue ActiveRecord::DeleteRestrictionError
-    flash[:warning] = t('problem_destroy_notification')
-  ensure
-    redirect_to admin_notifications_path
+
+    User.no_admin.each { |user| user.remove_unread_notification @notification }
+
+    redirect_to(admin_notifications_path, notice: t('destroyed_param', param: @notification.title))
+  end
+
+  private
+
+  def set_notification
+    resource
+  end
+
+  def notification_params
+    params.require(:notification).permit(:title, :body)
   end
 end
