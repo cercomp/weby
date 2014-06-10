@@ -44,7 +44,7 @@ class FrontNewsComponent < Component
     _read_more.blank? ? false : _read_more.to_i == 1
   end
 
-	 alias_m ethod :_show_author, :show_author
+  alias_method :_show_author, :show_author
   def show_author
     _show_author.blank? ? false : _show_author.to_i == 1
   end

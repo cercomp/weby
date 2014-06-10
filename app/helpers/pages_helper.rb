@@ -24,9 +24,7 @@ module PagesHelper
   end
 
   def available_flags(page, size = '16')
-    if @site.locales.many?
-      "#{main_flag(page, size)}#{other_flags(page, size)}"
-    end
+    "#{main_flag(page, size)}#{other_flags(page, size)}" if @site.locales.many?
   end
 
   def main_flag(page, size = '16')

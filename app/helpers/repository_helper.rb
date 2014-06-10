@@ -30,7 +30,7 @@ module RepositoryHelper
       tap { |mime_type| mime_type.delete('') }.
       map! { |m| m.split('/') }.sort
 
-    hash = Hash.new { |hash, key| hash[key] = Array.new }
+    hash = Hash.new { |subhash, key| subhash[key] = Array.new }
 
     mime_types.each do  |type, subtype|
       hash[type] << [subtype, "#{type}/#{subtype}"]
@@ -73,9 +73,7 @@ module RepositoryHelper
       @thumbnail = empty_mime
     else
       if mime_type.first == 'image'
-        if mime_type.last.include?('svg')
-          @format = :original
-        end
+        @format = :original if mime_type.last.include?('svg')
 
         @thumbnail = @file.archive.url(@format)
       else
@@ -153,9 +151,8 @@ module RepositoryHelper
 
   def dimension_for_size(size)
     dimension = Repository.attachment_definitions[:archive][:styles][size.to_sym]
-    if dimension and dimension.match(/^\d+x\d+$/)
-      return dimension.split('x')
-    end
+
+    return dimension.split('x') if dimension && dimension.match(/^\d+x\d+$/)
   end
 
   def style_for_dimension(width, height)

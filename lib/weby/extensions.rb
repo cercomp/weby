@@ -9,7 +9,7 @@ module Weby
       end
 
       def find_extension_in_path(path)
-        path.match /\/([\w\d]*)\/?/
+        path.match(/\/([\w\d]*)\/?/)
         Regexp.last_match[1]
       end
     end

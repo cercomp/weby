@@ -386,9 +386,7 @@ module ApplicationHelper
   def weby_login_url(back_url = nil)
     site = nil
     if Weby::Settings.domain.present? && current_site
-      unless request.host.match(Weby::Settings.domain)
-        site = current_site
-      end
+      site = current_site unless request.host.match(Weby::Settings.domain)
     end
 
     main_app.login_url(

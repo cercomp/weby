@@ -41,8 +41,7 @@ class Style < ActiveRecord::Base
     else
       return false if style_id
 
-      style = Style.create(name: name, css: css, site: to_site)
-      style.persisted?
+      Style.create!(name: name, css: css, site: to_site)
     end
   end
 

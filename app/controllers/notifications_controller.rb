@@ -15,9 +15,7 @@ class NotificationsController < ApplicationController
 
     @nexturl = notifications_path(page: params[:page].to_i + 1, search: params[:search])
 
-    if request.xhr?
-      render partial: 'list', layout: false
-    end
+    render partial: 'list', layout: false if request.xhr?
   end
 
   def show

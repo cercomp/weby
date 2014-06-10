@@ -214,15 +214,14 @@ class ApplicationController < ActionController::Base
   end
 
   def is_admin
-    unless current_user.is_admin
-      flash[:error] = t'only_admin'
-      begin
-        redirect_to :back
-      rescue
-        redirect_to admin_path
-      end
-    else
-      return true
+    return true if current_site.is_admin
+
+    flash[:error] = t'only_admin'
+
+    begin
+      redirect_to :back
+    rescue
+      redirect_to admin_path
     end
   end
 
@@ -360,7 +359,7 @@ class ApplicationController < ActionController::Base
     @activity.action = action_name
     @activity.params = params.inspect
     @activity.loggeable = loggeable
-    @activity.save
+    @activity.save!
     # end
   end
 
