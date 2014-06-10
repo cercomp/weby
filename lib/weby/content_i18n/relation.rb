@@ -56,12 +56,12 @@ module Weby
 
           accepts_nested_attributes_for :i18ns,
                                         allow_destroy: true,
-                                        reject_if: proc do |i18ns|
+                                        reject_if: proc { |i18ns|
                                           i18ns['id'].blank? &&
                                             i18n_fields.reduce(true) do |mem, element|
                                             mem && i18ns[element].blank?
                                           end
-                                        end
+                                        }
         end
       end
 

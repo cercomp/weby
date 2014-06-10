@@ -2,7 +2,8 @@
 class ApplicationController < ActionController::Base
   include ApplicationHelper # In order to user helper methods in controllers
 
-  protect_from_forgery
+  protect_from_forgery with: :exception
+
   before_action :set_tld_length, :set_global_vars
   before_action :set_contrast, :set_locale, :set_view_types
   before_action :maintenance_mode
