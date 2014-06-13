@@ -62,10 +62,6 @@
         <br />
         <%= link_to t(".sites"), main_app.root_url(subdomain: nil) %>
         <%= link_to(t(".help"), current_settings.help_site, target: '_blank') if current_settings.help_site %>
-        <br />
-        <% admin_locales.each do |locale| %>
-          <%= link_to flag(locale), params.merge(locale: locale.name ) %>
-        <% end unless current_user %>
       </p>
     </div>
     <%= javascript_include_tag 'weby_pages' %>

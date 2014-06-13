@@ -65,7 +65,15 @@
   text-transform: uppercase;
   text-align: center;
   font-size: 11px;
+  position: fixed;
+  background-color: #F5F5F5;
+  z-index: 999;
+  bottom: 0;
+  height: 60px;
+  width: 100%;
 }
+
+#footer > p { margin-top: 20px; }
 
 // helpers
 .zone { background: #F5F5F5; }
