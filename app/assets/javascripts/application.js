@@ -2,6 +2,8 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require tables
+//= require floatthead/jquery.floatThead._.js
+//= require floatthead/jquery.floatThead
 //= require select2
 //= require select2_locale_pt-BR
 //= require_self
@@ -38,51 +40,57 @@ function addToSelect(selectId, text){
 }
 
 $(document).ready(function() {
-   // Ajax indicator
-   $('body').append($('<div class="modal hide" data-backdrop="false" style="width: 150px; margin: -30px 0 0 -75px; z-index: 66060;" id="loading-modal"><div class="modal-body"><img src="/assets/loading-bar.gif"/></div></div>'));
-   $('body').ajaxSend(function(ev, jqXHR, options){
-       if(options.files){
-          return;
-       }
-      //Do not use the .modal() function. If there is another modal it generates anomalous behaviour
-      $('#loading-modal').removeClass('hide');
-   }).ajaxComplete(function(evt,xhr){
-      $('#loading-modal').addClass('hide');
-      FlashMsg.notify(xhr.status);
-   });
+ 
+  //Thead floating while scrolling the page
+  $('.table').floatThead({
+    useAbsolutePositioning: false
+  }); 
 
-   //Fixes the admin menu on the screen
-   //responsive
-   var menuadmin = $('#menu-admin');
-   if(menuadmin.length>0){
-       $(window).scroll(function(){
-           if($(window).width() >= 768){
-               maincontainer = $('#main');
-               windowtop = $(this).scrollTop() + 10;
-               if(windowtop >= maincontainer.position().top){
-                   if(menuadmin.css('position')!='fixed')
-                       menuadmin.css({'position':'fixed',
-                       'top':(10+parseInt(maincontainer.css("padding-top")))+'px',
-                       'width':menuadmin.width()+'px'});
-               }else{
-                   if(menuadmin.css('position')=='fixed')
-                       menuadmin.css({'position':'','top':'', 'width':''});
-               }
-           }
-        });
-    }
-    $(window).resize(function(){
-        menuadmin.css({'position':'','top':'', 'width':''});
-        $(window).scroll();
-    });
+  // Ajax indicator
+  $('body').append($('<div class="modal hide" data-backdrop="false" style="width: 150px; margin: -30px 0 0 -75px; z-index: 66060;" id="loading-modal"><div class="modal-body"><img src="/assets/loading-bar.gif"/></div></div>'));
+  $('body').ajaxSend(function(ev, jqXHR, options){
+     if(options.files){
+        return;
+     }
+    //Do not use the .modal() function. If there is another modal it generates anomalous behaviour
+    $('#loading-modal').removeClass('hide');
+  }).ajaxComplete(function(evt,xhr){
+    $('#loading-modal').addClass('hide');
+    FlashMsg.notify(xhr.status);
+  });
 
-    $(document).on('change', '.pagination select', function(){
-        //window.location = $(this).find('option:selected').data('url');
-        $.getScript($(this).find('option:selected').data('url'));
-    });
+  //Fixes the admin menu on the screen
+  //responsive
+  var menuadmin = $('#menu-admin');
+  if(menuadmin.length>0){
+     $(window).scroll(function(){
+         if($(window).width() >= 768){
+             maincontainer = $('#main');
+             windowtop = $(this).scrollTop() + 10;
+             if(windowtop >= maincontainer.position().top){
+                 if(menuadmin.css('position')!='fixed')
+                     menuadmin.css({'position':'fixed',
+                     'top':(10+parseInt(maincontainer.css("padding-top")))+'px',
+                     'width':menuadmin.width()+'px'});
+             }else{
+                 if(menuadmin.css('position')=='fixed')
+                     menuadmin.css({'position':'','top':'', 'width':''});
+             }
+         }
+      });
+  }
+  $(window).resize(function(){
+      menuadmin.css({'position':'','top':'', 'width':''});
+      $(window).scroll();
+  });
 
-    var hash = location.hash
-      , hashPieces = hash.split('?')
-      , activeTab = $('[href=' + hashPieces[0] + ']');
-    activeTab && activeTab.tab('show');
+  $(document).on('change', '.pagination select', function(){
+      //window.location = $(this).find('option:selected').data('url');
+      $.getScript($(this).find('option:selected').data('url'));
+  });
+
+  var hash = location.hash
+    , hashPieces = hash.split('?')
+    , activeTab = $('[href=' + hashPieces[0] + ']');
+  activeTab && activeTab.tab('show');
 });
