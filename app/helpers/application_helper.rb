@@ -453,13 +453,10 @@ module ApplicationHelper
       end
     end
   end
-  
+
   # Input: Site object  
   # Output: link to the favicon
-  def favicon(site) 
-    link = (site_url(subdomain: site) + "uploads/#{site.id}/original_favicon.png" )
-    file = Rails.root.join("public/uploads/#{site.id}/original_favicon.png")
-    
-    FileTest.exist?(file) ? link : root_path + 'favicon.ico'
+  def favicon(site)
+    site.favicon.nil? ? root_path + 'favicon.ico' : (site_url(subdomain: site) + site.favicon.archive.url)
   end
 end
