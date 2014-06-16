@@ -1,7 +1,7 @@
-# encoding: UTF-8
-class Admin::SitesController < ApplicationController
-  before_action :require_user
-  before_action :check_authorization, except: [:show, :index]
+class Admin::SitesController < Admin::BaseController
+  before_action :set_resource, only: [:edit, :update]
+  before_action :set_themes, only: [:new, :create, :edit, :update]
+
   respond_to :html, :xml, :js
 
   helper_method :sort_column
@@ -18,51 +18,50 @@ class Admin::SitesController < ApplicationController
 
   def new
     @site = Site.new
-    load_themes # @themes
   end
 
   def create
-    @site = Site.new(params[:site])
+    @site = Site.new(site_params)
+
     if @site.save
       theme = ::Weby::Theme.new @site
       theme.populate
       record_activity('created_site', @site)
       redirect_to site_admin_components_url(subdomain: @site)
     else
-      load_themes
       respond_with @site
     end
   end
 
   def edit
-    @site = Site.find(params[:id])
-    load_themes
   end
 
   def update
-    @site = Site.find(params[:id])
-    if @site.update(params[:site])
+    if @site.update(site_params)
       flash[:success] = t'successfully_updated'
       record_activity('updated_site', @site)
       redirect_to edit_admin_site_path(@site.id)
     else
-      load_themes
       render :edit
     end
   end
 
-  def destroy
-    # @site = Site.find_by_name(params[:id])
-    # @site.destroy
-    # respond_with(:admin, @site)
+  private
+
+  def set_resource
+    resource
   end
 
-  private
+  def site_params
+    params.require(:site).permit(:title, :name, :parent_id, :url, :domain, :description, :view_desc_pages,
+                                 :theme, :body_width, :per_page, :per_page_default, {locale_ids: [], grouping_ids: []})
+  end
+
   def sort_column
     Site.column_names.include?(params[:sort]) ? params[:sort] : 'id'
   end
 
-  def load_themes
+  def set_themes
     @themes = Weby::Themes.all
   end
 end

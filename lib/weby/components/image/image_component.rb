@@ -8,7 +8,7 @@ class ImageComponent < Component
     _new_tab.blank? ? false : _new_tab.to_i == 1
   end
 
-  validates_format_of :html_class, with: /^[A-Za-z0-9_\-]*$/
+  validates_format_of :html_class, with: /\A[A-Za-z0-9_\-]*\z/
   validates :repository_id, presence: true
 
   belongs_to :target, polymorphic: true

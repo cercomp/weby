@@ -152,7 +152,7 @@ module Weby
                 self.name = self.class.name.tableize.gsub(/_components$/, '')
               end
 
-              default_scope where(name: cname)
+              default_scope { where(name: cname) }
             end
           end
           alias_method_chain :inherited, :weby
