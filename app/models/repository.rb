@@ -114,11 +114,11 @@ class Repository < ActiveRecord::Base
 
   def as_json(options = {})
     json = super(options)
-    json['repository'][:original_path] = archive.url(:original)
-    json['repository'][:little_path] = archive.url(:little)
-    json['repository'][:medium_path] = archive.url(:medium)
-    json['repository'][:mini_path] = archive.url(:mini)
-    json['repository'][:thumb_path] = archive.url(:thumb)
+    json[:original_path] = archive.url(:original)
+    json[:little_path] = archive.url(:little)
+    json[:medium_path] = archive.url(:medium)
+    json[:mini_path] = archive.url(:mini)
+    json[:thumb_path] = archive.url(:thumb)
     json
   end
 

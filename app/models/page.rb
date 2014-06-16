@@ -115,7 +115,7 @@ class Page < ActiveRecord::Base
   end
 
   def self.uniq_category_counts
-    category_counts.each_with_object(Hash.new) do |hash, j|
+    category_counts.each_with_object(Hash.new) do |j, hash|
       name = j.name.upcase
       if hash[name]
         hash[name].count += j.count

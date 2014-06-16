@@ -66,7 +66,7 @@ class Sites::Admin::RepositoriesController < ApplicationController
           end
         end
         format.json do
-          render json: { repositories: @repository,
+          render json: { repository: @repository,
                          message: t('successfully_created'),
                          url: site_admin_repository_path(@repository) },
                  content_type: check_accept_json
