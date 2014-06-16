@@ -55,7 +55,7 @@ class Sites::Admin::RepositoriesController < ApplicationController
   end
 
   def create
-    @repository = current_site.repositories.new(params[:repository])
+    @repository = current_site.repositories.new(repository_params)
     respond_with(:site_admin, @repository) do |format|
       if @repository.save
         format.html do
@@ -85,7 +85,7 @@ class Sites::Admin::RepositoriesController < ApplicationController
   def update
     @repository = current_site.repositories.find(params[:id])
 
-    if @repository.update(params[:repository])
+    if @repository.update(repository_params)
       @repository.archive.reprocess! unless params[:repository][:archive]
       flash[:success] = t('successfully_updated')
       record_activity('updated_file', @repository)
@@ -123,6 +123,7 @@ class Sites::Admin::RepositoriesController < ApplicationController
   end
 
   private
+
   def sort_column
     Repository.column_names.include?(params[:sort]) ? params[:sort] : 'id'
   end
@@ -135,5 +136,9 @@ class Sites::Admin::RepositoriesController < ApplicationController
 
   def per_page
     params[:format] == 'json' ? 50 : params[:per_page] || per_page_default
+  end
+
+  def repository_params
+    params.require(:repository).permit(:description, :site_id, :archive)
   end
 end

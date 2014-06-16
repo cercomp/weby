@@ -37,6 +37,8 @@ class Repository < ActiveRecord::Base
                                 message: I18n.t('activerecord.errors.messages.attachment_presence'),
                                 on: :create
 
+  do_not_validate_attachment_file_type :archive
+
   scope :description_or_filename, ->(text) {
     text = text.try(:downcase)
 
