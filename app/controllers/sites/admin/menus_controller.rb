@@ -17,7 +17,7 @@ class Sites::Admin::MenusController < ApplicationController
   end
 
   def create
-    @menu = current_site.menus.new(params[:menu])
+    @menu = current_site.menus.new(menu_params)
     if @menu.save
       flash[:success] = t('successfully_created')
       record_activity('created_menu', @menu)
@@ -33,7 +33,7 @@ class Sites::Admin::MenusController < ApplicationController
 
   def update
     @menu = current_site.menus.find(params[:id])
-    if @menu.update(params[:menu])
+    if @menu.update(menu_params)
       flash[:success] = t('successfully_updated')
       record_activity('updated_menu', @menu)
       redirect_to site_admin_menus_path(menu: @menu.id)
@@ -48,5 +48,11 @@ class Sites::Admin::MenusController < ApplicationController
     flash[:success] = t('successfully_deleted')
     record_activity('destroyed_menu', @menu)
     redirect_to site_admin_menus_path
+  end
+
+  private
+
+  def menu_params
+    params.require(:menu).permit(:name)
   end
 end

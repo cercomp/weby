@@ -6,6 +6,7 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
   before_action :check_authorization
 
   respond_to :html, :xml, :js
+
   def index
     redirect_to site_admin_menus_path(menu: @menu.id)
   end
@@ -20,7 +21,7 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
   end
 
   def create
-    @menu_item = @menu.menu_items.new(params[:menu_item])
+    @menu_item = @menu.menu_items.new(menu_item_params)
     @menu_item.position = @menu.menu_items.maximum(:position, conditions: { parent_id: @menu_item.parent_id }).to_i + 1
 
     if @menu_item.save
@@ -39,7 +40,7 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
 
   def update
     @menu_item = @menu.menu_items.find(params[:id])
-    if @menu_item.update(params[:menu_item])
+    if @menu_item.update(menu_item_params)
       flash[:success] = t('successfully_updated')
       record_activity('updated_menu_item', @menu_item)
       redirect_to site_admin_menus_path(menu: @menu.id)
@@ -61,7 +62,7 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
   # Altera a ordenação do menu
   def change_order
     @menu_item = @menu.menu_items.find(params[:id])
-    @menu_item.update_positions(params[:menu_item])
+    @menu_item.update_positions(menu_item_params)
     render nothing: true
   end
 
@@ -87,5 +88,10 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
 
   def resource
     get_resource_ivar || set_resource_ivar(@menu.menu_items.find(params[:id]))
+  end
+
+  def menu_item_params
+    params.require(:menu_item).permit(:url, :target_id, :target_type, :new_tab,
+                                      :publish, :html_class, { i18ns_attributes: [:id, :locale_id, :title, :description] })
   end
 end
