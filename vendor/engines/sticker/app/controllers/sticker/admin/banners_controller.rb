@@ -33,7 +33,7 @@ module Sticker::Admin
     end
 
     def create
-      @banner = Sticker::Banner.where(site_id: current_site).new(params[:banner])
+      @banner = Sticker::Banner.where(site_id: current_site).new(banner_params)
       @banner.user_id = current_user.id
       if params[:submit_search]
         search_images
@@ -50,7 +50,7 @@ module Sticker::Admin
         @banner.attributes = params[:banner]
         search_images
       end
-      if @banner.update(params[:banner])
+      if @banner.update(banner_params)
         record_activity('updated_banner', @banner)
       end
       respond_with(:admin, @banner)
@@ -89,6 +89,13 @@ module Sticker::Admin
 
     def resource
       get_resource_ivar || set_resource_ivar(Sticker::Banner.send(:find, params[:id]))
+    end
+
+    def banner_params
+      params.require(:banner).permit(:repository_id, :size, :width, :height, :title,
+                                     :text, :url, :page_id, :category_list,
+                                     :position, :publish, :date_begin_at,
+                                     :date_end_at, :new_tab)
     end
   end
 end

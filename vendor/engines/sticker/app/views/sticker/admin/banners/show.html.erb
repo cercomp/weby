@@ -8,14 +8,16 @@
                       "#{@banner.height}",
                       {target: '_blank'}) %>
 <% end %>
-<p> 
+<p>
   <h2> <%= @banner.title %> </h2>
 </p>
-<p> 
-    <%= @banner.text %> 
+<p>
+    <%= @banner.text %>
 </p>
 <p>
-  <span class="label label-info"><%= @banner.categories.join(", ") || t(".none_category") %></span>
+  <% @banner.category_list.each do |category| %>
+    <span class="label label-info"><%= category %></span>
+  <% end %>
 </p>
 <p>
   <b> <%= t(".period_banner") %>: </b> <%= l @banner.date_begin_at, :format => :short %> - <%= l @banner.date_end_at, :format => :short if @banner.date_end_at  %>
