@@ -8,7 +8,7 @@ class Admin::SettingsController < ApplicationController
   def index
     if request.put?
       errors = ''
-      params[:settings].each do |attr|
+      settings_params[:settings].each do |attr|
         enabled = attr.delete :enabled
         setting = Setting.new_or_update(attr)
         enabled ? setting.save : setting.destroy
@@ -19,5 +19,11 @@ class Admin::SettingsController < ApplicationController
     end
 
     @settings = Weby::Settings.all
+  end
+
+  private
+
+  def settings_params
+    params.permit(settings: [:id, :name, :value, :enabled])
   end
 end
