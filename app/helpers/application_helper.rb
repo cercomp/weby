@@ -453,4 +453,10 @@ module ApplicationHelper
       end
     end
   end
+
+  # Input: Site object  
+  # Output: link to the favicon
+  def favicon(site)
+    site.favicon.nil? ? root_path + 'favicon.ico' : (site_url(subdomain: site) + site.favicon.archive.url)
+  end
 end

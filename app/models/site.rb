@@ -81,6 +81,10 @@ class Site < ActiveRecord::Base
 
   validate :at_least_one_locale
 
+  def favicon
+    repositories.where(archive_file_name: 'favicon.png').first
+  end
+
   def at_least_one_locale
     if self.locales.length < 1
       errors.add(:locales, I18n.t("site_need_at_least_one_locale"))
