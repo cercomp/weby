@@ -25,14 +25,14 @@ class ProfilesController < ApplicationController
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_profile
     @profile = User.find_by_login(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
   def profile_params
-    params[:user].slice(:login, :email, :password, :password_confirmation, :first_name, :last_name, :phone, :mobile, :locale_id)
+    params.require(:user).permit(:login, :email, :password, :password_confirmation, :first_name, :last_name, :phone, :mobile, :locale_id)
   end
 
   # Responds if the current user is profile's owner.
