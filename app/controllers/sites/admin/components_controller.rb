@@ -33,10 +33,10 @@ class Sites::Admin::ComponentsController < ApplicationController
   end
 
   def create
-    if (comp = params[:component])
+    if params[:component]
       # creates an new instance of the selected component
-      @component = Weby::Components.factory(comp)
-      @component.attributes = params["#{comp}_component"]
+      @component = Weby::Components.factory(params[:component])
+      @component.attributes = component_params
 
       if @component.save
         record_activity('created_component', @component)
@@ -54,7 +54,7 @@ class Sites::Admin::ComponentsController < ApplicationController
 
     update_params
 
-    if @component.update(params["#{params[:component]}_component"])
+    if @component.update(component_params)
       record_activity('updated_component', @component)
       redirect_to(site_admin_components_path, flash: { success: t('successfully_updated_param', param: t('component')) })
     else
@@ -77,11 +77,16 @@ class Sites::Admin::ComponentsController < ApplicationController
     render nothing: true
   end
 
+  private
+
   # TODO: Review this method
   # Used to add especific component's code as the component don't have an controller
   def update_params
     params[:feedback_component][:groups_id] ||= nil if params[:feedback_component]
     params[:photo_slider_component][:photo_ids] ||= [] if params[:photo_slider_component]
   end
-  private :update_params
+
+  def component_params
+    params["#{params[:component]}_component"].permit!
+  end
 end

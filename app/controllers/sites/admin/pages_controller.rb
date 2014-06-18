@@ -94,7 +94,7 @@ class Sites::Admin::PagesController < ApplicationController
   # POST /pages
   # POST /pages.json
   def create
-    @page = current_site.pages.new(params[:page])
+    @page = current_site.pages.new(page_params)
     @page.author = current_user
     @page.save
     record_activity('created_page', @page)
@@ -106,7 +106,7 @@ class Sites::Admin::PagesController < ApplicationController
   def update
     params[:page][:related_file_ids] ||= []
     @page = current_site.pages.find(params[:id])
-    @page.update(params[:page])
+    @page.update(page_params)
     record_activity('updated_page', @page)
     respond_with(:site_admin, @page)
   end
@@ -137,5 +137,15 @@ class Sites::Admin::PagesController < ApplicationController
     end
     record_activity('restored_page', @page)
     redirect_to :back
+  end
+
+  private
+
+  def page_params
+    params.require(:page).permit(:type, :source, :url, :category_list, :publish,
+                                 :date_begin_at, :front, :date_end_at, :image,
+                                 :local, :kind, :event_email, :event_begin, :event_end,
+                                 { i18ns_attributes: [:id, :locale_id, :title, :summary, :text, :_destroy],
+                                   related_file_ids: [] })
   end
 end

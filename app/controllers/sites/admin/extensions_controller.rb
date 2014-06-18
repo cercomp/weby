@@ -11,10 +11,9 @@ class Sites::Admin::ExtensionsController < ::ApplicationController
   end
 
   def create
-    @extension = Extension.new params[:extension]
-    @extension.site = current_site
+    @extension = current_site.extensions.new(extension_params)
+
     if @extension.save
-      current_site.extensions << @extension
       redirect_to site_admin_extensions_path
     else
       render :new
@@ -23,6 +22,13 @@ class Sites::Admin::ExtensionsController < ::ApplicationController
 
   def destroy
     current_site.extensions.find(params[:id]).destroy
+
     redirect_to site_admin_extensions_path
+  end
+
+  private
+
+  def extension_params
+    params.require(:extension).permit(:name)
   end
 end
