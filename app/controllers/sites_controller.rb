@@ -58,12 +58,6 @@ class SitesController < ApplicationController
     render text: File.read(robots_file && FileTest.exist?(robots_file) ? robots_file : Rails.root.join('public', 'default_robots.txt')), layout: false, content_type: 'text/plain'
   end
 
-  def about
-    render partial: 'layouts/shared/about'
-  end
-
-  #### BACK-END
-
   def admin
     render layout: 'application'
   end
@@ -83,7 +77,7 @@ class SitesController < ApplicationController
   def update
     @site = current_site
     params[:site][:top_banner_id] ||= nil
-    if @site.update(params[:site])
+    if @site.update(site_params)
       flash[:success] = t('successfully_updated')
       redirect_to edit_site_admin_url(subdomain: @site)
     else
@@ -100,5 +94,12 @@ class SitesController < ApplicationController
 
   def load_themes
     @themes = Weby::Themes.all
+  end
+
+  def site_params
+    params.require(:site).permit(:title, :top_banner_id, :name, :parent_id, :url,
+                                 :domain, :description, :view_desc_pages, :theme,
+                                 :body_width, :per_page, :per_page_default,
+                                 {grouping_ids: [], locale_ids: []})
   end
 end

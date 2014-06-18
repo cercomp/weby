@@ -180,9 +180,6 @@ Rails.application.routes.draw do
     put 'reset_password'  => 'devise/passwords#update'
   end
 
-  # route to about
-  get 'about' => 'sites#about'
-
   get 'robots.txt' => 'sites#robots', format: 'txt'
   get '*not_found' => 'application#render_404'
 end
