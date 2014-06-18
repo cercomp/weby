@@ -24,7 +24,7 @@ class View < ActiveRecord::Base
     finish_year, finish_month = month.to_i == 12 ? [year.to_i + 1, 1] : [year.to_i, month.to_i + 1]
 
     (Date.new(year.to_i, month.to_i)..Date.new(finish_year, finish_month) - 1.days)
-      .map { |day| { date: day.strftime('%Y-%m-%d'), views: counts[day.strftime('%Y-%m-%d')].to_i } }.to_json
+      .map { |day| { date: day.strftime('%Y-%m-%d'), views: counts[day].to_i } }.to_json
   end
 
   def self.monthly_stats(year, metric, site_id = nil)
@@ -45,6 +45,6 @@ class View < ActiveRecord::Base
       end
     end
 
-    (1..12).map { |month| { month: month, views: counts[month.to_s].to_i } }.to_json
+    (1..12).map { |month| { month: month, views: counts[month.to_f].to_i } }.to_json
   end
 end
