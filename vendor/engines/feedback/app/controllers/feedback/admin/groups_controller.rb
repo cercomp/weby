@@ -26,7 +26,7 @@ module Feedback::Admin
     end
 
     def create
-      @group = Feedback::Group.new(params[:group])
+      @group = Feedback::Group.new(group_params)
 
       if @group.save
         redirect_to({ site_id: @group.site.name, controller: 'groups' },
@@ -38,7 +38,7 @@ module Feedback::Admin
 
     def update
       @group = Feedback::Group.find(params[:id])
-      if @group.update(params[:group])
+      if @group.update(group_params)
         redirect_to({ site_id: @group.site.name, controller: 'groups', action: 'index' },
                     flash: { success: t('successfully_updated') })
       else
@@ -57,6 +57,10 @@ module Feedback::Admin
 
     def sort_column
       Feedback::Group.column_names.include?(params[:sort]) ? params[:sort] : 'id'
+    end
+
+    def group_params
+      params.require(:group).permit(:name, :emails, :site_id)
     end
   end
 end

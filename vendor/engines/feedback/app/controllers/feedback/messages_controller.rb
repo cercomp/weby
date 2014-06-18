@@ -2,16 +2,16 @@ module Feedback
   class MessagesController < Feedback::ApplicationController
     layout :choose_layout
 
-    before_action :get_groups, only: [:new, :create, :index]
+    before_action :get_groups, only: [:new, :create]
 
-    respond_to :html, :xml, :js
+    respond_to :html
 
     def new
       @message = Message.new
     end
 
     def create
-      @message = Message.new(params[:message])
+      @message = Message.new(message_params)
       @message.site = current_site
 
       if @message.save
@@ -24,7 +24,7 @@ module Feedback
           end
         end
       else
-        render action: 'new'
+        render 'new'
       end
     end
 
@@ -32,6 +32,10 @@ module Feedback
 
     def get_groups
       @groups = Feedback::Group.where(site_id: current_site.id)
+    end
+
+    def message_params
+      params.require(:message).permit(:name, :email, :subject, :message, :site_id)
     end
   end
 end
