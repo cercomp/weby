@@ -22,7 +22,7 @@ class Sites::Admin::StylesController < ApplicationController
   end
 
   def create
-    @style = current_site.styles.new(params[:style])
+    @style = current_site.styles.new(style_params)
     if @style.save
       flash[:success] = t('successfully_created')
       record_activity('created_style', @style)
@@ -39,7 +39,7 @@ class Sites::Admin::StylesController < ApplicationController
   def update
     @style = current_site.styles.own.find params[:id]
     respond_to do |format|
-      if @style.update(params[:style])
+      if @style.update(style_params)
         record_activity('updated_style', @style)
         format.html do
           flash[:success] = t('successfully_updated')
@@ -109,5 +109,9 @@ class Sites::Admin::StylesController < ApplicationController
 
   def after_toggle_path
     site_admin_styles_path
+  end
+
+  def style_params
+    params.require(:style).permit(:name, :publish, :css)
   end
 end

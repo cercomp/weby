@@ -13,21 +13,21 @@ class FrontNewsComponent < Component
 
   def pages(site, page_param)
     direction = 'desc'
-    site.pages.includes(:author, :image).available_fronts.send(
-      case type_filter
-      when 'events'
-        if order_by == 'event_begin'
-          direction = 'asc'
-          :upcoming_events
-        else
-          :events
-        end
-      when 'news'
-        :news
+    pages = site.pages.includes(:author, :image).available_fronts
+
+    case type_filter
+    when 'events'
+      if order_by == 'event_begin'
+        direction = 'asc'
+        pages = pages.upcoming_events
       else
-        :scoped
+        pages = pages.events
       end
-    ).order("#{order_by} #{direction}").page(page_param).per(quant)
+    when 'news'
+      pages.news
+    end
+
+    pages.order("#{order_by} #{direction}").page(page_param).per(quant)
   end
   private :pages
 

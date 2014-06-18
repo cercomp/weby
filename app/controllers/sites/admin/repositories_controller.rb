@@ -5,6 +5,7 @@ class Sites::Admin::RepositoriesController < ApplicationController
   helper_method :sort_column
 
   respond_to :html, :xml, :js, :json
+
   def index
     params[:mime_type] ||= params[:empty_filter]
     params[:mime_type].try(:delete, '')

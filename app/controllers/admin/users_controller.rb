@@ -110,7 +110,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def user_params
-    params[:user].slice(:login, :email, :password, :password_confirmation, :first_name, :last_name, :phone, :mobile, :locale_id)
+    params.require(:user).permit(:login, :email, :password, :password_confirmation, :first_name, :last_name, :phone, :mobile, :locale_id)
   end
 
   def toggle_attribute!
