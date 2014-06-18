@@ -62,7 +62,7 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
   # Altera a ordenação do menu
   def change_order
     @menu_item = @menu.menu_items.find(params[:id])
-    @menu_item.update_positions(menu_item_params)
+    @menu_item.update_positions(params[:menu_item])
     render nothing: true
   end
 
