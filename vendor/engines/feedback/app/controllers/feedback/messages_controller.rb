@@ -35,7 +35,7 @@ module Feedback
     end
 
     def message_params
-      params.require(:message).permit(:name, :email, :subject, :message, :site_id)
+      params.require(:message).permit(:name, :email, :subject, :message, :site_id, { group_ids: [] })
     end
   end
 end
