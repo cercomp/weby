@@ -7,13 +7,11 @@ class NewsListComponent < Component
   validates :quant, presence: true
 
   def pages(site, page)
-    category.blank? ?
-      site.pages.order('created_at desc').available
-    .send(front ? :scoped : :no_front).send(events ? :scoped : :news)
-    .page(page).per(quant) :
-      site.pages.order('created_at desc').available.tagged_with(category.mb_chars.downcase.to_s, any: true)
-    .send(front ? :scoped : :no_front).send(events ? :scoped : :news)
-    .page(page).per(quant)
+    result = site.pages.order('created_at desc').available
+    result = result.tagged_with(category.mb_chars.downcase.to_s, any: true) if category.present?
+    result = result.no_front unless front
+    result = result.news unless events
+    result.page(page).per(quant)
   end
 
   alias_method :_quant, :quant
