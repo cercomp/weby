@@ -99,10 +99,12 @@ class ApplicationController < ActionController::Base
     rescue_from Exception, with: :render_500
     rescue_from ActionController::RoutingError, with: :render_404
     rescue_from ActionController::UnknownController, with: :render_404
+    rescue_from ActionController::UnknownFormat, with: :render_404
     rescue_from ActiveRecord::RecordNotFound, with: :render_404
   end
 
   @@weby_error_logger = Logger.new("#{Rails.root}/log/error.log")
+  @@weby_error_logger.formatter = ->(severity, datetime, progname, msg) { msg }
 
   # Redirection when the address does not exist
   def render_404(exception = nil)

@@ -27,6 +27,7 @@ module Weby
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     config.i18n.load_path += Dir["#{config.root}/**/locales/**/*.yml"]
     config.i18n.default_locale = 'pt-BR'
+    I18n.config.enforce_available_locales = false
 
     # Clean generators
     config.generators do |g|

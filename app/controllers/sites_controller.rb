@@ -22,7 +22,9 @@ class SitesController < ApplicationController
     else
       if @default_groupings
         if @default_groupings.match(/^!/)
-          @sites = @sites.includes(:groupings).where('(groupings.id NOT IN (?) OR groupings.id IS NULL)', @default_groupings.gsub(/^!/, '').split(','))
+          @sites = @sites.includes(:groupings)
+          .where('(groupings.id NOT IN (?) OR groupings.id IS NULL)', @default_groupings.gsub(/^!/, '').split(','))
+          .references(:groupings)
         else
           @sites = @sites.includes(:groupings).where(groupings: { id: @default_groupings.split(',') })
         end
