@@ -1,6 +1,7 @@
 class Sites::PagesController < ApplicationController
-  layout :choose_layout
   include ActsToSort
+
+  layout :choose_layout
 
   helper_method :sort_column
   before_action :check_current_site
@@ -21,41 +22,14 @@ class Sites::PagesController < ApplicationController
   def events
     @pages = get_pages.send(params[:upcoming] ? :upcoming_events : params[:previous] ? :previous_events : :events)
 
-    respond_with(current_site, @pages) do |format|
-      format.any { render 'index' }
-    end
+    render :index
   end
 
   def news
     @pages = get_pages.news
-    respond_with(current_site, @pages) do |format|
-      format.any { render 'index' }
-    end
-  end
 
-  def tags
-    params[:tags].split(',').map { |tag| tag.mb_chars.downcase.to_s }
+    render :index
   end
-  private :tags
-
-  def get_pages
-    params[:direction] ||= 'desc'
-    # Vai ao banco por linha para recuperar
-    # tags e locales
-    pages = current_site.pages.available.
-      search(params[:search], params.fetch(:search_type, 1).to_i).
-      order(sort_column + ' ' + sort_direction).
-      page(params[:page]).per(params[:per_page])
-
-    pages = pages.tagged_with(tags, any: true) if params[:tags]
-    pages
-  end
-  private :get_pages
-
-  def sort_column
-    params[:sort] || 'pages.id'
-  end
-  private :sort_column
 
   # GET /pages/1
   # GET /pages/1.json
@@ -70,6 +44,28 @@ class Sites::PagesController < ApplicationController
   end
 
   private
+
+  def tags
+    params[:tags].split(',').map { |tag| tag.mb_chars.downcase.to_s }
+  end
+
+  def get_pages
+    params[:direction] ||= 'desc'
+    # Vai ao banco por linha para recuperar
+    # tags e locales
+    pages = current_site.pages.available.
+      search(params[:search], params.fetch(:search_type, 1).to_i).
+      order(sort_column + ' ' + sort_direction).
+      page(params[:page]).per(params[:per_page])
+
+    pages = pages.tagged_with(tags, any: true) if params[:tags]
+    pages
+  end
+
+  def sort_column
+    params[:sort] || 'pages.id'
+  end
+
   def check_current_site
     render_404 unless current_site
   end
