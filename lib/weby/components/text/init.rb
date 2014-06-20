@@ -1,4 +1,4 @@
 Weby::Components.register_component :text,
-  author: "Author",
-  site: "www.site.com",
-  email: "author@site.com"
+                                    author: 'Author',
+                                    site: 'www.site.com',
+                                    email: 'author@site.com'

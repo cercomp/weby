@@ -1,4 +1,4 @@
-require "sticker/engine"
+require 'sticker/engine'
 
 module Sticker
 end

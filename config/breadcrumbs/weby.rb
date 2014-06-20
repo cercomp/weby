@@ -1,9 +1,9 @@
-#Breadcrumbs
+# Breadcrumbs
 crumb :root do
-  link t("breadcrumbs.home"), main_app.site_admin_path
+  link t('breadcrumbs.home'), main_app.site_admin_path
 end
 
-#settings
+# settings
 crumb :settings do
-  link t("breadcrumbs.settings"), edit_site_admin_path
+  link t('breadcrumbs.settings'), edit_site_admin_path
 end

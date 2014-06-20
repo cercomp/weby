@@ -3,13 +3,13 @@ class MenuComponent < Component
 
   validates :menu_id, presence: true
 
-  alias :_dropdown :dropdown
+  alias_method :_dropdown, :dropdown
   def dropdown
-    _dropdown.blank? ? false : _dropdown == "1"
+    _dropdown.blank? ? false : _dropdown == '1'
   end
 
   def default_alias
-    menu = Menu.find self.menu_id rescue nil
-    menu ? menu.name : ""
+    menu = Menu.find menu_id rescue nil
+    menu ? menu.name : ''
   end
 end

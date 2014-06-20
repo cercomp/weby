@@ -9,7 +9,7 @@ module Weby
 
       @@tld_length = settings.tld_length.to_i
 
-      if request.subdomain.present? && request.subdomain != "www"
+      if request.subdomain.present? && request.subdomain != 'www'
         if settings.sites_index.present?
           return false if subdomain == settings.sites_index
         end
@@ -23,7 +23,7 @@ module Weby
       @site_domain
     end
 
-    def self.find_site(domain=nil)
+    def self.find_site(domain = nil)
       domain = @site_domain unless domain
       domain = domain.gsub(/www\./, '')
       sites = domain.split('.')
@@ -31,7 +31,7 @@ module Weby
       if sites.length == 2
         site = site.subsites.find_by_name(sites[-2]) if site
       end
-      site if [1,2].include? sites.length
+      site if [1, 2].include? sites.length
     end
   end
 end

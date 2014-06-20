@@ -17,7 +17,7 @@ class Weby::Theme
     default_footer = {}
     @site.locales.each do |locale|
       I18n.with_locale(locale.name) do
-        default_footer[locale.name] = I18n.t("admin.sites.form.footer_text")
+        default_footer[locale.name] = I18n.t('admin.sites.form.footer_text')
       end
     end
 
@@ -27,10 +27,10 @@ class Weby::Theme
         component['place_holder'] = place
         if component['name'] == 'menu'
           menu = @site.menus.create(component.delete('menu'))
-          component['settings'] = I18n.interpolate(component['settings'], {menu_id: menu.id})
+          component['settings'] = I18n.interpolate(component['settings'], menu_id: menu.id)
         end
         if component['name'] == 'text'
-          component['settings'] = I18n.interpolate(component['settings'], {default_footer: default_footer.to_s})
+          component['settings'] = I18n.interpolate(component['settings'], default_footer: default_footer.to_s)
         end
         @site.components.create(component)
       end

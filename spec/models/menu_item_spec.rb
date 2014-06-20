@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe MenuItem do
   it { expect(subject).to belong_to(:menu) }
@@ -18,12 +18,12 @@ describe MenuItem do
     end
   end
 
-  pending 'after_save' do
+  skip 'after_save' do
   end
 
-  pending 'update_positions' do
+  skip 'update_positions' do
   end
 
-  pending 'self.import' do
+  skip 'self.import' do
   end
 end

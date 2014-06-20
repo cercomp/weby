@@ -1,5 +1,5 @@
-# Veja em http://www.robotstxt.org/wc/norobots.html a documentação de como usar o arquivo robots.txt
-User-Agent: *
+# See http://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
+User-agent: *
 Disallow: /admin
 Disallow: /assets
 Disallow: /login
@@ -9,4 +9,3 @@ Disallow: /password_sent
 Disallow: /reset_password
 Disallow: /activate
 Disallow: /components
-

@@ -4,14 +4,6 @@ production:
     address: localhost
     port: 25
     authentication: :login
-    enable_starttls_auto: true 
+    enable_starttls_auto: true
     user_name: "weby@example.net"
     password: "weby"
-  
-development:
-  delivery_method: :smtp
-  smtp_settings:
-    address: localhost
-    port: 25
-    authentication: :none
-    enable_starttls_auto: false

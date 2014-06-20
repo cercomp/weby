@@ -69,7 +69,7 @@
                   </div>
                   <%= hidden_field_tag "repository[site_id]", @site.id, id: "site_id" %>
 
-                  <%= submit_tag t(".send"), class: 'btn btn-primary send-file', type: :submit, disable_with: t('please_wait') %>
+                  <%= submit_tag t(".send"), class: 'btn btn-primary send-file', type: :submit, data: {disable_with: t('please_wait')} %>
                 <% end %>
               </div>
               <div class="form-group string">
@@ -87,9 +87,9 @@
         </div>
       </div>
       <div class="modal-footer">
-        <%= link_to_function t("ok"), '', id: 'repository-include-link', class: "btn btn-primary" %>
+        <%= link_to t("ok"), '#', id: 'repository-include-link', class: "btn btn-primary" %>
         <a href="#" class="btn btn-default" data-dismiss="modal"><%=t('cancel')%></a>
       </div>
-    </div> 
+    </div>
   </div>
 </div>

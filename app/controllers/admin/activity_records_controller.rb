@@ -1,11 +1,11 @@
 class Admin::ActivityRecordsController < ApplicationController
-  before_filter :require_user
-  before_filter :is_admin
+  before_action :require_user
+  before_action :is_admin
   respond_to :html, :js
 
   def index
     @activity_records = ActivityRecord.user_or_action_like(params[:search], params[:site_id]).
-                order("activity_records.created_at DESC").
+                order('activity_records.created_at DESC').
                 page(params[:page]).
                 per(params[:per_page] || per_page_default)
   end
@@ -17,7 +17,7 @@ class Admin::ActivityRecordsController < ApplicationController
   def destroy
     @activity_record = ActivityRecord.find(params[:id])
     @activity_record.destroy
-    flash[:success] = t("destroyed_record")
+    flash[:success] = t('destroyed_record')
 
     redirect_to :back
   end

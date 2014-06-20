@@ -1,11 +1,12 @@
 module Feedback
   module MessagesHelper
-
     def params_groups
       if params['groups']
-       verify_groups
+        verify_groups
       end
     end
+
+    private
 
     def verify_groups
       groups = params['groups'].split(',')
@@ -17,6 +18,5 @@ module Feedback
         end
       end
     end
-    private :verify_groups
   end
 end

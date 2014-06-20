@@ -1,18 +1,18 @@
 module Acadufg::Admin
   class SettingsController < Acadufg::ApplicationController
-    before_filter :require_user
-    before_filter :check_authorization
-    
+    before_action :require_user
+    before_action :check_authorization
+
     respond_to :html, :js
 
     def show
       make_request 'uri_programas'
       @programas = ActiveSupport::JSON.decode(@response_text).map{|programa| [programa['nmPrograma'], programa['id']] }
-      
-      @setting = Acadufg::Setting.find(:first, :conditions => ["site_id = ?", current_site])
+
+      @setting = Acadufg::Setting.find_by(site_id: current_site)
       @setting ||= Acadufg::Setting.create site_id: current_site.id
     end
-    
+
     def create
       @setting = Acadufg::Setting.new(params[:setting])
       if @setting.save
@@ -21,10 +21,10 @@ module Acadufg::Admin
         render :show
       end
     end
-  
+
     def update
-      @setting = Acadufg::Setting.find(:first, :conditions => ["site_id = ?", current_site])
-      if @setting.update_attributes(params[:setting])
+      @setting = Acadufg::Setting.find_by(site_id: current_site)
+      if @setting.update(params[:setting])
         redirect_to(admin_path, flash: {success: t('successfully_updated')})
       else
         render :show

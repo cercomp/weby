@@ -1,6 +1,5 @@
 module Weby
   class Cache
-
     def self.global
       @gitems ||= {}
     end
@@ -8,6 +7,5 @@ module Weby
     def self.request
       @ritems ||= {}
     end
-
   end
 end

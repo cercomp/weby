@@ -1,10 +1,10 @@
 class Sites::Admin::StatisticsController < ApplicationController
   include DateHelper
-  before_filter :require_user
-  before_filter :check_authorization
-  
+  before_action :require_user
+  before_action :check_authorization
+
   respond_to :html, :json
-  
+
   def index
     respond_to do |format|
       format.html do
@@ -20,5 +20,4 @@ class Sites::Admin::StatisticsController < ApplicationController
       end
     end
   end
-
 end

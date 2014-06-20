@@ -12,7 +12,7 @@
     placeholder: t(".title"),
     input_html: {class: "title_input"} %>
 
-  <%= f.input :text, 
+  <%= f.input :text,
     input_html: {:size => "70x5"},
     as: :text %>
 
@@ -24,14 +24,14 @@
       Sticker::Banner.where(site_id: current_site).category_counts, {},
       :id => "category", class: 'form-control' %>
     <span class="input-group-btn">
-      <%= link_to_function t(".add_category"), "addToSelect('#category','#{t(".new_category")}')", :class => 'btn btn-info' %>
+      <%= link_to t(".add_category"), '#', onclick: "addToSelect('#category','#{t(".new_category")}')", :class => 'btn btn-info' %>
     </span>
   <% end %>
 
   <%= f.input :position, hint: t(".lower_numbers_come_first") %>
 
   <div class='input'>
-    <%= f.input :publish, 
+    <%= f.input :publish,
       wrapper_html: { class: "side" },
       as: :boolean, input_html: { class: "check-button" } %>
     <div class="clear"></div>

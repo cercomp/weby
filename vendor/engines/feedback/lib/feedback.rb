@@ -1,4 +1,4 @@
-require "feedback/engine"
+require 'feedback/engine'
 
 module Feedback
 end

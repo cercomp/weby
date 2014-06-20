@@ -1,9 +1,9 @@
 class SitesController < ApplicationController
   layout :choose_layout, only: :show
-  
-  before_filter :require_user, only: [:admin, :edit, :update]
-  before_filter :check_authorization, only: [:edit, :update]
-  
+
+  before_action :require_user, only: [:admin, :edit, :update]
+  before_action :check_authorization, only: [:edit, :update]
+
   respond_to :html, :xml, :js
 
   helper_method :sort_column
@@ -13,26 +13,26 @@ class SitesController < ApplicationController
   def index
     params[:page] ||= 1
 
-    #TODO Search using the new's tittle too
+    # TODO Search using the new's tittle too
     @sites = Site.ordered_by_front_pages(params[:search])
 
     @default_groupings = Weby::Settings.default_groupings
     if params[:groupings]
-      @sites = @sites.includes(:groupings).where(groupings: {id: params[:groupings].split(',')}) unless params[:groupings] == 'all'
+      @sites = @sites.includes(:groupings).where(groupings: { id: params[:groupings].split(',') }) unless params[:groupings] == 'all'
     else
       if @default_groupings
         if @default_groupings.match(/^!/)
-          @sites = @sites.includes(:groupings).where("(groupings.id NOT IN (?) OR groupings.id IS NULL)", @default_groupings.gsub(/^!/, '').split(','))
+          @sites = @sites.includes(:groupings).where('(groupings.id NOT IN (?) OR groupings.id IS NULL)', @default_groupings.gsub(/^!/, '').split(','))
         else
-          @sites = @sites.includes(:groupings).where(groupings: {id: @default_groupings.split(',')})
+          @sites = @sites.includes(:groupings).where(groupings: { id: @default_groupings.split(',') })
         end
       end
     end
 
     @sites = @sites.page(params[:page]).per(18)
 
-    @nexturl = sites_path(page: params[:page].to_i+1, search: params[:search], groupings: params[:groupings])
-    
+    @nexturl = sites_path(page: params[:page].to_i + 1, search: params[:search], groupings: params[:groupings])
+
     if request.xhr?
       render partial: 'list', layout: false
     else
@@ -45,61 +45,61 @@ class SitesController < ApplicationController
   end
 
   def show
-    raise ActiveRecord::RecordNotFound unless @site
+    fail ActiveRecord::RecordNotFound unless @site
     params[:id] = @site.id
     params[:per_page] = nil
   end
-  
+
   def robots
-    robots_file = Rails.root.join("public", "uploads", current_site.id.to_s, "original_robots.txt") if current_site
+    robots_file = Rails.root.join('public', 'uploads', current_site.id.to_s, 'original_robots.txt') if current_site
 
-    #render file: (robots_file && FileTest.exist?(robots_file) ?
-    #  robots_file : Rails.root.join("public","default_robots.txt")), :layout => false, :content_type => "text/plain"
-    render text: File.read(robots_file && FileTest.exist?(robots_file) ?
-      robots_file : Rails.root.join("public","default_robots.txt")), :layout => false, :content_type => "text/plain"
-
+    # render file: (robots_file && FileTest.exist?(robots_file) ?
+    #  robots_file : Rails.root.join("public","default_robots.txt")), layout: false, content_type: "text/plain"
+    render text: File.read(robots_file && FileTest.exist?(robots_file) ? robots_file : Rails.root.join('public', 'default_robots.txt')), layout: false, content_type: 'text/plain'
   end
-
-  def about
-    render partial: 'layouts/shared/about'
-  end
-
-  #### BACK-END
 
   def admin
-    render layout: "application"
+    render layout: 'application'
   end
 
   def edit
     @site = current_site
     load_themes
-    @sites = @site.subsites.
-      except(:order).
-      order("#{sort_column} #{sort_direction}").
-      page(params[:page]).
-      per(params[:per_page])
+    @sites = @site.subsites
+      .except(:order)
+      .order("#{sort_column} #{sort_direction}")
+      .page(params[:page])
+      .per(params[:per_page])
 
-    render layout: "application"
+    render layout: 'application'
   end
 
   def update
     @site = current_site
     params[:site][:top_banner_id] ||= nil
-    if @site.update_attributes(params[:site])
-      flash[:success] = t("successfully_updated")
+    if @site.update(site_params)
+      flash[:success] = t('successfully_updated')
       redirect_to edit_site_admin_url(subdomain: @site)
     else
       load_themes
-      render :edit, layout: "application"
+      render :edit, layout: 'application'
     end
   end
 
   private
+
   def sort_column
-    Site.column_names.include?(params[:sort]) ? params[:sort] : "id"
+    Site.column_names.include?(params[:sort]) ? params[:sort] : 'id'
   end
 
   def load_themes
     @themes = Weby::Themes.all
+  end
+
+  def site_params
+    params.require(:site).permit(:title, :top_banner_id, :name, :parent_id, :url,
+                                 :domain, :description, :view_desc_pages, :theme,
+                                 :body_width, :per_page, :per_page_default,
+                                 {grouping_ids: [], locale_ids: []})
   end
 end

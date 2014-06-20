@@ -1,7 +1,7 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Site do
-  pending 'Scopes' do
+  skip 'Scopes' do
   end
 
   context 'url' do
@@ -51,7 +51,7 @@ describe Site do
   it { expect(subject).to belong_to(:main_site).class_name('Site').with_foreign_key('parent_id') }
 
   it { expect(subject).to have_many(:roles) }
-  
+
   it { expect(subject).to have_many(:views) }
 
   it { expect(subject).to have_many(:menus).dependent(:delete_all).order(:id) }
@@ -60,19 +60,20 @@ describe Site do
   it { expect(subject).to have_many(:pages).dependent(:delete_all) }
 
   it { expect(subject).to have_many(:pages_i18ns).through(:pages) }
-  
-  #StickerBanners
-  pending { expect(subject).to have_many(:banners).order(:position) }
-  
-  it { expect(subject).to have_many(:styles).dependent(:destroy).order('styles.position desc') }
+
+  # StickerBanners
+  skip { expect(subject).to have_many(:banners).order(:position) }
+
+  it { expect(subject).to have_many(:styles).dependent(:destroy).order('styles.position DESC') }
 
   context 'Component' do
     it 'components should be ordered by place_holder, position asc' do
-      expect(subject).to have_many(:components).dependent(:destroy).order('place_holder, position asc')
+      expect(subject).to have_many(:components).dependent(:destroy)
+        .order([:place_holder, :position])
     end
 
     it { expect(subject).to have_many(:root_components).order(:position).class_name('Component') }
-    pending { expect(subject).to have_many(:root_components).conditions(condition: "place_holder !~ '^\\d*$'") }
+    skip { expect(subject).to have_many(:root_components).conditions(condition: "place_holder !~ '^\\d*$'") }
   end
 
   it { expect(subject).to belong_to(:repository).with_foreign_key('top_banner_id') }
@@ -85,15 +86,15 @@ describe Site do
 
   it { expect(subject).to have_and_belong_to_many(:groupings) }
 
-  pending 'Scopes' do
+  skip 'Scopes' do
     it 'name_or_description_like' do
-      subject = create(:site, name: "subject", description: "Description")
-      site = create(:site, name: "site", description: "Here")
+      subject = create(:site, name: 'subject', description: 'Description')
+      site = create(:site, name: 'site', description: 'Here')
 
-      expect(Site.name_or_description_like("ect")).to include(subject)
-      expect(Site.name_or_description_like("ite")).not_to include(subject)
-      expect(Site.name_or_description_like("Here")).to include(site)
-      expect(Site.name_or_description_like("ption")).not_to include(site)
+      expect(Site.name_or_description_like('ect')).to include(subject)
+      expect(Site.name_or_description_like('ite')).not_to include(subject)
+      expect(Site.name_or_description_like('Here')).to include(site)
+      expect(Site.name_or_description_like('ption')).not_to include(site)
     end
   end
 end

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Page do
   it { expect(subject).to belong_to(:owner).class_name('Site') }
@@ -64,7 +64,7 @@ describe Page do
   end
 
   context 'Scopes' do
-    pending 'should only return published pages' do
+    skip 'should only return published pages' do
       subject = build(:page, publish: true)
       page = build(:page, publish: false)
 
@@ -73,6 +73,6 @@ describe Page do
     end
   end
 
-  pending 'self.import' do
+  skip 'self.import' do
   end
 end

@@ -7,27 +7,27 @@ class WebyNewsSliderComponent < Component
       site.pages.available.tagged_with(news_category.to_s.mb_chars.downcase.to_s, any: true).where('repository_id is not null').order('position desc')
   end
 
-  alias :_width :width
+  alias_method :_width, :width
   def width
     _width.blank? ? '400' : _width
   end
 
-  alias :_height :height
+  alias_method :_height, :height
   def height
     _height.blank? ? '300' : _height
   end
 
-  alias :_quantity :quantity
+  alias_method :_quantity, :quantity
   def quantity
     _quantity.blank? ? '5' : _quantity
   end
 
-  alias :_timer :timer
+  alias_method :_timer, :timer
   def timer
     _timer.blank? ? '7' : _timer
   end
 
   def default_alias
-    self.news_category
+    news_category
   end
 end

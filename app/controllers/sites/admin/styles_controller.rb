@@ -1,11 +1,11 @@
 class Sites::Admin::StylesController < ApplicationController
   include ActsToToggle
 
-  before_filter :require_user
-  before_filter :check_authorization
-  
+  before_action :require_user
+  before_action :check_authorization
+
   respond_to :html, :xml, :js
-  
+
   def index
     @styles = {}
     @styles[:others] = Style.not_followed_by(current_site).search(params[:search]).
@@ -22,10 +22,10 @@ class Sites::Admin::StylesController < ApplicationController
   end
 
   def create
-    @style = current_site.styles.new(params[:style])
+    @style = current_site.styles.new(style_params)
     if @style.save
-      flash[:success] = t("successfully_created")
-      record_activity("created_style", @style)
+      flash[:success] = t('successfully_created')
+      record_activity('created_style', @style)
       redirect_to edit_site_admin_style_path(@style)
     else
       render 'new'
@@ -39,27 +39,27 @@ class Sites::Admin::StylesController < ApplicationController
   def update
     @style = current_site.styles.own.find params[:id]
     respond_to do |format|
-      if @style.update_attributes(params[:style])
-        record_activity("updated_style", @style)
+      if @style.update(style_params)
+        record_activity('updated_style', @style)
         format.html do
-          flash[:success] = t("successfully_updated")
+          flash[:success] = t('successfully_updated')
           redirect_to site_admin_styles_path
         end
       else
         format.html { render 'edit' }
       end
-      format.json { render :text => @style.errors.full_messages.to_json }
+      format.json { render text: @style.errors.full_messages.to_json }
     end
   end
 
   def destroy
     if resource.destroy
-      flash[:success] = t("destroyed_style")
-      record_activity("destroyed_style", resource)
+      flash[:success] = t('destroyed_style')
+      record_activity('destroyed_style', resource)
     else
-      flash[:error] = t("destroyed_style_error")
+      flash[:error] = t('destroyed_style_error')
     end
-    
+
     respond_with(:site_admin, resource, location: site_admin_styles_path)
   end
 
@@ -67,16 +67,16 @@ class Sites::Admin::StylesController < ApplicationController
     resource = Style.find params[:id]
     @style = current_site.styles.new(style_id: resource.id)
     if @style.save
-      flash[:success] = t("successfully_followed")
+      flash[:success] = t('successfully_followed')
     else
-      flash[:error] = @style.errors.full_messages.join(", ")
+      flash[:error] = @style.errors.full_messages.join(', ')
     end
     redirect_to site_admin_styles_path(others: true)
   end
 
   def unfollow
     if resource.owner == current_site
-      flash[:error] = t("error_unfollowing_style")
+      flash[:error] = t('error_unfollowing_style')
       redirect_to :back
     else
       destroy
@@ -85,23 +85,23 @@ class Sites::Admin::StylesController < ApplicationController
 
   def copy
     if Style.find(params[:id]).copy! current_site
-      flash[:success] = t("successfully_copied")
+      flash[:success] = t('successfully_copied')
     else
-      flash[:error] = t("error_copying_style")
+      flash[:error] = t('error_copying_style')
     end
     redirect_to site_admin_styles_path
   end
-  
+
   def sort
     position = 0
     params['sort_style'].reverse_each do |style_id|
       current_site.styles.find(style_id).update_attribute(:position, position += 1)
     end
-    render :nothing => true
+    render nothing: true
   end
 
   private
-  
+
   # override method from concern to work with relation
   def resource
     get_resource_ivar || set_resource_ivar(current_site.styles.find(params[:id]))
@@ -109,5 +109,9 @@ class Sites::Admin::StylesController < ApplicationController
 
   def after_toggle_path
     site_admin_styles_path
+  end
+
+  def style_params
+    params.require(:style).permit(:name, :publish, :css)
   end
 end

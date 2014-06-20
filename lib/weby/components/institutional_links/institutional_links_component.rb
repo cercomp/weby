@@ -1,29 +1,28 @@
 class InstitutionalLinksComponent < Component
-
   component_settings :institution, :html_class, :format, :new_tab
 
   validates :institution, presence: true
 
-  alias :_format :format
+  alias_method :_format, :format
   def format
     _format.blank? ? format_list[0] : _format
   end
 
-  alias :_new_tab :new_tab
+  alias_method :_new_tab, :new_tab
   def new_tab
     _new_tab.blank? ? false : _new_tab.to_i == 1
   end
 
   def format_list
-    ['bar', 'list']
+    %w(bar list)
   end
 
   def institutions_as_options
-    Weby.institutions.map{|name, values| [values['name'], name]}
+    Weby.institutions.map { |name, values| [values['name'], name] }
   end
 
-  def institution_value path
-    @institution ||= Weby.institutions[self.institution] || {}
+  def institution_value(path)
+    @institution ||= Weby.institutions[institution] || {}
     result = nil
     path.split('.').each do |level|
       result ||= @institution
@@ -32,16 +31,16 @@ class InstitutionalLinksComponent < Component
     result.empty? ? nil : result
   end
 
-  def institution_links format
+  def institution_links(format)
     institution_value("links.#{format}") || []
   end
 
   def default_alias
-    I18n.t("institutional_links.views.form.#{self.format}")
+    I18n.t("institutional_links.views.form.#{format}")
   end
 
   def label
-    labels = self.institution_value('links.label') || {}
-    labels[I18n.locale.to_s] #|| labels.values[0]
+    labels = institution_value('links.label') || {}
+    labels[I18n.locale.to_s] # || labels.values[0]
   end
 end

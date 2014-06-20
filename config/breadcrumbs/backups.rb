@@ -1,4 +1,4 @@
-#backups
+# backups
 crumb :backups do
-  link t("backups"), site_admin_backups_path
+  link t('backups'), site_admin_backups_path
 end

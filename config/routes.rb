@@ -1,49 +1,46 @@
-Weby::Application.routes.draw do
+Rails.application.routes.draw do
   constraints(Weby::Subdomain) do
     # Mount all engines here
     constraints(Weby::Extensions) do
       mount Feedback::Engine, at: 'feedback'
-      mount Acadufg::Engine, at: 'acadufg'
+      # mount Acadufg::Engine, at: 'acadufg'
       mount Sticker::Engine, at: 'sticker'
     end
 
     get '/' => 'sites#show', as: :site
     get '/admin' => 'sites#admin', as: :site_admin
     get '/admin/edit' => 'sites#edit', as: :edit_site_admin
-    put '/admin/edit' => 'sites#update', as: :edit_site_admin
+    patch '/admin/edit' => 'sites#update', as: :update_site_admin
 
-    # routes to feed and atom
-    match '/feed' => 'sites/pages#index', as: :site_feed,
-      defaults: { format: 'rss', per_page: 10, page: 1 }
-    
-    resources :pages,
-      as: :site_pages, 
-      controller: "sites/pages", 
-      only: [:index, :show] do
-        collection do
-          get :events, :news
-          post :sort
-        end
+    resources :pages, as: :site_pages, controller: 'sites/pages', only: [:index, :show] do
+      collection do
+        get :events, :news
+        post :sort
       end
+    end
 
     resources :components,
-      as: :site_components,
-      controller: 'sites/components',
-      only: [:show]
+              as: :site_components,
+              controller: 'sites/components',
+              only: [:show]
 
-    post "count/:model/:id" => "application#count_click", :as => :count_click
+    post 'count/:model/:id' => 'application#count_click', as: :count_click
+
+    # routes to feed and atom
+    get '/feed' => 'sites/pages#index', as: :site_feed,
+        defaults: { format: 'rss', per_page: 10, page: 1 }
 
     namespace :admin, module: 'sites/admin', as: :site_admin do
 
       # route to paginate
-      match "banners/page/:page" => "banners#index"
-      match "groups/page/:page" => "groups#index"
-      match "repositories/page/:page" => "repositories#index"
-      match "pages/page/:page" => "pages#index"
+      get 'banners/page/:page' => 'banners#index'
+      get 'groups/page/:page' => 'groups#index'
+      get 'repositories/page/:page' => 'repositories#index'
+      get 'pages/page/:page' => 'pages#index'
 
-      get  "stats" => "statistics#index"
-      get  'backups' => 'backups#index'
-      get  'generate' => 'backups#generate'
+      get 'stats' => 'statistics#index'
+      get 'backups' => 'backups#index'
+      get 'generate' => 'backups#generate'
       post 'import' => 'backups#import'
 
       resources :activity_records, only: [:index, :show]
@@ -62,15 +59,14 @@ Weby::Application.routes.draw do
       end
       resources :extensions
       resources :menus do
-        resources :menu_items,
-          controller: "menus/menu_items" do
-            member do
-              put :toggle
-            end
-            collection do
-              post :change_order, :change_menu
-            end
+        resources :menu_items, controller: 'menus/menu_items' do
+          member do
+            put :toggle
           end
+          collection do
+            post :change_order, :change_menu
+          end
+        end
       end
       resources :pages do
         member do
@@ -111,16 +107,16 @@ Weby::Application.routes.draw do
     end
   end
 
-  root :to => "sites#index"
+  root to: 'sites#index'
 
   constraints(Weby::GlobalDomain) do
-    #rota para paginação
-    match "sites/page/:page" => "sites#index", :as => :sites
+    # route to paginate
+    get 'sites/page/:page' => 'sites#index', as: :sites
 
-    match "/admin" => "application#admin"
+    get '/admin' => 'application#admin'
 
     namespace :admin do
-      match "settings" => "settings#index", :via => [:get, :put]
+      match 'settings' => 'settings#index', via: [:get, :put]
       resources :users do
         collection do
           get :manage_roles
@@ -142,11 +138,11 @@ Weby::Application.routes.draw do
       resources :notifications
       resources :activity_records, only: [:index, :show, :destroy]
 
-      get "stats" => "statistics#index"
+      get 'stats' => 'statistics#index'
 
       # route to paginate
-      match "users/page/:page" => "users#index"
-      match "sites/page/:page" => "sites#index"
+      get 'users/page/:page' => 'users#index'
+      get 'sites/page/:page' => 'sites#index'
     end
   end
 
@@ -170,23 +166,20 @@ Weby::Application.routes.draw do
   devise_scope :user do
     # routes to session
     delete 'logout'  => 'sessions#destroy'
-    get    'login'   => 'sessions#new'
-    post   'login'   => 'sessions#create'
+    get 'login'   => 'sessions#new'
+    post 'login'   => 'sessions#create'
 
     # routes to register
-    get    'signup'  => 'devise/registrations#new'
-    post   'signup'  => 'devise/registrations#create'
+    get 'signup'  => 'devise/registrations#new'
+    post 'signup'  => 'devise/registrations#create'
 
     # routes to password
-    get  'forgot_password' => 'devise/passwords#new'
+    get 'forgot_password' => 'devise/passwords#new'
     post 'forgot_password' => 'devise/passwords#create'
-    get  'reset_password'  => 'devise/passwords#edit'
-    put  'reset_password'  => 'devise/passwords#update'
+    get 'reset_password'  => 'devise/passwords#edit'
+    put 'reset_password'  => 'devise/passwords#update'
   end
 
-  # route to about
-  get "about" => "sites#about"
-
-  match "robots.txt" => "sites#robots", :format => "txt"
-  match "*not_found" => "application#render_404"
+  get 'robots.txt' => 'sites#robots', format: 'txt'
+  get '*not_found' => 'application#render_404'
 end

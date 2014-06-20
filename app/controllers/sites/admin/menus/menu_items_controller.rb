@@ -1,11 +1,12 @@
 class Sites::Admin::Menus::MenuItemsController < ApplicationController
   include ActsToToggle
-  
-  before_filter :get_current_menu
-  before_filter :require_user
-  before_filter :check_authorization
+
+  before_action :get_current_menu
+  before_action :require_user
+  before_action :check_authorization
 
   respond_to :html, :xml, :js
+
   def index
     redirect_to site_admin_menus_path(menu: @menu.id)
   end
@@ -20,28 +21,28 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
   end
 
   def create
-    @menu_item = @menu.menu_items.new(params[:menu_item])
-    @menu_item.position = @menu.menu_items.maximum(:position, conditions: {parent_id: @menu_item.parent_id}).to_i + 1
+    @menu_item = @menu.menu_items.new(menu_item_params)
+    @menu_item.position = @menu.menu_items.maximum(:position, conditions: { parent_id: @menu_item.parent_id }).to_i + 1
 
     if @menu_item.save
-      flash[:success] = t("successfully_created")
-      record_activity("created_menu_item", @menu_item)
+      flash[:success] = t('successfully_created')
+      record_activity('created_menu_item', @menu_item)
       redirect_to site_admin_menus_path(menu: @menu.id)
     else
       set_parent_menu_item params[:menu_item][:parent_id]
       render action: :new
     end
   end
-  
+
   def edit
     @menu_item = @menu.menu_items.find(params[:id])
   end
 
   def update
     @menu_item = @menu.menu_items.find(params[:id])
-    if @menu_item.update_attributes(params[:menu_item])
-      flash[:success] = t("successfully_updated")
-      record_activity("updated_menu_item", @menu_item)
+    if @menu_item.update(menu_item_params)
+      flash[:success] = t('successfully_updated')
+      record_activity('updated_menu_item', @menu_item)
       redirect_to site_admin_menus_path(menu: @menu.id)
     else
       render action: :edit
@@ -51,10 +52,10 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
   def destroy
     @menu_item = @menu.menu_items.find(params[:id])
     if @menu_item.destroy
-      record_activity("destroyed_menu_item", @menu_item)
-      redirect_to :back, flash: {success: t("successfully_deleted")}
+      record_activity('destroyed_menu_item', @menu_item)
+      redirect_to :back, flash: { success: t('successfully_deleted') }
     else
-      redirect_to :back, flash: {success: t("error_destroying_object")}
+      redirect_to :back, flash: { success: t('error_destroying_object') }
     end
   end
 
@@ -68,7 +69,7 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
   # Altera o menu de um item de menu, e todos seus descendentes
   def change_menu
     @menu_item = @menu.menu_items.find(params[:id])
-    @menu_item.position = MenuItem.maximum(:position, conditions: ["menu_id = :menu_id AND parent_id is NULL", menu_id: params[:new_menu_id]]).to_i + 1
+    @menu_item.position = MenuItem.maximum(:position, conditions: ['menu_id = :menu_id AND parent_id is NULL', menu_id: params[:new_menu_id]]).to_i + 1
     @menu_item.menu_id = params[:new_menu_id]
     @menu_item.parent_id = nil
     @menu_item.save!
@@ -87,5 +88,10 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
 
   def resource
     get_resource_ivar || set_resource_ivar(@menu.menu_items.find(params[:id]))
+  end
+
+  def menu_item_params
+    params.require(:menu_item).permit(:url, :target_id, :target_type, :new_tab,
+                                      :publish, :html_class, { i18ns_attributes: [:id, :locale_id, :title, :description] })
   end
 end

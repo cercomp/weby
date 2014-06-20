@@ -3,7 +3,7 @@ class MigrateFeedbackExtension < ActiveRecord::Migration
     rename_table :groups, :feedback_groups
     rename_table :feedbacks, :feedback_messages
     rename_table :feedbacks_groups, :feedback_messages_groups
-    
+
     rename_column :feedback_messages_groups, :feedback_id, :message_id
   end
 

@@ -1,6 +1,5 @@
 class Locale < ActiveRecord::Base
-  has_many :news,
-    class_name: "Page::I18ns"
+  has_many :news, class_name: 'Page::I18ns'
 
   has_and_belongs_to_many :sites
 
@@ -8,14 +7,14 @@ class Locale < ActiveRecord::Base
     name
   end
 
-  def self.import attrs, options={}
-    return attrs.each{|attr| self.import attr } if attrs.is_a? Array
+  def self.import(attrs, _options = {})
+    return attrs.each { |attr| import attr } if attrs.is_a? Array
 
     attrs = attrs.dup
-    attrs = attrs['locales'] if attrs.has_key? 'locales'
+    attrs = attrs['locales'] if attrs.key? 'locales'
 
     attrs.except!('id', 'created_at', 'updated_at', 'site_id', 'type')
 
-    locale = self.create!(attrs)
+    self.create!(attrs)
   end
 end

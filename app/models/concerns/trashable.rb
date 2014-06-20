@@ -2,11 +2,11 @@ module Trashable
   extend ActiveSupport::Concern
 
   included do
-    default_scope where(deleted_at: nil)
+    default_scope { where(deleted_at: nil) }
 
     def self.trashed
-      result = unscoped.where("deleted_at is not null")
-      if site_id = scoped.where_values_hash[:site_id]
+      result = unscoped.where('deleted_at is not null')
+      if site_id = current_scope.where_values_hash['site_id']
         result = result.where(site_id: site_id)
       end
       result

@@ -2,16 +2,19 @@
 class ApplicationController < ActionController::Base
   include ApplicationHelper # In order to user helper methods in controllers
 
-  protect_from_forgery
-  before_filter :set_tld_length, :set_global_vars
-  before_filter :set_contrast, :set_locale, :set_view_types
-  before_filter :maintenance_mode
-  before_filter :require_user, only: [:admin]
-  after_filter :weby_clear, :count_view
+  protect_from_forgery with: :exception
+
+  before_action :set_tld_length, :set_global_vars
+  before_action :set_contrast, :set_locale, :set_view_types
+  before_action :maintenance_mode
+  before_action :require_user, only: [:admin]
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
+  after_action :weby_clear, :count_view
 
   helper :all
   helper_method :current_user_session, :sort_direction, :test_permission,
-    :current_locale, :current_site, :current_settings, :current_roles_assigned, :component_is_available
+                :current_locale, :current_site, :current_settings, :current_roles_assigned, :component_is_available
 
   def admin
     render 'admin/admin'
@@ -24,8 +27,8 @@ class ApplicationController < ActionController::Base
   def check_authorization
     unless test_permission(self, action_name)
       respond_to do |format|
-        format.json { render json: {errors: [t("access_denied.access_denied")]}, :status => :forbidden }
-        format.any { render :template => 'admin/access_denied', :status => :forbidden }
+        format.json { render json: { errors: [t('access_denied.access_denied')] }, status: :forbidden }
+        format.any { render template: 'admin/access_denied', status: :forbidden }
       end
     end
   end
@@ -35,7 +38,7 @@ class ApplicationController < ActionController::Base
     return true if current_user.is_admin
     ctrl = ctrl.controller_name if ctrl.respond_to? :controller_name
     ctrl = ctrl.split('/')[-1] if ctrl.match(/^\w+\/\w+/)
-    return @current_rights.fetch(ctrl.to_sym, {}).fetch(action.to_sym, false)
+    @current_rights.fetch(ctrl.to_sym, {}).fetch(action.to_sym, false)
   end
 
   def set_contrast
@@ -52,7 +55,7 @@ class ApplicationController < ActionController::Base
     when defined?(@current_site)
       return @current_site
     when Weby::Subdomain.matches?(request)
-      #search subsites
+      # search subsites
       @current_site = Weby::Subdomain.find_site
     end
   end
@@ -69,27 +72,25 @@ class ApplicationController < ActionController::Base
   def set_locale
     session[:locales] ||= {}
     locale = params[:locale] || session[:locales][locale_key] || I18n.default_locale
-    locale = current_user.locale.try(:name) || locale if not_in_site_context? and current_user
+    locale = current_user.locale.try(:name) || locale if not_in_site_context? && current_user
     @current_locale = session[:locales][locale_key] = I18n.locale = locale if locale != @current_locale
   end
 
-  def current_locale
-    @current_locale
-  end
+  attr_reader :current_locale
 
   def access_denied
     if current_user
-      flash.now[:error] = t("acess_denied")
+      flash.now[:error] = t('acess_denied')
     else
-      flash.now[:error] = t("try_login")
+      flash.now[:error] = t('try_login')
     end
     redirect_back_or_default weby_login_url
   end
 
   def set_tld_length
     if current_site && request.domain
-      if Weby::Settings.domain.present? and !(request.domain.match(Weby::Settings.domain))
-        request.session_options[:tld_length] = current_site.domain.split(".").length + 1 if current_site.domain
+      if Weby::Settings.domain.present? && !(request.domain.match(Weby::Settings.domain))
+        request.session_options[:tld_length] = current_site.domain.split('.').length + 1 if current_site.domain
       end
     end
   end
@@ -98,14 +99,13 @@ class ApplicationController < ActionController::Base
     rescue_from Exception, with: :render_500
     rescue_from ActionController::RoutingError, with: :render_404
     rescue_from ActionController::UnknownController, with: :render_404
-    rescue_from ActionController::UnknownAction, with: :render_404
     rescue_from ActiveRecord::RecordNotFound, with: :render_404
   end
 
   @@weby_error_logger = Logger.new("#{Rails.root}/log/error.log")
 
   # Redirection when the address does not exist
-  def render_404(exception=nil)
+  def render_404(exception = nil)
     @not_found_path = request.path
     @error = exception
     respond_to do |format|
@@ -116,26 +116,26 @@ class ApplicationController < ActionController::Base
 
   def render_500(exception)
     @error = exception
-    @error_code = (Time.now.to_f*10).to_i
-    @@weby_error_logger.error("{#{@error_code}:#{Time.now}\n"+
-        "#{current_site.title if current_site}\n"+
-        "#{exception.class}\n"+
-        "#{exception.message}\n"+
-        "#{filter_backtrace(exception).join("\n")}\n"+
-        "#{request.host_with_port}#{request.fullpath} from #{request.remote_ip}\n"+
-        "#{params}\n"+
-        "}")
+    @error_code = (Time.now.to_f * 10).to_i
+    @@weby_error_logger.error("{#{@error_code}:#{Time.now}\n"\
+        "#{current_site.title if current_site}\n"\
+        "#{exception.class}\n"\
+        "#{exception.message}\n"\
+        "#{filter_backtrace(exception).join("\n")}\n"\
+        "#{request.host_with_port}#{request.fullpath} from #{request.remote_ip}\n"\
+        "#{params}\n"\
+        '}')
     respond_to do |format|
       format.html { render template: 'errors/500', layout: 'weby_pages', status: 500 }
-      format.all { render nothing: true, status: 500}
+      format.all { render nothing: true, status: 500 }
     end
   end
 
   def count_view
-    return if is_in_admin_context? or
-              !current_site or
-              request.format != 'html' or
-              response.status != 200 or
+    return if is_in_admin_context? ||
+              !current_site ||
+              request.format != 'html' ||
+              response.status != 200 ||
               Weby::Bots.is_a_bot?(request.user_agent)
 
     current_site.views.create(viewable: @page,
@@ -152,8 +152,8 @@ class ApplicationController < ActionController::Base
 
   # NOTE Review this method to include the extensions
   def count_click
-    case params[:model] 
-    when "banner"
+    case params[:model]
+    when 'banner'
       Sticker::Banner.increment_counter :click_count, params[:id]
     else
       params[:model].titleize.constantize.increment_counter :click_count, params[:id]
@@ -176,7 +176,15 @@ class ApplicationController < ActionController::Base
   #
   # kudos para @josevalim em https://github.com/josevalim/inherited_resources
   def resource
-    get_resource_ivar || set_resource_ivar(self.controller_name.classify.constantize.send(:find, params[:id]))
+    get_resource_ivar || set_resource_ivar(controller_name.classify.constantize.send(:find, params[:id]))
+  end
+
+  # strong parameter to load in devise
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) { |u|
+      u.permit(:login, :email, :first_name, :last_name, :password,
+               :password_confirmation)
+    }
   end
 
   private
@@ -185,14 +193,14 @@ class ApplicationController < ActionController::Base
   # eg. if it is the Users controller it will search for
   # @user
   def get_resource_ivar
-    instance_variable_get("@#{self.controller_name.singularize}")
+    instance_variable_get("@#{controller_name.singularize}")
   end
 
   # Defines one variable with the same name of the controlller
   # eg. if it is the Users controller it will create
   # @user with the given param
   def set_resource_ivar(resource)
-    instance_variable_set("@#{self.controller_name.singularize}", resource)
+    instance_variable_set("@#{controller_name.singularize}", resource)
   end
 
   def filter_backtrace(exception)
@@ -206,15 +214,14 @@ class ApplicationController < ActionController::Base
   end
 
   def is_admin
-    unless current_user.is_admin
-      flash[:error] = t"only_admin"
-      begin
-        redirect_to :back
-      rescue
-        redirect_to admin_path
-      end
-    else 
-      return true
+    return true if current_user.is_admin
+
+    flash[:error] = t'only_admin'
+
+    begin
+      redirect_to :back
+    rescue
+      redirect_to admin_path
     end
   end
 
@@ -287,11 +294,11 @@ class ApplicationController < ActionController::Base
           @global_menus[menu.id] = menu
         end
 
-        components = @site.components.where({publish: true}).order('position asc')
+        components = @site.components.where(publish: true).order('position asc')
         comp_select = lambda { |place_holder|
-          components.select{|comp| comp.place_holder == place_holder}.map do |component|
-            comp = {component: component}
-            if component.name == "components_group"
+          components.select { |comp| comp.place_holder == place_holder }.map do |component|
+            comp = { component: component }
+            if component.name == 'components_group'
               comp[:children] = comp_select.call(component.id.to_s)
             end
             comp
@@ -299,7 +306,7 @@ class ApplicationController < ActionController::Base
         }
 
         @global_components = {}
-        Weby::Themes.layout(@site.theme)['placeholders'].map{|place| place['names']}.flatten.each do |place_holder|
+        Weby::Themes.layout(@site.theme)['placeholders'].map { |place| place['names'] }.flatten.each do |place_holder|
           @global_components[place_holder.to_sym] = comp_select.call(place_holder)
         end
 
@@ -311,10 +318,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def component_is_available comp_name
+  def component_is_available(comp_name)
     if (comp = Weby::Components.components[comp_name.to_sym])
       if comp[:group] != :weby
-        return false unless current_site.extensions.select{|extension| extension.name == comp[:group].to_s }.any?
+        return false unless current_site.extensions.select { |extension| extension.name == comp[:group].to_s }.any?
       end
     end
     Weby::Components.is_enabled? comp_name
@@ -327,37 +334,37 @@ class ApplicationController < ActionController::Base
 
   # Used to sort tables by any column
   def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
+    %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
   end
 
   # NOTE overwrite devise url helpers
-  def new_session_path(arg)
+  def new_session_path(_arg)
     login_path
   end
 
-  def after_sign_in_path_for(args)
+  def after_sign_in_path_for(_args)
     session[:return_to] || root_path
   end
 
   def record_activity(note, loggeable)
     # real_ip = request.env['HTTP_X_FORWARDED_FOR'] || request.remote_ip
     # if !ActivityRecord.where(user_id: current_user.id, site_id: current_site.id, controller: controller_name, action: action_name, loggeable: loggeable,
-      @activity = ActivityRecord.new
-      @activity.user_id = current_user.id
-      @activity.site_id = current_site.id if current_site
-      @activity.note = note
-      @activity.browser = request.user_agent
-      @activity.ip_address = request.remote_ip
-      @activity.controller = controller_name
-      @activity.action = action_name
-      @activity.params = params.inspect
-      @activity.loggeable = loggeable
-      @activity.save
-    #end
+    @activity = ActivityRecord.new
+    @activity.user_id = current_user.id
+    @activity.site_id = current_site.id if current_site
+    @activity.note = note
+    @activity.browser = request.user_agent
+    @activity.ip_address = request.remote_ip
+    @activity.controller = controller_name
+    @activity.action = action_name
+    @activity.params = params.inspect
+    @activity.loggeable = loggeable
+    @activity.save!
+    # end
   end
 
   def maintenance_mode
-    if Weby::Settings.maintenance_mode == "true" and !current_user.try(:is_admin?) and is_in_admin_context?
+    if Weby::Settings.maintenance_mode == 'true' && !current_user.try(:is_admin?) && is_in_admin_context?
       render template: 'errors/maintenance', layout: 'weby_pages'
     end
   end

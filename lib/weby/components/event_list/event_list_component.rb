@@ -5,12 +5,12 @@ class EventListComponent < Component
 
   validates :quant, presence: true
 
-  alias :_title :title
+  alias_method :_title, :title
   def title
     _title.blank? ? nil : _title
   end
 
-  alias :_new_tab :new_tab
+  alias_method :_new_tab, :new_tab
   def new_tab
     _new_tab.blank? ? false : _new_tab.to_i == 1
   end

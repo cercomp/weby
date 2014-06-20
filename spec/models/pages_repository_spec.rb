@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe PagesRepository do
   it { expect(subject).to belong_to(:page) }

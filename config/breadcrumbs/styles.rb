@@ -1,10 +1,10 @@
-#styles
+# styles
 crumb :styles do
-  link t("breadcrumbs.styles"), site_admin_styles_path
+  link t('breadcrumbs.styles'), site_admin_styles_path
 end
 
 crumb :styles_new do
-  link t("breadcrumbs.new_style"), new_site_admin_style_path
+  link t('breadcrumbs.new_style'), new_site_admin_style_path
   parent :styles
 end
 
@@ -14,11 +14,11 @@ crumb :styles_show do |style|
 end
 
 crumb :styles_edit do |style|
-  link "#{t("breadcrumbs.edit")} #{style.name}", edit_site_admin_style_path
+  link "#{t('breadcrumbs.edit')} #{style.name}", edit_site_admin_style_path
   parent :styles
 end
 
 crumb :styles_search do
-  link t("breadcrumbs.search")
+  link t('breadcrumbs.search')
   parent :styles
 end

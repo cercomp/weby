@@ -1,10 +1,10 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Style do
   it { expect(subject).to belong_to(:site) }
   it { expect(subject).to belong_to(:style) }
 
-  it { expect(subject).to have_many(:styles).dependent(:restrict) }
+  it { expect(subject).to have_many(:styles).dependent(:restrict_with_error) }
   it { expect(subject).to have_many(:followers).through(:styles) }
 
   it { expect(subject).to validate_presence_of(:site) }
