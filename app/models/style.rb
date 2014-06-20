@@ -15,7 +15,8 @@ class Style < ActiveRecord::Base
     fields = ['styles.name', 'sites.title', 'sites.name']
 
     includes(:site)
-      .where(fields.map { |field| "lower(#{field}) like :term" }.join(' OR '), term: "%#{term.downcase}%") if term
+      .where(fields.map { |field| "lower(#{field}) like :term" }.join(' OR '), term: "%#{term.downcase}%")
+      .references(:site) if term
   }
 
   # returns all styles that are not being followed
@@ -24,7 +25,7 @@ class Style < ActiveRecord::Base
     includes(:site)
       .where('styles.id not in (:follow_styles) and styles.site_id <> :site_id and styles.style_id is null',
              follow_styles: Site.find(site).styles.where('style_id is not null').map(&:style_id) << 0,
-             site_id: site)
+             site_id: site).references(:site)
   }
 
   scope :own, -> { where('style_id is null') }

@@ -72,6 +72,7 @@ class Page < ActiveRecord::Base
       end
       includes(:author, :categories, :i18ns, :locales)
       .where(query, values)
+      .references(:author, :categories, :i18ns)
     end
   }
 

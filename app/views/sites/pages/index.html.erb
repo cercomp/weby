@@ -1,7 +1,7 @@
 <h2>
 <% if controller.action_name == 'events' %>
   <%= t(".events") %>
-  <div class="events_search", style="float: right">
+  <div class="events_search" style="float: right">
     <ul id="filterNav" >
       <% (params[:upcoming] == nil && params[:previous] == nil) ? classe = "selected" : classe = nil %>
       <li><%= link_to t('.all_events'), events_site_pages_path(upcoming: nil, previous: nil, direction: 'desc', sort: 'pages.event_begin'), class: classe %></li>

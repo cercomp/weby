@@ -12,10 +12,6 @@ Rails.application.routes.draw do
     get '/admin/edit' => 'sites#edit', as: :edit_site_admin
     patch '/admin/edit' => 'sites#update', as: :update_site_admin
 
-    # routes to feed and atom
-    get '/feed' => 'sites/pages#index', as: :site_feed,
-        defaults: { format: 'rss', per_page: 10, page: 1 }
-
     resources :pages, as: :site_pages, controller: 'sites/pages', only: [:index, :show] do
       collection do
         get :events, :news
@@ -29,6 +25,10 @@ Rails.application.routes.draw do
               only: [:show]
 
     post 'count/:model/:id' => 'application#count_click', as: :count_click
+
+    # routes to feed and atom
+    get '/feed' => 'sites/pages#index', as: :site_feed,
+        defaults: { format: 'rss', per_page: 10, page: 1 }
 
     namespace :admin, module: 'sites/admin', as: :site_admin do
 
