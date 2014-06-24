@@ -24,7 +24,7 @@ class Repository < ActiveRecord::Base
   has_attached_file :archive,
     styles: STYLES,
     original_style: :o,
-    url: "/uploads/:style/:basename.:extension",
+    url: "/uploads/:site_id/:style/:basename.:extension",
     convert_options: {
       i: "-quality 90 -strip",
       l: "-quality 90 -strip",
@@ -73,7 +73,7 @@ class Repository < ActiveRecord::Base
 #    archive.instance_write(:file_name, CGI.unescape(archive.original_filename))
 #  end
 
-  before_save :presence_fingerprint, :presence_file_name
+  before_save :presence_file_name
 
   # Verificar se o arquivo já existe no repositório
   def presence_fingerprint
@@ -83,7 +83,7 @@ class Repository < ActiveRecord::Base
 
   # Verificar se existe um arquivo com o mesmo nome
   def presence_file_name
-    url = "/uploads/:style/:site_id_:basename.:extension"
+    url = "/uploads/:style/:basename.:extension"
   end
 
   # Metodo para incluir a url do arquivo no json
