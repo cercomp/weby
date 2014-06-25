@@ -68,23 +68,16 @@ class Repository < ActiveRecord::Base
   def will_crop?
     !x.blank? && !y.blank? && w.to_i > 0 && h.to_i > 0
   end
-#  after_post_process do
-#    self.archive_fingerprint = Digest::MD5.file(self.archive.path).to_s
-#    archive.instance_write(:file_name, CGI.unescape(archive.original_filename))
-#  end
 
-  before_save :presence_file_name
+# nessa validação não teremos a menssagem de erro,
+# implementar um método pra tratar o que fazer nesse caso
+  validates :archive_fingerprint, uniqueness: {
+            :message => I18n.t('activerecord.errors.messages.:archive_fingerprint') }
 
-  # Verificar se o arquivo já existe no repositório
-  def presence_fingerprint
-    a = Digest::MD5.file(archive.uploaded_file).to_s
-    puts a
-  end
-
-  # Verificar se existe um arquivo com o mesmo nome
-  def presence_file_name
-    url = "/uploads/:style/:basename.:extension"
-  end
+# nessa validação não teremos a menssagem de erro,
+# implementar um método pra tratar o que fazer nesse caso
+  validates :archive_file_name, uniqueness: {
+            :message => I18n.t('activerecord.errors.messages.:archive_file_name') }
 
 # Metodo para incluir a url do arquivo no json
   def archive_url(format = :o)
