@@ -1,34 +1,54 @@
 rights:
   messages:
     index:
-      name: Listar Mensagens de Fale Conosco
+      name: 
+        en: List Feedback Messages
+        pt-BR: Listar Mensagens de Fale Conosco
       action: index
     show:
-      name: Ver Mensagem de Fale Conosco
+      name: 
+        en: View Feedback Messages
+        pt-BR: Ver Mensagens de Fale Conosco
       action: show
     edit:
-      name: Editar Mensagens de Fale Conosco
+      name: 
+        en: Edit FeedBack Messages
+        pt-BR: Editar Mensagens de Fale Conosco
       action: edit update get_groups
     destroy:
-      name: Excluir Mensagens de Fale Conosco
+      name: 
+        en: Destroy Feedback Messages
+        pt-BR: Excluir Mensagens de Fale Conosco
       action: destroy
     new:
-      name: Criar Mensagens de Fale Conosco
+      name: 
+       en: Create FeedBack Messages
+       pt-BR: Criar Mensagens de Fale Conosco
       action: new create get_groups
   groups:
     index:
-      name: Listar Grupos
+      name: 
+        en: List Groups
+        pt-BR: Listar Grupos
       action: index
     show:
-      name: Ver Grupo
+      name: 
+        en: View Group
+        pt-BR: Ver Grupo
       action: show
     edit:
-      name: Editar Grupo
+      name: 
+        en: Edit Group
+        pt-BR: Editar Grupo
       action: edit update
     destroy:
-      name: Excluir Grupo
+      name: 
+        en: Destroy GRoup
+        pt-BR: Excluir Grupo
       action: destroy
     new:
-      name: Criar Grupo
+      name: 
+       en: Create group
+       pt-BR: Criar Grupo
       action: new create
       

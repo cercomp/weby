@@ -1,179 +1,257 @@
 rights:
   roles:
     manage:
-      name: Gerenciar papéis
+      name:
+        en: Manage Roles
+        pt-BR: Gerenciar papéis
       action: create index edit new show update
     destroy:
-      name: Excluir papéis
+      name: 
+        en: DEstroy ROlesExcluir papéis
       action: destroy
   users:
     change_roles:
-      name: Mudar papéis de usuários
+      name: 
+        en: Change user roles
+        pt-BR: Mudar papéis de usuários
       action: change_roles manage_roles
   pages:
     index:
-      name: Listar Páginas
+      name:
+        en: List Pages
+        pt-BR: Listar Páginas
       action: index fronts
     show:
-      name: Ver Página
+      name: 
+        en: View Page
+        pt-BR: Ver Página
       action: show
     edit:
-      name: Editar Página
+      name:
+        en: Edit page
+        pt-BR:  Editar Página
       action: edit update toggle
     destroy:
-      name: Excluir Página
+      name: 
+        en: Destroy Page
+        pt-BR: Excluir Página
       action: destroy
     sort:
-      name: Ordernar Páginas
+      name: 
+        en: Order Pages
+        pt-BR: Ordernar Páginas
       action: sort
     new:
-      name: Criar Página
+      name: 
+        en: Create Pages
+        pt-BR: Criar Página
       action: new create
     purge:
-      name: Excluir permanentemente
+      name: 
+        en: Purge
+        pt-BR: Excluir permanentemente
       action: recycle_bin destroy purge
     recover:
-      name: Restaurar página
+      name: 
+        en: Restore Page
+        pt-BR: Restaurar página
       action: recycle_bin recover
   menus:
     index:
-      name: Listar Menus
+      name: 
+        en: List Menus
+        pt-BR: Listar Menus
       action: index
     show:
-      name: Ver Menus
+      name:
+        en: View Menus
+        pt-BR: Ver Menus
       action: show
     edit:
-      name: Editar Menu
+      name: 
+        en: Edit Menu
+        pt-BR: Editar Menu
       action: edit update
     destroy:
-      name: Excluir Menu
+      name:
+        en: Destroy Menu
+        pt-BR: Excluir Menu
       action: destroy
     new:
-      name: Criar Menu
+      name:
+        en: Create Menu
+        pt-BR: Criar Menu
       action: new create
   menu_items:
     change_position:
-      name: Ordernar Itens de Menu
+      name:
+        en: Order Menu Itens
+        pt-BR: Ordernar Itens de Menu
       action: change_position change_order change_menu
     index:
-      name: Listar Itens de Menu
+      name: 
+        en: List Menu Itens
+        pt-BR: Listar Itens de Menu
       action: index
     show:
-      name: Ver Item de Menu
+      name:
+        en: View Menu Itens
+        pt-BR: Ver Item de Menu
       action: show
     edit:
-      name: Editar Item de Menu
+      name: 
+        en: Edit Menu Itens
+        pt-BR: Editar Item de Menu
       action: edit update toggle
     destroy:
-      name: Excluir Item de Menu
+      name: 
+        en: Destroy Menu Iten
+        pt-BR: Excluir Item de Menu
       action: destroy
     new:
-      name: Criar Item de Menu
-      action: new create
-  banners:
-    index:
-      name: Listar Banners
-      action: index fronts
-    show:
-      name: Ver Banner
-      action: show
-    edit:
-      name: Editar Banner
-      action: edit update toggle
-    destroy:
-      name: Excluir Banner
-      action: destroy
-    change_position:
-      name: Ordernar Banners
-      action: change_position
-    new:
-      name: Criar Banner
+      name: 
+        en: Create Menu Item
+        pt-BR: Criar Item de Menu
       action: new create
   repositories:
     index:
-      name: Listar Arquivos
+      name: 
+        en: List Files
+        pt-BR: Listar Arquivos
       action: index
     show:
-      name: Ver Arquivo
+      name: 
+        en: View File
+        pt-BR: Ver Arquivo
       action: show
     edit:
-      name: Editar Arquivo
+      name: 
+        en: Edit File
+        pt-BR: Editar Arquivo
       action: edit update
     destroy:
-      name: Excluir Arquivo
+      name: 
+        en: Destroy File
+        pt-BR: Excluir Arquivo
       action: destroy
     new:
-      name: Enviar Arquivo
+      name: 
+        en: Create File
+        pt-BR: Enviar Arquivo
       action: new create
     purge:
-      name: Excluir permanentemente
+      name: 
+        en: Destroy permanently
+        pt-BR: Excluir permanentemente
       action: recycle_bin destroy purge
     recover:
-      name: Restaurar Arquivo
+      name: 
+       en: Restore File
+       pt-BR: Restaurar Arquivo
       action: recycle_bin recover
   styles:
     index:
-      name: Listar Estilo
+      name: 
+        en: List Style
+        pt-BR: Listar Estilo
       action: index
     show:
-      name: Ver Estilo
+      name: 
+        en: View Styles
+        pt-BR: Ver Estilo
       action: show
     edit:
-      name: Editar Estilo
+      name: 
+        en: Edit Style
+        pt-BR: Editar Estilo
       action: edit update toggle
     destroy:
-      name: Excluir Estilo
+      name: 
+        en: Destroy Style
+        pt-BR: Excluir Estilo
       action: destroy
     new:
-      name: Criar Estilo
+      name: 
+        en: Create Style
+        pt-BR: Criar Estilo
       action: new create
     follow:
-      name: Seguir Estilo
+      name: 
+        en: Follow Style
+        pt-BR: Seguir Estilo
       action: follow unfollow
     copy:
-      name: Copiar Estilo
+      name: 
+        en: Copy Style
+        pt-BR: Copiar Estilo
       action: copy
     sort:
-      name: Ordenar Estilos
+      name:
+        en: Order Styles
+        pt-BR: Ordenar Estilos
       action: sort
   components:
     index:
-      name: Listar Componentes
+      name:
+        en: Listar Componentes
+        pt-BR: List Components
       action: index
     show:
-      name: Ver Componentes
+      name: 
+        en: View Components
+        pt-BR: Ver Componentes
       action: show
     edit:
-      name: Editar Componente
+      name: 
+        en: Edit Component
+        pt-BR: Editar Componente
       action: edit update toggle
     destroy:
-      name: Excluir Componente
+      name: 
+        en: Destroy Component
+        pt-BR: Excluir Componente
       action: destroy
     new:
-      name: Criar Componente
+      name: 
+        en: Create Component
+        pt-BR: Criar Componente
       action: new create
     sort:
-      name: Ordenar Componentes
+      name: 
+        en: Order Components
+        pt-BR: Ordenar Componentes
       action: sort
   sites:
     edit:
-      name: Editar configurações do site
+      name: 
+       en: Edit Site's configs
+       pt-BR: Editar configurações do site
       action: edit update
   extensions:
     index:
-      name: Listar Extensões
+      name:
+        en: List Extensions
+        pt-BR: Listar Extensões
       action: index
     new:
-      name: Instalar Extensões
+      name: 
+        en: Install Extensions
+        pt-BR: Instalar Extensões
       action: new create
     destroy:
-      name: Excluir Extensões
+      name: 
+        en: Destroy Extensions
+        pt-BR: Excluir Extensões
       action: destroy
   statistics:
     index:
-      name: Ver Estatísticas
+      name: 
+        en: View Statistics
+        pt-BR: Ver Estatísticas
       action: index
   activity_records:
     index:
-      name: Ver o Histórico de Atividades
+      name: 
+        en: View Activity Record
+        pt-BR: Ver o Histórico de Atividades
       action: index
