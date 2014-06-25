@@ -40,16 +40,6 @@ SimpleForm.setup do |config|
     b.use :error, wrap_with: { tag: 'span', class: 'help-block has-error' }
   end
 
-  config.wrappers :checkbox, tag: :div, class: 'checkbox', error_class: 'has-error' do |b|
-    b.use :html5
-    b.wrapper tag: :label do |ba|
-      ba.use :input
-      ba.use :label_text, wrap_with: { class: 'col-md-12' }
-    end
-    b.use :hint,  wrap_with: { tag: :p, class: ' help-block' }
-    b.use :error, wrap_with: { tag: :span, class: 'help-block text-danger' }
-  end
-
   config.wrappers :devise_input, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
     b.use :html5
     b.use :min_max
@@ -63,12 +53,24 @@ SimpleForm.setup do |config|
     b.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
   end
 
-  config.wrappers :devise_checkbox, tag: 'div', class: 'checkbox' do |b|
+  config.wrappers :devise_checkbox, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
     b.use :html5
-    b.wrapper tag: :label do |ba|
-      ba.use :input
-      ba.use :label_text
+    b.use :placeholder
+    b.wrapper tag: 'div', class: 'checkbox' do |ba|
+      ba.use :label_input
     end
+    b.use :error, wrap_with: { tag: 'span', class: 'help-block' }
+    b.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
+  end
+
+  config.wrappers :checkbox, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
+    b.use :html5
+    b.use :label, wrap_with: { class: 'col-md-3 control-label' }
+    b.wrapper tag: 'div', class: 'col-md-7' do |input_block|
+      input_block.use :input
+      input_block.use :hint,  wrap_with: { tag: 'span', class: 'help-block' }
+    end
+    b.use :error, wrap_with: { tag: 'span', class: 'help-block has-error' }
   end
 
   config.wrappers :bootstrap3, tag: 'div', class: 'form-group', error_class: 'has-error',
@@ -94,7 +96,7 @@ SimpleForm.setup do |config|
   # Defaults to :nested for bootstrap config.
   #   inline: input + label
   #   nested: label > input
-  config.boolean_style = :nested
+  config.boolean_style = :inline
 
   # Default class for buttons
   config.button_class = 'btn'
@@ -120,10 +122,10 @@ SimpleForm.setup do |config|
   # config.collection_value_methods = [ :id, :to_s ]
 
   # You can wrap a collection of radio/check boxes in a pre-defined tag, defaulting to none.
-  # config.collection_wrapper_tag = nil
+  config.collection_wrapper_tag = :div
 
   # You can define the class to use on all collection wrappers. Defaulting to none.
-  # config.collection_wrapper_class = nil
+  config.collection_wrapper_class = :checkbox
 
   # You can wrap each item in a collection of radio/check boxes with a tag,
   # defaulting to :span. Please note that when using :boolean_style = :nested,

@@ -2,9 +2,9 @@
   <div class="col-md-3 control-label">
     <%= label_tag :is_event, t(".is_event"), class: 'boolean optional', for: 'is_event' %>
   </div>
-  <div class="col-md-7">
+  <div class="col-md-7 checkbox">
     <%= f.input :type, as: :hidden %>
-    <label class="checkbox">
+    <label>
       <%= check_box_tag :is_event, :Event, @page.type == 'Event' %>
     </label>
   </div>

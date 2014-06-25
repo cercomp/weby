@@ -10,62 +10,76 @@
 <div class="tab-content">
   <div class="tab-pane <%= params["restore"] ? "" : "active" %>" id="backup">
     <%= form_tag site_admin_generate_path, html: { class: 'form-horizontal' }, method: 'get' do %>
-      <div id="home" class="well">
-        <table class='table table-striped'>
-          <thead>
-            <tr>
-              <th><%= t(".options_backup") %></th>
-            </tr>
-          </table>
-          <div class='col-md-12'>
-            <div class="col-md-6">
-              <%= t('.output') %>
-              <%= select_tag :type, options_for_select([ "XML", "JSON" ], "XML"), class: 'form-control' %>
-            </div>
-          </div>
-          <div class="col-md-12">
-          <div class="clearfix">
-            <%= check_box_tag( :pages) %>
-            <%= t('.pages') %>
-          </div>
-          <div class="clearfix">
-            <%= check_box_tag( :repositories) %>
-            <%= t('.repositories') %>
-          </div>
-          <div class="clearfix">
-            <%= check_box_tag( :menus) %>
-            <%= t('.menus') %>
-          </div>
-
-          <div class="clearfix">
-            <%= check_box_tag( :styles) %>
-            <%= t('.styles') %>
-          </div>
-          <div class="clearfix">
-            <%= check_box_tag( :root_components) %>
-            <%= t('.components') %>
-          </div>
-          <div class="clearfix">
-            <%= check_box_tag( :banners) %>
-            <%= t('.banners') %>
-          </div>
-          <div class="clearfix">
-            <%= check_box_tag( :extensions) %>
-            <%= t('.extensions') %>
-          </div>
-          <div class="clearfix">
-            <%= check_box_tag( :messages) %>
-            <%= t('.messages_feedbacks') %>
-          </div>
-          </div>
-          <div class="form-actions">
-            <%= submit_tag t('generate'), class: 'btn btn-primary generate'  %>
-            <%= link_to t("back"), site_admin_path, class: "btn btn-default" %>
-          </div>
+      <div class="row">
+        <div class="col-md-6">
+          <%= t('.output') %>
+          <%= select_tag :type, options_for_select([ "XML", "JSON" ], "XML"), class: 'form-control' %>
         </div>
-      <%  end %>
-    </div>
-    <div class="tab-pane <%= params["restore"] ? "active" : "" %>" id="restore">
-      <%= render partial: 'import'%>
-    </div>
+      </div>
+      <div class="checkbox">
+        <label>
+          <%= check_box_tag( :pages) %>
+          <%= t('.pages') %>
+        </label>
+      </div>
+      <div class="checkbox">
+        <label>
+          <%= check_box_tag( :repositories) %>
+          <%= t('.repositories') %>
+        </label>
+      </div>
+      <div class="checkbox">
+        <label>
+          <%= check_box_tag( :menus) %>
+          <%= t('.menus') %>
+        </label>
+      </div>
+      <div class="checkbox">
+        <label>
+          <%= check_box_tag( :styles) %>
+          <%= t('.styles') %>
+        </label>
+      </div>
+      <div class="checkbox">
+        <label>
+          <%= check_box_tag( :root_components) %>
+          <%= t('.components') %>
+        </label>
+      </div>
+      <div class="checkbox">
+        <label>
+          <%= check_box_tag( :banners) %>
+          <%= t('.banners') %>
+        </label>
+      </div>
+      <div class="checkbox">
+        <label>
+          <%= check_box_tag( :extensions) %>
+          <%= t('.extensions') %>
+        </label>
+      </div>
+      <div class="checkbox">
+        <label>
+          <%= check_box_tag( :messages) %>
+          <%= t('.messages_feedbacks') %>
+        </label>
+      </div>
+      <div class="form-actions">
+          <%= submit_tag t('generate'), class: 'btn btn-primary generate'  %>
+          <%= link_to t("back"), site_admin_path, class: "btn btn-default" %>
+      </div>
+    <% end %>
   </div>
+  <div class="tab-pane <%= params["restore"] ? "active" : "" %>" id="restore">
+    <%= form_tag site_admin_import_path, multipart: true, method: :post do %>
+      <div class="row">
+        <div class="col-md-6">
+          <%= file_field_tag 'upload', required: :required, :accept => 'text/json,text/xml', class: 'form-control' %>
+        </div>
+      </div>
+      <div class="form-actions">
+        <%= submit_tag t('import'), class: 'btn btn-primary import' %>
+      </div>
+    <% end %>
+  </div>
+</div>
