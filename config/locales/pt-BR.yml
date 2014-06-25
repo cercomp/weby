@@ -293,6 +293,8 @@ pt-BR:
       messages: 
         accepted:                 " acception required  "
         attachment_presence:      " deve ser anexado "
+        archive_fingerprint:      " arquivo já existe "
+        archive_file_name:        " já existe um arquivo com esse nome "
         blank:                    " deve ser preenchido "
         confirmation:             " confirmação não equivalente "
         empty:                    " deve ser preenchido "
