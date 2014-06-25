@@ -8,8 +8,9 @@ class Sites::Admin::StylesController < ApplicationController
 
   def index
     @styles = {}
-    @styles[:others] = Style.not_followed_by(current_site).search(params[:search]).
-                        page(params[:page]).per(params[:per_page])
+    @styles[:others] = Style.not_followed_by(current_site).search(params[:search])
+                            .order('site_id')
+                            .page(params[:page]).per(params[:per_page])
     @styles[:styles] = current_site.styles.includes(:site, :style, :followers) if request.format.html?
   end
 
