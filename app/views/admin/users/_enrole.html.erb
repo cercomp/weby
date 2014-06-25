@@ -27,10 +27,12 @@
             <ul id="users_list_roles" class="nav"> 
               <% @users_unroled.each do |user| %>
                 <li>
-                <label class="checkbox cursor">
-                  <%= check_box_tag 'user[id][]', user.id, user.id == params[:user_id].to_i %>
-                  <%= "#{user.fullname} (#{user.login})" %>
-                </label>
+                  <div class="checkbox">
+                    <label>
+                      <%= check_box_tag 'user[id][]', user.id, user.id == params[:user_id].to_i %>
+                      <%= "#{user.fullname} (#{user.login})" %>
+                    </label>
+                  </div>
                 </li>
               <% end %>
             </ul>
@@ -40,10 +42,12 @@
           <ul class="nav"> 
             <% @roles.each do |role| %>
               <li>
-                <label class="checkbox cursor">
-                  <%= check_box_tag 'role_ids[]', role.id %>
-                  <%= role.name %> 
-                </label>
+                <div class="checkbox">
+                  <label>
+                    <%= check_box_tag 'role_ids[]', role.id %>
+                    <%= role.name %>
+                  </label>
+                </div>
               </li>
             <% end %>
           </ul>

@@ -27,10 +27,12 @@
             <ul id="users_list_roles" class="nav">
               <% @users_unroled.each do |user| %>
                 <li>
-                <label class="checkbox cursor">
-                  <%= check_box_tag 'user[id][]', user.id, user.id == params[:user_id].to_i %>
-                  <%= user %> <%= "(#{user.login})" if current_user.is_admin? %>
-                </label>
+                  <div class="checkbox">
+                    <label>
+                      <%= check_box_tag 'user[id][]', user.id, user.id == params[:user_id].to_i %>
+                      <%= user %> <%= "(#{user.login})" if current_user.is_admin? %>
+                    </label>
+                  </div>
                 </li>
               <% end %>
             </ul>
@@ -39,11 +41,13 @@
         <td>
           <ul class="nav">
             <% if @roles.each do |role| %>
-              <li >
-              <label class="checkbox cursor">
-                <%= check_box_tag 'role_ids[]', role.id %>
-                <%= role.name %>
-              </label>
+              <li>
+                <div class="checkbox">
+                  <label>
+                    <%= check_box_tag 'role_ids[]', role.id %>
+                    <%= role.name %>
+                  </label>
+                </div>
               </li>
             <% end.empty? %>
               <% if check_permission(Sites::Admin::RolesController, [:new]) %>

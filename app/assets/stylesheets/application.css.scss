@@ -200,7 +200,7 @@ body.modal-open {
    background-color: #EEE !important;
 }
 
-.cursor
+.cursor, .cursor label
 {
   cursor: pointer;
 }
@@ -303,6 +303,10 @@ input[type="checkbox"].toggle { margin-top: 0; }
 //checkboxes
 .well .nav .checkbox {
   font-weight: normal;
+}
+
+li .checkbox {
+  height: 20px;
 }
 
 .center{
