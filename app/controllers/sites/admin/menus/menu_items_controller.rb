@@ -91,7 +91,7 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
   end
 
   def menu_item_params
-    params.require(:menu_item).permit(:url, :target_id, :target_type, :new_tab,
+    params.require(:menu_item).permit(:url, :target_id, :parent_id, :target_type, :new_tab,
                                       :publish, :html_class, { i18ns_attributes: [:id, :locale_id, :title, :description] })
   end
 end
