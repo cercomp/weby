@@ -17,8 +17,6 @@ settings:
     value:
   root_site:
     value:
-  default_groupings:
-    value:
   maintenance_mode:
     value: 'false'
   max_file_size:

@@ -12,8 +12,7 @@
     <%= t(".none_grouping") %>
   </div>
 <% else %>
-
-  <table class='table table-striped'>
+  <table class="table table-striped">
   <thead>
     <tr>
       <th><%= t(".name") %></th>
@@ -24,7 +23,10 @@
   <tbody>
     <% @groupings.each do |grouping| %>
       <tr>
-        <td><%= link_to grouping.name, edit_admin_grouping_path(grouping) %></td>
+        <td>
+          <%= link_to grouping.name, edit_admin_grouping_path(grouping) %>
+          <%= content_tag :span, t('.hidden'), class: 'label label-info' if grouping.hidden %>
+        </td>
         <td><%= grouping.sites.map{|site| site.name }.join(', ') %></td>
         <td class="text-right"><%= raw make_menu(grouping, :except => 'show') %></td>
       </tr>

@@ -4,6 +4,7 @@ en:
       index:
         name:            " Name "
         sites:           " Sites "
+        hidden:          " Hidden "
         create_grouping: " Create Group of sites "
         none_grouping:   " No Group of sites found "
       

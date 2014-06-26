@@ -4,6 +4,7 @@ pt-BR:
       index:
         name:            " Nome "
         sites:           " Sites "
+        hidden:          " Oculto "
         create_grouping: " Novo Grupo de sites "
         none_grouping:   " Nenhum Grupo de sites encontrado "
       

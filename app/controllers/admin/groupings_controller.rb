@@ -40,6 +40,6 @@ class Admin::GroupingsController < Admin::BaseController
   end
 
   def grouping_params
-    params.require(:grouping).permit(:name, {site_ids: []})
+    params.require(:grouping).permit(:name, :hidden, {site_ids: []})
   end
 end

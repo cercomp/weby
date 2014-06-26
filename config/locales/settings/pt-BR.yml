@@ -9,6 +9,5 @@ pt-BR:
     login_protocol:     "Protocolo da página de login (opções 'http' e 'https', padrão=http)"
     domain:             'Domínio padrão do Weby'
     root_site:          'Site principal, acessível na raiz do domínio'
-    default_groupings:  'Filtro padrão de grupos de site na listagem dos sites. Ex: 1 | !1 | 1,2 | !2,3'
     maintenance_mode:   'Modo de Manutenção. True faz com que apenas admins possam logar.'
     max_file_size:      'Aviso de tamanho máximo de arquivo.'
