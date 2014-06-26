@@ -42,6 +42,12 @@ class Site < ActiveRecord::Base
     name_or_description_like(text).order("(#{page_query}) DESC")
   }
 
+  scope :visible, -> {
+    includes(:groupings)
+      .where("groupings.hidden = false OR groupings.hidden is NULL")
+      .references(:groupings)
+  }
+
   before_save :clear_per_page
 
   def favicon

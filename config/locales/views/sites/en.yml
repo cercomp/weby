@@ -11,7 +11,6 @@ en:
       my-sites: "MY SITES"
       search: "SEARCH"
       last_news: "LAST NEWS"
-      all: "Show All"
     list:
       none_page: "No news"
       sites: "SITES"

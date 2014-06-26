@@ -16,19 +16,12 @@ class SitesController < ApplicationController
     # TODO Search using the new's tittle too
     @sites = Site.ordered_by_front_pages(params[:search])
 
-    @default_groupings = Weby::Settings.default_groupings
-    if params[:groupings]
-      @sites = @sites.includes(:groupings).where(groupings: { id: params[:groupings].split(',') }) unless params[:groupings] == 'all'
-    else
-      if @default_groupings
-        if @default_groupings.match(/^!/)
-          @sites = @sites.includes(:groupings)
-          .where('(groupings.id NOT IN (?) OR groupings.id IS NULL)', @default_groupings.gsub(/^!/, '').split(','))
-          .references(:groupings)
-        else
-          @sites = @sites.includes(:groupings).where(groupings: { id: @default_groupings.split(',') })
-        end
-      end
+    if !current_user || !current_user.is_admin?
+      @sites = @sites.visible
+    end
+
+    if params[:groupings].present?
+      @sites = @sites.includes(:groupings).where(groupings: { id: params[:groupings].split(',') })
     end
 
     @sites = @sites.page(params[:page]).per(18)
@@ -40,7 +33,7 @@ class SitesController < ApplicationController
     else
       @my_sites = current_user ? current_user.sites : []
 
-      @groupings = Grouping.all
+      @groupings = current_user && current_user.is_admin? ? Grouping.all : Grouping.visible
 
       render layout: 'weby_pages'
     end
