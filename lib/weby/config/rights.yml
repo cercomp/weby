@@ -7,7 +7,8 @@ rights:
       action: create index edit new show update
     destroy:
       name: 
-        en: DEstroy ROlesExcluir papéis
+        en: Destroy Roles
+        pt-BR: Excluir papéis
       action: destroy
   users:
     change_roles:
