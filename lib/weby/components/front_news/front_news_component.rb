@@ -24,7 +24,7 @@ class FrontNewsComponent < Component
         pages = pages.events
       end
     when 'news'
-      pages.news
+      pages = pages.news
     end
 
     pages.order("#{order_by} #{direction}").page(page_param).per(quant)
