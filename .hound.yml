@@ -4,4 +4,4 @@ Style/LineLength:
 
 Style/DotPosition:
   Description: 'Checks the position of the dot in multi-line method calls.'
-  Enabled: true
+  Enabled: false
