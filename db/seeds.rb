@@ -15,3 +15,4 @@ user.save!
 Locale.create!(name: 'pt-BR', flag: 'Brazil.png')
 Locale.create!(name: 'en', flag: 'United States of America(USA).png')
 Locale.create!(name: 'es', flag: 'Spain.png')
+Locale.create!(name: 'fr', flag: 'France.png')
