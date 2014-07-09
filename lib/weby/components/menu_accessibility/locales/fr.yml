@@ -1,0 +1,24 @@
+fr:
+  components:
+    menu_accessibility:
+      name:                 " Menu de Accessibilité "
+  activerecord:
+    attributes:
+      menu_accessibility_component:
+        font_size:          " Taille de la police de caractères "
+        contrast:           " Contraste "
+        label_font_size:    " Rótulo Tamanho de Fonte de caractères "
+        label_contrast:     " Rótulo Contraste "
+  menu_accessibility:
+    views:
+      form:
+        font_size:          " taille de la police de caractère "
+        contrast:           " Contraste "
+        display_controls:   " Afficher les commandes "
+      show:
+        increase_font_size: " Augmenter la taille de la police "
+        decrease_font_size: " Réduire la taille de la police "
+        default_font_size:  " Taille de la police Par Défaut "
+        contrast:           " Modifier le contraste de la page "
+        contrast_normal:    " Retirerle contraste de la page "
+        colour:             " Couleur "

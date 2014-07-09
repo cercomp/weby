@@ -1,0 +1,9 @@
+﻿fr:
+  does_not_exist:    " le soutien n'existent pas"
+  verify_url:        "  Vérifiez que l'URL est correctement écrit "
+  return_to_home:    " Cliquez ici pour revenir à la page d'accueil  "
+  intern_error:      " Une erreur interne s'est produite sur le serveur "
+  maintenance_mode:  " Le Weby est en maintenance "
+  maintenance_one:   " e système est en cours de maintenance pour mettre à niveau. Ses actions sont temporairement désactivés "
+  maintenance_two:   " En mode de maintenance, vous pouvez toujours naviguer sur le site, mais ne pouvez pas effectuer les mises à jour "
+  maintenance_three:  " Normalement, la période de maintien varie entre 1 et 2 heures "

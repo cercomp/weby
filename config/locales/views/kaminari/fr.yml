@@ -1,0 +1,12 @@
+﻿fr:
+  kaminari:  
+    first_page:  
+      pagination_first:    "  Pagination premier "
+    gap: 
+      pagination_truncate: " Pagination tronquée "
+    last_page: 
+      pagination_last:     " Dernière "
+    next_page:  
+      pagination_next:     " Prochaine pagination "
+    prev_page: 
+      pagination_previous: " Précédent"

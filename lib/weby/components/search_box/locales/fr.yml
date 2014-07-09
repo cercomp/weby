@@ -1,0 +1,17 @@
+fr:
+  components:
+    search_box:
+      name:                 " Boîte de recherche "
+  activerecord:
+    attributes:
+      search_box_component:
+        width:              " Largeur "
+        align:              " Alignement "
+  search_box:
+    views:
+      show:
+        search:             " Recherche "
+      form:
+        left:               " Gauche "
+        right:              " Droit"
+        center:             " Centre "

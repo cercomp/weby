@@ -1,0 +1,13 @@
+﻿fr:
+  components:  
+    breadcrumb:
+      name: " Navigation (Breadcrumb)"
+  activerecord: 
+    attributes: 
+      breadcrumb_component:
+        label: " Étiquette "
+  breadcrumb:
+    views: 
+      show: 
+        home:   " Maison "
+      form: 
