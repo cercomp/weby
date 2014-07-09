@@ -1,0 +1,15 @@
+fr:
+  components:
+    feedback:
+      name:               " Lien à nous contacter "
+      label:              " Étiquette "
+  activerecord:
+    attributes:
+      feedback_component:
+        label:            " Étiquette "
+  feedback:
+    views:
+      show:
+        feedback:         " Contactez-nous "
+      form:
+        group_checked:    " Groupes sélectionnés pro norme "
