@@ -14,6 +14,7 @@
 /lib/weby/config/asset_host.yml
 /lib/weby/institutions/assets/*/*
 /lib/weby/institutions/*.yml
+Gemfile-ext
 
 # Ignore all logfiles and tempfiles.
 /log/*.log

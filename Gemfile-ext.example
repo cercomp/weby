@@ -1,0 +1,5 @@
+# External extensions (engines)
+
+#gem 'my-webservice-client', '0.0.1', :git => 'cercomp/mwc'
+#gem 'my-local-gem', :path => '/data/engines/mlg'
+#gem 'my-rubygem-gem'

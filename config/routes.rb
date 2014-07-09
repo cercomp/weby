@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   constraints(Weby::Subdomain) do
-    # Mount all engines here
+
     constraints(Weby::Extensions) do
-      mount Feedback::Engine, at: 'feedback'
-      # mount Acadufg::Engine, at: 'acadufg'
-      mount Sticker::Engine, at: 'sticker'
+      Weby.extensions.each do |extension, engine|
+        mount "#{extension.to_s.titleize}::Engine".constantize, at: extension
+      end
     end
 
     get '/' => 'sites#show', as: :site

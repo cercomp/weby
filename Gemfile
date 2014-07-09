@@ -54,7 +54,8 @@ group :test do
   gem 'capybara-webkit'
 end
 
-# Extensions (engines)
-# gem 'acadufg', :path => 'vendor/engines/acadufg'
-gem 'feedback', :path => 'vendor/engines/feedback'
-gem 'sticker', :path => 'vendor/engines/sticker'
+#Extensions gems
+Dir.glob(File.join('vendor', 'engines', '*')) do |file|
+  gem file.split('/')[-1], :path => file
+end
+eval(File.read('Gemfile-ext')) if File.exists?('Gemfile-ext')
