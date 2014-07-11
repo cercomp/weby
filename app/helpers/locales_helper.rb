@@ -1,8 +1,7 @@
 module LocalesHelper
-  def flag(locale, size = '24', options = {})
-    options.reverse_merge!(title: t(locale.name))
-
-    image_tag("flags/#{size}/#{locale.flag}", options)
+  def flag(locale, options = {})
+    options.reverse_merge!(title: t(locale.name), class: "flag #{locale.name} #{options.delete(:size)}")
+    content_tag :span, '', options
   end
 
   def available_locales(obj)
@@ -14,7 +13,7 @@ module LocalesHelper
     content_tag :div, class: 'tabbable i18n' do
       tabs = content_tag :ul, class: 'nav nav-tabs' do
         locales.each_with_index.map do |locale, index|
-          content_tag :li, link_to(locale_with_name(locale, '16'), "#tab_#{locale}#{@tab_count}", data: { toggle: 'tab' }), class: (index == 0 ? 'active' : '')
+          content_tag :li, link_to(locale_with_name(locale, 'small'), "#tab_#{locale}#{@tab_count}", data: { toggle: 'tab' }), class: (index == 0 ? 'active' : '')
         end.join('').html_safe
       end
       content = content_tag :div, class: 'tab-content' do
