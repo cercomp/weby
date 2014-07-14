@@ -31,7 +31,7 @@
           as: :radio_buttons,
           hint: t(".locale-hint"),
           boolean_style: :nested,
-          collection: admin_locales.map{|l| [image_tag("flags/24/#{l.flag}", title: t(l.name)), l.id] } %>
+          collection: admin_locales.map{|l| [flag(l), l.id] } %>
     </div>
   </div>
 <% end %>

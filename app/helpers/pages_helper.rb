@@ -9,9 +9,9 @@ module PagesHelper
     end
   end
 
-  def locale_with_name(locale, size = '24')
+  def locale_with_name(locale, size = '')
     raw %(
-      #{flag(locale, size)}
+      #{flag(locale, size: size)}
       #{t(locale.name)}
     ) if locale
   end
@@ -23,17 +23,17 @@ module PagesHelper
     ).html_safe
   end
 
-  def available_flags(page, size = '16')
+  def available_flags(page, size = 'small')
     "#{main_flag(page, size)}#{other_flags(page, size)}" if @site.locales.many?
   end
 
-  def main_flag(page, size = '16')
-    flag(page.which_locale, size, style: 'padding-right: 10px')
+  def main_flag(page, size = 'small')
+    flag(page.which_locale, size: size, style: 'margin-right: 10px')
   end
 
-  def other_flags(page, size = '16')
+  def other_flags(page, size = 'small')
     page.other_locales.map do |locale|
-      link_to(flag(locale, size), send((is_in_admin_context? ? :site_admin_page_path : :site_page_path) , page, page_locale: locale.name))
+      link_to(flag(locale, size: size), send((is_in_admin_context? ? :site_admin_page_path : :site_page_path) , page, page_locale: locale.name))
     end.join(' ')
   end
 

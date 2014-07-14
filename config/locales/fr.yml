@@ -1,0 +1,336 @@
+fr:
+  this_file_language: "Francês"
+
+#--- Other locales ---#
+  # Locales translation
+  pt-BR: " Português (Brasil) "
+  en:    " Inglês "
+  es:    " Espanhol "
+  fr:    " Francês "
+  
+#---A---#
+  active_deactive:                      " Ativar Desativar "
+  are_you_sure:                         " Você tem certeza? "
+  activate_deactivate:                  " Ativar/Desativar "
+  activate:                             " Ativar "
+  #access_denied:                        " Acesso negado! "
+  #access_denied_page:                   " Você não está autorizado a ver está página! "
+  add_sub_menu:                         " Adiciona um item de menu filho "
+#---B---#
+  back:                                 " Voltar "
+  begin:                                " Início "
+#---C---#
+  cancel:                               " Cancelar "
+  cannot_destroy_a_published_page:      " Não é permitido excluir uma página publicada. "
+  close:                                " Fechar "
+  copy:                                 " Copiar "
+  component:                            " Componente "
+  custom:                               " Personalizado "
+  create_account_successful:            " Sua conta foi criada! Foi enviado para seu email instruções de como ativá-la "
+  create_notification_successful:       " Notificação criada com sucesso! "
+  activation_sent_successful:           " Foi enviado para seu email instruções de como ativar sua conta "
+#---D---#
+  destroy:                              " Excluir "
+  disable:                              " Desativado "
+  disabled_component:                   " Componente Desabilitado "
+  deactivate:                           " Desativar "
+  destroyed_style:                      " Estilo removido "
+  destroyed_style_error:                " Erro ao remover Estilo "
+  destroyed_param:                      " %{param} removido "
+#---E---#
+  edit:                                 " Editar "
+  enable:                               " Ativado "
+  expired:                              " Expirado "
+  error_updating_object:                " Erro ao atualizar "
+  error_creating_object:                " Erro ao criar "
+  error_destroying_object:              " Erro ao excluir "
+  error_following_style:                " Erro ao seguir o estilo "
+  cant_follow_own_styles:               " Não é possível seguir um estilo de seu próprio site "
+  can_only_follow_styles:               " Não é possível seguir este estilo "
+  error_unfollowing_style:              " Erro ao deixar de seguir o estilo "
+  error_copying_style:                  " Erro ao copiar o estilo "
+#---F---#
+  field_required:                       " Campo Obrigatório! "
+  file_already_exists:                  " Já existe outro arquivo com o nome: %{value} "
+  follow:                               " Seguir "
+#---G---#
+  generate:                             " Gerar "
+#---H---#
+#---I---#
+  invalid_activation_token:             " Link de ativação inválido ou expirado! "
+  import:                               " Importar "
+#---J---#
+#---K---#
+#---L---#
+  layout:                               " Layout "
+  list_all:                             " Mostrar todos "
+  lower_upper_number_chars:             " Deve conter pelo menos uma letra maiúscula, uma minúscula e um número! "
+  login:                                " Entrar "
+  login_success:                        " Logado com sucesso! "
+  logout_success:                       " Logout com sucesso! "
+  look_changed:                         " Aparência alterada "
+#---M---#
+  moved_file_to_recycle_bin:            " Arquivo movido para a lixeira. "
+  moved_page_to_recycle_bin:            " Página movida para a lixeira. "
+  move:                                 " Mover "
+  manage_roles:                         " Gerenciar Papéis "
+  missing_account:                      " Desculpe-nos, mas não conseguimos localizar sua conta. Este link pode ser inválido ou estar expirado. Tente reiniciar o processo de recuperação de senha. "
+#---N---#
+  no_event_period:                      " Periodo do evento não especificado "
+  no_permission_to_activate_deactivate: " Sem permissão para ativar ou desativar "
+  no_mail:                              " Nenhum usuário com esse e-mail foi econtrado. "
+  none_archive:                         " Nenhum Arquivo "
+  no_permission_to_action:              " Você não tem permissão para executar essa ação "
+  none_page:                            " Nenhuma Página "
+  need_login:                           " Você deve estar logado para acessar essa página. "
+  need_at_least_one_i18n:               " Necessita de conteúdo em pelo menos um idioma "
+  none_user:                            " Nenhum Usuário "
+#---O---#
+  ok:                                   " OK "
+  of:                                   " de "
+  only_admin:                           " Somente para usuários administradores "
+#---P---#
+  please_wait:                          " Por favor espere! "
+  publish:                              " Publicar "
+  published:                            " Publicado "
+  publication_infinite:                 " Publicação infinita "
+  posted_by:                            " Por "
+  posted_on:                            " Em "
+  prohibited_being_saved:
+    one:                                " Um Erro impede que você prossiga "
+    other:                              " Erros impedem que você prossiga "
+  problem_create_account:               " Problemas ao criar uma conta "
+  problem_create_notification:          " Problemas ao criar a notificação. "
+  problem_update_notification:          " Problemas ao atualizar a notificação. "
+  problem_destroy_notification:         " Problemas ao excluir a notificação. "
+  purge:                                " Excluir permanentemente "
+#---Q---#
+#---R---#
+  required:                             " Necessário "
+  recover:                              " Restaurar "
+  recycle_bin:                          " Lixeira "
+  empty_recycle_bin:                    " Lixeira Vazia "
+#---S---#
+  save:                                 " Salvar "
+  search:                               " Pesquisar "
+  scheduled:                            " Agendado para %{date} "
+  show:                                 " Mostrar "
+  site_need_at_least_one_locale:        " Necessita de pelo menos um idioma "
+  submit:                               " Enviar "
+  successfully_created:                 " Criado com sucesso."
+  successfully_updated:                 " Atualizado com sucesso "
+  successfully_created_param:           " %{param} criado com sucesso! "
+  successfully_updated_param:           " %{param} atualizado com sucesso! "
+  successfully_removed:                 " %{param} foi excluído com sucesso! "
+  successfully_deleted:                 " Excluído com sucesso! "
+  successfully_updated_password:        " Senha atualizada com sucesso "
+  successfully_followed:                " Estilo seguido com sucesso "
+  successfully_copied:                  " Estilo copiado com sucesso "
+  successfully_restored:                " Restaurado com sucesso! "
+  should_be_image:                      " Deve ser uma imagem "
+#---T---#
+#---U---#
+  unfollow:                             " Deixar de Seguir "
+  unpublish:                            " Despublicar "
+  unpublished:                          " Despublicado "
+  user_already_active:                  " Usuário já está ativo. "
+  user_inactive:                        " Seu usuário ainda não está ativo. "
+  user_not_found:                       " Usuário não encontrado "
+  updated_account:                      " Conta atualizada "
+  update_notification_successful:       " Notificação atualizada "
+  user_cant_be_deleted:                 " Este usuário não pode ser excluído "
+#---V---#
+  views:
+     pagination:
+       first:      " Primeira "
+       last:       " Última "
+       displaying: " Mostrando "
+       more:       " Mais "
+       next:       " Próxima "
+       per_page:   " Por Página "
+       previous:   " Anterior "
+       total:      " Total "
+       truncate:   " ... "
+#---Y---#
+#---W---#
+
+  number:
+    currency:
+      format:
+        delimiter: .
+        format: ! '%u %n'
+        precision: 2
+        separator: ! ','
+        significant: false
+        strip_insignificant_zeros: false
+        unit: R$
+    format:
+      delimiter: .
+      precision: 3
+      separator: ! ','
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: ! '%n %u'
+        units:
+          billion:
+            one: bilhão
+            other: bilhões
+          million:
+            one: milhão
+            other: milhões
+          quadrillion:
+            one: quatrilhão
+            other: quatrilhões
+          thousand: mil
+          trillion:
+            one: trilhão
+            other: trilhões
+          unit: ''
+      format:
+        delimiter: .
+        precision: 2
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: ! '%n %u'
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+    percentage:
+      format:
+        delimiter: .
+    precision:
+      format:
+        delimiter: .
+
+  date:
+    formats:
+      # Use the strftime parameters for formats.
+      # When no format has been given, it uses default.
+      # You can provide other formats here if you like!
+      default: "%d-%m-%Y"
+      short:   "%b %d"
+      long:    "%d de %B de %Y"
+      monthly: "%b/%y"
+
+    day_names: [Domingo, Segunda, Terça, Quarta, Quinta, Sexta, Sábado]
+    abbr_day_names: [Dom, Seg, Ter, Qua, Qui, Sex, Sab]
+
+    # Don't forget the nil at the beginning; there's no such thing as a 0th month
+    month_names: [~, Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro]
+    abbr_month_names: [~, Jan, Fev, Mar, Abr, Mai, Jun, Jul, Ago, Set, Out, Nov, Dez]
+    # Used in date_select and datetime_select.
+    order:
+      - :day
+      - :month
+      - :year
+
+  time:
+    formats:
+      default:            "%a, %d-%m-%Y %H:%M:%S %z"
+      mini:               "%d/%b"
+      short:              "%d/%m/%y %H:%M"
+      medium:             "%d/%m/%Y às %H:%M"
+      long:               "%d de %B de %Y às %H:%M"
+      event_date_short:   "%d %B"
+      event_date_full:    "%d %B %Y"
+      event_period_short: "%{iniday} a %{finday} %B"
+      event_period_full:  "%{iniday} a %{finday} %B %Y"
+      event_hour:         "às %kh"
+    period_separator: "a"
+    am: "am"
+    pm: "pm"
+
+# Used in array.to_sentence.
+  support:
+    array:
+      words_connector:     " ,"
+      two_words_connector: " e "
+      last_word_connector: " e "
+
+  helpers:
+    submit:
+      create: "Salvar"
+      update: "Salvar"
+    cancel: "Cancelar"
+
+  authlogic:
+    error_messages:
+      login_blank:                              " deve ser preenchido "
+      login_not_found:                          " inválido "
+      login_invalid:                            " deve conter apenas letras, números, ponto, - e  _ "
+      consecutive_failed_logins_limit_exceeded: " Você excedeu o número permitido de tentativas de login  "
+      email_invalid:                            " Não parece um email válido "
+      not_active:                               " Conta não está ativa "
+      not_confirmed:                            " A conta não foi confirmada "
+      not_approved:                             " A conta não foi aprovada "
+      no_authentication_details:                " Não há detalhes de autenticação "
+      password_blank:                           " deve ser preenchido "
+      password_invalid:                         " inválido "
+    attributes:
+      user_session:
+        login:       " Nome de usuário "
+        email:       " E-mail "
+        password:    " Senha "
+        remember_me: " Lembrar-me "
+
+
+
+    errors: &errors
+      template:
+        header:
+          one:   " não foi possivel atualizar o modelo: 1 erro "
+          other: " não foi possivel atualizar o modelo: %{count} erros. "
+        body: "Por favor cheque os seguintes campos:"
+      messages: 
+        accepted:                 " acception required  "
+        attachment_presence:      " deve ser anexado "
+        blank:                    " deve ser preenchido "
+        confirmation:             " confirmação não equivalente "
+        empty:                    " deve ser preenchido "
+        equal_to:                 " Requerido igual a %{count} "
+        even:                     " par requerido "
+        exclusion:                " indisponível "
+        greater_than:             " Requerido maior do que %{count} "
+        greater_than_or_equal_to: " Requerido maior que ou igual a %{count} "
+        inclusion:                " não está incluido na lista "
+        invalid:                  " inválido  "
+        invalid_format:           " inválido. %{format_message} "
+        less_than:                " Requerido menor que %{count} "
+        less_than_or_equal_to:    " Requerido menor que ou igual a %{count} "
+        not_a_number:             " não é um número "
+        odd:                      " ímpar requerido "
+        record_invalid: !         " A validação falhou: %{errors} "
+        taken:                    " indisponível"
+        too_long:                 " muito longo (não é possível usar mais de %{count} caracteres)  "
+        too_short:                " muito curto (não é possível usar menos de %{count} caracteres) "
+        wrong_length:             " Tamanho errado (%{count} são requeridos) "
+        
+  activerecord:
+    errors:
+      <<: *errors
+
+  activemodel:
+    errors:
+      <<: *errors
+
+# -- SIMPLE FORM -- #
+  simple_form:
+    "yes": "Sim"
+    "no": "Não"
+    required:
+      text: "obrigatório"
+      mark: "*"
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+      default_message: "Alguns erros foram encontrados, por favor verifique:"
+

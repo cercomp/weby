@@ -66,7 +66,7 @@ class ApplicationController < ActionController::Base
   end
 
   def locale_key
-    not_in_site_context? ? :admin : current_site ? current_site.id : 0
+    not_in_site_context? ? :admin : current_site ? current_site.id.to_s : 0
   end
 
   def set_locale
