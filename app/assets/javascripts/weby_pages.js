@@ -36,44 +36,47 @@ function addToSelect(selectId, text){
 }
 
 $(document).ready(function() {
-   // Ajax indicator
-   $('body').append($('<div class="modal hide" data-backdrop="false" style="width: 150px; margin: -30px 0 0 -75px; z-index: 1060;" id="loading-modal"><div class="modal-body"><img src="/assets/loading-bar.gif"/></div></div>'));
-   $('body').ajaxSend(function(ev, jqXHR, options){
-       if(options.files){
-          return;
-       }
-      //Não use a função .modal() pois se a página tiver outro modal, gera comportamento não ideal
-      $('#loading-modal').removeClass('hide');
-   }).ajaxComplete(function(evt,xhr){
-      $('#loading-modal').addClass('hide');
-      FlashMsg.notify(xhr.status);
-   });
+  // Ajax indicator
+  $('body').append($('<div class="panel panel-default hide" id="loading-modal" style="z-index: 66060; position: fixed;"><div class="panel-body"><img src="/assets/loading-bar.gif"/></div></div>'));
+  $(document).ajaxSend(function(ev, jqXHR, options){
+    if(options.files){
+      return;
+    }
+    var panel = $('#loading-modal');
+    panel.css("top", ($(window).height() / 2) - (53 / 2));
+    panel.css("left", ($(window).width() / 2) - (192 / 2));
+    //Do not use the .modal() function. If there is another modal it generates anomalous behaviour
+    panel.removeClass('hide');
+  }).ajaxComplete(function(evt,xhr){
+    $('#loading-modal').addClass('hide');
+    FlashMsg.notify(xhr.status);
+  });
 
-   $(document).on('change', '.pagination select', function(){
-     //window.location = $(this).find('option:selected').data('url');
-     $.getScript($(this).find('option:selected').data('url'));
-   });
+  $(document).on('change', '.pagination select', function(){
+   //window.location = $(this).find('option:selected').data('url');
+   $.getScript($(this).find('option:selected').data('url'));
+  });
 
-   $(window).scroll(function(){
-       var w=$(this);
-       var pos = w.scrollTop()/($(document).height()-w.height());
-       if(pos > .8){
-         loadMoreSites();
-       }
-   });
+  $(window).scroll(function(){
+     var w=$(this);
+     var pos = w.scrollTop()/($(document).height()-w.height());
+     if(pos > .8){
+       loadMoreSites();
+     }
+  });
 
-   $('.switch').click(function(){
-       var swi = $(this);
-       $('.switch-panel').toggle('fast');
-       var text = swi.data('switchtext') || swi.text();
-       swi.data('switchtext', swi.text());
-       swi.text(text);
-   });
+  $('.switch').click(function(){
+     var swi = $(this);
+     $('.switch-panel').toggle('fast');
+     var text = swi.data('switchtext') || swi.text();
+     swi.data('switchtext', swi.text());
+     swi.text(text);
+  });
 
-   var hash = location.hash
-      , hashPieces = hash.split('?')
-      , activeTab = $('[href=' + hashPieces[0] + ']');
-   activeTab && activeTab.tab('show');
+  var hash = location.hash
+    , hashPieces = hash.split('?')
+    , activeTab = $('[href=' + hashPieces[0] + ']');
+  activeTab && activeTab.tab('show');
 });
 
 function loadMoreSites(){

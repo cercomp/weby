@@ -47,13 +47,16 @@ $(document).ready(function() {
   }); 
 
   // Ajax indicator
-  $('body').append($('<div class="modal hide" data-backdrop="false" style="width: 150px; margin: -30px 0 0 -75px; z-index: 66060;" id="loading-modal"><div class="modal-body"><img src="/assets/loading-bar.gif"/></div></div>'));
-  $('body').ajaxSend(function(ev, jqXHR, options){
-     if(options.files){
-        return;
-     }
+  $('body').append($('<div class="panel panel-default hide" id="loading-modal" style="z-index: 66060; position: fixed;"><div class="panel-body"><img src="/assets/loading-bar.gif"/></div></div>'));
+  $(document).ajaxSend(function(ev, jqXHR, options){
+    if(options.files){
+      return;
+    }
+    var panel = $('#loading-modal');
+    panel.css("top", ($(window).height() / 2) - (53 / 2));
+    panel.css("left", ($(window).width() / 2) - (192 / 2));
     //Do not use the .modal() function. If there is another modal it generates anomalous behaviour
-    $('#loading-modal').removeClass('hide');
+    panel.removeClass('hide');
   }).ajaxComplete(function(evt,xhr){
     $('#loading-modal').addClass('hide');
     FlashMsg.notify(xhr.status);

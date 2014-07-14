@@ -22,7 +22,7 @@
           <td><%= activity_record.user %> <%= t(".#{activity_record.note}") %></td>
           <td class="text-right">
             <%= link_to(icon("eye-open", text: t(".show")),
-                       polymorphic_url(activity_record.loggeable_url_params, subdomain: activity_record.site), class: 'action-link') unless activity_record.action == "destroy" %>
+                       polymorphic_url(activity_record.loggeable_url_params, subdomain: activity_record.site), class: 'action-link') if activity_record.action != "destroy" && activity_record.loggeable %>
             <%= link_to(icon("search", text: t(".details")),
                         site_admin_activity_record_path(activity_record), class: 'action-link') if current_user.is_admin? %>
           </td>
