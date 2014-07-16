@@ -1,6 +1,7 @@
 class Extension < ActiveRecord::Base
   # TODO rename table extension_sites to extensions
   self.table_name = 'extension_sites'
+  include  WebySettings
 
   belongs_to :site
 
