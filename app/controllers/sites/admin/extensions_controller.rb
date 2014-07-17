@@ -6,6 +6,13 @@ class Sites::Admin::ExtensionsController < ::ApplicationController
     @extensions = current_site.extensions
   end
 
+  def edit
+    @extension =  current_site.extensions.find(params[:id])
+  end
+
+  def update
+  end
+
   def new
     @extension = Extension.new
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140626140757) do
+ActiveRecord::Schema.define(version: 20140714172922) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -452,6 +452,17 @@ ActiveRecord::Schema.define(version: 20140626140757) do
 
   add_index "views", ["site_id"], name: "index_views_on_site_id", using: :btree
   add_index "views", ["user_id"], name: "index_views_on_user_id", using: :btree
+
+  create_table "weby_settings", force: true do |t|
+    t.string   "var",                   null: false
+    t.text     "value"
+    t.integer  "thing_id"
+    t.string   "thing_type", limit: 30
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "weby_settings", ["thing_type", "thing_id", "var"], name: "index_weby_settings_on_thing_type_and_thing_id_and_var", unique: true, using: :btree
 
   add_foreign_key "activity_records", "sites", name: "activity_records_site_id_fk"
   add_foreign_key "activity_records", "users", name: "activity_records_user_id_fk"

@@ -1,8 +1,7 @@
 class Extension < ActiveRecord::Base
   # TODO rename table extension_sites to extensions
   self.table_name = 'extension_sites'
-  include  WebySettings
-
+  has_settings_on :body 
   belongs_to :site
 
   validates :name, :site, presence: true
