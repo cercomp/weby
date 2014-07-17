@@ -18,7 +18,7 @@ class FrontNewsComponent < Component
     case type_filter
     when 'events'
       if order_by == 'event_begin'
-        direction = 'asc'
+        direction = 'asc, id asc'
         pages = pages.upcoming_events
       else
         pages = pages.events
