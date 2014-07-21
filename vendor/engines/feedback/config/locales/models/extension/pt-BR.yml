@@ -2,4 +2,4 @@ pt-BR:
   activerecord:
     attributes:
       extension:
-        body: " Texto "
+        text: " Texto "
