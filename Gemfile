@@ -33,8 +33,8 @@ gem 'zeroclipboard-rails', '~> 0.0.13'
 gem 'zip-zip', '~> 0.3'
 
 gem 'useragent', '0.2.3', :git => 'http://github.com/jilion/useragent'
-gem "rails-settings-cached", "0.4.1"
-#gem "rails-settings-cached", "0.3.1"
+gem 'rails-settings-cached', '0.4.1'
+#gem 'rails-settings-cached', '0.3.1'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.1'

@@ -41,6 +41,7 @@ pt-BR:
   edit:                                 " Editar "
   enable:                               " Ativado "
   expired:                              " Expirado "
+  extension:                            " Extensão "
   error_updating_object:                " Erro ao atualizar "
   error_creating_object:                " Erro ao criar "
   error_destroying_object:              " Erro ao excluir "

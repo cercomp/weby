@@ -11,6 +11,12 @@ class Sites::Admin::ExtensionsController < ::ApplicationController
   end
 
   def update
+    @extension =  current_site.extensions.find(params[:id])
+    if @extension.update(extension_update_params)
+      redirect_to(site_admin_extensions_path, flash: { success: t('successfully_updated_param', param: t('extension')) })
+    else
+      render action: 'edit'
+    end
   end
 
   def new
@@ -18,7 +24,7 @@ class Sites::Admin::ExtensionsController < ::ApplicationController
   end
 
   def create
-    @extension = current_site.extensions.new(extension_params)
+    @extension = current_site.extensions.new(extension_create_params)
 
     if @extension.save
       redirect_to site_admin_extensions_path
@@ -35,7 +41,11 @@ class Sites::Admin::ExtensionsController < ::ApplicationController
 
   private
 
-  def extension_params
+  def extension_create_params
     params.require(:extension).permit(:name)
+  end
+
+  def extension_update_params
+    params.require(:extension).permit(Weby.extensions[@extension.name.to_sym].settings)
   end
 end

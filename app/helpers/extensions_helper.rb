@@ -10,9 +10,9 @@ module ExtensionsHelper
       begin
         output = render "#{extension.name}/admin/form"
       rescue ActionView::MissingTemplate
-        output = ''
+        output = render partial: 'none'
       end
-      raw output
+      output.html_safe
     end
   end
 end

@@ -1,13 +1,4 @@
 # extensions:feedback
-crumb :extensions do
-  link t('breadcrumbs.extensions'), main_app.site_admin_extensions_path
-end
-
-crumb :new_extension do
-  link t('breadcrumbs.new_extension'), new_site_admin_extension_path
-  parent :extensions
-end
-
 crumb :feedback do
   link t('breadcrumbs.feedback'), feedback.admin_path
   parent :extensions

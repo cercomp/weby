@@ -13,3 +13,5 @@ pt-BR:
           extension:          " Extensão "
         new:
           extensions:         " Extensões "
+        none:
+          no_settings:        " Extensão sem configurações "

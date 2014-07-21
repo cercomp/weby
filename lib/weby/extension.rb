@@ -1,11 +1,11 @@
 class Weby::Extension
   attr_accessor :name, :author, :version, :disabled, :settings
 
-  def initialize(name, author, *args)
+  def initialize(name, options = {})
     self.name = name
-    self.author = author
+    self.author = options[:author]
     self.version = eval(name.to_s.titleize)::VERSION
     self.disabled = false
-    self.settings = args[0]
+    self.settings = options[:settings] || []
   end
 end
