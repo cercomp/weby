@@ -52,7 +52,7 @@ en:
     #extensions/feedback
     extensions:  " Extensions "
     new_extension:  " New extension "
-    edit_extension:  " Edit extension "
+    edit_extension:  " Edit extension: "
     feedback:  " Feedback "
     messages:  " Menssages "
     groups:  " Groups "
