@@ -9,6 +9,7 @@ crumb :new_extension do
 end
 
 crumb :edit_extension do |extension|
-  link "#{t('breadcrumbs.edit_extension')} #{t("extensions.#{extension.name}.name")}", main_app.edit_site_admin_extension_path(extension)
+  link "#{t('breadcrumbs.edit_extension')} #{t("extensions.#{extension.name}.name")}",
+        main_app.edit_site_admin_extension_path(extension)
   parent :extensions
 end

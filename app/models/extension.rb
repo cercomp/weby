@@ -11,8 +11,8 @@ class Extension < ActiveRecord::Base
   after_find do
     Weby.extensions[name.to_sym].settings.each do |setting_name|
       class_eval do
-        define_method(setting_name)       { self.settings.send(setting_name) }
-        define_method("#{setting_name}=") { |value| self.settings.send("#{setting_name}=", value) }
+        define_method(setting_name)       { settings.send(setting_name) }
+        define_method("#{setting_name}=") { |value| settings.send("#{setting_name}=", value) }
       end
     end
   end

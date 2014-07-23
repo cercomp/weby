@@ -13,7 +13,8 @@ class Sites::Admin::ExtensionsController < ::ApplicationController
   def update
     @extension =  current_site.extensions.find(params[:id])
     if @extension.update(extension_update_params)
-      redirect_to(site_admin_extensions_path, flash: { success: t('successfully_updated_param', param: t('extension')) })
+      redirect_to(site_admin_extensions_path,
+                  flash: { success: t('successfully_updated_param', param: t('extension')) })
     else
       render action: 'edit'
     end
