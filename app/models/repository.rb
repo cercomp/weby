@@ -71,13 +71,29 @@ class Repository < ActiveRecord::Base
 
 # nessa validação não teremos a menssagem de erro,
 # implementar um método pra tratar o que fazer nesse caso
-  validates :archive_fingerprint, uniqueness: {
-            :message => I18n.t('activerecord.errors.messages.:archive_fingerprint') }
+#  validates_uniqueness_of :archive_fingerprint, if:
+#      Proc.new { |archive|
+#        if archive.fingerprint != true
+#          archive.repository_father =  archive.fingerprint.id }
+#        end
+    #uniqueness: {
+           #:message => I18n.t('activerecord.errors.messages.:archive_fingerprint') }
 
 # nessa validação não teremos a menssagem de erro,
 # implementar um método pra tratar o que fazer nesse caso
   validates :archive_file_name, uniqueness: {
             :message => I18n.t('activerecord.errors.messages.:archive_file_name') }
+
+# Metodo para validar fingerprint
+#def fingerprint
+#    a = Repository.find_by_archive_fingerprint(self.archive_fingerprint)
+#  if  a.nil?
+#   true
+#  else
+#    a.first
+#  end
+#end
+
 
 # Metodo para incluir a url do arquivo no json
   def archive_url(format = :o)
