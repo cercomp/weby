@@ -1,7 +1,5 @@
-Style/LineLength:
-  Description: 'Limit lines to 80 characters.'
+LineLength:
   Enabled: false
 
-Style/DotPosition:
-  Description: 'Checks the position of the dot in multi-line method calls.'
+DotPosition:
   Enabled: false
