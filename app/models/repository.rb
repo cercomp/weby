@@ -3,7 +3,8 @@ class Repository < ActiveRecord::Base
 
   attr_accessor :x, :y, :w, :h
 
- STYLES = {
+
+  STYLES = {
     i: "95x70",
     l: "190x140",
     m: "400x300",
@@ -15,7 +16,7 @@ class Repository < ActiveRecord::Base
 
   has_many :page, foreign_key: 'repository_id'
   has_many :banners
-  has_many :sites, foreign_key: 'top_banner_id'
+  has_many :sites, foreign_key: 'top_banner_id', dependent: :nullify
   has_many :pages_repositories, dependent: :destroy
   has_many :pages, through: :pages_repositories
   has_many :page_image, class_name: 'Page', dependent: :nullify
@@ -31,6 +32,7 @@ class Repository < ActiveRecord::Base
       t: "-crop 160x160+0+0 +repage -quality 90 -strip",
       o: "-quality 80 -strip",
       processors: [:cropper] }
+
 
   validates :description, presence: true
 
