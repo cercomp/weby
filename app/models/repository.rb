@@ -3,7 +3,6 @@ class Repository < ActiveRecord::Base
 
   attr_accessor :x, :y, :w, :h
 
-
  STYLES = {
     i: "95x70",
     l: "190x140",
