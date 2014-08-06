@@ -117,11 +117,11 @@ class Repository < ActiveRecord::Base
 
   def as_json(options = {})
     json = super(options)
-    json['repository'][:o_path] = self.archive.url(:o)
-    json['repository'][:l_path] = self.archive.url(:l)
-    json['repository'][:m_path] = self.archive.url(:m)
-    json['repository'][:i_path] = self.archive.url(:i)
-    json['repository'][:t_path] = self.archive.url(:t)
+    json[:original_path] = self.archive.url(:o)
+    json[:litle_path] = self.archive.url(:l)
+    json[:medium_path] = self.archive.url(:m)
+    json[:mini_path] = self.archive.url(:i)
+    json[:thumb_path] = self.archive.url(:t)
     json
   end
 
