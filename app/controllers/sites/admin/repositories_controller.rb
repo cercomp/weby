@@ -111,7 +111,15 @@ class Sites::Admin::RepositoriesController < ApplicationController
       flash[:error] = @repository.errors.full_messages.join(', ')
     end
 
-    redirect_to main_app.site_admin_repositories_path
+    @repositories = current_site.repositories.trashed.
+    order("#{params[:sort]} #{sort_direction}").
+    page(params[:page]).per(per_page)
+
+    if @repository.persisted?
+      redirect_to main_app.site_admin_repositories_path
+    else
+      redirect_to main_app.recycle_bin_site_admin_repositories_path
+    end
   end
 
   def recover
