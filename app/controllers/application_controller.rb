@@ -96,7 +96,7 @@ class ApplicationController < ActionController::Base
   end
 
   def verify_protocol
-    if current_user && Weby::Settings.login_protocol == 'https' && request.protocol != Weby::Settings.login_protocol
+    if current_user && Weby::Settings.login_protocol == 'https' && request.protocol != "#{Weby::Settings.login_protocol}://"
       redirect_to "https://#{request.host_with_port}#{request.fullpath}"
     end
   end
