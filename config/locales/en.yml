@@ -41,6 +41,7 @@ en:
   edit:                                 " Edit "
   enable:                               " Enable "
   expired:                              " Expired "
+  extension:                            " Extension "
   error_updating_object:                " Error updating "
   error_creating_object:                " Error creating "
   error_destroying_object:              " Error deleting "

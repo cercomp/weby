@@ -13,3 +13,5 @@ en:
           extension:          " Extension "
         new:
           extensions:         " Extensions "
+        none:
+          no_settings:        " This extension has no settings "

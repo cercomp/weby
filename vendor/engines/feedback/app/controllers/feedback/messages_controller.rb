@@ -8,6 +8,7 @@ module Feedback
 
     def new
       @message = Message.new
+      @extension = current_site.extensions.find_by(name: 'feedback')
     end
 
     def create

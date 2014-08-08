@@ -1,0 +1,15 @@
+<%= simple_form_for [:site_admin, @extension], html: {class: 'form-horizontal'} do |f| %>
+
+  <%= f.input :text,
+    input_html: {class: "mceAdvance", style: " height: 320px;"},
+    as: :text %>
+
+ <div class="form-actions">
+    <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
+    <%= link_to t("back"), :back, class: "btn btn-default" %>
+  </div>
+
+<% end %>
+<%= target_dialog %>
+<%= repository_dialog %>
+<% content_for :javascripts, javascript_include_tag("init/tinymce") %>

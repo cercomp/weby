@@ -50,7 +50,8 @@ pt-BR:
     new_banner:  " Novo banner "
 
     #extensions/feedback
-    new_extension: " Nova extensão "
+    new_extension: " Nova extensão: "
+    edit_extension: " Editar extensão: "
     extensions:  " Extensões "
     feedback:  " Fale conosco "
     messages:  " Mensagens "
