@@ -2,9 +2,11 @@
 class ApplicationController < ActionController::Base
   include ApplicationHelper # In order to user helper methods in controllers
 
+  force_ssl if: :should_be_ssl?
+
   protect_from_forgery with: :exception
 
-  before_action :set_tld_length, :verify_protocol, :set_global_vars
+  before_action :set_tld_length, :set_global_vars
   before_action :set_contrast, :set_locale, :set_view_types
   before_action :maintenance_mode
   before_action :require_user, only: [:admin]
@@ -95,10 +97,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def verify_protocol
-    if current_user && Weby::Settings.login_protocol == 'https' && request.protocol != "#{Weby::Settings.login_protocol}://"
-      redirect_to "https://#{request.host_with_port}#{request.fullpath}"
-    end
+  def should_be_ssl?
+    current_user && Weby::Settings.login_protocol == 'https' && !request.ssl?
   end
 
   unless Rails.application.config.consider_all_requests_local

@@ -15,7 +15,7 @@
   font-family:"Open Sans";
   font-style:normal;
   font-weight:700;
-  src:local("Open Sans Bold"),local(OpenSans-Bold),url(http://barra.brasil.gov.br/static/opensans-bold.woff) format(woff);
+  src:local("Open Sans Bold"),local(OpenSans-Bold),url(//barra.brasil.gov.br/static/opensans-bold.woff) format(woff);
 }
 
 #barra-brasil {
