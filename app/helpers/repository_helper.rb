@@ -23,13 +23,22 @@ module RepositoryHelper
   # Input: Site object
   # Output: Returns all the MIME types of an site files
   def load_mime_types(site, only = [])
-    mime_types = site.repositories.
+
+    if @site
+      mime_types = site.repositories.
+        content_file(only).
+        map { |t| t.archive_content_type }.
+        tap { |mime_type| mime_type.uniq! }.
+        tap { |mime_type| mime_type.delete('') }.
+        map! { |m| m.split('/') }.sort
+    else
+      mime_types = Repository.all.
       content_file(only).
       map { |t| t.archive_content_type }.
       tap { |mime_type| mime_type.uniq! }.
       tap { |mime_type| mime_type.delete('') }.
       map! { |m| m.split('/') }.sort
-
+    end
     hash = Hash.new { |subhash, key| subhash[key] = Array.new }
 
     mime_types.each do  |type, subtype|

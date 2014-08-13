@@ -6,7 +6,10 @@
       <div class="modal-header">
         <ul class="nav nav-pills pull-right">
           <li class="active">
-            <%= link_to t(".repository"), "#tab_repository", data: {toggle: 'pill'} %>
+            <%= link_to t(".my_repository"), "#tab_repository", data: {toggle: 'pill'} %>
+          </li>
+          <li>
+            <%= link_to t(".others_repositories"), "#tab_others_repositories", data: {toggle: 'pill'} %>
           </li>
           <li>
             <%= link_to t(".new_file"), "#tab_new_file", data: {toggle: 'pill'} %>
@@ -41,10 +44,36 @@
               </div>
             <% end %>
 
-            <ul id="repositories-search-results">
+            <ul class="repositories-search-results">
             </ul>
           </div>
+          <div id="tab_others_repositories">
+            <%= form_tag main_app.site_admin_repositories_path(format: :json),
+              method: 'get',
+              autocapitalize: "off",
+              class: 'search repo-search',
+              id: 'repository-search-form',
+              data: {noresult: t('.none_file')},
+              remote: true do %>
+              <div class="row">
+                <div class="col-md-6">
+                  <%= search_input params[:search] %>
+                </div>
+                <div class="col-md-6">
+                  <%= select_tag "mime_type[]",
+                      grouped_options_for_select(load_mime_types(current_site), params[:mime_type]),
+                      include_blank: false,
+                      style: 'width: 208px; vertical-align: top;',
+                      class: 'search-filter pull-right',
+                      multiple: true %>
+                  <%= hidden_field_tag 'page', "1", id: 'search-page' %>
+                </div>
+              </div>
+            <% end %>
 
+            <ul class="repositories-search-results">
+            </ul>
+          </div>
           <div id="tab_new_file" class="tab-pane">
             <div class="row">
               <div class="col-md-7">

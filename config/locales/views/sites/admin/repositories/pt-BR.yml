@@ -47,6 +47,8 @@ pt-BR:
         repository_search:
           archives:            " Arquivos "
           repository:          " REPOSITÓRIO "
+          my_repository:       " Meu Repositório "
+          others_repositories: " Outros Repositórios "
           new_file:            " NOVO ARQUIVO "
           none_file:           " Nenhum Arquivo Encontrado. "
           file:                " Arquivo "
