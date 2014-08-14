@@ -55,6 +55,7 @@
               id: 'repository-search-form',
               data: {noresult: t('.none_file')},
               remote: true do %>
+              <input id="global" name="global" value="1" type="hidden">
               <div class="row">
                 <div class="col-md-6">
                   <%= search_input params[:search] %>

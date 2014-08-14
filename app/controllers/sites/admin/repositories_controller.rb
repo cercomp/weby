@@ -11,10 +11,17 @@ class Sites::Admin::RepositoriesController < ApplicationController
     params[:mime_type].try(:delete, '')
     params[:direction] ||= 'desc'
 
-    @repositories = Repository.
+    if params[:global]
+      @repositories = Repository.where.not(site_id: current_site.id).
       description_or_filename(params[:search]).
       order(sort_column + ' ' + sort_direction).
       page(params[:page]).per(per_page)
+    else
+      @repositories = current_site.repositories.
+      description_or_filename(params[:search]).
+      order(sort_column + ' ' + sort_direction).
+      page(params[:page]).per(per_page)
+    end
 
     @repositories = @repositories.content_file(params[:mime_type]) if params[:mime_type]
 
