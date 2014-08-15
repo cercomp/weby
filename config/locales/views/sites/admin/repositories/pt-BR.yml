@@ -24,6 +24,7 @@ pt-BR:
           show:                " Mostrar "
         new:
           archives:            " Arquivos "
+          repository_alert:    " Atenção, os arquivos enviados ao repositório são públicos, podendo ser referenciados por qualquer site! Arquivos confidenciais não devem ser enviados ao servidor. "
           field_required:      " Campo obrigatório! "
           accessibility_needs: " Necessário para a acessibilidade de seu site. "
           please_wait:         " Por favor, aguarde "
@@ -46,9 +47,10 @@ pt-BR:
           type:                " Tipo "
         repository_search:
           archives:            " Arquivos "
+          repository_alert:    " Atenção, os arquivos enviados ao repositório são públicos, podendo ser referenciados por qualquer site! Arquivos confidenciais não devem ser enviados ao servidor. "
           repository:          " REPOSITÓRIO "
-          my_repository:       " Meu Repositório "
-          others_repositories: " Outros Repositórios "
+          my_repository:       " MEU REPOSITÓRIO "
+          others_repositories: " OUTROS REPOSITÓRIOS "
           new_file:            " NOVO ARQUIVO "
           none_file:           " Nenhum Arquivo Encontrado. "
           file:                " Arquivo "

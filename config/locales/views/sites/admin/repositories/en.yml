@@ -24,6 +24,7 @@ en:
           list_all:            " List All "
         new:
           archives:            " Files "
+          repository_alert:    " Attention, files uploaded to the repository are public and can be referenced by any site! Confidential files should not be sent to the server. "
           field_required:      " Field required! "
           accessibility_needs: " Needed for your site's accessibility. "
           please_wait:         " Please wait "
@@ -46,7 +47,10 @@ en:
           type:                " Type "
         repository_search:
           archives:            " Files "
-          repository:          " REPOSITORY "
+          accept:              " Accept "
+          my_repository:       " MY REPOSITORY "
+          others_repositories: " ANOTHERS REPOSITORIES "
+          repository_alert:    " Attention, files uploaded to the repository are public and can be referenced by any site! Confidential files should not be sent to the server. "
           new_file:            " NEW FILE "
           none_file:           " No Files Found. "
           file:                " File "
