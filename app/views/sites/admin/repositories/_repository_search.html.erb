@@ -5,10 +5,10 @@
     <div class="modal-content">
       <div class="modal-header">
         <ul class="nav nav-pills pull-right">
-          <li class="active">
+          <li class="my-repo active">
             <%= link_to t(".my_repository"), "#tab_repository", data: {toggle: 'pill'} %>
           </li>
-          <li>
+          <li class="others-repo">
             <%= link_to t(".others_repositories"), "#tab_others_repositories", data: {toggle: 'pill'} %>
           </li>
           <li>
@@ -47,7 +47,7 @@
             <ul class="repositories-search-results">
             </ul>
           </div>
-          <div id="tab_others_repositories">
+          <div id="tab_others_repositories" class="tab-pane">
             <%= form_tag main_app.site_admin_repositories_path(format: :json),
               method: 'get',
               autocapitalize: "off",
@@ -55,7 +55,7 @@
               id: 'repository-search-form',
               data: {noresult: t('.none_file')},
               remote: true do %>
-              <input id="global" name="global" value="1" type="hidden">
+              <input id="global" name="global" value="1" type="hidden"/>
               <div class="row">
                 <div class="col-md-6">
                   <%= search_input params[:search] %>
