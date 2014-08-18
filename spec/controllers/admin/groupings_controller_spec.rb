@@ -6,7 +6,7 @@ describe Admin::GroupingsController do
 
   before { sign_in user }
 
-  context "GET #index" do
+  describe "GET #index" do
     pending "should populate an array with all groupings" do
       groups = Grouping.all
       get :index
@@ -19,7 +19,7 @@ describe Admin::GroupingsController do
     end
   end
 
-  context "GET #new" do
+  describe "GET #new" do
     before { get :new }
 
     it "assigns @grouping" do
@@ -31,7 +31,7 @@ describe Admin::GroupingsController do
     end
   end
 
-  context "GET #edit" do
+  describe "GET #edit" do
     before { get :edit, :id => group.id }
 
     it "assigns @grouping" do
@@ -43,7 +43,7 @@ describe Admin::GroupingsController do
     end
   end
 
-  context "POST #create" do
+  describe "POST #create" do
     context "when valid" do
       before { post :create, :post => { :name => "Name" } }
 
@@ -53,7 +53,7 @@ describe Admin::GroupingsController do
     end
   end
 
-  context "PUT #update" do
+  describe "PUT #update" do
     context "when success" do
       before { put :update, :post => { :name => "New Name" }, :id => group.id }
 
@@ -63,7 +63,7 @@ describe Admin::GroupingsController do
     end
   end
 
-  context "DELETE #destroy" do
+  describe "DELETE #destroy" do
     before { delete :update, :id => group.id }
 
     it "will redirect to groupings path" do

@@ -5,7 +5,7 @@ describe Admin::ActivityRecordsController do
 
   before { sign_in user }
 
-  context "GET #index" do
+  describe "GET #index" do
     pending "should populate an array of activities from the site being viewed" do
       record = FactoryGirl.create(:activity_record)
       get :index
@@ -18,7 +18,7 @@ describe Admin::ActivityRecordsController do
     end
   end
 
-  context "GET #show" do
+  describe "GET #show" do
     it "assigns the request activity to @activity" do
       activity = ActivityRecord.create
       get :show, id: activity
@@ -32,7 +32,7 @@ describe Admin::ActivityRecordsController do
     end
   end
 
-  context "DELETE #destroy" do
+  describe "DELETE #destroy" do
     before :each do
       @activity = ActivityRecord.create
     end

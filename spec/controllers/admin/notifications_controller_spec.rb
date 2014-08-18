@@ -6,7 +6,7 @@ describe Admin::NotificationsController do
 
   before { sign_in user }
 
-  context "GET #index" do
+  describe "GET #index" do
     before { get :index }
 
     pending "should populate an array with all notifications" do
@@ -20,7 +20,7 @@ describe Admin::NotificationsController do
     end
   end
 
-  context "GET #new" do
+  describe "GET #new" do
     before { get :new }
 
     it "assigns @notification" do
@@ -32,7 +32,7 @@ describe Admin::NotificationsController do
     end
   end
 
-  context "GET #edit" do
+  describe "GET #edit" do
     before { get :edit, :id => notifi.id }
 
     it "assigns @notification" do
@@ -44,7 +44,7 @@ describe Admin::NotificationsController do
     end
   end
 
-  context "GET #show" do
+  describe "GET #show" do
     before { get :show, :id => notifi.id }
 
     it "assigns @notification" do
@@ -56,7 +56,7 @@ describe Admin::NotificationsController do
     end
   end
 
-  context "POST #create" do
+  describe "POST #create" do
     context "when valid" do
       before { post :create, :post => { :title => "Title", :body => "Body" } }
 
@@ -85,7 +85,7 @@ describe Admin::NotificationsController do
     end
   end
 
-  context "PUT #update" do
+  describe "PUT #update" do
     context "when success" do
       before { put :update, :post => { :title => "Updated Body",
                                        :body => "Updated Body" }, :id => notifi.id }
@@ -96,9 +96,6 @@ describe Admin::NotificationsController do
 
       it "will set flash[:success]" do
         expect(flash[:success]).to be_present
-      end
-
-      pending "will record activity" do
       end
     end
 
@@ -115,7 +112,7 @@ describe Admin::NotificationsController do
     end
   end
 
-  context "DELETE #destroy" do
+  describe "DELETE #destroy" do
     before { delete :update, :id => notifi.id }
 
     pending "will redirect to notifications path" do
@@ -124,9 +121,6 @@ describe Admin::NotificationsController do
 
     it "will set flash[:success]" do
       expect(flash[:success]).to be_present
-    end
-
-    pending "will record activity" do
     end
   end
 end
