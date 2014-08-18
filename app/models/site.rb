@@ -19,7 +19,7 @@ class Site < ActiveRecord::Base
   has_and_belongs_to_many :locales
   has_and_belongs_to_many :groupings
 
-  has_attached_file :top_banner, url: '/uploads/:site_id/:style_:basename.:extension'
+#  has_attached_file :top_banner, url: '/uploads/:site_id/:style_:basename.:extension'
 
   validates :name, :title, :theme, :url, :per_page, presence: true
   validates :url, format: { with: /\Ahttp[s]{,1}:\/\/[\w\.\-\%\#\=\?\&]+\.([\w\.\-\%\#\=\?\&]+\/{,1})*\z/i }
