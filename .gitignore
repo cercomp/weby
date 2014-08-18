@@ -22,6 +22,7 @@ Gemfile-ext
 
 # Ignore uploads
 /public/uploads/
+/public/up/
 /public/assets/
 
 .sass-cache

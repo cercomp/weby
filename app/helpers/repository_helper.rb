@@ -82,7 +82,7 @@ module RepositoryHelper
       @thumbnail = empty_mime
     else
       if mime_type.first == 'image'
-        @format = :original if mime_type.last.include?('svg')
+        @format = :o if mime_type.last.include?('svg')
 
         @thumbnail = @file.archive.url(@format)
       else
@@ -155,7 +155,7 @@ module RepositoryHelper
         end
       end
     end
-    :original
+    :o
   end
 
   def dimension_for_size(size)
