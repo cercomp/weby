@@ -28,7 +28,7 @@
                 <span class="author"><%= t(".posted_by") %><%= page.author.name_or_login %></span>
               <% end %>
               <% if component.show_date %>
-                <span class="date"><%= t(".posted_on") %><%= localize page.created_at, format: :medium %></span>
+                <span class="date"><%= t(".posted_on") %><%= localize page.created_at, format: :m %></span>
               <% end %>
             </p>
           <% end %>

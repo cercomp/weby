@@ -16,7 +16,7 @@
   <tbody>
     <% @banners.each do |banner| %>
       <tr<%= ' class="deactivated"'.html_safe unless banner.publish %>>
-        <td> <%= weby_file_view(banner.repository, :thumb, "64", "64", {target: '_blank', title: banner.text}, true) %></td>
+        <td> <%= weby_file_view(banner.repository, :t, "64", "64", {target: '_blank', title: banner.text}, true) %></td>
         <td><%= link_to(banner.title, admin_banner_path(banner)) %></td>
         <td><%= banner.category_list %></td>
         <td><%= banner.position %></td>

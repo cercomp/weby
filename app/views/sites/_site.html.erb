@@ -8,7 +8,7 @@
     <% if pages.any? %>
       <% page = pages.shift %>
       <div class="top-news col-md-6">
-        <%= news_image(page.image, :thumb, 140, nil, {as: "link", url: site_page_url(page, subdomain: page.owner)}) %>
+        <%= news_image(page.image, :t, 140, nil, {as: "link", url: site_page_url(page, subdomain: page.owner)}) %>
         <div title="<%= strip_tags(page.summary).html_safe %>"><%= link_to page.title, site_page_url(page, subdomain: page.owner) %></div>
         <span class="date"><%= l(page.updated_at, format: :short) %></span>
         <!--<p><%#= page.summary.html_safe %></p>-->
@@ -16,7 +16,7 @@
       <div class="news col-md-6">
         <% pages.each do |page| %>
           <div>
-            <%= news_image(page.image, :thumb, 60, nil, {as: "link", url: site_page_url(page, subdomain: page.owner)}) %>
+            <%= news_image(page.image, :t, 60, nil, {as: "link", url: site_page_url(page, subdomain: page.owner)}) %>
             <div title="<%= strip_tags(page.summary).html_safe %>"><%= link_to page.title, site_page_url(page, subdomain: page.owner) %></div>
             <span class="date"><%= l(page.updated_at, format: :short) %></span>
           </div>
