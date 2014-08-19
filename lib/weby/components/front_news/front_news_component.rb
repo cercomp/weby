@@ -56,7 +56,7 @@ class FrontNewsComponent < Component
 
   alias_method :_image_size, :image_size
   def image_size
-    _image_size.blank? ? :medium : _image_size
+    _image_size.blank? ? :m : _image_size
   end
 
   alias_method :_avatar_width, :avatar_width
@@ -93,7 +93,7 @@ class FrontNewsComponent < Component
   end
 
   def image_sizes
-    [:medium, :little, :mini, :thumb]
+    [:m, :little, :i, :t]
   end
 
   def only_events?

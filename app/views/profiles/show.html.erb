@@ -28,7 +28,7 @@
         <% @news.each do |new| %>
           <div class="media thumbnail">
             <div class="pull-left">
-              <%= news_image(new.image, :thumb, 100, nil, {as: "link", url: site_page_url(new, subdomain: new.owner), image_class:'img-circle'}) %>
+              <%= news_image(new.image, :t, 100, nil, {as: "link", url: site_page_url(new, subdomain: new.owner), image_class:'img-circle'}) %>
             </div>
             <div class="media-body">
               <div class="title"><%= link_to new.title, site_page_url(new, subdomain: new.owner) %></div>

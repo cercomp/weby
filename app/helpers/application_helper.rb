@@ -371,7 +371,7 @@ module ApplicationHelper
   def site_avatar_tag(site = current_site, size = 32)
     repository = Repository.find_by_id(site.top_banner_id)
     if repository
-      weby_file_view(repository, :mini, size, size,
+      weby_file_view(repository, :i, size, size,
                      as: 'link',
                      title: site.description,
                      url: main_app.site_url(subdomain: site)

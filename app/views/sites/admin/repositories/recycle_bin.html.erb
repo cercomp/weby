@@ -34,7 +34,7 @@
         <tbody>
           <% @repositories.each do |repository| %>
               <tr>
-              <td> <%= weby_file_view(repository, :thumb, "64", "64", as: :image, title: repository.archive_file_name) %> </td>
+              <td> <%= weby_file_view(repository, :t, "64", "64", as: :image, title: repository.archive_file_name) %> </td>
               <td> <%= repository.description %> </td>
               <td> <%= repository.archive_content_type %> </td>
               <td> <%= l(repository.deleted_at, :format => :short) %> </td>
@@ -46,7 +46,7 @@
           </tbody>
         </table>
 
-        <div class="pull-left"> <%= per_page_links @repositories, true, :mini  %> </div>
+        <div class="pull-left"> <%= per_page_links @repositories, true, :i  %> </div>
         <div class="pull-right"> <%= paginate @repositories, remote: true %> </div>
         <div class="clearfix"></div>
   </div>

@@ -8,7 +8,7 @@
         <li class="backgrounded">
           <%= label_tag "repository_#{repository.id}" do %>
             <figure>
-              <%= weby_file_view(repository, :mini, 64, 64, {as: 'image'}) %>
+              <%= weby_file_view(repository, :i, 64, 64, {as: 'image'}) %>
               <figcaption><%= repository.description %> </figcaption>
             </figure>
           <% end %>
