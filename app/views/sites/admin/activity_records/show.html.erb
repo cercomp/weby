@@ -10,7 +10,7 @@
 <p><b><%= t('.controller') %>: </b> <%= @activity_record.controller %></p>
 <p><b><%= t('.action') %>: </b> <%= @activity_record.action %></p>
 <p><b><%= t('.params') %>: </b> <%= @activity_record.params %></p>
-<p><b><%= t('.created_at') %>: </b> <%= l(@activity_record.created_at, format: :m) %></p>
+<p><b><%= t('.created_at') %>: </b> <%= l(@activity_record.created_at, format: :medium) %></p>
 
 <div class="form-actions">
   <%= link_to icon('trash', text: t(".destroy")), admin_activity_record_path(@activity_record), method: :delete, confirm: t('are_you_sure') unless current_site %>

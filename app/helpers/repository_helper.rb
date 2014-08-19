@@ -1,5 +1,5 @@
 module RepositoryHelper
-  attr_accessor :file, :format, :options, :size, :tnail
+  attr_accessor :file, :format, :options, :size, :thumbnail
 
   #
   # Returns the image's HTML

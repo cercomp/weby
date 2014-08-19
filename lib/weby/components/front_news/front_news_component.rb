@@ -93,7 +93,7 @@ class FrontNewsComponent < Component
   end
 
   def image_sizes
-    [:m, :little, :i, :t]
+    [:m, :l, :i, :t]
   end
 
   def only_events?
