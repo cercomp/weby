@@ -89,12 +89,17 @@
                         <span class="folder-button btn btn-info"><%= t(".select_file") %></span>
                       </span>
                       <span class="file-name"></span>
-                    </div>
+                      <div class="form-group string">
+                        <p class="help-block col-md-12">
+                          <%= t(".max_file_size", param: current_settings.max_file_size) %>
+                        </p>
+                      </div>
+                    </div>                    
                   </div>
                   <div style="margin-bottom: 15px">
                     <%= label_tag :description, t(".description") %>
                     <%= text_field_tag "repository[description]", "", required: true, class: 'form-control',
-                      id: "repository_description", hint: t(".field_required") %>
+                      id: "repository_description", hint: t(".field_required") %>                    
                     <div class="clearfix"></div>
                   </div>
                   <p class="text-warning col-md-12">
@@ -102,12 +107,7 @@
                     </p>
                   <%= hidden_field_tag "repository[site_id]", @site.id, id: "site_id" %>
 
-                  <%= submit_tag t(".send"), class: 'btn btn-primary send-file', type: :submit, data: {disable_with: t('please_wait')} %>
-                  <div class="form-group string">
-                    <p class="help-block col-md-12">
-                      <%= t(".max_file_size", param: current_settings.max_file_size) %>
-                    </p>
-                  </div>
+                  <%= submit_tag t(".send"), class: 'btn btn-primary send-file', type: :submit, data: {disable_with: t('please_wait')} %>                  
                 <% end %>
               </div>
               <div class="col-md-5">

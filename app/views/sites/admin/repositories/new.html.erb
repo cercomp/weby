@@ -20,6 +20,8 @@
       <button type="button" class="close" data-dismiss="repo-item" tabindex="-1" title="<%= t("destroy") %>">&times;</button>
         <%= f.input :archive, as: :string, input_html: {disabled: true, value: ""} %>
         <%= f.input :description %>
+        <%= f.input :title %>
+        <%= f.input :legend %>
         <div class="form-group string required">
           <p class="help-block col-md-6 col-md-offset-3">
             <label class="string required control-label">
