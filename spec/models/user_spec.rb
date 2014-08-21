@@ -17,19 +17,19 @@ describe User do
     end
 
     it 'should validate uniqueness of email addresses' do
-      user = create(:user)
+      user = create(:user, password_salt: 'salt', encrypted_password: 'salt')
       subject = build(:user, email: user.email)
       expect(subject).to validate_uniqueness_of(:email)
     end
 
     it 'should reject email addresses identical up to case' do
-      user = create(:user)
+      user = create(:user, password_salt: 'salt', encrypted_password: 'salt')
       subject = build(:user, email: user.email.upcase)
       expect(subject).to validate_uniqueness_of(:email)
     end
 
     it 'should change email into downcase before saving' do
-      subject = build(:user, email: 'EMAIL@email.com')
+      subject = build(:user, email: 'EMAIL@email.com', password_salt: 'salt', encrypted_password: 'salt')
       subject.save
       expect(subject.email).to eq(subject.email.downcase)
     end
@@ -45,7 +45,7 @@ describe User do
     end
 
     it 'should validate uniqueness of login' do
-      user = create(:user)
+      user = create(:user, password_salt: 'salt', encrypted_password: 'salt')
       subject = build(:user, login: user.email)
       expect(subject).to validate_uniqueness_of(:login)
     end
@@ -66,7 +66,7 @@ describe User do
     end
 
     describe "when password doesn't match confirmation" do
-      before { @user = create(:user, encrypted_password: 'mismatch') }
+      before { @user = create(:user, password_salt: 'mismatch', encrypted_password: 'mismatch') }
       it { should_not be_valid }
     end
 
@@ -105,18 +105,18 @@ describe User do
 
   context 'Scopes' do
     it 'admin' do
-      subject = create(:user)
+      subject = create(:user, password_salt: 'salt', encrypted_password: 'salt')
       expect(User.admin).to include(subject)
     end
 
     it 'no_admin' do
-      subject = create(:user, is_admin: false)
+      subject = create(:user, is_admin: false, password_salt: 'salt', encrypted_password: 'salt')
       expect(User.admin).not_to include(subject)
     end
 
     it 'login_or_name_like (LOGIN)' do
-      subject = create(:user, login: 'user', first_name: 'John')
-      user = create(:user, login: 'login', first_name: 'First Name')
+      subject = create(:user, login: 'user', first_name: 'John', password_salt: 'salt', encrypted_password: 'salt')
+      user = create(:user, login: 'login', first_name: 'First Name', password_salt: 'salt', encrypted_password: 'salt')
 
       expect(User.login_or_name_like('us')).to include(subject)
       expect(User.login_or_name_like('login')).not_to include(subject)
@@ -125,12 +125,12 @@ describe User do
     end
 
     it 'actives' do
-      subject = create(:user)
+      subject = create(:user, password_salt: 'salt', encrypted_password: 'salt')
       expect(User.actives).to include(subject)
     end
 
     skip 'by_site' do
-      subject = create(:user, login: 'user', first_name: 'John')
+      subject = create(:user, login: 'user', first_name: 'John', password_salt: 'salt', encrypted_password: 'salt')
       site = build(:site)
       create(:role, site_id: site.id)
       # role_user = create(:role_user, role_id: role.id, user_id: subject.id)
@@ -147,7 +147,8 @@ describe User do
 
   context 'Self' do
     subject do
-      create(:user, login: 'login', first_name: 'John', last_name: 'Smith', email: 'john@example.com')
+      create(:user, login: 'login', first_name: 'John', last_name: 'Smith', email: 'john@example.com',
+             password_salt: 'salt', encrypted_password: 'salt')
     end
 
     it 'should return the user full name when called fullname' do

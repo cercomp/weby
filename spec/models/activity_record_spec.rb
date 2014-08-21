@@ -8,8 +8,8 @@ describe ActivityRecord do
     it 'user_or_action_like (ACTION)' do
       site = build(:site)
 
-      user1 = create(:user, login: 'user', first_name: 'John')
-      user2 = create(:user, login: 'login', first_name: 'James')
+      user1 = create(:user, login: 'user', first_name: 'John', password_salt: 'salt', encrypted_password: 'salt')
+      user2 = create(:user, login: 'login', first_name: 'James', password_salt: 'salt', encrypted_password: 'salt')
 
       subject = create(:activity_record, action: 'Create', user_id: user1.id)
       record = create(:activity_record, action: 'Destroy', user_id: user2.id)

@@ -8,7 +8,7 @@ describe Notification do
 
   context 'Scopes' do
     it 'title_or_body_like' do
-      user = create(:user, login: 'user', first_name: 'John')
+      user = create(:user, login: 'user', first_name: 'John', password_salt: 'salt', encrypted_password: 'salt')
 
       subject = create(:notification, title: 'Title', body: 'Body', user_id: user.id)
       notif = create(:notification, title: 'Notification', body: 'Content', user_id: user.id)
