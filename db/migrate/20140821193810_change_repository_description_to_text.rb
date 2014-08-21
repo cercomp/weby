@@ -6,7 +6,7 @@ class ChangeRepositoryDescriptionToText < ActiveRecord::Migration
   end
   def self.down
     change_table :repositories do |t|
-      t.change :repositories, :string
+      t.change :description, :string
     end
   end
 end
