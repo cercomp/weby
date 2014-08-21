@@ -11,6 +11,8 @@ en:
         archive:              " Archive "
         created_at:           " Created at "
         description:          " Description "
+        title:                " Title "
+        legend:               " Legend "
         site_id:              " Site id "
         updated_at:           " Updated at "
 

@@ -4,9 +4,9 @@
 <p><b><%= t(".name") %>:</b> <%= @repository.archive_file_name %> </p>
 <p><b><%= t(".size") %>:</b> <%= number_to_human_size(@repository.archive_file_size) %> </p>
 <p><b><%= t(".type") %>:</b> <%= @repository.archive_content_type %> </p>
-<p><b><%= t(".archive_description") %>:</b> <%= @repository.description %> </p>
 <p><b><%= t(".title") %>:</b> <%= @repository.title %> </p>
 <p><b><%= t(".legend") %>:</b> <%= @repository.legend %> </p>
+<p><b><%= t(".archive_description") %>:</b> <%= @repository.description %> </p>
 <p>
   <b id="toppathwrap"><%= t(".file_link") %>: </b>
   <span id="link"><%= @repository.archive.url(:o, false) %></span>
