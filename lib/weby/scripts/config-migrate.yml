@@ -1,0 +1,13 @@
+this:
+  adapter: postgresql
+  host: www2.catalao.ufg.br
+  database: this
+  username: cercompgyn
+  password: cercomp
+
+weby:
+  adapter: postgresql
+  host: localhost
+  database: weby_cac
+  username: sigest
+  password: sigest

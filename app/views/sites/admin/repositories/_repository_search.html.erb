@@ -104,7 +104,7 @@
                     <%= text_field_tag "repository[legend]", "", required: true, class: 'form-control',
                       id: "repository_legend", hint: t(".field_required") %>
                     <%= label_tag :description, t(".description") %>
-                    <%= text_field_tag "repository[description]", "", required: true, class: 'form-control',
+                    <%= text_area_tag "repository[description]", "", required: true, class: 'form-control',
                       id: "repository_description", hint: t(".field_required") %>
                     
                     <div class="clearfix"></div>
