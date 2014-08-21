@@ -1,6 +1,6 @@
 <% content_for :title, " - #{@page.title}" %>
 <article class="page-show">
-  <%= weby_file_view(@page.image, :little, '128', nil) %>
+  <%= weby_file_view(@page.image, :l, '128', nil) %>
 
   <header>
     <% if (defined?(as_component) ? as_component[:show_title] : true) %>

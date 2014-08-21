@@ -9,7 +9,7 @@
     <article>
       <span class="page_origin"><%= t(".news_from") %> <%= link_to page.owner.title, main_app.site_url(subdomain: page.owner) %></span>
       <% unless page.image.nil? %>
-        <%= weby_file_view(page.image, :little, "128", nil, {as: "link", url: link_on_title(page.owner, page), target: '_self'}) %>
+        <%= weby_file_view(page.image, :l, "128", nil, {as: "link", url: link_on_title(page.owner, page), target: '_self'}) %>
       <% end %>
       <header>
         <h2> <%= link_to page.title, link_on_title(page.owner, page) %> </h2>

@@ -1,7 +1,7 @@
 <% title ".pages" %>
 <% breadcrumb :pages_show, @page %>
 <article class="page-show">
-  <%= weby_file_view(@page.image, :little, '128', nil) %>
+  <%= weby_file_view(@page.image, :l, '128', nil) %>
 
   <header>
     <%= raw available_flags(@page) if @page.locales.many? %>
