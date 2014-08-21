@@ -16,37 +16,53 @@ end
 
 dic = {original: 'o', little: 'l', medium: 'm', mini: 'i', thumb: 't'}
 
-Component.all.each do |comp|
+Component.where(name: ['image','front_news','text','blank']).each do |comp|
   h = eval(comp.settings)
-  if h[:size]
-    h[:size] = dic[h[:size].to_s.to_sym] if h[:size].match(/(original|little|thumb|medium|mini)/)
-    comp.settings = h.to_s
-    puts comp.settings
+  case comp.name
+  when 'image'
+    if h[:size]
+      h[:size] = dic[h[:size].to_s.to_sym] if h[:size].match(/(original|little|thumb|medium|mini)/)
+      comp.settings = h.to_s
+      comp.save
+    end
+  when 'front_news'
+    if h[:image_size]
+      h[:image_size] = dic[h[:image_size].to_s.to_sym] if h[:image_size].match(/(original|little|thumb|medium|mini)/)
+      comp.settings = h.to_s
+      comp.save
+    end
+  when 'text','blank'
+    comp.settings = treat(comp, :settings)
     comp.save
   end
 end
 
+Style.all.each do |style|
+  style.css = treat(style, :css)
+  style.save
+end
+
 Sticker::Banner.all.each do |banner|
   banner.size = dic[banner.size.to_s.to_sym] if banner.size.to_s.match(/(original|little|thumb|medium|mini)/)
-  puts "tamanho: #{banner.size}"
+  #puts "tamanho: #{banner.size}"
   banner.save
 end
 
 
-#Page.all.each do |page|
-#  page.url = treat(page, :url)
-#    page.save
-#end
-#Page::I18ns.all.each do |i18n|
-#  i18n.text = treat(i18n, :text)
-#  i18n.summary = treat(i18n, :summary)
-#    i18n.save
-#end
-#Sticker::Banner.all.each do |banner|
-#  banner.url = treat(banner, :url)
-#    banner.save
-#end
-#MenuItem.all.each do |menu|
-#  menu.url = treat(menu, :url)
-#    menu.save
-#end
+Page.all.each do |page|
+  page.url = treat(page, :url)
+    page.save
+end
+Page::I18ns.all.each do |i18n|
+  i18n.text = treat(i18n, :text)
+  i18n.summary = treat(i18n, :summary)
+    i18n.save
+end
+Sticker::Banner.all.each do |banner|
+  banner.url = treat(banner, :url)
+    banner.save
+end
+MenuItem.all.each do |menu|
+  menu.url = treat(menu, :url)
+    menu.save
+end
