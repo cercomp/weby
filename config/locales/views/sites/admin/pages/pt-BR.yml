@@ -24,6 +24,7 @@ pt-BR:
           categories:           " Categorias "
           source:               " Fonte "
           size:                 " Tamanho "
+          archive_fingerprint:  " Assinatura digital do arquivo "
           related_files:        " Arquivos Relacionados "
         fronts:
           pages:                " Páginas "

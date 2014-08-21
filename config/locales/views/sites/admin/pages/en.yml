@@ -24,6 +24,7 @@ en:
           categories:           " Categories "
           source:               " Source "
           size:                 " Size "
+          archive_fingerprint:  " Archive fingerprint "
           related_files:        " Related Files "
         fronts:
           pages:                " Pages "

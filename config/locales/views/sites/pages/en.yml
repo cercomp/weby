@@ -18,6 +18,7 @@ en:
         updated_at:    " Updated at "
         related_files: " Related files "
         size:          " Size "
+        archive_fingerprint:  " Archive fingerprint "
       list:
         read_more:     " Read more "
         no_pages:      " No pages were found "
