@@ -2,7 +2,7 @@
 <% content_for :javascripts, javascript_include_tag('image_size_picker') %>
 <% content_for :stylesheets, stylesheet_link_tag('image_size_picker') %>
 <div class="image-size-picker">
-  <% repo_styles = Repository.attachment_definitions[:archive][:styles].keep_if{|k,v|[:mini,:little,:medium,:original].include?(k)  } %>
+  <% repo_styles = Repository.attachment_definitions[:archive][:styles].keep_if{|k,v|[:i,:l,:m,:o].include?(k)  } %>
   <% unless repo_styles.nil? %>
     <% styles = repo_styles.merge({nil => t("custom")}) %>
     <%= f.input :size,

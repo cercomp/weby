@@ -11,10 +11,17 @@ class Sites::Admin::RepositoriesController < ApplicationController
     params[:mime_type].try(:delete, '')
     params[:direction] ||= 'desc'
 
-    @repositories = current_site.repositories.
+    if params[:global]
+      @repositories = Repository.where.not(site_id: current_site.id).
       description_or_filename(params[:search]).
       order(sort_column + ' ' + sort_direction).
       page(params[:page]).per(per_page)
+    else
+      @repositories = current_site.repositories.
+      description_or_filename(params[:search]).
+      order(sort_column + ' ' + sort_direction).
+      page(params[:page]).per(per_page)
+    end
 
     @repositories = @repositories.content_file(params[:mime_type]) if params[:mime_type]
 
@@ -111,7 +118,15 @@ class Sites::Admin::RepositoriesController < ApplicationController
       flash[:error] = @repository.errors.full_messages.join(', ')
     end
 
-    redirect_to main_app.site_admin_repositories_path
+    @repositories = current_site.repositories.trashed.
+    order("#{params[:sort]} #{sort_direction}").
+    page(params[:page]).per(per_page)
+
+    if @repository.persisted?
+      redirect_to main_app.site_admin_repositories_path
+    else
+      redirect_to main_app.recycle_bin_site_admin_repositories_path
+    end
   end
 
   def recover
@@ -140,6 +155,6 @@ class Sites::Admin::RepositoriesController < ApplicationController
   end
 
   def repository_params
-    params.require(:repository).permit(:description, :site_id, :archive, :x, :y, :w, :h)
+    params.require(:repository).permit(:description, :site_id, :archive, :x, :y, :w, :h, :title, :legend)
   end
 end

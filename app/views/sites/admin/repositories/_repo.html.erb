@@ -2,7 +2,7 @@
 <% if repository_id = obj.send(field.to_s) %>
 	<% #TODO: Após adicionar os relacionamentos de chave estrangeira no banco e nos modelos do rails remover checagem abaixo %>
 	<% if Repository.where(id: repository_id).exists? %>
-		<% selected_image =  weby_file_view(Repository.find(repository_id), :mini, "64", "64", as: 'image',id: "img_#{object_name}_#{field}_#{repository_id}") %>
+		<% selected_image =  weby_file_view(Repository.find(repository_id), :i, "64", "64", as: 'image',id: "img_#{object_name}_#{field}_#{repository_id}") %>
     <% selected_image << raw(radio_button_tag("#{object_name}[#{field}]",
                                               repository_id, true,
                                               id: "#{object_name}_#{field}_#{repository_id}" )) %>
@@ -24,7 +24,7 @@
       :collection_wrapper_tag => "div class='radio-group-images'",
       :as => :radio_buttons,
       :label_method => lambda { |context|
-        weby_file_view(context, :mini, "64", "64", as: 'image') 
+        weby_file_view(context, :i, "64", "64", as: 'image')
       },
       :value_method => 'id',
       :paginate => "#{paginate collection, :remote => true}" %>   

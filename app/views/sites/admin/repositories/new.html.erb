@@ -6,6 +6,9 @@
 
   <%= f.input :archive, as: :file, label: t('.add_archives'), input_html: {multiple: true} %>
   <div class="form-group string">
+    <p class="text-warning col-md-12">
+      <%= t(".repository_alert") %>
+    </p>
     <p class="help-block col-md-6 col-md-offset-3">
       <%= t(".max_file_size", param: current_settings.max_file_size) %>
     </p>
@@ -15,7 +18,9 @@
   <div id="upload-preview">
     <div class="well repo-template closeable" style="display: none;">
       <button type="button" class="close" data-dismiss="repo-item" tabindex="-1" title="<%= t("destroy") %>">&times;</button>
-        <%= f.input :archive, as: :string, input_html: {disabled: true, value: ""} %>
+        <%= f.input :archive, as: :string, input_html: {disabled: true, value: ""} %>        
+        <%= f.input :title %>
+        <%= f.input :legend %>
         <%= f.input :description %>
         <div class="form-group string required">
           <p class="help-block col-md-6 col-md-offset-3">
@@ -27,7 +32,6 @@
         <div class="status"></div>
     </div>
   </div>
-
   <div class="form-actions">
     <%= f.button :submit, class: 'btn btn-primary send-files', data: {disable_with: t("please_wait")} %>
     <%= link_to t("back"), :back, class: "btn btn-default" %>

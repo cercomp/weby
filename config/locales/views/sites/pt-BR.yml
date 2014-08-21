@@ -14,12 +14,16 @@ pt-BR:
     list:
       none_page: "Nenhuma notícia"
       sites: "SITES"
-      description: "Descrição"
+      description:         " Descrição "
+      legend:              " Legenda "
+      title:               " Titulo "
       name: "Nome"
       no-site-found: "Nenhum site encontrado."
     my_list:
       my-sites: "Meus Sites"
-      description: "Descrição"
+      description:         " Descrição "
+      legend:              " Legenda "
+      title:               " Titulo "
       name: "Nome"
       no-site-found: "Sem papel em nenhum site."
       dashboard: " Administração "

@@ -19,10 +19,10 @@
     <div class="repository-results">
       <ul id="target-search-results">
         <% @repositories.each do |repository| %>
-          <li data-title="<%= repository.description %>" data-url="<%= repository.archive.url(:original, false) %>" class="cursor highlight target-item">
+          <li data-title="<%= repository.description %>" data-url="<%= repository.archive.url(:o, false) %>" class="cursor highlight target-item">
             <label>
               <figure>
-                <%=  weby_file_view(repository, :mini, 64, 64, as: 'image') %>
+                <%=  weby_file_view(repository, :i, 64, 64, as: 'image') %>
                 <figcaption><%=repository.description%></figcaption>
               </figure>
             </label>

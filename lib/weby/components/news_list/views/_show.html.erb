@@ -10,7 +10,7 @@
       <tr>
         <td>
           <% if component.show_image && page.image %>
-            <%= weby_file_view(page.image, :thumb, component.image_size, nil, {as: "link", url: link_on_title(current_site, page), style: "float: right; margin-left: 7px;", target: (component.new_tab && page.url.present? ? '_blank' : '_self')}) %>
+            <%= weby_file_view(page.image, :t, component.image_size, nil, {as: "link", url: link_on_title(current_site, page), style: "float: right; margin-left: 7px;", target: (component.new_tab && page.url.present? ? '_blank' : '_self')}) %>
           <% end %>
           <p class="title"><%= link_to page.title, link_on_title(current_site, page), target: (component.new_tab && page.url.present? ? '_blank' : '_self') %></p>
           <% if component.show_date %><p class="news-date"><%= l(page.created_at, format: component.date_format) %></p><% end %>

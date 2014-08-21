@@ -3,7 +3,7 @@
 <% if @pages.each do |page| %>
   <div class="item-search-result">
     <% if page.image %>
-      <%= weby_file_view(page.image, :thumb, 64, nil, {as: "link", url: site_page_path(page), style: "float: right; margin-left: 7px;"}) %>
+      <%= weby_file_view(page.image, :t, 64, nil, {as: "link", url: site_page_path(page), style: "float: right; margin-left: 7px;"}) %>
     <% end %>
     <header><%= link_to page.title, link_on_title(current_site, page) %></header>
     <div class="page-details">

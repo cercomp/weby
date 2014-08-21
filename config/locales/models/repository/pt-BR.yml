@@ -11,5 +11,7 @@ pt-BR:
         archive:              " Arquivo "
         created_at:           " Criado em "
         description:          " Descrição "
+        title:                " Título "
+        legend:               " Legenda "
         site_id:              " Id do site "
         updated_at:           " Atualizado em "

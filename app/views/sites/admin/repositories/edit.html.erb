@@ -5,11 +5,13 @@
 
   <div class="row">
     <div class="col-md-3 img-edit-preview">
-      <%= weby_file_view(@repository, :original, nil, nil, target: '_blank') %>
+      <%= weby_file_view(@repository, :o, nil, nil, target: '_blank') %>
     </div>
     <div class="col-md-7">
-      <%= f.input :archive, :as => :file %>
-      <%= f.input :description,  :hint => (t(".field_required") + " " + t(".accessibility_needs"))%>
+      <%#= f.input :archive, :as => :file %>      
+      <%= f.input :title,  :hint =>  t(".accessibility_needs") %>
+      <%= f.input :legend,  :hint => t(".accessibility_needs") %>
+      <%= f.input :description,  :hint => (t(".field_required") + " " + t(".accessibility_needs")) %>
       <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
     </div>
   </div>
