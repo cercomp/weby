@@ -21,6 +21,7 @@ pt-BR:
         updated_at:    " Atualizado em "
         related_files: " Arquivos relacionados "
         size:          " Tamanho "
+        archive_fingerprint:  " Assinatura digital do arquivo "
       list:
         read_more:     " Leia mais "
         no_pages:      " Nenhuma página encontrada "

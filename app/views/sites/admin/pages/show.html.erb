@@ -60,6 +60,7 @@
         <tr>
           <th><%= t(".related_files") %></th>
           <th><%= t(".size") %></th>
+          <th><%= t(".archive_fingerprint") %></th>
         </tr>
       </thead>
       <tbody>
@@ -67,6 +68,7 @@
         <tr>
           <td><%= link_to file.description, file.archive.url %></td>
           <td><%= file.archive_file_size.to_i/1024 %> Kb</td>
+          <td><%= file.archive_fingerprint %></td>
         </tr>
         <% end %>
       </tbody>

@@ -38,7 +38,7 @@ $(function () {
         $(this).find('.status').html('<img src="/assets/loading-bar.gif"/>').addClass('loading');
         var $data = $(this).data('dataobj');
         //console.log($data);
-        $data.formData = {"repository[site_id]" : $('#repository_site_id').val(), "repository[description]" : $(this).find('#repository_description').val()};
+        $data.formData = {"repository[site_id]" : $('#repository_site_id').val(), "repository[description]" : $(this).find('#repository_description').val(), "repository[title]" : $(this).find('#repository_title').val(), "repository[legend]" : $(this).find('#repository_legend').val()};
         $data.submit();
       });
       switch_disable_text(true);
