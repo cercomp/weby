@@ -22,6 +22,7 @@ pt-BR:
           description:         " Descrição "
           title:               " Título "
           legend:              " Legenda "
+          archive_fingerprint: " Assinatura digital do arquivo "
           file_link:           " Link para arquivo "
           list_all:            " Listar todos "
           show:                " Mostrar "
