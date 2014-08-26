@@ -21,7 +21,7 @@ class Sites::Admin::BackupsController < ApplicationController
     h[:include][:repositories] = {}  if params[:repositories]
     h[:include][:menus] = { include: :root_menu_items } if params[:menus]
     h[:include][:styles] = {}  if params[:styles]
-    h[:include][:banners] = {}  if params[:banners]
+#    h[:include][:banners] = {}  if params[:banners]
     h[:include][:root_components] = {}  if params[:root_components]
     h[:include][:extensions] = {}  if params[:extensions]
     #    h[:include][:groupings] = {}  if params[:groupings]
@@ -50,7 +50,7 @@ class Sites::Admin::BackupsController < ApplicationController
     end
 
     zip_dir = Rails.root.join(dir, "#{s.name}.zip")
-    repository = "public/uploads/#{s.id}"
+    repository = "public/up/#{s.id}"
     Zip::ZipFile.open(zip_dir, Zip::ZipFile::CREATE)do |zipfile|
       Find.find(repository) do |path|
         Find.prune if File.basename(path)[0] == '.'
