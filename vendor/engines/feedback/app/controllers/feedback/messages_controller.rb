@@ -14,6 +14,7 @@ module Feedback
     def create
       @message = Message.new(message_params)
       @message.site = current_site
+      @extension = current_site.extensions.find_by(name: 'feedback')
 
       if @message.save
         if (@groups.length == 0)
