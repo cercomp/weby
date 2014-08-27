@@ -19,6 +19,6 @@ class Admin::ActivityRecordsController < ApplicationController
     @activity_record.destroy
     flash[:success] = t('destroyed_record')
 
-    redirect_to :back
+    redirect_to admin_activity_records_path
   end
 end
