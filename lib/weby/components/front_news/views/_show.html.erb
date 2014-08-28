@@ -38,8 +38,8 @@
         </header>
         <summary>
           <% if component.max_char.present? %>
-            <%= raw(page.summary[0..component.max_char.to_i] +
-                    (page.summary.size > component.max_char.to_i ? "..." : "")) %>
+            <%= raw(page.summary.to_s[0..component.max_char.to_i] +
+                    (page.summary.to_s.size > component.max_char.to_i ? "..." : "")) %>
           <% else  %>
             <%= raw page.summary %>
           <% end %>

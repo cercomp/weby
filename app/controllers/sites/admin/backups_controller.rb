@@ -81,7 +81,7 @@ class Sites::Admin::BackupsController < ApplicationController
     end
     if attrs
       #    current_site.roles.import(attrs['site']['roles']) if attrs['site']['roles']
-      #    current_site.repositories.import(attrs['site']['repositories']) if attrs['site']['repositories']
+          current_site.repositories.import(attrs['site']['repositories']) if attrs['site']['repositories']
       #    current_site.banners.import(attrs['site']['banners'], author: current_user.id) if attrs['site']['banners']
       current_site.pages.import(attrs['site']['pages'], author: current_user.id) if attrs['site']['pages']
       current_site.menus.import(attrs['site']['menus']) if attrs['site']['menus']
