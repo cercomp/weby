@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140821193810) do
+ActiveRecord::Schema.define(version: 20140826204938) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,8 +27,8 @@ ActiveRecord::Schema.define(version: 20140821193810) do
     t.string   "note"
     t.integer  "loggeable_id"
     t.string   "loggeable_type"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "activity_records", ["site_id"], name: "index_activity_records_on_site_id", using: :btree
@@ -37,21 +37,21 @@ ActiveRecord::Schema.define(version: 20140821193810) do
   create_table "extension_sites", force: true do |t|
     t.integer  "site_id"
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "extension_sites", ["site_id"], name: "index_extension_sites_on_site_id", using: :btree
 
   create_table "feedback_groups", force: true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.integer  "site_id"
     t.text     "emails"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "feedback_groups", ["site_id"], name: "index_groups_on_site_id", using: :btree
+  add_index "feedback_groups", ["site_id"], name: "index_feedback_groups_on_site_id", using: :btree
 
   create_table "feedback_messages", force: true do |t|
     t.string   "name"
@@ -63,21 +63,20 @@ ActiveRecord::Schema.define(version: 20140821193810) do
     t.datetime "updated_at"
   end
 
-  add_index "feedback_messages", ["site_id"], name: "index_feedbacks_on_site_id", using: :btree
+  add_index "feedback_messages", ["site_id"], name: "index_feedback_messages_on_site_id", using: :btree
 
   create_table "feedback_messages_groups", id: false, force: true do |t|
-    t.integer "message_id", null: false
-    t.integer "group_id",   null: false
+    t.integer "message_id"
+    t.integer "group_id"
   end
 
-  add_index "feedback_messages_groups", ["group_id"], name: "index_feedbacks_groups_on_group_id", using: :btree
-  add_index "feedback_messages_groups", ["message_id", "group_id"], name: "index_feedbacks_groups_on_feedback_id_and_group_id", unique: true, using: :btree
-  add_index "feedback_messages_groups", ["message_id"], name: "index_feedbacks_groups_on_feedback_id", using: :btree
+  add_index "feedback_messages_groups", ["group_id"], name: "index_feedback_messages_groups_on_group_id", using: :btree
+  add_index "feedback_messages_groups", ["message_id"], name: "index_feedback_messages_groups_on_message_id", using: :btree
 
   create_table "groupings", force: true do |t|
     t.string   "name"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.boolean  "hidden",     default: false
   end
 
@@ -90,11 +89,10 @@ ActiveRecord::Schema.define(version: 20140821193810) do
   add_index "groupings_sites", ["site_id"], name: "index_groupings_sites_on_site_id", using: :btree
 
   create_table "groups_users", id: false, force: true do |t|
-    t.integer "group_id", null: false
-    t.integer "user_id",  null: false
+    t.integer "group_id"
+    t.integer "user_id"
   end
 
-  add_index "groups_users", ["group_id", "user_id"], name: "index_groups_users_on_group_id_and_user_id", unique: true, using: :btree
   add_index "groups_users", ["group_id"], name: "index_groups_users_on_group_id", using: :btree
   add_index "groups_users", ["user_id"], name: "index_groups_users_on_user_id", using: :btree
 
@@ -106,38 +104,36 @@ ActiveRecord::Schema.define(version: 20140821193810) do
   end
 
   create_table "locales_sites", id: false, force: true do |t|
-    t.integer "locale_id", null: false
-    t.integer "site_id",   null: false
+    t.integer "locale_id"
+    t.integer "site_id"
   end
 
-  add_index "locales_sites", ["locale_id", "site_id"], name: "index_locales_sites_on_locale_id_and_site_id", unique: true, using: :btree
   add_index "locales_sites", ["locale_id"], name: "index_locales_sites_on_locale_id", using: :btree
   add_index "locales_sites", ["site_id"], name: "index_locales_sites_on_site_id", using: :btree
 
   create_table "menu_item_i18ns", force: true do |t|
-    t.integer  "menu_item_id", null: false
-    t.integer  "locale_id",    null: false
-    t.string   "title",        null: false
+    t.integer  "menu_item_id"
+    t.integer  "locale_id"
+    t.string   "title"
     t.text     "description"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "menu_item_i18ns", ["locale_id"], name: "index_menu_item_i18ns_on_locale_id", using: :btree
-  add_index "menu_item_i18ns", ["menu_item_id", "locale_id"], name: "menu_item_i18ns_menu_item_id_key", unique: true, using: :btree
   add_index "menu_item_i18ns", ["menu_item_id"], name: "index_menu_item_i18ns_on_menu_item_id", using: :btree
 
   create_table "menu_items", force: true do |t|
-    t.integer  "menu_id",                     null: false
+    t.integer  "menu_id"
     t.boolean  "separator",   default: false
     t.integer  "target_id"
     t.string   "target_type"
     t.string   "url"
     t.integer  "parent_id"
-    t.integer  "position",    default: 0,     null: false
+    t.integer  "position",    default: 0
     t.boolean  "new_tab",     default: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "html_class"
     t.boolean  "publish",     default: true
   end
@@ -147,10 +143,10 @@ ActiveRecord::Schema.define(version: 20140821193810) do
   add_index "menu_items", ["target_id"], name: "index_menu_items_on_target_id", using: :btree
 
   create_table "menus", force: true do |t|
-    t.integer  "site_id",    null: false
+    t.integer  "site_id"
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "menus", ["site_id"], name: "index_menus_on_site_id", using: :btree
@@ -159,8 +155,8 @@ ActiveRecord::Schema.define(version: 20140821193810) do
     t.string   "title"
     t.text     "body"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
@@ -168,10 +164,10 @@ ActiveRecord::Schema.define(version: 20140821193810) do
   create_table "old_menus", force: true do |t|
     t.string   "title"
     t.string   "link"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.integer  "page_id"
     t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "old_menus", ["page_id"], name: "index_old_menus_on_page_id", using: :btree
@@ -204,15 +200,15 @@ ActiveRecord::Schema.define(version: 20140821193810) do
     t.string   "event_email"
     t.string   "subject"
     t.string   "align"
-    t.string   "type",                          null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "type"
     t.integer  "repository_id"
     t.string   "size"
     t.boolean  "publish",       default: false
     t.boolean  "front",         default: false
     t.integer  "position"
     t.integer  "view_count",    default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.datetime "deleted_at"
   end
 
@@ -220,7 +216,7 @@ ActiveRecord::Schema.define(version: 20140821193810) do
   add_index "pages", ["repository_id"], name: "index_pages_on_repository_id", using: :btree
   add_index "pages", ["site_id"], name: "index_pages_on_site_id", using: :btree
 
-  create_table "pages_repositories", id: false, force: true do |t|
+  create_table "pages_repositories", force: true do |t|
     t.integer "page_id"
     t.integer "repository_id"
   end
@@ -230,13 +226,13 @@ ActiveRecord::Schema.define(version: 20140821193810) do
 
   create_table "repositories", force: true do |t|
     t.integer  "site_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "archive_file_name"
     t.string   "archive_content_type"
     t.integer  "archive_file_size"
     t.datetime "archive_updated_at"
     t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.datetime "deleted_at"
     t.string   "archive_fingerprint"
     t.string   "title"
@@ -247,20 +243,19 @@ ActiveRecord::Schema.define(version: 20140821193810) do
 
   create_table "roles", force: true do |t|
     t.string   "name"
+    t.integer  "site_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "site_id"
     t.text     "permissions"
   end
 
   add_index "roles", ["site_id"], name: "index_roles_on_site_id", using: :btree
 
   create_table "roles_users", id: false, force: true do |t|
-    t.integer "role_id", null: false
-    t.integer "user_id", null: false
+    t.integer "role_id"
+    t.integer "user_id"
   end
 
-  add_index "roles_users", ["role_id", "user_id"], name: "index_roles_users_on_role_id_and_user_id", unique: true, using: :btree
   add_index "roles_users", ["role_id"], name: "index_roles_users_on_role_id", using: :btree
   add_index "roles_users", ["user_id"], name: "index_roles_users_on_user_id", using: :btree
 
@@ -277,36 +272,20 @@ ActiveRecord::Schema.define(version: 20140821193810) do
     t.string   "place_holder"
     t.text     "settings"
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.integer  "position"
     t.boolean  "publish",      default: true
     t.integer  "visibility",   default: 0
     t.string   "alias"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "site_components", ["site_id"], name: "index_site_components_on_site_id", using: :btree
 
-  create_table "site_components_bkp", force: true do |t|
-    t.integer  "site_id"
-    t.string   "place_holder"
-    t.text     "settings"
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "position"
-    t.boolean  "publish"
-  end
-
   create_table "sites", force: true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "url"
     t.text     "description"
-    t.integer  "top_banner_id"
-    t.integer  "top_banner_width"
-    t.integer  "top_banner_height"
     t.integer  "body_width"
     t.text     "footer"
     t.string   "theme"
@@ -317,7 +296,13 @@ ActiveRecord::Schema.define(version: 20140821193810) do
     t.string   "title",             limit: 50
     t.integer  "parent_id"
     t.integer  "view_count",                   default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "top_banner_id"
+    t.integer  "top_banner_width"
+    t.integer  "top_banner_height"
     t.string   "domain"
+    t.text     "head_html"
   end
 
   add_index "sites", ["parent_id"], name: "index_sites_on_parent_id", using: :btree
@@ -326,11 +311,11 @@ ActiveRecord::Schema.define(version: 20140821193810) do
   create_table "sites_menus", force: true do |t|
     t.integer  "site_id"
     t.integer  "menu_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.integer  "parent_id",  default: 0
     t.string   "category"
     t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "sites_menus", ["menu_id"], name: "index_sites_menus_on_menu_id", using: :btree
@@ -341,7 +326,6 @@ ActiveRecord::Schema.define(version: 20140821193810) do
     t.integer  "page_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "position"
   end
 
   add_index "sites_pages", ["page_id"], name: "index_sites_pages_on_page_id", using: :btree
@@ -358,8 +342,6 @@ ActiveRecord::Schema.define(version: 20140821193810) do
     t.boolean  "hide",          default: false
     t.integer  "repository_id"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "size"
     t.boolean  "publish",       default: false
     t.integer  "site_id"
@@ -367,25 +349,27 @@ ActiveRecord::Schema.define(version: 20140821193810) do
     t.integer  "page_id"
     t.boolean  "new_tab",       default: false
     t.integer  "click_count",   default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "sticker_banners", ["page_id"], name: "index_banners_on_page_id", using: :btree
-  add_index "sticker_banners", ["repository_id"], name: "index_banners_on_repository_id", using: :btree
-  add_index "sticker_banners", ["site_id"], name: "index_banners_on_site_id", using: :btree
-  add_index "sticker_banners", ["user_id"], name: "index_banners_on_user_id", using: :btree
+  add_index "sticker_banners", ["page_id"], name: "index_sticker_banners_on_page_id", using: :btree
+  add_index "sticker_banners", ["repository_id"], name: "index_sticker_banners_on_repository_id", using: :btree
+  add_index "sticker_banners", ["site_id"], name: "index_sticker_banners_on_site_id", using: :btree
+  add_index "sticker_banners", ["user_id"], name: "index_sticker_banners_on_user_id", using: :btree
 
   create_table "styles", force: true do |t|
     t.string   "name"
     t.text     "css"
+    t.boolean  "publish",    default: true
+    t.integer  "site_id"
+    t.integer  "position",   default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "publish",    default: true
-    t.integer  "site_id",                   null: false
-    t.integer  "position",   default: 0
     t.integer  "style_id"
   end
 
-  add_index "styles", ["site_id"], name: "index_styles_on_owner_id", using: :btree
+  add_index "styles", ["site_id"], name: "index_styles_on_site_id", using: :btree
   add_index "styles", ["style_id"], name: "index_styles_on_style_id", using: :btree
 
   create_table "taggings", force: true do |t|
@@ -394,7 +378,7 @@ ActiveRecord::Schema.define(version: 20140821193810) do
     t.string   "taggable_type"
     t.integer  "tagger_id"
     t.string   "tagger_type"
-    t.string   "context"
+    t.string   "context",       limit: 128
     t.datetime "created_at"
   end
 
@@ -412,19 +396,19 @@ ActiveRecord::Schema.define(version: 20140821193810) do
     t.string   "login_ip"
     t.string   "browser"
     t.string   "platform"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "user_login_histories", ["user_id"], name: "index_user_login_histories_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "login",                                  null: false
-    t.string   "email",                                  null: false
-    t.string   "encrypted_password",                     null: false
-    t.string   "password_salt",                          null: false
-    t.integer  "sign_in_count",          default: 0,     null: false
-    t.integer  "failed_attempts",        default: 0,     null: false
+    t.string   "login"
+    t.string   "email"
+    t.string   "encrypted_password"
+    t.string   "password_salt"
+    t.integer  "sign_in_count",          default: 0
+    t.integer  "failed_attempts",        default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -434,9 +418,9 @@ ActiveRecord::Schema.define(version: 20140821193810) do
     t.string   "last_name"
     t.string   "phone"
     t.string   "mobile"
+    t.integer  "locale_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "locale_id"
     t.string   "unread_notifications"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -461,17 +445,17 @@ ActiveRecord::Schema.define(version: 20140821193810) do
     t.string   "viewable_type"
     t.integer  "user_id"
     t.string   "request_path"
-    t.text     "user_agent"
+    t.string   "user_agent"
     t.string   "session_hash"
     t.string   "ip_address"
-    t.text     "referer"
-    t.text     "query_string"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.string   "referer"
+    t.string   "query_string"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "views", ["site_id"], name: "index_views_on_site_id", using: :btree
-  add_index "views", ["viewable_id"], name: "index_views_on_viewable_id", using: :btree
+  add_index "views", ["user_id"], name: "index_views_on_user_id", using: :btree
 
   create_table "weby_settings", force: true do |t|
     t.string   "var",                   null: false
@@ -505,17 +489,13 @@ ActiveRecord::Schema.define(version: 20140821193810) do
   add_foreign_key "locales_sites", "locales", name: "locales_sites_locale_id_fk"
   add_foreign_key "locales_sites", "sites", name: "locales_sites_site_id_fk"
 
-  add_foreign_key "menu_item_i18ns", "locales", name: "locale_menu_item_i18ns", dependent: :restrict
   add_foreign_key "menu_item_i18ns", "locales", name: "menu_item_i18ns_locale_id_fk"
   add_foreign_key "menu_item_i18ns", "menu_items", name: "menu_item_i18ns_menu_item_id_fk"
-  add_foreign_key "menu_item_i18ns", "menu_items", name: "menu_item_menu_item_i18ns", dependent: :delete
 
   add_foreign_key "menu_items", "menu_items", name: "menu_items_parent_id_fk", column: "parent_id"
   add_foreign_key "menu_items", "menus", name: "menu_items_menu_id_fk"
-  add_foreign_key "menu_items", "menus", name: "menu_menu_items", dependent: :delete
 
   add_foreign_key "menus", "sites", name: "menus_site_id_fk"
-  add_foreign_key "menus", "sites", name: "site_menus", dependent: :delete
 
   add_foreign_key "notifications", "users", name: "notifications_user_id_fk"
 
@@ -551,7 +531,6 @@ ActiveRecord::Schema.define(version: 20140821193810) do
   add_foreign_key "sticker_banners", "sites", name: "banners_site_id_fk"
   add_foreign_key "sticker_banners", "users", name: "banners_user_id_fk"
 
-  add_foreign_key "styles", "sites", name: "fk_owner", dependent: :delete
   add_foreign_key "styles", "sites", name: "styles_owner_id_fk"
   add_foreign_key "styles", "styles", name: "styles_style_id_fk"
 

@@ -31,6 +31,6 @@ pt-BR:
           empty_placeholder:  " Nenhum componente neste local "
           content:            " Conteúdo "
           leftout_components: " Componentes fora do layout "
+          settings:           " Configurações"
         new:
           components:         " Componentes "
-

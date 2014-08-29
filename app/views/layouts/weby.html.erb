@@ -16,6 +16,7 @@
     <%= yield :stylesheets %>
     <%= yield :components_stylesheets %>
     <%= render 'sites/shared/loadStyles' %>
+    <%= current_site.try(:head_html).try(:html_safe) %>
   </head>
   <body>
     <%= render_webybar %>

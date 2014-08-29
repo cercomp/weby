@@ -104,6 +104,12 @@ Rails.application.routes.draw do
           post :change_roles
         end
       end
+      resources :layouts, only: [] do
+        collection do
+          get :settings
+          patch :settings, action: "update_settings"
+        end
+      end
     end
   end
 

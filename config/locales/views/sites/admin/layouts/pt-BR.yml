@@ -1,0 +1,6 @@
+pt-BR:
+  sites:
+    admin:
+      layouts:
+        settings:
+          head_html_hint: 'Este html será inserido entre as tags <head> e </head> no site.'
