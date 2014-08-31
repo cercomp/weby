@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 class Sites::Admin::LayoutsController < ApplicationController
   respond_to :html
 
@@ -8,7 +6,7 @@ class Sites::Admin::LayoutsController < ApplicationController
 
   def update_settings
     if current_site.update(site_params)
-      flash[:success] = "Configurações atualizadas com sucesso."
+      flash[:success] = t("successfully_updated")
     end
 
     respond_with current_site, location: settings_site_admin_layouts_path
