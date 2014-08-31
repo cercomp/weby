@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe ProfilesController do
   pending "GET #show" do

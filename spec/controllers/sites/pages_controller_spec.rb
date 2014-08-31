@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Sites::PagesController do
   pending "GET #index" do

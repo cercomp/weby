@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Admin::SettingsController do
   pending "GET #index" do

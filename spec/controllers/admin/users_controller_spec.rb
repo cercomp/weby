@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Admin::UsersController do
   let(:first_user) { FactoryGirl.create(:user, is_admin: true) }
@@ -91,7 +91,7 @@ describe Admin::UsersController do
   end
 
   describe "DELETE #destroy" do
-    before { delete :update, :id => _user.id }
+    before { delete :destroy, :id => _user.id }
 
     pending "will redirect to admin_users_path" do
       expect(response).to redirect_to admin_users_path

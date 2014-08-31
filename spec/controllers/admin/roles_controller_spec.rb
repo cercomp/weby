@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Admin::RolesController do
   let(:user) { FactoryGirl.create(:user, is_admin: true) }
@@ -61,7 +61,7 @@ describe Admin::RolesController do
   end
 
   describe "DELETE #destroy" do
-    before { delete :update, :id => user_role.id }
+    before { delete :destroy, :id => user_role.id }
 
     it "will redirect to admin_roles_path" do
       expect(response).to redirect_to admin_roles_path

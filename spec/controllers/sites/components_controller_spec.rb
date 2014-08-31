@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Sites::ComponentsController do
   pending "GET #show" do

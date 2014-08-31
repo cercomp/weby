@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Sites::Admin::StylesController do
   pending "GET #index" do

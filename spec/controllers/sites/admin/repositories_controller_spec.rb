@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Sites::Admin::RepositoriesController do
   let(:user) { FactoryGirl.create(:user, is_admin: true) }

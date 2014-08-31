@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Admin::GroupingsController do
   let(:user) { FactoryGirl.create(:user, is_admin: true) }
@@ -45,7 +45,7 @@ describe Admin::GroupingsController do
 
   describe "POST #create" do
     context "when valid" do
-      before { post :create, :post => { :name => "Name" } }
+      before { post :create, grouping: { :name => "Name" } }
 
       it "will redirect to groupings path" do
         expect(response).to redirect_to admin_groupings_path
@@ -55,7 +55,7 @@ describe Admin::GroupingsController do
 
   describe "PUT #update" do
     context "when success" do
-      before { put :update, :post => { :name => "New Name" }, :id => group.id }
+      before { put :update, grouping: { :name => "New Name" }, :id => group.id }
 
       it "will redirect to groupings path" do
         expect(response).to redirect_to admin_groupings_path
@@ -64,7 +64,7 @@ describe Admin::GroupingsController do
   end
 
   describe "DELETE #destroy" do
-    before { delete :update, :id => group.id }
+    before { delete :destroy, :id => group.id }
 
     it "will redirect to groupings path" do
       expect(response).to redirect_to admin_groupings_path

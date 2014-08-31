@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Sites::Admin::PagesController do
   let(:user) { FactoryGirl.create(:user, is_admin: true) }
@@ -69,7 +69,7 @@ describe Sites::Admin::PagesController do
   end
 
   describe "DELETE #destroy" do
-    before { delete :update, :id => page.id }
+    before { delete :destroy, :id => page.id }
 
     pending "will redirect to :back" do
       request.env["HTTP_REFERER"] = "back"

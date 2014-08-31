@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Admin::NotificationsController do
   let(:user) { FactoryGirl.create(:user, is_admin: true) }
@@ -113,7 +113,7 @@ describe Admin::NotificationsController do
   end
 
   describe "DELETE #destroy" do
-    before { delete :update, :id => notifi.id }
+    before { delete :destroy, :id => notifi.id }
 
     pending "will redirect to notifications path" do
       expect(response).to redirect_to admin_notifications_path

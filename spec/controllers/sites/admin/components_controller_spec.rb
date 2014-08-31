@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Sites::Admin::ComponentsController do
   let(:user) { FactoryGirl.create(:user, is_admin: true) }
@@ -83,7 +83,7 @@ describe Sites::Admin::ComponentsController do
   end
 
   describe "DELETE #destroy" do
-    before { delete :update, :id => first_component.id }
+    before { delete :destroy, :id => first_component.id }
 
     pending "will redirect to spendinge_admin_components_path" do
       expect(response).to redirect_to(sites_admin_components_path)
