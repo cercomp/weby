@@ -61,10 +61,13 @@ describe Admin::RolesController do
   end
 
   describe "DELETE #destroy" do
-    before { delete :destroy, :id => user_role.id }
+    before(:each) {
+      request.env["HTTP_REFERER"] = "/admin/roles"
+      delete :destroy, :id => user_role.id
+    }
 
     it "will redirect to admin_roles_path" do
-      expect(response).to redirect_to admin_roles_path
+      expect(response).to redirect_to "/admin/roles"
     end
   end
 end

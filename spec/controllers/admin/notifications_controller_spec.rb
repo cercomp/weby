@@ -12,7 +12,7 @@ describe Admin::NotificationsController do
     pending "should populate an array with all notifications" do
       notifi = Notification.all
       get :index
-      expect(assigns(:notifications)).to eq([notifi])
+      expect(assigns(:notifications)).to eq(notifi)
     end
 
     it "renders the :index view" do
@@ -58,7 +58,7 @@ describe Admin::NotificationsController do
 
   describe "POST #create" do
     context "when valid" do
-      before { post :create, :post => { :title => "Title", :body => "Body" } }
+      before { post :create, post: { :title => "Title", :body => "Body" } }
 
       pending "will redirect to notification path" do
         expect(response).to redirect_to admin_notification_path(notifi)
@@ -73,7 +73,7 @@ describe Admin::NotificationsController do
     end
 
     context "when not valid" do
-      before { post :create, :post => { :title => "Title", :body => "" } }
+      before { post :create, post: { :title => "Title", :body => "" } }
 
       it "will render :new view" do
         expect(response).to render_template(:new)
@@ -87,20 +87,16 @@ describe Admin::NotificationsController do
 
   describe "PUT #update" do
     context "when success" do
-      before { put :update, :post => { :title => "Updated Body",
-                                       :body => "Updated Body" }, :id => notifi.id }
+      before { put :update, post: { :title => "Updated Body",
+                                    :body => "Updated Body" }, :id => notifi.id }
 
       it "will redirect to notification path" do
         expect(response).to redirect_to admin_notification_path(notifi)
       end
-
-      it "will set flash[:success]" do
-        expect(flash[:success]).to be_present
-      end
     end
 
     context "when not success" do
-      before { put :update, :post => { :title => "", :body => "" }, :id => notifi.id }
+      before { put :update, post: { :title => "", :body => "" }, :id => notifi.id }
 
       pending "will set flash[:error]" do
         expect(flash[:error]).to be_present
@@ -115,12 +111,8 @@ describe Admin::NotificationsController do
   describe "DELETE #destroy" do
     before { delete :destroy, :id => notifi.id }
 
-    pending "will redirect to notifications path" do
+    it "will redirect to notifications path" do
       expect(response).to redirect_to admin_notifications_path
-    end
-
-    it "will set flash[:success]" do
-      expect(flash[:success]).to be_present
     end
   end
 end

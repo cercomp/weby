@@ -54,12 +54,6 @@ describe Sites::Admin::RolesController do
 
   describe "POST #create" do
     before { post :create, :post => { :name => "Role" } }
-
-    it "" do
-    end
-
-    it "" do
-    end
   end
 
   describe "PUT #update" do
