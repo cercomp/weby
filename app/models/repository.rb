@@ -130,10 +130,13 @@ class Repository < ActiveRecord::Base
 
     attrs = attrs.dup
     attrs = attrs['repository'] if attrs.key? 'repository'
-
+    id = attrs['id']
     attrs.except!('id', 'created_at', 'updated_at', 'deleted_at', 'site_id', 'type')
 
-    self.create!(attrs)
+    repo = self.create!(attrs)
+    if repo.persisted?
+      Import::Application::CONVAR["repository"]["#{id}"] ||= "#{repo.id}"
+    end
   end
 
   private

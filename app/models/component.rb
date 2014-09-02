@@ -20,19 +20,48 @@ class Component < ActiveRecord::Base
   end
 
   def self.import(attrs, options = {})
-    return attrs.each { |attr| import attr } if attrs.is_a? Array
+    return attrs.each { |attr| import attr, options } if attrs.is_a? Array
 
     attrs = attrs.dup
     attrs = attrs['component'] if attrs.key? 'component'
-
+    id = attrs['id']
     attrs.except!('id', 'created_at', 'updated_at', 'site_id', 'type')
+
+    settings = eval(attrs['settings'])
+    if settings[:body]
+      body = settings[:body]
+      body["pt-BR"].gsub!(/\/up\/[0-9]+/) {|x| "/up/#{options[:site_id]}"} if body["pt-BR"]
+      body["en"].gsub!(/\/up\/[0-9]+/) {|x| "/up/#{options[:site_id]}"} if body["en"]
+      settings[:body] = body
+      attrs['settings'] = settings.to_s
+    end
+
+    settings = eval(attrs['settings'])
+    if settings[:repository_id]
+      repository = settings[:repository_id]
+      repository["pt-BR"] = Import::Application::CONVAR["repository"]["#{repository["pt-BR"]}"]
+      repository["en"] = Import::Application::CONVAR["repository"]["#{repository["en"]}"]
+      settings[:repository_id] = repository
+      attrs['settings'] = settings.to_s
+    end
+
+    settings = eval(attrs['settings'])
+    if settings[:photo_ids]
+      photos = settings[:photo_ids]
+      photos.each_with_index do |photo, index|
+        photos[index] = Import::Application::CONVAR["repository"]["#{photo}"]
+      end
+      settings[:photo_ids] = photos
+      attrs['settings'] = settings.to_s
+    end
+
     attrs['place_holder'] = options[:place_holder] if options[:place_holder]
     components_children = attrs.delete('children')
 
     component = self.create!(attrs)
     if component.persisted?
       components_children.each do |child|
-        import child, place_holder: component.id
+        import child, place_holder: component.id, site_id: component.site_id
       end
     end
   end

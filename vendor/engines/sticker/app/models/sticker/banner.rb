@@ -29,7 +29,7 @@ module Sticker
 
       attrs.except!('id', 'created_at', 'updated_at', 'site_id', 'type')
 
-      attrs['repository_id'] = ''
+      attrs['repository_id'] = Import::Application::CONVAR["repository"]["#{attrs['repository_id']}"]
       attrs['user_id'] = options[:author] unless User.unscoped.find_by_id(attrs['user_id'])
 
       self.create!(attrs)
