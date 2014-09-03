@@ -11,12 +11,12 @@ describe Sites::Admin::ActivityRecordsController do
   context "GET #index" do
     #before { get :index }
 
-    pending "assigns @activity_records" do
+    skip "assigns @activity_records" do
       get :index
       expect(assigns(:activity_records)).to eq([record])
     end
 
-    pending "renders the :index view" do
+    skip "renders the :index view" do
       get :index
       expect(response).to render_template(:index)
     end

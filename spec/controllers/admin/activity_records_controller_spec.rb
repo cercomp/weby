@@ -6,7 +6,7 @@ describe Admin::ActivityRecordsController do
   before { sign_in user }
 
   describe "GET #index" do
-    pending "should populate an array of activities from the site being viewed" do
+    skip "should populate an array of activities from the site being viewed" do
       record = FactoryGirl.create(:activity_record)
       get :index
       expect(assigns(:activity_records)).to eq([record])

@@ -62,7 +62,7 @@ describe Admin::UsersController do
         expect(response).to be_successful
       end
 
-      pending "will set flash[:success]" do
+      skip "will set flash[:success]" do
         expect(flash[:success]).to be_present
       end
     end
@@ -84,7 +84,7 @@ describe Admin::UsersController do
     context "when success" do
       before { put :update, :user => { :login => "updated", :email => "email@updated.com" } }
 
-      pending "will set flash[:success]" do
+      skip "will set flash[:success]" do
         expect(flash[:success]).to be_present
       end
     end
@@ -93,29 +93,26 @@ describe Admin::UsersController do
   describe "DELETE #destroy" do
     before { delete :destroy, :id => _user.id }
 
-    pending "will redirect to admin_users_path" do
+    skip "will redirect to admin_users_path" do
       expect(response).to redirect_to admin_users_path
     end
 
-    pending "will set flash[:success]" do
+    skip "will set flash[:success]" do
       expect(flash[:success]).to be_present
     end
   end
 
-  pending "change_roles" do
+  skip "change_roles" do
   end
 
-  pending "manage_roles" do
+  skip "manage_roles" do
   end
 
   ## private ##
 
-  pending "sort_column" do
+  skip "sort_column" do
   end
 
-  pending "user_params" do
-  end
-
-  pending "toggle_attribute!" do
+  skip "toggle_attribute!" do
   end
 end

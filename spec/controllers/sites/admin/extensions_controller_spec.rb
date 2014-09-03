@@ -11,11 +11,11 @@ describe Sites::Admin::ExtensionsController do
   describe "GET #index" do
     before { get :index }
 
-    pending "assigns @extensions" do
+    skip "assigns @extensions" do
       expect(assigns(:extensions)).to eq([extension])
     end
 
-    pending "will render :index view" do
+    skip "will render :index view" do
       expect(response).to render_template(:index)
     end
   end
@@ -36,11 +36,11 @@ describe Sites::Admin::ExtensionsController do
     context "when valid" do
       before { post :create, post: { :name => "Name" } }
 
-      pending "will add extensions to the site" do
+      skip "will add extensions to the site" do
         expect(site.extensions).to eq([extension])
       end
 
-      pending "redirect to spendinge_admin_extensions_path" do
+      skip "redirect to site_admin_extensions_path" do
         expect(response).to redirect_to(site_admin_extensions_path)
       end
     end
@@ -48,7 +48,7 @@ describe Sites::Admin::ExtensionsController do
     context "when invalid" do
       before { post :create, post: { :name => "" } }
 
-      pending "will render :new view" do
+      skip "will render :new view" do
         expect(response).to render_template(:new)
       end
     end
@@ -57,11 +57,11 @@ describe Sites::Admin::ExtensionsController do
   describe "DELETE #destroy" do
     before { delete :destroy, :id => extension.id }
 
-    pending "will remove extension from the spendinge" do
+    skip "will remove extension from the site" do
       expect(site.extensions).to eq([])
     end
 
-    pending "will redirect to spendinge_admin_extensions_path" do
+    skip "will redirect to site_admin_extensions_path" do
       expect(response).to redirect_to(site_admin_extensions_path)
     end
   end

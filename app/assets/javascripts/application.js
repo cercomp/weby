@@ -2,8 +2,9 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require tables
-//= require floatthead/jquery.floatThead._.js
-//= require floatthead/jquery.floatThead
+// // floatThead was commented because there is a bug when used in tabs
+// // require floatthead/jquery.floatThead._.js
+// // require floatthead/jquery.floatThead
 //= require select2
 //= require select2_locale_pt-BR
 //= require_self
@@ -41,11 +42,6 @@ function addToSelect(selectId, text){
 
 $(document).ready(function() {
  
-  //Thead floating while scrolling the page
-  $('.table').floatThead({
-    useAbsolutePositioning: false
-  }); 
-
   // Ajax indicator
   $('body').append($('<div class="panel panel-default hide" id="loading-modal" style="z-index: 66060; position: fixed;"><div class="panel-body"><img src="/assets/loading-bar.gif"/></div></div>'));
   $(document).ajaxSend(function(ev, jqXHR, options){

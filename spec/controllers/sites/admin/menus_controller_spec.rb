@@ -8,14 +8,14 @@ describe Sites::Admin::MenusController do
 
   before { sign_in user }
 
-  pending "GET #index" do
+  skip "GET #index" do
     before { get :index }
   end
 
   describe "GET #show" do
     before { get :show, :id => menu.id }
 
-    pending "will redirect to spendinge_admin_menus_path" do
+    skip "will redirect to site_admin_menus_path" do
       expect(response).to redirect_to(site_admin_menus_path(:menu => params[:id]))
     end
   end
@@ -31,11 +31,11 @@ describe Sites::Admin::MenusController do
   describe "GET #edit" do
     before { get :edit, :id => menu.id }
 
-    pending "assigns @menu" do
+    skip "assigns @menu" do
       expect(assigns(:menu)).to eq(menu)
     end
 
-    pending "renders the :edpending view" do
+    skip "renders the :edit view" do
       expect(response).to render_template(:edit)
     end
   end
@@ -44,11 +44,11 @@ describe Sites::Admin::MenusController do
     context "when valid" do
       before { post :create, :post => { :name => "Name" } }
 
-      pending "will redirect to spendinge_admin_menus_path" do
+      skip "will redirect to site_admin_menus_path" do
         expect(response).to redirect_to(site_admin_menus_path(:menu => menu.id))
       end
 
-      pending "will set flash[:success]" do
+      skip "will set flash[:success]" do
         expect(flash[:success]).to be_present
       end
     end
@@ -56,7 +56,7 @@ describe Sites::Admin::MenusController do
     context "when invalid" do
       before { post :create, :post => { :name => "Name" } }
 
-      pending "will redirect to spendinge_admin_menus_path" do
+      skip "will redirect to site_admin_menus_path" do
         expect(response).to redirect_to(site_admin_menus_path)
       end
     end
@@ -66,11 +66,11 @@ describe Sites::Admin::MenusController do
     context "when valid" do
       before { put :update, :post => { :name => "Name2" }, :id => menu.id }
 
-      pending "redirect to spendinge_admin_menus_path" do
+      skip "redirect to site_admin_menus_path" do
         expect(response).to redirect_to(site_admin_menus_path(:menu => menu.id))
       end
 
-      pending "will set flash[:success]" do
+      skip "will set flash[:success]" do
         expect(flash[:success]).to be_present
       end
     end
@@ -78,7 +78,7 @@ describe Sites::Admin::MenusController do
     context "when invalid" do
       before { put :update, :post => { :name => "" }, :id => menu.id }
 
-      pending "will redirect to spendinge_admin_menus_path" do
+      skip "will redirect to site_admin_menus_path" do
         expect(response).to redirect_to(site_admin_menus_path)
       end
     end
@@ -87,11 +87,11 @@ describe Sites::Admin::MenusController do
   describe "DELETE #destroy" do
     before { delete :destroy, :id => menu.id }
 
-    pending "will redirect to spendinge_admin_menus_path" do
+    skip "will redirect to spendinge_admin_menus_path" do
       expect(response).to redirect_to(site_admin_menus_path)
     end
 
-    pending "will set flash[:success]" do
+    skip "will set flash[:success]" do
       expect(flash[:success]).to be_present
     end
   end

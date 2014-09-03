@@ -1,44 +1,44 @@
 require "rails_helper"
 
 describe Sites::Admin::StylesController do
-  pending "GET #index" do
+  skip "GET #index" do
   end
 
-  pending "GET #show" do
+  skip "GET #show" do
   end
 
-  pending "GET #new" do
+  skip "GET #new" do
   end
 
-  pending "GET #edit" do
+  skip "GET #edit" do
   end
 
-  pending "POST #create" do
+  skip "POST #create" do
   end
 
-  pending "PUT #update" do
+  skip "PUT #update" do
   end
 
-  pending "DELETE #destroy" do
+  skip "DELETE #destroy" do
   end
 
-  pending "follow" do
+  skip "follow" do
   end
 
-  pending "unfollow" do
+  skip "unfollow" do
   end
 
-  pending "copy" do
+  skip "copy" do
   end
 
-  pending "sort" do
+  skip "sort" do
   end
 
   ## private ##
 
-  pending "resource" do
+  skip "resource" do
   end
 
-  pending "after_toggle_path" do
+  skip "after_toggle_path" do
   end
 end

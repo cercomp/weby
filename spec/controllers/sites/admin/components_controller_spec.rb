@@ -11,11 +11,11 @@ describe Sites::Admin::ComponentsController do
   describe "GET #index" do
     before { get :index }
 
-    pending "assigns @components" do
+    skip "assigns @components" do
       expect(assigns(:components)).to eq([first_component])
     end
 
-    pending "will render :index view" do
+    skip "will render :index view" do
       expect(response).to render_template(:index)
     end
   end
@@ -23,7 +23,7 @@ describe Sites::Admin::ComponentsController do
   describe "GET #show" do
     before { get :show, :id => first_component.id }
 
-    pending "will redirect to site_admin_components_path" do
+    skip "will redirect to site_admin_components_path" do
       expet(response).to redirect_to site_admin_components_path
     end
   end
@@ -39,7 +39,7 @@ describe Sites::Admin::ComponentsController do
   describe "GET #edit" do
     before { get :edit, :id => first_component.id }
 
-    pending "assigns @component" do
+    skip "assigns @component" do
       expect(assigns(:component)).to eq(first_component)
     end
   end
@@ -48,7 +48,7 @@ describe Sites::Admin::ComponentsController do
     context "when valid" do
       before { post :create, :post => { :site_id => site.id, :name => "Site" } }
 
-      pending "will redirect to spendinge_admin_components_path" do
+      skip "will redirect to spendinge_admin_components_path" do
         expect(response).to redirect_to(site_admin_components_path)
       end
     end
@@ -56,7 +56,7 @@ describe Sites::Admin::ComponentsController do
     context "when invalid" do
       before { post :create, :post => { :site_id => site.id, :name => "" } }
 
-      pending "will render thew :new view" do
+      skip "will render thew :new view" do
         expect(response).to render_template(:new)
       end
     end
@@ -68,7 +68,7 @@ describe Sites::Admin::ComponentsController do
     context "when valid" do
       before { put :update, :post => { :name => "Site2" }, :id => first_component.id }
 
-      pending "will redirect to spendinge_admin_components_path" do
+      skip "will redirect to spendinge_admin_components_path" do
         expect(response).to redirect_to(site_admin_components_path)
       end
     end
@@ -76,7 +76,7 @@ describe Sites::Admin::ComponentsController do
     context "when invalid" do
       before { put :update, :post => { :name => "" }, :id => first_component.id }
 
-      pending "will render :edpending view" do
+      skip "will render :edpending view" do
         expect(response).to render_template(:edit)
       end
     end
@@ -85,11 +85,11 @@ describe Sites::Admin::ComponentsController do
   describe "DELETE #destroy" do
     before { delete :destroy, :id => first_component.id }
 
-    pending "will redirect to spendinge_admin_components_path" do
+    skip "will redirect to spendinge_admin_components_path" do
       expect(response).to redirect_to(sites_admin_components_path)
     end
 
-    pending "will flash[:success]" do
+    skip "will flash[:success]" do
       expect(flash[:success]).to be_present
     end
   end

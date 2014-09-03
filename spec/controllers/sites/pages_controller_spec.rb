@@ -1,29 +1,29 @@
 require "rails_helper"
 
 describe Sites::PagesController do
-  pending "GET #index" do
+  skip "GET #index" do
   end
 
-  pending "GET #show" do
+  skip "GET #show" do
   end
 
-  pending "events" do
+  skip "events" do
   end
 
-  pending "news" do
+  skip "news" do
   end
 
-  pending "tags" do
+  skip "tags" do
   end
 
-  pending "get_pages" do
+  skip "get_pages" do
   end
 
-  pending "sort_column" do
+  skip "sort_column" do
   end
 
   ## private ##
 
-  pending "check_current_site" do
+  skip "check_current_site" do
   end
 end

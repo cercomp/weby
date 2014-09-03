@@ -1,4 +1,4 @@
-<style type='text/css'> 
+<style type='text/css'>
   input[type='checkbox'] {margin: 0px 0 0;}
 </style>
 <% title ".layout" %>
@@ -8,6 +8,11 @@
     <%= link_to t(".new_component"),
       new_site_admin_component_path,
       class: "btn btn-success" %>
+  <% end %>
+
+  <%# TODO mudar if para verificar se é admin do site %>
+  <% if current_user.is_admin? %>
+    <%= link_to t('.settings'), settings_site_admin_layouts_path, class: "btn btn-default" %>
   <% end %>
 </p>
 <div class="clearfix form-group"></div>
@@ -27,8 +32,8 @@
 
           <% components_per_holder.each do |comp| %>
             <% component = Weby::Components.factory(comp) %>
-            <%= list_component(component) %> 
-          
+            <%= list_component(component) %>
+
           <% end %>
           <% @components = @components - components_per_holder %>
         </ul>

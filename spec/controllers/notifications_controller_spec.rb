@@ -1,17 +1,17 @@
 require "rails_helper"
 
 describe NotificationsController do
-  pending "GET #index" do
+  skip "GET #index" do
   end
 
-  pending "GET #show" do
+  skip "GET #show" do
   end
 
-  pending "mark_as_read" do
+  skip "mark_as_read" do
   end
 
   ## private ##
 
-  pending "set_as_read" do
+  skip "set_as_read" do
   end
 end
