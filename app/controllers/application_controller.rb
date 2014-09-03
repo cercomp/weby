@@ -377,3 +377,10 @@ class ApplicationController < ActionController::Base
     end
   end
 end
+
+module Import
+  class Application < Rails::Application
+    CONVAR ||= {} # conversion variable, to translate de old repository_id to a new
+    CONVAR["repository"] = {}
+  end
+end

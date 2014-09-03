@@ -21,7 +21,6 @@ class Sites::Admin::BackupsController < ApplicationController
     h[:include][:repositories] = {}  if params[:repositories]
     h[:include][:menus] = { include: :root_menu_items } if params[:menus]
     h[:include][:styles] = {}  if params[:styles]
-#    h[:include][:banners] = {}  if params[:banners]
     h[:include][:root_components] = {}  if params[:root_components]
     h[:include][:extensions] = {}  if params[:extensions]
     #    h[:include][:groupings] = {}  if params[:groupings]
@@ -44,6 +43,7 @@ class Sites::Admin::BackupsController < ApplicationController
       File.open(Rails.root.join(dir, "#{s.name}.xml"), 'wb') do |file|
         file.write(s.to_xml(h) do |xml|
           xml.messages { Feedback::Message.where(site_id: s.id).each { |message| message.to_xml(skip_instruct: true, builder: xml)  } } if params[:messages]
+          xml.banners {Sticker::Banner.where(site_id: s.id).each { |banner| banner.to_xml(skip_instruct: true, builder: xml ) } } if params[:banners]
         end)
       end
       filename = "#{dir}/#{s.name}.xml"
@@ -70,7 +70,7 @@ class Sites::Admin::BackupsController < ApplicationController
 
   def import
     uploaded_io = params[:upload]
-
+    Import::Application::CONVAR["repository"] = {}
     case uploaded_io.content_type
     when 'text/xml'
       attrs = Hash.from_xml(uploaded_io.read)
@@ -81,13 +81,14 @@ class Sites::Admin::BackupsController < ApplicationController
     end
     if attrs
       #    current_site.roles.import(attrs['site']['roles']) if attrs['site']['roles']
-      #    current_site.repositories.import(attrs['site']['repositories']) if attrs['site']['repositories']
-      #    current_site.banners.import(attrs['site']['banners'], author: current_user.id) if attrs['site']['banners']
-      current_site.pages.import(attrs['site']['pages'], author: current_user.id) if attrs['site']['pages']
+      current_site.repositories.import(attrs['site']['repositories']) if attrs['site']['repositories']
+      Sticker::Banner.where(site_id: current_site).import(attrs['site']['banners'], author: current_user.id) if attrs['site']['banners']
+      current_site.pages.import(attrs['site']['pages'], author: current_user.id, site_id: current_site.id) if attrs['site']['pages']
       current_site.menus.import(attrs['site']['menus']) if attrs['site']['menus']
-      current_site.components.import(attrs['site']['root_components']) if attrs['site']['root_components']
+        current_site.components.import(attrs['site']['root_components'], site_id: current_site.id) if attrs['site']['root_components']
       current_site.styles.import(attrs['site']['styles']) if attrs['site']['styles']
       current_site.extensions.import(attrs['site']['extensions']) if attrs['site']['extensions']
+
     end
     #    File.open(Rails.root.join('public', "uploads/#{current_site.id}", uploaded_io.original_filename), 'wb') do |file|
     #      file.write(uploaded_io.read)
