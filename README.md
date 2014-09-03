@@ -1,4 +1,4 @@
-![Weby CMS](https://portais.ufg.br/assets/weby-logo-60-3e5c8858c2bdce60d5419fe192d15fc8.png)
+![Weby CMS](http://portais.ufg.br/assets/weby-logo-60-3e5c8858c2bdce60d5419fe192d15fc8.png)
 
 [![Build Status](https://travis-ci.org/cercomp/weby.png?branch=master)](https://travis-ci.org/cercomp/weby)
 [![PullReview stats](https://www.pullreview.com/github/cercomp/weby/badges/master.svg?)](https://www.pullreview.com/github/cercomp/weby/reviews/master)
