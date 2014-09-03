@@ -26,15 +26,19 @@ The principal features are:
 * Content internationalization;
 * Dynamic layout and style;
 * Manageable pages and menus;
-* Extensios for banners, feedbacks and news.
+* Extensions for banners, feedbacks and news.
 
 __Demo__
 
 In process.
 
+__Sites Examples__
+
+See sites made with Weby in [portais.ufg.br](http://portais.ufg.br).
+
 __Authors__
 
-See the [principal collaborators](http://weby.cercomp.ufg.br/pages/67630).
+See the [principal collaborators](http://weby.cercomp.ufg.br/pages/67630-collaborators?locale=en).
 
 __License__
 
