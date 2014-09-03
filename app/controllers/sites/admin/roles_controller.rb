@@ -6,6 +6,7 @@ class Sites::Admin::RolesController < ApplicationController
   def index
     @roles = @site ? @site.roles.order('id') : Role.where(site_id: nil).order('id')
     @rights = Weby::Rights.permissions.sort
+    if @rights != "Admin"
 
     if request.put? # && params[:role]
       params[:role] ||= {}
@@ -14,6 +15,7 @@ class Sites::Admin::RolesController < ApplicationController
       end
       flash[:success] = t('successfully_updated')
       redirect_to @site ? site_admin_roles_path : admin_roles_path
+    end
     end
   end
 
