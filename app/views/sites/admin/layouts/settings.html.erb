@@ -1,0 +1,28 @@
+<% breadcrumb :layout_settings %>
+
+<%= simple_form_for current_site, url: settings_site_admin_layouts_path, html: { class: 'form-horizontal' } do |f| %>
+  <%= f.input :head_html, input_html: { id: 'code' }, hint: t('.head_html_hint') %>
+
+  <div class="form-actions">
+    <%= f.submit class: 'btn btn-primary' %>
+    <%= link_to t("back"), :back, class: "btn btn-default" %>
+  </div>
+<% end %>
+
+<% content_for :stylesheets, stylesheet_link_tag('codeMirror/codemirror') %>
+<% content_for :stylesheets do %>
+  <style>
+    .CodeMirror-scroll { height: 150px }
+  </style>
+<% end %>
+
+<% content_for :javascripts, javascript_include_tag('init/codemirror') %>
+<% content_for :javascripts do %>
+  <script type="text/javascript">
+    var editor = CodeMirror.fromTextArea(document.getElementById('code'), {
+      mode: 'htmlmixed',
+      lineNumbers: true,
+      tabSize: 2
+    });
+  </script>
+<% end %>

@@ -1,0 +1,6 @@
+en:
+  sites:
+    admin:
+      layouts:
+        settings:
+          head_html_hint: 'This html will be inserted between the <head> and </ head> on the site.'

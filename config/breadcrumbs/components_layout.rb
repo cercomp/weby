@@ -17,3 +17,8 @@ crumb :components_edit do |component|
   link "#{t('breadcrumbs.edit')} #{t("components.#{component.name}.name")}", edit_site_admin_component_path
   parent :layout
 end
+
+crumb :layout_settings do
+  link t("breadcrumbs.layout_settings"), settings_site_admin_layouts_path
+  parent :layout
+end

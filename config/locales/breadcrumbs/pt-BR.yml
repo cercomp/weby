@@ -5,7 +5,7 @@ pt-BR:
     edit:  " Editando"
     show:  " Mostrar"
     search:  " Pesquisar "
-    
+
     #users/roles
     users:  " Usuários "
     roles:  " Papéis "
@@ -15,11 +15,12 @@ pt-BR:
     components:  " Componentes "
     choose_component:  " Escolher componente "
     new_component:  "Novo componente "
+    layout_settings: "Configurações"
 
     #styles
     styles:  " Estilos "
     new_style:  " Novo estilo "
-    
+
     #statistics
     statistics:  " Estatísticas "
 
