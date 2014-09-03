@@ -22,7 +22,6 @@ module Sticker
     }
 
     def self.import(attrs, options = {})
-      puts ">>>>>>>>>>#{attrs}"
       return attrs.each { |attr| import attr, options } if attrs.is_a? Array
 
       attrs = attrs.dup
