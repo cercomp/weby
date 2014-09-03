@@ -2,9 +2,9 @@ require "rails_helper"
 
 describe SessionsController do
   ## private ##
-  pending "record_login" do
+  skip "record_login" do
   end
 
-  pending "store_location" do
+  skip "store_location" do
   end
 end

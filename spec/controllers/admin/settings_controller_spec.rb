@@ -1,6 +1,6 @@
 require "rails_helper"
 
 describe Admin::SettingsController do
-  pending "GET #index" do
+  skip "GET #index" do
   end
 end

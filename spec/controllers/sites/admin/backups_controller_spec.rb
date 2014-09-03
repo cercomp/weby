@@ -15,9 +15,9 @@ describe Sites::Admin::BackupsController do
     end
   end
 
-  pending "generate" do
+  skip "generate" do
   end
 
-  pending "import" do
+  skip "import" do
   end
 end

@@ -11,11 +11,11 @@ describe Sites::Admin::RolesController do
   describe "GET #index" do
     before { get :index }
 
-    pending "assigns @roles" do
+    skip "assigns @roles" do
       expect(assigns(:roles)).to eq([roles])
     end
 
-    pending "renders the :index view" do
+    skip "renders the :index view" do
       expect(response).to render_template(:view)
     end
   end
@@ -23,11 +23,11 @@ describe Sites::Admin::RolesController do
   describe "GET #show" do
     before { get :show, :id => role.id }
 
-    pending "assigns @role" do
+    skip "assigns @role" do
       expect(assigns(:roles)).to eq([role])
     end
 
-    pending "renders the :show view" do
+    skip "renders the :show view" do
       expect(response).to redirect_to(site_admin_role_path(:roles))
     end
   end

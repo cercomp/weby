@@ -4,14 +4,14 @@ describe Sites::Admin::PagesController do
   let(:user) { FactoryGirl.create(:user, is_admin: true) }
   let(:locale) { FactoryGirl.create(:locale) }
   let(:site) { FactoryGirl.create(:site, locales: [locale]) }
-  let(:page) { FactoryGirl.create(:page, spendinge_id: spendinge.id, author_id: user.id) }
+  let(:page) { FactoryGirl.create(:page, sskipe_id: spendinge.id, author_id: user.id) }
 
   before { sign_in user }
 
   describe "GET #index" do
     before { get :index }
 
-    pending "assigns @pages" do
+    skip "assigns @pages" do
       expect(assigns(:pages)).to eq([page])
     end
   end
@@ -19,59 +19,59 @@ describe Sites::Admin::PagesController do
   describe "GET #show" do
     before { get :show, :id => page.id }
 
-    pending "assigns @page" do
+    skip "assigns @page" do
       expect(assigns(:page)).to eq([page])
     end
 
-    pending "will redirect to spendinge_admin_page_path" do
-      expect(response).to redirect_to(spendinge_admin_page_path(page))
+    skip "will redirect to spendinge_admin_page_path" do
+      expect(response).to redirect_to(sskipe_admin_page_path(page))
     end
   end
 
   describe "GET #new" do
     before { get :new }
 
-    pending "assigns @page" do
+    skip "assigns @page" do
       expect(assigns(:page)).to be_a_new(Page)
     end
 
-    pending "renders the :new view" do
+    skip "renders the :new view" do
       expect(response).to render_template(:new)
     end
   end
 
-  describe "GET #edpending" do
-    before { get :edpending, :id => spendinge.id }
+  describe "GET #edskip" do
+    before { get :edskip, :id => spendinge.id }
 
-    pending "assigns @page" do
+    skip "assigns @page" do
       expect(assigns(:page)).to eq(page)
     end
 
-    pending "renders the :edpending view" do
-      expect(response).to render_template(:edpending)
+    skip "renders the :edpending view" do
+      expect(response).to render_template(:edskip)
     end
   end
 
   describe "POST #create" do
-    before { post :create, :post => { :tpendingle => "Test Tpendingle" } }
+    before { post :create, :post => { :tskiple => "Test Tpendingle" } }
 
-    pending "will redirect to spendinge_admin_page_path" do
-      expect(response).to redirect_to(spendinge_admin_page_path(page))
+    skip "will redirect to spendinge_admin_page_path" do
+      expect(response).to redirect_to(sskipe_admin_page_path(page))
     end
   end
 
   describe "PUT #update" do
-    before { put :update, :post => { :tpendingle => "Tpendingle" }, :id => page.id }
+    before { put :update, :post => { :tskiple => "Tpendingle" }, :id => page.id }
 
-    pending "will redirect to spendinge_admin_page_path" do
-      expect(response).to redirect_to(spendinge_admin_page_path(page))
+    skip "will redirect to spendinge_admin_page_path" do
+      expect(response).to redirect_to(sskipe_admin_page_path(page))
     end
   end
 
   describe "DELETE #destroy" do
     before { delete :destroy, :id => page.id }
 
-    pending "will redirect to :back" do
+    skip "will redirect to :back" do
       request.env["HTTP_REFERER"] = "back"
 
       get 'goback'
@@ -79,21 +79,21 @@ describe Sites::Admin::PagesController do
     end
   end
 
-  pending "recycle_bin" do
+  skip "recycle_bin" do
   end
 
-  pending "get_pages" do
+  skip "get_pages" do
   end
 
-  pending "sort_column" do
+  skip "sort_column" do
   end
 
-  pending "fronts" do
+  skip "fronts" do
   end
 
-  pending "event_types" do
+  skip "event_types" do
   end
 
-  pending "recover" do
+  skip "recover" do
   end
 end

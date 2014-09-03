@@ -7,7 +7,7 @@ describe Admin::GroupingsController do
   before { sign_in user }
 
   describe "GET #index" do
-    pending "should populate an array with all groupings" do
+    skip "should populate an array with all groupings" do
       groups = Grouping.all
       get :index
       expect(assigns(:groupings)).to eq([groups])

@@ -44,7 +44,7 @@ describe Admin::RolesController do
 
   describe "POST #create" do
     context "when valid" do
-      before { post :create, :post => { :name => "Name" } }
+      before { post :create, role: { name: "Name" } }
 
       it "will redirect to admin_roles path" do
         expect(response).to redirect_to admin_roles_path

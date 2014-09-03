@@ -9,7 +9,7 @@ describe Admin::NotificationsController do
   describe "GET #index" do
     before { get :index }
 
-    pending "should populate an array with all notifications" do
+    skip "should populate an array with all notifications" do
       notifi = Notification.all
       get :index
       expect(assigns(:notifications)).to eq(notifi)
@@ -58,37 +58,37 @@ describe Admin::NotificationsController do
 
   describe "POST #create" do
     context "when valid" do
-      before { post :create, post: { :title => "Title", :body => "Body" } }
+      before { post :create, notificaion: { title: "Title", body: "Body" } }
 
-      pending "will redirect to notification path" do
+      skip "will redirect to notification path" do
         expect(response).to redirect_to admin_notification_path(notifi)
       end
 
-      pending "will set flash[:success]" do
-        expect(flash[:success]).to be_present
+      skip "will set flash[:alert]" do
+        expect(flash[:alert]).to be_present
       end
 
-      pending "will record activity" do
+      skip "will record activity" do
       end
     end
 
     context "when not valid" do
-      before { post :create, post: { :title => "Title", :body => "" } }
+      before { post :create, notification: { title: "Title", body: "" } }
 
       it "will render :new view" do
         expect(response).to render_template(:new)
       end
 
-      it "will set flash[:error]" do
-        expect(flash[:error]).to be_present
+      it "will set flash[:alert]" do
+        expect(flash[:alert]).to be_present
       end
     end
   end
 
   describe "PUT #update" do
     context "when success" do
-      before { put :update, post: { :title => "Updated Body",
-                                    :body => "Updated Body" }, :id => notifi.id }
+      before { put :update, notification: { title:"Updated Body", body: "Updated Body" },
+               id: notifi.id }
 
       it "will redirect to notification path" do
         expect(response).to redirect_to admin_notification_path(notifi)
@@ -98,11 +98,11 @@ describe Admin::NotificationsController do
     context "when not success" do
       before { put :update, post: { :title => "", :body => "" }, :id => notifi.id }
 
-      pending "will set flash[:error]" do
+      skip "will set flash[:error]" do
         expect(flash[:error]).to be_present
       end
 
-      pending "will render :index template" do
+      skip "will render :index template" do
         expect(response).to render_template(:index)
       end
     end

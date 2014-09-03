@@ -8,17 +8,17 @@ describe Sites::Admin::RepositoriesController do
 
   before { sign_in user }
 
-  pending "GET #index" do
+  skip "GET #index" do
   end
 
   describe "GET #show" do
     before { get :show }
 
-    pending "assigns @repospendingory" do
+    skip "assigns @repospendingory" do
       expect(assigns(:repository)).to eq(file)
     end
 
-    pending "will redirect to spendinge_admin_repospendingory_path" do
+    skip "will redirect to spendinge_admin_repospendingory_path" do
       expect(response).to redirect_to(site_admin_repository_path(file))
     end
   end
@@ -26,11 +26,11 @@ describe Sites::Admin::RepositoriesController do
   describe "GET #new" do
     before { get :new }
 
-    pending "assigns @repospendingory" do
+    skip "assigns @repospendingory" do
       expect(assigns(:repository)).to be_a_new(Repository)
     end
 
-    pending "will render the :new view" do
+    skip "will render the :new view" do
       expect(response).to render_template(:new)
     end
   end
@@ -38,12 +38,12 @@ describe Sites::Admin::RepositoriesController do
   describe "GET #edit" do
     before { get :edit, :id => file.id }
 
-    pending "assigns @repospendingory" do
+    skip "assigns @repospendingory" do
       expect(assigns(:repository)).to eq(file)
     end
   end
 
-  pending "POST #create" do
+  skip "POST #create" do
     context "when valid" do
       before { post :create, :post => { :description => "Description" } }
     end
@@ -52,24 +52,24 @@ describe Sites::Admin::RepositoriesController do
     end
   end
 
-  pending "PUT #update" do
+  skip "PUT #update" do
   end
 
-  pending "DELETE #destroy" do
+  skip "DELETE #destroy" do
   end
 
-  pending "recycle_bin" do
+  skip "recycle_bin" do
   end
 
-  pending "recover" do
+  skip "recover" do
   end
 
-  pending "sort_column" do
+  skip "sort_column" do
   end
 
-  pending "check_accept_json" do
+  skip "check_accept_json" do
   end
 
-  pending "per_page" do
+  skip "per_page" do
   end
 end
