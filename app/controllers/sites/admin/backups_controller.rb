@@ -23,8 +23,6 @@ class Sites::Admin::BackupsController < ApplicationController
     h[:include][:styles] = {}  if params[:styles]
     h[:include][:root_components] = {}  if params[:root_components]
     h[:include][:extensions] = {}  if params[:extensions]
-    #    h[:include][:groupings] = {}  if params[:groupings]
-    #    h[:include][:roles] = {include: :users}  if params[:roles]
     h[:include][:locales] = {}  if params[:locales]
 
     dir = "tmp/#{s.id}"
@@ -82,10 +80,10 @@ class Sites::Admin::BackupsController < ApplicationController
     if attrs
       #    current_site.roles.import(attrs['site']['roles']) if attrs['site']['roles']
       current_site.repositories.import(attrs['site']['repositories']) if attrs['site']['repositories']
-      Sticker::Banner.where(site_id: current_site).import(attrs['site']['banners'], author: current_user.id) if attrs['site']['banners']
+      Sticker::Banner.where(site_id: current_site).import(attrs['site']['banners']['banner'], author: current_user.id) if attrs['site']['banners']
       current_site.pages.import(attrs['site']['pages'], author: current_user.id, site_id: current_site.id) if attrs['site']['pages']
       current_site.menus.import(attrs['site']['menus']) if attrs['site']['menus']
-        current_site.components.import(attrs['site']['root_components'], site_id: current_site.id) if attrs['site']['root_components']
+      current_site.components.import(attrs['site']['root_components'], site_id: current_site.id) if attrs['site']['root_components']
       current_site.styles.import(attrs['site']['styles']) if attrs['site']['styles']
       current_site.extensions.import(attrs['site']['extensions']) if attrs['site']['extensions']
 
