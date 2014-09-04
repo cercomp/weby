@@ -42,17 +42,8 @@ class User < ActiveRecord::Base
     select('DISTINCT users.* ')
       .joins('LEFT JOIN roles_users ON roles_users.user_id = users.id
 	      LEFT JOIN roles ON roles.id = roles_users.role_id')
-      .where(['roles.name = ? AND roles.site_id = ?', "ADMIN", id])
+      .where(['roles.permissions = ? AND roles.site_id = ?', "Admin", id])
   }
-  # Returns all no_local_admin users.
-  scope :no_local_admin, ->(id) { 
-    select('DISTINCT users.* ')
-      .joins('LEFT JOIN roles_users ON roles_users.user_id = users.id
-	      LEFT JOIN roles ON roles.id = roles_users.role_id')
-      .where(['roles.name != ? AND roles.site_id = ?', "ADMIN", id])
-  }
-
-
 
   # Returns all admin users.
   scope :admin, -> { where(is_admin: true) }
@@ -65,7 +56,7 @@ class User < ActiveRecord::Base
     select('DISTINCT users.* ')
       .joins('LEFT JOIN roles_users ON roles_users.user_id = users.id
               LEFT JOIN roles ON roles.id = roles_users.role_id')
-      .where(['roles.site_id = ?', id])
+      .where(['roles.permissions != ? AND roles.site_id = ?', "Admin", id])
   }
 
   # Returns all users that have confirmed their registration.

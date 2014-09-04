@@ -26,7 +26,7 @@
           <th><%= t(".roles_permissions") %></th>
           <% @roles.each do |role| %>
             <th>
-              <%= role.name %>
+              <%= role.name %> 
               <p>
                 <%= link_to icon('check'), nil, :onclick => "toggleCheckboxesBySelector('input.column-#{role.id}')", :remote => true %>
                 <% if check_permission(Admin::RolesController, [:edit]) %>

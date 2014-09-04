@@ -3,17 +3,18 @@
     <%= t(".none_user") %>
   </div>
 <% else %>
-  <%= form_tag change_roles_site_admin_users_path,
+  <%= form_tag change_admin_role_site_admin_users_path,
     method: "post",
     id: "subscribe_users",
     remote: 'true',
-    update: 'enrole' %>
+    update: 'enrole_adms' %>
 
   <table class="table">
     <thead>
       <tr>
         <th><%= t(".enrole_user") %></th>
-        <th style="width: 55%"><%= t(".role") %></th>
+	<th style="width: 40%"><%= t(".enroled_user") %></th>
+	<th style="width: 15%"></th>
       </tr>
     </thead>
     <tbody>
@@ -37,31 +38,19 @@
               <% end %>
             </ul>
           </div>
-        </td>
-        <td>
-          <ul class="nav">
-            <% if @roles.each do |role| %>
-              <li>
-                <div class="checkbox">
-                  <label>
-                    <%= check_box_tag 'role_ids[]', role.id %>
-                    <%= role.name %>
-                  </label>
-                </div>
-              </li>
-            <% end.empty? %>
-              <% if check_permission(Sites::Admin::RolesController, [:new]) %>
-                <%= link_to t(".new_role"),
-                  new_site_admin_role_path,
-                  class: "btn btn-success" %>
-              <% else %>
-                <div class="alert alert-warning">
-                  <%= t(".none_role") %>
-                </div>
-              <% end %>
-            <% end %>
-          </ul>
-        </td>
+	</td>
+	<ul class="nav">
+	  <% @site_admins.each do |user| %>
+	    <li>
+	    <% #Verificar código para carregar role = "Admin" do site... No meu exemplo o role "admin" do site 2 tinha o id = 11 %>
+	    <% role = '11' %>
+	    <td><%= link_to user, profile_url(user.login, subdomain: current_site) %> <%= link_to "(#{user.login}) #{icon('user')}".html_safe, admin_user_url(user, subdomain: nil), target: '_blank' if current_user.is_admin? %></td>
+            <td class="text-right">
+	      <%= link_to icon('trash', text: t("destroy")),site_admin_role_path(role), :data => {:confirm => t("are_you_sure")}, :method => :delete %>
+	    </td>
+	    </li>
+          <% end %>
+        </ul>
       </tr>
     </tbody>
     <tfoot>
@@ -72,7 +61,8 @@
 	</div>
       </th>
     </tfoot>
-  </table>
+ </table>
+
 </form>
 <% content_for :javascripts, javascript_include_tag('users.enrole') %>
 <% end %>

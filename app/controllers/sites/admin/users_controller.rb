@@ -31,6 +31,18 @@ class Sites::Admin::UsersController < ApplicationController
     redirect_to action: 'manage_roles'
   end
 
+   def change_admin_role
+    user_ids = []
+    user_ids.push(params[:user][:id]).flatten!
+    admin_role = current_site.roles.find_by(permissions: 'Admin')
+
+    user_ids.each do |user_id|
+      user = User.find(user_id)
+      user.roles << admin_role
+    end
+    redirect_to action: 'manage_roles'
+  end
+
   def manage_roles
     # Select the users that are not ADMIN
     # @users = User.no_admin
@@ -38,8 +50,10 @@ class Sites::Admin::UsersController < ApplicationController
     @site_users = User.no_admin.by_site(@site).order('users.first_name asc')
     # Users that do not have a role and are not ADMIN
     @users_unroled = User.actives.no_admin.by_no_site(@site).order('users.first_name asc')
+    # Users that are site admins
+    @site_admins = User.no_admin.local_admin(@site).order('users.first_name asc')
     # Search for the roles (global/site)
-    @roles = @site.roles.order('id')
+    @roles = @site.roles.order('id').no_local_admin
     # When it is asked to manage a role
     @user = User.find(params[:user_id]) if params[:user_id]
   end
