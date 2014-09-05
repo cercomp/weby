@@ -23,11 +23,15 @@ class Menu < ActiveRecord::Base
 
     attrs = attrs.dup
     attrs = attrs['menu'] if attrs.key? 'menu'
-
+    id = attrs['id']
     attrs.except!('id', 'created_at', 'updated_at', 'site_id', 'type')
     items = attrs.delete('root_menu_items')
 
     menu = self.create!(attrs)
+
+    if menu.persisted?
+      Import::Application::CONVAR["menu"]["#{id}"] ||= "#{menu.id}"
+    end
 
     menu.menu_items.import items if menu.persisted?
   end

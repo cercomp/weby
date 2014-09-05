@@ -70,6 +70,7 @@ class Sites::Admin::BackupsController < ApplicationController
   def import
     uploaded_io = params[:upload]
     Import::Application::CONVAR["repository"] = {}
+    Import::Application::CONVAR["menu"] = {}
     case uploaded_io.content_type
       when 'text/xml'
         attrs = Hash.from_xml(uploaded_io.read)

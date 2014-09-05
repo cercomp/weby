@@ -59,6 +59,12 @@ class Component < ActiveRecord::Base
       attrs['settings'] = settings.to_s
     end
 
+    settings = eval(attrs['settings'])
+    if settings[:menu_id]
+      settings[:menu_id] = Import::Application::CONVAR["menu"][settings[:menu_id]]
+      attrs['settings'] = settings.to_s
+    end
+
     attrs['place_holder'] = options[:place_holder] if options[:place_holder]
     components_children = attrs.delete('children')
 
