@@ -39,8 +39,12 @@ class Component < ActiveRecord::Base
     settings = eval(attrs['settings'])
     if settings[:repository_id]
       repository = settings[:repository_id]
-      repository["pt-BR"] = Import::Application::CONVAR["repository"]["#{repository["pt-BR"]}"]
-      repository["en"] = Import::Application::CONVAR["repository"]["#{repository["en"]}"]
+      if repository.is_a? Hash
+        repository["pt-BR"] = Import::Application::CONVAR["repository"]["#{repository["pt-BR"]}"]
+        repository["en"] = Import::Application::CONVAR["repository"]["#{repository["en"]}"]
+      else
+        repository = Import::Application::CONVAR["repository"][repository]
+      end
       settings[:repository_id] = repository
       attrs['settings'] = settings.to_s
     end
@@ -52,6 +56,12 @@ class Component < ActiveRecord::Base
         photos[index] = Import::Application::CONVAR["repository"]["#{photo}"]
       end
       settings[:photo_ids] = photos
+      attrs['settings'] = settings.to_s
+    end
+
+    settings = eval(attrs['settings'])
+    if settings[:menu_id]
+      settings[:menu_id] = Import::Application::CONVAR["menu"][settings[:menu_id]]
       attrs['settings'] = settings.to_s
     end
 

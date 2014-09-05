@@ -32,7 +32,15 @@ module Sticker
       attrs['repository_id'] = Import::Application::CONVAR["repository"]["#{attrs['repository_id']}"]
       attrs['user_id'] = options[:author] unless User.unscoped.find_by_id(attrs['user_id'])
 
-      self.create!(attrs)
+      categories = attrs.delete('categories')
+
+      newbanner = self.create!(attrs)
+
+      categories.each do |category|
+        newbanner.category_list << category['name']
+        newbanner.save
+      end
+
     end
 
     private
