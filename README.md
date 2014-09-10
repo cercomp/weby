@@ -7,9 +7,9 @@ Para informações em Português do Brasil acesse o [site do projeto](http://web
 
 __About__
 
-The Weby project, is a multisite web content manager, this means that you can manage several sites at once. It was initially developed  by [Universidade Federal de Goiás](http://www.ufg.br/) and released as a Free Software. A Web content manager is system that allows you to manage in a simple way pages from internet (World Wide Web) or intranet (Corporate or Domestic networks). It integrates the necessary tools to manage CRUD (create, read, update and delete) content in real time, without programming code. Our motivation is to make content available in a simple  and easy way, making possible the management of online information.
+The Weby project, is a multisite web content manager, this means that you can manage several sites at once. It was initially developed  by [Federal University of Goiás](http://www.ufg.br) and released as a Free Software. A Web content manager is system that allows you to manage in a simple way pages from internet (World Wide Web) or intranet (Corporate or Domestic networks). It integrates the necessary tools to manage CRUD (create, read, update and delete) content in real time, without programming code. Our motivation is to make content available in a simple  and easy way, making possible the management of online information.
 
-The project was developed with [Ruby on Rails](http://rubyonrails.org/) (open source tool kit, written on Ruby programming language) focusing in been simple, flexible and extensible.
+The project was developed with [Ruby on Rails](http://rubyonrails.org) (open source tool kit, written on Ruby programming language) focusing in been simple, flexible and extensible.
 
 * Simple: Make the beginners users experience easier, with dynamism and interactivity.
 * Flexible: In order to attract more experienced users, advanced options are necessary. Without losing the focus on the simplicity, we make avaliable mechanisms to support advanced settings.
