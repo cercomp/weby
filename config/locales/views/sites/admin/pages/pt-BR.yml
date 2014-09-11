@@ -54,6 +54,8 @@ pt-BR:
           title:                " Título "
           cover:                " Capa "
           publish:              " Publicar "
+          action:               " Ação "
+          views:                " Visualizações "
         list_popup:
           register_date:        " Data de Cadastro "
           news:                 " Notícia "

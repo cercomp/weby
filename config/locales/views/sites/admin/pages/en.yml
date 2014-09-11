@@ -54,6 +54,8 @@ en:
           title:                " Title "
           cover:                " Cover "
           publish:              " Publish "
+          action:               " Action "
+          views:                " Views "
         list_popup:
           register_date:        " Register Date "
           news:                 " News "

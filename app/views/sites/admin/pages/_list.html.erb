@@ -14,12 +14,13 @@
           <th width="12%"><%= sortable 'users.first_name', t(".author") %></th>
           <th width="13%"><%= sortable 'tags.name', t(".category") %></th>
           <th width="6%"><%= sortable 'pages.type', t(".type") %></th>
-          <th width="13%"><%= sortable 'pages.created_at', t(".created_at") %></th>
+          <th width="25%"><%= sortable 'pages.created_at', t(".created_at") %></th>
           <% with_permission(action: :edit) do %>
             <th width="5%" class="center"><%= sortable 'pages.front', t(".cover") %></th>
             <th width="5%" class="center"><%= sortable 'pages.publish', t(".publish") %></th>
           <% end %>
-          <th></th>
+          <th width="5%" class="center"><%= sortable 'pages.view_count', t(".views") %></th>
+          <th width="5%" class="center"><%= t(".action")%></th>
         </tr>
       </thead>
       <tbody>
@@ -38,6 +39,7 @@
             <td class="publish" style="text-align:center;">
               <%= publication_status(page) %>
           <% end %>
+          <td width="5%" style="text-align:center;"><%= page.view_count %></td>
           <td class="text-right"><%= make_menu(page, :except => "show", :with_text => false) %></td>
         </tr>
       <% end %>
