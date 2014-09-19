@@ -140,13 +140,24 @@ class ApplicationController < ActionController::Base
   end
 
   def count_view
+
     return if is_in_admin_context? ||
-              !current_site ||
               request.format != 'html' ||
               response.status != 200 ||
               Weby::Bots.is_a_bot?(request.user_agent)
-
-    current_site.views.create(viewable: @page,
+    if(current_site)
+      current_site.views.create(viewable: @page,
+                                ip_address: request.remote_ip,
+                                referer: request.referer,
+                                user: current_user,
+                                query_string: request.query_string,
+                                request_path: request.path,
+                                user_agent: request.user_agent,
+                                session_hash: request.session_options[:id])
+      Page.increment_counter :view_count, @page.id if @page
+      Site.increment_counter :view_count, current_site.id
+    else
+      View.create(viewable: @page,
                               ip_address: request.remote_ip,
                               referer: request.referer,
                               user: current_user,
@@ -154,8 +165,7 @@ class ApplicationController < ActionController::Base
                               request_path: request.path,
                               user_agent: request.user_agent,
                               session_hash: request.session_options[:id])
-    Page.increment_counter :view_count, @page.id if @page
-    Site.increment_counter :view_count, current_site.id
+    end
   end
 
   # NOTE Review this method to include the extensions

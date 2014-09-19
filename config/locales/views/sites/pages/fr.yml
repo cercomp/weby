@@ -20,6 +20,7 @@
         source:        " Source "
         updated_at:    " Mise à Jour "
         related_files: " Fichiers associés "
+        related_files: " Url associés "
         size: " Taille "
       list: 
         read_more:     " En savoir plus "
