@@ -17,6 +17,7 @@ es:
         source:        " Fuente "
         updated_at:    " Actualizado en "
         related_files: " Archivos Relacionados "
+        related_url:   " Url Relacionada "
         size:          " Tamaño "
       list:
         read_more:     " Leer más "

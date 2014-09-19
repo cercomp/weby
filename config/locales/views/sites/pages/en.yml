@@ -17,6 +17,7 @@ en:
         source:        " Source "
         updated_at:    " Updated at "
         related_files: " Related files "
+        related_url:   " Related Url "
         size:          " Size "
         archive_fingerprint:  " Archive fingerprint "
       list:
