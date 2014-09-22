@@ -20,7 +20,7 @@ class Sites::Admin::UsersController < ApplicationController
         end
       end
 
-      # If it is a global role, clean the golbal roles
+      # If it is a global role, clean the global roles
       unless @site
         user.roles.where(site_id: nil).each { |r| user.role_ids -= [r.id] }
       end
@@ -31,7 +31,7 @@ class Sites::Admin::UsersController < ApplicationController
     redirect_to action: 'manage_roles'
   end
 
-   def change_admin_role
+  def change_admin_role
     user_ids = []
     user_ids.push(params[:user][:id]).flatten!
     admin_role = current_site.roles.find_by(permissions: 'Admin')

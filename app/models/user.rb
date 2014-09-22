@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
 
   #************LOCAL_ADMIN******************
   # Returns all local_admin users.
-  scope :local_admin, ->(id) { 
+  scope :local_admin, ->(id) {
     select('DISTINCT users.* ')
       .joins('LEFT JOIN roles_users ON roles_users.user_id = users.id
 	      LEFT JOIN roles ON roles.id = roles_users.role_id')
