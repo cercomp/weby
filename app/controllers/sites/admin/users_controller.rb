@@ -31,16 +31,32 @@ class Sites::Admin::UsersController < ApplicationController
     redirect_to action: 'manage_roles'
   end
 
-  def change_admin_role
+  def create_local_admin_role
     user_ids = []
     user_ids.push(params[:user][:id]).flatten!
     admin_role = current_site.roles.find_by(permissions: 'Admin')
+    if admin_role.nil?
+      role = Role.new
+      role.name = 'Administrador'
+      role.permissions = 'Admin'
+      role.site_id = current_site.id
+      role.save
+      admin_role = current_site.roles.find_by(permissions: 'Admin')
+    end
 
     user_ids.each do |user_id|
       user = User.find(user_id)
-      user.roles << admin_role
+      user.roles << admin_role 
     end
-    redirect_to action: 'manage_roles'
+    redirect_to action: 'manage_roles', anchor: 'adms'
+  end
+
+  def destroy_local_admin_role
+    user_id = params[:id]
+    admin_role = current_site.roles.find_by(permissions: 'Admin')
+    user = User.find(user_id)
+    user.role_ids -= [admin_role.id]
+    redirect_to action: 'manage_roles', anchor: 'adms'
   end
 
   def manage_roles

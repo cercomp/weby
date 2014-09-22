@@ -23,4 +23,5 @@ pt-BR:
         enrole_adms:
           enrole_user:       " Relacionar Usuários "
           enroled_user:      " Usuário Relacionado "
+          none_user:         " Nenhum Usuário "
 

@@ -3,61 +3,72 @@
     <%= t(".none_user") %>
   </div>
 <% else %>
-  <%= form_tag change_admin_role_site_admin_users_path,
+<%= form_tag destroy_local_admin_role_site_admin_users_path,
+  method: "delete",
+  id: "subscribe_users",
+  update: 'enrole_adms' %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th><%= t(".enroled_user") %></th>
+      <th style="width: 15%"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <ul class="nav">
+      <% @site_admins.each do |user| %>
+      <tr>
+        <td>
+        <%= link_to user, profile_url(user.login, subdomain: current_site) %> <%= link_to "(#{user.login}) #{icon('user')}".html_safe, admin_user_url(user, subdomain: nil), target: '_blank' if current_user.is_admin? %>
+        </td>
+	<td>
+	  <div class="text-right">
+	  <%= link_to icon('trash', text: t("destroy")),destroy_local_admin_role_site_admin_users_path(id: user.id), :data => {:confirm => t("are_you_sure")}, :method => :delete %>
+          </div>
+        </td>
+      </tr>
+      <% end %>
+    </ul>
+  </tbody>
+</table>
+</form>
+<% end %>
+
+<% if not(@users_unroled.empty?) %>
+  <%= form_tag create_local_admin_role_site_admin_users_path,
     method: "post",
     id: "subscribe_users",
-    remote: 'true',
     update: 'enrole_adms' %>
 
   <table class="table">
     <thead>
       <tr>
-        <th><%= t(".enrole_user") %></th>
-        <th style="width: 55%"><%= t(".enroled_user") %></th>
+	<th><%= t(".enrole_user") %></th>
+	<th style="width: 55%">
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td style="height: 300px; overflow: auto">
-          <div>
-            <%= text_field_tag :users_unroled, params[:users_unroled], placeholder: t("search"),
-              data: {fullname: (@user and @users_unroled.include?(@user)) ? @user.fullname : ''}, class: 'form-control' %>
-          </div>
-          <div style="height: 300px; overflow: auto">
-            <ul id="users_list_roles" class="nav">
-              <% @users_unroled.each do |user| %>
-                <li>
-                  <div class="checkbox">
-                    <label>
-                      <%= check_box_tag 'user[id][]', user.id, user.id == params[:user_id].to_i %>
-                      <%= user %> <%= "(#{user.login})" if current_user.is_admin? %>
-                    </label>
-                  </div>
-                </li>
-              <% end %>
-            </ul>
-          </div>
-        </td>
-        <td>
-          <ul class="nav">
-            <% @site_admins.each do |user| %>
-              <tr>
-                <% # Verificar código para carregar role = "Admin" do site... No meu exemplo o role "admin" do site 2 tinha o id = 11 %>
-                <% # role = '10' %>
-                <% # role = user.roles.find_by(permissions: 'Admin') %>
-                <td>
-                  <%= link_to user, profile_url(user.login, subdomain: current_site) %><%= link_to "(#{user.login}) #{icon('user')}".html_safe,
-                      admin_user_url(user, subdomain: nil), target: '_blank' if current_user.is_admin? %>
-                </td>
-                <td>
-                  <%= link_to icon('trash', text: t("destroy")), change_roles_site_admin_users_path,
-                    :data => { :confirm => t("are_you_sure") }, :method => :post %>
-                </td>
-              </tr>
+      <td style="height: 300px; overflow: auto">
+        <div>
+        <%= text_field_tag :adms_unroled, params[:adms_unroled], placeholder: t("search"),
+            data: {fullname: (@user and @users_unroled.include?(@user)) ? @user.fullname : ''}, class: 'form-control' %>
+        </div>
+        <div style="height: 300px; overflow: auto">
+          <ul id="adms_list_roles" class="nav">
+            <% @users_unroled.each do |user| %>
+              <li>
+                <div class="checkbox">
+                  <label>
+                    <%= check_box_tag 'user[id][]', user.id, user.id == params[:user_id].to_i %>
+                    <%= user %> <%= "(#{user.login})" if current_user.is_admin? %>
+                  </label>
+                </div>
+              </li>
             <% end %>
           </ul>
-        </td>
-      </tr>
+	</div>
+      </td>
     </tbody>
     <tfoot>
       <th>
@@ -70,4 +81,5 @@
   </table>
 </form>
 <% content_for :javascripts, javascript_include_tag('users.enrole') %>
+
 <% end %>

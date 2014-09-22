@@ -36,7 +36,6 @@ class User < ActiveRecord::Base
            LOWER(email) like :text',  text: "%#{text.try(:downcase)}%")
   }
 
-  #************LOCAL_ADMIN******************
   # Returns all local_admin users.
   scope :local_admin, ->(id) {
     select('DISTINCT users.* ')
@@ -107,6 +106,11 @@ class User < ActiveRecord::Base
     unread = unread_notifications_array
     notification ? unread.delete(notification.id) : unread.clear
     update_attribute(:unread_notifications, unread.join(','))
+  end
+
+  def is_local_admin?(id_site)
+    result = User.local_admin(id_site).find_by(id: id)
+    return not(result.nil?)
   end
 
   def has_read?(notification)

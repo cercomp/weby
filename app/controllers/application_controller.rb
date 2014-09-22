@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
 
   def test_permission(ctrl, action)
     return false unless current_user
-    return true if current_user.is_admin
+    return true if (current_user.is_admin or current_user.is_local_admin?(current_site))
     ctrl = ctrl.controller_name if ctrl.respond_to? :controller_name
     ctrl = ctrl.split('/')[-1] if ctrl.match(/^\w+\/\w+/)
     @current_rights.fetch(ctrl.to_sym, {}).fetch(action.to_sym, false)
@@ -292,10 +292,12 @@ class ApplicationController < ActionController::Base
 
     @current_rights = {}
     current_roles_assigned.each do |role|
-      role.permissions_hash.each do |controller, rights|
-        rights.each do |right|
-          Weby::Rights.actions(controller, right).each do |action|
-            (@current_rights[controller.to_sym] ||= {})[action.to_sym] = true
+      if role.permissions != 'Admin'
+        role.permissions_hash.each do |controller, rights|
+          rights.each do |right|
+            Weby::Rights.actions(controller, right).each do |action|
+              (@current_rights[controller.to_sym] ||= {})[action.to_sym] = true
+            end
           end
         end
       end
