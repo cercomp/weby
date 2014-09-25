@@ -3,3 +3,6 @@ LineLength:
 
 DotPosition:
   Enabled: false
+
+StringLiterals:
+  EnforcedStyle: single_quotes
