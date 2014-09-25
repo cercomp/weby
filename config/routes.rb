@@ -102,7 +102,7 @@ Rails.application.routes.draw do
         collection do
           get :manage_roles
           post :change_roles, :create_local_admin_role
-	  delete :destroy_local_admin_role
+          delete :destroy_local_admin_role
         end
       end
       resources :layouts, only: [] do
