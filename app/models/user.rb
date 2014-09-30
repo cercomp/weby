@@ -109,8 +109,7 @@ class User < ActiveRecord::Base
   end
 
   def is_local_admin?(id_site)
-    result = User.local_admin(id_site).find_by(id: id)
-    return not(result.nil?)
+    return User.local_admin(id_site).find_by(id: id) != nil
   end
 
   def has_read?(notification)

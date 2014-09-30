@@ -232,8 +232,18 @@ class ApplicationController < ActionController::Base
   end
 
   def is_admin
-    return true if current_user.is_admin
+    return true if current_user.is_admin 
+    flash[:error] = t'only_admin'
 
+    begin
+      redirect_to :back
+    rescue
+      redirect_to admin_path
+    end
+  end
+
+  def global_local_admin
+    return true if current_user.is_local_admin?(current_site.id) || current_user.is_admin
     flash[:error] = t'only_admin'
 
     begin
