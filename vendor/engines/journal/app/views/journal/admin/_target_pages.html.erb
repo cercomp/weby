@@ -1,5 +1,5 @@
 <div class="search_bar">
-  <%= form_tag journal.admin_news_index_path(template: 'list_popup'), method: 'get', autocapitalize: "off", class: 'search', remote: true do %>
+  <%= form_tag admin_news_index_path(template: 'list_popup'), method: 'get', autocapitalize: "off", class: 'search', remote: true do %>
     <div class="row">
       <div class="col-md-7">
         <%= search_input params[:search], placeholder: t('.search_pages'), button_class: 'btn-search-page' %>
@@ -26,7 +26,7 @@
         </thead>
         <tbody>
           <% @news.each do |news| %>
-            <tr data-id="<%= news.id%>" data-url="<%= journal.news_path(news) %>" data-title="<%= news.title %>" data-type="<%= "Journal::News" %>" class="cursor highlight target-item">
+            <tr data-id="<%= news.id%>" data-url="<%= news_path(news) %>" data-title="<%= news.title %>" data-type="<%= "Journal::News" %>" class="cursor highlight target-item">
               <td><%= news.created_at.strftime('%d/%m/%y') %></td>
               <td><%= news.title %></td>
               <td><%= news.category_list %></td>

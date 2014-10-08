@@ -111,7 +111,6 @@ Rails.application.routes.draw do
       constraints(extension) do
         require "#{name.to_s}/routes"
         instance_eval &("#{name.to_s.classify}::Routes".constantize.load)
-        "#{name.to_s.classify}::Engine".constantize.routes.draw &("#{name.to_s.classify}::Routes".constantize.load)
       end
     end
   end

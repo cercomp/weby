@@ -1,5 +1,5 @@
 <div class="search_bar">
-  <%= form_tag calendar.admin_events_path(template: 'list_popup'), method: 'get', autocapitalize: "off", class: 'search', remote: true do %>
+  <%= form_tag admin_events_path(template: 'list_popup'), method: 'get', autocapitalize: "off", class: 'search', remote: true do %>
     <div class="row">
       <div class="col-md-7">
         <%= search_input params[:search], placeholder: t('.search_pages'), button_class: 'btn-search-page' %>
@@ -26,7 +26,7 @@
         </thead>
         <tbody>
           <% @events.each do |event| %>
-            <tr data-id="<%= event.id%>" data-url="<%= calendar.event_path(event) %>" data-title="<%= event.name %>" data-type="<%= "Calendar::Event" %>" class="cursor highlight target-item">
+            <tr data-id="<%= event.id%>" data-url="<%= event_path(event) %>" data-title="<%= event.name %>" data-type="<%= "Calendar::Event" %>" class="cursor highlight target-item">
               <td><%= event.created_at.strftime('%d/%m/%y') %></td>
               <td><%= event.name %></td>
               <td><%= event.kind %></td>
