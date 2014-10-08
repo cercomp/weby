@@ -1,0 +1,15 @@
+pt-BR:
+  components:
+    event_list:
+      name:                 " Lista de Eventos "
+      quant:                " Quantidade de eventos exibidos "
+      title:                " Título "
+  activerecord:
+    attributes:
+      event_list_component:
+        quant:              " Quantidade de eventos exibidos "
+        title:              " Título "
+  event_list:
+    views:
+      show:
+        events:              " Eventos "

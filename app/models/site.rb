@@ -59,7 +59,7 @@ class Site < ActiveRecord::Base
   end
 
   def has_extension(extension)
-    extensions.select { |ext| ext.name = extension.to_s }.any?
+    extensions.select { |ext| ext.name == extension.to_s }.any?
   end
 
   def active_extensions

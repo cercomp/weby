@@ -1,0 +1,23 @@
+<% include_component_javascript :javascripts, 'news_list' %>
+<% # Pega as noticias ordenadas por data de inicio decrescente %>
+<% @news_list = component.pages(current_site, params[:news_list_page]) %>
+<section class="news_list_component">
+  <table class="list border fullwidth zebra">
+    <tr>
+      <th> <%= link_to(component.title_for_link || t(".last_news"), main_app.news_site_pages_path(direction: 'desc', sort: 'pages.created_at', tags: component.category)) %> </th>
+    </tr>
+    <% @news_list.try(:each) do |page| %>
+      <tr>
+        <td>
+          <% if component.show_image && page.image %>
+            <%= weby_file_view(page.image, :t, component.image_size, nil, {as: "link", url: link_on_title(current_site, page), style: "float: right; margin-left: 7px;", target: (component.new_tab && page.url.present? ? '_blank' : '_self')}) %>
+          <% end %>
+          <p class="title"><%= link_to page.title, link_on_title(current_site, page), target: (component.new_tab && page.url.present? ? '_blank' : '_self') %></p>
+          <% if component.show_date %><p class="news-date"><%= l(page.created_at, format: component.date_format) %></p><% end %>
+          <%= raw page.summary %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <%= paginate @news_list, param_name: 'news_list_page', remote: true, comp_url: main_app.site_component_path(component.id), page_links: true %>
+</section>

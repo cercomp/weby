@@ -87,10 +87,6 @@ module Sticker::Admin
         .page(params[:page]).per(current_site.per_page_default)
     end
 
-    def resource
-      get_resource_ivar || set_resource_ivar(Sticker::Banner.send(:find, params[:id]))
-    end
-
     def banner_params
       params.require(:banner).permit(:repository_id, :size, :width, :height, :title,
                                      :text, :url, :page_id, :category_list,

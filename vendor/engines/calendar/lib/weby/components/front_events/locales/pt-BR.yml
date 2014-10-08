@@ -1,0 +1,62 @@
+pt-BR:
+  components:
+    front_events:
+      name:                 " Eventos Capas "
+      quant:                " Quantidade de notícias exibidas "
+      avatar_height:        " Altura da imagem da notícia "
+      avatar_width:         " Largura da imagem da notícia"
+      label:                " Rótulo "
+      filter_by:            " Selecionar apenas notícias com as categorias "
+      read_more:            " Exibir 'Leia mais' "
+      show_author:          " Exibir autor da notícia "
+      show_date:            " Exibir data da notícia "
+      show_label:           " Exibir rótulo "
+      type_filter:          " Filtrar por tipo da página "
+      image_size:           " Versão da imagem "
+      new_tab:              " Abrir páginas com URL em uma nova janela "
+  activerecord:
+    attributes:
+      front_events_component:
+        quant:              " Quantidade de notícias exibidas "
+        avatar_height:        " Altura da imagem da notícia "
+        avatar_width:         " Largura da imagem da notícia"
+        label:                " Rótulo "
+        filter_by:            " Selecionar apenas notícias com as categorias "
+        read_more:            " Exibir 'Leia mais' "
+        show_author:          " Exibir autor da notícia "
+        show_date:            " Exibir data da notícia "
+        show_label:           " Exibir rótulo "
+        type_filter:          " Filtrar por tipo da página "
+        image_size:           " Versão da imagem "
+        new_tab:              " Abrir páginas com URL em uma nova janela "
+        max_char:             " Número máximo de caracteres do resumo "
+        link_to_all:          " Link para exibir todos "
+        order_by:             " Ordenação "
+    errors:
+      models:
+        front_events_component:
+          attributes:
+            order_by:
+              allowed_only_for_events: "'Data do evento' só é permitida caso o filtro por tipo de página for 'Apenas Eventos'."
+  front_events:
+    views:
+      show:
+        read_more:            " Leia mais... "
+        posted_by:            " Por "
+        posted_on:            " Em "
+      form:
+        main:                 " Básico "
+        advanced:             " Avançado "
+        m:                    " Média "
+        l:                    " Pequena "
+        i:                    " Miniatura "
+        t:                    " Thumbnail "
+        all:                  " Notícias e Eventos "
+        news:                 " Apenas Notícias "
+        events:               " Apenas Eventos "
+        position:             " Manual "
+        created_at:           " Data de criação "
+        updated_at:           " Data de atualização "
+        event_begin:          " Data do evento "
+        link_to_all_hint:     " Texto do link para a lista com todas as notícias "
+        image_size_hint:      " Thumbnail é uma versão reduzida da imagem, onde é feito um corte quadrado para que a proporção original não se perca "

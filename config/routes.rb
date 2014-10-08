@@ -1,12 +1,6 @@
 Rails.application.routes.draw do
   constraints(Weby::Subdomain) do
-
-    constraints(Weby::Extensions) do
-      Weby.extensions.each do |extension, engine|
-        mount "#{extension.to_s.titleize}::Engine".constantize, at: extension
-      end
-    end
-
+    
     get '/' => 'sites#show', as: :site
     get '/admin' => 'sites#admin', as: :site_admin
     get '/admin/edit' => 'sites#edit', as: :edit_site_admin
@@ -110,6 +104,14 @@ Rails.application.routes.draw do
           get :settings
           patch :settings, action: "update_settings"
         end
+      end
+    end
+    
+    Weby.extensions.each do |name, extension|
+      constraints(extension) do
+        require "#{name.to_s}/routes"
+        instance_eval &("#{name.to_s.classify}::Routes".constantize.load)
+        "#{name.to_s.classify}::Engine".constantize.routes.draw &("#{name.to_s.classify}::Routes".constantize.load)
       end
     end
   end

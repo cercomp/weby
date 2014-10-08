@@ -1,0 +1,22 @@
+<% include_component_javascript :javascripts, 'news_list' %>
+<%= each_i18n_tab do |locale| %>
+  <%= f.component_i18n_input locale, :title %>
+<% end %>
+<%= f.input :category, collection: current_site.pages.uniq_category_counts.map(&:name),
+  priority: component.category,
+  include_blank: t(".no_category_filter"),
+  input_html: { style: 'width: 325px' }
+%>
+<%= f.input :front, as: :boolean %>
+<%= f.input :quant, as: :integer %>
+<%= f.input :new_tab, as: :boolean %>
+<%= f.input :show_image, as: :boolean %>
+<%= f.input :image_size, collection: component.image_sizes,
+  priority: component.image_size,
+  include_blank: false
+%>
+<%= f.input :show_date, as: :boolean %>
+<%= f.input :date_format, collection: component.date_formats.map{|format| [l(Time.now, format: format.to_sym), format] },
+  priority: component.date_format,
+  include_blank: false
+%>

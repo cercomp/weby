@@ -1,0 +1,52 @@
+<style type="text/css">
+.help-block{
+  font-size: 10pt;
+}
+</style>
+<% include_component_javascript :javascripts, 'front_news' %>
+
+<div class="tabbable">
+  <ul class="nav nav-tabs" id="style-tab">
+    <li class="active" >
+      <a href="#tab-main" data-toggle="tab"><%= t(".main") %></a>
+    </li>
+    <li>
+      <a href="#tab-advanced" data-toggle="tab"><%= t(".advanced") %></a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab-main" style="padding-left: 5px;">
+      <%= each_i18n_tab do |locale| %>
+        <%= f.component_i18n_input locale, :label, :as => :string %>
+      <% end %>
+
+      <%= f.input :quant, as: :integer %>
+
+      <%= f.input :max_char, as: :integer %>
+
+      <%= f.input :filter_by, input_html: {id: 'categories-list', class: 'input-xlarge', data: {tags: current_site.pages.uniq_category_counts.map{|t| t.name }}} %>
+
+    </div>
+    <div class="tab-pane" id="tab-advanced">
+      <%= f.input :image_size, collection: component.image_sizes.map{|size| [t(".#{size}"),size] },
+        priority: component.image_size,
+        include_blank: false,
+        hint: t(".image_size_hint") %>
+      <%= f.input :avatar_width, as: :integer %>
+      <%= f.input :avatar_height, as: :integer %>
+
+      <%= f.input :read_more, as: :boolean %>
+      <%= f.input :show_author, as: :boolean %>
+      <%= f.input :show_date, as: :boolean %>
+      <%= each_i18n_tab do |locale| %>
+        <%= f.component_i18n_input locale, :link_to_all, :as => :string, hint: t(".link_to_all_hint") %>
+      <% end %>
+
+      <%= f.input :order_by, collection: component.order_types.map{|order| [t(".#{order}"),order] },
+        priority: component.order_by,
+        include_blank: false %>
+
+      <%= f.input :new_tab, as: :boolean %>
+    </div>
+  </div>
+</div>

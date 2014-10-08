@@ -27,7 +27,7 @@
             <%= menu_item_to t(".extensions"), main_app.site_admin_extensions_path %>
           </div>
           <% current_site.active_extensions.each do |extension| %>
-            <%= menu_item_to t("extensions.#{extension.name}.name"), "/#{extension.name}/admin" %>
+            <%= menu_item_to t("extensions.#{extension.name}.name"), "/admin/#{extension.name}" %>
           <% end %>
         <% end %>
       <% end %>

@@ -21,10 +21,22 @@ PATH
       rails (~> 4.1.1)
 
 PATH
+  remote: vendor/engines/calendar
+  specs:
+    calendar (0.0.1)
+      rails (~> 4.1.4)
+
+PATH
   remote: vendor/engines/feedback
   specs:
     feedback (0.0.1)
       rails (~> 4.1.1)
+
+PATH
+  remote: vendor/engines/journal
+  specs:
+    journal (0.0.1)
+      rails (~> 4.1.4)
 
 PATH
   remote: vendor/engines/sticker
@@ -260,6 +272,7 @@ DEPENDENCIES
   better_errors (~> 1.1.0)
   binding_of_caller (~> 0.7.2)
   bootstrap-sass (~> 3.1.1.1)
+  calendar!
   capybara
   capybara-webkit
   d3js-rails (~> 3.1.6)
@@ -270,6 +283,7 @@ DEPENDENCIES
   foreigner (~> 1.6.1)
   gretel (~> 3.0.7)
   jcrop-rails-v2 (~> 0.9.12.3)
+  journal!
   jquery-rails (= 3.1.0)
   jquery-ui-rails (~> 4.2.1)
   kaminari (~> 0.15.1)

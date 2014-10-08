@@ -1,0 +1,10 @@
+pt-BR:
+  extensions:
+    calendar:
+      name:            "Eventos"
+      routes:
+        root:
+          title:       "Lista de Eventos"
+          description: "Página de busca e listagem do calendário eventos"
+
+

@@ -1,0 +1,53 @@
+<% title "recycle_bin" %>
+<% breadcrumb :events_recycle_bin %>
+<div class="pull-right">
+  <% with_permission(action: :new) do %>
+    <%= link_to t(".new_event"),
+      new_admin_event_path,
+      class: "btn btn-success" %>
+  <% end %>
+  <% with_permission(action: :index) do %>
+    <%= link_to t(".list_events"), admin_events_path, class: "btn btn-default" %>
+  <% end %>
+</div>
+<div class="clearfix"></div>
+
+<div id="news">
+  <% if @events.empty? %>
+    <div style="margin-top: 10px;" class="alert alert-warning">
+      <%= t("empty_recycle_bin") %>
+    </div>
+  <% else %>
+    <div class="pull-left"> <%= info_page @events %> </div>
+    <div class="pull-right"> <%= paginate @events, remote: true %> </div>
+    <div class="clearfix"></div>
+
+    <table class="table table-striped nowrap">
+      <thead>
+        <tr>
+          <th width="35%"><%= t(".name") %></th>
+          <th width="6%"><%= sortable 'events.kind', t(".kind") %></th>
+          <th width="13%"><%= sortable 'pages.created_at', t(".created_at") %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @events.each do |event| %>
+          <tr id="<%= event.id %>">
+            <td>
+              <%= link_to(event.name, edit_admin_event_path(event)) %>
+            </td>
+            <td><%= event.kind %></td>
+            <td><%= l(event.created_at, :format => :short) %></td>
+            <td class="text-right">
+              <%= recycle_bin_actions event %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <div class="pull-left"> <%= per_page_links @events, true, :mini %> </div>
+    <div class="pull-right"> <%= paginate @events, remote: true %> </div>
+    <div class="clearfix"></div>
+  <% end %>
+</div>

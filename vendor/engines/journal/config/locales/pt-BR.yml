@@ -1,0 +1,10 @@
+pt-BR:
+  extensions:
+    journal:
+      name:            "Notícias"
+      routes:
+        root:
+          title:       "Lista de Notícias"
+          description: "Página de busca e listagem de notícias"
+
+

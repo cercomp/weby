@@ -16,8 +16,8 @@ class Page < ActiveRecord::Base
 
   has_many :views, as: :viewable
   has_many :menu_items, as: :target, dependent: :nullify
-  has_many :pages_repositories, dependent: :destroy
-  has_many :related_files, through: :pages_repositories, source: :repository
+  has_many :posts_repositories, as: :post, dependent: :destroy
+  has_many :related_files, through: :posts_repositories, source: :repository
 
   # Validations
   validates :author_id, :site_id, presence: true

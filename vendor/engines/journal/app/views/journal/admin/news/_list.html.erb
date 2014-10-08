@@ -1,0 +1,48 @@
+<% if @news.empty? %>
+  <div class="alert alert-warning">
+    <%= t(".none_news") %>
+  </div>
+<% else %>
+  <div class="pull-left"> <%= info_page @news %> </div>
+  <div class="pull-right"> <%= paginate @news, remote: true %> </div>
+  <div class="clearfix"></div>
+
+  <table class="table table-striped nowrap">
+      <thead>
+        <tr>
+          <th width="35%"><%= t(".title") %></th>
+          <th width="12%"><%#= sortable 'users.first_name', t(".author") %></th>
+          <th width="13%"><%#= sortable 'tags.name', t(".category") %></th>
+          <th width="13%"><%#= sortable 'news.created_at', t(".created_at") %></th>
+          <th width="5%" class="center"><%#= sortable 'news.status', t(".status") %></th>
+          <% with_permission(action: :edit) do %>
+            <th width="5%" class="center"><%#= sortable 'news.front', t(".cover") %></th>
+          <% end %>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @news.each do |news| %>
+        <tr id="<%= news.id %>"<%= ' class="deactivated"'.html_safe unless news.published? %>>
+          <td>
+            <%= link_to news.title, main_app.admin_news_path(news) %>
+          </td>
+          <td><%= news.user.first_name %></td>
+          <td><%= raw categories_links(news.category_list) %></td>
+          <td><%= l(news.created_at, :format => :short) %></td>
+          <td style="text-align:center;">
+            <%= news.status %></td>
+          <% with_permission(action: :edit) do %>
+            <td class="front" style="text-align:center;">
+              <%= front_status(news) %></td>
+          <% end %>
+          <td class="text-right"><%#= make_menu(news, :except => "show", :with_text => false) %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+  <div class="pull-left"> <%= per_page_links @news, true, :sm %> </div>
+  <div class="pull-right"> <%= paginate @news, remote: true %> </div>
+  <div class="clearfix"></div>
+<% end %>

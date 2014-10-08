@@ -1,0 +1,55 @@
+<% title ".event" %>
+<% breadcrumb :events_show, @event %>
+<article class="event-show">
+  <%= weby_file_view(@event.image, :little, '128', nil) %>
+
+  <header>
+    <%= raw available_flags(@event) if @event.locales.many? %>
+    <h1><%= @event.name %></h1>
+  </header>
+
+  <div class="body">
+    <%= raw @event.information %>
+  </div>
+
+  <%= content_tag_if @event.kind?, :p, class: 'event-type' do %>
+    <%= label(:event, :kind) %>
+    <%= t("sites.admin.events.show.#{@event.kind}") %>
+  <% end %>
+  <%= content_tag_if @event.email?, :p, class: 'event-email' do %>
+    <%= label(:event, :email) %>
+    <%= @event.email %>
+  <% end %>
+  <p class="event-period">
+    <%= label(:event, :period, t(".period_event"), style: 'display: inline-block;') %>:
+    <span class="event-dates"><%=  period_dates(@event.begin_at, @event.end_at) %></span>
+  </p>
+
+  <%# List the related files if they exist %>
+  <% if @event.related_files.any? %>
+    <table class="table table-striped table-condensed table-bordered">
+      <thead>
+        <tr>
+          <th><%= t(".related_files") %></th>
+          <th><%= t(".size") %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @event.related_files.each do |file| %>
+        <tr>
+          <td><%= link_to file.description, file.archive.url %></td>
+          <td><%= file.archive_file_size.to_i/1024 %> Kb</td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+
+
+  <div class="form-actions">
+    <%= link_to icon('eye-open', text: t('show')), event_path(@event) %>
+    <%= make_menu(@event, :except => "show") %>
+    <%= link_to icon('list', text: t(".list_all")), admin_events_path %>
+    <%= link_to icon('chevron-left', text: t("back")), :back %>
+  </div>
+</article>

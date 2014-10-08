@@ -1,0 +1,62 @@
+﻿fr:
+  components: 
+    front_events:
+      name:                 " Couverture des Events "
+      quant:                " Nombre de nouvelles affiché "
+      avatar_height:        " Hauteur de l'image des nouvelles "
+      avatar_width:         " Largeur de l'image des nouvelles "
+      label:                " Étiquette "
+      filter_by:            " Sélectionnez uniquement les news "
+      read_more:            " Lire plus (ler mais) "   
+      show_author:          " Voir Auteur Nouvelles "
+      show_date:            " Voir la date de le nouvelle "
+      show_label:           " Afficher l'étiquette "
+      type_filter:          " Filtrer par type "
+      image_size:           " Taille de l'image "
+      new_tab:              " nouvel onglet "
+  activerecord:    
+    attributes:  
+      front_events_component:
+        quant:              " Nombre de nouvelles affiché "
+        avatar_height:      " Hauter de lávatar " 
+        avatar_width:       " Lageur de avatar " 
+        label:              " Étiquette "
+        filter_by:          " Filtrer par " 
+        read_more:          " En savoir plus "
+        show_author:        " Aficher l'auteur " 
+        show_date:          " Afficher la date " 
+        show_label:         " Afficher l'étiquette "
+        type_filter:        " Filtrer par type "
+        image_size:         " Taille de l'image "
+        new_tab:            " Ouvrir dans une nouvelle fenêtre "
+        max_char:           " Numeró maximal de caractères "
+        link_to_all:        " Lien à tous "
+        order_by:           " Trier par "
+    errors: 
+      models: 
+        front_events_component:
+          attributes: 
+            order_by: 
+              allowed_only_for_events: " Permis seulement pour les événements"
+  front_events:
+    views: 
+      show: 
+        read_more:            " En savoir plus "
+        posted_by:            " Publié par "
+        posted_on:            " Publié el "
+      form: 
+        main:                 " Principal "
+        advanced:             " Avancé "
+        m:                    " Moyen "
+        l:                    " Petit "
+        i:                    " Miniature "
+        t:                    " Vignettes "
+        all:                  " Tous "
+        news:                 " juste nouevelles "
+        events:               " seuls les événements" 
+        position:             " Position "
+        created_at:           " Data de création "
+        updated_at:           " Date de mise à jour "
+        event_begin:          " Date de l'événement "
+        link_to_all_hint:     " Lien texte à une liste de toutes les nouvelles"
+        image_size_hint:      " Miniature est une version réduite de l'image, qui est fait d'une coupe carrée à l'aspect d'origine n'est pas perdu "

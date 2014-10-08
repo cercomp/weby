@@ -1,0 +1,43 @@
+<%= simple_form_for [:admin, @event], html: { class: 'form-horizontal' } do |f| %>
+  <%= f.show_errors %>
+
+  <%= repository_search t(".image"), "event_image",
+    "event[image]", @event.image,
+    multiple: false, file_types: 'image' %>
+
+  <%= render('translates_form', f: f) %>
+
+  <%= f.input :email %>
+
+  <%= f.input :url, wrapper_html: {class: 'side'}, placeholder: "http://site.com" %>
+  
+  <%= f.input :kind,
+      collection: @event_types,
+      as: :select %>
+
+  <%= f.input :begin_at, required: :true, label: t(".period_event") do %>
+      <div class="row">
+        <div class="col-md-5">
+           <%= f.input_field :begin_at, placeholder: t(".begin") %>
+        </div>
+        <div class="col-md-1 text-center">
+          <b><%= t('time.period_separator') %></b>
+        </div>
+        <div class="col-md-6">
+           <%= f.input_field :end_at, placeholder: t(".end") %>
+        </div>
+      </div>
+    <% end %>
+  
+  <%= repository_search t(".related_files"),
+    "related_file_ids", "event[related_file_ids][]", @event.related_files,
+    multiple: true, file_types: false %>
+  
+  <div class="form-actions">
+    <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
+    <%= link_to t("back"), :back, class: "btn btn-default" %>
+  </div>
+<% end %>
+
+<% content_for :javascripts, javascript_include_tag("pages.form") %>
+<% content_for :stylesheets, stylesheet_link_tag("datetime") %>
