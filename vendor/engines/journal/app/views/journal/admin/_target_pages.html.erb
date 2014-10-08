@@ -1,0 +1,44 @@
+<div class="search_bar">
+  <%= form_tag journal.admin_news_index_path(template: 'list_popup'), method: 'get', autocapitalize: "off", class: 'search', remote: true do %>
+    <div class="row">
+      <div class="col-md-7">
+        <%= search_input params[:search], placeholder: t('.search_pages'), button_class: 'btn-search-page' %>
+      </div>
+    </div>
+    <%= hidden_field_tag 'page', 1 %>
+    <%= hidden_field_tag 'per_page', "#{params[:per_page]}" %>
+  <% end %>
+  <div class="clearfix"></div>
+</div>
+<% if @news %>
+  <% if @news.empty? %>
+    <div class="alert alert-warning">
+      <%= t(".none_news") %>
+    </div>
+  <% else %>
+    <div class="page-results">
+      <table class="list table table-striped">
+        <thead>
+          <th><%= sortable 'date_begin_at', t(".register_date")%></th>
+          <th><%= t(".title") %></th>
+          <th><%= sortable 'tags.name', t(".category") %></th>
+          <th><%= sortable 'user', t(".author") %></th>
+        </thead>
+        <tbody>
+          <% @news.each do |news| %>
+            <tr data-id="<%= news.id%>" data-url="<%= journal.news_path(news) %>" data-title="<%= news.title %>" data-type="<%= "Journal::News" %>" class="cursor highlight target-item">
+              <td><%= news.created_at.strftime('%d/%m/%y') %></td>
+              <td><%= news.title %></td>
+              <td><%= news.category_list %></td>
+              <td><%= news.user.fullname %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <div class="pull-right"> <%= paginate @news, remote: true, size: :sm %> </div>
+      <div class="pull-left"> <%= per_page_links @news, true, :sm %> </div>
+      <div class="clearfix"></div>
+    </div>
+  <% end %>
+<% end %>

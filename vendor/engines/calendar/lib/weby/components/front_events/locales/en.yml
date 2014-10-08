@@ -1,0 +1,62 @@
+en:
+  components:
+    front_events:
+      name:                 " Front Events "
+      quant:                " Number of front news "
+      avatar_height:        " News image height "
+      avatar_width:         " News image width "
+      label:                " Label "
+      filter_by:            " Select news with only these categories "
+      read_more:            " Show 'Read more' "
+      show_author:          " Show new's author "
+      show_date:            " Show new's date "
+      type_filter:          " Filter by page type "
+      show_label:           " Show Label "
+      image_size:           " Image version "
+      new_tab:              " Open news with URL in a new tab "
+  activerecord:
+    attributes:
+      front_events_component:
+        quant:                " Number of front news "
+        avatar_height:        " Height image of news "
+        avatar_width:         " Width image of news "
+        label:                " Label "
+        filter_by:            " Select news with only these categories "
+        read_more:            " Show 'Read more' "
+        show_author:          " Show new's author "
+        show_date:            " Show new's date "
+        type_filter:          " Filter by page type "
+        show_label:           " Show Label "
+        image_size:           " Image version "
+        new_tab:              " Open news with URL in a new tab "
+        max_char:             " Maximum number of characters "
+        link_to_all:          " Link to all news "
+        order_by:             " Order by "
+    errors:
+      models:
+        front_events_component:
+          attributes:
+            order_by:
+              allowed_only_for_events: "'Date of the event' is only allowed when the filter by page type is 'Events Only'."
+  front_events:
+    views:
+      show:
+        read_more:            " Read more... "
+        posted_by:            " By "
+        posted_on:            " On "
+      form:
+        main:                 " Basic "
+        advanced:             " Avanced "
+        m:                    " Medium "
+        l:                    " Little "
+        i:                    " Miniature "
+        t:                    " Thumbnail "
+        all:                  " News and Eventos"
+        news:                 " News Only "
+        events:               " Events Only "
+        position:             " Manual "
+        created_at:           " Date of creation "
+        updated_at:           " Date of update "
+        event_begin:          " Date of the event "
+        link_to_all_hint:     " Text of the link to the list of all news "
+        image_size_hint:      " A thumbnail is a smaller version of the image, with a square crop, so the original aspect ratio is preserved "

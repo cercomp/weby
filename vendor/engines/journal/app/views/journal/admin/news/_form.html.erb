@@ -1,0 +1,35 @@
+<%= simple_form_for [:admin, @news], html: { class: 'form-horizontal' } do |f| %>
+  <%= f.show_errors %>
+
+  <%= repository_search t(".image"), "news_image",
+    "news[image]", @news.image,
+    multiple: false, file_types: 'image' %>
+
+  <%= render('translates_form', f: f) %>
+
+  <%= f.input :source, wrapper_html: {class: 'side'} %> 
+
+  <%= f.input :url, wrapper_html: {class: 'side'}, placeholder: "http://site.com" %>
+  
+  <%= f.input :category_list, :hint => t(".page_categories_help"), input_html: {class: 'input-xlarge', data: {tags: Page.uniq_category_counts.map{|t| t.name }}} %>
+
+  <%= f.input :status, collection: ['draft', 'review', 'published'] %>
+
+  <%= f.input :date_begin_at, :hint => t(".date_begin_hint") %>
+
+  <%= f.input :front %>
+
+  <%= f.input :date_end_at, :hint => t(".date_end_hint") %>
+  
+  <%= repository_search t(".related_files"),
+    "related_file_ids", "page[related_file_ids][]", @news.related_files,
+    multiple: true, file_types: false %>
+  
+  <div class="form-actions">
+    <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
+    <%= link_to t("back"), :back, class: "btn btn-default" %>
+  </div>
+<% end %>
+
+<% content_for :javascripts, javascript_include_tag("pages.form") %>
+<% content_for :stylesheets, stylesheet_link_tag("datetime") %>

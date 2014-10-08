@@ -1,0 +1,36 @@
+<% if @events.empty? %>
+  <div class="alert alert-warning">
+    <%= t(".none_event") %>
+  </div>
+<% else %>
+  <div class="pull-left"> <%= info_page @events %> </div>
+  <div class="pull-right"> <%= paginate @events, remote: true %> </div>
+  <div class="clearfix"></div>
+
+  <table class="table table-striped nowrap">
+      <thead>
+        <tr>
+          <th width="35%"><%= t(".name") %></th>
+          <th width="6%"><%= sortable 'events.kind', t(".kind") %></th>
+          <th width="13%"><%= sortable 'pages.created_at', t(".created_at") %></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @events.each do |event| %>
+        <tr id="<%= event.id %>">
+          <td>
+            <%= link_to(event.name, edit_admin_event_path(event)) %>
+          </td>
+          <td><%= event.kind %></td>
+          <td><%= l(event.created_at, :format => :short) %></td>
+          <td class="text-right"><%= make_menu(event, :except => "show", :with_text => false) %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+  <div class="pull-left"> <%= per_page_links @events, true, :sm %> </div>
+  <div class="pull-right"> <%= paginate @events, remote: true %> </div>
+  <div class="clearfix"></div>
+<% end %>

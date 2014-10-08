@@ -1,0 +1,59 @@
+<% @front_events = component.get_pages(current_site , params["front_events#{component.id}".to_sym]) %>
+<section class="front_events_component" data-url="<%= main_app.sort_site_pages_path if component.order_by == 'position' %>">
+  <% show_all_link = component.filter_by.present? ?
+      main_app.site_pages_path(direction: 'desc', sort: 'pages.created_at', tags: component.filter_by) :
+      main_app.news_site_pages_path(direction: 'desc', sort: 'pages.created_at') :
+  %>
+  <% if component.label.present? %>
+    <div class="front_events_title">
+      <%= link_to component.label.camelize, show_all_link %>
+    </div>
+  <% end %>
+  <section id="pages">
+    <% @front_events.try(:each) do |event| %>
+      <li id="sort_page_<%= "#{event.id}" %>" style="list-style-type:none;">
+      <article>
+        <% unless event.image.nil? %>
+          <%= weby_file_view(event.image, component.image_size, component.avatar_width, component.avatar_height, {as: "link", url: link_on_title(current_site, event), target: (component.new_tab && event.url.present? ? '_blank' : '_self')}) %>
+        <% end %>
+        <header>
+          <h2> <%= link_to event.title, link_on_title(current_site, event), target: (component.new_tab && event.url.present? ? '_blank' : '_self') %> </h2>
+          <% if component.show_author || component.show_date %>
+            <p class="page-details">
+              <% if component.show_author %>
+                <span class="author"><%= t(".posted_by") %><%= event.user.name_or_login %></span>
+              <% end %>
+              <% if component.show_date %>
+                <span class="date"><%= t(".posted_on") %><%= localize event.created_at, format: :medium %></span>
+              <% end %>
+            </p>
+          <% end %>
+        </header>
+        <summary>
+          <% if component.max_char.present? %>
+            <%= raw(event.information[0..component.max_char.to_i] +
+                    (event.information.size > component.max_char.to_i ? "..." : "")) %>
+          <% else  %>
+            <%= raw event.information %>
+          <% end %>
+        </summary>
+        <% if component.read_more %>
+          <p class="read_more"><%= link_to t(".read_more"), calendar.event_path(news) %></p>
+        <% end %>
+        <div class="clear clearfix"> </div>
+        <div class="control">
+          <%= link_to weby_icon('edit', t("edit")), calendar.edit_admin_event_path(event) if check_permission Sites::Admin::PagesController, [:edit] %>
+          <% if component.order_by == 'position' && check_permission(Sites::PagesController, ["sort"]) %>
+            <%= link_to weby_icon('arrows', t("move")), "#", class: 'handle' if @front_events.length > 1 %>
+          <% end %>
+        </div>
+      </article>
+      </li>
+    <% end %>
+    <div class="clear clearfix"> </div>
+  </section>
+  <%= paginate @front_news, param_name: "front_events#{component.id}", remote: true, comp_url: main_app.site_component_path(component.id), page_links: true %>
+  <span class="link_to_all"><%= link_to component.link_to_all, show_all_link if component.link_to_all.present? %></span>
+</section>
+<% include_component_javascript :javascripts, 'front_events' %>
+<%= content_for :stylesheets, stylesheet_link_tag("sortable") %>

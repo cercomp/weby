@@ -11,8 +11,8 @@ describe Page do
 
   it { expect(subject).to have_many(:views) }
   it { expect(subject).to have_many(:menu_items).dependent(:nullify) }
-  it { expect(subject).to have_many(:pages_repositories).dependent(:destroy) }
-  it { expect(subject).to have_many(:related_files).through(:pages_repositories) }
+  it { expect(subject).to have_many(:posts_repositories).dependent(:destroy) }
+  it { expect(subject).to have_many(:related_files).through(:posts_repositories) }
 
   it { expect(subject).to validate_presence_of(:author_id) }
   it { expect(subject).to validate_presence_of(:site_id) }

@@ -1,0 +1,35 @@
+en:
+  components:
+    news_list:
+      name:                    " News List "
+      quant:                   " News per page "
+      front:                   " Include front news "
+      events:                  " Show events "
+      show_image:              " Show image "
+      show_date:               " Show date "
+      date_format:             " Date Format "
+      image_size:              " Image size "
+      category:                " Filter by Category "
+      title:                   " Title "
+      new_tab:                 " Open news with URL in a new tab "
+  activerecord:
+    attributes:
+      news_list_component:
+        quant:                 " News per page "
+        front:                 " Include front news "
+        events:                " Show events "
+        show_image:            " Show image "
+        show_date:             " Show date "
+        date_format:           " Date Format "
+        image_size:            " Image size "
+        category:              " Filter by Category "
+        title:                 " Title "
+        new_tab:              " Open news with URL in a new tab "
+  news_list:
+    views:
+      show:
+        last_news:             " Latest news "
+        html:
+          last_news:           " Latest news "
+      form:
+        no_category_filter:    " All categories "

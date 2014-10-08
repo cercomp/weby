@@ -1,0 +1,26 @@
+<% include_component_javascript :javascripts, 'event_list' %>
+<% quant = component.quant || 5 %>
+<%
+@events = Calendar::Event.where(site_id: current_site).order('begin_at asc').
+  upcoming.page(params[:event_list_page]).per(quant)
+%>
+
+<section class="event_list_component">
+  <table class="list border fullwidth zebra">
+    <tr>
+      <th>
+        <%= link_to(component.title || t(".events"), events_path(direction: 'desc', sort: 'journal_events.begin_at')) %>
+      </th>
+    </tr>
+    <% @events.try(:each) do |event| %>
+      <tr>
+        <td>
+          <p><%= link_to event.name, event_path(event) %></p>
+          <p class="event-dates"><%= period_dates(event.begin_at, event.end_at, false) -%></p>
+          <%= strip_tags(event.information).first(140).html_safe %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <%= paginate @events, param_name: :event_list_page, remote: true, comp_url: main_app.site_component_path(component.id), page_links: true %>
+</section>

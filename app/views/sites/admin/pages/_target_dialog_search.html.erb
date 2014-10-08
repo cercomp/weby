@@ -35,39 +35,37 @@
                   <th><%= t("target_dialog.description") %></th>
                 </thead>
                 <tbody>
-                    <% common_pages.each do |common_page| %>
+                  <% common_pages.each do |common_page| %>
                     <tr data-title="<%= common_page[:title] %>" data-url="<%= common_page[:url] %>" class="cursor highlight target-item">
                       <td><%= common_page[:title] %></td>
                       <td><%= common_page[:description] %></td>
                     </tr>
-                    <% end %>
-
+                  <% end %>
                 </tbody>
               </table>
             </div>
             <% if extensions.any? %>
-            <div class="tab-pane" id="tab-extensions">
-              <table class="list table table-striped">
-                <thead>
-                  <th><%= t("target_dialog.extension") %></th>
-                  <th><%= t("target_dialog.title") %></th>
-                  <th><%= t("target_dialog.description") %></th>
-                </thead>
-                <tbody>
-                    <% extensions.each do |extension|  %>
-                      <% eval(extension.name).routes.routes.each do |route| %>
-                        <% if !route.defaults[:controller].match(/admin\//) && "GET".match(route.verb)# && route.name != "root" %>
-                            <tr data-title="<%= route.name %>" data-url="<%= eval("#{extension.name}.#{route.name}_path") %>" class="cursor highlight target-item">
-                            <td><%= t("extensions.#{extension.name}.name") %></td>
-                            <td><%= t("extensions.#{extension.name}.routes.#{route.name}.title") %></td>
-                            <td><%= t("extensions.#{extension.name}.routes.#{route.name}.description") %></td>
-                            </tr>
-                        <% end %>
-                      <% end %>
+              <div class="tab-pane" id="tab-extensions">
+                <ul class="nav nav-tabs" id="extensions-nav">
+                  <% i = 0 %>
+                  <% extensions.each do |extension| %>
+                    <% next if !lookup_context.exists?("target_pages", ["#{extension.name}/admin"], true) %>
+                    <li class="<%= 'active' if (i+=1) == 1 %>">
+                      <a href="#tab-<%= extension.name %>" data-toggle="tab">
+                        <%= t("extensions.#{extension.name}.name") %>
+                      </a>
+                    </li>
+                    <% content_for :target_dialog_extensions do %>
+                      <div class="tab-pane<%= ' active' if i == 1 %>" id="tab-<%= extension.name %>">
+                        <%= render "#{extension.name}/admin/target_pages" %>
+                      </div>
                     <% end %>
-                </tbody>
-              </table>
-            </div>
+                  <% end %>
+                </ul>
+                <div class="tab-content" id="extensions-results">
+                  <%= yield :target_dialog_extensions %>
+                </div>
+              </div>
             <% end %>
           <% end %>
         </div>

@@ -1,0 +1,62 @@
+es:
+  components:
+    front_events:
+      name:                 " Eventos de frente "
+      quant:                " Número de noticias de frente "
+      avatar_height:        " Altura de la imagen de noticias "
+      avatar_width:         " Anchura de la imagen de noticias "
+      label:                " Etiqueta "
+      filter_by:            " Seleccionar apenas notícias con las categorías "
+      read_more:            " Muestra 'Leer más' "
+      show_author:          " Muestra el autor de la noticia "
+      show_date:            " Muestra la fecha de la noticia "
+      type_filter:          " Filtrar por tipo de página "
+      show_label:           " Muestra la etiqueta "
+      image_size:           " Versión de la imagen "
+      new_tab:              " Abrir noticias con URL en una nueva ventana "
+  activerecord:
+    attributes:
+      front_events_component:
+        quant:                " Número de noticias de frente "
+        avatar_height:        " Altura de la imagen de noticias "
+        avatar_width:         " Anchura de la imagen de noticias "
+        label:                " Etiqueta "
+        filter_by:            " Seleccionar apenas notícias con las categorías "
+        read_more:            " Muestra 'Leer más' "
+        show_author:          " Muestra el autor de la noticia "
+        show_date:            " Muestra la fecha de la noticia "
+        show_label:           " Muestra la etiqueta "
+        type_filter:          " Filtrar por tipo de página "
+        image_size:           " Versión de la imagen "
+        new_tab:              " Abrir noticias con URL en una nueva ventana "
+        max_char:             " Número máximo de caracteres en el resumen "
+        link_to_all:          " Link a todas las noticias "
+        order_by:             " Ordenación "
+    errors:
+      models:
+        front_events_component:
+          attributes:
+            order_by:
+              allowed_only_for_events: "'Fecha del evento' sólo se permite si el filtro por tipo de página es 'Sólo Eventos'."
+  front_events:
+    views:
+      show:
+        read_more:            " Leer más... "
+        posted_by:            " Por "
+        posted_on:            " En "
+      form:
+        main:                 " Básico "
+        advanced:             " Avanzado "
+        m:                    " Media "
+        l:                    " Pequeña "
+        i:                    " Miniatura "
+        t:                    " Thumbnail "
+        all:                  " Notícias y Eventos "
+        news:                 " Sólo Notícias "
+        events:               " Sólo Eventos "
+        position:             " Manual "
+        created_at:           " Fecha de creación "
+        updated_at:           " Fecha de actualización "
+        event_begin:          " Fecha del evento "
+        link_to_all_hint:     " Texto del link a lista de todas las noticias "
+        image_size_hint:      " Un Thumbnail es una versión más pequeña de la imagen, con un recorte cuadrado, por lo que la relación de aspecto original se conserva "

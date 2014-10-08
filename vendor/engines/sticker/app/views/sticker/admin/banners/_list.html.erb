@@ -22,7 +22,7 @@
         <td><%= banner.position %></td>
         <td><%=l banner.date_begin_at, format: :short %></td>
         <td style="text-align:center;">
-          <%= publication_status_banner(banner, options{}) %>
+          <%= publication_status_banner(banner) %>
         </td>
         <td class="text-right">
           <%= raw make_menu(banner, :except => "show") %>
