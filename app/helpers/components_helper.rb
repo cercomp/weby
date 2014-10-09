@@ -49,7 +49,7 @@ module ComponentsHelper
   def available_components_sorted
     options = { 'Weby' => components_as_options(Weby::Components.components(:weby)) }
 
-    current_site.extensions.each do |extension|
+    current_site.active_extensions.each do |extension|
       extension_components = components_as_options(Weby::Components.components(extension.name.to_sym))
       options[t("extensions.#{extension.name}.name")] = extension_components if extension_components.any?
     end
