@@ -26,7 +26,7 @@
           <div class="nav-header">
             <%= menu_item_to t(".extensions"), main_app.site_admin_extensions_path %>
           </div>
-          <% current_site.extensions.each do |extension| %>
+          <% current_site.active_extensions.each do |extension| %>
             <%= menu_item_to t("extensions.#{extension.name}.name"), "/#{extension.name}/admin" %>
           <% end %>
         <% end %>

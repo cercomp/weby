@@ -121,7 +121,8 @@ module RepositoryHelper
   end
 
   def mime_image
-    "mime_list/#{CGI.escape(mime_type.last)}.png"
+    file = "mime_list/#{CGI.escape(mime_type.last)}.png"
+    Rails.application.assets.find_asset(file) ? file : empty_mime
   end
 
   def empty_mime
