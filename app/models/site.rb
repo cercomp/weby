@@ -63,7 +63,7 @@ class Site < ActiveRecord::Base
   end
 
   def active_extensions
-    extensions.to_a.keep_if {|extension| Weby.extensions[extension.name.to_sym] }
+    extensions.to_a.keep_if { |extension| Weby.extensions[extension.name.to_sym] }
   end
 
   private
