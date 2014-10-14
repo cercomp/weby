@@ -102,7 +102,7 @@ module Calendar
       params.require(:event).permit(:begin_at, :end_at, :email, :url,
                                    :kind,
                                    { i18ns_attributes: [:id, :locale_id, :name,
-                                       :information, :_destroy],
+                                       :information, :place, :_destroy],
                                      related_file_ids: [] })
     end
   end

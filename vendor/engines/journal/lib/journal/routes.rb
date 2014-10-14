@@ -32,10 +32,15 @@ module Journal
             end
             collection do
               get :recycle_bin, :fronts
+              post :sort
             end
           end
         end
-        resources :news, only: [:show, :index]
+        resources :news, module: :journal, path: 'n', only: [:show, :index] do
+          collection do
+            post :sort
+          end
+        end
       end
     end
   end

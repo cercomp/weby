@@ -57,6 +57,6 @@
         position:             " Position "
         created_at:           " Data de création "
         updated_at:           " Date de mise à jour "
-        event_begin:          " Date de l'événement "
+        begin_at:             " Date de l'événement "
         link_to_all_hint:     " Lien texte à une liste de toutes les nouvelles"
         image_size_hint:      " Miniature est une version réduite de l'image, qui est fait d'une coupe carrée à l'aspect d'origine n'est pas perdu "

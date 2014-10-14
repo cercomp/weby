@@ -1,0 +1,9 @@
+en:
+  feedback:
+    admin:
+      target_pages:
+        new_message_desc: "Form for sending a new message"
+        new_message: "New Message"
+        title: "Title"
+        description: "Description"
+

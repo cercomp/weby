@@ -13,13 +13,13 @@
 <div class="clearfix"></div>
 
 <div id="news">
-  <% if @news.empty? %>
+  <% if @newslist.empty? %>
     <div style="margin-top: 10px;" class="alert alert-warning">
       <%= t("empty_recycle_bin") %>
     </div>
   <% else %>
-    <div class="pull-left"> <%= info_page @news %> </div>
-    <div class="pull-right"> <%= paginate @news, remote: true %> </div>
+    <div class="pull-left"> <%= info_page @newslist %> </div>
+    <div class="pull-right"> <%= paginate @newslist, remote: true %> </div>
     <div class="clearfix"></div>
 
     <table class="table table-striped nowrap">
@@ -33,7 +33,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @news.each do |news| %>
+        <% @newslist.each do |news| %>
           <tr id="<%= news.id %>">
             <td><%= news.title %></td>
             <td><%= news.user.first_name %></td>
@@ -49,8 +49,8 @@
       </tbody>
     </table>
 
-    <div class="pull-left"> <%= per_page_links @news, true, :mini %> </div>
-    <div class="pull-right"> <%= paginate @news, remote: true %> </div>
+    <div class="pull-left"> <%= per_page_links @newslist, true, :mini %> </div>
+    <div class="pull-right"> <%= paginate @newslist, remote: true %> </div>
     <div class="clearfix"></div>
   <% end %>
 </div>

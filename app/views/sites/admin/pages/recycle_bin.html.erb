@@ -6,9 +6,6 @@
       new_site_admin_page_path,
       class: "btn btn-success" %>
   <% end %>
-  <% with_permission(action: :fronts) do %>
-    <%= link_to t(".covers"), fronts_site_admin_pages_path, class: "btn btn-default" %>
-  <% end %>
   <% with_permission(action: :index) do %>
     <%= link_to t(".list_pages"), site_admin_pages_path, class: "btn btn-default" %>
   <% end %>
@@ -30,8 +27,6 @@
         <tr>
           <th width="270px"><%= t(".title") %></th>
           <th width="90px"><%= sortable 'users.first_name', t(".author") %></th>
-          <th width="80px"><%= sortable 'tags.name', t(".category") %></th>
-          <th width="50px"><%= sortable 'pages.type', t(".type") %></th>
           <th width="120px"><%= sortable 'pages.deleted_at', t(".deleted_at") %></th>
           <th width="50px"></th>
         </tr>
@@ -43,8 +38,6 @@
               <%= page.title %>
             </td>
             <td><%= page.author.first_name %></td>
-            <td><%= raw categories_links(page.category_list) %></td>
-            <td><%= t(".#{page.type.downcase}") %></td>
             <td><%= l(page.deleted_at, :format => :short) %></td>
             <td class="text-right">
               <%= recycle_bin_actions page %>

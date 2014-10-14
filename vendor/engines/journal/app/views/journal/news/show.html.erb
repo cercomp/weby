@@ -1,0 +1,83 @@
+<% content_for :title, " - #{@news.title}" %>
+<article class="news-show">
+  <%= weby_file_view(@news.image, :l, '128', nil) %>
+
+  <header>
+    <% if (defined?(as_component) ? as_component[:show_title] : true) %>
+      <h2><%= @news.title %></h2>
+    <% end %>
+  </header>
+  <% if !defined?(as_component) %>
+    <div class="page-details">
+    <% if current_site.view_desc_pages %>
+       <span class="author"><%= t("posted_by") %><%= @news.author %></span>
+    <% end %>
+    <% if @news.published? %>
+       <span class="date"><%= t(".updated_at") %><%= l((@news.updated_at.blank? ? @news.created_at : @news.updated_at), format: :short) %>.</span>
+    <% end %>
+    </div>
+  <% end %>
+
+  <summary>
+   <%= raw @news.summary %>
+  </summary>
+
+  <div class="body">
+    <%= raw @news.text %>
+  </div>
+
+  <% if (defined?(as_component) ? as_component[:show_info] : true) %>
+    <%= content_tag_if @news.source.present?, :p, class: 'source' do %>
+      <span class="source-label"><%= "#{t('.source')}:" %></span>
+      <%= "#{@news.source}" %>
+    <% end %>
+
+    <%= content_tag_if @news.category_list.any?, :p, class: 'categories' do %>
+      <span class="categories-label"><%= "#{t('.categories')}:"  %></span>
+      <% @news.category_list.each do |category| %>
+        <%= link_to category, site_pages_path( tags: category.to_s ), class: 'weby-label default' %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%# List the related url if exist %>
+  <% if @news.url? %>
+    <table class="table table-striped table-condensed table-bordered">
+      <thead>
+        <tr>
+          <th><%= t(".related_url") %><%= ":   "%> <%= link_to @news.url, @news.url%> </th>
+        </tr>
+      </thead>
+    </table>
+  <% end %>
+
+  <%# List the related files if they exist %>
+  <% if @news.related_files.any? %>
+    <table class="table table-striped table-condensed table-bordered">
+      <thead>
+        <tr>
+          <th><%= t(".related_files") %></th>
+          <th><%= t(".size") %></th>
+          <th><%= t(".archive_fingerprint") %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @news.related_files.each do |file| %>
+        <tr>
+          <td><%= link_to file.description, file.archive.url %></td>
+          <td><%= file.archive_file_size.to_i/1024 %> Kb</td>
+          <td><%= file.archive_fingerprint %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+
+  <div style="margin-top: 8px;">
+    <%= link_to(weby_icon('edit', t("edit")), edit_admin_news_path(@news)) if check_permission(Journal::Admin::NewsController, [:edit]) %>
+    <% if !defined?(as_component) %>
+      <%= link_to weby_icon('list', t(".list_all")), news_index_path %>
+      <%= link_to weby_icon('chevron-left', t("back")), :back %>
+    <% end %>
+  </div>
+</article>

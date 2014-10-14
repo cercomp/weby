@@ -13,7 +13,6 @@ class Repository < ActiveRecord::Base
 
   belongs_to :site
 
-  has_many :page, foreign_key: 'repository_id'
   has_many :banners
   has_many :sites, foreign_key: 'top_banner_id', dependent: :nullify
   has_many :posts_repositories, dependent: :destroy

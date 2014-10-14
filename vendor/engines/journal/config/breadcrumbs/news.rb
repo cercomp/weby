@@ -23,6 +23,11 @@ crumb :news_search do |search|
   parent :news
 end
 
+crumb :news_fronts do
+  link t('breadcrumbs.fronts'), fronts_admin_news_index_path
+  parent :news
+end
+
 crumb :news_recycle_bin do
   link t('recycle_bin')
   parent :news

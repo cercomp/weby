@@ -1,8 +1,12 @@
 module Calendar
   class Event < ActiveRecord::Base
     include Trashable
-    
-    weby_content_i18n :name, :information, required: :name
+
+    EVENT_TYPES = %w(regional national international)
+
+    acts_as_taggable_on :categories
+
+    weby_content_i18n :name, :information, :place, required: :name
 
     belongs_to :site
     belongs_to :user

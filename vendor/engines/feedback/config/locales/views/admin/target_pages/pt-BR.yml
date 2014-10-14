@@ -1,0 +1,8 @@
+pt-BR:
+  feedback:
+    admin:
+      target_pages:
+        new_message_desc: "Formulário de fale conosco"
+        new_message: "Nova mensagem"
+        title: "Título"
+        description: "Descrição"

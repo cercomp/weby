@@ -1,35 +1,31 @@
-<% title ".pages" %>
-<% breadcrumb :pages_fronts %>
+<% title ".news" %>
+<% breadcrumb :news_fronts %>
 <div class="row" style="margin-bottom: 15px">
-  <div class="col-md-4">
+  <div class="col-md-7">
     <%= select_tag "filter-category",
-      options_for_select(current_site.pages.uniq_category_counts.map{|c| [c.name, c.name.parameterize] }),
+      options_for_select(Journal::News.where(site_id: current_site.id).uniq_category_counts.map{|c| [c.name, c.name.parameterize] }),
       include_blank: false,
       class: 'form-control select2 input-xlarge',
       multiple: true %>
-  </div>
-  <div class="col-md-3">
-    <input type="checkbox" name="filter-events" id="filter-events"/>&nbsp;<%= t('.events_only') %>
-    <label></label>
   </div>
   <div class="col-md-5">
     <div class="pull-right">
       <% with_permission(action: :new) do %>
         <%= link_to t(".new_page"),
-          new_site_admin_page_path,
+          new_admin_news_path,
           class: "btn btn-success" %>
       <% end %>
       <% with_permission(action: :index) do %>
-        <%= link_to t(".list_pages"), site_admin_pages_path, class: 'btn btn-default' %>
+        <%= link_to t(".list_pages"), admin_news_index_path, class: 'btn btn-default' %>
       <% end %>
       <% with_permission(action: [:recover, :purge]) do %>
-        <%= link_to t("recycle_bin"), recycle_bin_site_admin_pages_path, class: "btn btn-default" %>
+        <%= link_to t("recycle_bin"), recycle_bin_admin_news_index_path, class: "btn btn-default" %>
       <% end %>
     </div>
   </div>
 </div>
 
-<% if @pages.empty? %>
+<% if @newslist.empty? %>
   <div class="alert alert-warning">
     <%= t(".none_cover") %>
   </div>
@@ -40,7 +36,6 @@
       <th width="35%"><%= t(".title") %></th>
       <th width="12%"><%= t(".author") %></th>
       <th width="13%"><%= t(".category") %></th>
-      <th width="6%"><%= t(".type") %></th>
       <th width="13%"><%= t(".created_at") %></th>
       <% with_permission(action: :edit) do %>
         <th  width="5%"><%= t(".cover") %></th>
@@ -49,23 +44,22 @@
       <th></th>
     </thead>
     <tbody>
-      <% @pages.each do |page| %>
-        <tr id="sort_page_<%= page.id %>" class="sort_page <%= page.type.downcase%> <%= page.category_list.map{|categ| categ.parameterize }.join(' ') %>">
+      <% @newslist.each do |news| %>
+        <tr id="sort_page_<%= news.id %>" class="sort_page <%= news.category_list.map{|categ| categ.parameterize }.join(' ') %>">
           <td>
-            <%= title_with_flags(page) %>
+            <%= link_to news.title, edit_admin_news_path(news) %>
           </td>
-          <td><%= page.author.first_name %></td>
-          <td><%= raw categories_links(page.category_list) %></td>
-          <td><%= t(".#{page.type.downcase}") %></td>
-          <td><%= l(page.created_at, :format => :short) %></td>
+          <td><%= news.user.first_name %></td>
+          <td><%= raw categories_links(news.category_list) %></td>
+          <td><%= l(news.created_at, :format => :short) %></td>
           <% with_permission(action: :edit) do %>
             <td class="publish" style="text-align:center;">
-              <%= front_status(page) %></td>
+              <%= front_status(news) %></td>
             <td class="publish" style="text-align:center;">
-              <%= publication_status(page) %></td>
+              <%= news.status %></td>
           <% end %>
           <td class="text-right">
-            <%= make_menu(page, :except => "show", :with_text => false) %>
+            <%= make_menu(news, :except => "show", :with_text => false) %>
             <% with_permission(action: :sort) do %>
               <%= link_to icon('move'), '#', class: 'handle' %>
             <% end %>
@@ -102,7 +96,7 @@
             dataType: 'script',
             complete: function(request){ ui.item.effect('pulsate', {times: 1}, 350); },
             error: function(){$('#list').sortable('cancel');},
-            url: '<%= sort_site_admin_pages_path %>'
+            url: '<%= sort_admin_news_index_path %>'
           });
         }
       });

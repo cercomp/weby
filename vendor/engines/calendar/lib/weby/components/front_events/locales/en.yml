@@ -57,6 +57,6 @@ en:
         position:             " Manual "
         created_at:           " Date of creation "
         updated_at:           " Date of update "
-        event_begin:          " Date of the event "
+        begin_at:             " Date of the event "
         link_to_all_hint:     " Text of the link to the list of all news "
         image_size_hint:      " A thumbnail is a smaller version of the image, with a square crop, so the original aspect ratio is preserved "

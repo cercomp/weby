@@ -5,8 +5,6 @@ class Sites::Admin::PagesController < ApplicationController
   before_action :require_user
   before_action :check_authorization
 
-  before_action :event_types, only: [:new, :edit]
-
   helper_method :sort_column
 
   respond_to :html, :js, :json, :rss
@@ -26,7 +24,7 @@ class Sites::Admin::PagesController < ApplicationController
   def recycle_bin
     params[:sort] ||= 'pages.deleted_at'
     params[:direction] ||= 'desc'
-    @pages = current_site.pages.trashed.includes(:author, :categories).
+    @pages = current_site.pages.trashed.includes(:author).
       order("#{params[:sort]} #{sort_direction}").
       page(params[:page]).per(params[:per_page])
   end
@@ -41,14 +39,8 @@ class Sites::Admin::PagesController < ApplicationController
     # tags e locales
     pages = current_site.pages.
       search(params[:search], 1) # 1 = busca com AND entre termos
-
-    if sort_column == 'tags.name'
-      pages = pages.includes(categories: :taggings).order(sort_column + ' ' + sort_direction)
-    else
-      pages = pages.order(sort_column + ' ' + sort_direction)
-    end
-
-    pages = pages.page(params[:page]).per(params[:per_page])
+      .order(sort_column + ' ' + sort_direction)
+      .page(params[:page]).per(params[:per_page])
   end
   private :get_pages
 
@@ -56,11 +48,6 @@ class Sites::Admin::PagesController < ApplicationController
     params[:sort] || 'pages.id'
   end
   private :sort_column
-
-  # Essa action não chama o get_pages pois não faz paginação
-  def fronts
-    @pages = current_site.pages.available_fronts.order('position desc')
-  end
 
   # GET /pages/1
   # GET /pages/1.json
@@ -85,11 +72,6 @@ class Sites::Admin::PagesController < ApplicationController
     @page = current_site.pages.find(params[:id])
     respond_with(:site_admin, @page)
   end
-
-  def event_types
-    @event_types = Page::EVENT_TYPES.map { |el| t("sites.admin.pages.event_form.#{el}") }.zip(Page::EVENT_TYPES)
-  end
-  private :event_types
 
   # POST /pages
   # POST /pages.json
@@ -142,10 +124,8 @@ class Sites::Admin::PagesController < ApplicationController
   private
 
   def page_params
-    params.require(:page).permit(:type, :source, :url, :category_list, :publish,
-                                 :date_begin_at, :front, :date_end_at, :image,
-                                 :local, :kind, :event_email, :event_begin, :event_end,
-                                 { i18ns_attributes: [:id, :locale_id, :title, :summary, :text, :_destroy],
-                                   related_file_ids: [] })
+    params.require(:page).permit(:url, :publish,
+                                 { i18ns_attributes: [:id, :locale_id, :title, :text, :_destroy],
+                                 related_file_ids: [] })
   end
 end

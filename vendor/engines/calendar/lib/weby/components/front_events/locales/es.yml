@@ -57,6 +57,6 @@ es:
         position:             " Manual "
         created_at:           " Fecha de creación "
         updated_at:           " Fecha de actualización "
-        event_begin:          " Fecha del evento "
+        begin_at:             " Fecha del evento "
         link_to_all_hint:     " Texto del link a lista de todas las noticias "
         image_size_hint:      " Un Thumbnail es una versión más pequeña de la imagen, con un recorte cuadrado, por lo que la relación de aspecto original se conserva "

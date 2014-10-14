@@ -19,18 +19,6 @@ class Sites::PagesController < ApplicationController
     end
   end
 
-  def events
-    @pages = get_pages.send(params[:upcoming] ? :upcoming_events : params[:previous] ? :previous_events : :events)
-
-    render :index
-  end
-
-  def news
-    @pages = get_pages.news
-
-    render :index
-  end
-
   # GET /pages/1
   # GET /pages/1.json
   def show
@@ -53,12 +41,11 @@ class Sites::PagesController < ApplicationController
     params[:direction] ||= 'desc'
     # Vai ao banco por linha para recuperar
     # tags e locales
-    pages = current_site.pages.available.
+    pages = current_site.pages.published.
       search(params[:search], params.fetch(:search_type, 1).to_i).
       order(sort_column + ' ' + sort_direction).
       page(params[:page]).per(params[:per_page])
 
-    pages = pages.tagged_with(tags, any: true) if params[:tags]
     pages
   end
 

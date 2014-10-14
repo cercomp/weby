@@ -1,8 +1,8 @@
 <% @front_news = component.get_pages(current_site , params["front_news#{component.id}".to_sym]) %>
-<section class="front_news_component" data-url="<%= main_app.sort_site_pages_path if component.order_by == 'position' %>">
+<section class="front_news_component" data-url="<%= sort_news_index_path if component.order_by == 'position' %>">
   <% show_all_link = component.filter_by.present? ?
-      main_app.site_pages_path(direction: 'desc', sort: 'pages.created_at', tags: component.filter_by) :
-      main_app.news_site_pages_path(direction: 'desc', sort: 'pages.created_at')
+      news_index_path(direction: 'desc', sort: 'pages.created_at', tags: component.filter_by) :
+      news_index_path(direction: 'desc', sort: 'pages.created_at')
   %>
   <% if component.label.present? %>
     <div class="front_news_title">
@@ -14,10 +14,10 @@
       <li id="sort_news_<%= "#{news.id}" %>" style="list-style-type:none;">
       <article>
         <% unless news.image.nil? %>
-          <%= weby_file_view(news.image, component.image_size, component.avatar_width, component.avatar_height, {as: "link", url: link_on_title(current_site, news), target: (component.new_tab && news.url.present? ? '_blank' : '_self')}) %>
+          <%= weby_file_view(news.image, component.image_size, component.avatar_width, component.avatar_height, {as: "link", url: news.url.present? ? news.url : news_url(news, subdomain: news.site), target: (component.new_tab && news.url.present? ? '_blank' : '_self')}) %>
         <% end %>
         <header>
-          <h2> <%= link_to news.title, link_on_title(current_site, news), target: (component.new_tab && news.url.present? ? '_blank' : '_self') %> </h2>
+          <h2> <%= link_to news.title, news.url.present? ? news.url : news_url(news, subdomain: news.site), target: (component.new_tab && news.url.present? ? '_blank' : '_self') %> </h2>
           <% if component.show_author || component.show_date %>
             <p class="news-details">
               <% if component.show_author %>
