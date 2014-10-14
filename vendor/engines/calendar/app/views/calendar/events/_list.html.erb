@@ -1,0 +1,25 @@
+<%= info_page @events %>
+<div class="search-results">
+<% if @events.each do |event| %>
+  <div class="item-search-result">
+    <% if event.image %>
+      <%= weby_file_view(event.image, :t, 64, nil, {as: "link", url: event_path(event), style: "float: right; margin-left: 7px;"}) %>
+    <% end %>
+    <header><%= link_to event.name, event_path(event) %></header>
+    <div class="page-details">
+        <%= period_dates(event.begin_at, event.end_at) %>
+    </div>
+    <summary>
+      <%= raw event.information %>
+    </summary>
+    <% event.category_list.each do |category| %>
+      <span class="category"><%= link_to category , events_path( tags: category.to_s ), class: 'weby-label default' %></span>
+    <% end %>
+    <p class="read_more"><%#= link_to t(".read_more"), event_path(event) %></p>
+  </div>
+<% end.empty? %>
+  <div class="empty-result"><%= t(".no_#{action_name=='events' ? 'events' : 'pages' }") %></div>
+<% end %>
+</div>
+<%= per_page_links @events, true, :sm %>
+<%= paginate @events, remote: true, page_links: true %>

@@ -6,12 +6,7 @@ Rails.application.routes.draw do
     get '/admin/edit' => 'sites#edit', as: :edit_site_admin
     patch '/admin/edit' => 'sites#update', as: :update_site_admin
 
-    resources :pages, as: :site_pages, controller: 'sites/pages', only: [:index, :show] do
-      collection do
-        get :events, :news
-        post :sort
-      end
-    end
+    resources :pages, as: :site_pages, controller: 'sites/pages', path: 'p', only: [:index, :show]
 
     resources :components,
               as: :site_components,
@@ -67,8 +62,7 @@ Rails.application.routes.draw do
           put :toggle, :recover
         end
         collection do
-          get :fronts, :recycle_bin
-          post :sort
+          get :recycle_bin
         end
       end
       resources :repositories do

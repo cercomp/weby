@@ -10,8 +10,8 @@
   <% end %>
   <div class="clearfix"></div>
 </div>
-<% if @news %>
-  <% if @news.empty? %>
+<% if @newslist %>
+  <% if @newslist.empty? %>
     <div class="alert alert-warning">
       <%= t(".none_news") %>
     </div>
@@ -25,7 +25,7 @@
           <th><%= sortable 'user', t(".author") %></th>
         </thead>
         <tbody>
-          <% @news.each do |news| %>
+          <% @newslist.each do |news| %>
             <tr data-id="<%= news.id%>" data-url="<%= news_path(news) %>" data-title="<%= news.title %>" data-type="<%= "Journal::News" %>" class="cursor highlight target-item">
               <td><%= news.created_at.strftime('%d/%m/%y') %></td>
               <td><%= news.title %></td>
@@ -36,8 +36,8 @@
         </tbody>
       </table>
 
-      <div class="pull-right"> <%= paginate @news, remote: true, size: :sm %> </div>
-      <div class="pull-left"> <%= per_page_links @news, true, :sm %> </div>
+      <div class="pull-right"> <%= paginate @newslist, remote: true, size: :sm %> </div>
+      <div class="pull-left"> <%= per_page_links @newslist, true, :sm %> </div>
       <div class="clearfix"></div>
     </div>
   <% end %>

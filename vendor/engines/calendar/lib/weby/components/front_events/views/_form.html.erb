@@ -24,7 +24,7 @@
 
       <%= f.input :max_char, as: :integer %>
 
-      <%= f.input :filter_by, input_html: {id: 'categories-list', class: 'input-xlarge', data: {tags: current_site.pages.uniq_category_counts.map{|t| t.name }}} %>
+      <%= f.input :filter_by, input_html: {id: 'categories-list', class: 'input-xlarge', data: {tags: Calendar::Event.where(site_id: current_site.id).uniq_category_counts.map{|t| t.name }}} %>
 
     </div>
     <div class="tab-pane" id="tab-advanced">
@@ -36,7 +36,6 @@
       <%= f.input :avatar_height, as: :integer %>
 
       <%= f.input :read_more, as: :boolean %>
-      <%= f.input :show_author, as: :boolean %>
       <%= f.input :show_date, as: :boolean %>
       <%= each_i18n_tab do |locale| %>
         <%= f.component_i18n_input locale, :link_to_all, :as => :string, hint: t(".link_to_all_hint") %>

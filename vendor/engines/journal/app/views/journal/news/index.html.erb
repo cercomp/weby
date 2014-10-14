@@ -1,0 +1,35 @@
+
+<h2>
+  <%= t(".news") %>
+</h2>
+
+<%= form_tag nil, method: 'get' do %>
+  <div class="input-append search-field-button">
+      <%= text_field_tag :search, params[:search] %>
+      <%= button_tag image_tag("/assets/components/icon_search.png"), class: 'btn', title: t("search") %>
+  </div>
+  <%= link_to t('.advanced'), '#', class: 'toggle-advanced-search', onclick: "return toggleAdvancedSearch()"%>
+  <span class="advanced-search<%= params[:search_type] ? "": " hide"%>">
+    &nbsp;<%= radio_button_tag :search_type, 0, params[:search_type]=='0' %><span><%= t('.match_search') %></span>
+    &nbsp;<%= radio_button_tag :search_type, 1, params[:search_type]=='1' %><span><%= t('.and_search') %></span>
+    &nbsp;<%= radio_button_tag :search_type, 2, params[:search_type]=='2' %><span><%= t('.or_search') %></span>
+  </span>
+  <%= hidden_field_tag 'page', 1 %>
+  <%= hidden_field_tag 'per_page', "#{params[:per_page]}" %>
+<% end %>
+<% if params[:tags] %>
+  <% tags = params[:tags].split(',') %>
+  <% tags.each do |tag| %>
+    <% newtags = tags.reject {|t| t == tag} %>
+    <% newtags.any? ? params[:tags] = newtags.join(',') : params.delete(:tags) %>
+    <%= link_to site_pages_path(params), class: 'weby-label info' do %>
+      <%= tag %> X
+    <% end %>
+  <% end %>
+<% end %>
+<div id="pages" class="pages-list">
+  <%= render partial: 'list' %>
+</div>
+
+<% content_for :javascripts, javascript_include_tag("pages.index") %>
+<% content_for :stylesheets, stylesheet_link_tag("search_results") %>

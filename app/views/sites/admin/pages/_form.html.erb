@@ -1,28 +1,12 @@
 <%= simple_form_for [:site_admin, @page], html: { class: 'form-horizontal' } do |f| %>
   <%= f.show_errors %>
 
-  <%= repository_search t(".image"), "page_image",
-    "page[image]", @page.image,
-    multiple: false, file_types: 'image' %>
-
-  <%= render('event_form', f: f) %>
-
   <%= render('translates_form', f: f) %>
-
-  <%= f.input :source, wrapper_html: {class: 'side'} %> 
 
   <%= f.input :url, wrapper_html: {class: 'side'}, placeholder: "http://site.com" %>
   
-  <%= f.input :category_list, :hint => t(".page_categories_help"), input_html: {class: 'input-xlarge', data: {tags: Page.uniq_category_counts.map{|t| t.name }}} %>
-
   <%= f.input :publish , wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" } %>
 
-  <%= f.input :date_begin_at, :hint => t(".date_begin_hint") %>
-
-  <%= f.input :front , wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" } %>
-
-  <%= f.input :date_end_at, :hint => t(".date_end_hint") %>
-  
   <%= repository_search t(".related_files"),
     "related_file_ids", "page[related_file_ids][]", @page.related_files,
     multiple: true, file_types: false %>

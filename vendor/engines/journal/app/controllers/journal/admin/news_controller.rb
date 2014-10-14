@@ -10,8 +10,8 @@ module Journal::Admin
     helper_method :sort_column
 
     def index
-      @news = get_news
-      respond_with(:admin, @news) do |format|
+      @newslist = get_news
+      respond_with(:admin, @newslist) do |format|
         if params[:template]
           format.js { render "#{params[:template]}" }
           format.html { render partial: "#{params[:template]}", layout: false }
@@ -22,7 +22,7 @@ module Journal::Admin
     def recycle_bin
       params[:sort] ||= 'journal_news.deleted_at'
       params[:direction] ||= 'desc'
-      @news = Journal::News.where(site_id: current_site).trashed.includes(:user, :categories).
+      @newslist = Journal::News.where(site_id: current_site).trashed.includes(:user, :categories).
         order("#{params[:sort]} #{sort_direction}").
         page(params[:page]).per(params[:per_page])
     end
@@ -50,7 +50,7 @@ module Journal::Admin
 
     # Essa action não chama o get_pages pois não faz paginação
     def fronts
-      @news = Journal::News.where(site_id: current_site.id).available_fronts.order('position desc')
+      @newslist = Journal::News.where(site_id: current_site.id).available_fronts.order('position desc')
     end
 
     def show

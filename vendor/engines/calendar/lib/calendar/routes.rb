@@ -13,7 +13,7 @@ module Calendar
             end
           end
         end
-        resources :events, module: 'calendar', only: [:show, :index]
+        resources :events, module: 'calendar', path: 'e', only: [:show, :index]
       end
     end
   end

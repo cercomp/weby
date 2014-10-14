@@ -112,6 +112,14 @@ module Journal
       end.values
     end
 
+    def link
+      if url.blank?
+        news_url(self, subdomain: self.site)
+      else
+        url
+      end
+    end
+
     private
 
     def validate_date

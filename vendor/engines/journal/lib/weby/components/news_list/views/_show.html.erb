@@ -4,17 +4,17 @@
 <section class="news_list_component">
   <table class="list border fullwidth zebra">
     <tr>
-      <th> <%= link_to(component.title_for_link || t(".last_news"), main_app.news_site_pages_path(direction: 'desc', sort: 'pages.created_at', tags: component.category)) %> </th>
+      <th> <%= link_to(component.title_for_link || t(".last_news"), news_index_path(direction: 'desc', sort: 'pages.created_at', tags: component.category)) %> </th>
     </tr>
-    <% @news_list.try(:each) do |page| %>
+    <% @news_list.try(:each) do |news| %>
       <tr>
         <td>
-          <% if component.show_image && page.image %>
-            <%= weby_file_view(page.image, :t, component.image_size, nil, {as: "link", url: link_on_title(current_site, page), style: "float: right; margin-left: 7px;", target: (component.new_tab && page.url.present? ? '_blank' : '_self')}) %>
+          <% if component.show_image && news.image %>
+            <%= weby_file_view(news.image, :t, component.image_size, nil, {as: "link", url: news.url.present? ? news.url : news_url(news, subdomain: news.site), style: "float: right; margin-left: 7px;", target: (component.new_tab && news.url.present? ? '_blank' : '_self')}) %>
           <% end %>
-          <p class="title"><%= link_to page.title, link_on_title(current_site, page), target: (component.new_tab && page.url.present? ? '_blank' : '_self') %></p>
-          <% if component.show_date %><p class="news-date"><%= l(page.created_at, format: component.date_format) %></p><% end %>
-          <%= raw page.summary %>
+          <p class="title"><%= link_to news.title, news.url.present? ? news.url : news_url(news, subdomain: news.site), target: (component.new_tab && news.url.present? ? '_blank' : '_self') %></p>
+          <% if component.show_date %><p class="news-date"><%= l(news.created_at, format: component.date_format) %></p><% end %>
+          <%= raw news.summary %>
         </td>
       </tr>
     <% end %>

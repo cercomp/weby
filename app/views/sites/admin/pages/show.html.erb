@@ -1,57 +1,19 @@
 <% title ".pages" %>
 <% breadcrumb :pages_show, @page %>
 <article class="page-show">
-  <%= weby_file_view(@page.image, :l, '128', nil) %>
-
+  
   <header>
     <%= raw available_flags(@page) if @page.locales.many? %>
     <h1><%= @page.title %></h1>
   </header>
 
-  <%= content_tag_if @page.event?, :div, class: 'event' do %>
-    <h3><%= t(".event") %></h3>
-    <p class="local">
-      <%= label(:page, :local) %>
-      <%= @page.local %>
-    </p>
-    <%= content_tag_if @page.kind?, :p, class: 'event-type' do %>
-      <%= label(:page, :kind) %>
-      <%= t("sites.admin.pages.event_form.#{@page.kind}") %>
-    <% end %>
-    <%= content_tag_if @page.event_email?, :p, class: 'event-email' do %>
-      <%= label(:page, :event_email) %>
-      <%= @page.event_email %>
-    <% end %>
-    <p class="event-period">
-      <%= label(:page, :event_period, t(".period_event"), style: 'display: inline-block;') %>:
-      <span class="event-dates"><%=  period_dates(@page.event_begin, @page.event_end) %></span>
-    </p>
-  <% end %>
-
-  <summary>
-    <p>
-      <%= "#{@page.author} #{l(@page.created_at, format: :short)}" if @site.view_desc_pages %>
-    </p>
-    <p>
-      <%= raw @page.summary %>
-    </p>
-  </summary>
-
+  <p>
+    <%= "#{@page.author} #{l(@page.created_at, format: :short)}" if @site.view_desc_pages %>
+  </p>
+  
   <div class="body">
     <%= raw @page.text %>
   </div>
-
-  <%= content_tag_if @page.source.present?, :p, class: 'source' do %>
-    <span class="source-label"><%= "#{t('.source')}:" %></span>
-    <%= "#{@page.source}" %>
-  <% end %>
-
-  <%= content_tag_if @page.category_list.any?, :p, class: 'categories' do %>
-    <span class="categories-label"><%= "#{t('.categories')}:"  %></span>
-    <% @page.category_list.each do |category| %>
-      <span class="label label-info"><%= category %></span>
-    <% end %>
-  <% end %>
 
   <%# List the related url if exist %>
   <% if @page.url? %>

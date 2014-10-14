@@ -1,52 +1,32 @@
-class FrontNewsComponent < Component
-  component_settings :quant, :avatar_height, :avatar_width, :read_more, :show_author,
-                     :show_date, :image_size, :new_tab, :max_char, :filter_by, :label, :type_filter,
+class FrontEventsComponent < Component
+  component_settings :quant, :avatar_height, :avatar_width, :read_more,
+                     :show_date, :image_size, :new_tab, :max_char, :filter_by, :label,
                      :link_to_all, :order_by
 
   i18n_settings :label, :link_to_all
 
   validates :quant, presence: true
 
-  def get_pages(site, page_param)
-    filter_by.blank? ? pages(site, page_param) : pages(site, page_param).tagged_with(filter_by.mb_chars.downcase.to_s, any: true)
+  def get_events(site, page_param)
+    filter_by.blank? ? events(site, page_param) : events(site, page_param).tagged_with(filter_by.mb_chars.downcase.to_s, any: true)
   end
 
-  def pages(site, page_param)
+  def events(site, page_param)
     direction = 'desc'
-    pages = site.pages.includes(:author, :image).available_fronts
+    events = Calendar::Event.where(site_id: site.id).includes(:image)
 
-    case type_filter
-    when 'events'
-      if order_by == 'event_begin'
-        direction = 'asc, id asc'
-        pages = pages.upcoming_events
-      else
-        pages = pages.events
-      end
-    when 'news'
-      pages = pages.news
+    if order_by == 'begin_at'
+      direction = 'asc, id asc'
+      events = events.upcoming
     end
-
-    pages.order("#{order_by} #{direction}").page(page_param).per(quant)
+    
+    events.order("#{order_by} #{direction}").page(page_param).per(quant)
   end
-  private :pages
-
-  validate :validate_order
-  def validate_order
-    if order_by == 'event_begin' && type_filter != 'events'
-      errors.add(:order_by, :allowed_only_for_events)
-    end
-  end
-  private :validate_order
+  private :events
 
   alias_method :_read_more, :read_more
   def read_more
     _read_more.blank? ? false : _read_more.to_i == 1
-  end
-
-  alias_method :_show_author, :show_author
-  def show_author
-    _show_author.blank? ? false : _show_author.to_i == 1
   end
 
   alias_method :_show_date, :show_date
@@ -74,33 +54,16 @@ class FrontNewsComponent < Component
     _new_tab.blank? ? false : _new_tab.to_i == 1
   end
 
-  alias_method :_type_filter, :type_filter
-  def new_tab
-    _type_filter.blank? ? type_filters[0].to_s : _type_filter
-  end
-
   alias_method :_order_by, :order_by
   def order_by
     _order_by.blank? ? order_types[0].to_s : _order_by
   end
 
   def order_types
-    [:created_at, :updated_at, :event_begin]
-  end
-
-  def type_filters
-    [:all, :news, :events]
+    [:created_at, :updated_at, :begin_at]
   end
 
   def image_sizes
     [:m, :l, :i, :t]
-  end
-
-  def only_events?
-    type_filter == 'events'
-  end
-
-  def only_news?
-    type_filter == 'news'
   end
 end

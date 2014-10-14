@@ -30,7 +30,7 @@
         <div id="tags">
           <% unless (tags = component.tags(current_site)).empty? %>
             <% tags.each do |tag| %>
-              <li> <%= link_to tag, main_app.site_pages_path(tags: tag.to_s), data: { weight: component.tag_size(tag,current_site)} %></li>
+              <li> <%= link_to tag, news_index_path(tags: tag.to_s), data: { weight: component.tag_size(tag,current_site)} %></li>
             <% end %>
           <% end %>
         </div>

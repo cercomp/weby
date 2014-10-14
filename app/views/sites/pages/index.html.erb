@@ -1,23 +1,5 @@
 <h2>
-<% if controller.action_name == 'events' %>
-  <%= t(".events") %>
-  <div class="events_search" style="float: right">
-    <ul id="filterNav" >
-      <% (params[:upcoming] == nil && params[:previous] == nil) ? classe = "selected" : classe = nil %>
-      <li><%= link_to t('.all_events'), events_site_pages_path(upcoming: nil, previous: nil, direction: 'desc', sort: 'pages.event_begin'), class: classe %></li>
-
-      <% (params[:upcoming] != nil) ? classe = "selected" : classe = nil %>
-      <li><%= link_to t('.upcoming_events'), events_site_pages_path(upcoming: true, previous: nil, direction: 'asc', sort: 'pages.event_begin'), class: classe %></li>
-
-      <% (params[:previous] != nil) ? classe = "selected" : classe = nil %>
-      <li><%= link_to t('.previous_events'), events_site_pages_path(upcoming: nil, previous: true, direction: 'desc', sort: 'pages.event_begin'), class: classe %></li>
-    </ul>
-  </div>
-  <% elsif controller.action_name == 'news' %>
-    <%= t(".news") %>
-  <% else %>
-    <%= t(".pages") %>
-  <% end %>
+  <%= t(".pages") %>
 </h2>
 
 <%= form_tag nil, method: 'get' do %>
@@ -33,16 +15,6 @@
   </span>
   <%= hidden_field_tag 'page', 1 %>
   <%= hidden_field_tag 'per_page', "#{params[:per_page]}" %>
-<% end %>
-<% if params[:tags] %>
-  <% tags = params[:tags].split(',') %>
-  <% tags.each do |tag| %>
-    <% newtags = tags.reject {|t| t == tag} %>
-    <% newtags.any? ? params[:tags] = newtags.join(',') : params.delete(:tags) %>
-    <%= link_to site_pages_path(params), class: 'weby-label info' do %>
-      <%= tag %> X
-    <% end %>
-  <% end %>
 <% end %>
 <div id="pages" class="pages-list">
   <%= render partial: 'list' %>

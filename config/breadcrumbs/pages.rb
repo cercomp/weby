@@ -8,11 +8,6 @@ crumb :pages_new do
   parent :pages
 end
 
-crumb :pages_fronts do
-  link t('breadcrumbs.fronts'), fronts_site_admin_pages_path
-  parent :pages
-end
-
 crumb :pages_show do |page|
   link "#{page.title}", site_admin_page_path
   parent :pages
