@@ -237,7 +237,7 @@ en:
       event_date_full:    " %B %d, %Y "
       event_period_short: " %B %{iniday} - %{finday} "
       event_period_full:  " %B %{iniday} - %{finday}, %Y "
-      event_hour:         " at %kh "
+      event_hour:         " at %H:%M "
     period_separator: " - "
     am:               " am "
     pm:               " pm "
