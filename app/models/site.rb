@@ -62,6 +62,10 @@ class Site < ActiveRecord::Base
     extensions.select { |ext| ext.name = extension.to_s }.any?
   end
 
+  def active_extensions
+    extensions.to_a.keep_if { |extension| Weby.extensions[extension.name.to_sym] }
+  end
+
   private
 
   def at_least_one_locale

@@ -2,7 +2,7 @@ class Sites::Admin::LayoutsController < ApplicationController
   respond_to :html
 
   before_action :require_user
-  before_action :is_admin, only: :is_admin
+  before_action :global_local_admin, only: :update_settings
 
   def update_settings
     if current_site.update(site_params)

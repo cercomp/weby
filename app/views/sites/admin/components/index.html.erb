@@ -10,8 +10,7 @@
       class: "btn btn-success" %>
   <% end %>
 
-  <%# TODO mudar if para verificar se é admin do site %>
-  <% if current_user.is_admin? %>
+  <% if current_user.is_admin? || current_user.is_local_admin?(current_site) %>
     <%= link_to t('.settings'), settings_site_admin_layouts_path, class: "btn btn-default" %>
   <% end %>
 </p>

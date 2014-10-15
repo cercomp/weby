@@ -1,0 +1,85 @@
+<% if @site_admins.empty? %>
+  <div class="alert alert-warning">
+    <%= t(".none_user") %>
+  </div>
+<% else %>
+<%= form_tag destroy_local_admin_role_site_admin_users_path,
+  method: "delete",
+  id: "subscribe_users",
+  update: 'enrole_adms' %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th><%= t(".enroled_user") %></th>
+      <th style="width: 15%"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <ul class="nav">
+      <% @site_admins.each do |user| %>
+      <tr>
+        <td>
+        <%= link_to user, profile_url(user.login, subdomain: current_site) %> <%= link_to "(#{user.login}) #{icon('user')}".html_safe, admin_user_url(user, subdomain: nil), target: '_blank' if current_user.is_admin? %>
+        </td>
+	<td>
+	  <div class="text-right">
+	  <%= link_to icon('trash', text: t("destroy")),destroy_local_admin_role_site_admin_users_path(id: user.id), :data => {:confirm => t("are_you_sure")}, :method => :delete %>
+          </div>
+        </td>
+      </tr>
+      <% end %>
+    </ul>
+  </tbody>
+</table>
+</form>
+<% end %>
+
+<% if not(@users_unroled.empty?) %>
+  <%= form_tag create_local_admin_role_site_admin_users_path,
+    method: "post",
+    id: "subscribe_users",
+    update: 'enrole_adms' %>
+
+  <table class="table">
+    <thead>
+      <tr>
+	<th><%= t(".enrole_user") %></th>
+	<th style="width: 55%">
+      </tr>
+    </thead>
+    <tbody>
+      <td style="height: 300px; overflow: auto">
+        <div>
+        <%= text_field_tag :adms_unroled, params[:adms_unroled], placeholder: t("search"),
+            data: {fullname: (@user and @users_unroled.include?(@user)) ? @user.fullname : ''}, class: 'form-control' %>
+        </div>
+        <div style="height: 300px; overflow: auto">
+          <ul id="adms_list_roles" class="nav">
+            <% @users_unroled.each do |user| %>
+              <li>
+                <div class="checkbox">
+                  <label>
+                    <%= check_box_tag 'user[id][]', user.id, user.id == params[:user_id].to_i %>
+                    <%= user %> <%= "(#{user.login})" if current_user.is_admin? %>
+                  </label>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+	</div>
+      </td>
+    </tbody>
+    <tfoot>
+      <th>
+	      <div class="form-actions">
+          <%= button_tag t("save"), class: 'btn btn-primary', data: { disable_with: t("please_wait") } %>
+      	  <%= link_to t("back"), :back, class: "btn btn-default" %>
+      	</div>
+      </th>
+    </tfoot>
+  </table>
+</form>
+<% content_for :javascripts, javascript_include_tag('users.enrole') %>
+
+<% end %>

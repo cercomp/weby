@@ -244,7 +244,7 @@ fr:
       event_date_full:    "%d %B %Y"
       event_period_short: "%{iniday} a %{finday} %B"
       event_period_full:  "%{iniday} a %{finday} %B %Y"
-      event_hour:         "às %kh"
+      event_hour:         "às %H:%M"
     period_separator: "a"
     am: "am"
     pm: "pm"

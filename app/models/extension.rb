@@ -9,12 +9,13 @@ class Extension < ActiveRecord::Base
   validates :name, uniqueness: { scope: :site_id, message: :already_installed }
 
   after_find do
-    Weby.extensions[name.to_sym].settings.each do |setting_name|
+    extension = Weby.extensions[name.to_sym]
+    extension.settings.each do |setting_name|
       class_eval do
         define_method(setting_name)       { settings.send(setting_name) }
         define_method("#{setting_name}=") { |value| settings.send("#{setting_name}=", value) }
       end
-    end
+    end if extension
   end
 
   def self.import(attrs, _options = {})

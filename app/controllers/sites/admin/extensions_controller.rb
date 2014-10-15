@@ -3,7 +3,7 @@ class Sites::Admin::ExtensionsController < ::ApplicationController
   before_action :check_authorization
 
   def index
-    @extensions = current_site.extensions
+    @extensions = current_site.active_extensions
   end
 
   def edit

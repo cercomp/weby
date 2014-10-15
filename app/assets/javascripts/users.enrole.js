@@ -27,6 +27,17 @@ var initEnrolePage = function(){
     }
   });
 
+  var adm_list = $('#adms_list_roles'),
+      adm_field = $('#adms_unroled');
+  adm_field.keypress(function(ev){
+    if(ev.keyCode == 13){
+      filter_user($(this).val(), adm_list);
+      ev.stopPropagation();
+      ev.preventDefault();
+      return false;
+    }
+  });
+
   var fullname = field.data('fullname');
   if(fullname.length > 0){
     field.val(fullname);

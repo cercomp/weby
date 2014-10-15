@@ -36,6 +36,14 @@ class User < ActiveRecord::Base
            LOWER(email) like :text',  text: "%#{text.try(:downcase)}%")
   }
 
+  # Returns all local_admin users.
+  scope :local_admin, ->(id) {
+    select('DISTINCT users.* ')
+      .joins('LEFT JOIN roles_users ON roles_users.user_id = users.id
+              LEFT JOIN roles ON roles.id = roles_users.role_id')
+      .where(['roles.permissions = ? AND roles.site_id = ?', "Admin", id])
+  }
+
   # Returns all admin users.
   scope :admin, -> { where(is_admin: true) }
 
@@ -47,7 +55,7 @@ class User < ActiveRecord::Base
     select('DISTINCT users.* ')
       .joins('LEFT JOIN roles_users ON roles_users.user_id = users.id
               LEFT JOIN roles ON roles.id = roles_users.role_id')
-      .where(['roles.site_id = ?', id])
+      .where(['roles.permissions != ? AND roles.site_id = ?', "Admin", id])
   }
 
   # Returns all users that have confirmed their registration.
@@ -98,6 +106,10 @@ class User < ActiveRecord::Base
     unread = unread_notifications_array
     notification ? unread.delete(notification.id) : unread.clear
     update_attribute(:unread_notifications, unread.join(','))
+  end
+
+  def is_local_admin?(id_site)
+    User.local_admin(id_site).find_by(id: id)
   end
 
   def has_read?(notification)

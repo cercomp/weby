@@ -7,6 +7,7 @@ pt-BR:
           roles_permissions: " Permissões e Papéis "
           manage_users:      " Gerenciar Usuários "
           users:             " Usuários "
+          adms:              " Administradores "
         enrole:
           enrole_user:       " Relacionar Usuários "
           role:              " Papel "
@@ -19,4 +20,8 @@ pt-BR:
           none_user:         " Nenhum Usuário Relacionado "
         role_form:
           confirm_unrole:    " Tem certeza que deseja remover todos os papéis de seu próprio usuário e se desvincular deste site? "
+        enrole_adms:
+          enrole_user:       " Relacionar Usuários "
+          enroled_user:      " Usuário Relacionado "
+          none_user:         " Nenhum Usuário "
 
