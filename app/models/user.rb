@@ -99,7 +99,8 @@ class User < ActiveRecord::Base
 
   def append_unread_notification(notification)
     return unless notification
-    update_attribute(:unread_notifications, unread_notifications_array.append(notification.id).join(','))
+    new_unread_notifications = unread_notifications_array.append(notification.id).join(',')
+    update_attribute(:unread_notifications, new_unread_notifications)
   end
 
   def remove_unread_notification(notification = nil)
@@ -114,7 +115,7 @@ class User < ActiveRecord::Base
 
   def has_read?(notification)
     @unread ||= unread_notifications_array
-    !@unread.include? notification.id
+    @unread.exclude? notification.id
   end
 
   def has_role_in?(site)
