@@ -449,8 +449,8 @@ ActiveRecord::Schema.define(version: 20141017192032) do
     t.text     "user_agent"
     t.string   "session_hash"
     t.string   "ip_address"
-    t.string   "referer"
-    t.string   "query_string"
+    t.text     "referer"
+    t.text     "query_string"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
