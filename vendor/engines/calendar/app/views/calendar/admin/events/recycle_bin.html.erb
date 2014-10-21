@@ -7,12 +7,12 @@
       class: "btn btn-success" %>
   <% end %>
   <% with_permission(action: :index) do %>
-    <%= link_to t(".list_events"), admin_events_path, class: "btn btn-default" %>
+    <%= link_to t(".events"), admin_events_path, class: "btn btn-default" %>
   <% end %>
 </div>
 <div class="clearfix"></div>
 
-<div id="news">
+<div id="events">
   <% if @events.empty? %>
     <div style="margin-top: 10px;" class="alert alert-warning">
       <%= t("empty_recycle_bin") %>
@@ -25,9 +25,10 @@
     <table class="table table-striped nowrap">
       <thead>
         <tr>
-          <th width="35%"><%= t(".name") %></th>
+          <th width="25%"><%= t(".name") %></th>
           <th width="6%"><%= sortable 'events.kind', t(".kind") %></th>
-          <th width="13%"><%= sortable 'pages.created_at', t(".created_at") %></th>
+          <th width="13%"><%= sortable 'tags.name', t(".category") %></th>
+          <th width="13%"><%= sortable 'calendar_events.deleted_at', t(".deleted_at") %></th>
         </tr>
       </thead>
       <tbody>
@@ -37,7 +38,8 @@
               <%= link_to(event.name, edit_admin_event_path(event)) %>
             </td>
             <td><%= event.kind %></td>
-            <td><%= l(event.created_at, :format => :short) %></td>
+            <td><%= raw categories_links(event.category_list) %></td>
+            <td><%= l(event.deleted_at, :format => :short) %></td>
             <td class="text-right">
               <%= recycle_bin_actions event %>
             </td>

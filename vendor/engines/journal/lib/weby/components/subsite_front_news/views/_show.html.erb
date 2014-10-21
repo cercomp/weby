@@ -13,7 +13,7 @@
       <% end %>
       <header>
         <h2> <%= link_to page.title, link_on_title(page.owner, page) %> </h2>
-        <% if @site.view_desc_pages %>
+        <% if current_site.view_desc_pages %>
           <p>
           <i>
             <%= page.author.name_or_login %>

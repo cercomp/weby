@@ -9,8 +9,6 @@ class Sites::Admin::PagesController < ApplicationController
 
   respond_to :html, :js, :json, :rss
 
-  # GET /pages
-  # GET /pages.json
   def index
     @pages = get_pages
     respond_with(:site_admin, @pages) do |format|
@@ -49,32 +47,22 @@ class Sites::Admin::PagesController < ApplicationController
   end
   private :sort_column
 
-  # GET /pages/1
-  # GET /pages/1.json
   def show
     @page = current_site.pages.find(params[:id]).in(params[:page_locale])
     if request.path != site_admin_page_path(@page)
       redirect_to site_admin_page_path(@page, page_locale: params[:page_locale]), status: :moved_permanently
       return
     end
-    respond_with(:site_admin, @page)
   end
 
-  # GET /pages/new
-  # GET /pages/new.json
   def new
     @page = current_site.pages.new
-    respond_with(:site_admin, @page)
   end
 
-  # GET /pages/1/edit
   def edit
     @page = current_site.pages.find(params[:id])
-    respond_with(:site_admin, @page)
   end
 
-  # POST /pages
-  # POST /pages.json
   def create
     @page = current_site.pages.new(page_params)
     @page.author = current_user

@@ -36,11 +36,12 @@ module Journal
             end
           end
         end
-        resources :news, module: :journal, path: 'n', only: [:show, :index] do
+        resources :news, module: :journal, path: 'n', only: [:show] do
           collection do
             post :sort
           end
         end
+        get :news, to: 'journal/news#index', as: :news_index
       end
     end
   end

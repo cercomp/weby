@@ -1,0 +1,2 @@
+var events = $('<div><%= escape_javascript(render(template: 'calendar/admin/events/recycle_bin.html')) %></div>');
+$('#events').html(events.find('#events').html());

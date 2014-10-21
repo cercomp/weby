@@ -1,0 +1,88 @@
+en:
+  journal:
+    admin:
+      news:
+        event:                  " Event "
+        news:                   " News "
+        new:
+          title:                " New news "
+          news:                 " News "
+        edit:
+          title:                " Update news "
+          news:                 " News "
+        index:
+          news:                 " News "
+          new_news:             " New News "
+          covers:               " Covers "
+        show:
+          news:                 " News "
+          period_page:          " Published period "
+          list_all:             " List all "
+          categories:           " Categories "
+          source:               " Source "
+          size:                 " Size "
+          archive_fingerprint:  " Archive fingerprint "
+          related_files:        " Related Files "
+        fronts:
+          news:                 " News "
+          covers:               " Covers "
+          none_cover:           " None Cover "
+          new_news:             " New News "
+          created_at:           " Created at "
+          title:                " Title "
+          user:                 " Author "
+          category:             " Category "
+          cover:                " Cover "
+          status:               " Status "
+          publish:              " Publish "
+          move:                 " Move "
+        list:
+          none_news:            " No News "
+          user:                 " Author "
+          category:             " Category "
+          created_at:           " Created at "
+          title:                " Title "
+          cover:                " Cover "
+          publish:              " Publish "
+          status:               " Status "
+          action:               " Action "
+          views:                " Views "
+        related_files:
+          size:                 " Size "
+          related_files:        " Related Files "
+        form:
+          image:                " News image "
+          date_begin_hint:      " The page will be listed in the site only after this date "
+          date_end_hint:        " The page won't be listed as cover after this date "
+          related_files:        " Related files "
+          page_categories_help: " Categories are separated by commas, the page's category are related with your content. Ex:Sports, News, Policy "
+          list_categories:      " List Categories "
+          categories:           " Categories "
+          save:                 " Save "
+        event_form:
+          is_event:             " Is event?  "
+          period_event:         " Event date "
+          regional:             " Regional "
+          national:             " National "
+          international:        " International "  
+          begin:                " Begin "
+          end:                  " End "
+        recycle_bin:                             
+          new_news:             " New News "
+          covers:               " Covers "
+          news:                 " News "
+          user:                 " Author "
+          category:             " Category "
+          deleted_at:           " Deleted at "
+          title:                " Title "
+          cover:                " Cover "
+          status:               " Status "
+      target_pages:
+        register_date:        " Register Date "
+        news:                 " News "
+        user:                 " Author "
+        title:                " Title "
+        category:             " Category "
+        none_news:            " No News Found "
+        search_news:          " Search news "
+

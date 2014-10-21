@@ -2,7 +2,7 @@
   <%= form_tag admin_events_path(template: 'list_popup'), method: 'get', autocapitalize: "off", class: 'search', remote: true do %>
     <div class="row">
       <div class="col-md-7">
-        <%= search_input params[:search], placeholder: t('.search_pages'), button_class: 'btn-search-page' %>
+        <%= search_input params[:search], placeholder: t('.search_events'), button_class: 'btn-search-page' %>
       </div>
     </div>
     <%= hidden_field_tag 'page', 1 %>
@@ -19,18 +19,18 @@
     <div class="page-results">
       <table class="list table table-striped">
         <thead>
-          <th><%= sortable 'date_begin_at', t(".register_date")%></th>
+          <th><%= sortable 'begin_at', t(".date")%></th>
           <th><%= t(".name") %></th>
+          <th><%= sortable 'tags.name', t(".category") %></th>
           <th><%= sortable 'kind', t(".kind") %></th>
-          <th><%= sortable 'user', t(".author") %></th>
         </thead>
         <tbody>
           <% @events.each do |event| %>
             <tr data-id="<%= event.id%>" data-url="<%= event_path(event) %>" data-title="<%= event.name %>" data-type="<%= "Calendar::Event" %>" class="cursor highlight target-item">
-              <td><%= event.created_at.strftime('%d/%m/%y') %></td>
+              <td><%= event.begin_at.strftime('%d/%m/%y') %></td>
               <td><%= event.name %></td>
+              <td><%= event.category_list %></td>
               <td><%= event.kind %></td>
-              <td><%= event.user.fullname %></td>
             </tr>
           <% end %>
         </tbody>

@@ -21,7 +21,7 @@
     <%= @event.email %>
   <% end %>
   <p class="event-period">
-    <%= label(:event, :period, t(".period_event"), style: 'display: inline-block;') %>:
+    <%= label(:event, :period, t(".period"), style: 'display: inline-block;') %>:
     <span class="event-dates"><%=  period_dates(@event.begin_at, @event.end_at) %></span>
   </p>
 

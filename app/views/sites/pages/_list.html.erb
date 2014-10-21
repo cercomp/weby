@@ -2,23 +2,19 @@
 <div class="search-results">
 <% if @pages.each do |page| %>
   <div class="item-search-result">
-    <header><%= link_to page.title, link_on_title(current_site, page) %></header>
+    <header><%= link_to page.title, site_page_path(page) %></header>
     <div class="page-details">
-        <% if action_name == 'events' %>
-            <%= period_dates(page.event_begin, page.event_end) %>
-        <% else %>
-        <% if page.publish %>
-          <% if @site.view_desc_pages  %>
-             <span class="author"><%= t("posted_by") %><%= page.author.name_or_login %></span>
-          <% end %>
-             <span class="date"><%= t("posted_on") %><%= localize page.created_at, format: :medium %></span>
+      <% if page.publish %>
+        <% if @site.view_desc_pages  %>
+           <span class="author"><%= t("posted_by") %><%= page.author.name_or_login %></span>
         <% end %>
-       <% end %>
+           <span class="date"><%= t("posted_on") %><%= localize page.created_at, format: :medium %></span>
+      <% end %>
+     <% end %>
     </div>
-    <p class="read_more"><%#= link_to t(".read_more"), site_page_path(page) %></p>
   </div>
 <% end.empty? %>
-  <div class="empty-result"><%= t(".no_#{action_name=='events' ? 'events' : 'pages' }") %></div>
+  <div class="empty-result"><%= t(".no_pages") %></div>
 <% end %>
 </div>
 <%= per_page_links @pages, true, :sm %>

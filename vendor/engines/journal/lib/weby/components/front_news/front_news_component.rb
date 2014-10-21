@@ -7,17 +7,16 @@ class FrontNewsComponent < Component
 
   validates :quant, presence: true
 
-  def get_pages(site, page_param)
-    filter_by.blank? ? pages(site, page_param) : pages(site, page_param).tagged_with(filter_by.mb_chars.downcase.to_s, any: true)
+  def get_news(site, page_param)
+    filter_by.blank? ? news(site, page_param) : news(site, page_param).tagged_with(filter_by.mb_chars.downcase.to_s, any: true)
   end
 
-  def pages(site, page_param)
+  def news(site, page_param)
     direction = 'desc'
-    pages = Journal::News.where(site_id: site.id).includes(:user, :image).available_fronts
-
-    pages.order("#{order_by} #{direction}").page(page_param).per(quant)
+    Journal::News.where(site_id: site.id).includes(:user, :image).available_fronts
+      .order("#{order_by} #{direction}").page(page_param).per(quant)
   end
-  private :pages
+  private :news
 
   alias_method :_read_more, :read_more
   def read_more

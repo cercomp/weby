@@ -1,0 +1,32 @@
+# encoding: UTF-8
+pt-BR:
+  activerecord:
+    models:
+      journal/news:      "Notícias"
+    attributes:
+      journal/news:
+        user:            "Autor"
+        category_list:   "Categorias"
+        date_begin_at:   "Data de início"
+        date_end_at:     "Data final de capa"
+        front:           "Capa"
+        image:           "Imagem"
+        kind:            "Tipo do Evento"
+        local:           "Local"
+        owner:           "Dono"
+        position:        "Posição"
+        status:          "Status"
+        source:          "Fonte"
+        categories:      "Categorias"
+        type:            "Tipo da página"
+        url:             "URL"
+        summary:         "Resumo"
+        text:            "Texto"
+        title:           "Título"
+        created_at:      "Criado em"
+        updated_at:      "Atualizado em"
+      "journal/news/i18ns":
+        summary:         "Resumo"
+        text:            "Texto"
+        title:           "Título"
+        _destroy:        "Remover"

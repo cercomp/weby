@@ -3,8 +3,6 @@
 
   <%= render('translates_form', f: f) %>
 
-  <%= f.input :url, wrapper_html: {class: 'side'}, placeholder: "http://site.com" %>
-  
   <%= f.input :publish , wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" } %>
 
   <%= repository_search t(".related_files"),

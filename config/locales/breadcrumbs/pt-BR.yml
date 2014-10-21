@@ -46,15 +46,7 @@ pt-BR:
     new_menu_item: " Novo item de menu "
     edit_menu_item:  " Editar item de menu "
 
-    #banners
-    banners:  " Banners "
-    new_banner:  " Novo banner "
-
-    #extensions/feedback
+    #extensions
     new_extension: " Nova extensão: "
     edit_extension: " Editar extensão: "
     extensions:  " Extensões "
-    feedback:  " Fale conosco "
-    messages:  " Mensagens "
-    groups:  " Grupos "
-    new_group:  " Novo grupo "

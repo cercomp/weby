@@ -2,7 +2,7 @@
   <%= form_tag admin_news_index_path(template: 'list_popup'), method: 'get', autocapitalize: "off", class: 'search', remote: true do %>
     <div class="row">
       <div class="col-md-7">
-        <%= search_input params[:search], placeholder: t('.search_pages'), button_class: 'btn-search-page' %>
+        <%= search_input params[:search], placeholder: t('.search_news'), button_class: 'btn-search-page' %>
       </div>
     </div>
     <%= hidden_field_tag 'page', 1 %>
@@ -22,7 +22,7 @@
           <th><%= sortable 'date_begin_at', t(".register_date")%></th>
           <th><%= t(".title") %></th>
           <th><%= sortable 'tags.name', t(".category") %></th>
-          <th><%= sortable 'user', t(".author") %></th>
+          <th><%= sortable 'user', t(".user") %></th>
         </thead>
         <tbody>
           <% @newslist.each do |news| %>
