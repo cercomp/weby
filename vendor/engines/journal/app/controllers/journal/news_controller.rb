@@ -10,9 +10,9 @@ module Journal
     respond_to :html, :js, :json, :rss
 
     def index
-      @pages = get_pages
+      @newslist = get_news
 
-      respond_with(:site, @page) do |format|
+      respond_with(@newslist) do |format|
         format.rss { render layout: false, content_type: Mime::XML } # index.rss.builder
         format.atom { render layout: false, content_type: Mime::XML } # index.atom.builder
       end
@@ -32,21 +32,21 @@ module Journal
       params[:tags].split(',').map { |tag| tag.mb_chars.downcase.to_s }
     end
 
-    def get_pages
+    def get_news
       params[:direction] ||= 'desc'
       # Vai ao banco por linha para recuperar
       # tags e locales
-      pages = current_site.pages.available.
+      result = Journal::News.where(site_id: current_site).available.
         search(params[:search], params.fetch(:search_type, 1).to_i).
         order(sort_column + ' ' + sort_direction).
         page(params[:page]).per(params[:per_page])
 
-      pages = pages.tagged_with(tags, any: true) if params[:tags]
-      pages
+      result = result.tagged_with(tags, any: true) if params[:tags]
+      result
     end
 
     def sort_column
-      params[:sort] || 'pages.id'
+      params[:sort] || 'journal_news.id'
     end
 
     def check_current_site

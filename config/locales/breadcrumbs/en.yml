@@ -45,15 +45,7 @@ en:
     new_menu_item: " New menu item "
     edit_menu_item:  " Edit menu item "
 
-    #banners
-    banners:  " Banners "
-    new_banner:  " New banner "
-
-    #extensions/feedback
+    #extensions
     extensions:  " Extensions "
     new_extension:  " New extension "
     edit_extension:  " Edit extension: "
-    feedback:  " Feedback "
-    messages:  " Menssages "
-    groups:  " Groups "
-    new_group:  " New group "

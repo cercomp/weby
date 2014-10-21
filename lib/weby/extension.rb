@@ -1,5 +1,5 @@
 class Weby::Extension
-  attr_accessor :name, :author, :version, :disabled, :settings
+  attr_accessor :name, :author, :version, :disabled, :settings, :menu_position
 
   def initialize(name, options = {})
     @name = name
@@ -7,6 +7,7 @@ class Weby::Extension
     @version = eval(name.to_s.titleize)::VERSION
     @disabled = false
     @settings = options[:settings] || []
+    @menu_position = options[:menu_position] || :last
   end
 
   # route matches ==========================

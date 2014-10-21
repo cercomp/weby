@@ -11,12 +11,12 @@
   <div class="col-md-5">
     <div class="pull-right">
       <% with_permission(action: :new) do %>
-        <%= link_to t(".new_page"),
+        <%= link_to t(".new_news"),
           new_admin_news_path,
           class: "btn btn-success" %>
       <% end %>
       <% with_permission(action: :index) do %>
-        <%= link_to t(".list_pages"), admin_news_index_path, class: 'btn btn-default' %>
+        <%= link_to t(".news"), admin_news_index_path, class: 'btn btn-default' %>
       <% end %>
       <% with_permission(action: [:recover, :purge]) do %>
         <%= link_to t("recycle_bin"), recycle_bin_admin_news_index_path, class: "btn btn-default" %>
@@ -34,7 +34,7 @@
   <table  class="table table-striped nowrap" id="list">
     <thead>
       <th width="35%"><%= t(".title") %></th>
-      <th width="12%"><%= t(".author") %></th>
+      <th width="12%"><%= t(".user") %></th>
       <th width="13%"><%= t(".category") %></th>
       <th width="13%"><%= t(".created_at") %></th>
       <% with_permission(action: :edit) do %>

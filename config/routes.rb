@@ -22,8 +22,6 @@ Rails.application.routes.draw do
     namespace :admin, module: 'sites/admin', as: :site_admin do
 
       # route to paginate
-      get 'banners/page/:page' => 'banners#index'
-      get 'groups/page/:page' => 'groups#index'
       get 'repositories/page/:page' => 'repositories#index'
       get 'pages/page/:page' => 'pages#index'
 
@@ -33,11 +31,6 @@ Rails.application.routes.draw do
       post 'import' => 'backups#import'
 
       resources :activity_records, only: [:index, :show]
-      resources :banners do
-        member do
-          put :toggle
-        end
-      end
       resources :components do
         member do
           put :toggle

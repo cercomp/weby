@@ -7,7 +7,7 @@
       class: "btn btn-success" %>
   <% end %>
   <% with_permission(action: :index) do %>
-    <%= link_to t(".list_news"), admin_news_index_path, class: "btn btn-default" %>
+    <%= link_to t(".news"), admin_news_index_path, class: "btn btn-default" %>
   <% end %>
 </div>
 <div class="clearfix"></div>
@@ -28,7 +28,7 @@
           <th width="35%"><%= t(".title") %></th>
           <th width="12%"><%= sortable 'users.first_name', t(".author") %></th>
           <th width="13%"><%= sortable 'tags.name', t(".category") %></th>
-          <th width="13%"><%= sortable 'news.created_at', t(".created_at") %></th>
+          <th width="13%"><%= sortable 'news.deleted_at', t(".deleted_at") %></th>
           <th width="5%" class="center"><%= sortable 'news.status', t(".status") %></th>
         </tr>
       </thead>
@@ -38,7 +38,7 @@
             <td><%= news.title %></td>
             <td><%= news.user.first_name %></td>
             <td><%= raw categories_links(news.category_list) %></td>
-            <td><%= l(news.created_at, :format => :short) %></td>
+            <td><%= l(news.deleted_at, :format => :short) %></td>
             <td style="text-align:center;">
             <%= news.status %></td>
             <td class="text-right">

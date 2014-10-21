@@ -45,5 +45,17 @@ module Calendar
         .references(:i18ns)
       end
     }
+
+    def self.uniq_category_counts
+      category_counts.each_with_object(Hash.new) do |j, hash|
+        name = j.name.upcase
+        if hash[name]
+          hash[name].count += j.count
+        else
+          hash[name] = j
+        end
+        hash
+      end.values
+    end
   end
 end

@@ -35,7 +35,7 @@
     <%= content_tag_if @news.category_list.any?, :p, class: 'categories' do %>
       <span class="categories-label"><%= "#{t('.categories')}:"  %></span>
       <% @news.category_list.each do |category| %>
-        <%= link_to category, site_pages_path( tags: category.to_s ), class: 'weby-label default' %>
+        <%= link_to category, news_index_path( tags: category.to_s ), class: 'weby-label default' %>
       <% end %>
     <% end %>
   <% end %>

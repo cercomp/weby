@@ -199,7 +199,7 @@ module ApplicationHelper
     ''.tap do |html|
       if test_permission controller_name, :purge
         html << link_to(icon('trash', text: options[:with_text] ? t('destroy') : nil),
-                        options.merge(action: 'show', id: resource.id), title: t('purge'), class: 'action-link', method: 'delete', confirm: t('are_you_sure'))
+                        options.merge(action: 'show', id: resource.id), title: t('purge'), class: 'action-link', method: 'delete', data: {confirm: t('are_you_sure')})
       end
       if test_permission controller_name, :recover
         html << link_to(icon('refresh', text: options[:with_text] ? t('recover') : nil),

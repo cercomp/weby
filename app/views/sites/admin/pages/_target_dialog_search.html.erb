@@ -2,7 +2,7 @@
 <% content_for :stylesheets, stylesheet_link_tag('target.dialog') %>
 <% extensions = current_site.active_extensions %>
 <div id="modal_target_list" class="modal fade">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="<%= t("close") %>">&times;</button>
@@ -14,7 +14,19 @@
           <% if editable_url %>
             <li><a data-toggle="tab" href="#tab-weby"><%= t("target_dialog.common_pages") %></a></li>
             <% if extensions.any? %>
-              <li><a data-toggle="tab" href="#tab-extensions"><%= t("target_dialog.extensions") %></a></li>
+              <% extensions.each do |extension| %>
+                <% next if !lookup_context.exists?("target_pages", ["#{extension.name}/admin"], true) %>
+                <li>
+                  <a href="#tab-<%= extension.name %>" data-toggle="tab">
+                    <%= t("extensions.#{extension.name}.name") %>
+                  </a>
+                </li>
+                <% content_for :target_dialog_extensions do %>
+                  <div class="tab-pane" id="tab-<%= extension.name %>">
+                    <%= render "#{extension.name}/admin/target_pages" %>
+                  </div>
+                <% end %>
+              <% end %>
             <% end  %>
             <li><a data-toggle="tab" href="#tab-repository"><%= t("target_dialog.repositories") %></a></li>
           <% end %>
@@ -45,27 +57,7 @@
               </table>
             </div>
             <% if extensions.any? %>
-              <div class="tab-pane" id="tab-extensions">
-                <ul class="nav nav-tabs" id="extensions-nav">
-                  <% i = 0 %>
-                  <% extensions.each do |extension| %>
-                    <% next if !lookup_context.exists?("target_pages", ["#{extension.name}/admin"], true) %>
-                    <li class="<%= 'active' if (i+=1) == 1 %>">
-                      <a href="#tab-<%= extension.name %>" data-toggle="tab">
-                        <%= t("extensions.#{extension.name}.name") %>
-                      </a>
-                    </li>
-                    <% content_for :target_dialog_extensions do %>
-                      <div class="tab-pane<%= ' active' if i == 1 %>" id="tab-<%= extension.name %>">
-                        <%= render "#{extension.name}/admin/target_pages" %>
-                      </div>
-                    <% end %>
-                  <% end %>
-                </ul>
-                <div class="tab-content" id="extensions-results">
-                  <%= yield :target_dialog_extensions %>
-                </div>
-              </div>
+              <%= yield :target_dialog_extensions %>
             <% end %>
           <% end %>
         </div>

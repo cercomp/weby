@@ -18,7 +18,7 @@
     <p class="read_more"><%#= link_to t(".read_more"), event_path(event) %></p>
   </div>
 <% end.empty? %>
-  <div class="empty-result"><%= t(".no_#{action_name=='events' ? 'events' : 'pages' }") %></div>
+  <div class="empty-result"><%= t(".no_events") %></div>
 <% end %>
 </div>
 <%= per_page_links @events, true, :sm %>

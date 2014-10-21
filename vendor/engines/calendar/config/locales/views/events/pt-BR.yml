@@ -1,0 +1,30 @@
+pt-BR:
+  calendar:
+    events:
+      index:
+        events:          " Eventos "
+        advanced:        " Opções Avançadas "
+        match_search:    " Busca exata "
+        and_search:      " Todas as palavras "
+        or_search:       " Qualquer uma das palavras "
+        all_events:      " Todos "
+        upcoming_events: " Em andamento / A realizar "
+        previous_events: " Realizados "
+      show:
+        event:         " Evento "
+        period_event:  " Período do Evento "
+        list_all:      " Listar Todas "
+        categories:    " Categorias "
+        source:        " Fonte "
+        updated_at:    " Atualizado em "
+        related_files: " Arquivos relacionados "
+        related_url:   " URL relacionada "
+        size:          " Tamanho "
+        archive_fingerprint:  " Assinatura digital do arquivo "
+      list:
+        read_more:     " Leia mais "
+        no_events:     " Nenhum evento encontrado "
+      related_files:
+        related_files: " Arquivos relacionados "
+        size:          " Tamanho "
+

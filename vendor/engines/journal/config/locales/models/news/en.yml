@@ -1,0 +1,31 @@
+# encoding: UTF-8
+en:
+  activerecord:
+    models:
+      journal/news:      "News"
+    attributes:
+      journal/news:
+        user:            "Author"
+        category_list:   "Categories"
+        date_begin_at:   "Start date"
+        date_end_at:     "Cover end date"
+        front:           "Cover"
+        image:           "Image"
+        kind:            "Event type"
+        local:           "Local"
+        owner:           "Owner"
+        position:        "Position"
+        status:          "Status"
+        source:          "Source"
+        type:            "Page type"
+        url:             "URL"
+        summary:         "Summary"
+        text:            "Text"
+        title:           "Title"
+        created_at:      "Created at"
+        updated_at:      "Updated at"
+      "journal/news/i18ns":
+        summary:         "Summary"
+        text:            "Text"
+        title:           "Title"
+        _destroy:        "Delete"

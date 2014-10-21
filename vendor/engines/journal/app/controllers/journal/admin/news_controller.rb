@@ -48,7 +48,7 @@ module Journal::Admin
     end
     private :get_news
 
-    # Essa action não chama o get_pages pois não faz paginação
+    # Essa action não chama o get_news pois não faz paginação
     def fronts
       @newslist = Journal::News.where(site_id: current_site.id).available_fronts.order('position desc')
     end

@@ -28,8 +28,7 @@ class Page < ActiveRecord::Base
   # 2 = termo1 OR termo2
   scope :search, ->(param, search_type) {
     if param.present?
-      fields = ['page_i18ns.title', 'page_i18ns.summary', 'page_i18ns.text',
-                'users.first_name', 'pages.type']
+      fields = ['page_i18ns.title', 'page_i18ns.text', 'users.first_name']
       query, values = '', {}
       case search_type
       when 0
@@ -61,12 +60,10 @@ class Page < ActiveRecord::Base
     attrs.except!('id', 'created_at', 'updated_at', 'site_id')
 
     attrs['author_id'] = options[:author] unless User.unscoped.find_by_id(attrs['author_id'])
-    attrs['repository_id'] = Import::Application::CONVAR["repository"]["#{attrs['repository_id']}"]
-
+    
     attrs['i18ns'] = attrs['i18ns'].map do |i18n|
-      i18n['summary'] = i18n['summary'].gsub!(/\/up\/[0-9]+/) {|x| "/up/#{options[:site_id]}"} if i18n['summary']
       i18n['text'] =  i18n['text'].gsub!(/\/up\/[0-9]+/) {|x| "/up/#{options[:site_id]}"} if i18n['text']
-      self::I18ns.new(i18n.except('id', 'created_at', 'updated_at', 'page_id', 'type'))
+      self::I18ns.new(i18n.except('id', 'created_at', 'updated_at', 'page_id'))
     end
 
     newpage = self.create!(attrs)
