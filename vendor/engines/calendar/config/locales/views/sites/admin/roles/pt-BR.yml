@@ -1,0 +1,6 @@
+pt-BR:
+  sites:
+    admin:
+      roles:
+        index:
+          events:              " Eventos "

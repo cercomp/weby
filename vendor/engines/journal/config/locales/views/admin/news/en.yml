@@ -37,7 +37,7 @@ en:
           publish:              " Publish "
           move:                 " Move "
         list:
-          none_news:            " No News "
+          none_news:            " No news were found "
           user:                 " Author "
           category:             " Category "
           created_at:           " Created at "
@@ -59,6 +59,9 @@ en:
           list_categories:      " List Categories "
           categories:           " Categories "
           save:                 " Save "
+          draft:                " Draft "
+          review:               " Waiting review "
+          published:            " Published "
         event_form:
           is_event:             " Is event?  "
           period_event:         " Event date "

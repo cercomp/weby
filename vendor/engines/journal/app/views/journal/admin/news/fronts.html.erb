@@ -39,7 +39,7 @@
       <th width="13%"><%= t(".created_at") %></th>
       <% with_permission(action: :edit) do %>
         <th  width="5%"><%= t(".cover") %></th>
-        <th  width="5%"><%= t(".publish") %></th>
+        <th  width="5%"><%= t(".status") %></th>
       <% end %>
       <th></th>
     </thead>
@@ -56,7 +56,7 @@
             <td class="publish" style="text-align:center;">
               <%= front_status(news) %></td>
             <td class="publish" style="text-align:center;">
-              <%= news.status %></td>
+              <%= news_status(news) %></td>
           <% end %>
           <td class="text-right">
             <%= make_menu(news, :except => "show", :with_text => false) %>

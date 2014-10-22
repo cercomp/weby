@@ -194,8 +194,8 @@ rights:
   components:
     index:
       name:
-        en: Listar Componentes
-        pt-BR: List Components
+        en: List Components
+        pt-BR: Listar Componentes
       action: index
     show:
       name: 

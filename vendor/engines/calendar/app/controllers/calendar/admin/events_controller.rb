@@ -2,6 +2,7 @@ module Calendar
   class Admin::EventsController < Calendar::ApplicationController
     before_action :require_user
     before_action :check_authorization
+    before_action :event_types, only: [:new, :edit, :create, :update]
 
     respond_to :html, :js
 
@@ -39,6 +40,10 @@ module Calendar
 
     def show
       @event = Calendar::Event.where(site_id: current_site).find(params[:id])
+      if request.path != event_path(@event)
+        redirect_to event_path(@event), status: :moved_permanently
+        return
+      end
     end
 
     def new
@@ -65,6 +70,11 @@ module Calendar
       record_activity('updated_event', @event)
       respond_with(:admin, @event)
     end
+
+    def event_types
+      @event_types = Calendar::Event::EVENT_TYPES.map { |el| [t("calendar.admin.events.form.#{el}"), el] }
+    end
+    private :event_types
 
     def destroy
       @event = Calendar::Event.unscoped.where(site_id: current_site).find(params[:id])

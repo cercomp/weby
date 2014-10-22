@@ -4,6 +4,8 @@ module Journal
 
     weby_content_i18n :title, :summary, :text, required: :title
 
+    STATUS_LIST = %w(draft review published)
+
     acts_as_taggable_on :categories
     acts_as_multisite
 
@@ -17,7 +19,7 @@ module Journal
     has_many :related_files, through: :posts_repositories, source: :repository
 
     # Validations
-    validates :user_id, :site_id, presence: true
+    validates :user_id, :site_id, :status, presence: true
     
     validate :validate_date
     validate :should_be_image
@@ -25,6 +27,8 @@ module Journal
     validate :should_be_own_files
 
     scope :published, -> { where(status: 'published') }
+    scope :review, -> { where(status: 'review') }
+    scope :draft, -> { where(status: 'draft') }
     scope :front, -> { where(front: true) }
     scope :no_front, -> { where(front: false) }
     scope :by_user, ->(id) { where(user_id: id) }

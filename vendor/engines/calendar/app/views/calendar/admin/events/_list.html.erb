@@ -26,7 +26,7 @@
             <%= link_to(event.name, edit_admin_event_path(event)) %>
           </td>
           <td><%= event.place %></td>
-          <td><%= event.kind %></td>
+          <td><%= t("calendar.admin.events.form.#{event.kind}") if event.kind.present? %></td>
           <td><%= raw categories_links(event.category_list) %></td>
           <td><%= l(event.begin_at, :format => :short) if event.begin_at %></td>
           <td width="5%" style="text-align:center;"><%= event.view_count %></td>

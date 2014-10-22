@@ -40,7 +40,7 @@
             <td><%= raw categories_links(news.category_list) %></td>
             <td><%= l(news.deleted_at, :format => :short) %></td>
             <td style="text-align:center;">
-            <%= news.status %></td>
+              <%= news_status(news) %></td>
             <td class="text-right">
               <%= recycle_bin_actions news %>
             </td>

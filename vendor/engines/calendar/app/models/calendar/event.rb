@@ -20,7 +20,6 @@ module Calendar
     scope :upcoming, -> { where(' (begin_at >= :time OR end_at >= :time)', time: Time.now) }
     scope :previous, -> { where(' (end_at < :time)', time: Time.now) }
 
-
     scope :search, ->(param, search_type) {
       if param.present?
         fields = ['calendar_event_i18ns.name', 'calendar_event_i18ns.information', 'calendar_events.url']
@@ -45,6 +44,10 @@ module Calendar
         .references(:i18ns)
       end
     }
+
+    def to_param
+      "#{id} #{name}".parameterize
+    end
 
     def self.uniq_category_counts
       category_counts.each_with_object(Hash.new) do |j, hash|
