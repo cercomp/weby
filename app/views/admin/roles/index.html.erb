@@ -51,7 +51,7 @@
             <tr class="<%= "#{controller}-#{right}" %>">
               <td>
                 <%= link_to icon('check'), nil, :onclick => "toggleCheckboxesBySelector('.#{controller}-#{right} input')", :remote => true %>
-                <%= config['name'] %>
+                <%= config['name'][locale.to_s] %>
               </td>
               <% @roles.each do |role| %>
                 <td>

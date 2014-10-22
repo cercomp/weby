@@ -6,6 +6,7 @@
   <header>
     <%= raw available_flags(@news) if @news.locales.many? %>
     <h1><%= @news.title %></h1>
+    <%= news_status(@news) %>
   </header>
 
   <summary>

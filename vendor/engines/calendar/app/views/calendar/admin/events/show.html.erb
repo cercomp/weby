@@ -14,7 +14,7 @@
 
   <%= content_tag_if @event.kind?, :p, class: 'event-type' do %>
     <%= label(:event, :kind) %>
-    <%= t("sites.admin.events.show.#{@event.kind}") %>
+    <%= t("calendar.admin.events.form.#{@event.kind}") %>
   <% end %>
   <%= content_tag_if @event.email?, :p, class: 'event-email' do %>
     <%= label(:event, :email) %>

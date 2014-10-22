@@ -13,7 +13,7 @@
   
   <%= f.input :category_list, :hint => t(".page_categories_help"), input_html: {class: 'input-xlarge', data: {tags: Journal::News.uniq_category_counts.map{|t| t.name }}} %>
 
-  <%= f.input :status, collection: ['draft', 'review', 'published'] %>
+  <%= f.input :status, collection: @status_types, include_blank: false %>
 
   <%= f.input :date_begin_at, :hint => t(".date_begin_hint") %>
 

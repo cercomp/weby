@@ -22,7 +22,7 @@
       </thead>
       <tbody>
         <% @pages.each do |page| %>
-        <tr id="<%= page.id %>"<%= ' class="deactivated"'.html_safe unless page.publish %>>
+        <tr id="<%= page.id %>"<%= ' class="deactivated"'.html_safe unless page.publish? %>>
           <td>
             <%= title_with_flags(page) %>
           </td>

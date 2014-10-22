@@ -16,7 +16,7 @@
           <th width="25%"><%= sortable 'journal_news.created_at', t(".created_at") %></th>
           <% with_permission(action: :edit) do %>
             <th width="5%" class="center"><%= sortable 'journal_news.news.front', t(".cover") %></th>
-            <th width="5%" class="center"><%= sortable 'journal_news.status', t(".status") %></th>
+            <th width="5%"><%= sortable 'journal_news.status', t(".status") %></th>
           <% end %>
           <th width="5%" class="center"><%= sortable 'journal_news.view_count', t(".views") %></th>
           <th width="5%" class="center"><%= t(".action")%></th>
@@ -34,8 +34,8 @@
           <% with_permission(action: :edit) do %>
             <td class="front" style="text-align:center;">
               <%= front_status(news) %></td>
-            <td class="publish" style="text-align:center;">
-              <%= news.status %></td>
+            <td class="publish">
+              <%= news_status(news) %></td>
           <% end %>
           <td width="5%" style="text-align:center;"><%= news.view_count %></td>
           <td class="text-right"><%= make_menu(news, :except => "show", :with_text => false) %></td>

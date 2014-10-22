@@ -4,6 +4,7 @@ module Journal::Admin
     
     before_action :require_user
     before_action :check_authorization
+    before_action :status_types, only: [:new, :edit, :create, :update, :index]
 
     respond_to :html, :js
 
@@ -33,18 +34,18 @@ module Journal::Admin
         params[:per_page] = 7
       end
       params[:direction] ||= 'desc'
-      # Vai ao banco por linha para recuperar
-      # tags e locales
+
       news = Journal::News.where(site_id: current_site).
         search(params[:search], 1) # 1 = busca com AND entre termos
 
       if sort_column == 'tags.name'
-        news = news.includes(categories: :taggings).order(sort_column + ' ' + sort_direction)
-      else
-        news = news.order(sort_column + ' ' + sort_direction)
+        news = news.includes(categories: :taggings)
+      end
+      if params[:status_filter].present? && Journal::News::STATUS_LIST.include?(params[:status_filter])
+        news = news.send(params[:status_filter])
       end
 
-      news = news.page(params[:page]).per(params[:per_page])
+      news = news.order(sort_column + ' ' + sort_direction).page(params[:page]).per(params[:per_page])
     end
     private :get_news
 
@@ -86,6 +87,11 @@ module Journal::Admin
       record_activity('updated_news', @news)
       respond_with(:admin, @news)
     end
+
+    def status_types
+      @status_types = Journal::News::STATUS_LIST.map { |el| [t("journal.admin.news.form.#{el}"), el] }
+    end
+    private :status_types
 
     def destroy
       @news = Journal::News.unscoped.where(site_id: current_site).find(params[:id])

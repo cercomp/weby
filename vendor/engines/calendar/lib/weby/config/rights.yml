@@ -1,0 +1,37 @@
+rights:
+  events:
+    index:
+      name:
+        en: List Events
+        pt-BR: Listar Eventos
+      action: index
+    show:
+      name: 
+        en: View Events
+        pt-BR: Ver Eventos
+      action: show
+    edit:
+      name:
+        en: Edit Events
+        pt-BR:  Editar Eventos
+      action: edit update
+    destroy:
+      name: 
+        en: Destroy Events
+        pt-BR: Excluir Eventos
+      action: destroy
+    new:
+      name: 
+        en: Create Events
+        pt-BR: Criar Eventos
+      action: new create
+    purge:
+      name: 
+        en: Purge
+        pt-BR: Excluir permanentemente
+      action: recycle_bin destroy purge
+    recover:
+      name: 
+        en: Restore Events
+        pt-BR: Restaurar Eventos
+      action: recycle_bin recover
