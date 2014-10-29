@@ -6,7 +6,8 @@ Rails.application.routes.draw do
     get '/admin/edit' => 'sites#edit', as: :edit_site_admin
     patch '/admin/edit' => 'sites#update', as: :update_site_admin
 
-    resources :pages, as: :site_pages, controller: 'sites/pages', path: 'p', only: [:index, :show]
+    resources :pages, as: :site_pages, controller: 'sites/pages', path: 'p', only: [:show]
+    get :pages, to: 'sites/pages#index', as: :site_pages
 
     resources :components,
               as: :site_components,
