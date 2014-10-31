@@ -1,4 +1,5 @@
 module Weby
+
   class Settings
     settings_yaml = 'lib/weby/config/settings.yml'
     @@groups = Array.new
