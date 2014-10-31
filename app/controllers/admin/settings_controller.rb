@@ -24,6 +24,6 @@ class Admin::SettingsController < ApplicationController
   private
 
   def settings_params
-    params.permit(settings: [:id, :name, :value, :enabled])
+    params.permit(settings: [:id, :name, :value, :enabled, :group])
   end
 end
