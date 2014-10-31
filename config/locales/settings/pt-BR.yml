@@ -1,5 +1,7 @@
 pt-BR:
   settings:
+    weby:               'Weby'
+    ldap:               'Ldap'
     per_page:           'Opções de escolha de quantidade de itens por página em listagens'
     per_page_default:   'Padrão de itens por página em listagens'
     default_locale:     'Idioma padrão'
@@ -11,3 +13,11 @@ pt-BR:
     root_site:          'Site principal, acessível na raiz do domínio'
     maintenance_mode:   'Modo de Manutenção. True faz com que apenas admins possam logar.'
     max_file_size:      'Aviso de tamanho máximo de arquivo.'
+    account:            'Conta de administrador do LDAP'
+    account_password:   'Senha do administrador'
+    attr_firstname:     'Atributo para busca do primeiro nome'
+    attr_lastname:      'Atributo para busca do sobrenome'
+    attr_login:         'Campo onde está armazenado o login único'
+    attr_password:      'Campo onde está armazenado a senha'
+    attr_mail:          'Atributo para busca do email'
+    port:               'Porta'

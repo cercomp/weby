@@ -4,6 +4,8 @@ pt-BR:
       new:
         settings:     " Configurações "
       index:
+        weby:         " Weby "
+        ldap:         " Ldap "
         settings:     " Configurações "
         new_setting:  " Nova Configuração "
         name:         " Nome "

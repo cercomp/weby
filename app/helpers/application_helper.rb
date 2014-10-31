@@ -385,8 +385,8 @@ module ApplicationHelper
   # O login pode ser na url global ou na url do próprio site
   def weby_login_url(back_url = nil)
     site = nil
-    if Weby::Settings.domain.present? && current_site
-      site = current_site unless request.host.match(Weby::Settings.domain)
+    if Weby::Settings::Weby.domain.present? && current_site
+      site = current_site unless request.host.match(Weby::Settings::Weby.domain)
     end
 
     main_app.login_url(

@@ -1,21 +1,12 @@
 <%= flash_message %>
 
-<%= simple_form_for resource,
-  as: resource_name,
-  wrapper: :devise_input,
-  url: login_path do |f| %>
+<div class="tabbable">
+  <div class="tab-content">
+    <% if params["confirm"] %>
+      <%= render 'devise/sessions/confirm_weby' %>
+    <% else %>
+      <%= render 'devise/sessions/login_weby' %>
+    <% end %>
+  </div>
+</div>
 
-  <%= f.input :auth, autofocus: true, label: false, placeholder: t('.field_login') %>
-  <%= f.input :password, label: false, placeholder: t('.field_password') %>
-  <%= f.input :remember_me,
-    as: :boolean,
-    wrapper_html: { class: 'pull-left' },
-    boolean_style: :nested,
-    wrapper: :devise_checkbox,
-    label: t('.field_remember_me') %>
-
-  <%= link_to t('.forgot_password'), forgot_password_path, class: 'pull-right' %>
-  <div class="clearfix"></div>
-
-  <%= f.button :submit, t('.login'), class: 'btn-primary btn-block' %>
-<% end %>
