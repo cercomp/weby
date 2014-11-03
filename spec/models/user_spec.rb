@@ -145,22 +145,161 @@ describe User do
     end
   end
 
-  context 'Self' do
-    subject do
-      create(:user, login: 'login', first_name: 'John', last_name: 'Smith', email: 'john@example.com',
-             password_salt: 'salt', encrypted_password: 'salt')
+  describe '#to_s' do
+    it 'returns name or login' do
+      name_or_login = double(:name_or_login)
+
+      allow(subject).to receive(:name_or_login).and_return(name_or_login)
+
+      expect(subject.to_s).to eq name_or_login
+    end
+  end
+
+  describe '#name_or_login' do
+    it 'returns full name when has first name' do
+      allow(subject).to receive(:first_name).and_return(true)
+      allow(subject).to receive(:fullname).and_return('Full Name')
+
+      expect(subject.name_or_login).to eq('Full Name')
     end
 
-    it 'should return the user full name when called fullname' do
-      allow_any_instance_of(User).to receive(:fullname).and_return(:return_value)
+    it "returns login when hasn't first name" do
+      allow(subject).to receive(:first_name).and_return(false)
+      allow(subject).to receive(:login).and_return('Login')
 
-      expect(subject.fullname).to eq(:return_value)
+      expect(subject.name_or_login).to eq('Login')
+    end
+  end
+
+  describe '#email_address_with_name' do
+    it 'returns the e-mail with full name when has first name' do
+      subject.first_name = 'First'
+      subject.last_name = 'Last'
+      subject.email = 'E-mail'
+
+      expect(subject.email_address_with_name).to eq('First Last <E-mail>')
     end
 
-    it 'should return the user email with his name when called email_address_with_name' do
-      allow_any_instance_of(User).to receive(:email_address_with_name).and_return(:return_value)
+    it "returns the login with email when hasn't first name" do
+      subject.login = 'Login'
+      subject.email = 'E-mail'
 
-      expect(subject.email_address_with_name).to eq(:return_value)
+      expect(subject.email_address_with_name).to eq('Login <E-mail>')
+    end
+  end
+
+  describe '#unread_notifications_array' do
+    it 'returns an array with ids from noticifications' do
+      subject.unread_notifications = '1,2,3,4,5,6'
+
+      expect(subject.unread_notifications_array).to eq([1,2,3,4,5,6])
+    end
+  end
+
+  describe '#append_unread_notification' do
+    it "doesn't append without noticification" do
+      expect(subject.append_unread_notification(nil)).to be_nil
+    end
+
+    it 'appends a notification' do
+      notification = double(:notification, id: 1)
+
+      allow(subject).to receive(:unread_notifications_array).and_return([2,3])
+      allow(subject).to receive(:update_attribute).with(:unread_notifications, '2,3,1')
+
+      subject.append_unread_notification(notification)
+    end
+  end
+
+  describe '#remove_unread_notification' do
+    it 'removes specific unread notification' do
+      notification = double(:notification, id: 1)
+
+      allow(subject).to receive(:unread_notifications_array).and_return([1,2,3])
+      allow(subject).to receive(:update_attribute).with(:unread_notifications, '2,3')
+
+      subject.remove_unread_notification(notification)
+    end
+
+    it 'removes all unread notification' do
+      allow(subject).to receive(:unread_notifications_array).and_return([1,2,3])
+      allow(subject).to receive(:update_attribute).with(:unread_notifications, '')
+
+      subject.remove_unread_notification
+    end
+  end
+
+  describe '#is_local_admin?' do
+    it 'returns user if it is local admin' do
+      subject.id = 2
+      allow(User).to receive(:local_admin).with(1).and_return(User)
+      allow(User).to receive(:find_by).with(id: 2).and_return(subject)
+
+      expect(subject.is_local_admin?(1)).to eq(subject)
+    end
+  end
+
+  describe '#has_read?' do
+    it 'returns true if the notification has been read' do
+
+      notification = double(:notification, id: 3)
+
+      expect(subject.has_read?(notification)).to eq(true)
+    end
+
+    it "returns false if the notification hasn't been read" do
+      notification1 = double(:notification, id: 2)
+      allow(subject).to receive(:unread_notifications_array).and_return([1,2])
+
+      expect(subject.has_read?(notification1)).to eq(false)
+    end
+  end
+
+  describe '#has_role_in?' do
+    before do
+      @site = double(:site)
+    end
+
+    it 'returns true if user is admin' do
+      allow(subject).to receive(:is_admin?).and_return(true)
+
+      expect(subject.has_role_in?(@site)).to eq(true)
+    end
+
+    it 'returns true if user sites inclue site' do
+      allow(subject).to receive(:is_admin?).and_return(false)
+      allow(subject).to receive(:sites).and_return([:site1, @site])
+
+      expect(subject.has_role_in?(@site)).to eq(true)
+    end
+
+    it 'returns true if has a global role' do
+      allow(subject).to receive(:is_admin?).and_return(false)
+      allow(subject).to receive(:sites).and_return([:site1])
+      allow(subject).to receive(:global_roles).and_return([1])
+
+      expect(subject.has_role_in?(@site)).to eq(true)
+    end
+
+    it "returns false when user isn't admin, sites doesn't include site and hasn't global role" do
+      allow(subject).to receive(:is_admin?).and_return(false)
+      allow(subject).to receive(:sites).and_return([:site1])
+      allow(subject).to receive(:global_roles).and_return([])
+
+      expect(subject.has_role_in?(@site)).to eq(false)
+    end
+  end
+
+  describe '#sites' do
+    it 'returns sites thar user has role' do
+      role1 = double(:role1, site_id: 1)
+      role2 = double(:role2, site_id: 2)
+      role3 = double(:role3, site_id: 1)
+
+      allow(subject).to receive(:roles).and_return([role1, role2, role3])
+      allow(Site).to receive(:where).with(id: [1,2])
+
+      subject.sites
     end
   end
 end
