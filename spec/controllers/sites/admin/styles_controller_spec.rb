@@ -6,7 +6,10 @@ describe Sites::Admin::StylesController do
   let(:site) { FactoryGirl.create(:site, locales: [locale]) }
   let(:first_style) { FactoryGirl.create(:style, site_id: site.id) }
 
-  before { sign_in user }
+  before do
+    @request.host = "#{site.name}.example.com"
+    sign_in user
+  end
 
   skip "GET #index" do
   end
@@ -14,24 +17,25 @@ describe Sites::Admin::StylesController do
   describe "GET #show" do
     before { get :show, :id => first_style.id }
 
-    skip "assigns @style" do
+    it "assigns @style" do
       expect(assigns(:style)).to eq(first_style)
     end
 
-    skip "renders the :show view" do
+    it "renders the :show view" do
       expect(response).to render_template("show")
     end
   end
 
   describe "GET #new" do
-    before { get :new }
+    before do
+      get :new
+    end
 
-    skip "assigns @style" do
-      ApplicationController.stub(:current_site).with(site.id).and_return(site)
+    it "assigns @style" do
       expect(assigns(:style)).to be_a_new(Style)
     end
 
-    skip "renders the :new view" do
+    it "renders the :new view" do
       expect(response).to render_template("new")
     end
   end
@@ -39,11 +43,11 @@ describe Sites::Admin::StylesController do
   describe "GET #edit" do
     before { get :edit, :id => first_style.id }
 
-    skip "assigns @style" do
-      expect(assigns(:styles)).to eq(first_style)
+    it "assigns @style" do
+      expect(assigns(:style)).to eq(first_style)
     end
 
-    skip "renders the :edit view" do
+    it "renders the :edit view" do
       expect(response).to render_template("edit")
     end
   end
@@ -52,19 +56,19 @@ describe Sites::Admin::StylesController do
     context "when valid" do
       before { post :create, style: { :name => "Style", :site_id => site.id } }
 
-      skip "will redirect to" do
-        expect(reponse).to redirect_to edit_site_admin_style_path(@style)
+      it "will redirect to" do
+        expect(response).to redirect_to edit_site_admin_style_path(assigns(:style), subdomain: site.name)
       end
 
-      skip "will set flash[:notice]" do
-        expect(flash[:notice]).to be_present
+      it "will set flash[:notice]" do
+        expect(flash[:success]).to be_present
       end
     end
 
     context "when invalid" do
       before { post :create, style: { :name => "", :site_id => site.id } }
 
-      skip "will render the :new view" do
+      it "will render the :new view" do
         expect(response).to render_template("new")
       end
     end
@@ -74,11 +78,11 @@ describe Sites::Admin::StylesController do
     context "when valid" do
       before { put :update, style: { :name => "New name" }, :id => first_style.id }
 
-      skip "will redirect to site_admin_styles_path" do
+      it "will redirect to site_admin_styles_path" do
         expect(response).to redirect_to(site_admin_styles_path)
       end
 
-      skip "will set flash[:success]" do
+      it "will set flash[:success]" do
         expect(flash[:success]).to be_present
       end
     end
@@ -86,7 +90,7 @@ describe Sites::Admin::StylesController do
     context "when invalid" do
       before { put :update, style: { :name => "" }, :id => first_style.id }
 
-      skip "will render the :edit view" do
+      it "will render the :edit view" do
         expect(response).to render_template(:edit)
       end
     end
@@ -95,7 +99,7 @@ describe Sites::Admin::StylesController do
   describe "DELETE #destroy" do
     before { delete :destroy, :id => first_style.id }
 
-    skip "will set flash[:success]" do
+    it "will set flash[:success]" do
       expect(flash[:success]).to be_present
     end
   end
