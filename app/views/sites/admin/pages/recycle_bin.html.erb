@@ -37,7 +37,7 @@
             <td>
               <%= page.title %>
             </td>
-            <td><%= page.author.first_name %></td>
+            <td><%= page.user.first_name %></td>
             <td><%= l(page.deleted_at, :format => :short) %></td>
             <td class="text-right">
               <%= recycle_bin_actions page %>

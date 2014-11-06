@@ -1,6 +1,4 @@
 class Page < ActiveRecord::Base
-  self.inheritance_column = nil
-
   include Trashable
 
   weby_content_i18n :title, :text, required: :title
@@ -8,7 +6,7 @@ class Page < ActiveRecord::Base
   acts_as_multisite
 
   belongs_to :owner, class_name: 'Site', foreign_key: 'site_id'
-  belongs_to :author, class_name: 'User'
+  belongs_to :user
 
   has_many :views, as: :viewable
   has_many :menu_items, as: :target, dependent: :nullify
@@ -16,11 +14,11 @@ class Page < ActiveRecord::Base
   has_many :related_files, through: :posts_repositories, source: :repository
 
   # Validations
-  validates :author_id, :site_id, presence: true
+  validates :user_id, :site_id, presence: true
 
   scope :published, -> { where(publish: true) }
 
-  scope :by_author, ->(id) { where(author_id: id) }
+  scope :by_user, ->(id) { where(user_id: id) }
 
   # tipos de busca
   # 0 = "termo1 termo2"
@@ -45,9 +43,9 @@ class Page < ActiveRecord::Base
           })"
         end.join(' OR ')
       end
-      includes(:author, :i18ns, :locales)
+      includes(:user, :i18ns, :locales)
       .where(query, values)
-      .references(:author, :i18ns)
+      .references(:user, :i18ns)
     end
   }
 
@@ -59,7 +57,7 @@ class Page < ActiveRecord::Base
 
     attrs.except!('id', 'created_at', 'updated_at', 'site_id')
 
-    attrs['author_id'] = options[:author] unless User.unscoped.find_by_id(attrs['author_id'])
+    attrs['user_id'] = options[:user] unless User.unscoped.find_by(id: attrs['user_id'])
     
     attrs['i18ns'] = attrs['i18ns'].map do |i18n|
       i18n['text'] =  i18n['text'].gsub!(/\/up\/[0-9]+/) {|x| "/up/#{options[:site_id]}"} if i18n['text']

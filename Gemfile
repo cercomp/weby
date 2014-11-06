@@ -15,6 +15,7 @@ gem 'select2-rails', '~> 3.5.9'
 gem 'd3js-rails', '~> 3.1.6'
 gem 'jcrop-rails-v2', '~> 0.9.12.3'
 gem 'font-awesome-rails', '~> 4.1.0.0'
+gem 'fullcalendar-rails'
 
 # assets
 gem 'sass-rails', '~> 4.0.3'

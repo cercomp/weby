@@ -4,21 +4,21 @@
     <span><%= link_to site.title, site_url(subdomain: site) %></span>
   </div>
   <div class="caption">
-    <% pages = site.pages.order('position desc').published.first(4) %>
-    <% if pages.any? %>
-      <% page = pages.shift %>
+    <% newslist = Journal::News.where(site_id: site.id).order('position desc').published.first(4) %>
+    <% if newslist.any? %>
+      <% news = newslist.shift %>
       <div class="top-news col-md-6">
-        <%= news_image(nil, :t, 140, nil, {as: "link", url: site_page_url(page, subdomain: page.owner)}) %>
-        <div><%= link_to page.title, site_page_url(page, subdomain: page.owner) %></div>
-        <span class="date"><%= l(page.updated_at, format: :short) %></span>
+        <%= news_image(nil, :t, 140, nil, {as: "link", url: news_url(news, subdomain: news.site)}) %>
+        <div><%= link_to news.title, news_url(news, subdomain: news.site) %></div>
+        <span class="date"><%= l(news.updated_at, format: :short) %></span>
         <!--<p><%#= page.summary.html_safe %></p>-->
       </div>
       <div class="news col-md-6">
-        <% pages.each do |page| %>
+        <% newslist.each do |news| %>
           <div>
-            <%= news_image(nil, :t, 60, nil, {as: "link", url: site_page_url(page, subdomain: page.owner)}) %>
-            <div><%= link_to page.title, site_page_url(page, subdomain: page.owner) %></div>
-            <span class="date"><%= l(page.updated_at, format: :short) %></span>
+            <%= news_image(nil, :t, 60, nil, {as: "link", url: news_url(news, subdomain: news.site)}) %>
+            <div><%= link_to news.title, news_url(news, subdomain: news.site) %></div>
+            <span class="date"><%= l(news.updated_at, format: :short) %></span>
           </div>
         <% end %>
       </div>
@@ -28,5 +28,5 @@
       </div>
     <% end %>
   </div>
-  <%= link_to '...', site_pages_url(subdomain: site), class: 'pull-right footer-link', title: t('.see_all') %>
+  <%= link_to '...', news_index_url(subdomain: site), class: 'pull-right footer-link', title: t('.see_all') %>
 </div>

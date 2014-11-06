@@ -1,3 +1,18 @@
+$(document).ready(function() {
+  var $calendar = $('#calendar');
+  $calendar.fullCalendar({
+    lang: $('html').attr('lang'),
+    header: {left: 'title', right: 'today month,basicWeek prev,next'},
+    events: {
+      url: $calendar.data('url'),
+      cache: true,
+      error: function() {
+          alert('Erro ao pesquisar os eventos');
+      }
+    }
+  });
+});
+
 $(document).on("click", ".events-list .pagination a", function(){
     $comp = $(this).parents('.pagination');
     //alert($comp);

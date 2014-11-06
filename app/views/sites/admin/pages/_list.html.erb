@@ -26,7 +26,7 @@
           <td>
             <%= title_with_flags(page) %>
           </td>
-          <td><%= page.author.first_name %></td>
+          <td><%= page.user.first_name %></td>
           <td><%= l(page.created_at, :format => :short) %></td>
           <% with_permission(action: :edit) do %>
             <td class="publish" style="text-align:center;">

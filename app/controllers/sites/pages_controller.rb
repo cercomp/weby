@@ -8,8 +8,6 @@ class Sites::PagesController < ApplicationController
 
   respond_to :html, :js, :json, :rss
 
-  # GET /pages
-  # GET /pages.json
   def index
     @pages = get_pages
 
@@ -25,6 +23,11 @@ class Sites::PagesController < ApplicationController
       redirect_to site_page_path(@page), status: :moved_permanently
       return
     end
+  end
+
+  def redirect
+    @news = Journal::News.find(params[:id])
+    redirect_to @news.url.blank? ? news_path(@news) : @news.url
   end
 
   private

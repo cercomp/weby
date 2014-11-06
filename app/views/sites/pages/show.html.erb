@@ -8,7 +8,7 @@
   <% if !defined?(as_component) %>
     <div class="page-details">
     <% if @site.view_desc_pages %>
-       <span class="author"><%= t("posted_by") %><%= @page.author %></span>
+       <span class="author"><%= t("posted_by") %><%= @page.user %></span>
     <% end %>
     <% if @page.publish %>
        <span class="date"><%= t(".updated_at") %><%= l((@page.updated_at.blank? ? @page.created_at : @page.updated_at), format: :short) %>.</span>

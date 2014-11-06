@@ -60,5 +60,19 @@ module Calendar
         hash
       end.values
     end
+
+    def self.as_fullcalendar_json events
+      events.map do |event|
+        {
+          id: event.id,
+          title: event.name,
+          start: event.begin_at,
+          end: event.end_at,
+          url: Rails.application.routes.url_helpers.event_path(event),
+          color: '#3a87ad',
+          description: event.information
+        }
+      end
+    end
   end
 end

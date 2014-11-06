@@ -22,7 +22,7 @@ class Sites::Admin::PagesController < ApplicationController
   def recycle_bin
     params[:sort] ||= 'pages.deleted_at'
     params[:direction] ||= 'desc'
-    @pages = current_site.pages.trashed.includes(:author).
+    @pages = current_site.pages.trashed.includes(:user).
       order("#{params[:sort]} #{sort_direction}").
       page(params[:page]).per(params[:per_page])
   end
@@ -49,10 +49,6 @@ class Sites::Admin::PagesController < ApplicationController
 
   def show
     @page = current_site.pages.find(params[:id]).in(params[:page_locale])
-    if request.path != site_admin_page_path(@page)
-      redirect_to site_admin_page_path(@page, page_locale: params[:page_locale]), status: :moved_permanently
-      return
-    end
   end
 
   def new
@@ -65,7 +61,7 @@ class Sites::Admin::PagesController < ApplicationController
 
   def create
     @page = current_site.pages.new(page_params)
-    @page.author = current_user
+    @page.user = current_user
     @page.save
     record_activity('created_page', @page)
     respond_with(:site_admin, @page)
@@ -112,7 +108,7 @@ class Sites::Admin::PagesController < ApplicationController
   private
 
   def page_params
-    params.require(:page).permit(:url, :publish,
+    params.require(:page).permit(:publish,
                                  { i18ns_attributes: [:id, :locale_id, :title, :text, :_destroy],
                                  related_file_ids: [] })
   end

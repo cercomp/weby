@@ -7,7 +7,7 @@ module Calendar
     helper_method :sort_column
     before_action :check_current_site
 
-    respond_to :html, :js, :json, :rss
+    respond_to :html, :js, :json, :rss, :atom
 
     def index
       @events = get_events
@@ -15,6 +15,7 @@ module Calendar
       respond_with(@events) do |format|
         format.rss { render layout: false, content_type: Mime::XML } # index.rss.builder
         format.atom { render layout: false, content_type: Mime::XML } # index.atom.builder
+        format.json { render json: Calendar::Event.as_fullcalendar_json(@events) }
       end
     end
 
@@ -40,6 +41,11 @@ module Calendar
         search(params[:search], params.fetch(:search_type, 1).to_i).
         order(sort_column + ' ' + sort_direction).
         page(params[:page]).per(params[:per_page])
+
+      #TODO bug evento longo visao semanal
+      if params[:start] && params[:end]
+        events = events.where('begin_at >= :start OR end_at <= :end_date', start: params[:start].to_time, end_date: params[:end].to_time.end_of_day)
+      end
 
       events = events.tagged_with(tags, any: true) if params[:tags]
       events

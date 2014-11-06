@@ -1,5 +1,17 @@
 <h2>
   <%= t(".events") %>
+  <div class="events_search" style="float: right">
+    <ul id="filterNav" >
+      <% (params[:upcoming] == nil && params[:previous] == nil) ? classe = "selected" : classe = nil %>
+      <li><%= link_to t('.all_events'), events_path(upcoming: nil, previous: nil, direction: 'desc', sort: 'calendar_events.begin_at'), class: classe %></li>
+
+      <% (params[:upcoming] != nil) ? classe = "selected" : classe = nil %>
+      <li><%= link_to t('.upcoming_events'), events_path(upcoming: true, previous: nil, direction: 'asc', sort: 'calendar_events.begin_at'), class: classe %></li>
+
+      <% (params[:previous] != nil) ? classe = "selected" : classe = nil %>
+      <li><%= link_to t('.previous_events'), events_path(upcoming: nil, previous: true, direction: 'desc', sort: 'calendar_events.begin_at'), class: classe %></li>
+    </ul>
+  </div>
 </h2>
 <% if params[:tags] %>
   <% tags = params[:tags].split(',') %>
@@ -26,11 +38,9 @@
   <%= hidden_field_tag 'per_page', "#{params[:per_page]}" %>
 <% end %>
 
-<div id='calendar' data-url="<%= events_path %>"></div>
+<div id="events" class="events-list">
+  <%= render partial: 'list' %>
+</div>
 
-<% content_for :stylesheets, stylesheet_link_tag("fullcalendar") %>
-<% content_for :stylesheets, stylesheet_link_tag("search_results") %>
-
-<% content_for :javascripts, javascript_include_tag("fullcalendar") %>
-<% content_for :javascripts, javascript_include_tag("lang/#{I18n.locale.downcase}") %>
 <% content_for :javascripts, javascript_include_tag("calendar/events.index") %>
+<% content_for :stylesheets, stylesheet_link_tag("search_results") %>
