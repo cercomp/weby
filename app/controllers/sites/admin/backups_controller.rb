@@ -83,7 +83,7 @@ class Sites::Admin::BackupsController < ApplicationController
     if attrs
       current_site.repositories.import(attrs['repositories']) if attrs['repositories']
       Sticker::Banner.where(site_id: current_site).import(attrs['banners']['banner'], author: current_user.id) if attrs['banners']
-      current_site.pages.import(attrs['pages'], author: current_user.id, site_id: current_site.id) if attrs['pages']
+      current_site.pages.import(attrs['pages'], user: current_user.id, site_id: current_site.id) if attrs['pages']
       current_site.menus.import(attrs['menus']) if attrs['menus']
       current_site.components.import(attrs['root_components'], site_id: current_site.id) if attrs['root_components']
       current_site.styles.import(attrs['styles']) if attrs['styles']

@@ -4,7 +4,7 @@ describe Sites::Admin::PagesController do
   let(:user) { FactoryGirl.create(:user, is_admin: true) }
   let(:locale) { FactoryGirl.create(:locale) }
   let(:site) { FactoryGirl.create(:site, locales: [locale]) }
-  let(:page) { FactoryGirl.create(:page, site_id: site.id, author_id: user.id) }
+  let(:page) { FactoryGirl.create(:page, site_id: site.id, user_id: user.id) }
 
   before { sign_in user }
 

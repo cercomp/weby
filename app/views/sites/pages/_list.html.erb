@@ -6,7 +6,7 @@
     <div class="page-details">
       <% if page.publish %>
         <% if @site.view_desc_pages  %>
-           <span class="author"><%= t("posted_by") %><%= page.author.name_or_login %></span>
+           <span class="author"><%= t("posted_by") %><%= page.user.name_or_login %></span>
         <% end %>
            <span class="date"><%= t("posted_on") %><%= localize page.created_at, format: :medium %></span>
       <% end %>

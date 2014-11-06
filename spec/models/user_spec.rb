@@ -96,7 +96,7 @@ describe User do
   end
 
   context 'Pages' do
-    it { expect(subject).to have_many(:pages).with_foreign_key(:author_id).dependent(:restrict_with_error) }
+    it { expect(subject).to have_many(:pages).with_foreign_key(:user_id).dependent(:restrict_with_error) }
   end
 
   context 'Views' do

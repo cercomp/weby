@@ -10,7 +10,7 @@
   <% if !defined?(as_component) %>
     <div class="page-details">
     <% if current_site.view_desc_pages %>
-       <span class="author"><%= t("posted_by") %><%= @news.author %></span>
+       <span class="author"><%= t("posted_by") %><%= @news.user %></span>
     <% end %>
     <% if @news.published? %>
        <span class="date"><%= t(".updated_at") %><%= l((@news.updated_at.blank? ? @news.created_at : @news.updated_at), format: :short) %>.</span>

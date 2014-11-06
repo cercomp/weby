@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   constraints(Weby::Subdomain) do
-    
+
     get '/' => 'sites#show', as: :site
     get '/admin' => 'sites#admin', as: :site_admin
     get '/admin/edit' => 'sites#edit', as: :edit_site_admin
@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
     resources :pages, as: :site_pages, controller: 'sites/pages', path: 'p', only: [:show]
     get :pages, to: 'sites/pages#index', as: :site_pages
+    #old routes
+    get 'pages/:id(-:title)' => 'sites/pages#redirect', constraints: {id: /\d+/}
 
     resources :components,
               as: :site_components,

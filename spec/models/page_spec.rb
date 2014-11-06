@@ -4,7 +4,7 @@ describe Page do
   it { expect(subject).to belong_to(:owner).class_name('Site') }
   it { expect(subject).to belong_to(:owner).with_foreign_key('site_id') }
 
-  it { expect(subject).to belong_to(:author).class_name('User') }
+  it { expect(subject).to belong_to(:user).class_name('User') }
 
   it { expect(subject).to belong_to(:image).class_name('Repository') }
   it { expect(subject).to belong_to(:image).with_foreign_key('repository_id') }
@@ -14,7 +14,7 @@ describe Page do
   it { expect(subject).to have_many(:posts_repositories).dependent(:destroy) }
   it { expect(subject).to have_many(:related_files).through(:posts_repositories) }
 
-  it { expect(subject).to validate_presence_of(:author_id) }
+  it { expect(subject).to validate_presence_of(:user_id) }
   it { expect(subject).to validate_presence_of(:site_id) }
 
   context 'position' do

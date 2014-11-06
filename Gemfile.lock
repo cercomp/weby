@@ -127,6 +127,7 @@ GEM
       railties (>= 3.2, < 5.0)
     foreigner (1.6.1)
       activerecord (>= 3.0.0)
+    fullcalendar-rails (2.0.2.0)
     gretel (3.0.7)
       rails (>= 3.2.0)
     hike (1.2.3)
@@ -281,6 +282,7 @@ DEPENDENCIES
   feedback!
   font-awesome-rails (~> 4.1.0.0)
   foreigner (~> 1.6.1)
+  fullcalendar-rails
   gretel (~> 3.0.7)
   jcrop-rails-v2 (~> 0.9.12.3)
   journal!

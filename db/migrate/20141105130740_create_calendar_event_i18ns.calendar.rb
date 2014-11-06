@@ -5,8 +5,9 @@ class CreateCalendarEventI18ns < ActiveRecord::Migration
       t.integer  :calendar_event_id
       t.integer  :locale_id
       t.string   :name
+      t.string   :place
       t.text     :information
-      
+
       t.timestamps
     end
 
