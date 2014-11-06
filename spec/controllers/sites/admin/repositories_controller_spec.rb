@@ -14,11 +14,11 @@ describe Sites::Admin::RepositoriesController do
   describe "GET #show" do
     before { get :show }
 
-    skip "assigns @repospendingory" do
+    skip "assigns @repository" do
       expect(assigns(:repository)).to eq(file)
     end
 
-    skip "will redirect to spendinge_admin_repospendingory_path" do
+    skip "will redirect to site_admin_repository_path" do
       expect(response).to redirect_to(site_admin_repository_path(file))
     end
   end
@@ -26,7 +26,7 @@ describe Sites::Admin::RepositoriesController do
   describe "GET #new" do
     before { get :new }
 
-    skip "assigns @repospendingory" do
+    skip "assigns @repository" do
       expect(assigns(:repository)).to be_a_new(Repository)
     end
 
@@ -38,7 +38,7 @@ describe Sites::Admin::RepositoriesController do
   describe "GET #edit" do
     before { get :edit, :id => file.id }
 
-    skip "assigns @repospendingory" do
+    skip "assigns @repository" do
       expect(assigns(:repository)).to eq(file)
     end
   end
@@ -46,9 +46,6 @@ describe Sites::Admin::RepositoriesController do
   skip "POST #create" do
     context "when valid" do
       before { post :create, :post => { :description => "Description" } }
-    end
-
-    context "when invalid" do
     end
   end
 
