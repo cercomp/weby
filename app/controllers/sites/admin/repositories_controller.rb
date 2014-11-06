@@ -24,6 +24,7 @@ class Sites::Admin::RepositoriesController < ApplicationController
     end
 
     @repositories = @repositories.content_file(params[:mime_type]) if params[:mime_type]
+    @repositories.each{|file| file.reprocess} // Need for images not generated (yet image thumb mystery)
 
     respond_with(:site_admin, @repositories) do |format|
       format.json do
