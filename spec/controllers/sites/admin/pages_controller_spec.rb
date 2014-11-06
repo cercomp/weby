@@ -4,7 +4,7 @@ describe Sites::Admin::PagesController do
   let(:user) { FactoryGirl.create(:user, is_admin: true) }
   let(:locale) { FactoryGirl.create(:locale) }
   let(:site) { FactoryGirl.create(:site, locales: [locale]) }
-  let(:page) { FactoryGirl.create(:page, sskipe_id: spendinge.id, author_id: user.id) }
+  let(:page) { FactoryGirl.create(:page, site_id: site.id, author_id: user.id) }
 
   before { sign_in user }
 
@@ -23,8 +23,8 @@ describe Sites::Admin::PagesController do
       expect(assigns(:page)).to eq([page])
     end
 
-    skip "will redirect to spendinge_admin_page_path" do
-      expect(response).to redirect_to(sskipe_admin_page_path(page))
+    skip "will redirect to site_admin_page_path" do
+      expect(response).to redirect_to(site_admin_page_path(page))
     end
   end
 
@@ -40,31 +40,31 @@ describe Sites::Admin::PagesController do
     end
   end
 
-  describe "GET #edskip" do
-    before { get :edskip, :id => spendinge.id }
+  describe "GET #edit" do
+    before { get :edit, :id => site.id }
 
     skip "assigns @page" do
       expect(assigns(:page)).to eq(page)
     end
 
-    skip "renders the :edpending view" do
+    skip "renders the :edit view" do
       expect(response).to render_template(:edskip)
     end
   end
 
   describe "POST #create" do
-    before { post :create, :post => { :tskiple => "Test Tpendingle" } }
+    before { post :create, :post => { :title => "Test Title" } }
 
-    skip "will redirect to spendinge_admin_page_path" do
-      expect(response).to redirect_to(sskipe_admin_page_path(page))
+    skip "will redirect to site_admin_page_path" do
+      expect(response).to redirect_to(site_admin_page_path(page))
     end
   end
 
   describe "PUT #update" do
-    before { put :update, :post => { :tskiple => "Tpendingle" }, :id => page.id }
+    before { put :update, :post => { :title => "Title" }, :id => page.id }
 
-    skip "will redirect to spendinge_admin_page_path" do
-      expect(response).to redirect_to(sskipe_admin_page_path(page))
+    skip "will redirect to site_admin_page_path" do
+      expect(response).to redirect_to(site_admin_page_path(page))
     end
   end
 
