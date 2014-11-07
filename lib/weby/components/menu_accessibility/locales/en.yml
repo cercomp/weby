@@ -10,13 +10,25 @@ en:
         label_font_size:    " Font Size Label "
         label_contrast:     " Contrast Label "
         display_controls:   " Display Controls "
+        software_for_the_visually_impaired: " Software for the Visually Impaired "
+        related_links:      " Related Links "
   menu_accessibility:
     views:
       form:
         font_size:          " Font Size "
         contrast:           " Contrast "
         display_controls:   " Display Controls "
-      show:
+        activate:           " Activate "
+        basic:              " Basic "
+        extended:           " Extended "
+      basic:
+        increase_font_size: " Increase font size "
+        decrease_font_size: " Decrease font size "
+        default_font_size:  " Change to default font size "
+        contrast:           " Change the color contrast "
+        contrast_normal:    " Remove the colour contrast "
+        colour:             " Colour "
+      extended:
         increase_font_size: " Increase font size "
         decrease_font_size: " Decrease font size "
         default_font_size:  " Change to default font size "
