@@ -9,13 +9,25 @@ fr:
         contrast:           " Contraste "
         label_font_size:    " Rótulo Tamanho de Fonte de caractères "
         label_contrast:     " Rótulo Contraste "
+        software_for_the_visually_impaired: " Logiciel pour les Malvoyants "
+        related_links:      " Liens Connexes "
   menu_accessibility:
     views:
       form:
         font_size:          " taille de la police de caractère "
         contrast:           " Contraste "
         display_controls:   " Afficher les commandes "
-      show:
+        activate:           " Activer "
+        basic:              " De Base "
+        extended:           " Prolongé "
+      basic:
+        increase_font_size: " Augmenter la taille de la police "
+        decrease_font_size: " Réduire la taille de la police "
+        default_font_size:  " Taille de la police Par Défaut "
+        contrast:           " Modifier le contraste de la page "
+        contrast_normal:    " Retirerle contraste de la page "
+        colour:             " Couleur "
+      extended:
         increase_font_size: " Augmenter la taille de la police "
         decrease_font_size: " Réduire la taille de la police "
         default_font_size:  " Taille de la police Par Défaut "
