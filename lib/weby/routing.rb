@@ -38,7 +38,7 @@ module ActionDispatch
             fail ActionController::RoutingError.new 'Subdomain missing' if !options[:only_path] && %w(site site_page).include?(options[:use_route])
           end
         end
-        options[:protocol] = Weby::Settings.login_protocol if Weby::Cache.request[:current_user]
+        options[:protocol] ||= Weby::Settings.login_protocol if Weby::Cache.request[:current_user]
         url_for_without_subdomains(options)
       end
       alias_method_chain :url_for, :subdomains
