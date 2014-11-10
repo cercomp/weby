@@ -19,7 +19,7 @@
     <div class="container">
       <div class="inside">
         <div class="logo">
-          <%= link_to image_tag('weby-logo-60.png'), main_app.root_url(subdomain: nil) %>
+          <%= link_to image_tag('weby-logo-60.png'), main_app.root_url(subdomain: nil, protocol: 'http') %>
         </div>
 
         <div class="box">
@@ -51,7 +51,7 @@
         <nav class="help-nav">
           <%= link_to t('.confirmation'), new_user_confirmation_path %>
           <%= link_to t('.unlock'), new_user_unlock_path %>
-          <%= link_to t('.sites'), root_url(subdomain: nil) %>
+          <%= link_to t('.sites'), root_url(subdomain: nil, protocol: 'http') %>
           <%= link_to(t('.help'), current_settings.help_site, target: '_blank') if current_settings.help_site %>
         </nav>
       </div>
