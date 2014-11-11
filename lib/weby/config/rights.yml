@@ -37,11 +37,6 @@ rights:
         en: Destroy Page
         pt-BR: Excluir Página
       action: destroy
-    sort:
-      name: 
-        en: Order Pages
-        pt-BR: Ordernar Páginas
-      action: sort
     new:
       name: 
         en: Create Pages

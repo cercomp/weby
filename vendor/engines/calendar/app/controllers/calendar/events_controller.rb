@@ -1,7 +1,5 @@
 module Calendar
   class EventsController < Calendar::ApplicationController
-    include ActsToSort
-
     layout :choose_layout
 
     helper_method :sort_column
@@ -42,9 +40,11 @@ module Calendar
         order(sort_column + ' ' + sort_direction).
         page(params[:page]).per(params[:per_page])
 
-      #TODO bug evento longo visao semanal
       if params[:start] && params[:end]
-        events = events.where('begin_at >= :start OR end_at <= :end_date', start: params[:start].to_time, end_date: params[:end].to_time.end_of_day)
+        events = events.where('(begin_at between :start and :end_date) OR '\
+                              '(end_at between :start and :end_date) OR '\
+                              '(begin_at < :start AND end_at > :end_date)',
+                              start: params[:start].to_time, end_date: params[:end].to_time.end_of_day)
       end
 
       events = events.tagged_with(tags, any: true) if params[:tags]

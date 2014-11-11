@@ -2,14 +2,37 @@ en:
   components:
     event_list:
       name:                 " Event List "
-      quant:                " Number of events to show "
-      title:                " Title "
   activerecord:
     attributes:
       event_list_component:
-        quant:              " Number of events to show "
-        title:              " Title "
+        quant:                " Number of events per page "
+        avatar_height:        " Event image height "
+        avatar_width:         " Event image width "
+        label:                " Label "
+        filter_by:            " Select events with only these categories "
+        read_more:            " Show 'Read more' "
+        show_date:            " Show event's date "
+        show_label:           " Show Label "
+        image_size:           " Image version "
+        new_tab:              " Open events in a new tab "
+        max_char:             " Maximum number of characters "
+        link_to_all:          " Link to all events "
+        template:             " Template "
   event_list:
     views:
       show:
-        events:              " Events "
+        read_more:            " Read more... "
+        posted_by:            " By "
+        posted_on:            " On "
+        events:               " Events "
+      form:
+        main:                 " Basic "
+        advanced:             " Avanced "
+        basic:                " Table "
+        front:                " List "
+        m:                    " Medium "
+        l:                    " Little "
+        i:                    " Miniature "
+        t:                    " Thumbnail "
+        link_to_all_hint:     " Text of the link to the list of all events "
+        image_size_hint:      " A thumbnail is a smaller version of the image, with a square crop, so the original aspect ratio is preserved "

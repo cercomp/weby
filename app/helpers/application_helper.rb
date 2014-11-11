@@ -44,9 +44,7 @@ module ApplicationHelper
     item_class << 'current_page' if is_current_page
 
     content_tag :li, id: "menu_item_#{entry.id}", class: item_class.join(' ') do
-      title_link = link_to(entry.title,
-                           entry.target_id.to_i > 0 ? main_app.site_page_path(entry.target_id) : entry.url,
-                           alt: entry.title, title: entry.description, target: entry.new_tab ? '_blank' :  '')
+      title_link = link_from_menu_item(entry)
 
       li_content = []
       li_content << content_tag(:div, '', class: 'hierarchy') if view_ctrl
@@ -57,7 +55,7 @@ module ApplicationHelper
             [
               toggle_field(entry, 'publish', 'toggle', controller: 'sites/admin/menus/menu_items', menu_id: entry.menu_id),
               " #{title_link}",
-              ( (entry and entry.target) ? " [ #{entry.target.try(:title)} ] " : " [ #{entry.url unless entry.url.blank?} ] ")
+              ( (entry and entry.target) ? " [ #{entry.target.try(:title)} ] " : " [ #{entry.url} ] ")
             ].join.html_safe
           end
           div_content << content_tag(:div, class: 'pull-right') do
@@ -82,6 +80,26 @@ module ApplicationHelper
     end
   end
   private :print_menu_entry
+
+  def link_from_menu_item item
+    url = if item.target
+      case item.target
+      when Page
+        site_page_path(item.target)
+      when Journal::News
+        news_path(item.target)
+      when Calendar::Event
+        event_path(item.target)
+      else
+        item.url
+      end
+    else
+      item.url
+    end
+
+    link_to(item.title, url, alt: item.title, title: item.description, target: item.new_tab ? '_blank' :  '')
+  end
+  private :link_from_menu_item
 
   # Defines custom messages
   def flash_message
