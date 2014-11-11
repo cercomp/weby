@@ -45,6 +45,10 @@ module Calendar
       end
     }
 
+    def title
+      name
+    end
+
     def to_param
       "#{id} #{name}".parameterize
     end

@@ -2,14 +2,37 @@ pt-BR:
   components:
     event_list:
       name:                 " Lista de Eventos "
-      quant:                " Quantidade de eventos exibidos "
-      title:                " Título "
   activerecord:
     attributes:
       event_list_component:
         quant:              " Quantidade de eventos exibidos "
-        title:              " Título "
+        avatar_height:        " Altura da imagem do evento "
+        avatar_width:         " Largura da imagem do evento "
+        label:                " Título "
+        filter_by:            " Selecionar apenas eventos com as categorias "
+        read_more:            " Exibir 'Leia mais' "
+        show_date:            " Exibir data do evento "
+        show_label:           " Exibir título "
+        image_size:           " Versão da imagem "
+        new_tab:              " Abrir eventos em uma nova janela "
+        max_char:             " Número máximo de caracteres do resumo "
+        link_to_all:          " Link para exibir todos "
+        template:             " Formato de exibição "
   event_list:
     views:
       show:
-        events:              " Eventos "
+        read_more:            " Leia mais... "
+        posted_by:            " Por "
+        posted_on:            " Em "
+        events:               " Eventos "
+      form:
+        main:                 " Básico "
+        advanced:             " Avançado "
+        basic:                " Tabela "
+        front:                " Lista "
+        m:                    " Média "
+        l:                    " Pequena "
+        i:                    " Miniatura "
+        t:                    " Thumbnail "
+        link_to_all_hint:     " Texto do link para a lista com todas os eventos "
+        image_size_hint:      " Thumbnail é uma versão reduzida da imagem, onde é feito um corte quadrado para que a proporção original não se perca "

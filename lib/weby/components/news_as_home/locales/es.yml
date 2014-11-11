@@ -1,13 +1,13 @@
 es:
   components:
     news_as_home:
-      name:                   " Noticia como página de inicio "
-      page:                   " Noticia "
+      name:                   " Página en la tela de inicio "
+      page:                   " Página "
   activerecord:
     attributes:
       news_as_home_component:
-        page:                 " Noticia "
-        page_id:              " Noticia "
+        page:                 " Página "
+        page_id:              " Página "
         show_title:           " Mostrar título "
         show_info:            " Mostrar informaciones "
   news_as_home:
