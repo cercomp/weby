@@ -569,7 +569,6 @@ ActiveRecord::Schema.define(version: 20141017192032) do
 
   add_foreign_key "old_menus", "journal_news", name: "old_menus_page_id_fk", column: "page_id"
 
-  add_foreign_key "posts_repositories", "journal_news", name: "pages_repositories_page_id_fk", column: "post_id"
   add_foreign_key "posts_repositories", "repositories", name: "pages_repositories_repository_id_fk"
 
   add_foreign_key "repositories", "sites", name: "repositories_site_id_fk"

@@ -39,11 +39,7 @@ module Calendar
     end
 
     def show
-      @event = Calendar::Event.where(site_id: current_site).find(params[:id])
-      if request.path != event_path(@event)
-        redirect_to event_path(@event), status: :moved_permanently
-        return
-      end
+      @event = Calendar::Event.where(site_id: current_site).find(params[:id]).in(params[:show_locale])
     end
 
     def new
@@ -110,7 +106,7 @@ module Calendar
 
     def events_params
       params.require(:event).permit(:begin_at, :end_at, :email, :url,
-                                   :kind,
+                                   :kind, :category_list,
                                    { i18ns_attributes: [:id, :locale_id, :name,
                                        :information, :place, :_destroy],
                                      related_file_ids: [] })

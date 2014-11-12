@@ -2,7 +2,7 @@ $(document).ready(function() {
   var $calendar = $('#calendar');
   $calendar.fullCalendar({
     lang: $('html').attr('lang'),
-    header: {left: 'title', right: 'today month,basicWeek prev,next'},
+    header: {left: 'today prev,next', center: 'title', right: 'month,basicWeek'},
     events: {
       url: $calendar.data('url'),
       cache: true,

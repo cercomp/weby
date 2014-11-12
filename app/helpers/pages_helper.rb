@@ -16,25 +16,36 @@ module PagesHelper
     ) if locale
   end
 
-  def title_with_flags(page)
+  def title_with_flags(post)
     %(
-      #{available_flags(page)}
-      #{content_tag(:p, link_to(page.title, site_admin_page_path(page)))}
+      #{available_flags(post)}
+      #{content_tag(:p, link_to(post.title, generate_url(post)))}
     ).html_safe
   end
 
-  def available_flags(page, size = :small)
-    "#{main_flag(page, size)}#{other_flags(page, size)}" if @site.locales.many?
+  def available_flags(post, size = :small)
+    "#{main_flag(post, size)}#{other_flags(post, size)}" if @site.locales.many?
   end
 
-  def main_flag(page, size = :small)
-    flag(page.which_locale, size: size, style: 'margin-right: 10px')
+  def main_flag(post, size = :small)
+    flag(post.which_locale, size: size, style: 'margin-right: 10px')
   end
 
-  def other_flags(page, size = :small)
-    page.other_locales.map do |locale|
-      link_to(flag(locale, size: size), send((is_in_admin_context? ? :site_admin_page_path : :site_page_path) , page, page_locale: locale.name))
+  def other_flags(post, size = :small)
+    post.other_locales.map do |locale|
+      link_to(flag(locale, size: size), generate_url(post, show_locale: locale.name))
     end.join(' ')
+  end
+
+  def generate_url post, options={}
+    case post
+    when Page
+      is_in_admin_context? ? site_admin_page_path(post, options) : site_page_path(post, options)
+    when Journal::News
+      is_in_admin_context? ? admin_news_path(post, options) : news_path(post, options)
+    when Calendar::Event
+      is_in_admin_context? ? admin_event_path(post, options) : event_path(post, options)
+    end
   end
 
   def categories_links(categories)

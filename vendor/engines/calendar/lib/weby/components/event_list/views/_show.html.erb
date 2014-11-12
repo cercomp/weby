@@ -9,7 +9,7 @@
     <table class="list border fullwidth zebra">
       <tr>
         <th>
-          <%= link_to(component.label || t(".events"), events_path(direction: 'desc', sort: 'calendar_events.begin_at')) %>
+          <%= link_to(component.label.present? ? component.label : t(".events"), events_path(direction: 'desc', sort: 'calendar_events.begin_at')) %>
         </th>
       </tr>
       <% @events.try(:each) do |event| %>
