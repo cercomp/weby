@@ -48,7 +48,7 @@ class Sites::Admin::PagesController < ApplicationController
   private :sort_column
 
   def show
-    @page = current_site.pages.find(params[:id]).in(params[:page_locale])
+    @page = current_site.pages.find(params[:id]).in(params[:show_locale])
   end
 
   def new

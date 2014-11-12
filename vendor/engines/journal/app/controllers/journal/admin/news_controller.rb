@@ -55,11 +55,7 @@ module Journal::Admin
     end
 
     def show
-      @news = Journal::News.where(site_id: current_site).find(params[:id]).in(params[:news_locale])
-      if request.path != admin_news_path(@news)
-        redirect_to admin_news_path(@news, news_locale: params[:news_locale]), status: :moved_permanently
-        return
-      end
+      @news = Journal::News.where(site_id: current_site).find(params[:id]).in(params[:show_locale])
       respond_with(:admin, @news)
     end
 
