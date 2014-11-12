@@ -5,13 +5,23 @@ describe Sites::Admin::StylesController do
   let(:locale) { FactoryGirl.create(:locale) }
   let(:site) { FactoryGirl.create(:site, locales: [locale]) }
   let(:first_style) { FactoryGirl.create(:style, site_id: site.id) }
+  let(:new_site) { FactoryGirl.create(:site, locales: [locale]) }
 
   before do
     @request.host = "#{site.name}.example.com"
     sign_in user
   end
 
-  skip "GET #index" do
+  describe "GET #index" do
+    before { get :index }
+
+    skip "assigns @style" do
+      expect(assigns(:styles)).to match_array(site.styles)
+    end
+
+    it "renders the :index view" do
+      expect(response).to render_template("index")
+    end
   end
 
   describe "GET #show" do
@@ -104,23 +114,56 @@ describe Sites::Admin::StylesController do
     end
   end
 
-  skip "follow" do
+  describe "follow" do
+    before { put :follow, id: first_style.id }
+
+    skip"will follow a style" do
+      expect(response).to redirect_to(follow_site_admin_style_path(first_style.id, subdomain: new_site.name))
+    end
   end
 
-  skip "unfollow" do
+  describe "unfollow" do
+    skip "will unfollow a style" do
+      expect(response).to redirect_to(unfollow_site_admin_style_path(first_style.id, subdomain:
+                                                                     new_site.name))
+    end
   end
 
-  skip "copy" do
+  describe "copy" do
+    context "when valid" do
+      before { put :copy, id: first_style.id }
+
+      skip "will copy a style" do
+      end
+
+      skip "will set flash[:success]" do
+        expect(flash[:success]).to be_present
+      end
+
+      it "will redirect to site_admin_styles_path" do
+        expect(response).to redirect_to(site_admin_styles_path)
+      end
+    end
+
+    context "when invalid" do
+      before { put :copy, id: first_style.id }
+
+      it "will set flash[:error]" do
+        expect(flash[:error]).to be_present
+      end
+
+      it "will redirect to site_admin_styles_path" do
+        expect(response).to redirect_to(site_admin_styles_path)
+      end
+    end
   end
 
-  skip "sort" do
-  end
+  describe "sort" do
+    let(:sec_style) { FactoryGirl.create(:style, site_id: site.id) }
 
-  ## private ##
+    before { post :sort }
 
-  skip "resource" do
-  end
-
-  skip "after_toggle_path" do
+    skip "will allow sorting the styles" do
+    end
   end
 end
