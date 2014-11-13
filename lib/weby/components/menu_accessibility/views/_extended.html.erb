@@ -1,0 +1,58 @@
+<section class="menu_accessibility_component extended">
+<nav class="menu_accessibility_extended" style="display: none;">
+  <div>
+  <ul id="accessibility_areas">
+  <li class="accessibility_tools">
+    <b><%= t('.accessibility_tools') %></b>
+    <br>
+    <% if component.font_size? %>
+      <span class="accessibility_font">
+        <% if !component.label_font_size.blank? %>
+          <%= component.label_font_size %>
+        <% end %>
+    
+        <%= link_to weby_icon('minus'), "#", onclick: 'font_size_down()', title: t(".decrease_font_size")%>
+        <%= link_to weby_icon('font'), "#", onclick: 'font_size_original()', title: t(".default_font_size")%>
+        <%= link_to weby_icon('plus'), "#", onclick: 'font_size_up()', title: t(".increase_font_size")%>
+      </span>
+    <% end %>
+    <br>
+    <br>
+    <span class="accessibility_color">
+      <% if component.contrast? %>
+        <% if !component.label_contrast.blank? %>
+          <%= component.label_contrast %>
+        <% end %>
+
+        <%= link_to ('C'), {contrast: params[:contrast] = "no"}, title: t(".contrast_normal"), class: 'contrast_normal' %>
+        <%= link_to ('C'), {contrast: params[:contrast] = "blue"}, title: t(".contrast"), class: 'contrast_blue' %>
+        <%= link_to ('C'), {contrast: params[:contrast] = "black"}, title: t(".contrast"), class: 'contrast_black' %>
+        <%= link_to ('C'), {contrast: params[:contrast] = "yellow"}, title: t(".contrast"), class: 'contrast_yellow' %>
+      <%  end %>
+  </li>
+  <li class="acceess_keys">
+    <b><%= t('.access_keys') %></b>
+    <br>
+    <p>CTRL + 1<%= t('.or') %> ALT + 1 -<%= t(".homepage") %></p>
+    <p>CTRL + 2<%= t('.or') %> ALT + 2 -<%= t(".go_to_content") %></p>
+    <p>CTRL + 3<%= t('.or') %> ALT + 3 -<%= t(".site_map") %></p>
+    <p>CTRL + 4<%= t('.or') %> ALT + 4 -<%= t(".focus_search_field") %></p>
+    <p>CTRL + 9<%= t('.or') %> ALT + 9 -<%= t(".contact_information") %></p>
+    <p>CTRL + 0<%= t('.or') %> ALT + 0 -<%= t(".details_hotkeys") %></p>
+  </li>
+  <li class="accessibility_options">
+    <b><%= t(".software_for_the_visually_impaired") %></b>
+    <br>
+    <a><%= raw component.software_for_the_visually_impaired %></a>
+    <br>
+    <b><%= t(".related_links") %></b>
+    <br>
+    <a><%= raw component.related_links %></a>
+  </li>
+  </ul>
+  </div>
+</nav>
+<div id="accessibility_button">
+  <label><%= image_tag 'components/accessibility-icon.png' %><b><%= t(".accessibility") %></b></label>
+</div>
+</section>
