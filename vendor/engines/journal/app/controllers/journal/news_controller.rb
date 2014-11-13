@@ -1,7 +1,5 @@
 module Journal
   class NewsController < Journal::ApplicationController
-    include ActsToSort
-
     layout :choose_layout
 
     helper_method :sort_column
@@ -20,6 +18,7 @@ module Journal
 
     def show
       @news = Journal::News.where(site_id: current_site.id).find(params[:id])
+      raise ActiveRecord::RecordNotFound if !@news.published? && @news.user != current_user
       if request.path != news_path(@news)
         redirect_to news_path(@news), status: :moved_permanently
         return

@@ -17,5 +17,7 @@ module Journal
         end
       end
     end
+
+    config.active_record.observers = 'journal/news_position_observer'
   end
 end

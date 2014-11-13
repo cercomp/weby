@@ -1,21 +1,22 @@
 module Calendar
   class Event < ActiveRecord::Base
     include Trashable
+    include OwnRepository
 
     EVENT_TYPES = %w(regional national international)
 
     acts_as_taggable_on :categories
 
-    weby_content_i18n :name, :information, :place, required: :name
+    weby_content_i18n :name, :information, :place, required: [:name, :place]
 
     belongs_to :site
     belongs_to :user
 
-    belongs_to :image, class_name: 'Repository', foreign_key: 'repository_id'
-
     has_many :menu_items, as: :target, dependent: :nullify
     has_many :posts_repositories, as: :post, dependent: :destroy
     has_many :related_files, through: :posts_repositories, source: :repository
+
+    validates :begin_at, presence: true
 
     scope :upcoming, -> { where(' (begin_at >= :time OR end_at >= :time)', time: Time.now) }
     scope :previous, -> { where(' (end_at < :time)', time: Time.now) }

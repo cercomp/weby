@@ -23,6 +23,7 @@ en:
           size:                 " Size "
           archive_fingerprint:  " Archive fingerprint "
           related_files:        " Related Files "
+          related_url:          " URL "
         fronts:
           news:                 " News "
           covers:               " Covers "

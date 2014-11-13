@@ -39,7 +39,7 @@
 
 
   <div class="form-actions">
-    <%= link_to icon('eye-open', text: t('show')), site_page_path(@page) %>
+    <%= link_to icon('eye-open', text: t('show')), site_page_path(@page) if @page.publish || @page.user_id == current_user.id %>
     <%= make_menu(@page, :except => "show") %>
     <%= link_to icon('list', text: t(".list_all")), site_admin_pages_path %>
     <%= link_to icon('chevron-left', text: t("back")), :back %>

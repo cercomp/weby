@@ -1,11 +1,15 @@
 <% title ".event" %>
 <% breadcrumb :events_show, @event %>
 <article class="event-show">
-  <%= weby_file_view(@event.image, :little, '128', nil) %>
+  <%= weby_file_view(@event.image, :l, '128', nil) %>
 
   <header>
     <%= raw available_flags(@event) if @event.locales.many? %>
     <h1><%= @event.name %></h1>
+    <p class="local">
+      <%= label(:page, :local, style: 'display: inline-block;') %>:
+      <%= @event.place %>
+    </p>
   </header>
 
   <div class="body">

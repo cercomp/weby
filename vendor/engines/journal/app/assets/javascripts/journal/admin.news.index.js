@@ -5,4 +5,8 @@ $(function (){
     minimumResultsForSearch: -1,
     allowClear: true
   });
+  $('.search-filter').on('change', function(e){
+    //$('#search').val(null);
+    $('button[type=submit]').click();
+  });
 });

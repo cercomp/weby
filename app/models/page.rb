@@ -15,6 +15,7 @@ class Page < ActiveRecord::Base
 
   # Validations
   validates :user_id, :site_id, presence: true
+  validate :should_be_own_files
 
   scope :published, -> { where(publish: true) }
 

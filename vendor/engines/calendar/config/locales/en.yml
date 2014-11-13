@@ -2,3 +2,4 @@ en:
   extensions:
     calendar:
       name:            "Events"
+  moved_event_to_recycle_bin: "Event moved to recycle bin"

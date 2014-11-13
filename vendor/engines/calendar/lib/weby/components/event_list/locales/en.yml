@@ -11,8 +11,6 @@ en:
         label:                " Label "
         filter_by:            " Select events with only these categories "
         read_more:            " Show 'Read more' "
-        show_date:            " Show event's date "
-        show_label:           " Show Label "
         image_size:           " Image version "
         new_tab:              " Open events in a new tab "
         max_char:             " Maximum number of characters "

@@ -26,7 +26,7 @@
         <% @newslist.each do |news| %>
         <tr id="<%= news.id %>"<%= ' class="deactivated"'.html_safe unless news.published? %>>
           <td>
-            <%= link_to news.title, edit_admin_news_path(news) %>
+            <%= link_to news.title, admin_news_path(news) %>
           </td>
           <td><%= news.user.first_name %></td>
           <td><%= raw categories_links(news.category_list) %></td>

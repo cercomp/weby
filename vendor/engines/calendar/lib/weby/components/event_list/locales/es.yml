@@ -11,8 +11,6 @@ es:
         label:                " Etiqueta "
         filter_by:            " Seleccionar apenas eventos con las categorías "
         read_more:            " Muestra 'Leer más' "
-        show_date:            " Muestra la fecha de lo evento "
-        show_label:           " Muestra la etiqueta "
         image_size:           " Versión de la imagen "
         new_tab:              " Abrir eventos en una nueva ventana "
         max_char:             " Número máximo de caracteres en el resumen "

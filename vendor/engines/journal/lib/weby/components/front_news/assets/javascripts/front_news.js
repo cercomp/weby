@@ -29,9 +29,9 @@ $(document).ready(function(){
         forcePlaceholderSize: true,
         placeholder: 'drop-here',
         update: function(ev, ui){
-          id_moved = ui.item.attr('id').replace('sort_page_','');
-          id_after = ui.item.next().attr('id') ? ui.item.next().attr('id').replace('sort_page_','') : 0;
-          id_before = ui.item.prev().attr('id') ? ui.item.prev().attr('id').replace('sort_page_','') : 0;
+          id_moved = ui.item.attr('id').replace('sort_news_','');
+          id_after = ui.item.next().attr('id') ? ui.item.next().attr('id').replace('sort_news_','') : 0;
+          id_before = ui.item.prev().attr('id') ? ui.item.prev().attr('id').replace('sort_news_','') : 0;
           //alert(id_moved+' between '+id_before+' and '+id_after);
           $.ajax({
             type: 'post',

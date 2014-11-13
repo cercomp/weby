@@ -11,8 +11,6 @@
       label:                " Étiquette "
       filter_by:            " Sélectionnez uniquement les events "
       read_more:            " Lire plus (ler mais) "
-      show_date:            " Voir la date de le event "
-      show_label:           " Afficher l'étiquette "
       image_size:           " Taille de l'image "
       new_tab:              " Ouvrir dans une event fenêtre "
       max_char:             " Numeró maximal de caractères "

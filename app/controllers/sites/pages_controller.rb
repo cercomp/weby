@@ -1,6 +1,4 @@
 class Sites::PagesController < ApplicationController
-  include ActsToSort
-
   layout :choose_layout
 
   helper_method :sort_column
@@ -18,7 +16,8 @@ class Sites::PagesController < ApplicationController
   end
 
   def show
-    @page = current_site.pages.published.find(params[:id])
+    @page = current_site.pages.find(params[:id])
+    raise ActiveRecord::RecordNotFound if !@page.publish && @page.user != current_user
     if request.path != site_page_path(@page)
       redirect_to site_page_path(@page), status: :moved_permanently
       return
