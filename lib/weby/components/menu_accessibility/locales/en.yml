@@ -12,13 +12,13 @@ en:
         display_controls:   " Display Controls "
         software_for_the_visually_impaired: " Software for the Visually Impaired "
         related_links:      " Related Links "
+        extended_accessibility: " Activate "
   menu_accessibility:
     views:
       form:
         font_size:          " Font Size "
         contrast:           " Contrast "
         display_controls:   " Display Controls "
-        activate:           " Activate "
         basic:              " Basic "
         extended:           " Extended "
       basic:
@@ -35,3 +35,15 @@ en:
         contrast:           " Change the color contrast "
         contrast_normal:    " Remove the colour contrast "
         colour:             " Colour "
+        accessibility_tools: " Accessibility Tools "
+        access_keys:        " Access Keys "
+        software_for_the_visually_impaired: " Software for the Visually Impaired "
+        related_links:      " Related Links "
+        or:                 " or "
+        homepage:           " Homepage "
+        go_to_content:      " Go to Content "
+        site_map:           " Site Map "
+        focus_search_field: " Focus on Search Field "
+        contact_information: " Contact Information "
+        details_hotkeys:    " Details Access Key (Accessibility Page) "
+        accessibility:      " Accessibility "

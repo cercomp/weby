@@ -27,17 +27,7 @@
     </div>
 
     <div class="tab-pane" id="extended">
-      <div class="form-group boolean optional side">
-       <div class="col-md-3 control-label">
-        <%= label_tag :extended_accessibility, t(".activate"), class: 'boolean optional', for: 'extended_accessibility' %>
-       </div>
-       <div class="col-md-7">
-        <%= f.input :extended_accessibility, as: :hidden %>
-        <label>
-          <%= check_box_tag :extended_accessibility, '1', component.extended_accessibility?  %>
-        </label>
-       </div>
-      </div>
+      <%= f.input :extended_accessibility, as: :boolean %>
       <div class="extended_fields">
       <%= each_i18n_tab do |locale| %>
           <%= f.component_i18n_input locale, :software_for_the_visually_impaired,

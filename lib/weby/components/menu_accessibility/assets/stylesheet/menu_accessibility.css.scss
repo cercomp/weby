@@ -1,4 +1,3 @@
-
 span.accessibility {
 float: right;
 border: 1px solid #DFDFDF;
@@ -39,4 +38,50 @@ color: #FFFF00 !important;
 a.contrast_yellow {
 background-color: #DFD179 !important;
 color: #020167 !important;
+}
+
+nav.menu_accessibility_extended{
+background-color: #F1F1F1;
+max-width: 1000px;
+border-top: 3px solid #749EC7;
+border-bottom: 3px solid #749EC7;
+margin-left: auto;
+margin-right: auto;
+padding: 15px;
+}
+
+.menu_accessibility_extended li{
+list-style-type: none;
+}
+
+ul#accessibility_areas{
+display: table;
+margin: 0 auto;
+}
+
+ul#accessibility_areas li{
+margin-left: 5px;
+margin-right: 5px;
+display: inline-table;
+}
+
+div#accessibility_button{
+background-color: #749EC7;
+float: right;
+margin-right: 27.6%;
+padding: 4px;
+}
+
+div#accessibility_button label{
+display: -webkit-inline-box;
+margin-bottom: 0px;
+}
+
+div#accessibility_button b{
+color: #FAFEFC;
+font-size: 16px;
+}
+
+li.accessibility_tools b{
+margin-bottom: 20px;
 }

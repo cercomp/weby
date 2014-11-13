@@ -11,13 +11,13 @@ pt-BR:
         label_contrast:     " Rótulo Contraste "
         software_for_the_visually_impaired: " Programas para Deficientes Visuais "
         related_links:      " Links Relacionados "
+        extended_accessibility: " Ativar "
   menu_accessibility:
     views:
       form:
         font_size:          " Tamanho da Fonte "
         contrast:           " Contraste "
         display_controls:   " Exibir Controles "
-        activate:           " Ativar "
         basic:              " Básico "
         extended:           " Estendido "
       basic:
@@ -34,3 +34,15 @@ pt-BR:
         contrast:           " Alterar o contraste da página "
         contrast_normal:    " Retirar o contraste da pagina "
         colour:             " Cor "
+        accessibility_tools: " Ferramentas de Acessibilidade "
+        access_keys:         " Teclas de Acesso "
+        software_for_the_visually_impaired: " Programas para Deficientes Visuais "
+        related_links:      " Links Relacionados "
+        or:                 " o "
+        homepage:           " Página Inicial "
+        go_to_content:      " Ir para o Conteúdo "
+        site_map:           " Mapa do Site "
+        focus_search_field: " Foco no Campo de Busca "
+        contact_information: " Informações de Contato "
+        details_hotkeys:    " Detalhes das Teclas de Atalho (Pagina de Acessibilidade) "
+        accessibility:      " Acessibilidade "

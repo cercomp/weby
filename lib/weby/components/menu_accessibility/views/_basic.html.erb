@@ -1,4 +1,4 @@
-<nav class="menu_accessibility_component right">
+<nav class="menu_accessibility_component right basic">
   <span class="accessibility">
     <% if component.font_size? %>
       <span class="accessibility_font">
@@ -9,7 +9,6 @@
         <%= link_to weby_icon('minus'), "#", onclick: 'font_size_down()', title: t(".decrease_font_size")%>
         <%= link_to weby_icon('font'), "#", onclick: 'font_size_original()', title: t(".default_font_size")%>
         <%= link_to weby_icon('plus'), "#", onclick: 'font_size_up()', title: t(".increase_font_size")%>
-        <% content_for :javascripts, javascript_include_tag('font_size_control') %>
       </span>
     <% end %>
     <% if component.contrast? %>
