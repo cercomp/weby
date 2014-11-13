@@ -86,7 +86,7 @@ module Calendar
         flash[:error] = @event.errors.full_messages.join(', ')
       end
 
-      redirect_to :back
+      redirect_to @event.persisted? ? admin_events_path : recycle_bin_admin_events_path
     end
 
     def recover
@@ -106,7 +106,7 @@ module Calendar
 
     def events_params
       params.require(:event).permit(:begin_at, :end_at, :email, :url,
-                                   :kind, :category_list,
+                                   :kind, :category_list, :image,
                                    { i18ns_attributes: [:id, :locale_id, :name,
                                        :information, :place, :_destroy],
                                      related_file_ids: [] })

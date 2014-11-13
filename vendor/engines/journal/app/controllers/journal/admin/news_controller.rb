@@ -103,7 +103,7 @@ module Journal::Admin
         flash[:error] = @news.errors.full_messages.join(', ')
       end
 
-      redirect_to :back
+      redirect_to @news.persisted? ? admin_news_index_path : recycle_bin_admin_news_index_path
     end
 
     def recover

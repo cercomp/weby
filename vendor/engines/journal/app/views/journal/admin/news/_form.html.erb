@@ -22,7 +22,7 @@
   <%= f.input :date_end_at, :hint => t(".date_end_hint") %>
   
   <%= repository_search t(".related_files"),
-    "related_file_ids", "page[related_file_ids][]", @news.related_files,
+    "related_file_ids", "news[related_file_ids][]", @news.related_files,
     multiple: true, file_types: false %>
   
   <div class="form-actions">

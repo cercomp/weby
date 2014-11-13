@@ -14,6 +14,9 @@ en:
         kind:            "Type"
         view_count:      "Views"
         image:           "Image"
+        name:            "Name"
+        place:           "Place"
+        information:     "Information"
         created_at:      "Created at"
         updated_at:      "Updated at"
       "calendar/event/i18ns":

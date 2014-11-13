@@ -23,7 +23,7 @@
         <% @events.each do |event| %>
         <tr id="<%= event.id %>">
           <td>
-            <%= link_to(event.name, edit_admin_event_path(event)) %>
+            <%= link_to(event.name, admin_event_path(event)) %>
           </td>
           <td><%= event.place %></td>
           <td><%= t("calendar.admin.events.form.#{event.kind}") if event.kind.present? %></td>

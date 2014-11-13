@@ -1,7 +1,7 @@
 <% title ".news" %>
 <% breadcrumb :news_show, @news %>
 <article class="news-show">
-  <%= weby_file_view(@news.image, :little, '128', nil) %>
+  <%= weby_file_view(@news.image, :l, '128', nil) %>
 
   <header>
     <%= raw available_flags(@news) if @news.locales.many? %>
@@ -67,7 +67,7 @@
 
 
   <div class="form-actions">
-    <%= link_to icon('eye-open', text: t('show')), news_path(@news) %>
+    <%= link_to icon('eye-open', text: t('show')), news_path(@news) if @news.published? || @news.user_id == current_user.id %>
     <%= make_menu(@news, :except => "show") %>
     <%= link_to icon('list', text: t(".list_all")), admin_news_index_path %>
     <%= link_to icon('chevron-left', text: t("back")), :back %>

@@ -1,6 +1,7 @@
 module Journal
   class News < ActiveRecord::Base
     include Trashable
+    include OwnRepository
 
     weby_content_i18n :title, :summary, :text, required: :title
 
@@ -11,7 +12,6 @@ module Journal
 
     belongs_to :site
     belongs_to :user
-    belongs_to :image, class_name: 'Repository', foreign_key: 'repository_id'
     
     has_many :views, as: :viewable
     has_many :menu_items, as: :target, dependent: :nullify
@@ -22,9 +22,6 @@ module Journal
     validates :user_id, :site_id, :status, presence: true
     
     validate :validate_date
-    validate :should_be_image
-    validate :should_be_own_image
-    validate :should_be_own_files
 
     scope :published, -> { where(status: 'published') }
     scope :review, -> { where(status: 'review') }
@@ -99,11 +96,6 @@ module Journal
       status == 'published'
     end
 
-    def image=(file)
-      return self.repository_id = file.id if file.is_a?(Repository)
-      self.repository_id = file
-    end
-
     def self.uniq_category_counts
       category_counts.each_with_object(Hash.new) do |j, hash|
         name = j.name.upcase
@@ -129,38 +121,5 @@ module Journal
     def validate_date
       self.date_begin_at = Time.now.to_s if date_begin_at.blank?
     end
-
-    def should_be_image
-      return unless image
-      error_message = I18n.t('should_be_image')
-      errors.add(:image, error_message) unless is_image?
-    end
-
-    def should_be_own_image
-      return unless image
-      error_message = I18n.t('should_be_own_image')
-      errors.add(:image, error_message) unless own_image?
-    end
-
-    def should_be_own_files
-      error_message = I18n.t('should_be_own_files')
-      errors.add(:related_files, error_message) unless own_files?
-    end
-
-    def is_image?
-      image.archive_content_type =~ /image/
-    end
-
-    def own_image?
-      image.site_id == site.id
-    end
-
-    def own_files?
-      related_files.each do |file|
-        return false if file.site_id != site.id
-      end
-      true
-    end
-
   end
 end

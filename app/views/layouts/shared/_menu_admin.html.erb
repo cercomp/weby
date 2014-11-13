@@ -16,7 +16,7 @@
         <%= menu_item_to t(".settings"), main_app.edit_site_admin_path if check_permission(SitesController, [:edit]) %>
         <%= menu_item_to t(".activity_records"), main_app.site_admin_activity_records_path if check_permission(Sites::Admin::ActivityRecordsController, [:index]) %>
         <%= menu_item_to t(".backup"), main_app.site_admin_backups_path if current_user.is_admin? %>
-        <%= menu_item_to t(".extensions"), main_app.site_admin_extensions_path %>
+        <%= menu_item_to t(".extensions"), main_app.site_admin_extensions_path if check_permission(Sites::Admin::ExtensionsController, [:index]) %>
         <div class="nav-header">
           <%= menu_item_to t(".contents"), main_app.site_admin_path %>
         </div>

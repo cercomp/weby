@@ -14,6 +14,9 @@ pt-BR:
         kind:            "Tipo"
         view_count:      "Visualizações"
         image:           "Imagem"
+        name:            " Nome "
+        place:           " Local "
+        information:     " Information "
         created_at:      "Criado em"
         updated_at:      "Atualizado em"
       "calendar/event/i18ns":

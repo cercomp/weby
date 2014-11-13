@@ -12,7 +12,7 @@
           <%= link_to(component.label.present? ? component.label : t(".events"), events_path(direction: 'desc', sort: 'calendar_events.begin_at')) %>
         </th>
       </tr>
-      <% @events.try(:each) do |event| %>
+      <% @events.each do |event| %>
         <tr>
           <td>
             <p><%= link_to event.name, event_path(event) %></p>
@@ -40,17 +40,13 @@
         <li style="list-style-type:none;">
         <article>
           <% unless event.image.nil? %>
-            <%= weby_file_view(event.image, component.image_size, component.avatar_width, component.avatar_height, {as: "link", url: event_path(event), target: (component.new_tab && event.url.present? ? '_blank' : '_self')}) %>
+            <%= weby_file_view(event.image, component.image_size, component.avatar_width, component.avatar_height, {as: "link", url: event_path(event) }) %>
           <% end %>
           <header>
-            <h2> <%= link_to event.name, event_path(event), target: (component.new_tab && event.url.present? ? '_blank' : '_self') %> </h2>
-            <% if component.show_date %>
-              <p class="page-details">
-                <% if component.show_date %>
-                  <span class="date"><%= t(".posted_on") %><%= localize event.created_at, format: :medium %></span>
-                <% end %>
-              </p>
-            <% end %>
+            <h2> <%= link_to event.name, event_path(event) %> </h2>
+            <p class="page-details">
+              <span class="date"><%= t(".posted_on") %><%= localize event.created_at, format: :medium %></span>
+            </p>
           </header>
           <summary>
             <% if component.max_char.present? %>

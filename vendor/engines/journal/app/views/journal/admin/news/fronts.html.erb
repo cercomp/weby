@@ -45,7 +45,7 @@
     </thead>
     <tbody>
       <% @newslist.each do |news| %>
-        <tr id="sort_page_<%= news.id %>" class="sort_page <%= news.category_list.map{|categ| categ.parameterize }.join(' ') %>">
+        <tr id="sort_news_<%= news.id %>" class="sort_news <%= news.category_list.map{|categ| categ.parameterize }.join(' ') %>">
           <td>
             <%= link_to news.title, edit_admin_news_path(news) %>
           </td>
@@ -86,9 +86,9 @@
           ui.placeholder.html('<td colspan="'+ui.helper.find('td').length+'">&nbsp;</td>');
         },
         update: function(ev, ui){
-          id_moved = ui.item.attr('id').replace('sort_page_','');
-          id_after = ui.item.next().attr('id') ? ui.item.next().attr('id').replace('sort_page_','') : 0;
-          id_before = ui.item.prev().attr('id') ? ui.item.prev().attr('id').replace('sort_page_','') : 0;
+          id_moved = ui.item.attr('id').replace('sort_news_','');
+          id_after = ui.item.next().attr('id') ? ui.item.next().attr('id').replace('sort_news_','') : 0;
+          id_before = ui.item.prev().attr('id') ? ui.item.prev().attr('id').replace('sort_news_','') : 0;
           //alert(id_moved+' between '+id_before+' and '+id_after);
           $.ajax({
             type: 'post',
@@ -110,18 +110,18 @@
         var onlyEvents = $('#filter-events'),
             categories = $('#filter-category');
 
-        $('.sort_page').hide();
+        $('.sort_news').hide();
 
         if(categories.val()){
           $(categories.val()).each(function(idx, category){
-            $('.sort_page.'+category).show();
+            $('.sort_news.'+category).show();
           });
         }else{
-          $('.sort_page').show();
+          $('.sort_news').show();
         }
 
         if(onlyEvents.is(':checked')){
-          $('.sort_page.news').hide();
+          $('.sort_news.news').hide();
         }
       }
 

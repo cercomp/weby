@@ -1,7 +1,6 @@
 class Sites::Admin::PagesController < ApplicationController
   include ActsToToggle
-  include ActsToSort
-
+  
   before_action :require_user
   before_action :check_authorization
 
@@ -93,7 +92,7 @@ class Sites::Admin::PagesController < ApplicationController
       flash[:error] = @page.errors.full_messages.join(', ')
     end
 
-    redirect_to :back
+    redirect_to @page.persisted? ? site_admin_pages_path : recycle_bin_site_admin_pages_path
   end
 
   def recover

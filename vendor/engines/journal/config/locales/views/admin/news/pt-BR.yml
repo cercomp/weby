@@ -23,6 +23,7 @@ pt-BR:
           size:                 " Tamanho "
           archive_fingerprint:  " Assinatura digital do arquivo "
           related_files:        " Arquivos Relacionados "
+          related_url:          " URL "
         fronts:
           news:                 " Notícias "
           covers:               " Capas "

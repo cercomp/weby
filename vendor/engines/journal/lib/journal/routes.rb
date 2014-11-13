@@ -25,7 +25,7 @@ module Journal
     def self.load(*args)
       Proc.new do
         namespace :admin, module: 'journal/admin' do
-        get :journal, to: 'news#index'
+          get :journal, to: 'news#index'
           resources :news do
             member do
               put :toggle, :recover
