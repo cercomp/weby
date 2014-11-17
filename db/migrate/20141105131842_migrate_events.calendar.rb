@@ -2,6 +2,9 @@
 class MigrateEvents < ActiveRecord::Migration
   class Page < ActiveRecord::Base
     self.inheritance_column = nil
+    has_many :i18ns, class_name: 'Page::I18ns',
+                   foreign_key: :page_id,
+                   dependent: :delete_all
   end
   class Page::I18ns < ActiveRecord::Base
   end
