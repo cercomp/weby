@@ -26,6 +26,7 @@ class MigrateEvents < ActiveRecord::Migration
                  }
                end
       )
+      page.destroy
     end
   end
 end
