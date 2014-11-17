@@ -89,7 +89,7 @@ module Sticker::Admin
 
     def banner_params
       params.require(:banner).permit(:repository_id, :size, :width, :height, :title,
-                                     :text, :url, :page_id, :category_list,
+                                     :text, :url, :target_id, :target_type, :category_list,
                                      :position, :publish, :date_begin_at,
                                      :date_end_at, :new_tab)
     end

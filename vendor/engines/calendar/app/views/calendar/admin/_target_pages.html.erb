@@ -27,7 +27,7 @@
         <tbody>
           <% @events.each do |event| %>
             <tr data-id="<%= event.id%>" data-url="<%= event_path(event) %>" data-title="<%= event.name %>" data-type="<%= "Calendar::Event" %>" class="cursor highlight target-item">
-              <td><%= event.begin_at.strftime('%d/%m/%y') %></td>
+              <td><%= event.begin_at.strftime('%d/%m/%y') if event.begin_at %></td>
               <td><%= event.name %></td>
               <td><%= event.category_list %></td>
               <td><%= event.kind %></td>

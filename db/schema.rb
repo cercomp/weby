@@ -396,17 +396,18 @@ ActiveRecord::Schema.define(version: 20141017192032) do
     t.boolean  "publish",       default: false
     t.integer  "site_id"
     t.integer  "position"
-    t.integer  "page_id"
+    t.integer  "target_id"
     t.boolean  "new_tab",       default: false
     t.integer  "click_count",   default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "target_type"
   end
 
-  add_index "sticker_banners", ["page_id"], name: "index_sticker_banners_on_page_id", using: :btree
-  add_index "sticker_banners", ["repository_id"], name: "index_sticker_banners_on_repository_id", using: :btree
-  add_index "sticker_banners", ["site_id"], name: "index_sticker_banners_on_site_id", using: :btree
-  add_index "sticker_banners", ["user_id"], name: "index_sticker_banners_on_user_id", using: :btree
+  add_index "sticker_banners", ["repository_id"], name: "index_banners_on_repository_id", using: :btree
+  add_index "sticker_banners", ["site_id"], name: "index_banners_on_site_id", using: :btree
+  add_index "sticker_banners", ["target_id"], name: "index_banners_on_page_id", using: :btree
+  add_index "sticker_banners", ["user_id"], name: "index_banners_on_user_id", using: :btree
 
   create_table "styles", force: true do |t|
     t.string   "name"
@@ -586,7 +587,6 @@ ActiveRecord::Schema.define(version: 20141017192032) do
   add_foreign_key "sites_menus", "menus", name: "sites_menus_menu_id_fk"
   add_foreign_key "sites_menus", "sites", name: "sites_menus_site_id_fk"
 
-  add_foreign_key "sticker_banners", "journal_news", name: "banners_page_id_fk", column: "page_id"
   add_foreign_key "sticker_banners", "repositories", name: "banners_repository_id_fk"
   add_foreign_key "sticker_banners", "sites", name: "banners_site_id_fk"
   add_foreign_key "sticker_banners", "users", name: "banners_user_id_fk"
