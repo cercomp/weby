@@ -29,6 +29,7 @@ class RenamePages < ActiveRecord::Migration
     View.where(viewable_type: 'Page').update_all(viewable_type: 'Journal::News')
     MenuItem.where(target_type: 'Page').update_all(target_type: 'Journal::News')
     PostsRepository.where(post_type: 'Page').update_all(post_type: 'Journal::News')
+    Sticker::Banner.where(target_type: 'Page').update_all(target_type: 'Journal::News')
   end
 
   def down
@@ -57,5 +58,6 @@ class RenamePages < ActiveRecord::Migration
     View.where(viewable_type: 'Journal::News').update_all(viewable_type: 'Page')
     MenuItem.where(target_type: 'Journal::News').update_all(target_type: 'Page')
     PostsRepository.where(post_type: 'Journal::News').update_all(post_type: 'Page')
+    Sticker::Banner.where(target_type: 'Journal::News').update_all(target_type: 'Page')
   end
 end

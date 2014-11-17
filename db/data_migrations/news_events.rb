@@ -54,10 +54,29 @@ MenuItem.find_each do |item|
        }
      end
   )
-  news.url = page_path(page)
-  news.save
+  news.update_attribute(:url, site_page_path(page))
 
   item.target = page
+  item.url = site_page_path(page)
   item.save
+end
+print("OK\n")
+print("Updating banners...")
+Sticker::Banner.find_each do |banner|
+  news = banner.target
+  if !news && (match = banner.url.match(/\/pages\/([0-9]+)/))
+    news = Journal::News.find_by(id: match[1])
+  end
+
+  next if !news || news.site_id != banner.site_id || !news.is_a?(Journal::News)
+
+  if match = news.url.match(/\/p\/([0-9]+)/)
+    page = Page.find_by(id: match[1])
+    if page
+      banner.target = page
+      banner.url = site_page_path(page)
+      banner.save
+    end
+  end
 end
 print("OK\n")

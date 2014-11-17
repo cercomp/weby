@@ -2,7 +2,7 @@ module Sticker
   class Banner < ActiveRecord::Base
     acts_as_taggable_on :categories
 
-    belongs_to :page
+    belongs_to :target, polymorphic: true
     belongs_to :repository
     belongs_to :user
     belongs_to :site

@@ -44,7 +44,7 @@ module ApplicationHelper
     item_class << 'current_page' if is_current_page
 
     content_tag :li, id: "menu_item_#{entry.id}", class: item_class.join(' ') do
-      title_link = link_from_menu_item(entry)
+      title_link = link_to(entry.title, target_url(entry), alt: entry.title, title: entry.description, target: entry.new_tab ? '_blank' :  '')
 
       li_content = []
       li_content << content_tag(:div, '', class: 'hierarchy') if view_ctrl
@@ -81,26 +81,19 @@ module ApplicationHelper
   end
   private :print_menu_entry
 
-  def link_from_menu_item item
-    url = if item.target
-      case item.target
-      when Page
-        site_page_path(item.target)
-      when Journal::News
-        news_path(item.target)
-      when Calendar::Event
-        event_path(item.target)
-      else
-        item.url
-      end
+  def target_url obj
+    case obj.target
+    when Page
+      site_page_path(obj.target)
+    when Journal::News
+      news_path(obj.target)
+    when Calendar::Event
+      event_path(obj.target)
     else
-      item.url
+      obj.url
     end
-
-    link_to(item.title, url, alt: item.title, title: item.description, target: item.new_tab ? '_blank' :  '')
   end
-  private :link_from_menu_item
-
+  
   # Defines custom messages
   def flash_message
     ''.tap do |html|
