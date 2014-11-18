@@ -80,3 +80,9 @@ Sticker::Banner.find_each do |banner|
   end
 end
 print("OK\n")
+print("Installing extensions...")
+Site.find_each do |s|
+   s.extensions.create(name: "journal")
+   s.extensions.create(name: "calendar")
+ end
+print("OK\n")
