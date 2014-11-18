@@ -73,6 +73,63 @@ describe Page do
     end
   end
 
+  describe '#to_param' do
+    it "parameteize the string 'id title'" do
+      allow(subject).to receive(:id).and_return 1
+      allow(subject).to receive(:title).and_return 'Titulo'
+
+      expect(subject.to_param).to eq('1-titulo')
+    end
+  end
+
+  describe '#event?' do
+    it 'returns true when type is event' do
+      subject.type = 'Event'
+
+      expect(subject.event?).to eq(true)
+    end
+
+    it "returns false when type isn't event" do
+      subject.type = 'Page'
+
+      expect(subject.event?).to eq(false)
+    end
+  end
+
+  describe '#image=' do
+    it "set repository_id to file if file isn't a repository" do
+      file = 1
+
+      expect(subject.image=(file)).to eq 1
+    end
+
+    it 'set repository_id to file id if file is a repository' do
+      file = Repository.new(id: 1)
+
+      subject.image=(file)
+
+      expect(subject.repository_id).to eq file.id
+    end
+  end
+
+  describe '.uniq_category_counts' do
+    it 'returns an array of ActsAsTaggableOn::Tag' do
+      2.times do
+        page = Page.new
+        page.category_list.add('categoria 1')
+        page.save(validate: false)
+      end
+
+      2.times do
+        page = Page.new
+        page.category_list.add('categoria 2')
+        page.save(validate: false)
+      end
+
+      expect(Page.uniq_category_counts).to eq Page.category_counts
+    end
+  end
+
   skip 'self.import' do
   end
 end
