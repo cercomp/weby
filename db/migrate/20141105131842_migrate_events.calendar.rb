@@ -26,7 +26,7 @@ class MigrateEvents < ActiveRecord::Migration
                  {
                    locale_id: i18n.locale_id,
                    name: i18n.title,
-                   place: page.local
+                   place: page.local.present? ? page.local : 'Local'
                  }
                end
       )
