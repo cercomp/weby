@@ -2,9 +2,9 @@ source 'https://rubygems.org'
 
 ruby '2.1.2'
 
-gem 'rails', '~> 4.1.4'
+gem 'rails', '~> 4.1.8'
 
-gem 'thin', '~> 1.6.2'
+gem 'thin', '~> 1.6.3'
 gem 'pg', '~> 0.17.1'
 
 # js and css frameworks
