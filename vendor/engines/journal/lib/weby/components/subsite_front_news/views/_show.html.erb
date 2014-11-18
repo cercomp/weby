@@ -1,0 +1,35 @@
+<% quant = component.quant || 5 %>
+        
+<% @subsite_front_news = Page.from_subsites(current_site).order('updated_at desc')
+                  .available_fronts.limit(quant) #page(params[:subsite_front_pages]).per(quant) %>
+
+<section class="subsite_front_news_component">
+    <% @subsite_front_news.try(:each) do |page| %>
+    <li style="list-style-type:none;">
+    <article>
+      <span class="page_origin"><%= t(".news_from") %> <%= link_to page.owner.title, main_app.site_url(subdomain: page.owner) %></span>
+      <% unless page.image.nil? %>
+        <%= weby_file_view(page.image, :l, "128", nil, {as: "link", url: link_on_title(page.owner, page), target: '_self'}) %>
+      <% end %>
+      <header>
+        <h2> <%= link_to page.title, link_on_title(page.owner, page) %> </h2>
+        <% if current_site.view_desc_pages %>
+          <p>
+          <i>
+            <%= page.user.name_or_login %>
+            <%= localize page.created_at, format: :short  %>
+          </i>
+          </p>
+        <% end %>
+      </header>
+      <summary>
+        <%= raw page.summary %>
+      </summary>
+      <% unless page.text.blank? %>
+      <p> <%= link_to t(".read_more"), site_page_url(page, subdomain: page.owner) %> </p>
+      <% end %>
+      <div class="clear"></div>
+    </article>
+  <% end %>
+  </li>
+</section>

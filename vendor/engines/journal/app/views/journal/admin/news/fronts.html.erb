@@ -1,0 +1,133 @@
+<% title ".news" %>
+<% breadcrumb :news_fronts %>
+<div class="row" style="margin-bottom: 15px">
+  <div class="col-md-7">
+    <%= select_tag "filter-category",
+      options_for_select(Journal::News.where(site_id: current_site.id).uniq_category_counts.map{|c| [c.name, c.name.parameterize] }),
+      include_blank: false,
+      class: 'form-control select2 input-xlarge',
+      multiple: true %>
+  </div>
+  <div class="col-md-5">
+    <div class="pull-right">
+      <% with_permission(action: :new) do %>
+        <%= link_to t(".new_news"),
+          new_admin_news_path,
+          class: "btn btn-success" %>
+      <% end %>
+      <% with_permission(action: :index) do %>
+        <%= link_to t(".news"), admin_news_index_path, class: 'btn btn-default' %>
+      <% end %>
+      <% with_permission(action: [:recover, :purge]) do %>
+        <%= link_to t("recycle_bin"), recycle_bin_admin_news_index_path, class: "btn btn-default" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% if @newslist.empty? %>
+  <div class="alert alert-warning">
+    <%= t(".none_cover") %>
+  </div>
+<% else %>
+
+  <table  class="table table-striped nowrap" id="list">
+    <thead>
+      <th width="35%"><%= t(".title") %></th>
+      <th width="12%"><%= t(".user") %></th>
+      <th width="13%"><%= t(".category") %></th>
+      <th width="13%"><%= t(".created_at") %></th>
+      <% with_permission(action: :edit) do %>
+        <th  width="5%"><%= t(".cover") %></th>
+        <th  width="5%"><%= t(".status") %></th>
+      <% end %>
+      <th></th>
+    </thead>
+    <tbody>
+      <% @newslist.each do |news| %>
+        <tr id="sort_news_<%= news.id %>" class="sort_news <%= news.category_list.map{|categ| categ.parameterize }.join(' ') %>">
+          <td>
+            <%= link_to news.title, edit_admin_news_path(news) %>
+          </td>
+          <td><%= news.user.first_name %></td>
+          <td><%= raw categories_links(news.category_list) %></td>
+          <td><%= l(news.created_at, :format => :short) %></td>
+          <% with_permission(action: :edit) do %>
+            <td class="publish" style="text-align:center;">
+              <%= front_status(news) %></td>
+            <td class="publish" style="text-align:center;">
+              <%= news_status(news) %></td>
+          <% end %>
+          <td class="text-right">
+            <%= make_menu(news, :except => "show", :with_text => false) %>
+            <% with_permission(action: :sort) do %>
+              <%= link_to icon('move'), '#', class: 'handle' %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+<% content_for :javascripts do %>
+  <%= javascript_tag do %>
+    $(document).ready(function() {
+      $('#list').sortable({
+        axis: 'y',
+        dropOnEmpty:false,
+        handle: '.handle',
+        items: 'tbody > tr',
+        opacity: 0.7,
+        scroll: true,
+        forcePlaceholderSize: true,
+        placeholder: 'drop-here',
+        tolerance: 'pointer',
+        start: function (event, ui){
+          ui.placeholder.html('<td colspan="'+ui.helper.find('td').length+'">&nbsp;</td>');
+        },
+        update: function(ev, ui){
+          id_moved = ui.item.attr('id').replace('sort_news_','');
+          id_after = ui.item.next().attr('id') ? ui.item.next().attr('id').replace('sort_news_','') : 0;
+          id_before = ui.item.prev().attr('id') ? ui.item.prev().attr('id').replace('sort_news_','') : 0;
+          //alert(id_moved+' between '+id_before+' and '+id_after);
+          $.ajax({
+            type: 'post',
+            data: {'id_moved':id_moved,'id_after':id_after,'id_before':id_before},
+            dataType: 'script',
+            complete: function(request){ ui.item.effect('pulsate', {times: 1}, 350); },
+            error: function(){$('#list').sortable('cancel');},
+            url: '<%= sort_admin_news_index_path %>'
+          });
+        }
+      });
+
+      $('.select2').select2({
+         placeholder: "Filtrar por categoria",
+         width: 'resolve'
+      });
+
+      var applyFilter = function(){
+        var onlyEvents = $('#filter-events'),
+            categories = $('#filter-category');
+
+        $('.sort_news').hide();
+
+        if(categories.val()){
+          $(categories.val()).each(function(idx, category){
+            $('.sort_news.'+category).show();
+          });
+        }else{
+          $('.sort_news').show();
+        }
+
+        if(onlyEvents.is(':checked')){
+          $('.sort_news.news').hide();
+        }
+      }
+
+      $('#filter-events, #filter-category').change(applyFilter);
+    });
+  <% end %>
+<% end %>
+<% content_for :javascripts, javascript_include_tag("init/sortable") %>
+<% content_for :stylesheets, stylesheet_link_tag("sortable") %>

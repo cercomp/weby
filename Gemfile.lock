@@ -21,10 +21,22 @@ PATH
       rails (~> 4.1.1)
 
 PATH
+  remote: vendor/engines/calendar
+  specs:
+    calendar (0.0.1)
+      rails (~> 4.1.4)
+
+PATH
   remote: vendor/engines/feedback
   specs:
     feedback (0.0.1)
       rails (~> 4.1.1)
+
+PATH
+  remote: vendor/engines/journal
+  specs:
+    journal (0.0.1)
+      rails (~> 4.1.4)
 
 PATH
   remote: vendor/engines/sticker
@@ -115,6 +127,7 @@ GEM
       railties (>= 3.2, < 5.0)
     foreigner (1.6.1)
       activerecord (>= 3.0.0)
+    fullcalendar-rails (2.0.2.0)
     gretel (3.0.7)
       rails (>= 3.2.0)
     hike (1.2.3)
@@ -204,7 +217,7 @@ GEM
       sass (~> 3.2.0)
       sprockets (~> 2.8, <= 2.11.0)
       sprockets-rails (~> 2.0)
-    select2-rails (3.5.7)
+    select2-rails (3.5.9.1)
       thor (~> 0.14)
     selenium-webdriver (2.42.0)
       childprocess (>= 0.5.0)
@@ -260,6 +273,7 @@ DEPENDENCIES
   better_errors (~> 1.1.0)
   binding_of_caller (~> 0.7.2)
   bootstrap-sass (~> 3.1.1.1)
+  calendar!
   capybara
   capybara-webkit
   d3js-rails (~> 3.1.6)
@@ -268,8 +282,10 @@ DEPENDENCIES
   feedback!
   font-awesome-rails (~> 4.1.0.0)
   foreigner (~> 1.6.1)
+  fullcalendar-rails
   gretel (~> 3.0.7)
   jcrop-rails-v2 (~> 0.9.12.3)
+  journal!
   jquery-rails (= 3.1.0)
   jquery-ui-rails (~> 4.2.1)
   kaminari (~> 0.15.1)
@@ -283,7 +299,7 @@ DEPENDENCIES
   rails-settings-cached (= 0.4.1)
   rspec-rails (~> 3.0.1)
   sass-rails (~> 4.0.3)
-  select2-rails (~> 3.5.7)
+  select2-rails (~> 3.5.9)
   selenium-webdriver (~> 2.42.0)
   shoulda-matchers (~> 2.6.1)
   simple_form (~> 3.0.2)

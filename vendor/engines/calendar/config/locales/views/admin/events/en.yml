@@ -1,0 +1,72 @@
+en:
+  calendar:
+    admin:
+      events:
+        event:                  " Event "
+        new:
+          title:                " New event "
+          events:               " Events "
+        edit:
+          title:                " Update news "
+          news:                 " News "
+        index:
+          events:               " Events "
+          new_event:            " New event "
+        show:
+          events:               " Events "
+          period:               " Date "
+          list_all:             " List all "
+          categories:           " Categories "
+          source:               " Source "
+          size:                 " Size "
+          archive_fingerprint:  " Archive fingerprint "
+          related_files:        " Related Files "
+        list:
+          none_events:          " No Events "
+          user:                 " Author "
+          category:             " Category "
+          begin_at:             " Date "
+          kind:                 " Type "
+          name:                 " Name "
+          place:                " Place "
+          action:               " Action "
+          views:                " Views "
+        related_files:
+          size:                 " Size "
+          related_files:        " Related Files "
+        form:
+          image:                " Event image "
+          related_files:        " Related files "
+          categories_help:      " Categories are separated by commas, the page's category are related with your content. Ex:Sports, News, Policy "
+          categories:           " Categories "
+          save:                 " Save "
+          period:               " Period "
+          begin:                " Begin "
+          end:                  " End "
+          regional:             " Regional "
+          national:             " National "
+          international:        " International "
+        event_form:
+          is_event:             " Is event?  "
+          period_event:         " Event date "
+          regional:             " Regional "
+          national:             " National "
+          international:        " International "  
+          begin:                " Begin "
+          end:                  " End "
+        recycle_bin:                             
+          new_event:            " New Event "
+          events:               " Events "
+          category:             " Category "
+          deleted_at:           " Deleted at "
+          name:                 " Name "
+          kind:                 " Type "
+      target_pages:
+        date:                 " Date "
+        event:                " Event "
+        name:                 " Name "
+        kind:                 " Type "
+        category:             " Category "
+        none_events:          " No Events Found "
+        search_events:        " Search events "
+

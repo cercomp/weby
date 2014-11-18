@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :views, dependent: :nullify
   has_many :notifications, dependent: :nullify
   has_many :user_login_histories, dependent: :destroy
-  has_many :pages, foreign_key: :author_id, dependent: :restrict_with_error
+  has_many :pages, dependent: :restrict_with_error
 
   has_and_belongs_to_many :roles
 

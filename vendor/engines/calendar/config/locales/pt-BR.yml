@@ -1,0 +1,5 @@
+pt-BR:
+  extensions:
+    calendar:
+      name:            "Eventos"
+  moved_event_to_recycle_bin: "Evento movido para a lixeira"

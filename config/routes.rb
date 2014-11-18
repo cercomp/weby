@@ -1,23 +1,15 @@
 Rails.application.routes.draw do
   constraints(Weby::Subdomain) do
 
-    constraints(Weby::Extensions) do
-      Weby.extensions.each do |extension, engine|
-        mount "#{extension.to_s.titleize}::Engine".constantize, at: extension
-      end
-    end
-
     get '/' => 'sites#show', as: :site
     get '/admin' => 'sites#admin', as: :site_admin
     get '/admin/edit' => 'sites#edit', as: :edit_site_admin
     patch '/admin/edit' => 'sites#update', as: :update_site_admin
 
-    resources :pages, as: :site_pages, controller: 'sites/pages', only: [:index, :show] do
-      collection do
-        get :events, :news
-        post :sort
-      end
-    end
+    resources :pages, as: :site_pages, controller: 'sites/pages', path: 'p', only: [:show]
+    get :pages, to: 'sites/pages#index', as: :site_pages
+    #old routes
+    get 'pages/:id(-:title)' => 'sites/pages#redirect', constraints: {id: /\d+/}
 
     resources :components,
               as: :site_components,
@@ -33,8 +25,6 @@ Rails.application.routes.draw do
     namespace :admin, module: 'sites/admin', as: :site_admin do
 
       # route to paginate
-      get 'banners/page/:page' => 'banners#index'
-      get 'groups/page/:page' => 'groups#index'
       get 'repositories/page/:page' => 'repositories#index'
       get 'pages/page/:page' => 'pages#index'
 
@@ -44,11 +34,6 @@ Rails.application.routes.draw do
       post 'import' => 'backups#import'
 
       resources :activity_records, only: [:index, :show]
-      resources :banners do
-        member do
-          put :toggle
-        end
-      end
       resources :components do
         member do
           put :toggle
@@ -73,8 +58,7 @@ Rails.application.routes.draw do
           put :toggle, :recover
         end
         collection do
-          get :fronts, :recycle_bin
-          post :sort
+          get :recycle_bin
         end
       end
       resources :repositories do
@@ -110,6 +94,13 @@ Rails.application.routes.draw do
           get :settings
           patch :settings, action: "update_settings"
         end
+      end
+    end
+    
+    Weby.extensions.each do |name, extension|
+      constraints(extension) do
+        require "#{name.to_s}/routes"
+        instance_eval &("#{name.to_s.classify}::Routes".constantize.load)
       end
     end
   end

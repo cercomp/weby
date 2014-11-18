@@ -1,13 +1,13 @@
 en:
   components:
     news_as_home:
-      name:                   " News as Homepage "
-      page:                   " News "
+      name:                   " Page in Homepage "
+      page:                   " Page "
   activerecord:
     attributes:
       news_as_home_component:
-        page:                 " News "
-        page_id:              " News "
+        page:                 " Page "
+        page_id:              " Page "
         show_title:           " Show title "
         show_info:            " Show informations "
   news_as_home:

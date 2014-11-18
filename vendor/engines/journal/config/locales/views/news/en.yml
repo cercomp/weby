@@ -1,0 +1,24 @@
+en:
+  journal:
+    news:
+      index:
+        news:          " News "
+        advanced:      " Advanced Options "
+        match_search:  " Exact sentence "
+        and_search:    " All the words "
+        or_search:     " Any of the words "
+      show:
+        list_all:      " List all "
+        categories:    " Categories "
+        source:        " Source "
+        updated_at:    " Updated at "
+        related_files: " Related files "
+        related_url:   " Related Url "
+        size:          " Size "
+        archive_fingerprint:  " Archive fingerprint "
+      list:
+        read_more:     " Read more "
+        no_news:       " No news were found "
+      related_files:
+        related_files: " Related files "
+        size:          " Size "

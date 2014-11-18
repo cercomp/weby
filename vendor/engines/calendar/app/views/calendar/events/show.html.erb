@@ -1,0 +1,65 @@
+<% content_for :title, " - #{@event.name}" %>
+<article class="event-show">
+  <%= weby_file_view(@event.image, :l, '128', nil) %>
+
+  <header>
+    <% if (defined?(as_component) ? as_component[:show_title] : true) %>
+      <h2><%= @event.name %></h2>
+    <% end %>
+  </header>
+  
+  <%= content_tag :div, class: 'event' do %>
+    <h3><%= t(".event") %></h3>
+    <p class="local">
+      <%= label(:page, :local, style: 'display: inline-block;') %>:
+      <%= @event.place %>
+    </p>
+    <%= content_tag_if @event.kind?, :p, class: 'event-type' do %>
+      <%= label(:page, :kind, style: 'display: inline-block;') %>:
+      <%= t("calendar.admin.events.form.#{@event.kind}") %>
+    <% end %>
+    <%= content_tag_if @event.email?, :p, class: 'event-email' do %>
+      <%= label(:page, :event_email, style: 'display: inline-block;') %>:
+      <%= @event.email %>
+    <% end %>
+    <%= @event.url %>
+    <p class="event-period">
+      <%= label(:page, :event_period, t(".period_event"), style: 'display: inline-block;') %>:
+      <span class="event-dates"><%=  period_dates(@event.begin_at, @event.end_at) %></span>
+    </p>
+  <% end %>
+
+  <div class="body">
+    <%= raw @event.information %>
+  </div>
+
+  <%# List the related files if they exist %>
+  <% if @event.related_files.any? %>
+    <table class="table table-striped table-condensed table-bordered">
+      <thead>
+        <tr>
+          <th><%= t(".related_files") %></th>
+          <th><%= t(".size") %></th>
+          <th><%= t(".archive_fingerprint") %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @event.related_files.each do |file| %>
+        <tr>
+          <td><%= link_to file.description, file.archive.url %></td>
+          <td><%= file.archive_file_size.to_i/1024 %> Kb</td>
+          <td><%= file.archive_fingerprint %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+
+  <div style="margin-top: 8px;">
+    <%= link_to(weby_icon('edit', t("edit")), edit_admin_event_path(@event)) if check_permission(Calendar::Admin::EventsController, [:edit]) %>
+    <% if !defined?(as_component) %>
+      <%= link_to weby_icon('list', t(".list_all")), events_path %>
+      <%= link_to weby_icon('chevron-left', t("back")), :back %>
+    <% end %>
+  </div>
+</article>

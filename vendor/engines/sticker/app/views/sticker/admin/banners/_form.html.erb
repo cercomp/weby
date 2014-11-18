@@ -17,7 +17,7 @@
     as: :text %>
 
   <% # URL Input %>
-  <%= target_dialog_input(f, :page) %>
+  <%= target_dialog_input(f, :target, true) %>
 
   <%= f.input t(".category"), wrapper: :append do %>
     <%= f.select :category_list,

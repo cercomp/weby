@@ -10,16 +10,25 @@ module DateHelper
     case obj
     when Page
       publication_status_page(obj, options = {})
+    when Journal::News
+      publication_status_news(obj, options = {})
     end
   end
 
   def publication_status_page(page, options = {})
     ''.tap do |html|
       html << toggle_field(page, 'publish', 'toggle', options)
-      html << "<span class=\"label label-warning publish-warning\" title=\"#{t('scheduled', date: l(page.date_begin_at, format: :short))}\">!</span>" if page.date_begin_at and Time.now < page.date_begin_at and page.publish
     end.html_safe
   end
   private :publication_status_page
+
+  def publication_status_news(news, options = {})
+    ''.tap do |html|
+      html << toggle_field(news, 'publish', 'toggle', options)
+      html << "<span class=\"label label-warning publish-warning\" title=\"#{t('scheduled', date: l(news.date_begin_at, format: :short))}\">!</span>" if news.date_begin_at and Time.now < news.date_begin_at and news.publish
+    end.html_safe
+  end
+  private :publication_status_news
 
   def front_status(page, options = {})
     ''.tap do |html|

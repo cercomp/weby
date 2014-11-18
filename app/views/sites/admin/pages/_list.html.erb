@@ -12,11 +12,8 @@
         <tr>
           <th width="35%"><%= t(".title") %></th>
           <th width="12%"><%= sortable 'users.first_name', t(".author") %></th>
-          <th width="13%"><%= sortable 'tags.name', t(".category") %></th>
-          <th width="6%"><%= sortable 'pages.type', t(".type") %></th>
           <th width="25%"><%= sortable 'pages.created_at', t(".created_at") %></th>
           <% with_permission(action: :edit) do %>
-            <th width="5%" class="center"><%= sortable 'pages.front', t(".cover") %></th>
             <th width="5%" class="center"><%= sortable 'pages.publish', t(".publish") %></th>
           <% end %>
           <th width="5%" class="center"><%= sortable 'pages.view_count', t(".views") %></th>
@@ -25,19 +22,15 @@
       </thead>
       <tbody>
         <% @pages.each do |page| %>
-        <tr id="<%= page.id %>"<%= ' class="deactivated"'.html_safe unless page.publish %>>
+        <tr id="<%= page.id %>"<%= ' class="deactivated"'.html_safe unless page.publish? %>>
           <td>
             <%= title_with_flags(page) %>
           </td>
-          <td><%= page.author.first_name %></td>
-          <td><%= raw categories_links(page.category_list) %></td>
-          <td><%= t(".#{page.type.downcase}") %></td>
+          <td><%= page.user.first_name %></td>
           <td><%= l(page.created_at, :format => :short) %></td>
           <% with_permission(action: :edit) do %>
-            <td class="front" style="text-align:center;">
-              <%= front_status(page) %></td>
             <td class="publish" style="text-align:center;">
-              <%= publication_status(page) %>
+              <%= publication_status(page) %></td>
           <% end %>
           <td width="5%" style="text-align:center;"><%= page.view_count %></td>
           <td class="text-right"><%= make_menu(page, :except => "show", :with_text => false) %></td>

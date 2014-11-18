@@ -1,36 +1,36 @@
 # extensions:feedback
 crumb :feedback do
-  link t('breadcrumbs.feedback'), feedback.admin_path
+  link t('breadcrumbs.feedback'), admin_feedback_path
   parent :extensions
 end
 
 crumb :new_group do
-  link t('breadcrumbs.new_group'), feedback.new_admin_group_path
+  link t('breadcrumbs.new_group'), new_admin_group_path
   parent :feedback
 end
 
 crumb :edit_group do |group|
-  link "#{t('breadcrumbs.edit')} #{group.name}", feedback.edit_admin_group_path
+  link "#{t('breadcrumbs.edit')} #{group.name}", edit_admin_group_path(group)
   parent :groups
 end
 
 crumb :show_group do |group|
-  link "#{group.name}", feedback.admin_group_path
+  link "#{group.name}", admin_group_path(group)
   parent :groups
 end
 
 crumb :groups do
-  link t('breadcrumbs.groups'), feedback.admin_groups_path
+  link t('breadcrumbs.groups'), admin_groups_path
   parent :feedback
 end
 
 crumb :messages do
-  link t('breadcrumbs.messages'), feedback.admin_messages_path
+  link t('breadcrumbs.messages'), admin_messages_path
   parent :feedback
 end
 
 crumb :show_message do |message|
-  link "#{message.name}", feedback.admin_message_path
+  link "#{message.name}", admin_message_path(message)
   parent :messages
 end
 

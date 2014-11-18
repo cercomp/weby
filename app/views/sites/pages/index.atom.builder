@@ -19,7 +19,7 @@ atom_feed :language => I18n.locale do |feed|
       entry.content body, :type => 'html'
 
       entry.author do |author|
-        author.name page.author.fullname
+        author.name page.user.fullname
       end
     end
   end

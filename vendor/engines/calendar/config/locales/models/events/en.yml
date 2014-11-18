@@ -1,0 +1,26 @@
+# encoding: UTF-8
+en:
+  activerecord:
+    models:
+      calendar/event:    "Event"
+    attributes:
+      calendar/event:
+        user:            "Author"
+        begin_at:        "Initial date"
+        category_list:   "Categories"
+        end_at:          "Final date"
+        email:           "E-mail"
+        url:             "URL"
+        kind:            "Type"
+        view_count:      "Views"
+        image:           "Image"
+        name:            "Name"
+        place:           "Place"
+        information:     "Information"
+        created_at:      "Created at"
+        updated_at:      "Updated at"
+      "calendar/event/i18ns":
+        name:            "Name"
+        place:           "Placae"
+        information:     "Information"
+        _destroy:        "Delete"

@@ -1,0 +1,44 @@
+<div class="search_bar">
+  <%= form_tag admin_events_path(template: 'list_popup'), method: 'get', autocapitalize: "off", class: 'search', remote: true do %>
+    <div class="row">
+      <div class="col-md-7">
+        <%= search_input params[:search], placeholder: t('.search_events'), button_class: 'btn-search-page' %>
+      </div>
+    </div>
+    <%= hidden_field_tag 'page', 1 %>
+    <%= hidden_field_tag 'per_page', "#{params[:per_page]}" %>
+  <% end %>
+  <div class="clearfix"></div>
+</div>
+<% if @events %>
+  <% if @events.empty? %>
+    <div class="alert alert-warning">
+      <%= t(".none_events") %>
+    </div>
+  <% else %>
+    <div class="page-results">
+      <table class="list table table-striped">
+        <thead>
+          <th><%= sortable 'begin_at', t(".date")%></th>
+          <th><%= t(".name") %></th>
+          <th><%= sortable 'tags.name', t(".category") %></th>
+          <th><%= sortable 'kind', t(".kind") %></th>
+        </thead>
+        <tbody>
+          <% @events.each do |event| %>
+            <tr data-id="<%= event.id%>" data-url="<%= event_path(event) %>" data-title="<%= event.name %>" data-type="<%= "Calendar::Event" %>" class="cursor highlight target-item">
+              <td><%= event.begin_at.strftime('%d/%m/%y') if event.begin_at %></td>
+              <td><%= event.name %></td>
+              <td><%= event.category_list %></td>
+              <td><%= event.kind %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <div class="pull-right"> <%= paginate @events, remote: true, size: :sm %> </div>
+      <div class="pull-left"> <%= per_page_links @events, true, :sm %> </div>
+      <div class="clearfix"></div>
+    </div>
+  <% end %>
+<% end %>
