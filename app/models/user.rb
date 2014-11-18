@@ -153,7 +153,7 @@ class User < ActiveRecord::Base
     if login = conditions.delete(:auth)
       where(conditions).where(['lower(login) = :value OR lower(email) = :value', { value: login.downcase }]).first
     else
-      where(conditions).first
+      super
     end
   end
 
