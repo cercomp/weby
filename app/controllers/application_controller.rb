@@ -156,6 +156,8 @@ class ApplicationController < ActionController::Base
                                 session_hash: request.session_options[:id])
       Page.increment_counter :view_count, @page.id if @page
       Site.increment_counter :view_count, current_site.id
+      Journal::News.increment_counter :view_count, @news.id if @news
+      Calendar::Event.increment_counter :view_count, @event.id if @event
     else
       View.create(viewable: @page,
                               ip_address: request.remote_ip,
