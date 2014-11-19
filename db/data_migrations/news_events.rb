@@ -3,6 +3,7 @@ Role.find_each do |role|
   if role.permissions && role.permissions.match(/^{/)
     perm = eval(role.permissions)
 
+    next if perm['pages'].blank?
     actions = perm['pages'].dup
 
     perm['news'] = actions.dup
@@ -32,7 +33,7 @@ print("OK\n")
 print("Updating menu items...")
 MenuItem.find_each do |item|
   news = item.target
-  if !news && (match = item.url.match(/\/pages\/([0-9]+)/))
+  if !news && (match = item.url.to_s.match(/\/pages\/([0-9]+)/))
     news = Journal::News.find_by(id: match[1])
   end
 
@@ -64,13 +65,13 @@ print("OK\n")
 print("Updating banners...")
 Sticker::Banner.find_each do |banner|
   news = banner.target
-  if !news && (match = banner.url.match(/\/pages\/([0-9]+)/))
+  if !news && (match = banner.url.to_s.match(/\/pages\/([0-9]+)/))
     news = Journal::News.find_by(id: match[1])
   end
 
   next if !news || news.site_id != banner.site_id || !news.is_a?(Journal::News)
 
-  if match = news.url.match(/\/p\/([0-9]+)/)
+  if match = news.url.to_s.match(/\/p\/([0-9]+)/)
     page = Page.find_by(id: match[1])
     if page
       banner.target = page
