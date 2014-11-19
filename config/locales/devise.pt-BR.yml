@@ -59,3 +59,5 @@ pt-BR:
       not_saved:
         one: "1 erro impediu que %{resource} fosse salvo:"
         other: "%{count} erros impediram que %{resource} fosse salvo:"
+  link_weby_user: "É necessário vincular seu usuário à uma conta no Weby. Se você já possui essa conta, por favor, informe seu usuário e senha."
+  invalid: "Login ou senha inválidos. Por favor, informe um usuário válido."

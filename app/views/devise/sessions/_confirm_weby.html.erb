@@ -1,0 +1,14 @@
+<%= simple_form_for resource,
+  as: resource_name,
+  wrapper: :devise_input,
+  url: link_user_path do |f| %>
+
+  <%= f.input :auth, autofocus: true, label: false, placeholder: t('.field_login') %>
+  <%= f.input :password, label: false, placeholder: t('.field_password') %>
+
+  <%= link_to t('.new_user'), new_user_path, class: 'pull-right' %>
+  <div class="clearfix"></div>
+
+  <%= f.button :submit, t('.link'), class: 'btn-primary btn-block' %>
+<% end %>
+

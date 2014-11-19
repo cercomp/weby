@@ -3,7 +3,7 @@ module Weby
     include ActionDispatch::Http::URL
 
     def self.matches?(request)
-      settings = Weby::Settings
+      settings = Weby::Settings::Weby
       @site_domain = nil
       subdomain = request.subdomain.gsub(/www\./, '')
 
@@ -15,7 +15,7 @@ module Weby
         end
         @site_domain = subdomain and return true
       else
-        @site_domain = Weby::Settings.root_site and return true if Weby::Settings.root_site.present?
+        @site_domain = Weby::Settings::Weby.root_site and return true if Weby::Settings::Weby.root_site.present?
       end
     end
 

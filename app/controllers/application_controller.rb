@@ -64,7 +64,7 @@ class ApplicationController < ActionController::Base
 
   # Return Settings as a Hash object
   def current_settings
-    Weby::Settings
+    Weby::Settings::Weby
   end
 
   def locale_key
@@ -91,14 +91,14 @@ class ApplicationController < ActionController::Base
 
   def set_tld_length
     if current_site && request.domain
-      if Weby::Settings.domain.present? && !(request.domain.match(Weby::Settings.domain))
+      if Weby::Settings::Weby.domain.present? && !(request.domain.match(Weby::Settings::Weby.domain))
         request.session_options[:tld_length] = current_site.domain.split('.').length + 1 if current_site.domain
       end
     end
   end
 
   def should_be_ssl?
-    current_user && Weby::Settings.login_protocol == 'https' && !request.ssl?
+    current_user && Weby::Settings::Weby.login_protocol == 'https' && !request.ssl?
   end
 
   unless Rails.application.config.consider_all_requests_local
@@ -397,7 +397,7 @@ class ApplicationController < ActionController::Base
   end
 
   def maintenance_mode
-    if Weby::Settings.maintenance_mode == 'true' && !current_user.try(:is_admin?) && is_in_admin_context?
+    if Weby::Settings::Weby.maintenance_mode == 'true' && !current_user.try(:is_admin?) && is_in_admin_context?
       render template: 'errors/maintenance', layout: 'weby_pages'
     end
   end

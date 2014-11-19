@@ -166,6 +166,8 @@ Rails.application.routes.draw do
     delete 'logout'  => 'sessions#destroy'
     get 'login'   => 'sessions#new'
     post 'login'   => 'sessions#create'
+    post 'link_user' => 'sessions#link_user'
+    get 'new_user' => 'sessions#new_user'
 
     # routes to register
     get 'signup'  => 'devise/registrations#new'
