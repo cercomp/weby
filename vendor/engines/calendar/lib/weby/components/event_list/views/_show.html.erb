@@ -50,8 +50,8 @@
           </header>
           <summary>
             <% if component.max_char.present? %>
-              <%= raw(event.information[0..component.max_char.to_i] +
-                      (event.information.size > component.max_char.to_i ? "..." : "")) %>
+              <%= raw(event.information.to_s[0..component.max_char.to_i] +
+                      (event.information.to_s.size > component.max_char.to_i ? "..." : "")) %>
             <% else  %>
               <%= raw event.information %>
             <% end %>
