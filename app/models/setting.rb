@@ -5,7 +5,8 @@ class Setting < ActiveRecord::Base
     login_protocol: %w(http https),
     per_page_default: :numericality,
     tld_length: :numericality,
-    maintenance_mode: %w(false true)
+    maintenance_mode: %w(false true),
+    ldaps: %w(false true)
   }
 
   validates :name, :value, presence: true
