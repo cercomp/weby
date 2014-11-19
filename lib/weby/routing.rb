@@ -4,9 +4,9 @@ module ActionDispatch
   module Routing
     class RouteSet
       def with_subdomain(site, _options)
-        domain = Weby::Settings.domain || Weby::Cache.request[:domain]
+        domain = Weby::Settings::Weby.domain || Weby::Cache.request[:domain]
         if not site
-          subdomain = Weby::Settings.sites_index
+          subdomain = Weby::Settings::Weby.sites_index
         else
           if site.is_a? Site
             if site.domain.present?
@@ -20,7 +20,7 @@ module ActionDispatch
             end
             subdomain = site.main_site ? "#{site.name}.#{site.main_site.name}" : "#{prefix}#{site.name}"
             # TODO colocar ou não o "www."?
-            subdomain = 'www' if subdomain.gsub(/www\./, '') == Weby::Settings.root_site
+            subdomain = 'www' if subdomain.gsub(/www\./, '') == Weby::Settings::Weby.root_site
           else
             subdomain = site
           end
@@ -38,7 +38,7 @@ module ActionDispatch
             fail ActionController::RoutingError.new 'Subdomain missing' if !options[:only_path] && %w(site site_page).include?(options[:use_route])
           end
         end
-        options[:protocol] = Weby::Settings.login_protocol if Weby::Cache.request[:current_user]
+        options[:protocol] ||= Weby::Settings::Weby.login_protocol if Weby::Cache.request[:current_user]
         url_for_without_subdomains(options)
       end
       alias_method_chain :url_for, :subdomains

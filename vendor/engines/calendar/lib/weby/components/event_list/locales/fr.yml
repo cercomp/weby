@@ -1,0 +1,36 @@
+﻿fr:
+  components: 
+    event_list:
+      name:                 " List des Events "
+  activerecord:    
+    attributes:  
+      event_list_component:
+      quant:                " Nombre de events "
+      avatar_height:        " Hauteur de l'image des events "
+      avatar_width:         " Largeur de l'image des events "
+      label:                " Étiquette "
+      filter_by:            " Sélectionnez uniquement les events "
+      read_more:            " Lire plus (ler mais) "
+      image_size:           " Taille de l'image "
+      new_tab:              " Ouvrir dans une event fenêtre "
+      max_char:             " Numeró maximal de caractères "
+      link_to_all:          " Lien à tous "
+      template:             " Template "
+  event_list:
+    views: 
+      show: 
+        read_more:            " En savoir plus "
+        posted_by:            " Publié par "
+        posted_on:            " Publié el "
+        events:               " Events "
+      form: 
+        main:                 " Principal "
+        advanced:             " Avancé "
+        basic:                " Table "
+        front:                " List "
+        m:                    " Moyen "
+        l:                    " Petit "
+        i:                    " Miniature "
+        t:                    " Vignettes "
+        link_to_all_hint:     " Lien texte à une liste de toutes les events"
+        image_size_hint:      " Miniature est une version réduite de l'image, qui est fait d'une coupe carrée à l'aspect d'origine n'est pas perdu "

@@ -50,6 +50,18 @@ pt-BR:
         destroyed_page:             " excluiu uma página "
         moved_page_to_recycle_bin:  " moveu uma página pra lixeira "
         restored_page:              " restaurou uma página "
+#--- Sites/Admin/News ---#
+        created_news:               " criou uma notícia "
+        updated_news:               " atualizou uma notícia "
+        destroyed_news:             " excluiu uma notícia "
+        moved_news_to_recycle_bin:  " moveu uma notícia pra lixeira "
+        restored_news:              " restaurou uma notícia "
+#--- Sites/Admin/Events ---#
+        created_event:               " criou um evento "
+        updated_event:               " atualizou um evento "
+        destroyed_event:             " excluiu um evento "
+        moved_event_to_recycle_bin:  " moveu um evento pra lixeira "
+        restored_event:              " restaurou um evento "
 #--- Sites/Admin/Repositories ---#
         uploaded_file:              " enviou um arquivo "
         updated_file:               " atualizou um arquivo "

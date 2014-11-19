@@ -1,0 +1,11 @@
+<%= f.input :news_category, collection: Journal::News.where(site_id: current_site).uniq_category_counts.map(&:name),
+  priority: component.news_category,
+  include_blank: t(".no_category"),
+  hint: t(".news_category_hint"),
+  input_html: { style: 'width: 325px' }
+%>
+
+<%= f.input :width %>
+<%= f.input :height %>
+<%= f.input :quantity %>
+<%= f.input :timer, as: :integer, hint: t(".timer_hint") %>

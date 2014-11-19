@@ -1,23 +1,49 @@
 settings:
-  per_page:
-    value: '5,15,30,60,100'
-  per_page_default:
-    value: '25'
-  default_locale:
-    value: 'pt-BR'
-  help_site:
-    value:
-  tld_length:
-    value: '1'
-  sites_index:
-    value:
-  login_protocol:
-    value: 'http'
-  domain:
-    value:
-  root_site:
-    value:
-  maintenance_mode:
-    value: 'false'
-  max_file_size:
-    value: '20'
+  weby:
+    per_page:
+      value: '5,15,30,60,100'
+    per_page_default:
+      value: '25'
+    default_locale:
+      value: 'pt-BR'
+    help_site:
+      value:
+    tld_length:
+      value: '1'
+    sites_index:
+     value:
+    login_protocol:
+      value: 'http'
+    domain:
+      value:
+    root_site:
+      value:
+    maintenance_mode:
+      value: 'false'
+    max_file_size:
+      value: '20'
+  ldap:
+    host:
+      value:
+    port:
+      value: '389'
+    account: 
+      value:
+    account_password:
+      value:
+    base:
+      value:
+    attr_login:
+      value:
+    attr_password:
+      value:
+    attr_firstname:
+      value:
+    attr_lastname:
+      value:
+    attr_mail:
+      value:
+    prefixo:
+      value:
+    sufixo:
+      value: 

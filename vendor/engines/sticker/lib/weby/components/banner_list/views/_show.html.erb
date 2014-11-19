@@ -6,7 +6,7 @@
   
   <% if component.orientation != "slider" %>
     <% @banners.each do |banner| %>
-      <% banner_url = banner.page_id ? main_app.site_page_path(banner.page_id) : banner.url %>
+      <% banner_url = target_url(banner) %>
       <div class="banner">
       <% if banner.repository %>
         <figure class="banner_image">
@@ -33,7 +33,7 @@
 
       <% if check_permission(Sticker::Admin::BannersController, ["edit"]) %>
         <span class="unpublish">
-          <%= link_to t("unpublish"), main_app.toggle_site_admin_banner_path(banner, field: 'publish'), method: :put %>
+          <%= link_to t("unpublish"), toggle_admin_banner_path(banner, field: 'publish'), method: :put %>
         </span>
       <% end %>
       </div>
@@ -46,9 +46,9 @@
     <% speed = component.timer.to_i * 1000 %>
     <div class="flexslider" data-slideshowspeed="<%= speed %>" data-controls="<%= component.show_controls? %>">
       <ul class="slides">
-	<% @banners.each do |banner| %>
+        <% @banners.each do |banner| %>
           <% if banner.repository.present? %>
-            <% banner_url = banner.page_id ? main_app.site_page_path(banner.page_id) : banner.url %>
+            <% banner_url = target_url(banner) %>
             <li>
               <% format = banner.size.present? ? banner.size : format_for_custom(banner.width, banner.height, banner.repository) %>
               <%= weby_file_view(banner.repository,

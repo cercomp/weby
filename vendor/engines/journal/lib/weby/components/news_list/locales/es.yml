@@ -1,0 +1,35 @@
+es:
+  components:
+    news_list:
+      name:                    " Listado de noticias "
+      quant:                   " Noticias por página "
+      front:                   " Incluir noticias de frente "
+      events:                  " Mostrar los eventos "
+      show_image:              " Mostrar la imagen de la noticia "
+      show_date:               " Mostrar la fecha de la noticia "
+      date_format:             " Formato de la fecha "
+      image_size:              " Tamaño de imagen "
+      category:                " Filtrar por Categoría "
+      title:                   " Título "
+      new_tab:                 " Abrir noticias con URL en una nueva ventana "
+  activerecord:
+    attributes:
+      news_list_component:
+        quant:                 " Noticias por página "
+        front:                 " Incluir noticias de frente "
+        events:                " Mostrar los eventos "
+        show_image:            " Mostrar la imagen de la noticia "
+        show_date:             " Mostrar la fecha de la noticia "
+        date_format:           " Formato de la fecha "
+        image_size:            " Tamaño de imagen "
+        category:              " Filtrar por Categoría "
+        title:                 " Título "
+        new_tab:              " Abrir noticias con URL en una nueva ventana "
+  news_list:
+    views:
+      show:
+        last_news:             " Últimas noticias "
+        html:
+          last_news:           " Últimas noticias "
+      form:
+        no_category_filter:    " Todas las categorías "

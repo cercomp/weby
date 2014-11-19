@@ -1,0 +1,5 @@
+pt-BR:
+  extensions:
+    journal:
+      name:            "Notícias"
+  moved_news_to_recycle_bin: "Notícia movida para a lixeira"

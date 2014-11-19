@@ -1,4 +1,4 @@
 FactoryGirl.define do
-  factory :pages_repository do
+  factory :posts_repository do
   end
 end

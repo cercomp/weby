@@ -1,0 +1,13 @@
+<%= each_i18n_tab available_locales(@news) do |locale| %>
+  <%= f.i18ns_fields_for(locale) do |g| %>
+    <%= g.input :_destroy, as: :boolean if g.object.try(:id) %>
+    <%= g.input :title %>
+    <%= g.input :summary,
+      input_html: {class: "mceSimple", style: "height: 180px;"},
+      as: :text %>
+    <%= g.input :text,
+      input_html: {class: "mceAdvance", style: " height: 320px;"},
+      as: :text %>
+  <% end %>
+<% end %>
+<%= target_dialog %>

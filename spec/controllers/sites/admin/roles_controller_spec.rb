@@ -53,12 +53,33 @@ describe Sites::Admin::RolesController do
   end
 
   describe "POST #create" do
-    before { post :create, :post => { :name => "Role" } }
+    context "when success" do
+      before { post :create, role: { :name => "Role" } }
+
+      it "will redirect to site_admin_roles_path" do
+        expect(response).to redirect_to(site_admin_roles_path)
+      end
+    end
   end
 
   describe "PUT #update" do
+    context "when success" do
+      before { put :update, role: { :name => "New Name" }, :id => role.id }
+
+      it "will redirect to site_admin_roles_path" do
+        expect(response).to redirect_to(site_admin_roles_path)
+      end
+    end
   end
 
   describe "DELETE #destroy" do
+    before(:each) {
+      request.env["HTTP_REFERER"] = "back"
+    }
+
+    it "will redirect to :back" do
+      delete :destroy, :id => role.id
+      expect(response).to redirect_to "back"
+    end
   end
 end

@@ -13,7 +13,7 @@
           <%= link_to t('.edit-profile'), edit_profile_path(@profile.login),
             class: 'btn btn-primary btn-block' %>
           <%= link_to t('.security'), history_profile_path(@profile.login),
-            class: 'btn btn-primary btn-block' %>
+	    class: 'btn btn-primary btn-block' %>
         <% end %>
         <%= link_to "#{icon('chevron-left', white: true)}#{t("back")}".html_safe, :back, class: "btn btn-default btn-block" %>
       </div>
@@ -28,11 +28,11 @@
         <% @news.each do |new| %>
           <div class="media thumbnail">
             <div class="pull-left">
-              <%= news_image(new.image, :t, 100, nil, {as: "link", url: site_page_url(new, subdomain: new.owner), image_class:'img-circle'}) %>
+              <%= news_image(new.image, :t, 100, nil, {as: "link", url: news_url(new, subdomain: new.site), image_class:'img-circle'}) %>
             </div>
             <div class="media-body">
-              <div class="title"><%= link_to new.title, site_page_url(new, subdomain: new.owner) %></div>
-              <div class="description"><%= t(".published", site: link_to(new.owner.title, site_url(subdomain: new.owner)), date: l(new.created_at, format: :short)).html_safe %></div>
+              <div class="title"><%= link_to new.title, news_url(new, subdomain: new.site) %></div>
+              <div class="description"><%= t(".published", site: link_to(new.site.title, site_url(subdomain: new.site)), date: l(new.created_at, format: :short)).html_safe %></div>
               <div class="summary"><%= new.summary.try(:html_safe) %></div>
             </div>
           </div>

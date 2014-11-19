@@ -1,0 +1,2 @@
+var news = $('<div><%= escape_javascript(render(template: 'journal/admin/news/recycle_bin.html')) %></div>');
+$('#news').html(news.find('#news').html());

@@ -1,0 +1,25 @@
+<% title ".events" %>
+<% breadcrumb params[:search].present? ? :events_search : :events, params[:search] %>
+<div class="row">
+  <div class="col-md-5">
+    <%= form_tag admin_events_path, method: 'get', autocapitalize: "off", class: 'search' do %>
+      <%= search_input params[:search] %>
+    <% end %>
+  </div>
+  <div class="col-md-7">
+    <div class="pull-right">
+      <% with_permission(action: :new) do %>
+        <%= link_to t(".new_event"),
+            new_admin_event_path,
+            class: "btn btn-success" %>
+      <% end %>
+      <% with_permission(action: [:recover, :purge]) do %>
+        <%= link_to t("recycle_bin"), recycle_bin_admin_events_path, class: "btn btn-default" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div id="news">
+  <%= render :partial => "list" %>
+</div>

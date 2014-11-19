@@ -44,9 +44,7 @@ module ApplicationHelper
     item_class << 'current_page' if is_current_page
 
     content_tag :li, id: "menu_item_#{entry.id}", class: item_class.join(' ') do
-      title_link = link_to(entry.title,
-                           entry.target_id.to_i > 0 ? main_app.site_page_path(entry.target_id) : entry.url,
-                           alt: entry.title, title: entry.description, target: entry.new_tab ? '_blank' :  '')
+      title_link = link_to(entry.title, target_url(entry), alt: entry.title, title: entry.description, target: entry.new_tab ? '_blank' :  '')
 
       li_content = []
       li_content << content_tag(:div, '', class: 'hierarchy') if view_ctrl
@@ -57,7 +55,7 @@ module ApplicationHelper
             [
               toggle_field(entry, 'publish', 'toggle', controller: 'sites/admin/menus/menu_items', menu_id: entry.menu_id),
               " #{title_link}",
-              ( (entry and entry.target) ? " [ #{entry.target.try(:title)} ] " : " [ #{entry.url unless entry.url.blank?} ] ")
+              ( (entry and entry.target) ? " [ #{entry.target.try(:title)} ] " : " [ #{entry.url} ] ")
             ].join.html_safe
           end
           div_content << content_tag(:div, class: 'pull-right') do
@@ -83,6 +81,19 @@ module ApplicationHelper
   end
   private :print_menu_entry
 
+  def target_url obj
+    case obj.target
+    when Page
+      site_page_path(obj.target)
+    when Journal::News
+      news_path(obj.target)
+    when Calendar::Event
+      event_path(obj.target)
+    else
+      obj.url
+    end
+  end
+  
   # Defines custom messages
   def flash_message
     ''.tap do |html|
@@ -199,7 +210,7 @@ module ApplicationHelper
     ''.tap do |html|
       if test_permission controller_name, :purge
         html << link_to(icon('trash', text: options[:with_text] ? t('destroy') : nil),
-                        options.merge(action: 'show', id: resource.id), title: t('purge'), class: 'action-link', method: 'delete', confirm: t('are_you_sure'))
+                        options.merge(action: 'show', id: resource.id), title: t('purge'), class: 'action-link', method: 'delete', data: {confirm: t('are_you_sure')})
       end
       if test_permission controller_name, :recover
         html << link_to(icon('refresh', text: options[:with_text] ? t('recover') : nil),
@@ -385,8 +396,8 @@ module ApplicationHelper
   # O login pode ser na url global ou na url do próprio site
   def weby_login_url(back_url = nil)
     site = nil
-    if Weby::Settings.domain.present? && current_site
-      site = current_site unless request.host.match(Weby::Settings.domain)
+    if Weby::Settings::Weby.domain.present? && current_site
+      site = current_site unless request.host.match(Weby::Settings::Weby.domain)
     end
 
     main_app.login_url(

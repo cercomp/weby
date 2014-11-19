@@ -34,6 +34,38 @@ ActiveRecord::Schema.define(version: 20141017192032) do
   add_index "activity_records", ["site_id"], name: "index_activity_records_on_site_id", using: :btree
   add_index "activity_records", ["user_id"], name: "index_activity_records_on_user_id", using: :btree
 
+  create_table "calendar_event_i18ns", force: true do |t|
+    t.integer  "calendar_event_id"
+    t.integer  "locale_id"
+    t.string   "name"
+    t.string   "place"
+    t.text     "information"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "calendar_event_i18ns", ["calendar_event_id"], name: "index_calendar_event_i18ns_on_calendar_event_id", using: :btree
+  add_index "calendar_event_i18ns", ["locale_id"], name: "index_calendar_event_i18ns_on_locale_id", using: :btree
+
+  create_table "calendar_events", force: true do |t|
+    t.integer  "site_id"
+    t.integer  "repository_id"
+    t.integer  "user_id"
+    t.datetime "begin_at"
+    t.datetime "end_at"
+    t.string   "email"
+    t.string   "url"
+    t.string   "kind"
+    t.datetime "deleted_at"
+    t.integer  "view_count",    default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "calendar_events", ["repository_id"], name: "index_calendar_events_on_repository_id", using: :btree
+  add_index "calendar_events", ["site_id"], name: "index_calendar_events_on_site_id", using: :btree
+  add_index "calendar_events", ["user_id"], name: "index_calendar_events_on_user_id", using: :btree
+
   create_table "extension_sites", force: true do |t|
     t.integer  "site_id"
     t.string   "name"
@@ -95,6 +127,41 @@ ActiveRecord::Schema.define(version: 20141017192032) do
 
   add_index "groups_users", ["group_id"], name: "index_groups_users_on_group_id", using: :btree
   add_index "groups_users", ["user_id"], name: "index_groups_users_on_user_id", using: :btree
+
+  create_table "journal_news", force: true do |t|
+    t.datetime "date_begin_at"
+    t.datetime "date_end_at"
+    t.string   "status"
+    t.integer  "user_id"
+    t.string   "url"
+    t.integer  "site_id"
+    t.string   "source"
+    t.string   "local"
+    t.integer  "repository_id"
+    t.boolean  "front",         default: false
+    t.integer  "position"
+    t.integer  "view_count",    default: 0
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.datetime "deleted_at"
+  end
+
+  add_index "journal_news", ["repository_id"], name: "index_journal_news_on_repository_id", using: :btree
+  add_index "journal_news", ["site_id"], name: "index_journal_news_on_site_id", using: :btree
+  add_index "journal_news", ["user_id"], name: "index_journal_news_on_user_id", using: :btree
+
+  create_table "journal_news_i18ns", force: true do |t|
+    t.integer  "journal_news_id"
+    t.integer  "locale_id"
+    t.string   "title"
+    t.text     "summary"
+    t.text     "text"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "journal_news_i18ns", ["journal_news_id"], name: "index_journal_news_i18ns_on_journal_news_id", using: :btree
+  add_index "journal_news_i18ns", ["locale_id"], name: "index_journal_news_i18ns_on_locale_id", using: :btree
 
   create_table "locales", force: true do |t|
     t.string   "name"
@@ -176,7 +243,6 @@ ActiveRecord::Schema.define(version: 20141017192032) do
     t.integer  "page_id"
     t.integer  "locale_id"
     t.string   "title"
-    t.text     "summary"
     t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -186,43 +252,26 @@ ActiveRecord::Schema.define(version: 20141017192032) do
   add_index "page_i18ns", ["page_id"], name: "index_page_i18ns_on_page_id", using: :btree
 
   create_table "pages", force: true do |t|
-    t.datetime "date_begin_at"
-    t.datetime "date_end_at"
-    t.string   "status"
-    t.integer  "author_id"
-    t.string   "url"
     t.integer  "site_id"
-    t.string   "source"
-    t.string   "kind"
-    t.string   "local"
-    t.datetime "event_begin"
-    t.datetime "event_end"
-    t.string   "event_email"
-    t.string   "subject"
-    t.string   "align"
-    t.string   "type"
-    t.integer  "repository_id"
-    t.string   "size"
-    t.boolean  "publish",       default: false
-    t.boolean  "front",         default: false
-    t.integer  "position"
-    t.integer  "view_count",    default: 0
+    t.integer  "user_id"
+    t.boolean  "publish",    default: false
+    t.datetime "deleted_at"
+    t.integer  "view_count"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.datetime "deleted_at"
   end
 
-  add_index "pages", ["author_id"], name: "index_pages_on_author_id", using: :btree
-  add_index "pages", ["repository_id"], name: "index_pages_on_repository_id", using: :btree
   add_index "pages", ["site_id"], name: "index_pages_on_site_id", using: :btree
+  add_index "pages", ["user_id"], name: "index_pages_on_user_id", using: :btree
 
-  create_table "pages_repositories", force: true do |t|
-    t.integer "page_id"
+  create_table "posts_repositories", force: true do |t|
+    t.integer "post_id"
     t.integer "repository_id"
+    t.string  "post_type"
   end
 
-  add_index "pages_repositories", ["page_id"], name: "index_pages_repositories_on_page_id", using: :btree
-  add_index "pages_repositories", ["repository_id"], name: "index_pages_repositories_on_repository_id", using: :btree
+  add_index "posts_repositories", ["post_id"], name: "index_posts_repositories_on_post_id", using: :btree
+  add_index "posts_repositories", ["repository_id"], name: "index_posts_repositories_on_repository_id", using: :btree
 
   create_table "repositories", force: true do |t|
     t.integer  "site_id"
@@ -347,17 +396,18 @@ ActiveRecord::Schema.define(version: 20141017192032) do
     t.boolean  "publish",       default: false
     t.integer  "site_id"
     t.integer  "position"
-    t.integer  "page_id"
+    t.integer  "target_id"
     t.boolean  "new_tab",       default: false
     t.integer  "click_count",   default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "target_type"
   end
 
-  add_index "sticker_banners", ["page_id"], name: "index_sticker_banners_on_page_id", using: :btree
-  add_index "sticker_banners", ["repository_id"], name: "index_sticker_banners_on_repository_id", using: :btree
-  add_index "sticker_banners", ["site_id"], name: "index_sticker_banners_on_site_id", using: :btree
-  add_index "sticker_banners", ["user_id"], name: "index_sticker_banners_on_user_id", using: :btree
+  add_index "sticker_banners", ["repository_id"], name: "index_banners_on_repository_id", using: :btree
+  add_index "sticker_banners", ["site_id"], name: "index_banners_on_site_id", using: :btree
+  add_index "sticker_banners", ["target_id"], name: "index_banners_on_page_id", using: :btree
+  add_index "sticker_banners", ["user_id"], name: "index_banners_on_user_id", using: :btree
 
   create_table "styles", force: true do |t|
     t.string   "name"
@@ -476,6 +526,13 @@ ActiveRecord::Schema.define(version: 20141017192032) do
   add_foreign_key "activity_records", "sites", name: "activity_records_site_id_fk"
   add_foreign_key "activity_records", "users", name: "activity_records_user_id_fk"
 
+  add_foreign_key "calendar_event_i18ns", "calendar_events", name: "calendar_event_i18ns_calendar_event_id_fk"
+  add_foreign_key "calendar_event_i18ns", "locales", name: "calendar_event_i18ns_locale_id_fk"
+
+  add_foreign_key "calendar_events", "repositories", name: "calendar_events_repository_id_fk"
+  add_foreign_key "calendar_events", "sites", name: "calendar_events_site_id_fk"
+  add_foreign_key "calendar_events", "users", name: "calendar_events_user_id_fk"
+
   add_foreign_key "extension_sites", "sites", name: "extension_sites_site_id_fk"
 
   add_foreign_key "feedback_groups", "sites", name: "groups_site_id_fk"
@@ -491,6 +548,13 @@ ActiveRecord::Schema.define(version: 20141017192032) do
   add_foreign_key "groups_users", "feedback_groups", name: "groups_users_group_id_fk", column: "group_id"
   add_foreign_key "groups_users", "users", name: "groups_users_user_id_fk"
 
+  add_foreign_key "journal_news", "repositories", name: "pages_repository_id_fk"
+  add_foreign_key "journal_news", "sites", name: "pages_site_id_fk"
+  add_foreign_key "journal_news", "users", name: "pages_author_id_fk"
+
+  add_foreign_key "journal_news_i18ns", "journal_news", name: "page_i18ns_page_id_fk"
+  add_foreign_key "journal_news_i18ns", "locales", name: "page_i18ns_locale_id_fk"
+
   add_foreign_key "locales_sites", "locales", name: "locales_sites_locale_id_fk"
   add_foreign_key "locales_sites", "sites", name: "locales_sites_site_id_fk"
 
@@ -504,17 +568,9 @@ ActiveRecord::Schema.define(version: 20141017192032) do
 
   add_foreign_key "notifications", "users", name: "notifications_user_id_fk"
 
-  add_foreign_key "old_menus", "pages", name: "old_menus_page_id_fk"
+  add_foreign_key "old_menus", "journal_news", name: "old_menus_page_id_fk", column: "page_id"
 
-  add_foreign_key "page_i18ns", "locales", name: "page_i18ns_locale_id_fk"
-  add_foreign_key "page_i18ns", "pages", name: "page_i18ns_page_id_fk"
-
-  add_foreign_key "pages", "repositories", name: "pages_repository_id_fk"
-  add_foreign_key "pages", "sites", name: "pages_site_id_fk"
-  add_foreign_key "pages", "users", name: "pages_author_id_fk", column: "author_id"
-
-  add_foreign_key "pages_repositories", "pages", name: "pages_repositories_page_id_fk"
-  add_foreign_key "pages_repositories", "repositories", name: "pages_repositories_repository_id_fk"
+  add_foreign_key "posts_repositories", "repositories", name: "pages_repositories_repository_id_fk"
 
   add_foreign_key "repositories", "sites", name: "repositories_site_id_fk"
 
@@ -531,7 +587,6 @@ ActiveRecord::Schema.define(version: 20141017192032) do
   add_foreign_key "sites_menus", "menus", name: "sites_menus_menu_id_fk"
   add_foreign_key "sites_menus", "sites", name: "sites_menus_site_id_fk"
 
-  add_foreign_key "sticker_banners", "pages", name: "banners_page_id_fk"
   add_foreign_key "sticker_banners", "repositories", name: "banners_repository_id_fk"
   add_foreign_key "sticker_banners", "sites", name: "banners_site_id_fk"
   add_foreign_key "sticker_banners", "users", name: "banners_user_id_fk"

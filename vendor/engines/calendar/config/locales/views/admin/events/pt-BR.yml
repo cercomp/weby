@@ -1,0 +1,63 @@
+pt-BR:
+  calendar:
+    admin:
+      events:
+        event:                  " Evento "
+        new:
+          title:                " Novo Evento "
+          events:               " Eventos "
+        edit:
+          title:                " Editar Evento "
+          events:               " Eventos "
+        index:
+          events:               " Eventos "
+          new_event:            " Novo evento "
+        show:
+          events:               " Eventos "
+          period:               " Data "
+          list_all:             " Listar todos "
+          categories:           " Categorias "
+          source:               " Fonte "
+          size:                 " Tamanho "
+          archive_fingerprint:  " Assinatura digital do arquivo "
+          related_files:        " Arquivos Relacionados "
+        list:
+          none_events:          " Nenhum Evento "
+          user:                 " Autor "
+          category:             " Categoria "
+          begin_at:             " Data "
+          kind:                 " Tipo "
+          name:                 " Nome "
+          place:                " Local "
+          action:               " Ação "
+          views:                " Visualizações "
+        related_files:
+          size:                 " Tamanho "
+          related_files:        " Arquivos Relacionados "
+        form:
+          image:                " Imagem do evento "
+          related_files:        " Arquivos relacionados "
+          categories_help:      " Categorias são separadas por vírgula, a categoria de uma página é relacionada ao seu conteúdo. Ex: Esporte, Notícia, Vestibular "
+          categories:           " Categorias "
+          save:                 " Salvar "
+          period:               " Período "
+          begin:                " Início "
+          end:                  " Fim "
+          regional:             " Regional "
+          national:             " Nacional "
+          international:        " Internacional "
+        recycle_bin:
+          new_event:            " Novo Evento "
+          events:               " Eventos "
+          category:             " Categoria "     
+          deleted_at:           " Excluído em "
+          name:                 " Nome "
+          kind:                 " Tipo "
+      target_pages:
+        date:                 " Data "
+        event:                " Evento "
+        name:                 " Nome "
+        kind:                 " Tipo "
+        category:             " Categoria "
+        none_events:          " Nenhum Evento Encontrado "
+        search_events:        " Pesquisar evento "

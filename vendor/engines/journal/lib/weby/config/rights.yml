@@ -1,0 +1,42 @@
+rights:
+  news:
+    index:
+      name:
+        en: List News
+        pt-BR: Listar Notícias
+      action: index fronts
+    show:
+      name: 
+        en: View News
+        pt-BR: Ver Notícias
+      action: show
+    edit:
+      name:
+        en: Edit News
+        pt-BR:  Editar Notícias
+      action: edit update toggle
+    destroy:
+      name: 
+        en: Destroy News
+        pt-BR: Excluir Notícias
+      action: destroy
+    sort:
+      name: 
+        en: Order News
+        pt-BR: Ordernar Notícias
+      action: sort
+    new:
+      name: 
+        en: Create News
+        pt-BR: Criar Notícias
+      action: new create
+    purge:
+      name: 
+        en: Purge
+        pt-BR: Excluir permanentemente
+      action: recycle_bin destroy purge
+    recover:
+      name: 
+        en: Restore News
+        pt-BR: Restaurar Notícias
+      action: recycle_bin recover

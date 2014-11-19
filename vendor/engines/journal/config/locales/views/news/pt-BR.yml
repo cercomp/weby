@@ -1,0 +1,25 @@
+pt-BR:
+  journal:
+    news:
+      index:
+        news:            " Notícias "
+        advanced:        " Opções Avançadas "
+        match_search:    " Busca exata "
+        and_search:      " Todas as palavras "
+        or_search:       " Qualquer uma das palavras "
+      show:
+        list_all:      " Listar Todas "
+        categories:    " Categorias "
+        source:        " Fonte "
+        updated_at:    " Atualizada em "
+        related_files: " Arquivos relacionados "
+        related_url:   " URL relacionada "
+        size:          " Tamanho "
+        archive_fingerprint:  " Assinatura digital do arquivo "
+      list:
+        read_more:     " Leia mais "
+        no_news:       " Nenhuma notícia encontrada "
+      related_files:
+        related_files: " Arquivos relacionados "
+        size:          " Tamanho "
+

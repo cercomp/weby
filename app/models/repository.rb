@@ -3,7 +3,6 @@ class Repository < ActiveRecord::Base
 
   attr_accessor :x, :y, :w, :h
 
-
   STYLES = {
     i: "95x70",
     l: "190x140",
@@ -14,11 +13,10 @@ class Repository < ActiveRecord::Base
 
   belongs_to :site
 
-  has_many :page, foreign_key: 'repository_id'
   has_many :banners
   has_many :sites, foreign_key: 'top_banner_id', dependent: :nullify
-  has_many :pages_repositories, dependent: :destroy
-  has_many :pages, through: :pages_repositories
+  has_many :posts_repositories, dependent: :destroy
+  has_many :posts, through: :posts_repositories
   has_many :page_image, class_name: 'Page', dependent: :nullify
 
   has_attached_file :archive,

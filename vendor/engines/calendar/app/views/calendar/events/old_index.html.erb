@@ -1,0 +1,46 @@
+<h2>
+  <%= t(".events") %>
+  <div class="events_search" style="float: right">
+    <ul id="filterNav" >
+      <% (params[:upcoming] == nil && params[:previous] == nil) ? classe = "selected" : classe = nil %>
+      <li><%= link_to t('.all_events'), events_path(upcoming: nil, previous: nil, direction: 'desc', sort: 'calendar_events.begin_at'), class: classe %></li>
+
+      <% (params[:upcoming] != nil) ? classe = "selected" : classe = nil %>
+      <li><%= link_to t('.upcoming_events'), events_path(upcoming: true, previous: nil, direction: 'asc', sort: 'calendar_events.begin_at'), class: classe %></li>
+
+      <% (params[:previous] != nil) ? classe = "selected" : classe = nil %>
+      <li><%= link_to t('.previous_events'), events_path(upcoming: nil, previous: true, direction: 'desc', sort: 'calendar_events.begin_at'), class: classe %></li>
+    </ul>
+  </div>
+</h2>
+<% if params[:tags] %>
+  <% tags = params[:tags].split(',') %>
+  <% tags.each do |tag| %>
+    <% newtags = tags.reject {|t| t == tag} %>
+    <% newtags.any? ? params[:tags] = newtags.join(',') : params.delete(:tags) %>
+    <%= link_to events_path(params), class: 'weby-label info' do %>
+      <%= tag %> X
+    <% end %>
+  <% end %>
+<% end %>
+<%= form_tag nil, method: 'get' do %>
+  <div class="input-append search-field-button">
+      <%= text_field_tag :search, params[:search] %>
+      <%= button_tag image_tag("/assets/components/icon_search.png"), class: 'btn', title: t("search") %>
+  </div>
+  <%= link_to t('.advanced'), '#', class: 'toggle-advanced-search', onclick: "return toggleAdvancedSearch()"%>
+  <span class="advanced-search<%= params[:search_type] ? "": " hide"%>">
+    &nbsp;<%= radio_button_tag :search_type, 0, params[:search_type]=='0' %><span><%= t('.match_search') %></span>
+    &nbsp;<%= radio_button_tag :search_type, 1, params[:search_type]=='1' %><span><%= t('.and_search') %></span>
+    &nbsp;<%= radio_button_tag :search_type, 2, params[:search_type]=='2' %><span><%= t('.or_search') %></span>
+  </span>
+  <%= hidden_field_tag 'page', 1 %>
+  <%= hidden_field_tag 'per_page', "#{params[:per_page]}" %>
+<% end %>
+
+<div id="events" class="events-list">
+  <%= render partial: 'list' %>
+</div>
+
+<% content_for :javascripts, javascript_include_tag("calendar/events.index") %>
+<% content_for :stylesheets, stylesheet_link_tag("search_results") %>

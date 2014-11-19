@@ -1,0 +1,6 @@
+en:
+  sites:
+    admin:
+      roles:
+        index:
+          banners:              " Banners "

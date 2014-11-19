@@ -37,7 +37,7 @@ class Site < ActiveRecord::Base
 
   scope :ordered_by_front_pages, ->(text) {
     page_query = Page.select("coalesce(max(pages.updated_at),'1900-01-01')")
-      .front.available.where('pages.site_id = sites.id').to_sql
+      .published.where('pages.site_id = sites.id').to_sql
 
     name_or_description_like(text).order("(#{page_query}) DESC")
   }
@@ -59,7 +59,7 @@ class Site < ActiveRecord::Base
   end
 
   def has_extension(extension)
-    extensions.select { |ext| ext.name = extension.to_s }.any?
+    extensions.select { |ext| ext.name == extension.to_s }.any?
   end
 
   def active_extensions

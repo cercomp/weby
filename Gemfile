@@ -2,19 +2,20 @@ source 'https://rubygems.org'
 
 ruby '2.1.2'
 
-gem 'rails', '~> 4.1.4'
+gem 'rails', '~> 4.1.8'
 
-gem 'thin', '~> 1.6.2'
+gem 'thin', '~> 1.6.3'
 gem 'pg', '~> 0.17.1'
 
 # js and css frameworks
 gem 'jquery-rails', '3.1.0'
 gem 'jquery-ui-rails', '~> 4.2.1'
 gem 'bootstrap-sass', '~> 3.1.1.1'
-gem 'select2-rails', '~> 3.5.7'
+gem 'select2-rails', '~> 3.5.9'
 gem 'd3js-rails', '~> 3.1.6'
 gem 'jcrop-rails-v2', '~> 0.9.12.3'
 gem 'font-awesome-rails', '~> 4.1.0.0'
+gem 'fullcalendar-rails'
 
 # assets
 gem 'sass-rails', '~> 4.0.3'
@@ -34,6 +35,8 @@ gem 'zip-zip', '~> 0.3'
 
 gem 'useragent', '0.2.3', :git => 'http://github.com/jilion/useragent'
 gem 'rails-settings-cached', '0.4.1'
+
+gem 'net-ldap'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.1'
