@@ -8,11 +8,6 @@ class Sites::PagesController < ApplicationController
 
   def index
     @pages = get_pages
-
-    respond_with(:site, @pages) do |format|
-      format.rss { render layout: false, content_type: Mime::XML } # index.rss.builder
-      format.atom { render layout: false, content_type: Mime::XML } # index.atom.builder
-    end
   end
 
   def show

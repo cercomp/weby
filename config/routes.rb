@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     post 'count/:model/:id' => 'application#count_click', as: :count_click
 
     # routes to feed and atom
-    get '/feed' => 'sites/pages#index', as: :site_feed,
+    get '/feed' => 'journal/news#index', as: :site_feed,
         defaults: { format: 'rss', per_page: 10, page: 1 }
 
     namespace :admin, module: 'sites/admin', as: :site_admin do

@@ -45,9 +45,23 @@ en:
         updated_menu:               " updated menu "
         destroyed_menu:             " destroyed menu "
 #--- Sites/Admin/Pages ---#
-        created_page:               " created page "
-        updated_page:               " updated page "
-        destroyed_page:             " destroyed page "
+        created_page:               " created a page "
+        updated_page:               " updated a page "
+        destroyed_page:             " deleted a page "
+        moved_page_to_recycle_bin:  " moved a page to trash "
+        restored_page:              " restored a page "
+#--- Sites/Admin/News ---#
+        created_news:               " created a news "
+        updated_news:               " updated a news "
+        destroyed_news:             " deleted a news "
+        moved_news_to_recycle_bin:  " moved a news to trash "
+        restored_news:              " restored a news "
+#--- Sites/Admin/Events ---#
+        created_event:               " creatd an event "
+        updated_event:               " updatd an event "
+        destroyed_event:             " deleted an event "
+        moved_event_to_recycle_bin:  " moved an event to trash "
+        restored_event:              " restored an event "
 #--- Sites/Admin/Repositories ---#
         uploaded_file:              " uploaded file "
         updated_file:               " updated file "

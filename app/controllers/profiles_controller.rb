@@ -9,7 +9,7 @@ class ProfilesController < ApplicationController
   respond_to :html
 
   def show
-    @news = Journal::News.by_user(@profile.id).published.limit(3).order('pages.created_at desc')
+    @news = Journal::News.by_user(@profile.id).published.limit(3).order('journal_news.created_at desc')
   end
 
   def history
