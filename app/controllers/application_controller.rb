@@ -140,33 +140,33 @@ class ApplicationController < ActionController::Base
   end
 
   def count_view
-
+    #TODO This is only counting the global counter on each model, Stats are off for now
     return if is_in_admin_context? ||
               request.format != 'html' ||
               response.status != 200 ||
               Weby::Bots.is_a_bot?(request.user_agent)
     if(current_site)
-      current_site.views.create(viewable: @page,
-                                ip_address: request.remote_ip,
-                                referer: request.referer,
-                                user: current_user,
-                                query_string: request.query_string,
-                                request_path: request.path,
-                                user_agent: request.user_agent,
-                                session_hash: request.session_options[:id])
+#      current_site.views.create(viewable: @page,
+#                                ip_address: request.remote_ip,
+#                                referer: request.referer,
+#                                user: current_user,
+#                                query_string: request.query_string,
+#                                request_path: request.path,
+#                                user_agent: request.user_agent,
+#                                session_hash: request.session_options[:id])
       Page.increment_counter :view_count, @page.id if @page
       Site.increment_counter :view_count, current_site.id
-      Journal::News.increment_counter :view_count, @news.id if @news
+      Journal::News.increment_counter :view_count, @news.id if @news && @news.is_a?(Journal::News)
       Calendar::Event.increment_counter :view_count, @event.id if @event
     else
-      View.create(viewable: @page,
-                              ip_address: request.remote_ip,
-                              referer: request.referer,
-                              user: current_user,
-                              query_string: request.query_string,
-                              request_path: request.path,
-                              user_agent: request.user_agent,
-                              session_hash: request.session_options[:id])
+#      View.create(viewable: @page,
+#                              ip_address: request.remote_ip,
+#                              referer: request.referer,
+#                              user: current_user,
+#                              query_string: request.query_string,
+#                              request_path: request.path,
+#                              user_agent: request.user_agent,
+#                              session_hash: request.session_options[:id])
     end
   end
 
