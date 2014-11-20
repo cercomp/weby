@@ -45,7 +45,11 @@ class SessionsController < Devise::SessionsController
           session[:ldap_email] = ldap_user.first[ldap.attr_mail].first.to_s
           session[:ldap_type] = 'ldap'
           flash[:warning] = t('link_weby_user')
-          redirect_to login_path(confirm: 'true')
+	  @session = User.new
+	  @confirm = 'true'
+	  @show_new_user = User.find_by_login(ldap_user_login).blank?
+	  @name_suggested = ldap_user_login;
+	  render :new
         else
           sign_in source.user
           record_login
@@ -69,24 +73,29 @@ class SessionsController < Devise::SessionsController
   end
 
   def new_user
-    user = User.new(
-      login: session[:ldap_login],
-      email: session[:ldap_email],
-      password: "User#{rand(99999)}",
-      sign_in_count: 1,
-      current_sign_in_at: Time.now,
-      last_sign_in_at: Time.now,
-      current_sign_in_ip: '127.0.0.1',
-      last_sign_in_ip: '127.0.0.1',
-      first_name: session[:ldap_first_name],
-      last_name: session[:ldap_last_name],
-      confirmed_at: Time.now,
-      confirmation_sent_at: Time.now)
-    user.save!
-    AuthSource.new(user_id: user.id, source_type: session[:ldap_type], source_login: session[:ldap_login]).save
-    sign_in user
-    record_login
-    redirect_to session[:return_to] || root_path
+    if session[:ldap_login].blank? || session[:ldap_email].blank? 
+      flash[:error] = t('invalid')
+      redirect_to login_path
+    else
+      user = User.new(
+        login: session[:ldap_login],
+        email: session[:ldap_email],
+        password: "User#{rand(99999)}",
+        sign_in_count: 1,
+        current_sign_in_at: Time.now,
+        last_sign_in_at: Time.now,
+        current_sign_in_ip: '127.0.0.1',
+        last_sign_in_ip: '127.0.0.1',
+        first_name: session[:ldap_first_name],
+        last_name: session[:ldap_last_name],
+        confirmed_at: Time.now,
+        confirmation_sent_at: Time.now)
+      user.save!
+      AuthSource.new(user_id: user.id, source_type: session[:ldap_type], source_login: session[:ldap_login]).save
+      sign_in user
+      record_login
+      redirect_to session[:return_to] || root_path
+    end
   end
 
   private
