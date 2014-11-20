@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe Page do
-  it { expect(subject).to belong_to(:owner).class_name('Site') }
-  it { expect(subject).to belong_to(:owner).with_foreign_key('site_id') }
+  it { expect(subject).to belong_to(:site).class_name('Site') }
+  it { expect(subject).to belong_to(:site).with_foreign_key('site_id') }
 
   it { expect(subject).to belong_to(:user).class_name('User') }
 
