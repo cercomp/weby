@@ -5,7 +5,7 @@ class Page < ActiveRecord::Base
 
   acts_as_multisite
 
-  belongs_to :owner, class_name: 'Site', foreign_key: 'site_id'
+  belongs_to :site
   belongs_to :user
 
   has_many :views, as: :viewable

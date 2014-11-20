@@ -36,8 +36,8 @@ class Site < ActiveRecord::Base
   }
 
   scope :ordered_by_front_pages, ->(text) {
-    page_query = Page.select("coalesce(max(pages.updated_at),'1900-01-01')")
-      .published.where('pages.site_id = sites.id').to_sql
+    page_query = Journal::News.select("coalesce(max(journal_news.updated_at),'1900-01-01')")
+      .published.where('journal_news.site_id = sites.id').to_sql
 
     name_or_description_like(text).order("(#{page_query}) DESC")
   }

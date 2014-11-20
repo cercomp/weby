@@ -8,7 +8,7 @@
     <% if newslist.any? %>
       <% news = newslist.shift %>
       <div class="top-news col-md-6">
-        <%= news_image(nil, :t, 140, nil, {as: "link", url: news_url(news, subdomain: news.site)}) %>
+        <%= news_image(news.image, :t, 140, nil, {as: "link", url: news_url(news, subdomain: news.site)}) %>
         <div><%= link_to news.title, news_url(news, subdomain: news.site) %></div>
         <span class="date"><%= l(news.updated_at, format: :short) %></span>
         <!--<p><%#= page.summary.html_safe %></p>-->
@@ -16,7 +16,7 @@
       <div class="news col-md-6">
         <% newslist.each do |news| %>
           <div>
-            <%= news_image(nil, :t, 60, nil, {as: "link", url: news_url(news, subdomain: news.site)}) %>
+            <%= news_image(news.image, :t, 60, nil, {as: "link", url: news_url(news, subdomain: news.site)}) %>
             <div><%= link_to news.title, news_url(news, subdomain: news.site) %></div>
             <span class="date"><%= l(news.updated_at, format: :short) %></span>
           </div>
