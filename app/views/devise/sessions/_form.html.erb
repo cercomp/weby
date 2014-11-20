@@ -2,10 +2,10 @@
 
 <div class="tabbable">
   <div class="tab-content">
-    <% if params["confirm"] %>
-      <%= render 'devise/sessions/confirm_weby' %>
+    <% if @confirm %>
+      <%= render 'devise/sessions/confirm' %>
     <% else %>
-      <%= render 'devise/sessions/login_weby' %>
+      <%= render 'devise/sessions/login' %>
     <% end %>
   </div>
 </div>
