@@ -255,41 +255,41 @@ section#content > article {
   }
 }
 
-section#content section#pages {
+section#content section#news {
 	width: 99%;
   font-family: Verdana;
   font-weight: Normal;
   padding-bottom: 5px; }
 
-section#content section#pages h1 {
+section#content section#news h1 {
   font-size: 140%;
   color: #1C1C1C; }
 
-section#content section#pages h2 {
+section#content section#news h2 {
   line-height: 100%;
   color: #2F4F4F;
   font-size: 120%; }
 
-section#content section#pages h3 {
+section#content section#news h3 {
   font-size: 100%;
   line-height: 100%;
   color: #696969; }
 
-section#content section#pages li:nth-child(odd) {
+section#content section#news li:nth-child(odd) {
   border-bottom: 1px dotted #DDD;
   padding: 10px 0;
   text-align: left; }
 
-section#content section#pages li:nth-child(odd) a img {
+section#content section#news li:nth-child(odd) a img {
   float: left;
   padding-right: 15px; }
 
-section#content section#pages li:nth-child(even) {
+section#content section#news li:nth-child(even) {
   border-bottom: 1px dotted #DDD;
   padding: 10px 0;
   text-align: right; }
 
-section#content section#pages li:nth-child(even) a img {
+section#content section#news li:nth-child(even) a img {
   float: right;
   padding-left: 15px; }
 
