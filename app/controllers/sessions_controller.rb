@@ -9,14 +9,24 @@ class SessionsController < Devise::SessionsController
     ldap_user_login = params[:user][:auth]
     ldap = Weby::Settings::Ldap
     ldap_user_pass = ldap.prefixo.to_s + Digest::SHA1.base64digest(params[:user][:password]) + ldap.sufixo.to_s
-
-    connect = Net::LDAP.new host: ldap.host,
-      port: ldap.port,
-      auth: {
-        method: :simple,
-        username: ldap.account,
-        password: ldap.account_password
-      }
+    if ldap.ldaps == 'true'
+      connect = Net::LDAP.new host: ldap.host,
+        port: ldap.port, 
+        encryption: :simple_tls,
+        auth: {
+          method: :simple,
+          username: ldap.account,
+          password: ldap.account_password
+        }
+    else
+      connect = Net::LDAP.new host: ldap.host,
+	port: ldap.port, 
+        auth: {
+          method: :simple,
+          username: ldap.account,
+          password: ldap.account_password
+        }
+    end
     filter = Net::LDAP::Filter.join(Net::LDAP::Filter.eq(ldap.attr_login, ldap_user_login), Net::LDAP::Filter.eq(ldap.attr_password, ldap_user_pass))
     ldap_user = connect.search(:base => ldap.base, :filter => filter)
     if ldap_user.first.nil?
