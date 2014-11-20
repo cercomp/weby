@@ -66,10 +66,10 @@ class Style < ActiveRecord::Base
     return attrs.each { |attr| import attr, options } if attrs.is_a? Array
 
     attrs = attrs.dup
-    attrs = attrs['styles'] if attrs.key? 'styles'
+    attrs = attrs['style'] if attrs.key? 'style'
 
     if attrs['style_id'].present?
-      follow = Style.unscoped.find_by_id(attrs['style_id'])
+      follow = Style.unscoped.find_by(id: attrs['style_id'])
       if follow && attrs['name'] == follow.name
         attrs['css'] = nil
         attrs['name'] = nil

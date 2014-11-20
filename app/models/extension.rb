@@ -22,7 +22,7 @@ class Extension < ActiveRecord::Base
     return attrs.each { |attr| import attr } if attrs.is_a? Array
 
     attrs = attrs.dup
-    attrs = attrs['extensions'] if attrs.key? 'extensions'
+    attrs = attrs['extension'] if attrs.key? 'extension'
 
     return if Extension.unscoped.find_by_name(attrs['name'])
 

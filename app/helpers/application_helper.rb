@@ -380,7 +380,7 @@ module ApplicationHelper
   end
 
   def site_avatar_tag(site = current_site, size = 32)
-    repository = Repository.find_by_id(site.top_banner_id)
+    repository = Repository.find_by(id: site.top_banner_id)
     if repository
       weby_file_view(repository, :i, size, size,
                      as: 'link',
