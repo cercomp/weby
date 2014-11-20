@@ -8,44 +8,49 @@ class SessionsController < Devise::SessionsController
   def create
     ldap_user_login = params[:user][:auth]
     ldap = Weby::Settings::Ldap
-    ldap_user_pass = ldap.prefixo.to_s + Digest::SHA1.base64digest(params[:user][:password]) + ldap.sufixo.to_s
-    if ldap.ldaps == 'true'
-      connect = Net::LDAP.new host: ldap.host,
-        port: ldap.port, 
-        encryption: :simple_tls,
-        auth: {
-          method: :simple,
-          username: ldap.account,
-          password: ldap.account_password
-        }
-    else
-      connect = Net::LDAP.new host: ldap.host,
-	port: ldap.port, 
-        auth: {
-          method: :simple,
-          username: ldap.account,
-          password: ldap.account_password
-        }
-    end
-    filter = Net::LDAP::Filter.join(Net::LDAP::Filter.eq(ldap.attr_login, ldap_user_login), Net::LDAP::Filter.eq(ldap.attr_password, ldap_user_pass))
-    ldap_user = connect.search(:base => ldap.base, :filter => filter)
-    if ldap_user.first.nil?
-      super
+    if ldap.host.nil?
+	super
       record_login
     else
-      source = AuthSource.find_by(source_type: 'ldap', source_login: ldap_user_login)
-      if source.nil?
-        session[:ldap_login] = ldap_user.first[ldap.attr_login].first.to_s
-        session[:ldap_first_name] = ldap_user.first[ldap.attr_firstname].first.to_s
-        session[:ldap_last_name] = ldap_user.first[ldap.attr_lastname].first.to_s
-        session[:ldap_email] = ldap_user.first[ldap.attr_mail].first.to_s
-        session[:ldap_type] = 'ldap'
-        flash[:warning] = t('link_weby_user')
-        redirect_to login_path(confirm: 'true')
+      ldap_user_pass = ldap.prefixo.to_s + Digest::SHA1.base64digest(params[:user][:password]) + ldap.sufixo.to_s
+      if ldap.ldaps == 'true'
+        connect = Net::LDAP.new host: ldap.host,
+          port: ldap.port, 
+          encryption: :simple_tls,
+          auth: {
+            method: :simple,
+            username: ldap.account,
+            password: ldap.account_password
+          }
       else
-        sign_in source.user
+        connect = Net::LDAP.new host: ldap.host,
+          port: ldap.port, 
+          auth: {
+            method: :simple,
+            username: ldap.account,
+            password: ldap.account_password
+          }
+      end
+      filter = Net::LDAP::Filter.join(Net::LDAP::Filter.eq(ldap.attr_login, ldap_user_login), Net::LDAP::Filter.eq(ldap.attr_password, ldap_user_pass))
+      ldap_user = connect.search(:base => ldap.base, :filter => filter)
+      if ldap_user.first.nil?
+        super
         record_login
-        redirect_to session[:return_to] || root_path
+      else
+        source = AuthSource.find_by(source_type: 'ldap', source_login: ldap_user_login)
+        if source.nil?
+          session[:ldap_login] = ldap_user.first[ldap.attr_login].first.to_s
+          session[:ldap_first_name] = ldap_user.first[ldap.attr_firstname].first.to_s
+          session[:ldap_last_name] = ldap_user.first[ldap.attr_lastname].first.to_s
+          session[:ldap_email] = ldap_user.first[ldap.attr_mail].first.to_s
+          session[:ldap_type] = 'ldap'
+          flash[:warning] = t('link_weby_user')
+          redirect_to login_path(confirm: 'true')
+        else
+          sign_in source.user
+          record_login
+          redirect_to session[:return_to] || root_path
+        end
       end
     end
   end
