@@ -40,11 +40,10 @@ background-color: #DFD179 !important;
 color: #020167 !important;
 }
 
-nav.menu_accessibility_extended{
+nav.menu_accessibility_extended {
 background-color: #F1F1F1;
 max-width: 1000px;
 border-top: 3px solid #749EC7;
-border-bottom: 3px solid #749EC7;
 margin-left: auto;
 margin-right: auto;
 padding: 15px;
@@ -68,7 +67,8 @@ display: inline-table;
 div#accessibility_button{
 background-color: #749EC7;
 float: right;
-margin-right: 27.6%;
+position: relative;
+right: 27.6%;
 padding: 4px;
 }
 
@@ -79,9 +79,22 @@ margin-bottom: 0px;
 
 div#accessibility_button b{
 color: #FAFEFC;
-font-size: 16px;
+font-size: 1.2em;
 }
 
 li.accessibility_tools b{
 margin-bottom: 20px;
+}
+
+i.fa.fa-minus,
+i.fa.fa-font,
+i.fa.fa-plus {
+color: #000;
+}
+
+#border-accessibility{
+max-width: 1030px;
+border-bottom: 3px solid #749EC7;
+margin-left: auto;
+margin-right: auto;
 }
