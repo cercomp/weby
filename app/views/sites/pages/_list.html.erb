@@ -3,7 +3,7 @@
 <% if @pages.each do |page| %>
   <div class="item-search-result">
     <header><%= link_to page.title, site_page_path(page) %></header>
-    <div class="page-details">
+    <div class="page-details details">
       <% if page.publish %>
         <% if @site.view_desc_pages  %>
            <span class="author"><%= t("posted_by") %><%= page.user.name_or_login %></span>

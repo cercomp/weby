@@ -1,0 +1,17 @@
+<%= simple_form_for @session,
+  as: :user,
+  wrapper: :devise_input,
+  url: link_user_path do |f| %>
+
+  <%= f.input :auth, label: false, input_html: { value: @name_suggested } %>
+  <%= f.input :password, autofocus: true, label: false, placeholder: t('.field_password') %>
+
+  <% if @show_new_user %>
+    <%= link_to t('.new_user'), new_user_path, class: 'pull-right' %>
+  <% end %>
+
+  <div class="clearfix"></div>
+
+  <%= f.button :submit, t('.link'), class: 'btn-primary btn-block' %>
+<% end %>
+

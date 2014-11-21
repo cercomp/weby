@@ -44,9 +44,6 @@
           <% end %>
           <header>
             <h2> <%= link_to event.name, event_path(event) %> </h2>
-            <!--<p class="page-details">
-              <span class="date"><%#= t(".posted_on") %><%#= localize event.created_at, format: :medium %></span>
-            </p>-->
             <div class="event-dates"><%= period_dates(event.begin_at, event.end_at, false) -%></div>
           </header>
           <summary>

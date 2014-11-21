@@ -6,7 +6,7 @@
       <%= weby_file_view(news.image, :t, 64, nil, {as: "link", url: news_path(news), style: "float: right; margin-left: 7px;"}) %>
     <% end %>
     <header><%= link_to news.title, news_url(news, subdomain: news.site) %></header>
-    <div class="page-details">
+    <div class="news-details details">
       <% if current_site.view_desc_pages  %>
          <span class="author"><%= t("posted_by") %><%= news.user.name_or_login %></span>
       <% end %>

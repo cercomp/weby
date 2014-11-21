@@ -4,7 +4,7 @@ pt-BR:
     access_denied_page:    "Você não está autorizado a ver está página."
   devise:
     sessions:
-      login_weby:
+      login:
         login:               "Entrar"
         forgot_password:     "Esqueceu a senha?"
         register:            "Cadastrar"
@@ -15,7 +15,7 @@ pt-BR:
         field_email:         "Email"
         field_first_name:    "Nome"
         field_last_name:     "Sobrenome"
-      confirm_weby:
+      confirm:
         link:                "Vincular"
         new_user:            "É novo no Weby?"
         field_login:         "Login"
