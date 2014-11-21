@@ -74,14 +74,29 @@ ActiveRecord::Schema.define(version: 20141125183000) do
   add_index "calendar_events", ["site_id"], name: "index_calendar_events_on_site_id", using: :btree
   add_index "calendar_events", ["user_id"], name: "index_calendar_events_on_user_id", using: :btree
 
-  create_table "extension_sites", force: true do |t|
+  create_table "components", force: true do |t|
+    t.integer  "site_id"
+    t.string   "place_holder"
+    t.text     "settings"
+    t.string   "name"
+    t.integer  "position"
+    t.boolean  "publish",      default: true
+    t.integer  "visibility",   default: 0
+    t.string   "alias"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "components", ["site_id"], name: "index_components_on_site_id", using: :btree
+
+  create_table "extensions", force: true do |t|
     t.integer  "site_id"
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "extension_sites", ["site_id"], name: "index_extension_sites_on_site_id", using: :btree
+  add_index "extensions", ["site_id"], name: "index_extensions_on_site_id", using: :btree
 
   create_table "feedback_groups", force: true do |t|
     t.string   "name"
@@ -127,14 +142,6 @@ ActiveRecord::Schema.define(version: 20141125183000) do
 
   add_index "groupings_sites", ["grouping_id"], name: "index_groupings_sites_on_grouping_id", using: :btree
   add_index "groupings_sites", ["site_id"], name: "index_groupings_sites_on_site_id", using: :btree
-
-  create_table "groups_users", id: false, force: true do |t|
-    t.integer "group_id"
-    t.integer "user_id"
-  end
-
-  add_index "groups_users", ["group_id"], name: "index_groups_users_on_group_id", using: :btree
-  add_index "groups_users", ["user_id"], name: "index_groups_users_on_user_id", using: :btree
 
   create_table "journal_news", force: true do |t|
     t.datetime "date_begin_at"
@@ -236,17 +243,6 @@ ActiveRecord::Schema.define(version: 20141125183000) do
 
   add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
-  create_table "old_menus", force: true do |t|
-    t.string   "title"
-    t.string   "link"
-    t.integer  "page_id"
-    t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "old_menus", ["page_id"], name: "index_old_menus_on_page_id", using: :btree
-
   create_table "page_i18ns", force: true do |t|
     t.integer  "page_id"
     t.integer  "locale_id"
@@ -326,21 +322,6 @@ ActiveRecord::Schema.define(version: 20141125183000) do
     t.string   "group"
   end
 
-  create_table "site_components", force: true do |t|
-    t.integer  "site_id"
-    t.string   "place_holder"
-    t.text     "settings"
-    t.string   "name"
-    t.integer  "position"
-    t.boolean  "publish",      default: true
-    t.integer  "visibility",   default: 0
-    t.string   "alias"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-  end
-
-  add_index "site_components", ["site_id"], name: "index_site_components_on_site_id", using: :btree
-
   create_table "sites", force: true do |t|
     t.string   "name"
     t.string   "url"
@@ -366,29 +347,6 @@ ActiveRecord::Schema.define(version: 20141125183000) do
 
   add_index "sites", ["parent_id"], name: "index_sites_on_parent_id", using: :btree
   add_index "sites", ["top_banner_id"], name: "index_sites_on_top_banner_id", using: :btree
-
-  create_table "sites_menus", force: true do |t|
-    t.integer  "site_id"
-    t.integer  "menu_id"
-    t.integer  "parent_id",  default: 0
-    t.string   "category"
-    t.integer  "position"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
-  add_index "sites_menus", ["menu_id"], name: "index_sites_menus_on_menu_id", using: :btree
-  add_index "sites_menus", ["site_id"], name: "index_sites_menus_on_site_id", using: :btree
-
-  create_table "sites_pages", force: true do |t|
-    t.integer  "site_id"
-    t.integer  "page_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "sites_pages", ["page_id"], name: "index_sites_pages_on_page_id", using: :btree
-  add_index "sites_pages", ["site_id"], name: "index_sites_pages_on_site_id", using: :btree
 
   create_table "sticker_banners", force: true do |t|
     t.datetime "date_begin_at"
@@ -542,7 +500,9 @@ ActiveRecord::Schema.define(version: 20141125183000) do
   add_foreign_key "calendar_events", "sites", name: "calendar_events_site_id_fk"
   add_foreign_key "calendar_events", "users", name: "calendar_events_user_id_fk"
 
-  add_foreign_key "extension_sites", "sites", name: "extension_sites_site_id_fk"
+  add_foreign_key "components", "sites", name: "site_components_site_id_fk"
+
+  add_foreign_key "extensions", "sites", name: "extension_sites_site_id_fk"
 
   add_foreign_key "feedback_groups", "sites", name: "groups_site_id_fk"
 
@@ -553,9 +513,6 @@ ActiveRecord::Schema.define(version: 20141125183000) do
 
   add_foreign_key "groupings_sites", "groupings", name: "groupings_sites_grouping_id_fk"
   add_foreign_key "groupings_sites", "sites", name: "groupings_sites_site_id_fk"
-
-  add_foreign_key "groups_users", "feedback_groups", name: "groups_users_group_id_fk", column: "group_id"
-  add_foreign_key "groups_users", "users", name: "groups_users_user_id_fk"
 
   add_foreign_key "journal_news", "repositories", name: "pages_repository_id_fk"
   add_foreign_key "journal_news", "sites", name: "pages_site_id_fk"
@@ -577,8 +534,6 @@ ActiveRecord::Schema.define(version: 20141125183000) do
 
   add_foreign_key "notifications", "users", name: "notifications_user_id_fk"
 
-  add_foreign_key "old_menus", "journal_news", name: "old_menus_page_id_fk", column: "page_id"
-
   add_foreign_key "posts_repositories", "repositories", name: "pages_repositories_repository_id_fk"
 
   add_foreign_key "repositories", "sites", name: "repositories_site_id_fk"
@@ -588,13 +543,8 @@ ActiveRecord::Schema.define(version: 20141125183000) do
   add_foreign_key "roles_users", "roles", name: "roles_users_role_id_fk"
   add_foreign_key "roles_users", "users", name: "roles_users_user_id_fk"
 
-  add_foreign_key "site_components", "sites", name: "site_components_site_id_fk"
-
   add_foreign_key "sites", "repositories", name: "sites_top_banner_id_fk", column: "top_banner_id"
   add_foreign_key "sites", "sites", name: "sites_parent_id_fk", column: "parent_id"
-
-  add_foreign_key "sites_menus", "menus", name: "sites_menus_menu_id_fk"
-  add_foreign_key "sites_menus", "sites", name: "sites_menus_site_id_fk"
 
   add_foreign_key "sticker_banners", "repositories", name: "banners_repository_id_fk"
   add_foreign_key "sticker_banners", "sites", name: "banners_site_id_fk"

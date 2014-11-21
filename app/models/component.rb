@@ -1,7 +1,4 @@
 class Component < ActiveRecord::Base
-  # TODO rename table site_components to components
-  self.table_name = 'site_components'
-
   extend Weby::ComponentInstance
 
   belongs_to :site

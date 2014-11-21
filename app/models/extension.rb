@@ -1,6 +1,4 @@
 class Extension < ActiveRecord::Base
-  # TODO rename table extension_sites to extensions
-  self.table_name = 'extension_sites'
   include RailsSettings::Extend
 
   belongs_to :site
