@@ -17,7 +17,7 @@ class Sites::Admin::BackupsController < ApplicationController
 
     s = current_site
     h = { include: {} }
-    h[:include][:pages] = { include: [:i18ns]} if params[:pages]
+    h[:include][:pages] = { include: [:i18ns, :related_files]} if params[:pages]
     h[:include][:repositories] = {}  if params[:repositories]
     h[:include][:menus] = { include: :root_menu_items } if params[:menus]
     h[:include][:styles] = {}  if params[:styles]
@@ -34,8 +34,8 @@ class Sites::Admin::BackupsController < ApplicationController
       json = s.as_json(h)
       json['messages'] = Feedback::Message.where(site_id: s.id).as_json if params[:messages]
       json['banners']  = Sticker::Banner.where(site_id: s.id).as_json(include: :categories ) if params[:banners]
-      json['news']     = Journal::News.where(site_id: s.id).as_json(include: [:categories, :i18ns]) if params[:news]
-      json['events']   = Calendar::Event.where(site_id: s.id).as_json(include: [:categories, :i18ns]) if params[:events]
+      json['news']     = Journal::News.where(site_id: s.id).as_json(include: [:categories, :i18ns, :related_files]) if params[:news]
+      json['events']   = Calendar::Event.where(site_id: s.id).as_json(include: [:categories, :i18ns, :related_files]) if params[:events]
 
       File.open(Rails.root.join(dir, "#{s.name}.json"), 'wb') do |file|
         file.write(json.to_json)
@@ -53,7 +53,8 @@ class Sites::Admin::BackupsController < ApplicationController
       filename = "#{dir}/#{s.name}.xml"
     end
 
-    zip_dir = Rails.root.join(dir, "#{s.name}.zip")
+    zipname = "#{s.name}_#{params[:type].downcase}.zip"
+    zip_dir = Rails.root.join(dir, zipname)
     repository = "public/up/#{s.id}"
     Zip::ZipFile.open(zip_dir, Zip::ZipFile::CREATE)do |zipfile|
       Find.find(repository) do |path|
@@ -68,8 +69,8 @@ class Sites::Admin::BackupsController < ApplicationController
       zipfile.add(dest[1], filename) if dest
     end
 
-    zip_data = File.read("#{dir}/#{s.name}.zip")
-    send_data(zip_data, type: 'application/zip', filename: "#{s.name}.zip")
+    zip_data = File.read("#{dir}/#{zipname}")
+    send_data(zip_data, type: 'application/zip', filename: zipname)
   end
 
   def import
@@ -89,8 +90,8 @@ class Sites::Admin::BackupsController < ApplicationController
       current_site.repositories.import(attrs['repositories']) if attrs['repositories']
       Sticker::Banner.where(site_id: current_site.id).import(attrs['banners'], user: current_user.id) if attrs['banners']
       current_site.pages.import(attrs['pages'], user: current_user.id, site_id: current_site.id) if attrs['pages']
-      Journal::News.where(site_id: current_site.id).import(attrs['news'], user: current_user.id) if attrs['news']
-      Calendar::Event.where(site_id: current_site.id).import(attrs['events'], user: current_user.id) if attrs['events']
+      Journal::News.where(site_id: current_site.id).import(attrs['news'], user: current_user.id, site_id: current_site.id) if attrs['news']
+      Calendar::Event.where(site_id: current_site.id).import(attrs['events'], user: current_user.id, site_id: current_site.id) if attrs['events']
       current_site.menus.import(attrs['menus']) if attrs['menus']
       current_site.components.import(attrs['root_components'], site_id: current_site.id) if attrs['root_components']
       current_site.styles.import(attrs['styles']) if attrs['styles']

@@ -31,15 +31,9 @@ module Sticker
 
       attrs['repository_id'] = Import::Application::CONVAR["repository"]["#{attrs['repository_id']}"]
       attrs['user_id'] = options[:user] unless User.unscoped.find_by(id: attrs['user_id'])
+      attrs['category_list'] = attrs.delete('categories').to_a.map { |category| category['name'] }
 
-      categories = attrs.delete('categories')
-
-      newbanner = self.create!(attrs)
-
-      categories.each do |category|
-        newbanner.category_list << category['name']
-        newbanner.save
-      end
+      self.create!(attrs)
     end
 
     private
