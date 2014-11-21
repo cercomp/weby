@@ -81,7 +81,7 @@ class Page < ActiveRecord::Base
 
   def own_files?
     related_files.each do |file|
-      return false if file.site_id != owner.id
+      return false if file.site_id != site.id
     end
     true
   end

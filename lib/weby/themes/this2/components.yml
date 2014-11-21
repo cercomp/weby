@@ -7,7 +7,7 @@ first_place:
 top:
   -
     name: 'image'
-    settings: '{:size=>"original", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :repository_id=>"", :html_class => "header", :new_tab=>"0"}'
+    settings: '{:size=>"o", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :repository_id=>"", :html_class => "header", :new_tab=>"0"}'
     position: 1
     alias: "Cabeçalho(Topo)"
     publish: true
