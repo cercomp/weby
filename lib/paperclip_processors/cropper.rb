@@ -1,7 +1,7 @@
 module Paperclip
   class Cropper < Thumbnail
     def transformation_command
-      if crop_command && options[:geometry] == 'original'
+      if crop_command && ['original', 'o'].include?(options[:geometry])
         cmd = super
         cmd = cmd.join(' ') if cmd.is_a? Array
         crop_command + cmd.gsub(/ -crop \S+/, '').gsub(/\+repage/, '')
