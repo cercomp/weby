@@ -196,8 +196,7 @@ class ApplicationController < ActionController::Base
   #
   # kudos para @josevalim em https://github.com/josevalim/inherited_resources
   def resource
-    model_class = controller_path.split('/').delete_if{|part| part.match(/admin|sites/) }.join('/')
-    get_resource_ivar || set_resource_ivar(model_class.classify.constantize.send(:find, params[:id]))
+    get_resource_ivar || set_resource_ivar(controller_name.classify.constantize.send(:find, params[:id]))
   end
 
   # strong parameter to load in devise
