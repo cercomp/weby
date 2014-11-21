@@ -33,12 +33,16 @@
   <li class="acceess_keys">
     <b><%= t('.access_keys') %></b>
     <br>
-    <p>CTRL + 1<%= t('.or') %> ALT + 1 -<%= t(".homepage") %></p>
-    <p>CTRL + 2<%= t('.or') %> ALT + 2 -<%= t(".go_to_content") %></p>
-    <p>CTRL + 3<%= t('.or') %> ALT + 3 -<%= t(".site_map") %></p>
-    <p>CTRL + 4<%= t('.or') %> ALT + 4 -<%= t(".focus_search_field") %></p>
-    <p>CTRL + 9<%= t('.or') %> ALT + 9 -<%= t(".contact_information") %></p>
-    <p>CTRL + 0<%= t('.or') %> ALT + 0 -<%= t(".details_hotkeys") %></p>
+    <p>CTRL + h<%= t('.or') %> ALT + h -<%= t(".homepage") %></p>
+    <a href="<%= main_app.site_url(subdomain: current_site) %>" accesskey="h"></a>
+    <p>CTRL + c<%= t('.or') %> ALT + c -<%= t(".go_to_content") %></p>
+    <a href="#content" accesskey="c"></a>
+    <p>CTRL + s<%= t('.or') %> ALT + s -<%= t(".focus_search_field") %></p>
+    <a href="#search" accesskey="s"></a>
+    <p>CTRL + i<%= t('.or') %> ALT + i -<%= t(".contact_information") %></p>
+    <a href="<%= feedback.root_path %>" accesskey="i"></a>
+    <p>CTRL + a<%= t('.or') %> ALT + a -<%= t(".details_hotkeys") %></p>
+    <a href="http://acessibilidade.ufg.br" target="_blank" accesskey="a"></a>
   </li>
   <li class="accessibility_options">
     <b><%= t(".software_for_the_visually_impaired") %></b>
@@ -52,6 +56,7 @@
   </ul>
   </div>
 </nav>
+<div id="border-accessibility"></div>
 <div id="accessibility_button">
   <label><%= image_tag 'components/accessibility-icon.png' %><b><%= t(".accessibility") %></b></label>
 </div>
