@@ -54,6 +54,26 @@ module Calendar
       "#{id} #{name}".parameterize
     end
 
+    def self.import(attrs, options = {})
+      return attrs.each { |attr| import attr, options } if attrs.is_a? Array
+
+      attrs = attrs.dup
+      attrs = attrs['event'] if attrs.key? 'event'
+
+      attrs.except!('id', 'type', 'created_at', 'updated_at', 'site_id')
+
+      attrs['user_id'] = options[:user] unless User.unscoped.find_by(id: attrs['user_id'])
+      attrs['repository_id'] = Import::Application::CONVAR["repository"]["#{attrs['repository_id']}"]
+      attrs['i18ns'] = attrs['i18ns'].map do |i18n|
+        i18n['information'] = i18n['information'].gsub(/\/up\/[0-9]+/) {|x| "/up/#{options[:site_id]}"} if i18n['information']
+        self::I18ns.new(i18n.except('id', 'type', 'created_at', 'updated_at', 'calendar_event_id'))
+      end
+      attrs['category_list'] = attrs.delete('categories').to_a.map { |category| category['name'] }
+      attrs['related_file_ids'] = attrs.delete('related_files').to_a.map {|repo| Import::Application::CONVAR["repository"]["#{repo['id']}"] }
+
+      self.create!(attrs)
+    end
+
     def self.uniq_category_counts
       category_counts.each_with_object(Hash.new) do |j, hash|
         name = j.name.upcase

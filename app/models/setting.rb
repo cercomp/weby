@@ -42,7 +42,7 @@ class Setting < ActiveRecord::Base
 
   # TODO change this to a common place for all models (if needed)
   def self.new_or_update(attributes)
-    instance = Setting.find_by_id attributes.delete(:id)
+    instance = Setting.find_by(id: attributes.delete(:id))
     attributes.each { |k, v| attributes[k] = v.join(',') if v.is_a?(Array) }
     if instance
       instance.assign_attributes attributes

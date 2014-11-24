@@ -17,7 +17,7 @@
           <%  arr = [] %>
           <% begin %>
             <% arr.prepend item %>
-            <% item = MenuItem.find_by_id(item.parent_id) %>
+            <% item = MenuItem.find_by(id: item.parent_id) %>
           <% end while item %>
           <% deepest = arr if arr.size > deepest.size %>
         <% end %>
