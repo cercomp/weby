@@ -10,8 +10,7 @@ es:
         label_font_size:    " Etiqueta Tamaño de la Fuente "
         label_contrast:     " Etiqueta Contrast "
         display_controls:   " Controles de la Pantalla "
-        software_for_the_visually_impaired: " Software para los Discapacitados Visuales "
-        related_links:      " Enlaces Relacionados "
+        additional_information: " Información Adicional "
         extended_accessibility: " Activar "
   menu_accessibility:
     views:
@@ -37,8 +36,7 @@ es:
         colour:             " Color "
         accessibility_tools: " Herramientas de Accesibilidad "
         access_keys:        " Opciones de Accesibilidad "
-        software_for_the_visually_impaired: " Software para los Discapacitados Visuales "
-        related_links:      " Enlaces Relacionados "
+        additional_information: " Información Adicional "
         or:                 " o "
         homepage:           " Página Principal "
         go_to_content:      " Ir al Contenido "

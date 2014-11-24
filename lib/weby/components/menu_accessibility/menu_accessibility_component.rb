@@ -1,8 +1,8 @@
 class MenuAccessibilityComponent < Component
   component_settings :font_size, :contrast, :label_contrast, :label_font_size,
-    :extended_accessibility, :software_for_the_visually_impaired, :related_links
+    :extended_accessibility, :additional_information
 
-  i18n_settings :label_contrast, :label_font_size, :software_for_the_visually_impaired, :related_links
+  i18n_settings :label_contrast, :label_font_size, :additional_information
 
   def font_size?
     font_size.blank? ? true : font_size == '1'

@@ -30,11 +30,8 @@
       <%= f.input :extended_accessibility, as: :boolean %>
       <div class="extended_fields">
       <%= each_i18n_tab do |locale| %>
-          <%= f.component_i18n_input locale, :software_for_the_visually_impaired,
+          <%= f.component_i18n_input locale, :additional_information,
             input_html: {class: "mceSimple", style: "height: 250px;"},
-            as: :text %>
-          <%= f.component_i18n_input locale, :related_links,
-            input_html: {class: "mceSimple", style: " height: 250px;"},
             as: :text %>
         <% end %>
       </div>

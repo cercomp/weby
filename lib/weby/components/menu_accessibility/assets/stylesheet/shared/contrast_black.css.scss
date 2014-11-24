@@ -51,7 +51,6 @@ border-left: 1px solid white !important;
 }
 nav.menu_accessibility_extended {
 border-top: 3px solid white !important;
-border-bottom: 3px solid white !important;
 }
 div#barra-brasil{
 border: 2px solid white !important;
@@ -128,4 +127,7 @@ box-shadow: none !important;
 }
 ::-webkit-input-placeholder {
 color: #FFFF00 !important;
+}
+#border-accessibility{
+border-bottom: 3px solid white !important;
 }

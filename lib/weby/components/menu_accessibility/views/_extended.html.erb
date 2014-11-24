@@ -40,18 +40,14 @@
     <p>CTRL + s<%= t('.or') %> ALT + s -<%= t(".focus_search_field") %></p>
     <a href="#search" accesskey="s"></a>
     <p>CTRL + i<%= t('.or') %> ALT + i -<%= t(".contact_information") %></p>
-    <a href="<%= feedback.root_path %>" accesskey="i"></a>
+    <a href="<%= feedback_path %>" accesskey="i"></a>
     <p>CTRL + a<%= t('.or') %> ALT + a -<%= t(".details_hotkeys") %></p>
     <a href="http://acessibilidade.ufg.br" target="_blank" accesskey="a"></a>
   </li>
   <li class="accessibility_options">
-    <b><%= t(".software_for_the_visually_impaired") %></b>
+    <b><%= t(".additional_information") %></b>
     <br>
-    <a><%= raw component.software_for_the_visually_impaired %></a>
-    <br>
-    <b><%= t(".related_links") %></b>
-    <br>
-    <a><%= raw component.related_links %></a>
+    <a><%= raw component.additional_information %></a>
   </li>
   </ul>
   </div>

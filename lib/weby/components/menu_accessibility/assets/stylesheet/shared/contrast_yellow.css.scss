@@ -51,10 +51,9 @@ border-left: 1px solid #020167 !important;
 }
 nav.menu_accessibility_extended {
 border-top: 3px solid #020167 !important;
-border-bottom: 3px solid #020167 !important;
 }
 div#barra-brasil{
-border: 2px solid white !important;
+border: 2px solid #020167 !important;
 }
 #barra-brasil .list .first {
 border-right: 2px solid #020167 !important;
@@ -132,4 +131,7 @@ color: #020167 !important;
 }
 .fa.fa-search {
 background: transparent !important;
+}
+#border-accessibility{
+border-bottom: 3px solid #020167 !important;
 }

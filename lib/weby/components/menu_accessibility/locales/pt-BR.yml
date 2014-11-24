@@ -9,8 +9,7 @@ pt-BR:
         contrast:           " Contraste "
         label_font_size:    " Rótulo Tamanho de Fonte "
         label_contrast:     " Rótulo Contraste "
-        software_for_the_visually_impaired: " Programas para Deficientes Visuais "
-        related_links:      " Links Relacionados "
+        additional_information: " Informações Adicionais "
         extended_accessibility: " Ativar "
   menu_accessibility:
     views:
@@ -36,8 +35,7 @@ pt-BR:
         colour:             " Cor "
         accessibility_tools: " Ferramentas de Acessibilidade "
         access_keys:         " Teclas de Acesso "
-        software_for_the_visually_impaired: " Programas para Deficientes Visuais "
-        related_links:      " Links Relacionados "
+        additional_information: " Informações Adicionais "
         or:                 " ou "
         homepage:           " Página Inicial "
         go_to_content:      " Ir para o Conteúdo "

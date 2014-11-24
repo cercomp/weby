@@ -9,8 +9,7 @@ fr:
         contrast:           " Contraste "
         label_font_size:    " Rótulo Tamanho de Fonte de caractères "
         label_contrast:     " Rótulo Contraste "
-        software_for_the_visually_impaired: " Logiciel pour les Malvoyants "
-        related_links:      " Liens Connexes "
+        additional_information: " Informations Complémentaires "
         extended_accessibility: " Activer "
   menu_accessibility:
     views:
@@ -36,8 +35,7 @@ fr:
         colour:             " Couleur "
         accessibility_tools: " Outils d'accessibilité "
         access_keys:        " Options d'accessibilité "
-        software_for_the_visually_impaired: " Logiciel pour les Malvoyants "
-        related_links:      " Liens Connexes "
+        additional_information: " Informations Complémentaires "
         or:                 " ou "
         homepage:           " Page d'accueil "
         go_to_content:      " Aller au Contenu "
