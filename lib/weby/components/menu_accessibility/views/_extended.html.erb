@@ -1,6 +1,6 @@
 <section class="menu_accessibility_component extended">
+<div id="menu-accessibility-background">
 <nav class="menu_accessibility_extended" style="display: none;">
-  <div>
   <ul id="accessibility_areas">
   <li class="accessibility_tools">
     <b><%= t('.accessibility_tools') %></b>
@@ -29,6 +29,7 @@
         <%= link_to ('C'), {contrast: params[:contrast] = "black"}, title: t(".contrast"), class: 'contrast_black' %>
         <%= link_to ('C'), {contrast: params[:contrast] = "yellow"}, title: t(".contrast"), class: 'contrast_yellow' %>
       <%  end %>
+    </span>
   </li>
   <li class="acceess_keys">
     <b><%= t('.access_keys') %></b>
@@ -50,10 +51,10 @@
     <a><%= raw component.additional_information %></a>
   </li>
   </ul>
-  </div>
 </nav>
-<div id="border-accessibility"></div>
 <div id="accessibility_button">
   <label><%= image_tag 'components/accessibility-icon.png' %><b><%= t(".accessibility") %></b></label>
 </div>
+</div>
+<div id="border-accessibility"></div>
 </section>

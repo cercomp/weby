@@ -98,3 +98,19 @@ border-bottom: 3px solid #749EC7;
 margin-left: auto;
 margin-right: auto;
 }
+
+div#accessibility_button label img{
+vertical-align: middle;
+}
+div#accessibility_button label{
+cursor: pointer;
+}
+a.contrast_normal,
+a.contrast_blue,
+a.contrast_black,
+a.contrast_yellow{
+text-decoration: none;
+}
+#menu-accessibility-background{
+background-color: #D6D8D7
+}
