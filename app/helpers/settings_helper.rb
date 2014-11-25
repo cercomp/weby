@@ -13,6 +13,8 @@ module SettingsHelper
               options_for_select(pattern[:select], setting.value ? setting.value.split(',') : nil),
               { class: 'setting-field select', data: data, disabled: disabled }.merge(pattern[:options]) { |_k, old, new| old.is_a?(String) ? new + ' ' + old : new }
             )
+          elsif pattern[:text]
+              html << html << text_area_tag(name, setting.value, class: 'setting-field text form-control', data: data, disabled: disabled)
           else
             # TODO another kind of input
           end

@@ -4,6 +4,18 @@ class MenuAccessibilityComponent < Component
 
   i18n_settings :label_contrast, :label_font_size, :additional_information
 
+  after_initialize do
+    if new_record?
+      default = Weby::Settings::Weby.accessibility_text
+      if default.match(/^{/)
+        default = eval(default)
+      else
+        default = {I18n.locale.to_s => default}
+      end
+      self.additional_information = default
+    end
+  end
+
   def font_size?
     font_size.blank? ? true : font_size == '1'
   end
