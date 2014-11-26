@@ -4,4 +4,4 @@
   <%= render partial: "menu_accessibility/views/basic", locals: {component: component} %>
 <% end %>
 
-<% content_for :javascripts, javascript_include_tag('show') %>
+<% include_component_javascript :javascripts, 'show' %>

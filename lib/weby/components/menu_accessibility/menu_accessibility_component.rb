@@ -27,4 +27,8 @@ class MenuAccessibilityComponent < Component
   def extended_accessibility?
     extended_accessibility.blank? ? false : extended_accessibility == '1'
   end
+
+  def default_alias
+    I18n.t("menu_accessibility.views.form.#{extended_accessibility? ? 'extended' : 'basic'}")
+  end
 end
