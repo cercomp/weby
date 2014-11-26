@@ -9,16 +9,36 @@ pt-BR:
         contrast:           " Contraste "
         label_font_size:    " Rótulo Tamanho de Fonte "
         label_contrast:     " Rótulo Contraste "
+        additional_information: " Informações Adicionais "
+        extended_accessibility: " Ativar "
   menu_accessibility:
     views:
       form:
         font_size:          " Tamanho da Fonte "
         contrast:           " Contraste "
         display_controls:   " Exibir Controles "
-      show:
+        basic:              " Básico "
+        extended:           " Estendido "
+      basic:
         increase_font_size: " Aumentar o tamanho da fonte "
         decrease_font_size: " Diminuir o tamanho da fonte "
         default_font_size:  " Tamanho padrão da fonte "
         contrast:           " Alterar o contraste da página "
         contrast_normal:    " Retirar o contraste da pagina "
         colour:             " Cor "
+      extended:
+        increase_font_size: " Aumentar o tamanho da fonte "
+        decrease_font_size: " Diminuir o tamanho da fonte "
+        default_font_size:  " Tamanho padrão da fonte "
+        contrast:           " Alterar o contraste da página "
+        contrast_normal:    " Retirar o contraste da pagina "
+        colour:             " Cor "
+        accessibility_tools: " Ferramentas de Acessibilidade "
+        access_keys:         " Teclas de Acesso "
+        or:                 " ou "
+        homepage:           " Página Inicial "
+        go_to_content:      " Ir para o Conteúdo "
+        focus_search_field: " Foco no Campo de Busca "
+        contact_information: " Informações de Contato "
+        details_hotkeys:    " Detalhes das Teclas de Atalho (Página de Acessibilidade) "
+        accessibility:      " Acessibilidade "

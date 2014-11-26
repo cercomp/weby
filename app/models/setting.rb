@@ -6,7 +6,8 @@ class Setting < ActiveRecord::Base
     per_page_default: :numericality,
     tld_length: :numericality,
     maintenance_mode: %w(false true),
-    ldaps: %w(false true)
+    ldaps: %w(false true),
+    accessibility_text: {text: true}
   }
 
   validates :name, :value, presence: true
@@ -25,6 +26,8 @@ class Setting < ActiveRecord::Base
             invvalue = true unless values.include?(each_value)
           end if value
           errors.add(:value, :invalid_format, format_message: "#{name} = [#{pattern[:select].map { |a| a.is_a?(Array) ? a[0] : a }.join(',')}]") if invvalue
+        elsif pattern[:text]
+          #no validations yet
         else
           # TODO another kind of input
         end

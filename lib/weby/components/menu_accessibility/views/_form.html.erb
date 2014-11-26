@@ -1,25 +1,42 @@
 <div class="tabbable">
   <ul class="nav nav-tabs" id="style-tab">
     <li class="active" >
-      <a href="#font-size" data-toggle="tab"><%= t(".font_size") %></a>
+      <a href="#basic" data-toggle="tab"><%= t(".basic") %></a>
     </li>
     <li>
-      <a href="#contrast" data-toggle="tab"><%= t(".contrast") %></a>
+      <a href="#extended" data-toggle="tab"><%= t(".extended") %></a>
     </li>
   </ul>
+
   <div class="tab-content">
-    <div class="tab-pane active" id="font-size" style="padding-left: 5px;">
-      <%= f.input :font_size , :label => t("menu_accessibility.views.form.display_controls"), wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" }  %>
 
-      <%= each_i18n_tab do |locale| %>
-        <%= f.component_i18n_input locale, :label_font_size, :as => :string %>
-      <% end %>
+    <div class="tab-pane active" id="basic">
+      <span class="contrast">
+        <%= f.input :contrast, :label => t("menu_accessibility.views.form.contrast"), :as => :boolean %>
+        <%= each_i18n_tab do |locale| %>
+          <%= f.component_i18n_input locale, :label_contrast, :as => :string %>
+        <% end %>
+      </span>
+
+      <span class="font-size">
+        <%= f.input :font_size, :label => t("menu_accessibility.views.form.font_size"), :as => :boolean %>
+        <%= each_i18n_tab do |locale| %>
+          <%= f.component_i18n_input locale, :label_font_size, :as => :string %>
+        <% end %>
+      </span>
     </div>
-    <div class="tab-pane" id="contrast">
-      <%= f.input :contrast, :label => t("menu_accessibility.views.form.display_controls") , wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" } %>
 
+    <div class="tab-pane" id="extended">
+      <%= f.input :extended_accessibility, as: :boolean %>
+      <div class="extended_fields">
       <%= each_i18n_tab do |locale| %>
-        <%= f.component_i18n_input locale, :label_contrast, :as => :string %>
-      <% end %>
+          <%= f.component_i18n_input locale, :additional_information,
+            input_html: {class: "mceSimple", style: "height: 250px;"},
+            as: :text %>
+        <% end %>
+      </div>
     </div>
 </div>
+</div>
+<% content_for :javascripts, javascript_include_tag("init/tinymce") %>
+<% content_for :javascripts, javascript_include_tag("extended.form") %>

@@ -1,0 +1,58 @@
+<section class="menu_accessibility_component extended">
+  <div id="menu-accessibility-background">
+    <nav class="menu_accessibility_extended" style="display: none;">
+      <ul id="accessibility_areas">
+        <li class="accessibility_tools">
+          <b><%= t('.accessibility_tools') %></b>
+          <br>
+          <% if component.font_size? %>
+            <span class="accessibility_font">
+              <% if !component.label_font_size.blank? %>
+                <%= component.label_font_size %>
+              <% end %>
+
+              <%= link_to weby_icon('minus'), "#", onclick: 'font_size_down()', title: t(".decrease_font_size")%>
+              <%= link_to weby_icon('font'), "#", onclick: 'font_size_original()', title: t(".default_font_size")%>
+              <%= link_to weby_icon('plus'), "#", onclick: 'font_size_up()', title: t(".increase_font_size")%>
+            </span>
+          <% end %>
+          <br>
+          <br>
+          <span class="accessibility_color">
+            <% if component.contrast? %>
+              <% if !component.label_contrast.blank? %>
+                <%= component.label_contrast %>
+              <% end %>
+
+              <%= link_to ('C'), {contrast: params[:contrast] = "no"}, title: t(".contrast_normal"), class: 'contrast_normal' %>
+              <%= link_to ('C'), {contrast: params[:contrast] = "blue"}, title: t(".contrast"), class: 'contrast_blue' %>
+              <%= link_to ('C'), {contrast: params[:contrast] = "black"}, title: t(".contrast"), class: 'contrast_black' %>
+              <%= link_to ('C'), {contrast: params[:contrast] = "yellow"}, title: t(".contrast"), class: 'contrast_yellow' %>
+            <%  end %>
+          </span>
+        </li>
+        <li class="acceess_keys">
+          <b><%= t('.access_keys') %></b>
+          <br>
+          <p>CTRL + h<%= t('.or') %> ALT + h -<%= t(".homepage") %></p>
+          <a href="<%= main_app.site_url(subdomain: current_site) %>" accesskey="h"></a>
+          <p>CTRL + c<%= t('.or') %> ALT + c -<%= t(".go_to_content") %></p>
+          <a href="#content" accesskey="c"></a>
+          <p>CTRL + s<%= t('.or') %> ALT + s -<%= t(".focus_search_field") %></p>
+          <a href="#search" accesskey="s"></a>
+          <p>CTRL + i<%= t('.or') %> ALT + i -<%= t(".contact_information") %></p>
+          <a href="<%= feedback_path %>" accesskey="i"></a>
+          <p>CTRL + a<%= t('.or') %> ALT + a -<%= t(".details_hotkeys") %></p>
+          <a href="http://acessibilidade.ufg.br" target="_blank" accesskey="a"></a>
+        </li>
+        <li class="accessibility_options">
+          <div><%= raw component.additional_information %></div>
+        </li>
+      </ul>
+    </nav>
+    <div id="accessibility_button">
+      <label><%= image_tag 'components/accessibility-icon.png' %><b><%= t(".accessibility") %></b></label>
+    </div>
+  </div>
+  <div id="border-accessibility"></div>
+</section>

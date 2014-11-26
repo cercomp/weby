@@ -11,3 +11,4 @@ en:
     root_site:          "Main site, to be viewed in the domain's root"
     maintenance_mode:   'Maintenance Mode. True makes it so only admin users can log in.'
     max_file_size:      'Maximum file size warning.'
+    accessibility_text: "Accessibility component's default text"

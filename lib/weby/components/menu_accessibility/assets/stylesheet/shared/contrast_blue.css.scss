@@ -29,8 +29,34 @@ menu li,
 .news_as_home_component section#pages *,
 div#list *,
 div#pages.pages-list,
-div#pages.pages-list * {
+div#pages.pages-list *,
+div#accessibility_button,
+div#accessibility_button *,
+nav.menu_accessibility_extended,
+nav.menu_accessibility_extended div,
+ul#accessibility_areas,
+li.accessibility_tools,
+li.accessibility_tools b,
+li.acceess_keys,
+li.acceess_keys b,
+li.acceess_keys p,
+li.accessibility_options,
+li.accessibility_options *,
+div#barra-brasil,
+div#barra-brasil *,
+footer > section {
 background-color: #9FCFFF !important;
+}
+div#accessibility_button{
+border-bottom: 1px solid white !important;
+border-right: 1px solid white !important;
+border-left: 1px solid white !important;
+}
+nav.menu_accessibility_extended {
+border-top: 3px solid white !important;
+}
+div#barra-brasil{
+border: 2px solid white !important;
 }
 #barra-brasil .list .first {
 border-right: 2px solid white !important;
@@ -48,7 +74,8 @@ section#content > article,
 article.page-show,
 .news_as_home_component article.page-show,
 .front_news_component,
-div#pages.pages-list {
+div#pages.pages-list,
+footer {
 border: 1px solid white !important;
 }
 header nav menu li,
@@ -104,4 +131,7 @@ box-shadow: none !important;
 }
 ::-webkit-input-placeholder {
 color: #000066 !important;
+}
+#border-accessibility{
+border-bottom: 3px solid white !important;
 }

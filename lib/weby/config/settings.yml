@@ -22,6 +22,8 @@ settings:
       value: 'false'
     max_file_size:
       value: '20'
+    accessibility_text:
+      value:
   ldap:
     host:
       value:
