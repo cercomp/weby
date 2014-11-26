@@ -23,24 +23,17 @@ module Sticker
 
     def self.import(attrs, options = {})
       return attrs.each { |attr| import attr, options } if attrs.is_a? Array
-
+      
       attrs = attrs.dup
-      attrs = attrs['banners'] if attrs.key? 'banners'
+      attrs = attrs['banner'] if attrs.key? 'banner'
 
-      attrs.except!('id', 'created_at', 'updated_at', 'site_id', 'type')
+      attrs.except!('id', 'type', 'created_at', 'updated_at', 'site_id')
 
       attrs['repository_id'] = Import::Application::CONVAR["repository"]["#{attrs['repository_id']}"]
-      attrs['user_id'] = options[:author] unless User.unscoped.find_by_id(attrs['user_id'])
+      attrs['user_id'] = options[:user] unless User.unscoped.find_by(id: attrs['user_id'])
+      attrs['category_list'] = attrs.delete('categories').to_a.map { |category| category['name'] }
 
-      categories = attrs.delete('categories')
-
-      newbanner = self.create!(attrs)
-
-      categories.each do |category|
-        newbanner.category_list << category['name']
-        newbanner.save
-      end
-
+      self.create!(attrs)
     end
 
     private
