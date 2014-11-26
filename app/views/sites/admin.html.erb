@@ -1,2 +1,37 @@
 <% title ".home" %>
 <% breadcrumb :root %> 
+<% hmenus = {"menu1" => ["Usuário", "Configurar Usuários", "glyphicon-user", 2, "glyphicon-plus", 1, "glyphicon-off", 2]} %>
+<% hmenus.merge!({"menu2" => ["Mensagens", "Visualizar Notificações", "glyphicon-envelope",1,"glyphicon-th-list",3]}) %>
+<% hmenus.merge!({"menu3" => ["Arquivos", "Gerenciar Arquivos", "glyphicon-film",1,"glyphicon-th-list",4]}) %>
+<% hmenus.merge!({"menu4" => ["Páginas", "Visualizar Páginas", "glyphicon-th-large",1,"glyphicon-th-list",3]}) %>
+<% hmenus.merge!({"menu5" => ["Menus", "Alterar Menus", "glyphicon-pushpin",1,"glyphicon-th-list",3]}) %>
+<% hmenus.merge!({"menu6" => ["Banners", "Modificar Banners", "glyphicon-picture",1,"glyphicon-th-list",3]}) %>
+
+<h4>Bem vindo, <%= current_user %></h4>
+<div id="admin" class="row">
+  <% (1..hmenus.length).each do |cont| %>
+    <% vetor = hmenus [ "menu"+cont.to_s ] %>
+    <div class="col-md-3 site-thumbnail">
+      <div class="thumbnail">
+	<div class="thumbnail-header" title="<%= vetor[1].to_s %>">
+	  <span class="glyphicon <%=vetor[2].to_s%>"></span>
+	  <span><%= vetor[0] %></span>
+        </div>
+	<div class="caption">
+        <% (2..vetor[3].to_i+1).each do |cont2| %>
+	  <span class="glyphicon <%=vetor[cont2*2].to_s%>"></span>
+	  <span>
+          <%= case vetor[cont2*2+1]
+	      when 1 then link_to t('.perfil'), profile_url(current_user.login, subdomain: current_site)
+	      when 2 then link_to t('.logout'), logout_path(back_url: main_app.site_path), method: :delete
+	      when 3 then link_to t('.notification'), notifications_path
+              when 4 then link_to t('.files'), site_admin_repositories_path
+          end %>
+          </span>
+          <p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>

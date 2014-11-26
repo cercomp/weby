@@ -377,3 +377,40 @@ hr {
 {
   font-weight: bold;
 }
+
+#admin
+{
+  .thumbnail
+  {
+    height: 210px;
+    position: relative;
+    .thumbnail-header
+    {
+      padding: 5px;
+      height: 40px;
+      overflow: hidden;
+      border-bottom: 1px solid #DDD;
+      background-color: #DDDDDD;
+      img
+      {
+        float: left;
+        margin-right: 5px;
+        background-color: #F0F0F0;
+      }
+      span
+      {
+        font-size: 20px;
+        color: #181e29;
+      }
+    }
+    .caption
+    {
+      padding: 5px;
+      span
+      {
+        font-size: 14px;
+        color: #2F96B4;
+      }
+    }
+  }
+}
