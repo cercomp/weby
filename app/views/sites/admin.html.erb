@@ -1,11 +1,11 @@
 <% title ".home" %>
-<% breadcrumb :root %> 
+<% breadcrumb :root %>
 <% hmenus = {"menu1" => ["Usuário", "Configurar Usuários", "glyphicon-user", 2, "glyphicon-plus", 1, "glyphicon-off", 2]} %>
-<% hmenus.merge!({"menu2" => ["Mensagens", "Visualizar Notificações", "glyphicon-envelope",1,"glyphicon-th-list",3]}) %>
-<% hmenus.merge!({"menu3" => ["Arquivos", "Gerenciar Arquivos", "glyphicon-film",1,"glyphicon-th-list",4]}) %>
-<% hmenus.merge!({"menu4" => ["Páginas", "Visualizar Páginas", "glyphicon-th-large",1,"glyphicon-th-list",3]}) %>
-<% hmenus.merge!({"menu5" => ["Menus", "Alterar Menus", "glyphicon-pushpin",1,"glyphicon-th-list",3]}) %>
-<% hmenus.merge!({"menu6" => ["Banners", "Modificar Banners", "glyphicon-picture",1,"glyphicon-th-list",3]}) %>
+<% hmenus.merge!({"menu"+(hmenus.length+1).to_s => ["Mensagens", "Visualizar Notificações", "glyphicon-envelope",2,"glyphicon-th-list",3,"glyphicon-comment",8]}) %>
+<% hmenus.merge!({"menu"+(hmenus.length+1).to_s => ["Arquivos", "Gerenciar Arquivos", "glyphicon-film",1,"glyphicon-th-list",4]}) if check_permission(Sites::Admin::RepositoriesController, [:index])%>
+<% hmenus.merge!({"menu"+(hmenus.length+1).to_s => ["Páginas", "Visualizar Páginas", "glyphicon-th-large",1,"glyphicon-th-list",5]}) if check_permission(Sites::Admin::PagesController, [:index])%>
+<% hmenus.merge!({"menu"+(hmenus.length+1).to_s => ["Menus", "Alterar Menus", "glyphicon-pushpin",1,"glyphicon-th-list",6]}) if check_permission(Sites::Admin::MenusController, [:index])%>
+<% hmenus.merge!({"menu"+(hmenus.length+1).to_s => ["Banners", "Modificar Banners", "glyphicon-picture",1,"glyphicon-th-list",7]}) if check_permission(Sites::Admin::ExtensionsController, [:index])%>
 
 <h4>Bem vindo, <%= current_user %></h4>
 <div id="admin" class="row">
@@ -22,10 +22,14 @@
 	  <span class="glyphicon <%=vetor[cont2*2].to_s%>"></span>
 	  <span>
           <%= case vetor[cont2*2+1]
-	      when 1 then link_to t('.perfil'), profile_url(current_user.login, subdomain: current_site)
-	      when 2 then link_to t('.logout'), logout_path(back_url: main_app.site_path), method: :delete
-	      when 3 then link_to t('.notification'), notifications_path
+              when 1 then link_to t('.perfil'), profile_url(current_user.login, subdomain: current_site)
+              when 2 then link_to t('.logout'), logout_path(back_url: main_app.site_path), method: :delete
+              when 3 then link_to t('.notification'), notifications_path
               when 4 then link_to t('.files'), site_admin_repositories_path
+              when 5 then link_to t('.paginas'), site_admin_pages_path
+              when 6 then link_to t('.menu'), site_admin_menus_path
+	      when 7 then link_to t('.sticker'),"/admin/sticker"
+              when 8 then link_to t('.feedback'),"/admin/feedback"
           end %>
           </span>
           <p>
