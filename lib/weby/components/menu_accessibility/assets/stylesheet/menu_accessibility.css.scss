@@ -1,106 +1,110 @@
-span.accessibility{
-  float: right;
-  border: 1px solid #DFDFDF;
-  border-radius: 2px;
-  background-color: #F1F1F1;
-  padding: 5px !important;
-  font-weight: bold !important;
-}
-a.contrast_normal,
-a.contrast_blue,
-a.contrast_black,
-a.contrast_yellow,
-a.own_contrast{
-  border: 1px solid #838383 !important;
-  padding: 0px 3px 0px 3px !important;
-  font-weight: bold !important;
-}
-a:hover.contrast_normal,
-a:hover.contrast_blue,
-a:hover.contrast_black,
-a:hover.contrast_yellow,
-a:hover.own_contrast{
-  text-decoration: underline !important;
-}
-a.contrast_normal,
-a.own_contrast{
-  background-color: #FFFFFF !important;
-  color: #484848 !important;
-}
-a.contrast_blue{
-  background-color: #9FCFFF !important;
-  color: #000066 !important;
-}
-a.contrast_black{
-  background-color: #000000 !important;
-  color: #FFFF00 !important;
-}
-a.contrast_yellow{
-  background-color: #DFD179 !important;
-  color: #020167 !important;
-}
-nav.menu_accessibility_extended{
-  background-color: #F1F1F1;
-  max-width: 1000px;
-  border-top: 3px solid #749EC7;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 15px;
-}
-.menu_accessibility_extended li{
-  list-style-type: none;
-}
-ul#accessibility_areas{
-  display: table;
-  margin: 0 auto;
-}
-ul#accessibility_areas li{
-  margin-left: 5px;
-  margin-right: 5px;
-  display: inline-table;
-}
-div#accessibility_button{
-  background-color: #749EC7;
-  float: right;
-  position: relative;
-  right: 27.6%;
-  padding: 4px;
-}
-div#accessibility_button label{
-  display: -webkit-inline-box;
-  margin-bottom: 0px;
-}
-div#accessibility_button b{
-  color: #FAFEFC;
-  font-size: 1.2em;
-}
-li.accessibility_tools b{
-  margin-bottom: 20px;
-}
-i.fa.fa-minus,
-i.fa.fa-font,
-i.fa.fa-plus{
-  color: #000;
-}
-#accessibility_border{
-  max-width: 1030px;
-  border-bottom: 3px solid #749EC7;
-  margin-left: auto;
-  margin-right: auto;
-}
-div#accessibility_button label img{
-  vertical-align: middle;
-}
-div#accessibility_button label{
-  cursor: pointer;
-}
-a.contrast_normal,
-a.contrast_blue,
-a.contrast_black,
-a.contrast_yellow{
-  text-decoration: none;
-}
-#menu-accessibility-background{
-  background-color: #D6D8D7
+.menu_accessibility_component {
+  span.accessibility {
+    float: right;
+    border: 1px solid #DFDFDF;
+    border-radius: 2px;
+    background-color: #F1F1F1;
+    padding: 5px !important;
+    font-weight: bold !important;
+  }
+  a.contrast_normal,
+  a.contrast_blue,
+  a.contrast_black,
+  a.contrast_yellow,
+  a.own_contrast {
+    border: 1px solid #838383 !important;
+    padding: 0px 3px 0px 3px !important;
+    font-weight: bold !important;
+  }
+  a.contrast_normal:hover,
+  a.contrast_blue:hover,
+  a.contrast_black:hover,
+  a.contrast_yellow:hover,
+  a.own_contrast:hover {
+    text-decoration: underline !important;
+  }
+  a.contrast_normal,
+  a.own_contrast {
+    background-color: #FFF !important;
+    color: #484848 !important;
+  }
+  a.contrast_blue {
+    background-color: #9FCFFF !important;
+    color: #000066 !important;
+  }
+  a.contrast_black {
+    background-color: #000 !important;
+    color: #FFFF00 !important;
+  }
+  a.contrast_yellow {
+    background-color: #DFD179 !important;
+    color: #020167 !important;
+  }
+  nav.menu_accessibility_extended {
+    background-color: #F1F1F1;
+    border-top: 2px solid #749EC7;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .menu_accessibility_extended li {
+    list-style-type: none;
+  }
+  ul#accessibility_areas {
+    display: table;
+    margin: 0 auto;
+  }
+  ul#accessibility_areas li {
+    margin-left: 5px;
+    margin-right: 5px;
+    display: inline-table;
+  }
+  div.accessibility_content {
+    position: relative;
+    margin: 0 auto;
+  }
+  div#accessibility_button {
+    top: 0px;
+    position: absolute;
+    margin: auto;
+    z-index: 9999;
+    cursor: pointer;
+    background-color: #749EC7;
+    right: 17%;
+    padding: 1px;
+    width: 178px;
+    height: 30px;
+  }
+  div#accessibility_button label {
+    display: -webkit-inline-box;
+    margin-bottom: 0px;
+  }
+  div#accessibility_button label img {
+    vertical-align: middle;
+  }
+  div#accessibility_button b {
+    color: #FAFEFC;
+    font-size: 12px;
+  }
+  li.accessibility_tools b {
+    margin-bottom: 20px;
+  }
+  i.fa.fa-minus,
+  i.fa.fa-font,
+  i.fa.fa-plus {
+    color: #000;
+  }
+  #accessibility_border {
+    border-bottom: 2px solid #749EC7;
+    margin-right: 23%;
+  }
+  a.contrast_normal,
+  a.contrast_blue,
+  a.contrast_black,
+  a.contrast_yellow {
+    text-decoration: none;
+  }
+  #menu_accessibility_background {
+    background-color: #D6D8D7
+  }
 }
 
