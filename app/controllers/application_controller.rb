@@ -237,7 +237,7 @@ class ApplicationController < ActionController::Base
   end
 
   def is_admin
-    return true if current_user.is_admin 
+    return true if current_user.is_admin
     flash[:error] = t'only_admin'
 
     begin
