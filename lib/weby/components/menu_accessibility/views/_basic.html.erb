@@ -5,7 +5,6 @@
         <% if !component.label_font_size.blank? %>
           <%= component.label_font_size %>
         <% end %>
-
         <%= link_to weby_icon('minus'), "#", onclick: 'font_size_down()', title: t(".decrease_font_size")%>
         <%= link_to weby_icon('font'), "#", onclick: 'font_size_original()', title: t(".default_font_size")%>
         <%= link_to weby_icon('plus'), "#", onclick: 'font_size_up()', title: t(".increase_font_size")%>
@@ -16,7 +15,6 @@
         <% if !component.label_contrast.blank? %>
           <%= component.label_contrast %>
         <% end %>
-
         <%= link_to ('C'), {contrast: params[:contrast] = "no"}, title: t(".contrast_normal"), class: 'contrast_normal' %>
         <%= link_to ('C'), {contrast: params[:contrast] = "blue"}, title: t(".contrast"), class: 'contrast_blue' %>
         <%= link_to ('C'), {contrast: params[:contrast] = "black"}, title: t(".contrast"), class: 'contrast_black' %>

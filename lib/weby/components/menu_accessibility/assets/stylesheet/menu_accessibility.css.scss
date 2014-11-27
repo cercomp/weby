@@ -25,7 +25,7 @@
   }
   a.contrast_normal,
   a.own_contrast {
-    background-color: #FFFFFF !important;
+    background-color: #FFF !important;
     color: #484848 !important;
   }
   a.contrast_blue {
@@ -33,7 +33,7 @@
     color: #000066 !important;
   }
   a.contrast_black {
-    background-color: #000000 !important;
+    background-color: #000 !important;
     color: #FFFF00 !important;
   }
   a.contrast_yellow {
@@ -42,7 +42,7 @@
   }
   nav.menu_accessibility_extended {
     background-color: #F1F1F1;
-    border-top: 3px solid #749EC7;
+    border-top: 2px solid #749EC7;
     margin-left: auto;
     margin-right: auto;
   }
@@ -58,16 +58,28 @@
     margin-right: 5px;
     display: inline-table;
   }
+  div.accessibility_content {
+    position: relative;
+    margin: 0 auto;
+  }
   div#accessibility_button {
-    background-color: #749EC7;
-    position: absolute;
     top: 0px;
+    position: absolute;
     margin: auto;
     z-index: 9999;
+    cursor: pointer;
+    background-color: #749EC7;
+    right: 17%;
+    padding: 1px;
+    width: 178px;
+    height: 30px;
   }
   div#accessibility_button label {
     display: -webkit-inline-box;
     margin-bottom: 0px;
+  }
+  div#accessibility_button label img {
+    vertical-align: middle;
   }
   div#accessibility_button b {
     color: #FAFEFC;
@@ -81,14 +93,9 @@
   i.fa.fa-plus {
     color: #000;
   }
-  #border-accessibility {
-    border-bottom: 3px solid #749EC7;
-  }
-  div#accessibility_button label img {
-    vertical-align: middle;
-  }
-  div#accessibility_button label {
-    cursor: pointer;
+  #accessibility_border {
+    border-bottom: 2px solid #749EC7;
+    margin-right: 23%;
   }
   a.contrast_normal,
   a.contrast_blue,
@@ -96,7 +103,8 @@
   a.contrast_yellow {
     text-decoration: none;
   }
-  #menu-accessibility-background {
+  #menu_accessibility_background {
     background-color: #D6D8D7
   }
 }
+
