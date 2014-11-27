@@ -1,6 +1,6 @@
 <section class="menu_accessibility_component extended">
   <div id="menu-accessibility-background">
-    <nav class="menu_accessibility_extended" style="display: none;">
+    <nav class="menu_accessibility_extended content" style="display: none;">
       <ul id="accessibility_areas">
         <li class="accessibility_tools">
           <b><%= t('.accessibility_tools') %></b>
@@ -50,10 +50,12 @@
         </li>
       </ul>
     </nav>
+  </div>
+  <div class="content">
+    <div id="border-accessibility"></div>
     <div id="accessibility_button">
       <label><%= image_tag 'components/accessibility-icon.png' %><b><%= t(".accessibility") %></b></label>
     </div>
   </div>
-  <div id="border-accessibility"></div>
 </section>
 
