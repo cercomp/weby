@@ -29,7 +29,7 @@
           <td><%= event.place %></td>
           <td><%= t("calendar.admin.events.form.#{event.kind}") if event.kind.present? %></td>
           <td><%= raw categories_links(event.category_list) %></td>
-          <td><%= l(event.begin_at, :format => :short) if event.created_at %></td>
+          <td><%= l(event.created_at, :format => :short) if event.created_at %></td>
           <td><%= l(event.begin_at, :format => :short) if event.begin_at %></td>
           <td width="5%" style="text-align:center;"><%= event.view_count %></td>
           <td class="text-right"><%= make_menu(event, :except => "show", :with_text => false) %></td>
