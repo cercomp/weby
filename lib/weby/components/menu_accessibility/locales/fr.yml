@@ -34,7 +34,7 @@ fr:
         contrast_normal:    " Retirerle contraste de la page "
         colour:             " Couleur "
         accessibility_tools: " Outils d'accessibilité "
-        access_keys:        " Options d'accessibilité "
+        accessibility_keys: " Options d'accessibilité "
         or:                 " ou "
         homepage:           " Page d'accueil "
         go_to_content:      " Aller au Contenu "

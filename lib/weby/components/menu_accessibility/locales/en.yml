@@ -35,7 +35,7 @@ en:
         contrast_normal:    " Remove the colour contrast "
         colour:             " Colour "
         accessibility_tools: " Accessibility Tools "
-        access_keys:        " Access Keys "
+        accessibility_keys: " Access Keys "
         or:                 " or "
         homepage:           " Homepage "
         go_to_content:      " Go to Content "
