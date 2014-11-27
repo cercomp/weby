@@ -6,13 +6,11 @@ class MenuAccessibilityComponent < Component
 
   after_initialize do
     if new_record?
-      default = Weby::Settings::Weby.accessibility_text
-      if default.match(/^{/)
-        default = eval(default)
-      else
-        default = {I18n.locale.to_s => default}
+      if default = Weby::Settings::Weby.accessibility_text
+        self.additional_information = default.match(/^{/) ?
+          eval(default) :
+          {I18n.locale.to_s => default}
       end
-      self.additional_information = default
     end
   end
 
