@@ -19,10 +19,11 @@ module ComponentsHelper
     exceptions << 'edit' unless component_is_available(compo.name)
     components_html = '<li '
     components_html << "id='sort_sites_component_#{compo.id }' " unless leftout
+    nickname = compo.alias.present? ? compo.alias : compo.default_alias
     components_html << "class='component component-#{ compo.name } #{'disabled' unless component_is_available(compo.name)} #{compo.publish ? '' : 'deactivated'}' data-place='#{compo.place_holder}'>
       <div>
         <span class='widget-name'>
-          #{ raw ("#{toggle_field(compo, 'publish')} #{t("components.#{compo.name}.name")} - #{compo.alias || compo.default_alias}") }
+          #{ raw ("#{toggle_field(compo, 'publish')} #{t("components.#{compo.name}.name")} #{"- #{nickname}" if nickname.present?}") }
         </span>
         <div class='pull-right' style='min-width: 46px'>
           #{ raw ("#{make_menu(compo, except: exceptions, with_text: leftout)}") }

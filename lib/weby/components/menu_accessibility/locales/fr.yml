@@ -9,16 +9,36 @@ fr:
         contrast:           " Contraste "
         label_font_size:    " Rótulo Tamanho de Fonte de caractères "
         label_contrast:     " Rótulo Contraste "
+        additional_information: " Informations Complémentaires "
+        extended_accessibility: " Activer "
   menu_accessibility:
     views:
       form:
         font_size:          " taille de la police de caractère "
         contrast:           " Contraste "
         display_controls:   " Afficher les commandes "
-      show:
+        basic:              " De Base "
+        extended:           " Prolongé "
+      basic:
         increase_font_size: " Augmenter la taille de la police "
         decrease_font_size: " Réduire la taille de la police "
         default_font_size:  " Taille de la police Par Défaut "
         contrast:           " Modifier le contraste de la page "
         contrast_normal:    " Retirerle contraste de la page "
         colour:             " Couleur "
+      extended:
+        increase_font_size: " Augmenter la taille de la police "
+        decrease_font_size: " Réduire la taille de la police "
+        default_font_size:  " Taille de la police Par Défaut "
+        contrast:           " Modifier le contraste de la page "
+        contrast_normal:    " Retirerle contraste de la page "
+        colour:             " Couleur "
+        accessibility_tools: " Outils d'accessibilité "
+        access_keys:        " Options d'accessibilité "
+        or:                 " ou "
+        homepage:           " Page d'accueil "
+        go_to_content:      " Aller au Contenu "
+        focus_search_field: " Concentrez-vous sur les Champs de Recherche "
+        contact_information: " Coordonnées "
+        details_hotkeys:    " Détails clé d'Accès (Page d'Accessibilité) "
+        accessibility:      " Accessibilité "

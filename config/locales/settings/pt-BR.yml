@@ -13,6 +13,7 @@ pt-BR:
     root_site:          'Site principal, acessível na raiz do domínio'
     maintenance_mode:   'Modo de Manutenção. True faz com que apenas admins possam logar.'
     max_file_size:      'Aviso de tamanho máximo de arquivo.'
+    accessibility_text: 'Texto padrão do componente de acessibilidade'
     account:            'Conta de administrador do LDAP'
     account_password:   'Senha do administrador'
     attr_firstname:     'Atributo para busca do primeiro nome'
