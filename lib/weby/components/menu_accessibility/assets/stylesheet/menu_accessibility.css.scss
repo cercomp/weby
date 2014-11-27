@@ -60,10 +60,11 @@
   }
   div#accessibility_button {
     background-color: #749EC7;
-    float: right;
-    position: relative;
+    position: absolute;
+    top: 0px;
+    width: 132px;
+    margin: auto;
     z-index: 9999;
-    top: -3px;
   }
   div#accessibility_button label {
     display: -webkit-inline-box;
