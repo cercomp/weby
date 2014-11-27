@@ -26,6 +26,7 @@ pt-BR:
           user:                 " Autor "
           category:             " Categoria "
           begin_at:             " Data "
+          created_at:           " Criado em "
           kind:                 " Tipo "
           name:                 " Nome "
           place:                " Local "
