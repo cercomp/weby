@@ -26,6 +26,7 @@ en:
           user:                 " Author "
           category:             " Category "
           begin_at:             " Date "
+          created_at:           " Created at "
           kind:                 " Type "
           name:                 " Name "
           place:                " Place "
