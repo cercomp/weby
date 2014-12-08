@@ -2,10 +2,10 @@
   <%= t(".pages") %>
 </h2>
 
-<%= form_tag nil, method: 'get' do %>
+<%= form_tag site_pages_path, method: 'get' do %>
   <div class="input-append search-field-button">
       <%= text_field_tag :search, params[:search] %>
-      <%= button_tag image_tag("/assets/components/icon_search.png"), class: 'btn', title: t("search") %>
+      <%= button_tag image_tag("components/icon_search.png"), class: 'btn', title: t("search") %>
   </div>
   <%= link_to t('.advanced'), '#', class: 'toggle-advanced-search', onclick: "return toggleAdvancedSearch()"%>
   <span class="advanced-search<%= params[:search_type] ? "": " hide"%>">
