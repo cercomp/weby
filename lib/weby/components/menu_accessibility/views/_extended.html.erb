@@ -20,15 +20,16 @@
               <% if !component.label_contrast.blank? %>
                 <%= component.label_contrast %>
               <% end %>
-              <%= link_to ('C'), {contrast: params[:contrast] = "no"}, title: t(".contrast_normal"), class: 'contrast_normal' %>
-              <%= link_to ('C'), {contrast: params[:contrast] = "blue"}, title: t(".contrast"), class: 'contrast_blue' %>
-              <%= link_to ('C'), {contrast: params[:contrast] = "black"}, title: t(".contrast"), class: 'contrast_black' %>
-              <%= link_to ('C'), {contrast: params[:contrast] = "yellow"}, title: t(".contrast"), class: 'contrast_yellow' %>
-            <% end %>
+              <a href="#" class="contrast_normal">C</a>
+              <a href="#" class="contrast_blue">C</a>
+              <a href="#" class="contrast_black">C</a>
+              <a href="#" class="contrast_yellow">C</a>
+            <%  end %>
           </span>
         </li>
-        <li class="accessibility_keys">
-          <b><%= t('.accessibility_keys') %></b>
+        <li class="access_keys">
+          <b><%= t('.access_keys') %></b>
+          <br>
           <p>CTRL + h<%= t('.or') %> ALT + h -<%= t(".homepage") %></p>
           <a href="<%= main_app.site_url(subdomain: current_site) %>" accesskey="h"></a>
           <p>CTRL + c<%= t('.or') %> ALT + c -<%= t(".go_to_content") %></p>
