@@ -30,3 +30,4 @@ class MenuAccessibilityComponent < Component
     I18n.t("menu_accessibility.views.form.#{extended_accessibility? ? 'extended' : 'basic'}")
   end
 end
+

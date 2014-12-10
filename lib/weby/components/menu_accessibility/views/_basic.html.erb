@@ -15,11 +15,12 @@
         <% if !component.label_contrast.blank? %>
           <%= component.label_contrast %>
         <% end %>
-        <%= link_to ('C'), {contrast: params[:contrast] = "no"}, title: t(".contrast_normal"), class: 'contrast_normal' %>
-        <%= link_to ('C'), {contrast: params[:contrast] = "blue"}, title: t(".contrast"), class: 'contrast_blue' %>
-        <%= link_to ('C'), {contrast: params[:contrast] = "black"}, title: t(".contrast"), class: 'contrast_black' %>
-        <%= link_to ('C'), {contrast: params[:contrast] = "yellow"}, title: t(".contrast"), class: 'contrast_yellow' %>
+        <a href="#" class="contrast_normal">C</a>
+        <a href="#" class="contrast_blue">C</a>
+        <a href="#" class="contrast_black">C</a>
+        <a href="#" class="contrast_yellow">C</a>
       </span>
     <% end %>
   </span>
 </nav>
+

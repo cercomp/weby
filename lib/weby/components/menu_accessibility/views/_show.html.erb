@@ -3,5 +3,7 @@
 <% else %>
   <%= render partial: "menu_accessibility/views/basic", locals: {component: component} %>
 <% end %>
-
 <% include_component_javascript :javascripts, 'show' %>
+<% include_component_javascript :javascripts, 'changeContrast' %>
+<% include_component_javascript :javascripts, 'jquery.cookie' %>
+

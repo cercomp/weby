@@ -1,21 +1,21 @@
 .btn > img {
-background-color: transparent !important;
+  background-color: transparent !important;
 }
-* :not(.btn){
-background-color: #F7F3D6 !important;
-color: #020167 !important;
-border-color: 1px white !important;
+* :not(.btn) {
+  background-color: #F7F3D6 !important;
+  color: #020167 !important;
+  border-color: 1px white !important;
 }
-a:not(.btn){
-color: #020167;
-font-weight: bold !important;
+a:not(.btn) {
+  color: #020167;
+  font-weight: bold !important;
 }
-a:hover:not(.btn){
-text-decoration: underline !important;
+a:hover:not(.btn) {
+  text-decoration: underline !important;
 }
 .gov_bar_component {
-border-top: 1px solid #020167 !important;
-border-bottom: 1px solid #020167 !important;
+  border-top: 1px solid #020167 !important;
+  border-bottom: 1px solid #020167 !important;
 }
 #webybar .label,
 #webybar .label *,
@@ -37,31 +37,34 @@ nav.menu_accessibility_extended div,
 ul#accessibility_areas,
 li.accessibility_tools,
 li.accessibility_tools b,
-li.acceess_keys,
-li.acceess_keys b,
-li.acceess_keys p,
+li.access_keys,
+li.access_keys b,
+li.access_keys p,
 li.accessibility_options,
-li.accessibility_options * {
-background-color: #DFD179 !important;
+li.accessibility_options *,
+div#barra-brasil,
+div#barra-brasil *,
+footer > section {
+  background-color: #DFD179 !important;
 }
-div#accessibility_button{
-border-bottom: 1px solid #020167 !important;
-border-right: 1px solid #020167 !important;
-border-left: 1px solid #020167 !important;
+div#accessibility_button {
+  border-bottom: 1px solid #020167 !important;
+  border-right: 1px solid #020167 !important;
+  border-left: 1px solid #020167 !important;
 }
 nav.menu_accessibility_extended {
-border-top: 3px solid #020167 !important;
+  border-top: 3px solid #020167 !important;
 }
-div#barra-brasil{
-border: 2px solid #020167 !important;
+div#barra-brasil {
+  border: 2px solid #020167 !important;
 }
 #barra-brasil .list .first {
-border-right: 2px solid #020167 !important;
-border-left: 2px solid #020167 !important
+  border-right: 2px solid #020167 !important;
+  border-left: 2px solid #020167 !important
 }
 .brasil-flag,
 #barra-brasil .list-item {
-border-right: 2px solid #020167 !important;
+  border-right: 2px solid #020167 !important;
 }
 #webybar .label,
 section#content > article,
@@ -72,66 +75,67 @@ article.page-show,
 .news_as_home_component article.page-show,
 .front_news_component,
 div#pages.pages-list {
-border: 1px solid #020167 !important;
+  border: 1px solid #020167 !important;
 }
 header nav menu li,
 aside .menu_component menu li,
 footer nav menu li {
-border: 1px solid #020167 !important;
-margin-right: 0px;
+  border: 1px solid #020167 !important;
+  margin-right: 0px;
 }
 .search_box_component #search,
 .form-control {
-background-color: white !important;
-border-color: #020167 !important;
+  background-color: white !important;
+  border-color: #020167 !important;
 }
 table.border, table.border th, table.border td{
-border: none !important;
+  border: none !important;
 }
 .input-append #search {
-background-color: white !important;
-border-color: #020167 !important;
+  background-color: white !important;
+  border-color: #020167 !important;
 }
 section#content > article .event {
-border-left: 1px solid #020167 !important;
+  border-left: 1px solid #020167 !important;
 }
 section#content section#pages li {
-border-bottom: 1px dotted #020167 !important;
+  border-bottom: 1px dotted #020167 !important;
 }
 div.pagination,
 .search-results .item-search-result:first-child,
 .search-results .item-search-result {
-border-bottom: 1px dotted #020167 !important;
+  border-bottom: 1px dotted #020167 !important;
 }
 div .btn a {
 background-color: none !important;
 }
 #filterNav .selected {
-color: #000066 !important;
-font-weight: normal !important;
+  color: #000066 !important;
+  font-weight: normal !important;
 }
 span.accessibility {
-border: 1px solid #020167 !important;
+  border: 1px solid #020167 !important;
 }
 span.accessibility,
 span.accessibility_font,
 span.accessibility_font *,
 span.accessibility_color {
-background-color: #DFD179 !important;
+  background-color: #DFD179 !important;
 }
 input#search:focus,
 textarea:focus,
 input:focus {
-border-color: #020167 !important;
--webkit-box-shadow: none !important;
-box-shadow: none !important;
+  border-color: #020167 !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
 }
 ::-webkit-input-placeholder {
-color: #020167 !important;
+  color: #020167 !important;
 }
 .fa.fa-search {
-background: transparent !important;
+  background: transparent !important;
 }
-#border-accessibility{
-border-bottom: 3px solid #020167 !important;
+#accessibility_border {
+  border-bottom: 3px solid #020167 !important;
 }
+
