@@ -7,9 +7,7 @@
       <a href="#extended" data-toggle="tab"><%= t(".extended") %></a>
     </li>
   </ul>
-
   <div class="tab-content">
-
     <div class="tab-pane active" id="basic">
       <span class="contrast">
         <%= f.input :contrast, :label => t("menu_accessibility.views.form.contrast"), :as => :boolean %>
@@ -17,7 +15,6 @@
           <%= f.component_i18n_input locale, :label_contrast, :as => :string %>
         <% end %>
       </span>
-
       <span class="font-size">
         <%= f.input :font_size, :label => t("menu_accessibility.views.form.font_size"), :as => :boolean %>
         <%= each_i18n_tab do |locale| %>
@@ -25,7 +22,6 @@
         <% end %>
       </span>
     </div>
-
     <div class="tab-pane" id="extended">
       <%= f.input :extended_accessibility, as: :boolean %>
       <div class="extended_fields">
@@ -40,3 +36,4 @@
 </div>
 <% content_for :javascripts, javascript_include_tag("init/tinymce") %>
 <% content_for :javascripts, javascript_include_tag("extended.form") %>
+
