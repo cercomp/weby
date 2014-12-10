@@ -27,9 +27,8 @@
             <%  end %>
           </span>
         </li>
-        <li class="access_keys">
-          <b><%= t('.access_keys') %></b>
-          <br>
+        <li class="accessibility_keys">
+          <b><%= t('.accessibility_keys') %></b>
           <p>CTRL + h<%= t('.or') %> ALT + h -<%= t(".homepage") %></p>
           <a href="<%= main_app.site_url(subdomain: current_site) %>" accesskey="h"></a>
           <p>CTRL + c<%= t('.or') %> ALT + c -<%= t(".go_to_content") %></p>
@@ -42,7 +41,7 @@
           <a href="http://acessibilidade.ufg.br" target="_blank" accesskey="a"></a>
         </li>
         <li class="accessibility_options">
-          <div><%= raw component.additional_information %></div>
+          <%= raw component.additional_information %>
         </li>
       </ul>
     </nav>
@@ -53,6 +52,5 @@
       <label><%= image_tag 'components/accessibility-icon.png' %><b><%= t(".accessibility") %></b></label>
     </div>
   </div>
-  <div style="clear: both;"></div>
 </section>
 
