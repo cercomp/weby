@@ -37,13 +37,13 @@
     background-color: #F1F1F1;
     padding: 5px !important;
     font-weight: bold !important;
+    font-size: 12px;
   }
   nav.menu_accessibility_extended{
     background-color: #F1F1F1;
     border-top: 2px solid #749EC7;
     margin-left: auto;
     margin-right: auto;
-    padding: 15px;
   }
   nav.menu_accessibility_extended li{
     list-style-type: none;
@@ -51,6 +51,7 @@
   ul#accessibility_areas{
     display: table;
     margin: 0 auto;
+    font-size: 12px;
   }
   ul#accessibility_areas li{
     margin-left: 5px;
@@ -67,12 +68,18 @@
   i.fa.fa-plus{
     color: #000;
   }
-  div#accessibility_button{
-    background-color: #749EC7;
-    float: right;
+  div.accessibility_content{
     position: relative;
-    right: 27.6%;
-    padding: 4px;
+    margin: 0 auto;
+  }
+  div#accessibility_button{
+    top: 0px;
+    right: 17%;
+    position: absolute;
+    margin: auto;
+    cursor: pointer;
+    z-index: 9999;
+    background-color: #749EC7;
   }
   div#accessibility_button b{
     color: #FAFEFC;
@@ -86,7 +93,7 @@
     vertical-align: middle;
   }
   div#accessibility_border{
-    border-bottom: 3px solid #749EC7;
+    border-bottom: 2px solid #749EC7;
     margin-left: auto;
     margin-right: auto;
   }
