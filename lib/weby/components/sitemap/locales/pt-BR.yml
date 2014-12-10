@@ -1,0 +1,19 @@
+pt-BR:
+  components:
+    sitemap:
+      name: "Mapa do Site"
+  activerecord:
+    attributes:
+      sitemap_component:
+        url: "URL"
+        new_tab: "Abrir em uma nova janela"
+        align: "Alinhamento"
+  sitemap:
+    views:
+      show:
+        sitemap: "Mapa do Site"
+      form:
+        select_image: "Selecione a imagem"
+        left: "Esquerda"
+        center: "Centralizado"
+        right: "Direita"      

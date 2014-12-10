@@ -45,3 +45,6 @@ pt-BR:
       site_image: " Imagem do Site "
       main_site: " Site Principal "
       domain_explain: " Preencha o domínio apenas se for diferente do padrão "
+    maps:
+      show:
+        sitemap: " Mapa do Site"

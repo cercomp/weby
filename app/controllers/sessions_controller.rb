@@ -9,7 +9,7 @@ class SessionsController < Devise::SessionsController
     ldap_user_login = params[:user][:auth]
     ldap = Weby::Settings::Ldap
     if ldap.host.nil?
-	super
+      super
       record_login
     else
       ldap_user_pass = ldap.prefixo.to_s + Digest::SHA1.base64digest(params[:user][:password]) + ldap.sufixo.to_s
