@@ -1,13 +1,8 @@
 <% comp = Weby::Components.factory(current_site.components.find_by_name("sitemap")) %>
-<div class="front_news_title">
+<div id="sitemap_bar">
   <% url = comp.url.blank? ? "/map" : comp.url %>
-  <% if comp.align == "1" %>
-    <p align="center"> 
-  <% elsif comp.align == "2" %>
-    <p align="right"> 
-  <% else %>
-    <p align="left"> 
-  <% end %>
-  <a href="<%= url %>"><%= t(".sitemap") %></a>
+  <% pos = comp.align.blank? ? "left" : comp.align %>
+  <p align="<%= pos %>">
+    <a href="<%= url %>"><%= t(".sitemap") %></a>
   </p>
 </div>
