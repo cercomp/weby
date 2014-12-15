@@ -4,7 +4,7 @@
 * :not(.btn) {
   background-color: #2F2F2F !important;
   color: #FFFF00 !important;
-  border-color: 1px white !important;
+  border-color: 1px solid white !important;
 }
 a:not(.btn) {
 color: #FFFF00;
@@ -16,6 +16,9 @@ a:hover:not(.btn) {
 .gov_bar_component {
   border-top: 1px solid white !important;
   border-bottom: 1px solid white !important;
+}
+#wrapper > header {
+  background: none;
 }
 #webybar .label,
 #webybar .label *,
@@ -132,6 +135,6 @@ input:focus {
   color: #FFFF00 !important;
 }
 #accessibility_border {
-  border-bottom: 3px solid white !important;
+  border-bottom: none !important;
 }
 
