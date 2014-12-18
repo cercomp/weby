@@ -20,10 +20,10 @@
               <% if !component.label_contrast.blank? %>
                 <%= component.label_contrast %>
               <% end %>
-              <a href="#" class="contrast_normal">C</a>
-              <a href="#" class="contrast_blue">C</a>
-              <a href="#" class="contrast_black">C</a>
-              <a href="#" class="contrast_yellow">C</a>
+              <%= link_to "C", "#", class: "contrast_normal" %>
+              <%= link_to "C", "#", class: "contrast_blue", data: { url: asset_path('shared/contrast_blue.css') } %>
+              <%= link_to "C", "#", class: "contrast_black", data: { url: asset_path('shared/contrast_black.css') } %>
+              <%= link_to "C", "#", class: "contrast_yellow", data: { url: asset_path('shared/contrast_yellow.css') } %>
             <%  end %>
           </span>
         </li>
