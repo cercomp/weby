@@ -40,9 +40,9 @@ nav.menu_accessibility_extended div,
 ul#accessibility_areas,
 li.accessibility_tools,
 li.accessibility_tools b,
-li.access_keys,
-li.access_keys b,
-li.access_keys p,
+li.accessibility_keys,
+li.accessibility_keys b,
+li.accessibility_keys p,
 li.accessibility_options,
 li.accessibility_options *,
 div#barra-brasil,
@@ -105,12 +105,11 @@ section#content section#pages li {
   border-bottom: 1px dotted #020167 !important;
 }
 div.pagination,
-.search-results .item-search-result:first-child,
 .search-results .item-search-result {
   border-bottom: 1px dotted #020167 !important;
 }
 div .btn a {
-background-color: none !important;
+  background-color: none !important;
 }
 #filterNav .selected {
   color: #000066 !important;
@@ -134,9 +133,6 @@ input:focus {
 }
 ::-webkit-input-placeholder {
   color: #020167 !important;
-}
-.fa.fa-search {
-  background: transparent !important;
 }
 #accessibility_border {
   border-bottom: none !important;

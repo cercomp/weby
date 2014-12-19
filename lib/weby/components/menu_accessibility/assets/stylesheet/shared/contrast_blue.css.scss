@@ -40,9 +40,9 @@ nav.menu_accessibility_extended div,
 ul#accessibility_areas,
 li.accessibility_tools,
 li.accessibility_tools b,
-li.access_keys,
-li.access_keys b,
-li.access_keys p,
+li.accessibility_keys,
+li.accessibility_keys b,
+li.accessibility_keys p,
 li.accessibility_options,
 li.accessibility_options *,
 div#barra-brasil,
@@ -77,8 +77,7 @@ section#content > article,
 article.page-show,
 .news_as_home_component article.page-show,
 .front_news_component,
-div#pages.pages-list,
-footer {
+div#pages.pages-list {
   border: 1px solid white !important;
 }
 header nav menu li,
