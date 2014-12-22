@@ -9,7 +9,7 @@ module Journal
 
     
     belongs_to :site
-    belongs_to :user    
+    belongs_to :user
     
     has_many :views, as: :viewable
     has_many :menu_items, as: :target, dependent: :nullify

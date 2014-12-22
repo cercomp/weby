@@ -4,7 +4,7 @@ module Journal::Admin
 
     before_action :require_user
     before_action :check_authorization
-    before_action :status_types, only: [:new, :edit, :share, :create, :update, :index]
+    before_action :status_types, only: [:new, :edit, :create, :update, :index]
 
     respond_to :html, :js
 
