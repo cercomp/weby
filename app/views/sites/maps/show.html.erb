@@ -1,0 +1,8 @@
+<div id="map">
+  <header>
+    <h2><%= t(".sitemap") %></h2>
+  </header>
+  <% current_site.menus.each do |globalmenu| %>
+      <%= print_menu(globalmenu) %>
+  <% end %>
+</div>

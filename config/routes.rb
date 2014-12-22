@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     get '/' => 'sites#show', as: :site
     get '/admin' => 'sites#admin', as: :site_admin
     get '/admin/edit' => 'sites#edit', as: :edit_site_admin
+    get '/map' => 'sites/maps#show', as: :site_map
     patch '/admin/edit' => 'sites#update', as: :update_site_admin
 
     resources :pages, as: :site_pages, controller: 'sites/pages', path: 'p', only: [:show]

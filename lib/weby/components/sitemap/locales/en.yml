@@ -1,0 +1,12 @@
+en:
+  components:
+    sitemap:
+      name: "Sitemap"
+  activerecord:
+    attributes:
+      sitemap_component:
+
+  sitemap:
+    views:
+      show:
+      form:
