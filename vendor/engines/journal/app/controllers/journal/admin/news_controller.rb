@@ -4,7 +4,7 @@ module Journal::Admin
     
     before_action :require_user
     before_action :check_authorization
-    before_action :status_types, only: [:new, :edit, :share, :create, :update, :index]
+    before_action :status_types, only: [:new, :edit, :create, :update, :index]
 
     respond_to :html, :js
 
@@ -68,11 +68,9 @@ module Journal::Admin
     end
 
     def share
-      
-    end
-
-    def shareoptions
-      @news = Journal::News.where(site_id: current_site).find(params[:id])
+      @news = Journal::News.find(params[:id])
+      @news.sites << Site.find(params[:site_id])
+      redirect_to :back
     end
 
     def create

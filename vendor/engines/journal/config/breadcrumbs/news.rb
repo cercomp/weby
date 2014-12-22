@@ -18,11 +18,6 @@ crumb :news_edit do |news|
   parent :news
 end
 
-crumb :news_share do |news|
-  link "#{t('breadcrumbs.share')} #{news.title}", share_admin_news_path(news)
-  parent :news
-end
-
 crumb :news_search do |search|
   link "#{t('breadcrumbs.search')}/ #{search}"
   parent :news

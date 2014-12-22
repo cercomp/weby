@@ -6,14 +6,13 @@
         <h4 class="modal-title" id="myModalLabel"><%= t("my_sites") %></h4>
       </div>
       <div class="modal-body">
-        <%  @sites = current_user ? current_user.sites : [] %>
+        <% @sites = current_user ? current_user.sites : [] %>
         <% if @sites.empty? %>
-            <div class="alert alert-warning">
-              <%= t(".no-site-found") %>
-            </div>
+          <div class="alert alert-warning">
+            <%= t(".no-site-found") %>
+          </div>
         <% else %>          
           <div class="clearfix"></div>
-
           <table class='table table-striped'>
             <thead>
               <tr>
@@ -23,18 +22,17 @@
               </tr>
             </thead>
             <tbody>
-                <% @sites.each do |site| %>
+              <% @sites.each do |site| %>
                 <tr>
-                  <td> <%= link_to site.name, share() %> </td>
+                  <td> <%= link_to site.name, share_admin_news_path(@news, site_id: site.id), method: :put %> </td>
                   <td> <%= site.title %> </td>
-                  <%#*<td> <%= @news.sites %> </td>
+                  <td> <%= @news.sites %> </td>
                 </tr>
               <% end %>
             </tbody>
           </table>
           <div class="clearfix"></div>
         <% end %>
-
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('close') %></button>
