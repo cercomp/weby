@@ -28,7 +28,8 @@ module Journal
           get :journal, to: 'news#index'
           resources :news do
             member do
-              put :toggle, :recover
+              get :share, to: 'news#shareoptions'
+              put :toggle, :recover, :share
             end
             collection do
               get :recycle_bin, :fronts
@@ -37,11 +38,11 @@ module Journal
           end
         end
         resources :news, module: :journal, path: 'n', only: [:show] do
-          collection do
-            post :sort
+          collection do            
+            post :sort            
           end
         end
-        get :news, to: 'journal/news#index', as: :news_index
+        get :news, to: 'journal/news#index', as: :news_index        
       end
     end
   end

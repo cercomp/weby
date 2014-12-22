@@ -11,13 +11,15 @@ module Journal
     acts_as_multisite
 
     belongs_to :site
-    belongs_to :user
+    belongs_to :user    
     
     has_many :views, as: :viewable
     has_many :menu_items, as: :target, dependent: :nullify
     has_many :posts_repositories, as: :post, dependent: :destroy
     has_many :related_files, through: :posts_repositories, source: :repository
-
+    has_many :news_site
+    has_many :sites, through: :news_site
+    
     # Validations
     validates :user_id, :site_id, :status, presence: true
     

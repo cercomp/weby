@@ -9,6 +9,8 @@ en:
         or_search:     " Any of the words "
       show:
         list_all:      " List all "
+        share:         " Share "
+        my_sites:      " My Sites "
         categories:    " Categories "
         source:        " Source "
         updated_at:    " Updated at "

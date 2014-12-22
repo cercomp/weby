@@ -93,7 +93,11 @@ module ApplicationHelper
       obj.url
     end
   end
-  
+
+  def share ()
+    @news.sites << @news.site.dup
+  end
+
   # Defines custom messages
   def flash_message
     ''.tap do |html|

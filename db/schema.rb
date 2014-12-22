@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141125183000) do
+ActiveRecord::Schema.define(version: 20141218163147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -177,6 +177,14 @@ ActiveRecord::Schema.define(version: 20141125183000) do
 
   add_index "journal_news_i18ns", ["journal_news_id"], name: "index_journal_news_i18ns_on_journal_news_id", using: :btree
   add_index "journal_news_i18ns", ["locale_id"], name: "index_journal_news_i18ns_on_locale_id", using: :btree
+
+  create_table "journal_news_sites", id: false, force: true do |t|
+    t.integer "journal_news_id", null: false
+    t.integer "site_id",         null: false
+    t.integer "position"
+  end
+
+  add_index "journal_news_sites", ["journal_news_id", "site_id"], name: "index_journal_news_sites_on_journal_news_id_and_site_id", using: :btree
 
   create_table "locales", force: true do |t|
     t.string   "name"

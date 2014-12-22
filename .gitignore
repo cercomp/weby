@@ -19,7 +19,12 @@ Gemfile-ext
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+<<<<<<< HEAD
 .idea
+=======
+/nbproject
+
+>>>>>>> Tarefa #24 adjust news share!!
 # Ignore uploads
 /public/uploads/
 /public/up/

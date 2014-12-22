@@ -8,14 +8,19 @@ pt-BR:
         and_search:      " Todas as palavras "
         or_search:       " Qualquer uma das palavras "
       show:
-        list_all:      " Listar Todas "
+        share:         " Compartilhar "
+        my_sites:      " Meus Sites "
+        list_all:      " Listar Toda "
         categories:    " Categorias "
         source:        " Fonte "
         updated_at:    " Atualizada em "
         related_files: " Arquivos relacionados "
         related_url:   " URL relacionada "
-        size:          " Tamanho "
+        size:          " Tamanho "        
         archive_fingerprint:  " Assinatura digital do arquivo "
+      site_share:
+        share:         " Compartilhar "
+        my_sites:      " Meus Sites "
       list:
         read_more:     " Leia mais "
         no_news:       " Nenhuma notícia encontrada "

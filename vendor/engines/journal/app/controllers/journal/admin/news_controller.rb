@@ -4,7 +4,7 @@ module Journal::Admin
     
     before_action :require_user
     before_action :check_authorization
-    before_action :status_types, only: [:new, :edit, :create, :update, :index]
+    before_action :status_types, only: [:new, :edit, :share, :create, :update, :index]
 
     respond_to :html, :js
 
@@ -65,6 +65,14 @@ module Journal::Admin
 
     def edit
       @news = current_site.news.find(params[:id])
+    end
+
+    def share
+      
+    end
+
+    def shareoptions
+      @news = Journal::News.where(site_id: current_site).find(params[:id])
     end
 
     def create

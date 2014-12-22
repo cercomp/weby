@@ -1,0 +1,44 @@
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">        
+        <h4 class="modal-title" id="myModalLabel"><%= t("my_sites") %></h4>
+      </div>
+      <div class="modal-body">
+        <%  @sites = current_user ? current_user.sites : [] %>
+        <% if @sites.empty? %>
+            <div class="alert alert-warning">
+              <%= t(".no-site-found") %>
+            </div>
+        <% else %>          
+          <div class="clearfix"></div>
+
+          <table class='table table-striped'>
+            <thead>
+              <tr>
+                <th class='site-name'><%= sortable 'name', t(".name") %></th>
+                <th><%= sortable 'title', t(".title") %></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+                <% @sites.each do |site| %>
+                <tr>
+                  <td> <%= link_to site.name, share() %> </td>
+                  <td> <%= site.title %> </td>
+                  <%#*<td> <%= @news.sites %> </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <div class="clearfix"></div>
+        <% end %>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('close') %></button>
+      </div>
+    </div>
+  </div>
+</div>
