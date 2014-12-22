@@ -7,8 +7,8 @@ class FrontNewsComponent < Component
 
   validates :quant, presence: true
 
-  def get_news(site, page_param)
-    filter_by.blank? ? news(site, page_param) : news(site, page_param).tagged_with(filter_by.mb_chars.downcase.to_s, any: true)
+  def get_news(sites, page_param)
+    filter_by.blank? ? news(sites, page_param) : news(sites, page_param).tagged_with(filter_by.mb_chars.downcase.to_s, any: true)
   end
 
   def news(site, page_param)
