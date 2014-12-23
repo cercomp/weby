@@ -75,7 +75,7 @@
 
   <div style="margin-top: 8px;">
     <%= link_to(weby_icon('edit', t("edit")), edit_admin_news_path(@news)) if check_permission(Journal::Admin::NewsController, [:edit]) %>
-    <%= link_to weby_icon('share', t(".share")), "#", data: {toggle: "modal", target: "#myModal"} %>
+    <%= link_to weby_icon('share', t(".share")), "#", data: {toggle: "modal", target: "#myModal"} if @news.sites.size==0 %>
     <%#*<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">%>
       <%#= t('.share') %>
     <%#*</button>%>

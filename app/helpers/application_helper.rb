@@ -140,6 +140,13 @@ module ApplicationHelper
     false
   end
 
+  def check_share(news)
+    if news.sites
+      return true
+    end
+    return false
+  end
+
   # Creates the menu based on user's permitions
   # Params: object, args={TODO}
   def make_menu(obj, args = {})

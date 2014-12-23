@@ -15,6 +15,11 @@ rights:
         en: Edit News
         pt-BR:  Editar Notícias
       action: edit update toggle
+    share:
+      name:
+        en: Share News
+        pt-BR:  Compartilhar Notícias
+      action: share
     destroy:
       name: 
         en: Destroy News

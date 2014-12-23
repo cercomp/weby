@@ -24,7 +24,7 @@
             <tbody>
               <% @sites.each do |site| %>
                 <tr>
-                  <td> <%= link_to site.name, share_admin_news_path(@news, site_id: site.id), method: :put %> </td>
+                  <td> <%= link_to site.name, share_admin_news_url(@news, site_id: site.id, subdomain: site), method: :put %> </td>
                   <td> <%= site.title %> </td>
                   <td> <%= @news.sites %> </td>
                 </tr>
