@@ -23,11 +23,12 @@
             </thead>
             <tbody>
               <% @sites.each do |site| %>
+                <% if site.id != current_site.id %>
                 <tr>
                   <td> <%= link_to site.name, share_admin_news_url(@news, site_id: site.id, subdomain: site), method: :put %> </td>
                   <td> <%= site.title %> </td>
-                  <td> <%= @news.sites %> </td>
                 </tr>
+                <% end %>
               <% end %>
             </tbody>
           </table>
