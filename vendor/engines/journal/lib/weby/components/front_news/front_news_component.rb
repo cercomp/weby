@@ -15,7 +15,6 @@ class FrontNewsComponent < Component
     direction = 'desc'
     site.news_sites.available_fronts
       .order("#{order_by} #{direction}").page(page_param).per(quant)
-
   end
   private :news
 
