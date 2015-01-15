@@ -31,5 +31,7 @@ pt-BR:
     events_path:
       title: "Eventos"
       description: "Lista dos eventos publicados"
-
+    sitemap_path:
+      title: "Mapa do Site"
+      description: "Lista todos os itens de menus publicados"
 
