@@ -27,3 +27,5 @@ en:
       related_files:
         related_files: " Related files "
         size:          " Size "
+      sitemap:
+        sitemap:       " Sitemap "
