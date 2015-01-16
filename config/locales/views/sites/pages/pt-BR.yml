@@ -30,4 +30,5 @@ pt-BR:
       related_files:
         related_files: " Arquivos relacionados "
         size:          " Tamanho "
-
+      sitemap:
+        sitemap:       " Mapa do Site "

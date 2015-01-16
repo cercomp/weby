@@ -31,3 +31,6 @@ en:
     events_path:
       title: "Events"
       description: "List of published events"
+    sitemap_path:
+      title: "Sitemap"
+      description: "List of published menus - all items"

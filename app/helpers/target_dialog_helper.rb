@@ -16,7 +16,8 @@ module TargetDialogHelper
       { title: t('common_pages.site_path.title'), description: t('common_pages.site_path.description'), url: main_app.site_path },
       { title: t('common_pages.rss_feed_path.title'), description: t('common_pages.rss_feed_path.description'), url: main_app.site_feed_path(format: :rss) },
       { title: t('common_pages.atom_feed_path.title'), description: t('common_pages.atom_feed_path.description'), url: main_app.site_feed_path(format: :atom) },
-      { title: t('common_pages.pages_path.title'), description: t('common_pages.pages_path.description'), url: main_app.site_pages_path }
+      { title: t('common_pages.pages_path.title'), description: t('common_pages.pages_path.description'), url: main_app.site_pages_path },
+      { title: t('common_pages.sitemap_path.title'), description: t('common_pages.sitemap_path.description'), url: main_app.sitemap_site_pages_path }
     ]
   end
 end

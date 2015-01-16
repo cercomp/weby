@@ -24,6 +24,13 @@ class Sites::PagesController < ApplicationController
     redirect_to @news.url.blank? ? news_path(@news) : @news.url
   end
 
+  def sitemap
+    @published_menus = {}
+    current_site.components.where({name: "menu", publish: true}).each do |component|
+      @published_menus.merge!(@published_menus.length => current_site.menus.find(Weby::Components.factory(component).menu_id))
+    end
+  end
+
   private
 
   def get_pages
