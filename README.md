@@ -11,7 +11,7 @@ The Weby project is a multisite web content manager, this means that you can man
 
 The project was developed with [Ruby on Rails](http://rubyonrails.org) (open source tool kit, written on Ruby programming language) with focus on being simple, flexible and extensible.
 
-* Simple: Make easier to the beginners users experience, with dynamism and interactivity.
+* Simple: Make it easier for beginners users, with dynamism and interactivity.
 * Flexible: In order to attract more experienced users, advanced options are necessary. Without losing the focus on the simplicity, we developed mechanisms to support advanced settings.
 * Extensible: An extensible system can provide new functionalities beyond those that already exist in its core. The most common way to provide these functionalities is creating extensions (plugins) and easily linking them to the core.
 
