@@ -13,10 +13,14 @@ class FrontNewsComponent < Component
 
   def news(site, page_param)
     direction = 'desc'
-#    order_by = 'journal_news_sites.position' if order_by == 'position'
-     order_by = 'journal_news_sites.position'
-#    Journal::News.where(site_id: site.id).includes(:user, :image).available_fronts
-#      .order("#{order_by} #{direction}").page(page_param).per(quant)
+     case order_by
+      when 'position'
+        order_by = 'journal_news_sites.position'
+      when 'created_at'
+        order_by = 'journal_news.created_at'
+      when 'updated_at'
+       order_by = 'journal_news.updated_at'
+    end
     Journal::News.includes(:sites, :user, :image).where('journal_news.site_id = :site OR journal_news_sites.site_id = :site', site: site.id).available_fronts
       .order("#{order_by} #{direction}").page(page_param).per(quant)
 
