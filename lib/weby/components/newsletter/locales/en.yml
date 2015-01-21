@@ -1,0 +1,15 @@
+en:
+  components:
+    newsletter:
+      name: "Newsletter"
+  activerecord:
+    attributes:
+      newsletter_component:
+
+  newsletter:
+    views:
+      show:
+        email: "E-mail"
+        save: "Save"
+      form:
+        text: "Text"

@@ -1,0 +1,16 @@
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <p>Olá <%= @resource.first_name %>!</p>
+
+    <p>Um cadastro de usuário foi feito no weby usando esse email (<%= @email %>).</p>
+    
+    <p>Você pode confirmar seu e-mail através do link abaixo:</p>
+
+    <p><%= link_to "#{confirmation_url(@resource, confirmation_token: @token, subdomain: nil)}", confirmation_url(@resource, confirmation_token: @token, subdomain: nil) %></p>
+
+    <p>Se você não fez esse cadastro, por favor, ignore este e-mail.</p>
+  </body>
+</html>

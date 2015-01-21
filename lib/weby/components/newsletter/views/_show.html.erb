@@ -1,0 +1,8 @@
+<section class="newsletter_component">
+  <%= form_tag new_newsletter_path, method: 'get' do %>
+    <%= component.text %>
+    <%= hidden_field_tag :group, component.group %>
+    <%= email_field_tag :email, nil, placeholder: t('.email') %>
+    <center><%= submit_tag t('.save'), class: 'newsletter_submit' %></center>
+  <% end %>
+</section>
