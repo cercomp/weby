@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
     resources :pages, as: :site_pages, controller: 'sites/pages', path: 'p', only: [:show]
     get :pages, to: 'sites/pages#index', as: :site_pages
-    #old routes
+   #old routes
     get 'pages/:id(-:title)' => 'sites/pages#redirect', constraints: {id: /\d+/}
 
     resources :components,
@@ -18,6 +18,12 @@ Rails.application.routes.draw do
               only: [:show]
 
     post 'count/:model/:id' => 'application#count_click', as: :count_click
+
+    resources :newsletters, controller: 'sites/newsletters', only: [:new, :show]
+ 
+    # routes to feed and atom
+    get '/feed' => 'journal/news#index', as: :site_feed,
+        defaults: { format: 'rss', per_page: 10, page: 1 }
 
     namespace :admin, module: 'sites/admin', as: :site_admin do
 
