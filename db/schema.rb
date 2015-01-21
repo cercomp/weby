@@ -250,7 +250,7 @@ ActiveRecord::Schema.define(version: 20150119171924) do
     t.integer  "site_id"
     t.string   "group"
     t.string   "email"
-    t.string   "chave"
+    t.string   "token"
     t.boolean  "confirm"
     t.datetime "created_at"
     t.datetime "updated_at"

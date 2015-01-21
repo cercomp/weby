@@ -4,7 +4,7 @@ class CreateNewsletters < ActiveRecord::Migration
       t.integer :site_id
       t.string :group
       t.string :email
-      t.string :chave
+      t.string :token
       t.boolean :confirm
 
       t.timestamps

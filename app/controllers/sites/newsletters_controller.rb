@@ -11,15 +11,30 @@ class Sites::NewslettersController < ApplicationController
         add_record.group = params[:group]
         add_record.email = params[:email]
       end
-      add_record.chave = Digest::SHA1.hexdigest([Time.now, rand].join)
+      add_record.token = Digest::SHA1.hexdigest([Time.now, rand].join)
       add_record.confirm = false
-      add_record.save
-      flash[:notice] = t('.success')
+      if add_record.save
+        WebyMailer.confirm_email(add_record, current_site.url).deliver
+        redirect_to :back, flash: { success: t('activation_sent_successful') }
+      else
+	redirect_to :back, flash: { error: t('error_creating_object') }
+      end
     end
-    redirect_to :root
   end
 
   def show
+    if params[:id] == "confirmation"
+      val = params[:token].split(':')
+      user = Newsletter.where("id = "+val[1]+" AND token = '"+val[0]+"'")[0]
+      if user.nil?
+	redirect_to :root, flash: { error: t('error_creating_object') }
+      else 
+	user.token = Digest::SHA1.hexdigest([Time.now, rand].join)
+	user.confirm = true
+	user.save
+	redirect_to :root, flash: { success: t('enable') }
+      end
+    end
   end
 
 end

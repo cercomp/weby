@@ -1,5 +1,5 @@
 class NewsletterComponent < Component
-  component_settings :text, :group
+  component_settings :text, :group, :email, :subject
 
   alias_method :_group, :group
   def group

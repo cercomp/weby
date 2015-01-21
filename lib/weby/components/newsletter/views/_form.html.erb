@@ -1,2 +1,4 @@
-<%= f.input :text, :label => t(".text") %>
+<%= f.input :text, label: t(".text") %>
 <%= f.input :group, as: :hidden %>
+<%= f.input :email, placeholder: t(".email"), label: t(".sending_as") %>
+<%= f.input :subject, as: :boolean, label: t(".subject") %>

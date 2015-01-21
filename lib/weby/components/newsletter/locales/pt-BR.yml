@@ -13,3 +13,6 @@ pt-BR:
         save: "Salvar"
       form:
         text: "Texto"
+        email: "E-mail"
+        subject: "Título da Notícia como Assunto"
+        sending_as: "Enviar como"

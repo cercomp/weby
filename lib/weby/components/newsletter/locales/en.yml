@@ -13,3 +13,6 @@ en:
         save: "Save"
       form:
         text: "Text"
+        email: "E-mail"
+        subject: "Use new title as subject"
+        sending_as: "Sending as"
