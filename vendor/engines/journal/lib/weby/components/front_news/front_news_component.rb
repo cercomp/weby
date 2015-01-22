@@ -21,7 +21,8 @@ class FrontNewsComponent < Component
       when 'updated_at'
        order_by = 'journal_news.updated_at'
     end
-    Journal::News.includes(:sites, :user, :image).where('journal_news.site_id = :site OR journal_news_sites.site_id = :site', site: site.id).available_fronts
+    Journal::News.includes(:sites, :user, :image)
+      .where('journal_news_sites.site_id = :site', site: site.id).available_fronts
       .order("#{order_by} #{direction}").page(page_param).per(quant)
 
   end

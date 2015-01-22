@@ -1,6 +1,6 @@
 module Journal
   class NewsPositionObserver < ActiveRecord::Observer
-    observe 'journal/news'
+    observe 'journal/news_site'
 
     # UPDATE
     def before_save(news)
@@ -33,7 +33,7 @@ module Journal
     end
 
     def update_fronts_up_me
-      @news.site.news.front.where("position > #{@news.position}")
+      Journal::NewsSite.where(site_id: @news.site_id).front.where("position > #{@news.position}")
         .update_all('position = position - 1') if @news.position.present?
     end
 
@@ -42,7 +42,7 @@ module Journal
     end
 
     def last_front_position
-      @news.site.news.front.maximum('position').to_i
+      Journal::NewsSite.where(site_id: @news.site_id).front.maximum('position').to_i
     end
   end
 end
