@@ -1,6 +1,6 @@
-class CreateNewsletters < ActiveRecord::Migration
+class CreateJournalNewsletters < ActiveRecord::Migration
   def change
-    create_table :newsletters do |t|
+    create_table :journal_newsletters do |t|
       t.integer :site_id
       t.string :group
       t.string :email

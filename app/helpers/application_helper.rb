@@ -200,7 +200,18 @@ module ApplicationHelper
               alt: t('destroy'),
               title: t('destroy'),
               class: 'action-link') + ' '
-          end
+ 
+	  when :newsletter
+            menu << link_to(
+              icon('envelope', text: args[:with_text] ? t('newsletter') : ''),
+              params.merge(
+                controller: ctrl.controller_name,
+                action: 'newsletter', id: obj.id
+              ),
+              alt: t('newsletter'),
+              title: t('newsletter'),
+              class: 'action-link') + ' '
+         end
         end
       end
     end)

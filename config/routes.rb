@@ -19,8 +19,6 @@ Rails.application.routes.draw do
 
     post 'count/:model/:id' => 'application#count_click', as: :count_click
 
-    resources :newsletters, controller: 'sites/newsletters', only: [:new, :show]
- 
     # routes to feed and atom
     get '/feed' => 'journal/news#index', as: :site_feed,
         defaults: { format: 'rss', per_page: 10, page: 1 }
