@@ -1,6 +1,6 @@
 module Journal
   class NewsPositionObserver < ActiveRecord::Observer
-    observe 'journal/news'
+    observe 'journal/news_site'
 
 
     # UPDATE
