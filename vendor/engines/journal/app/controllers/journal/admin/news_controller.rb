@@ -149,6 +149,11 @@ module Journal::Admin
       redirect_to :back
     end
 
+    def newsletter
+      @news = Journal::News.where(site_id: current_site).find(params[:id]).in(params[:show_locale])
+      respond_with(:admin, @news)
+    end
+
     private
 
     def sort_column

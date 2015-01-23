@@ -201,7 +201,7 @@ module ApplicationHelper
               title: t('destroy'),
               class: 'action-link') + ' '
  
-	  when :newsletter
+          when :newsletter
             menu << link_to(
               icon('envelope', text: args[:with_text] ? t('newsletter') : ''),
               params.merge(
@@ -211,7 +211,7 @@ module ApplicationHelper
               alt: t('newsletter'),
               title: t('newsletter'),
               class: 'action-link') + ' '
-         end
+          end
         end
       end
     end)

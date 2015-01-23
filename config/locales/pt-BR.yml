@@ -86,6 +86,7 @@ pt-BR:
   need_login:                           " Você deve estar logado para acessar essa página. "
   need_at_least_one_i18n:               " Necessita de conteúdo em pelo menos um idioma "
   none_user:                            " Nenhum Usuário "
+  newsletter:                           " Newsletter"
 #---O---#
   ok:                                   " OK "
   of:                                   " de "
