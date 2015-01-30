@@ -33,8 +33,6 @@ menu li,
 div#list *,
 div#pages.pages-list,
 div#pages.pages-list *,
-div#accessibility_button,
-div#accessibility_button *,
 nav.menu_accessibility_extended,
 nav.menu_accessibility_extended div,
 ul#accessibility_areas,
@@ -53,7 +51,8 @@ div#barra-brasil *,
 footer > section {
   background-color: #9FCFFF !important;
 }
-div#accessibility_button {
+
+div#accessibility_button, div#accessibility_button *, {
   background-color: #000066 !important;
   border: 0px !important;
   color: #cfe5fc;
@@ -72,17 +71,7 @@ div#barra-brasil {
 #barra-brasil .list-item {
   border-right: 2px solid white !important;
 }
-#webybar .label,
-section#content > article,
-.news_list_component .list border fullwidth zebra,
-.news_list_component,
-.event_list_component,
-article.page-show,
-.news_as_home_component article.page-show,
-.front_news_component,
-div#pages.pages-list {
-  border: 1px solid white !important;
-}
+
 header nav menu li,
 aside .menu_component menu li,
 footer nav menu li {
