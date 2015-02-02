@@ -55,7 +55,7 @@ footer > section {
 div#accessibility_button, div#accessibility_button *, {
   background-color: #000066 !important;
   border: 0px !important;
-  color: #cfe5fc;
+  color: #cfe5fc !important;
 }
 nav.menu_accessibility_extended {
   border-top: 0px solid white !important;
@@ -139,9 +139,14 @@ input:focus {
   border-bottom: 3px solid #000066 !important;
 }
 
-#webybar .label, section#content > article, .news_list_component .list border fullwidth zebra,
-.news_list_component, .event_list_component, article.page-show, .news_as_home_component article.page-show,
-.front_news_component, div#pages.pages-list{
+#webybar .label, section#content > article,
+.news_list_component .list border fullwidth zebra,
+.news_list_component,
+.event_list_component,
+article.page-show,
+.news_as_home_component article.page-show,
+.front_news_component,
+div#pages.pages-list{
   border-bottom: 1px solid white !important;
 }
 

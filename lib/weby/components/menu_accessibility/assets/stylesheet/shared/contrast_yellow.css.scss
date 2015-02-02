@@ -33,8 +33,6 @@ menu li,
 div#list *,
 div#pages.pages-list,
 div#pages.pages-list *,
-div#accessibility_button,
-div#accessibility_button *,
 nav.menu_accessibility_extended,
 nav.menu_accessibility_extended div,
 ul#accessibility_areas,
@@ -53,20 +51,20 @@ div#barra-brasil *,
 footer > section {
   background-color: #DFD179 !important;
 }
-div#accessibility_button {
-  border-bottom: 1px solid #020167 !important;
-  border-right: 1px solid #020167 !important;
-  border-left: 1px solid #020167 !important;
+div#accessibility_button,
+div#accessibility_button * {
+  border: 0px !important;
+  background-color: #f3e8b0 !important;
 }
 nav.menu_accessibility_extended {
-  border-top: 3px solid #020167 !important;
+  border-top: 0px !important;
 }
 div#barra-brasil {
-  border: 2px solid #020167 !important;
+  border: 1px solid #8f8001 !important
 }
 #barra-brasil .list .first {
-  border-right: 2px solid #020167 !important;
-  border-left: 2px solid #020167 !important
+  border-right: 2px solid #8f8001 !important;
+  border-left: 2px solid #8f8001 !important
 }
 .brasil-flag,
 #barra-brasil .list-item {
@@ -81,12 +79,12 @@ article.page-show,
 .news_as_home_component article.page-show,
 .front_news_component,
 div#pages.pages-list {
-  border: 1px solid #020167 !important;
+  border-bottom: 1px solid #8f8001 !important;
 }
 header nav menu li,
 aside .menu_component menu li,
 footer nav menu li {
-  border: 1px solid #020167 !important;
+  border: 1px solid #8f8001 !important;
   margin-right: 0px;
 }
 .search_box_component #search,
@@ -138,6 +136,27 @@ input:focus {
   color: #020167 !important;
 }
 #accessibility_border {
-  border-bottom: none !important;
+  border-bottom: 2px solid #f3e8b0 !important;
+}
+
+#webybar{
+  border-bottom: 0px;
+}
+
+div#list{
+  border-top: 1px solid #8f8001 !important;
+  border-right: 1px solid #8f8001 !important;
+  border-left: 1px solid #8f8001 !important;
+}
+
+
+.front_news_component .front_news_title, .event_list_component.front .event_list_title,
+.blank_component .front_news_title{
+  border-bottom: 1px solid #f7f3d6 !important;
+}
+
+.link_to_all a, .front_news_component > .front_news_title > a,
+.event_list_component.front > .event_list_title > a{
+  border-bottom: 3px solid #f3e8b0 !important;
 }
 
