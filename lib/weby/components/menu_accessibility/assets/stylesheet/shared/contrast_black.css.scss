@@ -56,7 +56,8 @@ footer > section {
 div#accessibility_button,
 div#accessibility_button * {
   border: 0px !important;
-  background-color: #484848 !important;
+  background-color: #FFFF00  !important;
+  color: #000 !important;
 }
 nav.menu_accessibility_extended {
   border-top: 0px !important;
@@ -139,7 +140,7 @@ input:focus {
 }
 
 #accessibility_border {
-  border-bottom: 2px solid #484848 !important;
+  border-bottom: 2px solid #FFFF00 !important;
 }
 
 .front_news_component .front_news_title, .event_list_component.front .event_list_title,
