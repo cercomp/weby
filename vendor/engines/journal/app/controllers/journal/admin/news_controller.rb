@@ -51,7 +51,13 @@ module Journal::Admin
 
     # Essa action não chama o get_news pois não faz paginação
     def fronts
-      @newslist = current_site.news.available_fronts.order('position desc')
+       newslist = []
+       Journal::NewsSite.where(site: current_site.id).front.each do |news|
+         newslist ||= Journal::News.where(site_id: news.id)
+       end
+       @newslist = newslist
+       puts   @newslist
+#      @newslist = Journal::News.where(site_id: current_site.id).available_fronts.order('position desc')
     end
 
     def show
@@ -70,6 +76,9 @@ module Journal::Admin
     def share
       @news = Journal::News.find(params[:id])
       @news.sites << Site.find(params[:site_id])
+      @news_site = Journal::NewsSite.where(journal_news: params[:id], site: params[:site_id]).first
+      @news_site.front = true
+      @news_site.save
       redirect_to :back
     end
 

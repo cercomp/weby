@@ -18,6 +18,10 @@ en:
         related_url:   " Related Url "
         size:          " Size "
         archive_fingerprint:  " Archive fingerprint "
+      site_share:
+        my_sites:      " My Sites "
+        name:          " Name "
+        title:         " Title "
       list:
         read_more:     " Read more "
         no_news:       " No news were found "

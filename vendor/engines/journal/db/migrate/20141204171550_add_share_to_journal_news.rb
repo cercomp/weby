@@ -1,6 +1,7 @@
 class AddShareToJournalNews < ActiveRecord::Migration
   def up
     create_join_table :journal_news, :sites do |t|
+       t.primary_key :id
        t.index [:journal_news_id, :site_id]
        t.integer :position
        t.boolean  "front",         default: false

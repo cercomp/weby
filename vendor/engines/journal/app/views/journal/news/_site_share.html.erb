@@ -3,7 +3,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">        
-        <h4 class="modal-title" id="myModalLabel"><%= t("my_sites") %></h4>
+        <h4 class="modal-title" id="myModalLabel"><%= t(".my_sites") %></h4>
       </div>
       <div class="modal-body">
         <% @sites = current_user ? current_user.sites : [] %>
@@ -23,7 +23,7 @@
             </thead>
             <tbody>
               <% @sites.each do |site| %>
-                <% if site.id != current_site.id and @news.sites.size==0 %>
+                <% if site.id != current_site.id and @news.sites.size <= 1 %>
                 <tr>
                   <td> <%= link_to site.name, share_admin_news_url(@news, site_id: site.id, subdomain: site), method: :put %> </td>
                   <td> <%= site.title %> </td>
@@ -36,7 +36,7 @@
         <% end %>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('close') %></button>
+        <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('.close') %></button>
       </div>
     </div>
   </div>

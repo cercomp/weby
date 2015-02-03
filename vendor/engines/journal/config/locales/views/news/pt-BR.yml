@@ -7,10 +7,9 @@ pt-BR:
         match_search:    " Busca exata "
         and_search:      " Todas as palavras "
         or_search:       " Qualquer uma das palavras "
-      show:
-        share:         " Compartilhar "
-        my_sites:      " Meus Sites "
-        list_all:      " Listar Toda "
+      show:        
+        share:         " Compartilhar "        
+        list_all:      " Listar Todas "
         categories:    " Categorias "
         source:        " Fonte "
         updated_at:    " Atualizada em "
@@ -19,8 +18,10 @@ pt-BR:
         size:          " Tamanho "        
         archive_fingerprint:  " Assinatura digital do arquivo "
       site_share:
-        share:         " Compartilhar "
         my_sites:      " Meus Sites "
+        name:          " Nome "
+        title:         " Título "
+        close:         " Fechar "
       list:
         read_more:     " Leia mais "
         no_news:       " Nenhuma notícia encontrada "

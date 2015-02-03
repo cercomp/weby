@@ -13,6 +13,7 @@ class Site < ActiveRecord::Base
   has_many :styles, -> { order('styles.position DESC') }, dependent: :destroy
   has_many :components, -> { order(:place_holder, :position) }, dependent: :destroy
   has_many :root_components, -> { order(:position).where("place_holder !~ '^\\d*$'") }, class_name: 'Component'
+<<<<<<< HEAD
   has_many :repositories, dependent: :destroy
   has_many :extensions, dependent: :destroy
   # Extensions relations
@@ -21,6 +22,12 @@ class Site < ActiveRecord::Base
   has_many :news, class_name: 'Journal::News', dependent: :destroy
   has_many :banners, class_name: 'Sticker::Banner', dependent: :destroy
   has_many :events, class_name: 'Calendar::Event', dependent: :destroy
+=======
+  has_many :repositories
+  has_many :extensions
+#  has_many :news_site, foreign_key: :site_id
+#  has_many :news, :through => :news_sites
+>>>>>>> Tarefa #24 adjust news share part 4!!
 
   has_and_belongs_to_many :locales
   has_and_belongs_to_many :groupings

@@ -36,11 +36,13 @@
       <th width="35%"><%= t(".title") %></th>
       <th width="12%"><%= t(".user") %></th>
       <th width="13%"><%= t(".category") %></th>
-      <th width="13%"><%= t(".created_at") %></th>
+      <th width="13%"><%= t(".created_at") %></th>      
       <% with_permission(action: :edit) do %>
         <th  width="5%"><%= t(".cover") %></th>
         <th  width="5%"><%= t(".status") %></th>
       <% end %>
+        <th  width="5%" class="center"><%= t(".views") %></th>
+        <th  width="5%"><%= t(".action") %></th>      
       <th></th>
     </thead>
     <tbody>
@@ -51,13 +53,14 @@
           </td>
           <td><%= news.user.first_name %></td>
           <td><%= raw categories_links(news.category_list) %></td>
-          <td><%= l(news.created_at, :format => :short) %></td>
+          <td><%= l(news.created_at, :format => :short) %></td>          
           <% with_permission(action: :edit) do %>
             <td class="publish" style="text-align:center;">
               <%= front_status(news) %></td>
             <td class="publish" style="text-align:center;">
               <%= news_status(news) %></td>
           <% end %>
+          <td style="text-align:center;"><%= news.view_count %></td>
           <td class="text-right">
             <%= make_menu(news, :except => "show", :with_text => false) %>
             <% with_permission(action: :sort) do %>
