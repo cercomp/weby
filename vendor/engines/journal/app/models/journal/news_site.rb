@@ -6,6 +6,9 @@ module Journal
     acts_as_taggable_on :categories
     acts_as_multisite
 
+#    belongs_to :site, :class_name => "Site", :foreign_key => "site_id"
+#    belongs_to :journal_news, :class_name => "News", :foreign_key => "journal_news_id"
+
     validate :validate_position
 
     private
