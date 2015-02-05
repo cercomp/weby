@@ -48,8 +48,13 @@
     <tbody>
       <% @newslist.each do |news| %>
         <tr id="sort_news_<%= news.id %>" class="sort_news <%= news.category_list.map{|categ| categ.parameterize }.join(' ') %>">
-          <td>
-            <%= link_to news.title, edit_admin_news_path(news) %>
+          <td>            
+            <%= if news.site_id == current_site.id 
+                link_to news.title, edit_admin_news_path(news)
+                else
+                  news.title
+                end
+            %>
           </td>
           <td><%= news.user.first_name %></td>
           <td><%= raw categories_links(news.category_list) %></td>

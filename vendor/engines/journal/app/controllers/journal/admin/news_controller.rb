@@ -51,12 +51,11 @@ module Journal::Admin
 
     # Essa action não chama o get_news pois não faz paginação
     def fronts
-       newslist = []
-       Journal::NewsSite.where(site: current_site.id).front.each do |news|
-         newslist ||= Journal::News.where(site_id: news.id)
-       end
-       @newslist = newslist
-       puts   @newslist
+      @newslist = []
+      Journal::NewsSite.where(site_id: current_site.id).front.each do |news|
+        @newslist << news.journal_news_id
+      end
+      @newslist = Journal::News.includes(:sites).where(["journal_news.id in (?) and journal_news_sites.site_id = #{current_site.id}", @newslist]).available_fronts.order('journal_news_sites.position desc')
 #      @newslist = Journal::News.where(site_id: current_site.id).available_fronts.order('position desc')
     end
 

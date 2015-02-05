@@ -3,6 +3,9 @@ module Journal
     belongs_to :site
     belongs_to :journal_news
 
+#    belongs_to :site, :class_name => "Site", :foreign_key => "site_id"
+#    belongs_to :journal_news, :class_name => "News", :foreign_key => "journal_news_id"
+
     validate :validate_position
 
     private
