@@ -28,8 +28,8 @@ module Journal
     scope :published, -> { where(status: 'published') }
     scope :review, -> { where(status: 'review') }
     scope :draft, -> { where(status: 'draft') }
-    scope :front, -> { where(front: true) }
-    scope :no_front, -> { where(front: false) }
+    scope :front, -> { includes(:sites).where('journal_news_sites.site_id = journal_news_sites.site_id and journal_news_sites.front = true') }
+    scope :no_front, -> { includes(:sites).where('journal_news_sites.site_id = journal_news_sites.site_id and journal_news_sites.front = false') }
     scope :by_user, ->(id) { where(user_id: id) }
 
     scope :available, -> { where('date_begin_at is NULL OR date_begin_at <= :time', time: Time.now).published }
