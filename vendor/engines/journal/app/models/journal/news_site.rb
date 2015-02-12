@@ -15,10 +15,11 @@ module Journal
 #      self.position = 0 if self.position.nil?
     end
 
+    scope :published, -> { where(status: 'published') }
     scope :front, -> { where(front: true) }
-    scope :available, -> { where('date_begin_at is NULL OR date_begin_at <= :time', time: Time.now) }
+    scope :no_front, -> { where(front: false) }
+#    scope :available, -> { where('date_begin_at is NULL OR date_begin_at <= :time', time: Time.now) }
 #    scope :available_fronts, -> { front.where('date_end_at is NULL OR date_end_at > :time', time: Time.now) }
-    scope :available_fronts, -> { front }
 
     def last_front_position
       @news_site = Journal::NewsSite.where(site: self.site_id).front
