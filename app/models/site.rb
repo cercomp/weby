@@ -17,7 +17,7 @@ class Site < ActiveRecord::Base
   has_many :extensions, dependent: :destroy
   has_many :news_sites, class_name: "::Journal::NewsSite"
   has_many :news, :through => :news_sites, class_name: "::Journal::News"
-  # Extensions relations
+  #Extensions relations
   has_many :groups, class_name: 'Feedback::Group', dependent: :destroy
   has_many :messages, class_name: 'Feedback::Message', dependent: :destroy
   has_many :news, class_name: 'Journal::News', dependent: :destroy

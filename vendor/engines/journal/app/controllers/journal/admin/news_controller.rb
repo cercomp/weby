@@ -95,8 +95,7 @@ module Journal::Admin
     end
 
     def create
-      @news = Journal::News.new(news_params)
-      @news.site = current_site
+      @news = current_site.news.new(news_params)
       @news.user = current_user
       @news.save
       record_activity('created_news', @news)
