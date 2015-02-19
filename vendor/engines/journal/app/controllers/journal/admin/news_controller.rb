@@ -73,12 +73,15 @@ module Journal::Admin
     end
 
     def share
-      @news = Journal::News.find(params[:id])
-      @news.sites << Site.find(params[:site_id])
-      @news_site = Journal::NewsSite.where(journal_news: params[:id], site: params[:site_id]).first
-      @news_site.front = true
-      @news_site.save
-      redirect_to :back
+      @news_site = Journal::NewsSite.where(journal_news: params[:id], site: params[:site_id])
+      if @news_site.size < 1
+        @news = Journal::News.find(params[:id])
+        @news.sites << Site.find(params[:site_id])
+        @news_site = Journal::NewsSite.where(journal_news: params[:id], site: params[:site_id]).first
+        @news_site.front = true
+        @news_site.save
+      end
+       redirect_to :back
     end
 
     def create
