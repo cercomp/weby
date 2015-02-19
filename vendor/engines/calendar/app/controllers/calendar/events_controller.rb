@@ -18,7 +18,7 @@ module Calendar
     end
 
     def show
-      @event = Calendar::Event.where(site_id: current_site.id).find(params[:id])
+      @event = current_site.events.find(params[:id])
       if request.path != event_path(@event)
         redirect_to event_path(@event), status: :moved_permanently
         return
@@ -35,7 +35,7 @@ module Calendar
       params[:direction] ||= 'desc'
       # Vai ao banco por linha para recuperar
       # tags e locales
-      events = Calendar::Event.where(site_id: current_site.id).
+      events = current_site.events.
         search(params[:search], params.fetch(:search_type, 1).to_i).
         order(sort_column + ' ' + sort_direction).
         page(params[:page]).per(params[:per_page])

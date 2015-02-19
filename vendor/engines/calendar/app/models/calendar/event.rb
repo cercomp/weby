@@ -11,7 +11,7 @@ module Calendar
 
     belongs_to :site
     belongs_to :user
-
+    
     has_many :menu_items, as: :target, dependent: :nullify
     has_many :posts_repositories, as: :post, dependent: :destroy
     has_many :related_files, through: :posts_repositories, source: :repository

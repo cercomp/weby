@@ -21,7 +21,7 @@ class Sites::PagesController < ApplicationController
 
   def redirect
     @news = Journal::News.find(params[:id])
-    redirect_to @news.url.blank? ? news_path(@news) : @news.url
+    redirect_to @news.url.blank? ? news_url(@news, subdomain: @news.site) : @news.url
   end
 
   def sitemap

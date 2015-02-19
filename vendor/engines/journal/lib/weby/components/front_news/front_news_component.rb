@@ -13,7 +13,7 @@ class FrontNewsComponent < Component
 
   def news(site, page_param)
     direction = 'desc'
-    Journal::News.where(site_id: site.id).includes(:user, :image).available_fronts
+    site.news.includes(:user, :image).available_fronts
       .order("#{order_by} #{direction}").page(page_param).per(quant)
   end
   private :news

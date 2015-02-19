@@ -17,7 +17,7 @@ module Journal
     end
 
     def show
-      @news = Journal::News.where(site_id: current_site.id).find(params[:id])
+      @news = current_site.news.find(params[:id])
       raise ActiveRecord::RecordNotFound if !@news.published? && @news.user != current_user
       if request.path != news_path(@news)
         redirect_to news_path(@news), status: :moved_permanently
@@ -35,7 +35,7 @@ module Journal
       params[:direction] ||= 'desc'
       # Vai ao banco por linha para recuperar
       # tags e locales
-      result = Journal::News.where(site_id: current_site).available.
+      result = current_site.news.available.
         search(params[:search], params.fetch(:search_type, 1).to_i).
         order(sort_column + ' ' + sort_direction).
         page(params[:page]).per(params[:per_page])

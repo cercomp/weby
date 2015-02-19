@@ -18,12 +18,16 @@ class Sites::Admin::BackupsController < ApplicationController
     s = current_site
     h = { include: {} }
     h[:include][:pages] = { include: [:i18ns, :related_files]} if params[:pages]
+    h[:include][:news] = { include: [:categories, :i18ns, :related_files]} if params[:news]
+    h[:include][:events] = { include: [:categories, :i18ns, :related_files]} if params[:events]
     h[:include][:repositories] = {}  if params[:repositories]
+    h[:include][:banners] = { include: :categories} if params[:banners]
     h[:include][:menus] = { include: :root_menu_items } if params[:menus]
     h[:include][:styles] = {}  if params[:styles]
     h[:include][:root_components] = {}  if params[:root_components]
     h[:include][:extensions] = {}  if params[:extensions]
     h[:include][:locales] = {}  if params[:locales]
+    h[:include][:messages] = {} if params[:messages]
 
     dir = "tmp/#{s.id}"
     Dir.mkdir("#{dir}") unless Dir.exist?("#{dir}")
@@ -31,24 +35,13 @@ class Sites::Admin::BackupsController < ApplicationController
     FileUtils.rm_r Dir.glob("#{dir}/*")
 
     if params[:type] == 'JSON'
-      json = s.as_json(h)
-      json['messages'] = Feedback::Message.where(site_id: s.id).as_json if params[:messages]
-      json['banners']  = Sticker::Banner.where(site_id: s.id).as_json(include: :categories ) if params[:banners]
-      json['news']     = Journal::News.where(site_id: s.id).as_json(include: [:categories, :i18ns, :related_files]) if params[:news]
-      json['events']   = Calendar::Event.where(site_id: s.id).as_json(include: [:categories, :i18ns, :related_files]) if params[:events]
-
       File.open(Rails.root.join(dir, "#{s.name}.json"), 'wb') do |file|
-        file.write(json.to_json)
+        file.write s.to_json(h)
       end
       filename = "#{dir}/#{s.name}.json"
     else
       File.open(Rails.root.join(dir, "#{s.name}.xml"), 'wb') do |file|
-        file.write(s.to_xml(h) do |xml|
-          xml.messages(type: 'array') { Feedback::Message.where(site_id: s.id).each { |message| message.to_xml(skip_instruct: true, builder: xml)  } } if params[:messages]
-          xml.banners(type: 'array')  { Sticker::Banner.where(site_id: s.id).each { |banner| banner.to_xml(skip_instruct: true, builder: xml, include: :categories ) } } if params[:banners]
-          xml.news(type: 'array')     { Journal::News.where(site_id: s.id).each { |news| news.to_xml(skip_instruct: true, builder: xml, include: [:categories, :i18ns]) } } if params[:news]
-          xml.events(type: 'array')   { Calendar::Event.where(site_id: s.id).each { |event| event.to_xml(skip_instruct: true, builder: xml, include: [:categories, :i18ns] ) } } if params[:events]
-        end)
+        file.write s.to_xml(h)
       end
       filename = "#{dir}/#{s.name}.xml"
     end
@@ -88,15 +81,15 @@ class Sites::Admin::BackupsController < ApplicationController
 
     if attrs
       current_site.repositories.import(attrs['repositories']) if attrs['repositories']
-      Sticker::Banner.where(site_id: current_site.id).import(attrs['banners'], user: current_user.id) if attrs['banners']
+      current_site.banners.import(attrs['banners'], user: current_user.id) if attrs['banners']
       current_site.pages.import(attrs['pages'], user: current_user.id, site_id: current_site.id) if attrs['pages']
-      Journal::News.where(site_id: current_site.id).import(attrs['news'], user: current_user.id, site_id: current_site.id) if attrs['news']
-      Calendar::Event.where(site_id: current_site.id).import(attrs['events'], user: current_user.id, site_id: current_site.id) if attrs['events']
+      current_site.news.import(attrs['news'], user: current_user.id, site_id: current_site.id) if attrs['news']
+      current_site.events.import(attrs['events'], user: current_user.id, site_id: current_site.id) if attrs['events']
       current_site.menus.import(attrs['menus']) if attrs['menus']
       current_site.components.import(attrs['root_components'], site_id: current_site.id) if attrs['root_components']
       current_site.styles.import(attrs['styles']) if attrs['styles']
       current_site.extensions.import(attrs['extensions']) if attrs['extensions']
-      #TODO import messages
+      current_site.messages.import(attrs['messages']) if attrs['messages']
     end
     #    File.open(Rails.root.join('public', "uploads/#{current_site.id}", uploaded_io.original_filename), 'wb') do |file|
     #      file.write(uploaded_io.read)

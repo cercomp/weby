@@ -3,8 +3,8 @@ class WebyNewsSliderComponent < Component
 
   def news(site)
     news_category.blank? ?
-      Journal::News.where(site_id: site.id).available_fronts.where('repository_id is not null').order('position desc').limit(quantity) :
-      Journal::News.where(site_id: site.id).available.tagged_with(news_category.to_s.mb_chars.downcase.to_s).where('repository_id is not null').order('position desc')
+      site.news.available_fronts.where('repository_id is not null').order('position desc').limit(quantity) :
+      site.news.available.tagged_with(news_category.to_s.mb_chars.downcase.to_s).where('repository_id is not null').order('position desc')
   end
 
   alias_method :_width, :width

@@ -14,7 +14,7 @@ class FeedbackComponent < Component
     if groups_id.include? ''
       nil
     else
-      groups_site = Feedback::Group.where(site_id: site.id)
+      groups_site = site.groups
       ''.tap do |group_names|
         groups_site.each do |group|
           group_names << group.name + ',' if groups_id.include? group.id.to_s

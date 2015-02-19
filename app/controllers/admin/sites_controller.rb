@@ -1,5 +1,5 @@
 class Admin::SitesController < Admin::BaseController
-  before_action :set_resource, only: [:edit, :update]
+  before_action :set_resource, only: [:edit, :update, :destroy]
   before_action :set_themes, only: [:new, :create, :edit, :update]
 
   respond_to :html, :xml, :js
@@ -44,6 +44,12 @@ class Admin::SitesController < Admin::BaseController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @site.destroy
+    flash[:success] = t('successfully_deleted')
+    redirect_to admin_sites_url(subdomain: nil)
   end
 
   private
