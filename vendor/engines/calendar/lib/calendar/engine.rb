@@ -16,6 +16,6 @@ module Calendar
           class_eval "def use_relative_model_naming?; true; end", __FILE__, __LINE__
         end
       end
-    end    
+    end
   end
 end

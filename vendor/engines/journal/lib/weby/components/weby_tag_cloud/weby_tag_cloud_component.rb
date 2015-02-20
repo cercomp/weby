@@ -4,7 +4,7 @@ class WebyTagCloudComponent < Component
   validates :speed, numericality: { greater_than: 0 }
 
   def tags(site)
-    site.news.available.uniq_category_counts.map { |tag| tag.name }
+    site.news.available.uniq_category_counts.map(&:name)
   end
 
   def tag_size(tag, site)
@@ -39,6 +39,6 @@ class WebyTagCloudComponent < Component
   end
 
   def tag_count(site)
-    site.news.published.uniq_category_counts.map { |tag| tag.count }
+    site.news.published.uniq_category_counts.map(&:count)
   end
 end
