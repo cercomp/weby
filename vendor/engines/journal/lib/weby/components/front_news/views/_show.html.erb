@@ -10,7 +10,8 @@
     </div>
   <% end %>
   <section id="news">
-    <% @front_news.try(:each) do |news| %>
+    <% @front_news.try(:each) do |news_site| %>
+    <% news = news_site.news %>
       <li id="sort_news_<%= "#{news.id}" %>" style="list-style-type:none;">
       <article>
         <% unless news.image.nil? %>

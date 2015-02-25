@@ -46,7 +46,8 @@
       <th></th>
     </thead>
     <tbody>
-      <% @newslist.each do |news| %>
+      <% @newslist.each do |news_site| %>
+      <% news = news_site.news %>
         <tr id="sort_news_<%= news.id %>" class="sort_news <%= news.category_list.map{|categ| categ.parameterize }.join(' ') %>">
           <td>            
             <% if news.site_id == current_site.id %>

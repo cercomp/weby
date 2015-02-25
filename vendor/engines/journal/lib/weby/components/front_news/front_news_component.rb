@@ -16,14 +16,16 @@ class FrontNewsComponent < Component
      case order_by
       when 'position'
         order_by = 'journal_news_sites.position'
-      when 'created_at'
-        order_by = 'journal_news.created_at'
-      when 'updated_at'
-       order_by = 'journal_news.updated_at'
+#      when 'created_at'
+#        order_by = 'journal_news.created_at'
+#      when 'updated_at'
+#       order_by = 'journal_news.updated_at'
     end
-    Journal::News.includes(:sites, :user, :image)
-      .where('journal_news_sites.site_id = :site', site: site.id).available_fronts
+    site.news_sites.available_fronts
       .order("#{order_by} #{direction}").page(page_param).per(quant)
+#    Journal::NewsSite.includes(journal_news: [:user, :image])
+#      .where('journal_news_sites.site_id = :site', site: site.id).available_fronts
+#      .order("#{order_by} #{direction}").page(page_param).per(quant)
 
   end
   private :news

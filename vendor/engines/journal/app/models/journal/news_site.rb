@@ -1,7 +1,7 @@
 module Journal
   class NewsSite < ActiveRecord::Base
     belongs_to :site
-    belongs_to :journal_news
+    belongs_to :news, class_name: "::Journal::News", foreign_key: "journal_news_id"
 
 #    belongs_to :site, :class_name => "Site", :foreign_key => "site_id"
 #    belongs_to :journal_news, :class_name => "News", :foreign_key => "journal_news_id"
@@ -15,11 +15,11 @@ module Journal
 #      self.position = 0 if self.position.nil?
     end
 
-    scope :published, -> { where(status: 'published') }
+#    scope :published, -> { where(status: 'published') }
     scope :front, -> { where(front: true) }
     scope :no_front, -> { where(front: false) }
-#    scope :available, -> { where('date_begin_at is NULL OR date_begin_at <= :time', time: Time.now) }
-#    scope :available_fronts, -> { front.where('date_end_at is NULL OR date_end_at > :time', time: Time.now) }
+    scope :available, -> { where('date_begin_at is NULL OR date_begin_at <= :time', time: Time.now) }
+    scope :available_fronts, -> { front.where('date_end_at is NULL OR date_end_at > :time', time: Time.now) }
 
     def last_front_position
       @news_site = Journal::NewsSite.where(site: self.site_id).front

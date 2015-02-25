@@ -55,7 +55,8 @@ module Journal::Admin
       Journal::NewsSite.where(site_id: current_site.id).front.each do |news|
         @newslist << news.journal_news_id
       end
-      @newslist = Journal::News.includes(:sites).where(["journal_news.id in (?) and journal_news_sites.site_id = #{current_site.id}", @newslist]).available_fronts.order('journal_news_sites.position desc')
+      @newslist = current_site.news_sites.available_fronts.order('position desc')
+#      @newslist = Journal::News.includes(:sites).where(["journal_news.id in (?) and journal_news_sites.site_id = #{current_site.id}", @newslist]).available_fronts.order('journal_news_sites.position desc')
 #      @newslist = Journal::News.where(site_id: current_site.id).available_fronts.order('position desc')
     end
 
@@ -73,11 +74,11 @@ module Journal::Admin
     end
 
     def share
-      @news_site = Journal::NewsSite.where(journal_news: params[:id], site: params[:site_id])
+      @news_site = Journal::NewsSite.where(news: params[:id], site: params[:site_id])
       if @news_site.size < 1
         @news = Journal::News.find(params[:id])
         @news.sites << Site.find(params[:site_id])
-        @news_site = Journal::NewsSite.where(journal_news: params[:id], site: params[:site_id]).first
+        @news_site = Journal::NewsSite.where(news: params[:id], site: params[:site_id]).first
         @news_site.front = true
         @news_site.save
       end
