@@ -28,7 +28,6 @@ module Journal
     scope :draft, -> { where(status: 'draft') }
     scope :by_user, ->(id) { where(user_id: id) }
 
-
     # tipos de busca
     # 0 = "termo1 termo2"
     # 1 = termo1 AND termo2
