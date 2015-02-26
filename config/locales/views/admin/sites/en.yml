@@ -18,6 +18,7 @@ en:
         title:                  " Title "
         settings:               " Settings "
         no-site-found:          " No site found."
+        delete:                 " Delete "
       form:
         example_width:          " Example "
         example_url:            " Example: http://site.com "

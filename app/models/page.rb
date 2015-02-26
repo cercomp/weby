@@ -8,7 +8,7 @@ class Page < ActiveRecord::Base
   belongs_to :site
   belongs_to :user
 
-  has_many :views, as: :viewable
+  has_many :views, as: :viewable, dependent: :delete_all
   has_many :menu_items, as: :target, dependent: :nullify
   has_many :posts_repositories, as: :post, dependent: :destroy
   has_many :related_files, through: :posts_repositories, source: :repository

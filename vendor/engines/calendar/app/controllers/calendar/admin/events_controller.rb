@@ -22,7 +22,7 @@ module Calendar
       params[:direction] ||= 'desc'
       # Vai ao banco por linha para recuperar
       # tags e locales
-      events = Calendar::Event.where(site_id: current_site).
+      events = current_site.events.
         search(params[:search], 1) # 1 = busca com AND entre termos
 
       events = events.order(sort_column + ' ' + sort_direction)
@@ -33,22 +33,21 @@ module Calendar
     def recycle_bin
       params[:sort] ||= 'calendar_events.deleted_at'
       params[:direction] ||= 'desc'
-      @events = Calendar::Event.where(site_id: current_site).trashed.includes(:user).
+      @events = current_site.events.trashed.includes(:user).
         order("#{params[:sort]} #{sort_direction}").
         page(params[:page]).per(params[:per_page])
     end
 
     def show
-      @event = Calendar::Event.where(site_id: current_site).find(params[:id]).in(params[:show_locale])
+      @event = current_site.events.find(params[:id]).in(params[:show_locale])
     end
 
     def new
-      @event = Calendar::Event.new(site_id: current_site)
+      @event = current_site.events.new
     end
 
     def create
-      @event = Calendar::Event.new(events_params)
-      @event.site = current_site
+      @event = current_site.events.new(events_params)
       @event.user = current_user
       @event.save
       record_activity('created_event', @event)
@@ -56,12 +55,12 @@ module Calendar
     end
 
     def edit
-      @event = Calendar::Event.where(site_id: current_site).find(params[:id])
+      @event = current_site.events.find(params[:id])
     end
 
     def update
       params[:event][:related_file_ids] ||= []
-      @event = Calendar::Event.where(site_id: current_site).find(params[:id])
+      @event = current_site.events.find(params[:id])
       @event.update(events_params)
       record_activity('updated_event', @event)
       respond_with(:admin, @event)
@@ -73,7 +72,7 @@ module Calendar
     private :event_types
 
     def destroy
-      @event = Calendar::Event.unscoped.where(site_id: current_site).find(params[:id])
+      @event = current_site.events.unscoped.find(params[:id])
       if @event.trash
         if @event.persisted?
           record_activity('moved_event_to_recycle_bin', @event)
@@ -90,7 +89,7 @@ module Calendar
     end
 
     def recover
-      @event = Calendar::Event.where(site_id: current_site).trashed.find(params[:id])
+      @event = current_site.events.trashed.find(params[:id])
       if @event.untrash
         flash[:success] = t('successfully_restored')
       end

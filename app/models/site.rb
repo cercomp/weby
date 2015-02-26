@@ -2,24 +2,34 @@ class Site < ActiveRecord::Base
   belongs_to :main_site, foreign_key: :parent_id, class_name: 'Site'
   belongs_to :repository, foreign_key: 'top_banner_id'
 
-  has_many :subsites, foreign_key: :parent_id, class_name: 'Site'
-  has_many :roles
-  has_many :views
-  has_many :menus, -> { order(:id) }, dependent: :delete_all
+  has_many :subsites, foreign_key: :parent_id, class_name: 'Site', dependent: :nullify
+  has_many :roles, dependent: :destroy
+  has_many :views, dependent: :delete_all
+  has_many :activity_records, dependent: :destroy
+  has_many :menus, -> { order(:id) }, dependent: :destroy
   has_many :menu_items, through: :menus
-  has_many :pages, -> { includes(:i18ns) }, dependent: :delete_all
+  has_many :pages, -> { includes(:i18ns) }, dependent: :destroy
   has_many :pages_i18ns, through: :pages, source: :i18ns
-  has_many :banners, -> { order(:position) }
   has_many :styles, -> { order('styles.position DESC') }, dependent: :destroy
   has_many :components, -> { order(:place_holder, :position) }, dependent: :destroy
   has_many :root_components, -> { order(:position).where("place_holder !~ '^\\d*$'") }, class_name: 'Component'
-  has_many :repositories
-  has_many :extensions
+  has_many :repositories, dependent: :destroy
+  has_many :extensions, dependent: :destroy
+  # Extensions relations
+  has_many :groups, class_name: 'Feedback::Group', dependent: :destroy
+  has_many :messages, class_name: 'Feedback::Message', dependent: :destroy
+  has_many :news, class_name: 'Journal::News', dependent: :destroy
+  has_many :banners, class_name: 'Sticker::Banner', dependent: :destroy
+  has_many :events, class_name: 'Calendar::Event', dependent: :destroy
 
   has_and_belongs_to_many :locales
   has_and_belongs_to_many :groupings
 
 #  has_attached_file :top_banner, url: '/uploads/:site_id/:style_:basename.:extension'
+
+  before_destroy do
+    repositories.update_all(archive_file_name: nil)
+  end
 
   validates :name, :title, :theme, :url, :per_page, presence: true
   validates :url, format: { with: /\Ahttp[s]{,1}:\/\/[\w\.\-\%\#\=\?\&]+\.([\w\.\-\%\#\=\?\&]+\/{,1})*\z/i }

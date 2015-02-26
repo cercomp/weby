@@ -23,8 +23,9 @@
           <td> <%= site.title %> </td>
           <td> <%= site.description %> </td>
           <td class="text-right">
+                <%= link_to icon('trash', text: t(".delete")), admin_site_path(site.id), class: "action-link", method: :delete, data: {confirm: t('are_you_sure')} if current_user && current_user.is_admin %>
                 <%= link_to icon('briefcase', text: t(".dashboard")), site_admin_url(subdomain: site), class: "action-link"  if current_user && current_user.has_role_in?(site) %>
-                <%= link_to icon('edit', text: t(".settings")), edit_admin_site_url(site.id, subdomain: nil), class: "action-link" if current_user && current_user.is_admin %>
+                <%= link_to icon('edit', text: t(".settings")), edit_admin_site_path(site.id), class: "action-link" if current_user && current_user.is_admin %>
           </td>
         </tr>
       <% end %>

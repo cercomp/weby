@@ -54,10 +54,10 @@ describe Site do
 
   it { expect(subject).to have_many(:views) }
 
-  it { expect(subject).to have_many(:menus).dependent(:delete_all).order(:id) }
+  it { expect(subject).to have_many(:menus).dependent(:destroy).order(:id) }
   it { expect(subject).to have_many(:menu_items).through(:menus) }
 
-  it { expect(subject).to have_many(:pages).dependent(:delete_all) }
+  it { expect(subject).to have_many(:pages).dependent(:destroy) }
 
   it { expect(subject).to have_many(:pages_i18ns).through(:pages) }
 

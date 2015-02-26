@@ -18,5 +18,16 @@ module Feedback
         errors.add(:base, :need_at_least_one_group)
       end
     end
+
+    def self.import(attrs, _options = {})
+      return attrs.each { |attr| import attr } if attrs.is_a? Array
+
+      attrs = attrs.dup
+      attrs = attrs['message'] if attrs.key?('message') && !attrs.key?('name')
+
+      attrs.except!('id', 'created_at', 'updated_at', 'site_id', 'type')
+
+      self.create!(attrs)
+    end
   end
 end

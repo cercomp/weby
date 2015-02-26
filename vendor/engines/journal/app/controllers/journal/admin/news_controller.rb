@@ -23,7 +23,7 @@ module Journal::Admin
     def recycle_bin
       params[:sort] ||= 'journal_news.deleted_at'
       params[:direction] ||= 'desc'
-      @newslist = Journal::News.where(site_id: current_site).trashed.includes(:user, :categories).
+      @newslist = current_site.news.trashed.includes(:user, :categories).
         order("#{params[:sort]} #{sort_direction}").
         page(params[:page]).per(params[:per_page])
     end
@@ -35,7 +35,7 @@ module Journal::Admin
       end
       params[:direction] ||= 'desc'
 
-      news = Journal::News.where(site_id: current_site).
+      news = current_site.news.
         search(params[:search], 1) # 1 = busca com AND entre termos
 
       if sort_column == 'tags.name'
@@ -51,25 +51,24 @@ module Journal::Admin
 
     # Essa action não chama o get_news pois não faz paginação
     def fronts
-      @newslist = Journal::News.where(site_id: current_site.id).available_fronts.order('position desc')
+      @newslist = current_site.news.available_fronts.order('position desc')
     end
 
     def show
-      @news = Journal::News.where(site_id: current_site).find(params[:id]).in(params[:show_locale])
+      @news = current_site.news.find(params[:id]).in(params[:show_locale])
       respond_with(:admin, @news)
     end
 
     def new
-      @news = Journal::News.new(site_id: current_site)
+      @news = current_site.news.new
     end
 
     def edit
-      @news = Journal::News.where(site_id: current_site).find(params[:id])
+      @news = current_site.news.find(params[:id])
     end
 
     def create
-      @news = Journal::News.new(news_params)
-      @news.site = current_site
+      @news = current_site.news.new(news_params)
       @news.user = current_user
       @news.save
       record_activity('created_news', @news)
@@ -78,7 +77,7 @@ module Journal::Admin
 
     def update
       params[:news][:related_file_ids] ||= []
-      @news = Journal::News.where(site_id: current_site).find(params[:id])
+      @news = current_site.news.find(params[:id])
       @news.update(news_params)
       record_activity('updated_news', @news)
       respond_with(:admin, @news)
@@ -90,7 +89,7 @@ module Journal::Admin
     private :status_types
 
     def destroy
-      @news = Journal::News.unscoped.where(site_id: current_site).find(params[:id])
+      @news = current_site.news.unscoped.find(params[:id])
       if @news.trash
         if @news.persisted?
           record_activity('moved_news_to_recycle_bin', @news)
@@ -107,7 +106,7 @@ module Journal::Admin
     end
 
     def recover
-      @news = Journal::News.where(site_id: current_site).trashed.find(params[:id])
+      @news = current_site.news.trashed.find(params[:id])
       if @news.untrash
         flash[:success] = t('successfully_restored')
       end

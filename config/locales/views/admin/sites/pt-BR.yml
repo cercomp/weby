@@ -18,6 +18,7 @@ pt-BR:
         title:                  " Título "
         settings:               " Configurações "
         no-site-found:          " Nenhum site encontrado."
+        delete:                 " Excluir "
       form:
         example_width:          " Exemplo "
         example_url:            " Exemplo: http://site.com "

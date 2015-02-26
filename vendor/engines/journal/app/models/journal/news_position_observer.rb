@@ -33,7 +33,7 @@ module Journal
     end
 
     def update_fronts_up_me
-      Journal::News.where(site_id: @news.site_id).front.where("position > #{@news.position}")
+      @news.site.news.front.where("position > #{@news.position}")
         .update_all('position = position - 1') if @news.position.present?
     end
 
@@ -42,7 +42,7 @@ module Journal
     end
 
     def last_front_position
-      Journal::News.where(site_id: @news.site_id).front.maximum('position').to_i
+      @news.site.news.front.maximum('position').to_i
     end
   end
 end

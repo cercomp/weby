@@ -13,10 +13,13 @@ class Repository < ActiveRecord::Base
 
   belongs_to :site
 
-  has_many :banners
   has_many :sites, foreign_key: 'top_banner_id', dependent: :nullify
   has_many :posts_repositories, dependent: :destroy
   has_many :posts, through: :posts_repositories
+  # Extensions relations
+  has_many :news, class_name: 'Journal::News', dependent: :nullify
+  has_many :banners, class_name: 'Sticker::Banner', dependent: :nullify
+  has_many :events, class_name: 'Calendar::Event', dependent: :nullify
 
   has_attached_file :archive,
     styles: STYLES,

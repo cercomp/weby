@@ -21,7 +21,7 @@
 
   <%= f.input t(".category"), wrapper: :append do %>
     <%= f.select :category_list,
-      Sticker::Banner.where(site_id: current_site).category_counts, {},
+      current_site.banners.category_counts, {},
       :id => "category", class: 'form-control' %>
     <span class="input-group-btn">
       <%= link_to t(".add_category"), '#', onclick: "addToSelect('#category','#{t(".new_category")}')", :class => 'btn btn-info' %>

@@ -2,7 +2,7 @@
   <%= f.component_i18n_input locale, :label, :as => :string %>
 <% end %>
 
-<% if !(groups = Feedback::Group.where(site_id: current_site.id)).empty? %>
+<% if !(groups = current_site.groups).empty? %>
   <div class="form-group check_boxes optional">
     <label class="check_boxes optional control-label"> <%= t(".group_checked") %> </label>
     <div class="controls">
