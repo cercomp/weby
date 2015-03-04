@@ -28,14 +28,8 @@ module Journal
     scope :published, -> { where(status: 'published') }
     scope :review, -> { where(status: 'review') }
     scope :draft, -> { where(status: 'draft') }
-#    scope :front, -> { }
-#    includes(:sites).where('journal_news_sites.site_id = journal_news_sites.site_id and journal_news_sites.front = true')
-#    scope :no_front, -> { }
     scope :by_user, ->(id) { where(user_id: id) }
 
-
-#    scope :available, -> { where('date_begin_at is NULL OR date_begin_at <= :time', time: Time.now).published }
-#    scope :available_fronts, -> { front.available.where('date_end_at is NULL OR date_end_at > :time', time: Time.now) }
 
     # tipos de busca
     # 0 = "termo1 termo2"

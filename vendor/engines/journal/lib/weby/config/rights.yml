@@ -20,6 +20,11 @@ rights:
         en: Share News
         pt-BR:  Compartilhar Notícias
       action: share
+    unshare:
+      name:
+        en: Unshare News
+        pt-BR:  Descompartilhar Notícias
+      action: unshare
     destroy:
       name: 
         en: Destroy News

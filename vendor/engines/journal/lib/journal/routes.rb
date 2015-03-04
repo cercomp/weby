@@ -28,7 +28,7 @@ module Journal
           get :journal, to: 'news#index'
           resources :news do
             member do
-              put :toggle, :recover, :share
+              put :toggle, :recover, :share, :unshare
             end
             collection do
               get :recycle_bin, :fronts
