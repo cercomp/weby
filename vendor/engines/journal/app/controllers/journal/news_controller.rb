@@ -35,12 +35,22 @@ module Journal
       params[:direction] ||= 'desc'
       # Vai ao banco por linha para recuperar
       # tags e locales
-
-      result = current_site.news.
-           search(params[:search], params.fetch(:search_type, 1).to_i).
-           order(sort_column + ' ' + sort_direction).
-           page(params[:page]).per(params[:per_page])
-      # result = result.tagged_with(tags, any: true) if params[:tags]
+      if params[:tags]
+        news_sites = current_site.news_sites.tagged_with(tags, any: true)
+        @news = []
+        news_sites.each do |sites|
+          @news << sites.journal_news_id
+        end
+        result = current_site.news.where('journal_news.id in (?)', @news).
+             search(params[:search], params.fetch(:search_type, 1).to_i).
+             order(sort_column + ' ' + sort_direction).
+             page(params[:page]).per(params[:per_page])
+      else
+        result = current_site.news.
+            search(params[:search], params.fetch(:search_type, 1).to_i).
+            order(sort_column + ' ' + sort_direction).
+            page(params[:page]).per(params[:per_page])
+      end
       result
     end
 

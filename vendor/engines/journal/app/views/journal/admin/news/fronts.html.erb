@@ -3,7 +3,7 @@
 <div class="row" style="margin-bottom: 15px">
   <div class="col-md-7">
     <%= select_tag "filter-category",
-       options_for_select(Journal::NewsSite.where(site_id: current_site.id).uniq_category_counts.map{|c| [c.name, c.name.parameterize] }),
+       options_for_select(current_site.news_sites.uniq_category_counts.map{|c| [c.name, c.name.parameterize] }),
       include_blank: false,
       class: 'form-control select2 input-xlarge',
       multiple: true %>

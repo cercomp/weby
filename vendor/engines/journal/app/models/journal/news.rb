@@ -36,7 +36,7 @@ module Journal
     scope :search, ->(param, search_type) {
       if param.present?
         fields = ['journal_news_i18ns.title', 'journal_news_i18ns.summary', 'journal_news_i18ns.text',
-                  'users.first_name', 'tags.name']
+                  'users.first_name']
         query, values = '', {}
         case search_type
         when 0
@@ -53,9 +53,9 @@ module Journal
             })"
           end.join(' OR ')
         end
-        includes(:user, :categories, :i18ns, :locales)
+        includes(:user, :i18ns, :locales)
         .where(query, values)
-        .references(:user, :categories, :i18ns)
+        .references(:user, :i18ns)
       end
     }
 
@@ -83,7 +83,7 @@ module Journal
         i18n['text'] = i18n['text'].gsub(/\/up\/[0-9]+/) {|x| "/up/#{options[:site_id]}"} if i18n['text']
         self::I18ns.new(i18n.except('id', 'type', 'created_at', 'updated_at', 'journal_news_id'))
       end
-      attrs['category_list'] = attrs.delete('categories').to_a.map { |category| category['name'] }
+      # attrs['category_list'] = attrs.delete('categories').to_a.map { |category| category['name'] }
       attrs['related_file_ids'] = attrs.delete('related_files').to_a.map {|repo| Import::Application::CONVAR["repository"]["#{repo['id']}"] }
 
       self.create!(attrs)
