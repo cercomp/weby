@@ -34,7 +34,8 @@
             <% end %>
           </td>
           <td><%= news.user.first_name %></td>
-          <td><%= raw categories_links(news.category_list) %></td>
+          <% @news_site = Journal::NewsSite.find_by(journal_news_id: news.id, site_id: current_site.id) %>
+          <td><%= raw categories_links(@news_site.category_list) %></td>
           <td><%= l(news.created_at, :format => :short) %></td>
           <% with_permission(action: :edit) do %>
             <td class="front" style="text-align:center;">

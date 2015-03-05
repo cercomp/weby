@@ -1,9 +1,3 @@
-<% #@news = []
-   # @newslist.each do |news_site|
-   #    @news << news_site
-   # end
-   # @newslist = @news
-%>
 <%  info_page @newslist %>
 <div class="search-results">
 <% if @newslist.each do |news| %>
@@ -21,7 +15,8 @@
     <summary>
       <%= raw news.summary %>
     </summary>
-    <% news.category_list.each do |category| %>
+    <% @news_site = Journal::NewsSite.find_by(journal_news_id: news.id, site_id: current_site.id) %>
+    <% @news_site.category_list.each do |category| %>
       <span class="category"><%= link_to category , news_index_path( tags: category.to_s ), class: 'weby-label default' %></span>
     <% end %>
     <p class="read_more"><%#= link_to t(".read_more"), news_path(news) %></p>

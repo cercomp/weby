@@ -3,6 +3,9 @@ module Journal
     belongs_to :site
     belongs_to :news, class_name: "::Journal::News", foreign_key: "journal_news_id"
 
+    acts_as_taggable_on :categories
+    acts_as_multisite
+
     validate :validate_position
 
     private
@@ -21,7 +24,19 @@ module Journal
     # 0 = "termo1 termo2"
     # 1 = termo1 AND termo2
     # 2 = termo1 OR termo2
-    
+
+    def self.uniq_category_counts
+      category_counts.each_with_object(Hash.new) do |j, hash|
+        name = j.name.upcase
+        if hash[name]
+          hash[name].count += j.count
+        else
+          hash[name] = j
+        end
+        hash
+      end.values
+    end
+
     def last_front_position
       @news_site = Journal::NewsSite.where(site: self.site_id).front
       @news_site.maximum('position').to_i

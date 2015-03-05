@@ -3,7 +3,7 @@
 <div class="row" style="margin-bottom: 15px">
   <div class="col-md-7">
     <%= select_tag "filter-category",
-      options_for_select(current_site.news.uniq_category_counts.map{|c| [c.name, c.name.parameterize] }),
+       options_for_select(Journal::NewsSite.where(site_id: current_site.id).uniq_category_counts.map{|c| [c.name, c.name.parameterize] }),
       include_blank: false,
       class: 'form-control select2 input-xlarge',
       multiple: true %>
@@ -48,7 +48,7 @@
     <tbody>
       <% @newslist.each do |news_site| %>
       <% news = news_site.news %>
-        <tr id="sort_news_<%= news.id %>" class="sort_news <%= news.category_list.map{|categ| categ.parameterize }.join(' ') %>">
+        <tr id="sort_news_<%= news.id %>" class="sort_news <%= news_site.category_list.map{|categ| categ.parameterize }.join(' ') %>">
           <td>            
             <% if news.site_id == current_site.id %>
             <%=   link_to news.title, edit_admin_news_path(news) %>
@@ -58,7 +58,7 @@
             <%    end %>
           </td>
           <td><%= news.user.first_name %></td>
-          <td><%= raw categories_links(news.category_list) %></td>
+          <td><%= raw categories_links(news_site.category_list) %></td>
           <td><%= l(news.created_at, :format => :short) %></td>          
           <% with_permission(action: :edit) do %>
             <td class="publish" style="text-align:center;">

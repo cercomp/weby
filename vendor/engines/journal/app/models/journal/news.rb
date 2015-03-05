@@ -7,9 +7,7 @@ module Journal
 
     STATUS_LIST = %w(draft review published)
 
-    acts_as_taggable_on :categories
-    acts_as_multisite
-
+    
     belongs_to :site
     belongs_to :user
     
@@ -17,7 +15,7 @@ module Journal
     has_many :menu_items, as: :target, dependent: :nullify
     has_many :posts_repositories, as: :post, dependent: :destroy
     has_many :related_files, through: :posts_repositories, source: :repository
-    has_many :news_sites, foreign_key: :journal_news_id
+    has_many :news_sites, foreign_key: :journal_news_id, class_name: "::Journal::NewsSite"
     has_many :sites, :through => :news_sites
     
     # Validations
@@ -118,6 +116,8 @@ module Journal
         url
       end
     end
+
+    accepts_nested_attributes_for :news_sites, allow_destroy: true
 
     private
 
