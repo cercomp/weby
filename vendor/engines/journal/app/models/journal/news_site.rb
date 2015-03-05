@@ -6,6 +6,9 @@ module Journal
     acts_as_taggable_on :categories
     acts_as_multisite
 
+    acts_as_taggable_on :categories
+    acts_as_multisite
+
     validate :validate_position
 
     private

@@ -12,6 +12,10 @@
 
   <%= f.input :url, wrapper_html: {class: 'side'}, placeholder: "http://site.com" %>
 
+  <%= f.simple_fields_for(:news_sites, @news.news_sites.where(site: current_site)) do |g| %>
+        <%= g.input :id, as: :hidden %>
+    <%= g.input :category_list, :hint => t(".page_categories_help"), input_html: {class: 'input-xlarge input-category', data: {tags: Journal::NewsSite.uniq_category_counts.map{|t| t.name }}} %>
+  <%  end %>
   <%= f.input :status, collection: @status_types, include_blank: false %>
 
   <%= f.simple_fields_for(:news_sites, @news.news_sites) do |g| %>
