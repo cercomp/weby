@@ -30,3 +30,8 @@ pt-BR:
         text:            "Texto"
         title:           "Título"
         _destroy:        "Remover"
+      "journal/news_site":
+        date_begin_at:   "Data de início"
+        date_end_at:     "Data final de capa"
+        front:           "Capa"
+        category_list:   "Categorias"

@@ -17,11 +17,20 @@
   <%  end %>
   <%= f.input :status, collection: @status_types, include_blank: false %>
 
-  <%= f.input :date_begin_at, :hint => t(".date_begin_hint") %>
+  <%= f.simple_fields_for(:news_sites, @news.news_sites.where(site: current_site)) do |g| %>
+    <%= g.input :id, as: :hidden %>
+    <%= g.input :date_begin_at, :hint => t(".date_begin_hint") %>
+  <%  end %>
 
-  <%= f.input :front %>
+  <%= f.simple_fields_for(:news_sites, @news.news_sites.where(site: current_site)) do |g| %>
+      <%= g.input :id, as: :hidden %>
+      <%= g.input :front %>
+  <%  end %>
 
-  <%= f.input :date_end_at, :hint => t(".date_end_hint") %>
+  <%= f.simple_fields_for(:news_sites, @news.news_sites.where(site: current_site)) do |g| %>
+      <%= g.input :id, as: :hidden %>
+      <%= g.input :date_end_at, :hint => t(".date_end_hint") %>
+  <%  end %>
   
   <%= repository_search t(".related_files"),
     "related_file_ids", "news[related_file_ids][]", @news.related_files,

@@ -452,11 +452,11 @@ module ApplicationHelper
         field: field
       )
       if test_permission (options[:controller] || controller_name), action
-        checkbox = check_box_tag(field, resource[field], resource[field], check_box_options)
+         checkbox = check_box_tag(field, resource[field], resource[field], check_box_options)
         html << link_to(checkbox, url_options, link_options)
       else
         check_box_options = check_box_options.merge(disabled: true)
-        html << check_box_tag(field, resource[field], resource[field], check_box_options)
+         html << check_box_tag(field, resource[field], resource[field], check_box_options)
       end
     end
   end
