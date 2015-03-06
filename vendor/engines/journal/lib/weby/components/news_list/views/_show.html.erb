@@ -6,7 +6,8 @@
     <tr>
       <th> <%= link_to(component.title_for_link || t(".last_news"), news_index_path(direction: 'desc', sort: 'journal_news.created_at', tags: component.category)) %> </th>
     </tr>
-    <% @news_list.try(:each) do |news| %>
+    <% @news_list.try(:each) do |news_sites| %>
+        <% news = news_sites.news %>
       <tr>
         <td>
           <% if component.show_image && news.image %>
