@@ -6,8 +6,8 @@ class Sites::Admin::ComponentsController < ApplicationController
   before_action :check_authorization
 
   def index
-    @components = @site.components.order('position asc')
-    @placeholders = Weby::Themes.layout(current_site.theme)['placeholders']
+    @components = current_site.components.order(position: :asc)
+    @placeholders = current_site.theme.layout['placeholders']
   end
 
   def show
@@ -37,6 +37,7 @@ class Sites::Admin::ComponentsController < ApplicationController
       # creates an new instance of the selected component
       @component = Weby::Components.factory(params[:component])
       @component.attributes = component_params
+      @component.theme = current_site.theme.base
 
       if @component.save
         record_activity('created_component', @component)

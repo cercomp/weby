@@ -64,7 +64,13 @@ module Weby
 
       def content_for_components(place, comps)
         comps.each do |compo_setting|
-          comp = compo_setting[:component]
+
+          comp = if compo_setting[:component].is_a?(Component)
+                   compo_setting[:component]
+                 else
+                   compo_setting.delete('menu')
+                   Component.new(compo_setting)
+                 end
           if Weby::Components.is_enabled?(comp.name)
             visible = comp.visibility == 1 ? current_page?(main_app.site_path) : comp.visibility == 2 ? !current_page?(main_app.site_path) : comp.visibility == 0
             if visible
@@ -74,7 +80,7 @@ module Weby
               content_for "layout_#{place}".to_sym, render_component(Weby::Components.factory(comp))
             end
           end
-        end
+        end if comps
       end
       private :content_for_components
 

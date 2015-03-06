@@ -1,0 +1,57 @@
+<% content_for :javascripts do %>
+<script>
+  $('.btn-apply').click(function(){
+    $.ajax('<%= site_admin_themes_path %>',
+            {method: 'POST', data: {theme: {name: $(this).data('theme')}}}
+    ).done(function(data){
+       alert(data);
+    });
+  });
+</script>
+<% end %>
+<% title ".themes" %>
+<% breadcrumb params[:search].present? ? :themes_search : :themes, params[:search] %>
+<div class="row">
+  <div class="col-md-5">
+    <%= form_tag site_admin_themes_path, method: 'get', autocapitalize: "off", class: 'search' do %>
+        <%= search_input params[:search] %>
+    <% end %>
+  </div>
+  <div class="col-md-7">
+    <div class="pull-right">
+      <% with_permission(action: :new) do %>
+          <%= link_to t(".new_theme"),
+                      new_site_admin_theme_path,
+                      class: "btn btn-success" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <% @themes.each do |theme| %>
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <h3 class="text-center"><%= theme.name %></h3>
+        <%= raw make_mini_layout theme, 270 %>
+        <div class="caption">
+          <% if theme.name == current_site.theme.base %>
+              <h5 class="text-success text-center">Tema atual</h5>
+          <% else %>
+            <div class="btn-group btn-group-justified" role="group" aria-label="...">
+              <div class="btn-group" role="group">
+                <%= link_to 'Visualizar', site_path(preview_theme: theme.name), class: 'btn btn-default', target: :blank %>
+              </div>
+              <div class="btn-group" role="group">
+                <%= simple_form_for current_site.theme, url: apply_site_admin_theme_path(theme.name), method: :post do |f| %>
+                  <button type="submit" class="btn btn-success" data-theme="<%=theme.name %>">Aplicar</button>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<% content_for :javascripts, javascript_include_tag('repositories.index') %>

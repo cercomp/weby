@@ -11,6 +11,7 @@ class Site < ActiveRecord::Base
   has_many :pages, -> { includes(:i18ns) }, dependent: :destroy
   has_many :pages_i18ns, through: :pages, source: :i18ns
   has_many :styles, -> { order('styles.position DESC') }, dependent: :destroy
+<<<<<<< HEAD
   has_many :components, -> { order(:place_holder, :position) }, dependent: :destroy
   has_many :root_components, -> { order(:position).where("place_holder !~ '^\\d*$'") }, class_name: 'Component'
   has_many :repositories, dependent: :destroy
@@ -23,6 +24,13 @@ class Site < ActiveRecord::Base
   has_many :news, class_name: 'Journal::News', dependent: :destroy
   has_many :banners, class_name: 'Sticker::Banner', dependent: :destroy
   has_many :events, class_name: 'Calendar::Event', dependent: :destroy
+=======
+  has_many :components, ->(site) { site.theme ? order(:place_holder, :position).where(theme: site.theme.base) : where(nil) }, dependent: :destroy
+  has_many :root_components, ->(site) { site.theme ? order(:position).where("place_holder !~ '^\\d*$'").where(theme: site.theme.base) : where(nil) }, class_name: 'Component'
+  has_many :repositories
+  has_many :extensions
+  has_one :theme
+>>>>>>> Start to change theme feature
 
   has_and_belongs_to_many :locales
   has_and_belongs_to_many :groupings

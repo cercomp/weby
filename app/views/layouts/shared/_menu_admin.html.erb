@@ -10,6 +10,7 @@
           <%= menu_item_to t(".dashboard"), main_app.site_admin_path %>
         </div>
         <%= menu_item_to t(".users"), main_app.manage_roles_site_admin_users_path if check_permission(Sites::Admin::UsersController, [:manage_roles])%>
+        <%= menu_item_to t(".themes"), main_app.site_admin_themes_path if check_permission(Sites::Admin::ThemesController, [:index])%>
         <%= menu_item_to t(".components"), main_app.site_admin_components_path if check_permission(Sites::Admin::ComponentsController, [:index])%>
         <%= menu_item_to t(".styles"), main_app.site_admin_styles_path if check_permission(Sites::Admin::StylesController, [:index])%>
         <%#= menu_item_to t(".statistics"), main_app.site_admin_stats_path if check_permission(Sites::Admin::StatisticsController, [:index])%>

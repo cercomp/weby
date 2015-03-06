@@ -1,19 +1,23 @@
 class Weby::Theme
-  attr_reader :components, :extensions, :site
+  attr_reader :name, :components, :extensions, :variables, :layout, :template
 
-  def initialize(site)
+  def initialize(name)
+    @name = name
+    @extensions = YAML.load_file Rails.root.join("lib/weby/themes/#{@name}/extensions.yml")
+    @components = YAML.load_file Rails.root.join("lib/weby/themes/#{@name}/components.yml")
+    @layout = YAML.load_file Rails.root.join("lib/weby/themes/#{@name}/layout.yml")
+    @template = "lib/weby/themes/#{@name}/layouts/#{@name}.html.erb"
+  end
+
+  def populate site
     @site = site
-    @extensions_yaml = "lib/weby/themes/#{@site.theme}/extensions.yml"
-    @components_yaml = "lib/weby/themes/#{@site.theme}/components.yml"
+    populate_extensions if @extensions
+    populate_components if @components
   end
 
-  def populate
-    extensions if File.exist? @extensions_yaml
-    components if File.exist? @components_yaml
-    Weby::Rights.seed_roles @site.id
-  end
+  private
 
-  def components
+  def populate_components
     default_footer = {}
     @site.locales.each do |locale|
       I18n.with_locale(locale.name) do
@@ -21,10 +25,11 @@ class Weby::Theme
       end
     end
 
-    f = Rails.root.join(@components_yaml).to_s
-    YAML.load_file(f).each do |place, comps|
+    return if @site.components.where(theme: @name).any? #@site.components.where(theme: @name).destroy_all
+    @components.each do |place, comps|
       comps.each do |component|
         component['place_holder'] = place
+        component['theme'] = @name
         if component['name'] == 'menu'
           menu = @site.menus.create(component.delete('menu'))
           component['settings'] = I18n.interpolate(component['settings'], menu_id: menu.id)
@@ -37,9 +42,8 @@ class Weby::Theme
     end
   end
 
-  def extensions
-    f = Rails.root.join(@extensions_yaml).to_s
-    YAML.load_file(f).each do |extension|
+  def populate_extensions
+    @extensions.each do |extension|
       @site.extensions.create(extension)
     end
   end

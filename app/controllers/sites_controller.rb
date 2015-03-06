@@ -59,7 +59,6 @@ class SitesController < ApplicationController
 
   def edit
     @site = current_site
-    load_themes
     @sites = @site.subsites
       .except(:order)
       .order("#{sort_column} #{sort_direction}")
@@ -76,7 +75,6 @@ class SitesController < ApplicationController
       flash[:success] = t('successfully_updated')
       redirect_to edit_site_admin_url(subdomain: @site)
     else
-      load_themes
       render :edit, layout: 'application'
     end
   end
@@ -85,10 +83,6 @@ class SitesController < ApplicationController
 
   def sort_column
     Site.column_names.include?(params[:sort]) ? params[:sort] : 'id'
-  end
-
-  def load_themes
-    @themes = Weby::Themes.all
   end
 
   def site_params

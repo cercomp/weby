@@ -1,13 +1,15 @@
 module ComponentsHelper
   # returns the mini layout  divs ---  The menu that attaches an component to a block
-  def make_mini_layout
-    content_for :stylesheets, stylesheet_link_tag('mini_layout')
-    config = Weby::Themes.layout current_site.theme
-    divs = "<div id='mini_layout' style='width: #{config['width'] || 500}px'>"
+  def make_mini_layout theme = nil, width = nil
+    theme ||= current_site.theme
+    width ||= theme.layout['width'] || 500
 
-    config['placeholders'].map do |placeholders|
+    content_for :stylesheets, stylesheet_link_tag('mini_layout')
+    divs = "<div id='mini_layout' style='width: #{width}px'>"
+
+    theme.layout['placeholders'].map do |placeholders|
       divs += "<div class='mini_level' style='height:#{placeholders['height'] || 25}px'>"
-      divs += make_placeholders_divs(placeholders, config['width'] || 500)
+      divs += make_placeholders_divs(theme, placeholders, width)
       divs += '</div>'
     end
 
@@ -69,7 +71,7 @@ module ComponentsHelper
   end
 
   # Generate the mini-layout view so  the user can choose the placeholder
-  def make_placeholders_divs(placeholders, width)
+  def make_placeholders_divs(theme, placeholders, width)
     divs = ''
     placeholders['names'].map do |name|
       divs += "<div
@@ -81,7 +83,7 @@ module ComponentsHelper
                                     (placeholders['widths'][placeholders['names'].index(name)].to_s + '%')
                                   end };
                    height:#{placeholders['height'] || 25}px;'>
-               #{t("themes.#{current_site.theme}.placeholders.#{name}")}  </div>"
+               #{t("themes.#{theme.name}.placeholders.#{name}")}  </div>"
     end
     divs
   end

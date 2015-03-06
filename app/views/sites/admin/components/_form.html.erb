@@ -30,7 +30,7 @@
             <%= group ? (group.alias.present? ? group.alias : t("components.#{group.name}.name")) : params[:placeholder] %>"/>
         <% else %>
           <input type="text"disabled="true" class="form-control" value="
-            <%= t("themes.#{current_site.theme}.placeholders.#{@component.place_holder}", :default => @component.place_holder) %>"/>
+            <%= t("themes.#{current_site.theme.base}.placeholders.#{@component.place_holder}", :default => @component.place_holder) %>"/>
         <% end %>
       <% else %>
         <% if @component.place_holder.to_s.match(/^\d*$/) and (group = current_site.components.find_by(id: @component.place_holder.to_i)) %>

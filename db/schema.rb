@@ -83,8 +83,9 @@ ActiveRecord::Schema.define(version: 20150224174414) do
     t.boolean  "publish",      default: true
     t.integer  "visibility",   default: 0
     t.string   "alias"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "theme"
   end
 
   add_index "components", ["site_id"], name: "index_components_on_site_id", using: :btree
@@ -453,6 +454,20 @@ ActiveRecord::Schema.define(version: 20150224174414) do
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
+
+  create_table "themes", force: true do |t|
+    t.integer  "site_id"
+    t.string   "name"
+    t.string   "base"
+    t.text     "components"
+    t.text     "layout"
+    t.text     "variables"
+    t.text     "css"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "themes", ["site_id"], name: "index_themes_on_site_id", using: :btree
 
   create_table "user_login_histories", force: true do |t|
     t.integer  "user_id",    null: false

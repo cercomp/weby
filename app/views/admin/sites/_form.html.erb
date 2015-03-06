@@ -11,7 +11,6 @@
   <%= f.input :description, :input_html => {:rows => 8}, :hint => t(".site_comments"), :as => :text %>
   <%= f.input :view_desc_pages, :hint => t(".view_desc_pages_help"), :as => :boolean, wrapper: :checkbox %>
 
-  <%= f.input :theme, :collection => @themes.collect{|name| [t("themes.#{name}.title"), name]} %>
   <%= f.input :body_width, :hint => t(".example_width") %>
   <%= f.input :per_page,  :hint => t(".example_per_page") %>
   <%= f.input :per_page_default,  :required => true %>
