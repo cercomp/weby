@@ -19,8 +19,7 @@ Gemfile-ext
 # Ignore all logfiles and tempfiles.
 /log/*.log
 .idea
-tmp
-nbproject
+/tmp
 
 # Ignore uploads
 /public/uploads/
