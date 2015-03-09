@@ -19,7 +19,7 @@ Gemfile-ext
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
-
+.idea
 # Ignore uploads
 /public/uploads/
 /public/up/
