@@ -13,7 +13,7 @@
        <span class="author"><%= t("posted_by") %><%= @news.user %></span>
     <% end %>
     <% if @news.published? %>
-       <span class="date"><%= t(".updated_at") %><%= l((@page.i18ns.first.updated_at.blank? ? @page.i18ns.first.created_at : @page.i18ns.first.updated_at), format: :short) %>.</span>
+       <span class="date"><%= t(".updated_at") %><%= l((@news.i18ns.first.updated_at.blank? ? @news.i18ns.first.created_at : @news.i18ns.first.updated_at), format: :short) %>.</span>
     <% end %>
     </div>
   <% end %>
