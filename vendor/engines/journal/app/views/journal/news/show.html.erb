@@ -12,7 +12,7 @@
     <% if current_site.view_desc_pages %>
        <span class="author"><%= t("posted_by") %><%= @news.user %></span>
     <% end %>
-    <% if @news.published? %>
+    <% if @news.published? and (!@news.i18ns.first.created_at.nil? || !@news.i18ns.first.updated_at.nil?) %>
        <span class="date"><%= t(".updated_at") %><%= l((@news.i18ns.first.updated_at.blank? ? @news.i18ns.first.created_at : @news.i18ns.first.updated_at), format: :short) %>.</span>
     <% end %>
     </div>
