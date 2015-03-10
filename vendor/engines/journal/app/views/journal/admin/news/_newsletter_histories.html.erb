@@ -1,0 +1,55 @@
+<!-- Modal -->
+<div class="modal fade" id="historiesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"><%= t('.histories') %></h4>
+      </div>
+      <div class="modal-body">
+        <%  @sites = current_user ? current_user.sites : [] %>
+        <% if @histories.empty? %>
+            <div class="alert alert-warning">
+              <%= t('.histories_not_found') %>
+            </div>
+        <% else %>          
+          <div class="clearfix"></div>
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <%= t(".detail") %>
+              <div class="col-md-3"><%= t(".user") %></div>
+              <div class="col-md-3"><%= t(".date") %></div>
+              <div class="col-md-3"><%= t(".time") %></div>
+            </div>
+            <div class="panel-body">
+              <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <% @histories.each do |hist| %>
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="heading<%= hist.id %>">
+                      <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= hist.id %>" aria-expanded="true" aria-controls="collapse<%= hist.id%>">
+                          <span class="glyphicon glyphicon-eye-open"></span>
+                          <div class="col-md-3"><%= hist.user.login %></div>
+                          <div class="col-md-3"><%= hist.created_at.strftime('%d/%m/%Y') %></div>
+                          <div class="col-md-3"><%= hist.created_at.strftime('%H:%M') %></div>
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapse<%= hist.id %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<%= hist.id %>">
+                      <div class="panel-body">
+                        <%= Journal::Newsletter.selected_emails(hist.emails) %>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+            <div class="painel-footer" align="right">
+              <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('close') %></button>
+            </div>
+            <div class="clearfix"></div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
