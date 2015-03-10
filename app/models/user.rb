@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   has_many :news, class_name: 'Journal::News', dependent: :restrict_with_error
   has_many :banners, class_name: 'Sticker::Banner', dependent: :restrict_with_error
   has_many :events, class_name: 'Calendar::Event', dependent: :restrict_with_error
+  has_many :journal_newsletter_histories
 
   has_and_belongs_to_many :roles
 

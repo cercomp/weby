@@ -28,6 +28,11 @@ crumb :news_fronts do
   parent :news
 end
 
+crumb :news_newsletter do |news|
+  link t('breadcrumbs.newsletter'), newsletter_admin_news_path(news)
+  parent :news
+end
+
 crumb :news_recycle_bin do
   link t('recycle_bin')
   parent :news

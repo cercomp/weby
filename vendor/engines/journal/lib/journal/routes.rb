@@ -29,9 +29,11 @@ module Journal
           resources :news do
             member do
               put :toggle, :recover, :share, :unshare
+              get :newsletter
+              post :newsletter_histories
             end
             collection do
-              get :recycle_bin, :fronts, :newsletter
+              get :recycle_bin, :fronts
               post :sort
             end
           end
@@ -44,7 +46,7 @@ module Journal
         get :news, to: 'journal/news#index', as: :news_index
         get '/feed' => 'journal/news#index', as: :site_feed,
             defaults: { format: 'rss', per_page: 10, page: 1 }
-	resources :newsletters, module: :journal, only: [:new, :show, :edit]
+        resources :newsletters, module: :journal, only: [:new, :show]
       end
     end
   end

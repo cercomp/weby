@@ -15,7 +15,7 @@ module Journal
         add_record.token = Digest::SHA1.hexdigest([Time.now, rand].join)
         add_record.confirm = false
         if add_record.save
-          WebyMailer.confirm_email(add_record, current_site.url).deliver
+          NewsletterMailer.confirm_email(add_record, current_site.url).deliver
           redirect_to :back, flash: { success: t('activation_sent_successful') }
         else
   	redirect_to :back, flash: { error: t('error_creating_object') }
@@ -37,10 +37,5 @@ module Journal
         end
       end
     end
-
-    def edit
-      puts "**************Acessando rotina Edit****************"
-    end
-
   end
 end

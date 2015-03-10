@@ -5,7 +5,6 @@ pt-BR:
   activerecord:
     attributes:
       newsletter_component:
-
   newsletter:
     views:
       show:

@@ -154,6 +154,24 @@ module Journal::Admin
       respond_with(:admin, @news)
     end
 
+    def newsletter_histories
+      if (params[:from].blank? || params[:to].blank? || params[:subject].blank?) 
+        flash[:error] = t('.field_blank')
+        redirect_to :back
+      else
+        history = Journal::NewsletterHistories.new
+        history.site_id = current_site.id 
+        history.news_id = params[:id]
+	history.user_id = current_user.id
+        history.emails = params[:ids]
+        history.save
+        news = Journal::News.where(site_id: current_site).find(params[:id]).in(params[:show_locale])
+        Journal::NewsletterMailer.news_email(params[:from], params[:to], params[:subject], current_site, news).deliver
+        flash[:success] = t('.successfully_send')
+        redirect_to admin_news_index_path
+      end
+    end
+
     private
 
     def sort_column

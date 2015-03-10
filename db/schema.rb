@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150119171924) do
+ActiveRecord::Schema.define(version: 20150224174414) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -189,6 +189,25 @@ ActiveRecord::Schema.define(version: 20150119171924) do
     t.datetime "updated_at"
   end
 
+  create_table "journal_newsletter_histories", force: true do |t|
+    t.integer  "site_id"
+    t.integer  "news_id"
+    t.integer  "user_id"
+    t.text     "emails"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "journal_newsletters", force: true do |t|
+    t.integer  "site_id"
+    t.string   "group"
+    t.string   "email"
+    t.string   "token"
+    t.boolean  "confirm"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   add_index "journal_news_sites", ["journal_news_id", "site_id"], name: "index_journal_news_sites_on_journal_news_id_and_site_id", using: :btree
 
   create_table "locales", force: true do |t|
@@ -245,16 +264,6 @@ ActiveRecord::Schema.define(version: 20150119171924) do
   end
 
   add_index "menus", ["site_id"], name: "index_menus_on_site_id", using: :btree
-
-  create_table "newsletters", force: true do |t|
-    t.integer  "site_id"
-    t.string   "group"
-    t.string   "email"
-    t.string   "token"
-    t.boolean  "confirm"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "notifications", force: true do |t|
     t.string   "title"

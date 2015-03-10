@@ -202,15 +202,18 @@ module ApplicationHelper
               class: 'action-link') + ' '
  
           when :newsletter
-            menu << link_to(
-              icon('envelope', text: args[:with_text] ? t('newsletter') : ''),
-              params.merge(
-                controller: ctrl.controller_name,
-                action: 'newsletter', id: obj.id
-              ),
-              alt: t('newsletter'),
-              title: t('newsletter'),
-              class: 'action-link') + ' '
+            @newsletter = current_site.components.find_by(name: 'newsletter', publish: true)
+            if !@newsletter.nil?
+              menu << link_to(
+                icon(Journal::NewsletterHistories.sent(current_site.id, obj.id).count == 0 ? 'envelope' : 'ok', text: args[:with_text] ? t('.newsletter') : ''),
+                params.merge(
+                  controller: ctrl.controller_name, 
+                  action: 'newsletter', id: obj.id
+                ),
+                alt: t('newsletter'),
+                title: t('letter'),
+                class: 'action-link') + ' '
+            end
           end
         end
       end

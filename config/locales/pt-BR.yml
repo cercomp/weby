@@ -64,6 +64,7 @@ pt-BR:
 #---K---#
 #---L---#
   layout:                               " Layout "
+  letter:                               " Newsletter "
   list_all:                             " Mostrar todos "
   lower_upper_number_chars:             " Deve conter pelo menos uma letra maiúscula, uma minúscula e um número! "
   login:                                " Entrar "
@@ -86,7 +87,6 @@ pt-BR:
   need_login:                           " Você deve estar logado para acessar essa página. "
   need_at_least_one_i18n:               " Necessita de conteúdo em pelo menos um idioma "
   none_user:                            " Nenhum Usuário "
-  newsletter:                           " Newsletter"
 #---O---#
   ok:                                   " OK "
   of:                                   " de "

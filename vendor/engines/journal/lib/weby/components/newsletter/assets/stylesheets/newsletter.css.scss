@@ -1,5 +1,8 @@
 .newsletter_component {
+  max-width: 300px;
+
   input#email{
-    width: 90%;
+    box-sizing: border-box;
+    width: 100%;
   }
 }

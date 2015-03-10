@@ -185,4 +185,13 @@ module RepositoryHelper
       weby_file_view(file, format, width, height, options)
     end
   end
+
+  def full_url_image(text, url)
+    position = 0
+    while !text.index("src=",position).nil? do
+      text.insert(text.index("src=", position)+5, url+':3000') 
+      position = text.index("src=", position)+5
+    end
+    return text
+  end
 end
