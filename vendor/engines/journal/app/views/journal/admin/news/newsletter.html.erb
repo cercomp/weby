@@ -1,35 +1,31 @@
 <% if(current_site.components.find_by(name: 'newsletter', publish: true)) %>
   <% breadcrumb :news_newsletter, @news %>
-  <% component = Weby::Components.factory(current_site.components.find_by_name('newsletter')) %>
-  <% @ids = Journal::Newsletter.by_site(current_site.id).ids.join(",") %>
-  <% @emails = Journal::Newsletter.show_emails(current_site.id) %>
   <%= form_tag :newsletter_histories_admin_news, method: :post do %>
     <div class="form-group">
       <div class="row">
         <div class="col-md-2"><label for="from"><%= t('.from') %></label></div>
-        <div class="col-md-6"><input type="text" name="from" class="form-control" value="<%= component.email %>"></div>
+        <div class="col-md-6"><input type="text" name="from" class="form-control" value="<%= @newsletter.email %>"></div>
       </div>
       <div class="row">
         <div class="col-md-2"><label for="to"><%= t('.to') %></label></div>
         <div class="col-md-6">
-          <textarea readonly name="to" class="form-control" rows="2"><%= @emails %></textarea>
+          <textarea readonly id="emails_to" name="to" class="form-control" rows="2"><%= @emails_value %></textarea>
         </div>
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#emailsModal">
           <%= t('.select_emails') %>
         </button>
-        <input type="input" name="ids" value=<%= @ids %>>
+        <input type="hidden" id="id_emails_to" name="ids" value=<%= @emails_id %>>
       </div>
       <div class="row">
         <div class="col-md-2"><label for="subject"><%= t('.subject') %></label></div>
-        <div class="col-md-10"><input type="text" name="subject" class="form-control" value="<%= component.subject=="1" ? @news.title : " " %>"></div>
+        <div class="col-md-10"><input type="text" name="subject" class="form-control" value="<%= @newsletter.subject=="1" ? @news.title : " " %>"></div>
       </div>
     </div>
     <br>
     <article class="news-show">
       <%= render 'show' %>
     </article>
-    <% @histories = Journal::NewsletterHistories.sent(current_site.id, @news.id) %>
     <div class="form-action">
       <input type="submit" class="btn btn-primary" value=<%= t(".send") %> >
       <%= link_to t("back"), :back, class: "btn btn-default" %>
@@ -44,3 +40,4 @@
     </div>
   <% end %>
 <% end %>
+<% content_for :javascripts, javascript_include_tag('journal/admin.news.newsletter') %>
