@@ -74,6 +74,7 @@ module Journal::Admin
         @news.sites << Site.find(params[:site_id])
         @news_site = Journal::NewsSite.where(news: params[:id], site: params[:site_id]).first
         @news_site.front = true
+        @news_site.taggle(params[:tag])
         @news_site.save
       end
        redirect_to :back
