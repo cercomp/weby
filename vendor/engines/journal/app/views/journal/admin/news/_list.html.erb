@@ -34,7 +34,7 @@
             <% end %>
           </td>
           <td><%= news.user.first_name %></td>
-          <% @news_site = news.news_sites.find_by(site_id: news.site_id) %>
+          <% @news_site = news.news_sites.find_by(site_id: current_site.    id) %>
           <td><%= raw categories_links(@news_site.category_list) %></td>
           <td><%= l(news.created_at, :format => :short) %></td>
           <% with_permission(action: :edit) do %>

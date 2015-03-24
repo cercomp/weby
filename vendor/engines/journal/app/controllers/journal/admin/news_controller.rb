@@ -35,7 +35,13 @@ module Journal::Admin
       end
       params[:direction] ||= 'desc'
 
-      news = current_site.news.
+      news_sites = current_site.news_sites
+      @news = []
+      news_sites.each do |sites|
+        @news << sites.journal_news_id
+      end
+
+      news = current_site.news.where('journal_news.id in (?)', @news).
         search(params[:search], 1) # 1 = busca com AND entre termos
 
       if sort_column == 'tags.name'
@@ -47,6 +53,7 @@ module Journal::Admin
 
       news = news.order(sort_column + ' ' + sort_direction).page(params[:page]).per(params[:per_page])
     end
+
     private :get_news
 
     # Essa action não chama o get_news pois não faz paginação
@@ -74,7 +81,7 @@ module Journal::Admin
         @news.sites << Site.find(params[:site_id])
         @news_site = Journal::NewsSite.where(news: params[:id], site: params[:site_id]).first
         @news_site.front = true
-        @news_site.taggle(params[:tag])
+        @news_site.category_list.add("#{params[:tag]}")
         @news_site.save
       end
        redirect_to :back
