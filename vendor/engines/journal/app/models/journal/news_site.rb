@@ -1,7 +1,7 @@
 module Journal
   class NewsSite < ActiveRecord::Base
     belongs_to :site
-    belongs_to :news, class_name: "::Journal::News", foreign_key: "journal_news_id"
+    belongs_to :news, class_name: "::Journal::News", foreign_key: :journal_news_id
 
     acts_as_taggable_on :categories
     acts_as_multisite

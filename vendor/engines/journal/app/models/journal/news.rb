@@ -16,7 +16,7 @@ module Journal
     has_many :posts_repositories, as: :post, dependent: :destroy
     has_many :related_files, through: :posts_repositories, source: :repository
     has_many :news_sites, foreign_key: :journal_news_id, class_name: "::Journal::NewsSite"
-    has_many :sites, :through => :news_sites
+    has_many :sites, :through => :news_sites, class_name: "::Journal::NewsSite"
     
     # Validations
     validates :user_id, :site_id, :status, presence: true

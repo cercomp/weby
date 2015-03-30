@@ -67,7 +67,8 @@ module Journal::Admin
     end
 
     def new
-      @news = current_site.news.new
+      @news = Journal::News.new(site_id: current_site)
+      @news.news_sites.build(site_id: current_site)
     end
 
     def edit
@@ -94,7 +95,8 @@ module Journal::Admin
     end
 
     def create
-      @news = current_site.news.new(news_params)
+      @news = Journal::News.new(news_params)
+      @news.site = current_site
       @news.user = current_user
       @news.save
       record_activity('created_news', @news)
@@ -154,9 +156,9 @@ module Journal::Admin
 
     def news_params
       params.require(:news).permit(:source, :url,
-                                   {news_sites_attributes: [:id, :category_list,
+                                   { news_sites_attributes: [:id, :site_id, :journal_news_id, :category_list,
                                                             :front, :date_begin_at,
-                                                            :date_end_at]},
+                                                            :date_end_at] },
                                    :image, :status,
                                    { i18ns_attributes: [:id, :locale_id, :title,
                                        :summary, :text, :_destroy],
