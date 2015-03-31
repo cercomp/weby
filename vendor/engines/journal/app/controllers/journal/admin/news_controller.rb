@@ -79,9 +79,9 @@ module Journal::Admin
       @news_site = Journal::NewsSite.where(news: params[:id], site: params[:site_id])
       if @news_site.size < 1
         @news = Journal::News.find(params[:id])
-        @news.sites << Site.find(params[:site_id])
+        @news.news_sites.new(site_id: params[:site_id], journal_news_id: params[:id], front: true, date_begin_at: Time.now.strftime("%Y-%d-%m %H:%M:%S"))
+        @news.save
         @news_site = Journal::NewsSite.where(news: params[:id], site: params[:site_id]).first
-        @news_site.front = true
         @news_site.category_list.add("#{params[:tag]}")
         @news_site.save
       end
