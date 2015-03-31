@@ -23,8 +23,6 @@ class Site < ActiveRecord::Base
   has_many :news, class_name: 'Journal::News', dependent: :destroy
   has_many :banners, class_name: 'Sticker::Banner', dependent: :destroy
   has_many :events, class_name: 'Calendar::Event', dependent: :destroy
-  has_many :news_sites, class_name: "::Journal::NewsSite"
-  has_many :news, :through => :news_sites, class_name: "::Journal::News"
 
   has_and_belongs_to_many :locales
   has_and_belongs_to_many :groupings
