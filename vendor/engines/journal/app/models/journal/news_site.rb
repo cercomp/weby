@@ -9,7 +9,19 @@ module Journal
     validate :validate_position
 
     private
-    
+
+    def self.import(attrs, options = {})
+      return attrs.each { |attr| import attr, options } if attrs.is_a? Array
+
+      attrs = attrs.dup
+      attrs = attrs['news-site'] if attrs.key? 'news-site'
+
+      attrs.except!('id', 'type', 'created_at', 'updated_at', 'site_id')
+
+      self.create!(attrs)
+
+    end
+
     def validate_position
       self.position = last_front_position + 1
 #      self.position = 0 if self.position.nil?

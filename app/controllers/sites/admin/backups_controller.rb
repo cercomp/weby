@@ -18,7 +18,8 @@ class Sites::Admin::BackupsController < ApplicationController
     s = current_site
     h = { include: {} }
     h[:include][:pages] = { include: [:i18ns, :related_files] } if params[:pages]
-    h[:include][:news] = { include: [:categories, :i18ns, :related_files] } if params[:news]
+    h[:include][:news] = { include: [:i18ns, :related_files ] } if params[:news]
+    h[:include][:news_sites] = { include: [:categories ] } if params[:news]
     h[:include][:events] = { include: [:categories, :i18ns, :related_files] } if params[:events]
     h[:include][:repositories] = {}  if params[:repositories]
     h[:include][:banners] = { include: :categories } if params[:banners]
@@ -84,6 +85,7 @@ class Sites::Admin::BackupsController < ApplicationController
       current_site.banners.import(attrs['banners'], user: current_user.id) if attrs['banners']
       current_site.pages.import(attrs['pages'], user: current_user.id, site_id: current_site.id) if attrs['pages']
       current_site.news.import(attrs['news'], user: current_user.id, site_id: current_site.id) if attrs['news']
+      current_site.news_sites.import(attrs['news_sites'], user: current_user.id, site_id: current_site.id) if attrs['news']
       current_site.events.import(attrs['events'], user: current_user.id, site_id: current_site.id) if attrs['events']
       current_site.menus.import(attrs['menus']) if attrs['menus']
       current_site.components.import(attrs['root_components'], site_id: current_site.id) if attrs['root_components']
