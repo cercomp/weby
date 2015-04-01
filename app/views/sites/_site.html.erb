@@ -16,11 +16,13 @@
       <div class="news col-md-6">
         <% newslist.each do |news_site| %>
           <% news = news_site.news %>
+            <% if news %>
           <div>
             <%= news_image(news.image, :t, 60, nil, {as: "link", url: news_url(news, subdomain: news.site)}) %>
             <div><%= link_to news.title, news_url(news, subdomain: news.site) %></div>
             <span class="date"><%= l(news.updated_at, format: :short) %></span>
           </div>
+            <% end %>
         <% end %>
       </div>
     <% else %>
