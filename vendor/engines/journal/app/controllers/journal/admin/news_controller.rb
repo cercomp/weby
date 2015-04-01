@@ -41,7 +41,7 @@ module Journal::Admin
         @news << sites.journal_news_id
       end
 
-      news = current_site.news.where('journal_news.id in (?)', @news).
+      news = Journal::News.where('journal_news.id in (?)', @news).
         search(params[:search], 1) # 1 = busca com AND entre termos
 
       if sort_column == 'tags.name'
@@ -79,7 +79,7 @@ module Journal::Admin
       @news_site = Journal::NewsSite.where(news: params[:id], site: params[:site_id])
       if @news_site.size < 1
         @news = Journal::News.find(params[:id])
-        data = Time.now.strftime("%Y-%d-%m")
+
         @news.news_sites.new(site_id: params[:site_id], journal_news_id: params[:id], front: true)
         @news.save
         @news_site = Journal::NewsSite.where(news: params[:id], site: params[:site_id]).first

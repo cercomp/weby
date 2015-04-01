@@ -41,12 +41,12 @@ module Journal
         news_sites.each do |sites|
           @news << sites.journal_news_id
         end
-        result = current_site.news.where('journal_news.id in (?)', @news).
+        result = Journal::News.where('journal_news.id in (?)', @news).
              search(params[:search], params.fetch(:search_type, 1).to_i).
              order(sort_column + ' ' + sort_direction).
              page(params[:page]).per(params[:per_page])
       else
-        result = current_site.news.
+        result = Journal::News.
             search(params[:search], params.fetch(:search_type, 1).to_i).
             order(sort_column + ' ' + sort_direction).
             page(params[:page]).per(params[:per_page])

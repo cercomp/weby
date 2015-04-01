@@ -41,5 +41,9 @@ module Journal
       @news_site = Journal::NewsSite.where(site: self.site_id).front
       @news_site.maximum('position').to_i
     end
+
+    def validate_date
+      self.date_begin_at = Time.now.to_s if date_begin_at.blank?
+    end
   end
 end
