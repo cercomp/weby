@@ -46,7 +46,7 @@ module Journal
              order(sort_column + ' ' + sort_direction).
              page(params[:page]).per(params[:per_page])
       else
-        result = Journal::News.
+        result = Journal::News.where(site_id: current_site).
             search(params[:search], params.fetch(:search_type, 1).to_i).
             order(sort_column + ' ' + sort_direction).
             page(params[:page]).per(params[:per_page])
