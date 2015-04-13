@@ -18,10 +18,10 @@ module Journal
       turning_front if @news.front && @news.new_record?
     end
 
-    def before_destroy(news)
-      @news = news
-      leaving_fronts
-    end
+    # def before_destroy(news)
+    #   @news = news
+    #   leaving_fronts
+    # end
 
     private
 
