@@ -23,7 +23,7 @@ module Journal::Admin
     def recycle_bin
       params[:sort] ||= 'journal_news.deleted_at'
       params[:direction] ||= 'desc'
-      @newslist = current_site.news.trashed.includes(:user, :categories).
+      @newslist = current_site.news.trashed.includes(:user).
         order("#{params[:sort]} #{sort_direction}").
         page(params[:page]).per(params[:per_page])
     end
@@ -45,7 +45,7 @@ module Journal::Admin
         search(params[:search], 1) # 1 = busca com AND entre termos
 
       if sort_column == 'tags.name'
-        news = news.includes(categories: :taggings)
+         news = news.includes(categories: :taggings)
       end
       if params[:status_filter].present? && Journal::News::STATUS_LIST.include?(params[:status_filter])
         news = news.send(params[:status_filter])
