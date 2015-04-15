@@ -1,4 +1,4 @@
-![Weby CMS](http://portais.ufg.br/assets/weby-logo-60-3e5c8858c2bdce60d5419fe192d15fc8.png)
+![Weby CMS](//weby.cercomp.ufg.br/up/350/o/weby-logo.svg)
 
 [![Build Status](https://travis-ci.org/cercomp/weby.png?branch=master)](https://travis-ci.org/cercomp/weby)
 [![PullReview stats](https://www.pullreview.com/github/cercomp/weby/badges/master.svg?)](https://www.pullreview.com/github/cercomp/weby/reviews/master)
@@ -30,7 +30,14 @@ The main features are:
 
 __Demo__
 
+http://weby.ufg.br
+
 In process.
+
+  user: admin
+  pass: Admin1
+  
+Everyday the data are resetting!
 
 __Sites Examples__
 
