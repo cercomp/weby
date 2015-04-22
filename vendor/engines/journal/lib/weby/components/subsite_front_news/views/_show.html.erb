@@ -4,7 +4,8 @@
                   .available_fronts.limit(quant) #page(params[:subsite_front_pages]).per(quant) %>
 
 <section class="subsite_front_news_component">
-    <% @subsite_front_news.each do |news| %>
+    <% @subsite_front_news.each do |news_site| %>
+    <% news = news_site.news %>
     <li style="list-style-type:none;">
     <article>
       <span class="news_origin origin"><%= t(".news_from") %> <%= link_to news.site.title, site_url(subdomain: news.site) %></span>

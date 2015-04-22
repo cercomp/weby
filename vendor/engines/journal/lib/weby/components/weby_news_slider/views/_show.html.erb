@@ -5,7 +5,8 @@
   <% unless (newslist = component.news(current_site)).empty? %>
     <div class="flexslider" data-slideshowspeed="<%= component.timer.to_i * 1000 %>">
       <ul class="slides">
-        <% newslist.each do |news| %>
+        <% newslist.each do |news_site| %>
+          <% news = news_site.news %>
           <%= content_tag :li, style: "height: #{component.height}px" do %>
             <%= weby_file_view(news.image, format_for_custom(component.width, component.height, news.image), nil, nil, {as: "link", url: news.url.present? ? news.url : news_url(news, subdomain: news.site), target: '_self', :'min-width' => "#{component.width}px"}) %>
             <%= content_tag :p, raw(strip_tags(news.summary.truncate(100))), class: 'flex-caption' %>
