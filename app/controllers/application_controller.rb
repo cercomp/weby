@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   before_action :set_tld_length, :set_global_vars
   before_action :set_contrast, :set_locale, :set_view_types
   before_action :maintenance_mode
-  before_action :require_user, :is_admin, only: [:admin]
+  before_action :require_user, only: [:admin]
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   after_action :weby_clear, :count_view
