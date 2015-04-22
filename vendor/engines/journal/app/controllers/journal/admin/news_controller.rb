@@ -1,7 +1,7 @@
 module Journal::Admin
   class NewsController < Journal::ApplicationController
-    include ActsToToggle
-    
+    # include ActsToToggle
+
     before_action :require_user
     before_action :check_authorization
     before_action :status_types, only: [:new, :edit, :create, :update, :index]
@@ -23,7 +23,7 @@ module Journal::Admin
     def recycle_bin
       params[:sort] ||= 'journal_news.deleted_at'
       params[:direction] ||= 'desc'
-      @newslist = current_site.news.trashed.includes(:user, :categories).
+      @newslist = current_site.news.trashed.includes(:user).
         order("#{params[:sort]} #{sort_direction}").
         page(params[:page]).per(params[:per_page])
     end
@@ -35,11 +35,17 @@ module Journal::Admin
       end
       params[:direction] ||= 'desc'
 
-      news = current_site.news.
+      news_sites = current_site.news_sites
+      @news = []
+      news_sites.each do |sites|
+        @news << sites.journal_news_id
+      end
+
+      news = Journal::News.where('journal_news.id in (?)', @news).
         search(params[:search], 1) # 1 = busca com AND entre termos
 
       if sort_column == 'tags.name'
-        news = news.includes(categories: :taggings)
+         news = news.includes(categories: :taggings)
       end
       if params[:status_filter].present? && Journal::News::STATUS_LIST.include?(params[:status_filter])
         news = news.send(params[:status_filter])
@@ -47,11 +53,12 @@ module Journal::Admin
 
       news = news.order(sort_column + ' ' + sort_direction).page(params[:page]).per(params[:per_page])
     end
+
     private :get_news
 
     # Essa action não chama o get_news pois não faz paginação
     def fronts
-      @newslist = current_site.news.available_fronts.order('position desc')
+      @newslist = current_site.news_sites.available_fronts.order('position desc')
     end
 
     def show
@@ -60,15 +67,37 @@ module Journal::Admin
     end
 
     def new
-      @news = current_site.news.new
+      @news = Journal::News.new(site_id: current_site)
+      @news.news_sites.build(site_id: current_site)
     end
 
     def edit
       @news = current_site.news.find(params[:id])
     end
 
+    def share
+      @news_site = Journal::NewsSite.where(news: params[:id], site: params[:site_id])
+      if @news_site.size < 1
+        @news = Journal::News.find(params[:id])
+
+        @news.news_sites.new(site_id: params[:site_id], journal_news_id: params[:id], front: true)
+        @news.save
+        @news_site = Journal::NewsSite.where(news: params[:id], site: params[:site_id]).first
+        @news_site.category_list.add("#{params[:tag]}")
+        @news_site.save
+      end
+       redirect_to :back
+    end
+
+    def unshare
+      @news = Journal::NewsSite.where(site_id: current_site.id, journal_news_id: params[:id])
+      @news.destroy_all
+      redirect_to :back
+    end
+
     def create
-      @news = current_site.news.new(news_params)
+      @news = Journal::News.new(news_params)
+      @news.site = current_site
       @news.user = current_user
       @news.save
       record_activity('created_news', @news)
@@ -81,6 +110,12 @@ module Journal::Admin
       @news.update(news_params)
       record_activity('updated_news', @news)
       respond_with(:admin, @news)
+    end
+
+    def toggle
+      news_sites = Journal::NewsSite.find(params[:id])
+      news_sites.toggle! :front
+      redirect_to :back
     end
 
     def status_types
@@ -121,11 +156,15 @@ module Journal::Admin
     end
 
     def news_params
-      params.require(:news).permit(:source, :url, :category_list, :date_begin_at,
-                                   :date_end_at, :image, :status, :front,
+      params.require(:news).permit(:source, :url,
+                                   { news_sites_attributes: [:id, :site_id, :journal_news_id, :category_list,
+                                                            :front, :date_begin_at,
+                                                            :date_end_at] },
+                                   :image, :status,
                                    { i18ns_attributes: [:id, :locale_id, :title,
                                        :summary, :text, :_destroy],
                                      related_file_ids: [] })
     end
+
   end
 end

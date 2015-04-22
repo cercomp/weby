@@ -7,15 +7,23 @@ pt-BR:
         match_search:    " Busca exata "
         and_search:      " Todas as palavras "
         or_search:       " Qualquer uma das palavras "
-      show:
+      show:        
+        share:         " Compartilhar "        
         list_all:      " Listar Todas "
         categories:    " Categorias "
         source:        " Fonte "
         updated_at:    " Atualizada em "
         related_files: " Arquivos relacionados "
         related_url:   " URL relacionada "
-        size:          " Tamanho "
+        size:          " Tamanho "        
         archive_fingerprint:  " Assinatura digital do arquivo "
+      site_share:
+        share:         " Compartilhar "
+        my_sites:      " Escolha o site e o local onde quer compartilhar "
+        front_news:    " Notícias Capas "
+        name:          " Nome "
+        title:         " Título "
+        close:         " Fechar "
       list:
         read_more:     " Leia mais "
         no_news:       " Nenhuma notícia encontrada "

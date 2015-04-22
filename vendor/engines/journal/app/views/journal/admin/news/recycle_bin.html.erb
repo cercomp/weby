@@ -27,7 +27,6 @@
         <tr>
           <th width="35%"><%= t(".title") %></th>
           <th width="12%"><%= sortable 'users.first_name', t(".author") %></th>
-          <th width="13%"><%= sortable 'tags.name', t(".category") %></th>
           <th width="13%"><%= sortable 'news.deleted_at', t(".deleted_at") %></th>
           <th width="5%" class="center"><%= sortable 'news.status', t(".status") %></th>
         </tr>
@@ -37,7 +36,6 @@
           <tr id="<%= news.id %>">
             <td><%= news.title %></td>
             <td><%= news.user.first_name %></td>
-            <td><%= raw categories_links(news.category_list) %></td>
             <td><%= l(news.deleted_at, :format => :short) %></td>
             <td style="text-align:center;">
               <%= news_status(news) %></td>

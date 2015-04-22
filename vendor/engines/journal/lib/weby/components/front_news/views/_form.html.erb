@@ -24,7 +24,7 @@
 
       <%= f.input :max_char, as: :integer %>
 
-      <%= f.input :filter_by, input_html: {id: 'categories-list', class: 'input-xlarge', data: {tags: current_site.news.uniq_category_counts.map{|t| t.name }}} %>
+      <%= f.input :filter_by, input_html: {id: 'categories-list', class: 'input-xlarge', data: {tags: current_site.news_sites.uniq_category_counts.map{|t| t.name }}} %>
 
     </div>
     <div class="tab-pane" id="tab-advanced">

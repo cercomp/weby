@@ -12,7 +12,8 @@
     <% if current_site.view_desc_pages %>
        <span class="author"><%= t("posted_by") %><%= @news.user %></span>
     <% end %>
-    <% if @news.published? and (!@news.i18ns.first.created_at.nil? || !@news.i18ns.first.updated_at.nil?) %>
+
+    <% if @news.published? %>
        <span class="date"><%= t(".updated_at") %><%= l((@news.i18ns.first.updated_at.blank? ? @news.i18ns.first.created_at : @news.i18ns.first.updated_at), format: :short) %>.</span>
     <% end %>
     </div>
@@ -31,10 +32,10 @@
       <span class="source-label"><%= "#{t('.source')}:" %></span>
       <%= "#{@news.source}" %>
     <% end %>
-
-    <%= content_tag_if @news.category_list.any?, :p, class: 'categories' do %>
+    <% @news_site = Journal::NewsSite.find_by(journal_news_id: @news.id, site_id: current_site.id) %>
+    <%= content_tag_if @news_site.category_list.any?, :p, class: 'categories' do %>
       <span class="categories-label"><%= "#{t('.categories')}:"  %></span>
-      <% @news.category_list.each do |category| %>
+      <% @news_site.category_list.each do |category| %>
         <%= link_to category, news_index_path( tags: category.to_s ), class: 'weby-label default' %>
       <% end %>
     <% end %>
@@ -75,9 +76,11 @@
 
   <div style="margin-top: 8px;">
     <%= link_to(weby_icon('edit', t("edit")), edit_admin_news_path(@news)) if check_permission(Journal::Admin::NewsController, [:edit]) %>
+    <%= link_to weby_icon('share', t(".share")), "#", data: {toggle: "modal", target: "#myModal"} if current_user  %>
     <% if !defined?(as_component) %>
       <%= link_to weby_icon('list', t(".list_all")), news_index_path %>
       <%= link_to weby_icon('chevron-left', t("back")), :back %>
     <% end %>
   </div>
 </article>
+<%= render 'site_share' %>

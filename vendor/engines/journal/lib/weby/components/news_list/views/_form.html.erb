@@ -2,7 +2,7 @@
 <%= each_i18n_tab do |locale| %>
   <%= f.component_i18n_input locale, :title %>
 <% end %>
-<%= f.input :category, collection: current_site.news.uniq_category_counts.map(&:name),
+<%= f.input :category, collection: current_site.news_sites.uniq_category_counts.map(&:name),
   priority: component.category,
   include_blank: t(".no_category_filter"),
   input_html: { style: 'width: 325px' }

@@ -15,6 +15,8 @@ class Site < ActiveRecord::Base
   has_many :root_components, -> { order(:position).where("place_holder !~ '^\\d*$'") }, class_name: 'Component'
   has_many :repositories, dependent: :destroy
   has_many :extensions, dependent: :destroy
+  has_many :news_sites, class_name: "::Journal::NewsSite"
+  has_many :news, :through => :news_sites, class_name: "::Journal::News"
   # Extensions relations
   has_many :groups, class_name: 'Feedback::Group', dependent: :destroy
   has_many :messages, class_name: 'Feedback::Message', dependent: :destroy
