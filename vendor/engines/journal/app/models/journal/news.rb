@@ -96,18 +96,6 @@ module Journal
       status == 'published'
     end
 
-    def self.uniq_category_counts
-      category_counts.each_with_object(Hash.new) do |j, hash|
-        name = j.name.upcase
-        if hash[name]
-          hash[name].count += j.count
-        else
-          hash[name] = j
-        end
-        hash
-      end.values
-    end
-
     def link
       if url.blank?
         news_url(self, subdomain: self.site)
