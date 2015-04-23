@@ -4,7 +4,7 @@ class WebyTagCloudComponent < Component
   validates :speed, numericality: { greater_than: 0 }
 
   def tags(site)
-    site.news.available.uniq_category_counts.map(&:name)
+    site.news_sites.available.uniq_category_counts.map(&:name)
   end
 
   def tag_size(tag, site)
@@ -13,7 +13,7 @@ class WebyTagCloudComponent < Component
     occurs = tag_count(site)
     min_occurs = occurs.min
     max_occurs = occurs.max
-    tag_occurs = site.news.published.tagged_with(tag.to_s.mb_chars.downcase.to_s, any: true).length
+    tag_occurs = site.news_sites.tagged_with(tag.to_s.mb_chars.downcase.to_s, any: true).length
 
     tag_occurs = 1 if tag_occurs < 1
     diff = Math.log(max_occurs) - Math.log(min_occurs)
@@ -39,6 +39,6 @@ class WebyTagCloudComponent < Component
   end
 
   def tag_count(site)
-    site.news.published.uniq_category_counts.map(&:count)
+    site.news_sites.uniq_category_counts.map(&:count)
   end
 end

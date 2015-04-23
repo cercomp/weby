@@ -21,7 +21,6 @@
         <thead>
           <th><%= sortable 'date_begin_at', t(".register_date")%></th>
           <th><%= t(".title") %></th>
-          <th><%= sortable 'tags.name', t(".category") %></th>
           <th><%= sortable 'user', t(".user") %></th>
         </thead>
         <tbody>
@@ -29,7 +28,6 @@
             <tr data-id="<%= news.id%>" data-url="<%= news_path(news) %>" data-title="<%= news.title %>" data-type="<%= "Journal::News" %>" class="cursor highlight target-item">
               <td><%= news.created_at.strftime('%d/%m/%y') %></td>
               <td><%= news.title %></td>
-              <td><%= news.category_list %></td>
               <td><%= news.user.fullname %></td>
             </tr>
           <% end %>
