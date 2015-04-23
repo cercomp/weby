@@ -5,7 +5,7 @@
   </div>
   <div class="caption">
     <% newslist = Journal::NewsSite.where(site_id: site.id).order('updated_at desc').front.first(4) %>
-      <% news = newslist.shift.news %>
+      <% news = newslist.shift.news if newslist %>
     <% if news %>
       <div class="top-news col-md-6">
         <%= news_image(news.image, :t, 140, nil, {as: "link", url: news_url(news, subdomain: news.site)}) %>
