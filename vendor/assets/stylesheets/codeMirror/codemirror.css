@@ -92,7 +92,7 @@
   word-break: normal;
 }
 .CodeMirror-wrap .CodeMirror-scroll {
-  overflow-x: hidden;
+  /*overflow-x: hidden;*/
 }
 
 .CodeMirror textarea {

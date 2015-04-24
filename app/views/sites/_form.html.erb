@@ -1,4 +1,4 @@
-<%= simple_form_for @site, url: update_site_admin_path, html: { class: 'form-horizontal' } do |f| %>
+<%= simple_form_for @site, url: update_site_admin_path do |f| %>
   <%= f.show_errors %>
 
   <%= repository_search t(".site_image"), "site_image",

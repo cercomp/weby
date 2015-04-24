@@ -9,7 +9,7 @@
 </ul>
 <div class="tab-content">
   <div class="tab-pane <%= params["restore"] ? "" : "active" %>" id="backup">
-    <%= form_tag site_admin_generate_path, html: { class: 'form-horizontal' }, method: 'get' do %>
+    <%= form_tag site_admin_generate_path, method: 'get' do %>
       <div class="row">
         <div class="col-md-6">
           <%= t('.output') %>
