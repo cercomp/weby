@@ -37,8 +37,8 @@ module Calendar
       # tags e locales
       events = current_site.events.
         search(params[:search], params.fetch(:search_type, 1).to_i).
-        order(sort_column + ' ' + sort_direction).
-        page(params[:page]).per(params[:per_page])
+        order(sort_column + ' ' + sort_direction)
+        #.page(params[:page]).per(params[:per_page])
 
       if params[:start] && params[:end]
         events = events.where('(begin_at between :start and :end_date) OR '\
