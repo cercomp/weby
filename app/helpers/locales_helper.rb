@@ -9,7 +9,7 @@ module LocalesHelper
     (obj.locales | current_site.locales).sort
   end
 
-  def each_i18n_tab(locales = current_site.locales)
+  def each_i18n_tab(locales = current_site.locales.order(:id))
     @tab_count = @tab_count.to_i + 1
     content_tag :div, class: 'tabbable i18n' do
       tabs = content_tag :ul, class: 'nav nav-tabs' do
