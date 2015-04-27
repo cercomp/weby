@@ -1,0 +1,17 @@
+<% title ".newsletter" %>
+<% breadcrumb :news_newsletter %>
+
+
+<%= form_tag admin_newsletters_path, method: "get" do %>
+  <div class="row">
+    <div class="col-md-5">
+      <%= search_input params[:search] %>
+    </div>
+  </div>
+<% end %>
+
+<div id="newsletter">
+  <%= render :partial => "list" %>
+</div>
+
+<% content_for :javascripts, javascript_include_tag('journal/admin.news.newsletter') %>

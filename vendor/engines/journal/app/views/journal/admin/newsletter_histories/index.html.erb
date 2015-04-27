@@ -1,0 +1,74 @@
+<% title ".newsletter" %>
+<% breadcrumb :news_newsletter %>
+
+<div class="tabbable">
+  <ul class="nav nav-tabs" id="tabs">
+    <li class="" id="tab_news">
+      <%= link_to(t(".news"), admin_news_index_path) %>
+    </li>
+    <li class="active" id="tab_newsletter">
+      <%= link_to(t(".newsletter"), '#') %>
+    </li>
+  </ul>
+</div>
+
+<%= form_tag admin_newsletter_histories_path, method: "get" do %>
+  <div class="row">
+    <div class="col-md-7">
+      <div class="panel panel-default">
+        <div class="col-md-5">
+          <%= date_field_tag :dt_start, params[:dt_start].nil? ? Date.today-30 : params[:dt_start],
+                             class: "form-control", id: "dt_start" %>
+        </div>
+        <div class="col-md-5">
+          <%= date_field_tag :dt_end, params[:dt_end].nil? ? Date.today : params[:dt_end],
+                             class: "form-control", id: "dt_end" %>
+        </div>
+        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search glyphicon-white"></span></button>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="pull-right">
+        <%= link_to t(".create_pdf"), pdf_admin_newsletter_histories_path, class: "btn btn-success" %>
+        <%= link_to t(".emails_list"), admin_newsletters_path, class: "btn btn-default" %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<div id="histories">
+  <% if @newsletterlist.empty? %>
+      <div class="alert alert-warning">
+        <%= t(".none_news") %>
+      </div>
+  <% else %>
+      <div class="clearfix"></div>
+
+      <table class="table table-striped nowrap">
+        <thead>
+        <tr>
+          <th width="45%"><%= t(".title") %></th>
+          <th width="15%"><%= t(".user") %></th>
+          <th width="15%"><%= t(".sent_by") %></th>
+          <th width="15%"><%= t(".date_sent") %></th>
+          <th width="10%" class="center"><%= t(".qtty") %></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @newsletterlist.each do |newsletter| %>
+            <tr id="<%= newsletter.id %>">
+              <td><%= link_to newsletter.news.title, newsletter_admin_news_path(newsletter.news) %></td>
+              <td><%= newsletter.news.user.first_name %></td>
+              <td><%= newsletter.user.first_name %></td>
+              <td><%= l(newsletter.created_at, :format => :short) %></td>
+              <td width="10%" style="text-align:center;"><%= newsletter.emails.split(',').count %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+
+      <div class="clearfix"></div>
+  <% end %>
+</div>
+
+<% content_for :stylesheets, stylesheet_link_tag("datetime") %>

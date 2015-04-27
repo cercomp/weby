@@ -37,6 +37,12 @@ module Journal
               post :sort
             end
           end
+          resources :newsletter_histories, only: [:index] do
+            collection do
+              get :pdf
+            end
+          end
+          resources :newsletters, only: [:index, :destroy]
         end
         resources :news, module: :journal, path: 'n', only: [:show] do
           collection do

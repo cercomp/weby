@@ -29,7 +29,7 @@ crumb :news_fronts do
 end
 
 crumb :news_newsletter do |news|
-  link t('breadcrumbs.newsletter'), newsletter_admin_news_path(news)
+  link t('breadcrumbs.newsletter'), admin_newsletter_histories_path(news)
   parent :news
 end
 

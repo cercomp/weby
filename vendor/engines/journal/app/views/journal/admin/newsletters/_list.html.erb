@@ -1,0 +1,35 @@
+<% if @newsletterlist.empty? %>
+  <div class="alert alert-warning">
+    <%= t(".none_news") %>
+  </div>
+<% else %>
+  <div class="clearfix"></div>
+  <table class="table table-striped nowrap">
+    <thead>
+      <tr>
+        <th width="30%"><%= t(".email") %></th>
+        <th width="15%" style="text-align:center;"><%= t(".confirm") %></th>
+        <th width="15%"><%= t(".date_create") %></th>
+        <th width="15%"><%= t(".date_confirm") %></th>
+        <th width="10%" style="text-align:center;"><%= t(".delete") %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @newsletterlist.each do |newsletter| %>
+        <tr id="<%= newsletter.id %>">
+          <td><%= newsletter.email %></td>
+          <td width="15%" style="text-align:center;">
+            <span class="glyphicon <%= newsletter.confirm ? "glyphicon-ok" : "glyphicon-remove" %>"></span>
+          </td>
+          <td><%= l(newsletter.created_at, :format => :short) %></td>
+          <td><%= newsletter.confirm ? l(newsletter.updated_at, :format => :short) : "" %></td>
+          <td width="10%" style="text-align:center;">
+            <span class="glyphicon glyphicon-trash"></span>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="clearfix"></div>
+<% end %>

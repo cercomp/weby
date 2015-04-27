@@ -1,0 +1,25 @@
+en:
+  journal:
+    admin:
+      newsletter_histories:
+        index:
+          none_news:            " No news were found "
+          newsletter:           " Newsletter "
+          news:                 " News "
+          create_pdf:           " Create PDF "
+          emails_list:          " Emails List "
+          title:                " Title "
+          user:                 " Author "
+          sent_by:              " Sent by "
+          date_sent:            " Created at "
+          qtty:                 " Quantity "
+      newsletters:
+        index:
+          newsletter:           " Newletter "
+        list:
+          none_news:            " No emails were found "
+          email:                " Email "
+          confirm:              " Activation "
+          date_create:          " Create date  "
+          date_confirm:         " Activation date "
+          delete:               " Delete "

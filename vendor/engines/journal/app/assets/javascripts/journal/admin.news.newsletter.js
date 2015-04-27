@@ -1,6 +1,10 @@
-/**
- * Created by alexandre on 12/03/15.
- */
+$(function (){
+    $('.search-filter').on('change', function(e){
+        //$('#search').val(null);
+        $('button[type=submit]').click();
+    });
+});
+
 function updateMails() {
     var result_id = "";
     var result_email = "";

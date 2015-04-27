@@ -1,0 +1,25 @@
+pt-BR:
+  journal:
+    admin:
+      newsletter_histories:
+        index:
+          none_news:            " Nenhuma notícia encontrada. "
+          newsletter:           " Newsletter "
+          news:                 " Notícias "
+          create_pdf:           " Gerar PDF "
+          emails_list:          " Lista de Emails "
+          title:                " Título "
+          user:                 " Autor "
+          sent_by:              " Enviado por "
+          date_sent:            " Data de envio "
+          qtty:                 " Quantidade e-mails"
+      newsletters:
+        index:
+          newsletter:           " Newletter "
+        list:
+          none_news:            " Nenhum email encontrado. "
+          email:                " Email "
+          confirm:              " Ativo "
+          date_create:          " Data de cadastro "
+          date_confirm:         " Data de ativação "
+          delete:               " Excluir "

@@ -38,7 +38,8 @@ gem "nori"
 gem 'useragent', '0.2.3', :git => 'http://github.com/jilion/useragent'
 gem 'rails-settings-cached', '0.4.1'
 
-gem 'net-ldap'
+gem 'net-ldap', '~> 0.8.0'
+gem 'prawn', '~> 2.0.1'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.1'

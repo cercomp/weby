@@ -1,5 +1,17 @@
 <% title ".news" %>
 <% breadcrumb params[:search].present? ? :news_search : :news, params[:search] %>
+
+<div class="tabbable">
+  <ul class="nav nav-tabs" id="tabs">
+    <li class="active" id="tab_news">
+      <%= link_to(t(".news"), '#') %>
+    </li>
+    <li class="" id="tab_newsletter">
+      <%= link_to(t(".newsletter"), admin_newsletter_histories_path) %>
+    </li>
+  </ul>
+</div>
+
 <%= form_tag main_app.admin_news_index_path, method: 'get', autocapitalize: "off", class: 'search' do %>
   <div class="row">
     <div class="col-md-5">
@@ -29,8 +41,8 @@
     </div>
   </div>
 <% end %>
-
 <div id="news">
   <%= render :partial => "list" %>
 </div>
+
 <% content_for :javascripts, javascript_include_tag('journal/admin.news.index') %>
