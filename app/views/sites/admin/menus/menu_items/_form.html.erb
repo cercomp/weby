@@ -16,7 +16,7 @@
   <%= each_i18n_tab available_locales(@menu_item) do |locale| %>
     <%= f.i18ns_fields_for(locale) do |g| %>
       <% unless g.object.id.blank? %>
-        <%= g.input :_destroy, as: :boolean %>
+        <%= g.input :_destroy, wrapper: :checkbox, as: :boolean %>
       <% end %>
 
       <%= g.input :title, placeholder: t(".title"),
@@ -31,12 +31,12 @@
   <%=  target_dialog_input(f, :target, true) %>
 
   <div class="input">
-    <%= f.input :new_tab,
+    <%= f.input :new_tab, wrapper: :checkbox,
       as: :boolean, input_html: { class: "check-button" } %>
   </div>
 
   <div class="input">
-    <%= f.input :publish,
+    <%= f.input :publish, wrapper: :checkbox,
       as: :boolean, input_html: { class: "check-button" } %>
   </div>
 

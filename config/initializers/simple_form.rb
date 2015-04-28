@@ -32,11 +32,10 @@ SimpleForm.setup do |config|
   config.wrappers :append, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
     b.use :html5
     b.use :placeholder
-    b.use :label, wrap_with: { class: 'col-md-3 control-label' }
-    b.wrapper tag: 'div', class: 'col-md-7' do |append|
+    b.use :label
+    b.wrapper tag: 'div', class: 'url' do |append|
       append.use :input, wrap_with: { tag: 'div', class: 'input-group' }
     end
-    b.use :hint,  wrap_with: { tag: 'span', class: 'help-block' }
     b.use :error, wrap_with: { tag: 'span', class: 'help-block has-error' }
   end
 
@@ -65,11 +64,10 @@ SimpleForm.setup do |config|
 
   config.wrappers :checkbox, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
     b.use :html5
-    b.use :label, wrap_with: { class: 'col-md-3 control-label' }
-    b.wrapper tag: 'div', class: 'col-md-7' do |input_block|
-      input_block.use :input
-      input_block.use :hint,  wrap_with: { tag: 'span', class: 'help-block' }
+    b.wrapper tag: 'div', class: 'checkbox' do |ba|
+      ba.use :label_input
     end
+    b.use :hint,  wrap_with: { tag: 'span', class: 'help-block' }
     b.use :error, wrap_with: { tag: 'span', class: 'help-block has-error' }
   end
 

@@ -3,7 +3,7 @@
 
 <div class="input target_select" id="inputs-for-<%= field_name.to_s %>">
    <%= f.input field_name, :wrapper => :append do %>
-      <%= f.input_field field_name, as: :string, 
+      <%= f.input_field field_name, as: :string,
         disabled: !editable_url,
         value: editable_url ? f.object.send(field_name) : f.object.send(field_name).try(:title),
         placeholder: editable_url ? "" : t("target_dialog.none_selected"),

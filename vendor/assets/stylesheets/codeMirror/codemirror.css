@@ -3,6 +3,7 @@
   line-height: 1em;
   font-family: monospace;
 
+  lineWrapping: true;
   /* Necessary so the scrollbar can be absolutely positioned within the wrapper on Lion. */
   position: relative;
   /* This prevents unwanted scrollbars from showing up on the body and wrapper in IE. */
@@ -96,7 +97,7 @@
 }
 
 .CodeMirror textarea {
-  outline: none !important;
+  /*outline: none !important;*/
 }
 
 .CodeMirror pre.CodeMirror-cursor {

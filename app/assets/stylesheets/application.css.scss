@@ -200,6 +200,10 @@ body.modal-open {
   padding: 19px;
 }
 
+.optional{
+  margin-left: 0px !important;
+}
+
 .highlight:hover td{
    background-color: #EEE !important;
 }
@@ -292,6 +296,8 @@ input[type="checkbox"].toggle { margin-top: 0; }
 }
 .form-group {
   margin-top: 20px;
+  margin-left: 0px !important;
+  label{font-weight: bold !important;}
 }
 
   //Paginator

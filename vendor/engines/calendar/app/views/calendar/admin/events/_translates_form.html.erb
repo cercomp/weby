@@ -1,6 +1,6 @@
 <%= each_i18n_tab available_locales(@event) do |locale| %>
   <%= f.i18ns_fields_for(locale) do |g| %>
-    <%= g.input :_destroy, as: :boolean if g.object.try(:id) %>
+    <%= g.input :_destroy, wrapper: :checkbox, as: :boolean if g.object.try(:id) %>
     <%= g.input :name %>
     <%= g.input :place %>
     <%= g.input :information,
