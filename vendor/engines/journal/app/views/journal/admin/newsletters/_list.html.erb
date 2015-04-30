@@ -3,6 +3,8 @@
     <%= t(".none_news") %>
   </div>
 <% else %>
+  <div class="pull-left"> <%= info_page @newsletterlist %> </div>
+  <div class="pull-right"> <%= paginate @newsletterlist, remote: true %> </div>
   <div class="clearfix"></div>
   <table class="table table-striped nowrap">
     <thead>
@@ -24,12 +26,18 @@
           <td><%= l(newsletter.created_at, :format => :short) %></td>
           <td><%= newsletter.confirm ? l(newsletter.updated_at, :format => :short) : "" %></td>
           <td width="10%" style="text-align:center;">
-            <span class="glyphicon glyphicon-trash"></span>
+            <%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe,
+              admin_newsletter_path(newsletter.id),
+              data: { confirm: t('are_you_sure') },
+              method: :delete
+            %>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
 
+  <div class="pull-left"> <%= per_page_links @newsletterlist, true, :sm %> </div>
+  <div class="pull-right"> <%= paginate @newsletterlist, remote: true %> </div>
   <div class="clearfix"></div>
 <% end %>

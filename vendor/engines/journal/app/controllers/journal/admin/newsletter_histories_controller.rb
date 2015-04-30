@@ -5,18 +5,47 @@ module Journal::Admin
     end
 
     def pdf
-      Prawn::Document.generate("teste.pdf") do
-        text "TESTE", size: 24, align: :center, style: :bold
-        render_file('~')
+      newsletterlist = get_news
+      Prawn::Document.generate("public/emails.pdf") do |pdf|
+        pdf.text "UNIVERSIDADE FEDERAL DE GOIÁS", size: 16, align: :center, style: :bold
+        pdf.text current_site.name.upcase, size: 16, align: :center
+        pdf.text "  ", size: 20
+        pdf.text "ENVIO DE NEWSLETTER", size: 14, align: :center, style: :bold
+        pdf.text "Período compreendido entre: "+@dt_start.strftime("%d/%m/%Y")+" - "+@dt_end.strftime("%d/%m/%Y"),
+            size: 12, align: :center
+        table_data = [["<b>"+t(".title")+"</b>","<b>"+t(".user")+"</b>",
+                       "<b>"+t(".sent_by")+"</b>","<b>"+t(".date_sent")+"</b>","<b>"+t(".qtty")+"</b>"]]
+        newsletterlist.each do |newsletter|
+          table_data.insert(table_data.length,
+                           [newsletter.news.title,newsletter.news.user.first_name,newsletter.user.first_name,
+                           l(newsletter.created_at, format: :short).to_s,newsletter.emails.split(',').count.to_s])
+        end
+        pdf.table(table_data, width: 550, cell_style: { inline_format: true, size: 10 })
       end
-      redirect_to :back
+      send_file "public/emails.pdf", type: "application/pdf", x_sendfile: true
+    end
+
+    def csv
+      newsletterlist = get_news
+      File.open("public/dados.csv", 'w') do |arquivo|
+        arquivo.puts "UNIVERSIDADE FEDERAL DE GOIAS"
+        arquivo.puts
+        arquivo.puts "ENVIO DE NEWSLETTER"
+        arquivo.puts "Período compreendido entre: "+@dt_start.strftime("%d/%m/%Y")+" - "+@dt_end.strftime("%d/%m/%Y")
+        arquivo.puts t(".title")+","+t(".user")+","+t(".sent_by")+","+t(".date_sent")+","+t(".qtty")
+        newsletterlist = get_news
+        newsletterlist.each do |newsletter|
+          arquivo.puts newsletter.news.title+","+newsletter.news.user.first_name+","+newsletter.user.first_name+","+
+                       l(newsletter.created_at, :format => :short).to_s+","+newsletter.emails.split(',').count.to_s
+        end
+      end
+     send_file "public/dados.csv", type: "application/txt", x_sendfile: true
     end
 
     def get_news
-      dt_start = params[:dt_start].nil? ? Date.today-30 : params[:dt_start]
-      dt_end = params[:dt_end].nil? ? Date.today : params[:dt_end]
-      news = Journal::NewsletterHistories.get_by_date(current_site.id, dt_start, dt_end)
+      @dt_start = (params[:dt_start].nil? || params[:dt_start].empty?) ? Date.today-30 : Date.parse(params[:dt_start] + " 00:00:01")
+      @dt_end = (params[:dt_end].nil? || params[:dt_end].empty?) ? Date.today.end_of_day : Date.parse(params[:dt_end]).end_of_day
+      news = Journal::NewsletterHistories.get_by_date(current_site.id, @dt_start, @dt_end)
     end
-
   end
 end

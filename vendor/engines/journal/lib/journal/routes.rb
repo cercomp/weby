@@ -39,7 +39,7 @@ module Journal
           end
           resources :newsletter_histories, only: [:index] do
             collection do
-              get :pdf
+              get :pdf, :csv
             end
           end
           resources :newsletters, only: [:index, :destroy]

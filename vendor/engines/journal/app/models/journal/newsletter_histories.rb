@@ -8,7 +8,7 @@ module Journal
     }
 
     scope :get_by_date, -> (site_id, dt_begin, dt_end) {
-      where(['site_id = ? AND created_at >= ? AND created_at <= ?', site_id, dt_begin, dt_end]).order('created_at')
+      where(['site_id = ? AND created_at BETWEEN ? AND ?', site_id, dt_begin, dt_end]).order('created_at DESC')
     }
   end
 end

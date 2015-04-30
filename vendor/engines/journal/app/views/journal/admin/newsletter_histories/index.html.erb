@@ -29,7 +29,8 @@
     </div>
     <div class="col-md-5">
       <div class="pull-right">
-        <%= link_to t(".create_pdf"), pdf_admin_newsletter_histories_path, class: "btn btn-success" %>
+        <%= link_to t(".create_csv"), csv_admin_newsletter_histories_path(params), class: "btn btn-success" %>
+        <%= link_to t(".create_pdf"), pdf_admin_newsletter_histories_path(params), class: "btn btn-success" %>
         <%= link_to t(".emails_list"), admin_newsletters_path, class: "btn btn-default" %>
       </div>
     </div>
@@ -55,7 +56,7 @@
         </tr>
         </thead>
         <tbody>
-        <% @newsletterlist.each do |newsletter| %>
+          <% @newsletterlist.each do |newsletter| %>
             <tr id="<%= newsletter.id %>">
               <td><%= link_to newsletter.news.title, newsletter_admin_news_path(newsletter.news) %></td>
               <td><%= newsletter.news.user.first_name %></td>
@@ -63,7 +64,7 @@
               <td><%= l(newsletter.created_at, :format => :short) %></td>
               <td width="10%" style="text-align:center;"><%= newsletter.emails.split(',').count %></td>
             </tr>
-        <% end %>
+          <% end %>
         </tbody>
       </table>
 

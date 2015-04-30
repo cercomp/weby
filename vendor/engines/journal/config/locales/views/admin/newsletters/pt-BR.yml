@@ -7,12 +7,25 @@ pt-BR:
           newsletter:           " Newsletter "
           news:                 " Notícias "
           create_pdf:           " Gerar PDF "
+          create_csv:           " Gerar CSV "
           emails_list:          " Lista de Emails "
           title:                " Título "
           user:                 " Autor "
           sent_by:              " Enviado por "
           date_sent:            " Data de envio "
           qtty:                 " Quantidade e-mails"
+        csv:
+          title:                " Título "
+          user:                 " Autor "
+          sent_by:              " Enviado por "
+          date_sent:            " Data de envio "
+          qtty:                 " Quantidade e-mails"
+        pdf:
+          title:                " Título "
+          user:                 " Autor "
+          sent_by:              " Enviado por "
+          date_sent:            " Data de envio "
+          qtty:                 " E-mails"
       newsletters:
         index:
           newsletter:           " Newletter "
