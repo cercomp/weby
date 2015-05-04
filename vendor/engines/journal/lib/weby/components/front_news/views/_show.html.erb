@@ -39,7 +39,7 @@
           <% end %>
         </summary>
         <% if !(news.text.blank?) and component.read_more %>
-          <p class="read_more"><%= link_to t(".read_more"), news_path(news) %></p>
+          <p class="read_more"><%= link_to t(".read_more"), news_url(news, subdomain: news.site) %></p>
         <% end %>
         <div class="clear clearfix"> </div>
         <div class="control">
