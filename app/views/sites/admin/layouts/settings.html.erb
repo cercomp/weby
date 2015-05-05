@@ -1,6 +1,6 @@
 <% breadcrumb :layout_settings %>
 
-<%= simple_form_for current_site, url: settings_site_admin_layouts_path, html: { class: 'form-horizontal' } do |f| %>
+<%= simple_form_for current_site, url: settings_site_admin_layouts_path do |f| %>
   <%= f.input :head_html, input_html: { id: 'code' }, hint: t('.head_html_hint') %>
 
   <div class="form-actions">

@@ -1,4 +1,4 @@
-<%= simple_form_for [:site_admin, @page], html: { class: 'form-horizontal' } do |f| %>
+<%= simple_form_for [:site_admin, @page] do |f| %>
   <%= f.show_errors %>
 
   <%= render('translates_form', f: f) %>

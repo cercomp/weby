@@ -11,7 +11,7 @@
   <%= render_component @component, 'form', locals: {f: f} %>
   <hr/>
 
-  <%= f.input :publish , wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" } %>
+  <%= f.input :publish, wrapper: :checkbox, wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" } %>
 
   <%= f.input :visibility, collection: [
     [t(".always"),"0"],
@@ -22,10 +22,7 @@
   %>
 
   <div class="form-group">
-    <div class="col-md-3 control-label">
       <label><%= t(".place")  %></label>
-    </div>
-    <div class="col-md-7">
       <% if params[:placeholder] %>
         <% if params[:placeholder].match(/^\d*$/) %>
           <% group = current_site.components.find_by(id: params[:placeholder].to_i) %>
@@ -44,8 +41,6 @@
         <% end %>
       <% end %>
       <%= f.input :place_holder, as: :hidden, input_html: {id: "component_place_holder"} %>
-    </div>
-  </div>
 
   <div class="form-actions">
     <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>

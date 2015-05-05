@@ -6,7 +6,7 @@
 
 <%= target_dialog_input f, :target, true %>
 
-<%= f.input :new_tab, as: :boolean %>
+<%= f.input :new_tab, wrapper: :checkbox, as: :boolean %>
 
 <%= f.input :html_class, :input_html => {:pattern => '^[A-Za-z0-9_\-]*$'} %>
 

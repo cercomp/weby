@@ -4,42 +4,42 @@
   <%= f.input :name,
     hint: t("field_required") %>
 
-  <%= f.input :publish , wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" } %>
+  <%= f.input :publish, wrapper: :checkbox, wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" } %>
 
   <% unless @style.new_record? %>
-    <div class="form-group">
-      <div class="col-md-9 col-md-offset-3">
-        <div class="btn-toolbar">
-          <div class="btn-group">
-            <%= link_to t(".format"),"javascript:autoFormatSelection()", class: "btn btn-default btn-sm" %>
-            <%= link_to t(".comment"),"javascript:commentSelection(true)", class: "btn btn-default btn-sm" %>
-            <%= link_to t(".uncomment"),"javascript:commentSelection(false)", class: "btn btn-default btn-sm" %>
-            <%= link_to t(".insert_image"), "javascript:insertImage()", class: "btn btn-default btn-sm" %>
-          </div>
-          <%= f.button :button, t(".apply"), type: :button, disabled: :disabled, class: "btn-apply btn btn-primary btn-sm" unless @style.new_record? %>
-        </div>
+
+      <div class="btn-group">
+        <%= link_to t(".format"),"javascript:autoFormatSelection()", class: "btn btn-default btn-sm" %>
+        <%= link_to t(".comment"),"javascript:commentSelection(true)", class: "btn btn-default btn-sm" %>
+        <%= link_to t(".uncomment"),"javascript:commentSelection(false)", class: "btn btn-default btn-sm" %>
+        <%= link_to t(".insert_image"), "javascript:insertImage()", class: "btn btn-default btn-sm" %>
       </div>
-    </div>
+      <%= f.button :button, t(".apply"), type: :button, disabled: :disabled, class: "btn-apply btn btn-primary btn-sm" unless @style.new_record? %>
+
     <%= f.input :css,
       as: :text,
       wrapper_html: { class: 'nostyle' },
       input_html: {class: 'style-editor', id: 'code' } %>
-
-    <div class="form-group">
-      <div class="col-md-7 col-md-offset-3">
-        <%= link_to icon('question-sign', text:t(".help_with_style")),
-          (current_settings.help_site || "/help"),
-          target: "_blank"%>
-      </div>
-    </div>
+    <%= link_to icon('question-sign', text:t(".help_with_style")),
+                (current_settings.help_site || "/help"),
+                target: "_blank" %>
     <% content_for :stylesheets, stylesheet_link_tag("codeMirror/codemirror") %>
     <% content_for :javascripts, javascript_include_tag("init/codemirror") %>
     <% content_for :javascripts do %>
       <script type="text/javascript">
           var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-            mode: 'css',
             lineNumbers: true,
+            mode: "css",
             tabSize: 2,
+            extraKeys: {
+              "Ctrl-Space": "autocomplete",
+              "F11": function(cm) {
+                  cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+              },
+              "Esc": function(cm) {
+                  if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+              }
+            },
             onCursorActivity: function() {
               editor.setLineClass(hlLine, null, null);
               hlLine = editor.setLineClass(editor.getCursor().line, null, "activeline");
@@ -48,7 +48,7 @@
               $('.btn-apply').prop('disabled',false);
             }
           });
-          var hlLine = editor.setLineClass(0, "activeline");
+          //var hlLine = editor.setLineClass(0, "activeline");
           //CodeMirror.commands["selectAll"](editor);
 
           $('.btn-apply').click(function(){

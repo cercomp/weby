@@ -10,20 +10,20 @@
   <div class="tab-content">
     <div class="tab-pane active" id="basic">
       <span class="contrast">
-        <%= f.input :contrast, :label => t("menu_accessibility.views.form.contrast"), :as => :boolean %>
+        <%= f.input :contrast, :label => t("menu_accessibility.views.form.contrast"), wrapper: :checkbox, :as => :boolean %>
         <%= each_i18n_tab do |locale| %>
           <%= f.component_i18n_input locale, :label_contrast, :as => :string %>
         <% end %>
       </span>
       <span class="font-size">
-        <%= f.input :font_size, :label => t("menu_accessibility.views.form.font_size"), :as => :boolean %>
+        <%= f.input :font_size, :label => t("menu_accessibility.views.form.font_size"), wrapper: :checkbox, :as => :boolean %>
         <%= each_i18n_tab do |locale| %>
           <%= f.component_i18n_input locale, :label_font_size, :as => :string %>
         <% end %>
       </span>
     </div>
     <div class="tab-pane" id="extended">
-      <%= f.input :extended_accessibility, as: :boolean %>
+      <%= f.input :extended_accessibility, wrapper: :checkbox, as: :boolean %>
       <div class="extended_fields">
       <%= each_i18n_tab do |locale| %>
           <%= f.component_i18n_input locale, :additional_information,

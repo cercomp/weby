@@ -1,4 +1,4 @@
-<%= simple_form_for [:admin, @site], html: { class: 'form-horizontal' } do |f| %>
+<%= simple_form_for [:admin, @site] do |f| %>
   <%= f.show_errors %>
 
   <%= f.input :name, :hint => t("field_required"), :input_html => {:pattern => '^[a-z0-9_\-]+$'}  %>

@@ -196,6 +196,14 @@ body.modal-open {
   border-bottom-right-radius: 4px;
 }
 
+.tab-pane{
+  padding: 19px;
+}
+
+.optional{
+  margin-left: 0px !important;
+}
+
 .highlight:hover td{
    background-color: #EEE !important;
 }
@@ -233,6 +241,7 @@ body.modal-open {
 
 #repo_list > div.row > div > div > a > img{
   height: 160px;
+  background-color: #F5F5F5;
 }
 
 
@@ -261,8 +270,10 @@ div#available_components div > div.thumbnail img {
   background-color: #DFF0D8 !important;
 }
 
-input[type="checkbox"].toggle { margin-top: 0; }
-
+input[type="checkbox"].toggle { margin-top: 0;}
+input[type="checkbox"] {
+  margin: 3px 0 0;
+}
 .nav-header {
   text-transform: uppercase;
   font-size: 11px;
@@ -288,6 +299,11 @@ input[type="checkbox"].toggle { margin-top: 0; }
 }
 .form-group {
   margin-top: 20px;
+  margin-left: 0px !important;
+  padding-right: 10px;
+  label{
+    font-weight: bold !important;
+  }
 }
 
   //Paginator
@@ -306,7 +322,11 @@ input[type="checkbox"].toggle { margin-top: 0; }
 }
 
 li .checkbox {
-  height: 20px;
+  height: 10px;
+}
+
+.checkbox label {
+  padding-left: 5px;
 }
 
 .center{

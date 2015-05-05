@@ -25,7 +25,7 @@
                 <span class="author"><%= t(".posted_by") %><%= news.user.name_or_login %></span>
               <% end %>
               <% if component.show_date %>
-                <span class="date"><%= t(".posted_on") %><%= localize news.created_at, format: :medium %></span>
+                <span class="date"><%= t(".posted_on") %><%= localize news.i18ns.first.updated_at, format: :medium %></span>
               <% end %>
             </p>
           <% end %>
@@ -39,7 +39,7 @@
           <% end %>
         </summary>
         <% if !(news.text.blank?) and component.read_more %>
-          <p class="read_more"><%= link_to t(".read_more"), news_path(news) %></p>
+          <p class="read_more"><%= link_to t(".read_more"), news_url(news, subdomain: news.site) %></p>
         <% end %>
         <div class="clear clearfix"> </div>
         <div class="control">

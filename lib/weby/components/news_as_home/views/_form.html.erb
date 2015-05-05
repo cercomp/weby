@@ -1,4 +1,4 @@
 <%= target_dialog_input(f, :page, false, false) %>
 
-<%= f.input :show_title, as: :boolean %>
-<%= f.input :show_info, as: :boolean %>
+<%= f.input :show_title, wrapper: :checkbox, as: :boolean %>
+<%= f.input :show_info, wrapper: :checkbox, as: :boolean %>

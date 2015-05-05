@@ -14,7 +14,7 @@
 %>
 <div class="slider-form">
   <%= f.input :timer, as: :integer, hint: t(".timer_hint") %>
-  <%= f.input :description, as: :boolean %>
-  <%= f.input :show_controls, as: :boolean, hint: t(".control_hint") %>
+  <%= f.input :description, wrapper: :checkbox, as: :boolean %>
+  <%= f.input :show_controls, wrapper: :checkbox, as: :boolean, hint: t(".control_hint") %>
 </div>
 
