@@ -7,13 +7,10 @@
   <%= f.input :publish, wrapper: :checkbox, wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" } %>
 
   <% unless @style.new_record? %>
-
-      <div class="btn-group">
-        <%= link_to t(".format"),"javascript:autoFormatSelection()", class: "btn btn-default btn-sm" %>
-        <%= link_to t(".comment"),"javascript:commentSelection(true)", class: "btn btn-default btn-sm" %>
-        <%= link_to t(".uncomment"),"javascript:commentSelection(false)", class: "btn btn-default btn-sm" %>
-        <%= link_to t(".insert_image"), "javascript:insertImage()", class: "btn btn-default btn-sm" %>
-      </div>
+      <%= link_to t(".format"),"javascript:autoFormatSelection()", class: "btn btn-default btn-sm" %>
+      <%= link_to t(".comment"),"javascript:commentSelection(true)", class: "btn btn-default btn-sm" %>
+      <%= link_to t(".uncomment"),"javascript:commentSelection(false)", class: "btn btn-default btn-sm" %>
+      <%= link_to t(".insert_image"), "javascript:insertImage()", class: "btn btn-default btn-sm" %>
       <%= f.button :button, t(".apply"), type: :button, disabled: :disabled, class: "btn-apply btn btn-primary btn-sm" unless @style.new_record? %>
 
     <%= f.input :css,
@@ -39,14 +36,14 @@
               "Esc": function(cm) {
                   if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
               }
-            },
-            onCursorActivity: function() {
+            }
+          });
+          editor.on("change", function(cm, change) {
+              $('.btn-apply').prop('disabled',false);
+          });
+          editor.on("onCursorActivity", function() {
               editor.setLineClass(hlLine, null, null);
               hlLine = editor.setLineClass(editor.getCursor().line, null, "activeline");
-            },
-            onChange: function() {
-              $('.btn-apply').prop('disabled',false);
-            }
           });
           //var hlLine = editor.setLineClass(0, "activeline");
           //CodeMirror.commands["selectAll"](editor);
