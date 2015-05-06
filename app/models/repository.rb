@@ -30,8 +30,9 @@ class Repository < ActiveRecord::Base
       l: "-quality 90 -strip",
       m: "-quality 80 -strip",
       t: "-crop 160x160+0+0 +repage -quality 90 -strip",
-      o: "-quality 80 -strip",
-      processors: [:cropper] }
+      o: "-quality 80 -strip"
+    },
+    processors: [:cropper]
 
 
   validates :description, presence: true
