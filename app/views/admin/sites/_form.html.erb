@@ -6,16 +6,16 @@
   <%= f.input :url, :hint =>  (t("field_required") + " " + t(".example_url")), :placeholder => "http://"%>
   <%= f.association :groupings, input_html: {class: 'select2 site-groupings'} %>
   <%= f.input :domain, :hint => t(".domain_explain") %>
-  
+
   <%= f.input :title, :input_html => {:maxlength => 50} %>
   <%= f.input :description, :input_html => {:rows => 8}, :hint => t(".site_comments"), :as => :text %>
-  <%= f.input :view_desc_pages, :hint => t(".view_desc_pages_help"), :as => :boolean %>
+  <%= f.input :view_desc_pages, :hint => t(".view_desc_pages_help"), :as => :boolean, wrapper: :checkbox %>
 
   <%= f.input :theme, :collection => @themes.collect{|name| [t("themes.#{name}.title"), name]} %>
   <%= f.input :body_width, :hint => t(".example_width") %>
   <%= f.input :per_page,  :hint => t(".example_per_page") %>
   <%= f.input :per_page_default,  :required => true %>
-  
+
   <%= f.association :locales,
     :as => :check_boxes,
     :boolean_style => :nested,

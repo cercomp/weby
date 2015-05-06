@@ -2,7 +2,7 @@
   <%= f.show_errors %>
 
   <%= f.input :name %>
-  <%= f.input :hidden %>
+  <%= f.input :hidden, wrapper: :checkbox %>
   <%= f.association :sites, labelmethod: :title, input_html: {class: 'select2 site-groupings'} %>
 
   <div class="form-actions">
