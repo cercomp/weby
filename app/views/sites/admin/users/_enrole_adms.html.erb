@@ -54,7 +54,7 @@
         <%= text_field_tag :adms_unroled, params[:adms_unroled], placeholder: t("search"),
             data: {fullname: (@user and @users_unroled.include?(@user)) ? @user.fullname : ''}, class: 'form-control' %>
         </div>
-        <div style="height: 300px; overflow: auto">
+        <div style="height: 300px;">
           <ul id="adms_list_roles" class="nav">
             <% @users_unroled.each do |user| %>
               <li>
