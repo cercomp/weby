@@ -12,6 +12,7 @@ module Journal::Admin
 
     def index
       @newslist = get_news
+      @newsletter = current_site.components.find_by_name("newsletter")
       respond_with(:admin, @newslist) do |format|
         if params[:template]
           format.js { render "#{params[:template]}" }
