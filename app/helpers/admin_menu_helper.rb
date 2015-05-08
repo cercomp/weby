@@ -14,6 +14,10 @@ module AdminMenuHelper
     end.flatten.compact.join.html_safe
   end
 
+  def menu_item_to(title, url)
+    content_tag :li, link_to(title, url), class: request.path.match(url.to_s) ? 'active' : ''
+  end
+
   private
 
   def content_menu_items
