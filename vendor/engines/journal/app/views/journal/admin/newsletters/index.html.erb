@@ -1,13 +1,14 @@
 <% title ".newsletter" %>
 <% breadcrumb :news_newsletter %>
 
-
 <%= form_tag admin_newsletters_path, method: "get" do %>
   <div class="row">
     <div class="col-md-5">
       <%= search_input params[:search] %>
     </div>
   </div>
+  <%= hidden_field_tag 'page', 1 %>
+  <%= hidden_field_tag 'per_page', "#{params[:per_page]}" %>
 <% end %>
 
 <div id="newsletter">
