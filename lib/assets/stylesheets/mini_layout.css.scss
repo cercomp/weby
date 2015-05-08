@@ -15,9 +15,16 @@
   -moz-box-sizing:border-box; /* Firefox */
   -webkit-box-sizing:border-box; /* Safari */
   float: left;
+  padding: 2px 0px 0px 5px;
 }
 
+.clicked, .clicked.hover:hover { 
+  background: #FDFCCC;
+  border-bottom: 1px dotted black;
+}
 
-.clicked, .clicked.hover:hover { background: #f7f6d9; }
+.hover:hover {
+  background-color: #cacaca;
+  border-bottom: 1px dotted black;
+}
 
-.hover:hover { background-color: #dadada; }

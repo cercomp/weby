@@ -27,7 +27,7 @@
             <ul id="users_list_roles" class="nav">
               <% @users_unroled.each do |user| %>
                 <li>
-                  <div class="checkbox"  style="padding-left:20px !important">
+                  <div class="checkbox">
                     <label>
                       <%= check_box_tag 'user[id][]', user.id, user.id == params[:user_id].to_i %>
                       <%= user %> <%= "(#{user.login})" if current_user.is_admin? %>

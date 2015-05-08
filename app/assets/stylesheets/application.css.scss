@@ -11,14 +11,13 @@
 
 body { background: #F5F5F5; }
 
-img{
+img {
   max-width: 100%;
 }
 
 a:hover { text-decoration: none; }
 
-#header
-{
+#header {
   padding-top: 25px;
   padding-bottom: 25px;
   font-size: 12px;
@@ -55,10 +54,8 @@ a:hover { text-decoration: none; }
   }
 }
 
-
-#main.container
-{
-  .nav { margin-bottom: 10px; }
+#main.container {
+  .nav { }
   .pagination { margin: 10px 0 5px; }
   .form { margin-bottom: 10px; }
   .new-site { margin-left: 5px }
@@ -70,8 +67,7 @@ a:hover { text-decoration: none; }
   }
 }
 
-#footer
-{
+#footer {
   a
   {
     margin-right: 5px;
@@ -82,46 +78,40 @@ a:hover { text-decoration: none; }
   text-align: center;
   font-size: 11px;
 }
-
 // NOTE:legacy
 // TODO: revisar
 // big editor to styles
-.style-editor
-{
-    height: 400px;
-    width: 95%;
+.style-editor {
+  height: 400px;
+  width: 95%;
 }
-
 // turn icon in hand in sort elements
-.handle
-{
+.handle {
   cursor: move;
   color: #1A417E;
   text-decoration: none;
 }
-
 // icon on datetimepicker field
-.datetimepicker
-{
-    background-image: url("/assets/ic_calendar.png") !important;
-    background-position: 98% center !important;
-    background-repeat: no-repeat !important;
+.datetimepicker {
+  background-image: url("/assets/ic_calendar.png") !important;
+  background-position: 98% center !important;
+  background-repeat: no-repeat !important;
 }
-#ui-datepicker-div{
-    font-size: 0.9em;
-    z-index: 10 !important;
-}
-
-.select2-search-field input{
-    height: 18px;
+#ui-datepicker-div {
+  font-size: 0.9em;
+  z-index: 10 !important;
 }
 
-select.select2{
+.select2-search-field input {
+  height: 18px;
+}
+
+select.select2 {
   height: 34px;
 }
 
 .pagination {
-    margin: 10px 0;
+  margin: 10px 0;
 }
 
 .pagination select {
@@ -132,21 +122,18 @@ select.select2{
   border-color: #DDD;
 }
 
-.pagination select.small{
-    height: 26px;
+.pagination select.small {
+  height: 26px;
 }
-
 // required is red!
 label.required abbr { color: #BC1625; }
-
 // nowrap tables
-table.nowrap td > div
-{
+table.nowrap td > div {
   overflow: hidden;
   white-space: nowrap;
 }
 
-table td p{
+table td p {
   margin: 0;
 }
 
@@ -155,36 +142,35 @@ thead {
   background-color: white;
 }
 
-.publish-warning{
+.publish-warning {
   position: absolute;
 }
 
 body.modal-open {
-    overflow: hidden;
+  overflow: hidden;
 }
 
-.modal-backdrop{
+.modal-backdrop {
   z-index: 66000;
 }
 
-.modal{
+.modal {
   z-index: 66050;
 }
 
-.select2-drop{
+.select2-drop {
   z-index: 66055;
 }
 
-.select2-drop-mask{
+.select2-drop-mask {
   z-index: 66052;
 }
 
 .tabbable.i18n .nav.nav-tabs {
-    margin-bottom: 0px !important;
+  margin-bottom: 0px !important;
 }
 
 .tabbable.i18n .tab-content {
-  padding-top: 20px;
   border: 1px solid #DDD;
   border-top: 0;
   margin-bottom: 20px;
@@ -196,37 +182,35 @@ body.modal-open {
   border-bottom-right-radius: 4px;
 }
 
-.tab-pane{
-  padding: 19px;
+.tab-pane {
+  padding: 5px;
 }
 
-.optional{
+.optional {
   margin-left: 0px !important;
 }
 
-.highlight:hover td{
-   background-color: #EEE !important;
+.highlight:hover td {
+  background-color: #EEE !important;
 }
 
-.cursor, .cursor label
-{
+.cursor, .cursor label {
   cursor: pointer;
 }
 
-.action-link, .handle{
+.action-link, .handle {
   white-space: nowrap;
 }
 
-#preview-css-panel{
+#preview-css-panel {
   text-align: center;
 
-  iframe{
+  iframe {
     width: 100%;
     height: 450px;
     border: 2px solid #DDD;
   }
 }
-
 // to customize main menu
 #menu-admin {
   .nav-header {
@@ -235,22 +219,20 @@ body.modal-open {
   }
 }
 
-#repo_list > div.row > div > div{
+#repo_list > div.row > div > div {
   height: 258px;
 }
 
-#repo_list > div.row > div > div > a > img{
+#repo_list > div.row > div > div > a > img {
   height: 160px;
   background-color: #F5F5F5;
 }
-
-
 //available components
 div#available_components div > div.thumbnail {
   height: 245px;
 }
 
-div#available_components div > div.thumbnail .glyphicon{
+div#available_components div > div.thumbnail .glyphicon {
   color: white;
 }
 
@@ -259,18 +241,17 @@ div#available_components div > div.thumbnail h5{
 }
 
 div#available_components div > div.thumbnail img {
- height: 130px;
+  height: 130px;
 }
-
 // used to mark object as published/unpublished
-.deactivated, .deactivated > td{
+.deactivated, .deactivated > td {
   background-color: #F2DEDE !important;
 }
-.activated{
+.activated {
   background-color: #DFF0D8 !important;
 }
 
-input[type="checkbox"].toggle { margin-top: 0;}
+input[type="checkbox"].toggle { margin-top: 0; }
 input[type="checkbox"] {
   margin: 3px 0 0;
 }
@@ -287,8 +268,6 @@ input[type="checkbox"] {
   display: block;
   padding: 6px 12px;
 }
-
-
 //Form-actions
 .form-actions {
   padding: 19px 20px 20px;
@@ -298,24 +277,22 @@ input[type="checkbox"] {
   border-top: 1px solid #e5e5e5;
 }
 .form-group {
-  margin-top: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   margin-left: 0px !important;
   padding-right: 10px;
-  label{
+  label {
     font-weight: bold !important;
   }
 }
-
-  //Paginator
+//Paginator
 .pagination > li {
   float: left;
 }
-
 //alert
 .alert {
   margin-top: 10px;
 }
-
 //checkboxes
 .well .nav .checkbox {
   font-weight: normal;
@@ -329,7 +306,12 @@ li .checkbox {
   padding-left: 5px;
 }
 
-.center{
+table .checkbox label,
+#backup .checkbox label {
+  padding-left: 22px;
+}
+
+.center {
   text-align: center;
 }
 
@@ -337,25 +319,39 @@ li .checkbox {
   margin-top: 10px;
 }
 
-.img-edit .panel-heading.closed{
+.img-edit .panel-heading.closed {
   cursor: pointer;
 }
 
-.img-edit .panel-heading.open{
+.img-edit .panel-heading.open {
   cursor: default;
 }
 
-.img-edit-preview{
+.img-edit-preview {
   margin-bottom: 10px;
 }
 
-.toggle-lock{
+.toggle-lock {
   position: relative;
   top: 31px;
   left: -20px;
 }
 
-.toggle-lock input{
+.toggle-lock input {
   vertical-align: middle;
   margin-top: -1px;
 }
+
+div.checkbox label.checkbox input {
+  margin-right: 5px;
+  margin-top: 6px;
+}
+
+.breadcrumb {
+  margin-bottom: 10px;
+}
+
+hr {
+  margin-bottom: 0;
+}
+

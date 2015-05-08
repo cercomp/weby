@@ -3,7 +3,10 @@
 
   <%= render('translates_form', f: f) %>
 
-  <%= f.input :publish , wrapper_html: { class: "side" }, as: :boolean, input_html: { class: "check-button" } %>
+  <%= f.input :publish, wrapper_html: { class: "side" }, 
+    as: :boolean,
+    input_html: { class: "check-button" },
+    wrapper: :checkbox %>
 
   <%= repository_search t(".related_files"),
     "related_file_ids", "page[related_file_ids][]", @page.related_files,
