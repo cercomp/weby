@@ -12,6 +12,8 @@ pt-BR:
         save: "Salvar"
       form:
         text: "Texto"
+        text_delete: "Texto exclusão do email da lista"
         email: "E-mail"
         subject: "Título da Notícia como Assunto"
         sending_as: "Enviar como"
+        new_window: "Esconder formulário"

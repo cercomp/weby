@@ -1,9 +1,11 @@
 <section class="newsletter_component">
-  <%= form_tag new_newsletter_path, method: 'get' do %>
-    <%= flash_message %>
-    <%= component.text %>
-    <%= hidden_field_tag :group, component.group %>
-    <%= email_field_tag :email, nil, placeholder: t('.email') %>
-    <center><%= submit_tag t('.save'), class: 'newsletter_submit' %></center>
+  <% if Weby::Components.factory(current_site.components.find_by_name("newsletter")).new_window.to_s == "0" %>
+    <%= form_tag new_newsletter_path, method: 'get' do %>
+      <%= flash_message %>
+      <%= component.text %>
+      <%= hidden_field_tag :group, component.group %>
+      <%= email_field_tag :email, nil, placeholder: t('.email') %>
+      <%= submit_tag t('.save'), class: 'newsletter_submit' %>
+    <% end %>
   <% end %>
 </section>

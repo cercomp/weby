@@ -4,21 +4,28 @@ module Journal
 
     def new
       email = params[:email]
+      @comp = current_site.components.find_by_name("newsletter")
       if !email.blank?
-        add_record = Newsletter.where("email = '"+email+"' AND site_id = "+current_site.id.to_s)[0]
-        if add_record.nil?
-          add_record = Newsletter.new
-          add_record.site_id = current_site.id
-          add_record.group = params[:group]
-          add_record.email = params[:email]
-        end
-        add_record.token = Digest::SHA1.hexdigest([Time.now, rand].join)
-        add_record.confirm = false
-        if add_record.save
-          NewsletterMailer.confirm_email(add_record, current_site.url).deliver
-          redirect_to :back, flash: { success: t('activation_sent_successful') }
+        if params[:opt].to_s == "delete"
+          user = Newsletter.where("email = '"+email+"' AND site_id = "+current_site.id.to_s)[0]
+          NewsletterMailer.delete_email(Weby::Components.factory(@comp).email, user, current_site.url).deliver
+          redirect_to :back, flash: { success: t('deactivation_sent_successful') }
         else
-        	redirect_to :back, flash: { error: t('error_creating_object') }
+          add_record = Newsletter.where("email = '"+email+"' AND site_id = "+current_site.id.to_s)[0]
+          if add_record.nil?
+            add_record = Newsletter.new
+            add_record.site_id = current_site.id
+            add_record.group = params[:group]
+            add_record.email = params[:email]
+          end
+          add_record.token = Digest::SHA1.hexdigest([Time.now, rand].join)
+          add_record.confirm = false
+          if add_record.save
+            NewsletterMailer.confirm_email(add_record, current_site.url).deliver
+            redirect_to :back, flash: { success: t('activation_sent_successful') }
+          else
+          	redirect_to :back, flash: { error: t('error_creating_object') }
+          end
         end
       end
     end

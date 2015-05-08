@@ -5,7 +5,6 @@ en:
   activerecord:
     attributes:
       newsletter_component:
-
   newsletter:
     views:
       show:
@@ -13,6 +12,8 @@ en:
         save: "Save"
       form:
         text: "Text"
+        text_delete: "Text when getout newsletter"
         email: "E-mail"
         subject: "Use new title as subject"
         sending_as: "Sending as"
+        new_window: "Hidden Form"

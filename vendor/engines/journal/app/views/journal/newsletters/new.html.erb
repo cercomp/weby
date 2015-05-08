@@ -1,0 +1,14 @@
+<section class="newsletter_component">
+  <%= form_tag new_newsletter_path, method: 'get' do %>
+    <%= flash_message %>
+    <% if @comp.nil? %>
+          <p><%= t('.message_error') %></p>
+          <%= link_to t('.back'), root_path, class: "btn btn-danger" %>
+    <% else %>
+          <%= params[:opt]=="delete" ? Weby::Components.factory(@comp).text_delete : Weby::Components.factory(@comp).text %>
+          <%= hidden_field_tag :opt, params[:opt]=="delete" ? "delete" : "new" %>
+          <%= email_field_tag :email, nil, placeholder: t('.email') %>
+          <%= submit_tag params[:opt]=="delete" ? t('.delete') : t('.save'), class: 'newsletter_submit' %>
+    <% end %>
+  <% end %>
+</section>

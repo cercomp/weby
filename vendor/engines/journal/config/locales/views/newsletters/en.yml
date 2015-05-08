@@ -1,0 +1,9 @@
+en:
+  journal:
+    newsletters:
+      new:
+        message_error:   " This page doesn't have Newsletter "
+        back:            " Back "
+        email:           " E-mail "
+        save:            " Save "
+        delete:          " Delete "
