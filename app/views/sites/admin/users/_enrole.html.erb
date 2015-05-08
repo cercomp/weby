@@ -23,11 +23,11 @@
             <%= text_field_tag :users_unroled, params[:users_unroled], placeholder: t("search"),
               data: {fullname: (@user and @users_unroled.include?(@user)) ? @user.fullname : ''}, class: 'form-control' %>
           </div>
-          <div style="height: 300px;">
+          <div style="height: 300px; overflow: auto">
             <ul id="users_list_roles" class="nav">
               <% @users_unroled.each do |user| %>
                 <li>
-                  <div class="checkbox">
+                  <div class="checkbox"  style="padding-left:20px !important">
                     <label>
                       <%= check_box_tag 'user[id][]', user.id, user.id == params[:user_id].to_i %>
                       <%= user %> <%= "(#{user.login})" if current_user.is_admin? %>
