@@ -23,7 +23,7 @@
             <%= text_field_tag :users_unroled, params[:users_unroled], placeholder: t("search"),
               data: {fullname: (@user and @users_unroled.include?(@user)) ? @user.fullname : ''}, class: 'form-control' %>
           </div>
-          <div style="height: 300px; overflow: auto">
+          <div style="height: 300px;">
             <ul id="users_list_roles" class="nav">
               <% @users_unroled.each do |user| %>
                 <li>
