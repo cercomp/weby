@@ -2,6 +2,5 @@
 <%= f.input :text_delete, label: t(".text_delete") %>
 <%= f.input :group, as: :hidden %>
 <%= f.input :email, placeholder: t(".email"), label: t(".sending_as") %>
-<%= f.input :subject, as: :boolean, label: t(".subject") %>
-<%= f.input :new_window, as: :boolean, label: t(".new_window"), hint: "Esconde o formulário e permite acessá-lo pelo link: /newsletters/new" %>
-
+<%= f.input :subject, as: :boolean, label: t(".subject"), wrapper: :checkbox %>
+<%= f.input :new_window, as: :boolean, label: t(".new_window"), wrapper: :checkbox, hint: "Esconde o formulário e permite acessá-lo pelo link: /newsletters/new" %>
