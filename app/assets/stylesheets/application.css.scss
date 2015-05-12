@@ -127,6 +127,9 @@ select.select2 {
 }
 // required is red!
 label.required abbr { color: #BC1625; }
+
+label.mce-label { max-width: none }
+
 // nowrap tables
 table.nowrap td > div {
   overflow: hidden;
@@ -354,4 +357,3 @@ div.checkbox label.checkbox input {
 hr {
   margin-bottom: 0;
 }
-
