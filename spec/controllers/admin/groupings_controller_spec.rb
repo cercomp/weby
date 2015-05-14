@@ -31,15 +31,15 @@ describe Admin::GroupingsController do
     end
   end
 
-  describe "GET #edit" do
-    before { get :edit, :id => group.id }
+  describe "GET #show" do
+    before { get :show, :id => group.id }
 
     it "assigns @grouping" do
       expect(assigns(:grouping)).to eq(group)
     end
 
     it "renders the :edit view" do
-      expect(response).to render_template(:edit)
+      expect(response).to render_template(:show)
     end
   end
 

@@ -31,15 +31,15 @@ describe Admin::SitesController do
     end
   end
 
-  describe "GET #edit" do
-    before { get :edit, :id => first_site.id }
+  describe "GET #show" do
+    before { get :show, :id => first_site.id }
 
     skip "assigns @site" do
       expect(assigns(:site)).to eq(first_site)
     end
 
     skip "renders the :edit template" do
-      expect(response).to render_template(:edit)
+      expect(response).to render_template(:show)
     end
   end
 
@@ -76,7 +76,7 @@ describe Admin::SitesController do
       before { post :create, :post => { :name => "", :title => "", :url => "" } }
 
       skip "will render :edit view" do
-        expect(response).to render_template(:edit)
+        expect(response).to render_template(:show)
       end
     end
   end

@@ -6,7 +6,7 @@ class Sites::Admin::ComponentsController < ApplicationController
   before_action :check_authorization
 
   def index
-    @components = current_site.components.order(position: :asc)
+    @components = current_site.active_skin.components.order(position: :asc)
     @placeholders = current_site.theme.layout['placeholders']
   end
 
@@ -25,7 +25,7 @@ class Sites::Admin::ComponentsController < ApplicationController
   end
 
   def edit
-    @component = Weby::Components.factory(current_site.components.find(params[:id]))
+    @component = Weby::Components.factory(current_site.active_skin.components.find(params[:id]))
     unless component_is_available(@component.name)
       flash[:warning] = t('.disabled_component')
       redirect_to site_admin_components_url
@@ -37,7 +37,7 @@ class Sites::Admin::ComponentsController < ApplicationController
       # creates an new instance of the selected component
       @component = Weby::Components.factory(params[:component])
       @component.attributes = component_params
-      @component.theme = current_site.theme.base
+      @component.skin = current_site.active_skin
 
       if @component.save
         record_activity('created_component', @component)
@@ -51,7 +51,7 @@ class Sites::Admin::ComponentsController < ApplicationController
   end
 
   def update
-    @component = Weby::Components.factory(current_site.components.find(params[:id]))
+    @component = Weby::Components.factory(current_site.active_skin.components.find(params[:id]))
 
     update_params
 

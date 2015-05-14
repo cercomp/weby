@@ -1,13 +1,14 @@
-class CreateThemes < ActiveRecord::Migration
+class CreateSkins < ActiveRecord::Migration
   def change
-    create_table :themes do |t|
+    create_table :skins do |t|
       t.references :site, index: true
+      t.string :theme
       t.string :name
-      t.string :base
       t.text :components
       t.text :layout
       t.text :variables
       t.text :css
+      t.boolean :active, default: false
 
       t.timestamps
     end

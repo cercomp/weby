@@ -79,9 +79,9 @@ Rails.application.routes.draw do
           post :sort
         end
       end
-      resources :themes, only: [:index, :new] do
-        member do
-          post :apply, :preview
+      resources :skins, except: [:destroy] do
+        collection do
+          get :preview
         end
       end
       resources :users, only: [] do

@@ -60,7 +60,7 @@ module ApplicationHelper
           end
           div_content << content_tag(:div, class: 'pull-right') do
             menu_content = []
-            menu_content << link_to(icon('edit', text: ''), edit_site_admin_menu_menu_item_path(entry.menu_id, entry.id), title: t('edit')) if test_permission(:menu_items, :edit)
+            menu_content << link_to(icon('edit', text: ''), edit_site_admin_menu_menu_item_path(entry.menu_id, entry.id), title: t('edit')) if test_permission(:menu_items, :show)
             menu_content << link_to(icon('trash', text: ''), site_admin_menu_menu_item_path(entry.menu_id, entry.id), method: :delete, data: { confirm: t('are_you_sure') }, title: t('destroy')) if test_permission(:menu_items, :destroy)
             menu_content << link_to(icon('move', text: ''), '#', class: 'handle', title: t('move')) if test_permission(:menu_items, :change_position)
             menu_content << link_to('+', new_site_admin_menu_menu_item_path(entry.menu_id, parent_id: entry.id), class: 'btn btn-success btn-xs', title: t('add_sub_menu')) if test_permission(:menu_items, :new)
@@ -508,7 +508,7 @@ module ApplicationHelper
     end
   end
 
-  # Input: Site object  
+  # Input: Site object
   # Output: link to the favicon
   def favicon(site)
     site.favicon.nil? ? asset_url('favicon.ico') : main_app.site_url(subdomain: site) + site.favicon.archive.url

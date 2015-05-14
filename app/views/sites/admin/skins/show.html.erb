@@ -1,0 +1,32 @@
+<% title ".themes" %>
+<% breadcrumb :skins_show, @skin %>
+<div class="tabbable">
+  <ul class="nav nav-tabs" id="tabs">
+    <% @menus.each do |menu| %>
+        <% active = (menu==@menu ? "active" : "") %>
+        <li class="<%= active %>" data-menu-id="<%= menu.id %>"><%= link_to(menu.name.try(:titleize), menu==@menu ? '#' : site_admin_menus_path(menu: menu.id)) %></li>
+    <% end %>
+  </ul>
+</div>
+<% if @menu %>
+    <% with_permission controller: Sites::Admin::Menus::MenuItemsController, action: :new do %>
+        <div class="pull-right">
+          <%= link_to t(".new_menu_item"),
+                      new_site_admin_menu_menu_item_path(@menu),
+                      class: "btn btn-success" %>
+        </div>
+        <div class="clearfix control-group"></div>
+    <% end %>
+    <% if @menu.menu_items.empty? %>
+        <div class="alert alert-warning">
+          <%= t(".none_menu_item") %>
+        </div>
+    <% else %>
+        <div id="main-menu">
+          <%= print_menu(@menu, view_ctrl: true) %>
+        </div>
+    <% end %>
+    <div class="form-actions">
+      <%= make_menu(@menu, except: :show) %>
+    </div>
+<% end %>

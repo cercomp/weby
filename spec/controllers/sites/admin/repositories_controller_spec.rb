@@ -35,8 +35,8 @@ describe Sites::Admin::RepositoriesController do
     end
   end
 
-  describe "GET #edit" do
-    before { get :edit, :id => file.id }
+  describe "GET #show" do
+    before { get :show, :id => file.id }
 
     skip "assigns @repository" do
       expect(assigns(:repository)).to eq(file)

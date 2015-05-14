@@ -4,7 +4,7 @@
 <%= simple_form_for [:site_admin, @component], html: {class: 'form-horizontal'}, url: url, method: method do |f| %>
   <%= f.show_errors %>
 
-  <%= f.input :site_id, input_html: {value: @site.id}, as: :hidden %>
+  <%#= f.input :site_id, input_html: {value: @site.id}, as: :hidden %>
   <%= hidden_field_tag :component, @component.name %>
   <%= f.input :alias, placeholder: t(".alias_hint") if Weby::Components.is_aliasable? @component.name %>
 
@@ -30,7 +30,7 @@
             <%= group ? (group.alias.present? ? group.alias : t("components.#{group.name}.name")) : params[:placeholder] %>"/>
         <% else %>
           <input type="text"disabled="true" class="form-control" value="
-            <%= t("themes.#{current_site.theme.base}.placeholders.#{@component.place_holder}", :default => @component.place_holder) %>"/>
+            <%= t("themes.#{current_site.theme.name}.placeholders.#{@component.place_holder}", :default => @component.place_holder) %>"/>
         <% end %>
       <% else %>
         <% if @component.place_holder.to_s.match(/^\d*$/) and (group = current_site.components.find_by(id: @component.place_holder.to_i)) %>

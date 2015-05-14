@@ -22,7 +22,7 @@
     <% row["names"].each_with_index do |name, idx| %>
       <%= content_tag :div, class: "placeholder", data: {place: name}, style: "width: #{row["widths"] ? row["widths"][idx] : 100/row["names"].size}%;" do %>
         <%= link_to '+', new_site_admin_component_path(placeholder: name), class: "add-btn btn btn-success btn-sm", title: t(".new_component") if check_permission(Sites::Admin::ComponentsController, 'new') %>
-        <div class="placeholder-name"><%= t("themes.#{current_site.theme.base}.placeholders.#{name}") %></div>
+        <div class="placeholder-name"><%= t("themes.#{current_site.theme.name}.placeholders.#{name}") %></div>
         <ul class="order-list" data-place="<%= name %>">
           <% components_per_holder = @components.select{|component| component.place_holder == name} %>
           <% if components_per_holder.empty? %>

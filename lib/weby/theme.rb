@@ -9,8 +9,8 @@ class Weby::Theme
     @template = "lib/weby/themes/#{@name}/layouts/#{@name}.html.erb"
   end
 
-  def populate site
-    @site = site
+  def populate skin
+    @skin = skin
     populate_extensions if @extensions
     populate_components if @components
   end
@@ -19,32 +19,32 @@ class Weby::Theme
 
   def populate_components
     default_footer = {}
-    @site.locales.each do |locale|
+    @skin.site.locales.each do |locale|
       I18n.with_locale(locale.name) do
         default_footer[locale.name] = I18n.t('admin.sites.form.footer_text')
       end
     end
 
-    return if @site.components.where(theme: @name).any? #@site.components.where(theme: @name).destroy_all
+    return if @skin.components.any? #@site.components.where(theme: @name).destroy_all
     @components.each do |place, comps|
       comps.each do |component|
         component['place_holder'] = place
-        component['theme'] = @name
+        #component['theme'] = @name
         if component['name'] == 'menu'
-          menu = @site.menus.create(component.delete('menu'))
+          menu = @skin.site.menus.create(component.delete('menu'))
           component['settings'] = I18n.interpolate(component['settings'], menu_id: menu.id)
         end
         if component['name'] == 'text'
           component['settings'] = I18n.interpolate(component['settings'], default_footer: default_footer.to_s)
         end
-        @site.components.create(component)
+        @skin.components.create(component)
       end
     end
   end
 
   def populate_extensions
     @extensions.each do |extension|
-      @site.extensions.create(extension)
+      @skin.site.extensions.create(extension)
     end
   end
 end

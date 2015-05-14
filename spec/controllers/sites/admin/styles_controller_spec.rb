@@ -50,8 +50,8 @@ describe Sites::Admin::StylesController do
     end
   end
 
-  describe "GET #edit" do
-    before { get :edit, :id => first_style.id }
+  describe "GET #show" do
+    before { get :show, :id => first_style.id }
 
     it "assigns @style" do
       expect(assigns(:style)).to eq(first_style)
@@ -101,7 +101,7 @@ describe Sites::Admin::StylesController do
       before { put :update, style: { :name => "" }, :id => first_style.id }
 
       it "will render the :edit view" do
-        expect(response).to render_template(:edit)
+        expect(response).to render_template(:show)
       end
     end
   end

@@ -18,15 +18,15 @@ describe Admin::RolesController do
     end
   end
 
-  describe "GET #edit" do
-    before { get :edit, :id => user_role.id }
+  describe "GET #show" do
+    before { get :show, :id => user_role.id }
 
     it "assigns @role" do
       expect(assigns(:role)).to eq(user_role)
     end
 
     it "renders the :edit view" do
-      expect(assigns(response)).to render_template(:edit)
+      expect(assigns(response)).to render_template(:show)
     end
   end
 

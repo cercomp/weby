@@ -32,15 +32,15 @@ describe Admin::NotificationsController do
     end
   end
 
-  describe "GET #edit" do
-    before { get :edit, :id => notifi.id }
+  describe "GET #show" do
+    before { get :show, :id => notifi.id }
 
     it "assigns @notification" do
       expect(assigns(:notification)).to eq(notifi)
     end
 
     it "renders the :edit view" do
-      expect(response).to render_template(:edit)
+      expect(response).to render_template(:show)
     end
   end
 

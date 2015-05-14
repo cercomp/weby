@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150224174414) do
+ActiveRecord::Schema.define(version: 20150416120806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,7 +75,6 @@ ActiveRecord::Schema.define(version: 20150224174414) do
   add_index "calendar_events", ["user_id"], name: "index_calendar_events_on_user_id", using: :btree
 
   create_table "components", force: true do |t|
-    t.integer  "site_id"
     t.string   "place_holder"
     t.text     "settings"
     t.string   "name"
@@ -85,10 +84,10 @@ ActiveRecord::Schema.define(version: 20150224174414) do
     t.string   "alias"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
-    t.string   "theme"
+    t.integer  "skin_id"
   end
 
-  add_index "components", ["site_id"], name: "index_components_on_site_id", using: :btree
+  add_index "components", ["skin_id"], name: "index_components_on_skin_id", using: :btree
 
   create_table "extensions", force: true do |t|
     t.integer  "site_id"
@@ -329,6 +328,21 @@ ActiveRecord::Schema.define(version: 20150224174414) do
     t.string   "group"
   end
 
+  create_table "skins", force: true do |t|
+    t.integer  "site_id"
+    t.string   "theme"
+    t.string   "name"
+    t.text     "components"
+    t.text     "layout"
+    t.text     "variables"
+    t.text     "css"
+    t.boolean  "active",     default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "skins", ["site_id"], name: "index_skins_on_site_id", using: :btree
+
   create_table "sticker_banners", force: true do |t|
     t.datetime "date_begin_at"
     t.datetime "date_end_at"
@@ -383,14 +397,14 @@ ActiveRecord::Schema.define(version: 20150224174414) do
     t.string   "name"
     t.text     "css"
     t.boolean  "publish",    default: true
-    t.integer  "site_id"
     t.integer  "position",   default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "style_id"
+    t.integer  "skin_id"
   end
 
-  add_index "styles", ["site_id"], name: "index_styles_on_site_id", using: :btree
+  add_index "styles", ["skin_id"], name: "index_styles_on_skin_id", using: :btree
   add_index "styles", ["style_id"], name: "index_styles_on_style_id", using: :btree
 
   create_table "repositories", force: true do |t|
@@ -454,20 +468,6 @@ ActiveRecord::Schema.define(version: 20150224174414) do
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
-
-  create_table "themes", force: true do |t|
-    t.integer  "site_id"
-    t.string   "name"
-    t.string   "base"
-    t.text     "components"
-    t.text     "layout"
-    t.text     "variables"
-    t.text     "css"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "themes", ["site_id"], name: "index_themes_on_site_id", using: :btree
 
   create_table "user_login_histories", force: true do |t|
     t.integer  "user_id",    null: false
@@ -535,6 +535,18 @@ ActiveRecord::Schema.define(version: 20150224174414) do
 
   add_index "weby_settings", ["thing_type", "thing_id", "var"], name: "index_weby_settings_on_thing_type_and_thing_id_and_var", unique: true, using: :btree
 
+  add_foreign_key "activity_records", "sites", name: "activity_records_site_id_fk"
+  add_foreign_key "activity_records", "users", name: "activity_records_user_id_fk"
+
+  add_foreign_key "calendar_event_i18ns", "calendar_events", name: "calendar_event_i18ns_calendar_event_id_fk"
+  add_foreign_key "calendar_event_i18ns", "locales", name: "calendar_event_i18ns_locale_id_fk"
+
+  add_foreign_key "calendar_events", "repositories", name: "calendar_events_repository_id_fk"
+  add_foreign_key "calendar_events", "sites", name: "calendar_events_site_id_fk"
+  add_foreign_key "calendar_events", "users", name: "calendar_events_user_id_fk"
+
+  add_foreign_key "extensions", "sites", name: "extension_sites_site_id_fk"
+
   add_foreign_key "feedback_groups", "sites", name: "groups_site_id_fk"
 
   add_foreign_key "feedback_messages", "sites", name: "feedbacks_site_id_fk"
@@ -581,7 +593,6 @@ ActiveRecord::Schema.define(version: 20150224174414) do
   add_foreign_key "sticker_banners", "sites", name: "banners_site_id_fk"
   add_foreign_key "sticker_banners", "users", name: "banners_user_id_fk"
 
-  add_foreign_key "styles", "sites", name: "styles_owner_id_fk"
   add_foreign_key "styles", "styles", name: "styles_style_id_fk"
 
   add_foreign_key "user_login_histories", "users", name: "user_login_histories_user_id_fk"

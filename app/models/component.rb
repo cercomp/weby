@@ -1,7 +1,7 @@
 class Component < ActiveRecord::Base
   extend Weby::ComponentInstance
 
-  belongs_to :site
+  belongs_to :skin
 
   # TODO validar também se a área é válida quanto ao layout
   # ex: Um componente pode existe na área X em um layout, mas em outro
@@ -99,7 +99,7 @@ class Component < ActiveRecord::Base
   def prepare_variables
     self.publish = true if publish.nil?
     self.settings = settings_map.to_s
-    self.position = Component.maximum('position', conditions: ['site_id = ? AND place_holder = ?', site_id, place_holder]).to_i + 1 if position.blank?
+    self.position = Component.maximum('position', conditions: ['skin_id = ? AND place_holder = ?', skin_id, place_holder]).to_i + 1 if position.blank?
   end
 
   def remove_children

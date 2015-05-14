@@ -10,27 +10,21 @@ class Site < ActiveRecord::Base
   has_many :menu_items, through: :menus
   has_many :pages, -> { includes(:i18ns) }, dependent: :destroy
   has_many :pages_i18ns, through: :pages, source: :i18ns
-  has_many :styles, -> { order('styles.position DESC') }, dependent: :destroy
-<<<<<<< HEAD
-  has_many :components, -> { order(:place_holder, :position) }, dependent: :destroy
-  has_many :root_components, -> { order(:position).where("place_holder !~ '^\\d*$'") }, class_name: 'Component'
-  has_many :repositories, dependent: :destroy
-  has_many :extensions, dependent: :destroy
-  has_many :news_sites, class_name: "::Journal::NewsSite"
-  has_many :news, :through => :news_sites, class_name: "::Journal::News"
-  # Extensions relations
-  has_many :groups, class_name: 'Feedback::Group', dependent: :destroy
-  has_many :messages, class_name: 'Feedback::Message', dependent: :destroy
-  has_many :news, class_name: 'Journal::News', dependent: :destroy
-  has_many :banners, class_name: 'Sticker::Banner', dependent: :destroy
-  has_many :events, class_name: 'Calendar::Event', dependent: :destroy
-=======
   has_many :components, ->(site) { site.theme ? order(:place_holder, :position).where(theme: site.theme.base) : where(nil) }, dependent: :destroy
   has_many :root_components, ->(site) { site.theme ? order(:position).where("place_holder !~ '^\\d*$'").where(theme: site.theme.base) : where(nil) }, class_name: 'Component'
-  has_many :repositories
-  has_many :extensions
+  has_many :repositories, dependent: :destroy
+  has_many :extensions, dependent: :destroy
   has_one :theme
->>>>>>> Start to change theme feature
+  # Extensions relations
+  has_many :news_sites, class_name: "::Journal::NewsSite"
+  has_many :news, :through => :news_sites, class_name: "::Journal::News"
+  has_many :groups, class_name: 'Feedback::Group', dependent: :destroy
+  has_many :messages, class_name: 'Feedback::Message', dependent: :destroy
+  has_many :banners, class_name: 'Sticker::Banner', dependent: :destroy
+  has_many :events, class_name: 'Calendar::Event', dependent: :destroy
+  has_many :skins
+  #has_many :components, through: :skins
+  #has_many :styles, through: :skins
 
   has_and_belongs_to_many :locales
   has_and_belongs_to_many :groupings
@@ -41,7 +35,7 @@ class Site < ActiveRecord::Base
     repositories.update_all(archive_file_name: nil)
   end
 
-  validates :name, :title, :theme, :url, :per_page, presence: true
+  validates :name, :title, :url, :per_page, presence: true
   validates :url, format: { with: /\Ahttp[s]{,1}:\/\/[\w\.\-\%\#\=\?\&]+\.([\w\.\-\%\#\=\?\&]+\/{,1})*\z/i }
   validates :name, uniqueness: { scope: :parent_id }, format: { with: /\A^[a-z0-9_\-]+\z/ }
   validates :per_page, format: { with: /\A([0-9]+[,\s]*)+[0-9]*\z/ }
@@ -69,6 +63,14 @@ class Site < ActiveRecord::Base
   }
 
   before_save :clear_per_page
+
+  def theme
+    Weby::Themes.theme(skins.where(active: true).first.try(:theme))
+  end
+
+  def active_skin
+    skins.find_by(active: true)
+  end
 
   def favicon
     repositories.find_by(archive_file_name: 'favicon.png')

@@ -8,10 +8,10 @@ class Sites::Admin::StylesController < ApplicationController
 
   def index
     @styles = {}
-    @styles[:others] = Style.not_followed_by(current_site).search(params[:search])
-                            .order('site_id')
-                            .page(params[:page]).per(params[:per_page])
-    @styles[:styles] = current_site.styles.includes(:site, :style, :followers) if request.format.html?
+    #@styles[:others] = Style.not_followed_by(current_site).search(params[:search])
+    #                        .order('site_id')
+    #                        .page(params[:page]).per(params[:per_page])
+    @styles[:styles] = current_site.active_skin.styles.includes(:style) if request.format.html?
   end
 
   def show
@@ -19,11 +19,11 @@ class Sites::Admin::StylesController < ApplicationController
   end
 
   def new
-    @style = current_site.styles.new
+    @style = current_site.active_skin.styles.new
   end
 
   def create
-    @style = current_site.styles.new(style_params)
+    @style = current_site.active_skin.styles.new(style_params)
     if @style.save
       flash[:success] = t('successfully_created')
       record_activity('created_style', @style)
@@ -34,11 +34,11 @@ class Sites::Admin::StylesController < ApplicationController
   end
 
   def edit
-    @style = current_site.styles.own.find params[:id]
+    @style = current_site.active_skin.styles.own.find params[:id]
   end
 
   def update
-    @style = current_site.styles.own.find params[:id]
+    @style = current_site.active_skin.styles.own.find params[:id]
     respond_to do |format|
       if @style.update(style_params)
         record_activity('updated_style', @style)
@@ -96,7 +96,7 @@ class Sites::Admin::StylesController < ApplicationController
   def sort
     position = 0
     params['sort_style'].reverse_each do |style_id|
-      current_site.styles.find(style_id).update_attribute(:position, position += 1)
+      current_site.active_skin.styles.find(style_id).update_attribute(:position, position += 1)
     end
     render nothing: true
   end
@@ -105,7 +105,7 @@ class Sites::Admin::StylesController < ApplicationController
 
   # override method from concern to work with relation
   def resource
-    get_resource_ivar || set_resource_ivar(current_site.styles.find(params[:id]))
+    get_resource_ivar || set_resource_ivar(current_site.active_skin.styles.find(params[:id]))
   end
 
   def after_toggle_path

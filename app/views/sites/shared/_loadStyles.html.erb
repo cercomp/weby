@@ -1,4 +1,4 @@
-<% current_site.styles.published.reorder('styles.position asc').each do |style| %>
+<% current_site.active_skin.styles.published.reorder('styles.position asc').each do |style| %>
   <!-- <%= "#{style.name} (#{style.owner.name})" %> -->
   <style type="text/css">
     <%= raw style.css %>

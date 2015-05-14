@@ -36,8 +36,8 @@ describe Sites::Admin::ComponentsController do
     end
   end
 
-  describe "GET #edit" do
-    before { get :edit, :id => first_component.id }
+  describe "GET #show" do
+    before { get :show, :id => first_component.id }
 
     skip "assigns @component" do
       expect(assigns(:component)).to eq(first_component)
@@ -77,7 +77,7 @@ describe Sites::Admin::ComponentsController do
       before { put :update, :post => { :name => "" }, :id => first_component.id }
 
       skip "will render :edpending view" do
-        expect(response).to render_template(:edit)
+        expect(response).to render_template(:show)
       end
     end
   end

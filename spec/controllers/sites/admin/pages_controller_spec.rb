@@ -40,8 +40,8 @@ describe Sites::Admin::PagesController do
     end
   end
 
-  describe "GET #edit" do
-    before { get :edit, :id => site.id }
+  describe "GET #show" do
+    before { get :show, :id => site.id }
 
     skip "assigns @page" do
       expect(assigns(:page)).to eq(page)

@@ -44,8 +44,8 @@ describe Sites::Admin::RolesController do
     end
   end
 
-  describe "GET #edit" do
-    before { get :edit, :id => role.id }
+  describe "GET #show" do
+    before { get :show, :id => role.id }
 
     it "assigns @role" do
       expect(assigns(:role)).to eq(role)
