@@ -7,20 +7,20 @@ module Journal
 
     STATUS_LIST = %w(draft review published)
 
-    
+
     belongs_to :site
     belongs_to :user
-    
+
     has_many :views, as: :viewable
     has_many :menu_items, as: :target, dependent: :nullify
     has_many :posts_repositories, as: :post, dependent: :destroy
     has_many :related_files, through: :posts_repositories, source: :repository
     has_many :news_sites, foreign_key: :journal_news_id, class_name: "::Journal::NewsSite", dependent: :destroy
     has_many :sites, :through => :news_sites, class_name: "::Journal::NewsSite"
-    
+
     # Validations
     validates :user_id, :site_id, :status, presence: true
-    
+
     validate :validate_date
 
     scope :published, -> { where(status: 'published') }
@@ -69,23 +69,26 @@ module Journal
 
     def self.import(attrs, options = {})
       return attrs.each { |attr| import attr, options } if attrs.is_a? Array
-      
+
       attrs = attrs.dup
       attrs = attrs['news'] if attrs.key? 'news'
-
+      id = attrs['id']
       attrs.except!('id', 'type', 'created_at', 'updated_at', 'site_id')
 
       attrs['user_id'] = options[:user] unless User.unscoped.find_by(id: attrs['user_id'])
       attrs['repository_id'] = Import::Application::CONVAR["repository"]["#{attrs['repository_id']}"]
-      
+
       attrs['i18ns'] = attrs['i18ns'].map do |i18n|
         i18n['text'] = i18n['text'].gsub(/\/up\/[0-9]+/) {|x| "/up/#{options[:site_id]}"} if i18n['text']
         self::I18ns.new(i18n.except('id', 'type', 'created_at', 'updated_at', 'journal_news_id'))
       end
-      # attrs['category_list'] = attrs.delete('categories').to_a.map { |category| category['name'] }
+
       attrs['related_file_ids'] = attrs.delete('related_files').to_a.map {|repo| Import::Application::CONVAR["repository"]["#{repo['id']}"] }
 
-      self.create!(attrs)
+      news = self.create!(attrs)
+      if news.persisted?
+        Import::Application::CONVAR["news"]["#{id}"] ||= "#{news.id}"
+      end
     end
 
     def to_param
