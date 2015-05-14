@@ -17,3 +17,6 @@ en:
         subject: "Use new title as subject"
         sending_as: "Sending as"
         new_window: "Hidden Form"
+        button_text: "Button text"
+        report_title: "Report title"
+        report_logo: "Report logo"

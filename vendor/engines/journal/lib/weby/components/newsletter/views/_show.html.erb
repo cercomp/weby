@@ -1,3 +1,4 @@
+<% if params[:opt]!="delete" %>
 <section class="newsletter_component">
   <% if Weby::Components.factory(current_site.components.find_by_name("newsletter")).new_window.to_s == "0" %>
     <%= form_tag new_newsletter_path, method: 'get' do %>
@@ -5,7 +6,8 @@
       <%= component.text %>
       <%= hidden_field_tag :group, component.group %>
       <%= email_field_tag :email, nil, placeholder: t('.email') %>
-      <%= submit_tag t('.save'), class: 'newsletter_submit' %>
+      <%= submit_tag component.button_text, class: 'newsletter_submit' %>
     <% end %>
   <% end %>
 </section>
+<% end %>

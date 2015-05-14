@@ -17,3 +17,6 @@ pt-BR:
         subject: "Título da Notícia como Assunto"
         sending_as: "Enviar como"
         new_window: "Esconder formulário"
+        button_text: "Texto do botão"
+        report_title: "Título que será apresentado no relatório"
+        report_logo: "Logomarca que será exibida no relatório"
