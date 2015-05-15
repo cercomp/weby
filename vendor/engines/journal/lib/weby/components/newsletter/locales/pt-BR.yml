@@ -5,18 +5,19 @@ pt-BR:
   activerecord:
     attributes:
       newsletter_component:
+        text: "Texto exibido na página - Cadastro do email"
+        delete_text: "Texto exibido na página - Exclusão do email"
+        button_text: "Texto do botão"
+        send_as: "Enviar como"
+        report_title: "Título que será apresentado no relatório"
+        report_subtitle: "Sub-título do relatório"
   newsletter:
     views:
       show:
         email: "E-mail"
         save: "Salvar"
       form:
-        text: "Texto"
-        text_delete: "Texto exclusão do email da lista"
-        email: "E-mail"
         subject: "Título da Notícia como Assunto"
-        sending_as: "Enviar como"
-        new_window: "Esconder formulário"
-        button_text: "Texto do botão"
-        report_title: "Título que será apresentado no relatório"
+        hide_form: "Esconder formulário"
+        hide_form_hint: "Esconde o formulário e permite acessá-lo pelo link: /newsletters/new"
         report_logo: "Logomarca que será exibida no relatório"

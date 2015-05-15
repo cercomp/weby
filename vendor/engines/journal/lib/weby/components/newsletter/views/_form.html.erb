@@ -1,9 +1,13 @@
-<%= f.input :text, label: t(".text") %>
-<%= f.input :delete_text, label: t(".text_delete") %>
-<%= f.input :group, as: :hidden %>
-<%= f.input :send_as, label: t(".sending_as") %>
+<%= each_i18n_tab do |locale| %>
+    <%= f.component_i18n_input locale, :text %>
+    <%= f.component_i18n_input locale, :delete_text %>
+    <%= f.component_i18n_input locale, :button_text %>
+    <%= f.component_i18n_input locale, :send_as %>
+    <hr>
+    <%= f.component_i18n_input locale, :report_title %>
+    <%= f.component_i18n_input locale, :report_subtitle %>
+<% end %>
 <%= f.input :subject, as: :boolean, label: t(".subject"), wrapper: :checkbox %>
-<%= f.input :new_window, as: :boolean, label: t(".new_window"), wrapper: :checkbox, hint: "Esconde o formulário e permite acessá-lo pelo link: /newsletters/new" %>
-<%= f.input :button_text, label: t(".button_text") %>
-<%= f.input :report_title, label: t(".report_title") %>
+<%= f.input :hide_form, as: :boolean, label: t(".hide_form"), wrapper: :checkbox, hint: t(".hide_form_hint") %>
+<%= f.input :group, as: :hidden %>
 <%= f.input :report_logo, as: :file, label: t(".report_logo") %>

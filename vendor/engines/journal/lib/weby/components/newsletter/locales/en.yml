@@ -5,18 +5,19 @@ en:
   activerecord:
     attributes:
       newsletter_component:
+        text: "Text"
+        delete_text: "Text when getout newsletter"
+        button_text: "Button text"
+        send_as: "Send as"
+        report_title: "Report title"
+        report_subtitle: "Report subtitle"
   newsletter:
     views:
       show:
         email: "E-mail"
         save: "Save"
       form:
-        text: "Text"
-        text_delete: "Text when getout newsletter"
-        email: "E-mail"
         subject: "Use new title as subject"
-        sending_as: "Sending as"
-        new_window: "Hidden Form"
-        button_text: "Button text"
-        report_title: "Report title"
+        hide_form: "Hidden form"
+        hide_form_hint: "Hides the form and allows access through the link: /newsletters/new"
         report_logo: "Report logo"
