@@ -33,6 +33,7 @@ gem 'foreigner', '~> 1.6.1'
 gem 'gretel', '~> 3.0.7'
 gem 'zeroclipboard-rails', '~> 0.0.13'
 gem 'zip-zip', '~> 0.3'
+gem "nori"
 
 gem 'useragent', '0.2.3', :git => 'http://github.com/jilion/useragent'
 gem 'rails-settings-cached', '0.4.1'

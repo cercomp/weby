@@ -22,7 +22,7 @@ class Component < ActiveRecord::Base
     attrs = attrs.dup
     attrs = attrs['component'] if attrs.key? 'component'
     id = attrs['id']
-    attrs.except!('id', 'created_at', 'updated_at', 'site_id', 'type')
+    attrs.except!('id', 'created_at', 'updated_at', 'site_id', '@type', 'type')
 
     settings = eval(attrs['settings'])
     if settings[:body]

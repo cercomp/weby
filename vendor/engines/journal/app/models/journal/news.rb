@@ -73,14 +73,19 @@ module Journal
       attrs = attrs.dup
       attrs = attrs['news'] if attrs.key? 'news'
       id = attrs['id']
-      attrs.except!('id', 'type', 'created_at', 'updated_at', 'site_id')
+      attrs.except!('id', '@type', 'type', 'created_at', 'updated_at', 'site_id')
 
       attrs['user_id'] = options[:user] unless User.unscoped.find_by(id: attrs['user_id'])
-      attrs['repository_id'] = Import::Application::CONVAR["repository"]["#{attrs['repository_id']}"]
+      repo_id = Import::Application::CONVAR["repository"]["#{attrs['repository_id']}"]
+      repo = Repository.find(repo_id) if !repo_id.blank?
+      attrs.except!('repository_id')
+      if repo && repo.archive_content_type
+        repo.image? ? attrs['repository_id'] = repo_id : attrs.except!('repository_id')
+      end
 
       attrs['i18ns'] = attrs['i18ns'].map do |i18n|
         i18n['text'] = i18n['text'].gsub(/\/up\/[0-9]+/) {|x| "/up/#{options[:site_id]}"} if i18n['text']
-        self::I18ns.new(i18n.except('id', 'type', 'created_at', 'updated_at', 'journal_news_id'))
+        self::I18ns.new(i18n.except('id', '@type', 'type', 'created_at', 'updated_at', 'journal_news_id'))
       end
 
       attrs['related_file_ids'] = attrs.delete('related_files').to_a.map {|repo| Import::Application::CONVAR["repository"]["#{repo['id']}"] }
