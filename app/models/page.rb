@@ -56,13 +56,13 @@ class Page < ActiveRecord::Base
     attrs = attrs.dup
     attrs = attrs['page'] if attrs.key? 'page'
 
-    attrs.except!('id', 'created_at', 'updated_at', 'site_id')
+    attrs.except!('id', 'created_at', 'updated_at', 'site_id', '@type')
 
     attrs['user_id'] = options[:user] unless User.unscoped.find_by(id: attrs['user_id'])
-    
+
     attrs['i18ns'] = attrs['i18ns'].map do |i18n|
       i18n['text'] = i18n['text'].gsub(/\/up\/[0-9]+/) {|x| "/up/#{options[:site_id]}"} if i18n['text']
-      self::I18ns.new(i18n.except('id', 'type', 'created_at', 'updated_at', 'page_id'))
+      self::I18ns.new(i18n.except('id', 'type', '@type', 'created_at', 'updated_at', 'page_id'))
     end
     attrs['related_file_ids'] = attrs.delete('related_files').to_a.map {|repo| Import::Application::CONVAR["repository"]["#{repo['id']}"] }
 

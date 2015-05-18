@@ -155,13 +155,14 @@ GEM
       railties
     method_source (0.8.2)
     mime-types (2.4.3)
-    mini_portile (0.6.0)
+    mini_portile (0.5.3)
     minitest (5.4.3)
     multi_json (1.10.1)
     net-ldap (0.8.0)
-    nokogiri (1.6.2.1)
-      mini_portile (= 0.6.0)
+    nokogiri (1.6.0)
+      mini_portile (~> 0.5.0)
     non-stupid-digest-assets (1.0.4)
+    nori (2.6.0)
     orm_adapter (0.5.0)
     pg (0.17.1)
     pry (0.10.0)
@@ -295,6 +296,7 @@ DEPENDENCIES
   meta_request (~> 0.3.0)
   net-ldap
   non-stupid-digest-assets
+  nori
   paperclip!
   pg (~> 0.17.1)
   pry-rails (~> 0.3.2)

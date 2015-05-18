@@ -2,8 +2,8 @@
 
 <section class="banner_list_component <%= component.orientation %>">
   <% @banners = current_site.banners.published.order("position ASC").tagged_with(component.category.to_s.mb_chars.downcase.to_s, any: true) %>
-      
-  
+
+
   <% if component.orientation != "slider" %>
     <% @banners.each do |banner| %>
       <% banner_url = target_url(banner) %>
@@ -41,7 +41,7 @@
     <div class="clear clearfix"> </div>
 
   <% else %>
-    <% include_component_javascript :javascripts, 'banner_list_jquery.flexslider-min' %>
+    <% include_component_javascript :javascripts, 'banner_list_jquery.flexslider' %>
     <% stylesheet_link_tag 'banner_list_flexslider' %>
     <% speed = component.timer.to_i * 1000 %>
     <div class="flexslider" data-slideshowspeed="<%= speed %>" data-controls="<%= component.show_controls? %>">

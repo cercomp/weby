@@ -73,7 +73,8 @@ class Sites::Admin::BackupsController < ApplicationController
     Import::Application::CONVAR["menu"] = {}
     case uploaded_io.content_type
       when 'text/xml'
-        attrs = Hash.from_xml(uploaded_io.read)
+        parser = Nori.new
+        attrs = parser.parse(uploaded_io.read)
       when 'application/json', 'application/octet-stream'
         attrs = JSON.parse uploaded_io.read
     end
@@ -81,7 +82,7 @@ class Sites::Admin::BackupsController < ApplicationController
     attrs = attrs['site'] if attrs['site']
 
     if attrs
-      current_site.repositories.import(attrs['repositories']) if attrs['repositories']
+      current_site.repositories.import(attrs['repositories'], site_id: current_site.id) if attrs['repositories']
       current_site.banners.import(attrs['banners'], user: current_user.id) if attrs['banners']
       current_site.pages.import(attrs['pages'], user: current_user.id, site_id: current_site.id) if attrs['pages']
       current_site.news.import(attrs['news'], user: current_user.id, site_id: current_site.id) if attrs['news']

@@ -24,7 +24,7 @@ class Extension < ActiveRecord::Base
 
     return if Extension.unscoped.find_by_name(attrs['name'])
 
-    attrs.except!('id', 'created_at', 'updated_at', 'site_id', 'type')
+    attrs.except!('id', 'created_at', 'updated_at', 'site_id', '@type', 'type')
 
     self.create!(attrs)
   end

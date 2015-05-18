@@ -33,7 +33,7 @@ class MenuItem < ActiveRecord::Base
     return attrs.each { |attr| import attr } if attrs.is_a? Array
 
     attrs = attrs.dup
-    attrs.except!('id', 'created_at', 'updated_at', 'menu_id', 'parent_id', 'target_id', 'target_type', 'type')
+    attrs.except!('id', 'created_at', 'updated_at', 'menu_id', 'parent_id', 'target_id', 'target_type', '@type', 'type')
     attrs.except!('url') if attrs['url'] && !attrs['url'].match(/^https?:\/\//)
     children = attrs.delete('children')
 
