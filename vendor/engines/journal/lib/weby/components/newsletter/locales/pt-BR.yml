@@ -20,4 +20,5 @@ pt-BR:
         subject: "Título da Notícia como Assunto"
         hide_form: "Esconder formulário"
         hide_form_hint: "Esconde o formulário e permite acessá-lo pelo link: /newsletters/new"
-        report_logo: "Logomarca que será exibida no relatório"
+        report_logo: "Imagem do relatório"
+        position_logo: "Posição da imagem no PDF"

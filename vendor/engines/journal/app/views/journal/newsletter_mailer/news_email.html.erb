@@ -1,7 +1,7 @@
 <% image = weby_file_view(@news.image, :l, '128', nil) %>
 <% if !image.nil? %>
   <% if image.include? "src=" %>
-    <%= image.insert(image.index("src=")+5, @site.url+':3000') %>
+    <%= image.insert(image.index("src=")+5, @site.url) %>
   <% end %>
 <% end %>
 <header>

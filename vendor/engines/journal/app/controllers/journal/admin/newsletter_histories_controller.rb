@@ -8,12 +8,13 @@ module Journal::Admin
       comp = Weby::Components.factory(current_site.components.find_by_name("newsletter"))
       newsletterlist = get_news
       Prawn::Document.generate("public/emails.pdf") do |pdf|
-        pdf.text "UNIVERSIDADE FEDERAL DE GOIÁS", size: 16, align: :center, style: :bold
-        pdf.text comp.report_logo, align: :left
-        pdf.text comp.report_title, size: 16, align: :center
+        logo = @site.url+Repository.find(comp.report_logo).archive.url(:o, timestamp: false)
+        position = comp.position_logo.split(',')
+        pdf.image open(logo), :at => [position[0].to_i, position[1].to_i]
+        pdf.text comp.report_title, size: 16, align: :center, style: :bold
+        pdf.text comp.report_subtitle, size: 16, align: :center
         pdf.text "  ", size: 20
-        pdf.text "ENVIO DE NEWSLETTER", size: 14, align: :center, style: :bold
-        pdf.text "Período compreendido entre: "+@dt_start.strftime("%d/%m/%Y")+" - "+@dt_end.strftime("%d/%m/%Y"),
+        pdf.text @dt_start.strftime("%d/%m/%Y")+" - "+@dt_end.strftime("%d/%m/%Y"),
             size: 12, align: :center
         table_data = [["<b>"+t(".title")+"</b>","<b>"+t(".user")+"</b>",
                        "<b>"+t(".sent_by")+"</b>","<b>"+t(".date_sent")+"</b>","<b>"+t(".qtty")+"</b>"]]
@@ -31,12 +32,10 @@ module Journal::Admin
       comp = Weby::Components.factory(current_site.components.find_by_name("newsletter"))
       newsletterlist = get_news
       File.open("public/dados.csv", 'w') do |arquivo|
-        arquivo.puts comp.report_logo
-        arquivo.puts "UNIVERSIDADE FEDERAL DE GOIAS"
         arquivo.puts comp.report_title
+        arquivo.puts comp.report_subtitle
         arquivo.puts
-        arquivo.puts "ENVIO DE NEWSLETTER"
-        arquivo.puts "Período compreendido entre: "+@dt_start.strftime("%d/%m/%Y")+" - "+@dt_end.strftime("%d/%m/%Y")
+        arquivo.puts @dt_start.strftime("%d/%m/%Y")+" - "+@dt_end.strftime("%d/%m/%Y")
         arquivo.puts t(".title")+","+t(".user")+","+t(".sent_by")+","+t(".date_sent")+","+t(".qtty")
         newsletterlist = get_news
         newsletterlist.each do |newsletter|

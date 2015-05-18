@@ -20,4 +20,5 @@ en:
         subject: "Use new title as subject"
         hide_form: "Hidden form"
         hide_form_hint: "Hides the form and allows access through the link: /newsletters/new"
-        report_logo: "Report logo"
+        report_logo: "Report image"
+        position_logo: "Image position on PDF"

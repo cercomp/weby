@@ -10,4 +10,7 @@
 <%= f.input :subject, as: :boolean, label: t(".subject"), wrapper: :checkbox %>
 <%= f.input :hide_form, as: :boolean, label: t(".hide_form"), wrapper: :checkbox, hint: t(".hide_form_hint") %>
 <%= f.input :group, as: :hidden %>
-<%= f.input :report_logo, as: :file, label: t(".report_logo") %>
+<%= repository_search t(".report_logo"), "report_logo",
+                      "newsletter_component[report_logo]", @component.logo,
+                      multiple: false, file_types: 'image' %>
+<%= f.input :position_logo, label: t(".position_logo") %>
