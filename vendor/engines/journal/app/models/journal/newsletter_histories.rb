@@ -4,7 +4,7 @@ module Journal
     belongs_to :news
 
     scope :sent, -> (site_id, news_id) {
-      where(['site_id = ? AND news_id = ?', site_id, news_id])
+      where(['site_id = ? AND news_id = ?', site_id, news_id]).order('created_at DESC')
     }
 
     scope :get_by_date, -> (site_id, dt_begin, dt_end) {

@@ -33,7 +33,7 @@ module Journal::Admin
     def csv
       comp = Weby::Components.factory(current_site.components.find_by_name("newsletter"))
       newsletterlist = get_news
-      File.open("public/dados.csv", 'w') do |arquivo|
+      File.open("public/data.csv", 'w') do |arquivo|
         arquivo.puts comp.report_title
         arquivo.puts comp.report_subtitle
         arquivo.puts
@@ -45,7 +45,7 @@ module Journal::Admin
                        l(newsletter.created_at, :format => :short).to_s+","+newsletter.emails.split(',').count.to_s
         end
       end
-     send_file "public/dados.csv", type: "application/txt", x_sendfile: true
+     send_file "public/data.csv", type: "application/txt", x_sendfile: true
     end
 
     def get_news

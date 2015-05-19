@@ -189,6 +189,8 @@ ActiveRecord::Schema.define(version: 20150224174414) do
     t.datetime "updated_at"
   end
 
+  add_index "journal_news_sites", ["journal_news_id", "site_id"], name: "index_journal_news_sites_on_journal_news_id_and_site_id", using: :btree
+
   create_table "journal_newsletter_histories", force: true do |t|
     t.integer  "site_id"
     t.integer  "news_id"
@@ -207,8 +209,6 @@ ActiveRecord::Schema.define(version: 20150224174414) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "journal_news_sites", ["journal_news_id", "site_id"], name: "index_journal_news_sites_on_journal_news_id_and_site_id", using: :btree
 
   create_table "locales", force: true do |t|
     t.string   "name"

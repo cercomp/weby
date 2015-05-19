@@ -8,7 +8,7 @@ module Journal
       if !email.blank?
         if params[:opt].to_s == "delete"
           user = Newsletter.where("email = '"+email+"' AND site_id = "+current_site.id.to_s)[0]
-          NewsletterMailer.delete_email(Weby::Components.factory(@comp).email, user, current_site.url).deliver
+          NewsletterMailer.delete_email(Weby::Components.factory(@comp).send_as, user, current_site.url).deliver
           redirect_to :back, flash: { success: t('deactivation_sent_successful') }
         else
           add_record = Newsletter.where("email = '"+email+"' AND site_id = "+current_site.id.to_s)[0]
