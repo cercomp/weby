@@ -1,0 +1,16 @@
+en:
+  journal:
+    newsletter_mailer:
+      confirm_email:
+        text_greeting:      " Hello "
+        text_warning:       " An email registration was carried out in our newsletter using this email "
+        text_confirm:       " You can confirm your e-mail via the link below "
+        text_ignore:        " If you didn't do the registration, please ignore this email. "
+      delete_email:
+        text_greeting:      " Hello "
+        text_warning1:      " Someone requested the exclusion of the email "
+        text_warning2:      " in our newsletter. "
+        text_delete:        " Click the link below if you have NO interest to participate of our list "
+        text_ignore:        " Please ignore this email if you didn't make this request "
+      news_email:
+        text_getout:        " I don't want to participate the list. "

@@ -15,23 +15,20 @@
 
 <%= form_tag admin_newsletter_histories_path, method: "get" do %>
   <div class="row">
-    <div class="col-md-7">
-      <div class="panel panel-default">
-        <div class="col-md-5">
-          <%= date_field_tag :dt_start, params[:dt_start].nil? ? Date.today-30 : params[:dt_start],
-                             class: "form-control", id: "dt_start" %>
-        </div>
-        <div class="col-md-5">
-          <%= date_field_tag :dt_end, params[:dt_end].nil? ? Date.today : params[:dt_end],
-                             class: "form-control", id: "dt_end" %>
-        </div>
+    <div class="col-md-6">
+      <div class="col-md-6" style="padding: 0;">
+        <%= text_field_tag :dt_range,
+                           params[:dt_range].nil? ? (Date.today-30).strftime("%d/%m/%Y")+"  -  "+(Date.today).strftime("%d/%m/%Y") : params[:dt_range],
+                           class: "form-control", id: "daterange" %>
+      </div>
+      <div class="col-md-2" style="padding: 0;">
         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search glyphicon-white"></span></button>
       </div>
     </div>
-    <div class="col-md-5">
+    <div class="col-md-6">
       <div class="pull-right">
-        <%= link_to t(".create_csv"), csv_admin_newsletter_histories_path(params), class: "btn btn-success" %>
-        <%= link_to t(".create_pdf"), pdf_admin_newsletter_histories_path(params), class: "btn btn-success" %>
+        <%= link_to t(".csv"), csv_admin_newsletter_histories_path(params), class: "btn btn-success" %>
+        <%= link_to t(".pdf"), pdf_admin_newsletter_histories_path(params), class: "btn btn-success" %>
         <%= link_to t(".emails_list"), admin_newsletters_path, class: "btn btn-default" %>
       </div>
     </div>
@@ -74,3 +71,27 @@
 </div>
 
 <% content_for :stylesheets, stylesheet_link_tag("datetime") %>
+<% content_for :javascripts do %>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('input[id="daterange"]').daterangepicker(
+              {
+                format: '<%= t(".daterange_formatdate") %>',
+                startDate: moment().subtract(30, 'days'),
+                endDate: moment(),
+                locale: {
+                  applyLabel: '<%= t(".daterange_apply") %>',
+                  cancelLabel: '<%= t(".daterange_cancel") %>',
+                  fromLabel: '<%= t(".daterange_from") %>',
+                  toLabel: '<%= t(".daterange_to") %>',
+                  <% dow = t(".daterange_daysofweek").split ',' %>
+                  daysOfWeek: ['<%= dow[0] %>','<%= dow[1] %>','<%= dow[2] %>','<%= dow[3] %>','<%= dow[4] %>','<%= dow[5] %>','<%= dow[6] %>'],
+                  <% mn = t(".daterange_monthnames").split ',' %>
+                  monthNames: ['<%= mn[0] %>','<%= mn[1] %>','<%= mn[2] %>','<%= mn[3] %>','<%= mn[4] %>','<%= mn[5] %>',
+                               '<%= mn[6] %>','<%= mn[7] %>','<%= mn[8] %>','<%= mn[9] %>','<%= mn[10] %>','<%= mn[11] %>']
+                }
+              }
+            );
+        });
+    </script>
+<% end %>

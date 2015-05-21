@@ -7,16 +7,15 @@ module Journal::Admin
     def pdf
       comp = Weby::Components.factory(current_site.components.find_by_name("newsletter"))
       newsletterlist = get_news
-      Prawn::Document.generate("public/emails.pdf") do |pdf|
+      Prawn::Document.generate("public/newsletter.pdf") do |pdf|
         if !comp.report_logo.empty? && !comp.position_logo.empty?
           logo = @site.url+Repository.find(comp.report_logo).archive.url(:o, timestamp: false)
-          position = comp.position_logo.split(',')
-          pdf.image open(logo), :at => [position[0].to_i, position[1].to_i]
+          pdf.image open(logo), :at => [comp.position_logo == 'left' ? 10 : 425, 730]
         end
         pdf.text comp.report_title, size: 16, align: :center, style: :bold
         pdf.text comp.report_subtitle, size: 16, align: :center
         pdf.text "  ", size: 20
-        pdf.text @dt_start.strftime("%d/%m/%Y")+" - "+@dt_end.strftime("%d/%m/%Y"),
+        pdf.text @dt_start+" - "+@dt_end,
             size: 12, align: :center
         table_data = [["<b>"+t(".title")+"</b>","<b>"+t(".user")+"</b>",
                        "<b>"+t(".sent_by")+"</b>","<b>"+t(".date_sent")+"</b>","<b>"+t(".qtty")+"</b>"]]
@@ -27,17 +26,17 @@ module Journal::Admin
         end
         pdf.table(table_data, width: 550, cell_style: { inline_format: true, size: 10 })
       end
-      send_file "public/emails.pdf", type: "application/pdf", x_sendfile: true
+      send_file "public/newsletter.pdf", type: "application/pdf", x_sendfile: true
     end
 
     def csv
       comp = Weby::Components.factory(current_site.components.find_by_name("newsletter"))
       newsletterlist = get_news
-      File.open("public/data.csv", 'w') do |arquivo|
+      File.open("public/newsletter.csv", 'w') do |arquivo|
         arquivo.puts comp.report_title
         arquivo.puts comp.report_subtitle
         arquivo.puts
-        arquivo.puts @dt_start.strftime("%d/%m/%Y")+" - "+@dt_end.strftime("%d/%m/%Y")
+        arquivo.puts @dt_start+" - "+@dt_end
         arquivo.puts t(".title")+","+t(".user")+","+t(".sent_by")+","+t(".date_sent")+","+t(".qtty")
         newsletterlist = get_news
         newsletterlist.each do |newsletter|
@@ -45,13 +44,20 @@ module Journal::Admin
                        l(newsletter.created_at, :format => :short).to_s+","+newsletter.emails.split(',').count.to_s
         end
       end
-     send_file "public/data.csv", type: "application/txt", x_sendfile: true
+     send_file "public/newsletter.csv", type: "application/txt", x_sendfile: true
     end
 
     def get_news
-      @dt_start = (params[:dt_start].nil? || params[:dt_start].empty?) ? Date.today-30 : Date.parse(params[:dt_start] + " 00:00:01")
-      @dt_end = (params[:dt_end].nil? || params[:dt_end].empty?) ? Date.today.end_of_day : Date.parse(params[:dt_end]).end_of_day
-      news = Journal::NewsletterHistories.get_by_date(current_site.id, @dt_start, @dt_end)
+      range = params[:dt_range].nil? || params[:dt_range].empty? ? (Date.today-30).strftime("%d/%m/%Y")+"  -  "+(Date.today).strftime("%d/%m/%Y") : params[:dt_range].to_s
+      if range.match(/\d{2}\/\d{2}\/\d{4}\s{2}\-\s{2}\d{2}\/\d{2}\/\d{4}/).nil?
+        flash.now[:alert] = t(".invalid_date")
+        []
+      else
+        dt = range.split(" ")
+        @dt_start = dt[0]
+        @dt_end = dt[2]
+        Journal::NewsletterHistories.get_by_date(current_site.id, @dt_start, @dt_end)
+      end
     end
   end
 end

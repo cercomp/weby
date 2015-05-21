@@ -1,0 +1,16 @@
+pt-BR:
+  journal:
+    newsletter_mailer:
+      confirm_email:
+        text_greeting:      " Olá "
+        text_warning:       " Um cadastro de email foi realizado em nossa newsletter utilizando esse email "
+        text_confirm:       " Você pode confirmar seu e-mail através do link abaixo: "
+        text_ignore:        " Se você não fez esse cadastro, por favor, ignore este e-mail. "
+      delete_email:
+        text_greeting:      " Olá "
+        text_warning1:      " Foi solicitada a exclusão do email "
+        text_warning2:      " em nossa newsletter. "
+        text_delete:        " Se você NÃO tem interesse em participar de nossa lista, clique no link abaixo: "
+        text_ignore:        " Se você não fez essa solicitação, por favor, ignore este e-mail. "
+      news_email:
+        text_getout:        " Não quero mais participar da lista. "

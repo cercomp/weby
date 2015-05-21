@@ -1,5 +1,5 @@
 <section class="newsletter_component">
-  <%= form_tag new_newsletter_path, method: 'get' do %>
+  <%= form_tag new_newsletter_path, id: 'newsletter', method: 'get' do %>
     <%= flash_message %>
     <% if @comp.nil? || !@comp.publish %>
       <p><%= t('.message_error') %></p>

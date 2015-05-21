@@ -3,14 +3,14 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
   </head>
   <body>
-    <p>Olá <%= @newsletter_user.email %>!</p>
+    <p><%= t(".text_greeting") +" "+ @newsletter_user.email %>!</p>
 
-    <p>Um cadastro de email foi realizado em nossa newsletter utilizando esse email (<%= @newsletter_user.email %>).</p>
+    <p><%= t(".text_warning") %> (<%= @newsletter_user.email %>).</p>
     
-    <p>Você pode confirmar seu e-mail através do link abaixo:</p>
+    <p><%= t(".text_confirm") %></p>
 
     <p><href><%= link_to @newsletter_url, @newsletter_url %></p>
 
-    <p>Se você não fez esse cadastro, por favor, ignore este e-mail.</p>
+    <p><%= t(".text_ignore") %></p>
   </body>
 </html>

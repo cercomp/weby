@@ -13,4 +13,13 @@ class NewsletterComponent < Component
   def logo
     Repository.find(report_logo) if report_logo.present?
   end
+
+  alias_method :_position_logo, :position_logo
+  def position_logo
+    _position_logo.blank? ? position_logo_list[0] : _position_logo
+  end
+
+  def position_logo_list
+    %w(left right)
+  end
 end
