@@ -1,21 +1,23 @@
 fr:
   journal:
     news:
-      index: 
+      index:
         news:            " Nouvelles "
         advanced:        " Options avancées "
         match_search:    " Recherche exacte "
         and_search:      " Tous les mots "
         or_search:       " Un des mots "
-      show: 
+      show:
         list_all:      " Liste tous "
         categories:    " Catégories "
         source:        " Source "
-        updated_at:    " Mise à Jour "
+        posted_by:     " Par %{author}."
+        created_at:    " Créé sur %{created_at}."
+        updated_at:    " Mise à jour %{updated_at}."
         related_files: " Fichiers associés "
         related_files: " Url associés "
         size: " Taille "
-      list: 
+      list:
         read_more:     " En savoir plus "
         no_news:       " Aucune nuis trouvé "
       related_files:

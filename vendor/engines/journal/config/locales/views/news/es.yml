@@ -13,7 +13,9 @@ es:
         list_all:      " Todas las páginas "
         categories:    " Categorías "
         source:        " Fuente "
-        updated_at:    " Actualizado en "
+        posted_by:     " Por %{author}."
+        created_at:    " Creado en %{created_at}."
+        updated_at:    " Actualizado en %{updated_at}."
         related_files: " Archivos Relacionados "
         related_url:   " Url Relacionada "
         size:          " Tamaño "
@@ -23,4 +25,3 @@ es:
       related_files:
         related_files: " Archivos Relacionados "
         size:          " Tamaño "
-

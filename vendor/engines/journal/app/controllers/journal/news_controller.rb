@@ -18,6 +18,12 @@ module Journal
 
     def show
       @news = current_site.news.find(params[:id])
+      if current_site.extensions.find_by(name: 'journal').settings.updated_at == '1' &&
+        (@news.i18ns.first.created_at != @news.i18ns.first.updated_at ||
+        current_site.extensions.find_by(name: 'journal').settings.created_at == '0') &&
+        !@news.i18ns.first.updated_at.blank?
+          @updated_at = l(@news.i18ns.first.updated_at, format: :short)
+      end
       raise ActiveRecord::RecordNotFound if !@news.published? && @news.user != current_user
       if request.path != news_path(@news)
         redirect_to news_path(@news), status: :moved_permanently
