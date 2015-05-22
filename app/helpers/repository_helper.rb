@@ -192,6 +192,6 @@ module RepositoryHelper
       text.insert(text.index('src=', position) + 5, url)
       position = text.index('src=', position) + 5
     end
-    return text
+    text
   end
 end

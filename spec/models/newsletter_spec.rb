@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe Newsletter, :type => :model do
+RSpec.describe Newsletter, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
 end
