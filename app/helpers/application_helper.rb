@@ -207,7 +207,7 @@ module ApplicationHelper
               menu << link_to(
                 icon(Journal::NewsletterHistories.sent(current_site.id, obj.id).count == 0 ? 'envelope' : 'ok', text: args[:with_text] ? t('.newsletter') : ''),
                 params.merge(
-                  controller: ctrl.controller_name, 
+                  controller: ctrl.controller_name,
                   action: 'newsletter', id: obj.id
                 ),
                 alt: t('newsletter'),

@@ -188,9 +188,9 @@ module RepositoryHelper
 
   def full_url_image(text, url)
     position = 0
-    while !text.index("src=",position).nil? do
-      text.insert(text.index("src=", position)+5, url)
-      position = text.index("src=", position)+5
+    while !text.index('src=', position).nil? do
+      text.insert(text.index('src=', position) + 5, url)
+      position = text.index('src=', position) + 5
     end
     return text
   end

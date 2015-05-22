@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
     resources :pages, as: :site_pages, controller: 'sites/pages', path: 'p', only: [:show]
     get :pages, to: 'sites/pages#index', as: :site_pages
-   #old routes
+    #old routes
     get 'pages/:id(-:title)' => 'sites/pages#redirect', constraints: {id: /\d+/}
 
     resources :components,

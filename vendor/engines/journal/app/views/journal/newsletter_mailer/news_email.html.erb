@@ -22,5 +22,9 @@
   <% text = @news.text %>
   <%= raw full_url_image(text, @site.url) %>
 </div>
+
+<% if @news.url? %>
+  <th><%= t(".related_url") %><%= ":   "%> <%= link_to @news.url, @news.url%> </th>
+<% end %>
 <br>
 <p><a href=<%= @url %>><%= t(".text_getout") %></a></p>
