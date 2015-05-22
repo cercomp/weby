@@ -1,0 +1,16 @@
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <p><%= t(".text_greeting") +" "+ @newsletter_user.email %>!</p>
+
+    <p><%= t(".text_warning") %> (<%= @newsletter_user.email %>).</p>
+    
+    <p><%= t(".text_confirm") %></p>
+
+    <p><href><%= link_to @newsletter_url, @newsletter_url %></p>
+
+    <p><%= t(".text_ignore") %></p>
+  </body>
+</html>

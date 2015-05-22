@@ -30,3 +30,4 @@ Gemfile-ext
 
 *.swp
 *~
+.idea/

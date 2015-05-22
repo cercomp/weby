@@ -29,6 +29,7 @@ en:
   create_account_successful:            " Your account has been created. Please check your e-mail for your account activation instructions "
   create_notification_successful:       " The notification has been created. "
   activation_sent_successful:           " Activation instructions were sent to your e-mail. "
+  deactivation_sent_successful:         " Deactivation instructions were sent to your e-mail. "
 #---D---#
   destroy:                              " Destroy "
   disable:                              " Disable "

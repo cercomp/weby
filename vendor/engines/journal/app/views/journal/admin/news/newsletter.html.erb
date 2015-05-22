@@ -1,0 +1,43 @@
+<% if(current_site.components.find_by(name: 'newsletter', publish: true)) %>
+  <% breadcrumb :news_newsletter, @news %>
+  <%= form_tag :newsletter_histories_admin_news, method: :post do %>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-2"><label for="from"><%= t('.from') %></label></div>
+        <div class="col-md-6"><input type="text" name="from" class="form-control" value="<%= @newsletter.send_as %>"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-2"><label for="to"><%= t('.to') %></label></div>
+        <div class="col-md-6">
+          <textarea readonly id="emails_to" name="to" class="form-control" rows="2"><%= @emails_value %></textarea>
+        </div>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#emailsModal">
+          <%= t('.select_emails') %>
+        </button>
+        <input type="hidden" id="id_emails_to" name="ids" value=<%= @emails_id %>>
+      </div>
+      <div class="row">
+        <div class="col-md-2"><label for="subject"><%= t('.subject') %></label></div>
+        <div class="col-md-10"><input type="text" name="subject" class="form-control" value="<%= @newsletter.subject=="1" ? @news.title : " " %>"></div>
+      </div>
+    </div>
+    <br>
+    <article class="news-show">
+      <%= render 'show' %>
+    </article>
+    <div class="form-action">
+      <input type="submit" class="btn btn-primary" value=<%= t(".send") %> >
+      <%= link_to t("back"), :back, class: "btn btn-default" %>
+      <% if @histories.count > 0 %>
+        <!-- Button history modal -->
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#historiesModal">
+          <%= t('.history') %>
+	    </button>
+      <% end %>
+      <%= render 'newsletter_emails' %>
+      <%= render 'newsletter_histories' %>
+    </div>
+  <% end %>
+<% end %>
+<% content_for :javascripts, javascript_include_tag('journal/admin.news.newsletter') %>

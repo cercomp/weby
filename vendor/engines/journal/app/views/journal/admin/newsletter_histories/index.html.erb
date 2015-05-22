@@ -1,0 +1,97 @@
+<% title ".newsletter" %>
+<% breadcrumb :news_newsletter %>
+
+<div class="tabbable">
+  <ul class="nav nav-tabs" id="tabs">
+    <li class="" id="tab_news">
+      <%= link_to(t(".news"), admin_news_index_path) %>
+    </li>
+    <li class="active" id="tab_newsletter">
+      <%= link_to(t(".newsletter"), '#') %>
+    </li>
+  </ul>
+</div>
+<br>
+
+<%= form_tag admin_newsletter_histories_path, method: "get" do %>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="col-md-6" style="padding: 0;">
+        <%= text_field_tag :dt_range,
+                           params[:dt_range].nil? ? (Date.today-30).strftime("%d/%m/%Y")+"  -  "+(Date.today).strftime("%d/%m/%Y") : params[:dt_range],
+                           class: "form-control", id: "daterange" %>
+      </div>
+      <div class="col-md-2" style="padding: 0;">
+        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search glyphicon-white"></span></button>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="pull-right">
+        <%= link_to t(".csv"), csv_admin_newsletter_histories_path(params), class: "btn btn-success" %>
+        <%= link_to t(".pdf"), pdf_admin_newsletter_histories_path(params), class: "btn btn-success" %>
+        <%= link_to t(".emails_list"), admin_newsletters_path, class: "btn btn-default" %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<div id="histories">
+  <% if @newsletterlist.empty? %>
+      <div class="alert alert-warning">
+        <%= t(".none_news") %>
+      </div>
+  <% else %>
+      <div class="clearfix"></div>
+
+      <table class="table table-striped nowrap">
+        <thead>
+        <tr>
+          <th width="45%"><%= t(".title") %></th>
+          <th width="15%"><%= t(".user") %></th>
+          <th width="15%"><%= t(".sent_by") %></th>
+          <th width="15%"><%= t(".date_sent") %></th>
+          <th width="10%" class="center"><%= t(".qtty") %></th>
+        </tr>
+        </thead>
+        <tbody>
+          <% @newsletterlist.each do |newsletter| %>
+            <tr id="<%= newsletter.id %>">
+              <td><%= link_to newsletter.news.title, newsletter_admin_news_path(newsletter.news) %></td>
+              <td><%= newsletter.news.user.first_name %></td>
+              <td><%= newsletter.user.first_name %></td>
+              <td><%= l(newsletter.created_at, :format => :short) %></td>
+              <td width="10%" style="text-align:center;"><%= newsletter.emails.split(',').count %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <div class="clearfix"></div>
+  <% end %>
+</div>
+
+<% content_for :stylesheets, stylesheet_link_tag("datetime") %>
+<% content_for :javascripts do %>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('input[id="daterange"]').daterangepicker(
+              {
+                format: '<%= t(".daterange_formatdate") %>',
+                startDate: moment().subtract(30, 'days'),
+                endDate: moment(),
+                locale: {
+                  applyLabel: '<%= t(".daterange_apply") %>',
+                  cancelLabel: '<%= t(".daterange_cancel") %>',
+                  fromLabel: '<%= t(".daterange_from") %>',
+                  toLabel: '<%= t(".daterange_to") %>',
+                  <% dow = t(".daterange_daysofweek").split ',' %>
+                  daysOfWeek: ['<%= dow[0] %>','<%= dow[1] %>','<%= dow[2] %>','<%= dow[3] %>','<%= dow[4] %>','<%= dow[5] %>','<%= dow[6] %>'],
+                  <% mn = t(".daterange_monthnames").split ',' %>
+                  monthNames: ['<%= mn[0] %>','<%= mn[1] %>','<%= mn[2] %>','<%= mn[3] %>','<%= mn[4] %>','<%= mn[5] %>',
+                               '<%= mn[6] %>','<%= mn[7] %>','<%= mn[8] %>','<%= mn[9] %>','<%= mn[10] %>','<%= mn[11] %>']
+                }
+              }
+            );
+        });
+    </script>
+<% end %>

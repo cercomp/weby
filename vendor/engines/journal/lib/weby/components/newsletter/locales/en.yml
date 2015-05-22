@@ -1,0 +1,28 @@
+en:
+  components:
+    newsletter:
+      name: "Newsletter"
+  activerecord:
+    attributes:
+      newsletter_component:
+        text: "Text"
+        delete_text: "Text when getout newsletter"
+        button_text: "Button text"
+        send_as: "Send as"
+        report_title: "Report title"
+        report_subtitle: "Report subtitle"
+        position_logo: "Image position on PDF"
+  newsletter:
+    views:
+      show:
+        email: "E-mail"
+        save: "Save"
+      form:
+        hint_add_email: "Add email"
+        hint_delete_email: "Delete email"
+        subject: "Use new title as subject"
+        hide_form: "Hidden form"
+        hide_form_hint: "Hides the form and allows access through the link: /newsletters/new"
+        report_logo: "Report image (80x80)"
+        left: "Left"
+        right: "Right"

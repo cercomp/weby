@@ -7,6 +7,8 @@
 // // require floatthead/jquery.floatThead
 //= require select2
 //= require select2_locale_pt-BR
+//= require moment
+//= require daterangepicker
 //= require_self
 
 var WEBY = {};

@@ -14,6 +14,7 @@ pt-BR:
           news:                 " Notícias "
           new_news:             " Nova Notícia "
           covers:               " Capas "
+          newsletter:           " Newsletter "
         show:
           news:                 " Notícias "
           period_page:          " Período de publicação "
@@ -24,6 +25,7 @@ pt-BR:
           archive_fingerprint:  " Assinatura digital do arquivo "
           related_files:        " Arquivos Relacionados "
           related_url:          " URL "
+          newsletter:           " Newsletter "
         fronts:
           news:                 " Notícias "
           covers:               " Capas "
@@ -73,6 +75,25 @@ pt-BR:
           title:                " Título "        
           cover:                " Capa "          
           status:               " Status "
+        newsletter:
+          from:                 " Enviado por "
+          to:                   " Enviar para "
+          subject:              " Assunto "
+          send:                 " Enviar "
+          all:                  " Todos "
+          select_emails:        " Selecionar emails "
+          history:              " Histórico "
+        newsletter_emails:
+          select_emails:        " Selecionar emails "
+          emails_not_found:     " Emails não encontrados "
+        newsletter_histories:
+          histories:            " Histórico "
+          user:                 " Usuário "
+          date:                 " Data "
+          time:                 " Hora "
+          detail:               " Detalhe "
+          successfully_send:    " Email enviado com sucesso! "
+          field_blank:          " É necessário preencher todos os campos "
       target_pages:
         register_date:        " Data de Cadastro "
         news:                 " Notícia "

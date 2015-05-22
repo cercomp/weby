@@ -1,0 +1,19 @@
+<%= each_i18n_tab do |locale| %>
+    <%= f.component_i18n_input locale, :text, hint: t(".hint_add_email") %>
+    <%= f.component_i18n_input locale, :delete_text, hint: t(".hint_delete_email") %>
+    <%= f.component_i18n_input locale, :button_text %>
+    <%= f.component_i18n_input locale, :send_as %>
+    <hr>
+    <%= f.component_i18n_input locale, :report_title %>
+    <%= f.component_i18n_input locale, :report_subtitle %>
+<% end %>
+<%= f.input :subject, as: :boolean, label: t(".subject"), wrapper: :checkbox %>
+<%= f.input :hide_form, as: :boolean, label: t(".hide_form"), wrapper: :checkbox, hint: t(".hide_form_hint") %>
+<%= f.input :group, as: :hidden %>
+<%= repository_search t(".report_logo"), "report_logo",
+                      "newsletter_component[report_logo]", @component.logo,
+                      multiple: false, file_types: 'image' %>
+<%= f.input :position_logo, collection: component.position_logo_list.map{|position_logo| [t(".#{position_logo}"), position_logo]},
+            priority: component.position_logo,
+            include_blank: false
+%>

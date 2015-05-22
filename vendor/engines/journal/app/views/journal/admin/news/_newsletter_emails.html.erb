@@ -1,0 +1,45 @@
+<!-- Modal -->
+<div class="modal fade" id="emailsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+     xmlns="http://www.w3.org/1999/html">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"><%= t('.select_emails') %></h4>
+      </div>
+      <div class="modal-body">
+        <% if @emails_id.empty? %>
+            <div class="alert alert-warning">
+              <%= t('.emails_not_found') %>
+            </div>
+        <% else %>          
+          <div class="clearfix"></div>
+          <% vet = @emails_id.split(",") %>
+
+          <table class='table table-striped'>
+            <tbody>
+              <% @order_by_emails.each do |email| %>
+                <tr>
+                  <td> <input type="checkbox"
+                              style="margin-right: 5px;"
+                              name="select_email"
+                              id="<%= email.id %>"
+                              value="<%= email.email %>"
+                              <%= vet.find_index(email.id.to_s).nil? ? " " : " checked " %>> <%= email.email %>
+                  </td>
+                  <%#*<td> <%= @news.sites %> </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <div class="clearfix"></div>
+        <% end %>
+
+      </div>
+      <div class="modal-footer">
+	    <button type="button" class="btn btn-primary" onclick="updateMails()" data-dismiss="modal"><%= t('save') %></button>
+        <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('close') %></button>
+      </div>
+    </div>
+  </div>
+</div>

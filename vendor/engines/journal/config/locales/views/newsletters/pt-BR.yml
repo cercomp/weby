@@ -1,0 +1,8 @@
+pt-BR:
+  journal:
+    newsletters:
+      new:
+        message_error:   " Esta página não possui Newsletter. "
+        back:            " Voltar "
+        email:           " E-mail "
+        delete:          " Excluir "

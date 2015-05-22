@@ -1,0 +1,46 @@
+en:
+  journal:
+    admin:
+      newsletter_histories:
+        index:
+          none_news:            " No news were found "
+          invalid_date:         " Invalid date "
+          newsletter:           " Newsletter "
+          news:                 " News "
+          pdf:                  " PDF "
+          csv:                  " CSV "
+          emails_list:          " Emails List "
+          title:                " Title "
+          user:                 " Author "
+          sent_by:              " Sent by "
+          date_sent:            " Created at "
+          qtty:                 " Quantity "
+          daterange_formatdate: " MM-DD-YYYY "
+          daterange_apply:      " Apply "
+          daterange_cancel:     " Cancel "
+          daterange_from:       " From "
+          daterange_to:         " To "
+          daterange_daysofweek: " Su,Mo,Tu,We,Th,Fr,Sa "
+          daterange_monthnames: " January,February,March,April,May,June,July,August,September,October,November,December "
+        csv:
+          title:                " Title "
+          user:                 " Author "
+          sent_by:              " Sent by "
+          date_sent:            " Created at "
+          qtty:                 " Quantity "
+        pdf:
+          title:                " Title "
+          user:                 " Author "
+          sent_by:              " Sent by "
+          date_sent:            " Created at "
+          qtty:                 " Quantity "
+      newsletters:
+        index:
+          newsletter:           " Newletter "
+        list:
+          none_news:            " No emails were found "
+          email:                " Email "
+          confirm:              " Activation "
+          date_create:          " Create date  "
+          date_confirm:         " Activation date "
+          delete:               " Delete "

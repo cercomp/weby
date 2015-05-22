@@ -12,6 +12,7 @@ module Journal::Admin
 
     def index
       @newslist = get_news
+      @newsletter = current_site.components.find_by_name("newsletter")
       respond_with(:admin, @newslist) do |format|
         if params[:template]
           format.js { render "#{params[:template]}" }
@@ -147,6 +148,34 @@ module Journal::Admin
       end
       record_activity('restored_news', @news)
       redirect_to :back
+    end
+
+    def newsletter
+      @news = Journal::News.where(site_id: current_site).find(params[:id]).in(params[:show_locale])
+      @newsletter = Weby::Components.factory(current_site.components.find_by_name('newsletter'))
+      @emails_id = Journal::Newsletter.by_site(current_site.id).ids.join(",")
+      @emails_value = Journal::Newsletter.show_emails(current_site.id)
+      @histories = Journal::NewsletterHistories.sent(current_site.id, @news.id)
+      @order_by_emails = Journal::Newsletter.by_site(current_site.id).order('email')
+      respond_with(:admin, @news)
+    end
+
+    def newsletter_histories
+      if (params[:from].blank? || params[:to].blank? || params[:subject].blank?) 
+        flash[:error] = t('.field_blank')
+        redirect_to :back
+      else
+        history = Journal::NewsletterHistories.new
+        history.site_id = current_site.id 
+        history.news_id = params[:id]
+	      history.user_id = current_user.id
+        history.emails = params[:ids]
+        history.save
+        news = Journal::News.where(site_id: current_site).find(params[:id]).in(params[:show_locale])
+        Journal::NewsletterMailer.news_email(params[:from], params[:to], params[:subject], current_site, news).deliver
+        flash[:success] = t('.successfully_send')
+        redirect_to admin_news_index_path
+      end
     end
 
     private

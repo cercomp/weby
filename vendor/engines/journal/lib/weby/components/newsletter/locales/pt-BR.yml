@@ -1,0 +1,28 @@
+pt-BR:
+  components:
+    newsletter:
+      name: "Newsletter"
+  activerecord:
+    attributes:
+      newsletter_component:
+        text: "Texto exibido na página"
+        delete_text: "Texto exibido na página"
+        button_text: "Texto do botão"
+        send_as: "Enviar como"
+        report_title: "Título que será apresentado no relatório"
+        report_subtitle: "Sub-título do relatório"
+        position_logo: "Posição da imagem no PDF"
+  newsletter:
+    views:
+      show:
+        email: "E-mail"
+        save: "Salvar"
+      form:
+        hint_add_email: "Cadastro do email"
+        hint_delete_email: "Exclusão do email"
+        subject: "Título da Notícia como Assunto"
+        hide_form: "Esconder formulário"
+        hide_form_hint: "Esconde o formulário e permite acessá-lo pelo link: /newsletters/new"
+        report_logo: "Imagem do relatório (80x80)"
+        left: "Esquerda"
+        right: "Direita"

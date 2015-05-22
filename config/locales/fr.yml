@@ -29,6 +29,7 @@ fr:
   create_account_successful:            " Sua conta foi criada! Foi enviado para seu email instruções de como ativá-la "
   create_notification_successful:       " Notificação criada com sucesso! "
   activation_sent_successful:           " Foi enviado para seu email instruções de como ativar sua conta "
+  deactivation_sent_successful:         " Foi enviado para seu email instruções de como desativar sua conta "
 #---D---#
   destroy:                              " Excluir "
   disable:                              " Desativado "
