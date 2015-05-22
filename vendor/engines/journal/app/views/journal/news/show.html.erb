@@ -9,12 +9,15 @@
   </header>
   <% if !defined?(as_component) %>
     <div class="news-details details">
-    <% if current_site.view_desc_pages %>
+    <% if current_site.extensions.find_by(name: 'journal').settings.author == '1' %>
        <span class="author"><%= t("posted_by") %><%= @news.user %></span>
     <% end %>
-
+    <% created_at = l(@news.i18ns.first.created_at, format: :short) if (current_site.extensions.find_by(name: 'journal').settings.created_at == '1')%>
+    <% if current_site.extensions.find_by(name: 'journal').settings.updated_at == '1' &&  @news.i18ns.first.created_at != @news.i18ns.first.updated_at%>
+    <% updated_at = @news.i18ns.first.updated_at.blank? ? l(@news.i18ns.first.created_at, format: :short) : l(@news.i18ns.first.updated_at, format: :short)%>
+    <% end %>
     <% if @news.published? %>
-       <span class="date"><%= t(".updated_at") %><%= l((@news.i18ns.first.updated_at.blank? ? @news.i18ns.first.created_at : @news.i18ns.first.updated_at), format: :short) %>.</span>
+       <span class="date"><%= t(".created_at") %><%= created_at %><%= t(".updated_at") if updated_at %><%= updated_at %>.</span>
     <% end %>
     </div>
   <% end %>

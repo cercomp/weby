@@ -7,15 +7,16 @@ pt-BR:
         match_search:    " Busca exata "
         and_search:      " Todas as palavras "
         or_search:       " Qualquer uma das palavras "
-      show:        
-        share:         " Compartilhar "        
+      show:
+        share:         " Compartilhar "
         list_all:      " Listar Todas "
         categories:    " Categorias "
         source:        " Fonte "
+        created_at:    " Em "
         updated_at:    " Atualizada em "
         related_files: " Arquivos relacionados "
         related_url:   " URL relacionada "
-        size:          " Tamanho "        
+        size:          " Tamanho "
         archive_fingerprint:  " Assinatura digital do arquivo "
       site_share:
         share:         " Compartilhar "
@@ -30,4 +31,3 @@ pt-BR:
       related_files:
         related_files: " Arquivos relacionados "
         size:          " Tamanho "
-

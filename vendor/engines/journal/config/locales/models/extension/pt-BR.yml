@@ -1,0 +1,7 @@
+pt-BR:
+  activerecord:
+    attributes:
+      extension:
+        author:       " Mostrar o autor da notícia "
+        created_at:   " Mostrar a data de criação da notícia "
+        updated_at:   " Mostrar a data de atualização da notícia "
