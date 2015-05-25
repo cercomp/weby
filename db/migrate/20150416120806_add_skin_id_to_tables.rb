@@ -1,10 +1,15 @@
 class AddSkinIdToTables < ActiveRecord::Migration
+	class Site < ActiveRecord::Base
+		has_many :components
+		has_many :styles
+	end
+
 	class Component < ActiveRecord::Base
-		belongs_to: site
+		belongs_to :site
 	end
 
 	class Style < ActiveRecord::Base
-		belongs_to: site
+		belongs_to :site
 	end
 
   def change
@@ -15,13 +20,15 @@ class AddSkinIdToTables < ActiveRecord::Migration
 
     reversible do |dir|
 			dir.up do
-				Component.includes(:site).find_each do |component|
-					component.create_skin(
-						site_id: component.site_id,
-						theme: component.site.theme,
-						name: component.site.theme.titleize,
+				Site.find_each do |site|
+					skin = Skin.new(site_id: site.id,
+						theme: site.theme,
+						name: site.theme.titleize,
 						active: true
 					)
+					skin.save!
+					site.components.update_all(skin_id: skin.id)
+					site.styles.update_all(skin_id: skin.id)
 				end
 			end
 		end
