@@ -10,23 +10,7 @@
 </script>
 <% end %>
 <% title ".themes" %>
-<% breadcrumb params[:search].present? ? :skins_search : :skins, params[:search] %>
-<div class="row">
-  <div class="col-md-5">
-    <%= form_tag site_admin_skins_path, method: 'get', autocapitalize: "off", class: 'search' do %>
-        <%= search_input params[:search] %>
-    <% end %>
-  </div>
-  <div class="col-md-7">
-    <div class="pull-right">
-      <% with_permission(action: :new) do %>
-          <%= link_to t(".new_theme"),
-                      new_site_admin_skin_path,
-                      class: "btn btn-success" %>
-      <% end %>
-    </div>
-  </div>
-</div>
+<% breadcrumb :skins %>
 
 <div class="row">
   <% @themes.each do |theme| %>
@@ -37,7 +21,7 @@
         <%= raw make_mini_layout theme, 270 %>
         <div class="caption">
           <% if current_site.theme && theme.name == current_site.theme.name %>
-              <h5 class="text-success text-center">Tema atual <%= link_to 'editar', edit_site_admin_skin_path(skin) %></h5>
+              <h5 class="text-success text-center">Tema atual</h5>
           <% else %>
             <div class="btn-group btn-group-justified" role="group" aria-label="...">
               <div class="btn-group" role="group">

@@ -1,5 +1,5 @@
 <% title ".layout" %>
-<% breadcrumb :components_new_choose%>
+<% breadcrumb :components_new_choose %>
 
 <div id="available_components" class="row">
   <ul class="nav nav-tabs">
@@ -23,7 +23,7 @@
         </div>
         <div class="form-actions">
           <button type="submit" class="btn btn-primary"><%= t(".next_step") %></button>
-            <%= link_to t("back"), site_admin_components_path, class: "btn btn-default" %>
+            <%= link_to t("back"), site_admin_themes_path(anchor: 'tab-layout'), class: "btn btn-default" %>
         </div>
       <% end %>
     </div>

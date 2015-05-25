@@ -30,10 +30,10 @@ module ComponentsHelper
     components_html << "#{'disabled' unless component_is_available(compo.name)} #{compo.publish ? '' : 'deactivated'}' data-place='#{compo.place_holder}'>
       <div>
         <span class='widget-name'>
-          #{ raw ("#{toggle_field(compo, 'publish')} #{t("components.#{compo.name}.name")} #{"- #{nickname}" if nickname.present?}") }
+          #{ raw ("#{toggle_field(compo, 'publish', 'toggle', controller: :components)} #{t("components.#{compo.name}.name")} #{"- #{nickname}" if nickname.present?}") }
         </span>
         <div class='pull-right' style='min-width: 46px'>
-          #{ raw ("#{make_menu(compo, except: exceptions, with_text: leftout)}") }
+          #{ raw ("#{make_menu(compo, except: exceptions, with_text: leftout, controller: Sites::Admin::ComponentsController)}") }
           #{ "<span class='handle'>#{icon('move') }</span>" if check_permission(Sites::Admin::ComponentsController, 'sort') and !leftout }
           #{ link_to '+', new_site_admin_component_path(placeholder: compo.id), class: 'btn btn-success btn-sm', title: t('.new_component') if compo.name.to_s == 'components_group' and check_permission(Sites::Admin::ComponentsController, [:new]) and !leftout }
         </div>

@@ -3,7 +3,7 @@
   <style type="text/css">
     <%= raw style.css %>
   </style>
-<% end %>
+<% end if current_site.theme %>
 
 <%= stylesheet_link_tag 'shared/contrast_blue' if session[:contrast] == "blue" %>
 <%= stylesheet_link_tag 'shared/contrast_black' if session[:contrast] == "black" %>

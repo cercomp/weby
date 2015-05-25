@@ -1,4 +1,7 @@
 class Sites::Admin::SkinsController < ApplicationController
+  before_action :require_user
+  before_action :check_authorization
+
   def index
     @themes = Weby::Themes.all
   end
@@ -15,7 +18,7 @@ class Sites::Admin::SkinsController < ApplicationController
     end
     theme.populate skin
     flash[:success] = t('successfully_applied_theme')
-    redirect_to site_admin_skins_path
+    redirect_to site_admin_themes_path
   end
 
   def preview

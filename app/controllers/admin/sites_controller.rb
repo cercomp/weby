@@ -21,8 +21,7 @@ class Admin::SitesController < Admin::BaseController
 
   def create
     @site = Site.new(site_params)
-    @site.theme = ''
-
+    
     if @site.save
       Weby::Rights.seed_roles @site.id
       record_activity('created_site', @site)

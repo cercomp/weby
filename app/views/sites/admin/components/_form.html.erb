@@ -33,7 +33,7 @@
             <%= t("themes.#{current_site.theme.name}.placeholders.#{@component.place_holder}", :default => @component.place_holder) %>"/>
         <% end %>
       <% else %>
-        <% if @component.place_holder.to_s.match(/^\d*$/) and (group = current_site.components.find_by(id: @component.place_holder.to_i)) %>
+        <% if @component.place_holder.to_s.match(/^\d*$/) and (group = current_site.active_skin.components.find_by(id: @component.place_holder.to_i)) %>
             <input type="text"disabled="true" class="form-control" value="
              <%= group.alias.present? ? group.alias : t("components.#{group.name}.name") %>"/>
         <% else %>

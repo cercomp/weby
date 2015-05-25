@@ -1,11 +1,12 @@
 # layout/components
-crumb :layout do
-  link t('breadcrumbs.components'), site_admin_components_path
+crumb :components do
+  link t('breadcrumbs.components'), site_admin_themes_path(anchor: 'tab-layout')
+  parent :themes
 end
 
 crumb :components_new_choose do
   link t('breadcrumbs.choose_component'), new_site_admin_component_path(placeholder: params[:placeholder])
-  parent :layout
+  parent :components
 end
 
 crumb :components_new do
@@ -15,10 +16,10 @@ end
 
 crumb :components_edit do |component|
   link "#{t('breadcrumbs.edit')} #{t("components.#{component.name}.name")}", edit_site_admin_component_path
-  parent :layout
+  parent :components
 end
 
 crumb :layout_settings do
   link t("breadcrumbs.layout_settings"), settings_site_admin_layouts_path
-  parent :layout
+  parent :components
 end

@@ -49,7 +49,7 @@ describe Admin::SitesController do
                                         url: "http://testsite.lvh.me" } }
 
       skip "will redirect to site_admin_components path" do
-        expect(response).to redirect_to(site_admin_components_path(subdomain: first_site))
+        expect(response).to redirect_to(site_admin_themes_path(subdomain: first_site))
       end
     end
 

@@ -10,7 +10,7 @@ class Site < ActiveRecord::Base
   has_many :menu_items, through: :menus
   has_many :pages, -> { includes(:i18ns) }, dependent: :destroy
   has_many :pages_i18ns, through: :pages, source: :i18ns
-  has_many :components, ->(site) { site.theme ? order(:place_holder, :position).where(theme: site.theme.base) : where(nil) }, dependent: :destroy
+  has_many :components, ->(site) { site.theme ? order(:place_holder, :position).where(theme: site.theme.name) : where(nil) }, dependent: :destroy
   has_many :root_components, ->(site) { site.theme ? order(:position).where("place_holder !~ '^\\d*$'").where(theme: site.theme.base) : where(nil) }, class_name: 'Component'
   has_many :repositories, dependent: :destroy
   has_many :extensions, dependent: :destroy
@@ -65,7 +65,7 @@ class Site < ActiveRecord::Base
   before_save :clear_per_page
 
   def theme
-    Weby::Themes.theme(skins.where(active: true).first.try(:theme))
+    Weby::Themes.theme(active_skin.try(:theme))
   end
 
   def active_skin

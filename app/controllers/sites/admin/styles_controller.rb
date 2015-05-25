@@ -8,9 +8,9 @@ class Sites::Admin::StylesController < ApplicationController
 
   def index
     @styles = {}
-    #@styles[:others] = Style.not_followed_by(current_site).search(params[:search])
-    #                        .order('site_id')
-    #                        .page(params[:page]).per(params[:per_page])
+    @styles[:others] = Style.not_followed_by(current_site.id).search(params[:search])
+                            .order('site_id')
+                            .page(params[:page]).per(params[:per_page])
     @styles[:styles] = current_site.active_skin.styles.includes(:style) if request.format.html?
   end
 
@@ -44,7 +44,7 @@ class Sites::Admin::StylesController < ApplicationController
         record_activity('updated_style', @style)
         format.html do
           flash[:success] = t('successfully_updated')
-          redirect_to site_admin_styles_path
+          redirect_to site_admin_themes_path(anchor: 'tab-styles')
         end
       else
         format.html { render 'edit' }
@@ -61,18 +61,18 @@ class Sites::Admin::StylesController < ApplicationController
       flash[:error] = t('destroyed_style_error')
     end
 
-    respond_with(:site_admin, resource, location: site_admin_styles_path)
+    respond_with(:site_admin, resource, location: site_admin_themes_path(anchor: 'tab-styles'))
   end
 
   def follow
     resource = Style.find params[:id]
-    @style = current_site.styles.new(style_id: resource.id)
+    @style = current_site.active_skin.styles.new(style_id: resource.id)
     if @style.save
       flash[:success] = t('successfully_followed')
     else
       flash[:error] = @style.errors.full_messages.join(', ')
     end
-    redirect_to site_admin_styles_path(others: true)
+    redirect_to site_admin_themes_path(anchor: 'tab-styles', others: true)
   end
 
   def unfollow
@@ -90,7 +90,7 @@ class Sites::Admin::StylesController < ApplicationController
     else
       flash[:error] = t('error_copying_style')
     end
-    redirect_to site_admin_styles_path
+    redirect_to site_admin_themes_path(anchor: 'tab-styles')
   end
 
   def sort
@@ -109,7 +109,7 @@ class Sites::Admin::StylesController < ApplicationController
   end
 
   def after_toggle_path
-    site_admin_styles_path
+    site_admin_themes_path(anchor: 'tab-styles')
   end
 
   def style_params

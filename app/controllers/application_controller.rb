@@ -335,19 +335,21 @@ class ApplicationController < ActionController::Base
 
         @global_components = {}
         skin = params[:preview_skin] ? current_site.skins.find(params[:preview_skin]) : current_site.active_skin
-        components = skin.components.where(publish: true).order('position asc')
-        comp_select = lambda { |place_holder|
-          components.select { |comp| comp.place_holder == place_holder }.map do |component|
-            comp = { component: component }
-            if component.name == 'components_group'
-              comp[:children] = comp_select.call(component.id.to_s)
+        if current_site.theme
+          components = skin.components.where(publish: true).order('position asc')
+          comp_select = lambda { |place_holder|
+            components.select { |comp| comp.place_holder == place_holder }.map do |component|
+              comp = { component: component }
+              if component.name == 'components_group'
+                comp[:children] = comp_select.call(component.id.to_s)
+              end
+              comp
             end
-            comp
+          }
+          current_site.theme.layout['placeholders'].map { |place| place['names'] }.flatten.each do |place_holder|
+            @global_components[place_holder.to_sym] = comp_select.call(place_holder)
           end
-        }
-        current_site.theme.layout['placeholders'].map { |place| place['names'] }.flatten.each do |place_holder|
-          @global_components[place_holder.to_sym] = comp_select.call(place_holder)
-        end if current_site.theme
+        end
 
         @main_width = nil
         if @site.try(:body_width)

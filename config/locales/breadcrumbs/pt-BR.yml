@@ -11,6 +11,9 @@ pt-BR:
     roles:  " Papéis "
     new_role:  " Novo papel "
 
+    themes: " Tema "
+    choose_theme: " Selecionar tema "
+
     #component
     components:  " Componentes "
     choose_component:  " Escolher componente "

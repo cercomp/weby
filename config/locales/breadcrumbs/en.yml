@@ -5,11 +5,14 @@ en:
     edit:  " Editing "
     show:  " Show "
     search:  " Search "
-    
+
     #users/roles
     users:  " Users "
     roles:  " Roles "
     new_role:  " New role "
+
+    theme: " Theme "
+    choose_theme: " Choose theme "
 
     #component
     components:  " Components "
@@ -19,14 +22,14 @@ en:
     #styles
     styles:  " Styles "
     new_style:  " New Style "
-    
+
     #statistics
     statistics:  " Estatistics "
 
     #settings
     settings:  " Settings "
 
-    #activity_records                             
+    #activity_records
     activity_records:  " Activity records "
     activity_records_details:  " Details "
 

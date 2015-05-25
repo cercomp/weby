@@ -1,0 +1,148 @@
+<style type='text/css'>
+  input[type='checkbox'] {margin: 0px 0 0;}
+</style>
+<% title ".theme" %>
+<% breadcrumb :themes %>
+<div class="pull-right">
+  <% if check_permission(Sites::Admin::SkinsController, [:new]) %>
+    <%= link_to t(".change_theme"),
+      site_admin_skins_path,
+      class: "btn btn-success" %>
+  <% end %>
+</div>
+<%= t('.current_theme') %>: <%= current_site.active_skin.theme %>
+
+<div class="panel panel-default">
+
+
+<div role="tabpanel">
+  <ul class="nav nav-tabs" id="tabs">
+    <li class="active"><%= link_to('Layout', '#tab-layout', data: {toggle: :tab}) %></li>
+    <li><%= link_to(t('.styles'), '#tab-styles', data: {toggle: :tab}) %></li>
+  </ul>
+
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="tab-layout">
+      <p class="pull-right">
+        <% if check_permission(Sites::Admin::ComponentsController, [:new]) %>
+          <%= link_to t(".new_component"),
+            new_site_admin_component_path,
+            class: "btn btn-success" %>
+        <% end %>
+
+        <% if current_user.is_admin? || current_user.is_local_admin?(current_site) %>
+          <%= link_to t('.settings'), settings_site_admin_layouts_path, class: "btn btn-default" %>
+        <% end %>
+      </p>
+      <div class="clearfix form-group"></div>
+
+      <div id="maxi_layout">
+      <% @placeholders.each do |row| %>
+        <%= content_tag :div, class: "maxi_level #{row["names"].many? ? "multi" : "single"}" do %>
+          <% row["names"].each_with_index do |name, idx| %>
+            <%= content_tag :div, class: "placeholder", data: {place: name}, style: "width: #{row["widths"] ? row["widths"][idx] : 100/row["names"].size}%;" do %>
+              <%= link_to '+', new_site_admin_component_path(placeholder: name), class: "add-btn btn btn-success btn-sm", title: t(".new_component") if check_permission(Sites::Admin::ComponentsController, 'new') %>
+              <div class="placeholder-name"><%= t("themes.#{current_site.theme.name}.placeholders.#{name}") %></div>
+              <ul class="order-list" data-place="<%= name %>">
+                <% components_per_holder = @components.select{|component| component.place_holder == name} %>
+                <% if components_per_holder.empty? %>
+                  <!--<div><i><%#= t(".empty_placeholder") %></i></div>-->
+                <% end %>
+
+                <% components_per_holder.each do |comp| %>
+                  <% component = Weby::Components.factory(comp) %>
+                  <%= list_component(component) %>
+
+                <% end %>
+                <% @components = @components - components_per_holder %>
+              </ul>
+            <% end %>
+          <% end %>
+        <div class="clearfix"></div>
+        <% end %>
+      <% end %>
+      </div>
+
+      <% if @components.any? %>
+      <div class="placeholder-name"><%= t(".leftout_components") %></div>
+      <div id="leftout" class="placeholder">
+        <ul>
+        <%# Se sobrou algum component com placeholder que não está no layout atual %>
+        <% @components.each do |comp| %>
+            <% component = Weby::Components.factory(comp) %>
+            <%= list_component(component, true) %>
+        <% end %>
+        </ul>
+      </div>
+      <% end %>
+
+      <%= javascript_tag do %>
+      window.onload=function(){
+        $(document).ready(function(){
+
+          $('.order-list').each(function(){
+            $(this).sortable({
+              //axis: 'y',
+              dropOnEmpty: true,
+              handle: '.handle',
+              connectWith: '.order-list',
+              forcePlaceholderSize: true,
+              placeholder: 'drop-here',
+              items: '> li',
+              opacity: 0.4,
+              scroll: true,
+              tolerance: 'pointer',
+              update: function(evt, ui){
+                $('.maxi_level.multi').each(function(){ $(this).attr('style', ''); $(this).css({'height':$(this).height()}); });
+                $.ajax({
+                  type: 'post',
+                  data: 'place_holder='+ $(this).data('place') +'&'+ $(this).sortable('serialize'),
+                  dataType: 'script',
+                  complete: function(request){ if(!ui.sender){ ui.item.effect('pulsate', {times: 1}, 350); } },
+                  url: '<%= sort_site_admin_components_path %>'
+                });
+              }
+            });
+          });
+
+          ////FIX-ME
+          $('.maxi_level.multi').each(function(){ $(this).css({'height':$(this).height()}); });
+        });
+      }
+      <% end %>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="tab-styles">
+    <% with_permission action: :new do %>
+        <div class="pull-right">
+          <%= link_to t(".new_style"),
+            new_site_admin_style_path,
+            class: "btn btn-success" %>
+        </div>
+        <div class="clearfix form-group"></div>
+      <% end %>
+
+      <div class="tabbable">
+        <ul class="nav nav-tabs" id="style-tab">
+          <li class="<%= params["others"] ? "" : "active" %>" >
+            <a href="#styles" data-toggle="tab"><%= t(".my_styles") %></a>
+          </li>
+          <li class="<%= params["others"] ? "active" : "" %>" >
+            <a href="#others" data-toggle="tab"><%= t(".others") %></a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane <%= params["others"] ? "" : "active" %>" id="styles">
+            <%= render partial: 'list', locals: { styles: @styles.delete(:styles) } %>
+          </div>
+          <div class="tab-pane <%= params["others"] ? "active" : "" %>" id="others">
+            <%= render partial: 'others', locals: { styles: @styles.delete(:others) } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% content_for :javascripts, javascript_include_tag("init/sortable") %>
+<% content_for :stylesheets, stylesheet_link_tag("sortable") %>
+<% content_for :stylesheets, stylesheet_link_tag("maxi_layout") %>
+<% content_for :javascripts, javascript_include_tag("styles") %>
