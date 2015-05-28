@@ -1,0 +1,71 @@
+/* Cabeçalho */
+header > section > section.logos section a img {
+  float: left;
+}
+/* Cabeçalho */
+#cabecalho {
+	position: relative;
+	max-width: 1000px;
+	height: 140px;
+}
+#busca input {
+	position: relative;
+	float: left;
+	width: 140px;
+	height: 16px;
+	margin: 24px 0 0 0;
+	border: none;
+	background-color: #cccccc;
+	text-indent: 5px;
+	font-size: 10px;
+	padding: 2px;
+}
+	#busca input:focus {
+		background-color: #eee;
+	}
+#portal {
+	position: relative;
+	float: left;
+	height: 16px;
+	text-indent: 5px;
+	font-size: 10px;
+	overflow: hidden;
+	font-size: 10px;
+	z-index: 1000;
+}
+	#portal li {
+		width: 140px;
+		height: 13px;
+		padding-top: 3px;
+		cursor: pointer;
+	}
+	#portal:hover {
+		height: 112px;
+		background-color: #fff;
+	}
+	#portal li:hover {
+		background-color: #666666;
+		color: #cccccc;
+	}
+div#wrapper > header > section.components_group_component:first-child {
+	max-width: 1000px;
+	margin: auto;
+	position: relative;
+  height: 140px;
+	background-color: white;
+}
+div#wrapper > header > section > section.image_component:first-child {
+	float: left;
+	height: 109px;
+	padding-top: 31px;
+}
+/* destaque assinatura */
+#wrapper > header {
+	background: linear-gradient(to left, white 50%, #f0f5f9 50%);
+  /*height: 140px;*/
+}
+.infoheader {
+  margin: 16px 30px 0 0;
+	float: right;
+}
+

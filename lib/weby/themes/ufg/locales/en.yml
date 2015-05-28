@@ -1,0 +1,9 @@
+en:
+  themes:
+    ufg:
+      title:              " UFG Portal "
+      placeholders:
+        first_place:        " Top "
+        home:               " Home Page "
+        top:                " Header "
+        bottom:             " Bottom "

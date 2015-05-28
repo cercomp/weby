@@ -1,0 +1,20 @@
+/* Redes Sociais */
+.redesocial {
+  float: right;
+  margin: 20px 0px 0 0px;
+}
+section.redesocial section.image_component {
+	position: relative;
+	float: left;
+	width: 30px;
+	height: 30px;
+  margin-left: 16px;
+}
+.twitter img,
+.facebook img,
+.youtube img,
+.picasa img,
+.instagram img {
+  width: 30px;
+  height: 30px;
+}

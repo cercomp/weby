@@ -1,0 +1,26 @@
+/* Estrutural */
+body{
+  overflow-x: hidden;
+}
+#wrapper {
+  min-height: 88%;
+  margin: auto;	
+  background: #fff;
+}
+#content{  
+   padding-bottom: 30px;
+   overflow: auto;
+   clear: both;
+}
+.container{
+  margin: auto;
+  max-width: 1000px;
+}
+.cursord { cursor: default; }
+::-webkit-input-placeholder { color:#666; }
+::-moz-placeholder { color:#666; }
+/* firefox 19+ */
+:-ms-input-placeholder { color:#666; }
+/* ie */
+input:-moz-placeholder { color:#666; }
+

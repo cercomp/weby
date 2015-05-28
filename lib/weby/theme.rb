@@ -37,6 +37,11 @@ class Weby::Theme
         if component['name'] == 'text'
           component['settings'] = I18n.interpolate(component['settings'], default_footer: default_footer.to_s)
         end
+        if component['name'] == 'components_group'
+          component['children'].each do |child|
+            #TODO insert component with component_id as placeholder
+          end
+        end
         @skin.components.create(component)
       end
     end

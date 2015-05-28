@@ -1,0 +1,38 @@
+@media screen 
+  and (max-width: 640px)
+  and (orientation: portrait) {
+  /* Menus Resposivos */
+	footer .menu_component .expanded li { 
+    display: block !important;
+    position: relative;
+    text-align: center;
+  }
+}
+/* Menu Inferior */
+footer .menu_component {
+  margin: auto;
+  clear: both;
+  max-width: 1000px;
+  overflow: hidden;
+}
+footer .menu_component .expanded {
+  display: table;
+  margin: auto;
+  width: 100%;
+}
+footer .menu_component .expanded li {
+  display: table-cell;
+  background: #2576b2;
+}
+footer .menu_component .expanded li a {
+  display: block;
+  line-height: 20px;
+  padding: 10px 10px;
+  font-weight: bold !important;
+  font-size: 12px;
+  text-decoration: none;
+}
+footer .menu_component .expanded li:hover {
+  background: #689ECA;
+}
+
