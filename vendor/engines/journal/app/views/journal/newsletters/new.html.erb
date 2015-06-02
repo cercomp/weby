@@ -5,7 +5,7 @@
       <p><%= t('.message_error') %></p>
       <%= link_to t('.back'), root_path, class: "btn btn-danger" %>
     <% else %>
-      <%= params[:opt]=="delete" ? Weby::Components.factory(@comp).delete_text : Weby::Components.factory(@comp).text %>
+      <label><%= params[:opt]=="delete" ? Weby::Components.factory(@comp).delete_text : Weby::Components.factory(@comp).text %></label>
       <%= hidden_field_tag :opt, params[:opt]=="delete" ? "delete" : "new" %>
       <%= email_field_tag :email, nil, placeholder: t('.email') %>
       <%= submit_tag params[:opt]=="delete" ? t('.delete') : Weby::Components.factory(@comp).button_text, class: 'newsletter_submit' %>
