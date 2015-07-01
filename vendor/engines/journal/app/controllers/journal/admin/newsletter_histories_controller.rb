@@ -8,9 +8,11 @@ module Journal::Admin
       comp = Weby::Components.factory(current_site.components.find_by_name("newsletter"))
       newsletterlist = get_news
       Prawn::Document.generate("public/newsletter.pdf") do |pdf|
-        if !comp.report_logo.empty? && !comp.position_logo.empty?
-          logo = @site.url+Repository.find(comp.report_logo).archive.url(:o, timestamp: false)
-          pdf.image open(logo), :at => [comp.position_logo == 'left' ? 10 : 425, 730]
+        if !comp.report_logo.nil? && !comp.position_logo.nil?
+          if !comp.report_logo.empty? && !comp.position_logo.empty?
+            logo = @site.url+Repository.find(comp.report_logo).archive.url(:o, timestamp: false)
+            pdf.image open(logo), :at => [comp.position_logo == 'left' ? 10 : 425, 730]
+          end
         end
         pdf.text comp.report_title, size: 16, align: :center, style: :bold
         pdf.text comp.report_subtitle, size: 16, align: :center
