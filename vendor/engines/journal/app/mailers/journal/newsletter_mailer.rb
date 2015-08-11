@@ -12,7 +12,7 @@ module Journal
       @site = site
       @url = site.url + (site.url[site.url.length-1]=="/" ? "" : "/") + "newsletters/new?opt=delete"
       @news = news
-      mail(from: from, cco: to, subject: subject)
+      mail(from: from, bcc: to, subject: subject)
     end
 
     def delete_email(from, user, url)
