@@ -2,13 +2,13 @@ source 'https://rubygems.org'
 
 ruby '2.1.2'
 
-gem 'rails', '~> 4.1.8'
+gem 'rails', '~> 4.1.12'
 
 gem 'thin', '~> 1.6.3'
 gem 'pg', '~> 0.17.1'
 
 # js and css frameworks
-gem 'jquery-rails', '3.1.0'
+gem 'jquery-rails', '3.1.3'
 gem 'jquery-ui-rails', '~> 4.2.1'
 gem 'bootstrap-sass', '~> 3.1.1.1'
 gem 'select2-rails', '~> 3.5.9'
