@@ -77,6 +77,7 @@ en:
   move:                                 " Move "
   manage_roles:                         " Manage Roles "
   missing_account:                      " We're sorry, but we could not locate your account. This URL is either invalid or expired. Try restarting the reset password process. "
+  message:                              " Message "
 #---N---#
   no_event_period:                      " Event Period unspecified "
   no_permission_to_activate_deactivate: " No permission to activate or deacticate "

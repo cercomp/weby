@@ -95,9 +95,41 @@ module ApplicationHelper
   end
 
   # Defines custom messages
-  def flash_message
+  def flash_message(modal: false)
+    if modal
+      modal_html = <<-EOS
+        <div class='modal fade' id='message' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='false'>
+          <div class='modal-dialog'>
+            <div class='modal-content'>
+              <div class='modal-header'>
+                <h4 class='modal-title' id='myModalLabel'>#{t('message')}</h4>
+              </div>
+              <div class='modal-body'>
+                <div class='alert alert-warning'>
+                  #{flash[:success]}
+                </div>
+              </div>
+              <div class='modal-footer'>
+                <button type='button' class='btn btn-default' data-dismiss='modal'>#{t('close')}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      EOS
+    end
+    if not flash.blank?
+      modal_js = <<-EOS
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            $('#message').modal('show');
+          });
+        </script>
+      EOS
+    end
+
     ''.tap do |html|
       flash.each do |key, value|
+        html << modal_html + modal_js
         html << content_tag('blockquote', class: flash_class(key)) do
           raw %(
             #{link_to('&times;'.html_safe, '#', class: 'close', data: { dismiss: 'alert' }, 'aria-hidden' => true)}

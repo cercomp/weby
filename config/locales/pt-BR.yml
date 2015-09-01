@@ -78,6 +78,7 @@ pt-BR:
   move:                                 " Mover "
   manage_roles:                         " Gerenciar Papéis "
   missing_account:                      " Desculpe-nos, mas não conseguimos localizar sua conta. Este link pode ser inválido ou estar expirado. Tente reiniciar o processo de recuperação de senha. "
+  message:                              " Aviso "
 #---N---#
   no_event_period:                      " Periodo do evento não especificado "
   no_permission_to_activate_deactivate: " Sem permissão para ativar ou desativar "
