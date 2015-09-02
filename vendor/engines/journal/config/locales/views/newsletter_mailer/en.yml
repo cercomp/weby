@@ -13,4 +13,6 @@ en:
         text_delete:        " Click the link below if you have NO interest to participate of our list "
         text_ignore:        " Please ignore this email if you didn't make this request "
       news_email:
-        text_getout:        " I don't want to participate the list. "
+        text_getout:        " Remove me from the newsletter."
+        original_news:      " Original news."
+        related_url:        " Related news"

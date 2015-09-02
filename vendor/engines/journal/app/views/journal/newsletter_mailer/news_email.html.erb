@@ -1,9 +1,8 @@
 <% image = weby_file_view(@news.image, :l, '128', nil) %>
-<% if !image.nil? %>
-  <% if image.include? "src=" %>
-    <%= image.insert(image.index("src=")+5, @site.url) %>
-  <% end %>
+<% if not image.nil? %>
+  <%= full_url_image(image, @site.url) %>
 <% end %>
+
 <header>
   <%= raw available_flags(@news) if @news.locales.many? %>
   <h1><%= @news.title %></h1>
@@ -24,7 +23,13 @@
 </div>
 
 <% if @news.url? %>
-  <th><%= t(".related_url") %><%= ":   "%> <%= link_to @news.url, @news.url%> </th>
+  <th><%= t(".related_url") %><%= ": "%> <%= link_to @news.url, @news.url %> </th>
 <% end %>
-<br>
-<p><a href=<%= @url %>><%= t(".text_getout") %></a></p>
+<br />
+-- 
+<br />
+<%= link_to t(".original_news"), "#{@site.url}/n/#{@news.id}" %>
+<br />
+<%= link_to t(".text_getout"), @url %>
+<br />
+

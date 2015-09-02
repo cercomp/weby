@@ -74,7 +74,7 @@ $(document).ready(function() {
   });
 
   var hash = location.hash
-    , hashPieces = hash.split('?')
+    , hashPieces = ((hash.split('?')[0] == "") ? 0 : hash.split('?'))
     , activeTab = $('[href=' + hashPieces[0] + ']');
   activeTab && activeTab.tab('show');
 });
