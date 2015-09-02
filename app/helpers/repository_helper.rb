@@ -192,6 +192,11 @@ module RepositoryHelper
       text.insert(text.index('src=', position) + 5, url)
       position = text.index('src=', position) + 5
     end
+    position = 0
+    while !text.index('href=', position).nil? do
+      text.insert(text.index('href=', position) + 6, url)
+      position = text.index('href=', position) + 6
+    end
     text
   end
 end

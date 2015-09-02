@@ -13,4 +13,6 @@ pt-BR:
         text_delete:        " Se você NÃO tem interesse em participar de nossa lista, clique no link abaixo: "
         text_ignore:        " Se você não fez essa solicitação, por favor, ignore este e-mail. "
       news_email:
-        text_getout:        " Não quero mais participar da lista. "
+        text_getout:        " Descadastrar-me do Boletim de Notícias."
+        original_news:      " Notícia original."
+        related_url:        " Fonte da notícia"

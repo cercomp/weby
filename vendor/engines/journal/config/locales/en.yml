@@ -1,5 +1,5 @@
 en:
   extensions:
     journal:
-      name:            "News"
+      name:                  "News"
   moved_news_to_recycle_bin: "News moved to recycle bin"
