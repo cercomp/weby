@@ -13,7 +13,7 @@
     <%= "#{@news.user} #{l(@news.created_at, format: :short)}" if @site.view_desc_pages %>
   </p>
   <p>
-    <%= raw @news.summary %>
+    <%= raw full_url_image(@news.summary, @site.url) %>
   </p>
 </summary>
 
@@ -23,7 +23,7 @@
 </div>
 
 <% if @news.url? %>
-  <th><%= t(".related_url") %><%= ": "%> <%= link_to @news.url, @news.url %> </th>
+  <p><%= t(".related_url") %>: <%= link_to @news.url, @news.url %></p>
 <% end %>
 <br />
 -- 
