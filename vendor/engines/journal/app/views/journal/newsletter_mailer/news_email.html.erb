@@ -26,8 +26,6 @@
   <p><%= t(".related_url") %>: <%= link_to @news.url, @news.url %></p>
 <% end %>
 <br />
--- 
-<br />
 <%= link_to t(".original_news"), "#{@site.url}/n/#{@news.id}" %>
 <br />
 <%= link_to t(".text_getout"), @url %>
