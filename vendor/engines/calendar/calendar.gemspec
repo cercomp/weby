@@ -7,17 +7,13 @@ require "calendar/version"
 Gem::Specification.new do |s|
   s.name        = "calendar"
   s.version     = Calendar::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Calendar."
-  s.description = "TODO: Description of Calendar."
-  s.license     = "MIT"
+  s.authors     = ["Cercomp: Equipe Web"]
+  s.email       = ["web@cercomp.ufg.br"]
+  s.homepage    = "http://weby.cercomp.ufg.br"
+  s.summary     = "Summary of Calendar."
+  s.description = "Description of Calendar."
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
-  s.test_files = Dir["test/**/*"]
-
-  s.add_dependency "rails", "~> 4.1.4"
-
-  s.add_development_dependency "sqlite3"
+  
+  s.add_dependency "rails", "~> 4.1.1"
 end
