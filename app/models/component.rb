@@ -75,7 +75,7 @@ class Component < ActiveRecord::Base
 
   def serializable_hash(options = {})
     hash = super options
-    hash[:children] = site.components.where(place_holder: id.to_s).map { |c| c.serializable_hash(options) }
+    hash[:children] = skin.components.where(place_holder: id.to_s).map { |c| c.serializable_hash(options) }
     hash
   end
 
@@ -104,7 +104,7 @@ class Component < ActiveRecord::Base
 
   def remove_children
     position = self.position
-    positions = site.components.where(place_holder: place_holder).order('position asc').map { |comp| comp.id }
+    positions = skin.components.where(place_holder: place_holder).order('position asc').map { |comp| comp.id }
     Component.where(place_holder: id.to_s).order('position asc').each do |component|
       component.update(place_holder: place_holder)
       positions.insert(position - 1, component.id)
@@ -115,7 +115,7 @@ class Component < ActiveRecord::Base
 
   def fix_position
     if place_holder_changed? && !position_changed?
-      self.position = site.components.maximum(:position, conditions: { place_holder: place_holder }).to_i + 1
+      self.position = skin.components.maximum(:position, conditions: { place_holder: place_holder }).to_i + 1
     end
   end
 end

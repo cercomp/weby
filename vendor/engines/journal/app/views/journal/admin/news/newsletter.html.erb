@@ -1,4 +1,4 @@
-<% if(current_site.components.find_by(name: 'newsletter', publish: true)) %>
+<% if(current_site.active_skin.components.find_by(name: 'newsletter', publish: true)) %>
   <% breadcrumb :news_newsletter, @news %>
   <%= form_tag :newsletter_histories_admin_news, method: :post do %>
     <div class="form-group">

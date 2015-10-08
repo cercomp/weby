@@ -11,7 +11,7 @@ class Sites::Admin::ComponentsController < ApplicationController
   end
 
   def show
-    # @component = Weby::Components.factory(current_site.components.find(params[:id]))
+    # @component = Weby::Components.factory(current_site.active_skin.components.find(params[:id]))
     redirect_to site_admin_themes_path(anchor: 'tab-layout')
   end
 

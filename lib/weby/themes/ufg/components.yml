@@ -13,7 +13,7 @@ top:
     alias: "Cabeçalho"
     children:
       -
-        settings: '{:size = > "o", :width => "", :height => "", :url => "/", :target_id => "", :target_type => "", :new_tab => "0", :html_class => "sitelogo"}'
+        settings: '{:size => "o", :width => "", :height => "", :url => "/", :target_id => "", :target_type => "", :new_tab => "0", :html_class => "sitelogo"}'
         name: "image"
         position: 1
         publish: true

@@ -233,9 +233,9 @@ module ApplicationHelper
               alt: t('destroy'),
               title: t('destroy'),
               class: 'action-link') + ' '
- 
+
           when :newsletter
-            @newsletter = current_site.components.find_by(name: 'newsletter', publish: true)
+            @newsletter = current_site.active_skin.components.find_by(name: 'newsletter', publish: true)
             if !@newsletter.nil?
               menu << link_to(
                 icon(Journal::NewsletterHistories.sent(current_site.id, obj.id).count == 0 ? 'envelope' : 'ok', text: args[:with_text] ? t('.newsletter') : ''),

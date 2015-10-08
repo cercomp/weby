@@ -17,6 +17,24 @@ class Weby::Theme
 
   private
 
+  def create_component place, component
+    component['place_holder'] = place
+    if component['name'] == 'components_group'
+      children = component.delete('children')
+    end
+    compo = @skin.components.create(component)
+    puts "->>> compo"
+    if children && children.any? && compo.persisted?
+      puts children
+      puts "-.."
+      children.each do |child|
+        puts child
+        puts "-..."
+        create_component compo.id, child
+      end
+    end
+  end
+
   def populate_components
     default_footer = {}
     @skin.site.locales.each do |locale|
@@ -25,10 +43,9 @@ class Weby::Theme
       end
     end
 
-    return if @skin.components.any? #@site.components.where(theme: @name).destroy_all
+    return if @skin.components.any? #@site.active_skin.components.where(theme: @name).destroy_all
     @components.each do |place, comps|
       comps.each do |component|
-        component['place_holder'] = place
         #component['theme'] = @name
         if component['name'] == 'menu'
           menu = @skin.site.menus.create(component.delete('menu'))
@@ -37,12 +54,7 @@ class Weby::Theme
         if component['name'] == 'text'
           component['settings'] = I18n.interpolate(component['settings'], default_footer: default_footer.to_s)
         end
-        if component['name'] == 'components_group'
-          component['children'].each do |child|
-            #TODO insert component with component_id as placeholder
-          end
-        end
-        @skin.components.create(component)
+        create_component place, component
       end
     end
   end

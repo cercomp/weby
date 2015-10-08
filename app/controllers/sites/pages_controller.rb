@@ -27,7 +27,7 @@ class Sites::PagesController < ApplicationController
   def sitemap
     menus_order = {}
     @published_menus = {}
-    current_site.components.where({name: "menu", publish: true}).each do |component|
+    current_site.active_skin.components.where({name: "menu", publish: true}).each do |component|
       menus_order.merge!(Weby::Components.factory(component).menu_id => Weby::Components.factory(component).sitemap_position.blank? ? 9999 : Weby::Components.factory(component).sitemap_position.to_i)
     end
     menus_order.sort_by { |id,value| value }.each do |menu_order|

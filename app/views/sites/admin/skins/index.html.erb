@@ -25,7 +25,7 @@
           <% else %>
             <div class="btn-group btn-group-justified" role="group" aria-label="...">
               <div class="btn-group" role="group">
-                <%= link_to 'Visualizar', preview_site_admin_skins_path(theme: theme.name), class: 'btn btn-default', target: :blank %>
+                <%= link_to 'Visualizar', preview_site_admin_skins_path(theme: theme.name), class: 'btn btn-default', target: :_blank %>
               </div>
               <div class="btn-group" role="group">
                 <%= simple_form_for current_site, url: site_admin_skins_path(theme: theme.name), method: :post do |f| %>

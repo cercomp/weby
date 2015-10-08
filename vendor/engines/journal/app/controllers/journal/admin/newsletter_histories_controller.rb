@@ -5,7 +5,7 @@ module Journal::Admin
     end
 
     def pdf
-      comp = Weby::Components.factory(current_site.components.find_by_name("newsletter"))
+      comp = Weby::Components.factory(current_site.active_skin.components.find_by_name("newsletter"))
       newsletterlist = get_news
       Prawn::Document.generate("public/newsletter.pdf") do |pdf|
         if !comp.report_logo.nil? && !comp.position_logo.nil?
@@ -32,7 +32,7 @@ module Journal::Admin
     end
 
     def csv
-      comp = Weby::Components.factory(current_site.components.find_by_name("newsletter"))
+      comp = Weby::Components.factory(current_site.active_skin.components.find_by_name("newsletter"))
       newsletterlist = get_news
       File.open("public/newsletter.csv", 'w') do |arquivo|
         arquivo.puts comp.report_title
