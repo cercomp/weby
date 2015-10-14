@@ -74,8 +74,7 @@ describe User do
       expect(subject).to allow_value('Admin1').for(:password).with_message(I18n.t('lower_upper_number_chars'))
     end
 
-    # it 'should reject invalid password format' do
-    describe "with invalid password" do
+    it 'should reject invalid password format' do
       expect(subject).not_to allow_value('admin1').for(:password).with_message(I18n.t('lower_upper_number_chars'))
     end
   end
