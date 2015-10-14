@@ -28,8 +28,8 @@ module Journal
           get :journal, to: 'news#index'
           resources :news do
             member do
-              put :toggle, :recover, :share, :unshare
-              get :newsletter
+              put :toggle, :recover, :unshare
+              get :newsletter, :share
               post :newsletter_histories
             end
             collection do

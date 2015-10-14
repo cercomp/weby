@@ -335,6 +335,3 @@ DEPENDENCIES
   useragent (= 0.2.3)!
   zeroclipboard-rails (~> 0.0.13)
   zip-zip (~> 0.3)
-
-BUNDLED WITH
-   1.10.6
