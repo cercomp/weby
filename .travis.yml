@@ -1,9 +1,6 @@
 language: ruby
 rvm:
 - 2.1.2
-before_install:
-- gem update --system
-- gem --version
 before_script:
 - psql -c 'create database weby_test;' -U postgres
 - mv config/travis_database.yml config/database.yml
@@ -17,6 +14,5 @@ notifications:
     - https://webhooks.gitter.im/e/d2f9a0264425ceca43de
     on_success: always
     on_failure: always
-    on_start: false
   slack:
     secure: zxImXQ03YcFxIRY3GiRBEslkZPrfulnFq5t7MjJNCWZsfNOyLxqCzFDHISedgh4TGkrUXE9/5Z1KDb0du7FK14sjoDfHMCru2cJdZBdZ/vIYoub6cafM0yrGK0/YawqWqQFFW6lGazG1D0tmkFZS6JduO2FYMlwgqwOh9zM9w8w=
