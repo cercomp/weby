@@ -38,7 +38,7 @@ class Repository < ActiveRecord::Base
   validates :description, presence: true
 
   validates_attachment_presence :archive,
-                                message: I18n.t(:attachment_presence, scope: [:activerecord, :errors, :messages]),
+                                message: I18n.t('activerecord.errors.messages.attachment_presence'),
                                 on: :create
 
   do_not_validate_attachment_file_type :archive

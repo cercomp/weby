@@ -1,11 +1,14 @@
 language: ruby
 rvm:
 - 2.1.2
+before_install:
+- gem update --system
+- gem --version
 before_script:
 - psql -c 'create database weby_test;' -U postgres
 - mv config/travis_database.yml config/database.yml
 - mv config/secrets.yml.example config/secrets.yml
-  #- rm -rf vendor/bundle/ruby/2.1.0/gems/i18n-0.6.11/test
+- rm -rf vendor/bundle/ruby/2.1.0/gems/i18n-0.6.11/test
 - RAILS_ENV=test bundle exec rake --trace db:schema:load
 script: bin/rspec spec
 notifications:
