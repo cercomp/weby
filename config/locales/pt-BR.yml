@@ -313,7 +313,7 @@ pt-BR:
         less_than_or_equal_to:    " Requerido menor que ou igual a %{count} "
         not_a_number:             " não é um número "
         odd:                      " ímpar requerido "
-        record_invalid: !         " A validação falhou: %{errors} "
+        record_invalid:           " A validação falhou: %{errors} "
         taken:                    " indisponível"
         too_long:                 " muito longo (não é possível usar mais de %{count} caracteres)  "
         too_short:                " muito curto (não é possível usar menos de %{count} caracteres) "
