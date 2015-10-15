@@ -1,13 +1,11 @@
 <section class="search_box_component <%=  component.align %>" style="width: <%= component.width.to_i > 0 ? "#{component.width}px" : "100%" %>;">
-  <%#= form_tag main_app.site_pages_path, method: 'get' do %>
   <%= form_tag main_app.news_index_path, class: 'form_search', method: 'get' do %>  
     <%= text_field_tag :search, nil, placeholder: t('.search') %>
-    <%= hidden_field_tag 'news', 1 %>    
-    <%#= submit_tag '', class: 'search_box_submit'  %>    
+    <%= hidden_field_tag 'news', 1 %>
+	  <select id="options" onchange="search_action()">
+		<option value="/news"  <%= request.env['PATH_INFO'] == '/news' ? "selected" : '' %>>Notícias</option>
+		<option value="/pages" <%= request.env['PATH_INFO'] == '/pages' ? "selected" : '' %>>Páginas</option>	
+	  </select>
   <% end %>
 </section>
-<select id="options" onchange="search_action()" class="search_box_component <%=  component.align %>" style="width: <%= component.width.to_i > 0 ? "#{component.width}px" : "100%" %>;">">
-	<option value="/news"  <%= request.env['PATH_INFO'] == '/news' ? "selected" : '' %>>Notícias</option>
-	<option value="/pages" <%= request.env['PATH_INFO'] == '/pages' ? "selected" : '' %>>Páginas</option>	
-</select>
 <% content_for :javascripts, javascript_include_tag("search_action") %>

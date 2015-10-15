@@ -20,9 +20,9 @@ aside .search_box_component.right{
 
 .search_box_component #search{
     text-align: left;
-    width: 100%;
+    width: 70px;
     height: 32px;
-    padding: 5px 20px 5px 5px;
+    padding: 5px;
     background-image: url("/assets/components/icon_search.png ") !important;
     background-position: 99% !important;
     background-repeat: no-repeat !important;
@@ -30,7 +30,24 @@ aside .search_box_component.right{
     -webkit-box-sizing:border-box;
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
 }
+
+.search_box_component #options{
+    width: 70px;
+    height: 20px;
+    padding: 0px;
+    background-color: #CCC;
+    text-indent: 5px;
+    font-size: 10px;
+    margin: 10px 0px 0px;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+
 
 /*
 .search_box_component .search_box_submit{
