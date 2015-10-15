@@ -23,13 +23,8 @@ class Weby::Theme
       children = component.delete('children')
     end
     compo = @skin.components.create(component)
-    puts "->>> compo"
     if children && children.any? && compo.persisted?
-      puts children
-      puts "-.."
       children.each do |child|
-        puts child
-        puts "-..."
         create_component compo.id, child
       end
     end
