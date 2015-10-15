@@ -1,5 +1,5 @@
 class MenuComponent < Component
-  component_settings :menu_id, :dropdown
+  component_settings :menu_id, :sitemap_position, :dropdown
 
   validates :menu_id, presence: true
 
