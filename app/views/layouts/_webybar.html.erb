@@ -26,7 +26,7 @@
     </div>
     <div class="clearfix"></div>
   </div>
-<% else %>
+<% else %>  
   <%= link_to image_tag('weby-shortcut.png'),
-    weby_login_url(main_app.site_admin_url(subdomain: current_site)), id: 'weby_shortcut' %>
+    weby_login_url(request.url), id: 'weby_shortcut' %>
 <% end %>
