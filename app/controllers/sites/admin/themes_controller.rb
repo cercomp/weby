@@ -4,7 +4,7 @@ class Sites::Admin::ThemesController < ApplicationController
 
   def index
     @components = current_site.active_skin.components.order(position: :asc)
-    @placeholders = current_site.theme.layout['placeholders']
+    @placeholders = current_site.theme ? current_site.theme.layout['placeholders'] : []
 
     @styles = {}
     @styles[:others] = Style.not_followed_by(current_site.id).search(params[:search])

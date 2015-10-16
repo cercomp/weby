@@ -1,23 +1,14 @@
 first_place:
   -
-    settings: '{:body=>"<script>\r\n  (function(i,s,o,g,r,a,m){i[''GoogleAnalyticsObject'']=r;i[r]=i[r]||function(){\r\n  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new
-      Date();a=s.createElement(o),\r\n  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)\r\n  })(window,document,''script'',''//www.google-analytics.com/analytics.js'',''ga'');\r\n\r\n  ga(''create'',
-      ''UA-45485732-1'', ''ufg.br'');\r\n  ga(''require'', ''displayfeatures'');\r\n  ga(''send'',
-      ''pageview'');\r\n\r\n</script>"}'
-    name: blank
-    position: 1
-    publish: true
-    alias: google Analytics
-  -
     settings: '{:background=>"#004b82"}'
     name: gov_bar
-    position: 2
+    position: 1
     publish: true
     alias: "Barra do Governo Federal"
   -
     settings: '{:body=>"<script type=\"text/javascript\">\r\n  document.addEventListener(''DOMContentLoaded'', function() {\r\n  \t//$(''.dropdown'').css({''background-color'': ''#ddd''});\r\n  });\r\n</script>"}'
     name: blank
-    position: 3
+    position: 2
     publish: true
     alias: Menu javascript
 top:
@@ -29,7 +20,7 @@ top:
     alias: Cabeçalho
     children:
       -
-        settings: '{:repository_id=>"", :size=>"", :width=>"200", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"sitelogo"}'
+        settings: '{:default_image=>"UFG_logo.svg", :size=>"", :width=>"200", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"sitelogo"}'
         name: image
         position: 1
         publish: true
@@ -79,9 +70,14 @@ top:
             position: 1
             publish: true
           -
+            name: 'menu_i18n'
+            settings: "{}"
+            position: 2
+            publish: true
+          -
             settings: '{:html_class=>"redesocial"}'
             name: components_group
-            position: 2
+            position: 3
             publish: true
             alias: Rede Social
             children:
@@ -184,7 +180,7 @@ bottom:
         alias: Rodapé
         children:
           -
-            settings: '{:repository_id=>"", :size=>"", :width=>"100", :height=>"",
+            settings: '{:default_image=>"Marca_Vertical.png", :size=>"", :width=>"100", :height=>"",
               :url=>"https://www.ufg.br/n/64596-a-marca-da-ufg", :target_id=>"", :target_type=>"", :new_tab=>"0",
               :html_class=>"logo-branca"}'
             name: image

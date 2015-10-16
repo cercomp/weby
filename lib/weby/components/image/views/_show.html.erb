@@ -3,7 +3,7 @@
   <% repository = Repository.find(component.repository_id) rescue nil %>
   <% if repository %>
     <% if repository.image? || repository.svg? %>
-      <% 
+      <%
           format = component.size.present? ? component.size : format_for_custom(component.width, component.height, repository)
           if component.size.blank?
             width = component.width.present? ? component.width : false#current_site.body_width ? current_site.body_width : false
@@ -36,8 +36,15 @@
         size << " height=#{height}" if height
       %>
      <object<%= size %>>
-        <embed src="<%= repository.archive.url %>"<%=  size %> type="application/x-shockwave-flash" wmode="opaque"></embed>
+        <embed src="<%= repository.archive.url %>"<%= size %> type="application/x-shockwave-flash" wmode="opaque"></embed>
      </object>
+    <% end %>
+  <% elsif component.default_image.present? %>
+    <% img = image_tag(component.default_image, style: style_for_dimension(component.width, component.height)) %>
+    <% if link_url.present? %>
+      <%= link_to img, link_url %>
+    <% else %>
+      <%= img %>
     <% end %>
   <% end %>
 </section>

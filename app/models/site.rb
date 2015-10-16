@@ -65,7 +65,7 @@ class Site < ActiveRecord::Base
   before_save :clear_per_page
 
   def theme
-    Weby::Themes.theme(active_skin.try(:theme)) || Weby::Theme.new('weby')
+    Weby::Themes.theme(active_skin.try(:theme))
   end
 
   def active_skin
