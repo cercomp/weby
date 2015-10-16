@@ -2,5 +2,5 @@
   priority: component.menu_id,
   include_blank: false
 %>
-<%= f.input :sitemap_position, hint: t(".display_order_sitemap") %>
+<%= f.input :sitemap_position, hint: t(".display_order_sitemap"), as: :integer %>
 <%= f.input :dropdown, hint: t(".dropdown_hint"), wrapper: :checkbox, as: :boolean %>
