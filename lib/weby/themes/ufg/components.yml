@@ -82,31 +82,31 @@ top:
             alias: Rede Social
             children:
               -
-                settings: '{:repository_id=>"", :size=>"o", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"twitter"}'
+                settings: '{:default_image=>"twitter.png", :size=>"o", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"twitter"}'
                 name: image
                 position: 1
                 publish: true
                 alias: Link Twitter
               -
-                settings: '{:repository_id=>"", :size=>"o", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"facebook"}'
+                settings: '{:default_image=>"facebook.png", :size=>"o", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"facebook"}'
                 name: image
                 position: 2
                 publish: true
                 alias: Link Facebook
               -
-                settings: '{:repository_id=>"", :size=>"o", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"youtube"}'
+                settings: '{:default_image=>"YoutubePlay.png", :size=>"o", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"youtube"}'
                 name: image
                 position: 3
                 publish: true
                 alias: Link Youtube
               -
-                settings: '{:size=>"o", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"instagram", :repository_id=>""}'
+                settings: '{:default_image=>"Instagram.png", :size=>"o", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"instagram"}'
                 name: image
                 position: 4
                 publish: true
                 alias: Instagram
               -
-                settings: '{:repository_id=>"", :size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"picasa"}'
+                settings: '{:default_image=>"picasa.png", :size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"picasa"}'
                 name: image
                 position: 5
                 publish: true
