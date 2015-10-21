@@ -6,10 +6,11 @@ pt-BR:
     attributes:
       menu_component:
         menu_id:           " Menu "
+        sitemap_position:  " Posição "
         dropdown:          " Desdobrável "
   menu:
     views:
       form:
-        menu_id:           " Menu "
-        dropdown_hint:     " Sub-menus se desdobram com o passar do cursor do mouse "
-
+        menu_id:               " Menu "
+        dropdown_hint:         " Sub-menus se desdobram com o passar do cursor do mouse "
+        display_order_sitemap: " Ordem de exibição no Mapa do Site. Menores números aparecem primeiro "
