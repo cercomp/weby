@@ -198,7 +198,7 @@ class ApplicationController < ActionController::Base
   def resource
     #get_resource_ivar || set_resource_ivar(controller_name.classify.constantize.send(:find, params[:id]))
     parts = controller_path.split('/')
-    model_class = parts.delete_if{|part| part.match(/admin|sites/) && part != parts[-1] }.join('/')
+    model_class = parts.delete_if { |part| part.match(/admin|sites/) && part != parts[-1] }.join('/')
     get_resource_ivar || set_resource_ivar(model_class.classify.constantize.send(:find, params[:id]))
   end
 

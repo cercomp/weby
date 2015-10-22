@@ -11,7 +11,7 @@
     </ul>
     <div class="tab-content">
       <% Weby::Settings.groups.each_with_index do |group, index| %>
-	<div class="tab-pane <%= index == 0 ? "active" : "" %>" id=<%= group %>>
+        <div class="tab-pane <%= index == 0 ? "active" : "" %>" id=<%= group %>>
           <table class='table table-striped'>
             <thead>
               <tr>
@@ -19,19 +19,19 @@
                 <th style="width: 30%"> <%= t('.value') %> </th>
                 <th style="width: 50%"> <%= t('.description') %> </th>
               </tr>
-	    </thead>
+	        </thead>
             <tbody>
-              <% @settings.each do |setting| %>
-	        <% if setting.group == group %>
+            <% @settings.each do |setting| %>
+	          <% if setting.group == group %>
                 <tr>
                   <input type="hidden" value="<%= setting.id %>" name="settings[][id]"/>
-		  <input type="hidden" value="<%= setting.name %>" name="settings[][name]"/>
-		  <input type="hidden" value="<%= setting.group %>" name="settings[][group]"/>
+		          <input type="hidden" value="<%= setting.name %>" name="settings[][name]"/>
+		          <input type="hidden" value="<%= setting.group %>" name="settings[][group]"/>
                   <td> <%= setting.name %> </td>
                   <td> <%= setting_input_tag setting %> </td>
                   <td> <%= t("settings.#{setting.name}") %> </td>
-		</tr>
-	        <% end %>
+		        </tr>
+	           <% end %>
               <% end %>
             </tbody>
           </table>

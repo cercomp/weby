@@ -96,13 +96,13 @@ describe Page do
     skip "set repository_id to file if file isn't a repository" do
       file = 1
 
-      expect(subject.image=(file)).to eq 1
+      expect(subject.image = (file)).to eq 1
     end
 
     skip 'set repository_id to file id if file is a repository' do
       file = Repository.new(id: 1)
 
-      subject.image=(file)
+      subject.image = (file)
 
       expect(subject.repository_id).to eq file.id
     end

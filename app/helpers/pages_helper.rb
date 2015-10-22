@@ -37,7 +37,7 @@ module PagesHelper
     end.join(' ')
   end
 
-  def generate_url post, options={}
+  def generate_url post, options = {}
     case post
     when Page
       is_in_admin_context? ? site_admin_page_path(post, options) : site_page_path(post, options)
