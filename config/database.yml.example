@@ -3,8 +3,9 @@ default: &default
   encoding: unicode
   pool: 5
   timeout: 5000
-  username:
-  password:
+  username: <%= ENV['PG_USER'] %>
+  password: <%= ENV['PG_PASS'] %>
+  host: <%= ENV['PG_HOST'] %>
 
 development:
   <<: *default
@@ -16,4 +17,4 @@ test:
 
 production:
   <<: *default
-  database: weby_production
+  database: weby
