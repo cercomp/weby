@@ -5,8 +5,6 @@ before_script:
 - psql -c 'create database weby_test;' -U postgres
 - mv config/travis_database.yml config/database.yml
 - mv config/secrets.yml.example config/secrets.yml
-  # When you use 'bundle install', check line above:
-- rm -rf vendor/bundle/ruby/2.1.7/gems/i18n-0.7.0/test
 - RAILS_ENV=test bundle exec rake --trace db:schema:load
 script: bin/rspec spec
 notifications:

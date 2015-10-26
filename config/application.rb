@@ -18,13 +18,15 @@ module Weby
     config.autoload_paths += Dir["#{config.root}/vendor/engines/*/lib/weby/components/**/*"]
 
     # Activate observers that should always be running.
-    
+
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     config.time_zone = 'Brasilia'
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
-    config.i18n.load_path += Dir["#{config.root}/**/locales/**/*.yml"]
+    # config.i18n.load_path += Dir["#{config.root}/**/locales/**/*.yml"]
+    config.i18n.load_path += Dir["#{config.root}/**/config/locales/**/*.yml"]
+    config.i18n.load_path += Dir["#{config.root}/**/lib/weby/**/locales/**/*.yml"]
     config.i18n.default_locale = 'pt-BR'
     I18n.config.enforce_available_locales = false
 
