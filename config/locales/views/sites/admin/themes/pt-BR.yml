@@ -3,6 +3,7 @@ pt-BR:
     admin:
       themes:
         index:
+          themes:             " Temas "
           layout:             " Layout "
           components:         " Componentes "
           activate:           " Ativar "

@@ -4,10 +4,7 @@ class CreateSkins < ActiveRecord::Migration
       t.references :site, index: true
       t.string :theme
       t.string :name
-      t.text :components
-      t.text :layout
       t.text :variables
-      t.text :css
       t.boolean :active, default: false
 
       t.timestamps

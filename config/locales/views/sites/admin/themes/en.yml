@@ -3,6 +3,7 @@ en:
     admin:
       themes:
         index:
+          themes:             " Themes "
           layout:             " Layout "
           components:         " Componentes "
           activate:           " Activate "
