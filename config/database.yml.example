@@ -6,15 +6,13 @@ default: &default
   username: <%= ENV['PG_USER'] %>
   password: <%= ENV['PG_PASS'] %>
   host: <%= ENV['PG_HOST'] %>
+  database: <%= ENV['PG_DB'] %>
 
 development:
   <<: *default
-  database: weby_development
 
 test:
   <<: *default
-  database: weby_test
 
 production:
   <<: *default
-  database: weby
