@@ -7,6 +7,7 @@ default: &default
   password: <%= ENV['PG_PASS'] %>
   host: <%= ENV['PG_HOST'] %>
   database: <%= ENV['PG_DB'] %>
+  port: <%= ENV['PG_PORT'] %>
 
 development:
   <<: *default
