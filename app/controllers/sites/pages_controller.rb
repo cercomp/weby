@@ -30,7 +30,7 @@ class Sites::PagesController < ApplicationController
     current_site.components.where({name: "menu", publish: true}).each do |component|
       menus_order.merge!(Weby::Components.factory(component).menu_id => Weby::Components.factory(component).sitemap_position.blank? ? 9999 : Weby::Components.factory(component).sitemap_position.to_i)
     end
-    menus_order.sort_by{|id,value| value}.each do |menu_order|
+    menus_order.sort_by { |id,value| value }.each do |menu_order|
       @published_menus.merge!(@published_menus.length => current_site.menus.find(menu_order[0]))
     end
   end

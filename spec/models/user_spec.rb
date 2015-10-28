@@ -249,7 +249,7 @@ describe User do
 
     it "returns false if the notification hasn't been read" do
       notification1 = double(:notification, id: 2)
-      allow(subject).to receive(:unread_notifications_array).and_return([1,2])
+      allow(subject).to receive(:unread_notifications_array).and_return([1, 2])
 
       expect(subject.has_read?(notification1)).to eq(false)
     end
