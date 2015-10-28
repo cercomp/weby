@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   validates :password,
             format: {
               with: /(?=.*\d+)(?=.*[A-Z]+)(?=.*[a-z]+)\A.{4,}\z/,
-	      message: I18n.t('lower_upper_number_chars'),
+              message: I18n.t('lower_upper_number_chars'),
               allow_blank: true
             }
 

@@ -31,7 +31,7 @@ module AdminMenuHelper
   #*Grouped by menu_position
   def extensions_menu_items
     {}.tap do |result|
-      current_site.extensions.sort_by{|e| t("extensions.#{e.name}.name") }.each do |extension|
+      current_site.extensions.sort_by { |e| t("extensions.#{e.name}.name") }.each do |extension|
         position = Weby.extensions[extension.name.to_sym].menu_position
         result[position] ||= []
         result[position] << menu_item_to(t("extensions.#{extension.name}.name"), "/admin/#{extension.name}")

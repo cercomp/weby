@@ -1,24 +1,9 @@
 <nav class="menu_accessibility_component right basic">
   <span class="accessibility">
-    <% if component.font_size? %>
-      <span class="accessibility_font">
-        <% if !component.label_font_size.blank? %>
-          <%= component.label_font_size %>
-        <% end %>
-        <%= link_to weby_icon('minus'), "#", onclick: 'font_size_change("minus")', title: t(".decrease_font_size")%>
-        <%= link_to weby_icon('font'), "#", onclick: 'font_size_original()', title: t(".default_font_size")%>
-        <%= link_to weby_icon('plus'), "#", onclick: 'font_size_change("plus")', title: t(".increase_font_size")%>
-      </span>
-    <% end %>
+    <%= acessibility_font_links(component) %>
     <% if component.contrast? %>
       <span class="accessibility_color">
-        <% if !component.label_contrast.blank? %>
-          <%= component.label_contrast %>
-        <% end %>
-        <%= link_to "C", "#", class: "contrast_normal" %>
-        <%= link_to "C", "#", class: "contrast_blue", data: { url: asset_path('shared/contrast_blue.css') } %>
-        <%= link_to "C", "#", class: "contrast_black", data: { url: asset_path('shared/contrast_black.css') } %>
-        <%= link_to "C", "#", class: "contrast_yellow", data: { url: asset_path('shared/contrast_yellow.css') } %>
+        <%= acessibility_color_links(component) %>
       </span>
     <% end %>
   </span>

@@ -192,7 +192,7 @@ describe User do
     it 'returns an array with ids from noticifications' do
       subject.unread_notifications = '1,2,3,4,5,6'
 
-      expect(subject.unread_notifications_array).to eq([1,2,3,4,5,6])
+      expect(subject.unread_notifications_array).to eq([1, 2, 3, 4, 5, 6])
     end
   end
 
@@ -204,7 +204,7 @@ describe User do
     it 'appends a notification' do
       notification = double(:notification, id: 1)
 
-      allow(subject).to receive(:unread_notifications_array).and_return([2,3])
+      allow(subject).to receive(:unread_notifications_array).and_return([2, 3])
       allow(subject).to receive(:update_attribute).with(:unread_notifications, '2,3,1')
 
       subject.append_unread_notification(notification)
@@ -215,14 +215,14 @@ describe User do
     it 'removes specific unread notification' do
       notification = double(:notification, id: 1)
 
-      allow(subject).to receive(:unread_notifications_array).and_return([1,2,3])
+      allow(subject).to receive(:unread_notifications_array).and_return([1, 2, 3])
       allow(subject).to receive(:update_attribute).with(:unread_notifications, '2,3')
 
       subject.remove_unread_notification(notification)
     end
 
     it 'removes all unread notification' do
-      allow(subject).to receive(:unread_notifications_array).and_return([1,2,3])
+      allow(subject).to receive(:unread_notifications_array).and_return([1, 2, 3])
       allow(subject).to receive(:update_attribute).with(:unread_notifications, '')
 
       subject.remove_unread_notification
@@ -297,7 +297,7 @@ describe User do
       role3 = double(:role3, site_id: 1)
 
       allow(subject).to receive(:roles).and_return([role1, role2, role3])
-      allow(Site).to receive(:where).with(id: [1,2])
+      allow(Site).to receive(:where).with(id: [1, 2])
 
       subject.sites
     end

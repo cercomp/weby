@@ -1,0 +1,6 @@
+languages:
+  - ruby
+  - javascript
+rules:
+  ignore:
+    - avoid_copy_paste

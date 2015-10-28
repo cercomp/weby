@@ -27,8 +27,8 @@ class Component < ActiveRecord::Base
     settings = eval(attrs['settings'])
     if settings[:body]
       body = settings[:body]
-      body["pt-BR"].gsub!(/\/up\/[0-9]+/) {|x| "/up/#{options[:site_id]}"} if body["pt-BR"]
-      body["en"].gsub!(/\/up\/[0-9]+/) {|x| "/up/#{options[:site_id]}"} if body["en"]
+      body["pt-BR"].gsub!(/\/up\/[0-9]+/) { |x| "/up/#{options[:site_id]}" } if body["pt-BR"]
+      body["en"].gsub!(/\/up\/[0-9]+/) { |x| "/up/#{options[:site_id]}" } if body["en"]
       settings[:body] = body
       attrs['settings'] = settings.to_s
     end

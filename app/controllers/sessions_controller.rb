@@ -45,11 +45,11 @@ class SessionsController < Devise::SessionsController
           session[:ldap_email] = ldap_user.first[ldap.attr_mail].first.to_s
           session[:ldap_type] = 'ldap'
           flash[:warning] = t('link_weby_user')
-	  @session = User.new
-	  @confirm = 'true'
-	  @show_new_user = User.find_by_login(ldap_user_login).blank?
-	  @name_suggested = ldap_user_login;
-	  render :new
+          @session = User.new
+          @confirm = 'true'
+          @show_new_user = User.find_by_login(ldap_user_login).blank?
+          @name_suggested = ldap_user_login;
+          render :new
         else
           sign_in source.user
           record_login

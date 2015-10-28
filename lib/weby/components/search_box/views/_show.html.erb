@@ -2,10 +2,10 @@
   <%= form_tag main_app.news_index_path, class: 'form_search', method: 'get' do %>  
     <%= text_field_tag :search, nil, placeholder: t('.search') %>
     <%= hidden_field_tag 'news', 1 %>
-	  <select id="options" onchange="search_action()">
-		<option value="/news"  <%= request.env['PATH_INFO'] == '/news' ? "selected" : '' %>>Notícias</option>
-		<option value="/pages" <%= request.env['PATH_INFO'] == '/pages' ? "selected" : '' %>>Páginas</option>	
-	  </select>
+    <select id="options" onchange="search_action()">
+      <option value="/news"  <%= request.env['PATH_INFO'] == '/news' ? "selected" : '' %>>Notícias</option>
+      <option value="/pages" <%= request.env['PATH_INFO'] == '/pages' ? "selected" : '' %>>Páginas</option>
+    </select>
   <% end %>
 </section>
 <% content_for :javascripts, javascript_include_tag("search_action") %>

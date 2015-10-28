@@ -87,7 +87,7 @@ describe Admin::NotificationsController do
 
   describe "PUT #update" do
     context "when success" do
-      before { put :update, notification: { title:"Updated Body", body: "Updated Body" },
+      before { put :update, notification: { title: "Updated Body", body: "Updated Body" },
                id: notifi.id }
 
       it "will redirect to notification path" do

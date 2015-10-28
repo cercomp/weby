@@ -77,7 +77,7 @@ describe ApplicationController do
 
   describe "set_tld_length" do
     skip "sets tld length" do
-      expect(request.session_options[:tld_length]).to eq(site.domain.split('.')+1)
+      expect(request.session_options[:tld_length]).to eq(site.domain.split('.') + 1)
     end
   end
 
