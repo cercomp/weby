@@ -1,3 +1,5 @@
+languages:
+  -ruby
 rules:
   ignore:
     - avoid_copy_paste
