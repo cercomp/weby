@@ -15,10 +15,10 @@
 <div class="row">
   <% @themes.each do |theme| %>
     <% skin = current_site.skins.find_by(theme: theme.name) %>
-    <div class="col-md-4">
+    <div class="col-md-3">
       <div class="thumbnail">
         <h3 class="text-center"><%= theme.name %></h3>
-        <%= raw make_mini_layout theme, 270 %>
+        <%= image_tag "#{theme.name}/thumb.png", style: 'width: 160px' %>
         <div class="caption">
           <% if current_site.theme && theme.name == current_site.theme.name %>
               <h5 class="text-success text-center">Tema atual</h5>

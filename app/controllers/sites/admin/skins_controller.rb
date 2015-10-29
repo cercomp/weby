@@ -4,6 +4,7 @@ class Sites::Admin::SkinsController < ApplicationController
 
   def index
     @themes = Weby::Themes.all
+    render layout: false
   end
 
   def create

@@ -5,15 +5,14 @@
 <% breadcrumb :themes %>
 <div class="pull-right">
   <% if check_permission(Sites::Admin::SkinsController, [:new]) %>
-    <%= link_to t(".change_theme"),
-      site_admin_skins_path,
-      class: "btn btn-success" %>
+    <%= link_to "#{t(".change_theme")} (#{ current_site.active_skin.theme })",
+      '#',
+      class: "btn btn-success btn-change", data: {url: site_admin_skins_path} %>
   <% end %>
 </div>
-
+<div class="clearfix"></div>
+<div class="skins"></div>
 <% if current_site.theme %>
-  <%= t('.current_theme') %>: <%= current_site.active_skin.theme %>
-
     <ul class="nav nav-tabs" id="tabs">
       <li class="active"><%= link_to('Layout', '#tab-layout', data: {toggle: :tab}) %></li>
       <li><%= link_to(t('.styles'), '#tab-styles', data: {toggle: :tab}) %></li>
@@ -141,7 +140,7 @@
   <% content_for :javascripts, javascript_include_tag("init/sortable") %>
   <% content_for :stylesheets, stylesheet_link_tag("sortable") %>
   <% content_for :stylesheets, stylesheet_link_tag("maxi_layout") %>
-  <% content_for :javascripts, javascript_include_tag("styles") %>
+  <% content_for :javascripts, javascript_include_tag("themes") %>
 
 <% else %>
 
