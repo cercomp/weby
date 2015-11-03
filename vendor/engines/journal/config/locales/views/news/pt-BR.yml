@@ -13,7 +13,7 @@ pt-BR:
         categories:    " Categorias "
         source:        " Fonte "
         posted_by:     " Por %{author}."
-        created_at:    " Criado em %{created_at}."
+        created_at:    " Criada em %{created_at}."
         updated_at:    " Atualizada em %{updated_at}."
         related_files: " Arquivos relacionados "
         related_url:   " URL relacionada "
