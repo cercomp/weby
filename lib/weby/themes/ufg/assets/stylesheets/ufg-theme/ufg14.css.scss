@@ -39,10 +39,10 @@ div.container > h2:first-child {
   white-space: nowrap;
 }
 .input-append input {
-	position: relative;
- 	vertical-align: top;
+  position: relative;
+  vertical-align: top;
   background-color: #fff;
-	color: #555;
+  color: #555;
   border: 1px solid #ccc;
   display: inline-block;
   height: 20px;
@@ -51,16 +51,16 @@ div.container > h2:first-child {
   font-size: 14px;
   line-height: 20px;
   -webkit-border-radius: 4px 0 0 4px;
-	-moz-border-radius: 4px 0 0 4px;
-	border-radius: 4px 0 0 4px;
- 	vertical-align: middle;
-	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-	-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-	box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-	-webkit-transition: border linear 0.2s,box-shadow linear 0.2s;
-	-moz-transition: border linear 0.2s,box-shadow linear 0.2s;
-	-o-transition: border linear 0.2s,box-shadow linear 0.2s;
-	transition: border linear 0.2s,box-shadow linear 0.2s;
+  -moz-border-radius: 4px 0 0 4px;
+  border-radius: 4px 0 0 4px;
+  vertical-align: middle;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  -webkit-transition: border linear 0.2s,box-shadow linear 0.2s;
+  -moz-transition: border linear 0.2s,box-shadow linear 0.2s;
+  -o-transition: border linear 0.2s,box-shadow linear 0.2s;
+  transition: border linear 0.2s,box-shadow linear 0.2s;
 }
 .input-append .btn:last-child {
   margin: 0;
@@ -87,15 +87,15 @@ div.container > h2:first-child {
   filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
   border: 1px solid #ccc;
   border-bottom-color: #b3b3b3;
-	-webkit-border-radius: 0 4px 4px 0;
+  -webkit-border-radius: 0 4px 4px 0;
   -moz-border-radius: 0 4px 4px 0;
   border-radius: 0 4px 4px 0;
   -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
-	-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
-	box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+  -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
 }
 .input-append .btn:last-child img {
-	vertical-align: middle;
+  vertical-align: middle;
 }
 /* Icones */
 [class^="icon-"], [class*=" icon-"] {
@@ -116,10 +116,10 @@ div.container > h2:first-child {
 .icon-off { background-position: -384px 0; }
 /* --- Busca -- */
 .search-results .item-search-result:first-child {
-	border-top: 1px dotted #BBB;
+  border-top: 1px dotted #BBB;
 }
 .search-results .item-search-result {
-	border-bottom: 1px dotted #BBB;
+  border-bottom: 1px dotted #BBB;
 }
 .search-results .page-details,
 .search-results .news-details {
@@ -138,7 +138,7 @@ div.container > h2:first-child {
   padding: 3px 0px;
   display: block;
 }
-	.pagination > li {
+  .pagination > li {
     display: inline;
   }
   .pagination > li > a{
@@ -148,7 +148,7 @@ div.container > h2:first-child {
   .pagination > li > a:focus,
   .pagination > .active > a,
   .pagination > .active > span {
-  	background-color: #f5f5f5;
+    background-color: #f5f5f5;
     text-decoration: none;
   }
   .pagination > .active > a,
@@ -187,4 +187,3 @@ a.fc-event.fc-event-hori { border: 1px solid #0a5a9c !important; }
 .weby-label.default {
   line-height: 2;
 }
-

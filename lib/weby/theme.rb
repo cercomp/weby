@@ -1,5 +1,5 @@
 class Weby::Theme
-  attr_reader :name, :components, :extensions, :variables, :layout, :template
+  attr_reader :name, :title, :components, :extensions, :variables, :layout, :template
 
   def initialize(name)
     @name = name
@@ -7,6 +7,7 @@ class Weby::Theme
     @components = YAML.load_file Rails.root.join("lib/weby/themes/#{@name}/components.yml")
     @layout = YAML.load_file Rails.root.join("lib/weby/themes/#{@name}/layout.yml")
     @template = "lib/weby/themes/#{@name}/layouts/#{@name}.html.erb"
+    @title = @layout['title'] || @name.titleize
   end
 
   def populate skin
@@ -43,8 +44,9 @@ class Weby::Theme
       comps.each do |component|
         #component['theme'] = @name
         if component['name'] == 'menu'
-          menu = @skin.site.menus.create(component.delete('menu'))
-          component['settings'] = I18n.interpolate(component['settings'], menu_id: menu.id)
+          menu_attrs = component.delete('menu') || {}
+          target_menu = @skin.site.menus.find_by(name: menu_attrs['name']) || @skin.site.menus.create(menu_attrs)
+          component['settings'] = I18n.interpolate(component['settings'], menu_id: target_menu.id)
         end
         if component['name'] == 'text'
           component['settings'] = I18n.interpolate(component['settings'], default_footer: default_footer.to_s)

@@ -61,51 +61,55 @@
         </div>
 
         <% if @components.any? %>
-        <div class="placeholder-name"><%= t(".leftout_components") %></div>
-        <div id="leftout" class="placeholder">
-          <ul>
-          <%# Se sobrou algum component com placeholder que não está no layout atual %>
-          <% @components.each do |comp| %>
-              <% component = Weby::Components.factory(comp) %>
-              <%= list_component(component, true) %>
-          <% end %>
-          </ul>
-        </div>
+          <div class="placeholder-name"><%= t(".leftout_components") %></div>
+          <div id="leftout" class="placeholder">
+            <ul>
+            <%# Se sobrou algum component com placeholder que não está no layout atual %>
+            <% @components.each do |comp| %>
+                <% component = Weby::Components.factory(comp) %>
+                <%= list_component(component, true) %>
+            <% end %>
+            </ul>
+          </div>
         <% end %>
 
-        <%= javascript_tag do %>
-        window.onload=function(){
-          $(document).ready(function(){
+        <% content_for :javascripts do %>
+          <script type="text/javascript">
+            $(document).ready(function(){
+              $('.order-list').each(function(){
+                $(this).sortable({
+                  //axis: 'y',
+                  dropOnEmpty: true,
+                  handle: '.handle',
+                  connectWith: '.order-list',
+                  forcePlaceholderSize: true,
+                  placeholder: 'drop-here',
+                  items: '> li',
+                  opacity: 0.4,
+                  scroll: true,
+                  tolerance: 'pointer',
+                  update: function(evt, ui){
+                    $('.maxi_level.multi').each(function(){ $(this).attr('style', ''); $(this).css({'height':$(this).height()}); });
+                    $.ajax({
+                      type: 'post',
+                      data: 'place_holder='+ $(this).data('place') +'&'+ $(this).sortable('serialize'),
+                      dataType: 'script',
+                      complete: function(request){ if(!ui.sender){ ui.item.effect('pulsate', {times: 1}, 350); } },
+                      url: '<%= sort_site_admin_components_path %>'
+                    });
+                  }
+                });
+              });
 
-            $('.order-list').each(function(){
-              $(this).sortable({
-                //axis: 'y',
-                dropOnEmpty: true,
-                handle: '.handle',
-                connectWith: '.order-list',
-                forcePlaceholderSize: true,
-                placeholder: 'drop-here',
-                items: '> li',
-                opacity: 0.4,
-                scroll: true,
-                tolerance: 'pointer',
-                update: function(evt, ui){
-                  $('.maxi_level.multi').each(function(){ $(this).attr('style', ''); $(this).css({'height':$(this).height()}); });
-                  $.ajax({
-                    type: 'post',
-                    data: 'place_holder='+ $(this).data('place') +'&'+ $(this).sortable('serialize'),
-                    dataType: 'script',
-                    complete: function(request){ if(!ui.sender){ ui.item.effect('pulsate', {times: 1}, 350); } },
-                    url: '<%= sort_site_admin_components_path %>'
-                  });
+              ////FIX-ME
+              $('.maxi_level.multi').each(function(){
+                var h = $(this).height();
+                if(h > 0){
+                  $(this).css({'height': h});
                 }
               });
             });
-
-            ////FIX-ME
-            $('.maxi_level.multi').each(function(){ $(this).css({'height':$(this).height()}); });
-          });
-        }
+          </script>
         <% end %>
       </div>
       <div role="tabpanel" class="tab-pane" id="tab-styles">
@@ -137,13 +141,12 @@
           </div>
         </div>
   </div>
-  <% content_for :javascripts, javascript_include_tag("init/sortable") %>
   <% content_for :stylesheets, stylesheet_link_tag("sortable") %>
   <% content_for :stylesheets, stylesheet_link_tag("maxi_layout") %>
-  <% content_for :javascripts, javascript_include_tag("themes") %>
-
 <% else %>
 
   Nenhum tema selecionado!
 
 <% end %>
+<% content_for :javascripts, javascript_include_tag("init/sortable") %>
+<% content_for :javascripts, javascript_include_tag("themes") %>

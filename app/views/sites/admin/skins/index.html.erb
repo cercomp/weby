@@ -1,14 +1,3 @@
-<% content_for :javascripts do %>
-<script>
-  $('.btn-apply').click(function(){
-    $.ajax('<%= site_admin_skins_path %>',
-            {method: 'POST', data: {theme: {name: $(this).data('theme')}}}
-    ).done(function(data){
-       alert(data);
-    });
-  });
-</script>
-<% end %>
 <% title ".themes" %>
 <% breadcrumb :skins %>
 
@@ -17,11 +6,13 @@
     <% skin = current_site.skins.find_by(theme: theme.name) %>
     <div class="col-md-3">
       <div class="thumbnail">
-        <h3 class="text-center"><%= theme.name %></h3>
+        <h3 class="text-center"><%= theme.title %></h3>
         <%= image_tag "#{theme.name}/thumb.png", style: 'width: 160px' %>
         <div class="caption">
           <% if current_site.theme && theme.name == current_site.theme.name %>
-              <h5 class="text-success text-center">Tema atual</h5>
+              <b class="text-success text-center">Tema atual<br/>
+              <%= link_to t('.default'), site_admin_skin_path(current_site.active_skin), method: :delete, data: {confirm: t('.confirm_default')} %>
+              </b>
           <% else %>
             <div class="btn-group btn-group-justified" role="group" aria-label="...">
               <div class="btn-group" role="group">

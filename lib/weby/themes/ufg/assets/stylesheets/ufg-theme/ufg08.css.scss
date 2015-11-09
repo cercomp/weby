@@ -1,19 +1,19 @@
 /* Busca */
 .portalbusca {
-	float: right;
-	height: 100px;
+  float: right;
+  height: 100px;
 }
 .search_box_component {
   padding: 4px 0px 0px 0px;
 }
-	.search_box_component #search {
-		height: 20px;
+  .search_box_component #search {
+    height: 20px;
     background-image: url("") !important;
   }
-	.search_box_component input {
-  	position: relative;
+  .search_box_component input {
+    position: relative;
     float: left;
-    width: 140px;
+    width: 70px;
     height: 20px;
     margin: 10px 0 0 0;
     border: none;
@@ -21,8 +21,7 @@
     text-indent: 5px;
     font-size: 10px;
     padding: 2px;
-	}
-	.search_box_component input:focus {
-		background-color: #eee;
-	}
-
+  }
+  .search_box_component input:focus {
+    background-color: #eee;
+  }

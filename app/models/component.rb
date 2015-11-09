@@ -22,7 +22,7 @@ class Component < ActiveRecord::Base
     attrs = attrs.dup
     attrs = attrs['component'] if attrs.key? 'component'
     id = attrs['id']
-    attrs.except!('id', 'created_at', 'updated_at', 'site_id', '@type', 'type')
+    attrs.except!('id', 'created_at', 'updated_at', 'skin_id', '@type', 'type')
 
     settings = eval(attrs['settings'])
     if settings[:body]
@@ -68,7 +68,7 @@ class Component < ActiveRecord::Base
     component = self.create!(attrs)
     if component.persisted?
       components_children.each do |child|
-        import child, place_holder: component.id, site_id: component.site_id
+        import child, place_holder: component.id, site_id: options[:site_id]
       end
     end
   end

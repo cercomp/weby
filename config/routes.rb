@@ -80,7 +80,7 @@ Rails.application.routes.draw do
           post :sort
         end
       end
-      resources :skins, except: [:destroy, :show] do
+      resources :skins, except: [:new, :edit, :update] do
         collection do
           get :preview
         end

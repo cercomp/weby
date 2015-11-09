@@ -19,7 +19,7 @@ article.news-show > header > h2,
 article.event-show > header > h2 {
   border-bottom: 3px solid #689eca;
   /*padding-top: 8px;
-	padding-bottom: 3px;*/
+  padding-bottom: 3px;*/
   display: table;
   padding-right: 10px;
   margin-bottom: -1px;
@@ -36,8 +36,8 @@ article.news-show > .news-details {
   padding-top: 10px;  
   font-size: 12px;
   line-height: 18px;
- 	max-width: 968px;
-	margin: auto;
+  max-width: 968px;
+  margin: auto;
   margin-bottom: 10px;
 }
 article.page-show > a:first-child,
@@ -51,7 +51,7 @@ article.event-show > summary,
 p.categories,
 p.source {
   margin: auto !important;
-	max-width: 968px;
+  max-width: 968px;
   font-size: 12px;
   line-height: 18px;
 }
@@ -73,7 +73,7 @@ article.news-show > .body,
 article.event-show > .body {
   color: #333;
   max-width: 968px;
-	margin: auto;
+  margin: auto;
   font-size: 12px;
   line-height: 18px;
   padding-bottom: 20px;
@@ -117,7 +117,7 @@ article.event-show > table.table > tbody:first-child > tr {
 }
 /* Categorias */
 .label {
-	-webkit-border-radius: 3px;
+  -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
 }
@@ -131,7 +131,7 @@ article.event-show > table.table > tbody:first-child > tr {
   color: #fff;
   vertical-align: baseline;
   white-space: nowrap;
-	text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
   background-color: #999;
 }
 /* Eventos */
@@ -145,10 +145,10 @@ article.event-show div.event {
   padding-left: 10px;
 }
 article.event-show div.event h3 {
-	color: #333; 
+  color: #333; 
 }
 article.event-show div.event p {
-	margin: 0 !important; 
+  margin: 0 !important; 
   color: #333;
 }
 /* Tag p com espaço acima */

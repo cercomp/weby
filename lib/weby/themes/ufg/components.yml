@@ -112,10 +112,12 @@ top:
                 publish: true
                 alias: Link Picasa
   -
-    settings: '{:menu_id=>"", :dropdown=>"1"}'
+    settings: '{:menu_id => "%{menu_id}", :dropdown => "1"}'
     name: menu
     position: 2
     publish: true
+    menu:
+      name: "Menu Principal"
   -
     settings: '{:html_class=>"slider-black"}'
     name: components_group
@@ -160,11 +162,13 @@ home:
     alias: Editais
 bottom:
   -
-    settings: '{:menu_id=>"", :dropdown=>"0"}'
+    settings: '{:menu_id=>"%{menu_id}", :dropdown=>"0"}'
     name: menu
     position: 1
     publish: true
     visibility: 0
+    menu:
+      name: "Menu Inferior"
   -
     settings: '{:html_class=>"footer"}'
     name: components_group

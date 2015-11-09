@@ -1,0 +1,9 @@
+pt-BR:
+  sites:
+    admin:
+      skins:
+        index:
+          default: "Restaurar padrão"
+          confirm_default: "Deseja realmente voltar o tema ao padrão e perder as modificações feitas?"
+        destroy:
+          successfully_reseted_theme: "Tema restaurado ao estado padrão"

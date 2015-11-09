@@ -21,11 +21,11 @@ class Admin::SitesController < Admin::BaseController
 
   def create
     @site = Site.new(site_params)
-    
+
     if @site.save
       Weby::Rights.seed_roles @site.id
       record_activity('created_site', @site)
-      redirect_to site_admin_skins_url(subdomain: @site)
+      redirect_to site_admin_themes_url(subdomain: @site)
     else
       respond_with @site
     end

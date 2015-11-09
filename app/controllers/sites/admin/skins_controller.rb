@@ -37,4 +37,14 @@ class Sites::Admin::SkinsController < ApplicationController
   def show
     @skin = current_site.skins.find params[:id]
   end
+
+  def destroy
+    skin = current_site.skins.find params[:id]
+    skin.components.destroy_all
+    skin.styles.destroy_all
+
+    skin.base_theme.populate skin
+    flash[:success] = t('.successfully_reseted_theme')
+    redirect_to site_admin_themes_path
+  end
 end

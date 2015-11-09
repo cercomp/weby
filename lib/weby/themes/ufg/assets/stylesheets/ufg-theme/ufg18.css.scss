@@ -2,7 +2,7 @@
   and (max-width: 640px)
   and (orientation: portrait) {
   /* Menus Resposivos */
-	footer .menu_component .expanded li { 
+  footer .menu_component .expanded li { 
     display: block !important;
     position: relative;
     text-align: center;
@@ -35,4 +35,3 @@ footer .menu_component .expanded li a {
 footer .menu_component .expanded li:hover {
   background: #689ECA;
 }
-

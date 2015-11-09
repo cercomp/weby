@@ -90,8 +90,9 @@ class Sites::Admin::BackupsController < ApplicationController
       current_site.news_sites.import(attrs['news_sites'], user: current_user.id, site_id: current_site.id) if attrs['news']
       current_site.events.import(attrs['events'], user: current_user.id, site_id: current_site.id) if attrs['events']
       current_site.menus.import(attrs['menus']) if attrs['menus']
-      current_site.components.import(attrs['root_components'], site_id: current_site.id) if attrs['root_components']
-      current_site.styles.import(attrs['styles']) if attrs['styles']
+      #current_site.components.import(attrs['root_components'], site_id: current_site.id) if attrs['root_components']
+      #current_site.styles.import(attrs['styles']) if attrs['styles']
+      current_site.skins.import(attrs['skins'], site_id: current_site.id) if attrs['skins']
       current_site.extensions.import(attrs['extensions']) if attrs['extensions']
       current_site.messages.import(attrs['messages']) if attrs['messages']
     end
