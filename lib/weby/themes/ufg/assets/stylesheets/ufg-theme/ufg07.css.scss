@@ -14,7 +14,7 @@
   header .dropdown li.sub:hover,
   header .dropdown li.sub li.sub {
     background-color: #689ECA;
-    background-image: url('/up/1/o/dropdown-w.png') !important;
+    background-image: url('/assets/dropdown-w.png') !important;
     background-repeat: no-repeat !important;
     background-position: 95% 13px !important;
   }
@@ -76,7 +76,7 @@ header .dropdown li:hover > menu { display: block; background-color: #5d8eb5;  }
 header .dropdown li a:hover { text-decoration: none; }
 /* Setas no submenu */
 header .dropdown li.sub {
-  background-image: url("/up/1/o/arrow_collapsed.png");
+  background-image: url("/assets/arrow_collapsed.png");
   background-repeat: no-repeat;
   background-position: 95% 10px;
 }
@@ -84,7 +84,7 @@ header .dropdown li.sub:hover > a { text-decoration: underline; }
 header .dropdown > li.sub:hover a { color: #fff; }
 header .dropdown > li a:hover { text-decoration: underline; color: #fff }
 header .dropdown > li.sub:hover {
-  background-image: url("/up/1/o/dropdown-w.png");
+  background-image: url("/assets/dropdown-w.png");
   background-repeat: no-repeat;
   background-position: 95% 13px;
   background-color: #689ECA;
@@ -95,7 +95,7 @@ header .dropdown > li:hover {
   background-color: #689ECA;
 }
 header .dropdown > li.sub {
-  background-image: url("/up/1/o/dropdown-b.png");
+  background-image: url("/assets/dropdown-b.png");
   background-position: 95% 13px;
   border-bottom: 3px solid #689eca;
   display: table;
