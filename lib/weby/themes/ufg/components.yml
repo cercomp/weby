@@ -5,12 +5,6 @@ first_place:
     position: 1
     publish: true
     alias: "Barra do Governo Federal"
-  -
-    settings: '{:body=>"<script type=\"text/javascript\">\r\n  document.addEventListener(''DOMContentLoaded'', function() {\r\n  \t//$(''.dropdown'').css({''background-color'': ''#ddd''});\r\n  });\r\n</script>"}'
-    name: blank
-    position: 2
-    publish: true
-    alias: Menu javascript
 top:
   -
     settings: '{:html_class=>"cabecalho"}'
@@ -20,11 +14,24 @@ top:
     alias: Cabeçalho
     children:
       -
-        settings: '{:default_image=>"UFG_logo.svg", :size=>"", :width=>"200", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"sitelogo"}'
-        name: image
+        settings: '{:html_class=>"logos"}'
+        name: components_group
         position: 1
         publish: true
-        alias: Logo
+        alias: Logos
+        children:
+          -
+            settings: '{:size=>"original", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"sitelogo"}'
+            name: image
+            position: 1
+            publish: true
+            alias: Logo do site
+          -
+            settings: '{:default_image=>"UFG_logo.svg", :size=>"original", :width=>"", :height=>"", :url=>"https://www.ufg.br", :target_id=>"", :target_type=>"", :new_tab=>"0"}'
+            name: image
+            position: 2
+            publish: true
+            alias: Logo UFG
       -
         settings: '{:html_class=>"portalbusca"}'
         name: components_group
@@ -117,7 +124,7 @@ top:
     position: 2
     publish: true
     menu:
-      name: "Menu Principal"
+      name: "Principal"
   -
     settings: '{:html_class=>"slider-black"}'
     name: components_group
@@ -151,15 +158,6 @@ home:
     position: 2
     publish: true
     alias: Eventos
-  -
-    settings: '{:show_label=>"1", :quant=>"3", :image_size=>"m", :avatar_width=>"300",
-      :avatar_height=>"", :max_char=>"", :filter_by=>"Editais", :read_more=>"1", :show_author=>"0",
-      :show_date=>"0", :new_tab=>"0", :label=>{"pt-BR"=>"Editais", "en"=>""}, :order_by=>"position",
-      :link_to_all=>{"pt-BR"=>"Ver todos", "en"=>""}}'
-    name: front_news
-    position: 3
-    publish: true
-    alias: Editais
 bottom:
   -
     settings: '{:menu_id=>"%{menu_id}", :dropdown=>"0"}'
@@ -168,7 +166,7 @@ bottom:
     publish: true
     visibility: 0
     menu:
-      name: "Menu Inferior"
+      name: "Secundário"
   -
     settings: '{:html_class=>"footer"}'
     name: components_group
@@ -192,50 +190,50 @@ bottom:
             publish: true
             alias: Logo Branca
           -
-            settings: '{:html_class=>"endereco", :body=>{"pt-BR"=>"<p><a href=\"/\">UFG
+            settings: '{:html_class=>"endereco", :body=>{"pt-BR"=>"<p><a href=\"https://www.ufg.br\">UFG
               - Universidade Federal de Goi&aacute;s</a></p>\r\n<p>CNPJ: 01567601/0001-43
               <br />Campus Samambaia -&nbsp;Pr&eacute;dio da Reitoria.<br /> CEP 74690-900&nbsp;
               <br />Goi&acirc;nia - Goi&aacute;s - Brasil.</p>\r\n<p>Fone: +55 62 3521 1000</p>\r\n<p>&nbsp;</p>",
               "en"=>"<p>UFG - Campus Samambaia<br />Pr&eacute;dio da Reitoria <br />CEP
               74001-970<br />Caixa Postal 131<br />Goi&acirc;nia &ndash; GO &ndash; Brasil<br
-              />CNPJ: 01567601/0001-43<br />Fone: +55 62 3521 1000</p>\r\n<p><a href=\"/pages/63399\"
-              target=\"_self\">Lista de Telefones</a></p>\r\n<p><a href=\"/pages/63491\">Mapas
+              />CNPJ: 01567601/0001-43<br />Fone: +55 62 3521 1000</p>\r\n<p><a href=\"https://www.ufg.br/pages/63399\"
+              target=\"_self\">Lista de Telefones</a></p>\r\n<p><a href=\"https://www.ufg.br/pages/63491\">Mapas
               da UFG</a></p>"}}'
             name: text
             position: 2
             publish: true
             alias: Endereço
           -
-            settings: '{:html_class=>"contato", :body=>{"pt-BR"=>"<p><a href=\"/n/63399-telefones\">Lista
-              de Telefones</a></p>\r\n<p><a href=\"/p/6108-mapa-geral\">Mapas da UFG</a></p>\r\n<p><a
-              href=\"/n/63495-direitos-autorais\" target=\"_self\">Direitos Autorais</a></p>\r\n<p><a
-              href=\"/n/63497-politica-de-privacidade\" target=\"_self\">Pol&iacute;ticas
-              de Privacidade</a></p>", "en"=>"<p><a href=\"/pages/63396\">Agenda do Reitor</a>
+            settings: '{:html_class=>"contato", :body=>{"pt-BR"=>"<p><a href=\"https://www.ufg.br/n/63399-telefones\">Lista
+              de Telefones</a></p>\r\n<p><a href=\"https://www.ufg.br/p/6108-mapa-geral\">Mapas da UFG</a></p>\r\n<p><a
+              href=\"https://www.ufg.br/n/63495-direitos-autorais\" target=\"_self\">Direitos Autorais</a></p>\r\n<p><a
+              href=\"https://www.ufg.br/n/63497-politica-de-privacidade\" target=\"_self\">Pol&iacute;ticas
+              de Privacidade</a></p>", "en"=>"<p><a href=\"https://www.ufg.br/pages/63396\">Agenda do Reitor</a>
               <br /><a href=\"https://www.ufg.br/up/1/o/CARTA_DE_SERVI_OS_AO_CIDAD_O_timbre.pdf\">Carta de
               Servi&ccedil;os</a> <br /><a href=\"http://www.proad.ufg.br/pages/18048\"
               target=\"_blank\">Relat&oacute;rio de Gest&atilde;o</a> <br /><a href=\"http://www.sic.ufg.br/\"
               target=\"_blank\">Acesso &agrave; Informa&ccedil;&atilde;o</a> <br /><a href=\"http://www.portaldatransparencia.gov.br/\"
               target=\"_blank\">Portal Transpar&ecirc;ncia</a></p>\r\n<p><a href=\"/feedback\"
               target=\"_self\">Fale conosco</a> <br /><a href=\"http://www.ouvidoria.ufg.br/\"
-              target=\"_self\">Ouvidoria</a></p>\r\n<p><a href=\"/pages/63495\" target=\"_self\">Direitos
-              Autorais</a> <br /><a href=\"/pages/63497\" target=\"_self\">Pol&iacute;ticas
+              target=\"_self\">Ouvidoria</a></p>\r\n<p><a href=\"https://www.ufg.br/pages/63495\" target=\"_self\">Direitos
+              Autorais</a> <br /><a href=\"https://www.ufg.br/pages/63497\" target=\"_self\">Pol&iacute;ticas
               de Privacidade</a></p>"}}'
             name: text
             position: 3
             publish: true
             alias: Contato
           -
-            settings: '{:html_class=>"mais_informacao", :body=>{"pt-BR"=>"<p><a href=\"/n/63398-processos\"
-              target=\"_blank\">Processos</a></p>\r\n<p><a href=\"/n/63397-resolucoes\"
-              target=\"_blank\">Resolu&ccedil;&otilde;es</a></p>\r\n<p><a href=\"/n/63494-creditos-portal-ufg\"
+            settings: '{:html_class=>"mais_informacao", :body=>{"pt-BR"=>"<p><a href=\"https://www.ufg.br/n/63398-processos\"
+              target=\"_blank\">Processos</a></p>\r\n<p><a href=\"https://www.ufg.br/n/63397-resolucoes\"
+              target=\"_blank\">Resolu&ccedil;&otilde;es</a></p>\r\n<p><a href=\"https://www.ufg.br/n/63494-creditos-portal-ufg\"
               target=\"_blank\">Cr&eacute;ditos</a></p>\r\n<p><a href=\"//sic.ufg.br\"><img
               style=\"width: 116px; height: 50px;\" src=\"/assets/icone-acesso-a-informacao.svg\"
               alt=\"Acesso &agrave; informa&ccedil;&atilde;o\" width=\"116\" height=\"50\"
               /></a></p>", "en"=>"<p><a href=\"https://ufgnet.ufg.br\">Portal UFGNet</a>
               <br /><a href=\"https://mail.ufg.br/\" target=\"_blank\">Webmail</a>&nbsp;</p>\r\n<p><a
-              href=\"/pages/63398\" target=\"_blank\">Processos</a><br /><a href=\"/pages/63397\"
-              target=\"_blank\">Resolu&ccedil;&otilde;es</a></p>\r\n<p><a href=\"/pages/63496\"
-              target=\"_blank\">Mapa do site antigo</a><br /><a href=\"/pages/63494\" target=\"_blank\">Cr&eacute;dito</a></p>"}}'
+              href=\"https://www.ufg.br/pages/63398\" target=\"_blank\">Processos</a><br /><a href=\"https://www.ufg.br/pages/63397\"
+              target=\"_blank\">Resolu&ccedil;&otilde;es</a></p>\r\n<p><a href=\"https://www.ufg.br/pages/63496\"
+              target=\"_blank\">Mapa do site antigo</a><br /><a href=\"https://www.ufg.br/pages/63494\" target=\"_blank\">Cr&eacute;dito</a></p>"}}'
             name: text
             position: 4
             publish: true
