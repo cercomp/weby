@@ -1,14 +1,15 @@
 en:
   sites:
     admin:
-      backups:        
+      backups:
         index:
           options_backup:         " Options backup "
-          repositories:           " Repositorio "
+          repositories:           " Repository "
           menus:                  " Menus "
           styles:                 " Styles "
           follow_styles:          " Follow styles "
           components:             " Layout "
+          themes:                 " Themes "
           banners:                " Banners "
           extensions:             " Extensions "
           groupings:              " Groupings "

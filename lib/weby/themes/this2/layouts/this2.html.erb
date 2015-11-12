@@ -12,7 +12,7 @@
     <%= auto_discovery_link_tag(:rss, main_app.site_feed_url(format: 'rss'),  {:title => "#{@site.try(:title)} - RSS"}) %>
     <%= auto_discovery_link_tag(:atom, main_app.site_feed_url(format: 'atom'),  {:title => "#{@site.try(:title)} - ATOM"}) %>
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" media="screen">
-    <%= stylesheet_link_tag 'layouts/this2/main' %>
+    <%= stylesheet_link_tag 'this2' %>
     <%= stylesheet_link_tag '_webybar' %>
     <%= stylesheet_link_tag 'weby-assets' %>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->

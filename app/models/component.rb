@@ -1,7 +1,7 @@
 class Component < ActiveRecord::Base
   extend Weby::ComponentInstance
 
-  belongs_to :site
+  belongs_to :skin
 
   # TODO validar também se a área é válida quanto ao layout
   # ex: Um componente pode existe na área X em um layout, mas em outro
@@ -22,7 +22,7 @@ class Component < ActiveRecord::Base
     attrs = attrs.dup
     attrs = attrs['component'] if attrs.key? 'component'
     id = attrs['id']
-    attrs.except!('id', 'created_at', 'updated_at', 'site_id', '@type', 'type')
+    attrs.except!('id', 'created_at', 'updated_at', 'skin_id', '@type', 'type')
 
     settings = eval(attrs['settings'])
     if settings[:body]
@@ -68,14 +68,14 @@ class Component < ActiveRecord::Base
     component = self.create!(attrs)
     if component.persisted?
       components_children.each do |child|
-        import child, place_holder: component.id, site_id: component.site_id
+        import child, place_holder: component.id, site_id: options[:site_id]
       end
     end
   end
 
   def serializable_hash(options = {})
     hash = super options
-    hash[:children] = site.components.where(place_holder: id.to_s).map { |c| c.serializable_hash(options) }
+    hash[:children] = skin.components.where(place_holder: id.to_s).map { |c| c.serializable_hash(options) }
     hash
   end
 
@@ -99,12 +99,12 @@ class Component < ActiveRecord::Base
   def prepare_variables
     self.publish = true if publish.nil?
     self.settings = settings_map.to_s
-    self.position = Component.maximum('position', conditions: ['site_id = ? AND place_holder = ?', site_id, place_holder]).to_i + 1 if position.blank?
+    self.position = Component.maximum('position', conditions: ['skin_id = ? AND place_holder = ?', skin_id, place_holder]).to_i + 1 if position.blank?
   end
 
   def remove_children
     position = self.position
-    positions = site.components.where(place_holder: place_holder).order('position asc').map { |comp| comp.id }
+    positions = skin.components.where(place_holder: place_holder).order('position asc').map { |comp| comp.id }
     Component.where(place_holder: id.to_s).order('position asc').each do |component|
       component.update(place_holder: place_holder)
       positions.insert(position - 1, component.id)
@@ -115,7 +115,7 @@ class Component < ActiveRecord::Base
 
   def fix_position
     if place_holder_changed? && !position_changed?
-      self.position = site.components.maximum(:position, conditions: { place_holder: place_holder }).to_i + 1
+      self.position = skin.components.maximum(:position, conditions: { place_holder: place_holder }).to_i + 1
     end
   end
 end

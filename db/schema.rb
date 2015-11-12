@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150224174414) do
+ActiveRecord::Schema.define(version: 20150416120806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,7 +75,6 @@ ActiveRecord::Schema.define(version: 20150224174414) do
   add_index "calendar_events", ["user_id"], name: "index_calendar_events_on_user_id", using: :btree
 
   create_table "components", force: true do |t|
-    t.integer  "site_id"
     t.string   "place_holder"
     t.text     "settings"
     t.string   "name"
@@ -85,9 +84,10 @@ ActiveRecord::Schema.define(version: 20150224174414) do
     t.string   "alias"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "skin_id"
   end
 
-  add_index "components", ["site_id"], name: "index_components_on_site_id", using: :btree
+  add_index "components", ["skin_id"], name: "index_components_on_skin_id", using: :btree
 
   create_table "extensions", force: true do |t|
     t.integer  "site_id"
@@ -98,11 +98,6 @@ ActiveRecord::Schema.define(version: 20150224174414) do
 
   add_index "extensions", ["site_id"], name: "index_extensions_on_site_id", using: :btree
 
-  create_table "feedback_messages_groups", id: false, force: true do |t|
-    t.integer "message_id"
-    t.integer "group_id"
-  end
-
   create_table "feedback_groups", force: true do |t|
     t.integer  "site_id"
     t.string   "name"
@@ -110,6 +105,8 @@ ActiveRecord::Schema.define(version: 20150224174414) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "feedback_groups", ["site_id"], name: "index_feedback_groups_on_site_id", using: :btree
 
   create_table "feedback_messages", force: true do |t|
     t.string   "name"
@@ -121,15 +118,15 @@ ActiveRecord::Schema.define(version: 20150224174414) do
     t.datetime "updated_at"
   end
 
-  add_index "feedback_groups", ["site_id"], name: "index_feedback_groups_on_site_id", using: :btree
   add_index "feedback_messages", ["site_id"], name: "index_feedback_messages_on_site_id", using: :btree
+
+  create_table "feedback_messages_groups", id: false, force: true do |t|
+    t.integer "message_id"
+    t.integer "group_id"
+  end
+
   add_index "feedback_messages_groups", ["group_id"], name: "index_feedback_messages_groups_on_group_id", using: :btree
   add_index "feedback_messages_groups", ["message_id"], name: "index_feedback_messages_groups_on_message_id", using: :btree
-
-  create_table "groupings_sites", force: true do |t|
-    t.integer "grouping_id"
-    t.integer "site_id"
-  end
 
   create_table "groupings", force: true do |t|
     t.string   "name"
@@ -138,21 +135,13 @@ ActiveRecord::Schema.define(version: 20150224174414) do
     t.boolean  "hidden",     default: false
   end
 
-  add_index "groupings_sites", ["grouping_id"], name: "index_groupings_sites_on_grouping_id", using: :btree
-  add_index "groupings_sites", ["site_id"], name: "index_groupings_sites_on_site_id", using: :btree
-
-  create_table "journal_news_i18ns", force: true do |t|
-    t.integer  "journal_news_id"
-    t.integer  "locale_id"
-    t.string   "title"
-    t.text     "summary"
-    t.text     "text"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "groupings_sites", force: true do |t|
+    t.integer "grouping_id"
+    t.integer "site_id"
   end
 
-  add_index "journal_news_i18ns", ["journal_news_id"], name: "index_journal_news_i18ns_on_journal_news_id", using: :btree
-  add_index "journal_news_i18ns", ["locale_id"], name: "index_journal_news_i18ns_on_locale_id", using: :btree
+  add_index "groupings_sites", ["grouping_id"], name: "index_groupings_sites_on_grouping_id", using: :btree
+  add_index "groupings_sites", ["site_id"], name: "index_groupings_sites_on_site_id", using: :btree
 
   create_table "journal_news", force: true do |t|
     t.datetime "date_begin_at"
@@ -175,6 +164,19 @@ ActiveRecord::Schema.define(version: 20150224174414) do
   add_index "journal_news", ["repository_id"], name: "index_journal_news_on_repository_id", using: :btree
   add_index "journal_news", ["site_id"], name: "index_journal_news_on_site_id", using: :btree
   add_index "journal_news", ["user_id"], name: "index_journal_news_on_user_id", using: :btree
+
+  create_table "journal_news_i18ns", force: true do |t|
+    t.integer  "journal_news_id"
+    t.integer  "locale_id"
+    t.string   "title"
+    t.text     "summary"
+    t.text     "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "journal_news_i18ns", ["journal_news_id"], name: "index_journal_news_i18ns_on_journal_news_id", using: :btree
+  add_index "journal_news_i18ns", ["locale_id"], name: "index_journal_news_i18ns_on_locale_id", using: :btree
 
   create_table "journal_news_sites", force: true do |t|
     t.integer  "journal_news_id",                 null: false
@@ -204,6 +206,13 @@ ActiveRecord::Schema.define(version: 20150224174414) do
     t.string   "email"
     t.string   "token"
     t.boolean  "confirm"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "locales", force: true do |t|
+    t.string   "name"
+    t.string   "flag"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -300,14 +309,22 @@ ActiveRecord::Schema.define(version: 20150224174414) do
   add_index "posts_repositories", ["post_id"], name: "index_posts_repositories_on_post_id", using: :btree
   add_index "posts_repositories", ["repository_id"], name: "index_posts_repositories_on_repository_id", using: :btree
 
-  create_table "roles_users", id: false, force: true do |t|
-    t.integer "role_id"
-    t.integer "user_id"
+  create_table "repositories", force: true do |t|
+    t.integer  "site_id"
+    t.string   "archive_file_name"
+    t.string   "archive_content_type"
+    t.integer  "archive_file_size"
+    t.datetime "archive_updated_at"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "deleted_at"
+    t.string   "archive_fingerprint"
+    t.string   "title"
+    t.string   "legend"
   end
 
-  add_index "roles_users", ["role_id", "user_id"], name: "index_roles_users_on_role_id_and_user_id", unique: true, using: :btree
-  add_index "roles_users", ["role_id"], name: "index_roles_users_on_role_id", using: :btree
-  add_index "roles_users", ["user_id"], name: "index_roles_users_on_user_id", using: :btree
+  add_index "repositories", ["site_id"], name: "index_repositories_on_site_id", using: :btree
 
   create_table "roles", force: true do |t|
     t.string   "name"
@@ -319,6 +336,15 @@ ActiveRecord::Schema.define(version: 20150224174414) do
 
   add_index "roles", ["site_id"], name: "index_roles_on_site_id", using: :btree
 
+  create_table "roles_users", id: false, force: true do |t|
+    t.integer "role_id"
+    t.integer "user_id"
+  end
+
+  add_index "roles_users", ["role_id", "user_id"], name: "index_roles_users_on_role_id_and_user_id", unique: true, using: :btree
+  add_index "roles_users", ["role_id"], name: "index_roles_users_on_role_id", using: :btree
+  add_index "roles_users", ["user_id"], name: "index_roles_users_on_user_id", using: :btree
+
   create_table "settings", force: true do |t|
     t.string   "name"
     t.text     "value"
@@ -327,6 +353,44 @@ ActiveRecord::Schema.define(version: 20150224174414) do
     t.datetime "updated_at"
     t.string   "group"
   end
+
+  create_table "sites", force: true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.text     "description"
+    t.integer  "body_width"
+    t.text     "footer"
+    t.string   "theme"
+    t.boolean  "view_desc_pages",              default: false
+    t.string   "per_page",                     default: "5, 15, 30, 50, 100"
+    t.integer  "per_page_default",             default: 25
+    t.boolean  "menu_dropdown",                default: false
+    t.string   "title",             limit: 50
+    t.integer  "parent_id"
+    t.integer  "view_count",                   default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "top_banner_id"
+    t.integer  "top_banner_width"
+    t.integer  "top_banner_height"
+    t.string   "domain"
+    t.text     "head_html"
+  end
+
+  add_index "sites", ["parent_id"], name: "index_sites_on_parent_id", using: :btree
+  add_index "sites", ["top_banner_id"], name: "index_sites_on_top_banner_id", using: :btree
+
+  create_table "skins", force: true do |t|
+    t.integer  "site_id"
+    t.string   "theme"
+    t.string   "name"
+    t.text     "variables"
+    t.boolean  "active",     default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "skins", ["site_id"], name: "index_skins_on_site_id", using: :btree
 
   create_table "sticker_banners", force: true do |t|
     t.datetime "date_begin_at"
@@ -356,84 +420,19 @@ ActiveRecord::Schema.define(version: 20150224174414) do
   add_index "sticker_banners", ["target_id"], name: "index_sticker_banners_on_target_id", using: :btree
   add_index "sticker_banners", ["user_id"], name: "index_sticker_banners_on_user_id", using: :btree
 
-  create_table "views", force: true do |t|
-    t.integer  "site_id"
-    t.integer  "viewable_id"
-    t.string   "viewable_type"
-    t.integer  "user_id"
-    t.string   "request_path"
-    t.text     "user_agent"
-    t.string   "session_hash"
-    t.string   "ip_address"
-    t.text     "referer"
-    t.text     "query_string"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "views", ["created_at", "site_id"], name: "index_views_on_created_at_and_site_id", using: :btree
-  add_index "views", ["created_at"], name: "index_views_on_created_at", using: :btree
-  add_index "views", ["ip_address"], name: "index_views_on_ip_address", using: :btree
-  add_index "views", ["session_hash"], name: "index_views_on_session_hash", using: :btree
-  add_index "views", ["site_id"], name: "index_views_on_site_id", using: :btree
-  add_index "views", ["user_id"], name: "index_views_on_user_id", using: :btree
-
   create_table "styles", force: true do |t|
     t.string   "name"
     t.text     "css"
     t.boolean  "publish",    default: true
-    t.integer  "site_id"
     t.integer  "position",   default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "style_id"
+    t.integer  "skin_id"
   end
 
-  add_index "styles", ["site_id"], name: "index_styles_on_site_id", using: :btree
+  add_index "styles", ["skin_id"], name: "index_styles_on_skin_id", using: :btree
   add_index "styles", ["style_id"], name: "index_styles_on_style_id", using: :btree
-
-  create_table "repositories", force: true do |t|
-    t.integer  "site_id"
-    t.string   "archive_file_name"
-    t.string   "archive_content_type"
-    t.integer  "archive_file_size"
-    t.datetime "archive_updated_at"
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.datetime "deleted_at"
-    t.string   "archive_fingerprint"
-    t.string   "title"
-    t.string   "legend"
-  end
-
-  add_index "repositories", ["site_id"], name: "index_repositories_on_site_id", using: :btree
-
-  create_table "sites", force: true do |t|
-    t.string   "name"
-    t.string   "url"
-    t.text     "description"
-    t.integer  "body_width"
-    t.text     "footer"
-    t.string   "theme"
-    t.boolean  "view_desc_pages",              default: false
-    t.string   "per_page",                     default: "5, 15, 30, 50, 100"
-    t.integer  "per_page_default",             default: 25
-    t.boolean  "menu_dropdown",                default: false
-    t.string   "title",             limit: 50
-    t.integer  "parent_id"
-    t.integer  "view_count",                   default: 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "top_banner_id"
-    t.integer  "top_banner_width"
-    t.integer  "top_banner_height"
-    t.string   "domain"
-    t.text     "head_html"
-  end
-
-  add_index "sites", ["parent_id"], name: "index_sites_on_parent_id", using: :btree
-  add_index "sites", ["top_banner_id"], name: "index_sites_on_top_banner_id", using: :btree
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"
@@ -502,12 +501,27 @@ ActiveRecord::Schema.define(version: 20150224174414) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
-  create_table "locales", force: true do |t|
-    t.string   "name"
-    t.string   "flag"
+  create_table "views", force: true do |t|
+    t.integer  "site_id"
+    t.integer  "viewable_id"
+    t.string   "viewable_type"
+    t.integer  "user_id"
+    t.string   "request_path"
+    t.text     "user_agent"
+    t.string   "session_hash"
+    t.string   "ip_address"
+    t.text     "referer"
+    t.text     "query_string"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "views", ["created_at", "site_id"], name: "index_views_on_created_at_and_site_id", using: :btree
+  add_index "views", ["created_at"], name: "index_views_on_created_at", using: :btree
+  add_index "views", ["ip_address"], name: "index_views_on_ip_address", using: :btree
+  add_index "views", ["session_hash"], name: "index_views_on_session_hash", using: :btree
+  add_index "views", ["site_id"], name: "index_views_on_site_id", using: :btree
+  add_index "views", ["user_id"], name: "index_views_on_user_id", using: :btree
 
   create_table "weby_settings", force: true do |t|
     t.string   "var",                   null: false
@@ -559,14 +573,12 @@ ActiveRecord::Schema.define(version: 20150224174414) do
   add_foreign_key "roles_users", "roles", name: "roles_users_role_id_fk"
   add_foreign_key "roles_users", "users", name: "roles_users_user_id_fk"
 
-#  add_foreign_key "sites", "repositories", name: "sites_top_banner_id_fk", column: "top_banner_id"
   add_foreign_key "sites", "sites", name: "sites_parent_id_fk", column: "parent_id"
 
   add_foreign_key "sticker_banners", "repositories", name: "banners_repository_id_fk"
   add_foreign_key "sticker_banners", "sites", name: "banners_site_id_fk"
   add_foreign_key "sticker_banners", "users", name: "banners_user_id_fk"
 
-  add_foreign_key "styles", "sites", name: "styles_owner_id_fk"
   add_foreign_key "styles", "styles", name: "styles_style_id_fk"
 
   add_foreign_key "user_login_histories", "users", name: "user_login_histories_user_id_fk"
@@ -575,4 +587,5 @@ ActiveRecord::Schema.define(version: 20150224174414) do
 
   add_foreign_key "views", "sites", name: "views_site_id_fk"
   add_foreign_key "views", "users", name: "views_user_id_fk"
+
 end

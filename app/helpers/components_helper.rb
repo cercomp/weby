@@ -1,13 +1,15 @@
 module ComponentsHelper
   # returns the mini layout  divs ---  The menu that attaches an component to a block
-  def make_mini_layout
-    content_for :stylesheets, stylesheet_link_tag('mini_layout')
-    config = Weby::Themes.layout current_site.theme
-    divs = "<div id='mini_layout' style='width: #{config['width'] || 500}px'>"
+  def make_mini_layout theme = nil, width = nil
+    theme ||= current_site.theme
+    width ||= theme.layout['width'] || 500
 
-    config['placeholders'].map do |placeholders|
+    content_for :stylesheets, stylesheet_link_tag('mini_layout')
+    divs = "<div id='mini_layout' style='width: #{width}px'>"
+
+    theme.layout['placeholders'].map do |placeholders|
       divs += "<div class='mini_level' style='height:#{placeholders['height'] || 25}px'>"
-      divs += make_placeholders_divs(placeholders, config['width'] || 500)
+      divs += make_placeholders_divs(theme, placeholders, width)
       divs += '</div>'
     end
 
@@ -28,10 +30,10 @@ module ComponentsHelper
     components_html << "#{'disabled' unless component_is_available(compo.name)} #{compo.publish ? '' : 'deactivated'}' data-place='#{compo.place_holder}'>
       <div>
         <span class='widget-name'>
-          #{ raw ("#{toggle_field(compo, 'publish')} #{t("components.#{compo.name}.name")} #{"- #{nickname}" if nickname.present?}") }
+          #{ raw ("#{toggle_field(compo, 'publish', 'toggle', controller: :components)} #{t("components.#{compo.name}.name")} #{"- #{nickname}" if nickname.present?}") }
         </span>
         <div class='pull-right' style='min-width: 46px'>
-          #{ raw ("#{make_menu(compo, except: exceptions, with_text: leftout)}") }
+          #{ raw ("#{make_menu(compo, except: exceptions, with_text: leftout, controller: Sites::Admin::ComponentsController)}") }
           #{ "<span class='handle'>#{icon('move') }</span>" if check_permission(Sites::Admin::ComponentsController, 'sort') and !leftout }
           #{ link_to '+', new_site_admin_component_path(placeholder: compo.id), class: 'btn btn-success btn-sm', title: t('.new_component') if compo.name.to_s == 'components_group' and check_permission(Sites::Admin::ComponentsController, [:new]) and !leftout }
         </div>
@@ -69,7 +71,7 @@ module ComponentsHelper
   end
 
   # Generate the mini-layout view so  the user can choose the placeholder
-  def make_placeholders_divs(placeholders, width)
+  def make_placeholders_divs(theme, placeholders, width)
     divs = ''
     placeholders['names'].map do |name|
       divs += "<div
@@ -81,7 +83,7 @@ module ComponentsHelper
                                     (placeholders['widths'][placeholders['names'].index(name)].to_s + '%')
                                   end };
                    height:#{placeholders['height'] || 25}px;'>
-               #{t("themes.#{current_site.theme}.placeholders.#{name}")}  </div>"
+               #{t("themes.#{theme.name}.placeholders.#{name}")}  </div>"
     end
     divs
   end

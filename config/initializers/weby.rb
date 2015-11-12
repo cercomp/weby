@@ -9,14 +9,18 @@ require 'weby/themes'
 require 'weby/assets'
 require 'weby/webysettings'
 
-# Adds the components views to the applications views path
+# Adds the components and theme views to the applications views path
 ActionController::Base.view_paths +=
   Dir[Rails.root.join('**', 'lib', '**', 'weby', '**', 'components')]
+ActionController::Base.view_paths +=
+    Dir[Rails.root.join('lib', 'weby', 'themes', '*')]
 
 Weby::Application.config.assets.paths +=
   Dir[Rails.root.join('lib', 'weby', 'institutions', 'assets', '*')]
 Weby::Application.config.assets.paths +=
   Dir[Rails.root.join('**', 'weby', '**', 'components', '**', 'assets', '*')]
+Weby::Application.config.assets.paths +=
+    Dir[Rails.root.join('lib', 'weby', 'themes', '*', 'assets', '*')]
 
 # Initialize the components
 Dir.glob(File.join('**', 'weby', '**', 'components', '*', 'init.rb')) do |rb_file|

@@ -50,8 +50,8 @@ describe Sites::Admin::StylesController do
     end
   end
 
-  describe "GET #edit" do
-    before { get :edit, :id => first_style.id }
+  describe "GET #show" do
+    before { get :show, :id => first_style.id }
 
     it "assigns @style" do
       expect(assigns(:style)).to eq(first_style)
@@ -88,8 +88,8 @@ describe Sites::Admin::StylesController do
     context "when valid" do
       before { put :update, style: { :name => "New name" }, :id => first_style.id }
 
-      it "will redirect to site_admin_styles_path" do
-        expect(response).to redirect_to(site_admin_styles_path)
+      it "will redirect to site_admin_themes_path" do
+        expect(response).to redirect_to(site_admin_themes_path)
       end
 
       it "will set flash[:success]" do
@@ -101,7 +101,7 @@ describe Sites::Admin::StylesController do
       before { put :update, style: { :name => "" }, :id => first_style.id }
 
       it "will render the :edit view" do
-        expect(response).to render_template(:edit)
+        expect(response).to render_template(:show)
       end
     end
   end
@@ -140,8 +140,8 @@ describe Sites::Admin::StylesController do
         expect(flash[:success]).to be_present
       end
 
-      it "will redirect to site_admin_styles_path" do
-        expect(response).to redirect_to(site_admin_styles_path)
+      it "will redirect to site_admin_themes_path" do
+        expect(response).to redirect_to(site_admin_themes_path)
       end
     end
 
@@ -152,8 +152,8 @@ describe Sites::Admin::StylesController do
         expect(flash[:error]).to be_present
       end
 
-      it "will redirect to site_admin_styles_path" do
-        expect(response).to redirect_to(site_admin_styles_path)
+      it "will redirect to site_admin_themes_path" do
+        expect(response).to redirect_to(site_admin_themes_path)
       end
     end
   end

@@ -1,5 +1,6 @@
 class ImageComponent < Component
-  component_settings :repository_id, :size, :height, :width, :target_type, :target_id, :url, :new_tab, :html_class
+  component_settings :repository_id, :size, :height, :width, :target_type, :target_id, :url,
+  					 :new_tab, :html_class, :default_image
 
   i18n_settings :repository_id
 
@@ -9,7 +10,7 @@ class ImageComponent < Component
   end
 
   validates :html_class, format: { with: /\A[A-Za-z0-9_\-]*\z/ }
-  validates :repository_id, presence: true
+  validates :repository_id, presence: true, unless: :default_image
 
   belongs_to :target, polymorphic: true
 end

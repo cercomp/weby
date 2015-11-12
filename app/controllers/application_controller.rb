@@ -23,7 +23,11 @@ class ApplicationController < ActionController::Base
   end
 
   def choose_layout
-    current_site.theme
+    if params[:preview_skin]
+      current_site.skins.find(params[:preview_skin]).theme
+    else
+      current_site.theme ? current_site.theme.name : 'weby'
+    end
   end
 
   def check_authorization
@@ -329,20 +333,22 @@ class ApplicationController < ActionController::Base
           @global_menus[menu.id] = menu
         end
 
-        components = @site.components.where(publish: true).order('position asc')
-        comp_select = lambda { |place_holder|
-          components.select { |comp| comp.place_holder == place_holder }.map do |component|
-            comp = { component: component }
-            if component.name == 'components_group'
-              comp[:children] = comp_select.call(component.id.to_s)
-            end
-            comp
-          end
-        }
-
         @global_components = {}
-        Weby::Themes.layout(@site.theme)['placeholders'].map { |place| place['names'] }.flatten.each do |place_holder|
-          @global_components[place_holder.to_sym] = comp_select.call(place_holder)
+        skin = params[:preview_skin] ? current_site.skins.find(params[:preview_skin]) : current_site.active_skin
+        if current_site.theme
+          components = skin.components.where(publish: true).order('position asc')
+          comp_select = lambda { |place_holder|
+            components.select { |comp| comp.place_holder == place_holder }.map do |component|
+              comp = { component: component }
+              if component.name == 'components_group'
+                comp[:children] = comp_select.call(component.id.to_s)
+              end
+              comp
+            end
+          }
+          current_site.theme.layout['placeholders'].map { |place| place['names'] }.flatten.each do |place_holder|
+            @global_components[place_holder.to_sym] = comp_select.call(place_holder)
+          end
         end
 
         @main_width = nil

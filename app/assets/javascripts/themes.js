@@ -29,6 +29,23 @@ function initStylesSortable(){
 window.onload=function(){
   $(document).ready(function(){
     initStylesSortable();
+
+    $('.btn-change').click(function(){
+      var $this = $(this);
+      $this.toggleClass('active');
+      if ($this.is('.active')){
+        $.get($this.data('url'), function(data){
+          $('.skins').html(data);
+          $('.skins').slideDown();
+        });
+      }else{
+        $('.skins').slideUp(function(){
+          $(this).html(null);
+        });
+      }
+      return false;
+    });
+
   });
 };
 

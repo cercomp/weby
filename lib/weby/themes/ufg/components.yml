@@ -1,0 +1,242 @@
+first_place:
+  -
+    settings: '{:background=>"#004b82"}'
+    name: gov_bar
+    position: 1
+    publish: true
+    alias: "Barra do Governo Federal"
+  -
+    settings: '{:body=>"<script type=\"text/javascript\">\r\n  document.addEventListener(''DOMContentLoaded'', function() {\r\n  \t//$(''.dropdown'').css({''background-color'': ''#ddd''});\r\n  });\r\n</script>"}'
+    name: blank
+    position: 2
+    publish: true
+    alias: Menu javascript
+top:
+  -
+    settings: '{:html_class=>"cabecalho"}'
+    name: components_group
+    position: 1
+    publish: true
+    alias: Cabeçalho
+    children:
+      -
+        settings: '{:default_image=>"UFG_logo.svg", :size=>"", :width=>"200", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"sitelogo"}'
+        name: image
+        position: 1
+        publish: true
+        alias: Logo
+      -
+        settings: '{:html_class=>"portalbusca"}'
+        name: components_group
+        position: 2
+        publish: true
+        alias: Portal Busca
+        children:
+          -
+            settings: '{:width=>"140", :align=>"right"}'
+            name: search_box
+            position: 1
+            publish: true
+          -
+            settings: '{:format=>"list", :institution=>"ufg", :new_tab=>"0", :html_class=>""}'
+            name: institutional_links
+            position: 2
+            publish: true
+            alias: Links Institucionais
+      -
+        settings: '{:html_class=>"infoheader"}'
+        name: components_group
+        position: 3
+        publish: true
+        alias: Info Header
+        children:
+          -
+            settings: '{:additional_information=>{"pt-BR"=>"<p><strong>Programas para deficientes
+              visuais</strong></p>\r\n<p><a href=\"http://baixe.net/download/1181/nitrous-voice-flux/\"
+              target=\"_blank\">Nitrous Voice Flux</a></p>\r\n<p><a href=\"http://intervox.nce.ufrj.br/dosvox/\"
+              target=\"_blank\">Dosvox</a></p>\r\n<p><strong>Links Relacionados</strong></p>\r\n<p><a
+              href=\"http://acessibilidade.ufg.br/\" target=\"_blank\">N&uacute;cleo de
+              Acessibilidade UFG</a></p>\r\n<p><a href=\"http://nta.medialab.ufg.br/\" target=\"_blank\">N&uacute;cleo
+              de Tecnologias Assistivas UFG</a></p>", "en"=>"<p><strong>Softwares for the
+              visually impaired</strong></p>\r\n<p><a href=\"http://baixe.net/download/1181/nitrous-voice-flux/\"
+              target=\"_blank\">Nitrous Voice Flux</a></p>\r\n<p><a href=\"http://intervox.nce.ufrj.br/dosvox/\"
+              target=\"_blank\">Dosvox</a></p>\r\n<p><strong>Related Links</strong></p>\r\n<p><a
+              href=\"http://acessibilidade.ufg.br/\" target=\"_blank\">UFG Accessibility
+              Center</a></p>\r\n<p><a href=\"http://nta.medialab.ufg.br/\" target=\"_blank\">UFG
+              Assistive Technology Center</a></p>"}, :contrast=>"1", :font_size=>"1", :extended_accessibility=>"0",
+              :label_contrast=>{"pt-BR"=>"", "en"=>""}, :label_font_size=>{"pt-BR"=>"",
+              "en"=>""}}'
+            name: menu_accessibility
+            position: 1
+            publish: true
+          -
+            name: 'menu_i18n'
+            settings: "{}"
+            position: 2
+            publish: true
+          -
+            settings: '{:html_class=>"redesocial"}'
+            name: components_group
+            position: 3
+            publish: true
+            alias: Rede Social
+            children:
+              -
+                settings: '{:default_image=>"twitter.png", :size=>"o", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"twitter"}'
+                name: image
+                position: 1
+                publish: true
+                alias: Link Twitter
+              -
+                settings: '{:default_image=>"facebook.png", :size=>"o", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"facebook"}'
+                name: image
+                position: 2
+                publish: true
+                alias: Link Facebook
+              -
+                settings: '{:default_image=>"YoutubePlay.png", :size=>"o", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"youtube"}'
+                name: image
+                position: 3
+                publish: true
+                alias: Link Youtube
+              -
+                settings: '{:default_image=>"Instagram.png", :size=>"o", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"instagram"}'
+                name: image
+                position: 4
+                publish: true
+                alias: Instagram
+              -
+                settings: '{:default_image=>"picasa.png", :size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"picasa"}'
+                name: image
+                position: 5
+                publish: true
+                alias: Link Picasa
+  -
+    settings: '{:menu_id => "%{menu_id}", :dropdown => "1"}'
+    name: menu
+    position: 2
+    publish: true
+    menu:
+      name: "Menu Principal"
+  -
+    settings: '{:html_class=>"slider-black"}'
+    name: components_group
+    position: 3
+    publish: true
+    visibility: 1
+    alias: Slider
+    children:
+      -
+        settings: '{:category=>"Slider", :orientation=>"slider", :timer=>"8", :description=>"0", :show_controls=>"1"}'
+        name: banner_list
+        position: 1
+        publish: true
+home:
+  -
+    settings: '{:show_label=>"1", :quant=>"3", :image_size=>"m", :avatar_width=>"300",
+      :avatar_height=>"", :max_char=>"", :filter_by=>"Última hora", :read_more=>"1",
+      :show_author=>"0", :show_date=>"0", :new_tab=>"0", :label=>{"pt-BR"=>"Notícias",
+      "en"=>"News"}, :order_by=>"position", :link_to_all=>{"pt-BR"=>"Ver todas", "en"=>"See
+      all"}}'
+    name: front_news
+    position: 1
+    publish: true
+    alias: Notícias
+  -
+    settings: '{:show_label=>"1", :quant=>"3", :image_size=>"m", :avatar_width=>"300",
+      :avatar_height=>"", :max_char=>"", :filter_by=>"destaque", :read_more=>"1", :show_author=>"0",
+      :show_date=>"0", :new_tab=>"0", :label=>{"pt-BR"=>"Eventos", "en"=>""}, :link_to_all=>{"pt-BR"=>"Ver
+      todos", "en"=>"See all"}, "template"=>"front", :template=>"front"}'
+    name: event_list
+    position: 2
+    publish: true
+    alias: Eventos
+  -
+    settings: '{:show_label=>"1", :quant=>"3", :image_size=>"m", :avatar_width=>"300",
+      :avatar_height=>"", :max_char=>"", :filter_by=>"Editais", :read_more=>"1", :show_author=>"0",
+      :show_date=>"0", :new_tab=>"0", :label=>{"pt-BR"=>"Editais", "en"=>""}, :order_by=>"position",
+      :link_to_all=>{"pt-BR"=>"Ver todos", "en"=>""}}'
+    name: front_news
+    position: 3
+    publish: true
+    alias: Editais
+bottom:
+  -
+    settings: '{:menu_id=>"%{menu_id}", :dropdown=>"0"}'
+    name: menu
+    position: 1
+    publish: true
+    visibility: 0
+    menu:
+      name: "Menu Inferior"
+  -
+    settings: '{:html_class=>"footer"}'
+    name: components_group
+    position: 2
+    publish: true
+    alias: Footer
+    children:
+      -
+        settings: '{:html_class=>"rodape"}'
+        name: components_group
+        position: 1
+        publish: true
+        alias: Rodapé
+        children:
+          -
+            settings: '{:default_image=>"Marca_Vertical.png", :size=>"", :width=>"100", :height=>"",
+              :url=>"https://www.ufg.br/n/64596-a-marca-da-ufg", :target_id=>"", :target_type=>"", :new_tab=>"0",
+              :html_class=>"logo-branca"}'
+            name: image
+            position: 1
+            publish: true
+            alias: Logo Branca
+          -
+            settings: '{:html_class=>"endereco", :body=>{"pt-BR"=>"<p><a href=\"/\">UFG
+              - Universidade Federal de Goi&aacute;s</a></p>\r\n<p>CNPJ: 01567601/0001-43
+              <br />Campus Samambaia -&nbsp;Pr&eacute;dio da Reitoria.<br /> CEP 74690-900&nbsp;
+              <br />Goi&acirc;nia - Goi&aacute;s - Brasil.</p>\r\n<p>Fone: +55 62 3521 1000</p>\r\n<p>&nbsp;</p>",
+              "en"=>"<p>UFG - Campus Samambaia<br />Pr&eacute;dio da Reitoria <br />CEP
+              74001-970<br />Caixa Postal 131<br />Goi&acirc;nia &ndash; GO &ndash; Brasil<br
+              />CNPJ: 01567601/0001-43<br />Fone: +55 62 3521 1000</p>\r\n<p><a href=\"/pages/63399\"
+              target=\"_self\">Lista de Telefones</a></p>\r\n<p><a href=\"/pages/63491\">Mapas
+              da UFG</a></p>"}}'
+            name: text
+            position: 2
+            publish: true
+            alias: Endereço
+          -
+            settings: '{:html_class=>"contato", :body=>{"pt-BR"=>"<p><a href=\"/n/63399-telefones\">Lista
+              de Telefones</a></p>\r\n<p><a href=\"/p/6108-mapa-geral\">Mapas da UFG</a></p>\r\n<p><a
+              href=\"/n/63495-direitos-autorais\" target=\"_self\">Direitos Autorais</a></p>\r\n<p><a
+              href=\"/n/63497-politica-de-privacidade\" target=\"_self\">Pol&iacute;ticas
+              de Privacidade</a></p>", "en"=>"<p><a href=\"/pages/63396\">Agenda do Reitor</a>
+              <br /><a href=\"https://www.ufg.br/up/1/o/CARTA_DE_SERVI_OS_AO_CIDAD_O_timbre.pdf\">Carta de
+              Servi&ccedil;os</a> <br /><a href=\"http://www.proad.ufg.br/pages/18048\"
+              target=\"_blank\">Relat&oacute;rio de Gest&atilde;o</a> <br /><a href=\"http://www.sic.ufg.br/\"
+              target=\"_blank\">Acesso &agrave; Informa&ccedil;&atilde;o</a> <br /><a href=\"http://www.portaldatransparencia.gov.br/\"
+              target=\"_blank\">Portal Transpar&ecirc;ncia</a></p>\r\n<p><a href=\"/feedback\"
+              target=\"_self\">Fale conosco</a> <br /><a href=\"http://www.ouvidoria.ufg.br/\"
+              target=\"_self\">Ouvidoria</a></p>\r\n<p><a href=\"/pages/63495\" target=\"_self\">Direitos
+              Autorais</a> <br /><a href=\"/pages/63497\" target=\"_self\">Pol&iacute;ticas
+              de Privacidade</a></p>"}}'
+            name: text
+            position: 3
+            publish: true
+            alias: Contato
+          -
+            settings: '{:html_class=>"mais_informacao", :body=>{"pt-BR"=>"<p><a href=\"/n/63398-processos\"
+              target=\"_blank\">Processos</a></p>\r\n<p><a href=\"/n/63397-resolucoes\"
+              target=\"_blank\">Resolu&ccedil;&otilde;es</a></p>\r\n<p><a href=\"/n/63494-creditos-portal-ufg\"
+              target=\"_blank\">Cr&eacute;ditos</a></p>\r\n<p><a href=\"//sic.ufg.br\"><img
+              style=\"width: 116px; height: 50px;\" src=\"/assets/icone-acesso-a-informacao.svg\"
+              alt=\"Acesso &agrave; informa&ccedil;&atilde;o\" width=\"116\" height=\"50\"
+              /></a></p>", "en"=>"<p><a href=\"https://ufgnet.ufg.br\">Portal UFGNet</a>
+              <br /><a href=\"https://mail.ufg.br/\" target=\"_blank\">Webmail</a>&nbsp;</p>\r\n<p><a
+              href=\"/pages/63398\" target=\"_blank\">Processos</a><br /><a href=\"/pages/63397\"
+              target=\"_blank\">Resolu&ccedil;&otilde;es</a></p>\r\n<p><a href=\"/pages/63496\"
+              target=\"_blank\">Mapa do site antigo</a><br /><a href=\"/pages/63494\" target=\"_blank\">Cr&eacute;dito</a></p>"}}'
+            name: text
+            position: 4
+            publish: true
+            alias: Mais informações

@@ -22,7 +22,7 @@
         </tr>
       <% end %>
     </table>
-    <%= paginate @events, param_name: "event_list_page#{component.id}", remote: true, comp_url: main_app.site_component_path(component.id), page_links: true %>
+    <%= paginate @events, param_name: "event_list_page#{component.id}", remote: true, comp_url: component.persisted? ? main_app.site_component_path(component.id) : nil, page_links: true %>
 
   <% elsif component.template == 'front' %>
 
@@ -66,7 +66,7 @@
       <% end %>
       <div class="clear clearfix"> </div>
     </section>
-    <%= paginate @events, param_name: "event_list_page#{component.id}", remote: true, comp_url: main_app.site_component_path(component.id), page_links: true %>
+    <%= paginate @events, param_name: "event_list_page#{component.id}", remote: true, comp_url: component.persisted? ? main_app.site_component_path(component.id) : nil, page_links: true %>
     <span class="link_to_all"><%= link_to component.link_to_all, show_all_link if component.link_to_all.present? %></span>
 
   <% end %>

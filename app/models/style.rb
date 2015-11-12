@@ -1,13 +1,14 @@
 class Style < ActiveRecord::Base
-  belongs_to :site
+  belongs_to :skin
   belongs_to :style
+  has_one :site, through: :skin
 
   has_many :styles, dependent: :restrict_with_error
   has_many :followers, through: :styles, source: :site
 
-  validates :site, presence: true
+  validates :skin, presence: true
   validates :name, presence: true, unless: :style_id
-  validates :style_id, uniqueness: { scope: :site_id }, if: :style_id
+  validates :style_id, uniqueness: { scope: :skin_id }, if: :style_id
 
   validate :self_relation
 
@@ -21,11 +22,13 @@ class Style < ActiveRecord::Base
 
   # returns all styles that are not being followed
   # in follow_styles was used a hack to avoid null return
-  scope :not_followed_by, ->(site) {
-    includes(:site)
-      .where('styles.id not in (:follow_styles) and styles.site_id <> :site_id and styles.style_id is null',
-             follow_styles: Site.find(site).styles.where('style_id is not null').map(&:style_id) << 0,
-             site_id: site).references(:site)
+  scope :not_followed_by, ->(site_id) {
+    site = Site.find(site_id)
+    skin = site.active_skin
+    includes(skin: :site)
+      .where('styles.id not in (:follow_styles) AND skins.theme = :theme AND skins.site_id <> :site_id AND styles.style_id is null',
+             follow_styles: site.active_skin.styles.where('style_id is not null').map(&:style_id) << 0,
+             site_id: site_id, theme: skin.theme).references(:site)
   }
 
   scope :own, -> { where('style_id is null') }
@@ -42,7 +45,7 @@ class Style < ActiveRecord::Base
     else
       return false if style_id
 
-      Style.create!(name: name, css: css, site: to_site)
+      Style.create!(name: name, css: css, skin: to_site.active_skin)
     end
   end
 
@@ -78,7 +81,7 @@ class Style < ActiveRecord::Base
       end
     end
 
-    attrs.except!('id', 'created_at', 'updated_at', 'site_id', '@type', 'type')
+    attrs.except!('id', 'created_at', 'updated_at', 'skin_id', '@type', 'type')
 
     self.create!(attrs)
   end

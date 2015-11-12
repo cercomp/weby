@@ -13,7 +13,7 @@
           <th width="35%"><%= t(".title") %></th>
           <th width="12%"><%= sortable 'users.first_name', t(".author") %></th>
           <th width="25%"><%= sortable 'pages.created_at', t(".created_at") %></th>
-          <% with_permission(action: :edit) do %>
+          <% with_permission(action: :show) do %>
             <th width="5%" class="center"><%= sortable 'pages.publish', t(".publish") %></th>
           <% end %>
           <th width="5%" class="center"><%= sortable 'pages.view_count', t(".views") %></th>
@@ -28,7 +28,7 @@
           </td>
           <td><%= page.user.first_name %></td>
           <td><%= l(page.created_at, :format => :short) %></td>
-          <% with_permission(action: :edit) do %>
+          <% with_permission(action: :show) do %>
             <td class="publish" style="text-align:center;">
               <%= publication_status(page) %></td>
           <% end %>

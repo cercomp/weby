@@ -120,6 +120,7 @@ fr:
   show:                                 " Mostrar "
   site_need_at_least_one_locale:        " Necessita de pelo menos um idioma "
   submit:                               " Enviar "
+  successfully_applied_theme:           " Tema aplicado com sucesso! "
   successfully_created:                 " Criado com sucesso."
   successfully_updated:                 " Atualizado com sucesso "
   successfully_created_param:           " %{param} criado com sucesso! "

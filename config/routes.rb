@@ -31,14 +31,6 @@ Rails.application.routes.draw do
       post 'import' => 'backups#import'
 
       resources :activity_records, only: [:index, :show]
-      resources :components do
-        member do
-          put :toggle
-        end
-        collection do
-          post :sort
-        end
-      end
       resources :extensions
       resources :menus do
         resources :menu_items, controller: 'menus/menu_items' do
@@ -71,12 +63,26 @@ Rails.application.routes.draw do
           put :index
         end
       end
-      resources :styles do
+      get '/themes', to: 'themes#index'
+      resources :components, except: [:index] do
+        member do
+          put :toggle
+        end
+        collection do
+          post :sort
+        end
+      end
+      resources :styles, except: [:index] do
         member do
           put :toggle, :copy, :follow, :unfollow
         end
         collection do
           post :sort
+        end
+      end
+      resources :skins, except: [:new, :edit, :update] do
+        collection do
+          get :preview
         end
       end
       resources :users, only: [] do

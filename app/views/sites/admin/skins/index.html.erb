@@ -1,0 +1,33 @@
+<% title ".themes" %>
+<% breadcrumb :skins %>
+
+<div class="row">
+  <% @themes.each do |theme| %>
+    <% skin = current_site.skins.find_by(theme: theme.name) %>
+    <div class="col-md-3">
+      <div class="thumbnail">
+        <h3 class="text-center"><%= theme.title %></h3>
+        <%= image_tag "#{theme.name}/thumb.png", style: 'width: 160px' %>
+        <div class="caption">
+          <% if current_site.theme && theme.name == current_site.theme.name %>
+              <b class="text-success text-center">Tema atual<br/>
+              <%= link_to t('.default'), site_admin_skin_path(current_site.active_skin), method: :delete, data: {confirm: t('.confirm_default')} %>
+              </b>
+          <% else %>
+            <div class="btn-group btn-group-justified" role="group" aria-label="...">
+              <div class="btn-group" role="group">
+                <%= link_to 'Visualizar', preview_site_admin_skins_path(theme: theme.name), class: 'btn btn-default', target: :_blank %>
+              </div>
+              <div class="btn-group" role="group">
+                <%= simple_form_for current_site, url: site_admin_skins_path(theme: theme.name), method: :post do |f| %>
+                  <button type="submit" class="btn btn-success" data-theme="<%=theme.name %>">Aplicar</button>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<% content_for :javascripts, javascript_include_tag('repositories.index') %>

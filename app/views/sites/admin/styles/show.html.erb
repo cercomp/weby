@@ -1,4 +1,4 @@
-<% title ".styles" %> 
+<% title ".styles" %>
 <% breadcrumb :styles_show, @style %>
 <h3> <%= t(".style") %>: <%= @style.name %> </h3>
 <% if @style.owner != current_site %>
@@ -10,7 +10,7 @@
 
 <div class="form-actions">
   <%= style_menu @style %>
-  <%= link_to icon('list', text:t(".list_all")), site_admin_styles_path %>
+  <%= link_to icon('list', text:t(".list_all")), site_admin_themes_path(anchor: 'tab-styles') %>
   <%= link_to icon('chevron-left', text:t("back")), :back %>
 </div>
 

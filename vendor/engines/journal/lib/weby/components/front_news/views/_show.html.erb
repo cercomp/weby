@@ -53,7 +53,7 @@
     <% end %>
     <div class="clear clearfix"> </div>
   </section>
-  <%= paginate @front_news, param_name: "front_news#{component.id}", remote: true, comp_url: main_app.site_component_path(component.id), page_links: true %>
+  <%= paginate @front_news, param_name: "front_news#{component.id}", remote: true, comp_url: component.persisted? ? main_app.site_component_path(component.id) : nil, page_links: true %>
   <span class="link_to_all"><%= link_to component.link_to_all, show_all_link if component.link_to_all.present? %></span>
 </section>
 <% include_component_javascript :javascripts, 'front_news' %>

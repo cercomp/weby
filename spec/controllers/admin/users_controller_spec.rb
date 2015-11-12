@@ -42,15 +42,15 @@ describe Admin::UsersController do
     end
   end
 
-  describe "GET #edit" do
-    before { get :edit, :id => first_user.id }
+  describe "GET #show" do
+    before { get :show, :id => first_user.id }
 
     it "assigns @user" do
       expect(assigns(:user)).to eq(first_user)
     end
 
     it "renders the :edit view" do
-      expect(response).to render_template(:edit)
+      expect(response).to render_template(:show)
     end
   end
 

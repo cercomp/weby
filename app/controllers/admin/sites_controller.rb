@@ -1,6 +1,5 @@
 class Admin::SitesController < Admin::BaseController
   before_action :set_resource, only: [:edit, :update, :destroy]
-  before_action :set_themes, only: [:new, :create, :edit, :update]
 
   respond_to :html, :xml, :js
 
@@ -24,10 +23,9 @@ class Admin::SitesController < Admin::BaseController
     @site = Site.new(site_params)
 
     if @site.save
-      theme = ::Weby::Theme.new @site
-      theme.populate
+      Weby::Rights.seed_roles @site.id
       record_activity('created_site', @site)
-      redirect_to site_admin_components_url(subdomain: @site)
+      redirect_to site_admin_themes_url(subdomain: @site)
     else
       respond_with @site
     end
@@ -67,9 +65,5 @@ class Admin::SitesController < Admin::BaseController
 
   def sort_column
     Site.column_names.include?(params[:sort]) ? params[:sort] : 'id'
-  end
-
-  def set_themes
-    @themes = Weby::Themes.all
   end
 end

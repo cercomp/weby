@@ -8,10 +8,10 @@ class Sites::Admin::StylesController < ApplicationController
 
   def index
     @styles = {}
-    @styles[:others] = Style.not_followed_by(current_site).search(params[:search])
+    @styles[:others] = Style.not_followed_by(current_site.id).search(params[:search])
                             .order('site_id')
                             .page(params[:page]).per(params[:per_page])
-    @styles[:styles] = current_site.styles.includes(:site, :style, :followers) if request.format.html?
+    @styles[:styles] = current_site.active_skin.styles.includes(:style) if request.format.html?
   end
 
   def show
@@ -19,11 +19,11 @@ class Sites::Admin::StylesController < ApplicationController
   end
 
   def new
-    @style = current_site.styles.new
+    @style = current_site.active_skin.styles.new
   end
 
   def create
-    @style = current_site.styles.new(style_params)
+    @style = current_site.active_skin.styles.new(style_params)
     if @style.save
       flash[:success] = t('successfully_created')
       record_activity('created_style', @style)
@@ -34,17 +34,17 @@ class Sites::Admin::StylesController < ApplicationController
   end
 
   def edit
-    @style = current_site.styles.own.find params[:id]
+    @style = current_site.active_skin.styles.own.find params[:id]
   end
 
   def update
-    @style = current_site.styles.own.find params[:id]
+    @style = current_site.active_skin.styles.own.find params[:id]
     respond_to do |format|
       if @style.update(style_params)
         record_activity('updated_style', @style)
         format.html do
           flash[:success] = t('successfully_updated')
-          redirect_to site_admin_styles_path
+          redirect_to site_admin_themes_path(anchor: 'tab-styles')
         end
       else
         format.html { render 'edit' }
@@ -61,18 +61,18 @@ class Sites::Admin::StylesController < ApplicationController
       flash[:error] = t('destroyed_style_error')
     end
 
-    respond_with(:site_admin, resource, location: site_admin_styles_path)
+    respond_with(:site_admin, resource, location: site_admin_themes_path(anchor: 'tab-styles'))
   end
 
   def follow
     resource = Style.find params[:id]
-    @style = current_site.styles.new(style_id: resource.id)
+    @style = current_site.active_skin.styles.new(style_id: resource.id)
     if @style.save
       flash[:success] = t('successfully_followed')
     else
       flash[:error] = @style.errors.full_messages.join(', ')
     end
-    redirect_to site_admin_styles_path(others: true)
+    redirect_to site_admin_themes_path(anchor: 'tab-styles', others: true)
   end
 
   def unfollow
@@ -90,13 +90,13 @@ class Sites::Admin::StylesController < ApplicationController
     else
       flash[:error] = t('error_copying_style')
     end
-    redirect_to site_admin_styles_path
+    redirect_to site_admin_themes_path(anchor: 'tab-styles')
   end
 
   def sort
     position = 0
     params['sort_style'].reverse_each do |style_id|
-      current_site.styles.find(style_id).update_attribute(:position, position += 1)
+      current_site.active_skin.styles.find(style_id).update_attribute(:position, position += 1)
     end
     render nothing: true
   end
@@ -105,11 +105,11 @@ class Sites::Admin::StylesController < ApplicationController
 
   # override method from concern to work with relation
   def resource
-    get_resource_ivar || set_resource_ivar(current_site.styles.find(params[:id]))
+    get_resource_ivar || set_resource_ivar(current_site.active_skin.styles.find(params[:id]))
   end
 
   def after_toggle_path
-    site_admin_styles_path
+    site_admin_themes_path(anchor: 'tab-styles')
   end
 
   def style_params

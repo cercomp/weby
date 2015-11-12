@@ -22,5 +22,6 @@ en:
         notifications:     " Notifications "
         dashboard:         " Dashboard "
         contents:          " Content "
+        theme:             " Theme "
         none_role:         " You don't have roles in this site "
         activity_records:   " Activity Records "

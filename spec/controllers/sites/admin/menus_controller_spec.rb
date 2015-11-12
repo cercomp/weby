@@ -28,15 +28,15 @@ describe Sites::Admin::MenusController do
     end
   end
 
-  describe "GET #edit" do
-    before { get :edit, :id => menu.id }
+  describe "GET #show" do
+    before { get :show, :id => menu.id }
 
     skip "assigns @menu" do
       expect(assigns(:menu)).to eq(menu)
     end
 
     skip "renders the :edit view" do
-      expect(response).to render_template(:edit)
+      expect(response).to render_template(:show)
     end
   end
 

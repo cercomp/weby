@@ -9,6 +9,7 @@ pt-BR:
           styles:                 " Estilos "
           follow_styles:          " Estilos seguidos "
           components:             " Leiaute "
+          themes:                 " Temas "
           banners:                " Banners "
           extensions:             " Extensões "
           groupings:              " Grupos "
@@ -23,4 +24,3 @@ pt-BR:
         import:
           restore:                " Restaurar "
           import:                 " Importar "
-          

@@ -1,5 +1,5 @@
 <% title ".styles" %>
-<% breadcrumb :styles %> 
+<% breadcrumb :styles %>
 <% with_permission action: :new do %>
   <div class="pull-right">
     <%= link_to t(".new_style"),
@@ -29,5 +29,5 @@
 </div>
 
 <% content_for :javascripts, javascript_include_tag("init/sortable") %>
-<% content_for :javascripts, javascript_include_tag("styles") %>
+<% content_for :javascripts, javascript_include_tag("themes") %>
 <% content_for :stylesheets, stylesheet_link_tag("sortable") %>

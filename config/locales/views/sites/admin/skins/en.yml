@@ -1,0 +1,9 @@
+en:
+  sites:
+    admin:
+      skins:
+        index:
+          default: "Restore to default"
+          confirm_default: "Do you really wish to restore to the default state and lose all changes?"
+        destroy:
+          successfully_reseted_theme: "Theme restored to default"

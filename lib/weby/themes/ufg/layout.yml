@@ -1,0 +1,9 @@
+title: UFG
+width: 500
+placeholders:
+  - names: ['first_place']
+  - names: ['top']
+  - names: ['home']
+    height: 190
+  - names: ['bottom']
+

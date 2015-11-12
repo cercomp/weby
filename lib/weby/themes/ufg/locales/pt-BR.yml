@@ -1,0 +1,9 @@
+pt-BR:
+  themes:
+    ufg:
+      title:              " Portal UFG "
+      placeholders:
+        first_place:        " Topo "
+        home:               " Página Inicial "
+        top:                " Cabeçalho "
+        bottom:             " Inferior "

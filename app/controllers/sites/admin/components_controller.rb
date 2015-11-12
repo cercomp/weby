@@ -6,13 +6,13 @@ class Sites::Admin::ComponentsController < ApplicationController
   before_action :check_authorization
 
   def index
-    @components = @site.components.order('position asc')
-    @placeholders = Weby::Themes.layout(current_site.theme)['placeholders']
+    @components = current_site.active_skin.components.order(position: :asc)
+    @placeholders = current_site.theme.layout['placeholders']
   end
 
   def show
-    # @component = Weby::Components.factory(current_site.components.find(params[:id]))
-    redirect_to site_admin_components_path
+    # @component = Weby::Components.factory(current_site.active_skin.components.find(params[:id]))
+    redirect_to site_admin_themes_path(anchor: 'tab-layout')
   end
 
   def new
@@ -25,7 +25,7 @@ class Sites::Admin::ComponentsController < ApplicationController
   end
 
   def edit
-    @component = Weby::Components.factory(current_site.components.find(params[:id]))
+    @component = Weby::Components.factory(current_site.active_skin.components.find(params[:id]))
     unless component_is_available(@component.name)
       flash[:warning] = t('.disabled_component')
       redirect_to site_admin_components_url
@@ -37,10 +37,11 @@ class Sites::Admin::ComponentsController < ApplicationController
       # creates an new instance of the selected component
       @component = Weby::Components.factory(params[:component])
       @component.attributes = component_params
+      @component.skin = current_site.active_skin
 
       if @component.save
         record_activity('created_component', @component)
-        redirect_to(site_admin_components_path, flash: { success: t('successfully_created_param', param: t('component')) })
+        redirect_to(site_admin_themes_path(anchor: 'tab-layout'), flash: { success: t('successfully_created_param', param: t('component')) })
       else
         render action: 'new'
       end
@@ -50,13 +51,13 @@ class Sites::Admin::ComponentsController < ApplicationController
   end
 
   def update
-    @component = Weby::Components.factory(current_site.components.find(params[:id]))
+    @component = Weby::Components.factory(current_site.active_skin.components.find(params[:id]))
 
     update_params
 
     if @component.update(component_params)
       record_activity('updated_component', @component)
-      redirect_to(site_admin_components_path, flash: { success: t('successfully_updated_param', param: t('component')) })
+      redirect_to(site_admin_themes_path(anchor: 'tab-layout'), flash: { success: t('successfully_updated_param', param: t('component')) })
     else
       render action: 'edit'
     end
@@ -68,7 +69,7 @@ class Sites::Admin::ComponentsController < ApplicationController
       record_activity('destroyed_component', @component)
     end
 
-    redirect_to site_admin_components_path, flash: { success: t('successfully_removed', param: t('component')) }
+    redirect_to site_admin_themes_path(anchor: 'tab-layout'), flash: { success: t('successfully_removed', param: t('component')) }
   end
 
   def sort

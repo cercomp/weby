@@ -1,0 +1,38 @@
+pt-BR:
+  sites:
+    admin:
+      themes:
+        index:
+          themes:             " Temas "
+          layout:             " Layout "
+          components:         " Componentes "
+          activate:           " Ativar "
+          new_component:      " Novo Componente "
+          component:          " Componente "
+          alias:              " Nome "
+          category:           " Categoria "
+          active:             " Ativo? "
+          empty_placeholder:  " Nenhum componente neste local "
+          content:            " Conteúdo "
+          leftout_components: " Componentes fora do layout "
+          settings:           " Configurações"
+          others:           " Outros Estilos "
+          new_style:        " Novo Estilo "
+          my_styles:        " Meus Estilos "
+          styles:           " Estilos "
+          current_theme:    " Tema ativo "
+          change_theme:     " Selecionar Tema "
+        others:
+          no_other_styles:  " Nenhum estilo encontrado "
+          name:             " Nome "
+          site:             " Dono "
+          actions:          " Ações "
+          updated_at:       " Última atualização "
+        list:
+          actions:          " Ações "
+          name:             " Nome "
+          no_styles:        " Nenhum estilo encontrado "
+          publish:          " Publicar "
+          site:             " Dono "
+          updated_at:       " Última atualização "
+          followers:        " Seguidores "

@@ -3,7 +3,7 @@ module Journal
     layout :choose_layout
 
     def new
-      @comp = current_site.components.find_by_name("newsletter")
+      @comp = current_site.active_skin.components.find_by_name("newsletter")
       if not params[:email].blank?
         if params[:opt].to_s == "delete"
           user = Newsletter.where("email = ? AND site_id = ?", params[:email], current_site.id.to_s)[0]

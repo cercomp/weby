@@ -23,8 +23,8 @@ describe Sites::Admin::ComponentsController do
   describe "GET #show" do
     before { get :show, :id => first_component.id }
 
-    skip "will redirect to site_admin_components_path" do
-      expet(response).to redirect_to site_admin_components_path
+    skip "will redirect to site_admin_themes_path" do
+      expet(response).to redirect_to site_admin_themes_path
     end
   end
 
@@ -36,8 +36,8 @@ describe Sites::Admin::ComponentsController do
     end
   end
 
-  describe "GET #edit" do
-    before { get :edit, :id => first_component.id }
+  describe "GET #show" do
+    before { get :show, :id => first_component.id }
 
     skip "assigns @component" do
       expect(assigns(:component)).to eq(first_component)
@@ -49,7 +49,7 @@ describe Sites::Admin::ComponentsController do
       before { post :create, :post => { :site_id => site.id, :name => "Site" } }
 
       skip "will redirect to spendinge_admin_components_path" do
-        expect(response).to redirect_to(site_admin_components_path)
+        expect(response).to redirect_to(site_admin_themes_path)
       end
     end
 
@@ -69,7 +69,7 @@ describe Sites::Admin::ComponentsController do
       before { put :update, :post => { :name => "Site2" }, :id => first_component.id }
 
       skip "will redirect to spendinge_admin_components_path" do
-        expect(response).to redirect_to(site_admin_components_path)
+        expect(response).to redirect_to(site_admin_themes_path)
       end
     end
 
@@ -77,7 +77,7 @@ describe Sites::Admin::ComponentsController do
       before { put :update, :post => { :name => "" }, :id => first_component.id }
 
       skip "will render :edpending view" do
-        expect(response).to render_template(:edit)
+        expect(response).to render_template(:show)
       end
     end
   end
@@ -86,7 +86,7 @@ describe Sites::Admin::ComponentsController do
     before { delete :destroy, :id => first_component.id }
 
     skip "will redirect to spendinge_admin_components_path" do
-      expect(response).to redirect_to(sites_admin_components_path)
+      expect(response).to redirect_to(site_admin_themes_path)
     end
 
     skip "will flash[:success]" do

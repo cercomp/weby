@@ -29,7 +29,7 @@
               <%= role.name %> 
               <p>
                 <%= link_to icon('check'), nil, :onclick => "toggleCheckboxesBySelector('input.column-#{role.id}')", :remote => true %>
-                <% if check_permission(Admin::RolesController, [:edit]) %>
+                <% if check_permission(Admin::RolesController, [:show]) %>
                   <%= link_to icon('edit', text: t("edit")), edit_admin_role_path(role) %>
                 <% end %>
                 <% if check_permission(Admin::RolesController, [:destroy]) %>
