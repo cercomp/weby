@@ -14,7 +14,7 @@
             <td> <%= icon('retweet') if style.style %><%= link_to(style.name, site_admin_style_path(style)) %> </td>
             <td> <%= style.style ?
                       link_to( style.owner.name, site_url(subdomain: style.owner), target: :_blank, title: style.owner.title) :
-                      '' #style.followers.each.map{|site| link_to site.name, site_url(subdomain: site), title: site.title, target: :_blank }.join(', ').html_safe
+                      style.followers.each.map{|site| link_to site.name, site_url(subdomain: site), title: site.title, target: :_blank }.join(', ').html_safe
                  %>
             </td>
             <td> <%= l(style.original.updated_at, format: :short) %></td>

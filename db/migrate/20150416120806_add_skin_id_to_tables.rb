@@ -19,19 +19,19 @@ class AddSkinIdToTables < ActiveRecord::Migration
     add_index :styles, :skin_id
 
     reversible do |dir|
-			dir.up do
-				Site.find_each do |site|
-					skin = Skin.new(site_id: site.id,
-						theme: site.theme,
-						name: site.theme.titleize,
-						active: true
-					)
-					skin.save!
-					site.components.update_all(skin_id: skin.id)
-					site.styles.update_all(skin_id: skin.id)
-				end
-			end
-		end
+  		dir.up do
+  			Site.find_each do |site|
+  				skin = Skin.new(site_id: site.id,
+  					theme: site.theme,
+  					name: site.theme.titleize,
+  					active: true
+  				)
+  				skin.save!
+  				site.components.update_all(skin_id: skin.id)
+  				site.styles.update_all(skin_id: skin.id)
+  			end
+  		end
+  	end
 
 
     remove_column :components, :site_id
