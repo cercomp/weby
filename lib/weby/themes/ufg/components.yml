@@ -27,7 +27,7 @@ top:
             publish: true
             alias: Logo do site
           -
-            settings: '{:default_image=>"UFG_logo.svg", :size=>"original", :width=>"", :height=>"", :url=>"https://www.ufg.br", :target_id=>"", :target_type=>"", :new_tab=>"0"}'
+            settings: '{:default_image=>"UFG_logo.svg", :size=>"original", :width=>"", :height=>"", :url=>"http://www.ufg.br", :target_id=>"", :target_type=>"", :new_tab=>"0"}'
             name: image
             position: 2
             publish: true
@@ -77,15 +77,10 @@ top:
             position: 1
             publish: true
           -
-            name: 'menu_i18n'
-            settings: "{}"
-            position: 2
-            publish: true
-          -
             settings: '{:html_class=>"redesocial"}'
             name: components_group
-            position: 3
-            publish: true
+            position: 2
+            publish: false
             alias: Rede Social
             children:
               -
@@ -106,18 +101,11 @@ top:
                 position: 3
                 publish: true
                 alias: Link Youtube
-              -
-                settings: '{:default_image=>"Instagram.png", :size=>"o", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"instagram"}'
-                name: image
-                position: 4
-                publish: true
-                alias: Instagram
-              -
-                settings: '{:default_image=>"picasa.png", :size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"picasa"}'
-                name: image
-                position: 5
-                publish: true
-                alias: Link Picasa
+          -
+            name: 'menu_i18n'
+            settings: "{}"
+            position: 3
+            publish: true
   -
     settings: '{:menu_id => "%{menu_id}", :dropdown => "1"}'
     name: menu
@@ -134,7 +122,7 @@ top:
     alias: Slider
     children:
       -
-        settings: '{:category=>"Slider", :orientation=>"slider", :timer=>"8", :description=>"0", :show_controls=>"1"}'
+        settings: '{:category=>"principal", :orientation=>"slider", :timer=>"8", :description=>"0", :show_controls=>"1"}'
         name: banner_list
         position: 1
         publish: true
@@ -183,57 +171,40 @@ bottom:
         children:
           -
             settings: '{:default_image=>"Marca_Vertical.png", :size=>"", :width=>"100", :height=>"",
-              :url=>"https://www.ufg.br/n/64596-a-marca-da-ufg", :target_id=>"", :target_type=>"", :new_tab=>"0",
+              :url=>"http://www.ufg.br/n/64596-a-marca-da-ufg", :target_id=>"", :target_type=>"", :new_tab=>"0",
               :html_class=>"logo-branca"}'
             name: image
             position: 1
             publish: true
             alias: Logo Branca
           -
-            settings: '{:html_class=>"endereco", :body=>{"pt-BR"=>"<p><a href=\"https://www.ufg.br\">UFG
+            settings: '{:html_class=>"endereco", :body=>{"pt-BR"=>"<p><a href=\"http://www.ufg.br\">UFG
               - Universidade Federal de Goi&aacute;s</a></p>\r\n<p>CNPJ: 01567601/0001-43
               <br />Campus Samambaia -&nbsp;Pr&eacute;dio da Reitoria.<br /> CEP 74690-900&nbsp;
-              <br />Goi&acirc;nia - Goi&aacute;s - Brasil.</p>\r\n<p>Fone: +55 62 3521 1000</p>\r\n<p>&nbsp;</p>",
-              "en"=>"<p>UFG - Campus Samambaia<br />Pr&eacute;dio da Reitoria <br />CEP
-              74001-970<br />Caixa Postal 131<br />Goi&acirc;nia &ndash; GO &ndash; Brasil<br
-              />CNPJ: 01567601/0001-43<br />Fone: +55 62 3521 1000</p>\r\n<p><a href=\"https://www.ufg.br/pages/63399\"
-              target=\"_self\">Lista de Telefones</a></p>\r\n<p><a href=\"https://www.ufg.br/pages/63491\">Mapas
-              da UFG</a></p>"}}'
+              <br />Goi&acirc;nia - Goi&aacute;s - Brasil.</p>\r\n<p>Fone: +55 62 3521 1000</p>\r\n<p>&nbsp;</p>"}}'
             name: text
             position: 2
             publish: true
             alias: Endereço
           -
-            settings: '{:html_class=>"contato", :body=>{"pt-BR"=>"<p><a href=\"https://www.ufg.br/n/63399-telefones\">Lista
-              de Telefones</a></p>\r\n<p><a href=\"https://www.ufg.br/p/6108-mapa-geral\">Mapas da UFG</a></p>\r\n<p><a
-              href=\"https://www.ufg.br/n/63495-direitos-autorais\" target=\"_self\">Direitos Autorais</a></p>\r\n<p><a
-              href=\"https://www.ufg.br/n/63497-politica-de-privacidade\" target=\"_self\">Pol&iacute;ticas
-              de Privacidade</a></p>", "en"=>"<p><a href=\"https://www.ufg.br/pages/63396\">Agenda do Reitor</a>
-              <br /><a href=\"https://www.ufg.br/up/1/o/CARTA_DE_SERVI_OS_AO_CIDAD_O_timbre.pdf\">Carta de
-              Servi&ccedil;os</a> <br /><a href=\"http://www.proad.ufg.br/pages/18048\"
-              target=\"_blank\">Relat&oacute;rio de Gest&atilde;o</a> <br /><a href=\"http://www.sic.ufg.br/\"
-              target=\"_blank\">Acesso &agrave; Informa&ccedil;&atilde;o</a> <br /><a href=\"http://www.portaldatransparencia.gov.br/\"
-              target=\"_blank\">Portal Transpar&ecirc;ncia</a></p>\r\n<p><a href=\"/feedback\"
-              target=\"_self\">Fale conosco</a> <br /><a href=\"http://www.ouvidoria.ufg.br/\"
-              target=\"_self\">Ouvidoria</a></p>\r\n<p><a href=\"https://www.ufg.br/pages/63495\" target=\"_self\">Direitos
-              Autorais</a> <br /><a href=\"https://www.ufg.br/pages/63497\" target=\"_self\">Pol&iacute;ticas
+            settings: '{:html_class=>"contato", :body=>{"pt-BR"=>"<p><a href=\"/feedback\"
+              target=\"_self\">Fale conosco</a></p><p><a href=\"http://www.ufg.br/n/63399-telefones\">Lista
+              de Telefones</a></p>\r\n<p><a href=\"http://www.ufg.br/p/6108-mapa-geral\">Mapas da UFG</a></p>\r\n<p><a
+              href=\"http://www.ufg.br/n/63495-direitos-autorais\" target=\"_self\">Direitos Autorais</a></p>\r\n<p><a
+              href=\"http://www.ufg.br/n/63497-politica-de-privacidade\" target=\"_self\">Pol&iacute;ticas
               de Privacidade</a></p>"}}'
             name: text
             position: 3
             publish: true
             alias: Contato
           -
-            settings: '{:html_class=>"mais_informacao", :body=>{"pt-BR"=>"<p><a href=\"https://www.ufg.br/n/63398-processos\"
-              target=\"_blank\">Processos</a></p>\r\n<p><a href=\"https://www.ufg.br/n/63397-resolucoes\"
-              target=\"_blank\">Resolu&ccedil;&otilde;es</a></p>\r\n<p><a href=\"https://www.ufg.br/n/63494-creditos-portal-ufg\"
+            settings: '{:html_class=>"mais_informacao", :body=>{"pt-BR"=>"<p><a href=\"http://www.ufg.br/n/63398-processos\"
+              target=\"_blank\">Processos</a></p>\r\n<p><a href=\"http://www.ufg.br/n/63397-resolucoes\"
+              target=\"_blank\">Resolu&ccedil;&otilde;es</a></p>\r\n<p><a href=\"http://www.ufg.br/n/63494-creditos-portal-ufg\"
               target=\"_blank\">Cr&eacute;ditos</a></p>\r\n<p><a href=\"//sic.ufg.br\"><img
               style=\"width: 116px; height: 50px;\" src=\"/assets/icone-acesso-a-informacao.svg\"
               alt=\"Acesso &agrave; informa&ccedil;&atilde;o\" width=\"116\" height=\"50\"
-              /></a></p>", "en"=>"<p><a href=\"https://ufgnet.ufg.br\">Portal UFGNet</a>
-              <br /><a href=\"https://mail.ufg.br/\" target=\"_blank\">Webmail</a>&nbsp;</p>\r\n<p><a
-              href=\"https://www.ufg.br/pages/63398\" target=\"_blank\">Processos</a><br /><a href=\"https://www.ufg.br/pages/63397\"
-              target=\"_blank\">Resolu&ccedil;&otilde;es</a></p>\r\n<p><a href=\"https://www.ufg.br/pages/63496\"
-              target=\"_blank\">Mapa do site antigo</a><br /><a href=\"https://www.ufg.br/pages/63494\" target=\"_blank\">Cr&eacute;dito</a></p>"}}'
+              /></a></p>"}}'
             name: text
             position: 4
             publish: true
