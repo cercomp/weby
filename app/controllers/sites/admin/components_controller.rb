@@ -6,8 +6,9 @@ class Sites::Admin::ComponentsController < ApplicationController
   before_action :check_authorization
 
   def index
-    @components = current_site.active_skin.components.order(position: :asc)
-    @placeholders = current_site.theme.layout['placeholders']
+    # !!! Moved to ThemesController
+    #@components = current_site.active_skin.components.order(position: :asc)
+    #@placeholders = current_site.theme.layout['placeholders']
   end
 
   def show

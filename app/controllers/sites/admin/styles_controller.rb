@@ -7,11 +7,12 @@ class Sites::Admin::StylesController < ApplicationController
   respond_to :html, :xml, :js
 
   def index
-    @styles = {}
-    @styles[:others] = Style.not_followed_by(current_site.id).search(params[:search])
-                            .order('site_id')
-                            .page(params[:page]).per(params[:per_page])
-    @styles[:styles] = current_site.active_skin.styles.includes(:style) if request.format.html?
+    # !!! Moved to ThemesController
+    #@styles = {}
+    #@styles[:others] = Style.not_followed_by(current_site.id).search(params[:search])
+    #                        .order('site_id')
+    #                        .page(params[:page]).per(params[:per_page])
+    #@styles[:styles] = current_site.active_skin.styles.includes(:style) if request.format.html?
   end
 
   def show
