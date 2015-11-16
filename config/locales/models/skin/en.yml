@@ -1,0 +1,12 @@
+en:
+  activerecord:
+    models:
+      skin:        " Theme "
+      skins:       " Themes "
+    attributes:
+      skin:
+        name:       " Name "
+        created_at: " Created at "
+        updated_at: " Updated at "
+        site_id:    " Site "
+

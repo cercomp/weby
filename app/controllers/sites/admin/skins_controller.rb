@@ -4,7 +4,14 @@ class Sites::Admin::SkinsController < ApplicationController
 
   def index
     @themes = Weby::Themes.all
-    render layout: false
+    @components = current_site.active_skin.components.order(position: :asc)
+    @placeholders = current_site.theme ? current_site.theme.layout['placeholders'] : []
+
+    @styles = {}
+    @styles[:others] = Style.not_followed_by(current_site.id).search(params[:search])
+                            .order('sites.id')
+                            .page(params[:page]).per(params[:per_page])
+    @styles[:styles] = current_site.active_skin.styles.includes(:style) if request.format.html?
   end
 
   def create
@@ -19,7 +26,7 @@ class Sites::Admin::SkinsController < ApplicationController
     end
     theme.populate skin
     flash[:success] = t('successfully_applied_theme')
-    redirect_to site_admin_themes_path
+    redirect_to site_admin_skins_path
   end
 
   def preview
@@ -45,6 +52,6 @@ class Sites::Admin::SkinsController < ApplicationController
 
     skin.base_theme.populate skin
     flash[:success] = t('.successfully_reseted_theme')
-    redirect_to site_admin_themes_path
+    redirect_to site_admin_skins_path
   end
 end

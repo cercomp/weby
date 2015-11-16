@@ -1,7 +1,7 @@
 # styles
 crumb :styles do
-  link t('breadcrumbs.styles'), site_admin_themes_path(anchor: 'tab-styles')
-  parent :themes
+  link t('breadcrumbs.styles'), site_admin_skins_path(anchor: 'tab-styles')
+  parent :skins
 end
 
 crumb :styles_new do

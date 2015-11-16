@@ -1,7 +1,6 @@
 # skins
 crumb :skins do
-  link t('breadcrumbs.choose_theme'), site_admin_skins_path
-  parent :themes
+  link t('breadcrumbs.themes'), site_admin_skins_path
 end
 
 # crumb :styles_new do

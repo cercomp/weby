@@ -31,21 +31,9 @@ window.onload=function(){
     initStylesSortable();
 
     $('.btn-change').click(function(){
-      var $this = $(this);
-      $this.toggleClass('active');
-      if ($this.is('.active')){
-        $.get($this.data('url'), function(data){
-          $('.skins').html(data);
-          $('.skins').slideDown();
-        });
-      }else{
-        $('.skins').slideUp(function(){
-          $(this).html(null);
-        });
-      }
+      $('.skins').slideToggle();
       return false;
     });
-
   });
 };
 

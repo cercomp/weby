@@ -1,7 +1,7 @@
 # layout/components
 crumb :components do
-  link t('breadcrumbs.components'), site_admin_themes_path(anchor: 'tab-layout')
-  parent :themes
+  link t('breadcrumbs.components'), site_admin_skins_path(anchor: 'tab-layout')
+  parent :skins
 end
 
 crumb :components_new_choose do

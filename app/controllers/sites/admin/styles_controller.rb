@@ -45,7 +45,7 @@ class Sites::Admin::StylesController < ApplicationController
         record_activity('updated_style', @style)
         format.html do
           flash[:success] = t('successfully_updated')
-          redirect_to site_admin_themes_path(anchor: 'tab-styles')
+          redirect_to site_admin_skins_path(anchor: 'tab-styles')
         end
       else
         format.html { render 'edit' }
@@ -62,7 +62,7 @@ class Sites::Admin::StylesController < ApplicationController
       flash[:error] = t('destroyed_style_error')
     end
 
-    respond_with(:site_admin, resource, location: site_admin_themes_path(anchor: 'tab-styles'))
+    respond_with(:site_admin, resource, location: site_admin_skins_path(anchor: 'tab-styles'))
   end
 
   def follow
@@ -73,7 +73,7 @@ class Sites::Admin::StylesController < ApplicationController
     else
       flash[:error] = @style.errors.full_messages.join(', ')
     end
-    redirect_to site_admin_themes_path(anchor: 'tab-styles', others: true)
+    redirect_to site_admin_skins_path(anchor: 'tab-styles', others: true)
   end
 
   def unfollow
@@ -91,7 +91,7 @@ class Sites::Admin::StylesController < ApplicationController
     else
       flash[:error] = t('error_copying_style')
     end
-    redirect_to site_admin_themes_path(anchor: 'tab-styles')
+    redirect_to site_admin_skins_path(anchor: 'tab-styles')
   end
 
   def sort
@@ -110,7 +110,7 @@ class Sites::Admin::StylesController < ApplicationController
   end
 
   def after_toggle_path
-    site_admin_themes_path(anchor: 'tab-styles')
+    site_admin_skins_path(anchor: 'tab-styles')
   end
 
   def style_params

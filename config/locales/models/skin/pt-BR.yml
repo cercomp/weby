@@ -1,0 +1,11 @@
+pt-BR:
+  activerecord:
+    models:
+      theme:        " Tema "
+      themes:       " Temas "
+    attributes:
+      theme:
+        name:       " Nome "
+        created_at: " Criado em "
+        updated_at: " Atualizado em "
+        site_id:    " Site "

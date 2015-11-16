@@ -21,6 +21,7 @@ en:
           statistics:           " Statistics "
           styles:               " Styles "
           users:                " Users "
+          skins:                " Themes "
           none_role:            " No roles. "
         new:
           users:                " Users "

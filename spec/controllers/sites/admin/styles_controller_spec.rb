@@ -88,8 +88,8 @@ describe Sites::Admin::StylesController do
     context "when valid" do
       before { put :update, style: { :name => "New name" }, :id => first_style.id }
 
-      it "will redirect to site_admin_themes_path" do
-        expect(response).to redirect_to(site_admin_themes_path)
+      it "will redirect to site_admin_skins_path" do
+        expect(response).to redirect_to(site_admin_skins_path)
       end
 
       it "will set flash[:success]" do
@@ -140,8 +140,8 @@ describe Sites::Admin::StylesController do
         expect(flash[:success]).to be_present
       end
 
-      it "will redirect to site_admin_themes_path" do
-        expect(response).to redirect_to(site_admin_themes_path)
+      it "will redirect to site_admin_skins_path" do
+        expect(response).to redirect_to(site_admin_skins_path)
       end
     end
 
@@ -152,8 +152,8 @@ describe Sites::Admin::StylesController do
         expect(flash[:error]).to be_present
       end
 
-      it "will redirect to site_admin_themes_path" do
-        expect(response).to redirect_to(site_admin_themes_path)
+      it "will redirect to site_admin_skins_path" do
+        expect(response).to redirect_to(site_admin_skins_path)
       end
     end
   end

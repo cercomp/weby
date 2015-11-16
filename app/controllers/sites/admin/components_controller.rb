@@ -13,7 +13,7 @@ class Sites::Admin::ComponentsController < ApplicationController
 
   def show
     # @component = Weby::Components.factory(current_site.active_skin.components.find(params[:id]))
-    redirect_to site_admin_themes_path(anchor: 'tab-layout')
+    redirect_to site_admin_skins_path(anchor: 'tab-layout')
   end
 
   def new
@@ -42,7 +42,7 @@ class Sites::Admin::ComponentsController < ApplicationController
 
       if @component.save
         record_activity('created_component', @component)
-        redirect_to(site_admin_themes_path(anchor: 'tab-layout'), flash: { success: t('successfully_created_param', param: t('component')) })
+        redirect_to(site_admin_skins_path(anchor: 'tab-layout'), flash: { success: t('successfully_created_param', param: t('component')) })
       else
         render action: 'new'
       end
@@ -58,7 +58,7 @@ class Sites::Admin::ComponentsController < ApplicationController
 
     if @component.update(component_params)
       record_activity('updated_component', @component)
-      redirect_to(site_admin_themes_path(anchor: 'tab-layout'), flash: { success: t('successfully_updated_param', param: t('component')) })
+      redirect_to(site_admin_skins_path(anchor: 'tab-layout'), flash: { success: t('successfully_updated_param', param: t('component')) })
     else
       render action: 'edit'
     end
@@ -70,7 +70,7 @@ class Sites::Admin::ComponentsController < ApplicationController
       record_activity('destroyed_component', @component)
     end
 
-    redirect_to site_admin_themes_path(anchor: 'tab-layout'), flash: { success: t('successfully_removed', param: t('component')) }
+    redirect_to site_admin_skins_path(anchor: 'tab-layout'), flash: { success: t('successfully_removed', param: t('component')) }
   end
 
   def sort

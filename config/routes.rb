@@ -63,7 +63,6 @@ Rails.application.routes.draw do
           put :index
         end
       end
-      get '/themes', to: 'themes#index'
       resources :components, except: [:index] do
         member do
           put :toggle
