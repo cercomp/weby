@@ -13,5 +13,8 @@ Role.find_each do |role|
   if perm['styles'].to_a.include?('destroy') || perm['components'].to_a.include?('destroy')
     (perm['skins'] ||= []) << 'destroy'
   end
+  if perm['skins'].to_a.any?
+    perm['skins'].uniq!
+  end
   role.update(permissions: perm.to_s)
 end
