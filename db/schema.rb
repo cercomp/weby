@@ -362,8 +362,8 @@ ActiveRecord::Schema.define(version: 20150416120806) do
     t.text     "footer"
     t.string   "theme"
     t.boolean  "view_desc_pages",              default: false
-    t.string   "per_page",                     default: "5, 15, 30, 50, 100"
-    t.integer  "per_page_default",             default: 25
+    t.string   "per_page",                     default: "10,30,50"
+    t.integer  "per_page_default",             default: 20
     t.boolean  "menu_dropdown",                default: false
     t.string   "title",             limit: 50
     t.integer  "parent_id"
