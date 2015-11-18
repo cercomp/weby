@@ -3,6 +3,7 @@ en:
     admin:
       skins:
         index:
+          no_theme:           " No theme selected. "
           apply:              " Apply "
           themes:             " Themes "
           layout:             " Layout "

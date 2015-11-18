@@ -3,6 +3,7 @@ pt-BR:
     admin:
       skins:
         index:
+          no_theme:           " Nenhum tema selecionado. "
           apply:              " Aplicar "
           themes:             " Temas "
           layout:             " Layout "

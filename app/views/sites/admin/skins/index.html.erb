@@ -47,12 +47,19 @@
   </div>
 </div>
 <% if current_site.theme %>
-    <ul class="nav nav-tabs" id="tabs">
+  <% can_layout = check_permission(Sites::Admin::ComponentsController, [:index]) %>
+  <% can_style = check_permission(Sites::Admin::StylesController, [:index]) %>
+  <ul class="nav nav-tabs" id="tabs">
+    <% if can_layout %>
       <li class="active"><%= link_to('Layout', '#tab-layout', data: {toggle: :tab}) %></li>
-      <li><%= link_to(t('.styles'), '#tab-styles', data: {toggle: :tab}) %></li>
-    </ul>
+    <% end %>
+    <% if can_style %>
+      <li class="<%= 'active' unless can_layout %>"><%= link_to(t('.styles'), '#tab-styles', data: {toggle: :tab}) %></li>
+    <% end %>
+  </ul>
 
-    <div class="tab-content">
+  <div class="tab-content">
+    <% if can_layout %>
       <div role="tabpanel" class="tab-pane active" id="tab-layout">
         <p class="pull-right">
           <% if check_permission(Sites::Admin::ComponentsController, [:new]) %>
@@ -146,8 +153,10 @@
           </script>
         <% end %>
       </div>
-      <div role="tabpanel" class="tab-pane" id="tab-styles">
-      <% with_permission action: :new, controller: Sites::Admin::StylesController do %>
+    <% end %>
+    <% if can_style %>
+      <div role="tabpanel" class="tab-pane <%= 'active' unless can_layout %>" id="tab-styles">
+        <% with_permission action: :new, controller: Sites::Admin::StylesController do %>
           <div class="pull-right">
             <%= link_to t(".new_style"),
               new_site_admin_style_path,
@@ -174,13 +183,13 @@
             </div>
           </div>
         </div>
+      </div>
+    <% end %>
   </div>
   <% content_for :stylesheets, stylesheet_link_tag("sortable") %>
   <% content_for :stylesheets, stylesheet_link_tag("maxi_layout") %>
 <% else %>
-
-  Nenhum tema selecionado!
-
+  <%= t('.no_theme') %>
 <% end %>
 <% content_for :javascripts, javascript_include_tag("init/sortable") %>
 <% content_for :javascripts, javascript_include_tag("skins") %>
