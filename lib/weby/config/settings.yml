@@ -29,7 +29,7 @@ settings:
       value:
     port:
       value: '389'
-    account: 
+    account:
       value:
     account_password:
       value:
@@ -57,4 +57,19 @@ settings:
     assets_host:
       value:
     uploads_host:
+      value:
+  email:
+    delivery_method:
+      value: smtp
+    smtp_address:
+      value:
+    smtp_port:
+      value:
+    smtp_authentication:
+      value: login
+    smtp_enable_starttls_auto:
+      value: true
+    smtp_user_name:
+      value:
+    smtp_password:
       value:

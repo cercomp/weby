@@ -1,9 +1,0 @@
-production:
-  delivery_method: :smtp
-  smtp_settings:
-    address: localhost
-    port: 25
-    authentication: :login
-    enable_starttls_auto: true
-    user_name: "weby@example.net"
-    password: "weby"
