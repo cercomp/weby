@@ -69,7 +69,8 @@ module Journal
 
     def self.import(attrs, options = {})
       return attrs.each { |attr| import attr, options } if attrs.is_a? Array
-
+      return if attrs['site_id'] != options[:site_id]
+      
       attrs = attrs.dup
       attrs = attrs['news'] if attrs.key? 'news'
       id = attrs['id']
