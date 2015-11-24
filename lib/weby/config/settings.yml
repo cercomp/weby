@@ -63,6 +63,8 @@ settings:
       value: smtp
     smtp_address:
       value:
+    smtp_domain:
+      value:
     smtp_port:
       value:
     smtp_authentication:
