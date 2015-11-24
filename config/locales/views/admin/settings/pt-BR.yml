@@ -5,7 +5,9 @@ pt-BR:
         settings:     " Configurações "
       index:
         weby:         " Weby "
-        ldap:         " Ldap "
+        ldap:         " LDAP "
+        asset_host:   " Host de Assets "
+        email:        " E-mail "
         settings:     " Configurações "
         new_setting:  " Nova Configuração "
         name:         " Nome "

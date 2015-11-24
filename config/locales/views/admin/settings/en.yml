@@ -4,6 +4,10 @@ en:
       new:
         settings:     " Settings "
       index:
+        weby:         " Weby "
+        ldap:         " LDAP "
+        asset_host:   " Assets host "
+        email:        " E-mail "
         settings:     " Settings "
         new_setting:  " New Setting "
         name:         " Name "
