@@ -18,11 +18,11 @@ class InstitutionalLinksComponent < Component
   end
 
   def institutions_as_options
-    Weby.institutions.map { |name, values| [values['name'], name] }
+    institutions_hash.map { |name, values| [values[:name], name] }
   end
 
   def institution_value(path)
-    @institution ||= Weby.institutions[institution] || {}
+    @institution ||= institutions_hash[institution] || {}
     result = nil
     path.split('.').each do |level|
       result ||= @institution
@@ -42,5 +42,42 @@ class InstitutionalLinksComponent < Component
   def label
     labels = institution_value('links.label') || {}
     labels[I18n.locale.to_s] # || labels.values[0]
+  end
+
+  private
+
+  def institutions_hash
+    {
+      ufg: {
+        name: 'Universidade Federal de Goiás',
+        url: 'http://www.ufg.br',
+        logo: {
+          small: 'institutions/logo-s.png'
+        },
+        links: {
+          label: {
+            'pt-BR' => 'Sistemas UFG',
+            'en' => 'UFG Systems'
+          },
+          list: {
+            'Portal UFGNet' => 'http://ufgnet.ufg.br',
+            'Webmail' => 'http://mail.ufg.br',
+            'Matrícula' => 'https://sigaa.sistemas.ufg.br',
+            'Concursos' => 'http://sistemas.ufg.br/CONCURSOS_WEB/',
+            'Portal SIG' => 'http://portalsig.ufg.br'
+          },
+          bar: {
+            'Portal UFG' => 'http://www.ufg.br',
+            'Portal UFGNet' => 'http://ufgnet.ufg.br',
+            'Pró-reitorias' => 'http://www.ufg.br/p/6397',
+            'Unidades Acadêmicas' => 'http://www.ufg.br/p/6408',
+            'Concursos' => 'http://www.prodirh.ufg.br',
+            'Vestibular' => 'http://www.vestibular.ufg.br',
+            'Fale Conosco' => 'http://www.ufg.br/feedback',
+            'Dúvidas frequentes' => 'http://www.ufg.br/p/6111'
+          }
+        },
+      }
+    }.with_indifferent_access
   end
 end

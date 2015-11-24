@@ -1,15 +1,15 @@
-# Loads action_mailer settings from email.yml
-# and turns deliveries on if configuration file is found
-
-filename = File.join(File.dirname(__FILE__), '..', 'email.yml')
-if File.file?(filename)
-  mailconfig = YAML.load_file(filename)
-  if mailconfig.is_a?(Hash) && mailconfig.key?(Rails.env)
+if Weby::Settings::Email.smtp_address.present?
+  if Rails.env.production?
     # Enable deliveries
     ActionMailer::Base.perform_deliveries = true
-    mailconfig[Rails.env].each do |k, v|
-      v.symbolize_keys! if v.respond_to?(:symbolize_keys!)
-      ActionMailer::Base.send("#{k}=", v)
-    end
+    ActionMailer::Base.delivery_method = Weby::Settings::Email.delivery_method.to_sym
+    ActionMailer::Base.smtp_settings = {
+      address: Weby::Settings::Email.smtp_address,
+      port: Weby::Settings::Email.smtp_port.to_i,
+      authentication: Weby::Settings::Email.smtp_authentication.to_sym,
+      enable_starttls_auto: Weby::Settings::Email.smtp_enable_starttls_auto.to_s.eql?('true'),
+      user_name: Weby::Settings::Email.smtp_user_name,
+      password: Weby::Settings::Email.smtp_password
+    }
   end
 end

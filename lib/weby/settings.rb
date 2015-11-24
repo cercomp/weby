@@ -8,15 +8,15 @@ module Weby
     @@group_settings.each do |name, attributes|
       @@groups << name
       class_eval <<-METHOD
-        class #{name.capitalize}
+        class #{name.classify}
           @attributes = #{attributes}
         end
 
-        def #{name.capitalize}.all
+        def #{name.classify}.all
           @attributes.map { |key, _setting| send(key.to_sym, false) }.sort { |a, b| a.name <=> b.name }
         end
 
-        def #{name.capitalize}.clear
+        def #{name.classify}.clear
           @settings = nil
         end
         METHOD
@@ -24,7 +24,7 @@ module Weby
       @@default_settings.merge!(attributes)
       @@default_settings.each do |key, _value|
         class_eval <<-METHOD
-          def #{name.capitalize}.#{key}(value_only=true)
+          def #{name.classify}.#{key}(value_only=true)
             @settings ||= Setting.all
             sett = @settings.select{|setting| setting.name == "#{key}" }.first || Setting.new({name: '#{key}', value: @@default_settings['#{key}']['value'], group: '#{name}'})
             sett.default_value = @@default_settings['#{key}']['value']
@@ -39,7 +39,7 @@ module Weby
     # of any configuration
     def self.clear
       @@groups.each do |value|
-        "Weby::Settings::#{value.capitalize}".constantize.clear
+        "Weby::Settings::#{value.classify}".constantize.clear
       end
     end
 
@@ -49,7 +49,7 @@ module Weby
 
     def self.all
       @@groups.map do |value|
-        "Weby::Settings::#{value.capitalize}".constantize.all
+        "Weby::Settings::#{value.classify}".constantize.all
       end.flatten
     end
   end

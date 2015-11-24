@@ -1,6 +1,0 @@
-production:
-  disable_on_https: true
-  hosts:
-    ^\/assets\/: '//assets.aws.cercomp.ufg.br'
-    ^\/uploads\/: '//cloud.aws.cercomp.ufg.br'
-development:
