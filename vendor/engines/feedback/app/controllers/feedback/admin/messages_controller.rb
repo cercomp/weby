@@ -13,6 +13,7 @@ module Feedback::Admin
 
     def show
       @message = current_site.messages.find(params[:id])
+      @message.update read_status: true
     end
 
     def destroy
