@@ -1,4 +1,5 @@
 <% content_for :title, " - #{@news.title}" %>
+<% meta_image @news.image %>
 <article class="news-show">
   <%= weby_file_view(@news.image, :l, '128', nil) %>
 

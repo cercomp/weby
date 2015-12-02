@@ -11,6 +11,7 @@
     <%= favicon_link_tag favicon(@site) %>
     <%= auto_discovery_link_tag(:rss, main_app.site_feed_url(format: 'rss'),  {:title => "#{@site.try(:title)} - RSS"}) %>
     <%= auto_discovery_link_tag(:atom, main_app.site_feed_url(format: 'atom'),  {:title => "#{@site.try(:title)} - ATOM"}) %>
+    <%= render 'sites/shared/social_meta' %>
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" media="screen">
     <%= stylesheet_link_tag 'this2' %>
     <%= stylesheet_link_tag '_webybar' %>

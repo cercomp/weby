@@ -364,6 +364,12 @@ module ApplicationHelper
     content_for :title, raw_text ? title : t(title)
   end
 
+  def meta_image(repository)
+    repository = Repository.find(repository) if repository.is_a? Integer
+    return unless repository
+    content_for :meta_images, "<meta property=\”og:image\” content=\”#{asset_url(repository.archive.url(:m))}\” />".html_safe
+  end
+
   def period_dates(inidate, findate, force_show_year = true)
     html = ''
     if not findate
