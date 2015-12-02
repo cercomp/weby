@@ -25,7 +25,7 @@ module Feedback
       attrs = attrs.dup
       attrs = attrs['message'] if attrs.key?('message') && !attrs.key?('name')
 
-      attrs.except!('id', 'created_at', 'updated_at', 'site_id', 'type')
+      attrs.except!('id', '@type', 'created_at', 'updated_at', 'site_id', 'type')
 
       self.create!(attrs)
     end
