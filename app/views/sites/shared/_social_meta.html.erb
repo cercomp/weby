@@ -1,6 +1,6 @@
-<meta property=”og:title” content=”<%= @site.try(:title) || 'Weby' %><%= yield :title %>” />
+<meta property="og:title" content="<%= current_site.title %><%= yield :title %>" />
 <%= yield :meta_images %>
 <% if current_site.repository %>
-  <meta property=”og:image” content=”<%= asset_url(current_site.repository.archive.url(:m)) %>” />
+  <meta property="og:image" content="<%= asset_url(current_site.repository.archive.url(:o)) %>" />
 <% end %>
-<meta property=”og:site_name” content=”<%= current_site.title %>” />
+<meta property="og:site_name" content="<%= current_site.title %>" />
