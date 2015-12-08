@@ -354,8 +354,16 @@ header .dropdown > li > a {
   padding: 4px 0px 0px 0px;
 }
   .search_box_component #search {
+    width: 50%;
     height: 20px;
     background-image: url("") !important;
+  }
+  .search_box_component #options {
+    width: 49%;
+    height: 20px;
+    background-color: #ccc;
+    margin: 10px 0 0 0;
+    padding: 0;
   }
   .search_box_component input {
     position: relative;
@@ -367,7 +375,6 @@ header .dropdown > li > a {
     background-color: #ccc;
     text-indent: 5px;
     font-size: 10px;
-    padding: 2px;
   }
   .search_box_component input:focus {
     background-color: #eee;
