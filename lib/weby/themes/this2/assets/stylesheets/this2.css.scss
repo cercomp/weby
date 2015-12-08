@@ -147,7 +147,6 @@ aside
       {
         padding-left: 5px;
         list-style-type: none;
-        &.sub > a { font-weight: bold; }
         a
         {
           background: #FFF; // TODO intrusive, remove
@@ -229,7 +228,6 @@ aside
   }
 }
 
-
 /* Define content area */
 section#content {
   width: auto;
@@ -305,6 +303,10 @@ section#content section#news li:nth-child(even) a img {
 
 .right {
   float: right; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
 
 table.zebra tr:nth-child(2n+2) {
   background-color: #F6F7F8; }
@@ -407,3 +409,17 @@ label.required abbr { color: red; }
   .no-mobile { display: none; }
   .mobile { display: block; }
 }
+
+@media screen and (max-width: 640px) {
+  /* Responsive Tables */
+  table {
+    overflow-x: auto;
+    display: block;
+  }
+  /* Responsive Menus */
+  menu.dropdown li.sub:hover > menu {
+    top: 0;
+    left: 0
+  }
+}
+
