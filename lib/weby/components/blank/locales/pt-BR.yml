@@ -7,10 +7,11 @@ pt-BR:
     attributes:
       blank_component:
         body:          " Conteúdo "
+        put_at_end:    " Inserir conteúdo no final do documento "
   blank:
     views:
       form:
         format:           " Formatar "
         comment:          " Comentar "
         uncomment:        " Descomentar "
-        
+

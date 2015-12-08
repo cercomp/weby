@@ -1,3 +1,9 @@
 <section class="blank_component">
-  <%= raw component.body %>
+  <% if component.put_at_end? %>
+    <% content_for :javascripts do %>
+      <%= raw component.body %>
+    <% end %>
+  <% else %>
+    <%= raw component.body %>
+  <% end %>
 </section>
