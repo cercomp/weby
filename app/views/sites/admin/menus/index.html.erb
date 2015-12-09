@@ -61,6 +61,9 @@
           placeholder: 'drop-here',
           tolerance: 'pointer',
           toleranceElement: 'div.menuitem-ctrl',
+          isTree: true,
+          expandOnHover: 700,
+          startCollapsed: true,
           update: function(event, ui){
             if(dropped){
               $(this).nestedSortable('cancel');
@@ -80,7 +83,9 @@
             });
           }
         });
-
+        $('.disclose').on('click', function() {
+          $(this).closest('li').toggleClass('mjs-nestedSortable-collapsed').toggleClass('mjs-nestedSortable-expanded');
+        });
         $( "#tabs li" ).not('.active').droppable({
           hoverClass: "drop-here",
           tolerance: "pointer",
@@ -106,10 +111,9 @@
               });
             }
           }
-        });
-
+        });        
         ////FIX-ME
-        $('#main-menu').css({'height':$('#main-menu').height()});
+        //$('#main-menu').css({'height':$('#main-menu').height()});
       });
     }
   <% end %>

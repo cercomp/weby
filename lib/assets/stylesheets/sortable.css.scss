@@ -18,12 +18,11 @@ li.drop-here{
 li > menu{
   margin: 0;
 }
-
 #main-menu{
   margin-top: 10px;
   padding: 5px;
   background-color: #EEE;
-
+  height: auto;
   > menu{
     padding-left: 5px;
 
@@ -36,14 +35,34 @@ li > menu{
       padding-left: 30px;
     }
   }
+    .disclose {
+      cursor: pointer;
+      width: 10px;
+      display: none;
+    }
 
+    li.mjs-nestedSortable-collapsed > menu {
+      display: none;
+    }
+    
+    li.mjs-nestedSortable-branch .disclose {
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    li.mjs-nestedSortable-collapsed > div > .disclose > span:before {
+      content: '▼ ';
+    }
+
+    li.mjs-nestedSortable-expanded > div > .disclose > span:before {
+      content: '▶ ';
+    }    
   menu{
     list-style-type: none;
 
     li{
       position: relative;
-    }
-
+    }    
     .menuitem-ctrl{
       display: block;
       position: relative;
@@ -69,4 +88,5 @@ li > menu{
       border-left: 1px solid #BBB;
     }
   }
+
 }
