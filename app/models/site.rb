@@ -6,7 +6,7 @@ class Site < ActiveRecord::Base
   has_many :roles, dependent: :destroy
   has_many :views, dependent: :delete_all
   has_many :activity_records, dependent: :destroy
-  has_many :menus, -> { order(:id) }, dependent: :destroy
+  has_many :menus, -> { order(position: :asc) }, dependent: :destroy
   has_many :menu_items, through: :menus
   has_many :pages, -> { includes(:i18ns) }, dependent: :destroy
   has_many :pages_i18ns, through: :pages, source: :i18ns

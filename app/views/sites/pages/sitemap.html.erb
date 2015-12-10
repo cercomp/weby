@@ -2,7 +2,7 @@
   <header>
     <h2><%= t(".sitemap") %></h2>
   </header>
-  <% @published_menus.each do |value| %>
-    <%= print_menu(value[1]) %>
+  <% @menus.each do |menu| %>
+    <%= print_menu(menu) %>
   <% end %>
 </div>

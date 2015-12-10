@@ -18,7 +18,7 @@
     <ul class="nav nav-tabs" id="tabs">
       <% @menus.each do |menu| %>
         <% active = (menu==@menu ? "active" : "") %>
-        <li class="<%= active %>" data-menu-id="<%= menu.id %>"><%= link_to(menu.name.try(:titleize), menu==@menu ? '#' : site_admin_menus_path(menu: menu.id)) %></li>
+        <li class="<%= active %>" id="menu_<%= menu.id %>" data-menu-id="<%= menu.id %>"><%= link_to(menu.name.try(:titleize), menu==@menu ? '#' : site_admin_menus_path(menu: menu.id)) %></li>
       <% end %>
     </ul>
   </div>
@@ -87,6 +87,7 @@
           $(this).closest('li').toggleClass('mjs-nestedSortable-collapsed').toggleClass('mjs-nestedSortable-expanded');
         });
         $( "#tabs li" ).not('.active').droppable({
+          accept: '.mjs-nestedSortable-branch,.mjs-nestedSortable-leaf',
           hoverClass: "drop-here",
           tolerance: "pointer",
           drop: function( event, ui ) {
@@ -107,11 +108,34 @@
                     location = drop_li.find('a').attr('href');
                   }
                 },
-                url: '<%= change_menu_site_admin_menu_menu_items_path(@menu) if @menu%>'
+               url: '<%= change_menu_site_admin_menu_menu_items_path(@menu) if @menu%>'
               });
             }
           }
-        });        
+        });
+        $('#tabs').sortable({
+          placeholder: 'drop-here',
+          forcePlaceholderSize: true,
+          tolerance: 'pointer',
+          update: function(event, ui){
+            var $this = $(this);
+            if(dropped){
+              $this.sortable('cancel');
+              dropped = false;
+              return;
+            }
+            $.ajax({
+              type: 'post',
+              data: $this.sortable('serialize'),
+              dataType: 'script',
+              complete: function(request,text){
+                if(text=='success') ui.item.effect('pulsate', {times: 1}, 350);
+                else $this.sortable('cancel');
+              },
+              url: '<%= change_order_site_admin_menus_path %>'
+            });
+          }
+        });
         ////FIX-ME
         //$('#main-menu').css({'height':$('#main-menu').height()});
       });

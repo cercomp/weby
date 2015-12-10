@@ -18,6 +18,7 @@ class Sites::Admin::MenusController < ApplicationController
 
   def create
     @menu = current_site.menus.new(menu_params)
+    @menu.position = current_site.menus.maximum(:position).to_i + 1
     if @menu.save
       flash[:success] = t('successfully_created')
       record_activity('created_menu', @menu)
@@ -40,6 +41,15 @@ class Sites::Admin::MenusController < ApplicationController
     else
       respond_with(:site_admin, @menu)
     end
+  end
+
+  # Altera a ordenação do menu
+  def change_order
+    position = 0
+    params[:menu].each do |menu_id|
+      current_site.menus.find(menu_id).update_attribute(:position, position += 1)
+    end
+    render nothing: true
   end
 
   def destroy
