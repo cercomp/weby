@@ -37,8 +37,9 @@ li > menu{
   }
     .disclose {
       cursor: pointer;
-      width: 10px;
+      padding: 0 15px 0 7px;
       display: none;
+      font-size: 14px;
     }
 
     li.mjs-nestedSortable-collapsed > menu {
@@ -51,11 +52,29 @@ li > menu{
     }
 
     li.mjs-nestedSortable-collapsed > div > .disclose > span:before {
-      content: '▼ ';
+      border-style: solid;
+      border-width: 0.25em 0.25em 0 0;
+      content: '';
+      display: inline-block;
+      height: 8px;
+      position: relative;      
+      transform: rotate(45deg);
+      vertical-align: top;
+      width: 8px;
+      top: 5px;
     }
 
     li.mjs-nestedSortable-expanded > div > .disclose > span:before {
-      content: '▶ ';
+      border-style: solid;
+      border-width: 0.25em 0.25em 0 0;
+      content: '';
+      display: inline-block;
+      height: 8px;
+      position: relative;
+      transform: rotate(135deg);
+      vertical-align: top;
+      width: 8px;
+      top: 5px;
     }    
   menu{
     list-style-type: none;
