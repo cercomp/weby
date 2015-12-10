@@ -51,6 +51,11 @@ module ApplicationHelper
       li_content << if view_ctrl
         content_tag(:div, style: 'min-height: 25px', class: "menuitem-ctrl#{' deactivated' unless entry.publish}") do
           div_content = []
+          div_content << content_tag(:span, class: 'disclose') do 
+            [
+              content_tag(:span)            
+            ].join.html_safe
+          end
           div_content << content_tag(:span) do
             [
               toggle_field(entry, 'publish', 'toggle', controller: 'sites/admin/menus/menu_items', menu_id: entry.menu_id),
