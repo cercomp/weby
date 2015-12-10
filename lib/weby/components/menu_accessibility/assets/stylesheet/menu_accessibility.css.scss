@@ -10,6 +10,7 @@
     background-color: #FFF !important;
     color: #484848 !important;
     text-decoration: none;
+    margin: 1px;
   }
   a.contrast_normal:hover,
   a.contrast_blue:hover,
@@ -38,6 +39,9 @@
     padding: 5px !important;
     font-weight: bold !important;
     font-size: 12px;
+  }
+  span.accessibility_font a {
+    margin: 2px;
   }
   nav.menu_accessibility_extended{
     background-color: #F1F1F1;
