@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.1.7'
+ruby '2.2.3'
 
 gem 'rails', '~> 4.1.13'
 
@@ -61,7 +61,6 @@ group :test do
   gem 'factory_girl_rails', '~> 4.4.1'
   gem 'selenium-webdriver', '~> 2.42.0'
   gem 'capybara'
-  gem 'capybara-webkit'
 end
 
 #Extensions gems

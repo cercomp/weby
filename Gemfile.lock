@@ -95,9 +95,6 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    capybara-webkit (1.6.0)
-      capybara (>= 2.3.0, < 2.5.0)
-      json
     childprocess (0.5.6)
       ffi (~> 1.0, >= 1.0.11)
     climate_control (0.0.3)
@@ -294,7 +291,6 @@ DEPENDENCIES
   bootstrap-sass (~> 3.1.1.1)
   calendar!
   capybara
-  capybara-webkit
   d3js-rails (~> 3.1.6)
   devise (~> 3.2.4)
   factory_girl_rails (~> 4.4.1)
@@ -335,3 +331,6 @@ DEPENDENCIES
   useragent (= 0.2.3)!
   zeroclipboard-rails (~> 0.0.13)
   zip-zip (~> 0.3)
+
+BUNDLED WITH
+   1.10.6
