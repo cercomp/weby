@@ -14,6 +14,8 @@
       wrapper_html: { class: 'nostyle' },
       input_html: { id: 'code' } %>
 
+<%= f.input :put_at_end, wrapper: :checkbox, as: :boolean %>
+
 <% content_for :stylesheets, stylesheet_link_tag("codeMirror/codemirror") %>
 <% content_for :javascripts, javascript_include_tag("init/codemirror") %>
 <% content_for :javascripts do %>

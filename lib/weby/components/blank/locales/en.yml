@@ -7,6 +7,7 @@ en:
     attributes:
       blank_component:
         body:          " Content "
+        put_at_end:    " Insert content at the end of the document "
   blank:
     views:
       form:

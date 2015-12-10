@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150416120806) do
+ActiveRecord::Schema.define(version: 20151127172727) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,6 +116,7 @@ ActiveRecord::Schema.define(version: 20150416120806) do
     t.integer  "site_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "read_status", default: false
   end
 
   add_index "feedback_messages", ["site_id"], name: "index_feedback_messages_on_site_id", using: :btree
@@ -362,8 +363,8 @@ ActiveRecord::Schema.define(version: 20150416120806) do
     t.text     "footer"
     t.string   "theme"
     t.boolean  "view_desc_pages",              default: false
-    t.string   "per_page",                     default: "10,30,50"
-    t.integer  "per_page_default",             default: 20
+    t.string   "per_page",                     default: "5, 15, 30, 50, 100"
+    t.integer  "per_page_default",             default: 25
     t.boolean  "menu_dropdown",                default: false
     t.string   "title",             limit: 50
     t.integer  "parent_id"
