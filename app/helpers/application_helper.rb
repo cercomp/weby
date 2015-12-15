@@ -278,7 +278,7 @@ module ApplicationHelper
     title ||= column.titleize
     css_class = column == sort_column ? "current #{sort_direction}" : nil
     direction = (column == sort_column && sort_direction == 'asc') ? 'desc' : 'asc'
-    icon_name = column == sort_column ? sort_direction == 'asc' ? 'chevron-up' : 'chevron-down' : nil
+    icon_name = column == sort_column ? sort_direction == 'asc' ? 'arrow-up' : 'arrow-down' : 'sort'
     link_to "#{title}#{icon(icon_name)}".html_safe,
             # when we reorder an list it goes back to the first page
             params.merge(sort: column, direction: direction, page: 1),
