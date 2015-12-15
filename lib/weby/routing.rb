@@ -16,7 +16,7 @@ module ActionDispatch
               prefix = Weby::Cache.request[:subdomain].match(/www\./).to_s
             else
               # TODO colocar ou não o "www."?
-              prefix = 'www.'
+              prefix = 'www.' if site.name == Weby::Settings::Weby.root_site
             end
             subdomain = site.main_site ? "#{site.name}.#{site.main_site.name}" : "#{prefix}#{site.name}"
             # TODO colocar ou não o "www."?
