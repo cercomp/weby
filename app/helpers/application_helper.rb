@@ -51,9 +51,9 @@ module ApplicationHelper
       li_content << if view_ctrl
         content_tag(:div, style: 'min-height: 25px', class: "menuitem-ctrl#{' deactivated' unless entry.publish}") do
           div_content = []
-          div_content << content_tag(:span, class: 'disclose') do 
+          div_content << content_tag(:span, class: 'disclose') do
             [
-              content_tag(:span)            
+              content_tag(:span)
             ].join.html_safe
           end
           div_content << content_tag(:span) do
@@ -95,7 +95,7 @@ module ApplicationHelper
     when Calendar::Event
       event_path(obj.target)
     else
-      obj.url
+      obj.url.present? ? obj.url : 'javascript:void(0);'
     end
   end
 
