@@ -34,8 +34,8 @@ class Sites::Admin::PagesController < ApplicationController
     params[:direction] ||= 'desc'
     # Vai ao banco por linha para recuperar
     # tags e locales
-    pages = current_site.pages.
-      search(params[:search], 1) # 1 = busca com AND entre termos
+    pages = current_site.pages.includes(:user)
+      .search(params[:search], 1) # 1 = busca com AND entre termos
       .order(sort_column + ' ' + sort_direction)
       .page(params[:page]).per(params[:per_page])
   end
