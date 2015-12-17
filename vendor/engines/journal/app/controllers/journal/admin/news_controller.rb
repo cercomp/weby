@@ -43,10 +43,17 @@ module Journal::Admin
       end
 
       news = Journal::News.where('journal_news.id in (?)', @news).
+        includes(:user).
         search(params[:search], 1) # 1 = busca com AND entre termos
 
+      if sort_column == 'journal_news_i18ns.title'
+         news = news.includes(i18ns: :locale).where(locales: {name: I18n.locale})
+      end
       if sort_column == 'tags.name'
-         news = news.includes(categories: :taggings)
+         news = news.includes(news_sites: {categories: :taggings})
+      end
+      if sort_column == 'journal_news.front'
+         news = news.includes(:news_sites)
       end
       if params[:status_filter].present? && Journal::News::STATUS_LIST.include?(params[:status_filter])
         news = news.send(params[:status_filter])

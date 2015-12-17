@@ -284,6 +284,7 @@ module ApplicationHelper
             params.merge(sort: column, direction: direction, page: 1),
       data: { column: column },
       remote: true,
+      style: "white-space:nowrap;",
       class: "sortable #{css_class}"
   end
 
