@@ -1,6 +1,6 @@
 class Sites::Admin::PagesController < ApplicationController
   include ActsToToggle
-  
+
   before_action :require_user
   before_action :check_authorization
 

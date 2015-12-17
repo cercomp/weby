@@ -223,6 +223,20 @@ body.modal-open {
   }
 }
 
+.menu-tabs {
+
+  .nav > li > a{
+    padding-right: 20px;
+  }
+
+  .glyphicon{
+    position: absolute;
+    right: 7px;
+    top: 11px;
+    cursor: move;
+  }
+}
+
 #repo_list > div.row > div > div {
   height: 258px;
 }
