@@ -28,6 +28,7 @@ module Journal
 #      self.position = 0 if self.position.nil?
     end
 
+    scope :published, -> { joins(:news).where(journal_news: {status: 'published'}) }
     scope :front, -> { where(front: true) }
     scope :no_front, -> { where(front: false) }
     scope :available, -> { where('journal_news_sites.date_begin_at is NULL OR journal_news_sites.date_begin_at <= :time', time: Time.now) }

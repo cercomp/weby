@@ -42,17 +42,17 @@ module Journal
       # Vai ao banco por linha para recuperar
       # tags e locales
       if params[:tags]
-        news_sites = current_site.news_sites.tagged_with(tags, any: true)
+        news_sites = current_site.news_sites.published.tagged_with(tags, any: true)
         @news = []
         news_sites.each do |sites|
           @news << sites.journal_news_id
         end
-        result = Journal::News.where('journal_news.id in (?)', @news).
+        result = Journal::News.published.where('journal_news.id in (?)', @news).
              search(params[:search], params.fetch(:search_type, 1).to_i).
              order(sort_column + ' ' + sort_direction).
              page(params[:page]).per(params[:per_page])
       else
-        result = Journal::News.where(site_id: current_site).
+        result = Journal::News.published.where(site_id: current_site).
             search(params[:search], params.fetch(:search_type, 1).to_i).
             order(sort_column + ' ' + sort_direction).
             page(params[:page]).per(params[:per_page])

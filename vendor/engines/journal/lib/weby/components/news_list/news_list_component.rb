@@ -7,7 +7,7 @@ class NewsListComponent < Component
   validates :quant, presence: true
 
   def news(site, page)
-    result = site.news_sites.order('journal_news_sites.created_at desc').available.joins(:news)
+    result = site.news_sites.order('journal_news_sites.created_at desc').available.published.joins(:news)
     result = result.tagged_with(category.mb_chars.downcase.to_s, any: true) if category.present?
     result = result.no_front unless front
     result.page(page).per(quant)
