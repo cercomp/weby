@@ -4,7 +4,7 @@
     <span><%= link_to site.title, site_url(subdomain: site) %></span>
   </div>
   <div class="caption">
-    <% newslist = Journal::NewsSite.where(site_id: site.id).order('updated_at desc').front.first(4) %>
+    <% newslist = Journal::NewsSite.where(site_id: site.id).published.order('updated_at desc').front.first(4) %>
       <% news = newslist.shift.news if newslist.any? %>
     <% if news %>
       <div class="top-news col-md-6">

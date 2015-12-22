@@ -46,6 +46,9 @@ module Journal::Admin
         includes(:user).
         search(params[:search], 1) # 1 = busca com AND entre termos
 
+      if params[:template] == 'list_popup'
+        news = news.published
+      end
       if sort_column == 'journal_news_i18ns.title'
          news = news.includes(i18ns: :locale).where(locales: {name: I18n.locale})
       end

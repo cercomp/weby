@@ -35,7 +35,10 @@ class Sites::Admin::PagesController < ApplicationController
     # Vai ao banco por linha para recuperar
     # tags e locales
     pages = current_site.pages.includes(:user)
-      .search(params[:search], 1) # 1 = busca com AND entre termos
+    if params[:template] == 'list_popup'
+      pages = pages.published
+    end
+      pages.search(params[:search], 1) # 1 = busca com AND entre termos
       .order(sort_column + ' ' + sort_direction)
       .page(params[:page]).per(params[:per_page])
   end

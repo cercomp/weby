@@ -1,7 +1,7 @@
 <% quant = component.quant || 5 %>
-        
+
 <% @subsite_front_news = Journal::NewsSite.from_subsites(current_site).order('updated_at desc')
-                  .available_fronts.limit(quant) #page(params[:subsite_front_pages]).per(quant) %>
+                  .available_fronts.published.limit(quant) #page(params[:subsite_front_pages]).per(quant) %>
 
 <section class="subsite_front_news_component">
     <% @subsite_front_news.each do |news_site| %>
