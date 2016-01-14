@@ -24,7 +24,7 @@
       <%= @captcha_errors %>
     </blockquote>  
   <% end %>
-    
+  <%= show_simple_captcha %>  
   <div>
     <%= f.button :submit, t('submit'), class: "btn", disable_with: t("please_wait") %>
     <%= link_to t("back"), :back, class: "btn" %>
