@@ -18,7 +18,13 @@
     placeholder: t('.field_password_conf') %>
   <%= f.input :first_name, label: false, placeholder: t('.field_first_name') %>
   <%= f.input :last_name, label: false, placeholder: t('.field_last_name') %>
-
+  <% if @captcha_errors %>
+    <blockquote class="alert-danger">
+      <a aria-hidden="true" class="close" data-dismiss="alert" href="#">×</a>
+      <%= @captcha_errors %>
+    </blockquote>  
+  <% end %>
+  <%= show_simple_captcha %>
   <%= f.button :submit,
     t('.register'),
     class: 'btn-primary btn-block',

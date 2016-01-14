@@ -173,7 +173,7 @@ Rails.application.routes.draw do
 
     # routes to register
     get 'signup'  => 'devise/registrations#new'
-    post 'signup'  => 'devise/registrations#create'
+    post 'signup'  => 'registrations#create'
 
     # routes to password
     get 'forgot_password' => 'devise/passwords#new'
