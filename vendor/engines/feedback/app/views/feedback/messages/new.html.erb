@@ -2,8 +2,7 @@
 <h2><%= t('.new_message') %> - <%= t('.feedback') %></h2>
 <br />
 <%= simple_form_for [@message], html: {class: 'form-vertical'} do |f| %>
-  <%= f.show_errors %>
-
+  <%= f.show_errors %>  
   <% if @groups.any? %>
     <%= f.association :groups,
       label: "<abbr title='#{t("field_required")}'><font color='red'>*</font></abbr> #{t('.group')} (#{t(".group_explain")})".html_safe,
@@ -19,7 +18,13 @@
   <%= f.input :subject, input_html: { value: params['subject'] } %>
   <%= f.input :message, as: :text, input_html: { value: params['message'], size: '60x8'} %>
   <%= f.input :site_id, :input_html => {:value => current_site.id}, :as => :hidden %>
-  <%= show_simple_captcha %>
+  <% if @captcha_errors %>
+    <blockquote class="alert-danger">
+      <a aria-hidden="true" class="close" data-dismiss="alert" href="#">×</a>
+      <%= @captcha_errors %>
+    </blockquote>  
+  <% end %>
+    
   <div>
     <%= f.button :submit, t('submit'), class: "btn", disable_with: t("please_wait") %>
     <%= link_to t("back"), :back, class: "btn" %>

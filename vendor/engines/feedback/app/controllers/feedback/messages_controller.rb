@@ -30,6 +30,7 @@ module Feedback
           render 'new'
         end
       else
+        @captcha_errors = t('simple_captcha.captcha_code')
         render 'new'
       end
     end
