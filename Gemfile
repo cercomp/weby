@@ -1,8 +1,8 @@
 source 'http://rubygems.org'
 
-ruby '2.2.3'
+#ruby '2.2.3'
 
-gem 'rails', '~> 4.1.13'
+gem 'rails', '~> 4.2.5'
 
 gem 'thin', '~> 1.6.3'
 gem 'pg', '~> 0.17.1'
@@ -25,7 +25,7 @@ gem 'non-stupid-digest-assets' # Generate assets without digest.
 
 gem 'simple_form', '~> 3.0.2'
 gem 'rails-observers', '~> 0.1.2'
-gem 'devise', '~> 3.2.4'
+gem 'devise', '~> 3.5.3'
 gem 'kaminari', '~> 0.15.1'
 gem 'paperclip', :git => 'http://github.com/leo-souza/paperclip.git'
 gem 'acts-as-taggable-on', '~> 3.4.2'
