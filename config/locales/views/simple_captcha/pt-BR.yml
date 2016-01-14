@@ -1,7 +1,7 @@
 pt-BR:
   simple_captcha:
-    placeholder: "Informe o valor da imagem"
-    label: "Informe o código no campo:"
+    placeholder: "Informe o texto da imagem"
+    label: "Informe o texto no campo:"
     refresh_button_text: "Atualizar"
     captcha_code:  " O código informado não confere com a Imagem "    
     message:
