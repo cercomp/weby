@@ -65,7 +65,7 @@
         <%= link_to(t(".help"), current_settings.help_site, target: '_blank') if current_settings.help_site %>
         <br />
         <% admin_locales.each do |locale| %>
-          <%= link_to flag(locale), params.merge(locale: locale.name ) %>
+          <%= link_to flag(locale), params.merge(locale: locale.name) %>
         <% end unless current_user %>
       </p>
     </div>

@@ -29,7 +29,7 @@ module ActionDispatch
         "#{subdomain}#{domain}"
       end
 
-      def url_for_with_subdomains(options)
+      def url_for_with_subdomains(options, route_name = nil, url_strategy = UNKNOWN)
         if options.kind_of?(Hash)
           if options.key?(:subdomain)
             options[:host] = with_subdomain(options.delete(:subdomain), options)
@@ -39,7 +39,7 @@ module ActionDispatch
           end
         end
         options[:protocol] ||= Weby::Settings::Weby.login_protocol if Weby::Cache.request[:current_user]
-        url_for_without_subdomains(options)
+        url_for_without_subdomains(options, route_name, url_strategy)
       end
       alias_method_chain :url_for, :subdomains
     end
