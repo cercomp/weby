@@ -1,0 +1,9 @@
+pt-BR:
+  simple_captcha:
+    placeholder: "Informe o texto da imagem"
+    label: "Informe o texto no campo:"
+    refresh_button_text: "Atualizar"
+    captcha_code:  " O código informado não confere com a Imagem "    
+    message:
+      default: "O código informado não confere com a Imagem"
+      user: "A imagem e o código são diferentes"

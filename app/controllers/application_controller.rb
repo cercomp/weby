@@ -1,7 +1,8 @@
 # coding: utf-8
 class ApplicationController < ActionController::Base
   include ApplicationHelper # In order to user helper methods in controllers
-
+  include SimpleCaptcha::ControllerHelpers
+  
   force_ssl if: :should_be_ssl?
 
   protect_from_forgery with: :exception

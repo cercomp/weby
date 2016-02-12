@@ -11,21 +11,26 @@ module Feedback
       @extension = current_site.extensions.find_by(name: 'feedback')
     end
 
-    def create
+    def create      
       @message = Message.new(message_params)
       @message.site = current_site
       @extension = current_site.extensions.find_by(name: 'feedback')
-
-      if @message.save
-        if (@groups.length == 0)
-          emails = User.no_admin.by_site(current_site.id).actives.map(&:email).join(',')
-          FeedbackMailer.send_feedback(@message, emails, current_site).deliver
-        else
-          @message.groups.each do |group|
-            FeedbackMailer.send_feedback(@message, group.emails, current_site).deliver
+        
+      if simple_captcha_valid?
+        if @message.save
+          if (@groups.length == 0)
+            emails = User.no_admin.by_site(current_site.id).actives.map(&:email).join(',')
+            FeedbackMailer.send_feedback(@message, emails, current_site).deliver
+          else
+            @message.groups.each do |group|
+              FeedbackMailer.send_feedback(@message, group.emails, current_site).deliver
+            end
           end
+        else
+          render 'new'
         end
       else
+        @captcha_errors = t('simple_captcha.captcha_code')
         render 'new'
       end
     end
