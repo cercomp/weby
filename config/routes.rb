@@ -33,6 +33,9 @@ Rails.application.routes.draw do
       resources :activity_records, only: [:index, :show]
       resources :extensions
       resources :menus do
+        collection do
+          post :change_order
+        end
         resources :menu_items, controller: 'menus/menu_items' do
           member do
             put :toggle
