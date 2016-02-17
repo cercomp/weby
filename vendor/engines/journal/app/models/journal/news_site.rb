@@ -8,6 +8,10 @@ module Journal
 
     validate :validate_position
 
+    def category_list_before_type_cast
+      category_list.to_s
+    end
+
     private
 
     def self.import(attrs, options = {})

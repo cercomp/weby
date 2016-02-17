@@ -54,6 +54,10 @@ module Calendar
       "#{id} #{name}".parameterize
     end
 
+    def category_list_before_type_cast
+      category_list.to_s
+    end
+
     def self.import(attrs, options = {})
       return attrs.each { |attr| import attr, options } if attrs.is_a? Array
 
