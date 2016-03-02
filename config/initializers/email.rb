@@ -1,4 +1,4 @@
-if Rails.env.production?
+if Rails.env.production? && Setting.table_exists?
   if Weby::Settings::Email.smtp_address.present?
     # Enable deliveries
     ActionMailer::Base.perform_deliveries = true
