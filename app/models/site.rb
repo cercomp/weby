@@ -10,8 +10,8 @@ class Site < ActiveRecord::Base
   has_many :menu_items, through: :menus
   has_many :pages, -> { includes(:i18ns) }, dependent: :destroy
   has_many :pages_i18ns, through: :pages, source: :i18ns
-  has_many :components, ->(site) { site.theme ? order(:place_holder, :position).where(theme: site.theme.name) : where(nil) }, dependent: :destroy
-  has_many :root_components, ->(site) { site.theme ? order(:position).where("place_holder !~ '^\\d*$'").where(theme: site.theme.base) : where(nil) }, class_name: 'Component'
+  #has_many :components, ->(site) { site.theme ? order(:place_holder, :position).where(theme: site.theme.name) : where(nil) }, through: :skins, dependent: :destroy
+  #has_many :root_components, ->(site) { site.theme ? order(:position).where("place_holder !~ '^\\d*$'").where(theme: site.theme.base) : where(nil) }, through: :skins, class_name: 'Component'
   has_many :repositories, dependent: :destroy
   has_many :extensions, dependent: :destroy
   has_one :theme
@@ -22,7 +22,7 @@ class Site < ActiveRecord::Base
   has_many :messages, class_name: 'Feedback::Message', dependent: :destroy
   has_many :banners, class_name: 'Sticker::Banner', dependent: :destroy
   has_many :events, class_name: 'Calendar::Event', dependent: :destroy
-  has_many :skins
+  has_many :skins, dependent: :destroy
   #has_many :components, through: :skins
   #has_many :styles, through: :skins
 
