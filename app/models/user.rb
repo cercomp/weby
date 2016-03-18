@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable,
-         :rememberable, :trackable, :confirmable, :lockable
+         :rememberable, :trackable, :confirmable, :lockable, :omniauthable, :omniauth_providers => [:shibboleth]
 
   attr_accessor :auth
 

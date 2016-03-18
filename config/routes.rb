@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   constraints(Weby::Subdomain) do
 
+    match "/auth/:provider/callback" => "sessions#new", via: 'get'
+
     get '/' => 'sites#show', as: :site
     get '/admin' => 'sites#admin', as: :site_admin
     get '/admin/edit' => 'sites#edit', as: :edit_site_admin

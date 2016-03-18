@@ -5,6 +5,13 @@ class SessionsController < Devise::SessionsController
 
   before_action :store_location, only: :new
 
+  def shib
+    puts "================================"
+    puts request.headers['HTTP_SHIB_SESSION_ID']
+    puts "================================"
+    raise request.headers#['omniauth.auth'].to_yaml
+  end
+
   def create
     ldap_user_login = params[:user][:auth]
     ldap = Weby::Settings::Ldap
