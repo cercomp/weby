@@ -2,13 +2,19 @@ class Devise::OmniauthCallbacksController < DeviseController
   prepend_before_action { request.env["devise.skip_timeout"] = true }
 
   def shibboleth
-    puts "================================"
-    puts request.headers['HTTP_SHIB_INETORGPERSON_MAIL']
-    puts request.headers['HTTP_SHIB_INETORGPERSON_CN']
-    puts request.headers['HTTP_SHIB_INETORGPERSON_SN']
-    puts "================================"
-    raise request.headers.inspect
-    #raise request.env['omniauth.auth'].to_yaml
+    user = User.create!(login: "User#{rand(99999)}",
+      password: "User#{rand(99999)}",
+			email: request.headers['HTTP_SHIB_INETORGPERSON_MAIL'],
+      first_name: request.headers['HTTP_SHIB_INETORGPERSON_CN'],
+			last_name: request.headers['HTTP_SHIB_INETORGPERSON_SN'],
+      confirmed_at: Time.now,
+      confirmation_sent_at: Time.now)
+    AuthSource.create!(user_id: user.id,
+      source_type: 'shibboleth',
+      source_login: user.login)
+    sign_in user
+		record_login
+    redirect_to edit_profile_path user.login || root_path
   end
 
   def passthru
@@ -18,6 +24,18 @@ class Devise::OmniauthCallbacksController < DeviseController
   def failure
     set_flash_message :alert, :failure, kind: OmniAuth::Utils.camelize(failed_strategy.name), reason: failure_message
     redirect_to after_omniauth_failure_path_for(resource_name)
+  end
+
+  private
+
+  def record_login
+    string = request.user_agent
+    user_agent = UserAgent.parse(string)
+
+    UserLoginHistory.create(user_id: current_user.id,
+                            login_ip: request.remote_ip,
+                            browser: user_agent.browser,
+                            platform: "#{user_agent.platform} #{user_agent.os}")
   end
 
   protected
