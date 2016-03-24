@@ -10,12 +10,12 @@ class SessionsController < Devise::SessionsController
     ldap = Weby::Settings::Ldap
     if ldap.host.nil?
       super
-      record_login
+      current_user.record_login(request.user_agent, request.remote_ip) if current_user
     else
       ldap_user_pass = ldap.prefixo.to_s + Digest::SHA1.base64digest(params[:user][:password]) + ldap.sufixo.to_s
       if ldap.ldaps == 'true'
         connect = Net::LDAP.new host: ldap.host,
-          port: ldap.port, 
+          port: ldap.port,
           encryption: :simple_tls,
           auth: {
             method: :simple,
@@ -24,7 +24,7 @@ class SessionsController < Devise::SessionsController
           }
       else
         connect = Net::LDAP.new host: ldap.host,
-          port: ldap.port, 
+          port: ldap.port,
           auth: {
             method: :simple,
             username: ldap.account,
@@ -35,7 +35,7 @@ class SessionsController < Devise::SessionsController
       ldap_user = connect.search(:base => ldap.base, :filter => filter)
       if ldap_user.first.nil?
         super
-        record_login
+        current_user.record_login(request.user_agent, request.remote_ip) if current_user
       else
         source = AuthSource.find_by(source_type: 'ldap', source_login: ldap_user_login)
         if source.nil?
@@ -52,7 +52,7 @@ class SessionsController < Devise::SessionsController
           render :new
         else
           sign_in source.user
-          record_login
+          source.user.record_login(request.user_agent, request.remote_ip)
           redirect_to session[:return_to] || root_path
         end
       end
@@ -67,13 +67,13 @@ class SessionsController < Devise::SessionsController
     else
       AuthSource.new(user_id: user.id, source_type: session[:ldap_type], source_login: session[:ldap_login]).save
       sign_in user
-      record_login
+      user.record_login(request.user_agent, request.remote_ip)
       redirect_to session[:return_to] || root_path
     end
   end
 
   def new_user
-    if session[:ldap_login].blank? || session[:ldap_email].blank? 
+    if session[:ldap_login].blank? || session[:ldap_email].blank?
       flash[:error] = t('invalid')
       redirect_to login_path
     else
@@ -93,22 +93,12 @@ class SessionsController < Devise::SessionsController
       user.save!
       AuthSource.new(user_id: user.id, source_type: session[:ldap_type], source_login: session[:ldap_login]).save
       sign_in user
-      record_login
+      user.record_login(request.user_agent, request.remote_ip)
       redirect_to session[:return_to] || root_path
     end
   end
 
   private
-
-  def record_login
-    string = request.user_agent
-    user_agent = UserAgent.parse(string)
-
-    UserLoginHistory.create(user_id: current_user.id,
-                            login_ip: request.remote_ip,
-                            browser: user_agent.browser,
-                            platform: "#{user_agent.platform} #{user_agent.os}")
-  end
 
   def store_location
     session[:return_to] = params[:back_url]

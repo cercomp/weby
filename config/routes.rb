@@ -166,7 +166,7 @@ Rails.application.routes.draw do
   devise_for :users,
     path: '/',
     skip: [:sessions, :registrations, :passwords],
-    controllers: {omniauth_callbacks: 'omniauth_callbacks' }
+    controllers: { omniauth_callbacks: 'omniauth_callbacks' }
 
   # customize devise routes
   devise_scope :user do

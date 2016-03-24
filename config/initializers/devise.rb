@@ -229,6 +229,7 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.omniauth :shibboleth, {
+    request_type: :header,
     debug: false,
     uid_field: 'uid',
     info_fields: {email: 'mail', name: 'cn', last_name: 'sn'}
