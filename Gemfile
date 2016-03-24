@@ -19,7 +19,6 @@ gem 'fullcalendar-rails'
 
 # Ominiauth
 gem 'omniauth-shibboleth'
-gem 'omniauth-saml'
 
 # assets
 gem 'sass-rails', '~> 4.0.3'

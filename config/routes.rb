@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   constraints(Weby::Subdomain) do
 
-    match "/auth/:provider/callback" => "sessions#new", via: 'get'
-
     get '/' => 'sites#show', as: :site
     get '/admin' => 'sites#admin', as: :site_admin
     get '/admin/edit' => 'sites#edit', as: :edit_site_admin
@@ -165,7 +163,10 @@ Rails.application.routes.draw do
   end
 
   # defaults devise routes
-  devise_for :users, path: '/', skip: [:sessions, :registrations, :passwords]
+  devise_for :users,
+    path: '/',
+    skip: [:sessions, :registrations, :passwords],
+    controllers: {omniauth_callbacks: 'omniauth_callbacks' }
 
   # customize devise routes
   devise_scope :user do
