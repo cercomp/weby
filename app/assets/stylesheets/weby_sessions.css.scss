@@ -45,8 +45,21 @@ $nav-pills-active-link-hover-bg: $weby-blue;
     text-align: right;
     font-size: 11px;
 
-    a {
+    .cafe-logo{
+      width: 50%;
+      float: left;
+    }
+
+    .cafe-logo > img{
+      width: 100%;
+    }
+
+    li {
       display: block;
+    }
+
+    a {
+      display: inline-block;
       padding: 5px 0 0;
     }
   }

@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable,
-         :rememberable, :trackable, :confirmable, :lockable
+         :rememberable, :trackable, :confirmable, :lockable, :omniauthable, :omniauth_providers => [:shibboleth]
 
   attr_accessor :auth
 
@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   has_many :banners, class_name: 'Sticker::Banner', dependent: :restrict_with_error
   has_many :events, class_name: 'Calendar::Event', dependent: :restrict_with_error
   has_many :journal_newsletter_histories
+  has_many :auth_sources, dependent: :destroy
 
   has_and_belongs_to_many :roles
 
@@ -135,6 +136,17 @@ class User < ActiveRecord::Base
   # Returns the user's global roles
   def global_roles
     roles.where(site_id: nil)
+  end
+
+  def record_login user_agent, ip
+    ua = UserAgent.parse(user_agent)
+
+    UserLoginHistory.create(
+      user_id: id,
+      login_ip: ip,
+      browser: ua.browser,
+      platform: "#{ua.platform} #{ua.os}"
+    )
   end
 
   # NOTE Routine used to manage the authlogic's password pattern using devise.

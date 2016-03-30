@@ -17,6 +17,9 @@ gem 'jcrop-rails-v2', '~> 0.9.12.3'
 gem 'font-awesome-rails', '~> 4.1.0.0'
 gem 'fullcalendar-rails'
 
+# Ominiauth
+gem 'omniauth-shibboleth'
+
 # assets
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
