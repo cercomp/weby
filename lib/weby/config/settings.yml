@@ -75,3 +75,6 @@ settings:
       value:
     smtp_password:
       value:
+  cafe:
+    login_host:
+      value:

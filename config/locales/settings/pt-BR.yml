@@ -36,3 +36,4 @@ pt-BR:
     smtp_enable_starttls_auto: 'Habilitar StartTLS auto (true|false)'
     smtp_user_name:     'Nome de usuário SMTP'
     smtp_password:      'Senha SMTP'
+    login_host:         'Host da URL de login do CAFe'

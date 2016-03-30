@@ -59,6 +59,19 @@ class SessionsController < Devise::SessionsController
     end
   end
 
+  def shib_login
+    auth_source = AuthSource.find_by source_login: params[:hash], source_type: 'shibboleth'
+    if auth_source
+      sign_in auth_source.user
+      auth_source.user.record_login(request.user_agent, request.remote_ip)
+      auth_source.update source_login: nil
+      redirect_to session[:return_to] || root_path
+    else
+      flash[:error] = t('invalid')
+      redirect_to login_path
+    end
+  end
+
   def link_user
     user = User.find_by_login(params[:user][:auth])
     if user.nil? || !user.valid_password?(params[:user][:password])

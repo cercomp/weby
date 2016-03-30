@@ -49,7 +49,9 @@
           <%= yield %>
         </div>
         <nav class="help-nav">
-          <%= link_to image_tag('cafe-logo.png'), user_omniauth_authorize_path(:shibboleth), class: 'cafe-logo' %>
+          <% if Weby::Settings::Cafe.login_url.present? %>
+            <%= link_to image_tag('cafe-logo.png'), user_omniauth_authorize_path(:shibboleth), class: 'cafe-logo' %>
+          <% end %>
           <li><%= link_to t('.confirmation'), new_user_confirmation_path %></li>
           <li><%= link_to t('.unlock'), new_user_unlock_path %></li>
           <li><%= link_to t('.sites'), root_url(subdomain: nil, protocol: 'http') %></li>

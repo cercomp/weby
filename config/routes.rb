@@ -176,6 +176,7 @@ Rails.application.routes.draw do
     post 'login'   => 'sessions#create'
     post 'link_user' => 'sessions#link_user'
     get 'new_user' => 'sessions#new_user'
+    get 'shib_login/:hash' => 'sessions#shib_login', as: :shib_login
 
     # routes to register
     get 'signup'  => 'devise/registrations#new'
