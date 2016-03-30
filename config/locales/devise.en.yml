@@ -57,3 +57,6 @@ en:
       not_saved:
         one: "1 error prohibited this %{resource} from being saved:"
         other: "%{count} errors prohibited this %{resource} from being saved:"
+  link_weby_user: "It's necessary to merge your user to a Weby account. If you already have an account, plases, type your login and password."
+  invalid: "Login or password invalid. Please, use a valid user."
+  shib_invalid: 'Invalid Identification'

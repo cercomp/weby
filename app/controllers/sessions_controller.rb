@@ -65,9 +65,9 @@ class SessionsController < Devise::SessionsController
       sign_in auth_source.user
       auth_source.user.record_login(request.user_agent, request.remote_ip)
       auth_source.update source_login: nil
-      redirect_to session[:return_to] || root_path
+      redirect_to params[:back_url] || root_path
     else
-      flash[:error] = t('invalid')
+      flash[:error] = t('shib_invalid')
       redirect_to login_path
     end
   end

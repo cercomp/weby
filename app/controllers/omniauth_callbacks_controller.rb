@@ -4,8 +4,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     auth_hash = get_vars
 
     user = User.find_by(email: auth_hash[:mail]) || User.new(
-      login: "User#{rand(99999)}",
-      password: "User#{rand(99999)}",
+      login: "User#{rand(999999)}",
+      password: "User#{rand(999999)}",
       email: auth_hash[:mail],
       first_name: auth_hash[:name],
       last_name: auth_hash[:last_name],
@@ -13,16 +13,18 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       confirmation_sent_at: Time.now
     )
 
-    auth_source = user.auth_sources.find_by(source_type: 'shibboleth') || user.auth_sources.new(source_type: 'shibboleth')
+    redir = if user.persisted?
+      session[:return_to] || root_path
+    else
+      user.save!
+      edit_profile_path(user.login)
+    end
+
+    auth_source = user.auth_sources.find_or_create_by(source_type: 'shibboleth')
     auth_source.update source_login: generate_code_for(user)
 
-    if user.persisted?
-      redir = session[:return_to] || root_path
-    else
-      redir = edit_profile_path(user.login) || root_path
-      user.save!
-    end
-    redirect_to shib_login_url(auth_source.source_login, host: Weby::Settings::Cafe.login_host, back_url: redir)
+    host = Weby::Settings::Cafe.login_host
+    redirect_to shib_login_url(auth_source.source_login, host: host, protocol: host.match(/^https?:\/\//).to_s, back_url: redir)
   end
 
   private
