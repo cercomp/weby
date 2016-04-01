@@ -90,7 +90,8 @@ class Component < ActiveRecord::Base
     positions.to_a.each_with_index do |comp_id, idx|
       attr = { position: idx + 1 }
       attr[:place_holder] = place_holder if place_holder.present?
-      Component.find(comp_id).update(attr)
+      comp = Component.find_by id: comp_id
+      comp.update(attr) if comp
     end
   end
 

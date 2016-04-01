@@ -19,6 +19,7 @@ class Weby::Theme
   private
 
   def create_component place, component
+    component = component.dup
     component['place_holder'] = place
     if component['name'] == 'components_group'
       children = component.delete('children')
@@ -42,6 +43,7 @@ class Weby::Theme
     return if @skin.components.any? #@site.active_skin.components.where(theme: @name).destroy_all
     @components.each do |place, comps|
       comps.each do |component|
+        component = component.dup
         #component['theme'] = @name
         if component['name'] == 'menu'
           menu_attrs = component.delete('menu') || {}
