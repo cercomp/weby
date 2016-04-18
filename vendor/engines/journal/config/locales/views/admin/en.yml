@@ -1,0 +1,15 @@
+en:
+  journal:
+    admin:
+      target_pages:
+        register_date:        " Register Date "
+        news:                 " News "
+        user:                 " Author "
+        title:                " Title "
+        category:             " Category "
+        none_news:            " No News Found "
+        search_news:          " Search news "
+      form:
+        none: "Don't show"
+        top: 'Before the text'
+        bottom: 'After the text'

@@ -4,7 +4,7 @@
   <%= f.input :created_at, wrapper: :checkbox, as: :boolean %>
   <%= f.input :updated_at, wrapper: :checkbox, as: :boolean %>
 
-  <%= f.input :social_share_pos, as: :select, collection: [:none, :top, :bottom], include_blank: false %>
+  <%= f.input :social_share_pos, as: :select, collection: [[t('.none'), :none], [t('.top'), :top], [t('.bottom'), :bottom]], include_blank: false %>
 
   <%= f.input :social_share_networks_, as: :check_boxes, collection: [:twitter, :facebook] %>
 

@@ -1,0 +1,15 @@
+pt-BR:
+  journal:
+    admin:
+      target_pages:
+        register_date:        " Data de Cadastro "
+        news:                 " Notícia "
+        user:                 " Autor "
+        title:                " Título "
+        category:             " Categoria "
+        none_news:            " Nenhuma Notícia Encontrada "
+        search_news:          " Pesquisar notícia "
+      form:
+        none: 'Não exibir'
+        top: 'Acima da notícia'
+        bottom: 'Abaixo da notícia'
