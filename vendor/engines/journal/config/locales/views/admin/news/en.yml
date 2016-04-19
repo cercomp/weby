@@ -69,10 +69,10 @@ en:
           period_event:         " Event date "
           regional:             " Regional "
           national:             " National "
-          international:        " International "  
+          international:        " International "
           begin:                " Begin "
           end:                  " End "
-        recycle_bin:                             
+        recycle_bin:
           new_news:             " New News "
           covers:               " Covers "
           news:                 " News "
@@ -82,12 +82,5 @@ en:
           title:                " Title "
           cover:                " Cover "
           status:               " Status "
-      target_pages:
-        register_date:        " Register Date "
-        news:                 " News "
-        user:                 " Author "
-        title:                " Title "
-        category:             " Category "
-        none_news:            " No News Found "
-        search_news:          " Search news "
+
 

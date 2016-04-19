@@ -22,7 +22,7 @@
 <% end %>
 <article class="news-show">
   <%= weby_file_view(@news.image, :l, '128', nil) %>
-
+  <%= yield :social_code if @extension.settings.social_share_pos == 'top' %>
   <header>
     <h2><%= @news.title %></h2>
   </header>
@@ -40,20 +40,13 @@
     </span>
   <% end %>
   </div>
-
-  <%= yield :social_code if @extension.settings.social_share_pos == 'top' %>
-
+  <%= yield :social_code if @extension.settings.social_share_pos == 'middle' %>
   <summary>
    <%= raw @news.summary %>
   </summary>
-
-  <%= yield :social_code if @extension.settings.social_share_pos == 'middle' %>
-
   <div class="body">
     <%= raw @news.text %>
   </div>
-
-  <%= yield :social_code if @extension.settings.social_share_pos == 'bottom' %>
 
   <%= content_tag_if @news.source.present?, :p, class: 'source' do %>
     <span class="source-label"><%= "#{t('.source')}:" %></span>
@@ -100,6 +93,7 @@
     </table>
   <% end %>
 
+  <%= yield :social_code if @extension.settings.social_share_pos == 'bottom' %>
   <div style="margin-top: 8px;">
     <%= link_to(weby_icon('edit', t("edit")), edit_admin_news_path(@news)) if check_permission(Journal::Admin::NewsController, [:edit]) %>
     <%= link_to weby_icon('share', t(".share")), "#", data: {toggle: "modal", target: "#myModal"} if current_user  %>
