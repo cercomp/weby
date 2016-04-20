@@ -15,6 +15,7 @@ pt-BR:
           new_news:             " Nova Notícia "
           covers:               " Capas "
           newsletter:           " Newsletter "
+          settings:             " Configurações "
         show:
           news:                 " Notícias "
           period_page:          " Período de publicação "
@@ -39,6 +40,7 @@ pt-BR:
           status:               " Status "
           publish:              " Publicar "
           move:                 " Mover "
+          settings:             " Configurações "
         list:
           none_news:            " Nenhuma notícia encontrada. "
           user:                 " Autor "

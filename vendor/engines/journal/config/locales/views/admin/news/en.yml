@@ -15,6 +15,7 @@ en:
           new_news:             " New News "
           covers:               " Covers "
           newsletter:           " Newsletter "
+          settings:             " Settings "
         show:
           news:                 " News "
           period_page:          " Published period "
@@ -38,6 +39,7 @@ en:
           status:               " Status "
           publish:              " Publish "
           move:                 " Move "
+          settings:             " Settings "
         list:
           none_news:            " No news were found "
           user:                 " Author "

@@ -21,6 +21,9 @@
       <% with_permission(action: [:recover, :purge]) do %>
         <%= link_to t("recycle_bin"), recycle_bin_admin_news_index_path, class: "btn btn-default" %>
       <% end %>
+      <% with_permission(controller: Sites::Admin::ExtensionsController, action: [:edit]) do %>
+        <%= link_to icon('cog'), edit_site_admin_extension_path(current_site.extensions.find_by(name: 'journal')), class: "btn btn-default", title: t('.settings') %>
+      <% end %>
     </div>
   </div>
 </div>

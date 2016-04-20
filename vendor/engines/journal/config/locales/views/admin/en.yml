@@ -14,3 +14,5 @@ en:
         top: 'Before the title'
         middle: 'After the title'
         bottom: 'After the text'
+        show: 'Display'
+        social: 'Social networks'

@@ -14,3 +14,5 @@ pt-BR:
         top: 'Acima do título'
         middle: 'Abaixo do título'
         bottom: 'Abaixo do texto'
+        show: 'Exibição'
+        social: 'Redes sociais'
