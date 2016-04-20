@@ -4,6 +4,7 @@ class Site < ActiveRecord::Base
 
   has_many :subsites, foreign_key: :parent_id, class_name: 'Site', dependent: :nullify
   has_many :roles, dependent: :destroy
+  has_many :users, through: :roles
   has_many :views, dependent: :delete_all
   has_many :activity_records, dependent: :destroy
   has_many :menus, -> { order(position: :asc) }, dependent: :destroy
