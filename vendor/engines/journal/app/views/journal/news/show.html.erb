@@ -1,49 +1,62 @@
 <% content_for :title, " - #{@news.title}" %>
 <% meta_image @news.image %>
+<%=  %>
+<% content_for :social_code do %>
+  <% if @extension.settings.social_share_networks_.include?('twitter') %>
+    <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  <% end %>
+  <% if @extension.settings.social_share_networks_.include?('facebook') %>
+    <div id="fb-root"></div>
+    <script>// <![CDATA[
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.5";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    // ]]></script>
+    <div class="fb-like" data-href="" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+  <% end %>
+<% end %>
 <article class="news-show">
   <%= weby_file_view(@news.image, :l, '128', nil) %>
-
+  <%= yield :social_code if @extension.settings.social_share_pos == 'top' %>
   <header>
-    <% if (defined?(as_component) ? as_component[:show_title] : true) %>
-      <h2><%= @news.title %></h2>
-    <% end %>
+    <h2><%= @news.title %></h2>
   </header>
-  <% if !defined?(as_component) %>
-    <div class="news-details details">
-    <% if current_site.extensions.find_by(name: 'journal').settings.author == '1' %>
-       <span class="author"><%= t(".posted_by", author: @news.user) %></span>
-    <% end %>
-    <% if @news.published? %>
-      <span class="date">
-        <% if (current_site.extensions.find_by(name: 'journal').settings.created_at == '1') %>
-          <% news_date = @news.i18ns.first.created_at || @news.created_at %>
-          <%= t(".created_at", created_at: l(news_date, format: :short)) if news_date %>
-        <% end %>
-        <%= t(".updated_at", updated_at: @updated_at) if @updated_at %>
-      </span>
-    <% end %>
-    </div>
+  <div class="news-details details">
+  <% if @extension.settings.author == '1' %>
+     <span class="author"><%= t(".posted_by", author: @news.user) %></span>
   <% end %>
-
+  <% if @news.published? %>
+    <span class="date">
+      <% if (@extension.settings.created_at == '1') %>
+        <% news_date = @news.i18ns.first.created_at || @news.created_at %>
+        <%= t(".created_at", created_at: l(news_date, format: :short)) if news_date %>
+      <% end %>
+      <%= t(".updated_at", updated_at: @updated_at) if @updated_at %>
+    </span>
+  <% end %>
+  </div>
+  <%= yield :social_code if @extension.settings.social_share_pos == 'middle' %>
   <summary>
    <%= raw @news.summary %>
   </summary>
-
   <div class="body">
     <%= raw @news.text %>
   </div>
 
-  <% if (defined?(as_component) ? as_component[:show_info] : true) %>
-    <%= content_tag_if @news.source.present?, :p, class: 'source' do %>
-      <span class="source-label"><%= "#{t('.source')}:" %></span>
-      <%= "#{@news.source}" %>
-    <% end %>
-    <% @news_site = Journal::NewsSite.find_by(journal_news_id: @news.id, site_id: current_site.id) %>
-    <%= content_tag_if @news_site.category_list.any?, :p, class: 'categories' do %>
-      <span class="categories-label"><%= "#{t('.categories')}:"  %></span>
-      <% @news_site.category_list.each do |category| %>
-        <%= link_to category, news_index_path( tags: category.to_s ), class: 'weby-label default' %>
-      <% end %>
+  <%= content_tag_if @news.source.present?, :p, class: 'source' do %>
+    <span class="source-label"><%= "#{t('.source')}:" %></span>
+    <%= "#{@news.source}" %>
+  <% end %>
+  <% @news_site = Journal::NewsSite.find_by(journal_news_id: @news.id, site_id: current_site.id) %>
+  <%= content_tag_if @news_site.category_list.any?, :p, class: 'categories' do %>
+    <span class="categories-label"><%= "#{t('.categories')}:"  %></span>
+    <% @news_site.category_list.each do |category| %>
+      <%= link_to category, news_index_path( tags: category.to_s ), class: 'weby-label default' %>
     <% end %>
   <% end %>
 
@@ -80,6 +93,7 @@
     </table>
   <% end %>
 
+  <%= yield :social_code if @extension.settings.social_share_pos == 'bottom' %>
   <div style="margin-top: 8px;">
     <%= link_to(weby_icon('edit', t("edit")), edit_admin_news_path(@news)) if check_permission(Journal::Admin::NewsController, [:edit]) %>
     <%= link_to weby_icon('share', t(".share")), "#", data: {toggle: "modal", target: "#myModal"} if current_user  %>

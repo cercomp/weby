@@ -47,6 +47,9 @@ class Sites::Admin::ExtensionsController < ::ApplicationController
   end
 
   def extension_update_params
-    params.require(:extension).permit(Weby.extensions[@extension.name.to_sym].settings)
+    settings = Weby.extensions[@extension.name.to_sym].settings.dup
+    settings << settings.select{|s| s.to_s.ends_with?('_') }.map{|s| [s, []] }.to_h
+
+    params.require(:extension).permit(settings)
   end
 end

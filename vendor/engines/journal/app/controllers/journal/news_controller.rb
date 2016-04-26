@@ -18,9 +18,10 @@ module Journal
 
     def show
       @news = current_site.news.find(params[:id])
-      if current_site.extensions.find_by(name: 'journal').settings.updated_at == '1' &&
+      @extension = current_site.extensions.find_by(name: 'journal')
+      if @extension.settings.updated_at == '1' &&
         (@news.i18ns.first.created_at != @news.i18ns.first.updated_at ||
-        current_site.extensions.find_by(name: 'journal').settings.created_at == '0') &&
+        @extension.settings.created_at == '0') &&
         !@news.i18ns.first.updated_at.blank?
           @updated_at = l(@news.i18ns.first.updated_at, format: :short)
       end

@@ -5,3 +5,5 @@ pt-BR:
         author:       " Mostrar o autor da notícia "
         created_at:   " Mostrar a data de criação da notícia "
         updated_at:   " Mostrar a data de atualização da notícia "
+        social_share_pos: 'Posição do compartilhamento social'
+        social_share_networks_: 'Redes sociais'
