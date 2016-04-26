@@ -11,11 +11,16 @@ rights:
         pt-BR: Excluir papéis
       action: destroy
   users:
+    manage_roles:
+      name:
+        en: List users
+        pt-BR: Listar usuários
+      action: manage_roles
     change_roles:
       name:
         en: Change user roles
         pt-BR: Mudar papéis de usuários
-      action: change_roles manage_roles
+      action: change_roles
   pages:
     index:
       name:

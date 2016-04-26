@@ -22,8 +22,10 @@
             </div>
           </td>
           <td class="text-right">
-            <%= link_to icon('edit', text: t("edit")), { action: 'manage_roles', user_id: user.id },
-              remote: 'true', class: 'action-link' %>
+            <% if check_permission(Sites::Admin::UsersController, [:change_roles]) %>
+              <%= link_to icon('edit', text: t("edit")), { action: 'manage_roles', user_id: user.id },
+                remote: 'true', class: 'action-link' %>
+            <% end %>
           </td>
         </tr>
       <% end %>
