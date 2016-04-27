@@ -38,9 +38,13 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def get_vars
     {
-      mail: request.headers['HTTP_SHIB_INETORGPERSON_MAIL'].to_s.downcase,
-      name: request.headers['HTTP_SHIB_INETORGPERSON_CN'].to_s.titleize,
-      last_name: request.headers['HTTP_SHIB_INETORGPERSON_SN'].to_s.titleize
+      mail: read_header('HTTP_SHIB_INETORGPERSON_MAIL', :downcase),
+      name: read_header('HTTP_SHIB_INETORGPERSON_CN', :titleize),
+      last_name: read_header('HTTP_SHIB_INETORGPERSON_SN', :titleize)
     }
+  end
+
+  def read_header name, process
+    request.headers[name].to_s.dup.mb_chars.send(process).to_s
   end
 end
