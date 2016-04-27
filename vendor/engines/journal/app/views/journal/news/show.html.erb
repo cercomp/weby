@@ -2,11 +2,11 @@
 <% meta_image @news.image %>
 <%=  %>
 <% content_for :social_code do %>
-  <% if @extension.settings.social_share_networks_.include?('twitter') %>
+  <% if @extension.settings.social_share_networks_.to_a.include?('twitter') %>
     <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
   <% end %>
-  <% if @extension.settings.social_share_networks_.include?('facebook') %>
+  <% if @extension.settings.social_share_networks_.to_a.include?('facebook') %>
     <div id="fb-root"></div>
     <script>// <![CDATA[
     (function(d, s, id) {
