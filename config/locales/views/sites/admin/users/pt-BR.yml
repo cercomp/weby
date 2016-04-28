@@ -15,13 +15,13 @@ pt-BR:
           none_role:         " Nenhum Papel "
           new_role:          " Novo Papel "
         enroled:
-          enroled_user:      " Usuário Relacionado "
+          enroled_user:      " Usuários Relacionados "
           role:              " Papel "
           none_user:         " Nenhum Usuário Relacionado "
         role_form:
           confirm_unrole:    " Tem certeza que deseja remover todos os papéis de seu próprio usuário e se desvincular deste site? "
         enrole_adms:
           enrole_user:       " Relacionar Usuários "
-          enroled_user:      " Usuário Relacionado "
+          enroled_user:      " Usuários Relacionados "
           none_user:         " Nenhum Usuário "
 
