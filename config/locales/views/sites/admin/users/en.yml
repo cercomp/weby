@@ -14,7 +14,7 @@ en:
           none_role:         " None Role "
           new_role:          " New Role "
         enroled:
-          enroled_user:      " Enroled User "
+          enroled_user:      " Enroled Users "
           role:              " Role "
           none_user:         " None Enroled User "
         role_form:
