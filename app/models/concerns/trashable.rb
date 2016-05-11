@@ -15,6 +15,10 @@ module Trashable
     define_model_callbacks :trash, :untrash
   end
 
+  def is_trashed?
+    !!deleted_at
+  end
+
   def trash
     if deleted_at
       destroy

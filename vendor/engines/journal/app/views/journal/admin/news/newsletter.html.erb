@@ -27,7 +27,9 @@
       <%= render 'show' %>
     </article>
     <div class="form-action">
-      <input type="submit" class="btn btn-primary" value=<%= t(".send") %> >
+      <% if !@news.is_trashed? %>
+        <input type="submit" class="btn btn-primary" value=<%= t(".send") %> >
+      <% end %>
       <%= link_to t("back"), :back, class: "btn btn-default" %>
       <% if @histories.count > 0 %>
         <!-- Button history modal -->
