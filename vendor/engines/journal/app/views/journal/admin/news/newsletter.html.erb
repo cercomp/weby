@@ -24,6 +24,7 @@
     </div>
     <br>
     <article class="news-show">
+      <%= content_tag :span, t('.deleted'), class: 'label label-danger' if @news.is_trashed? %>
       <%= render 'show' %>
     </article>
     <div class="form-action">
