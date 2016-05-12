@@ -85,6 +85,7 @@ pt-BR:
           all:                  " Todos "
           select_emails:        " Selecionar emails "
           history:              " Histórico "
+          deleted:              " Notícia excluída "
         newsletter_emails:
           select_emails:        " Selecionar emails "
           emails_not_found:     " Emails não encontrados "

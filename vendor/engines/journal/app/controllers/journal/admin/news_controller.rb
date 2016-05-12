@@ -161,7 +161,7 @@ module Journal::Admin
     end
 
     def newsletter
-      @news = Journal::News.where(site_id: current_site).find(params[:id]).in(params[:show_locale])
+      @news = Journal::News.unscoped.where(site_id: current_site).find(params[:id]).in(params[:show_locale])
       @newsletter = Weby::Components.factory(current_site.active_skin.components.find_by_name('newsletter'))
       @emails_id = Journal::Newsletter.by_site(current_site.id).ids.join(",")
       @emails_value = Journal::Newsletter.show_emails(current_site.id)
@@ -171,7 +171,7 @@ module Journal::Admin
     end
 
     def newsletter_histories
-      if (params[:from].blank? || params[:to].blank? || params[:subject].blank?) 
+      if (params[:from].blank? || params[:to].blank? || params[:subject].blank?)
         flash[:error] = t('.field_blank')
         redirect_to :back
       else

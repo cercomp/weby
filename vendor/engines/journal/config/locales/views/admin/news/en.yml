@@ -84,5 +84,25 @@ en:
           title:                " Title "
           cover:                " Cover "
           status:               " Status "
+        newsletter:
+          from:                 " From "
+          to:                   " Send to "
+          subject:              " Subject "
+          send:                 " Send "
+          all:                  " All "
+          select_emails:        " Select e-mails "
+          history:              " History "
+          deleted:              " Deleted news "
+        newsletter_emails:
+          select_emails:        " Select e-mails "
+          emails_not_found:     " E-mails not found "
+        newsletter_histories:
+          histories:            " History "
+          user:                 " User "
+          date:                 " Date "
+          time:                 " Time "
+          detail:               " Details "
+          successfully_send:    " E-mail successfully sent! "
+          field_blank:          " All fields are required. "
 
 
