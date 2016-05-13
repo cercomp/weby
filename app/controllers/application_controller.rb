@@ -330,7 +330,7 @@ class ApplicationController < ActionController::Base
 
         @global_menus = {}
         # Get the menus more efficiently, since menus are asked for in every requisition
-        @site.menus.with_items.each do |menu|
+        @site.menus.each do |menu|
           @global_menus[menu.id] = menu
         end
 

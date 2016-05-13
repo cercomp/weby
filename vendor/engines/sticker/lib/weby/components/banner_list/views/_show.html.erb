@@ -1,7 +1,7 @@
 <% include_component_javascript :javascripts, 'banner_list' %>
 
 <section class="banner_list_component <%= component.orientation %>">
-  <% @banners = current_site.banners.published.order("position ASC").tagged_with(component.category.to_s.mb_chars.downcase.to_s, any: true) %>
+  <% @banners = current_site.banners.published.order("position ASC").tagged_with(component.category.to_s.mb_chars.downcase.to_s, any: true).includes(:repository).includes(:target) %>
 
 
   <% if component.orientation != "slider" %>
