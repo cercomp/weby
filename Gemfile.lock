@@ -97,6 +97,9 @@ GEM
     bootstrap-sass (3.1.1.1)
       sass (~> 3.2)
     builder (3.2.2)
+    bullet (5.0.0)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.9.0)
     callsite (0.0.11)
     capybara (2.4.4)
       mime-types (>= 1.16)
@@ -300,6 +303,7 @@ GEM
     uglifier (2.7.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    uniform_notifier (1.9.0)
     warden (1.2.4)
       rack (>= 1.0)
     websocket (1.0.7)
@@ -320,6 +324,7 @@ DEPENDENCIES
   binding_of_caller (~> 0.7.2)
   bootstrap-daterangepicker-rails (~> 0.1.1)
   bootstrap-sass (~> 3.1.1.1)
+  bullet
   calendar!
   capybara
   d3js-rails (~> 3.1.6)

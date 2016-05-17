@@ -57,6 +57,7 @@ group :development do
   gem 'meta_request', '~> 0.3.0'
   gem 'pry-rails', '~> 0.3.2'
   gem 'letter_opener', '~> 1.2.0'
+  gem "bullet"
 end
 
 group :test do
