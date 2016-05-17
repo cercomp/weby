@@ -1,4 +1,4 @@
-<%= info_page @newslist.includes(:image).includes(:i18ns).includes(:site) %>
+<%= info_page @newslist.includes(:image, :i18ns, :site) %>
 <div class="search-results">
 <% if @newslist.each do |news| %>
   <div class="item-search-result">
