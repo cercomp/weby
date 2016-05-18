@@ -1,5 +1,5 @@
 class FrontNewsComponent < Component
-  component_settings :quant, :avatar_height, :avatar_width, :read_more, :show_author,
+  component_settings :quant, :avatar_height, :avatar_width, :read_more, :tag_as_label, :show_author,
                      :show_date, :image_size, :new_tab, :max_char, :filter_by, :label,
                      :link_to_all, :order_by
 
@@ -21,6 +21,11 @@ class FrontNewsComponent < Component
   alias_method :_read_more, :read_more
   def read_more
     _read_more.blank? ? false : _read_more.to_i == 1
+  end
+
+  alias_method :_tag_as_label, :tag_as_label
+  def tag_as_label
+    _tag_as_label.blank? ? false : _tag_as_label.to_i == 1
   end
 
   alias_method :_show_author, :show_author
