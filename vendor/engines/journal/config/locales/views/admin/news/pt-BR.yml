@@ -41,6 +41,8 @@ pt-BR:
           publish:              " Publicar "
           move:                 " Mover "
           settings:             " Configurações "
+          views:                " Views "
+          action:               " Ações "
         list:
           none_news:            " Nenhuma notícia encontrada. "
           user:                 " Autor "
@@ -50,8 +52,8 @@ pt-BR:
           cover:                " Capa "
           publish:              " Publicar "
           status:               " Status "
-          action:               " Ação "
-          views:                " Visualizações "
+          action:               " Ações "
+          views:                " Views "
         related_files:
           size:                 " Tamanho "
           related_files:        " Arquivos Relacionados "

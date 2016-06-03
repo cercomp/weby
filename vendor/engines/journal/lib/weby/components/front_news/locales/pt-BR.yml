@@ -43,6 +43,10 @@ pt-BR:
         read_more:            " Leia mais... "
         posted_by:            " Por "
         posted_on:            " Em "
+        html:
+          read_more:            " Leia mais... "
+          posted_by:            " Por "
+          posted_on:            " Em "
       form:
         main:                 " Básico "
         advanced:             " Avançado "

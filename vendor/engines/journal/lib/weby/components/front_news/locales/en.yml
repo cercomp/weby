@@ -45,6 +45,10 @@ en:
         read_more:            " Read more... "
         posted_by:            " By "
         posted_on:            " On "
+        html:
+          read_more:            " Read more... "
+          posted_by:            " By "
+          posted_on:            " On "
       form:
         main:                 " Basic "
         advanced:             " Avanced "

@@ -40,6 +40,8 @@ en:
           publish:              " Publish "
           move:                 " Move "
           settings:             " Settings "
+          action:               " Action "
+          views:                " Views "
         list:
           none_news:            " No news were found "
           user:                 " Author "
