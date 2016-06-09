@@ -40,7 +40,7 @@
         <li style="list-style-type:none;">
         <article>
           <% unless event.image.nil? %>
-            <%= weby_file_view(event.image, component.image_size, component.avatar_width, component.avatar_height, {as: "link", url: event_path(event) }) %>
+            <%= weby_file_view(event.image, component.image_size, component.avatar_width, component.avatar_height, {as: "link", url: event_path(event), link_class: 'news-image'}) %>
           <% end %>
           <header>
             <h2> <%= link_to event.name, event_path(event) %> </h2>
