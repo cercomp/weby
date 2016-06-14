@@ -77,14 +77,14 @@
     <% end %>
   </div>
   <div class="tab-pane <%= params["restore"] ? "active" : "" %>" id="restore">
-    <%= form_tag site_admin_import_path, multipart: true, method: :post do %>
+    <%= form_tag site_admin_import_path, id: 'import-form', multipart: true, method: :post do %>
       <div class="row">
         <div class="col-md-6">
           <%= file_field_tag 'upload', required: :required, :accept => 'text/json,text/xml', class: 'form-control' %>
         </div>
       </div>
       <div class="form-actions">
-        <%= submit_tag t('import'), class: 'btn btn-primary import' %>
+        <%= submit_tag t('import'), class: 'btn btn-primary import', data: {confirm: t('.confirm_import')} %>
       </div>
     <% end %>
   </div>
