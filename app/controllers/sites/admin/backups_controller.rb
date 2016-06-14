@@ -100,6 +100,7 @@ class Sites::Admin::BackupsController < ApplicationController
     #      file.write(uploaded_io.read)
     #    end
     #    flash[:error] = 'Houve algum erro na importaçao' Colocar mensagens de erro e sucesso
+    flash[:success] = "Processo concluído"
     redirect_to :back
   end
 end

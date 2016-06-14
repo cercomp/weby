@@ -21,6 +21,7 @@ pt-BR:
           output:                 " Saída: "
           restore:                " Restaurar "
           import:                 " Importar "
+          confirm_import:         " Confirma importação? Alguns dados existentes podem ser sobrescritos nesse processo."
         import:
           restore:                " Restaurar "
           import:                 " Importar "

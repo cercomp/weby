@@ -30,10 +30,20 @@ class Skin < ActiveRecord::Base
 
     attrs.except!('id', 'created_at', 'updated_at', 'site_id', '@type', 'type')
 
-    newskin = self.create!(attrs)
+    #search if this skin already exist
+    skin = self.find_by theme: attrs['theme'], site_id: options[:site_id]
+    if skin
+      skin.update(attrs)
+      #!!
+      skin.components.destroy_all
+      skin.styles.destroy_all
+
+      newskin = skin
+    else
+      newskin = self.create!(attrs)
+    end
 
     newskin.styles.import(styles)
     newskin.components.import(components, site_id: options[:site_id])
   end
-
 end

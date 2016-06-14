@@ -21,6 +21,7 @@ en:
           output:                 " Output: "
           restore:                " Restore "
           import:                 " Import "
+          confirm_import:         " Confirm import? Some existant data may be overwritten during this process."
         import:
           restore:                " Restore "
           import:                 " Import "
