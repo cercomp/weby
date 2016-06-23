@@ -4,7 +4,8 @@ describe Sites::Admin::StylesController do
   let(:user) { FactoryGirl.create(:user, is_admin: true) }
   let(:locale) { FactoryGirl.create(:locale) }
   let(:site) { FactoryGirl.create(:site, locales: [locale]) }
-  let(:first_style) { FactoryGirl.create(:style, site_id: site.id) }
+  let(:skin) { FactoryGirl.create(:skin, site_id: site.id, active: true) }
+  let(:first_style) { FactoryGirl.create(:style, skin_id: skin.id) }
   let(:new_site) { FactoryGirl.create(:site, locales: [locale]) }
 
   before do
@@ -12,15 +13,12 @@ describe Sites::Admin::StylesController do
     sign_in user
   end
 
+
   describe "GET #index" do
     before { get :index }
 
-    skip "assigns @style" do
-      expect(assigns(:styles)).to match_array(site.styles)
-    end
-
     it "renders the :index view" do
-      expect(response).to render_template("index")
+      expect(response).to redirect_to(site_admin_skins_path(anchor: 'tab-styles'))
     end
   end
 
@@ -50,21 +48,9 @@ describe Sites::Admin::StylesController do
     end
   end
 
-  describe "GET #show" do
-    before { get :show, :id => first_style.id }
-
-    it "assigns @style" do
-      expect(assigns(:style)).to eq(first_style)
-    end
-
-    it "renders the :edit view" do
-      expect(response).to render_template("edit")
-    end
-  end
-
   describe "POST #create" do
     context "when valid" do
-      before { post :create, style: { :name => "Style", :site_id => site.id } }
+      before { post :create, style: { :name => "Style", :skin_id => skin.id } }
 
       it "will redirect to" do
         expect(response).to redirect_to edit_site_admin_style_path(assigns(:style), subdomain: site.name)
@@ -76,7 +62,7 @@ describe Sites::Admin::StylesController do
     end
 
     context "when invalid" do
-      before { post :create, style: { :name => "", :site_id => site.id } }
+      before { post :create, style: { :name => "", :skin_id => skin.id } }
 
       it "will render the :new view" do
         expect(response).to render_template("new")
@@ -89,7 +75,7 @@ describe Sites::Admin::StylesController do
       before { put :update, style: { :name => "New name" }, :id => first_style.id }
 
       it "will redirect to site_admin_skins_path" do
-        expect(response).to redirect_to(site_admin_skins_path)
+        expect(response).to redirect_to(site_admin_skins_path(anchor: 'tab-styles'))
       end
 
       it "will set flash[:success]" do
@@ -101,7 +87,7 @@ describe Sites::Admin::StylesController do
       before { put :update, style: { :name => "" }, :id => first_style.id }
 
       it "will render the :edit view" do
-        expect(response).to render_template(:show)
+        expect(response).to render_template(:edit)
       end
     end
   end
@@ -141,7 +127,7 @@ describe Sites::Admin::StylesController do
       end
 
       it "will redirect to site_admin_skins_path" do
-        expect(response).to redirect_to(site_admin_skins_path)
+        expect(response).to redirect_to(site_admin_skins_path(anchor: 'tab-styles'))
       end
     end
 
@@ -153,7 +139,7 @@ describe Sites::Admin::StylesController do
       end
 
       it "will redirect to site_admin_skins_path" do
-        expect(response).to redirect_to(site_admin_skins_path)
+        expect(response).to redirect_to(site_admin_skins_path(anchor: 'tab-styles'))
       end
     end
   end

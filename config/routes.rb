@@ -74,7 +74,7 @@ Rails.application.routes.draw do
           post :sort
         end
       end
-      resources :styles, except: [:index] do
+      resources :styles do
         member do
           put :toggle, :copy, :follow, :unfollow
         end
