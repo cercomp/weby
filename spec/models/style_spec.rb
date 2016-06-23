@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 describe Style do
-  it { expect(subject).to belong_to(:site) }
+  it { expect(subject).to belong_to(:skin) }
   it { expect(subject).to belong_to(:style) }
 
   it { expect(subject).to have_many(:styles).dependent(:restrict_with_error) }
   it { expect(subject).to have_many(:followers).through(:styles) }
 
-  it { expect(subject).to validate_presence_of(:site) }
+  it { expect(subject).to validate_presence_of(:skin) }
   it { expect(subject).to validate_presence_of(:name) }
 
   context 'when has style' do
@@ -133,13 +133,28 @@ describe Style do
       site2 = double(:site2)
       name = double(:name)
       css = double(:css)
+      skin = double(:skin)
 
       allow(subject).to receive(:site).and_return(site2)
       allow(subject).to receive(:name).and_return(name)
       allow(subject).to receive(:css).and_return(css)
-      allow(Style).to receive(:create!).with(css: css, name: name, site: site)
+      allow(Style).to receive(:create!).with(css: css, name: name, skin: skin)
+      allow(site).to receive(:active_skin).and_return(skin)
 
       subject.copy!(site)
+    end
+  end
+
+  describe 'position after create' do
+    it 'should set max position after creation' do
+      locale = create(:locale)
+      site = create(:site, locales: [locale])
+      skin = create(:skin, site_id: site.id)
+      style1 = create(:style, skin_id: skin.id)
+      style2 = create(:style, skin_id: skin.id)
+      style3 = create(:style, skin_id: skin.id)
+
+      expect([style1.position, style2.position, style3.position]).to eq([1,2,3])
     end
   end
 

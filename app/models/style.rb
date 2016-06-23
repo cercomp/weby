@@ -35,7 +35,7 @@ class Style < ActiveRecord::Base
 
   scope :published, -> { where(publish: true) }
 
-  after_create :update_position
+  after_create :define_position
 
   def copy!(to_site)
     if site == to_site
@@ -95,7 +95,7 @@ class Style < ActiveRecord::Base
     end
   end
 
-  def update_position
-    update(position: site.styles.maximum(:position) + 1) unless position
+  def define_position
+    update(position: skin.styles.maximum(:position) + 1)
   end
 end
