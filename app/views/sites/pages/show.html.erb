@@ -1,5 +1,8 @@
 <% content_for :title, " - #{@page.title}" %>
+<% content_for :social_code, render_social_share(:page) %>
+
 <article class="page-show">
+  <%= yield :social_code if current_site.page_social_share_pos == 'top' %>
   <header>
     <% if (defined?(as_component) ? as_component[:show_title] : true) %>
       <h2><%= @page.title %></h2>
@@ -15,9 +18,9 @@
     <% end %>
     </div>
   <% end %>
-
+  <%= yield :social_code if current_site.page_social_share_pos == 'middle' %>
   <%= render partial: 'sites/shared/pages_show_actions' %>
-
+  <%= yield :social_code if current_site.page_social_share_pos == 'bottom' %>
   <div style="margin-top: 8px;">
     <%= link_to(weby_icon('edit', t("edit")), main_app.edit_site_admin_page_path(@page)) if check_permission(Sites::Admin::PagesController, [:show]) %>
     <% if !defined?(as_component) %>

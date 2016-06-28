@@ -1,13 +1,16 @@
 <% content_for :title, " - #{@event.name}" %>
 <% meta_image @event.image %>
+<% content_for :social_code, render_social_share(:event) %>
+
 <article class="event-show">
   <%= weby_file_view(@event.image, :l, '128', nil) %>
-
+  <%= yield :social_code if current_site.event_social_share_pos == 'top' %>
   <header>
     <% if (defined?(as_component) ? as_component[:show_title] : true) %>
       <h2><%= @event.name %></h2>
     <% end %>
   </header>
+  <%= yield :social_code if current_site.event_social_share_pos == 'middle' %>
 
   <%= content_tag :div, class: 'event' do %>
     <h3><%= t(".event") %></h3>
@@ -29,7 +32,6 @@
       <span class="event-dates"><%=  period_dates(@event.begin_at, @event.end_at) %></span>
     </p>
   <% end %>
-
   <div class="body">
     <%= raw @event.information %>
   </div>
@@ -55,7 +57,7 @@
       </tbody>
     </table>
   <% end %>
-
+  <%= yield :social_code if current_site.event_social_share_pos == 'bottom' %>
   <div style="margin-top: 8px;">
     <%= link_to(weby_icon('edit', t("edit")), edit_admin_event_path(@event)) if check_permission(Calendar::Admin::EventsController, [:edit]) %>
     <% if !defined?(as_component) %>

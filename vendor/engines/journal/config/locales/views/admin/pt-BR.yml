@@ -9,10 +9,3 @@ pt-BR:
         category:             " Categoria "
         none_news:            " Nenhuma Notícia Encontrada "
         search_news:          " Pesquisar notícia "
-      form:
-        none: 'Não exibir'
-        top: 'Acima do título'
-        middle: 'Abaixo do título'
-        bottom: 'Abaixo do texto'
-        show: 'Exibição'
-        social: 'Redes sociais'

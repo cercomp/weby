@@ -1,26 +1,9 @@
 <%= simple_form_for [:site_admin, @extension], html: {class: 'form-horizontal'} do |f| %>
-  <div class="tabbable">
-    <ul class="nav nav-tabs" id="tabs">
-      <li class="active">
-        <%= link_to(t(".show"), '#tab-show', data: {toggle: :tab}) %>
-      </li>
-      <li>
-        <%= link_to(t(".social"), '#tab-social', data: {toggle: :tab}) %>
-      </li>
-    </ul>
-    <div class="tab-content">
-      <div role="tabpanel" class="tab-pane active" id="tab-show">
-        <%= f.input :author, wrapper: :checkbox, as: :boolean %>
-        <%= f.input :created_at, wrapper: :checkbox, as: :boolean %>
-        <%= f.input :updated_at, wrapper: :checkbox, as: :boolean %>
-      </div>
-      <div role="tabpanel" class="tab-pane" id="tab-social">
-      <%= f.input :social_share_pos, as: :select, collection: [[t('.none'), :none], [t('.top'), :top], [t('.middle'), :middle], [t('.bottom'), :bottom]], include_blank: false %>
 
-      <%= f.input :social_share_networks_, as: :check_boxes, collection: [:twitter, :facebook] %>
-      </div>
-  </div>
-	<div class="form-actions">
+  <%= f.input :author, wrapper: :checkbox, as: :boolean %>
+  <%= f.input :created_at, wrapper: :checkbox, as: :boolean %>
+  <%= f.input :updated_at, wrapper: :checkbox, as: :boolean %>
+  <div class="form-actions">
     <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
     <%= link_to t("back"), :back, class: "btn btn-default" %>
   </div>

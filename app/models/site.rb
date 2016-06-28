@@ -1,4 +1,8 @@
 class Site < ActiveRecord::Base
+  include RailsSettings::Extend
+
+  SHAREABLES = [:page, :news, :event]
+
   belongs_to :main_site, foreign_key: :parent_id, class_name: 'Site'
   belongs_to :repository, foreign_key: 'top_banner_id'
 
@@ -87,6 +91,13 @@ class Site < ActiveRecord::Base
 
   def active_extensions
     extensions.to_a.keep_if { |extension| Weby.extensions[extension.name.to_sym] }
+  end
+
+  SHAREABLES.each do |shareable|
+    define_method("#{shareable}_social_share_pos") { settings["#{shareable}.social_share_pos"] }
+    define_method("#{shareable}_social_share_pos=") { |value| settings["#{shareable}.social_share_pos"] = value }
+    define_method("#{shareable}_social_share_networks") { settings["#{shareable}.social_share_networks"] }
+    define_method("#{shareable}_social_share_networks=") { |value| settings["#{shareable}.social_share_networks"] = value }
   end
 
   private

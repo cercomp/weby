@@ -30,6 +30,16 @@ en:
       settings: " Settings "
       main: " Main "
       subsites: " Subsites "
+      social:    "Social networks"
+      none: "Don't show"
+      top: 'Before the title'
+      middle: 'After the title'
+      bottom: 'After the text'
+      social_share_pos: 'Social sharer position'
+      social_share_networks: 'Social networks'
+      page: "Pages"
+      event: "Events"
+      news: "News"
     form:
       view_desc_pages_help: " Show the author of the page? "
       site_comments: " Comments about the goal of the site "
