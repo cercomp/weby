@@ -34,6 +34,16 @@ pt-BR:
       settings: " Configurações "
       main: " Principal "
       subsites: " Subsites "
+      social:   "Redes Sociais"
+      none: 'Não exibir'
+      top: 'Acima do título'
+      middle: 'Abaixo do título'
+      bottom: 'Abaixo do texto'
+      social_share_pos: 'Posição do compartilhamento social'
+      social_share_networks: 'Redes sociais'
+      page: "Páginas"
+      event: "Eventos"
+      news: "Notícias"
     form:
       view_desc_pages_help: " Deseja mostrar o autor das páginas? "
       site_comments: " Comentário sobre os objetivos do site "

@@ -1,23 +1,48 @@
-<% title ".settings" %> 
+<% title ".settings" %>
 <% breadcrumb :settings %>
+<% has_subsites = @site.subsites.any? %>
 <div class="tabbable">
-  <% if @site.subsites.any? %>
-    <ul class="nav nav-tabs" id="style-tab">
-      <li class="active" >
+  <ul class="nav nav-tabs" id="style-tab">
+    <li class="active" >
       <a href="#tab-form" data-toggle="tab"><%= t(".main") %></a>
-      </li>
+    </li>
+    <li>
+      <a href="#tab-social" data-toggle="tab"><%= t(".social") %></a>
+    </li>
+    <% if has_subsites %>
       <li>
-      <a href="#tab-subsites" data-toggle="tab"><%= t(".subsites") %></a>
+        <a href="#tab-subsites" data-toggle="tab"><%= t(".subsites") %></a>
       </li>
-    </ul>
-  <% end %>
+    <% end %>
+  </ul>
 
   <div class="tab-content">
-    <div class="tab-pane active" id="tab-form" style="padding-left: 5px;">
+    <div class="tab-pane active" id="tab-form">
       <%= render 'sites/form' %>
     </div>
-    <div class="tab-pane" id="tab-subsites">
-      <%= content_tag :div, render('admin/sites/list') if @sites %>
+    <div class="tab-pane" id="tab-social">
+      <%= simple_form_for @site, url: update_site_admin_path do |f| %>
+        <% Site::SHAREABLES.each do |shareable| %>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= t(".#{shareable}") %></h3>
+            </div>
+            <div class="panel-body">
+              <%= f.input "#{shareable}_social_share_pos", label: t('.social_share_pos'), as: :select, collection: [[t('.none'), :none], [t('.top'), :top], [t('.middle'), :middle], [t('.bottom'), :bottom]], include_blank: false %>
+
+              <%= f.input "#{shareable}_social_share_networks", label: t('.social_share_networks'), as: :check_boxes, collection: [:twitter, :facebook] %>
+            </div>
+          </div>
+        <% end %>
+          <div class="form-actions">
+            <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
+          </div>
+      <% end %>
     </div>
+    <% if has_subsites %>
+      <div class="tab-pane" id="tab-subsites">
+        <%= content_tag :div, render('admin/sites/list') if @sites %>
+      </div>
+    <% end %>
   </div>
 </div>
