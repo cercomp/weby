@@ -12,33 +12,40 @@ module Weby
     end
 
     def generate_search_indexes
-      ActiveRecord::Base.connection.execute(%q{
-        CREATE INDEX "index_journal_news_i18ns_on_lower_title" ON "journal_news_i18ns" USING btree (LOWER("title"))
-      })
-      ActiveRecord::Base.connection.execute(%q{
-        CREATE INDEX "index_journal_news_i18ns_on_lower_summary" ON "journal_news_i18ns" USING btree (LOWER("summary"))
-      })
-      ActiveRecord::Base.connection.execute(%q{
-        CREATE INDEX "index_journal_news_i18ns_on_lower_text" ON "journal_news_i18ns" USING btree (LOWER("text"))
-      })
-      ActiveRecord::Base.connection.execute(%q{
-        CREATE INDEX "index_users_on_lower_first_name" ON "users" USING btree (LOWER("first_name"))
-      })
+      create_lower_index "journal_news_i18ns", "title"
+      create_lower_index "journal_news_i18ns", "summary"
+      create_lower_index "journal_news_i18ns", "text"
+      create_lower_index "users", "first_name"
     end
 
     def drop_search_indexes
-      ActiveRecord::Base.connection.execute(%q{
-        DROP INDEX "index_journal_news_i18ns_on_lower_title"
-      })
-      ActiveRecord::Base.connection.execute(%q{
-        DROP INDEX "index_journal_news_i18ns_on_lower_summary"
-      })
-      ActiveRecord::Base.connection.execute(%q{
-        DROP INDEX "index_journal_news_i18ns_on_lower_text"
-      })
-      ActiveRecord::Base.connection.execute(%q{
-        DROP INDEX "index_users_on_lower_first_name"
-      })
+      drop_lower_index "journal_news_i18ns", "title"
+      drop_lower_index "journal_news_i18ns", "summary"
+      drop_lower_index "journal_news_i18ns", "text"
+      drop_lower_index "users", "first_name"
+    end
+
+    private
+    def create_lower_index table, field
+      begin
+        ActiveRecord::Base.connection.execute(%Q{
+          CREATE INDEX "index_#{table}_on_lower_#{field}" ON "#{table}" USING btree (LOWER("#{field}"))
+        })
+      rescue Exception => e
+        puts e
+        #We can live without indexes
+      end
+    end
+
+    def drop_lower_index table, field
+      begin
+        ActiveRecord::Base.connection.execute(%Q{
+          DROP INDEX "index_#{table}_on_lower_#{field}"
+        })
+      rescue Exception => e
+        puts e
+        #Hmm maybe the index was not created
+      end
     end
   end
 end
