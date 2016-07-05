@@ -3,7 +3,7 @@ require "rails_helper"
 describe ApplicationController do
   let(:user) { FactoryGirl.create(:user, is_admin: true) }
   let(:locale) { FactoryGirl.create(:locale) }
-  let(:site) { FactoryGirl.create(:site, theme: "weby", locales: [locale], domain: "com.br") }
+  let(:site) { FactoryGirl.create(:site, locales: [locale], domain: "com.br") }
 
   before do
     @request.host = "#{site.name}.example.com"

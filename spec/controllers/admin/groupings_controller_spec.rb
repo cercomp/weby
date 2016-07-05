@@ -31,18 +31,6 @@ describe Admin::GroupingsController do
     end
   end
 
-  describe "GET #show" do
-    before { get :show, :id => group.id }
-
-    it "assigns @grouping" do
-      expect(assigns(:grouping)).to eq(group)
-    end
-
-    it "renders the :edit view" do
-      expect(response).to render_template(:show)
-    end
-  end
-
   describe "POST #create" do
     context "when valid" do
       before { post :create, grouping: { :name => "Name" } }

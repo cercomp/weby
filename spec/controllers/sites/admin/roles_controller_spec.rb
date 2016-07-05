@@ -20,15 +20,15 @@ describe Sites::Admin::RolesController do
     end
   end
 
-  describe "GET #show" do
-    before { get :show, :id => role.id }
+  describe "GET #edit" do
+    before { get :edit, :id => role.id }
 
     skip "assigns @role" do
-      expect(assigns(:roles)).to eq([role])
+      expect(assigns(:role)).to eq([role])
     end
 
     skip "renders the :show view" do
-      expect(response).to redirect_to(site_admin_role_path(:roles))
+      expect(response).to render_template(:edit)
     end
   end
 
@@ -41,14 +41,6 @@ describe Sites::Admin::RolesController do
 
     it "renders the :new view" do
       expect(response).to render_template(:new)
-    end
-  end
-
-  describe "GET #show" do
-    before { get :show, :id => role.id }
-
-    it "assigns @role" do
-      expect(assigns(:role)).to eq(role)
     end
   end
 

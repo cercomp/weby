@@ -61,7 +61,7 @@ Rails.application.routes.draw do
           get :manage, :recycle_bin
         end
       end
-      resources :roles do
+      resources :roles, except: [:show] do
         collection do
           put :index
         end

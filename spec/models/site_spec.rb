@@ -45,8 +45,6 @@ describe Site do
   it { expect(subject).to validate_presence_of(:title) }
   it { expect(subject).to ensure_length_of(:title).is_at_most(50) }
 
-  it { expect(subject).to validate_presence_of(:theme) }
-
   it { expect(subject).to have_many(:subsites).class_name('Site').with_foreign_key('parent_id') }
   it { expect(subject).to belong_to(:main_site).class_name('Site').with_foreign_key('parent_id') }
 
@@ -54,7 +52,7 @@ describe Site do
 
   it { expect(subject).to have_many(:views) }
 
-  it { expect(subject).to have_many(:menus).dependent(:destroy).order(:id) }
+  it { expect(subject).to have_many(:menus).dependent(:destroy).order(:position) }
   it { expect(subject).to have_many(:menu_items).through(:menus) }
 
   it { expect(subject).to have_many(:pages).dependent(:destroy) }
@@ -64,17 +62,8 @@ describe Site do
   # StickerBanners
   skip { expect(subject).to have_many(:banners).order(:position) }
 
-  it { expect(subject).to have_many(:styles).dependent(:destroy).order('styles.position DESC') }
-
-  context 'Component' do
-    it 'components should be ordered by place_holder, position asc' do
-      expect(subject).to have_many(:components).dependent(:destroy)
-        .order([:place_holder, :position])
-    end
-
-    it { expect(subject).to have_many(:root_components).order(:position).class_name('Component') }
-    skip { expect(subject).to have_many(:root_components).conditions(condition: "place_holder !~ '^\\d*$'") }
-  end
+  it { expect(subject).to have_many(:styles) }
+  it { expect(subject).to have_many(:skins) }
 
   it { expect(subject).to belong_to(:repository).with_foreign_key('top_banner_id') }
 

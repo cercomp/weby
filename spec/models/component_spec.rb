@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Component do
-  it { expect(subject).to belong_to(:site) }
+  it { expect(subject).to belong_to(:skin) }
 
   skip { expect(subject).to validate_presence_of(:alias) }
 

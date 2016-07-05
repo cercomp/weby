@@ -21,13 +21,6 @@ class Sites::Admin::RolesController < ApplicationController
     @role = Role.find(params[:id])
   end
 
-  def show
-    @role = Role.new
-    @roles = Role.order('id')
-    @rights = Right.order('id')
-    respond_with(:site_admin, @roles)
-  end
-
   def new
     @role = Role.new
     respond_with(:site_admin, @role)
