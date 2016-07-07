@@ -5,7 +5,7 @@ module Calendar
 
     EVENT_TYPES = %w(regional national international)
 
-    acts_as_taggable_on :categories
+    acts_as_ordered_taggable_on :categories
 
     weby_content_i18n :name, :information, :place, required: [:name, :place]
 
