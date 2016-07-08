@@ -33,7 +33,7 @@ class Sites::Admin::UsersController < ApplicationController
 
   def create_local_admin_role
     user_ids = []
-    user_ids.push(params[:user][:id]).flatten!
+    user_ids.push(params[:user][:id]).flatten! if params[:user].present?
     admin_role = current_site.roles.find_by(permissions: "Admin")
     if admin_role.nil?
       role = Role.new
