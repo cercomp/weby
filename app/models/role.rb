@@ -6,7 +6,7 @@ class Role < ActiveRecord::Base
   validates :name, presence: true
 
   scope :globals, -> { where(site_id: nil) }
-  scope :no_local_admin, -> { where("permissions != 'Admin'") }
+  scope :no_local_admin, -> { where("permissions != 'Admin' OR permissions is null") }
 
   def permissions_hash
     permissions.present? ? eval(permissions.to_s) : {}

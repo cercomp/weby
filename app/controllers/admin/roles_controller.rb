@@ -4,7 +4,7 @@ class Admin::RolesController < Admin::BaseController
   respond_to :html
 
   def index
-    @roles = @site ? @site.roles.order('id') : Role.where(site_id: nil).order('id')
+    @roles = Role.globals.order('id')
     @rights = Weby::Rights.permissions.sort
 
     if request.put? # && params[:role]
@@ -15,7 +15,7 @@ class Admin::RolesController < Admin::BaseController
       end
 
       flash[:success] = t('successfully_updated')
-      redirect_to @site ? site_admin_roles_path : admin_roles_path
+      redirect_to admin_roles_path
     end
   end
 
@@ -25,11 +25,12 @@ class Admin::RolesController < Admin::BaseController
 
   def create
     @role = Role.new(role_params)
+    @role.permissions ||= '{}'
     @role.save
 
     record_activity('created_global_role', @role)
 
-    redirect_to @site ? site_admin_roles_path : admin_roles_path
+    redirect_to admin_roles_path
   end
 
   def edit
@@ -40,7 +41,7 @@ class Admin::RolesController < Admin::BaseController
 
     record_activity('updated_global_role', @role)
 
-    redirect_to @site ? site_admin_roles_path : admin_roles_path
+    redirect_to admin_roles_path
   end
 
   def destroy
