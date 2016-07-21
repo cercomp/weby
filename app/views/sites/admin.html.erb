@@ -1,41 +1,115 @@
 <% title ".home" %>
 <% breadcrumb :root %>
-<% hmenus = {"menu1" => ["Usuário", "Configurar Usuários", "glyphicon-user", 2, "glyphicon-plus", 1, "glyphicon-off", 2]} %>
-<% hmenus.merge!({"menu"+(hmenus.length+1).to_s => ["Mensagens", "Visualizar Notificações", "glyphicon-envelope",2,"glyphicon-th-list",3,"glyphicon-comment",8]}) %>
-<% hmenus.merge!({"menu"+(hmenus.length+1).to_s => ["Arquivos", "Gerenciar Arquivos", "glyphicon-film",1,"glyphicon-th-list",4]}) if check_permission(Sites::Admin::RepositoriesController, [:index])%>
-<% hmenus.merge!({"menu"+(hmenus.length+1).to_s => ["Páginas", "Visualizar Páginas", "glyphicon-th-large",1,"glyphicon-th-list",5]}) if check_permission(Sites::Admin::PagesController, [:index])%>
-<% hmenus.merge!({"menu"+(hmenus.length+1).to_s => ["Menus", "Alterar Menus", "glyphicon-pushpin",1,"glyphicon-th-list",6]}) if check_permission(Sites::Admin::MenusController, [:index])%>
-<% hmenus.merge!({"menu"+(hmenus.length+1).to_s => ["Banners", "Modificar Banners", "glyphicon-picture",1,"glyphicon-th-list",7]}) if check_permission(Sites::Admin::ExtensionsController, [:index])%>
-
-<h4>Bem vindo, <%= current_user %></h4>
-<div id="admin" class="row">
-  <% (1..hmenus.length).each do |cont| %>
-    <% vetor = hmenus [ "menu"+cont.to_s ] %>
-    <div class="col-md-3 site-thumbnail">
-      <div class="thumbnail">
-	<div class="thumbnail-header" title="<%= vetor[1].to_s %>">
-	  <span class="glyphicon <%=vetor[2].to_s%>"></span>
-	  <span><%= vetor[0] %></span>
+<div id="dashboard">
+  <h4>Bem vindo, <%= current_user %></h4>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-default box">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= "#{icon('certificate')} #{t('.title_news')}".html_safe %></h3>
         </div>
-	<div class="caption">
-        <% (2..vetor[3].to_i+1).each do |cont2| %>
-	  <span class="glyphicon <%=vetor[cont2*2].to_s%>"></span>
-	  <span>
-          <%= case vetor[cont2*2+1]
-              when 1 then link_to t('.perfil'), profile_url(current_user.login, subdomain: current_site)
-              when 2 then link_to t('.logout'), logout_path(back_url: main_app.site_path), method: :delete
-              when 3 then link_to t('.notification'), notifications_path
-              when 4 then link_to t('.files'), site_admin_repositories_path
-              when 5 then link_to t('.paginas'), site_admin_pages_path
-              when 6 then link_to t('.menu'), site_admin_menus_path
-	      when 7 then link_to t('.sticker'),"/admin/sticker"
-              when 8 then link_to t('.feedback'),"/admin/feedback"
-          end %>
-          </span>
-          <p>
-        <% end %>
+        <ul class="list-group">
+          <% @last_news.each do |news| %>
+            <li class="list-group-item">
+              <div class="pull-left">
+                <%= news_image(news.image, :t, 100, nil, {as: "link", url: admin_news_url(news, subdomain: news.site), image_class:'img-circle'}) %>
+              </div>
+              <div class="media-body">
+                <h4 class="title"><%= link_to news.title, admin_news_url(news, subdomain: news.site) %></h4>
+                <div class="description"><%= t(".published", site: link_to(news.site.title, site_url(subdomain: news.site)), date: l(news.created_at, format: :short)).html_safe %></div>
+                <div class="summary"><%= news.summary.try(:html_safe) %></div>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+        <div class="panel-body">
+          <%= link_to t('.new_news'), new_admin_news_path, class: 'btn btn-default' %>
+          <%= link_to t('.news_fronts'), fronts_admin_news_index_path, class: 'btn btn-default' %>
+          <%= link_to t('.news_newsletter'), admin_newsletter_histories_path, class: 'btn btn-default' %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="panel panel-default box">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= "#{icon('bullhorn')} #{t('.title_events')}".html_safe %></h3>
+        </div>
+        <div class="panel-body">
+          <div id='calendar' data-url="<%= admin_events_path %>"></div>
+          <%= link_to t('.new_event'), new_admin_event_path, class: 'btn btn-default' %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="panel panel-default box">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= "#{icon('film')} #{t('.title_repositories')}".html_safe %></h3>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <% @last_repositories.each do |repository| %>
+              <div class="col-md-3">
+                <div class="thumbnail">
+                  <%= weby_file_view(repository, :t, 160, nil, url: site_admin_repository_path(repository)) %>
+                  <div class="caption">
+                    <p style="overflow: hidden; white-space: nowrap; height: 20px; text-overflow: ellipsis;"><%= repository.title %></p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <%= link_to t('.new_repository'), new_site_admin_repository_path, class: 'btn btn-default' %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="panel panel-default box">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= "#{icon('envelope')} #{t('.title_messages')}".html_safe %></h3>
+            </div>
+            <ul class="list-group">
+              <% @last_messages.each do |message| %>
+                <li class="list-group-item"><%= link_to message.subject, admin_message_path(message) %></li>
+              <% end %>
+            </ul>
+            <div class="panel-body">
+              <%= link_to t('.feedback_groups'), admin_groups_path, class: 'btn btn-default' %>
+              <%= link_to t('.new_group'), new_admin_group_path, class: 'btn btn-default' %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="panel panel-default box">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= "#{icon('picture')} #{t('.title_banners')}".html_safe %></h3>
+            </div>
+            <div class="panel-body">
+              <%= link_to t('.new_banner'), new_admin_banner_path %>
+            </div>
+            <ul class="list-group">
+              <% @last_banners.each do |banner| %>
+                <li class="list-group-item"><%= banner.title %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="panel panel-default box">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= "#{icon('th-list')} #{t('.title_history')}".html_safe %></h3>
+        </div>
+        <ul class="list-group">
+          <% @last_activity_records.each do |activity_record| %>
+            <li class="list-group-item"><%= activity_record.user %></li>
+          <% end %>
+        </ul>
       </div>
     </div>
   </div>
-  <% end %>
 </div>
+<% content_for :stylesheets, stylesheet_link_tag("fullcalendar") %>
+<% content_for :javascripts, javascript_include_tag("fullcalendar") %>
+<% content_for :javascripts, javascript_include_tag("fullcalendar/lang/#{I18n.locale.downcase}") %>
+<% content_for :javascripts, javascript_include_tag("admin") %>

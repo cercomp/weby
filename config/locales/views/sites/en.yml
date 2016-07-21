@@ -5,6 +5,14 @@ en:
       common_tasks: "COMMON TASKS"
       new_page: "NEW PAGE"
       new_file: "NEW FILE"
+      title_news: 'Last News'
+      title_messages: 'Messages'
+      title_banners: 'Banners'
+      title_events: 'Events'
+      title_users: 'Users'
+      title_repositories: 'Repository'
+      title_history: 'Log'
+      title_menus: 'Menus'
     index:
       new_site: "NEW SITE"
       sites: "SITES"

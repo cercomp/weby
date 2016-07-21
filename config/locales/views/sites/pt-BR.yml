@@ -5,6 +5,14 @@ pt-BR:
       common_tasks: "TAREFAS MAIS COMUNS"
       new_page: "Nova Página"
       new_file: "Novo Arquivo"
+      title_news: 'Últimas Notícias'
+      title_messages: 'Mensagens'
+      title_banners: 'Banners'
+      title_events: 'Eventos'
+      title_users: 'Usuários'
+      title_repositories: 'Arquivos'
+      title_history: 'Histórico'
+      title_menus: 'Menus'
     index:
       new_site: "NOVO SITE"
       sites: "SITES"
