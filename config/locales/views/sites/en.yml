@@ -4,7 +4,13 @@ en:
       home: " Home "
       common_tasks: "COMMON TASKS"
       new_page: "NEW PAGE"
-      new_file: "NEW FILE"
+      new_repository: "New File"
+      new_news: 'New news'
+      new_event: 'New event'
+      new_banner: 'New banner'
+      news_fronts: 'Front news'
+      news_newsletter: 'Newsletter'
+      feedback_groups: 'Groups'
       title_news: 'Last News'
       title_messages: 'Messages'
       title_banners: 'Banners'

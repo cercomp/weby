@@ -3,123 +3,149 @@
 <div id="dashboard">
   <h4>Bem vindo, <%= current_user %></h4>
   <div class="row">
-    <div class="col-md-6">
-      <div class="panel panel-default box">
-        <div class="panel-heading">
-          <%= link_to t('.new_news'), new_admin_news_path, class: 'btn btn-success pull-right btn-sm' %>
-          <h3 class="panel-title"><%= "#{icon('certificate')} #{t('.title_news')}".html_safe %></h3>
-          <div class="clearfix"></div>
-        </div>
-        <ul class="list-group">
-          <% @last_news.each do |news| %>
-            <li class="list-group-item">
-              <div class="row">
-              <% if news.image %>
-                <div class="col-xs-3">
-                  <%= news_image(news.image, :t, 100, nil, {as: "link", url: admin_news_url(news, subdomain: news.site), image_class:'img-circle'}) %>
-                </div>
-              <% end %>
-              <div class="col-xs-<%= news.image ? '9' : '12' %>">
-                <h4 class="title"><%= link_to news.title, admin_news_url(news, subdomain: news.site) %></h4>
-                <div class="description"><%= t(".published", site: link_to(news.site.title, site_url(subdomain: news.site)), date: l(news.created_at, format: :short)).html_safe %></div>
-                <div class="summary"><%= news.summary.try(:html_safe) %></div>
-              </div>
-            </li>
-          <% end %>
-        </ul>
-        <div class="panel-body">
-          <%= link_to t('.news_fronts'), fronts_admin_news_index_path, class: 'btn btn-default' %>
-          <%= link_to t('.news_newsletter'), admin_newsletter_histories_path, class: 'btn btn-default' %>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="panel panel-default box">
-        <div class="panel-heading">
-          <%= link_to t('.new_event'), new_admin_event_path, class: 'btn btn-success pull-right btn-sm' %>
-          <h3 class="panel-title"><%= "#{icon('bullhorn')} #{t('.title_events')}".html_safe %></h3>
-          <div class="clearfix"></div>
-        </div>
-        <div class="panel-body">
-          <div id='calendar' data-url="<%= admin_events_path %>"></div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-9">
-      <div class="panel panel-default box">
-        <div class="panel-heading">
-          <%= link_to t('.new_repository'), new_site_admin_repository_path, class: 'btn btn-success btn-sm pull-right' %>
-          <h3 class="panel-title"><%= "#{icon('film')} #{t('.title_repositories')}".html_safe %></h3>
-          <div class="clearfix"></div>
-        </div>
-        <div class="panel-body">
-          <div class="row">
-            <% @last_repositories.each do |repository| %>
-              <div class="col-md-3">
-                <div class="thumbnail">
-                  <%= weby_file_view(repository, :t, 160, nil, url: site_admin_repository_path(repository)) %>
-                  <div class="caption">
-                    <p style="overflow: hidden; white-space: nowrap; height: 20px; text-overflow: ellipsis;"><%= repository.title %></p>
+    <% if check_permission Journal::Admin::NewsController, :index %>
+      <div class="col-md-6">
+        <div class="panel panel-default box">
+          <div class="panel-heading">
+            <% if check_permission Journal::Admin::NewsController, :new %>
+              <%= link_to t('.new_news'), new_admin_news_path, class: 'btn btn-success pull-right btn-sm' %>
+            <% end %>
+            <h3 class="panel-title"><%= "#{icon('certificate')} #{t('.title_news')}".html_safe %></h3>
+            <div class="clearfix"></div>
+          </div>
+          <ul class="list-group">
+            <% @last_news.each do |news| %>
+              <li class="list-group-item">
+                <div class="row">
+                <% if news.image %>
+                  <div class="col-xs-3">
+                    <%= news_image(news.image, :t, 100, nil, {as: "link", url: admin_news_url(news, subdomain: news.site), image_class:'img-circle'}) %>
                   </div>
+                <% end %>
+                <div class="col-xs-<%= news.image ? '9' : '12' %>">
+                  <h4 class="title"><%= link_to news.title, admin_news_url(news, subdomain: news.site) %></h4>
+                  <div class="description"><%= l(news.created_at, format: :short) %></div>
+                  <div class="summary"><%= news.summary.try(:html_safe) %></div>
                 </div>
-              </div>
+              </li>
+            <% end %>
+          </ul>
+          <div class="panel-body">
+            <%= link_to t('.news_fronts'), fronts_admin_news_index_path, class: 'btn btn-default' %>
+            <% if @newsletter.present? && @newsletter.publish %>
+              <%= link_to t('.news_newsletter'), admin_newsletter_histories_path, class: 'btn btn-default' %>
             <% end %>
           </div>
         </div>
       </div>
+    <% end %>
+    <% if check_permission Calendar::Admin::EventsController, :index %>
+      <div class="col-md-6">
+        <div class="panel panel-default box">
+          <div class="panel-heading">
+            <% if check_permission Calendar::Admin::EventsController, :new %>
+              <%= link_to t('.new_event'), new_admin_event_path, class: 'btn btn-success pull-right btn-sm' %>
+            <% end %>
+            <h3 class="panel-title"><%= "#{icon('bullhorn')} #{t('.title_events')}".html_safe %></h3>
+            <div class="clearfix"></div>
+          </div>
+          <div class="panel-body">
+            <div id='calendar' data-url="<%= admin_events_path %>"></div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <div class="col-md-9">
+      <% if check_permission Sites::Admin::RepositoriesController, :index %>
+        <div class="panel panel-default box">
+          <div class="panel-heading">
+            <% if check_permission Sites::Admin::RepositoriesController, :new %>
+              <%= link_to t('.new_repository'), new_site_admin_repository_path, class: 'btn btn-success btn-sm pull-right' %>
+            <% end %>
+            <h3 class="panel-title"><%= "#{icon('film')} #{t('.title_repositories')}".html_safe %></h3>
+            <div class="clearfix"></div>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <% @last_repositories.each do |repository| %>
+                <div class="col-md-3">
+                  <div class="thumbnail">
+                    <%= weby_file_view(repository, :t, 160, nil, url: site_admin_repository_path(repository)) %>
+                    <div class="caption">
+                      <p style="overflow: hidden; white-space: nowrap; height: 20px; text-overflow: ellipsis;"><%= repository.title %></p>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
       <div class="row">
-        <div class="col-md-6">
-          <div class="panel panel-default box">
-            <div class="panel-heading">
-              <h3 class="panel-title"><%= "#{icon('envelope')} #{t('.title_messages')}".html_safe %></h3>
-            </div>
-            <ul class="list-group">
-              <% @last_messages.each do |message| %>
-                <li class="list-group-item"><%= link_to message.subject, admin_message_path(message) %></li>
-              <% end %>
-            </ul>
-            <div class="panel-body">
-              <%= link_to t('.feedback_groups'), admin_groups_path, class: 'btn btn-default' %>
-              <%= link_to t('.new_group'), new_admin_group_path, class: 'btn btn-success' %>
+        <% if check_permission Feedback::Admin::MessagesController, :index %>
+          <div class="col-md-6">
+            <div class="panel panel-default box">
+              <div class="panel-heading">
+                <h3 class="panel-title"><%= "#{icon('envelope')} #{t('.title_messages')}".html_safe %></h3>
+              </div>
+              <ul class="list-group">
+                <% @last_messages.each do |message| %>
+                  <li class="list-group-item"><%= link_to message.subject, admin_message_path(message) %></li>
+                <% end %>
+              </ul>
+              <div class="panel-body">
+                <% if check_permission Feedback::Admin::GroupsController, :index %>
+                  <%= link_to t('.feedback_groups'), admin_groups_path, class: 'btn btn-default' %>
+                <% end %>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-6">
-          <div class="panel panel-default box">
-            <div class="panel-heading">
-              <%= link_to t('.new_banner'), new_admin_banner_path, class: 'btn btn-success btn-sm pull-right' %>
-              <h3 class="panel-title"><%= "#{icon('picture')} #{t('.title_banners')}".html_safe %></h3>
-              <div class="clearfix"></div>
+        <% end %>
+        <% if check_permission Sticker::Admin::BannersController, :index %>
+          <div class="col-md-6">
+            <div class="panel panel-default box">
+              <div class="panel-heading">
+                <% if check_permission Sticker::Admin::BannersController, :new %>
+                  <%= link_to t('.new_banner'), new_admin_banner_path, class: 'btn btn-success btn-sm pull-right' %>
+                <% end %>
+                <h3 class="panel-title"><%= "#{icon('picture')} #{t('.title_banners')}".html_safe %></h3>
+                <div class="clearfix"></div>
+              </div>
+              <ul class="list-group">
+                <% @last_banners.each do |banner| %>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-xs-3">
+                        <%= weby_file_view(banner.repository, :t, 160, nil, {title: banner.text, url: admin_banner_path(banner)}, true) %>
+                      </div>
+                      <div class="col-xs-9">
+                        <h4><%= link_to banner.title, admin_banner_path(banner) %></h4>
+                      </div>
+                    </li>
+                <% end %>
+              </ul>
             </div>
-            <ul class="list-group">
-              <% @last_banners.each do |banner| %>
-                <li class="list-group-item">
-                  <div class="row">
-                    <div class="col-xs-3">
-                      <%= weby_file_view(banner.repository, :t, 160, nil, {title: banner.text, url: admin_banner_path(banner)}, true) %>
-                    </div>
-                    <div class="col-xs-9">
-                      <h4><%= link_to banner.title, admin_banner_path(banner) %></h4>
-                    </div>
-                  </li>
-              <% end %>
-            </ul>
           </div>
-        </div>
+        <% end %>
       </div>
     </div>
-    <div class="col-md-3">
-      <div class="panel panel-default box">
-        <div class="panel-heading">
-          <h3 class="panel-title"><%= "#{icon('th-list')} #{t('.title_history')}".html_safe %></h3>
+    <% if check_permission Sites::Admin::ActivityRecordsController, :index %>
+      <div class="col-md-3">
+        <div class="panel panel-default box">
+          <div class="panel-heading">
+            <h3 class="panel-title"><%= "#{icon('th-list')} #{t('.title_history')}".html_safe %></h3>
+          </div>
+          <ul class="list-group">
+            <% @last_activity_records.each do |activity_record| %>
+              <li class="list-group-item">
+                <%= activity_record.user %> <%= link_to(t("sites.admin.activity_records.list.#{activity_record.note}"),
+                       build_loggeable_url(activity_record), class: 'action-link') if activity_record.action != "destroy" && activity_record.loggeable %>
+              </li>
+            <% end %>
+          </ul>
         </div>
-        <ul class="list-group">
-          <% @last_activity_records.each do |activity_record| %>
-            <li class="list-group-item"><%= activity_record.user %> <%= t(".#{activity_record.note}") %></li>
-          <% end %>
-        </ul>
       </div>
-    </div>
+    <% end %>
   </div>
 </div>
 <% content_for :stylesheets, stylesheet_link_tag("fullcalendar") %>

@@ -59,6 +59,7 @@ class SitesController < ApplicationController
     @last_news = current_site.news.order(id: :asc).last(4)
     @last_banners = current_site.banners.last(4)
     @last_messages = current_site.messages.last(4)
+    @newsletter = current_site.active_skin.components.find_by_name("newsletter")
 
 
     render layout: 'application'

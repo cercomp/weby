@@ -1,7 +1,7 @@
 <% title ".news" %>
 <% breadcrumb params[:search].present? ? :news_search : :news, params[:search] %>
 
-<% if !@newsletter.nil? && @newsletter.publish %>
+<% if @newsletter.present? && @newsletter.publish %>
   <div class="tabbable">
     <ul class="nav nav-tabs" id="tabs">
       <li class="active" id="tab_news">
