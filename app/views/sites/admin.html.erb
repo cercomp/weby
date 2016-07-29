@@ -19,11 +19,11 @@
                 <div class="row">
                 <% if news.image %>
                   <div class="col-xs-3">
-                    <%= news_image(news.image, :t, 100, nil, {as: "link", url: admin_news_url(news, subdomain: news.site), image_class:'img-circle'}) %>
+                    <%= news_image(news.image, :t, 100, nil, {as: "link", url: admin_news_path(news), image_class:'img-circle'}) %>
                   </div>
                 <% end %>
                 <div class="col-xs-<%= news.image ? '9' : '12' %>">
-                  <h4 class="title"><%= link_to news.title, admin_news_url(news, subdomain: news.site) %></h4>
+                  <h4 class="title"><%= link_to news.title, admin_news_path(news) %></h4>
                   <div class="description"><%= l(news.created_at, format: :short) %></div>
                   <div class="summary"><%= news.summary.try(:html_safe) %></div>
                 </div>
