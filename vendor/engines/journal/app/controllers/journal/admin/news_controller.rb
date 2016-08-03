@@ -23,7 +23,7 @@ module Journal::Admin
 
     def recycle_bin
       params[:sort] ||= 'journal_news.deleted_at'
-      params[:direction] ||= 'desc'      
+      params[:direction] ||= 'desc'
       @newslist = Journal::News.all.trashed.where(site_id: current_site.id).includes(:user).
         order("#{params[:sort]} #{sort_direction}").
         page(params[:page]).per(params[:per_page])
