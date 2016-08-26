@@ -93,7 +93,7 @@ class SitesController < ApplicationController
 
     Site::SHAREABLES.each do |shareable|
       permitted << "#{shareable}_social_share_pos"
-      permitted << {"#{shareable}_social_share_networks": []}
+      permitted << {"#{shareable}_social_share_networks" => []}
     end
 
     params.require(:site).permit(permitted)
