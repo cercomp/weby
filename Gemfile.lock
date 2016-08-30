@@ -66,6 +66,11 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
+    active_model_serializers (0.10.2)
+      actionpack (>= 4.1, < 6)
+      activemodel (>= 4.1, < 6)
+      jsonapi (~> 0.1.1.beta2)
+      railties (>= 4.1, < 6)
     activejob (4.2.5)
       activesupport (= 4.2.5)
       globalid (>= 0.3.0)
@@ -155,6 +160,8 @@ GEM
     jquery-ui-rails (4.2.1)
       railties (>= 3.2.16)
     json (1.8.3)
+    jsonapi (0.1.1.beta2)
+      json (~> 1.8)
     kaminari (0.15.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -319,6 +326,7 @@ PLATFORMS
 
 DEPENDENCIES
   acadufg!
+  active_model_serializers
   acts-as-taggable-on (~> 3.4.2)
   better_errors (~> 1.1.0)
   binding_of_caller (~> 0.7.2)

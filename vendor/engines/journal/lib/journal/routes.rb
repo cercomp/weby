@@ -51,7 +51,7 @@ module Journal
         end
         get :news, to: 'journal/news#index', as: :news_index
         get '/feed' => 'journal/news#index', as: :site_feed,
-            defaults: { format: 'rss', per_page: 10, page: 1 }
+            defaults: { format: 'rss', per_page: 10 }
         resources :newsletters, module: :journal, only: [:new, :show]
       end
     end

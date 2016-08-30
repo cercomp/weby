@@ -30,6 +30,8 @@ module Weby
     config.i18n.default_locale = 'pt-BR'
     I18n.config.enforce_available_locales = false
 
+    ActiveModelSerializers.config.adapter = :json
+
     # Clean generators
     config.generators do |g|
       g.helper false
