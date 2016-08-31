@@ -1,7 +1,7 @@
 module Journal
   class NewsSerializer < ActiveModel::Serializer
 
-    attributes :id, :status, :author, :category_list, :slug,
+    attributes :id, :status, :author, :category_list, :slug, :image,
                :site_id, :source, :front, :position, :view_count,
                :date_begin_at, :date_end_at,
                :created_at, :updated_at, :deleted_at
@@ -10,8 +10,8 @@ module Journal
 
     attributes :title, :summary, :text, :locale
 
-    def repository
-      object.repository.archive.url
+    def image
+      object.image ? object.image.archive.url : nil
     end
 
     def category_list
