@@ -4,7 +4,7 @@ module Calendar
     before_action :check_authorization
     before_action :event_types, only: [:new, :edit, :create, :update]
 
-    respond_to :html, :js
+    respond_to :html, :js, :json
 
     helper_method :sort_column
 
@@ -15,6 +15,7 @@ module Calendar
           format.js { render "#{params[:template]}" }
           format.html { render partial: "#{params[:template]}", layout: false }
         end
+        format.json { render json: Calendar::Event.as_fullcalendar_json(@events, true) }
       end
     end
 

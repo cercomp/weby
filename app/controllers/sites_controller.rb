@@ -54,6 +54,14 @@ class SitesController < ApplicationController
   end
 
   def admin
+    @last_repositories = current_site.repositories.last(4)
+    @last_activity_records = current_site.activity_records.includes(:user, :loggeable).last(10)
+    @last_news = current_site.news.includes(:image, :i18ns).order(id: :asc).last(4)
+    @last_banners = current_site.banners.includes(:repository).last(4)
+    @last_messages = current_site.messages.last(4)
+    @newsletter = current_site.active_skin.components.find_by_name("newsletter")
+
+
     render layout: 'application'
   end
 

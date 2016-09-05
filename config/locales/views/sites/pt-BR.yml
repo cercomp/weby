@@ -4,7 +4,21 @@ pt-BR:
       home: " Início "
       common_tasks: "TAREFAS MAIS COMUNS"
       new_page: "Nova Página"
-      new_file: "Novo Arquivo"
+      new_repository: "Novo Arquivo"
+      new_news: 'Nova notícia'
+      new_event: 'Novo evento'
+      new_banner: 'Novo banner'
+      news_fronts: 'Capas'
+      news_newsletter: 'Newsletter'
+      feedback_groups: 'Grupos'
+      title_news: 'Últimas Notícias'
+      title_messages: 'Mensagens'
+      title_banners: 'Banners'
+      title_events: 'Eventos'
+      title_users: 'Usuários'
+      title_repositories: 'Arquivos'
+      title_history: 'Histórico'
+      title_menus: 'Menus'
     index:
       new_site: "NOVO SITE"
       sites: "SITES"
