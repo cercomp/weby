@@ -15,6 +15,7 @@ module Calendar
         end
         resources :events, module: 'calendar', path: 'e', only: [:show]
         get :events, to: 'calendar/events#index'
+        get :calendar, to: 'calendar/events#calendar'
       end
     end
   end

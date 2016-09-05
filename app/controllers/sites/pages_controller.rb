@@ -4,10 +4,13 @@ class Sites::PagesController < ApplicationController
   helper_method :sort_column
   before_action :check_current_site
 
-  respond_to :html, :js, :json, :rss
+  respond_to :html, :js, :json
 
   def index
     @pages = get_pages
+    respond_with(@pages) do |format|
+      format.json { render json: @pages, root: :pages, meta: { total: @pages.total_count } }
+    end
   end
 
   def show

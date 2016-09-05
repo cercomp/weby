@@ -37,6 +37,7 @@ gem 'zeroclipboard-rails', '~> 0.0.13'
 gem 'zip-zip', '~> 0.3'
 gem "nori"
 gem 'simple_captcha2', require: 'simple_captcha'
+gem 'active_model_serializers'
 
 gem 'useragent', '0.2.3', :git => 'http://github.com/jilion/useragent'
 gem 'rails-settings-cached', '0.4.1'

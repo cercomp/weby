@@ -13,8 +13,13 @@ module Calendar
       respond_with(@events) do |format|
         format.rss { render layout: false, content_type: Mime::XML } # index.rss.builder
         format.atom { render layout: false, content_type: Mime::XML } # index.atom.builder
-        format.json { render json: Calendar::Event.as_fullcalendar_json(@events) }
+        format.json { render json: @events, root: :events, meta: { total: @events.total_count } }
       end
+    end
+
+    def calendar
+      @events = get_events(false)
+      render json: Calendar::Event.as_fullcalendar_json(@events)
     end
 
     def show
@@ -31,14 +36,16 @@ module Calendar
       params[:tags].split(',').map { |tag| tag.mb_chars.downcase.to_s }
     end
 
-    def get_events
+    def get_events paginate=true
       params[:direction] ||= 'desc'
+      params[:page] ||= 1
       # Vai ao banco por linha para recuperar
       # tags e locales
       events = current_site.events.
         search(params[:search], params.fetch(:search_type, 1).to_i).
         order(sort_column + ' ' + sort_direction)
-        #.page(params[:page]).per(params[:per_page])
+
+      events = events.page(params[:page]).per(params[:per_page]) if paginate
 
       if params[:start] && params[:end]
         events = events.where('(begin_at between :start and :end_date) OR '\
