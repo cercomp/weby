@@ -100,6 +100,7 @@ module Calendar
           end: event.end_at,
           url: admin_link ? helper.admin_event_path(event) : helper.event_path(event),
           color: '#3a87ad',
+          allDay: false,
           description: event.information
         }
       end

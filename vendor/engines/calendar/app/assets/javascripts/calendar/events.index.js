@@ -3,6 +3,7 @@ $(document).ready(function() {
   $calendar.fullCalendar({
     lang: $('html').attr('lang'),
     header: {left: 'today prev,next', center: 'title', right: 'month,basicWeek'},
+    nextDayThreshold: '00:00:00',
     events: {
       url: $calendar.data('url'),
       cache: true,
