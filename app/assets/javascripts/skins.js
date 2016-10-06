@@ -34,6 +34,17 @@ window.onload=function(){
       $('.skins').slideToggle();
       return false;
     });
+
+    $('.toggle-styles').click(function(){
+      var $this = $(this);
+      var $icon = $this.find('.glyphicon');
+      $('.style-site-' + $this.data('site')).toggle();
+      if ($icon.hasClass('glyphicon-chevron-down')){
+        $icon.addClass('glyphicon-chevron-right').removeClass('glyphicon-chevron-down')
+      }else{
+        $icon.addClass('glyphicon-chevron-down').removeClass('glyphicon-chevron-right')
+      }
+    });
   });
 };
 

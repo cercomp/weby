@@ -9,9 +9,9 @@ class Sites::Admin::SkinsController < ApplicationController
 
     @styles = {}
     @styles[:others] = Style.not_followed_by(current_site.id).search(params[:search])
-                            .order('sites.id')
+                            .order('sites.name, styles.name')
                             .page(params[:page]).per(params[:per_page])
-    @styles[:styles] = current_site.active_skin.styles.includes(:style) if request.format.html?
+    @styles[:styles] = current_site.active_skin.styles.includes(:style, :followers, :site) if request.format.html?
   end
 
   def create
