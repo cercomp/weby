@@ -50,3 +50,15 @@ rights:
         en: Restore News
         pt-BR: Restaurar Notícias
       action: recycle_bin recover
+    newsletter:
+      name:
+        en: Send Newsletter
+        pt-BR: Enviar Newsletter
+      action: newsletter newsletter_histories
+  newsletters:
+    index:
+      name:
+        en: List newsletters
+        pt-BR: Listar newsletters
+      action: index
+
