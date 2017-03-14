@@ -45,5 +45,21 @@
     <%= javascript_include_tag "base" %>
     <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
     <%= yield :javascripts %>
+    <script type="text/javascript">
+      // On click
+      $(".menu-head").click(function() {
+        var $menu = $('.menu-panel');
+        var $hamburger = $($(this).find('.hamburger'));
+        // Toggle class "is-active"
+        if ($hamburger.hasClass('is-active')){
+          $hamburger.removeClass('is-active');
+          $menu.slideUp(200);
+        }else{
+          $hamburger.addClass('is-active');
+          $menu.slideDown(200);
+        }
+        return false;
+      });
+    </script>
   </body>
 </html>

@@ -1,15 +1,17 @@
 en:
   components:
     menu:
-      name:                " Menu "   
+      name:                " Menu "
   activerecord:
     attributes:
       menu_component:
         menu_id:           " Menu "
         dropdown:          " Use dropdown "
+        style:             " Style "
   menu:
     views:
       form:
         menu_id:           " Menu "
+        style:             " Style "
         dropdown_hint:     " Sub-menus will dropdown on mouse over "
 

@@ -2,4 +2,7 @@
   priority: component.menu_id,
   include_blank: false
 %>
+<%= f.input :style, collection: component.menu_styles.map{|style| [t(".#{style}"),style] },
+        priority: component.style,
+        include_blank: false %>
 <%= f.input :dropdown, hint: t(".dropdown_hint"), wrapper: :checkbox, as: :boolean %>
