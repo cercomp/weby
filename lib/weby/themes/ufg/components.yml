@@ -33,24 +33,6 @@ top:
             publish: true
             alias: Logo UFG
       -
-        settings: '{:html_class=>"portalbusca"}'
-        name: components_group
-        position: 2
-        publish: true
-        alias: Portal Busca
-        children:
-          -
-            settings: '{:width=>"140", :align=>"right"}'
-            name: search_box
-            position: 1
-            publish: true
-          -
-            settings: '{:format=>"list", :institution=>"ufg", :new_tab=>"0", :html_class=>""}'
-            name: institutional_links
-            position: 2
-            publish: true
-            alias: Links Institucionais
-      -
         settings: '{:html_class=>"infoheader"}'
         name: components_group
         position: 3
@@ -107,12 +89,30 @@ top:
             position: 3
             publish: true
   -
-    settings: '{:menu_id => "%{menu_id}", :dropdown => "1"}'
-    name: menu
+    settings: '{:html_class=>"menu-bar"}'
+    name: components_group
     position: 2
     publish: true
-    menu:
-      name: "Principal"
+    alias: Menu
+    children:
+      -
+        settings: '{:menu_id => "%{menu_id}", :dropdown => "1", :style => "hamburger"}'
+        name: menu
+        position: 1
+        publish: true
+        menu:
+          name: "Principal"
+      -
+        settings: '{:width=>"140", :align=>"right"}'
+        name: search_box
+        position: 2
+        publish: true
+      -
+        settings: '{:format=>"list", :institution=>"ufg", :new_tab=>"0", :html_class=>""}'
+        name: institutional_links
+        position: 3
+        publish: true
+        alias: Links Institucionais
   -
     settings: '{:html_class=>"slider-black"}'
     name: components_group
