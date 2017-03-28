@@ -103,7 +103,7 @@ top:
         menu:
           name: "Principal"
       -
-        settings: '{:width=>"140", :align=>"right"}'
+        settings: '{:width=>"340", :align=>"left", :show_button=>"1"}'
         name: search_box
         position: 2
         publish: true

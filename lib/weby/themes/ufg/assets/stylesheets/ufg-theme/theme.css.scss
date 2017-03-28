@@ -141,21 +141,6 @@ header > section > section.logos section a img {
   max-width: 1000px;
   height: 140px;
 }
-#busca input {
-  position: relative;
-  float: left;
-  width: 140px;
-  height: 16px;
-  margin: 24px 0 0 0;
-  border: none;
-  background-color: #cccccc;
-  text-indent: 5px;
-  font-size: 10px;
-  padding: 2px;
-}
-  #busca input:focus {
-    background-color: #eee;
-  }
 #portal {
   position: relative;
   float: left;
@@ -238,10 +223,12 @@ header .menu-bar {
   background-color: #4478a4;
   color: #FFF;
   position: relative;
+  height: 37px;
   padding: 0 calc((100% - 1000px)/2);
 
   .menu_component {
     display: inline-block;
+    vertical-align: top;
 
     .menu-panel {
       display: none;
@@ -250,9 +237,27 @@ header .menu-bar {
 
   .menu-head {
     cursor: pointer;
-    width: 87px;
+    width: auto;
     height: 37px;
     line-height: 37px;
+    padding-right: 20px;
+    border-right: 1px solid #AAA;
+
+    > span:first-child {
+      font-family: 'MyriadRegular';
+      margin-right: 9px;
+      font-size: 14px;
+    }
+
+    .hamburger-box {
+      height: 14px;
+      width: 30px;
+    }
+
+    .hamburger-inner, .hamburger-inner:after, .hamburger-inner:before {
+      height: 2px;
+      width: 30px;
+    }
   }
 
   .menu-panel {
@@ -324,70 +329,98 @@ header .menu-bar {
 
   .search_box_component {
     display: inline-block;
-    padding: 4px 0px 0px 0px;
-  }
+    padding: 0 20px;
+    height: 37px;
+    margin-left: -5px;
 
-  .search_box_component #search {
-    width: 50%;
-    height: 20px;
-    background-image: url("") !important;
-  }
-  .search_box_component #options {
-    width: 49%;
-    height: 20px;
-    background-color: #ccc;
-    margin: 10px 0 0 0;
-    padding: 0;
-  }
-  .search_box_component input {
-    position: relative;
-    float: left;
-    width: 70px;
-    height: 20px;
-    margin: 10px 0 0 0;
-    border: none;
-    background-color: #ccc;
-    text-indent: 5px;
-    font-size: 10px;
-  }
-  .search_box_component input:focus {
-    background-color: #eee;
+    input[type=submit] {
+      border: 0;
+      outline: 0;
+      width: 25px;
+      height: 37px;
+      vertical-align: top;
+      display: inline-block;
+      padding: 0;
+      margin: 0 0 0 -5px;
+      background: image-url('search-w.png') no-repeat center;
+      font-size: 0;
+    }
+
+    #search {
+      font-family: 'MyriadRegular';
+      color: #999;
+      font-size: 14px;
+      height: 25px;
+      border: 0;
+      background-image: none !important;
+      transition: .1s linear;
+
+      width: 0;
+      padding: 2px 0;
+      margin: 6px 0;
+      &.show-input {
+        width: 300px;
+        padding: 2px 8px;
+        margin-right: 10px;
+      }
+    }
+
+    #options {
+      display: none;
+    }
   }
 
   /* Links Institucionais */
 
   .institutional_links_component {
-    float: right;
-  }
-
-  .institutional_links_component.list > ul {
-    width: 140px;
-    height: 16px;
-    text-indent: 5px;
-    position: relative;
-    float: left;
-    margin-top: 19px;
-    overflow: hidden;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 37px;
+    width: 128px;
+    padding-right: inherit;
     z-index: 1000;
-    font-size: 11px;
-    background: url('/assets/dropdown.png') no-repeat top right;
-    background-color: #eee;
-  }
-  .institutional_links_component.list > ul li {
-    width: 140px;
-    height: 13px;
-    padding-top: 3px;
-    cursor: pointer;
-  }
-  .institutional_links_component.list > ul li a {
-    display: block;
-  }
-  .institutional_links_component.list > ul:hover {
-    height: 100px;
-  }
-  .institutional_links_component.list > ul li:hover {
-    background-color: #ccc;
-    color: #666;
+
+    &.list > ul {
+      font-family: 'MyriadRegular';
+      color: #4D4D4D;
+      font-size: 14px;
+      overflow: hidden;
+      height: 37px;
+
+      > li {
+        padding: 0 20px 0 10px;
+        > a {
+          padding-top: 12px;
+          display: block;
+        }
+
+        &:last-child > a {
+          padding-bottom: 12px;
+        }
+      }
+
+      > li:first-child {
+        height: 100%;
+        line-height: 37px;
+        color: white;
+        background: image-url('dropdown-w.png') no-repeat 104px 48%;
+        border-right: 1px solid #AAA;
+        border-left: 1px solid #AAA;
+        cursor: default;
+      }
+
+      > li:not(:first-child) {
+        color: black;
+        background-color: #CCC;
+      }
+
+      &:hover {
+        height: auto;
+
+
+      }
+    }
   }
 
 }
