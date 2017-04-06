@@ -40,6 +40,11 @@ top:
         alias: Info Header
         children:
           -
+            name: 'menu_i18n'
+            settings: "{}"
+            position: 3
+            publish: true
+          -
             settings: '{:additional_information=>{"pt-BR"=>"<p><strong>Programas para deficientes
               visuais</strong></p>\r\n<p><a href=\"http://baixe.net/download/1181/nitrous-voice-flux/\"
               target=\"_blank\">Nitrous Voice Flux</a></p>\r\n<p><a href=\"http://intervox.nce.ufrj.br/dosvox/\"
@@ -52,7 +57,7 @@ top:
               target=\"_blank\">Dosvox</a></p>\r\n<p><strong>Related Links</strong></p>\r\n<p><a
               href=\"http://acessibilidade.ufg.br/\" target=\"_blank\">UFG Accessibility
               Center</a></p>\r\n<p><a href=\"http://nta.medialab.ufg.br/\" target=\"_blank\">UFG
-              Assistive Technology Center</a></p>"}, :contrast=>"1", :font_size=>"1", :extended_accessibility=>"0",
+              Assistive Technology Center</a></p>"}, :contrast=>"1", :font_size=>"1", :extended_accessibility=>"1",
               :label_contrast=>{"pt-BR"=>"", "en"=>""}, :label_font_size=>{"pt-BR"=>"",
               "en"=>""}}'
             name: menu_accessibility
@@ -83,11 +88,6 @@ top:
                 position: 3
                 publish: true
                 alias: Link Youtube
-          -
-            name: 'menu_i18n'
-            settings: "{}"
-            position: 3
-            publish: true
   -
     settings: '{:html_class=>"menu-bar"}'
     name: components_group

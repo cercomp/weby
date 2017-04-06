@@ -169,7 +169,7 @@ div#wrapper > header > section.components_group_component:first-child {
   max-width: 1000px;
   margin: auto;
   position: relative;
-  height: 140px;
+  height: 102px;
   background-color: white;
 }
 div#wrapper > header > section > section.image_component:first-child {
@@ -178,7 +178,6 @@ div#wrapper > header > section > section.image_component:first-child {
   padding-top: 31px;
 }
 .infoheader {
-  margin: 16px 30px 0 0;
   float: right;
 }
 
@@ -377,7 +376,7 @@ header .menu-bar {
     top: 0;
     right: 0;
     height: 37px;
-    width: 128px;
+    width: 120px;
     padding-right: inherit;
     z-index: 1000;
 
@@ -404,7 +403,7 @@ header .menu-bar {
         height: 100%;
         line-height: 37px;
         color: white;
-        background: image-url('dropdown-w.png') no-repeat 104px 48%;
+        background: image-url('dropdown-w.png') no-repeat 95px 48%;
         border-right: 1px solid #AAA;
         border-left: 1px solid #AAA;
         cursor: default;
@@ -427,12 +426,12 @@ header .menu-bar {
 
 /* Redes Sociais */
 .redesocial {
-  float: right;
+  display: block;
   margin: 20px 0px 0 0px;
 }
 section.redesocial section.image_component {
   position: relative;
-  float: left;
+  float: right;
   width: 30px;
   height: 30px;
   margin-left: 16px;
@@ -475,11 +474,10 @@ span.accessibility {
   padding: 0;
   width: 168px !important;
   height: 36px;
+  position: initial;
 }
 .menu_accessibility_component div#accessibility_button label {
   cursor: pointer;
-  width: 168px;
-  height: 36px;
 }
 .menu_accessibility_component div#accessibility_button label img {
   padding: 3px 9px 3px 3px;
@@ -496,6 +494,8 @@ span.accessibility {
 }
 .menu_accessibility_component.extended {
   font-size: 12px;
+  display: inline-block;
+  vertical-align: top;
 }
 .menu_accessibility_component.extended b,
 .menu_accessibility_component.extended strong {
@@ -508,8 +508,8 @@ span.accessibility {
   margin: 18px 0;
 }
 .menu_i18n_component {
-  float: right;
-  margin: 20px 0 0 0;
+  margin: 20px 22px 0 0;
+  display: inline-block;
 }
 /* Áreas */
 ul#accessibility_areas {
