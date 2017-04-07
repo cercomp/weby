@@ -7,9 +7,28 @@ first_place:
     alias: "Barra do Governo Federal"
 top:
   -
+    settings: '{:additional_information=>{"pt-BR"=>"<p><strong>Programas para deficientes
+      visuais</strong></p>\r\n<p><a href=\"http://baixe.net/download/1181/nitrous-voice-flux/\"
+      target=\"_blank\">Nitrous Voice Flux</a></p>\r\n<p><a href=\"http://intervox.nce.ufrj.br/dosvox/\"
+      target=\"_blank\">Dosvox</a></p>\r\n<p><strong>Links Relacionados</strong></p>\r\n<p><a
+      href=\"http://acessibilidade.ufg.br/\" target=\"_blank\">N&uacute;cleo de
+      Acessibilidade UFG</a></p>\r\n<p><a href=\"http://nta.medialab.ufg.br/\" target=\"_blank\">N&uacute;cleo
+      de Tecnologias Assistivas UFG</a></p>", "en"=>"<p><strong>Softwares for the
+      visually impaired</strong></p>\r\n<p><a href=\"http://baixe.net/download/1181/nitrous-voice-flux/\"
+      target=\"_blank\">Nitrous Voice Flux</a></p>\r\n<p><a href=\"http://intervox.nce.ufrj.br/dosvox/\"
+      target=\"_blank\">Dosvox</a></p>\r\n<p><strong>Related Links</strong></p>\r\n<p><a
+      href=\"http://acessibilidade.ufg.br/\" target=\"_blank\">UFG Accessibility
+      Center</a></p>\r\n<p><a href=\"http://nta.medialab.ufg.br/\" target=\"_blank\">UFG
+      Assistive Technology Center</a></p>"}, :contrast=>"1", :font_size=>"1", :extended_accessibility=>"1",
+      :label_contrast=>{"pt-BR"=>"", "en"=>""}, :label_font_size=>{"pt-BR"=>"",
+      "en"=>""}}'
+    name: menu_accessibility
+    position: 1
+    publish: true
+  -
     settings: '{:html_class=>"cabecalho"}'
     name: components_group
-    position: 1
+    position: 2
     publish: true
     alias: Cabeçalho
     children:
@@ -35,39 +54,20 @@ top:
       -
         settings: '{:html_class=>"infoheader"}'
         name: components_group
-        position: 3
+        position: 2
         publish: true
         alias: Info Header
         children:
           -
             name: 'menu_i18n'
             settings: "{}"
-            position: 3
-            publish: true
-          -
-            settings: '{:additional_information=>{"pt-BR"=>"<p><strong>Programas para deficientes
-              visuais</strong></p>\r\n<p><a href=\"http://baixe.net/download/1181/nitrous-voice-flux/\"
-              target=\"_blank\">Nitrous Voice Flux</a></p>\r\n<p><a href=\"http://intervox.nce.ufrj.br/dosvox/\"
-              target=\"_blank\">Dosvox</a></p>\r\n<p><strong>Links Relacionados</strong></p>\r\n<p><a
-              href=\"http://acessibilidade.ufg.br/\" target=\"_blank\">N&uacute;cleo de
-              Acessibilidade UFG</a></p>\r\n<p><a href=\"http://nta.medialab.ufg.br/\" target=\"_blank\">N&uacute;cleo
-              de Tecnologias Assistivas UFG</a></p>", "en"=>"<p><strong>Softwares for the
-              visually impaired</strong></p>\r\n<p><a href=\"http://baixe.net/download/1181/nitrous-voice-flux/\"
-              target=\"_blank\">Nitrous Voice Flux</a></p>\r\n<p><a href=\"http://intervox.nce.ufrj.br/dosvox/\"
-              target=\"_blank\">Dosvox</a></p>\r\n<p><strong>Related Links</strong></p>\r\n<p><a
-              href=\"http://acessibilidade.ufg.br/\" target=\"_blank\">UFG Accessibility
-              Center</a></p>\r\n<p><a href=\"http://nta.medialab.ufg.br/\" target=\"_blank\">UFG
-              Assistive Technology Center</a></p>"}, :contrast=>"1", :font_size=>"1", :extended_accessibility=>"1",
-              :label_contrast=>{"pt-BR"=>"", "en"=>""}, :label_font_size=>{"pt-BR"=>"",
-              "en"=>""}}'
-            name: menu_accessibility
             position: 1
             publish: true
           -
             settings: '{:html_class=>"redesocial"}'
             name: components_group
             position: 2
-            publish: false
+            publish: true
             alias: Rede Social
             children:
               -
@@ -91,7 +91,7 @@ top:
   -
     settings: '{:html_class=>"menu-bar"}'
     name: components_group
-    position: 2
+    position: 3
     publish: true
     alias: Menu
     children:
@@ -116,7 +116,7 @@ top:
   -
     settings: '{:html_class=>"slider-black"}'
     name: components_group
-    position: 3
+    position: 4
     publish: true
     visibility: 1
     alias: Slider

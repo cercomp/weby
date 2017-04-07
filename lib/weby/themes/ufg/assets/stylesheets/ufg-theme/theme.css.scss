@@ -132,55 +132,145 @@ body{
 input:-moz-placeholder { color:#666; }
 
 /* Cabeçalho */
-header > section > section.logos section a img {
-  float: left;
-}
-/* Cabeçalho */
-#cabecalho {
-  position: relative;
-  max-width: 1000px;
-  height: 140px;
-}
-#portal {
-  position: relative;
-  float: left;
-  height: 16px;
-  text-indent: 5px;
-  font-size: 10px;
-  overflow: hidden;
-  font-size: 10px;
-  z-index: 1000;
-}
-  #portal li {
-    width: 140px;
-    height: 13px;
-    padding-top: 3px;
-    cursor: pointer;
+header {
+  .logos img {
+    float: left;
   }
-  #portal:hover {
-    height: 112px;
-    background-color: #fff;
+
+  .cabecalho {
+    max-width: 1000px;
+    margin: auto;
+    position: relative;
+    height: 100px;
+    background-color: white;
   }
-  #portal li:hover {
-    background-color: #666666;
-    color: #cccccc;
+
+  .infoheader {
+    position: absolute;
+    right: 0;
   }
-div#wrapper > header > section.components_group_component:first-child {
-  max-width: 1000px;
-  margin: auto;
-  position: relative;
-  height: 102px;
-  background-color: white;
-}
-div#wrapper > header > section > section.image_component:first-child {
-  float: left;
-  height: 109px;
-  padding-top: 31px;
-}
-.infoheader {
-  float: right;
+
+  .menu_i18n_component {
+    margin: 20px 210px 0 0;
+    display: inline-block;
+    a {
+      margin-left: 2px;
+    }
+  }
 }
 
+/* Menu de Acessibilidade */
+.menu_accessibility_component.extended {
+  font-size: 12px;
+  display: block;
+  width: 100%;
+  vertical-align: top;
+  margin: 0 auto;
+
+  .accessibility_content {
+    max-width: 1000px;
+    border: 0;
+  }
+
+  #accessibility_border {
+    max-width: 1000px;
+    margin: 0;
+  }
+
+  #accessibility_button {
+    padding: 0;
+    width: 185px !important;
+    height: 36px;
+    position: relative;
+    float: right;
+    right: 0;
+
+    label {
+      cursor: pointer;
+
+      img {
+        padding: 3px 9px 3px 3px;
+      }
+      b {
+        font-family: Verdana, Geneva, sans-serif;
+        font-weight: bold;
+        font-size: 12px;
+        vertical-align: middle;
+        margin-left: -5px;
+      }
+    }
+  }
+}
+
+i.icon-adjust {background-image: url("/assets/invertcolor.jpg");}
+i.icon-minus {background-image: url("/assets/font-minus.jpg");}
+i.icon-font {background-image: url("/assets/font.jpg");}
+i.icon-plus {background-image: url("/assets/font-plus.jpg");}
+
+span.accessibility {
+  font-size: 12px;
+}
+.menu_accessibility_component a i[class*="icon-"] {
+  display: inline-block;
+  width: 21px;
+  height: 20px;
+  line-height: 22px;
+  vertical-align: text-top;
+  background-repeat: no-repeat;
+  margin-right: .3em;
+}
+.menu_accessibility_component.basic {
+  margin: -6px 0 0 0;
+}
+.menu_accessibility_component div
+
+
+.menu_accessibility_component.extended b,
+.menu_accessibility_component.extended strong {
+  font-weight: bold;
+}
+.menu_accessibility_component.extended br {
+  line-height: 5px;
+  content: " ";
+  display: block;
+  margin: 18px 0;
+}
+
+/* Áreas */
+ul#accessibility_areas {
+  margin: 0 0 !important;
+  padding-left: 20px;
+}
+ul#accessibility_areas li {
+  width: 300px;
+  height: 215px;
+}
+li.accessibility_tools {
+  margin: 0 0 0 0 !important;
+}
+li.accessibility_tools b {
+  display: block;
+  margin-bottom: 18px !important;
+}
+li.accessibility_keys {
+  margin: 0 0 0 0 !important;
+}
+li.accessibility_keys p {
+  margin: 2px 0 0 0 !important;
+  line-height: 27px !important;
+}
+/* Título com espaçamento maior */
+li.accessibility_keys b {
+  line-height: 32px;
+}
+li.accessibility_options {
+  margin: 0px 0px !important;
+}
+/* Links com sublinhado */
+li.accessibility_tools a,
+li.accessibility_options a {
+  text-decoration: underline;
+}
 
 
 /* Menu Superior */
@@ -445,107 +535,6 @@ section.redesocial section.image_component {
   height: 30px;
 }
 
-/* Menu de Acessibilidade */
-i.icon-adjust {background-image: url("/assets/invertcolor.jpg");}
-i.icon-minus {background-image: url("/assets/font-minus.jpg");}
-i.icon-font {background-image: url("/assets/font.jpg");}
-i.icon-plus {background-image: url("/assets/font-plus.jpg");}
-/* i18n */
-span.accessibility {
-  font-size: 12px;
-}
-.menu_accessibility_component a i[class*="icon-"] {
-  display: inline-block;
-  width: 21px;
-  height: 20px;
-  line-height: 22px;
-  vertical-align: text-top;
-  background-repeat: no-repeat;
-  margin-right: .3em;
-}
-.menu_accessibility_component.basic {
-  margin: -6px 0 0 0;
-}
-.menu_accessibility_component div#accessibility_border {
-  max-width: 1000px;
-  margin-right: 23%;
-}
-.menu_accessibility_component div#accessibility_button {
-  padding: 0;
-  width: 168px !important;
-  height: 36px;
-  position: initial;
-}
-.menu_accessibility_component div#accessibility_button label {
-  cursor: pointer;
-}
-.menu_accessibility_component div#accessibility_button label img {
-  padding: 3px 9px 3px 3px;
-}
-.menu_accessibility_component div#accessibility_button label b {
-  font-family: Verdana, Geneva, sans-serif;
-  font-weight: bold;
-  font-size: 12px;
-  vertical-align: middle;
-  margin-left: -5px;
-}
-.menu_accessibility_component .accessibility_content {
-  max-width: 1000px;
-}
-.menu_accessibility_component.extended {
-  font-size: 12px;
-  display: inline-block;
-  vertical-align: top;
-}
-.menu_accessibility_component.extended b,
-.menu_accessibility_component.extended strong {
-  font-weight: bold;
-}
-.menu_accessibility_component.extended br {
-  line-height: 5px;
-  content: " ";
-  display: block;
-  margin: 18px 0;
-}
-.menu_i18n_component {
-  margin: 20px 22px 0 0;
-  display: inline-block;
-}
-/* Áreas */
-ul#accessibility_areas {
-  margin: 0 0 !important;
-  padding-left: 20px;
-}
-ul#accessibility_areas li {
-  width: 300px;
-  height: 215px;
-}
-li.accessibility_tools {
-  margin: 0 0 0 0 !important;
-}
-li.accessibility_tools b {
-  display: block;
-  margin-bottom: 18px !important;
-}
-li.accessibility_keys {
-  margin: 0 0 0 0 !important;
-}
-li.accessibility_keys p {
-  margin: 2px 0 0 0 !important;
-  line-height: 27px !important;
-}
-/* Título com espaçamento maior */
-li.accessibility_keys b {
-  line-height: 32px;
-}
-li.accessibility_options {
-  margin: 0px 0px !important;
-}
-/* Links com sublinhado */
-li.accessibility_tools a,
-li.accessibility_options a {
-  text-decoration: underline;
-}
 
 /* Slider de Fotos */
 .slider {
