@@ -46,7 +46,7 @@ top:
             publish: true
             alias: Logo do site
           -
-            settings: '{:default_image=>"UFG_logo.svg", :size=>"original", :width=>"", :height=>"", :url=>"http://www.ufg.br", :target_id=>"", :target_type=>"", :new_tab=>"0"}'
+            settings: '{:default_image=>"UFG_logo2.svg", :size=>"original", :width=>"", :height=>"", :url=>"http://www.ufg.br", :target_id=>"", :target_type=>"", :new_tab=>"0"}'
             name: image
             position: 2
             publish: true

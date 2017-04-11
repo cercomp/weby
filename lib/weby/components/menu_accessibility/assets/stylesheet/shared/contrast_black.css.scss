@@ -1,7 +1,7 @@
 .btn > img {
   background-color: transparent !important;
 }
-* :not(.btn) {
+* :not(.btn):not(button) {
   background-color: #2F2F2F !important;
   color: #FFFF00 !important;
   border-color: 1px solid white !important;
@@ -84,11 +84,43 @@ article.page-show,
 div#pages.pages-list {
   border-bottom: 1px solid white !important;
 }
-header nav menu li,
 aside .menu_component menu li,
 footer nav menu li {
   border: 1px solid white !important;
   margin-right: 0px;
+}
+header .menu-bar {
+
+  &, .menu_component,
+  .menu-head, .menu-head > span,
+  .hamburger-box, .hamburger,
+  .search_box_component, .search_box_component form,
+  .search_box_component input[type=submit],
+  .institutional_links_component, .institutional_links_component ul,
+  .institutional_links_component li:first-child {
+    background-color: #FFFF00 !important;
+    color: #000 !important;
+  }
+  .menu-panel, .hamburger-menu, .hamburger-menu li, .hamburger-menu a, .hamburger-menu menu {
+    background-color: #000 !important;
+  }
+  menu.hamburger-menu menu > li > a {
+    color: white !important;
+  }
+  .institutional_links_component li:first-child {
+    background-image: url(/assets/dropdown.png) !important;
+  }
+  .search_box_component input[type=submit] {
+    background-image: url(/assets/search.png) !important;
+  }
+  .institutional_links_component.list > ul > li:not(:first-child) {
+    &, & a {
+      background-color: #2F2F2F !important;
+    }
+  }
+  .hamburger-inner, .hamburger-inner:before, .hamburger-inner:after {
+    background-color: #000 !important;
+  }
 }
 .search_box_component #search,
 .form-control {

@@ -137,6 +137,10 @@ header {
     float: left;
   }
 
+  .sitelogo {
+    background-color: #E1ECF1;
+  }
+
   .cabecalho {
     max-width: 1000px;
     margin: auto;
@@ -151,7 +155,7 @@ header {
   }
 
   .menu_i18n_component {
-    margin: 20px 210px 0 0;
+    margin: 20px 193px 0 0;
     display: inline-block;
     a {
       margin-left: 2px;
@@ -179,7 +183,7 @@ header {
 
   #accessibility_button {
     padding: 0;
-    width: 185px !important;
+    width: 168px !important;
     height: 36px;
     position: relative;
     float: right;
@@ -468,7 +472,7 @@ header .menu-bar {
     height: 37px;
     width: 120px;
     padding-right: inherit;
-    z-index: 1000;
+    z-index: 9010;
 
     &.list > ul {
       font-family: 'MyriadRegular';
@@ -1147,7 +1151,7 @@ footer {
 footer > section {
   color: white;
   float: left;
-  background-color: #2576b2;
+  background-color: #4B73B3;
   width: 100%;
 }
 /* Ropapé grupo de componentes */
@@ -1157,7 +1161,7 @@ footer > section > section {
   max-width: 1000px;
   min-height: 150px;
   overflow: hidden;
-  background-color: #689eca;
+  background-color: #7B9CCB;
 }
   footer > section > section p {
     position: relative;
@@ -1228,7 +1232,7 @@ footer .menu_component .expanded {
 }
 footer .menu_component .expanded li {
   display: table-cell;
-  background: #2576b2;
+  background: #4B73B3;
 }
 footer .menu_component .expanded li a {
   display: block;
@@ -1239,5 +1243,8 @@ footer .menu_component .expanded li a {
   text-decoration: none;
 }
 footer .menu_component .expanded li:hover {
-  background: #689ECA;
+  background: #7B9CCB;
+  a {
+    color: white;
+  }
 }
