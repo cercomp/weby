@@ -93,26 +93,39 @@ top:
     name: components_group
     position: 3
     publish: true
-    alias: Menu
+    alias: Barra do Menu
     children:
       -
-        settings: '{:menu_id => "%{menu_id}", :dropdown => "1", :style => "hamburger"}'
-        name: menu
+        settings: '{:html_class=>"menu-box"}'
+        name: components_group
         position: 1
         publish: true
-        menu:
-          name: "Principal"
-      -
-        settings: '{:width=>"340", :align=>"left", :show_button=>"1"}'
-        name: search_box
-        position: 2
-        publish: true
-      -
-        settings: '{:format=>"list", :institution=>"ufg", :new_tab=>"0", :html_class=>""}'
-        name: institutional_links
-        position: 3
-        publish: true
-        alias: Links Institucionais
+        alias: Menu
+        children:
+          -
+            settings: '{:html_class=>"fixed-bar-logo", :default_image=>"UFG_logo2-w.svg", :size=>"original", :width=>"", :height=>"", :url=>"http://www.ufg.br", :target_id=>"", :target_type=>"", :new_tab=>"0"}'
+            name: image
+            position: 1
+            publish: true
+            alias: Logo
+          -
+            settings: '{:menu_id => "%{menu_id}", :dropdown => "1", :style => "hamburger"}'
+            name: menu
+            position: 2
+            publish: true
+            menu:
+              name: "Principal"
+          -
+            settings: '{:width=>"340", :align=>"left", :show_button=>"1"}'
+            name: search_box
+            position: 3
+            publish: true
+          -
+            settings: '{:format=>"list", :institution=>"ufg", :new_tab=>"0", :html_class=>""}'
+            name: institutional_links
+            position: 4
+            publish: true
+            alias: Links Institucionais
   -
     settings: '{:html_class=>"slider-black"}'
     name: components_group

@@ -311,13 +311,76 @@ li.accessibility_options a {
   }
 }
 
+.menu_accessibility_component.extended.fixed {
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 9081;
+
+  #accessibility_border {
+    display: none;
+  }
+
+  #accessibility_button {
+    width: auto !important;
+    background-color: #4478a4;
+
+    label {
+      line-height: 37px;
+
+      img {
+        display: none;
+      }
+      b {
+        margin: 0 8px;
+      }
+    }
+  }
+}
 
 header .menu-bar {
   background-color: #4478a4;
   color: #FFF;
   position: relative;
   height: 37px;
-  padding: 0 calc((100% - 1000px)/2);
+  width: 100%;
+  z-index: 9080;
+
+  .fixed-bar-logo {
+    display: none;
+    vertical-align: top;
+    height: 37px;
+    padding-right: 20px;
+    margin-right: 20px;
+    border-right: 1px solid #AAA;
+
+    img {
+      vertical-align: middle;
+      height: 90%;
+    }
+  }
+
+  .menu-box {
+    width: 1000px;
+    margin: 0 auto;
+  }
+
+  &.fixed {
+    position: fixed;
+    top: 0;
+
+    .fixed-bar-logo {
+      display: inline-block;
+    }
+
+    ~ .slider-black {
+      margin-top: 37px;
+    }
+
+    .institutional_links_component {
+      display: none;
+    }
+  }
 
   .menu_component {
     display: inline-block;
@@ -466,12 +529,9 @@ header .menu-bar {
   /* Links Institucionais */
 
   .institutional_links_component {
-    position: absolute;
-    top: 0;
-    right: 0;
+    float: right;
     height: 37px;
     width: 120px;
-    padding-right: inherit;
     z-index: 9010;
 
     &.list > ul {

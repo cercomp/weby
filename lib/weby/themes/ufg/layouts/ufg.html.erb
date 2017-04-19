@@ -70,6 +70,18 @@
           return false;
         });
 
+        var $menuBar = $('.menu-bar'),
+            $accessibility = $('.menu_accessibility_component.extended');
+        var initialMenuTop = $menuBar.offset().top;
+        $(window).scroll(function(){
+          if ($(this).scrollTop() > initialMenuTop){
+            $menuBar.addClass('fixed');
+            $accessibility.addClass('fixed');
+          }else{
+            $menuBar.removeClass('fixed');
+            $accessibility.removeClass('fixed');
+          }
+        });
       });
     </script>
   </body>
