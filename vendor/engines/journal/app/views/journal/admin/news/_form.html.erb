@@ -14,7 +14,7 @@
 
   <%= f.input :status, collection: @status_types, include_blank: false %>
 
-  <%= f.simple_fields_for(:news_sites, @news.news_sites.where(site_id: current_site.id)) do |g| %>
+  <%= f.simple_fields_for(:news_sites, @news.new_record? ? @news.news_sites : @news.news_sites.where(site_id: current_site.id)) do |g| %>
     <%= g.input :id, as: :hidden %>
     <%= g.input :site_id, as: :hidden, input_html: {value: current_site.id} %>
     <%= g.input :category_list, :hint => t(".page_categories_help"), input_html: {class: 'input-xlarge input-category', data: {tags: Journal::NewsSite.uniq_category_counts.map{|t| t.name }}} %>
