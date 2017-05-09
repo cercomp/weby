@@ -104,5 +104,13 @@
   div#menu_accessibility_background{
     background-color: #DFDFDF;
   }
+  .close-accessibility {
+    float: right;
+    margin: 10px 10px 0 0;
+
+    &:hover, &:focus {
+      text-decoration: none;
+    }
+  }
 }
 

@@ -134,11 +134,20 @@ input:-moz-placeholder { color:#666; }
 /* Cabeçalho */
 header {
   .logos img {
-    float: left;
+    /*float: left;*/
   }
 
   .sitelogo {
     background-color: #E1ECF1;
+  }
+
+  .ufglogo {
+    height: 100px;
+    width: 220px;
+    line-height: 100px;
+    img {
+      vertical-align: middle;
+    }
   }
 
   .cabecalho {
@@ -351,13 +360,14 @@ header .menu-bar {
     display: none;
     vertical-align: top;
     height: 37px;
+    line-height: 37px;
     padding-right: 20px;
-    margin-right: 15px;
+    margin-left: 12px;
     border-right: 1px solid #AAA;
 
     img {
       vertical-align: middle;
-      height: 90%;
+      width: 59px;
     }
   }
 
