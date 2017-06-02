@@ -139,12 +139,29 @@ header {
 
   .sitelogo {
     background-color: #E1ECF1;
+    display: inline-block;
+    height: 100px;
+    vertical-align: top;
+
+    a {
+      margin: 0 12px 0 16px;
+    }
+    img {
+      vertical-align: middle;
+    }
   }
 
   .ufglogo {
+    display: inline-block;
     height: 100px;
     width: 220px;
     line-height: 100px;
+    vertical-align: top;
+    margin-left: -5px;
+
+    a {
+      margin: 0 24px 0 14px;
+    }
     img {
       vertical-align: middle;
     }
@@ -156,6 +173,15 @@ header {
     position: relative;
     height: 100px;
     background-color: white;
+
+   /* &:before {
+      content: ' ';
+      width: 400px;
+      height: 100px;
+      position: absolute;
+      left: -300px;
+      background-color: #eff5f9;
+    }*/
   }
 
   .infoheader {
