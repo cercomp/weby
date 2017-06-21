@@ -14,7 +14,7 @@ gem 'bootstrap-sass', '~> 3.1.1.1'
 gem 'select2-rails', '~> 3.5.9'
 gem 'd3js-rails', '~> 3.1.6'
 gem 'jcrop-rails-v2', '~> 0.9.12.3'
-gem 'font-awesome-rails', '~> 4.1.0.0'
+gem 'font-awesome-rails', '~> 4.7.0.2'
 gem 'fullcalendar-rails'
 
 # Ominiauth

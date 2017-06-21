@@ -74,6 +74,7 @@
             $accessibility = $('.menu_accessibility_component.extended');
         var initialMenuTop = $menuBar.offset().top;
         $(window).scroll(function(){
+          if ($(this).width() < 768) return;
           if ($(this).scrollTop() > initialMenuTop){
             $menuBar.addClass('fixed');
             $accessibility.addClass('fixed');
@@ -81,6 +82,10 @@
             $menuBar.removeClass('fixed');
             $accessibility.removeClass('fixed');
           }
+        });
+
+        $('.mobile-menu').on('click', '.menu', function(){
+            $('.menu-panel').toggleClass('open-fixed');
         });
       });
     </script>
