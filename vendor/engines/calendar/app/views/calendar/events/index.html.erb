@@ -1,4 +1,4 @@
-<h2>
+<!-- <h2>
   <%= t(".events") %>
 </h2>
 <% if params[:tags] %>
@@ -10,7 +10,7 @@
       <%= tag %> X
     <% end %>
   <% end %>
-<% end %>
+<% end %> -->
 <!--
 <%#= form_tag events_path, method: 'get' do %>
   <div class="input-append search-field-button">
@@ -27,7 +27,7 @@
   <%#= hidden_field_tag 'per_page', "#{params[:per_page]}" %>
 <%# end %>
 -->
-<div id='calendar' data-url="<%= calendar_path %>"></div>
+<!-- <div id='calendar' data-url="<%= calendar_path %>"></div>
 
 <% content_for :stylesheets, stylesheet_link_tag("fullcalendar") %>
 <% content_for :stylesheets, stylesheet_link_tag("search_results") %>
@@ -35,3 +35,21 @@
 <% content_for :javascripts, javascript_include_tag("fullcalendar") %>
 <% content_for :javascripts, javascript_include_tag("fullcalendar/lang/#{I18n.locale.downcase}") %>
 <% content_for :javascripts, javascript_include_tag("calendar/events.index") %>
+ -->
+
+ <style>
+    ufg-eventos {
+      --event-bg: white;
+      --event-item-bg: #fafafa;
+      --app-datepicker-bg: steelblue;
+      --app-datepicker-selection-bg: steelblue;
+      --app-datepicker-selected-year-color: steelblue;
+      --app-datepicker-date-hover-background-color: #a2c0d9;
+      --app-datepicker-today-color: #386890;
+      --app-datepicker-selected-day-bg: #3367D5;
+    }
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.1/webcomponents-lite.js"></script>
+<link rel="import" href="https://joserochadocarmo.github.io/ufg-eventos/ufg-eventos.html">
+<ufg-eventos></ufg-eventos>
