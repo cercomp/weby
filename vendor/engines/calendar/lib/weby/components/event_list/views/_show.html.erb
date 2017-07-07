@@ -26,9 +26,7 @@
 
   <% elsif component.template == 'front' %>
 
-    <% show_all_link = component.filter_by.present? ?
-        events_path(direction: 'desc', sort: 'calendar_events.created_at', tags: component.filter_by) :
-        events_path(direction: 'desc', sort: 'calendar_events.created_at')
+    <% show_all_link = events_path()
     %>
     <% if component.label.present? %>
       <div class="event_list_title">
