@@ -122,7 +122,7 @@ module RepositoryHelper
 
   def mime_image
     file = "mime_list/#{CGI.escape(mime_type.last)}.png"
-    Rails.application.assets.find_asset(file) ? file : empty_mime
+    Weby::Assets.find_asset(file) ? file : empty_mime
   end
 
   def empty_mime

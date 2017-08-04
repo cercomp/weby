@@ -1,4 +1,4 @@
-<% @icons = Weby::Application.assets.entries('lib/weby/components/feed/assets/images/feed') %>
+<% @icons = []#Weby::Application.assets.entries('lib/weby/components/feed/assets/images/feed') %>
 <%= f.input :rss_icon,
     as: :radio_buttons,
     collection: @icons.map{|icon|

@@ -21,7 +21,7 @@ gem 'fullcalendar-rails'
 gem 'omniauth-shibboleth'
 
 # assets
-gem 'sass-rails'
+gem 'sass-rails', '5.0.6'
 gem 'uglifier', '>= 1.3.0'
 gem 'therubyracer', :platforms => :ruby
 gem 'non-stupid-digest-assets' # Generate assets without digest.

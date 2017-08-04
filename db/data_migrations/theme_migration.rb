@@ -87,14 +87,25 @@ class ThemeMigration
       end
 
       mbox = site_components.detect{|c| c.alias == 'Menu' && c.name == 'components_group' }
-      mbox = site_components.create(
-        place_holder: mbar.id,
-        settings: '{:html_class=>"menu-box"}',
-        name: 'components_group',
-        position: 1,
-        publish: true,
-        alias: 'Menu'
-      ) unless mbox
+      if !mbox
+        mbox = site_components.create(
+          place_holder: mbar.id,
+          settings: '{:html_class=>"menu-box"}',
+          name: 'components_group',
+          position: 1,
+          publish: true,
+          alias: 'Menu'
+        )
+
+        fixed_logo = site_components.create(
+          place_holder: mbox.id,
+          settings: '{:html_class=>"fixed-bar-logo", :default_image=>"ufg_barra.svg", :size=>"original", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"0"}',
+          name: 'image',
+          position: 2,
+          publish: true,
+          alias: 'Logo'
+        )
+      end
 
       #menu
       menu = site_components.detect{|c| c.name == 'menu' && c.place_holder == 'top' }
@@ -103,15 +114,6 @@ class ThemeMigration
         sett[:style] = 'hamburger'
         menu.update_columns(position: 1, settings: sett.to_s, place_holder: mbox.id)
       end
-
-      fixed_logo = site_components.create(
-        place_holder: mbox.id,
-        settings: '{:html_class=>"fixed-bar-logo", :default_image=>"ufg_barra.svg", :size=>"original", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"0"}',
-        name: 'image',
-        position: 2,
-        publish: true,
-        alias: 'Logo'
-      )
 
       #search
       search = site_components.detect{|c| c.name == 'search_box' }
