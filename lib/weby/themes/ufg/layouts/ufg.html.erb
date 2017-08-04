@@ -17,7 +17,7 @@
     <%= render 'sites/shared/social_meta' %>
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" media="screen">
     <%= yield :components_stylesheets %>
-    <%= stylesheet_link_tag '_webybar' %>
+    <%= stylesheet_link_tag 'webybar' %>
     <%= stylesheet_link_tag 'weby-assets' %>
     <%= stylesheet_link_tag 'ufg' %>
     <%= yield :stylesheets %>
@@ -45,5 +45,49 @@
     <%= javascript_include_tag "base" %>
     <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
     <%= yield :javascripts %>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        // expand menu
+        $(".menu-head").click(function() {
+          var $menu = $('.menu-panel');
+          var $hamburger = $($(this).find('.hamburger'));
+          // Toggle class "is-active"
+          if ($hamburger.hasClass('is-active')){
+            $hamburger.removeClass('is-active');
+            $menu.slideUp(200);
+          }else{
+            $hamburger.addClass('is-active');
+            $menu.slideDown(200);
+          }
+          return false;
+        });
+
+        $('.form_search input[type=submit]').click(function(ev){
+          ev.preventDefault();
+
+          $(this).parents('.form_search').find('#search').toggleClass('show-input');
+
+          return false;
+        });
+
+        var $menuBar = $('.menu-bar'),
+            $accessibility = $('.menu_accessibility_component.extended');
+        var initialMenuTop = $menuBar.offset().top;
+        $(window).scroll(function(){
+          if ($(this).width() < 768) return;
+          if ($(this).scrollTop() > initialMenuTop){
+            $menuBar.addClass('fixed');
+            $accessibility.addClass('fixed');
+          }else{
+            $menuBar.removeClass('fixed');
+            $accessibility.removeClass('fixed');
+          }
+        });
+
+        $('.mobile-menu').on('click', '.menu', function(){
+            $('.menu-panel').toggleClass('open-fixed');
+        });
+      });
+    </script>
   </body>
 </html>

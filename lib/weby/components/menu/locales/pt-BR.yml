@@ -7,8 +7,12 @@ pt-BR:
       menu_component:
         menu_id:           " Menu "
         dropdown:          " Desdobrável "
+        style:             " Estilo "
   menu:
     views:
       form:
         menu_id:               " Menu "
+        style:                 " Estilo "
+        menu:                  " Menu "
+        hamburger:             " Sanduíche "
         dropdown_hint:         " Sub-menus se desdobram com o passar do cursor do mouse "

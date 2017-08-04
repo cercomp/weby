@@ -16,7 +16,7 @@
     <%= auto_discovery_link_tag(:atom, main_app.site_feed_url(format: 'atom'),  {:title => "#{@site.try(:title)} - ATOM"}) %>
     <%= render 'sites/shared/social_meta' %>
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" media="screen">
-    <%= stylesheet_link_tag '_webybar' %>
+    <%= stylesheet_link_tag 'webybar' %>
     <%= stylesheet_link_tag 'weby-assets' %>
     <%= yield :stylesheets %>
     <%= yield :components_stylesheets %>

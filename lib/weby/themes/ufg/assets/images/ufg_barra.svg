@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_extend "http://ns.adobe.com/Extensibility/1.0/">
+	<!ENTITY ns_ai "http://ns.adobe.com/AdobeIllustrator/10.0/">
+	<!ENTITY ns_graphs "http://ns.adobe.com/Graphs/1.0/">
+	<!ENTITY ns_vars "http://ns.adobe.com/Variables/1.0/">
+	<!ENTITY ns_imrep "http://ns.adobe.com/ImageReplacement/1.0/">
+	<!ENTITY ns_sfw "http://ns.adobe.com/SaveForWeb/1.0/">
+	<!ENTITY ns_custom "http://ns.adobe.com/GenericCustomNamespace/1.0/">
+	<!ENTITY ns_adobe_xpath "http://ns.adobe.com/XPath/1.0/">
+]>
+<svg version="1.1" id="Camada_1" xmlns:x="&ns_extend;" xmlns:i="&ns_ai;" xmlns:graph="&ns_graphs;"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="59px" height="21.674px"
+	 viewBox="0 0 59 21.674" enable-background="new 0 0 59 21.674" xml:space="preserve">
+<metadata>
+	<sfw  xmlns="&ns_sfw;">
+		<slices></slices>
+		<sliceSourceBounds  width="16976" height="18609" x="-8272" y="-8576" bottomLeftOrigin="true"></sliceSourceBounds>
+	</sfw>
+</metadata>
+<g>
+	<polygon fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="3.346,8.13 5.02,9.097 6.693,10.064 6.693,11.999 
+		6.693,13.934 5.02,14.899 3.346,15.867 1.674,14.899 0,13.934 0,11.999 0,10.064 1.674,9.097 3.346,8.13 	"/>
+	<polygon fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="14.745,13.931 16.421,14.898 18.096,15.866 
+		18.096,17.802 18.096,19.738 16.421,20.706 14.745,21.674 13.07,20.706 11.396,19.738 11.396,17.802 11.396,15.866 13.07,14.898 
+		14.745,13.931 	"/>
+	<polygon fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="14.744,0 16.756,1.159 18.767,2.319 18.767,4.641 
+		18.767,6.962 16.756,8.122 14.744,9.282 12.732,8.122 10.721,6.962 10.721,4.641 10.721,2.319 12.732,1.159 14.744,0 	"/>
+	<polygon fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="17.432,8.521 18.775,9.294 20.118,10.066 20.118,11.611 
+		20.118,13.156 18.775,13.929 17.432,14.701 16.089,13.929 14.745,13.156 14.745,11.611 14.745,10.066 16.089,9.294 17.432,8.521 	
+		"/>
+	<polygon fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="8.716,15.101 9.725,15.68 10.733,16.259 10.733,17.416 
+		10.733,18.574 9.725,19.153 8.716,19.732 7.708,19.153 6.699,18.574 6.699,17.416 6.699,16.259 7.708,15.68 8.716,15.101 	"/>
+	<polygon fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="6.7,3.103 8.038,3.875 9.378,4.647 9.378,6.192 
+		9.378,7.738 8.038,8.51 6.7,9.283 5.36,8.51 4.022,7.738 4.022,6.192 4.022,4.647 5.36,3.875 6.7,3.103 	"/>
+	<path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M22.811,4.729v7.023c0,3.997,1.85,5.775,5.025,5.775
+		c3.287,0,5.248-1.853,5.248-5.739v-7.06h-2.839v7.229c0,2.242-0.821,3.288-2.317,3.288c-1.437,0-2.277-1.102-2.277-3.288V4.729
+		H22.811L22.811,4.729z M37.3,17.319h2.84v-5.062h4.521V9.941H40.14V7.063h4.838V4.729H37.3V17.319L37.3,17.319z M59,10.128h-4.688
+		v2.223h1.942v2.634c-0.225,0.093-0.747,0.168-1.382,0.168c-2.336,0-3.979-1.503-3.979-4.109c0-2.74,1.812-4.09,4.185-4.09
+		c1.382,0,2.224,0.224,2.914,0.544l0.598-2.318c-0.616-0.264-1.868-0.581-3.493-0.581c-4.128,0-7.173,2.392-7.191,6.596
+		c0,1.842,0.635,3.477,1.774,4.576c1.158,1.101,2.82,1.684,5.118,1.684c1.662,0,3.325-0.414,4.203-0.713V10.128L59,10.128z"/>
+</g>
+</svg>

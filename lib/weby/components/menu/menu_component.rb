@@ -1,5 +1,5 @@
 class MenuComponent < Component
-  component_settings :menu_id, :dropdown
+  component_settings :menu_id, :dropdown, :style
 
   validates :menu_id, presence: true
 
@@ -15,5 +15,9 @@ class MenuComponent < Component
   def default_alias
     menu = Menu.find menu_id rescue nil
     menu ? menu.name : ''
+  end
+
+  def menu_styles
+    [:menu, :hamburger]
   end
 end

@@ -35,7 +35,7 @@
     float: right;
     border: 1px solid #DFDFDF;
     border-radius: 2px;
-    background-color: #F1F1F1;
+    background-color: #E6E6E6;
     padding: 5px !important;
     font-weight: bold !important;
     font-size: 12px;
@@ -44,7 +44,7 @@
     margin: 2px;
   }
   nav.menu_accessibility_extended{
-    background-color: #F1F1F1;
+    background-color: #E6E6E6;
     border-top: 2px solid #749EC7;
     margin-left: auto;
     margin-right: auto;
@@ -83,7 +83,7 @@
     margin: auto;
     cursor: pointer;
     z-index: 9999;
-    background-color: #749EC7;
+    background-color: #B0B0B0;
   }
   div#accessibility_button b{
     color: #FAFEFC;
@@ -97,12 +97,20 @@
     vertical-align: middle;
   }
   div#accessibility_border{
-    border-bottom: 2px solid #749EC7;
+    border-bottom: 2px solid #B0B0B0;
     margin-left: auto;
     margin-right: auto;
   }
   div#menu_accessibility_background{
-    background-color: #D6D8D7
+    background-color: #DFDFDF;
+  }
+  .close-accessibility {
+    float: right;
+    margin: 10px 10px 0 0;
+
+    &:hover, &:focus {
+      text-decoration: none;
+    }
   }
 }
 

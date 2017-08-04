@@ -7,9 +7,28 @@ first_place:
     alias: "Barra do Governo Federal"
 top:
   -
+    settings: '{:additional_information=>{"pt-BR"=>"<p><strong>Programas para deficientes
+      visuais</strong></p>\r\n<p><a href=\"http://baixe.net/download/1181/nitrous-voice-flux/\"
+      target=\"_blank\">Nitrous Voice Flux</a></p>\r\n<p><a href=\"http://intervox.nce.ufrj.br/dosvox/\"
+      target=\"_blank\">Dosvox</a></p>\r\n<p><strong>Links Relacionados</strong></p>\r\n<p><a
+      href=\"http://acessibilidade.ufg.br/\" target=\"_blank\">N&uacute;cleo de
+      Acessibilidade UFG</a></p>\r\n<p><a href=\"http://nta.medialab.ufg.br/\" target=\"_blank\">N&uacute;cleo
+      de Tecnologias Assistivas UFG</a></p>", "en"=>"<p><strong>Softwares for the
+      visually impaired</strong></p>\r\n<p><a href=\"http://baixe.net/download/1181/nitrous-voice-flux/\"
+      target=\"_blank\">Nitrous Voice Flux</a></p>\r\n<p><a href=\"http://intervox.nce.ufrj.br/dosvox/\"
+      target=\"_blank\">Dosvox</a></p>\r\n<p><strong>Related Links</strong></p>\r\n<p><a
+      href=\"http://acessibilidade.ufg.br/\" target=\"_blank\">UFG Accessibility
+      Center</a></p>\r\n<p><a href=\"http://nta.medialab.ufg.br/\" target=\"_blank\">UFG
+      Assistive Technology Center</a></p>"}, :contrast=>"1", :font_size=>"1", :extended_accessibility=>"1",
+      :label_contrast=>{"pt-BR"=>"", "en"=>""}, :label_font_size=>{"pt-BR"=>"",
+      "en"=>""}}'
+    name: menu_accessibility
+    position: 1
+    publish: true
+  -
     settings: '{:html_class=>"cabecalho"}'
     name: components_group
-    position: 1
+    position: 2
     publish: true
     alias: Cabeçalho
     children:
@@ -27,60 +46,28 @@ top:
             publish: true
             alias: Logo do site
           -
-            settings: '{:default_image=>"UFG_logo.svg", :size=>"original", :width=>"", :height=>"", :url=>"http://www.ufg.br", :target_id=>"", :target_type=>"", :new_tab=>"0"}'
+            settings: '{:default_image=>"ufg_topo.svg", :size=>"original", :width=>"", :height=>"", :url=>"http://www.ufg.br", :target_id=>"", :html_class=>"ufglogo", :target_type=>"", :new_tab=>"0"}'
             name: image
             position: 2
             publish: true
             alias: Logo UFG
       -
-        settings: '{:html_class=>"portalbusca"}'
-        name: components_group
-        position: 2
-        publish: true
-        alias: Portal Busca
-        children:
-          -
-            settings: '{:width=>"140", :align=>"right"}'
-            name: search_box
-            position: 1
-            publish: true
-          -
-            settings: '{:format=>"list", :institution=>"ufg", :new_tab=>"0", :html_class=>""}'
-            name: institutional_links
-            position: 2
-            publish: true
-            alias: Links Institucionais
-      -
         settings: '{:html_class=>"infoheader"}'
         name: components_group
-        position: 3
+        position: 2
         publish: true
         alias: Info Header
         children:
           -
-            settings: '{:additional_information=>{"pt-BR"=>"<p><strong>Programas para deficientes
-              visuais</strong></p>\r\n<p><a href=\"http://baixe.net/download/1181/nitrous-voice-flux/\"
-              target=\"_blank\">Nitrous Voice Flux</a></p>\r\n<p><a href=\"http://intervox.nce.ufrj.br/dosvox/\"
-              target=\"_blank\">Dosvox</a></p>\r\n<p><strong>Links Relacionados</strong></p>\r\n<p><a
-              href=\"http://acessibilidade.ufg.br/\" target=\"_blank\">N&uacute;cleo de
-              Acessibilidade UFG</a></p>\r\n<p><a href=\"http://nta.medialab.ufg.br/\" target=\"_blank\">N&uacute;cleo
-              de Tecnologias Assistivas UFG</a></p>", "en"=>"<p><strong>Softwares for the
-              visually impaired</strong></p>\r\n<p><a href=\"http://baixe.net/download/1181/nitrous-voice-flux/\"
-              target=\"_blank\">Nitrous Voice Flux</a></p>\r\n<p><a href=\"http://intervox.nce.ufrj.br/dosvox/\"
-              target=\"_blank\">Dosvox</a></p>\r\n<p><strong>Related Links</strong></p>\r\n<p><a
-              href=\"http://acessibilidade.ufg.br/\" target=\"_blank\">UFG Accessibility
-              Center</a></p>\r\n<p><a href=\"http://nta.medialab.ufg.br/\" target=\"_blank\">UFG
-              Assistive Technology Center</a></p>"}, :contrast=>"1", :font_size=>"1", :extended_accessibility=>"0",
-              :label_contrast=>{"pt-BR"=>"", "en"=>""}, :label_font_size=>{"pt-BR"=>"",
-              "en"=>""}}'
-            name: menu_accessibility
+            name: 'menu_i18n'
+            settings: "{}"
             position: 1
             publish: true
           -
             settings: '{:html_class=>"redesocial"}'
             name: components_group
             position: 2
-            publish: false
+            publish: true
             alias: Rede Social
             children:
               -
@@ -101,22 +88,48 @@ top:
                 position: 3
                 publish: true
                 alias: Link Youtube
+  -
+    settings: '{:html_class=>"menu-bar"}'
+    name: components_group
+    position: 3
+    publish: true
+    alias: Barra do Menu
+    children:
+      -
+        settings: '{:html_class=>"menu-box"}'
+        name: components_group
+        position: 1
+        publish: true
+        alias: Menu
+        children:
           -
-            name: 'menu_i18n'
-            settings: "{}"
+            settings: '{:menu_id => "%{menu_id}", :dropdown => "1", :style => "hamburger"}'
+            name: menu
+            position: 1
+            publish: true
+            menu:
+              name: "Principal"
+          -
+            settings: '{:html_class=>"fixed-bar-logo", :default_image=>"ufg_barra.svg", :size=>"original", :width=>"", :height=>"", :url=>"http://www.ufg.br", :target_id=>"", :target_type=>"", :new_tab=>"0"}'
+            name: image
+            position: 2
+            publish: true
+            alias: Logo
+          -
+            settings: '{:width=>"340", :align=>"left", :show_button=>"1"}'
+            name: search_box
             position: 3
             publish: true
-  -
-    settings: '{:menu_id => "%{menu_id}", :dropdown => "1"}'
-    name: menu
-    position: 2
-    publish: true
-    menu:
-      name: "Principal"
+          -
+            settings: '{:format=>"list", :institution=>"ufg", :new_tab=>"0", :html_class=>""}'
+            name: institutional_links
+            position: 4
+            publish: true
+            alias: Links Institucionais
   -
     settings: '{:html_class=>"slider-black"}'
     name: components_group
-    position: 3
+    position: 4
     publish: true
     visibility: 1
     alias: Slider
@@ -209,3 +222,9 @@ bottom:
             position: 4
             publish: true
             alias: Mais informações
+  -
+    settings: '{:body=>"<div class=\"mobile-menu\">\r\n</div>", :put_at_end=>"1"}'
+    alias: 'Menu mobile'
+    name: blank
+    position: 3
+    publish: true

@@ -1,7 +1,7 @@
 .btn > img {
   background-color: transparent !important;
 }
-* :not(.btn) {
+* :not(.btn):not(button) {
   background-color: #F7F3D6 !important;
   color: #020167 !important;
   border-color: 1px solid white !important;
@@ -82,11 +82,34 @@ article.page-show,
 div#pages.pages-list {
   border-bottom: 1px solid #8f8001 !important;
 }
-header nav menu li,
 aside .menu_component menu li,
 footer nav menu li {
   border: 1px solid #8f8001 !important;
   margin-right: 0px;
+}
+header .menu-bar {
+
+  &, .menu_component,
+  .menu-head, .menu-head > span,
+  .hamburger-box, .hamburger,
+  .search_box_component, .search_box_component form,
+  .search_box_component input[type=submit],
+  .institutional_links_component, .institutional_links_component ul,
+  .institutional_links_component li:first-child {
+    background-color: #000066 !important;
+    color: #FFF !important;
+  }
+  .menu-panel, .hamburger-menu, .hamburger-menu li, .hamburger-menu a, .hamburger-menu menu {
+    background-color: #DFD179 !important;
+  }
+  .institutional_links_component.list > ul > li:not(:first-child) {
+    &, & a {
+      background-color: #F7F3D6 !important;
+    }
+  }
+  .hamburger-inner, .hamburger-inner:before, .hamburger-inner:after {
+    background-color: #FFF !important;
+  }
 }
 .search_box_component #search,
 .form-control {
