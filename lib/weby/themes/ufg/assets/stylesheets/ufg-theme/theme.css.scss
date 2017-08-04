@@ -133,8 +133,12 @@ input:-moz-placeholder { color:#666; }
 
 /* Cabeçalho */
 header {
-  .logos img {
-    /*float: left;*/
+  .logos {
+    display: inline-block;
+
+    .image_component {
+      display: inline-block;
+    }
   }
 
   .sitelogo {
@@ -187,6 +191,7 @@ header {
   .infoheader {
     position: absolute;
     right: 0;
+    top: 0;
   }
 
   .menu_i18n_component {
@@ -1354,6 +1359,53 @@ footer .menu_component .expanded li:hover {
 /*  Mobile  */
 @media screen and (max-width: 640px) {
 
+  /* TODO NOTE : Temporary mobile version css */
+
+  header {
+    .logos {
+      display: block;
+
+      .image_component {
+        display: block;
+      }
+    }
+
+    .sitelogo {
+      display: block;
+    }
+
+    .ufglogo {
+      display: block;
+    }
+
+    .cabecalho {
+      height: auto;
+    }
+
+    .infoheader {
+      position: initial;
+      margin: 0 0 10px 10px;
+    }
+  }
+
+  header .menu-bar {
+
+    .menu-head {
+      padding-left: 8px;
+    }
+
+    .menu-panel {
+      padding: 0 10px;
+    }
+
+  }
+
+  .menu_accessibility_component.extended #accessibility_button {
+    width: 65px !important;
+    b {
+      display: none;
+    }
+  }
 
   .mobile-menu {
     /*display: block;*/

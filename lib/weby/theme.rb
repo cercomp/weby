@@ -65,4 +65,5 @@ class Weby::Theme
       @skin.site.extensions.create(extension)
     end
   end
+
 end
