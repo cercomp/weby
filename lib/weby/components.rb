@@ -92,7 +92,7 @@ module Weby
 
         # Caso a partial não exista, não mostra nada
         begin
-          if Weby::Application.assets.find_asset("#{component.name}.css")
+          if Weby::Application.assets && Weby::Application.assets.find_asset("#{component.name}.css")
             @stylesheets_loaded ||= []
             # Incluir o css do componente somente uma vez, mesmo se existirem mais de um sendo exibido
             unless @stylesheets_loaded.include?(component.name)
@@ -111,7 +111,7 @@ module Weby
       # Inclui somente uma vez, mesmo se chamado várias vezes,
       # por exemplo se o mesmo componente foi incluido mais de uma vez
       def include_component_javascript(content_for, javascript_name)
-        if Weby::Application.assets.find_asset(javascript_name)
+        if Weby::Application.assets && Weby::Application.assets.find_asset(javascript_name)
           @javascripts_loaded ||= []
           # Incluir o js somente uma vez, mesmo se existirem mais de um componente sendo exibido
           unless @javascripts_loaded.include?(javascript_name)
