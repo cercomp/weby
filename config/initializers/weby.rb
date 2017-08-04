@@ -8,6 +8,7 @@ require 'weby/settings'
 require 'weby/themes'
 require 'weby/assets'
 require 'weby/webysettings'
+require './db/data_migrations/theme_migration'
 
 # Adds the components and theme views to the applications views path
 ActionController::Base.view_paths +=
