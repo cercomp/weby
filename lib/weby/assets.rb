@@ -46,7 +46,7 @@ module Weby
         /^daterangepicker/,
         /^moment(\/|\.js)/,
         /^zeroclipboard(\/|\.js)/,
-        /^fullcalendar/,
+        #/^fullcalendar/,
         /font\-awesome\.css/,
         /^jquery\.Jcrop/,
         /^d3(\.min)?\.js/,
@@ -54,7 +54,6 @@ module Weby
         /bootstrap/,
         /^jquery\.ui\./,
         /^jquery(\.ui\.|\.min\.js|\_ujs\.js)/,
-        /jquery\.tagcanvas\.min\.js/,
         /^_/
       ]
 

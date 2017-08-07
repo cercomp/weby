@@ -20,7 +20,6 @@
     <%= link_to icon('question-sign', text:t(".help_with_style")),
                 (current_settings.help_site || "/help"),
                 target: "_blank" %>
-    <% content_for :stylesheets, stylesheet_link_tag("codeMirror/codemirror") %>
     <% content_for :javascripts, javascript_include_tag("init/codemirror") %>
     <% content_for :javascripts do %>
       <script type="text/javascript">

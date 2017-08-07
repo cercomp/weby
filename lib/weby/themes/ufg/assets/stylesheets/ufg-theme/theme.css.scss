@@ -1375,6 +1375,10 @@ footer .menu_component .expanded li:hover {
 
     .sitelogo {
       display: block;
+
+      img {
+        height: 100% !important;
+      }
     }
 
     .ufglogo {
@@ -1388,6 +1392,11 @@ footer .menu_component .expanded li:hover {
     .infoheader {
       position: initial;
       margin: 0 0 10px 10px;
+      float: none !important;
+
+      .redesocial {
+        height: 35px;
+      }
     }
   }
 
