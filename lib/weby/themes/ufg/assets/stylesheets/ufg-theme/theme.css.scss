@@ -471,7 +471,7 @@ header .menu-bar {
     position: absolute;
     width: 100%;
     left: 0;
-    max-height: 740px;
+    max-height: calc(100vh - 37px);
     overflow: auto;
   }
 
