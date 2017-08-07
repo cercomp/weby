@@ -40,7 +40,6 @@ module Weby
         /jquery\.nivo\.slider\.pack\.js/,
         /nestedsortable\/jquery\.ui\.nestedSortable\.js/,
         /rgbcolor\.js/,
-        /^tinymce\//,
         /google\/lato\.css/,
         /jquery\-ui\-timepicker\-addon\.css/,
         /select2\-bootstrap\.css/,
