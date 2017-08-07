@@ -24,7 +24,7 @@ module Weby
       BLACKLIST.each do |black|
         return false if path.to_s.match(black)
       end
-      puts path
+      #puts path
       return true
     end
 
