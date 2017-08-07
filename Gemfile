@@ -49,7 +49,7 @@ gem 'momentjs-rails', '~> 2.10.2'
 gem 'bootstrap-daterangepicker-rails', '~> 0.1.1'
 
 group :development, :test do
-  gem 'rspec-rails', '~> 3.0.1'
+  gem 'rspec-rails', '~> 3.5.2'
 end
 
 group :development do

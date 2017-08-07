@@ -19,5 +19,45 @@ module Weby
         Rails.application.assets_manifest.assets[path]
       end
     end
+
+    def self.should_compile? path
+      BLACKLIST.each do |black|
+        return false if path.to_s.match(black)
+      end
+      puts path
+      return true
+    end
+
+    private
+
+    BLACKLIST = [
+        /^codeMirror\//,
+        /^datetimepicker\//,
+        /^fileupload\//,
+        /^floatthead\//,
+        /jquery\.cookie\.js/,
+        /jquery\.lightbox\_me\.js/,
+        /jquery\.nivo\.slider\.pack\.js/,
+        /nestedsortable\/jquery\.ui\.nestedSortable\.js/,
+        /rgbcolor\.js/,
+        /^tinymce\//,
+        /google\/lato\.css/,
+        /jquery\-ui\-timepicker\-addon\.css/,
+        /select2\-bootstrap\.css/,
+        /^daterangepicker/,
+        /^moment(\/|\.js)/,
+        /^zeroclipboard(\/|\.js)/,
+        /^fullcalendar/,
+        /font\-awesome\.css/,
+        /^jquery\.Jcrop/,
+        /^d3(\.min)?\.js/,
+        /^select2/,
+        /bootstrap/,
+        /^jquery\.ui\./,
+        /^jquery(\.ui\.|\.min\.js|\_ujs\.js)/,
+        /jquery\.tagcanvas\.min\.js/,
+        /^_/
+      ]
+
   end
 end

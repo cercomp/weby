@@ -152,6 +152,7 @@ header {
     }
     img {
       vertical-align: middle;
+      height: 100%;
     }
   }
 
@@ -470,6 +471,8 @@ header .menu-bar {
     position: absolute;
     width: 100%;
     left: 0;
+    max-height: 740px;
+    overflow: auto;
   }
 
   menu.hamburger-menu {

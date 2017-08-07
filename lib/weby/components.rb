@@ -4,6 +4,7 @@ module Weby
       yield self
     end
 
+    attr_reader :components
     @components = {}
 
     # O padrão das flags enabled e aliasable é true
@@ -111,6 +112,7 @@ module Weby
       # Inclui somente uma vez, mesmo se chamado várias vezes,
       # por exemplo se o mesmo componente foi incluido mais de uma vez
       def include_component_javascript(content_for, javascript_name)
+        javascript_name = "#{javascript_name}.js" unless javascript_name.to_s.match(/\.js$/)
         if Weby::Assets.find_asset(javascript_name)
           @javascripts_loaded ||= []
           # Incluir o js somente uma vez, mesmo se existirem mais de um componente sendo exibido
