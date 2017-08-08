@@ -152,7 +152,7 @@ header {
     }
     img {
       vertical-align: middle;
-      height: 100%;
+      height: 100% !important;
     }
   }
 
@@ -193,6 +193,7 @@ header {
     position: absolute;
     right: 0;
     top: 0;
+    bottom: 0;
   }
 
   .menu_i18n_component {
@@ -411,6 +412,7 @@ header .menu-bar {
     width: 1000px;
     max-width: 100%;
     margin: 0 auto;
+    display: flex;
   }
 
   &.fixed {
@@ -538,6 +540,7 @@ header .menu-bar {
     padding: 0 20px;
     height: 37px;
     margin-left: -5px;
+    flex: 1;
 
     input[type=submit] {
       border: 0;
@@ -631,15 +634,24 @@ header .menu-bar {
 /* Redes Sociais */
 .redesocial {
   display: block;
-  margin: 20px 0px 0 0px;
+  position: absolute;
+  bottom: 17px;
+  right: 0;
+  display: flex;
 }
 section.redesocial section.image_component {
   position: relative;
-  float: right;
   width: 30px;
   height: 30px;
   margin-left: 16px;
+
+  &:first-child {
+    margin-left: 0;
+  }
 }
+
+
+
 .twitter img,
 .facebook img,
 .youtube img,
@@ -1375,10 +1387,6 @@ footer .menu_component .expanded li:hover {
 
     .sitelogo {
       display: block;
-
-      img {
-        height: 100% !important;
-      }
     }
 
     .ufglogo {
@@ -1389,13 +1397,18 @@ footer .menu_component .expanded li:hover {
       height: auto;
     }
 
+    .menu_i18n_component {
+      margin: 0;
+    }
+
     .infoheader {
       position: initial;
       margin: 0 0 10px 10px;
       float: none !important;
 
       .redesocial {
-        height: 35px;
+        position: initial;
+        margin-top: 5px;
       }
     }
   }
@@ -1404,10 +1417,23 @@ footer .menu_component .expanded li:hover {
 
     .menu-head {
       padding-left: 8px;
+      padding-right: 8px;
+
+      > span {
+        display: none;
+      }
     }
 
     .menu-panel {
       padding: 0 10px;
+    }
+
+    .search_box_component {
+      padding-right: 0;
+
+      #search.show-input {
+        width: calc(100% - 45px);
+      }
     }
 
   }
