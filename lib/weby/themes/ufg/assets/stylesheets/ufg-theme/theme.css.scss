@@ -491,6 +491,10 @@ header .menu-bar {
       &:nth-child(4n) {
         margin-right: 0;
       }
+
+      &:nth-child(4n + 1) {
+        clear: both
+      }
     }
 
     > li > a {
@@ -499,8 +503,15 @@ header .menu-bar {
       font-size: 22px;
       margin-bottom: 8px;
       text-decoration: none;
-      cursor: default;
       color: #999;
+
+      &.empty-href {
+        cursor: default;
+      }
+
+      &:not(.empty-href):hover {
+        color: #888;
+      }
     }
 
     menu {
