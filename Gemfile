@@ -48,6 +48,9 @@ gem 'prawn-table', '~> 0.2.1'
 gem 'momentjs-rails', '~> 2.10.2'
 gem 'bootstrap-daterangepicker-rails', '~> 0.1.1'
 
+# error tracking
+gem 'rollbar'
+
 # rails assets org
 source 'https://rails-assets.org' do
   gem 'rails-assets-tinymce', '~> 4.6.5'
