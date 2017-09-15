@@ -1421,6 +1421,16 @@ footer .menu_component .expanded li:hover {
   }
 }
 
+@media screen and (max-width: 1000px) {
+  header .menu-bar {
+    menu.hamburger-menu {
+      > li > menu.submenu {
+        width: calc(100vw - 261px);
+      }
+    }
+  }
+}
+
 /*  Mobile  */
 @media screen and (max-width: 640px) {
 
@@ -1475,7 +1485,28 @@ footer .menu_component .expanded li:hover {
     }
 
     .menu-panel {
-      padding: 0 10px;
+      width: calc(100vw);
+    }
+
+    menu.hamburger-menu > li {
+      width: calc(100% - 20px);
+      position: relative;
+
+      &.sub:after {
+        content: "\2304";
+        top: 5px;
+      }
+
+      &.sub:hover:after {
+        content: "\2303";
+        top: 17px;
+      }
+
+      > menu.submenu {
+        position: initial;
+        width: auto;
+        margin-top: 10px;
+      }
     }
 
     .search_box_component {
