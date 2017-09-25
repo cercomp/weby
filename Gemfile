@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 #ruby '2.2.3'
 
-gem 'rails', '~> 4.2.5'
+gem 'rails', '~> 4.2.9'
 
 gem 'thin', '~> 1.6.3'
 gem 'pg', '~> 0.17.1'
