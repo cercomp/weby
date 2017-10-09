@@ -3,6 +3,7 @@ source 'http://rubygems.org'
 #ruby '2.2.3'
 
 gem 'rails', '~> 4.2.5'
+gem 'rake', '11.2.2'
 
 gem 'thin', '~> 1.6.3'
 gem 'pg', '~> 0.17.1'
@@ -45,7 +46,7 @@ gem 'rails-settings-cached', '0.4.1'
 gem 'net-ldap', '~> 0.8.0'
 gem 'prawn', '~> 2.0.1'
 gem 'prawn-table', '~> 0.2.1'
-gem 'momentjs-rails', '~> 2.10.2'
+gem 'momentjs-rails', '~> 2.17.1'
 gem 'bootstrap-daterangepicker-rails', '~> 0.1.1'
 
 group :development, :test do

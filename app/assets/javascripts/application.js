@@ -2,6 +2,8 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require moment
+//= require moment/pt-br.js
+//= require moment/es.js
 //= require tables
 // // floatThead was commented because there is a bug when used in tabs
 // // require floatthead/jquery.floatThead._.js
