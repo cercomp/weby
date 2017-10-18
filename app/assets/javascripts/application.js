@@ -1,6 +1,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require select2
 //= require moment
 //= require moment/pt-br.js
 //= require moment/es.js
@@ -8,7 +9,6 @@
 // // floatThead was commented because there is a bug when used in tabs
 // // require floatthead/jquery.floatThead._.js
 // // require floatthead/jquery.floatThead
-//= require select2
 //= require select2_locale_pt-BR
 //= require daterangepicker
 //= require_self

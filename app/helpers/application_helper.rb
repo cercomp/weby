@@ -44,7 +44,7 @@ module ApplicationHelper
     item_class << 'current_page' if is_current_page
 
     content_tag :li, id: "menu_item_#{entry.id}", class: item_class.join(' ') do
-      title_link = link_to(entry.title, target_url(entry), alt: entry.title, title: entry.description, target: entry.new_tab ? '_blank' :  '')
+      title_link = menu_item_link(entry)
 
       li_content = []
       li_content << content_tag(:div, '', class: 'hierarchy') if view_ctrl
@@ -97,6 +97,16 @@ module ApplicationHelper
     else
       obj.url.present? ? obj.url : 'javascript:void(0);'
     end
+  end
+
+  def menu_item_link menu_item
+    url = target_url(menu_item)
+    link_to(menu_item.title, url,
+      alt: menu_item.title,
+      title: menu_item.description,
+      target: menu_item.new_tab ? '_blank' :  '',
+      class: url.blank? || url.to_s == '#' || url.match(/^javascript:/) ? 'empty-href' : ''
+    )
   end
 
   # Defines custom messages

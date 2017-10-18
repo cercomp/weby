@@ -42,7 +42,7 @@
   <% elsif component.default_image.present? %>
     <% img = image_tag(component.default_image, style: style_for_dimension(component.width, component.height)) %>
     <% if link_url.present? %>
-      <%= link_to img, link_url %>
+      <%= link_to img, link_url, target: (component.new_tab ? '_blank' : '_self') %>
     <% else %>
       <%= img %>
     <% end %>

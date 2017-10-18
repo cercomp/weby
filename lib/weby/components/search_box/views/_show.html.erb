@@ -5,6 +5,9 @@
       <option value="/news"  <%= request.env['PATH_INFO'] == '/news' ? "selected" : '' %>>Notícias</option>
       <option value="/pages" <%= request.env['PATH_INFO'] == '/pages' ? "selected" : '' %>>Páginas</option>
     </select>
+    <% if component.show_button? %>
+      <%= submit_tag t(".search") %>
+    <% end %>
   <% end %>
 </section>
 <% content_for :javascripts, javascript_include_tag("search_action") %>

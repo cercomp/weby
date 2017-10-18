@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 #ruby '2.2.3'
 
-gem 'rails', '~> 4.2.5'
+gem 'rails', '~> 4.2.9'
 gem 'rake', '11.2.2'
 
 gem 'thin', '~> 1.6.3'
@@ -15,14 +15,14 @@ gem 'bootstrap-sass', '~> 3.1.1.1'
 gem 'select2-rails', '~> 3.5.9'
 gem 'd3js-rails', '~> 3.1.6'
 gem 'jcrop-rails-v2', '~> 0.9.12.3'
-gem 'font-awesome-rails', '~> 4.1.0.0'
+gem 'font-awesome-rails', '~> 4.7.0.2'
 gem 'fullcalendar-rails'
 
 # Ominiauth
 gem 'omniauth-shibboleth'
 
 # assets
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails', '5.0.6'
 gem 'uglifier', '>= 1.3.0'
 gem 'therubyracer', :platforms => :ruby
 gem 'non-stupid-digest-assets' # Generate assets without digest.
@@ -49,8 +49,16 @@ gem 'prawn-table', '~> 0.2.1'
 gem 'momentjs-rails', '~> 2.17.1'
 gem 'bootstrap-daterangepicker-rails', '~> 0.1.1'
 
+# error tracking
+gem 'rollbar'
+
+# rails assets org
+source 'https://rails-assets.org' do
+  gem 'rails-assets-tinymce', '~> 4.6.5'
+end
+
 group :development, :test do
-  gem 'rspec-rails', '~> 3.0.1'
+  gem 'rspec-rails', '~> 3.5.2'
 end
 
 group :development do

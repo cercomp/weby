@@ -8,6 +8,7 @@ require 'weby/settings'
 require 'weby/themes'
 require 'weby/assets'
 require 'weby/webysettings'
+require './db/data_migrations/theme_migration'
 
 # Adds the components and theme views to the applications views path
 ActionController::Base.view_paths +=
@@ -15,9 +16,9 @@ ActionController::Base.view_paths +=
 ActionController::Base.view_paths +=
     Dir[Rails.root.join('lib', 'weby', 'themes', '*')]
 
-Weby::Application.config.assets.paths +=
+Rails.application.config.assets.paths +=
   Dir[Rails.root.join('**', 'weby', '**', 'components', '**', 'assets', '*')]
-Weby::Application.config.assets.paths +=
+Rails.application.config.assets.paths +=
     Dir[Rails.root.join('lib', 'weby', 'themes', '*', 'assets', '*')]
 
 # Initialize the components

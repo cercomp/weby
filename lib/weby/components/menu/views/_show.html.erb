@@ -1,3 +1,17 @@
 <nav class="menu_component">
-  <%= print_menu(@global_menus[component.menu_id.to_i], html_class: (component.dropdown ? "dropdown" : "expanded")) %>
-</nav>  
+  <% if component.style == 'hamburger' %>
+    <div class="menu-head">
+      <span>Menu</span>
+      <button class="hamburger hamburger--spin-r" type="button">
+        <span class="hamburger-box">
+          <span class="hamburger-inner"></span>
+        </span>
+      </button>
+    </div>
+    <div class="menu-panel">
+      <%= print_menu(@global_menus[component.menu_id.to_i], html_class: "expanded hamburger-menu") %>
+    </div>
+  <% else %>
+    <%= print_menu(@global_menus[component.menu_id.to_i], html_class: component.dropdown ? "dropdown" : "expanded") %>
+  <% end %>
+</nav>

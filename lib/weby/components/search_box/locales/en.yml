@@ -7,6 +7,7 @@ en:
       search_box_component:
         width:              " Width "
         align:              " Alignment "
+        show_button:        " Show button "
   search_box:
     views:
       show:
