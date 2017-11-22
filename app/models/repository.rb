@@ -118,8 +118,14 @@ class Repository < ActiveRecord::Base
 
   def increment_filename
     idx = 1
-    loop do
+    if ( m = self.archive_file_name.match(/\-(\d{1,4})\.\w{3,4}$/) )
+      idx = m[1].to_i + 1
+    else
       self.archive_file_name.gsub!(/\.(\w{3,4})$/, "-#{idx}.\\1")
+    end
+
+    loop do
+      self.archive_file_name.gsub!(/\-(\d{1,4})\.(\w{3,4})$/, "-#{idx}.\\2")
       idx += 1
       break if !Repository.where(site_id: site_id).exists?(archive_file_name: self.archive_file_name)
     end
