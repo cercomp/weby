@@ -31,8 +31,8 @@ class Repository < ActiveRecord::Base
       m: "-quality 80 -strip",
       t: "-crop 160x160+0+0 +repage -quality 90 -strip",
       o: "-quality 80 -strip"
-    },
-    processors: [:cropper]
+    }
+    #,processors: [:cropper]
 
 
   validates :description, presence: true
@@ -113,6 +113,15 @@ class Repository < ActiveRecord::Base
   rescue Errno::ENOENT => e
     File.open(Rails.root.join('log/error.log'), 'a') do |f|
       f.write("=> Erro no reprocess: #{e}\n")
+    end
+  end
+
+  def increment_filename
+    idx = 1
+    loop do
+      self.archive_file_name.gsub!(/\.(\w{3,4})$/, "-#{idx}.\\1")
+      idx += 1
+      break if !Repository.where(site_id: site_id).exists?(archive_file_name: self.archive_file_name)
     end
   end
 

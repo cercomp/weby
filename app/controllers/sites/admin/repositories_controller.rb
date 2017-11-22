@@ -63,8 +63,15 @@ class Sites::Admin::RepositoriesController < ApplicationController
     @repository = current_site.repositories.find(params[:id])
   end
 
+  def crop
+    @repository = current_site.repositories.find(params[:id])
+  end
+
   def create
     @repository = current_site.repositories.new(repository_params)
+    if params[:new_version]
+      @repository.increment_filename
+    end
     respond_with(:site_admin, @repository) do |format|
       if @repository.save
         format.html do
@@ -75,6 +82,9 @@ class Sites::Admin::RepositoriesController < ApplicationController
           end
         end
         format.json do
+          if params[:new_version]
+            flash[:success] = t('successfully_created')
+          end
           render json: { repository: @repository,
                          message: t('successfully_created'),
                          url: site_admin_repository_path(@repository) },

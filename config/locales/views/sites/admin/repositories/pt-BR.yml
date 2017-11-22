@@ -40,11 +40,15 @@ pt-BR:
           field_required:      " Campo obrigatório! "
           accessibility_needs: " Necessário para a acessibilidade de seu site. "
           please_wait:         " Por favor, aguarde "
-          edit_image:          " Editar imagem "
+          crop_image:          " Cortar imagem "
           description:         " Descrição "
+        crop:
+          crop:                " Gerar "
           lock_aspect_ratio:   " Fixar a proporção do corte da imagem "
           height:              " Altura "
           width:               " Largura "
+          field_required:      " Campo obrigatório! "
+          accessibility_needs: " Necessário para a acessibilidade de seu site. "
         repo:
           picture:             " Imagem "
         list:

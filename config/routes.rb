@@ -55,10 +55,11 @@ Rails.application.routes.draw do
       end
       resources :repositories do
         member do
+          get :crop
           put :recover
         end
         collection do
-          get :manage, :recycle_bin
+          get :recycle_bin
         end
       end
       resources :roles, except: [:show] do

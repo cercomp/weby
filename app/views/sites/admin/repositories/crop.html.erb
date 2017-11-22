@@ -1,0 +1,57 @@
+<% title ".archives" %>
+<% breadcrumb :repositories_edit, @repository %>
+
+<div>
+  <img id="img-crop" data-src="<%= @repository.archive_url %>" src="" alt="<%= @repository.description %>"/>
+</div>
+<small class="filename" data-name="<%= @repository.archive_file_name %>">
+  <%= @repository.archive_file_name %> <span class="real-size"></span>
+</small>
+
+<%= hidden_field_tag 'repository[x]' %>
+<%= hidden_field_tag 'repository[y]' %>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label><%= t('activerecord.attributes.repository.title') %></label>
+      <%= text_field_tag 'repository[title]', @repository.title, class: 'form-control', min: 0 %>
+      <p class="help-block"><%= t('.accessibility_needs') %></p>
+    </div>
+    <div class="form-group">
+      <label><%= t('activerecord.attributes.repository.legend') %></label>
+      <%= text_field_tag 'repository[legend]', @repository.legend, class: 'form-control', min: 0 %>
+      <p class="help-block"><%= t('.accessibility_needs') %></p>
+    </div>
+    <div class="form-group">
+      <label class="required"><abbr title="obrigatório">*</abbr> <%= t('activerecord.attributes.repository.description') %></label>
+      <%= text_area_tag 'repository[description]', @repository.description, class: 'form-control', min: 0 %>
+      <p class="help-block"><%= "#{t(".field_required")} #{t(".accessibility_needs")}" %></p>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <label><%= t('.width') %></label>
+      <%= number_field_tag 'repository[w]', '', class: 'form-control sm', min: 0 %>
+    </div>
+    <div class="form-group">
+      <label><%= t('.height') %></label>
+      <%= number_field_tag 'repository[h]', '', class: 'form-control sm', min: 0 %>
+    </div>
+    <div class="form-group">
+      <div class="checkbox">
+        <%= check_box_tag('lock', '1', false, tabindex: '-1', class: 'toggle-lock') %>
+        <label for="lock"><%= icon('lock', white: false) %> <%= t('.lock_aspect_ratio') %></label>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="message-box"></div>
+
+<div class="form-actions">
+  <%= link_to t('.crop'), '#', class: 'btn btn-primary img-crop', data: {url: site_admin_repositories_path} %>
+  <%= link_to t('cancel'), edit_site_admin_repository_path(@repository), class: 'btn btn-default' %>
+</div>
+
+<% content_for :javascripts, javascript_include_tag('repositories.crop') %>
+<% content_for :stylesheets, stylesheet_link_tag("cropper") %>

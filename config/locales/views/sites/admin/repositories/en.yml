@@ -35,7 +35,9 @@ en:
           field_required:      " Field required! "
           accessibility_needs: " Needed for your site's accessibility. "
           please_wait:         " Please wait "
-          edit_image:          " Edit image "
+          crop_image:          " Crop image "
+        crop:
+          crop:                " Generate "
           lock_aspect_ratio:   " Lock the aspect ratio "
           height:              " Height "
           width:               " Width "
