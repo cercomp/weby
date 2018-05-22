@@ -3,7 +3,7 @@
 <div id="dashboard">
   <h4>Bem vindo, <%= current_user %></h4>
   <div class="row">
-    <% if check_permission Journal::Admin::NewsController, :index %>
+    <% if current_site.has_extension('journal') && check_permission(Journal::Admin::NewsController, :index) %>
       <div class="col-md-6">
         <div class="panel panel-default box">
           <div class="panel-heading">
@@ -39,7 +39,7 @@
         </div>
       </div>
     <% end %>
-    <% if check_permission Calendar::Admin::EventsController, :index %>
+    <% if current_site.has_extension('calendar') && check_permission(Calendar::Admin::EventsController, :index) %>
       <div class="col-md-6">
         <div class="panel panel-default box">
           <div class="panel-heading">
@@ -82,7 +82,7 @@
         </div>
       <% end %>
       <div class="row">
-        <% if check_permission Feedback::Admin::MessagesController, :index %>
+        <% if current_site.has_extension('feedback') && check_permission(Feedback::Admin::MessagesController, :index) %>
           <div class="col-md-6">
             <div class="panel panel-default box">
               <div class="panel-heading">
@@ -101,7 +101,7 @@
             </div>
           </div>
         <% end %>
-        <% if check_permission Sticker::Admin::BannersController, :index %>
+        <% if current_site.has_extension('sticker') && check_permission(Sticker::Admin::BannersController, :index) %>
           <div class="col-md-6">
             <div class="panel panel-default box">
               <div class="panel-heading">

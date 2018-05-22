@@ -21,6 +21,7 @@ class Site < ActiveRecord::Base
   # Extensions relations
   has_many :news_sites, class_name: "::Journal::NewsSite"
   has_many :news, :through => :news_sites, class_name: "::Journal::News"
+  has_many :own_news, class_name: "::Journal::News"
   has_many :groups, class_name: 'Feedback::Group', dependent: :destroy
   has_many :messages, class_name: 'Feedback::Message', dependent: :destroy
   has_many :banners, class_name: 'Sticker::Banner', dependent: :destroy

@@ -151,7 +151,7 @@ Rails.application.routes.draw do
   end
 
   # routes to profiles
-  resources :profiles, only: [:show, :edit, :update] do
+  resources :profiles, only: [:show, :edit, :update], constraints: {id: /[^\/]+/} do
     member do
       get :history
     end
