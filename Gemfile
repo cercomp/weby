@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 #ruby '2.2.3'
 
-gem 'rails', '~> 4.2.9'
+gem 'rails', '~> 4.2.10'
 gem 'rake', '11.2.2'
 
 gem 'thin', '~> 1.6.3'
@@ -43,7 +43,7 @@ gem 'active_model_serializers'
 gem 'useragent', '0.2.3', :git => 'http://github.com/jilion/useragent'
 gem 'rails-settings-cached', '0.4.1'
 
-gem 'net-ldap', '~> 0.8.0'
+gem 'net-ldap', '~> 0.16.0'
 gem 'prawn', '~> 2.0.1'
 gem 'prawn-table', '~> 0.2.1'
 gem 'momentjs-rails', '~> 2.17.1'
@@ -51,6 +51,8 @@ gem 'bootstrap-daterangepicker-rails', '~> 0.1.1'
 
 # error tracking
 gem 'rollbar'
+
+gem 'rails-html-sanitizer', '~>1.0.4'
 
 # rails assets org
 source 'https://rails-assets.org' do
