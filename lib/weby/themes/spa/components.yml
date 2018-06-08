@@ -1,0 +1,78 @@
+first_place:
+  -
+    name: 'gov_bar'
+    settings: '{:background => "#7F7F7F"}'
+    position: 1
+    publish: true
+top:
+  -
+    settings: '{:html_class=>"cabecalho"}'
+    name: components_group
+    position: 1
+    publish: true
+    alias: Cabeçalho
+    children:
+      -
+        settings: '{:html_class=>"logos"}'
+        name: components_group
+        position: 1
+        publish: true
+        alias: Logos
+        children:
+          -
+            settings: '{:size=>"original", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"sitelogo"}'
+            name: image
+            position: 1
+            publish: true
+            alias: Logo do site
+          -
+            settings: '{:default_image=>"ufg_topo.svg", :size=>"original", :width=>"", :height=>"", :url=>"http://www.ufg.br", :target_id=>"", :html_class=>"ufglogo", :target_type=>"", :new_tab=>"0"}'
+            name: image
+            position: 2
+            publish: true
+            alias: Logo UFG
+  -
+    settings: '{:html_class=>"menu-box"}'
+    name: components_group
+    position: 2
+    publish: true
+    alias: Menu
+    children:
+      -
+        settings: '{:menu_id => "%{menu_id}", :dropdown => "1", :style => "hamburger"}'
+        name: menu
+        position: 1
+        publish: true
+        menu:
+          name: "Principal"
+  -
+    settings: '{:html_class=>"slider"}'
+    name: components_group
+    position: 3
+    publish: true
+    visibility: 1
+    alias: Slider
+    children:
+      -
+        settings: '{:category=>"principal", :orientation=>"slider", :timer=>"8", :description=>"0", :show_controls=>"1"}'
+        name: banner_list
+        position: 1
+        publish: true
+home:
+  -
+    settings: '{:show_label=>"1", :quant=>"6", :image_size=>"m", :avatar_width=>"300",
+      :avatar_height=>"", :max_char=>"", :filter_by=>"", :read_more=>"1",
+      :show_author=>"0", :show_date=>"0", :new_tab=>"0", :label=>{"pt-BR"=>"Notícias",
+      "en"=>"News"}, :order_by=>"position", :link_to_all=>{"pt-BR"=>"Ver todas", "en"=>"See
+      all"}}'
+    name: front_news
+    position: 1
+    publish: true
+    alias: Notícias
+bottom:
+  -
+    name: 'text'
+    settings: "{:body => %{default_footer}, :html_class => \"footer\"}"
+    position: 2
+    alias: 'Rodapé'
+    publish: true

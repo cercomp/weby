@@ -1,0 +1,9 @@
+en:
+  themes:
+    spa:
+      title:              " SPA "
+      placeholders:
+        first_place:        " Top "
+        home:               " Home Page "
+        top:                " Header "
+        bottom:             " Bottom "
