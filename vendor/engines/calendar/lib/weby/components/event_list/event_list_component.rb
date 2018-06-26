@@ -1,7 +1,7 @@
 class EventListComponent < Component
   component_settings :quant, :avatar_height, :avatar_width, :read_more,
                      :image_size, :max_char, :filter_by, :label,
-                     :link_to_all, :template
+                     :link_to_all, :template, :date_format
 
   i18n_settings :label, :link_to_all
 
@@ -30,6 +30,10 @@ class EventListComponent < Component
   alias_method :_quant, :quant
   def quant
     _quant.blank? ? 5 : _quant.to_i
+  end
+
+  def date_formats
+    [:full, :short]
   end
 
   def template_types

@@ -16,6 +16,7 @@ pt-BR:
         max_char:             " Número máximo de caracteres do resumo "
         link_to_all:          " Link para exibir todos "
         template:             " Formato de exibição "
+        date_format:          " Formato da data "
   event_list:
     views:
       show:
@@ -28,6 +29,8 @@ pt-BR:
         advanced:             " Avançado "
         basic:                " Tabela "
         front:                " Lista "
+        full:                 " Completo "
+        short:                " Data inicial "
         m:                    " Média "
         l:                    " Pequena "
         i:                    " Miniatura "

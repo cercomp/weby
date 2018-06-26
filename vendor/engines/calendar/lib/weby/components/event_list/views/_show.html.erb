@@ -16,8 +16,15 @@
         <tr>
           <td>
             <p><%= link_to event.name, event_path(event) %></p>
-            <p class="event-dates"><%= period_dates(event.begin_at, event.end_at, false) -%></p>
-            <%= strip_tags(event.information).first(140).html_safe %>
+            <p class="event-dates">
+              <% if component.date_format == 'short' %>
+                <span class="event-date-day"><%= l(event.begin_at, format: '%d') %></span>
+                <span class="event-date-month"><%= l(event.begin_at, format: '%b') %></span>
+              <% else %>
+                <%= period_dates(event.begin_at, event.end_at, false) -%>
+              <% end %>
+            </p>
+            <span class="event-summary"><%= strip_tags(event.information).first(140).html_safe %></span>
           </td>
         </tr>
       <% end %>
@@ -42,7 +49,14 @@
           <% end %>
           <header>
             <h2> <%= link_to event.name, event_path(event) %> </h2>
-            <div class="event-dates"><%= period_dates(event.begin_at, event.end_at, false) -%></div>
+            <div class="event-dates">
+              <% if component.date_format == 'short' %>
+                <span class="event-date-day"><%= l(event.begin_at, format: '%d') %></span>
+                <span class="event-date-month"><%= l(event.begin_at, format: '%b') %></span>
+              <% else %>
+                <%= period_dates(event.begin_at, event.end_at, false) -%>
+              <% end %>
+            </div>
           </header>
           <summary>
             <% if component.max_char.present? %>
