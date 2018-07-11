@@ -1,5 +1,4 @@
 <% load_components %>
-
 <!doctype html>
 <html lang="<%= current_locale %>">
   <head>
@@ -15,11 +14,14 @@
     <%= auto_discovery_link_tag(:rss, main_app.site_feed_url(format: 'rss'),  {:title => "#{@site.try(:title)} - RSS"}) %>
     <%= auto_discovery_link_tag(:atom, main_app.site_feed_url(format: 'atom'),  {:title => "#{@site.try(:title)} - ATOM"}) %>
     <%= render 'sites/shared/social_meta' %>
-    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" media="screen">
+    <link href="//stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/hamburgers/0.9.3/hamburgers.min.css">
+
     <%= stylesheet_link_tag 'webybar' %>
     <%= stylesheet_link_tag 'weby-assets' %>
     <%= yield :stylesheets %>
     <%= yield :components_stylesheets %>
+    <%= stylesheet_link_tag 'portal' %>
     <%= render 'sites/shared/loadStyles' %>
     <%= current_site.try(:head_html).try(:html_safe) %>
   </head>
@@ -41,8 +43,9 @@
       <%= yield :layout_bottom %>
     </footer>
 
-    <%= javascript_include_tag "base" %>
-    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <%= javascript_include_tag 'base' %>
+    <script src="//stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <%= javascript_include_tag 'portal' %>
     <%= yield :javascripts %>
   </body>
 </html>

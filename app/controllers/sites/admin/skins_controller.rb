@@ -24,7 +24,7 @@ class Sites::Admin::SkinsController < ApplicationController
     else
       skin = current_site.skins.create(name: theme.name.titleize, theme: theme.name, active: true)
     end
-    theme.populate skin
+    theme.populate skin, user: current_user
     flash[:success] = t('successfully_applied_theme')
     redirect_to site_admin_skins_path
   end
@@ -35,7 +35,7 @@ class Sites::Admin::SkinsController < ApplicationController
 
     if !skin
       skin = current_site.skins.create(name: theme.name.titleize, theme: theme.name, active: false)
-      theme.populate skin
+      theme.populate skin, user: current_user
     end
 
     redirect_to site_path(preview_skin: skin.id)
@@ -50,7 +50,7 @@ class Sites::Admin::SkinsController < ApplicationController
     skin.components.destroy_all
     skin.styles.destroy_all
 
-    skin.base_theme.populate skin
+    skin.base_theme.populate skin, user: current_user
     flash[:success] = t('.successfully_reseted_theme')
     redirect_to site_admin_skins_path
   end

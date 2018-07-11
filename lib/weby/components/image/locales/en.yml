@@ -20,5 +20,5 @@ en:
     views:
       show:
       form:
-        select_image: "Select image"
-        
+        select_image: 'Select image'
+        default_image: 'Default Image'

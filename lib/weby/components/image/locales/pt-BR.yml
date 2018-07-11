@@ -20,5 +20,5 @@ pt-BR:
     views:
       show:
       form:
-        select_image: "Selecione a imagem"
-        
+        select_image:  'Selecione a imagem'
+        default_image: 'Imagem padrão'

@@ -10,8 +10,9 @@ class Weby::Theme
     @title = @layout['title'] || @name.titleize
   end
 
-  def populate skin
+  def populate skin, opts
     @skin = skin
+    @user = opts[:user]
     populate_extensions if @extensions
     populate_components if @components
   end
@@ -25,12 +26,27 @@ class Weby::Theme
       menu_attrs = component.delete('menu') || {}
       target_menu = @skin.site.menus.find_by(name: menu_attrs['name']) || @skin.site.menus.create(menu_attrs)
       component['settings'] = I18n.interpolate(component['settings'], menu_id: target_menu.id)
+      #menu items
+      if target_menu.root_menu_items.empty? && menu_attrs['items'].present?
+        menu_attrs['items'].each do |item|
+          locale = @skin.site.locales.order(:id).first
+          target_menu.menu_items.create(i18ns_attributes: [{locale_id: (locale&.id || 1), title: item['title']}], url: item['url'], position: item['position'])
+        end
+      end
     end
     if component['name'] == 'text'
       component['settings'] = I18n.interpolate(component['settings'], default_footer: @default_footer.to_s)
     end
     if component['name'] == 'components_group'
       children = component.delete('children')
+    end
+    if component['name'] == 'news_as_home'
+      page_attrs = component.delete('page') || {}
+      if page_attrs.present?
+        locale = @skin.site.locales.order(:id).first
+        page = @skin.site.pages.create(i18ns_attributes: [{locale_id: (locale&.id || 1), title: page_attrs['title'], text: page_attrs['text']}], publish: true, user: @user)
+        component['settings'] = I18n.interpolate(component['settings'], page_id: page.id)
+      end
     end
 
     compo = @skin.components.create(component)

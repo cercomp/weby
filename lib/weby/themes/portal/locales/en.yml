@@ -1,7 +1,7 @@
 en:
   themes:
-    spa:
-      title:              " SPA "
+    portal:
+      title:              " Portal "
       placeholders:
         first_place:        " Top "
         home:               " Home Page "
