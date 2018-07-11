@@ -1,7 +1,8 @@
 class MenuComponent < Component
-  component_settings :menu_id, :dropdown, :style
+  component_settings :menu_id, :dropdown, :style, :html_class
 
   validates :menu_id, presence: true
+  validates :html_class, format: { with: /\A[A-Za-z0-9_\-]*\z/ }
 
   alias_method :_dropdown, :dropdown
   def dropdown

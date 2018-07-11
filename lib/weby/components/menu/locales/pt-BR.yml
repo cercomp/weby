@@ -8,6 +8,7 @@ pt-BR:
         menu_id:           " Menu "
         dropdown:          " Desdobrável "
         style:             " Estilo "
+        html_class:        " Classe HTML "
   menu:
     views:
       form:

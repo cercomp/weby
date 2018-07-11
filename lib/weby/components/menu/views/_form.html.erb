@@ -6,3 +6,5 @@
         priority: component.style,
         include_blank: false %>
 <%= f.input :dropdown, hint: t(".dropdown_hint"), wrapper: :checkbox, as: :boolean %>
+
+<%= f.input :html_class, :input_html => {:pattern => '^[A-Za-z0-9_\-]*$'} %>

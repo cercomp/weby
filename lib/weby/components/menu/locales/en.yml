@@ -8,6 +8,7 @@ en:
         menu_id:           " Menu "
         dropdown:          " Use dropdown "
         style:             " Style "
+        html_class:        " HTML Class "
   menu:
     views:
       form:
