@@ -2,6 +2,15 @@
   <%= repository_search( t(".select_image"), "page_image_#{locale.name}", "image_component[repository_id][#{locale.name}]", (Repository.find(component.repository_id_i18n(locale.name)) rescue nil), multiple: false, file_types: ['image','flash']) %>
 <% end %>
 
+<% if component.default_image %>
+  <%= label_tag t('.default_image') %>
+  <div>
+    <div class="image_tag">
+      <%= image_tag(component.default_image, style: style_for_dimension(component.width, component.height)) %>
+    </div>
+  </div>
+<% end %>
+
 <%= image_size_picker f %>
 
 <%= target_dialog_input f, :target, true %>

@@ -1,5 +1,7 @@
-<% content_for :title, " - #{@page.title}" %>
-<% content_for :social_code, render_social_share(:page) %>
+<% if !defined?(as_component) %>
+  <% content_for :title, " - #{@page.title}" %>
+  <% content_for :social_code, render_social_share(:page) %>
+<% end %>
 
 <article class="page-show">
   <%= yield :social_code if current_site.page_social_share_pos == 'top' %>

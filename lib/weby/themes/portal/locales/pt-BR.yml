@@ -1,0 +1,9 @@
+pt-BR:
+  themes:
+    portal:
+      title:              " Portal "
+      placeholders:
+        first_place:        " Topo "
+        home:               " Página Inicial "
+        top:                " Cabeçalho "
+        bottom:             " Inferior "
