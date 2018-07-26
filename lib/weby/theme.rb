@@ -30,7 +30,7 @@ class Weby::Theme
       if target_menu.root_menu_items.empty? && menu_attrs['items'].present?
         menu_attrs['items'].each do |item|
           locale = @skin.site.locales.order(:id).first
-          target_menu.menu_items.create(i18ns_attributes: [{locale_id: (locale&.id || 1), title: item['title']}], url: item['url'], position: item['position'])
+          target_menu.menu_items.create(i18ns_attributes: [{locale_id: (locale.try(:id) || 1), title: item['title']}], url: item['url'], position: item['position'])
         end
       end
     end
@@ -44,7 +44,7 @@ class Weby::Theme
       page_attrs = component.delete('page') || {}
       if page_attrs.present?
         locale = @skin.site.locales.order(:id).first
-        page = @skin.site.pages.create(i18ns_attributes: [{locale_id: (locale&.id || 1), title: page_attrs['title'], text: page_attrs['text']}], publish: true, user: @user)
+        page = @skin.site.pages.create(i18ns_attributes: [{locale_id: (locale.try(:id) || 1), title: page_attrs['title'], text: page_attrs['text']}], publish: true, user: @user)
         component['settings'] = I18n.interpolate(component['settings'], page_id: page.id)
       end
     end
