@@ -138,6 +138,7 @@ class ApplicationController < ActionController::Base
         "#{request.host_with_port}#{request.fullpath} from #{request.remote_ip}\n"\
         "#{params}\n"\
         '}')
+    Rollbar.error(exception, error_code: @error_code) if Rails.env.production?
     respond_to do |format|
       format.html { render template: 'errors/500', layout: 'weby_pages', status: 500 }
       format.all { render nothing: true, status: 500 }

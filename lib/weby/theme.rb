@@ -24,7 +24,7 @@ class Weby::Theme
     component['place_holder'] = place
     if component['name'] == 'menu'
       menu_attrs = component.delete('menu') || {}
-      target_menu = @skin.site.menus.find_by(name: menu_attrs['name']) || @skin.site.menus.create(menu_attrs)
+      target_menu = @skin.site.menus.find_by(name: menu_attrs['name']) || @skin.site.menus.create(menu_attrs.except('items'))
       component['settings'] = I18n.interpolate(component['settings'], menu_id: target_menu.id)
       #menu items
       if target_menu.root_menu_items.empty? && menu_attrs['items'].present?
