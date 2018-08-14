@@ -18,8 +18,8 @@ class Sites::Admin::BackupsController < ApplicationController
     s = current_site
     h = { include: {} }
     h[:include][:pages] = { include: [:i18ns, :related_files] } if params[:pages]
-    h[:include][:own_news] = { include: [:i18ns, :related_files ] } if params[:news]
-    h[:include][:news_sites] = { include: [:categories ] } if params[:news]
+    h[:include][:own_news] = { include: { i18ns: {}, related_files: {}, own_news_site: {include: :categories} } } if params[:news]
+    #h[:include][:news_sites] = { include: [:categories ] } if params[:news]
     h[:include][:events] = { include: [:categories, :i18ns, :related_files] } if params[:events]
     h[:include][:repositories] = {}  if params[:repositories]
     h[:include][:banners] = { include: :categories } if params[:banners]
@@ -72,12 +72,12 @@ class Sites::Admin::BackupsController < ApplicationController
     uploaded_io = params[:upload]
     Import::Application::CONVAR["repository"] = {}
     Import::Application::CONVAR["menu"] = {}
-    case uploaded_io.content_type
-      when 'text/xml'
-        parser = Nori.new
-        attrs = parser.parse(uploaded_io.read)
-      when 'application/json', 'application/octet-stream'
-        attrs = JSON.parse uploaded_io.read
+    case uploaded_io.original_filename
+    when /\.xml/
+      parser = Nori.new
+      attrs = parser.parse(uploaded_io.read)
+    when /\.json/
+      attrs = JSON.parse uploaded_io.read
     end
 
     attrs = attrs['site'] if attrs['site']
@@ -87,7 +87,7 @@ class Sites::Admin::BackupsController < ApplicationController
       current_site.banners.import(attrs['banners'], user: current_user.id) if attrs['banners']
       current_site.pages.import(attrs['pages'], user: current_user.id, site_id: current_site.id) if attrs['pages']
       current_site.own_news.import(attrs['own_news'], user: current_user.id, site_id: current_site.id) if attrs['own_news']
-      current_site.news_sites.import(attrs['news_sites'], user: current_user.id, site_id: current_site.id) if attrs['own_news']
+      #current_site.news_sites.import(attrs['news_sites'], user: current_user.id, site_id: current_site.id) if attrs['own_news']
       current_site.events.import(attrs['events'], user: current_user.id, site_id: current_site.id) if attrs['events']
       current_site.menus.import(attrs['menus']) if attrs['menus']
       #current_site.components.import(attrs['root_components'], site_id: current_site.id) if attrs['root_components']
