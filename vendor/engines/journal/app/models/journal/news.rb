@@ -16,8 +16,11 @@ module Journal
     has_many :posts_repositories, as: :post, dependent: :destroy
     has_many :related_files, through: :posts_repositories, source: :repository
     has_many :news_sites, foreign_key: :journal_news_id, class_name: "::Journal::NewsSite", dependent: :destroy
-    has_many :sites, :through => :news_sites, class_name: "::Journal::NewsSite"
+    has_many :sites, :through => :news_sites
     has_many :newsletter_histories, dependent: :destroy, class_name: "::Journal::NewsletterHistories"
+
+    has_one :own_news_site, ->(this){ where(site_id: this.site_id) }, class_name: "::Journal::NewsSite", foreign_key: :journal_news_id
+
 
     # Validations
     validates :user_id, :site_id, :status, presence: true
@@ -90,6 +93,13 @@ module Journal
         i18n['text'] = i18n['text'].gsub(/\/up\/[0-9]+/) {|x| "/up/#{options[:site_id]}"} if i18n['text']
         self::I18ns.new(i18n.except('id', '@type', 'type', 'created_at', 'updated_at', 'journal_news_id'))
       end
+
+      news_site_attrs = attrs.fetch('own_news_site', {}).except('id', 'type', '@type', 'journal_news_id', 'created_at', 'updated_at', 'site_id').merge({
+        site_id: options[:site_id]
+      })
+      news_site_attrs['category_list'] = news_site_attrs.delete('categories').to_a.map { |category| category['name'] }
+
+      attrs['own_news_site'] = Journal::NewsSite.new(news_site_attrs)
 
       attrs['related_file_ids'] = attrs.delete('related_files').to_a.map {|repo| Import::Application::CONVAR["repository"]["#{repo['id']}"] }
 
