@@ -2054,9 +2054,9 @@ ul.newsletter-social {
 }*/
 
 #news li {
-  width: 40%;
+  width: 28%;
+  margin: 15px 20px 20px 20px;
   display: inline-block;
-  margin: 0 40px 20px 0px;
   vertical-align: top;
 }
 
@@ -2141,15 +2141,9 @@ ul.newsletter-social {
   /*.container {
     width: 85%;
   }*/
-  
-  .front_news_component {
-    width: 66%;
-    display: inline-block;
-    vertical-align: top;
-  }
-  
-  .event_list_component {
-    width: 30%;
+
+  .event_list_component, .front_news_component {
+    width: 100%;
     display: inline-block;
     vertical-align: top;
   }

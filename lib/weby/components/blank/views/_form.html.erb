@@ -1,56 +1,90 @@
-<div class="form-group">
-  <div class="col-md-9 col-md-offset-3">
-    <div class="btn-toolbar">
-      <div class="btn-group">
-        <%= link_to t(".format"),"javascript:autoFormatSelection()", class: "btn btn-sm btn-default" %>
-        <%= link_to t(".comment"),"javascript:commentSelection(true)", class: "btn btn-sm btn-default" %>
-        <%= link_to t(".uncomment"),"javascript:commentSelection(false)", class: "btn btn-sm btn-default" %>
+<%= each_i18n_tab do |locale| %>
+  <div class="form-group">
+    <div class="col-md-9 col-md-offset-3">
+      <div class="btn-toolbar">
+        <div class="btn-group">
+          <%= link_to t(".format"), "#", class: "btn btn-sm btn-default format" %>
+          <%= link_to t(".comment"), "#", class: "btn btn-sm btn-default comment" %>
+          <%= link_to t(".uncomment"), "#", class: "btn btn-sm btn-default uncomment" %>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<%= f.input :body,
-      as: :text,
-      wrapper_html: { class: 'nostyle' },
-      input_html: { id: 'code' } %>
+  <%= f.component_i18n_input locale, :body,
+        as: :text,
+        wrapper_html: { class: 'nostyle' },
+        input_html: { id: 'code', class: 'code-editor' } %>
+<% end %>
 
 <%= f.input :put_at_end, wrapper: :checkbox, as: :boolean %>
 
 <% content_for :javascripts, javascript_include_tag("init/codemirror") %>
 <% content_for :javascripts do %>
   <script type="text/javascript">
-      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-        mode: "text/html",
-        lineNumbers: true,
-        tabSize: 2,
-        extraKeys: {
-          "Ctrl-Space": "autocomplete",
-          "F11": function(cm) {
-              cm.setOption("fullScreen", !cm.getOption("fullScreen"));
-          },
-          "Esc": function(cm) {
-              if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+    $(document).ready(function(){
+      $('.code-editor').each(function(){
+
+        var editor = CodeMirror.fromTextArea(this, {
+          mode: "text/html",
+          lineNumbers: true,
+          tabSize: 2,
+          extraKeys: {
+            "Ctrl-Space": "autocomplete",
+            "F11": function(ed) {
+                ed.setOption("fullScreen", !ed.getOption("fullScreen"));
+            },
+            "Esc": function(cm) {
+                if (ed.getOption("fullScreen")) ed.setOption("fullScreen", false);
+            }
           }
-        },
-        onCursorActivity: function() {
-          editor.setLineClass(hlLine, null, null);
-          hlLine = editor.setLineClass(editor.getCursor().line, null, "activeline");
+        });
+        $(this).data('codemirrorInstance', editor);
+      });
+
+      var getSelectedRange = function(ed) {
+        return { from: ed.getCursor(true), to: ed.getCursor(false) };
+      }
+
+      var getEditor = function(input) {
+        var txtarea = $(input).closest('.tab-pane').find('.code-editor');
+        return txtarea.data('codemirrorInstance');
+      }
+
+      $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        var panel = $($(e.target).attr('href'));
+        var cm = panel.find('.code-editor').data('codemirrorInstance');
+        if (cm) {
+          cm.refresh();
         }
       });
-      var hlLine = editor.setLineClass(0, "activeline");
-      
-      function getSelectedRange() {
-        return { from: editor.getCursor(true), to: editor.getCursor(false) };
-      }
-      
-      function autoFormatSelection() {
-        var range = getSelectedRange();
-        editor.autoFormatRange(range.from, range.to);
-      }
-      
-      function commentSelection(isComment) {
-        var range = getSelectedRange();
-        editor.commentRange(isComment, range.from, range.to);
-      }      
+
+      $('.format').click(function(){
+        var editor = getEditor(this);
+        if (editor) {
+          var range = getSelectedRange(editor);
+          editor.autoFormatRange(range.from, range.to);
+        }
+        return false;
+      });
+
+      $('.comment').click(function(){
+        var editor = getEditor(this);
+        if (editor) {
+          var range = getSelectedRange(editor);
+          editor.commentRange(true, range.from, range.to);
+        }
+        return false;
+      });
+
+      $('.uncomment').click(function(){
+        var editor = getEditor(this);
+        if (editor) {
+          var range = getSelectedRange(editor);
+          editor.commentRange(false, range.from, range.to);
+        }
+        return false;
+      });
+
+    });
   </script>
 <% end %>
