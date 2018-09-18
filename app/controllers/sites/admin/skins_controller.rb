@@ -26,6 +26,7 @@ class Sites::Admin::SkinsController < ApplicationController
     end
     theme.populate skin, user: current_user
     flash[:success] = t('successfully_applied_theme')
+    record_activity('theme_applied', skin)
     redirect_to site_admin_skins_path
   end
 
@@ -41,10 +42,6 @@ class Sites::Admin::SkinsController < ApplicationController
     redirect_to site_path(preview_skin: skin.id)
   end
 
-  def show
-    @skin = current_site.skins.find params[:id]
-  end
-
   def destroy
     skin = current_site.skins.find params[:id]
     skin.components.destroy_all
@@ -52,6 +49,7 @@ class Sites::Admin::SkinsController < ApplicationController
 
     skin.base_theme.populate skin, user: current_user
     flash[:success] = t('.successfully_reseted_theme')
+    record_activity('theme_reseted', skin)
     redirect_to site_admin_skins_path
   end
 end

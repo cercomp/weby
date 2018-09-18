@@ -1,6 +1,6 @@
 module ActivityRecordsHelper
   def build_loggeable_url activity_record
-    return nil if activity_record.action == 'destroy' || !activity_record.loggeable
+    return nil unless activity_record.is_linkable?
 
     case activity_record.loggeable
     when Journal::News
@@ -9,6 +9,8 @@ module ActivityRecordsHelper
       admin_banner_url(activity_record.loggeable, subdomain: activity_record.site)
     when Calendar::Event
       admin_event_url(activity_record.loggeable, subdomain: activity_record.site)
+    when Skin, Site
+      site_admin_skins_url(subdomain: activity_record.site)
     else
       prefix = activity_record.site ? :site_admin : :admin
       polymorphic_url(activity_record.controller == 'menu_items' ?

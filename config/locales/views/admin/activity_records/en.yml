@@ -74,6 +74,10 @@ en:
         created_style:              " created style "
         updated_style:              " updated style "
         destroyed_style:            " destroyed style "
+#--- Sites/Admin/Theme ---#
+        theme_applied:              " applied theme "
+        theme_reseted:              " reseted theme "
+        layout_settings_updated:    " updated layout settings "
       show:
         id:                 " ID "
         user:               " User "

@@ -262,35 +262,35 @@ img {
 .menu-area.navbar-fixed-top {
   background: #fff;
   height: 100px;
-    padding: 15px 0px;
+  padding: 15px 0px;
 }
 
 .menu-area.navbar-fixed-top.sticky-menu {
-    top: 0px;
-    height: 85px;
+  top: 0px;
+  height: 85px;
   background: #fff;
   z-index: 9999999;
-    padding: 0px 0px;
+  padding: 0px 0px;
 }
 
 .sticky-menu {
-    box-shadow: 0px 3px 4.7px 0.3px rgba(0, 0, 0, 0.24);
-    transition: all 0.3s ease-out;
-    -webkit-transition: all 0.3s ease-out;
+  box-shadow: 0px 3px 4.7px 0.3px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s ease-out;
+  -webkit-transition: all 0.3s ease-out;
 }
 
 .mainmenu {
-    transition: all 0.3s ease-out;
-    -webkit-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+  -webkit-transition: all 0.3s ease-out;
 }
 
 .sticky-menu .mainmenu {
-    padding-top: 0px;
+  padding-top: 0px;
 }
 
 .navbar {
-    margin-bottom: 0;
-    border: 0px;
+  margin-bottom: 0;
+  border: 0px;
 }
 
 .navbar-brand {

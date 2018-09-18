@@ -83,7 +83,7 @@ Rails.application.routes.draw do
           post :sort
         end
       end
-      resources :skins, except: [:new, :edit, :update] do
+      resources :skins, except: [:new, :edit, :update, :show] do
         collection do
           get :preview
         end

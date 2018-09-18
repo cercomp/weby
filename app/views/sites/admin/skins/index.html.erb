@@ -18,7 +18,7 @@
 <div class="skins" style="display: none">
   <div class="row">
     <% @themes.each do |theme| %>
-      <% skin = current_site.skins.find_by(theme: theme.name) %>
+      <% #skin = current_site.skins.find_by(theme: theme.name) %>
       <div class="col-md-3">
         <div class="thumbnail">
           <h3 class="text-center"><%= theme.title %></h3>

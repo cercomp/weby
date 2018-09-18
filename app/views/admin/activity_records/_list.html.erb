@@ -22,8 +22,7 @@
           <td><%= link_to activity_record.site.name, site_url(subdomain: activity_record.site), title: activity_record.site.title, target: :_blank if activity_record.site %></td>
           <td><%= activity_record.user %> <%= t(".#{activity_record.note}") %></td>
           <td class="text-right">
-            <%= link_to(icon("eye-open", text: t(".show")),
-                       build_loggeable_url(activity_record), class: "action-link") if activity_record.action != "destroy" && activity_record.loggeable %>
+            <%= link_to(icon("eye-open", text: t(".show")), build_loggeable_url(activity_record), class: "action-link") if activity_record.is_linkable? %>
             <%= link_to(icon("search", text: t(".details")),
                         admin_activity_record_path(activity_record), class: "action-link" )%>
             <%= link_to(icon("trash", text: t(".destroy")),

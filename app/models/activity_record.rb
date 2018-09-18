@@ -12,4 +12,8 @@ class ActivityRecord < ActiveRecord::Base
             }", text: "%#{text.try(:downcase)}%", site_id: site_id)
   }
 
+  def is_linkable?
+    (action != "destroy" || note.to_s.match(/reseted/)) && loggeable.present?
+  end
+
 end

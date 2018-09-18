@@ -51,7 +51,7 @@ en:
           updated_file:               " updated file "
           destroyed_file:             " destroyed file "
           moved_file_to_recycle_bin:  " moved a file to recycle bin "
-          restored_file:              " restored a file "         
+          restored_file:              " restored a file "
 #--- Sites/Admin/Roles ---#
           created_role:               " created role "
           updated_role:               " updated role "
@@ -60,4 +60,7 @@ en:
           created_style:              " created style "
           updated_style:              " updated style "
           destroyed_style:            " destroyed style "
-
+#--- Sites/Admin/Theme ---#
+          theme_applied:              " applied theme "
+          theme_reseted:              " reseted theme "
+          layout_settings_updated:    " updated layout settings "

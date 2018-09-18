@@ -7,6 +7,7 @@ class Sites::Admin::LayoutsController < ApplicationController
   def update_settings
     if current_site.update(site_params)
       flash[:success] = t("successfully_updated")
+      record_activity('layout_settings_updated', current_site)
     end
 
     respond_with current_site, location: settings_site_admin_layouts_path
