@@ -1,0 +1,49 @@
+body {
+  background-color: #f6f6f6;
+}
+
+header {
+  height: 134px;
+  background-color: #fff;
+}
+
+.header {
+  max-width: 940px;
+  margin: 0 auto;
+  height: 100%;
+  position: relative;
+
+  .menu-bar {
+    height: 60px;
+    border-radius: 2px;
+    background-color: #0072b9;
+    /*background-color: var(--blue);*/
+    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.2);
+    position: absolute;
+    width: 100%;
+    bottom: -30px;
+    z-index: 2;
+  }
+
+  .menu_component {
+    color: #fff;
+
+    menu {
+      list-style: none;
+
+      li a {
+        color: inherit;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+.ufg-logo, .social-icons {
+  display: inline-block;
+}
+
+.slider {
+  height: 500px;
+}

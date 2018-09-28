@@ -1,0 +1,9 @@
+en:
+  themes:
+    ufg2:
+      title:              " UFG 2.0 "
+      placeholders:
+        first_place:        " Top "
+        home:               " Home Page "
+        top:                " Header "
+        bottom:             " Bottom "

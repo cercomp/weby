@@ -4,7 +4,6 @@ pt-BR:
       skins:
         index:
           no_theme:           " Nenhum tema selecionado. "
-          apply:              " Aplicar "
           themes:             " Temas "
           layout:             " Layout "
           components:         " Componentes "
@@ -22,6 +21,8 @@ pt-BR:
           new_style:        " Novo Estilo "
           my_styles:        " Meus Estilos "
           styles:           " Estilos "
+        themes:
+          apply:              " Aplicar "
           current_theme:    " Tema ativo "
           change_theme:     " Selecionar Tema "
           preview:          " Prévia "
