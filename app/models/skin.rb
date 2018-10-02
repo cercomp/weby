@@ -46,4 +46,19 @@ class Skin < ActiveRecord::Base
     newskin.styles.import(styles)
     newskin.components.import(components, site_id: options[:site_id])
   end
+
+  def components_yml
+    list = root_components.group_by(&:place_holder)
+    list = list.map do |place, comps|
+      [
+        place,
+        comps.map do |comp|
+          json = comp.as_json(only: [:name, :position, :publish, :alias, :settings])
+          json.delete('children') if json['children'].to_a.empty?
+          json
+        end
+      ]
+    end.to_h.to_yaml
+  end
+
 end

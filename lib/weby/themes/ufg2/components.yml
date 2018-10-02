@@ -1,166 +1,70 @@
 first_place:
   -
+    settings: '{:background=>"#7F7F7F"}'
     name: gov_bar
     position: 1
     publish: true
-    settings: '{:background=>"#7F7F7F"}'
+    alias: "Barra do Governo Federal"
 top:
   -
+    settings: '{:html_class=>"header"}'
     name: components_group
     position: 1
     publish: true
     alias: Cabeçalho
-    settings: '{:html_class=>"header"}'
     children:
       -
-        name: components_group
-        position: 1
-        publish: true
-        alias: Logos
-        settings: '{:html_class=>"logos"}'
-        children:
-          -
-            name: image
-            position: 1
-            publish: true
-            alias: Logo
-            settings: '{:size=>"", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"site-logo", :default_image=>""}'
-          -
-            name: image
-            position: 2
-            publish: true
-            alias: Logo - UFG
-            settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://www.ufg.br", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"ufg-logo", :default_image=>"UFG_logo.svg"}'
-      -
-        name: menu
-        position: 2
-        publish: true
-        settings: '{:menu_id => "%{menu_id}", :dropdown => "0", :style => "hamburger"}'
-        menu:
-          name: "Principal"
-          items:
-            -
-              title: 'Quem Somos'
-              url: '#quem-somos'
-              position: 1
-  -
-    name: photo_slider
-    position: 2
-    publish: true
-    alias: Slider
-    settings: '{:style=>"1", :width=>"400", :height=>"300", :timer=>"7", :show_controls=>"1", :title=>{"pt-BR"=>""}, :photo_ids=>[]}'
-home:
-  -
-    name: front_news
-    position: 1
-    publish: true
-    alias: Notícias
-    settings: '{:quant=>"4", :max_char=>"", :filter_by=>"", :image_size=>"m", :avatar_width=>"350", :avatar_height=>"", :tag_as_label=>"1", :read_more=>"0", :show_author=>"1", :show_date=>"1", :order_by=>"position", :new_tab=>"0", :label=>{"pt-BR"=>"Notícias"}, :link_to_all=>{"pt-BR"=>""}}'
-  -
-    name: event_list
-    position: 2
-    publish: true
-    alias: Eventos
-    settings: '{:template=>"basic", :quant=>"5", :max_char=>"", :filter_by=>"", :image_size=>"m", :avatar_width=>"", :avatar_height=>"", :read_more=>"0", :label=>{"pt-BR"=>"Eventos"}, :link_to_all=>{"pt-BR"=>""}, :date_format=>"short"}'
-  -
-    name: news_as_home
-    position: 3
-    publish: true
-    alias: Exemplo - Quem Somos
-    settings: '{:page_id=>"%{page_id}", :show_title=>"1", :show_info=>"0"}'
-    page:
-      title: 'Quem Somos'
-      text: '<section id="quem-somos" class="about-area section-big">
-              <div class="container">
-                <div class="row" style="display: flex;">
-                  <div class="text-quem-somos">
-                    <div class="about-content mt-30">
-                      <div class="about-details">
-                        <p>Lorem ipsum erat ac dui odio tempor quam vehicula venenatis, nisl inceptos fermentum consectetur diam felis augue dui, vulputate et purus maecenas et nisl aenean luctus. per gravida tincidunt aliquam mi sodales vitae per pulvinar</p>
-                        <div class="space-text-top">
-                          <p>Lacus netus magna etiam ut dapibus massa hendrerit per tortor lorem torquent, sed habitasse condimentum fermentum</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="map">
-                    <p>Dolor tellus suspendisse suscipit phasellus commodo eget aliquet habitasse, congue dolor vivamus nostra fringilla suspendisse scelerisque, velit volutpat consectetur vel lectus amet ac. tempor primis enim malesuada pretium fermentum dui potenti sociosqu, iaculis praesent bibendum amet</p>
-                  </div>
-                </div>
-              </div>
-            </section>'
-bottom:
-  -
-    name: components_group
-    position: 1
-    publish: true
-    alias: Rodapé
-    settings: '{:html_class=>"footer"}'
-    children:
-      -
+        settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://www.ufg.br", :target_id=>"",
+          :target_type=>"", :new_tab=>"0", :html_class=>"ufg-logo", :default_image=>"ufg2/marca-ufg.svg"}'
         name: image
         position: 1
         publish: true
-        alias: Logo
-        settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"footer-logo", :default_image=>"UFG_vertical.png"}'
+        alias: Logo - UFG
       -
-        name: text
+        settings: '{:html_class=>"social-icons"}'
+        name: components_group
         position: 2
         publish: true
-        alias: Endereço
-        settings: '{:html_class=>"address", :body=>{"pt-BR"=>"<p class=\"category-footer\">Endere&ccedil;o</p>\r\n<p>{Endereço}<br />Fone: {fone}</p>"}}'
-      -
-        name: text
-        position: 3
-        publish: true
-        alias: Fones
-        settings: '{:html_class=>"phones", :body=>{"pt-BR"=>"<p class=\"category-footer\">Contato</p>\r\n<p>{email}<br />{fone1}<br />{fone2}</p>"}}'
-      -
-        name: text
-        position: 4
-        publish: true
-        alias: Acesso Informação
-        settings: '{:html_class=>"credits", :body=>{"pt-BR"=>"<p class=\"category-footer\">Informa&ccedil;&otilde;es</p>\r\n<p><a href=\"//sic.ufg.br\" target=\"_blank\" rel=\"noopener\"> <img style=\"width: 116px; height: 50px;\" src=\"https://www.ufg.br/up/1/o/icone-acesso-a-informacao.svg\" alt=\"Acesso &agrave; informa&ccedil;&atilde;o\" width=\"116\" height=\"50\" /></a></p>"}}'
-      -
-        name: components_group
-        position: 5
-        publish: true
-        alias: social
-        settings: '{:html_class=>"social_icons"}'
+        alias: Ícones sociais
         children:
           -
+            settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"",
+                      :new_tab=>"0", :html_class=>"social-icon", :default_image=>"ufg2/ic-twitter.png"}'
             name: image
+            position: 9
+            publish: true
+            alias: twitter
+          -
+            settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"",
+                      :new_tab=>"0", :html_class=>"social-icon", :default_image=>"ufg2/ic-facebook.png"}'
+            name: image
+            position: 10
+            publish: true
+            alias: facebook
+      -
+        settings: '{:html_class=>"menu-bar"}'
+        name: components_group
+        position: 3
+        publish: true
+        alias: Barra de Menu
+        children:
+          -
+            settings: '{:menu_id=>"%{menu_id}", :dropdown=>"1", :style=>"menu", :html_class=>""}'
+            name: menu
             position: 1
             publish: true
-            alias: Facebook
-            settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"", :default_image=>"facebook-logo-button.png"}'
+            menu:
+              name: Principal
           -
-            name: image
+            settings: '{:width=>"", :align=>"right", :show_button=>"1"}'
+            name: search_box
             position: 2
             publish: true
-            alias: Instagram
-            settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"", :default_image=>"instagram-logo-button.png"}'
-          -
-            name: image
-            position: 3
-            publish: true
-            alias: Twitter
-            settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"", :default_image=>"twitter-logo-button.png"}'
-          -
-            name: image
-            position: 4
-            publish: true
-            alias: Youtube
-            settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"", :default_image=>"youtube-logo-button.png"}'
+home:
   -
-    name: text
-    position: 2
+    settings: '{:category=>"Slider", :orientation=>"slider", :timer=>"7", :description=>"1",
+      :show_controls=>"1"}'
+    name: banner_list
+    position: 1
     publish: true
-    alias: Copyright
-    settings: '{:html_class=>"copyright", :body=>{"pt-BR"=>"<p>Universidade Federal de Goi&aacute;s. Todos os direitos reservados.</p>"}}'
-  -
-    name: blank
-    position: 3
-    publish: true
-    alias: Voltar Topo
-    settings: '{:body=>"<a class=\"smooth_scroll\" href=\"#\" id=\"scroll-to-top\" style=\"display: block;\">\r\n  <i class=\"fa fa-chevron-up\"></i>\r\n</a>", :put_at_end=>"0"}'
+    alias: Slider
