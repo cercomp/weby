@@ -2,9 +2,9 @@
 <% breadcrumb :skins %>
 
 <% content_for :javascripts, javascript_include_tag('repositories.index') %>
+<% @can_theme = check_permission(Sites::Admin::SkinsController, [:create, :preview]) %>
 
 <% if current_site.theme %>
-  <% @can_theme = check_permission(Sites::Admin::SkinsController, [:create, :preview]) %>
   <% @can_layout = check_permission(Sites::Admin::ComponentsController, [:index]) %>
   <% @can_style = check_permission(Sites::Admin::StylesController, [:index]) %>
   <ul class="nav nav-tabs" id="tabs">
@@ -153,7 +153,11 @@
   <% content_for :stylesheets, stylesheet_link_tag("sortable") %>
   <% content_for :stylesheets, stylesheet_link_tag("maxi_layout") %>
 <% else %>
-  <%= t('.no_theme') %>
+  <% if @can_theme %>
+    <%= render partial: 'themes' %>
+  <% else %>
+    <%= t('.no_theme') %>
+  <% end %>
 <% end %>
 <% content_for :javascripts, javascript_include_tag("init/sortable") %>
 <% content_for :javascripts, javascript_include_tag("skins") %>
