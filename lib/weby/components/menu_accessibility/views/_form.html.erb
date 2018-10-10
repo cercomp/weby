@@ -9,6 +9,9 @@
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="basic">
+
+      <%= f.input :template, include_blank: false, collection: component.template_options.map{|o| [t(".#{o}"), o] } %>
+
       <span class="contrast">
         <%= f.input :contrast, :label => t("menu_accessibility.views.form.contrast"), wrapper: :checkbox, :as => :boolean %>
         <%= each_i18n_tab do |locale| %>

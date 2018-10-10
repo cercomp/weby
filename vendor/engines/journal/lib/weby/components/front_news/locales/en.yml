@@ -7,7 +7,7 @@ en:
       avatar_width:         " News image width "
       label:                " Label "
       filter_by:            " Select news with only these categories "
-      tag_as_label:         " Tag as Label "
+      tag_as_label:         " Show first tag as label "
       read_more:            " Show 'Read more' "
       link_to_all:          " Link to all news "
       show_author:          " Show new's author "
@@ -27,12 +27,14 @@ en:
         read_more:            " Show 'Read more' "
         show_author:          " Show new's author "
         show_date:            " Show new's date "
+        show_tags:            " Show categories "
         type_filter:          " Filter by page type "
         image_size:           " Image version "
         new_tab:              " Open news with URL in a new tab "
         max_char:             " Maximum number of characters "
         link_to_all:          " Link to all news "
         order_by:             " Order by "
+        date_format:          " Date Format "
     errors:
       models:
         front_news_component:
@@ -56,6 +58,8 @@ en:
         l:                    " Little "
         i:                    " Miniature "
         t:                    " Thumbnail "
+        full:                 " Full "
+        short:                " Date only "
         all:                  " News and Eventos"
         news:                 " News Only "
         events:               " Events Only "

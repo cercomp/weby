@@ -141,6 +141,7 @@ body > header {
             line-height: 42px;*/
             font-size: 18px;
             line-height: normal;
+            white-space: pre-wrap;
           }
 
           &.sub {
@@ -205,4 +206,73 @@ body > header {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.accessibility-bar {
+  background-color: var(--white);
+  border-bottom: solid 1px #ececec;
+  display: flex;
+}
+
+.menu_accessibility_component.bar {
+  font-family: Lato;
+  background-color: var(--white);
+  flex: 1;
+
+  .direct-access {
+    span {
+      font-size: 14px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: var(--grey);
+
+      b {
+        display: inline-block;
+        margin-right: 20px;
+        width: 15px;
+        height: 15px;
+        border-radius: 2px;
+        background-color: #aaaaaa;
+        font-size: 12px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: var(--white);
+      }
+    }
+  }
+
+  .access-actions a, .accessibility_color a {
+    display: inline-block;
+    border-radius: 2px;
+    background-color: #aaaaaa;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    font-size: 0;
+    margin-left: 6px;
+  }
+
+  .increase-font {
+    background-image: asset-url('ufg2/ic-tipo.png');
+  }
+
+  .decrease-font {
+    background-image: asset-url('ufg2/ic-tipo_2.png');
+  }
+
+  .accessibility_color a {
+    background-image: asset-url('ufg2/ic-contraste.png');
+  }
+}
+
+.menu_i18n_component {
+  ul {
+    margin: 0;
+  }
 }

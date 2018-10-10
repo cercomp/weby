@@ -11,6 +11,7 @@ pt-BR:
         label_contrast:     " Rótulo Contraste "
         additional_information: " Informações Adicionais "
         extended_accessibility: " Ativar "
+        template:               " Formato "
   menu_accessibility:
     views:
       form:
@@ -19,6 +20,8 @@ pt-BR:
         display_controls:   " Exibir Controles "
         basic:              " Básico "
         extended:           " Estendido "
+        default:            " Padrão "
+        bar:                " Barra "
       basic:
         increase_font_size: " Aumentar o tamanho da fonte "
         decrease_font_size: " Diminuir o tamanho da fonte "
@@ -26,6 +29,9 @@ pt-BR:
         contrast:           " Alterar o contraste da página "
         contrast_normal:    " Retirar o contraste da pagina "
         colour:             " Cor "
+        go_to_content:      " Ir para o conteúdo "
+        go_to_menu:         " Ir para o menu "
+        go_to_search:       " Ir para busca "
       extended:
         increase_font_size: " Aumentar o tamanho da fonte "
         decrease_font_size: " Diminuir o tamanho da fonte "

@@ -114,3 +114,37 @@
   }
 }
 
+.menu_accessibility_component.bar {
+  display: flex;
+  justify-content: space-between;
+  padding: 7px 16px;
+
+  .access-actions {
+    display: flex;
+
+    a {
+      text-align: center;
+      width: 22px;
+      height: 22px;
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  .accessibility_font {
+    display: flex;
+  }
+
+  .accessibility_color {
+    display: flex;
+
+    a {
+      text-align: center;
+      width: 22px;
+      height: 22px;
+      padding: 0;
+      margin: 0;
+    }
+  }
+}
+

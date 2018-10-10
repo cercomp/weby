@@ -170,12 +170,18 @@ div, section, input {
     padding-top: 164px;
     box-sizing: border-box;
     position: relative;
+    border-radius: 4px;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+    transition: .3s;
+
+    &:hover {
+      box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.3);
+    }
   }
 
   article {
     background-color: var(--white);
-    border-radius: 16px 16px 2px 2px;
+    border-radius: 20px 20px 4px 4px;
     padding: 50px 16px 14px;
     box-sizing: border-box;
     height: 315px;
@@ -185,6 +191,13 @@ div, section, input {
       top: 0;
       left: 0;
       z-index: -1;
+
+      img {
+        width: 300px;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 4px 4px 0 0;
+      }
     }
 
     header {
@@ -226,6 +239,9 @@ div, section, input {
     }
 
     summary {
+      max-height: 96px;
+      overflow: hidden;
+
       p {
         margin: 0 0 16px;
         font-family: Lato;
@@ -236,6 +252,34 @@ div, section, input {
         line-height: 1.33;
         letter-spacing: normal;
         color: var(--dark-gray);
+      }
+    }
+
+    .categories {
+      position: absolute;
+      bottom: 14px;
+      display: flex;
+    }
+
+    .category {
+      display: inline-block;
+      border-radius: 4px;
+      padding: 1px 16px;
+      margin-right: 10px;
+      background-color: var(--light-blue);
+      text-decoration: none;
+      font-family: Lato;
+      font-size: 16px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.75;
+      letter-spacing: normal;
+      text-align: center;
+      color: var(--white);
+
+      &:last-child {
+        margin-right: 0;
       }
     }
   }

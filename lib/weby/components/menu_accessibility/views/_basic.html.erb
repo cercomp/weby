@@ -1,11 +1,34 @@
-<nav class="menu_accessibility_component right basic">
-  <span class="accessibility">
-    <%= acessibility_font_links(component) %>
-    <% if component.contrast? %>
-      <span class="accessibility_color">
-        <%= acessibility_color_links(component) %>
-      </span>
-    <% end %>
-  </span>
-</nav>
-
+<% if component.template == 'bar' %>
+  <nav class="menu_accessibility_component bar">
+    <div class="direct-access">
+      <span><%= t('.go_to_content') %><b>1</b></span>
+      <span><%= t('.go_to_menu') %><b>2</b></span>
+      <span><%= t('.go_to_search') %><b>3</b></span>
+    </div>
+    <div class="access-actions">
+      <% if component.font_size? %>
+        <span class='accessibility_font'>
+          <%= link_to('A+', '#', class: 'increase-font', title: t('.increase_font_size')) %>
+          <%# link_to('A', '#', onclick: 'font_size_original()', title: t('.default_font_size')) %>
+          <%= link_to('A-', '#', class: 'decrease-font', title: t('.decrease_font_size')) %>
+        </span>
+      <% end %>
+      <% if component.contrast? %>
+        <span class="accessibility_color">
+          <%= link_to('C', '#', class: 'toggle-contrast') %>
+        </span>
+      <% end %>
+    </div>
+  </nav>
+<% else %>
+  <nav class="menu_accessibility_component right basic">
+    <span class="accessibility">
+      <%= acessibility_font_links(component) %>
+      <% if component.contrast? %>
+        <span class="accessibility_color">
+          <%= acessibility_color_links(component) %>
+        </span>
+      <% end %>
+    </span>
+  </nav>
+<% end %>
