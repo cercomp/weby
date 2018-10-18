@@ -1,36 +1,63 @@
 <% quant = component.quant || 5 %>
 
-<% @subsite_front_news = Journal::NewsSite.from_subsites(current_site).order('updated_at desc')
+<% if component.source == 'selected' %>
+  <% site = Site.find_by(id: component.sel_site) %>
+  <% @subsite_front_news = site ? site.news_sites.order('updated_at desc')
+                  .available_fronts.published.limit(quant) : [] #page(params[:subsite_front_pages]).per(quant) %>
+<% else %>
+  <% @subsite_front_news = Journal::NewsSite.from_subsites(current_site).order('updated_at desc')
                   .available_fronts.published.limit(quant) #page(params[:subsite_front_pages]).per(quant) %>
+<% end %>
 
 <section class="subsite_front_news_component">
-    <% @subsite_front_news.each do |news_site| %>
-    <% news = news_site.news %>
-    <li style="list-style-type:none;">
-    <article>
-      <span class="news_origin origin"><%= t(".news_from") %> <%= link_to news.site.title, site_url(subdomain: news.site) %></span>
-      <% unless news.image.nil? %>
-        <%= weby_file_view(news.image, :l, "128", nil, {as: "link", url: news.url.present? ? news.url : news_url(news, subdomain: news.site)}) %>
-      <% end %>
-      <header>
-        <h2> <%= link_to news.title, news.url.present? ? news.url : news_url(news, subdomain: news.site) %> </h2>
-        <% if current_site.view_desc_pages %>
-          <p>
-          <i>
-            <%= news.user.name_or_login %>
-            <%= localize news.created_at, format: :short  %>
-          </i>
-          </p>
-        <% end %>
-      </header>
-      <summary>
-        <%= raw news.summary %>
-      </summary>
-      <% unless news.text.blank? %>
-      <p> <%= link_to t(".read_more"), news_url(news, subdomain: news.site) %> </p>
-      <% end %>
-      <div class="clear"></div>
-    </article>
+  <% if component.label.present? && component.source == 'selected' %>
+    <div class="front_news_title">
+      <span><%= component.label.camelize %></span>
+    </div>
   <% end %>
-  </li>
+  <div class="list">
+    <% @subsite_front_news.each do |news_site| %>
+      <% news = news_site.news %>
+      <li style="list-style-type:none;">
+        <article>
+          <% if component.source != 'selected' %>
+            <span class="news_origin origin">
+              <%= t(".news_from") %> <%= link_to news.site.title, site_url(subdomain: news.site) %>
+            </span>
+          <% end %>
+          <% unless news.image.nil? %>
+            <%= weby_file_view(news.image, :l, "128", nil, {as: "link", url: news.url.present? ? news.url : news_url(news, subdomain: news.site), link_class: 'news-image'}) %>
+          <% end %>
+          <header>
+            <% if component.tag_as_label? && news_site.category_list.present? %>
+              <div class="front_news_label">
+                <%= news_site.category_list.first.camelize %>
+              </div>
+            <% end %>
+            <h2>
+              <%= link_to news.title, news.url.present? ? news.url : news_url(news, subdomain: news.site) %>
+            </h2>
+            <% if current_site.view_desc_pages && !component.hide_author? %>
+              <p>
+                <i>
+                  <%= news.user.name_or_login %>
+                  <%= localize news.created_at, format: :short  %>
+                </i>
+              </p>
+            <% end %>
+          </header>
+          <summary>
+            <%= raw news.summary %>
+          </summary>
+          <% if news.text.present? && !component.hide_read_more? %>
+            <p><%= link_to t(".read_more"), news_url(news, subdomain: news.site) %></p>
+          <% end %>
+          <div class="clear"></div>
+        </article>
+      </li>
+    <% end %>
+  </div>
+  <% if component.link_to_all.present? && component.source == 'selected' %>
+    <span class="link_to_all"><%= link_to component.link_to_all, site_url(Site.find_by(id: component.sel_site)) %></span>
+  <% end %>
 </section>

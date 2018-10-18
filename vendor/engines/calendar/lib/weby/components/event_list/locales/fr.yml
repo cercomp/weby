@@ -17,6 +17,7 @@
         link_to_all:          " Lien à tous "
         template:             " Template "
         date_format:          " Format de Date "
+        html_class:           " Class HTML "
   event_list:
     views:
       show:

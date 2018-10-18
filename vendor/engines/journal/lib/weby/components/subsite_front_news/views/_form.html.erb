@@ -1,1 +1,14 @@
 <%= f.input :quant, as: :integer %>
+
+<%= f.input :source, collection: component.source_options.map{|o| [t(".#{o}"), o] }, include_blank: false %>
+
+<%= f.input :sel_site, collection: Site.where.not(id: current_site.id), input_html: {class: 'select2'} %>
+
+<%= each_i18n_tab do |locale| %>
+  <%= f.component_i18n_input locale, :label, :as => :string %>
+  <%= f.component_i18n_input locale, :link_to_all, :as => :string, hint: t(".link_to_all_hint") %>
+<% end %>
+
+<%= f.input :tag_as_label, wrapper: :checkbox, as: :boolean %>
+<%= f.input :hide_author, wrapper: :checkbox, as: :boolean %>
+<%= f.input :hide_read_more, wrapper: :checkbox, as: :boolean %>

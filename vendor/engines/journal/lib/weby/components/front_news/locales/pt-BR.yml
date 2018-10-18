@@ -33,6 +33,7 @@ pt-BR:
         max_char:             " Número máximo de caracteres do resumo "
         order_by:             " Ordenação "
         date_format:          " Formato da data "
+        link_to_all:          " Texto do 'Ver todas' "
     errors:
       models:
         front_news_component:

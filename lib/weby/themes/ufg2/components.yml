@@ -1,70 +1,110 @@
+---
 first_place:
-  -
-    settings: '{:background=>"#7F7F7F"}'
-    name: gov_bar
+- settings: '{:background=>"#7F7F7F"}'
+  name: gov_bar
+  position: 1
+  publish: true
+  alias: Barra do Governo Federal
+- settings: '{:html_class=>"accessibility-bar"}'
+  name: components_group
+  position: 2
+  publish: true
+  alias: Barra de acessibilidade
+  children:
+  - settings: '{:contrast=>"1", :font_size=>"1", :extended_accessibility=>"0", :label_contrast=>{"pt-BR"=>"",
+      "en"=>""}, :label_font_size=>{"pt-BR"=>"", "en"=>""}, :additional_information=>{"pt-BR"=>"",
+      "en"=>""}, :template=>"bar"}'
+    name: menu_accessibility
     position: 1
     publish: true
-    alias: "Barra do Governo Federal"
-top:
-  -
-    settings: '{:html_class=>"header"}'
-    name: components_group
-    position: 1
+  - settings: '{:dropdown=>"1", :template=>"code"}'
+    name: menu_i18n
+    position: 2
     publish: true
-    alias: Cabeçalho
-    children:
-      -
-        settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://www.ufg.br", :target_id=>"",
-          :target_type=>"", :new_tab=>"0", :html_class=>"ufg-logo", :default_image=>"ufg2/marca-ufg.svg"}'
-        name: image
-        position: 1
-        publish: true
-        alias: Logo - UFG
-      -
-        settings: '{:html_class=>"social-icons"}'
-        name: components_group
-        position: 2
-        publish: true
-        alias: Ícones sociais
-        children:
-          -
-            settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"",
-                      :new_tab=>"0", :html_class=>"social-icon", :default_image=>"ufg2/ic-twitter.png"}'
-            name: image
-            position: 9
-            publish: true
-            alias: twitter
-          -
-            settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"",
-                      :new_tab=>"0", :html_class=>"social-icon", :default_image=>"ufg2/ic-facebook.png"}'
-            name: image
-            position: 10
-            publish: true
-            alias: facebook
-      -
-        settings: '{:html_class=>"menu-bar"}'
-        name: components_group
-        position: 3
-        publish: true
-        alias: Barra de Menu
-        children:
-          -
-            settings: '{:menu_id=>"%{menu_id}", :dropdown=>"1", :style=>"menu", :html_class=>""}'
-            name: menu
-            position: 1
-            publish: true
-            menu:
-              name: Principal
-          -
-            settings: '{:width=>"", :align=>"right", :show_button=>"1"}'
-            name: search_box
-            position: 2
-            publish: true
 home:
-  -
-    settings: '{:category=>"Slider", :orientation=>"slider", :timer=>"7", :description=>"1",
-      :show_controls=>"1"}'
-    name: banner_list
+- settings: '{:category=>"Slider", :orientation=>"slider", :timer=>"7", :description=>"1",
+    :show_controls=>"1"}'
+  name: banner_list
+  position: 1
+  publish: true
+  alias: Slider
+- settings: '{:quant=>"6", :max_char=>"", :filter_by=>"", :image_size=>"m", :avatar_width=>"300",
+    :avatar_height=>"", :tag_as_label=>"0", :read_more=>"0", :show_author=>"0", :show_date=>"1",
+    :order_by=>"position", :new_tab=>"1", :label=>{"pt-BR"=>"Notícias", "en"=>""},
+    :link_to_all=>{"pt-BR"=>"Ver todas", "en"=>""}, :date_format=>"short", :show_tags=>"1"}'
+  name: front_news
+  position: 2
+  publish: true
+  alias: Notícias capa
+- settings: '{:quant=>"7", :source=>"selected", :site_id=>"", :tag_as_label=>"1",
+    :hide_author=>"1", :hide_read_more=>"1", :label=>{"pt-BR"=>"Jornal UFG", "en"=>""},
+    :link_to_all=>{"pt-BR"=>"Ver Todas", "en"=>""}}'
+  name: subsite_front_news
+  position: 3
+  publish: true
+- settings: '{:html_class=>"media-section"}'
+  name: components_group
+  position: 4
+  publish: true
+  alias: Mídias
+- settings: '{:template=>"front", :date_format=>"short", :quant=>"4", :max_char=>"",
+    :filter_by=>"destaque", :image_size=>"m", :avatar_width=>"", :avatar_height=>"",
+    :read_more=>"0", :label=>{"pt-BR"=>"Fique Atento", "en"=>""}, :link_to_all=>{"pt-BR"=>"",
+    "en"=>""}, :html_class=>"highlight-events"}'
+  name: event_list
+  position: 5
+  publish: true
+  alias: Fique atento
+- settings: '{:template=>"front", :date_format=>"short", :quant=>"8", :max_char=>"",
+    :filter_by=>"", :image_size=>"i", :avatar_width=>"", :avatar_height=>"", :read_more=>"0",
+    :label=>{"pt-BR"=>"Eventos", "en"=>""}, :link_to_all=>{"pt-BR"=>"Ver todos", "en"=>""}}'
+  name: event_list
+  position: 6
+  publish: true
+top:
+- settings: '{:html_class=>"header"}'
+  name: components_group
+  position: 1
+  publish: true
+  alias: Cabeçalho
+  children:
+  - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://www.ufg.br", :target_id=>"",
+      :target_type=>"", :new_tab=>"0", :html_class=>"ufg-logo", :default_image=>"ufg2/marca-ufg.svg"}'
+    name: image
     position: 1
     publish: true
-    alias: Slider
+    alias: Logo - UFG
+  - settings: '{:html_class=>"social-icons"}'
+    name: components_group
+    position: 2
+    publish: true
+    alias: Ícones sociais
+    children:
+    - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"",
+        :new_tab=>"0", :html_class=>"social-icon", :default_image=>"ufg2/ic-twitter.png"}'
+      name: image
+      position: 1
+      publish: true
+      alias: twitter
+    - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"",
+        :new_tab=>"0", :html_class=>"social-icon", :default_image=>"ufg2/ic-facebook.png"}'
+      name: image
+      position: 2
+      publish: true
+      alias: facebook
+  - settings: '{:html_class=>"menu-bar"}'
+    name: components_group
+    position: 3
+    publish: true
+    alias: Barra de Menu
+    children:
+    - settings: '{:menu_id=>"%{menu_id}", :dropdown=>"1", :style=>"menu", :html_class=>""}'
+      name: menu
+      position: 1
+      publish: true
+      menu:
+        name: Principal
+    - settings: '{:width=>"", :align=>"right", :show_button=>"1"}'
+      name: search_box
+      position: 2
+      publish: true

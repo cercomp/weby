@@ -7,9 +7,20 @@ es:
     attributes:
       subsite_front_news_component:
         quant:                      " Número de noticias de frente "
+        source:                     " Origem "
+        sel_site:                   " Site "
+        label:                      " Título "
+        link_to_all:                " Texto do 'Ver tdodas' "
+        tag_as_label:               " Exibir primeira tag como rótulo "
+        hide_author:                " Ocultar autor/data "
+        hide_read_more:             " Ocultar 'leia mais' "
   subsite_front_news:
     views:
       show:
         news_from:                  " Del sitio "
         read_more:                  " Leer más... "
+      form:
+        link_to_all_hint:     " Texto do link para a lista com todas as notícias "
+        subsites:                   " Subsites "
+        selected:                   " Site selecionado "
 

@@ -1,7 +1,7 @@
 class EventListComponent < Component
   component_settings :quant, :avatar_height, :avatar_width, :read_more,
                      :image_size, :max_char, :filter_by, :label,
-                     :link_to_all, :template, :date_format
+                     :link_to_all, :template, :date_format, :html_class
 
   i18n_settings :label, :link_to_all
 

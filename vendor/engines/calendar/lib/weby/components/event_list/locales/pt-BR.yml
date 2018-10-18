@@ -17,6 +17,7 @@ pt-BR:
         link_to_all:          " Link para exibir todos "
         template:             " Formato de exibição "
         date_format:          " Formato da data "
+        html_class:           " Classe HTML "
   event_list:
     views:
       show:

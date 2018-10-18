@@ -6,3 +6,9 @@ pt-BR:
     attributes:
       menu_i18n_component:
         dropdown:           " Desdobrável "
+        template:           " Modelo de visualização "
+  menu_i18n:
+    views:
+      form:
+        flag:  " Bandeiras "
+        code:  " Código do idioma "

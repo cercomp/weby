@@ -17,4 +17,8 @@ class Locale < ActiveRecord::Base
 
     self.create!(attrs)
   end
+
+  def code
+    (name.match('-') ? name.split('-')[1] : name).titleize
+  end
 end
