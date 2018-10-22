@@ -8,66 +8,104 @@ first_place:
 top:
  
   -
-    settings: '{:html_class=>"cabecalho"}'
+    settings: '{:html_class=>"container_jornal"}'
     name: components_group
-    position: 2
+    position: 1
     publish: true
-    alias: Cabeçalho
+    alias: Topo
     children:
-      -
-        settings: '{:default_image=>"ufg_topo.svg", :size=>"original", :width=>"", :height=>"", :url=>"http://www.ufg.br", :target_id=>"", :html_class=>"ufglogo", :target_type=>"", :new_tab=>"0"}'
-        name: image
-        position: 2
-        publish: true
-        alias: Logo UFG           
-    
-      -
-        name: 'menu_i18n'
-        settings: '{:html_class=>"menu_i18n_component"}'
-        position: 1
-        publish: true
 
-      -
-        settings: '{:html_class=>"redesocial"}'
-        name: components_group
-        position: 2
-        publish: true
-        alias: Rede Social
-        children:
-          -
-            settings: '{:default_image=>"twitter.png", :size=>"o", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"twitter"}'
-            name: image
-            position: 1
-            publish: true
-            alias: Link Twitter
-          -
-            settings: '{:default_image=>"facebook.png", :size=>"o", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"facebook"}'
-            name: image
-            position: 2
-            publish: true
-            alias: Link Facebook
+    -
+      settings: '{:html_class=>"cabecalho"}'
+      name: components_group
+      position: 1
+      publish: true
+      alias: Logo
+      children:
+        -
+          name: image
+          settings: '{:default_image=>"ufg_topo.svg", :size=>"original", :width=>"", :height=>"", :url=>"http://www.ufg.br", :target_id=>"", :html_class=>"ufglogo", :target_type=>"", :new_tab=>"0"}'
+          position: 1
+          publish: true
+          alias: Logo UFG           
+      
+        -
+          settings: '{:html_class=>"menu_i18n_component"}'
+          name: 'menu_i18n'          
+          position: 2
+          publish: true
 
-          -
-            settings: '{:default_image=>"Instagram.png", :size=>"o", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"youtube"}'
-            name: image
-            position: 3
-            publish: true
-            alias: Link Instagram
+        -
+          name: components_group
+          settings: '{:html_class=>"redesocial"}'          
+          position: 3
+          publish: true
+          alias: Rede Social
+          children:
+            -
+              name: image
+              settings: '{:default_image=>"twitter.png", :size=>"o", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"twitter"}'
+              position: 1
+              publish: true
+              alias: Link Twitter
+            -
+              name: image
+              settings: '{:default_image=>"facebook.png", :size=>"o", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"facebook"}'
+              position: 2
+              publish: true
+              alias: Link Facebook
 
-          -
-            settings: '{:default_image=>"Instagram.png", :size=>"o", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"youtube"}'
-            name: image
-            position: 4
-            publish: true
-            alias: Link Linkedin
-          -
-            settings: '{:default_image=>"YoutubePlay.png", :size=>"o", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"youtube"}'
-            name: image
-            position: 5
-            publish: true
-            alias: Link Youtube
-      -
-        settings: '{:width=>"340", :align=>"left", :show_button=>"1"}'
-        name: search_box
-        position: 3
-        publish: true
+            -
+              name: image
+              settings: '{:default_image=>"Instagram.png", :size=>"o", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"youtube"}'
+              position: 3
+              publish: true
+              alias: Link Instagram
+
+            -
+              name: image
+              settings: '{:default_image=>"Instagram.png", :size=>"o", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"youtube"}'
+              position: 4
+              publish: true
+              alias: Link Linkedin
+            -
+              name: image
+              settings: '{:default_image=>"YoutubePlay.png", :size=>"o", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"youtube"}'
+              position: 5
+              publish: true
+              alias: Link Youtube
+        -
+          name: search_box
+          settings: '{:width=>"340", :align=>"left", :show_button=>"1"}'          
+          position: 4
+          publish: true
+
+    -
+      name: news_as_home
+      position: 3
+      publish: true
+      alias: Exemplo - Quem Somos
+      settings: '{:page_id=>"%{page_id}", :show_title=>"1", :show_info=>"0"}'
+      page:
+        title: 'Quem Somos'
+        text: '<section id="quem-somos" class="about-area section-big">
+              <div class="container">
+                <div class="row" style="display: flex;">
+                  <div class="text-quem-somos">
+                    <div class="about-content mt-30">
+                      <div class="about-details">
+                        <p>Lorem ipsum erat ac dui odio tempor quam vehicula venenatis, nisl inceptos fermentum consectetur diam felis augue dui, vulputate et purus maecenas et nisl aenean luctus. per gravida tincidunt aliquam mi sodales vitae per pulvinar</p>
+                        <div class="space-text-top">
+                          <p>Lacus netus magna etiam ut dapibus massa hendrerit per tortor lorem torquent, sed habitasse condimentum fermentum</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="map">
+                    <p>Dolor tellus suspendisse suscipit phasellus commodo eget aliquet habitasse, congue dolor vivamus nostra fringilla suspendisse scelerisque, velit volutpat consectetur vel lectus amet ac. tempor primis enim malesuada pretium fermentum dui potenti sociosqu, iaculis praesent bibendum amet</p>
+                  </div>
+                </div>
+              </div>
+            </section>'
+      
+      
