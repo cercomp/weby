@@ -1,0 +1,87 @@
+<% load_components %>
+
+<!doctype html>
+<html lang="<%= current_locale %>">
+  <head>
+    <title><%= @site.try(:description) || 'Weby' %><%= yield :title %></title>
+    <meta charset="utf-8"/>
+    <meta name="description" content="<%= @site.try(:description) %>"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <%= csrf_meta_tag %>
+    <%= favicon_link_tag favicon(@site) %>
+    <%= auto_discovery_link_tag(:rss, main_app.site_feed_url(format: 'rss'),  {:title => "#{@site.try(:title)} - RSS"}) %>
+    <%= auto_discovery_link_tag(:atom, main_app.site_feed_url(format: 'atom'),  {:title => "#{@site.try(:title)} - ATOM"}) %>
+    <%= render 'sites/shared/social_meta' %>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" media="screen">
+    <%= yield :components_stylesheets %>
+    <%= stylesheet_link_tag 'webybar' %>
+    <%= stylesheet_link_tag 'weby-assets' %>
+    <%= stylesheet_link_tag 'jornal' %>
+    <%= yield :stylesheets %>
+    <%= render 'sites/shared/loadStyles' %>
+    <%= current_site.try(:head_html).try(:html_safe) %>
+  </head>
+  <body>
+    <%= render_webybar %>
+    <div class='first_place'>
+      <%= yield :layout_first_place %>
+    </div>
+    <div id="wrapper" <%= "style=\"max-width: #{ @main_width }px\"".html_safe if @main_width %>>
+      <header>
+        <%= yield :layout_top %>
+        <div class="clear"> </div>
+      </header>
+      <section id="content">
+        <div class="container"><%= yield %></div>
+      </section>
+    </div>
+    <footer>
+      <%= yield :layout_bottom %>
+    </footer>
+
+    <%= javascript_include_tag "base" %>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <%= yield :javascripts %>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        // expand menu
+        $(".menu-head").click(function() {
+          var $menu = $('.menu-panel');
+          var $hamburger = $($(this).find('.hamburger'));
+          // Toggle class "is-active"
+          if ($hamburger.hasClass('is-active')){
+            $hamburger.removeClass('is-active');
+            $menu.slideUp(200);
+          }else{
+            $hamburger.addClass('is-active');
+            $menu.slideDown(200);
+          }
+          return false;
+        });
+
+       
+
+        var $menuBar = $('.menu-bar'),
+            $accessibility = $('.menu_accessibility_component.extended');
+        var initialMenuTop = $menuBar.offset().top;
+        $(window).scroll(function(){
+          if ($(this).width() < 768) return;
+          if ($(this).scrollTop() > initialMenuTop){
+            $menuBar.addClass('fixed');
+            $accessibility.addClass('fixed');
+          }else{
+            $menuBar.removeClass('fixed');
+            $accessibility.removeClass('fixed');
+          }
+        });
+
+        $('.mobile-menu').on('click', '.menu', function(){
+            $('.menu-panel').toggleClass('open-fixed');
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+first_place:
+  -
+    settings: '{:background=>"#004b82"}'
+    name: gov_bar
+    position: 1
+    publish: true
+    alias: "Barra do Governo Federal"
+top:
+ 
+  -
+    settings: '{:html_class=>"cabecalho"}'
+    name: components_group
+    position: 2
+    publish: true
+    alias: Cabeçalho
+    children:
+      -
+        settings: '{:default_image=>"ufg_topo.svg", :size=>"original", :width=>"", :height=>"", :url=>"http://www.ufg.br", :target_id=>"", :html_class=>"ufglogo", :target_type=>"", :new_tab=>"0"}'
+        name: image
+        position: 2
+        publish: true
+        alias: Logo UFG           
+    
+      -
+        name: 'menu_i18n'
+        settings: '{:html_class=>"menu_i18n_component"}'
+        position: 1
+        publish: true
+
+      -
+        settings: '{:html_class=>"redesocial"}'
+        name: components_group
+        position: 2
+        publish: true
+        alias: Rede Social
+        children:
+          -
+            settings: '{:default_image=>"twitter.png", :size=>"o", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"twitter"}'
+            name: image
+            position: 1
+            publish: true
+            alias: Link Twitter
+          -
+            settings: '{:default_image=>"facebook.png", :size=>"o", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"facebook"}'
+            name: image
+            position: 2
+            publish: true
+            alias: Link Facebook
+
+          -
+            settings: '{:default_image=>"Instagram.png", :size=>"o", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"youtube"}'
+            name: image
+            position: 3
+            publish: true
+            alias: Link Instagram
+
+          -
+            settings: '{:default_image=>"Instagram.png", :size=>"o", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"youtube"}'
+            name: image
+            position: 4
+            publish: true
+            alias: Link Linkedin
+          -
+            settings: '{:default_image=>"YoutubePlay.png", :size=>"o", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"youtube"}'
+            name: image
+            position: 5
+            publish: true
+            alias: Link Youtube
+      -
+        settings: '{:width=>"340", :align=>"left", :show_button=>"1"}'
+        name: search_box
+        position: 3
+        publish: true
