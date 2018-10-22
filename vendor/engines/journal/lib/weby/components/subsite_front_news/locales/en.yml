@@ -13,7 +13,6 @@ en:
         link_to_all:                " 'View all' text "
         tag_as_label:               " Show first tag as label "
         hide_author:                " Hide author/date "
-        hide_read_more:             " Hide 'read more' "
   subsite_front_news:
     views:
       show:

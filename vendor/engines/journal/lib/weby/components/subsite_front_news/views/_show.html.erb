@@ -49,15 +49,13 @@
           <summary>
             <%= raw news.summary %>
           </summary>
-          <% if news.text.present? && !component.hide_read_more? %>
-            <p><%= link_to t(".read_more"), news_url(news, subdomain: news.site) %></p>
-          <% end %>
+          <p class="read_more"><%= link_to t(".read_more"), news_url(news, subdomain: news.site) %></p>
           <div class="clear"></div>
         </article>
       </li>
     <% end %>
   </div>
   <% if component.link_to_all.present? && component.source == 'selected' %>
-    <span class="link_to_all"><%= link_to component.link_to_all, site_url(Site.find_by(id: component.sel_site)) %></span>
+    <span class="link_to_all"><%= link_to component.link_to_all, news_index_url(subdomain: Site.find_by(id: component.sel_site)) %></span>
   <% end %>
 </section>

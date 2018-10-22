@@ -176,8 +176,30 @@ body > header {
     padding: 0;
     height: auto;
 
-    [name=search], #options {
+    #options {
       display: none;
+    }
+
+    [name=search]#search {
+      /*display: none;*/
+      width: 0;
+      height: 60px;
+      /*border-radius: 0 2px 2px 0;*/
+      box-sizing: border-box;
+      padding: 0;
+      border: 0;
+      outline: none;
+      background-color: var(--white);
+      background-image: none !important;
+      position: absolute;
+      right: 0;
+      transition: .2s;
+    }
+
+    [name=search].show-input#search {
+      /*display: block;*/
+      width: 362px;
+      padding: 20px 54px 20px 20px;
     }
 
     [type=submit] {
@@ -188,7 +210,9 @@ body > header {
       border: 0;
       outline: 0;
       font-size: 0;
+      cursor: pointer;
       background: asset-url('ufg2/search-white.png');
+      position: absolute;
     }
   }
 }

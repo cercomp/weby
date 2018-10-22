@@ -13,7 +13,6 @@ pt-BR:
         link_to_all:                " Texto do 'Ver todas' "
         tag_as_label:               " Exibir primeira tag como rótulo "
         hide_author:                " Ocultar autor/data "
-        hide_read_more:             " Ocultar 'leia mais' "
   subsite_front_news:
     views:
       show:

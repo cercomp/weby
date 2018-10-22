@@ -27,6 +27,23 @@ div, section, input {
   box-sizing: border-box;
 }
 
+@mixin placeholder {
+  font-family: Lato;
+  font-size: 18px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: var(--grey);
+}
+
+::-moz-placeholder { @include placeholder; }
+:-ms-input-placeholder { @include placeholder; }
+:-moz-placeholder { @include placeholder; }
+::-webkit-input-placeholder { @include placeholder; }
+::placeholder { @include placeholder; }
+
 .slider {
   height: 500px;
   margin-bottom: 34px;
@@ -116,6 +133,20 @@ div, section, input {
   padding-top: 100px;
   border: 0;
   position: relative;
+
+  .read_more {
+    padding: 0;
+    margin: 0;
+    font-size: 0;
+
+    a {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+  }
 }
 
 .front_news_title, .event_list_title {
@@ -591,4 +622,153 @@ div, section, input {
   }
 
   .link_to_all { display: none; }
+}
+
+.fixed-menus {
+  padding: 140px 0 120px;
+  margin: 0 auto;
+  max-width: 940px;
+  display: flex;
+
+  h3 {
+    font-family: Lato;
+    font-size: 48px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.21;
+    letter-spacing: normal;
+    color: var(--blue);
+    text-align: center;
+    margin: 0 0 40px 0;
+  }
+
+  .menu_component {
+    flex: 1;
+    margin-right: 20px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    > menu {
+      border-radius: 4px;
+      box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+      background-color: var(--white);
+      padding: 20px 0;
+      margin: 0;
+      list-style-type: none;
+
+      li {
+        padding: 0;
+        position: relative;
+
+        &:before {
+          content: '';
+          width: 24px;
+          height: 24px;
+          background-image: asset-url('ufg2/expand-more.png');
+          position: absolute;
+          left: 40px;
+          top: 50%;
+          -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
+          -webkit-transform: translateY(-50%) rotate(270deg);
+          -ms-transform: translateY(-50%) rotate(270deg);
+          transform: translateY(-50%) rotate(270deg);
+        }
+
+        a {
+          display: block;
+          padding: 0 40px 0 80px;
+          font-family: Lato;
+          font-size: 18px;
+          font-weight: normal;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: 2.22;
+          text-decoration: none;
+          letter-spacing: normal;
+          color: #666666;
+        }
+
+        &:hover {
+          background-color: #f2f2f2;
+        }
+      }
+    }
+  }
+}
+
+.social-cards {
+  background-color: var(--yellow);
+  padding: 80px 0 100px;
+  background-image: asset-url('ufg2/img-grid.png');
+  background-position: left bottom;
+  background-repeat: repeat-x;
+
+  > .container {
+    max-width: 940px;
+    margin: 0 auto;
+    padding-top: 138px;
+    display: grid;
+    grid-column-gap: 20px;
+    grid-row-gap: 40px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  .text_component {
+    font-family: Lato;
+    font-size: 48px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.21;
+    letter-spacing: normal;
+    color: var(--white);
+    position: absolute;
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  .image_component {
+    flex: 0 0 220px;
+    height: 94px;
+    margin-top: 40px;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+    background-color: var(--white);
+    border-radius: 20px 20px 2px 2px;
+    position: relative;
+
+    img {
+      position: absolute;
+      top: -50%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    h3 {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: Lato;
+      font-size: 24px;
+      font-weight: 300;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.25;
+      height: 36px;
+      letter-spacing: normal;
+      text-align: center;
+      color: #444444;
+      position: absolute;
+      bottom: 12px;
+    }
+
+    &:hover {
+      box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.3);
+    }
+  }
 }
