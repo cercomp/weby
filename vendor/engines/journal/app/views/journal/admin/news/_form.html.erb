@@ -17,7 +17,7 @@
   <%= f.simple_fields_for(:news_sites, @news.new_record? ? @news.news_sites : @news.news_sites.where(site_id: current_site.id)) do |g| %>
     <%= g.input :id, as: :hidden %>
     <%= g.input :site_id, as: :hidden, input_html: {value: current_site.id} %>
-    <%= g.input :category_list, :hint => t(".page_categories_help"), input_html: {class: 'input-xlarge input-category', data: {tags: Journal::NewsSite.uniq_category_counts.map{|t| t.name }}} %>
+    <%= g.input :category_list, :hint => t(".page_categories_help"), input_html: {class: 'input-xlarge input-category', data: {taglist: Journal::NewsSite.uniq_category_counts.map{|t| t.name }}} %>
     <%= g.input :date_begin_at, :hint => t(".date_begin_hint") %>
     <%= g.input :front, wrapper: :checkbox %>
     <%= g.input :date_end_at, :hint => t(".date_end_hint") %>

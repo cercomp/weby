@@ -1,7 +1,7 @@
 class FrontNewsComponent < Component
   component_settings :quant, :avatar_height, :avatar_width, :read_more, :tag_as_label, :show_author,
-                     :show_date, :image_size, :new_tab, :max_char, :filter_by, :label,
-                     :link_to_all, :order_by
+                     :show_date, :date_format, :image_size, :new_tab, :max_char, :filter_by, :label,
+                     :link_to_all, :show_tags, :order_by
 
   i18n_settings :label, :link_to_all
 
@@ -38,6 +38,10 @@ class FrontNewsComponent < Component
     _show_date.blank? ? false : _show_date.to_i == 1
   end
 
+  def show_tags?
+    show_tags.blank? ? false : show_tags.to_i == 1
+  end
+
   alias_method :_image_size, :image_size
   def image_size
     _image_size.blank? ? :m : _image_size
@@ -61,6 +65,10 @@ class FrontNewsComponent < Component
   alias_method :_order_by, :order_by
   def order_by
     _order_by.blank? ? order_types[0].to_s : _order_by
+  end
+
+  def date_formats
+    [:full, :short]
   end
 
   def order_types

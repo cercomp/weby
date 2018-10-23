@@ -64,9 +64,9 @@
                                   data: {banner_id: banner.id}
                                }) %>
               <% if component.show_description? %>
-                <p class="flex-caption">
-                  <%= banner.title %>
-                </p>
+                <div class="flex-caption">
+                  <p class="flex-caption-inner"><%= banner.title %></p>
+                </div>
               <% end %>
             </li>
           <% end %>

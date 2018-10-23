@@ -34,7 +34,7 @@
 
       <%= f.input :max_char, as: :integer %>
 
-      <%= f.input :filter_by, input_html: {id: 'categories-list', class: 'input-xlarge', data: {tags: current_site.events.uniq_category_counts.map{|t| t.name }}} %>
+      <%= f.input :filter_by, input_html: {id: 'categories-list', class: 'input-xlarge', data: {taglist: current_site.events.uniq_category_counts.map{|t| t.name }}} %>
     </div>
     <div class="tab-pane" id="tab-advanced">
       <%= f.input :image_size, collection: component.image_sizes.map{|size| [t(".#{size}"),size] },
@@ -49,6 +49,8 @@
       <% end %>
 
       <%= f.input :read_more, wrapper: :checkbox, as: :boolean %>
+
+      <%= f.input :html_class, :input_html => {:pattern => '^[A-Za-z0-9_\-]*$'} %>
     </div>
   </div>
 </div>

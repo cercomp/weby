@@ -58,7 +58,7 @@ $(document).ready(function(){
     $sel2.select2({
      width: 'resolve',
      tokenSeparators: [","],
-     tags: $('#categories-list').data('tags'),
+     tags: $('#categories-list').data('taglist'),
      createSearchChoice: function(term){
        var eq = false
        $($('#categories-list').select2('val')).each(function(){

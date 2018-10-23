@@ -1,8 +1,10 @@
 <%= each_i18n_tab do |locale| %>
   <%= repository_search( t(".select_image"), "page_image_#{locale.name}", "image_component[repository_id][#{locale.name}]", (Repository.find(component.repository_id_i18n(locale.name)) rescue nil), multiple: false, file_types: ['image','flash']) %>
+
+  <%= f.component_i18n_input locale, :title, as: :string %>
 <% end %>
 
-<% if component.default_image %>
+<% if component.default_image.present? %>
   <%= label_tag t('.default_image') %>
   <div>
     <div class="image_tag">

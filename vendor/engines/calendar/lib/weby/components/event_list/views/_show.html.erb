@@ -2,7 +2,7 @@
 <% quant = component.quant || 5 %>
 <% @events = component.get_events(current_site , params["event_list_page#{component.id}".to_sym]) %>
 
-<section class="event_list_component <%= component.template %>">
+<section class="event_list_component <%= component.template %> <%= component.html_class %>">
 
   <% if component.template == 'basic' %>
 

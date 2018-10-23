@@ -1,1 +1,3 @@
 <%= f.input :dropdown, wrapper: :checkbox, as: :boolean %>
+
+<%= f.input :template, collection: component.template_options.map{|o| [t(".#{o}"), o] }, include_blank: false %>

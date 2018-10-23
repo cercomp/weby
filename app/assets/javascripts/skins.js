@@ -41,14 +41,8 @@ function initStyleCollapse(){
 
 window.onload=function(){
   $(document).ready(function(){
-
     initStylesSortable();
     initStyleCollapse();
-
-    $('.btn-change').click(function(){
-      $('.skins').slideToggle();
-      return false;
-    });
   });
 };
 

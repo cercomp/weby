@@ -12,6 +12,7 @@ es:
         display_controls:   " Controles de la Pantalla "
         additional_information: " Información Adicional "
         extended_accessibility: " Activar "
+        template:               " Formato "
   menu_accessibility:
     views:
       form:
@@ -20,6 +21,8 @@ es:
         display_controls:   " Controles de la Pantalla "
         basic:              " Básico "
         extended:           " Extendido "
+        default:            " Estándar "
+        bar:                " Barra "
       basic:
         increase_font_size: " Aumentar tamaño de letra "
         decrease_font_size: " Disminuir tamaño de letra "
@@ -27,6 +30,9 @@ es:
         contrast:           " Cambiar el contraste de color "
         contrast_normal:    " Borrarse el contraste de color "
         colour:             " Color "
+        go_to_content:      " Ir al Contenido "
+        go_to_menu:         " Ir al Menu "
+        go_to_search:       " Ir al Búsqueda "
       extended:
         increase_font_size: " Aumentar tamaño de letra "
         decrease_font_size: " Disminuir tamaño de letra "

@@ -1,20 +1,21 @@
 <% locales = @site.locales %>
+<% curr_locale = Locale.find_by(name: current_locale) %>
 
 <nav class="menu_i18n_component right">
   <% if component.dropdown  %>
     <ul class="i18n_dropdown" >
       <li>
-      <%= link_to flag(locales.first), { locale: params[:locale] = locales.first.name }%>
+      <%= link_to (component.template == 'code' ? curr_locale.code : flag(curr_locale)), { locale: curr_locale } %>
         <ul class="i18n_submenu">
-          <% locales[1..locales.length].each do |locale| %>
-            <li><%= link_to flag(locale), { locale: params[:locale] = locale.name } %></li>
+          <% locales.select{|loc| loc.name != curr_locale.name }.each do |locale| %>
+            <li><%= link_to (component.template == 'code' ? locale.code : flag(locale)), { locale: locale.name } %></li>
           <% end %>
         </ul>
       </li>
     </ul>
   <% else %>
     <% locales.each do |locale| %>
-      <%= link_to flag(locale), {locale: params[:locale] = locale.name} %>
-    <% end %> 
+      <%= link_to (component.template == 'code' ? locale.code : flag(locale)), {locale: locale.name} %>
+    <% end %>
   <% end %>
 </nav>

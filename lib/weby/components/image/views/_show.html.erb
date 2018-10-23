@@ -13,6 +13,9 @@
           end
           size = style_for_dimension width, height
       %>
+      <% if component.title.present? %>
+        <h3><%= component.title %></h3>
+      <% end %>
       <%= weby_file_view(repository,
                          format, nil, nil,
                          {

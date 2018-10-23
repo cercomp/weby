@@ -9,6 +9,7 @@ en:
         dropdown:          " Use dropdown "
         style:             " Style "
         html_class:        " HTML Class "
+        title:             " Title "
   menu:
     views:
       form:

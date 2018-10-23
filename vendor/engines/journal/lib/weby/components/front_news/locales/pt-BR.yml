@@ -8,7 +8,7 @@ pt-BR:
       label:                " Título "
       filter_by:            " Selecionar apenas notícias com as categorias "
       read_more:            " Exibir 'Leia mais' "
-      tag_as_label:         " Exibir primeira tag como rótulo "
+      tag_as_label:         " Exibir primeira Categoria como rótulo "
       show_author:          " Exibir autor da notícia "
       show_date:            " Exibir data da notícia "
       type_filter:          " Filtrar por tipo da página "
@@ -25,12 +25,15 @@ pt-BR:
         read_more:            " Exibir 'Leia mais' "
         show_author:          " Exibir autor da notícia "
         show_date:            " Exibir data da notícia "
+        show_tags:            " Exibir categorias "
         tag_as_label:         " Exibir primeira tag como rótulo "
         type_filter:          " Filtrar por tipo da página "
         image_size:           " Versão da imagem "
         new_tab:              " Abrir páginas com URL em uma nova janela "
         max_char:             " Número máximo de caracteres do resumo "
         order_by:             " Ordenação "
+        date_format:          " Formato da data "
+        link_to_all:          " Texto do 'Ver todas' "
     errors:
       models:
         front_news_component:
@@ -54,6 +57,8 @@ pt-BR:
         l:                    " Pequena "
         i:                    " Miniatura "
         t:                    " Thumbnail "
+        full:                 " Completo "
+        short:                " Somente data "
         all:                  " Notícias e Eventos "
         news:                 " Apenas Notícias "
         events:               " Apenas Eventos "

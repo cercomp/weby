@@ -1,6 +1,6 @@
 class MenuAccessibilityComponent < Component
   component_settings :font_size, :contrast, :label_contrast, :label_font_size,
-    :extended_accessibility, :additional_information
+    :extended_accessibility, :additional_information, :template
 
   i18n_settings :label_contrast, :label_font_size, :additional_information
 
@@ -28,5 +28,9 @@ class MenuAccessibilityComponent < Component
 
   def default_alias
     I18n.t("menu_accessibility.views.form.#{extended_accessibility? ? 'extended' : 'basic'}")
+  end
+
+  def template_options
+    %w(default bar)
   end
 end

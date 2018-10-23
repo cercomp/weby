@@ -9,6 +9,7 @@ pt-BR:
         dropdown:          " Desdobrável "
         style:             " Estilo "
         html_class:        " Classe HTML "
+        title:             " Título "
   menu:
     views:
       form:

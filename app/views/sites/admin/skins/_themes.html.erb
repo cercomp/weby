@@ -1,0 +1,33 @@
+<div role="tabpanel" class="tab-pane <%= 'active' unless @can_layout %> skins" id="tab-themes">
+  <div class="row">
+    <% @themes.each do |theme| %>
+      <% #skin = current_site.skins.find_by(theme: theme.name) %>
+      <div class="col-md-6 <%= 'seleced-theme' if current_site.theme && theme.name == current_site.theme.name %>">
+        <div class="thumbnail">
+          <h3 class="text-center"><%= theme.title %></h3>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="caption">
+                <%= image_tag "#{theme.name}/thumb.png", style: 'width: 160px' %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="caption">
+                <% if current_site.theme && theme.name == current_site.theme.name %>
+                    <b class="text-success text-center">Tema atual<br/>
+                    <%= link_to t('.default'), site_admin_skin_path(current_site.active_skin), method: :delete, data: {confirm: t('.confirm_default')} if check_permission(Sites::Admin::SkinsController, [:destroy]) %>
+                    </b>
+                <% else %>
+                  <%= link_to t('.preview'), preview_site_admin_skins_path(theme: theme.name), class: 'btn btn-default btn-block', target: :_blank if check_permission(Sites::Admin::SkinsController, [:preview]) %>
+                  <%= simple_form_for current_site, url: site_admin_skins_path(theme: theme.name), method: :post do |f| %>
+                    <button type="submit" class="btn btn-success btn-block" data-theme="<%=theme.name %>"><%= t('.apply') %></button>
+                  <% end if check_permission(Sites::Admin::SkinsController, [:create]) %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

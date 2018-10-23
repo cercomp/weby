@@ -5,7 +5,7 @@ $(document).ready(function(){
    $('#event_category_list').select2({
        width: 'resolve',
        tokenSeparators: [","],
-       tags: $('#event_category_list').data('tags'),
+       tags: $('#event_category_list').data('taglist'),
        createSearchChoice: function(term){
          var eq = false
          $($('#event_category_list').select2('val')).each(function(){

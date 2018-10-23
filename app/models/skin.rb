@@ -46,4 +46,53 @@ class Skin < ActiveRecord::Base
     newskin.styles.import(styles)
     newskin.components.import(components, site_id: options[:site_id])
   end
+
+  def components_yml
+    list = root_components.group_by(&:place_holder)
+    list = list.map do |place, comps|
+      [
+        place,
+        comps.map.with_index do |comp, idx|
+          json = comp.as_json(only: [:name, :alias, :position, :publish, :settings])
+          json['position'] = idx+1
+          parse_component_hash(json)
+        end
+      ]
+    end.to_h.to_yaml
+  end
+
+  private
+
+  def parse_component_hash json
+    json.stringify_keys!
+    json.delete('alias') if json['alias'].blank?
+    case json['name']
+    when 'menu'
+      sett = eval(json['settings'])
+      sett[:menu_id] = "%{menu_id}"
+      json['settings'] = sett.to_s
+      json['menu'] = {'name' => 'Principal'}
+    when 'subsite_front_news'
+      sett = eval(json['settings'])
+      sett.delete(:sel_site)
+      json['settings'] = sett.to_s
+    when 'image'
+      sett = eval(json['settings'])
+      sett.delete(:repository_id)
+      json['settings'] = sett.to_s
+    when 'news_as_home'
+      json['page'] = {'title' => 'Título', 'text' => 'Texto'}
+    end
+    if json['children'].blank?
+      json.delete('children')
+    else
+      json['children'] = json['children'].map.with_index do |child, idx|
+        parsed = parse_component_hash(child)
+        parsed['position'] = idx+1
+        parsed
+      end
+    end
+    json
+  end
+
 end
