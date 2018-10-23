@@ -29,6 +29,14 @@
     <span class="event-dates"><%=  period_dates(@event.begin_at, @event.end_at) %></span>
   </p>
 
+  <%= content_tag_if @event.category_list.any?, :p, class: 'categories' do %>
+    <span class="categories-label"><%= "#{t('.categories')}:"  %></span>
+    <% @event.category_list.each do |category| %>
+      <span class="label label-info"><%= category %></span>
+    <% end %>
+  <% end %>
+
+
   <%# List the related files if they exist %>
   <% if @event.related_files.any? %>
     <table class="table table-striped table-condensed table-bordered">

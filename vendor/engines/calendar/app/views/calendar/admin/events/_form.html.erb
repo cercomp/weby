@@ -25,7 +25,7 @@
       collection: @event_types,
       as: :select %>
 
-  <%= f.input :category_list, :hint => t(".categories_help"), input_html: {class: 'input-xlarge', data: {taglist: Calendar::Event.uniq_category_counts.map{|t| t.name }}, multiple: true} %>
+  <%= f.input :category_list, :hint => t(".categories_help"), input_html: {class: 'input-xlarge', data: {taglist: Calendar::Event.uniq_category_counts.map{|t| t.name }}} %>
 
   <%= f.input :email %>
 
