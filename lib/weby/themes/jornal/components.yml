@@ -81,9 +81,3 @@ top:
           publish: true
         
       
-    -
-      name: text
-      position: 2
-      publish: true
-      alias: Menu
-      settings: '{:html_class=>"copyright", :body=>{"<ul><li>adasdasdsad</li></ul>"}}'
