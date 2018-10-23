@@ -44,33 +44,33 @@ top:
           children:
             -
               name: image
-              settings: '{:default_image=>"twitter.png", :size=>"o", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"twitter"}'
+              settings: '{:default_image=>"twitter.png", :size=>"o", :width=>"30", :height=>"30", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"twitter"}'
               position: 1
               publish: true
               alias: Link Twitter
             -
               name: image
-              settings: '{:default_image=>"facebook.png", :size=>"o", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"facebook"}'
+              settings: '{:default_image=>"facebook.png", :size=>"o", :width=>"30", :height=>"30", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"facebook"}'
               position: 2
               publish: true
               alias: Link Facebook
 
             -
               name: image
-              settings: '{:default_image=>"Instagram.png", :size=>"o", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"youtube"}'
+              settings: '{:default_image=>"Instagram.png", :size=>"o", :width=>"30", :height=>"30", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"youtube"}'
               position: 3
               publish: true
               alias: Link Instagram
 
             -
               name: image
-              settings: '{:default_image=>"Instagram.png", :size=>"o", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"youtube"}'
+              settings: '{:default_image=>"Instagram.png", :size=>"o", :width=>"30", :height=>"30", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"youtube"}'
               position: 4
               publish: true
               alias: Link Linkedin
             -
               name: image
-              settings: '{:default_image=>"YoutubePlay.png", :size=>"o", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"youtube"}'
+              settings: '{:default_image=>"YoutubePlay.png", :size=>"o", :width=>"30", :height=>"30", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"youtube"}'
               position: 5
               publish: true
               alias: Link Youtube
@@ -80,4 +80,57 @@ top:
           position: 4
           publish: true
         
-      
+        -
+          name: menu
+          position: 2
+          publish: true
+          settings: '{:menu_id => "%{menu_id}", :dropdown => true, :style => "hamburger"}'
+          menu:
+            name: "Principal"
+            items:
+              -
+                title: '\t Saúde | '
+                url: '#quem-somos'
+                position: 1
+              -
+                title: '\t Ciências Naturais | '
+                url: '#quem-somos'
+                position: 2
+
+              -
+                title: '\t Tecnologia | '
+                url: '#quem-somos'
+                position: 3
+                  
+              -
+                title: '\t Humanidades | '
+                url: '#quem-somos'
+                position: 4
+
+              -
+                title: '\t Arte e Cultura | '
+                url: '#quem-somos'
+                position: 5
+
+              -
+                title: '\t Institucional | '
+                url: '#quem-somos'
+                position: 6       
+
+home:
+    -
+      name: photo_slider
+      position: 1
+      publish: true
+      alias: Slider
+      settings: '{:style=>"1", :width=>"400", :height=>"300", :timer=>"7", :show_controls=>"1", :title=>{"pt-BR"=>""}, :photo_ids=>[]}'
+
+    -
+      settings: '{:html_class=>"home_jornal"}'
+      name: components_group
+      position: 1
+      publish: true
+      alias: Topo
+      children:
+
+

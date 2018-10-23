@@ -4,7 +4,7 @@
   position: absolute;  
   display: flex;
   left: 63%;
-  margin-top: -20px !important;
+  margin-top: 5px !important;
   justify-content: center !important;
   align-items: center !important; 
 }
@@ -21,17 +21,28 @@ section.redesocial section.image_component {
 
 .container_jornal {
   display: inline-block;
-  background: pink;
   width: 100%;
   height: 300px;
+  background-image: url("/jornal/img-grid.png") !important;
+  background-color:#edeeef;
+  background-position: left bottom;
+  background-repeat: repeat-x;
+  position: relative;
 }
+
+/*.home_jornal {
+  display: inline-block;
+  width: 100% !important;
+  height: 300px;
+  background-color: pink;
+}*/
 
 
 .menu_i18n_component {
   display: block;
   position: absolute;    
   left: 72%;
-  top: 75px;
+  top: 20px;
   a {
     margin-left: 2px;
   }
@@ -43,7 +54,7 @@ section.redesocial section.image_component {
   height: 240px;
   justify-content: center;
   align-items: center; 
-  background-color: transparent;
+  background-image:transparent;
   img {
     margin-top: 100px !important;
     justify-content: center !important;
@@ -57,13 +68,13 @@ section.redesocial section.image_component {
   line-height: 50px;
 
   img {
-    height: 200% !important;
+    height: 100% !important;
   }
 }
 
 .search_box_component #search{   
     background-image: url("/assets/components/icon_search.png ") !important;
-    background-position: 99% !important;
+    background-position: 1% !important;
     background-repeat: no-repeat !important;
     box-sizing: border-box;
     -webkit-box-sizing:border-box;
@@ -75,15 +86,15 @@ section.redesocial section.image_component {
 }
 
 .search_box_component {
-  display: block;
-  position: absolute;    
-  right: 160px;
-  top: 240px;
-  text-align: left;
-  width: 60%;
-  height: 32px;
-  padding: 5px;
-  background-image: none !important; 
+    display: block;
+    position: absolute;
+    left: 63%;
+    top: 198px;
+    text-align: left;
+    width: 60%;
+    height: 32px;
+    padding: 5px;
+    background-image: none !important;
 
   #options {
     display: none;
@@ -113,8 +124,13 @@ section.redesocial section.image_component {
 }
 
 .menu_component {
-  background: green;
-  bottom: 0;
+  width: 100%;
+  background: #deff84;
+  position: absolute;
+  margin-top: 230px;
+  left:0;
+  display: table;
+  text-align: center;
 }
 
 .menu-head {
@@ -131,10 +147,26 @@ section.redesocial section.image_component {
 }
 
 .menu_component menu a:HOVER {
-  color: #ef233c;
+  color: #000000;
+  background: #deff84;
 }
 
 .menu_component menu li {
   display: inline-block;
-  padding: 10px 15px;
+  padding: 10px 15px;  
+  float: none;
+}
+
+
+/* ----------------------------------------------------------------------------------------
+*            03. Slider area css
+* -------------------------------------------------------------------------------------- */
+.photo_slider_component {
+  margin-top: 15px;
+  min-width: 1385px !important;
+  min-height: 350px !important;
+  left: -20px;
+  right: 0;
+  position: absolute;
+  border-radius: 0;
 }
