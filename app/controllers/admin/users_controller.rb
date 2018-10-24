@@ -87,7 +87,7 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update(user_params)
     record_activity('updated_user', @user)
-    flash[:success] = t('updated_account')
+    flash[:success] = t(user_params.include?(:email) ? 'updated_account_with_email' : 'updated_account')
     respond_with(:admin, @user)
   end
 

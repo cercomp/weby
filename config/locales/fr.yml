@@ -141,6 +141,7 @@ fr:
   user_inactive:                        " Seu usuário ainda não está ativo. "
   user_not_found:                       " Usuário não encontrado "
   updated_account:                      " Conta atualizada "
+  updated_account_with_email:           " Conta atualizada, um email foi enviado para confirmar o novo endereço de email"
   update_notification_successful:       " Notificação atualizada "
   user_cant_be_deleted:                 " Este usuário não pode ser excluído "
 #---V---#

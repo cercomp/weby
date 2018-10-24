@@ -9,6 +9,7 @@ en:
         disabled:           " Disabled "
         username:           " Login "
         email:              " E-mail "
+        unconfirmed_email:  " Unconfirmed E-mail update "
         phone:              " Phone "
         mobile:             " Mobile "
         locale:             " Language "
