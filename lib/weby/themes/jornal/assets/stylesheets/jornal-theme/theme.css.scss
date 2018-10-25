@@ -4,7 +4,7 @@
   position: absolute;  
   display: flex;
   left: 63%;
-  margin-top: 5px !important;
+  margin-top: 30px !important;
   justify-content: center !important;
   align-items: center !important; 
 }
@@ -30,19 +30,20 @@ section.redesocial section.image_component {
   position: relative;
 }
 
-/*.home_jornal {
+.home_jornal {
   display: inline-block;
-  width: 100% !important;
+  width: 80% !important;
   height: 300px;
   background-color: pink;
-}*/
+  display: flex;
+  margin: 0;
+}
 
 
 .menu_i18n_component {
   display: block;
   position: absolute;    
-  left: 72%;
-  top: 20px;
+  left: 72%; 
   a {
     margin-left: 2px;
   }
@@ -54,21 +55,19 @@ section.redesocial section.image_component {
   height: 240px;
   justify-content: center;
   align-items: center; 
-  background-image:transparent;
-  img {
-    margin-top: 100px !important;
-    justify-content: center !important;
-    align-items: center !important; 
-  }  
+  background-image:transparent; 
 }
 
 
 .ufglogo {
-  height: 50px;
+  height: 120px;
   line-height: 50px;
 
   img {
     height: 100% !important;
+    margin-top: 100px !important;
+    justify-content: center !important;
+    align-items: center !important; 
   }
 }
 
@@ -127,7 +126,7 @@ section.redesocial section.image_component {
   width: 100%;
   background: #deff84;
   position: absolute;
-  margin-top: 230px;
+  margin-top: 180px;
   left:0;
   display: table;
   text-align: center;
@@ -142,12 +141,12 @@ section.redesocial section.image_component {
 }
 
 .menu_component menu a {
-  color: #000000;
+  text-decoration: none;
   font-weight: normal;
 }
 
 .menu_component menu a:HOVER {
-  color: #000000;
+  text-decoration: none;
   background: #deff84;
 }
 
@@ -162,11 +161,16 @@ section.redesocial section.image_component {
 *            03. Slider area css
 * -------------------------------------------------------------------------------------- */
 .photo_slider_component {
-  margin-top: 15px;
-  min-width: 1385px !important;
+  margin-top: 200px;
+  min-width: 1380px !important;
   min-height: 350px !important;
   left: -20px;
   right: 0;
   position: absolute;
   border-radius: 0;
+}
+
+.flexslider .slides img {
+    width: 100% !important;
+    display: block;
 }

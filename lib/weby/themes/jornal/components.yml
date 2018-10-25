@@ -82,49 +82,50 @@ top:
         
         -
           name: menu
-          position: 2
+          position: 5
           publish: true
           settings: '{:menu_id => "%{menu_id}", :dropdown => true, :style => "hamburger"}'
           menu:
             name: "Principal"
             items:
               -
-                title: '\t Saúde | '
+                title: 'Saúde'
                 url: '#quem-somos'
                 position: 1
               -
-                title: '\t Ciências Naturais | '
+                title: 'Ciências Naturais '
                 url: '#quem-somos'
                 position: 2
 
               -
-                title: '\t Tecnologia | '
+                title: 'Tecnologia '
                 url: '#quem-somos'
                 position: 3
                   
               -
-                title: '\t Humanidades | '
+                title: 'Humanidades'
                 url: '#quem-somos'
                 position: 4
 
               -
-                title: '\t Arte e Cultura | '
+                title: 'Arte e Cultura'
                 url: '#quem-somos'
                 position: 5
 
               -
-                title: '\t Institucional | '
+                title: 'Institucional'
                 url: '#quem-somos'
-                position: 6       
+                position: 6  
+        -
+          name: photo_slider
+          position: 6
+          publish: true
+          alias: Slider
+          settings: '{:style=>"1",:orientation=>"slider", :width=>"400", :height=>"300", :timer=>"7", :show_controls=>"1", :title=>{"pt-BR"=>""}, :photo_ids=>[]}'
 
-home:
-    -
-      name: photo_slider
-      position: 1
-      publish: true
-      alias: Slider
-      settings: '{:style=>"1", :width=>"400", :height=>"300", :timer=>"7", :show_controls=>"1", :title=>{"pt-BR"=>""}, :photo_ids=>[]}'
+     
 
+home:   
     -
       settings: '{:html_class=>"home_jornal"}'
       name: components_group
