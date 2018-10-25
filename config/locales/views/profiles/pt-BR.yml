@@ -9,6 +9,7 @@ pt-BR:
       login_history:         " Histórico de acesso "
     edit:
       password-change:    " Nova senha "
+      pending-email:      " Alteração de email pendente: %{email}"
       locale-hint:        " Idioma a ser utilizado na área administrativa. "
       gravatar-info:      " Deseja mudar a imagem? Utilizamos o sistema Gravatar para gerênciar a foto do perfil, para modificar-la clique na imagem acima e siga o procedimento do Gravatar para definir uma imagem. "
       gravatar-important: " Utilize no Gravatar o mesmo email cadastrado no weby. "

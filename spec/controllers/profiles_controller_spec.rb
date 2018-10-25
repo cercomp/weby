@@ -1,29 +1,18 @@
 require "rails_helper"
 
 describe ProfilesController do
-  skip "GET #show" do
-  end
+  let(:user) { FactoryGirl.create(:user) }
 
-  skip "history" do
-  end
+  it "GET #show"
+  it "GET history"
+  it "GET #edit"
 
-  skip "GET #edit" do
-  end
+  it "PUT #update" do
+    sign_in user
 
-  skip "PUT #update" do
-  end
+    patch :update, id: user.login, user: { :login => "newlogin", :email => "email@updated.com" }
 
-  ## private ##
-
-  skip "set_profile" do
-  end
-
-  skip "profile_params" do
-  end
-
-  skip "is_owner?" do
-  end
-
-  skip "require_owner" do
+    expect(response).to redirect_to(profile_path('newlogin'))
+    expect(flash[:success]).to eq ' Conta atualizada, um email foi enviado para confirmar o novo endereço de email'
   end
 end

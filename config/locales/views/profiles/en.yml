@@ -9,6 +9,7 @@ en:
       login_history: "Access history"
     edit:
       password-change: "New password"
+      pending-email: "Pending email change: %{email}"
       locale-hint: "Language for the admin interface."
       gravatar-info: "Wants to change the image? We use the Gravatar to manage the profile avatar, click on the image and follow the procedure to define a new avatar in Gravatar."
       gravatar-important: "Use on Gravatar the same email used in weby."

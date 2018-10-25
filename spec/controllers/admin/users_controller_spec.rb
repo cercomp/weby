@@ -81,12 +81,10 @@ describe Admin::UsersController do
   end
 
   describe "PUT #update" do
-    context "when success" do
-      before { patch :update, id: _user, user: { :login => "updated", :email => "email@updated.com" } }
+    before { patch :update, id: _user, user: { :login => "updated", :email => "email@updated.com" } }
 
-      it "will set flash[:success]" do
-        expect(flash[:success]).to eq ' Conta atualizada, um email foi enviado para confirmar o novo endereço de email'
-      end
+    it "will set flash[:success]" do
+      expect(flash[:success]).to eq ' Conta atualizada, um email foi enviado para confirmar o novo endereço de email'
     end
   end
 
