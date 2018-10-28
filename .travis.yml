@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-- 2.1.7
+- 2.4.4
 before_script:
 - psql -c 'create database weby_test;' -U postgres
 - mv config/travis_database.yml config/database.yml
