@@ -23,11 +23,11 @@ top:
       alias: Logo
       children:
         -
-          name: image
-          settings: '{:default_image=>"ufg_topo.svg", :size=>"original", :width=>"", :height=>"", :url=>"http://www.ufg.br", :target_id=>"", :html_class=>"ufglogo", :target_type=>"", :new_tab=>"0"}'
+          name: 'text'
+          settings: "{:html_class => \"ufglogo\"}"
           position: 1
-          publish: true
-          alias: Logo UFG           
+          alias: 'Jornal UFG'
+          publish: true         
       
         -
           settings: '{:html_class=>"menu_i18n_component"}'
@@ -57,20 +57,20 @@ top:
 
             -
               name: image
-              settings: '{:default_image=>"Instagram.png", :size=>"o", :width=>"30", :height=>"30", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"youtube"}'
+              settings: '{:default_image=>"instagram.png", :size=>"o", :width=>"30", :height=>"30", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"youtube"}'
               position: 3
               publish: true
               alias: Link Instagram
 
             -
               name: image
-              settings: '{:default_image=>"Instagram.png", :size=>"o", :width=>"30", :height=>"30", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"youtube"}'
+              settings: '{:default_image=>"linkedin.png", :size=>"o", :width=>"30", :height=>"30", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"youtube"}'
               position: 4
               publish: true
               alias: Link Linkedin
             -
               name: image
-              settings: '{:default_image=>"YoutubePlay.png", :size=>"o", :width=>"30", :height=>"30", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"youtube"}'
+              settings: '{:default_image=>"youtube.png", :size=>"o", :width=>"30", :height=>"30", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"youtube"}'
               position: 5
               publish: true
               alias: Link Youtube
@@ -93,27 +93,27 @@ top:
                 url: '#quem-somos'
                 position: 1
               -
-                title: 'Ciências Naturais '
+                title: ' Ciências Naturais '
                 url: '#quem-somos'
                 position: 2
 
               -
-                title: 'Tecnologia '
+                title: ' Tecnologia '
                 url: '#quem-somos'
                 position: 3
                   
               -
-                title: 'Humanidades'
+                title: ' Humanidades '
                 url: '#quem-somos'
                 position: 4
 
               -
-                title: 'Arte e Cultura'
+                title: ' Arte e Cultura '
                 url: '#quem-somos'
                 position: 5
 
               -
-                title: 'Institucional'
+                title: ' Institucional '
                 url: '#quem-somos'
                 position: 6  
         -

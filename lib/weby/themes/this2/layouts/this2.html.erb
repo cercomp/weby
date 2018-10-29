@@ -7,6 +7,7 @@
     <meta charset="utf-8"/>
     <meta name="description" content="<%= @site.try(:description) %>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <%= csrf_meta_tag %>
     <%= favicon_link_tag favicon(@site) %>
     <%= auto_discovery_link_tag(:rss, main_app.site_feed_url(format: 'rss'),  {:title => "#{@site.try(:title)} - RSS"}) %>
