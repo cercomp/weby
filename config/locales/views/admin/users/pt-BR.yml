@@ -9,6 +9,7 @@ pt-BR:
         disabled:           " Desativado "
         username:           " Nome de usuário "
         email:              " E-mail "
+        unconfirmed_email:  " Atualização de E-mail pendente "
         phone:              " Telefone "
         mobile:             " Celular "
         locale:             " Idioma "

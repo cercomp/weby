@@ -6,6 +6,9 @@
   <p> <b><%= t('.status') %>:</b> <%= @user.confirmed_at? ? t('.enabled') : t('.disabled') %> </p>
   <p> <b><%= t('.username') %>:</b> <%= @user.login %> </p>
   <p> <b><%= t('.email') %>:</b> <%= @user.email %> </p>
+  <% if @user.unconfirmed_email.present? %>
+    <p> <b><%= t('.unconfirmed_email') %>:</b> <%= @user.unconfirmed_email %> </p>
+  <% end %>
   <p> <b><%= t('.phone') %>:</b> <%= @user.phone %> </p>
   <p> <b><%= t('.mobile') %>:</b> <%= @user.mobile %> </p>
   <p> <b><%= t('.locale') %>:</b> <%= t(@user.locale.name) if @user.locale %> </p>

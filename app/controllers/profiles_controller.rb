@@ -20,7 +20,10 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    flash[:success] = t('updated_account') if @profile.update(profile_params)
+    if @profile.update(profile_params)
+      flash[:success] = t(profile_params.include?(:email) ? 'updated_account_with_email' : 'updated_account')
+    end
+
     respond_with @profile, location: profile_url(@profile.login)
   end
 

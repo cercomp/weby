@@ -21,7 +21,12 @@
         <%= f.input :first_name, input_html: { class: 'input-block-level' } %>
         <%= f.input :last_name, input_html: { class: 'input-block-level' } %>
         <%= f.input :login, input_html: { class: 'input-block-level' } %>
-        <%= f.input :email, as: :email, input_html: { class: 'input-block-level' }  %>
+        <%= f.input :email, as: :email do  %>
+          <%= f.text_field :email, class: 'string required form-control input-block-level' %>
+          <%= content_tag_if @profile.unconfirmed_email.present?, :span, class: 'help-block' do %>
+            <%= t('.pending-email', email: @profile.unconfirmed_email) %>
+          <% end %>
+        <% end %>
         <%= f.input :password, label: t(".password-change"), hint: t("lower_upper_number_chars"), as: :password,
           input_html: { class: 'input-block-level', pattern: '(?=.*\d)(?=.*[A-Z])(?=.*[a-z])^.{4,}$' } %>
         <%= f.input :password_confirmation, as: :password, input_html: { class: 'input-block-level' } %>
