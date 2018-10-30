@@ -250,6 +250,10 @@ body > header {
     top: 50%;
     transform: translate(-50%, -50%);
   }
+
+  &:first-child {
+    margin-left: 0;
+  }
 }
 
 .accessibility-bar {

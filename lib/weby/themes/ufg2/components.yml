@@ -1,26 +1,95 @@
----
-first_place:
-- settings: '{:background=>"#7F7F7F"}'
-  name: gov_bar
+bottom:
+- settings: '{:html_class=>"footer-menu"}'
+  name: components_group
   position: 1
   publish: true
-  alias: Barra do Governo Federal
-- settings: '{:html_class=>"accessibility-bar"}'
+  alias: Menu Footer
+  children:
+  - settings: '{:menu_id=>"%{menu_id}", :style=>"menu", :dropdown=>"0", :html_class=>"",
+      :title=>{"pt-BR"=>"", "en"=>""}}'
+    name: menu
+    position: 1
+    publish: true
+    menu:
+      name: Mapa do Site
+- settings: '{:html_class=>"footer"}'
   name: components_group
   position: 2
   publish: true
-  alias: Barra de acessibilidade
+  alias: Footer
   children:
-  - settings: '{:contrast=>"1", :font_size=>"1", :extended_accessibility=>"0", :label_contrast=>{"pt-BR"=>"",
-      "en"=>""}, :label_font_size=>{"pt-BR"=>"", "en"=>""}, :additional_information=>{"pt-BR"=>"",
-      "en"=>""}, :template=>"bar"}'
-    name: menu_accessibility
+  - settings: '{:html_class=>"container"}'
+    name: components_group
     position: 1
     publish: true
-  - settings: '{:dropdown=>"1", :template=>"code"}'
-    name: menu_i18n
+    alias: Container
+    children:
+    - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"",
+        :new_tab=>"0", :html_class=>"ufg-logo", :default_image=>"ufg2/marca-ufg.svg",
+        :title=>{"pt-BR"=>"", "en"=>""}}'
+      name: image
+      position: 1
+      publish: true
+    - settings: '{:html_class=>"social-icons"}'
+      name: components_group
+      position: 2
+      publish: true
+      alias: Ícones sociais
+      children:
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"",
+          :target_type=>"", :new_tab=>"0", :html_class=>"social-icon", :default_image=>"ufg2/ic-twitter.png",
+          :title=>{"pt-BR"=>"", "en"=>""}}'
+        name: image
+        position: 1
+        publish: true
+        alias: Twitter
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"",
+          :target_type=>"", :new_tab=>"0", :html_class=>"social-icon", :default_image=>"ufg2/ic-facebook.png",
+          :title=>{"pt-BR"=>"", "en"=>""}}'
+        name: image
+        position: 2
+        publish: true
+        alias: facebook
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"",
+          :target_type=>"", :new_tab=>"0", :html_class=>"social-icon", :default_image=>"ufg2/ic-instagram.png",
+          :title=>{"pt-BR"=>"", "en"=>""}}'
+        name: image
+        position: 3
+        publish: true
+        alias: instagram
+    - settings: '{:html_class=>"address", :body=>{"pt-BR"=>"<p><span>UFG - Universidade
+        Federal de Goi&aacute;s</span></p>\r\n<p><span>CNPJ: 01567601/0001-43</span></p>\r\n<p><span>Avenida
+        Esperan&ccedil;a s/n, C&acirc;mpus Samambaia - Pr&eacute;dio da Reitoria.</span></p>\r\n<p><span>CEP
+        74690-900 Goi&acirc;nia - Goi&aacute;s - Brasil.</span></p>\r\n<p><span>Fone:
+        +55 (62) 3521.1000</span></p>", "en"=>""}}'
+      name: text
+      position: 3
+      publish: true
+    - settings: '{:menu_id=>"%{menu_id}", :style=>"menu", :dropdown=>"1", :html_class=>"",
+        :title=>{"pt-BR"=>"", "en"=>""}}'
+      name: menu
+      position: 4
+      publish: true
+      menu:
+        name: Footer
+  - settings: '{:html_class=>"bottom"}'
+    name: components_group
     position: 2
     publish: true
+    alias: Fundo
+    children:
+    - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"",
+        :new_tab=>"0", :html_class=>"", :default_image=>"ufg2/marca-ai.png", :title=>{"pt-BR"=>"",
+        "en"=>""}}'
+      name: image
+      position: 1
+      publish: true
+    - settings: '{:html_class=>"", :body=>{"pt-BR"=>"<p><span>&copy; Universidade
+        Federal de Goi&aacute;s - UFG. Todos os direitos reservados.</span></p>",
+        "en"=>""}}'
+      name: text
+      position: 2
+      publish: true
 home:
 - settings: '{:category=>"Slider", :orientation=>"slider", :timer=>"7", :description=>"1",
     :show_controls=>"1"}'
@@ -29,7 +98,7 @@ home:
   publish: true
   alias: Slider
 - settings: '{:quant=>"6", :max_char=>"", :filter_by=>"", :image_size=>"m", :avatar_width=>"300",
-    :avatar_height=>"", :tag_as_label=>"0", :read_more=>"0", :show_author=>"0", :show_date=>"1",
+    :avatar_height=>"", :tag_as_label=>"0", :read_more=>"1", :show_author=>"0", :show_date=>"1",
     :order_by=>"position", :new_tab=>"1", :label=>{"pt-BR"=>"Notícias", "en"=>""},
     :link_to_all=>{"pt-BR"=>"Ver todas", "en"=>""}, :date_format=>"short", :show_tags=>"1"}'
   name: front_news
@@ -37,30 +106,137 @@ home:
   publish: true
   alias: Notícias capa
 - settings: '{:quant=>"7", :source=>"selected", :site_id=>"", :tag_as_label=>"1",
-    :hide_author=>"1", :label=>{"pt-BR"=>"Jornal UFG", "en"=>""},
+    :hide_author=>"1", :hide_read_more=>"1", :label=>{"pt-BR"=>"Jornal UFG", "en"=>""},
     :link_to_all=>{"pt-BR"=>"Ver Todas", "en"=>""}}'
   name: subsite_front_news
   position: 3
   publish: true
-- settings: '{:html_class=>"media-section"}'
-  name: components_group
-  position: 4
-  publish: true
-  alias: Mídias
 - settings: '{:template=>"front", :date_format=>"short", :quant=>"4", :max_char=>"",
     :filter_by=>"destaque", :image_size=>"m", :avatar_width=>"", :avatar_height=>"",
     :read_more=>"0", :label=>{"pt-BR"=>"Fique Atento", "en"=>""}, :link_to_all=>{"pt-BR"=>"",
     "en"=>""}, :html_class=>"highlight-events"}'
   name: event_list
-  position: 5
+  position: 4
   publish: true
   alias: Fique atento
 - settings: '{:template=>"front", :date_format=>"short", :quant=>"8", :max_char=>"",
     :filter_by=>"", :image_size=>"i", :avatar_width=>"", :avatar_height=>"", :read_more=>"0",
     :label=>{"pt-BR"=>"Eventos", "en"=>""}, :link_to_all=>{"pt-BR"=>"Ver todos", "en"=>""}}'
   name: event_list
+  position: 5
+  publish: true
+- settings: '{:html_class=>"social-cards"}'
+  name: components_group
   position: 6
   publish: true
+  alias: Cards Sociais
+  children:
+  - settings: '{:html_class=>"container"}'
+    name: components_group
+    position: 1
+    publish: true
+    alias: Container
+    children:
+    - settings: '{:html_class=>"", :body=>{"pt-BR"=>"<p>UFG nas redes</p>", "en"=>""}}'
+      name: text
+      position: 1
+      publish: true
+      alias: Título
+    - settings: '{:html_class=>"social-icons"}'
+      name: components_group
+      position: 2
+      publish: true
+      alias: Ícones sociais
+      children:
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://www.facebook.com/UFG.br",
+          :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"", :default_image=>"ufg2/ic-facebook-larger.png",
+          :title=>{"pt-BR"=>"Facebook", "en"=>""}}'
+        name: image
+        position: 1
+        publish: true
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"",
+          :target_type=>"", :new_tab=>"0", :html_class=>"", :default_image=>"ufg2/ic-instagram-larger.png", :title=>{"pt-BR"=>"Instagram",
+          "en"=>""}}'
+        name: image
+        position: 2
+        publish: true
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"",
+          :target_type=>"", :new_tab=>"0", :html_class=>"", :default_image=>"ufg2/ic-twitter-larger.png", :title=>{"pt-BR"=>"Twitter",
+          "en"=>""}}'
+        name: image
+        position: 3
+        publish: true
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"",
+          :target_type=>"", :new_tab=>"0", :html_class=>"", :default_image=>"ufg2/ic-youtube-larger.png", :title=>{"pt-BR"=>"Youtube",
+          "en"=>""}}'
+        name: image
+        position: 4
+        publish: true
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"",
+          :target_type=>"", :new_tab=>"0", :html_class=>"", :default_image=>"ufg2/ic-linkedin-larger.png", :title=>{"pt-BR"=>"Linkedin",
+          "en"=>""}}'
+        name: image
+        position: 5
+        publish: true
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"",
+          :target_type=>"", :new_tab=>"0", :html_class=>"", :default_image=>"ufg2/ic-flirck-larger.png", :title=>{"pt-BR"=>"Flickr",
+          "en"=>""}}'
+        name: image
+        position: 6
+        publish: true
+- settings: '{:html_class=>"services"}'
+  name: components_group
+  position: 7
+  publish: true
+  alias: Serviços
+  children:
+  - settings: '{:html_class=>"", :body=>{"pt-BR"=>"<p>Servi&ccedil;os</p>\r\n<p><a
+      class=\"btn\" href=\"/p/9-servicos\">Ver Todos</a></p>", "en"=>""}}'
+    name: text
+    position: 1
+    publish: true
+  - settings: '{:html_class=>"services-icons"}'
+    name: components_group
+    position: 2
+    publish: true
+    alias: Ícones
+    children:
+    - settings: '{:size=>"", :width=>"", :height=>"", :url=>"http://www.rmtcgoiania.com.br/",
+        :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"", :default_image=>"ufg2/ic-bus.png",
+        :title=>{"pt-BR"=>"Ônibus", "en"=>""}}'
+      name: image
+      position: 1
+      publish: true
+    - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"",
+        :new_tab=>"0", :html_class=>"", :default_image=>"ufg2/ic-app.png", :title=>{"pt-BR"=>"Minha
+        UFG", "en"=>""}}'
+      name: image
+      position: 2
+      publish: true
+    - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"",
+        :new_tab=>"0", :html_class=>"", :default_image=>"ufg2/ic-wifi.png", :title=>{"pt-BR"=>"Redes
+        sem fio", "en"=>""}}'
+      name: image
+      position: 3
+      publish: true
+    - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"",
+        :new_tab=>"0", :html_class=>"", :default_image=>"ufg2/ic-veterinary.png", :title=>{"pt-BR"=>"Hospital
+        Veterinário", "en"=>""}}'
+      name: image
+      position: 4
+      publish: true
+    - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"",
+        :new_tab=>"0", :html_class=>"", :default_image=>"ufg2/ic-cl.png", :title=>{"pt-BR"=>"Centro
+        de Línguas", "en"=>""}}'
+      name: image
+      position: 5
+      publish: true
+    - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"",
+        :new_tab=>"0", :html_class=>"", :default_image=>"ufg2/ic-hc.png", :title=>{"pt-BR"=>"Hospital
+        das Clínicas", "en"=>""}}'
+      name: image
+      position: 6
+      publish: true
 top:
 - settings: '{:html_class=>"header"}'
   name: components_group
@@ -80,8 +256,9 @@ top:
     publish: true
     alias: Ícones sociais
     children:
-    - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"",
-        :new_tab=>"0", :html_class=>"social-icon", :default_image=>"ufg2/ic-twitter.png"}'
+    - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://twitter.com/ufg_oficial",
+        :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"social-icon",
+        :default_image=>"ufg2/ic-twitter.png", :title=>{"pt-BR"=>"", "en"=>""}}'
       name: image
       position: 1
       publish: true
@@ -108,3 +285,25 @@ top:
       name: search_box
       position: 2
       publish: true
+first_place:
+- settings: '{:background=>"#7F7F7F"}'
+  name: gov_bar
+  position: 1
+  publish: true
+  alias: Barra do Governo Federal
+- settings: '{:html_class=>"accessibility-bar"}'
+  name: components_group
+  position: 2
+  publish: true
+  alias: Barra de acessibilidade
+  children:
+  - settings: '{:contrast=>"1", :font_size=>"1", :extended_accessibility=>"0", :label_contrast=>{"pt-BR"=>"",
+      "en"=>""}, :label_font_size=>{"pt-BR"=>"", "en"=>""}, :additional_information=>{"pt-BR"=>"",
+      "en"=>""}, :template=>"bar"}'
+    name: menu_accessibility
+    position: 1
+    publish: true
+  - settings: '{:dropdown=>"1", :template=>"code"}'
+    name: menu_i18n
+    position: 2
+    publish: true

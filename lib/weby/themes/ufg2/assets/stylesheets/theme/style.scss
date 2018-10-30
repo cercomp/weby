@@ -20,7 +20,7 @@
 }
 
 body {
-  background-color: var(--bg);
+  background-color: var(--white);
 }
 
 div, section, input {
@@ -46,7 +46,6 @@ div, section, input {
 
 .slider {
   height: 500px;
-  margin-bottom: 34px;
 }
 
 .flexslider {
@@ -129,8 +128,11 @@ div, section, input {
   }
 }
 
+.flex-control-nav {
+  z-index: 2;
+}
+
 .front_news_component, .subsite_front_news_component {
-  padding-top: 100px;
   border: 0;
   position: relative;
 
@@ -147,6 +149,11 @@ div, section, input {
       left: 0;
     }
   }
+}
+
+.front_news_component {
+  background-color: var(--bg);
+  padding-top: 124px;
 }
 
 .front_news_title, .event_list_title {
@@ -182,7 +189,7 @@ div, section, input {
   position: absolute;
   width: 100%;
   max-width: 940px;
-  top: 100px;
+  top: 124px;
   left: 50%;
   transform: translateX(-50%);
   text-align: right;
@@ -363,6 +370,10 @@ div, section, input {
       }
     }
   }
+
+  ul.pagination {
+    display: none;
+  }
 }
 
 .subsite_front_news_component {
@@ -370,6 +381,7 @@ div, section, input {
   background-image: asset-url('ufg2/img-grid.png');
   background-position: left bottom;
   background-repeat: repeat-x;
+  padding-top: 80px;
 
   .list {
     grid-row-gap: 20px;
@@ -422,6 +434,8 @@ div, section, input {
   }
 
   .link_to_all {
+    top: 80px;
+
     a {
       box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
       background-color: var(--white);
@@ -635,9 +649,13 @@ div, section, input {
 
 .fixed-menus {
   padding: 140px 0 120px;
-  margin: 0 auto;
-  max-width: 940px;
-  display: flex;
+  background-color: var(--bg);
+
+  > .container {
+    margin: 0 auto;
+    max-width: 940px;
+    display: flex;
+  }
 
   h3 {
     font-family: Lato;
@@ -812,6 +830,7 @@ div, section, input {
     color: var(--white);
     padding: 14px 35.5px 15px;
     position: absolute;
+    text-decoration: none;
     right: 0;
     top: 0;
     margin-top: 14px;
@@ -887,6 +906,64 @@ div, section, input {
 
       &:hover {
         background-color: var(--dark-blue);
+      }
+    }
+  }
+}
+
+.footer-menu {
+  padding: 60px 0 18px;
+  background-color: var(--light-grey);
+
+  .menu_component {
+    margin: 0 auto;
+    max-width: 940px;
+  }
+
+  menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .expanded {
+    display: flex;
+    flex-wrap: wrap;
+
+    > li {
+      flex: 0 0 25%;
+
+      > a {
+        font-family: Lato;
+        font-size: 34px;
+        font-weight: 300;
+        font-style: normal;
+        text-decoration: none;
+        font-stretch: normal;
+        line-height: 1.71;
+        letter-spacing: normal;
+        color: var(--blue);
+        cursor: default;
+      }
+
+      > .submenu {
+        margin: 30px 0 51px;
+      }
+    }
+  }
+
+  .submenu {
+    > li {
+      > a {
+        font-family: Lato;
+        font-size: 18px;
+        font-weight: normal;
+        text-decoration: none;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 2;
+        letter-spacing: normal;
+        color: #666666;
       }
     }
   }
