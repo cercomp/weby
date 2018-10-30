@@ -1,60 +1,55 @@
 require "rails_helper"
 
 describe Admin::GroupingsController do
-  let(:user) { FactoryGirl.create(:user, is_admin: true) }
-  let!(:group) { FactoryGirl.create(:grouping) }
-
-  before { sign_in user }
+  before { sign_in FactoryGirl.create(:user, is_admin: true) }
 
   describe "GET #index" do
-    skip "should populate an array with all groupings" do
-      groups = Grouping.all
-      get :index
-      expect(assigns(:groupings)).to eq([groups])
-    end
+    it "renders groupings" do
+      group = FactoryGirl.create(:grouping)
 
-    it "renders the :index view" do
       get :index
+
       expect(response).to render_template(:index)
+      expect(assigns(:groupings)).to match_array([group])
     end
   end
 
   describe "GET #new" do
-    before { get :new }
-
-    it "assigns @grouping" do
-      expect(assigns(:grouping)).to be_a_new(Grouping)
-    end
-
     it "renders the :new view" do
+      get :new
+
       expect(response).to render_template(:new)
+      expect(assigns(:grouping)).to be_a_new(Grouping)
     end
   end
 
   describe "POST #create" do
-    context "when valid" do
-      before { post :create, grouping: { :name => "Name" } }
+    it "creates a new grouping" do
+      post :create, grouping: { :name => "Name" }
 
-      it "will redirect to groupings path" do
-        expect(response).to redirect_to admin_groupings_path
-      end
+      expect(Grouping.exists?(name: 'Name')).to be_truthy
+      expect(response).to redirect_to admin_groupings_path
     end
   end
 
   describe "PUT #update" do
-    context "when success" do
-      before { put :update, grouping: { :name => "New Name" }, :id => group.id }
+    it "updates the grouping" do
+      group = FactoryGirl.create(:grouping)
 
-      it "will redirect to groupings path" do
-        expect(response).to redirect_to admin_groupings_path
-      end
+      put :update, grouping: { :name => "New Name" }, :id => group.id
+
+      expect(group.reload.name).to match('New Name')
+      expect(response).to redirect_to admin_groupings_path
     end
   end
 
   describe "DELETE #destroy" do
-    before { delete :destroy, :id => group.id }
+    it "deletes the grouping" do
+      group = FactoryGirl.create(:grouping)
 
-    it "will redirect to groupings path" do
+      delete :destroy, :id => group.id
+
+      expect(Grouping.exists?(group.id)).to be_falsy
       expect(response).to redirect_to admin_groupings_path
     end
   end
