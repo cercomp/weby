@@ -61,13 +61,13 @@ end
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.5.2'
+  gem 'pry-rails', '~> 0.3.2'
 end
 
 group :development do
   gem 'binding_of_caller', '~> 0.7.2'
   gem 'better_errors', '~> 1.1.0'
   gem 'meta_request', '~> 0.3.0'
-  gem 'pry-rails', '~> 0.3.2'
   gem 'letter_opener', '~> 1.2.0'
   gem "bullet"
 end
