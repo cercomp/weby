@@ -7,6 +7,7 @@
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
+    padding-bottom: 20px;
 
     > :nth-child(even) {
       flex: 0 0 286px;
@@ -34,7 +35,7 @@
   }
 
   .menu_component {
-    margin: 60px 0 20px;
+    margin: 60px 0 0;
   }
 
   menu {
