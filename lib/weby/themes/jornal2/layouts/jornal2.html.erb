@@ -1,0 +1,58 @@
+<% load_components %>
+
+<!doctype html>
+<html lang="<%= current_locale %>">
+  <head>
+    <title><%= @site.try(:description) || 'Weby' %><%= yield :title %></title>
+    <meta charset="utf-8"/>
+    <meta name="description" content="<%= @site.try(:description) %>"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <%= csrf_meta_tag %>
+    <%= favicon_link_tag favicon(@site) %>
+    <%= auto_discovery_link_tag(:rss, main_app.site_feed_url(format: 'rss'),  {:title => "#{@site.try(:title)} - RSS"}) %>
+    <%= auto_discovery_link_tag(:atom, main_app.site_feed_url(format: 'atom'),  {:title => "#{@site.try(:title)} - ATOM"}) %>
+    <%= render 'sites/shared/social_meta' %>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" media="screen">
+    <%= stylesheet_link_tag 'jornal2' %>
+    <%= stylesheet_link_tag 'webybar' %>
+    <%= stylesheet_link_tag 'weby-assets' %>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <![endif]-->
+    <%= yield :stylesheets %>
+    <%= yield :components_stylesheets %>
+    <%= render 'sites/shared/loadStyles' %>
+    <%= current_site.try(:head_html).try(:html_safe) %>
+  </head>
+
+  <body>
+    <%= render_webybar %>
+    <div class='first_place'>
+      <%= yield :layout_first_place %>
+    </div>
+    <div id="wrapper" <%= "style=\"max-width: #{ @main_width }px\"".html_safe if @main_width %>>
+      <header>
+        <%= yield :layout_top %>
+        <div class="clear"> </div>
+      </header>
+      <aside class="right">
+        <%= yield :layout_right %>
+      </aside>
+      <aside class="left">
+        <%= yield :layout_left %>
+      </aside>
+      <section id="content">
+        <%= yield %>
+      </section>
+      <footer>
+        <%= yield :layout_bottom %>
+      </footer>
+    </div>
+
+    <%= javascript_include_tag "base" %>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <%= yield :javascripts %>
+  </body>
+</html>

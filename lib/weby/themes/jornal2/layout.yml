@@ -1,0 +1,8 @@
+width: 500
+placeholders:
+  - names: ['first_place']
+  - names: ['top']
+  - names: ['left', 'home', 'right']
+    height: 190
+    widths: [25,50,25]
+  - names: ['bottom']
