@@ -137,19 +137,14 @@ section.redesocial section.image_component {
 
 .menu_component {
   width: 100%;
-  background: #deff84;
+  background: #B8C96C;
   position: absolute;
   margin-top: 75px;
   left:0;
   display: table;
-  text-align: center;
-  color: black !important;
+  text-align: center; 
 }
 
-.menu-a-format {
-  text-decoration: nome;
-  cursor: default !important;
-}
 .menu-head {
   display: none;
 }
@@ -161,11 +156,18 @@ section.redesocial section.image_component {
 .menu_component menu a {
   text-decoration: none;
   font-weight: normal;
+  color: #000000 !important;
 }
+
+.menu_component menu a::after {
+  content: "\00a0 \00a0 \00a0 \00a0|";
+}
+
 
 .menu_component menu a:HOVER {
   text-decoration: none;
-  background: #deff84;
+  background: #B8C96C !important;
+  color: #000000 !important;
 }
 
 .menu_component menu li {
@@ -191,4 +193,32 @@ section.redesocial section.image_component {
 .flexslider .slides img {
     width: 100% !important;
     display: block;
+}
+
+.box {
+  float: left; 
+  margin: 100px 10px;
+}
+
+.box-left {
+  width: 200px; 
+  height: 150px;
+}
+
+.box-center {
+  width: 800px; 
+  height: 200px;
+}
+
+.box-right {
+  width: 300px; 
+  height: 200px;  
+}
+
+.front_news_title {
+  display: none;
+}
+
+.control {
+  display: none;
 }
