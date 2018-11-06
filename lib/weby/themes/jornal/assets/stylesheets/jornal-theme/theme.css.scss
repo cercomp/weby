@@ -184,6 +184,7 @@ section.redesocial section.image_component {
   margin-top: 92px;
   min-width: 1370px !important;
   min-height: 350px !important;
+  height: 550px !important;
   left: -20px;
   right: 0;
   position: absolute;
@@ -197,7 +198,7 @@ section.redesocial section.image_component {
 
 .box {
   float: left; 
-  margin: 100px 10px;
+  margin: 500px 10px;
 }
 
 .box-left {
@@ -221,4 +222,30 @@ section.redesocial section.image_component {
 
 .control {
   display: none;
+}
+
+#news {
+  list-style-type: disc;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+  columns: 2;
+  list-style-position: inside;
+  width: 800px;
+  padding-bottom: 5px;
+  word-wrap:break-word;
+}
+
+
+#news a{
+  text-decoration: none;
+  color: #403f3f !important;
+}
+
+#news h2{
+  
+  color: #403f3f !important;
+}
+
+#news p{  
+  color: #7D8488 !important;
 }
