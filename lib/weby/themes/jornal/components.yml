@@ -118,39 +118,34 @@ top:
           publish: true
           alias: Slider
           settings: '{:style=>"1",:orientation=>"slider", :width=>"400", :height=>"300", :timer=>"7", :show_controls=>"1", :title=>{"pt-BR"=>""}, :photo_ids=>[]}'
-left: 
+          
+home:
     -
       name: text          
-      settings: '{:html_class=>"", :body=>{"pt-BR"=>"<p>menu</p>"}}'
+      settings: '{:html_class=>"box-left", :body=>{"pt-BR"=>"<p>menu flutuante</p>"}}'
       position: 1
       publish: true
       alias: Logo UFG 
 
-center: 
     - 
       name: front_news
-      settings: '{:quant=>"6", :source=>"selected", :site_id=>"", :tag_as_label=>"1",
+      settings: '{:quant=>"6", :source=>"selected", :site_id=>"", 
+      :tag_as_label=>"1",
       :hide_author=>"1", :hide_read_more=>"0", :label=>{"pt-BR"=>"Jornal UFG", "en"=>""},
       :link_to_all=>{"pt-BR"=>"Ver Todas", "en"=>""}}'
       position: 2
       publish: true
       alias: Notícias capa
 
-right:
     -
       name: event_list
-      position: 2
+      position: 3
       publish: true
       alias: Eventos
-      settings: '{:template=>"basic", :quant=>"5", :max_char=>"", :filter_by=>"", :image_size=>"m", :avatar_width=>"", :avatar_height=>"", :read_more=>"0", :label=>{"pt-BR"=>"Eventos"}, :link_to_all=>{"pt-BR"=>""}, :date_format=>"short"}'           
-      
-home:
-    -
-      name: text          
-      settings: '{:html_class=>"", :body=>{"pt-BR"=>""}}'
-      position: 1
-      publish: true
-      alias: Logo UFG     
+      settings: '{:html_class=>"box-right",:template=>"basic", :quant=>"5", 
+      :max_char=>"", :filter_by=>"", :image_size=>"m", :avatar_width=>"", 
+      :avatar_height=>"", :read_more=>"0", :label=>{"pt-BR"=>"Eventos"}, 
+      :link_to_all=>{"pt-BR"=>""}, :date_format=>"short"}'       
           
 bottom:
     -     
