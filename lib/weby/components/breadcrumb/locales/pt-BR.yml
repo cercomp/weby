@@ -6,8 +6,10 @@ pt-BR:
     attributes:
       breadcrumb_component:
         label: "Rótulo"
+        home_label: 'Rótulo para Página Inicial'
   breadcrumb:
     views:
       show:
         home:   "Página Inicial"
+        news: 'Notícias'
       form:

@@ -1,7 +1,7 @@
 body > header {
-  height: 134px;
+  /*height: 134px;*/
   background-color: var(--white);
-  padding: 0 34px;
+  /*padding: 0 34px;*/
 }
 
 .header {
@@ -359,5 +359,42 @@ body > header {
     position: absolute;
     margin: 0;
     padding: 0;
+  }
+}
+
+.breadcrumb_component {
+  padding-top: 32px;
+  background-color: var(--light-grey);
+  float: none;
+
+  ul {
+    max-width: 940px;
+    margin: 0 auto;
+    padding: 12px 0 10px;
+    letter-spacing: normal;
+    word-spacing: normal;
+    display: flex;
+  }
+
+  li {
+    font-family: Lato;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 2.14;
+    letter-spacing: normal;
+    text-transform: uppercase;
+    color: var(--grey);
+
+    a {
+      color: inherit;
+      /*text-decoration: none;*/
+    }
+  }
+
+  .breadcrumb-divider {
+    color: inherit;
+    padding: 0 11px;
   }
 }

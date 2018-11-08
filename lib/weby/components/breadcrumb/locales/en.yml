@@ -6,8 +6,10 @@ en:
     attributes:
       breadcrumb_component:
         label: "Label"
+        home_label: "Label for Homepage"
   breadcrumb:
     views:
       show:
         home: "Home"
+        news: 'News'
       form:
