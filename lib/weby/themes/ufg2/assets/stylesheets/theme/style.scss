@@ -913,58 +913,7 @@ div, section, input {
 
 .footer-menu {
   padding: 60px 0 18px;
-  background-color: var(--light-grey);
-
-  .menu_component {
-    margin: 0 auto;
-    max-width: 940px;
-  }
-
-  menu {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .expanded {
-    display: flex;
-    flex-wrap: wrap;
-
-    > li {
-      flex: 0 0 25%;
-
-      > a {
-        font-family: Lato;
-        font-size: 34px;
-        font-weight: 300;
-        font-style: normal;
-        text-decoration: none;
-        font-stretch: normal;
-        line-height: 1.71;
-        letter-spacing: normal;
-        color: var(--blue);
-        cursor: default;
-      }
-
-      > .submenu {
-        margin: 30px 0 51px;
-      }
-    }
-  }
-
-  .submenu {
-    > li {
-      > a {
-        font-family: Lato;
-        font-size: 18px;
-        font-weight: normal;
-        text-decoration: none;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: 2;
-        letter-spacing: normal;
-        color: #666666;
-      }
-    }
-  }
+  background-color: pink;
+  position: absolute;
+  content: "asadadadsa" ;
 }

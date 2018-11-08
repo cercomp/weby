@@ -149,10 +149,22 @@ home:
       :avatar_height=>"", :read_more=>"0", :label=>{"pt-BR"=>"Eventos"}, 
       :link_to_all=>{"pt-BR"=>""}, :date_format=>"short"}'       
           
-bottom:
-    -     
+bottom:    
+    - 
       name: components_group
+      settings: '{:html_class=>"footer-menu"}'      
       position: 1
       publish: true
-      alias: Rodapé
+      alias: Menu Footer
       children:
+      - 
+        name: menu
+        settings: '{:menu_id=>"%{menu_id}", :style=>"menu", :dropdown=>"0", :html_class=>"",
+          :title=>{"pt-BR"=>"", "en"=>""}}'
+      
+        position: 1
+        publish: true
+        menu:
+          name: Mapa do Site
+  
+     

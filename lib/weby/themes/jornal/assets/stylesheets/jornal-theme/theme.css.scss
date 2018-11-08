@@ -182,7 +182,7 @@ section.redesocial section.image_component {
 *            03. Slider area css
 * -------------------------------------------------------------------------------------- */
 .photo_slider_component {
-  margin-top: 92px;
+  margin-top: -330px;
   min-width: 1370px !important;
   min-height: 350px !important;
   height: 550px !important;
@@ -344,6 +344,15 @@ section.redesocial section.image_component {
 .event-summary {
   display: none;
 }
+
+
+
+.footer-menu {
+  padding: 60px 0 18px;
+  background-color: pink;
+  position: absolute;
+}
+
 
 /** 
 #323232 - grafite
