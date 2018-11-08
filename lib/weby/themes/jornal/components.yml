@@ -112,14 +112,16 @@ top:
                 title: ' Institucional '
                 url: '#quem-somos'
                 position: 11  
-        -
-          name: photo_slider
-          position: 6
-          publish: true
-          alias: Slider
-          settings: '{:style=>"1",:orientation=>"slider", :width=>"400", :height=>"300", :timer=>"7", :show_controls=>"1", :title=>{"pt-BR"=>""}, :photo_ids=>[]}'
+        
           
 home:
+    -
+      name: photo_slider
+      position: 6
+      publish: true
+      alias: Slider
+      settings: '{:style=>"1",:orientation=>"slider", :width=>"400", :height=>"300", :timer=>"7", :show_controls=>"1", :title=>{"pt-BR"=>""}, :photo_ids=>[]}'
+          
     -
       name: text          
       settings: '{:html_class=>"box-left", :body=>{"pt-BR"=>"<p>menu flutuante</p>"}}'
