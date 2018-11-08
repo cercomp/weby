@@ -121,7 +121,7 @@ home:
       publish: true
       alias: Slider
       settings: '{:style=>"1",:orientation=>"slider", :width=>"400", :height=>"300", :timer=>"7", :show_controls=>"1", :title=>{"pt-BR"=>""}, :photo_ids=>[]}'
-          
+
     -
       name: text          
       settings: '{:html_class=>"box-left", :body=>{"pt-BR"=>"<p>menu flutuante</p>"}}'
@@ -154,5 +154,5 @@ bottom:
       name: components_group
       position: 1
       publish: true
-      alias: Home
+      alias: Rodapé
       children:
