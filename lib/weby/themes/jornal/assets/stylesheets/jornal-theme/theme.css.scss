@@ -183,7 +183,8 @@ section.redesocial section.image_component {
 * -------------------------------------------------------------------------------------- */
 .photo_slider_component {
   margin-top: -330px;
-  min-width: 1370px !important;
+  max-width: 1240px !important;
+  min-width: 1240px !important;
   min-height: 350px !important;
   height: 550px !important;
   left: -20px;
@@ -359,7 +360,10 @@ section.redesocial section.image_component {
   width: 700px;
   margin-left: 250px;
   position: absolute;
+}
 
+.news_as_home_component .page-show article div a {
+    display: none;
 }
 
 .item1 { grid-area: 1 / 1 / 2 / 1; }
@@ -386,7 +390,7 @@ section.redesocial section.image_component {
 .col {
   color: black;
   background: #dcdcdc;
-  width: 100px;
+  width: 150px;
   height: 15px;
   border-radius: 50px;
   font-weight: lighter; 
@@ -425,6 +429,7 @@ h3 {
   display: grid;
   grid-gap: 20px;
   padding: 10px;
+  font-family: 'Lato';
  
 }
 .grid-item2 {  
@@ -469,7 +474,7 @@ h3 {
 .grid-container-com {
   display: grid;
   grid-auto-columns: 24%;
-  grid-gap: 20px;
+  grid-gap: 30px;
   padding: 10px;
   
 }
@@ -488,7 +493,7 @@ h3 {
   display: grid;
   text-align: left;
   grid-auto-columns: 50%;
-  grid-gap: 10px;
+  grid-gap: 40px;
   padding: 10px;
 }
 
@@ -502,9 +507,50 @@ h3 {
   font-size: 12px;
 }
 
+.menu_corpo {
+  margin-top: 2400px;
+  width: 100%;
+  position: absolute;
+  background-color: #8CBEBD;
+}
 
 
+/************************ JORNALISMO ******************/
 
+.item-jor1 { grid-area: 1 / 1 / 2 / 2;color:#323232;  border-radius: 60px; background-color: white; height:40px;
+  padding-top:15px; }
+.item-jor2 { grid-area: 1 / 2 / 2 / 3;color:#323232;  border-radius: 60px; background-color: white; height:40px;
+  padding-top:15px;}
+.item-jor3 { grid-area: 1 / 3 / 2 / 4;color:#323232;  border-radius: 60px; background-color: white; padding-top:15px;
+ height:55px}
+.item-jor4 { grid-area: 1 / 4 / 2 / 5; color:#323232; border-radius: 60px; background-color: white;height:40px;
+  padding-top:15px;}
+.item-jor5 { grid-area: 2 / 1 / 3 / 2;color:#fff;  }
+.item-jor6 { grid-area: 2 / 2 / 3 / 3;color:#fff; }
+.item-jor7 { grid-area: 2 / 3 / 3 / 4;color:#fff;  }
+.item-jor8 { grid-area: 2 / 4 / 3 / 5;color:#fff;  }
+
+.grid-container-jor {
+  display: grid;
+  grid-auto-columns: 200px;
+  grid-gap: 40px;
+  background-color: #8CBEBD;
+  padding: 40px;
+  width: 100%; 
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  font-family: 'Lato';   
+}
+
+.grid-container-jor>div {  
+  text-align: center;
+  font-size:15px;  
+}
+
+
+/****** FOOTER **************************/
 
 
 .footer-menu {

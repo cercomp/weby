@@ -154,7 +154,7 @@ home:
       position: 5
       publish: true
       alias: Colunistas
-      settings: '{:page_id=>"%{page_id}", :show_title=>"0", :show_controls=>"0", :show_info=>"0"}'
+      settings: '{:page_id=>"%{page_id}", :show_title=>"0", :show_info=>"0", :show_controls=>"0"}'
       page:
         title: 'Colunistas'
         text: '<section colunistas class="colunistas">
@@ -236,7 +236,28 @@ home:
                   <p class="second">Licae cus imus id modia quos ad et ut officia commolo</p>   
                 </div>
               </div>
-              </section>'     
+              </section>'  
+      
+    -
+      name: news_as_home
+      position: 5
+      publish: true
+      alias: Menu Azul
+      settings: '{:page_id=>"%{page_id}", :show_title=>"0", :show_info=>"0", :show_controls=>"0"}'
+      page:
+        title: 'Menu Azul'
+        text:   '<div class="menu_corpo">
+                  <div class="grid-container-jor">
+                   <div class="item-jor1">JORNALISMO</div>
+                   <div class="item-jor2">CERIMONIAL</div>
+                   <div class="item-jor3"  >COLAÇÃO<br/>DE GRAU</div>
+                   <div class="item-jor4">PUBLICIDADE</div>
+                   <div class="item-jor5">Licae cus imus id modia quos ad et ut officia commolo 5</div>
+                   <div class="item-jor6">Licae cus imus id modia quos ad et ut officia commolo 6</div>
+                   <div class="item-jor7">Licae cus imus id modia quos ad et ut officia commolo 7</div>
+                   <div class="item-jor8">Licae cus imus id modia quos ad et ut officia commolo 8</div>
+                  </div>
+                </div>'
           
 bottom:    
     - 
@@ -255,5 +276,7 @@ bottom:
         publish: true
         menu:
           name: Mapa do Site
+
+
   
      
