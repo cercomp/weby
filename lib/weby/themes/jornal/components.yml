@@ -117,7 +117,7 @@ top:
 home:
     -
       name: photo_slider
-      position: 6
+      position: 1
       publish: true
       alias: Slider
       settings: '{:style=>"1",:orientation=>"slider", :width=>"400", :height=>"300", :timer=>"7", :show_controls=>"1", :title=>{"pt-BR"=>""}, :photo_ids=>[]}'
@@ -125,29 +125,118 @@ home:
     -
       name: text          
       settings: '{:html_class=>"box-left", :body=>{"pt-BR"=>"<p>menu flutuante</p>"}}'
-      position: 1
+      position: 2
       publish: true
       alias: Logo UFG 
 
     - 
       name: front_news
       settings: '{:quant=>"6", :source=>"selected", :site_id=>"", 
-      :tag_as_label=>"1",
+      :tag_as_label=>"1",:show_controls=>"0",
       :hide_author=>"1", :hide_read_more=>"0", :label=>{"pt-BR"=>"Jornal UFG", "en"=>""},
       :link_to_all=>{"pt-BR"=>"Ver Todas", "en"=>""}}'
-      position: 2
+      position: 3
       publish: true
       alias: Notícias capa
 
     -
       name: event_list
-      position: 3
+      position: 4
       publish: true
       alias: Eventos
       settings: '{:html_class=>"box-right",:template=>"basic", :quant=>"5", 
-      :max_char=>"", :filter_by=>"", :image_size=>"m", :avatar_width=>"", 
+      :max_char=>"", :filter_by=>"", :show_controls=>"0", :image_size=>"m", :avatar_width=>"", 
       :avatar_height=>"", :read_more=>"0", :label=>{"pt-BR"=>"Eventos"}, 
-      :link_to_all=>{"pt-BR"=>""}, :date_format=>"short"}'       
+      :link_to_all=>{"pt-BR"=>""}, :date_format=>"short"}'  
+
+    -
+      name: news_as_home
+      position: 5
+      publish: true
+      alias: Colunistas
+      settings: '{:page_id=>"%{page_id}", :show_title=>"0", :show_controls=>"0", :show_info=>"0"}'
+      page:
+        title: 'Colunistas'
+        text: '<section colunistas class="colunistas">
+                <div class="col"> COLUNISTAS </div> 
+                <div class="grid-container">
+                  <div class="item1">
+                    <img src="https://www.w3schools.com/html/workplace.jpg">
+                    <p>Nome do Autor</p>
+                    <h3>Licae cus imus id modia quos ad et ut officia commolo</h3>
+                  </div>
+                  <div class="item2">
+                    <img src="https://www.w3schools.com/html/workplace.jpg">
+                    <p>Nome do Autor</p>
+                  </div>
+                  <div class="item3">
+                    <img src="https://www.w3schools.com/html/workplace.jpg">
+                    <p>Nome do Autor</p>
+                  </div>  
+                  <div class="item4">
+                    <img src="https://www.w3schools.com/html/workplace.jpg">
+                    <p>Nome do Autor</p>
+                  </div>
+                </div>
+                <div class="col"> ARTIGOS </div> 
+                <div class="grid-container2">
+                  <div class="grid-item2 item1-art">
+                    <img src="https://www.w3schools.com/html/workplace.jpg">
+                    <div class="texto">
+                      <p class="nome" >Nome do Autor</p>
+                      <p>Licae cus imus id modia quos ad et ut officia commolo</p>
+                    </div>    
+                  </div>
+                  <div class="grid-item2">
+                    <img src="https://www.w3schools.com/html/workplace.jpg">
+                    <div class="texto">
+                      <p class="nome" >Nome do Autor</p>
+                      <p>Licae cus imus id modia quos ad et ut officia commolo</p>
+                    </div>
+                  </div>
+                  <div class="grid-item2 item3-art">
+                    <img src="https://www.w3schools.com/html/workplace.jpg">
+                    <div class="texto">
+                      <p class="nome" >Nome do Autor</p>
+                      <p>Licae cus imus id modia quos ad et ut officia commolo</p>
+                    </div>
+                  </div>  
+                  <div class="grid-item2">
+                  <img src="https://www.w3schools.com/html/workplace.jpg">
+                    <div class="texto">
+                      <p class="nome" >Nome do Autor</p>
+                      <p>Licae cus imus id modia quos ad et ut officia commolo</p>
+                    </div>
+                  </div>
+                  <div class="grid-item2">
+                  <img src="https://www.w3schools.com/html/workplace.jpg">
+                    <div class="texto">
+                      <p class="nome" >Nome do Autor</p>
+                      <p>Licae cus imus id modia quos ad et ut officia commolo</p>
+                    </div>
+                  </div>
+                  <div class="grid-item2">
+                    <img src="https://www.w3schools.com/html/workplace.jpg">
+                    <div class="texto">
+                      <p class="nome" >Nome do Autor</p>
+                      <p>Licae cus imus id modia quos ad et ut officia commolo</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col"> COMUNIDADE </div>
+                <div class="grid-container-com">
+                <div class="item-com1">
+                  <img src="https://www.w3schools.com/html/workplace.jpg">
+                  <p class="first">Licae cus imus id modia quos ad et ut officia</p>
+                  <p class="second">Licae cus imus id modia quos ad et ut officia commolo</p>   
+                </div>
+                 <div class="item-com2">
+                  <img src="https://www.w3schools.com/html/workplace.jpg">
+                  <p class="first">Licae cus imus id modia quos ad et ut officia</p>
+                  <p class="second">Licae cus imus id modia quos ad et ut officia commolo</p>   
+                </div>
+              </div>
+              </section>'     
           
 bottom:    
     - 

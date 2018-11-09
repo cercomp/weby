@@ -347,16 +347,169 @@ section.redesocial section.image_component {
 
 
 
+/** 
+#323232 - grafite
+#dcdcdc - fumaça
+#7d8483 - fuligem
+*/
+
+/******************** pagina colunistas ********************************/
+.colunistas{
+  margin-top: 900px;
+  width: 700px;
+  margin-left: 250px;
+  position: absolute;
+
+}
+
+.item1 { grid-area: 1 / 1 / 2 / 1; }
+.item2 { grid-area: 1 / 2 / 2 / 2; }
+.item3 { grid-area: 1 / 3 / 2 / 3; }
+.item4 { grid-area: 1 / 4 / 2 / 4; }
+
+
+.grid-container {
+  display: grid;
+  grid-auto-columns: 24%;
+  grid-gap: 10px;
+  padding: 10px;
+  
+}
+
+.grid-container>div {
+  text-align: center;
+  padding:20px 0;
+  font-size: 30px;
+  height:200px;
+}
+
+.col {
+  color: black;
+  background: #dcdcdc;
+  width: 100px;
+  height: 15px;
+  border-radius: 50px;
+  font-weight: lighter; 
+  font-size: 16px;
+  padding: 10px;
+  text-align: center
+}
+
+.grid-container img {
+ width:100%;
+ height:70%;
+}
+
+.grid-container p {
+    position: absolute;
+    font-size: 12px;
+    font-family: sans-serif;
+    text-align: center;
+    margin-top: -50px;
+    margin-left: 0px;
+    background:white;
+    width: 100px;
+    height: 15px;
+    padding: 6px;
+}
+
+h3 {
+ font-size: 12px;
+ text-align: left;
+ color: #323232;
+ width: 87%;
+}
+
+
+.grid-container2 {
+  display: grid;
+  grid-gap: 20px;
+  padding: 10px;
+ 
+}
+.grid-item2 {  
+ height:100px;
+  padding: 20px;
+  font-size: 30px;
+
+}
+.item2-art {
+  grid-column: 1;
+  grid-row: 1;
+}
+.item3-art {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.grid-container2 img {
+ float:left;
+ width:30%;
+ height:100px;
+ margin-right: 10px;
+}
+
+.texto {
+ font-size: 16px;
+ color: #323232;
+ left: 10px;
+
+}
+
+.nome {
+ font-size: 14px;
+ color: #323232;
+ left: 10px;
+}
+
+.item-com1 { grid-area: 1 / 1 / 2 / 1; }
+.item-com2 { grid-area: 1 / 2 / 2 / 2; }
+
+
+.grid-container-com {
+  display: grid;
+  grid-auto-columns: 24%;
+  grid-gap: 20px;
+  padding: 10px;
+  
+}
+.grid-container-com>div {
+  padding:20px 0;
+  height:200px;
+}
+
+.grid-container-com img {
+ width:100%;
+ height:70%;
+}
+
+
+.grid-container-com {
+  display: grid;
+  text-align: left;
+  grid-auto-columns: 50%;
+  grid-gap: 10px;
+  padding: 10px;
+}
+
+.first {
+  font-size: 18px;
+  width:80%;
+}
+
+.second {
+  width:80%;
+  font-size: 12px;
+}
+
+
+
+
+
+
 .footer-menu {
   padding: 60px 0 18px;
   background-color: pink;
   position: absolute;
   content: "asadadadsa" ;
 }
-
-
-/** 
-#323232 - grafite
-#dcdcdc - fumaça
-#7d8483 - fuligem
-*/

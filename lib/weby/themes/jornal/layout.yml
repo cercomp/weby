@@ -4,6 +4,4 @@ placeholders:
   - names: ['first_place']
   - names: ['top']
   - names: ['home']
-    height: 190
-    widths: [25,50,25]
   - names: ['bottom']
