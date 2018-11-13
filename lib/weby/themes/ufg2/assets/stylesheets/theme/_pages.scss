@@ -3,6 +3,10 @@
   margin: 0 auto;
   max-width: 940px;
 
+  a:first-child {
+    display: none;
+  }
+
   header {
     h2 {
       font-family: Lato;
@@ -29,7 +33,7 @@
     margin: 0 0 40px;
   }
 
-  .body {
+  .body, summary {
     font-family: Lato;
     font-size: 20px;
     font-weight: 300;
@@ -43,6 +47,10 @@
     p {
       margin: 0;
     }
+  }
+
+  summary {
+    margin: 0;
   }
 
   .social-buttons {
