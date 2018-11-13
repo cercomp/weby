@@ -149,9 +149,110 @@ home:
       :avatar_height=>"", :read_more=>"0", :label=>{"pt-BR"=>"Eventos"}, 
       :link_to_all=>{"pt-BR"=>""}, :date_format=>"short"}'  
 
+
     -
       name: news_as_home
       position: 5
+      publish: true
+      alias: Menu Youtube
+      settings: '{:page_id=>"%{page_id}", :show_title=>"0", :show_info=>"0", :show_controls=>"0"}'
+      page:
+        title: 'Menu Youtube'
+        text:   '<section youtube class="youtube-area">
+                    <div class="teste">
+                      <div class="col-yout">RÁDIO</div>
+                      <div class="col-yout">TV UFG</div>
+                      <div class="frames-area" style="height: 294px">
+                        <div class="full-area">
+                          <iframe width="100%" height="100%"
+                            src="https://www.youtube.com/embed/_FrOQC-zEog" frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen> </iframe>
+                        </div>
+                        <div class="header-area">
+                          <iframe width="100%" height="100%"
+                            src="https://www.youtube.com/embed/_FrOQC-zEog" frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen> </iframe>
+                        </div>
+                        <div class="right-area">
+                          <iframe width="100%" height="100%"
+                            src="https://www.youtube.com/embed/_FrOQC-zEog" frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen> </iframe>
+                        </div>
+                        <div class="footer-area">
+                          <iframe width="100%" height="100%"
+                            src="https://www.youtube.com/embed/_FrOQC-zEog" frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen> </iframe>
+                        </div>
+                        <div class="lateral1">
+                          <p class="yt-titulo">Licae cus imus id modia quos ad et ut
+                            officia commolo</p>
+                          <p class="yt-text">Orposandiam, vo llaquoditas el maio ilibus
+                            Licae cus imus id modia quos ad et ut</p>
+                        </div>
+                        <div class="lateral2">
+                          <p class="yt-titulo">Licae cus imus id modia quos ad et ut
+                            officia commolo</p>
+                          <p class="yt-text">Orposandiam, vo llaquoditas el maio ilibus
+                            Licae cus imus id modia quos ad et ut</p>
+                        </div>
+                        <div class="lateral3">
+                          <p class="yt-titulo">Licae cus imus id modia quos ad et ut
+                            officia commolo</p>
+                          <p class="yt-text">Orposandiam, vo llaquoditas el maio ilibus
+                            Licae cus imus id modia quos ad et ut</p>
+                        </div>
+                        Orposandiam, sin pro es et laboreiusani vollam, el maio ilibus (...)
+                      </div>
+                      <div class="col-yout" style="margin-top: 100px">CANAL YOUTUBE</div>
+                      <div class="canal-area">
+                        <div class="canal1">
+                          <iframe width="100%" height="100%"
+                            src="https://www.youtube.com/embed/_FrOQC-zEog" frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen> </iframe>
+                        </div>
+                        <div class="canal2">
+                          <iframe width="100%" height="100%"
+                            src="https://www.youtube.com/embed/_FrOQC-zEog" frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen> </iframe>
+                        </div>
+                        <div class="canal3">
+                          <iframe width="100%" height="100%"
+                            src="https://www.youtube.com/embed/_FrOQC-zEog" frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen> </iframe>
+                        </div>
+                        <div class="canal-area">
+                          <div class="canal1">
+                            <p class="yt-titulo2">Licae cus imus id modia quos ad et ut
+                              officia commolo</p>
+                            <p class="yt-text2">Orposandiam, vo llaquoditas el maio ilibus
+                              Licae cus imus id modia quos ad et ut</p>
+                          </div>
+                          <div class="canal2">
+                            <p class="yt-titulo2">Licae cus imus id modia quos ad et ut
+                              officia commolo</p>
+                            <p class="yt-text2">Orposandiam, vo llaquoditas el maio ilibus
+                              Licae cus imus id modia quos ad et ut</p>
+                          </div>
+                          <div class="canal3">
+                            <p class="yt-titulo2">Licae cus imus id modia quos ad et ut
+                              officia commolo</p>
+                            <p class="yt-text2">Orposandiam, vo llaquoditas el maio ilibus
+                              Licae cus imus id modia quos ad et ut</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>'           
+    -
+      name: news_as_home
+      position: 6
       publish: true
       alias: Colunistas
       settings: '{:page_id=>"%{page_id}", :show_title=>"0", :show_info=>"0", :show_controls=>"0"}'
@@ -161,62 +262,62 @@ home:
                 <div class="col"> COLUNISTAS </div> 
                 <div class="grid-container">
                   <div class="item1">
-                    <img src="https://www.w3schools.com/html/workplace.jpg">
+                    <img src="https://img.rl0.ru/f3f70ad4661bcac56b285cb86efdea1e/c615x400/news.rambler.ru/img/2018/05/23142637.159422.8999.jpg">
                     <p>Nome do Autor</p>
                     <h3>Licae cus imus id modia quos ad et ut officia commolo</h3>
                   </div>
                   <div class="item2">
-                    <img src="https://www.w3schools.com/html/workplace.jpg">
+                    <img src="https://img.rl0.ru/f3f70ad4661bcac56b285cb86efdea1e/c615x400/news.rambler.ru/img/2018/05/23142637.159422.8999.jpg">
                     <p>Nome do Autor</p>
                   </div>
                   <div class="item3">
-                    <img src="https://www.w3schools.com/html/workplace.jpg">
+                    <img src="https://img.rl0.ru/f3f70ad4661bcac56b285cb86efdea1e/c615x400/news.rambler.ru/img/2018/05/23142637.159422.8999.jpg">
                     <p>Nome do Autor</p>
                   </div>  
                   <div class="item4">
-                    <img src="https://www.w3schools.com/html/workplace.jpg">
+                    <img src="https://img.rl0.ru/f3f70ad4661bcac56b285cb86efdea1e/c615x400/news.rambler.ru/img/2018/05/23142637.159422.8999.jpg">
                     <p>Nome do Autor</p>
                   </div>
                 </div>
                 <div class="col"> ARTIGOS </div> 
                 <div class="grid-container2">
                   <div class="grid-item2 item1-art">
-                    <img src="https://www.w3schools.com/html/workplace.jpg">
+                    <img src="https://img.rl0.ru/f3f70ad4661bcac56b285cb86efdea1e/c615x400/news.rambler.ru/img/2018/05/23142637.159422.8999.jpg">
                     <div class="texto">
                       <p class="nome" >Nome do Autor</p>
                       <p>Licae cus imus id modia quos ad et ut officia commolo</p>
                     </div>    
                   </div>
                   <div class="grid-item2">
-                    <img src="https://www.w3schools.com/html/workplace.jpg">
+                    <img src="https://img.rl0.ru/f3f70ad4661bcac56b285cb86efdea1e/c615x400/news.rambler.ru/img/2018/05/23142637.159422.8999.jpg">
                     <div class="texto">
                       <p class="nome" >Nome do Autor</p>
                       <p>Licae cus imus id modia quos ad et ut officia commolo</p>
                     </div>
                   </div>
                   <div class="grid-item2 item3-art">
-                    <img src="https://www.w3schools.com/html/workplace.jpg">
+                    <img src="https://img.rl0.ru/f3f70ad4661bcac56b285cb86efdea1e/c615x400/news.rambler.ru/img/2018/05/23142637.159422.8999.jpg">
                     <div class="texto">
                       <p class="nome" >Nome do Autor</p>
                       <p>Licae cus imus id modia quos ad et ut officia commolo</p>
                     </div>
                   </div>  
                   <div class="grid-item2">
-                  <img src="https://www.w3schools.com/html/workplace.jpg">
+                  <img src="https://img.rl0.ru/f3f70ad4661bcac56b285cb86efdea1e/c615x400/news.rambler.ru/img/2018/05/23142637.159422.8999.jpg">
                     <div class="texto">
                       <p class="nome" >Nome do Autor</p>
                       <p>Licae cus imus id modia quos ad et ut officia commolo</p>
                     </div>
                   </div>
                   <div class="grid-item2">
-                  <img src="https://www.w3schools.com/html/workplace.jpg">
+                  <img src="https://img.rl0.ru/f3f70ad4661bcac56b285cb86efdea1e/c615x400/news.rambler.ru/img/2018/05/23142637.159422.8999.jpg">
                     <div class="texto">
                       <p class="nome" >Nome do Autor</p>
-                      <p>Licae cus imus id modia quos ad et ut officia commolo</p>
+                      <p>Licae cus imus id modia quos  et ut officia commolo</p>
                     </div>
                   </div>
                   <div class="grid-item2">
-                    <img src="https://www.w3schools.com/html/workplace.jpg">
+                    <img src="https://img.rl0.ru/f3f70ad4661bcac56b285cb86efdea1e/c615x400/news.rambler.ru/img/2018/05/23142637.159422.8999.jpg">
                     <div class="texto">
                       <p class="nome" >Nome do Autor</p>
                       <p>Licae cus imus id modia quos ad et ut officia commolo</p>
@@ -226,38 +327,36 @@ home:
                 <div class="col"> COMUNIDADE </div>
                 <div class="grid-container-com">
                 <div class="item-com1">
-                  <img src="https://www.w3schools.com/html/workplace.jpg">
+                  <img src="https://img.rl0.ru/f3f70ad4661bcac56b285cb86efdea1e/c615x400/news.rambler.ru/img/2018/05/23142637.159422.8999.jpg">
                   <p class="first">Licae cus imus id modia quos ad et ut officia</p>
                   <p class="second">Licae cus imus id modia quos ad et ut officia commolo</p>   
                 </div>
                  <div class="item-com2">
-                  <img src="https://www.w3schools.com/html/workplace.jpg">
+                  <img src="https://img.rl0.ru/f3f70ad4661bcac56b285cb86efdea1e/c615x400/news.rambler.ru/img/2018/05/23142637.159422.8999.jpg">
                   <p class="first">Licae cus imus id modia quos ad et ut officia</p>
                   <p class="second">Licae cus imus id modia quos ad et ut officia commolo</p>   
                 </div>
               </div>
               </section>'  
       
+         
     -
-      name: news_as_home
-      position: 5
+      name: text   
+      position: 7
       publish: true
-      alias: Menu Azul
-      settings: '{:page_id=>"%{page_id}", :show_title=>"0", :show_info=>"0", :show_controls=>"0"}'
-      page:
-        title: 'Menu Azul'
-        text:   '<div class="menu_corpo">
-                  <div class="grid-container-jor">
-                   <div class="item-jor1">JORNALISMO</div>
-                   <div class="item-jor2">CERIMONIAL</div>
-                   <div class="item-jor3"  >COLAÇÃO<br/>DE GRAU</div>
-                   <div class="item-jor4">PUBLICIDADE</div>
-                   <div class="item-jor5">Licae cus imus id modia quos ad et ut officia commolo 5</div>
-                   <div class="item-jor6">Licae cus imus id modia quos ad et ut officia commolo 6</div>
-                   <div class="item-jor7">Licae cus imus id modia quos ad et ut officia commolo 7</div>
-                   <div class="item-jor8">Licae cus imus id modia quos ad et ut officia commolo 8</div>
-                  </div>
-                </div>'
+      alias: Menu Azul       
+      settings: '{:html_class=>"menu_corpo", 
+      :body=>{"pt-BR"=>"<div>
+                          <div> JORNALISMO</div>
+                          <div>CERIMONIAL</div>
+                          <div> COLAÇÃO DE GRAU </div>
+                          <div>PUBLICIDADE</div>       
+                          <div>Licae cus imus id modia quos ad et ut officia commolo 5</div>
+                          <div>Licae cus imus id modia quos ad et ut officia commolo 6</div>
+                          <div>Licae cus imus id modia quos ad et ut officia commolo 7</div>
+                          <div>Licae cus imus id modia quos ad et ut officia commolo 8</div>
+                        <div></div>  
+                        </div>   "}}' 
           
 bottom:    
     - 
