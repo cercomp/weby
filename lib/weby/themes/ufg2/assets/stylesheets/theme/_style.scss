@@ -968,3 +968,49 @@ div, section, input {
     }
   }
 }
+
+.side-dock {
+  position: absolute;
+  width: 144px;
+  padding-top: 40px;
+  top: 0;
+  z-index: 3;
+}
+
+.side-dock.fixed {
+  position: fixed;
+}
+
+.side-dock .btn {
+  display: block;
+  border-radius: 0 25px 25px 0;
+  font-family: Lato;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: var(--white);
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 16px 20px 17px 50px;
+  margin-bottom: 4px;
+  background-color: var(--dark-blue);
+}
+
+.side-dock .anchor-news {
+  background-color: var(--red);
+}
+
+.side-dock .anchor-newspaper {
+  background-color: var(--green);
+}
+
+.side-dock .anchor-events {
+  background-color: var(--purple);
+}
+
+.side-dock .anchor-network {
+  background-color: var(--yellow);
+}

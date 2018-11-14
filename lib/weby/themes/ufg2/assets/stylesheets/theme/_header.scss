@@ -25,6 +25,19 @@ body > header {
     top: 102px;
     z-index: 2;
     display: flex;
+    transition: left .2s;
+
+    &.fixed {
+      position: fixed;
+      width: 100%;
+      left: 0;
+      top: 0;
+
+      .menu_component {
+        max-width: 940px;
+        margin: 0 auto;
+      }
+    }
   }
 
   .menu_component {
