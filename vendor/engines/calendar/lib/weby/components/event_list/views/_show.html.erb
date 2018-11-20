@@ -2,6 +2,21 @@
 <% quant = component.quant || 5 %>
 <% @events = component.get_events(current_site , params["event_list_page#{component.id}".to_sym]) %>
 
+<% content_for :javascripts do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      var seen = {};
+        $('.event-date').each(function() {
+            var txt = $(this).text();
+            if (seen[txt])
+                $(this).remove();
+            else
+                seen[txt] = true;
+        });
+    });
+  </script>
+<% end %>
+
 <section class="event_list_component <%= component.template %> <%= component.html_class %>">
 
   <% if component.template == 'basic' %>
@@ -12,21 +27,43 @@
           <%= link_to(component.label.present? ? component.label : t(".events"), events_path(direction: 'desc', sort: 'calendar_events.begin_at')) %>
         </th>
       </tr>
-      <% @events.each do |event| %>
-        <tr>
-          <td>
-            <p><%= link_to event.name, event_path(event) %></p>
-            <p class="event-dates">
-              <% if component.date_format == 'short' %>
-                <span class="event-date-day"><%= l(event.begin_at, format: '%d') %></span>
-                <span class="event-date-month"><%= l(event.begin_at, format: '%b') %></span>
-              <% else %>
-                <%= period_dates(event.begin_at, event.end_at, false) -%>
-              <% end %>
-            </p>
-            <span class="event-summary"><%= strip_tags(event.information).first(140).html_safe %></span>
-          </td>
-        </tr>
+       <% date = '' %>
+       <% count = 1 %>
+      <% for event in @events %>
+          <% if component.group_by %>
+              <tr>
+                <td>        
+                 <p class="event-dates">
+                    <% if component.date_format == 'short' %> 
+                     
+                      <span class="event-date"><%= l(event.begin_at, format: '%d') %>/<%= l(event.begin_at, format: '%m') %></span>
+                      </span>
+                      <p><%= link_to event.name, event_path(event) %></p>
+                      <span class="event-date-hour"><%= l(event.begin_at, format: '%H') %>h</span>
+                      <span class="event-summary"><%= strip_tags(event.information).first(140).html_safe %>
+                      
+                    <% else %>
+                      <%= period_dates(event.begin_at, event.end_at, false) -%>
+                    <% end %>
+                  </p>                 
+                </td>
+              </tr>
+           <% else %>
+               <tr>
+                <td>         
+                  <p><%= link_to event.name, event_path(event) %></p>
+                  <p class="event-dates">
+                    <% if component.date_format == 'short' %>
+                      <span class="event-date-day"><%= l(event.begin_at, format: '%d') %></span>
+                      <span class="event-date-month"><%= l(event.begin_at, format: '%b') %></span>
+                    <% else %>
+                      <%= period_dates(event.begin_at, event.end_at, false) -%>
+                    <% end %>
+                  </p>
+                  <span class="event-summary"><%= strip_tags(event.information).first(140).html_safe %></span>
+                </td>
+              </tr>
+           <% end %>
       <% end %>
     </table>
     <%= paginate @events, param_name: "event_list_page#{component.id}", remote: true, comp_url: component.persisted? ? main_app.site_component_path(component.id) : nil, page_links: true %>

@@ -11,6 +11,7 @@ pt-BR:
         label:                " Título "
         filter_by:            " Selecionar apenas eventos com as categorias "
         read_more:            " Exibir 'Leia mais' "
+        group_by:             " Agrupar eventos "
         image_size:           " Versão da imagem "
         new_tab:              " Abrir eventos em uma nova janela "
         max_char:             " Número máximo de caracteres do resumo "
