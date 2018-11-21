@@ -1,20 +1,7 @@
 bottom:
-- settings: '{:html_class=>"footer-menu"}'
-  name: components_group
-  position: 1
-  publish: true
-  alias: Menu Footer
-  children:
-  - settings: '{:menu_id=>"%{menu_id}", :style=>"menu", :dropdown=>"0", :html_class=>"",
-      :title=>{"pt-BR"=>"", "en"=>""}}'
-    name: menu
-    position: 1
-    publish: true
-    menu:
-      name: Mapa do Site
 - settings: '{:html_class=>"footer"}'
   name: components_group
-  position: 2
+  position: 1
   publish: true
   alias: Footer
   children:

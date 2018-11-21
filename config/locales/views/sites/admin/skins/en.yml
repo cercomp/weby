@@ -2,7 +2,7 @@ en:
   sites:
     admin:
       skins:
-        index:
+        show:
           no_theme:           " No theme selected. "
           themes:             " Themes "
           layout:             " Layout "

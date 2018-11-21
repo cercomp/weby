@@ -261,7 +261,7 @@ rights:
       name:
         en: Manage themes
         pt-BR: Gerenciar temas
-      action: index
+      action: index show
     create:
       name:
         en: Apply theme
