@@ -2,7 +2,7 @@ pt-BR:
   sites:
     admin:
       skins:
-        index:
+        show:
           no_theme:           " Nenhum tema selecionado. "
           themes:             " Temas "
           layout:             " Layout "

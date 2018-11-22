@@ -5,14 +5,14 @@
 <% @can_theme = check_permission(Sites::Admin::SkinsController, [:create, :preview]) %>
 
 <% if current_site.theme %>
+  <% if @can_theme %>
+    <%= render partial: 'themes' %>
+  <% end %>
   <% @can_layout = check_permission(Sites::Admin::ComponentsController, [:index]) %>
   <% @can_style = check_permission(Sites::Admin::StylesController, [:index]) %>
   <ul class="nav nav-tabs" id="tabs">
     <% if @can_layout %>
       <li class="active"><%= link_to('Layout', '#tab-layout', data: {toggle: :tab}) %></li>
-    <% end %>
-    <% if @can_theme %>
-      <li class="<%= 'active' unless @can_layout %>"><%= link_to(t('.themes'), '#tab-themes', data: {toggle: :tab}) %></li>
     <% end %>
     <% if @can_style %>
       <li class="<%= 'active' unless @can_layout || @can_theme %>"><%= link_to(t('.styles'), '#tab-styles', data: {toggle: :tab}) %></li>
@@ -114,9 +114,6 @@
           </script>
         <% end %>
       </div>
-    <% end %>
-    <% if @can_theme %>
-      <%= render partial: 'themes' %>
     <% end %>
     <% if @can_style %>
       <div role="tabpanel" class="tab-pane <%= 'active' unless @can_layout || @can_theme %>" id="tab-styles">

@@ -1,5 +1,5 @@
 class EventListComponent < Component
-  component_settings :quant, :avatar_height, :avatar_width, :read_more,
+  component_settings :quant, :avatar_height, :avatar_width, :read_more, :group_by,
                      :image_size, :max_char, :filter_by, :label,
                      :link_to_all, :template, :date_format, :html_class
 
@@ -20,6 +20,11 @@ class EventListComponent < Component
   alias_method :_read_more, :read_more
   def read_more
     _read_more.blank? ? false : _read_more.to_i == 1
+  end
+
+  alias_method :_group_by, :group_by
+  def group_by
+    _group_by.blank? ? false : _group_by.to_i == 1
   end
 
   alias_method :_image_size, :image_size
@@ -43,4 +48,9 @@ class EventListComponent < Component
   def image_sizes
     [:m, :l, :i, :t]
   end
+
+  def order_by
+    [:basic, :front]
+  end
+
 end

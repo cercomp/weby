@@ -1,17 +1,24 @@
 class Sites::Admin::SkinsController < ApplicationController
   before_action :require_user
   before_action :check_authorization
+  before_action :load_skin, only: [:show, :destroy]
 
   def index
+    skin = current_site.active_skin
+    redirect_to site_admin_skin_path(skin)
+  end
+
+  def show
     @themes = Weby::Themes.all
-    @components = current_site.active_skin.components.order(position: :asc)
+    @skins = current_site.skins
+    @components = @skin.components.order(position: :asc)
     @placeholders = current_site.theme ? current_site.theme.layout['placeholders'] : []
 
     @styles = {}
     @styles[:others] = Style.not_followed_by(current_site.id).search(params[:search])
                             .order('sites.name, styles.name')
                             .page(params[:page]).per(params[:per_page])
-    @styles[:styles] = current_site.active_skin.styles.includes(:style, :followers, :site) if request.format.html?
+    @styles[:styles] = @skin.styles.includes(:style, :followers, :site) if request.format.html?
   end
 
   def create
@@ -43,13 +50,18 @@ class Sites::Admin::SkinsController < ApplicationController
   end
 
   def destroy
-    skin = current_site.skins.find params[:id]
-    skin.components.destroy_all
-    skin.styles.destroy_all
+    @skin.components.destroy_all
+    @skin.styles.destroy_all
 
-    skin.base_theme.populate skin, user: current_user
+    @skin.base_theme.populate @skin, user: current_user
     flash[:success] = t('.successfully_reseted_theme')
-    record_activity('theme_reseted', skin)
+    record_activity('theme_reseted', @skin)
     redirect_to site_admin_skins_path
+  end
+
+  private
+
+  def load_skin
+    @skin = current_site.skins.find(params[:id])
   end
 end
