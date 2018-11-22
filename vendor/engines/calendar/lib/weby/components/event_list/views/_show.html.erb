@@ -35,13 +35,11 @@
                 <td>        
                  <p class="event-dates">
                     <% if component.date_format == 'short' %> 
-                     
                       <span class="event-date"><%= l(event.begin_at, format: '%d') %>/<%= l(event.begin_at, format: '%m') %></span>
                       </span>
                       <p><%= link_to event.name, event_path(event) %></p>
                       <span class="event-date-hour"><%= l(event.begin_at, format: '%H') %>h</span>
                       <span class="event-summary"><%= strip_tags(event.information).first(140).html_safe %>
-                      
                     <% else %>
                       <%= period_dates(event.begin_at, event.end_at, false) -%>
                     <% end %>

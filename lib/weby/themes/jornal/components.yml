@@ -145,7 +145,7 @@ home:
       publish: true
       alias: Eventos
       settings: '{:html_class=>"box-right",:template=>"basic", :quant=>"5", 
-      :max_char=>"", :filter_by=>"", :show_controls=>"0", :image_size=>"m", :avatar_width=>"", 
+      :max_char=>"", :filter_by=>"", :show_controls=>"0",:group_by=>"1", :image_size=>"m", :avatar_width=>"", 
       :avatar_height=>"", :read_more=>"0", :label=>{"pt-BR"=>"Eventos"}, 
       :link_to_all=>{"pt-BR"=>""}, :date_format=>"short"}'  
 
