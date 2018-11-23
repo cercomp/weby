@@ -159,97 +159,90 @@ home:
       page:
         title: 'Menu Youtube'
         text:   '<section youtube class="youtube-area">
-                    <div class="teste">
+                  <div class="youtube-container">
                       <div class="col-yout">RÁDIO</div>
                       <div class="col-yout">TV UFG</div>
-                      <div class="frames-area" style="height: 294px">
-                        <div class="full-area">
-                          <iframe width="100%" height="100%"
-                            src="https://www.youtube.com/embed/_FrOQC-zEog" frameborder="0"
-                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen> </iframe>
-                        </div>
-                        <div class="header-area">
-                          <iframe width="100%" height="100%"
-                            src="https://www.youtube.com/embed/_FrOQC-zEog" frameborder="0"
-                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen> </iframe>
-                        </div>
-                        <div class="right-area">
-                          <iframe width="100%" height="100%"
-                            src="https://www.youtube.com/embed/_FrOQC-zEog" frameborder="0"
-                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen> </iframe>
-                        </div>
-                        <div class="footer-area">
-                          <iframe width="100%" height="100%"
-                            src="https://www.youtube.com/embed/_FrOQC-zEog" frameborder="0"
-                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen> </iframe>
-                        </div>
-                        <div class="lateral1">
-                          <p class="yt-titulo">Licae cus imus id modia quos ad et ut
-                            officia commolo</p>
-                          <p class="yt-text">Orposandiam, vo llaquoditas el maio ilibus
-                            Licae cus imus id modia quos ad et ut</p>
-                        </div>
-                        <div class="lateral2">
-                          <p class="yt-titulo">Licae cus imus id modia quos ad et ut
-                            officia commolo</p>
-                          <p class="yt-text">Orposandiam, vo llaquoditas el maio ilibus
-                            Licae cus imus id modia quos ad et ut</p>
-                        </div>
-                        <div class="lateral3">
-                          <p class="yt-titulo">Licae cus imus id modia quos ad et ut
-                            officia commolo</p>
-                          <p class="yt-text">Orposandiam, vo llaquoditas el maio ilibus
-                            Licae cus imus id modia quos ad et ut</p>
-                        </div>
-                        Orposandiam, sin pro es et laboreiusani vollam, el maio ilibus (...)
+                      <div class="frames-area">
+
+                          <div class="container-left">
+                              <div class="full-area">
+                                  <iframe width="100%" height="100%" src="https://www.youtube.com/embed/_FrOQC-zEog" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>
+                              </div>
+                          </div>
+
+                          <div class="container-right">
+
+                              <div class="header-area">
+                                  <iframe width="100%" height="100%" src="https://www.youtube.com/embed/_FrOQC-zEog" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                                  </iframe>
+                              </div>
+                              <div class="lateral1">
+                                  <p class="yt-titulo">Licae cus imus id modia quos ad et ut officia commolo</p>
+                                  <p class="yt-text">Orposandiam, vo llaquoditas el maio ilibus Licae cus imus id modia quos ad et ut</p>
+                              </div>
+
+                              <div class="clearfix"></div>
+
+                              <div class="right-area">
+                                  <iframe width="100%" height="100%" src="https://www.youtube.com/embed/_FrOQC-zEog" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>
+                              </div>
+                              <div class="lateral2">
+                                  <p class="yt-titulo">Licae cus imus id modia quos ad et ut officia commolo</p>
+                                  <p class="yt-text">Orposandiam, vo llaquoditas el maio ilibus Licae cus imus id modia quos ad et ut</p>
+                              </div>
+
+                              <div class="clearfix"></div>
+
+                              <div class="footer-area">
+                                  <iframe width="100%" height="100%" src="https://www.youtube.com/embed/_FrOQC-zEog" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>
+                              </div>
+                              <div class="lateral3">
+                                  <p class="yt-titulo">Licae cus imus id modia quos ad et ut officia commolo</p>
+                                  <p class="yt-text">Orposandiam, vo llaquoditas el maio ilibus Licae cus imus id modia quos ad et ut</p>
+                              </div>
+
+                          </div>
+
+                          <div class="clearfix">Orposandiam, sin pro es et laboreiusani vollam, el maio ilibus (...)</div>
+
                       </div>
-                      <div class="col-yout" style="margin-top: 100px">CANAL YOUTUBE</div>
+                      <div class="col-yout">CANAL YOUTUBE</div>
                       <div class="canal-area">
-                        <div class="canal1">
-                          <iframe width="100%" height="100%"
-                            src="https://www.youtube.com/embed/_FrOQC-zEog" frameborder="0"
-                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen> </iframe>
-                        </div>
-                        <div class="canal2">
-                          <iframe width="100%" height="100%"
-                            src="https://www.youtube.com/embed/_FrOQC-zEog" frameborder="0"
-                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen> </iframe>
-                        </div>
-                        <div class="canal3">
-                          <iframe width="100%" height="100%"
-                            src="https://www.youtube.com/embed/_FrOQC-zEog" frameborder="0"
-                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen> </iframe>
-                        </div>
-                        <div class="canal-area">
-                          <div class="canal1">
-                            <p class="yt-titulo2">Licae cus imus id modia quos ad et ut
-                              officia commolo</p>
-                            <p class="yt-text2">Orposandiam, vo llaquoditas el maio ilibus
-                              Licae cus imus id modia quos ad et ut</p>
+
+                          <div class="col-canal">
+                              <div class="canal">
+                                  <iframe width="100%" height="100%" src="https://www.youtube.com/embed/_FrOQC-zEog" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>
+                              </div>
+                              <div class="canal-texto">
+                                  <p class="yt-titulo2">Licae cus imus id modia quos ad et ut officia commolo</p>
+                                  <p class="yt-text2">Orposandiam, vo llaquoditas el maio ilibus Licae cus imus id modia quos ad et ut</p>
+                              </div>
                           </div>
-                          <div class="canal2">
-                            <p class="yt-titulo2">Licae cus imus id modia quos ad et ut
-                              officia commolo</p>
-                            <p class="yt-text2">Orposandiam, vo llaquoditas el maio ilibus
-                              Licae cus imus id modia quos ad et ut</p>
+
+                          <div class="col-canal">
+                              <div class="canal">
+                                  <iframe width="100%" height="100%" src="https://www.youtube.com/embed/_FrOQC-zEog" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>
+                              </div>
+                              <div class="canal-texto">
+                                  <p class="yt-titulo2">Licae cus imus id modia quos ad et ut officia commolo</p>
+                                  <p class="yt-text2">Orposandiam, vo llaquoditas el maio ilibus Licae cus imus id modia quos ad et ut</p>
+                              </div>
                           </div>
-                          <div class="canal3">
-                            <p class="yt-titulo2">Licae cus imus id modia quos ad et ut
-                              officia commolo</p>
-                            <p class="yt-text2">Orposandiam, vo llaquoditas el maio ilibus
-                              Licae cus imus id modia quos ad et ut</p>
+
+                          <div class="col-canal">
+                              <div class="canal">
+                                  <iframe width="100%" height="100%" src="https://www.youtube.com/embed/_FrOQC-zEog" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>
+                              </div>
+                              <div class="canal-texto">
+                                  <p class="yt-titulo2">Licae cus imus id modia quos ad et ut officia commolo</p>
+                                  <p class="yt-text2">Orposandiam, vo llaquoditas el maio ilibus Licae cus imus id modia quos ad et ut</p>
+                              </div>
                           </div>
-                        </div>
+
                       </div>
-                    </div>
-                  </section>'           
+                  </div>
+                  <div class="clearfix"></div>
+              </section>'           
     -
       name: news_as_home
       position: 6
@@ -346,17 +339,25 @@ home:
       publish: true
       alias: Menu Azul       
       settings: '{:html_class=>"menu_corpo", 
-      :body=>{"pt-BR"=>"<div>
-                          <div> JORNALISMO</div>
-                          <div>CERIMONIAL</div>
-                          <div> COLAÇÃO DE GRAU </div>
-                          <div>PUBLICIDADE</div>       
-                          <div>Licae cus imus id modia quos ad et ut officia commolo 5</div>
-                          <div>Licae cus imus id modia quos ad et ut officia commolo 6</div>
-                          <div>Licae cus imus id modia quos ad et ut officia commolo 7</div>
-                          <div>Licae cus imus id modia quos ad et ut officia commolo 8</div>
-                        <div></div>  
-                        </div>   "}}' 
+                  :body=>{"pt-BR"=>"<div class=\"grid-group\">
+                    <div class=\"corpo-group\">
+                      <div class=\"title\"> JORNALISMO</div>
+                      <p>Licae cus imus id modia quos ad et ut officia commolo 5</p>
+                    </div>
+                    <div class=\"corpo-group\">
+                      <div class=\"title\">CERIMONIAL</div>
+                      <p>Licae cus imus id modia quos ad et ut officia commolo 6</p>
+                    </div>
+                    <div class=\"corpo-group\">
+                      <div class=\"title\"> COLAÇÃO DE GRAU </div>
+                      <p>Licae cus imus id modia quos ad et ut officia commolo 7</p>
+                    </div>
+                    <div class=\"corpo-group\">
+                      <div class=\"title\">PUBLICIDADE</div>                            
+                      <p>Licae cus imus id modia quos ad et ut officia commolo 8</p>
+                    </div>
+              <div class=\"clearfix\"></div>  
+            </div></div>"}}'
           
 bottom:
   -
