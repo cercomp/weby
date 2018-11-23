@@ -592,7 +592,7 @@ h3 {
 
 .youtube-area {  
   background: #E9BE5E; 
-  padding: 20px 0;  
+  padding: 20px 0 40px 0;  
 }
 
 .youtube-container {      
@@ -617,12 +617,14 @@ h3 {
 
 .full-area{
   width: 100%;  
-  height: 100%;
+  height: 425px;
 }
 
 .header-area, .right-area, .footer-area{
   width: 40%;
   float: left;
+  height: 135px;
+  padding-bottom: 10px;
 }
 
 .lateral1, .lateral2, .lateral3{
@@ -671,12 +673,17 @@ h3 {
 footer{
   background-color: #B8C96C;
   margin-top: 120px;
+  padding: 80px;
 }
 
 .footer-menu{
   margin-top: 120px;
   padding: 60px 0 18px;
   background-color: #b8c96c;  
+}
+
+.google-map{
+  width: 100%;
 }
 
 /* ----------------------------------------------------------------------------------------
@@ -767,6 +774,14 @@ footer{
   .grid-corpo .corpo-group{ 
     width: 48%;
     margin-bottom: 20px;
+  }
+
+  .container-left{    
+    width: 100%;
+  }
+
+  .container-right{    
+    width: 100%;
   }
 
 }
