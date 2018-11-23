@@ -387,8 +387,7 @@ bottom:
         name: text
         position: 3
         publish: true
-        alias: Todos os direitos
-    
+        alias: Todos os direitos    
 
       -
         settings: '{:html_class=>"suaclasse", :body=>{"pt-BR"=>"~inserir seu html aqui~"}}'
@@ -403,3 +402,11 @@ bottom:
         position: 5
         publish: true
         alias: Todos os direitos
+
+      -
+        settings: '{:html_class=>"suaclasse", :body=>{"pt-BR"=>"<iframe src=\"https://maps.google.com/maps?width=700&amp;height=440&amp;hl=en&amp;q=%20Ch%C3%A1caras%20Calif%C3%B3rnia%2C%20Goi%C3%A2nia%20-%20GO%2C%2074045-155+(Mapa)&amp;ie=UTF8&amp;t=&amp;z=10&amp;iwloc=B&amp;output=embed\" ></iframe>"}}'
+        name: text
+        position: 6
+        publish: true
+        alias: Mapa
+
