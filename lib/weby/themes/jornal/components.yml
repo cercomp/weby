@@ -367,144 +367,39 @@ bottom:
     settings: '{:html_class=>"footer"}'
     children:
       -
+        settings: '{:default_image=>"Marca_Vertical.png", :size=>"", :width=>"100", :height=>"",
+          :url=>"http://www.ufg.br/n/64596-a-marca-da-ufg", :target_id=>"", :target_type=>"", 
+          :new_tab=>"0", :html_class=>"logo-branca"}'
         name: image
         position: 1
         publish: true
-        alias: Logo
-        settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"footer-logo", :default_image=>"UFG_vertical.png"}'
+        alias: Logo Branca
+
       -
+        settings: '{:html_class=>"suaclasse", :body=>{"pt-BR"=>" SECOM RÁDIO TV UFG ~inserir seu html aqui~ "}}'
         name: text
         position: 2
         publish: true
-        alias: SECOM
-        settings: '{:html_class=>"teste", :body=>{"pt-BR"=>"<p class=\"alterarclasse\">SECOM</p>"}}'
+        alias: Menu Footer
+
       -
+        settings: '{:html_class=>"suaclasse", :body=>{"pt-BR"=>"® Todos os direitos reservador. Livre distribuição com créditos"}}'
         name: text
         position: 3
         publish: true
-        alias: RÁDIO
-        settings: '{:html_class=>"teste", :body=>{"pt-BR"=>"<p class=\"alterarclasse\">RÁDIO</p>"}}'
+        alias: Todos os direitos
+    
+
       -
+        settings: '{:html_class=>"suaclasse", :body=>{"pt-BR"=>"~inserir seu html aqui~"}}'
         name: text
         position: 4
         publish: true
-        alias: TV UFG
-        settings: '{:html_class=>"teste", :body=>{"pt-BR"=>"<p class=\"alterarclasse\">TV UFG</p>"}}'
+        alias: Menu Secundario
+     
       -
+        settings: '{:html_class=>"suaclasse", :body=>{"pt-BR"=>"® Todos os direitos reservador. Livre distribuição com créditos"}}'
         name: text
         position: 5
         publish: true
-        alias: OUVIDORIA
-        settings: '{:html_class=>"teste", :body=>{"pt-BR"=>"<p class=\"alterarclasse\">OUVIDORIA</p>"}}'
-
-      -
-        name: text
-        position: 6
-        publish: true
-        alias: OUVIDORIA
-        settings: '{:html_class=>"teste", :body=>{"pt-BR"=>"<p class=\"alterarclasse\">® Todos os direitos reservador. Livre distribuição com créditos</p>"}}'
-      
-      -
-        name: text
-        position: 7
-        publish: true
-        alias: SECOM SECRETARIA DE COMUNICAÇÃO
-        settings: '{:html_class=>"teste", :body=>{"pt-BR"=>"<p class=\"alterarclasse\">SECOM </p> <p class=\"alterarclasse\"> SECRETARIA DE COMUNICAÇÃO</p>"}}'
-      
-      -
-        name: text
-        position: 8
-        publish: true
-        alias: Saúde
-        settings: '{:html_class=>"teste", :body=>{"pt-BR"=>"<p class=\"alterarclasse\">Saúde</p> <p class=\"alterarclasse\"> Saúde </p>"}}'
-      -
-        name: text
-        position: 9
-        publish: true
-        alias: Saúde
-        settings: '{:html_class=>"teste", :body=>{"pt-BR"=>"<p class=\"alterarclasse\">Ciências Naturais</p>"}}'
-    
-      -
-        name: text
-        position: 10
-        publish: true
-        alias: Tecnologia
-        settings: '{:html_class=>"teste", :body=>{"pt-BR"=>"<p class=\"alterarclasse\">Tecnologia</p>"}}'
-      
-      -
-        name: text
-        position: 11
-        publish: true
-        alias: Humanidades
-        settings: '{:html_class=>"teste", :body=>{"pt-BR"=>"<p class=\"alterarclasse\">Humanidades</p>"}}'
-      
-      -
-        name: text
-        position: 12
-        publish: true
-        alias: Arte e Cultura
-        settings: '{:html_class=>"teste", :body=>{"pt-BR"=>"<p class=\"alterarclasse\">Arte e Cultura</p>"}}'
-    
-      -
-        name: text
-        position: 13
-        publish: true
-        alias: Institucional
-        settings: '{:html_class=>"teste", :body=>{"pt-BR"=>"<p class=\"alterarclasse\">Institucional</p>"}}'
-     
-      -
-        name: text
-        position: 14
-        publish: true
-        alias: Institucional
-        settings: '{:html_class=>"teste", :body=>{"pt-BR"=>"<p class=\"alterarclasse\">RÁDIO</p>"}}'
-    
-      -
-        name: text
-        position: 15
-        publish: true
-        alias: Institucional
-        settings: '{:html_class=>"teste", :body=>{"pt-BR"=>"<p class=\"alterarclasse\">TV UFG</p>"}}'
-    
-      -
-        name: text
-        position: 16
-        publish: true
-        alias: Institucional
-        settings: '{:html_class=>"teste", :body=>{"pt-BR"=>"<p class=\"alterarclasse\">Expediente</p>"}}'
-      
-      -
-        name: text
-        position: 17
-        publish: true
-        alias: Institucional
-        settings: '{:html_class=>"teste", :body=>{"pt-BR"=>"<p class=\"alterarclasse\">Edições Impressas</p>"}}'
-    
-      -
-        name: text
-        position: 18
-        publish: true
-        alias: Índice de Notícias
-        settings: '{:html_class=>"teste", :body=>{"pt-BR"=>"<p class=\"alterarclasse\">Índice de Notícias</p>"}}'
-      
-      -
-        name: text
-        position: 19
-        publish: true
-        alias: Clipping
-        settings: '{:html_class=>"teste", :body=>{"pt-BR"=>"<p class=\"alterarclasse\">Clipping</p>"}}'
-
-      -
-        name: text
-        position: 20
-        publish: true
-        alias: Contatos
-        settings: '{:html_class=>"teste", :body=>{"pt-BR"=>"<p class=\"alterarclasse\">Contatos</p>"}}'
-      
-      -
-        name: text
-        position: 21
-        publish: true
-        alias: Fale Conosco
-        settings: '{:html_class=>"teste", :body=>{"pt-BR"=>"<p class=\"alterarclasse\">Fale Conosco</p>"}}'
-        
+        alias: Todos os direitos
