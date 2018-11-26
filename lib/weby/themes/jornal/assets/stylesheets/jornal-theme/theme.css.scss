@@ -90,7 +90,11 @@ header .container_jornal{
   }
 }
 
-.ufglogo strong {
+.ufglogo a{
+  text-decoration: none;
+}
+
+.ufglogo b {
   font-weight: bolder;    
 }
 
@@ -194,7 +198,7 @@ header .container_jornal{
 
 .menu_component menu li {
   display: inline-block;
-  padding: 10px 20px;
+  padding: 10px 20px 10px 0px;
   float: none;
 }
 
@@ -255,6 +259,7 @@ header .container_jornal{
   float: left; 
   width: 40%;
   margin-left: 30px;
+  margin-bottom: 20px;
 }
 
 .box-right {
@@ -300,8 +305,7 @@ header .container_jornal{
   word-wrap:break-word;  
 
   li {
-    height: auto !important;
-    min-height: 500px !important;
+    height: auto !important;    
   }
 
   a {
@@ -311,25 +315,24 @@ header .container_jornal{
   h2{  
     color: #403f3f !important;    
     width: 70%;
-    font-size: 13px;
-    font-weight: bold;   
-    line-height: 1.33;
-    letter-spacing: normal;
+    font-size: 16px;
+    font-weight: bold;  
+    padding: 0;
   }
  
   img {
-    width: 80% !important;
-    height: 150px;
+    width: 100% !important;
+    height: auto;
   }
 
   summary {
-      max-height: 96px;
+      height: 44px;
       overflow: hidden;
-      width: 70%;
+      width: 100%;
       p {    
         font-family: Lato;       
         color: #7D8488 !important;
-        font-size: 11px;
+        font-size: 12px;
         font-weight: 300;
         font-style: normal;
         font-stretch: normal;
@@ -337,11 +340,36 @@ header .container_jornal{
         letter-spacing: normal;
       }
   }
+
 }
 
 .news_as_home_component{
   clear: both;
 }
+
+.news-show{
+  padding: 20px 0;
+}
+
+.news-show img{
+  width: 100% !important;
+  max-width: 320px;
+}
+
+.news-show summary{
+  font-size: 100%;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.news-show .body{
+  font-size: 85%;
+  font-weight: normal;
+  color: #7D8488;
+  line-height: 18px;
+}
+
+
 
 /* ----------------------------------------------------------------------------------------
 *             Eventos
@@ -506,8 +534,9 @@ h3 {
 
 .nome {
  font-size: 14px;
- color: #323232;
+ color: #7D8488;
  left: 10px;
+ margin-bottom: 5px;
 }
 
 .grid-container-com {
@@ -534,10 +563,12 @@ h3 {
 .first {
   font-size: 18px;
   width:80%;
+  margin: 5px 0;
 }
 .second {
   width:80%;
-  font-size: 12px;
+  font-size: 14px;
+  color: #7D8488;
 }
 
 
@@ -602,6 +633,15 @@ h3 {
 }
 
 .frames-area, .canal-area{
+  width: 100%;
+}
+
+.radio-payer, .radio-programa{
+  
+}
+
+.radio-payer video{
+  height: 80px;
   width: 100%;
 }
 
@@ -673,7 +713,7 @@ h3 {
 footer{
   background-color: #B8C96C;
   margin-top: 120px;
-  padding: 80px;
+  padding: 60px;
 }
 
 .footer-menu{
@@ -682,9 +722,97 @@ footer{
   background-color: #b8c96c;  
 }
 
-.google-map{
+.google-map iframe{
   width: 100%;
+  height: 400px;
+  padding: 20px 0;
 }
+
+.menu-principal, .menu-secundario{
+  width:25%;  
+  float: left;
+  text-align: right;
+}
+
+.menu-principal a, .menu-secundario a{
+  font-size: 14px;
+  color: #000;
+  text-decoration: none;
+}
+
+.menu-principal a:hover, .menu-secundario a:hover{  
+  color: #fff;
+}
+
+.copyright{
+  width: 50%;
+  height: 30px;
+  float: right;
+  font-size: 12px;
+  text-align: right;
+  font-weight: lighter;
+}
+
+.ajuste-footer{
+    width: 20%;
+    min-width: 10px;
+    float: left;
+    height: 115px;
+}
+
+.logo-cercomp{
+  width: 15%;
+  float: left;
+  text-align: right;
+}
+
+.logo-ufg{
+  width: 15%;
+  float: right;
+  text-align: right;
+}
+
+.logo-cercomp img, .logo-ufg img{
+  width: 100%;  
+}
+
+.logo-ufg img{  
+  max-width:200px;
+}
+
+.logo-cercomp{  
+  height: 115px;
+  line-height: 140px; 
+}
+
+.logo-cercomp img{  
+  max-width:100px;  
+}
+
+.menu-footer > a{ 
+    color: black;
+    text-decoration: none; 
+    border: 1px solid white;
+    width: 10%;
+    height: 15px;
+    border-radius: 50px;
+    font-weight: lighter; 
+    font-size: 16px;
+    padding: 10px;
+    text-align: center;      
+    float: left; 
+    margin-right: 10px;
+    cursor: pointer;
+    &:last-child {
+      margin-right: 0;
+    }         
+}
+
+.menu-footer > a:hover{ 
+  background: #fff; 
+  color: #000;            
+}
+
 
 /* ----------------------------------------------------------------------------------------
 *             Conteudo
@@ -694,11 +822,146 @@ footer{
   clear: both;
 }
 
-.cabecalho, .colunistas, .youtube-area > div {  
+.cabecalho, .colunistas, .youtube-area > div, .news-show {  
   margin-right: auto;
   margin-left: auto;
   width: 100%;
   max-width: $content-max-width;
+}
+
+/* ----------------------------------------------------------------------------------------
+*             Modal
+* -------------------------------------------------------------------------------------- */
+
+.close {
+  float: right;
+  font-size: 21px;
+  font-weight: bold;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  filter: alpha(opacity=20);
+  opacity: .2;
+}
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+  filter: alpha(opacity=50);
+  opacity: .5;
+}
+button.close {
+  -webkit-appearance: none;
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+}
+.modal-open {
+  overflow: hidden;
+}
+.modal {
+  position: fixed;
+  top: 100px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1050;
+  display: none;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  outline: 0;
+}
+.modal.fade .modal-dialog {
+  -webkit-transition: -webkit-transform .3s ease-out;
+       -o-transition:      -o-transform .3s ease-out;
+          transition:         transform .3s ease-out;
+  -webkit-transform: translate(0, -25%);
+      -ms-transform: translate(0, -25%);
+       -o-transform: translate(0, -25%);
+          transform: translate(0, -25%);
+}
+.modal.in .modal-dialog {
+  -webkit-transform: translate(0, 0);
+      -ms-transform: translate(0, 0);
+       -o-transform: translate(0, 0);
+          transform: translate(0, 0);
+}
+.modal-open .modal {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.modal-dialog {
+  position: relative;
+  width: auto;
+  margin: 10px;
+}
+.modal-content {
+  position: relative;
+  background-color: #fff;
+  -webkit-background-clip: padding-box;
+          background-clip: padding-box;
+  border: 1px solid #999;
+  border: 1px solid rgba(0, 0, 0, .2);
+  border-radius: 6px;
+  outline: 0;
+  -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+          box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+}
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: #000;
+}
+.modal-backdrop.fade {
+  filter: alpha(opacity=0);
+  opacity: 0;
+}
+.modal-backdrop.in {
+  filter: alpha(opacity=50);
+  opacity: .5;
+}
+.modal-header {
+  padding: 15px;
+  border-bottom: 1px solid #e5e5e5;
+}
+.modal-header .close {
+  margin-top: -2px;
+}
+.modal-title {
+  margin: 0;
+  line-height: 1.42857143;
+}
+.modal-body {
+  position: relative;
+  padding: 15px;
+}
+.modal-footer {
+  padding: 15px;
+  text-align: right;
+  border-top: 1px solid #e5e5e5;
+}
+.modal-footer .btn + .btn {
+  margin-bottom: 0;
+  margin-left: 5px;
+}
+.modal-footer .btn-group .btn + .btn {
+  margin-left: -1px;
+}
+.modal-footer .btn-block + .btn-block {
+  margin-left: 0;
+}
+.modal-scrollbar-measure {
+  position: absolute;
+  top: -9999px;
+  width: 50px;
+  height: 50px;
+  overflow: scroll;
 }
 
 

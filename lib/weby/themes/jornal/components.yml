@@ -24,7 +24,7 @@ top:
       children:
         -
           name: text          
-          settings: '{:html_class=>"ufglogo", :body=>{"pt-BR"=>"<h1>Jornal <b>UFG</b></h1>"}}'
+          settings: '{:html_class=>"ufglogo", :body=>{"pt-BR"=>"<a href=\"/\" target=\"_self\"><h1>Jornal <b>UFG</b></h1></a>"}}'
           position: 1
           publish: true
           alias: Logo UFG            
@@ -161,6 +161,19 @@ home:
         text:   '<section youtube class="youtube-area">
                   <div class="youtube-container">
                       <div class="col-yout">RÁDIO</div>
+                      <div class="radio-payer container-left">
+                        <video controls="" autoplay="" name="media">
+                          <source src="http://200.137.217.155:8010/radiouniversitaria" type="audio/mpeg">
+                        </video>
+                        <p class="yt-titulo">Licae cus imus id modia quos ad et ut officia commolo</p>
+                        <p class="yt-text">Orposandiam, vo llaquoditas el maio ilibus Licae cus imus id modia quos ad et ut</p>
+                      </div>
+                      <div class="radio-programa container-right">
+                        <div class="hour">20h</div>
+                        <p class="yt-titulo">Licae cus imus id modia quos ad et ut officia commolo</p>
+                        <p class="yt-text">Orposandiam, vo llaquoditas el maio ilibus Licae cus imus id modia quos ad et ut</p>
+                      </div>
+                      <div class="clearfix"></div>
                       <div class="col-yout">TV UFG</div>
                       <div class="frames-area">
 
@@ -262,14 +275,17 @@ home:
                   <div class="item2">
                     <img src="/assets/col_02.png">
                     <p>Nome do Autor</p>
+                    <h3>Licae cus imus id modia quos ad et ut officia commolo</h3>
                   </div>
                   <div class="item3">
                     <img src="/assets/col_03.png">
                     <p>Nome do Autor</p>
+                    <h3>Licae cus imus id modia quos ad et ut officia commolo</h3>
                   </div>  
                   <div class="item4">
                     <img src="/assets/col_04.png">
                     <p>Nome do Autor</p>
+                    <h3>Licae cus imus id modia quos ad et ut officia commolo</h3>
                   </div>
                 </div>
                 <div class="col"> ARTIGOS </div> 
@@ -368,46 +384,82 @@ bottom:
     settings: '{:html_class=>"footer"}'
     children:
       -
-        settings: '{:default_image=>"Marca_Vertical.png", :size=>"", :width=>"100", :height=>"",
-          :url=>"http://www.ufg.br/n/64596-a-marca-da-ufg", :target_id=>"", :target_type=>"", 
-          :new_tab=>"0", :html_class=>"logo-branca"}'
-        name: image
+        settings: '{:html_class=>"menu-footer", :body=>{"pt-BR"=>"<a href=\"#\">SECOM</a><a href=\"#\">RÁDIO</a><a href=\"#\">TV</a><a href=\"#\">UFG</a>"}}'
+        name: text
         position: 1
         publish: true
-        alias: Logo Branca
+        alias: Menu Footer        
 
       -
-        settings: '{:html_class=>"suaclasse", :body=>{"pt-BR"=>" SECOM RÁDIO TV UFG ~inserir seu html aqui~ "}}'
+        settings: '{:html_class=>"google-map", :body=>{"pt-BR"=>"<iframe src=\"https://maps.google.com/maps?width=700&amp;height=440&amp;hl=en&amp;q=%20Ch%C3%A1caras%20Calif%C3%B3rnia%2C%20Goi%C3%A2nia%20-%20GO%2C%2074045-155+(Mapa)&amp;ie=UTF8&amp;t=&amp;z=10&amp;iwloc=B&amp;output=embed\" ></iframe>"}}'
         name: text
         position: 2
         publish: true
-        alias: Menu Footer
+        alias: Mapa
 
       -
-        settings: '{:html_class=>"suaclasse", :body=>{"pt-BR"=>"® Todos os direitos reservador. Livre distribuição com créditos"}}'
+        settings: '{:html_class=>"menu-principal", :body=>{"pt-BR"=>"<div><ul>
+                        <li><a href=\"#\">Saúde</a></li>
+                        <li><a href=\"#\">Ciências Naturais</a></li>
+                        <li><a href=\"#\">Tecnologia</a></li>
+                        <li><a href=\"#\">Humanidades</a></li>
+                        <li><a href=\"#\">Arte e Cultura</a></li>
+                        <li><a href=\"#\">Institucional</a></li>
+                        </ul></div>"}}'
         name: text
         position: 3
         publish: true
         alias: Todos os direitos    
 
       -
-        settings: '{:html_class=>"suaclasse", :body=>{"pt-BR"=>"~inserir seu html aqui~"}}'
+        settings: '{:html_class=>"menu-secundario", :body=>{"pt-BR"=>"<div><ul>
+                        <li><a href=\"#\">Expediente</a></li>
+                        <li><a href=\"#\">Edições Impressas</a></li>
+                        <li><a href=\"#\">Índice de Notícias</a></li>
+                        <li><a href=\"#\">Clipping</a></li>
+                        <li><a href=\"#\">Contatos</a></li>
+                        <li><a href=\"#\">Fale Conosco</a></li>
+                        </ul></div>"}}'
         name: text
         position: 4
         publish: true
         alias: Menu Secundario
      
       -
-        settings: '{:html_class=>"suaclasse", :body=>{"pt-BR"=>"® Todos os direitos reservador. Livre distribuição com créditos"}}'
+        settings: '{:html_class=>"copyright", :body=>{"pt-BR"=>"® Todos os direitos reservador. Livre distribuição com créditos"}}'
         name: text
         position: 5
         publish: true
         alias: Todos os direitos
 
-      -
-        settings: '{:html_class=>"google-map", :body=>{"pt-BR"=>"<iframe src=\"https://maps.google.com/maps?width=700&amp;height=440&amp;hl=en&amp;q=%20Ch%C3%A1caras%20Calif%C3%B3rnia%2C%20Goi%C3%A2nia%20-%20GO%2C%2074045-155+(Mapa)&amp;ie=UTF8&amp;t=&amp;z=10&amp;iwloc=B&amp;output=embed\" ></iframe>"}}'
+      -        
+        settings: '{:html_class=>"ajuste-footer", :body=>{"pt-BR"=>""}}'
         name: text
         position: 6
         publish: true
-        alias: Mapa
+        alias: Clearfix
 
+      -        
+        settings: '{:default_image=>"SECOM_marca.png", :size=>"", :width=>"", :height=>"",
+          :url=>"https://secom.ufg.br/", :target_id=>"", :target_type=>"", 
+          :new_tab=>"0", :html_class=>"logo-cercomp"}'
+        name: image
+        position: 7
+        publish: true
+        alias: Logo Cercomp
+
+      -        
+        settings: '{:default_image=>"UFG_marca.png", :size=>"", :width=>"", :height=>"",
+          :url=>"http://www.ufg.br/n/64596-a-marca-da-ufg", :target_id=>"", :target_type=>"", 
+          :new_tab=>"0", :html_class=>"logo-ufg"}'
+        name: image
+        position: 8
+        publish: true
+        alias: Logo UFG
+
+      -        
+        settings: '{:html_class=>"clearfix", :body=>{"pt-BR"=>""}}'
+        name: text
+        position: 9
+        publish: true
+        alias: Clearfix
