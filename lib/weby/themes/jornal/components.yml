@@ -124,11 +124,40 @@ home:
 
     -
       name: text          
-      settings: '{:html_class=>"box-left", :body=>{"pt-BR"=>"<p class=\"active\">menu flutuante</p><p></p><p></p><p></p><p></p><p></p>"}}'
+      settings: '{:html_class=>"box-left", :body=>{"pt-BR"=>"<div class=\"dock-container\">
+              <div class=\"side-dock\">
+                  <div class=\"dock-btn\">
+                      <a class=\"btn anchor-news active\" href=\"#news\" data-target=\"front_news_component\">
+                          <span>Notícias</span>
+                      </a>
+                  </div>
+                  <div class=\"dock-btn\">
+                      <a class=\"btn anchor-newspaper\" href=\"#multimidia\" data-target=\"multimidias\">
+                          <span>Multimídias</span>
+                      </a>
+                  </div>
+                  <div class=\"dock-btn\">
+                      <a class=\"btn anchor-events\" href=\"#opnion\" data-target=\"opnion\">                          
+                          <span>opnião</span>
+                      </a>
+                  </div>
+                  <div class=\"dock-btn\">
+                      <a class=\"btn anchor-network\" href=\"#xxx\" data-target=\"xxx\">                          
+                          <span>xxx</span>
+                      </a>
+                  </div>
+                  <div class=\"dock-btn\">
+                      <a class=\"btn anchor-services\" href=\"#xxx\" data-target=\"xxx\">                          
+                          <span>xxx</span>
+                      </a>
+                  </div>
+              </div>
+        </div>
+      "}}'
       position: 2
       publish: true
-      alias: Logo UFG 
-
+      alias: Menu Flutuante 
+              
     - 
       name: front_news
       settings: '{:quant=>"6", :source=>"selected", :site_id=>"", 
@@ -149,7 +178,6 @@ home:
       :avatar_height=>"", :read_more=>"0", :label=>{"pt-BR"=>"Eventos"}, 
       :link_to_all=>{"pt-BR"=>""}, :date_format=>"short"}'  
 
-
     -
       name: news_as_home
       position: 5
@@ -158,7 +186,7 @@ home:
       settings: '{:page_id=>"%{page_id}", :show_title=>"0", :show_info=>"0", :show_controls=>"0"}'
       page:
         title: 'Menu Youtube'
-        text:   '<section youtube class="youtube-area">
+        text:   '<section youtube class="youtube-area" id="multimidia">
                   <div class="youtube-container">
                       <div class="col-yout">RÁDIO</div>
                       <div class="radio-payer container-left">
@@ -181,15 +209,12 @@ home:
                       <div class="clearfix"></div>
                       <div class="col-yout">TV UFG</div>
                       <div class="frames-area">
-
                           <div class="container-left">
                               <div class="full-area">
                                   <iframe width="100%" height="100%" src="https://www.youtube.com/embed/0sEHDkJQMWU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>
                               </div>
                           </div>
-
                           <div class="container-right">
-
                               <div class="header-area">
                                   <iframe width="100%" height="100%" src="https://www.youtube.com/embed/hBzktp_yLbk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
                                   </iframe>
@@ -198,9 +223,7 @@ home:
                                   <p class="yt-titulo">Licae cus imus id modia quos ad et ut officia commolo</p>
                                   <p class="yt-text">Orposandiam, vo llaquoditas el maio ilibus Licae cus imus id modia quos ad et ut</p>
                               </div>
-
                               <div class="clearfix"></div>
-
                               <div class="right-area">
                                   <iframe width="100%" height="100%" src="https://www.youtube.com/embed/fpbbP-Mo2O8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>
                               </div>
@@ -208,9 +231,7 @@ home:
                                   <p class="yt-titulo">Licae cus imus id modia quos ad et ut officia commolo</p>
                                   <p class="yt-text">Orposandiam, vo llaquoditas el maio ilibus Licae cus imus id modia quos ad et ut</p>
                               </div>
-
                               <div class="clearfix"></div>
-
                               <div class="footer-area">
                                   <iframe width="100%" height="100%" src="https://www.youtube.com/embed/q86coTBn7vM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>
                               </div>
@@ -218,15 +239,11 @@ home:
                                   <p class="yt-titulo">Licae cus imus id modia quos ad et ut officia commolo</p>
                                   <p class="yt-text">Orposandiam, vo llaquoditas el maio ilibus Licae cus imus id modia quos ad et ut</p>
                               </div>
-
                           </div>
-
                           <div class="clearfix">Orposandiam, sin pro es et laboreiusani vollam, el maio ilibus (...)</div>
-
                       </div>
                       <div class="col-yout">CANAL YOUTUBE</div>
                       <div class="canal-area">
-
                           <div class="col-canal">
                               <div class="canal">
                                   <iframe width="100%" height="100%" src="https://www.youtube.com/embed/2oeE-KiuH10" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>
@@ -236,7 +253,6 @@ home:
                                   <p class="yt-text2">Orposandiam, vo llaquoditas el maio ilibus Licae cus imus id modia quos ad et ut</p>
                               </div>
                           </div>
-
                           <div class="col-canal">
                               <div class="canal">
                                   <iframe width="100%" height="100%" src="https://www.youtube.com/embed/gRKDXgjkLvo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>
@@ -246,7 +262,6 @@ home:
                                   <p class="yt-text2">Orposandiam, vo llaquoditas el maio ilibus Licae cus imus id modia quos ad et ut</p>
                               </div>
                           </div>
-
                           <div class="col-canal">
                               <div class="canal">
                                   <iframe width="100%" height="100%" src="https://www.youtube.com/embed/BOimqDDjd5o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>
@@ -256,7 +271,6 @@ home:
                                   <p class="yt-text2">Orposandiam, vo llaquoditas el maio ilibus Licae cus imus id modia quos ad et ut</p>
                               </div>
                           </div>
-
                       </div>
                   </div>
                   <div class="clearfix"></div>
@@ -269,7 +283,7 @@ home:
       settings: '{:page_id=>"%{page_id}", :show_title=>"0", :show_info=>"0", :show_controls=>"0"}'
       page:
         title: 'Colunistas'
-        text: '<section colunistas class="colunistas">
+        text: '<section colunistas class="colunistas" id="opnion">
                 <div class="col"> COLUNISTAS </div> 
                 <div class="grid-container">
                   <div class="item1">
