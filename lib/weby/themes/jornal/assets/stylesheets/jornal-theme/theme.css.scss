@@ -285,78 +285,80 @@ header .container_jornal{
 *             Menu Flutuante
 * -------------------------------------------------------------------------------------- */
 
-.box-left {
-  float: left; 
-  width: 10%; 
-  height: 150px;
-  margin-left: 5%;
+.dock-container {
+  position: absolute;
 }
 
-.box-left p{
-    color: black;    
-    width: 6px;
-    height: 6px;
-    border-radius: 50px;
-    font-weight: lighter;
-    font-size: 16px;
-    padding: 8px;
-    text-align: center;
-    clear: both;
-    margin-top: 5px;
-    float:right;
+.side-dock {
+  width: auto;
+  max-width: 144px;
 }
 
-.box-left .active{
-    color: black;    
-    width: 120px;
-    height: 15px;
-    border-radius: 50px;
-    font-weight: lighter;
-    font-size: 16px;
-    padding: 10px;
-    text-align: center;
-    clear: both;
-    margin-top: 10px;
+.side-dock .btn {
+  padding: 16px 20px 17px 16px;
+  display: inline-flex;
+  align-items: flex-start;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
+  border-radius: 0 50px 50px 0;
+  color: #fff;
+  text-decoration: none;
 }
 
-.box-left p:nth-child(1){    
-    background: #dcdcdc;    
+.side-dock .btn > span {
+  width: 0;
+  padding-left: 18px;
+  transition: .2s;
+  overflow: hidden;
 }
 
-.box-left p:nth-child(2){    
-    background: #f0be5b;    
+.side-dock .btn.active > span {
+  width: 74px;
 }
 
-.box-left p:nth-child(3){    
-    background: #eff2dc;    
+.side-dock img {
+  vertical-align: bottom;
 }
 
-.box-left p:nth-child(4){    
-    background: #87bebf;    
+.side-dock .anchor-news {
+  background-color: #7d8589;
+  border-radius: 0 50px 50px 0;
 }
 
-.box-left p:nth-child(5){    
-    background: #bbc76b;    
+.side-dock .anchor-multimidia {
+  background-color: #f0be5b;
 }
+
+.side-dock .anchor-opnion {
+  background-color: #eff2dc;
+}
+
+
+.side-dock .xxx {
+  background-color: #87bebf;
+}
+
+.side-dock .xxx {
+  background-color: #bbc76b;
+}
+
 
 /* ----------------------------------------------------------------------------------------
 *             Front News
 * -------------------------------------------------------------------------------------- */
 
-
 .front_news_component {
   float: left; 
-  width: 40%;
-  margin-left: 30px;
+  width: 560px;
+  margin-left: 10.416%;  
   margin-top: 5px;
-  margin-bottom: 20px;
+  margin-bottom: 20px;  
 }
 
 .box-right {
   float: left;
-  width: 15%;
+  width: 400px;
   height: 200px;
-  margin-left: 5%;
+  margin-left: 10px;
   margin-top: 5px;
 }
 
@@ -386,22 +388,24 @@ header .container_jornal{
 }
 
 #news {  
-  height: auto !important;
-  -webkit-columns: 2;
-  -moz-columns: 2;
-  columns: 2;
-  -webkit-columns-fill: auto;
-  -moz-column-fill: auto;
-  column-fill: auto;
-  word-wrap:break-word;  
+  height: auto !important; 
+  display: inline-block;  
+  width: 100%;
 
   li {
-    height: auto !important;    
+    height: auto !important; 
+    width: 46%;   
+    float: left;
+    margin-right: 20px;
+    &:last-child {
+      margin-right: 0;
+    }
   }
 
   a {
     text-decoration: none;
-    color: #403f3f !important;
+    color: #403f3f;
+    width: 100%;
   }
   h2{  
     color: #403f3f !important;    
@@ -412,7 +416,7 @@ header .container_jornal{
   }
  
   img {
-    width: 100% !important;
+    width: 100% !important;    
     height: auto;
   }
 
@@ -1191,6 +1195,15 @@ button.close {
 
   .menu_component menu li {  
     padding: 10px 10px;  
+  }
+
+  .front_news_component {    
+    width: 60%;
+    margin-left: 0;    
+  }
+
+  .box-right {  
+    width: 40%;
   }
   
 }

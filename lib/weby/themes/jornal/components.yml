@@ -124,11 +124,40 @@ home:
 
     -
       name: text          
-      settings: '{:html_class=>"box-left", :body=>{"pt-BR"=>"<p class=\"active\">menu flutuante</p><p></p><p></p><p></p><p></p><p></p>"}}'
+      settings: '{:html_class=>"box-left", :body=>{"pt-BR"=>"<div class=\"dock-container\">
+              <div class=\"side-dock\">
+                  <div class=\"dock-btn\">
+                      <a class=\"btn anchor-news active\" href=\"#news\" data-target=\"front_news_component\">
+                          <span>Notícias</span>
+                      </a>
+                  </div>
+                  <div class=\"dock-btn\">
+                      <a class=\"btn anchor-newspaper\" href=\"#multimidia\" data-target=\"multimidias\">
+                          <span>Multimídias</span>
+                      </a>
+                  </div>
+                  <div class=\"dock-btn\">
+                      <a class=\"btn anchor-events\" href=\"#opnion\" data-target=\"opnion\">                          
+                          <span>opnião</span>
+                      </a>
+                  </div>
+                  <div class=\"dock-btn\">
+                      <a class=\"btn anchor-network\" href=\"#xxx\" data-target=\"xxx\">                          
+                          <span>xxx</span>
+                      </a>
+                  </div>
+                  <div class=\"dock-btn\">
+                      <a class=\"btn anchor-services\" href=\"#xxx\" data-target=\"xxx\">                          
+                          <span>xxx</span>
+                      </a>
+                  </div>
+              </div>
+        </div>
+      "}}'
       position: 2
       publish: true
       alias: Logo UFG 
-
+              
     - 
       name: front_news
       settings: '{:quant=>"6", :source=>"selected", :site_id=>"", 
@@ -149,7 +178,6 @@ home:
       :avatar_height=>"", :read_more=>"0", :label=>{"pt-BR"=>"Eventos"}, 
       :link_to_all=>{"pt-BR"=>""}, :date_format=>"short"}'  
 
-
     -
       name: news_as_home
       position: 5
@@ -158,7 +186,7 @@ home:
       settings: '{:page_id=>"%{page_id}", :show_title=>"0", :show_info=>"0", :show_controls=>"0"}'
       page:
         title: 'Menu Youtube'
-        text:   '<section youtube class="youtube-area">
+        text:   '<section youtube class="youtube-area" id="multimidia">
                   <div class="youtube-container">
                       <div class="col-yout">RÁDIO</div>
                       <div class="radio-payer container-left">
@@ -269,7 +297,7 @@ home:
       settings: '{:page_id=>"%{page_id}", :show_title=>"0", :show_info=>"0", :show_controls=>"0"}'
       page:
         title: 'Colunistas'
-        text: '<section colunistas class="colunistas">
+        text: '<section colunistas class="colunistas" id="opnion">
                 <div class="col"> COLUNISTAS </div> 
                 <div class="grid-container">
                   <div class="item1">
