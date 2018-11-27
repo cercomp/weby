@@ -124,7 +124,7 @@ home:
 
     -
       name: text          
-      settings: '{:html_class=>"box-left", :body=>{"pt-BR"=>"<p>menu flutuante</p>"}}'
+      settings: '{:html_class=>"box-left", :body=>{"pt-BR"=>"<p class=\"active\">menu flutuante</p><p></p><p></p><p></p><p></p><p></p>"}}'
       position: 2
       publish: true
       alias: Logo UFG 
@@ -169,7 +169,12 @@ home:
                         <p class="yt-text">Orposandiam, vo llaquoditas el maio ilibus Licae cus imus id modia quos ad et ut</p>
                       </div>
                       <div class="radio-programa container-right">
-                        <div class="hour">20h</div>
+                        <div class="hour"><span>20h</span></div>
+                        <p class="yt-titulo">Licae cus imus id modia quos ad et ut officia commolo</p>
+                        <p class="yt-text">Orposandiam, vo llaquoditas el maio ilibus Licae cus imus id modia quos ad et ut</p>
+                      </div>                      
+                      <div class="radio-programa container-right">
+                        <div class="hour"><span>20h 30</span></div>
                         <p class="yt-titulo">Licae cus imus id modia quos ad et ut officia commolo</p>
                         <p class="yt-text">Orposandiam, vo llaquoditas el maio ilibus Licae cus imus id modia quos ad et ut</p>
                       </div>

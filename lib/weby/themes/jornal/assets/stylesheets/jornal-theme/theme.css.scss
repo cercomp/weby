@@ -98,6 +98,7 @@ header .container_jornal{
   font-weight: bolder;    
 }
 
+
 /* ----------------------------------------------------------------------------------------
 *             Search Box
 * -------------------------------------------------------------------------------------- */
@@ -222,9 +223,20 @@ header .container_jornal{
 .photo_slider_component {
   width: 100% !important;
   height: auto !important; 
-  margin: 0 auto;     
+  margin: 0 auto 50px auto;     
   position: relative;
   border-radius: 0;
+}
+
+.photo_slider_title{
+  position: absolute;
+  top: 0;
+  left: 150px;
+  z-index: 999;
+  width: auto;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 15px;
+  color: #000;
 }
 
 .flexslider {
@@ -239,6 +251,40 @@ header .container_jornal{
     display: block;
 }
 
+.flex-direction-nav li a{
+    color: #000;
+    background-color: #fff;
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+    font-size: 45px;
+    font-weight: bold;
+    line-height: 40px;
+    text-decoration: none;
+}
+
+.flex-direction-nav li a:hover{
+    color: #000;    
+}
+
+.flex-control-nav li a{
+  background-image: none;
+  background-color: #dcdcdc;
+  border-radius: 50px;
+}
+
+.flex-control-nav li a.flex-active{
+  background-color: #B8C96C;
+}
+
+#list{
+  width: 100%;
+}
+
+/* ----------------------------------------------------------------------------------------
+*             Menu Flutuante
+* -------------------------------------------------------------------------------------- */
+
 .box-left {
   float: left; 
   width: 10%; 
@@ -246,8 +292,51 @@ header .container_jornal{
   margin-left: 5%;
 }
 
-#list{
-  width: 100%;
+.box-left p{
+    color: black;    
+    width: 6px;
+    height: 6px;
+    border-radius: 50px;
+    font-weight: lighter;
+    font-size: 16px;
+    padding: 8px;
+    text-align: center;
+    clear: both;
+    margin-top: 5px;
+    float:right;
+}
+
+.box-left .active{
+    color: black;    
+    width: 120px;
+    height: 15px;
+    border-radius: 50px;
+    font-weight: lighter;
+    font-size: 16px;
+    padding: 10px;
+    text-align: center;
+    clear: both;
+    margin-top: 10px;
+}
+
+.box-left p:nth-child(1){    
+    background: #dcdcdc;    
+}
+
+.box-left p:nth-child(2){    
+    background: #f0be5b;    
+}
+
+.box-left p:nth-child(3){    
+    background: #eff2dc;    
+}
+
+.box-left p:nth-child(4){    
+    background: #87bebf;    
+}
+
+.box-left p:nth-child(5){    
+    background: #bbc76b;    
 }
 
 /* ----------------------------------------------------------------------------------------
@@ -259,6 +348,7 @@ header .container_jornal{
   float: left; 
   width: 40%;
   margin-left: 30px;
+  margin-top: 5px;
   margin-bottom: 20px;
 }
 
@@ -267,6 +357,7 @@ header .container_jornal{
   width: 15%;
   height: 200px;
   margin-left: 5%;
+  margin-top: 5px;
 }
 
 .front_news_title {
@@ -482,7 +573,7 @@ header .container_jornal{
     background:white;
     width: 100px;
     height: 15px;
-    padding: 6px;
+    padding: 10px 6px 5px 6px;
 }
 
 h3 {
@@ -636,13 +727,38 @@ h3 {
   width: 100%;
 }
 
-.radio-payer, .radio-programa{
-  
+.radio-programa {
+  margin-bottom: 20px;
+}
+
+.radio-programa .hour{
+  border-radius: 50px;
+  background-color: #fff;
+  padding: 10px 10px;
+  width: 38px;
+  height: 38px;
+  line-height: 38px;
+  text-align: center;
+  vertical-align: baseline;
+  float: left;
+}
+
+.radio-programa .hour span {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}
+
+.radio-programa .yt-titulo, .radio-programa .yt-text{
+  padding-left: 70px;
 }
 
 .radio-payer video{
-  height: 80px;
-  width: 100%;
+  background: #fafafa;
+  height: 33px;
+  width: 95%;
+  padding: 10px;
+  border-radius: 25px; 
 }
 
 .container-left{
@@ -668,7 +784,7 @@ h3 {
 }
 
 .lateral1, .lateral2, .lateral3{
-  width: 55%;
+  width: 58%;
   float: right;
 }
 
@@ -999,6 +1115,17 @@ button.close {
     width: 100%;  
   }
 
+  .grid-corpo .corpo-group{ 
+    width: 100%;  
+    margin-right: 0%;  
+  }
+
+  .corpo-group p{       
+    padding-top: 5px;
+    padding-bottom: 15px;
+    text-align: left;  
+  }
+
 }
 
 @media (min-width: 480px) and (max-width: 768px) {
@@ -1023,11 +1150,7 @@ button.close {
   }
 
   .frames-area {  
-    display: grid;      
-    grid-template-areas: "full full" "header lateral1" "right lateral2" "footer lateral3";
-    grid-template-columns: 60% 40%;
-    grid-template-rows: auto auto;
-    grid-gap: 20px; 
+    
   }  
 
   .item1, .item2, .item3, .item4{
