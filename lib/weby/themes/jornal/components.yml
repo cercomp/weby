@@ -396,7 +396,7 @@ bottom:
         alias: Menu Footer        
 
       -
-        settings: '{:html_class=>"google-map", :body=>{"pt-BR"=>"<iframe  width=\"700\"  height=\"440\"  frameborder=\"0\" style=\"border:0\" src=\"https://www.google.com/maps/embed/v1/place?key=AIzaSyB7fZxiMsT1CdL146ShK2cEhHiWfgvBF-E&q=20Ch%C3%A1caras%20Calif%C3%B3rnia%2C%20Goi%C3%A2nia%20-%20GO%2C%2074045-155\" allowfullscreen></iframe>"}}'
+        settings: '{:html_class=>"google-map", :body=>{"pt-BR"=>""}}'
         name: text
         position: 2
         publish: true
