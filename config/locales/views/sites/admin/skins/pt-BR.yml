@@ -5,6 +5,13 @@ pt-BR:
         show:
           no_theme:           " Nenhum tema selecionado. "
           themes:             " Temas "
+          install_theme:      " Novo Tema "
+          active_theme:       " Tema Ativo "
+          default:            " Restaurar padrão "
+          confirm_default:    " Deseja realmente voltar o tema ao padrão e perder as modificações feitas? "
+          apply:              " Aplicar "
+          confirm_apply:      " Deseja realmente alterar o tema ativo? "
+          preview:            " Prévia "
           layout:             " Layout "
           components:         " Componentes "
           activate:           " Ativar "
@@ -21,13 +28,12 @@ pt-BR:
           new_style:        " Novo Estilo "
           my_styles:        " Meus Estilos "
           styles:           " Estilos "
-        themes:
-          apply:              " Aplicar "
-          current_theme:    " Tema ativo "
-          change_theme:     " Selecionar Tema "
-          preview:          " Prévia "
-          default: "Restaurar padrão"
-          confirm_default: "Deseja realmente voltar o tema ao padrão e perder as modificações feitas?"
+        new:
+          no_themes:          " Seu site já tem todos os temas instalados "
+          preview:            " Prévia "
+          install:            " Instalar "
+          install_apply:      " Instalar e Aplicar "
+          confirm_apply:      " Deseja realmente alterar o tema ativo? "
         destroy:
           successfully_reseted_theme: "Tema restaurado ao estado padrão"
         others:

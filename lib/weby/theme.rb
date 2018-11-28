@@ -1,5 +1,5 @@
 class Weby::Theme
-  attr_reader :name, :title, :components, :extensions, :variables, :layout, :template
+  attr_reader :name, :title, :components, :extensions, :variables, :layout, :template, :is_private
 
   def initialize(name)
     @name = name
@@ -8,6 +8,7 @@ class Weby::Theme
     @layout = YAML.load_file Rails.root.join("lib/weby/themes/#{@name}/layout.yml")
     @template = "lib/weby/themes/#{@name}/layouts/#{@name}.html.erb"
     @title = @layout['title'] || @name.titleize
+    @is_private = !!@layout['private']
   end
 
   def populate skin, opts

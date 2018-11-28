@@ -48,7 +48,7 @@ describe Admin::SitesController do
       before { post :create, :post => { name: "test_site", title: "Test Site",
                                         url: "http://testsite.lvh.me" } }
 
-      skip "will redirect to site_admin_components path" do
+      skip "will redirect to site_admin_skins path" do
         expect(response).to redirect_to(site_admin_skins_path(subdomain: first_site))
       end
     end

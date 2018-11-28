@@ -1,2 +1,2 @@
-<% breadcrumb :components_new %>
-<%= render :partial => 'form', :locals => { :url => site_admin_components_path, :method => :post } %>
+<% breadcrumb :components_new, @skin %>
+<%= render :partial => 'form', :locals => { :url => site_admin_skin_components_path(@skin), :method => :post } %>

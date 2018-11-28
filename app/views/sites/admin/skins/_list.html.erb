@@ -1,6 +1,6 @@
 <% unless styles.empty? %>
   <div class="styles">
-    <table class="table table-striped" id="style_list" data-url="<%= sort_site_admin_styles_path %>">
+    <table class="table table-striped" id="style_list" data-url="<%= sort_site_admin_skin_styles_path(@skin) %>">
       <thead>
         <th width="20%"> <%= t('.name') %> </th>
         <th width="30%"> <%= "#{t('.site')}/#{t('.followers')}" %> </th>
@@ -11,14 +11,14 @@
       <tbody>
         <% styles.each do |style| %>
           <tr id="sort_style_<%= style.id %>" class="<%= "deactivated" unless style.publish %>">
-            <td> <%= icon('retweet') if style.style %><%= link_to(style.name, site_admin_style_path(style)) %> </td>
+            <td> <%= icon('retweet') if style.style %><%= link_to(style.name, site_admin_skin_style_path(style.skin_id, style)) %> </td>
             <td> <%= style.style ?
                       link_to( style.owner.name, site_url(subdomain: style.owner), target: :_blank, title: style.owner.title) :
                       style.followers.each.map{|site| link_to site.name, site_url(subdomain: site), title: site.title, target: :_blank }.join(', ').html_safe
                  %>
             </td>
             <td> <%= l(style.original.updated_at, format: :short) %></td>
-            <td style="text-align: center;"><%= raw toggle_field(style, 'publish', 'toggle', controller: :styles) %></td>
+            <td style="text-align: center;"><%= raw toggle_field(style, 'publish', 'toggle', controller: :styles, skin_id: style.skin_id) %></td>
             <td class="text-right">
               <%= style_menu(style) %>
               <% with_permission(action: :sort, controller: Sites::Admin::StylesController) do %>

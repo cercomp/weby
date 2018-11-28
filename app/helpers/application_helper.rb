@@ -218,7 +218,7 @@ module ApplicationHelper
               params.merge(
                 controller: ctrl.controller_name,
                 action: 'show', id: obj.id
-              ),
+              ).merge(args.fetch(:params, {})),
               alt: t('show'),
               title: t('show'),
               class: 'action-link'
@@ -230,7 +230,7 @@ module ApplicationHelper
               params.merge(
                 controller: ctrl.controller_name,
                 action: 'edit', id: obj.id
-              ),
+              ).merge(args.fetch(:params, {})),
               alt: t('edit'),
               title: t('edit'),
               class: 'action-link') + ' '
@@ -242,7 +242,7 @@ module ApplicationHelper
                 controller: ctrl.controller_name,
                 action: 'destroy',
                 id: obj.id
-              ),
+              ).merge(args.fetch(:params, {})),
               data: { confirm: t('are_you_sure') },
               method: :delete,
               alt: t('destroy'),

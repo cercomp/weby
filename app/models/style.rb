@@ -22,13 +22,11 @@ class Style < ActiveRecord::Base
 
   # returns all styles that are not being followed
   # in follow_styles was used a hack to avoid null return
-  scope :not_followed_by, ->(site_id) {
-    site = Site.find(site_id)
-    skin = site.active_skin
+  scope :not_followed_by, ->(skin) {
     includes(skin: :site)
       .where('styles.id not in (:follow_styles) AND skins.theme = :theme AND skins.site_id <> :site_id AND styles.style_id is null',
-             follow_styles: site.active_skin.styles.where('style_id is not null').map(&:style_id) << 0,
-             site_id: site_id, theme: skin.theme).references(:site)
+             follow_styles: skin.styles.where('style_id is not null').map(&:style_id) << 0,
+             site_id: skin.site_id, theme: skin.theme).references(:site)
   }
 
   scope :own, -> { where('style_id is null') }
@@ -37,15 +35,15 @@ class Style < ActiveRecord::Base
 
   after_create :define_position
 
-  def copy!(to_site)
-    if site == to_site
+  def copy!(to_skin)
+    if site == to_skin.site
       return false unless style_id
 
       update(css: css, name: name, style_id: nil)
     else
       return false if style_id
 
-      Style.create!(name: name, css: css, skin: to_site.active_skin)
+      Style.create!(name: name, css: css, skin: to_skin)
     end
   end
 
