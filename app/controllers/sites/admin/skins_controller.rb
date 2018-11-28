@@ -52,16 +52,16 @@ class Sites::Admin::SkinsController < ApplicationController
       return
     end
 
-    flash = t('successfully_installed_theme')
+    alert = t('successfully_installed_theme')
     if params[:apply].to_s == 'true'
       current_site.skins.update_all active: false
       skin.update active: true
       record_activity('theme_applied', skin)
-      flash = t('successfully_applied_theme')
+      alert = t('successfully_applied_theme')
     end
 
     theme.populate skin, user: current_user
-    flash[:success] = flash
+    flash[:success] = alert
     redirect_to site_admin_skin_path(skin)
   end
 
