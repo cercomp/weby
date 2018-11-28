@@ -12,11 +12,21 @@ module ActivityRecordsHelper
     when Skin, Site
       site_admin_skins_url(subdomain: activity_record.site)
     else
-      prefix = activity_record.site ? :site_admin : :admin
-      polymorphic_url(activity_record.controller == 'menu_items' ?
-          [prefix, activity_record.loggeable.menu, activity_record.loggeable] :
-          [prefix, activity_record.loggeable],
-        subdomain: activity_record.site)
+      polymorphic_url(loggeable_array(activity_record), subdomain: activity_record.site)
+    end
+  end
+
+  private
+
+  def loggeable_array activity_record
+    prefix = activity_record.site ? :site_admin : :admin
+    case activity_record.controller
+    when 'menu_items'
+      [prefix, activity_record.loggeable.menu, activity_record.loggeable]
+    when 'components', 'styles'
+      [prefix, activity_record.loggeable.skin, activity_record.loggeable]
+    else
+      [prefix, activity_record.loggeable]
     end
   end
 end

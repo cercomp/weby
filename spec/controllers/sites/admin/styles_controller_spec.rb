@@ -53,7 +53,7 @@ describe Sites::Admin::StylesController do
       before { post :create, style: { :name => "Style", :skin_id => skin.id } }
 
       it "will redirect to" do
-        expect(response).to redirect_to edit_site_admin_style_path(assigns(:style), subdomain: site.name)
+        expect(response).to redirect_to edit_site_admin_skin_style_path(skin, assigns(:style), subdomain: site.name)
       end
 
       it "will set flash[:notice]" do

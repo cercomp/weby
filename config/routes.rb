@@ -67,25 +67,26 @@ Rails.application.routes.draw do
           put :index
         end
       end
-      resources :components, except: [:index] do
+      resources :skins, except: [:edit, :update] do
         member do
-          put :toggle
-        end
-        collection do
-          post :sort
-        end
-      end
-      resources :styles do
-        member do
-          put :toggle, :copy, :follow, :unfollow
-        end
-        collection do
-          post :sort
-        end
-      end
-      resources :skins, except: [:new, :edit, :update] do
-        collection do
+          post :apply
           get :preview
+        end
+        resources :components, except: [:index] do
+          member do
+            put :toggle
+          end
+          collection do
+            post :sort
+          end
+        end
+        resources :styles do
+          member do
+            put :toggle, :copy, :follow, :unfollow
+          end
+          collection do
+            post :sort
+          end
         end
       end
       resources :users, only: [] do

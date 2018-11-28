@@ -1,7 +1,7 @@
 <% title ".layout" %>
 <% content_for :javascripts, javascript_include_tag('components.form') %>
 
-<%= simple_form_for [:site_admin, @component], html: {class: 'form-horizontal'}, url: url, method: method do |f| %>
+<%= simple_form_for [:site_admin, @skin, @component], html: {class: 'form-horizontal'}, url: url, method: method do |f| %>
   <%= f.show_errors %>
 
   <%#= f.input :site_id, input_html: {value: @site.id}, as: :hidden %>

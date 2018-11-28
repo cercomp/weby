@@ -24,7 +24,7 @@
         </td></tr>
         <% site_styles.each do |style| %>
           <tr class="style-site-<%= site.id %>">
-            <td><%= link_to(style.name, site_admin_style_path(style)) %></td>
+            <td><%= link_to(style.name, site_admin_skin_style_path(style.skin_id, style)) %></td>
             <td><%= link_to style.site.name, site_url(subdomain: style.site), title: style.site.title, target: :_blank %></td>
             <td><%= l(style.updated_at, format: :short) %>
             <td class="text-right"><%= style_menu(style) %></td>

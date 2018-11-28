@@ -149,6 +149,10 @@ div, section, input {
       left: 0;
     }
   }
+
+  ul.pagination {
+    display: none;
+  }
 }
 
 .front_news_component {
@@ -369,10 +373,6 @@ div, section, input {
         margin-right: 0;
       }
     }
-  }
-
-  ul.pagination {
-    display: none;
   }
 }
 

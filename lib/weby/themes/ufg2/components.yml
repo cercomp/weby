@@ -256,6 +256,36 @@ top:
       position: 2
       publish: true
       alias: facebook
+    - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"",
+        :new_tab=>"0", :html_class=>"social-icon", :default_image=>"ufg2/ic-youtube.png"}'
+      name: image
+      position: 2
+      publish: true
+      alias: youtube
+    - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"",
+        :new_tab=>"0", :html_class=>"social-icon", :default_image=>"ufg2/ic-instagram.png"}'
+      name: image
+      position: 2
+      publish: true
+      alias: instagram
+    - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"",
+        :new_tab=>"0", :html_class=>"social-icon", :default_image=>"ufg2/ic-googleplus.png"}'
+      name: image
+      position: 2
+      publish: true
+      alias: google plus
+    - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"",
+        :new_tab=>"0", :html_class=>"social-icon", :default_image=>"ufg2/ic-radio.png"}'
+      name: image
+      position: 2
+      publish: true
+      alias: radio
+    - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"",
+        :new_tab=>"0", :html_class=>"social-icon", :default_image=>"ufg2/ic-tv.png"}'
+      name: image
+      position: 2
+      publish: true
+      alias: tv
   - settings: '{:html_class=>"menu-bar"}'
     name: components_group
     position: 3

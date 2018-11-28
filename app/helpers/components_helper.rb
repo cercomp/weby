@@ -22,20 +22,20 @@ module ComponentsHelper
     components_html = '<li '
     components_html << "id='sort_sites_component_#{compo.id }' " unless leftout
     nickname = compo.alias.present? ? compo.alias : compo.default_alias
-    if compo.name.to_s == 'components_group' 
-      components_html << "class='component-#{ compo.name } " 
-    else 
-      components_html << "class='component " 
+    if compo.name.to_s == 'components_group'
+      components_html << "class='component-#{ compo.name } "
+    else
+      components_html << "class='component "
     end
     components_html << "#{'disabled' unless component_is_available(compo.name)} #{compo.publish ? '' : 'deactivated'}' data-place='#{compo.place_holder}'>
       <div>
         <span class='widget-name'>
-          #{ raw ("#{toggle_field(compo, 'publish', 'toggle', controller: :components)} #{t("components.#{compo.name}.name")} #{"- #{nickname}" if nickname.present?}") }
+          #{ raw ("#{toggle_field(compo, 'publish', 'toggle', controller: :components, skin_id: compo.skin_id)} #{t("components.#{compo.name}.name")} #{"- #{nickname}" if nickname.present?}") }
         </span>
         <div class='pull-right' style='min-width: 46px'>
-          #{ raw ("#{make_menu(compo, except: exceptions, with_text: leftout, controller: Sites::Admin::ComponentsController)}") }
+          #{ raw ("#{make_menu(compo, except: exceptions, with_text: leftout, controller: Sites::Admin::ComponentsController, params: {skin_id: compo.skin_id})}") }
           #{ "<span class='handle'>#{icon('move') }</span>" if check_permission(Sites::Admin::ComponentsController, 'sort') and !leftout }
-          #{ link_to '+', new_site_admin_component_path(placeholder: compo.id), class: 'btn btn-success btn-sm', title: t('.new_component') if compo.name.to_s == 'components_group' and check_permission(Sites::Admin::ComponentsController, [:new]) and !leftout }
+          #{ link_to '+', new_site_admin_skin_component_path(compo.skin_id, placeholder: compo.id), class: 'btn btn-success btn-sm', title: t('.new_component') if compo.name.to_s == 'components_group' and check_permission(Sites::Admin::ComponentsController, [:new]) and !leftout }
         </div>
         <div class='clearfix'></div>
       </div>"

@@ -4,6 +4,8 @@ class Sites::Admin::ComponentsController < ApplicationController
 
   before_action :require_user
   before_action :check_authorization
+  before_action :load_skin, only: [:new, :create]
+  before_action :load_component, only: [:show, :edit, :update, :destroy]
 
   def index
     # !!! Moved to ThemesController
@@ -13,23 +15,24 @@ class Sites::Admin::ComponentsController < ApplicationController
 
   def show
     # @component = Weby::Components.factory(current_site.active_skin.components.find(params[:id]))
-    redirect_to site_admin_skins_path(anchor: 'tab-layout')
+    redirect_to site_admin_skin_path(@skin, anchor: 'tab-layout')
   end
 
   def new
     if params[:component] && component_is_available(params[:component])
       @component = Weby::Components.factory(params[:component])
       @component.place_holder = params[:placeholder]
+      @component.skin = @skin
     else
       render :available_components
     end
   end
 
   def edit
-    @component = Weby::Components.factory(current_site.active_skin.components.find(params[:id]))
+    @component = Weby::Components.factory(@component)
     unless component_is_available(@component.name)
       flash[:warning] = t('.disabled_component')
-      redirect_to site_admin_components_url
+      redirect_to site_admin_skin_path(@skin, anchor: 'tab-layout')
     end
   end
 
@@ -38,11 +41,11 @@ class Sites::Admin::ComponentsController < ApplicationController
       # creates an new instance of the selected component
       @component = Weby::Components.factory(params[:component])
       @component.attributes = component_params
-      @component.skin = current_site.active_skin
+      @component.skin = @skin
 
       if @component.save
         record_activity('created_component', @component)
-        redirect_to(site_admin_skins_path(anchor: 'tab-layout'), flash: { success: t('successfully_created_param', param: t('component')) })
+        redirect_to(site_admin_skin_path(@skin, anchor: 'tab-layout'), flash: { success: t('successfully_created_param', param: t('component')) })
       else
         render action: 'new'
       end
@@ -52,25 +55,24 @@ class Sites::Admin::ComponentsController < ApplicationController
   end
 
   def update
-    @component = Weby::Components.factory(current_site.active_skin.components.find(params[:id]))
+    @component = Weby::Components.factory(@component)
 
     update_params
 
     if @component.update(component_params)
       record_activity('updated_component', @component)
-      redirect_to(site_admin_skins_path(anchor: 'tab-layout'), flash: { success: t('successfully_updated_param', param: t('component')) })
+      redirect_to(site_admin_skin_path(@skin, anchor: 'tab-layout'), flash: { success: t('successfully_updated_param', param: t('component')) })
     else
       render action: 'edit'
     end
   end
 
   def destroy
-    @component = Component.find(params[:id])
     if @component.destroy
       record_activity('destroyed_component', @component)
     end
 
-    redirect_to site_admin_skins_path(anchor: 'tab-layout'), flash: { success: t('successfully_removed', param: t('component')) }
+    redirect_to site_admin_skin_path(@skin, anchor: 'tab-layout'), flash: { success: t('successfully_removed', param: t('component')) }
   end
 
   def sort
@@ -80,6 +82,15 @@ class Sites::Admin::ComponentsController < ApplicationController
   end
 
   private
+
+  def load_skin
+    @skin = current_site.skins.find(params[:skin_id])
+  end
+
+  def load_component
+    load_skin
+    @component = @skin.components.find(params[:id])
+  end
 
   # TODO: Review this method
   # Used to add especific component's code as the component don't have an controller

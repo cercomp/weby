@@ -61,6 +61,7 @@ en:
           updated_style:              " updated style "
           destroyed_style:            " destroyed style "
 #--- Sites/Admin/Theme ---#
-          theme_applied:              " applied theme "
-          theme_reseted:              " reseted theme "
+          theme_installed:            " installed a theme "
+          theme_applied:              " applied a theme "
+          theme_reseted:              " reseted a theme "
           layout_settings_updated:    " updated layout settings "
