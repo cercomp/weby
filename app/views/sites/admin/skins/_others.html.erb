@@ -19,7 +19,7 @@
       <% styles.group_by{ |style| style.skin.site }.each do |site, site_styles| %>
         <tr><td colspan="4" class="site-style-group">
           <%= content_tag :span, class: "toggle-styles", data: {site: site.id} do %>
-            <%= icon('chevron-down') %> <b><%= site.title %> <span class="label label-info"><%= site.skins.find_by(theme: current_site.active_skin.theme).styles.own.size %></span></b>
+            <%= icon('chevron-down') %> <b><%= site.title %> <span class="label label-info"><%= site.skins.find_by(theme: @skin.theme).styles.own.size %></span></b>
           <% end %>
         </td></tr>
         <% site_styles.each do |style| %>
