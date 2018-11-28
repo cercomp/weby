@@ -125,34 +125,34 @@ home:
     -
       name: text          
       settings: '{:html_class=>"box-left", :body=>{"pt-BR"=>"<div class=\"dock-container\">
-              <div class=\"side-dock\">
-                  <div class=\"dock-btn\">
-                      <a class=\"btn anchor-news active\" href=\"#news\" data-target=\"front_news_component\">
-                          <span>Notícias</span>
-                      </a>
-                  </div>
-                  <div class=\"dock-btn\">
-                      <a class=\"btn anchor-newspaper\" href=\"#multimidia\" data-target=\"multimidias\">
-                          <span>Multimídias</span>
-                      </a>
-                  </div>
-                  <div class=\"dock-btn\">
-                      <a class=\"btn anchor-events\" href=\"#opnion\" data-target=\"opnion\">                          
-                          <span>opnião</span>
-                      </a>
-                  </div>
-                  <div class=\"dock-btn\">
-                      <a class=\"btn anchor-network\" href=\"#xxx\" data-target=\"xxx\">                          
-                          <span>xxx</span>
-                      </a>
-                  </div>
-                  <div class=\"dock-btn\">
-                      <a class=\"btn anchor-services\" href=\"#xxx\" data-target=\"xxx\">                          
-                          <span>xxx</span>
-                      </a>
-                  </div>
-              </div>
+        <div class=\"side-dock\">
+          <div class=\"dock-btn\">
+            <a class=\"btn anchor-1 active\" href=\"#component_3118\" data-target=\"front_news_component\">
+              <span>Notícias</span>
+            </a>
+          </div>
+          <div class=\"dock-btn\">
+            <a class=\"btn anchor-2\" href=\"#multimidia\" data-target=\"youtube-area\">
+              <span>Multimídias</span>
+            </a>
+          </div>
+          <div class=\"dock-btn\">
+            <a class=\"btn anchor-3\" href=\"#opnion\" data-target=\"colunistas\">
+              <span>Opnião</span>
+            </a>
+          </div>
+          <div class=\"dock-btn\">
+            <a class=\"btn anchor-4\" href=\"#component_3122\" data-target=\"menu_corpo\">
+              <span >Corpo</span>
+            </a>
+          </div>
+          <div class=\"dock-btn\">
+            <a class=\"btn anchor-5\" href=\"#component_3123\" data-target=\"footer\">
+              <span>Serviços</span>
+            </a>
+          </div>
         </div>
+      </div>
       "}}'
       position: 2
       publish: true

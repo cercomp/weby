@@ -21,6 +21,7 @@
     <%= stylesheet_link_tag 'jornal' %>
     <%= render 'sites/shared/loadStyles' %>
     <%= current_site.try(:head_html).try(:html_safe) %>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
   </head>
   <body>
     <%= render_webybar %>
@@ -39,5 +40,56 @@
     <%= javascript_include_tag 'base' %>
     <%= javascript_include_tag 'jornal' %>
     <%= yield :javascripts %>
+    <script>
+       $(document).ready(function(){
+    //
+    $(window).scroll(stickyMenu);
+
+    // Get the menu
+    var menuDock = $('.side-dock');
+
+    // Get the offset position of the navbar
+    var menuStickTop = menuDock.offset().top;
+
+    /// panels
+    var panels = $('.side-dock .btn').map(function(){
+      var t = $('.'+$(this).data('target'));
+      t.data('origin', $(this).attr('href'));
+      return t;
+    });
+    var lastPanel = '';
+    
+    // Add the sticky class to the menuBar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+    function stickyMenu() {
+      var fromTop = $(this).scrollTop();
+
+      var currPanels = panels.map(function(){
+        if ($(this).offset().top - 61 < fromTop) return this;
+      });
+      var curr = currPanels[currPanels.length-1];
+
+      if(curr != lastPanel && curr){
+        lastPanel = curr;
+        $('.side-dock .btn').removeClass('active');
+        $('.side-dock .btn[href='+curr.data('origin')+']').addClass('active');
+      }
+ 
+      if (fromTop > menuStickTop) {
+        menuDock.addClass('fixed');
+      } else {
+        menuDock.removeClass('fixed');
+      }
+    }
+    
+    $('.side-dock').on('click', '.btn', function(){
+      var $this = $(this);
+      var target = $('.'+$this.data('target'));
+      if (target.length > 0) {
+        $('html, body').stop().animate({ scrollTop: target.offset().top - 60 }, 300);
+      }
+      return false;
+    });
+  });
+    </script>
   </body>
 </html>
