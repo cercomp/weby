@@ -1,0 +1,38 @@
+- settings: '{:put_at_end=>"0", :body=>{"pt-BR"=>"<div class=\"dock-container\">\r\n  <div
+    class=\"side-dock\">\r\n    <div class=\"dock-btn\">\r\n      <a class=\"btn anchor-news
+    active\" href=\"#news\" data-target=\"front_news_component\">\r\n        <img
+    src=\"/up/1/o/ic-news.png\"/>\r\n        <span>Notícias</span>\r\n      </a>\r\n    </div>\r\n    <div
+    class=\"dock-btn\">\r\n      <a class=\"btn anchor-newspaper\" href=\"#newspaper\"
+    data-target=\"subsite_front_news_component\">\r\n        <img src=\"/up/1/o/ic-newspaper.png\"/>\r\n        <span>Jornal</span>\r\n      </a>\r\n    </div>\r\n    <div
+    class=\"dock-btn\">\r\n      <a class=\"btn anchor-events\" href=\"#events\" data-target=\"event_list_component\">\r\n        <img
+    src=\"/up/1/o/ic-schedule.png\"/>\r\n        <span>Eventos</span>\r\n      </a>\r\n    </div>\r\n    <div
+    class=\"dock-btn\">\r\n      <a class=\"btn anchor-network\" href=\"#network\"
+    data-target=\"social-cards\">\r\n        <img src=\"/up/1/o/ic-social.png\"/>\r\n        <span>Redes</span>\r\n      </a>\r\n    </div>\r\n    <div
+    class=\"dock-btn\">\r\n      <a class=\"btn anchor-services\" href=\"#services\"
+    data-target=\"services\">\r\n        <img src=\"/up/1/o/ic-services.png\"/>\r\n        <span>Serviços</span>\r\n      </a>\r\n    </div>\r\n  </div>\r\n</div>\r\n",
+    "en"=>""}}'
+  name: blank
+  publish: true
+  alias: Menu Flutuante
+- settings: '{:put_at_end=>"1", :body=>{"pt-BR"=>"<script>\r\n  $(document).ready(function(){\r\n    //\r\n    $(window).scroll(stickyMenu);\r\n\r\n    //
+    Get the menu\r\n    var menuDock = $(''.side-dock'');\r\n\r\n    // Get the offset
+    position of the navbar\r\n    var menuStickTop = menuDock.offset().top;\r\n\r\n    ///
+    panels\r\n    var panels = $(''.side-dock .btn'').map(function(){\r\n    \tvar
+    t = $(''.''+$(this).data(''target''));\r\n      t.data(''origin'', $(this).attr(''href''));\r\n      return
+    t;\r\n    });\r\n    var lastPanel = '''';\r\n    \r\n    // Add the sticky class
+    to the menuBar when you reach its scroll position. Remove \"sticky\" when you
+    leave the scroll position\r\n    function stickyMenu() {\r\n      var fromTop
+    = $(this).scrollTop();\r\n\r\n      var currPanels = panels.map(function(){\r\n        if
+    ($(this).offset().top - 61 < fromTop) return this;\r\n      });\r\n      var curr
+    = currPanels[currPanels.length-1];\r\n\r\n      if(curr != lastPanel && curr){\r\n      \tlastPanel
+    = curr;\r\n        $(''.side-dock .btn'').removeClass(''active'');\r\n        $(''.side-dock
+    .btn[href=''+curr.data(''origin'')+'']'').addClass(''active'');\r\n      }\r\n
+    \r\n      if (fromTop > menuStickTop) {\r\n        menuDock.addClass(''fixed'');\r\n      }
+    else {\r\n        menuDock.removeClass(''fixed'');\r\n      }\r\n    }\r\n    \r\n    $(''.side-dock'').on(''click'',
+    ''.btn'', function(){\r\n      var $this = $(this);\r\n      var target = $(''.''+$this.data(''target''));\r\n      if
+    (target.length > 0) {\r\n        $(''html, body'').stop().animate({ scrollTop:
+    target.offset().top - 60 }, 300);\r\n      }\r\n      return false;\r\n    });\r\n  });\r\n</script>",
+    "en"=>""}}'
+  name: blank
+  publish: true
+  alias: Menu Flutuante - JS

@@ -27,6 +27,11 @@ div, section, input {
   box-sizing: border-box;
 }
 
+.container {
+  margin: 0 auto;
+  max-width: 940px;
+}
+
 @mixin placeholder {
   font-family: Lato;
   font-size: 18px;
@@ -450,9 +455,10 @@ div, section, input {
 
 .media-section {
   padding: 140px 0;
-  margin: 0 auto;
-  max-width: 940px;
-  display: flex;
+
+  .container {
+    display: flex;
+  }
 
   .image_component {
     margin-right: 20px;
@@ -484,7 +490,7 @@ div, section, input {
   }
 }
 
-.event_list_component {
+.event-lists {
   padding: 80px 0 0;
   background-color: var(--purple);
   background-image: asset-url('ufg2/img-grid.png');
@@ -492,6 +498,13 @@ div, section, input {
   background-repeat: repeat-x;
   position: relative;
 
+  .container {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.event_list_component {
   .link_to_all {
     bottom: 100px;
     top: unset;
@@ -510,8 +523,6 @@ div, section, input {
 }
 
 #events {
-  max-width: 940px;
-  margin: 0 auto;
   padding: 60px 0 190px;
 
   li {
@@ -580,21 +591,10 @@ div, section, input {
 }
 
 .highlight-events {
-  background: transparent;
-  position: absolute;
-  width: 940px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-
-  .event_list_title, #events {
-    width: 300px;
-    max-width: 300px;
-    position: absolute;
-    right: 0;
-  }
+  flex: 0 0 300px;
 
   .event_list_title {
+    position: absolute;
     top: 128px;
     a {
       font-size: 34px;
@@ -602,7 +602,7 @@ div, section, input {
   }
 
   #events {
-    top: 198px;
+    margin-top: 118px;
     padding: 14px 16px 17px;
     background-color: var(--white);
 
@@ -652,8 +652,6 @@ div, section, input {
   background-color: var(--bg);
 
   > .container {
-    margin: 0 auto;
-    max-width: 940px;
     display: flex;
   }
 
@@ -733,11 +731,6 @@ div, section, input {
   background-position: left bottom;
   background-repeat: repeat-x;
 
-  > .container {
-    max-width: 940px;
-    margin: 0 auto;
-  }
-
   .social-icons {
     display: grid;
     grid-column-gap: 20px;
@@ -809,10 +802,9 @@ div, section, input {
 }
 
 .services {
-  padding: 0 0 200px;
-  margin: 120px auto 0;
-  max-width: 940px;
+  padding: 120px 0 200px;
   position: relative;
+  background-color: var(--bg);
 
   .btn {
     display: inline-block;
@@ -911,48 +903,38 @@ div, section, input {
   }
 }
 
-.side-dock {
-  position: absolute;
-  width: 144px;
-  padding-top: 40px;
-  top: 0;
-  z-index: 3;
-}
+.about-home {
+  padding: 80px 0 0;
 
-.side-dock.fixed {
-  position: fixed;
-}
+  h2 {
+    font-family: Lato;
+    font-size: 48px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.21;
+    letter-spacing: normal;
+    color: var(--blue);
+    margin: 0 0 40px;
+  }
 
-.side-dock .btn {
-  display: block;
-  border-radius: 0 25px 25px 0;
-  font-family: Lato;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  color: var(--white);
-  text-decoration: none;
-  text-transform: uppercase;
-  padding: 16px 20px 17px 50px;
-  margin-bottom: 4px;
-  background-color: var(--dark-blue);
-}
+  .about-row {
+    display: flex;
 
-.side-dock .anchor-news {
-  background-color: var(--red);
-}
+    p {
+      margin: 0 80px 0 0;
+      font-family: Lato;
+      font-size: 20px;
+      font-weight: 300;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.4;
+      letter-spacing: normal;
+      color: var(--dark-gray);
+    }
 
-.side-dock .anchor-newspaper {
-  background-color: var(--green);
-}
-
-.side-dock .anchor-events {
-  background-color: var(--purple);
-}
-
-.side-dock .anchor-network {
-  background-color: var(--yellow);
+    img {
+      width: 460px;
+    }
+  }
 }
