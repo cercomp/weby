@@ -9,6 +9,11 @@ class Weby::Theme
     @template = "lib/weby/themes/#{@name}/layouts/#{@name}.html.erb"
     @title = @layout['title'] || @name.titleize
     @is_private = !!@layout['private']
+    @comp_templates = {}
+    Dir.glob(File.join('lib', 'weby', 'themes', name, 'components_templates', '*')) do |file|
+      next if File.directory?(file)
+      @comp_templates[File.basename(file).gsub(/\.ya?ml/, '')] = YAML.load_file(file)
+    end
   end
 
   def populate skin, opts
@@ -16,6 +21,13 @@ class Weby::Theme
     @user = opts[:user]
     populate_extensions if @extensions
     populate_components if @components
+  end
+
+  def insert_components_template name, place
+    return unless @comp_templates[name]
+    @comp_templates[name].each do |comp|
+      create_component(place, comp)
+    end
   end
 
   private
