@@ -17,7 +17,7 @@
 <ul class="nav nav-tabs" id="theme-tabs">
   <li class="current <%= 'active' if @active_skin.theme == @skin.theme %>">
     <div class="skin-tooltip label label-success"><%= t('.active_theme') %></div>
-    <%= link_to(@active_skin.theme == @skin.theme ? '#' : site_admin_skin_path(@active_skin)) do %>
+    <%= link_to(@active_skin == @skin ? '#' : site_admin_skin_path(@active_skin)) do %>
       <div><%= @active_skin.base_theme.title %></div>
       <%= image_tag "#{@active_skin.theme}/thumb.png", style: 'width: 85px' %>
     <% end %>
@@ -25,7 +25,7 @@
   <% @skins.each do |skin| %>
     <% next unless skin.base_theme %>
     <li class="<%= 'active' if skin.theme == @skin.theme %>">
-      <%= link_to(skin.theme == @skin.theme ? '#' : site_admin_skin_path(skin)) do %>
+      <%= link_to(skin == @skin ? '#' : site_admin_skin_path(skin)) do %>
         <div><%= skin.base_theme.title %></div>
         <%= image_tag "#{skin.theme}/thumb.png", style: 'width: 85px' %>
       <% end %>
