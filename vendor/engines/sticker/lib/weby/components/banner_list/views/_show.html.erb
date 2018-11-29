@@ -68,6 +68,11 @@
                   <p class="flex-caption-inner"><%= banner.title %></p>
                 </div>
               <% end %>
+              <% if component.show_descriptionarea? %>
+                <div class="flex-description">
+                  <p class="flex-description-inner"><%= banner.text %></p>
+                </div>
+              <% end %>
             </li>
           <% end %>
         <% end %>
