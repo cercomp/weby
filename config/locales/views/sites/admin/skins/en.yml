@@ -3,9 +3,9 @@ en:
     admin:
       skins:
         show:
-          no_theme:           " No theme selected. "
+          no_theme:           " No theme applied! "
           themes:             " Themes "
-          install_theme:      " New Theme "
+          install_theme:      " Install Theme "
           active_theme:       " Active Theme "
           default:            " Restore to default "
           confirm_default:    " Do you really wish to restore to the default state and lose all changes? "

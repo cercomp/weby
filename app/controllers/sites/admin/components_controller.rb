@@ -7,14 +7,7 @@ class Sites::Admin::ComponentsController < ApplicationController
   before_action :load_skin, only: [:new, :create]
   before_action :load_component, only: [:show, :edit, :update, :destroy]
 
-  def index
-    # !!! Moved to ThemesController
-    #@components = current_site.active_skin.components.order(position: :asc)
-    #@placeholders = current_site.theme.layout['placeholders']
-  end
-
   def show
-    # @component = Weby::Components.factory(current_site.active_skin.components.find(params[:id]))
     redirect_to site_admin_skin_path(@skin, anchor: 'tab-layout')
   end
 

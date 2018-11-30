@@ -1,8 +1,8 @@
 module ComponentsHelper
   # returns the mini layout  divs ---  The menu that attaches an component to a block
-  def make_mini_layout theme = nil, width = nil
-    theme ||= current_site.theme
-    width ||= theme.layout['width'] || 500
+  def make_mini_layout
+    theme = @skin.base_theme
+    width = theme.layout['width'] || 500
 
     content_for :stylesheets, stylesheet_link_tag('mini_layout')
     divs = "<div id='mini_layout' style='width: #{width}px'>"
