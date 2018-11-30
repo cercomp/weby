@@ -120,7 +120,8 @@ en:
   show:                                 " Show "
   site_need_at_least_one_locale:        " Needs at least one language "
   submit:                               " Submit "
-  successfully_applied_theme:           " Theme applied successfully! "
+  successfully_installed_theme:         " Theme installed successfully "
+  successfully_applied_theme:           " Theme applied successfully "
   successfully_created:                 " Successfully created. "
   successfully_updated:                 " Successfully updated "
   successfully_created_param:           " %{param} successfully created! "
@@ -133,6 +134,7 @@ en:
   successfully_restored:                " Successfully Restored! "
   should_be_image:                      " Must be an image file "
 #---T---#
+  theme_already_installed:              " Theme already installed "
 #---U---#
   unfollow:                             " Unfollow "
   unpublish:                            " Unpublish "

@@ -18,9 +18,9 @@ module MenusHelper
         if !component.label_font_size.blank?
           html << component.label_font_size
         end
-        html << link_to(weby_icon('minus'), "#", onclick: 'font_size_change("minus")', title: t(".decrease_font_size"))
-        html << link_to(weby_icon('font'), "#", onclick: 'font_size_original()', title: t(".default_font_size"))
         html << link_to(weby_icon('plus'), "#", onclick: 'font_size_change("plus")', title: t(".increase_font_size"))
+        html << link_to(weby_icon('font'), "#", onclick: 'font_size_original()', title: t(".default_font_size"))
+        html << link_to(weby_icon('minus'), "#", onclick: 'font_size_change("minus")', title: t(".decrease_font_size"))
         html << "</span>"
       end
     end.html_safe

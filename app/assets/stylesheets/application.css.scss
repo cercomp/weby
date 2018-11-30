@@ -235,6 +235,7 @@ body.modal-open {
 }
 
 .menu-tabs {
+  margin-bottom: 15px;
 
   .nav > li > a{
     padding-right: 20px;
@@ -256,6 +257,47 @@ body.modal-open {
   height: 160px;
   background-color: #F5F5F5;
 }
+
+#theme-tabs {
+  margin-bottom: 15px;
+
+  li {
+    height: 100%;
+
+    a {
+      height: 100%;
+
+      > div {
+        text-align: center;
+        font-size: 18px;
+        height: 30px;
+      }
+    }
+
+    &.active {
+      a > div {
+        font-weight: bold;
+      }
+    }
+
+    &.current {
+      a > div {
+        font-size: 20px;
+      }
+    }
+  }
+
+  .skin-tooltip {
+    position: absolute;
+    top: 73px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    box-shadow: 0 0 8px 3px #fff;
+    pointer-events: none;
+  }
+}
+
 //available components
 div#available_components div > div.thumbnail {
   height: 245px;

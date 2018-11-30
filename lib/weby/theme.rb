@@ -1,5 +1,5 @@
 class Weby::Theme
-  attr_reader :name, :title, :components, :extensions, :variables, :layout, :template
+  attr_reader :name, :title, :components, :extensions, :variables, :layout, :template, :is_private
 
   def initialize(name)
     @name = name
@@ -8,6 +8,12 @@ class Weby::Theme
     @layout = YAML.load_file Rails.root.join("lib/weby/themes/#{@name}/layout.yml")
     @template = "lib/weby/themes/#{@name}/layouts/#{@name}.html.erb"
     @title = @layout['title'] || @name.titleize
+    @is_private = !!@layout['private']
+    @comp_templates = {}
+    Dir.glob(File.join('lib', 'weby', 'themes', name, 'components_templates', '*')) do |file|
+      next if File.directory?(file)
+      @comp_templates[File.basename(file).gsub(/\.ya?ml/, '')] = YAML.load_file(file)
+    end
   end
 
   def populate skin, opts
@@ -15,6 +21,13 @@ class Weby::Theme
     @user = opts[:user]
     populate_extensions if @extensions
     populate_components if @components
+  end
+
+  def insert_components_template name, place
+    return unless @comp_templates[name]
+    @comp_templates[name].each do |comp|
+      create_component(place, comp)
+    end
   end
 
   private
@@ -58,7 +71,7 @@ class Weby::Theme
   end
 
   def populate_components
-    return if @skin.components.any? #@site.active_skin.components.where(theme: @name).destroy_all
+    return if @skin.components.any?
 
     @default_footer = {}
     @skin.site.locales.each do |locale|

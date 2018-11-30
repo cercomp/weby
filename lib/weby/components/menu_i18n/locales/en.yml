@@ -6,4 +6,9 @@ en:
     attributes:
       menu_i18n_component:
         dropdown:           " Dropdown "
-
+        template:           " Template "
+  menu_i18n:
+    views:
+      form:
+        flag:  " Flags "
+        code:  " Country code "

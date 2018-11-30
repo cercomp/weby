@@ -261,12 +261,12 @@ rights:
       name:
         en: Manage themes
         pt-BR: Gerenciar temas
-      action: index
+      action: index show
     create:
       name:
         en: Apply theme
         pt-BR: Aplicar tema
-      action: create
+      action: new create apply
     preview:
       name:
         en: Preview a theme

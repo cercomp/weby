@@ -1,5 +1,5 @@
 <% title ".styles" %>
-<% breadcrumb :styles_show, @style %>
+<% breadcrumb :styles_show, @current_skin, @style %>
 <h3> <%= t(".style") %>: <%= @style.name %> </h3>
 <% if @style.owner != current_site %>
 <h4> <%= t(".site") %>: <%= @style.owner.title %> </h4>
@@ -10,7 +10,7 @@
 
 <div class="form-actions">
   <%= style_menu @style %>
-  <%= link_to icon('list', text:t(".list_all")), site_admin_skins_path(anchor: 'tab-styles') %>
+  <%= link_to icon('list', text:t(".list_all")), site_admin_skin_path(@current_skin, anchor: 'tab-styles') %>
   <%= link_to icon('chevron-left', text:t("back")), :back %>
 </div>
 
@@ -21,7 +21,7 @@
       mode: 'css',
       lineNumbers: true,
       tabSize: 2,
-      readOnly: "nocursor" 
+      readOnly: "nocursor"
     });
   </script>
 <% end %>

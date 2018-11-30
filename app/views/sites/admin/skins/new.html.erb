@@ -1,0 +1,28 @@
+<% title ".themes" %>
+<% breadcrumb :skins_new %>
+
+<div class="row">
+  <% if @themes.each do |theme| %>
+    <div class="col-md-3">
+      <div class="thumbnail">
+        <h3 class="text-center"><%= theme.title %></h3>
+        <div class="caption">
+          <%= image_tag "#{theme.name}/thumb.png", style: 'width: 160px' %>
+        </div>
+        <div class="caption">
+          <%= link_to(t('.install'), site_admin_skins_path(theme: theme.name), method: :post, class: 'btn btn-success btn-block') if check_permission(Sites::Admin::SkinsController, [:create]) %>
+          <%= link_to(t('.install_apply'), site_admin_skins_path(theme: theme.name, apply: true), method: :post, class: 'btn btn-primary btn-block', data: {confirm: t('.confirm_apply')}) if check_permission(Sites::Admin::SkinsController, [:create]) %>
+        </div>
+      </div>
+    </div>
+  <% end.empty? %>
+    <div class="col-md-12">
+      <div class="alert alert-warning">
+        <%= t(".no_themes") %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="form-actions">
+  <%= link_to t("back"), :back, class: "btn btn-default" %>
+</div>

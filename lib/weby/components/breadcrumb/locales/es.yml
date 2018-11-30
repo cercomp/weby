@@ -5,9 +5,11 @@ es:
   activerecord:
     attributes:
       breadcrumb_component:
-        label: "Rótulo"
+        label: "Etiqueta"
+        home_label: 'Etiqueta para la página de inicio'
   breadcrumb:
     views:
       show:
         home:   "Home page"
+        news: 'Noticias'
       form:

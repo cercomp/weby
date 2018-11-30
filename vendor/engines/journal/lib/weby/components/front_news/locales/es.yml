@@ -25,13 +25,14 @@ es:
         read_more:            " Muestra 'Leer más' "
         show_author:          " Muestra el autor de la noticia "
         show_date:            " Muestra la fecha de la noticia "
-        show_label:           " Muestra la etiqueta "
+        show_tags:            " Muestra las categorías "
         type_filter:          " Filtrar por tipo de página "
         image_size:           " Versión de la imagen "
         new_tab:              " Abrir noticias con URL en una nueva ventana "
         max_char:             " Número máximo de caracteres en el resumen "
         link_to_all:          " Link a todas las noticias "
         order_by:             " Ordenación "
+        date_format:          " Formato de Fecha "
     errors:
       models:
         front_news_component:
@@ -55,6 +56,8 @@ es:
         l:                    " Pequeña "
         i:                    " Miniatura "
         t:                    " Thumbnail "
+        full:                 " Completo "
+        short:                " Sólo Fecha "
         all:                  " Notícias y Eventos "
         news:                 " Sólo Notícias "
         events:               " Sólo Eventos "

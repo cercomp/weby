@@ -2,12 +2,18 @@ en:
   sites:
     admin:
       skins:
-        index:
-          no_theme:           " No theme selected. "
-          apply:              " Apply "
+        show:
+          no_theme:           " No theme applied! "
           themes:             " Themes "
+          install_theme:      " Install Theme "
+          active_theme:       " Active Theme "
+          default:            " Restore to default "
+          confirm_default:    " Do you really wish to restore to the default state and lose all changes? "
+          apply:              " Apply "
+          confirm_apply:      " Do you really wish to change the active theme? "
+          preview:            " Preview "
           layout:             " Layout "
-          components:         " Componentes "
+          components:         " Components "
           activate:           " Activate "
           new_component:      " New Widget "
           component:          " Component "
@@ -22,11 +28,12 @@ en:
           new_style:        " New Style "
           my_styles:        " My Styles "
           styles:           " Styles "
-          current_theme:    " Active Theme "
-          change_theme:     " Change Theme "
-          preview:          " Preview "
-          default: "Restore to default"
-          confirm_default: "Do you really wish to restore to the default state and lose all changes?"
+        new:
+          no_themes:          " Your site already has all themes installed "
+          preview:            " Preview "
+          install:            " Install "
+          install_apply:      " Install & Apply "
+          confirm_apply:      " Do you really wish to change the active theme? "
         destroy:
           successfully_reseted_theme: "Theme restored to default"
         others:

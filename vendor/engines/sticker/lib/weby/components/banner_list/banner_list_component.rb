@@ -1,5 +1,5 @@
 class BannerListComponent < Component
-  component_settings :category, :orientation, :timer, :description, :show_controls
+  component_settings :category, :orientation, :timer, :show_title, :show_description, :show_controls
 
   validates :category, presence: true
 
@@ -12,8 +12,16 @@ class BannerListComponent < Component
     show_controls.blank? ? false : show_controls == '1'
   end
 
+  def show_title?
+    show_title.blank? ? false :  show_title == '1'
+  end
+  
   def show_description?
-    description.blank? ? false :  description == '1'
+    show_description.blank? ? false :  show_description == '1'
+  end
+
+  def show_descriptionarea?
+    descriptionarea.blank? ? false :  descriptionarea == '1'
   end
 
   def default_alias

@@ -12,6 +12,7 @@ en:
         display_controls:   " Display Controls "
         additional_information: " Addicional Information "
         extended_accessibility: " Activate "
+        template:               " Template "
   menu_accessibility:
     views:
       form:
@@ -20,6 +21,8 @@ en:
         display_controls:   " Display Controls "
         basic:              " Basic "
         extended:           " Extended "
+        default:            " Default "
+        bar:                " Bar "
       basic:
         increase_font_size: " Increase font size "
         decrease_font_size: " Decrease font size "
@@ -27,6 +30,9 @@ en:
         contrast:           " Change the color contrast "
         contrast_normal:    " Remove the colour contrast "
         colour:             " Colour "
+        go_to_content:      " Go to Content "
+        go_to_menu:         " Go to Menu "
+        go_to_search:       " Go to Search "
       extended:
         increase_font_size: " Increase font size "
         decrease_font_size: " Decrease font size "

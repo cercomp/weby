@@ -1,0 +1,9 @@
+en:
+  themes:
+    jornal:
+      title:              " Jornal UFG "
+      placeholders:
+        first_place:        " Top "
+        home:               " Home Page "
+        top:                " Header "
+        bottom:             " Bottom "

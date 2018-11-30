@@ -11,12 +11,14 @@ pt-BR:
         label:                " Título "
         filter_by:            " Selecionar apenas eventos com as categorias "
         read_more:            " Exibir 'Leia mais' "
+        group_by:             " Agrupar eventos "
         image_size:           " Versão da imagem "
         new_tab:              " Abrir eventos em uma nova janela "
         max_char:             " Número máximo de caracteres do resumo "
         link_to_all:          " Link para exibir todos "
         template:             " Formato de exibição "
         date_format:          " Formato da data "
+        html_class:           " Classe HTML "
   event_list:
     views:
       show:

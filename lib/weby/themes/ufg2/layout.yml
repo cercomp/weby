@@ -1,0 +1,8 @@
+title: UFG 2.0
+width: 500
+private: true
+placeholders:
+  - names: ['first_place']
+  - names: ['top']
+  - names: ['home']  
+  - names: ['bottom']

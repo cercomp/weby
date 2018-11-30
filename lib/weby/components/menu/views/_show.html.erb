@@ -1,4 +1,7 @@
 <nav class="menu_component <%= component.html_class %>">
+  <% if component.title.present? %>
+    <h3><%= component.title %></h3>
+  <% end %>
   <% if component.style == 'hamburger' %>
     <div class="menu-head">
       <span>Menu</span>

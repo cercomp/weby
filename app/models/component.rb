@@ -75,7 +75,7 @@ class Component < ActiveRecord::Base
 
   def serializable_hash(options = {})
     hash = super options
-    hash[:children] = skin.components.where(place_holder: id.to_s).map { |c| c.serializable_hash(options) }
+    hash[:children] = skin.components.order(:position).where(place_holder: id.to_s).map { |c| c.serializable_hash(options) }
     hash
   end
 

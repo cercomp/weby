@@ -1,0 +1,127 @@
+.news-show {
+  padding: 30px 0 100px;
+  margin: 0 auto;
+  max-width: 940px;
+
+  a:first-child {
+    display: none;
+  }
+
+  header {
+    h2 {
+      font-family: Lato;
+      font-size: 34px;
+      font-weight: 300;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.18;
+      letter-spacing: normal;
+      color: var(--dark-gray);
+      margin: 0 0 13px;
+    }
+  }
+
+  .news-details {
+    font-family: Lato;
+    font-size: 18px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.33;
+    letter-spacing: normal;
+    color: var(--dark-gray);
+    margin: 0 0 40px;
+  }
+
+  .body, summary {
+    font-family: Lato;
+    font-size: 20px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.4;
+    letter-spacing: normal;
+    color: var(--dark-gray);
+    margin: 0 0 80px;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  summary {
+    margin: 0;
+  }
+
+  .social-buttons {
+    margin: 0 0 60px;
+  }
+
+  .categories {
+    display: flex;
+    align-items: center;
+    margin: 0 0 60px;
+  }
+
+  .categories-label {
+    font-family: Lato;
+    font-size: 20px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.4;
+    letter-spacing: normal;
+    color: var(--dark-gray);
+    margin-right: 9px;
+  }
+
+  .weby-label {
+    border-radius: 4px;
+    background-color: #66aad5;
+    font-family: Lato;
+    font-size: 18px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.56;
+    letter-spacing: normal;
+    text-align: center;
+    color: var(--white);
+    padding: 7px 16px;
+    margin-right: 11px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  .actions {
+    display: flex;
+
+    > a {
+      border-radius: 24px;
+      background-color: var(--blue);
+      font-family: Lato;
+      font-size: 16px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-decoration: none;
+      text-transform: uppercase;
+      text-align: center;
+      color: var(--white);
+      padding: 14px 30px 15px;
+      margin-right: 16px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+.modal {
+  display: none;
+}

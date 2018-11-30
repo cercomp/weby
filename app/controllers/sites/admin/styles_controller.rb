@@ -3,44 +3,44 @@ class Sites::Admin::StylesController < ApplicationController
 
   before_action :require_user
   before_action :check_authorization
+  before_action :load_skin, only: [:index, :new, :create, :sort]
+  before_action :load_global_style, only: [:show, :follow, :copy, :unfollow]
+  before_action :load_style, only: [:edit, :update, :destroy]
 
   respond_to :html, :xml, :js
 
   def index
-    redirect_to site_admin_skins_path(anchor: 'tab-styles')
+    redirect_to site_admin_skin_path(@skin, anchor: 'tab-styles')
   end
 
   def show
-    @style = Style.find params[:id]
   end
 
   def new
-    @style = current_site.active_skin.styles.new
+    @style = @skin.styles.new
   end
 
   def create
-    @style = current_site.active_skin.styles.new(style_params)
+    @style = @skin.styles.new(style_params)
     if @style.save
       flash[:success] = t('successfully_created')
       record_activity('created_style', @style)
-      redirect_to edit_site_admin_style_path(@style)
+      redirect_to edit_site_admin_skin_style_path(@skin, @style)
     else
       render 'new'
     end
   end
 
   def edit
-    @style = current_site.active_skin.styles.own.find params[:id]
   end
 
   def update
-    @style = current_site.active_skin.styles.own.find params[:id]
     respond_to do |format|
       if @style.update(style_params)
         record_activity('updated_style', @style)
         format.html do
           flash[:success] = t('successfully_updated')
-          redirect_to site_admin_skins_path(anchor: 'tab-styles')
+          redirect_to site_admin_skin_path(@skin, anchor: 'tab-styles')
         end
       else
         format.html { render 'edit' }
@@ -57,22 +57,11 @@ class Sites::Admin::StylesController < ApplicationController
       flash[:error] = t('destroyed_style_error')
     end
 
-    respond_with(:site_admin, resource, location: site_admin_skins_path(anchor: 'tab-styles'))
-  end
-
-  def follow
-    resource = Style.find params[:id]
-    @style = current_site.active_skin.styles.new(style_id: resource.id)
-    if @style.save
-      flash[:success] = t('successfully_followed')
-    else
-      flash[:error] = @style.errors.full_messages.join(', ')
-    end
-    redirect_to site_admin_skins_path(anchor: 'tab-styles', others: true)
+    respond_with(:site_admin, resource, location: site_admin_skin_path(@skin, anchor: 'tab-styles'))
   end
 
   def unfollow
-    if resource.owner == current_site
+    if @style.owner == current_site
       flash[:error] = t('error_unfollowing_style')
       redirect_to :back
     else
@@ -80,32 +69,59 @@ class Sites::Admin::StylesController < ApplicationController
     end
   end
 
+  def follow
+    new_style = @current_skin.styles.new(style_id: @style.id)
+    if new_style.save
+      flash[:success] = t('successfully_followed')
+    else
+      flash[:error] = new_style.errors.full_messages.join(', ')
+    end
+    redirect_to site_admin_skin_path(@current_skin, anchor: 'tab-styles', others: true)
+  end
+
   def copy
-    if Style.find(params[:id]).copy! current_site
+    if @style.copy! @current_skin
       flash[:success] = t('successfully_copied')
     else
       flash[:error] = t('error_copying_style')
     end
-    redirect_to site_admin_skins_path(anchor: 'tab-styles')
+    redirect_to site_admin_skin_path(@current_skin, anchor: 'tab-styles')
   end
 
   def sort
     position = 0
     params['sort_style'].reverse_each do |style_id|
-      current_site.active_skin.styles.find(style_id).update_attribute(:position, position += 1)
+      @skin.styles.find(style_id).update_attribute(:position, position += 1)
     end
     render nothing: true
   end
 
   private
 
+  def load_skin
+    @skin = current_site.skins.find(params[:skin_id])
+  end
+
+  # loads the style/skin with the same theme as the style from other site
+  def load_global_style
+    @style = Style.find params[:id]
+    @skin = @style.skin
+    @current_skin = current_site.skins.find_by(theme: @skin.theme)
+  end
+
+  def load_style
+    load_skin
+    @style = @skin.styles.own.find(params[:id])
+  end
+
   # override method from concern to work with relation
   def resource
-    get_resource_ivar || set_resource_ivar(current_site.active_skin.styles.find(params[:id]))
+    get_resource_ivar || set_resource_ivar(@skin.styles.find(params[:id]))
   end
 
   def after_toggle_path
-    site_admin_skins_path(anchor: 'tab-styles')
+    load_skin if @skin.blank?
+    site_admin_skin_path(@skin, anchor: 'tab-styles')
   end
 
   def style_params

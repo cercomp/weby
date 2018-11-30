@@ -1,0 +1,484 @@
+first_place:
+  -
+    settings: '{:background=>"#004b82"}'
+    name: gov_bar
+    position: 1
+    publish: true
+    alias: "Barra do Governo Federal"
+
+top: 
+  -
+    settings: '{:html_class=>"container_jornal"}'
+    name: components_group
+    position: 1
+    publish: true
+    alias: Topo
+    children:
+
+    -
+      settings: '{:html_class=>"cabecalho"}'
+      name: components_group
+      position: 1
+      publish: true
+      alias: Logo
+      children:
+        -
+          name: text          
+          settings: '{:html_class=>"ufglogo", :body=>{"pt-BR"=>"<a href=\"/\" target=\"_self\"><h1>Jornal <b>UFG</b></h1></a>"}}'
+          position: 1
+          publish: true
+          alias: Logo UFG            
+      
+        -
+          settings: '{:html_class=>"menu_i18n_component"}'
+          name: 'menu_i18n'          
+          position: 2
+          publish: true
+
+        -
+          name: components_group
+          settings: '{:html_class=>"redesocial"}'          
+          position: 3
+          publish: true
+          alias: Rede Social
+          children:
+            -
+              name: image
+              settings: '{:default_image=>"twitter.png", :size=>"o", :width=>"30", :height=>"30", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"twitter"}'
+              position: 1
+              publish: true
+              alias: Link Twitter
+            -
+              name: image
+              settings: '{:default_image=>"facebook.png", :size=>"o", :width=>"30", :height=>"30", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"facebook"}'
+              position: 2
+              publish: true
+              alias: Link Facebook
+
+            -
+              name: image
+              settings: '{:default_image=>"instagram.png", :size=>"o", :width=>"30", :height=>"30", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"youtube"}'
+              position: 3
+              publish: true
+              alias: Link Instagram
+
+            -
+              name: image
+              settings: '{:default_image=>"linkedin.png", :size=>"o", :width=>"30", :height=>"30", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"youtube"}'
+              position: 4
+              publish: true
+              alias: Link Linkedin
+            -
+              name: image
+              settings: '{:default_image=>"youtube.png", :size=>"o", :width=>"30", :height=>"30", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"youtube"}'
+              position: 5
+              publish: true
+              alias: Link Youtube
+        -
+          name: search_box
+          settings: '{:width=>"340", :align=>"left", :show_button=>"1"}'          
+          position: 4
+          publish: true
+        
+        -
+          name: menu
+          position: 5
+          publish: true
+          settings: '{:menu_id => "%{menu_id}", :dropdown => true, :style => "hamburger"}'
+          menu:
+            name: "Principal"
+            items:
+              -
+                title: ' Saúde '
+                url: '#quem-somos'
+                position: 1
+              -
+                title: ' Ciências Naturais '
+                url: '#quem-somos'
+                position: 3                
+              -
+                title: ' Tecnologia '
+                url: '#quem-somos'
+                position: 5           
+              -
+                title: ' Humanidades '
+                url: '#quem-somos'
+                position: 7              
+              -
+                title: ' Arte e Cultura '
+                url: '#quem-somos'
+                position: 9        
+              -
+                title: ' Institucional '
+                url: '#quem-somos'
+                position: 11  
+        
+          
+home:
+    -
+      name: photo_slider
+      position: 1
+      publish: true
+      alias: Slider
+      settings: '{:style=>"1",:orientation=>"slider", :width=>"400", :height=>"300", :timer=>"7", :show_controls=>"1", :title=>{"pt-BR"=>""}, :photo_ids=>[]}'
+
+    -
+      name: text          
+      settings: '{:html_class=>"box-left", :body=>{"pt-BR"=>"<div class=\"dock-container\">
+        <div class=\"side-dock\">
+          <div class=\"dock-btn\">
+            <a class=\"btn anchor-1 active\" href=\"#component_3118\" data-target=\"front_news_component\">
+              <span>Notícias</span>
+            </a>
+          </div>
+          <div class=\"dock-btn\">
+            <a class=\"btn anchor-2\" href=\"#multimidia\" data-target=\"youtube-area\">
+              <span>Multimídias</span>
+            </a>
+          </div>
+          <div class=\"dock-btn\">
+            <a class=\"btn anchor-3\" href=\"#opnion\" data-target=\"colunistas\">
+              <span>Opnião</span>
+            </a>
+          </div>
+          <div class=\"dock-btn\">
+            <a class=\"btn anchor-4\" href=\"#component_3122\" data-target=\"menu_corpo\">
+              <span >Corpo</span>
+            </a>
+          </div>
+          <div class=\"dock-btn\">
+            <a class=\"btn anchor-5\" href=\"#component_3123\" data-target=\"footer\">
+              <span>Serviços</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      "}}'
+      position: 2
+      publish: true
+      alias: Menu Flutuante 
+              
+    - 
+      name: front_news
+      settings: '{:quant=>"6", :source=>"selected", :site_id=>"", 
+      :tag_as_label=>"1",:show_controls=>"0",
+      :hide_author=>"1", :hide_read_more=>"0", :label=>{"pt-BR"=>"Jornal UFG", "en"=>""},
+      :link_to_all=>{"pt-BR"=>"Ver Todas", "en"=>""}}'
+      position: 3
+      publish: true
+      alias: Notícias capa
+
+    -
+      name: event_list
+      position: 4
+      publish: true
+      alias: Eventos
+      settings: '{:html_class=>"box-right",:template=>"basic", :quant=>"5", 
+      :max_char=>"", :filter_by=>"", :show_controls=>"0",:group_by=>"1", :image_size=>"m", :avatar_width=>"", 
+      :avatar_height=>"", :read_more=>"0", :label=>{"pt-BR"=>"Eventos"}, 
+      :link_to_all=>{"pt-BR"=>""}, :date_format=>"short"}'  
+
+    -
+      name: news_as_home
+      position: 5
+      publish: true
+      alias: Menu Youtube
+      settings: '{:page_id=>"%{page_id}", :show_title=>"0", :show_info=>"0", :show_controls=>"0"}'
+      page:
+        title: 'Menu Youtube'
+        text:   '<section youtube class="youtube-area" id="multimidia">
+                  <div class="youtube-container">
+                      <div class="col-yout">RÁDIO</div>
+                      <div class="radio-payer container-left">
+                        <video controls="" autoplay="" name="media">
+                          <source src="http://200.137.217.155:8010/radiouniversitaria" type="audio/mpeg">
+                        </video>
+                        <p class="yt-titulo">Licae cus imus id modia quos ad et ut officia commolo</p>
+                        <p class="yt-text">Orposandiam, vo llaquoditas el maio ilibus Licae cus imus id modia quos ad et ut</p>
+                      </div>
+                      <div class="radio-programa container-right">
+                        <div class="hour"><span>20h</span></div>
+                        <p class="yt-titulo">Licae cus imus id modia quos ad et ut officia commolo</p>
+                        <p class="yt-text">Orposandiam, vo llaquoditas el maio ilibus Licae cus imus id modia quos ad et ut</p>
+                      </div>                      
+                      <div class="radio-programa container-right">
+                        <div class="hour"><span>20h 30</span></div>
+                        <p class="yt-titulo">Licae cus imus id modia quos ad et ut officia commolo</p>
+                        <p class="yt-text">Orposandiam, vo llaquoditas el maio ilibus Licae cus imus id modia quos ad et ut</p>
+                      </div>
+                      <div class="clearfix"></div>
+                      <div class="col-yout">TV UFG</div>
+                      <div class="frames-area">
+                          <div class="container-left">
+                              <div class="full-area">
+                                  <iframe width="100%" height="100%" src="https://www.youtube.com/embed/0sEHDkJQMWU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>
+                              </div>
+                          </div>
+                          <div class="container-right">
+                              <div class="header-area">
+                                  <iframe width="100%" height="100%" src="https://www.youtube.com/embed/hBzktp_yLbk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                                  </iframe>
+                              </div>
+                              <div class="lateral1">
+                                  <p class="yt-titulo">Licae cus imus id modia quos ad et ut officia commolo</p>
+                                  <p class="yt-text">Orposandiam, vo llaquoditas el maio ilibus Licae cus imus id modia quos ad et ut</p>
+                              </div>
+                              <div class="clearfix"></div>
+                              <div class="right-area">
+                                  <iframe width="100%" height="100%" src="https://www.youtube.com/embed/fpbbP-Mo2O8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>
+                              </div>
+                              <div class="lateral2">
+                                  <p class="yt-titulo">Licae cus imus id modia quos ad et ut officia commolo</p>
+                                  <p class="yt-text">Orposandiam, vo llaquoditas el maio ilibus Licae cus imus id modia quos ad et ut</p>
+                              </div>
+                              <div class="clearfix"></div>
+                              <div class="footer-area">
+                                  <iframe width="100%" height="100%" src="https://www.youtube.com/embed/q86coTBn7vM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>
+                              </div>
+                              <div class="lateral3">
+                                  <p class="yt-titulo">Licae cus imus id modia quos ad et ut officia commolo</p>
+                                  <p class="yt-text">Orposandiam, vo llaquoditas el maio ilibus Licae cus imus id modia quos ad et ut</p>
+                              </div>
+                          </div>
+                          <div class="clearfix">Orposandiam, sin pro es et laboreiusani vollam, el maio ilibus (...)</div>
+                      </div>
+                      <div class="col-yout">CANAL YOUTUBE</div>
+                      <div class="canal-area">
+                          <div class="col-canal">
+                              <div class="canal">
+                                  <iframe width="100%" height="100%" src="https://www.youtube.com/embed/2oeE-KiuH10" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>
+                              </div>
+                              <div class="canal-texto">
+                                  <p class="yt-titulo2">Licae cus imus id modia quos ad et ut officia commolo</p>
+                                  <p class="yt-text2">Orposandiam, vo llaquoditas el maio ilibus Licae cus imus id modia quos ad et ut</p>
+                              </div>
+                          </div>
+                          <div class="col-canal">
+                              <div class="canal">
+                                  <iframe width="100%" height="100%" src="https://www.youtube.com/embed/gRKDXgjkLvo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>
+                              </div>
+                              <div class="canal-texto">
+                                  <p class="yt-titulo2">Licae cus imus id modia quos ad et ut officia commolo</p>
+                                  <p class="yt-text2">Orposandiam, vo llaquoditas el maio ilibus Licae cus imus id modia quos ad et ut</p>
+                              </div>
+                          </div>
+                          <div class="col-canal">
+                              <div class="canal">
+                                  <iframe width="100%" height="100%" src="https://www.youtube.com/embed/BOimqDDjd5o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>
+                              </div>
+                              <div class="canal-texto">
+                                  <p class="yt-titulo2">Licae cus imus id modia quos ad et ut officia commolo</p>
+                                  <p class="yt-text2">Orposandiam, vo llaquoditas el maio ilibus Licae cus imus id modia quos ad et ut</p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="clearfix"></div>
+              </section>'           
+    -
+      name: news_as_home
+      position: 6
+      publish: true
+      alias: Colunistas
+      settings: '{:page_id=>"%{page_id}", :show_title=>"0", :show_info=>"0", :show_controls=>"0"}'
+      page:
+        title: 'Colunistas'
+        text: '<section colunistas class="colunistas" id="opnion">
+                <div class="col"> COLUNISTAS </div> 
+                <div class="grid-container">
+                  <div class="item1">
+                    <img src="/assets/col_01.png">
+                    <p>Nome do Autor</p>
+                    <h3>Licae cus imus id modia quos ad et ut officia commolo</h3>
+                  </div>
+                  <div class="item2">
+                    <img src="/assets/col_02.png">
+                    <p>Nome do Autor</p>
+                    <h3>Licae cus imus id modia quos ad et ut officia commolo</h3>
+                  </div>
+                  <div class="item3">
+                    <img src="/assets/col_03.png">
+                    <p>Nome do Autor</p>
+                    <h3>Licae cus imus id modia quos ad et ut officia commolo</h3>
+                  </div>  
+                  <div class="item4">
+                    <img src="/assets/col_04.png">
+                    <p>Nome do Autor</p>
+                    <h3>Licae cus imus id modia quos ad et ut officia commolo</h3>
+                  </div>
+                </div>
+                <div class="col"> ARTIGOS </div> 
+                <div class="grid-container2">
+                  <div class="grid-item2 item1-art">
+                    <img src="/assets/artigo_01.png">
+                    <div class="texto">
+                      <p class="nome" >Nome do Autor</p>
+                      <p>Licae cus imus id modia quos ad et ut officia commolo</p>
+                    </div>    
+                  </div>
+                  <div class="grid-item2">
+                    <img src="/assets/artigo_02.png">
+                    <div class="texto">
+                      <p class="nome" >Nome do Autor</p>
+                      <p>Licae cus imus id modia quos ad et ut officia commolo</p>
+                    </div>
+                  </div>
+                  <div class="grid-item2 item3-art">
+                    <img src="/assets/artigo_03.png">
+                    <div class="texto">
+                      <p class="nome" >Nome do Autor</p>
+                      <p>Licae cus imus id modia quos ad et ut officia commolo</p>
+                    </div>
+                  </div>  
+                  <div class="grid-item2">
+                  <img src="/assets/artigo_04.png">
+                    <div class="texto">
+                      <p class="nome" >Nome do Autor</p>
+                      <p>Licae cus imus id modia quos ad et ut officia commolo</p>
+                    </div>
+                  </div>
+                  <div class="grid-item2">
+                  <img src="/assets/artigo_05.png">
+                    <div class="texto">
+                      <p class="nome" >Nome do Autor</p>
+                      <p>Licae cus imus id modia quos  et ut officia commolo</p>
+                    </div>
+                  </div>
+                  <div class="grid-item2">
+                    <img src="/assets/artigo_06.png">
+                    <div class="texto">
+                      <p class="nome" >Nome do Autor</p>
+                      <p>Licae cus imus id modia quos ad et ut officia commolo</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col"> COMUNIDADE </div>
+                <div class="grid-container-com">
+                <div class="item-com1">
+                  <img src="/assets/comunidade_01.png">
+                  <p class="first">Licae cus imus id modia quos ad et ut officia</p>
+                  <p class="second">Licae cus imus id modia quos ad et ut officia commolo</p>   
+                </div>
+                 <div class="item-com2">
+                  <img src="/assets/comunidade_02.png">
+                  <p class="first">Licae cus imus id modia quos ad et ut officia</p>
+                  <p class="second">Licae cus imus id modia quos ad et ut officia commolo</p>   
+                </div>
+              </div>
+              </section>'  
+      
+         
+    -
+      name: text   
+      position: 7
+      publish: true
+      alias: Menu Azul       
+      settings: '{:html_class=>"menu_corpo", 
+                  :body=>{"pt-BR"=>"<div class=\"grid-corpo\">
+                    <div class=\"corpo-group\">
+                      <div class=\"title\"> JORNALISMO</div>
+                      <p>Licae cus imus id modia quos ad et ut officia commolo 5</p>
+                    </div>
+                    <div class=\"corpo-group\">
+                      <div class=\"title\">CERIMONIAL</div>
+                      <p>Licae cus imus id modia quos ad et ut officia commolo 6</p>
+                    </div>
+                    <div class=\"corpo-group\">
+                      <div class=\"title\"> COLAÇÃO DE GRAU </div>
+                      <p>Licae cus imus id modia quos ad et ut officia commolo 7</p>
+                    </div>
+                    <div class=\"corpo-group\">
+                      <div class=\"title\">PUBLICIDADE</div>                            
+                      <p>Licae cus imus id modia quos ad et ut officia commolo 8</p>
+                    </div>
+              <div class=\"clearfix\"></div>  
+            </div></div>"}}'
+          
+bottom:
+  -
+    name: components_group
+    position: 1
+    publish: true
+    alias: Rodapé
+    settings: '{:html_class=>"footer"}'
+    children:
+      -
+        settings: '{:html_class=>"menu-footer", :body=>{"pt-BR"=>"<a href=\"#\">SECOM</a><a href=\"#\">RÁDIO</a><a href=\"#\">TV</a><a href=\"#\">UFG</a>"}}'
+        name: text
+        position: 1
+        publish: true
+        alias: Menu Footer        
+
+      -
+        settings: '{:html_class=>"google-map", :body=>{"pt-BR"=>"<iframe  width=\"700\"  height=\"440\"  frameborder=\"0\" style=\"border:0\" src=\"https://www.google.com/maps/embed/v1/place?q=20Ch%C3%A1caras%20Calif%C3%B3rnia%2C%20Goi%C3%A2nia%20-%20GO%2C%2074045-155\" allowfullscreen></iframe>"}}'
+        name: text
+        position: 2
+        publish: true
+        alias: Mapa
+
+      -
+        settings: '{:html_class=>"menu-principal", :body=>{"pt-BR"=>"<div><ul>
+                        <li><a href=\"#\">Saúde</a></li>
+                        <li><a href=\"#\">Ciências Naturais</a></li>
+                        <li><a href=\"#\">Tecnologia</a></li>
+                        <li><a href=\"#\">Humanidades</a></li>
+                        <li><a href=\"#\">Arte e Cultura</a></li>
+                        <li><a href=\"#\">Institucional</a></li>
+                        </ul></div>"}}'
+        name: text
+        position: 3
+        publish: true
+        alias: Todos os direitos    
+
+      -
+        settings: '{:html_class=>"menu-secundario", :body=>{"pt-BR"=>"<div><ul>
+                        <li><a href=\"#\">Expediente</a></li>
+                        <li><a href=\"#\">Edições Impressas</a></li>
+                        <li><a href=\"#\">Índice de Notícias</a></li>
+                        <li><a href=\"#\">Clipping</a></li>
+                        <li><a href=\"#\">Contatos</a></li>
+                        <li><a href=\"#\">Fale Conosco</a></li>
+                        </ul></div>"}}'
+        name: text
+        position: 4
+        publish: true
+        alias: Menu Secundario
+     
+      -
+        settings: '{:html_class=>"copyright", :body=>{"pt-BR"=>"® Todos os direitos reservador. Livre distribuição com créditos"}}'
+        name: text
+        position: 5
+        publish: true
+        alias: Todos os direitos
+
+      -        
+        settings: '{:html_class=>"ajuste-footer", :body=>{"pt-BR"=>""}}'
+        name: text
+        position: 6
+        publish: true
+        alias: Clearfix
+
+      -        
+        settings: '{:default_image=>"SECOM_marca.png", :size=>"", :width=>"", :height=>"",
+          :url=>"https://secom.ufg.br/", :target_id=>"", :target_type=>"", 
+          :new_tab=>"0", :html_class=>"logo-cercomp"}'
+        name: image
+        position: 7
+        publish: true
+        alias: Logo Cercomp
+
+      -        
+        settings: '{:default_image=>"UFG_marca.png", :size=>"", :width=>"", :height=>"",
+          :url=>"http://www.ufg.br/n/64596-a-marca-da-ufg", :target_id=>"", :target_type=>"", 
+          :new_tab=>"0", :html_class=>"logo-ufg"}'
+        name: image
+        position: 8
+        publish: true
+        alias: Logo UFG
+
+      -        
+        settings: '{:html_class=>"clearfix", :body=>{"pt-BR"=>""}}'
+        name: text
+        position: 9
+        publish: true
+        alias: Clearfix

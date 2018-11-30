@@ -11,6 +11,7 @@ fr:
         label_contrast:     " Rótulo Contraste "
         additional_information: " Informations Complémentaires "
         extended_accessibility: " Activer "
+        template:               " Format "
   menu_accessibility:
     views:
       form:
@@ -19,6 +20,8 @@ fr:
         display_controls:   " Afficher les commandes "
         basic:              " De Base "
         extended:           " Prolongé "
+        default:            " Défaut "
+        bar:                " Bar "
       basic:
         increase_font_size: " Augmenter la taille de la police "
         decrease_font_size: " Réduire la taille de la police "
@@ -26,6 +29,9 @@ fr:
         contrast:           " Modifier le contraste de la page "
         contrast_normal:    " Retirerle contraste de la page "
         colour:             " Couleur "
+        go_to_content:      " Aller au Contenu "
+        go_to_menu:         " Aller au Menu "
+        go_to_search:       " Aller au Recherche "
       extended:
         increase_font_size: " Augmenter la taille de la police "
         decrease_font_size: " Réduire la taille de la police "

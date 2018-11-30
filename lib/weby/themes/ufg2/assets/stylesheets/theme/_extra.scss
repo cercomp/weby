@@ -1,0 +1,125 @@
+.dock-container {
+  position: relative;
+}
+
+.side-dock {
+  position: absolute;
+  width: auto;
+  max-width: 144px;
+  padding-top: 80px !important;
+  top: 0;
+  z-index: 3;
+}
+
+.side-dock.fixed {
+  position: fixed;
+}
+
+.side-dock .btn {
+  display: inline-flex;
+  align-items: flex-start;
+  border-radius: 0 25px 25px 0;
+  font-family: Lato;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: var(--white);
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 16px 20px 17px 16px;
+  margin-bottom: 4px;
+  background-color: var(--dark-blue);
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
+}
+
+.side-dock .btn > span {
+  width: 0;
+  padding-left: 18px;
+  transition: .2s;
+  overflow: hidden;
+}
+
+.side-dock .btn.active > span {
+  width: 74px;
+}
+
+.side-dock img {
+  vertical-align: bottom;
+}
+
+.side-dock .anchor-news {
+  background-color: #ed5d59;
+}
+
+.side-dock .anchor-newspaper {
+  background-color: var(--light-green);
+}
+
+.side-dock .anchor-events {
+  background-color: var(--light-purple);
+}
+
+.side-dock .anchor-network {
+  background-color: var(--light-yellow);
+}
+
+.side-dock .anchor-services {
+  background-color: var(--light-blue);
+}
+
+ /* Active */
+.side-dock .anchor-news.active {
+  background-color: var(--red);
+}
+
+.side-dock .anchor-newspaper.active {
+  background-color: var(--green);
+}
+
+.side-dock .anchor-events.active {
+  background-color: var(--purple);
+}
+
+.side-dock .anchor-network.active {
+  background-color: var(--yellow);
+}
+
+.side-dock .anchor-services.active {
+  background-color: var(--dark-blue);
+}
+
+/* Map */
+
+#map {
+  height: 440px;
+  width: 100%;
+}
+
+.maps {
+  padding: 80px 0 0;
+}
+.maps .simple-title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.maps .text_component {
+  padding: 30px 0;
+  font-family: Lato;
+  font-size: 18px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 2.22;
+  letter-spacing: normal;
+  text-align: center;
+  color: #666666;
+  background-color: var(--bg);
+}
+
+.maps .text_component p {
+  margin: 0;
+}

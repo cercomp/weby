@@ -1,5 +1,7 @@
 class MenuComponent < Component
-  component_settings :menu_id, :dropdown, :style, :html_class
+  component_settings :menu_id, :dropdown, :style, :html_class, :title
+
+  i18n_settings :title
 
   validates :menu_id, presence: true
   validates :html_class, format: { with: /\A[A-Za-z0-9_\-]*\z/ }

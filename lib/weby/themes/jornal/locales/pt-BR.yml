@@ -1,0 +1,9 @@
+pt-BR:
+  themes:
+    jornal:
+      title:              " Jornal UFG "
+      placeholders:
+        first_place:        " Topo "
+        home:               " Página Inicial "
+        top:                " Cabeçalho "
+        bottom:             " Inferior "

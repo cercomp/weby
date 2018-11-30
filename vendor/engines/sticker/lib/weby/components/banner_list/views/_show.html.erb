@@ -63,10 +63,15 @@
                                   target: (banner.new_tab ? '_blank' : ''),
                                   data: {banner_id: banner.id}
                                }) %>
+              <% if component.show_title? %>
+                <div class="flex-caption">
+                  <p class="flex-caption-inner"><%= banner.title %></p>
+                </div>
+              <% end %>
               <% if component.show_description? %>
-                <p class="flex-caption">
-                  <%= banner.title %>
-                </p>
+                <div class="flex-description">
+                  <p class="flex-description-inner"><%= banner.text %></p>
+                </div>
               <% end %>
             </li>
           <% end %>
