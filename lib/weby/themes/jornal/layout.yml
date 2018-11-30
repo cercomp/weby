@@ -1,5 +1,6 @@
 title: Jornal
 width: 500
+private: true
 placeholders:
   - names: ['first_place']
   - names: ['top']
