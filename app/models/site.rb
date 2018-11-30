@@ -99,8 +99,8 @@ class Site < ActiveRecord::Base
     define_method("#{shareable}_social_share_networks=") { |value| settings["#{shareable}.social_share_networks"] = value }
   end
 
-  def generate_components_yml
-    active_skin.components_yml
+  def generate_components_yml theme
+    skins.find_by(theme: theme)&.components_yml
   end
 
   private

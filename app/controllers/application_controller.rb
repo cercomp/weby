@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
     if params[:preview_skin]
       current_site.skins.find(params[:preview_skin]).theme
     else
-      current_site.theme ? current_site.theme.name : 'weby'
+      current_site.active_skin.persisted? ? current_site.active_skin.theme : 'weby'
     end
   end
 
@@ -336,9 +336,9 @@ class ApplicationController < ActionController::Base
         end
 
         @global_components = {}
-        skin = params[:preview_skin] ? current_site.skins.find(params[:preview_skin]) : current_site.active_skin
-        if current_site.theme
-          components = skin.components.where(publish: true).order('position asc')
+        @current_skin = params[:preview_skin] ? current_site.skins.find(params[:preview_skin]) : current_site.active_skin
+        if @current_skin.persisted?
+          components = @current_skin.components.where(publish: true).order('position asc')
           comp_select = lambda { |place_holder|
             components.select { |comp| comp.place_holder == place_holder }.map do |component|
               comp = { component: component }
@@ -348,7 +348,7 @@ class ApplicationController < ActionController::Base
               comp
             end
           }
-          current_site.theme.layout['placeholders'].map { |place| place['names'] }.flatten.each do |place_holder|
+          @current_skin.base_theme.layout['placeholders'].map { |place| place['names'] }.flatten.each do |place_holder|
             @global_components[place_holder.to_sym] = comp_select.call(place_holder)
           end
         end

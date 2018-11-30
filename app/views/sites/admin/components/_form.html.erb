@@ -25,15 +25,15 @@
       <label><%= t(".place")  %></label>
       <% if params[:placeholder] %>
         <% if params[:placeholder].match(/^\d*$/) %>
-          <% group = current_site.active_skin.components.find_by(id: params[:placeholder].to_i) %>
+          <% group = @skin.components.find_by(id: params[:placeholder].to_i) %>
           <input type="text"disabled="true" class="form-control" value="
             <%= group ? (group.alias.present? ? group.alias : t("components.#{group.name}.name")) : params[:placeholder] %>"/>
         <% else %>
           <input type="text"disabled="true" class="form-control" value="
-            <%= t("themes.#{current_site.theme.name}.placeholders.#{@component.place_holder}", :default => @component.place_holder) %>"/>
+            <%= t("themes.#{@skin.theme}.placeholders.#{@component.place_holder}", :default => @component.place_holder) %>"/>
         <% end %>
       <% else %>
-        <% if @component.place_holder.to_s.match(/^\d*$/) and (group = current_site.active_skin.components.find_by(id: @component.place_holder.to_i)) %>
+        <% if @component.place_holder.to_s.match(/^\d*$/) and (group = @skin.components.find_by(id: @component.place_holder.to_i)) %>
             <input type="text"disabled="true" class="form-control" value="
              <%= group.alias.present? ? group.alias : t("components.#{group.name}.name") %>"/>
         <% else %>

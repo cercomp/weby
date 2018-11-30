@@ -3,7 +3,7 @@ class Skin < ActiveRecord::Base
   belongs_to :site
 
   has_many :components, dependent: :destroy
-  has_many :root_components, ->(obj) { obj.site.theme ? order(:position).where("place_holder !~ '^\\d*$'").where(skin_id: obj.id) : where(nil) }, class_name: 'Component'
+  has_many :root_components, -> { order(:position).where("place_holder !~ '^\\d*$'") }, class_name: 'Component'
   has_many :styles, -> { order('styles.position DESC') }, dependent: :destroy
 
 
