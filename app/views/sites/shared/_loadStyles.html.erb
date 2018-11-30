@@ -1,10 +1,9 @@
-<% skin = params[:preview_skin] ? current_site.skins.find(params[:preview_skin]) : current_site.active_skin %>
-<% skin.styles.published.reorder('styles.position asc').each do |style| %>
+<% @current_skin.styles.published.reorder('styles.position asc').each do |style| %>
   <!-- <%= "#{style.name} (#{style.owner.name})" %> -->
   <style type="text/css">
     <%= raw style.css %>
   </style>
-<% end if current_site.theme %>
+<% end if @current_skin %>
 
 <%= stylesheet_link_tag 'shared/contrast_blue' if session[:contrast] == "blue" %>
 <%= stylesheet_link_tag 'shared/contrast_black' if session[:contrast] == "black" %>

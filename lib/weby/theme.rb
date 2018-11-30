@@ -71,7 +71,7 @@ class Weby::Theme
   end
 
   def populate_components
-    return if @skin.components.any? #@site.active_skin.components.where(theme: @name).destroy_all
+    return if @skin.components.any?
 
     @default_footer = {}
     @skin.site.locales.each do |locale|

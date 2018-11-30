@@ -3,9 +3,9 @@ pt-BR:
     admin:
       skins:
         show:
-          no_theme:           " Nenhum tema selecionado. "
+          no_theme:           " Nenhum tema aplicado! "
           themes:             " Temas "
-          install_theme:      " Novo Tema "
+          install_theme:      " Instalar Tema "
           active_theme:       " Tema Ativo "
           default:            " Restaurar padrão "
           confirm_default:    " Deseja realmente voltar o tema ao padrão e perder as modificações feitas? "

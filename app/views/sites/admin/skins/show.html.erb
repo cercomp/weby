@@ -5,6 +5,11 @@
 
 <div class="row">
   <div class="col-md-12">
+    <% if !@active_skin.persisted? %>
+      <div class="pull-left">
+        <span class="label label-danger"><%= t('.no_theme') %></span>
+      </div>
+    <% end %>
     <div class="pull-right">
       <% with_permission(action: :create) do %>
         <%= link_to t(".install_theme"),
@@ -15,13 +20,15 @@
   </div>
 </div>
 <ul class="nav nav-tabs" id="theme-tabs">
-  <li class="current <%= 'active' if @active_skin.theme == @skin.theme %>">
-    <div class="skin-tooltip label label-success"><%= t('.active_theme') %></div>
-    <%= link_to(@active_skin == @skin ? '#' : site_admin_skin_path(@active_skin)) do %>
-      <div><%= @active_skin.base_theme.title %></div>
-      <%= image_tag "#{@active_skin.theme}/thumb.png", style: 'width: 85px' %>
-    <% end %>
-  </li>
+  <% if @active_skin.persisted? %>
+    <li class="current <%= 'active' if @active_skin.theme == @skin.theme %>">
+      <div class="skin-tooltip label label-success"><%= t('.active_theme') %></div>
+      <%= link_to(@active_skin == @skin ? '#' : site_admin_skin_path(@active_skin)) do %>
+        <div><%= @active_skin.base_theme.title %></div>
+        <%= image_tag "#{@active_skin.theme}/thumb.png", style: 'width: 85px' %>
+      <% end %>
+    </li>
+  <% end %>
   <% @skins.each do |skin| %>
     <% next unless skin.base_theme %>
     <li class="<%= 'active' if skin.theme == @skin.theme %>">
@@ -87,7 +94,7 @@
           <% row["names"].each_with_index do |name, idx| %>
             <%= content_tag :div, class: "placeholder", data: {place: name}, style: "width: #{row["widths"] ? row["widths"][idx] : 100/row["names"].size}%;" do %>
               <%= link_to '+', new_site_admin_skin_component_path(@skin, placeholder: name), class: "add-btn btn btn-success btn-sm", title: t(".new_component") if check_permission(Sites::Admin::ComponentsController, 'new') %>
-              <div class="placeholder-name"><%= t("themes.#{current_site.theme.name}.placeholders.#{name}") %></div>
+              <div class="placeholder-name"><%= t("themes.#{@skin.theme}.placeholders.#{name}") %></div>
               <ul class="order-list" data-place="<%= name %>">
                 <% components_per_holder = @components.select{|component| component.place_holder == name} %>
                 <% if components_per_holder.empty? %>

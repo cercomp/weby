@@ -4,11 +4,12 @@ class Sites::Admin::SkinsController < ApplicationController
   before_action :load_skin, only: [:show, :destroy, :apply, :preview]
 
   def index
-    skin = current_site.active_skin
-    if skin
-      redirect_to site_admin_skin_path(skin)
-    else
+    skins = current_site.skins.order(:name)
+    if skins.empty?
       redirect_to new_site_admin_skin_path
+    else
+      active_skin = current_site.active_skin
+      redirect_to site_admin_skin_path(active_skin.persisted? ? active_skin : skins.first)
     end
   end
 
@@ -17,7 +18,7 @@ class Sites::Admin::SkinsController < ApplicationController
     @skins = current_site.skins.order(:name).reject{|sk| sk.theme == @active_skin.theme }
 
     @components = @skin.components.includes(:skin).order(position: :asc)
-    @placeholders = current_site.theme ? current_site.theme.layout['placeholders'] : []
+    @placeholders = @skin.base_theme&.layout['placeholders']&.to_a
 
     @styles = {}
     @styles[:others] = Style.not_followed_by(@skin).search(params[:search])
