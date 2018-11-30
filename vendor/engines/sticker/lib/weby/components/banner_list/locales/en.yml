@@ -5,7 +5,8 @@ en:
       category:              " Category "
       orientation:           " Type "
       timer:                 " Transition time "
-      description:           " Show description? "
+      show_title:            " Show title? "
+      show_description:      " Show description? "
       show_controls:         " Show controls? "
   activerecord:
     attributes:
@@ -13,7 +14,8 @@ en:
         category:            " Category "
         orientation:         " Type "
         timer:               " Transition time "
-        description:         " Show description? "
+        show_title:          " Show title? "
+        show_description:    " Show description? "
         show_controls:       " Show controls? "
   banner_list:
     views:
