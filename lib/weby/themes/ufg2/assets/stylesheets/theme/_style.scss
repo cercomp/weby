@@ -227,7 +227,7 @@ div, section, input {
   }
 }
 
-#news, .subsite_front_news_component .list {
+.front_news_component #news, .subsite_front_news_component .list {
   max-width: 940px;
   margin: 0 auto;
   padding: 60px 0 140px;
@@ -522,7 +522,7 @@ div, section, input {
   }
 }
 
-#events {
+.event_list_component #events {
   padding: 60px 0 190px;
 
   li {
