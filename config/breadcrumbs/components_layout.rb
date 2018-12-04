@@ -21,5 +21,5 @@ end
 
 crumb :layout_settings do
   link t("breadcrumbs.layout_settings"), settings_site_admin_layouts_path
-  parent :components
+  parent :skins
 end
