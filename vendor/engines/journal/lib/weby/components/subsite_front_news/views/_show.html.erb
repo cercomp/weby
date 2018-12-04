@@ -26,7 +26,7 @@
             </span>
           <% end %>
           <% unless news.image.nil? %>
-            <%= weby_file_view(news.image, :l, "128", nil, {as: "link", url: news.url.present? ? news.url : news_url(news, subdomain: news.site), link_class: 'news-image'}) %>
+            <%= weby_file_view(news.image, :m, "128", nil, {as: "link", url: news.url.present? ? news.url : news_url(news, subdomain: news.site), link_class: 'news-image'}) %>
           <% end %>
           <header>
             <% if component.tag_as_label? && news_site.category_list.present? %>

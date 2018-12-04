@@ -9,6 +9,7 @@ module Journal
 
     def index
       @newslist = get_news
+      @extension = current_site.extensions.find_by(name: 'journal')
 
       respond_with(@newslist) do |format|
         format.rss { render layout: false, content_type: Mime::XML } # index.rss.builder
