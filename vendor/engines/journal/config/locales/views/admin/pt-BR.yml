@@ -9,3 +9,9 @@ pt-BR:
         category:             " Categoria "
         none_news:            " Nenhuma Notícia Encontrada "
         search_news:          " Pesquisar notícia "
+      form:
+        m:                    " Média "
+        l:                    " Pequena "
+        i:                    " Miniatura "
+        t:                    " Thumbnail "
+        image_size_hint:      " Thumbnail é uma versão reduzida da imagem, onde é feito um corte quadrado para que a proporção original não se perca "
