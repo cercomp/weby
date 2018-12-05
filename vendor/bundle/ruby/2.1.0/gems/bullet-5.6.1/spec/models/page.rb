@@ -1,2 +1,0 @@
-class Page < Document
-end

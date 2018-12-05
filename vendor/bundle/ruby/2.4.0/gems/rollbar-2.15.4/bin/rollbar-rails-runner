@@ -1,5 +1,0 @@
-#!/usr/bin/env ruby
-
-require 'rails/rollbar_runner'
-
-Rails::RollbarRunner.new.run

@@ -1,3 +1,0 @@
-[submodule "rollbar.js"]
-	path = rollbar.js
-	url = https://github.com/rollbar/rollbar.js.git

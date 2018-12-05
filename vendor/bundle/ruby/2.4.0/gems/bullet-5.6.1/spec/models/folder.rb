@@ -1,2 +1,0 @@
-class Folder < Document
-end

@@ -1,8 +1,0 @@
-Description:
-  Generates a sample breadcrumbs configuration file for Gretel.
-
-Example:
-  rails generate gretel:install
-
-  This will create:
-    config/breadcrumbs.rb

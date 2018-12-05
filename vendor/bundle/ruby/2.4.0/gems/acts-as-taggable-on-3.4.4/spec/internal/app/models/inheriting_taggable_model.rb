@@ -1,2 +1,0 @@
-class InheritingTaggableModel < TaggableModel
-end
