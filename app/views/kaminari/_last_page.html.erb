@@ -7,7 +7,7 @@
     remote:        data-remote
 -%>
 <% unless current_page.last? %>
-  <li class="page">
+  <li class="page last">
     <% url = defined?(comp_url) ? url.gsub(/^[^\?]+\?/, "#{comp_url}?") : url %>
     <%= link_to raw(t ".pagination_last"), url, {:remote => remote} %>
   </li>
