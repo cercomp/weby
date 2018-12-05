@@ -1,0 +1,67 @@
+current directory: /home/tulio/projetos/weby/vendor/bundle/ruby/2.4.0/gems/pg-0.17.1/ext
+/home/tulio/.rbenv/versions/2.4.0/bin/ruby -r ./siteconf20181129-12958-15f4xuf.rb extconf.rb
+checking for pg_config... yes
+Using config values from /usr/bin/pg_config
+checking for libpq-fe.h... yes
+checking for libpq/libpq-fs.h... yes
+checking for pg_config_manual.h... yes
+checking for PQconnectdb() in -lpq... yes
+checking for PQconnectionUsedPassword()... yes
+checking for PQisthreadsafe()... yes
+checking for PQprepare()... yes
+checking for PQexecParams()... yes
+checking for PQescapeString()... yes
+checking for PQescapeStringConn()... yes
+checking for PQescapeLiteral()... yes
+checking for PQescapeIdentifier()... yes
+checking for PQgetCancel()... yes
+checking for lo_create()... yes
+checking for pg_encoding_to_char()... yes
+checking for pg_char_to_encoding()... yes
+checking for PQsetClientEncoding()... yes
+checking for PQlibVersion()... yes
+checking for PQping()... yes
+checking for PQsetSingleRowMode()... yes
+checking for rb_encdb_alias()... yes
+checking for rb_enc_alias()... yes
+checking for rb_thread_call_without_gvl()... yes
+checking for rb_thread_call_with_gvl()... yes
+checking for rb_thread_fd_select()... yes
+checking for rb_w32_wrap_io_handle()... no
+checking for PGRES_COPY_BOTH in libpq-fe.h... yes
+checking for PGRES_SINGLE_TUPLE in libpq-fe.h... yes
+checking for PG_DIAG_TABLE_NAME in libpq-fe.h... yes
+checking for struct pgNotify.extra in libpq-fe.h... yes
+checking for unistd.h... yes
+checking for ruby/st.h... yes
+creating extconf.h
+creating Makefile
+
+To see why this extension failed to compile, please check the mkmf.log which can be found here:
+
+  /home/tulio/projetos/weby/vendor/bundle/ruby/2.4.0/extensions/x86_64-linux/2.4.0-static/pg-0.17.1/mkmf.log
+
+current directory: /home/tulio/projetos/weby/vendor/bundle/ruby/2.4.0/gems/pg-0.17.1/ext
+make "DESTDIR=" clean
+
+current directory: /home/tulio/projetos/weby/vendor/bundle/ruby/2.4.0/gems/pg-0.17.1/ext
+make "DESTDIR="
+compiling gvl_wrappers.c
+compiling pg.c
+compiling pg_connection.c
+pg_connection.c: In function ‘wait_socket_readable’:
+pg_connection.c:2323:3: warning: implicit declaration of function ‘gettimeofday’ [-Wimplicit-function-declaration]
+   gettimeofday(&currtime, NULL);
+   ^
+pg_connection.c: At top level:
+cc1: warning: unrecognized command line option "-Wno-self-assign"
+cc1: warning: unrecognized command line option "-Wno-constant-logical-operand"
+cc1: warning: unrecognized command line option "-Wno-parentheses-equality"
+cc1: warning: unrecognized command line option "-Wno-tautological-compare"
+compiling pg_errors.c
+compiling pg_result.c
+linking shared-object pg_ext.so
+
+current directory: /home/tulio/projetos/weby/vendor/bundle/ruby/2.4.0/gems/pg-0.17.1/ext
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 pg_ext.so ./.gem.20181129-12958-4ejq06

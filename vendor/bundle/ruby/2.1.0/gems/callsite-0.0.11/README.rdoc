@@ -1,0 +1,79 @@
+= Callsite
+
+Caller/backtrace parser with some useful utilities for manipulating the load path, and doing other relative things.
+
+== Usage
+
+The primary thing you can do is parse a caller line(s).
+
+  pp Callsite.parse(caller)
+  
+Gives back
+  
+  => [#<struct Callsite::Line
+    filename="/opt/local/lib/ruby/1.8/irb/workspace.rb",
+    line=52,
+    method="irb_binding">,
+   #<struct Callsite::Line filename="", line=0, method=nil>]
+
+This is also suitable for parsing a backtrace, to get detailed information about it.
+
+  begin
+    raise
+  rescue
+    pp Callsite.parse($!)
+  end
+
+Produces
+
+  => [#<struct Callsite::Line filename="(irb)", line=27, method="irb_binding">,
+   #<struct Callsite::Line
+    filename="/opt/local/lib/ruby/1.8/irb/workspace.rb",
+    line=52,
+    method="irb_binding">,
+   #<struct Callsite::Line filename="", line=0, method=nil>]
+
+There are also six methods which patch existing objects to give you powerful usage of the caller.
+
+=== Callsite.activate_string_methods
+
+This gives you the ~@ method on +String+, which takes any string, and gives you a relative version of it, treating it as a file path. For example,
+
+  ~'lib/callsite.rb'
+  
+Gives you (on my laptop)
+
+  => "/Users/joshua/Development/callsite/lib/callsite.rb"
+
+=== Callsite.activate_file_methods
+
+This adds the +File.relative+ method. File.relative(file_path) has the same effect as ~file_path.
+
+=== Callsite.activate_module_methods
+
+This adds +autoload_relative+ onto Module. This allows you to do the following.
+
+  module MyModule
+    autoload_relative :Whatever, "lib/whatever"
+  end
+  
+In this case, lib/whatever will be treated as a relative path from the definition of the module.
+
+=== Callsite.activate_kernel_dir_methods
+
+This adds the <tt>\_\_DIR_REL__</tt> and optionally <tt>\_\_DIR__</tt> and require_relative methods to Kernel. <tt>\_\_DIR__</tt> or <tt>\_\_DIR_REL__</tt> will give you your current directory, much like
+<tt>\_\_FILE__</tt> gives you the current <tt>\_\_FILE__</tt> you're in. +require_relative+ is like +require+ .. only, it's relative.
+
+=== Callsite.activate_kernel_require_methods
+
+This adds a couple of weird methods to Kernel, require_next and require_all. There search your current $LOAD_PATH, and require the next file (ingoring the current one you're in on the load_path) or require all files of a given name.
+
+=== Callsite.activate_load_path_methods
+
+This adds some super useful methods to $LOAD_PATH. There are find_file (finds a single file on your load path), find_all_files (finds all of em), add_current (adds to the end of the load path your current dir) and add_current! (adds it to the beginning).
+
+As well, this gives you add and add!, both of which guard against a path being added twice to the load path. Add appends to the end if it doesn't exist, and add! forces it to the beginning.
+
+== This deprecates +dirge+ and +load_path_find+
+
+Once you have this installed, you can use require 'dirge' and require 'load_path_find' to get exactly the functionality you had before.

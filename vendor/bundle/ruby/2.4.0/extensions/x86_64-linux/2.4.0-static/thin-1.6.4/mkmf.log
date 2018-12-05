@@ -1,0 +1,33 @@
+have_library: checking for main() in -lc... -------------------- yes
+
+"gcc -o conftest -I/home/tulio/.rbenv/versions/2.4.0/include/ruby-2.4.0/x86_64-linux -I/home/tulio/.rbenv/versions/2.4.0/include/ruby-2.4.0/ruby/backward -I/home/tulio/.rbenv/versions/2.4.0/include/ruby-2.4.0 -I. -I/home/tulio/.rbenv/versions/2.4.0/include    -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wno-tautological-compare -Wno-parentheses-equality -Wno-constant-logical-operand -Wno-self-assign -Wunused-variable -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration -Wdeprecated-declarations -Wno-packed-bitfield-compat -Wsuggest-attribute=noreturn -Wsuggest-attribute=format conftest.c  -L. -L/home/tulio/.rbenv/versions/2.4.0/lib -Wl,-R/home/tulio/.rbenv/versions/2.4.0/lib -L. -L/home/tulio/.rbenv/versions/2.4.0/lib  -fstack-protector -rdynamic -Wl,-export-dynamic     -Wl,-R/home/tulio/.rbenv/versions/2.4.0/lib -L/home/tulio/.rbenv/versions/2.4.0/lib -lruby-static  -lpthread -lgmp -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main(int argc, char **argv)
+4: {
+5:   return 0;
+6: }
+/* end */
+
+"gcc -o conftest -I/home/tulio/.rbenv/versions/2.4.0/include/ruby-2.4.0/x86_64-linux -I/home/tulio/.rbenv/versions/2.4.0/include/ruby-2.4.0/ruby/backward -I/home/tulio/.rbenv/versions/2.4.0/include/ruby-2.4.0 -I. -I/home/tulio/.rbenv/versions/2.4.0/include    -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wno-tautological-compare -Wno-parentheses-equality -Wno-constant-logical-operand -Wno-self-assign -Wunused-variable -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration -Wdeprecated-declarations -Wno-packed-bitfield-compat -Wsuggest-attribute=noreturn -Wsuggest-attribute=format conftest.c  -L. -L/home/tulio/.rbenv/versions/2.4.0/lib -Wl,-R/home/tulio/.rbenv/versions/2.4.0/lib -L. -L/home/tulio/.rbenv/versions/2.4.0/lib  -fstack-protector -rdynamic -Wl,-export-dynamic     -Wl,-R/home/tulio/.rbenv/versions/2.4.0/lib -L/home/tulio/.rbenv/versions/2.4.0/lib -lruby-static -lc  -lpthread -lgmp -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: int t(void) { void ((*volatile p)()); p = (void ((*)()))main; return !p; }
+/* end */
+
+--------------------
+

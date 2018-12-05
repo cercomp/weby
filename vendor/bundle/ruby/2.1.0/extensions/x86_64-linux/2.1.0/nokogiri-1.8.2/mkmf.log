@@ -1,0 +1,569 @@
+"gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-2.1.0 -I/usr/include/ruby-2.1.0/ruby/backward -I/usr/include/ruby-2.1.0 -I. -D_FORTIFY_SOURCE=2   -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -fPIC  conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L. -Wl,-z,relro -L/build/ruby2.1-2.1.5/debian/lib -fstack-protector -rdynamic -Wl,-export-dynamic     -lruby-2.1  -lpthread -lgmp -ldl -lcrypt -lm   -lc "
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main(int argc, char **argv)
+4: {
+5:   return 0;
+6: }
+/* end */
+
+"gcc -I/usr/include/x86_64-linux-gnu/ruby-2.1.0 -I/usr/include/ruby-2.1.0/ruby/backward -I/usr/include/ruby-2.1.0 -I. -D_FORTIFY_SOURCE=2   -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -fPIC    -Werror -c conftest.c"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main() {return 0;}
+/* end */
+
+have_library: checking for gzdopen() in -lz... -------------------- yes
+
+"gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-2.1.0 -I/usr/include/ruby-2.1.0/ruby/backward -I/usr/include/ruby-2.1.0 -I. -D_FORTIFY_SOURCE=2   -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -fPIC  -g -DXP_UNIX -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L. -Wl,-z,relro -L/build/ruby2.1-2.1.5/debian/lib -fstack-protector -rdynamic -Wl,-export-dynamic     -lruby-2.1 -lz  -lpthread -lgmp -ldl -lcrypt -lm   -lc "
+conftest.c: In function ‘t’:
+conftest.c:15:32: warning: variable ‘p’ set but not used [-Wunused-but-set-variable]
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))gzdopen; return 0; }
+                                ^
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: #include <zlib.h>
+ 4: 
+ 5: /*top*/
+ 6: extern int t(void);
+ 7: int main(int argc, char **argv)
+ 8: {
+ 9:   if (argc > 1000000) {
+10:     printf("%p", &t);
+11:   }
+12: 
+13:   return 0;
+14: }
+15: int t(void) { void ((*volatile p)()); p = (void ((*)()))gzdopen; return 0; }
+/* end */
+
+--------------------
+
+have_iconv?: checking for iconv... -------------------- yes
+
+"gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-2.1.0 -I/usr/include/ruby-2.1.0/ruby/backward -I/usr/include/ruby-2.1.0 -I. -D_FORTIFY_SOURCE=2   -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -fPIC  -g -DXP_UNIX -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L. -Wl,-z,relro -L/build/ruby2.1-2.1.5/debian/lib -fstack-protector -rdynamic -Wl,-export-dynamic     -lruby-2.1  -lpthread -lgmp -ldl -lcrypt -lm   -lc "
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: #include <stdlib.h>
+ 4: #include <iconv.h>
+ 5: 
+ 6: int main(void)
+ 7: {
+ 8:     iconv_t cd = iconv_open("", "");
+ 9:     iconv(cd, NULL, NULL, NULL, NULL);
+10:     return EXIT_SUCCESS;
+11: }
+/* end */
+
+--------------------
+
+have_library: checking for main() in -llzma... -------------------- yes
+
+"gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-2.1.0 -I/usr/include/ruby-2.1.0/ruby/backward -I/usr/include/ruby-2.1.0 -I. -D_FORTIFY_SOURCE=2   -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -fPIC  -g -DXP_UNIX -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline -DNOKOGIRI_USE_PACKAGED_LIBRARIES conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L. -Wl,-z,relro -L/build/ruby2.1-2.1.5/debian/lib -fstack-protector -rdynamic -Wl,-export-dynamic     -lruby-2.1 -llzma  -lpthread -lgmp -ldl -lcrypt -lm   -lc "
+conftest.c: In function ‘t’:
+conftest.c:13:32: warning: variable ‘p’ set but not used [-Wunused-but-set-variable]
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))main; return 0; }
+                                ^
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: int t(void) { void ((*volatile p)()); p = (void ((*)()))main; return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for xmlParseDoc() in libxml/parser.h... -------------------- yes
+
+"gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-2.1.0 -I/usr/include/ruby-2.1.0/ruby/backward -I/usr/include/ruby-2.1.0 -I. -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/include -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/include/libxml2 -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/include/libxml2 -D_FORTIFY_SOURCE=2   "-DNOKOGIRI_LIBXML2_PATH=\"/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7\"" "-DNOKOGIRI_LIBXML2_PATCHES=\"\"" "-DNOKOGIRI_LIBXSLT_PATH=\"/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32\"" "-DNOKOGIRI_LIBXSLT_PATCHES=\"\"" -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -fPIC  -g -DXP_UNIX -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline -DNOKOGIRI_USE_PACKAGED_LIBRARIES conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib -L/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib -L/usr/lib/x86_64-linux-gnu -L. -Wl,-z,relro -L/build/ruby2.1-2.1.5/debian/lib -fstack-protector -rdynamic -Wl,-export-dynamic    /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libexslt.a -lm -ldl -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libxslt.a -ldl -lm -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a -llzma -lruby-2.1 /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libexslt.a -lm -ldl -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libxslt.a -ldl -lm -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a -llzma -lpthread -lgmp -ldl -lcrypt -lm   -lc "
+conftest.c: In function ‘t’:
+conftest.c:15:32: warning: variable ‘p’ set but not used [-Wunused-but-set-variable]
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))xmlParseDoc; return 0; }
+                                ^
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: #include <libxml/parser.h>
+ 4: 
+ 5: /*top*/
+ 6: extern int t(void);
+ 7: int main(int argc, char **argv)
+ 8: {
+ 9:   if (argc > 1000000) {
+10:     printf("%p", &t);
+11:   }
+12: 
+13:   return 0;
+14: }
+15: int t(void) { void ((*volatile p)()); p = (void ((*)()))xmlParseDoc; return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for xsltParseStylesheetDoc() in libxslt/xslt.h... -------------------- yes
+
+"gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-2.1.0 -I/usr/include/ruby-2.1.0/ruby/backward -I/usr/include/ruby-2.1.0 -I. -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/include -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/include/libxml2 -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/include/libxml2 -D_FORTIFY_SOURCE=2   "-DNOKOGIRI_LIBXML2_PATH=\"/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7\"" "-DNOKOGIRI_LIBXML2_PATCHES=\"\"" "-DNOKOGIRI_LIBXSLT_PATH=\"/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32\"" "-DNOKOGIRI_LIBXSLT_PATCHES=\"\"" -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -fPIC  -g -DXP_UNIX -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline -DNOKOGIRI_USE_PACKAGED_LIBRARIES conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib -L/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib -L/usr/lib/x86_64-linux-gnu -L. -Wl,-z,relro -L/build/ruby2.1-2.1.5/debian/lib -fstack-protector -rdynamic -Wl,-export-dynamic    /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libexslt.a -lm -ldl -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libxslt.a -ldl -lm -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a -llzma -lruby-2.1 /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libexslt.a -lm -ldl -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libxslt.a -ldl -lm -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a -llzma -lpthread -lgmp -ldl -lcrypt -lm   -lc "
+conftest.c: In function ‘t’:
+conftest.c:15:57: error: ‘xsltParseStylesheetDoc’ undeclared (first use in this function)
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))xsltParseStylesheetDoc; return 0; }
+                                                         ^
+conftest.c:15:57: note: each undeclared identifier is reported only once for each function it appears in
+conftest.c:15:32: warning: variable ‘p’ set but not used [-Wunused-but-set-variable]
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))xsltParseStylesheetDoc; return 0; }
+                                ^
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: #include <libxslt/xslt.h>
+ 4: 
+ 5: /*top*/
+ 6: extern int t(void);
+ 7: int main(int argc, char **argv)
+ 8: {
+ 9:   if (argc > 1000000) {
+10:     printf("%p", &t);
+11:   }
+12: 
+13:   return 0;
+14: }
+15: int t(void) { void ((*volatile p)()); p = (void ((*)()))xsltParseStylesheetDoc; return 0; }
+/* end */
+
+"gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-2.1.0 -I/usr/include/ruby-2.1.0/ruby/backward -I/usr/include/ruby-2.1.0 -I. -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/include -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/include/libxml2 -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/include/libxml2 -D_FORTIFY_SOURCE=2   "-DNOKOGIRI_LIBXML2_PATH=\"/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7\"" "-DNOKOGIRI_LIBXML2_PATCHES=\"\"" "-DNOKOGIRI_LIBXSLT_PATH=\"/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32\"" "-DNOKOGIRI_LIBXSLT_PATCHES=\"\"" -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -fPIC  -g -DXP_UNIX -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline -DNOKOGIRI_USE_PACKAGED_LIBRARIES conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib -L/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib -L/usr/lib/x86_64-linux-gnu -L. -Wl,-z,relro -L/build/ruby2.1-2.1.5/debian/lib -fstack-protector -rdynamic -Wl,-export-dynamic    /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libexslt.a -lm -ldl -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libxslt.a -ldl -lm -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a -llzma -lruby-2.1 /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libexslt.a -lm -ldl -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libxslt.a -ldl -lm -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a -llzma -lpthread -lgmp -ldl -lcrypt -lm   -lc "
+conftest.c: In function ‘t’:
+conftest.c:15:1: warning: implicit declaration of function ‘xsltParseStylesheetDoc’ [-Wimplicit-function-declaration]
+ int t(void) { xsltParseStylesheetDoc(); return 0; }
+ ^
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: #include <libxslt/xslt.h>
+ 4: 
+ 5: /*top*/
+ 6: extern int t(void);
+ 7: int main(int argc, char **argv)
+ 8: {
+ 9:   if (argc > 1000000) {
+10:     printf("%p", &t);
+11:   }
+12: 
+13:   return 0;
+14: }
+15: int t(void) { xsltParseStylesheetDoc(); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for exsltFuncRegister() in libexslt/exslt.h... -------------------- yes
+
+"gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-2.1.0 -I/usr/include/ruby-2.1.0/ruby/backward -I/usr/include/ruby-2.1.0 -I. -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/include -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/include/libxml2 -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/include/libxml2 -D_FORTIFY_SOURCE=2   "-DNOKOGIRI_LIBXML2_PATH=\"/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7\"" "-DNOKOGIRI_LIBXML2_PATCHES=\"\"" "-DNOKOGIRI_LIBXSLT_PATH=\"/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32\"" "-DNOKOGIRI_LIBXSLT_PATCHES=\"\"" -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -fPIC  -g -DXP_UNIX -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline -DNOKOGIRI_USE_PACKAGED_LIBRARIES conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib -L/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib -L/usr/lib/x86_64-linux-gnu -L. -Wl,-z,relro -L/build/ruby2.1-2.1.5/debian/lib -fstack-protector -rdynamic -Wl,-export-dynamic    /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libexslt.a -lm -ldl -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libxslt.a -ldl -lm -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a -llzma -lruby-2.1 /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libexslt.a -lm -ldl -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libxslt.a -ldl -lm -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a -llzma -lpthread -lgmp -ldl -lcrypt -lm   -lc "
+conftest.c: In function ‘t’:
+conftest.c:15:32: warning: variable ‘p’ set but not used [-Wunused-but-set-variable]
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))exsltFuncRegister; return 0; }
+                                ^
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: #include <libexslt/exslt.h>
+ 4: 
+ 5: /*top*/
+ 6: extern int t(void);
+ 7: int main(int argc, char **argv)
+ 8: {
+ 9:   if (argc > 1000000) {
+10:     printf("%p", &t);
+11:   }
+12: 
+13:   return 0;
+14: }
+15: int t(void) { void ((*volatile p)()); p = (void ((*)()))exsltFuncRegister; return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for xmlHasFeature()... -------------------- yes
+
+"gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-2.1.0 -I/usr/include/ruby-2.1.0/ruby/backward -I/usr/include/ruby-2.1.0 -I. -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/include -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/include/libxml2 -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/include/libxml2 -D_FORTIFY_SOURCE=2   "-DNOKOGIRI_LIBXML2_PATH=\"/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7\"" "-DNOKOGIRI_LIBXML2_PATCHES=\"\"" "-DNOKOGIRI_LIBXSLT_PATH=\"/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32\"" "-DNOKOGIRI_LIBXSLT_PATCHES=\"\"" -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -fPIC  -g -DXP_UNIX -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline -DNOKOGIRI_USE_PACKAGED_LIBRARIES conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib -L/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib -L/usr/lib/x86_64-linux-gnu -L. -Wl,-z,relro -L/build/ruby2.1-2.1.5/debian/lib -fstack-protector -rdynamic -Wl,-export-dynamic    /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libexslt.a -lm -ldl -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libxslt.a -ldl -lm -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a -llzma -lruby-2.1 /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libexslt.a -lm -ldl -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libxslt.a -ldl -lm -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a -llzma -lpthread -lgmp -ldl -lcrypt -lm   -lc "
+conftest.c: In function ‘t’:
+conftest.c:13:57: error: ‘xmlHasFeature’ undeclared (first use in this function)
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))xmlHasFeature; return 0; }
+                                                         ^
+conftest.c:13:57: note: each undeclared identifier is reported only once for each function it appears in
+conftest.c:13:32: warning: variable ‘p’ set but not used [-Wunused-but-set-variable]
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))xmlHasFeature; return 0; }
+                                ^
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: int t(void) { void ((*volatile p)()); p = (void ((*)()))xmlHasFeature; return 0; }
+/* end */
+
+"gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-2.1.0 -I/usr/include/ruby-2.1.0/ruby/backward -I/usr/include/ruby-2.1.0 -I. -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/include -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/include/libxml2 -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/include/libxml2 -D_FORTIFY_SOURCE=2   "-DNOKOGIRI_LIBXML2_PATH=\"/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7\"" "-DNOKOGIRI_LIBXML2_PATCHES=\"\"" "-DNOKOGIRI_LIBXSLT_PATH=\"/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32\"" "-DNOKOGIRI_LIBXSLT_PATCHES=\"\"" -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -fPIC  -g -DXP_UNIX -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline -DNOKOGIRI_USE_PACKAGED_LIBRARIES conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib -L/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib -L/usr/lib/x86_64-linux-gnu -L. -Wl,-z,relro -L/build/ruby2.1-2.1.5/debian/lib -fstack-protector -rdynamic -Wl,-export-dynamic    /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libexslt.a -lm -ldl -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libxslt.a -ldl -lm -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a -llzma -lruby-2.1 /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libexslt.a -lm -ldl -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libxslt.a -ldl -lm -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a -llzma -lpthread -lgmp -ldl -lcrypt -lm   -lc "
+conftest.c: In function ‘t’:
+conftest.c:13:1: warning: implicit declaration of function ‘xmlHasFeature’ [-Wimplicit-function-declaration]
+ int t(void) { xmlHasFeature(); return 0; }
+ ^
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: int t(void) { xmlHasFeature(); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for xmlFirstElementChild()... -------------------- yes
+
+"gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-2.1.0 -I/usr/include/ruby-2.1.0/ruby/backward -I/usr/include/ruby-2.1.0 -I. -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/include -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/include/libxml2 -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/include/libxml2 -D_FORTIFY_SOURCE=2   "-DNOKOGIRI_LIBXML2_PATH=\"/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7\"" "-DNOKOGIRI_LIBXML2_PATCHES=\"\"" "-DNOKOGIRI_LIBXSLT_PATH=\"/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32\"" "-DNOKOGIRI_LIBXSLT_PATCHES=\"\"" -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -fPIC  -g -DXP_UNIX -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline -DNOKOGIRI_USE_PACKAGED_LIBRARIES conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib -L/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib -L/usr/lib/x86_64-linux-gnu -L. -Wl,-z,relro -L/build/ruby2.1-2.1.5/debian/lib -fstack-protector -rdynamic -Wl,-export-dynamic    /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libexslt.a -lm -ldl -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libxslt.a -ldl -lm -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a -llzma -lruby-2.1 /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libexslt.a -lm -ldl -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libxslt.a -ldl -lm -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a -llzma -lpthread -lgmp -ldl -lcrypt -lm   -lc "
+conftest.c: In function ‘t’:
+conftest.c:13:57: error: ‘xmlFirstElementChild’ undeclared (first use in this function)
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))xmlFirstElementChild; return 0; }
+                                                         ^
+conftest.c:13:57: note: each undeclared identifier is reported only once for each function it appears in
+conftest.c:13:32: warning: variable ‘p’ set but not used [-Wunused-but-set-variable]
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))xmlFirstElementChild; return 0; }
+                                ^
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: int t(void) { void ((*volatile p)()); p = (void ((*)()))xmlFirstElementChild; return 0; }
+/* end */
+
+"gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-2.1.0 -I/usr/include/ruby-2.1.0/ruby/backward -I/usr/include/ruby-2.1.0 -I. -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/include -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/include/libxml2 -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/include/libxml2 -D_FORTIFY_SOURCE=2   "-DNOKOGIRI_LIBXML2_PATH=\"/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7\"" "-DNOKOGIRI_LIBXML2_PATCHES=\"\"" "-DNOKOGIRI_LIBXSLT_PATH=\"/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32\"" "-DNOKOGIRI_LIBXSLT_PATCHES=\"\"" -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -fPIC  -g -DXP_UNIX -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline -DNOKOGIRI_USE_PACKAGED_LIBRARIES conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib -L/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib -L/usr/lib/x86_64-linux-gnu -L. -Wl,-z,relro -L/build/ruby2.1-2.1.5/debian/lib -fstack-protector -rdynamic -Wl,-export-dynamic    /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libexslt.a -lm -ldl -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libxslt.a -ldl -lm -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a -llzma -lruby-2.1 /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libexslt.a -lm -ldl -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libxslt.a -ldl -lm -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a -llzma -lpthread -lgmp -ldl -lcrypt -lm   -lc "
+conftest.c: In function ‘t’:
+conftest.c:13:1: warning: implicit declaration of function ‘xmlFirstElementChild’ [-Wimplicit-function-declaration]
+ int t(void) { xmlFirstElementChild(); return 0; }
+ ^
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: int t(void) { xmlFirstElementChild(); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for xmlRelaxNGSetParserStructuredErrors()... -------------------- yes
+
+"gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-2.1.0 -I/usr/include/ruby-2.1.0/ruby/backward -I/usr/include/ruby-2.1.0 -I. -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/include -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/include/libxml2 -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/include/libxml2 -D_FORTIFY_SOURCE=2   "-DNOKOGIRI_LIBXML2_PATH=\"/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7\"" "-DNOKOGIRI_LIBXML2_PATCHES=\"\"" "-DNOKOGIRI_LIBXSLT_PATH=\"/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32\"" "-DNOKOGIRI_LIBXSLT_PATCHES=\"\"" -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -fPIC  -g -DXP_UNIX -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline -DNOKOGIRI_USE_PACKAGED_LIBRARIES conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib -L/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib -L/usr/lib/x86_64-linux-gnu -L. -Wl,-z,relro -L/build/ruby2.1-2.1.5/debian/lib -fstack-protector -rdynamic -Wl,-export-dynamic    /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libexslt.a -lm -ldl -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libxslt.a -ldl -lm -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a -llzma -lruby-2.1 /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libexslt.a -lm -ldl -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libxslt.a -ldl -lm -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a -llzma -lpthread -lgmp -ldl -lcrypt -lm   -lc "
+conftest.c: In function ‘t’:
+conftest.c:13:57: error: ‘xmlRelaxNGSetParserStructuredErrors’ undeclared (first use in this function)
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))xmlRelaxNGSetParserStructuredErrors; return 0; }
+                                                         ^
+conftest.c:13:57: note: each undeclared identifier is reported only once for each function it appears in
+conftest.c:13:32: warning: variable ‘p’ set but not used [-Wunused-but-set-variable]
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))xmlRelaxNGSetParserStructuredErrors; return 0; }
+                                ^
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: int t(void) { void ((*volatile p)()); p = (void ((*)()))xmlRelaxNGSetParserStructuredErrors; return 0; }
+/* end */
+
+"gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-2.1.0 -I/usr/include/ruby-2.1.0/ruby/backward -I/usr/include/ruby-2.1.0 -I. -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/include -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/include/libxml2 -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/include/libxml2 -D_FORTIFY_SOURCE=2   "-DNOKOGIRI_LIBXML2_PATH=\"/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7\"" "-DNOKOGIRI_LIBXML2_PATCHES=\"\"" "-DNOKOGIRI_LIBXSLT_PATH=\"/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32\"" "-DNOKOGIRI_LIBXSLT_PATCHES=\"\"" -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -fPIC  -g -DXP_UNIX -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline -DNOKOGIRI_USE_PACKAGED_LIBRARIES conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib -L/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib -L/usr/lib/x86_64-linux-gnu -L. -Wl,-z,relro -L/build/ruby2.1-2.1.5/debian/lib -fstack-protector -rdynamic -Wl,-export-dynamic    /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libexslt.a -lm -ldl -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libxslt.a -ldl -lm -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a -llzma -lruby-2.1 /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libexslt.a -lm -ldl -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libxslt.a -ldl -lm -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a -llzma -lpthread -lgmp -ldl -lcrypt -lm   -lc "
+conftest.c: In function ‘t’:
+conftest.c:13:1: warning: implicit declaration of function ‘xmlRelaxNGSetParserStructuredErrors’ [-Wimplicit-function-declaration]
+ int t(void) { xmlRelaxNGSetParserStructuredErrors(); return 0; }
+ ^
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: int t(void) { xmlRelaxNGSetParserStructuredErrors(); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for xmlRelaxNGSetParserStructuredErrors()... -------------------- yes
+
+"gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-2.1.0 -I/usr/include/ruby-2.1.0/ruby/backward -I/usr/include/ruby-2.1.0 -I. -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/include -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/include/libxml2 -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/include/libxml2 -D_FORTIFY_SOURCE=2   "-DNOKOGIRI_LIBXML2_PATH=\"/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7\"" "-DNOKOGIRI_LIBXML2_PATCHES=\"\"" "-DNOKOGIRI_LIBXSLT_PATH=\"/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32\"" "-DNOKOGIRI_LIBXSLT_PATCHES=\"\"" -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -fPIC  -g -DXP_UNIX -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline -DNOKOGIRI_USE_PACKAGED_LIBRARIES conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib -L/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib -L/usr/lib/x86_64-linux-gnu -L. -Wl,-z,relro -L/build/ruby2.1-2.1.5/debian/lib -fstack-protector -rdynamic -Wl,-export-dynamic    /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libexslt.a -lm -ldl -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libxslt.a -ldl -lm -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a -llzma -lruby-2.1 /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libexslt.a -lm -ldl -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libxslt.a -ldl -lm -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a -llzma -lpthread -lgmp -ldl -lcrypt -lm   -lc "
+conftest.c: In function ‘t’:
+conftest.c:13:57: error: ‘xmlRelaxNGSetParserStructuredErrors’ undeclared (first use in this function)
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))xmlRelaxNGSetParserStructuredErrors; return 0; }
+                                                         ^
+conftest.c:13:57: note: each undeclared identifier is reported only once for each function it appears in
+conftest.c:13:32: warning: variable ‘p’ set but not used [-Wunused-but-set-variable]
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))xmlRelaxNGSetParserStructuredErrors; return 0; }
+                                ^
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: int t(void) { void ((*volatile p)()); p = (void ((*)()))xmlRelaxNGSetParserStructuredErrors; return 0; }
+/* end */
+
+"gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-2.1.0 -I/usr/include/ruby-2.1.0/ruby/backward -I/usr/include/ruby-2.1.0 -I. -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/include -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/include/libxml2 -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/include/libxml2 -D_FORTIFY_SOURCE=2   "-DNOKOGIRI_LIBXML2_PATH=\"/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7\"" "-DNOKOGIRI_LIBXML2_PATCHES=\"\"" "-DNOKOGIRI_LIBXSLT_PATH=\"/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32\"" "-DNOKOGIRI_LIBXSLT_PATCHES=\"\"" -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -fPIC  -g -DXP_UNIX -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline -DNOKOGIRI_USE_PACKAGED_LIBRARIES conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib -L/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib -L/usr/lib/x86_64-linux-gnu -L. -Wl,-z,relro -L/build/ruby2.1-2.1.5/debian/lib -fstack-protector -rdynamic -Wl,-export-dynamic    /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libexslt.a -lm -ldl -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libxslt.a -ldl -lm -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a -llzma -lruby-2.1 /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libexslt.a -lm -ldl -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libxslt.a -ldl -lm -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a -llzma -lpthread -lgmp -ldl -lcrypt -lm   -lc "
+conftest.c: In function ‘t’:
+conftest.c:13:1: warning: implicit declaration of function ‘xmlRelaxNGSetParserStructuredErrors’ [-Wimplicit-function-declaration]
+ int t(void) { xmlRelaxNGSetParserStructuredErrors(); return 0; }
+ ^
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: int t(void) { xmlRelaxNGSetParserStructuredErrors(); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for xmlRelaxNGSetValidStructuredErrors()... -------------------- yes
+
+"gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-2.1.0 -I/usr/include/ruby-2.1.0/ruby/backward -I/usr/include/ruby-2.1.0 -I. -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/include -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/include/libxml2 -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/include/libxml2 -D_FORTIFY_SOURCE=2   "-DNOKOGIRI_LIBXML2_PATH=\"/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7\"" "-DNOKOGIRI_LIBXML2_PATCHES=\"\"" "-DNOKOGIRI_LIBXSLT_PATH=\"/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32\"" "-DNOKOGIRI_LIBXSLT_PATCHES=\"\"" -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -fPIC  -g -DXP_UNIX -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline -DNOKOGIRI_USE_PACKAGED_LIBRARIES conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib -L/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib -L/usr/lib/x86_64-linux-gnu -L. -Wl,-z,relro -L/build/ruby2.1-2.1.5/debian/lib -fstack-protector -rdynamic -Wl,-export-dynamic    /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libexslt.a -lm -ldl -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libxslt.a -ldl -lm -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a -llzma -lruby-2.1 /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libexslt.a -lm -ldl -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libxslt.a -ldl -lm -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a -llzma -lpthread -lgmp -ldl -lcrypt -lm   -lc "
+conftest.c: In function ‘t’:
+conftest.c:13:57: error: ‘xmlRelaxNGSetValidStructuredErrors’ undeclared (first use in this function)
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))xmlRelaxNGSetValidStructuredErrors; return 0; }
+                                                         ^
+conftest.c:13:57: note: each undeclared identifier is reported only once for each function it appears in
+conftest.c:13:32: warning: variable ‘p’ set but not used [-Wunused-but-set-variable]
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))xmlRelaxNGSetValidStructuredErrors; return 0; }
+                                ^
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: int t(void) { void ((*volatile p)()); p = (void ((*)()))xmlRelaxNGSetValidStructuredErrors; return 0; }
+/* end */
+
+"gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-2.1.0 -I/usr/include/ruby-2.1.0/ruby/backward -I/usr/include/ruby-2.1.0 -I. -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/include -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/include/libxml2 -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/include/libxml2 -D_FORTIFY_SOURCE=2   "-DNOKOGIRI_LIBXML2_PATH=\"/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7\"" "-DNOKOGIRI_LIBXML2_PATCHES=\"\"" "-DNOKOGIRI_LIBXSLT_PATH=\"/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32\"" "-DNOKOGIRI_LIBXSLT_PATCHES=\"\"" -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -fPIC  -g -DXP_UNIX -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline -DNOKOGIRI_USE_PACKAGED_LIBRARIES conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib -L/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib -L/usr/lib/x86_64-linux-gnu -L. -Wl,-z,relro -L/build/ruby2.1-2.1.5/debian/lib -fstack-protector -rdynamic -Wl,-export-dynamic    /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libexslt.a -lm -ldl -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libxslt.a -ldl -lm -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a -llzma -lruby-2.1 /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libexslt.a -lm -ldl -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libxslt.a -ldl -lm -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a -llzma -lpthread -lgmp -ldl -lcrypt -lm   -lc "
+conftest.c: In function ‘t’:
+conftest.c:13:1: warning: implicit declaration of function ‘xmlRelaxNGSetValidStructuredErrors’ [-Wimplicit-function-declaration]
+ int t(void) { xmlRelaxNGSetValidStructuredErrors(); return 0; }
+ ^
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: int t(void) { xmlRelaxNGSetValidStructuredErrors(); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for xmlSchemaSetValidStructuredErrors()... -------------------- yes
+
+"gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-2.1.0 -I/usr/include/ruby-2.1.0/ruby/backward -I/usr/include/ruby-2.1.0 -I. -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/include -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/include/libxml2 -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/include/libxml2 -D_FORTIFY_SOURCE=2   "-DNOKOGIRI_LIBXML2_PATH=\"/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7\"" "-DNOKOGIRI_LIBXML2_PATCHES=\"\"" "-DNOKOGIRI_LIBXSLT_PATH=\"/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32\"" "-DNOKOGIRI_LIBXSLT_PATCHES=\"\"" -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -fPIC  -g -DXP_UNIX -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline -DNOKOGIRI_USE_PACKAGED_LIBRARIES conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib -L/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib -L/usr/lib/x86_64-linux-gnu -L. -Wl,-z,relro -L/build/ruby2.1-2.1.5/debian/lib -fstack-protector -rdynamic -Wl,-export-dynamic    /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libexslt.a -lm -ldl -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libxslt.a -ldl -lm -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a -llzma -lruby-2.1 /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libexslt.a -lm -ldl -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libxslt.a -ldl -lm -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a -llzma -lpthread -lgmp -ldl -lcrypt -lm   -lc "
+conftest.c: In function ‘t’:
+conftest.c:13:57: error: ‘xmlSchemaSetValidStructuredErrors’ undeclared (first use in this function)
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))xmlSchemaSetValidStructuredErrors; return 0; }
+                                                         ^
+conftest.c:13:57: note: each undeclared identifier is reported only once for each function it appears in
+conftest.c:13:32: warning: variable ‘p’ set but not used [-Wunused-but-set-variable]
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))xmlSchemaSetValidStructuredErrors; return 0; }
+                                ^
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: int t(void) { void ((*volatile p)()); p = (void ((*)()))xmlSchemaSetValidStructuredErrors; return 0; }
+/* end */
+
+"gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-2.1.0 -I/usr/include/ruby-2.1.0/ruby/backward -I/usr/include/ruby-2.1.0 -I. -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/include -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/include/libxml2 -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/include/libxml2 -D_FORTIFY_SOURCE=2   "-DNOKOGIRI_LIBXML2_PATH=\"/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7\"" "-DNOKOGIRI_LIBXML2_PATCHES=\"\"" "-DNOKOGIRI_LIBXSLT_PATH=\"/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32\"" "-DNOKOGIRI_LIBXSLT_PATCHES=\"\"" -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -fPIC  -g -DXP_UNIX -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline -DNOKOGIRI_USE_PACKAGED_LIBRARIES conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib -L/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib -L/usr/lib/x86_64-linux-gnu -L. -Wl,-z,relro -L/build/ruby2.1-2.1.5/debian/lib -fstack-protector -rdynamic -Wl,-export-dynamic    /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libexslt.a -lm -ldl -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libxslt.a -ldl -lm -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a -llzma -lruby-2.1 /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libexslt.a -lm -ldl -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libxslt.a -ldl -lm -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a -llzma -lpthread -lgmp -ldl -lcrypt -lm   -lc "
+conftest.c: In function ‘t’:
+conftest.c:13:1: warning: implicit declaration of function ‘xmlSchemaSetValidStructuredErrors’ [-Wimplicit-function-declaration]
+ int t(void) { xmlSchemaSetValidStructuredErrors(); return 0; }
+ ^
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: int t(void) { xmlSchemaSetValidStructuredErrors(); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for xmlSchemaSetParserStructuredErrors()... -------------------- yes
+
+"gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-2.1.0 -I/usr/include/ruby-2.1.0/ruby/backward -I/usr/include/ruby-2.1.0 -I. -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/include -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/include/libxml2 -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/include/libxml2 -D_FORTIFY_SOURCE=2   "-DNOKOGIRI_LIBXML2_PATH=\"/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7\"" "-DNOKOGIRI_LIBXML2_PATCHES=\"\"" "-DNOKOGIRI_LIBXSLT_PATH=\"/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32\"" "-DNOKOGIRI_LIBXSLT_PATCHES=\"\"" -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -fPIC  -g -DXP_UNIX -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline -DNOKOGIRI_USE_PACKAGED_LIBRARIES conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib -L/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib -L/usr/lib/x86_64-linux-gnu -L. -Wl,-z,relro -L/build/ruby2.1-2.1.5/debian/lib -fstack-protector -rdynamic -Wl,-export-dynamic    /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libexslt.a -lm -ldl -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libxslt.a -ldl -lm -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a -llzma -lruby-2.1 /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libexslt.a -lm -ldl -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libxslt.a -ldl -lm -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a -llzma -lpthread -lgmp -ldl -lcrypt -lm   -lc "
+conftest.c: In function ‘t’:
+conftest.c:13:57: error: ‘xmlSchemaSetParserStructuredErrors’ undeclared (first use in this function)
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))xmlSchemaSetParserStructuredErrors; return 0; }
+                                                         ^
+conftest.c:13:57: note: each undeclared identifier is reported only once for each function it appears in
+conftest.c:13:32: warning: variable ‘p’ set but not used [-Wunused-but-set-variable]
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))xmlSchemaSetParserStructuredErrors; return 0; }
+                                ^
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: int t(void) { void ((*volatile p)()); p = (void ((*)()))xmlSchemaSetParserStructuredErrors; return 0; }
+/* end */
+
+"gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-2.1.0 -I/usr/include/ruby-2.1.0/ruby/backward -I/usr/include/ruby-2.1.0 -I. -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/include -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/include/libxml2 -I/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/include/libxml2 -D_FORTIFY_SOURCE=2   "-DNOKOGIRI_LIBXML2_PATH=\"/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7\"" "-DNOKOGIRI_LIBXML2_PATCHES=\"\"" "-DNOKOGIRI_LIBXSLT_PATH=\"/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32\"" "-DNOKOGIRI_LIBXSLT_PATCHES=\"\"" -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -fPIC  -g -DXP_UNIX -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline -DNOKOGIRI_USE_PACKAGED_LIBRARIES conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib -L/home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib -L/usr/lib/x86_64-linux-gnu -L. -Wl,-z,relro -L/build/ruby2.1-2.1.5/debian/lib -fstack-protector -rdynamic -Wl,-export-dynamic    /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libexslt.a -lm -ldl -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libxslt.a -ldl -lm -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a -llzma -lruby-2.1 /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libexslt.a -lm -ldl -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib/libxslt.a -ldl -lm -llzma -lz /home/tulio/projetos/weby/vendor/bundle/ruby/2.1.0/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib/libxml2.a -llzma -lpthread -lgmp -ldl -lcrypt -lm   -lc "
+conftest.c: In function ‘t’:
+conftest.c:13:1: warning: implicit declaration of function ‘xmlSchemaSetParserStructuredErrors’ [-Wimplicit-function-declaration]
+ int t(void) { xmlSchemaSetParserStructuredErrors(); return 0; }
+ ^
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: int t(void) { xmlSchemaSetParserStructuredErrors(); return 0; }
+/* end */
+
+--------------------
+
