@@ -17,6 +17,10 @@
     <%= hidden_field_tag 'page', 1 %>
     <%= hidden_field_tag 'per_page', "#{params[:per_page]}" %>
   <% end %>
+
+  <span class="show_list"></span>
+  <span class="show_grid"></span>
+
   <% if params[:tags] %>
     <% tags = params[:tags].split(',') %>
     <% tags.each do |tag| %>
