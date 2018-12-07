@@ -1,9 +1,9 @@
-.news-show {
+.news-show, .page-show, .event-show {
   padding: 30px 0 100px;
   margin: 0 auto;
   max-width: 940px;
 
-  a:first-child {
+  > a:first-child {
     display: none;
   }
 
@@ -21,7 +21,7 @@
     }
   }
 
-  .news-details {
+  .news-details, .page-details {
     font-family: Lato;
     font-size: 18px;
     font-weight: 300;
@@ -47,6 +47,12 @@
     p {
       margin: 0;
     }
+
+    a {
+      color: inherit;
+      font-weight: normal;
+      text-decoration: underline;
+    }
   }
 
   summary {
@@ -55,6 +61,11 @@
 
   .social-buttons {
     margin: 0 0 60px;
+    display: flex;
+
+    iframe {
+      margin-right: 10px;
+    }
   }
 
   .categories {
@@ -75,7 +86,7 @@
     margin-right: 9px;
   }
 
-  .weby-label {
+  .weby-label[href] {
     border-radius: 4px;
     background-color: #66aad5;
     font-family: Lato;
@@ -92,6 +103,10 @@
 
     &:last-child {
       margin-right: 0;
+    }
+
+    &:hover {
+      background-color: var(--blue);
     }
   }
 
@@ -120,6 +135,69 @@
       }
     }
   }
+}
+
+.page-show, .event-show {
+  header {
+    h2 {
+      font-family: Lato;
+      font-size: 48px;
+      font-weight: 300;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.21;
+      letter-spacing: normal;
+      color: var(--blue);
+      margin-bottom: 40px;
+    }
+  }
+
+  .page-details {
+    margin-bottom: 25px;
+  }
+
+  .event {
+    font-family: Lato;
+    font-size: 20px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.4;
+    letter-spacing: normal;
+    color: var(--dark-gray);
+    margin-bottom: 25px;
+
+    h3, p {
+      font-weight: normal;
+      margin: 0;
+    }
+  }
+
+  table.related {
+    margin-bottom: 60px;
+    font-family: Lato;
+    /*font-size: 20px;*/
+    font-weight: normal;
+    color: var(--dark-gray);
+    border: 1px;
+
+    th {
+      font-weight: normal;
+      font-size: 20px;
+      text-align: left;
+      padding-right: 20px;
+    }
+
+    a {
+      color: inherit;
+      font-weight: normal;
+      text-decoration: underline;
+    }
+  }
+}
+
+ufg-eventos {
+  --event-bg: var(--bg);
 }
 
 .modal {

@@ -27,6 +27,10 @@ div, section, input {
   box-sizing: border-box;
 }
 
+.clearfix {
+  clear: both;
+}
+
 .container {
   margin: 0 auto;
   max-width: 940px;
@@ -179,6 +183,17 @@ div, section, input {
     line-height: 1.21;
     letter-spacing: normal;
   }
+}
+
+.event_list_component .pagination,
+.event_list_component .news-image,
+.control {
+  display: none;
+}
+
+summary em, summary em * {
+  font-style: normal !important;
+  font-weight: 300 !important;
 }
 
 .front_news_title {
@@ -355,6 +370,8 @@ div, section, input {
       position: absolute;
       bottom: 14px;
       display: flex;
+      overflow: hidden;
+      max-width: calc(100% - 32px);
     }
 
     .category {
@@ -373,6 +390,8 @@ div, section, input {
       letter-spacing: normal;
       text-align: center;
       color: var(--white);
+      flex: 0 0;
+      white-space: nowrap;
 
       &:last-child {
         margin-right: 0;
@@ -522,6 +541,17 @@ div, section, input {
   }
 }
 
+.event_list_component:first-child #events li {
+  &:nth-child(-n+4) { /* First 4 items floated left */
+    float: left;
+    clear: left;
+  }
+
+  &:nth-child(n+5) { /* from 5th one on */
+    margin-left: 320px;
+  }
+}
+
 .event_list_component #events {
   padding: 60px 0 190px;
 
@@ -529,14 +559,12 @@ div, section, input {
     max-width: 300px;
     position: relative;
     padding-left: 60px;
-    margin-bottom: 30px;
+    box-sizing: border-box;
+    margin: 0 20px 30px 0;
+    min-height: 54px;
   }
 
   article {
-    header {
-
-    }
-
     h2 {
       margin: 0;
       a {
@@ -551,6 +579,10 @@ div, section, input {
         text-decoration: none;
         letter-spacing: normal;
         color: var(--white);
+
+        &:hover {
+          opacity: .8;
+        }
       }
     }
 
@@ -623,6 +655,10 @@ div, section, input {
       h2 {
         a {
           color: #444444;
+
+          &:hover {
+            color: #999999;
+          }
         }
       }
     }
@@ -802,7 +838,7 @@ div, section, input {
 }
 
 .services {
-  padding: 120px 0 200px;
+  padding: 120px 0;
   position: relative;
   background-color: var(--bg);
 
@@ -851,15 +887,24 @@ div, section, input {
   }
 
   .services-icons {
-    display: flex;
+    display: grid;
+    grid-column-gap: 20px;
+    grid-row-gap: 60px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 
     .image_component {
       width: 140px;
       height: 140px;
       border-radius: 50%;
       background-color: #0081d0;
-      margin-right: 20px;
       position: relative;
+      margin-left: 0;
+      margin-right: 0;
+      margin-bottom: 80px;
+
+      &:nth-child(n+13) {
+        display: none;
+      }
 
       h3 {
         position: absolute;

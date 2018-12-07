@@ -12,4 +12,5 @@
       show: 
         home:   " Maison "
         news: 'Nouvelles'
+        events: 'Events'
       form: 

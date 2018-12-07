@@ -297,6 +297,10 @@ body > header {
   &:first-child {
     margin-left: 0;
   }
+
+  &:hover {
+    background-color: var(--blue);
+  }
 }
 
 .accessibility-bar {
@@ -323,6 +327,12 @@ body > header {
         letter-spacing: normal;
         text-decoration: none;
         color: var(--grey);
+      }
+
+      &:hover {
+        b {
+          background-color: #666666;
+        }
       }
 
       b {
@@ -352,6 +362,10 @@ body > header {
     background-position: 50% 50%;
     font-size: 0;
     margin-left: 6px;
+
+    &:hover {
+      background-color: #666666;
+    }
   }
 
   .increase-font {
