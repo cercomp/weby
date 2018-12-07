@@ -12,4 +12,5 @@ es:
       show:
         home:   "Home page"
         news: 'Noticias'
+        events: 'Eventos'
       form:

@@ -26,6 +26,7 @@ pt-BR:
         show_author:          " Exibir autor da notícia "
         show_date:            " Exibir data da notícia "
         show_tags:            " Exibir categorias "
+        hide_filtered_tags:   " Ocultar categorias filtradas "
         tag_as_label:         " Exibir primeira tag como rótulo "
         type_filter:          " Filtrar por tipo da página "
         image_size:           " Versão da imagem "

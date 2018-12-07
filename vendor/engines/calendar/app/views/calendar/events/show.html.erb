@@ -38,7 +38,7 @@
 
   <%# List the related files if they exist %>
   <% if @event.related_files.any? %>
-    <table class="table table-striped table-condensed table-bordered">
+    <table class="table related table-striped table-condensed table-bordered">
       <thead>
         <tr>
           <th><%= t(".related_files") %></th>
@@ -58,7 +58,7 @@
     </table>
   <% end %>
   <%= yield :social_code if current_site.event_social_share_pos == 'bottom' %>
-  <div style="margin-top: 8px;">
+  <div style="margin-top: 8px;" class="actions">
     <%= link_to(weby_icon('edit', t("edit")), edit_admin_event_path(@event)) if check_permission(Calendar::Admin::EventsController, [:edit]) %>
     <% if !defined?(as_component) %>
       <%= link_to weby_icon('list', t(".list_all")), events_path %>

@@ -2,12 +2,13 @@
 <div class="search-results">
 <% if @newslist.each do |news| %>
   <div class="item-search-result">
+    <article>
     <% if news.image %>
       <% img_settings = [:t, 64, 'float: right; margin-left: 7px;'] %>
       <% if @extension.settings.image_size.present? && @extension.settings.image_size != 't' %>
         <% img_settings = [@extension.settings.image_size] %>
       <% end %>
-      <%= weby_file_view(news.image, img_settings[0], img_settings[1], nil, {as: "link", url: news.url.present? ? news.url : news_url(news, subdomain: news.site), style: img_settings[2]}) %>
+      <%= weby_file_view(news.image, img_settings[0], img_settings[1], nil, {as: "link", url: news.url.present? ? news.url : news_url(news, subdomain: news.site), style: img_settings[2],  link_class: 'news-image'}) %>
     <% end %>
     <header><%= link_to news.title, news.url.present? ? news.url : news_url(news, subdomain: news.site) %></header>
     <div class="news-details details">
@@ -21,11 +22,14 @@
     </summary>
     <% @news_site = Journal::NewsSite.find_by(journal_news_id: news.id, site_id: current_site.id) %>
     <% if @news_site %>
+      <div class="categories">
         <% @news_site.category_list.each do |category| %>
           <span class="category"><%= link_to category , news_index_path( tags: category.to_s ), class: 'weby-label default' %></span>
         <% end %>
+      </div>
     <% end %>
     <p class="read_more"><%#= link_to t(".read_more"), news_path(news) %></p>
+    </article>
   </div>
 <% end.empty? %>
   <div class="empty-result"><%= t(".no_news'") %></div>

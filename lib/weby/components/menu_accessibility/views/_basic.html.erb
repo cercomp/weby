@@ -1,9 +1,9 @@
 <% if component.template == 'bar' %>
   <nav class="menu_accessibility_component bar">
     <div class="direct-access">
-      <span><%= link_to t('.go_to_content'), '#', class: 'goto-content' %><b>1</b></span>
-      <span><%= link_to t('.go_to_menu'), '#', class: 'goto-menu' %><b>2</b></span>
-      <span><%= link_to t('.go_to_search'), '#', class: 'goto-search' %><b>3</b></span>
+      <span><%= link_to t('.go_to_content'), "##{component.content_anchor}", class: 'goto-content' %><b>1</b></span>
+      <span><%= link_to t('.go_to_menu'), "##{component.menu_anchor}", class: 'goto-menu' %><b>2</b></span>
+      <span><%= link_to t('.go_to_search'), "##{component.search_anchor}", class: 'goto-search' %><b>3</b></span>
     </div>
     <div class="access-actions">
       <% if component.font_size? %>

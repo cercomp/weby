@@ -26,6 +26,7 @@
         show_author:        " Aficher l'auteur "
         show_date:          " Afficher la date "
         show_tags:          " Afficher l'catégories "
+        hide_filtered_tags: " Ocultar l'catégories Filtrer "
         type_filter:        " Filtrer par type "
         image_size:         " Taille de l'image "
         new_tab:            " Ouvrir dans une nouvelle fenêtre "
