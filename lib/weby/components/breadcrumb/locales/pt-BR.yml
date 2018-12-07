@@ -12,4 +12,5 @@ pt-BR:
       show:
         home:   "Página Inicial"
         news: 'Notícias'
+        events: 'Eventos'
       form:

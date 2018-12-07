@@ -33,6 +33,7 @@
   margin-bottom: 4px;
   background-color: var(--dark-blue);
   box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
+  transition: .2s;
 }
 
 .side-dock .btn > span {
@@ -40,6 +41,7 @@
   padding-left: 18px;
   transition: .2s;
   overflow: hidden;
+  white-space: nowrap;
 }
 
 .side-dock .btn.active > span {
@@ -62,6 +64,10 @@
   background-color: var(--light-purple);
 }
 
+.side-dock .anchor-serufg {
+  background-color: var(--light-blue);
+}
+
 .side-dock .anchor-network {
   background-color: var(--light-yellow);
 }
@@ -70,56 +76,55 @@
   background-color: var(--light-blue);
 }
 
- /* Active */
-.side-dock .anchor-news.active {
+ /* Active / hover */
+.side-dock .anchor-news.active, .side-dock .anchor-news:hover {
   background-color: var(--red);
 }
 
-.side-dock .anchor-newspaper.active {
+.side-dock .anchor-newspaper.active, .side-dock .anchor-newspaper:hover {
   background-color: var(--green);
 }
 
-.side-dock .anchor-events.active {
+.side-dock .anchor-events.active, .side-dock .anchor-events:hover {
   background-color: var(--purple);
 }
 
-.side-dock .anchor-network.active {
+.side-dock .anchor-network.active, .side-dock .anchor-network:hover {
   background-color: var(--yellow);
 }
 
-.side-dock .anchor-services.active {
+.side-dock .anchor-services.active, .side-dock .anchor-services:hover,
+.side-dock .anchor-serufg.active, .side-dock .anchor-serufg:hover {
   background-color: var(--dark-blue);
 }
 
-/* Map */
-
-#map {
-  height: 440px;
-  width: 100%;
+.smooth_scroll {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.24), 0 0 6px 0 rgba(0, 0, 0, 0.12);
+  background-color: var(--blue);
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: .2s;
 }
 
-.maps {
-  padding: 80px 0 0;
-}
-.maps .simple-title {
-  text-align: center;
-  margin-bottom: 40px;
+.smooth_scroll.visible {
+  opacity: 1;
+  pointer-events: auto;
 }
 
-.maps .text_component {
-  padding: 30px 0;
-  font-family: Lato;
-  font-size: 18px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 2.22;
-  letter-spacing: normal;
-  text-align: center;
-  color: #666666;
-  background-color: var(--bg);
+.smooth_scroll img {
+  transform: rotate(180deg);
+  width: 34px;
 }
 
-.maps .text_component p {
-  margin: 0;
+footer > .blank_component {
+  position: relative;
 }

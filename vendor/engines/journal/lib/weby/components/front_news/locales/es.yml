@@ -26,6 +26,7 @@ es:
         show_author:          " Muestra el autor de la noticia "
         show_date:            " Muestra la fecha de la noticia "
         show_tags:            " Muestra las categorías "
+        hide_filtered_tags:   " Ocultar las categorías filtradas "
         type_filter:          " Filtrar por tipo de página "
         image_size:           " Versión de la imagen "
         new_tab:              " Abrir noticias con URL en una nueva ventana "

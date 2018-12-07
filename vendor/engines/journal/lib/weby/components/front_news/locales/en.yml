@@ -28,6 +28,7 @@ en:
         show_author:          " Show new's author "
         show_date:            " Show new's date "
         show_tags:            " Show categories "
+        hide_filtered_tags:   " Hide filtered categories "
         type_filter:          " Filter by page type "
         image_size:           " Image version "
         new_tab:              " Open news with URL in a new tab "

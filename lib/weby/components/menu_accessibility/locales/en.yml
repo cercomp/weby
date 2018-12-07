@@ -13,6 +13,9 @@ en:
         additional_information: " Addicional Information "
         extended_accessibility: " Activate "
         template:               " Template "
+        content_anchor:     ' Content anchor '
+        menu_anchor:        ' Menu anchor '
+        search_anchor:      ' Search anchor '
   menu_accessibility:
     views:
       form:

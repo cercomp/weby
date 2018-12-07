@@ -12,6 +12,9 @@ fr:
         additional_information: " Informations Complémentaires "
         extended_accessibility: " Activer "
         template:               " Format "
+        content_anchor:     ' Âncora do conteúdo '
+        menu_anchor:        ' Âncora do menu '
+        search_anchor:      ' Âncora da busca '
   menu_accessibility:
     views:
       form:

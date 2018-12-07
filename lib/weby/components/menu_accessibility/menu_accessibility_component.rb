@@ -1,6 +1,7 @@
 class MenuAccessibilityComponent < Component
   component_settings :font_size, :contrast, :label_contrast, :label_font_size,
-    :extended_accessibility, :additional_information, :template
+    :extended_accessibility, :additional_information, :template,
+    :content_anchor, :menu_anchor, :search_anchor
 
   i18n_settings :label_contrast, :label_font_size, :additional_information
 
