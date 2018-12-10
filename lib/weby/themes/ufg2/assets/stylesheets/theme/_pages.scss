@@ -533,17 +533,28 @@ ufg-eventos {
         display: none;
       }
 
+      ul.pagination:before {
+        content: 'PÁGINA:';
+      }
+
+      ul.pagination.pagination-sm {
+        display: none !important;
+      }
+
       ul.pagination {
         text-align: center;
-        display: inline-block !important;
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
 
         li.page {
           display: inline-block;
           list-style: none;
+          margin: 0 8px;
 
           a {
             width: 11px;
-            height: 28px;
+            height: 25px;
             border-radius: 50%;
             background-color: #66aad5;
             padding: 9px 15px;
@@ -554,13 +565,46 @@ ufg-eventos {
           }
         }
 
+        li.first {
+          display: none;
+        }
+
         li.next {
+          display: none;
+        }
+
+        li.prev {
           a {
             font-size: 0;
+            background: asset-url('ufg2/expand-more-white.png') no-repeat var(--blue) center;
+            transform: rotate(90deg);
+            display: inline-block;
+          }
+          position: relative;
+          display: inherit;
+        }
+
+        li.next:after {
+          content: '';
+          height: 16px;
+          width: 1px;
+          background: #fff;
+          position: absolute;
+          right: -1px;
+          top: 23px;
+        }
+
+        li.last {
+          a {
+            font-size: 0;
+            background: asset-url('ufg2/expand-more-white.png') no-repeat var(--blue) center;
+            transform: rotate(-90deg);
+            display: inline-block;
           }
           a:before {
             content: '>';
           }
+          display: inherit;
         }
 
         li.page.active {
