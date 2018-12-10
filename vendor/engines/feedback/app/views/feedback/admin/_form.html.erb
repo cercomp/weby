@@ -4,6 +4,8 @@
     input_html: {class: "mceAdvance", style: " height: 320px;"},
     as: :text %>
 
+  <%= f.input :label_as_placeholder, wrapper: :checkbox, as: :boolean %>
+
  <div class="form-actions">
     <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
     <%= link_to t("back"), :back, class: "btn btn-default" %>

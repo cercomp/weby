@@ -3,3 +3,4 @@ pt-BR:
     attributes:
       extension:
         text: " Texto "
+        label_as_placeholder: 'Rótulo como placeholder'

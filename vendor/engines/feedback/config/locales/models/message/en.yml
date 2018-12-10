@@ -4,13 +4,13 @@ en:
       feedback/message:     " Feedback "
     attributes:
       feedback/message:
-        name:       " Name "
-        email:      " Email "
-        subject:    " Subject "
-        message:    " Message "
-        site_id:    " Site "
-        created_at: " Created at "
-        updated_at: " Updated at "
+        name:       "Name"
+        email:      "Email"
+        subject:    "Subject"
+        message:    "Message"
+        site_id:    "Site"
+        created_at: "Created at"
+        updated_at: "Updated at"
     errors:
       models:
         feedback/message:

@@ -7,7 +7,7 @@ module Feedback
     respond_to :html
 
     def new
-      @message = Message.new
+      @message = Message.new(name: t('.feedback'))
       @extension = current_site.extensions.find_by(name: 'feedback')
     end
 
