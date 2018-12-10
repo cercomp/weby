@@ -4,13 +4,13 @@ es:
       feedback/message:     " Contáctenos "
     attributes:
       feedback/message:
-        name:       " Nombre "
-        email:      " E-mail "
-        subject:    " Sujeto "
-        message:    " Mensaje "
-        site_id:    " Site "
-        created_at: " Creado en "
-        updated_at: " Actualizado en "
+        name:       "Nombre"
+        email:      "E-mail"
+        subject:    "Sujeto"
+        message:    "Mensaje"
+        site_id:    "Site"
+        created_at: "Creado en"
+        updated_at: "Actualizado en"
     errors:
       models:
         feedback/message:

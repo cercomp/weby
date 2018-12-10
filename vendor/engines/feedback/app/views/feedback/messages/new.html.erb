@@ -1,32 +1,40 @@
-<%= raw @extension.text %>
-<h2><%= t('.new_message') %> - <%= t('.feedback') %></h2>
-<br />
-<%= simple_form_for [@message], html: {class: 'form-vertical'} do |f| %>
-  <%= f.show_errors %>  
-  <% if @groups.any? %>
-    <%= f.association :groups,
-      label: "<abbr title='#{t("field_required")}'><font color='red'>*</font></abbr> #{t('.group')} (#{t(".group_explain")})".html_safe,
-      collection: @groups,
-      as: :check_boxes,
-      checked: params_groups %>
-  <% end %>
+<div class="feedback-new-message-title">
+  <h2>
+    <span class="new-message-label"><%= t('.new_message') %> - </span><%= t('.feedback') %>
+  </h2>
+  <br />
+</div>
+<div class="feedback-custom-text">
+  <%= raw @extension.text %>
+</div>
+<div class="feedback-new-message-form">
+  <%= simple_form_for [@message], html: {class: 'form-vertical'} do |f| %>
+    <%= f.show_errors %>
+    <% if @groups.any? %>
+      <%= f.association :groups,
+        label: "<abbr title='#{t("field_required")}'><font color='red'>*</font></abbr> #{t('.group')} (#{t(".group_explain")})".html_safe,
+        collection: @groups,
+        as: :check_boxes,
+        checked: params_groups %>
+    <% end %>
 
-  <% params.merge! params[:message] if params[:message].is_a? Hash %>
-  
-  <%= f.input :name, input_html: { value: params['name'] }  %>
-  <%= f.input :email, input_html: { value: params['email'] }%>
-  <%= f.input :subject, input_html: { value: params['subject'] } %>
-  <%= f.input :message, as: :text, input_html: { value: params['message'], size: '60x8'} %>
-  <%= f.input :site_id, :input_html => {:value => current_site.id}, :as => :hidden %>
-  <% if @captcha_errors %>
-    <blockquote class="alert-danger">
-      <a aria-hidden="true" class="close" data-dismiss="alert" href="#">×</a>
-      <%= @captcha_errors %>
-    </blockquote>  
+    <% params.merge! params[:message] if params[:message].is_a? Hash %>
+
+    <%= f.input :name, {input_html: { value: params['name'], placeholder: @extension.label_as_placeholder ? t('activerecord.attributes.feedback/message.name') : nil }}.merge(@extension.label_as_placeholder ? {label: false} : {}) %>
+    <%= f.input :email, {input_html: { value: params['email'], placeholder: @extension.label_as_placeholder ? t('activerecord.attributes.feedback/message.email') : nil }}.merge(@extension.label_as_placeholder ? {label: false} : {}) %>
+    <%= f.input :subject, {input_html: { value: params['subject'], placeholder: @extension.label_as_placeholder ? t('activerecord.attributes.feedback/message.subject') : nil }}.merge(@extension.label_as_placeholder ? {label: false} : {}) %>
+    <%= f.input :message, {as: :text, input_html: { value: params['message'], size: '60x8', placeholder: @extension.label_as_placeholder ? t('activerecord.attributes.feedback/message.message') : nil }}.merge(@extension.label_as_placeholder ? {label: false} : {}) %>
+
+    <% if @captcha_errors %>
+      <blockquote class="alert-danger">
+        <a aria-hidden="true" class="close" data-dismiss="alert" href="#">×</a>
+        <%= @captcha_errors %>
+      </blockquote>
+    <% end %>
+    <%= show_simple_captcha %>
+    <div>
+      <%= f.button :submit, t('submit'), class: "btn", disable_with: t("please_wait") %>
+      <%= link_to t("back"), :back, class: "btn back" %>
+    </div>
   <% end %>
-  <%= show_simple_captcha %>  
-  <div>
-    <%= f.button :submit, t('submit'), class: "btn", disable_with: t("please_wait") %>
-    <%= link_to t("back"), :back, class: "btn" %>
-  </div>
-<% end %>
+</div>

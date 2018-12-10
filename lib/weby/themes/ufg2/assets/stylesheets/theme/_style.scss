@@ -33,7 +33,21 @@ div, section, input {
 
 .container {
   margin: 0 auto;
-  max-width: 940px;
+  width: 940px;
+  max-width: 100%;
+}
+
+#map {
+  margin: 0 auto;
+  width: 940px;
+  max-width: 100%;
+  padding: 80px 0;
+  font-family: Lato;
+  color: var(--dark-gray);
+
+  a {
+    color: inherit;
+  }
 }
 
 @mixin placeholder {
@@ -256,7 +270,7 @@ summary em, summary em * {
 
   > li {
     /*flex: 0 0 300px;*/
-    height: 480px;
+    height: 408px;
     padding-top: 164px;
     box-sizing: border-box;
     position: relative;
@@ -276,7 +290,7 @@ summary em, summary em * {
     border-radius: 20px 20px 4px 4px;
     padding: 50px 16px 14px;
     box-sizing: border-box;
-    height: 315px;
+    height: 244px;
 
     .news-image {
       position: absolute;
@@ -350,11 +364,12 @@ summary em, summary em * {
     }
 
     summary {
-      max-height: 96px;
+      max-height: 118px;
       overflow: hidden;
+      margin-bottom: 30px;
 
       p {
-        margin: 0 0 16px;
+        margin: 0;
         font-family: Lato;
         font-size: 18px;
         font-weight: 300;
@@ -363,15 +378,17 @@ summary em, summary em * {
         line-height: 1.33;
         letter-spacing: normal;
         color: var(--dark-gray);
+        word-break: break-word;
       }
     }
 
     .categories {
-      position: absolute;
+      /*position: absolute;
       bottom: 14px;
       display: flex;
       overflow: hidden;
-      max-width: calc(100% - 32px);
+      max-width: calc(100% - 32px);*/
+      display: none;
     }
 
     .category {

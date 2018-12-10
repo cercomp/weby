@@ -1,4 +1,4 @@
-<% if !current_page?(main_app.site_path) && (@page || @news || @event) then  %>
+<% if !current_page?(main_app.site_path) && (@page || @news || @event || @message) then  %>
   <div class="breadcrumb_component">
     <ul>
       <%= content_tag :li, class: "breadcrumb-label" do
@@ -17,6 +17,8 @@
           <%= link_to t(".events"), events_path %><span class="breadcrumb-divider"></span>
         </li>
         <% last = @event %>
+      <% elsif @message.present? %>
+        <% last = @message %>
       <% else %>
         <% items = MenuItem.where(target_type: "Page", target_id: @page.id) #A pagina pode estar em varios menus, vamos usar o mais fundo %>
         <% if items.empty? then
@@ -43,7 +45,7 @@
           <% last = @page %>
         <% end %>
       <% end %>
-      <li><%= last.title %></li>
+      <li><%= last.try(:title) || last.try(:name) %></li>
    </ul>
 </div>
 <% end %>

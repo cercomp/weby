@@ -4,13 +4,13 @@ pt-BR:
       feedback/message:     " Fale Conosco "
     attributes:
       feedback/message:
-        name:       " Nome "
-        email:      " Email "
-        subject:    " Assunto "
-        message:    " Mensagem "
-        site_id:    " Site "
-        created_at: " Criado em "
-        updated_at: " Atualizado em "
+        name:       "Nome"
+        email:      "Email"
+        subject:    "Assunto"
+        message:    "Mensagem"
+        site_id:    "Site"
+        created_at: "Criado em"
+        updated_at: "Atualizado em"
     errors:
       models:
         feedback/message:
