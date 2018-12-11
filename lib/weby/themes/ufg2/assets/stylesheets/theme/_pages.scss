@@ -306,7 +306,8 @@ ufg-eventos {
     }
 
     .input-append.search-field-button {
-
+      position: relative;
+      
       input#search {
         width: 460px;
         height: 52px;
@@ -319,8 +320,8 @@ ufg-eventos {
       button {
         background: transparent;
         border: 0;
-        position: relative;
-        right: 50px;
+        position: absolute;
+        right: 12px;
         top: 4px;
 
         img {
