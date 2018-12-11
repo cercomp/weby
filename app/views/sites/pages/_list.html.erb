@@ -2,15 +2,19 @@
 <div class="search-results">
 <% if @pages.each do |page| %>
   <div class="item-search-result">
-    <header><%= link_to page.title, site_page_path(page) %></header>
-    <div class="page-details details">
-      <% if page.publish %>
-        <% if @site.view_desc_pages  %>
-           <span class="author"><%= t("posted_by") %><%= page.user.name_or_login %></span>
+    <article>
+      <header><%= link_to page.title, site_page_path(page) %></header>
+      <div class="page-details details">
+        <% if page.publish %>
+          <% if @site.view_desc_pages  %>
+            <span class="author"><%= t("posted_by") %><%= page.user.name_or_login %></span>
+          <% end %>
+            <span class="date"><%= t("posted_on") %><%= localize page.created_at, format: :medium %></span>
         <% end %>
-           <span class="date"><%= t("posted_on") %><%= localize page.created_at, format: :medium %></span>
-      <% end %>
-    </div>
+
+        <%= link_to "Ver Página", site_page_path(page), class: "btn btn-inverse default-hidden" %>
+      </div>
+    </article>
   </div>
 <% end.empty? %>
   <div class="empty-result"><%= t(".no_pages") %></div>
@@ -18,3 +22,9 @@
 </div>
 <%= per_page_links @pages, true, :sm %>
 <%= paginate @pages, remote: true, page_links: true %>
+
+<style>
+.default-hidden {
+  display: none;
+}
+</style>
