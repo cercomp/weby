@@ -10,7 +10,7 @@
     </div>
     <%= link_to t('.advanced'), '#', class: 'toggle-advanced-search', onclick: "return toggleAdvancedSearch()"%>
     <span class="advanced-search<%= params[:search_type] ? "": " hide"%>">
-      &nbsp;<%= radio_button_tag :search_type, 0, params[:search_type]=='0' %><span><%= t('.match_search') %></span>
+      <%= radio_button_tag :search_type, 0, params[:search_type]=='0' %><span><%= t('.match_search') %></span>
       &nbsp;<%= radio_button_tag :search_type, 1, params[:search_type]=='1' %><span><%= t('.and_search') %></span>
       &nbsp;<%= radio_button_tag :search_type, 2, params[:search_type]=='2' %><span><%= t('.or_search') %></span>
     </span>
