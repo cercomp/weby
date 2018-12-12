@@ -48,7 +48,7 @@
       margin: 0;
     }
 
-    a {
+    a:not(.btn) {
       color: inherit;
       font-weight: normal;
       text-decoration: underline;
