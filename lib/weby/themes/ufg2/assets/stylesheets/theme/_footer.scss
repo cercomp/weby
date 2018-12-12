@@ -3,22 +3,24 @@
   padding-top: 60px;
 
   .container {
-    max-width: 940px;
+    width: 940px;
+    max-width: 100%;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
-    padding-bottom: 20px;
+    padding: 0;
+  }
 
-    > :nth-child(even) {
-      flex: 0 0 286px;
-    }
+  .ufg-logo {
+    flex: 1;
+  }
 
-    > :nth-child(odd) {
-      flex: 0 0 654px;
-    }
+  .social-icons {
+    flex: 0;
   }
 
   .address {
+    flex: 1;
     margin-top: 60px;
     font-family: Lato;
     font-size: 16px;
@@ -36,6 +38,9 @@
 
   .menu_component {
     margin: 60px 0 0;
+    flex: 1;
+    min-width: 220px;
+    max-width: 286px;
   }
 
   menu {
@@ -59,6 +64,7 @@
   .bottom {
     border-top: solid 1px #ececec;
     padding: 40px 0;
+    margin-top: 20px;
     text-align: center;
 
     .image_component {

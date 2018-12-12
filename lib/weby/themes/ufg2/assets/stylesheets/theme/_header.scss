@@ -1,7 +1,7 @@
 body > header {
   /*height: 134px;*/
   background-color: var(--white);
-  /*padding: 0 34px;*/
+  padding: 0 20px;
 }
 
 .header {
@@ -24,9 +24,14 @@ body > header {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    width: 940px;
+    width: 100%;
+    max-width: 940px;
     top: 102px;
     z-index: 2;
+
+    .container {
+      position: relative;
+    }
 
     .menu-logo {
       display: none;
@@ -45,18 +50,27 @@ body > header {
     &.fixed {
       position: fixed;
       width: 100%;
+      max-width: none;
       left: 0;
       top: 0;
       z-index: 3;
       transform: none;
+      padding: 0 20px;
 
       .menu_component {
         max-width: 940px;
         margin: 0 auto;
+
+        menu {
+          padding-left: 83px;
+        }
       }
 
       .menu-logo {
         display: inline-block;
+        top: 0;
+        position: absolute;
+        width: 83px;
       }
 
       .search_box_component {
@@ -231,8 +245,8 @@ body > header {
       background-color: var(--white);
       background-image: none !important;
       position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
+      top: 0;
+      transform: none;
       right: 0;
       transition: .2s;
     }
@@ -257,8 +271,7 @@ body > header {
       background-position: center;
       background-repeat: no-repeat;
       position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
+      top: 17px;
       transition: .2s;
 
       &.open {
