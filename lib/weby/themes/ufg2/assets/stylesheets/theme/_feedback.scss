@@ -164,9 +164,14 @@ label.check_boxes {
   letter-spacing: normal;
   text-align: center;
   text-transform: uppercase;
+  text-decoration: none;
   color: var(--white);
 
   &.back {
     display: none;
+  }
+
+  &:hover {
+    background-color: var(--dark-blue);
   }
 }

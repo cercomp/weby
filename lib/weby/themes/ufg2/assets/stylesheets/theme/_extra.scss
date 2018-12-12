@@ -16,8 +16,10 @@
 }
 
 .side-dock .btn {
+  height: 20px;
+  width: 24px;
   display: inline-flex;
-  align-items: flex-start;
+  align-items: center;
   border-radius: 0 25px 25px 0;
   font-family: Lato;
   font-size: 16px;
@@ -36,20 +38,28 @@
   transition: .2s;
 }
 
+.side-dock .btn.active {
+  width: 108px;
+
+  > span {
+    opacity: 1;
+  }
+}
+
 .side-dock .btn > span {
-  width: 0;
-  padding-left: 18px;
   transition: .2s;
   overflow: hidden;
   white-space: nowrap;
-}
-
-.side-dock .btn.active > span {
-  width: 74px;
+  position: absolute;
+  text-align: left;
+  left: 50px;
+  padding: 0;
+  opacity: 0;
 }
 
 .side-dock img {
   vertical-align: bottom;
+  position: absolute;
 }
 
 .side-dock .anchor-news {
