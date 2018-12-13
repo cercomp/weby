@@ -38,7 +38,7 @@
           <% end %>
           <% last = deepest.pop %>
           <% deepest.each do |menu_item| %>
-            <% item_link = (menu_item.target_id? && menu_item.target_type == "Page") ? main_app.site_page_path(menu_item.target_id) : menu_item.url.match(/^\/pages\/\d*/) ? menu_item.url : false %>
+            <% item_link = (menu_item.target_id? && menu_item.target_type == "Page") ? main_app.site_page_path(menu_item.target_id) : menu_item.url.to_s.match(/^\/pages\/\d*/) ? menu_item.url : false %>
             <li><%= link_to_if( item_link, menu_item.title, item_link) %><span class="breadcrumb-divider"></span></li>
           <% end %>
         <% else %>
