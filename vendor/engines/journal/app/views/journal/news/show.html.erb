@@ -1,5 +1,4 @@
-<% content_for :title, " - #{@news.title}" %>
-<% meta_image @news.image %>
+<% add_meta_tags @news %>
 <% content_for :social_code, render_social_share(:news) %>
 
 <article class="news-show">

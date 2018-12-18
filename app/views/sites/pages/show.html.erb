@@ -1,5 +1,5 @@
 <% if !defined?(as_component) %>
-  <% content_for :title, " - #{@page.title}" %>
+  <% add_meta_tags @page %>
   <% content_for :social_code, render_social_share(:page) %>
 <% end %>
 

@@ -1,5 +1,4 @@
-<% content_for :title, " - #{@event.name}" %>
-<% meta_image @event.image %>
+<% add_meta_tags @event %>
 <% content_for :social_code, render_social_share(:event) %>
 
 <article class="event-show">
