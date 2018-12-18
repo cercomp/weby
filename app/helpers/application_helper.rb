@@ -386,6 +386,24 @@ module ApplicationHelper
     content_for :meta_images, "<meta property=\"og:image\" content=\"#{asset_url(repository.archive.url(:o))}\" /><meta property=\"og:type\" content=\"article\" />".html_safe
   end
 
+  def add_meta_tags(obj)
+    if obj.respond_to?(:title)
+      title(obj.title, true)
+    elsif obj.respond_to?(:name)
+      title(obj.name, true)
+    end
+    if obj.respond_to?(:image)
+      meta_image(obj.image)
+    end
+    if obj.respond_to?(:summary)
+      content_for :description, strip_tags(obj.summary.to_s).first(280)
+    elsif obj.respond_to?(:information)
+      content_for :description, strip_tags(obj.information.to_s).first(280)
+    elsif obj.respond_to?(:text)
+      content_for :description, strip_tags(obj.text.to_s).first(280)
+    end
+  end
+
   def period_dates(inidate, findate, force_show_year = true)
     html = ''
     if not findate

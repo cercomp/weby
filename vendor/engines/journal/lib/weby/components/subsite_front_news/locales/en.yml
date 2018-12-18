@@ -13,6 +13,7 @@ en:
         link_to_all:                " 'View all' text "
         tag_as_label:               " Show first tag as label "
         hide_author:                " Hide author/date "
+        order_by:                   " Order by "
   subsite_front_news:
     views:
       show:
@@ -22,4 +23,7 @@ en:
         link_to_all_hint:     " Text of the link to the list of all news "
         subsites:                   " Subsites "
         selected:                   " Selected site "
+        position:             " Manual (in the original site) "
+        created_at:           " Created at "
+        updated_at:           " Updated at "
 

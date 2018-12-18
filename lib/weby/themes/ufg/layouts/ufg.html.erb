@@ -3,7 +3,7 @@
 <!doctype html>
 <html lang="<%= current_locale %>">
   <head>
-    <title><%= @site.try(:description) || 'Weby' %><%= yield :title %></title>
+    <title><%= "#{yield :title} | " if content_for?(:title) %><%= @site.try(:title) || 'Weby' %></title>
     <meta charset="utf-8"/>
     <meta name="description" content="<%= @site.try(:description) %>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,10 +11,10 @@
       <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <%= csrf_meta_tag %>
+    <%= render 'sites/shared/social_meta' %>
     <%= favicon_link_tag favicon(@site) %>
     <%= auto_discovery_link_tag(:rss, main_app.site_feed_url(format: 'rss'),  {:title => "#{@site.try(:title)} - RSS"}) %>
     <%= auto_discovery_link_tag(:atom, main_app.site_feed_url(format: 'atom'),  {:title => "#{@site.try(:title)} - ATOM"}) %>
-    <%= render 'sites/shared/social_meta' %>
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" media="screen">
     <%= yield :components_stylesheets %>
     <%= stylesheet_link_tag 'webybar' %>
