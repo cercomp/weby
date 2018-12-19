@@ -1,8 +1,8 @@
 <meta property="og:title" content="<%= "#{yield :title} | " if content_for?(:title) %><%= @site.try(:title) || 'Weby' %>" />
-<%= yield :meta_images %>
 <% if current_site.repository %>
   <meta property="og:image" content="<%= asset_url(current_site.repository.archive.url(:o)) %>" />
 <% end %>
+<%= yield :meta_images %>
 <meta property="og:site_name" content="<%= current_site.title %>" />
 <meta property="og:url" content="<%= request.original_url.gsub(/\?.*/, '') %>" />
 <meta property="og:description" content="<%= content_for?(:description) ? "#{yield :description}" : @site.description.to_s %>" />
