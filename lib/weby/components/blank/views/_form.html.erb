@@ -16,6 +16,8 @@
         input_html: { id: 'code', class: 'code-editor' } %>
 <% end %>
 
+<%= f.input :html_class, :input_html => {:pattern => '^[A-Za-z0-9_\-]*$'} %>
+
 <%= f.input :put_at_end, wrapper: :checkbox, as: :boolean %>
 
 <% content_for :javascripts, javascript_include_tag("init/codemirror") %>
