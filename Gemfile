@@ -56,7 +56,7 @@ gem 'rails-html-sanitizer', '~>1.0.4'
 
 # rails assets org
 source 'https://rails-assets.org' do
-  gem 'rails-assets-tinymce', '~> 4.6.5'
+  gem 'rails-assets-tinymce', '~> 4.8.5'
 end
 
 group :development, :test do

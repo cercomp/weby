@@ -130,6 +130,11 @@ rights:
         en: Edit File
         pt-BR: Editar Arquivo
       action: edit update
+    crop:
+      name:
+        en: Crop Image
+        pt-BR: Cortar Imagem
+      action: crop
     destroy:
       name:
         en: Destroy File

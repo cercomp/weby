@@ -1,5 +1,5 @@
 <%= each_i18n_tab do |locale| %>
-  <%= f.component_i18n_input locale, :body, :input_html => {class: "mceSimple", style: "width: 550px; height: 280px;"}, :as => :text%>
+  <%= f.component_i18n_input locale, :body, :input_html => {class: "mceAdvance", style: "width: 550px; height: 280px;"}, :as => :text%>
 <% end %>
 <%= f.input :html_class, :input_html => {:pattern => '^[A-Za-z0-9_\-]*$'} %>
 <%= target_dialog %>
