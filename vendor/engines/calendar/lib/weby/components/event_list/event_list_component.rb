@@ -12,7 +12,7 @@ class EventListComponent < Component
   def get_events(curr_site, page_param)
     if source == 'selected'
       site = Site.find_by(id: sel_site)
-      site ? events(site, page_param) : []
+      site ? events(site, page_param) : Calendar::Event.none
     else
       events(curr_site, page_param)
     end

@@ -18,7 +18,7 @@ class SubsiteFrontNewsComponent < Component
                .available_fronts
                .published
                .limit(limit)
-           : []
+           : Journal::NewsSite.none
     else
       Journal::NewsSite.from_subsites(curr_site)
         .order("journal_news_sites.#{order_by} #{direction}")

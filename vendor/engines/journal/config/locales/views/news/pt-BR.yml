@@ -26,6 +26,7 @@ pt-BR:
         name:          "Nome"
         title:         "Título"
         close:         "Fechar"
+        no-site-found: "Nenhum site disponível para compartilhar"
       list:
         read_more:     "Leia mais"
         no_news:       "Nenhuma notícia encontrada"

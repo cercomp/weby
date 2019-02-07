@@ -27,6 +27,7 @@ en:
         name:          "Name"
         title:         "Title"
         close:         "Close"
+        no-site-found: "No site available to share"
       list:
         read_more:     "Read more"
         no_news:       "No news were found"
