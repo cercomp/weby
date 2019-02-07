@@ -32,9 +32,9 @@
       <% for event in @events %>
           <% if component.group_by %>
               <tr>
-                <td>        
+                <td>
                  <p class="event-dates">
-                    <% if component.date_format == 'short' %> 
+                    <% if component.date_format == 'short' %>
                       <span class="event-date"><%= l(event.begin_at, format: '%d') %>/<%= l(event.begin_at, format: '%m') %></span>
                       </span>
                       <p><%= link_to event.name, event_path(event) %></p>
@@ -43,12 +43,12 @@
                     <% else %>
                       <%= period_dates(event.begin_at, event.end_at, false) -%>
                     <% end %>
-                  </p>                 
+                  </p>
                 </td>
               </tr>
            <% else %>
                <tr>
-                <td>         
+                <td>
                   <p><%= link_to event.name, event_path(event) %></p>
                   <p class="event-dates">
                     <% if component.date_format == 'short' %>

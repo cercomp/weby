@@ -44,6 +44,10 @@
       <%= f.input :avatar_width, as: :integer %>
       <%= f.input :avatar_height, as: :integer %>
 
+      <%= f.input :source, collection: component.source_options.map{|o| [t(".#{o}"), o] }, include_blank: false %>
+
+      <%= f.input :sel_site, collection: Site.where.not(id: current_site.id), input_html: {class: 'select2'} %>
+
       <%= each_i18n_tab do |locale| %>
         <%= f.component_i18n_input locale, :link_to_all, :as => :string, hint: t(".link_to_all_hint") %>
       <% end %>

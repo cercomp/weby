@@ -17,6 +17,8 @@ en:
         link_to_all:          " Link to all events "
         template:             " Template "
         date_format:          " Date Format "
+        source:               " Source "
+        sel_site:             " Site "
         html_class:           " HTML class "
   event_list:
     views:
@@ -32,6 +34,8 @@ en:
         front:                " List "
         full:                 " Full "
         short:                " Initial date "
+        own:                  " Own Events "
+        selected:             " From selected site "
         m:                    " Medium "
         l:                    " Little "
         i:                    " Miniature "

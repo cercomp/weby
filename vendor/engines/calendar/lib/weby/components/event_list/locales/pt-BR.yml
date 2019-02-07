@@ -18,6 +18,8 @@ pt-BR:
         link_to_all:          " Link para exibir todos "
         template:             " Formato de exibição "
         date_format:          " Formato da data "
+        source:               " Origem "
+        sel_site:             " Site "
         html_class:           " Classe HTML "
   event_list:
     views:
@@ -33,6 +35,8 @@ pt-BR:
         front:                " Lista "
         full:                 " Completo "
         short:                " Data inicial "
+        own:                  " Eventos Próprios "
+        selected:             " De outro site "
         m:                    " Média "
         l:                    " Pequena "
         i:                    " Miniatura "

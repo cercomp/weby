@@ -8,7 +8,7 @@ module Journal
     STATUS_LIST = %w(draft review published)
 
 
-    belongs_to :site
+    belongs_to :site, inverse_of: :own_news
     belongs_to :user
 
     has_many :views, as: :viewable
@@ -16,7 +16,7 @@ module Journal
     has_many :posts_repositories, as: :post, dependent: :destroy
     has_many :related_files, through: :posts_repositories, source: :repository
     has_many :news_sites, foreign_key: :journal_news_id, class_name: "::Journal::NewsSite", dependent: :destroy
-    has_many :sites, :through => :news_sites
+    has_many :sites, through: :news_sites
     has_many :newsletter_histories, dependent: :destroy, class_name: "::Journal::NewsletterHistories"
 
     has_one :own_news_site, ->(this){ where(site_id: this.site_id) }, class_name: "::Journal::NewsSite", foreign_key: :journal_news_id

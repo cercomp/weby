@@ -17,6 +17,8 @@
         link_to_all:          " Lien à tous "
         template:             " Template "
         date_format:          " Format de Date "
+        source:               " Origem "
+        sel_site:             " Site "
         html_class:           " Class HTML "
   event_list:
     views:
@@ -31,6 +33,8 @@
         basic:                " Table "
         front:                " List "
         full:                 " Plein "
+        own:                  " Eventos Próprios "
+        selected:             " De outro site "
         short:                " Date initiale "
         m:                    " Moyen "
         l:                    " Petit "

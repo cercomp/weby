@@ -45,7 +45,15 @@ class Admin::SitesController < Admin::BaseController
   end
 
   def destroy
-    @site.destroy
+    Calendar::Event.unscoped do
+      Journal::News.unscoped do
+        Repository.unscoped do
+          Page.unscoped do
+            @site.destroy
+          end
+        end
+      end
+    end
     flash[:success] = t('successfully_deleted')
     redirect_to admin_sites_url(subdomain: nil)
   end

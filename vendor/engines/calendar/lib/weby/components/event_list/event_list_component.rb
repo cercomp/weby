@@ -1,19 +1,28 @@
 class EventListComponent < Component
   component_settings :quant, :avatar_height, :avatar_width, :read_more, :group_by,
                      :image_size, :max_char, :filter_by, :label,
-                     :link_to_all, :template, :date_format, :html_class
+                     :link_to_all, :template, :date_format, :html_class,
+                     :source, :sel_site
 
   i18n_settings :label, :link_to_all
 
   validates :quant, presence: true
+  validates :sel_site, presence: true, if: ->{ source == 'selected' }
 
-  def get_events(site, page_param)
-    filter_by.blank? ? events(site, page_param) : events(site, page_param).tagged_with(filter_by.mb_chars.downcase.to_s, any: true)
+  def get_events(curr_site, page_param)
+    if source == 'selected'
+      site = Site.find_by(id: sel_site)
+      site ? events(site, page_param) : []
+    else
+      events(curr_site, page_param)
+    end
   end
 
   def events(site, page_param)
     direction = 'desc'
-    site.events.includes(:image).upcoming.order('begin_at asc, id asc').page(page_param).per(quant)
+    result = site.events.includes(:image, :i18ns).upcoming.order('begin_at asc, id asc')
+    result = result.tagged_with(filter_by.mb_chars.downcase.to_s, any: true) if filter_by.present?
+    result.page(page_param).per(quant)
   end
   private :events
 
@@ -53,4 +62,7 @@ class EventListComponent < Component
     [:basic, :front]
   end
 
+  def source_options
+    ['own', 'selected']
+  end
 end
