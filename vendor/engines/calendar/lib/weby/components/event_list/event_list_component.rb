@@ -9,6 +9,12 @@ class EventListComponent < Component
   validates :quant, presence: true
   validates :sel_site, presence: true, if: ->{ source == 'selected' }
 
+  def source_site
+    if source == 'selected' && sel_site.present?
+      Site.find_by(id: sel_site)
+    end
+  end
+
   def get_events(curr_site, page_param)
     if source == 'selected'
       site = Site.find_by(id: sel_site)
