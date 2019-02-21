@@ -10,6 +10,7 @@ es:
         page_id:              " Página "
         show_title:           " Mostrar título "
         show_info:            " Mostrar informaciones "
+        html_id:              " ID HTML "
   news_as_home:
     views:
       form:

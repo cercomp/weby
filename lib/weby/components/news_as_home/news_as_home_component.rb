@@ -1,5 +1,5 @@
 class NewsAsHomeComponent < Component
-  component_settings :page_id, :show_title, :show_info
+  component_settings :page_id, :show_title, :show_info, :html_id
 
   validates :page_id, presence: true
 

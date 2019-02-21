@@ -10,6 +10,7 @@ pt-BR:
         page_id:              " Página "
         show_title:           " Exibir título "
         show_info:            " Exibir informações "
+        html_id:              " ID HTML "
   news_as_home:
     views:
       form:
