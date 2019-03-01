@@ -35,6 +35,7 @@ pt-BR:
         front:                " Lista "
         full:                 " Completo "
         short:                " Data inicial "
+        two_dates:            " Inicial e final "
         own:                  " Eventos Próprios "
         selected:             " De outro site "
         m:                    " Média "

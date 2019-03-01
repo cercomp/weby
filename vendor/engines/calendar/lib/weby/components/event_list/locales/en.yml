@@ -34,6 +34,7 @@ en:
         front:                " List "
         full:                 " Full "
         short:                " Initial date "
+        two_dates:            " Start and finish "
         own:                  " Own Events "
         selected:             " From selected site "
         m:                    " Medium "

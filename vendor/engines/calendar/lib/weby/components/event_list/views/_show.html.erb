@@ -41,6 +41,8 @@
                       <p><%= link_to event.name, event_url(event, subdomain: site) %></p>
                       <span class="event-date-hour"><%= l(event.begin_at, format: '%H') %>h</span>
                       <span class="event-summary"><%= strip_tags(event.information).first(140).html_safe %>
+                    <% elsif component.date_format == 'two_dates' %>
+                      <%= render partial: 'event_list/views/two_dates', locals: {event: event} %>
                     <% else %>
                       <%= period_dates(event.begin_at, event.end_at, false) -%>
                     <% end %>
@@ -55,6 +57,8 @@
                     <% if component.date_format == 'short' %>
                       <span class="event-date-day"><%= l(event.begin_at, format: '%d') %></span>
                       <span class="event-date-month"><%= l(event.begin_at, format: '%b') %></span>
+                    <% elsif component.date_format == 'two_dates' %>
+                      <%= render partial: 'event_list/views/two_dates', locals: {event: event} %>
                     <% else %>
                       <%= period_dates(event.begin_at, event.end_at, false) -%>
                     <% end %>
@@ -88,6 +92,8 @@
               <% if component.date_format == 'short' %>
                 <span class="event-date-day"><%= l(event.begin_at, format: '%d') %></span>
                 <span class="event-date-month"><%= l(event.begin_at, format: '%b') %></span>
+              <% elsif component.date_format == 'two_dates' %>
+                <%= render partial: 'event_list/views/two_dates', locals: {event: event} %>
               <% else %>
                 <%= period_dates(event.begin_at, event.end_at, false) -%>
               <% end %>

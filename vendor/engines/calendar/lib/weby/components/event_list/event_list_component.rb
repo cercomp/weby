@@ -53,7 +53,7 @@ class EventListComponent < Component
   end
 
   def date_formats
-    [:full, :short]
+    [:full, :short, :two_dates]
   end
 
   def template_types

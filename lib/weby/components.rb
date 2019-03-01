@@ -102,7 +102,7 @@ module Weby
             end
           end
           output = render args
-          comp_id = component.html_id.present? ? component.html_id : "component_#{component.id}"
+          comp_id = component.respond_to?(:html_id) && component.html_id.present? ? component.html_id : "component_#{component.id}"
           output = output.sub(/(class=\"[a-z_\-]+_component\s?[a-z0-9_\-]*\")/, "\\1 id=\"#{comp_id}\"")
         rescue ActionView::MissingTemplate
           output = ''

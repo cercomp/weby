@@ -33,6 +33,7 @@
         basic:                " Table "
         front:                " List "
         full:                 " Plein "
+        two_dates:            " Initiale e finale "
         own:                  " Eventos Próprios "
         selected:             " De outro site "
         short:                " Date initiale "

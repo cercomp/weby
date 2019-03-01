@@ -1,0 +1,11 @@
+<span class="event-date-init">
+  <span class="event-date-day"><%= l(event.begin_at, format: '%d') %></span>
+  <span class="event-date-month"><%= l(event.begin_at, format: '%b') %></span>
+</span>
+<% if event.end_at.present? %>
+  <span class="event-date-sep"><%= t('time.period_separator') %></span>
+  <span class="event-date-fin">
+    <span class="event-date-day"><%= l(event.end_at, format: '%d') %></span>
+    <span class="event-date-month"><%= l(event.end_at, format: '%b') %></span>
+  </span>
+<% end %>
