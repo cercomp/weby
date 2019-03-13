@@ -578,7 +578,7 @@ summary em, summary em * {
   li {
     max-width: 300px;
     position: relative;
-    padding-left: 60px;
+    padding-left: 110px;
     box-sizing: border-box;
     margin: 0 20px 30px 0;
     min-height: 54px;
@@ -612,16 +612,19 @@ summary em, summary em * {
   }
 
   .event-dates {
-    width: 54px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    width: 104px;
     height: 54px;
-    padding-top: 5px;
+    padding-top: 4px;
     border: solid 1px var(--white);
-    border-radius: 50%;
+    border-radius: 27px;
     position: absolute;
     left: 0;
     top: 0;
     font-family: Lato;
-    font-weight: bold;
+    font-weight: normal;
     font-style: normal;
     font-stretch: normal;
     line-height: normal;
@@ -630,8 +633,14 @@ summary em, summary em * {
     color: var(--white);
   }
 
+  .event-date-init, .event-date-fin {
+    flex: 1;
+  }
+
   .event-date-day {
     font-size: 24px;
+    font-weight: bold;
+    display: block;
   }
 
   .event-date-month {
