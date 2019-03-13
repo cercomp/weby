@@ -701,11 +701,14 @@ summary em, summary em * {
       font-weight: 300;
       line-height: 1.4;
       color: var(--grey);
+      display: block;
     }
 
     .event-date-day, .event-date-month {
       font-size: 20px;
       position: static;
+      font-weight: 300;
+      display: inline-block;
     }
   }
 
