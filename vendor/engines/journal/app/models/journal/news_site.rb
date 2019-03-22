@@ -28,7 +28,7 @@ module Journal
     end
 
     def validate_position
-      self.position = last_front_position + 1
+      self.position = last_front_position + 1 if self.position.nil?
 #      self.position = 0 if self.position.nil?
     end
 
