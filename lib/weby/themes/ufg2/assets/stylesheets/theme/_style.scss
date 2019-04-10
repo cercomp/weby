@@ -21,6 +21,15 @@
 
 body {
   background-color: var(--white);
+  font-size: 20px;
+
+  &.zoom-in {
+    font-size: 24px;
+  }
+
+  &.zoom-out {
+    font-size: 18px;
+  }
 }
 
 div, section, input {
@@ -52,7 +61,7 @@ div, section, input {
 
 @mixin placeholder {
   font-family: Lato;
-  font-size: 18px;
+  font-size: 0.9em;
   font-weight: normal;
   font-style: normal;
   font-stretch: normal;
@@ -96,7 +105,7 @@ div, section, input {
     margin: 16px auto 17px;
     text-align: center;
     font-family: Lato;
-    font-size: 42px;
+    font-size: 2.1em;
     font-weight: 300;
     color: var(--white);
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
@@ -160,6 +169,8 @@ div, section, input {
 .front_news_component, .subsite_front_news_component {
   border: 0;
   position: relative;
+  padding-left: 34px;
+  padding-right: 34px;
 
   .read_more {
     padding: 0;
@@ -183,6 +194,11 @@ div, section, input {
 .front_news_component {
   background-color: var(--bg);
   padding-top: 124px;
+
+  #news {
+    grid-template-columns: 300px 300px 300px;
+    justify-content: center;
+  }
 }
 
 .front_news_title, .event_list_title {
@@ -192,7 +208,7 @@ div, section, input {
   a, span {
     text-decoration: none;
     font-family: Lato;
-    font-size: 48px;
+    font-size: 2.4em;
     font-weight: 300;
     font-style: normal;
     font-stretch: normal;
@@ -213,6 +229,9 @@ summary em, summary em * {
 }
 
 .front_news_title {
+  width: 940px;
+  max-width: 100%;
+
   a, span {
     color: var(--red);
   }
@@ -243,7 +262,7 @@ summary em, summary em * {
     text-decoration: none;
     text-transform: uppercase;
     font-family: Lato;
-    font-size: 16px;
+    font-size: 0.8em;
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
@@ -265,7 +284,6 @@ summary em, summary em * {
   display: grid;
   grid-column-gap: 20px;
   grid-row-gap: 40px;
-  grid-template-columns: 1fr 1fr 1fr;
 
   > li {
     padding-top: 164px;
@@ -318,7 +336,7 @@ summary em, summary em * {
 
       .date {
         font-family: Lato;
-        font-size: 16px;
+        font-size: 0.8em;
         font-weight: 300;
         font-style: normal;
         font-stretch: normal;
@@ -334,7 +352,7 @@ summary em, summary em * {
       top: calc(144px + 14px);
       margin: 0;
       font-family: Lato;
-      font-size: 16px;
+      font-size: 0.8em;
       font-weight: normal;
       font-style: normal;
       font-stretch: normal;
@@ -350,7 +368,7 @@ summary em, summary em * {
       a {
         text-decoration: none;
         font-family: Lato;
-        font-size: 24px;
+        font-size: 1.2em;
         font-weight: 300;
         font-style: normal;
         font-stretch: normal;
@@ -368,7 +386,7 @@ summary em, summary em * {
       p {
         margin: 0;
         font-family: Lato;
-        font-size: 18px;
+        font-size: 0.9em;
         font-weight: 300;
         font-style: normal;
         font-stretch: normal;
@@ -396,7 +414,7 @@ summary em, summary em * {
       background-color: var(--light-blue);
       text-decoration: none;
       font-family: Lato;
-      font-size: 16px;
+      font-size: 0.8em;
       font-weight: normal;
       font-style: normal;
       font-stretch: normal;
@@ -423,7 +441,8 @@ summary em, summary em * {
 
   .list {
     grid-row-gap: 20px;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 220px 220px 220px 220px;
+    justify-content: center;
 
     > li {
       padding-top: 144px;
@@ -487,14 +506,21 @@ summary em, summary em * {
 /* MÍDIAS */
 
 .media-section {
-  padding: 140px 0;
+  padding: 140px 0 80px;
+  position: relative;
 
   .container {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
+    > section {
+      margin-bottom: 60px;
+    }
   }
 
   .image_component {
-    margin-right: 20px;
+    margin-right: 0;
 
     &:last-child {
       margin-right: 0;
@@ -502,7 +528,7 @@ summary em, summary em * {
 
     h3 {
       font-family: Lato;
-      font-size: 34px;
+      font-size: 1.7em;
       font-weight: 300;
       font-style: normal;
       font-stretch: normal;
@@ -519,14 +545,44 @@ summary em, summary em * {
       width: 300px;
       height: 180px;
       object-fit: contain;
+      border-radius: 4px;
+      box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
     }
+  }
+
+  .text_component p {
+    font-family: Lato;
+    font-size: 1.7em;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 0;
+    margin: 0 0 40px;
+    line-height: 1.18;
+    letter-spacing: normal;
+    color: var(--blue);
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+
+  .embed-container .blank_component {
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+    width: 300px;
+    height: 180px;
   }
 }
 
 /* EVENTOS */
 
 .event-lists {
-  padding: 80px 0 0;
+  padding: 80px 34px 0;
   background-color: var(--purple);
   background-image: asset-url('ufg2/img-grid.png');
   background-position: left bottom;
@@ -535,7 +591,16 @@ summary em, summary em * {
 
   .container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+  }
+
+  .event_list_component:first-child {
+    flex: 1
+  }
+
+  .event_list_component:first-child #events .event-date-day,
+  .event_list_component:first-child #events .event-date-month {
+    display: block;
   }
 }
 
@@ -555,6 +620,10 @@ summary em, summary em * {
       }
     }
   }
+}
+
+.event_list_component .event-dates {
+  font-size: inherit;
 }
 
 .event_list_component:first-child #events li {
@@ -591,7 +660,7 @@ summary em, summary em * {
         font-family: Lato;
         padding: 0;
         margin: 0;
-        font-size: 24px;
+        font-size: 1.2em;
         font-weight: 300;
         font-style: normal;
         font-stretch: normal;
@@ -638,13 +707,13 @@ summary em, summary em * {
   }
 
   .event-date-day {
-    font-size: 24px;
+    font-size: 1.2em;
     font-weight: bold;
     display: block;
   }
 
   .event-date-month {
-    font-size: 16px;
+    font-size: 0.8em;
     text-transform: lowercase;
     position: relative;
     top: -5px;
@@ -658,14 +727,17 @@ summary em, summary em * {
     position: absolute;
     top: 128px;
     a {
-      font-size: 34px;
+      font-size: 1.7em;
     }
   }
 
   #events {
     margin-top: 118px;
+    margin-bottom: 178px;
     padding: 14px 16px 17px;
     background-color: var(--white);
+    border-radius: 4px;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 
     li {
       margin: 0 0 9px;
@@ -705,7 +777,7 @@ summary em, summary em * {
     }
 
     .event-date-day, .event-date-month {
-      font-size: 20px;
+      font-size: 1em;
       position: static;
       font-weight: 300;
       display: inline-block;
@@ -716,16 +788,18 @@ summary em, summary em * {
 }
 
 .fixed-menus {
-  padding: 140px 0 120px;
+  padding: 140px 34px 60px;
   background-color: var(--bg);
 
   > .container {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
   }
 
   h3 {
     font-family: Lato;
-    font-size: 48px;
+    font-size: 2.4em;
     font-weight: 300;
     font-style: normal;
     font-stretch: normal;
@@ -737,8 +811,10 @@ summary em, summary em * {
   }
 
   .menu_component {
-    flex: 1;
-    margin-right: 20px;
+    flex: 0 0 460px;
+    margin-right: 0;
+    max-width: 100%;
+    margin-bottom: 60px;
 
     &:last-child {
       margin-right: 0;
@@ -774,7 +850,7 @@ summary em, summary em * {
           display: block;
           padding: 0 40px 0 80px;
           font-family: Lato;
-          font-size: 18px;
+          font-size: 0.9em;
           font-weight: normal;
           font-style: normal;
           font-stretch: normal;
@@ -803,12 +879,13 @@ summary em, summary em * {
     display: grid;
     grid-column-gap: 20px;
     grid-row-gap: 40px;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 220px 220px 220px 220px;
+    justify-content: center;
   }
 
   .text_component {
     font-family: Lato;
-    font-size: 48px;
+    font-size: 2.4em;
     font-weight: 300;
     font-style: normal;
     font-stretch: normal;
@@ -833,6 +910,12 @@ summary em, summary em * {
     position: relative;
 
     a {
+      position: static;
+      width: auto;
+      height: auto;
+    }
+
+    > a {
       position: absolute;
       width: 100%;
       height: 100%;
@@ -850,7 +933,7 @@ summary em, summary em * {
       margin: 0;
       padding: 0;
       font-family: Lato;
-      font-size: 24px;
+      font-size: 1.2em;
       font-weight: 300;
       font-style: normal;
       font-stretch: normal;
@@ -870,7 +953,7 @@ summary em, summary em * {
 }
 
 .services {
-  padding: 120px 0;
+  padding: 120px 34px 0;
   position: relative;
   background-color: var(--bg);
 
@@ -879,7 +962,7 @@ summary em, summary em * {
     border-radius: 24px;
     background-color: #0081d0;
     font-family: Lato;
-    font-size: 16px;
+    font-size: 0.8em;
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
@@ -901,16 +984,19 @@ summary em, summary em * {
   }
 
   .text_component {
-    font-family: Lato;
-    font-size: 48px;
-    font-weight: 300;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.21;
-    letter-spacing: normal;
-    color: var(--blue);
     margin-bottom: 80px;
     position: relative;
+
+    p:first-child {
+      font-family: Lato;
+      font-size: 2.4em;
+      font-weight: 300;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.21;
+      letter-spacing: normal;
+      color: var(--blue);
+    }
 
     p {
       margin: 0;
@@ -922,7 +1008,8 @@ summary em, summary em * {
     display: grid;
     grid-column-gap: 20px;
     grid-row-gap: 60px;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 140px 140px 140px 140px 140px 140px;
+    justify-content: center;
 
     .image_component {
       width: 140px;
@@ -944,7 +1031,7 @@ summary em, summary em * {
         width: 100%;
         margin: 0;
         font-family: Lato;
-        font-size: 24px;
+        font-size: 1.2em;
         font-weight: 300;
         font-style: normal;
         font-stretch: normal;
@@ -952,14 +1039,20 @@ summary em, summary em * {
         letter-spacing: normal;
         text-align: center;
         color: #444444;
-        pointer-events: none;
+        pointer-events: auto;
       }
 
       a {
+        position: static;
+        width: auto;
+        height: auto;
+        border-radius: 50%;
+      }
+
+      > a {
         position: absolute;
         width: 100%;
         height: 100%;
-        border-radius: 50%;
       }
 
       img {
@@ -982,11 +1075,11 @@ summary em, summary em * {
 
 .about-home {
   background-color: var(--white);
-  padding: 80px 0 0;
+  padding: 80px 34px 0;
 
   h2 {
     font-family: Lato;
-    font-size: 48px;
+    font-size: 2.4em;
     font-weight: 300;
     font-style: normal;
     font-stretch: normal;
@@ -998,21 +1091,47 @@ summary em, summary em * {
 
   .about-row {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 
     p {
       margin: 0 80px 0 0;
       font-family: Lato;
-      font-size: 20px;
+      font-size: 1em;
       font-weight: 300;
       font-style: normal;
       font-stretch: normal;
       line-height: 1.4;
       letter-spacing: normal;
       color: var(--dark-gray);
+      flex: 1;
+      min-width: 341px;
     }
 
     img {
-      width: 460px;
+      max-width: 100%;
+      height: 100% !important;
     }
   }
+}
+
+.radio-container {
+  position: relative;
+
+  .blank_component {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 61px;
+
+    audio {
+      opacity: .7;
+      width: 255px;
+    }
+  }
+}
+
+.image_component h3 a{
+  color: inherit;
+  text-decoration: none;
 }

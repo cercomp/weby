@@ -14,7 +14,7 @@
   h2 {
     margin: 0;
     font-family: Lato;
-    font-size: 48px;
+    font-size: 2.4em;
     font-weight: 300;
     font-style: normal;
     font-stretch: normal;
@@ -34,7 +34,7 @@
     background-color: var(--light-grey);
     padding: 17px 0 19px;
     font-family: Lato;
-    font-size: 18px;
+    font-size: 0.9em;
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
@@ -55,7 +55,7 @@
 
   .form-tooltip {
     font-family: Lato;
-    font-size: 20px;
+    font-size: 1em;
     font-weight: 300;
     font-style: normal;
     font-stretch: normal;
@@ -74,7 +74,17 @@
 }
 
 .feedback-new-message-form {
-  padding: 20px 0 100px 0;
+  padding: 20px 20px 100px;
+
+  .form-group span.checkbox{
+    display: flex;
+    margin-bottom: 8px;
+  }
+}
+
+.feedback-custom-text .faq, .feedback-custom-text .form-tooltip {
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .simple_captcha {
@@ -91,7 +101,7 @@ input, select, textarea {
   border: 1px solid transparent;
   padding: 10px 20px 8px;
   font-family: Lato;
-  font-size: 18px;
+  font-size: 0.9em;
   font-weight: normal;
   font-style: normal;
   font-stretch: normal;
@@ -116,7 +126,7 @@ textarea {
 
 label.check_boxes {
   font-family: Lato;
-  font-size: 22px;
+  font-size: 1.1em;
   font-weight: normal;
   font-style: normal;
   font-stretch: normal;
@@ -140,7 +150,7 @@ label.check_boxes {
 
     label {
       font-family: Lato;
-      font-size: 18px;
+      font-size: 1em;
       font-weight: normal;
       font-style: normal;
       font-stretch: normal;
@@ -157,7 +167,7 @@ label.check_boxes {
   border-radius: 24px;
   background-color: var(--blue);
   font-family: Lato;
-  font-size: 16px;
+  font-size: 0.8em;
   font-weight: normal;
   font-style: normal;
   font-stretch: normal;

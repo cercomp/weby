@@ -1,5 +1,5 @@
 .news-show, .page-show, .event-show {
-  padding: 30px 0 100px;
+  padding: 30px 34px 100px;
   margin: 0 auto;
   max-width: 940px;
 
@@ -10,7 +10,7 @@
   header {
     h2 {
       font-family: Lato;
-      font-size: 34px;
+      font-size: 1.7em;
       font-weight: 300;
       font-style: normal;
       font-stretch: normal;
@@ -23,7 +23,7 @@
 
   .news-details, .page-details {
     font-family: Lato;
-    font-size: 18px;
+    font-size: 0.9em;
     font-weight: 300;
     font-style: normal;
     font-stretch: normal;
@@ -35,7 +35,7 @@
 
   .body, summary {
     font-family: Lato;
-    font-size: 20px;
+    font-size: 1em;
     font-weight: 300;
     font-style: normal;
     font-stretch: normal;
@@ -53,15 +53,25 @@
       font-weight: normal;
       text-decoration: underline;
     }
+
+    img {
+      max-width: 100%;
+      height: auto !important;
+    }
+  }
+
+  .body p {
+    margin-bottom: 25px;
   }
 
   summary {
-    margin: 0;
+    margin: 0 0 40px;
   }
 
   .social-buttons {
     margin: 0 0 60px;
     display: flex;
+    overflow: hidden;
 
     iframe {
       margin-right: 10px;
@@ -76,7 +86,7 @@
 
   .categories-label {
     font-family: Lato;
-    font-size: 20px;
+    font-size: 1em;
     font-weight: 300;
     font-style: normal;
     font-stretch: normal;
@@ -90,7 +100,7 @@
     border-radius: 4px;
     background-color: #66aad5;
     font-family: Lato;
-    font-size: 18px;
+    font-size: 0.9em;
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
@@ -112,12 +122,13 @@
 
   .actions {
     display: flex;
+    flex-wrap: wrap;
 
     > a {
       border-radius: 24px;
       background-color: var(--blue);
       font-family: Lato;
-      font-size: 16px;
+      font-size: 0.8em;
       font-weight: normal;
       font-style: normal;
       font-stretch: normal;
@@ -129,10 +140,44 @@
       color: var(--white);
       padding: 14px 30px 15px;
       margin-right: 16px;
+      margin-bottom: 5px;
 
       &:last-child {
         margin-right: 0;
       }
+
+      &:hover {
+        background-color: var(--dark-blue);
+      }
+    }
+  }
+
+  > table {
+    margin-bottom: 60px;
+    text-align: left;
+  }
+
+  > table td, > table th {
+    padding: 5px 20px 5px 0;
+    font-size: 1em;
+    font-weight: 300;
+  }
+
+  > table th {
+    font-weight: 500;
+  }
+
+  > table td {
+    word-break: break-word;
+
+    > a {
+      color: inherit;
+    }
+  }
+
+  @media (max-width: 480px) {
+    > table td:last-child, > table th:last-child {
+      display: none;
     }
   }
 }
@@ -141,7 +186,7 @@
   header {
     h2 {
       font-family: Lato;
-      font-size: 48px;
+      font-size: 2.4em;
       font-weight: 300;
       font-style: normal;
       font-stretch: normal;
@@ -158,7 +203,7 @@
 
   .event {
     font-family: Lato;
-    font-size: 20px;
+    font-size: 1em;
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
@@ -182,7 +227,7 @@
 
     th {
       font-weight: normal;
-      font-size: 20px;
+      font-size: 1em;
       text-align: left;
       padding-right: 20px;
     }
@@ -228,7 +273,7 @@ ufg-eventos {
 
   h4 {
     margin-top: 0;
-    font-size: 19px;
+    font-size: 0.95em;
     font-weight: 500;
   }
 
@@ -247,7 +292,7 @@ ufg-eventos {
 .accordion-heading .accordion-toggle {
   display: block;
   padding: 8px 15px;
-  font-size: 18px;
+  font-size: 0.9em;
   cursor: pointer;
   color: inherit;
   text-decoration: none;
@@ -364,7 +409,7 @@ ufg-eventos {
           display: inline-block;
           padding: 11px 0px;
           color: var(--grey);
-          font-size: 18px;
+          font-size: 0.9em;
           font-weight: normal;
           font-style: normal;
           font-stretch: normal;
@@ -378,7 +423,7 @@ ufg-eventos {
       width: 168px;
       height: 58px;
       font-family: Lato;
-      font-size: 48px;
+      font-size: 2.4em;
       font-weight: 300;
       font-style: normal;
       font-stretch: normal;
@@ -391,7 +436,7 @@ ufg-eventos {
 
     .input-append.search-field-button {
       position: relative;
-      
+
       input#search {
         width: 460px;
         height: 52px;
@@ -478,7 +523,7 @@ ufg-eventos {
           .news-details {
             padding: 16px 0px 0px 16px;
             font-family: Lato;
-            font-size: 16px;
+            font-size: 0.8em;
             font-weight: 300;
             font-style: normal;
             font-stretch: normal;
@@ -492,7 +537,7 @@ ufg-eventos {
           header {
             padding: 0px 0px 0px 16px;
             font-family: Lato;
-            font-size: 24px;
+            font-size: 1.2em;
             position: relative;
             top: 40px;
             margin-bottom: 52px;
@@ -513,7 +558,7 @@ ufg-eventos {
             padding: 0px 0px 0px 16px;
             height: 96px;
             font-family: Lato;
-            font-size: 18px;
+            font-size: 0.9em;
             font-weight: 300;
             font-style: normal;
             font-stretch: normal;
@@ -545,11 +590,11 @@ ufg-eventos {
               display: inline-block;
               border-radius: 4px;
               margin-right: 10px;
-  
+
               a.weby-label {
                 background-color: var(--light-blue);
                 padding: 1px 16px;
-                font-size: 16px;
+                font-size: 0.8em;
                 text-decoration: none;
                 font-family: Lato;
                 font-weight: normal;
@@ -575,6 +620,12 @@ ufg-eventos {
               height: 236px !important;
               object-fit: cover;
             }
+
+            &.news-image {
+              img {
+                margin-left: 0 !important;
+              }
+            }
           }
         }
       }
@@ -596,11 +647,13 @@ ufg-eventos {
         display: flex !important;
         justify-content: center;
         align-items: center;
+        flex-wrap: wrap;
 
         li.page {
           display: inline-block;
           list-style: none;
           margin: 0 8px;
+          margin: 15px 8px;
 
           a {
             width: 11px;
@@ -610,7 +663,7 @@ ufg-eventos {
             padding: 9px 15px;
             color: var(--white);
             text-decoration: none;
-            font-size: 18px;
+            font-size: 0.9em;
             letter-spacing: normal;
           }
 
@@ -726,14 +779,14 @@ ufg-eventos {
               display: inline-block;
               border-radius: 4px;
               margin-right: 10px;
-  
+
               a {
-                font-size: 16px;
+                font-size: 0.8em;
               }
             }
           }
         }
-    
+
         &:hover {
           box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.3);
         }
@@ -768,7 +821,7 @@ ufg-eventos {
     width: 168px;
     height: 58px;
     font-family: Lato;
-    font-size: 48px;
+    font-size: 2.4em;
     font-weight: 300;
     font-style: normal;
     font-stretch: normal;
@@ -851,7 +904,7 @@ ufg-eventos {
         display: inline-block;
         padding: 11px 0px;
         color: var(--grey);
-        font-size: 18px;
+        font-size: 0.9em;
         font-weight: normal;
         font-style: normal;
         font-stretch: normal;
@@ -933,7 +986,7 @@ ufg-eventos {
         }
 
         font-family: Lato;
-        font-size: 18px;
+        font-size: 0.9em;
         font-weight: 300;
         font-style: normal;
         font-stretch: normal;
@@ -970,13 +1023,13 @@ ufg-eventos {
           padding: 0;
           margin-bottom: 16px;
           position: absolute;
-          left: 20%;
-          top: 13%;
+          left: 6px;
+          top: 2px;
 
           a {
             color: #FFF;
             text-decoration: none;
-            font-size: 24px;
+            font-size: 1.2em;
           }
         }
 
@@ -1005,13 +1058,13 @@ ufg-eventos {
             color: var(--white);
 
             a {
-              font-size: 16px;
+              font-size: 0.8em;
               padding: 0;
             }
           }
         }
       }
-  
+
       &:hover {
         box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.3);
         /*transform: translateY(-2px);*/
@@ -1032,6 +1085,144 @@ ufg-eventos {
       }
     }
   }
+}
+
+.credits-page h3 {
+  font-family: Lato;
+  font-size: 1.7em;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.18;
+  letter-spacing: normal;
+  color: var(--dark-gray);
+  margin: 40px 0 60px;
+}
+
+.credits-page .button-header {
+  text-align: center;
+  margin-bottom: 60px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.credits-page .button-header .btn {
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+
+.credits-page .button-header .btn:last-child {
+  margin-right: 0;
+}
+
+.photos-row {
+  display: flex;
+  margin: 0;
+  padding: 0 0 40px;
+  flex-wrap: wrap;
+}
+
+.photos-row > div {
+  flex: 0 0 140px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-family: Lato;
+  font-size: 1em;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.4;
+  letter-spacing: normal;
+  text-align: center;
+  color: var(--dark-gray);
+  word-break: break-word;
+}
+.photos-row > div:last-child {
+  margin-right: 0;
+}
+
+.photos-row > div > div:nth-child(2) {
+  font-weight: normal;
+  margin-bottom: 6px;
+}
+
+.body .photos-row > div img {
+  border-radius: 50%;
+  width: 140px !important;
+  height: 140px !important;
+  margin-bottom: 16px;
+  object-fit: cover;
+}
+
+.description_reitorado {
+  margin-bottom: 61px;
+}
+
+.block_person {
+  margin-bottom: 40px;
+}
+
+.block_person_avatar {
+  overflow: hidden;
+  border-radius: 50%;
+  position: relative;
+  width: 221px;
+  height: 221px;
+  background-color: #97a2cf;
+  display: inline-block;
+}
+
+.block_person_avatar img {
+  width: 192px;
+  height: 221px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.block_description {
+  /*width: 540px;*/
+  font-family: Lato;
+  font-size: 1.2em;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.25;
+  letter-spacing: normal;
+  color: var(--dark-gray);
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 20px;
+  padding: 29px 0;
+}
+
+.block_description h2 {
+  font-size: 1.2em;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.25;
+  letter-spacing: normal;
+  color: var(--dark-gray);
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom: 9px;
+}
+
+.block_description p {
+  font-family: Lato;
+  font-size: 1em;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.4;
+  letter-spacing: normal;
+  color: var(--dark-gray);
 }
 
 /*
@@ -1077,7 +1268,7 @@ ufg-eventos {
         grid-column-gap: 20px;
         grid-row-gap: 40px;
         grid-template-columns: 1fr 1fr 1fr;
-  
+
         .item-search-result {
           height: 480px;
           padding-top: 164px;
@@ -1097,7 +1288,7 @@ ufg-eventos {
             padding: 50px 16px 14px;
             box-sizing: border-box;
             height: 315px;
-  
+
             .news-details {
               position: absolute;
               left: 16px;
@@ -1105,47 +1296,47 @@ ufg-eventos {
               margin: 0;
               padding: 0;
             }
-  
+
             summary {
               padding: 0;
               width: 100%;
             }
-  
+
             header {
               top: 0;
               padding: 0;
               margin-bottom: 16px;
             }
-  
+
             .categories {
               position: absolute;
               bottom: 14px;
               display: flex;
               padding: 0;
-  
+
               .category {
                 padding: 0;
                 display: inline-block;
                 border-radius: 4px;
                 margin-right: 10px;
-    
+
                 a {
-                  font-size: 16px;
+                  font-size: 0.8em;
                 }
               }
             }
           }
-      
+
           &:hover {
             box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.3);
           }
-  
+
           a.news-image {
             position: absolute;
             top: 0;
             left: 0;
             z-index: -1;
-  
+
             img {
               float: none;
               width: 300px !important;
