@@ -516,6 +516,7 @@ summary em, summary em * {
 
     > section {
       margin-bottom: 60px;
+      max-width: 300px;
     }
   }
 
@@ -568,6 +569,14 @@ summary em, summary em * {
       text-decoration: none;
       color: inherit;
     }
+  }
+
+  .text_component.subtitle p {
+    font-size: 0.9em;
+    text-transform: none;
+    margin: 0 0 40px;
+    line-height: 1.33;
+    color: var(--dark-gray);
   }
 
   .embed-container .blank_component {

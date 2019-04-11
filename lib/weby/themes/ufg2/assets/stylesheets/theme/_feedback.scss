@@ -53,7 +53,7 @@
     margin: 0;
   }
 
-  .form-tooltip {
+  .form-tooltip, .container p {
     font-family: Lato;
     font-size: 1em;
     font-weight: 300;
@@ -62,6 +62,26 @@
     line-height: 1.4;
     letter-spacing: normal;
     color: var(--dark-gray);
+  }
+
+  .container p {
+    margin-bottom: 20px;
+  }
+
+  .container ul {
+    padding: 0;
+    list-style: none;
+
+    a {
+      font-family: Lato;
+      font-size: 1em;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.4;
+      letter-spacing: normal;
+      color: var(--dark-gray);
+    }
   }
 
   .faq, .form-tooltip {
@@ -185,4 +205,8 @@ label.check_boxes {
   &:hover {
     background-color: var(--dark-blue);
   }
+}
+
+.feedback-custom-text .container p {
+
 }
