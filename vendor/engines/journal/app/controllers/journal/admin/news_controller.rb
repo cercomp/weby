@@ -123,6 +123,11 @@ module Journal::Admin
       respond_with(:admin, @news)
     end
 
+    def update_draft
+      # TODO
+      render json: {ok: true}
+    end
+
     def toggle
       news_sites = Journal::NewsSite.find(params[:id])
       news_sites.toggle! :front

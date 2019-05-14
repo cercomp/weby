@@ -30,7 +30,7 @@ module Journal
             member do
               put :toggle, :recover, :unshare
               get :newsletter, :share
-              post :newsletter_histories
+              post :newsletter_histories, :update_draft
             end
             collection do
               get :recycle_bin, :fronts
