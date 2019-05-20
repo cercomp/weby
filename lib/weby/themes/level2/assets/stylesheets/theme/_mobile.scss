@@ -105,10 +105,11 @@
 
 @media (max-width: 625px) {
   .header .menu-bar .container {
-    display: block;
+    justify-content: left;
   }
-  .header .menu-bar .container .blank_component {
+  .header .menu-bar .container .menu-mobile {
     text-align: center;
+    flex: 1;
   }
   .menu-handle {
     display: inline-flex;
@@ -132,6 +133,20 @@
   .menu-bar .search_box_component {
     position: absolute;
   }
+
+  .header .menu-bar.mob-open .container {
+    display: block;
+  }
+
+  .header .menu-bar.fixed.mob-open .container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .header .menu-bar.fixed.mob-open .menu-mobile {
+    flex: 1;
+  }
+
   .menu-bar.mob-open.fixed .search_box_component {
     margin-left: -20px;
     width: calc(100% + 40px) !important;
@@ -141,6 +156,9 @@
     height: 60px;
     margin-left: 0;
     width: calc(100%) !important;
+    background-color: #81b546;
+  }
+  .menu-bar.mob-open.fixed .search_box_component {
     background-color: var(--white);
   }
   .menu-bar.mob-open .search_box_component [type=submit] {
@@ -152,6 +170,15 @@
   .menu-bar.mob-open .menu_component {
     display: block;
     margin-top: 70px !important;
+  }
+  .menu-bar.mob-open .menu_component menu.submenu > li {
+    color: var(--white);
+  }
+  .menu-bar.mob-open.fixed .menu_component menu.submenu > li {
+    color: inherit;
+  }
+  .header .menu-bar.mob-open.fixed menu.submenu > li:hover {
+    background-color: var(--white);
   }
   .menu-bar.mob-open .menu-handle .icon {
     background-image: url(/assets/ufg2/expand-more-white-d58336e390a1670804b67a64238a4f78b39fcde6420d4a272d10c212a9f2aa17.png);

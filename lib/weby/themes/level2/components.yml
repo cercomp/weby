@@ -199,9 +199,13 @@ bottom:
     publish: true
     alias: Container
     children:
-    - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"ufg-logo", :default_image=>"level2/marca-ufg.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
+    - settings: '{:size=>"", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"logo", :default_image=>"level2/marca-prpg.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
       name: image
       position: 1
+      publish: true
+    - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://www.ufg.br", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"ufg-logo", :default_image=>"level2/marca-ufg.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
+      name: image
+      position: 2
       publish: true
   - settings: '{:html_class=>"container"}'
     name: components_group
@@ -256,14 +260,19 @@ top:
     publish: true
     alias: Container
     children:
-    - settings: '{:size=>"", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"ufg-logo", :default_image=>"level2/marca-ufg.svg"}'
+    - settings: '{:size=>"", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"logo", :default_image=>"level2/marca-prpg.svg"}'
       name: image
       position: 1
+      publish: true
+      alias: Logo
+    - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://www.ufg.br", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"ufg-logo", :default_image=>"level2/marca-ufg.svg"}'
+      name: image
+      position: 2
       publish: true
       alias: Logo - UFG
     - settings: '{:html_class=>"social-icons"}'
       name: components_group
-      position: 2
+      position: 3
       publish: true
       alias: Ícones sociais
       children:
@@ -314,29 +323,34 @@ top:
       publish: true
       alias: Container
       children:
-      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"menu-logo", :default_image=>"level2/marca-ufg.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"menu-logo", :default_image=>"level2/marca-prpg.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
         name: image
         position: 1
         publish: true
         alias: Logo menu
-      - settings: '{:put_at_end=>"0", :body=>{"pt-BR"=>"<div class=\"menu-handle\"><span class=\"icon\"></span><span>Menu</span></div>", "en"=>""}}'
-        name: blank
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://www.ufg.br", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"menu-logo-ufg", :default_image=>"level2/marca-ufg.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
+        name: image
         position: 2
+        publish: true
+        alias: Logo UFG menu
+      - settings: '{:put_at_end=>"0", :body=>{"pt-BR"=>"<div class=\"menu-handle\"><span class=\"icon\"></span><span>Menu</span></div>", "en"=>""}, :html_class=>"menu-mobile"}'
+        name: blank
+        position: 3
         publish: true
         alias: Menu Mobile
       - settings: '{:menu_id=>"%{menu_id}", :dropdown=>"1", :style=>"menu", :html_class=>"", :title=>{"pt-BR"=>"", "en"=>""}}'
         name: menu
-        position: 3
+        position: 4
         publish: true
         menu:
           name: Principal
       - settings: '{:width=>"", :align=>"right", :show_button=>"1"}'
         name: search_box
-        position: 4
+        position: 5
         publish: true
       - settings: '{:put_at_end=>"1", :body=>{"pt-BR"=>"<script> $(''.menu-handle'').click(function(){ $(''.menu-bar'').toggleClass(''mob-open''); });</script>", "en"=>""}}'
         name: blank
-        position: 5
+        position: 6
         publish: true
 - settings: '{:label=>{"pt-BR"=>"", "en"=>""}, :home_label=>{"pt-BR"=>"Início", "en"=>"Home"}}'
   name: breadcrumb
