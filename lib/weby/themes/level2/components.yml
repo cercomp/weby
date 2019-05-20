@@ -64,7 +64,7 @@ home:
     publish: true
     alias: Container
     children:
-    - settings: '{:template=>"front", :date_format=>"two_dates", :quant=>"8", :max_char=>"", :filter_by=>"", :image_size=>"i", :avatar_width=>"", :avatar_height=>"",  :read_more=>"0", :label=>{"pt-BR"=>"Eventos", "en"=>""}, :link_to_all=>{"pt-BR"=>"Ver todos", "en"=>""}, :group_by=>"0", :html_class=>"", :source=>"own", :sel_site=>""}'
+    - settings: '{:template=>"front", :date_format=>"two_dates", :quant=>"9", :max_char=>"", :filter_by=>"", :image_size=>"i", :avatar_width=>"", :avatar_height=>"",  :read_more=>"0", :label=>{"pt-BR"=>"Eventos", "en"=>""}, :link_to_all=>{"pt-BR"=>"Ver todos", "en"=>""}, :group_by=>"0", :html_class=>"", :source=>"own", :sel_site=>""}'
       name: event_list
       position: 1
       publish: true
