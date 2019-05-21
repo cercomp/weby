@@ -11,8 +11,11 @@ pt-BR:
         show_title:           " Exibir título "
         show_info:            " Exibir informações "
         html_id:              " ID HTML "
+        source_type:          " Origem "
   news_as_home:
     views:
       form:
+        page:                 " Página "
+        feedback:             " Fale Conosco "
       show:
         page_not_found:       " Página não encontrada, por favor verifique a configuração do componente "

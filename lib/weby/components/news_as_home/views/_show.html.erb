@@ -1,7 +1,14 @@
 <section class="news_as_home_component">
-  <% unless (@page = component.page).nil? %>
-    <%= render template: 'sites/pages/show', locals: { as_component: {show_title: component.show_title , show_info: component.show_info} } %>
-  <% else %>
-    <%= content_tag :h1, t(".page_not_found") %>
+  <% if component.source == 'page' %>
+    <% if (@page = component.page).present? %>
+      <%= render template: 'sites/pages/show', locals: { as_component: {show_title: component.show_title , show_info: component.show_info} } %>
+    <% else %>
+      <%= content_tag :h1, t(".page_not_found") %>
+    <% end %>
+  <% elsif component.source == 'feedback' %>
+    <% @message = Feedback::Message.new(name: t('.feedback')) %>
+    <% @extension = current_site.extensions.find_by(name: 'feedback') %>
+    <% @groups = current_site.groups %>
+    <%= render template: 'feedback/messages/new', locals: { as_component: {show_title: component.show_title , show_info: component.show_info} } %>
   <% end %>
 </section>

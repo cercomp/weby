@@ -1,3 +1,5 @@
+<%= f.input :source_type, collection: component.source_options.map{|o| [t(".#{o}"), o] }, include_blank: false %>
+
 <%= target_dialog_input(f, :page, false, false) %>
 
 <%= f.input :show_title, wrapper: :checkbox, as: :boolean %>
