@@ -7,6 +7,7 @@ fr:
         match_search:    "Recherche exacte"
         and_search:      "Tous les mots"
         or_search:       "Un des mots"
+        placeholder:     "Recherche por palavra-chave"
       show:
         list_all:      "Liste tous"
         categories:    "Catégories"

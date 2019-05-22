@@ -7,6 +7,7 @@ es:
         match_search:  "Coincidencia exacta"
         and_search:    "Todas las palabras"
         or_search:     "Cualquiera de las palabras"
+        placeholder:   "Busque por palabra-llave"
       show:
         event:         "Evento"
         period_event:  "Periodo del Evento"

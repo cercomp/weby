@@ -26,7 +26,9 @@ body > header,
 .header .menu_component menu.submenu,
 .maps,
 .front_news_component #news article,
-.fixed-menus .menu_component > menu
+.fixed-menus .menu_component > menu,
+#content .news_list_container .news-list .search-results .item-search-result,
+.flexslider
 {
   background-color: var(--dark-gray);
   background-image: none;
@@ -52,8 +54,10 @@ body > header,
   border-color: #fff000;
 }
 
-.footer .bottom {
+.footer .bottom,
+#content .news_list_container .news-list .search-results .item-search-result {
   border-top: 0;
+  border-bottom: 0;
 }
 
 .flex-control-nav li a.flex-active,
@@ -86,7 +90,11 @@ body > header,
 .page-show .page-details, .event-show .news-details, .event-show .page-details,
 .news-show .body, .news-show summary, .page-show .body, .page-show summary,
 .event-show .body, .event-show summary,
-.news-show .categories-label, .page-show .categories-label, .event-show .categories-label
+#content .news_list_container h2,
+#content .news_list_container .news-list .search-results .item-search-result .news-details,
+#content .news_list_container .news-list .search-results .item-search-result header a,
+#content .news_list_container .news-list .search-results .item-search-result summary
+.news-show .categories-label, .page-show .categories-label, .event-show .categories-label,
 {
   color: #fff;
 }
@@ -119,7 +127,9 @@ body > header,
 .news-show .weby-label[href], .page-show .weby-label[href], .event-show .weby-label[href],
 .news-show .weby-label[href]:hover, .page-show .weby-label[href]:hover, .event-show .weby-label[href]:hover,
 .news-show .actions > a, .page-show .actions > a, .event-show .actions > a,
-.news-show .actions > a:hover, .page-show .actions > a:hover, .event-show .actions > a:hover {
+.news-show .actions > a:hover, .page-show .actions > a:hover, .event-show .actions > a:hover,
+#content .news_list_container .news-list .search-results .item-search-result .categories .category a.weby-label,
+#content .news_list_container .news-list .search-results .item-search-result .categories .category a.weby-label:hover {
   background-color: #fff000;
   color: #000;
 }
