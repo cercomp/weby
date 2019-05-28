@@ -100,7 +100,8 @@ class SitesController < ApplicationController
                 {grouping_ids: [], locale_ids: []}]
 
     Site::SHAREABLES.each do |shareable|
-      permitted << "#{shareable}_social_share_pos"
+      permitted << "#{shareable}_social_share_pos" 
+      permitted << "#{shareable}_facebook_comments"
       permitted << {"#{shareable}_social_share_networks" => []}
     end
 
