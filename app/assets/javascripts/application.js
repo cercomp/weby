@@ -47,14 +47,14 @@ function addToSelect(selectId, text){
 $(document).ready(function() {
 
   // Ajax indicator
-  $('body').append($('<div class="panel panel-default hide" id="loading-modal" style="z-index: 66060; position: fixed;"><div class="panel-body"><img src="/assets/loading-bar.gif"/></div></div>'));
+  $('body').append($('<div class="panel panel-default hide" id="loading-modal" style="z-index: 66060; position: fixed; bottom: 5px; right: 30px;"><div class="panel-body"><img src="/assets/loading-bar.gif"/></div></div>'));
   $(document).ajaxSend(function(ev, jqXHR, options){
     if(options.files){
       return;
     }
     var panel = $('#loading-modal');
-    panel.css("top", ($(window).height() / 2) - (53 / 2));
-    panel.css("left", ($(window).width() / 2) - (192 / 2));
+    //panel.css("top", ($(window).height() / 2) - (53 / 2));
+    //panel.css("left", ($(window).width() / 2) - (192 / 2));
     //Do not use the .modal() function. If there is another modal it generates anomalous behaviour
     panel.removeClass('hide');
   }).ajaxComplete(function(evt,xhr){

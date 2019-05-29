@@ -1,4 +1,4 @@
-<%= simple_form_for [:admin, @news], html: {data: {drafturl: update_draft_admin_news_path(@news.id)}} do |f| %>
+<%= simple_form_for [:admin, @news], html: {data: {drafturl: update_draft_admin_news_index_path(news_id: @news.id)}} do |f| %>
   <%= f.input :site_id, as: :hidden, input_html: {value: current_site.id} %>
   <%= f.show_errors %>
 
@@ -29,7 +29,7 @@
 
   <div class="form-actions">
     <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
-    <%= link_to t("back"), :back, class: "btn btn-default" %>
+    <%= link_to t("cancel"), cancel_admin_news_index_path, method: :post, class: "btn btn-default" %>
   </div>
 <% end %>
 <% content_for :javascripts, javascript_include_tag("journal/news.form") %>

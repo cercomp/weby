@@ -3,11 +3,11 @@
     <%= g.input :_destroy, wrapper: :checkbox, as: :boolean if g.object.try(:id) %>
     <%= g.input :title %>
     <%= g.input :summary,
-      input_html: {class: "mceSimple", style: "height: 180px;"},
+      input_html: {class: "mceSimple", style: "height: 180px;", data: {field: 'summary'}},
       as: :text %>
     <%= g.input :text,
-      input_html: {class: "mceAdvance", style: " height: 320px;"},
-      as: :text%>
+      input_html: {class: "mceAdvance", style: " height: 320px;", data: {field: 'text'}},
+      as: :text %>
   <% end %>
 <% end %>
 <%= target_dialog %>

@@ -30,11 +30,12 @@ module Journal
             member do
               put :toggle, :recover, :unshare
               get :newsletter, :share
-              post :newsletter_histories, :update_draft
+              post :newsletter_histories
             end
             collection do
               get :recycle_bin, :fronts
-              post :sort
+              post :sort, :update_draft, :cancel
+              patch :update_draft
             end
           end
           resources :newsletter_histories, only: [:index] do

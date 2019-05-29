@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190429170810) do
+ActiveRecord::Schema.define(version: 20190527131905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -174,8 +174,6 @@ ActiveRecord::Schema.define(version: 20190429170810) do
     t.text     "text"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.text     "draft_body"
-    t.text     "draft_summary"
   end
 
   add_index "journal_news_i18ns", ["journal_news_id"], name: "index_journal_news_i18ns_on_journal_news_id", using: :btree
@@ -506,6 +504,7 @@ ActiveRecord::Schema.define(version: 20190429170810) do
     t.string   "unconfirmed_email"
     t.string   "unlock_token"
     t.datetime "locked_at"
+    t.jsonb    "preferences",            default: {}
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

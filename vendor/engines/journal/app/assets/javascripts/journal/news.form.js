@@ -22,25 +22,54 @@ $(document).ready(function(){
 
   //// Auto-save - check for changes
   var currentValues = {};
+  var news_id = null;
+  var serialized = '';
 
-  setInterval(function(){
-    var sendChanges = false;
-    tinyMCE.editors.forEach(function(ed){
-      if (currentValues.hasOwnProperty(ed.id)) {
-        if (currentValues[ed.id] != ed.getContent()){
-          sendChanges = true;
-          currentValues[ed.id] = ed.getContent();
-        } else {
-          //all good, no changes
-        }
-      } else {
-        currentValues[ed.id] = ed.getContent();
+  var checkChanges = function(){
+
+    if (serialized == '') {
+      serialized = $('form').serialize();
+    } else {
+      tinyMCE.triggerSave();
+      var checkserial = $('form').serialize();
+      if (checkserial != serialized) {
+        serialized = checkserial;
+        $.post($('form').data('drafturl'), serialized, function(data){
+          console.log(data);
+        });
       }
-    });
-    if (sendChanges) {
-      $.post($('form').data('drafturl'), currentValues, function(data){
-        console.log(data);
-      });
     }
-  }, 4000);
+
+    // var sendChanges = false;
+    // tinyMCE.editors.forEach(function(ed) {
+    //   var txt = $('#'+ed.id);
+    //   var field = txt.data('field');
+    //   var panel = txt.closest('.tab-pane');
+    //   var locale = panel.data('locale');
+    //   news_id = panel.find('.i18n-id').val();
+
+    //   if (!currentValues.hasOwnProperty(locale)) {
+    //     currentValues[locale] = {};
+    //   }
+
+    //   if (currentValues[locale].hasOwnProperty(field)) {
+    //     if (currentValues[locale][field] != ed.getContent()) {
+    //       sendChanges = true;
+    //       currentValues[locale][field] = ed.getContent();
+    //     } else {
+    //       //all good, no changes
+    //     }
+    //   } else {
+    //     currentValues[locale][field] = ed.getContent();
+    //   }
+    // });
+    // if (sendChanges) {
+    //   $.post($('form').data('drafturl'), {content: currentValues, news_id: news_id}, function(data){
+    //     console.log(data);
+    //   });
+    // }
+  };
+  ////// init
+  checkChanges();
+  setInterval(checkChanges, 4000)
 });
