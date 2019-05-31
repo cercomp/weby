@@ -1,0 +1,9 @@
+en:
+  themes:
+    level2:
+      title:              " Pró-Reitorias e Secretarias "
+      placeholders:
+        first_place:        " Top "
+        home:               " Home Page "
+        top:                " Header "
+        bottom:             " Bottom "

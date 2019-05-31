@@ -1,0 +1,212 @@
+.new-message-label {
+  display: none;
+}
+
+.feedback-new-message-title, .feedback-new-message-form {
+  margin: 0 auto;
+  width: 940px;
+  max-width: 100%;
+}
+
+.feedback-new-message-title {
+  padding: 30px 0 40px 0;
+
+  h2 {
+    margin: 0;
+    font-family: Lato;
+    font-size: 2.4em;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.21;
+    letter-spacing: normal;
+    color: var(--main-color);
+  }
+
+  br {
+    display: none;
+  }
+}
+
+.feedback-custom-text {
+
+  .faq {
+    background-color: var(--light-grey);
+    padding: 17px 0 19px;
+    font-family: Lato;
+    font-size: 0.9em;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.56;
+    letter-spacing: normal;
+    color: var(--main-color);
+    margin-bottom: 40px;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .form-tooltip, .container p {
+    font-family: Lato;
+    font-size: 1em;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.4;
+    letter-spacing: normal;
+    color: var(--dark-gray);
+  }
+
+  .container p {
+    margin-bottom: 20px;
+  }
+
+  .container ul {
+    padding: 0;
+    list-style: none;
+
+    a {
+      font-family: Lato;
+      font-size: 1em;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.4;
+      letter-spacing: normal;
+      color: var(--dark-gray);
+    }
+  }
+
+  .faq, .form-tooltip {
+    > * {
+      margin: 0 auto;
+      width: 940px;
+      max-width: 100%;
+    }
+  }
+}
+
+.feedback-new-message-form {
+  padding: 20px 20px 100px;
+
+  .form-group span.checkbox{
+    display: flex;
+    margin-bottom: 8px;
+  }
+}
+
+.feedback-custom-text .faq, .feedback-custom-text .form-tooltip {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.simple_captcha {
+  margin-bottom: 20px;
+}
+
+.simple_captcha, .simple_captcha .simple_captcha_field {
+  border-radius: 4px;
+}
+
+input, select, textarea {
+  border-radius: 4px;
+  background-color: var(--light-grey);
+  border: 1px solid transparent;
+  padding: 10px 20px 8px;
+  font-family: Lato;
+  font-size: 0.9em;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.56;
+  letter-spacing: normal;
+  color: #666666;
+  outline: none;
+
+  &:focus {
+    border-color: var(--main-color);
+  }
+}
+
+input:not([type=submit]):not([type=button]):not([type=checkbox]), select {
+  width: 540px;
+  max-width: 100%;
+}
+
+textarea {
+  width: 100%;
+}
+
+label.check_boxes {
+  font-family: Lato;
+  font-size: 1.1em;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 2;
+  letter-spacing: normal;
+  color: var(--grey);
+}
+
+.form-group {
+  margin-bottom: 20px;
+
+  span.checkbox {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 20px;
+
+    input[type=checkbox] {
+      width: 25px;
+      height: 25px;
+    }
+
+    label {
+      font-family: Lato;
+      font-size: 1em;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.56;
+      letter-spacing: normal;
+      color: #666666;
+    }
+  }
+}
+
+.btn {
+  padding: 14px 50px 15px;
+  border-width: 0;
+  border-radius: 24px;
+  background-color: var(--main-color);
+  font-family: Lato;
+  font-size: 0.8em;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--white);
+
+  &.back {
+    display: none;
+  }
+
+  &:hover {
+    background-color: var(--main-color);
+  }
+}
+
+.feedback-custom-text .container p {
+
+}

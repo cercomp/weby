@@ -52,5 +52,7 @@
     <% else %>
       <%= img %>
     <% end %>
+  <% elsif component.title.present? %>
+    <h3><%= link_url.present? ? link_to(component.title, link_url) : component.title %></h3>
   <% end %>
 </section>
