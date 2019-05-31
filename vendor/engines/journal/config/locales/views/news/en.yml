@@ -7,6 +7,7 @@ en:
         match_search:  "Exact sentence"
         and_search:    "All the words"
         or_search:     "Any of the words"
+        placeholder:   "Search by keywords"
       show:
         list_all:      "List all"
         share:         "Share"

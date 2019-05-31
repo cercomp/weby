@@ -5,7 +5,7 @@
 
   <%= form_tag news_index_path, method: 'get' do %>
     <div class="input-append search-field-button">
-        <%= text_field_tag :search, params[:search] %>
+        <%= text_field_tag :search, params[:search], placeholder: t('.placeholder') %>
         <%= button_tag image_tag("components/icon_search.png"), class: 'btn', title: t("search") %>
     </div>
     <%= link_to t('.advanced'), '#', class: 'toggle-advanced-search', onclick: "return toggleAdvancedSearch()"%>

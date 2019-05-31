@@ -574,7 +574,7 @@ summary em, summary em * {
   .text_component.subtitle p {
     font-size: 0.9em;
     text-transform: none;
-    margin: 0 0 40px;
+    margin: 20px 0 0;
     line-height: 1.33;
     color: var(--dark-gray);
   }
@@ -962,7 +962,7 @@ summary em, summary em * {
 }
 
 .services {
-  padding: 120px 34px 0;
+  padding: 120px 34px;
   position: relative;
   background-color: var(--bg);
 
@@ -1130,8 +1130,9 @@ summary em, summary em * {
   .blank_component {
     position: absolute;
     left: 50%;
+    top: 144px;
     transform: translateX(-50%);
-    bottom: 61px;
+    bottom: initial;
 
     audio {
       opacity: .7;

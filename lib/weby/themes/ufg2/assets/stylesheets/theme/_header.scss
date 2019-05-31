@@ -317,6 +317,17 @@ body .header {
   }
 }
 
+.social-toggle {
+  background-color: var(--light-blue);
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  align-items: center;
+  justify-content: center;
+  margin: 0 8px 4px auto;
+  display: none;
+}
+
 .social-icons {
   display: flex;
   flex-wrap: wrap;
