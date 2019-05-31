@@ -69,6 +69,9 @@ pt-BR:
           draft:                " Rascunho "
           review:               " Aguardando revisão "
           published:            " Publicada "
+          has_draft:            " Há alterações não salvas nesta notícia, o que deseja fazer? "
+          restore_draft:        " Restaurar "
+          discard_draft:        " Descartar "
         recycle_bin:
           new_news:             " Nova Notícia "
           covers:               " Capas "

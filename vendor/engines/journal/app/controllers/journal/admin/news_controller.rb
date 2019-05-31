@@ -80,10 +80,12 @@ module Journal::Admin
     def new
       @news = Journal::News.new(site_id: current_site)
       @news.news_sites.build(site_id: current_site)
+      @draft = get_draft('')
     end
 
     def edit
       @news = current_site.news.find(params[:id])
+      @draft = get_draft(@news.id)
     end
 
     def share
@@ -133,6 +135,10 @@ module Journal::Admin
       else
         render json: {ok: false}
       end
+    end
+
+    def restore_draft
+      render json: get_draft(params[:news_id])
     end
 
     def cancel
@@ -209,8 +215,13 @@ module Journal::Admin
 
     def set_draft value, news_id
       current_user.preferences['draft'] ||= {}
-      current_user.preferences['draft'][news_id] = values
+      current_user.preferences['draft'][current_site.id] ||= {}
+      current_user.preferences['draft'][current_site.id][news_id] = value
       current_user.save
+    end
+
+    def get_draft news_id
+      current_user.preferences.dig('draft', current_site.id.to_s, news_id.to_s)
     end
 
     def sort_column

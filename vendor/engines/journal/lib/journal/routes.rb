@@ -34,7 +34,7 @@ module Journal
             end
             collection do
               get :recycle_bin, :fronts
-              post :sort, :update_draft, :cancel
+              post :sort, :update_draft, :cancel, :restore_draft
               patch :update_draft
             end
           end

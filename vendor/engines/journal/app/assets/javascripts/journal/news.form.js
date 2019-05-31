@@ -35,7 +35,9 @@ $(document).ready(function(){
       if (checkserial != serialized) {
         serialized = checkserial;
         $.post($('form').data('drafturl'), serialized, function(data){
-          console.log(data);
+          if (!data.ok) {
+            //
+          }
         });
       }
     }
@@ -72,4 +74,42 @@ $(document).ready(function(){
   ////// init
   checkChanges();
   setInterval(checkChanges, 4000)
+
+  ///
+  var applyValue = function(json, path) {
+    Object.keys(json).forEach(function(item){
+      var attr = json[item];
+      if (typeof attr === 'object') {
+        applyValue(attr, path+item+'_');
+      } else {
+        var field = $('#news_'+path+item);
+        field.val(json[item]).trigger('change');
+        if (field.is('textarea')) {
+          tinyMCE.get(field.attr('id')).setContent(json[item]);
+        }
+      }
+    });
+  };
+
+  //// Restore or Discard unsaved changes
+  $('.restore-draft').click(function(ev){
+    var $this = $(this);
+    $.post(this.href, function(data){
+      applyValue(data, '');
+      $this.closest('.alert').remove();
+    });
+
+    return false;
+  });
+
+  $('.discard-draft').click(function(ev){
+    var $this = $(this);
+    $.post(this.href, function(data){
+      if (data.ok) {
+        $this.closest('.alert').remove();
+      }
+    });
+    return false;
+  });
+
 });

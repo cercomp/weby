@@ -1,3 +1,13 @@
+<% if @draft %>
+  <div class="alert alert-danger" role="alert">
+    <%= t('.has_draft') %>
+    <div class="pull-right">
+      <%= link_to t('.restore_draft'), restore_draft_admin_news_index_path(news_id: @news.id), class: 'btn btn-info restore-draft' %>
+      <%= link_to t('.discard_draft'), update_draft_admin_news_index_path(news_id: @news.id), class: 'btn btn-warning discard-draft' %>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+<% end %>
 <%= simple_form_for [:admin, @news], html: {data: {drafturl: update_draft_admin_news_index_path(news_id: @news.id)}} do |f| %>
   <%= f.input :site_id, as: :hidden, input_html: {value: current_site.id} %>
   <%= f.show_errors %>
