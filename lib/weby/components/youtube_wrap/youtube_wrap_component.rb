@@ -22,8 +22,29 @@ class YoutubeWrapComponent < Component
   end
 
   def shortcode
-    url.match(/v=(.*)/)[1]
+    uri = URI.parse(url)
+    params = {}
+
+    if uri.query.present?
+      params = uri.query.split('&').map{|p| p.split('=') }.to_h
+    end
+
+    if params['v'].present?
+      return params['v']
+    end
+
+    if uri.host == 'youtu.be'
+      return uri.path[1..-1]
+    end
+
+    if uri.path.match(/\/embed\//)
+      return uri.path.gsub('/embed/', '')
+    end
   end
+
+  #https://youtu.be/gaDHG7RySfg
+  #https://www.youtube.com/watch?v=xRzeOzsZCX0&list=PL8BTpGAaXEViUgAX3ZqqZMuE1zN8YcOR9&index=5&t=0s
+  #https://www.youtube.com/embed/N9a2FRZqEuU
 
   def embed_url
     params = {}
