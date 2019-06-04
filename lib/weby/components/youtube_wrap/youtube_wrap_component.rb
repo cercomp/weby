@@ -18,7 +18,13 @@ class YoutubeWrapComponent < Component
   end
 
   def parse_start
-    start.to_s
+    case start.to_s
+    when /^\d+$/
+      start.to_s
+    when /^\d+:\d+$/
+      parts = start.to_s.split(':')
+      (parts[0].to_i * 60) + parts[1].to_i
+    end
   end
 
   def shortcode
