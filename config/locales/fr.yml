@@ -79,6 +79,7 @@ fr:
   missing_account:                      " Desculpe-nos, mas não conseguimos localizar sua conta. Este link pode ser inválido ou estar expirado. Tente reiniciar o processo de recuperação de senha. "
   message:                              " Avertissement "
 #---N---#
+  'no':                                 " Non "
   no_event_period:                      " Periodo do evento não especificado "
   no_permission_to_activate_deactivate: " Sem permissão para ativar ou desativar "
   no_mail:                              " Nenhum usuário com esse e-mail foi econtrado. "
@@ -159,6 +160,7 @@ fr:
        total:      " Total "
        truncate:   " ... "
 #---Y---#
+  'yes':                                " Oui "
 #---W---#
 
   number:

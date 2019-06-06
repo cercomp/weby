@@ -35,8 +35,8 @@ $(document).ready(function(){
       if (checkserial != serialized) {
         serialized = checkserial;
         $.post($('form').data('drafturl'), serialized, function(data){
-          if (!data.ok) {
-            //
+          if (data.ok) {
+            FlashMsg.info(data.message);
           }
         });
       }

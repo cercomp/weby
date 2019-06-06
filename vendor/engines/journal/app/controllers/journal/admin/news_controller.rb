@@ -131,7 +131,7 @@ module Journal::Admin
 
     def update_draft
       if set_draft(params[:news], params[:news_id])
-        render json: {ok: true}
+        render json: {ok: true, message: t('.draft_saved')}
       else
         render json: {ok: false}
       end

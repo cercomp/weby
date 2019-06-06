@@ -17,24 +17,45 @@ var WEBY = {};
 
 // Mostrar mensagem para erros, no retorno do ajax
 FlashMsg = {
-   notify: function(status){
-      //TODO some ajax requisitions return 500, even if they are ok
-      //if([403,500].indexOf(status)>-1){
-      if(status == 403){
-         //flash = $(document.createElement('div'));
-         //$('#content').prepend(flash);
-         //flash.addClass('alert alert-error notify');
-         //flash.text(status==403 ?'Acesso Negado':status==500 ?'Erro no servidor':'');
-         //flash.append('<a class="close" data-dismiss="alert" href="#">×</a>');
-         //flash.append(status==403 ?'Acesso Negado':'');
-         $('<div class="modal">'+
-             '<div class="modal-header"><h3>Acesso Negado</h3></div>'+
-             '<div class="modal-body">'+
-             '<div class="alert alert-error">Você não possui permissão para esta ação</div></div>'+
-             '<div class="modal-footer"><a class="btn btn-primary" data-dismiss="modal">OK</a></div>'+
-             '</div>').modal('show');
-      }
-   }
+  notify: function(status) {
+    //TODO some ajax requisitions return 500, even if they are ok
+    //if([403,500].indexOf(status)>-1){
+    if(status == 403){
+      //flash = $(document.createElement('div'));
+      //$('#content').prepend(flash);
+      //flash.addClass('alert alert-error notify');
+      //flash.text(status==403 ?'Acesso Negado':status==500 ?'Erro no servidor':'');
+      //flash.append('<a class="close" data-dismiss="alert" href="#">×</a>');
+      //flash.append(status==403 ?'Acesso Negado':'');
+      $('<div class="modal">'+
+        '<div class="modal-header"><h3>Acesso Negado</h3></div>'+
+        '<div class="modal-body">'+
+        '<div class="alert alert-error">Você não possui permissão para esta ação</div></div>'+
+        '<div class="modal-footer"><a class="btn btn-primary" data-dismiss="modal">OK</a></div>'+
+        '</div>').modal('show');
+    }
+  },
+  info: function(text) {
+    var id = '_' + Math.random().toString(36).substr(2, 9);
+    $('body').append('<div class="notify-info" id="'+id+'">'+text+'</div>');
+    $('#'+id).css({
+      zIndex: toasterPos.zindex,
+      right: toasterPos.right,
+      bottom: toasterPos.bottom
+    }).addClass('visible');
+    setTimeout(function(){
+      $('#'+id).removeClass('visible');
+      setTimeout(function(){
+        $('#'+id).remove();
+      }, 2000)
+    }, 4000);
+  }
+}
+
+var toasterPos = {
+  bottom: 20,
+  right: 25,
+  zindex: 66060
 }
 
 function addToSelect(selectId, text){
@@ -47,7 +68,7 @@ function addToSelect(selectId, text){
 $(document).ready(function() {
 
   // Ajax indicator
-  $('body').append($('<div class="panel panel-default hide" id="loading-modal" style="z-index: 66060; position: fixed; bottom: 5px; right: 30px;"><div class="panel-body"><img src="/assets/loading-bar.gif"/></div></div>'));
+  $('body').append($('<div class="panel panel-default hide" id="loading-modal" style="z-index: '+toasterPos.zindex+'; position: fixed; bottom: '+toasterPos.bottom+'px; right: '+toasterPos.right+'px;"><div class="panel-body"><img src="/assets/loading-bar.gif"/></div></div>'));
   $(document).ajaxSend(function(ev, jqXHR, options){
     if(options.files){
       return;

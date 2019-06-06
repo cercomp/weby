@@ -439,3 +439,20 @@ hr {
     font-size: 18px;
   }
 }
+
+.notify-info {
+  position: fixed;
+  background-color: rgba(255, 255, 255, .9);
+  padding: 10px;
+  border-radius: 5px;
+  transition: .2s;
+  transform: translateY(5px);
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 0 4px 2px rgba(0,0,0,.2);
+
+  &.visible {
+    opacity: 1;
+    transform: none;
+  }
+}

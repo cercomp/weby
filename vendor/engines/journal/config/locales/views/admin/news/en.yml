@@ -68,9 +68,11 @@ en:
           draft:                " Draft "
           review:               " Waiting review "
           published:            " Published "
-          has_draft:            " There are unsaved changes for this news, what do you wish to do? "
+          has_draft:            " There are unsaved changes on this post, do you want to restore them? "
           restore_draft:        " Restore "
           discard_draft:        " Discard "
+        update_draft:
+          draft_saved:          " Draft saved "
         event_form:
           is_event:             " Is event?  "
           period_event:         " Event date "
