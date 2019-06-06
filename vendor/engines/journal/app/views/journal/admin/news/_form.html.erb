@@ -2,8 +2,8 @@
   <div class="alert alert-danger" role="alert">
     <%= t('.has_draft') %>
     <div class="pull-right">
-      <%= link_to t('.restore_draft'), restore_draft_admin_news_index_path(news_id: @news.id), class: 'btn btn-info restore-draft' %>
-      <%= link_to t('.discard_draft'), update_draft_admin_news_index_path(news_id: @news.id), class: 'btn btn-warning discard-draft' %>
+      <%= link_to t('yes'), restore_draft_admin_news_index_path(news_id: @news.id), class: 'btn btn-primary restore-draft' %>
+      <%= link_to t('no'), update_draft_admin_news_index_path(news_id: @news.id), class: 'btn btn-default discard-draft' %>
     </div>
     <div class="clearfix"></div>
   </div>

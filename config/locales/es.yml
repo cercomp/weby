@@ -76,6 +76,7 @@ es:
   missing_account:                      " Lo sentimos, pero no podemos localizar su cuenta. Este enlace puede ser válido o caducado. Intente reiniciar el proceso de recuperación de contraseña. "
   message:                              " Advertencia "
 #---N---#
+  'no':                                 " No "
   no_event_period:                      " El período del evento no se ha especificado "
   no_permission_to_activate_deactivate: " Sem permissão para ativar ou desativar "
   no_mail:                              " Nenhum usuário com esse e-mail foi econtrado. "
@@ -156,6 +157,7 @@ es:
        total:      " Total "
        truncate:   " ... "
 #---Y---#
+  'yes':                                 " Sí "
 #---W---#
 
   number:
