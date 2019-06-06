@@ -18,9 +18,16 @@ top:
       position: 1
       publish: true
       alias: Logo - UFG
+    - settings: '{:size=>"", :width=>"", :height=>"", :url=>"",
+        :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"social-toggle",
+        :default_image=>"ufg2/ic-social.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
+      name: image
+      position: 2
+      publish: true
+      alias: Mostrar Redes
     - settings: '{:html_class=>"social-icons"}'
       name: components_group
-      position: 2
+      position: 3
       publish: true
       alias: Ícones sociais
       children:

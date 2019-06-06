@@ -11,8 +11,11 @@ en:
         show_title:           " Show title "
         show_info:            " Show informations "
         html_id:              " HTML ID "
+        source_type:          " Source "
   news_as_home:
     views:
       form:
+        page:                 " Page "
+        feedback:             " Feedback form "
       show:
         page_not_found:       " Page not found, please check the component configuration "

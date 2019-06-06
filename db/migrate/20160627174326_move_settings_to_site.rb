@@ -12,6 +12,10 @@ class MoveSettingsToSite < ActiveRecord::Migration
         ext.site.settings['news.social_share_networks'] = settings['social_share_networks_']
         ext.settings.destroy :social_share_networks_
       end
+      if settings['facebook_comments_'].present?
+        ext.site.settings['news.facebook_comments'] = settings['facebook_comments']
+        ext.settings.destroy :social_share_networks_
+      end
     end
   end
 
@@ -28,6 +32,11 @@ class MoveSettingsToSite < ActiveRecord::Migration
       if settings['news.social_share_networks'].present?
         ext.settings.social_share_networks_ = settings['news.social_share_networks']
         site.settings.destroy 'news.social_share_networks'
+      end
+
+      if settings['news.facebook_comments'].present?
+        ext.site.settings['news.facebook_comments'] = settings['news.facebook_comments']
+        ext.settings.destroy :social_share_networks_
       end
     end
   end

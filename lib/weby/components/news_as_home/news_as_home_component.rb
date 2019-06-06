@@ -1,7 +1,7 @@
 class NewsAsHomeComponent < Component
-  component_settings :page_id, :show_title, :show_info, :html_id
+  component_settings :page_id, :show_title, :show_info, :html_id, :source_type
 
-  validates :page_id, presence: true
+  validates :page_id, presence: true, if: ->{ source == 'page' }
 
   def page
     Page.find(page_id) rescue nil
@@ -15,6 +15,14 @@ class NewsAsHomeComponent < Component
   alias_method :_show_info, :show_info
   def show_info
     _show_info.blank? ? false : _show_info.to_i == 1
+  end
+
+  def source_options
+    ['page', 'feedback']
+  end
+
+  def source
+    source_type.present? ? source_type : source_options.first
   end
 
   def default_alias

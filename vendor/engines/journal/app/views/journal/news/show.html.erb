@@ -1,6 +1,7 @@
 <% add_meta_tags @news %>
 <% content_for :social_code, render_social_share(:news) %>
 
+
 <article class="news-show">
   <%= weby_file_view(@news.image, :l, '128', nil) %>
   <%= yield :social_code if current_site.news_social_share_pos == 'top' %>
@@ -83,5 +84,17 @@
       <%= link_to weby_icon('chevron-left', t("back")), :back %>
     <% end %>
   </div>
+
+  <% if current_site.news_facebook_comments == '1' %>
+    <%= include_facebook_script %>
+    <div class="fb-comments" data-href="" data-numposts="20"></div>
+    <script>
+      var changeUrl = document.getElementsByClassName("fb-comments")[0];
+      if(changeUrl != undefined){
+        changeUrl.setAttribute("data-href", window.location.href);
+      }
+    </script>
+  <% end %>
 </article>
+
 <%= render 'site_share' %>
