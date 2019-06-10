@@ -30,6 +30,10 @@ class Weby::Theme
     end
   end
 
+  def variables
+    @layout['variables'].to_h
+  end
+
   private
 
   def create_component place, component

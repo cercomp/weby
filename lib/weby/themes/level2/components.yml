@@ -68,11 +68,11 @@ home:
       name: event_list
       position: 1
       publish: true
-- settings: '{:html_class=>"media-section"}'
+- settings: '{:html_class=>"boxes-section"}'
   name: components_group
   position: 8
   publish: true
-  alias: Mídias
+  alias: Destaques
   children:
   - settings: '{:html_class=>"container"}'
     name: components_group
@@ -80,69 +80,39 @@ home:
     publish: true
     alias: Container
     children:
-    - settings: '{:html_class=>"embed-container"}'
+    - settings: '{:html_class=>"box-container"}'
       name: components_group
       position: 1
       publish: true
-      alias: Container Embed
+      alias: Container Box1
       children:
-      - settings: '{:html_class=>"", :body=>{"pt-BR"=>"<p><a href=\"http://www.tvufg.org.br\">TV UFG</a></p>", "en"=>""}}'
-        name: text
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://google.com/", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"", :default_image=>"level2/box-1.jpg", :title=>{"pt-BR"=>"Box 1", "en"=>""}}'
+        name: image
         position: 1
         publish: true
-        alias: Título TV UFG
-      - settings: '{:put_at_end=>"0", :body=>{"pt-BR"=>"<iframe width=\"300\" height=\"180\" src=\"https://www.youtube.com/embed/7zKnqdTtjc0\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>", "en"=>""}, :html_class=>""}'
-        name: blank
-        position: 2
-        publish: true
-        alias: TV UFG
-      - settings: '{:html_class=>"subtitle", :body=>{"pt-BR"=>"", "en"=>""}}'
-        name: text
-        position: 3
-        publish: true
-        alias: Subtítulo TV UFG
-    - settings: '{:html_class=>"media-container"}'
+        alias: CAPES
+    - settings: '{:html_class=>"box-container"}'
       name: components_group
       position: 2
       publish: true
-      alias: Container Mídia
+      alias: Container Box2
       children:
-      - settings: '{:html_class=>"", :body=>{"pt-BR"=>"<p><a href=\"#\">Mídia</a></p>", "en"=>""}}'
-        name: text
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://google.com/", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"", :default_image=>"level2/box-2.jpg", :title=>{"pt-BR"=>"Box 2", "en"=>""}}'
+        name: image
         position: 1
         publish: true
-        alias: " Título Mídia"
-      - settings: '{:put_at_end=>"0", :body=>{"pt-BR"=>"<iframe width=\"300\" height=\"180\" src=\"https://www.youtube.com/embed/rn2yeINZY0U\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>", "en"=>""}, :html_class=>""}'
-        name: blank
-        position: 2
-        publish: true
-        alias: Mídia embed
-      - settings: '{:html_class=>"subtitle", :body=>{"pt-BR"=>"", "en"=>""}}'
-        name: text
-        position: 3
-        publish: true
-        alias: Subtítulo Mídia
-    - settings: '{:html_class=>"embed-container"}'
+        alias: CAPES
+    - settings: '{:html_class=>"box-container"}'
       name: components_group
       position: 3
       publish: true
-      alias: Container Embed
+      alias: Container Box3
       children:
-      - settings: '{:html_class=>"", :body=>{"pt-BR"=>"<p><a href=\"https://www.youtube.com/channel/UCVEN3bSdTJsYvDM0JfqerYA\">YOUTUBE UFG</a></p>", "en"=>""}}'
-        name: text
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://google.com/", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"", :default_image=>"level2/box-3.jpg", :title=>{"pt-BR"=>"Box 3", "en"=>""}}'
+        name: image
         position: 1
         publish: true
-        alias: " Título Youtube UFG"
-      - settings: '{:put_at_end=>"0", :body=>{"pt-BR"=>"<iframe width=\"300\" height=\"180\" src=\"https://www.youtube.com/embed/rn2yeINZY0U\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>", "en"=>""}, :html_class=>""}'
-        name: blank
-        position: 2
-        publish: true
-        alias: YouTube UFG
-      - settings: '{:html_class=>"subtitle", :body=>{"pt-BR"=>"", "en"=>""}}'
-        name: text
-        position: 3
-        publish: true
-        alias: Subtítulo Youtube UFG
+        alias: CAPES
 - settings: '{:html_class=>"main-links"}'
   name: components_group
   position: 9
@@ -270,9 +240,16 @@ top:
       position: 2
       publish: true
       alias: Logo - UFG
+    - settings: '{:size=>"", :width=>"", :height=>"", :url=>"",
+        :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"social-toggle",
+        :default_image=>"level2/ic-social.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
+      name: image
+      position: 3
+      publish: true
+      alias: Mostrar Redes
     - settings: '{:html_class=>"social-icons"}'
       name: components_group
-      position: 3
+      position: 4
       publish: true
       alias: Ícones sociais
       children:
@@ -323,12 +300,12 @@ top:
       publish: true
       alias: Container
       children:
-      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"menu-logo", :default_image=>"level2/marca-prpg.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"menu-logo", :default_image=>"level2/marca-prpg-white.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
         name: image
         position: 1
         publish: true
         alias: Logo menu
-      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://www.ufg.br", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"menu-logo-ufg", :default_image=>"level2/marca-ufg.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://www.ufg.br", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"menu-logo-ufg", :default_image=>"level2/marca-ufg-white.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
         name: image
         position: 2
         publish: true

@@ -61,6 +61,18 @@ class Skin < ActiveRecord::Base
     end.to_h.to_yaml
   end
 
+  def get_variable name
+    self.variables = '{}' if self.variables.blank?
+    eval(variables)[name]
+  end
+
+  def set_variable name, value
+    variables = '{}' if variables.blank?
+    vars = eval(variables)
+    vars[name] = value
+    self.variables = vars.to_s
+  end
+
   private
 
   def parse_component_hash json

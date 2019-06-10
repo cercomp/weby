@@ -8,6 +8,14 @@
     display: flex;
     flex-wrap: wrap;
     padding: 0 20px;
+
+    &:first-child {
+      align-items: center;
+    }
+  }
+
+  .logo {
+    margin-right: 20px;
   }
 
   .ufg-logo {

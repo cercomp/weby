@@ -74,25 +74,10 @@ body .header {
       z-index: 3;
       transform: none;
       padding: 0 20px;
-      background-color: var(--white);
 
       .menu_component {
         max-width: 940px;
         margin: 0 auto;
-        color: #666;
-
-        > menu {
-
-          > li {
-
-            &.sub {
-
-              > a:after {
-                background-image: asset-url('level2/expand-more.png');
-              }
-            }
-          }
-        }
       }
 
       .menu-logo {
@@ -107,20 +92,8 @@ body .header {
         width: 83px;*/
       }
 
-      .menu-handle {
-        color: #666;
-
-        .icon {
-          background-image: asset-url('level2/ic-menu-gray.svg');
-        }
-      }
-
       .search_box_component {
         margin-right: 0;
-
-        [type=submit] {
-          background-image: asset-url('level2/search-gray.svg');
-        }
       }
     }
   }
@@ -356,6 +329,17 @@ body .header {
     margin-right: 11px;
     background-repeat: no-repeat;
   }
+}
+
+.social-toggle {
+  background-color: var(--main-color);
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  align-items: center;
+  justify-content: center;
+  margin: 0 8px 4px auto;
+  display: none;
 }
 
 .social-icons {

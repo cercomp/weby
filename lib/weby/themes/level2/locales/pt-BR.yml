@@ -7,3 +7,5 @@ pt-BR:
         home:               " Página Inicial "
         top:                " Cabeçalho "
         bottom:             " Inferior "
+      variables:
+        main_color:         " Cor principal "
