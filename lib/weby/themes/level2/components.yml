@@ -90,7 +90,7 @@ home:
         name: image
         position: 1
         publish: true
-        alias: CAPES
+        alias: Imagem Box 1
     - settings: '{:html_class=>"box-container"}'
       name: components_group
       position: 2
@@ -101,7 +101,7 @@ home:
         name: image
         position: 1
         publish: true
-        alias: CAPES
+        alias: Imagem Box 2
     - settings: '{:html_class=>"box-container"}'
       name: components_group
       position: 3
@@ -112,7 +112,7 @@ home:
         name: image
         position: 1
         publish: true
-        alias: CAPES
+        alias: Imagem Box 3
 - settings: '{:html_class=>"main-links"}'
   name: components_group
   position: 9
