@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
   after_action :weby_clear, :count_view
 
   helper :all
+  helper Feedback::MessagesHelper
   helper_method :current_user_session, :sort_direction, :test_permission,
                 :current_locale, :current_site, :current_settings, :current_roles_assigned, :component_is_available
 

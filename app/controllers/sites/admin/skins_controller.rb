@@ -1,7 +1,7 @@
 class Sites::Admin::SkinsController < ApplicationController
   before_action :require_user
   before_action :check_authorization
-  before_action :load_skin, only: [:show, :destroy, :apply, :preview]
+  before_action :load_skin, only: [:show, :destroy, :apply, :preview, :edit, :update]
 
   def index
     skins = current_site.skins.order(:name)
@@ -64,6 +64,22 @@ class Sites::Admin::SkinsController < ApplicationController
     theme.populate skin, user: current_user
     flash[:success] = alert
     redirect_to site_admin_skin_path(skin)
+  end
+
+  def edit
+    @theme = @skin.base_theme
+  end
+
+  def update
+    theme = @skin.base_theme
+    theme.variables.each do |name, config|
+      @skin.set_variable(name, params[name])
+    end
+
+    @skin.save!
+
+    flash[:success] = t('.successfully_updated_theme')
+    redirect_to site_admin_skin_path(@skin)
   end
 
   def apply

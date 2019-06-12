@@ -456,3 +456,43 @@ hr {
     transform: none;
   }
 }
+
+.color-pick-container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 400px;
+  padding: 0 20px;
+}
+
+.color-pick-option {
+  padding: 10px;
+  position: relative;
+
+  input {
+    position: absolute;
+    opacity: 0;
+
+    &:checked + label {
+      border: 1px solid white;
+      box-shadow: 0 0 8px 5px rgba(0,0,0,.3);
+
+      &:before {
+        content: '✓';
+        color: #fff;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 35px;
+      }
+    }
+  }
+
+  label {
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    margin: 0;
+    cursor: pointer;
+  }
+}

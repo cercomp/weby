@@ -1,125 +1,179 @@
 html, body,
 .accessibility-bar,
 .menu_accessibility_component.bar,
-body > header,
-.front_news_component,
+.banner_list_component,
+.front_news_component:nth-of-type(even),
 #content,
 .fixed-menus,
 .services,
-.subsite_front_news_component .list article,
-.highlight-events #events,
-.breadcrumb_component {
-  background-color: #000;
+.subsite_front_news_component .list article {
+  background-color: var(--gray-0);
   color: #fff;
 }
 
-.accessibility-bar {
-  border-bottom-color: #666;
-}
-
 .subsite_front_news_component,
+.front_news_component,
 .event-lists,
+.social-cards,
 .main-links,
 .about-home,
 .footer .bottom,
-.header .menu-bar,
-.header .menu_component menu.submenu,
 .maps,
-.front_news_component #news article,
-.fixed-menus .menu_component > menu
+.front_news_component:nth-of-type(even) #news article,
+.fixed-menus .menu_component > menu,
+.services .services-icons .image_component,
+#content .news_list_container .news-list .search-results .item-search-result,
+.breadcrumb_component,
+.flexslider,
+.feedback-custom-text .faq
 {
-  background-color: var(--dark-gray);
+  background-color: var(--gray-5);
   background-image: none;
   color: #fff;
 }
 
-.menu_accessibility_component.bar .direct-access span a,
-.menu_i18n_component .i18n_dropdown > li a:first-child,
+.header .menu_component menu.submenu > li:hover,
+.fixed-menus .menu_component > menu li:hover,
+body > header,
+.highlight-events #events,
+.main-links .image_component,
+.services .services-icons .image_component:hover,
+.footer,
+.front_news_component #news article {
+  background-color: var(--gray-12);
+}
+
+.menu_accessibility_component.bar .direct-access span b,
+.menu_accessibility_component.bar .access-actions a,
+.menu_accessibility_component.bar .accessibility_color a {
+  background-color: var(--gray-15);
+  color: var(--white);
+  opacity: .6;
+}
+
+.side-dock .anchor-news.active, .side-dock .anchor-news.active:hover,
+.side-dock .anchor-newspaper.active, .side-dock .anchor-newspaper.active:hover,
+.side-dock .anchor-events.active, .side-dock .anchor-events.active:hover,
+.side-dock .anchor-serufg.active, .side-dock .anchor-serufg.active:hover,
+.side-dock .anchor-network.active, .side-dock .anchor-network.active:hover,
+.side-dock .anchor-services.active, .side-dock .anchor-services.active:hover {
+  background-color: var(--gray-15);
+  color: var(--white);
+  opacity: .87;
+}
+
+.social-icon,
+.social-icon:hover,
+.header .menu-bar,
+.header .menu_component menu.submenu,
+.flex-control-nav li a.flex-active, {
+  background-color: var(--gray-15);
+}
+
 .header .menu_component,
 .header .menu_component menu.submenu,
-.event_list_component #events article h2 a,
 .highlight-events #events header h2 a,
-.fixed-menus .menu_component > menu li a,
-.services .services-icons .image_component h3,
 .map-tab,
 .map-tab.selected,
 .footer .dropdown>li>a,
 .breadcrumb_component li a {
-  color: #fff000;
+  color: var(--light-blue);
 }
 
 .map-tab.selected {
-  border-color: #fff000;
-}
-
-.footer .bottom {
-  border-top: 0;
-}
-
-.flex-control-nav li a.flex-active,
-{
-  background-color: #fff;
+  border-color: var(--light-blue);
 }
 
 .front_news_title a,
 .front_news_title span,
+.event_list_title a,
 .front_news_component #news article h2 a,
 .subsite_front_news_component .list article h2 a,
 .front_news_component #news article summary p,
 .subsite_front_news_component .list article summary p,
+.boxes-section .image_component h3,
+.boxes-section .text_component.subtitle p,
+.event_list_component #events article h2 a,
+.fixed-menus h3,
+.fixed-menus .menu_component > menu li a,
+.main-links .text_component p,
+.main-links .image_component h3,
+.services .text_component p:first-child,
+.services .services-icons .image_component img,
+.services .services-icons .image_component h3,
+.about-home h2,
+.about-home .about-row p,
+.simple-title,
+.news-show header h2, .page-show header h2, .event-show header h2,
+.news-show .body, .news-show summary, .page-show .body, .page-show summary,
+.event-show .body, .event-show summary,
+.news-show .categories-label, .page-show .categories-label, .event-show .categories-label,
+#content .news_list_container h2,
+#content .news_list_container .news-list .search-results .item-search-result .news-details,
+#content .news_list_container .news-list .search-results .item-search-result header a,
+#content .news_list_container .news-list .search-results .item-search-result summary,
+.news-show .categories-label, .page-show .categories-label, .event-show .categories-label,
+.feedback-new-message-title h2,
+.feedback-custom-text .form-tooltip, .feedback-custom-text .container p
+{
+  color: var(--white);
+  opacity: .87;
+}
+
 .front_news_component #news article .news-details .date,
 .subsite_front_news_component .list article .news-details .date,
 .front_news_component #news article .front_news_label,
 .subsite_front_news_component .list article .front_news_label,
-.media-section .text_component p,
-.media-section .text_component.subtitle p,
-.fixed-menus h3,
-.services .text_component p:first-child,
-.about-home h2,
-.about-home .about-row p,
-.simple-title,
 .highlight-events #events .event-dates,
-.footer .address,
-.footer .bottom .text_component,
-.news-show header h2, .page-show header h2, .event-show header h2,
 .news-show .news-details, .news-show .page-details, .page-show .news-details,
 .page-show .page-details, .event-show .news-details, .event-show .page-details,
-.news-show .body, .news-show summary, .page-show .body, .page-show summary,
-.event-show .body, .event-show summary,
-.news-show .categories-label, .page-show .categories-label, .event-show .categories-label
-{
-  color: #fff;
+.page-show .event, .event-show .event,
+.event-show .event h3,
+.maps .address,
+.footer .address {
+  color: var(--white);
+  opacity: .6;
 }
 
-.menu_accessibility_component.bar .direct-access span b,
-.menu_accessibility_component.bar .direct-access span:hover b,
-.menu_accessibility_component.bar .access-actions a,
-.menu_accessibility_component.bar .accessibility_color a,
-.menu_accessibility_component.bar .access-actions a:hover,
-.menu_accessibility_component.bar .accessibility_color a:hover,
-.social-icon,
-.social-icon:hover,
 .link_to_all a,
 .link_to_all a:hover,
 .subsite_front_news_component .link_to_all a,
 .event_list_component .link_to_all a,
-.fixed-menus .menu_component > menu li a:hover,
-.main-links .image_component,
-.flex-control-nav li a,
+.btn,
 .services .btn,
 .services .btn:hover,
-.services .services-icons .image_component,
-.services .services-icons .image_component:hover,
-.side-dock .anchor-news, .side-dock .anchor-news.active, .side-dock .anchor-news:hover,
-.side-dock .anchor-newspaper, .side-dock .anchor-newspaper.active, .side-dock .anchor-newspaper:hover,
-.side-dock .anchor-events, .side-dock .anchor-events.active, .side-dock .anchor-events:hover,
-.side-dock .anchor-serufg, .side-dock .anchor-serufg.active, .side-dock .anchor-serufg:hover,
-.side-dock .anchor-network, .side-dock .anchor-network.active, .side-dock .anchor-network:hover,
-.side-dock .anchor-services, .side-dock .anchor-services.active, .side-dock .anchor-services:hover,
+.side-dock .anchor-news, .side-dock .anchor-news:hover,
+.side-dock .anchor-newspaper, .side-dock .anchor-newspaper:hover,
+.side-dock .anchor-events, .side-dock .anchor-events:hover,
+.side-dock .anchor-serufg, .side-dock .anchor-serufg:hover,
+.side-dock .anchor-network, .side-dock .anchor-network:hover,
+.side-dock .anchor-services, .side-dock .anchor-services:hover,
 .news-show .weby-label[href], .page-show .weby-label[href], .event-show .weby-label[href],
 .news-show .weby-label[href]:hover, .page-show .weby-label[href]:hover, .event-show .weby-label[href]:hover,
 .news-show .actions > a, .page-show .actions > a, .event-show .actions > a,
-.news-show .actions > a:hover, .page-show .actions > a:hover, .event-show .actions > a:hover {
-  background-color: #fff000;
-  color: #000;
+.news-show .actions > a:hover, .page-show .actions > a:hover, .event-show .actions > a:hover,
+#content .news_list_container .news-list .search-results .item-search-result .categories .category a.weby-label,
+#content .news_list_container .news-list .search-results .item-search-result .categories .category a.weby-label:hover {
+  background-color: var(--light-blue);
+  color: var(--gray-0);
+}
+
+.highlight-events #events li,
+.footer .bottom .text_component {
+  opacity: .38;
+}
+
+.accessibility-bar,
+.footer .bottom,
+#content .news_list_container .news-list .search-results .item-search-result {
+  border-top: 0;
+  border-bottom: 0;
+}
+
+.flex-control-nav li a {
+  background-color: var(--gray-5);
+}
+
+ufg-eventos {
+  --event-bg: var(--gray-0);
 }

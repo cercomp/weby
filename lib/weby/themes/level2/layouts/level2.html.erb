@@ -22,6 +22,14 @@
     <%= render 'sites/shared/loadStyles' %>
     <link class="contrast-css" rel="stylesheet" media="screen" href="" data-src="<%= asset_url('level2_contrast') %>">
     <%= current_site.try(:head_html).try(:html_safe) %>
+    <% skin = current_site.active_skin %>
+    <% if (color = skin.get_variable('main_color')).present? %>
+      <style type="text/css">
+        :root {
+          --main-color: <%= color %>;
+        }
+      </style>
+    <% end %>
   </head>
   <body>
     <%= render_webybar %>

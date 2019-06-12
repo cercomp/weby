@@ -13,7 +13,8 @@ pt-BR:
 
     themes: " Tema "
     new_theme: " Novo Tema "
-    choose_theme: " Selecionar tema "
+    edit_theme: " Configurar Tema "
+    choose_theme: " Selecionar Tema "
 
     #component
     components:  " Componentes "

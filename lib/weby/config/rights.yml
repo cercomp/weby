@@ -271,7 +271,7 @@ rights:
       name:
         en: Apply theme
         pt-BR: Aplicar tema
-      action: new create apply
+      action: new create apply edit update
     preview:
       name:
         en: Preview a theme

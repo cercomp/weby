@@ -16,6 +16,9 @@
             new_site_admin_skin_path,
             class: "btn btn-success" %>
       <% end %>
+      <% if current_user.is_admin? || current_user.is_local_admin?(current_site) %>
+          <%= link_to t('.head'), settings_site_admin_layouts_path, class: "btn btn-default" %>
+        <% end %>
     </div>
   </div>
 </div>
@@ -58,6 +61,9 @@
       <% with_permission(action: :destroy) do %>
         <%= link_to t('.default'), site_admin_skin_path(@skin), method: :delete, class: 'btn btn-default', data: {confirm: t('.confirm_default')} %>
       <% end %>
+      <% with_permission(action: :create) do %>
+          <%= link_to t('.settings'), edit_site_admin_skin_path(@skin), class: 'btn btn-default' %>
+        <% end %>
     </div>
   </div>
 </div>
@@ -80,10 +86,6 @@
           <%= link_to t(".new_component"),
             new_site_admin_skin_component_path(@skin),
             class: "btn btn-success" %>
-        <% end %>
-
-        <% if current_user.is_admin? || current_user.is_local_admin?(current_site) %>
-          <%= link_to t('.settings'), settings_site_admin_layouts_path, class: "btn btn-default" %>
         <% end %>
       </p>
       <div class="clearfix form-group"></div>

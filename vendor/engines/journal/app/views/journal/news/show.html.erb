@@ -86,9 +86,7 @@
   </div>
 
   <% if current_site.news_facebook_comments == '1' %>
-    <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/<%= current_locale == 'pt-BR' ? 'pt_BR' : 'en_US' %>/sdk.js#xfbml=1&version=v3.2&appId=362437284339219&autoLogAppEvents=1">
-    </script>
+    <%= include_facebook_script %>
     <div class="fb-comments" data-href="" data-numposts="20"></div>
     <script>
       var changeUrl = document.getElementsByClassName("fb-comments")[0];
