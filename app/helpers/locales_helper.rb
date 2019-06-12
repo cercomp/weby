@@ -19,7 +19,7 @@ module LocalesHelper
       end
       content = content_tag :div, class: 'tab-content' do
         locales.each_with_index.map do |locale, index|
-          content_tag :div, id: "tab_#{locale.name}#{@tab_count}", class: "tab-pane#{index == 0 ? ' active' : ''}" do
+          content_tag :div, id: "tab_#{locale.name}#{@tab_count}", class: "tab-pane#{index == 0 ? ' active' : ''}", data: {locale: locale.name} do
             yield(locale) if block_given?
           end
         end.join('').html_safe

@@ -34,7 +34,8 @@ module Journal
             end
             collection do
               get :recycle_bin, :fronts
-              post :sort
+              post :sort, :update_draft, :cancel, :restore_draft
+              patch :update_draft
             end
           end
           resources :newsletter_histories, only: [:index] do
