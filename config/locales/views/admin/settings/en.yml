@@ -8,6 +8,7 @@ en:
         ldap:         " LDAP "
         asset_host:   " Assets host "
         email:        " E-mail "
+        social:       " Social "
         settings:     " Settings "
         new_setting:  " New Setting "
         name:         " Name "

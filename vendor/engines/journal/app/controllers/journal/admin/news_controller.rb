@@ -80,10 +80,12 @@ module Journal::Admin
     def new
       @news = Journal::News.new(site_id: current_site)
       @news.news_sites.build(site_id: current_site)
+      @draft = get_draft('')
     end
 
     def edit
       @news = current_site.news.find(params[:id])
+      @draft = get_draft(@news.id)
     end
 
     def share
@@ -110,7 +112,9 @@ module Journal::Admin
       @news = Journal::News.new(news_params)
       @news.site = current_site
       @news.user = current_user
-      @news.save
+      if @news.save
+        set_draft(nil, '')
+      end
       record_activity('created_news', @news)
       respond_with(:admin, @news)
     end
@@ -118,9 +122,28 @@ module Journal::Admin
     def update
       params[:news][:related_file_ids] ||= []
       @news = current_site.news.find(params[:id])
-      @news.update(news_params)
+      if @news.update(news_params)
+        set_draft(nil, @news.id)
+      end
       record_activity('updated_news', @news)
       respond_with(:admin, @news)
+    end
+
+    def update_draft
+      if set_draft(params[:news], params[:news_id])
+        render json: {ok: true, message: t('.draft_saved')}
+      else
+        render json: {ok: false}
+      end
+    end
+
+    def restore_draft
+      render json: get_draft(params[:news_id])
+    end
+
+    def cancel
+      set_draft(nil, params[:news_id])
+      redirect_to admin_news_index_path
     end
 
     def toggle
@@ -189,6 +212,17 @@ module Journal::Admin
     end
 
     private
+
+    def set_draft value, news_id
+      current_user.preferences['draft'] ||= {}
+      current_user.preferences['draft'][current_site.id] ||= {}
+      current_user.preferences['draft'][current_site.id][news_id] = value
+      current_user.save
+    end
+
+    def get_draft news_id
+      current_user.preferences.dig('draft', current_site.id.to_s, news_id.to_s)
+    end
 
     def sort_column
       params[:sort] || 'journal_news.id'

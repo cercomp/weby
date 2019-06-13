@@ -30,11 +30,10 @@
             <div class="panel-body">
               <%= f.input "#{shareable}_social_share_pos", label: t('.social_share_pos'), as: :select, collection: [[t('.none'), :none], [t('.top'), :top], [t('.middle'), :middle], [t('.bottom'), :bottom]], include_blank: false %>
               <%= f.input "#{shareable}_social_share_networks", label: t('.social_share_networks'), as: :check_boxes, collection: [:twitter, :facebook,] %>
-              
-              <% if t(".#{shareable}") == 'Notícias' %>
-                  <%= f.input "#{shareable}_facebook_comments", label: t('.facebook_comments'), wrapper: :checkbox, as: :boolean %>
+
+              <% if shareable == :news && Weby::Settings::Social.facebook_comments == 'true' %>
+                <%= f.input "#{shareable}_facebook_comments", label: t('.facebook_comments'), wrapper: :checkbox, as: :boolean %>
               <% end %>
-               
             </div>
           </div>
         <% end %>
