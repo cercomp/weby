@@ -8,6 +8,7 @@ pt-BR:
         ldap:         " LDAP "
         asset_host:   " Host de Assets "
         email:        " E-mail "
+        social:       " Social "
         settings:     " Configurações "
         new_setting:  " Nova Configuração "
         name:         " Nome "
