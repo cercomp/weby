@@ -75,6 +75,9 @@ settings:
       value:
     smtp_password:
       value:
+  social:
+    facebook_comments:
+      value: 'false'
   cafe:
     login_host:
       value:

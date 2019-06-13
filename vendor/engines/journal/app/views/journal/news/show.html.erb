@@ -85,7 +85,7 @@
     <% end %>
   </div>
 
-  <% if current_site.news_facebook_comments == '1' %>
+  <% if current_site.news_facebook_comments == '1' && Weby::Settings::Social.facebook_comments == 'true' %>
     <%= include_facebook_script %>
     <div class="fb-comments" data-href="" data-numposts="20"></div>
     <script>

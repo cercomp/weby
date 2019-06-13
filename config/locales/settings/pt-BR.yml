@@ -4,6 +4,7 @@ pt-BR:
     ldap:               'LDAP'
     assets_host:        'Host de assets'
     email:              'E-mail'
+    social:             'Social'
     per_page:           'Opções de escolha de quantidade de itens por página em listagens'
     per_page_default:   'Padrão de itens por página em listagens'
     default_locale:     'Idioma padrão'
@@ -37,3 +38,4 @@ pt-BR:
     smtp_user_name:     'Nome de usuário SMTP'
     smtp_password:      'Senha SMTP'
     login_host:         'Host da URL de login do CAFe'
+    facebook_comments:  'Comentários do Facebook'
