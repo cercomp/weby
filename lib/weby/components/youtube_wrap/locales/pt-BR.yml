@@ -1,0 +1,17 @@
+pt-BR:
+  components:
+    youtube_wrap:
+      name:                " Incorporar Youtube "
+  activerecord:
+    attributes:
+      youtube_wrap_component:
+        url:             " URL "
+        width:           " Largura "
+        height:          " Altura "
+        start:           " Começar em "
+        html_class:      " Classe HTML "
+        controls:        " Mostrar Controles do Player "
+        privacy:         " Modo de Privacidade Aprimorada "
+  youtube_wrap:
+    views:
+      form:
