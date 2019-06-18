@@ -166,11 +166,11 @@ div, section, input {
   }
 
   &.flex-prev {
-    background-image: asset-url('ufg2/ic-left-arrow.png');
+    background-image: asset-url('level2/ic-left-arrow.png');
   }
 
   &.flex-next {
-    background-image: asset-url('ufg2/ic-right-arrow.png');
+    background-image: asset-url('level2/ic-right-arrow.png');
   }
 }
 
@@ -701,7 +701,7 @@ summary em, summary em * {
           content: '';
           width: 24px;
           height: 24px;
-          background-image: asset-url('ufg2/expand-more.png');
+          background-image: asset-url('level2/expand-more.png');
           position: absolute;
           left: 40px;
           top: 8px;

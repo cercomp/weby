@@ -1,11 +1,12 @@
 class FrontNewsComponent < Component
   component_settings :quant, :avatar_height, :avatar_width, :read_more, :tag_as_label, :show_author,
                      :show_date, :date_format, :image_size, :new_tab, :max_char, :filter_by, :label,
-                     :link_to_all, :show_tags, :order_by, :hide_filtered_tags
+                     :link_to_all, :show_tags, :order_by, :hide_filtered_tags, :html_class
 
   i18n_settings :label, :link_to_all
 
   validates :quant, presence: true
+  validates :html_class, format: { with: /\A[A-Za-z0-9_\-]*\z/ }
 
   def get_news(site, page_param)
     filter_by.blank? ? news(site, page_param) : news(site, page_param).tagged_with(filter_by.mb_chars.downcase.to_s, any: true)
