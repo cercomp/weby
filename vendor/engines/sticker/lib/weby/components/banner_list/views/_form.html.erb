@@ -19,3 +19,4 @@
   <%= f.input :show_controls, wrapper: :checkbox, as: :boolean, hint: t(".control_hint") %>
 </div>
 
+<%= f.input :html_class, :input_html => {:pattern => '^[A-Za-z0-9_\-]*$'} %>
