@@ -23,10 +23,11 @@
     <link class="contrast-css" rel="stylesheet" media="screen" href="" data-src="<%= asset_url('alternative_contrast') %>">
     <%= current_site.try(:head_html).try(:html_safe) %>
     <% skin = current_site.active_skin %>
-    <% if (color = skin.get_variable('main_color')).present? %>
+    <% if (color = skin.get_variable_config('color_scheme')).present? %>
       <style type="text/css">
         :root {
-          --main-color: <%= color %>;
+          --main-color: <%= color['main'] %>;
+          --sub-color: <%= color['sub'] %>;
         }
       </style>
     <% end %>

@@ -8,4 +8,4 @@ en:
         top:                " Header "
         bottom:             " Bottom "
       variables:
-        main_color:         " Main Color "
+        color_scheme:         " Color Scheme "

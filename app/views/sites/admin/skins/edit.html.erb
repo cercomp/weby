@@ -19,10 +19,11 @@
         <label class="string optional" for="code"><%= t('themes.'+@skin.theme+'.variables.'+name) %></label>
         <% if config['type'] == 'color' %>
           <div class="color-pick-container">
-            <% config['values'].each do |val| %>
+            <% config['values'].each do |option_name, object| %>
               <div class="color-pick-option">
-                <%= radio_button_tag name, val, @skin.get_variable(name) == val, id: "name-#{val}" %>
-                <label style="background-color: <%= val %>;" for="<%= "name-#{val}" %>"></label>
+                <%= radio_button_tag name, option_name, @skin.get_variable(name) == option_name, id: "color-#{option_name}" %>
+                <label style="background-color: <%= object['main'] %>;" for="<%= "color-#{option_name}" %>"></label>
+                <div class="sub-color"></div>
               </div>
             <% end %>
           </div>

@@ -8,4 +8,4 @@ pt-BR:
         top:                " Cabeçalho "
         bottom:             " Inferior "
       variables:
-        main_color:         " Cor principal "
+        color_scheme:         " Paleta de Cores "

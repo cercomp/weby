@@ -1,5 +1,39 @@
-.footer {
+footer {
   padding-top: 60px;
+
+  .logos {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+
+  .logo {
+    margin-right: 20px;
+  }
+
+  .address {
+    font-family: Lato;
+    font-size: 0.8em;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.88;
+    letter-spacing: normal;
+    text-align: center;
+    color: #666666;
+    margin-bottom: 60px;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .footer {
+    background-color: var(--main-color);
+    padding-top: 80px;
+  }
 
   .container {
     width: 940px;
@@ -8,46 +42,42 @@
     display: flex;
     flex-wrap: wrap;
     padding: 0 20px;
-
-    &:first-child {
-      align-items: center;
-    }
   }
 
-  .logo {
-    margin-right: 20px;
-  }
-
-  .ufg-logo {
-    flex: 1;
-  }
-
-  .social-icons {
-    flex: 1;
-  }
-
-  .address {
-    flex: 1;
-    margin-top: 60px;
+  .fones {
+    flex: 0 0 350px;
     font-family: Lato;
     font-size: 0.8em;
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
-    line-height: 1.88;
+    line-height: 1.38;
     letter-spacing: normal;
-    color: #666666;
+    color: var(--white);
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
     p {
       margin: 0;
     }
   }
 
-  .menu_component {
-    margin: 60px 0 0;
+  .menu {
     flex: 1;
-    min-width: 220px;
-    max-width: 286px;
+    display: flex;
+    flex-direction: column;
+
+    > .image_component {
+      text-align: right;
+    }
+  }
+
+  .menu_component {
+    flex: 1;
+    margin: 20px 0 0;
   }
 
   menu {
@@ -56,50 +86,42 @@
     list-style: none;
   }
 
-  .dropdown > li > a {
-    font-family: Lato;
-    font-size: 0.9em;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 2.22;
-    text-decoration: none;
-    letter-spacing: normal;
-    color: #666666;
+  .dropdown > li {
+    text-align: right;
 
-    &:hover {
-      color: #999999;
-    }
-  }
-
-  .bottom {
-    border-top: solid 1px #ececec;
-    padding: 40px 0;
-    margin-top: 20px;
-    text-align: center;
-
-    .image_component {
-      margin-bottom: 37px;
-
-      img {
-        width: 120.3px;
-        height: 52px;
-      }
-    }
-
-    .text_component {
+    > a {
       font-family: Lato;
-      font-size: 0.8em;
+      font-size: 0.9em;
       font-weight: normal;
       font-style: normal;
       font-stretch: normal;
-      line-height: normal;
+      line-height: 2.22;
       letter-spacing: normal;
-      color: #666666;
+      text-decoration: none;
+      text-transform: uppercase;
+      color: var(--white);
 
-      p {
-        margin: 0;
+      &:hover {
+        opacity: .8;
       }
+    }
+  }
+
+  .copyright {
+    padding: 80px 0 40px;
+    opacity: 0.8;
+    font-family: Lato;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: var(--white);
+
+    p {
+      margin: 0;
     }
   }
 }

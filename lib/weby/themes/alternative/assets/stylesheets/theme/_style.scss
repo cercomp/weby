@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400');
 
 :root {
-  --main-color: #9ccc65;
+  --main-color: #43a047;
+  --sub-color: #358038;
   --blue: #0072b9;
   --white: #ffffff;
   --red: #e53935;
@@ -78,9 +79,120 @@ div, section, input {
 ::-webkit-input-placeholder { @include placeholder; }
 ::placeholder { @include placeholder; }
 
-.banner_list_component {
-  background-color: var(--main-color);
-  opacity: .2;
+.banner_list_component.card-banner {
+  position: relative;
+  padding: 120px 0;
+
+  &:before {
+    content: '';
+    background-color: var(--main-color);
+    opacity: 0.2;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  .flexslider {
+    margin: 0 auto;
+    max-width: 920px;
+    height: 320px;
+    border: 0;
+    box-shadow: -10px 10px 20px 0 rgba(153, 153, 153, 0.2);
+  }
+
+  .flex-control-paging {
+    display: none;
+  }
+
+  .slides > li {
+    /*padding-left: 444px;*/
+    width: 920px;
+    height: 350px;
+
+    a {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 444px;
+      height: 320px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .flex-caption {
+      padding: 60px 60px 0;
+      margin-left: 444px;
+      width: auto;
+      position: static;
+      background-color: transparent;
+      text-shadow: none;
+      font-size: inherit;
+      p {
+        margin: 0;
+        font-family: Lato;
+        font-size: 1.2em;
+        font-weight: 300;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.25;
+        letter-spacing: normal;
+        color: #444444;
+      }
+    }
+
+    .flex-description {
+      position: static;
+      padding: 20px 60px 60px;
+      margin-left: 444px;
+      width: auto;
+      background-color: transparent;
+      text-shadow: none;
+      font-size: inherit;
+      p {
+        margin: 0;
+        font-family: Lato;
+        font-size: 0.9em;
+        font-weight: 300;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.33;
+        letter-spacing: normal;
+        color: var(--dark-gray);
+      }
+    }
+  }
+
+  .flex-direction-nav li a {
+    width: 52px;
+    height: 52px;
+    background-color: transparent;
+    border: 0;
+    font-size: 0;
+    transition: .2s;
+    opacity: 0.8;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &.flex-prev {
+      background-image: asset-url('alternative/ic-left-arrow.png');
+      background-size: contain;
+      left: -92px;
+    }
+
+    &.flex-next {
+      background-image: asset-url('alternative/ic-right-arrow.png');
+      background-size: contain;
+      right: -92px;
+    }
+  }
 }
 
 .top-banner {
@@ -142,7 +254,7 @@ div, section, input {
         background-color: #cccccc;
 
         &.flex-active {
-          background-color: var(--blue);
+          background-color: var(--main-color);
         }
       }
     }
@@ -203,6 +315,8 @@ div, section, input {
   }
 
   &.main {
+    padding-top: 110px;
+
     #news {
       grid-template-rows: 340px 110px 340px;
 
@@ -614,6 +728,11 @@ div, section, input {
   .link_to_all a {
     color: var(--main-color);
     background-color: var(--white);
+
+    &:hover {
+      background-color: var(--white);
+      opacity: .8;
+    }
   }
 }
 
@@ -647,9 +766,10 @@ summary em, summary em * {
     letter-spacing: normal;
     text-align: center;
     color: var(--white);
+    position: relative;
 
     &:hover {
-      /*background-color: var(--dark-red);*/
+      background-color: var(--sub-color);
     }
   }
 }
@@ -709,7 +829,7 @@ summary em, summary em * {
     font-stretch: normal;
     text-align: center;
     padding: 0;
-    margin: 0 0 30px;
+    margin: 0 0 60px;
     line-height: 1.21;
     letter-spacing: normal;
     color: var(--main-color);

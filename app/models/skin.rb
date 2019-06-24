@@ -66,6 +66,10 @@ class Skin < ActiveRecord::Base
     eval(variables)[name]
   end
 
+  def get_variable_config name
+    base_theme.variables[name]['values'][get_variable(name)]
+  end
+
   def set_variable name, value
     variables = '{}' if variables.blank?
     vars = eval(variables)
