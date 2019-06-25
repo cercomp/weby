@@ -96,8 +96,8 @@ div, section, input {
 
   .flexslider {
     margin: 0 auto;
-    max-width: 920px;
-    height: 320px;
+    width: 920px;
+    height: 276px;
     border: 0;
     box-shadow: -10px 10px 20px 0 rgba(153, 153, 153, 0.2);
   }
@@ -107,16 +107,16 @@ div, section, input {
   }
 
   .slides > li {
-    /*padding-left: 444px;*/
+    /*padding-left: 460px;*/
     width: 920px;
-    height: 350px;
+    height: 276px;
 
     a {
       position: absolute;
       top: 0;
       left: 0;
-      width: 444px;
-      height: 320px;
+      width: 460px;
+      height: 276px;
 
       img {
         width: 100%;
@@ -126,8 +126,8 @@ div, section, input {
     }
 
     .flex-caption {
-      padding: 60px 60px 0;
-      margin-left: 444px;
+      padding: 40px 60px 0;
+      margin-left: 460px;
       width: auto;
       position: static;
       background-color: transparent;
@@ -148,8 +148,8 @@ div, section, input {
 
     .flex-description {
       position: static;
-      padding: 20px 60px 60px;
-      margin-left: 444px;
+      padding: 20px 60px 38px;
+      margin-left: 460px;
       width: auto;
       background-color: transparent;
       text-shadow: none;
@@ -547,8 +547,9 @@ div, section, input {
     max-width: 1110px;
     margin: 60px auto;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(538px, 1fr));
+    grid-template-columns: 538px 538px;
     grid-gap: 30px;
+    justify-content: center;
 
     > li {
       padding-top: 134px;
@@ -662,7 +663,7 @@ div, section, input {
         display: none;
       }
 
-      &:nth-child(2), &:nth-child(3) {
+      &:nth-child(4n+2), &:nth-child(4n+3) {
         padding-left: 0;
         padding-right: 93px;
 

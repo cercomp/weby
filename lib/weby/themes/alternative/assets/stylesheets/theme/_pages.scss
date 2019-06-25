@@ -1,5 +1,5 @@
 .news-show, .page-show, .event-show {
-  padding: 30px 34px 100px;
+  padding: 40px 34px 100px;
   margin: 0 auto;
   max-width: 940px;
 
@@ -431,7 +431,7 @@ ufg-eventos {
       font-stretch: normal;
       line-height: 1.21;
       letter-spacing: normal;
-      color: var(--red);
+      color: var(--main-color);
       margin: 0;
       padding: 30px 0;
     }
@@ -594,7 +594,7 @@ ufg-eventos {
               margin-right: 10px;
 
               a.weby-label {
-                background-color: var(--light-blue);
+                background-color: var(--main-color);
                 padding: 1px 16px;
                 font-size: 0.8em;
                 text-decoration: none;
@@ -829,7 +829,7 @@ ufg-eventos {
     font-stretch: normal;
     line-height: 1.21;
     letter-spacing: normal;
-    color: var(--red);
+    color: var(--main-color);
     padding: 30px 0;
   }
 
@@ -1048,7 +1048,7 @@ ufg-eventos {
             border-radius: 4px;
             padding: 1px 16px;
             margin-right: 10px;
-            background-color: var(--light-blue);
+            background-color: var(--main-color);
             text-decoration: none;
             font-family: Lato;
             font-weight: normal;

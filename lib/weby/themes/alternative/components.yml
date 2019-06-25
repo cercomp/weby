@@ -212,7 +212,7 @@ bottom:
       name: text
       position: 2
       publish: true
-- settings: '{:put_at_end=>"0", :body=>{"pt-BR"=>"<a class=\"smooth_scroll\" href=\"#barra-brasil\" id=\"scroll-to-top\" title=\"Voltar ao Topo\"><img src=\"/up/1/o/expand-more-white.svg?1543932272\"/></a>", "en"=>""}}'
+- settings: '{:put_at_end=>"0", :body=>{"pt-BR"=>"<a class=\"smooth_scroll\" href=\"#barra-brasil\" id=\"scroll-to-top\" title=\"Voltar ao Topo\"><img src=\"/assets/alternative/expand-more-white.svg?1543932272\"/></a>", "en"=>""}}'
   name: blank
   position: 2
   publish: true
