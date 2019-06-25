@@ -1,5 +1,5 @@
 <% @front_news = component.get_news(current_site , params["front_news#{component.id}".to_sym]).includes(news: [:image, :i18ns, :site]) %>
-<section class="front_news_component" data-url="<%= sort_news_index_path if component.order_by == 'position' %>">
+<section class="front_news_component <%= component.html_class %>" data-url="<%= sort_news_index_path if component.order_by == 'position' %>">
   <% show_all_link = component.filter_by.present? ?
       news_index_path(direction: 'desc', sort: 'journal_news.created_at', tags: component.filter_by) :
       news_index_path(direction: 'desc', sort: 'journal_news.created_at')

@@ -1,0 +1,358 @@
+@media (min-width: 1440px) {
+
+  .container,
+  .front_news_title,
+  .feedback-new-message-title, .feedback-new-message-form,
+  .feedback-custom-text .form-tooltip > *,
+  .feedback-custom-text .faq > *,
+  #content .news_list_container,
+  .pages_list_container {
+    width: 1420px;
+  }
+
+  #map {
+    width: 100%;
+  }
+
+  .media-section .container,
+  .fixed-menus > .container,
+  .footer .container {
+    width: 940px;
+  }
+
+  .flexslider .flex-caption-inner,
+  .front_news_title,
+  .event_list_title,
+  .link_to_all,
+  .front_news_component #news,
+  .subsite_front_news_component .list,
+  .header .menu-bar,
+  .header .menu-bar.fixed .menu_component,
+  .breadcrumb_component ul,
+  .simple-section,
+  .news-show, .page-show, .event-show,
+  #content .news-list.grid .search-results,
+  .pages_list_container .search-results {
+    max-width: 1420px;
+  }
+
+  .front_news_component #news {
+    grid-template-columns: 300px 300px 300px 300px;
+    grid-column-gap: 74px;
+  }
+  .subsite_front_news_component .list {
+    grid-template-columns: 220px 220px 220px 220px 220px 220px;
+  }
+  .main-links .links {
+    grid-template-columns: 220px 220px 220px 220px 220px 220px;
+  }
+
+  .event_list_component #events li {
+    max-width: 360px;
+  }
+
+  .highlight-events {
+    flex: 0 0 539px;
+
+    #events li {
+      max-width: 539px;
+    }
+  }
+}
+
+/* Media Queries */
+@media (max-width: 980px) {
+  .front_news_component #news {
+    grid-template-columns: 300px 300px;
+  }
+  .subsite_front_news_component .list {
+    grid-template-columns: 220px 220px 220px;
+  }
+  .main-links .links {
+    grid-template-columns: 220px 220px 220px;
+  }
+  .services .services-icons {
+    grid-template-columns: 140px 140px 140px 140px;
+  }
+  .about-home .about-row p {
+    margin-right: 0;
+  }
+  .link_to_all {
+    padding: 0 34px;
+    box-sizing: border-box;
+  }
+  .event-lists .container {
+    display: block;
+  }
+  .event_list_component #events li {
+    max-width: 50%;
+  }
+  .highlight-events #events li {
+    max-width: 100%;
+  }
+  .event_list_component:first-child #events li:nth-child(n+5) {
+    margin-left: 50%;
+  }
+  .highlight-events .event_list_title {
+    position: static;
+    text-align: center;
+  }
+  .event_list_component #events {
+    padding-bottom: 90px;
+  }
+  .highlight-events #events {
+    margin-top: 20px;
+    margin-bottom: 0;
+    padding: 14px 30px 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dock-container {
+    display: none;
+  }
+  .slider, .flexslider .slides img {
+    height: 320px;
+  }
+  .flexslider .flex-caption {
+    height: 84px;
+  }
+  .front_news_title, .event_list_title, .fixed-menus h3 {
+    text-align: center;
+  }
+  .link_to_all {
+    position: relative;
+    left: 0;
+    top: -130px;
+    transform: none;
+    text-align: center;
+  }
+  .event_list_component .link_to_all {
+    top: -70px;
+  }
+  .subsite_front_news_component .link_to_all {
+    top: -100px;
+  }
+  .front_news_component #news {
+    grid-template-columns: 300px;
+  }
+  .subsite_front_news_component .list {
+    grid-template-columns: 220px 220px;
+  }
+  .main-links .text_component {
+    text-align: center;
+  }
+  .main-links .links {
+    grid-template-columns: 220px 220px;
+  }
+  .services .text_component {
+    text-align: center;
+  }
+  .services .services-icons {
+    grid-template-columns: 140px 140px 140px;
+  }
+  .services .btn {
+    position: static;
+  }
+  .maps .address .container {
+    display: block;
+  }
+  .maps .address .container > div {
+    margin-bottom: 20px;
+  }
+  .feedback-new-message-title {
+    text-align: center;
+  }
+}
+
+@media (max-width: 625px) {
+  .header .menu-bar .container {
+    justify-content: left;
+  }
+  .header .menu-bar .container .menu-mobile {
+    text-align: center;
+    flex: 1;
+  }
+  .menu-handle {
+    display: inline-flex;
+    justify-content: center;
+  }
+  .header .menu_component>menu {
+    display: block;
+  }
+  .header .menu_component menu>li.sub>a {
+    margin-right: 70px;
+  }
+  .header .menu_component>menu>li.sub>a:after {
+    right: -60px;
+  }
+  .menu-bar .menu_component {
+    display: none;
+  }
+  .header .menu-bar.fixed .menu_component menu {
+    padding-left: 0;
+  }
+  .menu-bar .search_box_component {
+    position: absolute;
+  }
+
+  .header .menu-bar.mob-open .container {
+    display: block;
+  }
+
+  .header .menu-bar.fixed.mob-open .container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .header .menu-bar.fixed.mob-open .menu-mobile {
+    flex: 1;
+  }
+  .menu-bar.mob-open .search_box_component {
+    top: 60px;
+    height: 60px;
+    margin-left: 0;
+    width: calc(100%) !important;
+    background-color: var(--main-color);
+    filter: brightness(82%);
+  }
+  .menu-bar.mob-open .search_box_component [type=submit] {
+    right: 20px;
+  }
+  .header .search_box_component [name=search].show-input#search {
+    width: 100%;
+    background-color: var(--white);
+  }
+  .menu-bar.mob-open .menu_component {
+    display: block;
+    margin-top: 70px !important;
+  }
+  .menu-bar.mob-open .menu_component menu.submenu > li {
+    color: var(--white);
+  }
+  .menu-bar.mob-open.fixed .menu_component menu.submenu > li {
+    color: inherit;
+  }
+  .menu-bar.mob-open .menu-handle .icon {
+    background-image: asset-url('level2/expand-more-white.png');
+    background-position: center;
+  }
+  .header .menu_component>menu>li.sub>.submenu {
+    width: 100%;
+  }
+  .header .menu_component menu.submenu {
+    background-color: transparent;
+    box-shadow: none;
+    position: static;
+    left: 0;
+    transform: none;
+    margin-left: 25px;
+    color: var(--white);
+
+    > li.sub > a:after {
+      background-image: asset-url('level2/expand-more-white.png');
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .slider, .flexslider .slides img {
+    height: 245px;
+  }
+  .subsite_front_news_component .list {
+    grid-template-columns: 220px;
+  }
+  .subsite_front_news_component .list>li:first-child {
+    grid-column: span 1;
+    padding-top: 144px;
+  }
+  .subsite_front_news_component .list>li:first-child article .news-image img {
+    width: 220px !important;
+    height: 160px;
+  }
+  .subsite_front_news_component .list>li:first-child article .front_news_label {
+    top: calc(144px + 14px);
+  }
+  .main-links .links {
+    grid-template-columns: 220px;
+  }
+  .services .services-icons {
+    grid-template-columns: 140px 140px;
+  }
+  .event_list_component:first-child #events li:nth-child(-n+4) {
+    float: none;
+  }
+  .event_list_component #events li {
+    max-width: 100%;
+  }
+  .event_list_component:first-child #events li:nth-child(n+5) {
+    margin-left: 0;
+  }
+  .footer .container {
+    display: block;
+  }
+  .footer .ufg-logo {
+    text-align: center;
+  }
+  .footer .social-icons {
+    justify-content: center;
+    margin-top: 20px;
+  }
+  .footer .address {
+    text-align: center;
+  }
+  .footer .menu_component {
+    text-align: center;
+    margin: 60px auto 0;
+  }
+  .social-toggle {
+    display: flex;
+  }
+  .header .container {
+    position: relative;
+  }
+  .header .social-icons {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 100%;
+    width: 100%; /*280px;*/
+    padding: 80px 30px 0;
+    border-radius: 2px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    background-color: var(--white);
+    z-index: 20;
+    display: flex;
+    transition: .2s;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+
+    &.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    &:before {
+      content: 'REDES SOCIAIS';
+      font-family: Lato;
+      font-size: 0.8em;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: var(--grey);
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      top: 30px;
+      background-image: asset-url('level2/expand-more-inv.svg');
+      background-repeat: no-repeat;
+      background-position-x: calc(50% - 75px);
+    }
+
+    .social-icon {
+      margin: 0 10px 30px;
+    }
+  }
+}

@@ -1,0 +1,11 @@
+pt-BR:
+  themes:
+    alternative:
+      title:              " Pró-Reitorias e Secretarias "
+      placeholders:
+        first_place:        " Topo "
+        home:               " Página Inicial "
+        top:                " Cabeçalho "
+        bottom:             " Inferior "
+      variables:
+        color_scheme:         " Paleta de Cores "

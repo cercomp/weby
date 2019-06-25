@@ -67,7 +67,7 @@ Rails.application.routes.draw do
           put :index
         end
       end
-      resources :skins, except: [:edit, :update] do
+      resources :skins do
         member do
           post :apply
           get :preview

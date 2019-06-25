@@ -1,0 +1,335 @@
+first_place:
+- settings: '{:background=>"#7F7F7F"}'
+  name: gov_bar
+  position: 1
+  publish: true
+  alias: Barra do Governo Federal
+- settings: '{:html_class=>"accessibility-bar"}'
+  name: components_group
+  position: 2
+  publish: true
+  alias: Barra de acessibilidade
+  children:
+  - settings: '{:contrast=>"1", :font_size=>"1", :extended_accessibility=>"0", :label_contrast=>{"pt-BR"=>"", "en"=>""}, :label_font_size=>{"pt-BR"=>"", "en"=>""}, :additional_information=>{"pt-BR"=>"", "en"=>""}, :template=>"bar", :content_anchor=>"content", :menu_anchor=>"component_47382", :search_anchor=>"search"}'
+    name: menu_accessibility
+    position: 1
+    publish: true
+  - settings: '{:dropdown=>"1", :template=>"code"}'
+    name: menu_i18n
+    position: 2
+    publish: false
+home:
+- settings: '{:category=>"1440x500", :orientation=>"slider", :timer=>"7", :description=>"1", :show_controls=>"1", :show_title=>"0", :show_description=>"0", :filter_by=>"Slider"}'
+  name: banner_list
+  position: 1
+  publish: true
+  alias: Slider
+- settings: '{:quant=>"6", :max_char=>"", :filter_by=>"", :image_size=>"m", :avatar_width=>"300", :avatar_height=>"", :tag_as_label=>"0", :read_more=>"1", :show_author=>"0", :show_date=>"1", :order_by=>"position", :new_tab=>"1", :label=>{"pt-BR"=>"Notícias",  "en"=>""}, :link_to_all=>{"pt-BR"=>"Ver todas", "en"=>""}, :date_format=>"short", :show_tags=>"1", :hide_filtered_tags=>"0"}'
+  name: front_news
+  position: 4
+  publish: true
+  alias: Notícias capa
+- settings: '{:quant=>"3", :max_char=>"", :filter_by=>"", :image_size=>"m", :avatar_width=>"300", :avatar_height=>"", :tag_as_label=>"0", :read_more=>"1", :show_author=>"0", :show_date=>"1", :order_by=>"position", :new_tab=>"1", :label=>{"pt-BR"=>"Outras Notícias",  "en"=>""}, :link_to_all=>{"pt-BR"=>"Ver todas", "en"=>""}, :date_format=>"short", :show_tags=>"1", :hide_filtered_tags=>"0"}'
+  name: front_news
+  position: 5
+  publish: true
+  alias: Outras Notícias
+- settings: '{:html_class=>"fixed-menus"}'
+  name: components_group
+  position: 6
+  publish: true
+  alias: Serviços
+  children:
+  - settings: '{:html_class=>"container"}'
+    name: components_group
+    position: 1
+    publish: true
+    alias: Container
+    children:
+    - settings: '{:menu_id=>"%{menu_id}", :style=>"menu", :dropdown=>"1", :html_class=>"", :title=>{"pt-BR"=>"Serviços", "en"=>""}}'
+      name: menu
+      position: 1
+      publish: true
+      menu:
+        name: Serviços
+- settings: '{:html_class=>"event-lists"}'
+  name: components_group
+  position: 7
+  publish: true
+  alias: Eventos
+  children:
+  - settings: '{:html_class=>"container"}'
+    name: components_group
+    position: 1
+    publish: true
+    alias: Container
+    children:
+    - settings: '{:template=>"front", :date_format=>"two_dates", :quant=>"9", :max_char=>"", :filter_by=>"", :image_size=>"i", :avatar_width=>"", :avatar_height=>"",  :read_more=>"0", :label=>{"pt-BR"=>"Eventos", "en"=>""}, :link_to_all=>{"pt-BR"=>"Ver todos", "en"=>""}, :group_by=>"0", :html_class=>"", :source=>"own", :sel_site=>""}'
+      name: event_list
+      position: 1
+      publish: true
+- settings: '{:html_class=>"boxes-section"}'
+  name: components_group
+  position: 8
+  publish: true
+  alias: Destaques
+  children:
+  - settings: '{:html_class=>"container"}'
+    name: components_group
+    position: 1
+    publish: true
+    alias: Container
+    children:
+    - settings: '{:html_class=>"box-container"}'
+      name: components_group
+      position: 1
+      publish: true
+      alias: Container Box1
+      children:
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://google.com/", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"", :default_image=>"level2/box-1.jpg", :title=>{"pt-BR"=>"Box 1", "en"=>""}}'
+        name: image
+        position: 1
+        publish: true
+        alias: Imagem Box 1
+    - settings: '{:html_class=>"box-container"}'
+      name: components_group
+      position: 2
+      publish: true
+      alias: Container Box2
+      children:
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://google.com/", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"", :default_image=>"level2/box-2.jpg", :title=>{"pt-BR"=>"Box 2", "en"=>""}}'
+        name: image
+        position: 1
+        publish: true
+        alias: Imagem Box 2
+    - settings: '{:html_class=>"box-container"}'
+      name: components_group
+      position: 3
+      publish: true
+      alias: Container Box3
+      children:
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://google.com/", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"", :default_image=>"level2/box-3.jpg", :title=>{"pt-BR"=>"Box 3", "en"=>""}}'
+        name: image
+        position: 1
+        publish: true
+        alias: Imagem Box 3
+- settings: '{:html_class=>"main-links"}'
+  name: components_group
+  position: 9
+  publish: true
+  alias: Links Úteis
+  children:
+  - settings: '{:html_class=>"container"}'
+    name: components_group
+    position: 1
+    publish: true
+    alias: Container
+    children:
+    - settings: '{:html_class=>"", :body=>{"pt-BR"=>"<p>Link Úteis</p>", "en"=>""}}'
+      name: text
+      position: 1
+      publish: true
+      alias: Título
+    - settings: '{:html_class=>"links"}'
+      name: components_group
+      position: 2
+      publish: true
+      alias: Links
+      children:
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://google.com/", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"", :default_image=>"", :title=>{"pt-BR"=>"CAPES", "en"=>""}}'
+        name: image
+        position: 1
+        publish: true
+        alias: CAPES
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://google.com/", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"", :default_image=>"", :title=>{"pt-BR"=>"CNPq", "en"=>""}}'
+        name: image
+        position: 2
+        publish: true
+        alias: CNPq
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://google.com/", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"", :default_image=>"", :title=>{"pt-BR"=>"FAPEG", "en"=>""}}'
+        name: image
+        position: 3
+        publish: true
+        alias: FAPEG
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://google.com/", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"", :default_image=>"", :title=>{"pt-BR"=>"PRPI (Pró-Reitoria de Pesquisa e Inovação)", "en"=>""}}'
+        name: image
+        position: 4
+        publish: true
+        alias: PRPI (Pró-Reitoria de Pesquisa e Inovação)
+bottom:
+- settings: '{:html_class=>"footer"}'
+  name: components_group
+  position: 1
+  publish: true
+  alias: Footer
+  children:
+  - settings: '{:html_class=>"container"}'
+    name: components_group
+    position: 1
+    publish: true
+    alias: Container
+    children:
+    - settings: '{:size=>"", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"logo", :default_image=>"level2/marca-prpg.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
+      name: image
+      position: 1
+      publish: true
+    - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://www.ufg.br", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"ufg-logo", :default_image=>"level2/marca-ufg.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
+      name: image
+      position: 2
+      publish: true
+  - settings: '{:html_class=>"container"}'
+    name: components_group
+    position: 2
+    publish: true
+    alias: Container
+    children:
+    - settings: '{:html_class=>"address", :body=>{"pt-BR"=>"<p><span>UFG - Universidade Federal de Goi&aacute;s</span></p><p><span>CNPJ: 01567601/0001-43</span></p><p><span>Avenida Esperan&ccedil;a s/n, C&acirc;mpus Samambaia - Pr&eacute;dio da Reitoria.</span></p><p><span>CEP 74690-900 Goi&acirc;nia - Goi&aacute;s - Brasil.</span></p><p><span>Fone: +55 (62) 3521.1000</span></p>", "en"=>""}}'
+      name: text
+      position: 1
+      publish: true
+    - settings: '{:menu_id=>"%{menu_id}", :style=>"menu", :dropdown=>"1", :html_class=>"", :title=>{"pt-BR"=>"", "en"=>""}}'
+      name: menu
+      position: 2
+      publish: true
+      menu:
+        name: Rodapé
+  - settings: '{:html_class=>"bottom"}'
+    name: components_group
+    position: 3
+    publish: true
+    alias: Fundo
+    children:
+    - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://sic.ufg.br", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"", :default_image=>"level2/marca-ai.png", :title=>{"pt-BR"=>"", "en"=>""}}'
+      name: image
+      position: 1
+      publish: true
+    - settings: '{:html_class=>"", :body=>{"pt-BR"=>"<p><span>&copy; Universidade Federal de Goi&aacute;s - UFG. Todos os direitos reservados.</span></p>", "en"=>""}}'
+      name: text
+      position: 2
+      publish: true
+- settings: '{:put_at_end=>"0", :body=>{"pt-BR"=>"<a class=\"smooth_scroll\" href=\"#barra-brasil\" id=\"scroll-to-top\" title=\"Voltar ao Topo\"><img src=\"/up/1/o/expand-more-white.svg?1543932272\"/></a>", "en"=>""}}'
+  name: blank
+  position: 2
+  publish: true
+  alias: Voltar Topo
+- settings: '{:put_at_end=>"1", :body=>{"pt-BR"=>"<script> $(\".smooth_scroll\").click(function(){ $(\"html, body\").stop().animate({scrollTop: $($(this).attr(\"href\")).offset().top}, 480); return false; });</script>", "en"=>""}}'
+  name: blank
+  position: 3
+  publish: true
+  alias: Voltar Topo - JS
+top:
+- settings: '{:html_class=>"header"}'
+  name: components_group
+  position: 1
+  publish: true
+  alias: Cabeçalho
+  children:
+  - settings: '{:html_class=>"container"}'
+    name: components_group
+    position: 1
+    publish: true
+    alias: Container
+    children:
+    - settings: '{:size=>"", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"logo", :default_image=>"level2/marca-prpg.svg"}'
+      name: image
+      position: 1
+      publish: true
+      alias: Logo
+    - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://www.ufg.br", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"ufg-logo", :default_image=>"level2/marca-ufg.svg"}'
+      name: image
+      position: 2
+      publish: true
+      alias: Logo - UFG
+    - settings: '{:size=>"", :width=>"", :height=>"", :url=>"",
+        :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"social-toggle",
+        :default_image=>"level2/ic-social.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
+      name: image
+      position: 3
+      publish: true
+      alias: Mostrar Redes
+    - settings: '{:html_class=>"social-icons"}'
+      name: components_group
+      position: 4
+      publish: true
+      alias: Ícones sociais
+      children:
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://twitter.com/ufg_oficial", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"social-icon", :default_image=>"level2/ic-twitter.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
+        name: image
+        position: 1
+        publish: true
+        alias: twitter
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://www.facebook.com/pages/Universidade-Federal-de-Goi%C3%A1s/309079942482780?fref=ts", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"social-icon", :default_image=>"level2/ic-facebook.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
+        name: image
+        position: 2
+        publish: true
+        alias: facebook
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://www.youtube.com/channel/UCVEN3bSdTJsYvDM0JfqerYA", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"social-icon", :default_image=>"level2/ic-youtube.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
+        name: image
+        position: 3
+        publish: true
+        alias: Youtube
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"http://instagram.com/ufg_oficial", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"social-icon", :default_image=>"level2/ic-instagram.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
+        name: image
+        position: 4
+        publish: true
+        alias: Instagram
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://plus.google.com/+fotosufg", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"social-icon", :default_image=>"level2/ic-googleplus.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
+        name: image
+        position: 5
+        publish: true
+        alias: Google Plus
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://radio.ufg.br/p/8051-radio-ao-vivo", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"social-icon", :default_image=>"level2/ic-radio.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
+        name: image
+        position: 6
+        publish: true
+        alias: Rádio UFG
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"http://www.tvufg.org.br", :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"social-icon", :default_image=>"level2/ic-tv.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
+        name: image
+        position: 7
+        publish: true
+        alias: TV UFG
+  - settings: '{:html_class=>"menu-bar"}'
+    name: components_group
+    position: 2
+    publish: true
+    alias: Barra de Menu
+    children:
+    - settings: '{:html_class=>"container"}'
+      name: components_group
+      position: 1
+      publish: true
+      alias: Container
+      children:
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"menu-logo", :default_image=>"level2/marca-prpg-white.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
+        name: image
+        position: 1
+        publish: true
+        alias: Logo menu
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://www.ufg.br", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"menu-logo-ufg", :default_image=>"level2/marca-ufg-white.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
+        name: image
+        position: 2
+        publish: true
+        alias: Logo UFG menu
+      - settings: '{:put_at_end=>"0", :body=>{"pt-BR"=>"<div class=\"menu-handle\"><span class=\"icon\"></span><span>Menu</span></div>", "en"=>""}, :html_class=>"menu-mobile"}'
+        name: blank
+        position: 3
+        publish: true
+        alias: Menu Mobile
+      - settings: '{:menu_id=>"%{menu_id}", :dropdown=>"1", :style=>"menu", :html_class=>"", :title=>{"pt-BR"=>"", "en"=>""}}'
+        name: menu
+        position: 4
+        publish: true
+        menu:
+          name: Principal
+      - settings: '{:width=>"", :align=>"right", :show_button=>"1"}'
+        name: search_box
+        position: 5
+        publish: true
+      - settings: '{:put_at_end=>"1", :body=>{"pt-BR"=>"<script> $(''.menu-handle'').click(function(){ $(''.menu-bar'').toggleClass(''mob-open''); });</script>", "en"=>""}}'
+        name: blank
+        position: 6
+        publish: true
+- settings: '{:label=>{"pt-BR"=>"", "en"=>""}, :home_label=>{"pt-BR"=>"Início", "en"=>"Home"}}'
+  name: breadcrumb
+  position: 2
+  publish: true

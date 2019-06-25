@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="90" height="96" viewBox="0 0 90 96">
+    <defs>
+        <path id="b" d="M28.463 70.985C12.2 67.53 0 53.129 0 35.886 0 16.066 16.118 0 36 0s36 16.067 36 35.886c0 16.775-11.546 30.862-27.149 34.793L36.504 79l-8.04-8.015z"/>
+        <filter id="a" width="140.3%" height="136.7%" x="-20.1%" y="-15.8%" filterUnits="objectBoundingBox">
+            <feOffset dy="2" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="4.5"/>
+            <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.3 0"/>
+        </filter>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g transform="translate(9 7)">
+            <use fill="#000" filter="url(#a)" xlink:href="#b"/>
+            <use fill="#FFF" xlink:href="#b"/>
+        </g>
+        <g fill="#0072B9">
+            <path d="M26.998 39.75L24 41.5V48.502l2.998 1.748L30 52l3-1.75 3-1.749v-7l-3-1.752L30 38zM51.999 50l3 1.749L58 53.499v7l-3.001 1.751-3 1.75-2.998-1.75L46 60.5V53.499l3.001-1.75zM51.497 23l-3.747 2.127L44 27.252V35.75l3.75 2.125L51.498 40l3.751-2.124L59 35.75V27.252l-3.75-2.125zM57 39l2.501 1.376L62 41.75v5.5l-2.499 1.375-2.5 1.375-2.5-1.375L52 47.25v-5.5l2.5-1.374zM40 52l2.001 1.127L44 54.252v4.5l-1.999 1.125-2 1.123-2.002-1.123L36 58.752v-4.5l2-1.125zM37 29l2.5 1.374L42 31.75v5.5l-2.5 1.374L37 40l-2.5-1.375L32 37.25v-5.5l2.5-1.377z"/>
+        </g>
+    </g>
+</svg>

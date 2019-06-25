@@ -32,6 +32,7 @@
         new_tab:            " Ouvrir dans une nouvelle fenêtre "
         max_char:           " Numeró maximal de caractères "
         link_to_all:        " Lien à tous "
+        html_class:         " Class HTML "
         order_by:           " Trier par "
         date_format:          " Format de Date "
     errors:

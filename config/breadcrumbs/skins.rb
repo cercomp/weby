@@ -8,6 +8,11 @@ crumb :skins_new do
   parent :skins
 end
 
+crumb :skins_edit do
+  link t('breadcrumbs.edit_theme')
+  parent :skins
+end
+
 # crumb :styles_new do
 #   link t('breadcrumbs.new_style'), new_site_admin_skin_path
 #   parent :styles

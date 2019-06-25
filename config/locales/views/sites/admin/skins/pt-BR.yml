@@ -28,7 +28,9 @@ pt-BR:
           new_style:        " Novo Estilo "
           my_styles:        " Meus Estilos "
           styles:           " Estilos "
+          head:             " Cabeçalho HTML "
         new:
+          themes:             " Temas "
           no_themes:          " Seu site já tem todos os temas instalados "
           preview:            " Prévia "
           install:            " Instalar "
@@ -42,6 +44,11 @@ pt-BR:
           site:             " Dono "
           actions:          " Ações "
           updated_at:       " Última atualização "
+        edit:
+          themes:             " Temas "
+          no_settings:      " Este tema não possui nenhuma Configuração "
+        update:
+          successfully_updated_theme: "Tema atualizado com sucesso"
         list:
           actions:          " Ações "
           name:             " Nome "

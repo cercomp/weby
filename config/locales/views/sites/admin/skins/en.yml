@@ -28,7 +28,9 @@ en:
           new_style:        " New Style "
           my_styles:        " My Styles "
           styles:           " Styles "
+          head:             " HTML head "
         new:
+          themes:             " Themes "
           no_themes:          " Your site already has all themes installed "
           preview:            " Preview "
           install:            " Install "
@@ -42,6 +44,11 @@ en:
           site:             " Owner "
           actions:          " Actions "
           updated_at:       " Last update "
+        edit:
+          themes:             " Themes "
+          no_settings:      " This theme has no settings "
+        update:
+          successfully_updated_theme: "Theme successfully updated"
         list:
           actions:          " Actions "
           name:             " Name "

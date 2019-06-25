@@ -1,0 +1,41 @@
+<% title ".themes" %>
+<% breadcrumb :skins_edit %>
+
+<%= simple_form_for [:site_admin, @skin] do |f| %>
+
+  <% if @theme.variables.blank? %>
+    <div class="alert alert-warning">
+      <%= t(".no_settings") %>
+    </div>
+
+    <div class="form-actions">
+      <%= link_to t("back"), :back, class: "btn btn-default" %>
+    </div>
+  <% else %>
+
+    <% @theme.variables.each do |name, config| %>
+
+      <div class="form-group string optional">
+        <label class="string optional" for="code"><%= t('themes.'+@skin.theme+'.variables.'+name) %></label>
+        <% if config['type'] == 'color' %>
+          <div class="color-pick-container">
+            <% config['values'].each do |option_name, object| %>
+              <div class="color-pick-option">
+                <%= radio_button_tag name, option_name, @skin.get_variable(name) == option_name, id: "color-#{option_name}" %>
+                <label style="background-color: <%= object['main'] %>;" for="<%= "color-#{option_name}" %>"></label>
+                <div class="sub-color"></div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+
+    <% end %>
+
+    <div class="form-actions">
+      <%= f.submit class: 'btn btn-primary' %>
+      <%= link_to t("back"), :back, class: "btn btn-default" %>
+    </div>
+
+  <% end %>
+<% end %>

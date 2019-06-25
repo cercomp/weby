@@ -56,6 +56,8 @@
         include_blank: false %>
 
       <%= f.input :new_tab, wrapper: :checkbox, as: :boolean %>
+
+      <%= f.input :html_class, :input_html => {:pattern => '^[A-Za-z0-9_\-]*$'} %>
     </div>
   </div>
 </div>

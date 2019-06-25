@@ -1,0 +1,48 @@
+title: Pró-Reitorias e Secretarias
+width: 500
+private: true
+placeholders:
+  - names: ['first_place']
+  - names: ['top']
+  - names: ['home']
+  - names: ['bottom']
+variables:
+  color_scheme:
+    type: 'color'
+    values:
+      purple:
+        main: '#9c27b0'
+        sub: '#7c1f8c'
+      pink:
+        main: '#e91e63'
+        sub: '#ba184f'
+      red:
+        main: '#f44336'
+        sub: '#c2352b'
+      yellow:
+        main: '#f9a825'
+        sub: '#c6861d'
+      grey:
+        main: '#757575'
+        sub: '#5c5c5c'
+      lemon_green:
+        main: '#9e9d25'
+        sub: '#7e7c1d'
+      light_blue:
+        main: '#2196f3'
+        sub: '#1978c2'
+      green:
+        main: '#43a047'
+        sub: '#358038'
+      orange:
+        main: '#fb8c00'
+        sub: '#c87000'
+      brown:
+        main: '#795548'
+        sub: '#604439'
+      blue:
+        main: '#1976d2'
+        sub: '#145da8'
+      grey_blue:
+        main: '#546e7a'
+        sub: '#435861'

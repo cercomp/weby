@@ -1,0 +1,12 @@
+title: Unidades e Órgãos
+width: 500
+private: true
+placeholders:
+  - names: ['first_place']
+  - names: ['top']
+  - names: ['home']
+  - names: ['bottom']
+variables:
+  main_color:
+    type: 'color'
+    values: ['#73aed3', '#9ccc65', '#e57373', '#ba68c8', '#4ddb8f', '#eeb628', '#8d6e63', '#4fc3f7', '#ffa726', '#f06292']
