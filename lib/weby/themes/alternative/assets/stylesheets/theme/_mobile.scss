@@ -219,6 +219,7 @@
     .menu-bar.mob-open {
       .search_box_component {
         top: 100px;
+        left: 0;
         height: 60px;
         margin-left: 0;
         width: 100% !important;
@@ -238,6 +239,7 @@
       .menu_component {
         display: block;
         position: absolute;
+        left: 0;
         top: 160px;
         width: 100%;
       }
@@ -337,7 +339,7 @@
       }
 
       .news-image {
-        left: 0;
+        left: 10px;
         right: auto;
         width: 188.39px;
         height: 119px;
@@ -350,6 +352,13 @@
       &:nth-child(4n+2), &:nth-child(4n+3) {
         padding-left: 0;
 
+        .news-image {
+          left: 10px;
+          right: auto;
+          width: 188.39px;
+          height: 119px;
+        }
+
         .event-dates {
           left: auto;
           right: 28px;
@@ -358,6 +367,35 @@
     }
   }
 
+  .footer {
+    .container {
+      display: block;
+    }
+
+    .fones {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .social-icons {
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .menu_component {
+      margin: 40px auto;
+    }
+  }
+
+  footer {
+    .menu > .image_component {
+      text-align: center;
+    }
+
+    .dropdown > li {
+      text-align: center;
+    }
+  }
 }
 
 @media (max-width: 480px) {
@@ -403,23 +441,6 @@
     }
   }
 
-  .footer .container {
-    display: block;
-  }
-  .footer .ufg-logo {
-    text-align: center;
-  }
-  .footer .social-icons {
-    justify-content: center;
-    margin-top: 20px;
-  }
-  .footer .address {
-    text-align: center;
-  }
-  .footer .menu_component {
-    text-align: center;
-    margin: 60px auto 0;
-  }
   .social-toggle {
     display: flex;
     z-index: 6;

@@ -142,6 +142,7 @@ input:not([type=submit]):not([type=button]):not([type=checkbox]), select {
 
 textarea {
   width: 100%;
+  box-sizing: border-box;
 }
 
 label.check_boxes {
