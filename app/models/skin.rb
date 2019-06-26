@@ -67,7 +67,7 @@ class Skin < ActiveRecord::Base
   end
 
   def get_variable_config name
-    base_theme.variables[name]['values'][get_variable(name)]
+    base_theme.variables[name].to_h.fetch('values', {})[get_variable(name)]
   end
 
   def set_variable name, value

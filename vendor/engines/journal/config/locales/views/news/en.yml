@@ -29,6 +29,7 @@ en:
         title:         "Title"
         close:         "Close"
         no-site-found: "No site available to share"
+        no-front-news-found: 'No Front News Component Found'
       list:
         read_more:     "Read more"
         no_news:       "No news were found"

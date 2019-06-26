@@ -89,17 +89,18 @@ module Journal::Admin
     end
 
     def share
-      @news_site = Journal::NewsSite.where(news: params[:id], site: params[:site_id])
-      if @news_site.size < 1
-        @news = Journal::News.find(params[:id])
+      # Verificar se a noticia ja nao foi compartilhada
+      if Journal::NewsSite.where(journal_news_id: params[:id], site_id: params[:site_id]).size < 1
+        news = Journal::News.find(params[:id])
 
-        @news.news_sites.new(site_id: params[:site_id], journal_news_id: params[:id], front: true)
-        @news.save
-        @news_site = Journal::NewsSite.where(news: params[:id], site: params[:site_id]).first
-        @news_site.category_list.add("#{params[:tag]}")
-        @news_site.save
+        news_site =  Journal::NewsSite.create!(site_id: params[:site_id], journal_news_id: params[:id], front: true)
+        tags = params[:tag].to_s.split(',').map(&:strip)
+        if tags.present?
+          news_site.category_list.add(*tags)
+          news_site.save!
+        end
       end
-       redirect_to :back
+      redirect_to :back
     end
 
     def unshare

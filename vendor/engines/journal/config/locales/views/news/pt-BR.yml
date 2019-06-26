@@ -12,6 +12,7 @@ pt-BR:
         share:         "Compartilhar"
         list_all:      "Listar Todas"
         categories:    "Categorias"
+        my_sites:      "Meus Sites"
         source:        "Fonte"
         posted_by:     "Por %{author}."
         created_at:    "Criada em %{created_at}."
@@ -28,6 +29,7 @@ pt-BR:
         title:         "Título"
         close:         "Fechar"
         no-site-found: "Nenhum site disponível para compartilhar"
+        no-front-news-found: 'Nenhum componente de notícias capa nesse site'
       list:
         read_more:     "Leia mais"
         no_news:       "Nenhuma notícia encontrada"
