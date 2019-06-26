@@ -1,0 +1,17 @@
+en:
+  components:
+    youtube_wrap:
+      name:                " Youtube Embed "
+  activerecord:
+    attributes:
+      youtube_wrap_component:
+        url:             " URL "
+        width:           " Width "
+        height:          " Height "
+        start:           " Start at "
+        html_class:      " HTML Class "
+        controls:        " Show Player Controls "
+        privacy:         " Privacy-Enhanced Mode "
+  youtube_wrap:
+    views:
+      form:

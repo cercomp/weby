@@ -1,0 +1,11 @@
+<%= f.input :url %>
+
+<%= f.input :width, as: :integer %>
+<%= f.input :height, as: :integer %>
+
+<%= f.input :start %>
+
+<%= f.input :controls, wrapper: :checkbox, as: :boolean %>
+<%= f.input :privacy, wrapper: :checkbox, as: :boolean %>
+
+<%= f.input :html_class, :input_html => {:pattern => '^[A-Za-z0-9_\-]*$'} %>
