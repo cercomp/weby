@@ -47,6 +47,30 @@ Rails.application.configure do
   # Set to :debug to see everything in the log.
   config.log_level = :info
 
+  if ENV['MINIO_BUCKET'].present?
+    config.paperclip_defaults = {
+      storage: :s3,
+      s3_protocol: :https,
+      s3_permissions: 'private',
+      s3_region: 'us-east-1',
+      s3_headers: {
+        'Cache-Control' => 'public, s-maxage=31536000, maxage=15552000',
+        'Expires' => 1.year.from_now.to_formatted_s(:rfc822).to_s
+      },
+      s3_credentials: {
+        bucket: ENV['MINIO_BUCKET'],
+        access_key_id: ENV['MINIO_ACCESS_KEY'],
+        secret_access_key: ENV['MINIO_ACCESS_SECRET'],
+      },
+      s3_host_name: 'files.cercomp.ufg.br',
+      s3_options: {
+        endpoint: "https://files.cercomp.ufg.br", # for aws-sdk
+        force_path_style: true # for aws-sdk (required for minio)
+      },
+      url: ':s3_path_url'
+    }
+  end
+
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
 

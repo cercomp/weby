@@ -33,8 +33,6 @@ class Site < ActiveRecord::Base
   has_and_belongs_to_many :locales
   has_and_belongs_to_many :groupings
 
-#  has_attached_file :top_banner, url: '/uploads/:site_id/:style_:basename.:extension'
-
   before_destroy do
     repositories.update_all(archive_file_name: nil)
   end

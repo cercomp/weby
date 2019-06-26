@@ -18,6 +18,9 @@ gem 'cropper-rails', '~> 2.3.2.1'
 gem 'font-awesome-rails', '~> 4.7.0.2'
 gem 'fullcalendar-rails'
 
+#storage
+gem 'aws-sdk', '~> 2'
+
 # Ominiauth
 gem 'omniauth-shibboleth'
 

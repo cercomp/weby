@@ -24,7 +24,12 @@ class Repository < ActiveRecord::Base
   has_attached_file :archive,
     styles: STYLES,
     original_style: :o,
-    url: "/up/:site_id/:style/:basename.:extension",
+    path: proc {
+      Rails.env.production? ?
+        '/up/:site_id/:style/:basename.:extension'
+      : ':rails_root/public:url'
+    },
+    url: '/up/:site_id/:style/:basename.:extension',
     convert_options: {
       i: "-quality 90 -strip",
       l: "-quality 90 -strip",
