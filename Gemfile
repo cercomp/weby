@@ -20,6 +20,8 @@ gem 'fullcalendar-rails'
 
 #storage
 gem 'aws-sdk', '~> 2'
+gem 'fog-aws'
+gem 'asset_sync'
 
 # Ominiauth
 gem 'omniauth-shibboleth'
