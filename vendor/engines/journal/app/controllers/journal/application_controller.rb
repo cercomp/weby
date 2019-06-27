@@ -1,5 +1,7 @@
 module Journal
   class ApplicationController < ::ApplicationController
+    include ApplicationHelper
+
     def sort
 #      Journal::News.includes(:sites, :user, :image)
 #      .where('journal_news.site_id = :site OR journal_news_sites.site_id = :site', site: site.id).available_fronts

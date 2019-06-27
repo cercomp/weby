@@ -24,10 +24,10 @@
   </div>
   <%= yield :social_code if current_site.news_social_share_pos == 'middle' %>
   <summary>
-   <%= raw @news.summary %>
+   <%= render_user_content @news.summary %>
   </summary>
   <div class="body">
-    <%= raw @news.text %>
+    <%= render_user_content @news.text %>
   </div>
 
   <%= content_tag_if @news.source.present?, :p, class: 'source' do %>
