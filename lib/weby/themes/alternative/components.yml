@@ -289,7 +289,7 @@ home:
   alias: Notícias Destaque
   children:
   - settings: '{:size=>"o", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"",
-      :new_tab=>"0", :html_class=>"", :default_image=>"", :title=>{"pt-BR"=>"", "en"=>""}}'
+      :new_tab=>"0", :html_class=>"", :default_image=>"/alternative/banner-1.jpg", :title=>{"pt-BR"=>"", "en"=>""}}'
     name: image
     position: 1
     publish: true
