@@ -294,7 +294,7 @@ div, section, input {
   position: relative;
   padding-left: 34px;
   padding-right: 34px;
-  padding-bottom: 120px;
+  padding-top: 110px;
 
   .read_more {
     padding: 0;
@@ -315,10 +315,10 @@ div, section, input {
   }
 
   &.main {
-    padding-top: 110px;
+    /*padding-top: 110px;*/
 
     #news {
-      grid-template-rows: 340px 110px 340px;
+      grid-template-rows: 340px 110px fit-content(340px);
 
       > li:nth-child(even) {
         article {
@@ -330,6 +330,10 @@ div, section, input {
         }
       }
     }
+  }
+
+  &:last-child {
+    padding-bottom: 120px;
   }
 
   #news, .list {
@@ -703,9 +707,10 @@ div, section, input {
 }
 
 .highlight-news {
-  padding-top: 120px;
   background-color: var(--main-color);
   position: relative;
+  margin-top: 120px;
+  padding-bottom: 100px;
 
   .image_component {
     position: absolute;
@@ -780,7 +785,7 @@ summary em, summary em * {
 /* MULTIMÍDIA */
 
 .media-section {
-  padding: 0 0 60px;
+  padding: 120px 0 120px;
   position: relative;
 
   .container {
@@ -789,7 +794,6 @@ summary em, summary em * {
     justify-content: space-evenly;
 
     > section {
-      margin-bottom: 60px;
       max-width: 350px;
     }
   }

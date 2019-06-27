@@ -65,7 +65,7 @@
   .front_news_component, .subsite_front_news_component, .event_list_component {
     &.main {
       #news {
-        grid-template-rows: 340px 110px 340px 340px 110px;
+        grid-template-rows: 340px 110px fit-content(340px) fit-content(340px) fit-content(110px);
       }
     }
 
@@ -261,8 +261,12 @@
   .header .menu_component>menu {
     display: block;
   }
-  .header .menu_component menu>li.sub>a {
+  .header .menu_component menu > li.sub > a {
     margin-right: 70px;
+  }
+  .header .menu_component > menu > li > a {
+    padding-top: 19px;
+    padding-bottom: 20px;
   }
   .header .menu_component>menu>li.sub>a:after {
     right: -60px;
@@ -333,6 +337,7 @@
       width: 400px;
       padding-left: 0;
       padding-top: 60px;
+      max-width: 100%;
 
       article {
         padding-top: 76px;
@@ -445,9 +450,18 @@
     display: flex;
     z-index: 6;
   }
-  .header .container {
-    position: relative;
+  .header {
+    .container {
+      position: relative;
+    }
   }
+  .header .ufg-logo img, body > header.fixed .ufg-logo img {
+    height: 42px;
+  }
+  .header .logo img, body > header.fixed .logo img {
+    height: 30px;
+  }
+
   body > header .social-icons {
     opacity: 0;
     pointer-events: none;

@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
   end
 
   def choose_layout
-    if params[:preview_skin]
+    if params[:preview_skin].present?
       current_site.skins.find(params[:preview_skin]).theme
     else
       current_site.active_skin.persisted? ? current_site.active_skin.theme : 'weby'
@@ -337,7 +337,7 @@ class ApplicationController < ActionController::Base
         end
 
         @global_components = {}
-        @current_skin = params[:preview_skin] ? current_site.skins.find(params[:preview_skin]) : current_site.active_skin
+        @current_skin = params[:preview_skin].present? ? current_site.skins.find(params[:preview_skin]) : current_site.active_skin
         if @current_skin.persisted?
           components = @current_skin.components.where(publish: true).order('position asc')
           comp_select = lambda { |place_holder|
