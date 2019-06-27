@@ -93,7 +93,7 @@ Rails.application.configure do
   # config.cache_store = :mem_cache_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  asset_host = ENV['STORAGE_HOST'].present? ? "//#{ENV['STORAGE_HOST']}" : proc {|*args| Weby::Assets.asset_host_for(args[0], args[1] || nil) }
+  asset_host = ENV['STORAGE_HOST'].present? ? "//#{ENV['STORAGE_HOST']}/#{ENV['STORAGE_BUCKET']}" : proc {|*args| Weby::Assets.asset_host_for(args[0], args[1] || nil) }
   config.action_controller.asset_host = asset_host
   config.action_mailer.asset_host = asset_host
 
