@@ -101,7 +101,12 @@ div, section, input {
     width: 920px;
     height: 276px;
     border: 0;
+    background: transparent;
+  }
+
+  .flex-viewport {
     box-shadow: -10px 10px 20px 0 rgba(153, 153, 153, 0.2);
+    border-radius: 4px;
   }
 
   .flex-control-paging {
@@ -112,6 +117,8 @@ div, section, input {
     /*padding-left: 460px;*/
     width: 920px;
     height: 276px;
+    background-color: var(--white);
+    border-radius: 4px;
 
     a {
       position: absolute;
@@ -430,7 +437,7 @@ div, section, input {
         border-radius: 4px;
 
         img {
-          width: 327px;
+          width: 327px !important;
           height: 200px;
           padding: 0;
           object-fit: cover;

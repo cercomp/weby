@@ -157,6 +157,14 @@
     .flexslider .flex-caption {
       height: 84px;
     }
+    .flex-direction-nav li a {
+      width: 48px;
+      height: 48px;
+
+      &.flex-prev, &.flex-next {
+        background-size: 48px 48px;
+      }
+    }
   }
 
   .feedback-new-message-title {
@@ -316,15 +324,34 @@
   }
 
   .banner_list_component.card-banner {
-    .flex-direction-nav li a {
-      &.flex-prev {
-        top: 130px;
-        left: 10px;
+
+    .flexslider {
+      width: 380px;
+      height: 474px;
+    }
+
+    .slides > li {
+      width: 380px;
+      height: 474px;
+
+      a {
+        width: 350px;
+        height: 210px;
+        position: absolute;
+        left: 15px;
+        top: 15px;
+        border-radius: 4px;
       }
 
-      &.flex-next {
-        top: 130px;
-        right: 10px;
+      .flex-caption {
+        margin-top: 225px;
+      }
+
+      .flex-caption, .flex-description {
+        padding-top: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-left: 0;
       }
     }
   }
@@ -337,7 +364,7 @@
       width: 379px;
       padding-left: 0;
       padding-top: 106px;
-      max-width: 100%;
+      /*max-width: 100%;*/
       margin-bottom: 40px;
 
       article {
@@ -371,6 +398,22 @@
           left: 50%;
           right: auto;
         }
+      }
+    }
+  }
+
+  .banner_list_component.card-banner {
+    .flex-direction-nav li a {
+      &.flex-prev, &.flex-next {
+        width: 42px;
+        height: 42px;
+        background-size: 42px 42px;
+      }
+      &.flex-prev {
+        left: -48px;
+      }
+      &.flex-next {
+        right: -48px;
       }
     }
   }
@@ -423,45 +466,6 @@
 
   .front_news_title a, .front_news_title span, .event_list_title a, .event_list_title span {
     font-size: 1.6em;
-  }
-
-  .banner_list_component.card-banner {
-    margin-top: 60px;
-    padding-top: 60px;
-
-    .flexslider {
-      width: 380px;
-      height: calc(240px * 2);
-    }
-
-    .slides > li {
-      width: 380px;
-      height: calc(240px * 2);
-
-      a {
-        width: 380px;
-        height: 240px;
-      }
-
-      .flex-caption {
-        margin-top: 240px;
-      }
-
-      .flex-caption, .flex-description {
-        padding-left: 20px;
-        padding-right: 20px;
-        margin-left: 0;
-      }
-    }
-    .flex-direction-nav li a {
-      &.flex-prev {
-        top: 120px;
-      }
-
-      &.flex-next {
-        top: 120px;
-      }
-    }
   }
 
   .social-toggle {
