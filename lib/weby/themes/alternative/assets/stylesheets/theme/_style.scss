@@ -301,9 +301,6 @@ div, section, input {
 }
 
 /* FRONT NEWS */
-
-
-
 .front_news_component, .subsite_front_news_component, .event_list_component {
   border: 0;
   position: relative;
@@ -802,6 +799,10 @@ summary em, summary em * {
 .media-section {
   padding: 120px 0 0;
   position: relative;
+
+  &:last-child {
+    padding-bottom: 120px;
+  }
 
   .container {
     display: flex;
