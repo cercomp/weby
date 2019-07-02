@@ -20,7 +20,7 @@
     <%= yield :components_stylesheets %>
     <%= stylesheet_link_tag 'level2' %>
     <%= render 'sites/shared/loadStyles' %>
-    <link class="contrast-css" rel="stylesheet" media="screen" href="" data-src="<%= asset_url('level2_contrast') %>">
+    <link class="contrast-css" rel="stylesheet" media="screen" href="" data-src="<%= asset_url('level2_contrast.css') %>">
     <%= current_site.try(:head_html).try(:html_safe) %>
     <% skin = current_site.active_skin %>
     <% if (color = skin.get_variable('main_color')).present? %>

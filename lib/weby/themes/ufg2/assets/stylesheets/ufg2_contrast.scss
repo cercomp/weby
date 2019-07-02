@@ -4,8 +4,8 @@ html, body,
 .front_news_component,
 #content,
 .fixed-menus,
-.services,
-.subsite_front_news_component .list article {
+.services
+{
   background-color: var(--gray-0);
   color: #fff;
 }
@@ -29,6 +29,7 @@ html, body,
   color: #fff;
 }
 
+.subsite_front_news_component .list article,
 .header .menu_component menu.submenu > li:hover,
 .fixed-menus .menu_component > menu li:hover,
 body > header,
@@ -60,6 +61,7 @@ body > header,
 
 .social-icon,
 .social-icon:hover,
+.social-cards .image_component:hover,
 .header .menu-bar,
 .header .menu_component menu.submenu,
 .flex-control-nav li a.flex-active, {

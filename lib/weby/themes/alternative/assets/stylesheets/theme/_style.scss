@@ -518,6 +518,10 @@ div, section, input {
           color: var(--dark-gray);
           word-break: break-word;
         }
+
+        a {
+          color: inherit;
+        }
       }
 
       .categories {
@@ -846,16 +850,16 @@ summary em, summary em * {
 
   .text_component p {
     font-family: Lato;
-    font-size: 2.4em;
+    font-size: 1.7em;
     font-weight: 300;
     font-style: normal;
     font-stretch: normal;
     text-align: center;
     padding: 0;
-    margin: 0;
-    line-height: 1.21;
+    margin: 60px 0 30px;
+    line-height: 1.18;
     letter-spacing: normal;
-    color: var(--main-color);
+    color: var(--dark-gray);
 
     a {
       text-decoration: none;
