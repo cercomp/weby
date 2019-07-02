@@ -816,6 +816,25 @@ summary em, summary em * {
     > section {
       max-width: 350px;
     }
+
+    .text_component p {
+      font-family: Lato;
+      font-size: 1.7em;
+      font-weight: 300;
+      font-style: normal;
+      font-stretch: normal;
+      text-align: center;
+      padding: 0;
+      margin: 60px 0 30px;
+      line-height: 1.18;
+      letter-spacing: normal;
+      color: var(--dark-gray);
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+    }
   }
 
   .image_component {
@@ -848,23 +867,19 @@ summary em, summary em * {
     }
   }
 
-  .text_component p {
+  /* Section main title */
+  > .text_component p {
     font-family: Lato;
-    font-size: 1.7em;
+    font-size: 2.4em;
     font-weight: 300;
     font-style: normal;
     font-stretch: normal;
     text-align: center;
     padding: 0;
-    margin: 60px 0 30px;
-    line-height: 1.18;
+    margin: 0;
+    line-height: 1.21;
     letter-spacing: normal;
-    color: var(--dark-gray);
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
+    color: var(--main-color);
   }
 
   .text_component.subtitle p {
