@@ -20,6 +20,10 @@
     pointer-events: auto;
   }
 
+  &:hover {
+    background-color: var(--sub-color);
+  }
+
   img {
     transform: rotate(180deg);
     width: 34px;

@@ -1,0 +1,166 @@
+.dock-container {
+  position: relative;
+}
+
+.side-dock {
+  position: absolute;
+  width: auto;
+  max-width: 144px;
+  padding-top: 140px !important;
+  top: 0;
+  z-index: 3;
+}
+
+.side-dock.fixed {
+  position: fixed;
+}
+
+.side-dock .btn {
+  height: 20px;
+  width: 24px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 0 25px 25px 0;
+  font-family: Lato;
+  font-size: 0.8em;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: var(--white);
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 16px 20px 17px 16px;
+  margin-bottom: 4px;
+  background-color: var(--dark-blue);
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
+  transition: .2s;
+}
+
+.side-dock .btn.active {
+  width: 108px;
+
+  > span {
+    opacity: 1;
+  }
+}
+
+.side-dock .btn > span {
+  transition: .2s;
+  overflow: hidden;
+  white-space: nowrap;
+  position: absolute;
+  text-align: left;
+  left: 50px;
+  padding: 0;
+  opacity: 0;
+}
+
+.side-dock img {
+  vertical-align: bottom;
+  position: absolute;
+}
+
+.side-dock .anchor-news {
+  background-color: #ed5d59;
+}
+
+.side-dock .anchor-newspaper {
+  background-color: var(--light-green);
+}
+
+.side-dock .anchor-events {
+  background-color: var(--light-purple);
+}
+
+.side-dock .anchor-serufg {
+  background-color: var(--light-blue);
+}
+
+.side-dock .anchor-network {
+  background-color: var(--light-yellow);
+}
+
+.side-dock .anchor-services {
+  background-color: var(--light-blue);
+}
+
+ /* Active / hover */
+.side-dock .anchor-news.active, .side-dock .anchor-news:hover {
+  background-color: var(--red);
+}
+
+.side-dock .anchor-newspaper.active, .side-dock .anchor-newspaper:hover {
+  background-color: var(--green);
+}
+
+.side-dock .anchor-events.active, .side-dock .anchor-events:hover {
+  background-color: var(--purple);
+}
+
+.side-dock .anchor-network.active, .side-dock .anchor-network:hover {
+  background-color: var(--yellow);
+}
+
+.side-dock .anchor-services.active, .side-dock .anchor-services:hover,
+.side-dock .anchor-serufg.active, .side-dock .anchor-serufg:hover {
+  background-color: var(--dark-blue);
+}
+
+.smooth_scroll {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.24), 0 0 6px 0 rgba(0, 0, 0, 0.12);
+  background-color: var(--blue);
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: .2s;
+  z-index: 4;
+
+  &.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  &:hover {
+    background-color: var(--sub-color);
+  }
+
+  img {
+    transform: rotate(180deg);
+    width: 34px;
+  }
+}
+
+footer > .blank_component {
+  position: relative;
+}
+
+figure.image.align-right {
+  margin: 0 0 0 20px;
+  float: right;
+}
+
+figure.image.align-left {
+  margin: 0 20px 0 0;
+  float: left;
+}
+
+h3 {
+  font-family: Lato;
+  font-size: 1.7em;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.18;
+  letter-spacing: normal;
+  color: var(--dark-gray);
+}

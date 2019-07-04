@@ -198,13 +198,14 @@ label.check_boxes {
   text-transform: uppercase;
   text-decoration: none;
   color: var(--white);
+  transition: .2s;
 
   &.back {
     display: none;
   }
 
   &:hover {
-    background-color: var(--main-color);
+    background-color: var(--sub-color);
   }
 }
 

@@ -366,6 +366,7 @@ body > header {
   background-color: var(--main-color);
   position: relative;
   box-shadow: 0 2px 10px 0 rgba(102, 102, 102, 0.3);
+  transition: .2s;
 
   a {
     position: absolute;
@@ -386,7 +387,7 @@ body > header {
   }
 
   &:hover {
-    background-color: var(--main-color);
+    background-color: var(--sub-color);
   }
 }
 

@@ -791,6 +791,7 @@ summary em, summary em * {
     text-align: center;
     color: var(--white);
     position: relative;
+    transition: .2s;
 
     &:hover {
       background-color: var(--sub-color);

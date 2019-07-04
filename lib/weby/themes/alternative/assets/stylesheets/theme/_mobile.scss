@@ -109,6 +109,7 @@
 
     .slides > li {
       width: 800px;
+      box-sizing: border-box;
 
       .flex-caption, .flex-description {
         padding-left: 20px;
@@ -135,10 +136,7 @@
     .slides > li {
       width: 460px;
       height: calc(276px * 2);
-
-      .flex-caption {
-        margin-top: 276px;
-      }
+      padding-top: 276px;
 
       .flex-caption, .flex-description {
         padding-left: 20px;
@@ -333,6 +331,7 @@
     .slides > li {
       width: 380px;
       height: 474px;
+      padding-top: 228px;
 
       a {
         width: 380px;
@@ -341,10 +340,6 @@
         left: 0;
         top: 0;
         border-radius: 4px;
-      }
-
-      .flex-caption {
-        margin-top: 228px;
       }
 
       .flex-caption, .flex-description {
