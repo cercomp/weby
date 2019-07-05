@@ -1,7 +1,7 @@
-<section class="image_component <%= component.html_class %>">
+<% repository = Repository.find(component.repository_id) rescue nil %>
+<section class="image_component <%= component.html_class %> <%= repository.present? || component.default_image.present? ? 'has-image' : 'no-image' %>">
   <% link_url = component.target_id.present? ? main_app.site_page_path(component.target_id) : component.url %>
-  <% repository = Repository.find(component.repository_id) rescue nil %>
-  <% if repository %>
+  <% if repository.present? %>
     <% if repository.image? || repository.svg? %>
       <%
           format = component.size.present? ? component.size : format_for_custom(component.width, component.height, repository)

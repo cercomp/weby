@@ -1,3 +1,7 @@
+footer {
+  background-color: var(--white);
+}
+
 .footer {
   padding-top: 60px;
 
@@ -16,10 +20,18 @@
 
   .logo {
     margin-right: 20px;
+
+    img {
+      height: 46px;
+    }
   }
 
   .ufg-logo {
     flex: 1;
+
+    img {
+      height: 48px;
+    }
   }
 
   .social-icons {

@@ -16,7 +16,7 @@
   --light-grey: #eeeeee;
   --dark-gray: #333333;
   --grey: #999999;
-  --bg: #f2f2f2;
+  --bg: #f6f6f6;
   --dark-red: #b21f1b;
   --dark-blue: #0063a0;
   --t-green: #9ccc65;
@@ -35,7 +35,7 @@
 }
 
 body {
-  background-color: var(--white);
+  background-color: var(--bg);
   font-size: 20px;
 
   &.zoom-in {
@@ -59,6 +59,7 @@ div, section, input {
   margin: 0 auto;
   width: 940px;
   max-width: 100%;
+  position: relative;
 }
 
 #map {
@@ -206,8 +207,12 @@ div, section, input {
   }
 }
 
-.front_news_component:nth-of-type(even) {
-  background-color: var(--bg);
+.front_news_component:nth-of-type(odd), .fixed-menus:nth-of-type(odd) {
+  background-color: var(--white);
+
+  .menu_component > menu {
+    background-color: var(--light-grey);
+  }
 }
 
 .front_news_component {
@@ -456,6 +461,7 @@ summary em, summary em * {
 .boxes-section {
   padding: 120px 0 80px;
   position: relative;
+  background-color: var(--white);
 
   .container {
     display: flex;
@@ -545,7 +551,7 @@ summary em, summary em * {
 
 .event_list_component {
   .link_to_all {
-    top: 80px;
+    top: 5px;
 
     a {
       background-color: var(--white);
@@ -563,30 +569,21 @@ summary em, summary em * {
   font-size: inherit;
 }
 
-.event_list_component:first-child #events li {
-  &:nth-child(-n+4) { /* First 4 items floated left */
-    float: left;
-    clear: left;
-  }
-
-  &:nth-child(n+5) { /* from 5th one on */
-    margin-left: 320px;
-  }
-
-  article > .clearfix {
-    clear: none;
-  }
-}
-
 .event_list_component #events {
   padding: 60px 0 120px;
+  display: grid;
+  grid-template-columns: repeat(3, 300px);
+  grid-auto-flow: column;
+  grid-template-rows: repeat(3, auto);
+  grid-column-gap: 20px;
+  grid-row-gap: 30px;
 
   li {
     max-width: 300px;
     position: relative;
     padding-left: 110px;
     box-sizing: border-box;
-    margin: 0 20px 30px 0;
+    margin: 0;
     min-height: 54px;
   }
 
@@ -660,7 +657,6 @@ summary em, summary em * {
 /* Services menus */
 .fixed-menus {
   padding: 140px 34px 60px;
-  background-color: var(--bg);
 
   > .container {
   }
@@ -771,11 +767,27 @@ summary em, summary em * {
 
   .image_component {
     flex: 0 0 220px;
-    height: 124px;
+    /*height: 124px;*/
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
     background-color: var(--white);
     border-radius: 20px 20px 2px 2px;
     position: relative;
+    overflow: hidden;
+
+    &.has-image {
+      border-radius: 4px;
+      padding-top: 140px;
+
+      img {
+        display: block;
+        width: 100%;
+        height: 120px;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    }
 
     a {
       flex: 1;
@@ -784,8 +796,11 @@ summary em, summary em * {
 
     > a {
       position: absolute;
-      width: 100%;
+      width: calc(100% - 40px);
       height: 100%;
+      top: 15px;
+      left: 20px;
+      box-sizing: border-box;
     }
 
     img {
@@ -795,7 +810,7 @@ summary em, summary em * {
     h3 {
       width: 100%;
       margin: 0;
-      padding: 0;
+      padding: 18px 0 33px;
       font-family: Lato;
       font-size: 1.2em;
       font-weight: 300;
@@ -808,6 +823,7 @@ summary em, summary em * {
       color: var(--main-color);
       display: flex;
       align-items: center;
+      box-sizing: border-box;
     }
 
     &:hover {

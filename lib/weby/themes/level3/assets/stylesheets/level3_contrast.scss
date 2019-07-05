@@ -2,9 +2,9 @@ html, body,
 .accessibility-bar,
 .menu_accessibility_component.bar,
 .banner_list_component,
-.front_news_component:nth-of-type(even),
 #content,
 .fixed-menus,
+.boxes-section,
 .services,
 .subsite_front_news_component .list article {
   background-color: var(--gray-0);
@@ -12,17 +12,18 @@ html, body,
 }
 
 .subsite_front_news_component,
-.front_news_component,
 .event-lists,
 .social-cards,
 .main-links,
 .about-home,
 .footer .bottom,
 .maps,
-.front_news_component:nth-of-type(even) #news article,
+.front_news_component:nth-of-type(odd),
+.front_news_component #news article,
 .fixed-menus .menu_component > menu,
 .services .services-icons .image_component,
 #content .news_list_container .news-list .search-results .item-search-result,
+#content .news_list_container .news-list .search-results .item-search-result article,
 .breadcrumb_component,
 .flexslider,
 .feedback-custom-text .faq
@@ -37,9 +38,10 @@ html, body,
 body > header,
 .highlight-events #events,
 .main-links .image_component,
+.front_news_component:nth-of-type(odd) #news article,
 .services .services-icons .image_component:hover,
-.footer,
-.front_news_component #news article {
+.footer
+{
   background-color: var(--gray-12);
 }
 
@@ -64,6 +66,7 @@ body > header,
 
 .social-icon,
 .social-icon:hover,
+.social-toggle,
 .main-links .image_component:hover,
 .header .menu-bar,
 .header .menu_component menu.submenu,

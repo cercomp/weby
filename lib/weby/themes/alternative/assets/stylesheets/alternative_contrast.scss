@@ -25,6 +25,7 @@ footer,
 .fixed-menus .menu_component > menu,
 .services .services-icons .image_component,
 #content .news_list_container .news-list .search-results .item-search-result,
+#content .news_list_container .news-list .search-results .item-search-result article,
 .breadcrumb_component,
 .flexslider,
 .feedback-custom-text .faq
@@ -37,6 +38,7 @@ footer,
 .front_news_component #news article,
 .social-icon,
 .social-icon:hover,
+.social-toggle,
 .event_list_component #events > li article,
 .banner_list_component.card-banner .flexslider {
   box-shadow: none;
@@ -76,6 +78,7 @@ footer .footer,
 
 .social-icon,
 .social-icon:hover,
+.social-toggle,
 body > header,
 .header .menu_component menu.submenu,
 .top-banner .flex-control-nav li a.flex-active, {

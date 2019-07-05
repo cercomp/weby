@@ -474,6 +474,16 @@
       position: relative;
     }
   }
+  body > header {
+    .menu-bar.mob-open {
+      .search_box_component {
+        top: 92px;
+      }
+      .menu_component {
+        top: 151px;
+      }
+    }
+  }
   .header .ufg-logo img, body > header.fixed .ufg-logo img {
     height: 42px;
   }

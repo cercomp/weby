@@ -78,10 +78,13 @@
   }
   .event_list_component #events li {
     /*max-width: 50%;*/
+    &:nth-child(n+9) {
+      display: none;
+    }
   }
   .event_list_component #events {
     grid-template-columns: repeat(2, 300px);
-    grid-template-rows: repeat(5, auto);
+    grid-template-rows: repeat(4, auto);
     justify-content: center;
   }
 }

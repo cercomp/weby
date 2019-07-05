@@ -1,3 +1,82 @@
+---
+bottom:
+- settings: '{:html_class=>"footer"}'
+  name: components_group
+  position: 1
+  publish: true
+  alias: Footer
+  children:
+  - settings: '{:html_class=>"container"}'
+    name: components_group
+    position: 1
+    publish: true
+    alias: Container
+    children:
+    - settings: '{:size=>"", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"",
+        :new_tab=>"0", :html_class=>"logo", :default_image=>"level2/marca-prpg.svg",
+        :title=>{"pt-BR"=>"", "en"=>""}}'
+      name: image
+      position: 1
+      publish: true
+    - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://www.ufg.br",
+        :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"ufg-logo",
+        :default_image=>"level2/marca-ufg.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
+      name: image
+      position: 2
+      publish: true
+  - settings: '{:html_class=>"container"}'
+    name: components_group
+    position: 2
+    publish: true
+    alias: Container
+    children:
+    - settings: '{:html_class=>"address", :body=>{"pt-BR"=>"<p><span>UFG - Universidade
+        Federal de Goi&aacute;s</span></p><p><span>CNPJ: 01567601/0001-43</span></p><p><span>Avenida
+        Esperan&ccedil;a s/n, C&acirc;mpus Samambaia - Pr&eacute;dio da Reitoria.</span></p><p><span>CEP
+        74690-900 Goi&acirc;nia - Goi&aacute;s - Brasil.</span></p><p><span>Fone:
+        +55 (62) 3521.1000</span></p>", "en"=>""}}'
+      name: text
+      position: 1
+      publish: true
+    - settings: '{:menu_id=>"%{menu_id}", :style=>"menu", :dropdown=>"1", :html_class=>"",
+        :title=>{"pt-BR"=>"", "en"=>""}}'
+      name: menu
+      position: 2
+      publish: true
+      menu:
+        name: Principal
+  - settings: '{:html_class=>"bottom"}'
+    name: components_group
+    position: 3
+    publish: true
+    alias: Fundo
+    children:
+    - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://sic.ufg.br",
+        :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"", :default_image=>"level2/marca-ai.png",
+        :title=>{"pt-BR"=>"", "en"=>""}}'
+      name: image
+      position: 1
+      publish: true
+    - settings: '{:html_class=>"", :body=>{"pt-BR"=>"<p><span>&copy; Universidade
+        Federal de Goi&aacute;s - UFG. Todos os direitos reservados.</span></p>",
+        "en"=>""}}'
+      name: text
+      position: 2
+      publish: true
+- settings: '{:put_at_end=>"0", :body=>{"pt-BR"=>"<a class=\"smooth_scroll\" href=\"#barra-brasil\"
+    id=\"scroll-to-top\" title=\"Voltar ao Topo\"><img src=\"/assets/level2/expand-more-white.svg\"/></a>",
+    "en"=>"", "es"=>""}, :html_class=>""}'
+  name: blank
+  position: 2
+  publish: true
+  alias: Voltar Topo
+- settings: '{:put_at_end=>"1", :body=>{"pt-BR"=>"<script> $(\".smooth_scroll\").click(function(){
+    $(\"html, body\").stop().animate({scrollTop: $($(this).attr(\"href\")).offset().top},
+    480); return false; });</script>", "en"=>""}}'
+  name: blank
+  position: 3
+  publish: true
+  alias: Voltar Topo - JS
 first_place:
 - settings: '{:background=>"#7F7F7F"}'
   name: gov_bar
@@ -60,35 +139,35 @@ top:
       publish: true
       alias: Ícones sociais
       children:
-      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://twitter.com",
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://twitter.com/ufg_oficial",
           :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"social-icon",
           :default_image=>"level2/ic-twitter.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
         name: image
         position: 1
         publish: true
         alias: twitter
-      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://www.facebook.com",
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://www.facebook.com/pages/Universidade-Federal-de-Goi%C3%A1s/309079942482780?fref=ts",
           :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"social-icon",
           :default_image=>"level2/ic-facebook.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
         name: image
         position: 2
         publish: true
         alias: facebook
-      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://www.youtube.com/",
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://www.youtube.com/channel/UCVEN3bSdTJsYvDM0JfqerYA",
           :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"social-icon",
           :default_image=>"level2/ic-youtube.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
         name: image
         position: 3
         publish: true
         alias: Youtube
-      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"http://instagram.com",
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"http://instagram.com/ufg_oficial",
           :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"social-icon",
           :default_image=>"level2/ic-instagram.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
         name: image
         position: 4
         publish: true
         alias: Instagram
-      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://plus.google.com",
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://plus.google.com/+fotosufg",
           :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"social-icon",
           :default_image=>"level2/ic-googleplus.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
         name: image
@@ -152,6 +231,11 @@ top:
         name: search_box
         position: 5
         publish: true
+      - settings: '{:put_at_end=>"1", :body=>{"pt-BR"=>"<script> $(''.menu-handle'').click(function(){
+          $(''.menu-bar'').toggleClass(''mob-open''); });</script>", "en"=>""}}'
+        name: blank
+        position: 6
+        publish: true
 - settings: '{:label=>{"pt-BR"=>"", "en"=>""}, :home_label=>{"pt-BR"=>"Início", "en"=>"Home"}}'
   name: breadcrumb
   position: 2
@@ -164,7 +248,7 @@ home:
   position: 1
   publish: true
   alias: Slider
-- settings: '{:quant=>"6", :max_char=>"", :filter_by=>"", :image_size=>"m",
+- settings: '{:quant=>"6", :max_char=>"", :filter_by=>"destaque,teste", :image_size=>"m",
     :avatar_width=>"300", :avatar_height=>"", :tag_as_label=>"0", :read_more=>"1",
     :show_author=>"0", :show_date=>"1", :order_by=>"position", :new_tab=>"1", :label=>{"pt-BR"=>"Notícias",
     "en"=>"", "es"=>""}, :link_to_all=>{"pt-BR"=>"Ver todas", "en"=>"", "es"=>""},
@@ -200,7 +284,7 @@ home:
       position: 1
       publish: true
       menu:
-        name: Serviços
+        name: Principal
 - settings: '{:html_class=>"event-lists"}'
   name: components_group
   position: 5
@@ -322,81 +406,3 @@ home:
         position: 4
         publish: true
         alias: PRPI (Pró-Reitoria de Pesquisa e Inovação)
-bottom:
-- settings: '{:html_class=>"footer"}'
-  name: components_group
-  position: 1
-  publish: true
-  alias: Footer
-  children:
-  - settings: '{:html_class=>"container"}'
-    name: components_group
-    position: 1
-    publish: true
-    alias: Container
-    children:
-    - settings: '{:size=>"", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"",
-        :new_tab=>"0", :html_class=>"logo", :default_image=>"level2/marca-prpg.svg",
-        :title=>{"pt-BR"=>"", "en"=>""}}'
-      name: image
-      position: 1
-      publish: true
-    - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://www.ufg.br",
-        :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"ufg-logo",
-        :default_image=>"level2/marca-ufg.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
-      name: image
-      position: 2
-      publish: true
-  - settings: '{:html_class=>"container"}'
-    name: components_group
-    position: 2
-    publish: true
-    alias: Container
-    children:
-    - settings: '{:html_class=>"address", :body=>{"pt-BR"=>"<p><span>UFG - Universidade
-        Federal de Goi&aacute;s</span></p><p><span>CNPJ: 01567601/0001-43</span></p><p><span>Avenida
-        Esperan&ccedil;a s/n, C&acirc;mpus Samambaia - Pr&eacute;dio da Reitoria.</span></p><p><span>CEP
-        74690-900 Goi&acirc;nia - Goi&aacute;s - Brasil.</span></p><p><span>Fone:
-        +55 (62) 3521.1000</span></p>", "en"=>""}}'
-      name: text
-      position: 1
-      publish: true
-    - settings: '{:menu_id=>"%{menu_id}", :style=>"menu", :dropdown=>"1", :html_class=>"",
-        :title=>{"pt-BR"=>"", "en"=>""}}'
-      name: menu
-      position: 2
-      publish: true
-      menu:
-        name: Rodapé
-  - settings: '{:html_class=>"bottom"}'
-    name: components_group
-    position: 3
-    publish: true
-    alias: Fundo
-    children:
-    - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://sic.ufg.br",
-        :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"", :default_image=>"level2/marca-ai.png",
-        :title=>{"pt-BR"=>"", "en"=>""}}'
-      name: image
-      position: 1
-      publish: true
-    - settings: '{:html_class=>"", :body=>{"pt-BR"=>"<p><span>&copy; Universidade
-        Federal de Goi&aacute;s - UFG. Todos os direitos reservados.</span></p>",
-        "en"=>""}}'
-      name: text
-      position: 2
-      publish: true
-- settings: '{:put_at_end=>"0", :body=>{"pt-BR"=>"<a class=\"smooth_scroll\" href=\"#barra-brasil\"
-    id=\"scroll-to-top\" title=\"Voltar ao Topo\"><img src=\"/assets/level2/expand-more-white.svg\"/></a>",
-    "en"=>"", "es"=>""}, :html_class=>""}'
-  name: blank
-  position: 2
-  publish: true
-  alias: Voltar Topo
-- settings: '{:put_at_end=>"1", :body=>{"pt-BR"=>"<script> $(\".smooth_scroll\").click(function(){
-    $(\"html, body\").stop().animate({scrollTop: $($(this).attr(\"href\")).offset().top},
-    480); return false; });</script>", "en"=>""}}'
-  name: blank
-  position: 3
-  publish: true
-  alias: Voltar Topo - JS
