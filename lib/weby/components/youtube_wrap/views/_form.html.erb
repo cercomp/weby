@@ -8,4 +8,4 @@
 <%= f.input :controls, wrapper: :checkbox, as: :boolean %>
 <%= f.input :privacy, wrapper: :checkbox, as: :boolean %>
 
-<%= f.input :html_class, :input_html => {:pattern => '^[A-Za-z0-9_\-]*$'} %>
+<%= f.input :html_class, :input_html => {:pattern => '^[A-Za-z0-9_\-\s]*$'} %>

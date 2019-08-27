@@ -63,6 +63,6 @@ class YoutubeWrapComponent < Component
   end
 
   validates :url, presence: true
-  validates :html_class, format: { with: /\A[A-Za-z0-9_\-]*\z/ }
+  validates :html_class, format: { with: /\A[A-Za-z0-9_\-\s]*\z/ }
 
 end
