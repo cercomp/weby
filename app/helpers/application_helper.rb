@@ -548,6 +548,11 @@ module ApplicationHelper
     end
   end
 
+  def unescape_param param
+    # call it twice so %2B becomes + and then becomes ' 'space
+    CGI.unescape(CGI.unescape(param.to_s))
+  end
+
   # Input: Site object
   # Output: link to the favicon
   def favicon(site)

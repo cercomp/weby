@@ -81,6 +81,7 @@ class ApplicationController < ActionController::Base
     session[:locales] ||= {}
     locale = params[:locale] || session[:locales][locale_key] || I18n.default_locale
     locale = current_user.locale.try(:name) || locale if not_in_site_context? && current_user
+    locale = Locale.find_by(id: locale)&.name || I18n.default_locale if locale.to_s.match(/^\d+$/) # fix cases when locale param is ID
     @current_locale = session[:locales][locale_key] = I18n.locale = locale if locale != @current_locale
   end
 

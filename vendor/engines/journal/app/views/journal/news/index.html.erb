@@ -22,7 +22,7 @@
   <span class="show_grid"></span>
 
   <% if params[:tags] %>
-    <% tags = params[:tags].split(',') %>
+    <% tags = unescape_param(params[:tags]).split(',') %>
     <% tags.each do |tag| %>
       <% newtags = tags.reject {|t| t == tag} %>
       <% newtags.any? ? params[:tags] = newtags.join(',') : params.delete(:tags) %>

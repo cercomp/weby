@@ -94,7 +94,7 @@ module Journal::Admin
       if news_site.blank?
         news_site = Journal::NewsSite.create!(site_id: params[:site_id], journal_news_id: params[:id], front: true)
       end
-      tags = params[:tag].to_s.split(',').map(&:strip)
+      tags = unescape_param(params[:tag]).to_s.split(',').map(&:strip)
       if tags.present?
         news_site.category_list.add(*tags)
         news_site.save!

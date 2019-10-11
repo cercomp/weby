@@ -33,7 +33,7 @@ module Calendar
     private
 
     def tags
-      params[:tags].split(',').map { |tag| tag.mb_chars.downcase.to_s }
+      unescape_param(params[:tags]).split(',').map { |tag| tag.mb_chars.downcase.to_s }
     end
 
     def get_events paginate=true
