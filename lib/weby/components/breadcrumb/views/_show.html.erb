@@ -11,7 +11,7 @@
         <li>
           <%= link_to t(".news"), news_index_path %><span class="breadcrumb-divider"></span>
         </li>
-        <% last = @news %>
+        <% last = @news if !@news.is_a?(Array) %>
       <% elsif @event %>
         <li>
           <%= link_to t(".events"), events_path %><span class="breadcrumb-divider"></span>
@@ -45,7 +45,9 @@
           <% last = @page %>
         <% end %>
       <% end %>
-      <li><%= last.try(:title) || last.try(:name) %></li>
+      <% if last %>
+        <li><%= last.try(:title) || last.try(:name) %></li>
+      <% end %>
    </ul>
 </div>
 <% end %>
