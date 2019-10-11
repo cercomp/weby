@@ -19,7 +19,7 @@
         <% last = @event %>
       <% elsif @message %>
         <% last = @message %>
-      <% else #@page %>
+      <% elsif @page %>
         <% items = MenuItem.where(target_type: "Page", target_id: @page.id) #A pagina pode estar em varios menus, vamos usar o mais fundo %>
         <% if items.empty? then
             #verificar se nao existe um item de menu somente com a url da página
