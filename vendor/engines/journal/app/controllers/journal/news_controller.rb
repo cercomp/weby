@@ -45,7 +45,7 @@ module Journal
       params[:page] ||= 1
       # Vai ao banco por linha para recuperar
       # tags e locales
-      if params[:tags]
+      if params[:tags].present?
         news_sites = current_site.news_sites.published.tagged_with(tags, any: true)
         @news = []
         news_sites.each do |sites|

@@ -2,7 +2,7 @@
 class ApplicationController < ActionController::Base
   include ApplicationHelper # In order to user helper methods in controllers
   include SimpleCaptcha::ControllerHelpers
-  
+
   force_ssl if: :should_be_ssl?
 
   protect_from_forgery with: :exception
@@ -138,7 +138,7 @@ class ApplicationController < ActionController::Base
         "#{exception.message}\n"\
         "#{filter_backtrace(exception).join("\n")}\n"\
         "#{request.host_with_port}#{request.fullpath} from #{request.remote_ip}\n"\
-        "#{params}\n"\
+        "#{request.filtered_parameters}\n"\
         '}')
     Rollbar.error(exception, error_code: @error_code) if Rails.env.production?
     respond_to do |format|

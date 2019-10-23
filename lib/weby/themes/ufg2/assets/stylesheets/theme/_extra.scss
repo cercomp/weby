@@ -136,6 +136,12 @@
   }
 }
 
+.sub-menu-footer {
+  .dropdown li a {
+    text-transform: none;
+  }
+}
+
 footer > .blank_component {
   position: relative;
 }

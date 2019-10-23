@@ -10,6 +10,16 @@
   vertical-align: baseline;
   border-radius: .25em;
   text-decoration: none;
+  margin-right: 5px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 
   &:empty {
     display: none;
@@ -87,7 +97,7 @@
   }
 }
 
-a.weby-label {
+a.weby-label, .wbey-label a {
   &:hover,
   &:focus {
     color: #FFFFFF;
