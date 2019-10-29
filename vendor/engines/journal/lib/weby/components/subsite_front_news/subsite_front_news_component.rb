@@ -1,6 +1,6 @@
 class SubsiteFrontNewsComponent < Component
   component_settings :quant, :source, :sel_site, :tag_as_label, :hide_author,
-                     :label, :link_to_all, :order_by
+                     :label, :link_to_all, :link_to_all_url, :order_by, :label_link
 
   i18n_settings :label, :link_to_all
 
@@ -39,6 +39,10 @@ class SubsiteFrontNewsComponent < Component
   alias_method :_order_by, :order_by
   def order_by
     _order_by.blank? ? order_types[0].to_s : _order_by
+  end
+
+  def link_to_all_url_options
+    ['news', 'home']
   end
 
   def source_options
