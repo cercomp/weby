@@ -20,9 +20,9 @@
     <%= yield :components_stylesheets %>
     <%= stylesheet_link_tag 'alternative' %>
     <%= render 'sites/shared/loadStyles' %>
-    <link class="contrast-css" rel="stylesheet" media="screen" href="" data-src="<%= asset_url('alternative_contrast') %>">
+    <link class="contrast-css" rel="stylesheet" media="screen" href="" data-src="<%= asset_url('alternative_contrast.css') %>">
     <%= current_site.try(:head_html).try(:html_safe) %>
-    <% skin = current_site.active_skin %>
+    <% skin = params[:preview_skin].present? ? current_site.skins.find(params[:preview_skin]) : current_site.active_skin %>
     <% if (color = skin.get_variable_config('color_scheme')).present? %>
       <style type="text/css">
         :root {

@@ -1,7 +1,7 @@
 .news-show, .page-show, .event-show {
   padding: 40px 34px 100px;
   margin: 0 auto;
-  max-width: 940px;
+  max-width: 1110px;
 
   > a:first-child {
     display: none;
@@ -43,6 +43,7 @@
     letter-spacing: normal;
     color: var(--dark-gray);
     margin: 0 0 80px;
+    overflow: auto;
 
     p {
       margin: 0;
@@ -112,14 +113,14 @@
     padding: 7px 16px;
     margin-right: 11px;
     margin-bottom: 10px;
+    transition: .2s;
 
     &:last-child {
       margin-right: 0;
     }
 
     &:hover {
-      background-color: var(--main-color);
-      opacity: .9;
+      background-color: var(--sub-color);
     }
   }
 
@@ -144,13 +145,14 @@
       padding: 14px 30px 15px;
       margin-right: 16px;
       margin-bottom: 5px;
+      transition: .2s;
 
       &:last-child {
         margin-right: 0;
       }
 
       &:hover {
-        background-color: var(--main-color);
+        background-color: var(--sub-color);
       }
     }
   }
@@ -332,6 +334,7 @@ ufg-eventos {
   line-height: 20px;
   border: 1px solid #ddd;
   border-radius: 4px;
+  margin-bottom: 5px;
   transition: all 0.2s ease-in-out;
 }
 
@@ -340,7 +343,7 @@ ufg-eventos {
   font-family: 'Lato';
 
   .news_list_container {
-    width: 940px;
+    width: 1110px;
     margin: 0 auto;
     padding-bottom: 20px;
 
@@ -608,10 +611,6 @@ ufg-eventos {
                 color: var(--white);
                 display: inline-block;
               }
-
-              a.weby-label:HOVER {
-                background-color: var(--blue);
-              }
             }
           }
 
@@ -725,7 +724,7 @@ ufg-eventos {
     }
 
     .news-list.grid .search-results {
-      max-width: 940px;
+      max-width: 1110px;
       margin: 0 auto;
       padding: 60px 0 140px;
       display: grid;
@@ -816,7 +815,7 @@ ufg-eventos {
 */
 
 .pages_list_container {
-  width: 940px;
+  width: 1110px;
   margin: 0 auto;
 
   h2 {
@@ -958,7 +957,7 @@ ufg-eventos {
   }
 
   .search-results {
-    max-width: 940px;
+    max-width: 1110px;
     margin: 0 auto;
     padding: 60px 0 140px;
     display: grid;
@@ -1230,7 +1229,7 @@ ufg-eventos {
 /*
 * News list
 */
-@media (max-width: 940px) {
+@media (max-width: 1110px) {
   #content {
     .news_list_container {
       width: 100%;
@@ -1355,7 +1354,7 @@ ufg-eventos {
 /*
 * Pages
 */
-@media (max-width: 940px) {
+@media (max-width: 1110px) {
   #content {
     .pages_list_container {
       width: 100%;

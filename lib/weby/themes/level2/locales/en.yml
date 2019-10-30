@@ -1,11 +1,11 @@
 en:
   themes:
     level2:
-      title:              " Unidades e Órgãos "
+      title:              " Unidades e Órgãos A"
       placeholders:
         first_place:        " Top "
         home:               " Home Page "
         top:                " Header "
         bottom:             " Bottom "
       variables:
-        main_color:         " Main Color "
+        color_scheme:         " Color Scheme "

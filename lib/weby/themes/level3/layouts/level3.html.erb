@@ -1,0 +1,53 @@
+<% load_components %>
+<!doctype html>
+<html lang="<%= current_locale %>">
+  <head>
+    <title><%= "#{yield :title} | " if content_for?(:title) %><%= @site.try(:title) || 'Weby' %></title>
+    <meta charset="utf-8"/>
+    <meta name="description" content="<%= @site.try(:description) %>"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <%= csrf_meta_tag %>
+    <%= render 'sites/shared/social_meta' %>
+    <%= favicon_link_tag favicon(@site) %>
+    <%= auto_discovery_link_tag(:rss, main_app.site_feed_url(format: 'rss'),  {:title => "#{@site.try(:title)} - RSS"}) %>
+    <%= auto_discovery_link_tag(:atom, main_app.site_feed_url(format: 'atom'),  {:title => "#{@site.try(:title)} - ATOM"}) %>
+    <%= stylesheet_link_tag 'webybar' %>
+    <%= stylesheet_link_tag 'weby-assets' %>
+    <%= yield :stylesheets %>
+    <%= yield :components_stylesheets %>
+    <%= stylesheet_link_tag 'level3' %>
+    <%= render 'sites/shared/loadStyles' %>
+    <link class="contrast-css" rel="stylesheet" media="screen" href="" data-src="<%= asset_url('level3_contrast.css') %>">
+    <%= current_site.try(:head_html).try(:html_safe) %>
+    <% skin = current_site.active_skin %>
+     <% if (color = skin.get_variable_config('color_scheme')).present? %>
+      <style type="text/css">
+        :root {
+          --main-color: <%= color['main'] %>;
+          --sub-color: <%= color['sub'] %>;
+        }
+      </style>
+    <% end %>
+  </head>
+  <body>
+    <%= render_webybar %>
+    <div class='first_place'>
+      <%= yield :layout_first_place %>
+    </div>
+    <header>
+      <%= yield :layout_top %>
+    </header>
+    <section id="content">
+      <%= yield %>
+    </section>
+    <footer>
+      <%= yield :layout_bottom %>
+    </footer>
+    <%= javascript_include_tag 'base' %>
+    <%= javascript_include_tag 'level3' %>
+    <%= yield :javascripts %>
+  </body>
+</html>

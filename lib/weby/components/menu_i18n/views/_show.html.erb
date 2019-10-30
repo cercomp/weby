@@ -5,7 +5,7 @@
   <% if component.dropdown  %>
     <ul class="i18n_dropdown" >
       <li>
-      <%= link_to (component.template == 'code' ? curr_locale.code : flag(curr_locale)), { locale: curr_locale } %>
+      <%= link_to (component.template == 'code' ? curr_locale.code : flag(curr_locale)), { locale: curr_locale.name } %>
         <ul class="i18n_submenu">
           <% locales.select{|loc| loc.name != curr_locale.name }.each do |locale| %>
             <li><%= link_to (component.template == 'code' ? locale.code : flag(locale)), { locale: locale.name } %></li>

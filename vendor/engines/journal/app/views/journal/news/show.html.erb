@@ -28,6 +28,15 @@
   </summary>
   <div class="body">
     <%= render_user_content @news.text %>
+    <% if @news.related_files.any? %>
+      <% if !@news.text.match(/\<audio/) %>
+        <% @news.related_files.each do |file| %>
+          <% if file.audio? %>
+            <%= content_tag :audio, '', controls: 'controls', src: asset_url(file.archive.url) %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
   </div>
 
   <%= content_tag_if @news.source.present?, :p, class: 'source' do %>

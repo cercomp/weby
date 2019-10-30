@@ -112,14 +112,14 @@
     padding: 7px 16px;
     margin-right: 11px;
     margin-bottom: 10px;
+    transition: .2s;
 
     &:last-child {
       margin-right: 0;
     }
 
     &:hover {
-      background-color: var(--main-color);
-      opacity: .9;
+      background-color: var(--sub-color);
     }
   }
 
@@ -144,13 +144,14 @@
       padding: 14px 30px 15px;
       margin-right: 16px;
       margin-bottom: 5px;
+      transition: .2s;
 
       &:last-child {
         margin-right: 0;
       }
 
       &:hover {
-        background-color: var(--main-color);
+        background-color: var(--sub-color);
       }
     }
   }
@@ -431,7 +432,7 @@ ufg-eventos {
       font-stretch: normal;
       line-height: 1.21;
       letter-spacing: normal;
-      color: var(--red);
+      color: var(--main-color);
       margin: 0;
       padding: 30px 0;
     }
@@ -607,10 +608,6 @@ ufg-eventos {
                 text-align: center;
                 color: var(--white);
                 display: inline-block;
-              }
-
-              a.weby-label:HOVER {
-                background-color: var(--blue);
               }
             }
           }

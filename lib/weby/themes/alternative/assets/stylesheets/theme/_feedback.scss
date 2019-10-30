@@ -4,7 +4,7 @@
 
 .feedback-new-message-title, .feedback-new-message-form {
   margin: 0 auto;
-  width: 940px;
+  width: 1110px;
   max-width: 100%;
 }
 
@@ -87,7 +87,7 @@
   .faq, .form-tooltip {
     > * {
       margin: 0 auto;
-      width: 940px;
+      width: 1110px;
       max-width: 100%;
     }
   }
@@ -198,13 +198,14 @@ label.check_boxes {
   text-transform: uppercase;
   text-decoration: none;
   color: var(--white);
+  transition: .2s;
 
   &.back {
     display: none;
   }
 
   &:hover {
-    background-color: var(--main-color);
+    background-color: var(--sub-color);
   }
 }
 

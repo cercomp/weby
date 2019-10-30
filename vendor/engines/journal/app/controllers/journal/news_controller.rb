@@ -37,7 +37,7 @@ module Journal
     private
 
     def tags
-      params[:tags].split(',').map { |tag| tag.mb_chars.downcase.to_s }
+      unescape_param(params[:tags]).split(',').map { |tag| tag.mb_chars.downcase.to_s }
     end
 
     def get_news
@@ -45,18 +45,18 @@ module Journal
       params[:page] ||= 1
       # Vai ao banco por linha para recuperar
       # tags e locales
-      if params[:tags]
+      if params[:tags].present?
         news_sites = current_site.news_sites.published.tagged_with(tags, any: true)
         @news = []
         news_sites.each do |sites|
           @news << sites.journal_news_id
         end
-        result = Journal::News.published.where('journal_news.id in (?)', @news).
+        result = Journal::News.published.includes(:user, :related_files, :news_sites).where('journal_news.id in (?)', @news).
              search(params[:search], params.fetch(:search_type, 1).to_i).
              order(sort_column + ' ' + sort_direction).
              page(params[:page]).per(params[:per_page])
       else
-        result = Journal::News.published.where(site_id: current_site).
+        result = Journal::News.published.includes(:user, :related_files, :news_sites).where(site_id: current_site).
             search(params[:search], params.fetch(:search_type, 1).to_i).
             order(sort_column + ' ' + sort_direction).
             page(params[:page]).per(params[:per_page])

@@ -37,6 +37,7 @@
 body {
   background-color: var(--bg);
   font-size: 20px;
+  overflow-x: hidden;
 
   &.zoom-in {
     font-size: 24px;
@@ -82,6 +83,7 @@ div, section, input {
 .banner_list_component.card-banner {
   position: relative;
   padding: 120px 0;
+  margin-top: 120px;
 
   &:before {
     content: '';
@@ -99,7 +101,12 @@ div, section, input {
     width: 920px;
     height: 276px;
     border: 0;
+    background: transparent;
+  }
+
+  .flex-viewport {
     box-shadow: -10px 10px 20px 0 rgba(153, 153, 153, 0.2);
+    border-radius: 4px;
   }
 
   .flex-control-paging {
@@ -110,6 +117,8 @@ div, section, input {
     /*padding-left: 460px;*/
     width: 920px;
     height: 276px;
+    background-color: var(--white);
+    border-radius: 4px;
 
     a {
       position: absolute;
@@ -287,14 +296,17 @@ div, section, input {
   }
 }
 
-/* FRONT NEWS */
+.front_news_component, .subsite_front_news_component, .event_list_component, .banner_list_component {
+  margin-top: 0;
+}
 
+/* FRONT NEWS */
 .front_news_component, .subsite_front_news_component, .event_list_component {
   border: 0;
   position: relative;
   padding-left: 34px;
   padding-right: 34px;
-  padding-bottom: 120px;
+  padding-top: 110px;
 
   .read_more {
     padding: 0;
@@ -315,10 +327,10 @@ div, section, input {
   }
 
   &.main {
-    padding-top: 110px;
+    /*padding-top: 110px;*/
 
     #news {
-      grid-template-rows: 340px 110px 340px;
+      grid-template-rows: 340px 110px fit-content(340px);
 
       > li:nth-child(even) {
         article {
@@ -330,6 +342,10 @@ div, section, input {
         }
       }
     }
+  }
+
+  &:last-child {
+    padding-bottom: 120px;
   }
 
   #news, .list {
@@ -418,7 +434,7 @@ div, section, input {
         border-radius: 4px;
 
         img {
-          width: 327px;
+          width: 327px !important;
           height: 200px;
           padding: 0;
           object-fit: cover;
@@ -501,6 +517,10 @@ div, section, input {
           letter-spacing: normal;
           color: var(--dark-gray);
           word-break: break-word;
+        }
+
+        a {
+          color: inherit;
         }
       }
 
@@ -703,9 +723,9 @@ div, section, input {
 }
 
 .highlight-news {
-  padding-top: 120px;
   background-color: var(--main-color);
   position: relative;
+  margin-top: 120px;
 
   .image_component {
     position: absolute;
@@ -754,7 +774,8 @@ summary em, summary em * {
   text-align: center;
 
   a {
-    padding: 23px 93px;
+    padding: 23px 0;
+    width: 350px;
     display: inline-block;
     border-radius: 4px;
     background-color: var(--main-color);
@@ -770,6 +791,7 @@ summary em, summary em * {
     text-align: center;
     color: var(--white);
     position: relative;
+    transition: .2s;
 
     &:hover {
       background-color: var(--sub-color);
@@ -780,8 +802,12 @@ summary em, summary em * {
 /* MULTIMÍDIA */
 
 .media-section {
-  padding: 0 0 60px;
+  padding: 120px 0 0;
   position: relative;
+
+  &:last-child {
+    padding-bottom: 120px;
+  }
 
   .container {
     display: flex;
@@ -789,8 +815,26 @@ summary em, summary em * {
     justify-content: space-evenly;
 
     > section {
-      margin-bottom: 60px;
       max-width: 350px;
+    }
+
+    .text_component p {
+      font-family: Lato;
+      font-size: 1.7em;
+      font-weight: 300;
+      font-style: normal;
+      font-stretch: normal;
+      text-align: center;
+      padding: 0;
+      margin: 60px 0 30px;
+      line-height: 1.18;
+      letter-spacing: normal;
+      color: var(--dark-gray);
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
     }
   }
 
@@ -809,7 +853,7 @@ summary em, summary em * {
       font-stretch: normal;
       text-align: center;
       padding: 0;
-      margin: 0 0 30px;
+      margin: 60px 0 30px;
       line-height: 1.18;
       letter-spacing: normal;
       color: var(--dark-gray);
@@ -824,7 +868,8 @@ summary em, summary em * {
     }
   }
 
-  .text_component p {
+  /* Section main title */
+  > .text_component p {
     font-family: Lato;
     font-size: 2.4em;
     font-weight: 300;
@@ -832,15 +877,10 @@ summary em, summary em * {
     font-stretch: normal;
     text-align: center;
     padding: 0;
-    margin: 0 0 60px;
+    margin: 0;
     line-height: 1.21;
     letter-spacing: normal;
     color: var(--main-color);
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
   }
 
   .text_component.subtitle p {

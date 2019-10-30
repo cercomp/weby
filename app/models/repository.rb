@@ -104,6 +104,10 @@ class Repository < ActiveRecord::Base
     archive_content_type.include?('flash') || archive_content_type.include?('shockwave')
   end
 
+  def audio?
+    archive_content_type.include?('audio')
+  end
+
   # Removing characters in conflict with paperclip
   # TODO: Review thie method
   def normalize_file_name
