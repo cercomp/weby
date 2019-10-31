@@ -118,7 +118,6 @@ class Repository < ActiveRecord::Base
 
   # Reprocessamento de imagens para (re)gerar os thumbnails quando necessário
   def reprocess
-    return if ENV['STORAGE_HOST'].present? # don't reprocess if hosted storage
     archive.reprocess! if need_reprocess?
   rescue Errno::ENOENT => e
     File.open(Rails.root.join('log/error.log'), 'a') do |f|
