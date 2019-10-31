@@ -10,7 +10,7 @@
         <%= period_dates(event.begin_at, event.end_at) %>
     </div>
     <summary>
-      <%= raw event.information %>
+      <%= render_user_content event.information %>
     </summary>
     <% event.category_list.each do |category| %>
       <span class="category"><%= link_to category , events_path( tags: category.to_s ), class: 'weby-label default' %></span>

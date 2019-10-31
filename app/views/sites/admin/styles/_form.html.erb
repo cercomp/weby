@@ -108,7 +108,7 @@
           }
 
           var insert_into_editor = function(value){
-            var path = value[0].original_path.replace(/\?\d+$/, '')
+            var path = value[0].file_url.replace(/\?\d+$/, '')
             editor.replaceRange(path, editor.getCursor())
           }
 
