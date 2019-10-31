@@ -62,7 +62,7 @@ Rails.application.configure do
       s3_credentials: {
         bucket: ENV['STORAGE_BUCKET'],
         access_key_id: ENV['STORAGE_ACCESS_KEY'],
-        secret_access_key: ENV['STORAGE_ACCESS_SECRET'],
+        secret_access_key: ENV['STORAGE_ACCESS_SECRET']
       },
       s3_host_name: ENV['STORAGE_HOST'],
       s3_options: {
