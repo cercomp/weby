@@ -13,19 +13,23 @@
         <th class='site-name'><%= sortable 'name', t(".name") %></th>
         <th><%= sortable 'title', t(".title") %></th>
         <th><%= sortable 'description', t(".description") %></th>
+        <th>Status</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
       <% @sites.each do |site| %>
-        <tr>
+        <tr class="<%= site.status %>">
           <td> <%= link_to site.name, site_url(subdomain: site) %> </td>
           <td> <%= site.title %> </td>
           <td> <%= site.description %> </td>
+          <td><%= t(".#{site.status}") %></td>
           <td class="text-right">
-                <%= link_to icon('trash', text: t(".delete")), admin_site_path(site.id), class: "action-link", method: :delete, data: {confirm: t('are_you_sure')} if current_user && current_user.is_admin %>
-                <%= link_to icon('briefcase', text: t(".dashboard")), site_admin_url(subdomain: site), class: "action-link"  if current_user && current_user.has_role_in?(site) %>
-                <%= link_to icon('edit', text: t(".settings")), edit_admin_site_path(site.id), class: "action-link" if current_user && current_user.is_admin %>
+            <% if current_user && current_user.is_admin %>
+              <%= link_to icon('trash', text: t(".delete")), admin_site_path(site.id), class: "action-link", method: :delete, data: {confirm: t('are_you_sure')} %>
+              <%= link_to icon('edit', text: t(".settings")), edit_admin_site_path(site.id), class: "action-link" %>
+            <% end %>
+            <%= link_to icon('briefcase', text: t(".dashboard")), site_admin_url(subdomain: site), class: "action-link"  if current_user && current_user.has_role_in?(site) %>
           </td>
         </tr>
       <% end %>

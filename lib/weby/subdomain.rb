@@ -27,9 +27,11 @@ module Weby
       domain = @site_domain unless domain
       domain = domain.gsub(/www\./, '')
       sites = domain.split('.')
-      site = Site.where(parent_id: nil).find_by_name(sites[-1])
       if sites.length == 2
-        site = site.subsites.find_by_name(sites[-2]) if site
+        site = Site.where(parent_id: nil).find_by_name(sites[-1])
+        site = site.subsites.active.find_by_name(sites[-2]) if site
+      elsif sites.length == 1
+        site = Site.active.where(parent_id: nil).find_by_name(sites[-1])
       end
       site if [1, 2].include? sites.length
     end

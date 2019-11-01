@@ -14,7 +14,7 @@ class SitesController < ApplicationController
     params[:page] ||= 1
 
     # TODO Search using the new's tittle too
-      @sites = Site.ordered_by_front_pages(params[:search])
+      @sites = Site.active.ordered_by_front_pages(params[:search])
 
     if !current_user || !current_user.is_admin?
       @sites = @sites.visible
@@ -54,6 +54,7 @@ class SitesController < ApplicationController
   end
 
   def admin
+    fail ActiveRecord::RecordNotFound unless current_site
     @last_repositories = current_site.repositories.last(4)
     @last_activity_records = current_site.activity_records.includes(:user, :loggeable).last(10)
     @last_news = current_site.news.includes(:image, :i18ns).order(id: :asc).last(4)

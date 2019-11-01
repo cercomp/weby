@@ -47,6 +47,8 @@ class Site < ActiveRecord::Base
 
   validate :at_least_one_locale
 
+  scope :active, -> { where(status: 'active') }
+
   scope :name_or_description_like, ->(text) {
     where('lower(sites.name) LIKE lower(:text) OR
            lower(sites.description) LIKE lower(:text) OR

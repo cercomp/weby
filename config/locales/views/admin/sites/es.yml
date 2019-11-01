@@ -19,6 +19,8 @@ es:
         settings:               " Configuración "
         no-site-found:          " No hay sitios."
         delete:                 " Excluir "
+        active:                 " Activo "
+        inactive:               " Inactivo "
       form:
         example_width:          " Ejemplo "
         example_url:            " Ejemplo: http://site.com "
@@ -28,3 +30,5 @@ es:
         footer_text:            " Institución - Dirección. XXX. Ciudad-Estado - Teléfono: General: + XX XX XXXX-XXXX, Servicio del usuario : + XXXX-XXXX XX XX XX + XXXX-XXXX. Fax: + XX XX XXXX-XXXX "
         view_desc_pages_help:   " ¿Quieres mostrar lo autor de las páginas? "
         domain_explain:         " Rellene el campo únicamente si es distinta de la predeterminada "
+        active:                 " Activo "
+        inactive:               " Inactivo "

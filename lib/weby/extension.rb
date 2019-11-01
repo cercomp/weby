@@ -13,6 +13,6 @@ class Weby::Extension
   # route matches ==========================
   def matches?(request)
     site = Weby::Subdomain.find_site
-    site.has_extension(@name)
+    site.has_extension(@name) if site
   end
 end

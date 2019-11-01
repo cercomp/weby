@@ -19,6 +19,8 @@ pt-BR:
         settings:               " Configurações "
         no-site-found:          " Nenhum site encontrado."
         delete:                 " Excluir "
+        active:                 " Ativo "
+        inactive:               " Inativo "
       form:
         example_width:          " Exemplo "
         example_url:            " Exemplo: http://site.com "
@@ -28,3 +30,5 @@ pt-BR:
         footer_text:            " Instituição - Endereço. CEP XXXXX-XXX - Caixa Postal XXX. Cidade-Estado - Fone: Geral: +XX XX XXXX-XXXX; Atendimento ao Usuário: +XX XX XXXX-XXXX, +XX XXXX-XXXX. Fax: +XX XX XXXX-XXXX "
         view_desc_pages_help:   " Deseja mostrar o autor das páginas? "
         domain_explain:         " Preencha o domínio apenas se for diferente do padrão "
+        active:                 " Ativo "
+        inactive:               " Inativo "
