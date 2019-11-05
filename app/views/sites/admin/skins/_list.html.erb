@@ -10,6 +10,7 @@
       </thead>
       <tbody>
         <% styles.each do |style| %>
+          <% next if !style.owner.active? %>
           <tr id="sort_style_<%= style.id %>" class="<%= "deactivated" unless style.publish %>">
             <td> <%= icon('retweet') if style.style %><%= link_to(style.name, site_admin_skin_style_path(style.skin_id, style)) %> </td>
             <td> <%= style.style ?

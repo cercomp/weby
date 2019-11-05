@@ -94,6 +94,10 @@ class Site < ActiveRecord::Base
     extensions.to_a.keep_if { |extension| Weby.extensions[extension.name.to_sym] }
   end
 
+  def active?
+    status == 'active'
+  end
+
   SHAREABLES.each do |shareable|
     define_method("#{shareable}_social_share_pos") { settings["#{shareable}.social_share_pos"] }
     define_method("#{shareable}_social_share_pos=") { |value| settings["#{shareable}.social_share_pos"] = value }

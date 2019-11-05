@@ -22,9 +22,10 @@ class Sites::Admin::SkinsController < ApplicationController
 
     @styles = {}
     @styles[:others] = Style.not_followed_by(@skin).search(params[:search])
+                            .joins(:site).where(sites: {status: 'active'})
                             .order('sites.name, styles.name')
                             .page(params[:page]).per(params[:per_page])
-    @styles[:styles] = @skin.styles.includes(:style, :followers, :site) if request.format.html?
+    @styles[:styles] = @skin.styles.includes(:style, :followers, :site) if request.format.html? #.where(sites: {status: 'active'})
   end
 
   def new

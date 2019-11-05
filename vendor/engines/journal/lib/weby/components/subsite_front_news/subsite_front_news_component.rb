@@ -12,8 +12,8 @@ class SubsiteFrontNewsComponent < Component
     limit = quant || 5
     direction = 'desc'
     if source == 'selected'
-      site = Site.find_by(id: sel_site)
-      site ? site.news_sites
+      site = Site.active.find_by(id: sel_site)
+      site ? site.news_sites.joins(news: :site).where(sites: {status: 'active'})
                .order("journal_news_sites.#{order_by} #{direction}")
                .available_fronts
                .published
@@ -21,6 +21,7 @@ class SubsiteFrontNewsComponent < Component
            : Journal::NewsSite.none
     else
       Journal::NewsSite.from_subsites(curr_site)
+        .joins(news: :site).where(sites: {status: 'active'})
         .order("journal_news_sites.#{order_by} #{direction}")
         .available_fronts
         .published
