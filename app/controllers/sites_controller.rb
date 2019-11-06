@@ -68,7 +68,7 @@ class SitesController < ApplicationController
 
   def edit
     @site = current_site
-    @sites = @site.subsites
+    @sites = @site.subsites.active
       .except(:order)
       .order("#{sort_column} #{sort_direction}")
       .page(params[:page])

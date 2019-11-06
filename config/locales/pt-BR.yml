@@ -61,6 +61,7 @@ pt-BR:
 #---I---#
   invalid_activation_token:             " Link de ativação inválido ou expirado! "
   import:                               " Importar "
+  inactive:                             "Inativo"
 #---J---#
 #---K---#
 #---L---#

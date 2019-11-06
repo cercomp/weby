@@ -2,7 +2,7 @@
   <%= f.show_errors %>
 
   <%= f.input :name, :hint => t("field_required"), :input_html => {:pattern => '^[a-z0-9_\-]+$'}  %>
-  <%= f.input :parent_id, :collection => main_sites_list(@site).collect{|s| [s.title || s.name ,s.id]}, :label => t(".main_site") %>
+  <%= f.input :parent_id, :collection => main_sites_list(@site).collect{|s| ["#{s.title || s.name}#{ " [#{t('inactive')}]" if !s.active? }" ,s.id]}, :label => t(".main_site") %>
   <%= f.input :url, :hint =>  (t("field_required") + " " + t(".example_url")), :placeholder => "http://"%>
   <%= f.association :groupings, input_html: {class: 'select2 site-groupings'} %>
   <%= f.input :status, :collection => [[t('.active'), 'active'], [t('.inactive'), 'inactive']], include_blank: false %>

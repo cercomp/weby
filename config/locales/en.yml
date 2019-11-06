@@ -60,7 +60,8 @@ en:
 #---H---#
 #---I---#
   invalid_activation_token:             " Invalid or expired activation link! "
-  import:                               " Importar "
+  import:                               " Import "
+  inactive:                             "Inactive"
 #---J---#
 #---K---#
 #---L---#

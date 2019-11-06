@@ -60,6 +60,7 @@ es:
 #---H---#
 #---I---#
   invalid_activation_token:             " Link de activación no válida o vencida! "
+  inactive:                             "Inactivo"
 #---J---#
 #---K---#
 #---L---#
