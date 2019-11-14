@@ -12,6 +12,9 @@
   <%= f.input :view_desc_pages, :hint => t(".view_desc_pages_help"), :as => :boolean, wrapper: :checkbox %>
 
   <%= f.input :body_width, :hint => t(".example_width") %>
+
+  <%= f.input :restrict_theme, :as => :boolean, wrapper: :checkbox %>
+
   <%= f.input :per_page,  :hint => t(".example_per_page") %>
   <%= f.input :per_page_default,  :required => true %>
 

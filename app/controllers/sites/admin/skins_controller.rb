@@ -1,6 +1,6 @@
 class Sites::Admin::SkinsController < ApplicationController
   before_action :require_user
-  before_action :check_authorization
+  before_action :check_authorization, except: [:index, :show]
   before_action :load_skin, only: [:show, :destroy, :apply, :preview, :edit, :update]
 
   def index
