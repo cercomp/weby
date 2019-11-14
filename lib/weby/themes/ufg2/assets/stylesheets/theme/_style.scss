@@ -504,8 +504,10 @@ summary em, summary em * {
   }
 
   .front_news_title {
-    span {
+    span, a {
       color: var(--white);
+      z-index: 2;
+      position: relative;
     }
   }
 
