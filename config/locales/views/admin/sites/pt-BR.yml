@@ -21,6 +21,8 @@ pt-BR:
         delete:                 " Excluir "
         active:                 " Ativo "
         inactive:               " Inativo "
+        deactivate:             " Desativar "
+        activate:               " Ativar "
       form:
         example_width:          " Exemplo "
         example_url:            " Exemplo: http://site.com "

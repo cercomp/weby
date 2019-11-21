@@ -10,9 +10,13 @@ class Admin::SitesController < Admin::BaseController
 
     @sites = Site.name_or_description_like(params[:search]).
       except(:order).
-      order(sort_column + ' ' + sort_direction).
-      page(params[:page]).
-      per(params[:per_page])
+      order(sort_column + ' ' + sort_direction)
+
+    if params[:status_filter].present?
+      @sites = @sites.where(status: params[:status_filter])
+    end
+
+    @sites = @sites.page(params[:page]).per(params[:per_page])
   end
 
   def new
@@ -38,9 +42,14 @@ class Admin::SitesController < Admin::BaseController
     if @site.update(site_params)
       flash[:success] = t'successfully_updated'
       record_activity('updated_site', @site)
-      redirect_to edit_admin_site_path(@site.id)
+      redirect_to params[:return_to] == 'index' ? admin_sites_path : edit_admin_site_path(@site.id)
     else
-      render :edit
+      if params[:return_to] == 'index'
+        flash[:alert] = t('problem_update_site')
+        redirect_to admin_sites_path
+      else
+        render :edit
+      end
     end
   end
 

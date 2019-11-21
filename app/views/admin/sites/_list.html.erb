@@ -26,6 +26,11 @@
           <td><%= t(".#{site.status}") %></td>
           <td class="text-right">
             <% if current_user && current_user.is_admin %>
+              <% if site.status == 'active' %>
+                <%= link_to icon('remove-circle', text: t(".deactivate")), admin_site_path(site.id, return_to: :index, site: {status: 'inactive'}), class: "action-link", method: :patch, data: {confirm: t('are_you_sure')} %>
+              <% else %>
+                <%= link_to icon('ok-circle', text: t(".activate")), admin_site_path(site.id, return_to: :index, site: {status: 'active'}), class: "action-link", method: :patch, data: {confirm: t('are_you_sure')} %>
+              <% end %>
               <%= link_to icon('trash', text: t(".delete")), admin_site_path(site.id), class: "action-link", method: :delete, data: {confirm: t('are_you_sure')} %>
               <%= link_to icon('edit', text: t(".settings")), edit_admin_site_path(site.id), class: "action-link" %>
             <% end %>

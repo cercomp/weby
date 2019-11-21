@@ -25,4 +25,8 @@ module SitesHelper
     html += '</div>'
     html.html_safe
   end
+
+  def site_status_options
+    [[t('active'), 'active'], [t('inactive'), 'inactive']]
+  end
 end

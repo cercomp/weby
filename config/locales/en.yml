@@ -16,6 +16,7 @@ en:
   access_denied:                        " Access denied "
   access_denied_page:                   " You are not allowed to see this page! "
   add_sub_menu:                         " Add sub menu item "
+  active:                               " Active "
 #---B---#
   back:                                 " Back "
   begin:                                " Begin "

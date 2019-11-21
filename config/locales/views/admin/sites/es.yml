@@ -21,6 +21,8 @@ es:
         delete:                 " Excluir "
         active:                 " Activo "
         inactive:               " Inactivo "
+        deactivate:             " Desactivar "
+        activate:               " Activar "
       form:
         example_width:          " Ejemplo "
         example_url:            " Ejemplo: http://site.com "
