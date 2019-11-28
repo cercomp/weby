@@ -20,10 +20,10 @@ module Feedback
         if @message.save
           if (@groups.length == 0)
             emails = current_site.users.no_admin.actives.map(&:email).join(',')
-            FeedbackMailer.send_feedback(@message, emails, current_site).deliver
+            FeedbackMailer.send_feedback(@message, emails, current_site).deliver_now
           else
             @message.groups.each do |group|
-              FeedbackMailer.send_feedback(@message, group.emails, current_site).deliver
+              FeedbackMailer.send_feedback(@message, group.emails, current_site).deliver_now
             end
           end
         else
