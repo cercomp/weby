@@ -23,3 +23,4 @@ en:
         parent_id:         " Parent id "
         locales:           " Languages "
         head_html:         " Head HTML "
+        status:            " Status "

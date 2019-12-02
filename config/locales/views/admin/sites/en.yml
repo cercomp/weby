@@ -19,6 +19,10 @@ en:
         settings:               " Settings "
         no-site-found:          " No site found."
         delete:                 " Delete "
+        active:                 " Active "
+        inactive:               " Inactive "
+        deactivate:             " Deactivate "
+        activate:               " Activate "
       form:
         example_width:          " Example "
         example_url:            " Example: http://site.com "
@@ -28,3 +32,5 @@ en:
         footer_text:            " Institution - Address. Zip XXXXX-XXX - Post Box XXX. City-State - Phone: +XX XX XXXX-XXXX; Customer Care: +XX XX XXXX-XXXX, +XX XXXX-XXXX. Fax: +XX XX XXXX-XXXX "
         view_desc_pages_help:   " You wish to show the author of pages? "
         domain_explain:         " Fill in the domain field only if it's different than the default "
+        active:                 " Active "
+        inactive:               " Inactive "

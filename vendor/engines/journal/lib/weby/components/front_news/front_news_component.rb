@@ -14,7 +14,7 @@ class FrontNewsComponent < Component
 
   def news(site, page_param)
     direction = 'desc'
-    site.news_sites.available_fronts.published.joins(:news)
+    site.news_sites.available_fronts.published.joins(news: :site).where(sites: {status: 'active'})
       .order("journal_news_sites.#{order_by} #{direction}").page(page_param).per(quant)
   end
   private :news

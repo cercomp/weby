@@ -51,6 +51,7 @@
       <% @newslist.each do |news_site| %>
         <% if news_site.news %>
           <% news = news_site.news %>
+          <% next if !news.site&.active? %>
             <tr id="sort_news_<%= news.id %>" class="sort_news <%= news_site.category_list.map{|categ| categ.parameterize }.join(' ') %>">
               <td>
                 <% if news.site_id == current_site.id %>

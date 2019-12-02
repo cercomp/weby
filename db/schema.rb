@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190527131905) do
+ActiveRecord::Schema.define(version: 20191101142850) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -386,9 +386,11 @@ ActiveRecord::Schema.define(version: 20190527131905) do
     t.integer  "top_banner_height"
     t.string   "domain"
     t.text     "head_html"
+    t.string   "status",                       default: "active"
   end
 
   add_index "sites", ["parent_id"], name: "index_sites_on_parent_id", using: :btree
+  add_index "sites", ["status"], name: "index_sites_on_status", using: :btree
   add_index "sites", ["top_banner_id"], name: "index_sites_on_top_banner_id", using: :btree
 
   create_table "skins", force: :cascade do |t|

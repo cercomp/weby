@@ -13,6 +13,7 @@ class Sites::Admin::RepositoriesController < ApplicationController
 
     if params[:global]
       @repositories = Repository.where.not(site_id: current_site.id).
+      joins(:site).where(sites: {status: 'active'}).
       description_or_filename(params[:search]).
       order(sort_column + ' ' + sort_direction).
       page(params[:page]).per(per_page)

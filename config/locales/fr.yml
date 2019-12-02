@@ -13,6 +13,7 @@ fr:
   are_you_sure:                         " Você tem certeza? "
   activate_deactivate:                  " Ativar/Desativar "
   activate:                             " Ativar "
+  active:                               " Ativo "
   #access_denied:                        " Acesso negado! "
   #access_denied_page:                   " Você não está autorizado a ver está página! "
   add_sub_menu:                         " Adiciona um item de menu filho "
@@ -61,6 +62,7 @@ fr:
 #---I---#
   invalid_activation_token:             " Link de ativação inválido ou expirado! "
   import:                               " Importar "
+  inactive:                             "Inativo"
 #---J---#
 #---K---#
 #---L---#
