@@ -1,0 +1,138 @@
+footer {
+  padding-top: 60px;
+  background-color: var(--white);
+
+  .logos {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+
+  .ufg-logo {
+    img {
+      height: 58px;
+    }
+  }
+
+  .logo {
+    margin-right: 20px;
+
+    img {
+      height: 42px;
+    }
+  }
+
+  .address {
+    font-family: Lato;
+    font-size: 0.8em;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.88;
+    letter-spacing: normal;
+    text-align: center;
+    color: #666666;
+    margin-bottom: 60px;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .footer {
+    background-color: var(--main-color);
+    padding-top: 80px;
+  }
+
+  .container {
+    width: 940px;
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 20px;
+  }
+
+  .fones {
+    flex: 0 0 350px;
+    font-family: Lato;
+    font-size: 0.8em;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.38;
+    letter-spacing: normal;
+    color: var(--white);
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .menu {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    > .image_component {
+      text-align: right;
+    }
+  }
+
+  .menu_component {
+    flex: 1;
+    margin: 20px 0 0;
+  }
+
+  menu {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .dropdown > li {
+    text-align: right;
+
+    > a {
+      font-family: Lato;
+      font-size: 0.9em;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 2.22;
+      letter-spacing: normal;
+      text-decoration: none;
+      text-transform: uppercase;
+      color: var(--white);
+
+      &:hover {
+        opacity: .8;
+      }
+    }
+  }
+
+  .copyright {
+    padding: 80px 20px 40px;
+    opacity: 0.8;
+    font-family: Lato;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: var(--white);
+
+    p {
+      margin: 0;
+    }
+  }
+}

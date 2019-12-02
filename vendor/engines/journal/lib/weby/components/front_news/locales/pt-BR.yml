@@ -33,6 +33,7 @@ pt-BR:
         new_tab:              " Abrir páginas com URL em uma nova janela "
         max_char:             " Número máximo de caracteres do resumo "
         order_by:             " Ordenação "
+        html_class:           " Classe HTML "
         date_format:          " Formato da data "
         link_to_all:          " Texto do 'Ver todas' "
     errors:

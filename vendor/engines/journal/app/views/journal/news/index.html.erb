@@ -21,14 +21,13 @@
   <span class="show_list active"></span>
   <span class="show_grid"></span>
 
-  <% if params[:tags] %>
-    <% tags = params[:tags].split(',') %>
+  <% if params[:tags].present? %>
+    <% tags = unescape_param(params[:tags]).split(',') %>
     <% tags.each do |tag| %>
-      <% newtags = tags.reject {|t| t == tag} %>
-      <% newtags.any? ? params[:tags] = newtags.join(',') : params.delete(:tags) %>
-      <%= link_to news_index_path(params), class: 'weby-label info' do %>
-        <%= tag %> X
-      <% end %>
+      <% othertags = tags.reject {|t| t == tag} %>
+      <span class="weby-label info">
+        <%= tag %> <%= link_to 'X', news_index_path(params.except(:action, :controller).merge(tags: othertags.join(','))) %>
+      </span>
     <% end %>
   <% end %>
   <div id="news" class="news-list">

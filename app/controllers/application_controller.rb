@@ -2,7 +2,7 @@
 class ApplicationController < ActionController::Base
   include ApplicationHelper # In order to user helper methods in controllers
   include SimpleCaptcha::ControllerHelpers
-  
+
   force_ssl if: :should_be_ssl?
 
   protect_from_forgery with: :exception
@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
   end
 
   def choose_layout
-    if params[:preview_skin]
+    if params[:preview_skin].present?
       current_site.skins.find(params[:preview_skin]).theme
     else
       current_site.active_skin.persisted? ? current_site.active_skin.theme : 'weby'
@@ -81,6 +81,7 @@ class ApplicationController < ActionController::Base
     session[:locales] ||= {}
     locale = params[:locale] || session[:locales][locale_key] || I18n.default_locale
     locale = current_user.locale.try(:name) || locale if not_in_site_context? && current_user
+    locale = Locale.find_by(id: locale)&.name || I18n.default_locale if locale.to_s.match(/^\d+$/) # fix cases when locale param is ID
     @current_locale = session[:locales][locale_key] = I18n.locale = locale if locale != @current_locale
   end
 
@@ -137,7 +138,7 @@ class ApplicationController < ActionController::Base
         "#{exception.message}\n"\
         "#{filter_backtrace(exception).join("\n")}\n"\
         "#{request.host_with_port}#{request.fullpath} from #{request.remote_ip}\n"\
-        "#{params}\n"\
+        "#{request.filtered_parameters}\n"\
         '}')
     Rollbar.error(exception, error_code: @error_code) if Rails.env.production?
     respond_to do |format|
@@ -337,7 +338,7 @@ class ApplicationController < ActionController::Base
         end
 
         @global_components = {}
-        @current_skin = params[:preview_skin] ? current_site.skins.find(params[:preview_skin]) : current_site.active_skin
+        @current_skin = params[:preview_skin].present? ? current_site.skins.find(params[:preview_skin]) : current_site.active_skin
         if @current_skin.persisted?
           components = @current_skin.components.where(publish: true).order('position asc')
           comp_select = lambda { |place_holder|

@@ -10,7 +10,9 @@ en:
         source:                     " Source "
         sel_site:                   " Site "
         label:                      " Title "
+        label_link:                 " Link on Title "
         link_to_all:                " 'View all' text "
+        link_to_all_url:            " 'View all' link "
         tag_as_label:               " Show first tag as label "
         hide_author:                " Hide author/date "
         order_by:                   " Order by "
@@ -24,6 +26,8 @@ en:
         subsites:                   " Subsites "
         selected:                   " Selected site "
         position:             " Manual (in the original site) "
+        news:                 " News "
+        home:                 " Homepage "
         created_at:           " Created at "
         updated_at:           " Updated at "
 

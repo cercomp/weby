@@ -17,6 +17,7 @@ en:
         show_title:          " Show title? "
         show_description:    " Show description? "
         show_controls:       " Show controls? "
+        html_class:          " HTML Class "
   banner_list:
     views:
       form:

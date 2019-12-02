@@ -1,0 +1,56 @@
+.smooth_scroll {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.24), 0 0 6px 0 rgba(0, 0, 0, 0.12);
+  background-color: var(--main-color);
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: .2s;
+  z-index: 4;
+
+  &.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  &:hover {
+    background-color: var(--sub-color);
+  }
+
+  img {
+    transform: rotate(180deg);
+    width: 34px;
+  }
+}
+
+footer > .blank_component {
+  position: relative;
+}
+
+figure.image.align-right {
+  margin: 0 0 0 20px;
+  float: right;
+}
+
+figure.image.align-left {
+  margin: 0 20px 0 0;
+  float: left;
+}
+
+h3 {
+  font-family: Lato;
+  font-size: 1.7em;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.18;
+  letter-spacing: normal;
+  color: var(--dark-gray);
+}

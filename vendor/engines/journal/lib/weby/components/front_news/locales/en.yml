@@ -31,6 +31,7 @@ en:
         hide_filtered_tags:   " Hide filtered categories "
         type_filter:          " Filter by page type "
         image_size:           " Image version "
+        html_class:           " HTML Class "
         new_tab:              " Open news with URL in a new tab "
         max_char:             " Maximum number of characters "
         link_to_all:          " Link to all news "

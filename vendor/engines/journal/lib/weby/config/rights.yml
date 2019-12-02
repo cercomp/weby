@@ -6,7 +6,7 @@ rights:
         pt-BR: Listar Notícias
       action: index fronts
     show:
-      name: 
+      name:
         en: View News
         pt-BR: Ver Notícias
       action: show
@@ -14,7 +14,7 @@ rights:
       name:
         en: Edit News
         pt-BR:  Editar Notícias
-      action: edit update toggle
+      action: edit update toggle update_draft restore_draft cancel
     share:
       name:
         en: Share News
@@ -26,27 +26,27 @@ rights:
         pt-BR:  Descompartilhar Notícias
       action: unshare
     destroy:
-      name: 
+      name:
         en: Destroy News
         pt-BR: Excluir Notícias
       action: destroy
     sort:
-      name: 
+      name:
         en: Order News
         pt-BR: Ordernar Notícias
       action: sort
     new:
-      name: 
+      name:
         en: Create News
         pt-BR: Criar Notícias
-      action: new create
+      action: new create update_draft restore_draft cancel
     purge:
-      name: 
+      name:
         en: Purge
         pt-BR: Excluir permanentemente
       action: recycle_bin destroy purge
     recover:
-      name: 
+      name:
         en: Restore News
         pt-BR: Restaurar Notícias
       action: recycle_bin recover

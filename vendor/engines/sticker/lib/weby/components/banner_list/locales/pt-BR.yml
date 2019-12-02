@@ -17,6 +17,7 @@ pt-BR:
         show_title:          " Mostrar titulo? "
         show_description:    " Mostrar descrição? "
         show_controls:       " Mostrar controles? "
+        html_class:          " Classe HTML "
   banner_list:
     views:
       form:

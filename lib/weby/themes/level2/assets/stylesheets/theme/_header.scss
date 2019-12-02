@@ -13,14 +13,22 @@ body .header {
   height: 100%;
   position: relative;
   padding: 16px 0;
-  padding-bottom: calc(16px + 30px);
+  margin-bottom: 60px;
 
   .ufg-logo {
     margin-right: 10px;
+
+    img {
+      height: 62px;
+    }
   }
 
   .logo {
     margin-right: 20px;
+
+    img {
+      height: 46.5px;
+    }
   }
 
   .social-icons {
@@ -31,6 +39,7 @@ body .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    max-height: 68px;
   }
 
   .menu-bar {
@@ -80,8 +89,18 @@ body .header {
         margin: 0 auto;
       }
 
+      .menu-logo-ufg {
+        img {
+          height: 32px;
+        }
+      }
+
       .menu-logo {
         margin-right: 10px;
+
+        img {
+          height: 25px;
+        }
       }
 
       .menu-logo, .menu-logo-ufg {
@@ -359,6 +378,7 @@ header .social-icon {
   margin-left: 8px;
   background-color: var(--main-color);
   position: relative;
+  transition: .2s;
 
   a {
     position: absolute;
@@ -379,7 +399,7 @@ header .social-icon {
   }
 
   &:hover {
-    background-color: var(--main-color);
+    background-color: var(--sub-color);
   }
 }
 

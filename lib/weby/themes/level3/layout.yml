@@ -1,0 +1,48 @@
+title: Unidades e Órgãos B
+width: 500
+private: true
+placeholders:
+  - names: ['first_place']
+  - names: ['top']
+  - names: ['home']
+  - names: ['bottom']
+variables:
+  color_scheme:
+    type: 'color'
+    values:
+      purple:
+        main: '#ba68c8'
+        sub: '#93539f'
+      pink:
+        main: '#f06292'
+        sub: '#c04e74'
+      red:
+        main: '#ef5350'
+        sub: '#bf4240'
+      yellow:
+        main: '#f9a825'
+        sub: '#c6861d'
+      grey:
+        main: '#828282'
+        sub: '#686868'
+      lemon_green:
+        main: '#afb42b'
+        sub: '#8b9022'
+      light_blue:
+        main: '#4fc3f7'
+        sub: '#3f9cc5'
+      green:
+        main: '#4caf50'
+        sub: '#3c8c40'
+      orange:
+        main: '#fb8c00'
+        sub: '#c87000'
+      brown:
+        main: '#8d6e63'
+        sub: '#6f574f'
+      blue:
+        main: '#2096f3'
+        sub: '#1978c2'
+      grey_blue:
+        main: '#78909c'
+        sub: '#60737c'

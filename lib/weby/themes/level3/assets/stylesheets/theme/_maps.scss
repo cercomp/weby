@@ -1,0 +1,102 @@
+.map-tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.map-tab {
+  padding: 16px 20px 10px;
+  font-family: Lato;
+  font-size: 0.7em;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  text-transform: uppercase;
+  text-align: center;
+  color: #666666;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+}
+
+.map-tab.selected {
+  color: var(--dark-gray);
+  border-color: #0081d0;
+}
+
+.map-panel {
+  width: 100%;
+  display: none;
+}
+
+.map-panel .map {
+  height: 440px;
+  position: relative;
+}
+
+.map-label {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  padding: 15px;
+  background-color: rgba(0,0,0,.5);
+  border-radius: 8px;
+  pointer-events: none;
+  font-size: 1em;
+}
+
+.map-panel.active {
+  display: block;
+}
+
+.map img {
+  max-width: 100%;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.map img:after {
+  content: 't';
+}
+
+.maps {
+  padding: 80px 0 0;
+  background-color: var(--white);
+}
+
+.maps .simple-title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.maps .address {
+  padding: 30px 0;
+  font-family: Lato;
+  font-size: 0.9em;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 2.22;
+  letter-spacing: normal;
+  text-align: center;
+  color: #666666;
+  background-color: var(--bg);
+}
+
+.maps .address .container {
+  display: flex;
+}
+
+.maps .address .container > div {
+  flex: 1;
+}
+
+.maps .address p {
+  margin: 0;
+}

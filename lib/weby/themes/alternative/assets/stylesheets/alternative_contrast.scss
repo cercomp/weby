@@ -1,0 +1,207 @@
+html, body,
+.accessibility-bar,
+.menu_accessibility_component.bar,
+.banner_list_component,
+.front_news_component:nth-of-type(even),
+.highlight-news,
+#content,
+.fixed-menus,
+.services,
+.subsite_front_news_component .list article {
+  background-color: var(--gray-0);
+  color: #fff;
+}
+
+.event-lists,
+.social-cards,
+.main-links,
+.about-home,
+footer,
+.footer .bottom,
+.maps,
+.front_news_component.main #news > li:nth-child(even) article,
+.front_news_component #news article,
+.event_list_component #events > li article,
+.fixed-menus .menu_component > menu,
+.services .services-icons .image_component,
+#content .news_list_container .news-list .search-results .item-search-result,
+#content .news_list_container .news-list .search-results .item-search-result article,
+.breadcrumb_component,
+.flexslider,
+.feedback-custom-text .faq
+{
+  background-color: var(--gray-5);
+  background-image: none;
+  color: #fff;
+}
+
+.front_news_component #news article,
+.social-icon,
+.social-icon:hover,
+.social-toggle,
+.event_list_component #events > li article,
+.banner_list_component.card-banner .flexslider {
+  box-shadow: none;
+}
+
+.header .menu_component menu.submenu > li:hover,
+.fixed-menus .menu_component > menu li:hover,
+.highlight-events #events,
+.main-links .image_component,
+.services .services-icons .image_component:hover,
+.banner_list_component.card-banner,
+.header .menu-bar,
+.header .menu-bar:after,
+footer .footer,
+{
+  background-color: var(--gray-12);
+}
+
+.menu_accessibility_component.bar .direct-access span b,
+.menu_accessibility_component.bar .access-actions a,
+.menu_accessibility_component.bar .accessibility_color a {
+  background-color: var(--gray-15);
+  color: var(--white);
+  opacity: .6;
+}
+
+.side-dock .anchor-news.active, .side-dock .anchor-news.active:hover,
+.side-dock .anchor-newspaper.active, .side-dock .anchor-newspaper.active:hover,
+.side-dock .anchor-events.active, .side-dock .anchor-events.active:hover,
+.side-dock .anchor-serufg.active, .side-dock .anchor-serufg.active:hover,
+.side-dock .anchor-network.active, .side-dock .anchor-network.active:hover,
+.side-dock .anchor-services.active, .side-dock .anchor-services.active:hover {
+  background-color: var(--gray-15);
+  color: var(--white);
+  opacity: .87;
+}
+
+.social-icon,
+.social-icon:hover,
+.social-toggle,
+body > header,
+.header .menu_component menu.submenu,
+.top-banner .flex-control-nav li a.flex-active, {
+  background-color: var(--gray-15);
+}
+
+.highlight-news .front_news_component {
+  background-color: transparent;
+}
+
+.highlight-news .image_component {
+  opacity: 0.04;
+}
+
+.header .menu_component,
+.header .menu_component menu.submenu,
+.highlight-events #events header h2 a,
+.map-tab,
+.map-tab.selected,
+.footer .dropdown>li>a,
+.breadcrumb_component li a {
+  color: var(--light-blue);
+}
+
+.map-tab.selected {
+  border-color: var(--light-blue);
+}
+
+.front_news_title a,
+.front_news_title span,
+.event_list_title a,
+.front_news_component #news article h2 a,
+.subsite_front_news_component .list article h2 a,
+.front_news_component #news article summary p,
+.subsite_front_news_component .list article summary p,
+.boxes-section .image_component h3,
+.boxes-section .text_component.subtitle p,
+.event_list_component #events article h2 a,
+.media-section .text_component p,
+.media-section .image_component h3,
+.media-section .text_component.subtitle p,
+.about-home h2,
+.about-home .about-row p,
+.simple-title,
+.banner_list_component.card-banner .slides > li .flex-caption p,
+.banner_list_component.card-banner .slides > li .flex-description p,
+.news-show header h2, .page-show header h2, .event-show header h2,
+.news-show .body, .news-show summary, .page-show .body, .page-show summary,
+.event-show .body, .event-show summary,
+.news-show .categories-label, .page-show .categories-label, .event-show .categories-label,
+#content .news_list_container h2,
+#content .news_list_container .news-list .search-results .item-search-result .news-details,
+#content .news_list_container .news-list .search-results .item-search-result header a,
+#content .news_list_container .news-list .search-results .item-search-result summary,
+.news-show .categories-label, .page-show .categories-label, .event-show .categories-label,
+.feedback-new-message-title h2,
+.feedback-custom-text .form-tooltip, .feedback-custom-text .container p
+{
+  color: var(--white);
+  opacity: .87;
+}
+
+.front_news_component #news article .news-details .date,
+.subsite_front_news_component .list article .news-details .date,
+.front_news_component #news article .front_news_label,
+.subsite_front_news_component .list article .front_news_label,
+.highlight-events #events .event-dates,
+.news-show .news-details, .news-show .page-details, .page-show .news-details,
+.page-show .page-details, .event-show .news-details, .event-show .page-details,
+.page-show .event, .event-show .event,
+.event-show .event h3,
+footer .address,
+footer .fones {
+  color: var(--white);
+  opacity: .6;
+}
+
+.link_to_all a,
+.link_to_all a:hover,
+.highlight-news .link_to_all a,
+.highlight-news .link_to_all a:hover,
+.subsite_front_news_component .link_to_all a,
+.event_list_component .link_to_all a,
+.btn,
+.smooth_scroll,
+.services .btn,
+.services .btn:hover,
+.side-dock .anchor-news, .side-dock .anchor-news:hover,
+.side-dock .anchor-newspaper, .side-dock .anchor-newspaper:hover,
+.side-dock .anchor-events, .side-dock .anchor-events:hover,
+.side-dock .anchor-serufg, .side-dock .anchor-serufg:hover,
+.side-dock .anchor-network, .side-dock .anchor-network:hover,
+.side-dock .anchor-services, .side-dock .anchor-services:hover,
+.news-show .weby-label[href], .page-show .weby-label[href], .event-show .weby-label[href],
+.news-show .weby-label[href]:hover, .page-show .weby-label[href]:hover, .event-show .weby-label[href]:hover,
+.news-show .actions > a, .page-show .actions > a, .event-show .actions > a,
+.news-show .actions > a:hover, .page-show .actions > a:hover, .event-show .actions > a:hover,
+#content .news_list_container .news-list .search-results .item-search-result .categories .category a.weby-label,
+#content .news_list_container .news-list .search-results .item-search-result .categories .category a.weby-label:hover {
+  background-color: var(--light-blue);
+  color: var(--gray-0);
+}
+
+.highlight-events #events li,
+footer .copyright {
+  opacity: .38;
+}
+
+.accessibility-bar,
+.footer .bottom,
+#content .news_list_container .news-list .search-results .item-search-result {
+  border-top: 0;
+  border-bottom: 0;
+}
+
+.banner_list_component.card-banner:before {
+  display: none;
+}
+
+.top-banner .flex-control-nav li a {
+  background-color: var(--gray-5);
+}
+
+ufg-eventos {
+  --event-bg: var(--gray-0);
+}

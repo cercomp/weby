@@ -211,6 +211,10 @@ div, section, input {
   #news {
     grid-template-columns: 300px 300px 300px;
     justify-content: center;
+
+    > li:nth-child(n+7) {
+      display: none;
+    }
   }
 }
 
@@ -480,6 +484,10 @@ summary em, summary em * {
           }
         }
       }
+
+      &:nth-child(n+8) {
+        display: none;
+      }
     }
 
     article {
@@ -496,8 +504,10 @@ summary em, summary em * {
   }
 
   .front_news_title {
-    span {
+    span, a {
       color: var(--white);
+      z-index: 2;
+      position: relative;
     }
   }
 
