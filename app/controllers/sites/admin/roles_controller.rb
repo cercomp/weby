@@ -5,7 +5,7 @@ class Sites::Admin::RolesController < ApplicationController
   respond_to :html
   def index
     @roles = current_site.roles.no_local_admin.order("id")
-    @rights = Weby::Rights.permissions.sort
+    @rights = Weby::Rights.permissions(current_site).sort
 
     if request.put? # && params[:role]
       params[:role] ||= {}

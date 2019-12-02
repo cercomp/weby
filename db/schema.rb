@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191101142850) do
+ActiveRecord::Schema.define(version: 20191114124955) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -387,6 +387,7 @@ ActiveRecord::Schema.define(version: 20191101142850) do
     t.string   "domain"
     t.text     "head_html"
     t.string   "status",                       default: "active"
+    t.boolean  "restrict_theme",               default: false
   end
 
   add_index "sites", ["parent_id"], name: "index_sites_on_parent_id", using: :btree
