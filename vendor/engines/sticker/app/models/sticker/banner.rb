@@ -1,25 +1,28 @@
 module Sticker
   class Banner < ActiveRecord::Base
-    acts_as_ordered_taggable_on :categories
-
     belongs_to :target, polymorphic: true
     belongs_to :repository
     belongs_to :user
     belongs_to :site
 
+    has_many :banner_sites, foreign_key: :sticker_banner_id, class_name: "::Sticker::BannerSite", dependent: :destroy
+    has_many :sites, through: :banner_sites
+    has_one :own_banner_site, ->(this){ where(site_id: this.site_id) }, class_name: "::Sticker::BannerSite", foreign_key: :sticker_banner_id
+
     validates :title, :user_id, presence: true
 
-    validate :validate_date
-
-    scope :published, -> {
-      where("publish = true AND (date_begin_at <= :time AND
-           (date_end_at is NULL OR date_end_at > :time))",  time: Time.now)
-    }
+    scope :published, -> { where(publish: true) }
 
     scope :titles_or_texts_like, ->(str) {
       where("LOWER(title) like :str OR
            LOWER(text) like :str",  str: "%#{str.try(:downcase)}%")
     }
+
+    accepts_nested_attributes_for :banner_sites, allow_destroy: true
+
+    def owned_by? site
+      site_id == site.id
+    end
 
     def self.import(attrs, options = {})
       return attrs.each { |attr| import attr, options } if attrs.is_a? Array
@@ -31,15 +34,8 @@ module Sticker
 
       attrs['repository_id'] = Import::Application::CONVAR["repository"]["#{attrs['repository_id']}"]
       attrs['user_id'] = options[:user] unless User.unscoped.find_by(id: attrs['user_id'])
-      attrs['category_list'] = attrs.delete('categories').to_a.map { |category| category['name'] }
 
       self.create!(attrs)
-    end
-
-    private
-
-    def validate_date
-      self.date_begin_at = Time.now.to_s if date_begin_at.blank?
     end
   end
 end

@@ -5,6 +5,16 @@ class BannerListComponent < Component
   validates :category, presence: true
   validates :html_class, format: { with: /\A[A-Za-z0-9_\-]*\z/ }
 
+  def get_banners site
+    site.banner_sites
+      .includes(banner: [:repository, :target])
+      .published
+      .available
+      .order("sticker_banner_sites.position ASC")
+      .tagged_with(category.to_s.mb_chars.downcase.to_s, any: true)
+
+  end
+
   alias_method :_timer, :timer
   def timer
     _timer.blank? ? '4' : _timer

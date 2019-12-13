@@ -1,11 +1,9 @@
 <% include_component_javascript :javascripts, 'banner_list' %>
-
+<% @banners = component.get_banners(current_site) %>
 <section class="banner_list_component <%= component.orientation %> <%= component.html_class %>">
-  <% @banners = current_site.banners.published.order("position ASC").tagged_with(component.category.to_s.mb_chars.downcase.to_s, any: true).includes(:repository, :target) %>
-
-
   <% if component.orientation != "slider" %>
-    <% @banners.each do |banner| %>
+    <% @banners.each do |banner_site| %>
+      <% banner = banner_site.banner %>
       <% banner_url = target_url(banner) %>
       <div class="banner">
       <% if banner.repository %>
@@ -46,7 +44,8 @@
     <% speed = component.timer.to_i * 1000 %>
     <div class="flexslider" data-slideshowspeed="<%= speed %>" data-controls="<%= component.show_controls? %>">
       <ul class="slides">
-        <% @banners.each do |banner| %>
+        <% @banners.each do |banner_site| %>
+          <% banner = banner_site.banner %>
           <% if banner.repository.present? %>
             <% banner_url = target_url(banner) %>
             <li>

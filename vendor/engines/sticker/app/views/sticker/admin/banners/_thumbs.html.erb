@@ -4,7 +4,8 @@
 <div class="clearfix"></div>
 
 <div class="row">
-  <% @banners.each do |banner| %>
+  <% @banners.each do |banner_site| %>
+    <% banner = banner_site.banner %>
     <div class="col-md-3">
       <div class="thumbnail">
         <%= weby_file_view(banner.repository, :t, 160, nil, {target: '_blank', title: banner.text}, true) %>

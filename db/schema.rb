@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190527131905) do
+ActiveRecord::Schema.define(version: 20191210135959) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -386,9 +386,12 @@ ActiveRecord::Schema.define(version: 20190527131905) do
     t.integer  "top_banner_height"
     t.string   "domain"
     t.text     "head_html"
+    t.string   "status",                       default: "active"
+    t.boolean  "restrict_theme",               default: false
   end
 
   add_index "sites", ["parent_id"], name: "index_sites_on_parent_id", using: :btree
+  add_index "sites", ["status"], name: "index_sites_on_status", using: :btree
   add_index "sites", ["top_banner_id"], name: "index_sites_on_top_banner_id", using: :btree
 
   create_table "skins", force: :cascade do |t|
@@ -402,6 +405,18 @@ ActiveRecord::Schema.define(version: 20190527131905) do
   end
 
   add_index "skins", ["site_id"], name: "index_skins_on_site_id", using: :btree
+
+  create_table "sticker_banner_sites", force: :cascade do |t|
+    t.integer  "sticker_banner_id", null: false
+    t.integer  "site_id",           null: false
+    t.integer  "position"
+    t.datetime "date_begin_at"
+    t.datetime "date_end_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sticker_banner_sites", ["sticker_banner_id", "site_id"], name: "index_sticker_banner_sites_on_sticker_banner_id_and_site_id", using: :btree
 
   create_table "sticker_banners", force: :cascade do |t|
     t.datetime "date_begin_at"

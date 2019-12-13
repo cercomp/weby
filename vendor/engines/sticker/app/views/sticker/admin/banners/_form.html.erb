@@ -16,20 +16,6 @@
     input_html: {:size => "70x5"},
     as: :text %>
 
-  <% # URL Input %>
-  <%= target_dialog_input(f, :target, true) %>
-
-  <%= f.input t(".category"), wrapper: :append do %>
-    <%= f.select :category_list,
-      current_site.banners.category_counts, {},
-      :id => "category", class: 'form-control' %>
-    <span class="input-group-btn">
-      <%= link_to t(".add_category"), '#', onclick: "addToSelect('#category','#{t(".new_category")}')", :class => 'btn btn-info' %>
-    </span>
-  <% end %>
-
-  <%= f.input :position, hint: t(".lower_numbers_come_first") %>
-
   <div class='input'>
     <%= f.input :publish, wrapper: :checkbox,
       wrapper_html: { class: "side" },
@@ -37,19 +23,9 @@
     <div class="clear"></div>
   </div>
 
-  <%= f.input :date_begin_at, label: t(".period_banner") do %>
-    <div class="row">
-      <div class="col-md-5">
-         <%= f.input_field :date_begin_at, placeholder: t(".begin") %>
-      </div>
-      <div class="col-md-1 text-center">
-        <b><%= t('time.period_separator') %></b>
-      </div>
-      <div class="col-md-6">
-         <%= f.input_field :date_end_at, placeholder: t(".publication_infinite") %>
-      </div>
-    </div>
-  <% end %>
+
+  <% # URL Input %>
+  <%= target_dialog_input(f, :target, true) %>
 
   <div class='input'>
     <%= f.input :new_tab, wrapper: :checkbox,
@@ -57,6 +33,31 @@
       as: :boolean, input_html: { class: "check-button" } %>
     <div class="clear"></div>
   </div>
+
+  <%= f.simple_fields_for(:banner_sites, @banner.new_record? ? @banner.banner_sites : @banner.banner_sites.where(site_id: current_site.id)) do |g| %>
+    <%= g.input :id, as: :hidden %>
+    <%= g.input :site_id, as: :hidden, input_html: {value: current_site.id} %>
+    <%= g.input t('.category'), wrapper: :append do %>
+      <%= g.select :category_list, current_site.banner_sites.category_counts, {}, id: 'category', class: 'form-control' %>
+      <span class="input-group-btn">
+        <%= link_to t(".add_category"), '#', onclick: "addToSelect('#category','#{t(".new_category")}')", :class => 'btn btn-info' %>
+      </span>
+    <% end %>
+    <%= g.input :position, hint: t(".lower_numbers_come_first") %>
+    <%= g.input :date_begin_at, label: t(".period_banner") do %>
+      <div class="row">
+        <div class="col-md-5">
+           <%= g.input_field :date_begin_at, placeholder: t(".begin") %>
+        </div>
+        <div class="col-md-1 text-center">
+          <b><%= t('time.period_separator') %></b>
+        </div>
+        <div class="col-md-6">
+           <%= g.input_field :date_end_at, placeholder: t(".publication_infinite") %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
 
   <div class="form-actions">
     <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
