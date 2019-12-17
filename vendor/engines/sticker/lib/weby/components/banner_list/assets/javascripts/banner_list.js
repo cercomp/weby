@@ -22,5 +22,27 @@ $(document).ready(function(){
         slideshowSpeed: parseInt($(e).data('slideshowspeed'))
       });
   }
+
+  $(document).on('click', '.share-banner', function(){
+    var $this = $(this);
+    $this.attr('disabled', true);
+    $.get($this.data('link'), function(data){
+      $('#bannerModal').remove();
+      $('body').append(data);
+      $('#bannerModal').addClass('open');
+      // NOTE - this is not using remote:true anymore because of CORS issues
+      // $('#bannerModal .share-action').on('ajax:beforeSend', function(ev, xhr){
+      //   xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+      // }).on('ajax:success', function(ev, data){
+      //   $('#bannerModal .modal-body').text(data.message);
+      // }).on('ajax:error', function(ev, xhr){
+      //   // TODO check if errr is 413
+      //   $('#bannerModal .modal-body').text('Ocorreu um erro, tente novamente');
+      // });
+      $this.attr('disabled', false);
+    });
+    return false;
+  });
+
 });
 

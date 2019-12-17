@@ -13,6 +13,8 @@ module Sticker
 
     scope :published, -> { where(publish: true) }
 
+    scope :can_share, -> { where(shareable: true) }
+
     scope :titles_or_texts_like, ->(str) {
       where("LOWER(title) like :str OR
            LOWER(text) like :str",  str: "%#{str.try(:downcase)}%")

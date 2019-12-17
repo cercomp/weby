@@ -9,14 +9,24 @@
                       {target: '_blank'}) %>
 <% end %>
 <p>
-  <h2> <%= @banner.title %> </h2>
+  <h2>
+    <%= icon('retweet') if !@banner.owned_by? current_site %>
+    <%= @banner.title %>
+  </h2>
 </p>
 <p>
-    <%= @banner.text %>
+  <%= @banner.text %>
 </p>
 <p>
   <% @banner_site.category_list.each do |category| %>
     <span class="label label-info"><%= category %></span>
+  <% end %>
+</p>
+<p>
+  <% if @banner.owned_by?(current_site) %>
+    <b> <%= t('.shareable') %>: </b><%= @banner.shareable ? t('yes') : t('no') %>
+  <% else %>
+    <b><%= t(".origin_site") %>: </b><%= @banner.site.title %> (<%= link_to @banner.site.name, site_url(subdomain: @banner.site), target: :_blank %>)
   <% end %>
 </p>
 <p>
@@ -33,6 +43,7 @@
 </p>
 
 <div class="form-actions">
+  <%= link_to icon('trash', text: t('destroy')), unshare_admin_banner_url(@banner), method: :put, data: { confirm: t('are_you_sure') } if !@banner.owned_by?(current_site) %>
   <%= make_menu(@banner, :except => "show") %>
   <%= link_to icon('list', text:t(".list_all")), admin_banners_path() %>
   <%= link_to icon('chevron-left', text:t("back")), :back %>

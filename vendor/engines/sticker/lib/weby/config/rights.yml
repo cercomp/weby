@@ -1,33 +1,42 @@
 rights:
   banners:
     index:
-      name: 
+      name:
         en: List Banners
         pt-BR: Listar Banners
       action: index fronts
     show:
-      name: 
+      name:
         en: View Banner
         pt-BR: Ver Banner
       action: show
     edit:
-      name: 
+      name:
         en: Edit Banner
         pt-BR: Editar Banner
       action: edit update toggle
     destroy:
-      name: 
+      name:
         en: Destroy Banner
         pt-BR: Excluir Banner
       action: destroy
     change_position:
-      name: 
+      name:
         en: Order Banners
         pt-BR: Ordernar Banners
       action: change_position
     new:
-      name: 
+      name:
         en: Create Banner
         pt-BR: Criar Banner
       action: new create
-
+    share:
+      name:
+        en: Share Banners
+        pt-BR:  Compartilhar Banners
+      action: share share_modal
+    unshare:
+      name:
+        en: Unshare Banners
+        pt-BR:  Descompartilhar Banners
+      action: unshare

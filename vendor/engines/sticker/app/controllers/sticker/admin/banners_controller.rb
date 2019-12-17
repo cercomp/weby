@@ -5,7 +5,7 @@ module Sticker::Admin
     helper Sticker::Engine.helpers
 
     before_action :require_user
-    before_action :check_authorization
+    before_action :check_authorization, except: [:share_modal]
     before_action :search_images, only: [:new, :edit, :create, :update]
 
     helper_method :sort_column
@@ -60,6 +60,31 @@ module Sticker::Admin
       respond_with(:admin, @banner)
     end
 
+    def share_modal
+      @banner = current_site.banners.can_share.find(params[:id])
+      render layout: false
+    end
+
+    def share
+      # Check if the banner was already shared
+      banner_site = Sticker::BannerSite.find_or_create_by!(site_id: params[:site_id], sticker_banner_id: params[:id])
+
+      tags = unescape_param(params[:tag]).to_s.split(',').map(&:strip)
+      if tags.present?
+        banner_site.category_list.add(*tags)
+        banner_site.save!
+      end
+      redirect_to :back
+      #render json: {ok: true, message: t('.banner_shared')} #CORS issues
+    end
+
+    def unshare
+      banner = current_site.banner_sites.where(sticker_banner_id: params[:id])
+      banner.destroy_all
+      flash[:success] = t('.unshared_banner')
+      redirect_to admin_banners_path
+    end
+
     # Shows only the published Banners
     def fronts
       @banners = current_site.banner_sites
@@ -104,7 +129,7 @@ module Sticker::Admin
 
     def banner_params
       params.require(:banner).permit(:repository_id, :size, :width, :height, :title, :text,
-                                     :url, :target_id, :target_type, :publish, :new_tab,
+                                     :url, :target_id, :target_type, :publish, :new_tab, :shareable,
                                      {banner_sites_attributes: [
                                         :id, :site_id, :category_list, :position, :date_begin_at, :date_end_at
                                      ]}

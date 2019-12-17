@@ -38,3 +38,25 @@
         float: left;
     }
 }
+
+.share-banner {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  z-index: 2;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .4s;
+
+  .share-icon {
+    width: 72px !important;
+    height: 72px !important;
+  }
+}
+
+.slides > li, .banner_list_component > .banner {
+  &:hover .share-banner {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}

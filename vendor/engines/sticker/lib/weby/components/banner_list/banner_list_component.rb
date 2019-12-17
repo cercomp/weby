@@ -7,12 +7,12 @@ class BannerListComponent < Component
 
   def get_banners site
     site.banner_sites
-      .includes(banner: [:repository, :target])
+      .includes(:banner)
+      .preload(banner: [:repository, :target])
       .published
       .available
       .order("sticker_banner_sites.position ASC")
       .tagged_with(category.to_s.mb_chars.downcase.to_s, any: true)
-
   end
 
   alias_method :_timer, :timer

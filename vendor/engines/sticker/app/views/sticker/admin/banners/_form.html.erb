@@ -23,6 +23,12 @@
     <div class="clear"></div>
   </div>
 
+  <div class='input'>
+    <%= f.input :shareable, wrapper: :checkbox,
+      wrapper_html: { class: "side" },
+      as: :boolean, input_html: { class: "check-button" } %>
+    <div class="clear"></div>
+  </div>
 
   <% # URL Input %>
   <%= target_dialog_input(f, :target, true) %>
