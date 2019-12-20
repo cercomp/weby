@@ -4,7 +4,7 @@
 <div class="row">
   <div class="col-md-7">
     <%= select_tag "filter-category",
-       options_for_select(current_site.banner_sites.category_counts.map{|c| [c.name, c.name.parameterize] }),
+       options_for_select(current_site.banner_sites.category_counts.map{|c| [c.name] }),
       include_blank: false,
       class: 'form-control select2 input-xlarge',
       multiple: false %>
@@ -62,7 +62,7 @@
       $(document).ready(function() {
         $('#list').sortable({
           axis: 'y',
-          dropOnEmpty:false,
+          dropOnEmpty: false,
           handle: '.handle',
           items: 'tbody > tr',
           opacity: 0.7,
@@ -80,10 +80,15 @@
             //alert(id_moved+' between '+id_before+' and '+id_after);
             $.ajax({
               type: 'post',
-              data: {'id_moved':id_moved,'id_after':id_after,'id_before':id_before},
+              data: {
+                id_moved: id_moved,
+                id_after: id_after,
+                id_before: id_before,
+                ordered: $(this).sortable('serialize')
+              },
               dataType: 'script',
               complete: function(request){ ui.item.effect('pulsate', {times: 1}, 350); },
-              error: function(){$('#list').sortable('cancel');},
+              error: function(){ $('#list').sortable('cancel'); },
               url: '<%= sort_admin_banners_path %>'
             });
           }
@@ -95,19 +100,17 @@
         });
 
         var applyFilter = function(){
-          var categories = $('#filter-category');
+          var category = $('#filter-category');
 
           $('.sort_banner').hide();
 
-          if(categories.val()){
-            $(categories.val()).each(function(idx, category){
-              $('.sort_banner.'+category).show();
-            });
+          if(category.val()){
+            $('.sort_banner.'+category.val()).show();
           }else{
             $('.sort_banner').show();
           }
         }
-
+        applyFilter();
         $('#filter-category').change(applyFilter);
       });
     <% end %>

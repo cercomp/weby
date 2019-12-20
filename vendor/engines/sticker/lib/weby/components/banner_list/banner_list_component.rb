@@ -11,7 +11,7 @@ class BannerListComponent < Component
       .preload(banner: [:repository, :target])
       .published
       .available
-      .order("sticker_banner_sites.position ASC")
+      .order("sticker_banner_sites.position DESC, sticker_banner_sites.created_at DESC")
       .tagged_with(category.to_s.mb_chars.downcase.to_s, any: true)
   end
 

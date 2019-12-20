@@ -89,8 +89,8 @@ module Sticker::Admin
     def fronts
       @banners = current_site.banner_sites
         .includes(:banner)
-        .where(sticker_banners: {publish: true})
-        .order('sticker_banner_sites.position desc')
+        .published
+        .order('sticker_banner_sites.position DESC, sticker_banner_sites.created_at DESC')
         .titles_or_texts_like(params[:search])
         .page(params[:page]).per(params[:per_page])
     end
@@ -105,10 +105,36 @@ module Sticker::Admin
       redirect_to(admin_banners_path)
     end
 
+    def sort
+      @ch_pos = current_site.banner_sites.find_by(sticker_banner_id: params[:id_moved])
+      increment = 1
+      # In case it was moved to the end of the list or the end of a page (when paginated)
+      if (params[:id_after].to_s == '0')
+        @before = current_site.banner_sites.find_by(sticker_banner_id: params[:id_before])
+        condition = "position < #{@ch_pos.position} AND position >= #{@before.position}"
+        new_pos = @before.position
+      else
+        @after = current_site.banner_sites.find_by(sticker_banner_id: params[:id_after])
+        # In case it was moved from top to bottom
+        if @ch_pos.position > @after.position
+          condition = "position < #{@ch_pos.position} AND position > #{@after.position}"
+          new_pos = @after.position + 1
+          # In case it was moved from bottom to top
+        else
+          increment = -1
+          condition = "position > #{@ch_pos.position} AND position <= #{@after.position}"
+          new_pos = @after.position
+        end
+      end
+      current_site.banner_sites.where(condition).update_all("position = position + (#{increment})")
+      @ch_pos.update_attribute(:position, new_pos)
+      render nothing: true
+    end
+
     private
 
     def sort_column
-      (Sticker::BannerSite.column_names + Sticker::Banner.column_names).include?(params[:sort]) ? params[:sort] : 'id'
+      (Sticker::BannerSite.column_names + Sticker::Banner.column_names).include?(params[:sort]) ? params[:sort] : 'created_at'
     end
 
     def query_sort
@@ -117,7 +143,8 @@ module Sticker::Admin
       elsif Sticker::Banner.column_names.include?(sort_column)
         "sticker_banners.#{sort_column}"
       end
-      ["#{sort_field} #{sort_direction}", "sticker_banner_sites.position ASC"].join(', ')
+      params[:direction] = 'desc' if sort_column == 'created_at'
+      "#{sort_field} #{sort_direction}"
     end
 
     def search_images

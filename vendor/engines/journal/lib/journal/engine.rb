@@ -18,6 +18,6 @@ module Journal
       end
     end
 
-    config.active_record.observers = 'journal/news_position_observer'
+    (config.active_record.observers ||= []) << 'journal/news_position_observer'
   end
 end

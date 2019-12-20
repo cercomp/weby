@@ -5,7 +5,7 @@ module Sticker
 
     acts_as_ordered_taggable_on :categories
 
-    #validate :validate_position
+    validate :validate_position
     validate :validate_date
 
     def category_list_before_type_cast
@@ -33,15 +33,13 @@ module Sticker
       self.create!(attrs) if attrs['sticker_banner_id']
     end
 
-#     def validate_position
-#       self.position = last_front_position + 1 if self.position.nil?
-#       #self.position = 0 if self.position.nil?
-#     end
+    def validate_position
+      self.position = last_position + 1 if self.position.nil?
+      #self.position = 0 if self.position.nil?
+    end
 
-
-    def last_front_position
-      @banner_site = Sticker::BannerSite.where(site: self.site_id)
-      @banner_site.maximum('position').to_i
+    def last_position
+      Sticker::BannerSite.where(site_id: self.site_id).maximum(:position).to_i
     end
 
     def validate_date

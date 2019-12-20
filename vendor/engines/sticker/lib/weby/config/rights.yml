@@ -30,6 +30,11 @@ rights:
         en: Create Banner
         pt-BR: Criar Banner
       action: new create
+    sort:
+      name:
+        en: Sort Banner
+        pt-BR: Ordenar Banner
+      action: sort
     share:
       name:
         en: Share Banners
