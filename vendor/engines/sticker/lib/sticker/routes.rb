@@ -6,10 +6,12 @@ module Sticker
           get :sticker, to: 'banners#index'
           resources :banners do
             member do
-              put :toggle
+              get :share_modal, :share
+              put :toggle, :unshare
             end
             collection do
               get :fronts
+              post :sort
             end
           end
         end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191114124955) do
+ActiveRecord::Schema.define(version: 20191218184902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -406,6 +406,18 @@ ActiveRecord::Schema.define(version: 20191114124955) do
 
   add_index "skins", ["site_id"], name: "index_skins_on_site_id", using: :btree
 
+  create_table "sticker_banner_sites", force: :cascade do |t|
+    t.integer  "sticker_banner_id", null: false
+    t.integer  "site_id",           null: false
+    t.integer  "position"
+    t.datetime "date_begin_at"
+    t.datetime "date_end_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sticker_banner_sites", ["sticker_banner_id", "site_id"], name: "index_sticker_banner_sites_on_sticker_banner_id_and_site_id", using: :btree
+
   create_table "sticker_banners", force: :cascade do |t|
     t.datetime "date_begin_at"
     t.datetime "date_end_at"
@@ -427,6 +439,7 @@ ActiveRecord::Schema.define(version: 20191114124955) do
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.string   "target_type"
+    t.boolean  "shareable",     default: false
   end
 
   add_index "sticker_banners", ["repository_id"], name: "index_banners_on_repository_id", using: :btree

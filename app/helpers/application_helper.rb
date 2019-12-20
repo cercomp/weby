@@ -538,7 +538,10 @@ module ApplicationHelper
         id: options[:id],
         field: field
       )
-      if test_permission (options[:controller] || controller_name), action
+      # check if resource belongs to current site
+      site_check = resource.respond_to?(:site_id) ? (current_site.blank? || resource.site_id == current_site.id) : true
+
+      if test_permission(options[:controller] || controller_name, action) && site_check
          checkbox = check_box_tag(field, resource[field], resource[field], check_box_options)
         html << link_to(checkbox, url_options, link_options)
       else
