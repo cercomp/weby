@@ -121,8 +121,26 @@
   .subsite_front_news_component .list {
     grid-template-columns: 220px 220px;
   }
-  .main-links .text_component {
+  .main-links .text_component, .media-section .text_component {
     text-align: center;
+  }
+  .media-section .video-grid {
+    grid-template-columns: 1fr;
+
+    .video-card.highlight {
+      grid-column: span 1;
+
+      .youtube_wrap_component {
+        flex: 0 0 100%;
+        padding-top: calc(9/16*100%);
+        margin-right: 0;
+        margin-bottom: 15px;
+      }
+
+      .text_component {
+        flex: 0 0 100%;
+      }
+    }
   }
   .main-links .links {
     grid-template-columns: 220px 220px;
