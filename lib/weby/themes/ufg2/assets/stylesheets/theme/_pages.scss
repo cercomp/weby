@@ -530,7 +530,7 @@ ufg-eventos {
           background: var(--white);
           margin-bottom: 40px;
           padding: 0px;
-          height: 236px;
+          height: 189px;
           box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
           position: relative;
 
@@ -554,7 +554,7 @@ ufg-eventos {
             font-size: 1.2em;
             position: relative;
             top: 40px;
-            margin-bottom: 52px;
+            margin-bottom: 45px;
 
             a {
               font-weight: 300;
@@ -570,7 +570,7 @@ ufg-eventos {
           summary {
             width: 580px;
             padding: 0px 0px 0px 16px;
-            height: 96px;
+            height: 48px;
             font-family: Lato;
             font-size: 0.9em;
             font-weight: 300;
@@ -631,7 +631,7 @@ ufg-eventos {
             img {
               float: right;
               width: 300px !important;
-              height: 236px !important;
+              height: 189px !important;
               object-fit: cover;
             }
 
@@ -814,7 +814,7 @@ ufg-eventos {
           img {
             float: none;
             width: 300px !important;
-            height: 180px !important;
+            height: 189px !important;
             object-fit: cover;
           }
         }
@@ -1093,7 +1093,7 @@ ufg-eventos {
         img {
           float: none;
           width: 300px !important;
-          height: 180px !important;
+          height: 189px !important;
           object-fit: cover;
         }
       }
@@ -1293,13 +1293,13 @@ ufg-eventos {
           transition: .2s;
           z-index: 2;
           margin: 0 auto;
-          width: 280px;
+          width: 300px;
           margin-bottom: 20px;
 
           article {
             background-color: var(--white);
             border-radius: 20px 20px 4px 4px;
-            padding: 50px 16px 14px;
+            padding: 65px 16px 14px;
             box-sizing: border-box;
             height: 315px;
 
@@ -1354,7 +1354,7 @@ ufg-eventos {
             img {
               float: none;
               width: 300px !important;
-              height: 180px !important;
+              height: 189px !important;
               object-fit: cover;
             }
           }
