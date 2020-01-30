@@ -24,7 +24,9 @@ class Site < ActiveRecord::Base
   has_many :own_news, class_name: "::Journal::News", dependent: :destroy
   has_many :groups, class_name: 'Feedback::Group', dependent: :destroy
   has_many :messages, class_name: 'Feedback::Message', dependent: :destroy
-  has_many :banners, class_name: 'Sticker::Banner', dependent: :destroy
+  has_many :banner_sites, class_name: "::Sticker::BannerSite", dependent: :destroy
+  has_many :banners, through: :banner_sites, source: :banner
+  has_many :own_banners, class_name: 'Sticker::Banner', dependent: :destroy
   has_many :events, class_name: 'Calendar::Event', dependent: :destroy
   has_many :skins, dependent: :destroy
   #has_many :components, through: :skins
@@ -46,6 +48,8 @@ class Site < ActiveRecord::Base
   validates :title, length: { maximum: 50 }
 
   validate :at_least_one_locale
+
+  scope :active, -> { where(status: 'active') }
 
   scope :name_or_description_like, ->(text) {
     where('lower(sites.name) LIKE lower(:text) OR
@@ -90,6 +94,10 @@ class Site < ActiveRecord::Base
 
   def active_extensions
     extensions.to_a.keep_if { |extension| Weby.extensions[extension.name.to_sym] }
+  end
+
+  def active?
+    status == 'active'
   end
 
   SHAREABLES.each do |shareable|

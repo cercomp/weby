@@ -2,12 +2,14 @@
 <% breadcrumb params[:search].present? ? :banners_search : :sticker_banners, params[:search] %>
 
 <div class="row">
-  <div class="col-md-5">
-    <%= form_tag fronts_admin_banners_path, method: 'get', autocapitalize: "off", class: 'search' do %>
-      <% search_input params[:search] %>
-    <% end %>
-  </div>
   <div class="col-md-7">
+    <%= select_tag "filter-category",
+       options_for_select(current_site.banner_sites.category_counts.map{|c| [c.name] }),
+      include_blank: false,
+      class: 'form-control select2 input-xlarge',
+      multiple: false %>
+  </div>
+  <div class="col-md-5">
     <div class="pull-right">
       <% with_permission(action: :new) do %>
         <%= link_to t(".new_banner"), new_admin_banner_path, class: "btn btn-success" %>
@@ -23,9 +25,95 @@
   <div class="alert alert-warning">
     <%= t(".none_published") %>
   </div>
-
 <% else %>
-  <div id="list">
-    <%= render :partial => "list" %>
-  </div>
+  <table class='table table-striped table-condensed' id="list">
+    <thead>
+      <th><%= t(".image") %></th>
+      <th><%= t(".title") %></th>
+      <th><%= t(".category") %></th>
+      <th><%= t(".publication_date")%></th>
+      <th></th>
+    </thead>
+    <tbody>
+      <% @banners.each do |banner_site| %>
+        <% banner = banner_site.banner %>
+        <tr id="sort_banner_<%= banner_site.id %>" class="sort_banner <%= banner_site.category_list %>">
+          <td> <%= weby_file_view(banner.repository, :t, "64", "64", {target: '_blank', title: banner.text}, true) %></td>
+          <td>
+            <%= icon('retweet') if !banner.owned_by? current_site %>
+            <%= link_to banner.title, admin_banner_path(banner) %>
+          </td>
+          <td><%= banner_site.category_list %></td>
+          <td><%=l banner_site.date_begin_at, format: :short %></td>
+          <td class="text-right">
+            <% with_permission(action: :sort) do %>
+              <%= link_to icon('trash', text: t('destroy')), unshare_admin_banner_url(banner), method: :put, data: { confirm: t('are_you_sure') } if !banner.owned_by?(current_site) %>
+              <%= link_to icon('move', text: t('move')), '#', class: 'handle' %>
+            <% end %>
+            <%= raw make_menu(banner, :except => "show") %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% content_for :javascripts do %>
+    <%= javascript_include_tag("init/sortable") %>
+    <%= javascript_tag do %>
+      $(document).ready(function() {
+        $('#list').sortable({
+          axis: 'y',
+          dropOnEmpty: false,
+          handle: '.handle',
+          items: 'tbody > tr',
+          opacity: 0.7,
+          scroll: true,
+          forcePlaceholderSize: true,
+          placeholder: 'drop-here',
+          tolerance: 'pointer',
+          start: function (event, ui){
+            ui.placeholder.html('<td colspan="'+ui.helper.find('td').length+'">&nbsp;</td>');
+          },
+          update: function(ev, ui){
+            id_moved = ui.item.attr('id').replace('sort_banner_','');
+            id_after = ui.item.next().attr('id') ? ui.item.next().attr('id').replace('sort_banner_','') : 0;
+            id_before = ui.item.prev().attr('id') ? ui.item.prev().attr('id').replace('sort_banner_','') : 0;
+            //alert(id_moved+' between '+id_before+' and '+id_after);
+            $.ajax({
+              type: 'post',
+              data: {
+                id_moved: id_moved,
+                id_after: id_after,
+                id_before: id_before,
+                ordered: $(this).sortable('serialize')
+              },
+              dataType: 'script',
+              complete: function(request){ ui.item.effect('pulsate', {times: 1}, 350); },
+              error: function(){ $('#list').sortable('cancel'); },
+              url: '<%= sort_admin_banners_path %>'
+            });
+          }
+        });
+
+        $('.select2').select2({
+           placeholder: "Filtrar por categoria",
+           width: 'resolve'
+        });
+
+        var applyFilter = function(){
+          var category = $('#filter-category');
+
+          $('.sort_banner').hide();
+
+          if(category.val()){
+            $('.sort_banner.'+category.val()).show();
+          }else{
+            $('.sort_banner').show();
+          }
+        }
+        applyFilter();
+        $('#filter-category').change(applyFilter);
+      });
+    <% end %>
+  <% end %>
+  <% content_for :stylesheets, stylesheet_link_tag("sortable") %>
 <% end %>

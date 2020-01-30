@@ -42,8 +42,20 @@ en:
           list_all:                 " List All "
           url:                      " URL "
           period_banner:            " Banner period "
+          origin_site:              " Origin Site "
+          shareable:                " Shareable "
+        unshare:
+          unshared_banner:          " Shared Banner removed sucessfully "
         new:
           banners:                  " Banners "
+        share_modal:
+          my_sites:                 "Choose the site and the location you want to share"
+          no-site-found:            "No site available to share"
+          no-banner-list-found:     "No Banner List Component Found"
+          close:                    "Close"
+          banner_not_shareable:     'Banner not found or not shareable'
+        share:
+          banner_shared:            "Banner was shared successfully"
         fronts:
           banners:                  " Banners "
           new_banner:               " New Banner "

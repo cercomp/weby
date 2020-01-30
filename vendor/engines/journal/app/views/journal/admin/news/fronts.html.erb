@@ -39,18 +39,19 @@
       <th width="32%"><%= t(".title") %></th>
       <th width="12%"><%= t(".user") %></th>
       <th width="13%"><%= t(".category") %></th>
-      <th width="13%"><%= t(".created_at") %></th>      
+      <th width="13%"><%= t(".created_at") %></th>
       <% with_permission(action: :edit) do %>
         <th  width="5%"><%= t(".cover") %></th>
         <th  width="5%"><%= t(".status") %></th>
       <% end %>
         <th  width="5%" class="center"><%= t(".views") %></th>
-        <th  width="8%"><%= t(".action") %></th>      
+        <th  width="8%"><%= t(".action") %></th>
     </thead>
     <tbody>
       <% @newslist.each do |news_site| %>
         <% if news_site.news %>
           <% news = news_site.news %>
+          <% next if !news.site&.active? %>
             <tr id="sort_news_<%= news.id %>" class="sort_news <%= news_site.category_list.map{|categ| categ.parameterize }.join(' ') %>">
               <td>
                 <% if news.site_id == current_site.id %>
@@ -73,7 +74,7 @@
               <td class="text-right">
                 <%= make_menu(news, :except => "show", :with_text => false) %>
                 <% with_permission(action: :sort) do %>
-                  <%= link_to icon('trash'), unshare_admin_news_url(news), method: :put if news.site_id != current_site.id %>
+                  <%= link_to icon('trash'), unshare_admin_news_url(news), method: :put, data: { confirm: t('are_you_sure') } if news.site_id != current_site.id %>
                   <%= link_to icon('move'), '#', class: 'handle' %>
                 <% end %>
               </td>

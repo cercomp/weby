@@ -1,0 +1,4 @@
+en:
+  site_mailer:
+    site_deactivated_user:
+      site_deactivated:  "Site Deactivated"

@@ -17,5 +17,7 @@ module Sticker
         end
       end
     end
+
+    (config.active_record.observers ||= []) << 'sticker/banner_site_position_observer'
   end
 end

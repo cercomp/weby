@@ -1,4 +1,3 @@
-<%= render 'view_picker' %>
 <div class="pull-right"><%= paginate @banners, remote: true %></div>
 <div class="pull-left"><%= info_page @banners %></div>
 <div class="clearfix"></div>
@@ -8,23 +7,26 @@
     <th><%= t(".image") %></th>
     <th><%= sortable 'title', t(".title") %></th>
     <th><%= t(".category") %></th>
-    <th><%= sortable 'position', t(".position") %></th>
     <th><%= sortable 'date_begin_at', t(".publication_date")%></th>
     <th style="text-align: center;"><%= sortable 'publish', t(".publish") %></th>
     <th></th>
   </thead>
   <tbody>
-    <% @banners.each do |banner| %>
+    <% @banners.each do |banner_site| %>
+      <% banner = banner_site.banner %>
       <tr<%= ' class="deactivated"'.html_safe unless banner.publish %>>
         <td> <%= weby_file_view(banner.repository, :t, "64", "64", {target: '_blank', title: banner.text}, true) %></td>
-        <td><%= link_to(banner.title, admin_banner_path(banner)) %></td>
-        <td><%= banner.category_list %></td>
-        <td><%= banner.position %></td>
-        <td><%=l banner.date_begin_at, format: :short %></td>
+        <td>
+          <%= icon('retweet') if !banner.owned_by? current_site %>
+          <%= link_to banner.title, admin_banner_path(banner) %>
+        </td>
+        <td><%= banner_site.category_list %></td>
+        <td><%=l banner_site.date_begin_at, format: :short %></td>
         <td style="text-align:center;">
-          <%= publication_status_banner(banner) %>
+          <%= publication_status_banner(banner, disabled: !banner.owned_by?(current_site) ) %>
         </td>
         <td class="text-right">
+          <%= link_to icon('trash', text: t('destroy')), unshare_admin_banner_url(banner), method: :put, data: { confirm: t('are_you_sure') } if !banner.owned_by?(current_site) %>
           <%= raw make_menu(banner, :except => "show") %>
         </td>
       </tr>

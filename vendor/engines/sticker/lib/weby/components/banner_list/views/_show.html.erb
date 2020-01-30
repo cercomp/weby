@@ -1,41 +1,40 @@
 <% include_component_javascript :javascripts, 'banner_list' %>
-
+<% @banners = component.get_banners(current_site) %>
 <section class="banner_list_component <%= component.orientation %> <%= component.html_class %>">
-  <% @banners = current_site.banners.published.order("position ASC").tagged_with(component.category.to_s.mb_chars.downcase.to_s, any: true).includes(:repository, :target) %>
-
-
   <% if component.orientation != "slider" %>
-    <% @banners.each do |banner| %>
+    <% @banners.each do |banner_site| %>
+      <% banner = banner_site.banner %>
       <% banner_url = target_url(banner) %>
       <div class="banner">
-      <% if banner.repository %>
-        <figure class="banner_image">
-          <% format = banner.size.present? ? banner.size : format_for_custom(banner.width, banner.height, banner.repository) %>
-          <%= weby_file_view(banner.repository,
-                             format,
-                             banner.width,
-                             banner.height,
-                             {
-                                as: 'link',
-                                alt: banner.text,
-                                title: banner.text,
-                                url: banner_url,
-                                target: (banner.new_tab ? '_blank' : ''),
-                                data: {banner_id: banner.id}
-                             }) %>
-        </figure>
-      <% else %>
-        <div class="banner_text" style="<%= "width:#{banner.width}px;" if banner.width %>">
-          <h2><%= "#{banner.title}" %></h2>
-          <a href="<%= "#{banner_url}" %>" data-banner-id="<%=  banner.id %>" target="<%= banner.new_tab ? "_blank":"" %>"><p><%= "#{banner.text}" %></p></a>
-        </div>
-      <% end %>
+        <% if banner.repository %>
+          <figure class="banner_image">
+            <% format = banner.size.present? ? banner.size : format_for_custom(banner.width, banner.height, banner.repository) %>
+            <%= weby_file_view(banner.repository,
+                               format,
+                               banner.width,
+                               banner.height,
+                               {
+                                  as: 'link',
+                                  alt: banner.text,
+                                  title: banner.text,
+                                  url: banner_url,
+                                  target: (banner.new_tab ? '_blank' : ''),
+                                  data: {banner_id: banner.id}
+                               }) %>
+          </figure>
+        <% else %>
+          <div class="banner_text" style="<%= "width:#{banner.width}px;" if banner.width %>">
+            <h2><%= "#{banner.title}" %></h2>
+            <a href="<%= "#{banner_url}" %>" data-banner-id="<%=  banner.id %>" target="<%= banner.new_tab ? "_blank":"" %>"><p><%= "#{banner.text}" %></p></a>
+          </div>
+        <% end %>
 
-      <% if check_permission(Sticker::Admin::BannersController, ["edit"]) %>
-        <span class="unpublish">
-          <%= link_to t("unpublish"), toggle_admin_banner_path(banner, field: 'publish'), method: :put %>
-        </span>
-      <% end %>
+        <% if check_permission(Sticker::Admin::BannersController, ["edit"]) %>
+          <span class="unpublish">
+            <%= link_to t("unpublish"), toggle_admin_banner_path(banner, field: 'publish'), method: :put %>
+          </span>
+        <% end %>
+        <%= link_to image_tag('banner_list/banner_share.png', class: 'share-icon'), '#', class: 'share-banner', data: {link: share_modal_admin_banner_path(banner)} if current_user && banner.shareable? %>
       </div>
     <% end %>
     <div class="clear clearfix"> </div>
@@ -46,7 +45,8 @@
     <% speed = component.timer.to_i * 1000 %>
     <div class="flexslider" data-slideshowspeed="<%= speed %>" data-controls="<%= component.show_controls? %>">
       <ul class="slides">
-        <% @banners.each do |banner| %>
+        <% @banners.each do |banner_site| %>
+          <% banner = banner_site.banner %>
           <% if banner.repository.present? %>
             <% banner_url = target_url(banner) %>
             <li>
@@ -73,6 +73,7 @@
                   <p class="flex-description-inner"><%= banner.text %></p>
                 </div>
               <% end %>
+              <%= link_to image_tag('banner_list/banner_share.png', class: 'share-icon'), '#', class: 'share-banner', data: {link: share_modal_admin_banner_path(banner)} if current_user && banner.shareable? %>
             </li>
           <% end %>
         <% end %>
