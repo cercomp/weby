@@ -2,7 +2,7 @@
 <%= f.input :category,
   collection: current_site.banner_sites.category_counts.map{|b| b.name},
   priority: component.category,
-  include_blank: false
+  include_blank: true
 %>
 <%= f.input :orientation, collection: [
     [t(".vertical"),"vertical"],

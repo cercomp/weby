@@ -84,6 +84,10 @@ pt-BR:
           title:                " Título "
           cover:                " Capa "
           status:               " Status "
+        share:
+          news_shared:          "Notícia compartilhada com sucesso"
+        unshare:
+          unshared_news:        "Compartilhamento removido com sucesso"
         newsletter:
           from:                 " Enviado por "
           to:                   " Enviar para "

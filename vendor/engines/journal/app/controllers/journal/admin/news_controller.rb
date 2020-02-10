@@ -100,12 +100,14 @@ module Journal::Admin
         news_site.category_list.add(*tags)
         news_site.save!
       end
+      flash[:notice] = t('.news_shared')
       redirect_to :back
     end
 
     def unshare
       @news = Journal::NewsSite.where(site_id: current_site.id, journal_news_id: params[:id])
       @news.destroy_all
+      flash[:success] = t('.unshared_news')
       redirect_to :back
     end
 

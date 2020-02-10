@@ -74,6 +74,7 @@ module Sticker::Admin
         banner_site.category_list.add(*tags)
         banner_site.save!
       end
+      flash[:notice] = t('.banner_shared')
       redirect_to :back
       #render json: {ok: true, message: t('.banner_shared')} #CORS issues
     end
