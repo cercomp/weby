@@ -144,9 +144,9 @@ module ApplicationHelper
 
     ''.tap do |html|
       flash.each do |key, value|
-        html << modal_html if modal_html 
+        html << modal_html if modal_html
         html << modal_js if modal_js
-        html << content_tag('blockquote', class: flash_class(key)) do
+        html << content_tag('blockquote', class: "flash-alert #{flash_class(key)}") do
           raw %(
             #{link_to('&times;'.html_safe, '#', class: 'close', data: { dismiss: 'alert' }, 'aria-hidden' => true)}
             #{value}

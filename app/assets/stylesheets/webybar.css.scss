@@ -47,3 +47,32 @@ $link-color: $weby-blue;
   top: 0;
   left: 0;
 }
+
+.flash-alert {
+  /*display: none;*/
+  width: 500px;
+  max-width: calc(100% - 15px);
+  position: fixed;
+  z-index: 900;
+  bottom: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px;
+  border: 1px solid #bdbdbd;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  transition: bottom .4s;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  .close {
+    float: right;
+    text-decoration: none;
+    color: gray;
+  }
+
+  &.visible {
+    /*display: block;*/
+    bottom: 0;
+  }
+}

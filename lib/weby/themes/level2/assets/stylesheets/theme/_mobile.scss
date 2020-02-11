@@ -168,6 +168,7 @@
 @media (max-width: 625px) {
   .header .menu-bar .container {
     justify-content: left;
+    max-height: 60px;
   }
   .header .menu-bar .container .menu-mobile {
     text-align: center;
@@ -188,6 +189,8 @@
   }
   .menu-bar .menu_component {
     display: none;
+    background-color: var(--main-color);
+    z-index: 4;
   }
   .header .menu-bar.fixed .menu_component menu {
     padding-left: 0;
@@ -232,7 +235,7 @@
   }
   .menu-bar.mob-open .menu_component {
     display: block;
-    margin-top: 70px !important;
+    margin-top: 60px !important;
     flex: 0 0 100%;
   }
   .menu-bar.mob-open .menu_component menu.submenu > li {

@@ -41,7 +41,7 @@ top:
       publish: true
       alias: Logo
     - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"",
-        :new_tab=>"0", :html_class=>"unit-logo", :default_image=>"level2/marca-prpg.svg"}'
+        :new_tab=>"0", :html_class=>"logo", :default_image=>"level2/marca-prpg.svg"}'
       name: image
       position: 2
       publish: true
