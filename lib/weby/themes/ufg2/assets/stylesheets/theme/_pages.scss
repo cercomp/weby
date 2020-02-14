@@ -80,6 +80,7 @@
 
   .categories {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     margin: 0 0 60px;
   }
@@ -109,7 +110,8 @@
     text-align: center;
     color: var(--white);
     padding: 7px 16px;
-    margin-right: 11px;
+    margin-right: 10px;
+    margin-bottom: 10px;
 
     &:last-child {
       margin-right: 0;
