@@ -248,8 +248,8 @@
     background-image: asset-url('level2/expand-more-white.png');
     background-position: center;
   }
-  .header .menu_component>menu>li.sub>.submenu {
-    width: 100%;
+  .header .menu_component>menu>li.sub .submenu {
+    width: auto;
   }
   .header .menu_component menu.submenu {
     background-color: transparent;
