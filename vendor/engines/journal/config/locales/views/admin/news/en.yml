@@ -91,6 +91,10 @@ en:
           title:                " Title "
           cover:                " Cover "
           status:               " Status "
+        share:
+          news_shared:          "News was shared successfully"
+        unshare:
+          unshared_news:        "Shared news removed successfully"
         newsletter:
           from:                 " From "
           to:                   " Send to "

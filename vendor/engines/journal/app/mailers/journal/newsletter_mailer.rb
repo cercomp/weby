@@ -5,7 +5,7 @@ module Journal
     def confirm_email(user, url)
       @newsletter_user = user
       @newsletter_url = url+(url[url.length-1]=="/" ? "" : "/")+"newsletters/confirmation?token="+@newsletter_user.token+":"+@newsletter_user.id.to_s
-      mail(from: "noreply@ufg.br", to: @newsletter_user.email, subject: t("user_inactive"))
+      mail(from: Devise.mailer_sender, to: @newsletter_user.email, subject: t("user_inactive"))
     end
 
     def news_email(from, to, subject, site, news)

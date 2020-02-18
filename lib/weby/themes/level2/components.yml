@@ -40,23 +40,29 @@ top:
       position: 1
       publish: true
       alias: Logo
+    - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"",
+        :new_tab=>"0", :html_class=>"logo", :default_image=>"level2/marca-prpg.svg"}'
+      name: image
+      position: 2
+      publish: true
+      alias: Logo Unidade
     - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://www.ufg.br",
         :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"ufg-logo",
         :default_image=>"level2/marca-ufg.svg"}'
       name: image
-      position: 2
+      position: 3
       publish: true
       alias: Logo - UFG
     - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"",
         :new_tab=>"0", :html_class=>"social-toggle", :default_image=>"level2/ic-social.svg",
         :title=>{"pt-BR"=>"", "en"=>""}}'
       name: image
-      position: 3
+      position: 4
       publish: true
       alias: Mostrar Redes
     - settings: '{:html_class=>"social-icons"}'
       name: components_group
-      position: 4
+      position: 5
       publish: true
       alias: Ícones sociais
       children:
@@ -220,9 +226,86 @@ home:
       name: event_list
       position: 1
       publish: true
-- settings: '{:html_class=>"boxes-section"}'
+- settings: '{:html_class=>"media-section"}'
   name: components_group
   position: 6
+  publish: true
+  alias: Multimídia
+  children:
+  - settings: '{:html_class=>"container"}'
+    name: components_group
+    position: 1
+    publish: true
+    alias: Container
+    children:
+    - settings: '{:html_class=>"", :body=>{"pt-BR"=>"<p>Multim&iacute;dia</p>", "en"=>"<p>Media</p>"}}'
+      name: text
+      position: 1
+      publish: true
+      alias: Título
+    - settings: '{:html_class=>"video-grid"}'
+      name: components_group
+      position: 2
+      publish: true
+      alias: Grid Videos
+      children:
+      - settings: '{:html_class=>"video-card highlight"}'
+        name: components_group
+        position: 1
+        publish: true
+        alias: Card Video Destaque
+        children:
+        - settings: '{:url=>"https://www.youtube.com/", :width=>"", :height=>"", :start=>"",
+            :controls=>"1", :privacy=>"0", :html_class=>""}'
+          name: youtube_wrap
+          position: 1
+          publish: true
+          alias: Video Destaque
+        - settings: '{:html_class=>"", :body=>{"pt-BR"=>"<p><strong>T&iacute;tulo</strong></p>\r\n<p>Descri&ccedil;&atilde;o
+            V&iacute;deo Destaque</p>", "en"=>""}}'
+          name: text
+          position: 2
+          publish: true
+          alias: Descrição Video Destaque
+      - settings: '{:html_class=>"video-card"}'
+        name: components_group
+        position: 2
+        publish: true
+        alias: Card Video 2
+        children:
+        - settings: '{:url=>"https://www.youtube.com/", :width=>"", :height=>"", :start=>"",
+            :controls=>"1", :privacy=>"0", :html_class=>""}'
+          name: youtube_wrap
+          position: 1
+          publish: true
+          alias: Video 2
+        - settings: '{:html_class=>"", :body=>{"pt-BR"=>"<p><strong>T&iacute;tulo
+            2</strong></p>\r\n<p>Descri&ccedil;&atilde;o Video 2</p>", "en"=>""}}'
+          name: text
+          position: 2
+          publish: true
+          alias: Descrição Video 2
+      - settings: '{:html_class=>"video-card"}'
+        name: components_group
+        position: 3
+        publish: true
+        alias: Card Video 3
+        children:
+        - settings: '{:url=>"https://www.youtube.com/", :width=>"", :height=>"", :start=>"",
+            :controls=>"1", :privacy=>"0", :html_class=>""}'
+          name: youtube_wrap
+          position: 1
+          publish: true
+          alias: Video 3
+        - settings: '{:html_class=>"", :body=>{"pt-BR"=>"<p><strong>T&iacute;tulo
+            3</strong></p>\r\n<p>Descri&ccedil;&atilde;o Video 3</p>", "en"=>""}}'
+          name: text
+          position: 2
+          publish: true
+          alias: Descrição Video 3
+- settings: '{:html_class=>"boxes-section"}'
+  name: components_group
+  position: 7
   publish: true
   alias: Destaques
   children:
@@ -273,7 +356,7 @@ home:
         alias: Imagem Box 3
 - settings: '{:html_class=>"main-links"}'
   name: components_group
-  position: 7
+  position: 8
   publish: true
   alias: Links Úteis
   children:

@@ -29,7 +29,7 @@ pt-BR:
         title:         "Título"
         close:         "Fechar"
         no-site-found: "Nenhum site disponível para compartilhar"
-        no-front-news-found: 'Nenhum componente de notícias capa nesse site'
+        no-front-news-found: 'Nenhum componente Notícias Capa ativo neste site'
       list:
         read_more:     "Leia mais"
         no_news:       "Nenhuma notícia encontrada"

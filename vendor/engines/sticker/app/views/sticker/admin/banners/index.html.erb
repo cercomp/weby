@@ -24,6 +24,7 @@
   </div>
 <% else %>
   <div id="list">
-    <%= render :partial => banners_partial %>
+    <%= render 'view_picker' %>
+    <%= render partial: banners_partial %>
   </div>
 <% end %>

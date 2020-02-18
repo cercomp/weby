@@ -51,12 +51,12 @@ module Journal
         news_sites.each do |sites|
           @news << sites.journal_news_id
         end
-        result = Journal::News.published.includes(:user, :related_files, :news_sites).where('journal_news.id in (?)', @news).
+        result = Journal::News.published.includes(:user, :related_files, :news_sites, :site).where(sites: {status: 'active'}).where('journal_news.id in (?)', @news).
              search(params[:search], params.fetch(:search_type, 1).to_i).
              order(sort_column + ' ' + sort_direction).
              page(params[:page]).per(params[:per_page])
       else
-        result = Journal::News.published.includes(:user, :related_files, :news_sites).where(site_id: current_site).
+        result = Journal::News.published.includes(:user, :related_files, :news_sites, :site).where(sites: {status: 'active'}).where(site_id: current_site).
             search(params[:search], params.fetch(:search_type, 1).to_i).
             order(sort_column + ' ' + sort_direction).
             page(params[:page]).per(params[:per_page])

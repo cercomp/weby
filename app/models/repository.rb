@@ -51,8 +51,8 @@ class Repository < ActiveRecord::Base
   scope :description_or_filename, ->(text) {
     text = text.try(:downcase)
 
-    where(["LOWER(description) LIKE :text OR
-            LOWER(archive_file_name) LIKE :text", { text: "%#{text}%" }])
+    where(["LOWER(repositories.description) LIKE :text OR
+            LOWER(repositories.archive_file_name) LIKE :text", { text: "%#{text}%" }])
   }
 
   scope :content_file, ->(contents) {

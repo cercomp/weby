@@ -1,5 +1,5 @@
 en:
-  does_not_exist:    " The page you are trying to acces might not exist "
+  does_not_exist:    " Site not found "
   verify_url:        " Verify if the path entered is correct "
   return_to_home:    " Click here to return to the main page. "
   intern_error:      " There was an internal error on the server "

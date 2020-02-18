@@ -1,0 +1,58 @@
+<!-- Modal -->
+<div class="modal fade" id="bannerModal" tabindex="-1" role="dialog" aria-labelledby="shareBanner" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel"><%= t(".my_sites") %></h4>
+      </div>
+      <div class="modal-body">
+        <% if @banner.present? %>
+          <% @sites = current_user ? current_user.sites : [] %>
+          <% if @sites.empty? %>
+            <div class="alert alert-warning">
+              <%= t(".no-site-found") %>
+            </div>
+          <% else %>
+            <div class="accordion" id="accordion2">
+              <div class="accordion-group">
+                <% @sites.each do |site| %>
+                  <% if site.id != current_site.id && site.id != @banner.site_id %>
+                    <div class="accordion-heading">
+                      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" <%= "href=#collapse#{site.id}" %>>
+                        <th><%= site.title %></th>
+                      </a>
+                    </div>
+                    <div <%= "id=collapse#{site.id}" %> class="accordion-body collapse">
+                      <div class="accordion-inner">
+                        <% banner_comps = site.active_skin.components.where(name: 'banner_list', publish: true) %>
+                        <% if banner_comps.empty? %>
+                          <div class="alert alert-warning">
+                            <%= t(".no-banner-list-found") %>
+                          </div>
+                        <% else %>
+                          <% banner_comps.each do |comp| %>
+                            <% settings = eval(comp.settings) %>
+                            <% tag = settings[:category] %>
+                            <div class="thumbnail">
+                              <h5 class="text-center"><%= link_to "#{t("components.#{comp.name}.name")}  - #{comp.alias.present? ? comp.alias : comp.default_alias}",
+                                  share_admin_banner_url(@banner, site_id: site.id, subdomain: site, tag: tag), class: 'share-action', method: :get, remote: false %></h5>
+                            </div>
+                          <% end %>
+                        <% end %>
+                      </div>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <%= t('.banner_not_shareable') %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('.close') %></button>
+      </div>
+    </div>
+  </div>
+</div>

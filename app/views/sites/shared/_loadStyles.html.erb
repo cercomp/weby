@@ -1,4 +1,5 @@
 <% @current_skin.styles.published.reorder('styles.position asc').each do |style| %>
+  <% next if !style.owner.active? %>
   <!-- <%= "#{style.name} (#{style.owner.name})" %> -->
   <style type="text/css">
     <%= raw style.css %>

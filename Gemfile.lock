@@ -426,7 +426,7 @@ DEPENDENCIES
   rails (~> 4.2.11.1)
   rails-assets-tinymce (~> 4.8.5)!
   rails-html-sanitizer (~> 1.0.4)
-  rails-observers (~> 0.1.2)
+  rails-observers (~> 0.1.5)
   rails-settings-cached (= 0.4.1)
   rake (= 11.2.2)
   rollbar

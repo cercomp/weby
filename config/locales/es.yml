@@ -14,7 +14,8 @@ es:
   active_deactive:                      " Ativar Desativar "
   are_you_sure:                         " Você tem certeza? "
   activate_deactivate:                  " Ativar/Desativar "
-  activate:                             " Ativar "
+  activate:                             " Activar "
+  active:                               " Activo "
   #access_denied:                        " Acesso negado! "
   #access_denied_page:                   " Você não está autorizado a ver está página! "
   add_sub_menu:                         " Adiciona um item de menu filho "
@@ -60,6 +61,7 @@ es:
 #---H---#
 #---I---#
   invalid_activation_token:             " Link de activación no válida o vencida! "
+  inactive:                             "Inactivo"
 #---J---#
 #---K---#
 #---L---#

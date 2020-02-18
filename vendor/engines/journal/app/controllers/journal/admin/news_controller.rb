@@ -43,7 +43,8 @@ module Journal::Admin
       end
 
       news = Journal::News.where('journal_news.id in (?)', @news).
-        includes(:user).
+        includes(:user, :site).
+        where(sites: {status: 'active'}).
         search(params[:search], 1) # 1 = busca com AND entre termos
 
       if params[:template] == 'list_popup'
@@ -99,12 +100,14 @@ module Journal::Admin
         news_site.category_list.add(*tags)
         news_site.save!
       end
+      flash[:notice] = t('.news_shared')
       redirect_to :back
     end
 
     def unshare
       @news = Journal::NewsSite.where(site_id: current_site.id, journal_news_id: params[:id])
       @news.destroy_all
+      flash[:success] = t('.unshared_news')
       redirect_to :back
     end
 
@@ -205,7 +208,7 @@ module Journal::Admin
         history.emails = params[:ids]
         history.save
         news = Journal::News.where(site_id: current_site).find(params[:id]).in(params[:show_locale])
-        Journal::NewsletterMailer.news_email(params[:from], params[:to], params[:subject], current_site, news).deliver
+        Journal::NewsletterMailer.news_email(params[:from], params[:to], params[:subject], current_site, news).deliver_now
         flash[:success] = t('.successfully_send')
         redirect_to admin_news_index_path
       end

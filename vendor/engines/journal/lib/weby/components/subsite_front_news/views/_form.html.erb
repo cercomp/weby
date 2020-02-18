@@ -2,7 +2,7 @@
 
 <%= f.input :source, collection: component.source_options.map{|o| [t(".#{o}"), o] }, include_blank: false %>
 
-<%= f.input :sel_site, collection: Site.where.not(id: current_site.id), input_html: {class: 'select2'} %>
+<%= f.input :sel_site, collection: Site.active.where.not(id: current_site.id), input_html: {class: 'select2'} %>
 
 <%= each_i18n_tab do |locale| %>
   <%= f.component_i18n_input locale, :label, :as => :string %>

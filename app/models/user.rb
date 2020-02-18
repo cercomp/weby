@@ -130,7 +130,7 @@ class User < ActiveRecord::Base
   end
 
   def sites
-    Site.where(id: roles.map { |role| role.site_id }.uniq)
+    Site.active.where(id: roles.map { |role| role.site_id }.uniq)
   end
 
   # Returns the user's global roles

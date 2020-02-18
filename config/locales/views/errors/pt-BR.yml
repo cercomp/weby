@@ -1,5 +1,5 @@
 pt-BR:
-  does_not_exist:    " O endereço que você digitou parece não existir "
+  does_not_exist:    " Site não encontrado "
   verify_url:        " Verifique se o endereço foi digitado corretamente "
   return_to_home:    " Clique aqui para voltar à página inicial. "
   intern_error:      " Ocorreu um erro interno no servidor "

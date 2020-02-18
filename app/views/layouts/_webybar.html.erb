@@ -26,7 +26,12 @@
     </div>
     <div class="clearfix"></div>
   </div>
-<% else %>  
+  <%# flash.now[:notice] = 'Banner compartilhado com sucesso' %>
+  <%# Flash message for site front end %>
+  <% unless flash.empty? %>
+    <%= raw flash_message %>
+  <% end %>
+<% else %>
   <%= link_to image_tag('weby-shortcut.png'),
     weby_login_url(request.url), id: 'weby_shortcut' %>
 <% end %>
