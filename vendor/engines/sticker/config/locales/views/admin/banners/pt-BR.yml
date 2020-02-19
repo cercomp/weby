@@ -42,7 +42,7 @@ pt-BR:
           url:                      " URL "
           period_banner:            " Período do Banner "
           origin_site:              " Site de Origem "
-          shareable:                " Compartilhável "
+          shareable:                " Habilitar Compartilhamento "
         unshare:
           unshared_banner:          " Compartilhamento removido com sucesso "
         new:
@@ -52,7 +52,7 @@ pt-BR:
           no-site-found:            "Nenhum site disponível para compartilhar"
           no-banner-list-found:     "Nenhum componente Lista de Banners ativo neste site"
           close:                    "Fechar"
-          banner_not_shareable:     'Banner não encontrado ou não compartilhável'
+          banner_not_shareable:     'Banner não encontrado ou Compartilhamento não habilitado'
         share:
           banner_shared:            "Banner compartilhado com sucesso."
         fronts:

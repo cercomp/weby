@@ -13,7 +13,7 @@ pt-BR:
         page_id:       " Id da página "
         position:      " Posição "
         publish:       " Publicado "
-        shareable:     " Compartilhável "
+        shareable:     " Habilitar Compartilhamento "
         repository_id: " Id do repositório "
         site_id:       " Id do site "
         size:          " Tamanho "

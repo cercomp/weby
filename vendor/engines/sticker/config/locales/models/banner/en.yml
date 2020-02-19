@@ -13,7 +13,7 @@ en:
         page_id:       " Page id "
         position:      " Position "
         publish:       " Published "
-        shareable:     " Shareable "
+        shareable:     " Enable Sharing "
         repository_id: "                      "
         site_id:       " Site id "
         size:          " Size "

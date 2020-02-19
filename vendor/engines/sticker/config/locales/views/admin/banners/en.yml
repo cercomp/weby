@@ -43,7 +43,7 @@ en:
           url:                      " URL "
           period_banner:            " Banner period "
           origin_site:              " Origin Site "
-          shareable:                " Shareable "
+          shareable:                " Enable Sharing "
         unshare:
           unshared_banner:          " Shared Banner removed sucessfully "
         new:
