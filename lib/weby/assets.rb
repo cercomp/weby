@@ -4,7 +4,7 @@ module Weby
       return nil if !request
 
       settings = Weby::Settings::AssetHost
-      return nil if !(settings.assets_host.present? || settings.uploads_host.present?)
+      return nil if settings.assets_host.blank? && settings.uploads_host.blank?
       return nil if request.ssl? && settings.disable_on_https
       return settings.assets_host if source.match(/^\/assets\//) && settings.assets_host.present?
       return settings.uploads_host if source.match(/^\/up\//) && settings.uploads_host.present?

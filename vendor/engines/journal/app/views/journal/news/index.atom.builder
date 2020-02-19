@@ -14,7 +14,7 @@ atom_feed :language => I18n.locale do |feed|
           title: news.image.description
         }
       ) if news.image
-      body = "#{news_image}<br/>#{news.summary}<br/>#{news.text}"
+      body = "#{news_image}<br/>#{render_user_content news.summary}<br/>#{render_user_content news.text}"
       body += "<br/>#{link_to 'Original', news.url, target: '_blank'}" if news.url.present?
       entry.content body, :type => 'html'
 

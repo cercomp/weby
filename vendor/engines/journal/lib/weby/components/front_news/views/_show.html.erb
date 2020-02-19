@@ -41,10 +41,10 @@
           </header>
           <summary>
             <% if component.max_char.present? %>
-              <%= raw(news.summary.to_s[0..component.max_char.to_i] +
+              <%= render_user_content(news.summary.to_s[0..component.max_char.to_i] +
                       (news.summary.to_s.size > component.max_char.to_i ? "..." : "")) %>
             <% else  %>
-              <%= raw news.summary %>
+              <%= render_user_content news.summary %>
             <% end %>
           </summary>
           <% if !(news.text.blank?) and component.read_more %>

@@ -11,7 +11,6 @@
         <%= news_image(news.image, :t, 140, nil, {as: "link", url: news_url(news, subdomain: news.site)}) %>
         <div><%= link_to news.title, news_url(news, subdomain: news.site) %></div>
         <span class="date"><%= l(news.updated_at, format: :short) %></span>
-        <!--<p><%#= page.summary.html_safe %></p>-->
       </div>
       <div class="news col-md-6">
         <% newslist.each do |news_site| %>

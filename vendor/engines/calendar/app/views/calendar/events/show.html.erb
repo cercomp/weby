@@ -32,7 +32,7 @@
     </p>
   <% end %>
   <div class="body">
-    <%= raw @event.information %>
+    <%= render_user_content @event.information %>
   </div>
 
   <%# List the related files if they exist %>

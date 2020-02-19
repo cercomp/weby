@@ -25,7 +25,7 @@ xml.rss :version => "2.0", "xmlns:itunes" => "http://www.itunes.com/dtds/podcast
             title: news.image.description
           }
         ) if news.image
-        body = "#{news_image}<br/>#{news.summary}<br/>#{news.text}"
+        body = "#{news_image}<br/>#{render_user_content news.summary}<br/>#{render_user_content news.text}"
         body += "<br/>#{link_to 'Original', news.url, target: '_blank'}" if news.url.present?
         xml.description body
         if @extension.settings.author == '1'

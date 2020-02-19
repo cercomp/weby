@@ -24,7 +24,12 @@ class Repository < ActiveRecord::Base
   has_attached_file :archive,
     styles: STYLES,
     original_style: :o,
-    url: "/up/:site_id/:style/:basename.:extension",
+    path: proc {
+      Rails.env.production? ?
+        '/up/:site_id/:style/:basename.:extension'
+      : ':rails_root/public:url'
+    },
+    url: '/up/:site_id/:style/:basename.:extension',
     convert_options: {
       i: "-quality 90 -strip",
       l: "-quality 90 -strip",
@@ -137,6 +142,7 @@ class Repository < ActiveRecord::Base
 
   def as_json(options = {})
     json = super(options)
+    json[:file_url] = self.archive.path(:o)
     json[:original_path] = self.archive.url(:o)
     json[:little_path] = self.archive.url(:l)
     json[:medium_path] = self.archive.url(:m)

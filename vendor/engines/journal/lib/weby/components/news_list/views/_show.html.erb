@@ -15,7 +15,7 @@
               <% end %>
               <p class="title"><%= link_to news.title, news.url.present? ? news.url : news_url(news, subdomain: news.site), target: (component.new_tab && news.url.present? ? '_blank' : '_self') %></p>
               <% if component.show_date %><p class="news-date"><%= l(news.created_at, format: component.date_format) %></p><% end %>
-              <%= raw news.summary %>
+              <%= render_user_content news.summary %>
             </td>
           </tr>
     <% end %>

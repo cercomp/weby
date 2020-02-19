@@ -31,7 +31,7 @@
             <div class="media-body">
               <div class="title"><%= link_to new.title, news_url(new, subdomain: new.site) %></div>
               <div class="description"><%= t(".published", site: link_to(new.site.title, site_url(subdomain: new.site)), date: l(new.created_at, format: :short)).html_safe %></div>
-              <div class="summary"><%= new.summary.try(:html_safe) %></div>
+              <div class="summary"><%= render_user_content new.summary %></div>
             </div>
           </div>
         <% end %>

@@ -18,7 +18,7 @@
       <span class="date"><%= t("posted_on") %><%= localize news.created_at, format: :medium %></span>
     </div>
     <summary>
-      <%= raw news.summary %>
+      <%= render_user_content news.summary %>
     </summary>
     <% @news_site = Journal::NewsSite.find_by(journal_news_id: news.id, site_id: current_site.id) %>
     <% if @news_site %>

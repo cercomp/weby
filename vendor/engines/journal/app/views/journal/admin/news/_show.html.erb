@@ -10,12 +10,12 @@
     <%= "#{@news.user} #{l(@news.created_at, format: :short)}" if current_site.view_desc_pages %>
   </p>
   <p>
-    <%= raw @news.summary %>
+    <%= render_user_content @news.summary %>
   </p>
 </summary>
 
 <div class="body">
-  <%= raw @news.text %>
+  <%= render_user_content @news.text %>
   <% if @news.related_files.any? %>
     <% if !@news.text.match(/\<audio/) %>
       <% @news.related_files.each do |file| %>

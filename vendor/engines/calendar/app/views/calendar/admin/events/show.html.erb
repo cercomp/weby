@@ -13,7 +13,7 @@
   </header>
 
   <div class="body">
-    <%= raw @event.information %>
+    <%= render_user_content @event.information %>
   </div>
 
   <%= content_tag_if @event.kind?, :p, class: 'event-type' do %>
