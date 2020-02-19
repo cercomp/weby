@@ -566,6 +566,9 @@ module ApplicationHelper
   # Input: Site object
   # Output: link to the favicon
   def favicon(site)
-    site.favicon.nil? ? asset_url('favicon.ico') : main_app.site_url(subdomain: site) + site.favicon.archive.url
+    return asset_url('favicon.ico') if site.favicon.nil?
+
+    icon_url = site.favicon.archive.url
+    icon_url.match(/http\:\/\//) ? icon_url : "#{main_app.site_url(subdomain: site)}#{icon_url}"
   end
 end
