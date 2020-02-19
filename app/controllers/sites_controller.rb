@@ -46,11 +46,29 @@ class SitesController < ApplicationController
   end
 
   def robots
-    robots_file = Rails.root.join('public', 'up', current_site.id.to_s, 'o', 'robots.txt') if current_site
+    custom_robots_file = nil
+    # check if using external storage
+    if ENV['STORAGE_BUCKET'].present?
+      s3 = Aws::S3::Resource.new(
+        credentials: Aws::Credentials.new(ENV['STORAGE_ACCESS_KEY'], ENV['STORAGE_ACCESS_SECRET']),
+        endpoint: ENV['STORAGE_HOST'],
+        force_path_style: true
+      )
+      bucket = s3.bucket(ENV['STORAGE_BUCKET'])
+      file = bucket.object("up/#{current_site.id.to_s}/o/robots.txt")
+      if file.exists?
+        custom_robots_file = file.get.body.read
+      end
+    else
+      if current_site
+        robots_file = Rails.root.join('public', 'up', current_site.id.to_s, 'o', 'robots.txt')
+        custom_robots_file = File.read(robots_file) if robots_file && FileTest.exist?(robots_file)
+      end
+    end
 
     # render file: (robots_file && FileTest.exist?(robots_file) ?
-    #  robots_file : Rails.root.join("public","default_robots.txt")), layout: false, content_type: "text/plain"
-    render text: File.read(robots_file && FileTest.exist?(robots_file) ? robots_file : Rails.root.join('public', 'default_robots.txt')), layout: false, content_type: 'text/plain'
+    # robots_file: Rails.root.join("public","default_robots.txt")), layout: false, content_type: "text/plain"
+    render text: custom_robots_file ? custom_robots_file : File.read(Rails.root.join('public', 'default_robots.txt')), layout: false, content_type: 'text/plain'
   end
 
   def admin
