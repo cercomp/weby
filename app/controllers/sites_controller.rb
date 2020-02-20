@@ -51,7 +51,8 @@ class SitesController < ApplicationController
     if ENV['STORAGE_BUCKET'].present?
       s3 = Aws::S3::Resource.new(
         credentials: Aws::Credentials.new(ENV['STORAGE_ACCESS_KEY'], ENV['STORAGE_ACCESS_SECRET']),
-        endpoint: ENV['STORAGE_HOST'],
+        region: 'us-east-1',
+        endpoint: "https://#{ENV['STORAGE_HOST']}",
         force_path_style: true
       )
       bucket = s3.bucket(ENV['STORAGE_BUCKET'])
