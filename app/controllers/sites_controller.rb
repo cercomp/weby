@@ -14,7 +14,7 @@ class SitesController < ApplicationController
     params[:page] ||= 1
 
     # TODO Search using the new's tittle too
-      @sites = Site.active.ordered_by_front_pages(params[:search])
+    @sites = Site.active.ordered_by_front_pages(params[:search])
 
     if !current_user || !current_user.is_admin?
       @sites = @sites.visible

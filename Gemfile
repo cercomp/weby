@@ -11,7 +11,7 @@ gem 'pg', '~> 0.17.1'
 # js and css frameworks
 gem 'jquery-rails', '3.1.3'
 gem 'jquery-ui-rails', '~> 4.2.1'
-gem 'bootstrap-sass', '~> 3.1.1.1'
+gem 'bootstrap-sass', '~> 3.4.1'
 gem 'select2-rails', '~> 3.5.9'
 gem 'd3js-rails', '~> 3.1.6'
 gem 'cropper-rails', '~> 2.3.2.1'

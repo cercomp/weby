@@ -4,24 +4,24 @@
     <span><%= link_to site.title, site_url(subdomain: site) %></span>
   </div>
   <div class="caption">
-    <% newslist = Journal::NewsSite.where(site_id: site.id).published.order('updated_at desc').front.first(4) %>
-      <% news = newslist.shift.news if newslist.any? %>
-    <% if news %>
+    <% newslist = Journal::NewsSite.where(site_id: site.id).preload(news: [:i18ns, :site]).published.order('updated_at desc').front.first(4) %>
+      <% top_news = newslist.shift.news if newslist.any? %>
+    <% if top_news %>
       <div class="top-news col-md-6">
-        <%= news_image(news.image, :t, 140, nil, {as: "link", url: news_url(news, subdomain: news.site)}) %>
-        <div><%= link_to news.title, news_url(news, subdomain: news.site) %></div>
-        <span class="date"><%= l(news.updated_at, format: :short) %></span>
+        <%= news_image(top_news.image, :t, 140, nil, {as: "link", url: news_url(top_news, subdomain: top_news.site)}) %>
+        <div><%= link_to top_news.title, news_url(top_news, subdomain: top_news.site) %></div>
+        <span class="date"><%= l(top_news.updated_at, format: :short) %></span>
       </div>
       <div class="news col-md-6">
         <% newslist.each do |news_site| %>
           <% news = news_site.news %>
-            <% if news %>
-          <div>
-            <%= news_image(news.image, :t, 60, nil, {as: "link", url: news_url(news, subdomain: news.site)}) %>
-            <div><%= link_to news.title, news_url(news, subdomain: news.site) %></div>
-            <span class="date"><%= l(news.updated_at, format: :short) %></span>
-          </div>
-            <% end %>
+          <% if news %>
+            <div>
+              <%= news_image(news.image, :t, 60, nil, {as: "link", url: news_url(news, subdomain: news.site)}) %>
+              <div><%= link_to news.title, news_url(news, subdomain: news.site) %></div>
+              <span class="date"><%= l(news.updated_at, format: :short) %></span>
+            </div>
+          <% end %>
         <% end %>
       </div>
     <% else %>

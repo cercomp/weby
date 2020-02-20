@@ -22,7 +22,7 @@ Rails.application.configure do
   config.active_record.raise_in_transactional_callbacks = true
 
   # Disable Rails's static files server (Apache or nginx will already do this).
-  config.serve_static_files = false
+  config.serve_static_files = true#false
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier

@@ -569,6 +569,6 @@ module ApplicationHelper
     return asset_url('favicon.ico') if site.favicon.nil?
 
     icon_url = site.favicon.archive.url
-    icon_url.match(/http\:\/\//) ? icon_url : "#{main_app.site_url(subdomain: site)}#{icon_url}"
+    icon_url.match(/https?\:\/\//) ? icon_url : "#{main_app.site_url(subdomain: site)}#{icon_url}"
   end
 end

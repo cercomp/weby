@@ -50,9 +50,13 @@ class Site < ActiveRecord::Base
   scope :active, -> { where(status: 'active') }
 
   scope :name_or_description_like, ->(text) {
-    where('lower(sites.name) LIKE lower(:text) OR
-           lower(sites.description) LIKE lower(:text) OR
-           lower(sites.title) LIKE lower(:text)', text: "%#{text}%")
+    if text.present?
+      where('lower(sites.name) LIKE lower(:text) OR
+             lower(sites.description) LIKE lower(:text) OR
+             lower(sites.title) LIKE lower(:text)', text: "%#{text}%")
+    else
+      where(nil)
+    end
   }
 
   scope :ordered_by_front_pages, ->(text) {

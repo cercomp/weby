@@ -7,7 +7,7 @@ class Repository < ActiveRecord::Base
     i: "95x70",
     l: "190x140",
     m: "400x300",
-    t: "160x160^",
+    t: "160x160#",
     o: "original"
   }
 
@@ -34,7 +34,7 @@ class Repository < ActiveRecord::Base
       i: "-quality 90 -strip",
       l: "-quality 90 -strip",
       m: "-quality 80 -strip",
-      t: "-crop 160x160+0+0 +repage -quality 90 -strip",
+      t: "-quality 80 -strip", #-crop 160x160+0+0 +repage
       o: "-quality 80 -strip"
     }
     #,processors: [:cropper]

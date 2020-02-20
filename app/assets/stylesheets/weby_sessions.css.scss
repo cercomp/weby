@@ -12,6 +12,7 @@ $font-family-base: $lato-font-family;
 $btn-primary-bg: #BC1625;
 $nav-pills-active-link-hover-bg: $weby-blue;
 
+@import "bootstrap-sprockets";
 @import "bootstrap";
 
 .inside {
