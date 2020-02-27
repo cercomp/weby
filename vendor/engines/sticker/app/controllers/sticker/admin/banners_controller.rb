@@ -107,15 +107,15 @@ module Sticker::Admin
     end
 
     def sort
-      @ch_pos = current_site.banner_sites.find_by(sticker_banner_id: params[:id_moved])
+      @ch_pos = current_site.banner_sites.find_by(id: params[:id_moved])
       increment = 1
       # In case it was moved to the end of the list or the end of a page (when paginated)
       if (params[:id_after].to_s == '0')
-        @before = current_site.banner_sites.find_by(sticker_banner_id: params[:id_before])
+        @before = current_site.banner_sites.find_by(id: params[:id_before])
         condition = "position < #{@ch_pos.position} AND position >= #{@before.position}"
         new_pos = @before.position
       else
-        @after = current_site.banner_sites.find_by(sticker_banner_id: params[:id_after])
+        @after = current_site.banner_sites.find_by(id: params[:id_after])
         # In case it was moved from top to bottom
         if @ch_pos.position > @after.position
           condition = "position < #{@ch_pos.position} AND position > #{@after.position}"

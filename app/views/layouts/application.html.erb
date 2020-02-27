@@ -18,7 +18,7 @@
       <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <% if ENV['STORAGE_HOST'].present? %>
-      <meta name="storage" content="<%= ENV['STORAGE_HOST'] %>">
+      <meta name="storage" content="<%= "#{ENV['STORAGE_HOST']}/#{ENV['STORAGE_BUCKET']}" %>">
     <% end %>
   </head>
   <body>

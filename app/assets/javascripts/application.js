@@ -15,6 +15,14 @@
 
 var WEBY = {};
 
+var assetPath = function(file_path) {
+  var storage = $('meta[name=storage]');
+  if (storage.length > 0) {
+    return "//"+storage.attr('content')+"/assets/"+file_path;
+  }
+  return "/assets/"+file_path;
+}
+
 // Mostrar mensagem para erros, no retorno do ajax
 FlashMsg = {
   notify: function(status) {
@@ -68,7 +76,7 @@ function addToSelect(selectId, text){
 $(document).ready(function() {
 
   // Ajax indicator
-  $('body').append($('<div class="panel panel-default hide" id="loading-modal" style="z-index: '+toasterPos.zindex+'; position: fixed; bottom: '+toasterPos.bottom+'px; right: '+toasterPos.right+'px;"><div class="panel-body"><img src="/assets/loading-bar.gif"/></div></div>'));
+  $('body').append($('<div class="panel panel-default hide" id="loading-modal" style="z-index: '+toasterPos.zindex+'; position: fixed; bottom: '+toasterPos.bottom+'px; right: '+toasterPos.right+'px;"><div class="panel-body"><img src="'+assetPath('loading-bar.gif')+'"/></div></div>'));
   $(document).ajaxSend(function(ev, jqXHR, options){
     if(options.files){
       return;
