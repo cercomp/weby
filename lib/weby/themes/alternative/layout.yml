@@ -9,76 +9,109 @@ placeholders:
 variables:
   color_scheme:
     type: 'color'
+    groups:
+      dark:
+        pt-BR: Cores escuras
+        en: Dark colors
+        es: Colores escuras
+      light:
+        pt-BR: Cores claras
+        en: Light colors
+        es: Colores claras
     values:
       purple:
+        group: dark
         main: '#9c27b0'
         sub: '#7c1f8c'
       pink:
+        group: dark
         main: '#e91e63'
         sub: '#ba184f'
       red:
+        group: dark
         main: '#f44336'
         sub: '#c2352b'
       yellow:
+        group: dark
         main: '#f9a825'
         sub: '#c6861d'
       grey:
+        group: dark
         main: '#757575'
         sub: '#5c5c5c'
       lemon_green:
+        group: dark
         main: '#9e9d25'
         sub: '#7e7c1d'
       light_blue:
+        group: dark
         main: '#2196f3'
         sub: '#1978c2'
       green:
+        group: dark
         main: '#43a047'
         sub: '#358038'
       orange:
+        group: dark
         main: '#fb8c00'
         sub: '#c87000'
       brown:
+        group: dark
         main: '#795548'
         sub: '#604439'
       blue:
+        group: dark
         main: '#1976d2'
         sub: '#145da8'
       grey_blue:
+        group: dark
         main: '#546e7a'
         sub: '#435861'
       light-purple:
+        group: light
         main: '#ba68c8'
         sub: '#93539f'
       light-pink:
+        group: light
         main: '#f06292'
         sub: '#c04e74'
       light-red:
+        group: light
         main: '#ef5350'
         sub: '#bf4240'
       light-yellow:
+        group: light
         main: '#f9a825'
         sub: '#c6861d'
       light-grey:
+        group: light
         main: '#828282'
         sub: '#686868'
       light-lemon_green:
+        group: light
         main: '#afb42b'
         sub: '#8b9022'
       light-light_blue:
+        group: light
         main: '#4fc3f7'
         sub: '#3f9cc5'
       light-green:
+        group: light
         main: '#4caf50'
         sub: '#3c8c40'
       light-orange:
+        group: light
         main: '#fb8c00'
         sub: '#c87000'
       light-brown:
+        group: light
         main: '#8d6e63'
         sub: '#6f574f'
       light-blue:
+        group: light
         main: '#2096f3'
         sub: '#1978c2'
       light-grey_blue:
+        group: light
         main: '#78909c'
         sub: '#60737c'

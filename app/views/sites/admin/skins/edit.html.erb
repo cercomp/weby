@@ -14,22 +14,24 @@
   <% else %>
 
     <% @theme.variables.each do |name, config| %>
-
       <div class="form-group string optional">
         <label class="string optional" for="code"><%= t('themes.'+@skin.theme+'.variables.'+name) %></label>
         <% if config['type'] == 'color' %>
-          <div class="color-pick-container">
-            <% config['values'].each do |option_name, object| %>
-              <div class="color-pick-option">
-                <%= radio_button_tag name, option_name, @skin.get_variable(name) == option_name, id: "color-#{option_name}" %>
-                <label style="background-color: <%= object['main'] %>;" for="<%= "color-#{option_name}" %>"></label>
-                <div class="sub-color"></div>
-              </div>
-            <% end %>
-          </div>
+          <% grouped_options = config['values'].group_by{ |option_name, object| object['group'] } %>
+          <% grouped_options.each do |group, option| %>
+            <%= "<div class=\"group-title\">#{config['groups'][group][current_locale.to_s]}</div>".html_safe if group.present? %>
+            <div class="color-pick-container">
+              <% option.each do |option_name, object| %>
+                <div class="color-pick-option">
+                  <%= radio_button_tag name, option_name, @skin.get_variable(name) == option_name, id: "color-#{option_name}" %>
+                  <label style="background-color: <%= object['main'] %>;" for="<%= "color-#{option_name}" %>"></label>
+                  <div class="sub-color"></div>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
         <% end %>
       </div>
-
     <% end %>
 
     <div class="form-actions">
