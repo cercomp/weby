@@ -11,7 +11,7 @@ module Weby
         end
       end
 
-      def permissions site
+      def permissions site=nil
         site && site.restrict_theme ? @@rights.except('skins') : @@rights
       end
 
