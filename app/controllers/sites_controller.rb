@@ -56,9 +56,11 @@ class SitesController < ApplicationController
         force_path_style: true
       )
       bucket = s3.bucket(ENV['STORAGE_BUCKET'])
-      file = bucket.object("up/#{current_site.id.to_s}/o/robots.txt")
-      if file.exists?
-        custom_robots_file = file.get.body.read
+      if current_site
+        file = bucket.object("up/#{current_site.id.to_s}/o/robots.txt")
+        if file.exists?
+          custom_robots_file = file.get.body.read
+        end
       end
     else
       if current_site
