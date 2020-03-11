@@ -87,6 +87,7 @@ class Sites::Admin::RepositoriesController < ApplicationController
             flash[:success] = t('successfully_created')
           end
           render json: { repository: @repository,
+                         archive_errors: @repository.errors.messages.merge(@repository.archive.errors),
                          message: t('successfully_created'),
                          url: site_admin_repository_path(@repository) },
                  content_type: check_accept_json
