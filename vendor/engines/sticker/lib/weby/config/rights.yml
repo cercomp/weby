@@ -24,17 +24,12 @@ rights:
       name:
         en: Order Banners
         pt-BR: Ordernar Banners
-      action: change_position
+      action: change_position sort
     new:
       name:
         en: Create Banner
         pt-BR: Criar Banner
       action: new create
-    sort:
-      name:
-        en: Sort Banner
-        pt-BR: Ordenar Banner
-      action: sort
     share:
       name:
         en: Share Banners
