@@ -4,7 +4,7 @@
 <div class="row">
   <div class="col-md-7">
     <%= select_tag "filter-category",
-       options_for_select(current_site.banner_sites.category_counts.map{|c| [c.name] }),
+       options_for_select(current_site.banner_sites.category_counts.map{|c| [c.name, c.name.parameterize] }),
       include_blank: false,
       class: 'form-control select2 input-xlarge',
       multiple: false %>
@@ -37,7 +37,7 @@
     <tbody>
       <% @banners.each do |banner_site| %>
         <% banner = banner_site.banner %>
-        <tr id="sort_banner_<%= banner_site.id %>" class="sort_banner <%= banner_site.category_list %>">
+        <tr id="sort_banner_<%= banner_site.id %>" class="sort_banner <%= banner_site.category_list.map{|categ| categ.parameterize }.join(' ') %>">
           <td> <%= weby_file_view(banner.repository, :t, "64", "64", {target: '_blank', title: banner.text}, true) %></td>
           <td>
             <%= icon('retweet') if !banner.owned_by? current_site %>
