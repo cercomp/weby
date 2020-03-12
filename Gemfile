@@ -34,7 +34,7 @@ gem 'non-stupid-digest-assets' # Generate assets without digest.
 
 gem 'simple_form', '~> 3.0.2'
 gem 'rails-observers', '~> 0.1.5'
-gem 'devise', '~> 3.5.3'
+gem 'devise', '~> 4.7.1'
 gem 'kaminari', '~> 0.15.1'
 gem 'paperclip', :git => 'http://github.com/leo-souza/paperclip.git'
 gem 'acts-as-taggable-on', '~> 3.4.2'
