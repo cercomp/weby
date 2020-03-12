@@ -2,6 +2,7 @@
   <div class="thumbnail-header" title="<%= site.description %>">
     <%= site_avatar_tag site, 60 %>
     <span><%= link_to site.title, site_url(subdomain: site) %></span>
+    <small><%= link_to icon('cog'), site_admin_url(subdomain: site), class: 'pull-right' if current_user && current_user.is_admin? %></small>
   </div>
   <div class="caption">
     <% newslist = Journal::NewsSite.where(site_id: site.id).preload(news: [:i18ns, :site]).published.order('updated_at desc').front.first(4) %>

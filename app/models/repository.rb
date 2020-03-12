@@ -4,7 +4,7 @@ class Repository < ActiveRecord::Base
   attr_accessor :x, :y, :w, :h
 
   STYLES = {
-    o: "original",
+    #o: "original",
     t: "160x160#",
     i: "95x70",
     l: "190x140",
@@ -31,12 +31,13 @@ class Repository < ActiveRecord::Base
     },
     url: '/up/:site_id/:style/:basename.:extension',
     convert_options: {
-      o: "-quality 80 -strip",
+      #o: "-quality 80 -strip",
       t: "-quality 80 -strip", #-crop 160x160+0+0 +repage
       i: "-quality 90 -strip",
       l: "-quality 90 -strip",
       m: "-quality 80 -strip"
-    }
+    },
+    whiny: true
     #,processors: [:cropper]
 
 
