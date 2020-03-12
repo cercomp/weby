@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: http://github.com/leo-souza/paperclip.git
-  revision: ef7bdabc6eb35da61633424dbf0b218753b9371c
+  revision: e8018a7009eecfdf3b46c5d11f1fece861783d05
   specs:
     paperclip (6.1.0)
       activemodel (>= 4.2.0)
