@@ -13,7 +13,7 @@ pt-BR:
           inner_page:         " Apenas nas páginas internas "
         available_components:
           all:                " Todos "
-          install:            " Instalar "
+          install:            " Adicionar "
           layout:             " Layout "
           next_step:          " Próximo Passo "
           components:         " Componentes "

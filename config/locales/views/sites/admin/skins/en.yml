@@ -3,13 +3,14 @@ en:
     admin:
       skins:
         show:
-          no_theme:           " No theme applied! "
+          no_theme:           " No active theme! "
           themes:             " Themes "
-          install_theme:      " Install Theme "
+          install_theme:      " Add Theme "
           active_theme:       " Active Theme "
-          default:            " Restore to default "
-          confirm_default:    " Do you really wish to restore to the default state and lose all changes? "
-          apply:              " Apply "
+          default:            " Reset to default "
+          default_help:       " Reset theme to original state, and clear all changes made to Components and Styles "
+          confirm_default:    " Do you really wish to reset to the default state and lose all changes? "
+          apply:              " Activate "
           confirm_apply:      " Do you really wish to change the active theme? "
           preview:            " Preview "
           layout:             " Layout "
@@ -31,13 +32,13 @@ en:
           head:             " HTML head "
         new:
           themes:             " Themes "
-          no_themes:          " Your site already has all themes installed "
+          no_themes:          " Your site already has all themes added "
           preview:            " Preview "
-          install:            " Install "
-          install_apply:      " Install & Apply "
+          install:            " Add "
+          install_apply:      " Add & Activate "
           confirm_apply:      " Do you really wish to change the active theme? "
         destroy:
-          successfully_reseted_theme: "Theme restored to default"
+          successfully_reseted_theme: "Theme was resetted to default"
         others:
           no_other_styles:  " No styles found "
           name:             " Name "

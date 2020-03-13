@@ -13,7 +13,7 @@ en:
           inner_page:         " Only on inner pages "
         available_components:
           all:                " All "
-          install:            " Install "
+          install:            " Add "
           layout:             " Layout "
           next_step:          " Next Step "
           components:         " Components "

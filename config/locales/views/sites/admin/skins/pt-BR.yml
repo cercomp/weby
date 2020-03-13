@@ -3,13 +3,14 @@ pt-BR:
     admin:
       skins:
         show:
-          no_theme:           " Nenhum tema aplicado! "
+          no_theme:           " Nenhum tema ativado! "
           themes:             " Temas "
-          install_theme:      " Instalar Tema "
+          install_theme:      " Adicionar Tema "
           active_theme:       " Tema Ativo "
-          default:            " Restaurar padrão "
-          confirm_default:    " Deseja realmente voltar o tema ao padrão e perder as modificações feitas? "
-          apply:              " Aplicar "
+          default:            " Redefinir tema "
+          default_help:       " Redefinir tema ao estado padrão, apagando todas as modificações feitas em Componentes e Estilos "
+          confirm_default:    " Deseja realmente voltar o tema ao estado padrão e perder todas as modificações feitas? "
+          apply:              " Ativar "
           confirm_apply:      " Deseja realmente alterar o tema ativo? "
           preview:            " Prévia "
           layout:             " Layout "
@@ -31,13 +32,13 @@ pt-BR:
           head:             " Cabeçalho HTML "
         new:
           themes:             " Temas "
-          no_themes:          " Seu site já tem todos os temas instalados "
+          no_themes:          " Seu site já tem todos os temas adicionados "
           preview:            " Prévia "
-          install:            " Instalar "
-          install_apply:      " Instalar e Aplicar "
+          install:            " Adicionar "
+          install_apply:      " Adicionar e Ativar "
           confirm_apply:      " Deseja realmente alterar o tema ativo? "
         destroy:
-          successfully_reseted_theme: "Tema restaurado ao estado padrão"
+          successfully_reseted_theme: "Tema redefinido ao estado padrão"
         others:
           no_other_styles:  " Nenhum estilo encontrado "
           name:             " Nome "

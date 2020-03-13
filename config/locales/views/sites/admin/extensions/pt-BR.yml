@@ -9,7 +9,7 @@ pt-BR:
           edit_extension:     " Configuração "
         index:
           extensions:         " Extensões "
-          new_extension:      " Instalar Extensão "
+          new_extension:      " Adicionar Extensão "
           extension:          " Extensão "
         new:
           extensions:         " Extensões "

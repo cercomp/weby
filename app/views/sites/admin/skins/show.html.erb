@@ -60,12 +60,12 @@
               class: "btn btn-default", target: :_blank %>
         <% end %>
       <% end %>
+      <% with_permission(action: :create) do %>
+        <%= link_to t('.settings'), edit_site_admin_skin_path(@skin), class: 'btn btn-default' %>
+      <% end %>
       <% with_permission(action: :destroy) do %>
         <%= link_to t('.default'), site_admin_skin_path(@skin), method: :delete, class: 'btn btn-default', data: {confirm: t('.confirm_default')} %>
       <% end %>
-      <% with_permission(action: :create) do %>
-          <%= link_to t('.settings'), edit_site_admin_skin_path(@skin), class: 'btn btn-default' %>
-        <% end %>
     </div>
   </div>
 </div>

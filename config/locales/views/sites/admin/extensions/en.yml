@@ -9,7 +9,7 @@ en:
           edit_extension:     " Configuration "
         index:
           extensions:         " Extensions "
-          new_extension:      " Install Extension "
+          new_extension:      " Add Extension "
           extension:          " Extension "
         new:
           extensions:         " Extensions "
