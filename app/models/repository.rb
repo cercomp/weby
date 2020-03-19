@@ -14,12 +14,14 @@ class Repository < ActiveRecord::Base
   has_many :events, class_name: 'Calendar::Event', dependent: :nullify
 
   has_attached_file :archive,
-    styles: {
-      #o: "original",
-      t: "160x160#",
-      i: "95x70",
-      l: "190x140",
-      m: "400x300"
+    styles: ->(attachment) {
+      {
+        #o: "original",
+        t: "160x160#",
+        i: "95x70",
+        l: "190x140",
+        m: "400x300"
+      }
     },
     original_style: :o,
     path: proc {
