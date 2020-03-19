@@ -3,14 +3,6 @@ class Repository < ActiveRecord::Base
 
   attr_accessor :x, :y, :w, :h
 
-  STYLES = {
-    #o: "original",
-    t: "160x160#",
-    i: "95x70",
-    l: "190x140",
-    m: "400x300"
-  }
-
   belongs_to :site
 
   has_many :sites, foreign_key: 'top_banner_id', dependent: :nullify
@@ -22,7 +14,13 @@ class Repository < ActiveRecord::Base
   has_many :events, class_name: 'Calendar::Event', dependent: :nullify
 
   has_attached_file :archive,
-    styles: STYLES,
+    styles: {
+      #o: "original",
+      t: "160x160#",
+      i: "95x70",
+      l: "190x140",
+      m: "400x300"
+    },
     original_style: :o,
     path: proc {
       Rails.env.production? ?
@@ -172,7 +170,7 @@ class Repository < ActiveRecord::Base
   end
 
   def has_all_formats?
-    STYLES.each_key do |format|
+    archive.options[:styles].each_key do |format|
       return false unless exists_archive?(format)
     end
     true

@@ -28,6 +28,7 @@ Gemfile-ext
 /public/assets/
 
 .sass-cache
+.ruby-version
 
 *.swp
 *~
