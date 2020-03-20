@@ -14,14 +14,12 @@ class Repository < ActiveRecord::Base
   has_many :events, class_name: 'Calendar::Event', dependent: :nullify
 
   has_attached_file :archive,
-    styles: ->(attachment) {
-      {
-        #o: "original",
-        t: "160x160#",
-        i: "95x70",
-        l: "190x140",
-        m: "400x300"
-      }
+    styles: {
+      o: "original",
+      t: "160x160#",
+      i: "95x70",
+      l: "190x140",
+      m: "400x300"
     },
     original_style: :o,
     path: proc {
@@ -31,13 +29,12 @@ class Repository < ActiveRecord::Base
     },
     url: '/up/:site_id/:style/:basename.:extension',
     convert_options: {
-      #o: "-quality 80 -strip",
+      o: "-quality 90",
       t: "-quality 80 -strip", #-crop 160x160+0+0 +repage
       i: "-quality 90 -strip",
       l: "-quality 90 -strip",
       m: "-quality 80 -strip"
-    },
-    whiny: true
+    }
     #,processors: [:cropper]
 
 
@@ -171,7 +168,7 @@ class Repository < ActiveRecord::Base
     image? && !has_all_formats?
   end
 
-  def has_all_formats?
+  def has_all_formats? # only works for local storage
     archive.options[:styles].each_key do |format|
       return false unless exists_archive?(format)
     end
