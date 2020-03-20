@@ -21,6 +21,7 @@
 
   <%= f.association :locales,
     :as => :check_boxes,
+    :boolean_style => :nested,
     :collection => Locale.all.map{|l| [flag(l), l.id] } %>
 
   <div class="form-actions">

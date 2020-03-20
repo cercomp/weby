@@ -380,8 +380,16 @@ li .checkbox {
   height: 10px;
 }
 
+.radio + .radio, .checkbox + .checkbox {
+  margin-top: 0;
+}
+
 .checkbox label {
   /*padding-left: 5px;*/
+
+  & > input {
+    margin-left: -20px !important;
+  }
 }
 
 table .checkbox label,
