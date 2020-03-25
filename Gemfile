@@ -1,8 +1,8 @@
 source 'http://rubygems.org'
 
-#ruby '2.5.7'
+ruby '2.5.7'
 
-gem 'rails', '~> 5.2.4.2'
+gem 'rails', '5.2.4.2'
 gem 'rake', '11.2.2'
 
 gem 'thin', '~> 1.6.3'
@@ -45,7 +45,7 @@ gem 'simple_captcha2', require: 'simple_captcha'
 gem 'active_model_serializers'
 
 gem 'useragent', '0.2.3', :git => 'http://github.com/jilion/useragent'
-gem 'rails-settings-cached', '2.1.1'
+gem 'rails-settings-cached', '~> 2.1.1'
 
 gem 'net-ldap', '~> 0.16.0'
 gem 'prawn', '~> 2.0.1'
