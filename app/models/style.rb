@@ -1,4 +1,4 @@
-class Style < ActiveRecord::Base
+class Style < ApplicationRecord
   belongs_to :skin
   belongs_to :style
   has_one :site, through: :skin

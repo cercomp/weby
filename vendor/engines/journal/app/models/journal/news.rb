@@ -1,5 +1,5 @@
 module Journal
-  class News < ActiveRecord::Base
+  class News < Journal::ApplicationRecord
     include Trashable
     include OwnRepository
 
@@ -65,7 +65,7 @@ module Journal
 #    before_trash do
 #      if published?
 #        errors[:base] << I18n.t('cannot_destroy_a_published_page')
-#        false
+#        throw(:abort)
 #      else
 #        true
 #      end

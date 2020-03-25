@@ -1,4 +1,4 @@
-class Extension < ActiveRecord::Base
+class Extension < ApplicationRecord
   include RailsSettings::Extend
 
   belongs_to :site

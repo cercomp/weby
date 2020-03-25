@@ -1,5 +1,5 @@
 module Journal
-  class NewsSite < ActiveRecord::Base
+  class NewsSite < Journal::ApplicationRecord
     belongs_to :site
     belongs_to :news, class_name: "::Journal::News", foreign_key: :journal_news_id
 

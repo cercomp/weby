@@ -1,4 +1,4 @@
-class MenuItem < ActiveRecord::Base
+class MenuItem < ApplicationRecord
   weby_content_i18n :title, :description, required: :title
 
   belongs_to :target, polymorphic: true

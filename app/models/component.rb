@@ -1,4 +1,4 @@
-class Component < ActiveRecord::Base
+class Component < ApplicationRecord
   extend Weby::ComponentInstance
 
   belongs_to :skin

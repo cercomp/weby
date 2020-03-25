@@ -1,5 +1,5 @@
 module Journal
-  class NewsletterHistories < ActiveRecord::Base
+  class NewsletterHistories < Journal::ApplicationRecord
     belongs_to :user
     belongs_to :news, -> { unscope(where: :deleted_at) }
 

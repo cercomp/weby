@@ -1,5 +1,5 @@
 module Sticker
-  class BannerSite < ActiveRecord::Base
+  class BannerSite < Sticker::ApplicationRecord
     belongs_to :site
     belongs_to :banner, class_name: "::Sticker::Banner", foreign_key: :sticker_banner_id
 

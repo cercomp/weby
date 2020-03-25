@@ -1,4 +1,4 @@
-class Skin < ActiveRecord::Base
+class Skin < ApplicationRecord
 
   belongs_to :site
 

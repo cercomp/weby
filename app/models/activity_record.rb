@@ -1,4 +1,4 @@
-class ActivityRecord < ActiveRecord::Base
+class ActivityRecord < ApplicationRecord
   belongs_to :loggeable, polymorphic: true
   belongs_to :site
   belongs_to :user

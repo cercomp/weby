@@ -1,4 +1,4 @@
-class Repository < ActiveRecord::Base
+class Repository < ApplicationRecord
   include Trashable
 
   attr_accessor :x, :y, :w, :h

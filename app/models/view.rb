@@ -1,4 +1,4 @@
-class View < ActiveRecord::Base
+class View < ApplicationRecord
   belongs_to :site
   belongs_to :user
   belongs_to :viewable, polymorphic: true

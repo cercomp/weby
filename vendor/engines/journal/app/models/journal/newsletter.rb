@@ -1,6 +1,6 @@
 module Journal
-  class Newsletter < ActiveRecord::Base
-    scope :by_site, ->(id) { 
+  class Newsletter < Journal::ApplicationRecord
+    scope :by_site, ->(id) {
       where(['confirm = ? AND site_id = ?', true, id]) 
     }
 

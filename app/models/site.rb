@@ -1,4 +1,4 @@
-class Site < ActiveRecord::Base
+class Site < ApplicationRecord
   include RailsSettings::Extend
 
   SHAREABLES = [:page, :news, :event]

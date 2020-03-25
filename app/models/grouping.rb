@@ -1,4 +1,4 @@
-class Grouping < ActiveRecord::Base
+class Grouping < ApplicationRecord
   has_and_belongs_to_many :sites, -> { order(:name) }
 
   validates :name, presence: true

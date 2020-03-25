@@ -1,4 +1,4 @@
 module Acadufg
-  class Setting < ActiveRecord::Base
+  class Setting < Acadufg::ApplicationRecord
   end
 end

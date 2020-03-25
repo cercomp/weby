@@ -1,8 +1,8 @@
 source 'http://rubygems.org'
 
-#ruby '2.5.7'
+ruby '2.5.7'
 
-gem 'rails', '~> 5.2.4.2'
+gem 'rails', '~> 5.0.7.2'
 gem 'rake', '11.2.2'
 
 gem 'thin', '~> 1.6.3'
@@ -10,11 +10,11 @@ gem 'pg', '~> 0.17.1'
 
 # js and css frameworks
 gem 'jquery-rails', '4.3.5'
-gem 'jquery-ui-rails', '~> 6.0.1'
+gem 'jquery-ui-rails', '~> 4.2.1'
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'select2-rails', '~> 3.5.9'
 gem 'cropper-rails', '~> 2.3.2.1'
-gem 'font-awesome-rails', '~> 4.7.0.5'
+gem 'font-awesome-rails', '~> 4.7.0.2'
 gem 'fullcalendar-rails'
 
 #storage
@@ -40,18 +40,18 @@ gem 'acts-as-taggable-on', '~> 6.5.0'
 gem 'gretel', '~> 3.0.9'
 gem 'zeroclipboard-rails', '~> 0.1.2'
 gem 'zip-zip', '~> 0.3'
-gem "nori"
+gem 'nori'
 gem 'simple_captcha2', require: 'simple_captcha'
 gem 'active_model_serializers'
 
 gem 'useragent', '0.2.3', :git => 'http://github.com/jilion/useragent'
-gem 'rails-settings-cached', '2.1.1'
+gem 'rails-settings-cached', '~> 2.1.1'
 
 gem 'net-ldap', '~> 0.16.0'
 gem 'prawn', '~> 2.0.1'
 gem 'prawn-table', '~> 0.2.1'
 gem 'momentjs-rails', '~> 2.17.1'
-gem 'bootstrap-daterangepicker-rails', '~> 3.0.4'
+gem 'bootstrap-daterangepicker-rails', '~> 0.1.1'
 
 # error tracking
 gem 'rollbar'
@@ -65,7 +65,7 @@ source 'https://rails-assets.org' do
 end
 
 group :development, :test do
-  gem 'rspec-rails', '~> 3.9.1'
+  gem 'rspec-rails', '~> 3.5.2'
   gem 'pry-rails'
   gem 'pry-byebug'
 end

@@ -1,5 +1,5 @@
 module Weby
-  class I18nsTemplate < ActiveRecord::Base
+  class I18nsTemplate < ApplicationRecord
     self.abstract_class = true
 
     belongs_to :locale

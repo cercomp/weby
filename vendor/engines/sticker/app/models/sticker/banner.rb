@@ -1,5 +1,5 @@
 module Sticker
-  class Banner < ActiveRecord::Base
+  class Banner < Sticker::ApplicationRecord
     belongs_to :target, polymorphic: true
     belongs_to :repository
     belongs_to :user

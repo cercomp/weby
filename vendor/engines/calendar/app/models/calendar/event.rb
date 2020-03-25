@@ -1,5 +1,5 @@
 module Calendar
-  class Event < ActiveRecord::Base
+  class Event < Calendar::ApplicationRecord
     include Trashable
     include OwnRepository
 
