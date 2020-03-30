@@ -3,16 +3,16 @@ source 'http://rubygems.org'
 ruby '2.5.7'
 
 gem 'rails', '5.2.4.2'
-gem 'rake', '11.2.2'
+gem 'rake', '13.0.1'
 
-gem 'thin', '~> 1.6.3'
-gem 'pg', '~> 0.17.1'
+gem 'thin', '~> 1.7.2'
+gem 'pg', '~> 1.2.3'
+gem 'bootsnap', '~> 1.4.6', require: false
 
 # js and css frameworks
 gem 'jquery-rails', '4.3.5'
 gem 'jquery-ui-rails', '~> 6.0.1'
 gem 'bootstrap-sass', '~> 3.4.1'
-gem 'select2-rails', '~> 3.5.9'
 gem 'cropper-rails', '~> 2.3.2.1'
 gem 'font-awesome-rails', '~> 4.7.0.5'
 gem 'fullcalendar-rails'
@@ -26,7 +26,7 @@ gem 'asset_sync'
 gem 'omniauth-shibboleth'
 
 # assets
-gem 'sass-rails', '5.0.6'
+gem 'sass-rails', '5.1.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'therubyracer', :platforms => :ruby
 gem 'non-stupid-digest-assets' # Generate assets without digest.
@@ -45,22 +45,22 @@ gem 'simple_captcha2', require: 'simple_captcha'
 gem 'active_model_serializers'
 
 gem 'useragent', '0.2.3', :git => 'http://github.com/jilion/useragent'
-gem 'rails-settings-cached', '~> 2.1.1'
 
 gem 'net-ldap', '~> 0.16.0'
 gem 'prawn', '~> 2.0.1'
 gem 'prawn-table', '~> 0.2.1'
-gem 'momentjs-rails', '~> 2.17.1'
+gem 'momentjs-rails', '~> 2.20.1'
 gem 'bootstrap-daterangepicker-rails', '~> 3.0.4'
 
 # error tracking
 gem 'rollbar'
 
-gem 'rails-html-sanitizer', '~>1.0.4'
+gem 'rails-html-sanitizer', '~> 1.3.0'
 
 # rails assets org
 source 'https://rails-assets.org' do
   gem 'rails-assets-tinymce', '~> 4.8.5'
+  gem 'rails-assets-select2', '~> 3.5.4'
   #gem 'rails-assets-d3', '~> 5.7.0'
 end
 
@@ -71,17 +71,17 @@ group :development, :test do
 end
 
 group :development do
-  gem 'binding_of_caller', '~> 0.7.2'
+  gem 'binding_of_caller', '~> 0.8.0'
   gem 'better_errors', '~> 1.1.0'
   gem 'meta_request', '~> 0.7.0'
   gem 'letter_opener', '~> 1.2.0'
-  gem "bullet"
+  gem 'bullet'
 end
 
 group :test do
   gem 'shoulda-matchers', '~> 2.6.1'
   gem 'factory_girl_rails', '~> 4.4.1'
-  gem 'selenium-webdriver', '~> 2.42.0'
+  gem 'selenium-webdriver', '~> 3.142.5'
   gem 'capybara'
 end
 

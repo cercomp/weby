@@ -45,7 +45,7 @@ class Sites::Admin::StylesController < ApplicationController
       else
         format.html { render 'edit' }
       end
-      format.json { render text: @style.errors.full_messages.to_json }
+      format.json { render plain: @style.errors.full_messages.to_json }
     end
   end
 
@@ -93,7 +93,7 @@ class Sites::Admin::StylesController < ApplicationController
     params['sort_style'].reverse_each do |style_id|
       @skin.styles.find(style_id).update_attribute(:position, position += 1)
     end
-    render nothing: true
+    head :ok
   end
 
   private

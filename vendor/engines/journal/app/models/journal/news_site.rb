@@ -57,7 +57,7 @@ module Journal
 
     def last_front_position
       @news_site = Journal::NewsSite.where(site: self.site_id).front
-      @news_site.maximum('position').to_i
+      @news_site.maximum(:position).to_i
     end
 
     def validate_date

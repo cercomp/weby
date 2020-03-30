@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   force_ssl if: :should_be_ssl?
 
-  protect_from_forgery with: :exception
+  protect_from_forgery with: :exception, prepend: true
 
   before_action :set_tld_length, :set_global_vars
   before_action :set_contrast, :set_locale, :set_view_types
@@ -127,7 +127,7 @@ class ApplicationController < ActionController::Base
     @error = exception
     respond_to do |format|
       format.html { render template: 'errors/404', layout: 'weby_pages', status: 404 }
-      format.all { render nothing: true, status: 404 }
+      format.all { head 404 }
     end
   end
 
@@ -140,7 +140,7 @@ class ApplicationController < ActionController::Base
     Rollbar.error(exception, error_code: @error_code) if Rails.env.production?
     respond_to do |format|
       format.html { render template: 'errors/500', layout: 'weby_pages', status: 500 }
-      format.all { render nothing: true, status: 500 }
+      format.all { head 500 }
     end
   end
 
@@ -183,7 +183,7 @@ class ApplicationController < ActionController::Base
     else
       params[:model].titleize.constantize.increment_counter :click_count, params[:id]
     end
-    render nothing: true
+    head :ok
   end
 
   protected
@@ -209,7 +209,7 @@ class ApplicationController < ActionController::Base
 
   # strong parameter to load in devise
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) { |u|
+    devise_parameter_sanitizer.permit(:sign_up) { |u|
       u.permit(:login, :email, :first_name, :last_name, :password,
                :password_confirmation)
     }

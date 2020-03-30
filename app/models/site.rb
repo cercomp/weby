@@ -1,6 +1,4 @@
 class Site < ApplicationRecord
-  include RailsSettings::Extend
-
   SHAREABLES = [:page, :news, :event]
 
   belongs_to :main_site, foreign_key: :parent_id, class_name: 'Site'
@@ -105,14 +103,14 @@ class Site < ApplicationRecord
   SHAREABLES.each do |shareable|
     define_method("#{shareable}_social_share_pos") { settings["#{shareable}.social_share_pos"] }
     define_method("#{shareable}_social_share_pos=") { |value| settings["#{shareable}.social_share_pos"] = value }
-    
+
     define_method("#{shareable}_social_share_networks") { settings["#{shareable}.social_share_networks"] }
     define_method("#{shareable}_social_share_networks=") { |value| settings["#{shareable}.social_share_networks"] = value }
 
     define_method("#{shareable}_facebook_comments") { settings["#{shareable}.facebook_comments"] }
     define_method("#{shareable}_facebook_comments=") { |value| settings["#{shareable}.facebook_comments"] = value }
   end
-  
+
   def generate_components_yml theme
     skins.find_by(theme: theme)&.components_yml
   end

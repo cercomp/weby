@@ -215,10 +215,10 @@ module ApplicationHelper
           when :show
             menu << link_to(
               icon('eye-open', text: args[:with_text] ? t('show') : ''),
-              params.merge(
+              {
                 controller: ctrl.controller_name,
                 action: 'show', id: obj.id
-              ).merge(args.fetch(:params, {})),
+              }.merge(args.fetch(:params, {})),
               alt: t('show'),
               title: t('show'),
               class: 'action-link'
@@ -227,10 +227,10 @@ module ApplicationHelper
           when :edit
             menu << link_to(
               icon('edit', text: args[:with_text] ? t('edit') : ''),
-              params.merge(
+              {
                 controller: ctrl.controller_name,
                 action: 'edit', id: obj.id
-              ).merge(args.fetch(:params, {})),
+              }.merge(args.fetch(:params, {})),
               alt: t('edit'),
               title: t('edit'),
               class: 'action-link') + ' '
@@ -238,11 +238,11 @@ module ApplicationHelper
           when :destroy
             menu << link_to(
               icon('trash', text: args[:with_text] ? t('destroy') : ''),
-              params.merge(
+              {
                 controller: ctrl.controller_name,
                 action: 'destroy',
                 id: obj.id
-              ).merge(args.fetch(:params, {})),
+              }.merge(args.fetch(:params, {})),
               data: { confirm: t('are_you_sure') },
               method: :delete,
               alt: t('destroy'),
@@ -254,10 +254,10 @@ module ApplicationHelper
             if !@newsletter.nil?
               menu << link_to(
                 icon(Journal::NewsletterHistories.sent(current_site.id, obj.id).count == 0 ? 'envelope' : 'ok', text: args[:with_text] ? t('.newsletter') : ''),
-                params.merge(
+                {
                   controller: ctrl.controller_name,
                   action: 'newsletter', id: obj.id
-                ),
+                },
                 alt: t('newsletter'),
                 title: t('letter'),
                 class: 'action-link') + ' '
@@ -291,7 +291,7 @@ module ApplicationHelper
     icon_name = column == sort_column ? sort_direction == 'asc' ? 'arrow-up' : 'arrow-down' : 'sort'
     link_to "#{title}#{icon(icon_name)}".html_safe,
             # when we reorder an list it goes back to the first page
-            params.merge(sort: column, direction: direction, page: 1),
+            {sort: column, direction: direction, page: 1},
       data: { column: column },
       remote: true,
       style: "white-space:nowrap;",
@@ -322,12 +322,11 @@ module ApplicationHelper
         html <<
         if params[:per_page].to_i == item.to_i
           content_tag :li, class: 'page active' do
-            # link_to "#{item} ", params.merge({per_page: item, page: 1}), remote: remote
             content_tag :span, "#{item} "
           end
         else
           content_tag(:li, class: 'page') do
-            link_to "#{item} ", params.merge(per_page: item, page: 1), remote: remote
+            link_to "#{item} ", {per_page: item, page: 1}, remote: remote
           end
         end
       end

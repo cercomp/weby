@@ -69,7 +69,7 @@ class SitesController < ApplicationController
 
     # render file: (robots_file && FileTest.exist?(robots_file) ?
     # robots_file: Rails.root.join("public","default_robots.txt")), layout: false, content_type: "text/plain"
-    render text: custom_robots_file ? custom_robots_file : File.read(Rails.root.join('public', 'default_robots.txt')), layout: false, content_type: 'text/plain'
+    render plain: custom_robots_file ? custom_robots_file : File.read(Rails.root.join('public', 'default_robots.txt')), layout: false, content_type: 'text/plain'
   end
 
   def admin

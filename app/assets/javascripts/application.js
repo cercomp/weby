@@ -9,7 +9,7 @@
 // // floatThead was commented because there is a bug when used in tabs
 // // require floatthead/jquery.floatThead._.js
 // // require floatthead/jquery.floatThead
-//= require select2_locale_pt-BR
+//= require select2/select2_locale_pt-BR.js
 //= require daterangepicker
 //= require_self
 

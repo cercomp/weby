@@ -19,7 +19,7 @@ module Calendar
 
     def calendar
       @events = get_events(false)
-      render json: Calendar::Event.as_fullcalendar_json(@events)
+      render json: Calendar::Event.as_fullcalendar_json(@events).to_json
     end
 
     def show

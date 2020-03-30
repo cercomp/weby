@@ -15,7 +15,7 @@ module Calendar
           format.js { render "#{params[:template]}" }
           format.html { render partial: "#{params[:template]}", layout: false }
         end
-        format.json { render json: Calendar::Event.as_fullcalendar_json(@events, true) }
+        format.json { render json: Calendar::Event.as_fullcalendar_json(@events, true).to_json }
       end
     end
 

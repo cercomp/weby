@@ -4,7 +4,7 @@ class User < ApplicationRecord
 
   attr_accessor :auth
 
-  belongs_to :locale
+  belongs_to :locale, optional: true
 
   has_many :views, dependent: :nullify
   has_many :notifications, dependent: :nullify

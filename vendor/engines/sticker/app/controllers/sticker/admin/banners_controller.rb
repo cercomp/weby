@@ -129,7 +129,7 @@ module Sticker::Admin
       end
       current_site.banner_sites.where(condition).update_all("position = position + (#{increment})")
       @ch_pos.update_attribute(:position, new_pos)
-      render nothing: true
+      head :ok
     end
 
     private

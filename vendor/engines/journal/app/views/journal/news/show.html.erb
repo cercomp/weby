@@ -9,12 +9,12 @@
     <h2><%= @news.title %></h2>
   </header>
   <div class="news-details details">
-  <% if @extension.settings.author == '1' %>
+  <% if @extension.author == '1' %>
      <span class="author"><%= t(".posted_by", author: @news.user) %></span>
   <% end %>
   <% if @news.published? %>
     <span class="date">
-      <% if (@extension.settings.created_at == '1') %>
+      <% if (@extension.show_created_at == '1') %>
         <% news_date = @news.i18ns.first.created_at || @news.created_at %>
         <%= t(".created_at", created_at: l(news_date, format: :short)) if news_date %>
       <% end %>

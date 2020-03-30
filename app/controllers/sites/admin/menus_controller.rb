@@ -49,7 +49,7 @@ class Sites::Admin::MenusController < ApplicationController
     params[:menu].each do |menu_id|
       current_site.menus.find(menu_id).update_attribute(:position, position += 1)
     end
-    render nothing: true
+    head :ok
   end
 
   def destroy

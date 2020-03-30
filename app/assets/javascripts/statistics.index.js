@@ -1,4 +1,4 @@
-//= require d3
+//#= r!!equire d3
 
 var niceDate = function(date){
   parts = date.split('-');

@@ -29,7 +29,7 @@ module Journal
       end
       Journal::NewsSite.where(site_id: current_site.id).front.where(condition).update_all("position = position + (#{increment})")
       @ch_pos.update_attribute(:position, new_pos)
-      render nothing: true
+      head :ok
     end
   end
 end
