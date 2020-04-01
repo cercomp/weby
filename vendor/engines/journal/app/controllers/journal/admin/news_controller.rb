@@ -101,14 +101,14 @@ module Journal::Admin
         news_site.save!
       end
       flash[:notice] = t('.news_shared')
-      redirect_to :back
+      redirect_back(fallback_location: root_url(subdomain: current_site))
     end
 
     def unshare
       @news = Journal::NewsSite.where(site_id: current_site.id, journal_news_id: params[:id])
       @news.destroy_all
       flash[:success] = t('.unshared_news')
-      redirect_to :back
+      redirect_to admin_news_index_path
     end
 
     def create
@@ -152,7 +152,7 @@ module Journal::Admin
     def toggle
       news_sites = Journal::NewsSite.find(params[:id])
       news_sites.toggle! :front
-      redirect_to :back
+      redirect_back(fallback_location: admin_news_index_path)
     end
 
     def status_types
@@ -183,7 +183,7 @@ module Journal::Admin
         flash[:success] = t('successfully_restored')
       end
       record_activity('restored_news', @news)
-      redirect_to :back
+      redirect_back(fallback_location: recycle_bin_admin_news_index_path)
     end
 
     def newsletter
@@ -199,7 +199,7 @@ module Journal::Admin
     def newsletter_histories
       if (params[:from].blank? || params[:to].blank? || params[:subject].blank?)
         flash[:error] = t('.field_blank')
-        redirect_to :back
+        redirect_back(fallback_location: newsletter_admin_news_path)
       else
         history = Journal::NewsletterHistories.new
         history.site_id = current_site.id

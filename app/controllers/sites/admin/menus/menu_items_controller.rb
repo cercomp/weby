@@ -51,12 +51,12 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
 
   def destroy
     @menu_item = @menu.menu_items.find(params[:id])
+    message = {error: t('error_destroying_object')}
     if @menu_item.destroy
       record_activity('destroyed_menu_item', @menu_item)
-      redirect_to :back, flash: { success: t('successfully_deleted') }
-    else
-      redirect_to :back, flash: { success: t('error_destroying_object') }
+      message = {success: t('successfully_deleted')}
     end
+    redirect_back(flash: message, fallback_location: site_admin_menus_path(menu: @menu.id))
   end
 
   # Altera a ordenação do menu

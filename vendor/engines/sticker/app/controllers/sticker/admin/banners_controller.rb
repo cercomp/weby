@@ -23,7 +23,7 @@ module Sticker::Admin
 
     def show
       @banner = current_site.banners.find(params[:id])
-      @banner_site = @banner.own_banner_site(@banner)
+      @banner_site = @banner.own_banner_site
     end
 
     def new
@@ -75,7 +75,7 @@ module Sticker::Admin
         banner_site.save!
       end
       flash[:notice] = t('.banner_shared')
-      redirect_to :back
+      redirect_back(fallback_location: root_url(subdomain: current_site))
       #render json: {ok: true, message: t('.banner_shared')} #CORS issues
     end
 

@@ -63,7 +63,7 @@ class Sites::Admin::StylesController < ApplicationController
   def unfollow
     if @style.owner == current_site
       flash[:error] = t('error_unfollowing_style')
-      redirect_to :back
+      redirect_back(fallback_location: site_admin_skin_path(@skin, anchor: 'tab-styles'))
     else
       destroy
     end

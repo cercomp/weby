@@ -101,6 +101,6 @@ class Sites::Admin::BackupsController < ApplicationController
     #    end
     #    flash[:error] = 'Houve algum erro na importaçao' Colocar mensagens de erro e sucesso
     flash[:success] = "Processo concluído"
-    redirect_to :back
+    redirect_back(fallback_location: site_admin_backups_path)
   end
 end

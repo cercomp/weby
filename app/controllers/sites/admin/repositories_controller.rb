@@ -31,7 +31,7 @@ class Sites::Admin::RepositoriesController < ApplicationController
       format.json do
         render json: {
           current_page: @repositories.current_page,
-          num_pages: @repositories.num_pages,
+          num_pages: @repositories.total_pages,
           repositories: @repositories
         }
       end
@@ -79,7 +79,7 @@ class Sites::Admin::RepositoriesController < ApplicationController
           if params[:from] != 'other'
             redirect_to([:site, :admin, @repository])
           else
-            redirect_to :back
+            redirect_back(fallback_location: new_site_admin_repository_path)
           end
         end
         format.json do
@@ -148,7 +148,7 @@ class Sites::Admin::RepositoriesController < ApplicationController
       flash[:success] = t('successfully_restored')
     end
     record_activity('restored_file', @repository)
-    redirect_to :back
+    redirect_back(fallback_location: recycle_bin_site_admin_repositories_path)
   end
 
   private

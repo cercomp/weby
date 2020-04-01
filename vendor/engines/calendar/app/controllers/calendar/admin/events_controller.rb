@@ -95,7 +95,7 @@ module Calendar
         flash[:success] = t('successfully_restored')
       end
       record_activity('restored_event', @event)
-      redirect_to :back
+      redirect_back(fallback_location: recycle_bin_admin_events_path)
     end
 
     private
