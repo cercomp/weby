@@ -9,7 +9,7 @@ class Sites::PagesController < ApplicationController
   def index
     @pages = get_pages
     respond_with(@pages) do |format|
-      format.json { render json: @pages, root: :pages, meta: { total: @pages.total_count } }
+      format.json { render json: @pages, root: 'pages', meta: { total: @pages.total_count } }
     end
   end
 

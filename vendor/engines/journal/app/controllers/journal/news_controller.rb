@@ -12,9 +12,9 @@ module Journal
       @extension = current_site.extensions.find_by(name: 'journal')
 
       respond_with(@newslist) do |format|
-        format.rss { render layout: false, content_type: Mime::XML } # index.rss.builder
-        format.atom { render layout: false, content_type: Mime::XML } # index.atom.builder
-        format.json { render json: @newslist, root: :news, meta: { total: @newslist.total_count } }
+        format.rss { render layout: false, content_type: Mime[:xml] } # index.rss.builder
+        format.atom { render layout: false, content_type: Mime[:xml] } # index.atom.builder
+        format.json { render json: @newslist, root: 'news', meta: { total: @newslist.total_count } }
       end
     end
 

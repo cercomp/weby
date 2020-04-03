@@ -11,9 +11,9 @@ module Calendar
       @events = get_events
 
       respond_with(@events) do |format|
-        format.rss { render layout: false, content_type: Mime::XML } # index.rss.builder
-        format.atom { render layout: false, content_type: Mime::XML } # index.atom.builder
-        format.json { render json: @events, root: :events, meta: { total: @events.total_count } }
+        format.rss { render layout: false, content_type: Mime[:xml] } # index.rss.builder
+        format.atom { render layout: false, content_type: Mime[:xml] } # index.atom.builder
+        format.json { render json: @events, root: 'events', meta: { total: @events.total_count } }
       end
     end
 
