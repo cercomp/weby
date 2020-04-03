@@ -20,11 +20,10 @@ module Journal
       attrs = attrs.dup
       attrs = attrs['news-site'] if attrs.key? 'news-site'
       attrs['category_list'] = attrs.delete('categories').to_a.map { |category| category['name'] }
-      attrs.except!('id', '@type', 'type', 'created_at', 'updated_at', 'site_id')
+      attrs.except!('id', '@type', 'type', 'site_id') # 'created_at', 'updated_at'
       attrs['journal_news_id'] = Import::Application::CONVAR["news"]["#{attrs['journal_news_id']}"]
 
       self.create!(attrs) if attrs['journal_news_id']
-
     end
 
     def validate_position
