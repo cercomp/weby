@@ -79,7 +79,7 @@ module Journal
       attrs = attrs['own_news'] if attrs.key? 'own_news'
 
       id = attrs['id']
-      attrs.except!('id', '@type', 'type', 'created_at', 'updated_at', 'site_id')
+      attrs.except!('id', '@type', 'type', 'site_id') # 'created_at', 'updated_at'
 
       attrs['user_id'] = options[:user] unless User.unscoped.find_by(id: attrs['user_id'])
       repo_id = Import::Application::CONVAR["repository"]["#{attrs['repository_id']}"]
@@ -91,10 +91,10 @@ module Journal
 
       attrs['i18ns'] = attrs['i18ns'].map do |i18n|
         i18n['text'] = i18n['text'].gsub(/\/up\/[0-9]+/) {|x| "/up/#{options[:site_id]}"} if i18n['text']
-        self::I18ns.new(i18n.except('id', '@type', 'type', 'created_at', 'updated_at', 'journal_news_id'))
+        self::I18ns.new(i18n.except('id', '@type', 'type', 'journal_news_id')) # 'created_at', 'updated_at'
       end
-
-      news_site_attrs = attrs.fetch('own_news_site', {}).except('id', 'type', '@type', 'journal_news_id', 'created_at', 'updated_at', 'site_id').merge({
+                                                                               # 'created_at', 'updated_at'
+      news_site_attrs = attrs.fetch('own_news_site', {}).except('id', 'type', '@type', 'journal_news_id', 'site_id').merge({
         site_id: options[:site_id]
       })
       news_site_attrs['category_list'] = news_site_attrs.delete('categories').to_a.map { |category| category['name'] }
