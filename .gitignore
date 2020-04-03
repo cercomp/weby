@@ -29,7 +29,11 @@ Gemfile-ext
 
 .sass-cache
 .ruby-version
+.env
 
 *.swp
 *~
 .idea/
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key

@@ -171,6 +171,7 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.3)
+    dotenv (2.7.5)
     erubi (1.9.0)
     erubis (2.7.0)
     eventmachine (1.2.7)
@@ -435,6 +436,7 @@ DEPENDENCIES
   capybara
   cropper-rails (~> 2.3.2.1)
   devise (~> 4.7.1)
+  dotenv (~> 2.7.5)
   factory_girl_rails (~> 4.4.1)
   feedback!
   fog-aws
