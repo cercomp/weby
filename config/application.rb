@@ -17,6 +17,7 @@ module Weby
     # the framework and any gems in your application.
 
     # Custom directories with classes and modules you want to be autoloadable.
+    config.enable_dependency_loading = true
     config.autoload_paths += Dir["#{config.root}/lib"]
     config.autoload_paths += Dir["#{config.root}/lib/weby/components/**/*"]
     config.autoload_paths += Dir["#{config.root}/vendor/engines/*/lib/weby/components/**/*"]
