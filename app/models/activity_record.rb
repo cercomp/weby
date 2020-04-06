@@ -1,6 +1,6 @@
 class ActivityRecord < ApplicationRecord
   belongs_to :loggeable, polymorphic: true
-  belongs_to :site
+  belongs_to :site, optional: true
   belongs_to :user
 
   scope :user_or_action_like, ->(text, site_id) {

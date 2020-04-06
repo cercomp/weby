@@ -1,8 +1,8 @@
 class Site < ApplicationRecord
   SHAREABLES = [:page, :news, :event]
 
-  belongs_to :main_site, foreign_key: :parent_id, class_name: 'Site'
-  belongs_to :repository, foreign_key: 'top_banner_id'
+  belongs_to :main_site, foreign_key: :parent_id, class_name: 'Site', optional: true
+  belongs_to :repository, foreign_key: 'top_banner_id', optional: true
 
   has_many :subsites, foreign_key: :parent_id, class_name: 'Site', dependent: :nullify
   has_many :roles, dependent: :destroy

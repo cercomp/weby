@@ -7,7 +7,6 @@ module Journal
 
     STATUS_LIST = %w(draft review published)
 
-
     belongs_to :site, inverse_of: :own_news
     belongs_to :user
 

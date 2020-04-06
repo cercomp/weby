@@ -1,6 +1,6 @@
 class Style < ApplicationRecord
   belongs_to :skin
-  belongs_to :style
+  belongs_to :style, optional: true
   has_one :site, through: :skin
 
   has_many :styles, dependent: :restrict_with_error

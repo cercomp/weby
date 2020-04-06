@@ -1,7 +1,7 @@
 module Sticker
   class Banner < Sticker::ApplicationRecord
-    belongs_to :target, polymorphic: true
-    belongs_to :repository
+    belongs_to :target, polymorphic: true, optional: true
+    belongs_to :repository, optional: true
     belongs_to :user
     belongs_to :site
 
