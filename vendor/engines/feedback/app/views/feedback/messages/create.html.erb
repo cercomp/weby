@@ -1,8 +1,10 @@
 <div id="feedback_sent">
   <h1><%= t('.success_sent') %></h1>
   <p>
-    <%= t('.group_sent') %>
-    <%= @message.groups.collect{|g| g.name }.join(', ') %>
+    <% if @message.groups.any? %>
+      <%= t('.group_sent') %>
+      <%= @message.groups.collect{|g| g.name }.join(', ') %>
+    <% end %>
   </p>
 
   <p>

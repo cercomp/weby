@@ -18,12 +18,14 @@
         checked: params_groups %>
     <% end %>
 
-    <% params.merge! params[:message] if params[:message].is_a? Hash %>
-
-    <%= f.input :name, {input_html: { value: params['name'], placeholder: @extension.label_as_placeholder ? t('activerecord.attributes.feedback/message.name') : nil }}.merge(@extension.label_as_placeholder ? {label: false} : {}) %>
-    <%= f.input :email, {input_html: { value: params['email'], placeholder: @extension.label_as_placeholder ? t('activerecord.attributes.feedback/message.email') : nil }}.merge(@extension.label_as_placeholder ? {label: false} : {}) %>
-    <%= f.input :subject, {input_html: { value: params['subject'], placeholder: @extension.label_as_placeholder ? t('activerecord.attributes.feedback/message.subject') : nil }}.merge(@extension.label_as_placeholder ? {label: false} : {}) %>
-    <%= f.input :message, {as: :text, input_html: { value: params['message'], size: '60x8', placeholder: @extension.label_as_placeholder ? t('activerecord.attributes.feedback/message.message') : nil }}.merge(@extension.label_as_placeholder ? {label: false} : {}) %>
+    <% name = params[:name] || params.dig(:message, :name) %>
+    <% email = params[:email] || params.dig(:message, :email) %>
+    <% subject = params[:subject] || params.dig(:message, :subject) %>
+    <% message = params[:message].present? ? params.dig(:message, :message) : '' %>
+    <%= f.input :name, {input_html: { value: name, placeholder: @extension.label_as_placeholder ? t('activerecord.attributes.feedback/message.name') : nil }}.merge(@extension.label_as_placeholder ? {label: false} : {}) %>
+    <%= f.input :email, {input_html: { value: email, placeholder: @extension.label_as_placeholder ? t('activerecord.attributes.feedback/message.email') : nil }}.merge(@extension.label_as_placeholder ? {label: false} : {}) %>
+    <%= f.input :subject, {input_html: { value: subject, placeholder: @extension.label_as_placeholder ? t('activerecord.attributes.feedback/message.subject') : nil }}.merge(@extension.label_as_placeholder ? {label: false} : {}) %>
+    <%= f.input :message, {as: :text, input_html: { value: message, size: '60x8', placeholder: @extension.label_as_placeholder ? t('activerecord.attributes.feedback/message.message') : nil }}.merge(@extension.label_as_placeholder ? {label: false} : {}) %>
 
     <% if @captcha_errors %>
       <blockquote class="alert-danger">
