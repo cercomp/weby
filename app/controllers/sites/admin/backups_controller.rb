@@ -50,13 +50,16 @@ class Sites::Admin::BackupsController < ApplicationController
 
     zipname = "#{s.name}_#{params[:type].downcase}.zip"
     zip_dir = Rails.root.join(dir, zipname)
-    repository = "public/up/#{s.id}"
-    Zip::ZipFile.open(zip_dir, Zip::ZipFile::CREATE)do |zipfile|
-      Find.find(repository) do |path|
-        Find.prune if File.basename(path)[0] == '.'
-        dest = /#{repository}\/(\w.*)/.match(path)
+    Zip::ZipFile.open(zip_dir, Zip::ZipFile::CREATE) do |zipfile|
+      read_files_for_zip(s).each do |file, entry_path|
         begin
-          zipfile.add(dest[1], path) if dest
+          if file.is_a?(String)
+            zipfile.add(entry_path, file) if entry_path
+          elsif file.is_a?(Aws::S3::Object)
+            zipfile.get_output_stream(entry_path) do |f|
+              f.write(file.get.body.read)
+            end
+          end
         rescue Zip::ZipEntryExistsError
         end
       end if params[:repositories]
@@ -102,5 +105,31 @@ class Sites::Admin::BackupsController < ApplicationController
     #    flash[:error] = 'Houve algum erro na importaçao' Colocar mensagens de erro e sucesso
     flash[:success] = "Processo concluído"
     redirect_to :back
+  end
+
+  private
+
+  def read_files_for_zip site
+    if ENV['STORAGE_BUCKET'].present?
+      s3 = Aws::S3::Resource.new(
+        credentials: Aws::Credentials.new(ENV['STORAGE_ACCESS_KEY'], ENV['STORAGE_ACCESS_SECRET']),
+        region: 'us-east-1',
+        endpoint: "https://#{ENV['STORAGE_HOST']}",
+        force_path_style: true
+      )
+      bucket = s3.bucket(ENV['STORAGE_BUCKET'])
+      prefix = "up/#{site.id}/"
+      bucket.objects(prefix: "up/#{site.id}/").map do |obj|
+        file = bucket.object(obj.key)
+        [file, obj.key.gsub(prefix, 'repository/')]
+      end
+    else
+      repository = "public/up/#{site.id}"
+      Find.find(repository).map do |path|
+        Find.prune if File.basename(path)[0] == '.'
+        dest = /#{repository}\/(\w.*)/.match(path)
+        [path, dest ? "repository/#{dest[1]}" : nil]
+      end
+    end
   end
 end
