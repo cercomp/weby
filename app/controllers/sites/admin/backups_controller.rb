@@ -22,7 +22,7 @@ class Sites::Admin::BackupsController < ApplicationController
     #h[:include][:news_sites] = { include: [:categories ] } if params[:news]
     h[:include][:events] = { include: [:categories, :i18ns, :related_files] } if params[:events]
     h[:include][:repositories] = {}  if params[:repositories]
-    h[:include][:banners] = { include: :categories } if params[:banners]
+    h[:include][:own_banners] = { include: { own_banner_site: {include: :categories} } } if params[:banners]
     h[:include][:menus] = { include: :root_menu_items } if params[:menus]
     #h[:include][:styles] = {}  if params[:styles]
     #h[:include][:root_components] = {}  if params[:root_components]
@@ -87,7 +87,7 @@ class Sites::Admin::BackupsController < ApplicationController
 
     if attrs
       current_site.repositories.import(attrs['repositories'], site_id: current_site.id) if attrs['repositories']
-      current_site.banners.import(attrs['banners'], user: current_user.id) if attrs['banners']
+      current_site.own_banners.import(attrs['own_banners'], user: current_user.id, site_id: current_site.id) if attrs['own_banners']
       current_site.pages.import(attrs['pages'], user: current_user.id, site_id: current_site.id) if attrs['pages']
       current_site.own_news.import(attrs['own_news'], user: current_user.id, site_id: current_site.id) if attrs['own_news']
       #current_site.news_sites.import(attrs['news_sites'], user: current_user.id, site_id: current_site.id) if attrs['own_news']
