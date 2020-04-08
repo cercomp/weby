@@ -14,7 +14,8 @@ module Weby
                    -> { includes(:locale) },
                    class_name: i18n_class.name,
                    foreign_key: "#{base.name.underscore.gsub('/', '_')}_id".to_sym,
-                   dependent: :delete_all
+                   dependent: :delete_all,
+                   inverse_of: base.name.underscore.gsub('/', '_').to_sym
 
           has_many :locales, through: :i18ns
 
