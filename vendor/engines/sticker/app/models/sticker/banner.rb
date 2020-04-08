@@ -37,6 +37,12 @@ module Sticker
       attrs['repository_id'] = Import::Application::CONVAR["repository"]["#{attrs['repository_id']}"]
       attrs['user_id'] = options[:user] unless User.unscoped.find_by(id: attrs['user_id'])
 
+      banner_site_attrs = attrs.fetch('own_banner_site', {}).except('id', 'type', '@type', 'sticker_banner_id', 'site_id').merge({
+        site_id: options[:site_id]
+      })
+      banner_site_attrs['category_list'] = banner_site_attrs.delete('categories').to_a.map { |category| category['name'] }
+      attrs['own_banner_site'] = Sticker::BannerSite.new(banner_site_attrs)
+
       self.create!(attrs)
     end
   end
