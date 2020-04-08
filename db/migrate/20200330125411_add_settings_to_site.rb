@@ -18,7 +18,7 @@ class AddSettingsToSite < ActiveRecord::Migration[5.2]
             else
               setting['var']
             end
-            extension.settings[name] = setting['value']
+            extension.settings[name] = YAML.load(setting['value']) if setting['value'].present?
           end
           extension.save!
         end
@@ -26,11 +26,11 @@ class AddSettingsToSite < ActiveRecord::Migration[5.2]
         Site.find_each do |site|
           r_settings = ActiveRecord::Base.connection.exec_query("SELECT * from weby_settings WHERE thing_id = #{site.id} AND thing_type = 'Site'")
           r_settings.to_hash.each do |setting|
-            site.settings[setting['var']] = setting['value']
+            site.settings[setting['var']] = YAML.load(setting['value']) if setting['value'].present?
           end
           site.save!
         end
-        ActiveRecord::Base.connection.execute("DROP TABLE weby_settings")
+        #ActiveRecord::Base.connection.execute("DROP TABLE weby_settings")
       end
       dir.down do
         #
