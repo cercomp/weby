@@ -20,7 +20,6 @@ module Journal
 
     has_one :own_news_site, ->(this){ where(site_id: this.site_id) }, class_name: "::Journal::NewsSite", foreign_key: :journal_news_id
 
-
     # Validations
     validates :user_id, :site_id, :status, presence: true
 
@@ -35,7 +34,7 @@ module Journal
     # 0 = "termo1 termo2"
     # 1 = termo1 AND termo2
     # 2 = termo1 OR termo2
-    scope :search, ->(param, search_type) {
+    scope :with_search, ->(param, search_type) {
       if param.present?
         fields = ['journal_news_i18ns.title', 'journal_news_i18ns.summary', 'journal_news_i18ns.text',
                   'users.first_name']

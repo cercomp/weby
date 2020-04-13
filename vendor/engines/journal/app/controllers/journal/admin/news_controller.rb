@@ -45,7 +45,7 @@ module Journal::Admin
       news = Journal::News.where('journal_news.id in (?)', @news).
         includes(:user, :site).
         where(sites: {status: 'active'}).
-        search(params[:search], 1) # 1 = busca com AND entre termos
+        with_search(params[:search], 1) # 1 = busca com AND entre termos
 
       if params[:template] == 'list_popup'
         news = news.published

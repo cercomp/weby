@@ -1,8 +1,9 @@
 atom_feed :language => I18n.locale do |feed|
   feed.title current_site.name
-  feed.updated @newslist.first.created_at if @newslist.any?
+  feed.updated @news_sites.first.created_at if @news_sites.any?
 
-  @newslist.each do |news|
+  @news_sites.each do |news_site|
+    news = news_site.news
     feed.entry news, url: news_url(news, subdomain: current_site) do |entry|
       entry.title news.title
       entry.summary news.summary, :type => 'html'

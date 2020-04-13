@@ -22,6 +22,10 @@ gem 'aws-sdk-s3', '~> 1'
 gem 'fog-aws'
 gem 'asset_sync'
 
+#elastic
+gem 'searchkick', '~> 4.3.0'
+gem 'oj' #boost json parsing
+
 # Ominiauth
 gem 'omniauth-shibboleth'
 

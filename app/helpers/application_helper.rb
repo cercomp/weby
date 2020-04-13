@@ -302,7 +302,7 @@ module ApplicationHelper
   # TODO refatorar isso aqui, antes fazia collection.page(1).count mudei para
   # collection.page(1).length para poder trabalhar com querys usando group
   def info_page(collection, style = nil)
-    if collection.page(1).length > 0
+    if collection.size > 0
       html = "#{t('views.pagination.displaying')} #{collection.offset_value + 1} -
       #{collection.offset_value + collection.length}"
       html << " #{t('of')} #{collection.total_count}"

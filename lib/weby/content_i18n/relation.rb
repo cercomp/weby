@@ -72,9 +72,9 @@ module Weby
           def select_locale(locale = nil)
             case
             when locale
-              @selected_i18n = i18ns.select { |i18n| i18n.locale.name == locale.to_s }.first
-            when !(@selected_i18n = i18ns.select { |i18n| i18n.locale.name == I18n.locale.to_s }.first).blank?
-            when !(@selected_i18n = i18ns.select { |i18n| i18n.locale.name == I18n.default_locale.to_s }.first).blank?
+              @selected_i18n = i18ns.detect{ |i18n| i18n.locale.name == locale.to_s }
+            when !(@selected_i18n = i18ns.detect{ |i18n| i18n.locale.name == I18n.locale.to_s }).blank?
+            when !(@selected_i18n = i18ns.detect{ |i18n| i18n.locale.name == I18n.default_locale.to_s }).blank?
             else
               @selected_i18n = i18ns.first
             end
@@ -95,6 +95,11 @@ module Weby
           def in(locale = nil)
             select_locale(locale)
             self
+          end
+
+          # this has no default or fallback
+          def i18n_in(locale)
+            i18ns.detect{ |i18n| i18n.locale.name == locale.to_s }
           end
 
           i18n_fields.each do |field|

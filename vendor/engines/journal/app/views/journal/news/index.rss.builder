@@ -13,8 +13,8 @@ xml.rss :version => "2.0", "xmlns:itunes" => "http://www.itunes.com/dtds/podcast
       xml.itunes :image, href: asset_url(current_site.repository.archive.url)
     end
 
-    for news in @newslist
-      news_site = news.news_sites.detect{|ns| ns.site_id == current_site.id }
+    for news_site in @news_sites
+      news = news_site.news
       xml.item do
         xml.title news.title
         news_image = image_tag(

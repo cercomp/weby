@@ -1,6 +1,7 @@
-<%= info_page @newslist.includes(:image, :i18ns, :site) %>
+<%= info_page @news_sites %>
 <div class="search-results">
-<% if @newslist.each do |news| %>
+<% if @news_sites.each do |news_site| %>
+  <% news = news_site.news %>
   <div class="item-search-result">
     <article>
     <% if news.image %>
@@ -20,14 +21,11 @@
     <summary>
       <%= render_user_content news.summary %>
     </summary>
-    <% @news_site = Journal::NewsSite.find_by(journal_news_id: news.id, site_id: current_site.id) %>
-    <% if @news_site %>
-      <div class="categories">
-        <% @news_site.category_list.each do |category| %>
-          <span class="category"><%= link_to category , news_index_path( tags: category.to_s ), class: 'weby-label default' %></span>
-        <% end %>
-      </div>
-    <% end %>
+    <div class="categories">
+      <% news_site.categories.each do |category| %>
+        <span class="category"><%= link_to category.name , news_index_path( tags: category.name ), class: 'weby-label default' %></span>
+      <% end %>
+    </div>
     <p class="read_more"><%#= link_to t(".read_more"), news_path(news) %></p>
     </article>
   </div>
@@ -35,5 +33,5 @@
   <div class="empty-result"><%= t(".no_news") %></div>
 <% end %>
 </div>
-<%= per_page_links @newslist, true, :sm %>
-<%= paginate @newslist, remote: true, page_links: true %>
+<%= per_page_links @news_sites, true, :sm %>
+<%= paginate @news_sites, remote: true, page_links: true %>
