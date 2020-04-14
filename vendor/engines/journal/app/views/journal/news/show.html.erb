@@ -41,7 +41,7 @@
 
   <%= content_tag_if @news.source.present?, :p, class: 'source' do %>
     <span class="source-label"><%= "#{t('.source')}:" %></span>
-    <%= "#{@news.source}" %>
+    <%= @news.source.match(/^https?:\/\//) ? link_to(@news.source, @news.source, target: :_blank) : @news.source %>
   <% end %>
   <% @news_site = Journal::NewsSite.find_by(journal_news_id: @news.id, site_id: current_site.id) %>
   <%= content_tag_if @news_site.category_list.any?, :p, class: 'categories' do %>

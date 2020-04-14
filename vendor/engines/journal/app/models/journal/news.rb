@@ -60,14 +60,13 @@ module Journal
       end
     }
 
-#    before_trash do
-#      if published?
-#        errors[:base] << I18n.t('cannot_destroy_a_published_page')
-#        throw(:abort)
-#      else
-#        true
-#      end
-#    end
+    after_trash :reindex_news_site
+    after_untrash :reindex_news_site
+
+    def reindex_news_site
+      own_news_site.reindex if own_news_site.respond_to?(:reindex)
+    end
+    private :reindex_news_site
 
     def self.import(attrs, options = {})
       return attrs.each { |attr| import attr, options } if attrs.is_a? Array

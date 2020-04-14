@@ -41,39 +41,44 @@ module Journal
     end
 
     def get_news
-      get_news_db
+      if ENV['ELASTICSEARCH_URL'].present?
+        get_news_es
+      else
+        get_news_db
+      end
     end
 
     def get_news_es
-      # TODO add filter
-      result = Journal::NewsSite.perform_search(params[:search])
+      params[:direction] ||= 'desc'
+      params[:page] ||= 1
+
+      filters = [{
+        term: {site_id: current_site.id}
+      }]
+      filters << {term: {status: 'published'}}
+      if params[:tags].present?
+        filters << {terms: {categories: tags}}
+      end
+      result = Journal::NewsSite.perform_search(params[:search],
+        filter: filters,
+        per_page: params[:per_page],
+        page: params[:page],
+        sort: sort_column,
+        sort_direction: sort_direction,
+        search_type: params.fetch(:search_type, 1).to_i
+      )
     end
 
     def get_news_db
       params[:direction] ||= 'desc'
       params[:page] ||= 1
-      # Vai ao banco por linha para recuperar
-      # tags e locales
       if params[:tags].present?
-        # news_sites = current_site.news_sites.published.tagged_with(tags, any: true)
-        # @news = []
-        # news_sites.each do |sites|
-        #   @news << sites.journal_news_id
-        # end
-        # result = Journal::News.published.includes(:user, :related_files, :news_sites, :site).where(sites: {status: 'active'}).where('journal_news.id in (?)', @news).
-        #      with_search(params[:search], params.fetch(:search_type, 1).to_i).
-        #      order(sort_column + ' ' + sort_direction).
-        #      page(params[:page]).per(params[:per_page])
         result = current_site.news_sites.published.includes(:categories, news: [:image, :related_files, :site, :i18ns]).
           tagged_with(tags, any: true).
           with_search(params[:search], params.fetch(:search_type, 1).to_i).
           order(sort_column + ' ' + sort_direction).
           page(params[:page]).per(params[:per_page])
       else
-        # result = Journal::News.published.includes(:user, :related_files, :news_sites, :site).where(sites: {status: 'active'}).where(site_id: current_site).
-        #     with_search(params[:search], params.fetch(:search_type, 1).to_i).
-        #     order(sort_column + ' ' + sort_direction).
-        #     page(params[:page]).per(params[:per_page])
         result = current_site.news_sites.published.includes(:categories, news: [:image, :related_files, :site, :i18ns]).
           with_search(params[:search], params.fetch(:search_type, 1).to_i).
           order(sort_column + ' ' + sort_direction).

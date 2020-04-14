@@ -302,7 +302,7 @@ module ApplicationHelper
   # TODO refatorar isso aqui, antes fazia collection.page(1).count mudei para
   # collection.page(1).length para poder trabalhar com querys usando group
   def info_page(collection, style = nil)
-    if collection.size > 0
+    if collection.length > 0
       html = "#{t('views.pagination.displaying')} #{collection.offset_value + 1} -
       #{collection.offset_value + collection.length}"
       html << " #{t('of')} #{collection.total_count}"
@@ -313,7 +313,7 @@ module ApplicationHelper
 
   # Generate links in order to select the amount of intes per page
   def per_page_links(collection, remote = false, size = nil)
-    if collection.page(1).length > per_page_array.first.to_i
+    if collection.length >= per_page_array.first.to_i || params[:page].to_i > 1
       html = "<li><span>#{t('views.pagination.per_page')} </span></li>"
 
       params[:per_page] = per_page_default if params[:per_page].blank?

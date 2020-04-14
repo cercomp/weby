@@ -1,5 +1,9 @@
 module Journal
   class NewsSite < Journal::ApplicationRecord
+    if ENV['ELASTICSEARCH_URL'].present?
+      include Journal::NewsSiteElastic
+    end
+
     belongs_to :site
     belongs_to :news, class_name: "::Journal::News", foreign_key: :journal_news_id
 
@@ -46,145 +50,6 @@ module Journal
 
     def category_list_before_type_cast
       category_list.to_s
-    end
-
-    # Elasticsearch
-    searchkick settings: {
-        analysis: {
-          filter: {
-            custom_edge_ngram: {
-              type: 'edge_ngram',
-              min_gram: 4,
-              max_gram: 20
-            }
-          },
-          analyzer: {
-            title_index: {
-              type: 'custom',
-              tokenizer: 'standard',
-              filter: ['lowercase', 'asciifolding', 'custom_edge_ngram']
-            }
-          }
-        },
-      },
-      mappings: {
-        properties: {
-          site_id: {type: 'keyword', index: true},
-          owner_site_id: {type: 'keyword', index: true},
-          title_ptbr: {type: 'text', index: true, analyzer: 'title_index', search_analyzer: 'standard'},
-          summary_ptbr: {type: 'text', index: true, analyzer: 'standard'},
-          text_ptbr: {type: 'text', index: true, analyzer: 'standard'},
-          title_en: {type: 'text', index: true, analyzer: 'title_index', search_analyzer: 'standard'},
-          summary_en: {type: 'text', index: true, analyzer: 'standard'},
-          text_en: {type: 'text', index: true, analyzer: 'standard'},
-          title_es: {type: 'text', index: true, analyzer: 'title_index', search_analyzer: 'standard'},
-          summary_es: {type: 'text', index: true, analyzer: 'standard'},
-          text_es: {type: 'text', index: true, analyzer: 'standard'},
-          title_fr: {type: 'text', index: true, analyzer: 'title_index', search_analyzer: 'standard'},
-          summary_fr: {type: 'text', index: true, analyzer: 'standard'},
-          text_fr: {type: 'text', index: true, analyzer: 'standard'},
-          categories: {type: 'keyword', index: true},
-          is_shared: {type: 'boolean', index: false},
-          status: {type: 'keyword', index: true},
-          user_id: {type: 'keyword', index: true},
-          user_name: {type: 'text', index: true, analyzer: 'title_index', search_analyzer: 'standard'}
-        }
-      }
-
-    scope :search_import, -> { includes(:categories, {news: [:i18ns, :user]}) }
-
-    def should_index?
-      news && !news.is_trashed?
-    end
-
-    def search_data
-      i18n_ptbr = news.i18n_in('pt-BR')
-      i18n_en = news.i18n_in('en')
-      i18n_es = news.i18n_in('es')
-      i18n_fr = news.i18n_in('fr')
-      {
-        site_id: site_id,
-        owner_site_id: news.site_id,
-        title_ptbr: i18n_ptbr&.title,
-        summary_ptbr: i18n_ptbr&.summary,
-        text_ptbr: i18n_ptbr&.text,
-        title_en: i18n_en&.title,
-        summary_en: i18n_en&.summary,
-        text_en: i18n_en&.text,
-        title_es: i18n_es&.title,
-        summary_es: i18n_es&.summary,
-        text_es: i18n_es&.text,
-        title_fr: i18n_fr&.title,
-        summary_fr: i18n_fr&.summary,
-        text_fr: i18n_fr&.text,
-        categories: categories.map(&:name),
-        is_shared: site_id == news.site_id,
-        status: news.status,
-        user_id: news.user_id,
-        user_name: news.user.first_name
-      }
-    end
-
-    def self.perform_search(term, opts={})
-      locale = I18n.locale.to_s.downcase.gsub('-', '')
-      query = if term.present?
-        {
-          multi_match: {
-            query: term,
-            fields: ["title_#{locale}", "summary_#{locale}", "text_#{locale}", "user_name"],
-            operator: 'or'
-          }
-        }
-      else
-        {
-          match_all: {}
-        }
-      end
-
-      body = {
-        query: {
-          bool: {
-            must: query
-          }
-        }
-      }
-
-      permitted_sort = {
-        'best': '_score',
-        'ig-growth':          {'ig_followers_change': 'desc'},
-        'ig-max-likes':       {'ig_likes_per_post': 'desc'},
-        'ig-mentions-unique': {'ig_mentions_unique': 'desc'},
-        'tw-growth':          {'tw_followers_change': 'desc'},
-        'tw-max-likes':       {'tw_likes_per_post': 'desc'},
-        'tw-mentions-unique': {'tw_mentions_unique': 'desc'},
-        'yt-growth':          {'yt_followers_change': 'desc'},
-        'yt-max-views':       {'yt_views_per_video': 'desc'},
-        'hyperank':           {'hyperank': {'order': 'asc', 'missing': '_last'}}
-      }
-
-      if opts[:sort] && permitted_sort.keys.include?(opts[:sort].to_sym)
-        body[:sort] = permitted_sort[ opts[:sort].to_sym ]
-      end
-
-      if opts[:filter]
-        body[:query][:bool][:filter] = opts[:filter]
-      end
-
-      if opts.has_key?(:limit) && !opts[:limit].nil?
-        size = opts[:limit].to_i
-        body[:size] = size
-
-        if opts[:page].present?
-          from = (opts[:page].to_i - 1) * size
-          body[:from] = from
-        end
-      end
-
-      self.search({
-        body: body,
-        debug: false,
-        includes: [:categories, {news: :i18ns}]
-      })
     end
 
     private
