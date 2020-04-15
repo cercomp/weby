@@ -53,6 +53,8 @@ en:
 #--- Sites/Admin/News ---#
         created_news:               " created a news "
         updated_news:               " updated a news "
+        shared_news:                " shared a news "
+        unshared_news:              " unshared a news "
         destroyed_news:             " deleted a news "
         moved_news_to_recycle_bin:  " moved a news to trash "
         restored_news:              " restored a news "

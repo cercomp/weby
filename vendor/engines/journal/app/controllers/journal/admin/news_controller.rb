@@ -94,6 +94,7 @@ module Journal::Admin
       news_site = Journal::NewsSite.find_by(journal_news_id: params[:id], site_id: params[:site_id])
       if news_site.blank?
         news_site = Journal::NewsSite.create!(site_id: params[:site_id], journal_news_id: params[:id], front: true)
+        record_activity('shared_news', news_site.news)
       end
       tags = unescape_param(params[:tag]).to_s.split(',').map(&:strip)
       if tags.present?
@@ -106,7 +107,9 @@ module Journal::Admin
 
     def unshare
       @news = Journal::NewsSite.where(site_id: current_site.id, journal_news_id: params[:id])
+      log_news = @news.first
       @news.destroy_all
+      record_activity('unshared_news', log_news) if log_news
       flash[:success] = t('.unshared_news')
       redirect_to admin_news_index_path
     end

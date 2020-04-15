@@ -37,6 +37,8 @@ pt-BR:
 #--- Sites/Admin/News ---#
           created_news:               " criou uma notícia "
           updated_news:               " atualizou uma notícia "
+          shared_news:                " compartilhou uma notícia "
+          unshared_news:              " removeu uma notícia compartilhada "
           destroyed_news:             " excluiu uma notícia "
           moved_news_to_recycle_bin:  " moveu uma notícia pra lixeira "
           restored_news:              " restaurou uma notícia "
