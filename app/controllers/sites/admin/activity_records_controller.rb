@@ -5,7 +5,8 @@ class Sites::Admin::ActivityRecordsController < ApplicationController
 
   def index
     @activity_records = current_site.activity_records.
-                includes(:user, :site, :loggeable).
+                preload(:loggeable).
+                includes(:user, :site).
                 user_or_action_like(params[:search]).
                 order('activity_records.created_at DESC').
                 page(params[:page]).

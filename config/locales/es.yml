@@ -120,7 +120,7 @@ es:
   show:                                 " Mostrar "
   site_need_at_least_one_locale:        " Necessita de pelo menos um idioma "
   submit:                               " Enviar "
-  successfully_installed_theme:         " Tema instalado con sucesso "
+  successfully_installed_theme:         " Tema adicionado con sucesso "
   successfully_applied_theme:           " Tema aplicado con sucesso "
   successfully_created:                 " Criado com sucesso."
   successfully_updated:                 " Atualizado com sucesso "
@@ -134,7 +134,7 @@ es:
   successfully_restored:                " Restaurado com sucesso! "
   should_be_image:                      " Deve ser uma imagem "
 #---T---#
-  theme_already_installed:              " Tema já instalado "
+  theme_already_installed:              " Tema já adicionado "
 #---U---#
   unfollow:                             " Deixar de Seguir "
   unpublish:                            " Despublicar "

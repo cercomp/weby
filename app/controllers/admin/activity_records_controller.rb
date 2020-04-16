@@ -5,7 +5,8 @@ class Admin::ActivityRecordsController < ApplicationController
 
   def index
     @activity_records = ActivityRecord.user_or_action_like(params[:search]).
-                includes(:user, :site, :loggeable).
+                preload(:loggeable).
+                includes(:user, :site).
                 order('activity_records.created_at DESC')
 
     if params[:site_id].present?

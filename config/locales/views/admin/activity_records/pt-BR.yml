@@ -78,6 +78,8 @@ pt-BR:
         created_style:              " criou um estilo "
         updated_style:              " atualizou um estilo "
         destroyed_style:            " excluiu um estilo "
+        followed_style:             " seguiu um estilo "
+        copied_style:               " copiou um estilo "
 #--- Sites/Admin/Theme ---#
         theme_installed:            " instalou um tema "
         theme_applied:              " aplicou um tema "

@@ -62,7 +62,7 @@ class Sites::Admin::BackupsController < ApplicationController
           end
         rescue Zip::ZipEntryExistsError
         end
-      end if params[:repositories]
+      end if params[:repositories] && params[:files]
       dest = /#{dir}\/(\w.*)/.match(filename)
       zipfile.add(dest[1], filename) if dest
     end
