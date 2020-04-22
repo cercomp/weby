@@ -410,29 +410,30 @@ module ApplicationHelper
     end
   end
 
-  def period_dates(inidate, findate, force_show_year = true)
+  def period_dates(inidate, findate, force_show_year = true, full = false)
     html = ''
-    if not findate
-      html << period_date_and_hour(inidate, force_show_year)
-    else
-      if (inidate.month != findate.month) || (inidate.year != findate.year)
+    if findate
+      show_full = full && (inidate.strftime('%H:%M')!='00:00' || findate.strftime('%H:%M')!='00:00')
+      if inidate.month != findate.month || inidate.year != findate.year || show_full
         html << period_date_and_hour(inidate, force_show_year)
         html << " #{t('time.period_separator')} "
         html << period_date_and_hour(findate, force_show_year)
       else
-        html << "#{l(inidate, format: (force_show_year || inidate.year != Time.now.year) ? :event_period_full : :event_period_short, iniday: inidate.strftime('%d'), finday: findate.strftime('%d'))}"
+        html << "#{l(inidate, format: (force_show_year || inidate.year != Time.current.year) ? :event_period_full : :event_period_short, iniday: inidate.strftime('%d'), finday: findate.strftime('%d'))}"
       end
+    else
+      html << period_date_and_hour(inidate, force_show_year)
     end
-    raw html
+    html.html_safe
   end
 
   def period_date_and_hour(date, force_show_year = true)
     html = ''
     if date.nil?
-      html << "#{t('no_event_period')}"
+      html << t('no_event_period')
     else
-      html << "#{l(date, format: (force_show_year || date.year != Time.now.year) ? :event_date_full : :event_date_short)}"
-      if (date.hour != 0)
+      html << "#{l(date, format: (force_show_year || date.year != Time.current.year) ? :event_date_full : :event_date_short)}"
+      if date.strftime('%H:%M')!='00:00'
         html << " #{l(date, format: :event_hour)}"
       end
     end

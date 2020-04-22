@@ -18,7 +18,7 @@
     <div class="col-md-6">
       <div class="col-md-6" style="padding: 0;">
         <%= text_field_tag :dt_range,
-                           @dt_range.nil? ? (Date.today-30).strftime("%d/%m/%Y")+"  -  "+(Date.today).strftime("%d/%m/%Y") : @dt_range,
+                           @dt_range.nil? ? (Date.current-30.days).strftime("%d/%m/%Y")+"  -  "+(Date.current).strftime("%d/%m/%Y") : @dt_range,
                            class: "form-control", id: "daterange" %>
       </div>
       <div class="col-md-2" style="padding: 0;">

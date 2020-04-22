@@ -14,7 +14,7 @@ module Journal
           ntr = Newsletter.new(site_id: current_site.id,
                                  group: params[:group],
                                  email: params[:email],
-                                 token: Digest::SHA1.hexdigest([Time.now, rand].join),
+                                 token: Digest::SHA1.hexdigest([Time.current, rand].join),
                                confirm: false) if ntr.nil?
           respond_to do |format|
             if ntr.save
@@ -35,7 +35,7 @@ module Journal
         val = params[:token].split(':')
         user = Newsletter.where("id = ? AND token = ?", val[1], val[0])[0]
         redirect_to :root, flash: { error: t('error_creating_object') } if user.nil?
-        user.token = Digest::SHA1.hexdigest([Time.now, rand].join)
+        user.token = Digest::SHA1.hexdigest([Time.current, rand].join)
 
         case params[:id]
         when 'confirmation'

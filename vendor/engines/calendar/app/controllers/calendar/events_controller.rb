@@ -51,7 +51,7 @@ module Calendar
         events = events.where('(begin_at between :start and :end_date) OR '\
                               '(end_at between :start and :end_date) OR '\
                               '(begin_at < :start AND end_at > :end_date)',
-                              start: params[:start].to_time, end_date: params[:end].to_time.end_of_day)
+                              start: Time.zone.parse(params[:start]), end_date: Time.zone.parse(params[:end]).end_of_day)
       end
 
       events = events.tagged_with(tags, any: true) if params[:tags]

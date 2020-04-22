@@ -133,8 +133,8 @@ class ApplicationController < ActionController::Base
 
   def render_500(exception)
     @error = exception
-    @error_code = (Time.now.to_f * 10).to_i
-    @@weby_error_logger.error("#{@error_code}:#{Time.now}|#{current_site ? current_site.title : '[no-site]'}|#{exception.class}|"\
+    @error_code = (Time.current.to_f * 10).to_i
+    @@weby_error_logger.error("#{@error_code}:#{Time.current}|#{current_site ? current_site.title : '[no-site]'}|#{exception.class}|"\
       "#{exception.message.gsub(/\n/, '⏎')}|#{filter_backtrace(exception).join('⏎')}|#{request.host_with_port}#{request.fullpath} from #{request.remote_ip}|"\
       "#{request.filtered_parameters}\n")
     Rollbar.error(exception, error_code: @error_code) if Rails.env.production?

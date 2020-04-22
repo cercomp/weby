@@ -18,8 +18,8 @@ module Calendar
 
     validates :begin_at, presence: true
 
-    scope :upcoming, -> { where(' (begin_at >= :time OR end_at >= :time)', time: Time.now) }
-    scope :previous, -> { where(' (end_at < :time)', time: Time.now) }
+    scope :upcoming, -> { where(' (begin_at >= :time OR end_at >= :time)', time: Time.current) }
+    scope :previous, -> { where(' (end_at < :time)', time: Time.current) }
 
     scope :search, ->(param, search_type) {
       if param.present?

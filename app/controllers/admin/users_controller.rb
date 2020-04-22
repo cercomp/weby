@@ -117,7 +117,7 @@ class Admin::UsersController < ApplicationController
     return false if resource.blank? && params[:field].blank?
 
     if params[:field] == 'confirmed_at'
-      resource.update(confirmed_at: (resource.confirmed_at ? nil : Time.now))
+      resource.update(confirmed_at: (resource.confirmed_at ? nil : Time.current))
     else
       resource.toggle!(params[:field])
     end

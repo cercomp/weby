@@ -127,7 +127,7 @@ module Journal
     private
 
     def validate_date
-      self.date_begin_at = Time.now.to_s if date_begin_at.blank?
+      self.date_begin_at = Time.current if date_begin_at.blank?
     end
   end
 end

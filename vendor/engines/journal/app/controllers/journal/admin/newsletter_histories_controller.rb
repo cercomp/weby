@@ -53,7 +53,7 @@ module Journal::Admin
 
     def get_news
       @dt_range = params[:dt_range]
-      range = @dt_range.nil? || @dt_range.empty? ? (Date.today-30).strftime("%d/%m/%Y")+" - "+(Date.today).strftime("%d/%m/%Y") : @dt_range.to_s
+      range = @dt_range.nil? || @dt_range.empty? ? (Date.current-30.days).strftime("%d/%m/%Y")+" - "+(Date.current).strftime("%d/%m/%Y") : @dt_range.to_s
       if range.match(/\d{2}\/\d{2}\/\d{4}\s{1,2}\-\s{1,2}\d{2}\/\d{2}\/\d{4}/).nil?
         flash.now[:alert] = t(".invalid_date")
         []

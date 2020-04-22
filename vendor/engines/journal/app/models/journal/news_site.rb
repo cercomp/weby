@@ -15,8 +15,8 @@ module Journal
     scope :published, -> { joins(:news).where(journal_news: {status: 'published'}) }
     scope :front, -> { where(front: true) }
     scope :no_front, -> { where(front: false) }
-    scope :available, -> { where('journal_news_sites.date_begin_at is NULL OR journal_news_sites.date_begin_at <= :time', time: Time.now) }
-    scope :available_fronts, -> { front.where('journal_news_sites.date_end_at is NULL OR journal_news_sites.date_end_at > :time', time: Time.now) }
+    scope :available, -> { where('journal_news_sites.date_begin_at is NULL OR journal_news_sites.date_begin_at <= :time', time: Time.current) }
+    scope :available_fronts, -> { front.where('journal_news_sites.date_end_at is NULL OR journal_news_sites.date_end_at > :time', time: Time.current) }
 
     # tipos de busca
     # 0 = "termo1 termo2"
@@ -89,7 +89,7 @@ module Journal
     end
 
     def validate_date
-      self.date_begin_at = Time.now.to_s if date_begin_at.blank?
+      self.date_begin_at = Time.current if date_begin_at.blank?
     end
   end
 end

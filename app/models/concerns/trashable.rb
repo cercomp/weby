@@ -24,7 +24,7 @@ module Trashable
       unscoped_destroy
     else
       run_callbacks :trash do
-        update_attribute(:deleted_at, Time.now)
+        update_attribute(:deleted_at, Time.current)
       end
     end
   end

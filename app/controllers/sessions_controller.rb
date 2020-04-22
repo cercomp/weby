@@ -95,14 +95,14 @@ class SessionsController < Devise::SessionsController
         email: session[:ldap_email],
         password: "User#{rand(99999)}",
         sign_in_count: 1,
-        current_sign_in_at: Time.now,
-        last_sign_in_at: Time.now,
+        current_sign_in_at: Time.current,
+        last_sign_in_at: Time.current,
         current_sign_in_ip: '127.0.0.1',
         last_sign_in_ip: '127.0.0.1',
         first_name: session[:ldap_first_name],
         last_name: session[:ldap_last_name],
-        confirmed_at: Time.now,
-        confirmation_sent_at: Time.now)
+        confirmed_at: Time.current,
+        confirmation_sent_at: Time.current)
       user.save!
       AuthSource.new(user_id: user.id, source_type: session[:ldap_type], source_login: session[:ldap_login]).save
       sign_in user

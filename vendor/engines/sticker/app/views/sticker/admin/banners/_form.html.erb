@@ -52,13 +52,13 @@
     <%= g.input :date_begin_at, label: t(".period_banner") do %>
       <div class="row">
         <div class="col-md-5">
-           <%= g.input_field :date_begin_at, placeholder: t(".begin") %>
+           <%= g.input_field :date_begin_at, placeholder: t(".begin"), autocomplete: 'off' %>
         </div>
         <div class="col-md-1 text-center">
           <b><%= t('time.period_separator') %></b>
         </div>
         <div class="col-md-6">
-           <%= g.input_field :date_end_at, placeholder: t(".publication_infinite") %>
+           <%= g.input_field :date_end_at, placeholder: t(".publication_infinite"), autocomplete: 'off' %>
         </div>
       </div>
     <% end %>
