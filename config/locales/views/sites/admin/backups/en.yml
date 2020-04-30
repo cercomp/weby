@@ -5,6 +5,7 @@ en:
         index:
           options_backup:         " Options backup "
           repositories:           " Repository "
+          files:                  " Download files "
           menus:                  " Menus "
           styles:                 " Styles "
           follow_styles:          " Follow styles "

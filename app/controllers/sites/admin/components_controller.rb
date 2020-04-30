@@ -71,7 +71,7 @@ class Sites::Admin::ComponentsController < ApplicationController
   def sort
     Component.update_positions(params['sort_sites_component'] || [], params[:place_holder])
 
-    render nothing: true
+    head :ok
   end
 
   private

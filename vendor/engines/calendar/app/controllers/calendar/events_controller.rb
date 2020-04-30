@@ -11,15 +11,15 @@ module Calendar
       @events = get_events
 
       respond_with(@events) do |format|
-        format.rss { render layout: false, content_type: Mime::XML } # index.rss.builder
-        format.atom { render layout: false, content_type: Mime::XML } # index.atom.builder
-        format.json { render json: @events, root: :events, meta: { total: @events.total_count } }
+        format.rss { render layout: false, content_type: Mime[:xml] } # index.rss.builder
+        format.atom { render layout: false, content_type: Mime[:xml] } # index.atom.builder
+        format.json { render json: @events, root: 'events', meta: { total: @events.total_count } }
       end
     end
 
     def calendar
       @events = get_events(false)
-      render json: Calendar::Event.as_fullcalendar_json(@events)
+      render json: Calendar::Event.as_fullcalendar_json(@events).to_json
     end
 
     def show
@@ -51,7 +51,7 @@ module Calendar
         events = events.where('(begin_at between :start and :end_date) OR '\
                               '(end_at between :start and :end_date) OR '\
                               '(begin_at < :start AND end_at > :end_date)',
-                              start: params[:start].to_time, end_date: params[:end].to_time.end_of_day)
+                              start: Time.zone.parse(params[:start]), end_date: Time.zone.parse(params[:end]).end_of_day)
       end
 
       events = events.tagged_with(tags, any: true) if params[:tags]

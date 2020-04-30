@@ -18,60 +18,64 @@
       </div>
       <div class="checkbox">
         <label>
-          <%= check_box_tag( :pages) %>
+          <%= check_box_tag(:pages) %>
           <%= t('.pages') %>
         </label>
       </div>
       <div class="checkbox">
         <label>
-          <%= check_box_tag( :news) %>
+          <%= check_box_tag(:news) %>
           <%= t('.news') %>
         </label>
       </div>
       <div class="checkbox">
         <label>
-          <%= check_box_tag( :events) %>
+          <%= check_box_tag(:events) %>
           <%= t('.events') %>
         </label>
       </div>
       <div class="checkbox">
         <label>
-          <%= check_box_tag( :repositories) %>
+          <%= check_box_tag(:repositories) %>
           <%= t('.repositories') %>
+        </label>
+        <label>
+          <%= check_box_tag(:files, 1, true) %>
+          <%= t('.files') %>
         </label>
       </div>
       <div class="checkbox">
         <label>
-          <%= check_box_tag( :menus) %>
+          <%= check_box_tag(:menus) %>
           <%= t('.menus') %>
         </label>
       </div>
       <div class="checkbox">
         <label>
-          <%= check_box_tag( :themes) %>
+          <%= check_box_tag(:themes) %>
           <%= t('.themes') %>
         </label>
       </div>
       <div class="checkbox">
         <label>
-          <%= check_box_tag( :banners) %>
+          <%= check_box_tag(:banners) %>
           <%= t('.banners') %>
         </label>
       </div>
       <div class="checkbox">
         <label>
-          <%= check_box_tag( :extensions) %>
+          <%= check_box_tag(:extensions) %>
           <%= t('.extensions') %>
         </label>
       </div>
       <div class="checkbox">
         <label>
-          <%= check_box_tag( :messages) %>
+          <%= check_box_tag(:messages) %>
           <%= t('.messages_feedbacks') %>
         </label>
       </div>
       <div class="form-actions">
-          <%= submit_tag t('generate'), class: 'btn btn-primary generate'  %>
+          <%= submit_tag t('generate'), class: 'btn btn-primary generate', data: {disable_with: false}  %>
           <%= link_to t("back"), site_admin_path, class: "btn btn-default" %>
       </div>
     <% end %>
@@ -80,7 +84,7 @@
     <%= form_tag site_admin_import_path, id: 'import-form', multipart: true, method: :post do %>
       <div class="row">
         <div class="col-md-6">
-          <%= file_field_tag 'upload', required: :required, :accept => 'text/json,text/xml', class: 'form-control' %>
+          <%= file_field_tag 'upload', required: :required, :accept => 'text/json,text/xml,application/JSON', class: 'form-control' %>
         </div>
       </div>
       <div class="form-actions">

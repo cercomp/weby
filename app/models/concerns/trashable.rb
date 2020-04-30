@@ -21,10 +21,10 @@ module Trashable
 
   def trash
     if deleted_at
-      destroy
+      unscoped_destroy
     else
       run_callbacks :trash do
-        update_attribute(:deleted_at, Time.now)
+        update_attribute(:deleted_at, Time.current)
       end
     end
   end

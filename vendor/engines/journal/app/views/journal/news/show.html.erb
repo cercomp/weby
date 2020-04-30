@@ -9,12 +9,12 @@
     <h2><%= @news.title %></h2>
   </header>
   <div class="news-details details">
-  <% if @extension.settings.author == '1' %>
+  <% if @extension.author == '1' %>
      <span class="author"><%= t(".posted_by", author: @news.user) %></span>
   <% end %>
   <% if @news.published? %>
     <span class="date">
-      <% if (@extension.settings.created_at == '1') %>
+      <% if (@extension.show_created_at == '1') %>
         <% news_date = @news.i18ns.first.created_at || @news.created_at %>
         <%= t(".created_at", created_at: l(news_date, format: :short)) if news_date %>
       <% end %>
@@ -41,7 +41,7 @@
 
   <%= content_tag_if @news.source.present?, :p, class: 'source' do %>
     <span class="source-label"><%= "#{t('.source')}:" %></span>
-    <%= "#{@news.source}" %>
+    <%= @news.source.match(/^https?:\/\//) ? link_to(@news.source, @news.source, target: :_blank) : @news.source %>
   <% end %>
   <% @news_site = Journal::NewsSite.find_by(journal_news_id: @news.id, site_id: current_site.id) %>
   <%= content_tag_if @news_site.category_list.any?, :p, class: 'categories' do %>

@@ -13,8 +13,8 @@ xml.rss :version => "2.0", "xmlns:itunes" => "http://www.itunes.com/dtds/podcast
       xml.itunes :image, href: asset_url(current_site.repository.archive.url)
     end
 
-    for news in @newslist
-      news_site = news.news_sites.detect{|ns| ns.site_id == current_site.id }
+    for news_site in @news_sites
+      news = news_site.news
       xml.item do
         xml.title news.title
         news_image = image_tag(
@@ -28,7 +28,7 @@ xml.rss :version => "2.0", "xmlns:itunes" => "http://www.itunes.com/dtds/podcast
         body = "#{news_image}<br/>#{render_user_content news.summary}<br/>#{render_user_content news.text}"
         body += "<br/>#{link_to 'Original', news.url, target: '_blank'}" if news.url.present?
         xml.description body
-        if @extension.settings.author == '1'
+        if @extension.author == '1'
           xml.author = news.user.fullname
         end
         xml.pubDate news.created_at.to_s(:rfc822)

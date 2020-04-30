@@ -1,11 +1,11 @@
 module Sticker
-  class Banner < ActiveRecord::Base
-    belongs_to :target, polymorphic: true
-    belongs_to :repository
+  class Banner < Sticker::ApplicationRecord
+    belongs_to :target, polymorphic: true, optional: true
+    belongs_to :repository, optional: true
     belongs_to :user
     belongs_to :site
 
-    has_many :banner_sites, foreign_key: :sticker_banner_id, class_name: "::Sticker::BannerSite", dependent: :destroy
+    has_many :banner_sites, foreign_key: :sticker_banner_id, class_name: "::Sticker::BannerSite", inverse_of: :banner, dependent: :destroy
     has_many :sites, through: :banner_sites
     has_one :own_banner_site, ->(this){ where(site_id: this.site_id) }, class_name: "::Sticker::BannerSite", foreign_key: :sticker_banner_id
 

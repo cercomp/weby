@@ -45,7 +45,7 @@ class Sites::Admin::StylesController < ApplicationController
       else
         format.html { render 'edit' }
       end
-      format.json { render text: @style.errors.full_messages.to_json }
+      format.json { render plain: @style.errors.full_messages.to_json }
     end
   end
 
@@ -63,7 +63,7 @@ class Sites::Admin::StylesController < ApplicationController
   def unfollow
     if @style.owner == current_site
       flash[:error] = t('error_unfollowing_style')
-      redirect_to :back
+      redirect_back(fallback_location: site_admin_skin_path(@skin, anchor: 'tab-styles'))
     else
       destroy
     end
@@ -72,6 +72,7 @@ class Sites::Admin::StylesController < ApplicationController
   def follow
     new_style = @current_skin.styles.new(style_id: @style.id)
     if new_style.save
+      record_activity('followed_style', new_style)
       flash[:success] = t('successfully_followed')
     else
       flash[:error] = new_style.errors.full_messages.join(', ')
@@ -80,7 +81,8 @@ class Sites::Admin::StylesController < ApplicationController
   end
 
   def copy
-    if @style.copy! @current_skin
+    if ( new_style = @style.copy!(@current_skin) )
+      record_activity('copied_style', new_style)
       flash[:success] = t('successfully_copied')
     else
       flash[:error] = t('error_copying_style')
@@ -93,7 +95,7 @@ class Sites::Admin::StylesController < ApplicationController
     params['sort_style'].reverse_each do |style_id|
       @skin.styles.find(style_id).update_attribute(:position, position += 1)
     end
-    render nothing: true
+    head :ok
   end
 
   private

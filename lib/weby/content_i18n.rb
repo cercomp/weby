@@ -16,4 +16,4 @@ module Weby
   end
 end
 
-ActiveRecord::Base.extend(Weby::ContentI18n)
+::ActiveRecord::Base.extend(Weby::ContentI18n)

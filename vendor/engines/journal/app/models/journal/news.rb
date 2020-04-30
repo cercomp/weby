@@ -1,12 +1,11 @@
 module Journal
-  class News < ActiveRecord::Base
+  class News < Journal::ApplicationRecord
     include Trashable
     include OwnRepository
 
     weby_content_i18n :title, :summary, :text, required: :title
 
     STATUS_LIST = %w(draft review published)
-
 
     belongs_to :site, inverse_of: :own_news
     belongs_to :user
@@ -15,12 +14,11 @@ module Journal
     has_many :menu_items, as: :target, dependent: :nullify
     has_many :posts_repositories, as: :post, dependent: :destroy
     has_many :related_files, through: :posts_repositories, source: :repository
-    has_many :news_sites, foreign_key: :journal_news_id, class_name: "::Journal::NewsSite", dependent: :destroy
+    has_many :news_sites, foreign_key: :journal_news_id, class_name: "::Journal::NewsSite", inverse_of: :news, dependent: :destroy
     has_many :sites, through: :news_sites
     has_many :newsletter_histories, dependent: :destroy, class_name: "::Journal::NewsletterHistories"
 
     has_one :own_news_site, ->(this){ where(site_id: this.site_id) }, class_name: "::Journal::NewsSite", foreign_key: :journal_news_id
-
 
     # Validations
     validates :user_id, :site_id, :status, presence: true
@@ -36,7 +34,7 @@ module Journal
     # 0 = "termo1 termo2"
     # 1 = termo1 AND termo2
     # 2 = termo1 OR termo2
-    scope :search, ->(param, search_type) {
+    scope :with_search, ->(param, search_type) {
       if param.present?
         fields = ['journal_news_i18ns.title', 'journal_news_i18ns.summary', 'journal_news_i18ns.text',
                   'users.first_name']
@@ -62,14 +60,13 @@ module Journal
       end
     }
 
-#    before_trash do
-#      if published?
-#        errors[:base] << I18n.t('cannot_destroy_a_published_page')
-#        false
-#      else
-#        true
-#      end
-#    end
+    after_trash :reindex_news_site
+    after_untrash :reindex_news_site
+
+    def reindex_news_site
+      own_news_site.reindex if own_news_site.respond_to?(:reindex)
+    end
+    private :reindex_news_site
 
     def self.import(attrs, options = {})
       return attrs.each { |attr| import attr, options } if attrs.is_a? Array
@@ -130,7 +127,7 @@ module Journal
     private
 
     def validate_date
-      self.date_begin_at = Time.now.to_s if date_begin_at.blank?
+      self.date_begin_at = Time.current if date_begin_at.blank?
     end
   end
 end

@@ -22,7 +22,7 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
 
   def create
     @menu_item = @menu.menu_items.new(menu_item_params)
-    @menu_item.position = @menu.menu_items.maximum(:position, conditions: { parent_id: @menu_item.parent_id }).to_i + 1
+    @menu_item.position = @menu.menu_items.where(parent_id: @menu_item.parent_id).maximum(:position).to_i + 1
 
     if @menu_item.save
       flash[:success] = t('successfully_created')
@@ -51,29 +51,29 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
 
   def destroy
     @menu_item = @menu.menu_items.find(params[:id])
+    message = {error: t('error_destroying_object')}
     if @menu_item.destroy
       record_activity('destroyed_menu_item', @menu_item)
-      redirect_to :back, flash: { success: t('successfully_deleted') }
-    else
-      redirect_to :back, flash: { success: t('error_destroying_object') }
+      message = {success: t('successfully_deleted')}
     end
+    redirect_back(flash: message, fallback_location: site_admin_menus_path(menu: @menu.id))
   end
 
   # Altera a ordenação do menu
   def change_order
     @menu_item = @menu.menu_items.find(params[:id])
     @menu_item.update_positions(params[:menu_item])
-    render nothing: true
+    head :ok
   end
 
   # Altera o menu de um item de menu, e todos seus descendentes
   def change_menu
     @menu_item = @menu.menu_items.find(params[:id])
-    @menu_item.position = MenuItem.maximum(:position, conditions: ['menu_id = :menu_id AND parent_id is NULL', menu_id: params[:new_menu_id]]).to_i + 1
+    @menu_item.position = MenuItem.where('menu_id = ? AND parent_id is NULL', params[:new_menu_id]).maximum(:position).to_i + 1
     @menu_item.menu_id = params[:new_menu_id]
     @menu_item.parent_id = nil
     @menu_item.save!
-    render nothing: true
+    head :ok
   end
 
   private

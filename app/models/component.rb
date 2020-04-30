@@ -1,4 +1,4 @@
-class Component < ActiveRecord::Base
+class Component < ApplicationRecord
   extend Weby::ComponentInstance
 
   belongs_to :skin
@@ -100,7 +100,7 @@ class Component < ActiveRecord::Base
   def prepare_variables
     self.publish = true if publish.nil?
     self.settings = settings_map.to_s
-    self.position = Component.maximum('position', conditions: ['skin_id = ? AND place_holder = ?', skin_id, place_holder]).to_i + 1 if position.blank?
+    self.position = Component.where('skin_id = ? AND place_holder = ?', skin_id, place_holder).maximum(:position).to_i + 1 if position.blank?
   end
 
   def remove_children
@@ -116,7 +116,7 @@ class Component < ActiveRecord::Base
 
   def fix_position
     if place_holder_changed? && !position_changed?
-      self.position = skin.components.maximum(:position, conditions: { place_holder: place_holder }).to_i + 1
+      self.position = skin.components.where(place_holder: place_holder).maximum(:position).to_i + 1
     end
   end
 end

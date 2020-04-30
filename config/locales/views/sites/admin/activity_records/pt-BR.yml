@@ -37,6 +37,8 @@ pt-BR:
 #--- Sites/Admin/News ---#
           created_news:               " criou uma notícia "
           updated_news:               " atualizou uma notícia "
+          shared_news:                " compartilhou uma notícia "
+          unshared_news:              " removeu uma notícia compartilhada "
           destroyed_news:             " excluiu uma notícia "
           moved_news_to_recycle_bin:  " moveu uma notícia pra lixeira "
           restored_news:              " restaurou uma notícia "
@@ -60,6 +62,8 @@ pt-BR:
           created_style:              " criou um estilo "
           updated_style:              " atualizou um estilo "
           destroyed_style:            " excluiu um estilo "
+          followed_style:             " seguiu um estilo "
+          copied_style:               " copiou um estilo "
 #--- Sites/Admin/Theme ---#
           theme_installed:            " instalou um tema "
           theme_applied:              " aplicou um tema "

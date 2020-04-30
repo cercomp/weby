@@ -1,6 +1,4 @@
 /*
- *= require select2
- *= require select2-bootstrap
  *= require codeMirror/codemirror
  *= require_self
  *= require weby_shared
@@ -9,6 +7,8 @@
 
  */
 
+@import "select2";
+@import "select2-bootstrap";
 @import "bootstrap-sprockets";
 @import "weby/bootstrap";
 @import "bootstrap";

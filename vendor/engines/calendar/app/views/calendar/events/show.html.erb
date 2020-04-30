@@ -25,10 +25,10 @@
       <%= label(:event, :event_email, style: 'display: inline-block;') %>:
       <%= @event.email %>
     <% end %>
-    <%= link_to @event.url, @event.url %>
+    <%= link_to @event.url, @event.url, target: :_blank %>
     <p class="event-period">
       <%= label(:event, :event_period, t(".period_event"), style: 'display: inline-block;') %>:
-      <span class="event-dates"><%=  period_dates(@event.begin_at, @event.end_at) %></span>
+      <span class="event-dates"><%= period_dates(@event.begin_at, @event.end_at, true, true) %></span>
     </p>
   <% end %>
   <div class="body">

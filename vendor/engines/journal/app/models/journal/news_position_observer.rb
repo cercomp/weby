@@ -43,7 +43,7 @@ module Journal
 
     def last_front_position
       @position = Journal::NewsSite.available_fronts.where(site: @news_site.site_id)
-      @position.maximum('position').to_i
+      @position.maximum(:position).to_i
     end
   end
 end

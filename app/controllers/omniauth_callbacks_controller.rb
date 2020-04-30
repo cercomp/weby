@@ -9,8 +9,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       email: auth_hash[:mail],
       first_name: auth_hash[:name],
       last_name: auth_hash[:last_name],
-      confirmed_at: Time.now,
-      confirmation_sent_at: Time.now
+      confirmed_at: Time.current,
+      confirmation_sent_at: Time.current
     )
 
     redir = if user.persisted?

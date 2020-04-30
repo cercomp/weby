@@ -49,9 +49,12 @@ module Journal::Admin
      send_file "public/newsletter.csv", type: "application/txt", x_sendfile: true
     end
 
+    private
+
     def get_news
-      range = params[:dt_range].nil? || params[:dt_range].empty? ? (Date.today-30).strftime("%d/%m/%Y")+"  -  "+(Date.today).strftime("%d/%m/%Y") : params[:dt_range].to_s
-      if range.match(/\d{2}\/\d{2}\/\d{4}\s{2}\-\s{2}\d{2}\/\d{2}\/\d{4}/).nil?
+      @dt_range = params[:dt_range]
+      range = @dt_range.nil? || @dt_range.empty? ? (Date.current-30.days).strftime("%d/%m/%Y")+" - "+(Date.current).strftime("%d/%m/%Y") : @dt_range.to_s
+      if range.match(/\d{2}\/\d{2}\/\d{4}\s{1,2}\-\s{1,2}\d{2}\/\d{2}\/\d{4}/).nil?
         flash.now[:alert] = t(".invalid_date")
         []
       else

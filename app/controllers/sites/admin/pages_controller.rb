@@ -104,7 +104,7 @@ class Sites::Admin::PagesController < ApplicationController
       flash[:success] = t('successfully_restored')
     end
     record_activity('restored_page', @page)
-    redirect_to :back
+    redirect_back(fallback_location: recycle_bin_site_admin_pages_path)
   end
 
   private

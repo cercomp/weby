@@ -1,6 +1,4 @@
-class Extension < ActiveRecord::Base
-  include RailsSettings::Extend
-
+class Extension < ApplicationRecord
   belongs_to :site
 
   validates :name, :site, presence: true
@@ -10,8 +8,8 @@ class Extension < ActiveRecord::Base
     extension = Weby.extensions[name.to_sym]
     extension.settings.each do |setting_name|
       class_eval do
-        define_method(setting_name)       { settings.send(setting_name) }
-        define_method("#{setting_name}=") { |value| settings.send("#{setting_name}=", value) }
+        define_method(setting_name)       { settings[setting_name.to_s] }
+        define_method("#{setting_name}=") { |value| settings[setting_name.to_s] = value }
       end
     end if extension
   end

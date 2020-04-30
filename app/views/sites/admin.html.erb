@@ -138,8 +138,13 @@
           <ul class="list-group">
             <% @last_activity_records.each do |activity_record| %>
               <li class="list-group-item">
-                <%= activity_record.user %> <%= link_to(t("sites.admin.activity_records.list.#{activity_record.note}"),
-                       build_loggeable_url(activity_record), class: 'action-link') if activity_record.action != "destroy" && activity_record.loggeable %>
+                <%= activity_record.user %>
+                <% if activity_record.is_linkable? %>
+                  <%= link_to(t("sites.admin.activity_records.list.#{activity_record.note}"),
+                       build_loggeable_url(activity_record), class: 'action-link') %>
+                <% else %>
+                  <%= t("sites.admin.activity_records.list.#{activity_record.note}") %>
+                <% end %>
               </li>
             <% end %>
           </ul>

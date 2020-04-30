@@ -4,10 +4,16 @@ class Admin::ActivityRecordsController < ApplicationController
   respond_to :html, :js
 
   def index
-    @activity_records = ActivityRecord.user_or_action_like(params[:search], params[:site_id]).
-                order('activity_records.created_at DESC').
-                page(params[:page]).
-                per(params[:per_page] || per_page_default)
+    @activity_records = ActivityRecord.user_or_action_like(params[:search]).
+                preload(:loggeable).
+                includes(:user, :site).
+                order('activity_records.created_at DESC')
+
+    if params[:site_id].present?
+      @activity_records = @activity_records.where(site_id: params[:site_id])
+    end
+
+    @activity_records = @activity_records.page(params[:page]).per(params[:per_page] || per_page_default)
   end
 
   def show

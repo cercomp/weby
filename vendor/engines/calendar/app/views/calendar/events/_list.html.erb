@@ -7,7 +7,7 @@
     <% end %>
     <header><%= link_to event.name, event_path(event) %></header>
     <div class="event-details details">
-        <%= period_dates(event.begin_at, event.end_at) %>
+        <%= period_dates(event.begin_at, event.end_at, true, true) %>
     </div>
     <summary>
       <%= render_user_content event.information %>

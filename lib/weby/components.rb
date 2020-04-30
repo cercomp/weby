@@ -137,34 +137,37 @@ module Weby
     end
   end
 
-  SimpleForm::FormBuilder.send(:include, Weby::Components::Form)
-  # ActionView::Helpers::FormBuilder.send(:include, Weby::Components::Form)
+  SimpleForm::FormBuilder.include(Weby::Components::Form)
+  # ActionView::Helpers::FormBuilder.include(Weby::Components::Form)
+
+  module ComponentInheritance
+    def inherited(cbase)
+      super cbase
+      cbase.class_eval do
+        # Como do componente que será usando em algumas partes do sistema
+        # TODO
+        def self.cname
+          # Por padrão toda classe componente terá o "Component" no fim do nome, o come do
+          # componente não precisa ter esse final
+          # ex: GovBarComponent.tableize # => gov_bar_component.gsub(...) => gov_bar
+          name.tableize.gsub(/_components$/, '')
+        end
+
+        # Inicializa o nome do componente quando ele é criado
+        after_initialize do
+          self.name = self.class.name.tableize.gsub(/_components$/, '')
+        end
+
+        default_scope { where(name: cname) }
+      end
+    end
+  end
 
   module ComponentInstance
     def self.extended(base)
       base.class_eval do
         class << self
-          def inherited_with_weby(cbase)
-            inherited_without_weby cbase
-            cbase.class_eval do
-              # Como do componente que será usando em algumas partes do sistema
-              # TODO
-              def self.cname
-                # Por padrão toda classe componente terá o "Component" no fim do nome, o come do
-                # componente não precisa ter esse final
-                # ex: GovBarComponent.tableize # => gov_bar_component.gsub(...) => gov_bar
-                name.tableize.gsub(/_components$/, '')
-              end
-
-              # Inicializa o nome do componente quando ele é criado
-              after_initialize do
-                self.name = self.class.name.tableize.gsub(/_components$/, '')
-              end
-
-              default_scope { where(name: cname) }
-            end
-          end
-          alias_method_chain :inherited, :weby
+          prepend(ComponentInheritance)
         end
       end
     end

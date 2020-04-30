@@ -18,7 +18,7 @@
     <div class="col-md-6">
       <div class="col-md-6" style="padding: 0;">
         <%= text_field_tag :dt_range,
-                           params[:dt_range].nil? ? (Date.today-30).strftime("%d/%m/%Y")+"  -  "+(Date.today).strftime("%d/%m/%Y") : params[:dt_range],
+                           @dt_range.nil? ? (Date.current-30.days).strftime("%d/%m/%Y")+"  -  "+(Date.current).strftime("%d/%m/%Y") : @dt_range,
                            class: "form-control", id: "daterange" %>
       </div>
       <div class="col-md-2" style="padding: 0;">
@@ -27,8 +27,8 @@
     </div>
     <div class="col-md-6">
       <div class="pull-right">
-        <%= link_to t(".csv"), csv_admin_newsletter_histories_path(params), class: "btn btn-success" %>
-        <%= link_to t(".pdf"), pdf_admin_newsletter_histories_path(params), class: "btn btn-success" %>
+        <%= link_to t(".csv"), csv_admin_newsletter_histories_path(dt_range: @dt_range), class: "btn btn-success" %>
+        <%= link_to t(".pdf"), pdf_admin_newsletter_histories_path(dt_range: @dt_range), class: "btn btn-success" %>
         <%= link_to t(".emails_list"), admin_newsletters_path, class: "btn btn-default" %>
       </div>
     </div>

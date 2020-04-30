@@ -45,7 +45,7 @@ module Journal::Admin
       news = Journal::News.where('journal_news.id in (?)', @news).
         includes(:user, :site).
         where(sites: {status: 'active'}).
-        search(params[:search], 1) # 1 = busca com AND entre termos
+        with_search(params[:search], 1) # 1 = busca com AND entre termos
 
       if params[:template] == 'list_popup'
         news = news.published
@@ -94,6 +94,7 @@ module Journal::Admin
       news_site = Journal::NewsSite.find_by(journal_news_id: params[:id], site_id: params[:site_id])
       if news_site.blank?
         news_site = Journal::NewsSite.create!(site_id: params[:site_id], journal_news_id: params[:id], front: true)
+        record_activity('shared_news', news_site.news)
       end
       tags = unescape_param(params[:tag]).to_s.split(',').map(&:strip)
       if tags.present?
@@ -101,14 +102,16 @@ module Journal::Admin
         news_site.save!
       end
       flash[:notice] = t('.news_shared')
-      redirect_to :back
+      redirect_back(fallback_location: root_url(subdomain: current_site))
     end
 
     def unshare
       @news = Journal::NewsSite.where(site_id: current_site.id, journal_news_id: params[:id])
+      log_news = @news.first
       @news.destroy_all
+      record_activity('unshared_news', log_news) if log_news
       flash[:success] = t('.unshared_news')
-      redirect_to :back
+      redirect_to admin_news_index_path
     end
 
     def create
@@ -152,7 +155,7 @@ module Journal::Admin
     def toggle
       news_sites = Journal::NewsSite.find(params[:id])
       news_sites.toggle! :front
-      redirect_to :back
+      redirect_back(fallback_location: admin_news_index_path)
     end
 
     def status_types
@@ -183,7 +186,7 @@ module Journal::Admin
         flash[:success] = t('successfully_restored')
       end
       record_activity('restored_news', @news)
-      redirect_to :back
+      redirect_back(fallback_location: recycle_bin_admin_news_index_path)
     end
 
     def newsletter
@@ -199,7 +202,7 @@ module Journal::Admin
     def newsletter_histories
       if (params[:from].blank? || params[:to].blank? || params[:subject].blank?)
         flash[:error] = t('.field_blank')
-        redirect_to :back
+        redirect_back(fallback_location: newsletter_admin_news_path)
       else
         history = Journal::NewsletterHistories.new
         history.site_id = current_site.id

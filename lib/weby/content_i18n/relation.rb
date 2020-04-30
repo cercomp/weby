@@ -14,11 +14,13 @@ module Weby
                    -> { includes(:locale) },
                    class_name: i18n_class.name,
                    foreign_key: "#{base.name.underscore.gsub('/', '_')}_id".to_sym,
-                   dependent: :delete_all
+                   dependent: :delete_all,
+                   inverse_of: base.name.underscore.gsub('/', '_').to_sym
 
           has_many :locales, through: :i18ns
 
           validate :validate_i18ns
+          validates_associated :i18ns
 
           # FIXME: Refatorar local das internacionalizações das msg de erro
           def validate_i18ns
@@ -57,10 +59,10 @@ module Weby
 
           accepts_nested_attributes_for :i18ns,
                                         allow_destroy: true,
-                                        reject_if: proc { |i18ns|
-                                          i18ns['id'].blank? &&
-                                            i18n_fields.reduce(true) do |mem, element|
-                                            mem && i18ns[element].blank?
+                                        reject_if: proc { |i18n_attrs|
+                                          i18n_attrs['id'].blank? &&
+                                          i18n_fields.reduce(true) do |mem, element|
+                                            mem && i18n_attrs[element].blank?
                                           end
                                         }
         end
@@ -71,9 +73,9 @@ module Weby
           def select_locale(locale = nil)
             case
             when locale
-              @selected_i18n = i18ns.select { |i18n| i18n.locale.name == locale.to_s }.first
-            when !(@selected_i18n = i18ns.select { |i18n| i18n.locale.name == I18n.locale.to_s }.first).blank?
-            when !(@selected_i18n = i18ns.select { |i18n| i18n.locale.name == I18n.default_locale.to_s }.first).blank?
+              @selected_i18n = i18ns.detect{ |i18n| i18n.locale.name == locale.to_s }
+            when (@selected_i18n = i18ns.detect{ |i18n| i18n.locale.name == I18n.locale.to_s }).present?
+            when (@selected_i18n = i18ns.detect{ |i18n| i18n.locale.name == I18n.default_locale.to_s }).present?
             else
               @selected_i18n = i18ns.first
             end
@@ -94,6 +96,11 @@ module Weby
           def in(locale = nil)
             select_locale(locale)
             self
+          end
+
+          # this has no default or fallback
+          def i18n_in(locale)
+            i18ns.detect{ |i18n| i18n.locale.name == locale.to_s }
           end
 
           i18n_fields.each do |field|

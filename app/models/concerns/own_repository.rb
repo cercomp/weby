@@ -2,7 +2,7 @@ module OwnRepository
   extend ActiveSupport::Concern
 
   included do
-    belongs_to :image, class_name: 'Repository', foreign_key: 'repository_id'
+    belongs_to :image, class_name: 'Repository', foreign_key: 'repository_id', optional: true
 
     validate :should_be_image
     validate :should_be_own_image

@@ -1,9 +1,9 @@
-class MenuItem < ActiveRecord::Base
+class MenuItem < ApplicationRecord
   weby_content_i18n :title, :description, required: :title
 
-  belongs_to :target, polymorphic: true
+  belongs_to :target, polymorphic: true, optional: true
   belongs_to :menu
-  belongs_to :parent, class_name: 'MenuItem'
+  belongs_to :parent, class_name: 'MenuItem', optional: true
 
   has_many :children, class_name: 'MenuItem', foreign_key: 'parent_id', dependent: :destroy
 

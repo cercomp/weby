@@ -1,14 +1,14 @@
 class AddSkinIdToTables < ActiveRecord::Migration
-	class Site < ActiveRecord::Base
+	class Site < ApplicationRecord
 		has_many :components
 		has_many :styles
 	end
 
-	class Component < ActiveRecord::Base
+	class Component < ApplicationRecord
 		belongs_to :site
 	end
 
-	class Style < ActiveRecord::Base
+	class Style < ApplicationRecord
 		belongs_to :site
 	end
 

@@ -1,10 +1,10 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable,
          :rememberable, :trackable, :confirmable, :lockable, :omniauthable, :omniauth_providers => [:shibboleth]
 
   attr_accessor :auth
 
-  belongs_to :locale
+  belongs_to :locale, optional: true
 
   has_many :views, dependent: :nullify
   has_many :notifications, dependent: :nullify

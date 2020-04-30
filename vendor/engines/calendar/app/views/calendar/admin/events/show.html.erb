@@ -25,8 +25,16 @@
     <%= @event.email %>
   <% end %>
   <p class="event-period">
-    <%= label(:event, :period, t(".period"), style: 'display: inline-block;') %>:
-    <span class="event-dates"><%=  period_dates(@event.begin_at, @event.end_at) %></span>
+    <div>
+      <%= label(:event, :begin_at) %>:
+      <%= "#{l(@event.begin_at, format: :event_date_full)} #{l(@event.begin_at, format: :event_hour) if @event.begin_at.strftime('%H:%M')!='00:00'}" %>
+    </div>
+    <% if @event.end_at %>
+      <div>
+        <%= label(:event, :end_at) %>:
+        <%= "#{l(@event.end_at, format: :event_date_full)} #{l(@event.end_at, format: :event_hour) if @event.end_at.strftime('%H:%M')!='00:00'}" %>
+      </div>
+    <% end %>
   </p>
 
   <%= content_tag_if @event.category_list.any?, :p, class: 'categories' do %>

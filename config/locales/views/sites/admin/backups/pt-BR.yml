@@ -5,6 +5,7 @@ pt-BR:
         index:
           options_backup:         " Opções de backup "
           repositories:           " Arquivos "
+          files:                  " Fazer o download dos arquivos "
           menus:                  " Menus "
           styles:                 " Estilos "
           follow_styles:          " Estilos seguidos "

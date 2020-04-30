@@ -1,4 +1,4 @@
-class Page < ActiveRecord::Base
+class Page < ApplicationRecord
   include Trashable
 
   weby_content_i18n :title, :text, required: :title

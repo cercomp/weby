@@ -1,6 +1,6 @@
-class View < ActiveRecord::Base
+class View < ApplicationRecord
   belongs_to :site
-  belongs_to :user
+  belongs_to :user, optional: true
   belongs_to :viewable, polymorphic: true
 
   def self.count_metrics(filter_kind, filter)

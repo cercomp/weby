@@ -1,6 +1,6 @@
 # This migration comes from journal (originally 20141104130348)
 class RenamePages < ActiveRecord::Migration
-  class Page < ActiveRecord::Base
+  class Page < ApplicationRecord
     self.inheritance_column = nil
   end
 

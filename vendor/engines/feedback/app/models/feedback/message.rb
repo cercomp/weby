@@ -1,5 +1,5 @@
 module Feedback
-  class Message < ActiveRecord::Base
+  class Message < Feedback::ApplicationRecord
     belongs_to :site
 
     has_and_belongs_to_many :groups, join_table: :feedback_messages_groups

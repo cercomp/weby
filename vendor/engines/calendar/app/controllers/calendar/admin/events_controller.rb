@@ -15,7 +15,7 @@ module Calendar
           format.js { render "#{params[:template]}" }
           format.html { render partial: "#{params[:template]}", layout: false }
         end
-        format.json { render json: Calendar::Event.as_fullcalendar_json(@events, true) }
+        format.json { render json: Calendar::Event.as_fullcalendar_json(@events, true).to_json }
       end
     end
 
@@ -95,7 +95,7 @@ module Calendar
         flash[:success] = t('successfully_restored')
       end
       record_activity('restored_event', @event)
-      redirect_to :back
+      redirect_back(fallback_location: recycle_bin_admin_events_path)
     end
 
     private

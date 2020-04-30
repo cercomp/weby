@@ -13,6 +13,7 @@ pt-BR:
           events:               " Eventos "
           new_event:            " Novo evento "
         show:
+          event:                " Evento "
           events:               " Eventos "
           period:               " Data "
           list_all:             " Listar todos "

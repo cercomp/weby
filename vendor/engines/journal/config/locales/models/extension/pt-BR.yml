@@ -2,7 +2,7 @@ pt-BR:
   activerecord:
     attributes:
       extension:
-        author:       " Mostrar o autor da notícia "
-        created_at:   " Mostrar a data de criação da notícia "
-        updated_at:   " Mostrar a data de atualização da notícia "
-        image_size:   " Tamanho da imagem utilizada na busca de notícias "
+        author:          " Mostrar o autor da notícia "
+        show_created_at: " Mostrar a data de criação da notícia "
+        show_updated_at: " Mostrar a data de atualização da notícia "
+        image_size:      " Tamanho da imagem utilizada na busca de notícias "

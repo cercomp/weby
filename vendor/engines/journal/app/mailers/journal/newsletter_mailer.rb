@@ -1,6 +1,7 @@
 module Journal
   class NewsletterMailer < ActionMailer::Base
     helper ::RepositoryHelper
+    helper :application
 
     def confirm_email(user, url)
       @newsletter_user = user

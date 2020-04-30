@@ -13,6 +13,7 @@ en:
           events:               " Events "
           new_event:            " New event "
         show:
+          event:                " Event "
           events:               " Events "
           period:               " Date "
           list_all:             " List all "

@@ -215,10 +215,10 @@ module ApplicationHelper
           when :show
             menu << link_to(
               icon('eye-open', text: args[:with_text] ? t('show') : ''),
-              params.merge(
+              {
                 controller: ctrl.controller_name,
                 action: 'show', id: obj.id
-              ).merge(args.fetch(:params, {})),
+              }.merge(args.fetch(:params, {})),
               alt: t('show'),
               title: t('show'),
               class: 'action-link'
@@ -227,10 +227,10 @@ module ApplicationHelper
           when :edit
             menu << link_to(
               icon('edit', text: args[:with_text] ? t('edit') : ''),
-              params.merge(
+              {
                 controller: ctrl.controller_name,
                 action: 'edit', id: obj.id
-              ).merge(args.fetch(:params, {})),
+              }.merge(args.fetch(:params, {})),
               alt: t('edit'),
               title: t('edit'),
               class: 'action-link') + ' '
@@ -238,11 +238,11 @@ module ApplicationHelper
           when :destroy
             menu << link_to(
               icon('trash', text: args[:with_text] ? t('destroy') : ''),
-              params.merge(
+              {
                 controller: ctrl.controller_name,
                 action: 'destroy',
                 id: obj.id
-              ).merge(args.fetch(:params, {})),
+              }.merge(args.fetch(:params, {})),
               data: { confirm: t('are_you_sure') },
               method: :delete,
               alt: t('destroy'),
@@ -254,10 +254,10 @@ module ApplicationHelper
             if !@newsletter.nil?
               menu << link_to(
                 icon(Journal::NewsletterHistories.sent(current_site.id, obj.id).count == 0 ? 'envelope' : 'ok', text: args[:with_text] ? t('.newsletter') : ''),
-                params.merge(
+                {
                   controller: ctrl.controller_name,
                   action: 'newsletter', id: obj.id
-                ),
+                },
                 alt: t('newsletter'),
                 title: t('letter'),
                 class: 'action-link') + ' '
@@ -291,7 +291,7 @@ module ApplicationHelper
     icon_name = column == sort_column ? sort_direction == 'asc' ? 'arrow-up' : 'arrow-down' : 'sort'
     link_to "#{title}#{icon(icon_name)}".html_safe,
             # when we reorder an list it goes back to the first page
-            params.merge(sort: column, direction: direction, page: 1),
+            {sort: column, direction: direction, page: 1},
       data: { column: column },
       remote: true,
       style: "white-space:nowrap;",
@@ -302,7 +302,7 @@ module ApplicationHelper
   # TODO refatorar isso aqui, antes fazia collection.page(1).count mudei para
   # collection.page(1).length para poder trabalhar com querys usando group
   def info_page(collection, style = nil)
-    if collection.page(1).length > 0
+    if collection.length > 0
       html = "#{t('views.pagination.displaying')} #{collection.offset_value + 1} -
       #{collection.offset_value + collection.length}"
       html << " #{t('of')} #{collection.total_count}"
@@ -313,7 +313,7 @@ module ApplicationHelper
 
   # Generate links in order to select the amount of intes per page
   def per_page_links(collection, remote = false, size = nil)
-    if collection.page(1).length > per_page_array.first.to_i
+    if collection.length >= per_page_array.first.to_i || params[:page].to_i > 1
       html = "<li><span>#{t('views.pagination.per_page')} </span></li>"
 
       params[:per_page] = per_page_default if params[:per_page].blank?
@@ -322,12 +322,11 @@ module ApplicationHelper
         html <<
         if params[:per_page].to_i == item.to_i
           content_tag :li, class: 'page active' do
-            # link_to "#{item} ", params.merge({per_page: item, page: 1}), remote: remote
             content_tag :span, "#{item} "
           end
         else
           content_tag(:li, class: 'page') do
-            link_to "#{item} ", params.merge(per_page: item, page: 1), remote: remote
+            link_to "#{item} ", {per_page: item, page: 1}, remote: remote
           end
         end
       end
@@ -411,29 +410,30 @@ module ApplicationHelper
     end
   end
 
-  def period_dates(inidate, findate, force_show_year = true)
+  def period_dates(inidate, findate, force_show_year = true, full = false)
     html = ''
-    if not findate
-      html << period_date_and_hour(inidate, force_show_year)
-    else
-      if (inidate.month != findate.month) || (inidate.year != findate.year)
+    if findate
+      show_full = full && (inidate.strftime('%H:%M')!='00:00' || findate.strftime('%H:%M')!='00:00')
+      if inidate.month != findate.month || inidate.year != findate.year || show_full
         html << period_date_and_hour(inidate, force_show_year)
         html << " #{t('time.period_separator')} "
         html << period_date_and_hour(findate, force_show_year)
       else
-        html << "#{l(inidate, format: (force_show_year || inidate.year != Time.now.year) ? :event_period_full : :event_period_short, iniday: inidate.strftime('%d'), finday: findate.strftime('%d'))}"
+        html << "#{l(inidate, format: (force_show_year || inidate.year != Time.current.year) ? :event_period_full : :event_period_short, iniday: inidate.strftime('%d'), finday: findate.strftime('%d'))}"
       end
+    else
+      html << period_date_and_hour(inidate, force_show_year)
     end
-    raw html
+    html.html_safe
   end
 
   def period_date_and_hour(date, force_show_year = true)
     html = ''
     if date.nil?
-      html << "#{t('no_event_period')}"
+      html << t('no_event_period')
     else
-      html << "#{l(date, format: (force_show_year || date.year != Time.now.year) ? :event_date_full : :event_date_short)}"
-      if (date.hour != 0)
+      html << "#{l(date, format: (force_show_year || date.year != Time.current.year) ? :event_date_full : :event_date_short)}"
+      if date.strftime('%H:%M')!='00:00'
         html << " #{l(date, format: :event_hour)}"
       end
     end

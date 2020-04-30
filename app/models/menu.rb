@@ -1,4 +1,4 @@
-class Menu < ActiveRecord::Base
+class Menu < ApplicationRecord
   belongs_to :site
 
   has_many :menu_items, -> { order(:position).includes(:i18ns) }, dependent: :destroy

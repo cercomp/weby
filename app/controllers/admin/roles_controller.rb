@@ -49,7 +49,7 @@ class Admin::RolesController < Admin::BaseController
 
     record_activity('destroyed_global_role', @role)
 
-    redirect_to :back
+    redirect_back(fallback_location: admin_roles_path)
   end
 
   private

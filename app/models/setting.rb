@@ -1,4 +1,4 @@
-class Setting < ActiveRecord::Base
+class Setting < ApplicationRecord
   attr_accessor :default_value
 
   VALUES_SET = {

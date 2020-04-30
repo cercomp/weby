@@ -69,13 +69,13 @@ class SitesController < ApplicationController
 
     # render file: (robots_file && FileTest.exist?(robots_file) ?
     # robots_file: Rails.root.join("public","default_robots.txt")), layout: false, content_type: "text/plain"
-    render text: custom_robots_file ? custom_robots_file : File.read(Rails.root.join('public', 'default_robots.txt')), layout: false, content_type: 'text/plain'
+    render plain: custom_robots_file ? custom_robots_file : File.read(Rails.root.join('public', 'default_robots.txt')), layout: false, content_type: 'text/plain'
   end
 
   def admin
     fail ActiveRecord::RecordNotFound unless current_site
     @last_repositories = current_site.repositories.last(4)
-    @last_activity_records = current_site.activity_records.includes(:user, :loggeable).last(10)
+    @last_activity_records = current_site.activity_records.preload(:loggeable).includes(:user).last(10)
     @last_news = current_site.news.includes(:image, :i18ns).order(id: :asc).last(4)
     @last_banners = current_site.banners.includes(:repository).last(4)
     @last_messages = current_site.messages.last(4)

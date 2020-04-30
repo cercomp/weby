@@ -16,7 +16,7 @@
   include_blank: false
 %>
 <%= f.input :show_date, wrapper: :checkbox, as: :boolean %>
-<%= f.input :date_format, collection: component.date_formats.map{|format| [l(Time.now, format: format.to_sym), format] },
+<%= f.input :date_format, collection: component.date_formats.map{|format| [l(Time.current, format: format.to_sym), format] },
   priority: component.date_format,
   include_blank: false
 %>

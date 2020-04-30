@@ -7,6 +7,6 @@ FactoryGirl.define do
     password 'Admin1'
     password_confirmation 'Admin1'
     is_admin true
-    confirmed_at Time.now
+    confirmed_at Time.current
   end
 end

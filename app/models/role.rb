@@ -1,5 +1,5 @@
-class Role < ActiveRecord::Base
-  belongs_to :site
+class Role < ApplicationRecord
+  belongs_to :site, optional: true
 
   has_and_belongs_to_many :users
 

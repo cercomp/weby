@@ -46,7 +46,7 @@ class Sites::Admin::RolesController < ApplicationController
     @role = Role.find(params[:id])
     @role.destroy
     record_activity('destroyed_role', @role)
-    redirect_to :back
+    redirect_back(fallback_location: site_admin_roles_path)
   end
 
   private

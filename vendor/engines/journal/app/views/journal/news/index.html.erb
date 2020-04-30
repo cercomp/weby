@@ -26,7 +26,7 @@
     <% tags.each do |tag| %>
       <% othertags = tags.reject {|t| t == tag} %>
       <span class="weby-label info">
-        <%= tag %> <%= link_to 'X', news_index_path(params.except(:action, :controller).merge(tags: othertags.join(','))) %>
+        <%= tag %> <%= link_to 'X', {tags: othertags.join(',')} %>
       </span>
     <% end %>
   <% end %>

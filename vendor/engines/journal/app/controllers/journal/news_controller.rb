@@ -8,22 +8,22 @@ module Journal
     respond_to :html, :js, :json, :rss
 
     def index
-      @newslist = get_news
+      @news_sites = get_news
       @extension = current_site.extensions.find_by(name: 'journal')
 
-      respond_with(@newslist) do |format|
-        format.rss { render layout: false, content_type: Mime::XML } # index.rss.builder
-        format.atom { render layout: false, content_type: Mime::XML } # index.atom.builder
-        format.json { render json: @newslist, root: :news, meta: { total: @newslist.total_count } }
+      respond_with(@news_sites) do |format|
+        format.rss { render layout: false, content_type: Mime[:xml] } # index.rss.builder
+        format.atom { render layout: false, content_type: Mime[:xml] } # index.atom.builder
+        format.json { render json: @news_sites.map{|ns| ns.news }.compact, root: 'news', meta: { total: @news_sites.total_count } }
       end
     end
 
     def show
       @news = current_site.news.find(params[:id])
       @extension = current_site.extensions.find_by(name: 'journal')
-      if @extension.settings.updated_at == '1' &&
+      if @extension.show_updated_at == '1' &&
         (@news.i18ns.first.created_at != @news.i18ns.first.updated_at ||
-        @extension.settings.created_at == '0') &&
+        @extension.show_created_at == '0') &&
         !@news.i18ns.first.updated_at.blank?
           @updated_at = l(@news.i18ns.first.updated_at, format: :short)
       end
@@ -41,25 +41,48 @@ module Journal
     end
 
     def get_news
+      if ENV['ELASTICSEARCH_URL'].present?
+        get_news_es
+      else
+        get_news_db
+      end
+    end
+
+    def get_news_es
       params[:direction] ||= 'desc'
       params[:page] ||= 1
-      # Vai ao banco por linha para recuperar
-      # tags e locales
+
+      filters = [{
+        term: {site_id: current_site.id}
+      }]
+      filters << {term: {status: 'published'}}
       if params[:tags].present?
-        news_sites = current_site.news_sites.published.tagged_with(tags, any: true)
-        @news = []
-        news_sites.each do |sites|
-          @news << sites.journal_news_id
-        end
-        result = Journal::News.published.includes(:user, :related_files, :news_sites, :site).where(sites: {status: 'active'}).where('journal_news.id in (?)', @news).
-             search(params[:search], params.fetch(:search_type, 1).to_i).
-             order(sort_column + ' ' + sort_direction).
-             page(params[:page]).per(params[:per_page])
+        filters << {terms: {categories: tags}}
+      end
+      result = Journal::NewsSite.perform_search(params[:search],
+        filter: filters,
+        per_page: params[:per_page],
+        page: params[:page],
+        sort: sort_column,
+        sort_direction: sort_direction,
+        search_type: params.fetch(:search_type, 1).to_i
+      )
+    end
+
+    def get_news_db
+      params[:direction] ||= 'desc'
+      params[:page] ||= 1
+      if params[:tags].present?
+        result = current_site.news_sites.published.includes(:categories, news: [:image, :related_files, :site, :i18ns]).
+          tagged_with(tags, any: true).
+          with_search(params[:search], params.fetch(:search_type, 1).to_i).
+          order(sort_column + ' ' + sort_direction).
+          page(params[:page]).per(params[:per_page])
       else
-        result = Journal::News.published.includes(:user, :related_files, :news_sites, :site).where(sites: {status: 'active'}).where(site_id: current_site).
-            search(params[:search], params.fetch(:search_type, 1).to_i).
-            order(sort_column + ' ' + sort_direction).
-            page(params[:page]).per(params[:per_page])
+        result = current_site.news_sites.published.includes(:categories, news: [:image, :related_files, :site, :i18ns]).
+          with_search(params[:search], params.fetch(:search_type, 1).to_i).
+          order(sort_column + ' ' + sort_direction).
+          page(params[:page]).per(params[:per_page])
       end
       result
     end
