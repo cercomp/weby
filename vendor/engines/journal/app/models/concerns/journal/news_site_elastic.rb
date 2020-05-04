@@ -19,8 +19,14 @@ module Journal
                 tokenizer: 'standard',
                 filter: ['lowercase', 'asciifolding', 'custom_edge_ngram']
               }
+            },
+            normalizer: {
+              lowercase_normalizer: {
+                type: 'custom',
+                filter: ['lowercase', 'asciifolding']
+              }
             }
-          },
+          }
         },
         mappings: {
           properties: {
@@ -55,7 +61,7 @@ module Journal
             },
             summary_fr: {type: 'text', index: true, analyzer: 'standard'},
             text_fr: {type: 'text', index: true, analyzer: 'standard'},
-            categories: {type: 'keyword', index: true},
+            categories: {type: 'keyword', index: true, normalizer: 'lowercase_normalizer'},
             is_shared: {type: 'boolean', index: false},
             news_created_at: {type: 'date', index: false},
             news_updated_at: {type: 'date', index: false},
