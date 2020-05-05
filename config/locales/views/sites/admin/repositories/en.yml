@@ -7,6 +7,8 @@ en:
           search:               " Search "
           new_archive:          " New file "
           none_archive:         " No Files "
+          filter_begin:         " Filter by date (initial) "
+          filter_end:           " End date "
         view_picker:
           repository_as_thumbs: " Show repository as thumbnails "
           repository_as_list:   " Show repository as list "
@@ -14,7 +16,8 @@ en:
           new_archive:         " New file "
           archives:            " Files "
           copy:                " Copy "
-          copied:              " Copied " 
+          copied:              " Copied "
+          created:             " Created at "
           copy_to_clipboard:   " Copy to Clipboard "
           name:                " Name "
           size:                " Size "

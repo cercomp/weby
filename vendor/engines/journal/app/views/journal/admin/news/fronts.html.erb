@@ -127,7 +127,7 @@
 
         $('.sort_news').hide();
 
-        if(categories.val()){
+        if(categories.val().length > 0){
           $(categories.val()).each(function(idx, category){
             $('.sort_news.'+category).show();
           });

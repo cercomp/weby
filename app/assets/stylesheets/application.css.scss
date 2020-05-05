@@ -105,11 +105,13 @@ a:hover { text-decoration: none; }
   text-decoration: none;
 }
 // icon on datetimepicker field
-.datetimepicker {
+.datetimepicker, .datepicker {
   background-image: asset-url("/assets/ic_calendar.png") !important;
-  background-position: 98% center !important;
+  background-position: right 6px center !important;
   background-repeat: no-repeat !important;
+  padding-right: 30px;
 }
+
 #ui-datepicker-div {
   font-size: 0.9em;
   z-index: 10 !important;
@@ -503,5 +505,30 @@ hr {
   &.visible {
     opacity: 1;
     transform: none;
+  }
+}
+
+.flex-row {
+  display: flex;
+
+  &.center-align {
+    align-items: center;
+  }
+
+  > * {
+    margin: 0 5px;
+    &:first-child {
+      margin-left: 0
+    }
+    &:last-child {
+      margin-right: 0
+    }
+  }
+
+  .cell {
+    flex: 0 0 auto;
+  }
+  .cell-20 {
+    flex: 0 0 20%;
   }
 }

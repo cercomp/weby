@@ -7,6 +7,7 @@
 <p><b><%= t(".title") %>:</b> <%= @repository.title %> </p>
 <p><b><%= t(".legend") %>:</b> <%= @repository.legend %> </p>
 <p><b><%= t(".archive_description") %>:</b> <%= @repository.description %> </p>
+<p><b><%= t(".created") %>:</b> <%= l(@repository.created_at, format: :medium) %> </p>
 <p><b><%= t(".archive_fingerprint") %>:</b> <%= @repository.archive_fingerprint %> </p>
 <p>
   <b id="toppathwrap"><%= t(".file_link") %>: </b>

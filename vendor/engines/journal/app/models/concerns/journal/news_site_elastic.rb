@@ -125,7 +125,7 @@ module Journal
         }
 
         if opts[:sort] && permitted_sort.keys.include?(opts[:sort].to_sym)
-          body[:sort] = {permitted_sort[opts[:sort].to_sym] => opts[:sort_direction]}
+          body[:sort] = [{permitted_sort[opts[:sort].to_sym] => opts[:sort_direction]}]
         end
 
         if opts[:filter]

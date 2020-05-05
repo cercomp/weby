@@ -26,6 +26,17 @@
       </div>
     </div>
   </div>
+  <div class="flex-row center-align form-group">
+    <div class="cell-20">
+        <%= text_field_tag :begin_at, params[:begin_at], placeholder: t(".filter_begin"), class: 'datepicker form-control', autocomplete: 'off' %>
+    </div>
+    <div class="cell">
+      <b>-</b>
+    </div>
+    <div class="cell-20">
+        <%= text_field_tag :end_at, params[:end_at], placeholder: t(".filter_end"), class: 'datepicker form-control', autocomplete: 'off' %>
+    </div>
+  </div>
 <% end %>
 
 <% if @repositories.empty? %>
@@ -38,3 +49,4 @@
   </div>
 <% end %>
 <% content_for :javascripts, javascript_include_tag('repositories.index') %>
+<% content_for :stylesheets, stylesheet_link_tag("datetime") %>

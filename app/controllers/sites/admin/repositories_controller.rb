@@ -27,6 +27,14 @@ class Sites::Admin::RepositoriesController < ApplicationController
     @repositories = @repositories.content_file(params[:mime_type]) if params[:mime_type]
     # Not a good place for reprocess ! @repositories.each { |file| file.reprocess } # Need for images not generated (yet image thumb mystery)
 
+    if params[:begin_at].present? || params[:end_at].present?
+      begin_at = Time.zone.parse(params[:begin_at].present? ? params[:begin_at] : '2000-01-01')
+      end_at = params[:end_at].present? ? Time.zone.parse(params[:end_at]) : Time.current
+      @repositories = @repositories.where("repositories.created_at BETWEEN ? AND ?",
+        begin_at.beginning_of_day,
+        end_at.end_of_day)
+    end
+
     respond_with(:site_admin, @repositories) do |format|
       format.json do
         render json: {

@@ -7,13 +7,16 @@ pt-BR:
           search:               " Buscar "
           new_archive:          " Novo Arquivo "
           none_archive:         " Nenhum Arquivo "
+          filter_begin:         " Filtro por data (inicial) "
+          filter_end:           " data final "
         view_picker:
           repository_as_thumbs: " Exibir repositório como miniaturas "
           repository_as_list:   " Exibir repositório como lista "
         show:
           archives:            " Arquivos "
           copy:                " Copiar "
-          copied:              " Copiado " 
+          copied:              " Copiado "
+          created:             " Criado em "
           copy_to_clipboard:   " Copiar para a área de transferência "
           name:                " Nome "
           size:                " Tamanho "
