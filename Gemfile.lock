@@ -175,12 +175,12 @@ GEM
     dotenv-rails (2.7.5)
       dotenv (= 2.7.5)
       railties (>= 3.2, < 6.1)
-    elasticsearch (7.6.0)
-      elasticsearch-api (= 7.6.0)
-      elasticsearch-transport (= 7.6.0)
-    elasticsearch-api (7.6.0)
+    elasticsearch (6.8.2)
+      elasticsearch-api (= 6.8.2)
+      elasticsearch-transport (= 6.8.2)
+    elasticsearch-api (6.8.2)
       multi_json
-    elasticsearch-transport (7.6.0)
+    elasticsearch-transport (6.8.2)
       faraday (~> 1)
       multi_json
     erubi (1.9.0)
@@ -456,6 +456,7 @@ DEPENDENCIES
   cropper-rails (~> 2.3.2.1)
   devise (~> 4.7.1)
   dotenv-rails (~> 2.7.5)
+  elasticsearch (~> 6)
   factory_girl_rails (~> 4.4.1)
   feedback!
   fog-aws
