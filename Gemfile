@@ -23,7 +23,6 @@ gem 'fog-aws'
 gem 'asset_sync'
 
 #elastic
-gem 'elasticsearch', '~> 6'
 gem 'searchkick', '~> 4.3.0'
 gem 'oj' #boost json parsing
 

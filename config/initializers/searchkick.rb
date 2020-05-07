@@ -1,5 +1,5 @@
 if ENV['ELASTICSEARCH_URL'].present?
-  Searchkick.timeout = ENV['ELASTICSEARCH_TIMEOUT'].present? ? ENV['ELASTICSEARCH_TIMEOUT'].to_i : 4
+  Searchkick.timeout = ENV['ELASTICSEARCH_TIMEOUT'].present? ? ENV['ELASTICSEARCH_TIMEOUT'].to_i : 6
   Searchkick.client_options = {
     reload_on_failure: true
   }

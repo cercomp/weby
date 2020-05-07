@@ -8,8 +8,11 @@ module Journal
     respond_to :html, :js, :json, :rss
 
     def index
-      @news_sites = get_news
       @extension = current_site.extensions.find_by(name: 'journal')
+
+      if !request.format.html?
+        @news_sites = get_news
+      end
 
       respond_with(@news_sites) do |format|
         format.rss { render layout: false, content_type: Mime[:xml] } # index.rss.builder
