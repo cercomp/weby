@@ -34,3 +34,4 @@ pt-BR:
         domain_explain:         " Preencha o domínio apenas se for diferente do padrão "
         active:                 " Ativo "
         inactive:               " Inativo "
+        google_analytics_hint:  'Cole o código de acompanhamento da tag de site global ou o ID de acompanhamento'

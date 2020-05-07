@@ -13,6 +13,7 @@
   <%= f.input :view_desc_pages, :hint => t(".view_desc_pages_help"), :as => :boolean, wrapper: :checkbox %>
 
   <%= f.input :body_width, :hint => t(".example_width") %>
+  <%= f.input :google_analytics, :input_html => {:rows => 4}, :hint => t(".google_analytics_hint"), :as => :text %>
 
   <%= f.input :restrict_theme, :as => :boolean, wrapper: :checkbox %>
 

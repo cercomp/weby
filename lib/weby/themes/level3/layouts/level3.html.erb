@@ -2,6 +2,7 @@
 <!doctype html>
 <html lang="<%= current_locale %>">
   <head>
+    <%= current_site&.google_analytics_code %>
     <title><%= "#{yield :title} | " if content_for?(:title) %><%= @site.try(:title) || 'Weby' %></title>
     <meta charset="utf-8"/>
     <meta name="description" content="<%= @site.try(:description) %>"/>
@@ -21,7 +22,7 @@
     <%= stylesheet_link_tag 'level3' %>
     <%= render 'sites/shared/loadStyles' %>
     <link class="contrast-css" rel="stylesheet" media="screen" href="" data-src="<%= asset_url('level3_contrast.css') %>">
-    <%= current_site.try(:head_html).try(:html_safe) %>
+    <%= current_site&.head_html_code %>
     <% skin = current_site.active_skin %>
      <% if (color = skin.get_variable_config('color_scheme')).present? %>
       <style type="text/css">

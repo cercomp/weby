@@ -3,6 +3,7 @@
 <!doctype html>
 <html lang="<%= current_locale %>">
   <head>
+    <%= current_site&.google_analytics_code %>
     <title><%= "#{yield :title} | " if content_for?(:title) %><%= @site.try(:title) || 'Weby' %></title>
     <meta charset="utf-8"/>
     <meta name="description" content="<%= @site.try(:description) %>"/>
@@ -21,7 +22,7 @@
     <%= yield :stylesheets %>
     <%= yield :components_stylesheets %>
     <%= render 'sites/shared/loadStyles' %>
-    <%= current_site.try(:head_html).try(:html_safe) %>
+    <%= current_site&.head_html_code %>
   </head>
   <body>
     <%= render_webybar %>

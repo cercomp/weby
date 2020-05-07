@@ -15,6 +15,7 @@ en:
         top_banner_width:  " Top banner width "
         top_banner_height: " Top banner height "
         body_width:        " Site Width "
+        google_analytics:  " Google Analytics Code "
         theme:             " Theme "
         restrict_theme:    " Restrict theme management "
         view_desc_pages:   " View description "

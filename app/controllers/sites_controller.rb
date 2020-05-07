@@ -116,7 +116,7 @@ class SitesController < ApplicationController
   def site_params
     permitted = [:title, :top_banner_id, :name, :parent_id, :url,
                 :domain, :description, :view_desc_pages, :theme,
-                :body_width, :per_page, :per_page_default,
+                :body_width, :per_page, :per_page_default, :google_analytics,
                 {grouping_ids: [], locale_ids: []}]
 
     Site::SHAREABLES.each do |shareable|

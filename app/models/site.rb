@@ -84,6 +84,29 @@ class Site < ApplicationRecord
     repositories.find_by(archive_file_name: 'favicon.png')
   end
 
+  def google_analytics_code
+    if google_analytics.to_s.strip.match(/^UA\-\d+/)
+      code = <<-HTML.strip
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=#{google_analytics}"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', '#{google_analytics}');
+        </script>
+      HTML
+      code.html_safe
+    else
+      google_analytics.to_s.html_safe
+    end
+  end
+
+  def head_html_code
+    head_html.to_s.html_safe
+  end
+
   def to_label
     "#{name}#{".#{main_site.name}" if main_site} (#{title})"
   end

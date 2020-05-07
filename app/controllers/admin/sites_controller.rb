@@ -71,7 +71,7 @@ class Admin::SitesController < Admin::BaseController
   def site_params
     params.require(:site).permit(:title, :top_banner_id, :name, :parent_id, :url,
                                  :domain, :description, :view_desc_pages, :theme, :restrict_theme,
-                                 :body_width, :per_page, :per_page_default, :status,
+                                 :body_width, :google_analytics, :per_page, :per_page_default, :status,
                                  {locale_ids: [], grouping_ids: []})
   end
 

@@ -2,6 +2,7 @@
 <!doctype html>
 <html lang="<%= current_locale %>">
   <head>
+    <%= current_site&.google_analytics_code %>
     <title><%= @site.try(:description) || 'Weby' %><%= yield :title %></title>
     <meta charset="utf-8"/>
     <meta name="description" content="<%= @site.try(:description) %>"/>
@@ -23,7 +24,7 @@
     <%= yield :components_stylesheets %>
     <%= stylesheet_link_tag 'portal' %>
     <%= render 'sites/shared/loadStyles' %>
-    <%= current_site.try(:head_html).try(:html_safe) %>
+    <%= current_site&.head_html_code %>
   </head>
   <body>
     <%= render_webybar %>

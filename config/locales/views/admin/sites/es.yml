@@ -34,3 +34,4 @@ es:
         domain_explain:         " Rellene el campo únicamente si es distinta de la predeterminada "
         active:                 " Activo "
         inactive:               " Inactivo "
+        google_analytics_hint:  'Cole o código de acompanhamento da tag de site global ou o ID de acompanhamento'

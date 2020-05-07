@@ -34,3 +34,4 @@ en:
         domain_explain:         " Fill in the domain field only if it's different than the default "
         active:                 " Active "
         inactive:               " Inactive "
+        google_analytics_hint: 'Paste here the The Global Site Tag code or the Tracking ID'

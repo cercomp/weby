@@ -65,3 +65,4 @@ en:
       site_image: " Site image "
       main_site: " Main Site "
       domain_explain: " Fill in the domain field only if it's different than the default "
+      google_analytics_hint: 'Paste here the The Global Site Tag code or the Tracking ID'

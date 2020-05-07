@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_30_125411) do
+ActiveRecord::Schema.define(version: 2020_05_07_171144) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -365,6 +365,7 @@ ActiveRecord::Schema.define(version: 2020_03_30_125411) do
     t.string "status", default: "active"
     t.boolean "restrict_theme", default: false
     t.jsonb "settings", default: {}
+    t.string "google_analytics"
     t.index ["parent_id"], name: "index_sites_on_parent_id"
     t.index ["status"], name: "index_sites_on_status"
     t.index ["top_banner_id"], name: "index_sites_on_top_banner_id"
