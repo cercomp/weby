@@ -12,10 +12,15 @@ pt-BR:
         show_info:            " Exibir informações "
         html_id:              " ID HTML "
         source_type:          " Origem "
+        show_as_popup:        " Exibir como pop-up "
+        popup_position:       " Posição do pop-up "
   news_as_home:
     views:
       form:
         page:                 " Página "
         feedback:             " Fale Conosco "
+        left:                 " Esquerda "
+        center:               " Centro "
+        right:                " Direita "
       show:
         page_not_found:       " Página não encontrada, por favor verifique a configuração do componente "

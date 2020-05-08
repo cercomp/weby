@@ -1,0 +1,19 @@
+.popup-modal {
+  position: fixed;
+  top: 100px;
+  width: 300px;
+  height: 80vh;
+
+  &.left {
+    left: 50px;
+  }
+
+  &.right {
+    right: 50px;
+  }
+
+  &.center {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

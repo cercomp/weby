@@ -1,5 +1,5 @@
 class NewsAsHomeComponent < Component
-  component_settings :page_id, :show_title, :show_info, :html_id, :source_type
+  component_settings :page_id, :show_title, :show_info, :html_id, :source_type, :show_as_popup, :popup_position
 
   validates :page_id, presence: true, if: ->{ source == 'page' }
 
@@ -17,8 +17,20 @@ class NewsAsHomeComponent < Component
     _show_info.blank? ? false : _show_info.to_i == 1
   end
 
+  def is_popup?
+    show_as_popup.blank? ? false : show_as_popup.to_i == 1
+  end
+
   def source_options
     ['page', 'feedback']
+  end
+
+  def popup_position_options
+    ['left', 'center', 'right']
+  end
+
+  def popup_class
+    is_popup? ? "popup-modal #{popup_position || 'right'}" : ''
   end
 
   def source

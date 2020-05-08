@@ -1,4 +1,7 @@
-<section class="news_as_home_component">
+<section class="news_as_home_component <%= component.popup_class %>">
+  <% if component.is_popup? %>
+    <%= link_to 'X', '#' %>
+  <% end %>
   <% if component.source == 'page' %>
     <% if (@page = component.page).present? %>
       <%= render template: 'sites/pages/show', locals: { as_component: {show_title: component.show_title , show_info: component.show_info} } %>
