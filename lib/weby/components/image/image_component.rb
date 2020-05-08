@@ -12,5 +12,5 @@ class ImageComponent < Component
   validates :html_class, format: { with: /\A[A-Za-z0-9_\-\s]*\z/ }
   validates :repository_id, presence: true, unless: :default_image
 
-  belongs_to :target, polymorphic: true
+  belongs_to :target, polymorphic: true, optional: true
 end
