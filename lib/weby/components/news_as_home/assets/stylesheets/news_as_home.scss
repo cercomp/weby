@@ -1,8 +1,11 @@
 .popup-modal {
   position: fixed;
-  top: 100px;
+  top: 175px;
   width: 300px;
-  height: 80vh;
+  height: calc(100vh - 205px);
+  background-color: #FFF;
+  box-shadow: 1px 1px 3px 1px rgba(0,0,0,.2);
+  z-index: 100;
 
   &.left {
     left: 50px;
