@@ -5,7 +5,7 @@ class FrontNewsComponent < Component
 
   i18n_settings :label, :link_to_all
 
-  validates :quant, presence: true
+  validates :quant, presence: true, numericality: { greater_than: 0 }
   validates :html_class, format: { with: /\A[A-Za-z0-9_\-]*\z/ }
 
   def get_news(site, page_param)
@@ -59,7 +59,7 @@ class FrontNewsComponent < Component
 
   alias_method :_quant, :quant
   def quant
-    _quant.blank? ? 5 : _quant.to_i
+    _quant.blank? ? 5 : (_quant.to_i == 0 ? 1 : _quant.to_i)
   end
 
   alias_method :_new_tab, :new_tab

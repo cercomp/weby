@@ -4,7 +4,7 @@ class NewsListComponent < Component
 
   i18n_settings :title
 
-  validates :quant, presence: true
+  validates :quant, presence: true, numericality: { greater_than: 0 }
 
   def news(site, page)
     result = site.news_sites.joins(news: :site).where(sites: {status: 'active'}).order('journal_news_sites.created_at desc').available.published.joins(:news)
@@ -15,7 +15,7 @@ class NewsListComponent < Component
 
   alias_method :_quant, :quant
   def quant
-    _quant.blank? ? 5 : _quant.to_i
+    _quant.blank? ? 5 : (_quant.to_i == 0 ? 1 : _quant.to_i)
   end
 
   alias_method :_front, :front

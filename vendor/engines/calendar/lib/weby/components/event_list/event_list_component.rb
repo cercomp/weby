@@ -6,7 +6,7 @@ class EventListComponent < Component
 
   i18n_settings :label, :link_to_all
 
-  validates :quant, presence: true
+  validates :quant, presence: true, numericality: { greater_than: 0 }
   validates :sel_site, presence: true, if: ->{ source == 'selected' }
 
   def source_site
@@ -49,7 +49,7 @@ class EventListComponent < Component
 
   alias_method :_quant, :quant
   def quant
-    _quant.blank? ? 5 : _quant.to_i
+    _quant.blank? ? 5 : (_quant.to_i == 0 ? 1 : _quant.to_i)
   end
 
   def date_formats
