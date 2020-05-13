@@ -24,7 +24,7 @@
     <%= render 'sites/shared/loadStyles' %>
     <%= current_site&.head_html_code %>
   </head>
-  <body>
+  <body class="<%= yield :body_class %>">
     <%= render_webybar %>
     <div class='first_place'>
       <%= yield :layout_first_place %>

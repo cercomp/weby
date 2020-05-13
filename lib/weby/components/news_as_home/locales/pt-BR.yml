@@ -13,14 +13,12 @@ pt-BR:
         html_id:              " ID HTML "
         source_type:          " Origem "
         show_as_popup:        " Exibir como pop-up "
-        popup_position:       " Posição do pop-up "
+        popup_type:           " Tipo de pop-up "
   news_as_home:
     views:
       form:
         page:                 " Página "
         feedback:             " Fale Conosco "
-        left:                 " Esquerda "
-        center:               " Centro "
-        right:                " Direita "
+        modal:                " Modal "
       show:
         page_not_found:       " Página não encontrada, por favor verifique a configuração do componente "

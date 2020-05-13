@@ -13,14 +13,12 @@ en:
         html_id:              " HTML ID "
         source_type:          " Source "
         show_as_popup:        " Show as pop-up "
-        popup_position:       " Pop-up position "
+        popup_type:           " Pop-up type "
   news_as_home:
     views:
       form:
         page:                 " Page "
         feedback:             " Feedback form "
-        left:                 " Left "
-        center:               " Center "
-        right:                " Right "
+        modal:                " Modal "
       show:
         page_not_found:       " Page not found, please check the component configuration "

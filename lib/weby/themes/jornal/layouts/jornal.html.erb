@@ -24,7 +24,7 @@
     <%= current_site&.head_html_code %>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
   </head>
-  <body>
+  <body class="<%= yield :body_class %>">
     <%= render_webybar %>
     <div class='first_place'>
       <%= yield :layout_first_place %>
