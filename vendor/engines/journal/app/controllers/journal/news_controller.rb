@@ -52,8 +52,8 @@ module Journal
     end
 
     def get_news_es
-      params[:direction] ||= 'desc'
-      params[:page] ||= 1
+      params[:direction] = 'desc' if params[:direction].blank?
+      params[:page] = 1 if params[:page].blank?
 
       filters = [{
         term: {site_id: current_site.id}
@@ -73,8 +73,8 @@ module Journal
     end
 
     def get_news_db
-      params[:direction] ||= 'desc'
-      params[:page] ||= 1
+      params[:direction] = 'desc' if params[:direction].blank?
+      params[:page] = 1 if params[:page].blank?
       if params[:tags].present?
         result = current_site.news_sites.published.includes(:categories, news: [:image, :related_files, :site, :i18ns]).
           tagged_with(tags, any: true).
@@ -91,7 +91,7 @@ module Journal
     end
 
     def sort_column
-      params[:sort] || 'journal_news.id'
+      params[:sort].present? ? params[:sort] : 'journal_news.id'
     end
 
     def check_current_site
