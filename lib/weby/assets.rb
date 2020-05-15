@@ -41,7 +41,7 @@ module Weby
         /nestedsortable\/jquery\.ui\.nestedSortable\.js/,
         /rgbcolor\.js/,
         /google\/lato\.css/,
-        /jquery\-ui\-timepicker\-addon\.css/,
+        /jquery\.datetimepicker\./,
         /select2\-bootstrap\.css/,
         /^daterangepicker/,
         /^moment(\/|\.js)/,
