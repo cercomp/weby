@@ -12,10 +12,13 @@ en:
         show_info:            " Show informations "
         html_id:              " HTML ID "
         source_type:          " Source "
+        show_as_popup:        " Show as pop-up "
+        popup_type:           " Pop-up type "
   news_as_home:
     views:
       form:
         page:                 " Page "
         feedback:             " Feedback form "
+        modal:                " Modal "
       show:
         page_not_found:       " Page not found, please check the component configuration "

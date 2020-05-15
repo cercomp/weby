@@ -3,6 +3,8 @@
 <%= target_dialog_input(f, :page, false, false) %>
 
 <%= f.input :show_title, wrapper: :checkbox, as: :boolean %>
-<%= f.input :show_info, wrapper: :checkbox, as: :boolean %>
+<%#= f.input :show_info, wrapper: :checkbox, as: :boolean %>
+<%= f.input :show_as_popup, wrapper: :checkbox, as: :boolean %>
+<%= f.input :popup_type, collection: component.popup_type_options.map{|o| [t(".#{o}"), o] }, include_blank: false %>
 
 <%= f.input :html_id %>

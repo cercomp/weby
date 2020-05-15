@@ -1469,6 +1469,14 @@ p.level.hbg {
     color: #333333;
 }
 
+.popup-modal .page-show header, .popup-modal .feedback-new-message-title {
+  background-color: #ef233c;
+}
+
+.popup-modal .page-show header h2, .popup-modal .feedback-new-message-title h2 {
+  color: #fff !important;
+  border: 0;
+}
 
 /* ----------------------------------------------------------------------------------------
 *                                14. Subscribe area css
