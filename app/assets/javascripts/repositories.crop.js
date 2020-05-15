@@ -20,7 +20,7 @@ $(document).ready(function () {
 
   var initCropper = function(){
     //Após o carregamento da imagem, iniciar o Cropper
-    $('#img-crop').load(function(){
+    $('#img-crop').on('load', function(){
       $('.real-size').html('<b>('+this.naturalWidth+'x'+this.naturalHeight+')</b>');
       $(this).cropper({
         viewMode: 2,

@@ -46,6 +46,7 @@ pt-BR:
           crop_image:          " Cortar imagem "
           description:         " Descrição "
         crop:
+          crop_image:          " Cortar imagem "
           crop:                " Gerar "
           lock_aspect_ratio:   " Fixar a proporção do corte da imagem "
           height:              " Altura "
