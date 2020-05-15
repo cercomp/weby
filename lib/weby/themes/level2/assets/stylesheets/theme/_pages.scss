@@ -1229,6 +1229,10 @@ ufg-eventos {
   color: var(--dark-gray);
 }
 
+.popup-modal .page-show header, .popup-modal .feedback-new-message-title {
+  background-color: var(--main-color);
+}
+
 /*
 * News list
 */

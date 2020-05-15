@@ -755,6 +755,15 @@ ul.flex-direction-nav > li {
   font-size: 20px;
 }*/
 
+.popup-modal .page-show header, .popup-modal .feedback-new-message-title {
+  background-color: #4478a4;
+
+  h2 {
+    display: block;
+    border: 0;
+  }
+}
+
 /* Notícias */
 article.page-show,
 article.news-show,
