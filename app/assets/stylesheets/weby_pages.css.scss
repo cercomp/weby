@@ -433,4 +433,88 @@ body.space {
       border-left: 15px solid #fff;
     }
   }
+
+  @media (max-width: 1199px) {
+    .stars {
+      left: 0;
+    }
+    .planet-blue {
+      left: 750px;
+    }
+    .planet-yellow {
+      left: 698px;
+    }
+    .logo {
+      left: 387px;
+    }
+    .astronaut {
+      left: 394px;
+    }
+    .speak-box {
+      left: 0;
+    }
+  }
+
+  @media (max-width: 993px) {
+    .stars {
+      left: -182px;
+    }
+    .planet-blue {
+      left: 104px;
+      top: 224px;
+    }
+    .planet-yellow {
+      left: 303px;
+      top: 398px;
+    }
+    .logo {
+      left: 388px;
+    }
+    .astronaut {
+      left: 413px;
+    }
+    .speak-box {
+      top: 43px;
+      &:after {
+        top: auto;
+        bottom: 10px;
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    @at-root {
+      .wlax-container {
+        overflow: hidden;
+      }
+    }
+    .stars {
+      left: -417px;
+    }
+    .planet-blue {
+      left: 15px;
+      top: 226px;
+    }
+    .planet-yellow {
+      left: 112px;
+      top: 432px;
+    }
+    .logo {
+      left: 46%;
+      width: 230px;
+      top: 150px;
+    }
+    .astronaut {
+      left: 42%;
+      top: 162px;
+    }
+    .speak-box {
+      top: 20px;
+      width: 100%;
+      max-width: 100%;
+      &:after {
+        display: none;
+      }
+    }
+  }
 }
