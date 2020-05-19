@@ -97,7 +97,6 @@ pt-BR:
   of:                                   " de "
   only_admin:                           " Somente para usuários administradores "
 #---P---#
-  page_not_found:                       " Página não encontrada "
   please_wait:                          " Por favor espere! "
   publish:                              " Publicar "
   published:                            " Publicado "
@@ -120,7 +119,6 @@ pt-BR:
   empty_recycle_bin:                    " Lixeira Vazia "
 #---S---#
   save:                                 " Salvar "
-  server_error:                         " Erro interno no servidor "
   search:                               " Pesquisar "
   scheduled:                            " Agendado para %{date} "
   show:                                 " Mostrar "

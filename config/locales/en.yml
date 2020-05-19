@@ -96,7 +96,6 @@ en:
   of:                                   " of "
   only_admin:                           " Only for admin users "
 #---P---#
-  page_not_found:                       " Page not found "
   please_wait:                          " Please Wait! "
   publish:                              " Publish "
   published:                            " Published "
@@ -119,7 +118,6 @@ en:
   empty_recycle_bin:                    " Empty recycle bin "
 #---S---#
   save:                                 " Save "
-  server_error:                         " Internal Server Error "
   search:                               " Search "
   scheduled:                            " Scheduled to %{date} "
   show:                                 " Show "

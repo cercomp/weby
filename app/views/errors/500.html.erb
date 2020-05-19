@@ -11,8 +11,8 @@
     <%= image_tag 'weby-logo.svg', class: 'wlax-layer logo', data: {rangex: 15, rangey: 15} %>
     <%= image_tag '404/astronaut.svg', class: 'wlax-layer astronaut', data: {rangex: 10, rangey: 10} %>
     <%= content_tag :div, class: 'wlax-layer speak-box', data: {rangex: 5, rangey: 5} do %>
-        <h5>Missão falhou</h5>
-        Relatório do erro de missão nº <b class="layer-safe"><%= @error_code %></b>
+        <h5><%= t('server_error_title') %></h5>
+        <%= t('server_error_body') %> <b class="layer-safe"><%= @error_code %></b>
     <% end %>
   </div>
 </div>

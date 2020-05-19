@@ -1,4 +1,4 @@
-<%- title 'page_not_found' %>
+<%- title @current_site ? 'page_not_found' : 'site_not_found' %>
 <% content_for :body_class, 'space' %>
 <div class="wlax-container">
   <div class="wlax-content">
@@ -12,11 +12,11 @@
     <%= image_tag '404/astronaut.svg', class: 'wlax-layer astronaut', data: {rangex: 10, rangey: 10} %>
     <%= content_tag :div, class: 'wlax-layer speak-box', data: {rangex: 5, rangey: 5} do %>
       <% if @current_site %>
-        <h5>Houston, temos um problema</h5>
-        Não encontramos vida nesse planeta, tente voltar para a <%= link_to 'base de lançamento', site_url(subdomain: @current_site), class: 'layer-safe' %>
+        <h5><%= t('page_not_found_title') %></h5>
+        <%= t('page_not_found_body') %> <%= link_to t('page_not_found_link'), site_url(subdomain: @current_site), class: 'layer-safe' %>
       <% else %>
-        <h5>Planeta não encontrado</h5>
-        Tente voltar para a <%= link_to 'sala de controle', main_app.root_url(subdomain: nil), class: 'layer-safe' %>
+        <h5><%= t('site_not_found_title') %></h5>
+        <%= t('site_not_found_body') %> <%= link_to t('site_not_found_link'), main_app.root_url(subdomain: nil), class: 'layer-safe' %>
       <% end %>
     <% end %>
   </div>
