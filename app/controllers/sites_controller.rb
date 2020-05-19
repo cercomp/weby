@@ -40,6 +40,7 @@ class SitesController < ApplicationController
   end
 
   def show
+    r = 5 /0
     fail ActiveRecord::RecordNotFound unless @site
     params[:id] = @site.id
     params[:per_page] = nil

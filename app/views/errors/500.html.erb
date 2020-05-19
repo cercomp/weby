@@ -1,10 +1,19 @@
-<%- title '500', true %>
-
-<div class="dialog alert alert-error">
-    <%#= image_tag 'weby-logo.png' %>
-    <h1></h1>
-    <h1><%= t('intern_error') %></h1>
-    <h3><span class="red"><%#= @error %></span></h3>
-    <p><%= @error_code %></p>
-    <%= link_to t("back"), :back %>
+<%- title 'server_error' %>
+<% content_for :body_class, 'space' %>
+<div class="wlax-container">
+  <div class="wlax-content">
+    <%= image_tag '404/stars.svg', class: 'wlax-layer stars', data: {rangex: 4, rangey: 4, invert: true} %>
+    <%= content_tag :div, class: 'wlax-layer planet-blue', data: {rangex: 12, rangey: 13, invert: true} do %>
+      <div class="error-code">500</div>
+      <%= image_tag '404/planet-red.svg', class: '' %>
+    <% end %>
+    <%= image_tag '404/planet-yellow.svg', class: 'wlax-layer planet-yellow', data: {rangex: 17, rangey: 15, invert: true} %>
+    <%= image_tag 'weby-logo.svg', class: 'wlax-layer logo', data: {rangex: 15, rangey: 15} %>
+    <%= image_tag '404/astronaut.svg', class: 'wlax-layer astronaut', data: {rangex: 10, rangey: 10} %>
+    <%= content_tag :div, class: 'wlax-layer speak-box', data: {rangex: 5, rangey: 5} do %>
+        <h5>Missão falhou</h5>
+        Relatório do erro de missão nº <b class="layer-safe"><%= @error_code %></b>
+    <% end %>
+  </div>
 </div>
+<% content_for :javascripts, javascript_include_tag('error_pages') %>

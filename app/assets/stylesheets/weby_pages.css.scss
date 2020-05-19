@@ -10,21 +10,21 @@
 
 #header
 {
-  padding-top: 25px;
-  padding-bottom: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   margin-bottom: 15px;
   font-size: 12px;
   .noperson
   {
-    padding-top: 14px;
-    padding-bottom: 14px;
+    padding-top: 7px;
+    padding-bottom: 7px;
     text-align: right;
     .btn { margin-left: 5px; }
   }
   .person
   {
-    padding-top: 14px;
-    padding-bottom: 14px;
+    padding-top: 7px;
+    padding-bottom: 7px;
     .info { 
       line-height: 15px;
       margin: 0 10px;
@@ -43,6 +43,9 @@
         margin-left: 5px;
       }
     }
+  }
+  .logo {
+    width: 170px;
   }
 }
 
@@ -326,5 +329,108 @@ a:hover {
   .unread
   {
     font-weight: bold;
+  }
+}
+
+//// weby parallax - space
+
+body.space {
+  background-color: #3c3c3c;
+  #header {
+    margin-bottom: 0;
+  }
+}
+
+.wlax-container {
+  position: relative;
+  height: 500px;
+  // overflow: hidden;
+  margin-bottom: 60px;
+}
+
+.wlax-layer {
+  position: absolute;
+  pointer-events: none;
+
+  .layer-safe {
+    pointer-events: auto;
+  }
+}
+
+.wlax-content {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  .error-code {
+    text-align: center;
+    color: #fff;
+    font-size: 80px;
+    text-shadow: 1px 1px 5px rgba(255,255,255,.5);
+    line-height: 70px;
+  }
+  .stars {
+    left: 87px;
+  }
+  .planet-blue {
+    left: 840px;
+    top: 98px;
+  }
+  .planet-yellow {
+    left: 834px;
+    top: 341px;
+  }
+  .logo {
+    left: 465px;
+    top: 45px;
+  }
+  .astronaut {
+    left: 470px;
+    top: 144px;
+  }
+  .speak-box {
+    top: 172px;
+    left: 60px;
+    max-width: 370px;
+    padding: 20px 25px;
+    background-color: #fff;
+    border-radius: 4px;
+    color: #353535;
+        
+    h5 {
+      margin-top: 0;
+      font-size: 30px;
+      /* text-transform: uppercase; */
+    }
+
+    a {
+      text-decoration: underline;
+    }
+
+    // &:before {
+    //   content: attr(data-before) " ";
+    //   position: absolute;
+    //   top: -90px;
+    //   left: 50%;
+    //   transform: translateX(-50%);  
+    //   font-size: 70px;
+    //   color: #EEE;
+    //   text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.2);
+    // }
+
+    &:after {
+      content: '';
+      position: absolute;
+      right: -14px;
+      top: 10px;
+      width: 0; 
+      height: 0; 
+      border-top: 15px solid transparent;
+      border-bottom: 15px solid transparent;
+      
+      border-left: 15px solid #fff;
+    }
   }
 }
