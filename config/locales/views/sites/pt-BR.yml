@@ -33,6 +33,18 @@ pt-BR:
       title:               " Titulo "
       name: "Nome"
       no-site-found: "Nenhum site encontrado."
+    subsites:
+      name:                   " Nome "
+      dashboard:              " Administração "
+      description:            " Descrição "
+      title:                  " Título "
+      settings:               " Configurações "
+      no-site-found:          " Nenhum site encontrado."
+      delete:                 " Excluir "
+      active:                 " Ativo "
+      inactive:               " Inativo "
+      deactivate:             " Desativar "
+      activate:               " Ativar "
     my_list:
       my-sites: "Meus Sites"
       description:         " Descrição "

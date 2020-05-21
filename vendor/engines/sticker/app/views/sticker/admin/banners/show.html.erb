@@ -43,7 +43,7 @@
 </p>
 
 <div class="form-actions">
-  <%= link_to icon('trash', text: t('destroy')), unshare_admin_banner_url(@banner), method: :put, data: { confirm: t('are_you_sure') } if !@banner.owned_by?(current_site) %>
+  <%= link_to icon('trash', text: t('destroy')), unshare_admin_banner_url(@banner), method: :put, data: { confirm: t('are_you_sure_unshare_item', item: @banner.title) } if !@banner.owned_by?(current_site) %>
   <%= make_menu(@banner, :except => "show") %>
   <%= link_to icon('list', text:t(".list_all")), admin_banners_path() %>
   <%= link_to icon('chevron-left', text:t("back")), :back %>

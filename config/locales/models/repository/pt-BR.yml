@@ -1,7 +1,7 @@
 pt-BR:
   activerecord:
     models:
-      repository: ""
+      repository: "Arquivo"
     attributes:
       repository:
         archive_content_type: ""

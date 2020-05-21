@@ -66,7 +66,7 @@ module ApplicationHelper
           div_content << content_tag(:div, class: 'pull-right') do
             menu_content = []
             menu_content << link_to(icon('edit', text: ''), edit_site_admin_menu_menu_item_path(entry.menu_id, entry.id), title: t('edit')) if test_permission(:menu_items, :show)
-            menu_content << link_to(icon('trash', text: ''), site_admin_menu_menu_item_path(entry.menu_id, entry.id), method: :delete, data: { confirm: t('are_you_sure') }, title: t('destroy')) if test_permission(:menu_items, :destroy)
+            menu_content << link_to(icon('trash', text: ''), site_admin_menu_menu_item_path(entry.menu_id, entry.id), method: :delete, data: { confirm: t('are_you_sure_del_item', item: entry.title) }, title: t('destroy')) if test_permission(:menu_items, :destroy)
             menu_content << link_to(icon('move', text: ''), '#', class: 'handle', title: t('move')) if test_permission(:menu_items, :change_position)
             menu_content << link_to('+', new_site_admin_menu_menu_item_path(entry.menu_id, parent_id: entry.id), class: 'btn btn-success btn-xs', title: t('add_sub_menu')) if test_permission(:menu_items, :new)
             menu_content.join.html_safe
@@ -243,7 +243,7 @@ module ApplicationHelper
                 action: 'destroy',
                 id: obj.id
               }.merge(args.fetch(:params, {})),
-              data: { confirm: t('are_you_sure') },
+              data: { confirm: t('are_you_sure_del_item', item: obj.screen_name) },
               method: :delete,
               alt: t('destroy'),
               title: t('destroy'),
@@ -272,7 +272,7 @@ module ApplicationHelper
     ''.tap do |html|
       if test_permission controller_name, :purge
         html << link_to(icon('trash', text: options[:with_text] ? t('destroy') : nil),
-                        options.merge(action: 'show', id: resource.id), title: t('purge'), class: 'action-link', method: 'delete', data: {confirm: t('are_you_sure')})
+                        options.merge(action: 'show', id: resource.id), title: t('purge'), class: 'action-link', method: 'delete', data: {confirm: t('are_you_sure_del_item', item: resource.screen_name)})
       end
       if test_permission controller_name, :recover
         html << link_to(icon('refresh', text: options[:with_text] ? t('recover') : nil),
