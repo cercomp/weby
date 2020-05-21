@@ -74,7 +74,7 @@
               <td class="text-right">
                 <%= make_menu(news, :except => "show", :with_text => false) %>
                 <% with_permission(action: :sort) do %>
-                  <%= link_to icon('trash'), unshare_admin_news_url(news), method: :put, data: { confirm: t('are_you_sure') } if news.site_id != current_site.id %>
+                  <%= link_to icon('trash'), unshare_admin_news_url(news), method: :put, data: { confirm: t('are_you_sure_unshare_item', item: news.title) } if news.site_id != current_site.id %>
                   <%= link_to icon('move'), '#', class: 'handle' %>
                 <% end %>
               </td>

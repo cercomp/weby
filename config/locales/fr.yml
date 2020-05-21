@@ -11,6 +11,7 @@ fr:
 #---A---#
   active_deactive:                      " Ativar Desativar "
   are_you_sure:                         " Você tem certeza? "
+  are_you_sure_del_item:                " Você tem certeza que deseja excluir \"%{item}\"? "
   activate_deactivate:                  " Ativar/Desativar "
   activate:                             " Ativar "
   active:                               " Ativo "

@@ -1,8 +1,10 @@
 class SitesController < ApplicationController
   layout :choose_layout, only: :show
 
-  before_action :require_user, only: [:admin, :edit, :update]
+  before_action :require_user, only: [:admin, :edit, :update, :destroy_subsite, :update_subsite]
   before_action :check_authorization, only: [:edit, :update]
+  before_action :is_admin, only: [:destroy_subsite, :update_subsite]
+  before_action :load_subsite, only: [:destroy_subsite, :update_subsite]
 
   respond_to :html, :xml, :js
 
@@ -13,7 +15,7 @@ class SitesController < ApplicationController
   def index
     params[:page] ||= 1
 
-    # TODO Search using the new's tittle too
+    # TODO Search using the new's title too
     @sites = Site.active.ordered_by_front_pages(params[:search])
 
     if !current_user || !current_user.is_admin?
@@ -72,6 +74,8 @@ class SitesController < ApplicationController
     render plain: custom_robots_file ? custom_robots_file : File.read(Rails.root.join('public', 'default_robots.txt')), layout: false, content_type: 'text/plain'
   end
 
+  #### BACK-END
+
   def admin
     fail ActiveRecord::RecordNotFound unless current_site
     @last_repositories = current_site.repositories.last(4)
@@ -107,10 +111,37 @@ class SitesController < ApplicationController
     end
   end
 
+  def update_subsite
+    if @subsite.update(subsite_params)
+      if @subsite.previous_changes["status"] == ["active", "inactive"] # check if status was changed from active to inactive
+        ::SiteMailer.site_deactivated(@subsite)
+      end
+      flash[:success] = t('successfully_updated')
+      record_activity('updated_site', @subsite)  
+    else
+      flash[:alert] = t('problem_update_site')
+    end
+    redirect_to edit_site_admin_path(anchor: 'tab-subsites')
+  end
+
+  def destroy_subsite
+    @subsite.unscoped_destroy
+    flash[:success] = t('successfully_deleted')
+    redirect_to edit_site_admin_path(anchor: 'tab-subsites')
+  end
+
   private
 
   def sort_column
     Site.column_names.include?(params[:sort]) ? params[:sort] : 'id'
+  end
+
+  def load_subsite
+    @subsite = @site.subsites.find(params[:id])
+  end
+
+  def subsite_params
+    params.require(:site).permit(:status)
   end
 
   def site_params

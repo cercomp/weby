@@ -1,0 +1,7 @@
+pt-BR:
+  activerecord:
+    models:
+      activity_record: "Registro de Histórico"
+    attributes:
+      activity_record:
+

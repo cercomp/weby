@@ -28,7 +28,7 @@
           <td width="10%" style="text-align:center;">
             <%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe,
               admin_newsletter_path(newsletter.id),
-              data: { confirm: t('are_you_sure') },
+              data: { confirm: t('are_you_sure_del_item', item: newsletter.screen_name) },
               method: :delete
             %>
           </td>

@@ -1,0 +1,7 @@
+en:
+  activerecord:
+    models:
+      activity_record: "Activity Record"
+    attributes:
+      activity_record:
+

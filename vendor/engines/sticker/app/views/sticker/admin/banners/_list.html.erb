@@ -26,7 +26,7 @@
           <%= publication_status_banner(banner, disabled: !banner.owned_by?(current_site) ) %>
         </td>
         <td class="text-right">
-          <%= link_to icon('trash', text: t('destroy')), unshare_admin_banner_url(banner), method: :put, data: { confirm: t('are_you_sure') } if !banner.owned_by?(current_site) %>
+          <%= link_to icon('trash', text: t('destroy')), unshare_admin_banner_url(banner), method: :put, data: { confirm: t('are_you_sure_unshare_item', item: banner.title) } if !banner.owned_by?(current_site) %>
           <%= raw make_menu(banner, :except => "show") %>
         </td>
       </tr>
