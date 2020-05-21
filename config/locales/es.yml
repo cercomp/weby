@@ -14,6 +14,8 @@ es:
   active_deactive:                      " Ativar Desativar "
   are_you_sure:                         " Você tem certeza? "
   are_you_sure_del_item:                " Você tem certeza que deseja excluir \"%{item}\"? "
+  are_you_sure_unshare_item:            " Você tem certeza que deseja excluir o compartilhamento \"%{item}\"? "
+  are_you_sure_del_admin:               " Você tem certeza que deseja remover \"%{user}\" dos Administradores "
   activate_deactivate:                  " Ativar/Desativar "
   activate:                             " Activar "
   active:                               " Activo "
