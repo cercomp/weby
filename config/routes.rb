@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     get '/admin/edit' => 'sites#edit', as: :edit_site_admin
     get '/map' => 'sites/pages#sitemap', as: :sitemap_site_pages
     patch '/admin/edit' => 'sites#update', as: :update_site_admin
+    delete '/admin/subsites/:id' => 'sites#destroy_subsite', as: :destroy_subsite_admin
+    patch '/admin/subsites/:id' => 'sites#update_subsite', as: :update_subsite_admin
 
     resources :pages, as: :site_pages, controller: 'sites/pages', path: 'p', only: [:show]
     get :pages, to: 'sites/pages#index', as: :site_pages

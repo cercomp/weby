@@ -26,7 +26,7 @@
             <%= link_to(icon("search", text: t(".details")),
                         admin_activity_record_path(activity_record), class: "action-link" )%>
             <%= link_to(icon("trash", text: t(".destroy")),
-                        admin_activity_record_path(activity_record), method: :delete, confirm: t('are_you_sure'), class: "action-link") %>
+                        admin_activity_record_path(activity_record), method: :delete, data: {confirm: t('are_you_sure_del_item', item: activity_record.screen_name)}, class: "action-link") %>
           </td>
         </tr>
       <% end %>
