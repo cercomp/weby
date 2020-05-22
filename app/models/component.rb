@@ -3,6 +3,7 @@ class Component < ApplicationRecord
 
   belongs_to :skin
 
+  attr_accessor :delete_children
   # TODO validar também se a área é válida quanto ao layout
   # ex: Um componente pode existe na área X em um layout, mas em outro
   # layout essa área pode não existir
@@ -10,7 +11,7 @@ class Component < ApplicationRecord
 
   before_save :prepare_variables
   before_update :fix_position
-  after_destroy :remove_children, if: proc { name == 'components_group' }
+  after_destroy :handle_children, if: proc { name == 'components_group' }
 
   def default_alias
     ''
@@ -95,6 +96,15 @@ class Component < ApplicationRecord
     end
   end
 
+  def destroy_children!
+    Component.where(place_holder: id.to_s).each do |component|
+      if component.name == 'components_group'
+        component.destroy_children!
+      end
+      component.destroy!
+    end
+  end
+
   private
 
   def prepare_variables
@@ -103,13 +113,17 @@ class Component < ApplicationRecord
     self.position = Component.where('skin_id = ? AND place_holder = ?', skin_id, place_holder).maximum(:position).to_i + 1 if position.blank?
   end
 
-  def remove_children
+  def handle_children
     position = self.position
     positions = skin.components.where(place_holder: place_holder).order('position asc').map { |comp| comp.id }
-    Component.where(place_holder: id.to_s).order('position asc').each do |component|
-      component.update(place_holder: place_holder)
-      positions.insert(position - 1, component.id)
-      position += 1
+    if self.delete_children
+      self.destroy_children!
+    else
+      Component.where(place_holder: id.to_s).order('position asc').each do |component|
+        component.update(place_holder: place_holder)
+        positions.insert(position - 1, component.id)
+        position += 1
+      end
     end
     Component.update_positions positions, place_holder
   end

@@ -33,6 +33,7 @@ module ComponentsHelper
           #{ raw ("#{toggle_field(compo, 'publish', 'toggle', controller: :components, skin_id: compo.skin_id)} #{t("components.#{compo.name}.name")} #{"- #{nickname}" if nickname.present?}") }
         </span>
         <div class='pull-right' style='min-width: 46px'>
+          #{ link_to(icon(:remove), site_admin_skin_component_path(compo.skin_id, compo.id, del_group: true), title: t('.remove_group'), method: :delete, data: {confirm: t('.are_you_sure_group_del', alias: compo.alias)}) if compo.name == 'components_group' && check_permission(Sites::Admin::ComponentsController, 'destroy') }
           #{ raw ("#{make_menu(compo, except: exceptions, with_text: leftout, controller: Sites::Admin::ComponentsController, params: {skin_id: compo.skin_id})}") }
           #{ "<span class='handle'>#{icon('move') }</span>" if check_permission(Sites::Admin::ComponentsController, 'sort') and !leftout }
           #{ link_to '+', new_site_admin_skin_component_path(compo.skin_id, placeholder: compo.id), class: 'btn btn-success btn-sm', title: t('.new_component') if compo.name.to_s == 'components_group' and check_permission(Sites::Admin::ComponentsController, [:new]) and !leftout }
