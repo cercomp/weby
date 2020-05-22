@@ -22,26 +22,26 @@
   %>
 
   <div class="form-group">
-      <label><%= t(".place")  %></label>
-      <% if params[:placeholder] %>
-        <% if params[:placeholder].match(/^\d*$/) %>
-          <% group = @skin.components.find_by(id: params[:placeholder].to_i) %>
-          <input type="text"disabled="true" class="form-control" value="
-            <%= group ? (group.alias.present? ? group.alias : t("components.#{group.name}.name")) : params[:placeholder] %>"/>
-        <% else %>
-          <input type="text"disabled="true" class="form-control" value="
-            <%= t("themes.#{@skin.theme}.placeholders.#{@component.place_holder}", :default => @component.place_holder) %>"/>
-        <% end %>
+    <label><%= t(".place")  %></label>
+    <% if params[:placeholder] %>
+      <% if params[:placeholder].match(/^\d*$/) %>
+        <% group = @skin.components.find_by(id: params[:placeholder].to_i) %>
+        <input type="text"disabled="true" class="form-control" value="
+          <%= group ? (group.alias.present? ? group.alias : t("components.#{group.name}.name")) : params[:placeholder] %>"/>
       <% else %>
-        <% if @component.place_holder.to_s.match(/^\d*$/) and (group = @skin.components.find_by(id: @component.place_holder.to_i)) %>
-            <input type="text"disabled="true" class="form-control" value="
-             <%= group.alias.present? ? group.alias : t("components.#{group.name}.name") %>"/>
-        <% else %>
-          <%= raw make_mini_layout %>
-        <% end %>
+        <input type="text"disabled="true" class="form-control" value="
+          <%= t("themes.#{@skin.theme}.placeholders.#{@component.place_holder}", :default => @component.place_holder) %>"/>
       <% end %>
-      <%= f.input :place_holder, as: :hidden, input_html: {id: "component_place_holder"} %>
-
+    <% else %>
+      <% if @component.place_holder.to_s.match(/^\d*$/) and (group = @skin.components.find_by(id: @component.place_holder.to_i)) %>
+          <input type="text"disabled="true" class="form-control" value="
+            <%= group.alias.present? ? group.alias : t("components.#{group.name}.name") %>"/>
+      <% else %>
+        <%= raw make_mini_layout %>
+      <% end %>
+    <% end %>
+    <%= f.input :place_holder, as: :hidden, input_html: {id: "component_place_holder"} %>
+  </div>
   <div class="form-actions">
     <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
     <%= link_to t("back"), :back, class: "btn btn-default" %>

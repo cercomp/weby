@@ -364,6 +364,11 @@ class ApplicationController < ActionController::Base
     Weby::Components.is_enabled? comp_name
   end
 
+  def components_template_is_available(skin, comp_name)
+    name = comp_name.split('|').second
+    skin.base_theme&.components_templates&.key?(name)
+  end
+
   def weby_clear
     Weby::Cache.request.clear
     Weby::Settings.clear

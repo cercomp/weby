@@ -11,6 +11,10 @@ en:
           always:             " Always Visible "
           home_page:          " Only on the home page "
           inner_page:         " Only on inner pages "
+        new_components_template:
+          layout:             " Layout "
+          place:              " Place "
+          template:           " Template "
         available_components:
           all:                " All "
           install:            " Add "
@@ -34,3 +38,5 @@ en:
           settings:           " Settings "
         new:
           components:         " Components "
+        create:
+          select_placeholder: " Select the place where the component will be added "

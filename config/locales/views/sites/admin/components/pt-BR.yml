@@ -11,6 +11,10 @@ pt-BR:
           always:             " Sempre mostrar "
           home_page:          " Apenas na página inicial "
           inner_page:         " Apenas nas páginas internas "
+        new_components_template:
+          layout:             " Layout "
+          place:              " Local "
+          template:           " Template "
         available_components:
           all:                " Todos "
           install:            " Adicionar "
@@ -34,3 +38,5 @@ pt-BR:
           settings:           " Configurações"
         new:
           components:         " Componentes "
+        create:
+          select_placeholder: " Selecione o local onde o componente será inserido "

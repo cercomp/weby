@@ -23,15 +23,21 @@ class Weby::Theme
     populate_components if @components
   end
 
-  def insert_components_template name, place
+  def insert_components_template skin, name, place
     return unless @comp_templates[name]
+    @skin = skin
     @comp_templates[name].each do |comp|
       create_component(place, comp)
     end
+    true
   end
 
   def variables
     @layout['variables'].to_h
+  end
+
+  def components_templates
+    @comp_templates.dup.transform_values{|v| {} }
   end
 
   private
@@ -88,7 +94,11 @@ class Weby::Theme
       comps.each do |component|
         component = component.dup
         #component['theme'] = @name
-        create_component place, component
+        if component['name'] == 'components_template'
+          insert_components_template @skin, component['type'], place
+        else
+          create_component place, component
+        end
       end
     end
   end
