@@ -1,6 +1,6 @@
 <% title ".settings" %>
 <% breadcrumb :settings %>
-<% has_subsites = @site.subsites.any? %>
+<% has_subsites = @sites.any? %>
 <div class="tabbable">
   <ul class="nav nav-tabs" id="style-tab">
     <li class="active" >
@@ -44,7 +44,7 @@
     </div>
     <% if has_subsites %>
       <div class="tab-pane" id="tab-subsites">
-        <%= content_tag :div, render('admin/sites/list') if @sites %>
+        <%= content_tag :div, render('sites/subsites') %>
       </div>
     <% end %>
   </div>

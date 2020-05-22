@@ -31,6 +31,18 @@ en:
       description: "Description"
       name: "Name"
       no-site-found: "No site found."
+    subsites:
+      name:                   " Name "
+      dashboard:              " Dashboard "
+      description:            " Description "
+      title:                  " Title "
+      settings:               " Settings "
+      no-site-found:          " No site found."
+      delete:                 " Delete "
+      active:                 " Active "
+      inactive:               " Inactive "
+      deactivate:             " Deactivate "
+      activate:               " Activate "
     site:
       see_all: "See all"
     my_list:
