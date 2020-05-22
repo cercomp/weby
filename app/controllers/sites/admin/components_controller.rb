@@ -76,6 +76,9 @@ class Sites::Admin::ComponentsController < ApplicationController
   end
 
   def destroy
+    if params[:del_group].present? && @component.name == 'components_group'
+      @component.delete_children = true
+    end
     if @component.destroy
       record_activity('destroyed_component', @component)
     end

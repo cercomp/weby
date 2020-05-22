@@ -4,6 +4,8 @@ class ApplicationRecord < ActiveRecord::Base
   def screen_name
     if respond_to?(:title) && self.title.present?
       self.title
+    elsif respond_to?(:alias) && self.alias.present?
+      self.alias
     elsif respond_to?(:name) && self.name.present?
       self.name
     elsif respond_to?(:email) && self.email.present?

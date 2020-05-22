@@ -30,6 +30,8 @@ pt-BR:
           my_styles:        " Meus Estilos "
           styles:           " Estilos "
           head:             " Cabeçalho HTML "
+          remove_group:     " Excluir grupo e componentes filhos "
+          are_you_sure_group_del: "Tem certeza que deseja excluir o grupo de componentes \"%{alias}\" e todos os componentes filhos? "
         new:
           themes:             " Temas "
           no_themes:          " Seu site já tem todos os temas adicionados "
