@@ -16,6 +16,9 @@ class Sites::Admin::ComponentsController < ApplicationController
       @component = Weby::Components.factory(params[:component])
       @component.place_holder = params[:placeholder]
       @component.skin = @skin
+    elsif params[:component].to_s.match(/^components_template/) && components_template_is_available(@skin, params[:component])
+      @name = params[:component].split('|').second
+      render :new_components_template
     else
       render :available_components
     end
@@ -30,17 +33,29 @@ class Sites::Admin::ComponentsController < ApplicationController
   end
 
   def create
-    if params[:component]
-      # creates an new instance of the selected component
-      @component = Weby::Components.factory(params[:component])
-      @component.attributes = component_params
-      @component.skin = @skin
-
-      if @component.save
-        record_activity('created_component', @component)
-        redirect_to(site_admin_skin_path(@skin, anchor: 'tab-layout'), flash: { success: t('successfully_created_param', param: t('component')) })
+    if params[:component].present?
+      if params[:component].match(/^components_template/) && components_template_is_available(@skin, params[:component])
+        @name = params[:component].split('|').second
+        if params[:place_holder].present?
+          @skin.base_theme&.insert_components_template(@skin, @name, params[:place_holder])
+          #record_activity('created_component', @component)
+          redirect_to(site_admin_skin_path(@skin, anchor: 'tab-layout'), flash: { success: t('successfully_created_param', param: t('component')) })
+        else
+          flash[:warning] = t('.select_placeholder')
+          render :new_components_template
+        end
       else
-        render action: 'new'
+        # creates an new instance of the selected component
+        @component = Weby::Components.factory(params[:component])
+        @component.attributes = component_params
+        @component.skin = @skin
+
+        if @component.save
+          record_activity('created_component', @component)
+          redirect_to(site_admin_skin_path(@skin, anchor: 'tab-layout'), flash: { success: t('successfully_created_param', param: t('component')) })
+        else
+          render action: 'new'
+        end
       end
     else
       render :available_components

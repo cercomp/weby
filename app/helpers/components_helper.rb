@@ -56,6 +56,11 @@ module ComponentsHelper
   # Search for the existing components ordering by the I18N name
   def available_components_sorted
     options = { 'Weby' => components_as_options(Weby::Components.components(:weby)) }
+    if (theme_templates = @skin.base_theme&.components_templates).present?
+      options['Templates Weby'] = theme_templates.map do |name, _opt|
+        [t("components.#{name}.name").strip, "components_template|#{name}"]
+      end.sort{ |a, b| a[0] <=> b[0] }
+    end
 
     current_site.active_extensions.each do |extension|
       extension_components = components_as_options(Weby::Components.components(extension.name.to_sym))

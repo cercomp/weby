@@ -1,0 +1,76 @@
+- settings: '{:html_class=>"media-section"}'
+  name: components_group
+  publish: true
+  alias: Multimídia
+  children:
+  - settings: '{:html_class=>"container"}'
+    name: components_group
+    position: 1
+    publish: true
+    alias: Container
+    children:
+    - settings: '{:html_class=>"", :body=>{"pt-BR"=>"<p>Multim&iacute;dia</p>", "en"=>"<p>Media</p>"}}'
+      name: text
+      position: 1
+      publish: true
+      alias: Título
+    - settings: '{:html_class=>"video-grid"}'
+      name: components_group
+      position: 2
+      publish: true
+      alias: Grid Videos
+      children:
+      - settings: '{:html_class=>"video-card highlight"}'
+        name: components_group
+        position: 1
+        publish: true
+        alias: Card Video Destaque
+        children:
+        - settings: '{:url=>"https://www.youtube.com/", :width=>"", :height=>"", :start=>"",
+            :controls=>"1", :privacy=>"0", :html_class=>""}'
+          name: youtube_wrap
+          position: 1
+          publish: true
+          alias: Video Destaque
+        - settings: '{:html_class=>"", :body=>{"pt-BR"=>"<p><strong>T&iacute;tulo</strong></p>\r\n<p>Descri&ccedil;&atilde;o
+            V&iacute;deo Destaque</p>", "en"=>""}}'
+          name: text
+          position: 2
+          publish: true
+          alias: Descrição Video Destaque
+      - settings: '{:html_class=>"video-card"}'
+        name: components_group
+        position: 2
+        publish: true
+        alias: Card Video 2
+        children:
+        - settings: '{:url=>"https://www.youtube.com/", :width=>"", :height=>"", :start=>"",
+            :controls=>"1", :privacy=>"0", :html_class=>""}'
+          name: youtube_wrap
+          position: 1
+          publish: true
+          alias: Video 2
+        - settings: '{:html_class=>"", :body=>{"pt-BR"=>"<p><strong>T&iacute;tulo
+            2</strong></p>\r\n<p>Descri&ccedil;&atilde;o Video 2</p>", "en"=>""}}'
+          name: text
+          position: 2
+          publish: true
+          alias: Descrição Video 2
+      - settings: '{:html_class=>"video-card"}'
+        name: components_group
+        position: 3
+        publish: true
+        alias: Card Video 3
+        children:
+        - settings: '{:url=>"https://www.youtube.com/", :width=>"", :height=>"", :start=>"",
+            :controls=>"1", :privacy=>"0", :html_class=>""}'
+          name: youtube_wrap
+          position: 1
+          publish: true
+          alias: Video 3
+        - settings: '{:html_class=>"", :body=>{"pt-BR"=>"<p><strong>T&iacute;tulo
+            3</strong></p>\r\n<p>Descri&ccedil;&atilde;o Video 3</p>", "en"=>""}}'
+          name: text
+          position: 2
+          publish: true
+          alias: Descrição Video 3
