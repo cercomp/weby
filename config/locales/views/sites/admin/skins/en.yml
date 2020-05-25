@@ -30,6 +30,8 @@ en:
           my_styles:        " My Styles "
           styles:           " Styles "
           head:             " HTML head "
+          remove_group:     " Delete group and children components "
+          are_you_sure_group_del: "Are you sure you want to delete the gruop \"%{alias}\" and all the children components? "
         new:
           themes:             " Themes "
           no_themes:          " Your site already has all themes added "

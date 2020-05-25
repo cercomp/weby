@@ -9,3 +9,6 @@ pt-BR:
         bottom:             " Inferior "
       variables:
         color_scheme:         " Paleta de Cores "
+  components:
+    media:
+      name: Multimídia

@@ -1,0 +1,33 @@
+<% breadcrumb :components_new, @skin %>
+<% title ".layout" %>
+<% content_for :javascripts, javascript_include_tag('components.form') %>
+
+<%= form_tag site_admin_skin_components_path(@skin), method: :post, class: 'form-horizontal' do %>
+  <%= hidden_field_tag :component, params[:component] %>
+  
+  <div class="form-group">
+    <label><%= t(".template")  %></label>
+    <input type="text" disabled="true" class="form-control" value="<%= t("components.#{@name}.name") %>"/>
+  </div>
+
+  <div class="form-group">
+    <label><%= t(".place")  %></label>
+    <% if params[:placeholder] %>
+      <% if params[:placeholder].match(/^\d*$/) %>
+        <% group = @skin.components.find_by(id: params[:placeholder].to_i) %>
+        <input type="text" disabled="true" class="form-control" value="
+          <%= group ? (group.alias.present? ? group.alias : t("components.#{group.name}.name")) : params[:placeholder] %>"/>
+      <% else %>
+        <input type="text" disabled="true" class="form-control" value="
+          <%= t("themes.#{@skin.theme}.placeholders.#{params[:placeholder]}", :default => params[:placeholder]) %>"/>
+      <% end %>
+    <% else %>
+      <%= raw make_mini_layout %>
+    <% end %>
+    <%= hidden_field_tag :place_holder, params[:placeholder], id: "component_place_holder" %>
+  </div>
+  <div class="form-actions">
+    <%= submit_tag t('save'), class: 'btn btn-primary', disable_with: t("please_wait") %>
+    <%= link_to t("back"), :back, class: "btn btn-default" %>
+  </div>
+<% end %>
