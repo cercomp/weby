@@ -10,6 +10,7 @@
   <table class='table table-striped'>
     <thead>
       <tr>
+        <th><%= sortable 'id', 'ID' %></th>
         <th class='site-name'><%= sortable 'name', t(".name") %></th>
         <th><%= sortable 'title', t(".title") %></th>
         <th><%= sortable 'description', t(".description") %></th>
@@ -20,6 +21,7 @@
     <tbody>
       <% @sites.each do |site| %>
         <tr class="<%= site.status %> <%= 'text-danger' if site.status == 'inactive' %>">
+          <td> <%= site.id %> </td>
           <td> <%= link_to site.name, site_url(subdomain: site) %> </td>
           <td> <%= site.title %> </td>
           <td> <%= site.description %> </td>

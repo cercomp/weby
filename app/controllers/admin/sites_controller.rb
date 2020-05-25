@@ -8,9 +8,12 @@ class Admin::SitesController < Admin::BaseController
   def index
     params[:per_page] ||= current_settings.per_page_default
 
-    @sites = Site.name_or_description_like(params[:search]).
-      except(:order).
-      order(sort_column + ' ' + sort_direction)
+    if params[:search].to_s.match(/^\d+$/)
+      @sites = Site.where(id: params[:search])
+    else
+      @sites = Site.name_or_description_like(params[:search])
+    end
+    @sites = @sites.except(:order).order("#{sort_column} #{sort_direction}")
 
     if params[:status_filter].present?
       @sites = @sites.where(status: params[:status_filter])
