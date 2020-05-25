@@ -1,0 +1,73 @@
+- settings: '{:html_class=>"media-section"}'
+  name: components_group
+  publish: true
+  alias: Multimídia
+  children:
+  - settings: '{:html_class=>"", :body=>{"pt-BR"=>"<p>Multim&iacute;dia</p>", "en"=>""}}'
+    name: text
+    position: 1
+    publish: true
+    alias: Título
+  - settings: '{:html_class=>"container"}'
+    name: components_group
+    position: 2
+    publish: true
+    alias: Container
+    children:
+    - settings: '{:html_class=>"box-container"}'
+      name: components_group
+      position: 1
+      publish: true
+      alias: Container Box
+      children:
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://google.com/",
+          :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"", :default_image=>"alternative/box-1.jpg",
+          :title=>{"pt-BR"=>"Box 1", "en"=>""}}'
+        name: image
+        position: 1
+        publish: true
+        alias: Imagem Box 1
+      - settings: '{:html_class=>"subtitle", :body=>{"pt-BR"=>"<p>Subt&iacute;tulo</p>",
+          "en"=>""}}'
+        name: text
+        position: 2
+        publish: true
+        alias: Subtítulo
+    - settings: '{:html_class=>"box-container"}'
+      name: components_group
+      position: 2
+      publish: true
+      alias: Container Box
+      children:
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://google.com/",
+          :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"", :default_image=>"alternative/box-2.jpg",
+          :title=>{"pt-BR"=>"Box 2", "en"=>""}}'
+        name: image
+        position: 1
+        publish: true
+        alias: Imagem Box 2
+      - settings: '{:html_class=>"subtitle", :body=>{"pt-BR"=>"<p>Subt&iacute;tulo</p>",
+          "en"=>""}}'
+        name: text
+        position: 2
+        publish: true
+        alias: Subtítulo
+    - settings: '{:html_class=>"box-container"}'
+      name: components_group
+      position: 3
+      publish: true
+      alias: Container Box
+      children:
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://google.com/",
+          :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"", :default_image=>"alternative/box-3.jpg",
+          :title=>{"pt-BR"=>"Box 3", "en"=>""}}'
+        name: image
+        position: 1
+        publish: true
+        alias: Imagem Box 3
+      - settings: '{:html_class=>"subtitle", :body=>{"pt-BR"=>"<p>Subt&iacute;tulo</p>",
+          "en"=>""}}'
+        name: text
+        position: 2
+        publish: true
+        alias: Subtítulo

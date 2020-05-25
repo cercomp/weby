@@ -9,3 +9,6 @@ en:
         bottom:             " Bottom "
       variables:
         color_scheme:         " Color Scheme "
+  components:
+    media_box:
+      name: Media
