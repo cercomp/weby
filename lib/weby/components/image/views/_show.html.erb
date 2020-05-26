@@ -1,4 +1,6 @@
 <% repository = Repository.find(component.repository_id) rescue nil %>
+<% contrast_repository = (Repository.find(component.contrast_repository_id) rescue nil) if component.contrast_repository_id.present? %>
+
 <section class="image_component <%= component.html_class %> <%= repository.present? || component.default_image.present? ? 'has-image' : 'no-image' %>">
   <% link_url = component.target_id.present? ? main_app.site_page_path(component.target_id) : component.url %>
   <% if repository.present? %>
@@ -24,7 +26,8 @@
                             alt: repository.description,
                             title: repository.description,
                             url: link_url,
-                            target: (component.new_tab ? '_blank' : '_self')
+                            target: (component.new_tab ? '_blank' : '_self'),
+                            data: {contrast_src: contrast_repository&.archive&.url(format)}
                          }) %>
     <% elsif repository.flash? %>
       <%
@@ -46,7 +49,7 @@
     <% if component.title.present? %>
       <h3><%= link_url.present? ? link_to(component.title, link_url, target: (component.new_tab ? '_blank' : '_self')) : component.title %></h3>
     <% end %>
-    <% img = image_tag(component.default_image, style: style_for_dimension(component.width, component.height)) %>
+    <% img = image_tag(component.default_image, style: style_for_dimension(component.width, component.height), data: {contrast_src: (asset_url(component.contrast_default_image) rescue nil)}) %>
     <% if link_url.present? %>
       <%= link_to img, link_url, target: (component.new_tab ? '_blank' : '_self') %>
     <% else %>

@@ -104,6 +104,7 @@ module RepositoryHelper
     img_opt[:style] = @options[:style] ? "#{@options[:style]}#{size}" : size
     img_opt[:id] = @options[:id] if @options[:id]
     img_opt[:class] = @options[:image_class] if @options[:image_class]
+    img_opt[:data] = @options[:data] if @options[:data].present?
     begin
       image = image_tag(@thumbnail, img_opt)
     rescue

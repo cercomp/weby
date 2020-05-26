@@ -1,6 +1,6 @@
 <%= each_i18n_tab do |locale| %>
   <%= repository_search( t(".select_image"), "page_image_#{locale.name}", "image_component[repository_id][#{locale.name}]", (Repository.find(component.repository_id_i18n(locale.name)) rescue nil), multiple: false, file_types: ['image','flash']) %>
-
+  <%= repository_search( t(".select_contrast_image"), "page_contrast_image_#{locale.name}", "image_component[contrast_repository_id][#{locale.name}]", (Repository.find(component.contrast_repository_id_i18n(locale.name)) rescue nil), multiple: false, file_types: ['image','flash'], class: 'contrast') %>
   <%= f.component_i18n_input locale, :title, as: :string %>
 <% end %>
 
@@ -9,6 +9,15 @@
   <div>
     <div class="image_tag">
       <%= image_tag(component.default_image, style: style_for_dimension(component.width, component.height)) %>
+    </div>
+  </div>
+<% end %>
+
+<% if component.contrast_default_image.present? %>
+  <%= label_tag t('.contrast_default_image') %>
+  <div>
+    <div class="contrast_image_tag">
+      <%= image_tag(component.contrast_default_image, style: style_for_dimension(component.width, component.height)) %>
     </div>
   </div>
 <% end %>

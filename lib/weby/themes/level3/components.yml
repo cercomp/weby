@@ -42,7 +42,7 @@ top:
       alias: Logo
     - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://www.ufg.br",
         :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"ufg-logo",
-        :default_image=>"level3/marca-ufg.svg"}'
+        :default_image=>"level3/marca-ufg.svg", :contrast_default_image=>"level3/marca-ufg-white.svg"}'
       name: image
       position: 2
       publish: true
@@ -318,7 +318,8 @@ bottom:
       publish: true
     - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://www.ufg.br",
         :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"ufg-logo",
-        :default_image=>"level3/marca-ufg.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
+        :default_image=>"level3/marca-ufg.svg", :contrast_default_image=>"level3/marca-ufg-white.svg",
+        :title=>{"pt-BR"=>"", "en"=>""}}'
       name: image
       position: 2
       publish: true
@@ -351,7 +352,7 @@ bottom:
     children:
     - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://sic.ufg.br",
         :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"", :default_image=>"level3/marca-ai.png",
-        :title=>{"pt-BR"=>"", "en"=>""}}'
+        :contrast_default_image=>"level3/marca-ai-white.png", :title=>{"pt-BR"=>"", "en"=>""}}'
       name: image
       position: 1
       publish: true

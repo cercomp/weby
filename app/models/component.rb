@@ -80,6 +80,10 @@ class Component < ApplicationRecord
     hash
   end
 
+  def specialize
+    Weby::Components.factory(self)
+  end
+
   protected
 
   def settings_map

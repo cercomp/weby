@@ -1,8 +1,8 @@
 class ImageComponent < Component
-  component_settings :repository_id, :size, :height, :width, :target_type, :target_id, :url,
-  					 :new_tab, :html_class, :default_image, :title
+  component_settings :repository_id, :contrast_repository_id, :size, :height, :width, :target_type, :target_id, :url,
+  					 :new_tab, :html_class, :default_image, :contrast_default_image, :title
 
-  i18n_settings :repository_id, :title
+  i18n_settings :repository_id, :contrast_repository_id, :title
 
   alias_method :_new_tab, :new_tab
   def new_tab

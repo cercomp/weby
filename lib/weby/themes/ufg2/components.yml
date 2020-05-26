@@ -13,7 +13,7 @@ top:
     children:
     - settings: '{:size=>"", :width=>"", :height=>"", :url=>"/",
         :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"ufg-logo",
-        :default_image=>"ufg2/marca-ufg.svg"}'
+        :default_image=>"ufg2/marca-ufg.svg", :contrast_default_image=>"ufg2/marca-ufg-white.svg"}'
       name: image
       position: 1
       publish: true
@@ -399,7 +399,7 @@ bottom:
     children:
     - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"",
         :new_tab=>"0", :html_class=>"ufg-logo", :default_image=>"ufg2/marca-ufg.svg",
-        :title=>{"pt-BR"=>"", "en"=>""}}'
+        :contrast_default_image=>"ufg2/marca-ufg-white.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
       name: image
       position: 1
       publish: true
@@ -452,8 +452,8 @@ bottom:
     alias: Fundo
     children:
     - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"",
-        :new_tab=>"0", :html_class=>"", :default_image=>"ufg2/marca-ai.png", :title=>{"pt-BR"=>"",
-        "en"=>""}}'
+        :new_tab=>"0", :html_class=>"", :default_image=>"ufg2/marca-ai.png",
+        :contrast_default_image=>"ufg2/marca-ai-white.png", :title=>{"pt-BR"=>"", "en"=>""}}'
       name: image
       position: 1
       publish: true
