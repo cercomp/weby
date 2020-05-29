@@ -10,7 +10,9 @@ module Sticker
     has_one :own_banner_site, ->(this){ where(site_id: this.site_id) }, class_name: "::Sticker::BannerSite", foreign_key: :sticker_banner_id
 
     validates :title, :user_id, presence: true
+    validate :validate_date
 
+    scope :available, -> { where('sticker_banners.date_begin_at <= :time AND (sticker_banners.date_end_at is NULL OR sticker_banners.date_end_at > :time)', time: Time.current) }
     scope :published, -> { where(publish: true) }
 
     scope :can_share, -> { where(shareable: true) }
@@ -45,5 +47,12 @@ module Sticker
 
       self.create!(attrs)
     end
+
+    private
+
+    def validate_date
+      self.date_begin_at = Time.current if date_begin_at.blank?
+    end
+
   end
 end

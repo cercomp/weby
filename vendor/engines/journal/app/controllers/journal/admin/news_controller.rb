@@ -235,13 +235,11 @@ module Journal::Admin
     end
 
     def news_params
-      params.require(:news).permit(:source, :url,
-                                   { news_sites_attributes: [:id, :site_id, :journal_news_id, :category_list,
-                                                            :front, :date_begin_at,
-                                                            :date_end_at] },
-                                   :image, :status,
-                                   { i18ns_attributes: [:id, :locale_id, :title,
-                                       :summary, :text, :_destroy],
+      params.require(:news).permit(:source, :url, :image, :status, :date_begin_at, :date_end_at,
+                                   { news_sites_attributes: [:id, :site_id, :journal_news_id,
+                                                              :category_list, :front],
+                                     i18ns_attributes: [:id, :locale_id, :title,
+                                                        :summary, :text, :_destroy],
                                      related_file_ids: [] })
     end
 
