@@ -16,7 +16,7 @@ module Journal
     scope :front, -> { where(front: true) }
     scope :no_front, -> { where(front: false) }
     scope :available, -> { joins(:news).where('journal_news.date_begin_at is NULL OR journal_news.date_begin_at <= :time', time: Time.current) }
-    scope :available_fronts, -> { front.joins(:news).where('journal_news.date_end_at is NULL OR journal_news.date_end_at > :time', time: Time.current) }
+    scope :available_fronts, -> { available.front.joins(:news).where('journal_news.date_end_at is NULL OR journal_news.date_end_at > :time', time: Time.current) }
 
     # tipos de busca
     # 0 = "termo1 termo2"
