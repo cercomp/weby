@@ -38,14 +38,6 @@ module Journal
       @curr_ns ||= object.news_sites.find_by(site_id: object.site_id)
     end
 
-    def date_begin_at
-      current_news_site.date_begin_at
-    end
-
-    def date_end_at
-      current_news_site.date_begin_at
-    end
-
     def front
       current_news_site.front
     end

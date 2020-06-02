@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_07_171144) do
+ActiveRecord::Schema.define(version: 2020_05_29_140855) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -173,8 +173,6 @@ ActiveRecord::Schema.define(version: 2020_05_07_171144) do
     t.integer "site_id", null: false
     t.integer "position"
     t.boolean "front", default: false
-    t.datetime "date_begin_at"
-    t.datetime "date_end_at"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["journal_news_id", "site_id"], name: "index_journal_news_sites_on_journal_news_id_and_site_id"
@@ -386,8 +384,6 @@ ActiveRecord::Schema.define(version: 2020_05_07_171144) do
     t.integer "sticker_banner_id", null: false
     t.integer "site_id", null: false
     t.integer "position"
-    t.datetime "date_begin_at"
-    t.datetime "date_end_at"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["sticker_banner_id", "site_id"], name: "index_sticker_banner_sites_on_sticker_banner_id_and_site_id"

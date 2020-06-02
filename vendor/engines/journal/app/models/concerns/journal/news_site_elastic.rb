@@ -185,8 +185,8 @@ module Journal
         news_updated_at: news.updated_at.to_i,
         created_at: created_at.to_i,
         updated_at: updated_at.to_i,
-        front_begin_at: date_begin_at.to_i > 0 ? date_begin_at.to_i : nil,
-        front_end_at:   date_end_at.to_i > 0 ? date_end_at.to_i : nil,
+        front_begin_at: news.date_begin_at.to_i > 0 ? news.date_begin_at.to_i : nil,
+        front_end_at:   news.date_end_at.to_i > 0 ? news.date_end_at.to_i : nil,
         status: news.status,
         user_id: news.user_id,
         user_name: news.user.first_name

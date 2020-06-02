@@ -21,7 +21,7 @@
           <%= link_to banner.title, admin_banner_path(banner) %>
         </td>
         <td><%= banner_site.category_list %></td>
-        <td><%=l banner_site.date_begin_at, format: :short %></td>
+        <td><%=l banner.date_begin_at, format: :short %></td>
         <td style="text-align:center;">
           <%= publication_status_banner(banner, disabled: !banner.owned_by?(current_site) ) %>
         </td>
