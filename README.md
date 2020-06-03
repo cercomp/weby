@@ -1,7 +1,6 @@
 ![Weby CMS](https://files.cercomp.ufg.br/weby/up/350/o/weby-logo.png)
 
 [![Build Status](https://travis-ci.org/cercomp/weby.png?branch=master)](https://travis-ci.org/cercomp/weby)
-[![PullReview stats](https://www.pullreview.com/github/cercomp/weby/badges/master.svg?)](https://www.pullreview.com/github/cercomp/weby/reviews/master)
 
 Para informações em Português do Brasil acesse o [site do projeto](http://weby.cercomp.ufg.br).
 
