@@ -18,9 +18,9 @@ module Journal
       current_news_site.category_list
     end
 
-    def text
-      JSON::dump(object.text)
-    end
+    # def text
+    #   JSON::dump(object.text)
+    # end
 
     def slug
       object.to_param.to_s
@@ -43,7 +43,7 @@ module Journal
     end
 
     def position
-      current_news_site.front
+      current_news_site.position
     end
   end
 end
