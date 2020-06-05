@@ -4,11 +4,10 @@ module Journal
     attributes :id, :status, :author, :category_list, :slug, :image,
                :site_id, :source, :front, :position, :view_count,
                :date_begin_at, :date_end_at,
+               :title, :summary, :text, :locale,
                :created_at, :updated_at, :deleted_at
 
     attribute :url, key: :redirect_url
-
-    attributes :title, :summary, :text, :locale
 
     def image
       object.image ? object.image.archive.url : nil
