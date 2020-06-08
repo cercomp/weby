@@ -19,13 +19,19 @@
     position: absolute;
     text-align: center;
     text-transform: uppercase;
-    top: 40px;
-    width: 94px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
   }
 
   &:hover span,
   &.without-image span{
-    display: block; 
+    display: block;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 0;
   }
 
   figure {
@@ -33,6 +39,15 @@
     margin: 0;
     text-align: center;
     width: 100px;
+  }
+
+  .contrast {
+    figure {
+      background-color: #888;
+    }
+    figcaption {
+      color: #f2f2f2;
+    }
   }
 
   figure img {

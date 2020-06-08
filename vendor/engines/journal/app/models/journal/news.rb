@@ -29,6 +29,8 @@ module Journal
     scope :review, -> { where(status: 'review') }
     scope :draft, -> { where(status: 'draft') }
     scope :by_user, ->(id) { where(user_id: id) }
+    scope :available, -> { where('journal_news.date_begin_at is NULL OR journal_news.date_begin_at <= :time', time: Time.current) }
+    scope :available_fronts, -> { available.front.where('journal_news.date_end_at is NULL OR journal_news.date_end_at > :time', time: Time.current) }
 
     # tipos de busca
     # 0 = "termo1 termo2"

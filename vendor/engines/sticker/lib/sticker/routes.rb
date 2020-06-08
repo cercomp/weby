@@ -15,6 +15,8 @@ module Sticker
             end
           end
         end
+        # json route - API Rest
+        get :banners, to: 'sticker/banners#index', as: :banners_index
       end
     end
   end

@@ -4,11 +4,10 @@ module Journal
     attributes :id, :status, :author, :category_list, :slug, :image,
                :site_id, :source, :front, :position, :view_count,
                :date_begin_at, :date_end_at,
+               :title, :summary, :text, :locale,
                :created_at, :updated_at, :deleted_at
 
     attribute :url, key: :redirect_url
-
-    attributes :title, :summary, :text, :locale
 
     def image
       object.image ? object.image.archive.url : nil
@@ -18,9 +17,9 @@ module Journal
       current_news_site.category_list
     end
 
-    def text
-      JSON::dump(object.text)
-    end
+    # def text
+    #   JSON::dump(object.text)
+    # end
 
     def slug
       object.to_param.to_s
@@ -38,20 +37,12 @@ module Journal
       @curr_ns ||= object.news_sites.find_by(site_id: object.site_id)
     end
 
-    def date_begin_at
-      current_news_site.date_begin_at
-    end
-
-    def date_end_at
-      current_news_site.date_begin_at
-    end
-
     def front
       current_news_site.front
     end
 
     def position
-      current_news_site.front
+      current_news_site.position
     end
   end
 end

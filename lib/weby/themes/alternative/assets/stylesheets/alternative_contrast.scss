@@ -107,6 +107,10 @@ body > header,
   border-color: var(--light-blue);
 }
 
+.banner_list_component.card-banner .slides>li {
+  background-color: var(--gray-15);
+}
+
 .front_news_title a,
 .front_news_title span,
 .event_list_title a,
@@ -120,6 +124,7 @@ body > header,
 .media-section .text_component p,
 .media-section .image_component h3,
 .media-section .text_component.subtitle p,
+.media-section .box-container .text_component p,
 .about-home h2,
 .about-home .about-row p,
 .simple-title,

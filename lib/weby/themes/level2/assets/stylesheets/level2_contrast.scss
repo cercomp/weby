@@ -40,14 +40,16 @@ body > header,
 .main-links .image_component,
 .front_news_component:nth-of-type(odd) #news article,
 .services .services-icons .image_component:hover,
-.footer
+.footer,
+.media-section
 {
   background-color: var(--gray-12);
 }
 
 .menu_accessibility_component.bar .direct-access span b,
 .menu_accessibility_component.bar .access-actions a,
-.menu_accessibility_component.bar .accessibility_color a {
+.menu_accessibility_component.bar .accessibility_color a
+{
   background-color: var(--gray-15);
   color: var(--white);
   opacity: .6;
@@ -58,7 +60,9 @@ body > header,
 .side-dock .anchor-events.active, .side-dock .anchor-events.active:hover,
 .side-dock .anchor-serufg.active, .side-dock .anchor-serufg.active:hover,
 .side-dock .anchor-network.active, .side-dock .anchor-network.active:hover,
-.side-dock .anchor-services.active, .side-dock .anchor-services.active:hover {
+.side-dock .anchor-services.active, .side-dock .anchor-services.active:hover,
+.media-section .video-card,
+.media-section .video-card .text_component p {
   background-color: var(--gray-15);
   color: var(--white);
   opacity: .87;
@@ -97,6 +101,7 @@ body > header,
 .subsite_front_news_component .list article summary p,
 .boxes-section .image_component h3,
 .boxes-section .text_component.subtitle p,
+.media-section .container > .text_component,
 .event_list_component #events article h2 a,
 .fixed-menus h3,
 .fixed-menus .menu_component > menu li a,

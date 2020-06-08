@@ -12,12 +12,8 @@ Gem::Specification.new do |s|
   s.homepage    = "http://weby.cercomp.ufg.br"
   s.summary     = "News extension"
   s.description = "Add news funcionality to the site"
-  s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
-  s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "> 4.0"
-
-  s.add_development_dependency "sqlite3"
 end

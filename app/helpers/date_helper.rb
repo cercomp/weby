@@ -30,10 +30,10 @@ module DateHelper
   end
   private :publication_status_news
 
-  def front_status(page, options = {})
+  def front_status(news_site, options = {})
     ''.tap do |html|
-      html << toggle_field(page, 'front', 'toggle', options)
-      html << "<span class=\"label label-important publish-warning\" title=\"#{t('expired')}\">!</span>" if page.date_end_at and page.front and page.date_end_at <= Time.current
+      html << toggle_field(news_site, 'front', 'toggle', options)
+      html << "<span class=\"label label-important publish-warning\" title=\"#{t('expired')}\">!</span>" if news_site.news.date_end_at and news_site.front and news_site.news.date_end_at <= Time.current
     end.html_safe
   end
 

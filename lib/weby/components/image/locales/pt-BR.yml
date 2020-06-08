@@ -22,4 +22,6 @@ pt-BR:
       show:
       form:
         select_image:  'Selecione a imagem'
+        select_contrast_image: 'Selecione a imagem contraste'
         default_image: 'Imagem padrão'
+        contrast_default_image: 'Imagem padrão contraste'

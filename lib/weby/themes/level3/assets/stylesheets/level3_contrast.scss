@@ -7,7 +7,7 @@ html, body,
 .boxes-section,
 .services,
 .subsite_front_news_component .list article {
-  background-color: var(--gray-0);
+  background-color: var(--gray-0) !important;
   color: #fff;
 }
 
@@ -28,7 +28,7 @@ html, body,
 .flexslider,
 .feedback-custom-text .faq
 {
-  background-color: var(--gray-5);
+  background-color: var(--gray-5) !important;
   background-image: none;
   color: #fff;
 }

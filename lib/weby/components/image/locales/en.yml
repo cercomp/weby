@@ -22,4 +22,6 @@ en:
       show:
       form:
         select_image: 'Select image'
+        select_contrast_image: 'Select contrast image'
         default_image: 'Default Image'
+        contrast_default_image: 'Default contrast image'
