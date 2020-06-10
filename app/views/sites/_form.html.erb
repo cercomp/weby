@@ -1,22 +1,20 @@
 <%= simple_form_for @site, url: update_site_admin_path do |f| %>
   <%= f.show_errors %>
-
   <%= repository_search t(".site_image"), "site_image",
     "site[top_banner_id]", @site.repository,
     multiple: false, file_types: 'image' %>
-
+  <%= render_site_url(@site) %>
   <% if current_user.is_admin? %>
     <%= f.input :name, :hint => t("field_required") %>
-    <%= f.input :parent_id, :collection => main_sites_list(current_site).collect{|s| ["#{s.title || s.name}#{ " [#{t('inactive')}]" if !s.active? }" ,s.id]}, :label => t('.main_site') %>
-    <%= f.input :url, :hint =>  (t("field_required") + " " + t(".example_url")), :placeholder => "http://"%>
+    <%= f.input :parent_id, :collection => main_sites_options(current_site), :label => t('.main_site') %>
     <%= f.association :groupings, input_html: {class: 'select2 site-groupings'} %>
-    <%= f.input :domain, :hint => t(".domain_explain") %>
+    <%= f.input :domain, :hint => "#{t(".domain_explain")} (#{default_domain})" %>
   <% else %>
     <%= f.input :parent, :label => t('.main_site'), as: :string, input_html: {:value => @site.main_site.title, :disabled => "disabled" } if @site.main_site %>
   <% end %>
 
   <%= f.input :title, :input_html => {:maxlength => 50} %>
-  <%= f.input :description, :input_html => {:rows => 8}, :hint => t(".site_comments"), :as => :text %>
+  <%= f.input :description, :input_html => {:rows => 4}, :hint => t(".site_comments"), :as => :text %>
   <%#= f.input :theme, :collection => @themes.collect{|name| [t("themes.#{name}.title"), name]} %>
   <%= f.input :body_width, :hint => t(".example_width") %>
   <%= f.input :google_analytics, :input_html => {:rows => 4}, :hint => t(".google_analytics_hint"), :as => :text %>

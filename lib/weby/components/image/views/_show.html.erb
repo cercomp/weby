@@ -24,7 +24,7 @@
                             as: link_url.present? ? 'link' : 'image',
                             style: size,
                             alt: repository.description,
-                            title: repository.description,
+                            #title: repository.title,
                             url: link_url,
                             target: (component.new_tab ? '_blank' : '_self'),
                             data: {contrast_src: contrast_repository&.archive&.url(format)}

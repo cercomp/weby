@@ -4,19 +4,19 @@ describe Site do
   skip 'Scopes' do
   end
 
-  context 'url' do
-    it { expect(subject).to validate_presence_of(:url) }
+  # context 'url' do
+  #   it { expect(subject).to validate_presence_of(:url) }
 
-    it 'should accept valid url formats' do
-      expect(subject).to allow_value('http://www.ufg.br').for(:url)
-      expect(subject).to allow_value('https://www.test.ufg.br').for(:url)
-    end
+  #   it 'should accept valid url formats' do
+  #     expect(subject).to allow_value('http://www.ufg.br').for(:url)
+  #     expect(subject).to allow_value('https://www.test.ufg.br').for(:url)
+  #   end
 
-    it 'should reject invalid url formats' do
-      expect(subject).not_to allow_value('www.ufg.br').for(:url)
-      expect(subject).not_to allow_value('random_string').for(:url)
-    end
-  end
+  #   it 'should reject invalid url formats' do
+  #     expect(subject).not_to allow_value('www.ufg.br').for(:url)
+  #     expect(subject).not_to allow_value('random_string').for(:url)
+  #   end
+  # end
 
   context 'name' do
     it { expect(subject).to validate_presence_of(:name) }

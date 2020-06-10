@@ -2,7 +2,8 @@ require 'action_dispatch/routing/route_set'
 
 module SubdomainRoute
   def with_subdomain(site, _options)
-    domain = Weby::Settings::Weby.domain || Weby::Cache.request[:domain]
+    port = Weby::Cache.request[:port]
+    domain = Weby::Settings::Weby.domain || [Weby::Cache.request[:domain], port.to_i == 80 ? nil : port].compact.join(':')
     if not site
       subdomain = Weby::Settings::Weby.sites_index
     else

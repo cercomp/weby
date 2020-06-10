@@ -10,8 +10,7 @@ module Journal::Admin
       Prawn::Document.generate("public/newsletter.pdf") do |pdf|
         if !comp.report_logo.nil? && !comp.position_logo.nil?
           if !comp.report_logo.empty? && !comp.position_logo.empty?
-            logo = @site.url+Repository.find(comp.report_logo).archive.url(:o, timestamp: false)
-            pdf.image open(logo), :at => [comp.position_logo == 'left' ? 10 : 425, 730]
+            pdf.image read_image(Repository.find(comp.report_logo)), :at => [comp.position_logo == 'left' ? 10 : 425, 730]
           end
         end
         pdf.text comp.report_title, size: 16, align: :center, style: :bold
@@ -50,6 +49,14 @@ module Journal::Admin
     end
 
     private
+
+    def read_image repository
+      if ENV['STORAGE_BUCKET'].present? && Rails.env.production?
+        open(repository.archive.url(:o, timestamp: false))
+      else
+        "#{Rails.public_path}#{repository.archive.url(:o, timestamp: false)}"
+      end
+    end
 
     def get_news
       @dt_range = params[:dt_range]

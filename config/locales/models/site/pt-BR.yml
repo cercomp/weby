@@ -4,7 +4,7 @@ pt-BR:
       site:                " Site "
     attributes:
       site:
-        name:              " Nome "
+        name:              "Nome"
         created_at:        " Criado em "
         updated_at:        " Atualizado em "
         url:               " URL "

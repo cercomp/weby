@@ -19,7 +19,7 @@
     <div class="well repo-template closeable" style="display: none;">
       <button type="button" class="close" data-dismiss="repo-item" tabindex="-1" title="<%= t("destroy") %>">&times;</button>
         <%= f.input :archive, as: :string, input_html: {disabled: true, value: ""} %>
-        <%= f.input :title %>
+        <%= f.input :title, required: true %>
         <%= f.input :legend %>
         <%= f.input :description, as: :text %>
             <label class="string required control-label">

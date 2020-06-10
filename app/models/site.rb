@@ -36,9 +36,13 @@ class Site < ApplicationRecord
   before_destroy do
     repositories.update_all(archive_file_name: nil)
   end
+  before_save do
+    self.url = Rails.application.routes.url_helpers.root_url(subdomain: self)
+  end
 
-  validates :name, :title, :url, :per_page, presence: true
-  validates :url, format: { with: /\Ahttp[s]{,1}:\/\/[\w\.\-\%\#\=\?\&]+\.([\w\.\-\%\#\=\?\&]+\/{,1})*\z/i }
+
+  validates :name, :title, :per_page, presence: true #:url,
+  #validates :url, format: { with: /\Ahttps?:\/\/[\w\.\-\%\#\=\?\&]+\.([\w\.\-\%\#\=\?\&]+\/{,1})*\z/i }
   validates :name, uniqueness: { scope: :parent_id }, format: { with: /\A^[a-z0-9_\-]+\z/ }
   validates :per_page, format: { with: /\A([0-9]+[,\s]*)+[0-9]*\z/ }
   validates :title, length: { maximum: 50 }
@@ -101,6 +105,18 @@ class Site < ApplicationRecord
     else
       google_analytics.to_s.html_safe
     end
+  end
+
+  def url_parts
+    port = Weby::Cache.request[:port]
+    default_domain = Weby::Settings::Weby.domain || [Weby::Cache.request[:domain], port.to_i == 80 ? nil : port].compact.join(':')
+    site_domain = domain.present? ? domain : default_domain
+    {
+      site_name: name.present? ? "#{name}." : nil,
+      parent_name: parent_id.present? ? "#{main_site.name}." : nil,
+      site_domain: site_domain,
+      default_domain: default_domain
+    }
   end
 
   def head_html_code

@@ -28,7 +28,6 @@ class Admin::SitesController < Admin::BaseController
 
   def create
     @site = Site.new(site_params)
-
     if @site.save
       Weby::Rights.seed_roles @site.id
       record_activity('created_site', @site)
@@ -72,7 +71,7 @@ class Admin::SitesController < Admin::BaseController
   end
 
   def site_params
-    params.require(:site).permit(:title, :top_banner_id, :name, :parent_id, :url,
+    params.require(:site).permit(:title, :top_banner_id, :name, :parent_id,
                                  :domain, :description, :view_desc_pages, :theme, :restrict_theme,
                                  :body_width, :google_analytics, :per_page, :per_page_default, :status,
                                  {locale_ids: [], grouping_ids: []})
