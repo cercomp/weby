@@ -4,7 +4,7 @@ en:
       site:                " Site "
     attributes:
       site:
-        name:              " Name "
+        name:              "Name"
         created_at:        " Created at "
         updated_at:        " Updated at "
         url:               " URL "

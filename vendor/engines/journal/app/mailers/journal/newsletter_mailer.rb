@@ -3,22 +3,22 @@ module Journal
     helper ::RepositoryHelper
     helper :application
 
-    def confirm_email(user, url)
+    def confirm_email(user, site)
       @newsletter_user = user
-      @newsletter_url = url+(url[url.length-1]=="/" ? "" : "/")+"newsletters/confirmation?token="+@newsletter_user.token+":"+@newsletter_user.id.to_s
+      @newsletter_url = newsletter_url('confirmation', token: "#{@newsletter_user.token}:#{@newsletter_user.id}", subdomain: site)
       mail(from: Devise.mailer_sender, to: @newsletter_user.email, subject: t("user_inactive"))
     end
 
     def news_email(from, to, subject, site, news)
       @site = site
-      @url = site.url + (site.url[site.url.length-1]=="/" ? "" : "/") + "newsletters/new?opt=delete"
+      @optout_url = new_newsletter_url(opt: 'delete', subdomain: site)
       @news = news
       mail(from: from, bcc: to, subject: subject)
     end
 
-    def delete_email(from, user, url)
+    def delete_email(from, user, site)
       @newsletter_user = user
-      @newsletter_delete_url = url+(url[url.length-1]=="/" ? "" : "/")+"newsletters/getout?token="+@newsletter_user.token+":"+@newsletter_user.id.to_s
+      @newsletter_delete_url = newsletter_url('getout', token: "#{@newsletter_user.token}:#{@newsletter_user.id}", subdomain: site)
       mail(from: from, to: @newsletter_user.email, subject: t("user_inactive"))
     end
   end

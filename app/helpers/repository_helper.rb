@@ -187,17 +187,14 @@ module RepositoryHelper
     end
   end
 
-  def full_url_image(text, url)
-    position = 0
-    while !text.index('src=', position).nil? do
-      text.insert(text.index('src=', position) + 5, url)
-      position = text.index('src=', position) + 5
+  def render_user_content str
+    if ENV['STORAGE_HOST'].present?
+      str = str.to_s.gsub(/="\/up\//, "=\"//#{ENV['STORAGE_HOST']}/#{ENV['STORAGE_BUCKET']}/up/")
     end
-    position = 0
-    while !text.index('href=', position).nil? do
-      text.insert(text.index('href=', position) + 6, url)
-      position = text.index('href=', position) + 6
-    end
-    text
+    str.html_safe
+  end
+
+  def externalize_links(text, url)
+    text.gsub(/(src|href)="\/([^\/])/, "\\1=\"#{url}\\2").html_safe
   end
 end

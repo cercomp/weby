@@ -1,5 +1,6 @@
 module Journal
   class NewsSerializer < ActiveModel::Serializer
+    include ::RepositoryHelper
 
     attributes :id, :status, :author, :category_list, :slug, :image,
                :site_id, :source, :front, :position, :view_count,
@@ -17,9 +18,13 @@ module Journal
       current_news_site.category_list
     end
 
-    # def text
-    #   JSON::dump(object.text)
-    # end
+    def summary
+      externalize_links(render_user_content(object.summary), Rails.application.routes.url_helpers.root_url(subdomain:  object.site))
+    end
+
+    def text
+      externalize_links(render_user_content(object.text), Rails.application.routes.url_helpers.root_url(subdomain:  object.site))
+    end
 
     def slug
       object.to_param.to_s

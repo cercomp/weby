@@ -7,7 +7,7 @@ module Journal
       if not params[:email].blank?
         if params[:opt].to_s == "delete"
           user = Newsletter.where("email = ? AND site_id = ?", params[:email], current_site.id.to_s)[0]
-          NewsletterMailer.delete_email(Weby::Components.factory(@comp).send_as, user, current_site.url).deliver_now
+          NewsletterMailer.delete_email(Weby::Components.factory(@comp).send_as, user, current_site).deliver_now
           redirect_back(flash: {success: t('deactivation_sent_successful')}, fallback_location: root_url(subdomain: current_site))
         else
           ntr = Newsletter.where("email = ? AND site_id = ?", params[:email], current_site.id.to_s)[0]
@@ -18,7 +18,7 @@ module Journal
                                confirm: false) if ntr.nil?
           respond_to do |format|
             if ntr.save
-              NewsletterMailer.confirm_email(ntr, current_site.url).deliver_now
+              NewsletterMailer.confirm_email(ntr, current_site).deliver_now
               format.html { redirect_back(flash: {success: t('activation_sent_successful')}, fallback_location: root_url(subdomain: current_site)) }
               format.js
             else

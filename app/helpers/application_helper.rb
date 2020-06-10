@@ -367,17 +367,6 @@ module ApplicationHelper
     end
   end
 
-  def render_user_content str
-    if ENV['STORAGE_HOST'].present?
-      str = str.to_s.gsub(/="\/up\//, "=\"//#{ENV['STORAGE_HOST']}/#{ENV['STORAGE_BUCKET']}/up/")
-    end
-    str.html_safe
-  end
-
-  def main_sites_list(curr_site)
-    Site.where(parent_id: nil).order('name') - [curr_site]
-  end
-
   def content_tag_if(condition, tag_name, options = {}, &block)
     content_tag(tag_name, options, &block) if condition
   end

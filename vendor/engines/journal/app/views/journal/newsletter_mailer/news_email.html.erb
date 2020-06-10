@@ -1,6 +1,5 @@
-<% image = weby_file_view(@news.image, :l, '128', nil) %>
-<% if not image.nil? %>
-  <%= full_url_image(image, @site.url) %>
+<% if @news.image %>
+  <%= weby_file_view(@news.image, :l, '128', nil, as: :image) %>
 <% end %>
 
 <header>
@@ -13,21 +12,20 @@
     <%= "#{@news.user} #{l(@news.created_at, format: :short)}" if @site.view_desc_pages %>
   </p>
   <p>
-    <%= raw full_url_image(render_user_content(@news.summary), @site.url) %>
+    <%= externalize_links(render_user_content(@news.summary), root_url(subdomain: @site)) %>
   </p>
 </summary>
 
 <div class="body">
-  <% text = render_user_content @news.text %>
-  <%= raw full_url_image(text, @site.url) %>
+  <%= externalize_links(render_user_content(@news.text), root_url(subdomain: @site)) %>
 </div>
 
 <% if @news.url? %>
   <p><%= t(".related_url") %>: <%= link_to @news.url, @news.url %></p>
 <% end %>
 <br />
-<%= link_to t(".original_news"), "#{@site.url}/n/#{@news.id}" %>
+<%= link_to t(".original_news"), news_url(@news, subdomain: @site) %>
 <br />
-<%= link_to t(".text_getout"), @url %>
+<%= link_to t(".text_getout"), @optout_url %>
 <br />
 

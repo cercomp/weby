@@ -29,4 +29,30 @@ module SitesHelper
   def site_status_options
     [[t('active'), 'active'], [t('inactive'), 'inactive']]
   end
+
+  def main_sites_list curr_site
+    Site.where(parent_id: nil).order('name') - [curr_site]
+  end
+
+  def main_sites_options site
+    main_sites_list(site).collect{|s| ["#{s.title || s.name}#{ " [#{t('inactive')}]" if !s.active? }" ,s.id, {data: {name: s.name}}]}
+  end
+
+  def default_domain
+    port = Weby::Cache.request[:port]
+    Weby::Settings::Weby.domain || [Weby::Cache.request[:domain], port.to_i == 80 ? nil : port].compact.join(':')
+  end
+
+  def render_site_url site
+    parts = site.url_parts
+    placeholder = Site.human_attribute_name(:name)
+    content_tag :div, class: 'form-group' do
+      concat content_tag :label, 'URL'
+      concat( content_tag(:div, class: 'url-preview') do
+        concat content_tag(:span, parts[:site_name].present? ? parts[:site_name] : "[#{placeholder}].", class: 'site-domain', data: {placeholder: placeholder})
+        concat content_tag(:span, parts[:parent_name], class: 'parent-domain')
+        concat content_tag(:span, parts[:site_domain], class: 'domain', data: {default: parts[:default_domain]})
+      end)
+    end
+  end
 end

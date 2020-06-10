@@ -3,7 +3,7 @@ require "rails_helper"
 describe Admin::SitesController do
   let(:user) { FactoryGirl.create(:user, is_admin: true) }
   let(:locale) { FactoryGirl.create(:locale) }
-  let!(:first_site) { Site.create(:name => "site", :title => "Site", :url => "http://site.lvh.me") }
+  let!(:first_site) { Site.create(:name => "site", :title => "Site") }
 
   before { sign_in user }
 
@@ -54,7 +54,7 @@ describe Admin::SitesController do
     end
 
     context "when invalid" do
-      before { post :create, site: { name: "", title: "", url: "http://testsite.lvh.me" } }
+      before { post :create, site: { name: "", title: ""} }
 
       it "will render :new view" do
         expect(response).to render_template(:new)
@@ -64,8 +64,7 @@ describe Admin::SitesController do
 
   describe "PUT #update" do
     context "when valid" do
-      before { post :create, :post => { :name => "test", :title => "Test",
-                                        :url => "http://test.lvh.me"  } }
+      before { post :create, :post => { :name => "test", :title => "Test"} }
 
       skip "will redirect to edit path" do
         expect(response).to redirect_to(edit_admin_site_url(first_site.id))
@@ -73,7 +72,7 @@ describe Admin::SitesController do
     end
 
     context "when invalid" do
-      before { post :create, :post => { :name => "", :title => "", :url => "" } }
+      before { post :create, :post => { :name => "", :title => "" } }
 
       skip "will render :edit view" do
         expect(response).to render_template(:show)

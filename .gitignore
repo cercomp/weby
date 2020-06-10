@@ -26,6 +26,7 @@ Gemfile-ext
 /public/uploads/
 /public/up/
 /public/assets/
+/public/newsletter.*
 
 .sass-cache
 .ruby-version

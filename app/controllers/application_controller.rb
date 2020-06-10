@@ -306,6 +306,7 @@ class ApplicationController < ActionController::Base
 
     Weby::Cache.request[:domain] = request.domain || request.remote_ip
     Weby::Cache.request[:subdomain] = request.subdomain
+    Weby::Cache.request[:port] = request.port
     Weby::Cache.request[:current_user] = current_user
 
     params[:per_page] ||= per_page_default

@@ -117,7 +117,7 @@ class SitesController < ApplicationController
         ::SiteMailer.site_deactivated(@subsite)
       end
       flash[:success] = t('successfully_updated')
-      record_activity('updated_site', @subsite)  
+      record_activity('updated_site', @subsite)
     else
       flash[:alert] = t('problem_update_site')
     end
@@ -145,13 +145,13 @@ class SitesController < ApplicationController
   end
 
   def site_params
-    permitted = [:title, :top_banner_id, :name, :parent_id, :url,
+    permitted = [:title, :top_banner_id, :name, :parent_id,
                 :domain, :description, :view_desc_pages, :theme,
                 :body_width, :per_page, :per_page_default, :google_analytics,
                 {grouping_ids: [], locale_ids: []}]
 
     Site::SHAREABLES.each do |shareable|
-      permitted << "#{shareable}_social_share_pos" 
+      permitted << "#{shareable}_social_share_pos"
       permitted << "#{shareable}_facebook_comments"
       permitted << {"#{shareable}_social_share_networks" => []}
     end
