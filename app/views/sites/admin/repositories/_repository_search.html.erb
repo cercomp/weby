@@ -94,19 +94,18 @@
                           <%= t(".max_file_size", param: current_settings.max_file_size) %>
                         </p>
                       </div>
-                    </div>                    
+                    </div>
                   </div>
-                  <div style="margin-bottom: 15px">                    
+                  <div style="margin-bottom: 15px">
                     <%= label_tag :title, t(".title") %>
                     <%= text_field_tag "repository[title]", "", required: true, class: 'form-control',
                       id: "repository_title", hint: t(".field_required") %>
                     <%= label_tag :legend, t(".legend") %>
-                    <%= text_field_tag "repository[legend]", "", required: true, class: 'form-control',
-                      id: "repository_legend", hint: t(".field_required") %>
+                    <%= text_field_tag "repository[legend]", "", class: 'form-control',
+                      id: "repository_legend" %>
                     <%= label_tag :description, t(".description") %>
                     <%= text_area_tag "repository[description]", "", required: true, class: 'form-control',
                       id: "repository_description", hint: t(".field_required") %>
-                    
                     <div class="clearfix"></div>
                   </div>
                   <p class="text-warning col-md-12">

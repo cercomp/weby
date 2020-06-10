@@ -99,7 +99,7 @@ module RepositoryHelper
   def image_viewer
     img_opt = {
       alt: @file.description,
-      title: (@options[:title] || @file.description) }
+      title: (@options[:title] || @file.title) }
     size = style_for_dimension @width, @height
     img_opt[:style] = @options[:style] ? "#{@options[:style]}#{size}" : size
     img_opt[:id] = @options[:id] if @options[:id]
