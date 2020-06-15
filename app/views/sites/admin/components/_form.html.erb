@@ -1,5 +1,4 @@
 <% title ".layout" %>
-<% content_for :javascripts, javascript_include_tag('components.form') %>
 
 <%= simple_form_for [:site_admin, @skin, @component], html: {class: 'form-horizontal'}, url: url, method: method do |f| %>
   <%= f.show_errors %>
@@ -48,4 +47,5 @@
   </div>
 <% end %>
 
+<% content_for :javascripts, javascript_include_tag('components.form') %>
 <%= yield :bottom %>

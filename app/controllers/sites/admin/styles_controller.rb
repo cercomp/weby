@@ -42,10 +42,23 @@ class Sites::Admin::StylesController < ApplicationController
           flash[:success] = t('successfully_updated')
           redirect_to site_admin_skin_path(@skin, anchor: 'tab-styles')
         end
+        format.json do
+          render json: {ok: true, message: t('successfully_updated'), icon: ActionController::Base.helpers.asset_url('true.png')}
+        end
       else
-        format.html { render 'edit' }
+        format.html do
+          render 'edit'
+        end
+        format.json do
+          msg = "#{t("simple_form.error_notification.default_message")}<br/>#{@style.errors.full_messages.join('<br/>')}"
+          render json: {ok: false, message: msg, icon: ActionController::Base.helpers.asset_url('false.png')}
+        end
       end
-      format.json { render plain: @style.errors.full_messages.to_json }
+    rescue
+      format.json do
+        msg = "#{t("simple_form.error_notification.default_message")}<br/>#{@style.errors.full_messages.join('<br/>')}"
+        render status: 500, json: {ok: false, message: msg, icon: ActionController::Base.helpers.asset_url('false.png')}
+      end
     end
   end
 

@@ -1,6 +1,5 @@
 # styles
 crumb :styles do |skin|
-  puts "--->", skin.site_id, current_site.id
   link t('breadcrumbs.styles'), skin.site_id == current_site.id ? site_admin_skin_path(skin, anchor: 'tab-styles') : ''
   parent :skins_show, skin
 end

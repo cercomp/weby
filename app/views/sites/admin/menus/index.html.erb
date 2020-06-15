@@ -15,7 +15,7 @@
   </div>
 <% else %>
   <div class="tabbable menu-tabs">
-    <ul class="nav nav-tabs" id="tabs">
+    <ul class="nav nav-tabs" id="tabs" data-url="<%= change_order_site_admin_menus_path %>">
       <% @menus.each do |menu| %>
         <% active = (menu==@menu ? "active" : "") %>
         <li class="<%= active %>" id="menu_<%= menu.id %>" data-menu-id="<%= menu.id %>"><%= link_to(menu.name.try(:titleize), menu==@menu ? '#' : site_admin_menus_path(menu: menu.id)) %>
@@ -37,7 +37,7 @@
         <%= t(".none_menu_item") %>
       </div>
     <% else %>
-      <div id="main-menu">
+      <div id="main-menu" data-sort-url="<%= change_order_site_admin_menu_menu_items_path(@menu) %>" data-change-url="<%= change_menu_site_admin_menu_menu_items_path(@menu) %>">
       <%= print_menu(@menu, view_ctrl: true) %>
       </div>
     <% end %>
@@ -46,104 +46,8 @@
     </div>
   <% end %>
 
-  <%= javascript_tag do %>
-    window.onload=function(){
-      $(document).ready(function() {
-
-        var dropped = false;
-        $('#main-menu > menu').nestedSortable({
-          rootID: 'root',
-          listType: 'menu',
-          handle: '.handle',
-          items: 'li',
-          opacity: 0.7,
-          scroll: true,
-          forcePlaceholderSize: true,
-          placeholder: 'drop-here',
-          tolerance: 'pointer',
-          toleranceElement: 'div.menuitem-ctrl',
-          isTree: true,
-          expandOnHover: 700,
-          startCollapsed: false,
-          update: function(event, ui){
-            if(dropped){
-              $(this).nestedSortable('cancel');
-              dropped = false;
-              return;
-            }
-            var id = ui.item.attr('id').replace('menu_item_','');
-            $.ajax({
-              type: 'post',
-              data: 'id='+ id +'&'+ $(this).nestedSortable('serialize'),
-              dataType: 'script',
-              complete: function(request,text){
-                if(text=='success') ui.item.effect('pulsate', {times: 1}, 350);
-                else $('#main-menu > menu').nestedSortable('cancel');
-              },
-              url: '<%= change_order_site_admin_menu_menu_items_path(@menu) if @menu %>'
-            });
-          }
-        });
-        $('.disclose').on('click', function() {
-          $(this).closest('li').toggleClass('mjs-nestedSortable-collapsed').toggleClass('mjs-nestedSortable-expanded');
-        });
-        $( "#tabs li" ).not('.active').droppable({
-          accept: '.mjs-nestedSortable-branch,.mjs-nestedSortable-leaf',
-          hoverClass: "drop-here",
-          tolerance: "pointer",
-          drop: function( event, ui ) {
-            var drop_li = $(this)
-            var id = ui.draggable.attr('id').replace('menu_item_','');
-            var menu_id = drop_li.data('menu-id');
-
-            dropped = true;
-            ////Testa para não alterar pra o proprio menu
-            if( !drop_li.hasClass('active') ){
-              $.ajax({
-                type: 'post',
-                data: 'id='+id+'&new_menu_id='+menu_id,
-                dataType: 'script',
-                complete: function(request,text){
-                  if(text=='success'){
-                    ui.draggable.remove();
-                    location = drop_li.find('a').attr('href');
-                  }
-                },
-               url: '<%= change_menu_site_admin_menu_menu_items_path(@menu) if @menu%>'
-              });
-            }
-          }
-        });
-        $('#tabs').sortable({
-          placeholder: 'drop-here',
-          forcePlaceholderSize: true,
-          tolerance: 'pointer',
-          handle: '.glyphicon',
-          update: function(event, ui){
-            var $this = $(this);
-            if(dropped){
-              $this.sortable('cancel');
-              dropped = false;
-              return;
-            }
-            $.ajax({
-              type: 'post',
-              data: $this.sortable('serialize'),
-              dataType: 'script',
-              complete: function(request,text){
-                if(text=='success') ui.item.effect('pulsate', {times: 1}, 350);
-                else $this.sortable('cancel');
-              },
-              url: '<%= change_order_site_admin_menus_path %>'
-            });
-          }
-        });
-        ////FIX-ME
-        //$('#main-menu').css({'height':$('#main-menu').height()});
-      });
-    }
-  <% end %>
-  <% content_for :javascripts, javascript_include_tag("init/sortable") %>
   <% content_for :stylesheets, stylesheet_link_tag("sortable") %>
+  <% content_for :javascripts, javascript_include_tag("init/sortable") %>
+  <% content_for :javascripts, javascript_include_tag("menus.index") %>
 
 <% end %>

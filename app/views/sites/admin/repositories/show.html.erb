@@ -12,7 +12,7 @@
 <p>
   <b id="toppathwrap"><%= t(".file_link") %>: </b>
   <span id="link"><%= @repository.archive.url(:o, false) %></span>
-  <button class="btn btn-default btn-sm" data-clipboard-target='link' id='d_clip_button' data-copied-hint="<%= t(".copied")%>" tittle="<%= t(".copy_to_clipboard") %>"><%= t(".copy")%></button>
+  <button class="btn btn-default btn-sm clip-btn" data-clipboard-text="<%= @repository.archive.url(:o, false) %>" data-hint="<%= t(".copied")%>" title="<%= t(".copy_to_clipboard") %>"><%= t(".copy")%></button>
 </p>
 
 <div class="form-actions">
@@ -20,15 +20,3 @@
   <%= link_to icon('list', text: t("list_all")), site_admin_repositories_path() %>
   <%= link_to icon('chevron-left', text:t("back")), :back %>
 </div>
-<% content_for :javascripts, javascript_include_tag('zeroclipboard') %>
-<% content_for :javascripts do %>
-  <script>
-    $(document).ready(function() {
-      var clip = new ZeroClipboard($("#d_clip_button"))
-      clip.on ('complete', function(){
-        $("#d_clip_button").text(<%= "'#{t('.copied')}'".html_safe %>).addClass("disabled");
-      } );
-    });
- </script>
-<% end %>
-

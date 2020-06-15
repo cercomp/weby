@@ -42,7 +42,7 @@ var initEnrolePage = function(){
   });
 
   var fullname = field.data('fullname');
-  if(fullname.length > 0){
+  if(fullname && fullname.length > 0){
     field.val(fullname);
     filter_user(fullname, list);
   }

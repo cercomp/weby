@@ -96,13 +96,7 @@
 
   <% if current_site.news_facebook_comments == '1' && Weby::Settings::Social.facebook_comments == 'true' %>
     <%= include_facebook_script %>
-    <div class="fb-comments" data-href="" data-numposts="20"></div>
-    <script>
-      var changeUrl = document.getElementsByClassName("fb-comments")[0];
-      if(changeUrl != undefined){
-        changeUrl.setAttribute("data-href", window.location.href);
-      }
-    </script>
+    <div class="fb-comments" data-href="<%= news_url(@news) %>" data-numposts="20"></div>
   <% end %>
 </article>
 

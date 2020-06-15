@@ -6,7 +6,7 @@
 <% end %>
 
 <b> <%= "CSS" %> </b>
-<textarea id="code"><%= @style.css %></textarea>
+<textarea class="code-area" data-code-readonly="true" data-code-mode="css"><%= @style.css %></textarea>
 
 <div class="form-actions">
   <%= style_menu @style %>
@@ -15,13 +15,3 @@
 </div>
 
 <% content_for :javascripts, javascript_include_tag("init/codemirror") %>
-<% content_for :javascripts do %>
-  <script type="text/javascript">
-    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-      mode: 'css',
-      lineNumbers: true,
-      tabSize: 2,
-      readOnly: "nocursor"
-    });
-  </script>
-<% end %>
