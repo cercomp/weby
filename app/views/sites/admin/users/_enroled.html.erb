@@ -1,4 +1,4 @@
-<% unless @site_users.empty? %>
+<% if @site_users.present? %>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -31,6 +31,7 @@
       <% end %>
     </tbody>
   </table>
+  <% content_for :javascripts, javascript_include_tag('users.enroled') %>
 <% else %>
   <div class="alert alert-warning">
     <%= t(".none_user") %>

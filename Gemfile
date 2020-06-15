@@ -42,7 +42,7 @@ gem 'kaminari', '~> 1.2.0'
 gem 'paperclip', :git => 'http://github.com/leo-souza/paperclip.git'
 gem 'acts-as-taggable-on', '~> 6.5.0'
 gem 'gretel', '~> 3.0.9'
-gem 'zeroclipboard-rails', '~> 0.1.2'
+gem 'clipboard-rails', '~> 1.7.1'
 gem 'zip-zip', '~> 0.3'
 gem "nori"
 gem 'simple_captcha2', require: 'simple_captcha'

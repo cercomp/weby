@@ -2,6 +2,7 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require select2
+//= require clipboard
 //= require moment
 //= require moment/pt-br.js
 //= require moment/es.js
@@ -10,7 +11,6 @@
 // // require floatthead/jquery.floatThead._.js
 // // require floatthead/jquery.floatThead
 //= require select2/select2_locale_pt-BR.js
-//= require daterangepicker
 //= require_self
 
 var WEBY = {};
@@ -114,6 +114,15 @@ $(document).ready(function() {
   $(window).resize(function(){
       menuadmin.css({'position':'','top':'', 'width':''});
       $(window).scroll();
+  });
+
+  ///copy to clipboard
+  $('.clip-btn').each(function(){
+    var btn = $(this);
+    var clip = new Clipboard(btn[0]);
+    clip.on('success', function(e){
+      btn.text(btn.data('hint')).addClass("disabled");
+    } );
   });
 
   $(document).on('change', '.pagination select', function(){

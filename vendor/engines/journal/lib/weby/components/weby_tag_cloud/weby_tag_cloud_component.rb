@@ -2,6 +2,7 @@ class WebyTagCloudComponent < Component
   component_settings :cloud_type, :width, :height, :color, :hoover_color, :hoover_type, :speed
 
   validates :speed, numericality: { greater_than: 0 }
+  validates :cloud_type, presence: true
 
   def tags(site)
     site.news_sites.available.published.uniq_category_counts.map(&:name)

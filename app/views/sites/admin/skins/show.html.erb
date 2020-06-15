@@ -92,7 +92,7 @@
       </p>
       <div class="clearfix form-group"></div>
 
-      <div id="maxi_layout">
+      <div id="maxi_layout" data-sorturl="<%= sort_site_admin_skin_components_path(@skin) %>">
       <% @placeholders.each do |row| %>
         <%= content_tag :div, class: "maxi_level #{row["names"].many? ? "multi" : "single"}" do %>
           <% row["names"].each_with_index do |name, idx| %>
@@ -130,45 +130,6 @@
           <% end %>
           </ul>
         </div>
-      <% end %>
-
-      <% content_for :javascripts do %>
-        <script type="text/javascript">
-          $(document).ready(function(){
-            $('.order-list').each(function(){
-              $(this).sortable({
-                //axis: 'y',
-                dropOnEmpty: true,
-                handle: '.handle',
-                connectWith: '.order-list',
-                forcePlaceholderSize: true,
-                placeholder: 'drop-here',
-                items: '> li',
-                opacity: 0.4,
-                scroll: true,
-                tolerance: 'pointer',
-                update: function(evt, ui){
-                  $('.maxi_level.multi').each(function(){ $(this).attr('style', ''); $(this).css({'height':$(this).height()}); });
-                  $.ajax({
-                    type: 'post',
-                    data: 'place_holder='+ $(this).data('place') +'&'+ $(this).sortable('serialize'),
-                    dataType: 'script',
-                    complete: function(request){ if(!ui.sender){ ui.item.effect('pulsate', {times: 1}, 350); } },
-                    url: '<%= sort_site_admin_skin_components_path(@skin) %>'
-                  });
-                }
-              });
-            });
-
-            ////FIX-ME
-            $('.maxi_level.multi').each(function(){
-              var h = $(this).height();
-              if(h > 0){
-                $(this).css({'height': h});
-              }
-            });
-          });
-        </script>
       <% end %>
     </div>
   <% end %>

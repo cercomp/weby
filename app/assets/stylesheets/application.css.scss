@@ -3,8 +3,6 @@
  *= require_self
  *= require weby_shared
  *= require google/lato
- *= require daterangepicker-bs3
-
  */
 
 @import "select2";
@@ -13,7 +11,9 @@
 @import "weby/bootstrap";
 @import "bootstrap";
 
-body { background: #F5F5F5; }
+body {
+  background: #F5F5F5;
+}
 
 img {
   max-width: 100%;
@@ -81,13 +81,6 @@ a:hover { text-decoration: none; }
   text-transform: uppercase;
   text-align: center;
   font-size: 11px;
-}
-// NOTE:legacy
-// TODO: revisar
-// big editor to styles
-.style-editor {
-  height: 400px;
-  width: 95%;
 }
 
 .toggle-styles {
@@ -268,6 +261,7 @@ body.modal-open {
 
 #theme-tabs {
   margin-bottom: 15px;
+  margin-top: 10px;
 
   li {
     height: 100%;

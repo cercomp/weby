@@ -18,7 +18,7 @@
     <div class="col-md-6">
       <div class="col-md-6" style="padding: 0;">
         <%= text_field_tag :dt_range,
-                           @dt_range.nil? ? (Date.current-30.days).strftime("%d/%m/%Y")+"  -  "+(Date.current).strftime("%d/%m/%Y") : @dt_range,
+                           @dt_range,
                            class: "form-control", id: "daterange" %>
       </div>
       <div class="col-md-2" style="padding: 0;">
@@ -71,27 +71,4 @@
 </div>
 
 <% content_for :stylesheets, stylesheet_link_tag("datetime") %>
-<% content_for :javascripts do %>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('input[id="daterange"]').daterangepicker(
-              {
-                format: '<%= t(".daterange_formatdate") %>',
-                startDate: moment().subtract(30, 'days'),
-                endDate: moment(),
-                locale: {
-                  applyLabel: '<%= t(".daterange_apply") %>',
-                  cancelLabel: '<%= t(".daterange_cancel") %>',
-                  fromLabel: '<%= t(".daterange_from") %>',
-                  toLabel: '<%= t(".daterange_to") %>',
-                  <% dow = t(".daterange_daysofweek").split ',' %>
-                  daysOfWeek: ['<%= dow[0] %>','<%= dow[1] %>','<%= dow[2] %>','<%= dow[3] %>','<%= dow[4] %>','<%= dow[5] %>','<%= dow[6] %>'],
-                  <% mn = t(".daterange_monthnames").split ',' %>
-                  monthNames: ['<%= mn[0] %>','<%= mn[1] %>','<%= mn[2] %>','<%= mn[3] %>','<%= mn[4] %>','<%= mn[5] %>',
-                               '<%= mn[6] %>','<%= mn[7] %>','<%= mn[8] %>','<%= mn[9] %>','<%= mn[10] %>','<%= mn[11] %>']
-                }
-              }
-            );
-        });
-    </script>
-<% end %>
+<% content_for :javascripts, javascript_include_tag("init/datetime") %>

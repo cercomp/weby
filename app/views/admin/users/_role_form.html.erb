@@ -2,7 +2,7 @@
   method: "post",
   id: "form_user_#{@user.id}",
   remote: 'true',
-  update: 'enroled' %>
+  update: 'enroled' do %>
 
   <%= hidden_field_tag 'user[id]', @user.id %>
 
@@ -17,25 +17,15 @@
         </label>
       </div>
     <% end %>
-    </p>
+  </p>
 
   <%= submit_tag (t"submit"),
-    class: "btn btn-primary", disable_with: t("please_wait"),
+    class: "btn btn-primary role-submit", disable_with: t("please_wait"),
+    data: {confirm_unrole: current_user.id == @user.id ? t(".confirm_unrole") : ''},
     onclick: current_user.id == @user.id ? "return test_unrole('form_user_#{@user.id}');" : "" %>
 
   <%= link_to t('cancel'), {action: 'manage_roles'},
     onclick: "return hide_form(#{@user.id});",
     id: "form_role_cancel",
     class: "btn btn-default" %>
-</form>
-
-<%= javascript_tag do %>
-  function test_unrole(form_id){
-    if( $('#'+form_id+' input:checked').length == 0 ){
-      if(!confirm('<%= t(".confirm_unrole") -%>')){
-        return false;
-      }
-    }
-    return true;
-  }
 <% end %>

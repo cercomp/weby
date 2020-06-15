@@ -49,29 +49,4 @@
   </div>
 </div>
 
-<%= content_for :javascripts do %>
-  <script type="text/javascript">
-    $(window).ready(function() {
-      var img_cache = {};
-      var default_image = $('#component_image').attr('src');
-
-      $('#component_select').change(function() {
-        var selected = $('#component_select :selected').val();
-
-        if (img_cache[selected]) {
-          $('#component_image').attr('src', img_cache[selected]);
-          return;
-        }
-
-        var url = '/assets/components/' + selected + '.png';
-        $.get(url, function() {
-          $('#component_image').attr('src', url);
-          img_cache[selected] = url;
-
-        }).error(function(){
-          $('#component_image').attr('src', default_image);
-        });
-      });
-    });
-  </script>
-<% end %>
+<% content_for :javascripts, javascript_include_tag('components.form') %>

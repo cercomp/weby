@@ -16,7 +16,7 @@ module Journal::Admin
         pdf.text comp.report_title, size: 16, align: :center, style: :bold
         pdf.text comp.report_subtitle, size: 16, align: :center
         pdf.text "  ", size: 20
-        pdf.text @dt_start+" - "+@dt_end,
+        pdf.text "#{@dt_start} - #{@dt_end}",
             size: 12, align: :center
         table_data = [["<b>"+t(".title")+"</b>","<b>"+t(".user")+"</b>",
                        "<b>"+t(".sent_by")+"</b>","<b>"+t(".date_sent")+"</b>","<b>"+t(".qtty")+"</b>"]]
@@ -37,7 +37,7 @@ module Journal::Admin
         arquivo.puts comp.report_title
         arquivo.puts comp.report_subtitle
         arquivo.puts
-        arquivo.puts @dt_start+" - "+@dt_end
+        arquivo.puts "#{@dt_start} - #{@dt_end}"
         arquivo.puts t(".title")+","+t(".user")+","+t(".sent_by")+","+t(".date_sent")+","+t(".qtty")
         newsletterlist = get_news
         newsletterlist.each do |newsletter|
@@ -59,13 +59,12 @@ module Journal::Admin
     end
 
     def get_news
-      @dt_range = params[:dt_range]
-      range = @dt_range.nil? || @dt_range.empty? ? (Date.current-30.days).strftime("%d/%m/%Y")+" - "+(Date.current).strftime("%d/%m/%Y") : @dt_range.to_s
-      if range.match(/\d{2}\/\d{2}\/\d{4}\s{1,2}\-\s{1,2}\d{2}\/\d{2}\/\d{4}/).nil?
+      @dt_range = params[:dt_range].blank? ? "#{(Date.current-30.days).strftime("%d/%m/%Y")} - #{Date.current.strftime("%d/%m/%Y")}" : params[:dt_range].to_s
+      if @dt_range.match(/\d{2}\/\d{2}\/\d{4}\s{1,2}\-\s{1,2}\d{2}\/\d{2}\/\d{4}/).nil?
         flash.now[:alert] = t(".invalid_date")
         []
       else
-        dt = range.split(" ")
+        dt = @dt_range.split(" ")
         @dt_start = dt[0]
         @dt_end = dt[2]
         Journal::NewsletterHistories.get_by_date(current_site.id, @dt_start, @dt_end)

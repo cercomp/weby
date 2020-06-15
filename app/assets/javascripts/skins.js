@@ -1,4 +1,5 @@
-function initStylesSortable(){
+$(document).ready(function(){
+  /// styles sortable
   $('#style_list').sortable({
     axis: 'y',
     dropOnEmpty:false,
@@ -24,9 +25,8 @@ function initStylesSortable(){
       });
     }
   });
-}
 
-function initStyleCollapse(){
+  ///// styles collapse
   $('.toggle-styles').click(function(){
     var $this = $(this);
     var $icon = $this.find('.glyphicon');
@@ -37,12 +37,39 @@ function initStyleCollapse(){
       $icon.addClass('glyphicon-chevron-down').removeClass('glyphicon-chevron-right')
     }
   });
-}
 
-window.onload=function(){
-  $(document).ready(function(){
-    initStylesSortable();
-    initStyleCollapse();
+  ///// components sortable
+  var maxLayout = $('#maxi_layout');
+  $('.order-list').each(function(){
+    var list = $(this);
+    list.sortable({
+      //axis: 'y',
+      dropOnEmpty: true,
+      handle: '.handle',
+      connectWith: '.order-list',
+      forcePlaceholderSize: true,
+      placeholder: 'drop-here',
+      items: '> li',
+      opacity: 0.4,
+      scroll: true,
+      tolerance: 'pointer',
+      update: function(evt, ui){
+        $('.maxi_level.multi').each(function(){ $(this).attr('style', ''); $(this).css({'height':$(this).height()}); });
+        $.ajax({
+          type: 'post',
+          data: 'place_holder='+ $(this).data('place') +'&'+ $(this).sortable('serialize'),
+          dataType: 'script',
+          complete: function(request){ if(!ui.sender){ ui.item.effect('pulsate', {times: 1}, 350); } },
+          url: maxLayout.data('sorturl')
+        });
+      }
+    });
   });
-};
 
+  $('.maxi_level.multi').each(function(){
+    var h = $(this).height();
+    if(h > 0){
+      $(this).css({'height': h});
+    }
+  });
+});
