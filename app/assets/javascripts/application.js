@@ -35,12 +35,14 @@ FlashMsg = {
       //flash.text(status==403 ?'Acesso Negado':status==500 ?'Erro no servidor':'');
       //flash.append('<a class="close" data-dismiss="alert" href="#">×</a>');
       //flash.append(status==403 ?'Acesso Negado':'');
-      $('<div class="modal">'+
-        '<div class="modal-header"><h3>Acesso Negado</h3></div>'+
+      $('<div class="modal fade" tabindex="-1" role="dialog">'+
+        '<div class="modal-dialog" role="document">'+
+        '<div class="modal-content">'+
+        '<div class="modal-header"><h4>Acesso Negado</h4></div>'+
         '<div class="modal-body">'+
         '<div class="alert alert-error">Você não possui permissão para esta ação</div></div>'+
         '<div class="modal-footer"><a class="btn btn-primary" data-dismiss="modal">OK</a></div>'+
-        '</div>').modal('show');
+        '</div></div></div>').modal('show');
     }
   },
   info: function(text) {

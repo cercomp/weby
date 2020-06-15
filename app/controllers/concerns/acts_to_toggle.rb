@@ -16,13 +16,28 @@ module ActsToToggle
 
   # PUT /toggle?field=FIELD_NAME
   def toggle
-    if toggle_attribute!
-      flash[:success] = t('successfully_updated')
-    else
-      flash[:warning] = t('error_updating_object')
+    result = toggle_attribute!
+    message = [:success, t('successfully_updated')]
+    if !result
+      message = [:warning, t('error_updating_object')]
     end
 
-    redirect_to after_toggle_path
+    respond_with do |format|
+      format.js do
+        status = resource.send(params[:field])
+        render json: {
+          ok: result,
+          message: message[1],
+          icon: ActionController::Base.helpers.asset_url("#{result ? 'true' : 'false'}.png"),
+          status: status,
+          title: status ? t('enable') : t('disable')
+        }
+      end
+      format.html do
+        flash[message[0]] = message[1]
+        redirect_to after_toggle_path
+      end
+    end
   end
 
   # metodo que faz toggle do atributo, por padrão é considerado

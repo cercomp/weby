@@ -31,7 +31,7 @@ gem 'omniauth-shibboleth'
 
 # assets
 gem 'sass-rails', '5.1.0'
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier', '~> 4.2.0'
 gem 'therubyracer', :platforms => :ruby
 gem 'non-stupid-digest-assets' # Generate assets without digest.
 

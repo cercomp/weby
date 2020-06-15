@@ -17,7 +17,6 @@ $(document).ready(function() {
     if (canvas.data('lock_x')) {
       opts.lock = 'x';
     }
-    console.log(opts)
     canvas.tagcanvas(opts, 'tags');
   } else {
     canvas.hide();

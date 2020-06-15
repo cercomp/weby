@@ -58,7 +58,7 @@ module ApplicationHelper
           end
           div_content << content_tag(:span) do
             [
-              toggle_field(entry, 'publish', 'toggle', controller: 'sites/admin/menus/menu_items', menu_id: entry.menu_id),
+              toggle_field(entry, 'publish', 'toggle', controller: 'sites/admin/menus/menu_items', menu_id: entry.menu_id, remote: true, class: 'toggle-menu-item'),
               " #{title_link}",
               ( (entry and entry.target) ? " [ #{entry.target.try(:title)} ] " : " [ #{entry.url} ] ")
             ].join.html_safe

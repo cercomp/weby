@@ -93,4 +93,19 @@ $(document).ready(function() {
   });
   ////FIX-ME
   //$('#main-menu').css({'height':$('#main-menu').height()});
+
+  //// ajax enable disable menu item
+  $(document).on('ajax:success', '.toggle-menu-item', function(ev, data){
+    var target = $(ev.target);
+    FlashMsg.info(`<img src="${data.icon}"/> ${data.message}`);
+    target.find('[type=checkbox]').prop('checked', data.status).val(data.status).prop('title', data.title).prop('alt', data.title);;
+    target.prop('title', data.title).prop('alt', data.title);
+    if (data.status) {
+      target.closest('.menuitem-ctrl').removeClass('deactivated');
+    } else {
+      target.closest('.menuitem-ctrl').addClass('deactivated');
+    }
+  }).on('ajax:error', '.toggle-menu-item', function(ev, data){
+    FlashMsg.info('Ocorreu um erro, tente novamente');
+  });
 });
