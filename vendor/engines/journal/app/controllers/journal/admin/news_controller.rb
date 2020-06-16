@@ -1,6 +1,6 @@
 module Journal::Admin
   class NewsController < Journal::ApplicationController
-    # include ActsToToggle
+    include ActsToToggle
 
     before_action :require_user
     before_action :check_authorization
@@ -152,12 +152,6 @@ module Journal::Admin
       redirect_to admin_news_index_path
     end
 
-    def toggle
-      news_sites = Journal::NewsSite.find(params[:id])
-      news_sites.toggle! :front
-      redirect_back(fallback_location: admin_news_index_path)
-    end
-
     def status_types
       @status_types = Journal::News::STATUS_LIST.map { |el| [t("journal.admin.news.form.#{el}"), el] }
     end
@@ -228,6 +222,10 @@ module Journal::Admin
 
     def get_draft news_id
       current_user.preferences.dig('draft', current_site.id.to_s, news_id.to_s)
+    end
+
+    def resource_for_toggle
+      Journal::NewsSite.find(params[:id])
     end
 
     def sort_column

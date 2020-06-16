@@ -1,9 +1,9 @@
 class Sites::Admin::Menus::MenuItemsController < ApplicationController
-  include ActsToToggle
-
   before_action :get_current_menu
   before_action :require_user
   before_action :check_authorization
+
+  include ActsToToggle
 
   respond_to :html, :xml, :js
 

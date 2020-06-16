@@ -93,4 +93,7 @@ $(document).ready(function() {
   });
   ////FIX-ME
   //$('#main-menu').css({'height':$('#main-menu').height()});
+
+  //// ajax enable disable menu item
+  appendToggleHandle('.toggle-menu-item', '.menuitem-ctrl');
 });

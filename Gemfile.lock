@@ -497,7 +497,7 @@ DEPENDENCIES
   sticker!
   therubyracer
   thin (~> 1.7.2)
-  uglifier (>= 1.3.0)
+  uglifier (~> 4.2.0)
   useragent (= 0.2.3)!
   zip-zip (~> 0.3)
 

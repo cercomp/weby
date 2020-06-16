@@ -30,6 +30,9 @@
   <% end %>
 </p>
 <p>
+  <b> <%= t(".publish") %>: </b> <%= t(@banner.publish ? 'yes' : 'no') %>
+</p>
+<p>
   <b> <%= t(".period_banner") %>: </b> <%= l @banner.date_begin_at, :format => :short %> - <%= l @banner.date_end_at, :format => :short if @banner.date_end_at  %> <%= availability_bagde_banner(@banner) %>
 </p>
 <p>

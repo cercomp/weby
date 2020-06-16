@@ -20,7 +20,6 @@ $(document).ready(function(){
       data: {'style[css]': editor.getValue()},
       dataType: "json",
       success: function(data, st, jqxhr){
-        console.log(data);
         flashMsgApply(`<img src="${data.icon}"/>`, data.message);
         if(data.ok){
           $('#preview-css-panel iframe')[0].contentWindow.location.reload();

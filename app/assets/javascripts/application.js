@@ -35,12 +35,14 @@ FlashMsg = {
       //flash.text(status==403 ?'Acesso Negado':status==500 ?'Erro no servidor':'');
       //flash.append('<a class="close" data-dismiss="alert" href="#">×</a>');
       //flash.append(status==403 ?'Acesso Negado':'');
-      $('<div class="modal">'+
-        '<div class="modal-header"><h3>Acesso Negado</h3></div>'+
+      $('<div class="modal fade" tabindex="-1" role="dialog">'+
+        '<div class="modal-dialog" role="document">'+
+        '<div class="modal-content">'+
+        '<div class="modal-header"><h4>Acesso Negado</h4></div>'+
         '<div class="modal-body">'+
         '<div class="alert alert-error">Você não possui permissão para esta ação</div></div>'+
         '<div class="modal-footer"><a class="btn btn-primary" data-dismiss="modal">OK</a></div>'+
-        '</div>').modal('show');
+        '</div></div></div>').modal('show');
     }
   },
   info: function(text) {
@@ -71,6 +73,29 @@ function addToSelect(selectId, text){
    if(!new_cat) return;
    $(selectId).append(option);
    $(option).attr('selected', true);
+}
+
+function handleToggle(target, json, parentSelector) {
+  if (json && json.message) {
+    FlashMsg.info(`<img src="${json.icon}"/> ${json.message}`);
+    target.find('[type=checkbox]').prop('checked', json.status).val(json.status).prop('title', json.title).prop('alt', json.title);
+    target.prop('title', json.title).prop('alt', json.title);
+    if (parentSelector && json.status) {
+      target.closest(parentSelector).removeClass('deactivated');
+    } else {
+      target.closest(parentSelector).addClass('deactivated');
+    }
+  } else {
+    FlashMsg.info('Ocorreu um erro, tente novamente');
+  }
+}
+
+function appendToggleHandle(selector, parentSelector) {
+  $(document).on('ajax:success', selector, function(ev, data){
+    handleToggle($(ev.target), data, parentSelector);
+  }).on('ajax:error', selector, function(ev, data){
+    handleToggle($(ev.target), data.responseJSON, parentSelector);
+  });
 }
 
 $(document).ready(function() {

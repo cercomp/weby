@@ -72,4 +72,7 @@ $(document).ready(function(){
       $(this).css({'height': h});
     }
   });
+
+  //// toggle disable ajax
+  appendToggleHandle('.widget-name > a', 'li');
 });
