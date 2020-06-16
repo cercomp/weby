@@ -1,4 +1,4 @@
-$(function (){
+$(document).ready(function() {
   $('.search-filter').select2({
     placeholder: "Filtrar por status",
     width: 'resolve',
@@ -9,4 +9,7 @@ $(function (){
     //$('#search').val(null);
     $('button[type=submit]').click();
   });
+
+  //// ajax enable disable menu item
+  appendToggleHandle('td.front a');
 });

@@ -39,7 +39,7 @@
           <td><%= l(news.created_at, :format => :short) %></td>
           <% with_permission(action: :edit) do %>
             <td class="front" style="text-align:center;">
-              <%= front_status(@news_site) %></td>
+              <%= front_status(@news_site, remote: true) %></td>
             <td class="publish">
               <%= news_status(news) %></td>
           <% end %>

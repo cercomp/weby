@@ -33,7 +33,7 @@ module DateHelper
   def front_status(news_site, options = {})
     ''.tap do |html|
       html << toggle_field(news_site, 'front', 'toggle', options)
-      html << "<span class=\"label label-important publish-warning\" title=\"#{t('expired')}\">!</span>" if news_site.news.date_end_at and news_site.front and news_site.news.date_end_at <= Time.current
+      html << "<span class=\"label label-important publish-warning\" title=\"#{t('expired')}\">!</span>" if news_site.news.date_end_at && news_site.news.date_end_at <= Time.current #and news_site.front
     end.html_safe
   end
 

@@ -43,6 +43,7 @@ pt-BR:
           period_banner:            " Período do Banner "
           origin_site:              " Site de Origem "
           shareable:                " Habilitar Compartilhamento "
+          publish:                  " Publicado "
         unshare:
           unshared_banner:          " Compartilhamento removido com sucesso "
         new:

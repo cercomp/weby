@@ -75,6 +75,29 @@ function addToSelect(selectId, text){
    $(option).attr('selected', true);
 }
 
+function handleToggle(target, json, parentSelector) {
+  if (json && json.message) {
+    FlashMsg.info(`<img src="${json.icon}"/> ${json.message}`);
+    target.find('[type=checkbox]').prop('checked', json.status).val(json.status).prop('title', json.title).prop('alt', json.title);
+    target.prop('title', json.title).prop('alt', json.title);
+    if (parentSelector && json.status) {
+      target.closest(parentSelector).removeClass('deactivated');
+    } else {
+      target.closest(parentSelector).addClass('deactivated');
+    }
+  } else {
+    FlashMsg.info('Ocorreu um erro, tente novamente');
+  }
+}
+
+function appendToggleHandle(selector, parentSelector) {
+  $(document).on('ajax:success', selector, function(ev, data){
+    handleToggle($(ev.target), data, parentSelector);
+  }).on('ajax:error', selector, function(ev, data){
+    handleToggle($(ev.target), data.responseJSON, parentSelector);
+  });
+}
+
 $(document).ready(function() {
 
   // Ajax indicator

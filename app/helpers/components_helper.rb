@@ -30,7 +30,7 @@ module ComponentsHelper
     components_html << "#{'disabled' unless component_is_available(compo.name)} #{compo.publish ? '' : 'deactivated'}' data-place='#{compo.place_holder}'>
       <div>
         <span class='widget-name'>
-          #{ raw ("#{toggle_field(compo, 'publish', 'toggle', controller: :components, skin_id: compo.skin_id)} #{t("components.#{compo.name}.name")} #{"- #{nickname}" if nickname.present?}") }
+          #{ raw ("#{toggle_field(compo, 'publish', 'toggle', controller: :components, skin_id: compo.skin_id, remote: true)} #{t("components.#{compo.name}.name")} #{"- #{nickname}" if nickname.present?}") }
         </span>
         <div class='pull-right' style='min-width: 46px'>
           #{ link_to(icon(:remove), site_admin_skin_component_path(compo.skin_id, compo.id, del_group: true), title: t('.remove_group'), method: :delete, data: {confirm: t('.are_you_sure_group_del', alias: compo.alias)}) if compo.name == 'components_group' && check_permission(Sites::Admin::ComponentsController, 'destroy') }

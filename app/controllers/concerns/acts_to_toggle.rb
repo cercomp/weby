@@ -14,6 +14,10 @@
 module ActsToToggle
   extend ActiveSupport::Concern
 
+  included do
+    before_action :load_object_for_toggle, only: [:toggle]
+  end
+
   # PUT /toggle?field=FIELD_NAME
   def toggle
     result = toggle_attribute!
@@ -22,13 +26,21 @@ module ActsToToggle
       message = [:warning, t('error_updating_object')]
     end
 
-    respond_with do |format|
-      format.js do
-        status = resource.send(params[:field])
+    respond_to do |format|
+      format.json do
+        status = @object.send(params[:field])
         render json: {
           ok: result,
           message: message[1],
           icon: ActionController::Base.helpers.asset_url("#{result ? 'true' : 'false'}.png"),
+          status: status,
+          title: status ? t('enable') : t('disable')
+        }
+      rescue
+        render status: 500, json: {
+          ok: false,
+          message: t('error_updating_object'),
+          icon: ActionController::Base.helpers.asset_url("false.png"),
           status: status,
           title: status ? t('enable') : t('disable')
         }
@@ -40,6 +52,16 @@ module ActsToToggle
     end
   end
 
+  private
+
+  def load_object_for_toggle
+    @object = resource_for_toggle
+  end
+
+  def resource_for_toggle
+    resource
+  end
+
   # metodo que faz toggle do atributo, por padrão é considerado
   # que o atributo será um booleano, desse modo apenas é mudado
   # o valor do campo "true -> false"
@@ -48,9 +70,9 @@ module ActsToToggle
   # esse método pode ser sobreecrito, observando que sempre deve
   # retornar true ou false
   def toggle_attribute!
-    return false if resource.blank? && params[:field].blank?
+    return false if @object.blank? && params[:field].blank?
 
-    resource.toggle!(params[:field])
+    @object.toggle!(params[:field])
   end
 
   # path que será redirecionando após a action toggle
@@ -59,5 +81,4 @@ module ActsToToggle
     request.env['HTTP_REFERER']
   end
 
-  private :toggle_attribute!, :after_toggle_path
 end
