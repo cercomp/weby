@@ -7,9 +7,10 @@
   <div class="pull-right"> <%= paginate @events, remote: true %> </div>
   <div class="clearfix"></div>
 
-  <table class="table table-striped nowrap">
+  <table class="table table-striped nowrap align-middle">
       <thead>
         <tr>
+          <th class="center sel-all"><%= check_box_tag :select_all, 1, false %></th>
           <th width="25%"><%= t(".name") %></th>
           <th width="20%"><%= t(".place") %></th>
           <th width="6%"><%= sortable 'calendar_events.kind', t(".kind") %></th>
@@ -17,25 +18,48 @@
           <th width="18%"><%= sortable 'calendar_events.created_at', t(".created_at") %></th>
           <th width="13%"><%= sortable 'calendar_events.begin_at', t(".begin_at") %></th>
           <th width="5%" class="center"><%= sortable 'calendar_events.view_count', t(".views") %></th>
-          <th width="5%" class="center"><%= t(".action")%></th>
+          <th width="5%" class="center"><%#= t(".action")%></th>
         </tr>
       </thead>
       <tbody>
         <% @events.each do |event| %>
-        <tr id="<%= event.id %>">
-          <td>
-            <%= link_to(event.name, admin_event_path(event)) %>
-          </td>
-          <td><%= event.place %></td>
-          <td><%= t("calendar.admin.events.form.#{event.kind}") if event.kind.present? %></td>
-          <td><%= raw categories_links(event.category_list) %></td>
-          <td><%= l(event.created_at, :format => :short) if event.created_at %></td>
-          <td><%= l(event.begin_at, :format => :short) if event.begin_at %></td>
-          <td width="5%" style="text-align:center;"><%= event.view_count %></td>
-          <td class="text-right"><%= make_menu(event, :except => "show", :with_text => false) %></td>
-        </tr>
-      <% end %>
+          <tr id="<%= event.id %>">
+            <td class="center sel-item"><%= check_box_tag :select_item, event.id, false %></td>
+            <td>
+              <% if check_permission(Calendar::Admin::EventsController, [:edit]) %>
+                <%= link_to "#{event.title} #{content_tag(:span, icon(:edit), class: 'oh-c-i')}".html_safe, edit_admin_event_path(event) %>
+              <% else %>
+                <%= link_to event.title, event_path(event), target: :_blank %>
+              <% end %>
+            </td>
+            <td><%= event.place %></td>
+            <td><%= t("calendar.admin.events.form.#{event.kind}") if event.kind.present? %></td>
+            <td><%= raw categories_links(event.categories) %></td>
+            <td><%= l(event.created_at, :format => :short) if event.created_at %></td>
+            <td><%= l(event.begin_at, :format => :short) if event.begin_at %></td>
+            <td width="5%" style="text-align:center;"><%= event.view_count %></td>
+            <td class="actions text-right">
+              <%= render_dropdown_menu do %>
+                <%= link_to icon('eye-open', text: t('show')), event_path(event), target: :_blank %>
+                <%= link_to icon('info-sign', text: t('details')), admin_event_path(event) %>
+                <% with_permission(action: :new) do %>
+                  <%= link_to icon('duplicate', text: t('copy')), new_admin_event_path(copy_from: event.id) %>
+                <% end %>
+                <%= make_menu(event, :except => "show", :with_text => true) %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
       </tbody>
+      <tfoot>
+        <td colspan="42">
+          <div class="bulk-actions">
+            <% with_permission(action: :destroy_many) do %>
+              <%= link_to icon('trash', text: t('destroy')), destroy_many_admin_events_path, class: 'btn btn-sm btn-default destroy-many', method: :delete, data: {confirm: t('are_you_sure_del_many')} %>
+            <% end %>
+          </div>
+        </td>
+      </tfoot>
     </table>
 
   <div class="pull-left"> <%= per_page_links @events, true, :sm %> </div>

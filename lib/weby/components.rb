@@ -159,6 +159,10 @@ module Weby
         end
 
         default_scope { where(name: cname) }
+
+        def raw_component
+          @raw_compo ||= Weby::Components.components.fetch(name.to_sym, {})
+        end
       end
     end
   end

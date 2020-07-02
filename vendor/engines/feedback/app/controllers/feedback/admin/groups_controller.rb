@@ -53,6 +53,12 @@ module Feedback::Admin
       redirect_to(admin_groups_url)
     end
 
+    def destroy_many
+      current_site.groups.where(id: params[:ids].split(',')).destroy_all
+
+      redirect_back(fallback_location: admin_groups_url)
+    end
+
     private
 
     def sort_column

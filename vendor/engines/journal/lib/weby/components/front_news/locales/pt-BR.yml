@@ -1,7 +1,7 @@
 pt-BR:
   components:
     front_news:
-      name:                 " Notícias Capas "
+      name:                 " Notícias Capa "
       quant:                " Quantidade de notícias exibidas "
       avatar_height:        " Altura da imagem da notícia "
       avatar_width:         " Largura da imagem da notícia"

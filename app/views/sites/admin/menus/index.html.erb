@@ -1,13 +1,11 @@
 <% title ".menus" %>
 <% breadcrumb :menus %>
-<% with_permission action: :new do %>
-  <div class="pull-right">
-    <%= link_to t(".new_menu"),
-      new_site_admin_menu_path,
-      class: "btn btn-success" %>
-  </div>
-  <div class="clearfix form-group"></div>
-<% end %>
+<div class="pull-right">
+  <% with_permission action: :new do %>
+    <%= link_to icon('plus-sign', text: t(".new_menu")), new_site_admin_menu_path, class: "btn btn-success" %>
+  <% end %>
+</div>
+<div class="clearfix form-group"></div>
 
 <% if @menus.empty? %>
   <div class="alert alert-warning">
@@ -18,32 +16,40 @@
     <ul class="nav nav-tabs" id="tabs" data-url="<%= change_order_site_admin_menus_path %>">
       <% @menus.each do |menu| %>
         <% active = (menu==@menu ? "active" : "") %>
-        <li class="<%= active %>" id="menu_<%= menu.id %>" data-menu-id="<%= menu.id %>"><%= link_to(menu.name.try(:titleize), menu==@menu ? '#' : site_admin_menus_path(menu: menu.id)) %>
-          <%= icon('move') %></li>
+        <li class="<%= active %>" id="menu_<%= menu.id %>" data-menu-id="<%= menu.id %>">
+          <%= link_to(menu.name.try(:titleize), menu==@menu ? '#' : site_admin_menus_path(menu: menu.id)) %>
+          <%= icon('move') %>
+        </li>
       <% end %>
     </ul>
   </div>
   <% if @menu %>
-    <% with_permission controller: Sites::Admin::Menus::MenuItemsController, action: :new do %>
-      <div class="pull-right">
-        <%= link_to t(".new_menu_item"),
-          new_site_admin_menu_menu_item_path(@menu),
-          class: "btn btn-success" %>
-      </div>
-      <div class="clearfix control-group"></div>
-    <% end %>
+    <div class="pull-right">
+      <% with_permission controller: Sites::Admin::Menus::MenuItemsController, action: :new do %>
+        <%= link_to icon('plus-sign', text: t(".new_menu_item")), new_site_admin_menu_menu_item_path(@menu), class: "btn btn-success" %>
+      <% end %>
+      <% with_permission action: :edit do %>
+        <%= link_to t("edit"), edit_site_admin_menu_path(@menu), class: "btn btn-default", title: t('edit') %>
+      <% end %>
+      <% with_permission action: :destroy do %>
+        <%= link_to t("destroy"), site_admin_menu_path(@menu), class: "btn btn-danger", data: { confirm: t('are_you_sure_del_item', item: @menu.screen_name) }, method: :delete, title: t('destroy') %>
+      <% end %>
+    </div>
+    <div class="clearfix control-group"></div>
     <% if @menu.menu_items.empty? %>
       <div class="alert alert-warning">
         <%= t(".none_menu_item") %>
       </div>
     <% else %>
       <div id="main-menu" data-sort-url="<%= change_order_site_admin_menu_menu_items_path(@menu) %>" data-change-url="<%= change_menu_site_admin_menu_menu_items_path(@menu) %>">
-      <%= print_menu(@menu, view_ctrl: true) %>
+        <%= print_menu(@menu, view_ctrl: true) %>
+        <div class="bulk-actions">
+          <% with_permission(action: :destroy_many) do %>
+            <%= link_to icon('trash', text: t('destroy')), destroy_many_site_admin_menu_menu_items_path(@menu), class: 'btn btn-sm btn-default destroy-many', method: :delete, data: {confirm: t('are_you_sure_del_many')} %>
+          <% end %>
+        </div>
       </div>
     <% end %>
-    <div class="form-actions">
-      <%= make_menu(@menu, except: :show) %>
-    </div>
   <% end %>
 
   <% content_for :stylesheets, stylesheet_link_tag("sortable") %>

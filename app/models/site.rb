@@ -135,9 +135,18 @@ class Site < ApplicationRecord
     extensions.to_a.keep_if { |extension| Weby.extensions[extension.name.to_sym] }
   end
 
+  ##
+
   def active?
     status == 'active'
   end
+  alias_method :is_active, :active?
+
+  def toggle_is_active
+    self.update!(status: (status == 'active' ? 'inactive' : 'active'))
+  end
+
+
 
   SHAREABLES.each do |shareable|
     define_method("#{shareable}_social_share_pos") { settings["#{shareable}.social_share_pos"] }

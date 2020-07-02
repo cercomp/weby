@@ -124,6 +124,10 @@ module Journal
       end
     end
 
+    def news_site_for site
+      news_sites.detect{|ns| ns.site_id == site.id }
+    end
+
     accepts_nested_attributes_for :news_sites, allow_destroy: true
 
     private

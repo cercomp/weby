@@ -19,7 +19,7 @@ rights:
       name:
         en: Destroy Banner
         pt-BR: Excluir Banner
-      action: destroy
+      action: destroy destroy_many
     change_position:
       name:
         en: Order Banners

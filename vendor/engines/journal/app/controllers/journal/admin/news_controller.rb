@@ -24,7 +24,7 @@ module Journal::Admin
     def recycle_bin
       params[:sort] ||= 'journal_news.deleted_at'
       params[:direction] ||= 'desc'
-      @newslist = Journal::News.all.trashed.where(site_id: current_site.id).includes(:user).
+      @newslist = Journal::News.all.trashed.where(site_id: current_site.id).includes(:user, :news_sites).
         order("#{params[:sort]} #{sort_direction}").
         page(params[:page]).per(params[:per_page])
     end
@@ -43,7 +43,7 @@ module Journal::Admin
       end
 
       news = Journal::News.where('journal_news.id in (?)', @news).
-        includes(:user, :site).
+        includes(:user, :site, i18ns: :locale, news_sites: :categories).
         where(sites: {status: 'active'}).
         with_search(params[:search], 1) # 1 = busca com AND entre termos
 
@@ -51,13 +51,7 @@ module Journal::Admin
         news = news.published
       end
       if sort_column == 'journal_news_i18ns.title'
-         news = news.includes(i18ns: :locale).where(locales: {name: I18n.locale})
-      end
-      if sort_column == 'tags.name'
-         news = news.includes(news_sites: {categories: :taggings})
-      end
-      if sort_column == 'journal_news.front'
-         news = news.includes(:news_sites)
+         news = news.where(locales: {name: I18n.locale})
       end
       if params[:status_filter].present? && Journal::News::STATUS_LIST.include?(params[:status_filter])
         news = news.send(params[:status_filter])
@@ -79,6 +73,9 @@ module Journal::Admin
     end
 
     def new
+      if params[:copy_from].present?
+        copy_news = Journal::News.find_by(id: params[:copy_from])
+      end
       @news = Journal::News.new(site_id: current_site)
       @news.news_sites.build(site_id: current_site)
       @draft = get_draft('')
@@ -174,6 +171,23 @@ module Journal::Admin
       redirect_to @news.persisted? ? admin_news_index_path : recycle_bin_admin_news_index_path
     end
 
+    def destroy_many
+      current_site.news_sites.includes(:news).where(id: params[:ids].split(',')).each do |ns|
+        if ns.news.site_id == current_site.id
+          if ns.news.trash
+            record_activity('moved_news_to_recycle_bin', ns.news)
+            flash[:success] = t('moved_news_to_recycle_bin')
+          end
+        else
+          if ns.destroy
+            record_activity('unshared_news', ns.news)
+            flash[:success] = t('moved_news_to_recycle_bin')
+          end
+        end
+      end
+      redirect_back(fallback_location: admin_news_index_path)
+    end
+
     def recover
       @news = current_site.news.trashed.find(params[:id])
       if @news.untrash
@@ -181,6 +195,13 @@ module Journal::Admin
       end
       record_activity('restored_news', @news)
       redirect_back(fallback_location: recycle_bin_admin_news_index_path)
+    end
+
+    def empty_bin
+      if current_site.news.trashed.destroy_all
+        flash[:success] = t('successfully_deleted')
+      end
+      redirect_to recycle_bin_admin_news_index_path
     end
 
     def newsletter

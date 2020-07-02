@@ -4,7 +4,7 @@
   </div>
 <% else %>
 
-  <table class='table table-striped'>
+  <table class="table table-striped align-middle">
     <thead>
       <th><%= t(".name") %></th>
       <th><%= t(".version") %></th>
@@ -20,8 +20,10 @@
           <td>
             <%= raw_extension.version %>
           </td>
-          <td class="text-right">
-            <%= raw make_menu(extension) %>
+          <td class="actions text-right">
+            <%= render_dropdown_menu do %>
+              <%= raw make_menu(extension) %>
+            <% end %>
          </td>
         </tr>
       <% end %>

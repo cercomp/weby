@@ -44,6 +44,7 @@ Rails.application.routes.draw do
           end
           collection do
             post :change_order, :change_menu
+            delete :destroy_many
           end
         end
       end
@@ -53,6 +54,7 @@ Rails.application.routes.draw do
         end
         collection do
           get :recycle_bin
+          delete :empty_bin, :destroy_many
         end
       end
       resources :repositories do
@@ -62,6 +64,7 @@ Rails.application.routes.draw do
         end
         collection do
           get :recycle_bin
+          delete :empty_bin, :destroy_many
         end
       end
       resources :roles, except: [:show] do
@@ -80,6 +83,7 @@ Rails.application.routes.draw do
           end
           collection do
             post :sort
+            delete :destroy_many
           end
         end
         resources :styles do
@@ -140,7 +144,11 @@ Rails.application.routes.draw do
           post :sort
         end
       end
-      resources :sites, except: [:show]
+      resources :sites, except: [:show] do
+        member do
+          put :toggle
+        end
+      end
       resources :groupings, except: [:show]
       resources :notifications
       resources :activity_records, only: [:index, :show, :destroy]

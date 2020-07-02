@@ -23,7 +23,7 @@
   </head>
   <body>
     <div class="zone">
-      <div id="header" class="container">
+      <div id="header" class="container-fluid">
         <div class="row">
           <div class="col-md-2">
             <%= link_to main_app.root_url(subdomain: nil) do %>
@@ -68,7 +68,7 @@
         </div>
       </div>
     </div>
-    <div id="main" class="container">
+    <div id="main" class="container-fluid">
       <div class="row">
         <div class="col-md-2">
           <%= render 'layouts/shared/menu_admin' %>
@@ -85,7 +85,7 @@
         </div>
       </div>
     </div>
-    <div id="footer" class="container">
+    <div id="footer" class="container-fluid">
       <p>
         <%= t(".licence") %>
         <br />

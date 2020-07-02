@@ -30,7 +30,7 @@
             <th>
               <%= role.name %>
               <p>
-              <%= link_to icon('check'), nil, :onclick => "toggleCheckboxesBySelector('input.column-#{role.id}')", :remote => true %>
+              <%= link_to icon('check'), '#', :onclick => "return toggleCheckboxesBySelector('input.column-#{role.id}')" %>
               <% if check_permission(Sites::Admin::RolesController, [:show]) %>
                 <%= link_to icon('edit', text: t("edit")), edit_site_admin_role_path(role)  %>
               <% end %>
@@ -52,7 +52,7 @@
           <% permissions.each do |right, config| %>
             <tr class="<%= "#{controller}-#{right}" %>">
               <td>
-                <%= link_to icon('check'), nil, :onclick => "toggleCheckboxesBySelector('.#{controller}-#{right} input')", :remote => true %>
+                <%= link_to icon('check'), '#', :onclick => "return toggleCheckboxesBySelector('.#{controller}-#{right} input')" %>
                 <%= config["name"][locale.to_s] %>
               </td>
               <% @roles.each do |role| %>

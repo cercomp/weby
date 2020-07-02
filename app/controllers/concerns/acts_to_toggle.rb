@@ -72,7 +72,11 @@ module ActsToToggle
   def toggle_attribute!
     return false if @object.blank? && params[:field].blank?
 
-    @object.toggle!(params[:field])
+    if @object.respond_to?("#{params[:field]}?")
+      @object.toggle!(params[:field])
+    elsif @object.respond_to?("toggle_#{params[:field]}")
+      @object.send("toggle_#{params[:field]}".to_sym)
+    end
   end
 
   # path que será redirecionando após a action toggle

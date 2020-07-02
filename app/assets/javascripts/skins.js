@@ -48,11 +48,14 @@ $(document).ready(function(){
       handle: '.handle',
       connectWith: '.order-list',
       forcePlaceholderSize: true,
+      forceHelperSize: true,
       placeholder: 'drop-here',
+      scrollSensitivity: 30,
+      scrollSpeed: 10,
       items: '> li',
-      opacity: 0.4,
+      opacity: 0.5,
       scroll: true,
-      tolerance: 'pointer',
+      //tolerance: 'pointer',
       update: function(evt, ui){
         $('.maxi_level.multi').each(function(){ $(this).attr('style', ''); $(this).css({'height':$(this).height()}); });
         $.ajax({

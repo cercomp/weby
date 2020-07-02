@@ -80,8 +80,7 @@ module Sticker::Admin
     end
 
     def unshare
-      banner = current_site.banner_sites.where(sticker_banner_id: params[:id])
-      banner.destroy_all
+      current_site.banner_sites.where(sticker_banner_id: params[:id]).destroy_all
       flash[:success] = t('.unshared_banner')
       redirect_to admin_banners_path
     end
@@ -104,6 +103,22 @@ module Sticker::Admin
       end
 
       redirect_to(admin_banners_path)
+    end
+
+    def destroy_many
+      current_site.banner_sites.includes(:banner).where(id: params[:ids].split(',')).each do |bs|
+        if bs.banner.site_id == current_site.id
+          if bs.banner.destroy
+            record_activity('destroyed_banner', bs.banner)
+            flash[:success] = t('destroyed_param', param: bs.banner.title)
+          end
+        else
+          if bs.destroy
+            flash[:success] = t('.unshared_banner')
+          end
+        end
+      end
+      redirect_back(fallback_location: admin_banners_path)
     end
 
     def sort

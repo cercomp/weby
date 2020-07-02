@@ -9,9 +9,9 @@ module DateHelper
   def publication_status(obj, _options = {})
     case obj
     when Page
-      publication_status_page(obj, options = {})
+      publication_status_page(obj, _options)
     when Journal::News
-      publication_status_news(obj, options = {})
+      publication_status_news(obj, _options)
     end
   end
 

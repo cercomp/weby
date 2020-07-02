@@ -9,6 +9,9 @@
   <% with_permission(action: :index) do %>
     <%= link_to t(".list_pages"), site_admin_pages_path, class: "btn btn-default" %>
   <% end %>
+  <% with_permission(action: :destroy) do %>
+    <%= link_to t("empty_bin"), empty_bin_site_admin_pages_path, class: "btn btn-default btn-danger #{'disabled' if @pages.empty?}", method: :delete, disabled: @pages.empty?, data: {confirm: t('confirm_empty_bin')} %>
+  <% end %>
 </div>
 <div class="clearfix"></div>
 
@@ -22,7 +25,7 @@
     <div class="pull-right"> <%= paginate @pages, remote: true %> </div>
     <div class="clearfix"></div>
 
-    <table class="table table-striped nowrap">
+    <table class="table table-striped nowrap align-middle">
       <thead>
         <tr>
           <th width="270px"><%= t(".title") %></th>
@@ -39,8 +42,10 @@
             </td>
             <td><%= page.user.first_name %></td>
             <td><%= l(page.deleted_at, :format => :short) %></td>
-            <td class="text-right">
-              <%= recycle_bin_actions page %>
+            <td class="actions text-right">
+              <%= render_dropdown_menu do %>
+                <%= recycle_bin_actions page, with_text: true %>
+              <% end %>
             </td>
           </tr>
         <% end %>

@@ -6,7 +6,7 @@
   <div class="pull-right"><%= paginate @activity_records, remote: true %></div>
   <div class="pull-left"><%= info_page @activity_records %></div>
   <div class="clearfix"></div>
-  <table class='table table-striped'>
+  <table class="table table-striped align-middle">
     <thead>
       <tr>
         <th><%= t(".created_at") %></th>
@@ -20,13 +20,22 @@
         <tr>
           <td><%= l(activity_record.created_at, format: :short) %></td>
           <td><%= link_to activity_record.site.name, site_url(subdomain: activity_record.site), title: activity_record.site.title, target: :_blank if activity_record.site %></td>
-          <td><%= activity_record.user %> <%= t(".#{activity_record.note}") %></td>
+          <td>
+            <%= activity_record.user %>
+            <% if activity_record.is_linkable? %>
+              <%= link_to "#{t(".#{activity_record.note}")} #{content_tag(:span, icon(:'eye-open'), class: 'oh-c-i')}".html_safe, build_loggeable_url(activity_record) %>
+            <% else %>
+              <%= t(".#{activity_record.note}") %>
+            <% end %>
+          </td>
           <td class="text-right">
-            <%= link_to(icon("eye-open", text: t(".show")), build_loggeable_url(activity_record), class: "action-link") if activity_record.is_linkable? %>
-            <%= link_to(icon("search", text: t(".details")),
-                        admin_activity_record_path(activity_record), class: "action-link" )%>
-            <%= link_to(icon("trash", text: t(".destroy")),
-                        admin_activity_record_path(activity_record), method: :delete, data: {confirm: t('are_you_sure_del_item', item: activity_record.screen_name)}, class: "action-link") %>
+            <%= render_dropdown_menu do %>
+              <%= link_to(icon("eye-open", text: t(".show")), build_loggeable_url(activity_record), class: "action-link") if activity_record.is_linkable? %>
+              <%= link_to(icon("search", text: t(".details")),
+                          admin_activity_record_path(activity_record), class: "action-link" )%>
+              <%= link_to(icon("trash", text: t(".destroy")),
+                          admin_activity_record_path(activity_record), method: :delete, data: {confirm: t('are_you_sure_del_item', item: activity_record.screen_name)}, class: "action-link") %>
+            <% end %>
           </td>
         </tr>
       <% end %>

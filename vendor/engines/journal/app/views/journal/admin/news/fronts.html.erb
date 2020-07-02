@@ -34,9 +34,13 @@
   </div>
 <% else %>
 
-  <table  class="table table-striped nowrap" id="list" data-sort-url="<%= sort_admin_news_index_path %>">
+  <table  class="table table-striped nowrap align-middle" id="list" data-sort-url="<%= sort_admin_news_index_path %>">
     <thead>
-      <th width="32%"><%= t(".title") %></th>
+      <% with_permission(action: :sort) do %>
+        <th class="grab-header"></th>
+      <% end %>
+      <th class="center sel-all"><%= check_box_tag :select_all, 1, false %></th>
+      <th width="28%"><%= t(".title") %></th>
       <th width="12%"><%= t(".user") %></th>
       <th width="13%"><%= t(".category") %></th>
       <th width="13%"><%= t(".created_at") %></th>
@@ -45,7 +49,7 @@
         <th  width="5%"><%= t(".status") %></th>
       <% end %>
         <th  width="5%" class="center"><%= t(".views") %></th>
-        <th  width="8%"><%= t(".action") %></th>
+        <th  width="8%"><%#= t(".action") %></th>
     </thead>
     <tbody>
       <% @newslist.each do |news_site| %>
@@ -53,16 +57,24 @@
           <% news = news_site.news %>
           <% next if !news.site&.active? %>
             <tr id="sort_news_<%= news.id %>" class="sort_news <%= news_site.category_list.map{|categ| categ.parameterize }.join(' ') %>">
+              <% with_permission(action: :sort) do %>
+                <td class="grab-cell"><%= link_to image_tag('drag.png'), '#', class: 'handle', title: t('.move') %></td>
+              <% end %>
+              <td class="center sel-item"><%= check_box_tag :select_item, news_site.id, false %></td>
               <td>
                 <% if news.site_id == current_site.id %>
-                <%=   link_to news.title, edit_admin_news_path(news) %>
-                <%    else %>
-                <%=      icon('retweet') %>
-                <%=      "  #{news.title}" %>
-                <%    end %>
+                  <% if check_permission(Journal::Admin::NewsController, [:edit]) %>
+                    <%= link_to "#{news.title} #{content_tag(:span, icon(:edit), class: 'oh-c-i')}".html_safe, edit_admin_news_path(news) %>
+                  <% else %>
+                    <%= link_to news.title, news_path(news), target: :_blank %>
+                  <% end %>
+                <% else %>
+                  <%= icon('retweet') %>
+                  <%= link_to news.title, news_url(news, subdomain: news.site), target: :_blank %>
+                <% end %>
               </td>
               <td><%= news.user.first_name %></td>
-              <td><%= raw categories_links(news_site.category_list) %></td>
+              <td><%= categories_links(news_site.categories) %></td>
               <td><%= l(news.created_at, :format => :short) %></td>
               <% with_permission(action: :edit) do %>
                 <td class="publish" style="text-align:center;">
@@ -71,17 +83,31 @@
                   <%= news_status(news) %></td>
               <% end %>
               <td style="text-align:center;"><%= news.view_count %></td>
-              <td class="text-right">
-                <%= make_menu(news, :except => "show", :with_text => false) %>
-                <% with_permission(action: :sort) do %>
-                  <%= link_to icon('trash'), unshare_admin_news_url(news), method: :put, data: { confirm: t('are_you_sure_unshare_item', item: news.title) } if news.site_id != current_site.id %>
-                  <%= link_to icon('move'), '#', class: 'handle' %>
+              <td class="actions text-right">
+                <%= render_dropdown_menu do %>
+                  <%= link_to icon('eye-open', text: t('show')), news_url(news, subdomain: news.site), target: :_blank %>
+                  <% with_permission(action: :unshare) do %>
+                    <%= link_to icon('trash', text: t('destroy')), unshare_admin_news_url(news), method: :put, data: { confirm: t('are_you_sure_unshare_item', item: news.title) } if news.site_id != current_site.id %>
+                  <% end %>
+                  <% with_permission(action: :new) do %>
+                    <%= link_to icon('duplicate', text: t('copy')), new_admin_news_path(copy_from: news.id) %>
+                  <% end %>
+                  <%= make_menu(news, :except => "show", :with_text => true) %>
                 <% end %>
               </td>
             </tr>
         <% end %>
       <% end %>
     </tbody>
+    <tfoot>
+      <td colspan="42">
+        <div class="bulk-actions">
+          <% with_permission(action: :destroy_many) do %>
+            <%= link_to icon('trash', text: t('destroy')), destroy_many_admin_news_index_path, class: 'btn btn-sm btn-default destroy-many', method: :delete, data: {confirm: t('are_you_sure_del_many')} %>
+          <% end %>
+        </div>
+      </td>
+    </tfoot>
   </table>
 <% end %>
 

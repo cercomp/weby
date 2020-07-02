@@ -12,7 +12,7 @@
     <% end %>
     <div class="pull-right">
       <% with_permission(action: :create) do %>
-        <%= link_to t(".install_theme"),
+        <%= link_to icon('plus-sign', text: t(".install_theme")),
             new_site_admin_skin_path,
             class: "btn btn-success" %>
       <% end %>
@@ -85,7 +85,7 @@
     <div role="tabpanel" class="tab-pane active" id="tab-layout">
       <p class="pull-right">
         <% if check_permission(Sites::Admin::ComponentsController, [:new]) %>
-          <%= link_to t(".new_component"),
+          <%= link_to icon('plus-sign', text: t(".new_component")),
             new_site_admin_skin_component_path(@skin),
             class: "btn btn-success" %>
         <% end %>
@@ -97,24 +97,25 @@
         <%= content_tag :div, class: "maxi_level #{row["names"].many? ? "multi" : "single"}" do %>
           <% row["names"].each_with_index do |name, idx| %>
             <%= content_tag :div, class: "placeholder", data: {place: name}, style: "width: #{row["widths"] ? row["widths"][idx] : 100/row["names"].size}%;" do %>
-              <%= link_to '+', new_site_admin_skin_component_path(@skin, placeholder: name), class: "add-btn btn btn-success btn-sm", title: t(".new_component") if check_permission(Sites::Admin::ComponentsController, 'new') %>
+              <%= link_to image_tag('add-row-w.svg'), new_site_admin_skin_component_path(@skin, placeholder: name), class: "add-btn btn btn-success btn-sm add-subitem", title: t(".new_component") if check_permission(Sites::Admin::ComponentsController, 'new') %>
               <div class="placeholder-name"><%= t("themes.#{@skin.theme}.placeholders.#{name}") %></div>
-              <ul class="order-list" data-place="<%= name %>">
-                <% components_per_holder = @components.select{|component| component.place_holder == name} %>
-                <% if components_per_holder.empty? %>
-                  <!--<div><i><%#= t(".empty_placeholder") %></i></div>-->
-                <% end %>
+              
+                <ul class="order-list" data-place="<%= name %>">
+                  <% components_per_holder = @components.select{|component| component.place_holder == name} %>
+                  <% if components_per_holder.empty? %>
+                    <!--<div><i><%#= t(".empty_placeholder") %></i></div>-->
+                  <% end %>
 
-                <% components_per_holder.each do |comp| %>
-                  <% component = Weby::Components.factory(comp) %>
-                  <%= list_component(component) %>
+                  <% components_per_holder.each do |comp| %>
+                    <% component = Weby::Components.factory(comp) %>
+                    <%= list_component(component) %>
 
-                <% end %>
-                <% @components = @components - components_per_holder %>
-              </ul>
+                  <% end %>
+                  <% @components = @components - components_per_holder %>
+                </ul>
+              
             <% end %>
           <% end %>
-        <div class="clearfix"></div>
         <% end %>
       <% end %>
       </div>

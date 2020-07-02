@@ -51,24 +51,26 @@ module ApplicationHelper
       li_content << if view_ctrl
         content_tag(:div, style: 'min-height: 25px', class: "menuitem-ctrl#{' deactivated' unless entry.publish}") do
           div_content = []
-          div_content << content_tag(:span, class: 'disclose') do
+          div_content << link_to(image_tag('drag.png'), '#', class: 'handle', title: t('move')) if test_permission(:menu_items, :change_position)
+          div_content << check_box_tag(:select_item, entry.id, false, class: 'sel-item')
+          div_content << content_tag(:span, content_tag(:span), class: 'disclose')
+          div_content << toggle_field(entry, 'publish', 'toggle', controller: 'sites/admin/menus/menu_items', menu_id: entry.menu_id, remote: true, class: 'toggle-menu-item')
+          div_content << content_tag(:span, class: 'menu-entry') do
             [
-              content_tag(:span)
-            ].join.html_safe
+              title_link,
+              ( entry && entry.target ? "[ #{entry.target.try(:title)} ]" : "[ #{entry.url} ]")
+            ].join(' ').html_safe
           end
-          div_content << content_tag(:span) do
-            [
-              toggle_field(entry, 'publish', 'toggle', controller: 'sites/admin/menus/menu_items', menu_id: entry.menu_id, remote: true, class: 'toggle-menu-item'),
-              " #{title_link}",
-              ( (entry and entry.target) ? " [ #{entry.target.try(:title)} ] " : " [ #{entry.url} ] ")
-            ].join.html_safe
-          end
-          div_content << content_tag(:div, class: 'pull-right') do
+          div_content << content_tag(:div, class: 'pull-right align-middle') do
             menu_content = []
-            menu_content << link_to(icon('edit', text: ''), edit_site_admin_menu_menu_item_path(entry.menu_id, entry.id), title: t('edit')) if test_permission(:menu_items, :show)
-            menu_content << link_to(icon('trash', text: ''), site_admin_menu_menu_item_path(entry.menu_id, entry.id), method: :delete, data: { confirm: t('are_you_sure_del_item', item: entry.title) }, title: t('destroy')) if test_permission(:menu_items, :destroy)
-            menu_content << link_to(icon('move', text: ''), '#', class: 'handle', title: t('move')) if test_permission(:menu_items, :change_position)
-            menu_content << link_to('+', new_site_admin_menu_menu_item_path(entry.menu_id, parent_id: entry.id), class: 'btn btn-success btn-xs', title: t('add_sub_menu')) if test_permission(:menu_items, :new)
+            menu_content << link_to(image_tag('add-row-w.svg'), new_site_admin_menu_menu_item_path(entry.menu_id, parent_id: entry.id), class: 'btn btn-success btn-sm add-subitem', title: t('add_sub_menu')) if test_permission(:menu_items, :new)
+            menu_content << render_dropdown_menu do
+              dropdown_menu = []
+              dropdown_menu << link_to(icon('duplicate', text: t('copy')), new_site_admin_menu_menu_item_path(entry.menu_id, copy_from: entry.id)) if test_permission(:menu_items, :new)
+              dropdown_menu << link_to(icon('edit', text: t('edit')), edit_site_admin_menu_menu_item_path(entry.menu_id, entry.id), title: t('edit')) if test_permission(:menu_items, :show)
+              dropdown_menu << link_to(icon('trash', text: t('destroy')), site_admin_menu_menu_item_path(entry.menu_id, entry.id), method: :delete, data: { confirm: t('are_you_sure_del_item', item: entry.title) }, title: t('destroy')) if test_permission(:menu_items, :destroy)
+              dropdown_menu.join.html_safe
+            end
             menu_content.join.html_safe
           end
           div_content.join.html_safe
@@ -192,80 +194,83 @@ module ApplicationHelper
   # Params: object, args={TODO}
   def make_menu(obj, args = {})
     # in order to not create an menu with objects form another site
-    return '' if obj.respond_to?(:site_id) and obj.site_id != current_site.id
+    return '' if obj.respond_to?(:site_id) && obj.site_id != current_site.id
 
-    raw(''.tap do |menu|
-      excepts = args[:except] || []
-      ctrl = args[:controller] || controller.class
+    excepts = args[:except] || []
+    ctrl = args[:controller] || controller.class
 
-      # Icon's texts
-      args[:with_text] = true if args[:with_text].nil?
+    # Icon's texts
+    args[:with_text] = true if args[:with_text].nil?
 
-      # Transforms the param in array if it is not one
-      excepts = [excepts] unless excepts.is_a? Array
-      excepts.each_index do |i|
-        # Transforms the params in symbols if they are not
-        excepts[i] = excepts[i].to_sym unless excepts[i].is_a? Symbol
+    # Transforms the param in array if it is not one
+    excepts = [excepts] unless excepts.is_a? Array
+    excepts.each_index do |i|
+      # Transforms the params in symbols if they are not
+      excepts[i] = excepts[i].to_sym unless excepts[i].is_a?(Symbol)
+    end
+
+    methods = ctrl.instance_methods(false) - excepts
+    menus = []
+    ## show
+    if methods.include?(:show) && test_permission(ctrl, :show)
+      menus << link_to(
+        icon('eye-open', text: args[:with_text] ? t('show') : ''),
+        {
+          controller: ctrl.controller_name,
+          action: 'show',
+          id: obj.id
+        }.merge(args.fetch(:params, {})),
+        alt: t('show'),
+        title: t('show'),
+        class: 'action-link'
+      )
+    end
+    ## Edit
+    if methods.include?(:edit) && test_permission(ctrl, :edit)
+      menus << link_to(
+        icon('edit', text: args[:with_text] ? t('edit') : ''),
+        {
+          controller: ctrl.controller_name,
+          action: 'edit', id: obj.id
+        }.merge(args.fetch(:params, {})),
+        alt: t('edit'),
+        title: t('edit'),
+        class: 'action-link'
+      )
+    end
+    # Newsletter
+    if methods.include?(:newsletter) && test_permission(ctrl, :newsletter)
+      @newsletter ||= current_skin.components.find_by(name: 'newsletter', publish: true)
+      if @newsletter.present?
+        menus << link_to(
+          icon(Journal::NewsletterHistories.sent(current_site.id, obj.id).count == 0 ? 'envelope' : 'ok', text: args[:with_text] ? t('.newsletter') : ''),
+          {
+            controller: ctrl.controller_name,
+            action: 'newsletter', id: obj.id
+          },
+          alt: t('letter'),
+          title: t('letter'),
+          class: 'action-link'
+        )
       end
-
-      (ctrl.instance_methods(false) - excepts).each do |action|
-        if test_permission(ctrl, action)
-          case action.to_sym
-
-          when :show
-            menu << link_to(
-              icon('eye-open', text: args[:with_text] ? t('show') : ''),
-              {
-                controller: ctrl.controller_name,
-                action: 'show', id: obj.id
-              }.merge(args.fetch(:params, {})),
-              alt: t('show'),
-              title: t('show'),
-              class: 'action-link'
-            ) + ' '
-
-          when :edit
-            menu << link_to(
-              icon('edit', text: args[:with_text] ? t('edit') : ''),
-              {
-                controller: ctrl.controller_name,
-                action: 'edit', id: obj.id
-              }.merge(args.fetch(:params, {})),
-              alt: t('edit'),
-              title: t('edit'),
-              class: 'action-link') + ' '
-
-          when :destroy
-            menu << link_to(
-              icon('trash', text: args[:with_text] ? t('destroy') : ''),
-              {
-                controller: ctrl.controller_name,
-                action: 'destroy',
-                id: obj.id
-              }.merge(args.fetch(:params, {})),
-              data: { confirm: t('are_you_sure_del_item', item: obj.screen_name) },
-              method: :delete,
-              alt: t('destroy'),
-              title: t('destroy'),
-              class: 'action-link') + ' '
-
-          when :newsletter
-            @newsletter = current_site.active_skin.components.find_by(name: 'newsletter', publish: true)
-            if !@newsletter.nil?
-              menu << link_to(
-                icon(Journal::NewsletterHistories.sent(current_site.id, obj.id).count == 0 ? 'envelope' : 'ok', text: args[:with_text] ? t('.newsletter') : ''),
-                {
-                  controller: ctrl.controller_name,
-                  action: 'newsletter', id: obj.id
-                },
-                alt: t('newsletter'),
-                title: t('letter'),
-                class: 'action-link') + ' '
-            end
-          end
-        end
-      end
-    end)
+    end
+    # Destroy
+    if methods.include?(:destroy) && test_permission(ctrl, :destroy)
+      menus << link_to(
+        icon('trash', text: args[:with_text] ? t('destroy') : ''),
+        {
+          controller: ctrl.controller_name,
+          action: 'destroy',
+          id: obj.id
+        }.merge(args.fetch(:params, {})),
+        data: { confirm: t('are_you_sure_del_item', item: obj.screen_name) },
+        method: :delete,
+        alt: t('destroy'),
+        title: t('destroy'),
+        class: 'action-link'
+      )
+    end
+    menus.join(' ').html_safe
   end
 
   def recycle_bin_actions(resource, options = {})
@@ -444,9 +449,9 @@ module ApplicationHelper
       icon_class = "#{ico} #{ico}-#{type}" + (args[:white] ? " #{ico}-white" : '')
 
       if args[:right]
-        raw "#{args[:text]} <i class='#{icon_class}' style='#{args[:icon_style]}'></i>"
+        raw "#{args[:text]} <i class=\"#{icon_class} #{args[:class]}\" style=\"#{args[:icon_style]}\"></i>"
       else
-        raw "<i class='#{icon_class}' style='#{args[:icon_style]}'></i> #{args[:text]}"
+        raw "<i class=\"#{icon_class} #{args[:class]}\" style=\"#{args[:icon_style]}\"></i> #{args[:text]}"
       end
     end
   end
@@ -513,14 +518,15 @@ module ApplicationHelper
 
   # TODO use named parameters from ruby 2.
   def toggle_field(resource, field, action = 'toggle', options = {})
+    is_active = !!resource.send(field.to_sym)
     ''.tap do |html|
-      title = resource[field] ? t('enable') : t('disable')
+      title = is_active ? t('enable') : t('disable')
       options[:id] ||= resource.id
 
       check_box_options = {
         alt: title,
-        title: title,
-        class: 'toggle'
+        title: title
+        #,class: 'toggle'
       }
 
       link_options = options.merge(
@@ -538,12 +544,25 @@ module ApplicationHelper
       site_check = resource.respond_to?(:site_id) ? (current_site.blank? || resource.site_id == current_site.id) : true
 
       if test_permission(options[:controller] || controller_name, action) && site_check
-         checkbox = check_box_tag(field, resource[field], resource[field], check_box_options)
+        checkbox = render_toggle(field, true, is_active, check_box_options)
         html << link_to(checkbox, url_options, link_options)
       else
         check_box_options = check_box_options.merge(disabled: true)
-         html << check_box_tag(field, resource[field], resource[field], check_box_options)
+        html << render_toggle(field, true, is_active, check_box_options)
       end
+    end.html_safe
+  end
+
+  def render_toggle field, value, is_checked, options={}
+    check_box_options = {class: 'toggle weby-toggle'}
+    html = check_box_tag(field, value, is_checked, check_box_options.merge(options))
+    html << content_tag(:label, content_tag(:span, '', class: 'check-handler'), class: 'check-trail', for: field)
+  end
+
+  def render_dropdown_menu &block
+    content_tag :div, class: 'dropmic', role: 'navigation', data: {dropmic: '42', dropmic_direction: 'bottom-left'} do
+      concat button_tag(icon('option-horizontal'), data: {dropmic_btn: ''})
+      concat content_tag(:div, class: 'dropmic-menu', aria: {hidden: true}, &block)
     end
   end
 

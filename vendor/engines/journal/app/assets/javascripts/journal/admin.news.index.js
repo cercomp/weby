@@ -11,5 +11,10 @@ $(document).ready(function() {
   });
 
   //// ajax enable disable menu item
-  appendToggleHandle('td.front a');
+  if ($('td.front').length > 0) {
+    appendToggleHandle('td.front a');
+  }
+  if ($('td.activate').length > 0) {
+    appendToggleHandle('td.activate a', 'tr');
+  }
 });

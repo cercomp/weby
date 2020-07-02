@@ -9,6 +9,9 @@
   <% with_permission(action: :index) do %>
     <%= link_to t(".news"), admin_news_index_path, class: "btn btn-default" %>
   <% end %>
+  <% with_permission(action: :destroy) do %>
+    <%= link_to t("empty_bin"), empty_bin_admin_news_index_path, class: "btn btn-default btn-danger #{'disabled' if @newslist.empty?}", method: :delete, disabled: @newslist.empty?, data: {confirm: t('confirm_empty_bin')} %>
+  <% end %>
 </div>
 <div class="clearfix"></div>
 
@@ -22,13 +25,14 @@
     <div class="pull-right"> <%= paginate @newslist, remote: true %> </div>
     <div class="clearfix"></div>
 
-    <table class="table table-striped nowrap">
+    <table class="table table-striped nowrap align-middle">
       <thead>
         <tr>
           <th width="35%"><%= t(".title") %></th>
           <th width="12%"><%= sortable 'users.first_name', t(".author") %></th>
+          <th width="20%"><%= sortable 'tags.name', t(".category") %></th>
           <th width="13%"><%= sortable 'news.deleted_at', t(".deleted_at") %></th>
-          <th width="5%" class="center"><%= sortable 'news.status', t(".status") %></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -36,11 +40,12 @@
           <tr id="<%= news.id %>">
             <td><%= news.title %></td>
             <td><%= news.user.first_name %></td>
+            <td><%= raw categories_links(news.news_site_for(current_site).categories) %></td>
             <td><%= l(news.deleted_at, :format => :short) %></td>
-            <td style="text-align:center;">
-              <%= news_status(news) %></td>
-            <td class="text-right">
-              <%= recycle_bin_actions news %>
+            <td class="actions text-right">
+              <%= render_dropdown_menu do %>
+                <%= recycle_bin_actions news, with_text: true %>
+              <% end %>
             </td>
           </tr>
         <% end %>

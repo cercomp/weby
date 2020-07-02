@@ -1,6 +1,10 @@
 <%= simple_form_for [:admin, @notification] do |f| %>
   <%= f.show_errors %>
   <%= f.input :title %>
+  <div class="form-group select notification_grouping">
+    <label class="string" for="notification_title">Grupos de site</label>
+    <%= select_tag :groupings, options_for_select(Grouping.all.map{|g| [g.name, g.id] }), include_blank: true, class: 'select2 site-groupings form-control', multiple: true, placeholder: 'Enviar para todos' %>
+  </div>
   <%= f.input :body,
     :input_html => {class: "mceSimple", style: "width: 550px; height: 280px;"},
     :as => :text,
@@ -11,3 +15,4 @@
   </div>
 <% end %>
 <% content_for :javascripts, javascript_include_tag("init/tinymce") %>
+<% content_for :javascripts, javascript_include_tag("notifications.form") %>

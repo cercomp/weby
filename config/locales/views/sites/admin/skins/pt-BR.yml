@@ -17,6 +17,7 @@ pt-BR:
           components:         " Componentes "
           activate:           " Ativar "
           new_component:      " Novo Componente "
+          new_child_component:      " Novo Componente Filho "
           component:          " Componente "
           alias:              " Nome "
           category:           " Categoria "
@@ -30,7 +31,8 @@ pt-BR:
           my_styles:        " Meus Estilos "
           styles:           " Estilos "
           head:             " Cabeçalho HTML "
-          remove_group:     " Excluir grupo e componentes filhos "
+          remove_group:     " Excluir grupo "
+          remove_group_hint: " Excluir grupo e componentes filhos "
           are_you_sure_group_del: "Tem certeza que deseja excluir o grupo de componentes \"%{alias}\" e todos os componentes filhos? "
         new:
           themes:             " Temas "
