@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tag %>
     <%= favicon_link_tag asset_url('favicon.ico') %>
-    <title>weby</title>
+    <title><%= content_for?(:title) ? "#{yield :title}" : 'weby' %></title>
     <%= stylesheet_link_tag 'weby_pages' %>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -18,12 +18,12 @@
       <meta name="storage" content="<%= "#{ENV['STORAGE_HOST']}/#{ENV['STORAGE_BUCKET']}" %>">
     <% end %>
   </head>
-  <body>
+  <body class="<%= yield :body_class %>">
     <div class="zone">
       <div id="header" class="container">
         <div class="row">
           <div class="col-md-3">
-            <%= link_to image_tag('weby-logo-60.png'), main_app.root_url(subdomain: nil) %>
+            <%= link_to image_tag('weby-logo-60.png', class: 'logo'), main_app.root_url(subdomain: nil) %>
           </div>
           <% if current_user %>
             <div class="col-md-4 col-md-offset-5 person">
@@ -73,5 +73,6 @@
       </p>
     </div>
     <%= javascript_include_tag 'weby_pages' %>
+    <%= yield :javascripts %>
   </body>
 </html>
