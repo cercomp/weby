@@ -102,6 +102,11 @@
     margin-right: 8px;
   }
   .dropmic {
-    margin-left: 6px;
+    margin-left: 8px;
+  }
+  .actions {
+    display: flex;
+    align-items: center;
+    text-align: right;
   }
 }

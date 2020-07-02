@@ -52,7 +52,7 @@ module ComponentsHelper
                 component_title
             end}
         </span>
-        <div class='pull-right text-right' style='min-width: 46px'>
+        <div class=\"pull-right actions\" style='min-width: 46px'>
           #{link_to(image_tag('add-row-w.svg'), new_site_admin_skin_component_path(compo.skin_id, placeholder: compo.id), class: 'btn btn-success btn-sm add-subitem', title: t('.new_child_component')) if compo.name.to_s == 'components_group' && check_permission(Sites::Admin::ComponentsController, [:new]) && !leftout}
           #{render_dropdown_menu do
               [
