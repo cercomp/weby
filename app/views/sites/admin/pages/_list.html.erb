@@ -39,7 +39,7 @@
             <%= render_dropdown_menu do %>
               <%= link_to icon('eye-open', text: t('show')), site_page_path(page), target: :_blank %>
               <% with_permission(action: :new) do %>
-                <%= link_to icon('duplicate', text: t('copy')), new_site_admin_page_path(copy_from: page.id) %>
+                <%= link_to fa_icon('clone', text: t('copy')), new_site_admin_page_path(copy_from: page.id) %>
               <% end %>
               <%= make_menu(page, :except => "show", :with_text => true) %>
             <% end %>

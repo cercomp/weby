@@ -8,7 +8,7 @@
 
 <% unless styles.blank? %>
  <div class="styles" id="other_styles">
-  <table class='table table-striped'>
+  <table class="table table-striped align-middle">
     <thead>
       <th width="34%"> <%= t('.name') %> </th>
       <th width="25%"> <%= t('.site') %> </th>
@@ -27,7 +27,11 @@
             <td><%= link_to(style.name, site_admin_skin_style_path(style.skin_id, style)) %></td>
             <td><%= link_to style.site.name, site_url(subdomain: style.site), title: style.site.title, target: :_blank %></td>
             <td><%= l(style.updated_at, format: :short) %>
-            <td class="text-right"><%= style_menu(style) %></td>
+            <td class="actions text-right">
+              <%= render_dropdown_menu do %>
+                <%= style_menu(style) %>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       <% end %>

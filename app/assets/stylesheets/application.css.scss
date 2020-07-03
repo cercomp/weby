@@ -75,6 +75,10 @@ a:hover, a:active, a:focus { text-decoration: none; }
   }
 }
 
+.weby-logo {
+  max-width: 140px;
+}
+
 #footer {
   a
   {
@@ -308,7 +312,13 @@ body.modal-open {
 #menu-admin {
   .nav-header {
     padding: 0;
-    li { font-weight: bold; }
+    li {
+      font-weight: bold;
+    }
+  }
+
+  li i {
+    margin-right: 8px;
   }
 }
 
@@ -604,6 +614,29 @@ hr {
     opacity: 1;
     transform: none;
   }
+}
+
+////Custom nav tabs
+.nav-tabs {
+  border-color: #AAA;
+
+  > li {
+
+    > a {
+      font-size: 18px;
+    }
+
+    &.active {
+      > a, > a:hover, > a:focus {
+        border-color: #AAA;
+        border-bottom-color: transparent;
+      }
+    }
+  }
+}
+
+.tab-content {
+  padding-top: 15px;
 }
 
 .flex-row {

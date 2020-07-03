@@ -43,7 +43,7 @@
                 <%= link_to icon('eye-open', text: t('show')), event_path(event), target: :_blank %>
                 <%= link_to icon('info-sign', text: t('details')), admin_event_path(event) %>
                 <% with_permission(action: :new) do %>
-                  <%= link_to icon('duplicate', text: t('copy')), new_admin_event_path(copy_from: event.id) %>
+                  <%= link_to fa_icon('clone', text: t('copy')), new_admin_event_path(copy_from: event.id) %>
                 <% end %>
                 <%= make_menu(event, :except => "show", :with_text => true) %>
               <% end %>

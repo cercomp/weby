@@ -92,6 +92,7 @@ Rails.application.routes.draw do
           end
           collection do
             post :sort
+            delete :destroy_many
           end
         end
       end

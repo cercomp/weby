@@ -175,7 +175,7 @@ rights:
       name:
         en: Destroy Style
         pt-BR: Excluir Estilo
-      action: destroy
+      action: destroy destroy_many
     new:
       name:
         en: Create Style

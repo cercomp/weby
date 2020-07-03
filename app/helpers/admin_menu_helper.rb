@@ -22,9 +22,9 @@ module AdminMenuHelper
 
   def content_menu_items
     {}.tap do |result|
-      result[:archives] = menu_item_to(t(".archives"), main_app.site_admin_repositories_path) if check_permission(Sites::Admin::RepositoriesController, [:index])
-      result[:pages] = menu_item_to(t(".pages"), main_app.site_admin_pages_path) if check_permission(Sites::Admin::PagesController, [:index])
-      result[:menus] = menu_item_to(t(".menus"), main_app.site_admin_menus_path) if check_permission(Sites::Admin::MenusController, [:index])
+      result[:archives] = menu_item_to(fa_icon('file-image-o', text: t(".archives")), main_app.site_admin_repositories_path) if check_permission(Sites::Admin::RepositoriesController, [:index])
+      result[:pages] = menu_item_to(fa_icon('file-text-o', text: t(".pages")), main_app.site_admin_pages_path) if check_permission(Sites::Admin::PagesController, [:index])
+      result[:menus] = menu_item_to(fa_icon('bars', text: t(".menus")), main_app.site_admin_menus_path) if check_permission(Sites::Admin::MenusController, [:index])
     end
   end
 
@@ -34,8 +34,17 @@ module AdminMenuHelper
       current_site.extensions.sort_by { |e| t("extensions.#{e.name}.name") }.each do |extension|
         position = Weby.extensions[extension.name.to_sym].menu_position
         result[position] ||= []
-        result[position] << menu_item_to(t("extensions.#{extension.name}.name"), "/admin/#{extension.name}")
+        result[position] << menu_item_to(fa_icon(extension_icon[extension.name.to_sym], text: t("extensions.#{extension.name}.name")), "/admin/#{extension.name}")
       end if check_permission(Sites::Admin::ExtensionsController, [:index])
     end
+  end
+
+  def extension_icon
+    {
+      journal: 'newspaper-o',
+      calendar: 'calendar',
+      sticker: 'image',
+      feedback: 'at'
+    }
   end
 end

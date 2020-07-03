@@ -37,9 +37,7 @@
                   <%= link_to current_user.first_name, main_app.profile_url(current_user.login, subdomain: current_site) %>
                 </div>
                 <div class="info actions">
-                  <%= link_to main_app.site_admin_path(subdomain: nil), class: "label label-default" do %>
-                    <%= icon('cog', white: true) %>
-                  <% end %>
+                  <%= link_to(icon('cog', white: true), main_app.site_admin_url(subdomain: nil), class: "label label-default") if current_user.is_admin? %>
                   <%= notifications_icon %>
                   <%= link_to icon('off', white: true), main_app.logout_path(back_url: main_app.site_path), method: :delete, class: 'label label-danger', title: t('.logout') %>
                 </div>
