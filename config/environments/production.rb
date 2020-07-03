@@ -55,7 +55,7 @@ Rails.application.configure do
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
-  config.log_level = :info
+  config.log_level = :info #:debug
 
   if ENV['STORAGE_BUCKET'].present?
     region = 'us-east-1'
@@ -127,6 +127,8 @@ Rails.application.configure do
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
+  else
+    config.logger = ActiveSupport::Logger.new(config.paths['log'].first, 1, 500.megabytes)
   end
 
   # Do not dump schema after migrations.
