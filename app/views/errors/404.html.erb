@@ -1,14 +1,24 @@
-<%- title '404', true %>
-
-<div class="dialog alert alert-info">
-  <%#= image_tag 'weby-logo.png' %>
-  <h1></h1>
-  <h1><%= t('does_not_exist') %></h1>
-  <p><%= t('verify_url') %></p>
-  <p>
-    <%#= @not_found_path %>
-  </p>
-  <p>
-    <%= link_to t('return_to_home'), root_url(subdomain: current_site) %>
-  </p>
+<%- title @current_site ? 'page_not_found' : 'site_not_found' %>
+<% content_for :body_class, 'space' %>
+<div class="wlax-container">
+  <div class="wlax-content">
+    <%= image_tag '404/stars.svg', class: 'wlax-layer stars', data: {rangex: 4, rangey: 4, invert: true} %>
+    <%= content_tag :div, class: 'wlax-layer planet-blue', data: {rangex: 12, rangey: 13, invert: true} do %>
+      <div class="error-code">404</div>
+      <%= image_tag '404/planet-blue.svg', class: '' %>
+    <% end %>
+    <%= image_tag '404/planet-yellow.svg', class: 'wlax-layer planet-yellow', data: {rangex: 17, rangey: 15, invert: true} %>
+    <%= image_tag 'weby-logo.svg', class: 'wlax-layer logo', data: {rangex: 15, rangey: 15} %>
+    <%= image_tag '404/astronaut.svg', class: 'wlax-layer astronaut', data: {rangex: 10, rangey: 10} %>
+    <%= content_tag :div, class: 'wlax-layer speak-box', data: {rangex: 5, rangey: 5} do %>
+      <% if @current_site %>
+        <h5><%= t('page_not_found_title') %></h5>
+        <%= t('page_not_found_body') %> <%= link_to t('page_not_found_link'), site_url(subdomain: @current_site), class: 'layer-safe' %>
+      <% else %>
+        <h5><%= t('site_not_found_title') %></h5>
+        <%= t('site_not_found_body') %> <%= link_to t('site_not_found_link'), main_app.root_url(subdomain: nil), class: 'layer-safe' %>
+      <% end %>
+    <% end %>
+  </div>
 </div>
+<% content_for :javascripts, javascript_include_tag('error_pages') %>
