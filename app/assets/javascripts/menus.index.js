@@ -44,13 +44,13 @@ $(document).ready(function() {
     hoverClass: "drop-here",
     tolerance: "pointer",
     drop: function( event, ui ) {
-      var drop_li = $(this)
+      var drop = $(this)
       var id = ui.draggable.attr('id').replace('menu_item_','');
-      var menu_id = drop_li.data('menu-id');
+      var menu_id = drop.data('menu-id');
 
       dropped = true;
       ////Testa para não alterar pra o proprio menu
-      if( !drop_li.hasClass('active') ){
+      if( !drop.hasClass('active') ){
         $.ajax({
           type: 'post',
           data: 'id='+id+'&new_menu_id='+menu_id,
@@ -58,7 +58,7 @@ $(document).ready(function() {
           complete: function(request,text){
             if(text=='success'){
               ui.draggable.remove();
-              location = drop_li.find('a').attr('href');
+              location = drop.find('a').attr('href');
             }
           },
          url: $('#main-menu').data('change-url')
@@ -68,10 +68,10 @@ $(document).ready(function() {
   });
   /// init menus sortable
   $('#tabs').sortable({
-    placeholder: 'drop-here',
+    placeholder: 'drop-here list-group-item',
     forcePlaceholderSize: true,
     tolerance: 'pointer',
-    handle: '.glyphicon',
+    handle: '.handle',
     update: function(event, ui){
       var $this = $(this);
       if(dropped){

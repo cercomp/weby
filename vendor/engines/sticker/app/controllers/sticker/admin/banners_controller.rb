@@ -27,8 +27,7 @@ module Sticker::Admin
     end
 
     def new
-      @banner = current_site.banners.new
-      @banner.banner_sites.build(site_id: current_site)
+      @banner = current_site.banners.new_or_clone(params[:copy_from])
     end
 
     def edit

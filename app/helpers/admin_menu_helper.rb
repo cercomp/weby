@@ -22,9 +22,9 @@ module AdminMenuHelper
 
   def content_menu_items
     {}.tap do |result|
-      result[:archives] = menu_item_to(fa_icon('file-image-o', text: t(".archives")), main_app.site_admin_repositories_path) if check_permission(Sites::Admin::RepositoriesController, [:index])
-      result[:pages] = menu_item_to(fa_icon('file-text-o', text: t(".pages")), main_app.site_admin_pages_path) if check_permission(Sites::Admin::PagesController, [:index])
-      result[:menus] = menu_item_to(fa_icon('bars', text: t(".menus")), main_app.site_admin_menus_path) if check_permission(Sites::Admin::MenusController, [:index])
+      result[:archives] = menu_item_to(fa_icon('file-image-o fw', text: t(".archives")), main_app.site_admin_repositories_path) if check_permission(Sites::Admin::RepositoriesController, [:index])
+      result[:pages] = menu_item_to(fa_icon('file-text-o fw', text: t(".pages")), main_app.site_admin_pages_path) if check_permission(Sites::Admin::PagesController, [:index])
+      result[:menus] = menu_item_to(fa_icon('bars fw', text: t(".menus")), main_app.site_admin_menus_path) if check_permission(Sites::Admin::MenusController, [:index])
     end
   end
 
@@ -41,10 +41,10 @@ module AdminMenuHelper
 
   def extension_icon
     {
-      journal: 'newspaper-o',
-      calendar: 'calendar',
-      sticker: 'image',
-      feedback: 'at'
+      journal: 'newspaper-o fw',
+      calendar: 'calendar fw',
+      sticker: 'image fw',
+      feedback: 'at fw'
     }
   end
 end

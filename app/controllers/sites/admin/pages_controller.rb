@@ -54,7 +54,7 @@ class Sites::Admin::PagesController < ApplicationController
   end
 
   def new
-    @page = current_site.pages.new
+    @page = current_site.pages.new_or_clone(params[:copy_from])
   end
 
   def edit

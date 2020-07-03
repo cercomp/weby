@@ -251,6 +251,9 @@ body.modal-open {
 
 .tabbable.i18n .nav.nav-tabs {
   margin-bottom: 0px !important;
+  > li > a {
+    font-size: initial;
+  }
 }
 
 .tabbable.i18n .tab-content {
@@ -323,18 +326,26 @@ body.modal-open {
 }
 
 .menu-tabs {
-  margin-bottom: 15px;
+  .list-group-item {
+    padding: 8px 8px 8px 3px;
+    display: flex;
+    align-items: center;
 
-  .nav > li > a{
-    padding-right: 20px;
+    > a {
+      flex: 1;
+      color: inherit;
+    }
   }
 
-  .glyphicon{
-    position: absolute;
-    right: 7px;
-    top: 11px;
-    cursor: move;
+  .handle {
+    width: 10px;
+    margin-right: 8px;
   }
+}
+
+.add-menu {
+  text-align: right;
+  margin-bottom: 10px;
 }
 
 #repo_list > div.row > div > div {
@@ -689,12 +700,12 @@ button[data-dropmic-btn] {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  height: 28px;
-  width: 28px;
+  height: 27px;
+  width: 27px;
   transition: transform .15s cubic-bezier(.175,.885,.32,1.275);
 
   i {
-    font-size: 18px;
+    font-size: 16px;
     color: #646970;
   }
 

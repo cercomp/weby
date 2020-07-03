@@ -72,7 +72,7 @@ rights:
       name:
         en: Edit Menu
         pt-BR: Editar Menu
-      action: edit update
+      action: edit update change_order
     destroy:
       name:
         en: Destroy Menu

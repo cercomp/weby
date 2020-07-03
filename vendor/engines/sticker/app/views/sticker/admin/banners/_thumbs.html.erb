@@ -16,8 +16,8 @@
           <p>Publicado: <%= publication_status_banner(banner) %></p>
           <%= link_to icon('eye-open', text: t('show')), admin_banner_url(banner) if !banner.owned_by?(current_site) %>
           <%= link_to icon('trash', text: t('destroy')), unshare_admin_banner_url(banner), method: :put, data: { confirm: t('are_you_sure_unshare_item', item: banner.title) } if !banner.owned_by?(current_site) %>
-          <% with_permission(action: :new) do %>
-            <%= link_to fa_icon('clone', text: t('copy')), new_admin_banner_path(copy_from: banner.id), class: 'action-link' %>
+          <% if banner.owned_by?(current_site) && check_permission(Sticker::Admin::BannersController, [:new]) %>
+            <%= link_to fa_icon('clone', text: t('copy')), new_admin_banner_path(copy_from: banner_site.id), class: 'action-link' %>
           <% end %>
           <%= raw make_menu(banner) %>
         </div>

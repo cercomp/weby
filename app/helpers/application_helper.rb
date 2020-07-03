@@ -559,8 +559,9 @@ module ApplicationHelper
     html << content_tag(:label, content_tag(:span, '', class: 'check-handler'), class: 'check-trail', for: field)
   end
 
-  def render_dropdown_menu &block
-    content_tag :div, class: 'dropmic', role: 'navigation', data: {dropmic: '42', dropmic_direction: 'bottom-left'} do
+  def render_dropdown_menu options={}, &block
+    direction = options[:direction] || 'bottom-left'
+    content_tag :div, class: 'dropmic', role: 'navigation', data: {dropmic: '42', dropmic_direction: direction} do
       concat button_tag(icon('option-horizontal'), data: {dropmic_btn: ''})
       concat content_tag(:div, class: 'dropmic-menu', aria: {hidden: true}, &block)
     end

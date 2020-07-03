@@ -52,6 +52,30 @@ class MenuItem < ApplicationRecord
     super options
   end
 
+  def self.new_or_clone id, params={}
+    if id.present?
+      menu_item = current_scope.find_by(id: id)
+      if menu_item
+        return current_scope.new(
+          url: menu_item.url,
+          target: menu_item.target,
+          new_tab: menu_item.new_tab,
+          publish: menu_item.publish,
+          html_class: menu_item.html_class,
+          i18ns_attributes: menu_item.i18ns.map do |i18n|
+            {
+              locale: i18n.locale,
+              title: i18n.title,
+              description: i18n.description
+            }
+          end
+        )
+      end
+    end
+    #default
+    current_scope.new(params)
+  end
+
   private
 
   def positions_by_parent(serialized)

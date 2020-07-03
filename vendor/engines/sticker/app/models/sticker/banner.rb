@@ -48,6 +48,36 @@ module Sticker
       self.create!(attrs)
     end
 
+    def self.new_or_clone id, params={}
+      if id.present?
+        site_id = current_scope.values.fetch(:where, {}).to_h['site_id']
+        banner_site = Sticker::BannerSite.where(site_id: (site_id || -1)).find_by(id: id)
+        if banner_site && (banner = banner_site.banner)
+          banner = current_scope.new({
+            repository_id: banner.repository_id,
+            size: banner.size,
+            width: banner.width,
+            height: banner.height,
+            title: banner.title,
+            text: banner.text,
+            publish: banner.publish,
+            shareable: banner.shareable,
+            url: banner.url,
+            target: banner.target,
+            new_tab: banner.new_tab,
+            date_begin_at: banner.date_begin_at,
+            date_end_at: banner.date_end_at
+          })
+          banner.banner_sites.build(site_id: banner.site_id, category_list: banner_site.category_list)
+          return banner
+        end
+      end
+      #default
+      banner = current_scope.new(params)
+      banner.banner_sites.build(site_id: banner.site_id)
+      banner
+    end
+
     private
 
     def validate_date

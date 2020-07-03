@@ -44,7 +44,7 @@ module Calendar
     end
 
     def new
-      @event = current_site.events.new
+      @event = current_site.events.new_or_clone(params[:copy_from])
     end
 
     def create

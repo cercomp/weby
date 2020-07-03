@@ -56,8 +56,8 @@
               <% with_permission(action: :unshare) do %>
                 <%= link_to icon('trash', text: t('destroy')), unshare_admin_news_url(news), method: :put, data: { confirm: t('are_you_sure_unshare_item', item: news.title) } if news.site_id != current_site.id %>
               <% end %>
-              <% with_permission(action: :new) do %>
-                <%= link_to fa_icon('clone', text: t('copy')), new_admin_news_path(copy_from: news.id) %>
+              <% if news.site_id == current_site.id && check_permission(Journal::Admin::NewsController, [:new]) %>
+                <%= link_to fa_icon('clone', text: t('copy')), new_admin_news_path(copy_from: news_site.id) %>
               <% end %>
               <%= make_menu(news, :except => "show", :with_text => true) %>
             <% end %>

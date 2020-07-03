@@ -73,11 +73,7 @@ module Journal::Admin
     end
 
     def new
-      if params[:copy_from].present?
-        copy_news = Journal::News.find_by(id: params[:copy_from])
-      end
-      @news = Journal::News.new(site_id: current_site)
-      @news.news_sites.build(site_id: current_site)
+      @news = current_site.news.new_or_clone(params[:copy_from])
       @draft = get_draft('')
     end
 

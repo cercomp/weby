@@ -16,13 +16,8 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
   end
 
   def new
-    parent_id = params[:parent_id]
-    if params[:copy_from].present?
-      copy = @menu.menu_items.find_by id: params[:copy_from]
-      parent_id = copy&.parent_id
-    end
-    set_parent_menu_item parent_id
-    @menu_item = @menu.menu_items.new
+    @menu_item = @menu.menu_items.new_or_clone(params[:copy_from], parent_id: params[:parent_id])
+    @menu_item_parent = @menu_item.parent
   end
 
   def create
@@ -34,7 +29,7 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
       record_activity('created_menu_item', @menu_item)
       redirect_to site_admin_menus_path(menu: @menu.id)
     else
-      set_parent_menu_item params[:menu_item][:parent_id]
+      @menu_item_parent = @menu_item.parent
       render action: :new
     end
   end
@@ -95,10 +90,6 @@ class Sites::Admin::Menus::MenuItemsController < ApplicationController
 
   def get_current_menu
     @menu = current_site.menus.find(params[:menu_id])
-  end
-
-  def set_parent_menu_item(parent_id)
-    @menu_item_parent = @menu.menu_items.find(parent_id) if parent_id
   end
 
   def resource

@@ -7,7 +7,6 @@ module StylesHelper
           html << link_to(icon('remove', text: t('unfollow')), unfollow_site_admin_skin_style_path(style.skin_id, style), method: :put) if test_permission('styles', 'unfollow')
           html << copy_link if test_permission('styles', 'copy')
         else
-          html << link_to(fa_icon('clone', text: t('copy')), new_site_admin_skin_style_path(style.skin_id, copy_from: style.id)) if test_permission('styles', 'new')
           html << make_menu(style, controller: Sites::Admin::StylesController, params: {skin_id: style.skin_id})
         end
       else

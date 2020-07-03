@@ -105,5 +105,33 @@ module Calendar
         }
       end
     end
+
+    def self.new_or_clone id, params={}
+      if id.present?
+        event = current_scope.find_by(id: id)
+        if event
+          return current_scope.new({
+            repository_id: event.repository_id,
+            begin_at: event.begin_at,
+            end_at: event.end_at,
+            kind: event.kind,
+            category_list: event.category_list,
+            email: event.email,
+            url: event.url,
+            related_file_ids: event.related_file_ids,
+            i18ns_attributes: event.i18ns.map do |i18n|
+              {
+                locale: i18n.locale,
+                name: i18n.name,
+                place: i18n.place,
+                information: i18n.information
+              }
+            end
+          })
+        end
+      end
+      #default
+      current_scope.new(params)
+    end
   end
 end
