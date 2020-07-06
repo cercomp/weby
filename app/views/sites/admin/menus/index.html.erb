@@ -1,7 +1,7 @@
 <% title ".menus" %>
 <% breadcrumb :menus %>
 <div class="row">
-  <div class="<%= @menu ? 'col-md-2' : 'col-md-12' %>">
+  <div class="<%= @menu ? 'col-md-3' : 'col-md-12' %>">
     <div class="add-menu">
       <% with_permission action: :new do %>
         <%= link_to icon('plus-sign', text: t(".new_menu")), new_site_admin_menu_path, class: "btn btn-success #{'btn-block' if @menu}" %>
@@ -28,7 +28,7 @@
     <% end %>
   </div>
   <% if @menu %>
-    <div class="col-md-10">
+    <div class="col-md-9">
       <div class="pull-right">
         <% with_permission controller: Sites::Admin::Menus::MenuItemsController, action: :new do %>
           <%= link_to icon('plus-sign', text: t(".new_menu_item")), new_site_admin_menu_menu_item_path(@menu), class: "btn btn-success" %>

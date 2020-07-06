@@ -56,9 +56,12 @@ module ApplicationHelper
           div_content << content_tag(:span, content_tag(:span), class: 'disclose')
           div_content << toggle_field(entry, 'publish', 'toggle', controller: 'sites/admin/menus/menu_items', menu_id: entry.menu_id, remote: true, class: 'toggle-menu-item')
           div_content << content_tag(:span, class: 'menu-entry') do
+            link_text = content_tag(:span, entry && entry.target ? entry.target.try(:title) : (entry.url.blank? ? '#' : entry.url))
             [
               title_link,
-              ( entry && entry.target ? "[ #{entry.target.try(:title)} ]" : "[ #{entry.url} ]")
+              content_tag(:span, "[", class: 'link-text-open'),
+              content_tag(:span, link_text, class: 'link-text', title: entry&.url),
+              content_tag(:span, " ]", class: 'link-text-close')
             ].join(' ').html_safe
           end
           div_content << content_tag(:div, class: 'pull-right align-middle') do

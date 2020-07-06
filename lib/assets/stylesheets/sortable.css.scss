@@ -125,6 +125,24 @@ li > menu{
 
       .menu-entry {
         flex: 1;
+        display: flex;
+        overflow: hidden;
+      }
+
+      .link-text-open, .link-text-close {
+        padding: 0 5px;
+      }
+
+      .link-text-close {
+        margin-right: 5px;
+      }
+
+      .link-text {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        > span {
+          white-space: nowrap;
+        }
       }
 
       .dropmic {
