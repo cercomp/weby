@@ -69,7 +69,7 @@ module ApplicationHelper
             menu_content << link_to(image_tag('add-row-w.svg'), new_site_admin_menu_menu_item_path(entry.menu_id, parent_id: entry.id), class: 'btn btn-success btn-sm add-subitem', title: t('add_sub_menu')) if test_permission(:menu_items, :new)
             menu_content << render_dropdown_menu do
               dropdown_menu = []
-              dropdown_menu << link_to(fa_icon('clone', text: t('copy')), new_site_admin_menu_menu_item_path(entry.menu_id, copy_from: entry.id)) if test_permission(:menu_items, :new)
+              dropdown_menu << link_to(fa_icon('files-o', text: t('copy')), new_site_admin_menu_menu_item_path(entry.menu_id, copy_from: entry.id)) if test_permission(:menu_items, :new)
               dropdown_menu << link_to(icon('edit', text: t('edit')), edit_site_admin_menu_menu_item_path(entry.menu_id, entry.id), title: t('edit')) if test_permission(:menu_items, :show)
               dropdown_menu << link_to(icon('trash', text: t('destroy')), site_admin_menu_menu_item_path(entry.menu_id, entry.id), method: :delete, data: { confirm: t('are_you_sure_del_item', item: entry.title) }, title: t('destroy')) if test_permission(:menu_items, :destroy)
               dropdown_menu.join.html_safe

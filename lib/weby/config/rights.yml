@@ -221,7 +221,7 @@ rights:
       name:
         en: Create Component
         pt-BR: Criar Componente
-      action: new create
+      action: new create clone
     sort:
       name:
         en: Order Components

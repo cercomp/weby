@@ -226,7 +226,11 @@ thead {
 }
 
 .publish-warning {
-  position: absolute;
+  margin-left: 4px;
+  i {
+    vertical-align: top;
+    font-size: 20px;
+  }
 }
 
 body.modal-open {
@@ -682,6 +686,7 @@ hr {
 
 .dropmic-menu {
   text-align: left;
+  z-index: 3;
   a {
     display: block;
     padding: 5px 8px;
@@ -690,6 +695,10 @@ hr {
       background-color: #F2F2F2;
     }
   }
+}
+
+.dropmic::after, .dropmic::before {
+  z-index: 3;
 }
 
 button[data-dropmic-btn] {

@@ -77,5 +77,8 @@ $(document).ready(function(){
   });
 
   //// toggle disable ajax
+  ///components
   appendToggleHandle('.widget-name > a', 'li');
+  ////styles
+  appendToggleHandle('td.publish a', 'tr');
 });

@@ -20,6 +20,7 @@ pt-BR:
           new_child_component:      " Novo Componente Filho "
           component:          " Componente "
           alias:              " Nome "
+          cloning:            " Clonando... "
           category:           " Categoria "
           active:             " Ativo? "
           empty_placeholder:  " Nenhum componente neste local "

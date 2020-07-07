@@ -80,6 +80,7 @@ Rails.application.routes.draw do
         resources :components, except: [:index] do
           member do
             put :toggle
+            post :clone
           end
           collection do
             post :sort

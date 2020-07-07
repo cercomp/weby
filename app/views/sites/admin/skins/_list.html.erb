@@ -38,7 +38,7 @@
                  %>
             </td>
             <td> <%= l(style.original.updated_at, format: :short) %></td>
-            <td style="text-align: center;"><%= raw toggle_field(style, 'publish', 'toggle', controller: :styles, skin_id: style.skin_id) %></td>
+            <td class="publish" style="text-align: center;"><%= raw toggle_field(style, 'publish', 'toggle', controller: :styles, skin_id: style.skin_id, remote: true) %></td>
             <td class="actions text-right">
               <%= render_dropdown_menu do %>
                 <%= style_menu(style) %>

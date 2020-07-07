@@ -20,6 +20,7 @@ en:
           new_child_component: " New Child Widget "
           component:          " Component "
           alias:              " Name "
+          cloning:            " Cloning... "
           category:           " Category "
           active:             " Active? "
           empty_placeholder:  " No widgets in this place "

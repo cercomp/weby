@@ -9,7 +9,7 @@
     <th><%= sortable 'title', t(".title") %></th>
     <th><%= t(".category") %></th>
     <th><%= sortable 'date_begin_at', t(".publication_date")%></th>
-    <th style="text-align: center;"><%= sortable 'publish', t(".publish") %></th>
+    <th><%= sortable 'publish', t(".publish") %></th>
     <th></th>
   </thead>
   <tbody>
@@ -32,13 +32,13 @@
         </td>
         <td><%= categories_links(banner_site.categories) %></td>
         <td><%=l banner.date_begin_at, format: :short %></td>
-        <td style="text-align:center;">
+        <td>
           <%= publication_status_banner(banner, disabled: !banner.owned_by?(current_site) ) %>
         </td>
         <td class="actions text-right">
           <%= render_dropdown_menu do %>
             <% if banner.owned_by?(current_site) && check_permission(Sticker::Admin::BannersController, [:new]) %>
-              <%= link_to fa_icon('clone', text: t('copy')), new_admin_banner_path(copy_from: banner_site.id) %>
+              <%= link_to fa_icon('files-o', text: t('copy')), new_admin_banner_path(copy_from: banner_site.id) %>
             <% end %>
             <%= link_to icon('trash', text: t('destroy')), unshare_admin_banner_url(banner), method: :put, data: { confirm: t('are_you_sure_unshare_item', item: banner.title) } if !banner.owned_by?(current_site) %>
             <%= raw make_menu(banner) %>

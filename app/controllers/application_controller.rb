@@ -350,7 +350,7 @@ class ApplicationController < ActionController::Base
           comp_select = lambda { |place_holder|
             components.select { |comp| comp.place_holder == place_holder }.map do |component|
               comp = { component: component }
-              if component.name == 'components_group'
+              if component.is_group?
                 comp[:children] = comp_select.call(component.id.to_s)
               end
               comp

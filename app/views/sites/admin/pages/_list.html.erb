@@ -15,7 +15,7 @@
           <th width="12%"><%= sortable 'users.first_name', t(".author") %></th>
           <th width="25%"><%= sortable 'pages.created_at', t(".created_at") %></th>
           <% with_permission(action: :show) do %>
-            <th width="5%" class="center"><%= sortable 'pages.publish', t(".publish") %></th>
+            <th width="5%"><%= sortable 'pages.publish', t(".publish") %></th>
           <% end %>
           <th width="5%" class="center"><%= sortable 'pages.view_count', t(".views") %></th>
           <th width="5%" class="center"><%#= t(".action")%></th>
@@ -31,7 +31,7 @@
           <td><%= page.user.first_name %></td>
           <td><%= l(page.created_at, :format => :short) %></td>
           <% with_permission(action: :show) do %>
-            <td class="publish" style="text-align:center;">
+            <td class="publish">
               <%= publication_status_page(page, remote: true) %></td>
           <% end %>
           <td width="5%" style="text-align:center;"><%= page.view_count %></td>
@@ -39,7 +39,7 @@
             <%= render_dropdown_menu do %>
               <%= link_to icon('eye-open', text: t('show')), site_page_path(page), target: :_blank %>
               <% with_permission(action: :new) do %>
-                <%= link_to fa_icon('clone', text: t('copy')), new_site_admin_page_path(copy_from: page.id) %>
+                <%= link_to fa_icon('files-o', text: t('copy')), new_site_admin_page_path(copy_from: page.id) %>
               <% end %>
               <%= make_menu(page, :except => "show", :with_text => true) %>
             <% end %>

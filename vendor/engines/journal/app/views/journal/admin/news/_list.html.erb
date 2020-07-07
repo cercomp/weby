@@ -11,12 +11,12 @@
     <thead>
       <tr>
         <th class="center sel-all"><%= check_box_tag :select_all, 1, false %></th>
-        <th width="35%"><%= sortable 'journal_news_i18ns.title', t(".title") %></th>
+        <th width="30%"><%= sortable 'journal_news_i18ns.title', t(".title") %></th>
         <th width="12%"><%= sortable 'users.first_name', t(".user") %></th>
         <th width="20%"><%= sortable 'tags.name', t(".category") %></th>
-        <th width="15%"><%= sortable 'journal_news.created_at', t(".created_at") %></th>
+        <th width="12%"><%= sortable 'journal_news.created_at', t(".created_at") %></th>
         <% with_permission(action: :edit) do %>
-          <th width="5%" class="center"><%= sortable 'journal_news.front', t(".cover") %></th>
+          <th width="9%"><%= sortable 'journal_news.front', t(".cover") %></th>
           <th width="5%"><%= sortable 'journal_news.status', t(".status") %></th>
         <% end %>
         <th width="5%" class="center"><%= sortable 'journal_news.view_count', t(".views") %></th>
@@ -44,7 +44,7 @@
           <td><%= raw categories_links(news_site.categories) %></td>
           <td><%= l(news.created_at, :format => :short) %></td>
           <% with_permission(action: :edit) do %>
-            <td class="front" style="text-align:center;">
+            <td class="front">
               <%= front_status(news_site, remote: true) %></td>
             <td class="publish">
               <%= news_status(news) %></td>
@@ -57,7 +57,7 @@
                 <%= link_to icon('trash', text: t('destroy')), unshare_admin_news_url(news), method: :put, data: { confirm: t('are_you_sure_unshare_item', item: news.title) } if news.site_id != current_site.id %>
               <% end %>
               <% if news.site_id == current_site.id && check_permission(Journal::Admin::NewsController, [:new]) %>
-                <%= link_to fa_icon('clone', text: t('copy')), new_admin_news_path(copy_from: news_site.id) %>
+                <%= link_to fa_icon('files-o', text: t('copy')), new_admin_news_path(copy_from: news_site.id) %>
               <% end %>
               <%= make_menu(news, :except => "show", :with_text => true) %>
             <% end %>

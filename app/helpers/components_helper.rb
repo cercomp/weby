@@ -36,7 +36,7 @@ module ComponentsHelper
     nickname = compo.alias.present? ? compo.alias : compo.default_alias
     component_icon = render_component_icon(compo)
     component_title = "#{t("components.#{compo.name}.name")} #{"- #{nickname}" if nickname.present?}"
-    if compo.name.to_s == 'components_group'
+    if compo.is_group?
       components_html << "class='component-#{ compo.name } "
     else
       components_html << "class='component "
@@ -53,16 +53,17 @@ module ComponentsHelper
             end}
         </span>
         <div class=\"pull-right actions\" style='min-width: 46px'>
-          #{link_to(image_tag('add-row-w.svg'), new_site_admin_skin_component_path(compo.skin_id, placeholder: compo.id), class: 'btn btn-success btn-sm add-subitem', title: t('.new_child_component')) if compo.name.to_s == 'components_group' && check_permission(Sites::Admin::ComponentsController, [:new]) && !leftout}
+          #{link_to(image_tag('add-row-w.svg'), new_site_admin_skin_component_path(compo.skin_id, placeholder: compo.id), class: 'btn btn-success btn-sm add-subitem', title: t('.new_child_component')) if compo.is_group? && check_permission(Sites::Admin::ComponentsController, [:new]) && !leftout}
           #{render_dropdown_menu do
               [
+                (link_to(fa_icon('clone', text: t('clone')), clone_site_admin_skin_component_path(compo.skin_id, compo.id), method: :post, data: {disable_with: t('.cloning')}) if test_permission(:components, :clone)),
                 make_menu(compo, except: exceptions, with_text: true, controller: Sites::Admin::ComponentsController, params: {skin_id: compo.skin_id}),
-                (link_to(icon(:remove, text: t('.remove_group')), site_admin_skin_component_path(compo.skin_id, compo.id, del_group: true), title: t('.remove_group_hint'), method: :delete, data: {confirm: t('.are_you_sure_group_del', alias: compo.alias)}) if compo.name == 'components_group' && check_permission(Sites::Admin::ComponentsController, 'destroy') )
+                (link_to(icon(:remove, text: t('.remove_group')), site_admin_skin_component_path(compo.skin_id, compo.id, del_group: true), title: t('.remove_group_hint'), method: :delete, data: {confirm: t('.are_you_sure_group_del', alias: compo.alias)}) if compo.is_group? && check_permission(Sites::Admin::ComponentsController, 'destroy') )
               ].compact.join.html_safe
             end}
         </div>
       </div>"
-    if compo.name.to_s == 'components_group'
+    if compo.is_group?
       components_per_group = @components.select { |comp| comp.place_holder.to_i == compo.id }
       @components = @components - components_per_group
       components_html << "<div><ul class=\"order-list\" data-place=\"#{compo.id}\">"
