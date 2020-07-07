@@ -13,6 +13,7 @@ pt-BR:
       show:
         event:         " Evento "
         period_event:  " Período do Evento "
+        event_date:    " Data do Evento "
         list_all:      " Listar Todas "
         categories:    " Categorias "
         source:        " Fonte "
@@ -20,6 +21,7 @@ pt-BR:
         related_files: " Arquivos relacionados "
         related_url:   " URL relacionada "
         size:          " Tamanho "
+        email:         " E-mail "
         archive_fingerprint:  " Assinatura digital do arquivo "
       list:
         read_more:     " Leia mais "

@@ -399,16 +399,21 @@ module ApplicationHelper
     end
   end
 
-  def period_dates(inidate, findate, force_show_year = true, full = false)
+  def period_dates(event, force_show_year = true, full = false)
+    inidate, findate = event.begin_at, event.end_at
     html = ''
     if findate
-      show_full = full && (inidate.strftime('%H:%M')!='00:00' || findate.strftime('%H:%M')!='00:00')
-      if inidate.month != findate.month || inidate.year != findate.year || show_full
+      #show_full = full && (inidate.strftime('%H:%M')!='00:00' || findate.strftime('%H:%M')!='00:00')
+      if inidate.month != findate.month || inidate.year != findate.year #|| show_full
         html << period_date_and_hour(inidate, force_show_year)
         html << " #{t('time.period_separator')} "
         html << period_date_and_hour(findate, force_show_year)
       else
-        html << "#{l(inidate, format: (force_show_year || inidate.year != Time.current.year) ? :event_period_full : :event_period_short, iniday: inidate.strftime('%d'), finday: findate.strftime('%d'))}"
+        if event.same_date?
+          html << "#{l(inidate, format: (force_show_year || inidate.year != Time.current.year) ? :event_hour_period_full : :event_hour_period_short, inihour: l(inidate, format: :hour), finhour: l(findate, format: :hour))}"
+        else
+          html << "#{l(inidate, format: (force_show_year || inidate.year != Time.current.year) ? :event_period_full : :event_period_short, iniday: inidate.strftime('%d'), finday: findate.strftime('%d'))}"
+        end
       end
     else
       html << period_date_and_hour(inidate, force_show_year)

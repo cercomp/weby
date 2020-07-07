@@ -58,6 +58,18 @@ module Calendar
       category_list.to_s
     end
 
+    def same_date?
+      if end_at
+        begin_at.to_date == end_at.to_date
+      else
+        true
+      end
+    end
+
+    def only_begin_date?
+      end_at.blank?
+    end
+
     def self.import(attrs, options = {})
       return attrs.each { |attr| import attr, options } if attrs.is_a? Array
 

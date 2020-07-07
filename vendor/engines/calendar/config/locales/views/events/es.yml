@@ -10,12 +10,14 @@ es:
       show:
         event:         " Evento "
         period_event:  " Periodo del Evento "
+        event_date:    " Fecha del Evento "
         list_all:      " Todas las páginas "
         categories:    " Categorías "
         source:        " Fuente "
         updated_at:    " Actualizado en "
         related_files: " Archivos Relacionados "
-        related_url:   " Url Relacionada "
+        related_url:   " URL Relacionada "
+        email:         " E-mail "
         size:          " Tamaño "
       list:
         read_more:     " Leer más "
