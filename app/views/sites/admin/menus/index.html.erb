@@ -43,7 +43,7 @@
       <div class="clearfix control-group"></div>
       <% if @menu.menu_items.empty? %>
         <div class="alert alert-warning">
-          <%= t(".none_menu_item") %>
+          <%= t(".none_menu_item", menu: @menu.name) %>
         </div>
       <% else %>
         <div id="main-menu" data-sort-url="<%= change_order_site_admin_menu_menu_items_path(@menu) %>" data-change-url="<%= change_menu_site_admin_menu_menu_items_path(@menu) %>">
