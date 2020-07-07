@@ -13,23 +13,23 @@
 
   <%= content_tag :div, class: 'event' do %>
     <h3><%= t(".event") %></h3>
+    <%= link_to @event.url, @event.url, target: :_blank %>
     <p class="local">
       <%= label(:event, :local, style: 'display: inline-block;') %>:
       <%= @event.place %>
     </p>
-    <%= content_tag_if @event.kind?, :p, class: 'event-type' do %>
+    <p class="event-period">
+      <%= label(:event, :event_period, t(@event.same_date? ? '.event_date' : '.period_event'), style: 'display: inline-block;') %>:
+      <span class="event-dates"><%= period_dates(@event, true, true) %></span>
+    </p>
+    <!--<%= content_tag_if @event.kind?, :p, class: 'event-type' do %>
       <%= label(:event, :kind, style: 'display: inline-block;') %>:
       <%= t("calendar.admin.events.form.#{@event.kind}") %>
-    <% end %>
+    <% end %>-->
     <%= content_tag_if @event.email?, :p, class: 'event-email' do %>
-      <%= label(:event, :event_email, style: 'display: inline-block;') %>:
+      <%= label(:event, :event_email, t(".email"), style: 'display: inline-block;') %>:
       <%= @event.email %>
     <% end %>
-    <%= link_to @event.url, @event.url, target: :_blank %>
-    <p class="event-period">
-      <%= label(:event, :event_period, t(".period_event"), style: 'display: inline-block;') %>:
-      <span class="event-dates"><%= period_dates(@event.begin_at, @event.end_at, true, true) %></span>
-    </p>
   <% end %>
   <div class="body">
     <%= render_user_content @event.information %>

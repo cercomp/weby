@@ -9,13 +9,15 @@ en:
         or_search:     " Any of the words "
       show:
         event:         " Event "
-        period_event:  " Period of Event "
+        period_event:  " Event period "
+        event_date:    " Event date "
         list_all:      " List all "
         categories:    " Categories "
         source:        " Source "
         updated_at:    " Updated at "
         related_files: " Related files "
-        related_url:   " Related Url "
+        related_url:   " Related URL "
+        email:         " E-mail "
         size:          " Size "
         archive_fingerprint:  " Archive fingerprint "
       list:

@@ -29,7 +29,7 @@
                   <% if component.date_format == 'two_dates' %>
                     <%= render partial: 'event_list/views/two_dates', locals: {event: event} %>
                   <% else %>
-                    <%= period_dates(event.begin_at, event.end_at, false) -%>
+                    <%= period_dates(event, false) -%>
                   <% end %>
                 <% end %>
                 <span class="event-summary"><%= strip_tags(event.information).first(140).html_safe %></span>
@@ -49,7 +49,7 @@
                 <% elsif component.date_format == 'two_dates' %>
                   <%= render partial: 'event_list/views/two_dates', locals: {event: event} %>
                 <% else %>
-                  <%= period_dates(event.begin_at, event.end_at, false) -%>
+                  <%= period_dates(event, false) -%>
                 <% end %>
               </p>
               <span class="event-summary"><%= strip_tags(event.information).first(140).html_safe %></span>
@@ -84,7 +84,7 @@
                 <% elsif component.date_format == 'two_dates' %>
                   <%= render partial: 'event_list/views/two_dates', locals: {event: event} %>
                 <% else %>
-                  <%= period_dates(event.begin_at, event.end_at, false) -%>
+                  <%= period_dates(event, false) -%>
                 <% end %>
               </div>
             </header>

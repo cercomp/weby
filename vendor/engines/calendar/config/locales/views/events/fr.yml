@@ -13,12 +13,14 @@ fr:
       show: 
         event: " Événement "
         period_event:  " Période de l'événement "
+        event_date:    " Date de l'événement "
         list_all:      " Liste tous "
         categories:    " Catégories "
         source:        " Source "
         updated_at:    " Mise à Jour "
         related_files: " Fichiers associés "
-        related_files: " Url associés "
+        related_url:   " URL associés "
+        email:         " E-mail "
         size: " Taille "
       list: 
         read_more:     " En savoir plus "
