@@ -26,7 +26,7 @@
     <tbody>
       <% @newslist.each do |news| %>
         <% news_site = news.news_site_for current_site %>
-        <tr id="<%= news.id %>"<%= ' class="deactivated"'.html_safe unless news.published? %>>
+        <tr id="<%= news.id %>" class="<%= 'deactivated' unless news.published? %>">
           <td class="center sel-item"><%= check_box_tag :select_item, news_site.id, false %></td>
           <td>
             <% if news.site_id == current_site.id %>

@@ -56,7 +56,7 @@
         <% if news_site.news %>
           <% news = news_site.news %>
           <% next if !news.site&.active? %>
-            <tr id="sort_news_<%= news.id %>" class="sort_news <%= news_site.category_list.map{|categ| categ.parameterize }.join(' ') %>">
+            <tr id="sort_news_<%= news.id %>" class="sort_news <%= 'deactivated' unless news.published? %> <%= news_site.category_list.map{|categ| categ.parameterize }.join(' ') %>">
               <% with_permission(action: :sort) do %>
                 <td class="grab-cell"><%= link_to image_tag('drag.png'), '#', class: 'handle', title: t('.move') %></td>
               <% end %>
