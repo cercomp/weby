@@ -21,6 +21,8 @@ en:
           period_page:          " Published period "
           list_all:             " List all "
           categories:           " Categories "
+          authored:             " Created by %{author} on %{created_at} "
+          updated_at:           " Updated on %{updated_at} "
           source:               " Source "
           size:                 " Size "
           archive_fingerprint:  " Archive fingerprint "

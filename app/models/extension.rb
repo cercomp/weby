@@ -9,6 +9,9 @@ class Extension < ApplicationRecord
     extension.settings.each do |setting_name|
       class_eval do
         define_method(setting_name)       { settings[setting_name.to_s] }
+        if setting_name.match(/^show_/)
+          define_method("#{setting_name}?") { settings[setting_name.to_s].to_i == 1 }
+        end
         define_method("#{setting_name}=") { |value| settings[setting_name.to_s] = value }
       end
     end if extension

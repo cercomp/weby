@@ -13,6 +13,7 @@ module Journal
       @site = site
       @optout_url = new_newsletter_url(opt: 'delete', subdomain: site)
       @news = news
+      @extension = @site.extensions.find_by(name: 'journal')
       mail(from: from, bcc: to, subject: subject)
     end
 

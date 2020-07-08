@@ -38,6 +38,7 @@ class Admin::SitesController < Admin::BaseController
   end
 
   def edit
+    load_subsites
   end
 
   def update
@@ -53,6 +54,7 @@ class Admin::SitesController < Admin::BaseController
         flash[:alert] = t('problem_update_site')
         redirect_to admin_sites_path
       else
+        load_subsites
         render :edit
       end
     end
@@ -66,14 +68,24 @@ class Admin::SitesController < Admin::BaseController
 
   private
 
+  def load_subsites
+    @sites = @site.subsites.active
+      .except(:order)
+      .order("#{sort_column} #{sort_direction}")
+      .page(params[:page])
+      .per(params[:per_page])
+  end
+
   def set_resource
     resource
   end
 
   def site_params
     params.require(:site).permit(:title, :top_banner_id, :name, :parent_id,
-                                 :domain, :description, :view_desc_pages, :theme, :restrict_theme,
-                                 :body_width, :google_analytics, :per_page, :per_page_default, :status,
+                                 :domain, :description, :show_pages_author,
+                                 :show_pages_created_at, :show_pages_updated_at,
+                                 :restrict_theme, :body_width, :google_analytics,
+                                 :per_page, :per_page_default, :status,
                                  {locale_ids: [], grouping_ids: []})
   end
 

@@ -1,14 +1,17 @@
 <% title ".pages" %>
 <% breadcrumb :pages_show, @page %>
 <article class="page-show">
-  
+
   <header>
     <%= raw available_flags(@page) if @page.locales.many? %>
     <h1><%= @page.title %></h1>
   </header>
 
-  <p>
-    <%= "#{@page.user} #{l(@page.created_at, format: :short)}" if @site.view_desc_pages %>
+  <p class="page-details details">
+    <div class="author"><%= t(".authored", author: @page.user, created_at: l(@page.created_at, format: :short)) %></div>
+    <% if @page.updated_at != @page.created_at %>
+      <div class="date"><%= t(".updated_at", updated_at: l(@page.real_updated_at, format: :short)) %></div>
+    <% end %>
   </p>
 
   <%= render partial: 'sites/shared/pages_show_actions' %>

@@ -15,7 +15,7 @@ en:
         categories:    "Categories"
         source:        "Source"
         posted_by:     "By %{author}."
-        created_at:    "Created at %{created_at}."
+        created_at:    "On %{created_at}."
         updated_at:    "Updated at %{updated_at}."
         related_files: "Related files"
         related_url:   "Related Url"

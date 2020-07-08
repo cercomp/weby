@@ -1,1 +1,38 @@
-<%= render 'form' %>
+<% title ".settings" %>
+<% breadcrumb :admin_site_edit, @site %>
+<% has_subsites = @sites.any? %>
+<div class="tabbable">
+  <ul class="nav nav-tabs" id="style-tab">
+    <li class="active" >
+      <a href="#tab-form" data-toggle="tab"><%= t(".main") %></a>
+    </li>
+    <li>
+      <a href="#tab-pages" data-toggle="tab"><%= t(".pages") %></a>
+    </li>
+    <% if has_subsites %>
+      <li>
+        <a href="#tab-subsites" data-toggle="tab"><%= t(".subsites") %></a>
+      </li>
+    <% end %>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab-form">
+      <%= render 'form' %>
+    </div>
+    <div class="tab-pane" id="tab-pages">
+      <%= simple_form_for [:admin, @site] do |f| %>
+        <%= f.input :show_pages_author, wrapper: :checkbox, as: :boolean %>
+        <%= f.input :show_pages_created_at, wrapper: :checkbox, as: :boolean %>
+        <%= f.input :show_pages_updated_at, wrapper: :checkbox, as: :boolean %>
+        <div class="form-actions">
+          <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
+        </div>
+      <% end %>
+    </div>
+    <% if has_subsites %>
+      <div class="tab-pane" id="tab-subsites">
+        <%= content_tag :div, render('sites/subsites') %>
+      </div>
+    <% end %>
+  </div>
+</div>

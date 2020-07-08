@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_29_140855) do
+ActiveRecord::Schema.define(version: 2020_07_08_141559) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -346,7 +346,7 @@ ActiveRecord::Schema.define(version: 2020_05_29_140855) do
     t.integer "body_width"
     t.text "footer"
     t.string "theme"
-    t.boolean "view_desc_pages", default: false
+    t.boolean "show_pages_author", default: false
     t.string "per_page", default: "5, 15, 30, 50, 100"
     t.integer "per_page_default", default: 25
     t.boolean "menu_dropdown", default: false
@@ -364,6 +364,8 @@ ActiveRecord::Schema.define(version: 2020_05_29_140855) do
     t.boolean "restrict_theme", default: false
     t.jsonb "settings", default: {}
     t.string "google_analytics"
+    t.boolean "show_pages_created_at", default: false
+    t.boolean "show_pages_updated_at", default: false
     t.index ["parent_id"], name: "index_sites_on_parent_id"
     t.index ["status"], name: "index_sites_on_status"
     t.index ["top_banner_id"], name: "index_sites_on_top_banner_id"

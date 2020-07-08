@@ -16,3 +16,6 @@ en:
         text_getout:        " Remove me from the newsletter."
         original_news:      " Original news."
         related_url:        " Related news"
+        posted_by:     "By %{author}."
+        created_at:    "On %{created_at}."
+        updated_at:    "Updated at %{updated_at}."

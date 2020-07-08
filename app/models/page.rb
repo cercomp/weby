@@ -73,6 +73,11 @@ class Page < ApplicationRecord
     "#{id} #{title}".parameterize
   end
 
+  def real_updated_at
+    i18n_updated = i18ns.sort_by{|i18n| i18n.updated_at }.last.updated_at
+    updated_at > i18n_updated ? updated_at : i18n_updated
+  end
+
   private
 
   def should_be_own_files

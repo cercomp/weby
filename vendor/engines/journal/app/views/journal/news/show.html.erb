@@ -9,18 +9,18 @@
     <h2><%= @news.title %></h2>
   </header>
   <div class="news-details details">
-  <% if @extension.author == '1' %>
-     <span class="author"><%= t(".posted_by", author: @news.user) %></span>
-  <% end %>
-  <% if @news.published? %>
+    <% if @extension.show_author? %>
+      <span class="author"><%= t(".posted_by", author: @news.user) %></span>
+    <% end %>
     <span class="date">
-      <% if (@extension.show_created_at == '1') %>
+      <% if @extension.show_created_at? %>
         <% news_date = @news.i18ns.first.created_at || @news.created_at %>
         <%= t(".created_at", created_at: l(news_date, format: :short)) if news_date %>
       <% end %>
-      <%= t(".updated_at", updated_at: @updated_at) if @updated_at %>
+      <% if @extension.show_updated_at? && (@news.created_at != @news.updated_at || !@extension.show_created_at?) %>
+        <%= t(".updated_at", updated_at:  l(@news.real_updated_at, format: :short)) %>
+      <% end %>
     </span>
-  <% end %>
   </div>
   <%= yield :social_code if current_site.news_social_share_pos == 'middle' %>
   <summary>

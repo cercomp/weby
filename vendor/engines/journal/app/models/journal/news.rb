@@ -124,6 +124,11 @@ module Journal
       end
     end
 
+    def real_updated_at
+      i18n_updated = i18ns.sort_by{|i18n| i18n.updated_at }.last.updated_at
+      updated_at > i18n_updated ? updated_at : i18n_updated
+    end
+
     accepts_nested_attributes_for :news_sites, allow_destroy: true
 
     private

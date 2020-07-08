@@ -18,9 +18,10 @@ atom_feed :language => I18n.locale do |feed|
       body = "#{news_image}<br/>#{render_user_content news.summary}<br/>#{render_user_content news.text}"
       body += "<br/>#{link_to 'Original', news.url, target: '_blank'}" if news.url.present?
       entry.content body, :type => 'html'
-
-      entry.author do |author|
-        author.name news.user.fullname
+      if @extension.show_author?
+        entry.author do |author|
+          author.name news.user.fullname
+        end
       end
     end
   end

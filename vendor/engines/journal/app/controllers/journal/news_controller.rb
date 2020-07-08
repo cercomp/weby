@@ -4,12 +4,11 @@ module Journal
 
     helper_method :sort_column
     before_action :check_current_site
+    before_action :load_extension, only: [:index, :show]
 
     respond_to :html, :js, :json, :rss
 
     def index
-      @extension = current_site.extensions.find_by(name: 'journal')
-
       if !request.format.html?
         @news_sites = get_news
       end
@@ -23,13 +22,6 @@ module Journal
 
     def show
       @news = current_site.news.find(params[:id])
-      @extension = current_site.extensions.find_by(name: 'journal')
-      if @extension.show_updated_at == '1' &&
-        (@news.i18ns.first.created_at != @news.i18ns.first.updated_at ||
-        @extension.show_created_at == '0') &&
-        !@news.i18ns.first.updated_at.blank?
-          @updated_at = l(@news.i18ns.first.updated_at, format: :short)
-      end
       raise ActiveRecord::RecordNotFound if !@news.published? && @news.user != current_user
       if request.path != news_path(@news)
         redirect_to news_path(@news), status: :moved_permanently

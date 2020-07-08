@@ -61,6 +61,7 @@ pt-BR:
       main: " Principal "
       subsites: " Subsites "
       social:   "Redes Sociais"
+      pages: "Páginas"
       none: 'Não exibir'
       top: 'Acima do título'
       middle: 'Abaixo do título'
@@ -73,7 +74,6 @@ pt-BR:
       news: "Notícias"
       facebookComments: "Adicionar Comentários do Facebook"
     form:
-      view_desc_pages_help: " Deseja mostrar o autor das páginas? "
       site_comments: " Comentário sobre os objetivos do site "
       example_width: " Exemplo "
       example_url: " Exemplo: http://site.com "

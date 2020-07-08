@@ -13,7 +13,7 @@ fr:
         categories:    "Catégories"
         source:        "Source"
         posted_by:     "Par %{author}."
-        created_at:    "Créé sur %{created_at}."
+        created_at:    "Sur %{created_at}."
         updated_at:    "Mise à jour %{updated_at}."
         related_files: "Fichiers associés"
         related_files: "Url associés"

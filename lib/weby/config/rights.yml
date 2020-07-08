@@ -230,8 +230,8 @@ rights:
   sites:
     edit:
       name:
-       en: Edit Site's configs
-       pt-BR: Editar configurações do site
+        en: Edit Site's configs
+        pt-BR: Editar configurações do site
       action: edit update
   extensions:
     index:
