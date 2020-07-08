@@ -106,6 +106,8 @@ en:
           select_emails:        " Select e-mails "
           history:              " History "
           deleted:              " Deleted news "
+          newsletter:           " Newsletter "
+          news:                 " News "
         newsletter_emails:
           select_emails:        " Select e-mails "
           emails_not_found:     " E-mails not found "

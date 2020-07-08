@@ -1,5 +1,16 @@
 <% if(current_site.active_skin.components.find_by(name: 'newsletter', publish: true)) %>
   <% breadcrumb :news_newsletter, @news %>
+  <div class="tabbable">
+    <ul class="nav nav-tabs" id="tabs">
+      <li class="" id="tab_news">
+        <%= link_to(t(".news"), admin_news_index_path) %>
+      </li>
+      <li class="active" id="tab_newsletter">
+        <%= link_to(t(".newsletter"), '#') %>
+      </li>
+    </ul>
+  </div>
+  <br/>
   <%= form_tag :newsletter_histories_admin_news, method: :post do %>
     <div class="form-group">
       <div class="row">
@@ -31,7 +42,7 @@
       <% if !@news.is_trashed? %>
         <input type="submit" class="btn btn-primary" value=<%= t(".send") %> >
       <% end %>
-      <%= link_to t("back"), admin_news_index_path, class: "btn btn-default" %>
+      <%= link_to t("back"), :back, class: "btn btn-default" %>
       <% if @histories.count > 0 %>
         <!-- Button history modal -->
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#historiesModal">

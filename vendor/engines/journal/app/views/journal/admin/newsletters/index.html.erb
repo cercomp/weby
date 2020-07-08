@@ -1,10 +1,27 @@
 <% title ".newsletter" %>
 <% breadcrumb :news_newsletter %>
 
+<div class="tabbable">
+  <ul class="nav nav-tabs" id="tabs">
+    <li class="" id="tab_news">
+      <%= link_to(t(".news"), admin_news_index_path) %>
+    </li>
+    <li class="active" id="tab_newsletter">
+      <%= link_to(t(".newsletter"), '#') %>
+    </li>
+  </ul>
+</div>
+<br/>
+
 <%= form_tag admin_newsletters_path, method: "get" do %>
   <div class="row">
     <div class="col-md-5">
       <%= search_input params[:search] %>
+    </div>
+    <div class="col-md-7">
+      <div class="pull-right">
+        <%= link_to t(".newsletters"), admin_newsletter_histories_path, class: "btn btn-default" %>
+      </div>
     </div>
   </div>
   <%= hidden_field_tag 'page', 1 %>

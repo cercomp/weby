@@ -20,6 +20,7 @@ class Site < ApplicationRecord
   has_many :news_sites, class_name: "::Journal::NewsSite", dependent: :destroy
   has_many :news, through: :news_sites, source: :news
   has_many :own_news, class_name: "::Journal::News", dependent: :destroy
+  has_many :newsletters, class_name: "::Journal::Newsletter", dependent: :destroy
   has_many :groups, class_name: 'Feedback::Group', dependent: :destroy
   has_many :messages, class_name: 'Feedback::Message', dependent: :destroy
   has_many :banner_sites, class_name: "::Sticker::BannerSite", dependent: :destroy

@@ -37,6 +37,8 @@ pt-BR:
       newsletters:
         index:
           newsletter:           " Newsletter "
+          newsletters:          " Newsletters "
+          news:                 " Notícias "
         list:
           none_news:            " Nenhum email encontrado. "
           email:                " Email "

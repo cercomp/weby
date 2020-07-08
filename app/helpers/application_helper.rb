@@ -543,7 +543,7 @@ module ApplicationHelper
         title: title
       )
 
-      url_options = options.merge(
+      url_options = options.except(:class, :data, :remote).merge(
         action: action,
         id: options[:id],
         field: field

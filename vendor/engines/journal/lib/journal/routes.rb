@@ -44,7 +44,11 @@ module Journal
               get :pdf, :csv
             end
           end
-          resources :newsletters, only: [:index, :destroy]
+          resources :newsletters, only: [:index, :destroy] do
+            collection do
+              delete :destroy_many
+            end
+          end
         end
         resources :news, module: :journal, path: 'n', only: [:show] do
           collection do

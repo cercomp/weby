@@ -13,7 +13,7 @@
         <th class='site-name'><%= sortable 'name', t(".name") %></th>
         <th><%= sortable 'title', t(".title") %></th>
         <th><%= sortable 'description', t(".description") %></th>
-        <th>Status</th>
+        <th><%= current_user.is_admin ? t('.active') : 'Status' %></th>
         <th></th>
       </tr>
     </thead>
@@ -23,18 +23,29 @@
           <td> <%= link_to site.name, site_url(subdomain: site) %> </td>
           <td> <%= site.title %> </td>
           <td> <%= site.description %> </td>
-          <td><%= t(".#{site.status}") %></td>
-          <td class="text-right">
-            <% if current_user && current_user.is_admin %>
-              <% if site.status == 'active' %>
-                <%= link_to icon('remove-circle', text: t(".deactivate")), update_subsite_admin_path(site.id, site: {status: 'inactive'}), class: "action-link", method: :patch, data: {confirm: t('are_you_sure')} %>
+          <td>
+            <% if current_user.is_admin %>
+              <% if current_site %>
+                <% if site.status == 'active' %>
+                  <%= link_to render_toggle(:status, 1, true), update_subsite_admin_path(site.id, site: {status: 'inactive'}), class: "action-link", method: :patch, data: {confirm: t('are_you_sure')} %>
+                <% else %>
+                  <%= link_to render_toggle(:status, 1, false), update_subsite_admin_path(site.id, site: {status: 'active'}), class: "action-link", method: :patch, data: {confirm: t('are_you_sure')} %>
+                <% end %>
               <% else %>
-                <%= link_to icon('ok-circle', text: t(".activate")), update_subsite_admin_path(site.id, site: {status: 'active'}), class: "action-link", method: :patch, data: {confirm: t('are_you_sure')} %>
+                <%= toggle_field(site, 'is_active', 'toggle', data: {confirm: t('are_you_sure')}) %>
               <% end %>
-              <%= link_to icon('trash', text: t(".delete")), destroy_subsite_admin_path(site.id), class: "action-link", method: :delete, data: {confirm: t('are_you_sure_del_item', item: site.title)} %>
-              <%= link_to icon('edit', text: t(".settings")), edit_site_admin_url(subdomain: site), class: "action-link" %>
+            <% else %>
+              <%= t(".#{site.status}") %>
             <% end %>
-            <%= link_to icon('briefcase', text: t(".dashboard")), site_admin_url(subdomain: site), class: "action-link"  if current_user && current_user.has_role_in?(site) %>
+          </td>
+          <td class="actions">
+            <%= render_dropdown_menu do %>
+              <% if current_user && current_user.is_admin %>
+                <%= link_to icon('trash', text: t(".delete")), current_site ? destroy_subsite_admin_path(site.id) : admin_site_path(site.id), class: "action-link", method: :delete, data: {confirm: t('are_you_sure_del_item', item: site.title)} %>
+                <%= link_to icon('edit', text: t(".settings")), current_site ? edit_site_admin_url(subdomain: site) : edit_admin_site_path(site), class: "action-link" %>
+              <% end %>
+              <%= link_to icon('briefcase', text: t(".dashboard")), site_admin_url(subdomain: site), class: "action-link"  if current_user && current_user.has_role_in?(site) %>
+            <% end %>
           </td>
         </tr>
       <% end %>

@@ -61,4 +61,9 @@ rights:
         en: List newsletters
         pt-BR: Listar newsletters
       action: index
+    destroy:
+      name:
+        en: Delete newsletter emails
+        pt-BR: Excluir emails de newsletter
+      action: destroy destroy_many
 
