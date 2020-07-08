@@ -154,6 +154,7 @@ en:
   user_already_active:                  " User already activated. "
   user_inactive:                        " User was not activated. "
   user_not_found:                       " User not found "
+  updated_on:                           " Updated on "
   updated_account:                      " Account updated "
   updated_account_with_email:           " Account updated, an email was sent to confirm the new email address"
   update_notification_successful:       " The notification has been updated! "

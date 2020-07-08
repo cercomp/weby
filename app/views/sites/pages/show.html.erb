@@ -12,19 +12,22 @@
   </header>
   <% if !defined?(as_component) %>
     <div class="page-details details">
-    <% if @site.view_desc_pages %>
-       <span class="author"><%= t("posted_by") %><%= @page.user %></span>
-    <% end %>
-    <% if @page.publish %>
-       <span class="date"><%= t(".updated_at") %><%= l((@page.i18ns.first.updated_at.blank? ? @page.i18ns.first.created_at : @page.i18ns.first.updated_at), format: :short) %>.</span>
-    <% end %>
+      <% if @site.show_pages_author %>
+        <span class="author"><%= t("posted_by") %><%= @page.user %></span>
+      <% end %>
+      <% if @site.show_pages_created_at %>
+        <span class="date created"><%= t("posted_on") %><%= l(@page.created_at, format: :short) %></span>
+      <% end %>
+      <% if @page.publish && @site.show_pages_updated_at %>
+        <span class="date"><%= t(".updated_at") %><%= l(@page.real_updated_at, format: :short) %></span>
+      <% end %>
     </div>
   <% end %>
   <%= yield :social_code if current_site.page_social_share_pos == 'middle' %>
   <%= render partial: 'sites/shared/pages_show_actions' %>
   <%= yield :social_code if current_site.page_social_share_pos == 'bottom' %>
   <div style="margin-top: 8px;" class="actions">
-    <%= link_to(weby_icon('edit', t("edit")), main_app.edit_site_admin_page_path(@page)) if check_permission(Sites::Admin::PagesController, [:show]) %>
+    <%= link_to(weby_icon('edit', t("edit")), main_app.edit_site_admin_page_path(@page)) if check_permission(Sites::Admin::PagesController, [:edit]) %>
     <% if !defined?(as_component) %>
       <%= link_to weby_icon('list', t(".list_all")), site_pages_path %>
       <%= link_to weby_icon('chevron-left', t("back")), :back %>

@@ -155,6 +155,7 @@ pt-BR:
   user_already_active:                  " Usuário já está ativo. "
   user_inactive:                        " Seu usuário ainda não está ativo. "
   user_not_found:                       " Usuário não encontrado "
+  updated_on:                           " Atualizada em "
   updated_account:                      " Conta atualizada "
   updated_account_with_email:           " Conta atualizada, um email foi enviado para confirmar o novo endereço de email"
   update_notification_successful:       " Notificação atualizada "

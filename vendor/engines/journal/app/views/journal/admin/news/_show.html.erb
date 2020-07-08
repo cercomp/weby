@@ -6,8 +6,11 @@
 </header>
 
 <summary>
-  <p>
-    <%= "#{@news.user} #{l(@news.created_at, format: :short)}" if current_site.view_desc_pages %>
+  <p class="page-details details">
+    <div class="author"><%= t(".authored", author: @news.user, created_at: l(@news.created_at, format: :short)) %></div>
+    <% if @news.updated_at != @news.created_at %>
+      <div class="date"><%= t(".updated_at", updated_at: l(@news.real_updated_at, format: :short)) %></div>
+    <% end %>
   </p>
   <p>
     <%= render_user_content @news.summary %>

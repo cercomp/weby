@@ -91,12 +91,7 @@ class SitesController < ApplicationController
 
   def edit
     @site = current_site
-    @sites = @site.subsites.active
-      .except(:order)
-      .order("#{sort_column} #{sort_direction}")
-      .page(params[:page])
-      .per(params[:per_page])
-
+    load_subsites
     render layout: 'application'
   end
 
@@ -107,6 +102,7 @@ class SitesController < ApplicationController
       flash[:success] = t('successfully_updated')
       redirect_to edit_site_admin_url(subdomain: @site)
     else
+      load_subsites
       render :edit, layout: 'application'
     end
   end
@@ -136,6 +132,14 @@ class SitesController < ApplicationController
     Site.column_names.include?(params[:sort]) ? params[:sort] : 'id'
   end
 
+  def load_subsites
+    @sites = @site.subsites.active
+        .except(:order)
+        .order("#{sort_column} #{sort_direction}")
+        .page(params[:page])
+        .per(params[:per_page])
+  end
+
   def load_subsite
     @subsite = @site.subsites.find(params[:id])
   end
@@ -145,8 +149,9 @@ class SitesController < ApplicationController
   end
 
   def site_params
-    permitted = [:title, :top_banner_id, :description, :view_desc_pages,
-                :theme,  :body_width, :per_page, :per_page_default, :google_analytics,
+    permitted = [:title, :top_banner_id, :description, :show_pages_author,
+                 :show_pages_created_at, :show_pages_updated_at, :body_width,
+                 :per_page, :per_page_default, :google_analytics,
                 {locale_ids: []}]
 
     if current_user.is_admin?

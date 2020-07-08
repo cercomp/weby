@@ -21,6 +21,8 @@ pt-BR:
           period_page:          " Período de publicação "
           list_all:             " Listar todas "
           categories:           " Categorias "
+          authored:             " Criada por %{author} em %{created_at} "
+          updated_at:           " Atualizada em %{updated_at} "
           source:               " Fonte "
           size:                 " Tamanho "
           archive_fingerprint:  " Assinatura digital do arquivo "

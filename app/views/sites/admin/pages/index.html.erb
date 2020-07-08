@@ -16,6 +16,9 @@
       <% with_permission(action: [:recover, :purge]) do %>
         <%= link_to t("recycle_bin"), recycle_bin_site_admin_pages_path, class: "btn btn-default" %>
       <% end %>
+      <% with_permission(controller: SitesController, action: [:edit]) do %>
+        <%= link_to icon('cog'), edit_site_admin_path(anchor: 'tab-pages'), class: "btn btn-default", title: t('.settings') %>
+      <% end %>
     </div>
   </div>
 </div>

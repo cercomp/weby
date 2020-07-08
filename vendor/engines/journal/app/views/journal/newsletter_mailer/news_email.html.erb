@@ -9,7 +9,18 @@
 
 <summary>
   <p>
-    <%= "#{@news.user} #{l(@news.created_at, format: :short)}" if @site.view_desc_pages %>
+    <% if @extension.show_author? %>
+      <span class="author"><%= t(".posted_by", author: @news.user) %></span>
+    <% end %>
+    <span class="date">
+      <% if @extension.show_created_at? %>
+        <% news_date = @news.i18ns.first.created_at || @news.created_at %>
+        <%= t(".created_at", created_at: l(news_date, format: :short)) if news_date %>
+      <% end %>
+      <% if @extension.show_updated_at? && (@news.created_at != @news.updated_at || !@extension.show_created_at?) %>
+        <%= t(".updated_at", updated_at:  l(@news.real_updated_at, format: :short)) %>
+      <% end %>
+    </span>
   </p>
   <p>
     <%= externalize_links(render_user_content(@news.summary), root_url(subdomain: @site)) %>

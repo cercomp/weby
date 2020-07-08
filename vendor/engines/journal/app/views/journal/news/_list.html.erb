@@ -13,10 +13,12 @@
     <% end %>
     <header><%= link_to news.title, news.url.present? ? news.url : news_url(news, subdomain: news.site) %></header>
     <div class="news-details details">
-      <% if current_site.view_desc_pages  %>
-         <span class="author"><%= t("posted_by") %><%= news.user.name_or_login %></span>
+      <% if @extension.show_author?  %>
+        <span class="author"><%= t("posted_by") %><%= news.user.name_or_login %></span>
       <% end %>
-      <span class="date"><%= t("posted_on") %><%= localize news.created_at, format: :medium %></span>
+      <% if @extension.show_created_at? %>
+        <span class="date"><%= t("posted_on") %><%= localize news.created_at, format: :medium %></span>
+      <% end %>
     </div>
     <summary>
       <%= render_user_content news.summary %>

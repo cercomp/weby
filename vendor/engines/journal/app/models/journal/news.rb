@@ -124,6 +124,11 @@ module Journal
       end
     end
 
+    def real_updated_at
+      i18n_updated = i18ns.sort_by{|i18n| i18n.updated_at }.last.updated_at
+      updated_at > i18n_updated ? updated_at : i18n_updated
+    end
+
     def news_site_for site
       news_sites.detect{|ns| ns.site_id == site.id }
     end

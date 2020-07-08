@@ -16,3 +16,6 @@ pt-BR:
         text_getout:        " Descadastrar-me do Boletim de Notícias."
         original_news:      " Notícia original."
         related_url:        " Fonte da notícia"
+        posted_by:     "Por %{author}."
+        created_at:    "Em %{created_at}."
+        updated_at:    "Atualizada em %{updated_at}."

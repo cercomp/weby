@@ -73,6 +73,11 @@ class Page < ApplicationRecord
     "#{id} #{title}".parameterize
   end
 
+  def real_updated_at
+    i18n_updated = i18ns.sort_by{|i18n| i18n.updated_at }.last.updated_at
+    updated_at > i18n_updated ? updated_at : i18n_updated
+  end
+
   def self.new_or_clone id, params={}
     if id.present?
       page = current_scope.find_by(id: id)

@@ -28,7 +28,7 @@
             <h2>
               <%= link_to news.title, news.url.present? ? news.url : news_url(news, subdomain: news.site) %>
             </h2>
-            <% if current_site.view_desc_pages && !component.hide_author? %>
+            <% if !component.hide_author? %>
               <p>
                 <i>
                   <%= news.user.name_or_login %>

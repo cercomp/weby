@@ -17,7 +17,7 @@
         <%= menu_item_to fa_icon('list-alt fw', text: t(".activity_records")), main_app.site_admin_activity_records_path if check_permission(Sites::Admin::ActivityRecordsController, [:index]) %>
         <%= menu_item_to fa_icon('plug fw', text: t(".extensions")), main_app.site_admin_extensions_path if check_permission(Sites::Admin::ExtensionsController, [:index]) %>
         <%= menu_item_to fa_icon('download fw', text: t(".backup")), main_app.site_admin_backups_path if current_user.is_admin? %>
-        <%= menu_item_to fa_icon('cog fw', text: t(".settings")), main_app.edit_site_admin_path if check_permission(SitesController, [:show]) %>
+        <%= menu_item_to fa_icon('cog fw', text: t(".settings")), main_app.edit_site_admin_path if check_permission(SitesController, [:edit]) %>
         <div class="nav-header">
           <%= menu_item_to t(".contents"), main_app.site_admin_path %>
         </div>

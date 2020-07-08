@@ -1,6 +1,6 @@
 <%= simple_form_for [:site_admin, @extension], html: {class: 'form-horizontal'} do |f| %>
 
-  <%= f.input :author, wrapper: :checkbox, as: :boolean %>
+  <%= f.input :show_author, wrapper: :checkbox, as: :boolean %>
   <%= f.input :show_created_at, wrapper: :checkbox, as: :boolean %>
   <%= f.input :show_updated_at, wrapper: :checkbox, as: :boolean %>
   <%= f.input :image_size, collection: [:t, :m, :l, :i].map{|size| [t(".#{size}"),size] },

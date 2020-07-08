@@ -31,5 +31,9 @@ module Journal
       @ch_pos.update_attribute(:position, new_pos)
       head :ok
     end
+
+    def load_extension
+      @extension = current_site.extensions.find_by(name: 'journal')
+    end
   end
 end

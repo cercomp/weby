@@ -7,6 +7,9 @@
       <a href="#tab-form" data-toggle="tab"><%= t(".main") %></a>
     </li>
     <li>
+      <a href="#tab-pages" data-toggle="tab"><%= t(".pages") %></a>
+    </li>
+    <li>
       <a href="#tab-social" data-toggle="tab"><%= t(".social") %></a>
     </li>
     <% if has_subsites %>
@@ -19,6 +22,16 @@
   <div class="tab-content">
     <div class="tab-pane active" id="tab-form">
       <%= render 'sites/form' %>
+    </div>
+    <div class="tab-pane" id="tab-pages">
+      <%= simple_form_for @site, url: update_site_admin_path do |f| %>
+        <%= f.input :show_pages_author, wrapper: :checkbox, as: :boolean %>
+        <%= f.input :show_pages_created_at, wrapper: :checkbox, as: :boolean %>
+        <%= f.input :show_pages_updated_at, wrapper: :checkbox, as: :boolean %>
+        <div class="form-actions">
+          <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
+        </div>
+      <% end %>
     </div>
     <div class="tab-pane" id="tab-social">
       <%= simple_form_for @site, url: update_site_admin_path do |f| %>

@@ -28,7 +28,7 @@ xml.rss :version => "2.0", "xmlns:itunes" => "http://www.itunes.com/dtds/podcast
         body = "#{news_image}<br/>#{render_user_content news.summary}<br/>#{render_user_content news.text}"
         body += "<br/>#{link_to 'Original', news.url, target: '_blank'}" if news.url.present?
         xml.description body
-        if @extension.author == '1'
+        if @extension.show_author?
           xml.author news.user.fullname
         end
         xml.pubDate news.created_at.to_s(:rfc822)
