@@ -21,7 +21,7 @@
     <%= yield :components_stylesheets %>
     <%= stylesheet_link_tag 'alternative' %>
     <%= render 'sites/shared/loadStyles' %>
-    <link class="contrast-css" rel="stylesheet" media="screen" href="" data-src="<%= asset_url('alternative_contrast.css') %>">
+    <%= contrast_stylesheet_link asset_url('alternative_contrast.css') %>
     <%= current_site&.head_html_code %>
     <% skin = params[:preview_skin].present? ? current_site.skins.find(params[:preview_skin]) : current_site.active_skin %>
     <% if (color = skin.get_variable_config('color_scheme')).present? %>

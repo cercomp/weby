@@ -9,8 +9,8 @@
       <%= link_to(t(".help"), current_settings.help_site, target: '_blank', class: 'pull-left') if current_settings.help_site %>
     </div>
     <div class="user pull-right">
-      <%= link_to main_app.profile_url(current_user.login, subdomain: current_site) do %>
-      <img src="//www.gravatar.com/avatar/<%= Digest::MD5.hexdigest(current_user.email) %>?s=42&d=mm"
+      <%= link_to main_app.profile_url(current_user.login, subdomain: current_site), class: 'user-avatar', data: {pref: set_preferences_site_admin_users_path} do %>
+        <img src="//www.gravatar.com/avatar/<%= Digest::MD5.hexdigest(current_user.email) %>?s=42&d=mm"
         class="pull-right"/>
       <% end %>
       <div class="info pull-right">
@@ -26,7 +26,6 @@
     </div>
     <div class="clearfix"></div>
   </div>
-  <%# flash.now[:notice] = 'Banner compartilhado com sucesso' %>
   <%# Flash message for site front end %>
   <% unless flash.empty? %>
     <%= raw flash_message %>

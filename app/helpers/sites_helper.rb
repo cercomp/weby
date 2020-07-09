@@ -55,4 +55,10 @@ module SitesHelper
       end)
     end
   end
+
+  def contrast_stylesheet_link url
+    is_contrast_mode = current_user && current_user.preferences['contrast'].to_i == 1
+    href = is_contrast_mode ? url : ''
+    stylesheet_link_tag(href, class: "contrast-css #{'active' if is_contrast_mode}", data: {src: url})
+  end
 end

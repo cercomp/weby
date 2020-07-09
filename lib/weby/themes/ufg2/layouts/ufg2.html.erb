@@ -21,7 +21,7 @@
     <%= yield :components_stylesheets %>
     <%= stylesheet_link_tag 'ufg2' %>
     <%= render 'sites/shared/loadStyles' %>
-    <link class="contrast-css" rel="stylesheet" media="screen" href="" data-src="<%= asset_url('ufg2_contrast.css') %>">
+    <%= contrast_stylesheet_link asset_url('ufg2_contrast.css') %>
     <%= current_site&.head_html_code %>
   </head>
   <body class="<%= yield :body_class %>">
