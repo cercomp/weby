@@ -53,6 +53,9 @@ class ApplicationController < ActionController::Base
 
   def set_contrast
     session[:contrast] = params[:contrast] || session[:contrast] || 'no'
+    if current_user && current_user.preferences['contrast'].to_i == 1
+      view_context.content_for :body_class, 'contrast-mode'
+    end
   end
 
   def set_view_types

@@ -72,4 +72,12 @@ class Sites::Admin::UsersController < ApplicationController
     # When it is asked to manage a role
     @user = User.find(params[:user_id]) if params[:user_id]
   end
+
+  def set_preferences
+    if params[:contrast].present?
+      current_user.preferences['contrast'] = params[:contrast]
+      current_user.save
+    end
+    render json: {ok: true}
+  end
 end
