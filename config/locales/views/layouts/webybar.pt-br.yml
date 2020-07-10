@@ -1,7 +1,15 @@
 pt-BR:
   layouts:
     webybar:
-      logout: "SAIR"
+      logout: "Sair"
+      login: 'Entrar'
       dashboard: "ADMINISTRAÇÃO"
       help: "AJUDA"
       about: "SOBRE"
+      sites: Lista de sites
+      weby_logo: Logo do weby
+      admin_area: Painel administrativo
+      help_site: Site de ajuda
+      user_avatar: Imagem do usuário
+      user_profile: Perfil do usuário
+      weby_admin: Painel administrativo do Weby

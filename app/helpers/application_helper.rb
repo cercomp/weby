@@ -453,7 +453,7 @@ module ApplicationHelper
     )
 
     unless type.nil?
-      ico = not_in_site_context? ?  'glyphicon' : 'icon'
+      ico = not_in_site_context? || args[:glyph] ?  'glyphicon' : 'icon'
       icon_class = "#{ico} #{ico}-#{type}" + (args[:white] ? " #{ico}-white" : '')
 
       if args[:right]
