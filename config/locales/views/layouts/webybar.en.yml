@@ -1,7 +1,16 @@
 en:
   layouts:
     webybar:
-      logout: "LOGOUT"
+      logout: "Logout"
+      login: 'Login'
       dashboard: "DASHBOARD"
       help: "HELP"
       about: "ABOUT"
+      sites: Sites List
+      weby_logo: Weby logo
+      admin_area: Admin panel
+      help_site: Help site
+      user_avatar: User avatar
+      user_profile: User profile
+      weby_admin: Weby admin panel
+

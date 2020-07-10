@@ -15,12 +15,12 @@ module UsersHelper
     unread = user.unread_notifications_array
     if unread.empty?
       link_to main_app.notifications_url(subdomain: current_site), class: 'label label-default', title: t('notifications.index.notifications') do
-        "<span class=\"glyphicon glyphicon-envelope\"></span>".html_safe
+        icon('bell', glyph: true)
       end
     else
       link_to main_app.notifications_url(subdomain: current_site) do
         content_tag(:span, class: 'label label-warning', title: t('notifications.index.notifications')) do
-          "<span class=\"glyphicon glyphicon-envelope\"></span> #{unread.size}".html_safe
+          icon('bell', glyph: true, text: unread.size)
         end
       end
     end
