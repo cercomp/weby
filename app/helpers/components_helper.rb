@@ -16,31 +16,54 @@ module ComponentsHelper
     divs += '</div>'
   end
 
+  def render_component_icon(compo)
+    return '' if compo.raw_component[:icon].blank?
+
+    if compo.raw_component[:icon].match(/^fa\|/)
+      fa_icon(compo.raw_component[:icon].gsub('fa|', ''))
+    elsif compo.raw_component[:icon].match(/^flag\|/)
+      ''#flag(compo.raw_component[:icon].gsub('flag|', ''))
+    else
+      icon(compo.raw_component[:icon])
+    end
+  end
+
   def list_component(compo, leftout = false)
     exceptions = ['show']
     exceptions << 'edit' unless component_is_available(compo.name)
     components_html = '<li '
     components_html << "id='sort_sites_component_#{compo.id }' " unless leftout
     nickname = compo.alias.present? ? compo.alias : compo.default_alias
-    if compo.name.to_s == 'components_group'
+    component_icon = render_component_icon(compo)
+    component_title = "#{t("components.#{compo.name}.name")} #{"- #{nickname}" if nickname.present?}"
+    if compo.is_group?
       components_html << "class='component-#{ compo.name } "
     else
       components_html << "class='component "
     end
     components_html << "#{'disabled' unless component_is_available(compo.name)} #{compo.publish ? '' : 'deactivated'}' data-place='#{compo.place_holder}'>
-      <div>
+      <div class=\"component-ctrl\">
+        #{ "<span class='handle'>#{image_tag('drag.png')}</span>" if check_permission(Sites::Admin::ComponentsController, 'sort') and !leftout }
         <span class='widget-name'>
-          #{ raw ("#{toggle_field(compo, 'publish', 'toggle', controller: :components, skin_id: compo.skin_id, remote: true)} #{t("components.#{compo.name}.name")} #{"- #{nickname}" if nickname.present?}") }
+          #{ toggle_field(compo, 'publish', 'toggle', controller: :components, skin_id: compo.skin_id, remote: true, class: 'toggle-component') }
+          #{if check_permission(Sites::Admin::ComponentsController, 'edit')
+                link_to("#{component_icon} #{component_title} #{content_tag(:span, icon(:edit), class: 'oh-c-i')}".html_safe, edit_site_admin_skin_component_path(compo.skin_id, compo.id), class: 'widget-edit')
+            else
+                component_title
+            end}
         </span>
-        <div class='pull-right' style='min-width: 46px'>
-          #{ link_to(icon(:remove), site_admin_skin_component_path(compo.skin_id, compo.id, del_group: true), title: t('.remove_group'), method: :delete, data: {confirm: t('.are_you_sure_group_del', alias: compo.alias)}) if compo.name == 'components_group' && check_permission(Sites::Admin::ComponentsController, 'destroy') }
-          #{ raw ("#{make_menu(compo, except: exceptions, with_text: leftout, controller: Sites::Admin::ComponentsController, params: {skin_id: compo.skin_id})}") }
-          #{ "<span class='handle'>#{icon('move') }</span>" if check_permission(Sites::Admin::ComponentsController, 'sort') and !leftout }
-          #{ link_to '+', new_site_admin_skin_component_path(compo.skin_id, placeholder: compo.id), class: 'btn btn-success btn-sm', title: t('.new_component') if compo.name.to_s == 'components_group' and check_permission(Sites::Admin::ComponentsController, [:new]) and !leftout }
+        <div class=\"pull-right actions\" style='min-width: 46px'>
+          #{link_to(image_tag('add-row-w.svg'), new_site_admin_skin_component_path(compo.skin_id, placeholder: compo.id), class: 'btn btn-success btn-sm add-subitem', title: t('.new_child_component')) if compo.is_group? && check_permission(Sites::Admin::ComponentsController, [:new]) && !leftout}
+          #{render_dropdown_menu do
+              [
+                (link_to(fa_icon('clone', text: t('clone')), clone_site_admin_skin_component_path(compo.skin_id, compo.id), method: :post, data: {disable_with: t('.cloning')}) if test_permission(:components, :clone)),
+                make_menu(compo, except: exceptions, with_text: true, controller: Sites::Admin::ComponentsController, params: {skin_id: compo.skin_id}),
+                (link_to(icon(:remove, text: t('.remove_group')), site_admin_skin_component_path(compo.skin_id, compo.id, del_group: true), title: t('.remove_group_hint'), method: :delete, data: {confirm: t('.are_you_sure_group_del', alias: compo.alias)}) if compo.is_group? && check_permission(Sites::Admin::ComponentsController, 'destroy') )
+              ].compact.join.html_safe
+            end}
         </div>
-        <div class='clearfix'></div>
       </div>"
-    if compo.name.to_s == 'components_group'
+    if compo.is_group?
       components_per_group = @components.select { |comp| comp.place_holder.to_i == compo.id }
       @components = @components - components_per_group
       components_html << "<div><ul class=\"order-list\" data-place=\"#{compo.id}\">"

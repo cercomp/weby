@@ -1,4 +1,6 @@
 class Admin::SitesController < Admin::BaseController
+  include ActsToToggle
+
   before_action :set_resource, only: [:edit, :update, :destroy]
 
   respond_to :html, :xml, :js

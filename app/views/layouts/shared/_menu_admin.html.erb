@@ -9,15 +9,15 @@
         <div class="nav-header">
           <%= menu_item_to t(".dashboard"), main_app.site_admin_path %>
         </div>
-        <%= menu_item_to t(".users"), main_app.manage_roles_site_admin_users_path if check_permission(Sites::Admin::UsersController, [:manage_roles])%>
-        <%= menu_item_to t(".theme"), main_app.site_admin_skins_path if check_permission(Sites::Admin::StylesController, [:index]) || check_permission(Sites::Admin::ComponentsController, [:index]) || (!current_site.restrict_theme && check_permission(Sites::Admin::SkinsController, [:index])) %>
+        <%= menu_item_to fa_icon('users fw', text: t(".users")), main_app.manage_roles_site_admin_users_path if check_permission(Sites::Admin::UsersController, [:manage_roles])%>
+        <%= menu_item_to fa_icon('paint-brush fw', text: t(".theme")), main_app.site_admin_skins_path if check_permission(Sites::Admin::StylesController, [:index]) || check_permission(Sites::Admin::ComponentsController, [:index]) || (!current_site.restrict_theme && check_permission(Sites::Admin::SkinsController, [:index])) %>
         <%#= menu_item_to t(".components"), main_app.site_admin_skins_path if check_permission(Sites::Admin::ComponentsController, [:index])%>
-        <%#= menu_item_to t(".styles"), main_app.site_admin_skins_path if check_permission(Sites::Admin::StylesController, [:index])%>
+        <%#= menu_item_to t(".styles"), main_app.site_admin_skins_path(anchor: 'tab-styles') if check_permission(Sites::Admin::StylesController, [:index])%>
         <%#= menu_item_to t(".statistics"), main_app.site_admin_stats_path if check_permission(Sites::Admin::StatisticsController, [:index])%>
-        <%= menu_item_to t(".settings"), main_app.edit_site_admin_path if check_permission(SitesController, [:edit]) %>
-        <%= menu_item_to t(".activity_records"), main_app.site_admin_activity_records_path if check_permission(Sites::Admin::ActivityRecordsController, [:index]) %>
-        <%= menu_item_to t(".backup"), main_app.site_admin_backups_path if current_user.is_admin? %>
-        <%= menu_item_to t(".extensions"), main_app.site_admin_extensions_path if check_permission(Sites::Admin::ExtensionsController, [:index]) %>
+        <%= menu_item_to fa_icon('list-alt fw', text: t(".activity_records")), main_app.site_admin_activity_records_path if check_permission(Sites::Admin::ActivityRecordsController, [:index]) %>
+        <%= menu_item_to fa_icon('plug fw', text: t(".extensions")), main_app.site_admin_extensions_path if check_permission(Sites::Admin::ExtensionsController, [:index]) %>
+        <%= menu_item_to fa_icon('download fw', text: t(".backup")), main_app.site_admin_backups_path if current_user.is_admin? %>
+        <%= menu_item_to fa_icon('cog fw', text: t(".settings")), main_app.edit_site_admin_path if check_permission(SitesController, [:edit]) %>
         <div class="nav-header">
           <%= menu_item_to t(".contents"), main_app.site_admin_path %>
         </div>
@@ -28,13 +28,13 @@
         <div class="nav-header">
           <%= menu_item_to t(".dashboard"), main_app.admin_path %>
         </div>
-        <%= menu_item_to t(".sites"), main_app.admin_sites_path %>
-        <%= menu_item_to t(".groupings"), main_app.admin_groupings_path %>
-        <%= menu_item_to t(".users"), main_app.admin_users_path  %>
-        <%= menu_item_to t(".notifications"), main_app.admin_notifications_path %>
+        <%= menu_item_to fa_icon('desktop fw', text: t(".sites")), main_app.admin_sites_path %>
+        <%= menu_item_to fa_icon('sitemap fw', text: t(".groupings")), main_app.admin_groupings_path %>
+        <%= menu_item_to fa_icon('users fw', text: t(".users")), main_app.admin_users_path  %>
+        <%= menu_item_to fa_icon('bell-o fw', text: t(".notifications")), main_app.admin_notifications_path %>
         <%#= menu_item_to t(".statistics"), main_app.admin_stats_path %>
-        <%= menu_item_to t(".settings"), main_app.admin_settings_path %>
-        <%= menu_item_to t(".activity_records"), main_app.admin_activity_records_path %>
+        <%= menu_item_to fa_icon('list-alt fw', text: t(".activity_records")), main_app.admin_activity_records_path %>
+        <%= menu_item_to fa_icon('cog fw', text: t(".settings")), main_app.admin_settings_path %>
       <% end %>
     <% end %>
   </ul>

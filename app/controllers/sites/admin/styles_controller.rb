@@ -1,11 +1,11 @@
 class Sites::Admin::StylesController < ApplicationController
-  include ActsToToggle
-
   before_action :require_user
   before_action :check_authorization
   before_action :load_skin, only: [:index, :new, :create, :sort, :toggle]
   before_action :load_global_style, only: [:show, :follow, :copy, :unfollow]
   before_action :load_style, only: [:edit, :update, :destroy]
+
+  include ActsToToggle
 
   respond_to :html, :xml, :js
 

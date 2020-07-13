@@ -59,8 +59,11 @@ pt-BR:
           archive:             " Arquivo "
           description:         " Descrição "
           legend:              " Legenda "
-          title:               " Titulo "
+          title:               " Título "
           type:                " Tipo "
+          crop_image:          " Cortar imagem "
+        thumbs:
+          crop_image:          " Cortar imagem "
         repository_search:
           archives:            " Arquivos "
           repository_alert:    " Atenção, os arquivos enviados ao repositório são públicos, podendo ser referenciados por qualquer site! Arquivos confidenciais não devem ser enviados ao servidor. "
@@ -92,7 +95,8 @@ pt-BR:
           archives:             " Arquivos "      
           new_archive:          " Novo Arquivo "  
           none_archive:         " Nenhum Arquivo "
-          archive:              " Arquivo "  
+          archive:              " Arquivo "
+          title:                " Título "
           description:          " Descrição "
           type:                 " Tipo "
           deleted_at:           " Excluído em "

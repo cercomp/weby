@@ -11,9 +11,9 @@ module Sticker
       html = ''
       #if banner.publish
         if banner.date_begin_at && Time.current < banner.date_begin_at
-          html << "<span class=\"label label-warning publish-warning\" title=\"#{t('scheduled', date: l(banner.date_begin_at, format: :short))}\">!</span>"
+          html << content_tag(:span, fa_icon(:'clock-o'), class: 'publish-warning text-warning', title: t('scheduled', date: l(banner.date_begin_at, format: :medium)))
         elsif banner.date_end_at && banner.date_end_at <= Time.current
-          html << "<span class=\"label label-important publish-warning\" title=\"#{t('expired')}\">!</span>"
+          html << content_tag(:span, fa_icon(:'exclamation-circle'), class: 'publish-warning text-danger', title: t('expired_at', date: l(banner.date_end_at, format: :medium)))
         end
       #end
       html.html_safe

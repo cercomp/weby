@@ -139,9 +139,9 @@ class Sites::Admin::RepositoriesController < ApplicationController
       flash[:error] = @repository.errors.full_messages.join(', ')
     end
 
-    @repositories = current_site.repositories.trashed.
-    order("#{params[:sort]} #{sort_direction}").
-    page(params[:page]).per(per_page)
+    # @repositories = current_site.repositories.trashed.
+    # order("#{params[:sort]} #{sort_direction}").
+    # page(params[:page]).per(per_page)
 
     if @repository.persisted?
       redirect_to main_app.site_admin_repositories_path
@@ -157,6 +157,23 @@ class Sites::Admin::RepositoriesController < ApplicationController
     end
     record_activity('restored_file', @repository)
     redirect_back(fallback_location: recycle_bin_site_admin_repositories_path)
+  end
+
+  def destroy_many
+    repositories = current_site.repositories.where(id: params[:ids].split(',')).each do |repo|
+      if repo.trash
+        record_activity('moved_file_to_recycle_bin', repo)
+        flash[:success] = t('moved_file_to_recycle_bin')
+      end
+    end
+    redirect_back(fallback_location: main_app.site_admin_repositories_path)
+  end
+
+  def empty_bin
+    if current_site.repositories.trashed.destroy_all
+      flash[:success] = t('successfully_deleted')
+    end
+    redirect_to main_app.recycle_bin_site_admin_repositories_path
   end
 
   private

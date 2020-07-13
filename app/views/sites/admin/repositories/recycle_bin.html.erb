@@ -10,6 +10,9 @@
   <% with_permission(action: :index) do %>
     <%= link_to t(".archives"), site_admin_repositories_path, class: "btn btn-default" %>
   <% end %>
+  <% with_permission(action: :destroy) do %>
+    <%= link_to t("empty_bin"), empty_bin_site_admin_repositories_path, class: "btn btn-default btn-danger #{'disabled' if @repositories.empty?}", method: :delete, disabled: @repositories.empty?, data: {confirm: t('confirm_empty_bin')} %>
+  <% end %>
 </div>
 <div class="clearfix"></div>
 
@@ -23,9 +26,10 @@
     <div class="pull-right"> <%= paginate @repositories, remote: true %> </div>
     <div class="clearfix"></div>
 
-    <table class='table table-striped table-condensed'>
+    <table class="table table-striped table-condensed align-middle">
         <thead>
             <th><%= sortable 'archive_file_name', t(".archive") %></th>
+            <th><%= sortable 'title', t(".title") %></th>
             <th><%= sortable 'description', t(".description") %></th>
             <th><%= sortable 'archive_content_type', t(".type") %></th>
             <th><%= sortable 'deleted_at', t(".deleted_at") %></th>
@@ -35,11 +39,14 @@
           <% @repositories.each do |repository| %>
               <tr>
               <td> <%= weby_file_view(repository, :t, "64", "64", as: :image, title: repository.archive_file_name) %> </td>
+              <td> <%= repository.title %> </td>
               <td> <%= repository.description %> </td>
               <td> <%= repository.archive_content_type %> </td>
               <td> <%= l(repository.deleted_at, :format => :short) %> </td>
               <td class="text-right">
-                <%= recycle_bin_actions repository, with_text: true %>
+                <%= render_dropdown_menu do %>
+                  <%= recycle_bin_actions repository, with_text: true %>
+                <% end %>
               </td>
             </tr>
           <% end %>

@@ -49,8 +49,12 @@ en:
           picture:             " Picture "
         list:
           archive:             " File "
+          title:               " Title "
           description:         " Description "
           type:                " Type "
+          crop_image:          " Crop Image "
+        thumbs:
+          crop_image:          " Crop Image "
         repository_search:
           archives:            " Files "
           accept:              " Accept "
@@ -75,13 +79,14 @@ en:
           search_repository:   " Search file "
           archive:             " File "
           none_file:           " No Files Found. "
-        recycle_bin:                              
-          archives:             " Files "              
-          new_archive:          " New File "  
-          archive:              " File "       
-          description:          " Description "     
-          type:                 " Typo "          
-          deleted_at:           " Deleted at "   
+        recycle_bin:
+          archives:             " Files "
+          new_archive:          " New File "
+          archive:              " File "
+          title:               " Title "
+          description:          " Description "
+          type:                 " Typo "
+          deleted_at:           " Deleted at "
           destroy:              " Destroy "
           recover:              " Recover "
 

@@ -11,7 +11,7 @@ class Component < ApplicationRecord
 
   before_save :prepare_variables
   before_update :fix_position
-  after_destroy :handle_children, if: proc { name == 'components_group' }
+  after_destroy :handle_children, if: proc { is_group? }
 
   def default_alias
     ''
@@ -84,6 +84,10 @@ class Component < ApplicationRecord
     Weby::Components.factory(self)
   end
 
+  def is_group?
+    name == 'components_group'
+  end
+
   protected
 
   def settings_map
@@ -102,7 +106,7 @@ class Component < ApplicationRecord
 
   def destroy_children!
     Component.where(place_holder: id.to_s).each do |component|
-      if component.name == 'components_group'
+      if component.is_group?
         component.destroy_children!
       end
       component.destroy!

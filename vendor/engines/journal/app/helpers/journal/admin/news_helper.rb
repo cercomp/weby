@@ -2,9 +2,12 @@ module Journal
   module Admin::NewsHelper
 
     def news_status news
-      content_tag :span, class: "label label-#{STATUS_CLASSES[news.status.to_sym]}" do
-        t("journal.admin.news.form.#{news.status}")
-      end
+      ''.tap do |html|
+        html << content_tag(:span, t("journal.admin.news.form.#{news.status}"), class: "label label-#{STATUS_CLASSES[news.status.to_sym]}")
+        if news.date_begin_at && Time.current < news.date_begin_at && news.published?
+          html << content_tag(:span, fa_icon(:'clock-o'), class: 'publish-warning text-warning', title: t('scheduled', date: l(news.date_begin_at, format: :medium)))
+        end
+      end.html_safe
 #      '<div class="btn-group">'.tap do |html|
 #        html << content_tag(:button,
 #                              class: "btn btn-#{STATUS_CLASSES[news.status.to_sym]} btn-xs dropdown-toggle",

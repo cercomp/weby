@@ -6,7 +6,7 @@
   <div class="pull-left"> <%= info_page @notifications %> </div>
   <div class="pull-right"> <%= paginate @notifications, remote: true %> </div>
   <div class="clearfix"></div> 
-  <table class='table table-striped'>
+  <table class="table table-striped align-middle">
     <thead>
       <tr>
         <th><%= t(".title") %></th>
@@ -21,7 +21,11 @@
           <td><%= link_to notification.title, admin_notification_path(notification.id) %></td>
           <td><%= strip_tags(notification.body.to_s)[0..50].html_safe %></td>
           <td><%= l(notification.created_at, :format => :short) %></td>
-          <td class="text-right"> <%= raw make_menu(notification) %> </td>
+          <td class="text-right">
+            <%= render_dropdown_menu do %>
+              <%= make_menu(notification) %>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>

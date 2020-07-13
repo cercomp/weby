@@ -18,7 +18,8 @@ class ApplicationController < ActionController::Base
   helper :all
   helper Feedback::MessagesHelper
   helper_method :current_user_session, :sort_direction, :test_permission,
-                :current_locale, :current_site, :current_settings, :current_roles_assigned, :component_is_available
+                :current_locale, :current_site, :current_skin, :current_settings, :current_roles_assigned,
+                :component_is_available
 
   def admin
     render 'admin/admin'
@@ -71,6 +72,10 @@ class ApplicationController < ActionController::Base
       # search subsites
       @current_site = Weby::Subdomain.find_site
     end
+  end
+
+  def current_skin
+    @current_skin ||= current_site.active_skin
   end
 
   # Return Settings as a Hash object
@@ -348,7 +353,7 @@ class ApplicationController < ActionController::Base
           comp_select = lambda { |place_holder|
             components.select { |comp| comp.place_holder == place_holder }.map do |component|
               comp = { component: component }
-              if component.name == 'components_group'
+              if component.is_group?
                 comp[:children] = comp_select.call(component.id.to_s)
               end
               comp

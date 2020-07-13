@@ -4,8 +4,16 @@ module Feedback
       Proc.new do
         namespace :admin, module: 'feedback/admin' do
           get :feedback, to: 'messages#index'
-          resources :groups
-          resources :messages, only: [:index, :show, :destroy]
+          resources :groups do
+            collection do
+              delete :destroy_many
+            end
+          end
+          resources :messages, only: [:index, :show, :destroy] do
+            collection do
+              delete :destroy_many
+            end
+          end
         end
         get :feedback, to: 'feedback/messages#new'
         resources :messages, only: [:create, :index], module: 'feedback'

@@ -29,7 +29,7 @@ rights:
       name:
         en: Destroy News
         pt-BR: Excluir Notícias
-      action: destroy
+      action: destroy destroy_many
     sort:
       name:
         en: Order News
@@ -44,7 +44,7 @@ rights:
       name:
         en: Purge
         pt-BR: Excluir permanentemente
-      action: recycle_bin destroy purge
+      action: recycle_bin destroy purge empty_bin
     recover:
       name:
         en: Restore News
@@ -61,4 +61,9 @@ rights:
         en: List newsletters
         pt-BR: Listar newsletters
       action: index
+    destroy:
+      name:
+        en: Delete newsletter emails
+        pt-BR: Excluir emails de newsletter
+      action: destroy destroy_many
 

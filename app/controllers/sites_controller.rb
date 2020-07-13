@@ -149,11 +149,14 @@ class SitesController < ApplicationController
   end
 
   def site_params
-    permitted = [:title, :top_banner_id, :name, :parent_id,
-                :domain, :description, :show_pages_author, :show_pages_created_at,
-                :show_pages_updated_at, :body_width, :per_page,
-                :per_page_default, :google_analytics,
-                {grouping_ids: [], locale_ids: []}]
+    permitted = [:title, :top_banner_id, :description, :show_pages_author,
+                 :show_pages_created_at, :show_pages_updated_at, :body_width,
+                 :per_page, :per_page_default, :google_analytics,
+                {locale_ids: []}]
+
+    if current_user.is_admin?
+      permitted += [:name, :parent_id, :domain, :restrict_theme, grouping_ids: []]
+    end
 
     Site::SHAREABLES.each do |shareable|
       permitted << "#{shareable}_social_share_pos"

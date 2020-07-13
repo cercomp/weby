@@ -54,7 +54,7 @@ class Sites::Admin::PagesController < ApplicationController
   end
 
   def new
-    @page = current_site.pages.new
+    @page = current_site.pages.new_or_clone(params[:copy_from])
   end
 
   def edit
@@ -105,6 +105,24 @@ class Sites::Admin::PagesController < ApplicationController
     end
     record_activity('restored_page', @page)
     redirect_back(fallback_location: recycle_bin_site_admin_pages_path)
+  end
+
+  def destroy_many
+    pages = current_site.pages.where(id: params[:ids].split(',')).each do |page|
+      if page.trash
+        record_activity('moved_page_to_recycle_bin', page)
+        flash[:success] = t('moved_page_to_recycle_bin')
+      end
+    end
+    redirect_back(fallback_location: site_admin_pages_path)
+  end
+
+
+  def empty_bin
+    if current_site.pages.trashed.destroy_all
+      flash[:success] = t('successfully_deleted')
+    end
+    redirect_to main_app.recycle_bin_site_admin_pages_path
   end
 
   private

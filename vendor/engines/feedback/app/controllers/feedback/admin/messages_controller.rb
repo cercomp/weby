@@ -22,5 +22,11 @@ module Feedback::Admin
 
       redirect_to(admin_messages_path)
     end
+
+    def destroy_many
+      current_site.messages.where(id: params[:ids].split(',')).destroy_all
+
+      redirect_back(fallback_location: admin_messages_path)
+    end
   end
 end

@@ -55,7 +55,7 @@
         </div>
       </div>
     <% end %>
-    <div class="col-md-9">
+    <div class="col-md-8">
       <% if check_permission Sites::Admin::RepositoriesController, :index %>
         <div class="panel panel-default box">
           <div class="panel-heading">
@@ -130,7 +130,7 @@
       </div>
     </div>
     <% if check_permission Sites::Admin::ActivityRecordsController, :index %>
-      <div class="col-md-3">
+      <div class="col-md-4">
         <div class="panel panel-default box">
           <div class="panel-heading">
             <h3 class="panel-title"><%= "#{icon('th-list')} #{t('.title_history')}".html_safe %></h3>

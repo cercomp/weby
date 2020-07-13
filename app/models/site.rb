@@ -20,6 +20,7 @@ class Site < ApplicationRecord
   has_many :news_sites, class_name: "::Journal::NewsSite", dependent: :destroy
   has_many :news, through: :news_sites, source: :news
   has_many :own_news, class_name: "::Journal::News", dependent: :destroy
+  has_many :newsletters, class_name: "::Journal::Newsletter", dependent: :destroy
   has_many :groups, class_name: 'Feedback::Group', dependent: :destroy
   has_many :messages, class_name: 'Feedback::Message', dependent: :destroy
   has_many :banner_sites, class_name: "::Sticker::BannerSite", dependent: :destroy
@@ -135,9 +136,18 @@ class Site < ApplicationRecord
     extensions.to_a.keep_if { |extension| Weby.extensions[extension.name.to_sym] }
   end
 
+  ##
+
   def active?
     status == 'active'
   end
+  alias_method :is_active, :active?
+
+  def toggle_is_active
+    self.update!(status: (status == 'active' ? 'inactive' : 'active'))
+  end
+
+
 
   SHAREABLES.each do |shareable|
     define_method("#{shareable}_social_share_pos") { settings["#{shareable}.social_share_pos"] }

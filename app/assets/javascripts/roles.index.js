@@ -9,4 +9,5 @@ function toggleCheckboxesBySelector(selector) {
   for (i = 0; i < boxes.length; i++) {
     boxes[i].checked = !all_checked;
   }
+  return false;
 }

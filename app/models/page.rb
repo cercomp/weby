@@ -78,6 +78,27 @@ class Page < ApplicationRecord
     updated_at > i18n_updated ? updated_at : i18n_updated
   end
 
+  def self.new_or_clone id, params={}
+    if id.present?
+      page = current_scope.find_by(id: id)
+      if page
+        return current_scope.new(
+          publish: page.publish,
+          related_file_ids: page.related_file_ids,
+          i18ns_attributes: page.i18ns.map do |i18n|
+            {
+              locale: i18n.locale,
+              title: i18n.title,
+              text: i18n.text
+            }
+          end
+        )
+      end
+    end
+    #default
+    current_scope.new(params)
+  end
+
   private
 
   def should_be_own_files

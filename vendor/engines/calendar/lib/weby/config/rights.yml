@@ -6,7 +6,7 @@ rights:
         pt-BR: Listar Eventos
       action: index
     show:
-      name: 
+      name:
         en: View Events
         pt-BR: Ver Eventos
       action: show
@@ -16,22 +16,22 @@ rights:
         pt-BR:  Editar Eventos
       action: edit update
     destroy:
-      name: 
+      name:
         en: Destroy Events
         pt-BR: Excluir Eventos
-      action: destroy
+      action: destroy destroy_many
     new:
-      name: 
+      name:
         en: Create Events
         pt-BR: Criar Eventos
       action: new create
     purge:
-      name: 
+      name:
         en: Purge
         pt-BR: Excluir permanentemente
-      action: recycle_bin destroy purge
+      action: recycle_bin destroy purge empty_bin
     recover:
-      name: 
+      name:
         en: Restore Events
         pt-BR: Restaurar Eventos
       action: recycle_bin recover

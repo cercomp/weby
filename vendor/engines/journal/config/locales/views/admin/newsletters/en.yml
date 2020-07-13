@@ -37,6 +37,8 @@ en:
       newsletters:
         index:
           newsletter:           " Newsletter "
+          newsletters:          " Newsletters "
+          news:                 " News "
         list:
           none_news:            " No emails were found "
           email:                " Email "

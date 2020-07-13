@@ -19,7 +19,7 @@ rights:
       name: 
         en: Destroy Feedback Messages
         pt-BR: Excluir Mensagens de Fale Conosco
-      action: destroy
+      action: destroy destroy_many
     new:
       name: 
        en: Create FeedBack Messages
@@ -45,7 +45,7 @@ rights:
       name: 
         en: Destroy GRoup
         pt-BR: Excluir Grupo
-      action: destroy
+      action: destroy destroy_many
     new:
       name: 
        en: Create group

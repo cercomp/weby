@@ -7,9 +7,11 @@
 
 @import "select2";
 @import "select2-bootstrap";
+@import "dropmic.min";
 @import "bootstrap-sprockets";
 @import "weby/bootstrap";
 @import "bootstrap";
+@import "weby-assets";
 
 body {
   background: #F5F5F5;
@@ -19,7 +21,7 @@ img {
   max-width: 100%;
 }
 
-a:hover { text-decoration: none; }
+a:hover, a:active, a:focus { text-decoration: none; }
 
 #header {
   padding-top: 25px;
@@ -58,17 +60,23 @@ a:hover { text-decoration: none; }
   }
 }
 
-#main.container {
-  .nav { }
-  .pagination { margin: 10px 0 5px; }
-  .form { margin-bottom: 10px; }
-  .new-site { margin-left: 5px }
-  .search { margin-bottom: 10px; }
+#main {
+  &.container, &.container-fluid {
+    .nav { }
+    .pagination { margin: 10px 0 5px; }
+    .form { margin-bottom: 10px; }
+    .new-site { margin-left: 5px }
+    .search { margin-bottom: 10px; }
 
-  .well
-  {
-    background: white;
+    .well
+    {
+      background: white;
+    }
   }
+}
+
+.weby-logo {
+  max-width: 140px;
 }
 
 #footer {
@@ -144,13 +152,63 @@ label.required abbr { color: #BC1625; }
 label.mce-label { max-width: none }
 
 // nowrap tables
-table.nowrap td > div {
-  overflow: hidden;
-  white-space: nowrap;
+table.nowrap {
+  td {
+    > div {
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    &.actions > div {
+      overflow: visible;
+      display: inline-block;
+    }
+  }
+
+  tr {
+    td > div {
+      white-space: nowrap;
+    }
+
+    &:hover {
+      td > div {
+        white-space: normal;
+      }
+    }
+  }
 }
 
-table td p {
-  margin: 0;
+table {
+  td p {
+    margin: 0;
+  }
+  .label {
+    font-size: 85%;
+  }
+  &.table {
+    th.grab-header {
+      width: .2%;
+    }
+    td.grab-cell {
+      padding: 4px 0 4px 4px;
+      vertical-align: middle;
+    }
+  }
+  .sel-all {
+    width: .2%;
+  }
+  .sel-item {
+    padding-left: 4px;
+  }
+  .actions {
+    padding: 4px;
+    vertical-align: middle !important;
+    text-align: right;
+  }
+}
+
+table.align-middle > tbody > tr > td {
+  vertical-align: middle;
 }
 
 thead {
@@ -158,8 +216,21 @@ thead {
   background-color: white;
 }
 
+[name=select_all], [name=select_item] {
+  width: 15px;
+  height: 15px;
+}
+
+.add-subitem img {
+  width: 18px;
+}
+
 .publish-warning {
-  position: absolute;
+  margin-left: 4px;
+  i {
+    vertical-align: top;
+    font-size: 20px;
+  }
 }
 
 body.modal-open {
@@ -184,6 +255,9 @@ body.modal-open {
 
 .tabbable.i18n .nav.nav-tabs {
   margin-bottom: 0px !important;
+  > li > a {
+    font-size: initial;
+  }
 }
 
 .tabbable.i18n .tab-content {
@@ -218,6 +292,20 @@ body.modal-open {
   white-space: nowrap;
 }
 
+.caption .action-link {
+  margin-right: 4px;
+  margin-bottom: 2px;
+  display: inline-block;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 #preview-css-panel {
   text-align: center;
 
@@ -231,27 +319,41 @@ body.modal-open {
 #menu-admin {
   .nav-header {
     padding: 0;
-    li { font-weight: bold; }
+    li {
+      font-weight: bold;
+    }
+  }
+
+  li i {
+    margin-right: 8px;
   }
 }
 
 .menu-tabs {
-  margin-bottom: 15px;
+  .list-group-item {
+    padding: 8px 8px 8px 3px;
+    display: flex;
+    align-items: center;
 
-  .nav > li > a{
-    padding-right: 20px;
+    > a {
+      flex: 1;
+      color: inherit;
+    }
   }
 
-  .glyphicon{
-    position: absolute;
-    right: 7px;
-    top: 11px;
-    cursor: move;
+  .handle {
+    width: 10px;
+    margin-right: 8px;
   }
 }
 
+.add-menu {
+  text-align: right;
+  margin-bottom: 10px;
+}
+
 #repo_list > div.row > div > div {
-  height: 258px;
+  height: 270px;
 }
 
 #repo_list > div.row > div > div > a > img {
@@ -324,9 +426,12 @@ div#available_components div > div.thumbnail img {
   background-color: #DFF0D8 !important;
 }
 
-input[type="checkbox"].toggle { margin-top: 0; }
-input[type="checkbox"] {
-  margin: 3px 0 0 !important;
+input[type=checkbox] {
+  margin: 3px 0 0;
+
+  &.toggle, &.sel-item {
+    margin-top: 0;
+  }
 }
 
 .nav-header {
@@ -349,6 +454,12 @@ input[type="checkbox"] {
   margin-bottom: 20px;
   background-color: #f5f5f5;
   border-top: 1px solid #e5e5e5;
+  > a {
+    margin-right: 9px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 }
 .form-group {
   margin-top: 10px;
@@ -400,6 +511,11 @@ table .checkbox label,
 
 .center {
   text-align: center;
+}
+
+div.align-middle {
+  display: flex;
+  align-items: center;
 }
 
 .image_tag {
@@ -515,6 +631,29 @@ hr {
   }
 }
 
+////Custom nav tabs
+.nav-tabs {
+  border-color: #AAA;
+
+  > li {
+
+    > a {
+      font-size: 18px;
+    }
+
+    &.active {
+      > a, > a:hover, > a:focus {
+        border-color: #AAA;
+        border-bottom-color: transparent;
+      }
+    }
+  }
+}
+
+.tab-content {
+  padding-top: 15px;
+}
+
 .flex-row {
   display: flex;
 
@@ -537,5 +676,57 @@ hr {
   }
   .cell-20 {
     flex: 0 0 20%;
+  }
+}
+
+.bulk-actions {
+  overflow: hidden;
+  box-sizing: content-box;
+}
+
+.dropmic-menu {
+  text-align: left;
+  z-index: 3;
+  a {
+    display: block;
+    padding: 5px 8px;
+
+    &:hover {
+      background-color: #F2F2F2;
+    }
+  }
+}
+
+.dropmic::after, .dropmic::before {
+  z-index: 3;
+}
+
+button[data-dropmic-btn] {
+  outline: 0;
+  border: 0;
+  background-color: transparent;
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 27px;
+  width: 27px;
+  transition: transform .15s cubic-bezier(.175,.885,.32,1.275);
+
+  i {
+    font-size: 16px;
+    color: #646970;
+  }
+
+  &:hover, .dropmic--show & {
+    background-color: #e8e8e8;
+
+    i {
+      color: #3c434a;
+    }
+  }
+
+  .dropmic--show & {
+    transform: rotate(90deg);
   }
 }

@@ -34,6 +34,7 @@ module Journal
             end
             collection do
               get :recycle_bin, :fronts
+              delete :empty_bin, :destroy_many
               post :sort, :update_draft, :cancel, :restore_draft
               patch :update_draft
             end
@@ -43,7 +44,11 @@ module Journal
               get :pdf, :csv
             end
           end
-          resources :newsletters, only: [:index, :destroy]
+          resources :newsletters, only: [:index, :destroy] do
+            collection do
+              delete :destroy_many
+            end
+          end
         end
         resources :news, module: :journal, path: 'n', only: [:show] do
           collection do

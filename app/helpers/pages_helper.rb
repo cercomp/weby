@@ -49,12 +49,16 @@ module PagesHelper
   end
 
   def categories_links(categories)
-    ''.tap do |link|
-      categories.each do |category|
-        link << link_to(category, site_pages_path(tags: category)) + ",\n"
-      end
-      link.chomp!
-      link.chop!
-    end
+    # ''.tap do |link|
+    #   categories.each do |category|
+    #     link << link_to(category, site_pages_path(tags: category)) + ",\n"
+    #   end
+    #   link.chomp!
+    #   link.chop!
+    # end
+
+    categories.map do |category|
+      content_tag(:span, category.name, class: 'label label-info')
+    end.join(' ').html_safe
   end
 end

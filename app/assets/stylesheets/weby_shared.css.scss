@@ -15,17 +15,81 @@
   text-transform: uppercase;
 }
 
+.oh-c-i {
+  visibility: hidden;
+}
+
+td:hover, .component-ctrl:hover {
+  .oh-c-i {
+    visibility: visible;
+  }
+}
+
 //Glyphicon
 .glyphicon-sort{
   color: gray;
 }
 
 .glyphicon {
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .glyphicon.glyphicon-white {
   color: white;
+}
+
+///Toggle
+$turquoise: #62c462;
+$greensea: #5cb85c;
+$night: #34495e;
+$midnight: #2c3e50;
+$transition: all .3s ease;
+
+/* Hide the input */
+.weby-toggle {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+  &:checked + .check-trail {
+    background: $greensea;
+    .check-handler {
+      margin-left: 50%;
+      background: $turquoise;
+      &::before {
+        content: "\2714"
+      }
+    }
+  }
+}
+.check-trail {
+  display: inline-flex;
+  align-items: center;
+  width: 42px;
+  height: 22px;
+  background: $midnight;
+  border-radius: 11px;
+  transition: $transition;
+  margin-bottom: 0;
+  cursor: pointer;
+}
+.check-handler {
+  display: flex;
+  margin-left: 3px;
+  justify-content: center;
+  align-items: center;
+  width: 18px;
+  height: 18px;
+  background: $night;
+  border-radius: 50%;
+  transition: $transition;
+  box-shadow: 0 0 8px rgba(0,0,0,0.3);
+  &:before {
+    text-decoration: none;
+    content: "\00D7";
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+  }
 }
 
 //Alert
@@ -56,5 +120,5 @@ ul.order-list {
 .site {
   .info.actions a{
     color: #BC1625;
-  }   
+  }
 }

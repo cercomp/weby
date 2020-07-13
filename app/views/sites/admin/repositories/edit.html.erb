@@ -8,8 +8,8 @@
       <div class="img-edit-preview">
         <%= weby_file_view(@repository, :o, nil, nil, target: '_blank') %>
       </div>
-      <% if @repository.image? %>
-        <%= link_to t('.crop_image'), crop_site_admin_repository_path(@repository), class: 'btn btn-default btn-sm' %>
+      <% if @repository.image? && check_permission(Sites::Admin::RepositoriesController, [:crop]) %>
+        <%= link_to icon('scissors', text: t('.crop_image')), crop_site_admin_repository_path(@repository), class: 'btn btn-default btn-sm' %>
       <% end %>
     </div>
     <div class="col-md-7">

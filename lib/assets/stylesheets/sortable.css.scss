@@ -8,7 +8,19 @@
 }
 
 .handle{
-  cursor: move;
+  cursor: grab;
+
+  table & {
+    display: block;
+    // border-radius: 4px;
+    // border: ;
+    width: 14px;
+    // height: 32px;
+  }
+
+  img {
+    width: 12px;
+  }
 }
 
 li.drop-here{
@@ -18,12 +30,14 @@ li.drop-here{
 li > menu{
   margin: 0;
 }
-#main-menu{
+
+#main-menu {
   margin-top: 10px;
   padding: 5px;
   background-color: #EEE;
   height: auto;
-  > menu{
+
+  > menu {
     padding-left: 5px;
 
     li{
@@ -35,71 +49,110 @@ li > menu{
       padding-left: 30px;
     }
   }
-    .disclose {
-      cursor: pointer;
-      padding: 0 15px 0 7px;
-      display: none;
-      font-size: 14px;
-    }
 
-    li.mjs-nestedSortable-collapsed > menu {
-      display: none;
-    }
-    
-    li.mjs-nestedSortable-branch .disclose {
-      display: inline-block;
-      cursor: pointer;
-    }
+  .disclose {
+    cursor: pointer;
+    padding-right: 10px;
+    display: none;
+    font-size: 14px;
+  }
 
-    li.mjs-nestedSortable-collapsed > div > .disclose > span:before {
-      border-style: solid;
-      border-width: 0.25em 0.25em 0 0;
-      content: '';
-      display: inline-block;
-      height: 8px;
-      position: relative;      
-      transform: rotate(45deg);
-      vertical-align: top;
-      width: 8px;
-      top: 5px;
-    }
+  li.mjs-nestedSortable-collapsed > menu {
+    display: none;
+  }
 
-    li.mjs-nestedSortable-expanded > div > .disclose > span:before {
-      border-style: solid;
-      border-width: 0.25em 0.25em 0 0;
-      content: '';
-      display: inline-block;
-      height: 8px;
-      position: relative;
-      transform: rotate(135deg);
-      vertical-align: top;
-      width: 8px;
-      top: 5px;
-    }    
-  menu{
+  li.mjs-nestedSortable-branch > .menuitem-ctrl .disclose {
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  li.mjs-nestedSortable-collapsed > div > .disclose > span:before {
+    border-style: solid;
+    border-width: 3px 3px 0 0;
+    content: '';
+    display: inline-block;
+    height: 12px;
+    position: relative;
+    transform: rotate(45deg);
+    vertical-align: top;
+    width: 12px;
+    top: 4px;
+    left: -3px;
+  }
+
+  li.mjs-nestedSortable-expanded > div > .disclose > span:before {
+    border-style: solid;
+    border-width: 3px 3px 0 0;
+    content: '';
+    display: inline-block;
+    height: 12px;
+    position: relative;
+    transform: rotate(135deg);
+    vertical-align: top;
+    width: 12px;
+    top: 1px;
+  }
+
+  menu {
     list-style-type: none;
 
     li{
       position: relative;
-    }    
-    .menuitem-ctrl{
-      display: block;
+    }
+
+    .menuitem-ctrl {
+      display: flex;
+      align-items: center;
       position: relative;
       padding: 4px;
       border: 1px solid #CCC;
       background-color: #FFF;
-      z-index: 805;
-      -webkit-border-radius: 4px;
-      -moz-border-radius: 4px;
+      //z-index: 805;
       border-radius: 4px;
-      -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.055);
-      -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.055);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.055);
+      transition: .2s;
+
+      &:hover {
+        box-shadow: 1px 1px 10px rgba(0,0,0,.2);
+      }
+
+      .handle {
+        margin-right: 8px;
+      }
+
+      .sel-item, .toggle-menu-item {
+        margin-right: 10px;
+      }
+
+      .menu-entry {
+        flex: 1;
+        display: flex;
+        overflow: hidden;
+      }
+
+      .link-text-open, .link-text-close {
+        padding: 0 5px;
+      }
+
+      .link-text-close {
+        margin-right: 5px;
+      }
+
+      .link-text {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        > span {
+          white-space: nowrap;
+        }
+      }
+
+      .dropmic {
+        margin-left: 10px;
+      }
     }
 
-    li > .hierarchy{
+    li > .hierarchy {
       position: absolute;
-      z-index: 800;
+      z-index: 0;
       top: 32px;
       left: 15px;
       bottom: 1px;
@@ -108,4 +161,7 @@ li > menu{
     }
   }
 
+  .bulk-actions {
+    margin: 0 0 10px 7px;
+  }
 }

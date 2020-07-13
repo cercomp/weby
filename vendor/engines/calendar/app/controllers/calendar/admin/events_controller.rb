@@ -44,7 +44,7 @@ module Calendar
     end
 
     def new
-      @event = current_site.events.new
+      @event = current_site.events.new_or_clone(params[:copy_from])
     end
 
     def create
@@ -96,6 +96,24 @@ module Calendar
       end
       record_activity('restored_event', @event)
       redirect_back(fallback_location: recycle_bin_admin_events_path)
+    end
+
+    def destroy_many
+      current_site.events.where(id: params[:ids].split(',')).each do |event|
+        if event.trash
+          record_activity('moved_event_to_recycle_bin', event)
+          flash[:success] = t('moved_event_to_recycle_bin')
+        end
+      end
+      redirect_back(fallback_location: admin_events_path)
+    end
+
+
+    def empty_bin
+      if current_site.events.trashed.destroy_all
+        flash[:success] = t('successfully_deleted')
+      end
+      redirect_to recycle_bin_admin_events_path
     end
 
     private

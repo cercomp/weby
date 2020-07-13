@@ -6,6 +6,7 @@
 //= require moment
 //= require moment/pt-br.js
 //= require moment/es.js
+//= require dropmic.min
 //= require tables
 // // floatThead was commented because there is a bug when used in tabs
 // // require floatthead/jquery.floatThead._.js
@@ -98,6 +99,18 @@ function appendToggleHandle(selector, parentSelector) {
   });
 }
 
+function initDropmic() {
+  /// open dropdown menu
+  $('[data-dropmic=42]').each(function(){
+    var $this = $(this);
+    if ($this.data('dropmicInstance')) return;
+
+    $this.data('dropmicInstance', new Dropmic(this));
+  });
+}
+
+$(document).on('ajaxComplete', initDropmic);
+
 $(document).ready(function() {
 
   // Ajax indicator
@@ -149,6 +162,37 @@ $(document).ready(function() {
       btn.text(btn.data('hint')).addClass("disabled");
     } );
   });
+
+  /// init dropmic
+  initDropmic();
+
+  ///// select bulk
+  var checkBulk = function(){
+    var checked = $('[name=select_item]:checked');
+    if (checked.length > 0) {
+      $('.bulk-actions').animate({height: 30}, 200);
+    } else {
+      $('.bulk-actions').animate({height: 0}, 200);
+    }
+    // delete many btn
+    var destroyMany = $('.destroy-many');
+    if (destroyMany.length) {
+      var newhref = destroyMany.attr('href').split('?')[0] + `?ids=${checked.map(function(){ return $(this).val(); }).get().join(',')}`;
+      destroyMany.attr('href', newhref);
+    }
+  };
+
+  $('[name=select_all]').change(function(){
+    if ($(this).is(':checked')) {
+      $('[name=select_item]').prop('checked', true)
+    } else {
+      $('[name=select_item]').prop('checked', false)
+    }
+    checkBulk();
+  });
+
+  $('[name=select_item]').change(checkBulk);
+  checkBulk();
 
   $(document).on('change', '.pagination select', function(){
       //window.location = $(this).find('option:selected').data('url');

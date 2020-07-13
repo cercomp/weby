@@ -12,6 +12,7 @@ module Sticker
             collection do
               get :fronts
               post :sort
+              delete :destroy_many
             end
           end
         end

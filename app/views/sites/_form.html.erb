@@ -18,6 +18,9 @@
   <%#= f.input :theme, :collection => @themes.collect{|name| [t("themes.#{name}.title"), name]} %>
   <%= f.input :body_width, :hint => t(".example_width") %>
   <%= f.input :google_analytics, :input_html => {:rows => 4}, :hint => t(".google_analytics_hint"), :as => :text %>
+  <% if current_user.is_admin? %>
+    <%= f.input :restrict_theme, :as => :boolean, wrapper: :checkbox %>
+  <% end %>
   <%= f.input :per_page, :hint => t(".example_per_page") %>
   <%= f.input :per_page_default, :required => true %>
   <%= f.association :locales,

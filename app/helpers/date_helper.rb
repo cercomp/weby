@@ -9,9 +9,10 @@ module DateHelper
   def publication_status(obj, _options = {})
     case obj
     when Page
-      publication_status_page(obj, options = {})
+      publication_status_page(obj, _options)
     when Journal::News
-      publication_status_news(obj, options = {})
+      # DEPRECATED
+      #publication_status_news(obj, _options)
     end
   end
 
@@ -22,10 +23,13 @@ module DateHelper
   end
   private :publication_status_page
 
+  # DEPRECATED - News no longer has the 'publish' field
   def publication_status_news(news, options = {})
     ''.tap do |html|
       html << toggle_field(news, 'publish', 'toggle', options)
-      html << "<span class=\"label label-warning publish-warning\" title=\"#{t('scheduled', date: l(news.date_begin_at, format: :short))}\">!</span>" if news.date_begin_at and Time.current < news.date_begin_at and news.publish
+      if news.date_begin_at && Time.current < news.date_begin_at && news.published?
+        html << content_tag(:span, fa_icon(:'clock-o'), class: 'publish-warning text-warning', title: t('scheduled', date: l(news.date_begin_at, format: :medium)))
+      end
     end.html_safe
   end
   private :publication_status_news
@@ -33,7 +37,9 @@ module DateHelper
   def front_status(news_site, options = {})
     ''.tap do |html|
       html << toggle_field(news_site, 'front', 'toggle', options)
-      html << "<span class=\"label label-important publish-warning\" title=\"#{t('expired')}\">!</span>" if news_site.news.date_end_at && news_site.news.date_end_at <= Time.current #and news_site.front
+      if news_site.news.date_end_at && news_site.news.date_end_at <= Time.current #&& news_site.front
+        html << content_tag(:span, fa_icon(:'exclamation-circle'), class: 'publish-warning text-danger', title: t('expired_at', date: l(news_site.news.date_end_at, format: :medium)))
+      end
     end.html_safe
   end
 

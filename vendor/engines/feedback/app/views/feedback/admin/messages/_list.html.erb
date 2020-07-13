@@ -7,8 +7,9 @@
   <div class="pull-right"> <%= paginate @messages, remote: true %> </div>
   <div class="clearfix"></div>
 
-  <table class='table table-striped notifications'>
+  <table class="table table-striped notifications align-middle">
     <thead>
+      <th class="center sel-all"><%= check_box_tag :select_all, 1, false %></th>
       <th><%= t(".subject") %></th>
       <th><%= t(".name") %></th>
       <th><%= t(".date") %></th>
@@ -17,15 +18,27 @@
     <tbody>
       <% @messages.each do |message| %>
         <tr class="<%= message.read_status ? "" : "unread warning" %>">
+          <td class="center sel-item"><%= check_box_tag :select_item, message.id, false %></td>
           <td><%= link_to "#{image_tag("message-new.png", style: "width: 14px") if !message.read_status} #{message.subject}".html_safe, admin_message_path(message) %></td>
           <td><%= "#{message.name} <#{message.email}>" %></td>
           <td><%= l(message.created_at, :format => :short) %></td>
           <td class="text-right">
-            <%= raw make_menu(message) %>
+            <%= render_dropdown_menu do %>
+              <%= make_menu(message) %>
+            <% end %>
           </td>
         </tr>
       <% end %>
     </tbody>
+    <tfoot>
+      <td colspan="42">
+        <div class="bulk-actions">
+          <% with_permission(action: :destroy_many) do %>
+            <%= link_to icon('trash', text: t('destroy')), destroy_many_admin_messages_path, class: 'btn btn-sm btn-default destroy-many', method: :delete, data: {confirm: t('are_you_sure_del_many')} %>
+          <% end %>
+        </div>
+      </td>
+    </tfoot>
   </table>
   <div class="pull-left"> <%= per_page_links @messages, true, :i %> </div>
   <div class="pull-right"> <%= paginate @messages, remote: true %> </div>

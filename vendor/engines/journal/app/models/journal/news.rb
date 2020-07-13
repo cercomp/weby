@@ -129,7 +129,43 @@ module Journal
       updated_at > i18n_updated ? updated_at : i18n_updated
     end
 
+    def news_site_for site
+      news_sites.detect{|ns| ns.site_id == site.id }
+    end
+
     accepts_nested_attributes_for :news_sites, allow_destroy: true
+
+    def self.new_or_clone id, params={}
+      if id.present?
+        site_id = current_scope.values.fetch(:where, {}).to_h['site_id']
+        news_site = Journal::NewsSite.where(site_id: (site_id || -1)).find_by(id: id)
+        if news_site && (news = news_site.news)
+          news = current_scope.new({
+            repository_id: news.repository_id,
+            source: news.source,
+            url: news.url,
+            status: news.status,
+            date_begin_at: news.date_begin_at,
+            date_end_at: news.date_end_at,
+            related_file_ids: news.related_file_ids,
+            i18ns_attributes: news.i18ns.map do |i18n|
+              {
+                locale: i18n.locale,
+                title: i18n.title,
+                summary: i18n.summary,
+                text: i18n.text
+              }
+            end
+          })
+          news.news_sites.build(site_id: news.site_id, category_list: news_site.category_list, front: news_site.front)
+          return news
+        end
+      end
+      #default
+      news = current_scope.new(params)
+      news.news_sites.build(site_id: news.site_id)
+      news
+    end
 
     private
 

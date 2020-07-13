@@ -4,8 +4,8 @@ class Sites::Admin::ComponentsController < ApplicationController
 
   before_action :require_user
   before_action :check_authorization
-  before_action :load_skin, only: [:new, :create]
-  before_action :load_component, only: [:show, :edit, :update, :destroy]
+  before_action :load_skin, only: [:new, :create, :clone]
+  before_action :load_component, only: [:show, :edit, :update, :clone, :destroy]
 
   def show
     redirect_to site_admin_skin_path(@skin, anchor: 'tab-layout')
@@ -62,6 +62,35 @@ class Sites::Admin::ComponentsController < ApplicationController
     end
   end
 
+  def clone
+    Component.transaction do
+      # open spot for the new position
+      @skin.components.where(place_holder: @component.place_holder).where("position > ?", @component.position).update_all("position = position + 1")
+      # start cloning - recursive
+      clone_compoment(@component, @component.place_holder, @component.position + 1)
+    end
+    redirect_to(site_admin_skin_path(@skin, anchor: 'tab-layout'), flash: { success: t('successfully_created_param', param: t('component')) })
+  end
+
+  def clone_compoment compo, place_holder, position
+    new_comp = @skin.components.create!({
+      name: compo.name,
+      settings: compo.settings,
+      place_holder: place_holder,
+      publish: compo.publish,
+      visibility: compo.visibility,
+      alias: compo.alias,
+      position: position
+    })
+    record_activity('created_component', new_comp)
+    if new_comp.is_group?
+      @skin.components.where(place_holder: compo.id).each do |child_compo|
+        clone_compoment(child_compo, new_comp.id, child_compo.position)
+      end
+    end
+  end
+  private :clone_compoment
+
   def update
     @component = Weby::Components.factory(@component)
 
@@ -76,7 +105,7 @@ class Sites::Admin::ComponentsController < ApplicationController
   end
 
   def destroy
-    if params[:del_group].present? && @component.name == 'components_group'
+    if params[:del_group].present? && @component.is_group?
       @component.delete_children = true
     end
     if @component.destroy
