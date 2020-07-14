@@ -127,6 +127,10 @@ li > menu{
         flex: 1;
         display: flex;
         overflow: hidden;
+
+        > a:first-child {
+          white-space: nowrap;
+        }
       }
 
       .link-text-open, .link-text-close {
@@ -140,6 +144,7 @@ li > menu{
       .link-text {
         overflow: hidden;
         text-overflow: ellipsis;
+        max-width: 550px;
         > span {
           white-space: nowrap;
         }
