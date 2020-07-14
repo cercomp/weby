@@ -12,6 +12,9 @@
       <% if check_permission(Admin::UsersController, :change_roles) %>
         <%= link_to t('.roles_permissions'), admin_roles_path, class: "btn btn-default" %>
       <% end %>
+      <% if check_permission(Admin::UsersController, :manage_roles) %>
+        <%= link_to t('.manage_roles'), manage_roles_admin_users_path, class: "btn btn-default" %>
+      <% end %>
     </div>
   </div>
 </div>

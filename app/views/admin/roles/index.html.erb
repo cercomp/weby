@@ -10,6 +10,9 @@
       main_app.admin_users_path,
       class: "btn btn-default" %>
   <% end %>
+  <% if check_permission(Admin::UsersController, :manage_roles) %>
+    <%= link_to t('.manage_roles'), manage_roles_admin_users_path, class: "btn btn-default" %>
+  <% end %>
 </p>
 <div class="clearfix"></div>
 

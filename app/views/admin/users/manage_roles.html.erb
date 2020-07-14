@@ -1,4 +1,3 @@
-
 <p class="pull-right">
   <% if check_permission(Admin::UsersController, [:index]) %>
     <%= link_to t(".users"), admin_users_path, class: "btn btn-default" %>
@@ -15,4 +14,5 @@
 <div id="enrole">
   <%= render 'enrole' %>
 </div>
-
+<% content_for :javascripts, javascript_include_tag('users.enroled') %>
+<% content_for :javascripts, javascript_include_tag('users.enrole') %>

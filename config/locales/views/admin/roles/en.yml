@@ -3,7 +3,7 @@ en:
     roles:
       index:
         activity_records:     " Activity Records "
-        roles_permissions:    " Rights and Roles "
+        roles_permissions:    " Rights and Global roles "
         create_role:          " Create Role "
         list_permissions:     " List Permissions "
         admins:               " Admins "
@@ -21,6 +21,7 @@ en:
         statistics:           " Statistics "
         styles:               " Styles "
         users:                " Users "
+        manage_roles:         " Gerenciar Papéis "
         none_role:            " No roles. "
       new:
         roles:                " Roles "

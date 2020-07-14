@@ -1,0 +1,8 @@
+pt-BR:
+  activerecord:
+    models:
+      sticker/banner_site:          " Banner "
+    attributes:
+      sticker/banner_site:
+        category_list: " Categoria "
+        categories:    " Categoria "

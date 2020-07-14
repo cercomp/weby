@@ -99,7 +99,7 @@ Rails.application.routes.draw do
       end
       resources :users, only: [] do
         collection do
-          get :manage_roles
+          get :manage_roles, :search
           post :change_roles, :create_local_admin_role, :set_preferences
           delete :destroy_local_admin_role
         end
@@ -132,7 +132,7 @@ Rails.application.routes.draw do
       match 'settings' => 'settings#index', via: [:get, :put]
       resources :users do
         collection do
-          get :manage_roles
+          get :manage_roles, :search
           post :change_roles
         end
         member do

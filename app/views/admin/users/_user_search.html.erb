@@ -1,0 +1,28 @@
+<% new_role_user = @user && !@site_users.include?(@user) ? @user : nil %>
+<div class="search-user">
+  <div class="search-user-input">
+    <%= text_field_tag :query, new_role_user ? new_role_user.fullname : params[:query], placeholder: t("search"), required: true,
+      data: {url: search_admin_users_path}, class: 'form-control' %>
+  </div>
+  <div class="search-user-results">
+    <div class="msg">
+      <% if !new_role_user %>
+        <div class="alert alert-info">
+          <%= t(".type_to_search") %>
+        </div>
+      <% end %>
+    </div>
+    <ul class="nav users_list">
+      <% if new_role_user %>
+        <li>
+          <div class="checkbox">
+            <label>
+              <%= check_box_tag 'user[id][]', new_role_user.id, new_role_user.id == params[:user_id].to_i %>
+              <%= "#{new_role_user.fullname} (#{new_role_user.login})" %>
+            </label>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

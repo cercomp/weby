@@ -3,7 +3,7 @@ pt-BR:
     roles:
       index:
         activity_records:     " Histórico de Atividades "
-        roles_permissions:    " Permissões e Pápeis "
+        roles_permissions:    " Permissões e Pápeis globais "
         create_role:          " Novo Papel "
         list_permissions:     " Listar Permissões "
         admins:               " Admins "
@@ -21,6 +21,7 @@ pt-BR:
         statistics:           " Estatísticas "
         styles:               " Estilos "
         users:                " Usuários "
+        manage_roles:         " Gerenciar Papéis "
         none_role:            " Nenhum papel "
       new:
         roles:                " Papéis "

@@ -20,8 +20,8 @@ es:
   activate_deactivate:                  " Ativar/Desativar "
   activate:                             " Activar "
   active:                               " Activo "
-  #access_denied:                        " Acesso negado! "
-  #access_denied_page:                   " Você não está autorizado a ver está página! "
+  #access_denied:                        " Acesso negado "
+  #access_denied_page:                   " Você não está autorizado a ver está página "
   add_sub_menu:                         " Adiciona um item de menu filho "
 #---B---#
   back:                                 " Volver "
