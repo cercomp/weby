@@ -11,6 +11,7 @@ en:
           always:             " Always Visible "
           home_page:          " Only on the home page "
           inner_page:         " Only on inner pages "
+          component:          " Component "
         new_components_template:
           layout:             " Layout "
           place:              " Place "
@@ -21,6 +22,8 @@ en:
           layout:             " Layout "
           next_step:          " Next Step "
           components:         " Components "
+          component:          " Selected Component "
+          select_component:   " Select a component "
         edit:
           components:         " Componentes "
         index:

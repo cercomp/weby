@@ -37,7 +37,7 @@ class Weby::Theme
   end
 
   def components_templates
-    @comp_templates.dup.transform_values{|v| {} }
+    @comp_templates.dup.transform_values{|v| {icon: 'fa|th'} }
   end
 
   private

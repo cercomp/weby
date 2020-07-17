@@ -52,6 +52,10 @@ class MenuItem < ApplicationRecord
     super options
   end
 
+  def target_namespace
+    target_type == 'Page' ? :site_admin : :admin
+  end
+
   def self.new_or_clone id, params={}
     if id.present?
       menu_item = current_scope.find_by(id: id)

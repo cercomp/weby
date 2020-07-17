@@ -15,5 +15,7 @@ en:
           edit_menu:      " Edit "
           destroy:        " Destroy "
           none_menu_item: " No item on menu \"%{menu}\" "
+          expand:         " Expand submenus "
+          collapse:       " Collapse submenus "
         new:
           menus:          " Menus "

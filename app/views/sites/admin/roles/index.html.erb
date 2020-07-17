@@ -1,6 +1,5 @@
 <% title ".users" %>
 <% breadcrumb :roles %>
-<% content_for :javascripts, javascript_include_tag("roles.index") %>
 <p class="pull-right">
   <% if check_permission(Sites::Admin::RolesController, [:new]) %>
     <%= link_to t(".new_role"),
@@ -8,63 +7,120 @@
       class: "btn btn-success" %>
   <% end %>
   <% if check_permission(Sites::Admin::UsersController, [:manage_roles]) %>
-    <%= link_to t(".users"), 
+    <%= link_to t(".users"),
       main_app.manage_roles_site_admin_users_path,
       class: "btn btn-default" %>
   <% end %>
 </p>
 <div class="clearfix"></div>
 
-<% if @roles.empty? %>
-  <div class="alert alert-warning">
-    <%= t(".none_role") %>
-  </div>
-<% else %>
+<% if @roles.present? %>
 
-  <%= form_tag site_admin_roles_path, :method => :put, :id => 'roles_form' do %>
-    <table class="table table-striped table-condensed">
-      <thead>
-        <tr>
-          <th><%= t(".roles_permissions")%></th>
-          <% @roles.each do |role| %>
-            <th>
-              <%= role.name %>
-              <p>
-              <%= link_to icon('check'), '#', :onclick => "return toggleCheckboxesBySelector('input.column-#{role.id}')" %>
-              <% if check_permission(Sites::Admin::RolesController, [:show]) %>
-                <%= link_to icon('edit', text: t("edit")), edit_site_admin_role_path(role)  %>
-              <% end %>
-              <% if check_permission(Sites::Admin::RolesController, [:destroy]) %>
-                <%= link_to icon('trash', text: t("destroy")), site_admin_role_path(role), :data => {:confirm => t("are_you_sure_del_item", item: role.name)}, :method => :delete %>
-              <% end %>
-              </p>
-            </th>
-          <% end %>
-        </tr>
-      </thead>
-      <tbody>
-        <% @rights.each do |controller, permissions| %>
-          <tr>
-            <td colspan="<%= @roles.length + 1%>">
-              <b><%= t(".#{controller}") %></b>
-            </td>
-          </tr>
-          <% permissions.each do |right, config| %>
-            <tr class="<%= "#{controller}-#{right}" %>">
-              <td>
-                <%= link_to icon('check'), '#', :onclick => "return toggleCheckboxesBySelector('.#{controller}-#{right} input')" %>
-                <%= config["name"][locale.to_s] %>
-              </td>
+  <%= form_tag site_admin_roles_path, method: :put, id: 'roles_form' do %>
+
+    <div class="maxi_layout space-top">
+
+      <div class="maxi_level">
+        <div class="placeholder">
+          <div class="right-row header labels">
+            <span class="placeholder-name right-name"><%= t(".roles_permissions") %></span>
+            <% @roles.each do |role| %>
+              <span class="role-config">
+                <span class="role-label">
+                  <span>
+                    <%= role.name %>
+                  </span>
+                  <%= render_dropdown_menu do %>
+                    <%= link_to(
+                          fa_icon('toggle-on', text: t('.select_all_role')),
+                          '#',
+                          class: 'check-all-role',
+                          title: t('.select_all_role_hint'),
+                          data: {'alt-text': fa_icon('toggle-off', text: t('.unselect_all_role')), role: role.id}
+                        )
+                    %>
+                    <% if check_permission(Sites::Admin::RolesController, [:show]) %>
+                      <%= link_to icon('edit', text: t("edit")), edit_site_admin_role_path(role)  %>
+                    <% end %>
+                    <% if check_permission(Sites::Admin::RolesController, [:destroy]) %>
+                      <%= link_to icon('trash', text: t("destroy")), site_admin_role_path(role), :data => {:confirm => t("are_you_sure_del_item", item: role.name)}, :method => :delete %>
+                    <% end %>
+                  <% end %>
+                </span>
+              </span>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <% @rights.each do |controller, permissions| %>
+        <div class="maxi_level single">
+          <div class="placeholder">
+            <div class="right-row header">
+              <span class="right-name">
+                <span class="placeholder-name"><%= t(".#{controller}") %></span>
+                <%= render_dropdown_menu do %>
+                  <%= link_to(
+                        fa_icon('toggle-on', text: t('.select_group_rights')),
+                        '#',
+                        class: 'check-group-rights',
+                        title: t('.select_group_rights_hint'),
+                        data: {'alt-text': fa_icon('toggle-off', text: t('.unselect_group_rights')), group: controller}
+                      )
+                  %>
+                <% end %>
+              </span>
               <% @roles.each do |role| %>
-                <td>
-                  <%= check_box_tag "role[#{role.id}][permissions][#{controller}][]", right, role.permissions_hash.fetch(controller,[]).include?(right), :id => nil, :class => "column-#{role.id}" %>
-                </td>
+                <span class="role-config">
+                  <%= role.name %>
+                  <%= render_dropdown_menu do %>
+                    <%= link_to(
+                          fa_icon('toggle-on', text: t('.select_group_role')),
+                          '#',
+                          class: 'check-group-role',
+                          title: t('.select_group_role_hint'),
+                          data: {'alt-text': fa_icon('toggle-off', text: t('.unselect_group_role')), role: role.id, group: controller}
+                        )
+                    %>
+                  <% end %>
+                </span>
               <% end %>
-            </tr>
-          <% end %>
-        <% end %>
-      </tbody>
-    </table>
+            </div>
+            <ul class="order-list">
+              <% permissions.each do |right, config| %>
+                <li class="component right-row">
+                  <span class="right-name">
+                    <%= config["name"][locale.to_s] %>
+                    <%= render_dropdown_menu do %>
+                      <%= link_to(
+                            fa_icon('toggle-on', text: t('.select_right_roles')),
+                            '#',
+                            class: 'check-right-roles',
+                            title: t('.select_right_roles_hint'),
+                            data: {'alt-text': fa_icon('toggle-off', text: t('.unselect_right_roles')), right: right, group: controller}
+                          )
+                      %>
+                    <% end %>
+                  </span>
+                  <% @roles.each do |role| %>
+                    <span class="role-config right-checkbox">
+                      <%= render_toggle(
+                            "role[#{role.id}][permissions][#{controller}][]",
+                            right,
+                            role.permissions_hash.fetch(controller,[]).include?(right),
+                            id: "role_#{role.id}_permissions_#{controller}_#{right}",
+                            data: {role: role.id, group: controller, right: right}
+                          )
+                      %>
+                    </span>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+    </div>
 
     <div class="form-actions">
       <%= button_tag t("save"), class: 'btn btn-primary', disable_with: t("please_wait") %>
@@ -72,4 +128,10 @@
     </div>
   <% end %>
 
+<% else %>
+  <div class="alert alert-warning">
+    <%= t(".none_role") %>
+  </div>
 <% end %>
+<% content_for :stylesheets, stylesheet_link_tag("maxi_layout") %>
+<% content_for :javascripts, javascript_include_tag("roles.index") %>

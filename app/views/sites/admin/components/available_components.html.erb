@@ -1,52 +1,51 @@
 <% title ".layout" %>
 <% breadcrumb :components_new_choose, @skin %>
 
-<div id="available_components" class="row">
-  <ul class="nav nav-tabs">
-    <li class="active"><a href="#all" data-toggle="tab"><%= t(".all") %></a></li>
-    <% available_components_sorted.each do |c| %>
-      <li><a href="#<%= c[0].delete(" ") %>" data-toggle="tab"><%= c[0] %></a></li>
-    <% end %>
-  </ul>
+<ul class="nav nav-tabs space-top">
+  <!-- li class="active"><a href="#all" data-toggle="tab"><%= t(".all") %></a></li-->
+  <% @available_components.each.with_index do |item, idx| %>
+    <% title, _comps = item %>
+    <li class="<%= 'active' if idx.zero? %>"><a href="#<%= title.strip.parameterize %>" data-toggle="tab"><%= title %></a></li>
+  <% end %>
+</ul>
 
-  <div class="tab-content col-md-12">
-    <div class="tab-pane active" id="all">
-      <%= form_tag new_site_admin_skin_component_path(@skin), :method => :get do %>
-        <%= hidden_field_tag :placeholder, params[:placeholder] if params[:placeholder] %>
-        <div id="main" class="row">
-          <div class="col-md-3 col-md-offset-1">
-            <%= select_tag "component", grouped_options_for_select(available_components_sorted), class: 'form-control', size: '10', id: "component_select" %>
-          </div>
-          <div class="col-md-3 col-md-offset-1">
-            <img id="component_image" class="panel" src="/assets/components/default.png"/>
-          </div>
-        </div>
-        <div class="form-actions">
-          <button type="submit" class="btn btn-primary"><%= t(".next_step") %></button>
-            <%= link_to t("back"), site_admin_skin_path(@skin, anchor: 'tab-layout'), class: "btn btn-default" %>
-        </div>
-      <% end %>
+
+<%= form_tag new_site_admin_skin_component_path(@skin), method: :get do %>
+  <%= hidden_field_tag :placeholder, params[:placeholder] if params[:placeholder] %>
+
+  <div class="tab-content">
+    <%
+=begin%>
+ <div class="tab-pane active" id="all">
+      <div class="maxi_layout">
+        <% @available_components.each do |group, compos| %>
+          <%= render 'new_components', group: group, compos: compos, render_title: true %>
+        <% end %>
+      </div>
     </div>
+<%
+=end%>
 
-    <% available_components_sorted.each do |tab| %>
-      <div class="tab-pane" id="<%= tab[0].delete(" ") %>">
-        <div class="col-md-12">
-          <% tab[1].each do |compo| %>
-            <div class="col-md-3">
-              <div class="thumbnail">
-                <h5 class="text-center"><%= compo[0] %></h5>
-                <img id="component_image" class="panel" src="/assets/components/<%= compo[1] %>.png"/>
-                <%= link_to raw("#{t(".install")} <span class='glyphicon glyphicon-plus'</span>"), 
-                    new_site_admin_skin_component_path(@skin, placeholder: params[:placeholder],
-                    component: compo[1]),
-                    class: ' col-md-12 centered btn btn-success'%>
-              </div>
-            </div>
-          <% end%>
+    <% @available_components.each.with_index do |item, idx| %>
+      <% title, compos = item %>
+      <div class="tab-pane<%= ' active' if idx.zero? %>" id="<%= title.strip.parameterize %>">
+        <div class="maxi_layout">
+          <%= render 'new_components', group: title, compos: compos %>
         </div>
       </div>
     <% end %>
   </div>
-</div>
 
+  <div class="form-group string">
+    <label class="string"><%= t('.component') %></label>
+    <div class="selected-component empty"><%= t('.select_component') %></div>
+  </div>
+
+  <div class="form-actions">
+    <button type="submit" class="btn btn-primary"><%= t(".next_step") %></button>
+    <%= link_to t("back"), site_admin_skin_path(@skin, anchor: 'tab-layout'), class: "btn btn-default" %>
+  </div>
+<% end %>
+
+<% content_for :stylesheets, stylesheet_link_tag("maxi_layout") %>
 <% content_for :javascripts, javascript_include_tag('components.form') %>

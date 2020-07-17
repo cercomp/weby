@@ -3,7 +3,7 @@ pt-BR:
     roles:
       index:
         activity_records:     " Histórico de Atividades "
-        roles_permissions:    " Permissões e Pápeis globais "
+        roles_permissions:    " Permissões / Pápeis globais "
         create_role:          " Novo Papel "
         list_permissions:     " Listar Permissões "
         admins:               " Admins "
@@ -23,6 +23,18 @@ pt-BR:
         users:                " Usuários "
         manage_roles:         " Gerenciar Papéis "
         none_role:            " Nenhum papel "
+        select_all_role:      " Marcar todas as permissões "
+        unselect_all_role:    " Desmarcar todas as permissões "
+        select_all_role_hint: " Marca ou desmarca todas as permissões para este papel "
+        select_group_rights:  " Marcar todas deste grupo "
+        unselect_group_rights: " Desmarcar todas deste grupo "
+        select_group_rights_hint: " Marca ou desmarca todas as permissões deste grupo para todos os papéis "
+        select_group_role:    " Marcar todas do grupo para o papel "
+        unselect_group_role:  " Desmarcar todas do grupo para o papel "
+        select_group_role_hint: " Marca ou desmarca todas as permissões deste grupo para este papel "
+        select_right_roles:   " Marcar para todos os papéis "
+        unselect_right_roles: " Desmarcar para todos os papéis "
+        select_right_roles_hint: " Marca ou desmarca esta permissão para todos os papéis "
       new:
         roles:                " Papéis "
       edit:

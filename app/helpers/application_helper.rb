@@ -44,8 +44,6 @@ module ApplicationHelper
     item_class << 'current_page' if is_current_page
 
     content_tag :li, id: "menu_item_#{entry.id}", class: item_class.join(' ') do
-      title_link = menu_item_link(entry)
-
       li_content = []
       li_content << content_tag(:div, '', class: 'hierarchy') if view_ctrl
       li_content << if view_ctrl
@@ -56,12 +54,16 @@ module ApplicationHelper
           div_content << content_tag(:span, content_tag(:span), class: 'disclose')
           div_content << toggle_field(entry, 'publish', 'toggle', controller: 'sites/admin/menus/menu_items', menu_id: entry.menu_id, remote: true, class: 'toggle-menu-item')
           div_content << content_tag(:span, class: 'menu-entry') do
-            link_text = content_tag(:span, entry && entry.target ? entry.target.try(:title) : (entry.url.blank? ? '#' : entry.url))
+            link_text = if entry && entry.target
+              content_tag(:span, "#{entry.target.class.model_name.human} [#{link_to entry.target.title, [entry.target_namespace, entry.target]}]".html_safe)
+            else
+              content_tag(:span, entry.url.blank? ? '#' : entry.url)
+            end
             [
-              title_link,
-              content_tag(:span, "[", class: 'link-text-open'),
+              menu_item_link(entry, entry.url.present? && entry.url != '#' && !entry.url.match(/^javascript:/)),
+              #content_tag(:span, "[", class: 'link-text-open'),
               content_tag(:span, link_text, class: 'link-text', title: entry&.url),
-              content_tag(:span, " ]", class: 'link-text-close')
+              #content_tag(:span, " ]", class: 'link-text-close')
             ].join(' ').html_safe
           end
           div_content << content_tag(:div, class: 'pull-right align-middle') do
@@ -79,7 +81,7 @@ module ApplicationHelper
           div_content.join.html_safe
         end
       else
-        title_link
+        menu_item_link(entry)
       end
       li_content << content_tag(:menu, class: 'submenu') do
         sons[entry.id].map do |child|
@@ -104,12 +106,12 @@ module ApplicationHelper
     end
   end
 
-  def menu_item_link menu_item
+  def menu_item_link menu_item, force_new_tab=false
     url = target_url(menu_item)
     link_to(menu_item.title, url,
       alt: menu_item.title,
       title: menu_item.description,
-      target: menu_item.new_tab ? '_blank' :  '',
+      target: menu_item.new_tab || force_new_tab ? '_blank' :  '',
       class: url.blank? || url.to_s == '#' || url.match(/^javascript:/) ? 'empty-href' : ''
     )
   end
@@ -563,8 +565,9 @@ module ApplicationHelper
 
   def render_toggle field, value, is_checked, options={}
     check_box_options = {class: 'toggle weby-toggle'}
+    label_for = options[:id] || field.to_s.delete("]").tr("^-a-zA-Z0-9:.", "_")
     html = check_box_tag(field, value, is_checked, check_box_options.merge(options))
-    html << content_tag(:label, content_tag(:span, '', class: 'check-handler'), class: 'check-trail', for: field)
+    html << content_tag(:label, content_tag(:span, '', class: 'check-handler'), class: 'check-trail', for: label_for)
   end
 
   def render_dropdown_menu options={}, &block

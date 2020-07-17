@@ -4,7 +4,7 @@
 
 <%= form_tag site_admin_skin_components_path(@skin), method: :post, class: 'form-horizontal' do %>
   <%= hidden_field_tag :component, params[:component] %>
-  
+
   <div class="form-group">
     <label><%= t(".template")  %></label>
     <input type="text" disabled="true" class="form-control" value="<%= t("components.#{@name}.name") %>"/>

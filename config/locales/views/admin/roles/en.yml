@@ -3,7 +3,7 @@ en:
     roles:
       index:
         activity_records:     " Activity Records "
-        roles_permissions:    " Rights and Global roles "
+        roles_permissions:    " Rights / Global roles "
         create_role:          " Create Role "
         list_permissions:     " List Permissions "
         admins:               " Admins "
@@ -23,6 +23,18 @@ en:
         users:                " Users "
         manage_roles:         " Gerenciar Papéis "
         none_role:            " No roles. "
+        select_all_role:      " Check all permissions "
+        unselect_all_role:    " Uncheck all permissions "
+        select_all_role_hint: " Check or uncheck all permissions for this role "
+        select_group_rights:  " Check all in this group "
+        unselect_group_rights: " Uncheck all in this group "
+        select_group_rights_hint: " Check or uncheck all permissions in this group for all roles "
+        select_group_role:    " Check all in the group for this role "
+        unselect_group_role:  " Uncheck all in the group for this role "
+        select_group_role_hint: " Check or uncheck all permissions in this group for this role "
+        select_right_roles:   " Check for all roles "
+        unselect_right_roles: " Uncheck for all roles "
+        select_right_roles_hint: " Check or uncheck this permission for all roles "
       new:
         roles:                " Roles "
       edit:
