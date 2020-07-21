@@ -462,7 +462,7 @@ header .social-icon {
     }
   }
 
-  .access-actions a, .accessibility_color a {
+  .access-actions a, .access-actions button, .accessibility_color a, .accessibility_color button {
     display: inline-block;
     border-radius: 2px;
     background-color: #aaaaaa;
@@ -484,7 +484,7 @@ header .social-icon {
     background-image: asset-url('level2/ic-tipo_2.png');
   }
 
-  .accessibility_color a {
+  .accessibility_color a, .accessibility_color button {
     background-image: asset-url('level2/ic-contraste.png');
   }
 }

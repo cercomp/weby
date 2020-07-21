@@ -38,9 +38,15 @@ WEBY.applyContrast = function(){
   if (flag != 1) {
     if (cont.length > 0) cont.removeClass('active').attr('href', '');
     $('body').removeClass('contrast-mode');
+    $('.toggle-contrast').each(function(){
+      if ($(this).data('original-title')) $(this).attr('title', $(this).data('original-title'));
+    });
   } else {
     if (cont.length > 0) cont.attr('href', cont.data('src')).addClass('active');
     $('body').addClass('contrast-mode');
+    $('.toggle-contrast').each(function(){
+      if ($(this).data('alt-title')) $(this).data('original-title', $(this).attr('title')).attr('title', $(this).data('alt-title'));
+    });
   }
   /// contrast images
   $('[data-contrast-src]').each(function(){

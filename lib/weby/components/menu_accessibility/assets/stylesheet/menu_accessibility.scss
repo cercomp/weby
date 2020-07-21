@@ -40,7 +40,7 @@
     font-weight: bold !important;
     font-size: 12px;
   }
-  span.accessibility_font a {
+  span.accessibility_font a, span.accessibility_font button {
     margin: 2px;
   }
   nav.menu_accessibility_extended{
@@ -122,12 +122,15 @@
   .access-actions {
     display: flex;
 
-    a {
+    a, button {
       text-align: center;
       width: 22px;
       height: 22px;
       padding: 0;
       margin: 0;
+      cursor: pointer;
+      border: 0;
+      outline: none;
     }
   }
 
@@ -138,12 +141,15 @@
   .accessibility_color {
     display: flex;
 
-    a {
+    a, button {
       text-align: center;
       width: 22px;
       height: 22px;
       padding: 0;
       margin: 0;
+      cursor: pointer;
+      border: 0;
+      outline: none;
     }
   }
 }

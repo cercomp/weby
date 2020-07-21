@@ -439,7 +439,7 @@ body > header {
     }
   }
 
-  .access-actions a, .accessibility_color a {
+  .access-actions a, .access-actions button, .accessibility_color a, .accessibility_color button {
     display: inline-block;
     border-radius: 2px;
     background-color: var(--white);
@@ -461,7 +461,7 @@ body > header {
     background-image: asset-url('level3/ic-tipo_2-gray.svg');
   }
 
-  .accessibility_color a {
+  .accessibility_color a, .accessibility_color button {
     background-image: asset-url('level3/ic-contraste-gray.svg');
   }
 }

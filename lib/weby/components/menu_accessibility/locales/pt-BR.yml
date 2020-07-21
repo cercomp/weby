@@ -31,6 +31,8 @@ pt-BR:
         default_font_size:  " Tamanho padrão da fonte "
         contrast:           " Alterar o contraste da página "
         contrast_normal:    " Retirar o contraste da pagina "
+        apply_contrast:     " Ativar o modo contraste "
+        remove_contrast:    " Desativar o modo contraste "
         colour:             " Cor "
         go_to_content:      " Ir para o conteúdo "
         go_to_menu:         " Ir para o menu "

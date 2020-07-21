@@ -32,6 +32,8 @@ en:
         default_font_size:  " Change to default font size "
         contrast:           " Change the color contrast "
         contrast_normal:    " Remove the colour contrast "
+        apply_contrast:     " Activate contrast mode "
+        remove_contrast:    " Deactivate contrast mode "
         colour:             " Colour "
         go_to_content:      " Go to Content "
         go_to_menu:         " Go to Menu "

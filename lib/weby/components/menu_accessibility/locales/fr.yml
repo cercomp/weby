@@ -31,6 +31,8 @@ fr:
         default_font_size:  " Taille de la police Par Défaut "
         contrast:           " Modifier le contraste de la page "
         contrast_normal:    " Retirerle contraste de la page "
+        apply_contrast:     " Modifier le contraste de la page "
+        remove_contrast:    " Retirerle contraste de la page "
         colour:             " Couleur "
         go_to_content:      " Aller au Contenu "
         go_to_menu:         " Aller au Menu "

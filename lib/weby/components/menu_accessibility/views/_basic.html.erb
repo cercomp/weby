@@ -1,21 +1,21 @@
 <% if component.template == 'bar' %>
   <nav class="menu_accessibility_component bar">
     <div class="direct-access">
-      <span><%= link_to t('.go_to_content'), "##{component.content_anchor}", class: 'goto-content' %><b>1</b></span>
-      <span><%= link_to t('.go_to_menu'), "##{component.menu_anchor}", class: 'goto-menu' %><b>2</b></span>
-      <span><%= link_to t('.go_to_search'), "##{component.search_anchor}", class: 'goto-search' %><b>3</b></span>
+      <span><%= link_to t('.go_to_content'), "##{component.content_anchor}", class: 'goto-content' %><b aria-hidden="true">1</b></span>
+      <span><%= link_to t('.go_to_menu'), "##{component.menu_anchor}", class: 'goto-menu' %><b aria-hidden="true">2</b></span>
+      <span><%= link_to t('.go_to_search'), "##{component.search_anchor}", class: 'goto-search' %><b aria-hidden="true">3</b></span>
     </div>
     <div class="access-actions">
       <% if component.font_size? %>
         <span class='accessibility_font'>
-          <%= link_to('A+', '#', class: 'increase-font', title: t('.increase_font_size')) %>
-          <%# link_to('A', '#', onclick: 'font_size_original()', title: t('.default_font_size')) %>
-          <%= link_to('A-', '#', class: 'decrease-font', title: t('.decrease_font_size')) %>
+          <%= button_tag(content_tag(:span, 'A+', aria: {hidden: true}), class: 'increase-font', title: t('.increase_font_size')) %>
+          <%# button_tag(content_tag(:span, 'A', aria: {hidden: true}), onclick: 'font_size_original()', title: t('.default_font_size')) %>
+          <%= button_tag(content_tag(:span, 'A-', aria: {hidden: true}), class: 'decrease-font', title: t('.decrease_font_size')) %>
         </span>
       <% end %>
       <% if component.contrast? %>
         <span class="accessibility_color">
-          <%= link_to('C', '#', class: 'toggle-contrast') %>
+          <%= button_tag(content_tag(:span, 'C', aria: {hidden: true}), class: 'toggle-contrast', title: t('.apply_contrast'), data: {alt_title: t('.remove_contrast')}) %>
         </span>
       <% end %>
     </div>

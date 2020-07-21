@@ -42,7 +42,9 @@ body > header,
 
 .menu_accessibility_component.bar .direct-access span b,
 .menu_accessibility_component.bar .access-actions a,
-.menu_accessibility_component.bar .accessibility_color a {
+.menu_accessibility_component.bar .access-actions button,
+.menu_accessibility_component.bar .accessibility_color a,
+.menu_accessibility_component.bar .accessibility_color button {
   background-color: var(--gray-15);
   color: var(--white);
   opacity: .6;

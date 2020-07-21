@@ -450,7 +450,7 @@ body > header {
     }
   }
 
-  .access-actions a, .accessibility_color a {
+  .access-actions a, .access-actions button, .accessibility_color a, .accessibility_color button {
     display: inline-block;
     border-radius: 2px;
     background-color: #aaaaaa;
@@ -472,7 +472,7 @@ body > header {
     background-image: asset-url('alternative/ic-tipo_2.png');
   }
 
-  .accessibility_color a {
+  .accessibility_color a, .accessibility_color button {
     background-image: asset-url('alternative/ic-contraste.png');
   }
 }
