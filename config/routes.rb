@@ -77,7 +77,7 @@ Rails.application.routes.draw do
           post :apply
           get :preview
         end
-        resources :components, except: [:index] do
+        resources :components do
           member do
             put :toggle
             post :clone

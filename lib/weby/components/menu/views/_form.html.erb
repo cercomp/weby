@@ -1,6 +1,6 @@
 <%= f.input :menu_id, collection: @site.menus.map{|menu| [menu.name, menu.id]},
   priority: component.menu_id,
-  include_blank: false
+  include_blank: true
 %>
 <%= f.input :style, collection: component.menu_styles.map{|style| [t(".#{style}"),style] },
         priority: component.style,

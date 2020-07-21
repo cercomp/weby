@@ -3,9 +3,24 @@ class Sites::Admin::ComponentsController < ApplicationController
   include ActsToToggle
 
   before_action :require_user
+  before_action :is_admin, only: [:index]
   before_action :check_authorization
-  before_action :load_skin, only: [:new, :create, :clone]
+  before_action :load_skin, only: [:index, :new, :create, :clone]
   before_action :load_component, only: [:show, :edit, :update, :clone, :destroy]
+
+  def index
+    respond_to do |format|
+      format.html do
+        redirect_to [:site_admin, @skin]
+      end
+      format.yaml do
+        send_data(@skin.components_yml, type: 'application/x-yaml', filename: "components-#{@skin.theme}.yml")
+      end
+      format.json do
+        render json: @skin.root_components.to_json
+      end
+    end
+  end
 
   def show
     redirect_to site_admin_skin_path(@skin, anchor: 'tab-layout')
