@@ -1,0 +1,132 @@
+<% breadcrumb :roles %>
+<p class="pull-right">
+  <%= yield %>
+</p>
+<div class="clearfix"></div>
+
+<% if @roles.present? %>
+
+  <%= form_tag site_admin_roles_path, method: :put, id: 'roles_form' do %>
+
+    <div class="maxi_layout space-top">
+
+      <div class="maxi_level">
+        <div class="placeholder">
+          <div class="right-row header labels">
+            <span class="placeholder-name right-name">
+              <%= t(".roles_permissions") %>
+              <%= render_dropdown_menu do %>
+                <%= link_to(fa_icon('undo', text: t('.reset_all')), '#',
+                      class: 'reset-all', title: t('.reset_all_hint')) %>
+              <% end %>
+            </span>
+            <% @roles.each do |role| %>
+              <span class="role-config">
+                <span class="role-label">
+                  <span>
+                    <%= role.name %>
+                  </span>
+                  <%= render_dropdown_menu do %>
+                    <% if check_permission(Admin::RolesController, [:show]) %>
+                      <%= link_to icon('edit', text: t("edit")), edit_admin_role_path(role) %>
+                    <% end %>
+                    <%= link_to(fa_icon('toggle-on', text: t('.select_all_role')), '#',
+                          class: 'check-all-role', title: t('.select_all_role_hint'), data: {role: role.id, chkd: true}) %>
+                    <%= link_to(fa_icon('toggle-off', text: t('.unselect_all_role')), '#',
+                          class: 'check-all-role', title: t('.unselect_all_role_hint'), data: {role: role.id, chkd: false}) %>
+                    <%= link_to(fa_icon('undo', text: t('.reset_role')), '#',
+                        class: 'reset-role', title: t('.reset_role_hint'),
+                        data: {role: role.id}) %>
+                    <% if check_permission(Admin::RolesController, [:destroy]) %>
+                      <%= link_to icon('trash', text: t("destroy")), admin_role_path(role), :data => {:confirm => t("are_you_sure_del_item", item: role.name)}, :method => :delete %>
+                    <% end %>
+                  <% end %>
+                </span>
+              </span>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <% @rights.each do |controller, permissions| %>
+        <div class="maxi_level single">
+          <div class="placeholder">
+            <div class="right-row header">
+              <span class="right-name">
+                <span class="placeholder-name"><%= t(".#{controller}") %></span>
+                <%= render_dropdown_menu do %>
+                  <%= link_to(fa_icon('toggle-on', text: t('.select_group_rights')), '#',
+                        class: 'check-group-rights', title: t('.select_group_rights_hint'),
+                        data: {group: controller, chkd: true}) %>
+                  <%= link_to(fa_icon('toggle-off', text: t('.unselect_group_rights')), '#',
+                        class: 'check-group-rights', title: t('.unselect_group_rights_hint'),
+                        data: {group: controller, chkd: false}) %>
+                  <%= link_to(fa_icon('undo', text: t('.reset_group')), '#',
+                        class: 'reset-group', title: t('.reset_group_hint'),
+                        data: {group: controller}) %>
+                <% end %>
+              </span>
+              <% @roles.each do |role| %>
+                <span class="role-config">
+                  <%= role.name %>
+                  <%= render_dropdown_menu do %>
+                    <%= link_to(fa_icon('toggle-on', text: t('.select_group_role')), '#',
+                          class: 'check-group-role', title: t('.select_group_role_hint'),
+                          data: {role: role.id, group: controller, chkd: true}) %>
+                    <%= link_to(fa_icon('toggle-off', text: t('.unselect_group_role')), '#',
+                          class: 'check-group-role', title: t('.unselect_group_role_hint'),
+                          data: {role: role.id, group: controller, chkd: false}) %>
+                    <%= link_to(fa_icon('undo', text: t('.reset_group_role')), '#',
+                        class: 'reset-group-role', title: t('.reset_group_role_hint'),
+                        data: {role: role.id, group: controller}) %>
+                  <% end %>
+                </span>
+              <% end %>
+            </div>
+            <ul class="order-list">
+              <% permissions.each do |right, config| %>
+                <li class="component right-row">
+                  <span class="right-name">
+                    <%= config["name"][locale.to_s] %>
+                    <%= render_dropdown_menu do %>
+                      <%= link_to(fa_icon('toggle-on', text: t('.select_right_roles')), '#',
+                            class: 'check-right-roles', title: t('.select_right_roles_hint'),
+                            data: {right: right, group: controller, chkd: true}) %>
+                      <%= link_to(fa_icon('toggle-off', text: t('.unselect_right_roles')), '#',
+                            class: 'check-right-roles', title: t('.unselect_right_roles_hint'),
+                            data: {right: right, group: controller, chkd: false}) %>
+                    <% end %>
+                  </span>
+                  <% @roles.each do |role| %>
+                    <span class="role-config right-checkbox">
+                      <%= render_toggle(
+                            "role[#{role.id}][permissions][#{controller}][]",
+                            right,
+                            role.permissions_hash.fetch(controller,[]).include?(right),
+                            id: "role_#{role.id}_permissions_#{controller}_#{right}",
+                            data: {role: role.id, group: controller, right: right}
+                          )
+                      %>
+                    </span>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="form-actions">
+      <%= button_tag t("save"), class: 'btn btn-primary', disable_with: t("please_wait") %>
+      <%= link_to t("back"), :back, class: "btn btn-default" %>
+    </div>
+  <% end %>
+
+<% else %>
+  <div class="alert alert-warning">
+    <%= t(".none_role") %>
+  </div>
+<% end %>
+<% content_for :stylesheets, stylesheet_link_tag("maxi_layout") %>
+<% content_for :javascripts, javascript_include_tag("roles.index") %>
