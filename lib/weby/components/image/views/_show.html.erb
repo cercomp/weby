@@ -1,6 +1,5 @@
 <% repository = Repository.find(component.repository_id) rescue nil %>
 <% contrast_repository = (Repository.find(component.contrast_repository_id) rescue nil) if component.contrast_repository_id.present? %>
-
 <section class="image_component <%= component.html_class %> <%= repository.present? || component.default_image.present? ? 'has-image' : 'no-image' %>">
   <% link_url = component.target_id.present? ? main_app.site_page_path(component.target_id) : component.url %>
   <% if repository.present? %>

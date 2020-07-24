@@ -129,6 +129,7 @@ es:
   show:                                 " Mostrar "
   site_need_at_least_one_locale:        " Necessita de pelo menos um idioma "
   submit:                               " Enviar "
+  selected_items:                       " Itens Selecionados "
   successfully_installed_theme:         " Tema adicionado con sucesso "
   successfully_applied_theme:           " Tema aplicado con sucesso "
   successfully_created:                 " Criado com sucesso."

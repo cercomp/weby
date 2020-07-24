@@ -6,7 +6,7 @@
   <%= render_site_url(@site) %>
   <% if current_user.is_admin? %>
     <%= f.input :name, :hint => t("field_required") %>
-    <%= f.input :parent_id, :collection => main_sites_options(current_site), :label => t('.main_site') %>
+    <%= f.input :parent_id, :collection => main_sites_options(current_site), include_blank: true, :label => t('.main_site'), input_html: {class: 'xselect2'} %>
     <%= f.association :groupings, input_html: {class: 'select2 site-groupings'} %>
     <%= f.input :domain, :hint => "#{t(".domain_explain")} (#{default_domain})" %>
   <% else %>

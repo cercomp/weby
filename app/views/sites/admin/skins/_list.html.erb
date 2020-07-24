@@ -1,5 +1,5 @@
 <% unless styles.empty? %>
-  <div class="styles">
+  <div class="table-wrapper styles">
     <table class="table table-striped align-middle" id="style_list" data-url="<%= sort_site_admin_skin_styles_path(@skin) %>">
       <thead>
         <% with_permission(action: :sort, controller: Sites::Admin::StylesController) do %>
@@ -47,16 +47,12 @@
           </tr>
         <% end %>
       </tbody>
-      <tfoot>
-        <td colspan="42">
-          <div class="bulk-actions">
-            <% with_permission(action: :destroy_many, controller: Sites::Admin::StylesController) do %>
-              <%= link_to icon('trash', text: t('destroy')), destroy_many_site_admin_skin_styles_path(@skin), class: 'btn btn-sm btn-default destroy-many', method: :delete, data: {confirm: t('are_you_sure_del_many')} %>
-            <% end %>
-          </div>
-        </td>
-      </tfoot>
     </table>
+    <%= render_bulk_actions do %>
+      <% with_permission(action: :destroy_many, controller: Sites::Admin::StylesController) do %>
+        <%= link_to icon('trash', text: t('destroy')), destroy_many_site_admin_skin_styles_path(@skin), class: 'btn btn-sm btn-default destroy-many', method: :delete, data: {confirm: t('are_you_sure_del_many')} %>
+      <% end %>
+    <% end %>
   </div>
 <% else %>
   <div class="alert alert-warning">

@@ -7,6 +7,7 @@
 //= require moment/pt-br.js
 //= require moment/es.js
 //= require dropmic.min
+//= require sticky.min.js
 //= require tables
 // // floatThead was commented because there is a bug when used in tabs
 // // require floatthead/jquery.floatThead._.js
@@ -129,30 +130,33 @@ $(document).ready(function() {
     FlashMsg.notify(xhr.status);
   });
 
+  ///sticky
+  var sticky = new Sticky('.sticky');
+
   //Fixes the admin menu on the screen
   //responsive
-  var menuadmin = $('#menu-admin');
-  if(menuadmin.length>0){
-     $(window).scroll(function(){
-         if($(window).width() >= 768){
-             maincontainer = $('#main');
-             windowtop = $(this).scrollTop() + 10;
-             if(windowtop >= maincontainer.position().top){
-                 if(menuadmin.css('position')!='fixed')
-                     menuadmin.css({'position':'fixed',
-                     'top':(10+parseInt(maincontainer.css("padding-top")))+'px',
-                     'width':menuadmin.width()+'px'});
-             }else{
-                 if(menuadmin.css('position')=='fixed')
-                     menuadmin.css({'position':'','top':'', 'width':''});
-             }
-         }
-      });
-  }
-  $(window).resize(function(){
-      menuadmin.css({'position':'','top':'', 'width':''});
-      $(window).scroll();
-  });
+  // var menuadmin = $('#menu-admin');
+  // if(menuadmin.length>0){
+  //    $(window).scroll(function(){
+  //        if($(window).width() >= 768){
+  //            maincontainer = $('#main');
+  //            windowtop = $(this).scrollTop() + 10;
+  //            if(windowtop >= maincontainer.position().top){
+  //                if(menuadmin.css('position')!='fixed')
+  //                    menuadmin.css({'position':'fixed',
+  //                    'top':(10+parseInt(maincontainer.css("padding-top")))+'px',
+  //                    'width':menuadmin.width()+'px'});
+  //            }else{
+  //                if(menuadmin.css('position')=='fixed')
+  //                    menuadmin.css({'position':'','top':'', 'width':''});
+  //            }
+  //        }
+  //     });
+  // }
+  // $(window).resize(function(){
+  //     menuadmin.css({'position':'','top':'', 'width':''});
+  //     $(window).scroll();
+  // });
 
   ///copy to clipboard
   $('.clip-btn').each(function(){
@@ -170,7 +174,7 @@ $(document).ready(function() {
   var checkBulk = function(){
     var checked = $('[name=select_item]:checked');
     if (checked.length > 0) {
-      $('.bulk-actions').animate({height: 30}, 200);
+      $('.bulk-actions').animate({height: 62}, 200);
     } else {
       $('.bulk-actions').animate({height: 0}, 200);
     }

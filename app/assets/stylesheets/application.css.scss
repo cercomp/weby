@@ -679,9 +679,31 @@ hr {
   }
 }
 
+.sticky-bottom {
+  position: sticky;
+  bottom: 4px;
+}
+
 .bulk-actions {
   overflow: hidden;
   box-sizing: content-box;
+  display: block;
+}
+
+.bulk-actions-container {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 20px 6px 6px;
+  box-shadow: 1px 1px 4px rgba(0,0,0,.05);
+  border-radius: 4px;
+  position: relative;
+
+  small {
+    color: #797979;
+    position: absolute;
+    top: 2px;
+    text-transform: uppercase;
+  }
 }
 
 .dropmic-menu {

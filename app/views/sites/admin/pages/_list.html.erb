@@ -6,8 +6,8 @@
   <div class="pull-left"> <%= info_page @pages %> </div>
   <div class="pull-right"> <%= paginate @pages, remote: true %> </div>
   <div class="clearfix"></div>
-
-  <table class="table table-striped nowrap align-middle">
+  <div class="table-wrapper">
+    <table class="table table-striped nowrap align-middle">
       <thead>
         <tr>
           <th class="center sel-all"><%= check_box_tag :select_all, 1, false %></th>
@@ -47,16 +47,13 @@
         </tr>
       <% end %>
       </tbody>
-      <tfoot>
-        <td colspan="42">
-          <div class="bulk-actions">
-            <% with_permission(action: :destroy_many) do %>
-              <%= link_to icon('trash', text: t('destroy')), destroy_many_site_admin_pages_path, class: 'btn btn-sm btn-default destroy-many', method: :delete, data: {confirm: t('are_you_sure_del_many')} %>
-            <% end %>
-          </div>
-        </td>
-      </tfoot>
     </table>
+    <%= render_bulk_actions do %>
+      <% with_permission(action: :destroy_many) do %>
+        <%= link_to icon('trash', text: t('destroy')), destroy_many_site_admin_pages_path, class: 'btn btn-sm btn-default destroy-many', method: :delete, data: {confirm: t('are_you_sure_del_many')} %>
+      <% end %>
+    <% end %>
+  </div>
 
   <div class="pull-left"> <%= per_page_links @pages, true, :sm %> </div>
   <div class="pull-right"> <%= paginate @pages, remote: true %> </div>

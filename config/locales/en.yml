@@ -132,6 +132,7 @@ en:
   show:                                 " Show "
   site_need_at_least_one_locale:        " Needs at least one language "
   submit:                               " Submit "
+  selected_items:                       " Selected Itens "
   successfully_installed_theme:         " Theme installed successfully "
   successfully_applied_theme:           " Theme applied successfully "
   successfully_created:                 " Successfully created. "

@@ -48,11 +48,11 @@
       <% else %>
         <div id="main-menu" data-sort-url="<%= change_order_site_admin_menu_menu_items_path(@menu) %>" data-change-url="<%= change_menu_site_admin_menu_menu_items_path(@menu) %>">
           <%= print_menu(@menu, view_ctrl: true) %>
-          <div class="bulk-actions">
+          <%= render_bulk_actions do %>
             <% with_permission(action: :destroy_many) do %>
               <%= link_to icon('trash', text: t('destroy')), destroy_many_site_admin_menu_menu_items_path(@menu), class: 'btn btn-sm btn-default destroy-many', method: :delete, data: {confirm: t('are_you_sure_del_many')} %>
             <% end %>
-          </div>
+          <% end %>
         </div>
       <% end %>
 

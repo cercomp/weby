@@ -2,7 +2,7 @@
   <%= f.show_errors %>
   <%= render_site_url(@site) %>
   <%= f.input :name, :hint => t("field_required"), :input_html => {:pattern => '^[a-z0-9_\-]+$'}  %>
-  <%= f.input :parent_id, :collection => main_sites_options(@site), :label => t(".main_site") %>
+  <%= f.input :parent_id, :collection => main_sites_options(@site), include_blank: true, :label => t(".main_site"), input_html: {class: 'xselect2'} %>
   <%= f.association :groupings, input_html: {class: 'select2 site-groupings'} %>
   <%= f.input :status, :collection => site_status_options, include_blank: false %>
   <%= f.input :domain, :hint => "#{t(".domain_explain")} (#{default_domain})" %>

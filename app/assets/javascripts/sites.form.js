@@ -1,5 +1,7 @@
 $(function (){
-  $('.site-groupings').select2({
+  $('.select2').select2({
+    placeholder: '',
+    allowClear: true,
     width: 'resolve'
   });
 

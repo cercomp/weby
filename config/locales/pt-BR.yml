@@ -132,6 +132,7 @@ pt-BR:
   scheduled:                            " Agendado para %{date} "
   show:                                 " Mostrar "
   site_need_at_least_one_locale:        " Necessita de pelo menos um idioma "
+  selected_items:                       " Itens Selecionados "
   submit:                               " Enviar "
   successfully_installed_theme:         " Tema adicionado com sucesso "
   successfully_applied_theme:           " Tema aplicado com sucesso! "

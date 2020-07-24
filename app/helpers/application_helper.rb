@@ -575,6 +575,15 @@ module ApplicationHelper
     end
   end
 
+  def render_bulk_actions &block
+    content_tag(:div, class: 'bulk-actions sticky-bottom', style: 'height: 0') do
+      content_tag(:div, class: 'bulk-actions-container') do
+        concat content_tag(:small, t('selected_items'))
+        concat capture(&block)
+      end
+    end
+  end
+
   def unescape_param param
     # call it twice so %2B becomes + and then becomes ' 'space
     CGI.unescape(CGI.unescape(param.to_s))

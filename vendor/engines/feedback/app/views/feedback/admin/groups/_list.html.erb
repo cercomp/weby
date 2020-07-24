@@ -7,7 +7,7 @@
   <div class="pull-right"> <%= paginate @groups, remote: true %> </div>
   <div class="clearfix"></div>
 
-
+  <div class="table-wrapper">
     <table class="table table-striped align-middle">
       <thead>
         <th class="center sel-all"><%= check_box_tag :select_all, 1, false %></th>
@@ -27,16 +27,13 @@
         </tr>
       <% end %>
       </tbody>
-      <tfoot>
-        <td colspan="42">
-          <div class="bulk-actions">
-            <% with_permission(action: :destroy_many) do %>
-              <%= link_to icon('trash', text: t('destroy')), destroy_many_admin_groups_path, class: 'btn btn-sm btn-default destroy-many', method: :delete, data: {confirm: t('are_you_sure_del_many')} %>
-            <% end %>
-          </div>
-        </td>
-      </tfoot>
     </table>
+    <%= render_bulk_actions do %>
+      <% with_permission(action: :destroy_many) do %>
+        <%= link_to icon('trash', text: t('destroy')), destroy_many_admin_groups_path, class: 'btn btn-sm btn-default destroy-many', method: :delete, data: {confirm: t('are_you_sure_del_many')} %>
+      <% end %>
+    <% end %>
+  </div>
   <div class="pull-left"> <%= per_page_links @groups, true, :sm %> </div>
   <div class="pull-right"> <%= paginate @groups, remote: true %> </div>
   <div class="clearfix"></div>

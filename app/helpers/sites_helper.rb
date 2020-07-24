@@ -35,7 +35,9 @@ module SitesHelper
   end
 
   def main_sites_options site
-    main_sites_list(site).collect{|s| ["#{s.title || s.name}#{ " [#{t('inactive')}]" if !s.active? }" ,s.id, {data: {name: s.name}}]}
+    main_sites_list(site).collect do |s|
+      ["#{s.name} (#{s.title})#{ " [#{t('inactive')}]" if !s.active? }" ,s.id, {data: {name: s.name}}]
+    end
   end
 
   def default_domain

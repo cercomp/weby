@@ -1,63 +1,59 @@
 <div class="pull-right"><%= paginate @banners, remote: true %></div>
 <div class="pull-left"><%= info_page @banners %></div>
 <div class="clearfix"></div>
-
-<table class="table table-striped table-condensed align-middle">
-  <thead>
-    <th class="center sel-all"><%= check_box_tag :select_all, 1, false %></th>
-    <th><%= t(".image") %></th>
-    <th><%= sortable 'title', t(".title") %></th>
-    <th><%= t(".category") %></th>
-    <th><%= sortable 'date_begin_at', t(".publication_date")%></th>
-    <th><%= sortable 'publish', t(".publish") %></th>
-    <th></th>
-  </thead>
-  <tbody>
-    <% @banners.each do |banner_site| %>
-      <% banner = banner_site.banner %>
-      <tr<%= ' class="deactivated"'.html_safe unless banner.publish %>>
-        <td class="center sel-item"><%= check_box_tag :select_item, banner_site.id, false %></td>
-        <td> <%= weby_file_view(banner.repository, :t, "64", "64", {target: '_blank', title: banner.text}, true) %></td>
-        <td>
-          <% if banner.owned_by? current_site %>
-            <% if check_permission(Sticker::Admin::BannersController, [:edit]) %>
-              <%= link_to "#{banner.title} #{content_tag(:span, icon(:edit), class: 'oh-c-i')}".html_safe, edit_admin_banner_path(banner) %>
+<div class="table-wrapper">
+  <table class="table table-striped table-condensed align-middle">
+    <thead>
+      <th class="center sel-all"><%= check_box_tag :select_all, 1, false %></th>
+      <th><%= t(".image") %></th>
+      <th><%= sortable 'title', t(".title") %></th>
+      <th><%= t(".category") %></th>
+      <th><%= sortable 'date_begin_at', t(".publication_date")%></th>
+      <th><%= sortable 'publish', t(".publish") %></th>
+      <th></th>
+    </thead>
+    <tbody>
+      <% @banners.each do |banner_site| %>
+        <% banner = banner_site.banner %>
+        <tr<%= ' class="deactivated"'.html_safe unless banner.publish %>>
+          <td class="center sel-item"><%= check_box_tag :select_item, banner_site.id, false %></td>
+          <td> <%= weby_file_view(banner.repository, :t, "64", "64", {target: '_blank', title: banner.text}, true) %></td>
+          <td>
+            <% if banner.owned_by? current_site %>
+              <% if check_permission(Sticker::Admin::BannersController, [:edit]) %>
+                <%= link_to "#{banner.title} #{content_tag(:span, icon(:edit), class: 'oh-c-i')}".html_safe, edit_admin_banner_path(banner) %>
+              <% else %>
+                <%= link_to banner.title, admin_banner_path(banner) %>
+              <% end %>
             <% else %>
+              <%= icon('retweet') %>
               <%= link_to banner.title, admin_banner_path(banner) %>
             <% end %>
-          <% else %>
-            <%= icon('retweet') %>
-            <%= link_to banner.title, admin_banner_path(banner) %>
-          <% end %>
-        </td>
-        <td><%= categories_links(banner_site.categories) %></td>
-        <td><%=l banner.date_begin_at, format: :short %></td>
-        <td>
-          <%= publication_status_banner(banner, disabled: !banner.owned_by?(current_site) ) %>
-        </td>
-        <td class="actions text-right">
-          <%= render_dropdown_menu do %>
-            <% if banner.owned_by?(current_site) && check_permission(Sticker::Admin::BannersController, [:new]) %>
-              <%= link_to fa_icon('files-o', text: t('copy')), new_admin_banner_path(copy_from: banner_site.id) %>
+          </td>
+          <td><%= categories_links(banner_site.categories) %></td>
+          <td><%=l banner.date_begin_at, format: :short %></td>
+          <td>
+            <%= publication_status_banner(banner, disabled: !banner.owned_by?(current_site) ) %>
+          </td>
+          <td class="actions text-right">
+            <%= render_dropdown_menu do %>
+              <% if banner.owned_by?(current_site) && check_permission(Sticker::Admin::BannersController, [:new]) %>
+                <%= link_to fa_icon('files-o', text: t('copy')), new_admin_banner_path(copy_from: banner_site.id) %>
+              <% end %>
+              <%= link_to icon('trash', text: t('destroy')), unshare_admin_banner_url(banner), method: :put, data: { confirm: t('are_you_sure_unshare_item', item: banner.title) } if !banner.owned_by?(current_site) %>
+              <%= raw make_menu(banner) %>
             <% end %>
-            <%= link_to icon('trash', text: t('destroy')), unshare_admin_banner_url(banner), method: :put, data: { confirm: t('are_you_sure_unshare_item', item: banner.title) } if !banner.owned_by?(current_site) %>
-            <%= raw make_menu(banner) %>
-          <% end %>
-        </td>
-      </tr>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= render_bulk_actions do %>
+    <% with_permission(action: :destroy_many) do %>
+      <%= link_to icon('trash', text: t('destroy')), destroy_many_admin_banners_path, class: 'btn btn-sm btn-default destroy-many', method: :delete, data: {confirm: t('are_you_sure_del_many')} %>
     <% end %>
-  </tbody>
-  <tfoot>
-    <td colspan="42">
-      <div class="bulk-actions">
-        <% with_permission(action: :destroy_many) do %>
-          <%= link_to icon('trash', text: t('destroy')), destroy_many_admin_banners_path, class: 'btn btn-sm btn-default destroy-many', method: :delete, data: {confirm: t('are_you_sure_del_many')} %>
-        <% end %>
-      </div>
-    </td>
-  </tfoot>
-</table>
-
+  <% end %>
+</div>
 <div class="pull-right"><%= paginate @banners, remote: true %></div>
 <div class="pull-left"><%= per_page_links @banners, true, :sm  %></div>
 <div class="clearfix"></div>
