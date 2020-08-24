@@ -15,5 +15,7 @@ pt-BR:
           edit_menu:      " Editar "
           destroy:        " Excluir "
           none_menu_item: " Nenhum item no menu \"%{menu}\" "
+          expand:         " %{icon} Expandir submenus "
+          collapse:       " %{icon} Recolher submenus "
         new:
           menus:          " Menus "

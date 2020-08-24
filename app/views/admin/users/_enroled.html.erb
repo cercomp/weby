@@ -1,19 +1,19 @@
-<% if @site_users.present? %>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th><%= t (".enroled_user")%></th>
-        <th style="width: 40%"><%= t(".role") %></th>
-        <th style="width: 15%"></th>
-      </tr>
-    </thead>
-    <tbody>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= t (".enroled_user")%></th>
+      <th style="width: 40%"><%= t(".role") %></th>
+      <th style="width: 15%"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @site_users.present? %>
       <% @site_users.each do |user| %>
         <tr>
           <td><%= raw "#{user.fullname} (#{link_to_if check_permission(Admin::UsersController, :index), user.login, admin_user_url(user, subdomain: nil)})" %></td>
           <td>
             <span id="user_<%= user.id %>">
-              <%= user.roles.map{ |r| r.name if r.site_id == @site.try(:id) }.compact.join(', ') %>
+              <%= user.global_roles.map{|r| content_tag(:span, r.name, class: 'label label-primary') }.join(' ').html_safe %>
             </span>
             <div id="role_form_<%= user.id %>">
               <% if @user and @user == user %>
@@ -28,11 +28,12 @@
           </td>
         </tr>
       <% end %>
-    </tbody>
-  </table>
-  <% content_for :javascripts, javascript_include_tag('users.enroled') %>
-<% else %>
-  <div class="alert alert-warning">
-    <%= t(".none_user") %>
-  </div>
-<% end %>
+    <% else %>
+      <tr><td colspan="3">
+        <div class="alert alert-warning">
+          <%= t(".none_user") %>
+        </div>
+      </td></tr>
+    <% end %>
+  </tbody>
+</table>

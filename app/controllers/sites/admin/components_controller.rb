@@ -35,6 +35,7 @@ class Sites::Admin::ComponentsController < ApplicationController
       @name = params[:component].split('|').second
       render :new_components_template
     else
+      load_available_components
       render :available_components
     end
   end
@@ -73,6 +74,7 @@ class Sites::Admin::ComponentsController < ApplicationController
         end
       end
     else
+      load_available_components
       render :available_components
     end
   end
@@ -137,6 +139,10 @@ class Sites::Admin::ComponentsController < ApplicationController
   end
 
   private
+
+  def load_available_components
+    @available_components = helpers.grouped_available_components
+  end
 
   def load_skin
     @skin = current_site.skins.find(params[:skin_id])

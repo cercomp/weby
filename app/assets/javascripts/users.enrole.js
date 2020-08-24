@@ -1,51 +1,50 @@
-function regex_escape(s) {
-  return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-}
-/*input: texto pesquisado
- *list: lista a ser filtrada <menu> ou <ul> */
-function filter_user(input, list){
-  var pattern = new RegExp(".*"+ regex_escape(input).split(' ').join('.*') +".*", "gi"),
-      $list = $(list);
-  $list.find('.no-elements-filter-user').remove();
-  $list.find('li').each(function(idx, element){
-    if( $(element).text().match(pattern) )
-      $(element).show();
-    else
-      $(element).hide();
+
+WEBY.initEnrolePage = function(){
+
+  $('.search-user-input input').each(function(){
+    var field = $(this);
+    var list = field.closest('.search-user').find('.search-user-results');
+
+    //// Prevent ENTER to trigger form submit on keydown
+    field.keydown(function(ev){
+      if (ev.keyCode == 13) {
+        ev.preventDefault();
+        return false;
+      }
+    })
+
+    var searchTimer = null;
+    field.keyup(function(ev){
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(function(){
+        $.get(field.data('url'), {query: field.val()}, function(data){
+          if (data.users.length > 0) {
+            list.find('.users_list').html(data.users.map(function(i){
+              return '<li>'+
+                '<div class="checkbox">'+
+                  '<label>'+
+                    '<input type="checkbox" name="user[id][]" value="'+ i.id +'"/>'+
+                    i.fullname + (i.login ? ' ('+ i.login +')' : '') +
+                  '</label>'+
+                '</div>'+
+              '</li>';
+            }).join(''));
+            list.find('.msg').html('');
+          } else {
+            list.find('.users_list').html('');
+            list.find('.msg').html('<div class="alert alert-warning">'+ data.meta.message +'</div>');
+          }
+          // var fullname = field.data('fullname');
+          // if(fullname && fullname.length > 0){
+          //   field.val(fullname);
+          //   filter_user(fullname, list);
+          // }
+        });
+        ev.preventDefault();
+        return false;
+      }, 420);
+    });
   });
-  if($list.find('li:visible').length == 0){
-    $list.append('<li class="no-elements-filter-user alert">Nenhum usu&aacute;rio encontrado. ('+input+')</li>')
-  }
-}
+};
 
-var initEnrolePage = function(){
-  var list = $('#users_list_roles'),
-      field = $('#users_unroled');
-  field.on('blur keypress', function(ev){
-    if(ev.keyCode == 13 || ev.type == 'blur'){
-      filter_user($(this).val(), list);
-      ev.stopPropagation();
-      ev.preventDefault();
-      return false;
-    }
-  });
-
-  var adm_list = $('#adms_list_roles'),
-      adm_field = $('#adms_unroled');
-  adm_field.on('blur keypress', function(ev){
-    if(ev.keyCode == 13 || ev.type == 'blur'){
-      filter_user($(this).val(), adm_list);
-      ev.stopPropagation();
-      ev.preventDefault();
-      return false;
-    }
-  });
-
-  var fullname = field.data('fullname');
-  if(fullname && fullname.length > 0){
-    field.val(fullname);
-    filter_user(fullname, list);
-  }
-}
-
-$(document).ready(initEnrolePage);
+$(document).ready(WEBY.initEnrolePage);

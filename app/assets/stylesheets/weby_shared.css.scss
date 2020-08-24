@@ -45,6 +45,10 @@ $night: #34495e;
 $midnight: #2c3e50;
 $transition: all .3s ease;
 
+.dirty + .check-trail {
+  box-shadow: 0 0 0 3px #ea9c0d;
+}
+
 /* Hide the input */
 .weby-toggle {
   position: absolute;

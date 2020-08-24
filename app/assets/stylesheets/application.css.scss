@@ -131,6 +131,15 @@ select.select2 {
   height: 34px;
 }
 
+.search-user-results {
+  height: 300px;
+  overflow: auto;
+}
+
+.users_list {
+  padding-top: 10px;
+}
+
 .pagination {
   margin: 10px 0;
 }
@@ -183,7 +192,7 @@ table {
     margin: 0;
   }
   .label {
-    font-size: 85%;
+    font-size: 92%;
   }
   &.table {
     th.grab-header {
@@ -207,8 +216,14 @@ table {
   }
 }
 
-table.align-middle > tbody > tr > td {
-  vertical-align: middle;
+table.align-middle {
+  > tbody > tr > td, > thead > tr > th {
+    vertical-align: middle;
+  }
+}
+
+.space-top {
+  margin-top: 27px;
 }
 
 thead {
@@ -272,8 +287,8 @@ body.modal-open {
   border-bottom-right-radius: 4px;
 }
 
-.tab-pane {
-  padding: 5px;
+.i18n .tab-pane {
+  padding: 12px;
 }
 
 .optional {
@@ -418,6 +433,17 @@ div#available_components div > div.thumbnail h5{
 div#available_components div > div.thumbnail img {
   height: 130px;
 }
+
+.selected-component {
+  font-size: 2rem;
+  color: #444;
+
+  &.empty {
+    font-size: initial;
+    font-style: italic;
+  }
+}
+
 // used to mark object as published/unpublished
 .deactivated, .deactivated > td {
   background-color: #F2DEDE !important;
@@ -467,7 +493,7 @@ input[type=checkbox] {
   margin-left: 0px !important;
   padding-right: 10px;
   label {
-    font-weight: bold !important;
+    //font-weight: bold !important;
   }
 }
 .form-control{
@@ -488,10 +514,6 @@ input[type=checkbox] {
   font-weight: normal;
 }
 
-li .checkbox {
-  height: 10px;
-}
-
 .radio + .radio, .checkbox + .checkbox {
   margin-top: 0;
 }
@@ -499,8 +521,10 @@ li .checkbox {
 .checkbox label {
   /*padding-left: 5px;*/
 
-  & > input {
+  > input {
     margin-left: -20px !important;
+    width: 15px;
+    height: 15px;
   }
 }
 
@@ -546,11 +570,6 @@ div.align-middle {
 
 .img-edit-preview {
   margin-bottom: 10px;
-}
-
-div.checkbox label.checkbox input {
-  margin-right: 5px;
-  margin-top: 6px;
 }
 
 .breadcrumb {
@@ -708,7 +727,9 @@ hr {
 
 .dropmic-menu {
   text-align: left;
+  font-weight: normal;
   z-index: 3;
+  font-size: 14px;
   a {
     display: block;
     padding: 5px 8px;

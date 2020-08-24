@@ -3,26 +3,7 @@ pt-BR:
     admin:
       roles:
         index:
-          activity_records:     " Histórico de Atividades "
-          roles_permissions:    " Permissões e Papéis "
-          none_role:            " Nenhum Papel "
-          new_role:             " Novo Papel "
-          admins:               " Admins "
-          components:           " Componentes "
-          extensions:           " Extensões "
-          menu_items:           " Itens de Menu "
-          menus:                " Menus "
-          notifications:        " Notificações "
-          pages:                " Páginas "
-          repositories:          " Repositório "
-          repositories_searchs: " Buscas "
-          rights:               " Direitos "
           roles:                " Papéis "
-          statistics:           " Estatísticas "
-          styles:               " Estilos "
-          users:                " Usuários "
-          skins:                " Temas "
-          none_role:            " Nenhum papel "
         new:
           users:                " Usuários "
           roles_permissions:    " Permissões e Papéis "

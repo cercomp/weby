@@ -2,7 +2,7 @@
 pt-BR:
   activerecord:
     models:
-      journal/news:      "Notícias"
+      journal/news:      "Notícia"
     attributes:
       journal/news:
         user:            "Autor"

@@ -47,6 +47,7 @@
         </div>
       <% else %>
         <div id="main-menu" data-sort-url="<%= change_order_site_admin_menu_menu_items_path(@menu) %>" data-change-url="<%= change_menu_site_admin_menu_menu_items_path(@menu) %>">
+          <%= link_to t('.collapse', icon: icon('chevron-right')).html_safe, '#', class: 'expand-collapse', data: {alt_text: t('.expand', icon: icon('chevron-down')).html_safe} %>
           <%= print_menu(@menu, view_ctrl: true) %>
           <%= render_bulk_actions do %>
             <% with_permission(action: :destroy_many) do %>

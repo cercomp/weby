@@ -19,6 +19,7 @@ en:
         global_roles:       " Global Roles "
         user_current_sites: " Current Sites "
         roles:              " Roles "
+        admin:              " Admin "
       new:
         new_user:           " New User "
       form:
@@ -37,22 +38,28 @@ en:
         email:              " E-mail "
         active:             " Active "
         is_admin:           " Admin "
-        roles:              " Roles "
+        roles:              " Global Roles "
         admin:              " Admin "
         manage_roles:       " Manage Roles "
+        no_global_roles:    "No global role"
         none_user:          " No users "
       edit:
         editing_my_account: " Editting my account "
       enrole:
         none_user:          " None User "
         enrole_user:        " Enrole User "
-        role:               " Roles "
+        new_role:           " New Role "
+        role:               " Global roles "
       enroled:
         enroled_user:       " Enroled Users "
-        role:               " Role "
+        role:               " Global roles "
         none_user:          " None Enroled User "
       role_form:
         confirm_unrole:     " Are you sure you wish to remove all roles from you own user? "
       manage_roles:
         users:              " Users "
         roles_permissions:  " Roles and Permissions "
+      user_search:
+        type_to_search:     " Type the user name, login or email to search "
+      search:
+        no_user_found:      " No user found "

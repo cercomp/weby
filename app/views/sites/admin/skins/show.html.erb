@@ -95,14 +95,13 @@
       </p>
       <div class="clearfix form-group"></div>
 
-      <div id="maxi_layout" data-sorturl="<%= sort_site_admin_skin_components_path(@skin) %>">
+      <div class="maxi_layout" data-sorturl="<%= sort_site_admin_skin_components_path(@skin) %>">
       <% @placeholders.each do |row| %>
         <%= content_tag :div, class: "maxi_level #{row["names"].many? ? "multi" : "single"}" do %>
           <% row["names"].each_with_index do |name, idx| %>
             <%= content_tag :div, class: "placeholder", data: {place: name}, style: "width: #{row["widths"] ? row["widths"][idx] : 100/row["names"].size}%;" do %>
               <%= link_to image_tag('add-row-w.svg'), new_site_admin_skin_component_path(@skin, placeholder: name), class: "add-btn btn btn-success btn-sm add-subitem", title: t(".new_component") if check_permission(Sites::Admin::ComponentsController, 'new') %>
               <div class="placeholder-name"><%= t("themes.#{@skin.theme}.placeholders.#{name}") %></div>
-
                 <ul class="order-list" data-place="<%= name %>">
                   <% components_per_holder = @components.select{|component| component.place_holder == name} %>
                   <% if components_per_holder.empty? %>
@@ -116,7 +115,6 @@
                   <% end %>
                   <% @components = @components - components_per_holder %>
                 </ul>
-
             <% end %>
           <% end %>
         <% end %>
