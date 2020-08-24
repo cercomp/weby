@@ -28,7 +28,7 @@ class YoutubeWrapComponent < Component
   end
 
   def shortcode
-    uri = URI.parse(url)
+    uri = URI.parse(url.to_s.strip)
     params = {}
 
     if uri.query.present?

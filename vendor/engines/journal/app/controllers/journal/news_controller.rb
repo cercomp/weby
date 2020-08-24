@@ -83,7 +83,7 @@ module Journal
     end
 
     def sort_column
-      params[:sort].present? ? params[:sort] : 'journal_news.id'
+      params[:sort].present? ? params[:sort] : 'journal_news.created_at'
     end
 
     def check_current_site
