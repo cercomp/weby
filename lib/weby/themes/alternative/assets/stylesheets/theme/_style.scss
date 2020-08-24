@@ -336,7 +336,7 @@ div, section, input {
         article {
           background-color: var(--main-color);
 
-          .news-details .date, h2 a, summary p {
+          .news-details .date, h2 a, h3 a, summary p {
             color: var(--white);
           }
         }
@@ -487,7 +487,7 @@ div, section, input {
         color: var(--green);
       }
 
-      h2 {
+      h2, h3 {
         margin: 0;
         a {
           text-decoration: none;
@@ -664,7 +664,7 @@ div, section, input {
         top: -5px;
       }
 
-      h2 {
+      h2, h3 {
         margin: 0;
 
         a {
@@ -814,7 +814,7 @@ summary em, summary em * {
     flex-wrap: wrap;
     justify-content: space-evenly;
 
-    > section {
+    > .components_group_component {
       max-width: 350px;
     }
 

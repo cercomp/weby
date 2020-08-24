@@ -88,6 +88,20 @@ class Component < ApplicationRecord
     name == 'components_group'
   end
 
+  def is_top_level?
+    !place_holder.match(/^\d+$/)
+  end
+
+  def html_tag
+    is_top_level? ? :section : :div
+  end
+
+  def parent
+    @parent ||= if !is_top_level?
+      skin.components.find_by(id: place_holder)
+    end
+  end
+
   protected
 
   def settings_map

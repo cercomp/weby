@@ -46,6 +46,7 @@ pt-BR:
     views:
       show:
         read_more:            " Leia mais... "
+        see_all:              " Ver todas "
         posted_by:            " Por "
         posted_on:            " Em "
         html:

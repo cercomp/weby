@@ -1,29 +1,27 @@
 <% @front_news = component.get_news(current_site , params["front_news#{component.id}".to_sym]).includes(news: [:image, :i18ns, :site]) %>
-<section class="front_news_component <%= component.html_class %>" data-url="<%= sort_news_index_path if component.order_by == 'position' %>">
+<%= content_tag component.html_tag, class: "front_news_component #{component.html_class}", data: ({url: sort_news_index_path} if component.order_by == 'position') do %>
   <% show_all_link = component.filter_by.present? ?
       news_index_path(direction: 'desc', sort: 'journal_news.created_at', tags: component.filter_by) :
       news_index_path(direction: 'desc', sort: 'journal_news.created_at')
   %>
   <% if component.label.present? %>
-    <div class="front_news_title">
-      <%= link_to component.label.camelize, show_all_link %>
-    </div>
+    <h2 class="front_news_title"><%= link_to component.label.camelize, show_all_link %></h2>
   <% end %>
-  <section id="news">
+  <ul id="news">
     <% @front_news.try(:each) do |news_site| %>
       <% news = news_site.news %>
       <li id="sort_news_<%= "#{news.id}" %>" style="list-style-type:none;">
         <% if component.tag_as_label && news_site.category_list.present? %>
-          <div class="front_news_label">
+          <h3 class="front_news_label">
             <%= link_to news_site.category_list.first.camelize, news_index_path(direction: 'desc', sort: 'journal_news.created_at', tags: news_site.category_list.first) %>
-          </div>
+          </h3>
         <% end %>
         <article>
           <% unless news.image.nil? %>
-            <%= weby_file_view(news.image, component.image_size, component.avatar_width, component.avatar_height, {as: "link", url: news.url.present? ? news.url : news_url(news, subdomain: news.site), target: (component.new_tab && news.url.present? ? '_blank' : '_self'), link_class: 'news-image'}) %>
+            <%= weby_file_view(news.image, component.image_size, component.avatar_width, component.avatar_height, {as: "link", url: news.url.present? ? news.url : news_url(news, subdomain: news.site), target: (component.new_tab && news.url.present? ? '_blank' : '_self'), link_class: 'news-image', title: news.title}) %>
           <% end %>
           <header>
-            <h2> <%= link_to news.title, news.url.present? ? news.url : news_url(news, subdomain: news.site), target: (component.new_tab && news.url.present? ? '_blank' : '_self') %> </h2>
+            <h3> <%= link_to news.title, news.url.present? ? news.url : news_url(news, subdomain: news.site), target: (component.new_tab && news.url.present? ? '_blank' : '_self') %> </h3>
             <% if component.show_author || component.show_date %>
               <p class="news-details">
                 <% if component.show_author %>
@@ -31,7 +29,7 @@
                 <% end %>
                 <% if component.show_date %>
                   <% if component.date_format == 'short' %>
-                    <span class="date"><%= l(news.i18ns.first.updated_at, format: '%d/%m/%Y') %></span>
+                    <time class="date"><%= l(news.i18ns.first.updated_at, format: '%d/%m/%Y') %></time>
                   <% else %>
                     <span class="date"><%= t(".posted_on") %><%= localize news.i18ns.first.updated_at, format: :medium %></span>
                   <% end %>
@@ -70,9 +68,9 @@
       </li>
     <% end %>
     <div class="clear clearfix"> </div>
-  </section>
+  </ul>
   <%= paginate @front_news, param_name: "front_news#{component.id}", remote: true, comp_url: component.persisted? ? main_app.site_component_path(component.id) : nil, page_links: true %>
   <span class="link_to_all"><%= link_to component.link_to_all, show_all_link if component.link_to_all.present? %></span>
-</section>
+<% end %>
 <% include_component_javascript :javascripts, 'front_news' %>
 <%= content_for :stylesheets, stylesheet_link_tag("sortable") %>

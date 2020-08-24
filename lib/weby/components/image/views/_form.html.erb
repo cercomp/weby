@@ -8,7 +8,7 @@
   <%= label_tag t('.default_image') %>
   <div>
     <div class="image_tag">
-      <%= image_tag(component.default_image, style: style_for_dimension(component.width, component.height)) %>
+      <%= image_tag(component.default_image, style: style_for_dimension(component.width, component.height), alt: component.default_image_alt) %>
     </div>
   </div>
 <% end %>
@@ -17,7 +17,7 @@
   <%= label_tag t('.contrast_default_image') %>
   <div>
     <div class="contrast_image_tag">
-      <%= image_tag(component.contrast_default_image, style: style_for_dimension(component.width, component.height)) %>
+      <%= image_tag(component.contrast_default_image, style: style_for_dimension(component.width, component.height), alt: component.default_image_alt) %>
     </div>
   </div>
 <% end %>
@@ -29,5 +29,7 @@
 <%= f.input :new_tab, wrapper: :checkbox, as: :boolean %>
 
 <%= f.input :html_class, :input_html => {:pattern => '^[A-Za-z0-9_\-\s]*$'} %>
+
+<%= f.input :hide_for_sr, wrapper: :checkbox, as: :boolean %>
 
 <%= f.input :default_image, as: :hidden %>

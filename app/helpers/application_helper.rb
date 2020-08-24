@@ -28,7 +28,7 @@ module ApplicationHelper
   def print_menu(menu, view_ctrl: false, html_class: 'expanded')
     return '' unless menu
     menuitems = menu.items_by_parent(!view_ctrl)
-    content_tag :menu, class: html_class do
+    content_tag :ul, class: ['menu-res', html_class], role: :menu do
       menuitems.fetch(nil, []).map do |child|
         print_menu_entry(menuitems, child, view_ctrl)
       end.join.html_safe
@@ -81,7 +81,7 @@ module ApplicationHelper
       else
         title_link
       end
-      li_content << content_tag(:menu, class: 'submenu') do
+      li_content << content_tag(:ul, class: 'menu-res submenu') do
         sons[entry.id].map do |child|
           print_menu_entry(sons, child, view_ctrl)
         end.join.html_safe
@@ -91,7 +91,7 @@ module ApplicationHelper
   end
   private :print_menu_entry
 
-  def target_url obj
+  def target_url obj, opts={}
     case obj.target
     when Page
       site_page_path(obj.target)
@@ -100,17 +100,18 @@ module ApplicationHelper
     when Calendar::Event
       event_path(obj.target)
     else
-      obj.url.present? ? obj.url : 'javascript:void(0);'
+      obj.url.present? ? obj.url : (opts[:js_fallback] ? 'javascript:void(0);' : nil)
     end
   end
 
   def menu_item_link menu_item
-    url = target_url(menu_item)
+    url = target_url(menu_item, js_fallback: true)
+    is_empty = url.blank? || url.to_s == '#' || url.match(/^javascript:/)
     link_to(menu_item.title, url,
-      alt: menu_item.title,
+      role: is_empty ? 'button' : nil,
       title: menu_item.description,
-      target: menu_item.new_tab ? '_blank' :  '',
-      class: url.blank? || url.to_s == '#' || url.match(/^javascript:/) ? 'empty-href' : ''
+      target: menu_item.new_tab ? '_blank' :  nil,
+      class: is_empty ? 'empty-href' : ''
     )
   end
 
@@ -480,7 +481,7 @@ module ApplicationHelper
     if repository
       weby_file_view(repository, :i, size, size,
                      as: 'link',
-                     title: site.description,
+                     #title: site.description,
                      url: main_app.site_url(subdomain: site)
                      )
     else

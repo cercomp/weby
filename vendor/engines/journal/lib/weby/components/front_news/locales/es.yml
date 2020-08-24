@@ -46,6 +46,7 @@ es:
       show:
         read_more:            " Leer más... "
         posted_by:            " Por "
+        see_all:              " Ver todas  "
         posted_on:            " En "
         html:
           read_more:            " Leer más... "

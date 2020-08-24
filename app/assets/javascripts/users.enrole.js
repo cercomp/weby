@@ -2,7 +2,7 @@ function regex_escape(s) {
   return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
 }
 /*input: texto pesquisado
- *list: lista a ser filtrada <menu> ou <ul> */
+ *list: lista a ser filtrada <ul> */
 function filter_user(input, list){
   var pattern = new RegExp(".*"+ regex_escape(input).split(' ').join('.*') +".*", "gi"),
       $list = $(list);

@@ -27,7 +27,7 @@ li.drop-here{
   list-style-type: none;
 }
 
-li > menu{
+li > .menu-res{
   margin: 0;
 }
 
@@ -37,7 +37,7 @@ li > menu{
   background-color: #EEE;
   height: auto;
 
-  > menu {
+  > .menu-res {
     padding-left: 5px;
 
     li{
@@ -45,7 +45,7 @@ li > menu{
       border: 1px solid transparent;
     }
 
-    menu{
+    .menu-res{
       padding-left: 30px;
     }
   }
@@ -57,7 +57,7 @@ li > menu{
     font-size: 14px;
   }
 
-  li.mjs-nestedSortable-collapsed > menu {
+  li.mjs-nestedSortable-collapsed > .menu-res {
     display: none;
   }
 
@@ -93,7 +93,11 @@ li > menu{
     top: 1px;
   }
 
-  menu {
+  ul {
+    list-style-type: none;
+  }
+
+  .menu-res {
     list-style-type: none;
 
     li{

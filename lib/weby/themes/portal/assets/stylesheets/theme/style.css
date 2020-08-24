@@ -1473,7 +1473,7 @@ p.level.hbg {
   background-color: #ef233c;
 }
 
-.popup-modal .page-show header h2, .popup-modal .feedback-new-message-title h2 {
+.popup-modal .page-show header h1, .popup-modal .feedback-new-message-title h1 {
   color: #fff !important;
   border: 0;
 }
@@ -2126,7 +2126,9 @@ ul.newsletter-social {
   font-size: 13px;
 }
 
-.rodape section {
+.rodape .image_component,
+.rodape .text_component,
+.rodape .social_icons {
   display: inline-block;
   width: 330px;
   vertical-align: top;
@@ -2142,7 +2144,6 @@ ul.newsletter-social {
   display: inline-block;
   vertical-align: top;
   margin-right: 60px;
-  
 }
 
 @media (min-width: 1200px) {
@@ -2214,21 +2215,21 @@ a:hover {
   display: none;
 }
 
-.menu_component menu {
+.menu_component .menu-res {
   list-style: none;
   /*margin-left: 320px;*/
 }
 
-.menu_component menu a {
+.menu_component .menu-res a {
   color: #000000;
   font-weight: normal;
 }
 
-.menu_component menu a:HOVER {
+.menu_component .menu-res a:HOVER {
   color: #ef233c;
 }
 
-.menu_component menu li {
+.menu_component .menu-res li {
   display: inline-block;
   padding: 10px 15px;
   /*text-transform: uppercase;*/
@@ -2237,7 +2238,7 @@ a:hover {
 /******************************
 ***         HAMBURGUER      ***
 ******************************/
-/*.menu_component menu.hamburger-menu li {
+/*.menu_component .menu-res.hamburger-menu li {
   display: block;
 }*/
 
@@ -2303,16 +2304,16 @@ a:hover {
     width: 100%;
   }
   
-  .menu_component menu a {
+  .menu_component .menu-res a {
     display: block;
     padding: 10px 15px;
   }
   
-  .menu_component menu a:HOVER {
+  .menu_component .menu-res a:HOVER {
     color: #FFFFFF;
   }
   
-  .menu_component menu.hamburger-menu li {
+  .menu_component .menu-res.hamburger-menu li {
     display: block;
   }
   
@@ -2325,17 +2326,17 @@ a:hover {
     display: none;
   }
   
-  .menu_component menu {
+  .menu_component .menu-res {
     padding: 0 16px;
   }
   
-  .menu_component menu li {
+  .menu_component .menu-res li {
     border-bottom: 2px solid #FFFFFF;
     padding: 0px;
     background: #EEEEEE;
   }
   
-  .menu_component menu li:HOVER {
+  .menu_component .menu-res li:HOVER {
     background: #ef233c;
     color: #FFFFFF;
   }
@@ -2405,15 +2406,17 @@ footer .copyright {
   margin: 0 auto;
 }
 
-.footer section {
+.footer .image_component,
+.footer .text_component,
+.footer .social_icons {
   display: inline-block;
   vertical-align: top;
   padding: 28px 20px 0 30px;
 }
 
-.footer section.address,
-.footer section.phones,
-.footer section.credits {
+.footer .address,
+.footer .phones,
+.footer .credits {
   text-align: left;
 }
 
@@ -2449,27 +2452,24 @@ footer .copyright {
 }
 
 @media (max-width: 1000px) {
-  .footer section {
+  .footer .image_component,
+  .footer .text_component,
+  .footer .social_icons {
     display: block;
   }
-  
-  .footer section.social_icons section {
+
+  .footer .social_icons .image_component {
     display: inline-block;
   }
 }
 
-section[id^="component_"] .front_news_title,
-section[id^="component_"].news_as_home_component {
+[id^="component_"] .front_news_title,
+[id^="component_"].news_as_home_component {
   margin: 15px 0;
 }
 
-section[id^="component_"] header,
-section[id^="component_"] .front_news_title {
-    /*text-align: center;*/
-}
-
-section[id^="component_"].news_as_home_component header:AFTER,
-section[id^="component_"] .front_news_title:AFTER {
+[id^="component_"].news_as_home_component header:AFTER,
+[id^="component_"] .front_news_title:AFTER {
     content: "";
     text-align: left;
     /*margin: 20px auto;*/
@@ -2480,8 +2480,8 @@ section[id^="component_"] .front_news_title:AFTER {
     display: block;
 }
 
-section[id^="component_"] .front_news_title a,
-section[id^="component_"].news_as_home_component header h2
+[id^="component_"] .front_news_title a,
+[id^="component_"].news_as_home_component header h1
 /*section[id^="component_"] header h2 */
 {
   font-size: 18px;
@@ -2592,7 +2592,7 @@ section[id^="component_"].news_as_home_component header h2
   display: none;
 }
 
-.event-show header h2 {
+.event-show header h1 {
   border-bottom: 1px solid #ebebeb;
   padding: 14px 0;
 }
