@@ -1,11 +1,11 @@
 <% @subsite_front_news = component.get_news(current_site).includes(news: [:image, :i18ns, :site]) %>
 <%= content_tag component.html_tag, class: 'subsite_front_news_component' do %>
   <% if component.label.present? && component.source == 'selected' %>
-    <div class="front_news_title">
+    <h2 class="front_news_title">
       <%= component.label_link.present? ? link_to(component.label.camelize, component.label_link) : content_tag(:span, component.label.camelize) %>
-    </div>
+    </h2>
   <% end %>
-  <div class="list">
+  <ul class="list">
     <% @subsite_front_news.each do |news_site| %>
       <% news = news_site.news %>
       <li style="list-style-type:none;">
