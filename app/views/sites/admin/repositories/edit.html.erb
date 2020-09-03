@@ -16,7 +16,7 @@
       <%= f.input :archive, :as => :file %>
       <%= f.input :title, required: true %>
       <%= f.input :legend %>
-      <%= f.input :description,  :hint => (t(".field_required") + " " + t(".accessibility_needs")) %>
+      <%= f.input :description,  :hint => (t(".field_required") + " " + t(".repo_description_hint")) %>
       <%= f.input :site_id, :input_html => {:value => @site.id}, :as => :hidden %>
     </div>
   </div>

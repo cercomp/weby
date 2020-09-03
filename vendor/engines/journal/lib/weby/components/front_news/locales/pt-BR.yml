@@ -25,6 +25,7 @@ pt-BR:
         read_more:            " Exibir 'Leia mais' "
         show_author:          " Exibir autor da notícia "
         show_date:            " Exibir data da notícia "
+        which_date:           " Data a ser exibida "
         show_tags:            " Exibir categorias "
         hide_filtered_tags:   " Ocultar categorias filtradas "
         tag_as_label:         " Exibir primeira tag como rótulo "

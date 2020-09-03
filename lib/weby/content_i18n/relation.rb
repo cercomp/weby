@@ -7,7 +7,7 @@ module Weby
         i18n_class = base.const_set(:I18ns, Class.new(Weby::I18nsTemplate))
 
         i18n_class.table_name = ("#{base.name.underscore.gsub('/', '_')}_i18ns")
-        i18n_class.belongs_to(base.name.underscore.gsub('/', '_').to_sym)
+        i18n_class.belongs_to(base.name.underscore.gsub('/', '_').to_sym, touch: true)
 
         base.class_eval do
           has_many :i18ns,

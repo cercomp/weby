@@ -29,20 +29,21 @@ en:
           archives:            " Files "
           repository_alert:    " Attention, files uploaded to the repository are public and can be referenced by any site! Confidential files should not be sent to the server. "
           field_required:      " Field required! "
-          accessibility_needs: " Needed for your site's accessibility. "
+          repo_description_hint: " Write the textual description of the image content to be used by screen readers so your site has better accessibilty. "
           please_wait:         " Please wait "
           add_archives:        " Add files "
           max_file_size:       " Maximum file size: %{param}MB "
         edit:
           archives:            " Files "
           field_required:      " Field required! "
-          accessibility_needs: " Needed for your site's accessibility. "
+          repo_description_hint: " Write the textual description of the image content to be used by screen readers so your site has better accessibilty. "
           please_wait:         " Please wait "
           crop_image:          " Crop image "
         crop:
           crop_image:          " Crop image "
           crop:                " Generate "
           lock_aspect_ratio:   " Lock the aspect ratio "
+          repo_description_hint: " Write the textual description of the image content to be used by screen readers so your site has better accessibilty. "
           height:              " Height "
           width:               " Width "
         repo:
