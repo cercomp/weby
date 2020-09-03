@@ -43,7 +43,7 @@
   <%= f.simple_fields_for(:banner_sites, @banner.new_record? ? @banner.banner_sites : @banner.banner_sites.where(site_id: current_site.id)) do |g| %>
     <%= g.input :id, as: :hidden %>
     <%= g.input :site_id, as: :hidden, input_html: {value: current_site.id} %>
-    <%= g.input t('.category'), wrapper: :append do %>
+    <%= g.input :category_list, wrapper: :append do %>
       <%= g.select :category_list, current_site.banner_sites.category_counts, {include_blank: true}, id: 'category', class: 'form-control' %>
       <span class="input-group-btn">
         <%= link_to t(".add_category"), '#', onclick: "addToSelect('#category','#{t(".new_category")}')", :class => 'btn btn-info' %>

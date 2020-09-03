@@ -2,24 +2,30 @@
  * Script for the pages with component's forms
  */
 $(document).ready(function() {
-  var img_cache = {};
-  var default_image = $('#component_image').attr('src');
+  // var img_cache = {};
+  // var img = $('.sel-preview img');
+  // var default_image = img.attr('src');
 
-  $('#component_select').change(function() {
-    var selected = $('#component_select :selected').val();
+  $('[name=component]').change(function() {
+    var selected = $('[name=component]:checked');
+  //   var val = selected.val();
+    var name = selected.next('.component').find('.widget-name').text();
+    var icon = selected.next('.component').find('.widget-icon').html();
 
-    if (img_cache[selected]) {
-      $('#component_image').attr('src', img_cache[selected]);
-      return;
-    }
+    $('.selected-component').removeClass('empty').html(icon+' '+name);
 
-    var url = '/assets/components/' + selected + '.png';
-    $.get(url, function() {
-      $('#component_image').attr('src', url);
-      img_cache[selected] = url;
-    }).fail(function(){
-      $('#component_image').attr('src', default_image);
-    });
+  //   if (img_cache[val]) {
+  //     img.attr('src', img_cache[val]);
+  //     return;
+  //   }
+
+  //   var url = '/assets/components/' + val + '.png';
+  //   $.get(url, function() {
+  //     img.attr('src', url);
+  //     img_cache[val] = url;
+  //   }).fail(function(){
+  //     img.attr('src', default_image);
+  //   });
   });
 
   var place_holder = "#mini_" + $("input#component_place_holder").val();

@@ -3,26 +3,7 @@ en:
     admin:
       roles:
         index:
-          activity_records:     " Activity Records "
-          roles_permissions:    " Roles and Permissions "
-          none_role:            " None Role "
-          new_role:             " New Role "
-          admins:               " Admins "
-          components:           " Components "
-          extensions:           " Extensions "
-          menu_items:           " Menu Items "
-          menus:                " Menus "
-          notifications:        " Notifications "
-          pages:                " Pages "
-          repositories:          " Repositories "
-          repositories_searchs: " Searches "
-          rights:               " Rights "
           roles:                " Roles "
-          statistics:           " Statistics "
-          styles:               " Styles "
-          users:                " Users "
-          skins:                " Themes "
-          none_role:            " No roles. "
         new:
           users:                " Users "
           roles_permissions:    " Roles and Permissions "

@@ -31,7 +31,8 @@
         <% unless s.blank? %>
           <li>
           <%= link_to s, site_url(subdomain: roles.first.site) %>
-          (<%= t('.roles') %>: <%= roles.map{|r| r.name}.join(', ') %>)
+          ( <%= t('.roles') -%>: <%= roles.map{|r| r.name}.join(', ') %> )
+          <%= link_to icon(:briefcase, text: t('.admin')), manage_roles_site_admin_users_url(subdomain: roles.first.site) %>
           </li>
         <% end %>
       <% end %>

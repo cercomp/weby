@@ -24,7 +24,7 @@
     <div class="form-group">
       <label class="required"><abbr title="obrigatório">*</abbr> <%= t('activerecord.attributes.repository.description') %></label>
       <%= text_area_tag 'repository[description]', @repository.description, class: 'form-control', min: 0, required: true %>
-      <p class="help-block"><%= "#{t(".field_required")} #{t(".accessibility_needs")}" %></p>
+      <p class="help-block"><%= "#{t(".field_required")} #{t(".repo_description_hint")}" %></p>
     </div>
   </div>
   <div class="col-md-6">

@@ -39,7 +39,7 @@ $(document).ready(function(){
   });
 
   ///// components sortable
-  var maxLayout = $('#maxi_layout');
+  var maxLayout = $('.maxi_layout');
   $('.order-list').each(function(){
     var list = $(this);
     list.sortable({

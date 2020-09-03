@@ -28,10 +28,11 @@
                   <span class="author"><%= t(".posted_by") %><%= news.user.name_or_login %></span>
                 <% end %>
                 <% if component.show_date %>
+                  <% date = component.which_date == 'created_at' ? news.i18ns.first.created_at : news.i18ns.first.updated_at %>
                   <% if component.date_format == 'short' %>
-                    <time class="date"><%= l(news.i18ns.first.updated_at, format: '%d/%m/%Y') %></time>
+                    <time class="date"><%= l(date, format: '%d/%m/%Y') %></time>
                   <% else %>
-                    <span class="date"><%= t(".posted_on") %><%= localize news.i18ns.first.updated_at, format: :medium %></span>
+                    <span class="date"><%= t(".posted_on") %><%= localize date, format: :medium %></span>
                   <% end %>
                 <% end %>
               </p>

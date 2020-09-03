@@ -3,4 +3,4 @@ Weby::Components.register_component :gov_bar,
                                     site: 'www.cercomp.ufg.br',
                                     email: 'web@cercomp.ufg.br',
                                     aliasable: false,
-                                    icon: 'flag|pt-BR'
+                                    icon: 'flag-br'

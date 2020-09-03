@@ -10,7 +10,7 @@
 <div class="clearfix"></div>
 
 <div class="tabbable">
-  <ul class="nav nav-tabs" id="style-tab">
+  <ul class="nav nav-tabs" id="roles-tab">
     <li class="<%= params["adms"] ? "" : "active" %>" >
       <a href="#users" data-toggle="tab"><%= t(".users") %></a>
     </li>
@@ -34,5 +34,6 @@
       </div>
     </div>
   </div>
-
 </div>
+<% content_for :javascripts, javascript_include_tag('users.enroled') %>
+<% content_for :javascripts, javascript_include_tag('users.enrole') %>

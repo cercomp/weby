@@ -19,6 +19,7 @@ pt-BR:
         global_roles:       " Papéis Globais "
         user_current_sites: " Sites Cadastrados "
         roles:              " Papéis "
+        admin:              " Administração "
       new:
         new_user:           " Novo Usuário "
       form:
@@ -37,22 +38,28 @@ pt-BR:
         email:              " E-mail "
         active:             " Ativo "
         is_admin:           " Admin "
-        roles:              " Papéis "
+        roles:              " Papéis Globais "
         admin:              " Admin "
         manage_roles:       " Gerenciar Papéis "
+        no_global_roles:    "Nenhum papel global"
         none_user:          " Nenhum usuário "
       edit:
         editing_my_account: " Editando Minha Conta "
       enrole:
         none_user:          " Nenhum Usuário "
         enrole_user:        " Relacionar Usuário "
-        role:               " Papéis "
+        new_role:           " Novo Papel "
+        role:               " Papéis globais "
       enroled:
         enroled_user:       " Usuários Relacionados "
-        role:               " Papel "
+        role:               " Papéis globais "
         none_user:          " Nenhum Usuário Relacionado "
       role_form:
         confirm_unrole:     " Tem certeza de que deseja remover todos os papéis de seu próprio usuário? "
       manage_roles:
         users:              " Usuários "
         roles_permissions:  " Permissões e Papéis "
+      user_search:
+        type_to_search:     " Informe o nome, login ou email para pesquisar "
+      search:
+        no_user_found:     " Nenhum usuário encontrado "

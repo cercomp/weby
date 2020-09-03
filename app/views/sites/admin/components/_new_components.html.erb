@@ -1,0 +1,20 @@
+<div class="maxi_level single">
+  <div class="placeholder">
+    <% if (render_title ||= false) %>
+      <div class="placeholder-name"><%= group %></div>
+    <% end %>
+    <ul class="order-list new-component">
+      <% compos.each do |name, compo| %>
+        <label>
+          <%= radio_button_tag :component, name, false, required: true %>
+          <li class="component">
+            <div class="component-sel">
+              <div class="widget-icon"><%= render_component_icon(compo) %></div>
+              <div class="widget-name"><%= compo[:title] %></div>
+            </div>
+          </li>
+        </label>
+      <% end %>
+    </ul>
+  </div>
+</div>

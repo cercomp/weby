@@ -35,8 +35,21 @@ $(document).ready(function() {
     }
   });
   ///toggles sub menu expanded
-  $('.disclose').on('click', function() {
+  $('.disclose').click(function() {
     $(this).closest('li').toggleClass('mjs-nestedSortable-collapsed').toggleClass('mjs-nestedSortable-expanded');
+    return false;
+  });
+  $('.expand-collapse').click(function(){
+    var $this = $(this);
+    var curr_text = $this.html()
+    if ($this.hasClass('collapsed')) {
+      $('.mjs-nestedSortable-branch').addClass('mjs-nestedSortable-expanded').removeClass('mjs-nestedSortable-collapsed');
+      $this.removeClass('collapsed').html($this.data('alt-text')).data('alt-text', curr_text);
+    } else {
+      $('.mjs-nestedSortable-branch').addClass('mjs-nestedSortable-collapsed').removeClass('mjs-nestedSortable-expanded');
+      $this.addClass('collapsed').html($this.data('alt-text')).data('alt-text', curr_text);
+    }
+    return false;
   });
   //// Drop menu item on another menu tab
   $( "#tabs li" ).not('.active').droppable({

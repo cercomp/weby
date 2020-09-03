@@ -17,14 +17,21 @@ module ComponentsHelper
   end
 
   def render_component_icon(compo)
-    return '' if compo.raw_component[:icon].blank?
+    icon = case compo
+    when Component
+      compo.raw_component[:icon]
+    when Hash
+      compo[:icon]
+    end
+    return '' if icon.blank?
 
-    if compo.raw_component[:icon].match(/^fa\|/)
-      fa_icon(compo.raw_component[:icon].gsub('fa|', ''))
-    elsif compo.raw_component[:icon].match(/^flag\|/)
-      ''#flag(compo.raw_component[:icon].gsub('flag|', ''))
+    if icon.match(/^fa\|/)
+      fa_icon(icon.gsub('fa|', ''))
+    elsif icon.match(/^flag-/)
+      ''#flag(icon.gsub('flag|', ''))
+      image_tag("#{icon}.svg")
     else
-      icon(compo.raw_component[:icon])
+      icon(icon)
     end
   end
 
@@ -77,26 +84,23 @@ module ComponentsHelper
     components_html.html_safe
   end
 
-  # Search for the existing components ordering by the I18N name
-  def available_components_sorted
-    options = { 'Weby' => components_as_options(Weby::Components.components(:weby)) }
+  def grouped_available_components
+    components = { 'Weby' => sort_components(Weby::Components.components(:weby)) }
     if (theme_templates = @skin.base_theme&.components_templates).present?
-      options['Templates Weby'] = theme_templates.map do |name, _opt|
-        [t("components.#{name}.name").strip, "components_template|#{name}"]
-      end.sort{ |a, b| a[0] <=> b[0] }
+      components['Templates Weby'] = sort_components(theme_templates).transform_keys{|k| "components_template|#{k}" }
     end
 
     current_site.active_extensions.each do |extension|
-      extension_components = components_as_options(Weby::Components.components(extension.name.to_sym))
-      options[t("extensions.#{extension.name}.name")] = extension_components if extension_components.any?
+      extension_components = sort_components(Weby::Components.components(extension.name.to_sym))
+      components[t("extensions.#{extension.name}.name")] = extension_components if extension_components.any?
     end
 
-    options
+    components
   end
 
   private
-  def components_as_options(components)
-    components.map { |comp, _opt| [t("components.#{comp}.name").strip, comp.to_s] }.sort! { |a, b| a[0] <=> b[0] }
+  def sort_components(components_hash)
+    components_hash.map{|name, obj| [name, obj.merge(title: t("components.#{name}.name").strip)] }.sort_by{|name, obj| obj[:title] }.to_h
   end
 
   # Generate the mini-layout view so  the user can choose the placeholder

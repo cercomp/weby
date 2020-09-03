@@ -16,9 +16,7 @@
       <% if @extension.show_author?  %>
         <span class="author"><%= t("posted_by") %><%= news.user.name_or_login %></span>
       <% end %>
-      <% if @extension.show_created_at? %>
-        <span class="date"><%= t("posted_on") %><%= localize news.created_at, format: :medium %></span>
-      <% end %>
+      <%= news_date_on_list(news) %>
     </div>
     <summary>
       <%= render_user_content news.summary %>

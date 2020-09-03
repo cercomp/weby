@@ -15,12 +15,12 @@ rights:
       name:
         en: List users
         pt-BR: Listar usuários
-      action: manage_roles
+      action: manage_roles search
     change_roles:
       name:
         en: Change user roles
         pt-BR: Mudar papéis de usuários
-      action: change_roles
+      action: change_roles search
   pages:
     index:
       name:

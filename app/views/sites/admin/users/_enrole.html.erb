@@ -1,14 +1,4 @@
-<% if @users_unroled.empty? %>
-  <div class="alert alert-warning">
-    <%= t(".none_user") %>
-  </div>
-<% else %>
-  <%= form_tag change_roles_site_admin_users_path,
-    method: "post",
-    id: "subscribe_users",
-    remote: 'true',
-    update: 'enrole' %>
-
+<%= form_tag change_roles_site_admin_users_path, method: "post", id: "subscribe_users", remote: 'true', update: 'enrole' do %>
   <table class="table">
     <% if check_permission(Sites::Admin::UsersController, [:change_roles]) %>
       <thead>
@@ -19,25 +9,8 @@
       </thead>
       <tbody>
         <tr>
-          <td style="height: 300px; overflow: auto">
-            <div>
-              <%= text_field_tag :users_unroled, params[:users_unroled], placeholder: t("search"),
-                data: {fullname: (@user and @users_unroled.include?(@user)) ? @user.fullname : ''}, class: 'form-control' %>
-            </div>
-            <div style="height: 300px; overflow: auto">
-              <ul id="users_list_roles" class="nav">
-                <% @users_unroled.each do |user| %>
-                  <li>
-                    <div class="checkbox">
-                      <label>
-                        <%= check_box_tag 'user[id][]', user.id, user.id == params[:user_id].to_i %>
-                        <%= user %> <%= "(#{user.login})" if current_user.is_admin? %>
-                      </label>
-                    </div>
-                  </li>
-                <% end %>
-              </ul>
-            </div>
+          <td>
+            <%= render 'admin/users/user_search' %>
           </td>
           <td>
             <ul class="nav">
@@ -65,18 +38,18 @@
           </td>
         </tr>
       </tbody>
-    <% end %>
-    <tfoot>
-      <th>
-        <div class="form-actions">
-          <% if check_permission(Sites::Admin::UsersController, [:change_roles]) %>
-            <%= button_tag t("save"), class: 'btn btn-primary', data: { disable_with: t("please_wait") } %>
-          <% end %>
-          <%= link_to t("back"), :back, class: "btn btn-default" %>
+    <% else %>
+      <tr><td>
+        <div class="alert alert-warning">
+          <%= t('access_denied.access_denied') %>
         </div>
-      </th>
-    </tfoot>
+      </td></tr>
+    <% end %>
   </table>
-</form>
-<% content_for :javascripts, javascript_include_tag('users.enrole') %>
+  <div class="form-actions">
+    <% if check_permission(Sites::Admin::UsersController, [:change_roles]) %>
+      <%= button_tag t("save"), class: 'btn btn-primary', data: { disable_with: t("please_wait") } %>
+    <% end %>
+    <%= link_to t("back"), :back, class: "btn btn-default" %>
+  </div>
 <% end %>

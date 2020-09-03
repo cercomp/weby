@@ -8,6 +8,8 @@ pt-BR:
         date_begin_at: " Data de início "
         date_end_at:   " Data de fim "
         height:        " Altura "
+        category_list: " Categoria "
+        categories:    " Categoria "
         hide:          " Esconder "
         new_tab:       " Abrir em uma nova janela "
         page_id:       " Id da página "

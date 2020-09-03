@@ -39,6 +39,7 @@ li > .menu-res{
 
   > .menu-res {
     padding-left: 5px;
+    margin-top: 5px;
 
     li{
       margin-top: 5px;
@@ -48,6 +49,10 @@ li > .menu-res{
     .menu-res{
       padding-left: 30px;
     }
+  }
+
+  .expand-collapse {
+    margin-left: 10px;
   }
 
   .disclose {
@@ -131,9 +136,11 @@ li > .menu-res{
         flex: 1;
         display: flex;
         overflow: hidden;
+        align-items: flex-end;
 
         > a:first-child {
           white-space: nowrap;
+          font-size: 15px;
         }
       }
 
@@ -148,7 +155,10 @@ li > .menu-res{
       .link-text {
         overflow: hidden;
         text-overflow: ellipsis;
-        max-width: 550px;
+        max-width: 420px;
+        font-style: italic;
+        color: #7a7a7a;
+        margin-left: 10px;
         > span {
           white-space: nowrap;
         }

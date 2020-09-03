@@ -36,10 +36,12 @@ class User < ApplicationRecord
 
   # Returns all user with the name similar to text.
   scope :login_or_name_like, ->(text) {
-    where('LOWER(login) like :text OR
-           LOWER(first_name) like :text OR
-           LOWER(last_name) like :text OR
-           LOWER(email) like :text',  text: "%#{text.try(:downcase)}%")
+    if text.present?
+      where('LOWER(login) like LOWER(:text) OR
+            LOWER(first_name) like LOWER(:text) OR
+            LOWER(last_name) like LOWER(:text) OR
+            LOWER(email) like LOWER(:text)',  text: "%#{text}%")
+    end
   }
 
   # Returns all local_admin users.
@@ -68,10 +70,7 @@ class User < ApplicationRecord
   scope :actives, -> { where('confirmed_at IS NOT NULL') }
 
   scope :global_role, -> {
-    select('DISTINCT users.* ')
-      .joins('INNER JOIN roles_users ON roles_users.user_id = users.id
-              INNER JOIN roles ON roles.id = roles_users.role_id')
-      .where(['roles.site_id IS NULL'])
+    joins(:roles).distinct.where(roles: {site_id: nil})
   }
 
   scope :by_no_site, ->(id) {
@@ -135,7 +134,12 @@ class User < ApplicationRecord
 
   # Returns the user's global roles
   def global_roles
-    roles.where(site_id: nil)
+    #roles.where(site_id: nil)
+    roles.select{|role| role.site_id.blank? }
+  end
+
+  def roles_in site
+    roles.select{|role| role.site_id == site.id }
   end
 
   def record_login user_agent, ip

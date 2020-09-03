@@ -6,55 +6,63 @@ class Admin::UsersController < ApplicationController
   before_action :is_admin, except: [:new, :create]
   respond_to :html, :xml
   helper_method :sort_column
+  serialization_scope :view_context
 
   def change_roles
     params[:role_ids] ||= []
-    user_ids = []
-    user_ids.push(params[:user][:id]).flatten!
-
-    user_ids.each do |user_id|
-      user = User.find(user_id)
-      #  Clean all user's roles in the site
-      user.role_ids.each do |role_id|
-        if @site and @site.roles.map { |r| r.id }.index(role_id)
-          user.role_ids -= [role_id]
+    if params.dig(:user, :id).present?
+      require_role = params[:user][:id].is_a? Array # Require role when param user[id] is array - from enrole form
+      if !require_role || (require_role && params[:role_ids].present?)
+        [params[:user][:id]].flatten.each do |user_id|
+          user = User.find(user_id)
+          # Clean the user's global roles
+          user.roles.delete(user.global_roles)
+          user.role_ids += params[:role_ids]
         end
+      else
+        #flash[:notice] = t('.select_role')
       end
-
-      # If it is an global role
-      unless @site
-        user.roles.where(site_id: nil).each { |r| user.role_ids -= [r.id] }
-      end
-      # NOTE Maybe it is better to use (user.role_ids += params[:role_ids]).uniq
-      user.role_ids += params[:role_ids]
+    else
+      #flash[:notice] = t('.select_user')
     end
-    redirect_to action: 'manage_roles'
+    redirect_to action: "manage_roles"
   end
 
   def manage_roles
-    # Seleciona os todos os usuários que não são administradores
-    #@users = User.no_admin
     # Usuários que possuem papel global e não são administradores
-    @site_users = User.global_role.no_admin.order('users.first_name asc')
-    # Todos os usuários menos os que não são administradores e possuem papeis globais
-    @users_unroled = User.order('users.first_name asc') - (User.admin + User.global_role)
+    @site_users = User.global_role.no_admin.includes(:roles).order('users.first_name asc')
     # Busca os papéis globais
     @roles = Role.globals
     # Quando a edição dos papeis é solicitada
     @user = User.find(params[:user_id]) if params[:user_id]
+
+    #deprecated
+    # Seleciona os todos os usuários que não são administradores
+    #@users = User.no_admin
+    # Todos os usuários menos os que não são administradores e possuem papeis globais
+    # @users_unroled = User.order('users.first_name asc') - (User.admin + User.global_role)
+  end
+
+  def search
+    sort = params[:query].present? ? 'users.first_name asc' : 'users.updated_at desc'
+    users = User.no_admin
+      .where.not(id: User.global_role.pluck(:id)) # users that don't have a global role already
+      .order(sort)
+      .login_or_name_like(params[:query])
+      .limit(60)
+    msg = users.blank? ? t('.no_user_found') : 'ok'
+    render json: users, root: 'users', each_serializer: UserEnroleSerializer, meta: { message: msg }
   end
 
   def index
     @users = User.login_or_name_like(params[:search]).
+      includes(:roles).
       order(sort_column + ' ' + sort_direction).page(params[:page]).
       per((params[:per_page] || per_page_default))
 
-    if @site
-      @users = @users.by_site(@site.id)
-    end
-
-    @roles = Role.select('id, name, theme').
-      group('id, name, theme').order('id')
+    #if @site
+    # @users = @users.by_site(@site.id)
+    #end
   end
 
   def new
