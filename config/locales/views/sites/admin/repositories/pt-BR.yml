@@ -34,14 +34,14 @@ pt-BR:
           repository_alert:    " Atenção, os arquivos enviados ao repositório são públicos, podendo ser referenciados por qualquer site! Arquivos confidenciais não devem ser enviados ao servidor. "
           description:         " Descrição "
           field_required:      " Campo obrigatório! "
-          repo_description_hint: " Informe a descrição textual do conteúdo da imagem para que seja utilizado por leitores de tela e melhore a acessibilidade de seu site. "
+          repo_description_hint: " Informe a descrição textual do conteúdo da imagem para que seja utilizada por leitores de tela e melhore a acessibilidade de seu site. "
           please_wait:         " Por favor, aguarde "
           add_archives:        " Adicionar Arquivos "
           max_file_size:       " Tamanho máximo de arquivo: %{param}MB "
         edit:
           archives:            " Arquivos "
           field_required:      " Campo obrigatório! "
-          repo_description_hint: " Informe a descrição textual do conteúdo da imagem para que seja utilizado por leitores de tela e melhore a acessibilidade de seu site. "
+          repo_description_hint: " Informe a descrição textual do conteúdo da imagem para que seja utilizada por leitores de tela e melhore a acessibilidade de seu site. "
           please_wait:         " Por favor, aguarde "
           crop_image:          " Cortar imagem "
           description:         " Descrição "
@@ -52,7 +52,7 @@ pt-BR:
           height:              " Altura "
           width:               " Largura "
           field_required:      " Campo obrigatório! "
-          repo_description_hint: " Informe a descrição textual do conteúdo da imagem para que seja utilizado por leitores de tela e melhore a acessibilidade de seu site. "
+          repo_description_hint: " Informe a descrição textual do conteúdo da imagem para que seja utilizada por leitores de tela e melhore a acessibilidade de seu site. "
         repo:
           picture:             " Imagem "
         list:
