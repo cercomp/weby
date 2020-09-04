@@ -520,6 +520,7 @@ input[type=checkbox] {
 
 .checkbox label {
   /*padding-left: 5px;*/
+  display: inline-block;
 
   > input {
     margin-left: -20px !important;
