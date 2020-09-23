@@ -63,8 +63,12 @@ class Admin::SitesController < Admin::BaseController
   end
 
   def destroy
-    @site.unscoped_destroy
-    flash[:success] = t('successfully_deleted')
+    begin
+      @site.unscoped_destroy!
+      flash[:success] = t('successfully_deleted')
+    rescue ActiveRecord::RecordNotDestroyed => error
+      flash[:warning] = "#{t('error_destroying_object')}: #{error.record.errors.full_messages.join(', ')}"
+    end
     redirect_to admin_sites_url(subdomain: nil)
   end
 

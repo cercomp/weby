@@ -8,7 +8,7 @@ class Site < ApplicationRecord
   has_many :roles, dependent: :destroy
   has_many :users, through: :roles
   has_many :views, dependent: :delete_all
-  has_many :activity_records, dependent: :destroy
+  has_many :activity_records, dependent: :delete_all
   has_many :menus, -> { order(position: :asc) }, dependent: :destroy
   has_many :menu_items, through: :menus
   has_many :pages, -> { includes(:i18ns) }, dependent: :destroy

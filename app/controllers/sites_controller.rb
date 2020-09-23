@@ -121,8 +121,12 @@ class SitesController < ApplicationController
   end
 
   def destroy_subsite
-    @subsite.unscoped_destroy
-    flash[:success] = t('successfully_deleted')
+    begin
+      @subsite.unscoped_destroy!
+      flash[:success] = t('successfully_deleted')
+    rescue ActiveRecord::RecordNotDestroyed => error
+      flash[:warning] = "#{t('error_destroying_object')}: #{error.record.errors.full_messages.join(', ')}"
+    end
     redirect_to edit_site_admin_path(anchor: 'tab-subsites')
   end
 

@@ -28,4 +28,16 @@ class ApplicationRecord < ActiveRecord::Base
       end
     end
   end
+
+  def unscoped_destroy!
+    Calendar::Event.unscoped do
+      Journal::News.unscoped do
+        Repository.unscoped do
+          Page.unscoped do
+            destroy!
+          end
+        end
+      end
+    end
+  end
 end
