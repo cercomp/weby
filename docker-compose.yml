@@ -1,0 +1,28 @@
+version: '3.1'
+
+services:
+  weby:
+    image: weby
+    container_name: weby_ufg
+    restart: always
+    ports:
+      - 3000:3000
+    depends_on:
+      - webydb
+    volumes:
+      - ".:/weby"
+    environment:
+      PG_DB: weby
+      PG_USER: postgres
+      PG_PASS: postgres
+      PG_HOST: webydb
+      SECRET_KEY_BASE: d42f89e05bca1a10b56952a91911aef765832ae23cb10c9af6729e3ddd3bed56cfadadd50353278890343719bfa3bbc319920573d3a3f812c32bd5b0d3fc6702
+
+  webydb:
+    image: postgres
+    container_name: webydb
+    restart: always
+    volumes:
+      - "./data:/var/lib/postgresql/data"
+    environment:
+      POSTGRES_PASSWORD: postgres
