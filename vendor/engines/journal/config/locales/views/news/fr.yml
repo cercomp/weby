@@ -9,6 +9,7 @@ fr:
         or_search:       "Un des mots"
         placeholder:     "Recherche por palavra-chave"
       show:
+        share:         "Compartilhar"
         list_all:      "Liste tous"
         categories:    "Catégories"
         source:        "Source"

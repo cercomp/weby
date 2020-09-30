@@ -112,7 +112,7 @@ module ApplicationHelper
       alt: menu_item.title,
       title: menu_item.description,
       target: menu_item.new_tab || force_new_tab ? '_blank' :  '',
-      class: url.blank? || url.to_s == '#' || url.match(/^javascript:/) ? 'empty-href' : ''
+      class: [url.blank? || url.to_s == '#' || url.match(/^javascript:/) ? 'empty-href' : nil, translate_class(menu_item)].compact
     )
   end
 

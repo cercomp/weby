@@ -2,6 +2,8 @@ module Journal
   class NewsController < Journal::ApplicationController
     layout :choose_layout
 
+    skip_before_action :verify_authenticity_token, only: :show
+
     helper_method :sort_column
     before_action :check_current_site
     before_action :load_extension, only: [:index, :show]

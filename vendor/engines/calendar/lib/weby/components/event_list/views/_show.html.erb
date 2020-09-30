@@ -22,10 +22,10 @@
                       <span class="event-date"><%= l(event.begin_at, format: '%d') %>/<%= l(event.begin_at, format: '%m') %></span>
                     </p>
                   <% end %>
-                  <p><%= link_to event.name, event_url(event, subdomain: site) %></p>
+                  <p class="<%= translate_class(event) %>"><%= link_to event.name, event_url(event, subdomain: site) %></p>
                   <span class="event-date-hour"><%= l(event.begin_at, format: '%H') %>h</span>
                 <% else %>
-                  <p><%= link_to event.name, event_url(event, subdomain: site) %></p>
+                  <p class="<%= translate_class(event) %>"><%= link_to event.name, event_url(event, subdomain: site) %></p>
                   <% if component.date_format == 'two_dates' %>
                     <%= render partial: 'event_list/views/two_dates', locals: {event: event} %>
                   <% else %>
@@ -41,7 +41,7 @@
         <% @events.each do |event| %>
           <tr>
             <td>
-              <p><%= link_to event.name, event_url(event, subdomain: site) %></p>
+              <p class="<%= translate_class(event) %>"><%= link_to event.name, event_url(event, subdomain: site) %></p>
               <p class="event-dates">
                 <% if component.date_format == 'short' %>
                   <span class="event-date-day"><%= l(event.begin_at, format: '%d') %></span>
@@ -52,7 +52,7 @@
                   <%= period_dates(event, false) -%>
                 <% end %>
               </p>
-              <span class="event-summary"><%= strip_tags(event.information).first(140).html_safe %></span>
+              <span class="event-summary" class="<%= translate_class(event) %>"><%= strip_tags(event.information).first(140).html_safe %></span>
             </td>
           </tr>
         <% end %>
@@ -76,7 +76,7 @@
               <%= weby_file_view(event.image, component.image_size, component.avatar_width, component.avatar_height, {as: "link", url: event_url(event, subdomain: site), link_class: 'news-image'}) %>
             <% end %>
             <header>
-              <h2> <%= link_to event.name, event_url(event, subdomain: site) %> </h2>
+              <h2 class="<%= translate_class(event) %>"> <%= link_to event.name, event_url(event, subdomain: site) %> </h2>
               <div class="event-dates">
                 <% if component.date_format == 'short' %>
                   <span class="event-date-day"><%= l(event.begin_at, format: '%d') %></span>
@@ -88,7 +88,7 @@
                 <% end %>
               </div>
             </header>
-            <summary>
+            <summary class="<%= translate_class(event) %>">
               <% if component.max_char.present? %>
                 <%= raw(event.information.to_s[0..component.max_char.to_i] +
                         (event.information.to_s.size > component.max_char.to_i ? "..." : "")) %>

@@ -1,21 +1,29 @@
-<% locales = @site.locales %>
-<% curr_locale = Locale.find_by(name: current_locale) %>
+<% if component.use_translator? %>
+  <%= hidden_field_tag(:auto_translate_trigger, session[:locale_atr]) if session[:locale_atr].present? %>
+  <% include_component_javascript :javascripts, 'auto_translate' %>
+  <% content_for :stylesheets, stylesheet_link_tag('auto_translate') %>
+  <div id="google_translate_element2"></div>
+  <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2"></script>
+  <% curr_locale = session[:locale_atr].present? ? Locale.new(name: session[:locale_atr]) : Locale.find_by(name: current_locale) %>
+<% else %>
+  <% curr_locale = Locale.find_by(name: current_locale) %>
+<% end %>
 
 <nav class="menu_i18n_component right">
-  <% if component.dropdown  %>
+  <% if component.dropdown?  %>
     <ul class="i18n_dropdown" >
       <li>
-      <%= link_to (component.template == 'code' ? curr_locale.code : flag(curr_locale)), { locale: curr_locale.name } %>
+      <%= locale_link(curr_locale, component.template, auto_translate: component.use_translator?) %>
         <ul class="i18n_submenu">
-          <% locales.select{|loc| loc.name != curr_locale.name }.each do |locale| %>
-            <li><%= link_to (component.template == 'code' ? locale.code : flag(locale)), { locale: locale.name } %></li>
+          <% component.use_locales(current_site).select{|loc| loc.name != curr_locale.name }.each do |locale| %>
+            <li><%= locale_link(locale, component.template, auto_translate: component.use_translator?) %></li>
           <% end %>
         </ul>
       </li>
     </ul>
   <% else %>
-    <% locales.each do |locale| %>
-      <%= link_to (component.template == 'code' ? locale.code : flag(locale)), {locale: locale.name} %>
+    <% component.use_locales(current_site).each do |locale| %>
+      <%= locale_link(locale, component.template, auto_translate: component.use_translator?) %>
     <% end %>
   <% end %>
 </nav>

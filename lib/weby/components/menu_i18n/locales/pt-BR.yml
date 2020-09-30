@@ -7,8 +7,13 @@ pt-BR:
       menu_i18n_component:
         dropdown:           " Desdobrável "
         template:           " Modelo de visualização "
+        use_translator:     " Usar tradução automática "
+        extra_langs:        " Idiomas adicionais "
   menu_i18n:
     views:
       form:
         flag:  " Bandeiras "
         code:  " Código do idioma "
+        translator_hint: "O texto do site é traduzido na visualização pelo usuário, as traduções não são armazenadas."
+        langs:
+          zh-CN: 'Mandarim'

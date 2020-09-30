@@ -7,7 +7,7 @@
   <%= yield :social_code if current_site.page_social_share_pos == 'top' %>
   <header>
     <% if (defined?(as_component) ? as_component[:show_title] : true) %>
-      <h2><%= @page.title %></h2>
+      <%= content_tag :h2, @page.title, class: translate_class(@page) %>
     <% end %>
   </header>
   <% if !defined?(as_component) %>

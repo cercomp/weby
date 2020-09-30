@@ -23,7 +23,7 @@
             <%= weby_file_view(news.image, component.image_size, component.avatar_width, component.avatar_height, {as: "link", url: news.url.present? ? news.url : news_url(news, subdomain: news.site), target: (component.new_tab && news.url.present? ? '_blank' : '_self'), link_class: 'news-image'}) %>
           <% end %>
           <header>
-            <h2> <%= link_to news.title, news.url.present? ? news.url : news_url(news, subdomain: news.site), target: (component.new_tab && news.url.present? ? '_blank' : '_self') %> </h2>
+            <h2 class="<%= translate_class(news) %>"> <%= link_to news.title, news.url.present? ? news.url : news_url(news, subdomain: news.site), target: (component.new_tab && news.url.present? ? '_blank' : '_self') %> </h2>
             <% if component.show_author || component.show_date %>
               <p class="news-details">
                 <% if component.show_author %>
@@ -40,7 +40,7 @@
               </p>
             <% end %>
           </header>
-          <summary>
+          <summary class="<%= translate_class(news) %>">
             <% if component.max_char.present? %>
               <%= render_user_content(news.summary.to_s[0..component.max_char.to_i] +
                       (news.summary.to_s.size > component.max_char.to_i ? "..." : "")) %>

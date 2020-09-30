@@ -6,7 +6,7 @@
   <%= yield :social_code if current_site.event_social_share_pos == 'top' %>
   <header>
     <% if (defined?(as_component) ? as_component[:show_title] : true) %>
-      <h2><%= @event.name %></h2>
+      <%= content_tag :h2, @event.name, class: translate_class(@event) %>
     <% end %>
   </header>
   <%= yield :social_code if current_site.event_social_share_pos == 'middle' %>
@@ -16,7 +16,7 @@
     <%= link_to @event.url, @event.url, target: :_blank %>
     <p class="local">
       <%= label(:event, :local, style: 'display: inline-block;') %>:
-      <%= @event.place %>
+      <%= content_tag :span, @event.place, class: translate_class(@event) %>
     </p>
     <p class="event-period">
       <%= label(:event, :event_period, t(@event.same_date? ? '.event_date' : '.period_event'), style: 'display: inline-block;') %>:
@@ -31,7 +31,7 @@
       <%= @event.email %>
     <% end %>
   <% end %>
-  <div class="body">
+  <div class="body" class="<%= translate_class(@event) %>">
     <%= render_user_content @event.information %>
   </div>
 
