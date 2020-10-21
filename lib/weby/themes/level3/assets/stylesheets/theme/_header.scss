@@ -380,11 +380,14 @@ body > header {
   }
 }
 
+$a11y-padding-v: 7px;
+$a11y-padding-h: 16px;
+
 .accessibility-bar {
   background-color: var(--main-color);
   border-bottom: solid 1px #ececec;
   display: flex;
-  padding: 7px 16px;
+  padding: $a11y-padding-v $a11y-padding-h;
 
   .image_component a {
     margin-left: 30px;
@@ -463,6 +466,21 @@ body > header {
 
   .accessibility_color a, .accessibility_color button {
     background-image: asset-url('level3/ic-contraste-gray.svg');
+  }
+
+  .additional-content {
+    flex: 1;
+    margin: -$a11y-padding-v 0;
+  }
+
+  .ai-link {
+    display: inline-block;
+    margin-top: 2px;
+    margin-left: 5px;
+    img {
+      height: 34px;
+      vertical-align: top;
+    }
   }
 }
 
