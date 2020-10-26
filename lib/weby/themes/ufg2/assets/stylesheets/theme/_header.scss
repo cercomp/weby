@@ -373,11 +373,14 @@ header .social-icon {
   }
 }
 
+$a11y-padding-v: 7px;
+$a11y-padding-h: 16px;
+
 .accessibility-bar {
   background-color: var(--white);
   border-bottom: solid 1px #ececec;
   display: flex;
-  padding: 7px 16px;
+  padding: $a11y-padding-v $a11y-padding-h;
 
   .image_component a {
     margin-left: 30px;
@@ -456,6 +459,21 @@ header .social-icon {
 
   .accessibility_color a, .accessibility_color button {
     background-image: asset-url('ufg2/ic-contraste.png');
+  }
+
+  .additional-content {
+    flex: 1;
+    margin: -$a11y-padding-v 0;
+  }
+
+  .ai-link {
+    display: inline-block;
+    margin-top: 2px;
+    margin-left: 5px;
+    img {
+      height: 34px;
+      vertical-align: top;
+    }
   }
 }
 

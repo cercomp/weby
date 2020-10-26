@@ -16,6 +16,7 @@ es:
         content_anchor:     ' Âncora do conteúdo '
         menu_anchor:        ' Âncora do menu '
         search_anchor:      ' Âncora da busca '
+        information_access_url: 'URL Acesso a Información'
   menu_accessibility:
     views:
       form:
@@ -26,6 +27,7 @@ es:
         extended:           " Extendido "
         default:            " Estándar "
         bar:                " Barra "
+        information_access_hint: "O ícone somente será exibido se este campo estiver preenchido"
       basic:
         increase_font_size: " Aumentar tamaño de letra "
         decrease_font_size: " Disminuir tamaño de letra "

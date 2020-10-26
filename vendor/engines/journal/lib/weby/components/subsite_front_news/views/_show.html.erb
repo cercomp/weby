@@ -45,7 +45,7 @@
         </article>
       </li>
     <% end %>
-  </div>
+  </ul>
   <% if component.link_to_all.present? && component.source == 'selected' %>
     <span class="link_to_all">
       <% site = Site.active.find_by(id: component.sel_site) %>

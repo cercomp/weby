@@ -4,6 +4,8 @@ class ImageComponent < Component
 
   i18n_settings :repository_id, :contrast_repository_id, :title
 
+  #belongs_to :repository, optional: true
+
   alias_method :_new_tab, :new_tab
   def new_tab
     _new_tab.blank? ? false : _new_tab.to_i == 1
@@ -13,4 +15,20 @@ class ImageComponent < Component
   validates :repository_id, presence: true, unless: :default_image
 
   belongs_to :target, polymorphic: true, optional: true
+
+  def repository
+    @repository ||= Repository.find_by(id: repository_id)
+  end
+
+  def target
+    target_type.constantize.find_by(id: target_id) if target_type.present?
+  end
+
+  def html_tag
+    tag = :div
+    if (repository.present? && (repository.image? || repository.svg?)) || default_image.present?
+      tag = :figure if !title.present?
+    end
+    tag
+  end
 end
