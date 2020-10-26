@@ -14,6 +14,7 @@ pt-BR:
         target_id: "Link"
         target: "Link"
         url: "URL"
+        hide_for_sr: "Ocultar para leitores de tela"
         new_tab: "Abrir em uma nova janela"
         html_class:   "Classe HTML"
         title:  "Título"

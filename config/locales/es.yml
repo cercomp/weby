@@ -82,6 +82,7 @@ es:
   login_success:                        " Iniciado la sesión con éxito! "
   logout_success:                       " Él cerró la sesión con éxito! "
   look_changed:                         " Aparência alterada "
+  link_to_file:                         " Enlace al archivo "
 #---M---#
   move:                                 " Mover "
   manage_roles:                         " Gerenciar Papéis "

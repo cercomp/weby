@@ -1,114 +1,12 @@
 <% include_component_javascript :javascripts, 'event_list' %>
 <% quant = component.quant || 5 %>
 <% @events = component.get_events(current_site , params["event_list_page#{component.id}".to_sym]) %>
-<% site = component.source_site || current_site %>
+<% @site = component.source_site || current_site %>
 
-<section class="event_list_component <%= component.template %> <%= component.html_class %>">
+<%= content_tag component.html_tag, class: "event_list_component #{component.template} #{component.html_class}" do %>
   <% if component.template == 'basic' %>
-    <table class="list border fullwidth zebra">
-      <tr>
-        <th>
-          <%= link_to(component.label.present? ? component.label : t(".events"), events_url(subdomain: site, direction: 'desc', sort: 'calendar_events.begin_at')) %>
-        </th>
-      </tr>
-      <% if component.group_by %>
-        <% @events.group_by{|ev| ev.begin_at.to_date }.each do |date, events| %>
-          <% events.each.with_index do |event, idx| %>
-            <tr>
-              <td>
-                <% if component.date_format == 'short' %>
-                  <% if idx == 0 %>
-                    <p class="event-dates">
-                      <span class="event-date"><%= l(event.begin_at, format: '%d') %>/<%= l(event.begin_at, format: '%m') %></span>
-                    </p>
-                  <% end %>
-                  <p class="<%= translate_class(event) %>"><%= link_to event.name, event_url(event, subdomain: site) %></p>
-                  <span class="event-date-hour"><%= l(event.begin_at, format: '%H') %>h</span>
-                <% else %>
-                  <p class="<%= translate_class(event) %>"><%= link_to event.name, event_url(event, subdomain: site) %></p>
-                  <% if component.date_format == 'two_dates' %>
-                    <%= render partial: 'event_list/views/two_dates', locals: {event: event} %>
-                  <% else %>
-                    <%= period_dates(event, false) -%>
-                  <% end %>
-                <% end %>
-                <span class="event-summary"><%= strip_tags(event.information).first(140).html_safe %></span>
-              </td>
-            </tr>
-          <% end %>
-        <% end %>
-      <% else %>
-        <% @events.each do |event| %>
-          <tr>
-            <td>
-              <p class="<%= translate_class(event) %>"><%= link_to event.name, event_url(event, subdomain: site) %></p>
-              <p class="event-dates">
-                <% if component.date_format == 'short' %>
-                  <span class="event-date-day"><%= l(event.begin_at, format: '%d') %></span>
-                  <span class="event-date-month"><%= l(event.begin_at, format: '%b') %></span>
-                <% elsif component.date_format == 'two_dates' %>
-                  <%= render partial: 'event_list/views/two_dates', locals: {event: event} %>
-                <% else %>
-                  <%= period_dates(event, false) -%>
-                <% end %>
-              </p>
-              <span class="event-summary" class="<%= translate_class(event) %>"><%= strip_tags(event.information).first(140).html_safe %></span>
-            </td>
-          </tr>
-        <% end %>
-      <% end %>
-    </table>
-    <%= paginate @events, param_name: "event_list_page#{component.id}", remote: true, comp_url: component.persisted? ? main_app.site_component_path(component.id) : nil, page_links: true %>
-
+    <%= render partial: 'event_list/views/table', locals: {component: component} %>
   <% elsif component.template == 'front' %>
-
-    <% show_all_link = events_url(subdomain: site) %>
-    <% if component.label.present? %>
-      <div class="event_list_title">
-        <%= link_to component.label.camelize, show_all_link %>
-      </div>
-    <% end %>
-    <section id="events">
-      <% @events.each do |event| %>
-        <li style="list-style-type:none;">
-          <article>
-            <% unless event.image.nil? %>
-              <%= weby_file_view(event.image, component.image_size, component.avatar_width, component.avatar_height, {as: "link", url: event_url(event, subdomain: site), link_class: 'news-image'}) %>
-            <% end %>
-            <header>
-              <h2 class="<%= translate_class(event) %>"> <%= link_to event.name, event_url(event, subdomain: site) %> </h2>
-              <div class="event-dates">
-                <% if component.date_format == 'short' %>
-                  <span class="event-date-day"><%= l(event.begin_at, format: '%d') %></span>
-                  <span class="event-date-month"><%= l(event.begin_at, format: '%b') %></span>
-                <% elsif component.date_format == 'two_dates' %>
-                  <%= render partial: 'event_list/views/two_dates', locals: {event: event} %>
-                <% else %>
-                  <%= period_dates(event, false) -%>
-                <% end %>
-              </div>
-            </header>
-            <summary class="<%= translate_class(event) %>">
-              <% if component.max_char.present? %>
-                <%= raw(event.information.to_s[0..component.max_char.to_i] +
-                        (event.information.to_s.size > component.max_char.to_i ? "..." : "")) %>
-              <% else  %>
-                <%= raw event.information %>
-              <% end %>
-            </summary>
-            <% if component.read_more %>
-              <p class="read_more"><%= link_to t(".read_more"), event_url(event, subdomain: site) %></p>
-            <% end %>
-            <div class="clear clearfix"> </div>
-            <div class="control">
-              <%= link_to weby_icon('edit', t("edit")), edit_admin_event_path(event) if component.source != 'selected' && check_permission(Calendar::Admin::EventsController, [:edit]) %>
-            </div>
-          </article>
-        </li>
-      <% end %>
-      <div class="clear clearfix"> </div>
-    </section>
-    <%= paginate @events, param_name: "event_list_page#{component.id}", remote: true, comp_url: component.persisted? ? main_app.site_component_path(component.id) : nil, page_links: true %>
-    <span class="link_to_all"><%= link_to component.link_to_all, show_all_link if component.link_to_all.present? %></span>
+    <%= render partial: 'event_list/views/list',  locals: {component: component} %>
   <% end %>
-</section>
+<% end %>

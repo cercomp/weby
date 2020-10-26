@@ -28,6 +28,7 @@
           <%= f.component_i18n_input locale, :label_font_size, :as => :string %>
         <% end %>
       </span>
+      <%= f.input :information_access_url, as: :url, hint: t('.information_access_hint') %>
     </div>
     <div class="tab-pane" id="extended">
       <%= f.input :extended_accessibility, wrapper: :checkbox, as: :boolean %>

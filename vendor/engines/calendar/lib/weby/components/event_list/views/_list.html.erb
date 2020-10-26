@@ -1,0 +1,48 @@
+<% show_all_link = events_url(subdomain: @site) %>
+<% if component.label.present? %>
+  <h2 class="event_list_title">
+    <%= link_to component.label.camelize, show_all_link %>
+  </h2>
+<% end %>
+<ul id="events">
+  <% @events.each do |event| %>
+    <li style="list-style-type:none;">
+      <article>
+        <% unless event.image.nil? %>
+          <%= weby_file_view(event.image, component.image_size, component.avatar_width, component.avatar_height, {as: "link", url: event_url(event, subdomain: @site), link_class: 'news-image'}) %>
+        <% end %>
+        <header>
+          <h3 class="<%= translate_class(event) %>"><%= link_to event.name, event_url(event, subdomain: @site) %></h3>
+          <%= content_tag :div, class: 'event-dates', title: period_dates(event, false), aria: {label: period_dates(event, false)} do %>
+            <% if component.date_format == 'short' %>
+              <span class="event-date-day"><%= l(event.begin_at, format: '%d') %></span>
+              <span class="event-date-month"><%= l(event.begin_at, format: '%b') %></span>
+            <% elsif component.date_format == 'two_dates' %>
+              <%= render partial: 'event_list/views/two_dates', locals: {event: event} %>
+            <% else %>
+              <%= period_dates(event, false) -%>
+            <% end %>
+          <% end %>
+        </header>
+        <summary class="<%= translate_class(event) %>">
+          <% if component.max_char.present? %>
+            <%= raw(event.information.to_s[0..component.max_char.to_i] +
+                    (event.information.to_s.size > component.max_char.to_i ? "..." : "")) %>
+          <% else  %>
+            <%= raw event.information %>
+          <% end %>
+        </summary>
+        <% if component.read_more %>
+          <p class="read_more"><%= link_to t(".read_more"), event_url(event, subdomain: @site) %></p>
+        <% end %>
+        <div class="clear clearfix"> </div>
+        <div class="control">
+          <%= link_to weby_icon('edit', t("edit")), edit_admin_event_path(event) if component.source != 'selected' && check_permission(Calendar::Admin::EventsController, [:edit]) %>
+        </div>
+      </article>
+    </li>
+  <% end %>
+  <div class="clear clearfix"> </div>
+</ul>
+<%= paginate @events, param_name: "event_list_page#{component.id}", remote: true, comp_url: component.persisted? ? main_app.site_component_path(component.id) : nil, page_links: true %>
+<span class="link_to_all"><%= link_to component.link_to_all, show_all_link if component.link_to_all.present? %></span>

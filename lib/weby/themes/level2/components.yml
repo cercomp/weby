@@ -48,14 +48,14 @@ top:
       alias: Logo Unidade
     - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://www.ufg.br",
         :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"ufg-logo",
-        :default_image=>"level2/marca-ufg.svg", :contrast_default_image=>"level2/marca-ufg-white.svg"}'
+        :default_image=>"level2/marca-ufg.svg", :default_image_alt=>"Logo da UFG", :contrast_default_image=>"level2/marca-ufg-white.svg"}'
       name: image
       position: 3
       publish: true
       alias: Logo - UFG
     - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"",
         :new_tab=>"0", :html_class=>"social-toggle", :default_image=>"level2/ic-social.svg",
-        :title=>{"pt-BR"=>"", "en"=>""}}'
+        :title=>{"pt-BR"=>"", "en"=>""}, :hide_for_sr=>"1"}'
       name: image
       position: 4
       publish: true
@@ -68,49 +68,49 @@ top:
       children:
       - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://twitter.com",
           :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"social-icon",
-          :default_image=>"level2/ic-twitter.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
+          :default_image=>"level2/ic-twitter.svg", :title=>{"pt-BR"=>"", "en"=>""}, :hide_for_sr=>"1"}'
         name: image
         position: 1
         publish: true
         alias: twitter
       - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://www.facebook.com",
           :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"social-icon",
-          :default_image=>"level2/ic-facebook.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
+          :default_image=>"level2/ic-facebook.svg", :title=>{"pt-BR"=>"", "en"=>""}, :hide_for_sr=>"1"}'
         name: image
         position: 2
         publish: true
         alias: facebook
       - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://www.youtube.com/",
           :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"social-icon",
-          :default_image=>"level2/ic-youtube.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
+          :default_image=>"level2/ic-youtube.svg", :title=>{"pt-BR"=>"", "en"=>""}, :hide_for_sr=>"1"}'
         name: image
         position: 3
         publish: true
         alias: Youtube
       - settings: '{:size=>"", :width=>"", :height=>"", :url=>"http://instagram.com",
           :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"social-icon",
-          :default_image=>"level2/ic-instagram.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
+          :default_image=>"level2/ic-instagram.svg", :title=>{"pt-BR"=>"", "en"=>""}, :hide_for_sr=>"1"}'
         name: image
         position: 4
         publish: true
         alias: Instagram
       - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://plus.google.com",
           :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"social-icon",
-          :default_image=>"level2/ic-googleplus.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
+          :default_image=>"level2/ic-googleplus.svg", :title=>{"pt-BR"=>"", "en"=>""}, :hide_for_sr=>"1"}'
         name: image
         position: 5
         publish: true
         alias: Google Plus
       - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://radio.ufg.br/p/8051-radio-ao-vivo",
           :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"social-icon",
-          :default_image=>"level2/ic-radio.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
+          :default_image=>"level2/ic-radio.svg", :title=>{"pt-BR"=>"", "en"=>""}, :hide_for_sr=>"1"}'
         name: image
         position: 6
         publish: true
         alias: Rádio UFG
       - settings: '{:size=>"", :width=>"", :height=>"", :url=>"http://www.tvufg.org.br",
           :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"social-icon",
-          :default_image=>"level2/ic-tv.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
+          :default_image=>"level2/ic-tv.svg", :title=>{"pt-BR"=>"", "en"=>""}, :hide_for_sr=>"1"}'
         name: image
         position: 7
         publish: true
@@ -136,7 +136,7 @@ top:
         alias: Logo menu
       - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://www.ufg.br",
           :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"menu-logo-ufg",
-          :default_image=>"level2/marca-ufg-white.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
+          :default_image=>"level2/marca-ufg-white.svg", :default_image_alt=>"Logo da UFG", :title=>{"pt-BR"=>"", "en"=>""}}'
         name: image
         position: 2
         publish: true
@@ -158,6 +158,12 @@ top:
         name: search_box
         position: 5
         publish: true
+      - settings: '{:html_class=>"search-toggle", :put_at_end=>"0", :body=>{"pt-BR"=>"<button
+          type=\"button\" title=\"Abrir formulário de pesquisa\" data-alt-title=\"Fechar formulário de pesquisa\"></button>", "en"=>"", "es"=>""}}'
+        name: blank
+        position: 6
+        publish: true
+        alias: Botão pesquisa - abre/fecha
 - settings: '{:label=>{"pt-BR"=>"", "en"=>""}, :home_label=>{"pt-BR"=>"Início", "en"=>"Home"}}'
   name: breadcrumb
   position: 2
@@ -353,7 +359,7 @@ bottom:
     - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://www.ufg.br",
         :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"ufg-logo",
         :default_image=>"level2/marca-ufg.svg", :contrast_default_image=>"level2/marca-ufg-white.svg",
-        :title=>{"pt-BR"=>"", "en"=>""}}'
+        :title=>{"pt-BR"=>"", "en"=>""}, :default_image_alt=>"Logo da UFG"}'
       name: image
       position: 2
       publish: true
@@ -386,7 +392,7 @@ bottom:
     children:
     - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://sic.ufg.br",
         :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"", :default_image=>"level2/marca-ai.png",
-        :contrast_default_image=>"level2/marca-ai-white.png", :title=>{"pt-BR"=>"", "en"=>""}}'
+        :contrast_default_image=>"level2/marca-ai-white.png", :hide_for_sr=>"1", :title=>{"pt-BR"=>"", "en"=>""}, :default_image_alt=>"Acesso à Informação"}'
       name: image
       position: 1
       publish: true

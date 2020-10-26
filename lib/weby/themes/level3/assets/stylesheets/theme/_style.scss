@@ -210,7 +210,7 @@ div, section, input {
 .front_news_component:nth-of-type(odd), .fixed-menus:nth-of-type(odd) {
   background-color: var(--white);
 
-  .menu_component > menu {
+  .menu_component > .menu-res {
     background-color: var(--light-grey);
   }
 }
@@ -387,7 +387,7 @@ summary em, summary em * {
       color: var(--green);
     }
 
-    h2 {
+    h2, h3 {
       margin: 0;
       a {
         text-decoration: none;
@@ -468,7 +468,7 @@ summary em, summary em * {
     flex-wrap: wrap;
     justify-content: space-evenly;
 
-    > section {
+    > .components_group_component {
       margin-bottom: 60px;
       max-width: 300px;
     }
@@ -588,7 +588,7 @@ summary em, summary em * {
   }
 
   article {
-    h2 {
+    h2, h3 {
       margin: 0;
       a {
         font-family: Lato;
@@ -683,7 +683,7 @@ summary em, summary em * {
       margin-right: 0;
     }
 
-    > menu {
+    > .menu-res {
       border-radius: 4px;
       box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
       background-color: var(--white);

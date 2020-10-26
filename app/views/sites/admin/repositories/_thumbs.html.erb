@@ -7,7 +7,7 @@
   <% @repositories.each do |repository| %>
     <div class="col-md-3">
       <div class="thumbnail">
-        <%= weby_file_view(repository, :t, 160, nil, target: '_blank', title: repository.description) %>
+        <%= weby_file_view(repository, :t, 160, nil, target: '_blank') %>
         <div class="caption">
           <p style="overflow: hidden; white-space: nowrap; height: 20px; text-overflow: ellipsis;"><%= repository.title %></p>
           <% if repository.image? && check_permission(Sites::Admin::RepositoriesController, [:crop]) %>

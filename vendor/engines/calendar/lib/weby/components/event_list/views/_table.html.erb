@@ -1,0 +1,56 @@
+<table class="list border fullwidth zebra">
+  <tr>
+    <th>
+      <%= link_to(component.label.present? ? component.label : t(".events"), events_url(subdomain: @site, direction: 'desc', sort: 'calendar_events.begin_at')) %>
+    </th>
+  </tr>
+  <% if component.group_by %>
+    <% @events.group_by{|ev| ev.begin_at.to_date }.each do |date, events| %>
+      <% events.each.with_index do |event, idx| %>
+        <tr>
+          <td>
+            <% if component.date_format == 'short' %>
+              <% if idx == 0 %>
+                <p class="event-dates">
+                  <span class="event-date" aria-label="<%= "#{l(event.begin_at, format: '%d')}/#{l(event.begin_at, format: '%m')}" %>"><%= "#{l(event.begin_at, format: '%d')}/#{l(event.begin_at, format: '%m')}" %></span>
+                </p>
+              <% end %>
+              <p class="<%= translate_class(event) %>"><%= link_to event.name, event_url(event, subdomain: @site) %></p>
+              <span class="event-date-hour" aria-label="<%= "#{l(event.begin_at, format: '%H')}h" %>"><%= "#{l(event.begin_at, format: '%H')}h" %></span>
+            <% else %>
+              <p class="<%= translate_class(event) %>"><%= link_to event.name, event_url(event, subdomain: @site) %></p>
+              <span aria-label="<%= period_dates(event, false) %>">
+                <% if component.date_format == 'two_dates' %>
+                  <%= render partial: 'event_list/views/two_dates', locals: {event: event} %>
+                <% else %>
+                  <%= period_dates(event, false) -%>
+                <% end %>
+              </span>
+            <% end %>
+            <span class="event-summary"><%= strip_tags(event.information).first(140).html_safe %></span>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  <% else %>
+    <% @events.each do |event| %>
+      <tr>
+        <td>
+          <p class="<%= translate_class(event) %>"><%= link_to event.name, event_url(event, subdomain: @site) %></p>
+          <%= content_tag :p, class: 'event-dates', title: period_dates(event, false), aria: {label: period_dates(event, false)} do %>
+            <% if component.date_format == 'short' %>
+              <span class="event-date-day"><%= l(event.begin_at, format: '%d') %></span>
+              <span class="event-date-month"><%= l(event.begin_at, format: '%b') %></span>
+            <% elsif component.date_format == 'two_dates' %>
+              <%= render partial: 'event_list/views/two_dates', locals: {event: event} %>
+            <% else %>
+              <%= period_dates(event, false) -%>
+            <% end %>
+          <% end %>
+          <span class="event-summary" class="<%= translate_class(event) %>"><%= strip_tags(event.information).first(140).html_safe %></span>
+        </td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
+<%= paginate @events, param_name: "event_list_page#{component.id}", remote: true, comp_url: component.persisted? ? main_app.site_component_path(component.id) : nil, page_links: true %>

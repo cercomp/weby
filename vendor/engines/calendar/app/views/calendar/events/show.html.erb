@@ -6,7 +6,7 @@
   <%= yield :social_code if current_site.event_social_share_pos == 'top' %>
   <header>
     <% if (defined?(as_component) ? as_component[:show_title] : true) %>
-      <%= content_tag :h2, @event.name, class: translate_class(@event) %>
+      <%= content_tag :h1, @event.name, class: translate_class(@event) %>
     <% end %>
   </header>
   <%= yield :social_code if current_site.event_social_share_pos == 'middle' %>

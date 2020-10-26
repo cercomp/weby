@@ -16,7 +16,7 @@
       <% @repositories.each do |repository| %>
         <tr>
           <td class="center sel-item"><%= check_box_tag :select_item, repository.id, false %></td>
-          <td><%= weby_file_view(repository, :t, "64", "64", target: '_blank', title: repository.description) %></td>
+          <td><%= weby_file_view(repository, :t, "64", "64", target: '_blank') %></td>
           <td>
             <% if check_permission(Sites::Admin::RepositoriesController, [:edit]) %>
               <%= link_to "#{repository.title} #{content_tag(:span, icon(:edit), class: 'oh-c-i')}".html_safe, edit_site_admin_repository_path(repository) %>

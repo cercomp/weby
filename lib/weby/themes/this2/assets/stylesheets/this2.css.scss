@@ -2,7 +2,7 @@
 body { background: transparent; }
 
 /* To work with HTML5 more easy */
-article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary { display: block; }
+article, aside, canvas, details, figcaption, figure, footer, header, hgroup, .menu-res, nav, section, summary { display: block; }
 
 /* Define basic style to layout */
 html { background: white; }
@@ -26,11 +26,11 @@ footer {
 i{ font-family: FontAwesome !important; }
 
 /* Define footer information */
-footer section#info {
+footer #info {
   padding: 0 0 5px 5px;
   clear: both; }
 
-footer section#info p {
+footer #info p {
   margin: 0; }
 
 /* Define area of top image */
@@ -45,59 +45,59 @@ header > nav {
 footer > nav {
   padding: 5px 5px 5px 0px; }
 
-header nav menu,
-footer nav menu {
+header nav .menu-res,
+footer nav .menu-res {
   list-style: none outside none;
   padding: 0;
   margin: 0; }
 
-header nav menu li,
-footer nav menu li {
+header nav .menu-res li,
+footer nav .menu-res li {
   padding: 0 0 0 5px;
   margin-right: 2px;
   float: left;
   border: 1px solid silver; }
 
-header nav menu li:hover,
-footer nav menu li:hover {
+header nav .menu-res li:hover,
+footer nav .menu-res li:hover {
   position: relative;
   z-index: 100;
   background-color: #FF0000; }
 
-header nav menu li:hover > menu,
-footer nav menu li:hover > menu {
+header nav .menu-res li:hover > .menu-res,
+footer nav .menu-res li:hover > .menu-res {
   left: -21px;
   z-index: -1; }
 
-header nav menu li:hover menu li:hover > a,
-footer nav menu li:hover menu li:hover > a {
+header nav .menu-res li:hover .menu-res li:hover > a,
+footer nav .menu-res li:hover .menu-res li:hover > a {
   white-space: normal;
   height: auto; }
 
-header nav menu li:hover menu li:hover > menu,
-footer nav menu li:hover menu li:hover > menu {
+header nav .menu-res li:hover .menu-res li:hover > .menu-res,
+footer nav .menu-res li:hover .menu-res li:hover > .menu-res {
   left: 105px;
   z-index: 100; }
 
-header nav menu li menu,
-footer nav menu li menu {
+header nav .menu-res li .menu-res,
+footer nav .menu-res li .menu-res {
   position: absolute;
   left: -9999px;
   margin-left: 20px;
   width: 105px; }
 
-header nav menu li menu li,
-footer nav menu li menu li {
+header nav .menu-res li .menu-res li,
+footer nav .menu-res li .menu-res li {
   float: none;
 }
 
-header nav menu li menu li menu,
-footer nav menu li menu li menu {
+header nav .menu-res li .menu-res li .menu-res,
+footer nav .menu-res li .menu-res li .menu-res {
   margin-left: 0px;
   margin-top: 0px; }
 
-header nav menu li a,
-footer nav menu li a {
+header nav .menu-res li a,
+footer nav .menu-res li a {
   background: #fff;
   display: block;
   line-height: 25px;
@@ -105,29 +105,29 @@ footer nav menu li a {
   padding-left: 5px;
   padding-right: 14px; }
 
-header nav menu li.sub > a,
-footer nav menu li.sub > a {
+header nav .menu-res li.sub > a,
+footer nav .menu-res li.sub > a {
   background: url("/assets/arrow_collapsed.png") no-repeat scroll #fff;
   background-position: right center; }
 
-header nav > menu > li.sub > a {
+header nav > .menu-res > li.sub > a {
   background: url("/assets/arrow_expanded.png") no-repeat scroll #fff;
   background-position: right center; }
 
-footer nav > menu > li.sub > a {
+footer nav > .menu-res > li.sub > a {
   background: url("/assets/arrow_expanded_up.png") no-repeat scroll #fff;
   background-position: right center; }
 
-header nav menu li:hover > menu {
+header nav .menu-res li:hover > .menu-res {
   top: 26px; }
 
-header nav menu li:hover menu li:hover > menu {
+header nav .menu-res li:hover .menu-res li:hover > .menu-res {
   top: -1px; }
 
-footer nav menu li:hover > menu {
+footer nav .menu-res li:hover > .menu-res {
   bottom: 26px; }
 
-footer nav menu li:hover menu li:hover > menu {
+footer nav .menu-res li:hover .menu-res li:hover > .menu-res {
   bottom: -1px; }
 
 
@@ -139,7 +139,7 @@ aside
   .menu_component
   {
     // global to all menus (extended or dropdown)
-    menu
+    .menu-res
     {
       margin: 0;
       padding: 0;
@@ -166,7 +166,7 @@ aside
         {
           background-color: #DDD; // TODO intrusive, remove
         }
-        menu
+        .menu-res
         {
           position: absolute;
           width: 155px;
@@ -176,7 +176,7 @@ aside
         &.sub
         {
           > a { background-repeat: no-repeat; }
-          &:hover > menu { z-index: 99999; }
+          &:hover > .menu-res { z-index: 99999; }
         }
       }
     }
@@ -197,8 +197,8 @@ aside
           background-image: url("/assets/arrow_collapsed_right.png");
           background-position: left center;
         }
-        &.sub > menu { left: -99999px; }
-        &.sub:hover > menu { left: -155px; }
+        &.sub > .menu-res { left: -99999px; }
+        &.sub:hover > .menu-res { left: -155px; }
       }
     }
   }
@@ -217,8 +217,8 @@ aside
           background-image: url("/assets/arrow_collapsed.png");
           background-position: right center;
         }
-        &.sub > menu { left: -99999px; }
-        &.sub:hover > menu
+        &.sub > .menu-res { left: -99999px; }
+        &.sub:hover > .menu-res
         {
           left: inherit;
           right: -155px;
@@ -229,13 +229,13 @@ aside
 }
 
 /* Define content area */
-section#content {
+#content {
   width: auto;
   padding: 9px;
   padding-top: 0;
   overflow: auto; }
 
-section#content > article {
+#content > article {
   padding: 9px;
   border: 1px solid #EEE;
   margin: 0px 3px;
@@ -249,41 +249,42 @@ section#content > article {
   }
 }
 
-section#content section#news {
+#content #news {
 	width: 99%;
   font-family: Verdana;
   font-weight: Normal;
   padding-bottom: 5px; }
 
-section#content section#news h1 {
+#content #news h1 {
   font-size: 140%;
   color: #1C1C1C; }
 
-section#content section#news h2 {
+#content #news h3 {
   line-height: 100%;
   color: #2F4F4F;
   font-size: 120%; }
 
-section#content section#news h3 {
-  font-size: 100%;
-  line-height: 100%;
-  color: #696969; }
+#content #news h3 {
+  // font-size: 100%;
+  // line-height: 100%;
+  // color: #696969;
+}
 
-section#content section#news li:nth-child(odd) {
+#content #news li:nth-child(odd) {
   border-bottom: 1px dotted #DDD;
   padding: 10px 0;
   text-align: left; }
 
-section#content section#news li:nth-child(odd) a img {
+#content #news li:nth-child(odd) a img {
   float: left;
   padding-right: 15px; }
 
-section#content section#news li:nth-child(even) {
+#content #news li:nth-child(even) {
   border-bottom: 1px dotted #DDD;
   padding: 10px 0;
   text-align: right; }
 
-section#content section#news li:nth-child(even) a img {
+#content #news li:nth-child(even) a img {
   float: right;
   padding-left: 15px; }
 
@@ -417,7 +418,7 @@ label.required abbr { color: red; }
     display: block;
   }
   /* Responsive Menus */
-  menu.dropdown li.sub:hover > menu {
+  .menu-res.dropdown li.sub:hover > .menu-res {
     top: 0;
     left: 0
   }

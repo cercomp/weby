@@ -16,6 +16,7 @@ en:
         content_anchor:     ' Content anchor '
         menu_anchor:        ' Menu anchor '
         search_anchor:      ' Search anchor '
+        information_access_url: 'Information Access URL'
   menu_accessibility:
     views:
       form:
@@ -26,6 +27,7 @@ en:
         extended:           " Extended "
         default:            " Default "
         bar:                " Bar "
+        information_access_hint: "The image will only be displayed if this URL is present"
       basic:
         increase_font_size: " Increase font size "
         decrease_font_size: " Decrease font size "

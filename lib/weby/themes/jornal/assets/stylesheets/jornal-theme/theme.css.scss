@@ -38,7 +38,7 @@ $content-max-width: 960px;
   margin-bottom: 5px;
 }
 
-section.redesocial section.image_component {
+.redesocial .image_component {
   position: relative;
   width: 30px;
   height: 30px;
@@ -188,27 +188,27 @@ header .container_jornal{
   margin: 0 auto;
 }
 
-.menu_component menu {
+.menu_component .menu-res {
   list-style: none;
 }
 
-.menu_component menu a {
+.menu_component .menu-res a {
   text-decoration: none;
   font-size: 1em !important;
   font-weight: normal;
   color: #000000 !important;
 }
 
-.menu_component menu a::after {
+.menu_component .menu-res a::after {
   content: "\00a0 \00a0 \00a0 \00a0 |";
 }
 
-.menu_component menu a:HOVER {
+.menu_component .menu-res a:HOVER {
   text-decoration: none;  
   color: #ffffff !important;
 }
 
-.menu_component menu li {
+.menu_component .menu-res li {
   display: inline-block;
   padding: 10px 20px 10px 0px;
   float: none;
@@ -467,7 +467,7 @@ header .container_jornal{
     color: #403f3f;
     width: 100%;
   }
-  h2{  
+  h2, h3{  
     color: #403f3f !important;    
     width: 70%;
     font-size: 16px;
@@ -1190,11 +1190,11 @@ button.close {
     width: 100% !important;
   }
 
-  .menu_component menu a {    
+  .menu_component .menu-res a {    
     font-size: 0.8em !important;    
   }
 
-  .menu_component menu li {  
+  .menu_component .menu-res li {  
     padding: 6px 8px;  
   }
 
@@ -1245,11 +1245,11 @@ button.close {
     width: 100% !important;
   }
 
-  .menu_component menu a {    
+  .menu_component .menu-res a {    
     font-size: 0.85em !important;    
   }
 
-  .menu_component menu li {  
+  .menu_component .menu-res li {  
     padding: 6px 8px;  
   }
 
@@ -1298,11 +1298,11 @@ button.close {
     width: 50% !important;
   }
 
-  .menu_component menu a {    
+  .menu_component .menu-res a {    
     font-size: 0.9em !important;    
   }
 
-  .menu_component menu li {  
+  .menu_component .menu-res li {  
     padding: 10px 10px;  
   }
 
@@ -1330,11 +1330,11 @@ button.close {
     width: 50% !important;
   }
 
-  .menu_component menu a {    
+  .menu_component .menu-res a {    
     font-size: 1em !important;    
   }
 
-  .menu_component menu li {  
+  .menu_component .menu-res li {  
     padding: 10px 15px;  
   }
 }

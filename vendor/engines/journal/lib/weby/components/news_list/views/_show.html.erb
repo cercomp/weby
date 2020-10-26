@@ -1,7 +1,7 @@
 <% include_component_javascript :javascripts, 'news_list' %>
 <% # Pega as noticias ordenadas por data de inicio decrescente %>
 <% @news_list = component.news(current_site, params[:news_list_page]) %>
-<section class="news_list_component">
+<%= content_tag component.html_tag, class: 'news_list_component' do %>
   <table class="list border fullwidth zebra">
     <tr>
       <th> <%= link_to(component.title_for_link || t(".last_news"), news_index_path(direction: 'desc', sort: 'journal_news.created_at', tags: component.category)) %> </th>
@@ -11,7 +11,7 @@
           <tr>
             <td>
               <% if component.show_image && news.image %>
-                <%= weby_file_view(news.image, :t, component.image_size, nil, {as: "link", url: news.url.present? ? news.url : news_url(news, subdomain: news.site), style: "float: right; margin-left: 7px;", target: (component.new_tab && news.url.present? ? '_blank' : '_self')}) %>
+                <%= weby_file_view(news.image, :t, component.image_size, nil, {as: "link", url: news.url.present? ? news.url : news_url(news, subdomain: news.site), style: "float: right; margin-left: 7px;", target: (component.new_tab && news.url.present? ? '_blank' : '_self'), title: news.title}) %>
               <% end %>
               <p class="title <%= translate_class(news) %>"><%= link_to news.title, news.url.present? ? news.url : news_url(news, subdomain: news.site), target: (component.new_tab && news.url.present? ? '_blank' : '_self') %></p>
               <% if component.show_date %><p class="news-date"><%= l(news.created_at, format: component.date_format) %></p><% end %>
@@ -21,4 +21,4 @@
     <% end %>
   </table>
   <%= paginate @news_list, param_name: 'news_list_page', remote: true, comp_url: component.persisted? ? main_app.site_component_path(component.id) : nil, page_links: true %>
-</section>
+<% end %>

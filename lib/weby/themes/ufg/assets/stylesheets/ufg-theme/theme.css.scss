@@ -54,7 +54,7 @@ a {
 }
 /* Não resetar os artigos */
 /* Label - remover underline dos links */
-span.label a, article header h2 a {
+span.label a, article header h1 a, article header h2 a, article header h3 a {
   text-decoration: none !important;
 }
 /* Lista em artigos */
@@ -335,7 +335,7 @@ li.accessibility_options a {
   and (orientation: portrait) {
   /* Menus Resposivos */
   header .dropdown li { float: none !important; width: 100% !important; }
-  header .dropdown li menu { height: 100% !important; }
+  header .dropdown li .menu-res { height: 100% !important; }
   header .dropdown li a { width: 50% !important; }
   header .dropdown li.sub:hover,
   header .dropdown li.sub li.sub {
@@ -344,13 +344,13 @@ li.accessibility_options a {
     background-repeat: no-repeat !important;
     background-position: 95% 13px !important;
   }
-  header .dropdown li.sub:hover > menu li,
-  header .dropdown li.sub:hover > menu li a,
-  header .dropdown li.sub:hover > menu li menu {
+  header .dropdown li.sub:hover > .menu-res li,
+  header .dropdown li.sub:hover > .menu-res li a,
+  header .dropdown li.sub:hover > .menu-res li .menu-res {
     position: relative;
     left: 0 !important;
   }
-  header .dropdown li > menu {
+  header .dropdown li > .menu-res {
     position: relative !important;
     border: 1px dotted #ddd;
     padding-left: 10px;
@@ -476,7 +476,7 @@ header .menu-bar {
     min-height: 500px;*/
   }
 
-  menu.hamburger-menu {
+  .menu-res.hamburger-menu {
     /*margin: 0 calc((100% - 1000px)/2);*/
     list-style-type: none;
     position: relative;
@@ -498,7 +498,7 @@ header .menu-bar {
         color: #999;
       }
 
-      > menu.submenu {
+      > .menu-res.submenu {
         display: none;
         position: absolute;
         top: 0;
@@ -535,7 +535,7 @@ header .menu-bar {
           color: #EEE;
         }
 
-        > menu.submenu {
+        > .menu-res.submenu {
           display: block;
         }
       }
@@ -553,7 +553,7 @@ header .menu-bar {
       }
     }
 
-    menu {
+    .menu-res {
       list-style-type: none;
 
       > li > a {
@@ -577,7 +577,7 @@ header .menu-bar {
         }
       }
 
-      > li > menu > li{
+      > li > .menu-res > li{
         margin-left: 25px;
       }
     }
@@ -689,7 +689,7 @@ header .menu-bar {
   right: 0;
   display: flex;
 }
-section.redesocial section.image_component {
+.redesocial .image_component {
   position: relative;
   width: 30px;
   height: 30px;
@@ -758,7 +758,7 @@ ul.flex-direction-nav > li {
 .popup-modal .page-show header, .popup-modal .feedback-new-message-title {
   background-color: #4478a4;
 
-  h2 {
+  h1 {
     display: block;
     border: 0;
   }
@@ -780,12 +780,13 @@ article.event-show > header {
   font-weight: bold;
   border-bottom: 1px solid #D3D3D3;
 }
-article.page-show > header > h2,
-article.news-show > header > h2,
-article.event-show > header > h2 {
+article.page-show > header > h1,
+article.news-show > header > h1,
+article.event-show > header > h1 {
   border-bottom: 3px solid #689eca;
   /*padding-top: 8px;
   padding-bottom: 3px;*/
+  font-size: 16px;
   display: table;
   padding-right: 10px;
   margin-bottom: -1px;
@@ -1009,8 +1010,8 @@ article.page-show div.body p {
 .event_list_component.front #events li article summary {
   padding: 0px 8px 0px 8px;
 }
-.front_news_component #news li article header h2,
-.event_list_component.front #events li article header h2 {
+.front_news_component #news li article header h3,
+.event_list_component.front #events li article header h3 {
   font-size: 14px;
   color: #333333;
   font-weight: bold;
@@ -1288,7 +1289,7 @@ div.container > h2:first-child {
   text-decoration: none;
 }
 /* Mapa do Site */
-div#map menu li {
+div#map .menu-res li {
   padding-left: 20px;
 }
 /* Calendar */
@@ -1329,14 +1330,14 @@ footer {
     text-decoration: none;
   }
 /* Rodapé novo leiaute UFG */
-footer > section {
+footer > .components_group_component {
   color: white;
   float: left;
   background-color: #4B73B3;
   width: 100%;
 }
 /* Ropapé grupo de componentes */
-footer > section > section {
+footer > .components_group_component > .components_group_component {
   margin: auto;
   position: relative;
   max-width: 1000px;
@@ -1344,13 +1345,13 @@ footer > section > section {
   overflow: hidden;
   background-color: #7B9CCB;
 }
-  footer > section > section p {
+  footer > .components_group_component > .components_group_component p {
     position: relative;
     margin: 0px 0px 5px 0px !important;
     max-width: 100%;
     line-height: 1.2em;
   }
-footer > section .text_component {
+footer > .components_group_component .text_component {
   position: relative;
   font-size: 10px;
   float: left;
@@ -1359,13 +1360,15 @@ footer > section .text_component {
   max-width: 230px;
 }
 /* 1o. Bloco */
-footer > section > section > section {
-  width: 229px;
-  float: left;
-  margin-top: 40px;
+footer > .components_group_component > .components_group_component {
+  > .image_component, > .text_component {
+    width: 229px;
+    float: left;
+    margin-top: 40px;
+  }
 }
 /* 1o. Bloco, 1a. Imagem */
-footer > section > section > section a img {
+footer > .components_group_component > .components_group_component > .image_component a img {
   float: left;
   margin-left: 16px;
 }
@@ -1432,8 +1435,8 @@ footer .menu_component .expanded li:hover {
 
 @media screen and (max-width: 1000px) {
   header .menu-bar {
-    menu.hamburger-menu {
-      > li > menu.submenu {
+    .menu-res.hamburger-menu {
+      > li > .menu-res.submenu {
         width: calc(100vw - 261px);
       }
     }
@@ -1497,7 +1500,7 @@ footer .menu_component .expanded li:hover {
       width: calc(100vw);
     }
 
-    menu.hamburger-menu > li {
+    .menu-res.hamburger-menu > li {
       width: calc(100% - 20px);
       position: relative;
 
@@ -1511,7 +1514,7 @@ footer .menu_component .expanded li:hover {
         top: 17px;
       }
 
-      > menu.submenu {
+      > .menu-res.submenu {
         position: initial;
         width: auto;
         margin-top: 10px;

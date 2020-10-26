@@ -1,4 +1,4 @@
-<section class="feed_component" style="float: <%=  component.align %>; clear: <%=  component.align %>;">
+<div class="feed_component" style="float: <%=  component.align %>; clear: <%=  component.align %>;">
   <%= link_to image_tag(component.rss_icon.match(/^\d+$/) ? current_site.repositories.find(component.rss_icon).archive.url : "feed/#{component.rss_icon}", title: 'RSS'), main_app.site_feed_url(format: 'rss') unless component.rss_icon.blank? %>
   <%= link_to image_tag(component.atom_icon.match(/^\d+$/) ? current_site.repositories.find(component.atom_icon).archive.url : "feed/#{component.atom_icon}", title: 'ATOM'), main_app.site_feed_url(format: 'atom') unless component.atom_icon.blank? %>
-</section>
+</div>
