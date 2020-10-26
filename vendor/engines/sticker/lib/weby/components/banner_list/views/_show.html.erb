@@ -4,7 +4,8 @@
   <% if component.orientation != "slider" %>
     <% @banners.each do |banner_site| %>
       <% banner = banner_site.banner %>
-      <% banner_url = target_url(banner) %>
+      <% banner_url = target_url(banner, js_fallback: true) %>
+      <% link_title = banner.target ? banner.target.title : banner.title %>
       <div class="banner">
         <% if banner.repository %>
           <figure class="banner_image">
@@ -15,8 +16,8 @@
                                banner.height,
                                {
                                   as: 'link',
-                                  alt: banner.text,
-                                  title: banner.text,
+                                  alt: component.show_description? ? banner.text : banner.repository.description,
+                                  title: link_title,
                                   url: banner_url,
                                   target: (banner.new_tab ? '_blank' : ''),
                                   data: {banner_id: banner.id}
@@ -34,7 +35,7 @@
             <%= link_to t("unpublish"), toggle_admin_banner_path(banner, field: 'publish'), method: :put %>
           </span>
         <% end %>
-        <%= link_to image_tag('banner_list/banner_share.png', class: 'share-icon'), '#', class: 'share-banner', data: {link: share_modal_admin_banner_path(banner)} if current_user && banner.shareable? %>
+        <%= link_to image_tag('banner_list/banner_share.png', class: 'share-icon', aria: {hidden: true}), '#', class: 'share-banner', title: t('.share_banner'), data: {link: share_modal_admin_banner_path(banner)} if current_user && banner.shareable? %>
       </div>
     <% end %>
     <div class="clear clearfix"> </div>
@@ -49,6 +50,7 @@
           <% banner = banner_site.banner %>
           <% if banner.repository.present? %>
             <% banner_url = target_url(banner) %>
+            <% link_title = banner.target ? banner.target.title : banner.title %>
             <li>
               <% format = banner.size.present? ? banner.size : format_for_custom(banner.width, banner.height, banner.repository) %>
               <%= weby_file_view(banner.repository,
@@ -56,9 +58,9 @@
                                banner.width,
                                banner.height,
                                {
-                                  as: 'link',
-                                  alt: banner.text,
-                                  title: banner.text,
+                                  as: 'link_if',
+                                  alt: component.show_description? ? banner.text : banner.repository.description,
+                                  title: link_title,
                                   url: banner_url,
                                   target: (banner.new_tab ? '_blank' : ''),
                                   data: {banner_id: banner.id}
@@ -73,7 +75,7 @@
                   <p class="flex-description-inner"><%= banner.text %></p>
                 </div>
               <% end %>
-              <%= link_to image_tag('banner_list/banner_share.png', class: 'share-icon'), '#', class: 'share-banner', data: {link: share_modal_admin_banner_path(banner)} if current_user && banner.shareable? %>
+              <%= link_to image_tag('banner_list/banner_share.png', class: 'share-icon', aria: {hidden: true}), '#', class: 'share-banner', title: t('.share_banner'), data: {link: share_modal_admin_banner_path(banner)} if current_user && banner.shareable? %>
             </li>
           <% end %>
         <% end %>

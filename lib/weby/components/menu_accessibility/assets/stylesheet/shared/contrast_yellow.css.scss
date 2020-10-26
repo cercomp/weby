@@ -27,9 +27,9 @@ article.page-show,
 article.page-show *,
 .menu_component *,
 .news_list_component *,
-menu li,
+.menu-res li,
 .event_list_component *,
-.news_as_home_component section#pages *,
+.news_as_home_component #pages *,
 div#list *,
 div#pages.pages-list,
 div#pages.pages-list *,
@@ -48,7 +48,7 @@ div#barra-brasil *,
 .institutional_links_component ul,
 .institutional_links_component ul li,
 .institutional_links_component ul li a,
-footer > section {
+footer > .components_group_component {
   background-color: #DFD179 !important;
 }
 div#accessibility_button,
@@ -72,7 +72,7 @@ div#barra-brasil {
   border-right: 2px solid #020167 !important;
 }
 #webybar .label,
-section#content > article,
+#content > article,
 .news_list_component .list border fullwidth zebra,
 .news_list_component,
 .event_list_component,
@@ -82,8 +82,8 @@ article.page-show,
 div#pages.pages-list {
   border-bottom: 1px solid #8f8001 !important;
 }
-aside .menu_component menu li,
-footer nav menu li {
+aside .menu_component .menu-res li,
+footer nav .menu-res li {
   border: 1px solid #8f8001 !important;
   margin-right: 0px;
 }
@@ -99,7 +99,7 @@ header .menu-bar {
     background-color: #000066 !important;
     color: #FFF !important;
   }
-  .menu-panel, .hamburger-menu, .hamburger-menu li, .hamburger-menu a, .hamburger-menu menu {
+  .menu-panel, .hamburger-menu, .hamburger-menu li, .hamburger-menu a, .hamburger-menu .menu-res {
     background-color: #DFD179 !important;
   }
   .institutional_links_component.list > ul > li:not(:first-child) {
@@ -123,10 +123,10 @@ table.border, table.border th, table.border td{
   background-color: white !important;
   border-color: #020167 !important;
 }
-section#content > article .event {
+#content > article .event {
   border-left: 1px solid #020167 !important;
 }
-section#content section#pages li {
+#content #pages li {
   border-bottom: 1px dotted #020167 !important;
 }
 div.pagination,

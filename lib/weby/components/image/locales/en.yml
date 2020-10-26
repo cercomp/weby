@@ -13,6 +13,7 @@ en:
         target_type: "Target Type"
         target_id: "Target"
         target: "Target"
+        hide_for_sr: "Hidden for screen readers"
         url: "URL"
         new_tab: "Open link in a new tab"
         html_class:   "HTML Class"

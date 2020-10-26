@@ -5,6 +5,11 @@
       <span><%= link_to t('.go_to_menu'), "##{component.menu_anchor}", class: 'goto-menu' %><b aria-hidden="true">2</b></span>
       <span><%= link_to t('.go_to_search'), "##{component.search_anchor}", class: 'goto-search' %><b aria-hidden="true">3</b></span>
     </div>
+    <% if component.information_access_url.present? %>
+      <div class="additional-content">
+        <%= link_to image_tag('marca-ai.png', alt: 'Logomarca Acesso à Informação'), component.information_access_url, class: 'ai-link', title: 'Acesso à Informação' %>
+      </div>
+    <% end %>
     <div class="access-actions">
       <% if component.font_size? %>
         <span class='accessibility_font'>

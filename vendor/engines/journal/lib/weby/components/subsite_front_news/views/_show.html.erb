@@ -1,12 +1,11 @@
 <% @subsite_front_news = component.get_news(current_site).includes(news: [:image, :i18ns, :site]) %>
-
-<section class="subsite_front_news_component">
+<%= content_tag component.html_tag, class: 'subsite_front_news_component' do %>
   <% if component.label.present? && component.source == 'selected' %>
-    <div class="front_news_title">
+    <h2 class="front_news_title">
       <%= component.label_link.present? ? link_to(component.label.camelize, component.label_link) : content_tag(:span, component.label.camelize) %>
-    </div>
+    </h2>
   <% end %>
-  <div class="list">
+  <ul class="list">
     <% @subsite_front_news.each do |news_site| %>
       <% news = news_site.news %>
       <li style="list-style-type:none;">
@@ -17,7 +16,7 @@
             </span>
           <% end %>
           <% unless news.image.nil? %>
-            <%= weby_file_view(news.image, :m, "128", nil, {as: "link", url: news.url.present? ? news.url : news_url(news, subdomain: news.site), link_class: 'news-image'}) %>
+            <%= weby_file_view(news.image, :m, "128", nil, {as: "link", url: news.url.present? ? news.url : news_url(news, subdomain: news.site), link_class: 'news-image', title: news.title}) %>
           <% end %>
           <header>
             <% if component.tag_as_label? && news_site.category_list.present? %>
@@ -25,9 +24,9 @@
                 <%= news_site.category_list.first.camelize %>
               </div>
             <% end %>
-            <h2>
+            <h3>
               <%= link_to news.title, news.url.present? ? news.url : news_url(news, subdomain: news.site) %>
-            </h2>
+            </h3>
             <% if !component.hide_author? %>
               <p>
                 <i>
@@ -45,7 +44,7 @@
         </article>
       </li>
     <% end %>
-  </div>
+  </ul>
   <% if component.link_to_all.present? && component.source == 'selected' %>
     <span class="link_to_all">
       <% site = Site.active.find_by(id: component.sel_site) %>
@@ -53,4 +52,4 @@
       <%= link_to component.link_to_all, url %>
     </span>
   <% end %>
-</section>
+<% end %>

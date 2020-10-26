@@ -26,4 +26,5 @@ pt-BR:
         slider:              " Slider "
         timer_hint:          " Em segundos "
         control_hint:        " Se estiver marcado, links para ir para a próxima foto ou a anterior serão exibidos abaixo do slider "
-        
+      show:
+        share_banner:        "Compartilhar banner"

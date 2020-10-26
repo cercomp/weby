@@ -8,7 +8,7 @@
   }
 
   header {
-    h2 {
+    h1 {
       font-family: Lato;
       font-size: 1.7em;
       font-weight: 300;
@@ -200,7 +200,7 @@
 
 .page-show, .event-show {
   header {
-    h2 {
+    h1 {
       font-family: Lato;
       font-size: 2.4em;
       font-weight: 300;
@@ -562,6 +562,7 @@ ufg-eventos {
             position: relative;
             top: 32px;
             margin-bottom: 33px;
+            margin-right: 300px;
 
             a {
               font-weight: 300;
@@ -1331,6 +1332,7 @@ ufg-eventos {
               top: 0;
               padding: 0;
               margin-bottom: 16px;
+              margin-right: 0;
             }
 
             .categories {

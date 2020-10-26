@@ -1,6 +1,6 @@
 <% if !current_page?(main_app.site_path) && (@page || @news || @event || @message) then  %>
-  <div class="breadcrumb_component">
-    <ul>
+  <nav class="breadcrumb_component" aria-label="<%= t('.page_hierarchy') %>">
+    <ol>
       <%= content_tag :li, class: "breadcrumb-label" do
           component.label
         end if component.label.present? %>
@@ -46,8 +46,8 @@
         <% end %>
       <% end %>
       <% if last %>
-        <li><%= last.try(:title) || last.try(:name) %></li>
+        <li aria-current="location"><%= last.try(:title) || last.try(:name) %></li>
       <% end %>
-   </ul>
-</div>
+    </ol>
+  </nav>
 <% end %>

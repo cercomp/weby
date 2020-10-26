@@ -47,6 +47,7 @@ en:
     views:
       show:
         read_more:            " Read more... "
+        see_all:              " See all "
         posted_by:            " By "
         posted_on:            " On "
         html:

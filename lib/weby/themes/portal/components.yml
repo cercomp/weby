@@ -30,7 +30,7 @@ top:
             position: 2
             publish: true
             alias: Logo - UFG
-            settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://www.ufg.br", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"ufg-logo", :default_image=>"UFG_logo.svg"}'
+            settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://www.ufg.br", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"ufg-logo", :default_image=>"UFG_logo.svg", :default_image_alt=>"Logo da UFG"}'
       -
         name: menu
         position: 2
@@ -102,7 +102,7 @@ bottom:
         position: 1
         publish: true
         alias: Logo
-        settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"footer-logo", :default_image=>"UFG_vertical.png"}'
+        settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"footer-logo", :default_image=>"UFG_vertical.png", :default_image_alt=>"Logo da UFG"}'
       -
         name: text
         position: 2
@@ -133,25 +133,25 @@ bottom:
             position: 1
             publish: true
             alias: Facebook
-            settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"", :default_image=>"facebook-logo-button.png"}'
+            settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"", :default_image=>"facebook-logo-button.png", :hide_for_sr=>"1"}'
           -
             name: image
             position: 2
             publish: true
             alias: Instagram
-            settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"", :default_image=>"instagram-logo-button.png"}'
+            settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"", :default_image=>"instagram-logo-button.png", :hide_for_sr=>"1"}'
           -
             name: image
             position: 3
             publish: true
             alias: Twitter
-            settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"", :default_image=>"twitter-logo-button.png"}'
+            settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"", :default_image=>"twitter-logo-button.png", :hide_for_sr=>"1"}'
           -
             name: image
             position: 4
             publish: true
             alias: Youtube
-            settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"", :default_image=>"youtube-logo-button.png"}'
+            settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"", :default_image=>"youtube-logo-button.png", :hide_for_sr=>"1"}'
   -
     name: text
     position: 2

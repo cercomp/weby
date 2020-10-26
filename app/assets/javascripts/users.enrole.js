@@ -1,4 +1,3 @@
-
 WEBY.initEnrolePage = function(){
 
   $('.search-user-input input').each(function(){
