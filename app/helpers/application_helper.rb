@@ -113,7 +113,7 @@ module ApplicationHelper
       role: is_empty ? 'button' : nil,
       title: menu_item.description,
       target: menu_item.new_tab || force_new_tab ? '_blank' :  '',
-      class: is_empty ? 'empty-href' : ''
+      class: [is_empty ? 'empty-href' : nil, translate_class(menu_item)].compact
     )
   end
 

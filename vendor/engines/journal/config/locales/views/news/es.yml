@@ -9,6 +9,7 @@ es:
         or_search:     "Cualquiera de las palabras"
         placeholder:   "Busque por palabra-llave"
       show:
+        share:         "Compartir"
         event:         "Evento"
         period_event:  "Periodo del Evento"
         list_all:      "Todas las páginas"

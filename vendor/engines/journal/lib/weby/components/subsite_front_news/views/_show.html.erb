@@ -24,7 +24,7 @@
                 <%= news_site.category_list.first.camelize %>
               </div>
             <% end %>
-            <h3>
+            <h3 class="<%= translate_class(news) %>">
               <%= link_to news.title, news.url.present? ? news.url : news_url(news, subdomain: news.site) %>
             </h3>
             <% if !component.hide_author? %>
@@ -36,7 +36,7 @@
               </p>
             <% end %>
           </header>
-          <summary>
+          <summary class="<%= translate_class(news) %>">
             <%= render_user_content news.summary %>
           </summary>
           <p class="read_more"><%= link_to t(".read_more"), news_url(news, subdomain: news.site) %></p>

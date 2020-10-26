@@ -12,7 +12,7 @@
           <%= weby_file_view(event.image, component.image_size, component.avatar_width, component.avatar_height, {as: "link", url: event_url(event, subdomain: @site), link_class: 'news-image'}) %>
         <% end %>
         <header>
-          <h3> <%= link_to event.name, event_url(event, subdomain: @site) %> </h3>
+          <h3 class="<%= translate_class(event) %>"><%= link_to event.name, event_url(event, subdomain: @site) %></h3>
           <%= content_tag :div, class: 'event-dates', title: period_dates(event, false), aria: {label: period_dates(event, false)} do %>
             <% if component.date_format == 'short' %>
               <span class="event-date-day"><%= l(event.begin_at, format: '%d') %></span>
@@ -24,7 +24,7 @@
             <% end %>
           <% end %>
         </header>
-        <summary>
+        <summary class="<%= translate_class(event) %>">
           <% if component.max_char.present? %>
             <%= raw(event.information.to_s[0..component.max_char.to_i] +
                     (event.information.to_s.size > component.max_char.to_i ? "..." : "")) %>

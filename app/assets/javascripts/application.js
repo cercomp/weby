@@ -203,6 +203,17 @@ $(document).ready(function() {
       $.getScript($(this).find('option:selected').data('url'));
   });
 
+  //// toggle fields based on checkboxes
+  $(document).on('change', '.toggle-fields', function(){
+    let $this = $(this);
+    let $fields = $($this.data('fields'));
+    if ($this.is(':checked')) {
+      $fields.slideDown(300);
+    } else {
+      $fields.slideUp(300);
+    }
+  });
+
   var hash = location.hash
     , hashPieces = ((hash.split('?')[0] == "") ? 0 : hash.split('?'))
     , activeTab = $('[href="' + hashPieces[0] + '"]');

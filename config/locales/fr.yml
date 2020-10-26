@@ -7,7 +7,8 @@ fr:
   en:    " Inglês "
   es:    " Espanhol "
   fr:    " Francês "
-  
+  zh-CN: " Mandarin "
+
 #---A---#
   active_deactive:                      " Ativar Desativar "
   are_you_sure:                         " Você tem certeza? "
