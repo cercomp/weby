@@ -12,4 +12,11 @@ pt-BR:
         publish:    " Publicado "
         position:   " Posição "
         site_id:    " Site "
+    errors:
+      models:
+        style:
+          attributes:
+            base:
+              restrict_dependent_destroy:
+                has_many: 'Não é possível remover um estilo com seguidores'
 

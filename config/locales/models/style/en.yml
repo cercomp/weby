@@ -12,5 +12,11 @@ en:
         publish:    " Published "
         position:   " Position "
         site_id:    " Site "
-
+    errors:
+      models:
+        style:
+          attributes:
+            base:
+              restrict_dependent_destroy:
+                has_many: "It's not possible to delete a style with followers"
 

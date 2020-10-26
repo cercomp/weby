@@ -8,7 +8,7 @@ class Site < ApplicationRecord
   has_many :roles, dependent: :destroy
   has_many :users, through: :roles
   has_many :views, dependent: :delete_all
-  has_many :activity_records, dependent: :destroy
+  has_many :activity_records, dependent: :delete_all
   has_many :menus, -> { order(position: :asc) }, dependent: :destroy
   has_many :menu_items, through: :menus
   has_many :pages, -> { includes(:i18ns) }, dependent: :destroy
@@ -30,11 +30,13 @@ class Site < ApplicationRecord
   has_many :skins, dependent: :destroy
   #has_many :components, through: :skins
   has_many :styles, through: :skins
+  has_many :follower_styles, through: :styles, source: :styles
 
   has_and_belongs_to_many :locales
   has_and_belongs_to_many :groupings
 
-  before_destroy do
+  before_destroy prepend: true do
+    copy_styles_to_followers
     repositories.update_all(archive_file_name: nil)
   end
   before_save do
@@ -147,8 +149,6 @@ class Site < ApplicationRecord
     self.update!(status: (status == 'active' ? 'inactive' : 'active'))
   end
 
-
-
   SHAREABLES.each do |shareable|
     define_method("#{shareable}_social_share_pos") { settings["#{shareable}.social_share_pos"] }
     define_method("#{shareable}_social_share_pos=") { |value| settings["#{shareable}.social_share_pos"] = value }
@@ -165,6 +165,12 @@ class Site < ApplicationRecord
   end
 
   private
+
+  def copy_styles_to_followers
+    follower_styles.each do |follower_style|
+      follower_style.copy!(follower_style.skin)
+    end
+  end
 
   def at_least_one_locale
     if locales.length < 1
