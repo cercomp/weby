@@ -13,14 +13,14 @@ top:
     children:
     - settings: '{:size=>"", :width=>"", :height=>"", :url=>"/",
         :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"ufg-logo",
-        :default_image=>"ufg2/marca-ufg.svg", :contrast_default_image=>"ufg2/marca-ufg-white.svg"}'
+        :default_image=>"ufg2/marca-ufg.svg", :default_image_alt=>"Logo da UFG", :contrast_default_image=>"ufg2/marca-ufg-white.svg"}'
       name: image
       position: 1
       publish: true
       alias: Logo - UFG
     - settings: '{:size=>"", :width=>"", :height=>"", :url=>"",
         :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"social-toggle",
-        :default_image=>"ufg2/ic-social.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
+        :default_image=>"ufg2/ic-social.svg", :title=>{"pt-BR"=>"", "en"=>""}, :hide_for_sr=>"1"}'
       name: image
       position: 2
       publish: true
@@ -33,13 +33,13 @@ top:
       children:
       - settings: '{:size=>"", :width=>"", :height=>"", :url=>"",
           :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"social-icon",
-          :default_image=>"ufg2/ic-twitter.png", :title=>{"pt-BR"=>"", "en"=>""}}'
+          :default_image=>"ufg2/ic-twitter.png", :title=>{"pt-BR"=>"", "en"=>""}, :hide_for_sr=>"1"}'
         name: image
         position: 1
         publish: true
         alias: twitter
       - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"",
-          :target_type=>"", :new_tab=>"0", :html_class=>"social-icon", :default_image=>"ufg2/ic-facebook.png"}'
+          :target_type=>"", :new_tab=>"0", :html_class=>"social-icon", :default_image=>"ufg2/ic-facebook.png", :hide_for_sr=>"1"}'
         name: image
         position: 2
         publish: true
@@ -58,7 +58,7 @@ top:
       children:
       - settings: '{:size=>"", :width=>"", :height=>"", :url=>"/", :target_id=>"",
           :target_type=>"", :new_tab=>"0", :html_class=>"menu-logo", :default_image=>"ufg2/marca-ufg-white.svg",
-          :title=>{"pt-BR"=>"", "en"=>""}}'
+          :title=>{"pt-BR"=>"", "en"=>""}, :default_image_alt=>"Logo da UFG"}'
         name: image
         position: 1
         publish: true
@@ -73,6 +73,12 @@ top:
         name: search_box
         position: 3
         publish: true
+      - settings: '{:html_class=>"search-toggle", :put_at_end=>"0", :body=>{"pt-BR"=>"<button
+          type=\"button\" title=\"Abrir formulário de pesquisa\" data-alt-title=\"Fechar formulário de pesquisa\"></button>", "en"=>"", "es"=>""}}'
+        name: blank
+        position: 4
+        publish: true
+        alias: Botão pesquisa - abre/fecha
 - settings: '{:label=>{"pt-BR"=>"", "en"=>""}, :home_label=>{"pt-BR"=>"Início", "en"=>"Home"}}'
   name: breadcrumb
   position: 2
@@ -112,19 +118,19 @@ home:
     children:
     - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"",
         :new_tab=>"0", :html_class=>"", :default_image=>"", :title=>{"pt-BR"=>"TV UFG",
-        "en"=>""}}'
+        "en"=>""}, :hide_for_sr=>"1"}'
       name: image
       position: 1
       publish: true
     - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"",
         :new_tab=>"0", :html_class=>"", :default_image=>"", :title=>{"pt-BR"=>"Rádio UFG",
-        "en"=>""}}'
+        "en"=>""}, :hide_for_sr=>"1"}'
       name: image
       position: 2
       publish: true
     - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"",
         :new_tab=>"0", :html_class=>"", :default_image=>"", :title=>{"pt-BR"=>"Youtube UFG",
-        "en"=>""}}'
+        "en"=>""}, :hide_for_sr=>"1"}'
       name: image
       position: 3
       publish: true
@@ -213,37 +219,37 @@ home:
       children:
       - settings: '{:size=>"", :width=>"", :height=>"", :url=>"",
           :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"", :default_image=>"ufg2/ic-facebook-larger.png",
-          :title=>{"pt-BR"=>"Facebook", "en"=>""}}'
+          :title=>{"pt-BR"=>"Facebook", "en"=>""}, :hide_for_sr=>"1"}'
         name: image
         position: 1
         publish: true
       - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"",
           :target_type=>"", :new_tab=>"0", :html_class=>"", :default_image=>"ufg2/ic-instagram-larger.png", :title=>{"pt-BR"=>"Instagram",
-          "en"=>""}}'
+          "en"=>""}, :hide_for_sr=>"1"}'
         name: image
         position: 2
         publish: true
       - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"",
           :target_type=>"", :new_tab=>"0", :html_class=>"", :default_image=>"ufg2/ic-twitter-larger.png", :title=>{"pt-BR"=>"Twitter",
-          "en"=>""}}'
+          "en"=>""}, :hide_for_sr=>"1"}'
         name: image
         position: 3
         publish: true
       - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"",
           :target_type=>"", :new_tab=>"0", :html_class=>"", :default_image=>"ufg2/ic-youtube-larger.png", :title=>{"pt-BR"=>"Youtube",
-          "en"=>""}}'
+          "en"=>""}, :hide_for_sr=>"1"}'
         name: image
         position: 4
         publish: true
       - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"",
           :target_type=>"", :new_tab=>"0", :html_class=>"", :default_image=>"ufg2/ic-linkedin-larger.png", :title=>{"pt-BR"=>"Linkedin",
-          "en"=>""}}'
+          "en"=>""}, :hide_for_sr=>"1"}'
         name: image
         position: 5
         publish: true
       - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"",
           :target_type=>"", :new_tab=>"0", :html_class=>"", :default_image=>"ufg2/ic-flirck-larger.png", :title=>{"pt-BR"=>"Flickr",
-          "en"=>""}}'
+          "en"=>""}, :hide_for_sr=>"1"}'
         name: image
         position: 6
         publish: true
@@ -272,37 +278,37 @@ home:
       children:
       - settings: '{:size=>"", :width=>"", :height=>"", :url=>"http://www.rmtcgoiania.com.br/",
           :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"", :default_image=>"ufg2/ic-bus.png",
-          :title=>{"pt-BR"=>"Ônibus", "en"=>""}}'
+          :title=>{"pt-BR"=>"Ônibus", "en"=>""}, :hide_for_sr=>"1"}'
         name: image
         position: 1
         publish: true
       - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"",
           :new_tab=>"0", :html_class=>"", :default_image=>"ufg2/ic-app.png", :title=>{"pt-BR"=>"Minha
-          UFG", "en"=>""}}'
+          UFG", "en"=>""}, :hide_for_sr=>"1"}'
         name: image
         position: 2
         publish: true
       - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"",
           :new_tab=>"0", :html_class=>"", :default_image=>"ufg2/ic-wifi.png", :title=>{"pt-BR"=>"Redes
-          sem fio", "en"=>""}}'
+          sem fio", "en"=>""}, :hide_for_sr=>"1"}'
         name: image
         position: 3
         publish: true
       - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"",
           :new_tab=>"0", :html_class=>"", :default_image=>"ufg2/ic-veterinary.png", :title=>{"pt-BR"=>"Hospital
-          Veterinário", "en"=>""}}'
+          Veterinário", "en"=>""}, :hide_for_sr=>"1"}'
         name: image
         position: 4
         publish: true
       - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"",
           :new_tab=>"0", :html_class=>"", :default_image=>"ufg2/ic-cl.png", :title=>{"pt-BR"=>"Centro
-          de Línguas", "en"=>""}}'
+          de Línguas", "en"=>""}, :hide_for_sr=>"1"}'
         name: image
         position: 5
         publish: true
       - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"",
           :new_tab=>"0", :html_class=>"", :default_image=>"ufg2/ic-hc.png", :title=>{"pt-BR"=>"Hospital
-          das Clínicas", "en"=>""}}'
+          das Clínicas", "en"=>""}, :hide_for_sr=>"1"}'
         name: image
         position: 6
         publish: true
@@ -399,7 +405,7 @@ bottom:
     children:
     - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"",
         :new_tab=>"0", :html_class=>"ufg-logo", :default_image=>"ufg2/marca-ufg.svg",
-        :contrast_default_image=>"ufg2/marca-ufg-white.svg", :title=>{"pt-BR"=>"", "en"=>""}}'
+        :contrast_default_image=>"ufg2/marca-ufg-white.svg", :default_image_alt=>"Logo da UFG", :title=>{"pt-BR"=>"", "en"=>""}}'
       name: image
       position: 1
       publish: true
@@ -411,21 +417,21 @@ bottom:
       children:
       - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"",
           :target_type=>"", :new_tab=>"0", :html_class=>"social-icon", :default_image=>"ufg2/ic-twitter.png",
-          :title=>{"pt-BR"=>"", "en"=>""}}'
+          :title=>{"pt-BR"=>"", "en"=>""}, :hide_for_sr=>"1"}'
         name: image
         position: 1
         publish: true
         alias: Twitter
       - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"",
           :target_type=>"", :new_tab=>"0", :html_class=>"social-icon", :default_image=>"ufg2/ic-facebook.png",
-          :title=>{"pt-BR"=>"", "en"=>""}}'
+          :title=>{"pt-BR"=>"", "en"=>""}, :hide_for_sr=>"1"}'
         name: image
         position: 2
         publish: true
         alias: facebook
       - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"",
           :target_type=>"", :new_tab=>"0", :html_class=>"social-icon", :default_image=>"ufg2/ic-instagram.png",
-          :title=>{"pt-BR"=>"", "en"=>""}}'
+          :title=>{"pt-BR"=>"", "en"=>""}, :hide_for_sr=>"1"}'
         name: image
         position: 3
         publish: true
@@ -453,7 +459,7 @@ bottom:
     children:
     - settings: '{:size=>"", :width=>"", :height=>"", :url=>"", :target_id=>"", :target_type=>"",
         :new_tab=>"0", :html_class=>"", :default_image=>"ufg2/marca-ai.png",
-        :contrast_default_image=>"ufg2/marca-ai-white.png", :title=>{"pt-BR"=>"", "en"=>""}}'
+        :contrast_default_image=>"ufg2/marca-ai-white.png", :hide_for_sr=>"1", :title=>{"pt-BR"=>"", "en"=>""}, :default_image_alt=>"Acesso à Informação"}'
       name: image
       position: 1
       publish: true

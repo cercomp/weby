@@ -1,9 +1,9 @@
 $(document).ready(function() {
   var dropped = false;
   // init menu items sortable
-  $('#main-menu > menu').nestedSortable({
+  $('#main-menu > .menu-res').nestedSortable({
     rootID: 'root',
-    listType: 'menu',
+    listType: 'ul',
     handle: '.handle',
     items: 'li',
     opacity: 0.7,
@@ -28,7 +28,7 @@ $(document).ready(function() {
         dataType: 'script',
         complete: function(request,text){
           if(text=='success') ui.item.effect('pulsate', {times: 1}, 350);
-          else $('#main-menu > menu').nestedSortable('cancel');
+          else $('#main-menu > .menu-res').nestedSortable('cancel');
         },
         url: $('#main-menu').data('sort-url')
       });

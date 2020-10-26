@@ -1,4 +1,4 @@
-<section class="blank_component <%= component.html_class %>">
+<%= content_tag component.html_tag, class: "blank_component #{component.html_class}" do %>
   <% if component.put_at_end? %>
     <% content_for :javascripts do %>
       <%= raw component.body %>
@@ -6,4 +6,4 @@
   <% else %>
     <%= raw component.body %>
   <% end %>
-</section>
+<% end %>

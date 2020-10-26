@@ -6,7 +6,7 @@
   <%= weby_file_view(@news.image, :l, '128', nil) %>
   <%= yield :social_code if current_site.news_social_share_pos == 'top' %>
   <header>
-    <h2><%= @news.title %></h2>
+    <h1><%= @news.title %></h1>
   </header>
   <div class="news-details details">
     <% if @extension.show_author? %>

@@ -83,6 +83,7 @@ pt-BR:
   login_success:                        " Logado com sucesso! "
   logout_success:                       " Logout com sucesso! "
   look_changed:                         " Aparência alterada "
+  link_to_file:                         " Link para o arquivo "
 #---M---#
   moved_file_to_recycle_bin:            " Arquivo movido para a lixeira. "
   moved_page_to_recycle_bin:            " Página movida para a lixeira. "

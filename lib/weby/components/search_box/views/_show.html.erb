@@ -1,6 +1,6 @@
-<section class="search_box_component <%=  component.align %>" style="width: <%= component.width.to_i > 0 ? "#{component.width}px" : "100%" %>;">
+<div class="search_box_component <%=  component.align %>" style="width: <%= component.width.to_i > 0 ? "#{component.width}px" : "100%" %>;">
   <%= form_tag main_app.news_index_path, class: 'form_search', method: 'get' do %>
-    <%= text_field_tag :search, nil, placeholder: t('.search') %>
+    <%= search_field_tag :search, nil, placeholder: t('.search') %>
     <select id="options" onchange="search_action()">
       <option value="/news"  <%= request.env['PATH_INFO'] == '/news' ? "selected" : '' %>>Notícias</option>
       <option value="/pages" <%= request.env['PATH_INFO'] == '/pages' ? "selected" : '' %>>Páginas</option>
@@ -9,5 +9,5 @@
       <%= submit_tag t(".search") %>
     <% end %>
   <% end %>
-</section>
+</div>
 <% content_for :javascripts, javascript_include_tag("search_action") %>

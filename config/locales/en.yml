@@ -82,6 +82,7 @@ en:
   login_success:                        " Logged in succesfully! "
   logout_success:                       " Logged out successfully! "
   look_changed:                         " Appearence was changed "
+  link_to_file:                         " Link to the file "
 #---M---#
   moved_file_to_recycle_bin:            " Moved file to recycle bin. "
   moved_page_to_recycle_bin:            " Moved page to recycle bin. "

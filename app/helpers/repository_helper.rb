@@ -8,7 +8,7 @@ module RepositoryHelper
     @file, @format, @width, @height, @options = file, format, width, height, options
     if @file
       make_thumbnail!
-      send("#{@options[:as]}_viewer") # calls method http://ruby-doc.org/core-1.9.3/Object.html#method-i-send
+      send("#{@options[:as]}_viewer")
     elsif fallback
       img_opt = {}
       img_opt[:alt] = @options[:alt] if @options[:alt]
@@ -91,20 +91,43 @@ module RepositoryHelper
     end
   end
 
+  def link_if_viewer
+    if @options[:url]
+      @link_title = @options[:title].presence || guess_title_by(@options[:url])
+      link_to(image_viewer, @options[:url],
+                target: @options[:target],
+                data: @options[:data],
+                title: @link_title,
+                class: @options[:link_class])
+    else
+      image_viewer
+    end
+  end
+
   def link_viewer
-    raw link_to(image_viewer, @options[:url] || @file.archive.url, target: @options[:target],
-                                                                   data: @options[:data], class: @options[:link_class])
+    @link_title = if @options[:url]
+      @options[:title].presence || guess_title_by(@options[:url])
+    else
+      t('link_to_file')
+    end
+    raw link_to(image_viewer, @options[:url] || @file.archive.url,
+                target: @options[:target],
+                data: @options[:data],
+                title: @link_title,
+                class: @options[:link_class])
   end
 
   def image_viewer
     img_opt = {
       alt: @file.description,
-      title: (@options[:title] || @file.title) }
+      title: @link_title.present? ? nil : (@options[:title].presence || @file.title)
+    }
     size = style_for_dimension @width, @height
     img_opt[:style] = @options[:style] ? "#{@options[:style]}#{size}" : size
     img_opt[:id] = @options[:id] if @options[:id]
     img_opt[:class] = @options[:image_class] if @options[:image_class]
     img_opt[:data] = @options[:data] if @options[:data].present?
+    img_opt[:aria] = @options[:aria] if @options[:aria].present?
     begin
       image = image_tag(@thumbnail, img_opt)
     rescue
@@ -158,6 +181,38 @@ module RepositoryHelper
       end
     end
     :o
+  end
+
+  def guess_title_by url
+    common_pages.each do |static_page|
+      return static_page[:title] if url.strip == static_page[:url]
+    end
+    case url.to_s
+    when /^https?:\/\/(www\.)?ufg.br\/?$/
+      'Portal UFG'
+    when /^https?:\/\/(www\.)?sic\.ufg.br\/?$/
+      'Portal Acesso à Informação'
+    when /^\/feedback/
+      'Fale Conosco'
+    when /^https?:\/\/(www\.)?instagram\.com/
+      'Instagram'
+    when /^https?:\/\/(www\.)?facebook\.com/
+      'Facebook'
+    when /^https?:\/\/(www\.)?twitter\.com/
+      'Twitter'
+    when /^https?:\/\/(www\.)?linkedin\.com/
+      'Linkedin'
+    when /^https?:\/\/(www\.)?youtube\.com/
+      'Youtube'
+    when /^https?:\/\/(www\.)?tvufg\.org\.br/
+      'TV UFG'
+    when /^https?:\/\/(www\.)?radio\.ufg\.br\//
+      'Rádio UFG'
+    when main_app.site_url(subdomain: current_site)
+      'Página Inicial'
+    else
+      nil
+    end
   end
 
   def dimension_for_size(size)

@@ -380,7 +380,7 @@ summary em, summary em * {
       color: var(--green);
     }
 
-    h2 {
+    h2, h3 {
       margin: 0;
       a {
         text-decoration: none;
@@ -537,7 +537,7 @@ summary em, summary em * {
     flex-wrap: wrap;
     justify-content: space-evenly;
 
-    > section {
+    > .components_group_component {
       margin-bottom: 60px;
       max-width: 300px;
     }
@@ -686,7 +686,7 @@ summary em, summary em * {
   }
 
   article {
-    h2 {
+    h2, h3 {
       margin: 0;
       a {
         font-family: Lato;
@@ -785,7 +785,7 @@ summary em, summary em * {
 
     header {
       padding-top: 30px;
-      h2 {
+      h2, h3 {
         a {
           color: #444444;
 
@@ -852,7 +852,7 @@ summary em, summary em * {
       margin-right: 0;
     }
 
-    > menu {
+    > .menu-res {
       border-radius: 4px;
       box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
       background-color: var(--white);
