@@ -6,7 +6,7 @@
   <%= weby_file_view(@news.image, :l, '128', nil) %>
   <%= yield :social_code if current_site.news_social_share_pos == 'top' %>
   <header>
-    <h1><%= @news.title %></h1>
+    <%= content_tag :h1, @news.title, class: translate_class(@news) %>
   </header>
   <div class="news-details details">
     <% if @extension.show_author? %>
@@ -23,11 +23,9 @@
     </span>
   </div>
   <%= yield :social_code if current_site.news_social_share_pos == 'middle' %>
-  <summary>
-   <%= render_user_content @news.summary %>
-  </summary>
+  <%= content_tag :summary, render_user_content(@news.summary), class: translate_class(@news) %>
   <div class="body">
-    <%= render_user_content @news.text %>
+    <%= content_tag :div, render_user_content(@news.text), class: translate_class(@news) %>
     <% if @news.related_files.any? %>
       <% if !@news.text.match(/\<audio/) %>
         <% @news.related_files.each do |file| %>

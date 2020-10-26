@@ -11,14 +11,14 @@
       <% end %>
       <%= weby_file_view(news.image, img_settings[0], img_settings[1], nil, {as: "link", url: news.url.present? ? news.url : news_url(news, subdomain: news.site), style: img_settings[2],  link_class: 'news-image', title: news.title}) %>
     <% end %>
-    <header><%= link_to news.title, news.url.present? ? news.url : news_url(news, subdomain: news.site) %></header>
+    <header class="<%= translate_class(news) %>"><%= link_to news.title, news.url.present? ? news.url : news_url(news, subdomain: news.site) %></header>
     <div class="news-details details">
       <% if @extension.show_author?  %>
         <span class="author"><%= t("posted_by") %><%= news.user.name_or_login %></span>
       <% end %>
       <%= news_date_on_list(news) %>
     </div>
-    <summary>
+    <summary class="<%= translate_class(news) %>">
       <%= render_user_content news.summary %>
     </summary>
     <div class="categories">

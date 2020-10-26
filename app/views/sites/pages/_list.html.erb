@@ -3,7 +3,7 @@
 <% if @pages.each do |page| %>
   <div class="item-search-result">
     <article>
-      <header><%= link_to page.title, site_page_path(page) %></header>
+      <header class="<%= translate_class(page) %>"><%= link_to page.title, site_page_path(page) %></header>
       <div class="page-details details">
         <% if page.publish %>
           <% if @site.show_pages_author %>

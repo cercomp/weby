@@ -1,0 +1,15 @@
+es:
+  layouts:
+    webybar:
+      logout: "Salir"
+      login: 'Entrar'
+      dashboard: "ADMINISTRACIÓN"
+      help: "AYUDA"
+      about: "SOBRE"
+      sites: Lista de sites
+      weby_logo: Logo do weby
+      admin_area: Painel administrativo
+      help_site: Site de ayuda
+      user_avatar: Imagen del usuario
+      user_profile: Perfil del usuario
+      weby_admin: Painel administrativo do Weby

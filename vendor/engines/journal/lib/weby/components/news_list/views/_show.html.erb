@@ -13,9 +13,9 @@
               <% if component.show_image && news.image %>
                 <%= weby_file_view(news.image, :t, component.image_size, nil, {as: "link", url: news.url.present? ? news.url : news_url(news, subdomain: news.site), style: "float: right; margin-left: 7px;", target: (component.new_tab && news.url.present? ? '_blank' : '_self'), title: news.title}) %>
               <% end %>
-              <p class="title"><%= link_to news.title, news.url.present? ? news.url : news_url(news, subdomain: news.site), target: (component.new_tab && news.url.present? ? '_blank' : '_self') %></p>
+              <p class="title <%= translate_class(news) %>"><%= link_to news.title, news.url.present? ? news.url : news_url(news, subdomain: news.site), target: (component.new_tab && news.url.present? ? '_blank' : '_self') %></p>
               <% if component.show_date %><p class="news-date"><%= l(news.created_at, format: component.date_format) %></p><% end %>
-              <%= render_user_content news.summary %>
+              <p class="<%= translate_class(news) %>"><%= render_user_content news.summary %></p>
             </td>
           </tr>
     <% end %>

@@ -5,11 +5,7 @@ class ImageComponent < Component
 
   i18n_settings :repository_id, :contrast_repository_id, :title
 
-<<<<<<< HEAD
-  belongs_to :repository, optional: true
-=======
   #belongs_to :repository, optional: true
->>>>>>> master
 
   alias_method :_new_tab, :new_tab
   def new_tab
@@ -25,13 +21,10 @@ class ImageComponent < Component
 
   belongs_to :target, polymorphic: true, optional: true
 
-<<<<<<< HEAD
-=======
   def repository
     @repository ||= Repository.find_by(id: repository_id)
   end
 
->>>>>>> master
   def target
     target_type.constantize.find_by(id: target_id) if target_type.present?
   end
