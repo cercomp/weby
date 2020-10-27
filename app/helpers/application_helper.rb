@@ -292,8 +292,14 @@ module ApplicationHelper
     end.html_safe
   end
 
+  def append_url_params _params
+    [:status_filter, :search, :mime_type, :begin_at, :end_at]
+      .map{|key| [key, params[key]] }
+      .to_h
+      .merge(_params)
+  end
+
   # Order tables by its column
-  # TODO
   # TODO
   def sortable(column, title = nil)
     title ||= column.titleize
@@ -302,7 +308,7 @@ module ApplicationHelper
     icon_name = column == sort_column ? sort_direction == 'asc' ? 'arrow-up' : 'arrow-down' : 'sort'
     link_to "#{title}#{icon(icon_name)}".html_safe,
             # when we reorder an list it goes back to the first page
-            {sort: column, direction: direction, page: 1},
+            append_url_params({sort: column, direction: direction, page: 1}),
       data: { column: column },
       remote: true,
       style: "white-space:nowrap;",
@@ -337,7 +343,7 @@ module ApplicationHelper
           end
         else
           content_tag(:li, class: 'page') do
-            link_to "#{item} ", {per_page: item, page: 1}, remote: remote
+            link_to "#{item} ", append_url_params({per_page: item, page: 1}), remote: remote
           end
         end
       end
