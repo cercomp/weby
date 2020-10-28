@@ -7,6 +7,7 @@ en:
     attributes:
       feedback_component:
         label:            " Label "
+        html_class:       " HTML Class "
   feedback:
     views:
       show:

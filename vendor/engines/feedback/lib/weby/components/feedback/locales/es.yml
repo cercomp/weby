@@ -7,6 +7,7 @@ es:
     attributes:
       feedback_component:
         label:            " Rótulo "
+        html_class:       " Classe HTML "
   feedback:
     views:
       show:

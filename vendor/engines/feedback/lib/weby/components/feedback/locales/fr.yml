@@ -7,6 +7,7 @@ fr:
     attributes:
       feedback_component:
         label:            " Étiquette "
+        html_class:       " Class HTML "
   feedback:
     views:
       show:
