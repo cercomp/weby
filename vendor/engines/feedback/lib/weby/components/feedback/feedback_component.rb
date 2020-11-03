@@ -18,7 +18,7 @@ class FeedbackComponent < Component
     else
       groups_site = site.groups
       ''.tap do |group_names|
-        groups_site.each do |group|
+        groups_site.order(position: :asc).each do |group|
           group_names << group.name + ',' if groups_id.include? group.id.to_s
         end
       end

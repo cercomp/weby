@@ -8,6 +8,7 @@ pt-BR:
           comma_separated_emails: " Emails Separados por Vírgula "
           please_wait:            " Por favor, aguarde "
         list:
+          move:                   " Ordenar "
           name:                   " Nome "
           description:            " Descrição "
           none_group:             " Não existe nenhum grupo "

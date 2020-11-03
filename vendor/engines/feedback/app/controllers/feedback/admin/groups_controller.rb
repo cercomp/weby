@@ -5,11 +5,9 @@ module Feedback::Admin
 
     respond_to :html, :js
 
-    helper_method :sort_column
-
     def index
       @groups = current_site.groups
-        .order(sort_column + ' ' + sort_direction)
+        .order(position: :asc)
         .page(params[:page]).per(params[:per_page])
     end
 
@@ -46,6 +44,11 @@ module Feedback::Admin
       end
     end
 
+    def sort
+      Feedback::Group.update_positions(current_site, params[:sort_group])
+      head :ok
+    end
+
     def destroy
       @group = current_site.groups.find(params[:id])
       @group.destroy
@@ -60,10 +63,6 @@ module Feedback::Admin
     end
 
     private
-
-    def sort_column
-      Feedback::Group.column_names.include?(params[:sort]) ? params[:sort] : 'id'
-    end
 
     def group_params
       params.require(:group).permit(:name, :emails)
