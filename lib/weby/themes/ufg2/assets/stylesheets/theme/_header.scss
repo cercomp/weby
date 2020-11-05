@@ -12,21 +12,26 @@ body .header {
 .header {
   height: 100%;
   position: relative;
-  padding: 16px 0;
-  padding-bottom: calc(16px + 30px);
+  padding: 12px 0;
+  padding-bottom: calc(12px + 30px);
 
   .ufg-logo {
     margin-right: 10px;
 
     img {
-      width: 145px;
+      height: 100%;
     }
+  }
+
+  .ufg-logo {
+    height: 100%;
   }
 
   .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 78px;
   }
 
   .menu-bar {
@@ -40,7 +45,7 @@ body .header {
     transform: translateX(-50%);
     width: 100%;
     max-width: 940px;
-    top: 102px;
+    bottom: -30px;
     z-index: 4;
 
     .container {
@@ -68,6 +73,7 @@ body .header {
       max-width: none;
       left: 0;
       top: 0;
+      bottom: auto;
       z-index: 3;
       transform: none;
       padding: 0 20px;
