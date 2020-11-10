@@ -32,7 +32,8 @@ class YoutubeWrapComponent < Component
     params = {}
 
     if uri.query.present?
-      params = uri.query.split('&').map{|p| p.split('=') }.to_h
+      parts = uri.query.split('&')
+      params = parts.map{|p| p.match('=') ? p.split('=') : nil }.compact.to_h
     end
 
     if params['v'].present?
