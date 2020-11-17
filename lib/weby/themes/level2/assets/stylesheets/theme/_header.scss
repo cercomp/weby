@@ -29,6 +29,7 @@ body .header {
 
   .logo {
     margin-right: 20px;
+    max-height: 51px;
   }
 
   .social-icons {
@@ -39,7 +40,7 @@ body .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 82px;
+    height: 76px;
   }
 
   .menu-bar {
@@ -62,15 +63,23 @@ body .header {
 
     .menu-logo, .menu-logo-ufg {
       display: none;
-      margin: 10px 0;
+      margin: 8px 0;
 
       a {
         display: block;
         font-size: 0;
       }
+    }
 
+    .menu-logo {
       img {
-        height: 40px;
+        height: 31px
+      }
+    }
+
+    .menu-logo-ufg {
+      img {
+        height: 44px;
       }
     }
 
@@ -90,18 +99,8 @@ body .header {
         margin: 0 auto;
       }
 
-      .menu-logo-ufg {
-        img {
-          height: 32px;
-        }
-      }
-
       .menu-logo {
         margin-right: 10px;
-
-        img {
-          height: 25px;
-        }
       }
 
       .menu-logo, .menu-logo-ufg {

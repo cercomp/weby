@@ -55,7 +55,7 @@ body .header {
 
     .menu-logo {
       display: none;
-      margin: 10px 0;
+      margin: 8px 0;
 
       a {
         display: block;
@@ -63,7 +63,7 @@ body .header {
       }
 
       img {
-        height: 40px;
+        height: 45px;
       }
     }
 
@@ -92,7 +92,7 @@ body .header {
         left: 0;
         top: 0;
         position: absolute;
-        width: 83px;
+        width: auto;
       }
 
       .search_box_component {
