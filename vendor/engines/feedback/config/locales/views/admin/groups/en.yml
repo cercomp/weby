@@ -8,6 +8,7 @@ en:
           comma_separated_emails: " Comma Separated Emails "
           please_wait:            " Please wait "
         list:
+          move:                   " Sort "
           name:                   " Name "
           description:            " Description "
           none_group:             " No group "

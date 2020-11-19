@@ -3,7 +3,7 @@
   <p>
     <% if @message.groups.any? %>
       <%= t('.group_sent') %>
-      <%= @message.groups.collect{|g| g.name }.join(', ') %>
+      <%= @message.groups.order(position: :asc).collect{|g| g.name }.join(', ') %>
     <% end %>
   </p>
 

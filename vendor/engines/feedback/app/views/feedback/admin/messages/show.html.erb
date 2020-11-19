@@ -18,7 +18,7 @@
     </p>
     <p>
     <b><%= t((@message.groups.length>1 ? ".groups" : ".group")) %>:</b><br/>
-    <% @message.groups.each do |group| %>
+    <% @message.groups.order(position: :asc).each do |group| %>
       <%= group.name %> (<%= group.emails %>)<br/>
     <% end %>
     </p>
