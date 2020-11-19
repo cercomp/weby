@@ -1,15 +1,15 @@
-en:
-  this_file_language: "American English"
+zh-CN:
+  this_file_language: "中文"
 
 #--- Other locales ---#
   # Locales translation
-  pt-BR: " Portuguese (Brazil) "
-  en:    " English "
-  es:    " Spanish"
-  fr:    " French "
-  zh-CN: " Mandarin "
-  it:    " Italian "
-  de:    " German "
+  pt-BR: " 葡萄牙语 "
+  en:    " 英语 "
+  es:    " 西班牙文"
+  fr:    " 法文 "
+  zh-CN: " 中文 "
+  it:    " 义大利文 "
+  de:    " 德语 "
 
 #---A---#
   active_deactive:                      " Active Deactive  "

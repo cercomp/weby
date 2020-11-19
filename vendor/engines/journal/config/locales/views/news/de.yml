@@ -1,0 +1,38 @@
+de:
+  journal:
+    news:
+      index:
+        news:          "News"
+        advanced:      "Advanced Options"
+        match_search:  "Exact sentence"
+        and_search:    "All the words"
+        or_search:     "Any of the words"
+        placeholder:   "Search by keywords"
+      show:
+        list_all:      "List all"
+        share:         "Share"
+        my_sites:      "My Sites"
+        categories:    "Categories"
+        source:        "Source"
+        posted_by:     "By %{author}."
+        created_at:    "On %{created_at}."
+        updated_at:    "Updated at %{updated_at}."
+        related_files: "Related files"
+        related_url:   "Related Url"
+        size:          "Size"
+        archive_fingerprint:  "Archive fingerprint"
+      site_share:
+        share:         "Share"
+        my_sites:      "Choose the site and the location you want to share"
+        front_news:    "Front News"
+        name:          "Name"
+        title:         "Title"
+        close:         "Close"
+        no-site-found: "No site available to share"
+        no-front-news-found: 'No Front News Component Found'
+      list:
+        read_more:     "Read more"
+        no_news:       "No news were found"
+      related_files:
+        related_files: "Related files"
+        size:          "Size"

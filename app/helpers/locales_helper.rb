@@ -2,7 +2,11 @@ module LocalesHelper
   def flag(locale, options = {})
     size = options.delete(:size) || :regular
     options.reverse_merge!(title: t(locale.name), class: 'flag')
-    image_tag "data:image/png;base64,#{FLAGS[size][locale.name]}", options
+    #image_tag "data:image/png;base64,#{FLAGS[size][locale.name]}", options
+    [
+      image_tag(SVGS[locale.name], options),
+      (content_tag(:span, t(locale.name), class: 'lang-name') if options[:show_name])
+    ].compact.join(' ').html_safe
   end
 
   def available_locales(obj)
@@ -29,7 +33,14 @@ module LocalesHelper
   end
 
   def locale_link locale, template, options={}
-    _text = template == 'code' ? locale.code : flag(locale)
+    _text = case template
+      when 'code'
+        locale.code
+      when 'flag_name'
+        flag(locale, show_name: true)
+      else
+        flag(locale)
+      end
     _opts = {class: 'locale-link', data: {locale: locale.name}}
     _newlocale = current_site.locales.map(&:name).include?(locale.name) ? locale.name : I18n.default_locale
     link_to _text, {locale: _newlocale, atr: (locale.name if options[:auto_translate])}, _opts
@@ -113,5 +124,15 @@ module LocalesHelper
       'fr' => 'iVBORw0KGgoAAAANSUhEUgAAAA4AAAALCAYAAABPhbxiAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4QQEDRItXt3s5QAAACRJREFUKM9jZAhd8p8BDfxfFY3C/+Bkhq6EgYmBTDCqcYRrBADrCAV6COJ14QAAAABJRU5ErkJggg==',
       'pt-BR' => 'iVBORw0KGgoAAAANSUhEUgAAAA4AAAALCAYAAABPhbxiAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4QQEDRIS6LvB2AAAAaZJREFUKM+dks1LVGEUh5/3vbfJmdG54Pcwlo6ihKRDUrQoEFGh/KgW/QEtqo1uhBauTJT2YS6iTStXbiJIaKMUbkQQRL0qF1IZuybiqAM2zHjv+7pw+kBp0291+HHO5jyPYKxV8x+RFxolQQueRrd5Ft0GLc66czH/jAI8g4ZImpGKDRIpAQg665YZ+hFnLR0B0wf0X4fKQAhFX2yLgSKXsTcdDM7W4Z34PLzzjakX07yORBnfuYLSBkgfQ96LD98sTPM+vkp/zGXW7mFm9wGJlmIqa4v4ulBG4PiIV91L3L18yFo2yE6uALMxeMyn+kXKCjxQ8OHjJZbmHZKWojRWyK3OSrzy2+ifc7QXHzIVWqRt/QbSzoTpdZqZPrAgAE01LrmTANmMx9Zqii+TSWqtDUQQZg4sepwEK5kwhu6qHv6eDTGxX0EqZ/KkyeHIDWNvliCkyeNWh0f3PzO6V03/ZgPJXAgtNeI3Ry3AN7iW/+r1fYnWYJcqXu7WYKctMHwQOs/gvABKgtA8jyWRaN66V0EJkOpfHH8pcbbwzq3KFxrkRblOAYcXmiOyRv9QAAAAAElFTkSuQmCC'
     }
+  }
+
+  SVGS = {
+    'en' => 'flags/estados-unidos.svg',
+    'es' => 'flags/espanha.svg',
+    'fr' => 'flags/franca.svg',
+    'pt-BR' => 'flags/brasil.svg',
+    'zh-CN' => 'flags/china.svg',
+    'it' => 'flags/italia.svg',
+    'de' => 'flags/alemanha.svg'
   }
 end

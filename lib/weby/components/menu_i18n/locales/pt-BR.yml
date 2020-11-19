@@ -12,8 +12,7 @@ pt-BR:
   menu_i18n:
     views:
       form:
-        flag:  " Bandeiras "
+        flag:  " Bandeira "
         code:  " Código do idioma "
+        flag_name: "Bandeira e nome do idioma"
         translator_hint: "O texto do site é traduzido na visualização pelo usuário, as traduções não são armazenadas."
-        langs:
-          zh-CN: 'Mandarim'

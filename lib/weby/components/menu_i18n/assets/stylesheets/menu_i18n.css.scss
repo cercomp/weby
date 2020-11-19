@@ -5,7 +5,15 @@ ul.i18n_dropdown > li > ul{
 ul.i18n_dropdown > li
 {
   background: url("components/menu_i18n_arrow_expanded.png") no-repeat scroll;
-  background-position: 27px 5px;
+  background-position: right center;
+  padding-right: 10px;
+  a {
+    display: block;
+  }
+
+  .lang-name {
+    vertical-align: top;
+  }
 }
 
 ul.i18n_dropdown{
@@ -29,12 +37,25 @@ ul.i18n_submenu{
   display:inline-table;
 }
 
-ul.i18n_dropdown >  li,
-ul.i18n_submenu >  li{
-  width: 43px;
+ul.i18n_submenu {
+  width: 100%;
+}
+
+ul.i18n_dropdown:not(.flag_name) {
+  > li,
+  ul.i18n_submenu > li {
+    width: 43px;
+  }
+}
+
+ul.i18n_dropdown.flag_name {
+  > li {
+    min-width: 165px;
+  }
 }
 
 ul.i18n_dropdown >  li > a,
 ul.i18n_submenu >  li > a{
   margin-left: 3px;
+  margin-right: 3px;
 }

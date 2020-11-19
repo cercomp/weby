@@ -1,5 +1,5 @@
-en:
-  this_file_language: "American English"
+de:
+  this_file_language: "Deutsche"
 
 #--- Other locales ---#
   # Locales translation
@@ -9,7 +9,7 @@ en:
   fr:    " French "
   zh-CN: " Mandarin "
   it:    " Italian "
-  de:    " German "
+  de:    " Deutsche "
 
 #---A---#
   active_deactive:                      " Active Deactive  "
