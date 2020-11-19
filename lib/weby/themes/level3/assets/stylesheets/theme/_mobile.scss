@@ -397,11 +397,11 @@
       }
     }
   }
-  .header .ufg-logo img, body > header.fixed .ufg-logo img {
-    height: 42px;
+  .header .ufg-logo, body > header.fixed .ufg-logo {
+    height: 48px;
   }
-  .header .logo img, body > header.fixed .logo img {
-    height: 30px;
+  .header .logo, body > header.fixed .logo {
+    height: 36px;
   }
 
   body > header {
