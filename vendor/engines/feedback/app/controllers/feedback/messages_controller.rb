@@ -23,6 +23,7 @@ module Feedback
             FeedbackMailer.send_feedback(@message, emails, current_site).deliver_now
           else
             @message.groups.each do |group|
+              emails = group.emails_array.join(',')
               FeedbackMailer.send_feedback(@message, group.emails, current_site).deliver_now
             end
           end
@@ -38,7 +39,7 @@ module Feedback
     private
 
     def get_groups
-      @groups = current_site.groups
+      @groups = current_site.groups.order(position: :asc)
     end
 
     def message_params

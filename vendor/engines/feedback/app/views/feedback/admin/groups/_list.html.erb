@@ -8,17 +8,25 @@
   <div class="clearfix"></div>
 
   <div class="table-wrapper">
-    <table class="table table-striped align-middle">
+    <table class="table table-striped align-middle" id="groups-table" data-sort-url="<%= sort_admin_groups_path %>">
       <thead>
+        <% with_permission(action: :sort) do %>
+          <th class="grab-header"></th>
+        <% end %>
         <th class="center sel-all"><%= check_box_tag :select_all, 1, false %></th>
-        <th><%= sortable 'name', t(".name") %></th>
+        <th><%= t(".name") %></th>
+        <th><%= t(".emails") %></th>
         <th></th>
       </thead>
       <tbody>
       <% @groups.each do |group| %>
-        <tr>
+        <tr id="sort_group_<%= group.id %>" class="sort_group">
+          <% with_permission(action: :sort) do %>
+            <td class="grab-cell"><%= link_to image_tag('drag.png'), '#', class: 'handle', title: t('.move') %></td>
+          <% end %>
           <td class="center sel-item"><%= check_box_tag :select_item, group.id, false %></td>
           <td><%= link_to "#{group.name} #{content_tag(:span, icon(:edit), class: 'oh-c-i')}".html_safe, edit_admin_group_path(group) %></td>
+          <td><%= email_list group %></td>
           <td class="text-right">
             <%= render_dropdown_menu do %>
               <%= make_menu(group) %>

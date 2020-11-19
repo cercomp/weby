@@ -6,6 +6,7 @@ module Feedback
           get :feedback, to: 'messages#index'
           resources :groups do
             collection do
+              post :sort
               delete :destroy_many
             end
           end

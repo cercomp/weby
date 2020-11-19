@@ -14,7 +14,7 @@
     <% elsif component.source == 'feedback' %>
       <% @message = Feedback::Message.new(name: t('.feedback')) %>
       <% @extension = current_site.extensions.find_by(name: 'feedback') %>
-      <% @groups = current_site.groups %>
+      <% @groups = current_site.groups.order(position: :asc) %>
       <%= render template: 'feedback/messages/new', locals: { as_component: {show_title: component.show_title , show_info: component.show_info} } %>
     <% end %>
   </div>
