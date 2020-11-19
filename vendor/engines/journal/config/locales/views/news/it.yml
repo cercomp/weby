@@ -1,0 +1,29 @@
+it:
+  journal:
+    news:
+      index:
+        news:          "Notícias"
+        advanced:      "Opciones avanzadas"
+        match_search:  "Coincidencia exacta"
+        and_search:    "Todas las palabras"
+        or_search:     "Cualquiera de las palabras"
+        placeholder:   "Busque por palabra-llave"
+      show:
+        share:         "Compartir"
+        event:         "Evento"
+        period_event:  "Periodo del Evento"
+        list_all:      "Todas las páginas"
+        categories:    "Categorías"
+        source:        "Fuente"
+        posted_by:     "Por %{author}."
+        created_at:    "En %{created_at}."
+        updated_at:    "Actualizado en %{updated_at}."
+        related_files: "Archivos Relacionados"
+        related_url:   "Url Relacionada"
+        size:          "Tamaño"
+      list:
+        read_more:     "Leer más"
+        no_news:      "No se han encontrado notícias"
+      related_files:
+        related_files: "Archivos Relacionados"
+        size:          "Tamaño"

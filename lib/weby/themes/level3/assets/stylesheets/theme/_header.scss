@@ -504,11 +504,12 @@ $a11y-padding-h: 16px;
     padding: 0;
     border: 0;
     background-color: rgba(255,255,255,.8);
-    z-index: 1;
+    z-index: 5;
 
     > li {
       background: asset-url('level3/expand-more-white.png') no-repeat scroll;
-      background-position: 24px 0px;
+      background-position: right center;
+      padding-right: 14px;
 
       a:first-child {
         text-decoration: none;
@@ -526,6 +527,10 @@ $a11y-padding-h: 16px;
         background: transparent;
       }
     }
+
+    &.code > li a:first-child {
+      text-transform: uppercase;
+    }
   }
 
   .i18n_submenu {
@@ -535,6 +540,17 @@ $a11y-padding-h: 16px;
     background-color: rgba(255,255,255,.8);
     top: 100%;
     border-radius: 0 0 4px 4px;
+
+    li {
+      padding: 4px 0;
+      &:first-child {
+        margin-top: 4px;
+      }
+    }
+  }
+
+  img.flag {
+    height: 20px;
   }
 }
 

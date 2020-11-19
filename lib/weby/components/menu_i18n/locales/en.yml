@@ -12,8 +12,7 @@ en:
   menu_i18n:
     views:
       form:
-        flag:  " Flags "
+        flag:  " Flag "
         code:  " Country code "
+        flag_name: "Flag and language name"
         translator_hint: "The texts on the site are translated on the fly for the user, the translations are not stored."
-        langs:
-          zh-CN: 'Mandarin'
