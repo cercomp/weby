@@ -2,11 +2,11 @@ it:
   feedback:
     messages:
       new:
-        new_message:   " Nueva Mensaje "
-        feedback:      " Contáctenos "
-        group:         " Grupo "
-        group_explain: " Destinatario(s) del mensaje "
+        new_message:   " Nuovo messaggio "
+        feedback:      " Contattaci "
+        group:         " Gruppo "
+        group_explain: " Destinatario/i del messaggio "
       create:
-        success_sent:  " Mensaje enviado con éxito "
-        group_sent:    " Su mensaje ha sido enviado a los grupos: "
-        back_link:     " Volver a la home page "
+        success_sent:  " Messaggio inviato con successo "
+        group_sent:    " Il tuo messaggio è stato inviato a gruppi: "
+        back_link:     " Torna alla home page "

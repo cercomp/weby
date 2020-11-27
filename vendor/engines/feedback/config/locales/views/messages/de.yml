@@ -2,11 +2,11 @@ de:
   feedback:
     messages:
       new:
-        new_message:   " New Message "
+        new_message:   " Neue Nachricht "
         feedback:      " Feedback "
-        group:         " Group "
-        group_explain: " Recipient(s) of The Message "
+        group:         " Gruppe "
+        group_explain: " Empfänger der Nachricht "
       create:
-        success_sent:  " Post Posted Success "
-        group_sent:    " Your message was sent to the groups: "
-        back_link:     " Back to homepage "
+        success_sent:  " Nachricht erfolgreich versendet "
+        group_sent:    " Ihre Nachricht wurde an die Gruppen gesendet: "
+        back_link:     " Zurück zur Homepage "

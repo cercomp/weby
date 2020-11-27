@@ -2,11 +2,11 @@ zh-CN:
   feedback:
     messages:
       new:
-        new_message:   " New Message "
-        feedback:      " Feedback "
-        group:         " Group "
-        group_explain: " Recipient(s) of The Message "
+        new_message:   " 新消息 "
+        feedback:      " 反馈 "
+        group:         " 组 "
+        group_explain: " 邮件的收件人 "
       create:
-        success_sent:  " Post Posted Success "
-        group_sent:    " Your message was sent to the groups: "
-        back_link:     " Back to homepage "
+        success_sent:  " 消息发送成功 "
+        group_sent:    " 您的消息已发送到以下组： "
+        back_link:     " 返回首页 "
