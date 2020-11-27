@@ -3,13 +3,13 @@ it:
 
 #--- Other locales ---#
   # Locales translation
-  pt-BR: " Portugués (Brasil) "
-  en:    " Inglés "
-  es:    " Español "
-  fr:    " Francés "
-  zh-CN: " Mandarín "
+  pt-BR: " Portoghese (Brasile) "
+  en:    " Inglese "
+  es:    " Spagnolo "
+  fr:    " Francese "
+  zh-CN: " Mandarino "
   it:    " Italiano "
-  de:    " Alemán "
+  de:    " Tedesco "
 
   #TODO - ESSE ARQUIVO NÃO ESTÁ EM COMPLETAMENTE TRADUZIDO PARA ESPANHOL
 
@@ -235,12 +235,12 @@ it:
       long:    " %d de %B de %Y "
       monthly: " %b/%y "
 
-    day_names: [Domingo, Lunes, Martes, Miércoles, Jueves, Viernes, Sábado]
-    abbr_day_names: [Dom, Lun, Mar, Mie, Jue, Vie, Sab]
+    day_names: [domenica, lunedì, martedì, mercoledì, giovedì, venerdì, sabato]
+    abbr_day_names: [Dom, Lun, Mar, Mer, Gio, Ven, Sab]
 
     # Don't forget the nil at the beginning; there's no such thing as a 0th month
-    month_names: [~, Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Setiembre, Octubre, Noviembre, Diciembre]
-    abbr_month_names: [~, Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic]
+    month_names: [~, gennaio, febbraio, marzo, aprile, maggio, giugno, luglio, agosto, settembre, ottobre, novembre, dicembre]
+    abbr_month_names: [~, Gen, Feb, Mar, Apr, Mag, Giu, Lug, Ago, Set, Ott, Nov, Dic]
     # Used in date_select and datetime_select.
     order:
       - :day
@@ -253,7 +253,7 @@ it:
       mini:               " %d/%b "
       short:              " %d/%m/%y %H:%M "
       medium:             " %d/%m/%Y a las %H:%M "
-      long:               " %d de %B de %Y a las %H:%M "
+      long:               " %d di %B de %Y alle %H:%M "
       hour:               "%Hh"
       event_date_short:   " %d %B "
       event_date_full:    " %d %B %Y "
@@ -261,7 +261,7 @@ it:
       event_period_full:  " %{iniday} - %{finday} %B %Y "
       event_hour_period_short: " %d %B, %{inihour} - %{finhour} "
       event_hour_period_full:  " %d %B %Y, %{inihour} - %{finhour} "
-      event_hour:         " a las %H:%M "
+      event_hour:         " alle %H:%M "
     period_separator: "a"
     am: "am"
     pm: "pm"
@@ -270,8 +270,8 @@ it:
   support:
     array:
       words_connector:     " ,"
-      two_words_connector: " y "
-      last_word_connector: " y "
+      two_words_connector: " i "
+      last_word_connector: " i "
 
   helpers:
     submit:

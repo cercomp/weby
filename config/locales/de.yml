@@ -3,17 +3,17 @@ de:
 
 #--- Other locales ---#
   # Locales translation
-  pt-BR: " Portuguese (Brazil) "
-  en:    " English "
-  es:    " Spanish"
-  fr:    " French "
+  pt-BR: " Portugiesisch (Brasilien) "
+  en:    " Englisch "
+  es:    " Spanisch"
+  fr:    " Französisch "
   zh-CN: " Mandarin "
-  it:    " Italian "
+  it:    " Italienisch "
   de:    " Deutsche "
 
 #---A---#
   active_deactive:                      " Active Deactive  "
-  are_you_sure:                         " Are you sure? "
+  are_you_sure:                         " Bist du sicher? "
   are_you_sure_del_item:                " Are you sure you want to delete \"%{item}\"? "
   are_you_sure_unshare_item:            " Are you sure you want to delete the shared item \"%{item}\"? "
   are_you_sure_del_admin:               " Are you sure you want to remove \"%{user}\" from site Admin "
@@ -25,15 +25,15 @@ de:
   add_sub_menu:                         " Add sub menu item "
   active:                               " Active "
 #---B---#
-  back:                                 " Back "
+  back:                                 " zurück "
   begin:                                " Begin "
 #---C---#
   cannot_destroy_a_published_page:      " Cannot destroy a published page. "
-  cancel:                               " Cancel "
-  close:                                " Close "
-  copy:                                 " Copy "
-  clone:                                " Clone "
-  component:                            " Component "
+  cancel:                               " Abbrechen "
+  close:                                " Schließen "
+  copy:                                 " Kopieren "
+  clone:                                " Klon "
+  component:                            " Komponente "
   confirm_empty_bin:                    " Are you sure you want to empty the recycle bin? This action can't be undone. "
   custom:                               " Custom "
   create_account_successful:            " Your account has been created. Please check your e-mail for your account activation instructions "
@@ -52,9 +52,9 @@ de:
 #---E---#
   edit:                                 " Edit "
   enable:                               " Enable "
-  expired:                              " Expired "
-  expired_at:                           " Expired on %{date}"
-  extension:                            " Extension "
+  expired:                              " Abgelaufen "
+  expired_at:                           " Abgelaufen am %{date}"
+  extension:                            " Erweiterung "
   error_updating_object:                " Error updating "
   error_creating_object:                " Error creating "
   error_destroying_object:              " Error deleting "
@@ -79,7 +79,7 @@ de:
 #---K---#
 #---L---#
   layout:                               " Layout "
-  list_all:                             " List all "
+  list_all:                             " Alle auflisten "
   lower_upper_number_chars:             " Must contain at least one uppercase letter, one lowercase and one number! "
   login:                                " Login "
   login_success:                        " Logged in succesfully! "
@@ -94,8 +94,8 @@ de:
   missing_account:                      " We're sorry, but we could not locate your account. This URL is either invalid or expired. Try restarting the reset password process. "
   message:                              " Message "
 #---N---#
-  'no':                                 " No "
-  no_event_period:                      " Event Period unspecified "
+  'no':                                 " Nein "
+  no_event_period:                      " Ereigniszeitraum nicht angegeben "
   no_permission_to_activate_deactivate: " No permission to activate or deacticate "
   no_mail:                              " No user was found with that email address. "
   none_archive:                         " None File "
@@ -106,7 +106,7 @@ de:
   none_user:                            " None User "
 #---O---#
   ok:                                   " OK "
-  of:                                   " of "
+  of:                                   " von "
   only_admin:                           " Only for admin users "
 #---P---#
   please_wait:                          " Please Wait! "
@@ -169,15 +169,15 @@ de:
      pagination:
        first:      " First "
        last:       " Last "
-       displaying: " Showing "
-       more:       " More "
-       next:       " Next "
-       per_page:   " Per Page "
-       previous:   " Previus "
+       displaying: " Anzeigen "
+       more:       " mehr "
+       next:       " Weiter "
+       per_page:   " Pro Seite "
+       previous:   " Zurück "
        total:      " Total "
        truncate:   " ... "
 #---Y---#
-  'yes':                                " Yes "
+  'yes':                                " Ja "
 #---W---#
 
   number:
@@ -200,11 +200,11 @@ de:
       decimal_units:
         format: ! '%n %u'
         units:
-          billion: Billion
-          million: Million
-          quadrillion: Quadrillion
-          thousand: Thousand
-          trillion: Trillion
+          billion: Milliarden
+          million: Millionen
+          quadrillion: Billiarde
+          thousand: Tausend
+          trillion: Billionen
           unit: ''
       format:
         delimiter: ''
@@ -234,17 +234,17 @@ de:
       # Use the strftime parameters for formats.
       # When no format has been given, it uses default.
       # You can provide other formats here if you like!
-      default: " %m-%d-%Y"
-      short:   " %b %d "
-      long:    " %B %d, %Y "
+      default: " %d-%m-%Y"
+      short:   " %d %b"
+      long:    " %d %B, %Y "
       monthly: " %b-%y "
 
-    day_names: [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday]
-    abbr_day_names: [Sun, Mon, Tue, Wed, Thur, Fri, Sat]
+    day_names: [Sonntag, Montag, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag]
+    abbr_day_names: [So, Mo, Di, Mi, Do, Fr, Sa]
 
     # Don't forget the nil at the beginning; there's no such thing as a 0th month
-    month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]
-    abbr_month_names: [~, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+    month_names: [~, Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember]
+    abbr_month_names: [~, Jan, Feb, Mar, Apr, Mai, Jun, Jul, Aug, Sep, Okt, Nov, Dez]
     # Used in date_select and datetime_select.
     order:
       - :day
@@ -253,18 +253,18 @@ de:
 
   time:
     formats:
-      default:            " %a, %m-%d-%Y %H:%M:%S %z "
-      mini:               " %b-%d "
-      short:              " %m/%d/%y %H:%M "
-      medium:             " %m/%d/%Y at %H:%M "
-      long:               " %B %d, %Y at %H:%M "
+      default:            " %a, %d-%m-%Y %H:%M:%S %z "
+      mini:               " %d-%b "
+      short:              " %d/%m/%y %H:%M "
+      medium:             " %d/%m/%Y at %H:%M "
+      long:               " %d %B, %Y at %H:%M "
       hour:               "%I%P"
-      event_date_short:   " %B %d "
-      event_date_full:    " %B %d, %Y "
-      event_period_short: " %B %{iniday} - %{finday} "
-      event_period_full:  " %B %{iniday} - %{finday}, %Y "
-      event_hour_period_short: " %B %d, %{inihour} - %{finhour} "
-      event_hour_period_full:  " %B %d, %Y. %{inihour} - %{finhour} "
+      event_date_short:   " %d %B "
+      event_date_full:    " %d %B, %Y "
+      event_period_short: " %{iniday} - %{finday} %B "
+      event_period_full:  " %{iniday} - %{finday} %B, %Y "
+      event_hour_period_short: " %d %B, %{inihour} - %{finhour} "
+      event_hour_period_full:  " %d %B, %Y. %{inihour} - %{finhour} "
       event_hour:         " at %H:%M "
     period_separator: " - "
     am:               " am "
@@ -274,14 +274,14 @@ de:
   support:
     array:
       words_connector:     " , "
-      two_words_connector: " and "
-      last_word_connector: " , and "
+      two_words_connector: " und "
+      last_word_connector: " , und "
 
   helpers:
     submit:
-      create: "Save"
-      update: "Save"
-    cancel: "Cancel"
+      create: "Speichern"
+      update: "Speichern"
+    cancel: "Abbrechen"
 
   authlogic:
     error_messages:
@@ -311,7 +311,7 @@ de:
           one:   " unable to update the model: 1 error "
           other: " unable to update the model: %{count} errors. "
         body: "Please check the following fields:"
-      messages: 
+      messages:
         accepted:                 " acception required "
         attachment_presence:      " should be attached "
         blank:                    " must be filled "
@@ -345,8 +345,8 @@ de:
 
 # -- SIMPLE FORM -- #
   simple_form:
-    "yes": "Yes"
-    "no": "No"
+    "yes": "Ja"
+    "no": "Nein"
     required:
       text: "required"
       mark: "*"

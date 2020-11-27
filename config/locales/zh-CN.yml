@@ -234,17 +234,17 @@ zh-CN:
       # Use the strftime parameters for formats.
       # When no format has been given, it uses default.
       # You can provide other formats here if you like!
-      default: " %m-%d-%Y"
-      short:   " %b %d "
-      long:    " %B %d, %Y "
+      default: " %d-%m-%Y"
+      short:   " %d %b "
+      long:    " %d %B, %Y "
       monthly: " %b-%y "
 
-    day_names: [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday]
-    abbr_day_names: [Sun, Mon, Tue, Wed, Thur, Fri, Sat]
+    day_names: [星期日，星期一，星期二，星期三，星期四，星期五，星期六]
+    abbr_day_names: [周日，周一，周二，周三，周四，周五，周六]
 
     # Don't forget the nil at the beginning; there's no such thing as a 0th month
-    month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]
-    abbr_month_names: [~, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+    month_names: [〜，一月，二月，三月，四月，五月，六月，七月，八月，九月，十月，十一月，十二月]
+    abbr_month_names: [〜，1月，2月，3月，4月，5月，6月，7月，8月，9月，10月，11月，12月]
     # Used in date_select and datetime_select.
     order:
       - :day
@@ -253,18 +253,18 @@ zh-CN:
 
   time:
     formats:
-      default:            " %a, %m-%d-%Y %H:%M:%S %z "
-      mini:               " %b-%d "
-      short:              " %m/%d/%y %H:%M "
-      medium:             " %m/%d/%Y at %H:%M "
-      long:               " %B %d, %Y at %H:%M "
+      default:            " %a, %d-%m-%Y %H:%M:%S %z "
+      mini:               " %d-%b "
+      short:              " %d/%m/%y %H:%M "
+      medium:             " %d/%m/%Y at %H:%M "
+      long:               " %d %B, %Y at %H:%M "
       hour:               "%I%P"
-      event_date_short:   " %B %d "
-      event_date_full:    " %B %d, %Y "
-      event_period_short: " %B %{iniday} - %{finday} "
-      event_period_full:  " %B %{iniday} - %{finday}, %Y "
-      event_hour_period_short: " %B %d, %{inihour} - %{finhour} "
-      event_hour_period_full:  " %B %d, %Y. %{inihour} - %{finhour} "
+      event_date_short:   " %d %B "
+      event_date_full:    " %d %B, %Y "
+      event_period_short: " %{iniday} - %{finday} %B "
+      event_period_full:  " %{iniday} - %{finday} %B, %Y "
+      event_hour_period_short: " %d %B, %{inihour} - %{finhour} "
+      event_hour_period_full:  " %d %B, %Y. %{inihour} - %{finhour} "
       event_hour:         " at %H:%M "
     period_separator: " - "
     am:               " am "
