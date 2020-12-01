@@ -1,0 +1,38 @@
+it:
+  journal:
+    news:
+      index:
+        news:            "News"
+        advanced:        "Opzioni avanzate"
+        match_search:    "Ricerca esatta"
+        and_search:      "Tutte le parole"
+        or_search:       "Qualsiasi parola"
+        placeholder:     "Cerca per parola chiave"
+      show:
+        share:         "Condividi"
+        list_all:      "Elenca tutto"
+        categories:    "Categorie"
+        my_sites:      "I miei siti"
+        source:        "Fonte"
+        posted_by:     "Di %{author}."
+        created_at:    "In %{created_at}."
+        updated_at:    "Aggiornato alle %{updated_at}."
+        related_files: "File correlati"
+        related_url:   "URL correlato"
+        size:          "Taglia"
+        archive_fingerprint:  "Firma digitale del file"
+      site_share:
+        share:         "Condividi"
+        my_sites:      "Scegli il sito e la posizione in cui desideri condividere"
+        front_news:    "News Cover"
+        name:          "Nome"
+        title:         "Titolo"
+        close:         "Chiudi"
+        no-site-found: "Nessun sito disponibile per la condivisione"
+        no-front-news-found: 'Nessun componente Cover News attivo su questo sito'
+      list:
+        read_more:     "Leggi di più"
+        no_news:       "Nessuna notizia trovata"
+      related_files:
+        related_files: "File correlati"
+        size:          "Taglia"

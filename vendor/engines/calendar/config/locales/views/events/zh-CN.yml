@@ -1,0 +1,28 @@
+zh-CN:
+  calendar:
+    events:
+      index:
+        events:        " 事件 "
+        advanced:      " 高级选项 "
+        match_search:  " 准确的句子 "
+        and_search:    " 所有的话 "
+        or_search:     " 任何一个字 "
+      show:
+        event:         " 事件 "
+        period_event:  " 活动期间 "
+        event_date:    "  活动日期 "
+        list_all:      " 全部列出 "
+        categories:    " 类别 "
+        source:        " 资源 "
+        updated_at:    " 更新于 "
+        related_files: " 相关文件 "
+        related_url:   " 相关网址 "
+        email:         " 电子邮件 "
+        size:          " 大小 "
+        archive_fingerprint:  " 存档指纹 "
+      list:
+        read_more:     " 阅读更多 "
+        no_events:     " 没有发现事件 "
+      related_files:
+        related_files: " 相关文件 "
+        size:          " 大小 "

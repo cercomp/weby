@@ -21,7 +21,7 @@
   <%= f.association :locales,
     :as => :check_boxes,
     :boolean_style => :nested,
-    :collection => Locale.all.map{|l| [flag(l), l.id] } %>
+    :collection => Locale.all.map{|l| [flag(l, show_name: true), l.id] } %>
 
   <div class="form-actions">
     <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>

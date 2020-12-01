@@ -1,0 +1,38 @@
+zh-CN:
+  journal:
+    news:
+      index:
+        news:          "新闻"
+        advanced:      "高级选项"
+        match_search:  "确切的句子"
+        and_search:    "所有的话"
+        or_search:     "任何话"
+        placeholder:   "按关键字搜索"
+      show:
+        list_all:      "列出所有"
+        share:         "分享"
+        my_sites:      "我的网站"
+        categories:    "类别"
+        source:        "资源"
+        posted_by:     "按 %{author}。"
+        created_at:    "在 %{created_at}上。"
+        updated_at:    "已在 %{updated_at}更新。"
+        related_files: "相关文件"
+        related_url:   "相关网址"
+        size:          "尺寸"
+        archive_fingerprint:  "存档指纹"
+      site_share:
+        share:         "分享"
+        my_sites:      "选择要共享的站点和位置"
+        front_news:    "前沿新闻"
+        name:          "名称"
+        title:         "标题"
+        close:         "关"
+        no-site-found: "没有可共享的网站"
+        no-front-news-found: '找不到前端新闻组件'
+      list:
+        read_more:     "阅读更多"
+        no_news:       "没有发现新闻"
+      related_files:
+        related_files: "相关文件"
+        size:          "尺寸"

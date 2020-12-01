@@ -1,0 +1,28 @@
+de:
+  calendar:
+    events:
+      index:
+        events:        " Ereignisse "
+        advanced:      " Erweiterte Optionen "
+        match_search:  " Exakter Satz "
+        and_search:    " Alle Wörter "
+        or_search:     " Jedes der Wörter "
+      show:
+        event:         " Ereignis "
+        period_event:  " Ereignisperiode "
+        event_date:    " Ereignisdatum "
+        list_all:      " Alle auflisten "
+        categories:    " Kategorien "
+        source:        " Quelle "
+        updated_at:    " Aktualisiert um "
+        related_files: " Verwandte Dateien "
+        related_url:   " Verwandte URL "
+        email:         " Email "
+        size:          " Größe "
+        archive_fingerprint:  " Archivfingerabdruck "
+      list:
+        read_more:     " Weiterlesen "
+        no_events:     " Es wurden keine Ereignisse gefunden "
+      related_files:
+        related_files: " Verwandte Dateien "
+        size:          " Größe "

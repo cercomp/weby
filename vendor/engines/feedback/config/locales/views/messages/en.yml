@@ -7,6 +7,6 @@ en:
         group:         " Group "
         group_explain: " Recipient(s) of The Message "
       create:
-        success_sent:  " Post Posted Success "
+        success_sent:  " Message successfully sent "
         group_sent:    " Your message was sent to the groups: "
         back_link:     " Back to homepage "
