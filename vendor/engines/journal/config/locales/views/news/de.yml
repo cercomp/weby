@@ -1,0 +1,38 @@
+de:
+  journal:
+    news:
+      index:
+        news:          "Nachrichten"
+        advanced:      "Erweiterte Optionen"
+        match_search:  "Exakter Satz"
+        and_search:    "Alle Wörter"
+        or_search:     "Jedes der Wörter"
+        placeholder:   "Suche nach Schlüsselwörtern"
+      show:
+        list_all:      "Alle auflisten"
+        share:         "Teilen"
+        my_sites:      "Meine Sites"
+        categories:    "Kategorien"
+        source:        "Quelle"
+        posted_by:     "Von %{author}."
+        created_at:    "On %{created_at}."
+        updated_at:    "Aktualisiert bei %{updated_at}."
+        related_files: " Verwandte Dateien "
+        related_url:   " Verwandte URL "
+        size:          " Größe "
+        archive_fingerprint:  " Archivfingerabdruck "
+      site_share:
+        share:         "Teilen"
+        my_sites:      "Wählen Sie die Site und den Ort aus, den Sie teilen möchten"
+        front_news:    "Front News"
+        name:          "Name"
+        title:         "Titel"
+        close:         "Schließen"
+        no-site-found: "Keine Site zum Teilen verfügbar"
+        no-front-news-found: 'Keine Front-News-Komponente gefunden'
+      list:
+        read_more:     "Weiterlesen"
+        no_news:       "Es wurden keine Nachrichten gefunden"
+      related_files:
+        related_files: " Verwandte Dateien "
+        size:          " Größe "

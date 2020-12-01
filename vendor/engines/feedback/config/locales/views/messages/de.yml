@@ -1,0 +1,12 @@
+de:
+  feedback:
+    messages:
+      new:
+        new_message:   " Neue Nachricht "
+        feedback:      " Feedback "
+        group:         " Gruppe "
+        group_explain: " Empfänger der Nachricht "
+      create:
+        success_sent:  " Nachricht erfolgreich versendet "
+        group_sent:    " Ihre Nachricht wurde an die Gruppen gesendet: "
+        back_link:     " Zurück zur Homepage "

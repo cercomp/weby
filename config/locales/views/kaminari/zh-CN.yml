@@ -1,0 +1,12 @@
+zh-CN:
+  kaminari:
+    first_page:
+      pagination_first:    " 第一 "
+    gap:
+      pagination_truncate: " ...      "
+    last_page:
+      pagination_last:     " 持续 "
+    next_page:
+      pagination_next:     " 下一个 "
+    prev_page:
+      pagination_previous: " 以前 "

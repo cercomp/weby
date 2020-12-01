@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="Layer_1"
+   x="0px"
+   y="0px"
+   viewBox="0 0 79.368536 51.999999"
+   xml:space="preserve"
+   sodipodi:docname="reino-unido.svg"
+   width="79.368538"
+   height="52"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"><metadata
+   id="metadata53"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+   id="defs51" /><sodipodi:namedview
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1"
+   objecttolerance="10"
+   gridtolerance="10"
+   guidetolerance="10"
+   inkscape:pageopacity="0"
+   inkscape:pageshadow="2"
+   inkscape:window-width="1328"
+   inkscape:window-height="706"
+   id="namedview49"
+   showgrid="false"
+   fit-margin-top="0"
+   fit-margin-left="0"
+   fit-margin-right="0"
+   fit-margin-bottom="0"
+   inkscape:zoom="0.5"
+   inkscape:cx="-383.9835"
+   inkscape:cy="-31.717518"
+   inkscape:window-x="58"
+   inkscape:window-y="27"
+   inkscape:window-maximized="0"
+   inkscape:current-layer="Layer_1" />
+<path
+   style="fill:#012169;fill-opacity:1;stroke-width:0.15501611"
+   d="M 77.999743,51.999988 H 1.3684818 C 0.61277853,51.999988 0,51.387228 0,50.631558 V 1.3684379 C 0,0.61277787 0.61277853,7.87364e-6 1.3684818,7.87364e-6 H 77.999898 c 0.755706,0 1.368483,0.61255999636 1.368483,1.36843002636 V 50.631558 c -1.55e-4,0.75608 -0.612934,1.36843 -1.368638,1.36843 z"
+   id="path2"
+   inkscape:connector-curvature="0" />
+<path
+   style="fill:#ffffff;fill-opacity:1;stroke-width:0.15501611"
+   d="M 79.368226,1.3684379 C 79.368226,0.61235787 78.755448,7.87364e-6 77.999743,7.87364e-6 H 71.877384 L 46.526057,16.609528 V 7.87364e-6 H 32.841859 V 16.609528 L 7.4906863,7.87364e-6 H 1.3684818 C 0.61277853,7.87364e-6 0,0.61277787 0,1.3684379 v 3.53922 L 21.750149,19.157838 H 0 v 13.68422 H 21.750149 L 0,47.092338 v 3.53922 c 0,0.75608 0.61277853,1.36843 1.3684818,1.36843 H 7.4908413 L 32.842169,35.390468 v 16.60952 h 13.684198 v -16.60952 l 25.351328,16.60952 h 6.122359 c 0.755706,0 1.368482,-0.61256 1.368482,-1.36843 v -3.53922 L 57.618387,32.842158 H 79.368226 V 19.157948 H 57.618076 L 79.368226,4.9076579 Z"
+   id="path4"
+   inkscape:connector-curvature="0" />
+<g
+   id="g16"
+   transform="matrix(0.15501611,0,0,0.15501611,0,-13.684202)">
+	<polygon
+   style="fill:#c8102e;fill-opacity:1"
+   points="0,282.483 229.517,282.483 229.517,423.725 282.483,423.725 282.483,282.483 512,282.483 512,229.518 282.483,229.518 282.483,88.276 229.517,88.276 229.517,229.518 0,229.518 "
+   id="polygon6" />
+	<path
+   style="fill:#c8102e;fill-opacity:1"
+   d="M 178.948,300.138 0.25,416.135 c 0.625,4.263 4.14,7.59 8.577,7.59 h 12.159 l 190.39,-123.586 h -32.428 z"
+   id="path8"
+   inkscape:connector-curvature="0" />
+	<path
+   style="fill:#c8102e;fill-opacity:1"
+   d="M 346.388,300.138 H 313.96 l 190.113,123.404 c 4.431,-0.472 7.928,-4.09 7.928,-8.646 v -7.258 z"
+   id="path10"
+   inkscape:connector-curvature="0" />
+	<path
+   style="fill:#c8102e;fill-opacity:1"
+   d="m 0,106.849 161.779,105.014 h 32.428 L 5.143,89.137 C 2.123,90.54 0,93.555 0,97.104 Z"
+   id="path12"
+   inkscape:connector-curvature="0" />
+	<path
+   style="fill:#c8102e;fill-opacity:1"
+   d="M 332.566,211.863 511.693,95.586 c -0.744,-4.122 -4.184,-7.309 -8.521,-7.309 H 490.525 L 300.138,211.863 Z"
+   id="path14"
+   inkscape:connector-curvature="0" />
+</g>
+<g
+   id="g18"
+   transform="translate(0,-371.725)">
+</g>
+<g
+   id="g20"
+   transform="translate(0,-371.725)">
+</g>
+<g
+   id="g22"
+   transform="translate(0,-371.725)">
+</g>
+<g
+   id="g24"
+   transform="translate(0,-371.725)">
+</g>
+<g
+   id="g26"
+   transform="translate(0,-371.725)">
+</g>
+<g
+   id="g28"
+   transform="translate(0,-371.725)">
+</g>
+<g
+   id="g30"
+   transform="translate(0,-371.725)">
+</g>
+<g
+   id="g32"
+   transform="translate(0,-371.725)">
+</g>
+<g
+   id="g34"
+   transform="translate(0,-371.725)">
+</g>
+<g
+   id="g36"
+   transform="translate(0,-371.725)">
+</g>
+<g
+   id="g38"
+   transform="translate(0,-371.725)">
+</g>
+<g
+   id="g40"
+   transform="translate(0,-371.725)">
+</g>
+<g
+   id="g42"
+   transform="translate(0,-371.725)">
+</g>
+<g
+   id="g44"
+   transform="translate(0,-371.725)">
+</g>
+<g
+   id="g46"
+   transform="translate(0,-371.725)">
+</g>
+</svg>

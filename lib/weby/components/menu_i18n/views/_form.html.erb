@@ -4,7 +4,7 @@
 
 <%= f.input :use_translator, hint: t(".translator_hint"), wrapper: :checkbox, as: :boolean, input_html: {class: 'toggle-fields', data: {fields: '.menu_i18n_component_extra_langs'}} %>
 
-<%= f.input :extra_langs,
+<%#= f.input :extra_langs,
   as: :check_boxes,
   boolean_style: :nested,
   collection: component.extra_langs_options.map{ |lang|
