@@ -4,6 +4,9 @@ pt-BR:
       new:
         settings:     " Configurações "
       index:
+        params:       " Parâmetros "
+        exec:         " Rotinas "
+      params:
         weby:         " Weby "
         ldap:         " LDAP "
         asset_host:   " Host de Assets "
@@ -15,6 +18,10 @@ pt-BR:
         value:        " Valor "
         description:  " Descrição "
         none_setting: " Nenhuma configuração "
+      exec:
+        select_file:  " Selecione o arquivo "
+        execute:      " Executar "
+        result:       " Resultado da execução: %{result} "
       edit:
         settings:     " Configurações "
       show:

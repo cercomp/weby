@@ -4,6 +4,9 @@ en:
       new:
         settings:     " Settings "
       index:
+        params:       " Parameters "
+        exec:         " Execute "
+      params:
         weby:         " Weby "
         ldap:         " LDAP "
         asset_host:   " Assets host "
@@ -15,6 +18,10 @@ en:
         value:        " Value "
         description:  " Description "
         none_setting: " No Settings "
+      exec:
+        select_file:  " Select File "
+        execute:      " Execute "
+        result:       " Execution result: %{result} "
       edit:
         settings:     " Settings "
       show:
