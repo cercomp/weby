@@ -1,5 +1,6 @@
 if ENV['ELASTICSEARCH_URL'].present?
-  Searchkick.timeout = ENV['ELASTICSEARCH_TIMEOUT'].present? ? ENV['ELASTICSEARCH_TIMEOUT'].to_i : 6
+  Searchkick.timeout = ENV['ELASTICSEARCH_TIMEOUT'].to_i if ENV['ELASTICSEARCH_TIMEOUT'].present?
+  #Searchkick.client = Elasticsearch::Client.new(hosts: [hosts], retry_on_failure: true, transport_options: {request: {timeout: 250}})
   Searchkick.client_options = {
     reload_on_failure: true
   }
