@@ -14,6 +14,9 @@
         <a href="#tab-subsites" data-toggle="tab"><%= t(".subsites") %></a>
       </li>
     <% end %>
+    <li>
+      <a href="#tab-exec" data-toggle="tab"><%= t(".exec") %></a>
+    </li>
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="tab-form">
@@ -34,5 +37,8 @@
         <%= content_tag :div, render('sites/subsites') %>
       </div>
     <% end %>
+    <div class="tab-pane" id="tab-exec">
+      <%= link_to t('.index_news'), reindex_admin_site_path(@site), class: 'btn btn-default', method: :post %>
+    </div>
   </div>
 </div>

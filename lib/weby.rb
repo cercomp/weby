@@ -25,6 +25,13 @@ module Weby
       drop_lower_index "users", "first_name"
     end
 
+    def run_data_migration file_name
+      if file_name.present?
+        return load(Rails.root.join('db', 'data_migrations', "#{file_name}.rb"))
+      end
+      return false
+    end
+
     private
     def create_lower_index table, field
       begin

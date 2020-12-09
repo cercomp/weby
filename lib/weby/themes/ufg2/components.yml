@@ -386,7 +386,7 @@ first_place:
     name: menu_accessibility
     position: 1
     publish: true
-  - settings: '{:dropdown=>"1", :template=>"code"}'
+  - settings: '{:dropdown=>"1", :template=>"flag_name", :use_translator=>"1"}'
     name: menu_i18n
     position: 2
     publish: true

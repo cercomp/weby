@@ -14,6 +14,10 @@ en:
         main:                   " Main "
         subsites:               " Subsites "
         pages:                  " Pages "
+        exec:                   " Execute "
+        index_news:             " Index news "
+      reindex:
+        news_reindexed:         " News successfully indexed "
       list:
         name:                   " Name "
         dashboard:              " Dashboard "

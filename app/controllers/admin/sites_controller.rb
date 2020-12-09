@@ -1,7 +1,7 @@
 class Admin::SitesController < Admin::BaseController
   include ActsToToggle
 
-  before_action :set_resource, only: [:edit, :update, :destroy]
+  before_action :set_resource, only: [:edit, :update, :destroy, :reindex]
 
   respond_to :html, :xml, :js
 
@@ -70,6 +70,12 @@ class Admin::SitesController < Admin::BaseController
       flash[:warning] = "#{t('error_destroying_object')}: #{error.record.errors.full_messages.join(', ')}"
     end
     redirect_to admin_sites_url(subdomain: nil)
+  end
+
+  def reindex
+    @site.news_sites.reindex
+    flash[:notice] = t('.news_reindexed')
+    redirect_to edit_admin_site_path(@site)
   end
 
   private

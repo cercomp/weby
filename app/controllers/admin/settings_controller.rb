@@ -17,8 +17,26 @@ class Admin::SettingsController < ApplicationController
       errors.present? ? flash[:error] = errors : flash[:success] = t('successfully_updated')
       Weby::Settings.clear
     end
-
+    @execs = Dir.glob(File.join('db', 'data_migrations', '*')).select do |f|
+      File.file?(f) && f.to_s.match(/\.rb$/)
+    end.map do |f|
+      f.match(/(\w+)\.rb$/)[1]
+    end
     @settings = Weby::Settings.all
+  end
+
+  def exec
+    if params[:file].present?
+      begin
+        res = Weby::run_data_migration params[:file]
+        flash[:notice] = t('.result', result: res)
+      rescue Exception => e
+        flash[:error] = e
+      end
+    else
+      flash[:error] = t('.select_file')
+    end
+    redirect_to admin_settings_path
   end
 
   private

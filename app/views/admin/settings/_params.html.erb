@@ -1,0 +1,44 @@
+<%= form_tag admin_settings_path, :method => :put, :id => 'settings_form' do %>
+  <div class="tabbable">
+    <ul class="nav nav-tabs" id="style-tab">
+      <% Weby::Settings.groups.each_with_index do |group, index| %>
+        <li class="<%= index == 0 ? "active" : "" %>" >
+        <a href="#<%=group%>" data-toggle="tab"><%= t(".#{group}") %></a>
+        </li>
+      <% end %>
+    </ul>
+    <div class="tab-content">
+      <% Weby::Settings.groups.each_with_index do |group, index| %>
+        <div class="tab-pane <%= index == 0 ? "active" : "" %>" id=<%= group %>>
+          <table class='table table-striped'>
+            <thead>
+              <tr>
+                <th> <%= t('.name') %> </th>
+                <th style="width: 30%"> <%= t('.value') %> </th>
+                <th style="width: 50%"> <%= t('.description') %> </th>
+              </tr>
+            </thead>
+            <tbody>
+            <% @settings.each do |setting| %>
+	          <% if setting.group == group %>
+                <tr>
+                  <input type="hidden" value="<%= setting.id %>" name="settings[][id]"/>
+		          <input type="hidden" value="<%= setting.name %>" name="settings[][name]"/>
+		          <input type="hidden" value="<%= setting.group %>" name="settings[][group]"/>
+                  <td> <%= setting.name %> </td>
+                  <td> <%= setting_input_tag setting %> </td>
+                  <td> <%= t("settings.#{setting.name}") %> </td>
+		        </tr>
+	           <% end %>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="form-actions">
+    <%= button_tag t("save"), class: 'btn btn-primary', disable_with: t("please_wait") %>
+    <%= link_to t("back"), :back, class: "btn btn-default" %>
+  </div>
+<% end %>
