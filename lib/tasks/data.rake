@@ -4,7 +4,8 @@ namespace :data do
   desc "run data migration"
   task :migrate => :environment do
     if ENV['file'].present?
-      load Rails.root.join('db', 'data_migrations', "#{ENV['file']}.rb")
+      result = Weby::run_data_migration ENV['file']
+      puts "Result: #{result}"
     else
       puts "NO ENV VAR (file)"
     end

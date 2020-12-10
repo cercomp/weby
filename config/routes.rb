@@ -130,6 +130,7 @@ Rails.application.routes.draw do
 
     namespace :admin do
       match 'settings' => 'settings#index', via: [:get, :put]
+      post 'settings/exec' => 'settings#exec', as: :exec
       resources :users do
         collection do
           get :manage_roles, :search
@@ -149,6 +150,7 @@ Rails.application.routes.draw do
       resources :sites, except: [:show] do
         member do
           put :toggle
+          post :reindex
         end
       end
       resources :groupings, except: [:show]

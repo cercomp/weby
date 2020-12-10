@@ -1,0 +1,12 @@
+<%= form_tag admin_exec_path, :method => :post, :id => 'exec_form' do %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= select_tag(:file, options_for_select(@execs), include_blank: t('.select_file'), class: 'form-control') %>
+    </div>
+  </div>
+  <div class="form-actions">
+    <%= button_tag t(".execute"), class: 'btn btn-primary', disable_with: t("please_wait") %>
+    <%= link_to t("back"), :back, class: "btn btn-default" %>
+  </div>
+<% end %>
+
