@@ -20,6 +20,7 @@ en:
         user_current_sites: " Current Sites "
         roles:              " Roles "
         admin:              " Admin "
+        auth_sources:       " Authentication types "
       new:
         new_user:           " New User "
       form:
@@ -27,6 +28,7 @@ en:
         password:           " Password "
         password_change:    " New Password "
         locale_hint:        " Language for the admin interface "
+        ldap_user_warning:  " <b>Warning</b> This user has LDAP authentication linked, if a password is assigned they will be able to sign in once with the Weby account"
       index:
         users:              " Users "
         new_user:           " New User "

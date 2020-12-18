@@ -27,9 +27,19 @@
             <%= t('.pending-email', email: @profile.unconfirmed_email) %>
           <% end %>
         <% end %>
-        <%= f.input :password, label: t(".password-change"), hint: t("lower_upper_number_chars"), as: :password,
-          input_html: { class: 'input-block-level', pattern: '(?=.*\d)(?=.*[A-Z])(?=.*[a-z])^.{4,}$' } %>
-        <%= f.input :password_confirmation, as: :password, input_html: { class: 'input-block-level' } %>
+        <% if (ldap_source = @profile.ldap_auth_source) %>
+          <div class="form-group string">
+            <label class="string required">Login Único</label>
+            <div><%= ldap_source.source_login %></div>
+          </div>
+        <% end %>
+        <% if ldap_source.blank? || Weby::Settings::Ldap.force_ldap_login.to_s != 'true' %>
+          <div class="well">
+            <%= f.input :password, label: t(".password-change"), hint: t("lower_upper_number_chars"), as: :password,
+              input_html: { class: 'input-block-level', pattern: '(?=.*\d)(?=.*[A-Z])(?=.*[a-z])^.{4,}$' } %>
+            <%= f.input :password_confirmation, as: :password, input_html: { class: 'input-block-level' } %>
+          </div>
+        <% end %>
         <%= f.input :phone, input_html: {size: 20, maxlength: 20}, input_html: { class: 'input-block-level' } %>
         <%= f.input :mobile, input_html: {size: 20, maxlength: 20}, as: :tel, input_html: { class: 'input-block-level' } %>
         <%= f.input :locale_id,

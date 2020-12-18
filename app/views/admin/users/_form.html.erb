@@ -1,0 +1,27 @@
+<%= form.input :login, :label => t(".username"), :hint => t("field_required") %>
+<%= form.input :email, :hint => t("field_required"), :as => :email %>
+<% if (ldap_source = @user.ldap_auth_source) %>
+  <div class="form-group string">
+    <label class="string required">Login Único</label>
+    <div><%= ldap_source.source_login %></div>
+  </div>
+<% end %>
+<div class="well">
+  <% if ldap_source.present? && Weby::Settings::Ldap.force_ldap_login.to_s == 'true' %>
+    <div class="alert alert-danger" role="alert"><%= t('.ldap_user_warning').html_safe %></div>
+  <% end %>
+  <%= form.input :password, :label => form.object.new_record? ?  t(".password") : t(".password_change"), :hint => t("field_required")+" - "+t("lower_upper_number_chars"), :as => :password, :input_html => {:pattern => '(?=.*\d)(?=.*[A-Z])(?=.*[a-z])^.{4,}$'} %>
+  <%= form.input :password_confirmation, :hint => t("field_required"), :as => :password %>
+</div>
+<%= form.input :first_name, :hint => t("field_required") %>
+<%= form.input :last_name %>
+<%= form.input :phone, :input_html => {:size => 20, :maxlength => 20} %>
+<%= form.input :mobile, :input_html => {:size => 20, :maxlength => 20}, :as => :tel %>
+<%= form.input :locale_id,
+    :as => :radio_buttons, :hint => t(".locale_hint"),
+    :boolean_style => :nested,
+    :collection => admin_locales.map{|l| [flag(l), l.id] } %>
+<div class="form-actions">
+  <%= form.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
+  <%= link_to t("back"), :back, class: "btn btn-default" %>
+</div>
