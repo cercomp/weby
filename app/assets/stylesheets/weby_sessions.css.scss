@@ -96,3 +96,16 @@ a:hover { text-decoration: none; }
 blockquote{
   font-size: 14px;
 }
+
+.dual-panel {
+  display: flex;
+  align-items: stretch;
+  > :nth-child(2) {
+    flex: 1;
+    margin-left: 10px;
+    border-left: 1px solid #ddd;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+  }
+}

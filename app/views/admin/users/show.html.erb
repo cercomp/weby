@@ -15,7 +15,12 @@
   <p> <b><%= t('.register') %>: <%= l(@user.created_at, format: :short) if @user.created_at %> </b> </p>
   <p> <b><%= t('.last_sign_in_at') %>:</b> <%= l(@user.last_sign_in_at, format: :short) if @user.last_sign_in_at %> </p>
 </div>
-
+<div id="auth_sources">
+  <%= content_tag(:h4, t('.auth_sources')) if @user.auth_sources.any? %>
+  <% @user.auth_sources.each do |auth_src| %>
+    <p> <b><%= auth_src.source_type.titleize %>:</b> <%= auth_src.source_login %> </p>
+  <% end %>
+</div>
 <div id="user_current_roles">
   <% if @user.global_roles.any? %>
     <h1><%= t('.global_roles') %></h1>

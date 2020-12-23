@@ -26,6 +26,7 @@ pt-BR:
     attr_mail:          'Atributo para busca do email'
     port:               'Porta'
     ldaps:              'Utilizar conexão segura (HTTPS)'
+    force_ldap_login:   'Login apenas via LDAP após associação de conta'
     disable_on_https:   'Desabilitar host de assets'
     assets_host:        'Host de assets'
     uploads_host:       'Host de uploads'

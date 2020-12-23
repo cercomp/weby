@@ -7,6 +7,7 @@ class Setting < ApplicationRecord
     tld_length: :numericality,
     maintenance_mode: %w(false true),
     ldaps: %w(false true),
+    force_ldap_login: %w(false true),
     facebook_comments: %w(false true),
     accessibility_text: {text: true}
   }

@@ -200,7 +200,7 @@ Rails.application.routes.draw do
 
     # routes to password
     get 'forgot_password' => 'devise/passwords#new'
-    post 'forgot_password' => 'devise/passwords#create'
+    post 'forgot_password' => 'passwords#create'
     get 'reset_password'  => 'devise/passwords#edit'
     put 'reset_password'  => 'devise/passwords#update'
   end

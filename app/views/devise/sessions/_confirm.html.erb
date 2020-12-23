@@ -3,15 +3,19 @@
   wrapper: :devise_input,
   url: link_user_path do |f| %>
 
-  <%= f.input :auth, label: false, input_html: { value: @name_suggested } %>
-  <%= f.input :password, autofocus: true, label: false, placeholder: t('.field_password') %>
-
-  <% if @show_new_user %>
-    <%= link_to t('.new_user'), new_user_path, class: 'pull-right' %>
-  <% end %>
-
-  <div class="clearfix"></div>
-
-  <%= f.button :submit, t('.link'), class: 'btn-primary btn-block' %>
+  <div class="dual-panel">
+    <div class="dual-item">
+      <label for=""><%= t('.weby_login') %></label>
+      <%= f.input :auth, label: false, input_html: { value: @name_suggested } %>
+      <%= f.input :password, autofocus: true, label: false, placeholder: t('.field_password') %>
+      <div class="clearfix"></div>
+      <%= f.button :submit, t('.link'), class: 'btn-primary btn-block' %>
+    </div>
+    <% if true #@show_new_user %>
+      <div class="dual-item">
+        <%= link_to t('.new_user'), new_user_path, class: 'btn btn-block btn-success' %>
+      </div>
+    <% end %>
+  </div>
 <% end %>
 

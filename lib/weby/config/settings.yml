@@ -51,6 +51,8 @@ settings:
       value:
     ldaps:
       value: 'false'
+    force_ldap_login:
+      value: 'false'
   asset_host:
     disable_on_https:
       value: true

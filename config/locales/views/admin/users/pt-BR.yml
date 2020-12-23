@@ -20,6 +20,7 @@ pt-BR:
         user_current_sites: " Sites Cadastrados "
         roles:              " Papéis "
         admin:              " Administração "
+        auth_sources:       " Tipos de autenticação "
       new:
         new_user:           " Novo Usuário "
       form:
@@ -27,6 +28,7 @@ pt-BR:
         password:           " Senha "
         password_change:    " Nova senha "
         locale_hint:        " Idioma a ser utilizado na área administrativa "
+        ldap_user_warning:  " <b>Atenção</b> Este usuário possui autenticação por LDAP vinculada, se uma senhha da conta Weby for definida ele poderá realizar um login com a conta Weby"
       index:
         users:              " Usuários "
         new_user:           " Novo Usuário "
