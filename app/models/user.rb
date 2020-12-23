@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :notifications, dependent: :nullify
   has_many :user_login_histories, dependent: :destroy
   has_many :pages, dependent: :restrict_with_error
+  has_many :repositories, dependent: :restrict_with_error
   # Extensions relations
   has_many :news, class_name: 'Journal::News', dependent: :restrict_with_error
   has_many :banners, class_name: 'Sticker::Banner', dependent: :restrict_with_error
