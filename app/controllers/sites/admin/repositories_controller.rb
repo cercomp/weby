@@ -81,6 +81,7 @@ class Sites::Admin::RepositoriesController < ApplicationController
     if params[:new_version]
       @repository.increment_filename
     end
+    @repository.user = current_user
     respond_with(:site_admin, @repository) do |format|
       if @repository.save
         format.html do
@@ -113,7 +114,9 @@ class Sites::Admin::RepositoriesController < ApplicationController
 
   def update
     @repository = current_site.repositories.find(params[:id])
-
+    if params[:repository][:archive].present?
+      @repository.user = current_user
+    end
     if @repository.update(repository_params)
       @repository.archive.reprocess! unless params[:repository][:archive]
       flash[:success] = t('successfully_updated')

@@ -4,6 +4,7 @@ class Repository < ApplicationRecord
   attr_accessor :x, :y, :w, :h
 
   belongs_to :site
+  belongs_to :user, optional: true # opcional para comportar os arquivos existentes
 
   has_many :sites, foreign_key: 'top_banner_id', dependent: :nullify
   has_many :posts_repositories, dependent: :destroy
