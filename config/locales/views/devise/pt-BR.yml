@@ -21,6 +21,7 @@ pt-BR:
         new_user:            "Novo no Weby"
         field_login:         "Login"
         field_password:      "Senha"
+        cancel:              "Cancelar"
     registrations:
       form:
         login:               "Entrar"

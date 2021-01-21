@@ -21,6 +21,7 @@ en:
         new_user:            "New in Weby"
         field_login:         "Login"
         field_password:      "Password"
+        cancel:              "Cancel"
     registrations:
       form:
         login:               "Login"

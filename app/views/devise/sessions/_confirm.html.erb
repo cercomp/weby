@@ -10,6 +10,11 @@
       <%= f.input :password, autofocus: true, label: false, placeholder: t('.field_password') %>
       <div class="clearfix"></div>
       <%= f.button :submit, t('.link'), class: 'btn-primary btn-block' %>
+      <% if @cancelable %>
+        <div class="text-right" style="margin-top: 15px">
+          <%= link_to t('.cancel'), login_path(cancel_ldap: true), class: 'pull-right' %>
+        </div>
+      <% end %>
     </div>
     <% if true #@show_new_user %>
       <div class="dual-item">

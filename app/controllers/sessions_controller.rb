@@ -5,6 +5,20 @@ class SessionsController < Devise::SessionsController
 
   before_action :store_location, only: :new
 
+  def new
+    if params[:cancel_ldap] == 'true'
+      clear_ldap_session!
+    elsif params[:confirm] == 'true' && session[:ldap_login].present?
+      flash[:warning] = t('link_weby_user')
+      @session = User.new
+      @confirm = 'true'
+      #@show_new_user = User.find_by_login(ldap_user_login).blank?
+      @name_suggested = session[:ldap_login]
+      @cancelable = true
+    end
+    super
+  end
+
   def create
     ldap = Weby::Settings::Ldap
     if ldap.host.nil?
@@ -35,6 +49,7 @@ class SessionsController < Devise::SessionsController
       end
       filter = Net::LDAP::Filter.join(Net::LDAP::Filter.eq(ldap.attr_login, ldap_user_login), Net::LDAP::Filter.eq(ldap.attr_password, ldap_user_pass))
       ldap_user = connect.search(:base => ldap.base, :filter => filter)
+      #puts "---->>>>>>>>> #{ldap_user.first.inspect}"
       if ldap_user.first.nil?
         # Caso as credenciais não sejam autenticadas no LDAP
         super
@@ -87,6 +102,9 @@ class SessionsController < Devise::SessionsController
     if user.nil? || !user.valid_password?(params[:user][:password])
       flash[:error] = t('invalid')
       redirect_to login_path(confirm: 'true')
+    elsif user.email != session[:ldap_email]
+      flash[:error] = t('ldap_email_invalid')
+      redirect_to login_path(confirm: 'true')
     else
       AuthSource.new(user_id: user.id, source_type: session[:ldap_type], source_login: session[:ldap_login]).save!
       if Weby::Settings::Ldap.force_ldap_login.to_s == 'true'
@@ -94,6 +112,7 @@ class SessionsController < Devise::SessionsController
       end
       sign_in user
       user.record_login(request.user_agent, request.remote_ip)
+      clear_ldap_session!
       redirect_to session[:return_to] || root_path
     end
   end
@@ -120,11 +139,20 @@ class SessionsController < Devise::SessionsController
       AuthSource.new(user_id: user.id, source_type: session[:ldap_type], source_login: session[:ldap_login]).save!
       sign_in user
       user.record_login(request.user_agent, request.remote_ip)
+      clear_ldap_session!
       redirect_to session[:return_to] || root_path
     end
   end
 
   private
+
+  def clear_ldap_session!
+    session.delete :ldap_login
+    session.delete :ldap_first_name
+    session.delete :ldap_last_name
+    session.delete :ldap_email
+    session.delete :ldap_type
+  end
 
   def store_location
     session[:return_to] = params[:back_url]
