@@ -26,6 +26,7 @@ pt-BR:
           title:               " Título "
           legend:              " Legenda "
           archive_fingerprint: " Assinatura digital do arquivo "
+          uploaded_by:          " Enviado por "
           file_link:           " Link para arquivo "
           list_all:            " Listar todos "
           show:                " Mostrar "

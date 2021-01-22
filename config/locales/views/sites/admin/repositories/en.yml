@@ -23,6 +23,7 @@ en:
           size:                " Size "
           type:                " Type "
           archive_description: " The archive description "
+          uploaded_by:          " Uploaded by "
           file_link:           " Link to file "
           list_all:            " List All "
         new:

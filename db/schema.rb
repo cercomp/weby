@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_03_130701) do
+ActiveRecord::Schema.define(version: 2020_12_23_182948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -303,7 +303,9 @@ ActiveRecord::Schema.define(version: 2020_11_03_130701) do
     t.string "archive_fingerprint"
     t.string "title"
     t.string "legend"
+    t.bigint "user_id"
     t.index ["site_id"], name: "index_repositories_on_site_id"
+    t.index ["user_id"], name: "index_repositories_on_user_id"
   end
 
   create_table "roles", id: :serial, force: :cascade do |t|
@@ -547,6 +549,7 @@ ActiveRecord::Schema.define(version: 2020_11_03_130701) do
   add_foreign_key "notifications", "users", name: "notifications_user_id_fk"
   add_foreign_key "posts_repositories", "repositories", name: "pages_repositories_repository_id_fk"
   add_foreign_key "repositories", "sites", name: "repositories_site_id_fk"
+  add_foreign_key "repositories", "users"
   add_foreign_key "roles", "sites", name: "roles_site_id_fk"
   add_foreign_key "roles_users", "roles", name: "roles_users_role_id_fk"
   add_foreign_key "roles_users", "users", name: "roles_users_user_id_fk"
