@@ -1,0 +1,20 @@
+pt-BR:
+  sites:
+    searches:
+      index:
+        search_results:  " Resultados da busca "
+        placeholder:     " Pesquisar "
+        events:          " Eventos "
+        pages:           " Páginas "
+        news:            " Notícias "
+        advanced:        " Opções Avançadas "
+        match_search:    " Busca exata "
+        and_search:      " Todas as palavras "
+        or_search:       " Qualquer uma das palavras "
+        all_events:      " Todos "
+        upcoming_events: " Em andamento / A realizar "
+        previous_events: " Realizados "
+      list:
+        read_more:     " Leia mais "
+        no_pages:      " Nenhuma página encontrada "
+        no_events:     " Nenhum evento encontrado "

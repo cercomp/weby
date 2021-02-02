@@ -8,11 +8,21 @@ es:
         width:              " Anchura "
         align:              " Alineamiento "
         show_button:        " Exibir botón "
+        action:             " Tipo de busca do formulário "
   search_box:
     views:
       show:
         search:             " Buscar "
+        news:               " Notícias "
+        pages:              " Páginas "
+        events:             " Eventos "
+        all:                " Pesquisar tudo "
       form:
+        choose:             " Escolha do usuário "
+        news:               " Notícias "
+        pages:              " Páginas "
+        events:             " Eventos "
+        search:             " Busca geral "
         left:               " Izquierda "
         right:              " Derecha "
         center:             " Centro "

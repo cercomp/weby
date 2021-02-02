@@ -1,0 +1,31 @@
+en:
+  sites:
+    pages:
+      index:
+        events:        " Events "
+        pages:         " Pages "
+        news:          " News "
+        advanced:      " Advanced Options "
+        match_search:  " Exact sentence "
+        and_search:    " All the words "
+        or_search:     " Any of the words "
+      show:
+        event:         " Event "
+        period_event:  " Period of Event "
+        list_all:      " List all "
+        categories:    " Categories "
+        source:        " Source "
+        updated_at:    " Updated at "
+        related_files: " Related files "
+        related_url:   " Related Url "
+        size:          " Size "
+        archive_fingerprint:  " Archive fingerprint "
+      list:
+        read_more:     " Read more "
+        no_pages:      " No pages were found "
+        no_events:     " No events were found "
+      related_files:
+        related_files: " Related files "
+        size:          " Size "
+      sitemap:
+        sitemap:       " Sitemap "

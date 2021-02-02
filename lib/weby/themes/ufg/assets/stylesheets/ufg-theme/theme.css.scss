@@ -1595,3 +1595,33 @@ footer .menu_component .expanded li:hover {
     }
   }*/
 }
+
+.search-result-tabs {
+  .result-tab {
+    line-height: 20px;
+    font-size: 14px;
+    color: #7a7a7a;
+    font-weight: bold;
+    text-decoration: none;
+    padding-bottom: 6px;
+    padding-right: 12px;
+    padding-left: 5px;
+
+    &.active {
+      color: #333333;
+      border-bottom: 3px solid #689ECA;
+      margin: -5px;
+    }
+  }
+}
+
+.result-total {
+  background-color: #d8d8d8;
+  border-radius: 4px;
+  display: inline-flex;
+  width: 30px;
+  height: 20px;
+  align-items: center;
+  justify-content: center;
+  font-size: 90%;
+}

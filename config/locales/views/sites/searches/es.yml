@@ -1,0 +1,29 @@
+es:
+  sites:
+    pages:
+      index:
+        events:        " Eventos "
+        pages:         " Páginas "
+        news:          " Notícias "
+        advanced:      " Opciones avanzadas "
+        match_search:  " Coincidencia exacta "
+        and_search:    " Todas las palabras "
+        or_search:     " Cualquiera de las palabras "
+      show:
+        event:         " Evento "
+        period_event:  " Periodo del Evento "
+        list_all:      " Todas las páginas "
+        categories:    " Categorías "
+        source:        " Fuente "
+        updated_at:    " Actualizado en "
+        related_files: " Archivos Relacionados "
+        related_url:   " Url Relacionada "
+        size:          " Tamaño "
+      list:
+        read_more:     " Leer más "
+        no_pages:      " No se han encontrado páginas "
+        no_events:     " No se han encontrado eventos "
+      related_files:
+        related_files: " Archivos Relacionados "
+        size:          " Tamaño "
+

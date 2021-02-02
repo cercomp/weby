@@ -65,6 +65,18 @@ WEBY.applyContrast = function(){
 $(document).ready(function(){
   moment.locale($('html').attr('lang'));
 
+  //// search tab
+  $('.search-result-tabs').on('click', '.result-tab', function(){
+    const parent = $(this).closest('.search-result-tabs');
+    const panels = parent.siblings('.result-panel');
+    parent.find('.result-tab').removeClass('active');
+    panels.removeClass('active');
+    $(this).addClass('active');
+    panels.filter($(this).attr('href')).addClass('active');
+    return false;
+  });
+
+
   //// Alerts on front end
   var alert = $('.flash-alert');
 

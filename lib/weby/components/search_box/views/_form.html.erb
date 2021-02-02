@@ -1,3 +1,4 @@
+<%= f.input :action, collection: component.action_options.map{|o| [t(".#{o}"), o] } %>
 <%= f.input :width, as: :integer %>
 <%= f.input :align, collection: [
     [t(".right"),"right"],

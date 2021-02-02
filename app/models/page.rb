@@ -1,5 +1,8 @@
 class Page < ApplicationRecord
   include Trashable
+  if ENV['ELASTICSEARCH_URL'].present?
+    include PageElastic
+  end
 
   weby_content_i18n :title, :text, required: :title
 
@@ -25,7 +28,7 @@ class Page < ApplicationRecord
   # 0 = "termo1 termo2"
   # 1 = termo1 AND termo2
   # 2 = termo1 OR termo2
-  scope :search, ->(param, search_type) {
+  scope :with_search, ->(param, search_type) {
     if param.present?
       fields = ['page_i18ns.title', 'page_i18ns.text', 'users.first_name']
       query, values = '', {}
@@ -97,6 +100,44 @@ class Page < ApplicationRecord
     end
     #default
     current_scope.new(params)
+  end
+
+  ## Search
+  def self.get_pages site, params
+    return [] if site.blank?
+    if ENV['ELASTICSEARCH_URL'].present?
+      get_pages_es site, params
+    else
+      get_pages_db site, params
+    end
+  end
+
+
+  def self.get_pages_es site, params
+    params[:direction] = 'desc' if params[:direction].blank?
+    params[:page] = 1 if params[:page].blank?
+
+    filters = [{
+      term: {site_id: site.id}
+    }]
+    filters << {term: {publish: true}}
+    result = Page.perform_search(params[:search],
+      filter: filters,
+      per_page: params[:per_page],
+      page: params[:page],
+      sort: params[:sort_column],
+      sort_direction: params[:sort_direction],
+      search_type: params.fetch(:search_type, 1).to_i
+    )
+  end
+
+  def self.get_pages_db site, params
+    params[:direction] ||= 'desc'
+
+    pages = site.pages.published.
+      search(params[:search], params.fetch(:search_type, 1).to_i).
+      order(params[:sort_column] + ' ' + params[:sort_direction]).
+      page(params[:page]).per(params[:per_page])
   end
 
   private

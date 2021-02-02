@@ -167,7 +167,60 @@ module Journal
       news
     end
 
+    ### Search
+    def self.get_news site, params
+      return [] if site.blank?
+      if ENV['ELASTICSEARCH_URL'].present?
+        get_news_es site, params
+      else
+        get_news_db site, params
+      end
+    end
+
+    def self.get_news_es site, params
+      params[:direction] = 'desc' if params[:direction].blank?
+      params[:page] = 1 if params[:page].blank?
+
+      filters = [{
+        term: {site_id: site.id}
+      }]
+      filters << {term: {status: 'published'}}
+      if params[:tags].present?
+        filters << {terms: {categories: normalize_tags(params[:tags])}}
+      end
+      result = Journal::NewsSite.perform_search(params[:search],
+        filter: filters,
+        per_page: params[:per_page],
+        page: params[:page],
+        sort: params[:sort_column],
+        sort_direction: params[:sort_direction],
+        search_type: params.fetch(:search_type, 1).to_i
+      )
+    end
+
+    def self.get_news_db site, params
+      params[:direction] = 'desc' if params[:direction].blank?
+      params[:page] = 1 if params[:page].blank?
+      if params[:tags].present?
+        result = site.news_sites.published.includes(:categories, news: [:image, :related_files, :site, :i18ns]).
+          tagged_with(normalize_tags(params[:tags]), any: true).
+          with_search(params[:search], params.fetch(:search_type, 1).to_i).
+          order(params[:sort_column] + ' ' + params[:sort_direction]).
+          page(params[:page]).per(params[:per_page])
+      else
+        result = site.news_sites.published.includes(:categories, news: [:image, :related_files, :site, :i18ns]).
+          with_search(params[:search], params.fetch(:search_type, 1).to_i).
+          order(params[:sort_column] + ' ' + params[:sort_direction]).
+          page(params[:page]).per(params[:per_page])
+      end
+      result
+    end
+
     private
+
+    def self.normalize_tags tags
+      unescape_param(tags).split(',').map { |tag| tag.mb_chars.downcase.to_s }
+    end
 
     def validate_date
       self.date_begin_at = Time.current if date_begin_at.blank?

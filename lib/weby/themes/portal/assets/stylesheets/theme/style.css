@@ -2623,3 +2623,21 @@ footer .copyright {
   }
 }
 
+.result-tab.active {
+  color: #ef233c;
+}
+
+.search-result-tabs li {
+  margin-right: 18px;
+}
+
+.result-total {
+  background-color: #d8d8d8;
+  border-radius: 50%;
+  display: inline-flex;
+  width: 30px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  font-size: 90%;
+}
